@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import { toastProps } from '@/toast/src'
+import type { toastProps } from '@/toast/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
-import { timeout } from '../src/toast'
+import type { timeout } from '../src/toast'
 
 export interface IToastState {
   text: string | null

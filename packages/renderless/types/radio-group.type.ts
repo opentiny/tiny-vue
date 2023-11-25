@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { radioGroupProps } from '@/radio-group/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { radioGroupProps } from '@/radio-group/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type { mounted, handleKeydown } from '../src/radio-group'
 
 export interface IRadioGroupState {

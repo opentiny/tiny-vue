@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef } from 'react'
 
 export function useExcuteOnce(cb, ...args) {
   const isExcuted = useRef(false)
@@ -12,7 +12,7 @@ export function useExcuteOnce(cb, ...args) {
 
 export function useReload() {
   const [_, reload] = useState(0)
-  return () => reload(pre => pre + 1)
+  return () => reload((pre) => pre + 1)
 }
 
 export function useOnceResult(func, ...args) {

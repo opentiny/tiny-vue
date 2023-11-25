@@ -723,7 +723,7 @@ export const touchmove = (state) => (event) => {
 }
 
 export const touchend = (state) => (e) => {
-  var moveX = 0
+  let moveX = 0
   state.endX = e.changedTouches[0].clientX
   moveX = state.endX - state.firstX
 

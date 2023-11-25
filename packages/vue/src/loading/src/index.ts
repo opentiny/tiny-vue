@@ -29,7 +29,6 @@ export const loadingProps = {
   }
 }
 
-
 export default defineComponent({
   name: $prefix + 'Loading',
   emits: [],

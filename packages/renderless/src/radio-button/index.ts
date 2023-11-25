@@ -10,7 +10,7 @@
  *
  */
 
-import { IRadioButtonRenderlessParams, IRadioGroupProps, IRadioButtonState } from '@/types'
+import type { IRadioButtonRenderlessParams, IRadioGroupProps, IRadioButtonState } from '@/types'
 
 export const handleChange =
   ({

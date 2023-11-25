@@ -67,7 +67,7 @@ import {
   setInputPaddingLeft
 } from './index'
 import { DATEPICKER } from '../common'
-import {
+import type {
   IPickerProps,
   IPickerApi,
   IPickerState,

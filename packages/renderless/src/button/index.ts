@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { IButtonRenderlessParams, IButtonState } from '@/types'
+import type { IButtonRenderlessParams, IButtonState } from '@/types'
 
 export const handleClick =
   ({ emit, props, state }: Pick<IButtonRenderlessParams, 'emit' | 'props' | 'state'>) =>

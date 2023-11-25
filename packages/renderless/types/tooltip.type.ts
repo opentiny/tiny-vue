@@ -1,7 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { tooltipProps } from '@/tooltip/src'
+import type { tooltipProps } from '@/tooltip/src'
 import type { ISharedRenderlessFunctionParams } from './shared.type'
-import userPopper from '../src/common/deps/vue-popper'
 
 import type {
   bindEvent,

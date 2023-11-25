@@ -64,7 +64,7 @@ const $constants = {
 
 export default defineComponent({
   components: {
-    tinyButton: Button
+    TinyButton: Button
   },
   emits: ['click'],
   props: {

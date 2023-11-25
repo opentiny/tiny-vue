@@ -10,9 +10,9 @@
  *
  */
 
-import { ISharedRenderlessParamHooks } from 'types/shared.type'
+import type { ISharedRenderlessParamHooks } from 'types/shared.type'
 import { timeout } from './index'
-import { IToastApi, IToastState, IToastProps } from 'types/toast.type'
+import type { IToastApi, IToastState, IToastProps } from 'types/toast.type'
 
 export const api = ['state', 'timeout']
 

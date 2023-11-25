@@ -1,7 +1,6 @@
 import type { ExtractPropTypes, StyleValue } from 'vue'
-import { radioButtonProps, $constants } from '@/radio-button/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
-import type { ComponentPublicInstance } from 'vue'
+import type { radioButtonProps, $constants } from '@/radio-button/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type {
   handleChange,
   getValue,

@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { wizardProps, $constants } from '@/wizard/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { wizardProps, $constants } from '@/wizard/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export type IWizardProps = ExtractPropTypes<typeof wizardProps>
 

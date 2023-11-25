@@ -1,8 +1,8 @@
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
-import { ICascaderPanelNode, ICascaderPanelApi } from './cascader-panel.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ICascaderPanelNode, ICascaderPanelApi } from './cascader-panel.type'
 import type { clearHoverZone, handleExpand, handleMouseMove } from '../src/cascader-menu'
 
-export type ICascaderMenuProps = {
+export interface ICascaderMenuProps {
   nodes: ICascaderPanelNode[]
   index: number
 }

@@ -1,4 +1,4 @@
-import { IColorSelectPanelRef as Ref } from '@/types'
+import type { IColorSelectPanelRef as Ref } from '@/types'
 import Color from './utils/color'
 import { onConfirm, onCancel, onHueUpdate, onSVUpdate, onColorUpdate } from './index'
 
@@ -25,12 +25,8 @@ export const renderless = (props, context, { emit }) => {
   const changeVisible = (state: boolean) => {
     isShow.value = state
   }
-  const stack: Ref<string[]> = context.ref(
-    [...(history?.value ?? [])]
-  )
-  const predefineStack: Ref<string[]> = context.ref(
-    [...(predefine?.value ?? [])]
-  )
+  const stack: Ref<string[]> = context.ref([...(history?.value ?? [])])
+  const predefineStack: Ref<string[]> = context.ref([...(predefine?.value ?? [])])
   const state = context.reactive({
     isShow,
     hex,
@@ -49,19 +45,27 @@ export const renderless = (props, context, { emit }) => {
     onSVUpdate: onSVUpdate(tmpColor, triggerBg),
     onColorUpdate: onColorUpdate(triggerBg)
   }
-  context.watch(predefine, (newPredefine: string[]) => {
-    predefineStack.value = [...newPredefine]
-  }, { deep: true })
-  context.watch(history, (newHistory: string[]) => {
-    stack.value = [...newHistory]
-  }, { deep: true })
-  context.watch(modelValue, (newValue)=>{
+  context.watch(
+    predefine,
+    (newPredefine: string[]) => {
+      predefineStack.value = [...newPredefine]
+    },
+    { deep: true }
+  )
+  context.watch(
+    history,
+    (newHistory: string[]) => {
+      stack.value = [...newHistory]
+    },
+    { deep: true }
+  )
+  context.watch(modelValue, (newValue) => {
     pre.value = newValue
     hex.value = newValue
     state.hex = newValue
-    state.triggerBg = newValue;
+    state.triggerBg = newValue
   })
-  context.watch(visible, (visible)=>{
+  context.watch(visible, (visible) => {
     isShow.value = visible
   })
   return api

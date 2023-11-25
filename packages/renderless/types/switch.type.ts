@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, StyleValue } from 'vue'
-import { switchProps, $constants } from '@/switch/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { switchProps, $constants } from '@/switch/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type { toggle, computedWarpClasses, computedInnerClasses, computedStyle } from '../src/switch/index'
 
 export interface ISwitchState {

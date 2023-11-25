@@ -13,8 +13,8 @@
 import PopupManager from './popup-manager'
 import PopperJS from './popper'
 import { on } from './dom'
-import { ISharedRenderlessFunctionParams } from 'types/shared.type'
-import Popper from './popper'
+import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
+import type Popper from './popper'
 
 interface IPopperState {
   popperJS: Popper
@@ -167,7 +167,7 @@ export default (options: IPopperInputParams) => {
     state.popperJS = null as any
   }
 
-  /** remove时，执行真的移除popper dom操作。*/
+  /** remove时，执行真的移除popper dom操作。 */
   const destroyPopper = (remove: 'remove' | boolean) => {
     if (remove) {
       if (state.popperElm) {

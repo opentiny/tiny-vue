@@ -57,5 +57,5 @@ export const getActualTarget = (e) => {
   if (!e || !e.target) {
     return null
   }
-  return (e.target.shadowRoot && e.composed) ? (e.composedPath()[0] || e.target) : e.target
-} 
+  return e.target.shadowRoot && e.composed ? e.composedPath()[0] || e.target : e.target
+}

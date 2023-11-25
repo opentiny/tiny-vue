@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ITagState, ITagProps, ITagApi, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
+import type { ITagState, ITagProps, ITagApi, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
 import { handleClose, handleClick } from './index'
 
 export const api = ['state', 'handleClose', 'handleClick']

@@ -58,6 +58,7 @@
 import { $prefix, setup, defineComponent, props } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/pull-refresh/vue'
 import '@opentiny/vue-theme-mobile/pull-refresh/index.less'
+
 export default defineComponent({
   name: $prefix + 'PullRefresh',
   props: {

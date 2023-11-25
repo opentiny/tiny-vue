@@ -10,7 +10,7 @@
  *
  */
 
-import {
+import type {
   IDatePickerColumn,
   IDatePickerConstants,
   IDatePickerOriginColumn,
@@ -19,8 +19,10 @@ import {
   IDatePickerState
 } from '@/types'
 
-export const getMonthEndDay = (constants: IDatePickerConstants) => (year: number, month: number): number =>
-  constants.MonthDay - new Date(year, month - 1, constants.MonthDay).getDate()
+export const getMonthEndDay =
+  (constants: IDatePickerConstants) =>
+  (year: number, month: number): number =>
+    constants.MonthDay - new Date(year, month - 1, constants.MonthDay).getDate()
 
 export const getTrueValue = (value: string): number => {
   if (!value) {
@@ -40,7 +42,10 @@ export const getTrueValue = (value: string): number => {
 
 export const getBoundary =
   ({ api, constants, props }: Pick<IDatePickerRenderlessParams, 'api' | 'constants' | 'props'>) =>
-  ({ type, value: val }: {
+  ({
+    type,
+    value: val
+  }: {
     type: string
     value: Date
   }): {
@@ -83,7 +88,13 @@ export const getBoundary =
   }
 
 export const updateInnerValue =
-  ({ api, constants, props, refs, state }: Pick<IDatePickerRenderlessParams, 'api' | 'constants' | 'props' | 'refs' | 'state'>) =>
+  ({
+    api,
+    constants,
+    props,
+    refs,
+    state
+  }: Pick<IDatePickerRenderlessParams, 'api' | 'constants' | 'props' | 'refs' | 'state'>) =>
   () => {
     const indexes = refs.picker && refs.picker.getIndexes()
 
@@ -118,16 +129,18 @@ export const updateInnerValue =
     state.innerValue = api.formatValue(value)
   }
 
-export const formatValue = (props: IDatePickerProps) => (value: number): Date => {
-  if (!Object.prototype.toString.call(value) === '[object Date]' && !isNaN(value.getTime())) {
-    value = props.minDate
+export const formatValue =
+  (props: IDatePickerProps) =>
+  (value: number): Date => {
+    if (!Object.prototype.toString.call(value) === '[object Date]' && !isNaN(value.getTime())) {
+      value = props.minDate
+    }
+
+    value = Math.max(value, props.minDate.getTime())
+    value = Math.min(value, props.maxDate.getTime())
+
+    return new Date(value)
   }
-
-  value = Math.max(value, props.minDate.getTime())
-  value = Math.min(value, props.maxDate.getTime())
-
-  return new Date(value)
-}
 
 export const onChange =
   ({ api, emit, refs, nextTick }: Pick<IDatePickerRenderlessParams, 'api' | 'emit' | 'refs' | 'nextTick'>) =>
@@ -153,7 +166,13 @@ export const padZero = (num: number, targetLength = 2): string => {
 }
 
 export const updateColumnValue =
-  ({ constants, nextTick, props, refs, state }: Pick<IDatePickerRenderlessParams, 'constants' | 'nextTick' | 'props' | 'refs' | 'state'>) =>
+  ({
+    constants,
+    nextTick,
+    props,
+    refs,
+    state
+  }: Pick<IDatePickerRenderlessParams, 'constants' | 'nextTick' | 'props' | 'refs' | 'state'>) =>
   () => {
     const value = state.innerValue
     const { formatter } = props
@@ -309,7 +328,12 @@ export const getDisplayValue =
   }
 
 export const hookMounted =
-  ({ constants, parent, refs, nextTick }: Pick<IDatePickerRenderlessParams, 'constants' | 'parent' | 'refs' | 'nextTick'>) =>
+  ({
+    constants,
+    parent,
+    refs,
+    nextTick
+  }: Pick<IDatePickerRenderlessParams, 'constants' | 'parent' | 'refs' | 'nextTick'>) =>
   () => {
     nextTick(() => {
       parent.$emit(constants.HookMounted, refs.refrence.$el)

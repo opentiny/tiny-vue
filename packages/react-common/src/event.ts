@@ -2,27 +2,25 @@ import { eventBus } from './utils'
 
 const $busMap = new Map()
 
-export const emit = (props) => (evName, ...args) => {
-  const reactEvName = 'on'
-    + evName.substr(0, 1).toUpperCase()
-    + evName.substr(1)
+export const emit =
+  (props) =>
+  (evName, ...args) => {
+    const reactEvName = 'on' + evName.substr(0, 1).toUpperCase() + evName.substr(1)
 
-  if (props[reactEvName] && typeof props[reactEvName] === 'function') {
-    props[reactEvName](...args)
-  }
-  else {
-    const $bus = $busMap.get(props)
-    if ($bus) {
-      $bus.emit(evName, ...args)
+    if (props[reactEvName] && typeof props[reactEvName] === 'function') {
+      props[reactEvName](...args)
+    } else {
+      const $bus = $busMap.get(props)
+      if ($bus) {
+        $bus.emit(evName, ...args)
+      }
     }
   }
-}
 export const on = (props) => (evName, callback) => {
   if ($busMap.get(props)) {
     const $bus = $busMap.get(props)
     $bus.on(evName, callback)
-  }
-  else {
+  } else {
     const $bus = eventBus()
     $bus.on(evName, callback)
     $busMap.set(props, $bus)
@@ -43,8 +41,7 @@ export const once = (props) => (evName, callback) => {
   if ($busMap.get(props)) {
     $bus = $busMap.get(props)
     $bus.on(evName, onceCallback)
-  }
-  else {
+  } else {
     $bus = eventBus()
     $bus.on(evName, onceCallback)
     $busMap.set(props, $bus)
@@ -54,8 +51,8 @@ export const emitEvent = (vm) => {
   const broadcast = (vm, componentName, eventName, ...args) => {
     const children = vm.$children
 
-    Array.isArray(children)
-      && children.forEach((child) => {
+    Array.isArray(children) &&
+      children.forEach((child) => {
         const name = child.$options && child.$options.componentName
         const component = child
 
@@ -63,8 +60,7 @@ export const emitEvent = (vm) => {
           component.emit(eventName, ...args)
           // todo: 调研 component.$emitter
           // component.$emitter && component.$emitter.emit(eventName, params)
-        }
-        else {
+        } else {
           broadcast(child, componentName, eventName, ...args)
         }
       })
@@ -78,8 +74,7 @@ export const emitEvent = (vm) => {
       while (parent && parent.type && (!name || name !== componentName)) {
         parent = parent.$parent
 
-        if (parent)
-          name = parent.$options && parent.$options.componentName
+        if (parent) name = parent.$options && parent.$options.componentName
       }
 
       if (parent) {

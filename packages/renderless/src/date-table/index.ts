@@ -21,7 +21,7 @@ import {
   clearTime
 } from '../common/deps/date-util'
 import { DATEPICKER } from '../common'
-import { IDateTableRow } from '@/types'
+import type { IDateTableRow } from '@/types'
 
 const formatJudg = ({ day, offset, j, i, cell, count, dateCountOfLastMonth }) => {
   const nodfpm = day + offset < 0 ? 7 + day + offset : day + offset
@@ -180,7 +180,7 @@ export const getRows =
     let count = 1
 
     const isFunction = props.formatWeeks instanceof Function
-  
+
     const arr: Date[][] = []
 
     // 日期表格行，从0开始，共6行，[0, 5]
@@ -243,7 +243,7 @@ export const getRows =
     if (props.showWeekNumber && isFunction) {
       for (let i = 0; i < 6; i++) {
         let val = getWeekNumber(nextDate(startDate, i * 7 + 1))
-  
+
         rows[i][0].text = props.formatWeeks(val, res)
       }
     }

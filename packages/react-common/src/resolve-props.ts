@@ -2,13 +2,11 @@
 const reactEventPrefix = /^on[A-Z]/
 export function getEventByReactProps(props) {
   const $listeners = {}
-  Object
-    .keys(props)
-    .filter(propName => {
-      return reactEventPrefix.test(propName)
-        && typeof props[propName] === 'function'
+  Object.keys(props)
+    .filter((propName) => {
+      return reactEventPrefix.test(propName) && typeof props[propName] === 'function'
     })
-    .map(reactEvName => {
+    .map((reactEvName) => {
       return {
         reactEvName,
         vueEvName: reactEvName.substr(2).toLowerCase()
@@ -23,9 +21,8 @@ export function getEventByReactProps(props) {
 }
 export function getAttrsByReactProps(props) {
   const $attrs = {}
-  Object
-    .keys(props)
-    .filter(propName => {
+  Object.keys(props)
+    .filter((propName) => {
       return !reactEventPrefix.test(propName) && !['children'].includes(propName)
     })
     .forEach((attr) => {

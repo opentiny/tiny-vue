@@ -10,7 +10,7 @@
  *
  */
 
-import { ILoadingRenderlessParamUtils, ILoadingRenderlessParams, ILoadingState } from 'types/loading.type'
+import type { ILoadingRenderlessParamUtils, ILoadingRenderlessParams, ILoadingState } from 'types/loading.type'
 import afterLeave from '../common/deps/after-leave'
 import { removeClass } from '../common/deps/dom'
 

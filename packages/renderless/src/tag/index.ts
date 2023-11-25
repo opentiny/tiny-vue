@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ITagRenderlessParams } from '@/types'
+import type { ITagRenderlessParams } from '@/types'
 
 export const handleClose =
   ({ emit, props, state }: Pick<ITagRenderlessParams, 'emit' | 'props' | 'state'>) =>

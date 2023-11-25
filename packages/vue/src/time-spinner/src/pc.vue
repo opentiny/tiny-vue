@@ -26,7 +26,7 @@
       >
         <li
           @click="handleClick('hours', { value: hour, disabled })"
-          v-for="({ disabled, hour }) in state.hoursList"
+          v-for="{ disabled, hour } in state.hoursList"
           class="tiny-time-spinner__item"
           :key="hour"
           :class="{ active: hour === state.hours, disabled }"
@@ -47,7 +47,7 @@
       >
         <li
           @click="handleClick('minutes', { value: minute, disabled: false })"
-          v-for="({ disabled, minute }) in state.minutesList"
+          v-for="{ disabled, minute } in state.minutesList"
           :key="minute"
           class="tiny-time-spinner__item"
           :class="{ active: minute === state.minutes, disabled: !disabled }"
@@ -92,7 +92,9 @@
             class="tiny-time-spinner__item"
             :class="{
               active: hour === state.hours,
-              disabled: state.hoursList.find(item => item.hour === hour) && state.hoursList.find(item => item.hour === hour).disabled
+              disabled:
+                state.hoursList.find((item) => item.hour === hour) &&
+                state.hoursList.find((item) => item.hour === hour).disabled
             }"
             v-for="(hour, key) in state.arrowHourList"
             :key="key"
@@ -183,10 +185,18 @@ export default defineComponent({
     },
     step: {
       type: Object,
-      default() { return { hour: 1, minute: 1, second: 1 } },
+      default() {
+        return { hour: 1, minute: 1, second: 1 }
+      },
       validator: ({ hour, minute, second }) => {
-        const validateArray = [{ value: hour, range: 24 }, { value: minute, range: 60 }, { value: second, range: 60 }]
-        return validateArray.every(({ value, range }) => value || value == 0 ? Math.floor(value) === value && value > 0 && value <= range : true)
+        const validateArray = [
+          { value: hour, range: 24 },
+          { value: minute, range: 60 },
+          { value: second, range: 60 }
+        ]
+        return validateArray.every(({ value, range }) =>
+          value || value == 0 ? Math.floor(value) === value && value > 0 && value <= range : true
+        )
       }
     }
   },

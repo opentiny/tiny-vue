@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ITabNavRenderlessParams } from '@/types'
+import type { ITabNavRenderlessParams } from '@/types'
 import { KEY_CODE, POSITION } from '../common'
 import { capitalize } from '../common/string'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'

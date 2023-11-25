@@ -10,8 +10,7 @@
  *
  */
 
-import { IDropdownRenderlessParams } from '@/types'
-import type { ComponentPublicInstance } from 'vue'
+import type { IDropdownRenderlessParams } from '@/types'
 import { KEY_CODE } from '../common'
 import { addClass, removeClass, on, off } from '../common/deps/dom'
 

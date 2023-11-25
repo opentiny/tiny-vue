@@ -18,7 +18,7 @@ const getRenderLabel =
     const def = h('span', label)
     const childNodes = isVue3 ? { default: () => def, reference: () => lableVnode } : [def, lableVnode]
 
-    // @ts-ignore
+    // @ts-expect-error
     return h(Popover, popoverProps, childNodes)
   }
 
@@ -61,7 +61,7 @@ const renderShapeVnode = (args: any) => {
 
       popoverProps.class = 'w-full h-full block'
 
-      // @ts-ignore
+      // @ts-expect-error
       shapeVnode = h(Popover, popoverProps, childNodes)
     } else {
       shapeVnode = h('div', { class: cls, style: styl, slot: 'reference' }, shapeVnodeChildren)
