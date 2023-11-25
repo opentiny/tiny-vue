@@ -23,7 +23,10 @@ export default {
     {
       'demoId': 'slot-editor-slot',
       'name': { 'zh-CN': '编辑器插槽', 'en-US': 'Editor slot' },
-      'desc': { 'zh-CN': '详细用法参考如下示例：', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': `<p>使用编辑器插槽的前提条件是：<code>grid</code> 标签上配置 <code>edit-config</code>。在 <code>grid-column</code> 列配置 <code>:editor="{}"</code> 。</p>`,
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['slot/editor-slot.vue']
     },
     {
