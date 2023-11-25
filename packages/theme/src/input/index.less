@@ -355,8 +355,13 @@
     border-bottom-left-radius: 0;
   }
 
-  &-append .@{input-prefix-cls}__suffix {
-    top: calc(50% - 7px);
+  // #append插槽和clearable同时启用
+  &-append > div:has(.@{input-prefix-cls}__suffix) {
+    display: inline-block;
+    position: relative;
+    .@{input-prefix-cls}__suffix {
+      top: calc(50% - 4px);
+    }
   }
 
   &-append .@{input-prefix-cls}__inner,
