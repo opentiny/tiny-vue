@@ -9,10 +9,10 @@
     position: absolute;
     max-width: 300px;
     z-index: var(--ti-color-select-panel__wrapper-zindex);
-    background: var(--ti-color-select-panel__wrapper-bg);
+    background: var(--ti-color-select-panel__wrapper-bg-color);
     gap: var(--ti-color-select-panel-spacing);
-    padding: var(--ti-color-select-panel-spacing-2x);
-    box-shadow: var(--ti-color-select-panel-shadow);
+    padding: var(--ti-color-select-panel-padding-vertical) var(--ti-color-select-panel-padding-horizontal);
+    box-shadow: var(--ti-color-select-panel-box-shadow);
 
     &__tools {
       display: flex;
@@ -82,7 +82,7 @@
       width: 100%;
       height: 20px;
       border-radius: var(--ti-color-select-panel-border-radius-xs);
-      margin-top: var(--ti-color-select-panel-spacing-2x);
+      margin-top: var(--ti-color-select-panel-alpha-margin-top);
       &__slider {
         width: 100%;
         height: 100%;
