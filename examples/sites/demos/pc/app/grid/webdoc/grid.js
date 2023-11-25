@@ -2786,6 +2786,8 @@ interface IDropConfig {
   column: boolean
   // 拖拽前函数，返回 false 取消拖动
   onBeforeMove?: ()=> boolean
+  // 拖拽触发源选择器一般是class类名
+  trigger?: string
   // 根据行的类名来控制是否可以拖动
   filter?: string
   // 如果变动了树层级，可以指定是否需要刷新数据
