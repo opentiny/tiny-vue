@@ -354,6 +354,17 @@ export default {
           demoId: 'overflow-title'
         },
         {
+          name: 'popper-options',
+          type: 'Popover.IPopperOption',
+          typeAnchorName: 'popover#IPopperOption',
+          'defaultValue': '',
+          desc: {
+            'zh-CN': '校验错误提示配置，透传至 Popover 组件',
+            'en-US': 'Verify error prompt configuration and transparently transmit it to Popover component'
+          },
+          demoId: 'popper-options'
+        },
+        {
           name: 'rules',
           type: '{ [prop: string]: IFormRules | IFormRules[]  }',
           typeAnchorName: 'IFormRules',

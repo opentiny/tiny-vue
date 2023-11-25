@@ -86,7 +86,7 @@ export default {
     },
     {
       'demoId': 'radio-size',
-      'name': { 'zh-CN': '尺寸设置', 'en-US': 'Size Settings' },
+      'name': { 'zh-CN': '尺寸', 'en-US': 'Size Settings' },
       'desc': {
         'zh-CN':
           '<p>可对按钮形式的 <code>radio</code> 或带有边框的 <code>radio</code> 设置 <code>size</code> 属性，以改变其尺寸，可选值有： <code>medium</code>  、<code>small</code>  、<code>mini</code> 。</p>\n',
