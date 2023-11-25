@@ -12,10 +12,10 @@
         :type="allProps.inputTypeCoerced"
         :value="modelValue[key]"
         :props="{
-          key: key,
+          key,
           placeholder: allProps.placeHolderText,
           class: standardClassnames.valueListItem,
-          disabled: disabled
+          disabled
         }"
         :events="{
           change: change1(i)
@@ -57,7 +57,7 @@
       :props="{
         label: v.name,
         text: v.label,
-        disabled: disabled
+        disabled
       }"
       :events="{ change }"
     ></custom-input>
@@ -70,9 +70,9 @@
       :props="{
         'data-testid': testID,
         placeholder: allProps.placeHolderText,
-        title: title,
+        title,
         class: className,
-        disabled: disabled
+        disabled
       }"
       :events="{ change }"
     ></custom-input>

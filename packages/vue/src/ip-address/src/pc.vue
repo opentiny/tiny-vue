@@ -38,8 +38,9 @@
         />
         <template v-if="index < state.address.length - 1">
           <slot :slot-scope="{ state, index, item }">
-            <span v-if="type === 'IPv6' && delimiter === 'icon-dot-ipv4'"
-              class="tiny-ip-address__input__ipv6-delimiter">:</span>
+            <span v-if="type === 'IPv6' && delimiter === 'icon-dot-ipv4'" class="tiny-ip-address__input__ipv6-delimiter"
+              >:</span
+            >
             <component v-else :is="delimiter" class="tiny-svg-size" />
           </slot>
         </template>

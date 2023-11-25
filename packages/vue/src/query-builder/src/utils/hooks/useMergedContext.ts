@@ -45,7 +45,7 @@ export const useMergedContext = (props: UseMergedContextProps) => {
     objectKeys(props.translations).forEach((t) => {
       const contextTranslations = rqbContext.translations
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore Different keys have different requirements
+      // @ts-expect-error Different keys have different requirements
       translationsTemp[t] = {
         ...defaultTranslations[t],
         ...contextTranslations,

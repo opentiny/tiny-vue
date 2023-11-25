@@ -75,8 +75,8 @@ export const renderless = (props, { computed, reactive, watch }, { t, emit, cons
       waitLoadList: []
     },
     options: computed(() => {
-      let data,
-        list = [state.rootData]
+      let data
+      let list = [state.rootData]
       state.navList.map((option) => {
         data = option.childNodes
         data && data.length && list.push(data)

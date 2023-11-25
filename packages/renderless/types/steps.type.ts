@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { stepsProps } from '@/steps/src'
-import { ISharedRenderlessParamUtils, ISharedRenderlessFunctionParams } from './shared.type'
+import type { stepsProps } from '@/steps/src'
+import type { ISharedRenderlessParamUtils, ISharedRenderlessFunctionParams } from './shared.type'
 
 export type IStepsProps = ExtractPropTypes<typeof stepsProps>
 

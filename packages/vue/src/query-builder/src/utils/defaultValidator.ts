@@ -1,4 +1,4 @@
-import type { QueryValidator, RuleGroupTypeAny, RuleType, ValidationMap } from '../ts'
+import type { QueryValidator, RuleGroupTypeAny, ValidationMap } from '../ts'
 import { defaultCombinators, groupInvalidReasons } from '../defaults'
 
 /**

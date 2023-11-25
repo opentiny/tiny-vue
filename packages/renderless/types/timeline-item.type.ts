@@ -11,8 +11,8 @@
  */
 
 import type { ExtractPropTypes } from 'vue'
-import { timelineItemProps, $constants } from '@/timeline-item/src'
-import {
+import type { timelineItemProps, $constants } from '@/timeline-item/src'
+import type {
   getDate,
   computedCurrent,
   computedIsReverse,

@@ -1,4 +1,4 @@
-import { mounted, reRenderWatermark, unmounted, useWatermarkBg, watchProps } from 'src/watermark'
+import type { mounted, reRenderWatermark, unmounted, useWatermarkBg, watchProps } from 'src/watermark'
 
 interface IWatermarkState {
   div: HTMLDivElement

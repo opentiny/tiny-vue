@@ -30,8 +30,8 @@ import {
 } from './index'
 import userPopper from '../common/deps/vue-popper'
 import { guid } from '../common/string'
-import { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
-import { ITooltipApi, ITooltipProps, ITooltipState } from 'types/tooltip.type'
+import type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
+import type { ITooltipApi, ITooltipProps, ITooltipState } from 'types/tooltip.type'
 
 export const api = [
   'state',

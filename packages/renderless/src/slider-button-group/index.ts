@@ -2,8 +2,6 @@ export const getChangePosition = (state) => (value) => {
   state.eachBlockIndex.find((e, index) => {
     if (e.index === value) {
       state.currentIndex = index
-
-      return
     }
   })
 

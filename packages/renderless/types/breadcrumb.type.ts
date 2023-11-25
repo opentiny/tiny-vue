@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { breadcrumbProps, $constants } from '@/breadcrumb/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { breadcrumbProps, $constants } from '@/breadcrumb/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export interface IBreadcrumbState {
   breadcrumbEmitter: object

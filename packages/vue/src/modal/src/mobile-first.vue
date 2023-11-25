@@ -340,7 +340,7 @@ export default defineComponent({
                                     'hidden sm:inline-block mr-2 fill-current',
                                     type === 'message' ? 'h-4.5 w-4.5 self-start shrink-0 mt-0.5' : 'h-6 w-auto',
                                     { 'text-color-success': status === 'success' },
-                                    { 'text-color-info-secondary': ['info', 'question'].indexOf(status) !== -1 },
+                                    { 'text-color-info-secondary': ['info', 'question'].includes(status) },
                                     { 'text-color-warning': status === 'warning' },
                                     { 'text-color-error': status === 'error' }
                                   )

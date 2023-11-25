@@ -184,7 +184,10 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/cascader/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside' // 没有进行vue3，vue2适配
+
+import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+
+// 没有进行vue3，vue2适配
 import Input from '@opentiny/vue-input'
 import Tag from '@opentiny/vue-tag'
 import Scrollbar from '@opentiny/vue-scrollbar'

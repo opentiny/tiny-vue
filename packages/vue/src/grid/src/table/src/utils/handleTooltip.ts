@@ -23,6 +23,7 @@
  *
  */
 import { h } from '@opentiny/vue-common'
+
 export function createTooltipRange({ _vm, cell, column, isHeader }) {
   let range = document.createRange()
   let rangeEnd

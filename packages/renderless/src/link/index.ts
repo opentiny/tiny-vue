@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ILinkRenderlessParams } from '@/types'
+import type { ILinkRenderlessParams } from '@/types'
 
 export const handleClick =
   ({ emit, props, state }: Pick<ILinkRenderlessParams, 'emit' | 'props' | 'state'>) =>

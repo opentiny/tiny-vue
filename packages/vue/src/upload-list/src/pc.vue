@@ -108,7 +108,7 @@
           'tiny-upload-list__item',
           'is-' + file.status,
           state.focusing ? 'focusing' : '',
-          { isEdm: isEdm },
+          { isEdm },
           { showUpdate: listOption.showUpdate },
           { showDel: listOption.showDel }
         ]"
@@ -305,9 +305,9 @@ export default defineComponent({
     IconError: iconError(),
     IconFileCloudupload: iconFileCloudupload(),
     IconDownload: iconDownload(),
-    iconRefres: iconRefres(),
-    iconOperationfaild: iconOperationfaild(),
-    iconFullscreenLeft: iconFullscreenLeft()
+    IconRefres: iconRefres(),
+    IconOperationfaild: iconOperationfaild(),
+    IconFullscreenLeft: iconFullscreenLeft()
   },
   props: [
     ...props,

@@ -198,7 +198,7 @@ export default defineComponent({
     'afterLoad',
     'lazyCurrent',
     'baseIndent',
-    'showLine',
+    'showLine'
   ],
   components: {
     TreeNode,

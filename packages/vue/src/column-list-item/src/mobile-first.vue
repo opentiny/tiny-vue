@@ -151,6 +151,7 @@ import DropdownItem from '@opentiny/vue-dropdown-item'
 import Checkbox from '@opentiny/vue-checkbox'
 import Radio from '@opentiny/vue-radio'
 import { IconEllipsis } from '@opentiny/vue-icon'
+
 const $constants = {
   COLUMN_GROUP: 'ColumnListGroup'
 }
