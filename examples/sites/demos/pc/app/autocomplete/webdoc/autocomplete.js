@@ -157,7 +157,7 @@ export default {
     {
       'name': 'autocomplete',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'clearable',
           'type': 'boolean',

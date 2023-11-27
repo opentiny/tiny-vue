@@ -189,7 +189,7 @@ export default {
     {
       'name': 'input',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'autocomplete',
           'type': 'string',

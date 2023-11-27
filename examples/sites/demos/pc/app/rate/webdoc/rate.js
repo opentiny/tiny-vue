@@ -167,7 +167,7 @@ export default {
     {
       'name': 'rate',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'max',
           'type': 'number',
