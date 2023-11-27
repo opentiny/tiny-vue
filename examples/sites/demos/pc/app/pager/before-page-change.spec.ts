@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test'
 
-test('测试切换分页前时间', async ({ page }) => {
+test('分页变更前置处理', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('pager#before-page-change')
 
-  const preview = page.locator('#preview')
-  const pager = preview.locator('.tiny-pager')
+  const demo = page.locator('#before-page-change')
+  const pager = demo.locator('.tiny-pager')
   const prev = pager.locator('.tiny-pager__btn-prev')
   const next = pager.locator('.tiny-pager__btn-next')
   const tipModal = page.locator('.tiny-modal__box').filter({ hasText: '消息提示' })
