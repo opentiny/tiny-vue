@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { IWizardRenderlessParams, IWizardPropsDataNode, IWizardNodesItem } from '@/types'
+import type { IWizardRenderlessParams, IWizardPropsDataNode, IWizardNodesItem } from '@/types'
 
 import { format } from '../common/date'
 import { copyArray, extend } from '../common/object'

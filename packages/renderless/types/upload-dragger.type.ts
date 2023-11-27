@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { UploadDraggerProps } from '@/upload-dragger/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { UploadDraggerProps } from '@/upload-dragger/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type { onDragOver, onDrop, watchDragover } from '../src/upload-dragger'
 import type { IFileUploadVm, IFileUploadConstants } from './file-upload.type'
 

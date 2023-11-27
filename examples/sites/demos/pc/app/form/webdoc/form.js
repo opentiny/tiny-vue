@@ -210,6 +210,17 @@ export default {
           'By setting whether to hide the red asterisk in front of the label through <code>hide required asterisk</code> , it defaults to <code>false</code> , but under the SMB theme, it defaults to <code>true</code> .'
       },
       codeFiles: ['smb-required.vue']
+    },
+    {
+      demoId: 'popper-options',
+      name: { 'zh-CN': '错误提示配置', 'en-US': 'Error tip options' },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>popper-options</code> 设置<code>tip</code>类型错误提示，例如：当表单父元素是滚动元素，切页面滚动后，提示会错位，将 <code>bubbling</code> 属性设置为 <code>true</code>可解决此问题。</p>',
+        'en-US':
+          'Set the <code>tip</code> type error prompt through <code>popper-options</code>. For example, when the parent element of the form is a scrolling element and the page scrolls, the prompt will be misaligned. Change the <code>bubbling</code> attribute Set to <code>true</code> to resolve this issue.'
+      },
+      codeFiles: ['popper-options.vue']
     }
   ],
   apis: [
@@ -341,6 +352,17 @@ export default {
             'en-US': 'Does the label display a prompt if it is too long'
           },
           demoId: 'overflow-title'
+        },
+        {
+          name: 'popper-options',
+          type: 'Popover.IPopperOption',
+          typeAnchorName: 'popover#IPopperOption',
+          'defaultValue': '',
+          desc: {
+            'zh-CN': '校验错误提示配置，透传至 Popover 组件',
+            'en-US': 'Verify error prompt configuration and transparently transmit it to Popover component'
+          },
+          demoId: 'popper-options'
         },
         {
           name: 'rules',

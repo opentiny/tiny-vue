@@ -236,7 +236,6 @@
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/calendar-view/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { t } from '@opentiny/vue-locale'
 import Button from '@opentiny/vue-button'
 import DatePicker from '@opentiny/vue-date-picker'
 import RadioButton from '@opentiny/vue-radio-button'

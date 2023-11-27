@@ -60,7 +60,9 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$refs.ruleFormRef.validate()
+      this.$refs.ruleFormRef.validate(() => {
+        // empty
+      })
     },
     changeRule() {
       this.rules = {

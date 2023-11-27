@@ -10,7 +10,7 @@
  *
  */
 
-import { ICheckboxRenderlessParams, ICheckboxState, ICheckboxChangeEvent, ICheckboxProps } from '@/types'
+import type { ICheckboxRenderlessParams, ICheckboxState, ICheckboxChangeEvent, ICheckboxProps } from '@/types'
 import { isNull } from '../common/type'
 
 export const addToStore =

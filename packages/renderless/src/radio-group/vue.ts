@@ -10,7 +10,7 @@
  *
  */
 
-import {
+import type {
   IRadioGroupApi,
   IRadioGroupProps,
   IRadioGroupState,

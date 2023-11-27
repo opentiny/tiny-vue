@@ -8,8 +8,8 @@ test('[Input]event: input, change', async ({ page }) => {
 
   // input event
   await input.fill('2')
-  const dialogModelInputEvent = await page.locator('.tiny-modal')
-  await expect(dialogModelInputEvent).toContainText('input')
+  const dialogModelInputEvent = await page.locator('.tiny-modal',  { hasText: 'input' })
+  await expect(dialogModelInputEvent).toBeVisible()
 
   // change event
   await input.blur()

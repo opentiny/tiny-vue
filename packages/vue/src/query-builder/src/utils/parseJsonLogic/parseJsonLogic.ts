@@ -129,7 +129,7 @@ function parseJsonLogic(
     let field = ''
     let operator: DefaultOperatorName = '='
     let value: any = ''
-    let valueSource: ValueSource | undefined = undefined
+    let valueSource: ValueSource | undefined
 
     if (jsonLogicOperations && objectKeys(jsonLogicOperations).includes(key)) {
       // Custom operations

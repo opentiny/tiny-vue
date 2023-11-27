@@ -159,7 +159,7 @@ export default {
     {
       'name': 'popover',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'title',
           'type': 'string',

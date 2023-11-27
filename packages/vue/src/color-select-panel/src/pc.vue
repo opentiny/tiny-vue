@@ -62,14 +62,13 @@ import HueSelect from './components/hue-select.vue'
 import AlphaSelect from './components/alpha-select.vue'
 import '@opentiny/vue-theme/color-select-panel/index.less'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
-import { t } from '@opentiny/vue-locale'
 
 export default defineComponent({
   emits: ['update:modelValue', 'cancel', 'confirm', 'hue-update', 'sv-update', 'color-update'],
   props: [...props, 'modelValue', 'visible', 'alpha', 'history', 'predefine'],
   components: {
-    hueSelect: HueSelect,
-    alphaSelect: AlphaSelect,
+    HueSelect,
+    AlphaSelect,
     TinyButton: Button,
     TinyButtonGroup: ButtonGroup,
     TinyInput: Input,

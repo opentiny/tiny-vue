@@ -6,8 +6,9 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '',
-        'en-US': ''
+        'zh-CN': '使用 <code>options</code> 属性配置菜单内容，<code>label</code> 定义节点的显示文本。',
+        'en-US':
+          'Use <code>options</code> attributes to configure menu content, and <code>label</code> to define the display text for nodes.'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -16,7 +17,7 @@ export default {
       'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
       'desc': {
         'zh-CN': '<p>通过 <code>disabled</code> 字段设置当前下拉选项是否为禁用状态。</p>',
-        'en-US': '<p>Set whether the current drop-down option is disabled through the<code>disabled</code>field.</p>'
+        'en-US': '<p>Set whether the current drop-down option is disabled through the <code>disabled</code> field.</p>'
       },
       'codeFiles': ['disabled.vue']
     },
@@ -26,7 +27,7 @@ export default {
       'desc': {
         'zh-CN': '<p>通过 <code>text-field</code> 属性设置菜单项文本的键值，默认为 label。</p>',
         'en-US':
-          '<p>Set the key value of the menu item text through the<code>text-field</code>attribute, which defaults to label.</p>'
+          '<p>Set the key value of the menu item text through the <code>text-field</code> attribute, which defaults to label.</p>'
       },
       'codeFiles': ['text-field.vue']
     },
@@ -56,7 +57,7 @@ export default {
       'desc': {
         'zh-CN': '<p>通过 <code>popper-class</code> 属性设置下拉面板的类名，自定义样式。</p>',
         'en-US':
-          '<p>Set the class name of the drop-down panel and customize the style through the<code>popper class</code>attribute.</p>'
+          '<p>Set the class name of the drop-down panel and customize the style through the <code>popper-class</code> attribute.</p>'
       },
       'codeFiles': ['popper-class.vue']
     },
@@ -66,7 +67,7 @@ export default {
       'desc': {
         'zh-CN': '<p>通过 <code>max-show-num</code> 属性设置显示最多显示菜单按钮的个数，默认为 2。</p>',
         'en-US':
-          '<p>By setting the<code>max show num</code>attribute, the maximum number of displayed menu buttons is set to 2 by default.</p>'
+          '<p>By setting the <code>max-show-num</code> attribute, the maximum number of displayed menu buttons is set to 2 by default.</p>'
       },
       'codeFiles': ['max-show-num.vue']
     },
@@ -192,7 +193,7 @@ export default {
         },
         {
           'name': 'spacing',
-          'type': '[string,number]',
+          'type': 'string | number',
           'defaultValue': '5px',
           'desc': {
             'zh-CN': '菜单按钮之间的间距',
@@ -278,10 +279,10 @@ interface IItemData {
 interface IItemClickParams {
   itemData: IItemData     // 菜单项配置
   vm: {                   // 菜单项实例
-    "selected": boolean
-    "textField: string
-    "tipPosition: string
-    "$el": HTMLElement
+    selected: boolean
+    textField: string
+    tipPosition: string
+    $el: HTMLElement
   }       
 }
 `

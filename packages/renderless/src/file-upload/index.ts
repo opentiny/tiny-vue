@@ -26,8 +26,7 @@ import type {
   IFileUploadDownloadFileInner,
   IFileUploadBatchSegmentDownload,
   IFileUploadSliceDownloadChunk,
-  IFileUploadLargeDocumentDownload,
-  IFileUploadDownloadFileSingleInner
+  IFileUploadLargeDocumentDownload
 } from '@/types'
 
 import { extend } from '../common/object'
@@ -349,10 +348,10 @@ const calcFileForMobile = (rawFile: File, file: IFileUploadFile) => {
   const size = rawFile.size / 1024
 
   if (size < 1024) {
-    file.size = Math.round(size * Math.pow(10, 1)) / Math.pow(10, 1) + 'KB'
+    file.size = Math.round(size * 10 ** 1) / 10 ** 1 + 'KB'
   } else {
     const fileSize = size / 1024
-    file.size = Math.round(fileSize * Math.pow(10, 1)) / Math.pow(10, 1) + 'MB'
+    file.size = Math.round(fileSize * 10 ** 1) / 10 ** 1 + 'MB'
   }
 }
 
@@ -582,7 +581,7 @@ export const handleStart =
     rawFiles.forEach((rawFile) => api.addFileToList(rawFile, updateId, reUpload))
 
     const { UPLOADING, READY } = constants.FILE_STATUS
-    state.uploadingFiles = state.uploadFiles.filter((file) => [UPLOADING, READY].indexOf(file.status) > -1)
+    state.uploadingFiles = state.uploadFiles.filter((file) => [UPLOADING, READY].includes(file.status))
 
     if (state.isEdm && state.isSuccess) {
       rawFiles.forEach((rawFile) => {
@@ -877,7 +876,7 @@ export const clearUploadingFiles =
   ({ constants, state }: Pick<IFileUploadRenderlessParams, 'constants' | 'state'>) =>
   () => {
     const { SUCESS, FAIL } = constants.FILE_STATUS
-    const isUploadComplete = state.uploadingFiles.every((file) => [SUCESS, FAIL].indexOf(file.status) > -1)
+    const isUploadComplete = state.uploadingFiles.every((file) => [SUCESS, FAIL].includes(file.status))
 
     if (isUploadComplete) {
       state.uploadingFiles = []
@@ -1039,12 +1038,11 @@ const getTranslateFile =
     } else {
       const content = data.headers['content-disposition']
       const name = content ? content.match(/fileName.?=(.*)/)[1] || content.match(/fileName=(.*)/)[1] : ''
-      const type =
-        name.indexOf('.') === -1
-          ? data.headers['content-type']
-          : type !== 'zip'
-          ? 'application / x - xls'
-          : 'application/zip'
+      const type = !name.includes('.')
+        ? data.headers['content-type']
+        : type !== 'zip'
+        ? 'application / x - xls'
+        : 'application/zip'
       const blob = new Blob([data.data], { type })
       aLinkDownload({ blob, name })
     }
@@ -1189,7 +1187,7 @@ export const validateDownloadStatus =
       }
     }
 
-    if (data.data && data.data.type && data.data.type.indexOf('application/json') > -1) {
+    if (data.data && data.data.type && data.data.type.includes('application/json')) {
       const reader = new FileReader()
       reader.onload = (e) => {
         const errRes = JSON.parse(e.target.result)
@@ -1199,7 +1197,7 @@ export const validateDownloadStatus =
       return true
     }
 
-    if (!isLessThan17G && data.headers['content-type'].indexOf('application/json') > -1) {
+    if (!isLessThan17G && data.headers['content-type'].includes('application/json')) {
       const errRes = JSON.parse(String.fromCharCode.apply(null, new Uint8Array(data.data)))
       errorHandle({ state, file, errRes, Modal, downloadOps })
       return true
@@ -1307,7 +1305,7 @@ export const downloadFileSingle =
         .catch((data) => {
           if (data.response && state.errorStatusCodes.includes(data.response.status)) {
             const downloadOps = props.edm.download || {}
-            const tokenParams = { token: downloadOps.token, file: file, type: 'download' }
+            const tokenParams = { token: downloadOps.token, file, type: 'download' }
             api.getToken(tokenParams).then((data) => {
               api.afterDownload({ batchIndex, data, file, range, isChunk, isBatch, isLessThan17G })
             })
@@ -1491,7 +1489,7 @@ export const downloadFileSingleInner =
   ({ file, isBatch }) => {
     const { SIZE_17G } = constants.EDM
     const downloadOps = props.edm.download || {}
-    let tokenParams = { token: downloadOps.token, file: file, type: 'download' }
+    let tokenParams = { token: downloadOps.token, file, type: 'download' }
     api.getToken(tokenParams).then((data) => {
       if (!data) return
       if (state.isHwh5) {
@@ -2128,7 +2126,7 @@ export const sliceChunk =
     state.batchQueueListen[file.docId + '-0'] = 0
 
     for (let i = 0; i < chunkSize; i++) {
-      if (file.records.indexOf(i.toString()) > -1) {
+      if (file.records.includes(i.toString())) {
         continue
       }
 

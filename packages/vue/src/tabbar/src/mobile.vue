@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
- <template>
+<template>
   <div :class="{ 'tiny-mobile-tabbar-placeholder': placeholder }" :style="{ height: state.height }">
     <div
       ref="tabbar"

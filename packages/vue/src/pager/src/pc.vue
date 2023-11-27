@@ -463,7 +463,7 @@ export default defineComponent({
     },
     Total: {
       watch: {
-        '$parent.showTotalLoading'() {
+        '$parent.showTotalLoading': function () {
           this.$nextTick(() => {
             this.serviceLoading()
           })

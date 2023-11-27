@@ -58,7 +58,7 @@
 
   &__toolbar {
     padding: 8px;
-    border: 1px solid var(--ti-rich-text-editor-box-outline-color);
+    border: 1px solid var(--ti-rich-text-editor-box-border-color);
   }
 
   &__toolbar button {
@@ -89,7 +89,7 @@
     }
 
     &:disabled {
-      color: var(--ti-rich-text-editor-button-disabled);
+      color: var(--ti-rich-text-editor-button-disabled-text-color);
       cursor: not-allowed;
 
       svg {
@@ -129,11 +129,11 @@
     .h-options {
       position: absolute;
       padding: .15rem;
-      background-color: var(--ti-rich-text-edito-options-bg-color);
+      background-color: var(--ti-rich-text-editor-options-bg-color);
       left: 0px;
       display: none;
-      border-radius: var(--ti-rich-text-edito-options-border-radius);
-      box-shadow: var(--ti-rich-text-edito-options-box-shadow);
+      border-radius: var(--ti-rich-text-editor-options-border-radius);
+      box-shadow: var(--ti-rich-text-editor-options-box-shadow);
       z-index: 999;
 
       button {
@@ -145,9 +145,9 @@
           fill: black;
         }
         &:hover {
-          background-color: var(--ti-rich-text-edito-options-item-bg-color);
+          background-color: var(--ti-rich-text-editor-options-item-bg-color);
           svg, path {
-            fill: var(--ti-rich-text-edito-options-item-hover-color);
+            fill: var(--ti-rich-text-editor-options-item-hover-color);
           }
         }
       }
@@ -292,11 +292,11 @@
     .line-height-options {
       position: absolute;
       padding: .15rem;
-      background-color: var(--ti-rich-text-edito-options-bg-color);
+      background-color: var(--ti-rich-text-editor-options-bg-color);
       left: 0px;
       display: none;
-      border-radius: var(--ti-rich-text-edito-options-border-radius);
-      box-shadow: var(--ti-rich-text-edito-options-box-shadow);
+      border-radius: var(--ti-rich-text-editor-options-border-radius);
+      box-shadow: var(--ti-rich-text-editor-options-box-shadow);
       z-index: 999;
 
       button {
@@ -305,8 +305,8 @@
         text-align: center;
         line-height: var(--ti-common-line-height-3);
         &:hover {
-          background-color: var(--ti-rich-text-edito-options-item-bg-color);
-          color: var(--ti-rich-text-edito-options-item-hover-color);
+          background-color: var(--ti-rich-text-editor-options-item-bg-color);
+          color: var(--ti-rich-text-editor-options-item-hover-color);
         }
       }
     }
@@ -340,9 +340,9 @@
     .font-size-options {
       display: none;
       position: absolute;
-      border-radius: var(--ti-rich-text-edito-options-border-radius);
-      background-color: var(--ti-rich-text-edito-options-bg-color);
-      box-shadow: var(--ti-rich-text-edito-options-box-shadow);
+      border-radius: var(--ti-rich-text-editor-options-border-radius);
+      background-color: var(--ti-rich-text-editor-options-bg-color);
+      box-shadow: var(--ti-rich-text-editor-options-box-shadow);
       z-index: 99;
 
       button {
@@ -351,14 +351,14 @@
         text-align: center;
         line-height: var(--ti-common-line-height-3);
         &:hover {
-          background-color: var(--ti-rich-text-edito-options-item-bg-color);
-          color: var(--ti-rich-text-edito-options-item-hover-color);
+          background-color: var(--ti-rich-text-editor-options-item-bg-color);
+          color: var(--ti-rich-text-editor-options-item-hover-color);
         }
       }
     }
 
     &:hover {
-      background-color: var(--ti-rich-text-edito-options-item-bg-color);
+      background-color: var(--ti-rich-text-editor-options-item-bg-color);
 
       .font-size-options {
         display: flex;
@@ -373,7 +373,7 @@
   overflow: auto;
   padding: 10px;
   height: 100%;
-  border: 1px solid var(--ti-rich-text-editor-box-outline-color);
+  border: 1px solid var(--ti-rich-text-editor-box-border-color);
   border-top: 0;
 
   &::-webkit-scrollbar {

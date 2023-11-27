@@ -224,7 +224,7 @@
         </button>
       </BubbleMenu>
     </div>
-    <div class="tiny-rich-text-editor__container" :style="{ fontSize: fontSize }">
+    <div class="tiny-rich-text-editor__container" :style="{ fontSize }">
       <EditorContent :editor="state.editor"></EditorContent>
     </div>
   </div>
@@ -292,33 +292,44 @@ import {
   // NodeViewWrapper
 } from '@tiptap/vue'
 import StarterKit from '@tiptap/starter-kit'
+
 // 段落包
 import Paragraph from '@tiptap/extension-paragraph'
 import { mergeAttributes } from '@tiptap/core'
+
 // image 包
 import Image from '@tiptap/extension-image'
+
 // -- HeighLight
 import Highlight from '@tiptap/extension-highlight'
+
 // color 包
 import { Color } from '@tiptap/extension-color'
 import TextStyle from '@tiptap/extension-text-style'
+
 // -- link
 import Link from '@tiptap/extension-link'
+
 // underline
 import Underline from '@tiptap/extension-underline'
+
 // subScript
 import Subscript from '@tiptap/extension-subscript'
 import Superscript from '@tiptap/extension-superscript'
+
 // table 包
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
+
 // task list
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
+
 // textalign
 import TextAlign from '@tiptap/extension-text-align'
+
 // code high light
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import css from 'highlight.js/lib/languages/css'
@@ -326,6 +337,12 @@ import js from 'highlight.js/lib/languages/javascript'
 import ts from 'highlight.js/lib/languages/typescript'
 import html from 'highlight.js/lib/languages/xml'
 import { lowlight } from 'lowlight'
+
+// Placeholder
+import Placeholder from '@tiptap/extension-placeholder'
+
+import { props, setup, defineComponent, $prefix } from '@opentiny/vue-common'
+import '@opentiny/vue-theme/rich-text-editor/index.less'
 
 function initLowLight() {
   lowlight.registerLanguage('html', html)
@@ -335,13 +352,6 @@ function initLowLight() {
 }
 /* @__PURE__ */
 initLowLight()
-
-// Placeholder
-import Placeholder from '@tiptap/extension-placeholder'
-
-import { props, setup, defineComponent, $prefix } from '@opentiny/vue-common'
-import { t } from '@opentiny/vue-locale'
-import '@opentiny/vue-theme/rich-text-editor/index.less'
 // import Codehighlight from './code-highlight.vue'
 
 export default defineComponent({

@@ -3,15 +3,13 @@ import mobile from './mobile'
 import mobileFirst from './mobile-first'
 
 export default function (props) {
-  const {
-    tiny_mode = 'pc'
-  } = props
+  const { tiny_mode = 'pc' } = props
 
-  const S = ({
+  const S = {
     pc,
     mobile,
     'mobile-first': mobileFirst
-  })[tiny_mode]
+  }[tiny_mode]
 
-  return (S(props))
+  return S(props)
 }

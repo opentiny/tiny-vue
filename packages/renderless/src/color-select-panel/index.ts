@@ -1,4 +1,4 @@
-import { IColorSelectPanelRef } from '@/types'
+import type { IColorSelectPanelRef } from '@/types'
 import Color from './utils/color'
 
 export const onConfirm = (
@@ -95,7 +95,7 @@ export const handleHistoryClick = (
     res.value = history
     const tmpColor = new Color(history)
     color.value.set({
-      ...tmpColor.getHSV(),
+      ...tmpColor.getHSV()
     })
     emit('color-update', color)
   }
@@ -112,7 +112,7 @@ export const handlePredefineClick = (
     res.value = selectedColor
     const tmpColor = new Color(selectedColor)
     color.value.set({
-      ...tmpColor.getHSV(),
+      ...tmpColor.getHSV()
     })
     emit('color-update', color)
   }

@@ -1,9 +1,10 @@
 <template>
-  <div 
-    :class="[{
-      'tiny-color-picker__trigger': true
+  <div
+    :class="[
+      {
+        'tiny-color-picker__trigger': true
       },
-      state.size ? 'tiny-color-picker--' + state.size : '',
+      state.size ? 'tiny-color-picker--' + state.size : ''
     ]"
     @click="() => changeVisible(!state.isShow)"
   >
@@ -48,6 +49,6 @@ export default defineComponent({
   },
   setup(props, context) {
     return setup({ props, context, renderless, api })
-  },
+  }
 })
 </script>

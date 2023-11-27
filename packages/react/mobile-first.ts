@@ -1,6 +1,5 @@
 import Alert from '@opentiny/react-alert/src/mobile-first'
 import Button from '@opentiny/react-button/src/mobile-first'
-import { $prefix } from '@opentiny/react-common'
 
 const components = [Alert, Button]
 

@@ -2,14 +2,14 @@
   <tiny-tree-menu :data="treeData" :filter-node-method="filterNode"></tiny-tree-menu>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
 
 const treeData = ref([
   {
     id: 100,
-    label: '首页11111111111111111111111111111111111111111111111111'
+    label: '首页'
   },
   {
     id: 200,
@@ -32,10 +32,6 @@ const treeData = ref([
     id: 300,
     label: '组件',
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件',
@@ -165,8 +161,10 @@ const treeData = ref([
   }
 ])
 
-function filterNode(value, data) {
-  if (!value) return true
+const filterNode = (value, data) => {
+  if (!value) {
+    return true
+  }
   return data.label === value
 }
 </script>

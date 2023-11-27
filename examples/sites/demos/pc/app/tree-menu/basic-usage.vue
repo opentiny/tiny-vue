@@ -2,15 +2,12 @@
   <tiny-tree-menu></tiny-tree-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu } from '@opentiny/vue'
 
 export default {
   components: {
     TinyTreeMenu: TreeMenu
-  },
-  data() {
-    return {}
   }
 }
 </script>

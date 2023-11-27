@@ -2,7 +2,7 @@
   <tiny-button @click="btnClick" :reset-time="0">可以拖动调整窗口大小</tiny-button>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, Modal } from '@opentiny/vue'
 
 export default {

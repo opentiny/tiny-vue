@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ITabBarPcRenderlessParams, ITabBarStyle } from '@/types'
+import type { ITabBarPcRenderlessParams, ITabBarStyle } from '@/types'
 import { POSITION } from '../common'
 import { capitalize } from '../common/string'
 

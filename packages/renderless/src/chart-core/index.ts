@@ -43,7 +43,7 @@ const isStack = ({ props }) => {
 
   Object.keys(stack).forEach((key) => {
     stack[key].forEach((stackItem) => {
-      const isExist = columns.some((col) => col === stackItem)
+      const isExist = columns.includes(stackItem)
       if (isExist) {
         flag = true
       }

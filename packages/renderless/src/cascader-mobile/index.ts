@@ -13,11 +13,11 @@ export const syncCheckStatus =
   (value) => {
     const { valueField, textField, modelValue: propsModelValue, visible } = props
     const { lazy, isLeaf: leafField } = api.getNodeConfig()
-    let currentData,
-      navList = [],
-      modelValue = value || propsModelValue || [],
-      len = modelValue.length,
-      isLeaf
+    let currentData
+    let navList = []
+    let modelValue = value || propsModelValue || []
+    let len = modelValue.length
+    let isLeaf
 
     if (!visible) {
       return

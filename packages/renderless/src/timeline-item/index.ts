@@ -11,7 +11,7 @@
  */
 
 import { format } from '../common/date'
-import {
+import type {
   ITimelineItemRenderlessParams,
   ITimelineItem,
   ITimelineStatusCls,

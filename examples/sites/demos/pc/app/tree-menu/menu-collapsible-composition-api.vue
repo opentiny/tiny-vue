@@ -1,12 +1,11 @@
 <template>
-  <tiny-tree-menu :data="treeData" :menu-collapsible="menuCollapsible"></tiny-tree-menu>
+  <tiny-tree-menu :data="treeData" menu-collapsible></tiny-tree-menu>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
 
-const menuCollapsible = ref(true)
 const treeData = ref([
   {
     id: 100,
@@ -33,10 +32,6 @@ const treeData = ref([
     id: 300,
     label: '组件',
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件',

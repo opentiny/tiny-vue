@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { ISearchProps } from '@/search/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISearchProps } from '@/search/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export interface ISearchState {
   show: boolean

@@ -11,8 +11,8 @@
  */
 
 import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
-import { dropdownProps } from '@/dropdown/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { dropdownProps } from '@/dropdown/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export type IDropdownProps = ExtractPropTypes<typeof dropdownProps>
 

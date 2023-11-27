@@ -1879,8 +1879,12 @@ export default {
           },
           'demoId': 'grid-toolbar#toolbar-grid-full-screen'
         }
-      ],
-      'column-props': [
+      ]
+    },
+    {
+      'name': 'grid-column',
+      'type': 'component',
+      'props': [
         {
           'name': 'align',
           'type': `'left' | 'center' | 'right'`,
@@ -2234,7 +2238,7 @@ export default {
           'demoId': 'grid-tip#tip-column-header-tip'
         }
       ],
-      'column-slots': [
+      'slots': [
         {
           'name': 'default',
           'type': '',
@@ -2279,8 +2283,12 @@ export default {
           },
           'demoId': 'grid-slot#slot-header-slot'
         }
-      ],
-      'toolbar-props': [
+      ]
+    },
+    {
+      'name': 'grid-toolbar',
+      'type': 'component',
+      'props': [
         {
           'name': 'buttons',
           'type': `{
@@ -2374,7 +2382,7 @@ export default {
           'demoId': 'grid-toolbar#toolbar-grid-full-screen'
         }
       ],
-      'toolbar-slots': [
+      'slots': [
         {
           'name': 'toolbar',
           'type': '',
@@ -2390,7 +2398,7 @@ export default {
           'demoId': 'grid-toolbar#toolbar-custom-toolbar'
         }
       ],
-      'toolbar-events': [
+      'events': [
         {
           'name': 'button-click',
           'type': '(args: IButtonClick, event: Event)=> void',
@@ -2786,6 +2794,8 @@ interface IDropConfig {
   column: boolean
   // 拖拽前函数，返回 false 取消拖动
   onBeforeMove?: ()=> boolean
+  // 拖拽触发源选择器一般是class类名
+  trigger?: string
   // 根据行的类名来控制是否可以拖动
   filter?: string
   // 如果变动了树层级，可以指定是否需要刷新数据
@@ -3353,13 +3363,13 @@ interface IFilterConfig {
   defaultFilter: boolean
   // 设置在过滤面板中显示输入筛选的项
   inputFilter: boolean
-  // 设置在显示枚举选项功能(enumable)下制定静态数据源
+  // 设置在显示枚举选项功能(enumable)下制定静态数据源，也可以是函数返回一个Promise对象
   values: {
     // 设置枚举数据的显示值属性字段， 默认'label'
     label: string
     // 设置枚举数据的实际值属性字段， 默认'value'
     value: string 
-  }[]
+  }[] | ()=> Promise
 }
       `
     },

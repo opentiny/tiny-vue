@@ -2,13 +2,13 @@
   <tiny-tree-menu
     node-key="id"
     :data="treeData"
-    :default-expand-all="true"
-    :show-checkbox="true"
     :default-checked-keys="expandeArr"
+    default-expand-all
+    show-checkbox
   ></tiny-tree-menu>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
 
@@ -39,10 +39,6 @@ const treeData = ref([
     id: 300,
     label: '组件',
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件',
@@ -172,3 +168,10 @@ const treeData = ref([
   }
 ])
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+</style>

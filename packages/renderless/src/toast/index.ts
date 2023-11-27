@@ -10,7 +10,7 @@
  *
  */
 
-import { IToastRenderlessParamUtils } from 'types/toast.type'
+import type { IToastRenderlessParamUtils } from 'types/toast.type'
 
 export const timeout = (emit: IToastRenderlessParamUtils['emit']) => (): void => {
   emit('timeout')

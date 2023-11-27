@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, StyleValue } from 'vue'
-import { formItemProps, $constants } from '@/form-item/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
+import type { formItemProps, $constants } from '@/form-item/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
 import type { IFormInstance } from './form.type'
 
 import type {

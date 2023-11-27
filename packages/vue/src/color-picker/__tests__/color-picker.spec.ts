@@ -8,7 +8,7 @@ describe('PC Mode', () => {
     test('static', () => {
       const wrapper = mount(ColorPicker, {
         props: {
-          modelValue: '#66ccff',
+          modelValue: '#66ccff'
         }
       })
       expect(wrapper.classes()).toContain('tiny-color-picker__trigger')
@@ -17,8 +17,8 @@ describe('PC Mode', () => {
     test('dynmaic', async () => {
       const wrapper = mount(ColorPicker, {
         props: {
-          modelValue: '#66ccff',
-        },
+          modelValue: '#66ccff'
+        }
       })
       expect(wrapper.find('div .tiny-color-picker__inner').attributes().style).toContain('102, 204, 255')
       await wrapper.setProps({ modelValue: '#000' })
@@ -30,7 +30,7 @@ describe('PC Mode', () => {
       props: {
         modelValue: '#66ccff',
         visible: true
-      },
+      }
     })
     expect(wrapper.findAll('button').length).not.toBe(0)
     test('should hidden when click trigger, even if visible is true', async () => {
@@ -42,7 +42,7 @@ describe('PC Mode', () => {
     const wrapper = mount(ColorPicker, {
       props: {
         modelValue: '#66ccff'
-      },
+      }
     })
     await wrapper.trigger('click')
     expect(wrapper.findAll('button').length).not.toBe(0)

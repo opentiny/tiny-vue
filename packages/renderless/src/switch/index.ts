@@ -11,7 +11,7 @@
  */
 
 import type { StyleValue } from 'vue'
-import { ISwitchRenderlessParams, ISwitchClass } from '@/types'
+import type { ISwitchRenderlessParams, ISwitchClass } from '@/types'
 
 export const toggle =
   ({ emit, props, state }: Pick<ISwitchRenderlessParams, 'emit' | 'props' | 'state'>) =>

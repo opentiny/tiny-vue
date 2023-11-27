@@ -2,7 +2,7 @@
   <tiny-button @click="btnClick" :reset-time="0">不锁界面 且 隐藏遮罩层</tiny-button>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Button as TinyButton, Modal } from '@opentiny/vue'
 
 function btnClick() {

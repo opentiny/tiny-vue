@@ -76,7 +76,7 @@ const initState = ({ reactive, props, computed, api, images, modesIcon }) => {
     dayStartTime: props._constants.DAY_START_TIME,
     dayEndTime: props._constants.DAY_END_TIME,
     wednesday: props._constants.WEDNESDAY,
-    modesIcon: modesIcon,
+    modesIcon,
     images,
     weekDays: [0, 1, 2, 3, 4, 5, 6],
     dayTimes: computed(() => api.genDayTimes()),

@@ -10,7 +10,7 @@
  *
  */
 
-import {
+import type {
   IDropdownItemState,
   IDropdownItemApi,
   IDropdownItemProps,

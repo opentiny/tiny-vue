@@ -1,10 +1,14 @@
 <template>
-  <tiny-tree-menu :data="treeData" ellipsis :prefix-icon="IconDoubleRight"></tiny-tree-menu>
+  <div>
+    <p>场景1：文字超长点点点</p>
+    <tiny-tree-menu :data="treeData" ellipsis></tiny-tree-menu>
+    <p>场景2：文字超长换行</p>
+    <tiny-tree-menu :data="treeData" wrap></tiny-tree-menu>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu } from '@opentiny/vue'
-import { IconDoubleRight } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -12,11 +16,10 @@ export default {
   },
   data() {
     return {
-      IconDoubleRight: IconDoubleRight(),
       treeData: [
         {
           id: 100,
-          label: '首页11111111111111111111111111111111111111111111111111'
+          label: '首页文字超长示例文字超长示例文字超长示例文字超长示例文字超长示例文字超长示例文字超长示例'
         },
         {
           id: 200,
@@ -175,3 +178,14 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

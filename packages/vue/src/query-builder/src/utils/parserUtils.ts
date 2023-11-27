@@ -46,7 +46,7 @@ export function fieldIsValidUtil({
       !subordinateFieldName &&
       operator !== 'null' &&
       operator !== 'notNull' &&
-      !getValueSourcesUtil(primaryField, operator, getValueSources).some((vss) => vss === 'value')
+      !getValueSourcesUtil(primaryField, operator, getValueSources).includes('value')
     ) {
       validity = false
     } else {
@@ -55,7 +55,7 @@ export function fieldIsValidUtil({
 
     if (validity && !!subordinateFieldName) {
       if (
-        getValueSourcesUtil(primaryField, operator, getValueSources).some((vss) => vss === 'field') &&
+        getValueSourcesUtil(primaryField, operator, getValueSources).includes('field') &&
         fieldName !== subordinateFieldName
       ) {
         const validSubordinateFields = filterFieldsByComparator(primaryField, fieldsFlats, operator) as Field[]
