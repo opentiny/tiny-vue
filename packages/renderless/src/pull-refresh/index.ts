@@ -45,14 +45,13 @@ export const onTouchmove =
   }
 
 export const pullUpTouchMove = (state) => {
-  if (state.disablePullUp || state.pullUpLoading || !state.hasMore) {
+  if (state.disabledPullUp || state.pullUpLoading || !state.hasMore) {
     return
   }
-  state.pullUpReplaces = '上拉加载更多'
 }
 
 export const pullDownTouchMove = (state, refs, event) => {
-  if (state.disablePullDown || state.pullDownLoading) {
+  if (state.disabledPullDown || state.pullDownLoading) {
     return
   }
 
@@ -92,16 +91,16 @@ export const pullDownTouchEnd = (api, state, emit) => {
 
 export const pullUpTouchEnd = (state, emit, refs) => {
   setTimeout(() => {
-    if (!state.hasMore) {
+    const footNode = refs.foot
+
+    if (!state.hasMore || !footNode) {
       return
     }
 
     const contentNode = refs.content
-    const footNode = refs.foot
     const bottomDis = footNode.offsetTop + footNode.clientHeight - contentNode.scrollTop - contentNode.clientHeight
     if (bottomDis <= state.pullUpDistance) {
       state.pullUpLoading = true
-      state.pullUpReplaces = 'loading...'
       emit('update:modelValue', true)
       emit('pullUp')
     }
@@ -146,7 +145,6 @@ export const handlerModelValue =
 
 export const clearPullRefresh = (state) => () => {
   state.translate3d = 0
-  state.pullUpReplaces = 'loading...'
   state.pullDownReplaces = ''
   state.pullDownLoading = false
   state.pullUpLoading = false

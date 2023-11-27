@@ -1,5 +1,9 @@
 <template>
-  <div class="page-continer">
+  <div>
+    <div class="page__hd">
+      <h1 class="page__title">Refresh</h1>
+      <p class="page__desc">刷新</p>
+    </div>
     <div class="page__content">
       <tiny-pull-refresh
         animation-duration="1000"
@@ -55,13 +59,8 @@ export default {
 </script>
 
 <style scoped>
-.page-continer {
-  background-color: #f5f5f5;
-  height: 100%;
-}
 .page__hd {
   padding: 40px;
-  background-color: #888;
 }
 
 .page__title {
@@ -78,6 +77,6 @@ export default {
 }
 
 .page__content {
-  height: 100%;
+  height: 350px;
 }
 </style>

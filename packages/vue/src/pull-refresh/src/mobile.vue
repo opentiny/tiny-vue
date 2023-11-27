@@ -22,7 +22,7 @@
       <div class="tiny-mobile-pull-refresh__tips tiny-mobile-pull-refresh__head">
         <span v-if="!state.pullDownLoading">{{ state.pullDownReplaces }}</span>
 
-        <slot name="loading">
+        <slot name="header" v-if="state.pullDownLoading">
           <div v-if="state.pullDownLoading" class="tiny-mobile-pull-refresh-loading-content">
             <div
               :class="[
@@ -41,8 +41,8 @@
       <div class="tiny-mobile-pull-refresh__content" ref="content">
         <slot></slot>
 
-        <div class="tiny-mobile-pull-refresh__foot" v-if="!state.disablePullUp" ref="foot">
-          <slot name="loading">
+        <div class="tiny-mobile-pull-refresh__foot" v-if="!state.disabledPullUp" ref="foot">
+          <slot name="footer">
             <div v-if="state.hasMore" class="tiny-mobile-pull-refresh-loading-content">
               <div class="tiny-mobile-pull-refresh__loading tiny-mobile-pull-refresh__loading-animation">
                 <div class="tiny-mobile-pull-refresh__loading-inner"></div>
@@ -73,29 +73,21 @@ export default defineComponent({
       type: [Number, String],
       default: 300
     },
-    pullUp: {
-      type: Object,
-      default: {}
-    },
-    pullDown: {
-      type: Object,
-      default: {}
-    },
     hasMore: {
       type: Boolean,
       default: true
     },
-    disablePullDown: {
+    disabledPullDown: {
       type: Boolean,
       default: false
     },
-    disablePullUp: {
+    disabledPullUp: {
       type: Boolean,
       default: false
     },
     pullUpDistance: {
       type: [Number, String],
-      default: 50
+      default: 18
     },
     pullUpLoadingText: {
       type: String,

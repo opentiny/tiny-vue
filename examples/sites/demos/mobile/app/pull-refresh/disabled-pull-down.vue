@@ -5,16 +5,7 @@
       <p class="page__desc">刷新</p>
     </div>
     <div class="page__content">
-      <tiny-pull-refresh
-        success-text="刷新成功"
-        animation-duration="500"
-        success-duration="500"
-        head-height="0"
-        v-model="value"
-        :has-more="hasMore"
-        @pullDown="handlerPullDownRefresh"
-        @pullUp="handlerPullUpLoad"
-      >
+      <tiny-pull-refresh v-model="value" :has-more="hasMore" disabled-pull-down @pullUp="handlerPullUpLoad">
         <div :key="item.name" v-for="item in data">{{ item.label }}</div>
       </tiny-pull-refresh>
     </div>
@@ -31,26 +22,20 @@ export default {
   data() {
     return {
       data: [...Array(30)].map((i, index) => {
-        return { label: `${index} list data` }
+        return { label: `${index + 1} list data` }
       }),
-      value: true,
+      value: false,
       hasMore: true
     }
   },
   methods: {
     handlerPullUpLoad() {
-      console.log('pullUp action')
-      let self = this
       setTimeout(() => {
-        self.value = false
-        self.hasMore = false
-      }, 3000)
-    },
-    handlerPullDownRefresh() {
-      console.log('pullDown action')
-      let self = this
-      setTimeout(() => {
-        self.value = false
+        const length = this.data.length
+        for (let i = 1; i <= 10; i++) {
+          this.data.push({ label: `${i + length} list data` })
+        }
+        this.value = false
       }, 3000)
     }
   }

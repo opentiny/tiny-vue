@@ -6,12 +6,9 @@
     </div>
     <div class="page__content">
       <tiny-pull-refresh
-        success-text="刷新成功"
-        animation-duration="500"
-        success-duration="500"
-        head-height="0"
         v-model="value"
         :has-more="hasMore"
+        pull-up-distance="30"
         @pullDown="handlerPullDownRefresh"
         @pullUp="handlerPullUpLoad"
       >
@@ -39,18 +36,14 @@ export default {
   },
   methods: {
     handlerPullUpLoad() {
-      console.log('pullUp action')
-      let self = this
       setTimeout(() => {
-        self.value = false
-        self.hasMore = false
+        this.value = false
+        this.hasMore = false
       }, 3000)
     },
     handlerPullDownRefresh() {
-      console.log('pullDown action')
-      let self = this
       setTimeout(() => {
-        self.value = false
+        this.value = false
       }, 3000)
     }
   }

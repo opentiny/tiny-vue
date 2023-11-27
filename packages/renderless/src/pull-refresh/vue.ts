@@ -26,7 +26,6 @@ export const api = ['state']
 export const renderless = (props, { watch, onMounted, reactive, onBeforeUnmount }, { t, refs, emit, nextTick }) => {
   const api = {}
   const state = reactive({
-    pullUpReplaces: '上拉加载更多',
     pullDownReplaces: '',
     refreshStyle: {},
     translate3d: 0,
@@ -44,9 +43,9 @@ export const renderless = (props, { watch, onMounted, reactive, onBeforeUnmount 
     hasMore: true,
     successDuration: props.successDuration,
     animationDuration: props.animationDuration,
-    disablePullDown: props.disablePullDown,
-    disablePullUp: props.disablePullUp,
-    pullUpDistance: props.pullUpDistance
+    disabledPullDown: props.disabledPullDown,
+    disabledPullUp: props.disabledPullUp,
+    pullUpDistance: typeof props.pullUpDistance === 'string' ? Number(props.pullUpDistance) : props.pullUpDistance
   })
 
   Object.assign(api, {

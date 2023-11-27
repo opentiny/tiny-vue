@@ -27,50 +27,50 @@ export default {
       codeFiles: ['animation-duration.vue']
     },
     {
-      demoId: 'disabled',
+      demoId: 'disabled-pull-down',
       name: {
         'zh-CN': '禁用下拉刷新',
         'en-US': 'button round'
       },
       desc: {
         'zh-CN': '<p>禁用下拉刷新</p>',
-        'en-US': '<p>button round</p>'
+        'en-US': '<p>disabled pull down</p>'
       },
-      codeFiles: ['disabled.vue']
+      codeFiles: ['disabled-pull-down.vue']
     },
     {
-      demoId: 'enhance',
+      demoId: 'disabled-pull-up',
       name: {
-        'zh-CN': '支持上拉、下拉刷新',
-        'en-US': 'button round'
+        'zh-CN': '禁用上拉刷新',
+        'en-US': 'disabled pull up'
       },
       desc: {
-        'zh-CN': '<p>支持上拉、下拉刷新</p>',
-        'en-US': '<p>button round</p>'
+        'zh-CN': '<p>禁用上拉刷新</p>',
+        'en-US': '<p>disabled pull up</p>'
       },
-      codeFiles: ['enhance.vue']
+      codeFiles: ['disabled-pull-up.vue']
     },
     {
-      demoId: 'head-height',
+      demoId: 'has-more',
       name: {
-        'zh-CN': '提示信息的高度',
-        'en-US': 'events'
+        'zh-CN': '没有更多数据',
+        'en-US': 'no more'
       },
       desc: {
-        'zh-CN': '<p>下拉后，提示信息的高度<p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>没有更多数据</p>',
+        'en-US': '<p>no more</p>'
       },
-      codeFiles: ['head-height.vue']
+      codeFiles: ['has-more.vue']
     },
     {
       demoId: 'loosing-text',
       name: {
-        'zh-CN': '超过<code>head</code>的高度后的提示',
-        'en-US': 'events'
+        'zh-CN': '可以触发下拉刷新的提示文字',
+        'en-US': 'loosing-text'
       },
       desc: {
-        'zh-CN': '<p>下拉超过<code>head</code>的高度后的提示<p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>可以触发下拉刷新的提示文字<p>',
+        'en-US': '<p>loosing text</p>'
       },
       codeFiles: ['loosing-text.vue']
     },
@@ -81,22 +81,46 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>下拉刷新<code>loading</code>的插槽<p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>插槽<p>',
+        'en-US': '<p>slot</p>'
       },
       codeFiles: ['pull-refresh-slot.vue']
     },
     {
-      demoId: 'pulling-text',
+      demoId: 'pull-up-distance',
       name: {
-        'zh-CN': '下拉提示文字',
-        'en-US': 'events'
+        'zh-CN': '上拉触发加载的距离',
+        'en-US': 'pull up distance'
       },
       desc: {
-        'zh-CN': '<p>开始下拉并还没到<code>head</code>的高度时的提示文字<p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>上拉触发加载的距离<p>',
+        'en-US': '<p>pull up distanc</p>'
+      },
+      codeFiles: ['pull-up-distance.vue']
+    },
+    {
+      demoId: 'pulling-text',
+      name: {
+        'zh-CN': '加载状态文字',
+        'en-US': 'pulling text'
+      },
+      desc: {
+        'zh-CN': '<p>加载状态文字<p>',
+        'en-US': '<p>pulling text</p>'
       },
       codeFiles: ['pulling-text.vue']
+    },
+    {
+      demoId: '刷新事件',
+      name: {
+        'zh-CN': '刷新事件',
+        'en-US': 'refresh event'
+      },
+      desc: {
+        'zh-CN': '<p>刷新事件<p>',
+        'en-US': '<p>refresh event</p>'
+      },
+      codeFiles: ['event.vue']
     }
   ],
   apis: [
@@ -106,7 +130,7 @@ export default {
       properties: [
         {
           name: 'v-model',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>是否刷新状态，可以手动设置false来关闭刷新</p>',
@@ -116,7 +140,7 @@ export default {
         },
         {
           name: 'loosing-text',
-          type: 'String',
+          type: 'string',
           defaultValue: '释放即可刷新',
           desc: {
             'zh-CN': '<p>下拉高度大于等于head-height时的提示文字，默认为：释放即可刷新</p>',
@@ -126,69 +150,69 @@ export default {
         },
         {
           name: 'has-more',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'true',
           desc: {
             'zh-CN': '<p>是否有更多数据</p>',
             'en-US': 'has more'
           },
-          demoId: 'base'
+          demoId: 'has-more'
         },
         {
           name: 'disabled-pull-down',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>是否禁用下拉刷新</p>',
             'en-US': 'disablde pull down'
           },
-          demoId: 'base'
+          demoId: 'disabled-pull-down'
         },
         {
           name: 'disabled-pull-up',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>是否禁用上拉</p>',
             'en-US': 'disablded pull up'
           },
-          demoId: 'base'
+          demoId: 'disabled-pull-up'
         },
         {
           name: 'pull-up-distance',
-          type: 'Number',
-          defaultValue: '50',
+          type: 'number',
+          defaultValue: '18',
           desc: {
             'zh-CN': '<p>触发上拉刷新的距离</p>',
             'en-US': 'pull up distance'
           },
-          demoId: 'base'
+          demoId: 'pull-up-distance'
         },
         {
           name: 'pull-up-loading-text',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>上拉加载文字</p>',
             'en-US': 'pull up loading text'
           },
-          demoId: 'base'
+          demoId: 'pulling-text'
         },
         {
           name: 'pull-down-loading-text',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>下拉加载文字</p>',
             'en-US': 'pull down loading text'
           },
-          demoId: 'base'
+          demoId: 'pulling-text'
         }
       ],
       events: [
         {
           name: 'pull-down',
-          type: 'Function()',
+          type: '(event: PullEvent) => void',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>下拉时触发的事件</p>',
@@ -198,7 +222,7 @@ export default {
         },
         {
           name: 'pull-up',
-          type: 'Function()',
+          type: '(event: PullEvent) => void',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>上拉时触发的事件</p>',
@@ -209,22 +233,22 @@ export default {
       ],
       slot: [
         {
-          name: 'default',
+          name: 'header',
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '<p>组件默认插槽</p>',
-            'en-US': 'Click'
+            'zh-CN': '<p>下拉刷新插槽</p>',
+            'en-US': 'pull down slot'
           },
           demoId: ''
         },
         {
-          name: 'loading',
+          name: 'footer',
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '<p>下拉加载中的插槽</p>',
-            'en-US': 'Click'
+            'zh-CN': '<p>上拉加载更多插槽</p>',
+            'en-US': 'pull up slot'
           },
           demoId: 'pull-refresh-slot'
         }
