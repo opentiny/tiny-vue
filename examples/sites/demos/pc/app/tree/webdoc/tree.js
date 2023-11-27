@@ -161,7 +161,7 @@ export default {
           通过 <code> insertAfter </code> 组件方法，在当前节点后增加一个节点。<br>
           通过 <code> append </code> 组件方法，追加一个节点到当前节点的子节点的顶部。<br>
           通过 <code> updateKeyChildren </code> 组件方法，更新当前节点的子节点,原有的子节点会丢失。<br>
-          通过 <code> remove </code> 组件方法，删除当前节点。<br>
+          通过 <code> remove </code> 组件方法，删除当前节点。如果要保留该节点的所有子节点，则传递参数： isSaveChildNode=true,详见 <a href='#API'>API 说明</a>。 <br>
           <div class="tip custom-block"> 
             <p class="custom-block-title"> 实用技巧 </p>
             当更新子节点，且需要保留子节点时，请先使用<code> getNode </code> 查询到当前节点的<code> children </code>， 修改它后再调用<code> updateKeyChildren </code> 更新子节点。<br><br>
@@ -422,486 +422,530 @@ export default {
           'type': 'Array',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置数据源。可配置静态数据源和动态数据源。',
-            'en-US': 'Set the data source. Static and dynamic data sources can be configured.; Display Data'
+            'zh-CN': '设置数据源, 默认通过数据项的 label , children 属性展示数据',
+            'en-US':
+              'Set the data source. By default, the data is displayed through the label and children attributes of the data item'
           },
-          'demoId': 'data-source'
-        },
-        {
-          'name': 'expand-icon',
-          'type': 'object',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '指示展开的图标', 'en-US': 'Indicates the expanded icon' },
-          'demoId': 'set-tree-icon'
-        },
-        {
-          'name': 'icon-trigger-click-node',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': {
-            'zh-CN': '点击图标展开节点时是否触发 node-click 事件',
-            'en-US': 'Whether to trigger the node-click event when an icon is clicked to expand a node.'
-          },
-          'demoId': 'check-on-click-node'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'show-line',
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置是否显示连接线',
-            'en-US': 'Set the display node connection line.'
+            'zh-CN': '是否显示连接线',
+            'en-US': 'Whether the connection cable is displayed'
           },
-          'demoId': 'guide-line'
+          'demoId': 'basic-usage'
         },
         {
-          'name': 'show-contextmenu',
-          'type': 'boolean',
+          'name': 'size',
+          'type': "'medium'|'small'",
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '组件的大小',
+            'en-US': 'Component size'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'indent',
+          'type': 'number',
+          'defaultValue': '18',
+          'desc': {
+            'zh-CN': '相邻级节点间的水平缩进，单位为像素',
+            'en-US': 'horizontal indentation between adjacent nodes, in pixels.'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'props',
+          'type': 'object',
+          'defaultValue': "{children: 'children',label: 'label',disabled: 'disabled',isLeaf: 'isLeaf'}",
+          'desc': {
+            'zh-CN': '用户传入非标准格式的数据时，指定映射属性的关系',
+            'en-US':
+              'Specifies the relationship of the mapping properties when the user passes in data in a non-standard format'
+          },
+          'demoId': 'props'
+        },
+        {
+          'name': 'icon',
+          'type': 'VueComponent',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '右键点击节点是否弹窗自定义菜单,默认值为 false',
-            'en-US': 'Whether to display the custom menu when right-clicking a node. The default value is false.'
+            'zh-CN': '自定义节点图标',
+            'en-US': 'Customize the node icon'
           },
-          'demoId': 'contextmenu'
+          'demoId': 'icons'
+        },
+        {
+          'name': 'expand-icon',
+          'type': 'VueComponent',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '指示展开的图标', 'en-US': 'Indicates the expanded icon' },
+          'demoId': 'icons'
+        },
+        {
+          'name': 'expand-icon-color',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '指示展开的图标色', 'en-US': 'Indicates the expanded icon color' },
+          'demoId': 'icons'
         },
         {
           'name': 'shrink-icon',
-          'type': 'object',
+          'type': 'VueComponent',
           'defaultValue': '',
-          'desc': { 'zh-CN': '指示收缩的图标', 'en-US': 'Icon indicating contraction' },
-          'demoId': 'set-tree-icon'
+          'desc': { 'zh-CN': '指示收缩的图标', 'en-US': 'Icon indicating shrink' },
+          'demoId': 'icons'
+        },
+        {
+          'name': 'shrink-icon-color',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '指示收缩的图标色', 'en-US': 'Icon indicating shrink  color' },
+          'demoId': 'icons'
         },
         {
           'name': 'empty-text',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '内容为空的时候展示的文本', 'en-US': 'Text displayed when the content is empty.' },
-          'demoId': 'custom-empty-text'
+          'desc': { 'zh-CN': '内容为空的时候展示的文本', 'en-US': 'Text displayed when the content is empty' },
+          'demoId': 'slot'
         },
         {
-          'name': 'render-after-expand',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'name': 'render-content',
+          'type': '(h: Vue.h, { node, data, store }=> VNode',
+          'defaultValue': '',
           'desc': {
-            'zh-CN': '是否在第一次展开某个树节点后才渲染其子节点',
-            'en-US': 'Whether to render a tree node after it is expanded for the first time.'
+            'zh-CN': '树节点的内容区的渲染函数',
+            'en-US': 'Rendering function for the content area of the tree node'
           },
-          'demoId': 'render-after-expand'
+          'demoId': 'slot'
         },
         {
           'name': 'node-key',
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '节点唯一标识属性名称。每个树节点用来作为唯一标识的属性，整棵树应该是唯一的',
-            'en-US':
-              'The node uniquely identifies the attribute name.; Each tree node is used as a unique identifier attribute, and the entire tree should be unique'
+            'zh-CN': '节点唯一标识属性名称',
+            'en-US': 'The node uniquely identifies the attribute name'
           },
-          'demoId': 'node-key'
+          'demoId': 'node-hl'
         },
         {
-          'name': 'check-strictly',
+          'name': 'highlight-current',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '在显示复选框的情况下，是否严格的遵循父子不互相关联的做法，默认为 false',
-            'en-US':
-              'Whether to strictly follow the method of not associating parent and child when the check box is displayed. The default value is false.'
-          },
-          'demoId': 'check-strictly'
+          'defaultValue': 'true',
+          'desc': { 'zh-CN': '是否高亮当前选中节点', 'en-US': 'Whether to highlight the selected node' },
+          'demoId': 'node-hl'
+        },
+        {
+          'name': 'current-node-key',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '当前选中节点', 'en-US': 'Currently selected node' },
+          'demoId': 'node-hl'
         },
         {
           'name': 'default-expand-all',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': { 'zh-CN': '是否默认展开所有节点', 'en-US': 'Whether to expand all nodes by default' },
-          'demoId': 'default-expand-all'
+          'demoId': 'expand-control'
+        },
+        {
+          'name': 'default-expanded-keys',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '默认展开节点的keys', 'en-US': 'The keys of the node are expanded by default' },
+          'demoId': 'expand-control'
         },
         {
           'name': 'expand-on-click-node',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': 'true',
           'desc': {
-            'zh-CN':
-              '点击节点展开收起开关。当设置为true: 点击节点内容时可展开/收起节点。设置为false: 只有点击节点名称前面的展开/收起图标才能进行节点展开/收起。是否在点击节点的时候展开或者收缩节点， 默认值为 true，如果为 false，则只有点箭头图标的时候才会展开或者收缩节点。',
-            'en-US':
-              'Click the node to expand the function of the node. When set to true, the node can be expanded or closed when the node content is clicked. If this parameter is set to false, the node can be expanded or expanded only after the expansion/fold icon is clicked in front of the node name.; Indicates whether to expand or shrink a node when a node is clicked. The default value is true. If the value is false, the node is expanded or collapsed only when an arrow icon is displayed.'
+            'zh-CN': '节点在点击内容时,是否展开 / 收起',
+            'en-US': 'Whether the node expands/collapses when it clicks on content'
           },
-          'demoId': 'expand-on-click-node'
+          'demoId': 'expand-control'
         },
         {
-          'name': 'check-on-click-node',
+          'name': 'default-expand-all',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': {
-            'zh-CN': '是否在点击节点的时候选中节点，默认值为 false，即只有在点击复选框时才会选中节点。',
-            'en-US':
-              'Whether to select a node when you click it. The default value is false, indicating that the node is selected only when you click the check box.'
-          },
-          'demoId': 'check-on-click-node'
-        },
-        {
-          'name': 'auto-expand-parent',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
-          'desc': {
-            'zh-CN': '展开子节点的时候是否自动展开父节点',
-            'en-US': 'Whether to automatically expand the parent node when expanding the child node.'
-          },
-          'demoId': 'auto-expand-parent'
-        },
-        {
-          'name': 'default-checked-keys',
-          'type': 'Array',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '配置默认选中。取值为 key 在数据源 dataset 中所对应的值。组件生成后会默认将 defaultValue 中所对应的节点选中。默认勾选的节点的 key 的数组',
-            'en-US':
-              'Selected by default. The value is the value corresponding to the key in the data source dataset. After the component is generated, the corresponding node in defaultValue is selected by default. ;Key array of selected nodes by default'
-          },
-          'demoId': 'default-checked-keys'
-        },
-        {
-          'name': 'default-expanded-keys',
-          'type': 'Array',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '默认展开的节点的 key 的数组', 'en-US': 'Key array of the expanded node by default' },
-          'demoId': 'default-expanded-keys'
-        },
-        {
-          'name': 'render-content',
-          'type': 'Function(h, { node, data, store }',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '树节点的内容区的渲染 Function',
-            'en-US': 'Render Function of the content area of the tree node'
-          },
-          'demoId': 'render-content'
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '是否默认展开所有节点', 'en-US': 'Whether to expand all nodes by default' },
+          'demoId': 'expand-control'
         },
         {
           'name': 'show-checkbox',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '节点是否可被选择', 'en-US': 'Whether a node can be selected.' },
-          'demoId': 'show-checkbox'
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '是否为多选模式', 'en-US': 'Whether to select multiple mode' },
+          'demoId': 'checkbox'
+        },
+        {
+          'name': 'check-strictly',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '是否为父子严格模式', 'en-US': 'Whether it is in strict parent-child mode' },
+          'demoId': 'checkbox'
+        },
+        {
+          'name': 'check-on-click-node',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否点击节点时，自动勾选节点',
+            'en-US': 'When you click a node, the node is automatically selected'
+          },
+          'demoId': 'checkbox'
+        },
+        {
+          'name': 'default-checked-keys',
+          'type': 'string[]',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '默认勾选的节点的keys', 'en-US': 'keys of the node selected by default' },
+          'demoId': 'checkbox'
+        },
+        {
+          'name': 'show-radio',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '是否为单选模式', 'en-US': 'Whether to select an radio mode' },
+          'demoId': 'radio'
+        },
+        {
+          'name': 'filter-node-method',
+          'type': '(value, data, node)=>boolean',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏',
+            'en-US':
+              'Method to be executed when filtering a tree node, returning true means the node can be displayed, and returning false means the node is hidden'
+          },
+          'demoId': 'filter-view'
+        },
+        {
+          'name': 'view-type',
+          'type': "'tree' | 'plain'",
+          'defaultValue': 'tree',
+          'desc': {
+            'zh-CN': '视图模式,其中tree是普通视图，plain是平铺视图',
+            'en-US': 'View mode, where tree is a normal view and plain is a tiled view'
+          },
+          'demoId': 'filter-view'
+        },
+        {
+          'name': 'show-auxi',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '平铺视图模式时，是否显示节点的上级路径的辅助信息',
+            'en-US': 'Whether to display auxiliary information about the upper path of a node in the tile view mode'
+          },
+          'demoId': 'filter-view'
+        },
+        {
+          'name': 'lazy',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否为异步加载模式，展开节点时再请求数据',
+            'en-US': 'Whether to load asynchronously and request data when the node is expanded'
+          },
+          'demoId': 'lazy'
+        },
+        {
+          'name': 'load',
+          'type': '(node, resolve)=> void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '加载子树数据的方法。点击节点后，组件开始调用load方法，只有在load函数内调用resolve(data)，才表示返回下级的数据成功。',
+            'en-US':
+              'Method of loading subtree data. After the node is clicked, the component starts to call the load method. Only when resolve(data) is called in the load function, the data at the lower level is successfully returned.'
+          },
+          'demoId': 'lazy'
+        },
+        {
+          'name': 'after-load',
+          'type': '(nodes: object[])=> void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '下级树节点数据加载完毕后的回调函数',
+            'en-US': 'The callback function after the data of the subordinate tree node is loaded'
+          },
+          'demoId': 'lazy'
         },
         {
           'name': 'draggable',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '是否开启节点拖拽，节点的位置可任意拖放，改变原来的节点的父子结构。是否开启拖拽节点功能',
-            'en-US':
-              'Whether to enable the node dragging function. The node position can be dragged at will to change the parent-child structure of the original node. ;Whether to enable the function of dragging nodes'
+            'zh-CN': '是否开启节点拖拽',
+            'en-US': 'Whether to enable the node dragging function'
           },
           'demoId': 'node-draggable'
         },
         {
           'name': 'allow-drag',
-          'type': 'Function(node)',
+          'type': '(node)=>boolean',
           'defaultValue': '',
-          'desc': { 'zh-CN': '判断节点能否被拖拽', 'en-US': 'Dedicated whether a node can be dragged.' },
+          'desc': { 'zh-CN': '判断节点能否被拖拽', 'en-US': 'Whether a node can be dragged.' },
           'demoId': 'allow-drag'
         },
         {
           'name': 'allow-drop',
-          'type': 'Function(draggingNode, dropNode, type)',
+          'type': '(srcNode, targetNode, type)=>void',
           'defaultValue': '',
           'desc': {
             'zh-CN':
               "拖拽时判定目标节点能否被放置。type 参数有三种情况：'prev'、'inner' 和 'next'，分别表示放置在目标节点前、插入至目标节点和放置在目标节点后",
             'en-US':
-              "Dedicated whether the target node can be placed during dragging. The type parameter has three situations: 'prev',' inner', and'next', which indicate that it is placed before the target node, inserted into the target node, and placed after the target node respectively"
+              "Whether the target node can be placed during dragging. The type parameter has three situations: 'prev',' inner', and'next', which indicate that it is placed before the target node, inserted into the target node, and placed after the target node respectively"
           },
           'demoId': 'allow-drop'
         },
         {
-          'name': 'props',
-          'type': 'object',
-          'defaultValue': "该属性的默认值为 {children: 'children',label: 'label',disabled: 'disabled'}",
-          'desc': {
-            'zh-CN': '配置选项，具体看下表',
-            'en-US': 'Configuration options. For details, see the following table.'
-          },
-          'demoId': 'node-props-config'
-        },
-        {
-          'name': 'highlight-current',
+          'name': 'show-contextmenu',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否高亮当前选中节点', 'en-US': 'Whether to highlight the selected node' },
-          'demoId': 'highlight-current'
-        },
-        {
-          'name': 'lazy',
-          'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '异步加载模式，展开节点时再请求数据。需要服务支持。是否懒加载子节点，需与 load 方法结合使用',
-            'en-US':
-              'Asynchronous loading mode. Data is requested when a node is expanded. Service support is required.; Whether to load subnodes in lazy mode. This parameter must be used together with the load method.'
+            'zh-CN': '是否启用右键菜单功能',
+            'en-US': 'Whether to enable the right-click menu function'
           },
-          'demoId': 'lazy-load-node'
-        },
-        {
-          'name': 'load',
-          'type': 'Function(node, resolve)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '加载子树数据的方法，仅当 lazy 属性为true 时生效',
-            'en-US':
-              'Method for loading subtree data. This parameter is valid only when the lazy attribute is set to true.'
-          },
-          'demoId': 'lazy-load-node'
-        },
-        {
-          'name': 'filter-node-method',
-          'type': 'Function(value, data, node)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '指定输入筛选时匹配的节点的字段值。对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏',
-            'en-US':
-              'Field value of the node to be matched during input filtering. This method is to filter tree nodes. If true is returned, the node can be displayed. If false is returned, the node can be hidden'
-          },
-          'demoId': 'filter-node'
+          'demoId': 'node-draggable'
         },
         {
           'name': 'accordion',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN':
-              '是否为单一路径。为 true 时，全部层级的节点同级互斥，为数字时，不大于该值的节点同级互斥。是否每次只打开一个同级树节点展开',
-            'en-US':
-              'Whether the path is a single path. If this parameter is set to true, nodes at all levels are mutually exclusive. If this parameter is set to a number, nodes not greater than this parameter are mutually exclusive. ;Do you want to open only one node of the same level tree at a time to expand'
+            'zh-CN': '是否为手风琴模式，每次只打开一个同级树节点展开',
+            'en-US': 'Whether in accordion mode, only open one sibling tree node expansion at a time'
           },
-          'demoId': 'accordion-mode'
+          'demoId': 'other'
         },
         {
-          'name': 'indent',
-          'type': 'number',
-          'defaultValue': '该属性的默认值为 18',
+          'name': 'icon-trigger-click-node',
+          'type': 'boolean',
+          'defaultValue': 'true',
           'desc': {
-            'zh-CN': '相邻级节点间的水平缩进，单位为像素',
-            'en-US': 'horizontal indentation between adjacent nodes, in pixels.'
+            'zh-CN': '点击图标展开节点时是否触发 node-click 事件',
+            'en-US': 'Whether a node-click event is triggered when a node is expanded by clicking the icon'
           },
-          'demoId': 'indent'
+          'demoId': 'other'
         },
         {
-          'name': 'icon',
-          'type': 'object',
-          'defaultValue': '',
+          'name': 'render-after-expand',
+          'type': 'boolean',
+          'defaultValue': 'true',
           'desc': {
-            'zh-CN':
-              '自定义图标。css : string（图标的总样式名），child : string（叶子节点图标），parent : string（父节点图标，open 打开，close，关闭），expand : string（展开节点图标），collapse : string（收缩节点图标）;自定义树节点的图标',
-            'en-US':
-              'User-defined icon. css: string (general style name of an icon), child: string (leaf node icon), parent: string (Parent node icon, open, close, and close), expand: string (the expansion node icon); collapse: string (the collapse node icon); Custom tree node icon'
+            'zh-CN': '是否在第一次展开某个树节点后才渲染其子节点',
+            'en-US': 'Whether to render child nodes after the first expansion of a tree node'
           },
-          'demoId': 'custom-node-icon'
+          'demoId': 'other'
         },
         {
-          'name': 'view-type',
-          'type': 'string',
-          'defaultValue': 'tree',
+          'name': 'show-check-easily',
+          'type': 'boolean',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '视图模式，可选值有tree、plain，其中tree是普通视图，plain是平铺视图；默认值是tree',
+            'zh-CN': '在严格模式时，是否显示勾选父节点时，自动勾选子节点的功能区域',
             'en-US':
-              "View mode. The options are 'tree' and 'plain', where tree indicates a common view and plain indicates a tiled view. The default value is tree."
+              'In strict mode, when the parent node is displayed, the function area of the child node is automatically selected.'
           },
-          'demoId': 'plain-mode'
-        },
-        {
-          'name': 'filter-plain-method',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '平铺模式下，对树节点进行筛选的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏',
-            'en-US':
-              'Method for filtering tree nodes in tile mode. If true is returned, the node can be displayed. If false is returned, the node is hidden.'
-          },
-          'demoId': 'plain-mode'
+          'demoId': 'other'
         }
       ],
       'events': [
         {
           'name': 'node-click',
-          'type': 'Function(data, node, vm)',
+          'type': '(data, node, vm)=>void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '点击节点后的事件。节点被点击时的回调;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据）,vm: 组件实例}',
+            'zh-CN': '点击节点后的事件。 <br>参数说明：{data: 节点数据,node: 节点状态信息（包括数据）,vm: 组件实例}',
             'en-US':
-              'Event after a node is clicked.; Callback when a node is clicked; //Parameter description\n{data: node data, node: node status information (including data), vm: component instance}'
+              'The event after clicking a node. <br> Parameter description: {data: node data,node: node status information (including data),vm: component instance}'
           },
-          'demoId': 'check-on-click-node'
-        },
-        {
-          'name': 'node-contextmenu',
-          'type': 'Function(event, data, node, vm)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '当某一节点被鼠标右键点击时会触发该事件;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据）,vm: 组件实例,event:原生事件}',
-            'en-US':
-              'This event is triggered when a node is right-clicked. //Parameter description\n{data: node data, node: node status information (including data), vm: component instance, event: native event}'
-          },
-          'demoId': 'node-contextmenu'
-        },
-        {
-          'name': 'check-change',
-          'type': 'Function(data, node, vm)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '节点选中状态发生变化时的回调;//参数说明\n{node: 节点状态信息（包括数据）,checked:当前点击节点的勾选状态,indeterminate}',
-            'en-US':
-              'The callback is performed when the selected node status changes. //Parameter description\n{node: node status (including data), checked: selected status of the currently clicked node, and indeterminate}'
-          },
-          'demoId': 'node-events'
-        },
-        {
-          'name': 'check',
-          'type': 'Function(data, currentNode)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '勾选节点后的事件;当复选框被点击的时候触发;//回调参数：\n{data: object,// 当前选中节点信息\ncurrentNode:object//树组件目前的选中状态信息，包含 checkedNodes、checkedKeys、halfCheckedNodes、halfCheckedKeys 四个属性}',
-            'en-US':
-              'events after a node is selected. Triggered when the check box is clicked; // Callback parameters:\n{data: object,// Information about the currently selected node\ncurrentNode:object// Current selected status of the tree component. Contains four attributes: checkedNodes, checkedKeys, halfCheckedNodes, and halfCheckedKeys} '
-          },
-          'demoId': 'drag-events'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'current-change',
-          'type': 'Function(data, currentNode)',
+          'type': '(data, currentNode)=>void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '当前选中节点变化时触发的事件;//参数说明\n{data: 节点数据,currentNode: 节点状态信息（包括数据）}',
+            'zh-CN':
+              '当前选中节点变化时触发的事件;<br>参数说明：{data: 节点数据,currentNode: 节点状态信息（包括数据）}',
             'en-US':
-              'Event triggered when the selected node changes. //Parameter description\n{data: node data, currentNode: node status information (including data)}'
+              'The event triggered when the currently selected node changes; <br> Parameter description: {data: node data,currentNode: node status information (including data)}'
           },
-          'demoId': 'drag-events'
+          'demoId': 'node-hl'
         },
         {
           'name': 'node-expand',
-          'type': 'Function(data, node, vm)',
+          'type': '(data, node, vm)=>void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '展开节点后的事件。节点被展开时触发的事件;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据,vm: 当前组件实例}',
+            'zh-CN': '展开节点后的事件。<br>参数说明：{data: 节点数据,node: 节点状态信息（包括数据,vm: 当前组件实例}',
             'en-US':
-              'Event after a node is expanded.; event triggered when a node is expanded; //Parameter description\n{data: node data, node: node status information (including data, vm: current component instance}'
+              'Events after expanding a node. <br> Parameter description: {data: node data,node: node status information (including data,vm: current component instance)}'
           },
-          'demoId': 'default-expanded-keys'
+          'demoId': 'expand-control'
         },
         {
           'name': 'node-collapse',
-          'type': 'Function(data, node, vm)',
+          'type': '(data, node, vm)=>void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '收缩节点后的事件<br>参数说明：{data: 节点数据,node: 节点状态信息（包括数据）,vm: 当前组件实例}',
+            'en-US':
+              'Events after a node is shrunk <br> Parameter Description: {data: node data,node: node status information (including data),vm: current component instance}'
+          },
+          'demoId': 'expand-control'
+        },
+        {
+          'name': 'check',
+          'type': '(data, currentChecked)=>void',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '收缩节点后的事件;节点被关闭时触发的事件;//参数说明\n{data: 节点数据,node: 节点状态信息（包括数据）,vm: 当前组件实例}',
+              '勾选节点后的事件<br>参数说明：{data:  当前选中节点信息, currentChecked: 树组件目前的选中状态信息}',
             'en-US':
-              'Event after node shrinking; Event triggered when a node is closed; //Parameter description\n{data: node data, node: node status information (including data), vm: current component instance}'
+              'Parameter description: {data: information about the selected node; currentChecked: information about the selected tree component}'
           },
-          'demoId': 'default-expanded-keys'
+          'demoId': 'check-op'
         },
         {
-          'name': 'node-drag-start',
-          'type': 'Function(node, event)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '节点开始拖拽时触发的事件;节点开始拖拽时触发的事件;node: 拖拽节点，event: 原生事件',
-            'en-US':
-              'Event triggered when a node starts to be dragged. Event triggered when a node starts to be dragged. node: drag node; event: native event'
-          },
-          'demoId': 'drag-events'
-        },
-        {
-          'name': 'node-drag-enter',
-          'type': 'Function(draggingNode, targetNode, dropType, event)',
+          'name': 'check-change',
+          'type': '(data, checked, indeterminate)=>void',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '拖拽进入其他节点时触发的事件;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, //拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}',
+              '节点选中状态发生变化时的回调;<br>参数说明：{data: 节点状态信息,checked:当前点击节点的勾选状态,indeterminate:当前节点的半选状态}',
             'en-US':
-              'Event triggered when a user drags a node to another node. //Parameters\n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping relationship on the target node (before/after/inner/none) \nevent: native event}'
+              'Callback when node status changes; <br> Parameter description: {data: node status information,checked: the selected state of the current node,indeterminate: the semi-selected state of the current node}'
           },
-          'demoId': 'drag-events'
+          'demoId': 'check-op'
         },
         {
-          'name': 'node-drag-leave',
-          'type': 'Function(draggingNode, targetNode, dropType, event)',
+          'name': 'load-data',
+          'type': '(data)=>void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '拖拽离开某个节点时触发的事件;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型,//拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}',
-            'en-US':
-              'Event triggered when a node is dragged away. //Parameters\n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping relationship on the target node (before/after/inner/none) \nevent: native event}'
+            'zh-CN': '懒加载时，加载数据成功的事件;<br>参数说明：{data: 加载的数据}',
+            'en-US': 'During lazy loading, data is loaded successfully. <br> Parameter description: {data: loaded data}'
           },
-          'demoId': 'drag-events'
-        },
-        {
-          'name': 'node-drag-over',
-          'type': 'Function(raggingNode, targetNode, dropType, event)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '在拖拽节点时触发的事件（类似浏览器的 mouseover 事件）;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, //拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}',
-            'en-US':
-              'Event triggered when a node is dragged (similar to the mouseover event of a browser). //Parameters\n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping relationship on the target node (before/after/inner/none) \nevent: native event}'
-          },
-          'demoId': 'drag-events'
-        },
-        {
-          'name': 'node-drag-end',
-          'type': 'Function(draggingNode, targetNode, dropType, event)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '拖拽结束时（可能未成功）触发的事件;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, //拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}',
-            'en-US':
-              'Event triggered when the drag ends (may not be successful). //Parameters\n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping relationship on the target node (before/after/inner/none) \nevent: native event}'
-          },
-          'demoId': 'drag-events'
+          'demoId': 'check-op'
         },
         {
           'name': 'node-drop',
-          'type': 'Function(draggingNode, targetNode, dropType, event)',
+          'type': '(srcNode, targetNode, dropType, event)=>void',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '拖放节点后的事件。开启 dragable 属性为 true 有效。拖拽成功完成时触发的事件;//参数\n{draggingNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, //拖拽节点在目标节点对应关系（before/after/inner/none)\nevent: 原生事件}',
+              '拖拽成功完成时触发的事件;<br>参数说明：{srcNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, (before/after/inner/none),event: 原生事件}',
             'en-US':
-              'Event after a node is dragged. The dragable attribute is valid when true is enabled.; event triggered when the drag is successfully completed; //Parameters\n{draggingNode: drag node, targetNode: target node, dropType: drag type, //Drag node mapping relationship on the target node (before/after/inner/none) \nevent: native event}'
+              'Drag-and-drop events triggered upon successful completion; <br> Parameter description: {srcNode: drag node,targetNode: target node,dropType: drag type, (before/after/inner/none),event: native event}'
           },
-          'demoId': 'node-draggable'
+          'demoId': 'drag'
+        },
+        {
+          'name': 'node-drag-start',
+          'type': '(node, event)=>void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '节点开始拖拽时触发的事件;<br>参数说明：{node: 拖拽节点，event: 原生事件}',
+            'en-US':
+              'The event triggered when the node starts dragging; <br> Parameter description: {node: drags a node, event: native event}'
+          },
+          'demoId': 'drag'
+        },
+        {
+          'name': 'node-drag-enter',
+          'type': '(srcNode, targetNode, event)=>void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '拖拽进入其他节点时触发的事件;<br>参数说明：{srcNode: 拖拽节点,targetNode: 目标节点,event: 原生事件}',
+            'en-US':
+              'An event triggered when dragging to another node; <br> Parameter description: {srcNode: drag node,targetNode: target node,event: native event}'
+          },
+          'demoId': 'drag'
+        },
+        {
+          'name': 'node-drag-over',
+          'type': '(srcNode, targetNode, event)=>void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '在拖拽节点时触发的事件;<br>参数说明：{srcNode: 拖拽节点,targetNode: 目标节点,event: 原生事件}',
+            'en-US':
+              'An event that is triggered when a node is dragged; <br> Parameter description: {srcNode: drag node,targetNode: target node,event: native event}'
+          },
+          'demoId': 'drag'
+        },
+        {
+          'name': 'node-drag-leave',
+          'type': '(srcNode, targetNode, event)=>void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '拖拽离开某个节点时触发的事件;<br>参数说明：{srcNode: 拖拽节点,targetNode: 目标节点,event: 原生事件}',
+            'en-US':
+              'An event that is triggered when you drag and drop away from a node; <br> Parameter description: {srcNode: drag node,targetNode: target node,event: native event}'
+          },
+          'demoId': 'drag'
+        },
+        {
+          'name': 'node-drag-end',
+          'type': '(srcNode, targetNode, dropType, event)=>void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '拖拽结束时（可能未成功）触发的事件;<br>参数说明：{srcNode: 拖拽节点,targetNode: 目标节点,dropType: 拖拽类型, (before/after/inner/none),event: 原生事件}',
+            'en-US':
+              'An event triggered at the end of a (possibly unsuccessful) drag; <br> Parameter description: {srcNode: drag node,targetNode: target node,dropType: drag type, (before/after/inner/none),event: native event}'
+          },
+          'demoId': 'drag'
+        },
+        {
+          'name': 'node-contextmenu',
+          'type': '(event, data, node, vm)=>void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '当某一节点被鼠标右键点击时会触发该事件;<br>参数说明：{event:原生事件,data: 节点数据,node: 节点状态信息（包括数据）,vm: 组件实例}',
+            'en-US':
+              'This event is triggered when a node is clicked by the right mouse button. <br> Parameter description: {event: native event,data: node data,node state information (including data),vm: component instance}'
+          },
+          'demoId': 'contextmenu'
         },
         {
           'name': 'leave-plain-view',
-          'type': 'Function(plainNode, event)',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '平铺模式下，点击节点定位图标触发的事件。参数{ plainNode: 被点击的节点数据, event: 原生点击事件 }',
-            'en-US':
-              'This event is triggered when the node location icon is clicked in tile mode. Parameter { plainNode: clicked node data, event: native click event }'
-          },
-          'demoId': 'plain-mode'
-        },
-        {
-          'name': 'check-plain',
-          'type': 'Function(plainNode, value)',
+          'type': '(plainNode, event)=>void',
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '平铺模式下，勾选或取消勾选节点的事件，需要设置show-checkbox为true才生效。参数{ plainNode: 被点击的节点数据, value: 复选框是否选中，取值true或false }',
+              '平铺模式下，点击节点定位图标触发的事件。<br>参数说明：{ plainNode: 被点击的节点数据, event: 原生点击事件 }',
             'en-US':
-              'In tiled mode, you need to set show-checkbox to true to enable or disable node events. Parameter { plainNode: clicked node data, value: indicates whether the check box is selected. The value can be true or false }'
+              'In tile mode, click the node positioning icon to trigger the event. <br> Parameter description: {plainNode: node data to be clicked, event: native click event}'
           },
-          'demoId': 'plain-mode'
+          'demoId': ''
+        },
+        {
+          'name': 'check-plain',
+          'type': '(plainNode, value)=>void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '平铺模式下，勾选或取消勾选节点的事件，需要设置show-checkbox为true才生效。<br>参数说明：{ plainNode: 被点击的节点数据, value: 复选框是否选中，取值true或false }',
+            'en-US':
+              'In tile mode, select or deselect node events to take effect only when show-checkbox is set to true. <br> Parameter description: {plainNode: indicates the node data to be clicked. value: indicates whether the check box is selected. The value can be true or false.'
+          },
+          'demoId': ''
         }
       ],
       'slots': [
@@ -910,220 +954,348 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '自定义树节点的内容，参数为 { node, data }',
-            'en-US': 'Content of a user-defined tree node. The parameter is {node, data}.'
+            'zh-CN': '自定义树节点的内容，插槽上下文数据为 { node, data }',
+            'en-US': 'Custom tree node content, slot context data is {node, data}'
           },
-          'demoId': 'slot-deffault'
+          'demoId': 'slot'
+        },
+        {
+          'name': 'prefix',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '节点内容前置元素，插槽上下文数据为 { node }',
+            'en-US': 'node content prefix element, slot context data is {node}'
+          },
+          'demoId': 'slot'
+        },
+        {
+          'name': 'suffix',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '节点内容后置元素，插槽上下文数据为 { node }',
+            'en-US': 'node content post element, slot context data is {node}'
+          },
+          'demoId': 'slot'
+        },
+        {
+          'name': 'operation',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '节点内容靠右对齐的元素，插槽上下文数据为 { node }',
+            'en-US': 'node content right-justified element, slot context data is {node}'
+          },
+          'demoId': 'slot'
         },
         {
           'name': 'empty',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '自定义空数据文本', 'en-US': 'Customize empty data text' },
-          'demoId': 'custom-empty-text'
+          'desc': { 'zh-CN': '自定义空数据的元素', 'en-US': 'Custom elements for empty data' },
+          'demoId': 'slot'
         },
         {
           'name': 'contextmenu',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '自定义树节点的右键菜单内容，参数为 { node, data }', 'en-US': '' },
+          'desc': {
+            'zh-CN': '自定义树节点的右键菜单内容，插槽上下文数据为 { node }',
+            'en-US': 'Custom tree node right-click menu content, slot context data is {node}'
+          },
           'demoId': 'contextmenu'
         }
       ],
       'methods': [
         {
-          'name': 'filter',
-          'type': '(value) => void',
+          'name': 'getCurrentNode',
+          'type': '() => data',
           'defaultValue': '',
-          'desc': { 'zh-CN': '对树节点进行筛选操作', 'en-US': 'Filter tree nodes.' },
-          'demoId': 'filter-node'
+          'desc': {
+            'zh-CN': '获得当前的选中的节点数据，若没有节点被选中则返回 null',
+            'en-US': 'Gets the current selected node data, or null if no node is selected'
+          },
+          'demoId': 'node-hl'
+        },
+        {
+          'name': 'getCurrentKey',
+          'type': '() => string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '获取当前被选中节点的 key',
+            'en-US': 'Gets the key of the currently selected node'
+          },
+          'demoId': 'node-hl'
+        },
+        {
+          'name': 'getNode',
+          'type': '(data: string | object) => node',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '通过 "节点数据" 或者 "节点的key", 获得 Tree 组件中的 node 节点对象',
+            'en-US': 'Obtain the node node object in the Tree component using Node Data or Node key'
+          },
+          'demoId': 'node-hl'
+        },
+        {
+          'name': 'getNodeKey ',
+          'type': '(node:object) => number',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '查询节点对象的内部唯一id',
+            'en-US': 'Query the unique internal id of a node object'
+          },
+          'demoId': 'node-hl'
+        },
+        {
+          'name': 'getNodePath ',
+          'type': '(key:string) => object[]',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '通过节点的id, 返回整个路径上节点数据的数组',
+            'en-US': 'Returns an array of node data along the entire path, via the node id'
+          },
+          'demoId': 'node-hl'
+        },
+        {
+          'name': 'setCurrentKey',
+          'type': '(key:string) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '通过 key 设置某个节点的当前选中状态',
+            'en-US': 'Use key to set the selected status of a node'
+          },
+          'demoId': 'node-key'
+        },
+        {
+          'name': 'setCurrentNode',
+          'type': '(data:object) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '通过节点数据， 设置某个节点的当前选中状态',
+            'en-US': 'This section describes how to set the selected status of a node based on node data'
+          },
+          'demoId': 'node-key'
+        },
+        {
+          'name': 'expandAllNodes',
+          'type': '(isExpand:boolean) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '展开或收起全部节点',
+            'en-US': 'Expand or collapse all nodes'
+          },
+          'demoId': 'expand-control'
+        },
+        {
+          'name': 'append',
+          'type': '(newData:object, targetNodeOrTargetKey: object | string) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN':
+              '为一个节点追加一个子节点，且位于其它子节点的最上方。<br>参数中的目标节点可以是节点数据或节点的key',
+            'en-US':
+              'Appends a child node to a node, on top of the other children. The target node in the <br> parameter can be the node data or the key of the node'
+          },
+          'demoId': 'node-op'
+        },
+        {
+          'name': 'insertBefore',
+          'type': '(newData:object, targetNodeOrTargetKey: object | string) => void',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '在一个节点的前面增加一个节点', 'en-US': 'Add a node before a tree node.' },
+          'demoId': 'node-op'
+        },
+        {
+          'name': 'insertAfter',
+          'type': '(newData:object, targetNodeOrTargetKey: object | string) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '在一个节点的后面增加一个节点',
+            'en-US': 'Add a node after a node'
+          },
+          'demoId': 'node-op'
         },
         {
           'name': 'updateKeyChildren',
-          'type': '(key, data) => void',
+          'type': '(key, children: object[]) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '通过 keys 设置节点子元素，使用此方法必须设置 node-key 属性',
-            'en-US': 'Use keys to set node subelements. The node-key attribute must be set in this method.'
+            'zh-CN': '更新指定节点的所有子元素',
+            'en-US': 'Updates all child elements of the specified node'
           },
-          'demoId': 'show-checkbox'
+          'demoId': 'node-op'
         },
         {
-          'name': 'getCheckedNodes',
-          'type': '(leafOnly, includeHalfChecked) => result',
+          'name': 'remove',
+          'type': '(targetNodeOrTargetKey: object | string, isSaveChildNode :boolean ) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '获取选中标识的数据。若节点可被选择（即 show-checkbox 为 true），则返回目前被选中的节点所组成的数组，仅配置多选时生效',
+            'zh-CN': '删除节点。当参数：isSaveChildNode为true时，当前节点的子元素上移至删除节点的父节点中去。',
             'en-US':
-              'Obtains the data of the selected identifier.; If a node can be selected (that is, show-checkbox is set to true), the array composed of the currently selected nodes is returned. This parameter is valid only when multiple nodes are selected.'
+              'Delete a node. When isSaveChildNode is true, the child elements of the current node are moved up to the parent node of the deleted node.'
           },
-          'demoId': 'check-on-click-node'
-        },
-        {
-          'name': 'setCheckedNodes',
-          'type': '(keys, leafOnly) => void',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置目前勾选的节点，使用此方法必须设置 node-key 属性',
-            'en-US': 'Set the selected node. You must set the node-key attribute in this method.'
-          },
-          'demoId': 'show-checkbox'
+          'demoId': 'node-op'
         },
         {
           'name': 'getCheckedKeys',
-          'type': '(leafOnly) => result',
+          'type': '(leafOnly:boolean) => string[]',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '若节点可被选择（即 show-checkbox 为 true），则返回目前被选中的节点的 key 所组成的数组, 仅配置多选时生效',
+            'zh-CN': '返回目前被选中的节点的 key 所组成的数组。当参数：leafOnly 为true时，只返回被选中的叶子节点。',
             'en-US':
-              'If a node can be selected (that is, show-checkbox is set to true), the array consisting of the keys of the selected node is returned. This parameter is valid only when multiple nodes are selected.'
+              'Returns an array of keys for the currently selected node. If the parameter: leafOnly is true, only the selected leaf nodes are returned.'
           },
-          'demoId': 'check-on-click-node'
+          'demoId': 'check-op'
         },
         {
-          'name': 'setCheckedKeys',
-          'type': '(keys, leafOnly) => void',
+          'name': 'getCheckedNodes',
+          'type': '(leafOnly:boolean, includeHalfChecked:boolean) => object[]',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '通过 keys 设置目前勾选的节点，使用此方法必须设置 node-key 属性',
-            'en-US': 'Use keys to set the selected node. You must set the node-key attribute.'
+            'zh-CN': '返回目前被选中的节点所组成的数组。',
+            'en-US': 'Returns an array of currently selected nodes'
           },
-          'demoId': 'show-checkbox'
-        },
-        {
-          'name': 'setChecked',
-          'type': '(data,checked,deep) => void',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '通过 key / data 设置某个节点的勾选状态，使用此方法必须设置 node-key 属性。通过第3个参数，可以递归设置所有子节点的勾选状态！',
-            'en-US':
-              'Use key/data to set the selected status of a node. You must set the node-key attribute in this method. The third parameter can recursively set the check status of all subnodes'
-          },
-          'demoId': 'show-checkbox'
-        },
-        {
-          'name': 'closeMenu',
-          'type': '() => void',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '关闭右键点击节点弹窗自定义菜单', 'en-US': 'Close the shortcut menu.' },
-          'demoId': 'contextmenu'
+          'demoId': 'check-op'
         },
         {
           'name': 'getHalfCheckedNodes',
-          'type': '() => result',
+          'type': '() => object[]',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '若节点可被选择（即 show-checkbox 为 true），则返回目前半选中的节点所组成的数组,仅配置多选时生效。',
-            'en-US':
-              'If a node can be selected (that is, show-checkbox is set to true), the array composed of half-selected nodes is returned. This parameter takes effect only when multiple nodes are selected.'
+            'zh-CN': '返回目前半选中的节点所组成的数组',
+            'en-US': 'Returns an array of currently half-selected nodes.'
           },
-          'demoId': 'check-on-click-node'
+          'demoId': 'check-op'
         },
         {
           'name': 'getHalfCheckedKeys',
           'type': '() => result',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '若节点可被选择（即 show-checkbox 为 true），则返回目前半选中的节点的 key 所组成的数组，仅配置多选时生效。',
+            'zh-CN': '返回目前半选中的节点的 key 所组成的数组',
+            'en-US': 'Returns an array of keys for the currently semi-selected node'
+          },
+          'demoId': 'check-op'
+        },
+        {
+          'name': 'setChecked',
+          'type': '( nodeOrKey: object|string,checked:boolean,deep:boolean) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '通过节点或节点的key,设置它的勾选状态',
+            'en-US': 'Set the checked status of the node or node by its key'
+          },
+          'demoId': 'check-op'
+        },
+        {
+          'name': 'setCheckedNodes',
+          'type': '( nodeArr: object[], leafOnly:boolean) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '通过节点数据，设置一组节点为勾选状态',
+            'en-US': 'Set a group of nodes to the selected state based on node data'
+          },
+          'demoId': 'check-op'
+        },
+
+        {
+          'name': 'setCheckedKeys',
+          'type': '(keys:string[], leafOnly:boolean) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '通过节点的key,设置一组节点为勾选状态',
+            'en-US': 'You can set a group of nodes to the selected state by using the node key'
+          },
+          'demoId': 'check-op'
+        },
+        {
+          'name': 'setCheckedByNodeKey',
+          'type': '(key:string, checked:boolean) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '通过节点的key, 设置它为勾选或不勾选',
+            'en-US': "Through the node's key, set it to checked or unchecked"
+          },
+          'demoId': 'check-op'
+        },
+        {
+          'name': 'setCurrentRadio ',
+          'type': '() => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '在单选模式下，设置组件实例的default-checked-keys 的第一项为勾选值',
             'en-US':
-              'If a node can be selected (that is, show-checkbox is set to true), the array consisting of the keys of the currently half-selected node is returned. This parameter is valid only when multiple nodes are selected.'
+              "In radio mode, set the first item of the component instance's default-checked keys to the checked value"
           },
-          'demoId': 'check-on-click-node'
+          'demoId': 'radio'
         },
         {
-          'name': 'getCurrentKey',
-          'type': '() => result',
+          'name': 'filter',
+          'type': '(value:string) => void',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '触发树节点进行筛选操作', 'en-US': 'The tree node is triggered for filtering operations' },
+          'demoId': 'filter-view'
+        },
+        {
+          'name': 'openEdit',
+          'type': '() => void',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '组件进入编辑状态', 'en-US': 'The component enters the edit state' },
+          'demoId': 'edit'
+        },
+
+        {
+          'name': 'closeEdit',
+          'type': '() => void',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '组件退出编辑状态', 'en-US': 'The component exits the editing state' },
+          'demoId': 'edit'
+        },
+        {
+          'name': 'saveEdit',
+          'type': '() => object[]',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '返回组件编辑状态的值', 'en-US': "Returns the value of the component's edit status" },
+          'demoId': 'edit'
+        },
+        {
+          'name': 'addNode ',
+          'type': '(node:object) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '获取当前被选中节点的 key，使用此方法必须设置 node-key 属性，若没有节点被选中则返回 ，仅配置单选时生效',
-            'en-US':
-              'Obtains the key of the currently selected node. This method must be used to set the node-key attribute. If no node is selected, the system returns. This method takes effect only when one node is selected.'
+            'zh-CN': '在指定的节点对象中，添加一个子节点',
+            'en-US': 'In the specified node object, adds a child node'
           },
-          'demoId': 'node-key'
+          'demoId': 'edit'
         },
         {
-          'name': 'getCurrentNode',
-          'type': '() => result',
+          'name': 'editNode',
+          'type': '(node:object) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '获得当前的选中的节点，仅单选模式下生效;获取当前被选中节点的 data，若没有节点被选中则返回 null',
-            'en-US':
-              'Obtains the selected node. This parameter is valid only in single-choice mode. Obtains the data of the currently selected node. If no node is selected, null is returned'
+            'zh-CN': '让指定的节点对象进入编辑状态',
+            'en-US': 'Puts the specified node object in the edit state'
           },
-          'demoId': 'node-key'
+          'demoId': 'edit'
         },
         {
-          'name': 'setCurrentKey',
-          'type': '(key) => void',
+          'name': 'saveNode',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '通过 key 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性',
-            'en-US':
-              'Use the key to set the selected status of a node. You must set the node-key attribute when using this method.'
+            'zh-CN': '正在进行编辑的节点保存并退出编辑状态',
+            'en-US': 'The node being edited is saved and exits the editing state'
           },
-          'demoId': 'node-key'
+          'demoId': 'edit'
         },
         {
-          'name': 'setCurrentNode',
-          'type': '(key) => void',
+          'name': 'closeMenu',
+          'type': '() => void',
           'defaultValue': '',
-          'desc': {
-            'zh-CN': '通过 node 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性',
-            'en-US':
-              'Use node to set the selected status of a node. You must set the node-key attribute in this method.'
-          },
-          'demoId': 'node-key'
-        },
-        {
-          'name': 'getNode',
-          'type': '(data) => result',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '根据 data 或者 key 拿到 Tree 组件中的 node',
-            'en-US': 'The node in the Tree component is obtained based on data or key.'
-          },
-          'demoId': 'show-checkbox'
-        },
-        {
-          'name': 'remove',
-          'type': '(data) => void',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '删除节点。删除 Tree 中的一个节点，使用此方法必须设置 node-key 属性',
-            'en-US': 'Delete a node. ;Delete a node from the tree. The node-key attribute must be set in this method'
-          },
-          'demoId': 'node-key'
-        },
-        {
-          'name': 'append',
-          'type': '(data, parentNode) => void',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '为 Tree 中的一个节点追加一个子节点', 'en-US': 'Add a subnode to a node in the tree.' },
-          'demoId': 'node-key'
-        },
-        {
-          'name': 'insertBefore',
-          'type': '(data, refNode) => void',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '为 Tree 的一个节点的前面增加一个节点', 'en-US': 'Add a node before a tree node.' },
-          'demoId': 'node-key'
-        },
-        {
-          'name': 'insertAfter',
-          'type': '(data, refNode) => void',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '根据节点数据在父节点下插入一个子节点。为 Tree 的一个节点的后面增加一个节点',
-            'en-US':
-              'Insert a child node under the parent node based on the node data. Add a node  after a node of the Tree'
-          },
-          'demoId': 'node-key'
+          'desc': { 'zh-CN': '关闭节点的自定义菜单', 'en-US': 'Close the custom menu of the node' },
+          'demoId': 'contextmenu'
         }
       ]
     }

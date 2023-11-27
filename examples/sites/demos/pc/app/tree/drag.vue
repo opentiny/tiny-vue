@@ -56,7 +56,7 @@ export default {
         },
         {
           id: '3',
-          label: '数据 3',
+          label: '数据 3(不可拖/不可放)',
           children: [{ id: '3-1', label: '数据 3-1' }]
         }
       ]
