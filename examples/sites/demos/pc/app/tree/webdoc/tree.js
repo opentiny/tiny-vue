@@ -86,27 +86,6 @@ export default {
       'codeFiles': ['slot.vue']
     },
     {
-      'demoId': 'expand-control',
-      'name': { 'zh-CN': '节点的展开控制', 'en-US': 'Expansion control of nodes' },
-      'desc': {
-        'zh-CN': `
-          通过 <code> default-expand-all </code> 属性，加载时默认展开所有节点, 默认为 <code>false</code>。<br>
-          通过 <code> default-expanded-keys </code> 属性，加载时默认展开指定数组里的节点，需要指定<code>node-key</code>的值。<br>
-          通过 <code> expand-on-click-node </code> 属性，设置节点在点击内容时展开 / 收起， 默认为 <code>true</code>。 当设置为 <code>false</code>时，只有点击图标才展开。<br>
-          通过 <code> node-expand </code> 事件，监听节点展开的动作。<br>
-          通过 <code> node-collapse </code> 事件，监听节点收起的动作。<br>
-        `,
-        'en-US': `By using the <code> default-expand-all </code> property, all nodes are expanded by default when loading. The default value is <code>false</code>. <br>
-          Using the <code> default-expanded-keys </code> property, the nodes in the specified array are expanded by default when loaded. You need to specify the value of <code>node-key</code>. <br>
-          Use the <code> expand-on-click-node </code> property to set the node to expand/collapse when clicking content. The default is <code>true</code>. When set to <code>false</code>, it only expands by clicking the icon. <br>
-          Use the <code> node-expand </code> event to listen for the expansion of a node. <br>
-          Listen for the collapse of a node through the <code> node-collapse </code> event. <br>
-        `
-      },
-      'codeFiles': ['expand-control.vue']
-    },
-
-    {
       'demoId': 'node-hl',
       'name': { 'zh-CN': '节点的高亮 / 查询', 'en-US': 'Highlighting/querying nodes' },
       'desc': {
@@ -120,7 +99,7 @@ export default {
             节点数据：传入的节点数据。<br>
             节点对象：组件内节点对象。<br>
             节点路径：从根节点开始，由节点数据组成的数组。<br><br>
-            通过节点对象，可以取到当前节点的 <code> parent 、childNodes 、nextSibling、previousSibling </code> 等属性，从而实现节点间的自由访问。
+            通过节点对象，可以取到当前节点的 <code> parent 、childNodes 、nextSibling、previousSibling </code> 等属性，从而实现节点间的自由访问,也可以调用它的内部函数，进行节点展开/收起，节点编辑/勾选等操作。
           </div>
           通过 <code> getCurrentNode 、getCurrentKey 、getNode 、getNodeKey 、getNodePath </code> 等组件函数，查询以上节点的信息。<br>
           通过 <code> setCurrentKey 、setCurrentNode </code> 等组件函数，手动设置高亮节点。<br>
@@ -143,6 +122,37 @@ export default {
       'codeFiles': ['node-hl.vue']
     },
     {
+      'demoId': 'expand-control',
+      'name': { 'zh-CN': '节点的展开控制', 'en-US': 'Expansion control of nodes' },
+      'desc': {
+        'zh-CN': `
+          通过 <code> default-expand-all </code> 属性，加载时默认展开所有节点, 默认为 <code>false</code>。<br>
+          通过 <code> default-expanded-keys </code> 属性，加载时默认展开指定数组里的节点，需要指定<code>node-key</code>的值。<br>
+          通过 <code> expand-on-click-node </code> 属性，设置节点在点击内容时展开 / 收起， 默认为 <code>true</code>。 当设置为 <code>false</code>时，只有点击图标才展开。<br>
+          通过 <code> expandAllNodes </code> 组件方法，可以全部展开或收起所有节点。函数入参为 <code>true</code>时全部展开，反之则全部收起。<br>
+          通过 <code> node-expand </code> 事件，监听节点展开的动作。<br>
+          通过 <code> node-collapse </code> 事件，监听节点收起的动作。<br>
+          <div class="tip custom-block"> 
+          <p class="custom-block-title"> 实用技巧 </p>
+            节点对象上包含<code>expand</code> 和 <code>collapse</code> 方法，可以展开或收起该节点。<br>
+          </div>
+        `,
+        'en-US': `By using the <code> default-expand-all </code> property, all nodes are expanded by default when loading. The default value is <code>false</code>. <br>
+          Using the <code> default-expanded-keys </code> property, the nodes in the specified array are expanded by default when loaded. You need to specify the value of <code>node-key</code>. <br>
+          Use the <code> expand-on-click-node </code> property to set the node to expand/collapse when clicking content. The default is <code>true</code>. When set to <code>false</code>, it only expands by clicking the icon. <br>
+          The <code> expandAllNodes </code> component method allows you to expand or collapse all nodes. If the function enters <code>true</code>, expand all; otherwise, collapse all. <br>
+          Use the <code> node-expand </code> event to listen for the expansion of a node. <br>
+          Listen for the collapse of a node through the <code> node-collapse </code> event. <br>
+          <div class="tip custom-block">
+            <p class="custom-block-title"> Practical tips </p>
+            The node object contains <code>expand</code> and< code>collapse</code> methods to expand or collapse the node. <br>
+          </div>
+        `
+      },
+      'codeFiles': ['expand-control.vue']
+    },
+
+    {
       'demoId': 'node-op',
       'name': { 'zh-CN': '节点的增删改', 'en-US': 'Adding, deleting or modifying nodes' },
       'desc': {
@@ -154,7 +164,8 @@ export default {
           通过 <code> remove </code> 组件方法，删除当前节点。<br>
           <div class="tip custom-block"> 
             <p class="custom-block-title"> 实用技巧 </p>
-            当更新子节点，且需要保留子节点时，请先使用<code> getNode </code> 查询到当前节点的<code> children </code>， 修改它后再调用<code> updateKeyChildren </code> 更新子节点。
+            当更新子节点，且需要保留子节点时，请先使用<code> getNode </code> 查询到当前节点的<code> children </code>， 修改它后再调用<code> updateKeyChildren </code> 更新子节点。<br><br>
+            除了使用组件实例进行节点操作之外，还可以通过节点对象的 <code> insert </code> 、<code> remove </code> 等相关方法，操作节点。
           </div>
         `,
         'en-US': `Add a node in front of the current node using the <code> insertBefore </code> component method. <br>
@@ -176,7 +187,7 @@ export default {
       'desc': {
         'zh-CN': `
           通过 <code> show-checkbox </code> 属性，启用多选模式。<br>
-          通过 <code> check-strictly </code> 属性，指定是否严格模式。属性默认为 <code> false </code>，勾选父节点，子节点自动全选中；子节点全选中，自动勾选父节点。<br>
+          通过 <code> check-strictly </code> 属性，指定是否严格模式。属性默认为 <code> false </code>。严格模式时勾选父节点，子节点自动全选中；子节点全选中，自动勾选父节点。<br>
           通过 <code>  check-on-click-node </code> 属性，点击节点时，同时进行勾选/反勾选节点。 属性默认值为 <code> false </code>, 即点击节点不自动勾选。<br>
           通过 <code> default-checked-keys  </code> 属性，设置默认加载时，自动勾选的节点的keys数组。<br>
           <div class="tip custom-block">  严格模式下父子不相互影响，勾选父节点时不会自动勾选子节点，适于于某些特殊场景。 </div>
@@ -207,7 +218,11 @@ export default {
               <code> check </code> 事件触发在点击的元素上， 事件参数为：被点击的节点和勾选后组件的整体勾选状态。<br>
               <code> check-change </code> 事件是发生在每一个发生勾选状态变化的节点， 事件参数为：状态变化的节点和该节点当前的<code>checked值</code>和<code>indeterminate值</code>。<br><br>
               通常一次勾选动作会触发多个节点的状态变化。
-           </div>
+          </div>
+          <div class="tip custom-block"> 
+            <p class="custom-block-title"> 实用技巧 </p>
+            除了使用组件实例进行勾选操作之外，还可以通过节点对象的 <code> setChecked </code> 进行勾选。
+          </div>
         `,
         'en-US': `Run the <code> getCheckedKeys, getCheckedNodes, getHalfCheckedKeys, getHalfCheckedNodes </code> component functions to query the status of the current component. <br>
           Manually select a specified node of a component using the <code> setChecked, setCheckedByNodeKey, setCheckedKeys, and setCheckedNodes </code> component functions. <br>
@@ -221,6 +236,10 @@ export default {
           <code> check </code> The event is triggered on the clicked element. The event parameters are: the node that is clicked and the overall checked status of the selected component. <br>
           The <code> check-change </code> event occurs on each node whose status changes. The event parameters are: the node whose status changes, the current <code>checked value </code> and the <code>indeterminate value </code> of the node. <br><br>
           Usually, a single check action triggers the status change of multiple nodes.
+          </div>
+          <div class="tip custom-block">
+            <p class="custom-block-title"> Practical tips </p>
+            In addition to checking with the component instance, you can also check with the <code> setChecked </code> of the node object.
           </div>
         `
       },

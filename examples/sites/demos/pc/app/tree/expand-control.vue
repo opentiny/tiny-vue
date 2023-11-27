@@ -2,24 +2,46 @@
   <div class="expand-demo">
     <div>
       <div class="tip">默认展开全部，且点击任意地方展开节点</div>
-      <tiny-tree :data="data" default-expand-all @node-expand="nodeExpand" @node-collapse="nodeCollapse"></tiny-tree>
+      <div class="tip">
+        <tiny-button @click="toggleAll">切换全部展开收起</tiny-button>
+      </div>
+      <tiny-tree
+        ref="tree1Ref"
+        :data="data"
+        default-expand-all
+        @node-expand="nodeExpand"
+        @node-collapse="nodeCollapse"
+      ></tiny-tree>
     </div>
     <div style="margin-left: 30px">
       <div class="tip">默认展开节点2，仅点击图标才展开节点</div>
-      <tiny-tree :data="data" node-key="id" :default-expanded-keys="['2']" :expand-on-click-node="false"></tiny-tree>
+      <div class="tip">
+        <tiny-button @click="expandHlNode">展开高亮</tiny-button>
+        <tiny-button @click="collapseHlNode">收起高亮</tiny-button>
+      </div>
+      <tiny-tree
+        ref="tree2Ref"
+        :data="data"
+        node-key="id"
+        :default-expanded-keys="['2']"
+        :current-node-key="'2'"
+        :expand-on-click-node="false"
+      ></tiny-tree>
     </div>
   </div>
 </template>
 
 <script lang="jsx">
-import { Tree } from '@opentiny/vue'
+import { Tree, Button } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTree: Tree
+    TinyTree: Tree,
+    TinyButton: Button
   },
   data() {
     return {
+      isExpandAll: true,
       data: [
         {
           id: '1',
@@ -43,6 +65,20 @@ export default {
     }
   },
   methods: {
+    toggleAll() {
+      this.isExpandAll = !this.isExpandAll
+      this.$refs.tree1Ref.expandAllNodes(this.isExpandAll)
+    },
+    expandHlNode() {
+      const data = this.$refs.tree2Ref.getCurrentNode()
+      const node = this.$refs.tree2Ref.getNode(data.id)
+      node.expand()
+    },
+    collapseHlNode() {
+      const data = this.$refs.tree2Ref.getCurrentNode()
+      const node = this.$refs.tree2Ref.getNode(data.id)
+      node.collapse()
+    },
     nodeExpand(data, node, vm) {
       console.log('展开节点：', { data, node, vm })
     },
