@@ -1,34 +1,31 @@
 import {
   handleChange,
   setLink,
-  handleMove,
-  handleClickOutside,
-  removeClickOutside,
-  handleClick,
+  tableMouseMove,
+  tableChoose,
+  toggleTablePanel,
+  closeTablePanel,
   shouldShow,
   eventImg,
   eventClick,
   Active
 } from './index'
 export const api = [
-  'toolBar',
   'state',
   'setLink',
   'handleChange',
-  'box',
-  'handleMove',
-  'handleClickOutside',
-  'removeClickOutside',
-  'handleClick',
+  'tableMouseMove',
+  'tableChoose',
+  'toggleTablePanel',
+  'closeTablePanel',
   'shouldShow',
-  'fontSize',
   'eventImg',
   'eventClick',
   'Active'
 ]
 export const renderless = (
   props,
-  { computed, onMounted, onBeforeUnmount, reactive, ref },
+  { computed, onMounted, onBeforeUnmount, reactive, ref, markRaw },
   { vm, emit, parent },
   {
     Editor,
@@ -53,15 +50,11 @@ export const renderless = (
     CodeBlockLowlight,
     lowlight,
     VueNodeViewRenderer,
-    // CodehighComp,
-    // NodeViewContent,
-    // nodeViewProps,
-    // NodeViewWrapper,
     Placeholder,
     codeHighlight
   }
 ) => {
-  let toolBar = [
+  let defaultToolBar = [
     'bold',
     'italic',
     'underline',
@@ -74,27 +67,24 @@ export const renderless = (
     'taskList',
     'subscript',
     'superscript',
-    // 'nodeDelete',
     'undo',
     'redo',
     'left',
     'center',
     'right',
-    'h-box',
-    'font-size',
-    'line-height',
-    'highlight',
-    'color',
-    'backgroundColor',
     'formatClear',
     'link',
-    'unlink',
-    'img',
-    'table'
+    'h-box', //
+    'font-size', //
+    'line-height', //
+    'highlight',
+    'color', //
+    'backgroundColor', //
+    'unlink', //
+    'img', //
+    'table' //
   ]
-  if (props.customToolBar) {
-    toolBar = props.customToolBar
-  }
+
   // 自定义图片
   const CustomImage = Image.extend({
     addAttributes() {
@@ -231,10 +221,10 @@ export const renderless = (
         }
       }).configure({ lowlight }),
       Placeholder.configure({
-        placeholder: props.placeholder ?? 'Write something …'
+        placeholder: props.placeholder
       })
     ],
-    content: '',
+    content: props.modelValue,
     autofocus: true,
     editable: true,
     injectCSS: false,
@@ -277,34 +267,27 @@ export const renderless = (
     ...props.options
   }
 
-  let options = props.options ? Object.assign(defaultOptions, props.options) : defaultOptions
-  const editor = new Editor(options)
+  let options = Object.assign(defaultOptions, props.options)
 
-  const box = ref(null)
-  const fontSize = ref('16px')
   const state = reactive({
-    editor: null,
+    editor: markRaw(new Editor(options)),
+    toolbar: computed(() => (props.customToolBar.length ? props.customToolBar : defaultToolBar)),
     // table 变量
-    isShow: false,
+    isShowTable: false,
     flagX: 0,
     flagY: 0
   })
-  state.editor = editor
   const api = {
-    toolBar,
     state,
-    setLink: setLink(editor),
-    handleChange: handleChange(editor),
+    setLink: setLink(state.editor),
+    handleChange: handleChange(state.editor),
     // table处理函数
-    box,
-    handleMove: handleMove(state, box),
-    handleClickOutside: handleClickOutside(state, box),
-    removeClickOutside: removeClickOutside(state, box),
-    handleClick: handleClick(state, box),
+    tableMouseMove: tableMouseMove(state, vm),
+    toggleTablePanel: toggleTablePanel(state),
+    closeTablePanel: closeTablePanel(state),
+    tableChoose: tableChoose(state, vm),
     // bubble 菜单
     shouldShow: shouldShow,
-    //
-    fontSize,
     eventImg,
     eventClick,
     Active
@@ -312,5 +295,6 @@ export const renderless = (
   onBeforeUnmount(() => {
     state.editor.destroy()
   })
+
   return api
 }

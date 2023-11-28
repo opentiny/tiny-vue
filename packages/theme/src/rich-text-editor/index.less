@@ -11,7 +11,8 @@
     font-style: italic;
   }
 
-  a, a:hover {
+  a,
+  a:hover {
     text-decoration: underline;
   }
 
@@ -63,14 +64,15 @@
 
   &__toolbar button {
     height: 24px;
-    padding: .25rem;
-    margin-right: .25rem;
+    padding: 0.25rem;
+    margin-right: 0.25rem;
     border: none;
-    border-radius: .4rem;
+    border-radius: 0.4rem;
     background: transparent;
     cursor: pointer;
 
-    svg, input {
+    svg,
+    input {
       cursor: pointer;
     }
 
@@ -128,7 +130,7 @@
 
     .h-options {
       position: absolute;
-      padding: .15rem;
+      padding: 0.15rem;
       background-color: var(--ti-rich-text-edito-options-bg-color);
       left: 0px;
       display: none;
@@ -141,12 +143,14 @@
         margin: 0;
         text-align: center;
         line-height: var(--ti-common-line-height-3);
-        svg, path {
+        svg,
+        path {
           fill: black;
         }
         &:hover {
           background-color: var(--ti-rich-text-edito-options-item-bg-color);
-          svg, path {
+          svg,
+          path {
             fill: var(--ti-rich-text-edito-options-item-hover-color);
           }
         }
@@ -154,7 +158,6 @@
     }
 
     &:hover {
-
       .h-options {
         display: flex;
         flex-direction: column;
@@ -170,7 +173,6 @@
 // 表格区域样式
 .tiny-rich-text-editor {
   .table-button {
-
     .table-box {
       display: flex;
       position: relative;
@@ -179,7 +181,7 @@
         display: inline-block;
       }
 
-      .table-option {
+      .table-panel {
         position: absolute;
         background: white;
         left: 0;
@@ -201,8 +203,8 @@
         }
 
         .isActive {
-          background-color: rgba(32, 122, 183, .5);
-          border-color: rgba(32, 122, 183, .5);
+          background-color: rgba(32, 122, 183, 0.5);
+          border-color: rgba(32, 122, 183, 0.5);
         }
       }
     }
@@ -215,7 +217,6 @@
       }
     }
   }
-
 }
 
 // 颜色选择样式
@@ -235,7 +236,6 @@
     }
 
     &:hover {
-
       #tiny-back-color,
       #tiny-color {
         background-color: #d2e4ff;
@@ -291,7 +291,7 @@
 
     .line-height-options {
       position: absolute;
-      padding: .15rem;
+      padding: 0.15rem;
       background-color: var(--ti-rich-text-edito-options-bg-color);
       left: 0px;
       display: none;
@@ -326,7 +326,6 @@
 
 .tiny-rich-text-editor {
   .bubble-menu {
-
     button {
       background-color: #f1f3f5;
     }
@@ -393,7 +392,7 @@
   }
 
   .ProseMirror {
-    >*+* {
+    > * + * {
       margin-top: 0.75em;
     }
 
@@ -446,8 +445,8 @@
     }
 
     pre {
-      background: #0D0D0D;
-      color: #FFF;
+      background: #0d0d0d;
+      color: #fff;
       font-family: 'JetBrainsMono', monospace;
       padding: 0.75rem 1rem;
       border-radius: 0.5rem;
@@ -467,12 +466,12 @@
 
     blockquote {
       padding-left: 1rem;
-      border-left: 2px solid rgba(#0D0D0D, 0.1);
+      border-left: 2px solid rgba(#0d0d0d, 0.1);
     }
 
     hr {
       border: none;
-      border-top: 2px solid rgba(#0D0D0D, 0.1);
+      border-top: 2px solid rgba(#0d0d0d, 0.1);
       margin: 2rem 0;
     }
   }
@@ -507,7 +506,7 @@
         box-sizing: border-box;
         position: relative;
 
-        >* {
+        > * {
           margin-bottom: 0;
         }
       }
@@ -521,7 +520,7 @@
       .selectedCell:after {
         z-index: 2;
         position: absolute;
-        content: "";
+        content: '';
         left: 0;
         right: 0;
         top: 0;
@@ -557,8 +556,7 @@
   }
 
   .ProseMirror {
-
-    ul[data-type="taskList"] {
+    ul[data-type='taskList'] {
       list-style: none;
       padding: 0;
 
@@ -566,13 +564,13 @@
         display: flex;
         align-items: center;
 
-        >label {
+        > label {
           flex: 0 0 auto;
           margin-right: 0.5rem;
           user-select: none;
         }
 
-        >div {
+        > div {
           flex: 1 1 auto;
         }
       }
@@ -580,7 +578,7 @@
   }
 
   .ProseMirror {
-    >*+* {
+    > * + * {
       margin-top: 0.75em;
     }
 
@@ -589,7 +587,7 @@
 
       select {
         position: absolute;
-        top: .5rem;
+        top: 0.5rem;
         right: 0.5rem;
         border: 0;
         background: gray;
@@ -600,7 +598,7 @@
     pre {
       background: #0d0d0d;
       color: #fff;
-      font-family: "JetBrainsMono", monospace;
+      font-family: 'JetBrainsMono', monospace;
       padding: 0.75rem 1rem;
       border-radius: 0.5rem;
 
