@@ -42,10 +42,6 @@ test('select事件', async ({ page }) => {
     height: 1000
   })
   await page.waitForTimeout(2000)
-  const { x = 0, y = 0, width = 0 } = (await getIPAddressFirstInput(3).boundingBox()) || {}
-  await page.mouse.move(x + width - 10, y + 5)
-  await page.mouse.down()
-  await page.mouse.move(x - 20, y + 5)
-  await page.mouse.up()
+  await getIPAddressFirstInput(3).dblclick()
   await expect(modal.filter({ hasText: 'select 事件触发了' })).toBeVisible()
 })
