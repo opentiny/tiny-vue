@@ -200,7 +200,7 @@ export const getFileIcon =
       }
     }
 
-    return iconTypes[type] || iconTypes['default']
+    return iconTypes[type] || iconTypes.default
   }
 
 export const remove =
@@ -211,8 +211,8 @@ export const remove =
 export const calcUploadListLiWidth =
   ({ vm, nextTick, props, constants }: Pick<IUploadListRenderlessParams, 'vm' | 'nextTick' | 'props' | 'constants'>) =>
   () => {
-    const { listType } = props,
-      { LIST_TYPE } = constants
+    const { listType } = props
+    const { LIST_TYPE } = constants
     nextTick(() => {
       const uploadListEle = vm.$refs['upload-list']
       const uploadListLiEle = vm.$refs['upload-list-li']

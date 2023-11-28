@@ -1,8 +1,16 @@
 <template>
-  <tiny-button-group :data="groupData" :text-field="textField" :value-field="valueField"></tiny-button-group>
+  <div>
+    <tiny-button-group
+      v-model="checkedVal"
+      :data="groupData"
+      :text-field="textField"
+      :value-field="valueField"
+    ></tiny-button-group>
+    <div class="mt-12">当前选中值：{{ checkedVal }}</div>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { ButtonGroup } from '@opentiny/vue'
 
 export default {
@@ -11,6 +19,7 @@ export default {
   },
   data() {
     return {
+      checkedVal: 1,
       textField: 'text-key',
       valueField: 'value-key',
       groupData: [
@@ -22,3 +31,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mt-12 {
+  margin-top: 12px;
+}
+</style>

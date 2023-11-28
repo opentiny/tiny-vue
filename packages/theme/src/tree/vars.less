@@ -12,121 +12,121 @@
 
 .component-css-vars-tree() {
   // 默认文本色
-  --ti-tree-text-color: var(--ti-common-color-text-primary);
+  --ti-tree-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 选中文本色
-  --ti-tree-selected-text-color: var(--ti-common-color-text-primary);
+  --ti-tree-selected-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 选中文本字重
-  --ti-tree-selected-font-weight: var(--ti-common-font-weight-4);
+  --ti-tree-selected-font-weight: var(--ti-common-font-weight-4, normal);
   // 禁用文本色
-  --ti-tree-disabled-text-color: var(--ti-common-color-text-disabled);
+  --ti-tree-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
   // 文本行高
-  --ti-tree-text-line-height: var(--ti-common-line-height-number);
+  --ti-tree-text-line-height: var(--ti-common-line-height-number, 1.5);
   // 背景色
-  --ti-tree-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-tree-bg-color: var(--ti-common-color-bg-white-normal, #fff);
   // 数据为空时文本色(hide)
-  --ti-tree-empty-text-color: var(--ti-common-color-text-secondary);
+  --ti-tree-empty-text-color: var(--ti-common-color-text-secondary, #575d6c);
   // 数据为空时整体最小高度
-  --ti-tree-empty-min-height: var(--ti-common-size-15x);
+  --ti-tree-empty-min-height: var(--ti-common-size-15x, 60px);
   // 选中节点背景色
-  --ti-tree-node-content-current-bg-color: var(--ti-common-color-bg-light-normal);
+  --ti-tree-node-content-current-bg-color: var(--ti-common-color-bg-light-normal, #e9edfa);
   // 节点悬浮背景色
-  --ti-tree-node-content-hover-bg-color: var(--ti-common-color-hover-background);
+  --ti-tree-node-content-hover-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
   // 节点悬浮外层背景色(hide)
-  --ti-tree-node-hover-outter-bg-color: var(--ti-common-color-transparent);
+  --ti-tree-node-hover-outter-bg-color: var(--ti-common-color-transparent, transparent);
   // 节点悬浮内层背景色(hide)
   --ti-tree-node-hover-inner-bg-color: var(--ti-tree-node-content-hover-bg-color);
   // 节点字号
-  --ti-tree-node-label-font-size: var(--ti-common-font-size-1);
+  --ti-tree-node-label-font-size: var(--ti-common-font-size-1, 14px);
   // 节点内容左边距
-  --ti-tree-node-label-margin-left: var(--ti-common-space-2x);
+  --ti-tree-node-label-margin-left: var(--ti-common-space-2x, 8px);
   // 节点内容右边距
-  --ti-tree-node-content-padding-right: var(--ti-common-space-4x);
+  --ti-tree-node-content-padding-right: var(--ti-common-space-4x, 16px);
   // 节点文本背景色(hide)
-  --ti-tree-node-label-bg-color: var(--ti-common-color-bg-white-normal);
+  --ti-tree-node-label-bg-color: var(--ti-common-color-bg-white-normal, #fff);
   // 节点文本色(hide)
-  --ti-tree-node-label-text-color: var(--ti-common-color-text-secondary);
+  --ti-tree-node-label-text-color: var(--ti-common-color-text-secondary, #575d6c);
   // 展开按钮图标尺寸
-  --ti-tree-node-icon-font-size: var(--ti-common-font-size-1);
+  --ti-tree-node-icon-font-size: var(--ti-common-font-size-1, 14px);
   // 加载图标色(hide)
-  --ti-tree-node-loading-icon-color: var(--ti-common-color-icon-active);
+  --ti-tree-node-loading-icon-color: var(--ti-common-color-icon-active, #5e7ce0);
   // 展开按钮图标色
-  --ti-tree-node-expand-icon-color: var(--ti-common-color-icon-normal);
+  --ti-tree-node-expand-icon-color: var(--ti-common-color-icon-normal, #575d6c);
   // 收起按钮图标色
-  --ti-tree-node-collapse-icon-color: var(--ti-common-color-icon-active);
+  --ti-tree-node-collapse-icon-color: var(--ti-common-color-icon-active, #5e7ce0);
   // 编辑、删除、添加图标尺寸
-  --ti-tree-node-operate-icon-font-size: var(--ti-common-font-size-2);
+  --ti-tree-node-operate-icon-font-size: var(--ti-common-font-size-2, 16px);
   // 编辑、删除、添加图标间距
-  --ti-tree-node-operate-icon-margin-left: var(--ti-common-space-base);
+  --ti-tree-node-operate-icon-margin-left: var(--ti-common-space-base, 4px);
   // 编辑、删除、添加图标色
-  --ti-tree-node-operate-icon-color: var(--ti-common-color-icon-normal);
+  --ti-tree-node-operate-icon-color: var(--ti-common-color-icon-normal, #575d6c);
   // 悬浮图标色
-  --ti-tree-node-checked-icon-color: var(--ti-common-color-icon-hover);
+  --ti-tree-node-checked-icon-color: var(--ti-common-color-icon-hover, #5e7ce0);
 
   // 节点左内边距
-  --ti-tree-node-padding-left: var(--ti-common-space-2x);
+  --ti-tree-node-padding-left: var(--ti-common-space-2x, 8px);
   // 节点高亮背景色
-  --ti-tree-node-highlight-bg-color: var(--ti-common-color-bg-light-normal);
+  --ti-tree-node-highlight-bg-color: var(--ti-common-color-bg-light-normal, #e9edfa);
   // 节点内容高度
-  --ti-tree-node-content-height: calc(var(--ti-common-space-10) * 3);
+  --ti-tree-node-content-height: calc(var(--ti-common-space-10, 10px) * 3);
   // 节点内容边框弧度
   --ti-tree-node-content-border-radius: 0;
   // 节点右键菜单内容字号
-  --ti-tree-node-menu-font-size: var(--ti-common-font-size-base);
+  --ti-tree-node-menu-font-size: var(--ti-common-font-size-base, 12px);
   // 节点右键菜单字体色
-  --ti-tree-node-menu-font-color: var(--ti-common-color-text-secondary);
+  --ti-tree-node-menu-font-color: var(--ti-common-color-text-secondary, #575d6c);
   // 节点右键菜单字体系列
   --ti-tree-node-menu-font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
   // 节点右键菜单阴影
   --ti-tree-node-menu-box-shadow: 2px 2px 4px -2px rgb(0, 0, 0, 0.2);
   // 节点缩进
-  --ti-tree-node-indent: var(--ti-common-space-4x);
+  --ti-tree-node-indent: var(--ti-common-space-4x, 16px);
   // 节点连接线颜色
-  --ti-tree-node-guide-line-border-color: var(--ti-common-color-line-dividing);
+  --ti-tree-node-guide-line-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
   // 节点连接线宽度
-  --ti-tree-node-guide-line-width: var(--ti-common-space-2x);
+  --ti-tree-node-guide-line-width: var(--ti-common-space-2x, 8px);
   // 显示连接线时图标字号(hide)
-  --ti-tree-node-showline-icon-size: var(--ti-common-font-size-2);
+  --ti-tree-node-showline-icon-size: var(--ti-common-font-size-2, 16px);
 
   // 底部分割线颜色
-  --ti-tree-bottom-divider-bg-color: var(--ti-common-color-line-dividing);
+  --ti-tree-bottom-divider-bg-color: var(--ti-common-color-line-dividing, #dfe1e6);
   // 底部水平内边距
-  --ti-tree-bottom-padding-horizontal: var(--ti-common-space-3x);
+  --ti-tree-bottom-padding-horizontal: var(--ti-common-space-3x, 12px);
   // 底部垂直内边距
-  --ti-tree-bottom-padding-vertical: calc(var(--ti-common-space-2x) - 1px);
+  --ti-tree-bottom-padding-vertical: calc(var(--ti-common-space-2x, 8px) - 1px);
   // 底部文本内容左外边距
-  --ti-tree-bottom-text-margin-left: var(--ti-common-space-10);
+  --ti-tree-bottom-text-margin-left: var(--ti-common-space-10, 10px);
 
   // small尺寸节点高度
-  --ti-tree-small-node-content-height: calc(var(--ti-common-space-base) * 7);
+  --ti-tree-small-node-content-height: calc(var(--ti-common-space-base, 4px) * 7);
   // small尺寸节点高度
-  --ti-tree-small-node-font-size: var(--ti-common-line-height-base);
+  --ti-tree-small-node-font-size: var(--ti-common-line-height-base, 12px);
 
   // 平铺模式节点高度
-  --ti-tree-plain-node-height: calc(var(--ti-common-space-base) * 7);
+  --ti-tree-plain-node-height: calc(var(--ti-common-space-base, 4px) * 7);
   // 平铺模式节点字号
-  --ti-tree-plain-font-size: var(--ti-common-line-height-base);
+  --ti-tree-plain-font-size: var(--ti-common-line-height-base, 12px);
   // 平铺模式节点左边距
-  --ti-tree-plain-node-padding-left: var(--ti-common-space-3x);
+  --ti-tree-plain-node-padding-left: var(--ti-common-space-3x, 12px);
   // 平铺模式节点边框圆角
-  --ti-tree-plain-node-border-radius: var(--ti-common-border-radius-1);
+  --ti-tree-plain-node-border-radius: var(--ti-common-border-radius-1, 4px);
   // 平铺模式节点标题图标尺寸
-  --ti-tree-plain-node-auxi-icon-font-size: var(--ti-common-font-size-2);
+  --ti-tree-plain-node-auxi-icon-font-size: var(--ti-common-font-size-2, 16px);
   // 平铺模式辅助文本左边距
-  --ti-tree-plain-node-auxi-margin-left: var(--ti-common-space-6x);
+  --ti-tree-plain-node-auxi-margin-left: var(--ti-common-space-6x, 24px);
   // 平铺模式辅助文本色
-  --ti-tree-plain-node-auxi-text-color: var(--ti-common-color-text-secondary);
+  --ti-tree-plain-node-auxi-text-color: var(--ti-common-color-text-secondary, #575d6c);
 }
 
 // 删除节点提示框
 .component-css-vars-tree-popover() {
   // 警告图标尺寸
-  --ti-tree-popover-warn-icon-font-size: var(--ti-common-font-size-2);
+  --ti-tree-popover-warn-icon-font-size: var(--ti-common-font-size-2, 16px);
   // 警告图标色
-  --ti-tree-popover-warn-icon-bg-color: var(--ti-common-color-warn);
+  --ti-tree-popover-warn-icon-bg-color: var(--ti-common-color-warn, #fa9841);
   // 警告图标右边距
-  --ti-tree-popover-warn-icon-margin-right: var(--ti-common-space-base);
+  --ti-tree-popover-warn-icon-margin-right: var(--ti-common-space-base, 4px);
   // 复选框上边距
-  --ti-tree-popover-checkbox-margin-top: var(--ti-common-space-3x);
+  --ti-tree-popover-checkbox-margin-top: var(--ti-common-space-3x, 12px);
   // 底部上边距
-  --ti-tree-popover-footer-margin-top: var(--ti-common-space-3x);
+  --ti-tree-popover-footer-margin-top: var(--ti-common-space-3x, 12px);
 }

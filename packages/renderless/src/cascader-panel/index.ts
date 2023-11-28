@@ -15,7 +15,7 @@ import { isEqual } from '../common/object'
 import { isEmpty } from '../cascader'
 import { KEY_CODE, CASCADER } from '../common'
 import scrollIntoViewCommon from '../common/deps/scroll-into-view'
-import {
+import type {
   ICascaderPanelApi,
   ICascaderPanelData,
   ICascaderPanelLazyLoadNode,
@@ -328,8 +328,12 @@ export const getCheckedNodes =
         return flag
       }
       for (let i = 0; i < checkedValue.length; i++) {
-        if (Array.isArray(checkedValue[i]) && checkedValue[i].length) {
-          flag = checkedValue[i][checkedValue[i].length - 1] === str
+        if (Array.isArray(checkedValue[i])) {
+          if (checkedValue[i].length) {
+            flag = checkedValue[i][checkedValue[i].length - 1] === str
+          }
+        } else {
+          flag = checkedValue[i] === str
         }
 
         if (flag) {
@@ -346,7 +350,7 @@ export const getCheckedNodes =
 
     const node = api.getNodeByValue(state.checkedValue)
 
-    return (isEmpty(state.checkedValue) || !node) ? [] : [node]
+    return isEmpty(state.checkedValue) || !node ? [] : [node]
   }
 
 export const clearCheckedNodes =

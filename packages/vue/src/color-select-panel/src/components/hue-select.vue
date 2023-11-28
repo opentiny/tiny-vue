@@ -25,7 +25,7 @@ export default defineComponent({
   emits: ['hue-update', 'sv-update'],
   props: {
     color: {
-      type: String
+      type: Object
     },
     alpha: {
       type: Boolean

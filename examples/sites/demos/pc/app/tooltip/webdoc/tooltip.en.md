@@ -4,4 +4,4 @@ title: ToolTip text prompt
 
 # ToolTip text prompt
 
-<div>Dynamic display of prompt information, which is generally responded through mouse events.</div>
+<div>A prompt that is dynamically suspended on an element, usually in response to a mouse event</div>

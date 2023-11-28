@@ -31,14 +31,14 @@ import {
   // 通用
   nextTick
 } from '@vue/runtime-core'
+import { useExcuteOnce } from './hooks'
+import { useEffect } from 'react'
 
 // 通用
-const inject = () => { }
-const provide = () => { }
+const inject = () => {}
+const provide = () => {}
 
-export function generateVueHooks({
-  $bus
-}) {
+export function generateVueHooks({ $bus }) {
   const reload = () => $bus.emit('event:reload')
 
   function toPageLoad(reactiveHook, reload) {
@@ -51,9 +51,9 @@ export function generateVueHooks({
             typeof reload === 'function' && reload()
           },
           {
-            flush: "sync"
+            flush: 'sync'
           }
-        );
+        )
       })
       return result
     }
@@ -130,6 +130,30 @@ export function generateVueHooks({
       $bus.on('hook:onServerPrefetch')
     }
   }
+}
+
+// 在这里出发生命周期钩子
+export function useVueLifeHooks($bus) {
+  $bus.emit('hook:onBeforeUpdate')
+  nextTick(() => {
+    $bus.emit('hook:onUpdated')
+  })
+
+  useExcuteOnce(() => {
+    $bus.emit('hook:onBeforeMount')
+  })
+
+  useEffect(() => {
+    $bus.emit('hook:onMounted')
+
+    return () => {
+      // 卸载
+      $bus.emit('hook:onBeforeUnmount')
+      nextTick(() => {
+        $bus.emit('hook:onUnmounted')
+      })
+    }
+  }, [])
 }
 
 export * from '@vue/runtime-core'

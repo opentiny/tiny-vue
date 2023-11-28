@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('测试基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('badge#base')
+  await page.goto('badge#basic-usage')
 
-  const preview = page.locator('#preview')
-  const textWrapper = preview.locator('.tiny-badge__wrapper')
+  const demo = page.locator('#basic-usage')
+  const textWrapper = demo.locator('.tiny-badge__wrapper')
   const badge = textWrapper.locator('.tiny-badge')
 
   await expect(textWrapper).toContainText('我的待办')

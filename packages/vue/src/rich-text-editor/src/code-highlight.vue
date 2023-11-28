@@ -1,21 +1,17 @@
 <script lang="jsx">
-import {
-  NodeViewContent,
-  nodeViewProps,
-  NodeViewWrapper
-} from '@tiptap/vue'
+import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue'
 import { defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   name: 'CodeHighlight',
   components: {
     NodeViewWrapper,
-    NodeViewContent,
+    NodeViewContent
   },
   props: nodeViewProps,
   data() {
     return {
-      languages: this.extension.options.lowlight.listLanguages(),
+      languages: this.extension.options.lowlight.listLanguages()
     }
   },
   computed: {
@@ -25,24 +21,29 @@ export default defineComponent({
       },
       set(language) {
         this.updateAttributes({ language })
-      },
-    },
+      }
+    }
   },
   render() {
     return (
       <NodeViewWrapper class="code-block">
         <select contenteditable="false" v-model={this.selectedLanguage}>
-          <option value="null">
-            auto
-          </option>
-          <option disabled>
-            —
-          </option>
-          {this.languages.map((item, index) => <option value={item} key={index}> {item} </option>)}
+          <option value="null">auto</option>
+          <option disabled>—</option>
+          {this.languages.map((item, index) => (
+            <option value={item} key={index}>
+              {' '}
+              {item}{' '}
+            </option>
+          ))}
         </select>
-        <pre><code><NodeViewContent /></code></pre>
+        <pre>
+          <code>
+            <NodeViewContent />
+          </code>
+        </pre>
       </NodeViewWrapper>
     )
-  },
+  }
 })
 </script>

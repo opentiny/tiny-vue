@@ -11,10 +11,10 @@
  */
 
 import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
-import { dropdownMenuProps } from '@/dropdown-menu/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
-import { IDropdownVm } from './dropdown.type'
-import { IDropdownItemVm } from './dropdown-item.type'
+import type { dropdownMenuProps } from '@/dropdown-menu/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { IDropdownVm } from './dropdown.type'
+import type { IDropdownItemVm } from './dropdown-item.type'
 
 export type IDropdownMenuProps = ExtractPropTypes<typeof dropdownMenuProps>
 
@@ -56,7 +56,7 @@ export type IDropdownMenuRenderlessParams = ISharedRenderlessFunctionParams<null
 
 export type IDropdownMenuRenderlessParamUtils = ISharedRenderlessParamUtils<null>
 
-export type IDropdownMenuPopperParams = {
+export interface IDropdownMenuPopperParams {
   api: IDropdownMenuApi
   props: IDropdownMenuProps
   hooks: Pick<

@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Input, Button, Modal, Radio } from '@opentiny/vue'
 import { IconHelpCircle } from '@opentiny/vue-icon'
 

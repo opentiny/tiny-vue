@@ -1,7 +1,7 @@
 import type { ExtractPropTypes, ComponentPublicInstance, ComputedRef } from 'vue'
-import { dropdownItemProps, $constants } from '@/dropdown-item/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
-import { IDropdownMenuVm } from './dropdown-menu.type'
+import type { dropdownItemProps, $constants } from '@/dropdown-item/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { IDropdownMenuVm } from './dropdown-menu.type'
 import type {
   open,
   opened,
@@ -27,9 +27,7 @@ import type {
 export type IDropdownItemVm = ComponentPublicInstance & {
   type: string
   toggle: (value: boolean, options?: object) => void
-  state: {
-    showPopup: boolean
-  }
+  state: IDropdownItemState
 } & IDropdownItemProps
 
 export type IDropdownItemProps = ExtractPropTypes<typeof dropdownItemProps>

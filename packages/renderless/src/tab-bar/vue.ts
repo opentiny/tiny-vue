@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import {
+import type {
   ITabBarPcState,
   ITabBarPcApi,
   ITabBarPcProps,
@@ -27,7 +27,8 @@ export const renderless = (
 ): ITabBarPcApi => {
   const state = reactive({
     rootTabs: inject('rootTabs'),
-    barStyle: {}
+    barStyle: {},
+    separator: inject('separator', null)
   }) as ITabBarPcState
 
   const api: ITabBarPcApi = {

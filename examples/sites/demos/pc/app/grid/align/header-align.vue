@@ -1,10 +1,10 @@
 <template>
-  <tiny-grid :data="tableData" >
+  <tiny-grid :data="tableData">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称(左对齐)" ></tiny-grid-column>
+    <tiny-grid-column field="name" title="公司名称（左对齐）"></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数（右对齐）" header-align="right"></tiny-grid-column>
     <tiny-grid-column field="createdDate" title="创建日期（居中对齐）" header-align="center"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市（左对齐）" ></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市（左对齐）"></tiny-grid-column>
   </tiny-grid>
 </template>
 

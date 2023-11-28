@@ -10,6 +10,7 @@ import {
   eventClick,
   Active
 } from './index'
+
 export const api = [
   'toolBar',
   'state',
@@ -302,7 +303,7 @@ export const renderless = (
     removeClickOutside: removeClickOutside(state, box),
     handleClick: handleClick(state, box),
     // bubble 菜单
-    shouldShow: shouldShow,
+    shouldShow,
     //
     fontSize,
     eventImg,

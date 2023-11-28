@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <span>深色标签 </span>
+  <div class="tiny-demo-tag-group-effect">
+    <div>深色标签 </div>
     <tiny-tag-group :data="items" effect="dark"> </tiny-tag-group>
-    <br />
-    <span>浅色标签 </span>
+    <div>浅色标签 </div>
     <tiny-tag-group :data="items" effect="light"> </tiny-tag-group>
-    <br />
-    <span>朴素标签 </span>
+    <div>朴素标签 </div>
     <tiny-tag-group :data="items" effect="plain"> </tiny-tag-group>
   </div>
 </template>
@@ -24,3 +22,9 @@ const items = ref([
   { name: '标签六' }
 ])
 </script>
+
+<style scoped>
+.tiny-demo-tag-group-effect > *:not(:last-child) {
+  margin-bottom: 12px;
+}
+</style>

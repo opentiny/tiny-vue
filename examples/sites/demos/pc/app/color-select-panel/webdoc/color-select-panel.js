@@ -117,6 +117,15 @@ export default {
             'en-US': 'When click cancel or click out-side will trigger cancel event'
           },
           demoId: 'event'
+        },
+        {
+          name: 'color-update',
+          type: '(color:Color) => void',
+          defaultValue: '',
+          desc:{
+            'zh-cn': '当颜色更新的时候会触发该事件，包括：点击预定义颜色、点击历史记录',
+            'en-US': 'when click predefine color or history, will trigger color-update event'
+          }
         }
       ],
       'slots': []

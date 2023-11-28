@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import {
+import type {
   ITabNavState,
   ITabNavApi,
   ITabNavProps,
@@ -61,7 +61,7 @@ export const api = [
 export const renderless = (
   props: ITabNavProps,
   { computed, inject, onBeforeUnmount, onMounted, onUpdated, reactive, markRaw }: ISharedRenderlessParamHooks,
-  { parent, nextTick, refs, mode: tinyMode, emit }: ITabNavRenderlessParamUtils
+  { parent, vm, nextTick, mode: tinyMode, emit }: ITabNavRenderlessParamUtils
 ): ITabNavApi => {
   const api = { mounted, beforeUnmount, computedNavStyle, computedSizeName } as ITabNavApi
   const state = reactive({
@@ -81,7 +81,8 @@ export const renderless = (
     rootTabs: inject('rootTabs'),
     sizeName: computed(() => api.computedSizeName(state)),
     navStyle: computed(() => api.computedNavStyle(state)),
-    navSortableObj: {}
+    navSortableObj: {},
+    separator: inject('separator', null)
   }) as ITabNavState
 
   Object.assign(api, {
@@ -91,21 +92,21 @@ export const renderless = (
     moreTabShow: moreTabShow(state),
     expandTabShow: expandTabShow({ api, state }),
     expandTabHide: expandTabHide(state),
-    scrollPrev: scrollPrev({ refs, state }),
-    scrollNext: scrollNext({ refs, state }),
+    scrollPrev: scrollPrev({ vm, state }),
+    scrollNext: scrollNext({ vm, state }),
     windowBlurHandler: windowBlurHandler(state),
     windowFocusHandler: windowFocusHandler(state),
     visibilityChangeHandler: visibilityChangeHandler(state),
-    scrollToActiveTab: scrollToActiveTab({ parent, refs, state }),
-    scrollIntoView: scrollIntoView({ parent, refs, state }),
-    computedHeaderStyle: computedHeaderStyle({ refs, state }),
-    watchCurrentName: watchCurrentName({ nextTick, refs, state }),
-    handleTabDragStart: handleTabDragStart({ state, refs, emit }),
-    handleTabDragEnd: handleTabDragEnd({ state, refs, nextTick }),
-    sortableEvent: sortableEvent({ api, props, state, refs, emit, markRaw })
+    scrollToActiveTab: scrollToActiveTab({ parent, vm, state }),
+    scrollIntoView: scrollIntoView({ parent, vm, state }),
+    computedHeaderStyle: computedHeaderStyle({ vm, state }),
+    watchCurrentName: watchCurrentName({ nextTick, vm, state }),
+    handleTabDragStart: handleTabDragStart({ state, vm, emit }),
+    handleTabDragEnd: handleTabDragEnd({ state, vm, nextTick }),
+    sortableEvent: sortableEvent({ api, props, state, vm, emit, markRaw })
   })
 
-  Object.assign(api, { updated: updated({ api, refs, state }), changeTab: changeTab(api) })
+  Object.assign(api, { updated: updated({ api, vm, state }), changeTab: changeTab(api) })
   onUpdated(() => api.updated())
   onMounted(() => api.mounted({ api, parent }))
   onBeforeUnmount(() => api.beforeUnmount({ api, parent }))

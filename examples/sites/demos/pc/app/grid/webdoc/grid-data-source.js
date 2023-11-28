@@ -16,7 +16,7 @@ export default {
       'name': { 'zh-CN': '开启服务请求', 'en-US': 'Open Service Request' },
       'desc': {
         'zh-CN':
-          "<p>表格属性设置 fetch-data 开启服务请求。表格首次加载服务数据的时机默认是在 mounted 阶段，如果开了 prefetch 开关就在 created 阶段开始加载。可以设置 prefetch 为数组，指定后端排序字段参数，作为数据接口方法参数 sortBy。例如：[{ property: 'name', order: 'desc' }]，参考示例</p>\n",
+          "<p>表格属性设置 fetch-data 开启服务请求。表格首次加载服务数据的时机默认是在 mounted 阶段，如果开了 prefetch 开关就在 created 阶段开始加载。可以设置 prefetch 为数组，指定后端排序字段参数，作为数据接口方法参数 sortBy。例如：[{ property: 'name', order: 'desc' }]，参考示例：</p>\n",
         'en-US': '<p>Table attribute setting <code>fetch-data</code> enables the service request. </p>\n'
       },
       'codeFiles': ['data-source/request-service.vue']
@@ -36,7 +36,7 @@ export default {
       'demoId': 'data-source-columns',
       'name': { 'zh-CN': '表格列的配置信息', 'en-US': 'Table column configuration information' },
       'desc': {
-        'zh-CN': '<p>通过表格属性 <code>columns</code> 设置表格列的配置信息</p>\n',
+        'zh-CN': '<p>通过表格属性 <code>columns</code> 设置表格列的配置信息。</p>\n',
         'en-US':
           '<p>Set the configuration information of table columns through the table attribute <code>columns</code></p>\n'
       },
@@ -55,7 +55,7 @@ export default {
     },
     {
       'demoId': 'data-source-defslot-protochain-fetch',
-      'name': { 'zh-CN': '在默认插槽中使用复杂数据', 'en-US': '' },
+      'name': { 'zh-CN': '插槽中使用复杂数据', 'en-US': '' },
       'desc': {
         'zh-CN':
           '<p>兼容低版本的复杂数据访问（例如：row.attr1.attr2.attr3），参考示例。\n在列初始化过程中，使用 `skip` 插槽参数可以跳过默认插槽内容的执行，参考示例。\n在表格渲染过程中，没有提供这个参数，始终不会跳过默认插槽内容的执行。</p>\n',

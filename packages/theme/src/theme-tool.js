@@ -72,7 +72,6 @@ export default class TinyThemeTool {
       }
     }
     this.contentElement.textContent = this.formatCSSVariables(currentTheme.data)
-
     this.contentElement.setAttribute('tiny-theme', this.currentTheme.id)
   }
 

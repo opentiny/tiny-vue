@@ -10,7 +10,7 @@
   </tiny-grid>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, GridToolbar } from '@opentiny/vue'
 
 export default {
@@ -65,7 +65,6 @@ export default {
           employees: 800
         }
       ]
-      // tableData: window.MOCK_GRID_DATA.slice(5, 10) //mock tableData数据
     }
   }
 }

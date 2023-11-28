@@ -6,8 +6,8 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基础用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '<p>基础用法。</p>',
-        'en-US': '<p>Basic Usage. </p>\n'
+        'zh-CN': '',
+        'en-US': ''
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -24,8 +24,8 @@ export default {
       'demoId': 'size',
       'name': { 'zh-CN': '输入框大小', 'en-US': 'Text box size' },
       'desc': {
-        'zh-CN': '<p>可选择值为<code>medium</code>，<code>small</code>，<code>mini</code></p>\n',
-        'en-US': '<p>The value can be <code>medium</code>, <code>small</code>, or <code>mini</code></p>\n'
+        'zh-CN': '<p>可选择值为<code>medium</code>，<code>small</code>，<code>mini</code>。</p>',
+        'en-US': '<p>The value can be <code>medium</code>, <code>small</code>, or <code>mini</code>.</p>'
       },
       'codeFiles': ['size.vue']
     },
@@ -43,8 +43,8 @@ export default {
       'demoId': 'slot',
       'name': { 'zh-CN': '插槽', 'en-US': 'slot' },
       'desc': {
-        'zh-CN': '<p>分别配置 <code>prepend</code>、<code>append</code>、<code>prefix</code>、<code>suffix</code>、<code>default</code> 插槽</p>\n',
-        'en-US': '<p>Configure <code>prepend</code>, <code>append</code>, <code>prefix</code>, <code>default</code>, and <code>suffix</code> slots.</p>\n'
+        'zh-CN': '<p>分别配置 <code>prepend</code>、<code>append</code>、<code>prefix</code>、<code>suffix</code>、<code>default</code> 插槽。</p>',
+        'en-US': '<p>Configure <code>prepend</code>, <code>append</code>, <code>prefix</code>, <code>default</code>, and <code>suffix</code> slots.</p>'
       },
       'codeFiles': ['slot.vue']
     },
@@ -157,7 +157,7 @@ export default {
     {
       'name': 'autocomplete',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'clearable',
           'type': 'boolean',
@@ -207,7 +207,7 @@ export default {
           'name': 'placement',
           'typeAnchorName': 'IAutocompletePlacement',
           'type': 'IAutocompletePlacement',
-          'defaultValue': '"bottom-start"',
+          'defaultValue': `'bottom-start'`,
           'desc': {
             'zh-CN': '菜单弹出位置',
             'en-US':
@@ -227,7 +227,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': '"medium" | "small" | "mini"',
+          'type': `'medium' | 'small' | 'mini'`,
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置组件大小',
@@ -333,9 +333,9 @@ export default {
           'type': '(selection: object) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '点击选中建议项时触发。回调参数为选中建议项',
+            'zh-CN': '点击选中建议项时触发，回调参数为fetch-suggestions中传入的项',
             'en-US':
-              'This event is triggered when a suggestion item is selected. The callback parameter is: Selected Suggestions'
+              'Triggered when you click to select a suggestion item. The callback parameter is the item passed in fetch-suggestions'
           },
           'demoId': 'select-event'
         }
@@ -373,7 +373,7 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '下拉列表项插槽，插槽参数: arg: { slotScope: object }', 'en-US': 'Dropdown list item slot, slot parameters: arg: { slotScope: object }' },
+          'desc': { 'zh-CN': '下拉列表项插槽，插槽参数: arg: { slotScope: object }, 其中object是fetch-suggestions中传入的项', 'en-US': 'Drop-down list item slot, slot parameter: arg: {slotScope: object}, where object is the item passed in fetch-suggestions' },
           'demoId': 'slot'
         }
       ]

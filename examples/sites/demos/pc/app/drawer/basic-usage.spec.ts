@@ -10,5 +10,5 @@ test('基本用法', async ({ page }) => {
   await expect(drawer.locator('.tiny-drawer__header')).toHaveText('标题')
   await expect(drawer.locator('.tiny-drawer__body')).toHaveText('内容区域')
   await drawer.getByRole('button', { name: 'Close' }).click()
-  await expect(drawer).not.toBeVisible()
+  await expect(page.locator('.tiny-drawer__main')).not.toBeVisible()
 })

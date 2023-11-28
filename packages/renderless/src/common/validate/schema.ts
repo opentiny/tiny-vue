@@ -376,7 +376,7 @@ Schema.prototype = {
   }
 }
 
-/**注册的新类型的检验 */
+/** 注册的新类型的检验 */
 Schema.register = (type, validator) => {
   if (typeof validator !== 'function') {
     throw new TypeError('Cannot register a validator by type, validator is not a function')

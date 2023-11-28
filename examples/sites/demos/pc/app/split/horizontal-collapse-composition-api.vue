@@ -2,10 +2,10 @@
   <div class="split-v-model">
     <tiny-split v-model="split1" trigger-simple collapse-left-top collapse-right-bottom>
       <template #left>
-        <div class="demo-split-pane">左面板</div>
+        <div class="demo-split-pane">自定义左面板</div>
       </template>
       <template #right>
-        <div class="demo-split-pane">右面板</div>
+        <div class="demo-split-pane">自定义右面板</div>
       </template>
     </tiny-split>
   </div>

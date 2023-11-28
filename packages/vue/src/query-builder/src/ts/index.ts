@@ -1,2 +1,2 @@
-export * from './index.utils';
-export * from './propsUsingFrame';
+export * from './index.utils'
+export * from './propsUsingFrame'

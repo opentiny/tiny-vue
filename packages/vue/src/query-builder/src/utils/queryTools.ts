@@ -158,7 +158,7 @@ export const update = <RG extends RuleGroupTypeAny>(
       resetValueSource = true
     }
 
-    //Constant Definition
+    // Constant Definition
     const defaultValueSource = getValueSources(ruleOrGroup.field, ruleOrGroup.operator)[0]
     if (
       (resetValueSource && ruleOrGroup.valueSource && defaultValueSource !== ruleOrGroup.valueSource) ||

@@ -9,7 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ICascaderPanelConfig, ICascaderPanelData, ICascaderPanelNodePropValue, ICascaderPanelNodeValue } from '@/types'
+import type {
+  ICascaderPanelConfig,
+  ICascaderPanelData,
+  ICascaderPanelNodePropValue,
+  ICascaderPanelNodeValue
+} from '@/types'
 
 import { isEqual } from '../common/object'
 import { capitalize } from '../common/string'

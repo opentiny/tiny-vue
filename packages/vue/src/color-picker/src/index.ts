@@ -22,7 +22,7 @@ export default defineComponent({
       validator(val: string) {
         return ['large', 'medium', 'small', 'mini', ''].includes(val)
       }
-    },
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

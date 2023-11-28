@@ -41,6 +41,14 @@ import {
   inputValueChange
 } from './index'
 
+import type {
+  ISliderProps,
+  ISliderState,
+  ISharedRenderlessParamHooks,
+  ISliderApi,
+  ISliderRenderlessParamUtils
+} from '@/types'
+
 export const api = [
   'state',
   'bindKeyDown',
@@ -68,14 +76,6 @@ export const api = [
   'customAfterAppearHook',
   'inputValueChange'
 ]
-
-import {
-  ISliderProps,
-  ISliderState,
-  ISharedRenderlessParamHooks,
-  ISliderApi,
-  ISliderRenderlessParamUtils
-} from '@/types'
 
 const initState = ({ reactive, computed, props, api, parent, inject }) => {
   const state: ISliderState = reactive({

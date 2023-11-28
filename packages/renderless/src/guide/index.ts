@@ -42,7 +42,7 @@ export const createShepherd =
             })
           })
         }
-          callBack(step, item)
+        callBack(step, item)
       })
     }
 

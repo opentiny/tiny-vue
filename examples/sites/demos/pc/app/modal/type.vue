@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, Modal, Notify } from '@opentiny/vue'
 
 export default {

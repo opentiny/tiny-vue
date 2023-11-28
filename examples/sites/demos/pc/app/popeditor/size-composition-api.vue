@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-popeditor-size">
     <tiny-popeditor
       size="medium"
       v-model="value"
@@ -9,7 +9,32 @@
       value-split="@"
       text-split="@"
     ></tiny-popeditor>
-    <div v-if="value">value 值：{{ value }}</div>
+    <tiny-popeditor
+      size="small"
+      v-model="value"
+      :grid-op="gridOp"
+      text-field="name"
+      value-field="id"
+      value-split="@"
+      text-split="@"
+    ></tiny-popeditor>
+    <tiny-popeditor
+      v-model="value"
+      :grid-op="gridOp"
+      text-field="name"
+      value-field="id"
+      value-split="@"
+      text-split="@"
+    ></tiny-popeditor>
+    <tiny-popeditor
+      size="mini"
+      v-model="value"
+      :grid-op="gridOp"
+      text-field="name"
+      value-field="id"
+      value-split="@"
+      text-split="@"
+    ></tiny-popeditor>
   </div>
 </template>
 
@@ -106,3 +131,9 @@ const gridOp = ref({
   data: dataset
 })
 </script>
+
+<style scoped>
+.demo-popeditor-size .tiny-popeditor {
+  margin-bottom: 8px;
+}
+</style>

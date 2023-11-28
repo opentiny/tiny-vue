@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ITabItemRenderlessParams } from '@/types'
+import type { ITabItemRenderlessParams } from '@/types'
 
 export const computedIsClosable =
   ({ rootTabs, props }: Pick<ITabItemRenderlessParams, 'rootTabs' | 'props'>) =>

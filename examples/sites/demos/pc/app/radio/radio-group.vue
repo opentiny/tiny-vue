@@ -5,7 +5,7 @@
       <tiny-radio label="2">备选项2</tiny-radio>
       <tiny-radio label="3">备选项3</tiny-radio>
     </tiny-radio-group>
-    <div style="margin-top: 20px">
+    <div class="mt-20">
       <tiny-radio-group v-model="value2">
         <tiny-radio-button label="1">备选项1</tiny-radio-button>
         <tiny-radio-button label="2">备选项2</tiny-radio-button>
@@ -32,3 +32,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mt-20 {
+  margin-top: 20px;
+}
+</style>

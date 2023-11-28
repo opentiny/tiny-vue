@@ -1,13 +1,12 @@
-import { IColorSelectPanelRef as Ref } from '@/types'
-import Color from '../utils/color'
+import type { IColorSelectPanelRef as Ref } from '@/types'
+import type Color from '../utils/color'
 import { draggable } from '../utils/use-drag'
 import { onDrag, updateThumb } from '.'
 
 export const api = ['state', 'color', 'slider', 'alphaWrapper', 'alphaThumb']
 
 export const renderless = (props, context, { emit }) => {
-  const hex = props.color
-  const color = new Color(hex, props.alpha)
+  const color: Color = props.color
   const [rr, gg, bb] = color.getRGB()
   const r = context.ref(rr)
   const g = context.ref(gg)
@@ -18,14 +17,14 @@ export const renderless = (props, context, { emit }) => {
   const alpha = context.ref(color.get('a'))
   context.watch(
     () => props.color,
-    (hex: string) => {
-      color.reset(hex)
+    () => {
       const [rr, gg, bb] = color.getRGB()
       r.value = rr
       g.value = gg
       b.value = bb
       alpha.value = color.get('a')
-    }
+    },
+    { deep: true }
   )
   context.watch(alpha, (newAlpha) => {
     updateThumb(newAlpha, alphaThumb.value, alphaWrapper.value)
@@ -35,8 +34,7 @@ export const renderless = (props, context, { emit }) => {
     return `linear-gradient(to right, rgba(${r.value}, ${g.value}, ${b.value}, 0) 0%, rgba(${r.value}, ${g.value}, ${b.value}, 1) 100%)`
   })
   const state = context.reactive({
-    background,
-    hex
+    background
   })
   const api = {
     state,

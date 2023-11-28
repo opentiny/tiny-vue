@@ -198,7 +198,12 @@ export default {
           visible: true,
           targetElem: hooks.markRaw(targetElem),
           targetElemParentTr: hooks.markRaw(targetElemParentTr),
-          id: column.id
+          id: column.id,
+          searchConfig: filter.simpleFilter?.searchConfig,
+          datetimeConfig: filter.simpleFilter?.datetimeConfig,
+          searchValue: filter.simpleFilter?.searchConfig?.searchValue || '',
+          startDate: filter.simpleFilter?.datetimeConfig?.startDate || '',
+          endDate: filter.simpleFilter?.datetimeConfig?.endDate || ''
         })
       })
     }

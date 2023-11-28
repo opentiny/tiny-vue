@@ -10,7 +10,12 @@
  *
  */
 
-import { IDropdownItemRenderlessParams, IDropdownItemStyle, IDropdownItemTag, IDropdownItemOptionStyle } from '@/types'
+import type {
+  IDropdownItemRenderlessParams,
+  IDropdownItemStyle,
+  IDropdownItemTag,
+  IDropdownItemOptionStyle
+} from '@/types'
 import { on, off } from '../common/deps/dom'
 
 export const getTitle = (props: IDropdownItemRenderlessParams['props']) => (): string => {

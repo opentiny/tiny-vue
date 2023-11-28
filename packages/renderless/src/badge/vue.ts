@@ -12,7 +12,7 @@
 
 import { computedContent, computedValueRef } from './index'
 import { xss } from '../common/xss'
-import { IBadgeState, IBadgeProps, IBadgeApi, IBadgeRenderlessParams } from '@/types'
+import type { IBadgeState, IBadgeProps, IBadgeApi, IBadgeRenderlessParams } from '@/types'
 
 export const api = ['state']
 

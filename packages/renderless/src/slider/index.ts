@@ -14,7 +14,7 @@ import { KEY_CODE } from '../common'
 import { emitEvent } from '../common/event'
 import { on, off, hasClass } from '../common/deps/dom'
 import { toNumber } from '../common/string'
-import { ISliderApi, ISliderRenderlessParams, ISliderState } from '@/types'
+import type { ISliderApi, ISliderRenderlessParams, ISliderState } from '@/types'
 
 export const bindEvent = (api: ISliderApi) => () => {
   on(window, 'resize', api.bindResize)

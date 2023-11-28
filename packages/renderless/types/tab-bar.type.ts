@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import { ITabsVm } from './tabs.type'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
-import { tabBarProps } from '@/tabs/src/tab-nav'
+import type { ITabsVm } from './tabs.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { tabBarProps } from '@/tabs/src/tab-nav'
 import type { computedBarStyle } from '../src/tab-bar'
 
 export type ITabBarPcProps = ExtractPropTypes<typeof tabBarProps>
@@ -9,6 +9,7 @@ export type ITabBarPcProps = ExtractPropTypes<typeof tabBarProps>
 export interface ITabBarPcState {
   rootTabs: ITabsVm
   barStyle: object
+  separator: boolean | null
 }
 
 export interface ITabBarPcApi {

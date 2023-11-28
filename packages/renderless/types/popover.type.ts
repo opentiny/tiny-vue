@@ -1,8 +1,8 @@
 import type { ExtractPropTypes } from 'vue'
-import { popoverProps } from '@/popover/src'
+import type { popoverProps } from '@/popover/src'
 import type { ISharedRenderlessFunctionParams } from './shared.type'
 
-import {
+import type {
   mounted,
   computedTooltipId,
   destroyed,

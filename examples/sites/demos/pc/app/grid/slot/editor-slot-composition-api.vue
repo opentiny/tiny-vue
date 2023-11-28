@@ -2,7 +2,7 @@
   <div>
     <tiny-grid :data="tableData" :edit-config="{ trigger: 'click', mode: 'row', showStatus: true }">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
-      <tiny-grid-column field="name" title="插槽自定义列编辑" :editor="{ component: 'input', autoselect: true }">
+      <tiny-grid-column field="name" title="插槽自定义列编辑" :editor="{}">
         <template #edit="data">
           <tiny-input v-model="data.row.name" placeholder="请输入内容"></tiny-input>
         </template>

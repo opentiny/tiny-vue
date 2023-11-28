@@ -41,9 +41,7 @@ export const renderless = (props, { reactive, computed, onMounted, onBeforeUnmou
     labelList: computed(() => api.labelListComputed()),
     showPanel: computed(() => state.showPanelIndex !== -1 || state.filterPanel.show),
     hasFilterValue: computed(() =>
-      props.filterValue.find((item) =>
-        Array.isArray(item) ? item.length > 0 : [undefined, null, ''].indexOf(item) === -1
-      )
+      props.filterValue.find((item) => (Array.isArray(item) ? item.length > 0 : ![undefined, null, ''].includes(item)))
     )
   })
 

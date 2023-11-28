@@ -66,12 +66,14 @@ export const watchValue =
     }
   }
 
-export const adjustSpinners = ({ vm }) => () => {
-  if (vm.$refs.minSpinner) {
-    vm.$refs.minSpinner.adjustSpinners()
-    vm.$refs.maxSpinner.adjustSpinners()
+export const adjustSpinners =
+  ({ vm }) =>
+  () => {
+    if (vm.$refs.minSpinner) {
+      vm.$refs.minSpinner.adjustSpinners()
+      vm.$refs.maxSpinner.adjustSpinners()
+    }
   }
-}
 
 const setMaxMinData = (state) => {
   if (Array.isArray(state.oldValue)) {

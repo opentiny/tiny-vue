@@ -25,7 +25,7 @@ export default {
     },
     {
       'demoId': 'serial-column-start-index',
-      'name': { 'zh-CN': '自定义序号列的起始值', 'en-US': 'Start value of the user-defined sequence number column' },
+      'name': { 'zh-CN': '序号列的起始值', 'en-US': 'Start value of the user-defined sequence number column' },
       'desc': {
         'zh-CN':
           '<p>表格列属性设置 <code>type=&quot;index&quot;</code> 显示序号列，<code>start-index</code> 设置自定义序号列的起始值。</p>\n',

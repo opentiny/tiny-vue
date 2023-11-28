@@ -7,7 +7,11 @@
           <span>自定义头部右侧</span>
         </div>
       </template>
-      <div>内容区域</div>
+      <div>
+        <br />
+        <br />
+        <span>内容区域</span>
+      </div>
     </tiny-drawer>
   </div>
 </template>

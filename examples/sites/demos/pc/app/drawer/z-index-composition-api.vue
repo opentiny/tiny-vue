@@ -2,7 +2,11 @@
   <div>
     <tiny-button @click="fn" type="primary"> 自定义z-index </tiny-button>
     <tiny-drawer title="标题" :visible="visible" @update:visible="visible = $event" :z-index="zIndex">
-      <div>内容区域</div>
+      <div>
+        <br />
+        <br />
+        <span>内容区域</span>
+      </div>
     </tiny-drawer>
   </div>
 </template>

@@ -1,30 +1,24 @@
 <template>
-  <div class="node-key">
-    <tiny-row :flex="true">
-      <tiny-col :span="6">
-        <tiny-button @click="setCurrentKey" title="设置当前选中的节点的 key">设置当前选中的节点的 key</tiny-button>
-      </tiny-col>
-      <tiny-col :span="6">
-        <tiny-button @click="setCurrentNode" title="设置当前选中的节点">设置当前选中的节点</tiny-button>
-      </tiny-col>
-    </tiny-row>
+  <div>
+    <p>场景1：通过 setCurrentKey(key:string|number) 设置当前节点</p>
+    <tiny-button @click="setCurrentKey" title="点击设置当前节点">setCurrentKey</tiny-button>
+    <p>场景2：通过 setCurrentNode(node:ITreeNode) 设置当前节点</p>
+    <tiny-button @click="setCurrentNode" title="点击设置当前节点">setCurrentNode</tiny-button>
+    <p>场景3：通过 getCurrentKey() 获取当前节点的 key 为：{{ currentKey }}</p>
+    <tiny-button @click="getCurrentKey" title="点击获取当前节点的 key">getCurrentKey</tiny-button>
+    <p>场景4：通过 getCurrentNode() 获取当前节点的数据为：{{ currentNode }}</p>
+    <tiny-button @click="getCurrentNode" title="点击获取当前节点数据">getCurrentNode</tiny-button>
 
-    <tiny-row :flex="true">
-      <tiny-col :span="6">
-        <tiny-button @click="getCurrentKey" title="获取当前被选中节点的 key">获取当前被选中节点的 key</tiny-button>
-        <span id="current-node-key"> {{ currentKey }}</span>
-      </tiny-col>
-      <tiny-col :span="6">
-        <tiny-button @click="getCurrentNode" title="获取当前选中的节点">获取当前选中的节点</tiny-button>
-        <span id="current-node"> {{ currentNode }}</span>
-      </tiny-col>
-    </tiny-row>
-
-    <tiny-tree-menu ref="treeMenu" :data="treeData" :default-expanded-keys="expandedKeys"  node-key="id"></tiny-tree-menu>
+    <tiny-tree-menu
+      ref="treeMenu"
+      node-key="id"
+      :data="treeData"
+      :default-expanded-keys="expandedKeys"
+    ></tiny-tree-menu>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { TreeMenu, Button, Row, Col } from '@opentiny/vue'
 
 export default {
@@ -62,10 +56,6 @@ export default {
           id: 300,
           label: '组件',
           children: [
-            {
-              id: 300,
-              label: '组件'
-            },
             {
               id: 301,
               label: '表单组件',
@@ -170,11 +160,12 @@ export default {
 }
 </script>
 
-<style scoped>
-.node-key .tiny-row {
-  margin-bottom: 10px;
+<style lang="less" scoped>
+.tiny-button {
+  margin: 0 10px 10px 0;
 }
-.node-key .tiny-button {
-  max-width: 300px;
+p {
+  font-size: 14px;
+  line-height: 1.5;
 }
 </style>

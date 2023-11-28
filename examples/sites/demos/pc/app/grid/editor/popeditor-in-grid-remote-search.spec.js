@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Popeditor 弹窗编辑，配置远程搜索', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('grid-editor#grid_Example-gridEdit-popeditor-in-grid-remote-search')
+  await page.goto('grid-editor#editor-popeditor-in-grid-remote-search')
   await page.getByText('GFD科技YX公司').first().click()
   await page
     .getByRole('row', {

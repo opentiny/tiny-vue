@@ -32,7 +32,7 @@
         >
           <slot name="text" :slot-scope="state.searchValue">
             <span data-tag="tiny-search__text" :class="m(gcls('pc-search-present-pointer'))">{{
-              state.searchValue['text']
+              state.searchValue.text
             }}</span>
           </slot>
           <span data-tag="tiny-icon-outer" :class="m(gcls('pc-search-present-icon-outer'))">

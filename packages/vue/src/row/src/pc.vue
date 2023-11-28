@@ -20,7 +20,7 @@ import { renderless, api } from '@opentiny/vue-renderless/row/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  props: [...props, 'flex', 'gutter', 'justify', 'align', 'order', 'tag', 'noSpace'],
+  props: [...props, 'flex', 'gutter', 'justify', 'align', 'order', 'tag'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

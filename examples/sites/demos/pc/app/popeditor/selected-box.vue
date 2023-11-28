@@ -11,7 +11,7 @@
       show-selected-box
       :selected-box-op="selectedBoxOp"
     ></tiny-popeditor>
-    <div v-if="value">value 值：{{ value }}</div>
+    <div class="demo-pop-editor-selected-box" v-if="value">value 值：{{ value }}</div>
   </div>
 </template>
 
@@ -125,3 +125,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-pop-editor-selected-box {
+  margin-top: 12px;
+}
+</style>

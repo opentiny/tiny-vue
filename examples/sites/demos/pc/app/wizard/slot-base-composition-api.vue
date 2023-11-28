@@ -32,8 +32,4 @@ const dataSet = ref([
     status: 'wait'
   }
 ])
-
-function btnClick(arg) {
-  Modal.message(`步骤${arg}`)
-}
 </script>

@@ -4,10 +4,7 @@ import type { RuleType } from './ruleGroups'
 import type { RuleGroupTypeAny } from './ruleGroupsIC'
 import type { QueryValidator } from './validation'
 
-export type ExportFormat =
-  | 'json'
-  | 'json_without_ids'
-  | 'jsonlogic'
+export type ExportFormat = 'json' | 'json_without_ids' | 'jsonlogic'
 
 export interface FormatQueryOptions {
   /**
@@ -100,7 +97,9 @@ export interface RQBJsonLogicStartsWith {
 export interface RQBJsonLogicEndsWith {
   endsWith: [RQBJsonLogic, RQBJsonLogic, ...RQBJsonLogic[]]
 }
-export type RQBJsonLogicVar = { var: string }
+export interface RQBJsonLogicVar {
+  var: string
+}
 export type RQBJsonLogic = RulesLogic<RQBJsonLogicStartsWith | RQBJsonLogicEndsWith>
 
 interface ParserCommonOptions {

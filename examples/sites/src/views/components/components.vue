@@ -70,14 +70,16 @@
                         <td v-if="!key.includes('slots')">
                           <a
                             v-if="row.typeAnchorName"
-                            :href="`#${row.typeAnchorName}`"
+                            :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
                             v-html="row.type"
                             @click="handleTypeClick"
                           ></a>
                           <span v-else v-html="row.type"></span>
                         </td>
                         <td v-if="!key.includes('slots') && !key.includes('events')">
-                          <span v-html="typeof row.defaultValue === 'string' ? row.defaultValue : row.defaultValue?.[langKey] || '--'"></span>
+                          <span
+                            v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"
+                          ></span>
                         </td>
                         <td><span v-html="row.desc[langKey]"></span></td>
                       </tr>
@@ -110,6 +112,7 @@
         <tiny-anchor
           :is-affix="true"
           :links="anchorLinks"
+          :key="anchorRefreshKey"
           mask-class="custom-active-anchor"
           @link-click="handleAnchorClick"
         >
@@ -121,14 +124,13 @@
 </template>
 
 <script lang="jsx">
-import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted, nextTick } from 'vue'
+import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } from 'vue'
 import { marked } from 'marked'
-import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
+import { Loading, Anchor, ButtonGroup, ColumnListGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
-import { getAllComponents } from '@/menus.jsx'
 import { Collapse, CollapseItem } from '@opentiny/vue'
 import { faqMdConfig, staticDemoPath, getWebdocPath } from './cmpConfig'
 import AsyncHighlight from './async-highlight.vue'
@@ -147,6 +149,7 @@ export default defineComponent({
     loading: Loading.directive
   },
   setup() {
+    const anchorRefreshKey = ref(0)
     const state = reactive({
       webDocPath: computed(() => ''),
       langKey: $t2('zh-CN', 'en-US'),
@@ -163,8 +166,8 @@ export default defineComponent({
             title: demo.name[state.langKey],
             link: `#${demo.demoId}`
           })) || []
-        if (apiModeState.demoMode !== 'single') {
-          links.push({ key: 'API', title: 'API', link: '#API' })
+        if (state.currJson?.apis?.length) {
+          links.push({ key: 'API', title: 'API', link: '#API' }, { key: 'Types', title: 'Types', link: '#types' })
         }
         if (state.cmpFAQMd) {
           links.push({
@@ -275,6 +278,7 @@ export default defineComponent({
           fetchDemosFile(`${staticDemoPath}/grid/webdoc/grid.js`).then((data) => {
             const gridJson = eval('(' + data.slice(15) + ')')
             state.currJson.apis = gridJson.apis
+            state.currJson.types = gridJson.types
           })
         } else if (state.cmpId?.startsWith('chart-')) {
           fetchDemosFile(`${staticDemoPath}/chart/webdoc/chart.js`).then((data) => {
@@ -313,6 +317,17 @@ export default defineComponent({
         } else {
           router.push(`#${demoId}`)
         }
+      },
+      handleApiClick: (ev) => {
+        if (ev.target.tagName === 'A') {
+          ev.preventDefault()
+          const href = ev.target.getAttribute('href')
+          const hash = $split(href, '#', -1)
+          router.push(href)
+          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+
+          scrollByHash(hash)
+        }
         if (apiModeState.demoMode === 'single') {
           state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
         }
@@ -324,10 +339,15 @@ export default defineComponent({
         if (apiModeState.demoMode === 'single' && data.link.startsWith('#')) {
           e.preventDefault()
           const hash = data.link.slice(1)
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+          const singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+
+          // 单示例模式下如果没有匹配到锚点对应的示例，则这不加载示例直接跳转锚点id
+          if (singleDemo) {
+            state.singleDemo = singleDemo
+            scrollToLayoutTop()
+          }
 
           router.push(data.link)
-          scrollToLayoutTop()
         } else if (apiModeState.demoMode === 'default' && data.link.startsWith('#')) {
           // 多示例模式，自动会切到相应的位置。只需要记录singleDemo就好了
           const hash = data.link.slice(1)
@@ -343,6 +363,8 @@ export default defineComponent({
           state.currJson = {}
         } else {
           loadPage()
+          // 每次切换组件都需要让锚点组件重新刷新
+          anchorRefreshKey.value++
         }
       }
     )
@@ -372,6 +394,7 @@ export default defineComponent({
       ...toRefs(state),
       ...fn,
       $t,
+      anchorRefreshKey,
       apiModeState,
       templateModeState,
       optionsList
@@ -455,7 +478,7 @@ export default defineComponent({
   p {
     font-size: 16px;
     line-height: 1.7em;
-    margin: 16px 0;
+    margin: 12px 0;
   }
 }
 .cmp-page-anchor {
@@ -506,19 +529,25 @@ export default defineComponent({
   background-color: #f3f5f7;
   border-color: #42b983;
   border-radius: 0;
-  padding: 0.1rem 1.5rem;
+  padding: 1.5rem;
   border-left-width: 0.5rem;
   border-left-style: solid;
   margin: 1rem 0;
   font-size: 14px;
   color: #5e6d82;
+  line-height: 1.5;
   .custom-block-title {
     font-weight: 600;
   }
   p {
-    margin: 16px 0;
+    margin: 8px 0;
     font-size: 16px;
-    line-height: 1.7em;
+    line-height: 1.5;
+  }
+  ul {
+    li {
+      padding: 5px 0;
+    }
   }
 }
 </style>

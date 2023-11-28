@@ -1,6 +1,11 @@
 <template>
   <tiny-grid :row-class-name="rowClassName" :data="tableData" row-key :drop-config="dropConfig">
     <tiny-grid-column field="id" width="60"></tiny-grid-column>
+    <tiny-grid-column field="name" title="触发源" width="100">
+      <template #default="{ row }">
+        <div class="only-me-can-drag">拖拽触发源{{ row.id }}</div>
+      </template>
+    </tiny-grid-column>
     <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
     <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
@@ -8,7 +13,7 @@
   </tiny-grid>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
@@ -22,6 +27,7 @@ export default {
       dropConfig: {
         plugin: Sortable,
         row: true,
+        trigger: '.only-me-can-drag', // 触发源控制
         filter: '.row__drag-disable', // 根据行的类名来控制是否可以拖动
         onBeforeMove(type, row) {
           if (row.id === '8') return false // return false 时取消拖动
@@ -98,14 +104,20 @@ export default {
 }
 </script>
 
-<style>
-.sortable-chosen {
+<style scoped>
+.tiny-grid :deep(.sortable-chosen) {
   background: #ceeea9 !important;
 }
-.sortable-drag {
+.tiny-grid :deep(.sortable-drag) {
   background: red !important;
 }
-.row__drag-disable {
+.tiny-grid :deep(.row__drag-disable) {
   background: #f1f1f1 !important;
+}
+.only-me-can-drag {
+  cursor: move;
+}
+.tiny-grid :deep(.row__drag-disable) .only-me-can-drag {
+  cursor: not-allowed;
 }
 </style>

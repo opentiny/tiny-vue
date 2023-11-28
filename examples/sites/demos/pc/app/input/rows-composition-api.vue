@@ -15,7 +15,8 @@ const input = ref('')
 
 <style scoped>
 .demo-input .tiny-textarea {
-  width: 250px;
+  width: auto;
+  max-width: 100%;
   margin: 5px;
 }
 </style>

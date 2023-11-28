@@ -6,7 +6,7 @@
  */
 
 // 使用vue3的声明，来代表hooks中所有函数的声明
-import * as hooks from 'vue'
+import type * as hooks from 'vue'
 
 /** hooks 变量: renderless的第二个参数 */
 export type ISharedRenderlessParamHooks = typeof hooks
@@ -46,7 +46,7 @@ export interface ISharedRenderlessParamUtils<CT = never> {
   attrs: any
   /** 返回组件props._constants */
   constants: CT
-  /** vue的内置nextTick， 其实可以从第二参 hooks中获取, 还可以通过当前vm.$nextTick来获取*/
+  /** vue的内置nextTick， 其实可以从第二参 hooks中获取, 还可以通过当前vm.$nextTick来获取 */
   nextTick: typeof hooks.nextTick
   /** parentVm */
   parent: ITinyVm<CT>
@@ -60,7 +60,7 @@ export interface ISharedRenderlessParamUtils<CT = never> {
   /** 当前的router实例。 从app的根上读取 */
   router: any
 
-  /** 从app的根上读取: root?.$service,  用户必须引用服务适配器的包， 并传入app后，才有该变量*/
+  /** 从app的根上读取: root?.$service,  用户必须引用服务适配器的包， 并传入app后，才有该变量 */
   service: any
   /** 调用从app的根上$getService:  root?.$getService(vm) */
   getService: any
@@ -95,7 +95,7 @@ export interface ISharedRenderlessParamUtils<CT = never> {
    * @param props Object.defineProperties的第2参, 格式：{ property1: {value: 42,writable: true},property2: {...} }
    */
   defineInstanceProperties: (props: PropertyDescriptorMap & ThisType<any>) => void
-  /** 给parentVm 添加属性。*/
+  /** 给parentVm 添加属性。 */
   defineParentInstanceProperties: (props: PropertyDescriptorMap & ThisType<any>) => void
   /** 返回 context.emit */
   emit: (event, ...args) => void
@@ -145,11 +145,11 @@ export interface ITinyVm<CT = never> {
   $constants: CT
   /** 返回 instance.vnode.el */
   $el: HTMLElement
-  /** 返回 instance._tiny_mode*/
+  /** 返回 instance._tiny_mode */
   $mode: 'pc' | 'mobile' | 'mobile-first'
   /** 即 hooks.nextTick */
   $nextTick: typeof hooks.nextTick
-  /** 自动触发 instance.emit 和 instance.$emitter 两处地方*/
+  /** 自动触发 instance.emit 和 instance.$emitter 两处地方 */
   $emit: (...args) => void
   /** instance.$emitter.off, 不传任何参数则是移除所有事件 */
   $off: (eventname?: string, callback?: Function) => void
@@ -165,9 +165,9 @@ export interface ITinyVm<CT = never> {
   /** 返回 instance.refs,
    * @mark ⭐ 尽量使用这个，每次都会是最新的refs */
   $refs: Record<string, any>
-  /** 返回 instance.slots*/
+  /** 返回 instance.slots */
   $slots: Record<string, Function>
-  /** 返回 instance.slots*/
+  /** 返回 instance.slots */
   $scopedSlots: Record<string, Function>
 
   /** 给target赋值。 vue2是调用instance.$set

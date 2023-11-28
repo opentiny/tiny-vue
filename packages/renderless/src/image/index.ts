@@ -10,7 +10,7 @@
  *
  */
 
-import { IImageApi, IImageProps, IImageRenderlessParams, IImageState } from '@/types'
+import type { IImageProps, IImageRenderlessParams, IImageState } from '@/types'
 import { on, off, getScrollContainer, isInContainer } from '../common/deps/dom'
 import { typeOf } from '../common/type'
 import '../common/deps/requestAnimationFrame'

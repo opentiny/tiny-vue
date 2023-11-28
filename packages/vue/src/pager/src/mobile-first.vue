@@ -195,8 +195,9 @@ export default defineComponent({
           immediate: true,
           handler(newVal) {
             if (Array.isArray(newVal)) {
-              this.$parent.internalPageSize =
-                newVal.indexOf(this.$parent.pageSize) > -1 ? this.$parent.pageSize : this.pageSizes[0]
+              this.$parent.internalPageSize = newVal.includes(this.$parent.pageSize)
+                ? this.$parent.pageSize
+                : this.pageSizes[0]
             }
           }
         }
@@ -333,7 +334,7 @@ export default defineComponent({
         }
       },
       watch: {
-        '$parent.internalCurrentPage'(currentPage) {
+        '$parent.internalCurrentPage': function (currentPage) {
           const value = currentPage
 
           if (this.value !== value) {

@@ -78,6 +78,7 @@ export const alertProps = {
   customClass: [String, Object, Array]
 }
 
+const aaa = {}
 export default defineComponent({
   name: $prefix + 'Alert',
   props: alertProps,

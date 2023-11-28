@@ -28,7 +28,7 @@
   }
 
   &,
-  &__inner,
+  &__outer,
   &__input {
     position: relative;
     display: inline-block;
@@ -43,78 +43,91 @@
     vertical-align: middle;
   }
 
-  &__inner {
-    border: 1px solid transparent;
+  &__outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    background-color: #fff;
+    width: var(--ti-mobile-radio-size-outer, 20px);
+    height: var(--ti-mobile-radio-size-outer, 20px);
+    border: 1.5px solid var(--ti-mobile-radio-border-color-default);
     border-radius: 50%;
-    width: var(--ti-mobile-radio-size, 24px);
-    height: var(--ti-mobile-radio-size, 24px);
-    background-color: transparent;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition-duration: 0.2s;
-    transition-property: color, border-color, background-color;
 
-    &::after {
-      content: '';
-      width: 8px;
-      height: 12px;
-      border-width: 0.1em;
-      border-style: solid;
-      border-color: var(--ti-mobile-radio-checked-color, #f36f64);
-      border-left: 0;
-      border-top: 0;
-      position: absolute;
-      left: 50%;
-      top: 45%;
-      transform: translate(-50%, -50%) rotate(45deg) scale(0);
-      transform-origin: center;
-      transition: all 0.15s ease-in;
+    &:after {
+      border-color: var(--ti-mobile-radio-checked-color);
       opacity: 0;
     }
   }
 
-  &:hover:not(.is-disabled) &__inner,
-  &.is-checked &__inner {
-    &::after {
-      transform: translate(-50%, -50%) rotate(45deg) scale(1);
+  &__inner {
+    width: var(--ti-mobile-radio-size-inner, 10px);
+    height: var(--ti-mobile-radio-size-inner, 10px);
+    background-color: transparent;
+    box-sizing: border-box;
+    border-radius: 999px;
+
+    &:after {
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      left: 50%;
+      top: 45%;
+      transform-origin: center;
+    }
+  }
+
+  &:hover:not(.is-disabled) &__outer,
+  &.is-checked &__outer {
+    &:after {
       opacity: 1;
     }
   }
 
-  &.is-disabled &__inner,
+  &.is-bordered:not(.is-disabled):hover &__inner {
+    border-color: var(--ti-mobile-radio-checked-color #1476ff);
+  }
+
+  &.is-checked &__inner {
+    border-color: var(--ti-mobile-radio-checked-color);
+    background-color: var(--ti-mobile-radio-checked-color);
+  }
+
+  &.is-checked &__outer {
+    border-color: var(--ti-mobile-radio-checked-color);
+  }
+
+  &.is-disabled &__outer,
   &.is-disabled &__label {
     cursor: not-allowed;
   }
 
-  &.is-disabled.is-checked &__inner {
+  &.is-disabled.is-checked &__outer {
+    border-color: var(--ti-mobile-radio-color-disabled);
+
     &:after {
-      border-color: var(--ti-mobile-radio-disabled-color, #ddd);
+      border-color: var(--ti-mobile-radio-color-disabled);
     }
   }
 
-  &.is-bordered &__inner {
-    border-color: var(--ti-mobile-radio-disabled-color, #ddd);
+  &.is-disabled.is-checked &__inner {
+    background-color: var(--ti-mobile-radio-color-disabled);
+    border-color: var(--ti-mobile-radio-color-disabled);
 
-    &::after {
-      border-color: var(--ti-mobile-radio-inner-border-color, #fff);
+    &:after {
+      border-color: var(--ti-mobile-radio-color-disabled);
     }
   }
 
-  &.is-bordered:not(.is-disabled):hover &__inner {
-    border-color: var(--ti-mobile-radio-checked-color, #f36f64);
-  }
+  &.is-disabled &__inner {
+    background-color: var(--ti-mobile-radio-bg-color-disabled);
+    border-color: var(--ti-mobile-radio-color-disabled);
 
-  &.is-bordered.is-checked &__inner {
-    border-color: var(--ti-mobile-radio-checked-color, #f36f64);
-    background-color: var(--ti-mobile-radio-checked-color, #f36f64);
-  }
-
-  &.is-bordered.is-disabled.is-checked &__inner {
-    background-color: var(--ti-mobile-radio-disabled-color, #ddd);
-    border-color: var(--ti-mobile-radio-disabled-color, #ddd);
-
-    &::after {
-      border-color: var(--ti-mobile-radio-inner-border-color, #fff);
+    &:after {
+      border-color: var(--ti-mobile-radio-color-disabled);
+      background-color: var(--ti-mobile-radio-bg-color-disabled);
     }
   }
 
@@ -131,7 +144,8 @@
   }
 
   &__label {
-    font-size: var(--ti-mobile-radio-label-font-size, 16px);
+    font-size: var(--ti-mobile-radio-label-font-size);
+    color: var(--ti-mobile-radio-label-text-color);
     padding-left: 8px;
     vertical-align: middle;
   }

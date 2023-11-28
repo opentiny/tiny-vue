@@ -270,7 +270,7 @@ const addApi = ({ api, props, state, emit, constants, parent, nextTick, dispatch
     handleFocus: handleFocus({ api, emit, props, state }),
     deleteTag: deleteTag({ api, constants, emit, props, vm, nextTick, state }),
     watchValue: watchValue({ api, constants, dispatch, props, vm, state }),
-    toHide: toHide({ constants, state, props, vm, api }),
+    toHide: toHide({ constants, state, props, vm, api, nextTick }),
     toVisible: toVisible({ constants, state, props, vm, api, nextTick }),
     setSelected: setSelected({ api, constants, nextTick, props, vm, state }),
     selectOption: selectOption({ api, state, props }),

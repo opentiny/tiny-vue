@@ -19,6 +19,6 @@ export default {
 </script>
 <style>
 .custom-pager.tiny-popper {
-  background: #fff3b7;
+  background: #e6f7ff;
 }
 </style>
