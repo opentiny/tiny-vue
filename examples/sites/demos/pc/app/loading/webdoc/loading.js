@@ -88,7 +88,7 @@ export default {
     {
       'name': 'loading',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'text',
           'type': 'string',
@@ -170,7 +170,11 @@ export default {
           'demoId': 'custom-class'
         }
       ],
-      'directive': [
+    },
+    {
+      'name': 'loading',
+      'type': 'directive',
+      'props': [
         {
           'name': 'v-loading',
           'type': 'boolean',

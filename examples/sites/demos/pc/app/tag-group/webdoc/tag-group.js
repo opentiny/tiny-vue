@@ -51,7 +51,7 @@ export default {
     {
       'name': 'tag-group',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
           'type': 'ITagGroupDataItem[]',
