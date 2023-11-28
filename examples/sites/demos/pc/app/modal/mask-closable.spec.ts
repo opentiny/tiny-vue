@@ -5,7 +5,7 @@ test('点击遮罩层关闭窗口', async ({ page }) => {
   await page.goto('modal#mask-closable')
 
   await page.getByRole('button', { name: '点击遮罩层可以关闭' }).click()
-  await expect(page.locator('.tiny-modal')).toBeVisible()
+  await expect(page.locator('.tiny-modal.active')).toBeVisible()
   await page.mouse.click(10, 10)
-  await expect(page.locator('.tiny-modal')).not.toBeVisible()
+  await expect(page.locator('.tiny-modal.active')).not.toBeVisible()
 })

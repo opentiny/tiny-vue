@@ -4,8 +4,8 @@ test('菜单项间距', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('action-menu#spacing')
 
-  const preview = page.locator('#preview')
-  const actionMenu = preview.locator('.tiny-action-menu')
+  const wrap = page.locator('#spacing')
+  const actionMenu = wrap.locator('.tiny-action-menu')
   const getDivider = (parent) => parent.locator('.tiny-action-menu__item-line').first()
   const tenPXSpacing = actionMenu.first()
   const twentyPXSpacing = actionMenu.nth(1)

@@ -39,7 +39,7 @@ export default {
     },
     handleSizeChange(val) {
       Modal.message({
-        message: `current-change 事件，当前页: ${val}`
+        message: `size-change 事件，每页条目数: ${val}`
       })
     },
     prevClick(val) {
