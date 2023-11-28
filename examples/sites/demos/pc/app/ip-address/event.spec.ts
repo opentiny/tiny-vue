@@ -41,7 +41,7 @@ test('select事件', async ({ page }) => {
     width: 1000,
     height: 1000
   })
-  await page.waitForTimeout(1000)
+  await page.waitForTimeout(2000)
   const { x = 0, y = 0, width = 0 } = (await getIPAddressFirstInput(3).boundingBox()) || {}
   await page.mouse.move(x + width - 5, y + 5)
   await page.mouse.down()
