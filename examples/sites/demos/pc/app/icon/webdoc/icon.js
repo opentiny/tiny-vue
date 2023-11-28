@@ -6,7 +6,7 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '从 <code>@opentiny/vue-icon</code> 图标库种引入图标函数，并执行，生成相应的图标。',
+        'zh-CN': '从 <code>@opentiny/vue-icon</code> 图标库中引入图标函数，并执行，生成相应的图标。',
         'en-US':
           'Introduce icon functions from the <code>@opentiny/vue-icon</code> icon library, execute them, and generate corresponding icons.'
       },
