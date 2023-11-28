@@ -11,7 +11,7 @@ describe('PC Mode', () => {
           modelValue: '#66ccff'
         }
       })
-      expect(wrapper.classes()).toContain('tiny-color-picker__trigger')
+      expect(wrapper.classes()).toContain('tiny-color-picker')
       expect(wrapper.find('div .tiny-color-picker__inner').attributes().style).toContain('102, 204, 255')
     })
     test('dynmaic', async () => {

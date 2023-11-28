@@ -2,7 +2,7 @@
   <div
     :class="[
       {
-        'tiny-color-picker__trigger': true
+        'tiny-color-picker': true
       },
       state.size ? 'tiny-color-picker--' + state.size : ''
     ]"
