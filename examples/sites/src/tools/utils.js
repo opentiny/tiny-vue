@@ -37,7 +37,8 @@ const $pub = (url) => {
  * @returns
  */
 const fetchDemosFile = (path) => {
-  return fetch(baseUrl + path, {
+  const filePath = baseUrl + path
+  return fetch(filePath, {
     method: 'GET',
     headers: {
       'Content-Type': 'text/plain;charset=UTF-8'
@@ -45,13 +46,35 @@ const fetchDemosFile = (path) => {
   }).then((res) => {
     if (res.ok) {
       return res.text().then((text) => {
-        return text.replace(/(\$\{)?import\.meta\.env\.VITE_APP_BUILD_BASE_URL(\})?/g, (str) => {
+        console.log(baseUrl + path)
+        // 处理相对路径引入
+        text = text.replace(/import.+('|")((\.\/|\.\.\/).+)('|")/g, (...args) => {
+          const [matchStr, , relativePath, type] = args
+          const pathArr = filePath.split('/')
+          if (type === './') {
+            const relativeFilename = relativePath.replace('./', '')
+            pathArr.splice(-1, 1, relativeFilename)
+            console.log(pathArr.join('/'))
+            return matchStr.replace(relativePath, pathArr.join('/'))
+          } else if (type === '../') {
+            const relativePathArr = relativePath.split('../')
+            const len = relativePathArr.length
+            pathArr.splice(-len)
+            pathArr.push(relativePathArr[len - 1])
+            return matchStr.replace(relativePath, pathArr.join('/'))
+          } else {
+            return matchStr
+          }
+        })
+        // 处理静态资源路径
+        text = text.replace(/(\$\{)?import\.meta\.env\.VITE_APP_BUILD_BASE_URL(\})?/g, (str) => {
           if (str.startsWith('$')) {
             return import.meta.env.VITE_APP_BUILD_BASE_URL
           } else {
             return `'${import.meta.env.VITE_APP_BUILD_BASE_URL}'`
           }
         })
+        return text
       })
     } else {
       throw new Error(res.statusText)
