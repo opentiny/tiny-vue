@@ -46,7 +46,6 @@ const fetchDemosFile = (path) => {
   }).then((res) => {
     if (res.ok) {
       return res.text().then((text) => {
-        console.log(baseUrl + path)
         // 处理相对路径引入
         text = text.replace(/import.+('|")((\.\/|\.\.\/).+)('|")/g, (...args) => {
           const [matchStr, , relativePath, type] = args
@@ -54,7 +53,6 @@ const fetchDemosFile = (path) => {
           if (type === './') {
             const relativeFilename = relativePath.replace('./', '')
             pathArr.splice(-1, 1, relativeFilename)
-            console.log(pathArr.join('/'))
             return matchStr.replace(relativePath, pathArr.join('/'))
           } else if (type === '../') {
             const relativePathArr = relativePath.split('../')
