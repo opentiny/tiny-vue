@@ -3,7 +3,6 @@ const fsExtra = require('fs-extra')
 const indexLessPath = 'index.less'
 const indexJsPath = 'index.js'
 const smbThemeName = 'smb-theme'
-const infinityThemeName = 'infinity-theme'
 const auroraThemeName = 'aurora-theme'
 const originRootPath = '../src/'
 const originThemeRootPath = `${originRootPath}theme/`
@@ -27,8 +26,7 @@ const scopedContent = `
 
 const buildThemePathMap = {
   [auroraThemeName]: `${originRootPath}${auroraThemeName}${basePath}`,
-  [smbThemeName]: `${originRootPath}${smbThemeName}${basePath}`,
-  [infinityThemeName]: `${originRootPath}${infinityThemeName}${basePath}`
+  [smbThemeName]: `${originRootPath}${smbThemeName}${basePath}`
 }
 
 const cssScopedMap = {

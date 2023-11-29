@@ -19,16 +19,14 @@ Currently, the official offers 4 sets of themes:
 -Aurora Theme ` tinyAuroraTheme`
 -XDesign Theme ` tinySmbTheme`
 
-#### Using predefined themes through alias
+#### Using predefined themes through alias [Currently only supported: Eurora theme and XDesign theme]
 
 vue.config.js define
 
 ```js
 chainWebpack: (config) => {
-  // Infinity Theme
-  config.resolve.alias.set('@opentiny/vue-theme/base', '@opentiny/vue-theme/infinity-theme/base')
-  // Smb Theme
-  // config.resolve.alias.set('@opentiny/vue-theme', '@opentiny/vue-theme/smb-theme')
+  // XDesign Theme
+  config.resolve.alias.set('@opentiny/vue-theme', '@opentiny/vue-theme/smb-theme')
   // Aurora Theme : The aurora theme is to replace all the 'smb' characters in the above SMB themes with 'aurora'
 }
 ```
@@ -38,17 +36,11 @@ vite.config.js define
 ```js
 resolve: {
   alias: [
-    // Infinity Theme
+    // XDesign Theme
     {
-      find: /\@opentiny\/vue-theme\/base/,
-      replacement: '', '@opentiny/vue-theme/infinity-theme/base'
+      find: /\@opentiny\/vue-theme\/(?!(smb))/,
+      replacement: '@opentiny/vue-theme/smb-theme/'
     }
-    // Smb Theme
-    // {
-    //   find: /\@opentiny\/vue-theme\/(?!(smb))/,
-    //   replacement: '@opentiny/vue-theme/smb-theme/'
-    // }
-  // Aurora Theme : The aurora theme is to replace all the 'smb' characters in the above SMB themes with 'aurora'
   ]
 }
 ```

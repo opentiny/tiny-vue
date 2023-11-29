@@ -17,16 +17,14 @@
 - 欧若拉主题 `tinyAuroraTheme`
 - XDesign 主题 `tinySmbTheme`
 
-#### 通过别名使用预定义主题
+#### 通过 alias 使用预定义主题【目前仅支持：欧若拉主题 和 XDesign 主题】
 
 vue.config.js 定义
 
 ```js
 chainWebpack: (config) => {
-  // infinity主题
-  config.resolve.alias.set('@opentiny/vue-theme/base', '@opentiny/vue-theme/infinity-theme/base')
-  // smb主题
-  // config.resolve.alias.set('@opentiny/vue-theme', '@opentiny/vue-theme/smb-theme')
+  // XDesign 主题
+  config.resolve.alias.set('@opentiny/vue-theme', '@opentiny/vue-theme/smb-theme')
   // aurora 主题 则是将以上smb主题中的'smb'字符全替换成 'aurora'即可
 }
 ```
@@ -36,17 +34,11 @@ vite.config.js 定义
 ```js
 resolve: {
   alias: [
-    // infinity主题
+    // XDesign 主题
     {
-      find: /\@opentiny\/vue-theme\/base/,
-      replacement: '', '@opentiny/vue-theme/infinity-theme/base'
+      find: /\@opentiny\/vue-theme\/(?!(smb))/,
+      replacement: '@opentiny/vue-theme/smb-theme/'
     }
-    // smb主题
-    // {
-    //   find: /\@opentiny\/vue-theme\/(?!(smb))/,
-    //   replacement: '@opentiny/vue-theme/smb-theme/'
-    // }
-    // aurora 主题 则是将以上smb主题中的'smb'字符全替换成 'aurora'即可
   ]
 }
 ```
