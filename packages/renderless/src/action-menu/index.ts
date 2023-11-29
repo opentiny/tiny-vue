@@ -10,7 +10,7 @@
  *
  */
 
-import { IActionMenuRenderlessParams, IActionMenuItemData } from '@/types'
+import { IActionMenuRenderlessParams, IActionMenuItemData, IActionMenuRenderlessParamUtils } from '@/types'
 
 export const handleMoreClick = (emit: IActionMenuRenderlessParams['emit']) => () => {
   emit('more-click')

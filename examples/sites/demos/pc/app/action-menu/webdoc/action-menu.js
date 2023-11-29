@@ -18,6 +18,16 @@ export default {
       'codeFiles': ['disabled.vue']
     },
     {
+      'demoId': 'add-icon',
+      'name': { 'zh-CN': '图标', 'en-US': 'Icon' },
+      'desc': {
+        'zh-CN': '通过属性 <code>icon</code> 配置菜单按钮前的图标。',
+        'en-US':
+          'The <code>icon</code> attribute is used to Configure the icon in front of the menu button.'
+      },
+      'codeFiles': ['add-icon.vue']
+    },
+    {
       'demoId': 'text-field',
       'name': { 'zh-CN': '显示文本', 'en-US': 'Display Text' },
       'desc': {
@@ -116,9 +126,9 @@ export default {
           'defaultValue': '[]',
           'desc': {
             'zh-CN':
-              "可以配置菜单按钮数据，默认值为 [],数组中的每个元素为对象item,每个 item 一般可包含的字段有 (label,children,disabled,divided),例如：{ label: '登录',children:[],divided: true,disabled :true}。",
+              "可以配置菜单按钮数据，默认值为 [],数组中的每个元素为对象item,每个 item 一般可包含的字段有 (label,icon,children,disabled,divided),例如：{ label: '登录',children:[],divided: true,disabled :true}。",
             'en-US':
-              "You can configure menu button data. The default value is []. Each element in the array is an object item. Each item can contain the following fields: label, children, disabled, and divided, for example, {label:'Login', children:[],divided: true,disabled :true} ."
+              "You can configure menu button data. The default value is []. Each element in the array is an object item. Each item can contain the following fields: label, icon, children, disabled, and divided, for example, {label:'Login', children:[],divided: true,disabled :true} ."
           },
           'demoId': 'basic-usage'
         },
@@ -128,6 +138,13 @@ export default {
           'defaultValue': '',
           'desc': { 'zh-CN': '菜单项的显示值', 'en-US': 'Display value of a menu item' },
           'demoId': 'basic-usage'
+        },
+        {
+          'name': 'icon',
+          'type': 'component',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '菜单项显示值前的图标', 'en-US': 'Icon of a menu item' },
+          'demoId': 'add-icon'
         },
         {
           'name': 'children',
