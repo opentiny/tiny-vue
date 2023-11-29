@@ -4,7 +4,7 @@ test('纯段落用户引导', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('guide#only-content')
 
-  const showBtn = page.getByRole('button', { name: '新手引导开始' })
+  const showBtn = page.getByRole('button', { name: '开始引导' })
   const nextBtn = page.getByRole('button', { name: '下一步' })
   const guideEle1 = page.getByRole('button', { name: '新手引导1' })
   const guideEle2 = page.getByRole('button', { name: '新手引导2' })
