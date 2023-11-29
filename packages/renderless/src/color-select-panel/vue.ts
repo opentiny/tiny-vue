@@ -1,4 +1,4 @@
-import { IColorSelectPanelRef as Ref } from '@/types'
+import type { IColorSelectPanelRef as Ref } from '@/types'
 import Color from './utils/color'
 import { onConfirm, onCancel, onHSVUpdate, onAlphaUpdate, handleHistoryClick, handlePredefineClick } from '.'
 
@@ -31,7 +31,7 @@ export const renderless = (props, context, { emit }) => {
   const changeVisible = (state: boolean) => {
     isShow.value = state
   }
-  const color:Ref<Color> = context.ref(new Color(hex.value, props.alpha))
+  const color: Ref<Color> = context.ref(new Color(hex.value, props.alpha))
   const state = context.reactive({
     isShow,
     hex,
@@ -58,9 +58,13 @@ export const renderless = (props, context, { emit }) => {
     },
     { deep: true }
   )
-  context.watch(state,()=>{
-    state.color = state.color
-  }, {deep: true})
+  context.watch(
+    state,
+    () => {
+      state.color = state.color
+    },
+    { deep: true }
+  )
   context.watch(modelValue, (newValue) => {
     pre.value = res.value
     hex.value = newValue

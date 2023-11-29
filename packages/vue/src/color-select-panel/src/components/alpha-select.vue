@@ -17,6 +17,7 @@
     ></div>
   </div>
 </template>
+
 <script>
 import { defineComponent, setup } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/color-select-panel/alpha-select/vue'

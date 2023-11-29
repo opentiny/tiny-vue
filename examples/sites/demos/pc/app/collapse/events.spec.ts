@@ -9,5 +9,5 @@ test('Collapse 折叠面板事件', async ({ page }) => {
 
   // 点击标题，事件执行
   await header.first().click()
-  await expect(modal).toBeVisible()
+  await expect(modal.nth(1)).toBeVisible()
 })

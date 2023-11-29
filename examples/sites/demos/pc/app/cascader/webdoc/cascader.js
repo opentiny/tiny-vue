@@ -215,7 +215,7 @@ export default {
     {
       'name': 'cascader',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue / v-model',
           'type': 'ICascaderPanelNodePropValue',
@@ -245,8 +245,8 @@ export default {
           'typeAnchorName': 'ICascaderPanelConfig',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '配置选项，具体见 Cascader Props 表',
-            'en-US': 'Configuration options. For details, see the Cascader Props table.'
+            'zh-CN': '配置选项，具体见 ICascaderPanelConfig 表',
+            'en-US': 'Configuration options. For details, see the ICascaderPanelConfig table.'
           },
           'demoId': 'props-children'
         },
@@ -474,8 +474,12 @@ export default {
           },
           'demoId': 'events'
         }
-      ],
-      'casprops: ICascaderPanelConfig': [
+      ]
+    },
+    {
+      'name': 'ICascaderPanelConfig',
+      'type': 'interface',
+      'props': [
         {
           'name': 'expandTrigger',
           'type': `'click' | 'hover'`,
@@ -534,7 +538,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '加载动态数据的方法，仅在 lazy 为 true 时有效;参数说明： node为当前点击的节点，resolve为数据加载完成的回调(必须调用)',
+              '加载动态数据的方法，仅在 lazy 为 true 时有效;参数说明： node 为当前点击的节点，resolve 为数据加载完成的回调(必须调用)',
             'en-US':
               'Method for loading dynamic data. This parameter is valid only when lazy is set to true. Parameter description: node indicates the currently clicked node. resolve indicates the callback after data loading is complete (mandatory).'
           },
@@ -588,7 +592,7 @@ export default {
             'zh-CN': '指定选项的叶子节点的标志位为选项对象的某个属性值',
             'en-US': 'The flag bit of the leaf node of the specified option is an attribute value of the option object.'
           },
-          'demoId': 'check-strictly'
+          'demoId': 'props-children'
         }
       ]
     }

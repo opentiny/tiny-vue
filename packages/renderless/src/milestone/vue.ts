@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import {
+import type {
   IMilestoneProps,
   IMilestoneApi,
   IMilestoneState,

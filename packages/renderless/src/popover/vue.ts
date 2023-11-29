@@ -32,8 +32,8 @@ import {
   observeCallback
 } from './index'
 import userPopper from '../common/deps/vue-popper'
-import { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
-import { IPopoverApi, IPopoverProps, IPopoverState, IPopoverRenderlessParams } from 'types/popover.type'
+import type { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
+import type { IPopoverApi, IPopoverProps, IPopoverState, IPopoverRenderlessParams } from 'types/popover.type'
 
 export const api = [
   'state',

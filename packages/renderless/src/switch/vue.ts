@@ -11,7 +11,7 @@
  */
 
 import { toggle, computedWarpClasses, computedInnerClasses, computedStyle } from './index'
-import {
+import type {
   ISwitchApi,
   ISwitchProps,
   ISwitchState,

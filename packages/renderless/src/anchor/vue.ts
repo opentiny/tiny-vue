@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICElinksMapNSES FOR MORE DETAILS.
  *
  */
-import {
+import type {
   IAnchorState,
   IAnchorProps,
   IAnchorApi,

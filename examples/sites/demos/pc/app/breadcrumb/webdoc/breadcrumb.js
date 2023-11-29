@@ -102,7 +102,7 @@ export default {
       ]
     },
     {
-      'name': 'breadcrumbItem',
+      'name': 'breadcrumb-item',
       'type': 'component',
       'props': [
         {

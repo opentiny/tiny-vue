@@ -64,13 +64,15 @@ export default class Color {
     this.v = v
     this.a = a
   }
+
   set({ h, s, v, a }: { h?: number; s?: number; v?: number; a?: number }) {
     this.h = h ?? this.h
     this.s = s ?? this.s
     this.v = v ?? this.v
     this.a = a ?? this.a
   }
-  setPrevH(val: number){
+
+  setPrevH(val: number) {
     this.preH = val
   }
 
@@ -108,7 +110,7 @@ export default class Color {
     }
   }
 
-  get(key: 'h' | 's' | 'v' | 'a' |'preH') {
+  get(key: 'h' | 's' | 'v' | 'a' | 'preH') {
     return this[key]
   }
 }

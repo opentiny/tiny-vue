@@ -378,7 +378,7 @@ export const getRules =
     const prop = getPropByPath(formRules, props.prop || '')
 
     formRules = formRules ? prop.o[props.prop || ''] || prop.v : []
-    // @ts-ignore
+    // @ts-expect-error
     return ([] as IFormItemRule[]).concat(selfRules || formRules || []).concat(requiredRule)
   }
 

@@ -199,7 +199,7 @@ export default {
     {
       'name': 'transfer',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
           'type': 'object[]',

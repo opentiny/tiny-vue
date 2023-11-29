@@ -1,5 +1,4 @@
-import type { ExtractPropTypes } from 'vue'
-import { DATEPICKER } from '../src/common'
+import type { DATEPICKER } from '../src/common'
 
 export interface IDateTableRow {
   /** 列数，从0开始，[0, 6] */
@@ -36,7 +35,8 @@ export interface IDateTableRow {
    * - next-month 下一月的日期
    * - week 周
    * */
-  type: typeof DATEPICKER.Normal
+  type:
+    | typeof DATEPICKER.Normal
     | typeof DATEPICKER.Today
     | typeof DATEPICKER.PreMonth
     | typeof DATEPICKER.NextMonth

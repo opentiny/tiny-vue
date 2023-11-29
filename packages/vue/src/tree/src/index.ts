@@ -133,6 +133,11 @@ export default defineComponent({
       default: 'tree',
       validator: (value) => ~['tree', 'plain'].indexOf(value)
     },
+    // 平铺视图时，是否显示下面的辅助信息
+    showAuxi: {
+      type: Boolean,
+      default: true
+    },
     pathSplit: {
       type: String,
       default: '/'

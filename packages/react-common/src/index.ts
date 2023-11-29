@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Svg } from './svg-render'
 import { generateVueHooks, useVueLifeHooks } from './vue-hooks.js'
 import { emitEvent } from './event.js'
@@ -9,6 +8,7 @@ import { useVm } from './vm.js'
 import { twMerge } from 'tailwind-merge'
 import { stringifyCssClass } from './csscls.js'
 import { useExcuteOnce, useReload, useOnceResult } from './hooks.js'
+
 // 导入 vue 响应式系统
 import { effectScope, nextTick, reactive } from '@vue/runtime-core'
 import { useCreateVueInstance } from './vue-instance'
@@ -29,17 +29,7 @@ export const $props = {
 
 export const mergeClass = (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
 
-const setup = ({
-  props,
-  renderless,
-  api,
-  extendOptions = {},
-  classes = {},
-  constants,
-  vm,
-  parent,
-  $bus
-}) => {
+const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, constants, vm, parent, $bus }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
   const { dispatch, broadcast } = emitEvent(vm)
 
@@ -51,7 +41,7 @@ const setup = ({
     nextTick,
     dispatch,
     broadcast,
-    t() { },
+    t() {},
     mergeClass,
     mode: props.tiny_mode
   }
@@ -71,7 +61,7 @@ const setup = ({
     a: filterAttrs,
     m: mergeClass,
     vm: utils.vm,
-    gcls: (key) => getElementCssClass(classes, key),
+    gcls: (key) => getElementCssClass(classes, key)
   }
 
   if (Array.isArray(api)) {
@@ -87,14 +77,7 @@ const setup = ({
   return attrs
 }
 
-export const useSetup = ({
-  props,
-  renderless,
-  api,
-  extendOptions = {},
-  classes = {},
-  constants
-}) => {
+export const useSetup = ({ props, renderless, api, extendOptions = {}, classes = {}, constants }) => {
   const $bus = useOnceResult(() => eventBus())
 
   // 刷新逻辑
@@ -157,18 +140,7 @@ export const useSetup = ({
   }
 }
 
-export {
-  Svg,
-  If,
-  Component,
-  Slot,
-  For,
-  Transition,
-  vc,
-  emitEvent,
-  useVm,
-  useFiber,
-}
+export { Svg, If, Component, Slot, For, Transition, vc, emitEvent, useVm, useFiber }
 
 export * from './vue-hooks.js'
 export * from './vue-props.js'

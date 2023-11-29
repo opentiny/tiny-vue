@@ -45,7 +45,6 @@
                 :columns="state.gridColumns"
                 :select-config="state.multiGridStore.selectConfig"
                 :radio-config="state.multiGridStore.radioConfig"
-               
                 @select-all="multiGridSelectAll"
                 @select-change="multiGridSelectChange"
                 @radio-change="multiGridRadioChange"

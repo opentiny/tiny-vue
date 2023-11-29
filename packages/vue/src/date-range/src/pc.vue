@@ -255,7 +255,7 @@ export default defineComponent({
     IconDoubleRight: iconDoubleRight(),
     IconDoubleLeft: iconDoubleLeft(),
     IconChevronLeft: iconChevronLeft(),
-    IconChevronRight: iconChevronRight(),
+    IconChevronRight: iconChevronRight()
   },
   props: {
     _constants: {

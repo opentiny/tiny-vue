@@ -15,7 +15,7 @@ export const handleChange = (editor) => {
         type = 'video'
       }
       if (url) {
-        editor.chain().focus().setImage({ src: url, type: type }).run()
+        editor.chain().focus().setImage({ src: url, type }).run()
       }
       return
     }
@@ -32,7 +32,7 @@ export const handleChange = (editor) => {
       editor
         .chain()
         .focus()
-        .setImage({ src: e.target?.result, type: type })
+        .setImage({ src: e.target?.result, type })
         .run()
     }
     reader.readAsDataURL(file)

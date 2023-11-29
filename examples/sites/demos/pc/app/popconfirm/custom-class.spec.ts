@@ -4,8 +4,8 @@ test('自定义类名', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popconfirm#custom-class')
 
-  const preview = page.locator('#preview')
-  const popConfirm = preview.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')
+  const demo = page.locator('#custom-class')
+  const popConfirm = demo.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')
   const popConfirmPopover = page.locator('body > .tiny-popconfirm-popover')
   const confirmBtn = popConfirmPopover.getByRole('button', { name: '确定' })
 

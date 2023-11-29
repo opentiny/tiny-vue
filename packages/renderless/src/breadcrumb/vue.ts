@@ -10,12 +10,22 @@
  *
  */
 
-import { IBreadcrumbProps, IBreadcrumbState, IBreadcrumbApi, IBreadcrumbRenderlessParamUtils, ISharedRenderlessParamHooks } from '@/types'
+import type {
+  IBreadcrumbProps,
+  IBreadcrumbState,
+  IBreadcrumbApi,
+  IBreadcrumbRenderlessParamUtils,
+  ISharedRenderlessParamHooks
+} from '@/types'
 import { breadcrumbItemSelect } from './index'
 
 export const api = ['breadcrumbItemSelect']
 
-export const renderless = (props: IBreadcrumbProps, { reactive, provide }: ISharedRenderlessParamHooks, { emit, constants, emitter }: IBreadcrumbRenderlessParamUtils): IBreadcrumbApi => {
+export const renderless = (
+  props: IBreadcrumbProps,
+  { reactive, provide }: ISharedRenderlessParamHooks,
+  { emit, constants, emitter }: IBreadcrumbRenderlessParamUtils
+): IBreadcrumbApi => {
   const state: IBreadcrumbState = reactive({
     breadcrumbEmitter: emitter(),
     currentBreadcrumbItem: {}

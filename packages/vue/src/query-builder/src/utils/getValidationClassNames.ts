@@ -1,5 +1,5 @@
-import type { ValidationResult } from '../ts';
-import { standardClassnames } from '../defaults';
+import type { ValidationResult } from '../ts'
+import { standardClassnames } from '../defaults'
 
 export const getValidationClassNames = (validationResult: boolean | ValidationResult) => {
   const valid =
@@ -7,10 +7,6 @@ export const getValidationClassNames = (validationResult: boolean | ValidationRe
       ? validationResult
       : typeof validationResult === 'object' && validationResult !== null
       ? validationResult.valid
-      : null;
-  return typeof valid === 'boolean'
-    ? valid
-      ? standardClassnames.valid
-      : standardClassnames.invalid
-    : '';
-};
+      : null
+  return typeof valid === 'boolean' ? (valid ? standardClassnames.valid : standardClassnames.invalid) : ''
+}

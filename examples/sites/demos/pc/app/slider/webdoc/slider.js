@@ -110,7 +110,7 @@ export default {
     {
       'name': 'slider',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'v-model',
           'type': 'number | [number, number]',

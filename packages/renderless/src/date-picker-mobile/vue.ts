@@ -36,11 +36,7 @@ export const api = [
   'formatDate'
 ]
 
-export const renderless = (
-  props,
-  { computed, reactive, watch, onMounted },
-  { emit, vm, nextTick, constants }
-) => {
+export const renderless = (props, { computed, reactive, watch, onMounted }, { emit, vm, nextTick, constants }) => {
   const { DATE_RANGE, DATE_TIME_RANGE, YEAR_MONTH_RANGE, YEAR_MONTH } = constants.TYPE
   const api = {}
   const state = reactive({

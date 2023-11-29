@@ -69,7 +69,7 @@ export default {
     {
       'name': 'cascader-panel',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue / v-model',
           'type': 'ICascaderPanelNodePropValue',
@@ -98,8 +98,8 @@ export default {
           'typeAnchorName': 'ICascaderPanelConfig',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '配置选项，具体见 CascaderPanel Props 表 ',
-            'en-US': 'Configuration options. For details, see the CascaderPanel Props table.'
+            'zh-CN': '配置选项，具体见 ICascaderPanelConfig 表 ',
+            'en-US': 'Configuration options. For details, see the ICascaderPanelConfig table.'
           },
           'demoId': 'cascader-panel-props'
         }
@@ -164,8 +164,12 @@ export default {
           'desc': { 'zh-CN': '清空选中的节点', 'en-US': 'Clear selected nodes.' },
           'demoId': 'change'
         }
-      ],
-      'casprops: ICascaderPanelConfig': [
+      ]
+    },
+    {
+      'name': 'ICascaderPanelConfig',
+      'type': 'interface',
+      'props': [
         {
           'name': 'expandTrigger',
           'type': `'click' | 'hover'`,

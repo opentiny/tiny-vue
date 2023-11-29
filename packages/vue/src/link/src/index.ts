@@ -12,7 +12,7 @@
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
-export  const linkProps = {
+export const linkProps = {
   ...$props,
   type: {
     type: String,

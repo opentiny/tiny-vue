@@ -132,7 +132,7 @@ export default {
     {
       'name': 'notify',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'type',
           'type':`'info' | 'success' | 'warning' | 'error'`,

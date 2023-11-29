@@ -13,7 +13,7 @@
 import { merge } from '../object'
 import PopupManager from './popup-manager'
 import { addClass } from './dom'
-import { ISharedRenderlessFunctionParams } from 'types/shared.type'
+import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
 
 let idSeed = 1
 const isServer = typeof window === 'undefined'

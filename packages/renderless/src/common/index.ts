@@ -127,7 +127,8 @@ export const DATE = {
   YearMonth: 'yyyy-MM'
 }
 
-const TriggerTypes = 'date,datetime,time,time-select,week,month,year,years,yearrange,daterange,monthrange,timerange,datetimerange,dates'
+const TriggerTypes =
+  'date,datetime,time,time-select,week,month,year,years,yearrange,daterange,monthrange,timerange,datetimerange,dates'
 
 export const DATEPICKER = {
   Day: 'day',

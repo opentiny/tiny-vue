@@ -10,6 +10,7 @@ import {
   eventClick,
   Active
 } from './index'
+
 export const api = [
   'state',
   'setLink',

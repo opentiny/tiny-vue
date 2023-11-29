@@ -13,7 +13,6 @@
 import {
   mountedHandler,
   beforeUnmountHandler,
-  watchModelValue,
   onTouchstart,
   onTouchmove,
   onTouchend,
