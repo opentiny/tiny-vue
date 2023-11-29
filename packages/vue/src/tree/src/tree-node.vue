@@ -57,7 +57,7 @@
         <span
           class="tiny-tree-node__content-indent"
           v-for="i in showLine ? 1 : node.level - 1"
-          :style="{ width: state.computedIndent }"
+          :style="{ width: state.computedIndent, flexShrink: 0 }"
         ></span>
         <div class="tiny-tree-node__content-left">
           <template v-if="showNumber">

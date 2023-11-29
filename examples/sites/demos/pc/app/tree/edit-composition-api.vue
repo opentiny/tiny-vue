@@ -1,83 +1,64 @@
 <template>
   <div>
-    <tiny-button @click="edit('openEdit')">进入编辑</tiny-button>
-    <tiny-button @click="edit('closeEdit')">取消编辑</tiny-button>
-    <tiny-button @click="edit('saveEdit')">保存编辑</tiny-button>
+    <tiny-button @click="openEdit">进入编辑</tiny-button>
+    <tiny-button @click="closeEdit">取消编辑</tiny-button>
+    <tiny-button @click="saveEdit">保存编辑</tiny-button> <br />
     <br />
+    <tiny-button @click="addNode">新建子节点</tiny-button>
+    <tiny-button @click="editNode">编辑节点</tiny-button>
+    <tiny-button @click="saveNode">5s后保存节点</tiny-button> <br />
     <br />
-
-    <tiny-tree ref="treeRef" node-key="id" :data="data" :default-expanded-keys="expandedKeys"></tiny-tree>
+    <tiny-tree ref="treeRef" node-key="id" :data="data" current-node-key="1" default-expand-all></tiny-tree>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { Tree as TinyTree, Button as TinyButton } from '@opentiny/vue'
 
-const expandedKeys = ref([1, 4])
 const data = ref([
   {
-    id: 1,
-    label: '一级 1',
+    id: '1',
+    label: '数据 1',
+    children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+  },
+  {
+    id: '2',
+    label: '数据 2',
     children: [
-      {
-        id: 4,
-        label: '二级 1-1',
-        children: [
-          {
-            id: 9,
-            label: '三级 1-1-1',
-            children: [
-              { id: 11, label: '三级 1-1-1-1' },
-              { id: 12, label: '三级 1-1-1-2' }
-            ]
-          },
-          {
-            id: 10,
-            label: '三级 1-1-2'
-          }
-        ]
-      }
+      { id: '2-1', label: '数据 2-1' },
+      { id: '2-2', label: '数据 2-2' }
     ]
   },
   {
-    id: 2,
-    label: '一级 2',
-    children: [
-      {
-        id: 5,
-        label: '二级 2-1'
-      },
-      {
-        id: 6,
-        label: '二级 2-2'
-      }
-    ]
-  },
-  {
-    id: 3,
-    label: '一级 3',
-    children: [
-      {
-        id: 7,
-        label: '二级 3-1'
-      },
-      {
-        id: 8,
-        label: '二级 3-2'
-      }
-    ]
+    id: '3',
+    label: '数据 3',
+    children: [{ id: '3-1', label: '数据 3-1' }]
   }
 ])
 const treeRef = ref()
 
-function edit(action) {
-  if (action === 'openEdit') {
-    treeRef.value.openEdit()
-  } else if (action === 'closeEdit') {
-    treeRef.value.closeEdit()
-  } else if (action === 'saveEdit') {
-    data.value = treeRef.value.saveEdit()
-  }
+function openEdit() {
+  treeRef.value.openEdit()
+}
+function closeEdit() {
+  treeRef.value.closeEdit()
+}
+function saveEdit() {
+  data.value = treeRef.value.saveEdit()
+}
+function addNode() {
+  const data = treeRef.value.getCurrentNode()
+  const node = treeRef.value.getNode(data.id)
+  treeRef.value.addNode(node)
+}
+function editNode() {
+  const data = treeRef.value.getCurrentNode()
+  const node = treeRef.value.getNode(data.id)
+  treeRef.value.editNode(node)
+}
+function saveNode() {
+  // 离开编辑节点，会立即保存。 也可以通过以下手动触发保存
+  setTimeout(() => treeRef.value.saveNode(), 5000)
 }
 </script>

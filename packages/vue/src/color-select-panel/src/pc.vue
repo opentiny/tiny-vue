@@ -1,8 +1,8 @@
 <template>
-  <div class="tiny-color-select-panel__wrapper" @click.stop v-if="state.isShow" v-clickoutside="onCancel">
+  <div class="tiny-color-select-panel" @click.stop v-if="state.isShow" v-clickoutside="onCancel">
     <hue-select :color="state.color" @hue-update="onHueUpdate" @sv-update="onSVUpdate" />
     <alpha-select v-if="alpha" :color="state.color" @alpha-update="onAlphaUpdate" />
-    <div class="tiny-color-select-panel__wrapper__tools">
+    <div class="tiny-color-select-panel__tools">
       <tiny-input v-model="state.res" />
       <tiny-button-group>
         <tiny-button type="text" @click="onCancel">

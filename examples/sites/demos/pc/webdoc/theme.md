@@ -17,7 +17,33 @@
 - 欧若拉主题 `tinyAuroraTheme`
 - XDesign 主题 `tinySmbTheme`
 
-主题初始化和动态切换主题的具体使用方式如下文所示，在 main.ts 文件中增加以下代码。
+#### 通过 alias 使用预定义主题【目前仅支持：欧若拉主题 和 XDesign 主题】
+
+vue.config.js 定义
+
+```js
+chainWebpack: (config) => {
+  // XDesign 主题
+  config.resolve.alias.set('@opentiny/vue-theme', '@opentiny/vue-theme/smb-theme')
+  // aurora 主题 则是将以上smb主题中的'smb'字符全替换成 'aurora'即可
+}
+```
+
+vite.config.js 定义
+
+```js
+resolve: {
+  alias: [
+    // XDesign 主题
+    {
+      find: /\@opentiny\/vue-theme\/(?!(smb))/,
+      replacement: '@opentiny/vue-theme/smb-theme/'
+    }
+  ]
+}
+```
+
+#### 主题初始化和动态切换主题的具体使用方式如下文所示，在 main.ts 文件中增加以下代码。
 
 ```js
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
