@@ -4,7 +4,7 @@ test('PopEditor 自定义查询条件 自动重置参数', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popeditor#auto-reset')
 
-  const preview = page.locator('#preview')
+  const preview = page.locator('#auto-reset')
   const textBox = preview.getByRole('textbox')
   const dialogBox = page.locator('.tiny-dialog-box')
   const company = dialogBox.getByRole('listitem').filter({ hasText: '公司名' }).getByRole('textbox')
