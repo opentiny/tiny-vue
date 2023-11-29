@@ -18,7 +18,6 @@ export default defineConfig([
     bundle: false,
     clean: true,
     outDir: 'dist/types',
-    format: ['esm'],
     external: ['@opentiny/vue-icon', '@opentiny/vue-common'],
     dts: {
       only: true,
