@@ -10,11 +10,50 @@ Design website: [Administrative side specification design variable] (https://rnd
 
 Basic style variable `npm` Repository path: `@opentiny/vue-theme/theme`
 
-### Using Predefined Topics and Dynamically Switching Topics
+### Using predefined themes and dynamically switching themes
 
-At present, two sets of themes are officially provided: default theme and unlimited theme.
+Currently, the official offers 4 sets of themes:
 
-Topic initialization and dynamic theme switching are described as follows:
+-Default Theme
+-Infinity Theme ` tinyInfinityTheme`
+-Aurora Theme ` tinyAuroraTheme`
+-XDesign Theme ` tinySmbTheme`
+
+#### Using predefined themes through alias
+
+vue.config.js define
+
+```js
+chainWebpack: (config) => {
+  // Infinity Theme
+  config.resolve.alias.set('@opentiny/vue-theme/base', '@opentiny/vue-theme/infinity-theme/base')
+  // Smb Theme
+  // config.resolve.alias.set('@opentiny/vue-theme', '@opentiny/vue-theme/smb-theme')
+  // Aurora Theme : The aurora theme is to replace all the 'smb' characters in the above SMB themes with 'aurora'
+}
+```
+
+vite.config.js define
+
+```js
+resolve: {
+  alias: [
+    // Infinity Theme
+    {
+      find: /\@opentiny\/vue-theme\/base/,
+      replacement: '', '@opentiny/vue-theme/infinity-theme/base'
+    }
+    // Smb Theme
+    // {
+    //   find: /\@opentiny\/vue-theme\/(?!(smb))/,
+    //   replacement: '@opentiny/vue-theme/smb-theme/'
+    // }
+  // Aurora Theme : The aurora theme is to replace all the 'smb' characters in the above SMB themes with 'aurora'
+  ]
+}
+```
+
+#### The specific usage of theme initialization and dynamic theme switching is shown below, and the following code is added to the main.ts file.
 
 ```js
 import TinyThemeTool from' @opentiny/vue-theme/theme-tool.js'
