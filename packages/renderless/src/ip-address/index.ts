@@ -109,7 +109,10 @@ export const setValue =
         }
       }
     } else {
-      state.address = api.isIP6(props.type) ? new Array(8).fill({ value: '' }) : new Array(4).fill({ value: '' })
+      const createValue = () => ({ value: '' })
+      state.address = api.isIP6(props.type)
+        ? new Array(8).fill('').map(createValue)
+        : new Array(4).fill('').map(createValue)
     }
   }
 
