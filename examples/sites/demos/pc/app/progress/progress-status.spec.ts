@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('三种状态是否正常显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://127.0.0.1:7130/pc/progress/progress-status')
+  await page.goto('progress#progress-status')
 
   const progress = page.getByRole('progressbar')
   const success = progress.filter({ hasText: '100%' })
