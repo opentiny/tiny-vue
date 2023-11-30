@@ -8,6 +8,11 @@
       <div class="ti-fi-1 ti-w0 ti-rel cmp-container">
         <!-- 一个组件的文档:  描述md + demos + apis -->
         <div class="markdown-body markdown-top-body" size="medium" v-html="cmpTopMd"></div>
+        <version-tip 
+          v-if="currJson.metaData || currJson.versionTipOption"
+          :metaData="currJson.metaData"
+          v-bind="currJson.versionTipOption">
+        </version-tip>
         <template v-if="currJson?.demos?.length > 0">
           <div class="all-demos-container">
             <h2 class="ti-f30 ti-fw-normal !ti-mb20">{{ $t('yan-shi') }}</h2>
@@ -66,6 +71,13 @@
                         <td>
                           <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
+                          <version-tip 
+                            v-if="row.metaData || row.versionTipOption"
+                            :metaData="row.metaData"
+                            v-bind="row.versionTipOption" 
+                            renderType="tag"
+                            tipSubject="api">
+                          </version-tip>
                         </td>
                         <td v-if="!key.includes('slots')">
                           <a
@@ -134,6 +146,7 @@ import { router } from '@/router.js'
 import { Collapse, CollapseItem } from '@opentiny/vue'
 import { faqMdConfig, staticDemoPath, getWebdocPath } from './cmpConfig'
 import AsyncHighlight from './async-highlight.vue'
+import VersionTip from './VersionTip.vue'
 
 export default defineComponent({
   name: 'CmpPageVue',
@@ -143,7 +156,8 @@ export default defineComponent({
     TinyButtonGroup: ButtonGroup,
     TinyCollapse: Collapse,
     TinyCollapseItem: CollapseItem,
-    AsyncHighlight
+    AsyncHighlight,
+    VersionTip
   },
   directives: {
     loading: Loading.directive
@@ -436,6 +450,9 @@ table.api-table {
     border-bottom: 1px solid rgb(239, 239, 245);
     padding: 12px;
     line-height: 1.5;
+    .version-tip {
+      margin-left: 6px;
+    }
   }
 }
 
