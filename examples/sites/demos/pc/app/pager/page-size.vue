@@ -1,14 +1,9 @@
 <template>
-  <tiny-pager
-    layout="sizes,prev, pager, next"
-    :page-size="5"
-    :page-sizes="[5, 10, 20, 30, 40, 50, 100]"
-    :total="50"
-  ></tiny-pager>
+  <tiny-pager mode="number" :page-size="5" :page-sizes="[5, 7, 10, 20, 50]" :total="100"> </tiny-pager>
 </template>
 
-<script lang="jsx">
-import { Pager } from '@opentiny/vue'
+<script>
+import { Pager, Modal } from '@opentiny/vue'
 
 export default {
   components: {

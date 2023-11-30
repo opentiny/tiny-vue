@@ -1,5 +1,5 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择" multiple filterable :searchable="true">
+  <tiny-select v-model="value" multiple filterable :searchable="true">
     <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">
       <tiny-option
         v-for="item in group.options"
@@ -11,7 +11,7 @@
   </tiny-select>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption, OptionGroup as TinyOptionGroup } from '@opentiny/vue'
 
@@ -36,3 +36,9 @@ const options3 = ref([
 ])
 const value = ref('')
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+</style>

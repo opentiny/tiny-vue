@@ -15,40 +15,40 @@ export default {
       codeFiles: ['base.vue']
     },
     {
-      demoId: 'border',
-      name: {
-        'zh-CN': '显示边框',
-        'en-US': 'button type'
-      },
-      desc: {
-        'zh-CN': '<p>显示边框</p>',
-        'en-US': '<p>button type</p>'
-      },
-      codeFiles: ['border.vue']
-    },
-    {
       demoId: 'disabled',
       name: {
-        'zh-CN': '是否禁用',
-        'en-US': 'button round'
+        'zh-CN': '禁用状态',
+        'en-US': 'disabled'
       },
       desc: {
-        'zh-CN': '<p>是否禁用</p>',
-        'en-US': '<p>button round</p>'
+        'zh-CN': '<p>禁用</p>',
+        'en-US': '<p>disabled</p>'
       },
       codeFiles: ['disabled.vue']
     },
     {
-      demoId: 'event-change',
+      demoId: 'label',
       name: {
-        'zh-CN': '值改变事件',
-        'en-US': 'events'
+        'zh-CN': '自定义label',
+        'en-US': 'custom label'
       },
       desc: {
-        'zh-CN': '<p>值改变事件</p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>自定义label</p>',
+        'en-US': '<p>custom label</p>'
       },
-      codeFiles: ['event-change.vue']
+      codeFiles: ['label.vue']
+    },
+    {
+      demoId: 'event',
+      name: {
+        'zh-CN': '选中状态事件',
+        'en-US': 'event'
+      },
+      desc: {
+        'zh-CN': '<p>事件</p>',
+        'en-US': '<p>event</p>'
+      },
+      codeFiles: ['event.vue']
     }
   ],
   apis: [
@@ -58,7 +58,7 @@ export default {
       properties: [
         {
           name: 'disabled',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>是否禁用</p>',
@@ -67,54 +67,44 @@ export default {
           demoId: 'disabled'
         },
         {
-          name: 'border',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '<p>是否显示边框</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'border'
-        },
-        {
           name: 'label',
-          type: 'Object | String',
+          type: 'object | string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>Radio 的 value,该属性默认为{}</p>',
             'en-US': 'display different button'
           },
-          demoId: 'event-change'
+          demoId: 'label'
         },
         {
           name: 'name',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>原生 name 属性</p>',
             'en-US': 'display different button'
           },
-          demoId: 'disabled'
+          demoId: 'base'
         },
         {
           name: 'text',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>文本</p>',
             'en-US': 'display different button'
           },
-          demoId: 'disabled'
+          demoId: 'base'
         },
         {
           name: 'value',
-          type: 'Object | String',
+          type: 'object | string',
           defaultValue: '{}',
           desc: {
             'zh-CN': '<p>绑定值，该属性默认为{}</p>',
             'en-US': 'display different button'
           },
-          demoId: 'border'
+          demoId: 'base'
         }
       ],
       events: [
@@ -126,7 +116,7 @@ export default {
             'zh-CN': '<p>绑定值变化时触发的事件,可获取changeValue</p>',
             'en-US': 'Click'
           },
-          demoId: 'event-change'
+          demoId: 'event'
         }
       ],
       slots: [

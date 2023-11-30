@@ -83,6 +83,13 @@
       position: relative;
       width: 100%;
 
+      &.is-scrollable {  
+        padding: 0 20px;
+        box-sizing: border-box;
+      }
+    }
+
+    .@{tabs-prefix-cls}__nav-wrap-not-separator {
       &::after {
         content: '';
         position: absolute;
@@ -92,11 +99,6 @@
         height: 1px;
         background-color: var(--ti-tabs-border-color);
         z-index: 1;
-      }
-
-      &.is-scrollable {
-        padding: 0 20px;
-        box-sizing: border-box;
       }
     }
 
@@ -203,9 +205,25 @@
         text-align: center;
       }
     }
+
+    .@{tabs-prefix-cls}__item-separator-space:last-child {
+      .@{tabs-prefix-cls}__item-separator{
+        display: none;
+      }
+    }
+
     &.is-show-active-bar .@{tabs-prefix-cls}__item {
       margin-right: var(--ti-tabs-item-margin-right);
     }
+
+    &.is-show-active-bar .@{tabs-prefix-cls}__item.@{tabs-prefix-cls}__item-separator-space {
+      margin-right: 0;
+    }
+  }
+
+  &__item-separator-space {
+    padding-left: 14px;
+    padding-right: 14px;
   }
 
   &__item {
@@ -267,6 +285,14 @@
       > div {
         display: inline-block;
       }
+
+      .@{tabs-prefix-cls}__icon-close {
+        display: inline-flex;
+        width: 14px;
+        height: 14px;
+        justify-content: center;
+        align-items: center;
+      }
     }
     & > div {
       display: flex;
@@ -304,7 +330,6 @@
 
   &__content {
     position: relative;
-    padding: var(--ti-tabs-content-padding-vertical) var(--ti-tabs-content-padding-horizontal);
 
     // aurora新增
     font-size: var(--ti-tabs-content-font-size);
@@ -1177,6 +1202,16 @@
     }
   }
 
+  &&--top &__item-separator {
+    width: 1px;
+    height: 12px;
+    display: inline-block;
+    position: relative;
+    left: 14px;
+    top: 2px;
+    background-color: #dfdfdf;
+  }
+
   &&--top,
   &&--bottom {
     .@{tabs-prefix-cls}--left .@{tabs-prefix-cls}__item:nth-child(2),
@@ -1186,8 +1221,22 @@
       padding: 0 var(--ti-tabs-item-padding-horizontal);
     }
 
+    // 这里会涉及到tiny-tabs__item-base的样式，尽量不要同步
     &:not(.@{tabs-prefix-cls}--card):not(.@{tabs-prefix-cls}--border-card) .@{tabs-prefix-cls}__item {
       padding-left: 0;
+
+      &-separator-space {
+        padding-left: 14px;
+        padding-right: 14px;
+
+        &:nth-child(2) {
+          margin-left: 0px;
+        }
+
+        &:not(:nth-child(2)) {
+          margin-left: 1px;
+        }
+      }
 
       &.is-left {
         padding: 0 24px;
@@ -1197,6 +1246,10 @@
         padding-left: 0;
       }
     }
+  }
+
+  .@{tab-pane-prefix-cls} {
+    padding: var(--ti-tabs-content-padding-vertical) var(--ti-tabs-content-padding-horizontal);
   }
 
   // 动效

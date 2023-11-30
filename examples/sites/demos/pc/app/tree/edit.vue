@@ -1,16 +1,18 @@
 <template>
   <div>
-    <tiny-button @click="edit('openEdit')">进入编辑</tiny-button>
-    <tiny-button @click="edit('closeEdit')">取消编辑</tiny-button>
-    <tiny-button @click="edit('saveEdit')">保存编辑</tiny-button>
+    <tiny-button @click="openEdit">进入编辑</tiny-button>
+    <tiny-button @click="closeEdit">取消编辑</tiny-button>
+    <tiny-button @click="saveEdit">保存编辑</tiny-button> <br />
     <br />
+    <tiny-button @click="addNode">新建子节点</tiny-button>
+    <tiny-button @click="editNode">编辑节点</tiny-button>
+    <tiny-button @click="saveNode">5s后保存节点</tiny-button> <br />
     <br />
-
-    <tiny-tree ref="tree" node-key="id" :data="data" :default-expanded-keys="expandedKeys"></tiny-tree>
+    <tiny-tree ref="treeRef" node-key="id" :data="data" current-node-key="1" default-expand-all></tiny-tree>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Tree, Button } from '@opentiny/vue'
 
 export default {
@@ -20,73 +22,51 @@ export default {
   },
   data() {
     return {
-      expandedKeys: [1, 4],
       data: [
         {
-          id: 1,
-          label: '一级 1',
+          id: '1',
+          label: '数据 1',
+          children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+        },
+        {
+          id: '2',
+          label: '数据 2',
           children: [
-            {
-              id: 4,
-              label: '二级 1-1',
-              children: [
-                {
-                  id: 9,
-                  label: '三级 1-1-1',
-                  children: [
-                    { id: 11, label: '三级 1-1-1-1' },
-                    { id: 12, label: '三级 1-1-1-2' }
-                  ]
-                },
-                {
-                  id: 10,
-                  label: '三级 1-1-2'
-                }
-              ]
-            }
+            { id: '2-1', label: '数据 2-1' },
+            { id: '2-2', label: '数据 2-2' }
           ]
         },
         {
-          id: 2,
-          label: '一级 2',
-          children: [
-            {
-              id: 5,
-              label: '二级 2-1'
-            },
-            {
-              id: 6,
-              label: '二级 2-2'
-            }
-          ]
-        },
-        {
-          id: 3,
-          label: '一级 3',
-          children: [
-            {
-              id: 7,
-              label: '二级 3-1'
-            },
-            {
-              id: 8,
-              label: '二级 3-2'
-            }
-          ]
+          id: '3',
+          label: '数据 3',
+          children: [{ id: '3-1', label: '数据 3-1' }]
         }
       ]
     }
   },
   methods: {
-    edit(action) {
-      if (action === 'openEdit') {
-        this.$refs.tree.openEdit()
-      } else if (action === 'closeEdit') {
-        this.$refs.tree.closeEdit()
-      } else if (action === 'saveEdit') {
-        const data = this.$refs.tree.saveEdit()
-        this.data = data
-      }
+    openEdit() {
+      this.$refs.treeRef.openEdit()
+    },
+    closeEdit() {
+      this.$refs.treeRef.closeEdit()
+    },
+    saveEdit() {
+      this.data = this.$refs.treeRef.saveEdit()
+    },
+    addNode() {
+      const data = this.$refs.treeRef.getCurrentNode()
+      const node = this.$refs.treeRef.getNode(data.id)
+      this.$refs.treeRef.addNode(node)
+    },
+    editNode() {
+      const data = this.$refs.treeRef.getCurrentNode()
+      const node = this.$refs.treeRef.getNode(data.id)
+      this.$refs.treeRef.editNode(node)
+    },
+    saveNode() {
+      // 离开编辑节点，会立即保存。 也可以通过以下手动触发保存
+      setTimeout(() => this.$refs.treeRef.saveNode(), 5000)
     }
   }
 }

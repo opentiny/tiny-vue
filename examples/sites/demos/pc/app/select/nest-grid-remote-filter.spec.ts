@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('remote-method', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-grid-remote-filter')
+  await page.goto('select#nest-grid-remote-filter')
   const input = page.getByRole('textbox').nth(1)
   const suffixSvg = page.locator('.tiny-input__suffix .tiny-select__caret').first()
 
@@ -28,7 +28,7 @@ test('remote-method', async ({ page }) => {
 })
 
 test('remote-config', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-grid-remote-filter')
+  await page.goto('select#nest-grid-remote-filter')
   const input = page.getByRole('textbox').nth(3)
   const suffixSvg = page.locator('.tiny-input__suffix .tiny-select__caret').nth(1)
 

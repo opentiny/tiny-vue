@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('分页下拉框显示位置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/popper-append-to-body')
+  await page.goto('pager#popper-append-to-body')
 
-  const preview = page.locator('#preview')
-  const pager = preview.locator('.tiny-pager')
+  const demo = page.locator('#popper-append-to-body')
+  const pager = demo.locator('.tiny-pager')
   const sizeSelect = pager.locator('.tiny-pager__selector')
 
   await pager.locator('.tiny-pager__page-size').click()

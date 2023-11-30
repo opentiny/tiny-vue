@@ -2,9 +2,8 @@ import { test, expect } from '@playwright/test'
 
 test('范围选择', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/slider/range-select')
-  const preview = page.locator('#preview')
-  const slider = preview.locator('.tiny-slider__wrapper > .tiny-slider')
+  await page.goto('slider#range-select')
+  const slider = page.locator('.tiny-slider-container .tiny-slider')
   const sliderBlock1 = slider.locator('div').nth(1)
   const sliderBlock2 = slider.locator('div').nth(2)
   // 获取进度条的宽度

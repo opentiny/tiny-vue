@@ -2,12 +2,13 @@ import { test, expect } from '@playwright/test'
 
 test('事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/checkbox/checkbox-events')
-  const preview = page.locator('#preview')
-  const checkbox = preview.locator('.tiny-checkbox-group > label')
+  await page.goto('checkbox#checkbox-events')
+
+  const demo = page.locator('#checkbox-events')
+  const checkbox = demo.locator('.tiny-checkbox-group > label')
+
   await checkbox.nth(1).click()
-  await expect(page.getByText('当前选择：["复选框1","复选框2"]')).toBeVisible()
+  await expect(page.getByText('change 事件触发了，选中值为：复选框1,复选框2')).toBeVisible()
   await checkbox.nth(0).click()
-  await checkbox.nth(1).click()
-  await expect(page.getByText('当前选择：[]')).toBeVisible()
+  await expect(page.getByText('change 事件触发了，选中值为：复选框2')).toBeVisible()
 })

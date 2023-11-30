@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import {
+import type {
   IUploadState,
   IUploadApi,
   IUploadProps,
@@ -24,6 +24,7 @@ import {
   isImage,
   handleChange,
   uploadFiles,
+  handlePaste,
   upload,
   abort,
   post,
@@ -38,6 +39,7 @@ export const api = [
   'state',
   'isImage',
   'handleChange',
+  'handlePaste',
   'uploadFiles',
   'upload',
   'abort',
@@ -90,6 +92,7 @@ export const renderless = (
     uploadFiles: uploadFiles({ constants, Modal, props, state, t }),
     post: post({ api, constants, props, state, service }),
     handleChange: handleChange(api),
+    handlePaste: handlePaste({ api, props }),
     handleKeydown: handleKeydown(api),
     upload: upload({ api, props, refs }),
     mounted: mounted({ state, props, api })

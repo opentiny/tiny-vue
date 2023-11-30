@@ -1,21 +1,22 @@
 <template>
   <div>
-    <p>下划线默认</p>
-    <tiny-select v-model="value1" input-box-type="underline" clearable placeholder="请选择">
+    <p>设置为下划线类型：</p>
+    <p class="font-style">场景1：下划线默认</p>
+    <tiny-select v-model="value1" input-box-type="underline" clearable>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <p>下划线禁用</p>
-    <tiny-select v-model="value2" input-box-type="underline" disabled placeholder="请选择">
+    <p class="font-style">场景2：下划线禁用</p>
+    <tiny-select v-model="value2" input-box-type="underline" disabled>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <p>下划线多选</p>
-    <tiny-select v-model="value3" input-box-type="underline" multiple placeholder="请选择">
+    <p class="font-style">场景3：下划线多选</p>
+    <tiny-select v-model="value3" input-box-type="underline" multiple>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 
@@ -30,3 +31,13 @@ const value1 = ref('')
 const value2 = ref('')
 const value3 = ref([])
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

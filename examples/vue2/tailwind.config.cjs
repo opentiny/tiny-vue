@@ -4,6 +4,6 @@ module.exports = {
   content: [
     '../../packages/vue/src/**/*.{css,less,vue,js,jsx,ts,tsx}',
     '!../../packages/vue/src/**/node_modules',
-    '../docs/resources/mobile-first/**/*.{css,less,vue,js,jsx,ts,tsx}'
+    '../sites/demos/mobile-first/**/*.{css,less,vue,js,jsx,ts,tsx}'
   ]
 }

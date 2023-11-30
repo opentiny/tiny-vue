@@ -1,43 +1,58 @@
 export const classes = {
-  'switch-default':
-    'sm:w-[2.375rem] sm:h-5 inline-block align-middle transition-all duration-200 ease-in-out border border-solid border-transparent relative cursor-pointer outline-0',
-  'switch-default-mobile': 'w-[2.75rem] h-[1.625rem] rounded-2xl',
-  'switch-default-mini-mobile': 'w-8 h-5 sm:w-[1.875rem] sm:h-4 rounded-2xl',
+  'switch-default': 'inline-block align-middle transition-all duration-200 ease-in-out rounded-full relative outline-0',
+  'switch-small': 'w-10 h-6 sm:w-9 sm:h-5',
+  'switch-mini': 'w-8 h-5 sm:w-7 sm:h-4',
+  'switch-medium': 'w-10 h-6',
+  'switch-handle-default':
+    'before:content-[""] before:rounded-full before:bg-color-bg-1 before:absolute before:cursor-pointer before:transition-all before:duration-200 before:ease-in-out before:text-center before:top-0.5',
+  'switch-handle-small': 'before:w-5 before:h-5 before:sm:w-4 before:sm:h-4',
+  'switch-handle-mini': 'before:w-4 before:h-4 before:sm:w-3 before:sm:h-3',
+  'switch-handle-medium': 'before:w-5 before:h-5',
 
-  'before-switch-default':
-    'before:content-[""] before:rounded-xl before:bg-white before:absolute before:cursor-pointer before:transition-all before:duration-200 before:ease-in-out before:text-center before:left-px before:top-px',
-  'before-switch-default-mobile': 'sm:before:w-4 sm:before:h-4 before:w-[1.375rem] before:h-[1.375rem]',
-  'before-switch-default-mini-mobile': 'before:w-4 before:h-4 sm:before:w-3 sm:before:h-3',
-  'active-before-switch-default-mobile': 'active:before:w-[1.625rem] sm:active:before:w-5',
-  'active-before-switch-default-mini-mobile': 'active:before:w-4.5 sm:active:before:w-[0.9375rem]',
+  'switch-true-disabled': 'bg-color-brand-disabled cursor-not-allowed',
+  'switch-false-disabled': 'bg-color-border-separator cursor-not-allowed',
+  'switch-true-not-disabled': 'before:[&_span:nth-of-type(1)]:shadow-xsm bg-color-brand cursor-pointer',
+  'switch-false-not-disabled': 'before:[&_span:nth-of-type(1)]:shadow-xsm bg-color-icon-disabled cursor-pointer',
 
-  'switch-true': 'border-color-brand bg-color-brand before:left-4.5 active:before:left-[0.875rem] sm:before:left-4.5',
-  'switch-true-mini':
-    'border-color-brand bg-color-brand before:left-[0.8375rem] sm:before:left-[0.9375rem] active:before:left-[0.6875rem] sm:active:before:left-[0.75rem]',
-  'switch-false': 'bg-color-icon-disabled',
-  'switch-true-disabled':
-    'bg-color-brand-disabled before:left-4.5 sm:before:left-4.5 cursor-not-allowed before:cursor-not-allowed',
-  'switch-true-disabled-mini':
-    'bg-color-brand-disabled before:left-[0.8125rem] sm:before:left-[0.9375rem] cursor-not-allowed before:cursor-not-allowed',
-  'switch-false-disabled': 'bg-color-icon-primary cursor-not-allowed before:cursor-not-allowed opacity-10',
-  'switch-false-loading': 'bg-color-border-separator cursor-not-allowed before:cursor-not-allowed',
+  'switch-handle-false-small': 'before:left-0.5',
+  'switch-handle-false-medium': 'before:left-0.5',
+  'switch-handle-false-mini': 'before:left-0.5',
+
+  'switch-handle-false-small-disabled': 'before:left-0.5',
+  'switch-handle-false-medium-disabled': 'before:left-0.5',
+  'switch-handle-false-mini-disabled': 'before:left-0.5',
+
+  'switch-handle-true-small': 'before:left-4.5',
+  'switch-handle-true-medium': 'before:left-4.5',
+  'switch-handle-true-mini': 'before:left-3.5',
+
+  'switch-handle-true-small-disabled': 'before:left-4.5',
+  'switch-handle-true-medium-disabled': 'before:left-4.5',
+  'switch-handle-true-mini-disabled': 'before:left-3.5',
 
   'switch-inner-default':
-    'absolute transition-all duration-200 ease-in-out text-color-bg-1 flex justify-center items-center m-auto',
-  'switch-inner-default-mobile': 'w-6 h-6 sm:w-4.5 sm:h-4.5 ',
-  'switch-inner-default-mobile-mini': 'w-4.5 h-4.5 sm:w-3.5 sm:h-3.5',
+    'absolute transition-all duration-200 ease-in-out text-color-bg-1 flex items-center justify-center top-0.5',
+  'switch-inner-small': 'w-5 h-5 sm:w-4 sm:h-4',
+  'switch-inner-mini': 'w-4 h-4 sm:w-3 sm:h-3',
+  'switch-inner-medium': 'w-5 h-5',
+  'switch-inner-true-word': 'left-px',
+  'switch-inner-false-small-word': 'left-4.5',
+  'switch-inner-false-medium-word': 'left-4.5',
+  'switch-inner-false-mini-word': 'left-3.5',
+  'switch-inner-false-icon': 'left-0.5',
+  'switch-inner-true-small-icon': 'left-4.5',
+  'switch-inner-true-medium-icon': 'left-4.5',
+  'switch-inner-true-mini-icon': 'left-3.5',
 
-  'switch-inner-true': '-left-px -top-px sm:top-0',
-  'switch-inner-false': 'left-5 -top-px sm:left-4.5 sm:top-0',
+  'switch-icon-small': 'w-4 h-4 sm:w-3 sm:h-3',
+  'switch-icon-medium': 'w-4 h-4',
+  'switch-icon-mini': 'w-3 h-3 sm:w-2 sm:h-2',
+  'switch-icon-false-disabled': 'fill-color-border-separator',
+  'switch-icon-false-default': 'fill-color-icon-disabled',
+  'switch-icon-true-disabled': 'fill-color-brand-disabled',
+  'switch-icon-true-default': 'fill-color-brand',
 
-  'switch-inner-true-mini': '-left-px sm:left-0',
-  'switch-inner-false-mini': 'left-[0.875rem] sm:left-4',
-
-  'switch-inner-true-icon': 'left-4.5',
-  'switch-inner-true-icon-mini': 'left-[0.8125rem] sm:left-[0.875rem]',
-  'switch-inner-false-icon': '',
-  'switch-inner-false-icon-mini': '-left-[0.02rem]',
-
-  'switch-inner-true-loading': 'left-[1.0625rem]',
-  'switch-inner-true-loading-mini': 'left-3 sm:left-3.5'
+  'switch-loading-small': 'w-5 h-5 sm:w-4 sm:h-4',
+  'switch-loading-medium': 'w-5 h-5',
+  'switch-loading-mini': 'w-4 h-4 sm:w-3 sm:h-3 '
 }

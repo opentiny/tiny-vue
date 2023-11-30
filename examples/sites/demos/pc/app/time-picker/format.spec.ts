@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('时间格式化', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-picker/format')
+  await page.goto('time-picker#format')
 
   const preview = page.locator('#preview')
   const timePicker = preview.locator('.tiny-date-editor > input')

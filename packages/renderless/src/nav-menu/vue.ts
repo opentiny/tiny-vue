@@ -9,7 +9,13 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { INavMenuApi, INavMenuProps, INavMenuState, ISharedRenderlessParamHooks, INavMenuRenderlessParamUtils } from '@/types'
+import type {
+  INavMenuApi,
+  INavMenuProps,
+  INavMenuState,
+  ISharedRenderlessParamHooks,
+  INavMenuRenderlessParamUtils
+} from '@/types'
 import {
   computedIsShowMore,
   computedPopClass,
@@ -40,7 +46,9 @@ import {
   getUrl,
   getRoute,
   setActiveMenu,
-  initService
+  initService,
+  handleTitleMouseenter,
+  handleTitleMouseleave
 } from './index'
 
 export const api = [
@@ -64,10 +72,12 @@ export const api = [
   'getTag',
   'getUrl',
   'getRoute',
-  'setActiveMenu'
+  'setActiveMenu',
+  'handleTitleMouseenter',
+  'handleTitleMouseleave'
 ]
 
-const initState = ({ reactive, api, computed }): INavMenuState =>
+const initState = ({ reactive, api, computed, vm }): INavMenuState =>
   reactive({
     data: [],
     more: [],
@@ -86,7 +96,11 @@ const initState = ({ reactive, api, computed }): INavMenuState =>
     moreItemSelectedIndex: -1,
     subIndex: -1,
     isShowSetting: false,
+    tooltipVisible: false,
+    tooltipContent: '',
     marginLeft: 0,
+    isSaaSTheme: vm.theme === 'saas',
+    menuClass: '',
     isShowMore: computed(() => api.computedIsShowMore()),
     popClass: computed(() => api.computedPopClass()),
     subMenus: computed(() => api.computedSubMenus()),
@@ -94,7 +108,7 @@ const initState = ({ reactive, api, computed }): INavMenuState =>
     popStyle: computed(() => api.computedPopStyle())
   })
 
-const initApi = ({ api, state, props, parent, fetchMenuData, fields, router, route, nextTick }) => {
+const initApi = ({ api, state, props, parent, fetchMenuData, fields, router, route, nextTick, vm }) => {
   Object.assign(api, {
     state,
     getUrl: getUrl(),
@@ -125,20 +139,22 @@ const initApi = ({ api, state, props, parent, fetchMenuData, fields, router, rou
     watchWidth: watchWidth({ api, nextTick }),
     willHideSubMenu: willHideSubMenu({ api, state }),
     hideSubMenu: hideSubMenu({ api, parent, state }),
-    showSubMenu: showSubMenu({ api, nextTick, parent, state })
+    showSubMenu: showSubMenu({ api, nextTick, parent, state, vm }),
+    handleTitleMouseenter: handleTitleMouseenter({ state, vm }),
+    handleTitleMouseleave: handleTitleMouseleave({ state })
   })
 }
 
 export const renderless = (
   props: INavMenuProps,
   { computed, onMounted, onUnmounted, reactive, watch }: ISharedRenderlessParamHooks,
-  { parent, nextTick, service, router, route }: INavMenuRenderlessParamUtils
+  { parent, nextTick, service, router, route, vm }: INavMenuRenderlessParamUtils
 ): INavMenuApi => {
-  const api = {}
+  const api = {} as INavMenuApi
   const { fetchMenuData, fields } = initService({ props, service })
-  const state = initState({ reactive, api, computed })
+  const state = initState({ reactive, api, computed, vm })
 
-  initApi({ api, state, props, parent, fetchMenuData, fields, router, route, nextTick })
+  initApi({ api, state, props, parent, fetchMenuData, fields, router, route, nextTick, vm })
 
   api.initData()
 

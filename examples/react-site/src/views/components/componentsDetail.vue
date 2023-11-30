@@ -152,7 +152,7 @@ const getApiTableOptFn = oneApiArr => {
   };
 };
 
-function loadPage(){
+function loadPage() {
   const lang = $t2('cn', 'en');
 
   state.cmpTopMdShow = state.currJsonShow = true;
@@ -170,16 +170,14 @@ function loadPage(){
   if (faqMdConfig[state.cmpId]) {
     fetchDemosFile(`@demos/app/${state.cmpId}/webdoc/${state.cmpId}.faq.${lang}.md`)
       .then(data => {
-        console.log(data)
+        console.log(data);
         state.cmpFAQMd = marked(DOMPurify.sanitize(data));
       })
-      .catch(error => {}
-      );
+      .catch(error => {});
   } else {
     state.cmpFAQMd = null;
   }
 
-  
   fetchDemosFile(`@demos/app/${state.cmpId}/webdoc/${state.cmpId}.json`)
     .then(jsonStr => {
       const json = JSON.parse(jsonStr);
@@ -209,10 +207,10 @@ function loadPage(){
       }, 0);
     })
     .catch(error => {
-      throw new Error(error)
+      throw new Error(error);
       state.currJsonShow = false;
     });
-};
+}
 
 const handleApiAnchor = ev => {
   if (ev.target.tagName === 'A' && ev.target.closest('.route-anchor')) {

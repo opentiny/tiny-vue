@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ISearchRenderlessParams, ISearchValue } from '@/types'
+import type { ISearchRenderlessParams, ISearchValue } from '@/types'
 import { on, off } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
 import { isObject, typeOf } from '../common/type'
@@ -81,7 +81,11 @@ export const clickOutside =
     }
   }
 
-export const setDefaultType = (searchTypes: ISearchValue[]): ISearchValue => {
+export const setDefaultType = (searchTypes: ISearchValue[], typeValue: ISearchValue): ISearchValue => {
+  if (typeValue && searchTypes.includes(typeValue)) {
+    return typeValue
+  }
+
   let type = {} as ISearchValue
 
   for (let i = 0, len = searchTypes.length; i < len; i++) {

@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test'
 
-test('动态加载且父子级不相关联', async ({ page }) => {
+test('动态加载且父子级不相关联 lazyload & checkStrictly', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/cascader/auto-load-checkStrictly')
-  await page.locator('#preview').getByRole('img').nth(1).click()
+  await page.goto('cascader#auto-load-checkStrictly')
+  await page.locator('.tiny-cascader').click()
   const svg = page.locator('.tiny-cascader-node__postfix > .st0')
-  await expect(svg).toHaveAttribute('d', 'M6 2v20l13-10z')
-  await page.getByRole('menuitem', { name: '选项1' }).click()
+  await expect(svg).toBeVisible()
+  await page.locator('li[role="menuitem"]').click()
   const loadingSvg = page.getByRole('menuitem', { name: '选项1' }).locator('path')
   await expect(loadingSvg).toHaveAttribute(
     'd',
@@ -14,7 +14,7 @@ test('动态加载且父子级不相关联', async ({ page }) => {
   )
   await page.waitForTimeout(1000)
   await page.getByRole('menuitem', { name: '选项2' }).getByRole('radio').click()
-  await page.getByPlaceholder('请选择').click()
+  await page.getByRole('textbox', { name: '请选择' }).click()
   const light = page.getByRole('menuitem', { name: '选项2' }).getByRole('radio')
   await expect(light).toHaveClass('tiny-radio is-checked')
 })

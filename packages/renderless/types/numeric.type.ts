@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import { BigIntDecimal } from '../src/common/bigInt'
-import { numericProps, $constants } from '@/numeric/src'
-import {
+import type { BigIntDecimal } from '../src/common/bigInt'
+import type { numericProps, $constants } from '@/numeric/src'
+import type {
   focus,
   select,
   getPrecision,
@@ -25,9 +25,10 @@ import {
   setCurrentValue,
   dispatchDisplayedValue,
   getDisplayedValue,
-  initService
+  initService,
+  getDisplayOnlyText
 } from '../src/numeric'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export type INumericProps = ExtractPropTypes<typeof numericProps>
 
@@ -77,6 +78,7 @@ export interface INumericApi {
   setCurrentValue: ReturnType<typeof setCurrentValue>
   dispatchDisplayedValue: ReturnType<typeof dispatchDisplayedValue>
   getDisplayedValue: ReturnType<typeof getDisplayedValue>
+  getDisplayOnlyText: ReturnType<typeof getDisplayOnlyText>
 }
 
 export type INumericRenderlessParams = ISharedRenderlessFunctionParams<INumericConstants> & {

@@ -1,8 +1,8 @@
 <template>
-  <tiny-cascader v-model="value" :options="options" :props="props" collapse-tags clearable></tiny-cascader>
+  <tiny-cascader v-model="value" :options="options" :props="props" collapse-tags></tiny-cascader>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Cascader as TinyCascader } from '@opentiny/vue'
 

@@ -1,17 +1,38 @@
 <template>
-  <tiny-select ref="select" v-model="value" placeholder="请选择" filterable :filter-method="filter" clearable>
-    <tiny-option
-      v-for="item in options"
-      v-show="!item.filter"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
+  <div>
+    <p>场景1：组件默认过滤</p>
+    <tiny-select v-model="value1" ref="selectRef" filterable no-match-text="No Match">
+      <tiny-option
+        v-for="item in options"
+        v-show="!item.filter"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      >
+      </tiny-option>
+    </tiny-select>
+    <p>场景2：自定义过滤</p>
+    <tiny-select
+      v-model="value2"
+      ref="customFilterRef"
+      filterable
+      :filter-method="customFilterMethod"
+      clearable
+      no-match-text="No Match"
     >
-    </tiny-option>
-  </tiny-select>
+      <tiny-option
+        v-for="item in options"
+        v-show="!item.filter"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      >
+      </tiny-option>
+    </tiny-select>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option } from '@opentiny/vue'
 
 export default {
@@ -28,19 +49,20 @@ export default {
         { value: '选项4', label: '龙须面' },
         { value: '选项5', label: '北京烤鸭' }
       ],
-      value: ''
+      value1: '',
+      value2: ''
     }
   },
   methods: {
-    filter(value) {
-      const select = this.$refs.select
+    customFilterMethod(searchValue) {
+      const customFilterRef = this.$refs.customFilterRef
 
-      if (value) {
-        select.state.cachedOptions.forEach((item) => {
-          item.state.visible = item.label.includes(value)
+      if (searchValue) {
+        customFilterRef.state.cachedOptions.forEach((item) => {
+          item.state.visible = item.label.includes(searchValue)
         })
       } else {
-        select.state.cachedOptions.forEach((item) => {
+        customFilterRef.state.cachedOptions.forEach((item) => {
           item.state.visible = true
         })
       }
@@ -48,3 +70,13 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

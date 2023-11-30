@@ -307,7 +307,7 @@ export const infinityTheme = {
   'ti-notify-close-icon-color': 'var(--ti-base-color-common-1)',
   'ti-notify-title-text-color': 'var(--ti-base-color-common-1)',
   'ti-notify-title-margin-top': '0',
-  'ti-notify-title-margin-horizontal': '',
+  'ti-notify-title-margin-horizontal': '0',
   'ti-notify-title-margin-bottom': '8px',
   'ti-notify-title-height': '25px',
   'ti-notify-title-line-height': '25px',

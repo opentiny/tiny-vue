@@ -60,6 +60,36 @@ const SAAS_DEFAULT_COLORS_18 = [
   '#efb9e3'
 ]
 
+const _SAAS_DEFAULT_COLORS1 = ['#2070F3', '#55CCD9', '#715AF8', '#8AC8F3', '#EB74DF', '#87C859', '#D19F00']
+const _SAAS_DEFAULT_COLORS2 = ['#36C18D', '#CB8EFB', '#ED448A', '#F7C45C', '#E7434A', '#2A8290', '#EE8DDB']
+const _SAAS_DEFAULT_COLORS3 = ['#278661', '#4FA700', '#5CACFF', '#9185F0', '#B62BF7', '#26616B', '#F46465']
+const _SAAS_DEFAULT_COLORS4 = ['#5531EB', '#FCDBAA', '#112857', '#E61866', '#B98C1D', '#D41DBC', '#87D5E5']
+const SAAS_DEFAULT_COLORS = _SAAS_DEFAULT_COLORS1
+  .concat(_SAAS_DEFAULT_COLORS2)
+  .concat(_SAAS_DEFAULT_COLORS3)
+  .concat(_SAAS_DEFAULT_COLORS4)
+
+const SAAS_DEFAULT_SAME_COLORS = {
+  blue: [
+    { color: '#2E94FF', idx: 3 },
+    { color: '#8BC3FF', idx: 5 },
+    { color: '#1F55B5', idx: 1 },
+    { color: '#2070F3', idx: 2 },
+    { color: '#5CACFF', idx: 4 },
+    { color: '#B9DBFF', idx: 6 },
+    { color: '#1B3F86', idx: 0 }
+  ],
+  green: [
+    { color: '#00A874', idx: 3 },
+    { color: '#82DBB1', idx: 5 },
+    { color: '#236549', idx: 1 },
+    { color: '#278661', idx: 2 },
+    { color: '#50C291', idx: 4 },
+    { color: '#AFEDCE', idx: 6 },
+    { color: '#1D4A37', idx: 0 }
+  ]
+}
+
 const DEFAULT_CONFIG = {
   tooltip: {
     backgroundColor: '#fff',
@@ -128,5 +158,7 @@ export {
   ECHARTS_SETTINGS,
   DEFAULT_CONFIG,
   SAAS_DEFAULT_COLORS_10,
-  SAAS_DEFAULT_COLORS_18
+  SAAS_DEFAULT_COLORS_18,
+  SAAS_DEFAULT_COLORS,
+  SAAS_DEFAULT_SAME_COLORS
 }

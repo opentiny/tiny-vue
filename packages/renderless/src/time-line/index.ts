@@ -114,7 +114,7 @@ export const computedWrapperClass =
     const wrapperClass = [] as ITimelineCustomCls
 
     if (vertical) {
-      wrapperClass.push('tiny-steps-timeline', { reverse })
+      wrapperClass.push('tiny-steps-timeline', { reverse, 'tiny-timeline__shape-dot': props.shape === 'dot' })
     } else {
       wrapperClass.push('tiny-steps-normal', textPosition === 'right' ? 'text-right' : 'text-bottom')
     }
@@ -124,4 +124,12 @@ export const computedWrapperClass =
     }
 
     return wrapperClass
+  }
+
+export const toggleFold =
+  ({ props }) =>
+  (node: ITimelineItem): boolean => {
+    const isFold = !props.data[node.index].fold
+    props.data[node.index].fold = isFold
+    return isFold
   }

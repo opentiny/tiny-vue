@@ -1,20 +1,13 @@
 <template>
   <div>
-    <tiny-select
-      v-model="value"
-      placeholder="请选择"
-      clearable
-      :options="options"
-      :cache-op="cacheOp"
-      @change="cacheChange"
-    ></tiny-select>
+    <tiny-select v-model="value" clearable :options="options" :cache-op="cacheOp" @change="cacheChange"></tiny-select>
     <p class="cache-value">
       {{ cacheValue }}
     </p>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select } from '@opentiny/vue'
 
 export default {
@@ -44,3 +37,13 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

@@ -377,6 +377,8 @@ import IconMobileRadioSelected from './src/mobile-radio-selected'
 import IconMobileCheckbox from './src/mobile-checkbox'
 import IconMobileCheckboxHalf from './src/mobile-checkbox-half'
 import IconMobileCheckboxSelected from './src/mobile-checkbox-selected'
+import IconMobileErrorWhite from './src/mobile-error-white'
+import IconMobileSuccessWhite from './src/mobile-success-white'
 import IconAudio from './src/audio'
 import IconMic from './src/mic'
 import IconExcelType from './src/excel-type'
@@ -389,6 +391,7 @@ import IconTextType from './src/text-type'
 import IconVideoType from './src/video-type'
 import IconWordType from './src/word-type'
 import IconZipType from './src/zip-type'
+import IconSubScript from './src/sub-script'
 
 // new design
 import IconPrompt from './src/prompt'
@@ -403,7 +406,12 @@ import IconSortTriangle from './src/sort-triangle'
 import IconSortTriangleAscending from './src/sort-triangle-ascending'
 import IconSortTriangleDescending from './src/sort-triangle-descending'
 
+import IconFinish from './src/finish'
+import IconWarn from './src/warn'
+
 export {
+  IconSubScript,
+  IconSubScript as iconSubScript,
   IconSortTriangle,
   IconSortTriangle as iconSortTriangle,
   IconSortTriangleAscending,
@@ -456,6 +464,10 @@ export {
   IconMobileRadio as iconMobileRadio,
   IconMobileRadioSelected,
   IconMobileRadioSelected as iconMobileRadioSelected,
+  IconMobileErrorWhite,
+  IconMobileErrorWhite as iconMobileErrorWhite,
+  IconMobileSuccessWhite,
+  IconMobileSuccessWhite as iconMobileSuccessWhite,
   IconAdd,
   IconAdd as iconAdd,
   IconAdministrator,
@@ -1183,10 +1195,15 @@ export {
   IconZoomIn,
   IconZoomIn as iconZoomIn,
   IconZoomOut,
-  IconZoomOut as iconZoomOut
+  IconZoomOut as iconZoomOut,
+  IconFinish,
+  IconFinish as iconFinish,
+  IconWarn,
+  IconWarn as iconWarn
 }
 
 export default {
+  IconSubScript,
   IconSortTriangle,
   IconSortTriangleAscending,
   IconSortTriangleDescending,
@@ -1212,6 +1229,8 @@ export default {
   IconMobileCheckboxSelected,
   IconMobileRadio,
   IconMobileRadioSelected,
+  IconMobileErrorWhite,
+  IconMobileSuccessWhite,
   IconAdd,
   IconAdministrator,
   IconAlignBaseline,
@@ -1572,5 +1591,7 @@ export default {
   IconWriting,
   IconYes,
   IconZoomIn,
-  IconZoomOut
+  IconZoomOut,
+  IconFinish,
+  IconWarn
 }

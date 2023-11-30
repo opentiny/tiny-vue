@@ -1,10 +1,46 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择" disabled autocomplete>
-    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
-  </tiny-select>
+  <div>
+    <p>场景1： 下拉禁用</p>
+    <tiny-select v-model="value1" disabled autocomplete>
+      <tiny-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+    <p>场景2：多选 + 下拉某项禁用</p>
+    <tiny-select v-model="value2" multiple>
+      <tiny-option
+        v-for="item in options2"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+        :disabled="item.disabled"
+      >
+      </tiny-option>
+    </tiny-select>
+    <p>场景3：单选 + 下拉某项禁用</p>
+    <tiny-select v-model="value3">
+      <tiny-option
+        v-for="item in options2"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+        :disabled="item.disabled"
+      >
+      </tiny-option>
+    </tiny-select>
+    <p>场景4：多选 + 禁用项默认选中</p>
+    <tiny-select v-model="value4" multiple>
+      <tiny-option
+        v-for="item in options2"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+        :disabled="item.disabled"
+      >
+      </tiny-option>
+    </tiny-select>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option } from '@opentiny/vue'
 
 export default {
@@ -14,15 +50,35 @@ export default {
   },
   data() {
     return {
-      options: [
+      options1: [
         { value: '选项1', label: '黄金糕' },
         { value: '选项2', label: '双皮奶' },
         { value: '选项3', label: '蚵仔煎' },
         { value: '选项4', label: '龙须面' },
         { value: '选项5', label: '北京烤鸭' }
       ],
-      value: ''
+      options2: [
+        { value: '选项1', label: '黄金糕' },
+        { value: '选项2', label: '双皮奶', disabled: true },
+        { value: '选项3', label: '蚵仔煎' },
+        { value: '选项4', label: '龙须面' },
+        { value: '选项5', label: '北京烤鸭' }
+      ],
+      value1: '',
+      value2: [],
+      value3: '',
+      value4: ['选项2', '选项3']
     }
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

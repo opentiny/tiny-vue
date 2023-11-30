@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('栅格布局', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/layout/base')
+  await page.goto('layout#base')
   const preview = page.locator('#preview')
   const layout = preview.locator('.tiny-layout > div')
   const div1 = layout.first()

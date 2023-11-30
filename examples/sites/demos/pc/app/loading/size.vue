@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <div id="tiny-loading1" style="width: 100%; margin-bottom: 10px; height: 120px"></div>
-    <div id="tiny-loading2" style="width: 100%; margin-bottom: 10px; height: 120px"></div>
-    <div id="tiny-loading3" style="width: 100%; margin-bottom: 10px; height: 120px"></div>
+  <div class="tiny-deom-size-loading">
+    <div id="tiny-size-loading1"></div>
+    <div id="tiny-size-loading2"></div>
+    <div id="tiny-size-loading3"></div>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Loading } from '@opentiny/vue'
 
 export default {
@@ -17,17 +17,28 @@ export default {
   },
   mounted() {
     this.loadingInstance = Loading.service({
-      target: document.getElementById('tiny-loading1'),
+      target: document.getElementById('tiny-size-loading1'),
       size: 'small'
     })
     this.loadingInstance = Loading.service({
-      target: document.getElementById('tiny-loading2'),
+      target: document.getElementById('tiny-size-loading2'),
       size: 'medium'
     })
     this.loadingInstance = Loading.service({
-      target: document.getElementById('tiny-loading3'),
+      target: document.getElementById('tiny-size-loading3'),
       size: 'large'
     })
   }
 }
 </script>
+
+<style>
+.tiny-deom-size-loading {
+  display: flex;
+}
+
+.tiny-deom-size-loading > * {
+  width: 100px;
+  height: 100px;
+}
+</style>

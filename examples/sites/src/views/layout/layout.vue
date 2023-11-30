@@ -7,7 +7,7 @@
       </tiny-tooltip>
     </div>
     <!-- 切換主题样式 -->
-    <tiny-dropdown class="theme-change-button" trigger="click">
+    <tiny-dropdown v-if="!templateModeState.isSaas" class="theme-change-button" trigger="click">
       <tiny-tooltip :content="$t('changeTheme')" placement="left">
         <span>
           <img :src="themeSvg" :alt="$t('changeTheme')" />
@@ -50,7 +50,7 @@
 
           <div class="api-type">
             <div :class="{ 'api-mode': true, active: apiModeState.demoMode === 'single' }">
-              {{ $t2('单示例', 'Single Demo') }}
+              {{ $t2('单示例', 'Single') }}
             </div>
             <tiny-switch
               class="api-switch"
@@ -60,9 +60,9 @@
               v-model="apiModeState.demoMode"
             ></tiny-switch>
             <div :class="{ 'api-mode': true, active: apiModeState.demoMode === 'default' }">
-              {{ $t2('多示例', 'Mutli Demo') }}
+              {{ $t2('多示例', 'Multiple') }}
             </div>
-            <tiny-tooltip content="切换demo的预览模式" placement="right">
+            <tiny-tooltip :content="$t2('切换demo的预览模式', 'Change demo preview mode')" placement="right">
               <icon-help-circle></icon-help-circle>
             </tiny-tooltip>
           </div>
@@ -79,6 +79,10 @@
           @current-change="clickMenu"
           @collapse-change="collapseChange"
         >
+          <template #default="{ data }">
+            <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain" class="ti-mr6">多端</tiny-tag>
+            <span>{{ data.label }}</span>
+          </template>
         </tiny-tree-menu>
       </div>
       <div
@@ -96,14 +100,13 @@
 
 <script>
 import { defineComponent, reactive, computed, toRefs, onMounted, onUnmounted } from 'vue'
-import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip } from '@opentiny/vue'
+import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip, Tag } from '@opentiny/vue'
 import { iconHelpCircle } from '@opentiny/vue-icon'
 import { genMenus } from '@/menus.jsx'
 import { router } from '@/router.js'
-import { $t2, $t, appData, appFn } from '@/tools'
+import { $t2, $t, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import themeSvg from '@/assets/images/theme.svg?url'
-import { useApiMode } from '../../tools'
-import useTheme from '../../tools/useTheme'
+import useTheme from '@/tools/useTheme'
 
 export default defineComponent({
   name: 'LayoutVue',
@@ -114,12 +117,14 @@ export default defineComponent({
     TinyDropdownMenu: DropdownMenu,
     TinyDropdownItem: DropdownItem,
     TinyTooltip: Tooltip,
+    TinyTag: Tag,
     IconHelpCircle: iconHelpCircle()
   },
   props: [],
   setup() {
     const { getThemeData, changeTheme, currThemeLabel } = useTheme()
     const { apiModeState, apiModeFn } = useApiMode()
+    const { templateModeState } = useTemplateMode()
     let state = reactive({
       menuOptions: genMenus(),
       hasHeader: true, // Header，当嵌入think时，无头。 所以预留变量
@@ -166,8 +171,14 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      // 每次切换路由，要导航到顶部
-      routerCbDestory = router.afterEach(() => {
+      // 每次切换路由，有锚点则跳转到锚点，否则导航到顶部
+      routerCbDestory = router.afterEach((to) => {
+        if (to.hash) {
+          const el = document.querySelector(to.hash)
+          if (el) {
+            return el.scrollIntoView()
+          }
+        }
         state.contentRef.scrollTo({ top: 0, behavior: 'auto' })
       })
 
@@ -185,7 +196,7 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
-      appData, // 使用到里面的lang
+      appData,
       ...appFn,
       searchMenu,
       clickMenu,
@@ -196,7 +207,8 @@ export default defineComponent({
       themeSvg,
       changeLanguage,
       apiModeState,
-      apiModeFn
+      apiModeFn,
+      templateModeState
     }
   }
 })

@@ -17,7 +17,7 @@ export default {
     baseClick() {
       Notify({
         type: 'info',
-        title: (h, params) => <h4 style="margin:0">通知消息的标题</h4>,
+        title: (h, params) => <h4>通知消息的标题</h4>,
         message: '默认4500 ms后自动关闭提示框',
         position: 'top-right'
       })
@@ -25,7 +25,7 @@ export default {
     successClick() {
       Notify({
         type: 'success',
-        title: (h, params) => <h4 style="margin:0">通知消息的标题</h4>,
+        title: (h, params) => <h4>通知消息的标题</h4>,
         message: '500ms后自动关闭提示框',
         position: 'top-right',
         duration: 500
@@ -34,7 +34,7 @@ export default {
     errorClick() {
       Notify({
         type: 'error',
-        title: (h, params) => <h4 style="margin:0">通知消息的标题</h4>,
+        title: (h, params) => <h4>通知消息的标题</h4>,
         message: '5000ms后自动关闭提示框',
         position: 'top-right',
         duration: 5000

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tiny-tag-demo">
     <tiny-tag size="small" :disabled="disabled" class="first">
       <icon-fileupload class="tiny-svg-size left" />标签 <icon-chevron-right class="tiny-svg-size right" />
     </tiny-tag>

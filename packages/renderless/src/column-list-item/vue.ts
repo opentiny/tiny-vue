@@ -1,34 +1,32 @@
 import {
+  getModel,
+  setModel,
   handelIconClick,
+  computedStore,
+  getItemChecked,
   handleChange,
   getIsGroup,
   getSize,
-  isDisabled,
-  getModel,
-  setModel,
-  computedStore
+  isDisabled
 } from './index'
 
-export const api = ['state', 'handelIconClick']
+export const api = ['state', 'handelIconClick', 'handleChange']
 
-export const renderless = (
-  props,
-  { reactive, watch, computed },
-  { vm, parent, emit, constants, nextTick, dispatch }
-) => {
+export const renderless = (props, { reactive, computed }, { vm, parent, emit, nextTick, dispatch, constants }) => {
   const api = {}
 
   const state = reactive({
     columnGroup: {},
-    itemChecked: props.modelValue,
+    size: computed(() => api.getSize()),
+    disabled: computed(() => api.isDisabled()),
+    itemChecked: computed(() => api.getItemChecked()),
     sliceNum: computed(() => (props.size === 'small' ? 1 : 2)),
     iconNum: computed(() => (props.size === 'small' ? 2 : 3)),
     effectOptions: computed(() => props.options.filter((item) => !item.hidden)),
     showCheckbox: computed(() => props.showCheckbox || state.columnGroup.showCheckbox),
+    showRadio: computed(() => props.showRadio || state.columnGroup.showRadio),
     store: computed(() => api.computedStore()),
-    getIsGroup: computed(() => api.getIsGroup()),
-    size: computed(() => api.getSize()),
-    disabled: computed(() => api.isDisabled()),
+    isGroup: computed(() => api.getIsGroup()),
     model: computed({
       get: () => api.getModel(),
       set: (val) => api.setModel(val)
@@ -37,17 +35,16 @@ export const renderless = (
 
   Object.assign(api, {
     state,
-    getSize: getSize({ props, state }),
-    getModel: getModel({ props, state }),
     getIsGroup: getIsGroup({ constants, parent, state }),
     isDisabled: isDisabled({ props, state }),
     setModel: setModel({ constants, dispatch, emit, props, vm, state }),
+    getSize: getSize({ props, state }),
+    getModel: getModel({ props, state }),
     handleChange: handleChange({ constants, dispatch, emit, state, nextTick }),
     computedStore: computedStore({ state, props }),
-    handelIconClick: handelIconClick({ emit })
+    handelIconClick: handelIconClick({ emit }),
+    getItemChecked: getItemChecked({ state, props })
   })
-
-  watch(() => state.model, api.handleChange, { deep: true })
 
   return api
 }

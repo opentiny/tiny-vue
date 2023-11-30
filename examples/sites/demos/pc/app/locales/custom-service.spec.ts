@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('locales-custom-service', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/locales/custom-service')
+  await page.goto('locales#custom-service')
   const reference = page.locator('.reference-wrapper')
   const popper = page.locator('.tiny-locales__popper')
 

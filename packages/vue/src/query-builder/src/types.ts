@@ -1,4 +1,4 @@
-import type { QueryBuilderProps } from '../src';
+import type { QueryBuilderProps } from '../src'
 
 export type DemoOption =
   | 'showCombinatorsBetweenRules'
@@ -17,11 +17,11 @@ export type DemoOption =
   | 'disabled'
   | 'debugMode'
   | 'parseNumbers'
-  | 'showBranches';
+  | 'showBranches'
 
-export type DemoOptions = Record<DemoOption, boolean>;
+export type DemoOptions = Record<DemoOption, boolean>
 
-export type DemoOptionsHash = Partial<Record<DemoOption, 'true' | 'false'>>;
+export type DemoOptionsHash = Partial<Record<DemoOption, 'true' | 'false'>>
 
 export type CommonRQBProps = Pick<
   QueryBuilderProps,
@@ -29,10 +29,7 @@ export type CommonRQBProps = Pick<
   | 'validator'
   | 'controlClassnames'
   | 'controlElements'
-  | Exclude<
-      DemoOption,
-      'validateQuery' | 'independentCombinators' | 'parseNumbers' | 'showBranches'
-    >
-> & { independentCombinators?: boolean };
+  | Exclude<DemoOption, 'validateQuery' | 'independentCombinators' | 'parseNumbers' | 'showBranches'>
+> & { independentCombinators?: boolean }
 
-export type HttpsURL = `${'https'}://${string}`;
+export type HttpsURL = `${'https'}://${string}`

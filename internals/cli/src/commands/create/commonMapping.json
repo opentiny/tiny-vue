@@ -29,6 +29,11 @@
     "type": "module",
     "exclude": false
   },
+  "DesignSaas": {
+    "path": "design/saas/index.ts",
+    "type": "module",
+    "exclude": false
+  },
   "FormItemLabelWrap": {
     "path": "vue/src/form-item/src/label-wrap.ts",
     "type": "template",

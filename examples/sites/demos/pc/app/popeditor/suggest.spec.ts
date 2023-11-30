@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 联想查询', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/suggest')
+  await page.goto('popeditor#suggest')
 
-  const preview = page.locator('#preview')
+  const preview = page.locator('#suggest')
   const textBox = preview.getByRole('textbox')
   const grid = page.locator('.tiny-grid__wrapper')
 

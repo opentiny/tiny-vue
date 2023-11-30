@@ -120,7 +120,7 @@ export default {
           }
 
           resolve({ result: data.result, page: data.page })
-        }, 500)
+        }, 200)
       })
     }
   }

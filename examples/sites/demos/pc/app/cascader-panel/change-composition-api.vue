@@ -1,18 +1,17 @@
 <template>
-  <div>
-    <tiny-button @click="clearCheckedNodes" style="margin-bottom: 10px">清除选中节点</tiny-button>
+  <div class="cascader-panel-demo-event">
+    <tiny-button @click="clearCheckedNodes">清除选中节点</tiny-button>
     <tiny-cascader-panel
       v-model="value"
-      ref="CascaderPanelRef"
-      class="cascader-panel-demo"
-      :props="{ checkStrictly: true }"
+      ref="CascaderPanel"
       :options="optionsCascader"
       @change="change"
+      @expand-change="expandChange"
     ></tiny-cascader-panel>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { CascaderPanel as TinyCascaderPanel, Modal, Button as TinyButton } from '@opentiny/vue'
 
@@ -211,14 +210,14 @@ const optionsCascader = ref([
     ]
   }
 ])
-const CascaderPanelRef = ref()
+const cascaderPanelRef = ref()
 
 function clearCheckedNodes() {
-  CascaderPanelRef.value.clearCheckedNodes()
+  cascaderPanelRef.value.clearCheckedNodes()
 }
 
 function change(value) {
-  const checkVal = CascaderPanelRef.value.getCheckedNodes()
+  const checkVal = cascaderPanelRef.value.getCheckedNodes()
   let mess = ''
 
   if (checkVal.length) {
@@ -230,10 +229,15 @@ function change(value) {
     status: 'info'
   })
 }
+
+function expandChange(value) {
+  Modal.message({ message: `节点展开：${value}`, status: 'info' })
+}
+
 </script>
 
 <style scoped>
-.cascader-panel-demo {
-  min-height: 200px;
+.cascader-panel-demo-event > :not(:last-child) {
+  margin-bottom: 12px;
 }
 </style>

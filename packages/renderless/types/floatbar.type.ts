@@ -11,10 +11,10 @@
  */
 
 import type { ExtractPropTypes } from 'vue'
-import { floatbarProps } from '@/floatbar/src'
+import type { floatbarProps } from '@/floatbar/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
-export type IFloatbarItem = {
+export interface IFloatbarItem {
   url: string
   target: string
   title: string
@@ -22,11 +22,11 @@ export type IFloatbarItem = {
 
 export type IFloatbarProps = ExtractPropTypes<typeof floatbarProps>
 
-export type IFloatbarState = {
+export interface IFloatbarState {
   data: IFloatbarItem[]
 }
 
-export type IFloatbarApi = {
+export interface IFloatbarApi {
   state: IFloatbarState
 }
 

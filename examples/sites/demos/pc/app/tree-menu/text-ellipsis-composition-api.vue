@@ -1,17 +1,20 @@
 <template>
-  <tiny-tree-menu :data="treeData" ellipsis :prefix-icon="IconDoubleRight"></tiny-tree-menu>
+  <div>
+    <p>场景1：文字超长省略显示</p>
+    <tiny-tree-menu :data="treeData" ellipsis></tiny-tree-menu>
+    <p>场景2：文字超长换行显示</p>
+    <tiny-tree-menu :data="treeData" wrap></tiny-tree-menu>
+  </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
-import { iconDoubleRight } from '@opentiny/vue-icon'
 
-const IconDoubleRight = iconDoubleRight()
 const treeData = ref([
   {
     id: 100,
-    label: '首页11111111111111111111111111111111111111111111111111'
+    label: '首页文字超长示例文字超长示例文字超长示例文字超长示例文字超长示例文字超长示例文字超长示例'
   },
   {
     id: 200,
@@ -34,10 +37,6 @@ const treeData = ref([
     id: 300,
     label: '组件',
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件',
@@ -167,3 +166,14 @@ const treeData = ref([
   }
 ])
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

@@ -8,7 +8,11 @@
           <p>自定义副标题xxxxxx</p>
         </div>
       </template>
-      <div>内容区域</div>
+      <div>
+        <br />
+        <br />
+        <span>内容区域</span>
+      </div>
     </tiny-drawer>
   </div>
 </template>

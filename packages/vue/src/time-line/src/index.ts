@@ -10,6 +10,7 @@
  *
  */
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
+import type { PropType } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
 export const $constants = {
@@ -21,6 +22,8 @@ export const $constants = {
   STACK_NODES_MAX: 7,
   LIMITED_STACK_NODES: 3
 }
+
+export type ShapeType = 'circle' | 'dot'
 
 export const timelineProps = {
   ...$props,
@@ -34,7 +37,7 @@ export const timelineProps = {
   },
   horizontal: {
     type: Boolean,
-    default: false
+    default: true
   },
   showNumber: {
     type: Boolean,
@@ -92,6 +95,10 @@ export const timelineProps = {
   lineWidth: {
     type: [String, Number],
     default: ''
+  },
+  shape: {
+    type: String as PropType<ShapeType>,
+    default: 'circle'
   }
 }
 

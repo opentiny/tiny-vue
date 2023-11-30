@@ -1,18 +1,11 @@
 <template>
   <div>
-    <tiny-switch v-model="value" true-value="yes" false-value="no" show-text>
-      <template #open>
-        <span>是</span>
-      </template>
-      <template #close>
-        <span>否</span>
-      </template>
-    </tiny-switch>
+    <tiny-switch v-model="value" true-value="yes" false-value="no"> </tiny-switch>
     当前值:{{ value }}
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Switch } from '@opentiny/vue'
 
 export default {

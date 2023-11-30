@@ -1,41 +1,42 @@
 <template>
-  <div class="demo-select">
+  <div>
+    <p>场景1：下拉表格远程搜索基础用法</p>
     <tiny-select
       ref="select1"
       v-model="radioValue1"
       placeholder="请输入关键词"
       clearable
-      :remote-method="remoteMethod"
-      remote
       filterable
+      remote
+      :remote-method="remoteMethod"
+      multiple
+      reserve-keyword
       value-field="id"
-      :multiple="true"
       text-field="city"
       render-type="grid"
       :grid-op="gridOpRadio"
-      popper-class="grid-remote"
     ></tiny-select>
-
+    <p>场景2：下拉表格远程搜索 + 自动搜索 + 显示按钮</p>
     <tiny-select
       ref="select2"
       v-model="radioValue2"
+      multiple
+      reserve-keyword
       placeholder="请输入关键词"
       clearable
+      filterable
+      remote
       :remote-method="remoteMethod"
       :remote-config="{ autoSeach: true, clearData: true, showIcon: true }"
-      remote
-      filterable
       value-field="id"
-      :multiple="true"
       text-field="city"
       render-type="grid"
       :grid-op="gridOpRadio"
-      popper-class="grid-remote-config"
     ></tiny-select>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select } from '@opentiny/vue'
 
 export default {
@@ -77,6 +78,7 @@ export default {
   },
   methods: {
     remoteMethod(value) {
+      console.log(value)
       let allData = Array.from({ length: 1000 }, (a, i) => {
         return {
           id: '00' + i,
@@ -105,9 +107,12 @@ export default {
 }
 </script>
 
-<style scoped>
-.demo-select .tiny-select {
-  width: 270px;
-  margin-right: 30px;
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
 }
 </style>

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义服务', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/drop-roles/custom-service')
+  await page.goto('drop-roles#custom-service')
 
   const input = page.getByPlaceholder('选择角色')
   const listItems = page.getByRole('listitem')

@@ -1,41 +1,35 @@
 import {
   handleChange,
   setLink,
-  handleMove,
-  handleClickOutside,
-  removeClickOutside,
-  handleClick,
+  tableMouseMove,
+  tableChoose,
+  toggleTablePanel,
+  closeTablePanel,
   shouldShow,
   eventImg,
   eventClick,
   Active
 } from './index'
+
 export const api = [
-  'toolBar',
   'state',
   'setLink',
   'handleChange',
-  'box',
-  'handleMove',
-  'handleClickOutside',
-  'removeClickOutside',
-  'handleClick',
+  'tableMouseMove',
+  'tableChoose',
+  'toggleTablePanel',
+  'closeTablePanel',
   'shouldShow',
-  'fontSize',
   'eventImg',
   'eventClick',
   'Active'
 ]
 export const renderless = (
   props,
-  { computed, onMounted, onBeforeUnmount, reactive, ref },
+  { computed, onMounted, onBeforeUnmount, reactive, ref, markRaw },
   { vm, emit, parent },
   {
     Editor,
-    Collaboration,
-    CodehighComp,
-    Y,
-    WebrtcProvider,
     StarterKit,
     Table,
     TableCell,
@@ -57,49 +51,41 @@ export const renderless = (
     CodeBlockLowlight,
     lowlight,
     VueNodeViewRenderer,
-    NodeViewContent,
-    nodeViewProps,
-    NodeViewWrapper,
     Placeholder,
     codeHighlight
   }
 ) => {
-  let toolBar = [
+  let defaultToolBar = [
     'bold',
     'italic',
-    'link',
-    'unlink',
-    'highlight',
     'underline',
     'strike',
-    'subscript',
-    'superscript',
+    'quote',
     'code',
+    'codeBlock',
     'unorderedlist',
     'orderedlist',
     'taskList',
-    'quote',
-    'codeBlock',
-    'formatClear',
-    'nodeDelete',
+    'subscript',
+    'superscript',
     'undo',
     'redo',
     'left',
     'center',
     'right',
-    'font-size',
-    'line-height',
-    'h-box',
-    'img',
-    'color',
-    'table',
-    'backgroundColor'
+    'formatClear',
+    'link',
+    'h-box', //
+    'font-size', //
+    'line-height', //
+    'highlight',
+    'color', //
+    'backgroundColor', //
+    'unlink', //
+    'img', //
+    'table' //
   ]
-  if (props.customToolBar) {
-    toolBar = props.customToolBar
-  }
-  let ydoc = null
-  let provider = null
+
   // 自定义图片
   const CustomImage = Image.extend({
     addAttributes() {
@@ -140,16 +126,16 @@ export const renderless = (
       return {
         setP:
           (attributes) =>
-            ({ commands }) => {
-              return commands.setNode(this.name, attributes)
-            }
+          ({ commands }) => {
+            return commands.setNode(this.name, attributes)
+          }
       }
     }
   })
   const CustomSize = Paragraph.extend({
     addOptions() {
       return {
-        size: [12, 14, 16, 18, 20]
+        size: [12, 14, 16, 18, 20, 24, 30]
       }
     },
     addAttributes() {
@@ -168,9 +154,9 @@ export const renderless = (
       return {
         setSize:
           (attributes) =>
-            ({ commands }) => {
-              return commands.setNode(this.name, attributes)
-            }
+          ({ commands }) => {
+            return commands.setNode(this.name, attributes)
+          }
       }
     }
   })
@@ -179,24 +165,24 @@ export const renderless = (
       return {
         bgColor: {
           default: null,
-          renderHTML: attributes => {
+          renderHTML: (attributes) => {
             if (!attributes.bgColor) {
               return {}
             }
             return {
-              style: `background: ${attributes.bgColor}`,
+              style: `background: ${attributes.bgColor}`
             }
-          },
+          }
         }
       }
     },
     addCommands() {
       return {
         setBackColor:
-          attributes =>
-            ({ commands }) => {
-              return commands.setMark(this.name, attributes)
-            }
+          (attributes) =>
+          ({ commands }) => {
+            return commands.setMark(this.name, attributes)
+          }
       }
     }
   })
@@ -204,7 +190,7 @@ export const renderless = (
     extensions: [
       StarterKit?.configure({
         // 开启多人协作功能要关闭默认的history模式
-        history: false
+        history: true
       }),
       Table.configure({
         resizable: true
@@ -236,10 +222,10 @@ export const renderless = (
         }
       }).configure({ lowlight }),
       Placeholder.configure({
-        placeholder: props.placeholder ?? 'Write something …'
+        placeholder: props.placeholder
       })
     ],
-    content: '',
+    content: props.modelValue,
     autofocus: true,
     editable: true,
     injectCSS: false,
@@ -281,45 +267,28 @@ export const renderless = (
     },
     ...props.options
   }
-  if (props.Collaboration) {
-    if (!window._yDoc) {
-      window._yDoc = new Y.Doc()
-    }
-    ydoc = window._yDoc
-    provider = new WebrtcProvider('tiny-examsple-document', ydoc)
-    defaultOptions.extensions.push(
-      Collaboration?.configure({
-        document: ydoc
-      }),
-    )
-  }
-  const editor = new Editor(props.options ? props.options : defaultOptions)
 
-  const box = ref(null)
-  const fontSize = ref('16px')
+  let options = Object.assign(defaultOptions, props.options)
+
   const state = reactive({
-    editor: null,
+    editor: markRaw(new Editor(options)),
+    toolbar: computed(() => (props.customToolBar.length ? props.customToolBar : defaultToolBar)),
     // table 变量
-    isShow: false,
+    isShowTable: false,
     flagX: 0,
     flagY: 0
   })
-  state.editor = editor
   const api = {
-    toolBar,
     state,
-    setLink: setLink(editor),
-    handleChange: handleChange(editor),
+    setLink: setLink(state.editor),
+    handleChange: handleChange(state.editor),
     // table处理函数
-    box,
-    handleMove: handleMove(state, box),
-    handleClickOutside: handleClickOutside(state, box),
-    removeClickOutside: removeClickOutside(state, box),
-    handleClick: handleClick(state, box),
+    tableMouseMove: tableMouseMove(state, vm),
+    toggleTablePanel: toggleTablePanel(state),
+    closeTablePanel: closeTablePanel(state),
+    tableChoose: tableChoose(state, vm),
     // bubble 菜单
     shouldShow: shouldShow,
-    //
-    fontSize,
     eventImg,
     eventClick,
     Active
@@ -327,5 +296,6 @@ export const renderless = (
   onBeforeUnmount(() => {
     state.editor.destroy()
   })
+
   return api
 }

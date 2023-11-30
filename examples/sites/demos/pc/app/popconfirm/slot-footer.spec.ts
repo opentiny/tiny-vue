@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('自定义底部按钮', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popconfirm/slot-footer')
+  await page.goto('popconfirm#slot-footer')
 
-  const preview = page.locator('#preview')
-  const popConfirm = preview.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')
+  const demo = page.locator('#slot-footer')
+  const popConfirm = demo.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')
   const popConfirmPopover = page.locator('body > .tiny-popconfirm-popover')
   const closeBtn = popConfirmPopover.getByRole('button', { name: '自定义关闭按钮' })
 

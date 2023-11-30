@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import PullRefresh from './src/mobile.vue'
+import PullRefresh from './src/index'
 import { version } from './package.json'
 
 PullRefresh.model = {

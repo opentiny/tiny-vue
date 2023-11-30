@@ -46,3 +46,16 @@ export const emitEvent = (emit, name, ...args) => {
 
   return !cancel
 }
+
+/**
+ *  webComponent中，有些事件的target会代理到webComponent根元素上，导致无法获取正确的target
+ *
+ * @param event 浏览器事件
+ * @returns 正确的target
+ */
+export const getActualTarget = (e) => {
+  if (!e || !e.target) {
+    return null
+  }
+  return e.target.shadowRoot && e.composed ? e.composedPath()[0] || e.target : e.target
+}

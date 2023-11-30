@@ -1,18 +1,21 @@
 <template>
   <div>
-    <p>默认不显示空数据图片</p>
-    <tiny-select v-model="value" placeholder="请选择" no-data-text="None">
+    <p>场景1：默认</p>
+    <tiny-select v-model="value">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-
-    <p>显示空数据图片</p>
-    <tiny-select v-model="value" placeholder="请选择" no-data-text="暂无数据" :show-empty-image="true">
+    <p>场景2：自定义空数据文本</p>
+    <tiny-select v-model="value" no-data-text="None">
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+    <p>场景3：显示空数据图片</p>
+    <tiny-select v-model="value" no-data-text="None" :show-empty-image="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option } from '@opentiny/vue'
 
 export default {
@@ -28,3 +31,13 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

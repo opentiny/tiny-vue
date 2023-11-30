@@ -47,7 +47,7 @@ export const renderless = (props, { reactive, computed, onMounted, onBeforeUnmou
 
   Object.assign(api, {
     state,
-    panelToggle: panelToggle({ state, props, api }),
+    panelToggle: panelToggle({ state, props, api, emit }),
     filterSelectOption: filterSelectOption({ state, props, emit, api }),
     filterConfirm: filterConfirm({ state, props, emit }),
     selectOption: selectOption({ state, props, emit, api }),

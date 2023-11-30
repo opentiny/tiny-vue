@@ -8,6 +8,7 @@ dist-react/
 allDist/
 packages/**/runtime
 coverage/
+test-results
 
 /packages/vue/index.ts
 /packages/vue/pc.ts
@@ -23,6 +24,7 @@ coverage/
 /packages/react/app.ts
 
 /examples/**/playwright-report
+/examples/**/test-results
 vite.config.ts.timestamp*
 vitest.config.ts.timestamp*
 
@@ -55,3 +57,5 @@ packages/theme/scripts/theme-result.txt
 packages/theme/scripts/themeExcel.xlsx
 
 packages/theme/src/theme/*-theme/component.js
+
+pnpm-lock.yaml

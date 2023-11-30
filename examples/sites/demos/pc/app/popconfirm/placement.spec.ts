@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('提示框显示位置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popconfirm/placement')
+  await page.goto('popconfirm#placement')
 
-  const preview = page.locator('#preview')
-  const popConfirm = preview.locator('.tiny-popconfirm')
+  const demo = page.locator('#placement')
+  const popConfirm = demo.locator('.tiny-popconfirm')
   const popConfirmPopover = page.locator('body > .tiny-popconfirm-popover')
 
   await popConfirm.first().hover()

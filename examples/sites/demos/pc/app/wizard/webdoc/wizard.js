@@ -3,134 +3,215 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'base-flow',
+      'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>base-flow</code> 属性设置基本流程图模式，以节点图示的方式，显示流程节点及节点间关系，节点的信息只有节点名称和状态。</p>\n',
+          '通过 <code>data</code> 设置流程节点信息，如：设置节点名称和状态；<code>node-click</code> 监听节点点击事件。',
         'en-US':
-          '<p>Sets the basic flowchart mode through the <code>base-flow</code> attribute. The process nodes and relationships between nodes are displayed in node diagrams. The node information is only the node name and status. </p>\n'
+          'Set process node information through<code>data</code>, such as setting node name and status; <code>node-click</code> Listen for node click events.'
       },
-      'codeFiles': ['base-flow.vue']
+      'codeFiles': ['basic-usage.vue']
     },
     {
       'demoId': 'page-guide',
-      'name': { 'zh-CN': '页向导流程图', 'en-US': 'Page Wizard Flowchart' },
+      'name': { 'zh-CN': '页向导模式', 'en-US': 'Page Wizard Mode' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>page-guide</code> 属性设置页向导流程图模式，用于导航当前页面与上一页面、下一页面的前后关系，包括流程图区域、页面展示区域、功能按钮区域。</p>\n',
+          '通过 <code>page-guide</code> 设置页向导模式，包含流程图区域、页面展示区域、功能按钮区域，用于导航当前页面与上一页面、下一页面的前后关系。',
         'en-US':
-          '<p>The <code>page-guide</code> attribute is used to set the page wizard flow chart mode, which is used to navigate the relationship between the current page and the previous and next pages, including the flow chart area, page display area, and function button area. </p>\n'
+          'Set the page wizard mode through<code>page-guide</code>, including the flowchart area, page display area, and function button area, to navigate the relationship between the current page and the previous or next page.'
       },
       'codeFiles': ['page-guide.vue']
     },
     {
       'demoId': 'vertical',
-      'name': { 'zh-CN': '垂直流程图', 'en-US': 'Vertical Flowchart' },
+      'name': { 'zh-CN': '垂直模式', 'en-US': 'Vertical Mode' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>vertical</code> 属性设置垂直流程图模式，以节点图示的方式竖向显示流程节点及节点间关系，节点的信息包含节点名称、状态、完成时间、用户。</p>\n',
+          '通过 <code>vertical</code> 设置垂直模式，竖向显示流程节点信息及节点间关系，节点信息包含节点名称、内容、状态、完成时间。',
         'en-US':
-          '<p>The <code>vertical</code> attribute is used to set the vertical flowchart mode. Process nodes and relationships between nodes are displayed vertically in node diagram mode. Node information includes the node name, status, completion time, and user. </p>\n'
+          'Set vertical mode through<code>vertical</code>to vertically display process node information and relationships between nodes. Node information includes node name, content, status, and completion time.'
       },
       'codeFiles': ['vertical.vue']
     },
     {
       'demoId': 'time-line-flow',
-      'name': { 'zh-CN': '时间线流程图', 'en-US': 'Timeline Flowchart' },
+      'name': { 'zh-CN': '时间线', 'en-US': 'Timeline' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>time-line-flow</code> 属性设置时间线流程图，通过 <code>time-icon</code> 属性自定义时间图标。以时间点的方式竖向显示流程节点处理信息，包括节点名称、状态、完成时间、用户。</p>\n',
+          '通过 <code>time-line-flow</code> 设置时间线，以时间点的方式竖向显示流程节点处理信息，包含节点名称、状态、完成时间、用户信息。',
         'en-US':
-          '<p>Set the timeline flowchart through the <code>time-line-flow</code> attribute, and customize the time icon through the <code>time-icon</code> attribute. Process node processing information is displayed vertically by time point, including the node name, status, completion time, and user. </p>\n'
+          'Set a timeline through<code>time-line-flow</code>to vertically display process node processing information in a time point manner, including node name, status, completion time, and user information.'
       },
       'codeFiles': ['time-line-flow.vue']
-    },
-    {
-      'demoId': 'slot-step-button',
-      'name': { 'zh-CN': '步骤插槽', 'en-US': 'Step Slot' },
-      'desc': {
-        'zh-CN': '<p>页向导流程图里通过 <code>stepbutton</code> 插槽可以自定义步骤按钮或内容。</p>\n',
-        'en-US':
-          'The <code>stepbutton</code> slot can be used to customize step buttons or content in the <p>page wizard flowchart. </p>\n'
-      },
-      'codeFiles': ['slot-step-button.vue']
     },
     {
       'demoId': 'slot-base',
       'name': { 'zh-CN': '基本插槽', 'en-US': 'Basic slot' },
       'desc': {
-        'zh-CN': '<p>通过 <code>base</code> 配置基本内容。</p>\n',
-        'en-US': '<p>Configure the basic content through <code>base</code>. </p>\n'
+        'zh-CN': '通过 <code>base</code> 作用域插槽自定义节点的名称。',
+        'en-US': 'Customize the name of the node through the<code>base</code>scope slot.'
       },
       'codeFiles': ['slot-base.vue']
+    },
+    {
+      'demoId': 'slot-step-button',
+      'name': { 'zh-CN': '步骤插槽', 'en-US': 'Step Slot' },
+      'desc': {
+        'zh-CN': '通过 <code>stepbutton</code> 插槽自定义页向导模式的步骤按钮和内容。',
+        'en-US':
+          'Customize the step buttons and content of the page wizard mode through the<code>stepbutton</code>slot.'
+      },
+      'codeFiles': ['slot-step-button.vue']
+    },
+    {
+      'demoId': 'btn-events',
+      'name': { 'zh-CN': '按钮事件', 'en-US': 'Button Event' },
+      'desc': {
+        'zh-CN': `页向导模式下：通过 <code>btn-prev</code> 监听“上一步”按钮点击事件；<br /> 
+        <code>btn-next</code> 监听“下一步”按钮点击事件；<br />
+        <code>btn-save</code> 监听“保存”按钮点击事件；<br />
+        <code>btn-submit</code> 监听“提交”按钮点击事件，流程需要走到最后一步才会显示此按钮。<br />`,
+        'en-US': `In page wizard mode: listen for the "Previous" button click event through<code>btn-prev</code><br/>
+        <code>btn-next</code>Listen for the "Next" button click event<br/>
+        <code>btn-save</code>Listen for the "save" button click event<br/>
+        <code>btn-submit</code>Listen for the "submit" button click event, and the process needs to go to the last step to display this button<br/>.`
+      },
+      'codeFiles': ['btn-events.vue']
     }
   ],
   apis: [
     {
       'name': 'wizard',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
-          'type': 'Array',
+          'type': 'IDataItem[]',
+          'typeAnchorName': 'IDataItem',
           'defaultValue': '',
-          'desc': { 'zh-CN': '设置流程图的数据', 'en-US': 'Setting Flowchart Data' },
-          'demoId': 'base-flow'
-        },
-        {
-          'name': 'base-flow',
-          'type': 'boolean',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置流程图为基本流程图模式',
-            'en-US': 'Set the flow chart to the basic flow chart mode.'
-          },
-          'demoId': 'base-flow'
+          'desc': { 'zh-CN': '设置节点数据', 'en-US': 'Setting Node Data' },
+          'demoId': 'basic-usage'
         },
         {
           'name': 'page-guide',
           'type': 'boolean',
-          'defaultValue': '',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置流程图为页向导流程图，配合 base-flow 属性使用',
-            'en-US':
-              'Set the flowchart to a page wizard flowchart, which is used together with the base-flow attribute.'
+            'zh-CN': '设置页向导模式',
+            'en-US': 'Set Page Wizard Mode'
           },
           'demoId': 'page-guide'
         },
         {
-          'name': 'vertical',
-          'type': 'boolean',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '设置流程图为垂直流程图', 'en-US': 'Set the flowchart to a vertical flowchart.' },
-          'demoId': 'vertical'
-        },
-        {
           'name': 'time-line-flow',
           'type': 'boolean',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '设置流程图为时间线流程图', 'en-US': 'Set the flowchart to a timeline flowchart.' },
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '设置时间线', 'en-US': 'Set timeline' },
           'demoId': 'time-line-flow'
+        },
+        {
+          'name': 'vertical',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '设置为垂直模式', 'en-US': 'Set to vertical mode' },
+          'demoId': 'vertical'
         }
       ],
-      'events': [],
+      'events': [
+        {
+          'name': 'btn-next',
+          'type': '(datas: IDataItem[]) => void',
+          'typeAnchorName': 'IDataItem',
+          'desc': {
+            'zh-CN': '页向导模式下，点击“下一步”按钮触发的回调事件',
+            'en-US': 'Callback event triggered by clicking the "Next" button in page wizard mode'
+          },
+          'demoId': 'btn-events'
+        },
+        {
+          'name': 'btn-prev',
+          'type': '(datas: IDataItem[]) => void',
+          'typeAnchorName': 'IDataItem',
+          'desc': {
+            'zh-CN': '页向导模式下，点击“上一步”按钮触发的回调事件',
+            'en-US': 'Callback event triggered by clicking the "Previous" button in page wizard mode'
+          },
+          'demoId': 'btn-events'
+        },
+        {
+          'name': 'btn-save',
+          'type': '(datas: IDataItem[]) => void',
+          'typeAnchorName': 'IDataItem',
+          'desc': {
+            'zh-CN': '页向导模式下，点击“保存”按钮触发的回调事件',
+            'en-US': 'Callback event triggered by clicking the "Save" button in page wizard mode'
+          },
+          'demoId': 'btn-events'
+        },
+        {
+          'name': 'btn-submit',
+          'type': '(datas: IDataItem[]) => void',
+          'typeAnchorName': 'IDataItem',
+          'desc': {
+            'zh-CN': '页向导模式下，点击“下一步”导致最后一个节点的状态为 "doing" 时，点击“提交”按钮触发的回调事件',
+            'en-US':
+              'In page wizard mode, when clicking "Next" causes the status of the last node to be "doing", the callback event triggered by clicking the "Submit" button'
+          },
+          'demoId': 'btn-events'
+        },
+        {
+          'name': 'node-click',
+          'type': '(node: IDataItem, index: number, event: Event) => void',
+          'typeAnchorName': 'IDataItem',
+          'desc': {
+            'zh-CN': '节点点击事件',
+            'en-US': 'Node click event'
+          },
+          'demoId': 'basic-usage'
+        }
+      ],
       'slots': [
         {
           'name': 'base',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '基本流程图插槽', 'en-US': 'Basic Flowchart Slot' },
+          'desc': { 'zh-CN': '基本插槽', 'en-US': 'Basic Slot' },
           'demoId': 'slot-base'
         },
         {
           'name': 'stepbutton',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '页向导流程图按钮插槽', 'en-US': 'Page Wizard Flowchart Button Slot' },
+          'desc': { 'zh-CN': '页向导模式按钮插槽', 'en-US': 'Page Wizard Mode Button Slot' },
           'demoId': 'slot-step-button'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IDataItem',
+      type: 'interface',
+      code: `
+interface IDataItem {
+  name: string
+  status: string
+  showNode?: boolean
+  content?: string
+  imgUrl?: string
+  users?: string
+  userName?: string
+  roleNumber?: string
+  date?: string
+  values?: IDataItemValuesItem[]
+}
+
+interface IDataItemValuesItem {
+  text: string
+  value: string
+}`
     }
   ]
 }

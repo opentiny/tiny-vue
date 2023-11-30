@@ -28,11 +28,12 @@
       highlightClass
     ]"
   >
-    <span v-if="state.select.multiple && (state.select.optimization || !state.select.state.multipleLimit)">
+    <span v-if="state.select.multiple" class="tiny-option__checkbox-wrap">
       <tiny-checkbox
         :model-value="state.itemSelected"
         :disabled="disabled || state.groupDisabled || state.limitReached"
-      ></tiny-checkbox>
+      >
+      </tiny-checkbox>
     </span>
     <slot>
       <span>{{ state.currentLabel }}</span>

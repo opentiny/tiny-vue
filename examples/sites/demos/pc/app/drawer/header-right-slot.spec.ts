@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('头部右侧插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/drawer/header-right-slot')
+  await page.goto('drawer#header-right-slot')
 
   const drawer = page.locator('.tiny-drawer__main')
   const headerRight = drawer.locator('.tiny-drawer__header-right')

@@ -3,6 +3,7 @@
  */
 import fs from 'fs-extra'
 import { EOL as endOfLine } from 'node:os'
+import minimist from 'minimist'
 import {
   getopentinyVersion,
   pathFromWorkspaceRoot,
@@ -49,7 +50,7 @@ export const install = (app, opts = {}) => {
 
 const buildFullRuntime = () => {
   const outputPath = pathFromWorkspaceRoot(outputDir, 'app.ts')
-  const components = getComponents('pc')
+  const components = getComponents('all')
   const includeTemplate: string[] = []
   const componentsTemplate: string[] = []
 

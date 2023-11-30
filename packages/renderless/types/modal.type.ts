@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { modalProps, $constants } from '@/modal/src'
+import type { modalProps, $constants } from '@/modal/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 type zoomLocatType = null | {
@@ -64,7 +64,7 @@ export interface IModalApi {
 
 export type IModalRenderlessParamUtils = ISharedRenderlessParamUtils<IModalConstants>
 
-export type IModalEmitParam = {
+export interface IModalEmitParam {
   type: string
   $modal: IModalRenderlessParamUtils['parent']
   options?: any[]
@@ -75,7 +75,7 @@ export type IModalEmitZoomParam = {
   event: Event
 } & Pick<IModalRenderlessParams, 'parent' | 'emit'>
 
-type IModalSizeInfo = {
+interface IModalSizeInfo {
   width: number
   height: number
   top: number
@@ -134,14 +134,14 @@ export type IModalUpdateSbParam = Pick<
   'height' | 'offsetHeight' | 'y' | 'minHeight' | 'temp' | 'visibleHeight' | 'offsetTop' | 'marginSize' | 'modalBoxElem'
 >
 
-export type IModalRet = {
+export interface IModalRet {
   width?: number
   height?: number
   top?: number
   left?: number
 }
 
-export type IModalUpdateDeltaParam = {
+export interface IModalUpdateDeltaParam {
   event: MouseEvent
   delta: {
     x: number
@@ -152,7 +152,7 @@ export type IModalUpdateDeltaParam = {
 
 export type IModalDragDirection = 'wl' | 'wr' | 'st' | 'sb' | 'swst' | 'sest' | 'swlb' | 'selb'
 
-export type IModalSetModalBoxStyleParam = {
+export interface IModalSetModalBoxStyleParam {
   delta: { x: number; y: number }
   params: {
     type: IModalDragDirection

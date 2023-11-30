@@ -10,8 +10,7 @@
  *
  */
 
-import { IRadioButtonRenderlessParams, IRadioGroupProps, IRadioButtonState } from '@/types'
-import type { ComponentPublicInstance } from 'vue'
+import type { IRadioButtonRenderlessParams, IRadioGroupProps, IRadioButtonState } from '@/types'
 
 export const handleChange =
   ({
@@ -58,9 +57,9 @@ export const getStyle = (state: IRadioButtonRenderlessParams['state']) => () => 
 })
 
 export const toggleEvents =
-  ({ refs, props }: Pick<IRadioButtonRenderlessParams, 'refs' | 'props'>) =>
+  ({ vm, props }: Pick<IRadioButtonRenderlessParams, 'vm' | 'props'>) =>
   (isUnBind = false): void => {
-    const radioEl = refs.radio
+    const radioEl = vm.$refs.radio
 
     Object.keys(props.events).forEach((ev) => {
       radioEl[(isUnBind ? 'remove' : 'add') + 'EventListener'](ev, props.events[ev])

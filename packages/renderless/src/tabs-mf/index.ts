@@ -1,5 +1,6 @@
 import { random } from '../common/string'
 import debounce from '../common/deps/debounce'
+import { fastdom } from '../common/deps/fastdom'
 
 // --- tabs ---
 export const setActive =
@@ -32,18 +33,23 @@ export const scrollTo =
     const { $refs } = vm
     const { tabbar } = $refs
     const { scroll } = tabbar.$refs
-    const { clientWidth, scrollWidth } = scroll
 
-    if (name && scrollWidth > clientWidth) {
-      const total = navs.length
-      const index = navs.findIndex((nav) => nav.name === name)
-      const max = scrollWidth - clientWidth
+    fastdom.measure(() => {
+      const { clientWidth, scrollWidth } = scroll
 
-      if (~index) {
-        scroll.scrollLeft = (max / (total - 1)) * index
-        tabbar.wheelListener()
+      if (name && scrollWidth > clientWidth) {
+        const total = navs.length
+        const index = navs.findIndex((nav) => nav.name === name)
+        const max = scrollWidth - clientWidth
+
+        if (~index) {
+          fastdom.mutate(() => {
+            scroll.scrollLeft = (max / (total - 1)) * index
+            tabbar.wheelListener()
+          })
+        }
       }
-    }
+    })
   }
 
 export const clickMore = (api) => (name) => {

@@ -5,16 +5,16 @@ import { bindFilter, emitter, getElementCssClass, getElementStatusClass } from '
 import teleport from '../teleport'
 
 // vue2.7有version字段
-const isVueHoos = Boolean(vueHooks.version?.includes('2.7'))
+const isVueHooks = Boolean(Vue.version?.includes('2.7'))
 
-const hooks = isVueHoos ? vueHooks : compositionHooks
+const hooks = isVueHooks ? vueHooks : compositionHooks
 
 const Teleport = teleport(hooks)
 
 export { emitter, bindFilter, getElementCssClass, getElementStatusClass, Teleport }
 
 // 只有在vue的版本小于2.7并且composition-api没有注册的情况下才去注册hooks
-if (!hooks.default['__composition_api_installed__'] && !isVueHoos) {
+if (!hooks.default.__composition_api_installed__ && !isVueHooks) {
   Vue.use(hooks.default)
 }
 
@@ -333,6 +333,8 @@ export const parseVnode = (vnode) => {
 
   return vnode
 }
+
+export const isEmptyVnode = (vnode) => !vnode || !vnode.tag
 
 export const h = hooks.h
 

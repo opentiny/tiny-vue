@@ -1,17 +1,17 @@
 <template>
   <div>
-    <p>多选</p>
-    <tiny-select v-model="multivalue" placeholder="请选择" :searchable="true" multiple :show-empty-image="true">
+    <p>单选</p>
+    <tiny-select v-model="value" :searchable="true" :show-empty-image="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <p>单选</p>
-    <tiny-select v-model="value" placeholder="请选择" :searchable="true" :show-empty-image="true">
+    <p>多选</p>
+    <tiny-select v-model="multivalue" :searchable="true" multiple :show-empty-image="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 
@@ -25,3 +25,13 @@ const options = ref([
 const value = ref('')
 const multivalue = ref([])
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

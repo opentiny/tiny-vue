@@ -1,17 +1,18 @@
 <template>
-  <tiny-tree-menu :data="treeData" node-key="id" ref="treeMenu" :default-expanded-keys="expandeArr"></tiny-tree-menu>
+  <tiny-tree-menu :data="treeData" node-key="id" :default-expanded-keys="expandeArr"> </tiny-tree-menu>
 </template>
 
-<script lang="jsx">
-import { TreeMenu } from '@opentiny/vue'
+<script>
+import { TreeMenu, Button } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu: TreeMenu,
+    TinyButton: Button
   },
   data() {
     return {
-      expandeArr: [302],
+      expandeArr: [30101],
       treeData: [
         {
           id: 100,
@@ -38,10 +39,6 @@ export default {
           id: 300,
           label: '组件',
           children: [
-            {
-              id: 300,
-              label: '组件'
-            },
             {
               id: 301,
               label: '表单组件',
@@ -122,3 +119,10 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+</style>

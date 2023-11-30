@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('属性设置', () => {
-  test('控制按钮的显示与隐藏', async ({ page }) => {
+  test('加减按钮的显示与隐藏', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/numeric/controls')
+    await page.goto('numeric#controls')
 
     const numeric = page.locator('#preview .tiny-numeric')
     await expect(numeric).toHaveClass(/is-without-controls/)
@@ -13,7 +13,7 @@ test.describe('属性设置', () => {
 
   test('关联文字', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/numeric/controls')
+    await page.goto('numeric#controls')
 
     const numericInput = page.locator('#preview .tiny-numeric .tiny-numeric__input-inner')
     await expect(numericInput).toHaveAttribute('aria-label', '关联文字')
@@ -21,7 +21,7 @@ test.describe('属性设置', () => {
 
   test('name属性', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('http://localhost:7130/pc/numeric/controls')
+    await page.goto('numeric#controls')
 
     const numericInput = page.locator('#preview .tiny-numeric .tiny-numeric__input-inner')
     await expect(numericInput).toHaveAttribute('name', 'name')

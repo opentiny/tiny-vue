@@ -8,6 +8,6 @@
   ></tiny-pager>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Pager as TinyPager } from '@opentiny/vue'
 </script>

@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { uploadProps } from '@/upload/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
+import type { uploadProps } from '@/upload/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
 import type {
   isImage,
   abort,
@@ -8,6 +8,7 @@ import type {
   handleClick,
   onBeforeDestroy,
   handleUpdate,
+  handlePaste,
   uploadFiles,
   post,
   handleChange,
@@ -43,6 +44,7 @@ export interface IUploadApi {
   handleClick: ReturnType<typeof handleClick>
   onBeforeDestroy: ReturnType<typeof onBeforeDestroy>
   handleUpdate: ReturnType<typeof handleUpdate>
+  handlePaste: ReturnType<typeof handlePaste>
   uploadFiles: ReturnType<typeof uploadFiles>
   post: ReturnType<typeof post>
   handleChange: ReturnType<typeof handleChange>

@@ -21,7 +21,7 @@ import type {
 
 import { KEY_CODE } from '../common'
 
-export const isImage = (str: string): boolean => str.indexOf('image') !== -1
+export const isImage = (str: string): boolean => str.includes('image')
 
 export const handleChange = (api: IUploadRenderlessParams['api']) => (event: Event) => {
   const files = (<HTMLInputElement>event.target).files
@@ -32,6 +32,36 @@ export const handleChange = (api: IUploadRenderlessParams['api']) => (event: Eve
 
   api.uploadFiles(files)
 }
+
+export const handlePaste =
+  ({ api, props }: Pick<IUploadRenderlessParams, 'api' | 'props'>) =>
+  (event: ClipboardEvent) => {
+    event.preventDefault()
+
+    if (!props.pasteUpload) {
+      return
+    }
+
+    const items = event.clipboardData?.items
+
+    if (!items) {
+      return
+    }
+
+    const files = [] as IFileUploadFile[]
+    for (let i = 0; i < items.length; i++) {
+      const file = items[i].getAsFile()
+      if (file) {
+        files.push(file)
+      }
+    }
+
+    if (!files.length) {
+      return
+    }
+
+    api.uploadFiles(files)
+  }
 
 export const getFormData =
   ({ constants, state, props }: Pick<IUploadRenderlessParams, 'constants' | 'state' | 'props'>) =>
@@ -82,7 +112,7 @@ export const uploadFiles =
     props,
     t
   }: Pick<IUploadRenderlessParams, 'state' | 'constants' | 'props' | 't'> & IFileUploadModalVm) =>
-  (files: FileList) => {
+  (files: FileList | IFileUploadFile[]) => {
     if (state.updateId === '') {
       if (props.limit && props.fileList.length + files.length > props.limit) {
         const fileUploadTem = state.uploader.$refs[constants.FILE_UPLOAD_INNER_TEMPLATE]

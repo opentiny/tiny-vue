@@ -1,17 +1,14 @@
 <template>
-  <div class="clear-no-match-value">
-    <div>
-      <span>单选：</span>
-      <tiny-select v-model="val" :clear-no-match-value="true" placeholder="请选择">
-        <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
-      </tiny-select>
-    </div>
-    <div>
-      <span>多选：</span>
-      <tiny-select v-model="multiVal" :clear-no-match-value="true" multiple placeholder="请选择">
-        <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
-      </tiny-select>
-    </div>
+  <div>
+    <p>场景1：单选，val 找不到匹配值，val为：{{ val }}</p>
+    <tiny-select v-model="val" :clear-no-match-value="true">
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+
+    <p>场景2：多选，multiVal 找不到匹配值，multiVal为：{{ multiVal }}</p>
+    <tiny-select v-model="multiVal" :clear-no-match-value="true" multiple>
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
   </div>
 </template>
 
@@ -32,11 +29,11 @@ const multiVal = ref(['选项2', '11'])
 </script>
 
 <style lang="less" scoped>
-.clear-no-match-value {
-  .tiny-select {
-    width: 230px;
-    margin-right: 20px;
-    margin-bottom: 10px;
-  }
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
 }
 </style>

@@ -201,7 +201,6 @@
 .@{tree-node-prefix-cls} {
   white-space: nowrap;
   outline: 0;
-  overflow: hidden;
 
   // 连接线
   &.show-line {
@@ -232,7 +231,6 @@
       }
 
       .@{tree-node-prefix-cls}__content {
-
         .@{tree-node-prefix-cls}__content-indent {
           height: var(--ti-tree-node-content-height);
 
@@ -314,12 +312,6 @@
     }
   }
 
-  &.is-root {
-    .@{tree-node-prefix-cls}__content-box {
-      padding-left: 0;
-    }
-  }
-
   &.is-leaf:not(.is-root) {
     .@{tree-node-prefix-cls}__content {
       padding-left: var(--ti-tree-node-icon-font-size);
@@ -355,7 +347,8 @@
       }
     }
 
-    & label.@{css-prefix}checkbox {
+    & label.@{css-prefix}checkbox,
+    .@{css-prefix}radio {
       margin: 0 calc(var(--ti-tree-node-label-margin-left) / 2);
     }
 
@@ -387,7 +380,6 @@
     display: flex;
     align-items: center;
     height: 100%;
-    font-size: 0;
 
     svg {
       fill: var(--ti-tree-node-operate-icon-color);
@@ -479,8 +471,6 @@
   }
 
   .@{radio-prefix-cls} {
-    margin-right: 0;
-
     .@{radio-prefix-cls}__label {
       display: none;
     }

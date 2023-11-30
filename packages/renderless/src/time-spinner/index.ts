@@ -34,9 +34,15 @@ export const getArrowSecondList = (state) => () => {
   return [seconds - step >= 0 ? seconds - step : undefined, seconds, seconds + step <= 59 ? seconds + step : undefined]
 }
 
-export const increase = ({ api, state }) => () => api.scrollDown(state.step[state.currentScrollbar])
+export const increase =
+  ({ api, state }) =>
+  () =>
+    api.scrollDown(state.step[state.currentScrollbar])
 
-export const decrease = ({ api, state }) => () => api.scrollDown(-state.step[state.currentScrollbar])
+export const decrease =
+  ({ api, state }) =>
+  () =>
+    api.scrollDown(-state.step[state.currentScrollbar])
 
 export const modifyDateField =
   ({ emit, props, state }) =>
@@ -105,13 +111,13 @@ export const handleScroll =
       (vm.$refs[type].$refs.wrap.scrollTop - (api.scrollBarHeight(type) * 0.5 - 10) / api.typeItemHeight(type) + 3) /
         api.typeItemHeight(type)
     )
-  
+
     const step = state.step[type]
     const limitVal = { hours: 23, minutes: 59, seconds: 59 }
     Object.keys(limitVal).forEach((key) => (limitVal[key] = Math.floor(limitVal[key] / step) * step))
-  
+
     value = Math.min(value * step, limitVal[type])
-  
+
     api.modifyDateField(type, value)
   }
 
@@ -154,7 +160,7 @@ export const scrollDown =
     const hoursArr = state.hoursList
     let now = state[label]
     let diabledHour
-  
+
     const find = (arr, value, key) => arr.find((item) => item[key] === value)
 
     if (state.currentScrollbar === 'hours') {
@@ -169,7 +175,7 @@ export const scrollDown =
           continue
         }
         60
-  
+
         total -= total
       }
 

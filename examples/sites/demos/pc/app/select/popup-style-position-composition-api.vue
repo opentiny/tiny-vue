@@ -1,19 +1,12 @@
 <template>
   <div class="demo-select">
-    <tiny-select
-      v-model="value"
-      placeholder="请选择"
-      multiple
-      popper-class="drop"
-      :popper-append-to-body="false"
-      placement="top"
-    >
+    <tiny-select v-model="value" popper-class="drop" :popper-append-to-body="false" placement="top">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 
@@ -27,8 +20,14 @@ const options = ref([
 const value = ref('')
 </script>
 
-<style scoped>
-.demo-select .drop {
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+</style>
+
+<style>
+.drop {
   background-color: #d5e8ff;
 }
 </style>

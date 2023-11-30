@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基本插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://localhost:7130/pc/wizard/slot-base')
+  await page.goto('wizard#slot-base')
 
   const stepItems = page.locator('.tiny-wizard__steps-item')
   const names = stepItems.locator('.tiny-wizard__name')

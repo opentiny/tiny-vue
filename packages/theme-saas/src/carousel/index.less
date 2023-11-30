@@ -16,7 +16,7 @@
 
   &__container {
     @apply relative;
-    height: 300px;
+    @apply h-72;
 
     .@{carousel-prefix-cls}__arrow {
       @apply border-none;
@@ -28,7 +28,7 @@
       @apply cursor-pointer;
       @apply duration-300;
       @apply rounded-full;
-      @apply bg-black bg-opacity-20;
+      @apply bg-color-bg-3;
       @apply text-color-text-inverse;
       @apply absolute;
       @apply ~"top-1/2";
@@ -43,7 +43,7 @@
       .@{svg-prefix-cls} {
         @apply ~"w-4.5";
         @apply ~"h-4.5";
-        fill: rgba(255, 255, 255, 0.5);
+        @apply fill-color-bg-2;
       }
 
       &.@{carousel-prefix-cls}__arrow-left {
@@ -55,20 +55,20 @@
       }
 
       &.@{carousel-prefix-cls}__arrow-top {
-        top: 15px;
+        @apply top-8;
         @apply ~'left-1/2';
         @apply ~"-translate-x-2/4";
       }
 
       &.@{carousel-prefix-cls}__arrow-bottom {
-        bottom: 15px;
+        @apply bottom-0;
         @apply ~'left-1/2';
         top: unset;
         @apply ~"-translate-x-2/4";
       }
 
       &:hover {
-        background-color: rgba(25, 25, 25, 0.4);
+        @apply bg-color-text-primary;
 
         .@{svg-prefix-cls} {
           @apply fill-color-icon-inverse;
@@ -91,22 +91,20 @@
     @apply m-0;
     @apply py-0 px-1;
     @apply ~'z-[2]';
-    @apply bg-black bg-opacity-30;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
-    height: 50px;
+    @apply h-12;
 
     .@{carousel-prefix-cls}__indicator {
       @apply inline-block;
       @apply ~"h-4.5";
       @apply bg-transparent;
-      padding: 7px 0 8px 0;
+      @apply ~"pt-1.5" px-0 pb-2;
       @apply my-4 mx-1;
       @apply cursor-pointer;
 
       .@{carousel-prefix-cls}__button {
         @apply block;
         @apply w-10;
-        height: 3px;
+        @apply h-1;
         @apply bg-white bg-opacity-30;
         @apply border-none;
         @apply outline-0;
@@ -126,7 +124,6 @@
     }
 
     &.@{carousel-prefix-cls}__indicators-outside {
-      bottom: 26px;
       @apply text-center;
       @apply static;
       @apply transform-none;
@@ -139,7 +136,6 @@
 
       .@{carousel-prefix-cls}__indicator {
         &:hover button {
-          background-color: rgba(25, 25, 25, 0.5);
         }
 
         &.is-active button {
@@ -167,7 +163,7 @@
     &.@{carousel-prefix-cls}__indicators-title {
       @apply left-auto;
       @apply right-3;
-      bottom: 3px;
+      @apply bottom-1;
       @apply transform-none;
       @apply bg-transparent;
     }
@@ -180,10 +176,9 @@
       @apply left-0;
       @apply bottom-0;
       @apply transform-none;
-      width: 50px;
+      @apply w-12;
       @apply h-full;
       @apply py-1 px-0;
-      background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
 
       .@{carousel-prefix-cls}__indicator {
         @apply block;
@@ -201,7 +196,7 @@
 
         .@{carousel-prefix-cls}__button {
           @apply h-10;
-          width: 3px;
+          @apply w-1;
         }
       }
     }

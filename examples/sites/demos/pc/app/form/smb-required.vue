@@ -9,11 +9,9 @@
       :hide-required-asterisk="hideRequiredAsterisk"
       :model="createData"
       :rules="rules"
-      :validate-on-rule-change="isvalidate"
       label-width="100px"
       validate-type="text"
-      :inline-message="true"
-      @validate="validate"
+      message-type="block"
     >
       <tiny-form-item label="用户名" prop="username">
         <tiny-input v-model="createData.username"></tiny-input>
@@ -31,7 +29,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Input, Button, Modal, Switch } from '@opentiny/vue'
 
 export default {
@@ -43,14 +41,6 @@ export default {
     TinySwitch: Switch
   },
   data() {
-    let validatePass = (rule, value, callback) => {
-      if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(value)) {
-        callback(new Error('最少八个字符，至少包含一个大写字母，一个小写字母和一个数字'))
-      } else {
-        callback()
-      }
-    }
-
     return {
       hideRequiredAsterisk: true,
       createData: {
@@ -60,32 +50,15 @@ export default {
       },
       isvalidate: true,
       rules: {
-        username: [
-          { required: true, message: '必填', trigger: 'blur' },
-          { min: 2, max: 11, message: '长度必须不小于2', trigger: ['change', 'blur'] }
-        ],
-        password: [
-          { required: true, message: '必填', trigger: 'blur' },
-          { validator: validatePass, trigger: 'blur' }
-        ]
+        username: [{ required: true, message: '必填', trigger: 'blur' }],
+        password: [{ required: true, message: '必填', trigger: 'blur' }]
       }
     }
   },
   methods: {
-    validate(val) {
-      Modal.message({
-        message: `表单项被校验后触发的事件,所校验字段为:${val}`,
-        status: 'info'
-      })
-    },
     handleSubmit() {
       this.$refs.ruleFormRef.validate((valid) => {
-        if (valid) {
-          Modal.alert('校验通过，开始注册！')
-        } else {
-          Modal.message({ message: '校验不通过！！', status: 'warning' })
-          return false
-        }
+        // empty
       })
     }
   }

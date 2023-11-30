@@ -1,8 +1,11 @@
 <template>
-  <tiny-cascader :options="optionsDis" :props="{ label: 'label' }"></tiny-cascader>
+  <div class="cascader-demo-disabled">
+    <tiny-cascader :options="optionsDis"></tiny-cascader>
+    <tiny-cascader :options="optionsDis" disabled></tiny-cascader>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Cascader } from '@opentiny/vue'
 
 export default {
@@ -210,3 +213,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.cascader-demo-disabled > :not(:last-child){
+  margin-right: 12px;
+}
+</style>

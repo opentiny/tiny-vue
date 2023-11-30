@@ -3,21 +3,78 @@
 .tiny-rich-text-editor {
   .component-css-vars-rich-text-editor();
 
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  a,
+  a:hover {
+    text-decoration: underline;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    font-weight: bold;
+  }
+
+  h4 {
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    font-weight: bold;
+  }
+
+  h5 {
+    font-size: 0.83em;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+  }
+
+  h6 {
+    font-size: 0.83em;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+  }
+
   height: 100%;
 
   &__toolbar {
     padding: 8px;
-    border: 1px solid var(--ti-rich-text-editor-box-outline-color);
+    border: 1px solid var(--ti-rich-text-editor-box-border-color);
   }
 
   &__toolbar button {
     height: 24px;
-    padding: .25rem;
-    margin-right: .25rem;
+    padding: 0.25rem;
+    margin-right: 0.25rem;
     border: none;
-    border-radius: .4rem;
+    border-radius: 0.4rem;
     background: transparent;
     cursor: pointer;
+
+    svg,
+    input {
+      cursor: pointer;
+    }
 
     &:not(:disabled):hover,
     &.is-active {
@@ -34,7 +91,7 @@
     }
 
     &:disabled {
-      color: var(--ti-rich-text-editor-button-disabled);
+      color: var(--ti-rich-text-editor-button-disabled-text-color);
       cursor: not-allowed;
 
       svg {
@@ -50,6 +107,20 @@
     overflow: hidden;
     display: inline-block;
   }
+
+  .tippy-box {
+    .tippy-content {
+      .bubble-menu {
+        button {
+          border-width: 1px;
+          border-left: none;
+        }
+        &:nth-child(1) {
+          border-left-width: 1px;
+        }
+      }
+    }
+  }
 }
 
 // p-h1~6
@@ -59,28 +130,40 @@
 
     .h-options {
       position: absolute;
-      background-color: #dfdede;
-      padding: .15rem;
+      padding: 0.15rem;
+      background-color: var(--ti-rich-text-edito-options-bg-color);
       left: 0px;
       display: none;
-      border-radius: .4rem;
+      border-radius: var(--ti-rich-text-editor-options-border-radius);
+      box-shadow: var(--ti-rich-text-editor-options-box-shadow);
       z-index: 999;
 
       button {
+        color: black;
         margin: 0;
+        text-align: center;
+        line-height: var(--ti-common-line-height-3);
+        svg,
+        path {
+          fill: black;
+        }
+        &:hover {
+          background-color: var(--ti-rich-text-edito-options-item-bg-color);
+          svg,
+          path {
+            fill: var(--ti-rich-text-edito-options-item-hover-color);
+          }
+        }
       }
     }
 
     &:hover {
-      background-color: #d2e4ff;
-
       .h-options {
         display: flex;
         flex-direction: column;
 
         button {
           width: auto;
-          color: black;
         }
       }
     }
@@ -90,7 +173,6 @@
 // 表格区域样式
 .tiny-rich-text-editor {
   .table-button {
-
     .table-box {
       display: flex;
       position: relative;
@@ -99,7 +181,7 @@
         display: inline-block;
       }
 
-      .table-option {
+      .table-panel {
         position: absolute;
         background: white;
         left: 0;
@@ -121,8 +203,8 @@
         }
 
         .isActive {
-          background-color: rgba(32, 122, 183, .5);
-          border-color: rgba(32, 122, 183, .5);
+          background-color: rgba(32, 122, 183, 0.5);
+          border-color: rgba(32, 122, 183, 0.5);
         }
       }
     }
@@ -135,7 +217,6 @@
       }
     }
   }
-
 }
 
 // 颜色选择样式
@@ -155,7 +236,6 @@
     }
 
     &:hover {
-
       #tiny-back-color,
       #tiny-color {
         background-color: #d2e4ff;
@@ -211,15 +291,23 @@
 
     .line-height-options {
       position: absolute;
-      background-color: #dfdede;
-      padding: .15rem;
+      padding: 0.15rem;
+      background-color: var(--ti-rich-text-edito-options-bg-color);
       left: 0px;
       display: none;
-      border-radius: .4rem;
+      border-radius: var(--ti-rich-text-editor-options-border-radius);
+      box-shadow: var(--ti-rich-text-editor-options-box-shadow);
       z-index: 999;
 
       button {
+        color: black;
         margin: 0;
+        text-align: center;
+        line-height: var(--ti-common-line-height-3);
+        &:hover {
+          background-color: var(--ti-rich-text-editor-options-item-bg-color);
+          color: var(--ti-rich-text-editor-options-item-hover-color);
+        }
       }
     }
 
@@ -230,7 +318,6 @@
 
         button {
           width: auto;
-          color: black;
         }
       }
     }
@@ -239,7 +326,6 @@
 
 .tiny-rich-text-editor {
   .bubble-menu {
-
     button {
       background-color: #f1f3f5;
     }
@@ -253,19 +339,25 @@
     .font-size-options {
       display: none;
       position: absolute;
-      border-radius: 0.4rem;
-      background-color: #dfdede;
+      border-radius: var(--ti-rich-text-editor-options-border-radius);
+      background-color: var(--ti-rich-text-editor-options-bg-color);
+      box-shadow: var(--ti-rich-text-editor-options-box-shadow);
       z-index: 99;
 
       button {
         color: black;
         margin: 0;
         text-align: center;
+        line-height: var(--ti-common-line-height-3);
+        &:hover {
+          background-color: var(--ti-rich-text-editor-options-item-bg-color);
+          color: var(--ti-rich-text-editor-options-item-hover-color);
+        }
       }
     }
 
     &:hover {
-      background-color: #d2e4ff;
+      background-color: var(--ti-rich-text-editor-options-item-bg-color);
 
       .font-size-options {
         display: flex;
@@ -278,9 +370,9 @@
 // 富文本编辑器的主题区域，需要对高度进行调整，达到融为一体
 .tiny-rich-text-editor__container {
   overflow: auto;
-  padding: 0 10px;
+  padding: 10px;
   height: 100%;
-  border: 1px solid var(--ti-rich-text-editor-box-outline-color);
+  border: 1px solid var(--ti-rich-text-editor-box-border-color);
   border-top: 0;
 
   &::-webkit-scrollbar {
@@ -300,7 +392,7 @@
   }
 
   .ProseMirror {
-    >*+* {
+    > * + * {
       margin-top: 0.75em;
     }
 
@@ -326,14 +418,35 @@
       line-height: 1.1;
     }
 
+    p {
+      margin: 0;
+      line-height: 1;
+
+      &[level='1'] {
+        line-height: 1;
+      }
+
+      &[level='1.5'] {
+        line-height: 1.5;
+      }
+
+      &[level='2'] {
+        line-height: 2;
+      }
+
+      &[level='2.5'] {
+        line-height: 2.5;
+      }
+    }
+
     code {
       background-color: rgba(#616161, 0.1);
       color: #616161;
     }
 
     pre {
-      background: #0D0D0D;
-      color: #FFF;
+      background: #0d0d0d;
+      color: #fff;
       font-family: 'JetBrainsMono', monospace;
       padding: 0.75rem 1rem;
       border-radius: 0.5rem;
@@ -353,12 +466,12 @@
 
     blockquote {
       padding-left: 1rem;
-      border-left: 2px solid rgba(#0D0D0D, 0.1);
+      border-left: 2px solid rgba(#0d0d0d, 0.1);
     }
 
     hr {
       border: none;
-      border-top: 2px solid rgba(#0D0D0D, 0.1);
+      border-top: 2px solid rgba(#0d0d0d, 0.1);
       margin: 2rem 0;
     }
   }
@@ -393,7 +506,7 @@
         box-sizing: border-box;
         position: relative;
 
-        >* {
+        > * {
           margin-bottom: 0;
         }
       }
@@ -407,7 +520,7 @@
       .selectedCell:after {
         z-index: 2;
         position: absolute;
-        content: "";
+        content: '';
         left: 0;
         right: 0;
         top: 0;
@@ -443,8 +556,7 @@
   }
 
   .ProseMirror {
-
-    ul[data-type="taskList"] {
+    ul[data-type='taskList'] {
       list-style: none;
       padding: 0;
 
@@ -452,13 +564,13 @@
         display: flex;
         align-items: center;
 
-        >label {
+        > label {
           flex: 0 0 auto;
           margin-right: 0.5rem;
           user-select: none;
         }
 
-        >div {
+        > div {
           flex: 1 1 auto;
         }
       }
@@ -466,7 +578,7 @@
   }
 
   .ProseMirror {
-    >*+* {
+    > * + * {
       margin-top: 0.75em;
     }
 
@@ -475,7 +587,7 @@
 
       select {
         position: absolute;
-        top: .5rem;
+        top: 0.5rem;
         right: 0.5rem;
         border: 0;
         background: gray;
@@ -486,7 +598,7 @@
     pre {
       background: #0d0d0d;
       color: #fff;
-      font-family: "JetBrainsMono", monospace;
+      font-family: 'JetBrainsMono', monospace;
       padding: 0.75rem 1rem;
       border-radius: 0.5rem;
 

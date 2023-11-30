@@ -10,7 +10,7 @@
  *
  */
 
-import {
+import type {
   IDropdownVm,
   IDropdownMenuState,
   IDropdownMenuApi,

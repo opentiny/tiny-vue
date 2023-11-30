@@ -23,7 +23,6 @@
  *
  */
 
-import { extend } from '../../common/object'
 import { isNull } from '../../common/type'
 import { find } from '../../common/array'
 import { get, isFunction, set, findTree } from '../static'
@@ -67,21 +66,18 @@ export const getFilters = (filters) =>
 
 export const initFilter = (filter) => {
   // 改成这种方式可以让用户配置一些筛选的默认行为，如果用户不配置就采用默认的
-  return extend(
-    {
-      condition: {
-        input: '',
-        relation: 'equals',
-        empty: null,
-        type: null,
-        value: []
-      },
-      hasFilter: false,
-      custom: null
+  return {
+    condition: {
+      input: '',
+      relation: 'equals',
+      empty: null,
+      type: null,
+      value: []
     },
-    filter,
-    true
-  )
+    hasFilter: false,
+    custom: null,
+    ...filter
+  }
 }
 
 export const formatText = (value) => `${isNull(value) ? '' : value}`

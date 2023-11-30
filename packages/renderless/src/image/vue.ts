@@ -12,6 +12,7 @@
 
 import {
   computedGetImageStyle,
+  computedGetAlignCenter,
   computedGetPreview,
   loadImage,
   handleLoad,
@@ -19,13 +20,14 @@ import {
   handleLazyLoad,
   addLazyLoadListener,
   removeLazyLoadListener,
+  getImageStyle,
   clickHandler,
   closeViewer,
   mounted,
   deleteHander
 } from './index'
-import { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
-import {
+import type { ISharedRenderlessParamHooks } from 'types/shared.type'
+import type {
   IImageApi,
   IImageProps,
   IImageState,
@@ -64,7 +66,8 @@ const initState = ({
     show: !props.lazy,
     showViewer: false,
     getPreview: computed(() => api.computedGetPreview()),
-    getImageStyle: computed(() => api.computedGetImageStyle())
+    getImageStyle: computed(() => api.computedGetImageStyle()),
+    getAlignCenter: computed(() => api.computedGetAlignCenter())
   })
 
   return state
@@ -88,10 +91,12 @@ const initApi = ({
     handleError: handleError({ state, emit }),
     computedGetPreview: computedGetPreview(props),
     removeLazyLoadListener: removeLazyLoadListener(state),
+    getImageStyle: getImageStyle({ state, vm, constants }),
+    computedGetAlignCenter: computedGetAlignCenter({ props, constants }),
     mounted: mounted({ api, props }),
     handleLazyLoad: handleLazyLoad({ api, state, vm, nextTick }),
     loadImage: loadImage({ api, state, props, attrs }),
-    computedGetImageStyle: computedGetImageStyle({ props }),
+    computedGetImageStyle: computedGetImageStyle({ api, props }),
     addLazyLoadListener: addLazyLoadListener({ api, props, state, vm }),
     deleteHander: deleteHander(emit)
   })

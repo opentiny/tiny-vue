@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('步骤条节点组件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/time-line/basic-usage')
+  await page.goto('time-line#basic-usage')
 
   const timeline = page.locator('#preview .tiny-steps')
   const nodes = timeline.locator('.normal')

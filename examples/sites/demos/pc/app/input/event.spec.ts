@@ -2,14 +2,14 @@ import { test, expect } from '@playwright/test'
 
 test('[Input]event: input, change', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/input/event')
+  await page.goto('input#event')
 
   const input = page.locator('.demo-input > .tiny-input > .tiny-input-display-only > input').nth(0)
 
   // input event
   await input.fill('2')
-  const dialogModelInputEvent = await page.locator('.tiny-modal')
-  await expect(dialogModelInputEvent).toContainText('input')
+  const dialogModelInputEvent = await page.locator('.tiny-modal',  { hasText: 'input' })
+  await expect(dialogModelInputEvent).toBeVisible()
 
   // change event
   await input.blur()
@@ -19,7 +19,7 @@ test('[Input]event: input, change', async ({ page }) => {
 
 test('[Input]event: focus, blur', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/input/event')
+  await page.goto('input#event')
 
   const input = page.locator('.demo-input > .tiny-input > .tiny-input-display-only > input').nth(1)
 
@@ -37,7 +37,7 @@ test('[Input]event: focus, blur', async ({ page }) => {
 
 test('[Input]event: clear', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/input/event')
+  await page.goto('input#event')
 
   const inputComponent = page.locator('.demo-input > .tiny-input').nth(2)
   const input = inputComponent.locator('.tiny-input-display-only > input')

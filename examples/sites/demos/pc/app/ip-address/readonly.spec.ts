@@ -2,13 +2,13 @@ import { test, expect } from '@playwright/test'
 
 test('ipAddress 文本只读', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/ip-address/readonly')
+  await page.goto('ip-address#readonly')
 
-  const preview = await page.locator('#preview')
-  const input1 = preview.getByRole('textbox').nth(0)
-  const input2 = preview.getByRole('textbox').nth(1)
-  const input3 = preview.getByRole('textbox').nth(2)
-  const input4 = preview.getByRole('textbox').nth(3)
+  const demo = await page.locator('#readonly')
+  const input1 = demo.getByRole('textbox').nth(0)
+  const input2 = demo.getByRole('textbox').nth(1)
+  const input3 = demo.getByRole('textbox').nth(2)
+  const input4 = demo.getByRole('textbox').nth(3)
 
   expect(await input1.evaluate((input1) => input1.hasAttribute('readonly'))).toBe(true)
   await expect(input1).toBeEnabled()

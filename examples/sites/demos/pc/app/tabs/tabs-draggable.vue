@@ -3,11 +3,9 @@
     v-model="tabName"
     tab-style="card"
     :drop-config="dropConfig"
-    :editable="false"
     :with-add="true"
     @add="handleAdd"
     style="width: 500px"
-    :show-more-tabs="more"
     @tab-drag-start="handleStart"
     @tab-drag-over="handleOver"
     @tab-drag-end="handleEnd"
@@ -29,7 +27,6 @@ export default {
   },
   data() {
     return {
-      more: false,
       tabName: '2',
       dropConfig: {
         plugin: Sortable

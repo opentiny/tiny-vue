@@ -10,7 +10,7 @@
  *
  */
 
-import {
+import type {
   IActionMenuApi,
   IActionMenuProps,
   IActionMenuState,

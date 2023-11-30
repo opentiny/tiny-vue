@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('是否可以拖拽上传', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/drag-upload')
+  await page.goto('file-upload#drag-upload')
 
   const drag = page.locator('.tiny-upload-dragger')
   const lists = page.locator('.tiny-upload-list__item')

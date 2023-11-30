@@ -1,7 +1,12 @@
 <template>
   <div>
     <tiny-button @click="handleClick(!showNum)" style="max-width: unset">设置show-number值为{{ !showNum }}</tiny-button>
-    <tiny-milestone :data="milestoneData" :milestones-status="statusMap" :show-number="showNum"></tiny-milestone>
+    <tiny-milestone
+      :data="milestoneData"
+      :milestones-status="statusMap"
+      :show-number="showNum"
+      :start="1"
+    ></tiny-milestone>
   </div>
 </template>
 
@@ -19,32 +24,32 @@ const statusMap = ref({
 })
 const milestoneData = ref([
   {
-    name: '完成状态，状态值:completed',
+    name: 'completed完成状态',
     time: '2018-9-7',
     status: 'completed'
   },
   {
-    name: '完成状态，状态值:completed',
+    name: 'completed完成状态',
     time: '2018-9-8',
     status: 'completed'
   },
   {
-    name: '未完成状态, 状态值:doing',
+    name: 'doing未完成状态',
     time: '2018-9-10',
     status: 'doing'
   },
   {
-    name: '未完成状态，状态值:cancel',
+    name: 'cancel未完成状态',
     time: '2018-9-9',
     status: 'cancel'
   },
   {
-    name: '未完成状态，状态值:back',
+    name: 'back未完成状态',
     time: '2018-9-11',
     status: 'back'
   },
   {
-    name: '未完成状态，状态值:end',
+    name: 'end未完成状态',
     time: '2018-9-9',
     status: 'end'
   }

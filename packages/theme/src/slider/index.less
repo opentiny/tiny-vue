@@ -15,20 +15,35 @@
 @import './vars.less';
 
 @slider-prefix-cls: ~'@{css-prefix}slider';
+@slider-container-prefix-cls: ~'@{css-prefix}slider-container';
+
+.@{slider-container-prefix-cls} {
+  .component-css-vars-slider();
+  position: relative;
+
+  &&__horizontal {
+    display: flex;
+    align-items: center;
+  }
+}
 
 .@{slider-prefix-cls} {
-  &__wrapper {
-    .component-css-vars-slider();
-  }
-
   border-radius: var(--ti-slider-border-radius);
   height: var(--ti-slider-height);
   position: relative;
   margin: 13px 0;
   background: var(--ti-slider-bg-color);
   cursor: pointer;
-  width: ~'calc(100% - 89px)';
   display: inline-block;
+
+  &:not(&__vertical) {
+    min-width: 160px;
+    flex: 1;
+  }
+
+  &.show-auto-width {
+    width: 100%;
+  }
 
   &:hover {
     .@{slider-prefix-cls}__range {
@@ -116,6 +131,10 @@
     user-select: none;
     cursor: grab;
     text-align: center;
+
+    &.handle-focus {
+      z-index: 10;
+    }
 
     &:hover {
       color: var(--ti-slider-handle-text-color-hover);

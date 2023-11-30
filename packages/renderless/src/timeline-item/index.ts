@@ -11,7 +11,7 @@
  */
 
 import { format } from '../common/date'
-import {
+import type {
   ITimelineItemRenderlessParams,
   ITimelineItem,
   ITimelineStatusCls,
@@ -34,8 +34,8 @@ export const getStatus =
 
 export const computedWidth =
   () =>
-  (width: string | number): string => {
-    return /^\d+$/.test(width) ? `${width}px` : width
+  (width: string | number): string | number => {
+    return /^\d+$/.test(String(width)) ? `${width}px` : width || ''
   }
 
 export const handleClick =
@@ -83,6 +83,9 @@ export const computedItemCls =
     const itemClass: ITimelineCustomCls = []
     if (api.rootProps.vertical) {
       itemClass.push('timeline')
+      if (props.node.type) {
+        itemClass.push(`timeline-item--${props.node.type}`)
+      }
     } else {
       itemClass.push('normal')
     }
@@ -104,7 +107,7 @@ export const computedItemStyle =
     const { textPosition, vertical } = api.rootProps
 
     if (vertical) {
-      return { height: index === nodesLength - 1 ? '' : computedSpace || '88px' }
+      return { height: index === nodesLength - 1 ? '' : computedSpace }
     }
 
     if (textPosition === 'right') {

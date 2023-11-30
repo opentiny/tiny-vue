@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <tiny-cascader :options="options" :props="{ checkStrictly: true }" v-model="value"></tiny-cascader>
-    value:{{ value }}
+  <div class="demo-tiny-cascader-check-strictly">
+    <div>value: {{ value }}</div>
+    <div>
+      <tiny-cascader :options="options" :props="{ checkStrictly: true }" v-model="value"></tiny-cascader>
+    </div>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Cascader as TinyCascader } from '@opentiny/vue'
 
@@ -205,3 +207,9 @@ const options = ref([
   }
 ])
 </script>
+
+<style scoped>
+.demo-tiny-cascader-check-strictly > :not(:last-child) {
+  margin-bottom: 12px;
+}
+</style>

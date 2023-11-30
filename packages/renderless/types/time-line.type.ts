@@ -11,8 +11,9 @@
  */
 
 import type { ExtractPropTypes } from 'vue'
-import { timelineProps, $constants } from '@/time-line/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { timelineProps, $constants } from '@/time-line/src'
+import type { toggleFold } from 'src/time-line'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type { ITimelineItem } from './timeline-item.type'
 
 export type ITimelineProps = ExtractPropTypes<typeof timelineProps>
@@ -47,6 +48,7 @@ export interface ITimelineApi {
   computedStackNodes: () => ITimelineItem[]
   changeStatus: () => boolean
   computedWrapperClass: () => ITimelineCustomCls
+  toggleFold: ReturnType<typeof toggleFold>
 }
 
 export type ITimelineRenderlessParams = ISharedRenderlessFunctionParams<ITimelineConstants> & {

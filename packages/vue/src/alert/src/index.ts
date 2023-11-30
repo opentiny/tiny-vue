@@ -37,7 +37,7 @@ export const alertProps = {
   icon: [String, Object],
   type: {
     type: String,
-    default: 'success'
+    default: 'info'
   },
   size: {
     type: String,
@@ -74,9 +74,11 @@ export const alertProps = {
   showFoldable: {
     type: Boolean,
     default: false
-  }
+  },
+  customClass: [String, Object, Array]
 }
 
+const aaa = {}
 export default defineComponent({
   name: $prefix + 'Alert',
   props: alertProps,

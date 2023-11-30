@@ -18,13 +18,16 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-progress": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-upload-list": "workspace:~",
     "@opentiny/vue-upload": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-modal": "workspace:~",
     "@opentiny/vue-dialog-box": "workspace:~",
+    "@opentiny/vue-popover": "workspace:~",
+    "@opentiny/vue-button": "workspace:~",
     "streamsaver": "2.0.6",
-    "crypto-js": "4.1.1"
+    "crypto-js": "4.2.0"
   },
   "license": "MIT"
 }

@@ -301,9 +301,9 @@ export const onSiblingToggleExpand =
 
 export const watchExpandedChange =
   ({ state, props }) =>
-  (value) => {
+  () => {
     state.parentEmitter.emit('sibling-node-toggle-expand', {
-      isExpand: value,
+      isExpand: props.node.expanded,
       sibling: props.node
     })
   }
@@ -366,5 +366,5 @@ export const computedExpandIcon =
 export const computedIndent =
   () =>
   ({ node, showLine }, { tree }) => {
-    return (node.level > 1 ? 1 : 0) * (tree.indent + (showLine ? 8 : 0)) + tree.baseIndent + 'px'
+    return (node.level > 1 ? 1 : 0) * (parseInt(tree.indent) + (showLine ? 8 : 0)) + parseInt(tree.baseIndent) + 'px'
   }

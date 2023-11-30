@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ITabNavRenderlessParams } from '@/types'
+import type { ITabNavRenderlessParams } from '@/types'
 import { KEY_CODE, POSITION } from '../common'
 import { capitalize } from '../common/string'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
@@ -30,13 +30,13 @@ export const computedNavStyle = (state: ITabNavRenderlessParams['state']): { tra
 }
 
 export const scrollIntoView =
-  ({ parent, refs, state }: Pick<ITabNavRenderlessParams, 'parent' | 'refs' | 'state'>) =>
+  ({ parent, vm, state }: Pick<ITabNavRenderlessParams, 'parent' | 'vm' | 'state'>) =>
   () => {
     if (!state.scrollable) {
       return
     }
 
-    const nav = refs.nav
+    const nav = vm.$refs.nav
     const activeTab = parent.$el.querySelector('.is-active') as HTMLElement
 
     if (!activeTab) {
@@ -57,16 +57,16 @@ export const computedSizeName = (state: ITabNavRenderlessParams['state']): 'widt
 
 /* istanbul ignore next */
 export const updated =
-  ({ api, refs, state }: Pick<ITabNavRenderlessParams, 'api' | 'refs' | 'state'>) =>
+  ({ api, vm, state }: Pick<ITabNavRenderlessParams, 'api' | 'vm' | 'state'>) =>
   () => {
-    if (!refs.nav || state.dragging) {
+    if (!vm.$refs.nav || state.dragging) {
       return
     }
 
-    let navSize = refs.nav[`offset${capitalize(state.sizeName)}`] // taList 列表容器
+    let navSize = vm.$refs.nav[`offset${capitalize(state.sizeName)}`] // taList 列表容器
 
     if (state.mode === 'mobile') {
-      Array.prototype.forEach.call(refs.nav.children, (item) => {
+      Array.prototype.forEach.call(vm.$refs.nav.children, (item) => {
         if (item.classList && item.classList.contains('tiny-mobile-tabs__item')) {
           navSize += item.offsetWidth
         }
@@ -80,7 +80,7 @@ export const updated =
       })
     }
 
-    const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`] // 父容器宽度
+    const containerSize = vm.$refs.navScroll[`offset${capitalize(state.sizeName)}`] // 父容器宽度
     const currentOffset = state.navOffset
 
     if (containerSize < navSize) {
@@ -106,11 +106,11 @@ export const updated =
 
     state.isActive && api.scrollIntoView()
 
-    if (refs.tabBar) {
+    if (vm.$refs.tabBar) {
       // active-bar动画滚动
-      refs.tabBar.state.barStyle = refs.tabBar.computedBarStyle(refs.tabBar, state)
+      vm.$refs.tabBar.state.barStyle = vm.$refs.tabBar.computedBarStyle(vm.$refs.tabBar, state)
     } else {
-      const line = refs.nav.querySelector('tiny-mobile-tabs__line')
+      const line = vm.$refs.nav.querySelector('tiny-mobile-tabs__line')
       line && line.style && (line.style.transform = api.computedNavStyle(state).transform)
     }
   }
@@ -167,20 +167,20 @@ export const windowFocusHandler = (state: ITabNavRenderlessParams['state']) => (
 
 /* istanbul ignore next */
 export const scrollToActiveTab =
-  ({ parent, refs, state }: Pick<ITabNavRenderlessParams, 'parent' | 'refs' | 'state'>) =>
+  ({ parent, vm, state }: Pick<ITabNavRenderlessParams, 'parent' | 'vm' | 'state'>) =>
   () => {
     if (!state.scrollable) {
       return
     }
 
-    const nav = refs.nav
+    const nav = vm.$refs.nav
     const activeTab = parent.$el.querySelector('.is-active')
 
     if (!activeTab) {
       return
     }
 
-    const navScroll = refs.navScroll
+    const navScroll = vm.$refs.navScroll
     const activeTabBounding = activeTab.getBoundingClientRect()
     const navScrollBounding = navScroll.getBoundingClientRect()
     let maxOffset = nav.offsetWidth - navScrollBounding.width
@@ -209,9 +209,9 @@ export const scrollToActiveTab =
   }
 
 export const scrollPrev =
-  ({ refs, state }: Pick<ITabNavRenderlessParams, 'refs' | 'state'>) =>
+  ({ vm, state }: Pick<ITabNavRenderlessParams, 'vm' | 'state'>) =>
   () => {
-    const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`]
+    const containerSize = vm.$refs.navScroll[`offset${capitalize(state.sizeName)}`]
     const currentOffset = state.navOffset
 
     if (!currentOffset) {
@@ -224,10 +224,10 @@ export const scrollPrev =
   }
 
 export const scrollNext =
-  ({ refs, state }: Pick<ITabNavRenderlessParams, 'refs' | 'state'>) =>
+  ({ vm, state }: Pick<ITabNavRenderlessParams, 'vm' | 'state'>) =>
   () => {
-    const navSize = refs.nav[`offset${capitalize(state.sizeName)}`]
-    const containerSize = refs.navScroll[`offset${capitalize(state.sizeName)}`]
+    const navSize = vm.$refs.nav[`offset${capitalize(state.sizeName)}`]
+    const containerSize = vm.$refs.navScroll[`offset${capitalize(state.sizeName)}`]
     const currentOffset = state.navOffset
 
     if (navSize - currentOffset <= containerSize) {
@@ -308,17 +308,17 @@ export const expandTabShow =
 export const expandTabHide = (state: ITabNavRenderlessParams['state']) => () => (state.showExpandItem = false)
 
 export const computedHeaderStyle =
-  ({ refs, state }: Pick<ITabNavRenderlessParams, 'refs' | 'state'>) =>
+  ({ vm, state }: Pick<ITabNavRenderlessParams, 'vm' | 'state'>) =>
   () => {
-    if (refs.nav) {
-      state.expandHeaderStyle[state.sizeName] = refs.nav[`offset${capitalize(state.sizeName)}`] + 'px'
+    if (vm.$refs.nav) {
+      state.expandHeaderStyle[state.sizeName] = vm.$refs.nav[`offset${capitalize(state.sizeName)}`] + 'px'
     }
 
     return state.expandHeaderStyle
   }
 
 export const handleTabDragStart =
-  ({ state, refs, emit }: Pick<ITabNavRenderlessParams, 'state' | 'refs' | 'emit'>) =>
+  ({ state, vm, emit }: Pick<ITabNavRenderlessParams, 'state' | 'vm' | 'emit'>) =>
   (event: DragEvent) => {
     state.dragging = true
 
@@ -327,8 +327,8 @@ export const handleTabDragStart =
       return
     }
 
-    const navContainer = refs.navScroll
-    const nav = refs.nav
+    const navContainer = vm.$refs.navScroll
+    const nav = vm.$refs.nav
 
     const containerWidth = navContainer.offsetWidth
     const navWidth = nav.offsetWidth
@@ -349,7 +349,7 @@ export const handleTabDragStart =
   }
 
 export const handleTabDragEnd =
-  ({ refs, state, nextTick }: Pick<ITabNavRenderlessParams, 'refs' | 'state' | 'nextTick'>) =>
+  ({ vm, state, nextTick }: Pick<ITabNavRenderlessParams, 'vm' | 'state' | 'nextTick'>) =>
   () => {
     state.dragging = false
 
@@ -357,11 +357,11 @@ export const handleTabDragEnd =
       return
     }
 
-    const nav = refs.nav
+    const nav = vm.$refs.nav
 
     if (nav.style.width) {
       const navOffset = nav.scrollLeft
-      const navContainer = refs.navScroll
+      const navContainer = vm.$refs.navScroll
 
       navContainer.style.height = ''
       nav.style.width = ''
@@ -379,16 +379,16 @@ export const sortableEvent =
     api,
     props,
     state,
-    refs,
+    vm,
     emit,
     markRaw
-  }: Pick<ITabNavRenderlessParams, 'api' | 'props' | 'state' | 'refs' | 'emit' | 'markRaw'>) =>
+  }: Pick<ITabNavRenderlessParams, 'api' | 'props' | 'state' | 'vm' | 'emit' | 'markRaw'>) =>
   () => {
     if (!props.dropConfig || typeof props.dropConfig.plugin !== 'function') {
       return
     }
 
-    const navSortableObj = new props.dropConfig.plugin(refs.nav, {
+    const navSortableObj = new props.dropConfig.plugin(vm.$refs.nav, {
       sort: true,
       draggable: '.tiny-tabs__item',
       onUpdate(event) {
@@ -409,10 +409,10 @@ export const sortableEvent =
   }
 
 export const watchCurrentName =
-  ({ nextTick, refs, state }: Pick<ITabNavRenderlessParams, 'nextTick' | 'refs' | 'state'>) =>
+  ({ nextTick, vm, state }: Pick<ITabNavRenderlessParams, 'nextTick' | 'vm' | 'state'>) =>
   () => {
     nextTick(() => {
-      const tabBarVnode = refs.tabBar
+      const tabBarVnode = vm.$refs.tabBar
 
       if (tabBarVnode) {
         tabBarVnode.state.barStyle = tabBarVnode.computedBarStyle(tabBarVnode, state)

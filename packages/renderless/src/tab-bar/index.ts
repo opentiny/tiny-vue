@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ITabBarPcRenderlessParams, ITabBarStyle } from '@/types'
+import type { ITabBarPcRenderlessParams, ITabBarStyle } from '@/types'
 import { POSITION } from '../common'
 import { capitalize } from '../common/string'
 
@@ -66,7 +66,7 @@ export const computedBarStyle =
     }
 
     const transform = `translate${capitalize(sizeDir)}(${offset}px)`
-    style[sizeName] = tabSize + 'px'
+    style[sizeName] = state.separator ? '' : tabSize + 'px'
     style.transform = transform
     style.msTransform = transform
     style.webkitTransform = transform

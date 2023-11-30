@@ -1,8 +1,8 @@
 <template>
-  <div id="tiny-loading" style="width: 100%; height: 120px"></div>
+  <div id="tiny-demo-loading-custom-class"></div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { onMounted } from 'vue'
 import { Loading } from '@opentiny/vue'
 
@@ -10,14 +10,18 @@ onMounted(() => {
   Loading.service({
     text: '自定义loading类名',
     customClass: 'new-loading',
-    target: document.getElementById('tiny-loading'),
-    background: 'rgba(0, 0, 0, 0.8)'
+    target: document.getElementById('tiny-demo-loading-custom-class'),
+    background: 'rgba(0, 0, 0, 0.7)'
   })
 })
 </script>
 
 <style>
 .new-loading .tiny-loading__spinner .tiny-loading__text {
-  color: green;
+  color: #fff;
+}
+
+#tiny-demo-loading-custom-class {
+  height: 120px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择">
+  <tiny-select v-model="value">
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     <template #footer>
       <div class="select-footer">
@@ -9,7 +9,7 @@
   </tiny-select>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption, Button as TinyButton } from '@opentiny/vue'
 
@@ -23,7 +23,10 @@ const options = ref([
 const value = ref('')
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
 .select-footer {
   text-align: center;
   background-color: #cff3e8;

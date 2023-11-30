@@ -1,13 +1,13 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, Locator } from '@playwright/test'
 
 test('图标类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popconfirm/type')
+  await page.goto('popconfirm#type')
 
-  const preview = page.locator('#preview')
-  const popConfirm = preview.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')
+  const demo = page.locator('#type')
+  const popConfirm = demo.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')
   const popConfirmPopover = page.locator('body > .tiny-popconfirm-popover')
-  const getIcon = (parent) => parent.locator('svg.tiny-svg path').first()
+  const getIcon = (parent: Locator) => parent.locator('svg.tiny-svg path').first()
 
   await popConfirm.first().click()
   await expect(popConfirmPopover.first()).toBeVisible()

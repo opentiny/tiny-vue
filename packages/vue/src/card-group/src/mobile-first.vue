@@ -1,10 +1,10 @@
 <template>
-  <div class="w-full grid gap-4" :style="state.style">
+  <div data-tag="tiny-card-group" class="w-full grid gap-4 grid-cols-[repeat(auto-fill,minmax(theme(spacing.54),1fr))]">
     <slot></slot>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/card-group/vue'
 import { $props, $prefix, setup, defineComponent } from '@opentiny/vue-common'
 
@@ -15,7 +15,7 @@ export default defineComponent({
   props: {
     ...$props,
     modelValue: {},
-    cardClass: String,
+    customClass: String,
     height: String,
     autoWidth: {
       type: Boolean,
@@ -23,7 +23,7 @@ export default defineComponent({
     },
     size: {
       type: String,
-      default: 'medium'
+      default: 'small'
     },
     status: {
       type: String,
@@ -43,7 +43,13 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({
+      props,
+      context,
+      renderless,
+      api,
+      mono: true
+    })
   }
 })
 </script>

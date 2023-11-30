@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 200px">
+  <div style="height: 130px">
     <tiny-search :search-types="searchTypes1">
       <template #poplist="slotScope">
         <b>{{ slotScope.slotScope.text }}</b>

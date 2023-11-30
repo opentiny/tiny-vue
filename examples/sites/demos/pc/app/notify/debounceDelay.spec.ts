@@ -2,15 +2,12 @@ import { test, expect } from '@playwright/test'
 
 test('配置防抖', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/notify/debounceDelay')
+  await page.goto('notify#debounceDelay')
   await page.getByRole('button', { name: 'Debounce' }).click()
+  const db = page.locator('.tiny-notify').filter({
+    hasText:'通知消息的标题通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文'
+  })
+  await expect(db).not.toBeVisible()
   await page.waitForTimeout(3000)
-  const db = page
-    .locator('div')
-    .filter({
-      hasText:
-        '通知消息的标题通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文'
-    })
-    .first()
   await expect(db).toBeVisible
 })

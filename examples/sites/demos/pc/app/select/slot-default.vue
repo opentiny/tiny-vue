@@ -1,13 +1,13 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择">
+  <tiny-select v-model="value" popper-class="slot-default">
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-      <span style="float: left">{{ item.label }}</span>
-      <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+      <span class="left">{{ item.label }}</span>
+      <span class="right">{{ item.value }}</span>
     </tiny-option>
   </tiny-select>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option } from '@opentiny/vue'
 
 export default {
@@ -29,3 +29,18 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+.tiny-option {
+  .left {
+    margin-right: 8px;
+  }
+  .right {
+    color: #8492a6;
+    font-size: 12px;
+  }
+}
+</style>

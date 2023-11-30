@@ -38,8 +38,6 @@ export default {
           id: i.toString(),
           name: 'GFD科技YX公司' + i,
           area: '华东区' + i,
-          address: '福州' + i,
-          introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。' + i,
           disabled: i % 4 === 0
         })
       }
@@ -56,11 +54,11 @@ export default {
       columns: [
         {
           type: 'index',
-          width: '50px'
+          width: '30px'
         },
         {
           type: 'selection',
-          width: '50px'
+          width: '30px'
         },
         {
           field: 'name',
@@ -73,20 +71,6 @@ export default {
           field: 'area',
           title: '所属区域',
           sortable: true
-        },
-        {
-          field: 'address',
-          title: '地址',
-          sortable: true,
-          editor: { component: 'input', autoselect: true },
-          showOverflow: true
-        },
-        {
-          field: 'introduction',
-          title: '公司简介',
-          sortable: true,
-          showOverflow: true,
-          editor: { component: 'input', autoselect: true }
         }
       ],
       pagerOp: {

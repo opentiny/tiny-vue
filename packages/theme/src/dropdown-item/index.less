@@ -61,6 +61,13 @@
     .@{dropdown-item-prefix-cls}__content {
       display: flex;
       align-items: center;
+      width: 100%;
+
+      .@{dropdown-item-prefix-cls}__label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
 
       .@{svg-prefix-cls} {
         margin-right: 4px;

@@ -1,10 +1,11 @@
 <template>
   <span :ref="dragRef" :class="className" :data-testid="testID" :title="title">{{ label }}</span>
 </template>
->
+
 <script lang="ts">
 import { defineComponent, setup } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/query-builder/vue'
+
 export default defineComponent({
   props: {
     className: {
@@ -28,4 +29,3 @@ export default defineComponent({
   }
 })
 </script>
->

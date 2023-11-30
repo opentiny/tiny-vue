@@ -2,22 +2,22 @@ import { test, expect } from '@playwright/test'
 
 test('测试表单禁用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/form/form-disabled')
+  await page.goto('form#form-disabled')
 
-  const preview = page.locator('#preview')
-  const form = preview.locator('.tiny-form')
-  const disabledButton = preview.getByRole('button', { name: '禁用表单' })
-  const startButton = preview.getByRole('button', { name: '启用表单' })
+  const demo = page.locator('#form-disabled')
+  const form = demo.locator('.tiny-form')
+  const switchBtn = demo.locator('.tiny-switch').first()
+  const startButton = demo.getByRole('button', { name: '启用表单' })
   const formItem = form.locator('.tiny-form-item')
   const slider = formItem.nth(18).locator('.tiny-slider__handle')
 
   // 设置视口宽高，否则滑动不在视口中则无法拖动
   await page.setViewportSize({
     width: 1400,
-    height: 1200
+    height: 1500
   })
 
-  await disabledButton.click()
+  await switchBtn.click()
   await expect(formItem.first().locator('input')).toBeDisabled()
   await expect(formItem.nth(1).locator('input')).toBeDisabled()
   await expect(formItem.nth(2).locator('.tiny-numeric__input')).toHaveClass(/is-disabled/)
@@ -44,7 +44,7 @@ test('测试表单禁用', async ({ page }) => {
   const { x: newX } = await slider.boundingBox()
   expect(newX).toEqual(x)
 
-  await startButton.click()
+  await switchBtn.click()
   await expect(formItem.first().locator('input')).not.toBeDisabled()
   await expect(formItem.nth(1).locator('input')).not.toBeDisabled()
   await expect(formItem.nth(2).locator('.tiny-numeric__input')).not.toHaveClass(/is-disabled/)

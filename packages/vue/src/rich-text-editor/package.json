@@ -2,7 +2,10 @@
   "name": "@opentiny/vue-rich-text-editor",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,9 +14,10 @@
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-rich-text-editor": "link:",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~"
+  },
+  "devDependencies": {
     "@tiptap/core": "^2.1.6",
     "@tiptap/extension-code-block-lowlight": "^2.0.4",
     "@tiptap/extension-collaboration": "^2.0.4",
@@ -39,9 +43,6 @@
     "@tiptap/vue-2": "^2.1.10",
     "@tiptap/vue-3": "^2.0.4",
     "highlight.js": "^11.8.0",
-    "lowlight": "^2.9.0",
-    "y-prosemirror": "^1.2.1",
-    "y-webrtc": "^10.2.5",
-    "yjs": "^13.6.7"
+    "lowlight": "^2.9.0"
   }
 }

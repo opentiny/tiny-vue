@@ -28,7 +28,7 @@ import {
   updateColumnValue
 } from './index'
 import { DATE } from '../common'
-import {
+import type {
   IDatePickerApi,
   IDatePickerProps,
   IDatePickerRenderlessParamUtils,

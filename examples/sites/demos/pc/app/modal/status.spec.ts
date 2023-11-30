@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('消息状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/status')
+  await page.goto('modal#status')
 
   const messageInfo = page.locator('.tiny-modal').filter({ hasText: '基本提示图标' })
   await page.getByRole('button', { name: '基本提示图标' }).click()
@@ -25,10 +25,8 @@ test('消息状态', async ({ page }) => {
   await expect(messageError).toHaveClass(/status__error/)
   await expect(messageError.locator('.tiny-modal__status-wrapper .tiny-svg')).toHaveClass(/tiny-modal-svg__error/)
 
-  const messageHasCloseBtn = page.locator('.tiny-modal').filter({ hasText: '右侧显示关闭按钮' })
-  const closeBtn = messageHasCloseBtn.locator('.tiny-modal__close-btn')
-  await page.getByRole('button', { name: '关闭按钮示例' }).click()
-  await expect(closeBtn).toBeVisible()
-  await closeBtn.click()
-  await expect(messageHasCloseBtn).not.toBeVisible()
+  const messageHasLoadingBtn = page.locator('.tiny-modal').filter({ hasText: '加载提示图标' })
+  const loadingBtn = messageHasLoadingBtn.locator('.tiny-modal-svg__refresh')
+  await page.getByRole('button', { name: '加载提示图标' }).click()
+  await expect(loadingBtn).toBeVisible()
 })

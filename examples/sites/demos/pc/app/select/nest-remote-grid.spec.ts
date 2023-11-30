@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('nest-remote-method', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-remote-grid')
+  await page.goto('select#nest-remote-grid')
   const input = page.locator('#preview .tiny-input__inner').first()
   const suffixSvg = page.locator('.tiny-input__suffix .tiny-select__caret').first()
 
@@ -29,7 +29,7 @@ test('nest-remote-method', async ({ page }) => {
 })
 
 test('nest-remote-config', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-remote-grid')
+  await page.goto('select#nest-remote-grid')
   const input = page.locator('#preview .tiny-input__inner').nth(1)
   const suffixSvg = page.locator('.tiny-input__suffix .tiny-select__caret').nth(1)
 

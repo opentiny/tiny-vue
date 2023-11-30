@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { IButtonGroupRenderlessParams, IButtonGroupNode, IButtonGroupItemClass } from '@/types'
+import type { IButtonGroupRenderlessParams, IButtonGroupNode, IButtonGroupItemClass } from '@/types'
 
 export const handleChange =
   ({ emit, state }: Pick<IButtonGroupRenderlessParams, 'emit' | 'state'>) =>

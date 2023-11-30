@@ -2,7 +2,7 @@
   <tiny-tree-menu :data="treeData" accordion></tiny-tree-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu } from '@opentiny/vue'
 
 export default {

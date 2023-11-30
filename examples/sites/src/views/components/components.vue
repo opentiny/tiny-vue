@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div v-if="templateModeState.isSaas" class="ti-pt20 ti-pl48 ti-mb-36">
+      <span class="cmp-mode-title">文档类型： </span>
+      <tiny-button-group :data="optionsList" v-model="templateModeState.mode"></tiny-button-group>
+    </div>
     <div class="ti-f-r ti-pt48 ti-pl48 ti-pr48">
       <div class="ti-fi-1 ti-w0 ti-rel cmp-container">
         <!-- 一个组件的文档:  描述md + demos + apis -->
@@ -28,7 +32,7 @@
           </div>
         </template>
         <template v-if="currJson.apis?.length > 0">
-          <div id="API" @click="handleApiClick($event)">
+          <div id="API">
             <h2 class="ti-f30 ti-fw-normal ti-mt28">API</h2>
             <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
             <div class="mt20" v-for="(oneGroup, idx) in currJson.apis" :key="oneGroup.name">
@@ -60,12 +64,22 @@
                     <tbody>
                       <tr v-for="row in oneApiArr" :key="row.name">
                         <td>
-                          <a v-if="row.demoId" :href="`#${row.demoId}`">{{ row.name }}</a>
+                          <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
                         </td>
-                        <td v-if="!key.includes('slots')"><span v-html="row.type"></span></td>
+                        <td v-if="!key.includes('slots')">
+                          <a
+                            v-if="row.typeAnchorName"
+                            :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
+                            v-html="row.type"
+                            @click="handleTypeClick"
+                          ></a>
+                          <span v-else v-html="row.type"></span>
+                        </td>
                         <td v-if="!key.includes('slots') && !key.includes('events')">
-                          <span v-html="row.defaultValue"></span>
+                          <span
+                            v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"
+                          ></span>
                         </td>
                         <td><span v-html="row.desc[langKey]"></span></td>
                       </tr>
@@ -75,6 +89,16 @@
               </div>
             </div>
           </div>
+        </template>
+        <template v-if="currJson.types && currJson.types.length">
+          <div class="ti-f18 ti-py28" id="types">types</div>
+          <tiny-collapse v-model="activeNames">
+            <div v-for="typeItem in currJson.types" :id="typeItem.name" :key="typeItem.name">
+              <tiny-collapse-item :title="typeItem.name" :name="typeItem.name">
+                <async-highlight :code="typeItem.code.trim()" types="ts"></async-highlight
+              ></tiny-collapse-item>
+            </div>
+          </tiny-collapse>
         </template>
         <h2 id="FAQ" v-if="cmpFAQMd" class="ti-f30 ti-fw-normal ti-mt28 ti-mb20">FAQ</h2>
         <div class="markdown-body" v-html="cmpFAQMd"></div>
@@ -88,6 +112,7 @@
         <tiny-anchor
           :is-affix="true"
           :links="anchorLinks"
+          :key="anchorRefreshKey"
           mask-class="custom-active-anchor"
           @link-click="handleAnchorClick"
         >
@@ -99,21 +124,32 @@
 </template>
 
 <script lang="jsx">
-import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted, nextTick } from 'vue'
+import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } from 'vue'
 import { marked } from 'marked'
-import { Loading, Anchor } from '@opentiny/vue'
-import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode } from '@/tools'
+import { Loading, Anchor, ButtonGroup, ColumnListGroup } from '@opentiny/vue'
+import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
+import { Collapse, CollapseItem } from '@opentiny/vue'
 import { faqMdConfig, staticDemoPath, getWebdocPath } from './cmpConfig'
+import AsyncHighlight from './async-highlight.vue'
 
 export default defineComponent({
   name: 'CmpPageVue',
-  components: { Demo: demo, TinyAnchor: Anchor },
+  components: {
+    Demo: demo,
+    TinyAnchor: Anchor,
+    TinyButtonGroup: ButtonGroup,
+    TinyCollapse: Collapse,
+    TinyCollapseItem: CollapseItem,
+    AsyncHighlight
+  },
   directives: {
     loading: Loading.directive
   },
   setup() {
+    const anchorRefreshKey = ref(0)
     const state = reactive({
       webDocPath: computed(() => ''),
       langKey: $t2('zh-CN', 'en-US'),
@@ -130,8 +166,8 @@ export default defineComponent({
             title: demo.name[state.langKey],
             link: `#${demo.demoId}`
           })) || []
-        if (apiModeState.demoMode !== 'single') {
-          links.push({ key: 'API', title: 'API', link: '#API' })
+        if (state.currJson?.apis?.length) {
+          links.push({ key: 'API', title: 'API', link: '#API' }, { key: 'Types', title: 'Types', link: '#types' })
         }
         if (state.cmpFAQMd) {
           links.push({
@@ -143,10 +179,12 @@ export default defineComponent({
         return links
       }),
       // 单demo显示时
-      singleDemo: null
+      singleDemo: null,
+      activeNames: ''
     })
 
     const { apiModeState } = useApiMode()
+    const { templateModeState, staticPath, optionsList } = useTemplateMode()
 
     // 页面加载/点击api中的链接，根据hash滚动。
     const scrollByHash = (hash) => {
@@ -158,7 +196,8 @@ export default defineComponent({
           })
         } else {
           let scrollTarget
-          try { //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
+          try {
+            //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
           } catch (err) {
             console.log('querySelector has special character:', err)
@@ -189,18 +228,33 @@ export default defineComponent({
       }
     }
 
-    const loadPage = () => {
+    // 改变折叠筐的展开状态， 2参为TRUE则表示是通过点击type属性跳转的锚点。不用进行判断直接赋值
+    const changeActiveNames = (hash, isType = false) => {
+      const newVal = hash.replace('#', '')
+      if (isType) {
+        state.activeNames = newVal
+        return
+      }
+
+      const isTypeHashChange = state.currJson.types.some((item) => item.name === newVal)
+      if (isTypeHashChange) {
+        state.activeNames = newVal
+      }
+    }
+
+    // saas下切换mode和组价示例都会触发loadPage,需要防抖
+    const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
       const lang = $t2('cn', 'en')
       state.cmpId = router.currentRoute.value.params.cmpId
 
       // 将请求合并起来，这样页面更新一次，页面刷新的时机就固定了
       const promiseArr = [
-        fetchDemosFile(`${staticDemoPath}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.${lang}.md`),
-        fetchDemosFile(`${staticDemoPath}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`)
+        fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.${lang}.md`),
+        fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`)
       ]
       if (faqMdConfig[state.cmpId]) {
         promiseArr.push(
-          fetchDemosFile(`${staticDemoPath}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.faq.${lang}.md`)
+          fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.faq.${lang}.md`)
         )
       }
 
@@ -224,6 +278,7 @@ export default defineComponent({
           fetchDemosFile(`${staticDemoPath}/grid/webdoc/grid.js`).then((data) => {
             const gridJson = eval('(' + data.slice(15) + ')')
             state.currJson.apis = gridJson.apis
+            state.currJson.types = gridJson.types
           })
         } else if (state.cmpId?.startsWith('chart-')) {
           fetchDemosFile(`${staticDemoPath}/chart/webdoc/chart.js`).then((data) => {
@@ -240,6 +295,10 @@ export default defineComponent({
           if (!state.singleDemo) {
             state.singleDemo = state.currJson.demos[0]
           }
+
+          if (state.currJson.types && state.currJson.types.length) {
+            changeActiveNames(hash)
+          }
         } else {
           state.singleDemo = state.currJson.demos[0]
         }
@@ -247,10 +306,17 @@ export default defineComponent({
         // F5刷新加载时，跳到当前示例
         scrollByHash(hash)
       })
-    }
+    })
     const fn = {
       copyText: (text) => {
         navigator.clipboard.writeText(text)
+      },
+      jumpToDemo: (demoId) => {
+        if (demoId.startsWith('chart') || demoId.startsWith('grid')) {
+          router.push(demoId)
+        } else {
+          router.push(`#${demoId}`)
+        }
       },
       handleApiClick: (ev) => {
         if (ev.target.tagName === 'A') {
@@ -262,15 +328,26 @@ export default defineComponent({
 
           scrollByHash(hash)
         }
+        if (apiModeState.demoMode === 'single') {
+          state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
+        }
+      },
+      handleTypeClick: (ev) => {
+        changeActiveNames(ev.target.hash, true)
       },
       handleAnchorClick: (e, data) => {
         if (apiModeState.demoMode === 'single' && data.link.startsWith('#')) {
           e.preventDefault()
           const hash = data.link.slice(1)
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+          const singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
+
+          // 单示例模式下如果没有匹配到锚点对应的示例，则这不加载示例直接跳转锚点id
+          if (singleDemo) {
+            state.singleDemo = singleDemo
+            scrollToLayoutTop()
+          }
 
           router.push(data.link)
-          scrollToLayoutTop()
         } else if (apiModeState.demoMode === 'default' && data.link.startsWith('#')) {
           // 多示例模式，自动会切到相应的位置。只需要记录singleDemo就好了
           const hash = data.link.slice(1)
@@ -286,6 +363,8 @@ export default defineComponent({
           state.currJson = {}
         } else {
           loadPage()
+          // 每次切换组件都需要让锚点组件重新刷新
+          anchorRefreshKey.value++
         }
       }
     )
@@ -295,6 +374,13 @@ export default defineComponent({
         if (value) {
           scrollToLayoutTop()
         }
+      }
+    )
+
+    watch(
+      () => templateModeState.mode,
+      () => {
+        loadPage()
       }
     )
 
@@ -308,7 +394,10 @@ export default defineComponent({
       ...toRefs(state),
       ...fn,
       $t,
-      apiModeState
+      anchorRefreshKey,
+      apiModeState,
+      templateModeState,
+      optionsList
     }
   }
 })
@@ -347,6 +436,11 @@ export default defineComponent({
   }
 }
 
+.cmp-mode-title {
+  font-size: 18px;
+  vertical-align: middle;
+  font-weight: 600;
+}
 .catalog {
   height: calc(100vh - 150px);
   overflow: hidden;
@@ -384,7 +478,7 @@ export default defineComponent({
   p {
     font-size: 16px;
     line-height: 1.7em;
-    margin: 16px 0;
+    margin: 12px 0;
   }
 }
 .cmp-page-anchor {
@@ -435,19 +529,25 @@ export default defineComponent({
   background-color: #f3f5f7;
   border-color: #42b983;
   border-radius: 0;
-  padding: 0.1rem 1.5rem;
+  padding: 1.5rem;
   border-left-width: 0.5rem;
   border-left-style: solid;
   margin: 1rem 0;
   font-size: 14px;
   color: #5e6d82;
+  line-height: 1.5;
   .custom-block-title {
     font-weight: 600;
   }
   p {
-    margin: 16px 0;
+    margin: 8px 0;
     font-size: 16px;
-    line-height: 1.7em;
+    line-height: 1.5;
+  }
+  ul {
+    li {
+      padding: 5px 0;
+    }
   }
 }
 </style>

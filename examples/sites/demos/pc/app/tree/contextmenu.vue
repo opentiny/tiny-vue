@@ -1,6 +1,12 @@
 <template>
   <div>
-    <tiny-tree :data="data" :props="defaultProps" default-expand-all :show-contextmenu="true" ref="tree">
+    <tiny-tree
+      ref="treeRef"
+      :data="data"
+      default-expand-all
+      :show-contextmenu="true"
+      @node-contextmenu="nodeContextmenu"
+    >
       <template #contextmenu="{ data, node }">
         <ul class="context-menu">
           <li @click="add(data)">新增子节点</li>
@@ -15,115 +21,49 @@
 <script lang="jsx">
 import { Tree } from '@opentiny/vue'
 
-let newId = 1000
-
 export default {
   components: {
     TinyTree: Tree
   },
   data() {
     return {
-      defaultProps: {
-        children: 'children',
-        label: 'label'
-      },
       data: [
         {
-          id: 1,
-          label: '一级 1',
+          id: '1',
+          label: '数据 1',
+          children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+        },
+        {
+          id: '2',
+          label: '数据 2',
           children: [
-            {
-              id: 4,
-              label: '二级 1-1',
-              children: [
-                {
-                  id: 9,
-                  label: '三级 1-1-1'
-                }
-              ]
-            }
+            { id: '2-1', label: '数据 2-1' },
+            { id: '2-2', label: '数据 2-2' }
           ]
         },
         {
-          id: 2,
-          label: '一级 2',
-          children: [
-            {
-              id: 5,
-              label: '二级 2-1',
-              children: [
-                {
-                  id: 10,
-                  label: '三级 2-1-1'
-                }
-              ]
-            },
-            {
-              id: 6,
-              label: '二级 2-2',
-              children: [
-                {
-                  id: 11,
-                  label: '三级 2-2-1'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 3,
-          label: '一级 3',
-          children: [
-            {
-              id: 7,
-              label: '二级 3-1',
-              children: [
-                {
-                  id: 12,
-                  label: '三级 3-1-1'
-                }
-              ]
-            },
-            {
-              id: 8,
-              label: '二级 3-2',
-              children: [
-                {
-                  id: 13,
-                  label: '三级 3-2-1'
-                }
-              ]
-            }
-          ]
+          id: '3',
+          label: '数据 3',
+          children: [{ id: '3-1', label: '数据 3-1' }]
         }
       ]
     }
   },
   methods: {
     add(data) {
-      const newChild = { id: newId++, label: `new child ${newId - 1000}`, children: [] }
-      if (!data.children) {
-        data.children = []
-      }
-
-      data.children.push(newChild)
-      this.data = [...this.data]
-
-      this.$refs.tree.closeMenu()
+      console.log('点击了添加子节点', data)
+      this.$refs.treeRef.closeMenu()
     },
     update(data) {
-      data.label += ' update'
-      this.data = [...this.data]
-      this.$refs.tree.closeMenu()
+      console.log('点击了更新', data)
+      this.$refs.treeRef.closeMenu()
     },
     remove(data, node) {
-      const parent = node.parent
-      const currentNodes = parent.data.children || parent.data
-      const index = currentNodes.findIndex((i) => i.id === data.id)
-      currentNodes.splice(index, 1)
-
-      this.data = [...this.data]
-      this.$refs.tree.closeMenu()
+      console.log('点击了删除', { data, node })
+      this.$refs.treeRef.closeMenu()
+    },
+    nodeContextmenu(event, data, node, vm) {
+      console.log('触发了右键事件：', { event, data, node, vm })
     }
   }
 }

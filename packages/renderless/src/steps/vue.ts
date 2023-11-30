@@ -1,5 +1,5 @@
 import { updateStartIndex, isVisibleHandler, computedRightNodePos, computedSpace } from './index'
-import { ISharedRenderlessParamHooks, IStepsApi, IStepsProps, IStepsState } from '@/types'
+import type { ISharedRenderlessParamHooks, IStepsApi, IStepsProps, IStepsState } from '@/types'
 
 export const api = ['state', 'isVisibleHandler']
 

@@ -16,6 +16,7 @@ import userPopper from '../common/deps/vue-popper'
 import { DATEPICKER } from '../common'
 import { formatDate, parseDate, isDateObject, getWeekNumber } from '../common/deps/date-util'
 import { extend } from '../common/object'
+import { isFunction } from '../common/type'
 import globalTimezone from './timezone'
 
 const iso8601Reg = /^\d{4}-\d{2}-\d{2}(.)\d{2}:\d{2}:\d{2}(.+)$/
@@ -704,11 +705,15 @@ export const handleKeydown =
   }
 
 export const hidePicker =
-  ({ state }) =>
+  ({ state, doDestroy }) =>
   () => {
     if (state.picker) {
       state.picker.resetView && state.picker.resetView()
       state.pickerVisible = state.picker.visible = state.picker.state.visible = false
+
+      if (isFunction(doDestroy)) {
+        doDestroy()
+      }
     }
   }
 

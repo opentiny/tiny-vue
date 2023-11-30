@@ -6,7 +6,11 @@
     <tiny-button @click="fn('bottom')"> bottom </tiny-button>
 
     <tiny-drawer title="标题" :placement="placement" v-model:visible="visible">
-      <div style="height: 200px; text-align: center">内容区域</div>
+      <div style="height: 200px; text-align: center">
+        <br />
+        <br />
+        <span>内容区域</span>
+      </div>
     </tiny-drawer>
   </div>
 </template>

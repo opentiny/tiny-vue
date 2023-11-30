@@ -1,10 +1,10 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择" multiple show-overflow-tooltip style="width: 200px">
+  <tiny-select v-model="value" multiple show-overflow-tooltip style="width: 200px">
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('测试日期范围选择', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/date-picker/date-range')
+  await page.goto('date-picker#date-range')
   const startDateDom = page.getByRole('textbox').nth(1)
   const endDateDom = page.getByRole('textbox').nth(2)
 

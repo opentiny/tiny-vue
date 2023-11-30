@@ -12,6 +12,7 @@
 
 import { on, off } from './dom'
 import PopupManager from './popup-manager'
+import globalConfig from '../global'
 import { typeOf } from '../type'
 
 const positions = ['left', 'right', 'top', 'bottom']
@@ -131,8 +132,8 @@ const getOffsetRectRelativeToCustomParent = (el: HTMLElement, parent: HTMLElemen
   // 如果是fixed定位，直接返回相对视口位置
   if (fixed) {
     return {
-      top: top,
-      left: left,
+      top,
+      left,
       bottom: top + height,
       right: left + width,
       width,
@@ -356,10 +357,12 @@ class Popper {
 
     return this
   }
+
   onUpdate(callback) {
     this.state.updateCallback = callback
     return this
   }
+
   update() {
     let data = { instance: this, styles: {} } as unknown as UpdateData
 
@@ -373,6 +376,7 @@ class Popper {
 
     typeof this.state.updateCallback === 'function' && this.state.updateCallback(data)
   }
+
   /** 按顺序执行Modifiers， 如果传入终点modifier,则执行到指定位置 */
   runModifiers(data: UpdateData, modifiers: Function[], ends?: Function) {
     let modifiersToRun = modifiers.slice()
@@ -393,6 +397,7 @@ class Popper {
 
     return data
   }
+
   // 此时才把offsets.popper 赋值给popper dom,  offsets.array赋值给array dom
   applyStyle(data: UpdateData) {
     let styles: any = { position: data.offsets.popper.position }
@@ -415,6 +420,7 @@ class Popper {
 
     return data
   }
+
   // 判断 placement是不是2段式的，是则处理一下偏移。 修改data.offsets.popper的值
   shift(data: UpdateData) {
     let placement = data.placement
@@ -443,6 +449,7 @@ class Popper {
 
     return data
   }
+
   // 校正popper的位置在boundaries 的内部
   preventOverflow(data: UpdateData) {
     let order = this._options.preventOverflowOrder
@@ -492,6 +499,7 @@ class Popper {
     })
     return data
   }
+
   // 校正popper的位置在reference的边上。 如果2个分离了，重新调整popper的位置。 可能是担心 modifiers.offset 带来的副作用吧
   keepTogether(data: UpdateData) {
     let popper = getPopperClientRect(data.offsets.popper)
@@ -515,6 +523,7 @@ class Popper {
 
     return data
   }
+
   // 根据flip的策略，计算当前应该显示的位置。 空间不够要计算出flip的位置。 可能是担心preventOverflow 时，造成pop, reference会重叠。 重叠了就要flip一下
   flip(data: UpdateData) {
     // 只翻转一次，避免重复的flip
@@ -562,6 +571,7 @@ class Popper {
     })
     return data
   }
+
   // 根据入参option上的offset, 给data.offset.popper进行校正
   offset(data: UpdateData) {
     let offset = this._options.offset
@@ -579,6 +589,7 @@ class Popper {
 
     return data
   }
+
   // 计算arrow的位置,保存在data.offsets.arrow ={top,left}
   arrow(data: UpdateData) {
     let arrow: string | HTMLElement = this._options.arrowElement // 小三角的dom
@@ -649,6 +660,7 @@ class Popper {
     let isParentFixed = isFixed(reference)
     return isParentFixed ? 'fixed' : 'absolute'
   }
+
   /** 实时计算一下popper, reference的 位置信息， 用于 */
   _getRefPopOffsets(popper, reference, placement) {
     placement = placement.split('-')[0]
@@ -688,6 +700,7 @@ class Popper {
       reference: referenceOffsets
     }
   }
+
   _setupEventListeners() {
     this.state.updateBoundFn = this.update.bind(this)
 
@@ -714,6 +727,7 @@ class Popper {
       }
     }
   }
+
   _removeEventListeners() {
     off(window, 'resize', this.state.updateBoundFn)
 
@@ -734,6 +748,7 @@ class Popper {
 
     this.state.updateBoundFn = null as any
   }
+
   /** 实时计算一下Boundary的位置 */
   _getBoundaries(data: UpdateData, padding: number, boundariesElement: string | HTMLElement) {
     let boundaries = { right: 0, left: 0, top: 0, bottom: 0 }
@@ -752,7 +767,8 @@ class Popper {
       let scrollTop = isFixed ? 0 : getScrollTopValue(scrollParent)
       let scrollLeft = isFixed ? 0 : getScrollLeftValue(scrollParent)
 
-      const viewportWindow = PopupManager.viewportWindow || window
+      // PopupManager.viewportWindow是为了兼容之前已经采用此方法兼容微前端的用户，后续需要采用globalConfig.viewportWindow
+      const viewportWindow = globalConfig.viewportWindow || PopupManager.viewportWindow || window
       boundaries = {
         top: 0 - (offsetParentRect.top - scrollTop),
         right: viewportWindow.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),

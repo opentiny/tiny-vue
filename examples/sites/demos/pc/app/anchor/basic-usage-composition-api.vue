@@ -1,10 +1,12 @@
 <template>
-  <tiny-anchor :links="links"></tiny-anchor>
+  <tiny-switch v-model="type" true-value="line" false-value="dot"> </tiny-switch>
+  当前类型：{{ type }}
+  <tiny-anchor :links="links" :type="type"></tiny-anchor>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Anchor as TinyAnchor } from '@opentiny/vue'
+import { Anchor as TinyAnchor, Switch as TinySwitch } from '@opentiny/vue'
 
 const links = ref([
   {
@@ -40,4 +42,6 @@ const links = ref([
     title: 'Api'
   }
 ])
+
+const type = ref('dot')
 </script>

@@ -24,7 +24,8 @@
  */
 
 import { getRowid } from './common'
-import { hasClass } from '../../common/deps/dom'
+import { hasClass, getDomNode } from '../../common/deps/dom'
+import { getActualTarget } from '../../common/event'
 import { arrayIndexOf } from '../static'
 
 const ATTR_NAME = 'data-rowid'
@@ -149,21 +150,9 @@ export const colToVisible = ($table, column, move) => {
   })
 }
 
-export const getDomNode = () => {
-  const documentElement = document.documentElement
-  const bodyElement = document.body
-
-  return {
-    scrollTop: documentElement.scrollTop || bodyElement.scrollTop,
-    scrollLeft: documentElement.scrollLeft || bodyElement.scrollLeft,
-    visibleHeight: documentElement.clientHeight || bodyElement.clientHeight,
-    visibleWidth: documentElement.clientWidth || bodyElement.clientWidth
-  }
-}
-
 export const getEventTargetNode = (event, container, queryCls) => {
   let targetEl
-  let target = event.target
+  let target = getActualTarget(event)
 
   while (target && target.nodeType && target !== document) {
     if (queryCls && hasClass(target, queryCls)) {
@@ -283,3 +272,5 @@ export const getCell = ($table, { row, column }) =>
       )
     })
   })
+
+export { getDomNode }

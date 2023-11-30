@@ -1,20 +1,32 @@
-import { ICascaderPanelApi, ICascaderPanelConfig, ICascaderPanelNodePropValue, ICascaderPanelNodeValue, ICascaderPanelNode } from './cascader-panel.type'
-import { ISharedRenderlessFunctionParams } from './shared.type'
-import type { isInPath, handleExpand, comptCheckPath, handleCheckChange, handleMultiCheckChange } from '../src/cascader-node'
+import type {
+  ICascaderPanelApi,
+  ICascaderPanelConfig,
+  ICascaderPanelNodePropValue,
+  ICascaderPanelNodeValue,
+  ICascaderPanelNode
+} from './cascader-panel.type'
+import type { ISharedRenderlessFunctionParams } from './shared.type'
+import type {
+  isInPath,
+  handleExpand,
+  comptCheckPath,
+  handleCheckChange,
+  handleMultiCheckChange
+} from '../src/cascader-node'
 
-export type ICascaderNodeProps = {
+export interface ICascaderNodeProps {
   node: ICascaderPanelNode
   nodeId: string
 }
 
 export interface ICascaderNodeState {
-  config: ICascaderPanelConfig,
-  isLeaf: boolean,
-  isDisabled: boolean,
-  checkedValue: ICascaderPanelNodeValue[],
-  isChecked: boolean,
-  inActivePath: boolean,
-  inCheckedPath: boolean,
+  config: ICascaderPanelConfig
+  isLeaf: boolean
+  isDisabled: boolean
+  checkedValue: ICascaderPanelNodeValue[]
+  isChecked: boolean
+  inActivePath: boolean
+  inCheckedPath: boolean
   value: ICascaderPanelNodePropValue
 }
 

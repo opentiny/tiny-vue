@@ -9,13 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import {
-  IButtonState,
-  ISharedRenderlessParamHooks,
-  IButtonProps,
-  IButtonApi,
-  IButtonRenderlessParamUtils
-} from '@/types'
+import type { ISharedRenderlessParamHooks, IButtonProps, IButtonApi, IButtonRenderlessParamUtils } from '@/types'
+
 import { handleClick, clearTimer } from './index'
 
 export const api = ['state', 'handleClick']

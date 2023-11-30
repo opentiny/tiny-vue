@@ -129,7 +129,7 @@ const kebabCase = ({ str, splitChar = '-' }: { str: string; splitChar?: string }
  * @param {String} str 格式字符
  * @param {Object} options 格式字符
  */
-const prettierFormat = ({ str, options = {} }: { str: string; options?: object }) => {
+const prettierFormat = ({ str, options = {} }: { str: string; options?: object }):string => {
   return prettier.format(
     str,
     Object.assign(
@@ -143,10 +143,10 @@ const prettierFormat = ({ str, options = {} }: { str: string; options?: object }
         bracketSpacing: true,
         quoteProps: 'preserve',
         parser: 'typescript'
-      },
+      } as any,
       options
     )
-  )
+  ) as unknown as string
 }
 
 /**
@@ -281,6 +281,13 @@ const getPackageVersion = ({
 
 const getMinorVersion = (version) => {
   return `~${semver.major(version)}.${semver.minor(version)}.0`
+}
+
+// 支持 alpha / beta 等版本号
+export const getPatchVersion = (version) => {
+  const versionItems = version.split('.')
+  versionItems.pop()
+  return `~${versionItems.join('.')}.0`
 }
 
 /**

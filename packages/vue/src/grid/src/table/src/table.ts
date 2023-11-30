@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { h, hooks, $prefix, appProperties, isVue3 } from '@opentiny/vue-common'
+import { h, hooks, $prefix, appProperties } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
@@ -152,14 +152,15 @@ const renderEmptyPartFn = (opt) => {
 }
 
 const renderFooterFn = (opt) => {
-  const { showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize } = opt
+  const { _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize } = opt
   return () => {
     let tableFooterVnode = [null]
 
     if (showFooter) {
       tableFooterVnode = h(GridFooter, {
         props: { footerData, footerMethod, tableColumn, visibleColumn, size: vSize },
-        ref: 'tableFooter'
+        ref: 'tableFooter',
+        class: _vm.viewCls('tableFooter')
       })
     }
 
@@ -168,13 +169,13 @@ const renderFooterFn = (opt) => {
 }
 
 const renderResizeBarFn = (opt) => {
-  const { isResizable, overflowX, scrollbarHeight } = opt
+  const { _vm, isResizable, overflowX, scrollbarHeight } = opt
   return () => {
     let resizeBarVnode = [null]
 
     if (isResizable) {
       resizeBarVnode = h('div', {
-        class: 'tiny-grid__resizable-bar',
+        class: ['tiny-grid__resizable-bar', _vm.viewCls('resizeBar')],
         style: overflowX ? { 'padding-bottom': `${scrollbarHeight}px` } : null,
         ref: 'resizeBar',
         key: 'tinyGridResizeBar'
@@ -190,9 +191,13 @@ const renderPluginWrapperFn = (opt) => {
   const { editRules, validOpts, height, tableData, vaildTipOpts, id, _vm } = opt
 
   return () => {
+    // 筛选面板
     let filterVnode = [null]
+    // 右键快捷面板
     let ctxMenuVnode = [null]
+    // tips提示
     let tooltipVnode = [null]
+    // 校验错误提示
     let errorTooltipVnode = [null]
 
     if (hasFilter) {
@@ -293,8 +298,8 @@ function getRenderer(opt) {
   const renderHeader = () =>
     showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null]
   const renderEmptyPart = renderEmptyPartFn({ _vm, tableData, $slots, renderEmpty })
-  const renderFooter = renderFooterFn({ showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
-  const renderResizeBar = renderResizeBarFn({ isResizable, overflowX, scrollbarHeight })
+  const renderFooter = renderFooterFn({ _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
+  const renderResizeBar = renderResizeBarFn({ _vm, isResizable, overflowX, scrollbarHeight })
   const arg1 = { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts }
   const arg2 = { editRules, validOpts, height, tableData, vaildTipOpts, id, _vm }
   const renderPluginWrapper = renderPluginWrapperFn(Object.assign(arg1, arg2))
@@ -434,7 +439,6 @@ const gridData = {
   groupFolds: [],
   // 所有列已禁用
   headerCheckDisabled: false,
-  id: uniqueId(),
   // 是否全选
   isAllSelected: false,
   // 多选属性，有选中且非全选状态
@@ -740,7 +744,7 @@ export default {
     }
   },
   data() {
-    return extend(true, {}, gridData)
+    return extend(true, { id: uniqueId() }, gridData)
   },
   computed: {
     bodyCtxMenu() {
@@ -911,18 +915,9 @@ export default {
      * vue3不会拦截数组的常规操作，如果深度监听会影响效率，所以需要额外监控数组长度改变，解决push无响应等问题
      * 如果是vue3需要同时监听data和数组长度，如果分多个watch监听会导致重复渲染，影响效率
      */
-    if (isVue3) {
-      hooks.watch([() => table.data, () => table.data && table.data.length], () => {
-        table.handleDataChange()
-      })
-    } else {
-      hooks.watch(
-        () => table.data,
-        () => {
-          table.handleDataChange()
-        }
-      )
-    }
+    hooks.watch([() => table.data, () => table.data && table.data.length], () => {
+      table.handleDataChange()
+    })
 
     hooks.onBeforeUnmount(() => {
       const { elemStore, $refs } = table
@@ -992,7 +987,7 @@ export default {
       // 隐藏列
       h(
         'div',
-        { class: ['tiny-grid-hidden-column', this.viewCls('hiddenColumn')], ref: 'hideColumn' },
+        { class: 'tiny-grid-hidden-column', ref: 'hideColumn' },
         typeof $slots.default === 'function' ? $slots.default() : $slots.default
       ),
       // 主头部

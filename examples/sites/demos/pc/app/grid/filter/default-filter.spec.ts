@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('表格过滤', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/grid-filter/filter-default-filter')
+  await page.goto('grid-filter#filter-default-filter')
   await page
     .getByRole('cell', { name: '公司名称鼠标移入可以动态提示tooltip，公司名称鼠标移入可以动态提示tooltip' })
     .getByRole('img')

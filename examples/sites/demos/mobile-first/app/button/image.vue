@@ -1,5 +1,5 @@
 <template>
-  <tiny-button>
+  <tiny-button size="medium">
     <img :src="image" width="26" />
     <span>图片按钮</span>
   </tiny-button>

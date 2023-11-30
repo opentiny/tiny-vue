@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('文件多选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/file-upload/multiple-file')
+  await page.goto('file-upload#multiple-file')
 
   const upload = page.getByRole('button', { name: '选取文件' })
   const lists = page.locator('.tiny-upload-list__item')

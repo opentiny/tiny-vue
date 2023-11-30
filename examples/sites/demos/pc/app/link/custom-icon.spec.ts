@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('自定义图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/link/custom-icon')
+  await page.goto('link#custom-icon')
   const preview = page.locator('#preview')
   const edit = preview.locator('a').filter({ hasText: '编辑' })
   await expect(edit.locator('svg')).toHaveCount(1)

@@ -1,10 +1,14 @@
 <template>
-  <tiny-steps space="200" :data="stepsData" :active="active" @click="onClick"></tiny-steps>
+  <div class="tiny-steps-demo-space">
+    <tiny-steps space="200" :data="stepsData" :active="active" @click="onClick"></tiny-steps>
+    <br />
+    <tiny-time-line space="30%" :data="stepsData" :active="active" text-position="right"></tiny-time-line>
+  </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
-import { Steps as TinySteps } from '@opentiny/vue'
+import { Steps as TinySteps, TimeLine as TinyTimeLine } from '@opentiny/vue'
 
 const stepsData = ref([
   {
@@ -25,7 +29,7 @@ const stepsData = ref([
 ])
 const active = ref(1)
 
-function onClick(index, node) {
+const onClick = (index, node) => {
   active.value = index
   node.status = 'doing'
 }

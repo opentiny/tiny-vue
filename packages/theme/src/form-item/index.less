@@ -216,7 +216,16 @@
     top: auto;
     left: auto;
     display: inline-block;
-    margin-left: 10px;
+    margin-left: var(--ti-form-item-error-inline-margin-left);
+  }
+
+  &__error--block {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    margin-left: 0;
+    padding-top: var(--ti-form-item-error-block-padding-top);
   }
 
   &.is-required:not(.is-no-asterisk) {
@@ -232,6 +241,8 @@
   &.is-error {
     .@{input-prefix-cls}__inner,
     .@{input-prefix-cls}__inner:focus,
+    .@{textarea-prefix-cls},
+    .@{textarea-prefix-cls}:focus,
     .@{textarea-prefix-cls}__inner,
     .@{textarea-prefix-cls}__inner:focus {
       border-color: var(--ti-form-item-error-border-color);

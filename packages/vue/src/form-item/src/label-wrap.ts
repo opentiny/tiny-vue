@@ -1,21 +1,12 @@
-/**
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- */
-import { setup, h } from '@opentiny/vue-common'
+import { setup, h, $props, defineComponent } from '@opentiny/vue-common'
 
-export default {
+export default defineComponent({
   props: {
+    ...$props,
     isAutoWidth: Boolean,
     updateAll: Boolean,
-    isMobile: Boolean
+    isMobile: Boolean,
+    isMobileFirst: Boolean
   },
   inject: ['form', 'formItem'],
   render() {
@@ -25,8 +16,8 @@ export default {
     if (!slotsDefault) return null
 
     if (this.isAutoWidth) {
-      const autoLabelWidth = this.form.autoLabelWidth
-      const style = {}
+      const autoLabelWidth = (this as any).form.autoLabelWidth
+      const style = {} as any
 
       if (autoLabelWidth && autoLabelWidth !== 'auto') {
         const marginLeft = parseInt(autoLabelWidth, 10) - this.computedWidth
@@ -38,7 +29,7 @@ export default {
       return h(
         'div',
         {
-          class: `${classPrefix}form-item_label-wrap`,
+          class: this.isMobileFirst ? 'float-left' : `${classPrefix}form-item_label-wrap`,
           style
         },
         slotsDefault
@@ -60,7 +51,7 @@ export default {
       }
 
       const setComputedWidth = () => (this.computedWidth = this.getLabelWidth())
-      const deregisterFormLabelWidth = () => this.form.deregisterLabelWidth(this.computedWidth)
+      const deregisterFormLabelWidth = () => (this as any).form.deregisterLabelWidth(this.computedWidth)
 
       if (action === 'update') {
         setComputedWidth()
@@ -72,12 +63,12 @@ export default {
   watch: {
     computedWidth(val, oldVal) {
       if (this.updateAll) {
-        this.form.registerLabelWidth(val, oldVal)
-        this.formItem.updateComputedLabelWidth(val)
+        ;(this as any).form.registerLabelWidth(val, oldVal)
+        ;(this as any).formItem.updateComputedLabelWidth(val)
       }
     }
   },
-  setup(props, context) {
+  setup(props, context): any {
     const renderless = (props, { onMounted, onUpdated, onBeforeUnmount }, { vm }) => {
       onMounted(() => vm.updateLabelWidth('update'))
       onUpdated(() => vm.updateLabelWidth('update'))
@@ -92,4 +83,4 @@ export default {
 
     return setup({ props, context, renderless, api })
   }
-}
+})

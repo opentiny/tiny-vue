@@ -11,7 +11,7 @@
  */
 
 import type { StyleValue } from 'vue'
-import { ISwitchRenderlessParams, ISwitchClass } from '@/types'
+import type { ISwitchRenderlessParams, ISwitchClass } from '@/types'
 
 export const toggle =
   ({ emit, props, state }: Pick<ISwitchRenderlessParams, 'emit' | 'props' | 'state'>) =>
@@ -34,15 +34,17 @@ export const toggle =
 
 export const computedWarpClasses =
   ({ prefixCls, props, state }: Pick<ISwitchRenderlessParams, 'prefixCls' | 'props' | 'state'>) =>
-  (): ISwitchClass => [
-    {
-      [prefixCls]: true,
-      [`${prefixCls}-checked`]: state.currentValue === props.trueValue,
-      [`${prefixCls}-disabled`]: state.disabled,
-      mini: props.mini,
-      disabled: state.disabled
-    }
-  ]
+  (): ISwitchClass => {
+    return [
+      {
+        [prefixCls]: true,
+        [`${prefixCls}-checked`]: state.currentValue === props.trueValue,
+        [`${prefixCls}-disabled`]: state.disabled,
+        mini: props.mini,
+        disabled: state.disabled
+      }
+    ]
+  }
 
 export const computedInnerClasses =
   ({ prefixCls }: Pick<ISwitchRenderlessParams, 'prefixCls'>) =>

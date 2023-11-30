@@ -76,27 +76,31 @@ export const translateItem =
     state.ready = true
   }
 
-export const handleItemClick = (parent) => () => {
-  const vnode = parent.$parent
+export const handleItemClick =
+  ({ state, parent }) =>
+  () => {
+    const vnode = parent.$parent
 
-  if (vnode && vnode.type === parent.$constants.TYPE_CARD) {
-    const index = vnode.state.items.findIndex((item) => item.$el === parent.$el)
-    vnode.setActiveItem(index)
+    if (vnode && vnode.type === parent.$constants.TYPE_CARD) {
+      const index = vnode.state.items.findIndex((item) => item.state.translate === state.translate)
+      vnode.setActiveItem(index)
+    }
   }
-}
 
 export const computedTransform =
-  ({ parent, TYPE_VERTICAL }) =>
-  (state) => {
+  ({ parent, TYPE_VERTICAL, mode, state }) =>
+  () => {
     const TRANSLATE =
       parent.$parent.type === TYPE_VERTICAL
         ? `translateY(${state.translate + state.delta}px) scale(${state.scale})`
         : `translateX(${state.translate + state.delta}px) scale(${state.scale})`
+    const style = mode === 'mobile-first' ? { width: '100%', height: '100%' } : {}
 
     return {
       msTransform: TRANSLATE,
       webkitTransform: TRANSLATE,
-      transform: TRANSLATE
+      transform: TRANSLATE,
+      ...style
     }
   }
 

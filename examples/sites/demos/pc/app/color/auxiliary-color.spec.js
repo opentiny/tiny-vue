@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('test', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/color/neutral-color')
+  await page.goto('color#neutral-color')
   await page.getByText('主色彩').click()
   await page.getByText('bg-primary-normal').click()
   await expect(page.getByText('bg-primary-normal')).toHaveClass(/bg-primary-normal/)

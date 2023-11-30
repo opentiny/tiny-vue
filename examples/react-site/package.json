@@ -59,7 +59,7 @@
     "unplugin-auto-import": "0.8.7",
     "unplugin-vue-components": "^0.19.9",
     "uslug": "^1.0.4",
-    "vite": "^2.9.12",
+    "vite": "^4.3.8",
     "vite-plugin-html": "^2.0.0",
     "vite-plugin-inspect": "^0.5.0",
     "vite-plugin-md": "0.13.1"

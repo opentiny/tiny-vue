@@ -1,18 +1,12 @@
 export default {
   column: '1',
-  owner: 'Caesar-ch',
+  owner: '',
   demos: [
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['basic-usage.vue']
-    },
-    {
-      'demoId': 'collaboration-usage',
-      'name': { 'zh-CN': '协同编辑用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['collaboration-usage.vue']
     },
     {
       'demoId': 'custom-bar-usage',
@@ -37,7 +31,7 @@ export default {
       'name': { 'zh-CN': 'placeholder选项用法', 'en-US': 'Basic Usage' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['placeholder-usage.vue']
-    },
+    }
   ],
   apis: [
     {
@@ -55,21 +49,12 @@ export default {
           demoId: 'basic-usage'
         },
         {
-          'name': 'collaboration',
-          'type': 'Boolean',
-          'defaultValue': 'false',
-          desc: {
-            'zh-CN': '是否开启协同编辑，默认不开启',
-            'en-US': 'Whether to enable collaborative editing. It is disabled by default'
-          },
-          demoId: 'basic-usage'
-        },
-        {
           'name': 'customToolBar',
           'type': 'Array',
           'defaultValue': '[]',
           desc: {
-            'zh-CN': '传入需要展示的工具栏按钮配置，自定义使用',
+            'zh-CN':
+              "传入需要展示的工具栏按钮配置，设置时，显示全量的工具栏。可配置的项目有：'bold','italic', 'underline', 'strike', 'quote', 'code', 'codeBlock', 'unorderedlist', 'orderedlist', 'taskList', 'subscript', 'superscript', 'undo', 'redo', 'left', 'center', 'right', 'h-box', 'font-size', 'line-height', 'highlight', 'color', 'backgroundColor', 'formatClear', 'link', 'unlink', 'img', 'table'",
             'en-US': 'Pass in the toolbar button configuration that needs to be displayed, and customize the use'
           },
           demoId: 'basic-usage'
@@ -77,7 +62,7 @@ export default {
         {
           'name': 'placeholder',
           'type': 'Stirng',
-          'defaultValue': 'Write soming ...',
+          'defaultValue': '',
           desc: {
             'zh-CN': '占位符，在v-model为空时展示',
             'en-US': 'Placeholder, displayed when v-model is empty'

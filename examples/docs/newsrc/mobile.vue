@@ -31,10 +31,10 @@
         </div>
       </div>
       <!-- API表格 -->
-      <div v-if="state.currApi.length" class="my20 f24 fw-bold">组件API</div>
+      <div v-if="state.currApi.length" class="mt20 f24 fw-bold">组件API</div>
 
       <div v-for="(oneGroup, idx) in state.currApi" :key="idx">
-        <div class="f-r f-pos-start fw-bold">
+        <div class="mt20 f-r f-pos-start fw-bold">
           <div :id="oneGroup.name" class="f18">
             {{ oneGroup.name }}
           </div>
@@ -66,7 +66,7 @@
                     <span v-else>{{ row.name }}</span>
                   </td>
                   <td>{{ row.type }}</td>
-                  <td>{{ row.defaultValue }}</td>
+                  <td v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"></td>
                   <td v-html="row.desc['zh-CN']"></td>
                 </tr>
               </tbody>

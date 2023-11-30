@@ -18,7 +18,7 @@ import type {
   INumericGetEmitValueParams,
   INumericUnitPrecision
 } from '@/types'
-import { BigIntDecimal } from '../common/bigInt'
+import type { BigIntDecimal } from '../common/bigInt'
 import { formatNumber, roundFixed } from '../common/decimal'
 import { getMiniDecimal, lessEquals, equalsDecimal } from '../common/bigInt'
 import { isNumber, isNull } from '../common/type'
@@ -46,13 +46,16 @@ export const getDecimal =
     getMiniDecimal(value, props.plugin)
 
 export const watchValue =
-  ({ api, state }: Pick<INumericRenderlessParams, 'api' | 'state'>) =>
+  ({ api, state, nextTick }: Pick<INumericRenderlessParams, 'api' | 'state' | 'nextTick'>) =>
   (value: number): void => {
     if (value === state.currentValue) {
       return
     }
 
     api.setCurrentValue(value)
+    nextTick(() => {
+      api.dispatchDisplayedValue()
+    })
   }
 
 export const toPrecision =
@@ -312,7 +315,7 @@ export const handleInput =
       emitError()
 
       if (!(value === '' && props.allowEmpty)) {
-        value = value.indexOf('e') === -1 ? state.lastInput : value
+        value = !value.includes('e') ? state.lastInput : value
       }
     } else {
       value = value
@@ -455,4 +458,20 @@ export const getDisplayedValue =
   ({ state, props }: Pick<INumericRenderlessParams, 'state' | 'props'>) =>
   (): string => {
     return state.displayValue || state.displayValue === 0 ? state.displayValue + ' ' + (props.unit || '') : '-'
+  }
+
+export const getDisplayOnlyText =
+  ({ parent, state, props }: Pick<INumericRenderlessParams, 'parent' | 'state' | 'props'>) =>
+  (): string | number => {
+    const showEmptyValue = props.showEmptyValue || (parent.tinyForm || {}).showEmptyValue
+
+    if (showEmptyValue) {
+      return state.displayValue
+    } else {
+      if (state.displayValue || state.displayValue === 0) {
+        return state.displayValue
+      } else {
+        return '-'
+      }
+    }
   }

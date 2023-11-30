@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { uploadListProps } from '@/upload-list/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { uploadListProps } from '@/upload-list/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type { IFileUploadFile, IFileUploadConstants } from './file-upload.type'
 import type {
   getDeleteData,
@@ -30,6 +30,13 @@ import type { getApi } from '../src/file-upload/vue'
 export interface IUploadListState {
   focusing: boolean
   shows: boolean
+  progressType: string
+  progressWidth: number
+  progressStrokeWidth: number
+  tooltipDisabled: boolean
+  closeComponent: string
+  preViewComponent: string
+  failUploadFileCount: number
   startPostion: number
   screenType: boolean
   showPanel: boolean

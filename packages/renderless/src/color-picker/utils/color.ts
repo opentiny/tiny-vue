@@ -7,10 +7,13 @@ function hexToRgb(hex: string) {
   let a = parseInt(hex.slice(7), 16) / 255
   return { r, g, b, a: a * 100 }
 }
-const normalizeHexColor = (color: string) => {
+export const normalizeHexColor = (color: string) => {
   let normalizedColor: string = color.replace('#', '')
   if (normalizedColor.length === 3) {
-    normalizedColor = normalizedColor.split('').map(char => char + char).join('')
+    normalizedColor = normalizedColor
+      .split('')
+      .map((char) => char + char)
+      .join('')
   }
   normalizedColor = normalizedColor.padEnd(6, '0')
 
@@ -37,6 +40,7 @@ export default class Color {
   private s = 0
   private v = 0
   private a = 100
+  private preH = 0
   private enableAlpha = false
   constructor(value: string, alpha = false) {
     this.reset(value)
@@ -58,6 +62,7 @@ export default class Color {
     this.s = s
     this.v = v
     this.a = a
+    this.preH = h
   }
 
   set({ h, s, v, a }: { h?: number; s?: number; v?: number; a?: number }) {
@@ -65,6 +70,10 @@ export default class Color {
     this.s = s ?? this.s
     this.v = v ?? this.v
     this.a = a ?? this.a
+  }
+
+  setPrevH(val: number) {
+    this.preH = val
   }
 
   /**
@@ -79,7 +88,9 @@ export default class Color {
     if (!this.enableAlpha) {
       return hsv(this.h, this.s, this.v).hex().toString()
     }
-    return hsv(this.h, this.s, this.v, this.a / 100).hexa().toString()
+    return hsv(this.h, this.s, this.v, this.a / 100)
+      .hexa()
+      .toString()
   }
 
   /**
@@ -99,7 +110,7 @@ export default class Color {
     }
   }
 
-  get(key: 'h' | 's' | 'v' | 'a') {
+  get(key: 'h' | 's' | 'v' | 'a' | 'preH') {
     return this[key]
   }
 }

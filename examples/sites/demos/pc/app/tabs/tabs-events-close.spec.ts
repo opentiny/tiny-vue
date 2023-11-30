@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('close 标签关闭事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/tabs/tabs-events-close')
+  await page.goto('tabs#tabs-events-close')
 
   const tabs = page.locator('.tiny-tabs')
   const tabItem = tabs.getByRole('tab', { name: '表单组件' })

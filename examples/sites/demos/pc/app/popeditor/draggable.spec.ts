@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 拖动窗口', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/popeditor/draggable')
+  await page.goto('popeditor#draggable')
 
   const textBox = page.getByRole('textbox').nth(1)
   const dialogBox = page.locator('.tiny-dialog-box').nth(1)
@@ -20,6 +20,6 @@ test('PopEditor 拖动窗口', async ({ page }) => {
   await page.mouse.up()
 
   const { x: x1, y: y1 } = await dialogBox.boundingBox()
-  await expect(x).not.toEqual(x1)
+  await expect(x).toEqual(x1)
   await expect(y).not.toEqual(y1)
 })

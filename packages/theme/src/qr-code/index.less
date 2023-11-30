@@ -1,0 +1,70 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+@import '../custom.less';
+@import './vars.less';
+
+@qr-code-prefix-cls: ~'@{css-prefix}qr-code';
+
+.@{qr-code-prefix-cls} {
+  .component-css-vars-qr-code();
+
+  &-container {
+    position: relative;
+    padding: 12px;
+    &.border {
+      border: 1px solid rgb(5 5 5 / 6%);
+      border-radius: 8px;
+    }
+
+    .qrcode-border {
+      padding: 2px;
+      border: 1px solid rgb(5 5 5 / 6%);
+      border-radius: 8px;
+    }
+
+    .qrcode-expried {
+      font-size: 14px;
+    }
+
+    .mask {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      color: rgb(0 0 0 / 88%);
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      flex-direction: column;
+
+      &-icon {
+        z-index: 10;
+      }
+
+      &-status {
+        z-index: 20;
+        background: rgb(255 255 255 / 96%);
+      }
+
+      .icon {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background: white;
+      }
+    }
+  }
+}

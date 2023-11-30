@@ -14,6 +14,8 @@ import { KEY_CODE } from '../common'
 import { on, off, addClass, hasClass, removeClass } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
 import { getDomNode } from '../common/deps/dom'
+import { getViewportWindow } from '../common/global'
+
 import type {
   IModalProps,
   IModalRenderlessParams,
@@ -104,6 +106,8 @@ export const mounted =
       on(document, 'keydown', api.handleGlobalKeydownEvent)
     }
 
+    on(window, 'hashchange', api.handleHashChange)
+
     document.body.appendChild(parent.$el)
   }
 
@@ -112,6 +116,7 @@ export const beforeUnmouted =
   (): void => {
     isMobileFirstMode && off(window, 'resize', api.resetDragStyle)
     off(document, 'keydown', api.handleGlobalKeydownEvent)
+    off(window, 'hashchange', api.handleHashChange)
     api.removeMsgQueue()
 
     if (parent.$el.parentNode) {
@@ -234,9 +239,13 @@ export const open =
           if (!isMobileFirstMode) {
             let modalBoxElem = api.getBox()
 
-            let clientVisibleWidth = document.documentElement.clientWidth || document.body.clientWidth
+            const viewportWindow = getViewportWindow()
 
-            let clientVisibleHeight = document.documentElement.clientHeight || document.body.clientHeight
+            let clientVisibleWidth =
+              viewportWindow.document.documentElement.clientWidth || viewportWindow.document.body.clientWidth
+
+            let clientVisibleHeight =
+              viewportWindow.document.documentElement.clientHeight || viewportWindow.document.body.clientHeight
 
             modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
 
@@ -338,6 +347,10 @@ export const handleGlobalKeydownEvent =
       api.close('esc')
     }
   }
+
+export const handleHashChange = (api: IModalApi) => (): void => {
+  api.close('close')
+}
 
 export const getBox =
   ({ vm }: Pick<IModalRenderlessParams, 'vm'>) =>

@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Autocomplete, Modal } from '@opentiny/vue'
 
 export default {

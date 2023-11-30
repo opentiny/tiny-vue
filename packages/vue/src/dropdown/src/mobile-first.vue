@@ -4,7 +4,7 @@ import { setup, $prefix, directive, h, $props, defineComponent } from '@opentiny
 import Button from '@opentiny/vue-button'
 import ButtonGroup from '@opentiny/vue-button-group'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
-import { iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
+import { IconChevronDown, IconChevronUp, IconArrowBottom } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'Dropdown',
@@ -12,8 +12,9 @@ export default defineComponent({
   components: {
     TinyButton: Button,
     TinyButtonGroup: ButtonGroup,
-    IconChevronDown: iconChevronDown(),
-    IconChevronUp: iconChevronUp()
+    IconChevronDown: IconChevronDown(),
+    IconChevronUp: IconChevronUp(),
+    IconArrowBottom: IconArrowBottom()
   },
   directives: directive({ Clickoutside }),
   props: {
@@ -35,7 +36,6 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    splitButton: Boolean,
     showTimeout: {
       type: Number,
       default: 250
@@ -72,7 +72,7 @@ export default defineComponent({
   },
   emits: ['visible-change', 'item-click', 'button-click', 'selectedIndex', 'current-item-click'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, h })
+    return setup({ props, context, renderless, api, mono: true, h })
   },
   render() {
     const { type, disabled, handleMainButtonClick, slots, size, state, border, round, m, clickOutside, singleButton } =
@@ -86,15 +86,15 @@ export default defineComponent({
           ref="trigger"
           type={type === 'primary' ? type : ''}
           size={size}
-          buttonClass={m([
-            'rounded-sm active:rounded flex items-center justify-center',
+          customClass={m([
+            'rounded active:rounded flex items-center justify-center',
             state.visible &&
               type !== 'primary' &&
               'active:border-color-border-focus text-color-text-primary active:text-color-brand-focus focus:border-color-border-focus focus:text-color-brand-focus'
           ])}
           disabled={disabled}
           reset-time={0}
-          nativeOn-click={handleMainButtonClick}>
+          onClick={handleMainButtonClick}>
           <div class={'overflow-hidden overflow-ellipsis whitespace-nowrap w-full'}>
             {slots.default && slots.default(params)}
           </div>
@@ -112,13 +112,21 @@ export default defineComponent({
         vnodeData.attrs = attrs
       }
 
+      const defaultIcon = (
+        <span class="block">
+          <icon-chevron-down class="sm:block hidden will-change-transform" />
+          <icon-arrow-bottom class="sm:hidden block will-change-transform" />
+        </span>
+      )
+
       // 增加一层，vue3 环境中无法使用 slots.default 的方式获取原生 DOM 元素
       const suffixInner = state.showIcon && (
         <span
+          data-tag="tiny-dropdown-showicon"
           class={[
-            'ml-1 sm:ml-2 [&>svg:nth-of-type(1)]:align-top w-4 h-4 inline-block [&_svg]:transition-transform [&_svg]:duration-300',
+            'ml-1 sm:ml-2 [&_svg:nth-of-type(1)]:align-top w-4 h-4 inline-block [&_svg]:transition-transform [&_svg]:duration-300',
             {
-              'fill-color-brand-focus [&>svg:nth-of-type(1)]:hover:fill-color-brand-hover [&>svg:nth-of-type(1)]:active:fill-color-brand-focus leading-4':
+              'fill-color-brand-focus [&_svg:nth-of-type(1)]:hover:fill-color-brand-hover [&_svg:nth-of-type(1)]:active:fill-color-brand-focus leading-4':
                 !disabled && !border
             },
             border && (state.visible ? '[&_svg]:rotate-180' : '[&_svg]:rotate-0'),
@@ -127,7 +135,7 @@ export default defineComponent({
               state.visible &&
               '[&_svg]:fill-color-border-focus visited:[&_svg]:fill-color-border-focus active:[&_svg]:fill-color-border-focus'
           ]}>
-          {suffixSlot || <icon-chevron-down />}
+          {suffixSlot || defaultIcon}
         </span>
       )
 
@@ -139,12 +147,13 @@ export default defineComponent({
           type={type === 'primary' ? type : ''}
           disabled={disabled}
           class={[
-            'rounded-sm inline-flex items-center justify-center',
+            'rounded inline-flex items-center justify-center',
             type === 'primary'
               ? '[&_svg]:fill-color-bg-1'
               : state.visible
               ? 'active:border-color-border-focus text-color-text-primary active:text-color-brand-focus focus:border-color-border-focus focus:text-color-brand-focus'
-              : '[&_svg]:fill-color-icon-placeholder'
+              : '[&_svg]:fill-color-icon-placeholder',
+            type === 'primary' && '[&_svg]:fill-color-bg-1'
           ]}
           reset-time={0}>
           {defaultSlot}
@@ -154,7 +163,7 @@ export default defineComponent({
         <span
           ref="trigger"
           class={[
-            state.visible ? '[&_svg]:rotate-180' : '[&_svg]:rotate-0',
+            state.visible && !state.showSelfIcon ? '[&_svg]:rotate-180' : '[&_svg]:rotate-0',
             disabled && 'cursor-not-allowed [&_svg]:fill-color-text-disabled',
             'inline-flex [&_svg]:transition-transform [&_svg]:duration-300'
           ]}>
@@ -165,7 +174,7 @@ export default defineComponent({
             ]}>
             {defaultSlot}
           </span>
-          <span class="align-bottom leading-4">{suffixInner}</span>
+          <span class="align-bottom leading-4 h-4">{suffixInner}</span>
         </span>
       )
     }
@@ -180,7 +189,8 @@ export default defineComponent({
           state.showSelfIcon && 'leading-4 h-4 [&_svg]:align-top [&_svg]:rotate-0'
         ]}
         v-clickoutside={clickOutside}
-        aria-disabled={disabled}>
+        aria-disabled={disabled}
+        data-tag="tiny-dropdown">
         {triggerElm}
         {menuElm}
       </div>

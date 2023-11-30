@@ -11,8 +11,8 @@
  */
 
 import type { ExtractPropTypes } from 'vue'
-import { timelineItemProps, $constants } from '@/timeline-item/src'
-import {
+import type { timelineItemProps, $constants } from '@/timeline-item/src'
+import type {
   getDate,
   computedCurrent,
   computedIsReverse,
@@ -31,6 +31,8 @@ export type ITimelineItemProps = ExtractPropTypes<typeof timelineItemProps>
 export type ITimelineItemConstants = typeof $constants
 
 export type ITimelineItemRenderlessParamUtils = ISharedRenderlessParamUtils<ITimelineItemConstants>
+
+export type TimelineItemType = 'primary' | 'success' | 'warning' | 'error' | 'info'
 
 export interface ITimelineItemState {
   nodesLength: number
@@ -68,6 +70,8 @@ export interface ITimelineItem {
   time: string
   error: boolean
   disabled: boolean
+  type: TimelineItemType
+  fold?: boolean
 }
 
 export interface ITimelineInject {

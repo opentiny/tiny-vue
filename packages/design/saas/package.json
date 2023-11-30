@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/vue-design-saas",
+  "version": "3.12.0",
+  "main": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "dependencies": {
+    "@opentiny/vue-icon": "workspace:~"
+  },
+  "license": "MIT"
+}

@@ -9,6 +9,11 @@
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="value" type="datetime" time-arrow-control></tiny-date-picker>
     </div>
+
+    <p>时间输入框不可编辑：</p>
+    <div class="demo-date-picker-wrap">
+      <tiny-date-picker v-model="value" type="datetime" :step="step" :time-editable="false"></tiny-date-picker>
+    </div>
   </div>
 </template>
 
@@ -20,7 +25,7 @@ const step = ref({
   hour: 2,
   minute: 5
 })
-const value = ref([])
+const value = ref('')
 </script>
 
 <style scoped>

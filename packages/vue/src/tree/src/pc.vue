@@ -69,12 +69,17 @@
             :disabled="!!plainNode.node.disabled"
             @change="handleCheckPlainNode($event, plainNode)"
           ></tiny-checkbox>
-          <span class="tiny-tree__plain-node-title-txt">{{ plainNode.title }}</span>
-          <span class="tiny-tree__plain-node-title-loc">
-            <icon-mark-on @click="handleClickPlainNode($event, plainNode)"></icon-mark-on>
-          </span>
+          <slot name="prefix" :node="plainNode.node"></slot>
+          <slot name="default" :node="plainNode.node">
+            <span class="tiny-tree__plain-node-title-txt">{{ plainNode.title }}</span>
+          </slot>
+          <slot name="suffix" :node="plainNode.node">
+            <span class="tiny-tree__plain-node-title-loc">
+              <icon-mark-on @click="handleClickPlainNode($event, plainNode)"></icon-mark-on>
+            </span>
+          </slot>
         </div>
-        <div v-if="plainNode.auxi" class="tiny-tree__plain-node-auxi">
+        <div v-if="showAuxi && plainNode.auxi" class="tiny-tree__plain-node-auxi">
           <div>{{ plainNode.auxi }}</div>
         </div>
       </div>
@@ -193,12 +198,13 @@ export default defineComponent({
     'addDisabledKeys',
     'theme',
     'viewType',
+    'showAuxi',
     'pathSplit',
     'filterPlainMethod',
     'afterLoad',
     'lazyCurrent',
     'baseIndent',
-    'showLine',
+    'showLine'
   ],
   components: {
     TreeNode,

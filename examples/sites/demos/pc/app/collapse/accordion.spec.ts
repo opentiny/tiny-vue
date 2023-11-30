@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('Collapse 手风琴模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/collapse/accordion')
+  await page.goto('collapse#accordion')
 
   const header = page.locator('.tiny-collapse-item__header')
   const content = page.locator('.tiny-collapse-item__wrap')

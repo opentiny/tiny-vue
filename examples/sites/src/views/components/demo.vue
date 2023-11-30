@@ -30,7 +30,11 @@
         </div>
       </div>
       <component :is="getDescMd(demo)" class="ti-mb16 ti-f14" />
-      <div v-if="demoConfig.isMobile" class="phone-container">
+
+      <div v-if="isMobileFirst" class="pc-demo-container">
+        <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
+      </div>
+      <div v-else-if="demoConfig.isMobile" class="phone-container">
         <div class="mobile-view-container">
           <component :is="cmp" />
         </div>
@@ -60,44 +64,18 @@
 </template>
 
 <script lang="jsx">
-import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, watch, nextTick } from 'vue'
+import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, watch, nextTick, inject } from 'vue'
 import { $t, $t2 } from '@/i18n'
 import { $split, appData, fetchDemosFile, $pub } from '@/tools'
-import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
 import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from './cmpConfig'
 import { router } from '@/router.js'
 import demoConfig from '@demos/config.js'
-import { useApiMode } from '@/tools'
+import { useApiMode, useTemplateMode } from '@/tools'
+import useTheme from '@/tools/useTheme'
 import AsyncHighlight from './async-highlight.vue'
 
 const { apiModeState, apiModeFn } = useApiMode()
-
-const getDemoCodeFn = async (demo, forceUpdate) => {
-  // 获取code代码文本
-  if (!demo.files || forceUpdate) {
-    const cmpId = router.currentRoute.value.params.cmpId
-    const promises = demo.codeFiles.map(async (fileName) => {
-      // 切换option-api和composition-api
-      const demoName = apiModeFn.getDemoName(`${getWebdocPath(cmpId)}/${fileName}`)
-      let code = ''
-
-      const path = `${staticDemoPath}/${demoName}`
-      code = await fetchDemosFile(path)
-        .then((code) => {
-          return code
-        })
-        .catch((error) => {
-          return `${demoName}示例资源不存在，请检查文件名是否正确？`
-        })
-      const ext = $split(fileName, '.', -1)
-      const language = languageMap[ext] || ''
-      return { code, fileName, language }
-    })
-    demo.files = await Promise.all(promises)
-    return demo.files
-  }
-  return demo.files
-}
 
 export default defineComponent({
   name: 'Demo',
@@ -106,9 +84,42 @@ export default defineComponent({
     TinyTooltip,
     TinyTabs,
     TinyTabItem,
+    TinyButton,
     AsyncHighlight
   },
   setup(props) {
+    const { templateModeState } = useTemplateMode()
+    const { currThemeLabel } = useTheme()
+    const isMobileFirst = computed(() => {
+      return templateModeState.mode === 'mobile-first'
+    })
+
+    const getDemoCodeFn = async (demo, forceUpdate) => {
+      // 获取code代码文本
+      if (!demo.files || forceUpdate) {
+        const cmpId = router.currentRoute.value.params.cmpId
+        const promises = demo.codeFiles.map(async (fileName) => {
+          // 切换option-api和composition-api
+          const demoName = apiModeFn.getDemoName(`${getWebdocPath(cmpId)}/${fileName}`)
+          let code = ''
+
+          const path = isMobileFirst.value ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
+          code = await fetchDemosFile(path)
+            .then((code) => {
+              return code
+            })
+            .catch((error) => {
+              return `${demoName}示例资源不存在，请检查文件名是否正确？`
+            })
+          const ext = $split(fileName, '.', -1)
+          const language = languageMap[ext] || ''
+          return { code, fileName, language }
+        })
+        demo.files = await Promise.all(promises)
+        return demo.files
+      }
+      return demo.files
+    }
     const state = reactive({
       tabValue: 'tab0',
       cmpId: router.currentRoute.value.params.cmpId,
@@ -128,9 +139,11 @@ export default defineComponent({
 
     const cmp = shallowRef(null)
 
+    const showPreview = inject('showPreview')
+
     const fn = {
       getDescMd(demo) {
-        // desc字段可能是md,也可能是html。 返回md组件或者html组件
+        // desc字段是一段html
         const desc = demo.desc[state.langKey].trim()
         return <div class="demo-desc" v-html={desc}></div>
       },
@@ -169,13 +182,18 @@ export default defineComponent({
         // 获取code代码文本
         return getDemoCodeFn(demo)
       },
-      openPlayground(demo) {
+      openPlayground(demo, open = true) {
         const cmpId = router.currentRoute.value.params.cmpId
-        window.open(
-          `${import.meta.env.VITE_CONTEXT}playground?cmpId=${cmpId}&fileName=${demo.codeFiles[0]}&apiMode=${
-            apiModeState.apiMode
-          }`
-        )
+        const tinyTheme = currThemeLabel.value.split('-')[1]
+        const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${demo.codeFiles[0]}&apiMode=${
+          apiModeState.apiMode
+        }&mode=${templateModeState.mode}&theme=${tinyTheme}`
+
+        if (open) {
+          window.open(url)
+        } else {
+          showPreview(url)
+        }
       }
     }
 
@@ -200,19 +218,21 @@ export default defineComponent({
       }
     )
 
-    return { ...toRefs(state), ...fn, appData, vueComponents, demoConfig, cmp }
+    return { ...toRefs(state), ...fn, appData, vueComponents, demoConfig, cmp, isMobileFirst }
   }
 })
 </script>
 
 <style lang="less">
 .demo-desc {
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.7em;
+  margin: 12px 0;
 
   code {
     color: #476582;
-    padding: 0.25rem 0.5rem;
-    margin: 0;
+    padding: 4px 8px;
+    margin: 0 4px;
     font-size: 0.85em;
     background-color: rgba(27, 31, 35, 0.05);
     border-radius: 3px;
@@ -222,6 +242,12 @@ export default defineComponent({
     text-decoration: none;
     color: #5e7ce0;
     cursor: pointer;
+  }
+
+  ul,
+  ol {
+    list-style: disc;
+    list-style-position: inside;
   }
 }
 

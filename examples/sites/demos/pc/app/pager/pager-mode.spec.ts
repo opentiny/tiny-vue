@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('分页complete模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/pager-mode')
+  await page.goto('pager#pager-mode')
 
-  const preview = page.locator('#preview')
-  const pager = preview.locator('.tiny-pager')
+  const demo = page.locator('#pager-mode')
+  const pager = demo.locator('.tiny-pager')
   const prev = pager.locator('.tiny-pager__btn-prev')
   const next = pager.locator('.tiny-pager__btn-next')
 

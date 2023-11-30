@@ -63,11 +63,6 @@ export default defineComponent({
      * @property {String} - 头像资源
      * type=icon 时为图标类名，type=label时为字体串，type=image时为资源路径
      */
-    value: {
-      type: [Object, String],
-      default: null
-    },
-
     modelValue: {
       type: [Object, String],
       default: null

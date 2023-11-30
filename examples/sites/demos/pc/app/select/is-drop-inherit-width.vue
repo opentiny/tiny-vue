@@ -1,17 +1,17 @@
 <template>
   <div>
-    <h5>未设置属性is-drop-inherit-width，下拉选项默认撑开：</h5>
-    <tiny-select v-model="value" placeholder="请选择">
+    <p>场景1：默认下拉弹框宽度由内容撑开：</p>
+    <tiny-select v-model="value">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <h5>设置了属性is-drop-inherit-width，下拉选项跟随输入框宽度：</h5>
-    <tiny-select v-model="value" placeholder="请选择" is-drop-inherit-width>
+    <p>场景2：下拉弹框宽度与输入框一致：</p>
+    <tiny-select v-model="value" is-drop-inherit-width>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Select, Option } from '@opentiny/vue'
 
 export default {
@@ -37,3 +37,13 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

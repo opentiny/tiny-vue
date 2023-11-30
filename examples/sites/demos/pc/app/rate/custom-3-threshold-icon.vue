@@ -2,7 +2,7 @@
   <tiny-rate v-model="rate1" :icon-classes="iconclass1"></tiny-rate>
 </template>
 
-<script lang="jsx">
+<script>
 import { Rate } from '@opentiny/vue'
 
 export default {

@@ -62,7 +62,10 @@ export default defineComponent({
     'maxNameLength',
     'isHidden',
     'sourceType',
-    'cacheToken'
+    'cacheToken',
+    'pasteUpload',
+    'reUploadable',
+    'reUploadTip'
   ],
   setup(props, context) {
     // 内置crypto-js和streamsaver进行上传下载
@@ -101,7 +104,18 @@ export default defineComponent({
       edmToken,
       iframeUrl
     } = this.state
-    const { downloadFile, handleRemove, updateFile, slots, edm = {}, t, $attrs, a } = this
+    const {
+      downloadFile,
+      handleRemove,
+      handleReUpload,
+      handleReUploadTotal,
+      updateFile,
+      slots,
+      edm = {},
+      t,
+      $attrs,
+      a
+    } = this
     const isPictureCard = this.listType === 'picture-card'
     const { showDel, showDownload, showTooltip, showUpdate, icon } = this.thumbOption
     const execDownload = this.thumbOption.downloadFile || downloadFile
@@ -188,6 +202,8 @@ export default defineComponent({
         uploadList = (
           <UploadList
             disabled={uploadDisabled}
+            reUploadable={this.reUploadable}
+            reUploadTip={this.reUploadTip}
             isFolder={isFolder}
             isEdm={isEdm}
             listType={this.listType}
@@ -196,6 +212,8 @@ export default defineComponent({
             listOption={this.listOption}
             maxNameLength={this.maxNameLength}
             onRemove={handleRemove}
+            onReUpload={handleReUpload}
+            onReUploadTotal={handleReUploadTotal}
             handlePreview={preview}
             openDownloadFile={this.openDownloadFile}
             onUpdate={updateFile}>
@@ -237,6 +255,7 @@ export default defineComponent({
         httpRequest,
         isFolder,
         edmToken,
+        pasteUpload: this.pasteUpload,
         isHidden: this.isHidden
       },
       ref: 'upload-inner'

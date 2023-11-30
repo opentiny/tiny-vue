@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICElinksMapNSES FOR MORE DETAILS.
  *
  */
-import {
+import type {
   IAnchorState,
   IAnchorProps,
   IAnchorApi,
@@ -64,7 +64,7 @@ export const renderless = (
     unmounted: unmounted({ state, api }),
     getContainer: getContainer({ props }),
     linkClick: linkClick({ state, vm, emit, props, api }),
-    onItersectionObserver: onItersectionObserver({ state, props, api }),
+    onItersectionObserver: onItersectionObserver({ state, props, api, vm, emit }),
     setScrollContainer: setScrollContainer({ state, api }),
     getCurrentAnchor: getCurrentAnchor({ vm, state, emit }),
     setFixAnchor: setFixAnchor({ vm, props }),

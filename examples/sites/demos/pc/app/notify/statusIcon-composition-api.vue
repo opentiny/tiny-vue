@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Button as TinyButton, Notify } from '@opentiny/vue'
 import { IconInfo } from '@opentiny/vue-icon'
 

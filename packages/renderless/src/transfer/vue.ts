@@ -74,7 +74,7 @@ export const renderless = (props, { computed, onMounted, reactive, h }, { $prefi
     onTargetCheckedChange: onTargetCheckedChange({ emit, state }),
     onSourceCheckedChange: onSourceCheckedChange({ emit, state }),
     logicFun: logicFun({ props, emit, state }),
-    getTargetData: getTargetData({ props, state, order: parent.TARGETORDER, Tree, Table }),
+    getTargetData: getTargetData({ props, state, Tree, Table }),
     recursiveData: recursiveData({ api, props, state }),
     sortableEvent: sortableEvent({ api, droppanel: DROPPANEL, props, queryDom: TRANSFERPANEL, refs, state })
   })

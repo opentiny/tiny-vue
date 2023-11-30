@@ -1,7 +1,7 @@
-import type { ValueEditorProps } from '../ts';
-import { produce } from '../utils/hooks/immer';
-import { useCallback, useEffect, useMemo } from '../utils/hooks/vue-hooks';
-import { getFirstOption, joinWith, parseNumber, toArray } from '../utils';
+import type { ValueEditorProps } from '../ts'
+import { produce } from '../utils/hooks/immer'
+import { useCallback, useEffect, useMemo } from '../utils/hooks/vue-hooks'
+import { getFirstOption, joinWith, parseNumber, toArray } from '../utils'
 
 export type UseValueEditorParams = Pick<
   ValueEditorProps,
@@ -14,7 +14,7 @@ export type UseValueEditorParams = Pick<
   | 'values'
   | 'parseNumbers'
   | 'skipHook'
->;
+>
 
 /**
  * This Effect trims the value if all of the following are true:
@@ -39,34 +39,34 @@ export const useValueEditor = ({
   listsAsArrays,
   parseNumbers,
   values,
-  skipHook,
+  skipHook
 }: UseValueEditorParams) => {
   useEffect(() => {
-    if (skipHook) return;
+    if (skipHook) return
     if (
       inputType === 'number' &&
       !['between', 'notBetween', 'in', 'notIn'].includes(operator) &&
       ((typeof value === 'string' && value.includes(',')) || Array.isArray(value))
     ) {
-      handleOnChange(toArray(value)[0] ?? '');
+      handleOnChange(toArray(value)[0] ?? '')
     }
-  }, [handleOnChange, inputType, operator, skipHook, value]);
+  }, [handleOnChange, inputType, operator, skipHook, value])
 
-  const valueAsArray = useMemo(() => toArray(value), [value]);
+  const valueAsArray = useMemo(() => toArray(value), [value])
 
   const multiValueHandler = useCallback(
     (v: string, i: number) => {
-      const val = produce(valueAsArray, va => {
-        va[i] = parseNumber(v, { parseNumbers });
+      const val = produce(valueAsArray, (va) => {
+        va[i] = parseNumber(v, { parseNumbers })
         // Enforce an array length of (at least) two for "between"/"notBetween"
         if (i === 0 && (operator === 'between' || operator === 'notBetween') && !va[1]) {
-          va[1] = getFirstOption(values);
+          va[1] = getFirstOption(values)
         }
-      });
-      handleOnChange(listsAsArrays ? val : joinWith(val, ','));
+      })
+      handleOnChange(listsAsArrays ? val : joinWith(val, ','))
     },
     [handleOnChange, listsAsArrays, operator, parseNumbers, valueAsArray, values]
-  );
+  )
 
   return {
     /**
@@ -79,6 +79,6 @@ export const useValueEditor = ({
      * @param {string} val The new value for the editor
      * @param {number} idx The index of the editor
      */
-    multiValueHandler,
-  };
-};
+    multiValueHandler
+  }
+}

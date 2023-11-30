@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('自动关闭延时', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/modal/duration')
+  await page.goto('modal#duration')
 
-  const modal = page.locator('.tiny-modal')
+  const modal = page.locator('.tiny-modal.type__message')
   await page.getByRole('button', { name: '默认3000ms后自动关闭提示框' }).click()
   await expect(modal).toBeVisible()
   await page.waitForTimeout(3200)

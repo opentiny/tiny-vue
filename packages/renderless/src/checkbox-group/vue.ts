@@ -14,11 +14,10 @@ import { computedFormItemSize, computedCheckboxGroupSize } from './index'
 
 export const api = ['state']
 
-export const renderless = (props, { computed, reactive, watch }, { dispatch, constants }) => {
+export const renderless = (props, { computed, reactive, watch, provide }, { dispatch, constants }) => {
   const api = {
     computedFormItemSize: computedFormItemSize(props)
   }
-
   const formItemSize = computed(() => api.computedFormItemSize())
 
   const state = reactive({
@@ -27,16 +26,17 @@ export const renderless = (props, { computed, reactive, watch }, { dispatch, con
 
   Object.assign(api, {
     state,
-    computedCheckboxGroupSize: computedCheckboxGroupSize({
-      props,
-      formItemSize
-    })
+    computedCheckboxGroupSize: computedCheckboxGroupSize({ props, formItemSize })
   })
 
   watch(
     () => props.modelValue,
     (value) => dispatch(constants.FORM_ITEM, constants.FORM_CHANGE, [value])
   )
+
+  provide('size', props.size)
+
+  provide('vertical', props.vertical)
 
   return api
 }

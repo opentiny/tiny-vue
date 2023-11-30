@@ -1,12 +1,15 @@
 import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
-import { formProps } from '@/form/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
+import type { formProps } from '@/form/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
 import type { IFormItemInstance, IFormItemRule } from './form-item.type'
 
 import type {
   updateTip,
   computedAutoLabelWidth,
   computedHideRequiredAsterisk,
+  computedValidateIcon,
+  computedIsErrorInline,
+  computedIsErrorBlock,
   created,
   resetFields,
   clearValidate,
@@ -34,6 +37,9 @@ export interface IFormState {
   isDisplayOnly: boolean
   hasRequired: boolean
   hideRequiredAsterisk: boolean
+  validateIcon: object | null
+  isErrorInline: boolean
+  isErrorBlock: boolean
 }
 
 export type IFormProps = ExtractPropTypes<typeof formProps>
@@ -50,6 +56,9 @@ export interface IFormApi {
   updateTip: ReturnType<typeof updateTip>
   computedAutoLabelWidth: ReturnType<typeof computedAutoLabelWidth>
   computedHideRequiredAsterisk: ReturnType<typeof computedHideRequiredAsterisk>
+  computedValidateIcon: ReturnType<typeof computedValidateIcon>
+  computedIsErrorInline: ReturnType<typeof computedIsErrorInline>
+  computedIsErrorBlock: ReturnType<typeof computedIsErrorBlock>
   created: ReturnType<typeof created>
   resetFields: ReturnType<typeof resetFields>
   clearValidate: ReturnType<typeof clearValidate>

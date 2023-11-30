@@ -1,6 +1,11 @@
 <template>
   <div class="content">
     <tiny-layout>
+      <tiny-row>
+        <tiny-button @click="toggleOrder">
+          {{ state.buttonLabel }}
+        </tiny-button>
+      </tiny-row>
       <tiny-row :flex="true" :gutter="20" :order="state.order">
         <tiny-col :span="3" :no="3">
           <div class="col">3</div>
@@ -15,16 +20,11 @@
           <div class="col">4</div>
         </tiny-col>
       </tiny-row>
-      <tiny-row :flex="true" :gutter="20" justify="center">
-        <tiny-button @click="toggleOrder">
-          {{ state.buttonLabel }}
-        </tiny-button>
-      </tiny-row>
     </tiny-layout>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Layout, Row, Col, Button } from '@opentiny/vue'
 
 export default {

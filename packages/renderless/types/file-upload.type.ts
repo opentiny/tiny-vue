@@ -1,6 +1,6 @@
-import type { ExtractPropTypes, Ref, ComponentPublicInstance } from 'vue'
-import { fileUploadProps, $constants } from '@/file-upload/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
+import type { ExtractPropTypes } from 'vue'
+import type { fileUploadProps, $constants } from '@/file-upload/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
 import type {
   sliceChunk,
   getFormData,
@@ -69,7 +69,9 @@ import type {
   handleTriggerClick,
   noopFnCreator,
   getCalcProgress,
-  getHandleSuccess
+  getHandleSuccess,
+  handleReUpload,
+  handleReUploadTotal
 } from '../src/file-upload'
 import type { downloadFile as ordinaryDownload } from '../src/upload-list'
 import type { IUploadFormData } from './upload.type'
@@ -199,6 +201,8 @@ export interface IFileUploadApi {
   handleChange: ReturnType<typeof handleChange>
   handleClickFileList: ReturnType<typeof handleClickFileList>
   handleTriggerClick: ReturnType<typeof handleTriggerClick>
+  handleReUpload: ReturnType<typeof handleReUpload>
+  handleReUploadTotal: ReturnType<typeof handleReUploadTotal>
 }
 
 type IFileUploadNoopFnCreator = ReturnType<typeof noopFnCreator>
@@ -237,7 +241,9 @@ export type IFileUploadRenderlessParams = ISharedRenderlessFunctionParams<IFileU
 
 export type IFileUploadVm = ITinyVm<IFileUploadConstants> & IFileUploadProps
 
-export type IFileUploadModalVm = { Modal: ITinyVm<unknown> }
+export interface IFileUploadModalVm {
+  Modal: ITinyVm<unknown>
+}
 
 export type IFileUploadFile = File & { [propName: string]: any } // 允许添加多余未知属性
 

@@ -1,41 +1,40 @@
 <template>
-  <div class="demo-select">
+  <div>
+    <p>场景1：下拉表格远程搜索基础用法</p>
     <tiny-select
-      ref="select1Ref"
+      ref="select1"
       v-model="radioValue1"
       placeholder="请输入关键词"
       clearable
-      :remote-method="remoteMethod"
-      remote
       filterable
+      remote
+      :remote-method="remoteMethod"
+      multiple
       value-field="id"
-      :multiple="true"
       text-field="city"
       render-type="grid"
       :grid-op="gridOpRadio"
-      popper-class="grid-remote"
     ></tiny-select>
-
+    <p>场景2：下拉表格远程搜索 + 自动搜索 + 显示按钮</p>
     <tiny-select
-      ref="select2Ref"
+      ref="select2"
       v-model="radioValue2"
+      multiple
       placeholder="请输入关键词"
       clearable
+      filterable
+      remote
       :remote-method="remoteMethod"
       :remote-config="{ autoSeach: true, clearData: true, showIcon: true }"
-      remote
-      filterable
       value-field="id"
-      :multiple="true"
       text-field="city"
       render-type="grid"
       :grid-op="gridOpRadio"
-      popper-class="grid-remote-config"
     ></tiny-select>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect } from '@opentiny/vue'
 
@@ -68,7 +67,7 @@ allData.value = Array.from({ length: 10000 }, (a, i) => {
   }
 })
 
-function remoteMethod(value) {
+const remoteMethod = (value) => {
   let allData = Array.from({ length: 1000 }, (a, i) => {
     return {
       id: '00' + i,
@@ -89,16 +88,19 @@ function remoteMethod(value) {
   })
 }
 
-function filter(value) {
+const filter = (value) => {
   return allData.value.filter((item) => {
     return !item.city.includes(value)
   })
 }
 </script>
 
-<style scoped>
-.demo-select .tiny-select {
-  width: 270px;
-  margin-right: 30px;
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
 }
 </style>

@@ -1,7 +1,16 @@
 <template>
-  <div class="tiny-color-picker__trigger" v-clickoutside="onCancel" @click="() => changeVisible(!state.isShow)">
+  <div
+    :class="[
+      {
+        'tiny-color-picker': true
+      },
+      state.size ? 'tiny-color-picker--' + state.size : ''
+    ]"
+    @click="() => changeVisible(!state.isShow)"
+  >
     <div
-      class="tiny-color-picker__inner" :style="{
+      class="tiny-color-picker__inner"
+      :style="{
         background: state.triggerBg ?? ''
       }"
     >
@@ -13,9 +22,12 @@
         @cancel="onCancel"
         @hue-update="onHueUpdate"
         @sv-update="onSVUpdate"
+        @color-update="onColorUpdate"
         v-model="state.hex"
         :visible="state.isShow"
         :alpha="alpha"
+        :predefine="state.predefineStack.length > 0 ? state.predefineStack : undefined"
+        :history="state.stack.length > 0 ? state.stack : undefined"
       />
     </Transition>
   </div>
@@ -30,10 +42,10 @@ import '@opentiny/vue-theme/color-picker/index.less'
 
 export default defineComponent({
   emits: ['update:modelValue', 'confirm', 'cancel'],
-  props: [...props, 'modelValue', 'visible', 'alpha'],
+  props: [...props, 'modelValue', 'visible', 'alpha', 'predefine', 'history', 'size'],
   components: {
     IconChevronDown: IconChevronDown(),
-    ColorSelect: colorSelect,
+    ColorSelect: colorSelect
   },
   setup(props, context) {
     return setup({ props, context, renderless, api })

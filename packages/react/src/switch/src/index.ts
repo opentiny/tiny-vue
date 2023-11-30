@@ -1,4 +1,4 @@
-import pc from './pc.jsx'
+import pc from './pc'
 
 const $constants = {
   PC_PREFIXCLS: 'tiny-switch',
@@ -9,19 +9,19 @@ const $constants = {
   }
 }
 export default function (props) {
-  const {
-    tiny_mode = 'pc',
-    _constants = $constants
-  } = props || {}
+  const { tiny_mode = 'pc', _constants = $constants } = props || {}
 
-  const defaultProps = Object.assign({
-    _constants,
-    tiny_mode
-  }, props)
+  const defaultProps = Object.assign(
+    {
+      _constants,
+      tiny_mode
+    },
+    props
+  )
 
-  const S = ({
-    pc,
-  })[tiny_mode]
+  const S = {
+    pc
+  }[tiny_mode]
 
-  return (S && S(defaultProps))
+  return S && S(defaultProps)
 }

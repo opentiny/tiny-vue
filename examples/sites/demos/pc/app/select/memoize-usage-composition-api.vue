@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-select v-model="value" placeholder="请选择">
+    <tiny-select v-model="value">
       <tiny-option
         v-for="item in options"
         :key="item.value"
@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 import Memorize from '@opentiny/vue-renderless/common/deps/memorize'
@@ -34,8 +34,18 @@ const options = MemorizeInstance.assemble([
 const value = ref('选项3')
 const cacheValue = ref([])
 
-function clickItem(value) {
+const clickItem = (value) => {
   MemorizeInstance.updateByKey(value)
   cacheValue.value = window.localStorage.getItem('tiny_memorize_test456')
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

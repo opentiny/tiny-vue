@@ -1,10 +1,10 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择" clearable>
+  <tiny-select v-model="value" clearable>
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 
@@ -17,3 +17,9 @@ const options = ref([
 ])
 const value = ref('选项3')
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+</style>

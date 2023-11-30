@@ -1,14 +1,17 @@
 <template>
   <div>
-    <button @click="closeLoading">close Loading</button>
-    <div id="tiny-loading1" style="width: 100%; height: 120px"></div>
+    <tiny-button @click="closeLoading">close Loading</tiny-button>
+    <div id="tiny-basic-loading1"></div>
   </div>
 </template>
 
-<script lang="jsx">
-import { Loading } from '@opentiny/vue'
+<script>
+import { Loading, Button } from '@opentiny/vue'
 
 export default {
+  components: {
+    TinyButton: Button
+  },
   data() {
     return {
       loadingInstance: null
@@ -16,7 +19,7 @@ export default {
   },
   mounted() {
     this.loadingInstance = Loading.service({
-      target: document.getElementById('tiny-loading1')
+      target: document.getElementById('tiny-basic-loading1')
     })
   },
   methods: {
@@ -26,3 +29,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#tiny-basic-loading1 {
+  width: 100%;
+  height: 120px;
+  border: 1px solid beige;
+  margin-top: 10px;
+}
+</style>

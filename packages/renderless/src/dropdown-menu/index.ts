@@ -10,7 +10,7 @@
  *
  */
 
-import { IDropdownMenuRenderlessParams, IDropdownMenuPopperParams, IDropdownItemVm } from '@/types'
+import type { IDropdownMenuRenderlessParams, IDropdownMenuPopperParams, IDropdownItemVm } from '@/types'
 import userPopper from '../common/deps/vue-popper'
 
 export const toggleItem =

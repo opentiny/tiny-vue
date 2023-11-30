@@ -1,17 +1,12 @@
-import { getStyle } from './index'
-
 export const api = ['state']
 
-export const renderless = (props, { reactive, computed }, { vm }) => {
+export const renderless = (props, { reactive }, { vm }) => {
   const api = {}
 
-  const state = reactive({
-    style: computed(() => api.getStyle())
-  })
+  const state = reactive({})
 
   Object.assign(api, {
-    state,
-    getStyle: getStyle({ props })
+    state
   })
 
   vm.$on('handleChange', (value) => {

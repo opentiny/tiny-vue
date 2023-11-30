@@ -1,13 +1,13 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, Locator } from '@playwright/test'
 
 test('测试设置当前页', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/pager/current-page')
+  await page.goto('pager#current-page')
 
-  const preview = page.locator('#preview')
-  const pager = preview.locator('.tiny-pager')
-  const getPrev = (parent) => parent.locator('.tiny-pager__btn-prev')
-  const getNext = (parent) => parent.locator('.tiny-pager__btn-next')
+  const demo = page.locator('#current-page')
+  const pager = demo.locator('.tiny-pager')
+  const getPrev = (parent: Locator) => parent.locator('.tiny-pager__btn-prev')
+  const getNext = (parent: Locator) => parent.locator('.tiny-pager__btn-next')
   const isActive = /is-active/
   const prev = getPrev(pager.first())
   const next = getNext(pager.first())

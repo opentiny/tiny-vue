@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('基本使用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/espace/data')
+  await page.goto('espace#data')
 
   await expect(page.getByRole('link', { name: 'im:a12345678' })).toBeVisible()
   await expect(page.getByRole('link', { name: 'im:a12345678' })).toHaveClass('item-talk')

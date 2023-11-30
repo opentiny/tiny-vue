@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('测试行内表单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/form/form-in-row')
+  await page.goto('form#form-in-row')
 
-  const preview = page.locator('#preview')
-  const form = preview.locator('.tiny-form')
+  const demo = page.locator('#form-in-row')
+  const form = demo.locator('.tiny-form')
   const item1 = form.locator('.tiny-form-item').first()
   const item2 = form.locator('.tiny-form-item').nth(1)
 
@@ -21,7 +21,7 @@ test('测试行内表单', async ({ page }) => {
 
   // 测试换行情况
   await page.setViewportSize({
-    width: 900,
+    width: 600,
     height: 700
   })
   await page.waitForTimeout(200)

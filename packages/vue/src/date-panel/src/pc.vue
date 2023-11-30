@@ -55,6 +55,7 @@
                 size="small"
                 @update:modelValue="(val) => (state.userInputTime = val)"
                 @change="handleVisibleTimeChange"
+                :readonly="!timeEditable"
               />
               <time-picker
                 ref="timepicker"
@@ -270,7 +271,11 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    formatWeeks: Function
+    formatWeeks: Function,
+    timeEditable: {
+      type: Boolean,
+      default: true
+    }
   },
   emits: ['pick', 'select-change', 'dodestroy'],
   setup(props, context) {

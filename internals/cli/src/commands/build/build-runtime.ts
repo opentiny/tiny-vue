@@ -1,11 +1,13 @@
 import path from 'node:path'
 import type { UserConfig } from 'vite'
 import { build } from 'vite'
+import minimist from 'minimist'
 import commonjs from '@rollup/plugin-commonjs'
 import babel from '@rollup/plugin-babel'
 import { logGreen } from '../../shared/utils'
 import type { BuildUiOption, BaseConfig } from './build-ui'
 import { pathFromPackages, getBaseConfig, requireModules } from './build-ui'
+import { createProcessor } from 'tailwindcss/src/cli/build/plugin'
 
 async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope, min }) {
   const rootDir = pathFromPackages('')
@@ -54,7 +56,6 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     baseConfig.define = Object.assign(baseConfig.define || {}, {
       'process.env.BUILD_TARGET': JSON.stringify(vueVersion !== '3' ? 'runtime' : 'component'),
       'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.TINY_MODE': JSON.stringify('pc'),
       'process.env.RUNTIME_VERSION': JSON.stringify(requireModules('packages/renderless/package.json').version),
       'process.env.COMPONENT_VERSION': JSON.stringify(requireModules('packages/vue/package.json').version)
     })
@@ -119,11 +120,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
 }
 
 function getEntryTasks() {
-  return [
-    {
-      path: 'vue-icon/index.ts',
-      libPath: 'tiny-vue-icon'
-    },
+  const entry = [
     {
       path: 'vue-locale/src/index.ts',
       libPath: 'tiny-vue-locale'
@@ -135,8 +132,17 @@ function getEntryTasks() {
     {
       path: 'vue/app.ts',
       libPath: 'tiny-vue'
+    },
+    {
+      path: 'vue-icon-saas/index.ts',
+      libPath: 'tiny-vue-icon-saas'
+    },
+    {
+      path: 'vue-icon/index.ts',
+      libPath: 'tiny-vue-icon'
     }
   ]
+  return entry
 }
 
 export async function buildRuntime({
@@ -159,6 +165,17 @@ export async function buildRuntime({
     for (let i = 0; i < tasks.length; i++) {
       await batchBuildAll({ vueVersion, tasks: [tasks[i]], message, emptyOutDir, npmScope: scope, min })
     }
+    const rootDir = pathFromPackages('')
+    const runtimeDir = `dist${vueVersion}/@opentiny/vue/runtime`
+    const outDir = path.resolve(rootDir, runtimeDir)
+    const processor = await createProcessor(
+      {
+        '--output': path.join(outDir, 'tailwind.css'),
+        '--content': path.join(outDir, 'tiny-vue.mjs')
+      },
+      path.resolve(rootDir, 'theme-saas/tailwind.config.js')
+    )
+    await processor.build()
     // 确保只运行一次
     emptyOutDir = false
   }

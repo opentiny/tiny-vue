@@ -128,7 +128,7 @@
                 <icon-ellipsis
                   v-if="~['success', 'downloading'].indexOf(file.status)"
                   @click="showOperatePanel(file)"
-                  :class="'fill-color-text-primary'"
+                  class="fill-color-text-primary"
                 />
                 <icon-error
                   v-if="!displayOnly && ~['uploading', 'fail'].indexOf(file.status)"

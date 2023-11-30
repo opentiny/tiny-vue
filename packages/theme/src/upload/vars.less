@@ -12,9 +12,9 @@
 
 .component-css-vars-upload() {
   // 自定义上传提示字号
-  --ti-upload-tip-font-size: var(--ti-common-font-size-base);
+  --ti-upload-tip-font-size: var(--ti-common-font-size-base, 12px);
   // 自定义上传提示文本色
-  --ti-upload-tip-text-color: var(--ti-common-color-text-primary);
+  --ti-upload-tip-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 照片墙上传按钮背景色
   --ti-upload-picture-card-bg-color: #fbfdff;
   // 照片墙上传按钮边框色
@@ -22,9 +22,13 @@
   // 照片墙上传按钮圆角
   --ti-upload-picture-card-border-radius: 6px;
   // 照片墙上传按钮悬浮边框色
-  --ti-upload-picture-card-hover-border-color: var(--ti-common-color-dash-line-hover);
+  --ti-upload-picture-card-hover-border-color: var(--ti-common-color-dash-line-hover, #526ecc);
   // 照片墙上传按钮图标尺寸
-  --ti-upload-picture-card-icon-font-size: var(--ti-common-size-7x);
+  --ti-upload-picture-card-icon-font-size: var(--ti-common-size-7x, 28px);
   // 照片墙上传按钮图标色
   --ti-upload-picture-card-icon-color: #8c939d;
+  // 拖拽上传区域宽度
+  --ti-upload-picture-card-width: var(--ti-common-size-37x, 148px);
+  // 拖拽上传区域高度
+  --ti-upload-picture-card-height: var(--ti-common-size-37x, 148px);
 }

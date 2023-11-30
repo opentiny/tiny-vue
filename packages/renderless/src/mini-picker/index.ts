@@ -125,7 +125,8 @@ export const getColumn = (childrenPickerRefs) => (index) => {
 
 export const getColumnIndex = (api) => (columnIndex) => (api.getColumn(columnIndex) || {}).state.currentIndex
 
-export const getValues = (childrenPickerRefs) => () => childrenPickerRefs.childrenPicker && childrenPickerRefs.childrenPicker.map((child) => child.getValue())
+export const getValues = (childrenPickerRefs) => () =>
+  childrenPickerRefs.childrenPicker && childrenPickerRefs.childrenPicker.map((child) => child.getValue())
 
 export const getIndexes = (childrenPickerRefs) => () =>
   childrenPickerRefs.childrenPicker && childrenPickerRefs.childrenPicker.map((child) => child.state.currentIndex)
@@ -141,7 +142,8 @@ export const setColumnIndex = (api) => (columnIndex, optionIndex) => {
   column && column.setIndex(optionIndex)
 }
 
-export const getColumnValues = (childrenPickerRefs) => (index) => (childrenPickerRefs.childrenPicker[index] || {}).state.columnsItem.values
+export const getColumnValues = (childrenPickerRefs) => (index) =>
+  (childrenPickerRefs.childrenPicker[index] || {}).state.columnsItem.values
 
 export const setColumnValues = (childrenPickerRefs) => (index, options) => {
   const children = childrenPickerRefs.childrenPicker

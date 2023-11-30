@@ -10,11 +10,12 @@
           { 'py-1.5': state.size === 'small' },
           { 'py-0.75': state.size === 'mini' },
           { 'overflow-x-hidden scrollbar-size-0': maxHeight },
-          multiStage ? '!block  rounded-none' : 'rounded sm:my-1 py-1 my-2 shadow-sm sm:shadow-md',
+          multiStage ? '!block  rounded-none' : 'rounded py-1 shadow-sm sm:shadow-md px-1',
+          state.canvasHeight ? 'sm:mb-6' : !multiStage && 'sm:my-1 my-2',
           popperClass
         )
       "
-      :style="`max-height:${maxHeight}px`"
+      :style="{ maxHeight: `${maxHeight}px` }"
     >
       <tiny-tooltip
         ref="tooltip"

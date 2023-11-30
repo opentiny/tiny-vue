@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { buttonGroupProps } from '@/button-group/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { buttonGroupProps } from '@/button-group/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type { handleChange, handleClick, moreNodeClick, getItemClass } from '../src/button-group'
 
 export type IButtonGroupProps = ExtractPropTypes<typeof buttonGroupProps>

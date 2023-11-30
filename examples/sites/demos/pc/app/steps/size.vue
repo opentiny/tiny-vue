@@ -1,59 +1,30 @@
 <template>
-  <p>mini尺寸:</p>
-  <tiny-time-line
-    :data="data"
-    :active="normalActive"
-    type="normal"
-    size="mini"
-    text-position="right"
-    @click="normalClick"
-  >
-  </tiny-time-line>
-
-  <p>默认尺寸:</p>
-  <tiny-time-line :data="data" :active="normalActive" type="normal" text-position="right" @click="normalClick">
-  </tiny-time-line>
+  <tiny-steps vertical line size="small" :data="data" :visible-num="4" :active="advancedActive"></tiny-steps>
 </template>
 
-<script lang="ts">
-import { TimeLine, Modal } from '@opentiny/vue'
+<script>
+import { Steps, Modal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine
+    TinySteps: Steps
   },
   data() {
     return {
-      normalActive: 0,
+      advancedActive: 1,
       data: [
         {
-          name: 'Basic Info. '
+          name: 'Basic Info',
+          status: 'done'
         },
+        { name: 'BOQ Info', status: 'done', description: 'done 已完成' },
+        { name: 'BBQ Info', status: 'error', description: 'error 错误' },
         {
-          name: 'AAAAA'
+          name: 'Involved Parties Involved Parties Involved Parties',
+          status: 'disabled'
         },
-        {
-          name: 'Involved Parties',
-          error: true
-        },
-        {
-          name: 'Billing',
-          disabled: true
-        }
-      ],
-      normalActive1: 0
-    }
-  },
-  methods: {
-    normalClick(index, node) {
-      this.normalActive = index
-
-      Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
-    },
-    normalClick1(index, node) {
-      this.normalActive1 = index
-
-      Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
+        { name: 'Billing', status: '', description: '默认无状态' }
+      ]
     }
   }
 }

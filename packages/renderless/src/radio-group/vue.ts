@@ -10,7 +10,7 @@
  *
  */
 
-import {
+import type {
   IRadioGroupApi,
   IRadioGroupProps,
   IRadioGroupState,
@@ -55,6 +55,8 @@ export const renderless = (
   provide('radioVertical', props.vertical)
 
   provide('showTips', props.showTips)
+
+  provide('size', props.size)
 
   return api
 }

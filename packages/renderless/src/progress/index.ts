@@ -9,13 +9,14 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import {
+import type {
   IProgressRenderlessParams,
   IProgressBarStyle,
   IProgressPathStyle,
   IProgressIconStyle,
   IProgressColorItem
 } from '@/types'
+
 export const computedBarStyle =
   ({ api, props }: Pick<IProgressRenderlessParams, 'api' | 'props'>) =>
   (): IProgressBarStyle => ({

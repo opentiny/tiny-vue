@@ -2,10 +2,11 @@ import { test, expect } from '@playwright/test'
 
 test('不同尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/dropdown/size')
+  await page.goto('dropdown#size')
 
-  const preview = page.locator('#preview')
-  const dropDown = preview.locator('.tiny-dropdown')
+  const wrap = page.locator('#size')
+  const dropDown = wrap.locator('.tiny-dropdown')
+
   const defaultDropDown = dropDown.first()
   const mediumDropDown = dropDown.nth(1)
   const smallDropDown = dropDown.nth(2)

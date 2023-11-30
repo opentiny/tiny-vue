@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('no-data-text', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/no-data-text')
+  await page.goto('select#no-data-text')
   const input = page.locator('#preview .tiny-input__inner').first()
 
   await input.click()
@@ -10,7 +10,7 @@ test('no-data-text', async ({ page }) => {
 })
 
 test('show-empty-image', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/no-data-text')
+  await page.goto('select#no-data-text')
   const input = page.locator('#preview .tiny-input__inner').nth(1)
 
   await input.click()

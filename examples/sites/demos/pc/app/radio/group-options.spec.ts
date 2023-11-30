@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('配置式单选组', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('http://localhost:7130/pc/radio/group-options')
+  await page.goto('radio#group-options')
   const radio1Label = page.locator('.tiny-radio__label').nth(0)
   const radio2Label = page.locator('.tiny-radio__label').nth(1)
   const radio1 = page.locator('.tiny-radio').nth(0)

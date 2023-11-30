@@ -21,9 +21,11 @@ export const resize =
   }
 
 export const panelToggle =
-  ({ state, props, api }) =>
+  ({ state, props, api, emit }) =>
   (index) => {
     const { modelValue } = props
+
+    emit('panel', { index, modelValue })
 
     if (index === 'filter') {
       state.showPanelIndex = -1

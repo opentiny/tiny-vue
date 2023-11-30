@@ -12,77 +12,77 @@
 
 .component-css-vars-nav-menu() {
   // 导航菜单栏高度
-  --ti-nav-menu-height: var(--ti-common-size-height-large);
+  --ti-nav-menu-height: var(--ti-common-size-height-large, 48px);
   // 导航菜单栏背景色
-  --ti-nav-menu-bg-color: var(--ti-common-color-bg-navigation);
+  --ti-nav-menu-bg-color: var(--ti-common-color-bg-navigation, #282b33);
   // 导航菜单栏字号
-  --ti-nav-menu-item-font-size: var(--ti-common-font-size-2);
+  --ti-nav-menu-item-font-size: var(--ti-common-font-size-2, 16px);
   // 导航菜单栏文本色
-  --ti-nav-menu-item-text-color: var(--ti-common-color-light);
+  --ti-nav-menu-item-text-color: var(--ti-common-color-light, #fff);
   // 导航菜单栏项悬浮背景色
   --ti-nav-menu-item-hover-bg-color: #474c5e;
   // 导航菜单栏项选中下划线宽度
-  --ti-nav-menu-item-selected-underline-width: var(--ti-common-size-14x);
+  --ti-nav-menu-item-selected-underline-width: var(--ti-common-size-14x, 56px);
   // 导航菜单栏项选中下划线高度
-  --ti-nav-menu-item-selected-underline-height: calc(var(--ti-common-size-base) - 1);
+  --ti-nav-menu-item-selected-underline-height: calc(var(--ti-common-size-base, 4px) - 1);
   // 导航菜单栏项选中下划线圆角
-  --ti-nav-menu-item-selected-border-radius: var(--ti-common-border-radius-0);
+  --ti-nav-menu-item-selected-border-radius: var(--ti-common-border-radius-0, 0px);
   // 导航菜单栏项选中下划线固定定位底部距离(hide)
-  --ti-nav-menu-item-selected-position-bottom: var(--ti-common-space-0);
+  --ti-nav-menu-item-selected-position-bottom: var(--ti-common-space-0, 0px);
   // 导航菜单栏项选中下划线背景色
-  --ti-nav-menu-item-selected-underline-bg-color: var(--ti-common-color-light);
+  --ti-nav-menu-item-selected-underline-bg-color: var(--ti-common-color-light, #fff);
   // 导航菜单设置图标大小
-  --ti-nav-menu-setting-font-size: calc(var(--ti-common-size-base) * 5.5);
+  --ti-nav-menu-setting-font-size: calc(var(--ti-common-size-base, 4px) * 5.5);
   // 导航菜单菜单栏下拉框阴影
   --ti-nav-menu-popmenu-box-shadow: 0 0 4px var(--ti-nav-menu-popmenu-border-color);
   // 导航菜单菜单栏下拉框选中文本色
-  --ti-nav-menu-popmenu-selected-text-color: var(--ti-common-color-info-normal);
+  --ti-nav-menu-popmenu-selected-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 导航菜单菜单栏下拉框选中字重
-  --ti-nav-menu-popmenu-selected-font-weight: var(--ti-common-font-weight-4);
+  --ti-nav-menu-popmenu-selected-font-weight: var(--ti-common-font-weight-4, normal);
   // 导航菜单菜单栏下拉框文本色
-  --ti-nav-menu-popmenu-text-color: var(--ti-common-color-info-normal);
+  --ti-nav-menu-popmenu-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 导航菜单下拉框边框色
-  --ti-nav-menu-popmenu-border-color: var(--ti-common-color-border);
+  --ti-nav-menu-popmenu-border-color: var(--ti-common-color-border, #adb0b8);
   // 导航菜单更多按钮展示的下拉框右边框色
-  --ti-nav-menu-popmenu-more-menu-border-color-right: var(--ti-common-color-border);
+  --ti-nav-menu-popmenu-more-menu-border-color-right: var(--ti-common-color-border, #adb0b8);
   // 导航菜单更多按钮展示的下拉框高度
-  --ti-nav-menu-popmenu-more-item-height: var(--ti-common-space-10x);
+  --ti-nav-menu-popmenu-more-item-height: var(--ti-common-space-10x, 40px);
   // 导航菜单更多按钮展示的下拉框列表项图标文本色
-  --ti-nav-menu-popmenu-more-item-icon-color: var(--ti-common-color-info-normal);
+  --ti-nav-menu-popmenu-more-item-icon-color: var(--ti-common-color-info-normal, #252b3a);
   // 导航菜单更多按钮展示的下拉框列表项文本色
-  --ti-nav-menu-popmenu-more-item-text-color: var(--ti-common-color-info-normal);
+  --ti-nav-menu-popmenu-more-item-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 导航菜单更多按钮展示的下拉框列表项图标悬浮文本色
-  --ti-nav-menu-popmenu-more-item-hover-icon-color: var(--ti-common-color-primary-normal);
+  --ti-nav-menu-popmenu-more-item-hover-icon-color: var(--ti-common-color-primary-normal, #5e7ce0);
   // 导航菜单更多按钮展示的下拉框列表项 悬浮 文本色
-  --ti-nav-menu-popmenu-more-item-hover-text-color: var(--ti-common-color-primary-normal);
+  --ti-nav-menu-popmenu-more-item-hover-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
   // 导航菜单更多按钮展示的下拉框列表项选中背景色
-  --ti-nav-menu-popmenu-more-item-selected-bg-color: var(--ti-common-color-bg-white-emphasize);
+  --ti-nav-menu-popmenu-more-item-selected-bg-color: var(--ti-common-color-bg-white-emphasize, #f2f5fc);
   // 导航菜单更多按钮展示的下拉框列表项选中分割线粗细
   --ti-nav-menu-popmenu-more-item-before-width: 0;
   // 导航菜单下拉框可点选项的 悬浮 背景色
-  --ti-nav-menu-popmenu-more-item-hover-bg-color: var(--ti-common-color-hover-background);
+  --ti-nav-menu-popmenu-more-item-hover-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
   // 导航菜单下拉框非标题选项点击瞬间背景色
-  --ti-nav-menu-popmenu-more-item-active-bg-color: var(--ti-common-color-selected-background);
+  --ti-nav-menu-popmenu-more-item-active-bg-color: var(--ti-common-color-selected-background, #5e7ce0);
   // 导航菜单下拉框副菜单区域垂直内边距
-  --ti-nav-menu-submenu-padding-vertical: var(--ti-common-space-0);
+  --ti-nav-menu-submenu-padding-vertical: var(--ti-common-space-0, 0px);
   // 导航菜单下拉框副菜单区域水平内边距
-  --ti-nav-menu-submenu-padding-horizontal: calc(var(--ti-common-space-base) * 21.5);
+  --ti-nav-menu-submenu-padding-horizontal: calc(var(--ti-common-space-base, 4px) * 21.5);
   // 导航菜单下拉框标题底部内边距
-  --ti-nav-menu-popmenu-node-title-padding-bottom: var(--ti-common-space-0);
+  --ti-nav-menu-popmenu-node-title-padding-bottom: var(--ti-common-space-0, 0px);
   // 导航菜单下拉框标题顶部外边距
-  --ti-nav-menu-popmenu-node-title-margin-top: var(--ti-common-space-0);
+  --ti-nav-menu-popmenu-node-title-margin-top: var(--ti-common-space-0, 0px);
   // 导航菜单下拉框标题右边外边距
-  --ti-nav-menu-popmenu-node-title-margin-right: var(--ti-common-space-8x);
+  --ti-nav-menu-popmenu-node-title-margin-right: var(--ti-common-space-8x, 32px);
   // 导航菜单下拉框标题底部外边距
-  --ti-nav-menu-popmenu-node-title-margin-bottom: var(--ti-common-space-3x);
+  --ti-nav-menu-popmenu-node-title-margin-bottom: var(--ti-common-space-3x, 12px);
   // 导航菜单下拉框标题左边外边距
-  --ti-nav-menu-popmenu-node-title-margin-left: var(--ti-common-space-0);
+  --ti-nav-menu-popmenu-node-title-margin-left: var(--ti-common-space-0, 0px);
   // 导航菜单下拉框标题底部边框宽度
   --ti-nav-menu-popmenu-title-border-weight-bottom: 0;
   // 导航菜单下拉框标题底部边框色
   --ti-nav-menu-popmenu-title-border-color-bottom: transparent;
   // 导航菜单下拉框标题字号
-  --ti-nav-menu-popmenu-node-title-font-size: var(--ti-common-font-size-1);
+  --ti-nav-menu-popmenu-node-title-font-size: var(--ti-common-font-size-1, 14px);
   // 导航菜单下拉框非标题项字号
-  --ti-nav-menu-popmenu-node-item-font-size: var(--ti-common-font-size-base);
+  --ti-nav-menu-popmenu-node-item-font-size: var(--ti-common-font-size-base, 12px);
 }

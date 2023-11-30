@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import { anchorProps } from '@/anchor/src'
-import { ISharedRenderlessFunctionParams } from './shared.type'
-import {
+import type { anchorProps } from '@/anchor/src'
+import type { ISharedRenderlessFunctionParams } from './shared.type'
+import type {
   mounted,
   updated,
   unmounted,
@@ -14,7 +14,7 @@ import {
   handleScroll
 } from '../src/anchor'
 
-type IAnchorObject = object | null
+type IAnchorObject = HTMLElement | null
 
 export interface IAnchorState {
   currentLink: string
