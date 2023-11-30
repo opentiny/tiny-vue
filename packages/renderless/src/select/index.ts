@@ -523,8 +523,8 @@ export const handleFocus =
       state.softFocus = false
     }
 
-    if (props.remote && state.filterOrSearch && state.firstAutoSeach) {
-      state.firstAutoSeach = false
+    if (props.remote && state.filterOrSearch && state.firstAutoSearch) {
+      state.firstAutoSearch = false
       api.resetFilter()
     }
   }
@@ -1584,8 +1584,6 @@ export const buildRadioConfig =
 export const onMouseenterNative =
   ({ state }) =>
   (e) => {
-    if (e.target === e.currentTarget) return
-
     state.inputHovering = true
 
     if (state.searchSingleCopy && state.selectedLabel) {
