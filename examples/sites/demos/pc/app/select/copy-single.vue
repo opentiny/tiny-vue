@@ -20,7 +20,7 @@
       <tiny-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
     <p class="font-style">粘贴至此处：</p>
-    <tiny-input v-model="inputVal" type="text"></tiny-input>
+    <tiny-input v-model="inputVal" type="text" class="custom"></tiny-input>
   </div>
 </template>
 

@@ -1,22 +1,25 @@
 import { expect, test } from '@playwright/test'
 
-test('nest-remote-method', async ({ page }) => {
-  await page.goto('select#nest-remote-grid')
-  const input = page.locator('#preview .tiny-input__inner').first()
-  const suffixSvg = page.locator('.tiny-input__suffix .tiny-select__caret').first()
+test('下拉表格远程搜索基础用法', async ({ page }) => {
+  await page.goto('select#nest-grid-remote-single')
+
+  const wrap = page.locator('#nest-grid-remote-single')
+  const select = wrap.locator('.tiny-select').nth(0)
+  const input = select.locator('.tiny-input__inner')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const suffixSvg = dropdown.locator('.tiny-input__suffix .tiny-select__caret')
 
   await expect(suffixSvg).toBeHidden()
-  const dropdown = page.locator('.grid-remote')
   await expect(dropdown).toBeHidden()
   await input.focus()
   await input.fill(' ')
   await input.press('Enter')
-  await page.waitForTimeout(1000)
+  await page.waitForTimeout(200)
   await expect(dropdown).toBeVisible()
   await expect(dropdown.locator('.tiny-grid__body tbody')).toBeEmpty()
   await input.fill('')
   await input.press('Enter')
-  await page.waitForTimeout(1000)
+  await page.waitForTimeout(200)
   await expect(dropdown.locator('.tiny-grid__body tbody')).not.toBeEmpty()
   await page.getByRole('row', { name: '5100000' }).locator('div').first().click()
   await expect(input).toHaveValue('5100000')
@@ -28,16 +31,18 @@ test('nest-remote-method', async ({ page }) => {
   await expect(page.getByRole('row', { name: '5900003' })).toHaveClass(/row__current/)
 })
 
-test('nest-remote-config', async ({ page }) => {
-  await page.goto('select#nest-remote-grid')
-  const input = page.locator('#preview .tiny-input__inner').nth(1)
-  const suffixSvg = page.locator('.tiny-input__suffix .tiny-select__caret').nth(1)
+test('下拉表格远程搜索 + 自动搜索 + 显示按钮', async ({ page }) => {
+  await page.goto('select#nest-grid-remote-single')
+
+  const wrap = page.locator('#nest-grid-remote-single')
+  const select = wrap.locator('.tiny-select').nth(1)
+  const input = select.locator('.tiny-input__inner')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret')
 
   await expect(suffixSvg).toBeVisible()
-  const dropdown = page.locator('.grid-remote-config')
   await expect(dropdown).toBeHidden()
   await input.click()
-  await page.waitForTimeout(1000)
   await expect(dropdown).toBeVisible()
   await expect(dropdown.locator('.tiny-grid__body tbody')).not.toBeEmpty()
   await page.getByRole('row', { name: '5100000' }).getByRole('cell').first().click()
@@ -50,7 +55,6 @@ test('nest-remote-config', async ({ page }) => {
   await expect(page.getByRole('row', { name: '5900003' })).toHaveClass(/row__current/)
   await input.fill(' ')
   await input.press('Enter')
-  await page.waitForTimeout(1000)
   await expect(dropdown).toBeVisible()
   await expect(dropdown.locator('.tiny-grid__body tbody')).toBeEmpty()
 })
