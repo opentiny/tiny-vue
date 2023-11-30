@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('离开前事件', async ({ page }) => {
+test('阻止切换', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#before-leave')
 
