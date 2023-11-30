@@ -335,11 +335,9 @@ import ts from 'highlight.js/lib/languages/typescript'
 import html from 'highlight.js/lib/languages/xml'
 import { lowlight } from 'lowlight'
 
-// Placeholder
-import Placeholder from '@tiptap/extension-placeholder'
-
-import { props, setup, defineComponent, $prefix } from '@opentiny/vue-common'
+import { $props, setup, defineComponent, $prefix, directive } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
+import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 
 function initLowLight() {
   lowlight.registerLanguage('html', html)
@@ -349,10 +347,6 @@ function initLowLight() {
 }
 /* @__PURE__ */
 initLowLight()
-
-import { $props, setup, defineComponent, $prefix, directive } from '@opentiny/vue-common'
-import '@opentiny/vue-theme/rich-text-editor/index.less'
-import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 
 export const richTextEditorProps = {
   ...$props,
