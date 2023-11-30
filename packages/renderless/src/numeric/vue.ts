@@ -144,7 +144,6 @@ const initWatch = ({
   
   watch(() => [props.max, props.min], ([curMax,curMin]) => {
     if (curMax = curMin){
-      console.log(curMax, curMin);
       throw new Error('[Numeric]: The maximum value should not be less than to the minimum value');
     }
   }, {immediate: true})
