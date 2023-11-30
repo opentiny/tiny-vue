@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('节点上下方内容', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://127.0.0.1:7130/pc/milestone/custom-bottom')
+  await page.goto('milestone#custom-bottom-top')
 
-  const descList = page.locator('.tiny-milestone__description > span')
+  const descList = page.locator('.tiny-milestone__description')
   const nodeCount = 6
   const topTexts = page.locator('.tiny-milestone__node > span')
   const texts = ['completed', 'completed', 'doing', 'cancel', 'back', 'end']
