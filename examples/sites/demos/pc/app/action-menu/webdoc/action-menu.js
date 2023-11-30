@@ -144,7 +144,7 @@ export default {
           'type': 'component',
           'defaultValue': '',
           'desc': { 'zh-CN': '菜单项显示值前的图标', 'en-US': 'Icon of a menu item' },
-          'demoId': 'add-icon'
+          'demId': 'add-icon'
         },
         {
           'name': 'options',
