@@ -167,7 +167,10 @@ export default defineComponent({
             link: `#${demo.demoId}`
           })) || []
         if (state.currJson?.apis?.length) {
-          links.push({ key: 'API', title: 'API', link: '#API' }, { key: 'Types', title: 'Types', link: '#types' })
+          links.push({ key: 'API', title: 'API', link: '#API' })
+        }
+        if (state.currJson?.types?.length) {
+          links.push({ key: 'types', title: 'types', link: '#types' })
         }
         if (state.cmpFAQMd) {
           links.push({
