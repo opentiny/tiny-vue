@@ -39,7 +39,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tooltip as TinyTooltip, Switch as TinySwitch, Button as TinySwitch } from '@opentiny/vue'
+import { Tooltip as TinyTooltip, Switch as TinySwitch, Button as TinyButton } from '@opentiny/vue'
 
 const visibleArrow = ref(true)
 const enterable = ref(true)
