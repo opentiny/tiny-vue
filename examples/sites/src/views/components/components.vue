@@ -407,7 +407,7 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-.api-table {
+table.api-table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
