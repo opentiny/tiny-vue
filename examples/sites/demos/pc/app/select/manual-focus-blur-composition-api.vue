@@ -1,7 +1,9 @@
 <template>
   <div>
-    <tiny-button @click="handleFocus"> 点击获取焦点 </tiny-button>
-    <tiny-button @click="handleBlur"> 点击失去焦点 </tiny-button>
+    <div>
+      <tiny-button @click="handleFocus"> 点击获取焦点 </tiny-button>
+      <tiny-button @click="handleBlur"> 点击失去焦点 </tiny-button>
+    </div>
     <tiny-select v-model="value" ref="drop" filterable>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>

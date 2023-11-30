@@ -1,5 +1,5 @@
 <template>
-  <tiny-select v-model="value" popper-class="drop" :popper-append-to-body="false" placement="top">
+  <tiny-select v-model="value" :hide-drop="true">
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
@@ -30,12 +30,5 @@ export default {
 <style lang="less" scoped>
 .tiny-select {
   width: 280px;
-  margin-top: 30px;
-}
-</style>
-
-<style>
-.drop {
-  background-color: #d5e8ff;
 }
 </style>

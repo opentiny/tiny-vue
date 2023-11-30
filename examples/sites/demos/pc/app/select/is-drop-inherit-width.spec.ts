@@ -1,29 +1,34 @@
 import { expect, test } from '@playwright/test'
 
-test('not-inherit-width', async ({ page }) => {
+test('默认下拉弹框宽度由内容撑开', async ({ page }) => {
   await page.goto('select#is-drop-inherit-width')
-  const input = page.getByPlaceholder('请选择').first()
-  await input.click()
-  await page.waitForTimeout(1000)
-  const listitem = page.getByRole('listitem').filter({ hasText: '双皮奶' })
-  const inputBox = await input.boundingBox()
 
-  const listitemBox = await listitem.boundingBox()
-  await page.waitForTimeout(3000)
+  const wrap = page.locator('#is-drop-inherit-width')
+  const select = wrap.locator('.tiny-select').nth(0)
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const input = select.locator('.tiny-input__inner')
+  const option = dropdown.locator('.tiny-option')
+
+  await select.click()
+  const inputBox = await input.boundingBox()
+  const listitemBox = await option.first().boundingBox()
+
   const result = listitemBox.width > inputBox.width
   await expect(result).toBe(true)
 })
 
-test('inherit-width', async ({ page }) => {
+test('下拉弹框宽度与输入框一致', async ({ page }) => {
   await page.goto('select#is-drop-inherit-width')
-  const input = page.getByPlaceholder('请选择').nth(1)
-  await input.click()
-  await page.waitForTimeout(1000)
-  const listitem = page.getByRole('listitem').filter({ hasText: '双皮奶' })
-  const inputBox = await input.boundingBox()
+  const wrap = page.locator('#is-drop-inherit-width')
+  const select = wrap.locator('.tiny-select').nth(1)
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const input = select.locator('.tiny-input__inner')
+  const option = dropdown.locator('.tiny-option')
 
-  const listitemBox = await listitem.boundingBox()
-  await page.waitForTimeout(3000)
+  await select.click()
+  const inputBox = await input.boundingBox()
+  const listitemBox = await option.first().boundingBox()
+
   const result = listitemBox.width === inputBox.width
   await expect(result).toBe(true)
 })
