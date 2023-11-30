@@ -14,7 +14,7 @@ test('多选某项禁用', async ({ page }) => {
   const wrap = page.locator('#disabled')
   const select = wrap.locator('.tiny-select').nth(1)
   const dropdown = page.locator('body > .tiny-select-dropdown')
-  const tag = wrap.locator('.tiny-tag')
+  const tag = select.locator('.tiny-tag')
   const option = dropdown.locator('.tiny-option')
 
   await expect(tag).toHaveCount(0)
