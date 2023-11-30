@@ -139,8 +139,16 @@ const initWatch = ({
   state,
   watch,
   props,
-  api
+  api,
 }: Pick<INumericRenderlessParams, 'state' | 'watch' | 'props' | 'api'>): void => {
+  
+  watch(() => [props.max, props.min], ([curMax,curMin]) => {
+    if (curMax <= curMin){
+      console.log(curMax, curMin);
+      throw new Error('[Numeric]: The maximum value should not be less than or equal to the minimum value');
+    }
+  }, {immediate: true})
+  
   watch(() => props.modelValue, api.watchValue, { immediate: true })
 
   watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)
@@ -148,7 +156,7 @@ const initWatch = ({
 
 export const renderless = (
   props: INumericProps,
-  { computed, onMounted, onUpdated, onUnmounted, reactive, watch, inject }: ISharedRenderlessParamHooks,
+  { computed, onMounted, onUpdated, onUnmounted, reactive, watch, inject}: ISharedRenderlessParamHooks,
   { parent, emit, refs, constants, dispatch, service, nextTick }: INumericRenderlessParamUtils
 ): INumericApi => {
   const api = {} as INumericApi
