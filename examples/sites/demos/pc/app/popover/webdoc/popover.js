@@ -123,7 +123,6 @@ export default {
       },
       'codeFiles': ['transition.vue']
     },
-
     {
       'demoId': 'popper-options',
       'name': { 'zh-CN': '高级选项', 'en-US': 'Pop-up Options' },
@@ -134,6 +133,21 @@ export default {
       },
       'codeFiles': ['popper-options.vue']
     },
+    // 暂时屏蔽
+    // {
+    //   'demoId': 'dynamic-reference',
+    //   'name': { 'zh-CN': '动态触发源', 'en-US': 'Pop-up Options' },
+    //   'desc': {
+    //     'zh-CN': `
+    //       当组件不传入<code>reference</code> 插槽时,弹出框由于没有触发源而无法触发显示。<br>
+    //       通过 <code>reference</code> 属性，可以动态传入一个Dom元素作为动态触发源，之后调用<code>doShow() \ doClose() </code>，来控制弹出框显示与隐藏。
+    //       <div class="tip custom-block">通过这个高级技巧，可以实现在列表中共享一个<code> Popover</code> 组件实例,提升了列表时的性能。</div>
+    //     `,
+    //     'en-US':
+    //       'Run the <code>popper-options</code> command to configure the advanced pop-up options. For details, see the IPopperOption description at the bottom'
+    //   },
+    //   'codeFiles': ['dynamic-reference.vue']
+    // },
     {
       'demoId': 'events',
       'name': { 'zh-CN': '事件', 'en-US': 'Event' },

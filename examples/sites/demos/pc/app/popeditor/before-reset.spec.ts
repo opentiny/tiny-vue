@@ -4,7 +4,7 @@ test('PopEditor 重置', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popeditor#before-reset')
 
-  const preview = page.locator('#preview')
+  const preview = page.locator('#before-reset')
   const textBox = preview.getByRole('textbox')
   const dialogBox = page.locator('.tiny-dialog-box')
   const company = dialogBox.getByRole('listitem').filter({ hasText: '公司名' }).getByRole('textbox')

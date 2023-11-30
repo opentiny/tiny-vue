@@ -2,10 +2,14 @@ import { test, expect } from '@playwright/test'
 
 test('popup-style-position', async ({ page }) => {
   await page.goto('select#popup-style-position')
-  const select = page.locator('#preview .tiny-select')
+
+  const wrap = page.locator('#popup-style-position')
+  const select = wrap.locator('.tiny-select')
+  const dropdown = select.locator('.tiny-select__tags-group > .tiny-select-dropdown')
 
   await select.click()
-  const selectDropdown = select.locator('.tiny-select-dropdown')
-  await expect(selectDropdown).toHaveCount(1)
-  await expect(selectDropdown).toHaveClass(/drop/)
+  await expect(dropdown).toHaveCount(1)
+  await expect(dropdown).toHaveClass(/drop/)
+  await expect(dropdown).toHaveCSS('background-color', 'rgb(213, 232, 255)')
+  await expect(dropdown).toHaveAttribute('x-placement', 'top')
 })

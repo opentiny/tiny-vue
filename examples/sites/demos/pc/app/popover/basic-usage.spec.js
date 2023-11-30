@@ -7,6 +7,6 @@ test('基本用法', async ({ page }) => {
   let button = page.getByRole('button', { name: '悬浮我提示' })
   let pop = page.getByRole('tooltip', { name: /这是一段内容/ })
 
-  await button.hover()
+  await button.click()
   await expect(pop).toBeVisible()
 })

@@ -149,6 +149,8 @@ export default (options: IPopperInputParams) => {
 
     const popperJS = state.popperJS
     if (popperJS) {
+      // popperJS._reference = state.referenceElm
+      // popperJS._popper = state.popperElm
       popperJS.update()
     } else {
       createPopper()

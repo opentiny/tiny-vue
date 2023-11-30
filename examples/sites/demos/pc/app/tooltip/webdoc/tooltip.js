@@ -143,20 +143,20 @@ export default {
       'props': [
         {
           'name': 'effect',
-          'type': 'string',
+          'type': '"dark" | "light"',
           'defaultValue': '"dark"',
           'desc': {
-            'zh-CN': '默认提供的主题;该属性的可选值为 dark/light',
+            'zh-CN': '提示的主题',
             'en-US': 'Default theme; The value of this attribute can be dark or light'
           },
           'demoId': 'theme'
         },
         {
           'name': 'type',
-          'type': 'string',
+          'type': '"normal" | "warning" | "error" | "info" | "success"',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '默认提供的类型;该属性的可选值为 normal/warning/error/info/success 。type的优先级大于effect',
+            'zh-CN': '提示的类型，type的优先级大于effect',
             'en-US':
               'The default type is provided. The options for this attribute are normal, warning, error, information, and success. The priority of type is higher than that of effect.'
           },
@@ -174,7 +174,8 @@ export default {
         },
         {
           'name': 'placement',
-          'type': 'string',
+          'type':
+            '"top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end"',
           'defaultValue': ' "bottom"',
           'desc': {
             'zh-CN':

@@ -27,7 +27,7 @@
 <script>
 import Svgs from '@opentiny/vue-icon'
 import { Modal, Input } from '@opentiny/vue'
-import { iconGroups } from './iconGroups'
+import { iconGroups } from './iconGroups.js'
 
 export default {
   components: {

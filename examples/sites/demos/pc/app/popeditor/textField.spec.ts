@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('PopEditor 显示字段映射', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('popeditor#textField')
+  await page.goto('popeditor#text-field')
 
-  const preview = page.locator('#preview')
+  const preview = page.locator('#text-field')
   const textBox = preview.getByRole('textbox')
   const dialogBox = page.locator('.tiny-dialog-box')
   const confirmBtn = dialogBox.getByRole('button', { name: '确 认' })

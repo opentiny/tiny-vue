@@ -54,6 +54,6 @@ p {
   line-height: 1.5;
 }
 .tiny-button {
-  margin-bottom: 10px;
+  margin-right: 10px;
 }
 </style>

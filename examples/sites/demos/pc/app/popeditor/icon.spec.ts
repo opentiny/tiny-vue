@@ -4,7 +4,7 @@ test('PopEditor 自定义图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popeditor#icon')
 
-  const preview = page.locator('#preview')
+  const preview = page.locator('#icon')
   const icon = preview.locator('.tiny-popeditor-readonly svg path')
 
   // 图标非默认图标

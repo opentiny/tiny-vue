@@ -53,32 +53,33 @@ export default {
   methods: {
     change() {
       Modal.message({
-        message: 'change 事件'
+        message: '触发 change 事件',
+        duration: 500
       })
     },
     clear() {
       Modal.message({
-        message: 'clear 事件'
+        message: '触发 clear 事件'
       })
     },
     focus() {
       Modal.message({
-        message: 'focus 事件'
+        message: '触发 focus 事件'
       })
     },
     blur() {
       Modal.message({
-        message: 'blur 事件'
+        message: '触发 blur 事件'
       })
     },
     removeTag() {
       Modal.message({
-        message: 'remove-tag 事件'
+        message: '触发 remove-tag 事件'
       })
     },
     visibleChange() {
       Modal.message({
-        message: 'visible-change 事件'
+        message: '触发 visible-change 事件'
       })
     }
   }

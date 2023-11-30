@@ -1,12 +1,15 @@
 import { expect, test } from '@playwright/test'
 
-test('slot-empty', async ({ page }) => {
+test('空数据插槽', async ({ page }) => {
   await page.goto('select#slot-empty')
 
-  const input = page.locator('#preview .tiny-input__inner')
-  const options = page.locator('.tiny-select-dropdown').locator('.tiny-option')
+  const wrap = page.locator('#slot-empty')
+  const select = wrap.locator('.tiny-select')
+  const input = select.locator('.tiny-input__inner')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const option = dropdown.locator('.tiny-option')
+
   await input.click()
-  await page.waitForTimeout(1000)
-  await expect((await options.all()).length).toEqual(0)
-  await expect(page.locator('.tiny-select-dropdown')).toHaveText('没有选项')
+  await expect((await option.all()).length).toEqual(0)
+  await expect(page.locator('.tiny-select-dropdown')).toHaveText('空数据插槽')
 })

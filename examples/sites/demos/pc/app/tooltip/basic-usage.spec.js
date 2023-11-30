@@ -7,17 +7,13 @@ test('测试Tooltip的是否能出现', async ({ page }) => {
   let button = page.getByRole('button', { name: '上左' })
   let tooltip = page.getByRole('tooltip', { name: 'Top Left 提示文字' })
 
-  await expect(button).toBeVisible()
   await button.hover()
+  await page.waitForTimeout(100)
   await expect(tooltip).toBeVisible()
-})
 
-test('测试Tooltip的位置是否正确', async ({ page }) => {
-  page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('tooltip#basic-usage')
-
-  let button = page.getByRole('button', { name: '上右' })
-  let tooltip = page.getByRole('tooltip', { name: 'Top Right 提示文字' })
+  // 测试Tooltip的位置是否正确
+  button = page.getByRole('button', { name: '上右' })
+  tooltip = page.getByRole('tooltip', { name: 'Top Right 提示文字' })
 
   await button.hover()
   let buttonBox = await button.boundingBox()

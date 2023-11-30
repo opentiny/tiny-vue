@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('四种显示位置', async ({ page }) => {
+test('位置：四种显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#position')
 
@@ -8,11 +8,6 @@ test('四种显示位置', async ({ page }) => {
   const tabsList = page.locator('.tiny-tabs > div')
   const top = tabsList.first()
   const bottom = tabsList.last()
-
-  await expect(tabs).toHaveClass(/tiny-tabs--top/)
-  await expect(tabsList).toHaveCount(2)
-  await expect(top).toHaveClass(/tiny-tabs__header/)
-  await expect(bottom).toHaveClass('tiny-tabs__content')
 
   // left 显示
   const header = tabs.locator('.tiny-tabs__header')
@@ -31,8 +26,22 @@ test('四种显示位置', async ({ page }) => {
   await expect(item2).toHaveClass(/is-active/)
   await expect(content).toHaveText(/2/)
 
-  // right显示
+  // top显示
+  await page.getByRole('radio', { name: 'top显示' }).click()
+  await expect(tabs).toHaveClass(/tiny-tabs--top/)
+  await expect(tabsList).toHaveCount(2)
+  await expect(top).toHaveClass(/tiny-tabs__header/)
+  await expect(bottom).toHaveClass('tiny-tabs__content')
 
+  // bottom显示
+  await page.getByRole('radio', { name: 'bottom显示' }).click()
+  await expect(tabs).toHaveClass(/tiny-tabs--bottom/)
+  await expect(tabsList).toHaveCount(2)
+  await expect(top).toHaveClass('tiny-tabs__content')
+  await expect(bottom).toHaveClass(/tiny-tabs__header/)
+
+  // right显示
+  await page.getByRole('radio', { name: 'right显示' }).click()
   await expect(tabs).toHaveClass(/tiny-tabs--right/)
   await expect(tabsList).toHaveCount(2)
   await expect(top).toHaveClass(/tiny-tabs__header/)
@@ -43,11 +52,4 @@ test('四种显示位置', async ({ page }) => {
   await item2.click()
   await expect(item2).toHaveClass(/is-active/)
   await expect(content).toHaveText(/2/)
-
-  // bottom显示
-
-  await expect(tabs).toHaveClass(/tiny-tabs--bottom/)
-  await expect(tabsList).toHaveCount(2)
-  await expect(top).toHaveClass('tiny-tabs__content')
-  await expect(bottom).toHaveClass(/tiny-tabs__header/)
 })

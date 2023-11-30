@@ -1,14 +1,14 @@
 <template>
-  <div class="tiny-color-select-panel__wrapper__alpha" ref="alphaWrapper">
+  <div class="tiny-color-select-panel__alpha" ref="alphaWrapper">
     <div
-      class="tiny-color-select-panel__wrapper__alpha__slider"
+      class="tiny-color-select-panel__alpha__slider"
       :style="{
         background: state.background
       }"
       ref="slider"
     ></div>
     <div
-      class="tiny-color-select-panel__wrapper__alpha__thumb"
+      class="tiny-color-select-panel__alpha__thumb"
       :style="{
         top: 0,
         left: 0

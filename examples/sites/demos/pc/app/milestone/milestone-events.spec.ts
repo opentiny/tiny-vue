@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://127.0.0.1:7130/pc/milestone/milestone-events')
+  await page.goto('milestone#milestone-events')
 
   const node = page.locator('.tiny-milestone__node').first()
   const flag = page.locator('.tiny-milestone__flag-content').first()

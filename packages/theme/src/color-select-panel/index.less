@@ -1,8 +1,8 @@
 @import '../custom.less';
 @import './vars.less';
 
-@colorSelectPanelPrefix: ~'@{css-prefix}color-select-panel';
-.@{colorSelectPanelPrefix}__wrapper {
+@color-select-panel-prefix-cls: ~'@{css-prefix}color-select-panel';
+.@{color-select-panel-prefix-cls} {
   .component-css-vars-color-select-panel();
     display: flex;
     flex-direction: column;
@@ -110,8 +110,8 @@
     }
     .tiny-collapse-item__content{
       background: transparent;
-      .@{colorSelectPanelPrefix}__history,
-      .@{colorSelectPanelPrefix}__predefine{
+      .@{color-select-panel-prefix-cls}__history,
+      .@{color-select-panel-prefix-cls}__predefine{
         display: flex;
         flex-wrap: wrap;
         height: auto;

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('数据字段映射', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://127.0.0.1:7130/pc/milestone/data-field-mapping')
+  await page.goto('milestone#data-field-mapping')
 
   const flags = page.locator('.tiny-milestone__flag-content')
   const nodeIcons = page.locator('.tiny-milestone__icon')
