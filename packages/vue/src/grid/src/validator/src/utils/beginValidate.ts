@@ -36,39 +36,33 @@ export function adjustParams(rows, cb, vaildDatas) {
   return { cb, vaildDatas }
 }
 
-// prettier-ignore
-export function columnHandler({ _vm, colVailds, editRules, isAll, row, validRest }) {
-  function handler(column, columnIndex) {
+export const columnHandler = ({ _vm, colVailds, editRules, isAll, row, validRest }) => {
+  return (column, columnIndex) => {
     if (has(editRules, column.property)) {
       const p = new Promise((resolve, reject) => {
-        _vm.validCellRules('all', row, column).then(resolve).catch(({ rule, rules }) => {
-          const rowIndex = _vm.getRowIndex(row)
-          let rest = { rule, rules, rowIndex, row, columnIndex, column, $table: _vm }
+        _vm
+          .validCellRules('all', row, column)
+          .then(resolve)
+          .catch(({ rule, rules }) => {
+            const rowIndex = _vm.getRowIndex(row)
+            let rest = { rule, rules, rowIndex, row, columnIndex, column, $table: _vm }
 
-          if (isAll) {
-            if (!validRest[column.property]) {
-              validRest[column.property] = []
+            if (isAll) {
+              if (!validRest[column.property]) {
+                validRest[column.property] = []
+              }
+
+              validRest[column.property].push(rest)
+
+              return resolve()
             }
 
-            validRest[column.property].push(rest)
-
-            return resolve()
-          }
-
-          return reject(rest)
-        })
+            return reject(rest)
+          })
       })
 
       colVailds.push(p)
     }
-  }
-
-  return handler
-}
-
-export function hasNoEditRules(cb, status) {
-  if (cb) {
-    cb(status)
   }
 }
 

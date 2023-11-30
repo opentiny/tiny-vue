@@ -26,7 +26,7 @@ import { t } from '@opentiny/vue-locale'
 import Validator from '@opentiny/vue-renderless/common/validate'
 import { getFuncText, emitEvent, getCell } from '@opentiny/vue-renderless/grid/utils'
 import { get, isFunction, isObject, isUndefined, find } from '@opentiny/vue-renderless/grid/static/'
-import { adjustParams, hasNoEditRules, realValid } from './utils/beginValidate'
+import { adjustParams, realValid } from './utils/beginValidate'
 import { extend } from '@opentiny/vue-renderless/common/object'
 
 const isArr = Array.isArray
@@ -100,10 +100,8 @@ export default {
   },
   // 聚焦到校验通过的单元格并弹出校验错误提示
   handleValidError(params) {
-    let event = { type: 'valid-error', trigger: 'call' }
-    let next = () => this.showValidTooltip(params)
-
-    this.handleActived(params, event).then(next)
+    const event = { type: 'valid-error', trigger: 'call' }
+    this.handleActived(params, event).then(() => this.showValidTooltip(params))
   },
   validatePromise(row, column, columnIndex, isAll, validRest) {
     function onrejected({ _vm, reject, resolve }) {
@@ -135,6 +133,7 @@ export default {
    * 如果传 row 指定行记录，则只验证传入的行
    * 如果传 rows 为多行记录，则只验证传入的行
    * 如果只传 callback 否则默认验证整个表格数据
+   * isAll: 是否全量校验，如果为true会校验所有并返回所有不通过的列
    * 返回 Promise 对象，或者使用回调方式
    */
 
@@ -150,7 +149,9 @@ export default {
     this.clearValidate()
 
     if (!editRules) {
-      hasNoEditRules(cb, opt.status)
+      if (cb) {
+        cb(opt.status)
+      }
       return Promise.resolve()
     }
 
