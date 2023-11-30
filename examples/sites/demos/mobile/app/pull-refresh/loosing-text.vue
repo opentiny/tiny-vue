@@ -36,18 +36,14 @@ export default {
   },
   methods: {
     handlerPullUpLoad() {
-      console.log('pullUp action')
-      let self = this
       setTimeout(() => {
-        self.value = false
-        self.hasMore = false
+        this.value = false
+        this.hasMore = false
       }, 3000)
     },
     handlerPullDownRefresh() {
-      console.log('pullDown action')
-      let self = this
       setTimeout(() => {
-        self.value = false
+        this.value = false
       }, 3000)
     }
   }

@@ -36,22 +36,17 @@ export default {
   },
   methods: {
     handlerPullUpLoad() {
-      console.log('pullUp action')
-
-      let self = this
       setTimeout(() => {
-        const length = self.data.length
+        const length = this.data.length
         for (let i = 1; i <= 10; i++) {
-          self.data.push({ label: `${i + length} list data` })
+          this.data.push({ label: `${i + length} list data` })
         }
-        self.value = false
+        this.value = false
       }, 2000)
     },
     handlerPullDownRefresh() {
-      console.log('pullDown action')
-      let self = this
       setTimeout(() => {
-        self.value = false
+        this.value = false
       }, 2000)
     }
   }
