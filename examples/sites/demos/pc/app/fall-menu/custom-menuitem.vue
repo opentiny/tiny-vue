@@ -2,15 +2,13 @@
   <div class="left-panel">
     <fall-menu :data="dataset">
       <template #level1="data">
-        <a>{{ data.slotScope.title + ' ' + 'level1' + ' ' }}</a>
+        <a>{{ `${data.slotScope.title} level1 ` }}</a>
       </template>
       <template #level2="data">
-        <span>{{ data.slotScope.title + ' ' + 'level2' + ' ' }}</span>
+        <span>{{ `${data.slotScope.title} level2 ` }}</span>
       </template>
       <template #level3="data">
-        <a v-for="(level3, index) in data.slotScope" :href="level3.url" :key="index">{{
-          level3.title + ' ' + 'level3' + ' '
-        }}</a>
+        <a v-for="(level3, index) in data.slotScope" :href="level3.url" :key="index">{{ `${level3.title} level3 ` }}</a>
       </template>
     </fall-menu>
   </div>

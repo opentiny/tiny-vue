@@ -47,7 +47,7 @@ export default {
       'props': [
         {
           'name': 'data',
-          'type': 'Array',
+          'type': 'object | object[]',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置瀑布菜单的数据。',
