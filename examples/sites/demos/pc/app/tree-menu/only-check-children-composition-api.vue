@@ -4,7 +4,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
+import { TreeMenu as TinyTreeMenu, Modal } from '@opentiny/vue'
 
 const treeData = ref([
   {

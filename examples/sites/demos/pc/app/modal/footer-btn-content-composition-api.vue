@@ -26,7 +26,7 @@ const confirmContent2 = ref('确定')
 const cancelContent2 = ref('再想想')
 
 function btnClick1() {
-  Modal.confirm({
+  TinyModal.confirm({
     message: '自定义确定按钮和取消按钮文本',
     confirmContent: confirmContent1.value,
     cancelContent: cancelContent1.value
