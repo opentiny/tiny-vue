@@ -53,14 +53,12 @@ export function transformVirtualTemplateForBuild(code: string) {
 ${getImports(params)}
 
 const ${localName} = (mode) => {
-  let tinyMode
+  let tinyMode = null
 
   if (typeof process === 'undefined' || process === null) {
     tinyMode = null
   } else if (typeof process === 'object') {
     tinyMode = process.env?.TINY_MODE
-  } else {
-    tinyMode = null
   }
   ${getTemplateFunction(params)}
 }
