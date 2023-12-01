@@ -109,7 +109,7 @@ export const cmpMenus = [
         'key': 'rich-text-editor',
         'mark': {
           'type': 'warning',
-          'text': 'Bate'
+          'text': 'Beta'
         }
       },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
