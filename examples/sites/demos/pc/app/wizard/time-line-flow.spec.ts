@@ -17,12 +17,12 @@ test('时间线流程图', async ({ page }) => {
   const texts = [/提交小红/, /转他人处理小胡/, /主管审批小张/]
   const expandBtns = page.getByRole('listitem').locator('svg')
   const xiaoHongTop = page
-    .getByRole('tooltip', { name: '小红 部门：某部门 邮件：example@example.com 手机：1234567890' })
+    .getByRole('tooltip', { name: '小红 工号：123456890 部门：某部门 邮件：example@example.com 手机：1234567890' })
     .locator('div')
     .filter({ hasText: '小红工号：123456890' })
     .nth(3)
   const xiaoHongBottom = page
-    .getByRole('tooltip', { name: '小红 部门：某部门 邮件：example@example.com 手机：1234567890' })
+    .getByRole('tooltip', { name: '小红 工号：123456890 部门：某部门 邮件：example@example.com 手机：1234567890' })
     .getByText('部门：某部门邮件：example@example.com手机：1234567890')
 
   await expect(nodeLines).toHaveCount(2)
@@ -49,9 +49,9 @@ test('时间线流程图', async ({ page }) => {
     }
   }
 
-  await userNames.first().hover()
-  await expect(xiaoHongTop).toBeVisible()
-  await expect(xiaoHongBottom).toBeVisible()
+  await page.getByRole('link', { name: '小红 123456890' }).hover()
+  await expect(xiaoHongTop).toHaveCount(1)
+  await expect(xiaoHongBottom).toHaveCount(1)
   await expandBtns.nth(0).click()
   await expect(nodeLines).toHaveCount(2)
   await expect(nodeDates).toHaveCount(2)
