@@ -1,7 +1,7 @@
 ---
-title: DatePicker Date Selector
+title: DatePicker
 ---
 
-# DatePicker Date Selector
+# DatePicker
 
 <div>Used to input or select a date.</div>

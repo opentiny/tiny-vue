@@ -18,9 +18,7 @@ export default defineComponent({
     className: { type: String },
     handleOnClick: {
       type: Function,
-      default: () => {
-        return
-      }
+      default: () => {}
     },
     label: { type: String },
     title: {

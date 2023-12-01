@@ -377,6 +377,8 @@ import IconMobileRadioSelected from './src/mobile-radio-selected'
 import IconMobileCheckbox from './src/mobile-checkbox'
 import IconMobileCheckboxHalf from './src/mobile-checkbox-half'
 import IconMobileCheckboxSelected from './src/mobile-checkbox-selected'
+import IconMobileErrorWhite from './src/mobile-error-white'
+import IconMobileSuccessWhite from './src/mobile-success-white'
 import IconAudio from './src/audio'
 import IconMic from './src/mic'
 import IconExcelType from './src/excel-type'
@@ -462,6 +464,10 @@ export {
   IconMobileRadio as iconMobileRadio,
   IconMobileRadioSelected,
   IconMobileRadioSelected as iconMobileRadioSelected,
+  IconMobileErrorWhite,
+  IconMobileErrorWhite as iconMobileErrorWhite,
+  IconMobileSuccessWhite,
+  IconMobileSuccessWhite as iconMobileSuccessWhite,
   IconAdd,
   IconAdd as iconAdd,
   IconAdministrator,
@@ -1223,6 +1229,8 @@ export default {
   IconMobileCheckboxSelected,
   IconMobileRadio,
   IconMobileRadioSelected,
+  IconMobileErrorWhite,
+  IconMobileSuccessWhite,
   IconAdd,
   IconAdministrator,
   IconAlignBaseline,

@@ -10,7 +10,7 @@
  *
  */
 
-import { ICascaderMenuRenderlessParamUtils, ICascaderMenuRenderlessParams, ICascaderMenuState } from '@/types'
+import type { ICascaderMenuRenderlessParamUtils, ICascaderMenuRenderlessParams, ICascaderMenuState } from '@/types'
 
 export const handleExpand = (state: ICascaderMenuState) => (e: MouseEvent) =>
   (state.activeNode = e.target as HTMLElement)

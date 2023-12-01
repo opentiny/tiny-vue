@@ -3,8 +3,8 @@ import { test, expect } from '@playwright/test'
 test('步长', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('slider#about-step')
-  const preview = page.locator('#preview')
-  const slider = preview.locator('.tiny-slider__wrapper > .tiny-slider')
+
+  const slider = page.locator('.tiny-slider-container .tiny-slider')
   const sliderBlock = slider.locator('div').nth(1)
   // 获取进度条的宽度
   const { width: sliderWidth } = await slider.boundingBox()

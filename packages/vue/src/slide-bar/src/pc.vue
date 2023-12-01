@@ -65,7 +65,6 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconChevronLeft, iconChevronRight, iconRadio } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  emits: ['click'],
   components: {
     IconChevronLeft: iconChevronLeft(),
     IconChevronRight: iconChevronRight(),

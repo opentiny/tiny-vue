@@ -1,10 +1,9 @@
 <template>
-  <div>
-    value:{{ value }}
+  <div class="demo-tiny-cascader-event">
+    <div>value: {{ value }}</div>
     <tiny-cascader
       v-model="value"
       ref="cascader"
-      filterable
       :options="options"
       @change="handleChange"
       @blur="handleblur"
@@ -16,7 +15,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Cascader, Modal } from '@opentiny/vue'
 
 export default {
@@ -251,3 +250,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-tiny-cascader-event > :not(:last-child) {
+  margin-bottom: 12px;
+}
+</style>

@@ -1,7 +1,13 @@
 <template>
   <div>
-    <tiny-button @click="onFocus" style="margin-bottom: 10px"> 点击获取焦点 </tiny-button>
-    <tiny-select v-model="value" placeholder="请选择" automatic-dropdown ref="selectDomRef">
+    <p>场景1：默认不可搜索时，获取焦点不下拉</p>
+    <tiny-button @click="handleFocus1"> 点击获取焦点 </tiny-button>
+    <tiny-select v-model="value" ref="selectOnlyFocusRef">
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+    <p>场景2：设置不可搜索时，获取焦点并自动下拉</p>
+    <tiny-button @click="handleFocus2"> 点击获取焦点 </tiny-button>
+    <tiny-select v-model="value" ref="selectAutoDropRef" automatic-dropdown>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
@@ -19,9 +25,27 @@ const options = ref([
   { value: '选项5', label: '北京烤鸭' }
 ])
 const value = ref('')
-const selectDomRef = ref()
+const selectOnlyFocusRef = ref()
+const selectAutoDropRef = ref()
 
-const onFocus = () => {
-    selectDomRef.value.focus()
+const handleFocus1 = () => {
+  selectOnlyFocusRef.value.focus()
+}
+
+const handleFocus2 = () => {
+  selectAutoDropRef.value.focus()
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.tiny-button {
+  margin-right: 10px;
+}
+</style>

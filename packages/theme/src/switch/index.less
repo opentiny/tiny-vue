@@ -35,13 +35,15 @@
     color: var(--ti-switch-text-color);
     font-size: var(--ti-switch-inner-font-size);
     position: absolute;
-    left: calc(var(--ti-switch-inner-position-left) + 4px);
   }
 
   &__text {
     width: var(--ti-switch-text-width);
     .@{switch-prefix-cls}-inner {
-      left: calc(var(--ti-switch-inner-position-left) + 7px);
+      left: calc(var(--ti-switch-dot-size));
+      width: calc(100% - var(--ti-switch-dot-size));
+      text-align: center;
+      overflow: hidden;
     }
   }
 
@@ -90,8 +92,9 @@
     background-color: var(--ti-switch-on-bg-color);
 
     .@{switch-prefix-cls}-inner {
-      left: 8px;
+      left: 2px;
       width: calc(100% - var(--ti-switch-dot-size));
+      text-align: center;
       overflow: hidden;
     }
 

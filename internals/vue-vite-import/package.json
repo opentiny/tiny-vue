@@ -31,7 +31,7 @@
     "vite"
   ],
   "peerDependencies": {
-    "vite": ">=2"
+    "vite": ">=4"
   },
   "dependencies": {
     "change-case": "^4.1.2"

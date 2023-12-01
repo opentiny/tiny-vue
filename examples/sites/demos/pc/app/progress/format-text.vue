@@ -1,12 +1,14 @@
 <template>
   <div>
     <div>
+      <tiny-button @click="showTest = !showTest">{{ showTest ? '隐藏' : '显示' }}文字</tiny-button>
       <tiny-button @click="testInside = !testInside">{{ testInside ? '外置' : '内置' }}文字</tiny-button>
     </div>
     <br />
     <div class="progress-container">
       <tiny-progress
         class="progress"
+        :show-text="showTest"
         :stroke-width="24"
         :format="formatText"
         :text-inside="testInside"
@@ -31,6 +33,7 @@ export default {
   },
   data() {
     return {
+      showTest: true,
       percentageText: 60,
       testInside: true
     }

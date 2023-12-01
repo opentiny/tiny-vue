@@ -1,1 +1,3 @@
-export type IColorSelectPanelRef<T> = {value: T}
+export interface IColorSelectPanelRef<T> {
+  value: T
+}

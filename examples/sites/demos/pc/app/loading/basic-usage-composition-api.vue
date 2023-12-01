@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-button @click="closeLoading">close Loading</tiny-button>
-    <div id="tiny-loading1"></div>
+    <div id="tiny-basic-loading1"></div>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-#tiny-loading1 {
+#tiny-basic-loading1 {
   width: 100%;
   height: 120px;
   border: 1px solid beige;

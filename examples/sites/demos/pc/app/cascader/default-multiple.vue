@@ -8,7 +8,7 @@
   ></tiny-cascader>
 </template>
 
-<script lang="jsx">
+<script>
 import { Cascader, Modal } from '@opentiny/vue'
 
 export default {

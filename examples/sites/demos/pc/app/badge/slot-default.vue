@@ -1,12 +1,12 @@
 <template>
   <tiny-badge :value="2">
     <template #default>
-      <span style="color: red">自定义默认插槽</span>
+      <span class="warning">自定义默认插槽</span>
     </template>
   </tiny-badge>
 </template>
 
-<script lang="jsx">
+<script>
 import { Badge } from '@opentiny/vue'
 
 export default {
@@ -15,3 +15,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.warning {
+  color: #fa9841;
+}
+</style>

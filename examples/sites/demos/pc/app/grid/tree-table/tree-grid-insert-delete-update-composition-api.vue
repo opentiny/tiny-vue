@@ -220,20 +220,57 @@ function insertEvent() {
   })
 }
 
-function removeEvent() {
-  const isSameObject = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2)
-  let tree = treeRef.value
-  let removeRecords = tree.getSelectRecords()
+/**
+ * 删除 第一层数据
+ * @param data 源数据
+ * @param removeRecords 选中数据
+ */
+function deleteItemsByChecked(data, removeRecords) {
+  const targetIds = removeRecords.map((x) => x.id)
 
-  tableData.value = copy(tableData.value, removeRecords)
+  const idSet = new Set(targetIds) // 转换为集合以提高查找性能
 
-  for (let i = 0; i < tableData.value.length; i++) {
-    for (let j = 0; j < removeRecords.length; j++) {
-      if (isSameObject(tableData.value[i], removeRecords[j])) {
-        tableData.value.splice(i, 1)
+  for (let i = data.length - 1; i >= 0; i--) {
+    const node = data[i]
+    if (idSet.has(node.id)) {
+      data.splice(i, 1) // 删除当前节点
+
+      idSet.delete(node.id) // 处理完目标节点后从集合中删除对应的ID
+
+      if (idSet.size === 0) {
+        break // 如果所有目标节点都已处理完成，则结束遍历
       }
+    } else if (node.children && node.children.length > 0) {
+      deleteChildItems(node.children, idSet) // 递归删除子节点
     }
   }
+}
+/**
+ * 删除 子集数据
+ * @param children 子集数据
+ * @param idSet 删除id集合
+ */
+function deleteChildItems(children, idSet) {
+  for (let i = children.length - 1; i >= 0; i--) {
+    const node = children[i]
+
+    if (idSet.has(node.id)) {
+      children.splice(i, 1) // 删除当前节点
+
+      idSet.delete(node.id) // 处理完目标节点后从集合中删除对应的ID
+
+      if (idSet.size === 0) {
+        break // 如果所有目标节点都已处理完成，则结束遍历
+      }
+    } else if (node.children && node.children.length > 0) {
+      deleteChildItems(node.children, idSet) // 递归删除子节点的子节点
+    }
+  }
+}
+function removeEvent() {
+  let tree = treeRef.value
+  let removeRecords = tree.getSelectRecords()
+  deleteItemsByChecked(tableData.value, removeRecords)
   removeList.value = removeRecords.map((item) => ({ ...item }))
 }
 

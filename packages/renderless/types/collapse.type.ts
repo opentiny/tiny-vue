@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { collapseProps, $constants } from '@/collapse/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { collapseProps, $constants } from '@/collapse/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export type ICollapseProps = ExtractPropTypes<typeof collapseProps>
 

@@ -262,7 +262,7 @@ export default defineComponent({
       let fileSizeTip = ''
       if (typeof fileSize === 'number') {
         fileSizeTip = `${t('ui.fileUpload.fileNotLessThan')}${(fileSize / 1024).toFixed(2)}M`
-      } else if (fileSize instanceof Array) {
+      } else if (Array.isArray(fileSize)) {
         let minSize = (fileSize[0] as any) / 1024
         minSize = Math.floor(minSize) === minSize ? minSize : Number(minSize.toFixed(2))
         let maxSize = (fileSize[1] as any) / 1024
@@ -300,7 +300,7 @@ export default defineComponent({
       slots: any
     }) => {
       let defaultTip
-      const tipMsg = getTipMessage({ accept: isEdm ? accept : this.accept, fileSize: fileSize, limit: this.limit })
+      const tipMsg = getTipMessage({ accept: isEdm ? accept : this.accept, fileSize, limit: this.limit })
 
       if (listType === 'text') {
         defaultTip = (
@@ -336,7 +336,7 @@ export default defineComponent({
         <tiny-tooltip
           class="inline-block sm:hidden"
           effect="dark"
-          content={getTipMessage({ accept: isEdm ? accept : this.accept, fileSize: fileSize, limit: this.limit })}
+          content={getTipMessage({ accept: isEdm ? accept : this.accept, fileSize, limit: this.limit })}
           placement="top">
           <icon-help-query class="-mt-0.5  fill-color-none-hover" />
         </tiny-tooltip>

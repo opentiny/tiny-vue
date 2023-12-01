@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-select v-model="value" placeholder="请选择">
+    <tiny-select v-model="value">
       <tiny-option
         v-for="item in options"
         :key="item.value"
@@ -47,6 +47,19 @@ export default {
       MemorizeInstance.updateByKey(value)
       this.cacheValue = window.localStorage.getItem('tiny_memorize_test456')
     }
+  },
+  mounted() {
+    window.localStorage.setItem('tiny_memorize_test456', '')
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

@@ -97,15 +97,14 @@ const resolveChartTheme = ({ props, context, utils }) => {
 }
 
 export const $setup = ({ props, context, template, extend = {} }) => {
+  const mode = resolveMode(props, context)
   const view = hooks.computed(() => {
     if (typeof props.tiny_template !== 'undefined') return props.tiny_template
 
-    const component = template(resolveMode(props, context), props)
+    const component = template(mode, props)
 
     return typeof component === 'function' ? defineAsyncComponent(component) : component
   })
-
-  initComponent()
 
   return renderComponent({ view, props, context, extend })
 }
@@ -234,7 +233,7 @@ export const svg = ({ name = 'Icon', component }) => {
           }
 
           // 解决富文本组件工具栏图标大小不正确的问题
-          if (name.indexOf('IconRichText') !== -1) {
+          if (name.includes('IconRichText')) {
             if (!isVue3) {
               extend.attrs.viewBox = '0 0 24 24'
             } else {

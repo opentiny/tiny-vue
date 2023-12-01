@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { IAlertRenderlessParams } from '@/types'
+import type { IAlertRenderlessParams } from '@/types'
 
 export const handleClose =
   ({ emit, state }: Pick<IAlertRenderlessParams, 'emit' | 'state'>) =>

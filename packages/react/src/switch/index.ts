@@ -1,3 +1,3 @@
-import Switch from "./src/index"
+import Switch from './src/index'
 
 export default Switch

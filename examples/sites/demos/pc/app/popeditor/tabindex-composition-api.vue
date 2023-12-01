@@ -118,5 +118,6 @@ const gridOp = ref({
 .demo-popeditor-tabindex .tiny-popeditor {
   width: 250px;
   display: inline-block;
+  margin: 0 12px 12px 0;
 }
 </style>

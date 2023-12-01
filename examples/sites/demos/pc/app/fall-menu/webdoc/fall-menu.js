@@ -3,13 +3,13 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'data-resource',
+      'demoId': 'data-basic',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['data-resource.vue']
     },
     {
-      'demoId': 'data-resource1',
+      'demoId': 'data-resource',
       'name': { 'zh-CN': '数据源', 'en-US': 'Data Source' },
       'desc': {
         'zh-CN': '<p>通过 <code>data</code> 设置瀑布菜单的数据。</p>\n',
@@ -44,13 +44,13 @@ export default {
     {
       'name': 'fall-menu',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
-          'type': 'object , Array',
+          'type': 'object | object[]',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置瀑布菜单的数据。;设置瀑布菜单的数据。',
+            'zh-CN': '设置瀑布菜单的数据。',
             'en-US': 'Set the waterfall menu data. ;Set the data of the waterfall menu.'
           },
           'demoId': 'data-resource'
@@ -93,7 +93,8 @@ export default {
           'desc': { 'zh-CN': '自定义右侧切换图标', 'en-US': 'Customize the switch icon on the right.' },
           'demoId': 'custom-slider-icon'
         }
-      ]
+      ],
+      types: []
     }
   ]
 }

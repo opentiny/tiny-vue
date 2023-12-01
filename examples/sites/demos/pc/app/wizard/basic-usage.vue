@@ -1,5 +1,5 @@
 <template>
-  <tiny-wizard :data="dataSet" base-flow></tiny-wizard>
+  <tiny-wizard :data="dataSet" @node-click="nodeClick"></tiny-wizard>
 </template>
 
 <script lang="jsx">
@@ -33,6 +33,11 @@ export default {
           status: 'wait'
         }
       ]
+    }
+  },
+  methods: {
+    nodeClick(node, index, event) {
+      console.log('nodeClick', node, index, event)
     }
   }
 }

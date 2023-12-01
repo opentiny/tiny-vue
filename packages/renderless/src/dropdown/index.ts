@@ -10,8 +10,7 @@
  *
  */
 
-import { IDropdownRenderlessParams } from '@/types'
-import type { ComponentPublicInstance } from 'vue'
+import type { IDropdownRenderlessParams } from '@/types'
 import { KEY_CODE } from '../common'
 import { addClass, removeClass, on, off } from '../common/deps/dom'
 
@@ -224,7 +223,7 @@ export const handleMenuItemClick =
     }
 
     if (!disabled) {
-      const data = { itemData, vm, disabled }
+      const data = { itemData, vm }
       emit('item-click', data)
     }
   }

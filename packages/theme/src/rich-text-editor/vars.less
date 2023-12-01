@@ -1,14 +1,26 @@
 .component-css-vars-rich-text-editor() {
-  --ti-rich-text-editor-box-outline-color: var(--ti-common-color-line-normal);
-  --ti-rich-text-editor-box-outline-hover-color: var(--ti-common-color-line-hover);
-  --ti-rich-text-editor-button-hover: var(--ti-common-color-icon-hover);
-  --ti-rich-text-editor-button-active: var(--ti-common-color-icon-active);
-  --ti-rich-text-editor-button-disabled: var(--ti-common-color-icon-disabled);
-  --ti-rich-text-editor-poplist-item-selected-bg-color: var(--ti-common-color-selected-background);
-  --ti-rich-text-editor-poplist-item-selected-text-color: var(--ti-common-color-selected-text-color);
-  --ti-rich-text-edito-options-bg-color: var(--ti-common-color-bg-white-normal);
-  --ti-rich-text-edito-options-box-shadow: var(--ti-common-shadow-2-down);
-  --ti-rich-text-edito-options-border-radius: var(--ti-common-border-radius-normal);
-  --ti-rich-text-edito-options-item-padding: var(--ti-common-space-6) var(--ti-common-space-5x);
-  --ti-rich-text-edito-options-item-hover-color: var(--ti-common-color-icon-hover);
+  // 边框色
+  --ti-rich-text-editor-box-border-color: var(--ti-common-color-line-normal, #adb0b8);
+  // 没用(hide)
+  --ti-rich-text-editor-box-outline-hover-color: var(--ti-common-color-line-hover, #575d6c);
+  // 选中或悬浮头部图标色
+  --ti-rich-text-editor-button-hover: var(--ti-common-color-icon-hover, #5e7ce0);
+  // 没用(hide)
+  --ti-rich-text-editor-button-active: var(--ti-common-color-icon-active, #5e7ce0);
+  // 没有效果(hide)
+  --ti-rich-text-editor-button-disabled-text-color: var(--ti-common-color-icon-disabled, #adb0b8);
+  // 没用(hide)
+  --ti-rich-text-editor-poplist-item-selected-bg-color: var(--ti-common-color-selected-background, #5e7ce0);
+  // 没用(hide)
+  --ti-rich-text-editor-poplist-item-selected-text-color: var(--ti-common-color-selected-text-color, #fff);
+  // 头部图标弹出下拉框背景色
+  --ti-rich-text-editor-options-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+  // 头部图标弹出下拉框阴影
+  --ti-rich-text-editor-options-box-shadow: var(--ti-common-shadow-2-down, 0 2px 8px 0 rgba(0, 0, 0, 0.2));
+  // 头部图标弹出下拉框圆角
+  --ti-rich-text-editor-options-border-radius: var(--ti-common-border-radius-normal, 2px);
+  // 没用(hide)
+  --ti-rich-text-editor-options-item-padding: var(--ti-common-space-6, 6px) var(--ti-common-space-5x, 20px);
+  // 头部图标弹出下拉框选项悬浮文本色
+  --ti-rich-text-editor-options-item-hover-color: var(--ti-common-color-icon-hover, #5e7ce0);
 }

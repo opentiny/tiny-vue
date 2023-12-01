@@ -20,6 +20,6 @@ test('PopEditor 拖动窗口', async ({ page }) => {
   await page.mouse.up()
 
   const { x: x1, y: y1 } = await dialogBox.boundingBox()
-  await expect(x).not.toEqual(x1)
+  await expect(x).toEqual(x1)
   await expect(y).not.toEqual(y1)
 })

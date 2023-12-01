@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import {
+import type {
   ICollapseProps,
   ICollapseState,
   ICollapseApi,
@@ -21,7 +21,11 @@ import { setActiveNames, handleItemClick } from './index'
 
 export const api = ['state']
 
-export const renderless = (props: ICollapseProps, { reactive, watch }: ISharedRenderlessParamHooks, { parent, emit, constants }: ICollapseRenderlessParamUtils) => {
+export const renderless = (
+  props: ICollapseProps,
+  { reactive, watch }: ISharedRenderlessParamHooks,
+  { parent, emit, constants }: ICollapseRenderlessParamUtils
+) => {
   const eventName = constants.EVENT_NAME.CollapseItemClick
 
   const state: ICollapseState = reactive({
@@ -40,7 +44,7 @@ export const renderless = (props: ICollapseProps, { reactive, watch }: ISharedRe
     (value) => {
       state.activeNames = value || value === 0 ? [].concat(value) : []
     },
-    { immediate: true, deep: true  }
+    { immediate: true, deep: true }
   )
 
   parent.$on(eventName, api.handleItemClick)

@@ -16,7 +16,7 @@
     @mouseenter.stop="handleMouseEnter"
     @mouseleave.stop="handleMouseLeave"
   >
-    <div :style="{ height: height }" class="tiny-carousel__container">
+    <div :style="{ height }" class="tiny-carousel__container">
       <transition
         :name="type === 'vertical' ? 'tiny-transition-carousel-arrow-top' : 'tiny-transition-carousel-arrow-left'"
       >

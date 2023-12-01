@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ITagRenderlessParams } from '@/types'
+import type { ITagRenderlessParams } from '@/types'
 
 export const handleClose =
   ({ emit, props, state }: Pick<ITagRenderlessParams, 'emit' | 'props' | 'state'>) =>
@@ -24,7 +24,8 @@ export const handleClose =
 export const handleClick =
   ({ emit, props, parent, state }: Pick<ITagRenderlessParams, 'emit' | 'props' | 'parent' | 'state'>) =>
   (event: Event) => {
-    if (!props.selectable || props.disabled) return
+    // pc端没有selectable属性，不能以取反判断，会阻止pc的点击事件
+    if (props.selectable === false || props.disabled) return
 
     parent.$parent && parent.$parent.tagSelectable && event.stopPropagation()
     state.selected = !state.selected

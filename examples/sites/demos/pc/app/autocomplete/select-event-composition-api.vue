@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, onMounted } from 'vue'
 import { Autocomplete as TinyAutocomplete, Modal } from '@opentiny/vue'
 

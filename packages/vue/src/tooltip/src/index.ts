@@ -22,10 +22,6 @@ export const tooltipProps = {
     type: Number,
     default: () => 0
   },
-  boundariesPadding: {
-    type: Number,
-    default: () => 5
-  },
   content: { type: [String, Object] },
   disabled: { type: Boolean },
   enterable: {
@@ -60,7 +56,7 @@ export const tooltipProps = {
   popper: {},
   popperClass: { type: String },
   popperOptions: {
-    default: () => ({ gpuAcceleration: false, boundariesPadding: 10 })
+    default: () => ({})
   },
   pre: { type: Boolean },
   reference: {},

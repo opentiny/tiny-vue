@@ -10,7 +10,13 @@
  *
  */
 
-import { IAlertApi, IAlertProps, IAlertState, ISharedRenderlessParamHooks, IAlertRenderlessParamUtils } from '@/types'
+import type {
+  IAlertApi,
+  IAlertProps,
+  IAlertState,
+  ISharedRenderlessParamHooks,
+  IAlertRenderlessParamUtils
+} from '@/types'
 import { handleClose, computedGetIcon, computedGetTitle, handleHeaderClick } from './index'
 
 export const api = ['handleClose', 'state', 'handleHeaderClick']

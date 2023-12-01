@@ -1,11 +1,12 @@
 <template>
   <div>
+    <p>场景1：配置式设置提示信息</p>
     <tiny-dropdown>
       <template #dropdown>
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-
+    <p>场景2：使用 tip 和 tip-position 属性设置提示信息</p>
     <tiny-dropdown>
       <template #dropdown>
         <tiny-dropdown-menu popper-class="my-class">
@@ -69,8 +70,9 @@ export default {
 }
 </script>
 
-<style scoped>
-.tiny-dropdown {
-  margin-right: 20px;
+<style lang="less" scoped>
+p {
+  font-size: 14px;
+  line-height: 1.5;
 }
 </style>

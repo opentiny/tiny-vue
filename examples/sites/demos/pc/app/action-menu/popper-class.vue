@@ -2,7 +2,7 @@
   <tiny-action-menu :options="options" popper-class="custom-action-menu"> </tiny-action-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { ActionMenu } from '@opentiny/vue'
 
 export default {

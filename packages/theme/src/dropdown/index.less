@@ -51,19 +51,20 @@
       fill: var(--ti-button-normal-text-color);
     }
 
-    &:not(.@{dropdown-prefix-cls}__caret-button):hover {
+    &:not(.@{dropdown-prefix-cls}__caret-button):not(.is-disabled):hover {
       color: var(--ti-dropdown-text-color-hover);
 
       .@{svg-prefix-cls} {
         fill: var(--ti-dropdown-icon-color-hover);
       }
+    }
 
-      &[disabled] {
-        color: var(--ti-dropdown-text-color-disabled);
+    &.is-disabled {
+      cursor: not-allowed;
+      color: var(--ti-dropdown-text-color-disabled);
 
-        .@{svg-prefix-cls} {
-          fill: var(--ti-dropdown-text-color-disabled);
-        }
+      .@{svg-prefix-cls} {
+        fill: var(--ti-dropdown-text-color-disabled);
       }
     }
   }
@@ -91,6 +92,10 @@
   .@{dropdown-prefix-cls}__title-button {
     padding-left: var(--ti-dropdown-title-button-padding-left);
     padding-right: var(--ti-dropdown-title-button-padding-right);
+
+    &.is-disabled.tiny-button--default:hover {
+      z-index: 0;
+    }
   }
 
   .@{dropdown-prefix-cls}__caret-button {
@@ -117,7 +122,7 @@
       background: var(--ti-dropdown-caret-line-bg-color-default);
     }
 
-    &.@{css-prefix}button--default:hover:before {
+    &.@{css-prefix}button--default:hover:not(.is-disabled):before {
       background-color: var(--ti-dropdown-caret-line-bg-color-default-hover);
     }
 
@@ -135,15 +140,6 @@
   .@{dropdown-prefix-cls}-selfdefine:focus:active,
   .@{dropdown-prefix-cls}-selfdefine:focus:not(.focusing) {
     outline-width: 0;
-  }
-
-  [disabled] {
-    cursor: not-allowed;
-    color: var(--ti-dropdown-text-color-disabled);
-
-    svg {
-      fill: var(--ti-dropdown-text-color-disabled);
-    }
   }
 
   &:hover {

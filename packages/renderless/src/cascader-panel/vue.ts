@@ -37,7 +37,7 @@ import {
 import { merge } from '../common/object'
 import { isEmpty } from '../cascader'
 import Store from './store.js'
-import {
+import type {
   ICascaderPanelApi,
   ICascaderPanelProps,
   ICascaderPanelRenderlessParamUtils,

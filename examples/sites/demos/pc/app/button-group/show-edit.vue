@@ -1,11 +1,17 @@
 <template>
   <div>
-    <tiny-button-group :data="groupData" :show-more="3" :show-edit="true" v-model="checkedVal"></tiny-button-group>
+    <tiny-button-group
+      v-model="checkedVal"
+      :data="groupData"
+      :show-more="3"
+      :show-edit="true"
+      @edit="handleEdit"
+    ></tiny-button-group>
   </div>
 </template>
 
-<script lang="jsx">
-import { ButtonGroup } from '@opentiny/vue'
+<script>
+import { ButtonGroup, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -21,6 +27,11 @@ export default {
         { text: 'Button4', value: 'Button4' },
         { text: 'Button5', value: 'Button5' }
       ]
+    }
+  },
+  methods: {
+    handleEdit() {
+      Modal.message('edit事件触发了')
     }
   }
 }

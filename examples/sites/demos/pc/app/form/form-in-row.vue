@@ -10,7 +10,7 @@
   </tiny-form>
 </template>
 
-<script lang="jsx">
+<script>
 import { Form, FormItem, Numeric, Radio } from '@opentiny/vue'
 
 export default {
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       formData: {
-        quantity: '',
+        quantity: 0,
         sex: ''
       }
     }

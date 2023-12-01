@@ -40,6 +40,7 @@ export default class Color {
   private s = 0
   private v = 0
   private a = 100
+  private preH = 0
   private enableAlpha = false
   constructor(value: string, alpha = false) {
     this.reset(value)
@@ -57,6 +58,7 @@ export default class Color {
     this.hex = normalizeHexColor(hex)
     const { r, g, b, a } = hexToRgb(this.hex)
     const { h, s, v } = rgb([r, g, b, a]).hsv().object()
+    this.preH = h
     this.h = h
     this.s = s
     this.v = v
@@ -68,6 +70,10 @@ export default class Color {
     this.s = s ?? this.s
     this.v = v ?? this.v
     this.a = a ?? this.a
+  }
+
+  setPrevH(val: number) {
+    this.preH = val
   }
 
   /**
@@ -104,7 +110,7 @@ export default class Color {
     }
   }
 
-  get(key: 'h' | 's' | 'v' | 'a') {
+  get(key: 'h' | 's' | 'v' | 'a' | 'preH') {
     return this[key]
   }
 }

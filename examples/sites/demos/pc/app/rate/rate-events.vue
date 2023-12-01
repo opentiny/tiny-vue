@@ -2,7 +2,7 @@
   <tiny-rate v-model="rate1" show-text @change="onchange"></tiny-rate>
 </template>
 
-<script lang="jsx">
+<script>
 import { Rate, Modal } from '@opentiny/vue'
 
 export default {

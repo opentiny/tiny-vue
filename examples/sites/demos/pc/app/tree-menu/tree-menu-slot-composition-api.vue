@@ -1,15 +1,15 @@
 <template>
   <tiny-tree-menu :data="treeData" class="tree-menu-demo">
     <template #default="slotScope">
-      <component :is="icons[slotScope.data.id]" style="margin-right: 4px; margin-left: -20px"></component>
       <a :target="slotScope.data.target" :class="slotScope.data.class">
         {{ slotScope.data.label }}
       </a>
+      <component v-if="slotScope.data.icon" :is="slotScope.data.icon" class="custom-icon"></component>
     </template>
   </tiny-tree-menu>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
 import { iconApp, iconCustom, iconText, iconTotal } from '@opentiny/vue-icon'
@@ -22,16 +22,18 @@ const icons = ref({
 })
 const treeData = ref([
   {
-    id: 'home',
+    id: 100,
     label: '首页',
     class: 'treeClass',
-    target: '_blank'
+    target: '_blank',
+    icon: iconApp()
   },
   {
-    id: 'guide',
+    id: 200,
     label: '指南',
     class: 'treeNodeClass',
     target: '_self',
+    icon: iconCustom(),
     children: [
       {
         id: 201,
@@ -45,11 +47,8 @@ const treeData = ref([
   {
     id: 'component',
     label: '组件',
+    icon: iconTotal(),
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件'
@@ -62,6 +61,7 @@ const treeData = ref([
   {
     id: 'book',
     label: '教程',
+    icon: iconText(),
     children: [
       {
         id: 401,
@@ -122,5 +122,8 @@ const treeData = ref([
 .tree-menu-demo a:hover {
   color: #333;
   text-decoration: none;
+}
+.custom-icon {
+  margin-left: 8px;
 }
 </style>

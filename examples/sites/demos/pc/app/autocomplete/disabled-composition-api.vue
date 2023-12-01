@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Autocomplete as TinyAutocomplete } from '@opentiny/vue'
 

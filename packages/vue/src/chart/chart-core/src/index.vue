@@ -23,7 +23,8 @@ import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import * as echartsLib from 'echarts'
 import * as echarts from 'echarts/core'
 import { TooltipComponent, LegendComponent, TitleComponent } from 'echarts/components'
-import { appProperties } from '@opentiny/vue-common/adapter'
+import { appProperties } from '@opentiny/vue-common'
+
 echarts.use([TooltipComponent, LegendComponent, TitleComponent])
 
 export default defineComponent({

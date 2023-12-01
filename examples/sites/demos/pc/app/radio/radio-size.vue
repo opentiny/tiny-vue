@@ -1,33 +1,48 @@
 <template>
   <div>
+    <div class="title">按钮形式尺寸：</div>
     <tiny-radio-group v-model="value" size="medium">
-      <tiny-radio-button label="1">日度</tiny-radio-button>
-      <tiny-radio-button label="2">月度</tiny-radio-button>
-      <tiny-radio-button label="3">年度</tiny-radio-button>
+      <tiny-radio-button label="1">选项一</tiny-radio-button>
+      <tiny-radio-button label="2">选项二</tiny-radio-button>
     </tiny-radio-group>
-    <div style="margin-top: 20px">
+
+    <div class="mt-20">
       <tiny-radio-group v-model="value" size="small">
-        <tiny-radio-button label="1">日度</tiny-radio-button>
-        <tiny-radio-button label="2">月度</tiny-radio-button>
-        <tiny-radio-button label="3">年度</tiny-radio-button>
+        <tiny-radio-button label="1">选项一</tiny-radio-button>
+        <tiny-radio-button label="2">选项二</tiny-radio-button>
       </tiny-radio-group>
     </div>
-    <div style="margin-top: 20px">
+
+    <div class="mt-20">
       <tiny-radio-group v-model="value" size="mini">
-        <tiny-radio-button label="1">日度</tiny-radio-button>
-        <tiny-radio-button label="2">月度</tiny-radio-button>
-        <tiny-radio-button label="3">年度</tiny-radio-button>
+        <tiny-radio-button label="1">选项一</tiny-radio-button>
+        <tiny-radio-button label="2">选项二</tiny-radio-button>
       </tiny-radio-group>
     </div>
-    <div style="margin-top: 20px">
-      <tiny-radio border v-model="value" label="1" size="medium">日度</tiny-radio>
-      <tiny-radio border v-model="value" label="2" size="small">月度</tiny-radio>
-      <tiny-radio border v-model="value" label="3" size="mini">年度</tiny-radio>
+
+    <div class="title mt-20">带边框尺寸：</div>
+    <tiny-radio-group v-model="value" size="medium">
+      <tiny-radio label="1" border>选项一</tiny-radio>
+      <tiny-radio label="2" border>选项二</tiny-radio>
+    </tiny-radio-group>
+
+    <div class="mt-20">
+      <tiny-radio-group v-model="value" size="small">
+        <tiny-radio label="1" border>选项一</tiny-radio>
+        <tiny-radio label="2" border>选项二</tiny-radio>
+      </tiny-radio-group>
+    </div>
+
+    <div class="mt-20">
+      <tiny-radio-group v-model="value" size="mini">
+        <tiny-radio label="1" border>选项一</tiny-radio>
+        <tiny-radio label="2" border>选项二</tiny-radio>
+      </tiny-radio-group>
     </div>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Radio, RadioButton, RadioGroup } from '@opentiny/vue'
 
 export default {
@@ -43,3 +58,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mt-20 {
+  margin-top: 20px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+</style>

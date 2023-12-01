@@ -523,8 +523,8 @@ export const handleFocus =
       state.softFocus = false
     }
 
-    if (props.remote && state.filterOrSearch && state.firstAutoSeach) {
-      state.firstAutoSeach = false
+    if (props.remote && state.filterOrSearch && state.firstAutoSearch) {
+      state.firstAutoSearch = false
       api.resetFilter()
     }
   }
@@ -1226,10 +1226,12 @@ export const toVisible =
   }
 
 export const toHide =
-  ({ constants, state, props, vm, api }) =>
+  ({ constants, state, props, vm, api, nextTick }) =>
   () => {
     state.selectEmitter.emit(constants.COMPONENT_NAME.SelectDropdown)
-    state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
+    nextTick(() => {
+      state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
+    })
 
     if (state.filterOrSearch) {
       state.query =
@@ -1582,8 +1584,6 @@ export const buildRadioConfig =
 export const onMouseenterNative =
   ({ state }) =>
   (e) => {
-    if (e.target === e.currentTarget) return
-
     state.inputHovering = true
 
     if (state.searchSingleCopy && state.selectedLabel) {

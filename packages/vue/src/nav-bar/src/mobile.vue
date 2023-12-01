@@ -10,7 +10,9 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, h, defineComponent } from '@opentiny/vue-common' // 此处引入 h 是为了防止打包后 h 被重命名导致组件报错的问题
+import { $prefix, h, defineComponent } from '@opentiny/vue-common'
+
+// 此处引入 h 是为了防止打包后 h 被重命名导致组件报错的问题
 import { iconChevronLeft, iconPlus } from '@opentiny/vue-icon'
 
 export default defineComponent({

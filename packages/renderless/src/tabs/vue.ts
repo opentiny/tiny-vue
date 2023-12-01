@@ -10,7 +10,7 @@
  *
  */
 
-import {
+import type {
   ITabsState,
   ITabsApi,
   ITabsProps,
@@ -60,7 +60,8 @@ const initState = ({ reactive, props }: Pick<ITabsRenderlessParams, 'reactive' |
     offsetX: 0,
     offsetY: 0,
     direction: '',
-    expandPanesWidth: ''
+    expandPanesWidth: '',
+    separator: props.separator
   }) as ITabsState
 
 const initWatcher = ({
@@ -125,6 +126,8 @@ export const renderless = (
   api.created()
 
   provide('rootTabs', parent)
+
+  provide('separator', state.separator)
 
   initWatcher({ watch, props, api, state, nextTick, refs })
 

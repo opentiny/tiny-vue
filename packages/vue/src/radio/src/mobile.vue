@@ -12,12 +12,7 @@
 <template>
   <label
     class="tiny-mobile-radio"
-    :class="[
-      { 'is-disabled': state.isDisabled },
-      { 'is-focus': state.focus },
-      { 'is-bordered': border },
-      { 'is-checked': state.model === label }
-    ]"
+    :class="[{ 'is-disabled': state.isDisabled }, { 'is-focus': state.focus }, { 'is-checked': state.model === label }]"
     role="radio"
     :aria-checked="state.model === label"
     :aria-disabled="state.isDisabled"
@@ -25,7 +20,10 @@
     @keydown.space.stop.prevent="state.model = state.isDisabled ? state.model : label"
   >
     <div class="tiny-mobile-radio__input">
-      <span class="tiny-mobile-radio__inner"></span>
+      <div class="tiny-mobile-radio__outer">
+        <div class="tiny-mobile-radio__inner"></div>
+      </div>
+
       <input
         ref="radio"
         class="tiny-mobile-radio__original"
@@ -53,8 +51,8 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme-mobile/radio/index.less'
 
 export default defineComponent({
-  emits: ['change'],
-  props: [...props, 'modelValue', 'events', 'label', 'text', 'disabled', 'name', 'border', 'size'],
+  emits: ['change', 'update:modelValue'],
+  props: [...props, 'modelValue', 'events', 'label', 'text', 'disabled', 'name'],
   inheritAttrs: false,
   setup(props, context) {
     return setup({ props, context, renderless, api })

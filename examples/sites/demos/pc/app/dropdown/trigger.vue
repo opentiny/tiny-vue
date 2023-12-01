@@ -1,55 +1,47 @@
 <template>
-  <tiny-layout>
-    <tiny-row>
-      <tiny-col :span="2">
-        <p>hover 激活</p>
-        <tiny-dropdown>
-          <template #dropdown>
-            <tiny-dropdown-menu>
-              <tiny-dropdown-item><icon-plus></icon-plus> 黄金糕</tiny-dropdown-item>
-              <tiny-dropdown-item><icon-plus-circle></icon-plus-circle> 狮子头</tiny-dropdown-item>
-              <tiny-dropdown-item><icon-plus-square></icon-plus-square> 螺蛳粉</tiny-dropdown-item>
-              <tiny-dropdown-item><icon-checked-linear></icon-checked-linear> 双皮奶</tiny-dropdown-item>
-              <tiny-dropdown-item><icon-checked-sur></icon-checked-sur> 蚵仔煎</tiny-dropdown-item>
-            </tiny-dropdown-menu>
-          </template>
-        </tiny-dropdown>
-      </tiny-col>
-      <tiny-col :span="2">
-        <p>click 激活</p>
-        <tiny-dropdown trigger="click">
-          <template #dropdown>
-            <tiny-dropdown-menu>
-              <tiny-dropdown-item :icon="iconPlus">黄金糕</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="iconPlusCircle">狮子头</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="iconPlusSquare">螺蛳粉</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="iconCheckedLinear">双皮奶</tiny-dropdown-item>
-              <tiny-dropdown-item :icon="iconCheckedSur">蚵仔煎</tiny-dropdown-item>
-            </tiny-dropdown-menu>
-          </template>
-        </tiny-dropdown>
-      </tiny-col>
-    </tiny-row>
-  </tiny-layout>
+  <div>
+    <p>场景1： 默认悬浮时触发下拉</p>
+    <tiny-dropdown>
+      <template #dropdown>
+        <tiny-dropdown-menu>
+          <tiny-dropdown-item><tiny-icon-plus></tiny-icon-plus> 黄金糕</tiny-dropdown-item>
+          <tiny-dropdown-item><tiny-icon-plus-circle></tiny-icon-plus-circle> 狮子头</tiny-dropdown-item>
+          <tiny-dropdown-item><tiny-icon-plus-square></tiny-icon-plus-square> 螺蛳粉</tiny-dropdown-item>
+          <tiny-dropdown-item><tiny-icon-checked-linear></tiny-icon-checked-linear> 双皮奶</tiny-dropdown-item>
+          <tiny-dropdown-item><tiny-icon-checked-sur></tiny-icon-checked-sur> 蚵仔煎</tiny-dropdown-item>
+        </tiny-dropdown-menu>
+      </template>
+    </tiny-dropdown>
+
+    <p>场景2： 设置点击时触发下拉</p>
+    <tiny-dropdown trigger="click">
+      <template #dropdown>
+        <tiny-dropdown-menu>
+          <tiny-dropdown-item :icon="iconPlus">黄金糕</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="iconPlusCircle">狮子头</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="iconPlusSquare">螺蛳粉</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="iconCheckedLinear">双皮奶</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="iconCheckedSur">蚵仔煎</tiny-dropdown-item>
+        </tiny-dropdown-menu>
+      </template>
+    </tiny-dropdown>
+  </div>
 </template>
 
 <script>
 import { iconPlus, iconPlusCircle, iconPlusSquare, iconCheckedLinear, iconCheckedSur } from '@opentiny/vue-icon'
-import { Layout, Row, Col, Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
+import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLayout: Layout,
-    TinyRow: Row,
-    TinyCol: Col,
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
     TinyDropdownItem: DropdownItem,
-    IconPlus: iconPlus(),
-    IconPlusCircle: iconPlusCircle(),
-    IconPlusSquare: iconPlusSquare(),
-    IconCheckedLinear: iconCheckedLinear(),
-    IconCheckedSur: iconCheckedSur()
+    TinyIconPlus: iconPlus(),
+    TinyIconPlusCircle: iconPlusCircle(),
+    TinyIconPlusSquare: iconPlusSquare(),
+    TinyIconCheckedLinear: iconCheckedLinear(),
+    TinyIconCheckedSur: iconCheckedSur()
   },
   data() {
     return {
@@ -62,3 +54,10 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { alertProps, $constants } from '@/alert/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { alertProps, $constants } from '@/alert/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export interface IAlertState {
   show: boolean

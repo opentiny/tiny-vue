@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import { ITabsVm, ITabsProps } from './tabs.type'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
-import { tabNavPcProps } from '@/tabs/src/tab-nav'
+import type { ITabsVm, ITabsProps } from './tabs.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { tabNavPcProps } from '@/tabs/src/tab-nav'
 import type {
   computedNavStyle,
   scrollIntoView,
@@ -55,6 +55,7 @@ export interface ITabNavState {
   sizeName: string
   navStyle: ITabNavStyle
   navSortableObj: object
+  separator: boolean | null
 }
 
 export interface ITabNavApi {

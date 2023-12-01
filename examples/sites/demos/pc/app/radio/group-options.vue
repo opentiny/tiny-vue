@@ -2,7 +2,7 @@
   <tiny-radio-group v-model="value" :options="options"></tiny-radio-group>
 </template>
 
-<script lang="jsx">
+<script>
 import { RadioGroup, Modal } from '@opentiny/vue'
 
 export default {

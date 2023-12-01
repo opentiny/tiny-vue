@@ -1,9 +1,4 @@
-import type {
-  RuleGroupType,
-  RuleGroupTypeAny,
-  RuleGroupTypeIC,
-  RuleType
-} from '../ts'
+import type { RuleGroupType, RuleGroupTypeAny, RuleGroupTypeIC, RuleType } from '../ts'
 import { produce } from './hooks/immer'
 
 const remapProperties = (

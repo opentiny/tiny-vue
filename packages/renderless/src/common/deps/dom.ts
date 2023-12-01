@@ -11,6 +11,7 @@
  */
 
 import { hasOwn, isObject, isNull } from '../type'
+import globalConfig from '../global'
 
 export const isServer = typeof window === 'undefined'
 const SPECIAL_CHARS_REGEXP = /([:\-_]+(.))/g
@@ -235,8 +236,9 @@ export const isVNode = (node: any) => node !== null && isObject(node) && hasOwn.
  * @returns visibleWidth ： 可视区宽度（不含滚动条）
  */
 export const getDomNode = () => {
-  let documentElement = document.documentElement
-  let bodyElem = document.body
+  const viewportWindow = globalConfig.viewportWindow || window
+  let documentElement = viewportWindow.document.documentElement
+  let bodyElem = viewportWindow.document.body
 
   return {
     scrollTop: documentElement.scrollTop || bodyElem.scrollTop,

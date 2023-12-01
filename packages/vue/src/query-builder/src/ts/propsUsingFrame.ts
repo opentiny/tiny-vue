@@ -1,10 +1,3 @@
-interface ComponentType<P> {}
-interface ForwardRefExoticComponent<P> {}
-interface VueMouseEvent extends Event {}
-export interface VueNode {}
-export interface Ref<T> {}
-interface RefAttributes<T> {}
-
 import type {
   Classname,
   Combinator,
@@ -35,6 +28,13 @@ import type {
 import type { RuleGroupType, RuleType } from './ruleGroups'
 import type { RuleGroupTypeAny, RuleGroupTypeIC, RuleOrGroupArray } from './ruleGroupsIC'
 import type { QueryValidator, ValidationMap } from './validation'
+
+interface ComponentType<P> {}
+interface ForwardRefExoticComponent<P> {}
+interface VueMouseEvent extends Event {}
+export interface VueNode {}
+export interface Ref<T> {}
+interface RefAttributes<T> {}
 
 export interface ActionProps extends CommonSubComponentProps {
   label?: string

@@ -1,8 +1,8 @@
 <template>
-  <div class="tiny-color-select-panel__wrapper" @click.stop v-if="state.isShow" v-clickoutside="onCancel">
-    <hue-select :color="state.hex" @hue-update="onHueUpdate" @sv-update="onSVUpdate" />
-    <alpha-select v-if="alpha" :color="state.res" @alpha-update="onAlphaUpdate" />
-    <div class="tiny-color-select-panel__wrapper__tools">
+  <div class="tiny-color-select-panel" @click.stop v-if="state.isShow" v-clickoutside="onCancel">
+    <hue-select :color="state.color" @hue-update="onHueUpdate" @sv-update="onSVUpdate" />
+    <alpha-select v-if="alpha" :color="state.color" @alpha-update="onAlphaUpdate" />
+    <div class="tiny-color-select-panel__tools">
       <tiny-input v-model="state.res" />
       <tiny-button-group>
         <tiny-button type="text" @click="onCancel">
@@ -58,18 +58,17 @@ import CollapseItem from '@opentiny/vue-collapse-item'
 import Input from '@opentiny/vue-input'
 import { renderless, api } from '@opentiny/vue-renderless/color-select-panel/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
-import HueSelect from './components/hue-select'
-import AlphaSelect from './components/alpha-select'
+import HueSelect from './components/hue-select.vue'
+import AlphaSelect from './components/alpha-select.vue'
 import '@opentiny/vue-theme/color-select-panel/index.less'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
-import { t } from '@opentiny/vue-locale'
 
 export default defineComponent({
-  emits: ['update:modelValue', 'cancel', 'confirm', 'hue-update', 'sv-update'],
+  emits: ['update:modelValue', 'cancel', 'confirm', 'hue-update', 'sv-update', 'color-update'],
   props: [...props, 'modelValue', 'visible', 'alpha', 'history', 'predefine'],
   components: {
-    hueSelect: HueSelect,
-    alphaSelect: AlphaSelect,
+    HueSelect,
+    AlphaSelect,
     TinyButton: Button,
     TinyButtonGroup: ButtonGroup,
     TinyInput: Input,

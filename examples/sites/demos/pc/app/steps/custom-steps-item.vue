@@ -1,10 +1,10 @@
 <template>
-  <div class="content">
+  <div class="demo-steps-custom-field">
     <tiny-steps :data="stepsData" name-field="reName" count-field="reCount" status-field="reStatus"></tiny-steps>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Steps } from '@opentiny/vue'
 
 export default {
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-.content {
+.demo-steps-custom-field {
   padding: 20px;
   max-width: 50%;
   min-width: 700px;

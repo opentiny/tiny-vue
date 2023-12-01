@@ -1,19 +1,12 @@
 <template>
-  <tiny-time-line
-    :data="data"
-    :active="active"
-    type="normal"
-    :show-divider="true"
-    text-position="right"
-    @click="normalClick"
-  >
+  <tiny-time-line :data="data" :active="active" :show-divider="true" text-position="right" @click="normalClick">
     <template #active-node-desc>
       <div class="active-node-desc">{{ data[active].desc }}</div>
     </template>
   </tiny-time-line>
 </template>
 
-<script lang="jsx">
+<script>
 import { TimeLine } from '@opentiny/vue'
 
 export default {

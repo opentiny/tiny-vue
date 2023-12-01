@@ -1,16 +1,8 @@
 <template>
-  <tiny-cascader
-    v-model="value"
-    :options="options"
-    clearable
-    separator="+"
-    size="medium"
-    popper-class="custom-class"
-    :popper-append-to-body="false"
-  ></tiny-cascader>
+  <tiny-cascader v-model="value" :options="options" clearable separator="+"></tiny-cascader>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Cascader as TinyCascader } from '@opentiny/vue'
 

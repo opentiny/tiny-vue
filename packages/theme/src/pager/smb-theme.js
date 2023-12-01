@@ -39,5 +39,6 @@ export const tinyPagerSmbTheme = {
   'ti-pager-selector-padding-vertical': '8px',
   'ti-pager-pop-body-margin-top': '4px',
   'ti-pager-poplist-item-selected-bg-color': '#0000000D',
-  'ti-pager-poplist-item-min-height': '32px'
+  'ti-pager-poplist-item-min-height': '32px',
+  'ti-pager-mini-min-width': '24px'
 }

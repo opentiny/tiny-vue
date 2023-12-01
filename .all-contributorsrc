@@ -438,6 +438,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "AcWrong02",
+      "name": "AcWrong02",
+      "avatar_url": "https://avatars.githubusercontent.com/u/147061401?v=4",
+      "profile": "https://github.com/AcWrong02",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 8,

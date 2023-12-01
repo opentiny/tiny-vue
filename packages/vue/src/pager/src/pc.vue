@@ -463,7 +463,7 @@ export default defineComponent({
     },
     Total: {
       watch: {
-        '$parent.showTotalLoading'() {
+        '$parent.showTotalLoading': function () {
           this.$nextTick(() => {
             this.serviceLoading()
           })
@@ -533,7 +533,7 @@ export default defineComponent({
       this.$emit('before-page-change', temp)
     },
     beforePagerChangeHandler(params) {
-      const { newPage, currentPage, callback } = params
+      const { newPage, currentPage, callback, rollback } = params
       const newPageSize = this.internalPageSize
       const currentPageSize = this.internalPageSize
       const temp = {
@@ -541,7 +541,8 @@ export default defineComponent({
         newPageSize,
         currentPage,
         currentPageSize,
-        callback
+        callback,
+        rollback
       }
 
       this.$emit('before-page-change', temp)
@@ -712,7 +713,7 @@ export default defineComponent({
       } else if ((!this.mode && this.layout) || (this.mode && this.layout)) {
         layout = this.layout
       } else {
-        layout = 'prev, pager, next, jumper, total'
+        layout = 'total, prev, pager, next, jumper'
       }
 
       return layout

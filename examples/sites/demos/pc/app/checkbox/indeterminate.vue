@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div style="margin: 16px 0">全部禁用 <tiny-switch v-model="isDisabled"></tiny-switch></div>
+    <div class="mb-16">全部禁用 <tiny-switch v-model="isDisabled"></tiny-switch></div>
     <tiny-checkbox :indeterminate="isIndeterminate" v-model="checkAll" :disabled="isDisabled"> 全选 </tiny-checkbox>
-    <div style="margin: 16px 0"></div>
+    <div class="mb-16"></div>
     <tiny-checkbox-group v-model="checkboxGroup" :disabled="isDisabled">
       <tiny-checkbox v-for="(city, index) in cities" :label="city" :key="index">
         {{ city }}
@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Checkbox, CheckboxGroup, Switch } from '@opentiny/vue'
 
 export default {
@@ -48,3 +48,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mb-16 {
+  margin-bottom: 16px;
+}
+</style>

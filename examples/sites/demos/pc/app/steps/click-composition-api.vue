@@ -1,15 +1,15 @@
 <template>
-  <div class="content">
+  <div class="demo-steps-click">
     <div>点击步骤条节点来切换选中状态</div>
-    <tiny-steps :data="stepsData" :active="defaultActive" type="normal" @click="normalClick"></tiny-steps>
+    <tiny-steps :data="stepsData" :active="defaultActive" @click="normalClick"></tiny-steps>
     <div v-if="currentNode">
-      <span>选中节点index:{{ currentNode.index }}; </span><br />
-      <span> 选中节点node: {{ currentNode.node }} </span>
+      <span>选中节点 index: {{ currentNode.index }} </span><br />
+      <span>选中节点 node: {{ currentNode.node }} </span>
     </div>
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Steps as TinySteps } from '@opentiny/vue'
 
@@ -38,7 +38,7 @@ const stepsData = ref([
 const defaultActive = ref(1)
 const currentNode = ref(null)
 
-function normalClick(index, node) {
+const normalClick = (index, node) => {
   defaultActive.value = index
   currentNode.value = {
     index,
@@ -48,13 +48,18 @@ function normalClick(index, node) {
 </script>
 
 <style scoped>
-.content {
+.demo-steps-click {
   padding: 20px;
   max-width: 50%;
   min-width: 700px;
+  font-size: 14px;
 }
 
-.content > div:not(:last-child) {
+.demo-steps-click > div:not(:last-child) {
   margin: 0 0 20px 0;
+}
+
+span {
+  line-height: 1.5;
 }
 </style>

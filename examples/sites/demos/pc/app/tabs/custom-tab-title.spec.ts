@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('自定义标签页标题', async ({ page }) => {
+test('定义标签页标题', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#custom-tab-title')
 

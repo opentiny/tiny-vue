@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue",
   "private": true,
-  "version": "3.11.0",
+  "version": "3.12.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "keywords": [
@@ -226,6 +226,7 @@
     "@opentiny/vue-time-select": "workspace:~",
     "@opentiny/vue-time-spinner": "workspace:~",
     "@opentiny/vue-timeline-item": "workspace:~",
+    "@opentiny/vue-toast": "workspace:~",
     "@opentiny/vue-toggle-menu": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-top-box": "workspace:~",
@@ -242,6 +243,7 @@
     "@opentiny/vue-user-head": "workspace:~",
     "@opentiny/vue-user-head-group": "workspace:~",
     "@opentiny/vue-user-link": "workspace:~",
+    "@opentiny/vue-watermark": "workspace:~",
     "@opentiny/vue-wheel": "workspace:~",
     "@opentiny/vue-wizard": "workspace:~",
     "@opentiny/vue-year-range": "workspace:~",
@@ -249,11 +251,11 @@
   },
   "devDependencies": {
     "@vue/composition-api": "1.2.2",
-    "@vue/runtime-core": "^3.3.4",
-    "@vue/runtime-dom": "^3.3.4",
+    "@vue/runtime-core": "^3.3.9",
+    "@vue/runtime-dom": "^3.3.9",
     "vue2": "npm:vue@2.6.14",
     "vue2.7": "npm:vue@2.7.10",
-    "vue3": "npm:vue@3.3.4"
+    "vue3": "npm:vue@3.3.9"
   },
   "scripts": {
     "build": "pnpm -w build:ui",

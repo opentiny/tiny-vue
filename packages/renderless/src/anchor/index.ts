@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { IAnchorRenderlessParams, IAnchorLinkItem } from '@/types'
+import type { IAnchorRenderlessParams, IAnchorLinkItem } from '@/types'
 import { addClass, removeClass } from '../common/deps/dom'
 
 export const setFixAnchor =
@@ -54,7 +54,8 @@ const updateSkidPosition = ({ vm, state, emit }: Pick<IAnchorRenderlessParams, '
     return
   }
 
-  emit('onChange', currentLink)
+  emit('change', currentLink)
+  emit('onChange', currentLink) // deprecated 原事件onChange v3.12.0废弃，v3.17.0移除；移除原因：命名规范
 
   if (!anchorRef || !skidRef || !maskRef) {
     return

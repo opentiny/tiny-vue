@@ -10,7 +10,7 @@
  *
  */
 
-import { ICascaderNodeRenderlessParams, ICascaderPanelNode } from '@/types'
+import type { ICascaderNodeRenderlessParams, ICascaderPanelNode } from '@/types'
 
 export const comptCheckPath =
   ({ api, parent, state }: Pick<ICascaderNodeRenderlessParams, 'api' | 'parent' | 'state'>) =>

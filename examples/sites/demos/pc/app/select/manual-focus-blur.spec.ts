@@ -1,12 +1,16 @@
 import { test, expect } from '@playwright/test'
 
-test('manual-focus-blur', async ({ page }) => {
+test('手动聚焦失焦', async ({ page }) => {
   await page.goto('select#manual-focus-blur')
-  await page.getByRole('button', { name: '单击按钮 Select 将获取焦点' }).click()
-  await page.waitForTimeout(1000)
-  const dropdown = page.locator('.tiny-select-dropdown')
+  const wrap = page.locator('#manual-focus-blur')
+  const select = wrap.locator('.tiny-select').nth(2)
+  const input = select.locator('.tiny-input__inner')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const option = dropdown.locator('.tiny-option')
+  const button = wrap.locator('.tiny-button')
+
+  await button.first().click()
   await expect(dropdown).toBeVisible()
-  await page.getByRole('button', { name: '单击按钮 Select 将失去焦点' }).click()
-  await page.waitForTimeout(1000)
+  await button.nth(1).click()
   await expect(dropdown).toBeHidden()
 })

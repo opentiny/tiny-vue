@@ -2,7 +2,7 @@
   <tiny-slider v-model="value" :format-tooltip="format" :show-tip="true"></tiny-slider>
 </template>
 
-<script lang="jsx">
+<script>
 import { Slider } from '@opentiny/vue'
 
 export default {

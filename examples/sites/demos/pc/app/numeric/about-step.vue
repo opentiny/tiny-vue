@@ -1,8 +1,8 @@
 <template>
-  <tiny-numeric v-model="stepNum" :step="step" step-strictly></tiny-numeric>
+  <tiny-numeric v-model="value" :step="step"></tiny-numeric>
 </template>
 
-<script lang="jsx">
+<script lang="ts">
 import { Numeric } from '@opentiny/vue'
 
 export default {
@@ -11,8 +11,8 @@ export default {
   },
   data() {
     return {
-      step: 2,
-      stepNum: 1
+      value: 0,
+      step: 2
     }
   }
 }

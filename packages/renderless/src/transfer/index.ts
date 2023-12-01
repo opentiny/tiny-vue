@@ -50,7 +50,7 @@ export const getFlatData = (data, hasChildren) => {
 }
 
 export const getTargetData =
-  ({ order, props, state, Tree, Table }) =>
+  ({ props, state, Tree, Table }) =>
   () => {
     if (props.render && props.render.plugin.name === Tree) {
       const nodes = getFlatData(copyArray(props.data), true)
@@ -68,7 +68,7 @@ export const getTargetData =
       return sortAry
     }
 
-    if (props.targetOrder === order) {
+    if (props.targetOrder === 'original') {
       return props.data.filter((item) => props.modelValue.includes(item[props.props.key]))
     } else {
       const data = props.modelValue.reduce((arr, cur) => {

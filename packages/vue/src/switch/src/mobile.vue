@@ -10,7 +10,11 @@
  *
  -->
 <template>
-  <span :class="state.wrapClasses" :disabled="true" tabindex="0" @click="toggle" @keydown.space="toggle"> </span>
+  <span :class="state.wrapClasses" :disabled="disabled" tabindex="0" @click="toggle" @keydown.space="toggle">
+    <div v-if="loading" class="tiny-mobile-switch-loading">
+      <div class="tiny-mobile-switch-loading-inner"></div>
+    </div>
+  </span>
 </template>
 
 <script lang="ts">
@@ -19,7 +23,7 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme-mobile/switch/index.less'
 
 export default defineComponent({
-  props: [...props, 'modelValue', 'trueValue', 'falseValue', 'disabled'],
+  props: [...props, 'modelValue', 'trueValue', 'falseValue', 'disabled', 'loading', 'mini'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

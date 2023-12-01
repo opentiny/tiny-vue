@@ -125,3 +125,11 @@ export const computedWrapperClass =
 
     return wrapperClass
   }
+
+export const toggleFold =
+  ({ props }) =>
+  (node: ITimelineItem): boolean => {
+    const isFold = !props.data[node.index].fold
+    props.data[node.index].fold = isFold
+    return isFold
+  }

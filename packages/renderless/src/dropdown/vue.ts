@@ -11,7 +11,7 @@
  */
 
 import { guid } from '../common/string'
-import {
+import type {
   IDropdownState,
   IDropdownApi,
   IDropdownProps,

@@ -1,5 +1,5 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择" multiple collapse-tags>
+  <tiny-select v-model="value" multiple collapse-tags>
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>
@@ -17,3 +17,9 @@ const options = ref([
 ])
 const value = ref(['选项1', '选项2'])
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+</style>

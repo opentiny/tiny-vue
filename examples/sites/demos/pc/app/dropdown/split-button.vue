@@ -13,7 +13,7 @@
   </tiny-dropdown>
 </template>
 
-<script lang="jsx">
+<script>
 import { Dropdown, DropdownMenu, DropdownItem } from '@opentiny/vue'
 
 export default {

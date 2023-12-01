@@ -12,29 +12,29 @@
 
 .component-css-vars-checkbox-button() {
   // 按钮形式复选框背景色
-  --ti-checkbox-button-bg-color: var(--ti-common-color-bg-light-normal);
+  --ti-checkbox-button-bg-color: var(--ti-common-color-bg-light-normal, #e9edfa);
   // 按钮形式复选框选中项左边框阴影色(水平方向首个除外)
   --ti-checkbox-shadow-color: #dfe1e6;
   // 按钮形式复选框字号
-  --ti-checkbox-button-font-size: var(--ti-common-font-size-base);
+  --ti-checkbox-button-font-size: var(--ti-common-font-size-base, 12px);
   // 按钮形式复选框未选中项悬浮文本色
-  --ti-checkbox-button-hover-text-color: var(--ti-common-color-text-white);
+  --ti-checkbox-button-hover-text-color: var(--ti-common-color-text-white, #fff);
   // 按钮形式选中项边框色
-  --ti-checkbox-button-checked-border-color: var(--ti-common-color-line-active);
+  --ti-checkbox-button-checked-border-color: var(--ti-common-color-line-active, #5e7ce0);
   // 按钮形式复选框禁用文本色
-  --ti-checkbox-button-disabled-text-color: var(--ti-common-color-text-disabled);
+  --ti-checkbox-button-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
   // 按钮形式复选框垂直布局，选中项禁用时的背景色
-  --ti-checkbox-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --ti-checkbox-disabled-bg-color: var(--ti-common-color-bg-disabled, #f5f5f6);
   // 按钮形式复选框禁用背景色
-  --ti-checkbox-button-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --ti-checkbox-button-disabled-bg-color: var(--ti-common-color-bg-disabled, #f5f5f6);
   // 按钮形式复选框未选中项文本色
-  --ti-checkbox-button-text-color: var(--ti-common-color-info-normal);
+  --ti-checkbox-button-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 按钮形式复选框选中项文本色
-  --ti-checkbox-button-checked-text-color: var(--ti-common-color-text-white);
+  --ti-checkbox-button-checked-text-color: var(--ti-common-color-text-white, #fff);
   // 按钮形式复选框选中项背景色
-  --ti-checkbox-button-checked-bg-color: var(--ti-common-color-bg-emphasize);
+  --ti-checkbox-button-checked-bg-color: var(--ti-common-color-bg-emphasize, #5e7ce0);
   // 按钮形式复选框悬浮背景色
-  --ti-checkbox-button-bg-color-hover: var(--ti-common-color-bg-hover);
+  --ti-checkbox-button-bg-color-hover: var(--ti-common-color-bg-hover, #344899);
   // 按钮形式复选框边框色
   --ti-checkbox-button-border-color: #e9edfa;
   // 按钮形式复选框悬浮默认边框色
@@ -43,8 +43,6 @@
   --ti-checkbox-button-border-radius: 0px;
   // 按钮组禁用边框色
   --ti-checkbox-disabled-border-color: #dbdbdb;
-  // 按钮组小尺寸按钮水平内间距
-  --ti-checkbox-button-padding-horizontal: 15px;
   // 按钮组小尺寸垂直间距、
   --ti-checkbox-button-padding-vertical: 5px;
   // 按钮组按钮高度
@@ -54,7 +52,7 @@
   // 按钮组小按钮外边距
   --ti-checkbox-button-mini-margin-horizontal: 2px;
   // 按钮组小按钮字号
-  --ti-checkbox-button-size-mini-font-size: var(--ti-common-font-size-base);
+  --ti-checkbox-button-size-mini-font-size: var(--ti-common-font-size-base, 12px);
   // 按钮组小按钮圆角
   --ti-checkbox-button-size-mini-border-radius: 0px;
   // 按钮组small按钮内间距
@@ -66,15 +64,15 @@
   // 按钮组按钮上边距
   --ti-checkbox-button-margin-top: 8px;
   // 小尺寸按钮组按钮内间距
-  --ti-checkbox-button-padding-horizontal: 16px;
+  --ti-checkbox-button-mini-padding-horizontal: 12px;
   // 小尺寸按钮左侧圆角
-  --ti-checkbox-button-mini-left-border-radius: var(--ti-common-border-radius-normal);
+  --ti-checkbox-button-mini-left-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 小尺寸按钮右侧圆角
   --ti-checkbox-button-mini-right-border-radius: 0px;
   // 小尺寸按钮组最后一个按钮顶部左侧圆角
   --ti-checkbox-button-mini-last-left-border-radius: 0px;
   // 小尺寸按钮组最后一个按钮右侧圆角
-  --ti-checkbox-button-mini-last-right-border-radius: var(--ti-common-border-radius-normal);
+  --ti-checkbox-button-mini-last-right-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 默认按钮组右侧按钮圆角
   --ti-checkbox-button-right-border-radius: 0px;
   // 默认按钮组第一个按钮左侧按钮圆角

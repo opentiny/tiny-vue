@@ -113,7 +113,7 @@ function getData({ page, sort, data, filters }) {
       }
 
       resolve({ result: data.result, page: data.page })
-    }, 500)
+    }, 200)
   })
 }
 </script>

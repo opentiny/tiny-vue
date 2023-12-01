@@ -27,7 +27,7 @@ type MAXIMUM_ALLOWED_BOUNDARY = 80
 // Defines a generic type
 export type MappedTuple<
   Tuple extends Array<unknown>,
-  Result extends Array<unknown> = [], // Stores the mapping result
+  Result extends Array<unknown> = [],
   Count extends ReadonlyArray<number> = [] // Records the count during the mapping process
 > = Count['length'] extends MAXIMUM_ALLOWED_BOUNDARY
   ? Result

@@ -191,9 +191,13 @@ const renderPluginWrapperFn = (opt) => {
   const { editRules, validOpts, height, tableData, vaildTipOpts, id, _vm } = opt
 
   return () => {
+    // 筛选面板
     let filterVnode = [null]
+    // 右键快捷面板
     let ctxMenuVnode = [null]
+    // tips提示
     let tooltipVnode = [null]
+    // 校验错误提示
     let errorTooltipVnode = [null]
 
     if (hasFilter) {

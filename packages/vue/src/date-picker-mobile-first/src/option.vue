@@ -5,11 +5,9 @@
 </template>
 
 <script>
-
 export default {
   inheritAttrs: false,
-  components: {
-  },
+  components: {},
   props: {
     data: Object
   }

@@ -4,4 +4,4 @@ title: Steps
 
 # Steps
 
-<div>Steps</div>
+<div>Steps guides users to complete tasks distributed according to a process flow.</div>

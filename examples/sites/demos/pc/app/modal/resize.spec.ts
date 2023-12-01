@@ -5,7 +5,7 @@ test('调整窗口大小', async ({ page }) => {
   await page.goto('modal#resize')
 
   await page.getByRole('button', { name: '可以拖动调整窗口大小' }).click()
-  const modal = page.locator('.tiny-modal__box')
+  const modal = page.locator('.tiny-modal.active .tiny-modal__box')
 
   // 获取弹窗位置
   const { x, y, width, height } = await modal.boundingBox()

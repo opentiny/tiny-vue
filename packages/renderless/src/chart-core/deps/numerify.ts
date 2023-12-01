@@ -30,7 +30,7 @@ function getBoundedPrecision(value, maxDecimals, optionals) {
 
 function toFixed(value, maxDecimals, roundingFunction, optionals) {
   let boundedPrecision = getBoundedPrecision(value, maxDecimals, optionals)
-  let power = Math.pow(10, boundedPrecision)
+  let power = 10 ** boundedPrecision
 
   let output = (roundingFunction(value * `1e+${boundedPrecision}`) / power).toFixed(boundedPrecision)
 

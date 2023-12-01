@@ -2,7 +2,7 @@
   <tiny-tree-menu :data="treeData" :filter-node-method="filterNode"></tiny-tree-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu } from '@opentiny/vue'
 
 export default {
@@ -14,7 +14,7 @@ export default {
       treeData: [
         {
           id: 100,
-          label: '首页11111111111111111111111111111111111111111111111111'
+          label: '首页'
         },
         {
           id: 200,
@@ -173,7 +173,9 @@ export default {
   },
   methods: {
     filterNode(value, data) {
-      if (!value) return true
+      if (!value) {
+        return true
+      }
       return data.label === value
     }
   }

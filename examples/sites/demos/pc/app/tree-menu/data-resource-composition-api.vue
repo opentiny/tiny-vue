@@ -1,8 +1,13 @@
 <template>
-  <tiny-tree-menu :data="treeData"></tiny-tree-menu>
+  <div>
+    <p>场景1：静态数据</p>
+    <tiny-tree-menu :data="treeData"></tiny-tree-menu>
+    <p>场景2：服务端数据</p>
+    <tiny-tree-menu :get-menu-data-sync="getMenuDataSync"></tiny-tree-menu>
+  </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
 
@@ -32,10 +37,6 @@ const treeData = ref([
     id: 300,
     label: '组件',
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件',
@@ -112,4 +113,15 @@ const treeData = ref([
     label: '更新日志'
   }
 ])
+
+const getMenuDataSync = () => {
+  return treeData.value
+}
 </script>
+
+<style lang="less" scoped>
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>
