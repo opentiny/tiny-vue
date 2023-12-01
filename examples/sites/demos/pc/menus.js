@@ -103,7 +103,15 @@ export const cmpMenus = [
       { 'nameCn': '弹出编辑', 'name': 'PopEditor', 'key': 'popeditor' },
       { 'nameCn': '弹出框上传', 'name': 'PopUpload', 'key': 'pop-upload' },
       { 'nameCn': '单选框', 'name': 'Radio', 'key': 'radio' },
-      { 'nameCn': '富文本', 'name': 'RichTextEditor', 'key': 'rich-text-editor' },
+      {
+        'nameCn': '富文本',
+        'name': 'RichTextEditor',
+        'key': 'rich-text-editor',
+        'mark': {
+          'type': 'warning',
+          'text': 'Bate'
+        }
+      },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
@@ -226,13 +234,29 @@ export const cmpMenus = [
       { 'nameCn': '公告牌', 'name': 'BulletinBoard', 'key': 'bulletin-board' },
       { 'nameCn': '日历', 'name': 'Calendar', 'key': 'calendar' },
       { 'nameCn': '日历视图', 'name': 'CalendarView', 'key': 'calendar-view' },
-      { 'nameCn': '信用卡表单', 'name': 'CreditCardForm', 'key': 'credit-card-form' },
+      {
+        'nameCn': '信用卡表单',
+        'name': 'CreditCardForm',
+        'key': 'credit-card-form',
+        'mark': {
+          'type': 'danger',
+          'text': 'Del'
+        }
+      },
       { 'nameCn': '图片裁剪', 'name': 'Crop', 'key': 'crop' },
       { 'nameCn': '表头详情栏', 'name': 'DetailPage', 'key': 'detail-page' },
       { 'nameCn': '图片预览', 'name': 'Image', 'key': 'image' },
       { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
       { 'nameCn': '文字滚动', 'name': 'ScrollText', 'key': 'scroll-text' },
-      { 'nameCn': '滚动块', 'name': 'SlideBar', 'key': 'slide-bar' },
+      {
+        'nameCn': '滚动块',
+        'name': 'SlideBar',
+        'key': 'slide-bar',
+        'mark': {
+          'type': 'danger',
+          'text': 'Del'
+        }
+      },
       { 'nameCn': '标签', 'name': 'Tag', 'key': 'tag' },
       { 'nameCn': '标签组', 'name': 'TagGroup', 'key': 'tag-group' },
       { 'nameCn': '输入框', 'name': 'TextPopup', 'key': 'text-popup' },
@@ -241,8 +265,22 @@ export const cmpMenus = [
       { 'nameCn': '全屏显示', 'name': 'Fullscreen', 'key': 'fullscreen' },
       { 'nameCn': '全局设置', 'name': 'ConfigProvider', 'key': 'config-provider' },
       { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },
-      { 'nameCn': '二维码', 'name': 'QrCode', 'key': 'qr-code' },
-      { 'nameCn': '水印', 'name': 'Watermark', 'key': 'watermark' }
+      {
+        'nameCn': '二维码',
+        'name': 'QrCode',
+        'key': 'qr-code',
+        'mark': {
+          'text': 'New'
+        }
+      },
+      {
+        'nameCn': '水印',
+        'name': 'Watermark',
+        'key': 'watermark',
+        'mark': {
+          'text': 'New'
+        }
+      }
     ]
   }
 ]

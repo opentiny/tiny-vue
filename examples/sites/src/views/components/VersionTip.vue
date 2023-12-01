@@ -136,17 +136,24 @@ export default defineComponent({
         return props.briefStage
       }
 
-      return [STAGE.deprecated, STAGE.experimental].find(isInStage)
+      return [STAGE.removed, STAGE.deprecated, STAGE.stable, STAGE.experimental].find(isInStage)
     })
 
     const generateDes = (desMap: typeof cnDesMap) => {
-      const isFilterExperimental = isInStage(STAGE.deprecated) || isInStage(STAGE.stable)
+      // 当前stable之后，不显示experimental的描述 
+      const isFilterExperimental = [STAGE.removed, STAGE.deprecated, STAGE.stable].includes(currentStageComputed.value as STAGE)
+      // 当前deprecated之后，不显示stable的描述 
+      const isFilterStable = [STAGE.removed, STAGE.deprecated].includes(currentStageComputed.value as STAGE)
 
       const goingStages = Object.entries(desMap).filter(([stage]) => {
         let isPicked = isInStage(stage as STAGE)
 
         if (stage === STAGE.experimental) {
           isPicked = isPicked && !isFilterExperimental
+        }
+
+        if (stage === STAGE.stable) {
+          isPicked = isPicked && !isFilterStable
         }
 
         return isPicked
