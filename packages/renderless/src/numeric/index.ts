@@ -336,11 +336,23 @@ export const handleInput =
   }
 
 export const handleInputChange =
-  ({ api }: Pick<INumericRenderlessParams, 'api'>) =>
+  ({ api, state, props }: Pick<INumericRenderlessParams, 'api' | 'state' | 'props'>) =>
   (event: Event): void => {
-    const value = event.target.value
+    const value = event.target?.value === '-' ? 0 : event.target?.value
+    if (props.stepStrictly) {
+        const previousValue = +((props.mouseWheel ? state.displayValue : props.modelValue) || 0)
+        if (Math.abs(previousValue - value) % +props.step === 0) return api.setCurrentValue(value)
 
-    api.setCurrentValue(value === '-' ? 0 : value)
+        if (previousValue < 0 || value < 0)
+            return api.setCurrentValue(
+                -Math.round(Math.abs(previousValue - value) / +props.step) * +props.step + previousValue
+            )
+
+        return api.setCurrentValue(
+            Math.round(Math.abs(previousValue - value) / +props.step) * +props.step + previousValue
+        )
+    }
+    api.setCurrentValue(value)
   }
 
 export const select = (refs: INumericRenderlessParams['refs']) => () => refs.input.select()
