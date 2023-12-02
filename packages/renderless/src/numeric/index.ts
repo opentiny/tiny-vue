@@ -48,10 +48,10 @@ export const getDecimal =
 export const watchValue =
   ({ api, state, nextTick }: Pick<INumericRenderlessParams, 'api' | 'state' | 'nextTick'>) =>
   (value: number): void => {
+    api.decrease()
     if (value === state.currentValue) {
       return
     }
-
     api.setCurrentValue(value)
     nextTick(() => {
       api.dispatchDisplayedValue()
