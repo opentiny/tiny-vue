@@ -31,8 +31,7 @@ describe('PC Mode', () => {
       <Link
         v-slots={{
           icon: () => iconTest
-        }}
-      ></Link>
+        }}></Link>
     ))
     expect(wrapper.text()).toContain(iconTest)
   })
