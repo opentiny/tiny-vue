@@ -6,29 +6,6 @@
 
 ### Exciting New Features 🎉
 
-- feat(color-picker): color-picker component by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/383
-- feat: add rich-text-editor component by @kagol in https://github.com/opentiny/tiny-vue/pull/401
-- feat(rich-text-editor): add row height and merge h1-h6 and pargraph by @Caesar-ch in https://github.com/opentiny/tiny-vue/pull/414
-- feat(rich-text-editor): support code highlight by @Caesar-ch in https://github.com/opentiny/tiny-vue/pull/440
-- feat: optimize rich text editor toolbar style by @kagol in https://github.com/opentiny/tiny-vue/pull/444
-- feat(rich-text-editor): add font-size selection by @Caesar-ch in https://github.com/opentiny/tiny-vue/pull/448
-- feat(rich-text-editor): css style adjustment by @Caesar-ch in https://github.com/opentiny/tiny-vue/pull/459
-- feature(divider): 增加 Divider 组件 (#354 close) by @vaebe in https://github.com/opentiny/tiny-vue/pull/471
-- feat(rich-text-editor): add vue2 support by @Caesar-ch in https://github.com/opentiny/tiny-vue/pull/483
-- feat(rich-text-editor): fix bug, add font-size and add api demo by @Caesar-ch in https://github.com/opentiny/tiny-vue/pull/497
-- feat(rich-text-editor): support media url by @Caesar-ch in https://github.com/opentiny/tiny-vue/pull/508
-- feat: color select panel component by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/492
-- feat: scripts support cross-platform by @gweesin in https://github.com/opentiny/tiny-vue/pull/554
-- feat(react): collect refs and children in one traverse by @pe-3 in https://github.com/opentiny/tiny-vue/pull/551
-- feat(color-select-panel): history & predefine color by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/530
-- feat(react): add switch comp with mobile & pc mode by @pe-3 in https://github.com/opentiny/tiny-vue/pull/565
-- feat(react): add badge comp with mobile & pc mode by @pe-3 in https://github.com/opentiny/tiny-vue/pull/566
-- feat(react): ehance virtual comp，each comp has v-if，default as true by @pe-3 in https://github.com/opentiny/tiny-vue/pull/564
-- feat(popeditor): adds the autoreset property by @wkif in https://github.com/opentiny/tiny-vue/pull/562
-- feat(react): add mobile mode in tiny react alert by @pe-3 in https://github.com/opentiny/tiny-vue/pull/550
-- feat(anchor): Add anchor component dot type theme by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/587
-- feat(fileupload): Added the function of pasting and uploading files by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/593
-- feat(search): Add default selection function for search types and pre… by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/614
 - feat(Timeline): Timeline component adapts to new themes by @Huangyilin19 in https://github.com/opentiny/tiny-vue/pull/615
 - feat(grid-slot):Add Table Header Slot by @ianxinnew in https://github.com/opentiny/tiny-vue/pull/674
 - feat(components): [date-picker] add props time-editable by @kagol in https://github.com/opentiny/tiny-vue/pull/696
@@ -64,48 +41,6 @@
 
 ### Bug Fixes 🐛
 
-- fix(sites): 切换 sites 引用 @opentiny/vue-repl 包 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/391
-- fix:When nesting using Split, the mouse direction on the left and right split line is wrong when the upper and lower division is nested by @jack-zishan in https://github.com/opentiny/tiny-vue/pull/392
-- fix: fix packages/vue/package.json format error when execute pnpm dev by @kagol in https://github.com/opentiny/tiny-vue/pull/387
-- fix(sites): change design config when change theme by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/393
-- fix(color-picker): 修复组件若干问题 by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/394
-- fix Playground Page by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/399
-- fix(sites): fix by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/400
-- fix(modal): fix css value error by @Zz-ZzzZ in https://github.com/opentiny/tiny-vue/pull/426
-- fix(time-picker): fix time-picker arrow-control bug by @kagol in https://github.com/opentiny/tiny-vue/pull/464
-- fix: alert mobile close should works by @LinboLen in https://github.com/opentiny/tiny-vue/pull/478
-- 🐛 fork tiny-vue 启动失败，添加字符串末尾缺少的引号 by @allenli178 in https://github.com/opentiny/tiny-vue/pull/488
-- fix(dialog-box): 修复右侧弹窗不能滚动问题 by @Binks123 in https://github.com/opentiny/tiny-vue/pull/500
-- feat(rich-text-editor): resolve svg viewbox by @Caesar-ch in https://github.com/opentiny/tiny-vue/pull/515
-- fix(collapse): 修复 collapse 未深度监听导致 Pc 端 tiny-collapse activeNames 直接 push 无法响… by @wkif in https://github.com/opentiny/tiny-vue/pull/512
-- fix(slider): slider range select bug (#390) by @chenguang1994 in https://github.com/opentiny/tiny-vue/pull/518
-- fix(dialog-box): dialog mask err(#495) by @Zuowendong in https://github.com/opentiny/tiny-vue/pull/503
-- fix(theme): 修复官网组件标题背景色异常 by @vaebe in https://github.com/opentiny/tiny-vue/pull/496
-- fix: fix pnpm dev:site error by @kagol in https://github.com/opentiny/tiny-vue/pull/536
-- docs(guide): fix alert out of bounds by @Binks123 in https://github.com/opentiny/tiny-vue/pull/541
-- fix: fix extra highlight color when press button in mobile mode by @gweesin in https://github.com/opentiny/tiny-vue/pull/537
-- docs: fix popover demo position error when toggle code block by @gweesin in https://github.com/opentiny/tiny-vue/pull/535
-- fix(color-select-panel): z-index by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/560
-- fix(guider): 箭头部分情况超出了指定位置，优化样式 ，解决计算问题(#454) by @chenguang1994 in https://github.com/opentiny/tiny-vue/pull/539
-- fix(tree): Click margin-top zoom will collapse treemenu(#559) by @chenguang1994 in https://github.com/opentiny/tiny-vue/pull/568
-- fix: Guide component mobile overflow by @xlearns in https://github.com/opentiny/tiny-vue/pull/574
-- fix(numeric):numeric 修复输入超大数字变为科学计数法时失焦后组件消失的问题 by @shonen7 in https://github.com/opentiny/tiny-vue/pull/563
-- fix(rich-text-editor): fix Unsupported URL Type "link:" when execute npm i by @kagol in https://github.com/opentiny/tiny-vue/pull/579
-- fix：Added version import to component templates by @wkif in https://github.com/opentiny/tiny-vue/pull/578
-- fix(popper): remove window variable code by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/586
-- fix(rich-text-edtior):fix rich-text-edtior functionality and style issues by @shonen7 in https://github.com/opentiny/tiny-vue/pull/592
-- fix(doc): rename dom id avioding conflicts(#595) by @chenguang1994 in https://github.com/opentiny/tiny-vue/pull/597
-- chore: support alpha version and fix build error by @kagol in https://github.com/opentiny/tiny-vue/pull/600
-- fix(form): form tooltip append-to-body fix by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/599
-- fix(rich-text-editor): fix Unsupported URL Type link by @kagol in https://github.com/opentiny/tiny-vue/pull/601
-- fix: fix global registration error with rich-text-editor by @zzcr in https://github.com/opentiny/tiny-vue/pull/602
-- fix(vue-icon_left-ward-arrow): Correct LeftWardArrow import path by @yoyo201626 in https://github.com/opentiny/tiny-vue/pull/603
-- fix: fix incorrect target in webComponent by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/605
-- fix: fix rich-text build error by @zzcr in https://github.com/opentiny/tiny-vue/pull/618
-- fix(Rich Text Editor): Fix bugs in the Rich Text Editor by @shonen7 in https://github.com/opentiny/tiny-vue/pull/616
-- fix(color-picker、divider):Fix 'color picker' switch color failure, de… by @shonen7 in https://github.com/opentiny/tiny-vue/pull/619
-- fix(select-text-field): Select，text-fiel And value-field Example For One by @Xppp0217 in https://github.com/opentiny/tiny-vue/pull/610
-- Fix the issue of blocked headers in dialogBox by @Huangyilin19 in https://github.com/opentiny/tiny-vue/pull/620
 - fix(playground): fix CDN url by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/624
 - fix(rich-text-editor): Add mono:true params by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/626
 - fix(check-select-demo): Unify Check Demo Optimize Example Show Style by @Xppp0217 in https://github.com/opentiny/tiny-vue/pull/625
@@ -163,31 +98,6 @@
 
 ### Other Changes
 
-- test(badge): add unit test by @lyx-jay in https://github.com/opentiny/tiny-vue/pull/388
-- test(modal): add modal unit test by @Zz-ZzzZ in https://github.com/opentiny/tiny-vue/pull/374
-- docs: update release notes by @kagol in https://github.com/opentiny/tiny-vue/pull/397
-- style(rich-text-editor): format code style by @kagol in https://github.com/opentiny/tiny-vue/pull/402
-- docs(rich-text-editor): add demo and api docs by @kagol in https://github.com/opentiny/tiny-vue/pull/404
-- docs(container): fix container composition demos fix #425 by @kagol in https://github.com/opentiny/tiny-vue/pull/441
-- test(modal): add surplus unit test by @Zz-ZzzZ in https://github.com/opentiny/tiny-vue/pull/435
-- feat(unit): add breadcrumb unit test by @lyx-jay in https://github.com/opentiny/tiny-vue/pull/457
-- refactor(date-table): supplement the ts type declaration of the date-table component by @kagol in https://github.com/opentiny/tiny-vue/pull/456
-- feat(rich-text-editor): Add api design by @Caesar-ch in https://github.com/opentiny/tiny-vue/pull/475
-- docs: optimize time picker demo api docs by @kagol in https://github.com/opentiny/tiny-vue/pull/482
-- docs: optimzie date picker demo/api by @kagol in https://github.com/opentiny/tiny-vue/pull/486
-- optimize button docs by @Binks123 in https://github.com/opentiny/tiny-vue/pull/522
-- docs(anchor): optimize anchor demo api docs by @Binks123 in https://github.com/opentiny/tiny-vue/pull/540
-- docs(breadcrumb): optimize breadcrumb docs by @Binks123 in https://github.com/opentiny/tiny-vue/pull/547
-- feat(react): 添加贡献文档，readme 改名为 README by @pe-3 in https://github.com/opentiny/tiny-vue/pull/538
-- docs(README): correct misspellings by @Zz-ZzzZ in https://github.com/opentiny/tiny-vue/pull/561
-- fix(divider,color-picker): divider 组件 content-position 描述完善，以及部分 api 关联示例变动；color-picker 组件修改错误变量 by @shonen7 in https://github.com/opentiny/tiny-vue/pull/567
-- feat: update pc/mobile/mobile-first docs by @zzcr in https://github.com/opentiny/tiny-vue/pull/583
-- docs: update component number by @kagol in https://github.com/opentiny/tiny-vue/pull/585
-- feat: update docs api by @zzcr in https://github.com/opentiny/tiny-vue/pull/613
-- feat(grid-size):table size integration by @ianxinnew in https://github.com/opentiny/tiny-vue/pull/617
-- fix(grid-slot):Table Example Add Editor Slot by @ianxinnew in https://github.com/opentiny/tiny-vue/pull/608
-- feat(grid-api):API Remove Default Text by @ianxinnew in https://github.com/opentiny/tiny-vue/pull/622
-- fix（select-size）:select component medium，small，mini Type For One by @Xppp0217 in https://github.com/opentiny/tiny-vue/pull/607
 - ci(test-e2e): add github actions for E2E Testing by @yoyo201626 in https://github.com/opentiny/tiny-vue/pull/671
 - fix components bug and update docs by @zzcr in https://github.com/opentiny/tiny-vue/pull/700
 - fix(docs): [grid] update big data docs by @zzcr in https://github.com/opentiny/tiny-vue/pull/703
@@ -295,23 +205,10 @@
 
 ## New Contributors
 
-- @jack-zishan made their first contribution in https://github.com/opentiny/tiny-vue/pull/392
-- @LinboLen made their first contribution in https://github.com/opentiny/tiny-vue/pull/478
-- @vaebe made their first contribution in https://github.com/opentiny/tiny-vue/pull/471
-- @allenli178 made their first contribution in https://github.com/opentiny/tiny-vue/pull/488
-- @Binks123 made their first contribution in https://github.com/opentiny/tiny-vue/pull/500
-- @wkif made their first contribution in https://github.com/opentiny/tiny-vue/pull/512
-- @chenguang1994 made their first contribution in https://github.com/opentiny/tiny-vue/pull/518
-- @Zuowendong made their first contribution in https://github.com/opentiny/tiny-vue/pull/503
-- @gweesin made their first contribution in https://github.com/opentiny/tiny-vue/pull/554
-- @xlearns made their first contribution in https://github.com/opentiny/tiny-vue/pull/574
-- @ianxinnew made their first contribution in https://github.com/opentiny/tiny-vue/pull/617
-- @Xppp0217 made their first contribution in https://github.com/opentiny/tiny-vue/pull/610
 - @fanbingbing16 made their first contribution in https://github.com/opentiny/tiny-vue/pull/686
 - @dyh333 made their first contribution in https://github.com/opentiny/tiny-vue/pull/667
 - @betavs made their first contribution in https://github.com/opentiny/tiny-vue/pull/719
 - @betterdancing made their first contribution in https://github.com/opentiny/tiny-vue/pull/742
-- @AcWrong02 made their first contribution in https://github.com/opentiny/tiny-vue/pull/738
 - @David-TechNomad made their first contribution in https://github.com/opentiny/tiny-vue/pull/772
 - @falcon-jin made their first contribution in https://github.com/opentiny/tiny-vue/pull/844
 - @wuyiping0628 made their first contribution in https://github.com/opentiny/tiny-vue/pull/944
