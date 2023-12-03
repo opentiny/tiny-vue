@@ -13,4 +13,7 @@ test('gutter栅格间隔', async ({ page }) => {
 
   const row3 = layout.nth(2)
   await expect(row3.locator('div').first()).toHaveCSS('padding-left', '10px')
+
+  const row4 = layout.first()
+  await expect(row4).toHaveCSS('margin-left', '0px')
 })
