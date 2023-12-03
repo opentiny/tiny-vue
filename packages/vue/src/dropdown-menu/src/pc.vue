@@ -22,7 +22,7 @@
       <slot>
         <tiny-dropdown-item
           v-for="(item, index) in options"
-          :itemData="item"
+          :item-data="item"
           :label="item[textField]"
           :key="index"
           :icon="item.icon"
@@ -47,7 +47,7 @@ export default defineComponent({
   components: {
     TinyDropdownItem: DropdownItem
   },
-  emits: ['mouseenter', 'mouseleave'],
+  emits: ['mouseenter', 'mouseleave', 'created'],
   props: [
     ...props,
     'visibleArrow',
