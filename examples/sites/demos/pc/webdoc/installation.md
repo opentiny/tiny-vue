@@ -55,7 +55,7 @@ export default defineConfig({
 
 ### 通过 CDN 方式引入
 
-为了更快地体验 TinyVue 的组件，你也可以通过 CDN 方式直接在 HTML 页面中引入 TinyVue, 建议版本号写 2 个有效版本数字即可，如下配置。
+为了更快地体验 TinyVue 的组件，你也可以通过 CDN 方式直接在 HTML 页面中引入 TinyVue, 建议版本号写 2 个有效版本数字即可，具体配置如下:
 
 ```html
 <head>
