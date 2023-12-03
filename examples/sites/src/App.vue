@@ -16,6 +16,7 @@ import { ConfigProvider, Modal } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
 import { appData } from './tools'
 import useTheme from './tools/useTheme'
+import { useBulletin } from './tools/useBulletin.jsx'
 
 export default defineComponent({
   name: 'AppVue',
@@ -42,6 +43,7 @@ export default defineComponent({
       common.renderHeader()
     })
     const { designConfig } = useTheme()
+    useBulletin()
 
     provide('showPreview', (url) => {
       previewUrl.value = url

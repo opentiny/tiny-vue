@@ -47,9 +47,14 @@ export default defineConfig({
 })
 ```
 
+<div class="tip custom-block">
+<br>
+<p> To avoid the uncertainty associated with monthly (minor) upgrades of <code> @opentiny/vue </code>, it is recommended to use ~ before relying on the version number of the package in <code> package.json </code> in your project.
+For example, <code>"@opentiny/vue": "~3.12.0</code>. </p>
+</div>
 ### Import through CDN
 
-In order to experience TinyVue components faster, you can also import TinyVue directly into the HTML page through CDN.
+In order to experience TinyVue components faster, you can also import TinyVue directly into the HTML page through CDN,you are advised to write two valid version numbers as follows.
 
 ```html
 <head>
@@ -57,11 +62,11 @@ In order to experience TinyVue components faster, you can also import TinyVue di
   <script type="importmap">
     {
       "imports": {
-        "vue": "https://unpkg.com/vue@3.2.45/dist/vue.esm-browser.js",
-        "@opentiny/vue": "https://unpkg.com/@opentiny/vue@3.9.1/runtime/tiny-vue.mjs",
-        "@opentiny/vue-common": "https://unpkg.com/@opentiny/vue@3.9.1/runtime/tiny-vue-common.mjs",
-        "@opentiny/vue-icon": "https://unpkg.com/@opentiny/vue@3.9.1/runtime/tiny-vue-icon.mjs",
-        "@opentiny/vue-locale": "https://unpkg.com/@opentiny/vue@3.9.1/runtime/tiny-vue-locale.mjs"
+        "vue": "https://unpkg.com/vue@3.3/dist/vue.esm-browser.js",
+        "@opentiny/vue": "https://unpkg.com/@opentiny/vue@3.12/runtime/tiny-vue.mjs",
+        "@opentiny/vue-common": "https://unpkg.com/@opentiny/vue@3.12/runtime/tiny-vue-common.mjs",
+        "@opentiny/vue-icon": "https://unpkg.com/@opentiny/vue@3.12/runtime/tiny-vue-icon.mjs",
+        "@opentiny/vue-locale": "https://unpkg.com/@opentiny/vue@3.12/runtime/tiny-vue-locale.mjs"
       }
     }
   </script>
