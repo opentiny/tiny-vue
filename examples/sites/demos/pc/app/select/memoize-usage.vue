@@ -47,6 +47,9 @@ export default {
       MemorizeInstance.updateByKey(value)
       this.cacheValue = window.localStorage.getItem('tiny_memorize_test456')
     }
+  },
+  mounted() {
+    window.localStorage.setItem('tiny_memorize_test456', '')
   }
 }
 </script>

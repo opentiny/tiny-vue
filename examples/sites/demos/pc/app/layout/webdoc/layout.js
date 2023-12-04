@@ -81,8 +81,9 @@ export default {
       'name': { 'zh-CN': '栅格间隔', 'en-US': 'Gutter' },
       'desc': {
         'zh-CN': `
-            通过使用 <code>Row</code> 组件的 <code>gutter</code> 属性实现栅格间隔。
-            不设置 <code>gutter</code> 时，组件会默认为 <code>Col</code> 设置<code> 左右10px </code>的padding值。
+            通过使用 <code>Row</code> 组件的 <code>gutter</code> 属性实现栅格间隔。<br>
+            不设置 <code>gutter</code> 时，组件会默认为 <code>Col</code> 设置<code> 左右10px </code>的padding值<br>
+            通过 <code>noSpace</code> 属性，让子项间没有间距。
           `,
         'en-US': `
             This is done by using the <code>gutter</code> property of the <code>Row</code> component.
@@ -156,8 +157,18 @@ export default {
         {
           'name': 'gutter',
           'type': 'number',
-          'defaultValue': '20',
+          'defaultValue': '0',
           'desc': { 'zh-CN': '子项的间隔的像素', 'en-US': 'The spacing of the child items in pixels' },
+          'demoId': 'gutter'
+        },
+        {
+          'name': 'noSpace',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '子项没有间隔，相当于强制gutter=0的情况',
+            'en-US': 'Child entries have no spacing, equivalent to forcing gutter=0'
+          },
           'demoId': 'gutter'
         },
         {

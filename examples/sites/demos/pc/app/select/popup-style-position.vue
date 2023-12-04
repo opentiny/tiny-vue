@@ -1,9 +1,7 @@
 <template>
-  <div class="demo-select">
-    <tiny-select v-model="value" popper-class="drop" :popper-append-to-body="false" placement="top">
-      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
-    </tiny-select>
-  </div>
+  <tiny-select v-model="value" popper-class="drop" :popper-append-to-body="false" placement="top">
+    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+  </tiny-select>
 </template>
 
 <script>
@@ -32,6 +30,7 @@ export default {
 <style lang="less" scoped>
 .tiny-select {
   width: 280px;
+  margin-top: 30px;
 }
 </style>
 

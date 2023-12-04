@@ -38,8 +38,4 @@ const TinyIconFilletExternalLink = iconFilletExternalLink()
 .tiny-link {
   margin-right: 8px;
 }
-.tiny-svg-link,
-.tiny-svg-link g {
-  fill: var(--ti-link-default-text-color);
-}
 </style>

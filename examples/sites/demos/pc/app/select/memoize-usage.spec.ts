@@ -1,14 +1,18 @@
 import { expect, test } from '@playwright/test'
 
-test('memoize-usage', async ({ page }) => {
+test('手动缓存', async ({ page }) => {
   await page.goto('select#memoize-usage')
-  const input = page.locator('#preview .tiny-input__inner')
-  const cacheValue = page.locator('#preview .cache-value')
+  const wrap = page.locator('#memoize-usage')
+  const select = wrap.locator('.tiny-select')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const option = dropdown.locator('.tiny-option')
+  const cacheValue = wrap.locator('.cache-value')
 
-  await input.click()
-  await page.getByRole('listitem').filter({ hasText: '黄金糕' }).click()
+  await select.click()
+  await option.filter({ hasText: '黄金糕' }).click()
   await expect(cacheValue).toContainText(['选项1'])
-  await input.click()
-  await page.getByRole('listitem').filter({ hasText: '双皮奶' }).click()
+
+  await select.click()
+  await option.filter({ hasText: '双皮奶' }).click()
   await expect(cacheValue).toContainText(['选项2'])
 })

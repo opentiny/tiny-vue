@@ -2,18 +2,24 @@ import { test, expect } from '@playwright/test'
 
 test('multiple-limit', async ({ page }) => {
   await page.goto('select#multiple-limit')
-  const select = page.locator('#preview .tiny-select')
+  const wrap = page.locator('#multiple-limit')
+  const select = wrap.locator('.tiny-select')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const option = dropdown.locator('.tiny-option')
+  const tag = select.locator('.tiny-tag')
 
   await select.click()
-  await page.getByRole('listitem').filter({ hasText: '黄金糕' }).click()
-  await page.getByRole('listitem').filter({ hasText: '双皮奶' }).click()
-  await page.waitForTimeout(2000)
-  const listitems = await page
-    .locator('.tiny-select-dropdown')
-    .getByRole('listitem')
-    .filter({ hasNotText: /黄金糕|双皮奶/ })
+  await option.nth(0).click()
+  await option.nth(1).click()
+  await expect(tag).toHaveCount(2)
+  await expect(option.filter({ hasText: '全部' })).toHaveCount(0)
 
-  await expect(listitems.nth(0)).toHaveClass(/is-disabled/)
-  await expect(listitems.nth(1)).toHaveClass(/is-disabled/)
-  await expect(listitems.nth(2)).toHaveClass(/is-disabled/)
+  const list = await option.all()
+  list.forEach(async (item, index) => {
+    if (index <= 1) {
+      await expect(item).toHaveClass(/selected/)
+    } else {
+      await expect(item).toHaveClass(/is-disabled/)
+    }
+  })
 })

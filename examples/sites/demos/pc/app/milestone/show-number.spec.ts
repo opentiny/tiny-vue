@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('序号显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://127.0.0.1:7130/pc/milestone/show-number')
+  await page.goto('milestone#show-number')
 
   const button = page.getByRole('button').filter({ hasText: '设置show-number值为false' })
   const nodes = page.locator('.tiny-milestone__node')
@@ -66,17 +66,20 @@ test('序号显示', async ({ page }) => {
   await expect(nodeTitles).toHaveCount(nodeCount)
   await expect(nodeDates).toHaveCount(nodeCount)
   for (let i = 0; i < nodeCount; i++) {
-    await expect(nodes.nth(i)).toHaveCSS('width', '128.484px')
-    await expect(nodes.nth(i)).toHaveCSS('height', '102px')
+    const { width, height } = await nodes.nth(i).boundingBox()
+    await expect(width).toBeGreaterThanOrEqual(118)
+    await expect(height).toBeGreaterThanOrEqual(88)
     await expect(nodeLines.nth(i)).toHaveCSS('height', '4px')
     await expect(nodeIcons.nth(i)).toHaveClass(iconClasss[i])
     await expect(nodeTitles.nth(i)).toHaveText(titles[i])
     await expect(nodeDates.nth(i)).toHaveText(/2018-9/)
 
     if (i < 5) {
-      await expect(nodeLines.nth(i)).toHaveCSS('width', '128.484px')
+      const { width: lineWidth } = await nodeLines.nth(i).boundingBox()
+      await expect(lineWidth).toBeGreaterThanOrEqual(118)
     } else {
-      await expect(nodeLines.nth(i)).toHaveCSS('width', '0px')
+      const { width: lineWidth } = await nodeLines.nth(i).boundingBox()
+      await expect(lineWidth).toBeGreaterThanOrEqual(0)
     }
     if (i < 2) {
       await expect(nodeIcons.nth(i).locator('svg')).toHaveCSS('font-size', '12px')

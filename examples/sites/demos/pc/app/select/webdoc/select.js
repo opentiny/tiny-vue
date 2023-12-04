@@ -203,17 +203,17 @@ export default {
       'codeFiles': ['option-group.vue']
     },
     {
-      'demoId': 'search-allow-copy',
+      'demoId': 'copy-single',
       'name': { 'zh-CN': '单选可复制', 'en-US': 'Single choice replicable' },
       'desc': {
         'zh-CN': '<p>通过 <code>allow-copy</code> 属性设置单选可搜索时，鼠标可滑动选中并复制输入框的内容。</p>\n',
         'en-US':
           '<p>When setting radio searchable through the <code>allow-copy</code> attribute, the mouse can slide to select and copy the content of the input box. </p>\n'
       },
-      'codeFiles': ['search-allow-copy.vue']
+      'codeFiles': ['copy-single.vue']
     },
     {
-      'demoId': 'tag-select',
+      'demoId': 'copy-multi',
       'name': { 'zh-CN': '多选可复制', 'en-US': 'Multiple choices can be copied' },
       'desc': {
         'zh-CN':
@@ -221,7 +221,7 @@ export default {
         'en-US':
           '<p>By setting the <code>tag-selectable</code> attribute in the input box, the label can be selected with the mouse, and then copied by pressing Ctrl+C or right-click <code>copyable</code> attribute settings enable one click copying of all label text content separated by commas.</p>\n'
       },
-      'codeFiles': ['tag-select.vue']
+      'codeFiles': ['copy-multi.vue']
     },
     {
       'demoId': 'native-properties',
@@ -345,7 +345,7 @@ export default {
       'codeFiles': ['nest-grid-disable.vue']
     },
     {
-      'demoId': 'nest-remote-grid',
+      'demoId': 'nest-grid-remote-single',
       'name': { 'zh-CN': '下拉表格远程搜索(单选)', 'en-US': 'Select table Remote Search (Single)' },
       'desc': {
         'zh-CN':
@@ -353,10 +353,10 @@ export default {
         'en-US':
           '<p>Enable remote search through <code>remote</code>,<code>remote-method</code>, and <code>filterable</code>. Set up automatic search and display expansion buttons through <code>remote-config</code>.</p>'
       },
-      'codeFiles': ['nest-remote-grid.vue']
+      'codeFiles': ['nest-grid-remote-single.vue']
     },
     {
-      'demoId': 'nest-grid-remote-filter',
+      'demoId': 'nest-grid-remote-multi',
       'name': { 'zh-CN': '下拉表格远程搜索(多选）', 'en-US': 'Select table Remote Search (Multiple)' },
       'desc': {
         'zh-CN':
@@ -364,7 +364,7 @@ export default {
         'en-US':
           '<p>Enable remote search through <code>remote</code>,<code>remote-method</code>, and <code>filterable</code>. Set up automatic search and display expansion buttons through <code>remote-config</code> <code>reserve-keyword</code> set to retain search keywords after selecting multiple options.</p>'
       },
-      'codeFiles': ['nest-grid-remote-filter.vue']
+      'codeFiles': ['nest-grid-remote-multi.vue']
     },
     {
       'demoId': 'nest-radio-grid-much-data',
@@ -375,33 +375,6 @@ export default {
           '<p>When the table data volume is large, virtual scrolling will be automatically enabled, similar to the Grid component. </p>\n'
       },
       'codeFiles': ['nest-radio-grid-much-data.vue']
-    },
-    {
-      'demoId': 'events',
-      'name': { 'zh-CN': '事件', 'en-US': 'Events' },
-      'desc': {
-        'zh-CN':
-          '<div class="tip custom-block">' +
-          '<p class="custom-block-title">事件说明</p>\n' +
-          '<p>change：监听 v-model 的值发生变化。</p>\n' +
-          '<p>clear：监听单选时，点击清空按钮。</p>\n' +
-          '<p>blur：监听 input 失去焦点。</p>\n' +
-          '<p>focus：监听 input 获得焦点。</p>\n' +
-          '<p>visible-change：监听下拉框可见状态的变化。</p>\n' +
-          '<p>remove-tag：监听多选移除选中的标签。</p>\n' +
-          '</div>\n',
-        'en-US':
-          '<div class="tip custom-block">' +
-          '<p class="custom-block-title"> Event Description</p>\n' +
-          '<p>change：Listen for changes in the value of the v-model.</p>' +
-          '<p>clear：When listening to radio selection, click the clear button.</p>\n' +
-          '<p>blur：Listening to input losing focus.</p>\n' +
-          '<p>focus：Listening for input to gain focus.</p>\n' +
-          '<p>visible-change: Listen for changes in the visible status of the dropdown box</p>\n' +
-          '<p>remove-tag：Listen for multiple selections to remove selected tags.</p>\n' +
-          '</div>\n'
-      },
-      'codeFiles': ['events.vue']
     },
     {
       'demoId': 'slot-default',
@@ -449,6 +422,33 @@ export default {
         'en-US': '<p>Customize the HTML template of the trigger source through the <code>reference</code> slot.</p>'
       },
       'codeFiles': ['slot-reference.vue']
+    },
+    {
+      'demoId': 'events',
+      'name': { 'zh-CN': '事件', 'en-US': 'Events' },
+      'desc': {
+        'zh-CN':
+          '<div class="tip custom-block">' +
+          '<p class="custom-block-title">事件说明</p>\n' +
+          '<p>change：监听 v-model 的值发生变化。</p>\n' +
+          '<p>clear：监听单选时，点击清空按钮。</p>\n' +
+          '<p>blur：监听 input 失去焦点。</p>\n' +
+          '<p>focus：监听 input 获得焦点。</p>\n' +
+          '<p>visible-change：监听下拉框可见状态的变化。</p>\n' +
+          '<p>remove-tag：监听多选移除选中的标签。</p>\n' +
+          '</div>\n',
+        'en-US':
+          '<div class="tip custom-block">' +
+          '<p class="custom-block-title"> Event Description</p>\n' +
+          '<p>change：Listen for changes in the value of the v-model.</p>' +
+          '<p>clear：When listening to radio selection, click the clear button.</p>\n' +
+          '<p>blur：Listening to input losing focus.</p>\n' +
+          '<p>focus：Listening for input to gain focus.</p>\n' +
+          '<p>visible-change: Listen for changes in the visible status of the dropdown box</p>\n' +
+          '<p>remove-tag：Listen for multiple selections to remove selected tags.</p>\n' +
+          '</div>\n'
+      },
+      'codeFiles': ['events.vue']
     }
   ],
   apis: [
@@ -465,7 +465,7 @@ export default {
             'en-US':
               'Is it allowed to copy the content of the input box, applicable to single choice searchable scenarios'
           },
-          'demoId': 'search-allow-copy'
+          'demoId': 'copy-single'
         },
         {
           'name': 'allow-create',
@@ -517,7 +517,7 @@ export default {
             'en-US':
               'Is the one click copy function enabled. Click the copy button to copy the text content of all labels with one click, separated by commas, only applicable to multiple selections'
           },
-          'demoId': 'tag-select'
+          'demoId': 'copy-multi'
         },
         {
           'name': 'collapse-tags',
@@ -846,7 +846,7 @@ export default {
             'zh-CN': '输入框中的标签是否可通过鼠标选中复制',
             'en-US': 'Can the label in the input box be copied by selecting it with the mouse'
           },
-          'demoId': 'tag-select'
+          'demoId': 'copy-multi'
         },
         {
           'name': 'tag-type',
@@ -879,7 +879,7 @@ export default {
             'zh-CN': '自定义复制文本的分隔符，需结合 copyable 属性使用',
             'en-US': 'The separator for custom copied text needs to be used in conjunction with the copyable attribute'
           },
-          'demoId': 'tag-select'
+          'demoId': 'copy-multi'
         },
         {
           'name': 'text-field',

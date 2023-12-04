@@ -61,22 +61,22 @@ function allowDrop(srcNode, targetNode, type) {
   return !targetNode.data.id.startsWith('3')
 }
 function nodeDrop(srcNode, targetNode, dropType, event) {
-  this.listenEvent == 'node-drop' && console.log('nodeDrop 事件参数：', { srcNode, targetNode, dropType, event })
+  listenEvent.value == 'node-drop' && console.log('nodeDrop 事件参数：', { srcNode, targetNode, dropType, event })
 }
 function dragStart(node, event) {
-  this.listenEvent == 'node-drag-start' && console.log('dragStart 事件参数：', { node, event })
+  listenEvent.value == 'node-drag-start' && console.log('dragStart 事件参数：', { node, event })
 }
 function dragEnter(srcNode, targetNode, event) {
-  this.listenEvent == 'node-drag-enter' && console.log('dragEnter 事件参数：', { srcNode, targetNode, event })
+  listenEvent.value == 'node-drag-enter' && console.log('dragEnter 事件参数：', { srcNode, targetNode, event })
 }
 function dragOver(srcNode, targetNode, event) {
-  this.listenEvent == 'node-drag-over' && console.log('dragOver 事件参数：', { srcNode, targetNode, event })
+  listenEvent.value == 'node-drag-over' && console.log('dragOver 事件参数：', { srcNode, targetNode, event })
 }
 function dragLeave(srcNode, targetNode, event) {
-  this.listenEvent == 'node-drag-leave' && console.log('dragLeave 事件参数：', { srcNode, targetNode, event })
+  listenEvent.value == 'node-drag-leave' && console.log('dragLeave 事件参数：', { srcNode, targetNode, event })
 }
 function dragEnd(srcNode, targetNode, dropType, event) {
-  this.listenEvent == 'node-drag-end' && console.log('dragEnd 事件参数：', { srcNode, targetNode, dropType, event })
+  listenEvent.value == 'node-drag-end' && console.log('dragEnd 事件参数：', { srcNode, targetNode, dropType, event })
 }
 </script>
 
