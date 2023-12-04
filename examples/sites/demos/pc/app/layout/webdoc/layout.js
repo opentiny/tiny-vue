@@ -157,7 +157,7 @@ export default {
         {
           'name': 'gutter',
           'type': 'number',
-          'defaultValue': '20',
+          'defaultValue': '0',
           'desc': { 'zh-CN': '子项的间隔的像素', 'en-US': 'The spacing of the child items in pixels' },
           'demoId': 'gutter'
         },
