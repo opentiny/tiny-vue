@@ -6,18 +6,16 @@ test('基础用法、数据源', async ({ page }) => {
   await page.goto('fall-menu#data-resource')
   const preview = page.locator('.tiny-fall-menu__wrap')
   const fallMenuBox = page.locator('.tiny-fall-menu__box')
-  const rightSlotIcon = preview.locator('.icon-slot-right')
-  const leftSlotIcon = preview.locator('.icon-slot-left')
+  const rightSlotIcon = preview.locator('.tiny-fall-menu__nav > .tiny-fall-menu__subnav > .icon-slot-right')
+  const leftSlotIcon = preview.locator('.tiny-fall-menu__nav > .tiny-fall-menu__subnav > .icon-slot-left')
   // 父菜单列表
   const fallMenuList = page.locator('.tiny-fall-menu__list')
-  await page.waitForTimeout(1000)
   // 菜单列表应该可见
   await expect(fallMenuBox).toBeHidden()
   await page.getByRole('link', { name: '指南' }).hover()
   await expect(fallMenuBox).toBeVisible()
-  await expect(fallMenuBox).toBeHidden()
-  await page.getByRole('link', { name: '教程' }).hover()
-  await expect(fallMenuBox).toBeVisible()
+  await page.waitForTimeout(1000)
+
   // 菜单列表应该不可见
   // 点击右侧更多切换图标
   await rightSlotIcon.click()

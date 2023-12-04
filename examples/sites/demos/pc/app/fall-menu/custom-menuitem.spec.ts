@@ -9,13 +9,12 @@ test('自定义内容', async ({ page }) => {
   // 父菜单列表
   const fallMenuList = page.locator('.tiny-fall-menu__list')
   // await preview.getByText(/首页/).hover()
-  await page.waitForTimeout(1000)
   await expect(fallMenuBox).toBeHidden()
-  await preview.getByText(/指南/).hover()
+  await preview.getByText('指南', { exact: false }).hover()
   await expect(fallMenuBox).toBeVisible()
   // 点击左、右侧图标切换列表
-  await preview.locator('.icon-slot-right').click()
+  await preview.locator('.tiny-fall-menu__nav > .tiny-fall-menu__subnav > .icon-slot-right').click()
   await expect(fallMenuList).toHaveCSS('left', /^-\d+px/)
-  await preview.locator('.icon-slot-left').click()
+  await preview.locator('.tiny-fall-menu__nav > .tiny-fall-menu__subnav > .icon-slot-left').click()
   await expect(fallMenuList).toHaveCSS('left', '0px')
 })
