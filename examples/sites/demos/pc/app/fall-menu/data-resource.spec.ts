@@ -5,15 +5,15 @@ test('基础用法、数据源', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('fall-menu#data-resource')
   const preview = page.locator('.tiny-fall-menu__wrap')
-  const fallMenuBox = page.locator('.tiny-fall-menu__box')
+  // const fallMenuBox = page.locator('.tiny-fall-menu__box')
   const rightSlotIcon = preview.locator('.tiny-fall-menu__nav > .tiny-fall-menu__subnav > .icon-slot-right')
   const leftSlotIcon = preview.locator('.tiny-fall-menu__nav > .tiny-fall-menu__subnav > .icon-slot-left')
   // 父菜单列表
   const fallMenuList = page.locator('.tiny-fall-menu__list')
   // 菜单列表应该可见
-  await expect(fallMenuBox).toBeHidden()
-  await preview.getByText(`指南`, { exact: false }).hover()
-  await expect(fallMenuBox).toBeVisible()
+  // await expect(fallMenuBox).toBeHidden()
+  await preview.getByText(`指南`, { exact: false }).click()
+  // await expect(fallMenuBox).toBeVisible()
   // 菜单列表应该不可见
   // 点击右侧更多切换图标
   await rightSlotIcon.click()

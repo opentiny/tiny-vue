@@ -10,7 +10,7 @@ test('自定义内容', async ({ page }) => {
   const fallMenuList = page.locator('.tiny-fall-menu__list')
   // await preview.getByText(/首页/).hover()
   await expect(fallMenuBox).toBeHidden()
-  await preview.getByText(`指南 level1 `, { exact: false }).hover()
+  await preview.getByText(`指南 level1 `, { exact: false }).click()
   await expect(fallMenuBox).toBeVisible()
   // 点击左、右侧图标切换列表
   await preview.locator('.tiny-fall-menu__nav > .tiny-fall-menu__subnav > .icon-slot-right').click()
