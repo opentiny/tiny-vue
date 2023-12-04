@@ -29,13 +29,12 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Button } from '@opentiny/vue'
+import { Grid, GridColumn } from '@opentiny/vue'
 
 export default {
   components: {
     TinyGrid: Grid,
-    TinyGridColumn: GridColumn,
-    TinyButton: Button
+    TinyGridColumn: GridColumn
   },
   data() {
     const tableData = [

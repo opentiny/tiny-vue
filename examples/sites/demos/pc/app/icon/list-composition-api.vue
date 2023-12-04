@@ -28,7 +28,7 @@
 import { ref } from 'vue'
 import Svgs from '@opentiny/vue-icon'
 import { Modal, Input as TinyInput } from '@opentiny/vue'
-import { iconGroups } from './iconGroups'
+import { iconGroups } from './iconGroups.js'
 
 const all = Object.values(iconGroups).flat()
 iconGroups.Others = Object.keys(Svgs).filter((name) => !all.includes(name) && name[0] === 'I')

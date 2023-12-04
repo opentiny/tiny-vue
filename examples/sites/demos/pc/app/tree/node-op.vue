@@ -7,7 +7,13 @@
       <tiny-button @click="updateKeyChildren">更新子节点</tiny-button>
       <tiny-button @click="remove">删除当前节点</tiny-button>
     </div>
-    <tiny-tree ref="treeRef" :data="data" node-key="id" default-expand-all></tiny-tree>
+    <tiny-tree
+      ref="treeRef"
+      :data="data"
+      node-key="id"
+      default-expand-all
+      :current-node-key="currentNodeKey"
+    ></tiny-tree>
   </div>
 </template>
 
@@ -41,7 +47,8 @@ export default {
           label: '数据 3',
           children: [{ id: '3-1', label: '数据 3-1' }]
         }
-      ]
+      ],
+      currentNodeKey: '1-1'
     }
   },
   methods: {

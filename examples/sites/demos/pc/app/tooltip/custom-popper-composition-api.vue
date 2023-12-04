@@ -31,7 +31,7 @@
         popper-class="popper1"
         :key="key"
       >
-        <div class="ellipsis">鼠标悬浮在这里</div>
+        <tiny-button type="primary">鼠标悬浮在这里</tiny-button>
       </tiny-tooltip>
     </div>
   </div>
@@ -39,7 +39,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Tooltip as TinyTooltip } from '@opentiny/vue'
+import { Tooltip as TinyTooltip, Switch as TinySwitch, Button as TinyButton } from '@opentiny/vue'
 
 const visibleArrow = ref(true)
 const enterable = ref(true)
@@ -49,20 +49,6 @@ const key = ref(0)
 <style scoped>
 .row {
   margin-bottom: 20px;
-}
-.ellipsis {
-  display: inline-block;
-  width: 100px;
-  height: 24px;
-  line-height: 24px;
-  margin: 0 20px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: pointer;
-}
-.ellipsis:hover {
-  background-color: #f1f1f1;
 }
 </style>
 

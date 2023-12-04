@@ -1,5 +1,5 @@
 <template>
-  <tiny-steps vertical line size="small" :data="data" :visible-num="4" :active="advancedActive"></tiny-steps>
+  <tiny-steps vertical line size="small" :data="data" :active="advancedActive" @click="normalClick"></tiny-steps>
 </template>
 
 <script>
@@ -25,6 +25,11 @@ export default {
         },
         { name: 'Billing', status: '', description: '默认无状态' }
       ]
+    }
+  },
+  methods: {
+    normalClick(index, node) {
+      normalActive.value = index
     }
   }
 }

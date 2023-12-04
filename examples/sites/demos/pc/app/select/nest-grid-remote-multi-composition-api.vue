@@ -25,7 +25,7 @@
       filterable
       remote
       :remote-method="remoteMethod"
-      :remote-config="{ autoSeach: true, clearData: true, showIcon: true }"
+      :remote-config="{ autoSearch: true, clearData: true, showIcon: true }"
       value-field="id"
       text-field="city"
       render-type="grid"

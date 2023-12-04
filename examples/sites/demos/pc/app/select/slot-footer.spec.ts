@@ -1,12 +1,15 @@
 import { expect, test } from '@playwright/test'
 
-test('slot-footer', async ({ page }) => {
+test('底部插槽', async ({ page }) => {
   await page.goto('select#slot-footer')
 
-  const input = page.locator('#preview .tiny-input__inner')
-  const options = page.locator('.tiny-select-dropdown').locator('.tiny-option')
+  const wrap = page.locator('#slot-footer')
+  const select = wrap.locator('.tiny-select')
+  const input = select.locator('.tiny-input__inner')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const option = dropdown.locator('.tiny-option')
+
   await input.click()
-  await page.waitForTimeout(1000)
-  await expect((await options.all()).length).toEqual(5)
+  await expect((await option.all()).length).toEqual(5)
   await expect(page.locator('.select-footer')).toHaveText('底部插槽')
 })

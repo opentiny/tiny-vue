@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('"更多图标插槽"', async ({ page }) => {
+test('"定义更多按钮"', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#custom-more-icon')
 
@@ -10,7 +10,7 @@ test('"更多图标插槽"', async ({ page }) => {
   const lastItem = tabItems.nth(7)
   const content = tabs.getByRole('tabpanel')
   const headerBox = tabs.locator('.tiny-tabs__nav-scroll')
-  const dropdownItems = page.getByRole('listitem')
+  const dropdownItems = page.locator('.tiny-tabs__more-item')
   const dropdownLastItem = dropdownItems.filter({ hasText: 'Tab 8' }).locator('div').first()
   const { width: boxWidth } = await headerBox.boundingBox()
   const { width: listWidth } = await tabs.locator('.tiny-tabs__nav').boundingBox()
