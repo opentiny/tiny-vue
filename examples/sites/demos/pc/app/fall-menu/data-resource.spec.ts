@@ -10,6 +10,7 @@ test('基础用法、数据源', async ({ page }) => {
   const leftSlotIcon = preview.locator('.icon-slot-left')
   // 父菜单列表
   const fallMenuList = page.locator('.tiny-fall-menu__list')
+  await page.waitForTimeout(1000)
   // 菜单列表应该可见
   await expect(fallMenuBox).toBeHidden()
   await page.getByRole('link', { name: '指南' }).hover()

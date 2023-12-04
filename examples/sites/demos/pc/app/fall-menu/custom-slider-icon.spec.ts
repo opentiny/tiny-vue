@@ -4,10 +4,10 @@ test('自定义左、右侧图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('fall-menu#custom-slider-icon')
   const preview = page.locator('.tiny-fall-menu__wrap')
-  const rightSlotIcon = preview.locator('.icon-slot-right')
   const fallMenuList = page.locator('.tiny-fall-menu__list')
+  const rightSlotIcon = preview.locator('.icon-slot-right')
   const leftSlotIcon = preview.locator('.icon-slot-left')
-
+  await page.waitForTimeout(1000)
   // 右侧插槽图标
   // 父菜单列表
   // 是否是默认图标

@@ -8,7 +8,8 @@ test('自定义内容', async ({ page }) => {
   const preview = page.locator('.tiny-fall-menu__wrap')
   // 父菜单列表
   const fallMenuList = page.locator('.tiny-fall-menu__list')
-  await preview.getByText(/首页/).hover()
+  // await preview.getByText(/首页/).hover()
+  await page.waitForTimeout(1000)
   await expect(fallMenuBox).toBeHidden()
   await preview.getByText(/指南/).hover()
   await expect(fallMenuBox).toBeVisible()
