@@ -6,6 +6,7 @@
 
 ### Exciting New Features 🎉
 
+- feat: 新增 QrCode 二维码、Watermark 水印两个全新组件 🎊
 - feat(Timeline): Timeline component adapts to new themes by @Huangyilin19 in https://github.com/opentiny/tiny-vue/pull/615
 - feat(grid-slot):Add Table Header Slot by @ianxinnew in https://github.com/opentiny/tiny-vue/pull/674
 - feat(components): [date-picker] add props time-editable by @kagol in https://github.com/opentiny/tiny-vue/pull/696
