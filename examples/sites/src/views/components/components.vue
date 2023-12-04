@@ -8,16 +8,17 @@
       <div class="ti-fi-1 ti-w0 ti-rel cmp-container">
         <!-- 一个组件的文档:  描述md + demos + apis -->
         <div class="markdown-body markdown-top-body" size="medium" v-html="cmpTopMd"></div>
-        <version-tip 
+        <version-tip
           v-if="currJson.metaData || currJson.versionTipOption"
-          :metaData="currJson.metaData"
-          v-bind="currJson.versionTipOption">
+          :meta-data="currJson.metaData"
+          v-bind="currJson.versionTipOption"
+        >
         </version-tip>
         <template v-if="currJson?.demos?.length > 0">
           <div class="all-demos-container">
             <h2 class="ti-f30 ti-fw-normal !ti-mb20">{{ $t('yan-shi') }}</h2>
             <div v-if="apiModeState.demoMode === 'default'" class="ti-f-c ti-f-wrap">
-              <template v-if="currJson.column === '2'">
+              <template v-if="currJson.column === '2' && currJson.demos.length > 1">
                 <div class="one-demo-col2">
                   <div>
                     <demo v-for="demo in evenDemo" :key="demo.name" :demo="demo" />
@@ -71,12 +72,13 @@
                         <td>
                           <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
-                          <version-tip 
+                          <version-tip
                             v-if="row.metaData || row.versionTipOption"
-                            :metaData="row.metaData"
-                            v-bind="row.versionTipOption" 
-                            renderType="tag"
-                            tipSubject="api">
+                            :meta-data="row.metaData"
+                            v-bind="row.versionTipOption"
+                            render-type="tag"
+                            tip-subject="api"
+                          >
                           </version-tip>
                         </td>
                         <td v-if="!key.includes('slots')">
@@ -138,7 +140,7 @@
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } from 'vue'
 import { marked } from 'marked'
-import { Loading, Anchor, ButtonGroup, ColumnListGroup } from '@opentiny/vue'
+import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
