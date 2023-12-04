@@ -190,7 +190,7 @@ export default {
           通过 <code> check-strictly </code> 属性，指定是否严格模式。属性默认为 <code> false </code>。严格模式时勾选父节点，子节点自动全选中；子节点全选中，自动勾选父节点。<br>
           通过 <code>  check-on-click-node </code> 属性，点击节点时，同时进行勾选/反勾选节点。 属性默认值为 <code> false </code>, 即点击节点不自动勾选。<br>
           通过 <code> default-checked-keys  </code> 属性，设置默认加载时，自动勾选的节点的keys数组。<br>
-          <div class="tip custom-block">  严格模式下父子不相互影响，勾选父节点时不会自动勾选子节点，适于于某些特殊场景。 </div>
+          <div class="tip custom-block">  严格模式下父子不相互影响，勾选父节点时不会自动勾选子节点，适用于某些特殊场景。 </div>
         `,
         'en-US': `Enable multiple selection by using the <code> show-checkbox </code> property. <br>
           The <code> check-strictly </code> property specifies whether strict mode is used. The default property is <code> false </code>. If you select the parent node, all child nodes are automatically selected. If all child nodes are selected, the parent node is automatically selected. <br>
@@ -212,7 +212,7 @@ export default {
             <code> setChecked </code> 勾选时，可以深度递归勾选(deep:true)，也可以只勾选某节点。<br> 
             建议使用 <code> setCheckedKeys </code>进行勾选，保证父子联动状态统一，详见下面例子。 
           </div>
-          通过 <code> check </code> 事件，监听勾选节点的事件。<br>
+          通过 <code> check </code> 事件，监听组件的勾选事件。<br>
           通过 <code> check-change </code> 事件，监听节点状态变化的回调。<br>
           <div class="tip custom-block"> 
               <code> check </code> 事件触发在点击的元素上， 事件参数为：被点击的节点和勾选后组件的整体勾选状态。<br>
