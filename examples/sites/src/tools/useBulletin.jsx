@@ -5,8 +5,8 @@ import { Modal } from '@opentiny/vue'
 const bulletins = [
   {
     id: 'version-tip',
-    content: `为了避免 @opentiny/vue 的月度版本(minor)升级带来的不确定因素，所以推荐在您的工程中的 package.json 中依赖包的版本号前使用 ~，
-    比如 "@opentiny/vue": "~3.12.0。`,
+    content: `为了避免 @opentiny/vue 的月度版本(minor)升级带来的不确定因素，推荐在您的工程中的 package.json 中依赖包的版本号前使用 ~，
+    比如 "@opentiny/vue": "~3.12.0"。`,
     time: '2023-12-04'
   }
 ]
