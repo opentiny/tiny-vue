@@ -68,7 +68,7 @@ export default {
     )
   ],
   define: {
-    'process.env': Object.assign({}, process.env)
+    'process.env': { ...process.env }
   }
 }
 ```
