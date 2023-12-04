@@ -43,7 +43,9 @@ export default defineComponent({
       common.renderHeader()
     })
     const { designConfig } = useTheme()
-    useBulletin()
+    if (process.env.NODE_ENV === 'production') {
+      useBulletin()
+    }
 
     provide('showPreview', (url) => {
       previewUrl.value = url
