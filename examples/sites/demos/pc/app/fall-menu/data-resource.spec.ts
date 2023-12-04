@@ -12,10 +12,8 @@ test('基础用法、数据源', async ({ page }) => {
   const fallMenuList = page.locator('.tiny-fall-menu__list')
   // 菜单列表应该可见
   await expect(fallMenuBox).toBeHidden()
-  await page.getByRole('link', { name: '指南' }).hover()
+  await preview.getByText(`指南`, { exact: false }).hover()
   await expect(fallMenuBox).toBeVisible()
-  await page.waitForTimeout(1000)
-
   // 菜单列表应该不可见
   // 点击右侧更多切换图标
   await rightSlotIcon.click()
