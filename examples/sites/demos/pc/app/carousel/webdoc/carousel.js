@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['basic-usage.vue']
     },
     {
@@ -83,19 +83,19 @@ export default {
     {
       'demoId': 'carousel-arrow-always',
       'name': { 'zh-CN': '总是显示切换箭头', 'en-US': 'Always show the switch arrow' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['carousel-arrow-always.vue']
     },
     {
       'demoId': 'carousel-arrow-hover',
       'name': { 'zh-CN': 'hover 时显示切换箭头', 'en-US': 'The switch arrow is displayed during Hover.' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['carousel-arrow-hover.vue']
     },
     {
       'demoId': 'carousel-arrow-never',
       'name': { 'zh-CN': '隐藏切换箭头', 'en-US': 'Hide the switch arrow' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['carousel-arrow-never.vue']
     },
     {
@@ -122,78 +122,85 @@ export default {
     {
       'name': 'carousel',
       'type': 'component',
-      'events': [],
-      'slots': [],
       'props': [
         {
           'name': 'arrow',
           'type': 'string',
           'defaultValue': '该属性的默认值为 hover',
-          'desc': { 'zh-CN': '切换箭头的显示时机;该属性的可选值为 always / hover / never', 'en-US': '' },
+          'desc': { 'zh-CN': '切换箭头的显示时机;该属性的可选值为 always / hover / never。', 'en-US': '' },
           'demoId': 'up-down-carousel'
         },
         {
           'name': 'autoplay',
           'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否自动切换', 'en-US': '' },
+          'desc': { 'zh-CN': '是否自动切换。', 'en-US': '' },
           'demoId': 'autoplay'
         },
         {
           'name': 'height',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '走马灯的高度', 'en-US': '' },
+          'desc': { 'zh-CN': '走马灯的高度。', 'en-US': '' },
           'demoId': 'indicator-trigger'
         },
         {
           'name': 'indicator-position',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '指示器的位置。该属性的可选值为 outside / none', 'en-US': '' },
+          'desc': { 'zh-CN': '指示器的位置。该属性的可选值为 outside / none。', 'en-US': '' },
           'demoId': 'indicator-trigger'
         },
         {
           'name': 'initial-index',
           'type': 'number',
           'defaultValue': '该属性的默认值为 0',
-          'desc': { 'zh-CN': '初始状态激活的幻灯片的索引，从 0 开始', 'en-US': '' },
+          'desc': { 'zh-CN': '初始状态激活的幻灯片的索引，从 0 开始。', 'en-US': '' },
           'demoId': 'manual-play'
         },
         {
           'name': 'interval',
           'type': 'number',
           'defaultValue': '该属性的默认值为 3000',
-          'desc': { 'zh-CN': '自动切换的时间间隔，单位为毫秒', 'en-US': '' },
+          'desc': { 'zh-CN': '自动切换的时间间隔，单位为毫秒。', 'en-US': '' },
           'demoId': 'play-interval'
         },
         {
           'name': 'show-title',
           'type': 'boolean',
           'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '是否显示标题', 'en-US': '' },
+          'desc': { 'zh-CN': '是否显示标题。', 'en-US': '' },
           'demoId': 'show-title'
         },
         {
           'name': 'trigger',
           'type': 'string',
           'defaultValue': '该属性的默认值为 hover',
-          'desc': { 'zh-CN': '指示器的触发方式，默认为 hover。该属性的可选值为 click', 'en-US': '' },
+          'desc': { 'zh-CN': '指示器的触发方式，默认为 hover。该属性的可选值为 click。', 'en-US': '' },
           'demoId': 'indicator-trigger'
         },
         {
           'name': 'type',
           'type': 'string',
           'defaultValue': '该属性的默认值为 horizontal',
-          'desc': { 'zh-CN': '走马灯的类型;该属性的可选值为 horizontal / vertical / card', 'en-US': '' },
+          'desc': { 'zh-CN': '走马灯的类型;该属性的可选值为 horizontal / vertical / card。', 'en-US': '' },
           'demoId': 'card-mode'
         },
         {
           'name': 'loop',
           'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
-          'desc': { 'zh-CN': '是否循环显示', 'en-US': '' },
+          'desc': { 'zh-CN': '是否循环显示。', 'en-US': '' },
           'demoId': 'close-loop'
+        }
+      ],
+      'events': [
+        {
+          'name': 'change',
+          'type': '',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '幻灯片切换时触发。', 'en-US': '' },
+          'demoId': 'carousel-events'
         }
       ],
       'slots': [
@@ -201,7 +208,7 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽', 'en-US': '' },
+          'desc': { 'zh-CN': '默认插槽。', 'en-US': '' },
           'demoId': 'manual-play'
         }
       ],
@@ -210,31 +217,22 @@ export default {
           'name': 'next',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '切换至下一张幻灯片', 'en-US': '' },
+          'desc': { 'zh-CN': '切换至下一张幻灯片。', 'en-US': '' },
           'demoId': 'manual-play'
         },
         {
           'name': 'prev',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '切换至上一张幻灯片', 'en-US': '' },
+          'desc': { 'zh-CN': '切换至上一张幻灯片。', 'en-US': '' },
           'demoId': 'manual-play'
         },
         {
           'name': 'setActiveItem',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '手动切换幻灯片', 'en-US': '' },
+          'desc': { 'zh-CN': '手动切换幻灯片。', 'en-US': '' },
           'demoId': 'manual-play'
-        }
-      ],
-      'events': [
-        {
-          'name': 'change',
-          'type': '',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '幻灯片切换时触发', 'en-US': '' },
-          'demoId': 'carousel-events'
         }
       ]
     },
@@ -246,14 +244,14 @@ export default {
           'name': 'title',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '幻灯片标题', 'en-US': '' },
+          'desc': { 'zh-CN': '幻灯片标题。', 'en-US': '' },
           'demoId': 'show-title'
         },
         {
           'name': 'name',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '幻灯片名称', 'en-US': '' },
+          'desc': { 'zh-CN': '幻灯片名称。', 'en-US': '' },
           'demoId': 'show-title'
         }
       ],
@@ -262,7 +260,7 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽', 'en-US': '' },
+          'desc': { 'zh-CN': '默认插槽。', 'en-US': '' },
           'demoId': 'manual-play'
         }
       ]

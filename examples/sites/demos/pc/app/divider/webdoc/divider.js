@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['base.vue']
     },
     {
@@ -40,12 +40,12 @@ export default {
     {
       'name': 'divider',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'color',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '设置分隔线的颜色', 'en-US': 'Set the color of the divider.' },
+          'desc': { 'zh-CN': '设置分隔线的颜色。', 'en-US': 'Set the color of the divider.' },
           'demoId': 'custom-style'
         },
         {
@@ -53,7 +53,7 @@ export default {
           'type': 'string',
           'defaultValue': 'horizontal',
           'desc': {
-            'zh-CN': '设置分隔线的方向，该属性的可选值为 horizontal / vertical 。',
+            'zh-CN': '设置分隔线的方向，该属性的可选值为 horizontal / vertical。',
             'en-US':
               'Set the direction of the divider; the possible values for this property are "horizontal" or "vertical".'
           },
@@ -75,7 +75,7 @@ export default {
           'type': 'string',
           'defaultValue': 'solid',
           'desc': {
-            'zh-CN': '设置分隔线的样式，该属性的可选值为 solid / dashed',
+            'zh-CN': '设置分隔线的样式，该属性的可选值为 solid / dashed。',
             'en-US': 'Set the style of the divider; the possible values for this property are "solid" or "dashed".'
           },
           'demoId': 'custom-style'
@@ -84,14 +84,17 @@ export default {
           'name': 'content-color',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '设置分隔线文案的颜色', 'en-US': 'Set the color of the divider content.' },
+          'desc': { 'zh-CN': '设置分隔线文案的颜色。', 'en-US': 'Set the color of the divider content.' },
           'demoId': 'custom-style'
         },
         {
           'name': 'content-background-color',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '设置分割线文案的背景颜色', 'en-US': 'Set the background color of the divider content.' },
+          'desc': {
+            'zh-CN': '设置分割线文案的背景颜色。',
+            'en-US': 'Set the background color of the divider content.'
+          },
           'demoId': 'custom-style'
         }
       ],
@@ -100,7 +103,7 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
+          'desc': { 'zh-CN': '默认插槽。', 'en-US': 'Default slot.' },
           'demoId': 'content-position'
         }
       ]

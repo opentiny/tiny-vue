@@ -51,7 +51,7 @@ export default {
       'name': { 'zh-CN': '自定义菜单数据服务', 'en-US': 'Customized menu data service' },
       'desc': {
         'zh-CN': '<p>通过 <code>get-menu-data-sync</code> 自定义菜单数据服务。</p>\n',
-        'en-US': '<p>Customize the menu data service through <code>get-menu-data-sync</code> . </p>\n'
+        'en-US': '<p>Customize the menu data service through <code>get-menu-data-sync</code>. </p>\n'
       },
       'codeFiles': ['get-menu-data-sync.vue']
     },
@@ -135,7 +135,7 @@ export default {
           'type': 'boolean',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置打开菜单弹窗时默认是否展开所有节点，默认为 true 。',
+            'zh-CN': '设置打开菜单弹窗时默认是否展开所有节点，默认为 true。',
             'en-US':
               'Whether to expand all nodes by default when a menu pop-up window is opened. The default value is true.'
           },
@@ -153,7 +153,7 @@ export default {
           'type': 'boolean',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '菜单内容超长时省略显示，默认为 true 。',
+            'zh-CN': '菜单内容超长时省略显示，默认为 true。',
             'en-US': 'Omitted if the menu content is too long. The default value is true.'
           },
           'demoId': 'custom-icon1'
@@ -163,7 +163,7 @@ export default {
           'type': 'boolean',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '菜单内容超长时换行显示，默认为 false 。',
+            'zh-CN': '菜单内容超长时换行显示，默认为 false。',
             'en-US': 'The menu content is displayed in a new line when it is too long. The default value is false.'
           },
           'demoId': 'data-resource'
@@ -173,7 +173,7 @@ export default {
           'type': 'boolean',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '树节点勾选内容后，点击取消按钮，再次打开弹窗是否保留取消前勾选的内容的状态，默认为 true 。',
+            'zh-CN': '树节点勾选内容后，点击取消按钮，再次打开弹窗是否保留取消前勾选的内容的状态，默认为 true。',
             'en-US':
               'Whether to retain the status of the selected content after selecting content in the tree node, clicking Cancel, and opening the dialog box again. The default value is true.'
           },
@@ -184,7 +184,7 @@ export default {
           'type': 'Function',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '自定义菜单数据服务，直接返回数据',
+            'zh-CN': '自定义菜单数据服务，直接返回数据。',
             'en-US': 'User-defined menu data service. Data is directly returned.'
           },
           'demoId': 'get-menu-data-sync'
@@ -196,7 +196,7 @@ export default {
           'name': 'foot',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '菜单弹窗底部插槽', 'en-US': 'Slot at the bottom of the menu pop-up window' },
+          'desc': { 'zh-CN': '菜单弹窗底部插槽。', 'en-US': 'Slot at the bottom of the menu pop-up window.' },
           'demoId': 'custom-foot'
         }
       ],

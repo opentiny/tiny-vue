@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['basic-usage.vue']
     },
     {
@@ -36,7 +36,7 @@ export default {
     {
       'demoId': 'slots-usercontact',
       'name': { 'zh-CN': '自定义默认插槽', 'en-US': 'Customize the default slot' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['slots-usercontact.vue']
     }
   ],
@@ -44,12 +44,12 @@ export default {
     {
       'name': 'user-contact',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
           'type': 'object',
           'defaultValue': '',
-          'desc': { 'zh-CN': '设置的数据;数据设置', 'en-US': 'Setted data; Data Settings' },
+          'desc': { 'zh-CN': '设置的数据。', 'en-US': 'Setted data; Data Settings.' },
           'demoId': 'data-source'
         },
         {
@@ -57,7 +57,7 @@ export default {
           'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
-            'zh-CN': '是否显示头像，默认 true',
+            'zh-CN': '是否显示头像，默认 true。',
             'en-US': 'Indicates whether to display the avatar. The default value is true.'
           },
           'demoId': 'not-displayed-content'
@@ -67,7 +67,7 @@ export default {
           'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
-            'zh-CN': '是否显示姓名 userName,默认 true',
+            'zh-CN': '是否显示姓名 userName,默认 true。',
             'en-US': 'Indicates whether to display userName. The default value is true.'
           },
           'demoId': 'not-displayed-content'
@@ -77,7 +77,7 @@ export default {
           'type': 'boolean',
           'defaultValue': '该属性的默认值为 true',
           'desc': {
-            'zh-CN': '是否显示工号 roleNumber,默认 true',
+            'zh-CN': '是否显示工号 roleNumber,默认 true。',
             'en-US': 'Indicates whether to display the employee ID roleNumber. The default value is true.'
           },
           'demoId': 'not-displayed-content'
@@ -87,7 +87,7 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '为 popper 添加类名(可参考 popover 组件)',
+            'zh-CN': '为 popper 添加类名(可参考 popover 组件)。',
             'en-US': 'Add a class name for the popper. For details, see the popover component.'
           },
           'demoId': ''
@@ -98,7 +98,7 @@ export default {
           'defaultValue': '该属性的默认值为 true',
           'desc': {
             'zh-CN':
-              '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)',
+              '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)。',
             'en-US':
               'Indicates whether to insert a pop-up box to the body element. If a fault occurs in locating the fault in the dialog box that is displayed, you can set this attribute to false (for details, see the select component).'
           },
@@ -108,7 +108,7 @@ export default {
           'name': 'espace',
           'type': 'Array',
           'defaultValue': '',
-          'desc': { 'zh-CN': 'espace 信息配置', 'en-US': 'Espace Configuration' },
+          'desc': { 'zh-CN': 'espace 信息配置。', 'en-US': 'Espace Configuration.' },
           'demoId': 'support-open-espace'
         }
       ],
@@ -118,7 +118,7 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
+          'desc': { 'zh-CN': '默认插槽。', 'en-US': 'Default slot.' },
           'demoId': 'slots-usercontact'
         }
       ]
