@@ -17,7 +17,10 @@ import {
   computedHeaderStyle,
   computedAsideStyle,
   computedMainStyle,
-  computedFooterStyle
+  computedFooterStyle,
+  computedLeftStyle,
+  computedShowRight,
+  computedRightStyle
 } from './index'
 
 export const api = ['state']
@@ -31,7 +34,10 @@ export const renderless = (props, { computed, reactive }, { constants }) => {
     mainStyle: computed(() => api.computedMainStyle()),
     asideStyle: computed(() => api.computedAsideStyle()),
     headerStyle: computed(() => api.computedHeaderStyle()),
-    footerStyle: computed(() => api.computedFooterStyle())
+    footerStyle: computed(() => api.computedFooterStyle()),
+    showRight: computed(() => api.computedShowRight()),
+    leftStyle: computed(() => api.computedLeftStyle()),
+    rightStyle: computed(() => api.computedRightStyle())
   })
 
   Object.assign(api, {
@@ -42,7 +48,10 @@ export const renderless = (props, { computed, reactive }, { constants }) => {
     computedMainStyle: computedMainStyle({ constants, props }),
     computedAsideStyle: computedAsideStyle({ constants, props }),
     computedHeaderStyle: computedHeaderStyle({ constants, props }),
-    computedFooterStyle: computedFooterStyle({ constants, props })
+    computedFooterStyle: computedFooterStyle({ constants, props }),
+    computedLeftStyle: computedLeftStyle({ constants, props }),
+    computedShowRight: computedShowRight({ constants, props }),
+    computedRightStyle: computedRightStyle({ constants, props })
   })
 
   return api

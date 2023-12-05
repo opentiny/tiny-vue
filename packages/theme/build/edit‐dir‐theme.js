@@ -1,5 +1,6 @@
-const fs = require('fs')
+const fs = require('node:fs')
 const fsExtra = require('fs-extra')
+
 const indexLessPath = 'index.less'
 const indexJsPath = 'index.js'
 const smbThemeName = 'smb-theme'
@@ -122,13 +123,11 @@ const createTheme = (callbackFn) => {
             fsExtra.copy(statPath, `${originPath}/smb-theme/${fileDir}`, (subErr) => {
               if (subErr) {
                 console.log(subErr)
-                return
               }
             })
             fsExtra.copy(statPath, `${originPath}/aurora-theme/${fileDir}`, (subErr) => {
               if (subErr) {
                 console.log(subErr)
-                return
               }
             })
           } else {
@@ -149,7 +148,6 @@ const createTheme = (callbackFn) => {
         } else if (type === 'js') {
           readThemeFile(fileDir)
         }
-        return
       }
     })
   }

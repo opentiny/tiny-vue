@@ -330,6 +330,7 @@
 
   &__content {
     position: relative;
+    margin: var(--ti-tabs-content-margin-vertical) var(--ti-tabs-content-margin-horizontal);
 
     // aurora新增
     font-size: var(--ti-tabs-content-font-size);
@@ -482,14 +483,6 @@
     background: #fff;
     border-top: 1px solid var(--ti-tabs-border-color);
     box-shadow: none;
-
-    & > .@{tabs-prefix-cls}__content {
-      padding: 0px 24px 15px;
-
-      .@{tabs-prefix-cls}__content {
-        padding: 15px 0;
-      }
-    }
 
     &.@{tabs-prefix-cls}--top {
       & > .@{tabs-prefix-cls}__header {
@@ -1246,10 +1239,6 @@
         padding-left: 0;
       }
     }
-  }
-
-  .@{tab-pane-prefix-cls} {
-    padding: var(--ti-tabs-content-padding-vertical) var(--ti-tabs-content-padding-horizontal);
   }
 
   // 动效

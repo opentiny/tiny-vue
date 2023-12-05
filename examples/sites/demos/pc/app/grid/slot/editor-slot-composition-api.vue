@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn, Input as TinyInput } from '@opentiny/vue'
 
