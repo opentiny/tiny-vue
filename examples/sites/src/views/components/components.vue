@@ -142,7 +142,7 @@ import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } fr
 import { marked } from 'marked'
 import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
+import { $t, $t2, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
 import { Collapse, CollapseItem } from '@opentiny/vue'
@@ -334,30 +334,23 @@ export default defineComponent({
       copyText: (text) => {
         navigator.clipboard.writeText(text)
       },
+      // 点击 api区域的 name列时
       jumpToDemo: (demoId) => {
         if (demoId.startsWith('chart') || demoId.startsWith('grid')) {
           router.push(demoId)
         } else {
           router.push(`#${demoId}`)
-        }
-      },
-      handleApiClick: (ev) => {
-        if (ev.target.tagName === 'A') {
-          ev.preventDefault()
-          const href = ev.target.getAttribute('href')
-          const hash = $split(href, '#', -1)
-          router.push(href)
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
 
-          scrollByHash(hash)
-        }
-        if (apiModeState.demoMode === 'single') {
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
+          if (apiModeState.demoMode === 'single') {
+            state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
+          }
         }
       },
+      // 点击api 区域的type列
       handleTypeClick: (ev) => {
         changeActiveNames(ev.target.hash, true)
       },
+      // 目录列表上的点击
       handleAnchorClick: (e, data) => {
         if (apiModeState.demoMode === 'single' && data.link.startsWith('#')) {
           e.preventDefault()
