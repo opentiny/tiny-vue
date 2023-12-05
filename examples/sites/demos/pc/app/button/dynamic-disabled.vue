@@ -11,19 +11,26 @@
     </tiny-row>
 
     <tiny-row>
-      <tiny-button :disabled="disabled" plain>默认按钮</tiny-button>
+      <tiny-button :disabled="disabled" plain>朴素按钮</tiny-button>
       <tiny-button type="primary" :disabled="disabled" plain>主要按钮</tiny-button>
       <tiny-button type="success" :disabled="disabled" plain>成功按钮</tiny-button>
       <tiny-button type="info" :disabled="disabled" plain>信息按钮</tiny-button>
       <tiny-button type="warning" :disabled="disabled" plain>警告按钮</tiny-button>
       <tiny-button type="danger" :disabled="disabled" plain>危险按钮</tiny-button>
     </tiny-row>
+
+    <tiny-row>
+      <tiny-button :disabled="disabled" ghost>幽灵按钮</tiny-button>
+      <tiny-button :icon="IconSearch" :disabled="disabled">图标按钮</tiny-button>
+      <tiny-button :icon="IconSearch" :disabled="disabled"> </tiny-button>
+      <tiny-button :icon="IconSearch" :disabled="disabled" circle> </tiny-button>
+    </tiny-row>
   </tiny-layout>
 </template>
 
 <script>
 import { Button, Layout, Row, Switch } from '@opentiny/vue'
-import { IconSearch } from '@opentiny/vue-icon'
+import { iconSearch } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -35,7 +42,7 @@ export default {
   data() {
     return {
       disabled: false,
-      IconSearch: IconSearch()
+      IconSearch: iconSearch()
     }
   }
 }

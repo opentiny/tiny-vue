@@ -23,6 +23,7 @@
         'is-disabled': state.buttonDisabled,
         'is-loading': loading,
         'is-plain': state.plain,
+        'is-ghost': ghost,
         'is-round': round,
         'is-circle': circle,
         'is-icon': icon && !loading && (text || slots.default),
@@ -64,7 +65,8 @@ export default defineComponent({
     'round',
     'circle',
     'tabindex',
-    'customClass'
+    'customClass',
+    'ghost'
   ],
   components: { IconLoading: iconLoading() },
   setup(props, context) {
