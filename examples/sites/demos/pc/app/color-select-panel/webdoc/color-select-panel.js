@@ -88,7 +88,7 @@ export default {
           type: 'string[] | undefined',
           defaultValue: 'undefined',
           desc: {
-            'zh-CN': '时候启用历史记录,',
+            'zh-CN': '时候启用历史记录',
             'en-US': 'enable history or not'
           },
           demoId: 'history'
@@ -98,7 +98,7 @@ export default {
           type: 'string[] | undefined',
           defaultValue: 'undefined',
           desc: {
-            'zh-CN': '时候启用历史记录,',
+            'zh-CN': '时候启用历史记录',
             'en-US': 'enable predefine or not'
           },
           demoId: 'predefine'
@@ -110,7 +110,7 @@ export default {
           type: '(hex:string) => void',
           defaultValue: '',
           desc: {
-            'zh-CN': '按下确认时触发该事件。',
+            'zh-CN': '按下确认时触发该事件',
             'en-US': 'When click confirm will trigger confirm event.'
           },
           demoId: 'event'
@@ -120,7 +120,7 @@ export default {
           type: '()=>void',
           defaultValue: '',
           desc: {
-            'zh-CN': '按下取消或点击外部的时触发该事件。',
+            'zh-CN': '按下取消或点击外部的时触发该事件',
             'en-US': 'When click cancel or click out-side will trigger cancel event.'
           },
           demoId: 'event'
@@ -130,7 +130,7 @@ export default {
           type: '(color:Color) => void',
           defaultValue: '',
           desc: {
-            'zh-cn': '当颜色更新的时候会触发该事件，包括：点击预定义颜色、点击历史记录。',
+            'zh-cn': '当颜色更新的时候会触发该事件，包括：点击预定义颜色、点击历史记录',
             'en-US': 'when click predefine color or history, will trigger color-update event.'
           }
         }

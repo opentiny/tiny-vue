@@ -88,7 +88,7 @@ export default {
           'type': 'string',
           'defaultValue': 'transparent',
           desc: {
-            'zh-CN': '默认颜色。',
+            'zh-CN': '默认颜色',
             'en-US': 'default color.'
           },
           demoId: 'basic-usage'
@@ -98,7 +98,7 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '是否默认显示color-select。',
+            'zh-CN': '是否默认显示color-select',
             'en-US': 'Is color select displayed by default.'
           },
           demoId: 'default-visible'
@@ -108,7 +108,7 @@ export default {
           type: 'string',
           defaultValue: '',
           desc: {
-            'zh-CN': '定义color-picker尺寸;该属性的可选值为 large / medium / small / mini。',
+            'zh-CN': '定义color-picker尺寸;该属性的可选值为 large / medium / small / mini',
             'en-US':
               'Define color-picker dimensions; The optional values for this attribute are large/medium/small/mini.'
           },
@@ -119,7 +119,7 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '是否启用alpha选择。',
+            'zh-CN': '是否启用alpha选择',
             'en-US': 'enable alpha select or not.'
           },
           demoId: 'enable-alpha'
@@ -129,7 +129,7 @@ export default {
           type: 'string[] | undefined',
           defaultValue: 'undefined',
           desc: {
-            'zh-CN': '启用历史记录。',
+            'zh-CN': '启用历史记录',
             'en-US': 'enable history or not.'
           },
           demoId: 'history'
@@ -139,7 +139,7 @@ export default {
           type: 'string[] | undefined',
           defaultValue: 'undefined',
           desc: {
-            'zh-CN': '启用预定义颜色。',
+            'zh-CN': '启用预定义颜色',
             'en-US': 'enable predefine or not.'
           },
           demoId: 'predefine'
@@ -151,7 +151,7 @@ export default {
           type: '(hex:string) => void',
           defaultValue: '',
           desc: {
-            'zh-CN': '按下确认时触发该事件。',
+            'zh-CN': '按下确认时触发该事件',
             'en-US': 'When click confirm will trigger confirm event.'
           },
           demoId: 'event'
@@ -161,7 +161,7 @@ export default {
           type: '()=>void',
           defaultValue: '',
           desc: {
-            'zh-CN': '按下取消或点击外部的时触发该事件。',
+            'zh-CN': '按下取消或点击外部的时触发该事件',
             'en-US': 'When click cancel or click out-side will trigger cancel event.'
           },
           demoId: 'event'

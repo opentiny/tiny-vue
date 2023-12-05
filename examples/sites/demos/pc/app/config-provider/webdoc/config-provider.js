@@ -34,28 +34,28 @@ export default {
           'name': 'design',
           'type': 'ConfigProviderProps',
           'defaultValue': '',
-          'desc': { 'zh-CN': '规范，可以通过该属于定制一些自定义的交互规范。', 'en-US': '' },
+          'desc': { 'zh-CN': '规范，可以通过该属于定制一些自定义的交互规范', 'en-US': '' },
           'demoId': 'base'
         },
         {
           'name': 'breakPoints',
           'type': 'breakPoint',
           'defaultValue': "{'xs': 480,'sm': 640,'md': 768,'lg': 1024,'xl': 1280,'2xl': 1536}",
-          'desc': { 'zh-CN': '断点, 为Layout提供。', 'en-US': '' },
+          'desc': { 'zh-CN': '断点, 为Layout提供', 'en-US': '' },
           'demoId': 'base'
         },
         {
           'name': 'direction',
           'type': "'ltr' | 'rtl'",
           'defaultValue': 'ltr',
-          'desc': { 'zh-CN': '文字排版方向。', 'en-US': '' },
+          'desc': { 'zh-CN': '文字排版方向', 'en-US': '' },
           'demoId': 'text-dire'
         },
         {
           'name': 'tag',
           'type': 'object',
           'defaultValue': "{enable: true,name: 'div'}",
-          'desc': { 'zh-CN': '是否被元素包裹, 如果是vue2且没有一个单一节点, 组件会自动创建一个div。', 'en-US': '' },
+          'desc': { 'zh-CN': '是否被元素包裹, 如果是vue2且没有一个单一节点, 组件会自动创建一个div', 'en-US': '' },
           'demoId': 'base'
         }
       ],

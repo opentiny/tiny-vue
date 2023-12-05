@@ -199,7 +199,7 @@ export default {
           'name': 'change',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '幻灯片切换时触发。', 'en-US': '' },
+          'desc': { 'zh-CN': '幻灯片切换时触发', 'en-US': '' },
           'demoId': 'carousel-events'
         }
       ],
@@ -208,7 +208,7 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽。', 'en-US': '' },
+          'desc': { 'zh-CN': '默认插槽', 'en-US': '' },
           'demoId': 'manual-play'
         }
       ],
@@ -217,21 +217,21 @@ export default {
           'name': 'next',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '切换至下一张幻灯片。', 'en-US': '' },
+          'desc': { 'zh-CN': '切换至下一张幻灯片', 'en-US': '' },
           'demoId': 'manual-play'
         },
         {
           'name': 'prev',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '切换至上一张幻灯片。', 'en-US': '' },
+          'desc': { 'zh-CN': '切换至上一张幻灯片', 'en-US': '' },
           'demoId': 'manual-play'
         },
         {
           'name': 'setActiveItem',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '手动切换幻灯片。', 'en-US': '' },
+          'desc': { 'zh-CN': '手动切换幻灯片', 'en-US': '' },
           'demoId': 'manual-play'
         }
       ]
@@ -244,14 +244,14 @@ export default {
           'name': 'title',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '幻灯片标题。', 'en-US': '' },
+          'desc': { 'zh-CN': '幻灯片标题', 'en-US': '' },
           'demoId': 'show-title'
         },
         {
           'name': 'name',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '幻灯片名称。', 'en-US': '' },
+          'desc': { 'zh-CN': '幻灯片名称', 'en-US': '' },
           'demoId': 'show-title'
         }
       ],
@@ -260,7 +260,7 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽。', 'en-US': '' },
+          'desc': { 'zh-CN': '默认插槽', 'en-US': '' },
           'demoId': 'manual-play'
         }
       ]
