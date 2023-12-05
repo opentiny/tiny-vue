@@ -5,19 +5,7 @@
       <p class="page__desc">刷新</p>
     </div>
     <div class="page__content">
-      <tiny-pull-refresh
-        v-model="value"
-        :has-more="hasMore"
-        @pullDown="handlerPullDownRefresh"
-        @pullUp="handlerPullUpLoad"
-      >
-        <template #header>
-          <span>refreshing...</span>
-        </template>
-
-        <template #footer>
-          <span>load more...</span>
-        </template>
+      <tiny-pull-refresh v-model="value" :has-more="hasMore" disabled-pull-down @pullUp="handlerPullUpLoad">
         <div :key="item.name" v-for="item in data">{{ item.label }}</div>
       </tiny-pull-refresh>
     </div>
@@ -36,7 +24,7 @@ export default {
       data: [...Array(30)].map((i, index) => {
         return { label: `${index + 1} list data` }
       }),
-      value: true,
+      value: false,
       hasMore: true
     }
   },
@@ -48,12 +36,7 @@ export default {
           this.data.push({ label: `${i + length} list data` })
         }
         this.value = false
-      }, 2000)
-    },
-    handlerPullDownRefresh() {
-      setTimeout(() => {
-        this.value = false
-      }, 2000)
+      }, 3000)
     }
   }
 }
