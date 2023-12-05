@@ -33,7 +33,6 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "postinstall": "pnpm build:internals",
-    "prepare": "husky install",
     "bootstrap": "pnpm --filter=\"!./packages/dist/**\" install",
     "dev": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/vue3 dev",
     "dev:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue3 dev:saas",
