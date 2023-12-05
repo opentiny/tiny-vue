@@ -161,11 +161,14 @@ const initApi = ({
   dispatch,
   broadcast,
   emit,
-  refs,
+  vm,
   props,
   CLASS_PREFIX,
   parent
-}: Pick<IInputRenderlessParams, 'api' | 'state' | 'dispatch' | 'broadcast' | 'emit' | 'refs' | 'props' | 'parent'> & {
+}: Pick<
+  IInputRenderlessParams,
+  'api' | 'state' | 'dispatch' | 'broadcast' | 'emit' | 'refs' | 'props' | 'parent' | 'vm'
+> & {
   CLASS_PREFIX: IInputClassPrefixConstants
 }) => {
   Object.assign(api, {
@@ -174,7 +177,7 @@ const initApi = ({
     broadcast,
     showBox: showBox(state),
     clear: clear(emit),
-    getInput: getInput(refs),
+    getInput: getInput(vm),
     handleChange: handleChange(emit),
     watchFormSelect: watchFormSelect({ emit, props, state }),
     calcIconOffset: calcIconOffset({ CLASS_PREFIX, parent }),
@@ -327,7 +330,7 @@ export const renderless = (
   }
   const state = initState({ reactive, computed, mode, props, parent, constants, api })
 
-  initApi({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PREFIX, parent })
+  initApi({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PREFIX, parent, vm })
 
   const storages = useStorageBox({ api, props, reactive, toRefs })
 
