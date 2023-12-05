@@ -162,7 +162,6 @@
     "husky": "^8.0.0",
     "commitlint": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
-    "cz-conventional-changelog": "^3.3.0",
     "minimist": "^1.2.8",
     "node-xlsx": "^0.21.0",
     "prettier": "^3.0.0",
