@@ -11,6 +11,7 @@
           :label="visableItem[textField]"
           :text-field="textField"
           :disabled="visableItem.disabled"
+          :icon="visableItem.icon"
           @item-click="handleItemClick"
         >
           <template #default="{ itemData }">
@@ -22,12 +23,15 @@
 
       <li v-if="state.moreOptions.length" class="tiny-action-menu__item">
         <tiny-dropdown
-          :title="moreText"
           :trigger="trigger"
           @item-click="handleItemClick"
           @handle-click="handleMoreClick"
           @visible-change="visibleChange"
         >
+        <template v-if="state.moreIcon">
+          <component :is="state.moreIcon"/>
+        </template>
+        <span v-else>{{ moreText }}</span>
           <template #dropdown>
             <tiny-dropdown-menu :text-field="textField" :popper-class="popperClass">
               <tiny-dropdown-item
@@ -35,6 +39,7 @@
                 :key="index"
                 :item-data="item"
                 :label="item[textField]"
+                :disabled="item.disabled"
               >
                 <template #default="{ itemData }">
                   <slot name="item" :data="itemData"></slot>

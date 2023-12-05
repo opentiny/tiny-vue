@@ -75,7 +75,7 @@ const getPadCalendarDays =
   (flag, count, cur) => {
     const sign = flag === 's' ? -1 : 1
 
-    Array.from({ length: count }).map((v, i) => {
+    Array.from({ length: count }).forEach((v, i) => {
       const d = new Date(cur.getTime() + (i + 1) * sign * 86400000)
       const year = d.getFullYear()
       const month = d.getMonth() + 1
@@ -88,7 +88,7 @@ const getPadCalendarDays =
 const equalArr = (arr1, arr2) => Array.isArray(arr1) && Array.isArray(arr2) && arr1.join(',') === arr2.join(',')
 
 const setDayRow = ({ calendarDays, state }) =>
-  calendarDays.map((day, i) => {
+  calendarDays.forEach((day, i) => {
     day.row = Math.floor(i / state.dayOfWeek)
 
     if (day.isCur) {
