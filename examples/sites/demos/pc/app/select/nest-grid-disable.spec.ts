@@ -1,27 +1,39 @@
 import { test, expect } from '@playwright/test'
 
-test('test-grid-select', async ({ page }) => {
-  await page.goto('select#disable-grid-select-radio')
-  const tags = page.locator('.grid-select .tiny-tag')
+test('嵌套表格禁用某项（单选）', async ({ page }) => {
+  await page.goto('select#nest-grid-disable')
+  const wrap = page.locator('#nest-grid-disable')
 
-  await page.locator('.tiny-select__tags').click()
-  await page.getByRole('row', { name: '华南区 广东省 广州市' }).getByRole('cell').first().click()
+  const select = wrap.locator('.tiny-select').nth(0)
+  const input = select.locator('.tiny-input__inner')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
 
-  await expect(tags.filter({ hasText: '广州市' })).toHaveCount(1)
-  await page.getByRole('row', { name: '华南区 广东省 深圳市' }).getByRole('cell').first().click()
-  await expect(tags.filter({ hasText: '深圳市' })).toHaveCount(0)
+  await select.click()
+  await expect(dropdown.locator('.tiny-grid-radio.is__disabled')).toHaveCount(3)
+  await expect(input).toHaveValue('')
+
+  await dropdown.getByRole('row').nth(1).getByRole('cell').first().click()
+  await expect(input).toHaveValue('')
+
+  await dropdown.getByRole('row').nth(2).getByRole('cell').first().click()
+  await expect(input).toHaveValue('深圳市')
 })
 
-test('test-grid-radio', async ({ page }) => {
-  await page.goto('select#disable-grid-select-radio')
+test('嵌套表格禁用某项（多选）', async ({ page }) => {
+  await page.goto('select#nest-grid-disable')
 
-  const input = page.locator('.grid-radio .tiny-input__inner')
-  await input.click()
-  await page.getByRole('row', { name: '华南区 广东省 深圳市' }).getByRole('cell').first().click()
-  await expect(page.getByPlaceholder('请选择').nth(1)).toHaveValue('深圳市')
-  await input.click()
-  await page.getByRole('row', { name: '华南区 广东省 广州市' }).getByRole('cell').first().click()
-  await expect(page.getByPlaceholder('请选择').nth(1)).toHaveValue('深圳市')
-  await page.getByRole('row', { name: '华南区 广东省 佛山市' }).getByRole('cell').first().click()
-  await expect(page.getByPlaceholder('请选择').nth(1)).toHaveValue('佛山市')
+  const wrap = page.locator('#nest-grid-disable')
+  const select = wrap.locator('.tiny-select').nth(1)
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const tag = select.locator('.tiny-tag')
+
+  await select.click()
+  await dropdown.getByRole('row').nth(2).getByRole('cell').first().click()
+  await expect(tag).toHaveCount(0)
+
+  await dropdown.getByRole('row').nth(1).getByRole('cell').first().click()
+  await expect(tag).toHaveCount(1)
+
+  await dropdown.getByRole('row').nth(4).getByRole('cell').first().click()
+  await expect(tag).toHaveCount(1)
 })

@@ -2,7 +2,6 @@
   <tiny-layout>
     <tiny-row> 是否禁用：<tiny-switch v-model="disabled"></tiny-switch> </tiny-row>
     <tiny-row>
-      <tiny-button :icon="IconSearch" type="text" size="mini" :disabled="disabled"></tiny-button>
       <tiny-button :disabled="disabled">默认按钮</tiny-button>
       <tiny-button type="primary" :disabled="disabled">主要按钮</tiny-button>
       <tiny-button type="success" :disabled="disabled">成功按钮</tiny-button>
