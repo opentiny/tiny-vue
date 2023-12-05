@@ -41,7 +41,7 @@
           <div id="API">
             <h2 class="ti-f30 ti-fw-normal ti-mt28">API</h2>
             <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
-            <div class="mt20" v-for="(oneGroup, idx) in currJson.apis" :key="oneGroup.name">
+            <div class="mt20" v-for="oneGroup in currJson.apis" :key="oneGroup.name">
               <div class="ti-f-r ti-f-pos-start ti-fw-bold">
                 <div :id="oneGroup.name" class="ti-f18">{{ oneGroup.name }}</div>
                 <div class="ti-ml12 ti-b-a-primary ti-c-primary ti-px8 ti-py4">{{ oneGroup.type }}</div>
@@ -68,7 +68,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="row in oneApiArr" :key="row.name">
+                      <tr v-for="row in oneApiArr.sort((a, b) => a.name.localeCompare(b.name))" :key="row.name">
                         <td>
                           <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
@@ -219,6 +219,7 @@ export default defineComponent({
             //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
           } catch (err) {
+            // eslint-disable-next-line no-console
             console.log('querySelector has special character:', err)
           }
           if (scrollTarget) {
@@ -287,6 +288,7 @@ export default defineComponent({
         }
 
         // 3、加载cmpId.js 文件
+        // eslint-disable-next-line no-eval
         const json = eval('(' + jsData.slice(15) + ')')
         state.currJson = {
           ...json,
@@ -295,12 +297,14 @@ export default defineComponent({
         }
         if (state.cmpId?.startsWith('grid-')) {
           fetchDemosFile(`${staticDemoPath}/grid/webdoc/grid.js`).then((data) => {
+            // eslint-disable-next-line no-eval
             const gridJson = eval('(' + data.slice(15) + ')')
             state.currJson.apis = gridJson.apis
             state.currJson.types = gridJson.types
           })
         } else if (state.cmpId?.startsWith('chart-')) {
           fetchDemosFile(`${staticDemoPath}/chart/webdoc/chart.js`).then((data) => {
+            // eslint-disable-next-line no-eval
             const chartJson = eval('(' + data.slice(15) + ')')
             state.currJson.apis = chartJson.apis
           })
