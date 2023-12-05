@@ -728,8 +728,14 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile",
       "pc"
     ]
+  },
+  "ContainerMobile": {
+    "path": "vue/src/container/src/mobile.vue",
+    "type": "template",
+    "exclude": false
   },
   "ContainerPc": {
     "path": "vue/src/container/src/pc.vue",

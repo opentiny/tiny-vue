@@ -53,7 +53,10 @@ export const cmpMenus = [
     label: '容器组件',
     labelEn: 'Container',
     key: 'cmp_container',
-    children: [{ name: 'Dialog', nameCn: '对话框', key: 'dialogbox' }]
+    children: [
+      { name: 'Dialog', nameCn: '对话框', key: 'dialogbox' },
+      { name: 'Container', nameCn: '内容布局', key: 'container' }
+    ]
   },
   {
     label: '数据组件',

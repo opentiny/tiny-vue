@@ -43,6 +43,7 @@ module.exports = {
     '@typescript-eslint/brace-style': 'off',
     '@typescript-eslint/restrict-plus-operands': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off'
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/no-invalid-this': 'off'
   }
 }
