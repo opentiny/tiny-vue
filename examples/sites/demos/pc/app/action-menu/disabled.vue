@@ -23,7 +23,8 @@ export default {
           label: '关机'
         },
         {
-          label: '重启'
+          label: '重启',
+          disabled: true
         },
         {
           label: '网络设置',

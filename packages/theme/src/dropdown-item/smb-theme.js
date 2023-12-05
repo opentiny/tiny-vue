@@ -10,5 +10,12 @@ export const tinyDropdownItemSmbTheme = {
   'ti-dropdown-item-max-width': 'var(--ti-common-size-auto)',
   'ti-dropdown-item-height': 'var(--ti-common-size-height-normal)',
   'ti-dropdown-item-icon-color': 'var(--ti-common-color-icon)',
-  'ti-dropdown-item-content-font-weight-hover': 'var(--ti-common-font-weight-6)'
+  'ti-dropdown-item-content-font-weight-hover': 'var(--ti-common-font-weight-6)',
+  'ti-dropdown-item-active-bg-color': 'var(--ti-common-color-bg-white-normal)',
+  'ti-dropdown-item-active-text-color': '#1476FF',
+  'ti-dropdown-item-content-text-hover': '#1476FF',
+  'ti-dropdown-item-before-bg-color': 'transparent',
+  'ti-dropdown-item-divided-border-color': 'transparent',
+  'ti-dropdown-item-content-bg-hover': 'transparent',
+  'ti-dropdown-item-before-height': '0'
 }
