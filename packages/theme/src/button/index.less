@@ -63,11 +63,14 @@
     padding: 0 var(--ti-button-only-icon-padding-horizontal);
     border-radius: var(--ti-button-only-icon-border-radius);
     border-color: var(--ti-button-only-icon-border-color);
+
     &:hover {
       border-color: var(--ti-button-only-icon-hover-border-color);
     }
+
     &.is-disabled {
       border-color: var(--ti-button-only-icon-disabled-border-color);
+
       &:hover {
         border-color: var(--ti-button-only-icon-disabled-border-color);
       }
@@ -95,6 +98,30 @@
       var(--ti-button-normal-active-border-color),
       var(--ti-button-normal-active-bg-color)
     );
+  }
+
+  &.is-ghost {
+    background-color: transparent;
+
+    &:active,
+    &:focus,
+    &:hover {
+      .button-color(
+        var(--ti-button-ghost-hover-text-color),
+        var(--ti-button-ghost-hover-border-color),
+        transparent
+      );
+    }
+
+    &.is-disabled,
+    &.is-disabled:focus,
+    &.is-disabled:hover {
+      .button-color(
+        var(--ti-button-ghost-disabled-text-color),
+        var(--ti-button-ghost-disabled-border-color),
+        transparent
+      );
+    }
   }
 
   &.is-disabled,
@@ -240,6 +267,12 @@
       var(--ti-button-primary-plain-hover-border-color),
       var(--ti-button-primary-plain-disabled-bg-color),
       var(--ti-button-primary-disabled-border-color),
+      var(--ti-button-primary-ghost-text-color),
+      var(--ti-button-primary-ghost-hover-text-color),
+      var(--ti-button-primary-ghost-disabled-text-color),
+      var(--ti-button-primary-ghost-border-color),
+      var(--ti-button-primary-ghost-hover-border-color),
+      var(--ti-button-primary-ghost-disabled-border-color),
     );
   }
 
@@ -261,6 +294,12 @@
       var(--ti-button-success-plain-hover-border-color),
       var(--ti-button-success-plain-disabled-bg-color),
       var(--ti-button-success-disabled-border-color),
+      var(--ti-button-success-ghost-text-color),
+      var(--ti-button-success-ghost-hover-text-color),
+      var(--ti-button-success-ghost-disabled-text-color),
+      var(--ti-button-success-ghost-border-color),
+      var(--ti-button-success-ghost-hover-border-color),
+      var(--ti-button-success-ghost-disabled-border-color),
     );
   }
 
@@ -282,6 +321,12 @@
       var(--ti-button-warning-plain-hover-border-color),
       var(--ti-button-warning-plain-disabled-bg-color),
       var(--ti-button-warning-disabled-border-color),
+      var(--ti-button-warning-ghost-text-color),
+      var(--ti-button-warning-ghost-hover-text-color),
+      var(--ti-button-warning-ghost-disabled-text-color),
+      var(--ti-button-warning-ghost-border-color),
+      var(--ti-button-warning-ghost-hover-border-color),
+      var(--ti-button-warning-ghost-disabled-border-color),
     );
   }
 
@@ -303,16 +348,13 @@
       var(--ti-button-danger-plain-hover-border-color),
       var(--ti-button-danger-plain-disabled-bg-color),
       var(--ti-button-danger-disabled-border-color),
+      var(--ti-button-danger-ghost-text-color),
+      var(--ti-button-danger-ghost-hover-text-color),
+      var(--ti-button-danger-ghost-disabled-text-color),
+      var(--ti-button-danger-ghost-border-color),
+      var(--ti-button-danger-ghost-hover-border-color),
+      var(--ti-button-danger-ghost-disabled-border-color),
     );
-
-    &.is-plain {
-      &.is-disabled,
-      &.is-disabled:active,
-      &.is-disabled:focus,
-      &.is-disabled:hover {
-        border-color: var(--ti-button-danger-plain-disabled-border-color);
-      }
-    }
   }
 
   &&--info {
@@ -333,6 +375,12 @@
       var(--ti-button-info-plain-hover-border-color),
       var(--ti-button-info-plain-disabled-bg-color),
       var(--ti-button-info-disabled-border-color),
+      var(--ti-button-info-ghost-text-color),
+      var(--ti-button-info-ghost-hover-text-color),
+      var(--ti-button-info-ghost-disabled-text-color),
+      var(--ti-button-info-ghost-border-color),
+      var(--ti-button-info-ghost-hover-border-color),
+      var(--ti-button-info-ghost-disabled-border-color),
     );
   }
 

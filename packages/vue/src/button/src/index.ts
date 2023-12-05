@@ -55,7 +55,8 @@ export const buttonProps = {
   banner: {
     type: Boolean,
     default: false
-  }
+  },
+  ghost: Boolean
 }
 
 export default defineComponent({
