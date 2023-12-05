@@ -100,7 +100,7 @@
           right: 16px;
           max-width: 36px;
           overflow: hidden;
-          font-size: var(--tree-menu-node-number-font-size);
+          font-size: var(--ti-tree-menu-node-number-font-size);
         }
 
         .tree-node {
@@ -108,7 +108,13 @@
         }
 
         .tree-node-name {
+          display: flex;
+          align-items: center;
           padding: 0 var(--ti-tree-menu-node-body-text-padding-horizontal);
+
+          svg {
+            margin-right: var(--ti-tree-menu-prefix-icon-margin-right);
+          }
         }
       }
 
@@ -128,7 +134,7 @@
 
       .@{tree-node-prefix-cls}__content-left {
         position: relative;
-        padding-left: var(--tree-menu-node-vertical-line-margin-right);
+        padding-left: var(--ti-tree-menu-node-vertical-line-margin-right);
       }
 
       &.is-current {
