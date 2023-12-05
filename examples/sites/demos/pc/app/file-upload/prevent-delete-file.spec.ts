@@ -13,7 +13,7 @@ test('阻止删除文件', async ({ page }) => {
   await expect(lists).toHaveText(/test1/)
   await lists.hover()
   await close.click()
-  await modal.waitFor({ state: 'attached', timeout: 100 })
+  await modal.nth(1).waitFor({ state: 'attached', timeout: 100 })
   await modalCancel.click()
   await expect(lists).toHaveCount(1)
   await expect(lists).toHaveText(/test1/)
