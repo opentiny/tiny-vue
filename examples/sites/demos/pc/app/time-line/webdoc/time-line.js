@@ -47,14 +47,14 @@ export default {
       'demoId': 'status',
       'name': { 'zh-CN': '节点状态', 'en-US': 'Status of Node' },
       'desc': {
-        'zh-CN': '<p>在单项数据中使用 <code>status</code> 指定对应节点的状态.</p>',
+        'zh-CN': '<p>在单项数据中使用 <code>status</code> 指定对应节点的状态。</p>',
         'en-US': '<p>Use the <code>shape</code> attribute to set the appearance of a vertical time line node. </p>'
       },
       'codeFiles': ['status.vue']
     },
     {
       'demoId': 'set-node-width',
-      'name': { 'zh-CN': '宽度设置', 'en-US': 'Width Setting' },
+      'name': { 'zh-CN': '宽度', 'en-US': 'Width Setting' },
       'desc': {
         'zh-CN': '<p>通过 <code>space</code> 属性设置节点的宽度。</p>\n',
         'en-US': '<p>Use the <code>space</code> attribute to set the width of timeline node. </p>\n'
@@ -108,7 +108,7 @@ export default {
     {
       'name': 'time-line',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'active',
           'type': 'number',
@@ -154,7 +154,7 @@ export default {
         {
           'name': 'name-field',
           'type': 'string',
-          'defaultValue': 'name',
+          'defaultValue': "'name'",
           'desc': {
             'zh-CN': '节点名称对应的字段名',
             'en-US': 'Set the field name in the node information.'
@@ -174,10 +174,10 @@ export default {
         {
           'name': 'shape',
           'type': 'string',
-          'defaultValue': 'circle',
+          'defaultValue': "'circle'",
           'desc': {
-            'zh-CN': '圆点外形: 空心圆形或实心圆点，分别对应 circle | dot',
-            'en-US': 'Set the appearance of point, optional values include circle and dot'
+            'zh-CN': "圆点外形: 空心圆形或实心圆点，取值分别对应 'circle' | 'dot'",
+            'en-US': "Set the appearance of point, optional values include 'circle' and 'dot'"
           },
           'demoId': 'shape'
         },
@@ -196,7 +196,7 @@ export default {
           'type': 'string | number',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '节点宽度， 取值为数字、带长度单位的数值字符串和百分比字符串，数字会默认以px为长度单位。',
+            'zh-CN': '节点宽度， 取值为数字、带长度单位的数值字符串和百分比字符串，数字会默认以px为长度单位',
             'en-US':
               'Set the width of the timeline.The value can be a number, a numeric string with length units, or a percentage string. For numbers, the default length unit is px'
           },
@@ -215,7 +215,7 @@ export default {
         {
           'name': 'time-field',
           'type': 'string',
-          'defaultValue': 'time',
+          'defaultValue': "'time'",
           'desc': {
             'zh-CN': '节点时间信息对应的字段名',
             'en-US': 'The name of the field corresponding to the node time information'
@@ -236,7 +236,7 @@ export default {
       'events': [
         {
           'name': 'click',
-          'type': '(index: number, node: ITimelineItem) => void',
+          'type': '(index: number, node: <a href="#ITimelineItem">ITimelineItem</a>) => void',
           'desc': {
             'zh-CN': '节点的点击事件，参数：<br />index：点击节点的下标<br /> node： 点击节点数据}',
             'en-US': 'Click event of a node. arguments:<br />index: click the subscript of a node<br />node: node data'
@@ -299,7 +299,7 @@ export default {
           'type': 'string | number',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '连接线长度，仅当 timeline 组件 text-position 属性取值为 true 时生效，设置后 space 属性失效。',
+            'zh-CN': '连接线长度，仅当 timeline 组件 text-position 属性取值为 true 时生效，设置后 space 属性失效',
             'en-US':
               'The length of the connection line and it is valid only when text-position is set to true. After setting, the space property is invalid'
           },
@@ -310,7 +310,7 @@ export default {
           'type': 'string | number',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '节点宽度， 取值为数字、带长度单位的数值字符串和百分比字符串，数字会默认以px为长度单位。',
+            'zh-CN': '节点宽度， 取值为数字、带长度单位的数值字符串和百分比字符串，数字会默认以px为长度单位',
             'en-US':
               'Set the width of the timeline.The value can be a number, a numeric string with length units, or a percentage string. For numbers, the default length unit is px'
           },
