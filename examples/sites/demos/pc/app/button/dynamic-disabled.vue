@@ -21,9 +21,9 @@
 
     <tiny-row>
       <tiny-button :disabled="disabled" ghost>幽灵按钮</tiny-button>
-      <tiny-button :icon="IconSearch" :disabled="disabled">图标按钮</tiny-button>
-      <tiny-button :icon="IconSearch" :disabled="disabled"> </tiny-button>
-      <tiny-button :icon="IconSearch" :disabled="disabled" circle> </tiny-button>
+      <tiny-button :icon="TinyIconSearch" :disabled="disabled">图标按钮</tiny-button>
+      <tiny-button :icon="TinyIconSearch" :disabled="disabled"> </tiny-button>
+      <tiny-button :icon="TinyIconSearch" :disabled="disabled" circle> </tiny-button>
     </tiny-row>
   </tiny-layout>
 </template>
@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       disabled: false,
-      IconSearch: iconSearch()
+      TinyIconSearch: iconSearch()
     }
   }
 }
