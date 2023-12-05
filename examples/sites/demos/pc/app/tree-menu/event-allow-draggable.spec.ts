@@ -4,8 +4,11 @@ test('拖拽菜单回调事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree-menu#event-allow-draggable')
 
-  const treeMenu = page.locator('#preview .tiny-tree-menu')
+  const wrap = page.locator('#event-allow-draggable')
+  const treeMenu = wrap.locator('.tiny-tree-menu')
   const node = treeMenu.getByTitle('首页')
+
+  await page.waitForTimeout(2000)
 
   const { x: x0, y: y0 } = await node.boundingBox()
   await page.mouse.move(x0, y0)

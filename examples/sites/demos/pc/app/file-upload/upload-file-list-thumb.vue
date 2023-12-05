@@ -29,9 +29,10 @@ export default {
         showDel: true,
         showTooltip: false,
         popperClass: 'my-thumb-name',
-        downloadFile: (file) => {
-          console.log('file', file)
-        },
+        // 取消以下注释自定义下载
+        // downloadFile: (file) => {
+        //   console.log('file', file)
+        // },
         icon: iconEditorListNum()
       },
       fileList: [

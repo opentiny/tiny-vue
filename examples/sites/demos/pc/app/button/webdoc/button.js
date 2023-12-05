@@ -14,6 +14,15 @@ export default {
       'codeFiles': ['basic-usage.vue']
     },
     {
+      'demoId': 'ghost',
+      'name': { 'zh-CN': '幽灵按钮', 'en-US': 'Ghost button' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>ghost</code> 设置幽灵按钮。</p>',
+        'en-US': '<p>Set up ghost buttons via <code>ghost</code>.</p>'
+      },
+      'codeFiles': ['ghost.vue']
+    },
+    {
       'demoId': 'dynamic-disabled',
       'name': { 'zh-CN': '动态禁用按钮', 'en-US': 'Dynamic Disable Button' },
       'desc': {
@@ -138,6 +147,16 @@ export default {
             'en-US': 'Sets whether the button is disabled'
           },
           'demoId': 'dynamic-disabled'
+        },
+        {
+          'name': 'ghost',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否幽灵按钮',
+            'en-US': 'Is ghost button'
+          },
+          'demoId': 'ghost'
         },
         {
           'name': 'icon',

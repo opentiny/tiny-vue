@@ -4,10 +4,4 @@ import buildTheme from './gulp/buildTheme.mjs'
 import themeJson from './gulp/themeJson.mjs'
 import themeConcat from './gulp/themeConcat.mjs'
 
-export {
-  themeJson,
-  themeConcat,
-  buildVue,
-  buildRenderless,
-  buildTheme
-}
+export { themeJson, themeConcat, buildVue, buildRenderless, buildTheme }

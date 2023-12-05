@@ -24,12 +24,13 @@ export const api = ['state', 'handleMoreClick', 'handleItemClick', 'visibleChang
 export const renderless = (
   props: IActionMenuProps,
   { computed, reactive }: ISharedRenderlessParamHooks,
-  { emit }: IActionMenuRenderlessParamUtils
+  { emit, designConfig }: IActionMenuRenderlessParamUtils
 ): IActionMenuApi => {
   const state: IActionMenuState = reactive({
     visibleOptions: computed(() => props.options.slice(0, props.maxShowNum)),
     moreOptions: computed(() => props.options.slice(props.maxShowNum)),
-    spacing: computed(() => (String(props.spacing).includes('px') ? props.spacing : props.spacing + 'px'))
+    spacing: computed(() => (String(props.spacing).includes('px') ? props.spacing : props.spacing + 'px')),
+    moreIcon:  computed(() => designConfig?.icons?.moreIcon)
   })
 
   const api: IActionMenuApi = {

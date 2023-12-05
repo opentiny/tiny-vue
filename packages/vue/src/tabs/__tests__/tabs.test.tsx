@@ -8,28 +8,28 @@ const activeName = 'navigation1'
 const data = reactive([
   {
     name: 'navigation1',
-    title: 'Navigation1',
-    content: 'Navigation1'
+    title: 'Navigation 1',
+    content: 'Navigation 1'
   },
   {
     name: 'navigation2',
-    title: 'Navigation2',
-    content: 'Navigation2'
+    title: 'Navigation 2',
+    content: 'Navigation 2'
   },
   {
     name: 'navigation3',
-    title: 'Navigation3',
-    content: 'Navigation3'
+    title: 'Navigation 3',
+    content: 'Navigation 3'
   },
   {
     name: 'navigation4',
-    title: 'Navigation4',
-    content: 'Navigation4'
+    title: 'Navigation 4',
+    content: 'Navigation 4'
   },
   {
     name: 'navigation5',
-    title: 'Navigation5',
-    content: 'Navigation5'
+    title: 'Navigation 5',
+    content: 'Navigation 5'
   }
 ])
 
