@@ -93,7 +93,7 @@ export default defineComponent({
     IconDeltaUp: iconDeltaUp()
   },
   directives: directive({ Clickoutside }),
-  emits: ['open'],
+  emits: ['open', 'created'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

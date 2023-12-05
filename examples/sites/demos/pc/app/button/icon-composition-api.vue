@@ -2,7 +2,7 @@
   <div>
     <tiny-layout>
       <tiny-row>
-        <tiny-button :icon="TinyIconSearch" type="text"> </tiny-button>
+        <tiny-button :icon="TinyIconSearch"> 图标按钮 </tiny-button>
         <tiny-button type="primary" :icon="TinyIconEdit"> 图标按钮 </tiny-button>
         <tiny-button type="success" :icon="TinyIconYes"> 图标按钮 </tiny-button>
         <tiny-button type="info" :icon="TinyIconMail"> 图标按钮 </tiny-button>
@@ -10,6 +10,7 @@
         <tiny-button type="danger" :icon="TinyIconDel"> 图标按钮 </tiny-button>
       </tiny-row>
       <tiny-row>
+        <tiny-button :icon="TinyIconSearch"> </tiny-button>
         <tiny-button type="primary" :icon="TinyIconEdit"> </tiny-button>
         <tiny-button type="success" :icon="TinyIconYes"> </tiny-button>
         <tiny-button type="info" :icon="TinyIconMail"></tiny-button>

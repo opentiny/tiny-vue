@@ -116,41 +116,6 @@ export default {
       'codeFiles': ['stretch-wh.vue']
     },
     {
-      'demoId': 'tabs-draggable',
-      'name': { 'zh-CN': '拖拽', 'en-US': 'Drag' },
-      'desc': {
-        'zh-CN': `<div class="tip custom-block"><p class="custom-block-title"> 通过 <code>drop-config</code> 设置 <code>Sortable</code> 排序插件；<br/>
-          <code>tab-drag-start</code> 监听拖拽开始事件；<br/>
-          <code>tab-drag-over</code> 监听拖拽中事件；<br/>
-          <code>tab-drag-end</code> 监听拖拽结束事件，以此改变页签项顺序。</p></div>`,
-        'en-US': `<div class="tip custom-block"><p class="custom-block-title">Set the <code>Sortable</code> sorting plugin through <code>drop configuration</code> <br />
-          <code>tab-drag-start</code> Listen for drag start events<br />
-          <code>tab-drag-over</code> Listen for dragging events<br />
-          <code>tab-drag-end</code> Listen for drag end events to change the order of tags.</p></div>`
-      },
-      'codeFiles': ['tabs-draggable.vue']
-    },
-    {
-      'demoId': 'tabs-events-click',
-      'name': { 'zh-CN': '点击事件', 'en-US': 'Click Event' },
-      'desc': {
-        'zh-CN': '通过 <code>click</code> 监听单击页签项事件。',
-        'en-US': 'Listen for tag item click events through <code>click</code> .'
-      },
-      'codeFiles': ['tabs-events-click.vue']
-    },
-    {
-      'demoId': 'tabs-events-edit',
-      'name': { 'zh-CN': '编辑事件', 'en-US': 'Edit Event' },
-      'desc': {
-        'zh-CN':
-          '通过 <code>editable</code> 设置同时显示 <code>删除</code> 和 <code>添加</code> 按钮， <code>edit</code> 监听这两类按钮的点击事件。',
-        'en-US':
-          'By setting <code>edit</code> to display both <code>delete</code> and <code>add</code> buttons, <code>edit</code> listens for click events of these two types of buttons.'
-      },
-      'codeFiles': ['tabs-events-edit.vue']
-    },
-    {
       'demoId': 'custom-tab-title',
       'name': { 'zh-CN': '定义页签项标题', 'en-US': 'Custom Tab Item Title' },
       'desc': {
@@ -185,6 +150,41 @@ export default {
           'The Grid component needs to set <code>:auto-resize="true"</code> to adapt to the corresponding changes of the parent element <code>TabItem</code> .'
       },
       'codeFiles': ['show-different-grid-data.vue']
+    },
+    {
+      'demoId': 'tabs-draggable',
+      'name': { 'zh-CN': '拖拽', 'en-US': 'Drag' },
+      'desc': {
+        'zh-CN': `<div class="tip custom-block"><p class="custom-block-title"> 通过 <code>drop-config</code> 设置 <code>Sortable</code> 排序插件；<br/>
+          <code>tab-drag-start</code> 监听拖拽开始事件；<br/>
+          <code>tab-drag-over</code> 监听拖拽中事件；<br/>
+          <code>tab-drag-end</code> 监听拖拽结束事件，以此改变页签项顺序。</p></div>`,
+        'en-US': `<div class="tip custom-block"><p class="custom-block-title">Set the <code>Sortable</code> sorting plugin through <code>drop configuration</code> <br />
+          <code>tab-drag-start</code> Listen for drag start events<br />
+          <code>tab-drag-over</code> Listen for dragging events<br />
+          <code>tab-drag-end</code> Listen for drag end events to change the order of tags.</p></div>`
+      },
+      'codeFiles': ['tabs-draggable.vue']
+    },
+    {
+      'demoId': 'tabs-events-click',
+      'name': { 'zh-CN': '点击事件', 'en-US': 'Click Event' },
+      'desc': {
+        'zh-CN': '通过 <code>click</code> 监听单击页签项事件。',
+        'en-US': 'Listen for tag item click events through <code>click</code> .'
+      },
+      'codeFiles': ['tabs-events-click.vue']
+    },
+    {
+      'demoId': 'tabs-events-edit',
+      'name': { 'zh-CN': '编辑事件', 'en-US': 'Edit Event' },
+      'desc': {
+        'zh-CN':
+          '通过 <code>editable</code> 设置同时显示 <code>删除</code> 和 <code>添加</code> 按钮， <code>edit</code> 监听这两类按钮的点击事件。',
+        'en-US':
+          'By setting <code>edit</code> to display both <code>delete</code> and <code>add</code> buttons, <code>edit</code> listens for click events of these two types of buttons.'
+      },
+      'codeFiles': ['tabs-events-edit.vue']
     }
   ],
   apis: [

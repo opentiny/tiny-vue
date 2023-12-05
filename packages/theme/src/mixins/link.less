@@ -14,6 +14,11 @@
   color: @color;
   fill: @color;
 
+  g {
+    color: @color;
+    fill: @color;
+  }
+
   &.is-underline:hover {
     &:after {
       border-color: @border-color;
@@ -22,11 +27,17 @@
 
   &:hover {
     text-decoration: none;
+    color: @hover-color;
   }
 
   &.is-disabled,
   &.is-disabled:hover {
     color: @disabled-color;
     fill: @disabled-color;
+
+    g {
+      color: @disabled-color;
+      fill: @disabled-color;
+    }
   }
 }

@@ -17,11 +17,11 @@ import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
 
-const VERSION = 'tiny-vue-version'
+const VERSION = 'tiny-vue-version-3.12'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
 
-const versions = ['3.11', '3.10', '3.9', '3.8']
+const versions = ['3.12', '3.11', '3.10', '3.9', '3.8']
 const latestVersion = localStorage.getItem(VERSION) || versions[0]
 const cdnHost = localStorage.getItem('setting-cdn')
 const getRuntime = (version) => `${cdnHost}/@opentiny/vue@${version}/runtime/`

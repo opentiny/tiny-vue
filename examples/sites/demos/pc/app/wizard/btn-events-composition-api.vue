@@ -11,7 +11,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Wizard as TinyWizard } from '@opentiny/vue'
+import { Wizard as TinyWizard, Modal } from '@opentiny/vue'
 
 const dataSet = ref([
   {
@@ -37,18 +37,18 @@ const dataSet = ref([
 ])
 
 const handlePrev = (datas) => {
-  console.log('handlePrev：上一步，', datas)
+  Modal.message('btn-prev' + JSON.stringify(datas))
 }
 
 const handleNext = (datas) => {
-  console.log('handleNext：下一步，', datas)
+  Modal.message('btn-next' + JSON.stringify(datas))
 }
 
 const handleSave = (datas) => {
-  console.log('handleSave：保存，', datas)
+  Modal.message('btn-save' + JSON.stringify(datas))
 }
 
 const handleSubmit = (datas) => {
-  console.log('handleSubmit：提交，', datas)
+  Modal.message('btn-submit' + JSON.stringify(datas))
 }
 </script>

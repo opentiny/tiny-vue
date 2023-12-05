@@ -18,7 +18,7 @@ export default {
     const setTabs3 = () => {
       const arr = []
       for (let i = 1; i <= 5; i++) {
-        const text = `Navigation${i}`
+        const text = `Navigation ${i}`
         arr.push({
           name: `navigation${i}`,
           title: text,

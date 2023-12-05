@@ -17,7 +17,7 @@ import { ref } from 'vue'
 import { Progress as TinyProgress, Button as TinyButton } from '@opentiny/vue'
 import { iconMinus, iconPlus } from '@opentiny/vue-icon'
 
-const percentage = ref(20)
+const percentage = ref(90)
 const IconMinus = iconMinus()
 const IconPlus = iconPlus()
 

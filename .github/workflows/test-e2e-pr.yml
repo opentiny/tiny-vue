@@ -24,7 +24,11 @@ jobs:
             const regex = /\[(.*?)\]/
             const matches = prTitle.match(regex)
             if (matches && matches.length > 1 && matches[1]) {
-              let components = matches[1].split(',').map(c => c.trim()).filter(c => /^[a-z\-]+$/.test(c)).map(c => `${c}/`)
+              let components = matches[1]
+                .split(',')
+                .map((c) => c.trim())
+                .filter((c) => /^[a-z\-\/]+$/.test(c))
+                .map((c) => `"\\/${c}\\/"`)
               components = [...new Set(components)].slice(0, 3).join(' ')
               core.setOutput('testComponents', components)
             } else {

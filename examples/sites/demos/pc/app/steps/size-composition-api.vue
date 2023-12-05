@@ -1,12 +1,12 @@
 <template>
-  <tiny-steps vertical line size="small" :data="data" :visible-num="4" :active="advancedActive"></tiny-steps>
+  <tiny-steps vertical line size="small" :data="data" :active="active" @click="normalClick"></tiny-steps>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
+import { Steps as TinySteps, Modal } from '@opentiny/vue'
 
-const normalActive = ref(0)
+const active = ref(0)
 const data = ref([
   {
     name: 'Basic Info'
@@ -23,5 +23,8 @@ const data = ref([
     disabled: true
   }
 ])
-const normalActive1 = ref(0)
+
+const normalClick = (index, node) => {
+  active.value = index
+}
 </script>

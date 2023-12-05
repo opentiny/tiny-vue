@@ -1,10 +1,13 @@
 <template>
-  <tiny-progress type="dashboard" :percentage="percentage" :color="customColors" :width="300"> </tiny-progress>
+  <div>
+    <tiny-button @click="add">增加</tiny-button>
+    <tiny-progress type="dashboard" :percentage="percentage" :color="customColors" :width="300"> </tiny-progress>
+  </div>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Progress as TinyProgress } from '@opentiny/vue'
+import { Progress as TinyProgress, Button as TinyButton } from '@opentiny/vue'
 
 const percentage = ref(20)
 const customColor = ref('#409eff')
@@ -24,5 +27,9 @@ function customColorMethod(percentage) {
   } else {
     return '#67c23a'
   }
+}
+
+function add() {
+  percentage.value += 10
 }
 </script>

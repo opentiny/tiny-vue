@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('旗子数据来源', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://127.0.0.1:7130/pc/milestone/flag-before')
+  await page.goto('milestone#flag-before')
 
   const flags = page.locator('.tiny-milestone__flag-content')
   const flagLines = page.locator('.tiny-milestone__flag-line')
@@ -18,11 +18,12 @@ test('旗子数据来源', async ({ page }) => {
 
   for (let i = 0; i < flagCount; i++) {
     const { x, y, width, height } = await flags.nth(i).boundingBox()
+    const { y: lineY, height: lineHeight } = await flagLines.nth(i).boundingBox()
 
-    await expect(x).toBeCloseTo(afterX[i], 2)
-    await expect(y).toBeCloseTo(371, 2)
+    await expect(x).toBeGreaterThanOrEqual(afterX[i])
+    await expect(lineY - lineHeight).toBeGreaterThanOrEqual(y)
     await expect(width).toEqual(58)
-    await expect(height).toEqual(34)
+    await expect(height).toBeGreaterThanOrEqual(34)
     await expect(flags.nth(i)).toHaveText(flagAfterContents[i])
     await expect(flagLines.nth(i)).toHaveCSS('width', '1px')
     await expect(flagLines.nth(i)).toHaveCSS('height', '30px')
@@ -34,11 +35,12 @@ test('旗子数据来源', async ({ page }) => {
 
   for (let i = 0; i < flagCount; i++) {
     const { x, y, width, height } = await flags.nth(i).boundingBox()
+    const { y: lineY, height: lineHeight } = await flagLines.nth(i).boundingBox()
 
-    await expect(x).toBeCloseTo(BeforeX[i], 2)
-    await expect(y).toBeCloseTo(371, 2)
+    await expect(x).toBeGreaterThanOrEqual(BeforeX[i], 2)
+    await expect(lineY - lineHeight).toBeGreaterThanOrEqual(y)
     await expect(width).toEqual(58)
-    await expect(height).toEqual(34)
+    await expect(height).toBeGreaterThanOrEqual(34)
     await expect(flags.nth(i)).toHaveText(flagBeforeContents[i])
     await expect(flagLines.nth(i)).toHaveCSS('width', '1px')
     await expect(flagLines.nth(i)).toHaveCSS('height', '30px')

@@ -84,7 +84,7 @@ onMounted(() => {
 
   allData.forEach((item, index) => {
     if (index % 2 === 0) {
-      expandConfigData.value.expandRowKeys.push(item._RID) // 添加默认展开指定行
+      expandConfigData.expandRowKeys.push(item._RID) // 添加默认展开指定行
     }
   })
 })
