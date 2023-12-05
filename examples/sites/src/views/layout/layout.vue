@@ -83,12 +83,8 @@
             <div class="node-name-container">
               <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain">多端</tiny-tag>
               <span class="node-name-label">{{ data.label }}</span>
-              <tiny-tag 
-                v-if="data.mark?.text"
-                class="node-float-tip"
-                effect="dark"
-                :type="data.mark?.type">
-                {{ data.mark.text}}
+              <tiny-tag v-if="data.mark?.text" class="node-float-tip" effect="dark" :type="data.mark?.type">
+                {{ data.mark.text }}
               </tiny-tag>
             </div>
           </template>
@@ -113,7 +109,7 @@ import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip, Tag } 
 import { iconHelpCircle } from '@opentiny/vue-icon'
 import { genMenus } from '@/menus.jsx'
 import { router } from '@/router.js'
-import { $t2, $t, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
+import { $t2, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import themeSvg from '@/assets/images/theme.svg?url'
 import useTheme from '@/tools/useTheme'
 

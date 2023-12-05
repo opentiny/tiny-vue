@@ -22,6 +22,16 @@ export default {
       'codeFiles': ['disabled.vue']
     },
     {
+      'demoId': 'add-icon',
+      'name': { 'zh-CN': '图标', 'en-US': 'Icon' },
+      'desc': {
+        'zh-CN': '通过属性 <code>icon</code> 配置菜单按钮前的图标。',
+        'en-US':
+          'The <code>icon</code> attribute is used to Configure the icon in front of the menu button.'
+      },
+      'codeFiles': ['add-icon.vue']
+    },
+    {
       'demoId': 'text-field',
       'name': { 'zh-CN': '映射字段', 'en-US': 'Display Text' },
       'desc': {
@@ -128,6 +138,13 @@ export default {
             'en-US': 'Dropdown button text'
           },
           'demoId': 'more-text'
+        },
+        {
+          'name': 'icon',
+          'type': 'component',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '菜单项显示值前的图标', 'en-US': 'Icon of a menu item' },
+          'demId': 'add-icon'
         },
         {
           'name': 'options',
