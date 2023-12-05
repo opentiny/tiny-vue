@@ -6,7 +6,7 @@ test('是否正常移除标签', async ({ page }) => {
 
   const first = page.locator('.tiny-tag').filter({ hasText: '标签一' })
   const close = first.locator('.tiny-tag__close')
-  const modal = page.locator('.tiny-modal__box')
+  const modal = page.locator('.tiny-modal__box').nth(0)
 
   await close.click()
   await modal.waitFor({ state: 'attached', timeout: 100 })

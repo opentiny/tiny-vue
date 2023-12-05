@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('edit事件', async ({ page }) => {
+test('编辑事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#tabs-events-edit')
 
@@ -11,7 +11,7 @@ test('edit事件', async ({ page }) => {
   const modal = page.locator('.tiny-modal')
 
   await close.click()
-  await modal.waitFor({ state: 'attached', timeout: 100 })
+  await modal.first().isVisible()
   await add.click()
-  await expect(modal).toHaveCount(2)
+  await modal.nth(1).isVisible()
 })

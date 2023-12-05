@@ -4,7 +4,7 @@ test('边框和自定义背景色', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
   await page.goto('tag#color3')
 
-  const tags = page.locator('.tiny-tag')
+  const tags = page.locator('.all-demos-container').locator('.tiny-tag')
   const first = tags.nth(0)
 
   await expect(tags).toHaveClass([

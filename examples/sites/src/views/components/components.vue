@@ -8,11 +8,17 @@
       <div class="ti-fi-1 ti-w0 ti-rel cmp-container">
         <!-- 一个组件的文档:  描述md + demos + apis -->
         <div class="markdown-body markdown-top-body" size="medium" v-html="cmpTopMd"></div>
+        <version-tip
+          v-if="currJson.metaData || currJson.versionTipOption"
+          :meta-data="currJson.metaData"
+          v-bind="currJson.versionTipOption"
+        >
+        </version-tip>
         <template v-if="currJson?.demos?.length > 0">
           <div class="all-demos-container">
             <h2 class="ti-f30 ti-fw-normal !ti-mb20">{{ $t('yan-shi') }}</h2>
             <div v-if="apiModeState.demoMode === 'default'" class="ti-f-c ti-f-wrap">
-              <template v-if="currJson.column === '2'">
+              <template v-if="currJson.column === '2' && currJson.demos.length > 1">
                 <div class="one-demo-col2">
                   <div>
                     <demo v-for="demo in evenDemo" :key="demo.name" :demo="demo" />
@@ -35,7 +41,7 @@
           <div id="API">
             <h2 class="ti-f30 ti-fw-normal ti-mt28">API</h2>
             <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
-            <div class="mt20" v-for="(oneGroup, idx) in currJson.apis" :key="oneGroup.name">
+            <div class="mt20" v-for="oneGroup in currJson.apis" :key="oneGroup.name">
               <div class="ti-f-r ti-f-pos-start ti-fw-bold">
                 <div :id="oneGroup.name" class="ti-f18">{{ oneGroup.name }}</div>
                 <div class="ti-ml12 ti-b-a-primary ti-c-primary ti-px8 ti-py4">{{ oneGroup.type }}</div>
@@ -62,10 +68,18 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="row in oneApiArr" :key="row.name">
+                      <tr v-for="row in oneApiArr.sort((a, b) => a.name.localeCompare(b.name))" :key="row.name">
                         <td>
                           <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
+                          <version-tip
+                            v-if="row.metaData || row.versionTipOption"
+                            :meta-data="row.metaData"
+                            v-bind="row.versionTipOption"
+                            render-type="tag"
+                            tip-subject="api"
+                          >
+                          </version-tip>
                         </td>
                         <td v-if="!key.includes('slots')">
                           <a
@@ -126,14 +140,15 @@
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } from 'vue'
 import { marked } from 'marked'
-import { Loading, Anchor, ButtonGroup, ColumnListGroup } from '@opentiny/vue'
+import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
+import { $t, $t2, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
 import { Collapse, CollapseItem } from '@opentiny/vue'
 import { faqMdConfig, staticDemoPath, getWebdocPath } from './cmpConfig'
 import AsyncHighlight from './async-highlight.vue'
+import VersionTip from './VersionTip.vue'
 
 export default defineComponent({
   name: 'CmpPageVue',
@@ -143,7 +158,8 @@ export default defineComponent({
     TinyButtonGroup: ButtonGroup,
     TinyCollapse: Collapse,
     TinyCollapseItem: CollapseItem,
-    AsyncHighlight
+    AsyncHighlight,
+    VersionTip
   },
   directives: {
     loading: Loading.directive
@@ -167,7 +183,10 @@ export default defineComponent({
             link: `#${demo.demoId}`
           })) || []
         if (state.currJson?.apis?.length) {
-          links.push({ key: 'API', title: 'API', link: '#API' }, { key: 'Types', title: 'Types', link: '#types' })
+          links.push({ key: 'API', title: 'API', link: '#API' })
+        }
+        if (state.currJson?.types?.length) {
+          links.push({ key: 'types', title: 'types', link: '#types' })
         }
         if (state.cmpFAQMd) {
           links.push({
@@ -200,6 +219,7 @@ export default defineComponent({
             //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
           } catch (err) {
+            // eslint-disable-next-line no-console
             console.log('querySelector has special character:', err)
           }
           if (scrollTarget) {
@@ -268,6 +288,7 @@ export default defineComponent({
         }
 
         // 3、加载cmpId.js 文件
+        // eslint-disable-next-line no-eval
         const json = eval('(' + jsData.slice(15) + ')')
         state.currJson = {
           ...json,
@@ -276,12 +297,14 @@ export default defineComponent({
         }
         if (state.cmpId?.startsWith('grid-')) {
           fetchDemosFile(`${staticDemoPath}/grid/webdoc/grid.js`).then((data) => {
+            // eslint-disable-next-line no-eval
             const gridJson = eval('(' + data.slice(15) + ')')
             state.currJson.apis = gridJson.apis
             state.currJson.types = gridJson.types
           })
         } else if (state.cmpId?.startsWith('chart-')) {
           fetchDemosFile(`${staticDemoPath}/chart/webdoc/chart.js`).then((data) => {
+            // eslint-disable-next-line no-eval
             const chartJson = eval('(' + data.slice(15) + ')')
             state.currJson.apis = chartJson.apis
           })
@@ -311,30 +334,23 @@ export default defineComponent({
       copyText: (text) => {
         navigator.clipboard.writeText(text)
       },
+      // 点击 api区域的 name列时
       jumpToDemo: (demoId) => {
         if (demoId.startsWith('chart') || demoId.startsWith('grid')) {
           router.push(demoId)
         } else {
           router.push(`#${demoId}`)
-        }
-      },
-      handleApiClick: (ev) => {
-        if (ev.target.tagName === 'A') {
-          ev.preventDefault()
-          const href = ev.target.getAttribute('href')
-          const hash = $split(href, '#', -1)
-          router.push(href)
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
 
-          scrollByHash(hash)
-        }
-        if (apiModeState.demoMode === 'single') {
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
+          if (apiModeState.demoMode === 'single') {
+            state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
+          }
         }
       },
+      // 点击api 区域的type列
       handleTypeClick: (ev) => {
         changeActiveNames(ev.target.hash, true)
       },
+      // 目录列表上的点击
       handleAnchorClick: (e, data) => {
         if (apiModeState.demoMode === 'single' && data.link.startsWith('#')) {
           e.preventDefault()
@@ -404,7 +420,7 @@ export default defineComponent({
 </script>
 
 <style lang="less">
-.api-table {
+table.api-table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -433,6 +449,9 @@ export default defineComponent({
     border-bottom: 1px solid rgb(239, 239, 245);
     padding: 12px;
     line-height: 1.5;
+    .version-tip {
+      margin-left: 6px;
+    }
   }
 }
 

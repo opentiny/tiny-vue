@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test('清空输入值', async ({ page }) => {
+test('可清空输入值', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('search#clearable')
 

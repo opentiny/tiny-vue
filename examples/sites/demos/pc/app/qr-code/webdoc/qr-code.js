@@ -1,6 +1,12 @@
 export default {
   column: '2',
   owner: '',
+  metaData: {
+    stable: '3.12.0'
+  },
+  versionTipOption: {
+    stages: ['stable']
+  },
   demos: [
     {
       'demoId': 'basic-usage',

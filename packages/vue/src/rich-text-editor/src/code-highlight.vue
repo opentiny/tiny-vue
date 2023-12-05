@@ -8,6 +8,7 @@
     <pre><code><NodeViewContent /></code></pre>
   </NodeViewWrapper>
 </template>
+
 <script>
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue'
 import { defineComponent } from '@opentiny/vue-common'

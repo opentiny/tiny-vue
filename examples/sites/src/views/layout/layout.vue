@@ -80,8 +80,13 @@
           @collapse-change="collapseChange"
         >
           <template #default="{ data }">
-            <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain" class="ti-mr6">多端</tiny-tag>
-            <span>{{ data.label }}</span>
+            <div class="node-name-container">
+              <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain">多端</tiny-tag>
+              <span class="node-name-label">{{ data.label }}</span>
+              <tiny-tag v-if="data.mark?.text" class="node-float-tip" effect="dark" :type="data.mark?.type">
+                {{ data.mark.text }}
+              </tiny-tag>
+            </div>
           </template>
         </tiny-tree-menu>
       </div>
@@ -104,7 +109,7 @@ import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip, Tag } 
 import { iconHelpCircle } from '@opentiny/vue-icon'
 import { genMenus } from '@/menus.jsx'
 import { router } from '@/router.js'
-import { $t2, $t, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
+import { $t2, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import themeSvg from '@/assets/images/theme.svg?url'
 import useTheme from '@/tools/useTheme'
 
@@ -282,6 +287,10 @@ export default defineComponent({
 }
 
 .main-menu.tiny-tree-menu {
+  .tiny-tree-node__content-box {
+    min-width: 0;
+  }
+
   height: calc(100% - var(--layout-api-mode-height));
   .tiny-tree {
     height: calc(100% - var(--layout-tree-menu-input-height));
@@ -289,6 +298,21 @@ export default defineComponent({
   }
   .tree-node-name {
     line-height: 1.5;
+
+    .node-name-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 6px;
+
+      .node-name-label {
+        flex-grow: 0;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
   }
   & > .tiny-input .tiny-input__inner {
     height: var(--layout-tree-menu-input-height);

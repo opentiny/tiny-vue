@@ -106,7 +106,7 @@ export const selectOption =
         option.loading = false
         state.loading = false
         option.loaded = true
-        nodes.map((data) => {
+        nodes.forEach((data) => {
           state.store.append(data, option.data)
           index = waitLoadList.indexOf(data[valueField])
           if (index !== -1) {

@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'data-basic',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['data-resource.vue']
     },
     {
@@ -44,10 +44,10 @@ export default {
     {
       'name': 'fall-menu',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
-          'type': 'object , Array',
+          'type': 'object | object[]',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置瀑布菜单的数据。',
@@ -93,7 +93,8 @@ export default {
           'desc': { 'zh-CN': '自定义右侧切换图标', 'en-US': 'Customize the switch icon on the right.' },
           'demoId': 'custom-slider-icon'
         }
-      ]
+      ],
+      types: []
     }
   ]
 }

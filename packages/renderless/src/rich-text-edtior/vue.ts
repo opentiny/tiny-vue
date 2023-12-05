@@ -288,7 +288,7 @@ export const renderless = (
     closeTablePanel: closeTablePanel(state),
     tableChoose: tableChoose(state, vm),
     // bubble 菜单
-    shouldShow: shouldShow,
+    shouldShow,
     eventImg,
     eventClick,
     Active

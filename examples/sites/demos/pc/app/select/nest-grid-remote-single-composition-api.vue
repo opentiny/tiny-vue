@@ -4,7 +4,7 @@
     <tiny-select
       v-model="radioValue"
       placeholder="请输入关键词"
-      reserve-keyword
+      filterable
       remote
       :remote-method="remoteMethod"
       value-field="coaNumber"
@@ -17,11 +17,10 @@
     <tiny-select
       v-model="radioValue"
       placeholder="请输入关键词"
-      reserve-keyword
       filterable
       remote
       :remote-method="remoteMethod"
-      :remote-config="{ autoSeach: true, clearData: true, showIcon: true }"
+      :remote-config="{ autoSearch: true, clearData: true, showIcon: true }"
       value-field="coaNumber"
       text-field="coaNumber"
       render-type="grid"

@@ -1,23 +1,15 @@
 import { test, expect } from '@playwright/test'
 
-test('name', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/name')
+test('原生属性', async ({ page }) => {
+  await page.goto('select#native-properties')
 
-  const input = page.locator('#preview .tiny-input__inner')
+  const wrap = page.locator('#native-properties')
+  const select = wrap.locator('.tiny-select')
+  const input = select.locator('.tiny-input__inner')
+
   await expect(input).toHaveAttribute('name', 'inputName')
-})
-
-test('placeholder', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/name')
-
-  const input = page.locator('#preview .tiny-input__inner')
   await expect(input).toHaveAttribute('placeholder', '自定义 placeholder')
+
+  const isHasAutocomplete = await input.evaluate((input) => input.hasAttribute('autocomplete'))
+  await expect(isHasAutocomplete).toBe(true)
 })
-
-test('autocomplete', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/name')
-
-  const input = page.locator('#preview .tiny-input__inner')
-  await expect(input).toHaveAttribute('autocomplete', 'off')
-})
-

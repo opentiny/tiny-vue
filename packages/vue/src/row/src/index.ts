@@ -20,7 +20,7 @@ export default defineComponent({
     flex: Boolean,
     gutter: {
       type: Number,
-      default: 20,
+      default: 0,
       validator(value: number) {
         return value >= 0
       }
@@ -42,6 +42,10 @@ export default defineComponent({
     tag: {
       type: String,
       default: 'div'
+    },
+    noSpace: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
