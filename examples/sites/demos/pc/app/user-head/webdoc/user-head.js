@@ -115,14 +115,14 @@ export default {
         {
           'name': 'background-color',
           'type': 'string',
-          'defaultValue': '#d9d9d9',
+          'defaultValue': `'#d9d9d9'`,
           'desc': { 'zh-CN': '背景色', 'en-US': 'Background color.' },
           'demoId': 'custom-background-color'
         },
         {
           'name': 'color',
           'type': 'string',
-          'defaultValue': '#ffffff',
+          'defaultValue': `'#ffffff'`,
           'desc': { 'zh-CN': '文字颜色', 'en-US': 'Text color.' },
           'demoId': 'color'
         },
@@ -136,7 +136,7 @@ export default {
         {
           'name': 'message-type',
           'type': 'string',
-          'defaultValue': 'details',
+          'defaultValue': `'details'`,
           'desc': {
             'zh-CN': '消息类型 details|basic 可选。该属性的可选值为 details / basic',
             'en-US': 'Message type details|basic is optional. The value of this attribute can be details or basic.'
@@ -167,7 +167,7 @@ export default {
         {
           'name': 'type',
           'type': 'string',
-          'defaultValue': 'label',
+          'defaultValue': `'label'`,
           'desc': {
             'zh-CN': '头像类型，icon|image|label 可选。该属性的可选值为 icon / image / label',
             'en-US':

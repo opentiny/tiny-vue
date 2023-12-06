@@ -80,14 +80,14 @@ export default {
         {
           'name': 'tag',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 ul',
+          'defaultValue': `该属性的默认值为 '<ul>'`,
           'desc': { 'zh-CN': '设置组件的 Dom 标签', 'en-US': 'Setting the Dom Label of a Component.' },
           'demoId': 'custom-tag'
         },
         {
           'name': 'sub-tag',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 li',
+          'defaultValue': `该属性的默认值为 '<li>'`,
           'desc': { 'zh-CN': '设置组件的子级 Dom 标签', 'en-US': 'Setting the Dom Label of a Component. ' },
           'demoId': 'custom-tag'
         }

@@ -86,7 +86,7 @@ export default {
         {
           'name': 'modelValue',
           'type': 'string',
-          'defaultValue': 'transparent',
+          'defaultValue': `'transparent'`,
           desc: {
             'zh-CN': '默认颜色',
             'en-US': 'default color.'

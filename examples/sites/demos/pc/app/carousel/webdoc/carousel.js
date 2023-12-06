@@ -126,7 +126,7 @@ export default {
         {
           'name': 'arrow',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 hover',
+          'defaultValue': `该属性的默认值为 'hover'`,
           'desc': { 'zh-CN': '切换箭头的显示时机;该属性的可选值为 always / hover / never。', 'en-US': '' },
           'demoId': 'up-down-carousel'
         },
@@ -175,14 +175,14 @@ export default {
         {
           'name': 'trigger',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 hover',
+          'defaultValue': `该属性的默认值为 'hover'`,
           'desc': { 'zh-CN': '指示器的触发方式，默认为 hover。该属性的可选值为 click。', 'en-US': '' },
           'demoId': 'indicator-trigger'
         },
         {
           'name': 'type',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 horizontal',
+          'defaultValue': `该属性的默认值为 'horizontal'`,
           'desc': { 'zh-CN': '走马灯的类型;该属性的可选值为 horizontal / vertical / card。', 'en-US': '' },
           'demoId': 'card-mode'
         },

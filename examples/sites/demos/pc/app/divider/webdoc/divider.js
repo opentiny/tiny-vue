@@ -51,7 +51,7 @@ export default {
         {
           'name': 'direction',
           'type': 'string',
-          'defaultValue': 'horizontal',
+          'defaultValue': `'horizontal'`,
           'desc': {
             'zh-CN': '设置分隔线的方向，该属性的可选值为 horizontal / vertical',
             'en-US':
@@ -62,7 +62,7 @@ export default {
         {
           'name': 'content-position',
           'type': 'string',
-          'defaultValue': 'center',
+          'defaultValue': `'center'`,
           'desc': {
             'zh-CN': '设置分隔线文案的位置，该属性的可选值为 left / center / right',
             'en-US':
@@ -73,7 +73,7 @@ export default {
         {
           'name': 'border-style',
           'type': 'string',
-          'defaultValue': 'solid',
+          'defaultValue': `'solid'`,
           'desc': {
             'zh-CN': '设置分隔线的样式，该属性的可选值为 solid / dashed',
             'en-US': 'Set the style of the divider; the possible values for this property are "solid" or "dashed".'
