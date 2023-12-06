@@ -1,23 +1,36 @@
 import { test, expect } from '@playwright/test'
 
-test('tree组件基本使用', async ({ page }) => {
+test('节点操作', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('tree#basic-usage')
+  await page.goto('tree#node-op')
 
-  const tree = page.locator('#preview .tiny-tree')
-  await tree.getByText('一级 1').click()
-  await expect(tree.locator('.tiny-tree-node').first()).toHaveClass(/is-current/)
-  await page.getByText('二级 1-1').click()
-  await expect(tree.locator('.tiny-tree-node').nth(1)).toHaveClass(/is-current/)
-  await page.getByRole('treeitem', { name: '三级 1-1-1' }).first().click()
-  await page.getByRole('treeitem', { name: '一级 3' }).locator('.tiny-svg').click()
-  await page
-    .getByRole('treeitem', { name: '一级 1' })
-    .first()
-    .locator('div')
-    .filter({ hasText: '一级 1' })
-    .first()
-    .click()
-  await expect(page.getByRole('treeitem', { name: '一级 1-1', includeHidden: true })).toBeHidden({ timeout: 0 })
-  await page.locator('.tiny-modal__box').first().click()
+  const preview = page.locator('.pc-demo-container')
+  const tree = preview.locator('.tiny-tree')
+
+  const insertBefore = preview.getByText('添加前节点')
+  const insertAfter = preview.getByText('添加后节点')
+  const append = preview.getByText('添加子节点')
+  const updateKeyChildren = preview.getByText('更新子节点')
+  const remove = preview.getByText('删除当前节点')
+
+  await expect(tree.getByText('数据 1-1-1')).toHaveCount(1)
+
+  await insertBefore.click()
+  await expect(tree.getByText('insertBefore 1000')).toHaveCount(1)
+  await page.waitForTimeout(20)
+
+  await insertAfter.click()
+  await expect(tree.getByText('insertAfter 1001')).toHaveCount(1)
+  await page.waitForTimeout(20)
+
+  await append.click()
+  await expect(tree.getByText('append 1002')).toHaveCount(1)
+  await page.waitForTimeout(20)
+
+  await updateKeyChildren.click()
+  await expect(tree.getByText('update 1003')).toHaveCount(1)
+  await page.waitForTimeout(20)
+
+  await remove.click()
+  await expect(tree.getByText('数据 1-1')).toHaveCount(0)
 })
