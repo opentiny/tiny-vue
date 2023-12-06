@@ -5,7 +5,12 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN':
+          '通过<code>arrow</code>属性设置左右箭头切换效果，<code>loop</code>属性是否循环显示，<code>autoplay</code>属性自动切换。',
+        'en-US':
+          'Set the left and right arrow switching effect through the<code>arrow</code>attribute, check whether the<code>loop</code>attribute is displayed in a loop, and automatically switch the<code>autoplay</code>attribute.'
+      },
       'codeFiles': ['basic-usage.vue']
     },
     {
@@ -83,19 +88,28 @@ export default {
     {
       'demoId': 'carousel-arrow-always',
       'name': { 'zh-CN': '总是显示切换箭头', 'en-US': 'Always show the switch arrow' },
-      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '通过<code>arrow</code>设置属性为<code>always</code>。',
+        'en-US': 'Set the attribute to<code>always</code>through<code>arrow</code>.'
+      },
       'codeFiles': ['carousel-arrow-always.vue']
     },
     {
       'demoId': 'carousel-arrow-hover',
       'name': { 'zh-CN': 'hover 时显示切换箭头', 'en-US': 'The switch arrow is displayed during Hover' },
-      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '通过<code>arrow</code>设置属性为<code>hover</code>。',
+        'en-US': 'Set the attribute to<code>hover</code>through<code>arrow</code>.'
+      },
       'codeFiles': ['carousel-arrow-hover.vue']
     },
     {
       'demoId': 'carousel-arrow-never',
       'name': { 'zh-CN': '隐藏切换箭头', 'en-US': 'Hide the switch arrow' },
-      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '通过<code>arrow</code>设置属性为<code>never</code>。',
+        'en-US': 'Set the attribute to<code>never</code>through<code>arrow</code>.'
+      },
       'codeFiles': ['carousel-arrow-never.vue']
     },
     {
