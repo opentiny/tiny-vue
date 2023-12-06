@@ -10,28 +10,29 @@ export default {
     },
     {
       'demoId': 'direction',
-      'name': { 'zh-CN': '垂直分隔线', 'en-US': '' },
+      'name': { 'zh-CN': '垂直分隔线', 'en-US': 'Vertical divider line' },
       'desc': {
         'zh-CN': '<p>通过 <code>direction</code> 属性可以设置分隔线的方向。</p>',
-        'en-US': ''
+        'en-US': '<p>The direction of the separator line can be set through the<code>direction</code>attribute.</p>'
       },
       'codeFiles': ['direction.vue']
     },
     {
       'demoId': 'content-position',
-      'name': { 'zh-CN': '分隔线文案的位置', 'en-US': '' },
+      'name': { 'zh-CN': '分隔线文案的位置', 'en-US': 'The position of the separator copy' },
       'desc': {
         'zh-CN': '<p>通过 <code>content-position</code> 属性 可以设置分隔线文案的位置。</p>',
-        'en-US': ''
+        'en-US':
+          '<p>The position of the separator text can be set through the<code>content position</code>attribute.</p>'
       },
       'codeFiles': ['contentPosition.vue']
     },
     {
       'demoId': 'custom-style',
-      'name': { 'zh-CN': '自定义分隔线样式', 'en-US': '' },
+      'name': { 'zh-CN': '自定义分隔线样式', 'en-US': 'Custom divider style' },
       'desc': {
         'zh-CN': '<p>你可以自定义分割线样式。</p>',
-        'en-US': ''
+        'en-US': '<p>You can customize the split line style.</p>'
       },
       'codeFiles': ['customStyle.vue']
     }
@@ -54,8 +55,7 @@ export default {
           'defaultValue': `'horizontal'`,
           'desc': {
             'zh-CN': '设置分隔线的方向，该属性的可选值为 horizontal / vertical',
-            'en-US':
-              'Set the direction of the divider; the possible values for this property are "horizontal" or "vertical".'
+            'en-US': `Set the direction of the divider; the possible values for this property are "horizontal" or "vertical"`
           },
           'demoId': 'direction'
         },
@@ -65,8 +65,7 @@ export default {
           'defaultValue': `'center'`,
           'desc': {
             'zh-CN': '设置分隔线文案的位置，该属性的可选值为 left / center / right',
-            'en-US':
-              'Set the position of the divider content; the possible values for this property are "left", "center", or "right".'
+            'en-US': `Set the position of the separator text, with optional values of left/center/right for this attribute`
           },
           'demoId': 'content-position'
         },
@@ -76,7 +75,7 @@ export default {
           'defaultValue': `'solid'`,
           'desc': {
             'zh-CN': '设置分隔线的样式，该属性的可选值为 solid / dashed',
-            'en-US': 'Set the style of the divider; the possible values for this property are "solid" or "dashed".'
+            'en-US': 'Set the style of the separator line, with optional values of solid/dashed for this property'
           },
           'demoId': 'custom-style'
         },
@@ -84,7 +83,7 @@ export default {
           'name': 'content-color',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '设置分隔线文案的颜色', 'en-US': 'Set the color of the divider content.' },
+          'desc': { 'zh-CN': '设置分隔线文案的颜色', 'en-US': 'Set the color of the divider content' },
           'demoId': 'custom-style'
         },
         {
@@ -93,7 +92,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置分割线文案的背景颜色',
-            'en-US': 'Set the background color of the divider content.'
+            'en-US': 'Set the background color of the divider content'
           },
           'demoId': 'custom-style'
         }
@@ -103,7 +102,7 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽', 'en-US': 'Default slot.' },
+          'desc': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
           'demoId': 'content-position'
         }
       ]

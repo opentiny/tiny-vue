@@ -29,9 +29,9 @@ export default {
       'name': { 'zh-CN': '历史记录', 'en-US': 'history' },
       'desc': {
         'zh-CN':
-          '当history不为undefined时, 将会启用历史记录功能。当用户点击确认时, 将会自动将颜色插入到history. 用户行为会更改历史记录, 外部可以更改历史记录。',
+          '当<code>history</code>不为<code>undefined</code>时, 将会启用历史记录功能。当用户点击确认时, 将会自动将颜色插入到<code>history</code>用户行为会更改历史记录, 外部可以更改历史记录。',
         'en-US':
-          'When history is not undefined, the history function will be enabled. When the user clicks confirm, the color will automatically be inserted into the history User behavior can change history, and external users can also change history.'
+          'When <code>history</code> is not <code>undefined</code>, the history function will be enabled. When the user clicks confirm, the color will automatically be inserted into the <code>history</code> User behavior can change history, and external users can also change history.'
       },
       'codeFiles': ['history.vue']
     },
@@ -111,7 +111,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '按下确认时触发该事件',
-            'en-US': 'When click confirm will trigger confirm event.'
+            'en-US': 'When click confirm will trigger confirm event'
           },
           demoId: 'event'
         },
@@ -121,7 +121,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '按下取消或点击外部的时触发该事件',
-            'en-US': 'When click cancel or click out-side will trigger cancel event.'
+            'en-US': 'When click cancel or click out-side will trigger cancel event'
           },
           demoId: 'event'
         },
@@ -131,7 +131,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-cn': '当颜色更新的时候会触发该事件，包括：点击预定义颜色、点击历史记录',
-            'en-US': 'when click predefine color or history, will trigger color-update event.'
+            'en-US': 'when click predefine color or history, will trigger color-update event'
           }
         }
       ],

@@ -61,7 +61,7 @@ export default {
     },
     {
       'demoId': 'message-count-type',
-      'name': { 'zh-CN': '使用小红点代替具体数值', 'en-US': 'Use a red dot instead of a specific value.' },
+      'name': { 'zh-CN': '使用小红点代替具体数值', 'en-US': 'Use a red dot instead of a specific value' },
       'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['message-count-type.vue']
     },
@@ -116,21 +116,21 @@ export default {
           'name': 'background-color',
           'type': 'string',
           'defaultValue': `'#d9d9d9'`,
-          'desc': { 'zh-CN': '背景色', 'en-US': 'Background color.' },
+          'desc': { 'zh-CN': '背景色', 'en-US': 'Background color' },
           'demoId': 'custom-background-color'
         },
         {
           'name': 'color',
           'type': 'string',
           'defaultValue': `'#ffffff'`,
-          'desc': { 'zh-CN': '文字颜色', 'en-US': 'Text color.' },
+          'desc': { 'zh-CN': '文字颜色', 'en-US': 'Text color' },
           'demoId': 'color'
         },
         {
           'name': 'message-total',
           'type': 'number',
           'defaultValue': '',
-          'desc': { 'zh-CN': '消息计数', 'en-US': 'Number of messages.' },
+          'desc': { 'zh-CN': '消息计数', 'en-US': 'Number of messages' },
           'demoId': 'message-count-total'
         },
         {
@@ -147,21 +147,21 @@ export default {
           'name': 'message-upper-limit',
           'type': 'number',
           'defaultValue': '0',
-          'desc': { 'zh-CN': '消息显示上限', 'en-US': 'Maximum number of displayed messages.' },
+          'desc': { 'zh-CN': '消息显示上限', 'en-US': 'Maximum number of displayed messages' },
           'demoId': 'message-count-limit'
         },
         {
           'name': 'min',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '小尺寸模式', 'en-US': 'Small size mode.' },
+          'desc': { 'zh-CN': '小尺寸模式', 'en-US': 'Small size mode' },
           'demoId': 'min-user-head'
         },
         {
           'name': 'round',
           'type': 'boolean',
           'defaultValue': '',
-          'desc': { 'zh-CN': '圆形模式', 'en-US': 'Circular mode.' },
+          'desc': { 'zh-CN': '圆形模式', 'en-US': 'Circular mode' },
           'demoId': 'round-user-head'
         },
         {
@@ -171,7 +171,7 @@ export default {
           'desc': {
             'zh-CN': '头像类型，icon|image|label 可选。该属性的可选值为 icon / image / label',
             'en-US':
-              'Avatar type. The options are icon, image, and label. ;The value of this attribute can be icon / image / label.'
+              'Avatar type. The options are icon, image, and label. ;The value of this attribute can be icon / image / label'
           },
           'demoId': 'image-user-head'
         },
@@ -182,7 +182,7 @@ export default {
           'desc': {
             'zh-CN': 'type=icon 时为图标类名，type=label时为字体串，type=image时为资源路径',
             'en-US':
-              'If type is set to icon, it indicates the icon class name. If type is set to label, it indicates the font string. If type is set to image, it indicates the resource path.'
+              'If type is set to icon, it indicates the icon class name. If type is set to label, it indicates the font string. If type is set to image, it indicates the resource path'
           },
           'demoId': 'icon-user-head'
         }
@@ -193,7 +193,7 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '自定义图像内容', 'en-US': 'Customized image content.' },
+          'desc': { 'zh-CN': '自定义图像内容', 'en-US': 'Customized image content' },
           'demoId': 'custom-user-head-content'
         }
       ]
