@@ -29,8 +29,6 @@ import { get, isFunction, isObject, isUndefined, find } from '@opentiny/vue-rend
 import { adjustParams, realValid } from './utils/beginValidate'
 import { extend } from '@opentiny/vue-renderless/common/object'
 
-const isArr = Array.isArray
-
 class Rule {
   constructor(rule) {
     Object.assign(this, {
@@ -54,15 +52,16 @@ class Rule {
 const onRejected = (opt, _this) => {
   const { isAll, validRest, cb, afterFullData, treeConfig } = opt
   return (params) => {
-    let args = isAll ? validRest : { [params.column.property]: params }
+    const args = isAll ? validRest : { [params.column.property]: params }
 
-    let funcFinish = (args, reject, resolve) => () => {
+    const funcFinish = (args, reject, resolve) => () => {
       opt.status = false
       cb && cb(opt.status, args)
+      // 这里是只有校验失败才会进入，所以直接触发reject即可，用户配置或者不配置callback函数都不要影响用户的catch操作
       cb ? resolve() : reject(args)
     }
 
-    let funcPosAndFinish = (params, finish) => () => {
+    const funcPosAndFinish = (params, finish) => () => {
       getCell(_this, params).then((activeCell) => {
         params.cell = activeCell
         _this.handleValidError(params)
@@ -70,21 +69,25 @@ const onRejected = (opt, _this) => {
       })
     }
 
-    let getLocatRow = (params) => {
-      let row = params.row
-      let rowIndex = afterFullData.indexOf(row)
+    const getLocatRow = (params) => {
+      const row = params.row
+      const rowIndex = afterFullData.indexOf(row)
       return rowIndex > 0 ? afterFullData[rowIndex - 1] : row
     }
 
     return new Promise((resolve, reject) => {
-      let finish = funcFinish(args, reject, resolve)
-      let posAndFinish = funcPosAndFinish(params, finish)
-      let locatRow = getLocatRow(params)
-      let isAutoPosFalse = _this.validOpts.autoPos === false
+      const finish = funcFinish(args, reject, resolve)
+      const posAndFinish = funcPosAndFinish(params, finish)
 
-      isAutoPosFalse && finish()
-      !isAutoPosFalse && treeConfig && _this.scrollToTreeRow(locatRow).then(posAndFinish)
-      !isAutoPosFalse && !treeConfig && _this.scrollToRow(locatRow, true).then(posAndFinish)
+      const locatRow = getLocatRow(params)
+      // 是否触发校验时自动定位到当前校验的单元格
+      const isAutoScrollToErrorCell = _this.validOpts.autoPos
+
+      !isAutoScrollToErrorCell && finish()
+      // 自动滚动到校验不通过的树表单元格
+      isAutoScrollToErrorCell && treeConfig && _this.scrollToTreeRow(locatRow).then(posAndFinish)
+      // 自动滚动到校验不通过的表格单元格
+      isAutoScrollToErrorCell && !treeConfig && _this.scrollToRow(locatRow, true).then(posAndFinish)
     })
   }
 }
@@ -137,28 +140,29 @@ export default {
    * 返回 Promise 对象，或者使用回调方式
    */
 
-  beginValidate(rows, cb, isAll) {
-    let { afterFullData, editRules, hasTreeExpand, treeConfig, treeOpts } = this
-    let { status = true, vaildDatas = afterFullData, validRest = {} } = {}
-    let ret = adjustParams(rows, cb, vaildDatas)
-    cb = ret.cb
-    vaildDatas = ret.vaildDatas
+  beginValidate(rows, callback, isAll) {
+    const { afterFullData, editRules, hasTreeExpand, treeConfig, treeOpts } = this as any
+    const { status = true, validRest = {} } = {}
+    // 处理用户传递的参数得到正确的校验数据和cb回调函数
+    const { vaildDatas, cb } = adjustParams(rows, callback, afterFullData)
     const opt = { isAll, validRest, cb, afterFullData, treeConfig, status }
 
+    // 记录最后一次触发校验的时间
     this.lastCallTime = Date.now()
-    this.clearValidate()
 
+    // 清空之前的校验状态
+    this.clearValidate()
     if (!editRules) {
       if (cb) {
         cb(opt.status)
       }
-      return Promise.resolve()
+      return Promise.resolve(opt.status)
     }
 
-    let validParams = { _vm: this, editRules, isAll, validRest, treeConfig, hasTreeExpand, vaildDatas, treeOpts }
-    let rowValids = realValid(validParams)
+    const validParams = { _vm: this, editRules, isAll, validRest, treeConfig, hasTreeExpand, vaildDatas, treeOpts }
+    const rowValids = realValid(validParams)
 
-    let onFulfilled = () => {
+    const onFulfilled = () => {
       let ruleKeys = Object.keys(validRest)
 
       if (ruleKeys.length) {
@@ -167,8 +171,7 @@ export default {
 
       cb && cb(opt.status)
     }
-    Promise.all(rowValids).then(onFulfilled).catch(onRejected(opt, this))
-    return Promise.resolve()
+    return Promise.all(rowValids).then(onFulfilled).catch(onRejected(opt, this))
   },
   hasCellRules(type, row, { property }) {
     if (!property || !this.editRules) {
@@ -178,7 +181,7 @@ export default {
     let rules = get(this.editRules, property)
     let handler = (rule) => type === 'all' || !rule.trigger || type === rule.trigger
 
-    rules = !isArr(rules) && (isObject(rules) || isFunction(rules)) ? [rules] : rules
+    rules = !Array.isArray(rules) && (isObject(rules) || isFunction(rules)) ? [rules] : rules
 
     return rules && find(rules, handler)
   },
@@ -196,16 +199,22 @@ export default {
    *  min为Number表示最小长度；
    *  validator为Function(rule, value, callback, {rules, row, column, rowIndex, columnIndex})进行自定义校验；
    *  trigger为blur|change表示触发方式（默认为空就行，除非特殊场景）；
+   *  @param {'change' | 'all'} type 校验单元格的触发方式
+   *  @param { IRow }  row 表格的行数据
+   *  @param { IColumnConfig }  column 表格的行数据
+   *  @param { any }  defaultValue 需要校验的默认值
    */
-  validCellRules(type, row, column, defVal) {
-    let { editRules, rowId } = this
-    let { property } = column
-    let { descriptor = {}, model = {} } = {}
+  validCellRules(type, row, column, defaultValue) {
+    const { editRules, rowId } = this
+    const { property } = column
+    // model：存放校验的数据模型，descriptor: 存放数据模型对应的校验规则
+    const { descriptor = {}, model = {} } = {}
 
     if (property && editRules) {
-      let rules = get(editRules, property)
-      let cellValue = isUndefined(defVal) ? get(row, property) : defVal
-      if (isArr(rules)) {
+      // 获取本列的校验配置信息
+      const rules = get(editRules, property)
+      const cellValue = isUndefined(defaultValue) ? get(row, property) : defaultValue
+      if (Array.isArray(rules)) {
         rules.forEach((rule, index) => {
           model[property + index] = cellValue
           descriptor[property + index] = rule
@@ -215,37 +224,36 @@ export default {
         descriptor[property] = rules
       }
     }
-
     // 深度克隆，防止污染 editRules
-    let _descriptor = extend(true, {}, descriptor)
-    let validator = new Validator(_descriptor, t)
-    let executor = (resolve, reject) => {
-      let validArgs = {
+    const _descriptor = extend(true, {}, descriptor)
+    const validator = new Validator(_descriptor, t)
+    const executor = (resolve, reject) => {
+      const validArgs = {
         firstFields: true,
         first: true,
         custom: { row, column }
       }
-      let onrejected1 = ({ fields }) => {
-        let cellErrors = Object.keys(fields).map((prop) => {
-          let rules = _descriptor[prop]
+      const onRejected = ({ fields }) => {
+        const cellErrors = Object.keys(fields).map((prop) => {
+          const rules = _descriptor[prop]
           _descriptor[prop] = !rules.message ? Object.assign(rules, { message: fields[prop][0].message }) : rules
           return new Rule(_descriptor[prop])
         })
 
         reject({ rules: cellErrors, rule: cellErrors[0] })
       }
-      validator.validate(model, validArgs).then(resolve).catch(onrejected1)
+      validator.validate(model, validArgs).then(resolve).catch(onRejected)
     }
-    let onfulfilled = () => {
+    const onFulfilled = () => {
       this.validatedMap[`${column.id}-${row[rowId]}`] = false
       return Promise.resolve()
     }
-    let onrejected = (errors) => {
+    const onRejected = (errors) => {
       this.validatedMap[`${column.id}-${row[rowId]}`] = true
       return Promise.reject(errors)
     }
 
-    return new Promise(executor).then(onfulfilled).catch(onrejected)
+    return new Promise(executor).then(onFulfilled).catch(onRejected)
   },
   _clearValidate() {
     let src = {
@@ -333,7 +341,7 @@ export default {
   },
   // 关闭 validTip
   clostValidTooltip() {
-    let validTip = this.$refs.validTip
+    const validTip = this.$refs.validTip
 
     if (validTip) {
       validTip.setExpectedState(false)
