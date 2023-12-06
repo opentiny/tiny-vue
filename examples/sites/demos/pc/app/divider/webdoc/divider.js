@@ -31,8 +31,10 @@ export default {
       'demoId': 'custom-style',
       'name': { 'zh-CN': '自定义分隔线样式', 'en-US': 'Custom divider style' },
       'desc': {
-        'zh-CN': '<p>你可以自定义分割线样式。</p>',
-        'en-US': '<p>You can customize the split line style.</p>'
+        'zh-CN':
+          '<p>通过<code>color</code><code>border-style</code><code>content-color</code>属性，自定义分割线样式。</p>',
+        'en-US':
+          '<p>Customize the split line style through the<code>color</code><code>border style</code><code>content color</code>attribute.</p>'
       },
       'codeFiles': ['customStyle.vue']
     }
