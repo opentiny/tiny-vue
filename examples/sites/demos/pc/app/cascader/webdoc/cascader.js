@@ -317,7 +317,7 @@ export default {
           'name': 'collapse-tags',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '多选模式下是否折叠Tag', 'en-US': 'Whether to collapse tags in multi-choice mode' },
+          'desc': { 'zh-CN': '多选模式下是否折叠 Tag', 'en-US': 'Whether to collapse tags in multi-choice mode' },
           'demoId': 'collapse-tags'
         },
         {
