@@ -2,15 +2,15 @@
   <div class="main-layout ti-hp100 ti-f-c ti-f-box-stretch">
     <!-- 切换语言 -->
     <div class="lang-box">
-      <tiny-tooltip :content="translate('changeLanguage')" placement="left">
-        <span class="lang-btn" @click="changeLanguage">{{ translate('language') }}</span>
+      <tiny-tooltip :content="i18nByKey('changeLanguage')" placement="left">
+        <span class="lang-btn" @click="changeLanguage">{{ i18nByKey('language') }}</span>
       </tiny-tooltip>
     </div>
     <!-- 切換主题样式 -->
     <tiny-dropdown v-if="!templateModeState.isSaas" class="theme-change-button" trigger="click">
-      <tiny-tooltip :content="translate('changeTheme')" placement="left">
+      <tiny-tooltip :content="i18nByKey('changeTheme')" placement="left">
         <span>
-          <img :src="themeSvg" :alt="translate('changeTheme')" />
+          <img :src="themeSvg" :alt="i18nByKey('changeTheme')" />
         </span>
       </tiny-tooltip>
       <template #dropdown>
@@ -43,7 +43,7 @@
             <div :class="{ 'api-mode': true, active: apiModeState.apiMode === 'Composition' }">
               {{ getWord('组合式', 'Composition') }}
             </div>
-            <tiny-tooltip :content="translate('apiType')" placement="right">
+            <tiny-tooltip :content="i18nByKey('apiType')" placement="right">
               <icon-help-circle></icon-help-circle>
             </tiny-tooltip>
           </div>
@@ -109,7 +109,7 @@ import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip, Tag } 
 import { iconHelpCircle } from '@opentiny/vue-icon'
 import { genMenus } from '@/menus.jsx'
 import { router } from '@/router.js'
-import { getWord, translate, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
+import { getWord, i18nByKey, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import themeSvg from '@/assets/images/theme.svg?url'
 import useTheme from '@/tools/useTheme'
 
@@ -215,7 +215,7 @@ export default defineComponent({
       apiModeFn,
       templateModeState,
       getWord,
-      translate
+      i18nByKey
     }
   }
 })

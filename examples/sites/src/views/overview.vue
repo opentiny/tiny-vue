@@ -2,16 +2,16 @@
   <div>
     <div class="overview-layout ti-pt48">
       <h1 class="ti-mb20 ti-f24 ti-fw-600">
-        {{ translate('overview') }}
+        {{ i18nByKey('overview') }}
         <span class="ti-f18">({{ getTotalComponentsNum() }})</span>
       </h1>
 
       <h1 class="ti-f14 ti-my20 ti-lh21">
-        {{ translate('overviewDesc') }}
+        {{ i18nByKey('overviewDesc') }}
       </h1>
       <!-- 搜索 -->
       <tiny-input
-        :placeholder="translate('searchComponents')"
+        :placeholder="i18nByKey('searchComponents')"
         v-model="value"
         class="ti-mb10 search-input"
         :style="{ width: '100%', padding: '6px' }"
@@ -41,8 +41,8 @@
               <div class="ti-br-4 component-card">
                 <img
                   class="ti-h125 ti-w125"
-                  :src="$pub(`@demos/overviewimage/${getSvg(cell.key)}.svg`)"
-                  :onerror="`this.src='${$pub(`@demos/overviewimage/dev.svg`)}'`"
+                  :src="pubUrl(`@demos/overviewimage/${getSvg(cell.key)}.svg`)"
+                  :onerror="`this.src='${pubUrl(`@demos/overviewimage/dev.svg`)}'`"
                 />
                 <h2 class="ti-f16 overview-card-label">
                   {{ cell.name }}
@@ -66,7 +66,7 @@ import { cmpMenus } from '@menu/menus.js'
 import TinyInput from '@opentiny/vue-input'
 import noDataSvg from '@/assets/images/no-data.svg?url'
 import searchSvg from '@/assets/images/search.svg?url'
-import { getWord, translate, isZhCn } from '@/tools'
+import { getWord, i18nByKey, isZhCn, pubUrl } from '@/tools'
 
 export default defineComponent({
   name: 'Overview',
@@ -144,7 +144,7 @@ export default defineComponent({
       const common = new window.TDCommon(['#footer'], {})
       common.renderFooter()
     })
-    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, translate }
+    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, i18nByKey, pubUrl }
   }
 })
 </script>

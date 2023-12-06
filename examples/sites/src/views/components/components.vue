@@ -16,7 +16,7 @@
         </version-tip>
         <template v-if="currJson?.demos?.length > 0">
           <div class="all-demos-container">
-            <h2 class="ti-f30 ti-fw-normal !ti-mb20">{{ translate('yan-shi') }}</h2>
+            <h2 class="ti-f30 ti-fw-normal !ti-mb20">{{ i18nByKey('yan-shi') }}</h2>
             <div v-if="apiModeState.demoMode === 'default'" class="ti-f-c ti-f-wrap">
               <template v-if="currJson.column === '2' && currJson.demos.length > 1">
                 <div class="one-demo-col2">
@@ -52,19 +52,19 @@
                   <table class="api-table">
                     <thead>
                       <tr v-if="key.includes('slots')">
-                        <th width="15%">{{ translate('name') }}</th>
-                        <th width="85%">{{ translate('desc') }}</th>
+                        <th width="15%">{{ i18nByKey('name') }}</th>
+                        <th width="85%">{{ i18nByKey('desc') }}</th>
                       </tr>
                       <tr v-else-if="key.includes('events')">
-                        <th width="15%">{{ translate('name') }}</th>
-                        <th width="20%">{{ translate('propType') }}</th>
-                        <th width="65%">{{ translate('desc') }}</th>
+                        <th width="15%">{{ i18nByKey('name') }}</th>
+                        <th width="20%">{{ i18nByKey('propType') }}</th>
+                        <th width="65%">{{ i18nByKey('desc') }}</th>
                       </tr>
                       <tr v-else>
-                        <th width="15%">{{ translate('name') }}</th>
-                        <th width="20%">{{ translate('propType') }}</th>
-                        <th width="20%">{{ translate('defValue') }}</th>
-                        <th width="45%">{{ translate('desc') }}</th>
+                        <th width="15%">{{ i18nByKey('name') }}</th>
+                        <th width="20%">{{ i18nByKey('propType') }}</th>
+                        <th width="20%">{{ i18nByKey('defValue') }}</th>
+                        <th width="45%">{{ i18nByKey('desc') }}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -117,7 +117,7 @@
         <h2 id="FAQ" v-if="cmpFAQMd" class="ti-f30 ti-fw-normal ti-mt28 ti-mb20">FAQ</h2>
         <div class="markdown-body" v-html="cmpFAQMd"></div>
         <div v-if="currJson.owner" class="ti-abs ti-right24 ti-top24" @click="copyText(currJson.owner)">
-          {{ translate('doc-owner') }} : {{ currJson.owner }}
+          {{ i18nByKey('doc-owner') }} : {{ currJson.owner }}
         </div>
       </div>
 
@@ -142,7 +142,7 @@ import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } fr
 import { marked } from 'marked'
 import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { translate, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
+import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
 import { Collapse, CollapseItem } from '@opentiny/vue'
@@ -409,7 +409,7 @@ export default defineComponent({
     return {
       ...toRefs(state),
       ...fn,
-      translate,
+      i18nByKey,
       anchorRefreshKey,
       apiModeState,
       templateModeState,

@@ -20,7 +20,7 @@ const i18n = initI18n({
   },
   messages
 })
-const translate = i18n.global.t
+const i18nByKey = i18n.global.t
 const getWord = (cn, en) => (i18n.global.locale === 'zhCN' ? cn : en)
 
-export { i18n, translate, getWord }
+export { i18n, i18nByKey, getWord }
