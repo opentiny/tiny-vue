@@ -8,6 +8,8 @@ test('tree组件基本使用', async ({ page }) => {
   const tree = preview.locator('.tiny-tree')
   const showLineBtn = preview.locator('.tiny-radio').nth(0)
   const miniBtn = preview.locator('.tiny-radio').nth(2)
+  const offsetBtn = preview.locator('.tiny-radio').nth(6)
+  const indentSpan = preview.locator('.tiny-tree-node__content-indent').nth(1)
 
   // 测试渲染出数据
   await expect(tree.getByText('数据 1-1-1')).toHaveCount(1)
@@ -22,4 +24,10 @@ test('tree组件基本使用', async ({ page }) => {
   await miniBtn.click()
   await page.waitForTimeout(20)
   await expect(tree.getByText('数据 1-1-1')).toHaveCSS('font-size', '12px')
+
+  // 测试偏移  18px + 8 padding
+  await expect(indentSpan).toHaveCSS('width', '26px')
+  await offsetBtn.click()
+  await page.waitForTimeout(20)
+  await expect(indentSpan).toHaveCSS('width', '46px')
 })

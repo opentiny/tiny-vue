@@ -4,6 +4,12 @@ test('右键菜单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#contextmenu')
 
-  const tree = page.locator('.pc-demo-container')
-  await expect(tree.getByText('数据 1-1-1')).toHaveCount(1)
+  const preview = page.locator('.pc-demo-container')
+  const tree = preview.locator('.tiny-tree').nth(0)
+  const node = tree.getByText('数据 1-1-1')
+  await expect(node).toHaveCount(1)
+
+  await node.click({ button: 'right' })
+  await page.waitForTimeout(20)
+  await expect(tree.getByText('更新')).toHaveCount(1)
 })

@@ -4,6 +4,12 @@ test('右键菜单', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#drag')
 
-  const tree = page.locator('.pc-demo-container')
+  const preview = page.locator('.pc-demo-container')
+  const tree = preview.locator('.tiny-tree').nth(0)
   await expect(tree.getByText('数据 1-1-1')).toHaveCount(1)
+
+  await tree.getByText('数据 2-1').dragTo(tree.getByText('数据 1-1-1'))
+  await page.waitForTimeout(100)
+  await tree.getByText('数据 1-1-1').dragTo(tree.getByText('数据 2-2'))
+  await page.waitForTimeout(100)
 })
