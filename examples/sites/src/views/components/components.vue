@@ -16,7 +16,7 @@
         </version-tip>
         <template v-if="currJson?.demos?.length > 0">
           <div class="all-demos-container">
-            <h2 class="ti-f30 ti-fw-normal !ti-mb20">{{ $t('yan-shi') }}</h2>
+            <h2 class="ti-f30 ti-fw-normal !ti-mb20">{{ translate('yan-shi') }}</h2>
             <div v-if="apiModeState.demoMode === 'default'" class="ti-f-c ti-f-wrap">
               <template v-if="currJson.column === '2' && currJson.demos.length > 1">
                 <div class="one-demo-col2">
@@ -52,19 +52,19 @@
                   <table class="api-table">
                     <thead>
                       <tr v-if="key.includes('slots')">
-                        <th width="15%">{{ $t('name') }}</th>
-                        <th width="85%">{{ $t('desc') }}</th>
+                        <th width="15%">{{ translate('name') }}</th>
+                        <th width="85%">{{ translate('desc') }}</th>
                       </tr>
                       <tr v-else-if="key.includes('events')">
-                        <th width="15%">{{ $t('name') }}</th>
-                        <th width="20%">{{ $t('propType') }}</th>
-                        <th width="65%">{{ $t('desc') }}</th>
+                        <th width="15%">{{ translate('name') }}</th>
+                        <th width="20%">{{ translate('propType') }}</th>
+                        <th width="65%">{{ translate('desc') }}</th>
                       </tr>
                       <tr v-else>
-                        <th width="15%">{{ $t('name') }}</th>
-                        <th width="20%">{{ $t('propType') }}</th>
-                        <th width="20%">{{ $t('defValue') }}</th>
-                        <th width="45%">{{ $t('desc') }}</th>
+                        <th width="15%">{{ translate('name') }}</th>
+                        <th width="20%">{{ translate('propType') }}</th>
+                        <th width="20%">{{ translate('defValue') }}</th>
+                        <th width="45%">{{ translate('desc') }}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -117,7 +117,7 @@
         <h2 id="FAQ" v-if="cmpFAQMd" class="ti-f30 ti-fw-normal ti-mt28 ti-mb20">FAQ</h2>
         <div class="markdown-body" v-html="cmpFAQMd"></div>
         <div v-if="currJson.owner" class="ti-abs ti-right24 ti-top24" @click="copyText(currJson.owner)">
-          {{ $t('doc-owner') }} : {{ currJson.owner }}
+          {{ translate('doc-owner') }} : {{ currJson.owner }}
         </div>
       </div>
 
@@ -142,7 +142,7 @@ import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } fr
 import { marked } from 'marked'
 import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { $t, $t2, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
+import { translate, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
 import { Collapse, CollapseItem } from '@opentiny/vue'
@@ -168,7 +168,7 @@ export default defineComponent({
     const anchorRefreshKey = ref(0)
     const state = reactive({
       webDocPath: computed(() => ''),
-      langKey: $t2('zh-CN', 'en-US'),
+      langKey: getWord('zh-CN', 'en-US'),
       cmpId: '',
       currJson: { column: 1, demos: [], apis: [] },
       cmpTopMd: null,
@@ -264,7 +264,7 @@ export default defineComponent({
 
     // saas下切换mode和组价示例都会触发loadPage,需要防抖
     const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
-      const lang = $t2('cn', 'en')
+      const lang = getWord('cn', 'en')
       state.cmpId = router.currentRoute.value.params.cmpId
 
       // 将请求合并起来，这样页面更新一次，页面刷新的时机就固定了
@@ -409,7 +409,7 @@ export default defineComponent({
     return {
       ...toRefs(state),
       ...fn,
-      $t,
+      translate,
       anchorRefreshKey,
       apiModeState,
       templateModeState,

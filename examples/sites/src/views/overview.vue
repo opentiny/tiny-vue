@@ -2,16 +2,16 @@
   <div>
     <div class="overview-layout ti-pt48">
       <h1 class="ti-mb20 ti-f24 ti-fw-600">
-        {{ $t('overview') }}
+        {{ translate('overview') }}
         <span class="ti-f18">({{ getTotalComponentsNum() }})</span>
       </h1>
 
       <h1 class="ti-f14 ti-my20 ti-lh21">
-        {{ $t('overviewDesc') }}
+        {{ translate('overviewDesc') }}
       </h1>
       <!-- 搜索 -->
       <tiny-input
-        :placeholder="$t('searchComponents')"
+        :placeholder="translate('searchComponents')"
         v-model="value"
         class="ti-mb10 search-input"
         :style="{ width: '100%', padding: '6px' }"
@@ -27,7 +27,7 @@
       </div>
       <div v-for="(menu, index) in searchMenus" :label="menu" :key="index">
         <div class="ti-rel ti-mt25">
-          <h2 class="ti-f16 ti-d-ib ti-fw-600 ti-mr8">{{ $t2(menu.label, menu.labelEn) }}</h2>
+          <h2 class="ti-f16 ti-d-ib ti-fw-600 ti-mr8">{{ getWord(menu.label, menu.labelEn) }}</h2>
           <span v-if="searchMenus?.length !== 0" class="cell-title">{{ menu.children.length }}</span>
         </div>
         <div class="ti-f-r ti-f-wrap ti-f-pos-between overview-card">
@@ -66,8 +66,7 @@ import { cmpMenus } from '@menu/menus.js'
 import TinyInput from '@opentiny/vue-input'
 import noDataSvg from '@/assets/images/no-data.svg?url'
 import searchSvg from '@/assets/images/search.svg?url'
-import { $t2, isZhCn } from '@/tools'
-
+import { getWord, translate, isZhCn } from '@/tools'
 
 export default defineComponent({
   name: 'Overview',
@@ -98,7 +97,7 @@ export default defineComponent({
       const trimValue = value.replaceAll(' ', '').toLowerCase()
       const currentValue = trimValue
       const reg = new RegExp(currentValue, 'ig')
-      const isGrid = (trimValue === 'grid' || trimValue === '表格')
+      const isGrid = trimValue === 'grid' || trimValue === '表格'
       const searchMenus = state.menus
         .map((item) => {
           const label = item.label
@@ -115,7 +114,7 @@ export default defineComponent({
         .filter((item) => item.children.length > 0)
       state.searchMenus = searchMenus
     }
-    const lang = $t2('zh-CN', 'en-US')
+    const lang = getWord('zh-CN', 'en-US')
     let fn = {
       searchHandler: debounce(searchResultFn, 300),
       getTo: (key) => `${import.meta.env.VITE_CONTEXT}${lang}/os-theme/components/${key}`,
@@ -128,7 +127,7 @@ export default defineComponent({
         }
       },
       getTotalComponentsNum: () => {
-        let total = 0;
+        let total = 0
         cmpMenus.forEach((cmpCategory) => {
           if (cmpCategory.key === 'cmp_frame_style') {
             total += 2
@@ -145,7 +144,7 @@ export default defineComponent({
       const common = new window.TDCommon(['#footer'], {})
       common.renderFooter()
     })
-    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn }
+    return { ...toRefs(state), ...fn, TinyInput, noDataSvg, searchSvg, isZhCn, getWord, translate }
   }
 })
 </script>
@@ -174,7 +173,11 @@ export default defineComponent({
 
 .component-card {
   box-shadow: 1px 1px 4px 1px rgba(31, 52, 121, 0.1);
-  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
+  transition:
+    color 0.3s,
+    background-color 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s;
   padding: 24px;
   font-size: 14px;
   color: rgb(51, 54, 57);
