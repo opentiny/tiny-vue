@@ -39,7 +39,7 @@ export default {
       'demoId': 'no-background',
       'name': { 'zh-CN': '不显示网格背景', 'en-US': 'Do not display the grid background' },
       'desc': {
-        'zh-CN': '<p>设置 <code>background</code> 属性为 <code>false</code> 后，将不显示容器的网格背景。</p>\n',
+        'zh-CN': '<p>通过设置 <code>background</code> 属性为 <code>false</code> 后，将不显示容器的网格背景。</p>\n',
         'en-US':
           '<p>When <code>background</code> is set to <code>false</code>, the grid background of the container is not displayed. </p>\n'
       },
@@ -49,7 +49,7 @@ export default {
       'demoId': 'no-guides',
       'name': { 'zh-CN': '不显示虚线', 'en-US': 'Do not display dotted lines' },
       'desc': {
-        'zh-CN': '<p>设置 <code>guides</code> 属性为 <code>false</code> 将取消裁剪框上方的虚线显示。</p>\n',
+        'zh-CN': '<p>通过设置 <code>guides</code> 属性为 <code>false</code> 将取消裁剪框上方的虚线显示。</p>\n',
         'en-US':
           '<p>Setting <code>guides</code> to <code>false</code> will cancel the dotted line above the crop box. </p>\n'
       },
@@ -59,7 +59,8 @@ export default {
       'demoId': 'no-modal',
       'name': { 'zh-CN': '不显示模态', 'en-US': 'Do not display modal' },
       'desc': {
-        'zh-CN': '<p>设置 <code>modal</code> 属性为 <code>false</code> 将取消裁剪框下方图片上方的模态层显示。</p>\n',
+        'zh-CN':
+          '<p>通过设置 <code>modal</code> 属性为 <code>false</code> 将取消裁剪框下方图片上方的模态层显示。</p>\n',
         'en-US':
           '<p>Setting <code>modal</code> to <code>false</code> cancels the display of the modal layer above the image below the crop box. </p>\n'
       },
@@ -102,7 +103,7 @@ export default {
       'demoId': 'get-container-data',
       'name': { 'zh-CN': '获取容器数据', 'en-US': 'Obtain container data' },
       'desc': {
-        'zh-CN': '<p>调用 <code>getContainerData</code> 方法可以获取容器的大小数据。</p>\n',
+        'zh-CN': '<p>通过调用 <code>getContainerData</code> 方法可以获取容器的大小数据。</p>\n',
         'en-US': '<p>Invoke the <code>getContainerData</code> method to obtain the container size data. </p>\n'
       },
       'codeFiles': ['get-container-data.vue']
@@ -111,7 +112,7 @@ export default {
       'demoId': 'get-crop-box-data',
       'name': { 'zh-CN': '获取剪切框数据', 'en-US': 'Obtain clip box data' },
       'desc': {
-        'zh-CN': '<p>调用 <code>getCropBoxData</code> 方法可以获取剪切框的位置和大小数据。</p>\n',
+        'zh-CN': '<p>通过调用 <code>getCropBoxData</code> 方法可以获取剪切框的位置和大小数据。</p>\n',
         'en-US':
           '<p>Invoke the <code>getCropBoxData</code> method to obtain the position and size of the clip box. </p>\n'
       },
@@ -122,7 +123,7 @@ export default {
       'name': { 'zh-CN': '获取裁剪后的图片数据', 'en-US': 'Obtain the cropped image data' },
       'desc': {
         'zh-CN':
-          '<p>调用 <code>getCroppedCanvas</code> 方法可以获取裁剪后的图片数据，搭配 <code>toDataURL</code> 方法将转成 base64 图片数据，搭配 <code>toBlob</code> 方法将生成 Blob 图片数据。</p>\n',
+          '<p>通过调用 <code>getCroppedCanvas</code> 方法可以获取裁剪后的图片数据，搭配 <code>toDataURL</code> 方法将转成 base64 图片数据，搭配 <code>toBlob</code> 方法将生成 Blob 图片数据。</p>\n',
         'en-US':
           '<p>Invoke the <code>getCroppedCanvas</code> method to obtain the cropped image data. Use the <code>toDataURL</code> method to convert the cropped image data to Base64 image data. Use the <code>toBlob</code> method to generate Blob image data. </p>\n'
       },
@@ -132,7 +133,7 @@ export default {
       'demoId': 'get-data',
       'name': { 'zh-CN': '获取裁剪区域数据', 'en-US': 'Obtain crop area data' },
       'desc': {
-        'zh-CN': '<p>调用 <code>getData</code> 方法可以获取裁剪区域的位置以及大小。</p>\n',
+        'zh-CN': '<p>通过调用 <code>getData</code> 方法可以获取裁剪区域的位置以及大小。</p>\n',
         'en-US':
           '<p>Invoke the <code>getData</code> method to obtain the position and size of the cropping area. </p>\n'
       },
@@ -143,7 +144,7 @@ export default {
       'name': { 'zh-CN': '获取图像数据', 'en-US': 'Obtain Image Data' },
       'desc': {
         'zh-CN':
-          '<p>调用 <code>getImageData</code> 方法可以获取图像位置、大小和其他相关数据，若想获取画布位置和大小数据可以调用 <code>getCanvasData</code> 方法。</p>\n',
+          '<p>通过调用 <code>getImageData</code> 方法可以获取图像位置、大小和其他相关数据，若想获取画布位置和大小数据可以调用 <code>getCanvasData</code> 方法。</p>\n',
         'en-US':
           '<p>Invoke the <code>getImageData</code> method to obtain the image position, size, and other related data. To obtain the canvas position and size data, call the <code>getCanvasData</code> method. </p>\n'
       },
@@ -154,7 +155,7 @@ export default {
       'name': { 'zh-CN': '替换图片', 'en-US': 'Replace Image' },
       'desc': {
         'zh-CN':
-          '<p>调用 <code>replace</code> 方法可以替换图像的 src 并重新构建 cropper 。 通过 <code>rotatable</code> 属性控制图片旋转，默认为 true。</p>\n',
+          '<p>通过调用 <code>replace</code> 方法可以替换图像的 src 并重新构建 cropper 。 通过 <code>rotatable</code> 属性控制图片旋转，默认为 true。</p>\n',
         'en-US':
           '<p>Invoke the <code>replace</code> method to replace the image src and rebuild the cropper. The <code>rotatable</code> attribute is used to control image rotation. The default value is true. </p>\n'
       },
@@ -163,7 +164,10 @@ export default {
     {
       'demoId': 'replace-image1',
       'name': { 'zh-CN': '放大图片', 'en-US': 'Enlarge Image' },
-      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '通过<code>zoomable</code>可放大图片。',
+        'en-US': 'You can zoom in on the image by<code>zoomable</code>.'
+      },
       'codeFiles': ['replace-image.vue']
     },
     {
@@ -174,7 +178,7 @@ export default {
       },
       'desc': {
         'zh-CN':
-          '<p><code>zoom-on-wheel</code> 属性为 <code>true</code> 情况下，通过 <code>wheel-zoom-ratio</code> 属性可以设置缩放比例，默认为 <code>0.1</code> 。</p>\n',
+          '<p>通过<code>zoom-on-wheel</code> 属性为 <code>true</code> 情况下，通过 <code>wheel-zoom-ratio</code> 属性可以设置缩放比例，默认为 <code>0.1</code> 。</p>\n',
         'en-US':
           '<p><code>zoom-on-wheel</code> attribute is set to <code>true</code>, you can use the <code>wheel-zoom-ratio</code> attribute to set the scaling ratio. The default value is <code>0.1</code>. </p>\n'
       },
@@ -185,7 +189,7 @@ export default {
       'name': { 'zh-CN': '禁用鼠标滚轮缩放图像', 'en-US': 'Disable the mouse wheel to zoom in or out the image' },
       'desc': {
         'zh-CN':
-          '<p>设置 <code>zoom-on-wheel</code> 属性为 <code>false</code> 后，将不允许通过滚动鼠标滚轮来缩放图像。</p>\n',
+          '<p>通过设置 <code>zoom-on-wheel</code> 属性为 <code>false</code> 后，将不允许通过滚动鼠标滚轮来缩放图像。</p>\n',
         'en-US':
           '<p>After the <code>zoom-on-wheel</code> attribute is set to <code>false</code>, the image cannot be zoomed in or out by scrolling the mouse wheel. </p>\n'
       },
@@ -195,7 +199,7 @@ export default {
       'demoId': 'event-ready',
       'name': { 'zh-CN': 'ready 事件', 'en-US': 'ready event' },
       'desc': {
-        'zh-CN': '<p>当一个 cropper 实例完全构建时触发 <code>ready</code> 事件。</p>\n',
+        'zh-CN': '<p>当一个 cropper 实例完全构建时，通过触发 <code>ready</code> 事件。</p>\n',
         'en-US': '<p>When a cropper instance is completely built, the <code>ready</code> event is triggered. </p>\n'
       },
       'codeFiles': ['event-ready.vue']
@@ -205,7 +209,7 @@ export default {
       'name': { 'zh-CN': '裁剪框方法 事件', 'en-US': 'Crop box method event' },
       'desc': {
         'zh-CN':
-          '<p>当一个 cropper 实例完全构建时触发 <code>disable</code> 方法禁用裁剪框，当触发 <code>enable</code> 启用裁剪框。</p>\n',
+          '<p>当一个 cropper 实例完全构建时，通过触发 <code>disable</code> 方法禁用裁剪框，当触发 <code>enable</code> 启用裁剪框。</p>\n',
         'en-US':
           '<p>When a cropper instance is completely built, the <code>disable</code> method is triggered to disable the cropping box. When the <code>enable</code> method is triggered to enable the cropping box.</p>\n'
       },

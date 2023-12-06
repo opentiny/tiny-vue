@@ -5,7 +5,10 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例。', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '通过引用组件标签，<code>v-model</code>绑定数据即可。',
+        'en-US': 'By referencing component tags,<code>v model</code>bind data.'
+      },
       'codeFiles': ['base.vue']
     },
     {
@@ -23,7 +26,7 @@ export default {
       'demoId': 'event',
       'name': { 'zh-CN': '事件触发', 'en-US': 'eventing' },
       'desc': {
-        'zh-CN': '点击确认是将会触发<code>confirm</code>事件, 取消时触发<code>cancel</code>事件。',
+        'zh-CN': '通过点击确认时触发<code>confirm</code>事件, 取消时触发<code>cancel</code>事件。',
         'en-US':
           'When click confirm will trigger <code>confirm</code>event. When click outside or cancel will trigger <code>cancel</code> event.'
       },
@@ -53,9 +56,9 @@ export default {
         'en-US': 'Predefine color'
       },
       'desc': {
-        'zh-CN': '提供给一些定义颜色, 用户行为不会更改预定义颜色, 但外部可以更改。',
+        'zh-CN': '通过<code>predefine</code>预定义颜色值，用户行为不会更改预定义颜色, 但外部可以更改。',
         'en-US':
-          'Provide some defined colors, user behavior will not change the predefined colors, but can be changed externally.'
+          'By<code>predefine</code>predefined color values, user behavior does not change the predefined colors, but they can be changed externally.'
       },
       'codeFiles': ['predefine.vue']
     },
@@ -74,7 +77,7 @@ export default {
       'demoId': 'dynamic-color-change',
       'name': { 'zh-CN': '颜色动态切换', 'en-US': 'dynamic-color-change' },
       'desc': {
-        'zh-CN': '可以动态切换<code>color</code>属性, 以满足各种需求。',
+        'zh-CN': '通过动态切换<code>color</code>属性, 以满足各种需求。',
         'en-US': 'Can dynamically switch <code>color</code> attributes to meet various needs.'
       },
       'codeFiles': ['dynamic-color-change.vue']
