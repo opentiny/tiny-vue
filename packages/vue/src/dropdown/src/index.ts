@@ -71,7 +71,8 @@ export const dropdownProps = {
   inheritWidth: {
     type: Boolean,
     default: false
-  }
+  },
+  suffixIcon: Object
 }
 export default defineComponent({
   name: $prefix + 'Dropdown',

@@ -33,11 +33,12 @@ export default {
     },
     {
       'demoId': 'show-icon',
-      'name': { 'zh-CN': '隐藏图标', 'en-US': 'Show icons' },
+      'name': { 'zh-CN': '图标', 'en-US': 'Show icons' },
       'desc': {
-        'zh-CN': '<p>通过 <code>show-icon</code> 属性设置触发源的图标显示或隐藏，默认显示，设置为 false 时隐藏。</p>\n',
+        'zh-CN':
+          '<p>通过 <code>show-icon</code> 属性设置是否显示下拉触发源图标，<code>suffix-icon</code> 设置下拉触发源图标。</p>\n',
         'en-US':
-          '<p>Additional sizes: <code>medium</code>, <code>small</code>, <code>mini</code>, configured by setting the <code>size</code> property. </p>\n'
+          '<p> Set whether to display the dropdown trigger source icon through the <code>show-icon</code> attribute, and set the dropdown trigger source icon through the <code>suffix-icon</code> setting. </p>\n'
       },
       'codeFiles': ['show-icon.vue']
     },
@@ -238,6 +239,16 @@ export default {
           'demoId': 'trigger'
         },
         {
+          'name': 'size',
+          'type': '"medium" | "small" | "mini"',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '菜单尺寸。注意：只在 split-button为 true 的情况下生效',
+            'en-US': 'Menu size. Note: Only takes effect when split-button is true'
+          },
+          'demoId': 'size'
+        },
+        {
           'name': 'split-button',
           'type': 'boolean',
           'defaultValue': 'false',
@@ -248,14 +259,24 @@ export default {
           'demoId': 'split-button'
         },
         {
-          'name': 'size',
-          'type': '"medium" | "small" | "mini"',
+          'name': 'show-icon',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否显示下拉触发源图标',
+            'en-US': 'Is the dropdown trigger source icon displayed'
+          },
+          'demoId': 'show-icon'
+        },
+        {
+          'name': 'suffix-icon',
+          'type': 'VueComponent',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '菜单尺寸。注意：只在 split-button为 true 的情况下生效',
-            'en-US': 'Menu size. Note: Only takes effect when split-button is true'
+            'zh-CN': '下拉触发源图标',
+            'en-US': 'Dropdown trigger source icon'
           },
-          'demoId': 'size'
+          'demoId': 'show-icon'
         },
         {
           'name': 'type',
