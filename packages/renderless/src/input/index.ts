@@ -10,7 +10,13 @@
  *
  */
 
-import type { IInputApi, IInputClassPrefixConstants, IInputRenderlessParams, IInputState } from 'types/input.type'
+import type {
+  IInputApi,
+  IInputClassPrefixConstants,
+  IInputRenderlessParamUtils,
+  IInputRenderlessParams,
+  IInputState
+} from 'types/input.type'
 
 const HIDDEN_STYLE = `
 height:0 !important;visibility:hidden !important;overflow:hidden !important;
@@ -162,8 +168,8 @@ export const calcTextareaHeight =
     return textareaStyle
   }
 
-export const getInput = (refs: IInputRenderlessParams['refs']) => (): HTMLTextAreaElement | HTMLInputElement =>
-  refs.input || refs.textarea
+export const getInput = (vm: IInputRenderlessParamUtils['vm']) => (): HTMLTextAreaElement | HTMLInputElement =>
+  vm.$refs.input || vm.$refs.textarea
 
 export const blur = (api: IInputApi) => (): void => api.getInput().blur()
 

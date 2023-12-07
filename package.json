@@ -120,8 +120,7 @@
     "build:ui-react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm build:react",
     "pub:react": "pnpm --filter=\"./packages/dist-react/**\" publish --no-git-checks --access=public",
     "dev:react-site": "pnpm --filter @opentiny/react-site start",
-    "build:react-site": "pnpm --filter @opentiny/react-site build",
-    "commit": "git-cz"
+    "build:react-site": "pnpm --filter @opentiny/react-site build"
   },
   "dependencies": {
     "@vue/composition-api": "1.2.2",
@@ -160,11 +159,9 @@
     "gulp-transform": "^3.0.5",
     "lerna": "^6.4.0",
     "lint-staged": "^15.2.0",
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "commitlint": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
-    "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0",
     "minimist": "^1.2.8",
     "node-xlsx": "^0.21.0",
     "prettier": "^3.0.0",
@@ -175,11 +172,6 @@
     "vite": "^4.3.8",
     "vue": "^3.3.9",
     "vue-tsc": "^1.6.5"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   },
   "pnpm": {
     "patchedDependencies": {

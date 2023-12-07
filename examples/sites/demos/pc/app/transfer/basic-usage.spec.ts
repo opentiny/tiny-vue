@@ -1,20 +1,9 @@
 import { test, expect } from '@playwright/test'
 
-test('默认状态下交换按钮是否禁用', async ({ page }) => {
+test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('transfer#basic-usage')
-  const preview = page.locator('#preview')
-  const buttons = preview.getByRole('button')
-  // 向左交换按钮应该为禁用状态
-  await expect(buttons.first()).toBeDisabled()
-  // 向右交换按钮应该为禁用状态
-  await expect(buttons.nth(1)).toBeDisabled()
-})
-
-test('多选', async ({ page }) => {
-  page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('transfer#basic-usage')
-  const preview = page.locator('#preview')
+  const preview = page.locator('.pc-demo-container')
   // 穿梭框按钮
   const buttons = preview.getByRole('button')
   // 穿梭框面板
@@ -23,6 +12,11 @@ test('多选', async ({ page }) => {
   const leftPanel = transferPanels.first()
   // 右侧面板
   const rightPanel = transferPanels.nth(1)
+
+  // 向左交换按钮应该为禁用状态
+  await expect(buttons.first()).toBeDisabled()
+  // 向右交换按钮应该为禁用状态
+  await expect(buttons.nth(1)).toBeDisabled()
 
   // 从左侧面板选择多个备用项，交换至右侧面板
   let labels = leftPanel.locator('label').filter({ hasText: '备选项 2' }).locator('span')
@@ -89,14 +83,7 @@ test('多选', async ({ page }) => {
   await expect(buttons.first()).toBeDisabled()
   // 向右侧交换的按钮应该为不可用状态
   await expect(buttons.nth(1)).toBeDisabled()
-})
 
-test('全选', async ({ page }) => {
-  page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('transfer#basic-usage')
-  const preview = page.locator('#preview')
-  const transferPanels = preview.locator('.tiny-transfer-panel')
-  const leftPanel = transferPanels.first()
   // 全选
   await leftPanel.locator('.tiny-checkbox__input').first().click()
   // 显示的选中数量应该为 11

@@ -68,16 +68,14 @@ export default {
     )
   ],
   define: {
-    'process.env': Object.assign({}, process.env)
+    'process.env': { ...process.env }
   }
 }
 ```
 
 #### 温馨提示：
 
-在 `pnpm` 工程使用该插件时需要在 `package.json` 文件中逐个声明用到的每一个 `TinyVue` 组件依赖，因为 `pnpm` 特点就是用到的依赖就需要提前声明，防止幽灵依赖。
-
-依赖声明可以参考一下配置
+因为 `pnpm` 工程的特点之一是：项目中显示引入的依赖需要提前在 `package.json` 中声明（防止幽灵依赖），所以在 `pnpm` 工程使用该插件时需要在 `package.json` 中声明项目用到的每一个 `TinyVue` 组件依赖（`TinyVue` 每个组件都是一个 `npm` 包）。依赖声明可以参考以下配置：
 
 ```json
 {

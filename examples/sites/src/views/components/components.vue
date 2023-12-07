@@ -16,7 +16,7 @@
         </version-tip>
         <template v-if="currJson?.demos?.length > 0">
           <div class="all-demos-container">
-            <h2 class="ti-f30 ti-fw-normal !ti-mb20">{{ $t('yan-shi') }}</h2>
+            <h2 class="ti-f30 ti-fw-normal !ti-mb20">{{ i18nByKey('yan-shi') }}</h2>
             <div v-if="apiModeState.demoMode === 'default'" class="ti-f-c ti-f-wrap">
               <template v-if="currJson.column === '2' && currJson.demos.length > 1">
                 <div class="one-demo-col2">
@@ -41,7 +41,7 @@
           <div id="API">
             <h2 class="ti-f30 ti-fw-normal ti-mt28">API</h2>
             <!-- apis 是一个数组 {name,type,properties:[原table内容],events:[] ...........} -->
-            <div class="mt20" v-for="(oneGroup, idx) in currJson.apis" :key="oneGroup.name">
+            <div class="mt20" v-for="oneGroup in currJson.apis" :key="oneGroup.name">
               <div class="ti-f-r ti-f-pos-start ti-fw-bold">
                 <div :id="oneGroup.name" class="ti-f18">{{ oneGroup.name }}</div>
                 <div class="ti-ml12 ti-b-a-primary ti-c-primary ti-px8 ti-py4">{{ oneGroup.type }}</div>
@@ -52,23 +52,23 @@
                   <table class="api-table">
                     <thead>
                       <tr v-if="key.includes('slots')">
-                        <th width="15%">{{ $t('name') }}</th>
-                        <th width="85%">{{ $t('desc') }}</th>
+                        <th width="15%">{{ i18nByKey('name') }}</th>
+                        <th width="85%">{{ i18nByKey('desc') }}</th>
                       </tr>
                       <tr v-else-if="key.includes('events')">
-                        <th width="15%">{{ $t('name') }}</th>
-                        <th width="20%">{{ $t('propType') }}</th>
-                        <th width="65%">{{ $t('desc') }}</th>
+                        <th width="15%">{{ i18nByKey('name') }}</th>
+                        <th width="20%">{{ i18nByKey('propType') }}</th>
+                        <th width="65%">{{ i18nByKey('desc') }}</th>
                       </tr>
                       <tr v-else>
-                        <th width="15%">{{ $t('name') }}</th>
-                        <th width="20%">{{ $t('propType') }}</th>
-                        <th width="20%">{{ $t('defValue') }}</th>
-                        <th width="45%">{{ $t('desc') }}</th>
+                        <th width="15%">{{ i18nByKey('name') }}</th>
+                        <th width="20%">{{ i18nByKey('propType') }}</th>
+                        <th width="20%">{{ i18nByKey('defValue') }}</th>
+                        <th width="45%">{{ i18nByKey('desc') }}</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="row in oneApiArr" :key="row.name">
+                      <tr v-for="row in oneApiArr.sort((a, b) => a.name.localeCompare(b.name))" :key="row.name">
                         <td>
                           <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
@@ -117,7 +117,7 @@
         <h2 id="FAQ" v-if="cmpFAQMd" class="ti-f30 ti-fw-normal ti-mt28 ti-mb20">FAQ</h2>
         <div class="markdown-body" v-html="cmpFAQMd"></div>
         <div v-if="currJson.owner" class="ti-abs ti-right24 ti-top24" @click="copyText(currJson.owner)">
-          {{ $t('doc-owner') }} : {{ currJson.owner }}
+          {{ i18nByKey('doc-owner') }} : {{ currJson.owner }}
         </div>
       </div>
 
@@ -142,7 +142,7 @@ import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } fr
 import { marked } from 'marked'
 import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
-import { $t, $t2, $clone, $split, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
+import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
 import { Collapse, CollapseItem } from '@opentiny/vue'
@@ -168,7 +168,7 @@ export default defineComponent({
     const anchorRefreshKey = ref(0)
     const state = reactive({
       webDocPath: computed(() => ''),
-      langKey: $t2('zh-CN', 'en-US'),
+      langKey: getWord('zh-CN', 'en-US'),
       cmpId: '',
       currJson: { column: 1, demos: [], apis: [] },
       cmpTopMd: null,
@@ -219,6 +219,7 @@ export default defineComponent({
             //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
           } catch (err) {
+            // eslint-disable-next-line no-console
             console.log('querySelector has special character:', err)
           }
           if (scrollTarget) {
@@ -263,7 +264,7 @@ export default defineComponent({
 
     // saas下切换mode和组价示例都会触发loadPage,需要防抖
     const loadPage = debounce(templateModeState.isSaas ? 100 : 0, false, () => {
-      const lang = $t2('cn', 'en')
+      const lang = getWord('cn', 'en')
       state.cmpId = router.currentRoute.value.params.cmpId
 
       // 将请求合并起来，这样页面更新一次，页面刷新的时机就固定了
@@ -287,6 +288,7 @@ export default defineComponent({
         }
 
         // 3、加载cmpId.js 文件
+        // eslint-disable-next-line no-eval
         const json = eval('(' + jsData.slice(15) + ')')
         state.currJson = {
           ...json,
@@ -295,12 +297,14 @@ export default defineComponent({
         }
         if (state.cmpId?.startsWith('grid-')) {
           fetchDemosFile(`${staticDemoPath}/grid/webdoc/grid.js`).then((data) => {
+            // eslint-disable-next-line no-eval
             const gridJson = eval('(' + data.slice(15) + ')')
             state.currJson.apis = gridJson.apis
             state.currJson.types = gridJson.types
           })
         } else if (state.cmpId?.startsWith('chart-')) {
           fetchDemosFile(`${staticDemoPath}/chart/webdoc/chart.js`).then((data) => {
+            // eslint-disable-next-line no-eval
             const chartJson = eval('(' + data.slice(15) + ')')
             state.currJson.apis = chartJson.apis
           })
@@ -330,30 +334,23 @@ export default defineComponent({
       copyText: (text) => {
         navigator.clipboard.writeText(text)
       },
+      // 点击 api区域的 name列时
       jumpToDemo: (demoId) => {
         if (demoId.startsWith('chart') || demoId.startsWith('grid')) {
           router.push(demoId)
         } else {
           router.push(`#${demoId}`)
-        }
-      },
-      handleApiClick: (ev) => {
-        if (ev.target.tagName === 'A') {
-          ev.preventDefault()
-          const href = ev.target.getAttribute('href')
-          const hash = $split(href, '#', -1)
-          router.push(href)
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
 
-          scrollByHash(hash)
-        }
-        if (apiModeState.demoMode === 'single') {
-          state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
+          if (apiModeState.demoMode === 'single') {
+            state.singleDemo = state.currJson.demos.find((d) => d.demoId === demoId)
+          }
         }
       },
+      // 点击api 区域的type列
       handleTypeClick: (ev) => {
         changeActiveNames(ev.target.hash, true)
       },
+      // 目录列表上的点击
       handleAnchorClick: (e, data) => {
         if (apiModeState.demoMode === 'single' && data.link.startsWith('#')) {
           e.preventDefault()
@@ -412,7 +409,7 @@ export default defineComponent({
     return {
       ...toRefs(state),
       ...fn,
-      $t,
+      i18nByKey,
       anchorRefreshKey,
       apiModeState,
       templateModeState,
@@ -550,21 +547,23 @@ table.api-table {
 .custom-block.tip {
   background-color: #f3f5f7;
   border-color: #42b983;
-  border-radius: 0;
-  padding: 1.5rem;
-  border-left-width: 0.5rem;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  border-left-width: 0.3rem;
   border-left-style: solid;
   margin: 1rem 0;
   font-size: 14px;
   color: #5e6d82;
-  line-height: 1.5;
+  line-height: 2;
+
   .custom-block-title {
     font-weight: 600;
+    margin-bottom: 0.5rem;
   }
+
   p {
-    margin: 8px 0;
-    font-size: 16px;
-    line-height: 1.5;
+    margin: 0;
+    font-size: 14px;
   }
   ul {
     li {

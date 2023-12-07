@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-alert class="demo-guide-offset" :closable="false" description="type 为默认值 info"></tiny-alert>
+    <tiny-alert class="demo-guide-offset" :closable="false" description="type 为默认值 info。"></tiny-alert>
     <tiny-button plain @click="stepStartDefault">默认</tiny-button>
     <tiny-button plain @click="stepStartMainAxis">纵轴偏移 50px</tiny-button>
     <tiny-button plain @click="stepStartCrossAxis">横轴偏移 50px</tiny-button>
@@ -8,7 +8,12 @@
     <tiny-guide :show-step="showStepDefault" :dom-data="domDataDefault"></tiny-guide>
     <tiny-guide :show-step="showStepMainAxis" :dom-data="domDataMainAxis" :main-axis="50"></tiny-guide>
     <tiny-guide :show-step="showStepCrossAxis" :dom-data="domDataCrossAxis" :cross-axis="50"></tiny-guide>
-    <tiny-guide :show-step="showStepAlignmentAxis" :dom-data="domDataAlignmentAxis" :alignment-axis="50" pop-position="bottom-start"></tiny-guide>
+    <tiny-guide
+      :show-step="showStepAlignmentAxis"
+      :dom-data="domDataAlignmentAxis"
+      :alignment-axis="50"
+      pop-position="bottom-start"
+    ></tiny-guide>
   </div>
 </template>
 

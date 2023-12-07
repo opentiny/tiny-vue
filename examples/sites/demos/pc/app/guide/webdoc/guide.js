@@ -70,10 +70,10 @@ export default {
     },
     {
       'demoId': 'modal-overlay-opening',
-      'name': { 'zh-CN': '设置模态叠加层开口', 'en-US': '' },
+      'name': { 'zh-CN': '模态叠加层开口', 'en-US': '' },
       'desc': {
         'zh-CN': `
-          <p><code>modal-overlay-opening-padding</code>：可以在模态叠加层开口周围添加的填充量，控制引导元素高亮范围；</p>
+          <p><code>modal-overlay-opening-padding</code>：可以在模态叠加层开口周围添加的填充量，控制引导元素高亮范围。</p>
           <p><code>modal-overlay-opening-radius</code>：可以在模态叠加层开口周围添加的边界半径量，控制引导元素高亮圆角。</p>
         `,
         'en-US': ''
