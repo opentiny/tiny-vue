@@ -17,9 +17,9 @@ export default {
       'name': { 'zh-CN': '改变文字方向', 'en-US': 'Change the direction of text' },
       'desc': {
         'zh-CN':
-          '有时, 我们需要改变文字的排列方向, 例如我们在排列阿拉伯语是就需要<code>RTL</code>而非<code>LTR</code><code>config-provider</code>也考虑到了这点,只需要覆写<code>design.direction</code>即可。',
+          '通过<code>:direction="ltr"</code>设置文字对齐方向，<code>ltr</code>为左对齐，<code>rtl</code>为右对齐。',
         'en-US':
-          'Sometimes, we need to change the direction of the text arrangement. For example, when arranging Arabic, we need <code>RTL</code> instead of <code>LTR</code>. <code>config provider</code>,This is also taken into consideration, and we only need to overwrite the <code>design. direction</code>.'
+          'Set the text alignment direction through<code>: direction="ltr"</code>, where<code>ltr</code>is left aligned and<code>rtl</code>is right aligned.'
       },
       'codeFiles': ['text-direct.vue']
     },
