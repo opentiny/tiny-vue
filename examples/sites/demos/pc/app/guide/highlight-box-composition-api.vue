@@ -10,8 +10,14 @@
           <tiny-button plain class="hight3">新手引导3</tiny-button>
         </div>
         <div>
-          <tiny-alert class="hight4" :closable="false" description="type 为默认值 info"></tiny-alert>
-          <tiny-alert class="hight5" type="success" size="large" :closable="false" description="提交结果页用于反馈一系列操作任务的处理结果。">
+          <tiny-alert class="hight4" :closable="false" description="type 为默认值 info。"></tiny-alert>
+          <tiny-alert
+            class="hight5"
+            type="success"
+            size="large"
+            :closable="false"
+            description="提交结果页用于反馈一系列操作任务的处理结果。"
+          >
             <tiny-button size="mini" type="primary">继续提交</tiny-button>
             <tiny-button size="mini">取消操作</tiny-button>
           </tiny-alert>
@@ -23,12 +29,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import {
-  Guide as TinyGuide,
-  Alert as TinyAlert,
-  Button as TinyButton,
-  Divider as TinyDivider
-} from '@opentiny/vue'
+import { Guide as TinyGuide, Alert as TinyAlert, Button as TinyButton, Divider as TinyDivider } from '@opentiny/vue'
 
 const showStep = ref(false)
 const domData = ref([

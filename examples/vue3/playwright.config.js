@@ -7,5 +7,15 @@ const baseURL = `${origin}/tiny-vue/zh-CN/os-theme/components/`
 export default Config({
   testDir: '../sites/demos',
   baseURL,
-  storageState: { origins: [{ origin, localStorage: [{ name: 'tiny-vue-demo-mode', value: 'single' }] }] }
+  storageState: {
+    origins: [
+      {
+        origin,
+        localStorage: [
+          { name: 'tiny-vue-api-mode', value: 'Composition' },
+          { name: 'tiny-vue-demo-mode', value: 'single' }
+        ]
+      }
+    ]
+  }
 })
