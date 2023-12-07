@@ -57,7 +57,6 @@ const onRejected = (opt, _this) => {
     const funcFinish = (args, reject, resolve) => () => {
       opt.status = false
       cb && cb(opt.status, args)
-      // 这里是只有校验失败才会进入，所以直接触发reject即可，用户配置或者不配置callback函数都不要影响用户的catch操作
       cb ? resolve() : reject(args)
     }
 
