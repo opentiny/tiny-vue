@@ -39,6 +39,7 @@ export default {
   'date-table': 'date-table',
   'fall-menu': 'fall-menu',
   'form-item': 'form-item',
+  'form-valid': 'form__valid',
   'img-preview': 'img-preview',
   'img-preview-item': 'img-preview-item',
   'ip-address': 'ip-address',
