@@ -483,6 +483,11 @@ export const watchActiveValue =
     } else {
       state.activeValue = nNewValue || 0
     }
+
+    // 正在输入时，不应该改变输入的内容
+    if (!state.isSlotTyping) {
+      state.slotValue = state.activeValue
+    }
   }
 
 export const watchModelValue =
@@ -554,3 +559,16 @@ export const inputValueChange =
     }
     api.initSlider([Math.min(...state.inputValue), Math.max(...state.inputValue)])
   }
+
+export const handleSlotInputFocus = (state: ISliderRenderlessParams['state']) => () => {
+  state.isSlotTyping = true
+}
+
+export const handleSlotInputBlur = (state: ISliderRenderlessParams['state']) => () => {
+  state.isSlotTyping = false
+  state.slotValue = state.activeValue
+}
+
+export const handleSlotInput = (state: ISliderRenderlessParams['state']) => (event: Event) => {
+  state.activeValue = Number((event.target as HTMLInputElement).value)
+}
