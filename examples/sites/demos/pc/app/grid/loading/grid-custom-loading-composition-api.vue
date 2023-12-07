@@ -2,7 +2,7 @@
   <div>
     <tiny-button @click="init">重试</tiny-button>
     <br /><br />
-    <tiny-grid :data="tableData">
+    <tiny-grid :data="tableData" :loading-component="loadingComponent()" :loading="loading">
       <tiny-grid-column type="index" width="5%"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" sortable></tiny-grid-column>
       <tiny-grid-column field="city" title="城市" sortable></tiny-grid-column>
@@ -17,9 +17,7 @@ import { Grid as TinyGrid, GridColumn as TinyGridColumn, Button as TinyButton } 
 const tableData = ref([])
 const loading = ref(true)
 
-init()
-
-function init() {
+const init = () => {
   tableData.value = []
   loading.value = true
   setTimeout(() => {
@@ -53,4 +51,31 @@ function init() {
     loading.value = false
   }, 2000)
 }
+
+init()
+
+const loadingComponent = () => (
+  <div class="custom-loading">
+    <span>正在加载中。。。</span>
+  </div>
+)
 </script>
+
+<style scoped>
+.custom-loading {
+  position: absolute;
+  font-size: 20px;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+.custom-loading[visible='false'] {
+  display: none;
+}
+</style>
