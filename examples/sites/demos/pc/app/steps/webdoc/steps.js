@@ -45,7 +45,7 @@ export default {
       'name': { 'zh-CN': '节点状态', 'en-US': 'Timeline Step Bar' },
       'desc': {
         'zh-CN':
-          '<p>通过单个节点数据中的 <code>disabled</code> 属性配置是否禁用；<code>error</code> 属性配置错误状态</p>\n',
+          '<p>通过单个节点数据中的 <code>disabled</code> 属性配置是否禁用；<code>error</code> 属性配置错误状态。</p>\n',
         'en-US':
           '<p>The <code>disabled</code> attribute in single node data is used to configure whether to disable, while the <code>error</code> attribute is used to configure error state</p>\n'
       },
@@ -124,15 +124,6 @@ export default {
       'codeFiles': ['only-number.vue']
     },
     {
-      'demoId': 'click',
-      'name': { 'zh-CN': '点击事件', 'en-US': '' },
-      'desc': {
-        'zh-CN': '<p>点击节点时触发 <code>click</code> 事件。</p>\n',
-        'en-US': 'Trigger <code>click</code> event when clicking on a node.'
-      },
-      'codeFiles': ['click.vue']
-    },
-    {
       'demoId': 'slot-item',
       'name': { 'zh-CN': 'item插槽', 'en-US': 'item slot' },
       'desc': {
@@ -140,13 +131,22 @@ export default {
         'en-US': 'Customize step bar node content through scope slot <code>item</code>.'
       },
       'codeFiles': ['slot-item.vue']
+    },
+    {
+      'demoId': 'click',
+      'name': { 'zh-CN': '点击事件', 'en-US': '' },
+      'desc': {
+        'zh-CN': '<p>点击节点时触发 <code>click</code> 事件。</p>\n',
+        'en-US': 'Trigger <code>click</code> event when clicking on a node.'
+      },
+      'codeFiles': ['click.vue']
     }
   ],
   apis: [
     {
       'name': 'steps',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'active',
           'type': 'number',
@@ -160,7 +160,7 @@ export default {
         {
           'name': 'count-field',
           'type': 'string',
-          'defaultValue': 'count',
+          'defaultValue': "'count'",
           'desc': {
             'zh-CN': '条形步骤条里徽标计数对应的字段名',
             'en-US': 'Custom field name corresponding to logo count in bar steps'
@@ -183,7 +183,7 @@ export default {
         {
           'name': 'name-field',
           'type': 'string',
-          'defaultValue': 'name',
+          'defaultValue': "'name'",
           'desc': {
             'zh-CN': '节点名称对应的字段名',
             'en-US': 'Field name corresponds to  name of node'
@@ -225,7 +225,7 @@ export default {
           'type': 'string | number',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '节点宽度, 可取值数字、带长度单位数值与百分比，传数字则默认以 px 为长度单位。',
+            'zh-CN': '节点宽度, 可取值数字、带长度单位数值与百分比，传数字则默认以 px 为长度单位',
             'en-US':
               'Node width can be set to numeric values, values with length units, or percentages. Numeric values will default to using pixels as the length unit'
           },
@@ -234,7 +234,7 @@ export default {
         {
           'name': 'status-field',
           'type': 'string',
-          'defaultValue': 'status',
+          'defaultValue': "'status'",
           'desc': {
             'zh-CN': '数据状态对应的字段名，用于条形步骤条',
             'en-US': 'Field name corresponding to data status, used for bar steps '
@@ -244,7 +244,7 @@ export default {
         {
           'name': 'text-position',
           'type': 'string',
-          'defaultValue': 'bottom',
+          'defaultValue': "'bottom'",
           'desc': {
             'zh-CN': '节点名称的位置， 可选值有right | bottom，用于单链型步骤条',
             'en-US':
@@ -256,7 +256,8 @@ export default {
       'events': [
         {
           'name': 'click',
-          'type': '(index: number, node: IStepsItem | ITimelineItem) => void',
+          'type':
+            '(index: number, node: <a href="#IStepsItem">IStepsItem</a> | <a href="time-line#ITimelineItem">ITimelineItem</a>) => void',
           'desc': {
             'zh-CN': '节点点击事件，参数：<li>index: 点击节点的索引</li><li>node：点击节点的数据</li>',
             'en-US': 'Node click event. Parameter: (index: node index, node: node data information)'

@@ -17,7 +17,7 @@ export default {
     return {
       active: 0,
       data: [
-        { name: 'Basic Info.', desc: '基本信息必填' },
+        { name: 'Basic Info', desc: '基本信息必填' },
         { name: 'BOQ Info', desc: '第二步信息' },
         { name: 'Involved Parties', desc: '第三步信息' },
         { name: 'Billing', desc: '最终步骤信息' }
@@ -35,6 +35,8 @@ export default {
 <style scoped>
 .active-node-desc {
   width: 100px;
+  padding: 2px;
+  margin-top: 2px;
   background-color: #fafafa;
   font-size: 12px;
 }

@@ -1,6 +1,5 @@
 <template>
   <div class="demo-steps-slot-item">
-    <div>通过 item 插槽添加自定义图标</div>
     <tiny-steps :data="stepsData">
       <template #item="data">
         <a class="label"

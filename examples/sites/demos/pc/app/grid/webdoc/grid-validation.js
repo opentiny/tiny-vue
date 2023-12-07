@@ -65,7 +65,7 @@ export default {
       'name': { 'zh-CN': '提交前校验', 'en-US': 'Verify Before Submission' },
       'desc': {
         'zh-CN':
-          '<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。</p>\n',
+          '<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。注意：如果传递了 callback 回调就不能正常 catch 到 validate 捕获到的错误。</p>\n',
         'en-US':
           'The <p>grid tag configures the edit-config object, configures the edit-rules object to set the validation object and validation rule, and invokes the this.$refs.basicGrid.validate() method to trigger table validation through the button click event. For details, see the following example. </p>\n'
       },

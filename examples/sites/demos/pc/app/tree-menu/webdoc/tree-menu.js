@@ -294,7 +294,7 @@ export default {
     {
       'name': 'tree-menu',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'accordion',
           'type': 'boolean',

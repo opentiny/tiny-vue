@@ -6,8 +6,8 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基础用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '',
-        'en-US': ''
+        'zh-CN': '<p>通过设置 <code>fetch-suggestions</code> 方法设置输入建议。</p>',
+        'en-US': '<p> Set input suggestions by setting the <code>fetch-suggestions</code> method.'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -43,8 +43,10 @@ export default {
       'demoId': 'slot',
       'name': { 'zh-CN': '插槽', 'en-US': 'slot' },
       'desc': {
-        'zh-CN': '<p>分别配置 <code>prepend</code>、<code>append</code>、<code>prefix</code>、<code>suffix</code>、<code>default</code> 插槽。</p>',
-        'en-US': '<p>Configure <code>prepend</code>, <code>append</code>, <code>prefix</code>, <code>default</code>, and <code>suffix</code> slots.</p>'
+        'zh-CN':
+          '<p>分别配置 <code>prepend</code>、<code>append</code>、<code>prefix</code>、<code>suffix</code>、<code>default</code> 插槽。</p>',
+        'en-US':
+          '<p>Configure <code>prepend</code>, <code>append</code>, <code>prefix</code>, <code>default</code>, and <code>suffix</code> slots.</p>'
       },
       'codeFiles': ['slot.vue']
     },
@@ -113,8 +115,7 @@ export default {
       'demoId': 'placement',
       'name': { 'zh-CN': '菜单弹出位置', 'en-US': 'Menu Pop-up Position' },
       'desc': {
-        'zh-CN':
-          '<p><code>placement</code> 属性可以设置菜单弹出位置，默认为 <code>bottom-start</code>。</p>\n',
+        'zh-CN': '<p><code>placement</code> 属性可以设置菜单弹出位置，默认为 <code>bottom-start</code>。</p>\n',
         'en-US':
           '<p><code>placement</code> property can be used to set the menu pop-up position. The default value is <code>bottom-start</code>. </p>\n'
       },
@@ -182,7 +183,7 @@ export default {
         {
           'name': 'value-key',
           'type': 'string',
-          'defaultValue': 'value',
+          'defaultValue': `'value'`,
           'desc': {
             'zh-CN': '在输入建议对象中，用于显示和匹配输入的键名',
             'en-US': 'In the Input Suggestion object, key names for displaying and matching inputs'
@@ -210,8 +211,7 @@ export default {
           'defaultValue': `'bottom-start'`,
           'desc': {
             'zh-CN': '菜单弹出位置',
-            'en-US':
-              'Menu pop-up position'
+            'en-US': 'Menu pop-up position'
           },
           'demoId': 'placement'
         },
@@ -249,7 +249,7 @@ export default {
           'name': 'name',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': 'input元素的原生属性', 'en-US': 'Native attributes of the input element' }
+          'desc': { 'zh-CN': 'input 元素的原生属性', 'en-US': 'Native attributes of the input element' }
         },
         {
           'name': 'select-when-unmatched',
@@ -271,14 +271,14 @@ export default {
         },
         {
           'name': 'prefix-icon',
-          'type': 'Component',
+          'type': 'VueComponent',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框头部图标', 'en-US': 'Icon on the header of the text box' },
           'demoId': 'custom-icon'
         },
         {
           'name': 'suffix-icon',
-          'type': 'Component',
+          'type': 'VueComponent',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框尾部图标', 'en-US': 'Icon at the end of the text box' },
           'demoId': 'custom-icon'
@@ -330,10 +330,11 @@ export default {
       'events': [
         {
           'name': 'select',
-          'type': '(selection: object) => void',
+          'type': '(selection: IAutocompleteSuggestionItem) => void',
+          'typeAnchorName': 'IAutocompleteSuggestionItem',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '点击选中建议项时触发，回调参数为fetch-suggestions中传入的项',
+            'zh-CN': '点击选中建议项时触发，回调参数为 fetch-suggestions 中传入的项',
             'en-US':
               'Triggered when you click to select a suggestion item. The callback parameter is the item passed in fetch-suggestions'
           },
@@ -373,13 +374,26 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '下拉列表项插槽，插槽参数: arg: { slotScope: object }, 其中object是fetch-suggestions中传入的项', 'en-US': 'Drop-down list item slot, slot parameter: arg: {slotScope: object}, where object is the item passed in fetch-suggestions' },
+          'desc': {
+            'zh-CN':
+              '下拉列表项插槽，插槽参数: arg: { slotScope: IAutocompleteSuggestionItem }, 其中 slotScope 是 fetch-suggestions 中传入的项',
+            'en-US':
+              'Drop-down list item slot, slot parameter: arg: { slotScope: IAutocompleteSuggestionItem }, where slotScope is the item passed in fetch-suggestions'
+          },
           'demoId': 'slot'
         }
       ]
     }
   ],
   types: [
+    {
+      name: 'IAutocompleteSuggestionItem',
+      type: 'type',
+      code: `interface IAutocompleteSuggestionItem {
+  [key: string]: string | undefined
+  value?: string
+}`
+    },
     {
       name: 'IAutocompletePlacement',
       type: 'type',
@@ -388,7 +402,7 @@ export default {
     {
       name: 'IAutocompleteFetchSuggestions',
       type: 'type',
-      code: 'type IAutocompleteFetchSuggestions = (queryString: string, callback: (suggestions: object[]) => void) => void'
+      code: 'type IAutocompleteFetchSuggestions = (queryString: string, callback: (suggestions: IAutocompleteSuggestionItem[]) => void) => void'
     }
   ]
 }
