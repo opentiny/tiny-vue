@@ -80,13 +80,13 @@ const onRejected = (opt, _this) => {
 
       const locatRow = getLocatRow(params)
       // 是否触发校验时自动定位到当前校验的单元格
-      const isAutoScrollToErrorCell = _this.validOpts.autoPos
+      const isAutoPosFalse = _this.validOpts.autoPos === false
 
-      !isAutoScrollToErrorCell && finish()
+      isAutoPosFalse && finish()
       // 自动滚动到校验不通过的树表单元格
-      isAutoScrollToErrorCell && treeConfig && _this.scrollToTreeRow(locatRow).then(posAndFinish)
+      !isAutoPosFalse && treeConfig && _this.scrollToTreeRow(locatRow).then(posAndFinish)
       // 自动滚动到校验不通过的表格单元格
-      isAutoScrollToErrorCell && !treeConfig && _this.scrollToRow(locatRow, true).then(posAndFinish)
+      !isAutoPosFalse && !treeConfig && _this.scrollToRow(locatRow, true).then(posAndFinish)
     })
   }
 }
