@@ -23,7 +23,7 @@
       ></tiny-grid-column>
       <tiny-grid-column title="操作" width="200" align="center">
         <template #default="data">
-          <template v-if="$refs.theGrid && $refs.theGrid.hasActiveRow(data.row)">
+          <template v-if="$refs.theGridRef && $refs.theGridRef.hasActiveRow(data.row)">
             <tiny-button size="mini" @click="saveRowEvent(data.row)"> 保存 </tiny-button>
             <tiny-button size="mini" @click="cancelRowEvent(data.row)"> 取消 </tiny-button>
           </template>
@@ -90,7 +90,7 @@ const tableData = ref([
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
-const theGridRef = ref()
+const theGridRef = ref('theGridRef')
 
 function editRowEvent(row) {
   theGridRef.value.setActiveRow(row).then(() => {
