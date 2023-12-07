@@ -118,9 +118,20 @@
   }
 
   &__valid {
+    .component-css-vars-form();
+
     &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
-      // 华为云规范 12px 16px; 所以它直接按tooltip的默认值即可
-      // padding: 7px 4px;
+      &.is-error {
+        background-color: var(--ti-form-valid-error-bg-color);
+
+        .popper__arrow {
+          border-right-color: var(--ti-form-valid-error-border-color);
+
+          &:after {
+            border-right-color: var(--ti-form-valid-error-border-color);
+          }
+        }
+      }
 
       &.is-error[x-placement^='top'] .popper__arrow {
         bottom: -4px;
