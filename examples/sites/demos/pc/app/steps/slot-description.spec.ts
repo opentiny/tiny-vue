@@ -4,7 +4,7 @@ test('节点描述信息插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('steps#slot-description')
 
-  const steps = page.locator('#preview .tiny-steps')
+  const steps = page.locator('.pc-demo .tiny-steps')
   const nodes = steps.locator('.tiny-timeline-item')
 
   await expect(nodes.first().locator('.my-description')).toBeVisible()
