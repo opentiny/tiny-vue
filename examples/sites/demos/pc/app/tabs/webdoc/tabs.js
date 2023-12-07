@@ -155,11 +155,11 @@ export default {
       'demoId': 'tabs-draggable',
       'name': { 'zh-CN': '拖拽', 'en-US': 'Drag' },
       'desc': {
-        'zh-CN': `<div class="tip custom-block"><p class="custom-block-title"> 通过 <code>drop-config</code> 设置 <code>Sortable</code> 排序插件；<br/>
+        'zh-CN': `<div class="tip custom-block"><p><code>drop-config</code> 设置 <code>Sortable</code> 排序插件；<br/>
           <code>tab-drag-start</code> 监听拖拽开始事件；<br/>
           <code>tab-drag-over</code> 监听拖拽中事件；<br/>
           <code>tab-drag-end</code> 监听拖拽结束事件，以此改变页签项顺序。</p></div>`,
-        'en-US': `<div class="tip custom-block"><p class="custom-block-title">Set the <code>Sortable</code> sorting plugin through <code>drop configuration</code> <br />
+        'en-US': `<div class="tip custom-block"><p> <code>drop configuration</code> Set the <code>Sortable</code> sorting plugin<br />
           <code>tab-drag-start</code> Listen for drag start events<br />
           <code>tab-drag-over</code> Listen for dragging events<br />
           <code>tab-drag-end</code> Listen for drag end events to change the order of tags.</p></div>`

@@ -547,21 +547,23 @@ table.api-table {
 .custom-block.tip {
   background-color: #f3f5f7;
   border-color: #42b983;
-  border-radius: 0;
-  padding: 1.5rem;
-  border-left-width: 0.5rem;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  border-left-width: 0.3rem;
   border-left-style: solid;
   margin: 1rem 0;
   font-size: 14px;
   color: #5e6d82;
-  line-height: 1.5;
+  line-height: 2;
+
   .custom-block-title {
     font-weight: 600;
+    margin-bottom: 0.5rem;
   }
+
   p {
-    margin: 8px 0;
-    font-size: 16px;
-    line-height: 1.5;
+    margin: 0;
+    font-size: 14px;
   }
   ul {
     li {
