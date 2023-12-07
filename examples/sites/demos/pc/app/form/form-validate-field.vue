@@ -8,7 +8,7 @@
       label-width="100px"
       show-message
     >
-      <tiny-form-item label="姓名" prop="users" required :validate-icon="validateIcon">
+      <tiny-form-item label="姓名" prop="users" required>
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="日期" prop="datepicker">
@@ -62,7 +62,7 @@ export default {
         }
       })
       if (errArray.length > 0) {
-        console.log(errArray)
+        // empty
       } else {
         Modal.alert('日期和url通过校验')
       }
