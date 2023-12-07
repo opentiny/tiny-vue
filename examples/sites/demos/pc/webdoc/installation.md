@@ -47,12 +47,6 @@ export default defineConfig({
 })
 ```
 
-<div class="tip custom-block">
-  <br>
-  <p>为了避免<code> @opentiny/vue </code> 的月度版本(minor)升级带来的不确定因素，因此推荐在您的工程中的<code> package.json </code> 中依赖包的版本号前使用 ~，
-    比如 <code>"@opentiny/vue": "~3.12.0</code>。</p>
-</div>
-
 ### 通过 CDN 方式引入
 
 为了更快地体验 TinyVue 的组件，你也可以通过 CDN 方式直接在 HTML 页面中引入 TinyVue, 建议版本号写 2 个有效版本数字即可，具体配置如下:
