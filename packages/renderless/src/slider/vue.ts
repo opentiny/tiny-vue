@@ -172,7 +172,6 @@ export const renderless = (
       api.setActiveButtonValue(value)
     }
   )
-  watch(() => state.activeValue, api.watchActiveValue, { immediate: true })
 
   watch(
     () => state.leftBtnValue,

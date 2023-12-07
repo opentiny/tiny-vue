@@ -388,7 +388,7 @@ export const calculateValue =
   (event) => {
     let currentValue = 0
 
-    if (state.sliderSize == 0) {
+    if (state.sliderSize === 0) {
       const handleEl = vm.$refs.slider
       state.sliderSize = handleEl['client' + (props.vertical ? 'Height' : 'Width')]
       state.sliderOffset = handleEl.getBoundingClientRect()
@@ -490,6 +490,7 @@ export const watchModelValue =
   (value) => {
     // 防止多触点下，触发双向绑定导致渲染异常
     if (!state.innerTrigger) {
+      state.isInit = true
       api.initSlider(value)
       api.setActiveButtonValue(value)
     } else {
