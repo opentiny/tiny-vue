@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script lang="tsx">
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/tag/vue'
 import { props, setup, h, defineComponent } from '@opentiny/vue-common'
 import type { ITagApi } from '@opentiny/vue-renderless/types/tag.type'
