@@ -1,10 +1,10 @@
 <template>
-  <div class="input-wrap">
+  <div class="demo-input">
     <tiny-input v-model="input" counter :maxlength="10" :minlength="5"></tiny-input>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Input } from '@opentiny/vue'
 
 export default {
@@ -19,10 +19,10 @@ export default {
 }
 </script>
 
-<style>
-.input-wrap {
+<style scoped>
+.demo-input {
   padding-top: 20px;
   height: 100%;
-  background: #f4f4f4;
+  background: #f5f5f5;
 }
 </style>

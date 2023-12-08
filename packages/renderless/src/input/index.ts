@@ -62,6 +62,14 @@ export const showBox = (state: IInputState) => (): void => {
   state.boxVisibility = true
 }
 
+export const inputStyle =
+  ({ props }) =>
+  () => {
+    return {
+      textAlign: props.textAlign
+    }
+  }
+
 export const calculateNodeStyling =
   () =>
   (
@@ -387,7 +395,7 @@ export const watchFormSelect =
 
       const filterData = props.selectMenu.length && props.selectMenu.filter((item) => item.id === value).shift()
 
-      state.checkedLable = filterData ? filterData.label : ''
+      state.checkedLabel = filterData ? filterData.label : ''
     }
   }
 

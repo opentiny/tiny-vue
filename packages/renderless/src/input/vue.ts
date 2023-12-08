@@ -47,7 +47,8 @@ import {
   handleEnterDisplayOnlyContent,
   hiddenPassword,
   dispatchDisplayedValue,
-  getDisplayedValue
+  getDisplayedValue,
+  inputStyle
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
 
@@ -81,7 +82,8 @@ export const api = [
   'isMemoryStorage',
   'hasSelection',
   'handleEnterDisplayOnlyContent',
-  'hiddenPassword'
+  'hiddenPassword',
+  'inputStyle'
 ]
 
 const initState = ({
@@ -101,7 +103,7 @@ const initState = ({
     passwordVisible: false,
     boxVisibility: false,
     textareaCalcStyle: {},
-    checkedLable: '',
+    checkedLabel: '',
     sheetvalue: props.modelValue,
     inputSize: computed(() => props.size || state.formItemSize),
     showClear: computed(
@@ -123,9 +125,11 @@ const initState = ({
         props.disabled || (parent.tinyForm || {}).disabled || state.isDisplayOnly || (parent.tinyForm || {}).displayOnly
     ),
     validateState: computed(() => (parent.formItem ? parent.formItem.validateState : '')),
+    inputStyle: computed(() => api.inputStyle()),
     textareaStyle: computed(() => ({
       ...state.textareaCalcStyle,
-      resize: props.resize
+      resize: props.resize,
+      textAlign: props.textAlign
     })),
     needStatusIcon: computed(() => (parent.tinyForm ? parent.tinyForm.statusIcon : false)),
     showPwdVisible: computed(
@@ -186,7 +190,8 @@ const initApi = ({
     handleCompositionStart: handleCompositionStart(state),
     handleCompositionUpdate: handleCompositionUpdate(state),
     dispatchDisplayedValue: dispatchDisplayedValue({ state, props, dispatch, api }),
-    getDisplayedValue: getDisplayedValue({ state, props })
+    getDisplayedValue: getDisplayedValue({ state, props }),
+    inputStyle: inputStyle({ props })
   })
 }
 
