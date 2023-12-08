@@ -13,7 +13,7 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <p>场景2：设置inherit-width</p>
+    <p>场景2：设置 inherit-width</p>
     <tiny-dropdown split-button type="success" :inherit-width="true">
       更多菜单
       <template #dropdown>
