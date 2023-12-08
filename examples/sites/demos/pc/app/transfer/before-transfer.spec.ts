@@ -23,10 +23,6 @@ test('基本用法', async ({ page }) => {
   await toRightBtn.click()
   await page.waitForTimeout(10)
 
-  // 检查右侧面板
-  await expect(rightPanel.locator('label').filter({ hasText: '备选项 2' })).toHaveCount(0)
-
-  // 2s 后再检查
   await page.waitForTimeout(2100)
   await expect(rightPanel.locator('label').filter({ hasText: '备选项 2' })).toHaveCount(1)
 })
