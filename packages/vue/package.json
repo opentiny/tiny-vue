@@ -154,6 +154,7 @@
     "@opentiny/vue-locales": "workspace:~",
     "@opentiny/vue-logon-user": "workspace:~",
     "@opentiny/vue-logout": "workspace:~",
+    "@opentiny/vue-mask": "workspace:~",
     "@opentiny/vue-menu": "workspace:~",
     "@opentiny/vue-message": "workspace:~",
     "@opentiny/vue-milestone": "workspace:~",
