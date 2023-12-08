@@ -3,7 +3,7 @@
     <tiny-button @click="clearCheckedNodes">清除选中节点</tiny-button>
     <tiny-cascader-panel
       v-model="value"
-      ref="CascaderPanel"
+      ref="cascaderPanelRef"
       :options="optionsCascader"
       @change="change"
       @expand-change="expandChange"
@@ -233,7 +233,6 @@ function change(value) {
 function expandChange(value) {
   Modal.message({ message: `节点展开：${value}`, status: 'info' })
 }
-
 </script>
 
 <style scoped>

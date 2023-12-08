@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-grid :data="tableData" @cell-mouseenter="cellMouseenterEvent">
+    <tiny-grid :data="tableData" @cell-mouseenter="cellMouseenterEvent" @cell-mouseleave="cellMouseleaveEvent">
       <tiny-grid-column type="index" title="序号" width="100"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域"></tiny-grid-column>

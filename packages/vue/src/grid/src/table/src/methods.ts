@@ -701,7 +701,9 @@ const Methods = {
 
       if (!sortedFlag) {
         let columnSortMethod = sortColumn.sortMethod
-        let sorted = columnSortMethod ? tableData.sort(columnSortMethod) : sortBy(tableData, sortColumn.property)
+        let sorted = columnSortMethod
+          ? tableData.sort(columnSortMethod)
+          : sortBy(tableData, sortColumn.sortBy ? sortColumn.sortBy : sortColumn.property)
 
         tableData = sortColumn.order === 'desc' ? sorted.reverse() : sorted
       }

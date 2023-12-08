@@ -120,7 +120,8 @@
     "build:ui-react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm build:react",
     "pub:react": "pnpm --filter=\"./packages/dist-react/**\" publish --no-git-checks --access=public",
     "dev:react-site": "pnpm --filter @opentiny/react-site start",
-    "build:react-site": "pnpm --filter @opentiny/react-site build"
+    "build:react-site": "pnpm --filter @opentiny/react-site build",
+    "prettier": "prettier --config .prettierrc --write ."
   },
   "dependencies": {
     "@vue/composition-api": "1.2.2",

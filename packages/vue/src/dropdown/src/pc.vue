@@ -88,14 +88,15 @@ export default defineComponent({
     inheritWidth: {
       type: Boolean,
       default: false
-    }
+    },
+    suffixIcon: Object
   },
   emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click', 'handle-click'],
   setup(props, context) {
     return setup({ props, context, renderless, api, h })
   },
   render() {
-    const { splitButton, type, disabled, handleMainButtonClick, menuOptions, title } = this
+    const { splitButton, type, disabled, handleMainButtonClick, menuOptions, title, suffixIcon } = this
     const { slots, size, state, border, showIcon, round, clickOutside } = this
     const params = { visible: state.visible }
     let triggerElm = null
@@ -103,7 +104,8 @@ export default defineComponent({
     const triggerClass = 'tiny-dropdown__trigger tiny-dropdown-trigger'
     const visibleClass = state.visible ? 'tiny-dropdown--visible tiny-dropdown-visible' : ''
 
-    const IconDown = state.designConfig?.icons?.dropdownIcon || iconDeltaDown()
+    // 优先级：suffix-icon 插槽 > suffixIcon 属性 > 其他主题图标 > 默认主题图标
+    const IconDown = suffixIcon || state.designConfig?.icons?.dropdownIcon || iconDeltaDown()
     const ButtonIconDown = state.designConfig?.icons?.dropdownIcon || iconDownWard()
     const defaultSlot = slots.default && slots.default(params)
 
@@ -146,7 +148,8 @@ export default defineComponent({
         ''
       )
 
-      const defaultTriggerElm = defaultSlot || <span class={'tiny-dropdown__title'}>{title}</span>
+      let defaultTriggerElm =
+        defaultSlot || title ? <span class={'tiny-dropdown__title'}>{defaultSlot || title}</span> : null
 
       triggerElm = border ? (
         <tiny-button
