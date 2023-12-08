@@ -187,3 +187,18 @@
     font-weight: normal;
   }
 }
+
+.button-text-size(@min-width, @height, @svg-width, @svg-height) {
+  min-width: @min-width;
+  height: @height;
+  line-height: calc(@height - 2px);
+
+  svg {
+    width: @svg-width;
+    height: @svg-height;
+  }
+
+  &.is-only-icon {
+    min-width: unset;
+  }
+}
