@@ -22,7 +22,7 @@ const statusMap = ref({
 // 数据源
 const milestoneData = ref([
   {
-    name: 'completed状态',
+    name: 'completed 状态',
     time: '2018-9-7',
     status: 'completed',
     flags: [
@@ -34,7 +34,7 @@ const milestoneData = ref([
     ]
   },
   {
-    name: 'completed状态',
+    name: 'completed 状态',
     time: '2018-9-8',
     status: 'completed',
     flags: [
@@ -44,9 +44,9 @@ const milestoneData = ref([
       }
     ]
   },
-  { name: 'doing状态', time: '2018-9-10', status: 'doing', content: null },
+  { name: 'doing 状态', time: '2018-9-10', status: 'doing', content: null },
   {
-    name: 'cancel状态',
+    name: 'cancel 状态',
     time: '2018-9-9',
     status: 'cancel',
     flags: [
@@ -61,9 +61,9 @@ const milestoneData = ref([
       }
     ]
   },
-  { name: 'back状态', time: '2018-9-11', status: 'back' },
+  { name: 'back 状态', time: '2018-9-11', status: 'back' },
   {
-    name: 'end状态',
+    name: 'end 状态',
     time: '2018-9-9',
     status: 'end',
     flags: [
