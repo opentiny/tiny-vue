@@ -29,7 +29,8 @@ export default {
       'name': { 'zh-CN': '树表虚拟滚动', 'en-US': 'Virtual scrolling of the tree table' },
       'desc': {
         'zh-CN': `
-        <table class="table">
+        <p> <code>optimization</code> 虚拟滚动具体配置如下：</p>
+        <table class="api-table">
           <thead>
             <tr>
               <th>名称</th> 
