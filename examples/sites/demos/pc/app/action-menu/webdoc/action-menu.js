@@ -200,7 +200,7 @@ export default {
             'zh-CN': '菜单项图标',
             'en-US': 'Icon of a menu item'
           },
-          'demId': 'icon'
+          'demoId': 'icon'
         },
         {
           'name': 'popper-class',
