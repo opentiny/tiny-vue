@@ -4,7 +4,7 @@ import { $local } from './storage'
 const _modeKey = 'tiny-vue-api-mode'
 const _demoModeKey = 'tiny-vue-demo-mode'
 const apiModeState = reactive({
-  apiMode: $local[_modeKey] || 'Options',
+  apiMode: $local[_modeKey] || 'Composition',
   demoMode: $local[_demoModeKey] || 'default' // 示例展示： default:多示例， single:单示例
 })
 

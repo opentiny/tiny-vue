@@ -233,7 +233,7 @@ export const svg = ({ name = 'Icon', component }) => {
           }
 
           // 解决富文本组件工具栏图标大小不正确的问题
-          if (name.indexOf('IconRichText') !== -1) {
+          if (name.includes('IconRichText')) {
             if (!isVue3) {
               extend.attrs.viewBox = '0 0 24 24'
             } else {

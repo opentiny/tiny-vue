@@ -16,9 +16,8 @@ export default {
       'demoId': 'disabled',
       'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
       'desc': {
-        'zh-CN': '<p>通过<code>disabled</code>设置禁用</p>\n',
-        'en-US':
-          '<p>Disabling by <code>disabled</code></p>\n'
+        'zh-CN': '<p>通过 <code>disabled</code> 设置禁用</p>\n',
+        'en-US': '<p>Disabling by <code>disabled</code> </p>\n'
       },
       'codeFiles': ['disabled.vue']
     },
@@ -26,7 +25,8 @@ export default {
       'demoId': 'clearable',
       'name': { 'zh-CN': '显示清空按钮', 'en-US': 'Show Clear Button' },
       'desc': {
-        'zh-CN': '<p>给组件加上<code>clearable</code>属性可以显示清空按钮，配合<code>handle-clear</code>事件一起使用清空内容区域的值</p>\n',
+        'zh-CN':
+          '<p>给组件加上 <code>clearable</code> 属性可以显示清空按钮，配合 <code>handle-clear</code> 事件一起使用清空内容区域的值</p>\n',
         'en-US':
           '<p>The <code>clearable</code> attribute is added to the component to display the clear button. This attribute is used together with the <code>handle-clear</code> event to clear the value of the content area.</p>\n'
       },
@@ -37,8 +37,7 @@ export default {
       'name': { 'zh-CN': 'tip 提示', 'en-US': 'Tip' },
       'desc': {
         'zh-CN': '<p>标题右侧添加提示信息</p>\n',
-        'en-US':
-          '<p>Add a message to the right of the title.</p>\n'
+        'en-US': '<p>Add a message to the right of the title.</p>\n'
       },
       'codeFiles': ['tip.vue']
     },
@@ -56,8 +55,9 @@ export default {
       'demoId': 'event',
       'name': { 'zh-CN': '事件', 'en-US': 'Event' },
       'desc': {
-        'zh-CN': '<p><code>visible-change</code> 事件在下拉面板显示/隐藏时触发</p>',
-        'en-US': '<p><code>visible-change</code> event is triggered when the drop-down panel is displayed or hidden</p>'
+        'zh-CN': '<p> <code>visible-change</code> 事件在下拉面板显示/隐藏时触发</p>',
+        'en-US':
+          '<p> <code>visible-change</code> event is triggered when the drop-down panel is displayed or hidden</p>'
       },
       'codeFiles': ['event.vue']
     },
@@ -77,14 +77,15 @@ export default {
     {
       'name': 'filter-panel',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'clearable ',
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '显示清空按钮，配合`handle-clear`事件一起使用清空内容区域的值，默认为true。',
-            'en-US': 'Displays the Clear button, which is used together with the `handle-clear` event to clear the value of the content area. The default value is true.'
+            'en-US':
+              'Displays the Clear button, which is used together with the `handle-clear` event to clear the value of the content area. The default value is true.'
           },
           'demoId': 'clearable'
         },
@@ -162,7 +163,7 @@ export default {
       'events': [
         {
           'name': 'handle-clear',
-          'type': 'Function',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '清除按钮点击事件。',
@@ -172,7 +173,7 @@ export default {
         },
         {
           'name': 'visible-change',
-          'type': 'Function',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '下拉框显示隐藏事件。',
@@ -181,5 +182,6 @@ export default {
           'demoId': 'event'
         }
       ]
-    }]
+    }
+  ]
 }

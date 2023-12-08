@@ -6,9 +6,9 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '通过<code>percentage</code>设置进度值，<code>stroke-width</code>设置进度条的宽度，单位 px。',
+        'zh-CN': '通过 <code>percentage</code> 设置进度值， <code>stroke-width</code> 设置进度条的宽度，单位 px。',
         'en-US':
-          'Set the progress value through<code>percentage</code>, and<code>stroke-width</code>to set the width of the progress bar in px.'
+          'Set the progress value through <code>percentage</code> , and <code>stroke-width</code> to set the width of the progress bar in px.'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -16,9 +16,9 @@ export default {
       'demoId': 'custom-color',
       'name': { 'zh-CN': '定义颜色', 'en-US': 'Custom Color' },
       'desc': {
-        'zh-CN': '通过<code>color</code>设置进度条颜色；会覆盖<code>status</code>状态颜色。',
+        'zh-CN': '通过 <code>color</code> 设置进度条颜色；会覆盖 <code>status</code> 状态颜色。',
         'en-US':
-          'Set the progress bar color through<code>color</code>; It will overwrite the status color of<code>status</code>.'
+          'Set the progress bar color through <code>color</code> ; It will overwrite the status color of <code>status</code> .'
       },
       'codeFiles': ['custom-color.vue']
     },
@@ -27,9 +27,9 @@ export default {
       'name': { 'zh-CN': '文字的显隐和位置', 'en-US': 'Position and Hiding of Text' },
       'desc': {
         'zh-CN':
-          '通过<code>show-text</code>设置文字显隐；<code>text-inside</code>设置文字内置在进度条内显示（只在 type=line 时可用），<code>format</code>自定义进度条的文字。',
+          '通过 <code>show-text</code> 设置文字显隐； <code>text-inside</code> 设置文字内置在进度条内显示（只在 type=line 时可用）， <code>format</code> 自定义进度条的文字。',
         'en-US':
-          'Set text display and hiding through<code>show-text</code>; <code>text-inside</code>Set the text to be displayed within the progress bar (only available when type=line), and<code>format</code>customize the text for the progress bar.'
+          'Set text display and hiding through <code>show-text</code> ; <code>text-inside</code> Set the text to be displayed within the progress bar (only available when type=line), and <code>format</code> customize the text for the progress bar.'
       },
       'codeFiles': ['format-text.vue']
     },
@@ -37,9 +37,9 @@ export default {
       'demoId': 'progress-status',
       'name': { 'zh-CN': '状态', 'en-US': 'Status' },
       'desc': {
-        'zh-CN': '通过<code>status</code>设置当前状态，可选值：<code>(success/exception/warning)</code>。',
+        'zh-CN': '通过 <code>status</code> 设置当前状态，可选值： <code>(success/exception/warning)</code> 。',
         'en-US':
-          'Set the current state through<code>status</code>, with optional values:<code>(success/exception/warning)</code>.'
+          'Set the current state through <code>status</code> , with optional values: <code>(success/exception/warning)</code> .'
       },
       'codeFiles': ['progress-status.vue']
     },
@@ -54,21 +54,21 @@ export default {
     },
     {
       'demoId': 'progress-type-circle',
-      'name': { 'zh-CN': 'circle 类型', 'en-US': 'circle type' },
+      'name': { 'zh-CN': '全封闭环形', 'en-US': 'Fully enclosed annular' },
       'desc': {
         'zh-CN':
-          '通过<code>type="circle"</code>设置为全封闭环形类型，<code>width</code>设置环形进度条画布宽度，默认值为126px。',
+          '通过 <code>type="circle"</code> 设置为全封闭环形类型， <code>width</code> 设置环形进度条画布宽度，默认值为126px。',
         'en-US':
-          'Set<code>type="circle"</code>to a fully enclosed circular type, and<code>width</code>to set the width of the circular progress bar canvas, with a default value of 126px.'
+          'Set <code>type="circle"</code> to a fully enclosed circular type, and <code>width</code> to set the width of the circular progress bar canvas, with a default value of 126px.'
       },
       'codeFiles': ['progress-type-circle.vue']
     },
     {
       'demoId': 'progress-type-dashboard',
-      'name': { 'zh-CN': 'dashboard 类型', 'en-US': 'Dashboard Type' },
+      'name': { 'zh-CN': '非全封闭环形', 'en-US': 'Non fully enclosed annular' },
       'desc': {
-        'zh-CN': '通过<code>type="dashboard"</code>设置为半封闭环形类型。',
-        'en-US': 'Set to a semi enclosed circular type through<code>type="dashboard"</code>.'
+        'zh-CN': '通过 <code>type="dashboard"</code> 设置为非全封闭环形类型。',
+        'en-US': 'Set to a semi enclosed circular type through <code>type="dashboard"</code> .'
       },
       'codeFiles': ['progress-type-dashboard.vue']
     }
@@ -80,7 +80,8 @@ export default {
       'props': [
         {
           'name': 'color',
-          'type': 'string | array | (p: string) => string',
+          'type': 'string | IColorItem[] | (percentage: string) => string',
+          'typeAnchorName': 'IColorItem',
           'defaultValue': '',
           'desc': {
             'zh-CN': '进度条背景色（会覆盖 status 状态颜色）',
@@ -167,6 +168,18 @@ export default {
       ],
       'events': [],
       'slots': []
+    }
+  ],
+  types: [
+    {
+      name: 'IColorItem',
+      type: 'type',
+      code: `
+interface IColorItem {
+  color: string
+  percentage: number
+}
+`
     }
   ]
 }

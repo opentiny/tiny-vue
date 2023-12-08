@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('click事件', async ({ page }) => {
+test('点击事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#tabs-events-click')
 

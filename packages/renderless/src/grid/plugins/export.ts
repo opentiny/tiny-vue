@@ -129,15 +129,6 @@ const downloadCsc = (options, content) => {
 
   if (navigator.msSaveBlob && window.Blob) {
     navigator.msSaveBlob(new Blob([content], { type: 'text/csv;charset=utf-8' }), options.filename)
-  } else if (browser.name === 'ie') {
-    const win = window.top.open('about:blank', '_blank')
-
-    win.opener = null
-    win.document.charset = 'utf-8'
-    win.document.write(content)
-    win.document.close()
-    win.document.execCommand('SaveAs', options.filename)
-    win.close()
   } else {
     const linkElem = document.createElement('a')
 
@@ -159,7 +150,6 @@ const downloadCsc = (options, content) => {
 export default {
   _exportCsv(options) {
     let { visibleColumn, scrollXLoad, scrollYLoad, treeConfig } = this
-
     let mergedOpts = {
       columns: null,
       columnFilterMethod: (column) => column.property && !['index', 'selection', 'radio'].includes(column.type),

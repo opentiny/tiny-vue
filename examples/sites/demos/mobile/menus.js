@@ -53,7 +53,10 @@ export const cmpMenus = [
     label: '容器组件',
     labelEn: 'Container',
     key: 'cmp_container',
-    children: [{ name: 'Dialog', nameCn: '对话框', key: 'dialogbox' }]
+    children: [
+      { name: 'Dialog', nameCn: '对话框', key: 'dialogbox' },
+      { name: 'Container', nameCn: '内容布局', key: 'container' }
+    ]
   },
   {
     label: '数据组件',
@@ -94,7 +97,9 @@ export const cmpMenus = [
       { name: 'Badge', nameCn: '徽章', key: 'badge' },
       { name: 'Loading', nameCn: '加载', key: 'loading' },
       { name: 'Modal', nameCn: '模态框', key: 'modal' },
-      { name: 'Popover', nameCn: '气泡', key: 'popover' }
+      { name: 'Popover', nameCn: '气泡', key: 'popover' },
+      { name: 'Toast', nameCn: '轻提示', key: 'toast' },
+      { name: 'Mask', nameCn: '遮罩层', key: 'mask' }
     ]
   },
   {

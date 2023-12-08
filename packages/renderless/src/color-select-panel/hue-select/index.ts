@@ -1,4 +1,4 @@
-import { IColorSelectPanelRef } from '@/types'
+import type { IColorSelectPanelRef } from '@/types'
 import type Color from '../utils/color'
 
 export const setPosition = (el: HTMLElement, x: number, y: number) => {
@@ -56,11 +56,13 @@ export const updateCursor = (
     const { x, y } = updatePosition(event, rect, cursor)
     color.set({
       s: calcSaturation(x, rect.width) * 100,
-      v: calcBrightness(y, rect.height)
+      v: calcBrightness(y, rect.height),
+      h: color.get('h')
     })
     emit('sv-update', {
       s: color.get('s'),
-      v: color.get('v')
+      v: color.get('v'),
+      h: color.get('h')
     })
   }
 }

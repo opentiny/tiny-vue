@@ -1,7 +1,7 @@
 <template>
   <div>
-    <tiny-select v-model="value" placeholder="请选择" value-key="val">
-      <tiny-option v-for="item in options" :key="item.obj.id" :label="item.text" :value="item.obj"> </tiny-option>
+    <tiny-select v-model="value" value-key="val">
+      <tiny-option v-for="(item, index) in options" :key="index" :label="item.text" :value="item.obj"> </tiny-option>
     </tiny-select>
     <p class="value">
       {{ value }}
@@ -22,3 +22,13 @@ const options = ref([
 ])
 const value = ref({ val: '选项3', id: 3 })
 </script>
+
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

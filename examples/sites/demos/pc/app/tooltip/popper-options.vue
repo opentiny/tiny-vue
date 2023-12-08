@@ -1,7 +1,9 @@
 <template>
-  <tiny-tooltip content="popper-options配置" :popper-options="options">
-    <button class="tiny-button tiny-button--primary">popper-options配置</button>
-  </tiny-tooltip>
+  <div>
+    <tiny-tooltip content="提示内容" :popper-options="options">
+      <button class="tiny-button tiny-button--primary">鼠标悬浮到这里</button>
+    </tiny-tooltip>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -14,8 +16,8 @@ export default {
   data() {
     return {
       options: {
-        gpuAcceleration: true, // 当这一属性被设置为 true 时，popper 的位置将通过 CSS3 的 translate3d 来改变
-        removeOnDestroy: false // 当你想要在调用 `destroy` 方法时不自动移除 popper 时，应当将此项设置为 false
+        bubbling: true, // 监听元素所有上级有滚动元素的scroll事件,防止弹出层与页面分离
+        removeOnDestroy: true // 当你想要在调用 `destroy` 方法时不自动移除 popper 时，应当将此项设置为 false
       }
     }
   }

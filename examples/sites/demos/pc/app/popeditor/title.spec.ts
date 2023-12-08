@@ -5,7 +5,7 @@ test.describe('PopEditor 自定义标题和提交字段映射', () => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('popeditor#title')
 
-    const preview = page.locator('#preview')
+    const preview = page.locator('#title')
     const textBox = preview.getByRole('textbox')
     const dialogBox = page.locator('.tiny-dialog-box')
     const customTitle = dialogBox.getByText('自定义弹窗标题')
@@ -20,7 +20,7 @@ test.describe('PopEditor 自定义标题和提交字段映射', () => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('popeditor#title1')
 
-    const preview = page.locator('#preview')
+    const preview = page.locator('#title1')
     const textBox = preview.getByRole('textbox')
     const dialogBox = page.locator('.tiny-dialog-box')
     const confirmBtn = dialogBox.getByRole('button', { name: '确 认' })

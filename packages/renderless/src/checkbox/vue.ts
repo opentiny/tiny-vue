@@ -10,7 +10,7 @@
  *
  */
 
-import {
+import type {
   ICheckboxApi,
   ICheckboxProps,
   ICheckboxState,
@@ -46,6 +46,7 @@ const initState = ({ reactive, computed, parent, api, inject, props }) => {
   const state: ICheckboxState = reactive({
     size: props.size || inject('size', null),
     vertical: inject('vertical', null),
+    iconPosition: props.iconPosition || inject('iconPosition', 'center'),
     focus: false,
     selfModel: false,
     showLabel: false,

@@ -1,8 +1,13 @@
 import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
-  await page.goto('icon#show-title')
-  await page.getByText('显示 Title').nth(1).click()
-  await page.getByTitle('复制').locator('svg').click()
-  await expect(page.locator('//*[@id="preview"]/div[2]/div[2]')).toHaveAttribute('title', '复制')
+test('图标集', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('icon#list')
+
+  const icons = page.locator('.svgs-item > .tiny-svg')
+
+  for (let i = 0; i < 10; i++) {
+    await expect(icons.nth(i)).toHaveCSS('width', '24px')
+    await expect(icons.nth(i)).toHaveCSS('height', '24px')
+  }
 })

@@ -7,7 +7,7 @@ import { ref } from 'vue'
 import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
 
 const normalActive = ref(0)
-const data = ref([{ name: 'Basic Info.' }, { name: 'BOQ Info' }, { name: 'Involved Parties' }, { name: 'Billing' }])
+const data = ref([{ name: 'Basic Info' }, { name: 'BOQ Info' }, { name: 'Involved Parties' }, { name: 'Billing' }])
 
 const normalClick = (index, node) => {
   normalActive.value = index

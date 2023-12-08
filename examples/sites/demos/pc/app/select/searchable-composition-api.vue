@@ -1,11 +1,11 @@
 <template>
   <div>
-    <p class="font-style">多选</p>
-    <tiny-select v-model="multivalue" placeholder="请选择" :searchable="true" multiple :show-empty-image="true">
+    <p>单选</p>
+    <tiny-select v-model="value" :searchable="true" :show-empty-image="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <p class="font-style">单选</p>
-    <tiny-select v-model="value" placeholder="请选择" :searchable="true" :show-empty-image="true">
+    <p>多选</p>
+    <tiny-select v-model="multivalue" :searchable="true" multiple :show-empty-image="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
@@ -26,9 +26,12 @@ const value = ref('')
 const multivalue = ref([])
 </script>
 
-<style scoped>
-.font-style {
+<style lang="less" scoped>
+.tiny-select {
+  width: 280px;
+}
+p {
   font-size: 14px;
-  margin: 8px;
+  line-height: 1.5;
 }
 </style>

@@ -5,7 +5,7 @@ test('用户头像上传', async ({ page }) => {
   await page.goto('file-upload#upload-user-head')
 
   const upload = page.locator('.tiny-upload')
-  const addIcon = page.locator('#preview svg').nth(1)
+  const addIcon = page.locator('#upload-user-head svg')
 
   await expect(upload).toHaveCSS('width', '87px')
   await expect(upload).toHaveCSS('height', '87px')

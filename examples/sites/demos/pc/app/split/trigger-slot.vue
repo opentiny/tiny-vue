@@ -5,7 +5,7 @@
         <div class="demo-split-pane">自定义左面板</div>
       </template>
       <template #trigger>
-        <div class="line"></div>
+        <div class="trigger-line"></div>
       </template>
       <template #right>
         <div class="demo-split-pane">自定义右面板</div>
@@ -40,7 +40,7 @@ export default {
   padding: 10px;
 }
 
-.line {
+.trigger-line {
   width: 5px;
   height: 200px;
   background-color: black;

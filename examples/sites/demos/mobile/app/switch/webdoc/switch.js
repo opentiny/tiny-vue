@@ -3,52 +3,64 @@ export default {
   owner: '',
   demos: [
     {
-      demoId: 'disabled',
+      demoId: 'base',
       name: {
-        'zh-CN': '是否禁用',
+        'zh-CN': '基础用法',
         'en-US': 'button type'
       },
       desc: {
-        'zh-CN': '<p>是否禁用</p>',
-        'en-US': '<p>button type</p>'
+        'zh-CN': '<p>基础用法</p>',
+        'en-US': '<p>base</p>'
+      },
+      codeFiles: ['base.vue']
+    },
+    {
+      demoId: 'disabled',
+      name: {
+        'zh-CN': '状态不可用',
+        'en-US': 'disabled'
+      },
+      desc: {
+        'zh-CN': '<p>状态不可用</p>',
+        'en-US': '<p>disabled</p>'
       },
       codeFiles: ['disabled.vue']
     },
     {
-      demoId: 'switch-event-change',
+      demoId: 'loading',
       name: {
-        'zh-CN': '值改变事件',
-        'en-US': 'button round'
+        'zh-CN': '加载状态',
+        'en-US': 'loading'
       },
       desc: {
-        'zh-CN': '<p>值改变事件</p>',
-        'en-US': '<p>button round</p>'
+        'zh-CN': '<p>加载中状态</p>',
+        'en-US': '<p>loading</p>'
       },
-      codeFiles: ['switch-event-change.vue']
+      codeFiles: ['loading.vue']
     },
     {
-      demoId: 'scenario',
+      demoId: 'mini',
       name: {
-        'zh-CN': '应用场景',
-        'en-US': 'events'
+        'zh-CN': '小尺寸',
+        'en-US': 'mini'
       },
       desc: {
-        'zh-CN': '<p>应用场景</p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>小尺寸</p>',
+        'en-US': '<p>mini</p>'
       },
-      codeFiles: ['scenario.vue']
+      codeFiles: ['mini.vue']
     },
     {
-      demoId: 'true-false-value',
+      demoId: 'event',
       name: {
-        'zh-CN': '自定义打开关闭的值',
-        'en-US': 'true-false-value'
+        'zh-CN': '开关状态改变事件',
+        'en-US': 'switch status event'
       },
       desc: {
-        'zh-CN': '<p>自定义打开关闭的值</p>',
-        'en-US': '<p>bbutton click</p>'
+        'zh-CN': '<p>开关的状态改变事件</p>',
+        'en-US': '<p>switch status event</p>'
       },
-      codeFiles: ['true-false-value.vue']
+      codeFiles: ['event.vue']
     }
   ],
   apis: [
@@ -58,7 +70,7 @@ export default {
       properties: [
         {
           name: 'disabled',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>是否禁用，该属性默认为false</p>',
@@ -68,33 +80,43 @@ export default {
         },
         {
           name: 'false-value',
-          type: 'String',
+          type: 'string',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>switch 关闭时的值，该属性默认为false</p>',
             'en-US': 'display different button'
           },
-          demoId: 'true-false-value'
+          demoId: 'base'
         },
         {
           name: 'true-value',
-          type: 'String',
+          type: 'string',
           defaultValue: 'true',
           desc: {
             'zh-CN': '<p>switch 打开时的值，该属性默认为true</p>',
             'en-US': 'display different button'
           },
-          demoId: 'true-false-value'
+          demoId: 'base'
         },
         {
-          name: 'value',
-          type: 'String',
+          name: 'v-model',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>绑定值</p>',
             'en-US': 'display different button'
           },
-          demoId: 'switch-event-change'
+          demoId: 'base'
+        },
+        {
+          name: 'mini',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>小尺寸</p>',
+            'en-US': 'mini'
+          },
+          demoId: 'mini'
         }
       ],
       events: [
@@ -106,7 +128,7 @@ export default {
             'zh-CN': '<p>switch 状态发生变化时的回调函数,可获取新状态的值</p>',
             'en-US': 'Click'
           },
-          demoId: 'switch-event-change'
+          demoId: 'event'
         }
       ]
     }

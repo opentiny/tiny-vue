@@ -6,8 +6,8 @@ export default {
       'demoId': 'base',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': `<code>Breadcrumb</code>：通过 <code>select</code> 监听面包屑选中事件；<br/>
-                  <code>BreadcrumbItem</code>：通过 <code>to</code> 设置选项路由跳转对象，<code></code> 设置选项名称，<code>select</code> 监听选项选中事件。`,
+        'zh-CN': `<code>Breadcrumb</code>：通过 <code>select</code> 监听面包屑选中事件。<br/>
+                  <code>BreadcrumbItem</code>：通过 <code>to</code> 设置选项路由跳转对象，<code>label</code> 设置选项名称，<code>select</code> 监听选项选中事件。`,
         'en-US': `<code>Breadcrumb</code>: Listen for breadcrumb selection events through<code>select</code>; <br/>
                   <code>BreadcrumbItem</code>: Route the jump object through the <code>to</code>setting option,<code></code>setting option name,<code>select</code>listening for option selection events.`
       },
@@ -71,7 +71,7 @@ export default {
         },
         {
           'name': 'separator-icon',
-          'type': 'Component',
+          'type': 'vueComponent',
           'defaultValue': '',
           'desc': { 'zh-CN': '图标分隔符', 'en-US': 'Icon separator' },
           'demoId': 'separator'
@@ -102,7 +102,7 @@ export default {
       ]
     },
     {
-      'name': 'breadcrumbItem',
+      'name': 'breadcrumb-item',
       'type': 'component',
       'props': [
         {

@@ -701,7 +701,9 @@ const Methods = {
 
       if (!sortedFlag) {
         let columnSortMethod = sortColumn.sortMethod
-        let sorted = columnSortMethod ? tableData.sort(columnSortMethod) : sortBy(tableData, sortColumn.property)
+        let sorted = columnSortMethod
+          ? tableData.sort(columnSortMethod)
+          : sortBy(tableData, sortColumn.sortBy ? sortColumn.sortBy : sortColumn.property)
 
         tableData = sortColumn.order === 'desc' ? sorted.reverse() : sorted
       }
@@ -1729,23 +1731,28 @@ const Methods = {
     if (accordion) {
       rows = rows.slice(rows.length - 1, rows.length)
     }
+
+    // 这里需要进行一次浅拷贝，不能直接操作vue observe的数组，不然vue频繁的get、set、toRaw、reactive等操作从而导致卡顿
+    const treeExpandedsCopy = [...treeExpandeds]
     rows.forEach((row) => {
       if (row[children] && row[children].length) {
-        let index = treeExpandeds.indexOf(row)
+        const index = treeExpandedsCopy.indexOf(row)
         if (accordion) {
           // 同一级只能展开一个
-          let matchObj = findTree(tableFullData, (item) => item === row, treeConfig)
-          remove(treeExpandeds, (item) => ~matchObj.items.indexOf(item))
+          const matchObj = findTree(tableFullData, (item) => item === row, treeConfig)
+          remove(treeExpandedsCopy, (item) => ~matchObj.items.indexOf(item))
         }
         if (~index && (isToggle || !expanded)) {
-          treeExpandeds.splice(index, 1)
+          treeExpandedsCopy.splice(index, 1)
           return
         }
         if (!~index && (isToggle || expanded)) {
-          treeExpandeds.push(row)
+          treeExpandedsCopy.push(row)
         }
       }
     })
+
+    this.treeExpandeds = treeExpandedsCopy
 
     setTreeScrollYCache(this)
 

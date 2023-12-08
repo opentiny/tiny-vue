@@ -13,6 +13,6 @@ test('Collapse 阻止折叠面板展开/收起', async ({ page }) => {
   await expect(content.first()).not.toHaveCSS('display', 'none')
   await header.first().click()
   await expect(header.first()).toHaveClass(/is-active/)
-  await expect(modal).toHaveText(/阻止面板关闭/)
+  await expect(modal.nth(1)).toHaveText(/阻止面板切换，当前点击面板：/)
   await expect(content.first()).not.toHaveCSS('display', 'none')
 })

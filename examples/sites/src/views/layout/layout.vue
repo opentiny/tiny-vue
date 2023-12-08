@@ -2,15 +2,15 @@
   <div class="main-layout ti-hp100 ti-f-c ti-f-box-stretch">
     <!-- 切换语言 -->
     <div class="lang-box">
-      <tiny-tooltip :content="$t('changeLanguage')" placement="left">
-        <span class="lang-btn" @click="changeLanguage">{{ $t('language') }}</span>
+      <tiny-tooltip :content="i18nByKey('changeLanguage')" placement="left">
+        <span class="lang-btn" @click="changeLanguage">{{ i18nByKey('language') }}</span>
       </tiny-tooltip>
     </div>
     <!-- 切換主题样式 -->
     <tiny-dropdown v-if="!templateModeState.isSaas" class="theme-change-button" trigger="click">
-      <tiny-tooltip :content="$t('changeTheme')" placement="left">
+      <tiny-tooltip :content="i18nByKey('changeTheme')" placement="left">
         <span>
-          <img :src="themeSvg" :alt="$t('changeTheme')" />
+          <img :src="themeSvg" :alt="i18nByKey('changeTheme')" />
         </span>
       </tiny-tooltip>
       <template #dropdown>
@@ -31,7 +31,7 @@
         <div v-show="!isCollapsed" class="api-type-box" :class="{ 'is-collapsed': isCollapsed }">
           <div class="api-type">
             <div :class="{ 'api-mode': true, active: apiModeState.apiMode === 'Options' }">
-              {{ $t2('选项式', 'Options') }}
+              {{ getWord('选项式', 'Options') }}
             </div>
             <tiny-switch
               class="api-switch"
@@ -41,16 +41,16 @@
               v-model="apiModeState.apiMode"
             ></tiny-switch>
             <div :class="{ 'api-mode': true, active: apiModeState.apiMode === 'Composition' }">
-              {{ $t2('组合式', 'Composition') }}
+              {{ getWord('组合式', 'Composition') }}
             </div>
-            <tiny-tooltip :content="$t('apiType')" placement="right">
+            <tiny-tooltip :content="i18nByKey('apiType')" placement="right">
               <icon-help-circle></icon-help-circle>
             </tiny-tooltip>
           </div>
 
           <div class="api-type">
             <div :class="{ 'api-mode': true, active: apiModeState.demoMode === 'single' }">
-              {{ $t2('单示例', 'Single') }}
+              {{ getWord('单示例', 'Single') }}
             </div>
             <tiny-switch
               class="api-switch"
@@ -60,9 +60,9 @@
               v-model="apiModeState.demoMode"
             ></tiny-switch>
             <div :class="{ 'api-mode': true, active: apiModeState.demoMode === 'default' }">
-              {{ $t2('多示例', 'Multiple') }}
+              {{ getWord('多示例', 'Multiple') }}
             </div>
-            <tiny-tooltip :content="$t2('切换demo的预览模式', 'Change demo preview mode')" placement="right">
+            <tiny-tooltip :content="getWord('切换demo的预览模式', 'Change demo preview mode')" placement="right">
               <icon-help-circle></icon-help-circle>
             </tiny-tooltip>
           </div>
@@ -80,8 +80,13 @@
           @collapse-change="collapseChange"
         >
           <template #default="{ data }">
-            <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain" class="ti-mr6">多端</tiny-tag>
-            <span>{{ data.label }}</span>
+            <div class="node-name-container">
+              <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain">多端</tiny-tag>
+              <span class="node-name-label">{{ data.label }}</span>
+              <tiny-tag v-if="data.mark?.text" class="node-float-tip" effect="dark" :type="data.mark?.type">
+                {{ data.mark.text }}
+              </tiny-tag>
+            </div>
           </template>
         </tiny-tree-menu>
       </div>
@@ -104,7 +109,7 @@ import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip, Tag } 
 import { iconHelpCircle } from '@opentiny/vue-icon'
 import { genMenus } from '@/menus.jsx'
 import { router } from '@/router.js'
-import { $t2, $t, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
+import { getWord, i18nByKey, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import themeSvg from '@/assets/images/theme.svg?url'
 import useTheme from '@/tools/useTheme'
 
@@ -135,7 +140,7 @@ export default defineComponent({
       expandKeys: []
     })
 
-    const lang = $t2('zh-CN', 'en-US')
+    const lang = getWord('zh-CN', 'en-US')
     const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${lang}/os-theme/${route}${key}`
 
     const changeLanguage = () => {
@@ -208,7 +213,9 @@ export default defineComponent({
       changeLanguage,
       apiModeState,
       apiModeFn,
-      templateModeState
+      templateModeState,
+      getWord,
+      i18nByKey
     }
   }
 })
@@ -282,6 +289,10 @@ export default defineComponent({
 }
 
 .main-menu.tiny-tree-menu {
+  .tiny-tree-node__content-box {
+    min-width: 0;
+  }
+
   height: calc(100% - var(--layout-api-mode-height));
   .tiny-tree {
     height: calc(100% - var(--layout-tree-menu-input-height));
@@ -289,6 +300,21 @@ export default defineComponent({
   }
   .tree-node-name {
     line-height: 1.5;
+
+    .node-name-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 6px;
+
+      .node-name-label {
+        flex-grow: 0;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
   }
   & > .tiny-input .tiny-input__inner {
     height: var(--layout-tree-menu-input-height);

@@ -8,6 +8,8 @@
     :show-pager="true"
     :pager-op="pagerOp"
     @page-change="handlePageChange"
+    @popup="handlePopup"
+    @close="handleClose"
   ></tiny-popeditor>
 </template>
 
@@ -126,6 +128,12 @@ export default {
       ]
       const offset = (val - 1) * this.pagerOp.pageSize
       this.gridOp.data = dataset.slice(offset, offset + this.pagerOp.pageSize)
+    },
+    handlePopup() {
+      Modal.message('popup 弹窗打开事件')
+    },
+    handleClose() {
+      Modal.message('close 弹窗关闭事件')
     }
   }
 }

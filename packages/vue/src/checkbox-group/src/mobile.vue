@@ -35,7 +35,7 @@ export default defineComponent({
   components: {
     Checkbox
   },
-  props: [...props, 'modelValue', 'type', 'options', 'disabled', 'vertical', 'max', 'min'],
+  props: [...props, 'modelValue', 'type', 'options', 'disabled', 'vertical', 'max', 'min', 'iconPosition'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

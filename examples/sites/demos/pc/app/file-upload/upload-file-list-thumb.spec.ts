@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('上传的文件列表弹出显示', async ({ page }) => {
+test('列表弹窗显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('file-upload#upload-file-list-thumb')
 
@@ -12,7 +12,7 @@ test('上传的文件列表弹出显示', async ({ page }) => {
   await expect(thumb).toHaveText('2')
   await thumb.hover()
   await popList.isVisible()
-  await delItem1.locator('svg').dblclick()
+  await delItem1.locator('svg').click()
   await expect(thumb).toHaveText('1')
   const page3Promise = page.waitForEvent('popup')
   await downloadItem2.locator('svg').click()

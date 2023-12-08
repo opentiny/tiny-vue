@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <tiny-tree-menu :load="loadNode" lazy></tiny-tree-menu>
-  </div>
+  <tiny-tree-menu lazy :load="loadNode"></tiny-tree-menu>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TreeMenu as TinyTreeMenu } from '@opentiny/vue'
 

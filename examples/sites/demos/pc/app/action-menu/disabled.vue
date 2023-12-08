@@ -2,7 +2,7 @@
   <tiny-action-menu :options="options"> </tiny-action-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { ActionMenu } from '@opentiny/vue'
 
 export default {
@@ -23,7 +23,8 @@ export default {
           label: '关机'
         },
         {
-          label: '重启'
+          label: '重启',
+          disabled: true
         },
         {
           label: '网络设置',

@@ -6,6 +6,7 @@ test('宽度拖拽功能', async ({ page }) => {
 
   const drawer = page.locator('.tiny-drawer__main')
   await page.getByRole('button', { name: '宽度拖拽' }).click()
+  await page.waitForTimeout(500)
 
   // 获取拖拽元素的位置
   const { x, y } = await drawer.boundingBox()

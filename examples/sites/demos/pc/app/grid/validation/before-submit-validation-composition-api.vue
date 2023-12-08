@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import {
   Grid as TinyGrid,
@@ -57,7 +57,11 @@ const validRules = {
 const toolbarButtons = ref([
   {
     code: 'save',
-    name: '保存'
+    name: '提交数据'
+  },
+  {
+    code: 'savePromise',
+    name: '保存（Promise）'
   }
 ])
 const tableData = ref([
@@ -164,6 +168,19 @@ function toolbarButtonClickEvent({ code }) {
           TinyModal.alert('校验不通过')
         }
       })
+      break
+    }
+    case 'savePromise': {
+      basicGridRef.value
+        .validate()
+        .then(() => {
+          TinyModal.alert('校验成功，触发了then！')
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.log(error)
+          TinyModal.alert('校验不通过，触发了catch')
+        })
       break
     }
   }

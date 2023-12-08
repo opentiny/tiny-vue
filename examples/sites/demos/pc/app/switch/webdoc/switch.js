@@ -25,9 +25,9 @@ export default {
       'name': { 'zh-CN': '自定义开关显示', 'en-US': 'Customized switch display' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>show-text</code> 配置是否显示开关文本，默认文本为 <code>ON</code> 和 <code>OFF</code> 。开启配置后，可以使用具名插槽 <code>open</code> 和 <code>close</code> 自定义开关内容。</p>',
+          '<p>通过 <code>show-text</code> 配置是否显示开关文本，开启配置后，可以使用具名插槽 <code>open</code> 和 <code>close</code> 自定义开关内容。</p>',
         'en-US':
-          '<p>Configure whether to display switch text through <code>show text</code> . The default text is <code>ON</code> and <code>OFF</code> . After enabling the configuration, you can customize the switch content using named slots <code>open</code> and <code>close</code> .</p>'
+          '<p>Configure whether to display switch text through <code>show text</code> . After enabling the configuration, you can customize the switch content using named slots <code>open</code> and <code>close</code> .</p>'
       },
       'codeFiles': ['custom-open-close.vue']
     },
@@ -41,15 +41,6 @@ export default {
           '<p>By setting the pre processing logic for switch changes through <code>before change</code> , the parameter is a callback function that completes the change after being called. </p>'
       },
       'codeFiles': ['before-change.vue']
-    },
-    {
-      'demoId': 'event-change',
-      'name': { 'zh-CN': '变更事件', 'en-US': 'Event change' },
-      'desc': {
-        'zh-CN': '<p>当开关值变化后，会触发 <code>change</code> 事件。</p>',
-        'en-US': '<p>When the switch value changes, the <code>change</code> event will be triggered.</p>'
-      },
-      'codeFiles': ['event-change.vue']
     },
     {
       'demoId': 'custom-true-false-value',
@@ -69,6 +60,15 @@ export default {
         'en-US': '<p>Set the switch disable status through <code>disabled</code> . </p>'
       },
       'codeFiles': ['dynamic-disable.vue']
+    },
+    {
+      'demoId': 'event-change',
+      'name': { 'zh-CN': '变更事件', 'en-US': 'Event change' },
+      'desc': {
+        'zh-CN': '<p>当开关值变化后，会触发 <code>change</code> 事件。</p>',
+        'en-US': '<p>When the switch value changes, the <code>change</code> event will be triggered.</p>'
+      },
+      'codeFiles': ['event-change.vue']
     }
   ],
   apis: [
@@ -79,10 +79,10 @@ export default {
         {
           'name': 'before-change',
           'type': '(done: () => void) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '开关值变化前置处理，详见demo',
-            'en-US': 'Pre processing of switch value changes, See demo for details'
+            'zh-CN': '开关值变化前置处理',
+            'en-US': 'Pre processing of switch value changes'
           },
           'demoId': 'before-change'
         },
@@ -119,7 +119,7 @@ export default {
         {
           'name': 'modelValue / v-model',
           'type': 'boolean | string | number',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '开关绑定值',
             'en-US': 'Switch bind value'
@@ -151,9 +151,9 @@ export default {
         {
           'name': 'change',
           'type': '(value: boolean | string | number) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': 'switch发生变化的回调函数',
+            'zh-CN': 'switch 发生变化的回调函数',
             'en-US': 'Callback function for switch changes'
           },
           'demoId': 'event-change'
@@ -163,9 +163,9 @@ export default {
         {
           'name': 'close',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '关闭内容',
+            'zh-CN': '关闭内容，当 show-text 为 true 时有效',
             'en-US': 'Close Content'
           },
           'demoId': 'custom-open-close'
@@ -173,9 +173,9 @@ export default {
         {
           'name': 'open',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '开启内容',
+            'zh-CN': '开启内容，当 show-text 为 true 时有效',
             'en-US': 'Enable Content'
           },
           'demoId': 'custom-open-close'

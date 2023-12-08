@@ -10,7 +10,10 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import type { PropType } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
+
+export type IconPosition = 'center' | 'top'
 
 export const $constants = {
   FORM_ITEM: 'FormItem',
@@ -63,7 +66,8 @@ export const checkboxProps = {
   displayOnly: {
     type: Boolean,
     default: false
-  }
+  },
+  iconPosition: String as PropType<IconPosition>
 }
 
 export default defineComponent({

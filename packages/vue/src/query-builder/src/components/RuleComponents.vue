@@ -236,7 +236,7 @@ export default defineComponent({
     IconEditorEraser: IconEditorEraser()
   },
   inject: ['queryBuilderRoot'],
-  props: [...RulePropsParam, ...UseRuleProps], //:RuleComponents
+  props: [...RulePropsParam, ...UseRuleProps], // :RuleComponents
   setup() {
     return {
       TestID

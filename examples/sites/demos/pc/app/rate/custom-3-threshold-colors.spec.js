@@ -8,6 +8,7 @@ test.describe('rate 自定义 3 分段颜色', () => {
     // hover时三分段颜色
     const icon = page.locator('.tiny-rate__star > .tiny-svg')
     await icon.nth(0).hover()
+    await page.waitForTimeout(200)
     await expect(icon.nth(0)).toHaveCSS('fill', 'rgb(250, 219, 20)')
     await icon.nth(1).hover()
     await expect(icon.nth(1)).toHaveCSS('fill', 'rgb(250, 219, 20)')
@@ -20,6 +21,7 @@ test.describe('rate 自定义 3 分段颜色', () => {
 
     // 选中时时三分段颜色
     await icon.nth(0).click()
+    await page.waitForTimeout(200)
     await expect(icon.nth(0)).toHaveCSS('fill', 'rgb(250, 219, 20)')
     await icon.nth(1).click()
     await expect(icon.nth(1)).toHaveCSS('fill', 'rgb(250, 219, 20)')

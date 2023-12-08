@@ -394,13 +394,13 @@
       "mobile"
     ]
   },
-  "CascaderSelectMobile": {
-    "path": "vue/src/cascader-select/src/mobile.vue",
+  "CascaderSelectMobileFirst": {
+    "path": "vue/src/cascader-select/src/mobile-first.vue",
     "type": "template",
     "exclude": false
   },
-  "CascaderSelectMobileFirst": {
-    "path": "vue/src/cascader-select/src/mobile-first.vue",
+  "CascaderSelectMobile": {
+    "path": "vue/src/cascader-select/src/mobile.vue",
     "type": "template",
     "exclude": false
   },
@@ -728,8 +728,14 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile",
       "pc"
     ]
+  },
+  "ContainerMobile": {
+    "path": "vue/src/container/src/mobile.vue",
+    "type": "template",
+    "exclude": false
   },
   "ContainerPc": {
     "path": "vue/src/container/src/pc.vue",
@@ -1550,6 +1556,14 @@
     "path": "vue/src/logout/src/pc.vue",
     "type": "template",
     "exclude": false
+  },
+  "Mask": {
+    "path": "vue/src/mask/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "Menu": {
     "path": "vue/src/menu/index.ts",
@@ -2556,6 +2570,19 @@
   },
   "TimelineItemPc": {
     "path": "vue/src/timeline-item/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Toast": {
+    "path": "vue/src/toast/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
+  },
+  "ToastMobile": {
+    "path": "vue/src/toast/src/mobile.vue",
     "type": "template",
     "exclude": false
   },

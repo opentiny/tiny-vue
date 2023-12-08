@@ -2,20 +2,20 @@ export const handleChange = (editor) => {
   return (event) => {
     if (!event) {
       const url = window.prompt('URL')
-      let type = 'image';
-      const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg'];
-      const videoExtensions = ['mp4', 'avi', 'mov', 'wmv', 'mpeg', '3gp', 'mkv'];
+      let type = 'image'
+      const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg']
+      const videoExtensions = ['mp4', 'avi', 'mov', 'wmv', 'mpeg', '3gp', 'mkv']
 
-      const imageRegex = new RegExp(`\\.(${imageExtensions.join('|')})$`, 'i');
-      const videoRegex = new RegExp(`\\.(${videoExtensions.join('|')})$`, 'i');
+      const imageRegex = new RegExp(`\\.(${imageExtensions.join('|')})$`, 'i')
+      const videoRegex = new RegExp(`\\.(${videoExtensions.join('|')})$`, 'i')
 
       if (imageRegex.test(url)) {
-        type = 'image';
+        type = 'image'
       } else if (videoRegex.test(url)) {
-        type = 'video';
+        type = 'video'
       }
       if (url) {
-        editor.chain().focus().setImage({ src: url, type: type }).run()
+        editor.chain().focus().setImage({ src: url, type }).run()
       }
       return
     }
@@ -32,7 +32,7 @@ export const handleChange = (editor) => {
       editor
         .chain()
         .focus()
-        .setImage({ src: e.target?.result, type: type })
+        .setImage({ src: e.target?.result, type })
         .run()
     }
     reader.readAsDataURL(file)
@@ -56,43 +56,26 @@ export const setLink = (editor) => {
     editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
   }
 }
-// table 处理逻辑
-export const handleMove = (state, box) => {
-  return (e) => {
-    let { x, y } = box.value[0].getBoundingClientRect()
-    state.flagX = Math.ceil((e.x - x) / 30) // 后期改变30就可以
-    state.flagY = Math.ceil((e.y - y) / 30)
-  }
+// 表格块移动
+export const tableMouseMove = (state, vm) => (e) => {
+  let { x, y } = vm.$refs.tablePanelRef[0].getBoundingClientRect()
+  state.flagX = Math.ceil((e.x - x) / 30) // 后期改变30就可以
+  state.flagY = Math.ceil((e.y - y) / 30)
 }
-export const handleClickOutside = (state, box) => {
-  return (e) => {
-    if (!box.value[0]?.contains(e.target)) {
-      state.isShow = false
-      removeClickOutside(state, box)()
-    }
+// 点击表格块
+export const tableChoose = (state, vm) => (e) => {
+  if (state.flagX && state.flagY) {
+    state.editor.chain().focus().insertTable({ rows: state.flagY, cols: state.flagX, withHeaderRow: true }).run()
   }
+  state.isShowTable = false
 }
-export const removeClickOutside = (state, box) => {
-  return () => {
-    window.removeEventListener('click', handleClickOutside(state, box))
-  }
+export const toggleTablePanel = (state) => () => {
+  state.isShowTable = !state.isShowTable
 }
-export const handleClick = (state, box) => {
-  return (e) => {
-    e.stopPropagation()
-    if (state.isShow) {
-      if (state.flagX && state.flagY) {
-        state.editor.chain().focus().insertTable({ rows: state.flagY, cols: state.flagX, withHeaderRow: true }).run()
-      }
-      state.flagX = 0
-      state.flagY = 0
-      removeClickOutside(state, box)()
-    } else {
-      window.addEventListener('click', handleClickOutside(state, box))
-    }
-    state.isShow = !state.isShow
-  }
+export const closeTablePanel = (state) => () => {
+  state.isShowTable && (state.isShowTable = false)
 }
+
 // bubble菜单
 export const shouldShow = ({ editor, view, state, oldState, from, to }) => {
   // 仅在无序列表选中的时候才显示 气泡菜单

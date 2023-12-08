@@ -1,5 +1,3 @@
-const __RQB_DEV__: boolean = false
-
 import type { RuleGroupTypeAny } from '../../ts'
 import { useEffect } from './vue-hooks'
 import {
@@ -8,6 +6,8 @@ import {
   errorUncontrolledToControlled
 } from '../../messages'
 import { usePrevious } from './usePrevious'
+
+const __RQB_DEV__: boolean = false
 
 export interface UseControlledOrUncontrolledParams {
   defaultQuery?: RuleGroupTypeAny

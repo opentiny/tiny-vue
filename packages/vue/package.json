@@ -154,6 +154,7 @@
     "@opentiny/vue-locales": "workspace:~",
     "@opentiny/vue-logon-user": "workspace:~",
     "@opentiny/vue-logout": "workspace:~",
+    "@opentiny/vue-mask": "workspace:~",
     "@opentiny/vue-menu": "workspace:~",
     "@opentiny/vue-message": "workspace:~",
     "@opentiny/vue-milestone": "workspace:~",
@@ -226,6 +227,7 @@
     "@opentiny/vue-time-select": "workspace:~",
     "@opentiny/vue-time-spinner": "workspace:~",
     "@opentiny/vue-timeline-item": "workspace:~",
+    "@opentiny/vue-toast": "workspace:~",
     "@opentiny/vue-toggle-menu": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-top-box": "workspace:~",
@@ -250,11 +252,11 @@
   },
   "devDependencies": {
     "@vue/composition-api": "1.2.2",
-    "@vue/runtime-core": "^3.3.4",
-    "@vue/runtime-dom": "^3.3.4",
+    "@vue/runtime-core": "^3.3.9",
+    "@vue/runtime-dom": "^3.3.9",
     "vue2": "npm:vue@2.6.14",
     "vue2.7": "npm:vue@2.7.10",
-    "vue3": "npm:vue@3.3.4"
+    "vue3": "npm:vue@3.3.9"
   },
   "scripts": {
     "build": "pnpm -w build:ui",

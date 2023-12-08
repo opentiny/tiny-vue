@@ -1,21 +1,21 @@
 <template>
-  <div class="tiny-demo">
-    <h4>点击改变<tiny-button @click="changeHighlight">highlight</tiny-button></h4>
+  <div>
+    <tiny-button @click="changeHighlight" type="primary">设置展开并高亮</tiny-button>
     <tiny-tree-menu
       node-key="id"
       :data="treeData"
-      :default-expanded-keys="expandedKeys"
+      :default-expanded-keys="expandeArr"
       :default-expanded-keys-highlight="highlight"
     ></tiny-tree-menu>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, reactive } from 'vue'
 import { TreeMenu as TinyTreeMenu, Button as TinyButton } from '@opentiny/vue'
 
-const expandedKeys = reactive([20101])
-const highlight = ref(401)
+let expandeArr = reactive([30101])
+const highlight = ref(30101)
 const treeData = reactive([
   {
     id: 100,
@@ -42,10 +42,6 @@ const treeData = reactive([
     id: 300,
     label: '组件',
     children: [
-      {
-        id: 300,
-        label: '组件'
-      },
       {
         id: 301,
         label: '表单组件',
@@ -125,7 +121,18 @@ const treeData = reactive([
 
 const changeHighlight = () => {
   setTimeout(() => {
-    highlight.value = 20101
+    expandeArr = expandeArr.concat([401])
+    highlight.value = 401
   }, 100)
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+.tiny-button {
+  margin-bottom: 10px;
+}
+</style>

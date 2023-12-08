@@ -127,7 +127,9 @@ const nameFilter = ref({
   multi: true,
   simpleFilter: {
     searchConfig: {
-      component: Input
+      component: Input,
+      // 搜索框默认值
+      serachValue: 'WWW'
     }
   }
 })

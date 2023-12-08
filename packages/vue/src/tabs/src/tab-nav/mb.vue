@@ -10,7 +10,9 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, h } from '@opentiny/vue-common' // 此处引入 h 是为了防止打包后 h 被重命名导致组件报错的问题
+import { $prefix, setup, h } from '@opentiny/vue-common'
+
+// 此处引入 h 是为了防止打包后 h 被重命名导致组件报错的问题
 import { renderless, api } from '@opentiny/vue-renderless/tab-nav/vue'
 import { iconClose, iconChevronDown } from '@opentiny/vue-icon'
 import type { ITabNavApi } from '@opentiny/vue-renderless/types/tab-nav.type'

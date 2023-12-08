@@ -1,41 +1,33 @@
-import type { RuleValidator } from './validation';
+import type { RuleValidator } from './validation'
 
-export type Classname = string | string[] | Record<string, any>;
+export type Classname = string | string[] | Record<string, any>
 
-export type ValueSource = 'value' | 'field';
+export type ValueSource = 'value' | 'field'
 
-export type ValueEditorType =
-  | 'text'
-  | 'select'
-  | 'checkbox'
-  | 'radio'
-  | 'textarea'
-  | 'switch'
-  | 'multiselect'
-  | null;
+export type ValueEditorType = 'text' | 'select' | 'checkbox' | 'radio' | 'textarea' | 'switch' | 'multiselect' | null
 
-export type ValueSources = ['value'] | ['value', 'field'] | ['field', 'value'] | ['field'];
+export type ValueSources = ['value'] | ['value', 'field'] | ['field', 'value'] | ['field']
 
 export interface Option<N extends string = string> {
-  name: N;
-  label: string;
-  [x: string]: any;
+  name: N
+  label: string
+  [x: string]: any
 }
 
 /**
  * @deprecated Renamed to `Option`
  */
-export type NameLabelPair<N extends string = string> = Option<N>;
+export type NameLabelPair<N extends string = string> = Option<N>
 
-export type OptionGroup<Opt extends Option = Option> = {
-  label: string;
-  options: Opt[];
-};
+export interface OptionGroup<Opt extends Option = Option> {
+  label: string
+  options: Opt[]
+}
 
-export type OptionList<Opt extends Option = Option> = Opt[] | OptionGroup<Opt>[];
+export type OptionList<Opt extends Option = Option> = Opt[] | OptionGroup<Opt>[]
 
 interface HasOptionalClassName {
-  className?: Classname;
+  className?: Classname
 }
 
 export interface Field<
@@ -46,27 +38,27 @@ export interface Field<
   ValueObj extends Option = Option<ValueName>
 > extends Option<FieldName>,
     HasOptionalClassName {
-  id?: string;
-  operators?: OptionList<OperatorObj>;
-  valueEditorType?: ValueEditorType | ((operator: string) => ValueEditorType);
-  valueSources?: ValueSources | ((operator: string) => ValueSources);
-  inputType?: string | null;
-  values?: OptionList<ValueObj>;
-  defaultOperator?: string;
-  defaultValue?: any;
-  placeholder?: string;
-  validator?: RuleValidator;
-  comparator?: string | ((f: Field, operator: string) => boolean);
+  id?: string
+  operators?: OptionList<OperatorObj>
+  valueEditorType?: ValueEditorType | ((operator: string) => ValueEditorType)
+  valueSources?: ValueSources | ((operator: string) => ValueSources)
+  inputType?: string | null
+  values?: OptionList<ValueObj>
+  defaultOperator?: string
+  defaultValue?: any
+  placeholder?: string
+  validator?: RuleValidator
+  comparator?: string | ((f: Field, operator: string) => boolean)
 }
 
-export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
+export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
 
-export type Arity = number | 'unary' | 'binary' | 'ternary';
+export type Arity = number | 'unary' | 'binary' | 'ternary'
 
 export interface Operator<N extends string = string> extends Option<N>, HasOptionalClassName {
-  arity?: Arity;
+  arity?: Arity
 }
 
 export interface Combinator<N extends string = string> extends Option<N>, HasOptionalClassName {}
 
-export type ParseNumbersMethod = boolean | 'strict' | 'native';
+export type ParseNumbersMethod = boolean | 'strict' | 'native'

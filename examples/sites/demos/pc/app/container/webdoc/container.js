@@ -6,8 +6,14 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基础用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '通过<code> pattern </code> 来设置版型组件的布局。',
-        'en-US': 'Set the layout of the template component with <code> pattern </code>.'
+        'zh-CN': `
+          组件接受<code>header</code>、<code> aside </code>、<code> footer </code>、<code> default </code> 四种插槽。<br>
+          通过<code> pattern </code> 来设置预定好的组件版型,版型决定了插槽是否显示以及显示位置。<br>
+        `,
+        'en-US': `
+          The component accepts <code>header</code>, <code>aside</code>, <code>footer</code>, and <code>default</code>. <br>
+          The predefined component pattern is set by <code> pattern </code>. The pattern determines whether and where the slots are displayed. <br>
+        `
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -15,12 +21,18 @@ export default {
       'demoId': 'custom-with-height',
       'name': { 'zh-CN': '自定义宽度和高度', 'en-US': 'Custom width and height' },
       'desc': {
-        'zh-CN': `<p>
-            Container 布局容器支持用户通过设置 <code>headerHeight</code>、<code>footerHeight</code>、<code>asideWidth</code> 等属性来控制 <code>header（头部区域）</code>、<code>footer（底部区域）</code> 的高度和 <code>aside(左侧区域)</code> 的宽度。<code>main（主体区域）</code> 的宽度和高度是自适应的。
-          </p>`,
-        'en-US': `<p>
-            Container layout container allows users to control <code>header by setting attributes such as <code>headerHeight</code>, <code>footerHeight</code>, and <code>asideWidth</code> (Header area)</code>, <code>footer (bottom area)</code>, and <code>aside (left area)</code>. The width and height of <code>main (main area)</code> are adaptive. 
-          </p>`
+        'zh-CN': `
+          通过 <code>headerHeight</code> 控制 <code>header（头部区域）</code>高度。<br>
+          通过 <code>footerHeight</code> 控制 <code>footer（底部区域）</code>高度。<br>
+          通过 <code>asideWidth</code> 控制 <code>aside(左侧区域)</code>高度。<br>
+          而<code>default（主体区域）</code> 的宽度和高度是自适应的。
+        `,
+        'en-US': `
+          The <code>header (header area) </code> height is controlled by <code>headerHeight</code>. <br>
+          Control the height of <code>footer (bottom area) </code> by <code>footerHeight</code>. <br>
+          Control the <code>aside(left area)</code> height using <code>asideWidth</code>. <br>
+          The width and height of <code>main </code> are adaptive.
+        `
       },
       'codeFiles': ['custom-with-height.vue']
     }
@@ -29,7 +41,17 @@ export default {
     {
       'name': 'container',
       'type': 'component',
-      'properties': [
+      'props': [
+        {
+          'name': 'pattern',
+          'type': `'default' | 'simple' | 'legend' | 'classic' | 'fashion'`,
+          'defaultValue': '"default"',
+          'desc': {
+            'zh-CN': '版型类型',
+            'en-US': 'Measurement type'
+          },
+          'demoId': 'custom-container'
+        },
         {
           'name': 'aside-width',
           'type': 'number | string',
@@ -50,17 +72,6 @@ export default {
           'defaultValue': '60',
           'desc': { 'zh-CN': '头部高度', 'en-US': 'Head height' },
           'demoId': 'custom-with-height'
-        },
-        {
-          'name': 'pattern',
-          'type': 'string',
-          'defaultValue': 'default',
-          'desc': {
-            'zh-CN': '版型类型;该属性的可选值为 default / simple / legend / classic / fashion',
-            'en-US':
-              'Measurement type; The optional values of this attribute are default / simple / legend / classic / fashion'
-          },
-          'demoId': 'custom-container'
         }
       ],
       'events': [],

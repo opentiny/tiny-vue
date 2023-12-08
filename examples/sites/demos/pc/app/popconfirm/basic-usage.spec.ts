@@ -4,8 +4,8 @@ test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popconfirm#basic-usage')
 
-  const preview = page.locator('#preview')
-  const popConfirm = preview.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')
+  const demo = page.locator('#basic-usage')
+  const popConfirm = demo.locator('.tiny-popconfirm .tiny-popconfirm__reference .tiny-button')
   const popConfirmPopover = page.locator('body > .tiny-popconfirm-popover')
   const confirmBtn = popConfirmPopover.getByRole('button', { name: '确定' })
 

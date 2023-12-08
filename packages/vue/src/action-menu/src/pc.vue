@@ -11,6 +11,7 @@
           :label="visableItem[textField]"
           :text-field="textField"
           :disabled="visableItem.disabled"
+          :icon="visableItem.icon"
           @item-click="handleItemClick"
         >
           <template #default="{ itemData }">
@@ -24,6 +25,8 @@
         <tiny-dropdown
           :title="moreText"
           :trigger="trigger"
+          :suffix-icon="suffixIcon"
+          :show-icon="showIcon"
           @item-click="handleItemClick"
           @handle-click="handleMoreClick"
           @visible-change="visibleChange"
@@ -35,6 +38,7 @@
                 :key="index"
                 :item-data="item"
                 :label="item[textField]"
+                :disabled="item.disabled"
               >
                 <template #default="{ itemData }">
                   <slot name="item" :data="itemData"></slot>
@@ -97,6 +101,11 @@ export default defineComponent({
     trigger: {
       type: String,
       default: 'hover'
+    },
+    suffixIcon: Object,
+    showIcon: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {

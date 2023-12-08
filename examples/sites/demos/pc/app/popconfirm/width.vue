@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-popconfirm :title="title" :content="content" width="600">
+    <tiny-popconfirm :title="title" :content="content" width="200">
       <template #reference>
         <tiny-button>悬浮我提示</tiny-button>
       </template>

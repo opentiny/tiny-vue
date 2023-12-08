@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import { compWhiteList } from './virtual-comp'
 
-function getFiberByDom(dom) {
+export function getFiberByDom(dom) {
   const key = Object.keys(dom).find((key) => {
     return (
       key.startsWith('__reactFiber$') || // react 17+
@@ -18,12 +18,13 @@ function defaultBreaker({ type }) {
   }
 }
 
-function traverseFiber(fiber, handler, breaker = defaultBreaker) {
+export function traverseFiber(fiber, handler, breaker = defaultBreaker) {
   if (!fiber) return
   typeof handler === 'function' && handler(fiber)
-  Array.isArray(handler) && handler.forEach(task => {
-    typeof task === 'function' && task(fiber)
-  })
+  Array.isArray(handler) &&
+    handler.forEach((task) => {
+      typeof task === 'function' && task(fiber)
+    })
   traverseFiber(fiber.sibling, handler, breaker)
   breaker(fiber) || traverseFiber(fiber.child, handler, breaker)
 }
@@ -40,22 +41,21 @@ export function getParentFiber(fiber, isFirst = true, child = fiber) {
 }
 
 export function creatFiberCombine(fiber) {
-  if(!fiber) return 
-  const refs = {};
-  const children = [];
+  if (!fiber) return
+  const refs = {}
+  const children = []
 
   traverseFiber(fiber.child, [
     (fiber) => {
       if (typeof fiber.type === 'string' && fiber.stateNode.getAttribute('v_ref')) {
-        refs[fiber.stateNode.getAttribute('v_ref')] = fiber.stateNode;
-      }
-      else if (fiber.memoizedProps.v_ref) {
-        refs[fiber.memoizedProps.v_ref] = fiber;
+        refs[fiber.stateNode.getAttribute('v_ref')] = fiber.stateNode
+      } else if (fiber.memoizedProps.v_ref) {
+        refs[fiber.memoizedProps.v_ref] = fiber
       }
     },
     (fiber) => {
       if (fiber.type && typeof fiber.type !== 'string') {
-        children.push(fiber);
+        children.push(fiber)
       }
     }
   ])
@@ -74,11 +74,7 @@ export function useFiber() {
   useEffect(() => {
     if (ref.current) {
       const current_fiber = getFiberByDom(ref.current)
-      setParent(
-        getParentFiber(
-          current_fiber.return
-        )
-      )
+      setParent(getParentFiber(current_fiber.return))
       setCurrent(current_fiber.return)
     }
   }, [])

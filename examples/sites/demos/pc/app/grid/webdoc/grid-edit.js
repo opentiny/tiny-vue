@@ -40,7 +40,7 @@ export default {
       'name': { 'zh-CN': '手动触发编辑', 'en-US': 'Manually triggered editing' },
       'desc': {
         'zh-CN': `<p> <code>setActiveCell(row, field)</code> 方法可激活指定单元格编辑。<code>setActiveRow(row)</code> 方法激活行编辑，如果是 mode=cell 则默认激活第一个单元格。</p>
-          <p>在点击其他行或表格外部时，编辑器会自动关闭。设置 <code>editConfig.autoClear</code> 为 <code>false</code> 可以防止编辑器自动关闭</p>
+          <p>在点击其他行或表格外部时，编辑器会自动关闭。设置 <code>editConfig.autoClear</code> 为 <code>false</code> 可以防止编辑器自动关闭。</p>
           `,
         'en-US': 'For details, see the following example.'
       },
@@ -58,7 +58,7 @@ export default {
       'codeFiles': ['edit/custom-editing.vue']
     },
     {
-      'demoId': 'edit-editor-is-salid-always',
+      'demoId': 'edit-editor-is-valid-always',
       'name': { 'zh-CN': '自定义编辑校验规则', 'en-US': 'Customized Editing Verification Rule' },
       'desc': {
         'zh-CN':
@@ -66,7 +66,7 @@ export default {
         'en-US':
           '<p>Table attribute setting<code>edit-config</code>Enable the editing mode and configure the <code>edit-rules</code> object to set the validation object and validation rule. Set <code>isValidAlways</code> in the <code>editor</code> object to enable real-time editing verification. </p>\n'
       },
-      'codeFiles': ['edit/editor-is-salid-always.vue']
+      'codeFiles': ['edit/editor-is-valid-always.vue']
     },
     {
       'demoId': 'edit-status-of-editing',

@@ -366,5 +366,5 @@ export const computedExpandIcon =
 export const computedIndent =
   () =>
   ({ node, showLine }, { tree }) => {
-    return (node.level > 1 ? 1 : 0) * (tree.indent + (showLine ? 8 : 0)) + tree.baseIndent + 'px'
+    return (node.level > 1 ? 1 : 0) * (parseInt(tree.indent) + (showLine ? 8 : 0)) + parseInt(tree.baseIndent) + 'px'
   }

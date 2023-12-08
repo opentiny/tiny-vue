@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     click() {
-      Modal.message('click')
+      Modal.message({ message: 'click', status: 'info' })
     }
   }
 }

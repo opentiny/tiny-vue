@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .demo-input .tiny-textarea {
-  width: 270px;
+  width: auto;
   margin: 5px;
 }
 </style>

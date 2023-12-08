@@ -161,7 +161,7 @@ const getCalendarItem = function (item, props, isFunction, type, isNext, isLast)
 
   for (let i = item.start; i <= item.end; i++) {
     let disabled = type === 'cur' && isFunction ? props.disabled(item.year + '-' + item.month + '-' + i) : false
-    res.push({ value: i, year: item.year, month: item.month, isNext: isNext, isLast: isLast, disabled })
+    res.push({ value: i, year: item.year, month: item.month, isNext, isLast, disabled })
   }
   return res
 }
@@ -297,11 +297,11 @@ export const getEventByMonth =
       const startTime = getTime(date + ' ' + state.dayStartTime)
       const endTime = getTime(date + ' ' + state.dayEndTime)
       const obj = {
-        date: date,
+        date,
         day: state.weekDays[new Date(date).getDay()],
         events: []
       }
-      state.events.filter((item) => {
+      state.events.forEach((item) => {
         if (eventInThisTime(item, startTime, endTime)) {
           obj.events.push(item)
           state.monthEventsLength += 1
@@ -364,7 +364,7 @@ export const getEventByDate =
     const endTime = getTime(date + ' ' + state.dayEndTime)
     state.curWeekEvents[date] = []
     events ? (events = []) : (state.curWeekEvents[date] = [])
-    state.events.filter((item) => {
+    state.events.forEach((item) => {
       if (eventInThisTime(item, startTime, endTime)) {
         events ? events.push(item) : state.curWeekEvents[date].push(item)
       }
@@ -377,7 +377,7 @@ export const getEventByTime =
   (day, start, end) => {
     const date = typeof day === 'object' ? day.year + '-' + day.month + '-' + day.value : day
     const startTime = getTime(date + ' ' + start)
-    const endTime = getTime(date + ' ' + (end ? end : start))
+    const endTime = getTime(date + ' ' + (end || start))
     let result = []
 
     if (state.mode === 'timeline') {
@@ -413,7 +413,7 @@ export const isStartOrEndDay =
   (type, day, start, end, event) => {
     const date = day.toString().length > 2 ? day : state.activeYear + '-' + state.activeMonth + '-' + day
     const startTime = getTime(date + ' ' + start)
-    const endTime = getTime(date + ' ' + (end ? end : start))
+    const endTime = getTime(date + ' ' + (end || start))
 
     if (type === 'start') {
       return event.start >= startTime && event.start < endTime

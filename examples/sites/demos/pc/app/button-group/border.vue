@@ -11,11 +11,11 @@ export default {
   },
   data() {
     return {
-      checkedVal: 'Button4',
+      checkedVal: 'Button1',
       groupData: [
-        { text: 'Button4', value: 'Button4' },
-        { text: 'Button5', value: 'Button5' },
-        { text: 'Button6', value: 'Button6' }
+        { text: 'Button1', value: 'Button1' },
+        { text: 'Button2', value: 'Button2' },
+        { text: 'Button3', value: 'Button3' }
       ]
     }
   }

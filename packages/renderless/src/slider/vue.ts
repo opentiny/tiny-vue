@@ -38,8 +38,19 @@ import {
   watchModelValue,
   getPoints,
   getLabels,
-  inputValueChange
+  inputValueChange,
+  handleSlotInputFocus,
+  handleSlotInputBlur,
+  handleSlotInput
 } from './index'
+
+import type {
+  ISliderProps,
+  ISliderState,
+  ISharedRenderlessParamHooks,
+  ISliderApi,
+  ISliderRenderlessParamUtils
+} from '@/types'
 
 export const api = [
   'state',
@@ -66,16 +77,11 @@ export const api = [
   'customBeforeAppearHook',
   'customAppearHook',
   'customAfterAppearHook',
-  'inputValueChange'
+  'inputValueChange',
+  'handleSlotInputFocus',
+  'handleSlotInputBlur',
+  'handleSlotInput'
 ]
-
-import {
-  ISliderProps,
-  ISliderState,
-  ISharedRenderlessParamHooks,
-  ISliderApi,
-  ISliderRenderlessParamUtils
-} from '@/types'
 
 const initState = ({ reactive, computed, props, api, parent, inject }) => {
   const state: ISliderState = reactive({
@@ -106,7 +112,9 @@ const initState = ({ reactive, computed, props, api, parent, inject }) => {
     rangeDiff: computed(() => props.max - props.min),
     tipValue: computed(() => api.formatTipValue(state.activeValue)),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
-    disabled: computed(() => props.disabled || state.formDisabled)
+    disabled: computed(() => props.disabled || state.formDisabled),
+    slotValue: '',
+    isSlotTyping: false
   })
 
   return state
@@ -150,7 +158,10 @@ export const renderless = (
     watchActiveValue: watchActiveValue({ api, emit, props, state }),
     getPoints: getPoints({ props, state }),
     getLabels: getLabels({ props, state }),
-    inputValueChange: inputValueChange({ props, api, state })
+    inputValueChange: inputValueChange({ props, api, state }),
+    handleSlotInputFocus: handleSlotInputFocus(state),
+    handleSlotInputBlur: handleSlotInputBlur(state),
+    handleSlotInput: handleSlotInput(state)
   })
 
   watch(() => props.modelValue, api.watchModelValue, { immediate: true })
@@ -172,7 +183,6 @@ export const renderless = (
       api.setActiveButtonValue(value)
     }
   )
-  watch(() => state.activeValue, api.watchActiveValue, { immediate: true })
 
   watch(
     () => state.leftBtnValue,

@@ -1,8 +1,5 @@
 import { useFiber, getParentFiber, creatFiberCombine } from './fiber.js'
-import {
-  getEventByReactProps,
-  getAttrsByReactProps
-} from './resolve-props.js'
+import { getEventByReactProps, getAttrsByReactProps } from './resolve-props.js'
 import { Reactive } from './reactive.js'
 import { emit, on, off, once } from './event.js'
 
@@ -10,19 +7,11 @@ const vmProxy = {
   $parent: ({ fiber }) => {
     const parentFiber = getParentFiber(fiber)
     if (!parentFiber) return null
-    return createVmProxy(
-      creatFiberCombine(
-        parentFiber
-      )
-    )
+    return createVmProxy(creatFiberCombine(parentFiber))
   },
   $el: ({ fiber }) => fiber.child?.stateNode,
   $refs: ({ refs, fiber }) => createRefsProxy(refs, fiber.constructor),
-  $children: ({ children }) => children.map((fiber) => createVmProxy(
-    creatFiberCombine(
-      getParentFiber(fiber)
-    )
-  )),
+  $children: ({ children }) => children.map((fiber) => createVmProxy(creatFiberCombine(getParentFiber(fiber)))),
   $listeners: ({ fiber }) => getEventByReactProps(fiber.memoizedProps),
   $attrs: ({ fiber }) => getAttrsByReactProps(fiber.memoizedProps),
   $slots: ({ fiber }) => fiber.memoizedProps.slots,
@@ -39,58 +28,50 @@ const vmProxy = {
   $on: ({ fiber }) => on(fiber.memoizedProps),
   $once: ({ fiber }) => once(fiber.memoizedProps),
   $off: ({ fiber }) => off(fiber.memoizedProps),
-  $set: () => (target, propName, value) => target[propName] = value
+  $set: () => (target, propName, value) => (target[propName] = value)
 }
 
 const vmProxyMap = new WeakMap()
 function createVmProxy(fiberCombine) {
   if (!vmProxyMap.has(fiberCombine)) {
-    vmProxyMap.set(fiberCombine, new Proxy(fiberCombine, {
-      get(
-        target,
-        property,
-        receiver
-      ) {
-        if (!vmProxy[property]) {
-          return target.fiber.memoizedProps[property]
+    vmProxyMap.set(
+      fiberCombine,
+      new Proxy(fiberCombine, {
+        get(target, property, receiver) {
+          if (!vmProxy[property]) {
+            return target.fiber.memoizedProps[property]
+          }
+          return vmProxy[property](target, receiver)
+        },
+        set(target, property, value) {
+          return true
         }
-        return vmProxy[property](target, receiver)
-      },
-      set(
-        target,
-        property,
-        value
-      ) {
-        return true
-      }
-    }))
+      })
+    )
   }
   return vmProxyMap.get(fiberCombine)
 }
 
 function createEmptyProxy() {
-  return new Proxy({}, {
-    get() {
-      return undefined
-    },
-    set() {
-      return true
+  return new Proxy(
+    {},
+    {
+      get() {
+        return undefined
+      },
+      set() {
+        return true
+      }
     }
-  })
+  )
 }
 
 function createRefsProxy(refs, FiberNode) {
   return new Proxy(refs, {
-    get(
-      target,
-      property
-    ) {
+    get(target, property) {
       if (target[property] instanceof FiberNode) {
-        return createVmProxy(
-          creatFiberCombine(target[property])
-        )
-      }
-      else {
+        return createVmProxy(creatFiberCombine(target[property]))
+      } else {
         return target[property]
       }
     }
@@ -105,9 +86,7 @@ function findStateInHooks(hookStart) {
     if (refCurrent instanceof Reactive) break
     curHook = curHook.next
   }
-  return curHook
-    && curHook.memoizedState
-    && curHook.memoizedState.current
+  return curHook && curHook.memoizedState && curHook.memoizedState.current
 }
 
 export function useVm() {

@@ -1,1 +1,1 @@
-export * from './parseJsonLogic';
+export * from './parseJsonLogic'

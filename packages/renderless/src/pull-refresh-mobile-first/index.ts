@@ -254,7 +254,7 @@ export const watchStatusChange =
       const { LOADING } = constants.STATUS
       const enterLoading = value === LOADING && oldValue !== LOADING
       const exitLoading = value !== LOADING && oldValue === LOADING
-      const defLoadingOptions = { 'tiny_mode': props['tiny_mode'], target: headEl, text: api.getStatusText() }
+      const defLoadingOptions = { 'tiny_mode': props.tiny_mode, target: headEl, text: api.getStatusText() }
 
       if (props.loadingOptions) {
         if (props.loadingOptions.enterLoading) {

@@ -23,7 +23,7 @@ const data = ref([
 ])
 
 const onClick = (index, node) => {
-  timeActive1.value = index
+  timeActive.value = index
 
   Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
 }

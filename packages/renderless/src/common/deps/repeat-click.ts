@@ -13,6 +13,9 @@
 import { on, once } from './dom'
 
 export default (el, binding) => {
+  // fix issue#919
+  const LONG_PRESS_INTERVAL = 200
+
   let interval = null
   let startTime
 
@@ -21,7 +24,7 @@ export default (el, binding) => {
   }
 
   const clear = () => {
-    if (Date.now() - startTime < 100) {
+    if (Date.now() - startTime < LONG_PRESS_INTERVAL) {
       handler()
     }
 
@@ -37,6 +40,6 @@ export default (el, binding) => {
     startTime = Date.now()
     once(document, 'mouseup', clear)
     clearInterval(interval)
-    interval = setInterval(handler, 100)
+    interval = setInterval(handler, LONG_PRESS_INTERVAL)
   })
 }

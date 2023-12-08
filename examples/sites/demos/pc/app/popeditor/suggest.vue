@@ -1,5 +1,4 @@
 <template>
-  value值：{{ value }}
   <tiny-popeditor
     v-model="value"
     :show-clear-btn="true"
@@ -10,6 +9,7 @@
     suggest
     :conditions="conditions"
   ></tiny-popeditor>
+  <p>value值：{{ value }}</p>
 </template>
 
 <script>

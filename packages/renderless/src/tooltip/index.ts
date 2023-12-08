@@ -10,7 +10,7 @@
  *
  */
 
-import { ITooltipApi, ITooltipRenderlessParams, ITooltipState } from '@/types'
+import type { ITooltipApi, ITooltipRenderlessParams, ITooltipState } from '@/types'
 import debounce from '../common/deps/debounce'
 import { on, off, addClass, removeClass } from '../common/deps/dom'
 

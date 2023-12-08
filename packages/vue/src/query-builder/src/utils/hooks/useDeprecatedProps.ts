@@ -1,7 +1,7 @@
-const __RQB_DEV__: boolean = false
-
 import { useEffect } from './vue-hooks'
 import { errorDeprecatedRuleGroupProps, errorDeprecatedRuleProps } from '../../messages'
+
+const __RQB_DEV__: boolean = false
 
 let didWarnUsingDeprecatedRuleProps = false
 let didWarnUsingDeprecatedRuleGroupProps = false

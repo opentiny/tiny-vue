@@ -14,6 +14,15 @@ export default {
       'codeFiles': ['basic-usage.vue']
     },
     {
+      'demoId': 'ghost',
+      'name': { 'zh-CN': '幽灵按钮', 'en-US': 'Ghost button' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>ghost</code> 设置幽灵按钮。</p>',
+        'en-US': '<p>Set up ghost buttons via <code>ghost</code>.</p>'
+      },
+      'codeFiles': ['ghost.vue']
+    },
+    {
       'demoId': 'dynamic-disabled',
       'name': { 'zh-CN': '动态禁用按钮', 'en-US': 'Dynamic Disable Button' },
       'desc': {
@@ -67,7 +76,7 @@ export default {
       'name': { 'zh-CN': '尺寸', 'en-US': 'Dimension' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>size</code> 设置按钮尺寸，可选值为 <code>large</code> 、 <code>medium</code> 、 <code>small</code> 、 <code>mini</code> 。不设置时为默认尺寸。</p>',
+          '<p>通过 <code>size</code> 设置按钮尺寸，可选值为 <code>large</code> 、<code>medium</code> 、<code>small</code> 、<code>mini</code> 。不设置时为默认尺寸。</p>',
         'en-US':
           '<p>Set the button size through <code>size</code> , with optional values of <code>large</code> , <code>medium</code> , <code>small</code> , <code>mini</code> . Default size when not set.</p>'
       },
@@ -134,17 +143,27 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '按钮是否被禁用',
+            'zh-CN': '是否被禁用按钮',
             'en-US': 'Sets whether the button is disabled'
           },
           'demoId': 'dynamic-disabled'
         },
         {
-          'name': 'icon',
-          'type': 'Component',
-          'defaultValue': '',
+          'name': 'ghost',
+          'type': 'boolean',
+          'defaultValue': 'false',
           'desc': {
-            'zh-CN': '按钮展示的图标，接收为Icon组件',
+            'zh-CN': '是否幽灵按钮',
+            'en-US': 'Is ghost button'
+          },
+          'demoId': 'ghost'
+        },
+        {
+          'name': 'icon',
+          'type': 'VueComponent',
+          'defaultValue': '--',
+          'desc': {
+            'zh-CN': '按钮左侧展示的图标，接收为Icon组件',
             'en-US': 'The icon displayed by the button is received as an Icon component'
           },
           'demoId': 'icon'
@@ -161,8 +180,8 @@ export default {
         },
         {
           'name': 'native-type',
-          'type': 'button | submit | reset',
-          'defaultValue': 'button',
+          'type': "'button' | 'submit' | 'reset'",
+          'defaultValue': "'button'",
           'desc': {
             'zh-CN': '对应按钮原生 type 属性',
             'en-US': 'Set the button native type attribute'
@@ -201,8 +220,8 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'large | medium | small | mini',
-          'defaultValue': '',
+          'type': "'large' | 'medium' | 'small' | 'mini'",
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '定义按钮尺寸',
             'en-US': 'Define the button size'
@@ -212,17 +231,18 @@ export default {
         {
           'name': 'text',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置按钮显示的文本',
+            'zh-CN': '按钮显示的文本',
             'en-US': 'Set the text displayed by the button'
           },
           'demoId': 'text'
         },
         {
           'name': 'type',
-          'type': 'primary | success | warning | danger | info | text',
-          'defaultValue': '',
+          'type': 'IButtonType',
+          'typeAnchorName': 'IButtonType',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '展示按钮不同的状态，设置为text则展示为文本按钮',
             'en-US': 'Display different states of buttons, set to text to display as text buttons'
@@ -234,7 +254,7 @@ export default {
         {
           'name': 'click',
           'type': '(event: PointEvent) => void',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '当按钮被点击时触发的回调函数',
             'en-US': 'Sets the callback function triggered when a button is clicked'
@@ -246,14 +266,21 @@ export default {
         {
           'name': 'default',
           'type': '',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '默认插槽',
+            'zh-CN': '默认插槽，自定义按钮展示内容',
             'en-US': 'Default slot'
           },
           'demoId': 'image'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IButtonType',
+      type: 'interface',
+      code: `type IButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'`
     }
   ]
 }

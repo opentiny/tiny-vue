@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { IAnchorRenderlessParams, IAnchorLinkItem } from '@/types'
+import type { IAnchorRenderlessParams, IAnchorLinkItem } from '@/types'
 import { addClass, removeClass } from '../common/deps/dom'
 
 export const setFixAnchor =

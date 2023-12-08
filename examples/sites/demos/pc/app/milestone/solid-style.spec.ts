@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('实心显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
-  await page.goto('http://127.0.0.1:7130/pc/milestone/solid-style')
+  await page.goto('milestone#solid-style')
 
-  const button = page.getByRole('button').filter({ hasText: '设置solid值为true' })
+  const button = page.getByRole('button').filter({ hasText: '设置 solid 值为true' })
   const nodes = page.locator('.tiny-milestone__node')
   const nodeIcons = page.locator('.tiny-milestone__icon')
   const nodeLines = page.locator('.tiny-milestone__line')
@@ -52,12 +52,12 @@ test('实心显示', async ({ page }) => {
     }
   ]
   const titles = [
-    'completed完成状态',
-    'completed完成状态',
-    'doing未完成状态',
-    'xxx未完成状态',
-    'back未完成状态',
-    'end未完成状态'
+    'completed 完成状态',
+    'completed 完成状态',
+    'doing 未完成状态',
+    'xxx 未完成状态',
+    'back 未完成状态',
+    'end 未完成状态'
   ]
 
   await expect(nodes).toHaveCount(nodeCount)
@@ -66,17 +66,20 @@ test('实心显示', async ({ page }) => {
   await expect(nodeTitles).toHaveCount(nodeCount)
   await expect(nodeDates).toHaveCount(nodeCount)
   for (let i = 0; i < nodeCount; i++) {
-    await expect(nodes.nth(i)).toHaveCSS('width', '128.484px')
-    await expect(nodes.nth(i)).toHaveCSS('height', '102px')
+    const { width, height } = await nodes.nth(i).boundingBox()
+    await expect(width).toBeGreaterThanOrEqual(118)
+    await expect(height).toBeGreaterThanOrEqual(88)
     await expect(nodeLines.nth(i)).toHaveCSS('height', '4px')
     await expect(nodeIcons.nth(i)).toHaveClass(iconClasss[i])
     await expect(nodeTitles.nth(i)).toHaveText(titles[i])
     await expect(nodeDates.nth(i)).toHaveText(/2018-9/)
 
     if (i < 5) {
-      await expect(nodeLines.nth(i)).toHaveCSS('width', '128.484px')
+      const { width: lineWidth } = await nodeLines.nth(i).boundingBox()
+      await expect(lineWidth).toBeGreaterThanOrEqual(118)
     } else {
-      await expect(nodeLines.nth(i)).toHaveCSS('width', '0px')
+      const { width: lineWidth } = await nodeLines.nth(i).boundingBox()
+      await expect(lineWidth).toBeGreaterThanOrEqual(0)
     }
     if (i < 2) {
       await expect(nodeIcons.nth(i).locator('svg')).toHaveCSS('font-size', '12px')

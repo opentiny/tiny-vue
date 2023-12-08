@@ -1,11 +1,14 @@
 import { expect, test } from '@playwright/test'
 
-test('slot-default', async ({ page }) => {
+test('选项插槽', async ({ page }) => {
   await page.goto('select#slot-default')
 
-  const input = page.locator('#preview .tiny-input__inner')
-  const options = page.locator('.tiny-select-dropdown').locator('.tiny-option')
+  const wrap = page.locator('#slot-default')
+  const select = wrap.locator('.tiny-select')
+  const input = select.locator('.tiny-input__inner')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const option = dropdown.locator('.tiny-option')
+
   await input.click()
-  await page.waitForTimeout(1000)
-  await expect(options.filter({ hasText: '选项1' })).toBeVisible()
+  await expect(option.filter({ hasText: '选项1' })).toBeVisible()
 })

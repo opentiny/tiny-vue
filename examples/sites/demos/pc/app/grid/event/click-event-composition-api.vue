@@ -120,7 +120,7 @@ const tableData = ref([
 
 const headerCellClickEvent = ({ column }) => {
   Modal.message({
-    message: `表头单元格点击${column.title}`,
+    message: `表头点击${column.title}`,
     status: 'info'
   })
 }
@@ -135,7 +135,7 @@ const cellDBLClickEvent = ({ column }) => {
 
 const headerCellDBLClickEvent = ({ column }) => {
   Modal.message({
-    message: `表头单元格双击${column.title}`,
+    message: `表头双击${column.title}`,
     status: 'info'
   })
 }

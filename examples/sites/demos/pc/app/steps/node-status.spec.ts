@@ -4,7 +4,7 @@ test('节点状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('steps#node-status')
 
-  const nodes = page.locator('#preview .tiny-steps .tiny-timeline-item')
+  const nodes = page.locator('.pc-demo .tiny-steps .tiny-timeline-item')
   await expect(nodes.first()).toHaveClass(/process-current/)
   await expect(nodes.nth(1)).toHaveClass(/process-wait/)
   await expect(nodes.nth(2)).toHaveClass(/process-error/)

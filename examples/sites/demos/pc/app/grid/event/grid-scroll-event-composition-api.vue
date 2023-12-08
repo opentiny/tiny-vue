@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
 
@@ -124,7 +124,7 @@ const tableData = ref([
 ])
 
 function ScrollEvent() {
-  Modal.message({ message: '表格滚动事件', status: 'info' })
+  Modal.message({ message: '提示：触发了表格滚动事件', status: 'info' })
 }
 </script>
 

@@ -47,7 +47,7 @@ export const getFormatQueryString = (query: RuleGroupTypeAny, options: FormatQue
       result = formatQueryResult
       console.error(options.format, e)
     }
-    
+
     return result
   } else if (
     options.format === 'parameterized' ||

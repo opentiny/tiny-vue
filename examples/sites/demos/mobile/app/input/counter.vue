@@ -1,10 +1,12 @@
 <template>
-  <div class="input-wrap">
-    <tiny-input v-model="input" type="textarea" counter show-word-limit :maxlength="20"></tiny-input>
+  <div class="demo-input">
+    <tiny-input v-model="input1" counter :maxlength="20"></tiny-input>
+
+    <tiny-input v-model="input2" type="textarea" show-word-limit :maxlength="20"></tiny-input>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Input } from '@opentiny/vue'
 
 export default {
@@ -13,16 +15,21 @@ export default {
   },
   data() {
     return {
-      input: '测试 counter 属性'
+      input1: 'counter 示例',
+      input2: 'show-word-limit 示例'
     }
   }
 }
 </script>
 
-<style>
-.input-wrap {
-  padding-top: 20px;
+<style scoped>
+.demo-input {
+  padding: 20px 16px;
   height: 100%;
-  background: #f4f4f4;
+  background: #f5f5f5;
+}
+
+.demo-input [class^='tiny'] {
+  margin-bottom: 8px;
 }
 </style>

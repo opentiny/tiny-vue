@@ -1,8 +1,8 @@
 const renderStack = []
 
-export const getParent = () => renderStack[renderStack.length - 1] || ({})
+export const getParent = () => renderStack[renderStack.length - 1] || {}
 
-export const getRoot = () => renderStack[0] || ({})
+export const getRoot = () => renderStack[0] || {}
 
 export const EnterStack = (props) => {
   renderStack.push(props)

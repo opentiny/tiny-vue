@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('手动触发编辑', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('grid-edit#tiny-first-menu-trigger-mode-hm-editing')
+  await page.goto('grid-edit#edit-trigger-mode-hm-editing')
   await page.getByText('GFD科技YX公司').first().click()
   await expect(page.getByText('GFD科技YX公司').first()).toBeVisible()
   await page

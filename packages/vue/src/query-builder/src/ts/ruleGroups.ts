@@ -1,9 +1,9 @@
-import type { Combinator, Operator, ValueSource } from './basic';
+import type { Combinator, Operator, ValueSource } from './basic'
 
 interface CommonProperties {
-  path?: number[];
-  id?: string;
-  disabled?: boolean;
+  path?: number[]
+  id?: string
+  disabled?: boolean
 }
 
 export type RuleType<
@@ -12,45 +12,36 @@ export type RuleType<
   V = any,
   C extends string = string
 > = CommonProperties & {
-  field: F;
-  operator: O;
-  value: V;
-  valueSource?: ValueSource;
+  field: F
+  operator: O
+  value: V
+  valueSource?: ValueSource
   /**
    * Only used when adding a rule to a query that uses independent combinators
    */
-  combinatorPreceding?: C;
-};
+  combinatorPreceding?: C
+}
 
-export type RuleGroupType<
-  R extends RuleType = RuleType,
-  C extends string = string
-> = CommonProperties & {
-  combinator: C;
-  rules: RuleGroupArray<RuleGroupType<R, C>, R>;
-  not?: boolean;
-};
+export type RuleGroupType<R extends RuleType = RuleType, C extends string = string> = CommonProperties & {
+  combinator: C
+  rules: RuleGroupArray<RuleGroupType<R, C>, R>
+  not?: boolean
+}
 
-export type RuleGroupArray<
-  RG extends RuleGroupType = RuleGroupType,
-  R extends RuleType = RuleType
-> = (R | RG)[];
+export type RuleGroupArray<RG extends RuleGroupType = RuleGroupType, R extends RuleType = RuleType> = (R | RG)[]
 
-export type UpdateableProperties = Exclude<
-  keyof (RuleType & RuleGroupType),
-  'id' | 'path' | 'rules'
->;
+export type UpdateableProperties = Exclude<keyof (RuleType & RuleGroupType), 'id' | 'path' | 'rules'>
 
-export type DefaultRuleGroupArray = RuleGroupArray<DefaultRuleGroupType, DefaultRuleType>;
+export type DefaultRuleGroupArray = RuleGroupArray<DefaultRuleGroupType, DefaultRuleType>
 
 export type DefaultRuleGroupType = RuleGroupType<DefaultRuleType, DefaultCombinatorNameExtended> & {
-  rules: DefaultRuleGroupArray;
-};
+  rules: DefaultRuleGroupArray
+}
 
-export type DefaultRuleType = RuleType<string, DefaultOperatorName>;
+export type DefaultRuleType = RuleType<string, DefaultOperatorName>
 
-export type DefaultCombinatorName = 'and' | 'or';
-export type DefaultCombinatorNameExtended = DefaultCombinatorName | 'xor';
+export type DefaultCombinatorName = 'and' | 'or'
+export type DefaultCombinatorNameExtended = DefaultCombinatorName | 'xor'
 
 export type DefaultOperatorName =
   | '='
@@ -70,10 +61,10 @@ export type DefaultOperatorName =
   | 'in'
   | 'notIn'
   | 'between'
-  | 'notBetween';
+  | 'notBetween'
 
-export type DefaultCombinator = Combinator<DefaultCombinatorName>;
+export type DefaultCombinator = Combinator<DefaultCombinatorName>
 
-export type DefaultCombinatorExtended = Combinator<DefaultCombinatorNameExtended>;
+export type DefaultCombinatorExtended = Combinator<DefaultCombinatorNameExtended>
 
-export type DefaultOperator = Operator<DefaultOperatorName>;
+export type DefaultOperator = Operator<DefaultOperatorName>

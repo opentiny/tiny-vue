@@ -11,8 +11,8 @@
  */
 
 import type { ExtractPropTypes } from 'vue'
-import { dialogBoxProps, $constants } from '@/dialog-box/src'
-import {
+import type { dialogBoxProps, $constants } from '@/dialog-box/src'
+import type {
   handleCancel,
   handleConfirm,
   updatePopper,
@@ -41,7 +41,7 @@ export type IDialogBoxProps = ExtractPropTypes<typeof dialogBoxProps>
 
 export type IDialogBoxConstants = typeof $constants
 
-export type IDialogBoxState = {
+export interface IDialogBoxState {
   emitter: ReturnType<ISharedRenderlessParamUtils<IDialogBoxConstants>['emitter']>
   key: number
   x: number | string | null
@@ -60,7 +60,7 @@ export type IDialogBoxState = {
   rendered?: boolean
 }
 
-export type IDialogBoxApi = {
+export interface IDialogBoxApi {
   state: IDialogBoxState
   open: (options: any) => void
   close: () => void
@@ -101,14 +101,14 @@ export type IDialogBoxInitApiParam = Pick<
   'api' | 'state' | 'parent' | 'props' | 'emit' | 'constants' | 'nextTick' | 'vm' | 'broadcast'
 > & { usePopups: object; lockScrollClass: string }
 
-export type IDialogBoxInitWatchParam = {
+export interface IDialogBoxInitWatchParam {
   watch: ISharedRenderlessParamHooks['watch']
   state: IDialogBoxState
   api: IDialogBoxApi
   props: IDialogBoxProps
 }
 
-export type IDialogBoxStyle = {
+export interface IDialogBoxStyle {
   width?: string | number
   height?: string | number
   maxHeight?: string | number

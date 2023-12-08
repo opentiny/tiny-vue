@@ -8,12 +8,12 @@ export default {
       'desc': {
         'zh-CN': `
         <p>在 <code>grid</code> 标签上配置：</p>
-        <p> <code>header-cell-click</code> 可以监听到表头的点击事件</p>
-        <p> <code>header-cell-dblclick</code> 可以监听到表头的双击事件</p>
-        <p> <code>cell-click</code> 可以监听到单元格的点击事件</p>
-        <p> <code>cell-dblclick</code> 可以监听到单元格的双击事件</p>
-        <p> <code>footer-cell-click</code> 可以监听到表尾单元格的点击事件</p>
-        <p> <code>footer-cell-dbclick</code> 可以监听到表尾单元格的双击事件</p>
+        <p> <code>header-cell-click</code> 可以监听到表头的点击事件。</p>
+        <p> <code>header-cell-dblclick</code> 可以监听到表头的双击事件。</p>
+        <p> <code>cell-click</code> 可以监听到单元格的点击事件。</p>
+        <p> <code>cell-dblclick</code> 可以监听到单元格的双击事件。</p>
+        <p> <code>footer-cell-click</code> 可以监听到表尾单元格的点击事件。</p>
+        <p> <code>footer-cell-dbclick</code> 可以监听到表尾单元格的双击事件。</p>
         `,
         'en-US':
           '<p>Configure <code>header-cell-click</code> on the <code>grid</code> tag to listen to the click event of the table header</p>\n'
@@ -40,8 +40,8 @@ export default {
       'desc': {
         'zh-CN': `
         <p>在 <code>grid</code> 标签上配置：</p>
-        <p> <code>cell-mouseenter</code> 可以监听到鼠标进入单元格事件</p>
-        <p> <code>cell-mouseleave</code> 可以监听到鼠标离开单元格事件</p>
+        <p> <code>cell-mouseenter</code> 可以监听到鼠标进入单元格事件。</p>
+        <p> <code>cell-mouseleave</code> 可以监听到鼠标离开单元格事件。</p>
         `,
         'en-US':
           '<p>Configure <code>cell-dblclick</code> on the <code>grid</code> tab to listen to the double-click event of a cell</p>\n'
@@ -49,7 +49,7 @@ export default {
       'codeFiles': ['event/cell-mouse-event.vue']
     },
     {
-      'demoId': 'event-edit-actived-event',
+      'demoId': 'event-edit-event',
       'name': {
         'zh-CN': '单元格编辑相关事件',
         'en-US': 'This event is triggered when a cell is activated for editing.'
@@ -57,8 +57,8 @@ export default {
       'desc': {
         'zh-CN': `
           <p>在 <code>grid</code> 标签上配置：</p>
-          <p> <code>edit-actived</code> 单元格被激活编辑时触发的事件</p>
-          <p> <code>edit-closed</code> 单元格编辑完成触发该事件</p>
+          <p> <code>edit-actived</code> 单元格被激活编辑时触发的事件。</p>
+          <p> <code>edit-closed</code> 单元格编辑完成触发该事件。</p>
           <p> <code>edit-disabled-event</code> 当单元格激活时如果是禁用状态时会触发该事件，同时需要在 <code>edit-config</code> 配置中的 <code>activeMethod</code> 方法控制单元格是否可以编辑（返回 <code>true</code> 可以编辑，反之亦然）。</p>
           `,
         'en-US':
@@ -70,7 +70,7 @@ export default {
       'demoId': 'event-grid-scroll-event',
       'name': { 'zh-CN': '表格滚动事件', 'en-US': 'Event' },
       'desc': {
-        'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>scroll</code> 事件，可以监听表格的滚动</p>\n',
+        'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>scroll</code> 事件，可以监听表格的滚动。</p>\n',
         'en-US':
           '<p>Configure the <code>scroll</code> event on the <code>grid</code> tag to listen to the scrolling of the table</p>\n'
       },
@@ -81,7 +81,7 @@ export default {
       'name': { 'zh-CN': '行选中事件', 'en-US': 'Row Selection Event' },
       'desc': {
         'zh-CN':
-          '<p>只对 在 <code>grid</code> 标签上配置 <code>highlightCurrentRow</code> 有效，当手动选中行时触发的事件</p>\n',
+          '<p>只对 在 <code>grid</code> 标签上配置 <code>highlightCurrentRow</code> 有效，当手动选中行时触发的事件。</p>\n',
         'en-US':
           '<p>This event is triggered when a row is manually selected and is valid only when <code>highlightCurrentRow</code> is configured on the <code>grid</code> tag.</p>\n'
       },
@@ -92,7 +92,7 @@ export default {
       'name': { 'zh-CN': '单选行选中事件', 'en-US': 'Line Selection Event' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>grid</code> 标签上配置 <code>radio-change</code> 可以监听勾选行事件\n只对 type=radio 有效，当手动勾选并且值发生改变时触发的事件</p>\n',
+          '<p>在 <code>grid</code> 标签上配置 <code>radio-change</code> 可以监听勾选行事件\n只对 type=radio 有效，当手动勾选并且值发生改变时触发的事件。</p>\n',
         'en-US':
           '<p>Configure <code>radio-change</code> on the <code>grid</code> tag to listen to the selected row event.\nThis parameter is valid only for type=radio. Event triggered when manually selected and the value changes</p>\n'
       },
@@ -104,8 +104,8 @@ export default {
       'desc': {
         'zh-CN': `
           <p>在 <code>grid</code> 标签上配置：</p>
-          <p> <code>select-change</code> 可以监听到勾选行事件\n只对 type=selection 有效，当手动勾选并且值发生改变时触发的事件</p>
-          <p> <code>select-all</code> 有效\n只对 type=selection 有效，当手动勾选全选时触发的事件</p>
+          <p> <code>select-change</code> 可以监听到勾选行事件\n只对 type=selection 有效，当手动勾选并且值发生改变时触发的事件。</p>
+          <p> <code>select-all</code> 有效\n只对 type=selection 有效，当手动勾选全选时触发的事件。</p>
           `,
         'en-US':
           '<p>You can configure <code>select-change</code> on the <code>grid</code> tag to listen to the selected row event.\nThis parameter is valid only for type=selection. Event triggered when manually selected and the value changes</p>\n'
@@ -116,7 +116,7 @@ export default {
       'demoId': 'event-page-change-event',
       'name': { 'zh-CN': '分页发生改变事件', 'en-US': 'Paging change event' },
       'desc': {
-        'zh-CN': '<p>只对 在 <code>grid</code> 标签上配置 <code>page-change</code> 可以监听分页发生改变事件</p>\n',
+        'zh-CN': '<p>只对 在 <code>grid</code> 标签上配置 <code>page-change</code> 可以监听分页发生改变事件。</p>\n',
         'en-US':
           '<p>You can only configure <code>page-change</code> on the <code>grid</code> tag to listen to page change events.</p>\n'
       },
@@ -137,7 +137,7 @@ export default {
       'demoId': 'event-resizable-change-event',
       'name': { 'zh-CN': '列宽改变事件', 'en-US': 'Column width change event' },
       'desc': {
-        'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>resizable-change</code> 可以监听列宽改变事件</p>\n',
+        'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>resizable-change</code> 可以监听列宽改变事件。</p>\n',
         'en-US':
           '<p>Configure <code>resizable-change</code> on the <code>grid</code> tag to listen to column width change events</p>\n'
       },
@@ -147,7 +147,8 @@ export default {
       'demoId': 'event-toggle-expand-change-event',
       'name': { 'zh-CN': '行展开收起事件', 'en-US': 'Line expansion and collapse event' },
       'desc': {
-        'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>toggle-expand-change</code> 可以监听到行展开收起事件</p>\n',
+        'zh-CN':
+          '<p>在 <code>grid</code> 标签上配置 <code>toggle-expand-change</code> 可以监听到行展开收起事件。</p>\n',
         'en-US':
           '<p>Configure <code>toggle-expand-change</code> on the <code>grid</code> tag to listen to the row expansion and collapse event</p>\n'
       },
@@ -157,7 +158,8 @@ export default {
       'demoId': 'event-toggle-tree-change-event',
       'name': { 'zh-CN': '树节点展开收起事件', 'en-US': 'Tree Node Expansion and Collapse Event' },
       'desc': {
-        'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>toggle-tree-change</code> 可以监听树节点展开收起事件</p>\n',
+        'zh-CN':
+          '<p>在 <code>grid</code> 标签上配置 <code>toggle-tree-change</code> 可以监听树节点展开收起事件。</p>\n',
         'en-US':
           '<p>Configure <code>toggle-tree-change</code> on the <code>grid</code> tag to listen to tree node expansion and collapse events</p>\n'
       },
@@ -167,7 +169,7 @@ export default {
       'demoId': 'event-toolbar-button-click-event',
       'name': { 'zh-CN': '工具栏点击事件', 'en-US': 'Toolbar click event' },
       'desc': {
-        'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>toolbar-button-click</code> 可以监听工具栏点击事件</p>\n',
+        'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>toolbar-button-click</code> 可以监听工具栏点击事件。</p>\n',
         'en-US':
           '<p>Configure <code>resizable-change</code> on the <code>grid</code> tab to listen to toolbar click events</p>\n'
       },
@@ -177,7 +179,7 @@ export default {
       'demoId': 'event-valid-error-event',
       'name': { 'zh-CN': '校验不通过事件', 'en-US': 'Verification failure event' },
       'desc': {
-        'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>valid-error</code> 监听校验不通过事件</p>\n',
+        'zh-CN': '<p>在 <code>grid</code> 标签上配置 <code>valid-error</code> 监听校验不通过事件。</p>\n',
         'en-US':
           '<p>Configure <code>valid-error</code> on the <code>grid</code> tag to listen to verification failure events</p>\n'
       },
@@ -197,7 +199,7 @@ export default {
       'name': { 'zh-CN': '获取表格行方法', 'en-US': 'Obtain table row method' },
       'desc': {
         'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">获取行的方法</p>\n<p> <code>getCurrentRow</code> 获取当前行\n<code>getRowIndex</code> 获取当前行号\n<code>getRadioRow</code> Radio 单选选中行\n<code>getRowById</code> 通过 rowId 获取当前行\n<code>getRowNode</code> 通过 tr 元素获取行信息</p>\n</div>\n',
+          '<div class="tip custom-block"><p class="custom-block-title">获取行的方法</p>\n<p> <code>getCurrentRow</code> 获取当前行\n<code>getRowIndex</code> 获取当前行号\n<code>getRadioRow</code> Radio 单选选中行\n<code>getRowById</code> 通过 rowId 获取当前行\n<code>getRowNode</code> 通过 tr 元素获取行信息。</p>\n</div>\n',
         'en-US':
           '<div class="tip custom-block"><p class="custom-block-title"> Method for obtaining a row: </p>\n<p> <code>getCurrentRow</code> Obtain the current row \n<code>getRowIndex</code> Obtain the current row number \n<code>getRadioRow</code> Radio Select a single row \n<code>getRowById</code> Obtain the current row based on the row ID \n<code>getRowNode</code> Obtain the row information based on the tr element </p>\n</div>\n'
       },

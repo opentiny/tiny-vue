@@ -52,9 +52,9 @@ export const renderless = (props, { computed, reactive, watch }, { emit, constan
       filterOptions: []
     },
     options: computed(() => {
-      let arr,
-        list = [state.rootData]
-      state.navList.map((option) => {
+      let arr
+      let list = [state.rootData]
+      state.navList.forEach((option) => {
         arr = option.childNodes
         arr && arr.length && list.push(arr)
       })
