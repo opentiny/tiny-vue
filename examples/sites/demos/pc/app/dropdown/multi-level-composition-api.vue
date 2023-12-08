@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>场景1：使用 menu-options 属性定义 children</p>
-    <tiny-dropdown :menu-options="menuOptions"></tiny-dropdown>
+    <tiny-dropdown :menu-options="menuOptions" @item-click="itemClick"></tiny-dropdown>
     <p>场景2：使用 options 属性定义 children</p>
     <tiny-dropdown @item-click="itemClick">
       <template #dropdown>
@@ -14,7 +14,7 @@
 <script setup>
 import { reactive } from 'vue'
 import { iconStarDisable } from '@opentiny/vue-icon'
-import { Dropdown as TinyDropdown, DropdownMenu as TinyDropdownMenu, Notify } from '@opentiny/vue'
+import { Dropdown as TinyDropdown, DropdownMenu as TinyDropdownMenu, Modal } from '@opentiny/vue'
 
 const options = reactive([
   {
@@ -66,12 +66,8 @@ const menuOptions = reactive({
 })
 
 const itemClick = (data) => {
-  Notify({
-    type: 'info',
-    title: 'itemData',
-    message: `配置式可以通过 data.itemData 获取配置数据：${JSON.stringify(data.itemData)}`,
-    position: 'top-right',
-    duration: 2000
+  Modal.message({
+    message: `配置式可以通过 data.itemData 获取配置数据：${JSON.stringify(data.itemData)}`
   })
 }
 </script>

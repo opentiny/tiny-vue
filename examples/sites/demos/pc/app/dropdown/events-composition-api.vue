@@ -19,7 +19,7 @@
     </tiny-dropdown>
 
     <p>场景2：配置式</p>
-    <tiny-dropdown @item-click="itemClick" @button-click="buttonClick" @visible-change="visibleChange">
+    <tiny-dropdown class="options-event" @item-click="itemClick" @visible-change="visibleChange">
       <template #dropdown>
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
       </template>
