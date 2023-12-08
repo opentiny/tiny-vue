@@ -23,15 +23,14 @@
 
       <li v-if="state.moreOptions.length" class="tiny-action-menu__item">
         <tiny-dropdown
+          :title="moreText"
           :trigger="trigger"
+          :suffix-icon="suffixIcon"
+          :show-icon="showIcon"
           @item-click="handleItemClick"
           @handle-click="handleMoreClick"
           @visible-change="visibleChange"
         >
-        <template v-if="state.moreIcon">
-          <component :is="state.moreIcon"/>
-        </template>
-        <span v-else>{{ moreText }}</span>
           <template #dropdown>
             <tiny-dropdown-menu :text-field="textField" :popper-class="popperClass">
               <tiny-dropdown-item
@@ -102,6 +101,11 @@ export default defineComponent({
     trigger: {
       type: String,
       default: 'hover'
+    },
+    suffixIcon: Object,
+    showIcon: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {
