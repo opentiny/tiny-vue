@@ -22,13 +22,15 @@ export default {
       'codeFiles': ['disabled.vue']
     },
     {
-      'demoId': 'add-icon',
+      'demoId': 'icon',
       'name': { 'zh-CN': '图标', 'en-US': 'Icon' },
       'desc': {
-        'zh-CN': '通过属性 <code>icon</code> 配置菜单按钮前的图标。',
-        'en-US': 'The <code>icon</code> attribute is used to Configure the icon in front of the menu button.'
+        'zh-CN':
+          '通过 <code>icon</code> 属性设置菜单项的图标，<code>suffix-icon</code> 设置下拉触发源图标，<code>show-icon</code> 设置是否显示下拉触发源图标。',
+        'en-US':
+          'Set the icon of the attribute setting menu item through <code>icon</code>, set the drop-down trigger source icon through <code>suffix-icon</code>, and set whether to display the drop-down trigger source icon through <code>show-icon</code>.'
       },
-      'codeFiles': ['add-icon.vue']
+      'codeFiles': ['icon.vue']
     },
     {
       'demoId': 'text-field',
@@ -139,13 +141,6 @@ export default {
           'demoId': 'more-text'
         },
         {
-          'name': 'icon',
-          'type': 'component',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '菜单项显示值前的图标', 'en-US': 'Icon of a menu item' },
-          'demId': 'add-icon'
-        },
-        {
           'name': 'options',
           'type': 'IItemData[]',
           'typeAnchorName': 'IItemData',
@@ -198,6 +193,16 @@ export default {
           'demoId': 'disabled'
         },
         {
+          'name': 'options.icon',
+          'type': 'VueComponent',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '菜单项图标',
+            'en-US': 'Icon of a menu item'
+          },
+          'demId': 'icon'
+        },
+        {
           'name': 'popper-class',
           'type': 'string',
           'defaultValue': '',
@@ -216,6 +221,26 @@ export default {
             'en-US': 'Spacing between menu buttons'
           },
           'demoId': 'spacing'
+        },
+        {
+          'name': 'suffix-icon',
+          'type': 'VueComponent',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '下拉触发源图标',
+            'en-US': 'Dropdown trigger source icon'
+          },
+          'demoId': 'icon'
+        },
+        {
+          'name': 'show-icon',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否显示下拉触发源图标',
+            'en-US': 'Is the dropdown trigger source icon displayed'
+          },
+          'demoId': 'icon'
         },
         {
           'name': 'text-field',

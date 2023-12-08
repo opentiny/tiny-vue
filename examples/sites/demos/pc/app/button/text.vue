@@ -33,7 +33,7 @@ export default {
 <style scoped>
 .title {
   margin-top: 16px;
-  padding: 10px 0 6px 10px;
+  padding: 10px 0 6px 0;
   font-size: 16px;
   font-weight: bold;
 }

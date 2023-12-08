@@ -1,6 +1,8 @@
 <template>
   <div class="cascader-panel-demo-props">
-    <div>选中值：<span>{{ value }}</span></div>
+    <div>
+      选中值：<span>{{ value }}</span>
+    </div>
     <tiny-cascader-panel
       v-model="value"
       :options="optionsCascader"

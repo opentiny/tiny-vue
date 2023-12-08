@@ -64,5 +64,7 @@ export default {
 }
 .tiny-button {
   margin-bottom: 10px;
+  margin-left: 0;
+  margin-right: 8px;
 }
 </style>

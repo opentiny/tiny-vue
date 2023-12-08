@@ -13,7 +13,7 @@
 
 <script>
 import { iconStarDisable } from '@opentiny/vue-icon'
-import { Dropdown, DropdownMenu, Notify } from '@opentiny/vue'
+import { Dropdown, DropdownMenu, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -73,12 +73,8 @@ export default {
   },
   methods: {
     itemClick(data) {
-      Notify({
-        type: 'info',
-        title: 'itemData',
-        message: `配置式可以通过 data.itemData 获取配置数据：${JSON.stringify(data.itemData)}`,
-        position: 'top-right',
-        duration: 2000
+      Modal.message({
+        message: `配置式可以通过 data.itemData 获取配置数据：${JSON.stringify(data.itemData)}`
       })
     }
   }

@@ -369,7 +369,14 @@ export default {
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '表格是否显示加载中', 'en-US': 'Whether the table is being loaded.' },
-          'demoId': 'grid-loading#loading-grid-loading-off-tip'
+          'demoId': 'grid-loading#loading-grid-loading-tip'
+        },
+        {
+          'name': 'loading-component',
+          'type': 'VueComponent',
+          'defaultValue': '--',
+          'desc': { 'zh-CN': '自定义表格loading', 'en-US': 'Whether the table is being loaded.' },
+          'demoId': 'grid-loading#grid-custom-loading'
         },
         {
           'name': 'max-height',

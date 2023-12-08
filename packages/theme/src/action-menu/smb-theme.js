@@ -1,16 +1,13 @@
 export const tinyActionMenuSmbTheme = {
-    'ti-action-menu-item-line-bg-color': 'var(--ti-common-color-transparent)',
-    'ti-dropdown-item-font-size': 'var(--ti-common-font-size-1)',
-    'ti-dropdown-item-line-height': 'var(--ti-common-line-height-2)',
-    'ti-action-menu-item-svg-margin-top': '0',
-    'ti-action-menu-font-weight': 'var(--ti-common-font-weight-bold)',
-    'ti-action-menu-item-hover-text-color': 'var(--ti-common-color-text-link)',
-    'ti-action-menu-item-line-width': 'var(--ti-common-space-0)',
-    'ti-action-menu-hover-text-decoratio': 'underline',
-    'ti-dropdown-line-height': 'calc(var(--ti-common-line-height-4) + 2px)',
-    'ti-action-menu-suffix-inner-display': 'none',
-    'ti-action-menu-more-icon-width': 'var(--ti-common-size-6x)',
-    'ti-action-menu-more-icon-height': 'var(--ti-common-size-6x)',
-    'ti-action-menu-more-icon-hover-bgc': 'rgba(0,0,0,0.05)',
-    'ti-action-menu-more-icon-hover-radius': 'var(--ti-common-border-radius-2)'
+  'ti-action-menu-item-line-bg-color': 'var(--ti-common-color-transparent)',
+  'ti-dropdown-item-font-size': 'var(--ti-common-font-size-1)',
+  'ti-dropdown-item-line-height': 'var(--ti-common-line-height-2)',
+  'ti-action-menu-item-svg-margin-top': '0',
+  'ti-action-menu-font-weight': 'var(--ti-common-font-weight-bold)',
+  'ti-action-menu-item-hover-text-color': 'var(--ti-common-color-text-link)',
+  'ti-action-menu-item-line-width': 'var(--ti-common-space-0)',
+  'ti-action-menu-hover-text-decoratio': 'underline',
+  'ti-dropdown-line-height': 'calc(var(--ti-common-line-height-4) + 2px)',
+  'ti-action-menu-more-icon-width': 'var(--ti-common-size-5x)',
+  'ti-action-menu-more-icon-height': 'var(--ti-common-size-5x)'
 }

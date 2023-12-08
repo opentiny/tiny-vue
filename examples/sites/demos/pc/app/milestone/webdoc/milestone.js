@@ -144,7 +144,8 @@ export default {
         },
         {
           'name': 'data',
-          'type': 'object | object[]',
+          'type': 'ICustomData | ICustomData[]',
+          'typeAnchorName': 'ICustomData',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置步骤条的数据，可自定义键值映射',
@@ -305,7 +306,8 @@ export default {
       'events': [
         {
           'name': 'click',
-          'type': '(index: number, node: object) => void',
+          'type': '(index: number, node: ICustomData) => void',
+          'typeAnchorName': 'ICustomData',
           'defaultValue': '',
           'desc': {
             'zh-CN': '节点的点击事件，参数（index:节点索引, node：节点数据信息）',
@@ -315,18 +317,20 @@ export default {
         },
         {
           'name': 'flagclick',
-          'type': '(index: number, node: object) => void',
+          'type': '(index: number, node: ICustomData) => void',
+          'typeAnchorName': 'ICustomData',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '[deprecated v3.5.0废弃，v3.17.0移除；移除原因：命名规范，建议使用flag-click代替]',
+            'zh-CN': '[使用flag-click代替， deprecated v3.5.0废弃，v3.17.0移除；移除原因：命名规范]',
             'en-US':
-              '[deprecated in v3.5.0 and removed in v3.17.0; Reason for removal: It is recommended that flag-click be used instead of flag-click]'
+              '[It is recommended that flag-click be used instead of flag-click, deprecated in v3.5.0 and removed in v3.17.0; Reason for removal: ]'
           },
           'demoId': 'milestone-events'
         },
         {
           'name': 'flag-click',
-          'type': '(index: number, node: object) => void',
+          'type': '(index: number, node: ICustomData) => void',
+          'typeAnchorName': 'ICustomData',
           'defaultValue': '',
           'desc': {
             'zh-CN': '旗子的点击事件，参数（index:旗子索引, node：旗子数据信息）',
@@ -378,6 +382,19 @@ interface IStatus {
   back: string
   end: string
   cancel: string
+}`
+    },
+    {
+      name: 'ICustomData',
+      type: 'interface',
+      code: `
+interface ICustomData { 
+  name?: string
+  time?: string
+  status?: string
+  flags?: string
+  content?: string
+  [propName: string]: string // 可自定义以上的默认属性
 }`
     }
   ]

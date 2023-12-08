@@ -1,10 +1,12 @@
 <template>
-  <tiny-cascader-panel class="cascader-panel-demo" :options="optionsCascader"></tiny-cascader-panel>
+  <tiny-cascader-panel class="cascader-panel-demo" :options="optionsCascader" v-model="value"></tiny-cascader-panel>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { CascaderPanel as TinyCascaderPanel } from '@opentiny/vue'
+
+const value = ref('')
 
 const optionsCascader = ref([
   {
