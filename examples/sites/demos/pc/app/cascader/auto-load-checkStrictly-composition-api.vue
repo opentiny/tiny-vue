@@ -1,5 +1,5 @@
 <template>
-  <tiny-cascader :props="propsAuto"></tiny-cascader>
+  <tiny-cascader v-model="value" :props="propsAuto"></tiny-cascader>
 </template>
 
 <script setup>
@@ -7,6 +7,7 @@ import { ref } from 'vue'
 import { Cascader as TinyCascader } from '@opentiny/vue'
 
 let id = 0
+const value = ref('')
 const propsAuto = ref({
   lazy: true,
   checkStrictly: true,
