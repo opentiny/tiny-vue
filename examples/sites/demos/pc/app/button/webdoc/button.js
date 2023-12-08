@@ -240,7 +240,8 @@ export default {
         },
         {
           'name': 'type',
-          'type': "'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'",
+          'type': 'IButtonType',
+          'typeAnchorName': 'IButtonType',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '展示按钮不同的状态，设置为text则展示为文本按钮',
@@ -273,6 +274,13 @@ export default {
           'demoId': 'image'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IButtonType',
+      type: 'interface',
+      code: `type IButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'`
     }
   ]
 }
