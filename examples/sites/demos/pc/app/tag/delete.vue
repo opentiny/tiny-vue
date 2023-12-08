@@ -1,16 +1,11 @@
 <template>
   <div>
-    <p>
-      <tiny-switch v-model="beforeDeleteValue"></tiny-switch>
-      before-change 返回 {{ beforeDeleteValue }} 时 {{ beforeDeleteText }}
-      <br />
-    </p>
     <tiny-tag
       v-for="tag in tags"
       :key="'tiny-tag1-' + tag.name"
       closable
       :type="tag.type"
-      @close="close(tag)"
+      @close="handleClose(tag)"
       :before-delete="beforeDelete"
       >{{ tag.name }}</tiny-tag
     >
@@ -18,12 +13,11 @@
 </template>
 
 <script>
-import { Tag, Switch } from '@opentiny/vue'
+import { Tag, Modal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTag: Tag,
-    TinySwitch: Switch
+    TinyTag: Tag
   },
   data() {
     return {
@@ -33,24 +27,17 @@ export default {
         { name: '标签三', type: 'info' },
         { name: '标签四', type: 'warning' },
         { name: '标签五', type: 'danger' }
-      ],
-      beforeDeleteValue: false
-    }
-  },
-  computed: {
-    beforeDeleteText() {
-      return this.beforeDeleteValue
-        ? '可执行 close 事件，点击删除图标可以删除标签'
-        : '将拦截 close 事件的执行，点击删除图标将无法删除标签'
+      ]
     }
   },
   methods: {
-    close(tag) {
+    handleClose(tag) {
       this.tags.splice(this.tags.indexOf(tag), 1)
+      Modal.message('close 事件')
     },
     beforeDelete(done) {
-      setTimeout(() => {
-        this.beforeDeleteValue && done()
+      Modal.confirm('确认删除？').then((res) => {
+        res === 'confirm' && done()
       })
     }
   }
