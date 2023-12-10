@@ -418,7 +418,7 @@ export const secondInputId =
 export const focus =
   ({ api, props, vm }) =>
   () =>
-    !props.ranged ? vm.$refs.reference.focus() : api.handleFocus()
+    !props.isRange ? vm.$refs.reference.focus() : api.handleFocus()
 
 export const blur = (state) => () => state.refInput.forEach((input) => input.blur())
 
