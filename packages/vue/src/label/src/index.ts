@@ -20,7 +20,7 @@ export const labelProps = {
   },
   color: {
     type: String,
-    default: 'gray'
+    default: 'primary'
   },
   size: {
     type: String,

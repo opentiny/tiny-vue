@@ -153,9 +153,9 @@ export default {
         {
           name: 'type',
           type: 'string',
-          defaultValue: '',
+          defaultValue: 'base',
           desc: {
-            'zh-CN': '<p>类型</p>',
+            'zh-CN': '<p>类型 \n base, number</p>',
             'en-US': 'type'
           },
           demoId: 'type'
@@ -163,9 +163,9 @@ export default {
         {
           name: ' color',
           type: 'string',
-          defaultValue: 'gray',
+          defaultValue: 'primary',
           desc: {
-            'zh-CN': '<p>文本颜色</p>',
+            'zh-CN': '<p>文本颜色:primary,secondary,placeholder,disabled,inverse,brand,link</p>',
             'en-US': 'text color'
           },
           demoId: 'color'
@@ -173,9 +173,9 @@ export default {
         {
           name: 'size',
           type: 'string',
-          defaultValue: '',
+          defaultValue: 'normal',
           desc: {
-            'zh-CN': '<p>文本大小</p>',
+            'zh-CN': '<p>文本大小:large,normal,small,mini</p>',
             'en-US': 'text size'
           },
           demoId: 'size'
@@ -193,9 +193,9 @@ export default {
         {
           name: 'position',
           type: 'string',
-          defaultValue: '',
+          defaultValue: 'left',
           desc: {
-            'zh-CN': '<p>整行显示时的位置</p>',
+            'zh-CN': '<p>整行显示时的位置:left,center,right</p>',
             'en-US': 'position of whole line dispaly'
           },
           demoId: 'position'
