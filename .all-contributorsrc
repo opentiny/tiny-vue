@@ -510,6 +510,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "James-9696",
+      "name": "James",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72028410?v=4",
+      "profile": "https://github.com/James-9696",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 8,
