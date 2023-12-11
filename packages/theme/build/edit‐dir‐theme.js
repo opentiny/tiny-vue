@@ -110,8 +110,18 @@ const createTheme = (callbackFn) => {
     }, 20)
   }
 
+  const copyDir = (originPath, targetPath) => {
+    fsExtra.copy(originPath, targetPath, (err) => {
+      if (err) {
+        console.log(err)
+      }
+    })
+  }
+
   const mkStat = (originPath, fileDir, type) => {
     const statPath = `${originPath}/${fileDir}`
+    const smbPath = `${originPath}/smb-theme/${fileDir}`
+    const auroraPath = `${originPath}/aurora-theme/${fileDir}`
     fs.stat(statPath, (err, data) => {
       if (err) {
         console.log('mkStat', err)
@@ -120,19 +130,16 @@ const createTheme = (callbackFn) => {
       if (data.isDirectory()) {
         if (fileDir !== 'base' && fileDir !== 'theme') {
           if (fileDir === 'images') {
-            fsExtra.copy(statPath, `${originPath}/smb-theme/${fileDir}`, (subErr) => {
-              if (subErr) {
-                console.log(subErr)
-              }
-            })
-            fsExtra.copy(statPath, `${originPath}/aurora-theme/${fileDir}`, (subErr) => {
-              if (subErr) {
-                console.log(subErr)
-              }
-            })
+            copyDir(statPath, smbPath)
+            copyDir(statPath, auroraPath)
           } else {
             isFileExist(originPath, fileDir, type)
           }
+        }
+      } else {
+        if (fileDir === 'index.less') {
+          copyDir(statPath, smbPath)
+          copyDir(statPath, auroraPath)
         }
       }
     })
