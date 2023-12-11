@@ -147,6 +147,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/AcWrong02"><img src="https://avatars.githubusercontent.com/u/147061401?v=4?s=100" width="100px;" alt="AcWrong02"/><br /><sub><b>AcWrong02</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/issues?q=author%3AAcWrong02" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/betavs"><img src="https://avatars.githubusercontent.com/u/34408516?v=4?s=100" width="100px;" alt="betavs"/><br /><sub><b>betavs</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=betavs" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/fanbingbing16"><img src="https://avatars.githubusercontent.com/u/84823288?v=4?s=100" width="100px;" alt="fanbingbing16"/><br /><sub><b>fanbingbing16</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=fanbingbing16" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
