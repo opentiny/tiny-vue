@@ -483,6 +483,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "David-TechNomad",
+      "name": "David",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23149356?v=4",
+      "profile": "https://github.com/David-TechNomad",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,
