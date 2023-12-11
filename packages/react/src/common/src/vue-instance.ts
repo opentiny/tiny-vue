@@ -63,9 +63,12 @@ export function useCreateVueInstance({ $bus, props }) {
 
   useExcuteOnce(() => {
     const { $listeners } = props
-    Object.keys($listeners).forEach((eventName) => {
-      $bus.on(eventName, $listeners[eventName])
-    })
+
+    if ($listeners) {
+      Object.keys($listeners).forEach((eventName) => {
+        $bus.on(eventName, $listeners[eventName])
+      })
+    }
 
     // 给父的 $children 里 push 当前的 vm
     const parent = vm.$parent

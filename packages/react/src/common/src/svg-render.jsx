@@ -2,13 +2,9 @@ import classNames from 'classnames'
 import { If } from './virtual-comp'
 
 export const Svg = ({ name = 'Icon', component: Icon }) => {
-  const funcObj = ({
+  const funcObj = {
     [name](props) {
-      const className = classNames(
-        'icon',
-        'tiny-svg',
-        props.className
-      )
+      const className = classNames('icon', 'tiny-svg', props.className)
       const v_if = typeof props['v-if'] === 'boolean' ? props['v-if'] : true
       const defaultProps = { ...props }
       delete defaultProps['v-if']
@@ -18,6 +14,6 @@ export const Svg = ({ name = 'Icon', component: Icon }) => {
         </If>
       )
     }
-  })
+  }
   return funcObj[name]
 }

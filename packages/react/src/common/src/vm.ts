@@ -43,7 +43,7 @@ function createVmProxy(fiberCombine) {
           }
           return vmProxy[property](target, receiver)
         },
-        set(target, property, value) {
+        set() {
           return true
         }
       })

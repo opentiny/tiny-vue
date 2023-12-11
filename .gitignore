@@ -22,6 +22,7 @@ test-results
 /packages/react/pc.ts
 /packages/react/mobile.ts
 /packages/react/app.ts
+/packages/react/mobile-first.ts
 
 /examples/**/playwright-report
 /examples/**/test-results
