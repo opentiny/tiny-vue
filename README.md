@@ -151,6 +151,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/dyh333"><img src="https://avatars.githubusercontent.com/u/1221313?v=4?s=100" width="100px;" alt="dyh333"/><br /><sub><b>dyh333</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=dyh333" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/betterdancing"><img src="https://avatars.githubusercontent.com/u/25901461?v=4?s=100" width="100px;" alt="betterdancing"/><br /><sub><b>betterdancing</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=betterdancing" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/David-TechNomad"><img src="https://avatars.githubusercontent.com/u/23149356?v=4?s=100" width="100px;" alt="David"/><br /><sub><b>David</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=David-TechNomad" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/falcon-jin"><img src="https://avatars.githubusercontent.com/u/48880836?v=4?s=100" width="100px;" alt="falcon-jin"/><br /><sub><b>falcon-jin</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=falcon-jin" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
