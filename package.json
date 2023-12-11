@@ -41,7 +41,6 @@
     "dev2:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue2 dev:saas",
     "dev2.7": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/vue2.7 dev",
     "dev2.7:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue2.7 dev:saas",
-    "dev:react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm -C examples/react-docs run dev",
     "// ---------- 启动官网文档 ----------": "",
     "site": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/sites start",
     "site:open": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/sites start:open",
@@ -114,6 +113,8 @@
     "ci:deployBeta": "pnpm build:ui",
     "postci:deployBeta": "lerna publish from-package --yes --dist-tag beta",
     "analyse:depends": "pnpm --filter @opentiny/analyse_depends start",
+    "// ---------- react 相关脚本命令 ----------": "",
+    "dev:react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm -C examples/react-docs run dev",
     "build:entry-react": "pnpm -C internals/cli build:entry-react",
     "create:mapping-react": "pnpm -C internals/cli create:mapping-react",
     "build:react": "pnpm -C internals/cli build:react",
@@ -121,7 +122,9 @@
     "pub:react": "pnpm --filter=\"./packages/dist-react/**\" publish --no-git-checks --access=public",
     "dev:react-site": "pnpm --filter @opentiny/react-site start",
     "build:react-site": "pnpm --filter @opentiny/react-site build",
-    "prettier": "prettier --config .prettierrc --write ."
+    "prettier": "prettier --config .prettierrc --write .",
+    "// ---------- openinula 相关脚本命令 ----------": "",
+    "dev:openinula": "pnpm -C examples/openinula-docs run dev"
   },
   "dependencies": {
     "@vue/composition-api": "1.2.2",
