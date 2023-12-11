@@ -31,10 +31,10 @@
           v-if="itemData.children && itemData.children.length"
           class="tiny-dropdown-item__expand tiny-dropdown-menu__item-expand"
         >
-          <component :is="state.getIcon" />
+          <component :is="state.getIcon"></component>
         </span>
         <div class="tiny-dropdown-item__content tiny-dropdown-menu__item-content">
-          <component v-if="icon" :is="icon" class="tiny-svg-size" />
+          <component v-if="icon" :is="icon" class="tiny-svg-size"></component>
           <span class="tiny-dropdown-item__label">
             <slot :item-data="itemData">
               <span>{{ label }}</span>

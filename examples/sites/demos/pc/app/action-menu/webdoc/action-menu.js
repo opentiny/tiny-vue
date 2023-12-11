@@ -48,7 +48,7 @@ export default {
       'desc': {
         'zh-CN': '<p>通过 <code>more-text</code> 属性设置下拉按钮文本,默认为 <code>更多</code>。</p>',
         'en-US':
-          '<p>Set the dropdown button text through the <code>more-text</code> attribute, default to<code>More</code></p>'
+          '<p>Set the dropdown button text through the <code>more-text</code> attribute, default to <code>More</code></p>'
       },
       'codeFiles': ['more-text.vue']
     },
@@ -76,11 +76,20 @@ export default {
       'demoId': 'max-show-num',
       'name': { 'zh-CN': '个数限制', 'en-US': 'Number limit' },
       'desc': {
-        'zh-CN': '<p>通过 <code>max-show-num</code> 属性设置显示最多显示菜单按钮的个数，默认为 2。</p>',
+        'zh-CN': '<p>通过 <code>max-show-num</code> 属性设置最多显示菜单按钮的个数，默认为 2。</p>',
         'en-US':
           '<p>By setting the <code>max-show-num</code> attribute, the maximum number of displayed menu buttons is set to 2 by default.</p>'
       },
       'codeFiles': ['max-show-num.vue']
+    },
+    {
+      'demoId': 'slot-item',
+      'name': { 'zh-CN': '菜单项插槽', 'en-US': 'Menu Slot' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>item</code> 插槽自定义下拉选项的 HTML 模板。</p>',
+        'en-US': '<p>Customize the HTML template for dropdown options through the <code>item</code> slot.</p>'
+      },
+      'codeFiles': ['slot-item.vue']
     },
     {
       'demoId': 'events',
@@ -103,22 +112,13 @@ export default {
           '</div>\n'
       },
       'codeFiles': ['events.vue']
-    },
-    {
-      'demoId': 'slot-item',
-      'name': { 'zh-CN': '菜单项插槽', 'en-US': 'Menu Slot' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>item</code> 插槽自定义下拉选项的 HTML 模板。</p>',
-        'en-US': '<p>Customize the HTML template for dropdown options through the <code>item</code> slot.</p>'
-      },
-      'codeFiles': ['slot-item.vue']
     }
   ],
   apis: [
     {
       'name': 'action-menu',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'max-show-num',
           'type': 'number',
@@ -133,7 +133,7 @@ export default {
         {
           'name': 'more-text',
           'type': 'string',
-          'defaultValue': '更多',
+          'defaultValue': "'更多'",
           'desc': {
             'zh-CN': '下拉按钮文本',
             'en-US': 'Dropdown button text'
@@ -200,7 +200,7 @@ export default {
             'zh-CN': '菜单项图标',
             'en-US': 'Icon of a menu item'
           },
-          'demId': 'icon'
+          'demoId': 'icon'
         },
         {
           'name': 'popper-class',
@@ -245,7 +245,7 @@ export default {
         {
           'name': 'text-field',
           'type': 'string',
-          'defaultValue': 'label',
+          'defaultValue': "'label'",
           'desc': {
             'zh-CN': '菜单按钮文本的键值',
             'en-US': 'Key values for menu button text'
