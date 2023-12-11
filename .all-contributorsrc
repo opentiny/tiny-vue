@@ -474,6 +474,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "betterdancing",
+      "name": "betterdancing",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25901461?v=4",
+      "profile": "https://github.com/betterdancing",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 8,
