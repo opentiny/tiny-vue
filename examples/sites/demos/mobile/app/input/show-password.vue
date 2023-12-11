@@ -1,5 +1,5 @@
 <template>
-  <div class="input-wrap">
+  <div class="demo-input">
     <tiny-input v-model="input" show-password></tiny-input>
   </div>
 </template>
@@ -19,10 +19,10 @@ export default {
 }
 </script>
 
-<style>
-.input-wrap {
-  padding-top: 20px;
+<style scoped>
+.demo-input {
   height: 100%;
-  background: #f4f4f4;
+  padding: 20px 16px;
+  background: #f5f5f5;
 }
 </style>

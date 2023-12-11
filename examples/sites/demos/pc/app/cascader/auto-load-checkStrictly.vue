@@ -1,5 +1,5 @@
 <template>
-  <tiny-cascader :props="propsAuto"></tiny-cascader>
+  <tiny-cascader v-model="value" :props="propsAuto"></tiny-cascader>
 </template>
 
 <script>
@@ -12,6 +12,7 @@ export default {
   data() {
     let id = 0
     return {
+      value: '',
       propsAuto: {
         lazy: true,
         checkStrictly: true,

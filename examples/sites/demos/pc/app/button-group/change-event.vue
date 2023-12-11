@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     handleChange(val) {
-      Modal.message(`change事件触发了，选中值为${val}`)
+      Modal.message({ message: `change事件触发了，选中值为${val}`, status: 'info' })
     }
   }
 }

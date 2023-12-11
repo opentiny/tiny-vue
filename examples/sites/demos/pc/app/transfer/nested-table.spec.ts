@@ -14,7 +14,7 @@ test('判断数据交换', async ({ page }) => {
   await expect(rightPanel.getByText('列表 2 1 / 8')).toHaveCount(1)
   await page.waitForTimeout(50)
 
-  //判断是否可以将右侧数据交换到左侧面板
+  // 判断是否可以将右侧数据交换到左侧面板
   await preview.locator('.defaultButton > button:nth-child(2)').click()
   await expect(leftPanel.getByText('列表 1 0 / 13')).toHaveCount(1)
   await page.waitForTimeout(50)

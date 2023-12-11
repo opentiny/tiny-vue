@@ -1557,6 +1557,14 @@
     "type": "template",
     "exclude": false
   },
+  "Mask": {
+    "path": "vue/src/mask/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
+  },
   "Menu": {
     "path": "vue/src/menu/index.ts",
     "type": "component",
