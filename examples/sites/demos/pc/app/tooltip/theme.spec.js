@@ -24,6 +24,4 @@ test('测试tooltip主题', async ({ page }) => {
 
   await page.getByRole('button', { name: 'success' }).hover()
   await expect(page.getByRole('tooltip', { name: 'success 提示文字' })).toHaveClass(/is-success/)
-
-  await page.waitForTimeout(300)
 })
