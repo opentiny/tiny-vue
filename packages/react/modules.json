@@ -69,13 +69,13 @@
     "exclude": false
   },
   "Common": {
-    "path": "react-common/src/index.ts",
+    "path": "react/common/src/index.ts",
     "type": "module",
     "exclude": false
   },
   "Icon": {
-    "path": "react-icon/index.ts",
-    "type": "module",
+    "path": "react/src/icon/index.ts",
+    "type": "component",
     "exclude": false
   },
   "Switch": {
