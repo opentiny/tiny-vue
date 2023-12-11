@@ -118,22 +118,13 @@
   }
 
   &__valid {
-    .component-css-vars-form();
-
     &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
-      &.is-error {
-        background-color: var(--ti-form-valid-error-bg-color);
-
-        .popper__arrow {
-          border-right-color: var(--ti-form-valid-error-border-color);
-
-          &:after {
-            border-right-color: var(--ti-form-valid-error-border-color);
-          }
-        }
+      .tooltip-validate-icon {
+        fill: var(--ti-tooltip-validate-icon-color);
+        margin-right: 8px;
       }
 
-      &.is-error[x-placement^='top'] .popper__arrow {
+      &[x-placement^='top'] .popper__arrow {
         bottom: -4px;
       }
 
