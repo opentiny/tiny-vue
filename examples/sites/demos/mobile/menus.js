@@ -79,6 +79,7 @@ export const cmpMenus = [
       { name: 'Slider', nameCn: '滑块', key: 'slider' },
       { name: 'CheckboxGroup', nameCn: '复选框组', key: 'checkboxgroup' },
       { name: 'Input', nameCn: '输入框', key: 'input' },
+      { name: 'Label', nameCn: '文本', key: 'label' },
       { name: 'Radio', nameCn: '单选', key: 'radio' },
       { name: 'Search', nameCn: '搜索框', key: 'search' },
       { name: 'Switch', nameCn: '开关', key: 'switch' },

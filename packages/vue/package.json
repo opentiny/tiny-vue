@@ -146,6 +146,7 @@
     "@opentiny/vue-index-bar-anchor": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-ip-address": "workspace:~",
+    "@opentiny/vue-label": "workspace:~",
     "@opentiny/vue-layout": "workspace:~",
     "@opentiny/vue-link": "workspace:~",
     "@opentiny/vue-link-menu": "workspace:~",
