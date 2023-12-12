@@ -8,7 +8,7 @@
     </div>
     <div class="row">
       使用renderContent属性：
-      <tiny-tooltip placement="top" content="不显示此处提示内容" :render-content="renderContent">
+      <tiny-tooltip placement="top" content="提示内容" :render-content="renderContent">
         <button class="tiny-button tiny-button--primary">鼠标悬浮到这里</button>
       </tiny-tooltip>
     </div>
