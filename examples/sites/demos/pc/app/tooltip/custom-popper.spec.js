@@ -13,6 +13,7 @@ test('测试是否显示箭头', async ({ page }) => {
   const arrow = tip.locator('div.popper__arrow')
 
   // 测试小箭头
+  await page.waitForTimeout(40)
   await button.hover()
   await expect(arrow).toHaveCount(1)
   await arrowSwitch.click()
