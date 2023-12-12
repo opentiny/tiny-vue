@@ -5,7 +5,7 @@ test('阻止上传文件', async ({ page }) => {
   await page.goto('file-upload#prevent-upload-file')
 
   const upload = page.getByRole('button', { name: '选取文件' })
-  const modal = page.locator('.tiny-modal')
+  const modal = page.locator('.tiny-modal').nth(1)
   const modalCancel = page.getByRole('button', { name: '取消' })
   const lists = page.locator('.tiny-upload-list__item')
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])

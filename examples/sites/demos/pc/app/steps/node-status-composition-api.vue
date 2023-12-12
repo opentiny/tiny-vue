@@ -9,7 +9,7 @@ import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
 const normalActive = ref(0)
 const data = ref([
   {
-    name: 'Basic Info.'
+    name: 'Basic Info'
   },
   {
     name: 'BOQ Info'

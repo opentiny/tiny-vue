@@ -6,10 +6,9 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>data</code> 设置按钮组数据，类型为 <a href="#IButtonGroupData">IButtonGroupData</a> ，通过 <code>v-model</code> 设置绑定值。</p>',
+        'zh-CN': '<p>通过 <code>data</code> 设置按钮组数据，<code>v-model</code> 设置绑定值。</p>',
         'en-US':
-          '<p>Set the button group data to type <a="# IButtonGroupData">IButtonGroupData</a> through <code>data</code> , and set the binding value through <code>v model</code> .</p>'
+          '<p>Set the button group data through <code>data</code> , and set the binding value through <code>v model</code> .</p>'
       },
       'codeFiles': ['basic-usage.vue']
     },

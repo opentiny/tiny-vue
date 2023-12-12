@@ -16,6 +16,7 @@ test('单选虚拟滚动', async ({ page }) => {
   await page.waitForTimeout(1000)
   await expect(option.filter({ hasText: '黄金糕17' })).toBeHidden()
   await option.nth(9).scrollIntoViewIfNeeded()
+  await page.waitForTimeout(1000)
   await option.filter({ hasText: '黄金糕17' }).click()
   await expect(input).toHaveValue('黄金糕17')
 })

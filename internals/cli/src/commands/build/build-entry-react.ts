@@ -3,12 +3,7 @@
  */
 import fs from 'fs-extra'
 import { EOL as endOfLine } from 'node:os'
-import {
-  pathFromWorkspaceRoot,
-  capitalizeKebabCase,
-  prettierFormat,
-  logGreen
-} from '../../shared/utils'
+import { pathFromWorkspaceRoot, capitalizeKebabCase, prettierFormat, logGreen } from '../../shared/utils'
 import { getAllModules } from './build-ui-react'
 import handlebarsRender from './handlebars.render'
 
@@ -28,7 +23,7 @@ const fileNames = {
   'mobile-first': 'mobile-first.ts'
 }
 
-function getMainTemplate({ mode }) {
+function getMainTemplate() {
   return `{{{include}}}
   import { $prefix } from '@opentiny/react-common'
 
@@ -57,7 +52,7 @@ function getComponents(mode) {
 }
 
 function createEntry(mode) {
-  const OUTPUT_PATH = pathFromWorkspaceRoot(outputDir, fileNames[mode]);
+  const OUTPUT_PATH = pathFromWorkspaceRoot(outputDir, fileNames[mode])
   const MAIN_TEMPLATE = getMainTemplate({ mode })
   const includeTemplate: string[] = []
   const componentsTemplate: string[] = []
@@ -95,7 +90,7 @@ function createEntry(mode) {
 }
 
 export function buildEntryReact() {
-  ['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
+  ;['all', 'pc', 'mobile', 'mobile-first'].forEach(createEntry)
 
   logGreen(
     `npm run build:entry done. [${outputDir}/index.ts,${outputDir}/pc.ts,${outputDir}/mobile.ts,${outputDir}/mobile-first.ts]`

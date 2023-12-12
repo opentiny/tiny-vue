@@ -112,16 +112,24 @@ export default {
       'desc': {
         'zh-CN': `
           <p>
-            当选中某一级时，动态加载该级下的选项。通过 <code>props</code> 属性中的 <code>lazy</code> 开启动态加载，并通过 <code>lazyload</code> 来设置加载数据源的方法。</br>
-            <code>lazyload</code> 方法有两个参数，第一个参数 node 为当前点击的节点，第二个 resolve 为数据加载完成的回调(必须调用)。</br>
-            为了更准确的显示节点的状态，默认地可以使用<code>leaf</code>字段对节点数据添加是否为叶子节点的标志位，否则会简单地以有无子节点来判断是否为叶子节点。
+            <div>当选中某一级时，动态加载该级下的选项。</dvi>
+            <div>通过 <code>props</code> 属性中的 <code>lazy</code> 开启动态加载，并通过 <code>lazyload</code> 来设置加载数据源的方法。</div>
+            <div><code>lazyload</code> 方法有两个参数，第一个参数 node 为当前点击的节点，第二个 resolve 为数据加载完成的回调(必须调用)。</div>
+            <p>
+              <div>为了更准确的显示节点的状态，默认地（默认指没有设置<code>props.leaf</code>）可以使用<code>leaf</code>字段。</div>
+              <div>表明此节点是否为叶子节点，否则会简单地以有无子节点来判断是否为叶子节点。</div>
+            </p>
           </p>
         `,
         'en-US': `
           <p>
-            When a level is selected, the options under the level are dynamically loaded. Enable dynamic loading with <code>lazy</code> in the <code>props</code> property, and set the method of loading the data source with <code>lazyload</code>. </br>
-            The <code>lazyload</code> method takes two parameters, the first parameter node is the currently clicked node, and the second parameter resolve is the callback when the data load is complete (which must be called). </br>
-            In order to display the status of the node more accurately, the <code>leaf</code> field can be used by default to add the flag bit of whether the node is a leaf node. Otherwise, it will simply judge whether the node is a leaf node by whether there are child nodes.
+            <div> When a level is selected, dynamically loads the options under that level. </dvi>
+            <div> enables dynamic loading with <code>lazy</code> in the <code>props</code> property, and sets the method of loading the data source with <code>lazyload</code>. </div>
+            <div>The<code>lazyload</code> method takes two arguments, node for the current clicked node, and resolve for the callback (which must be called) when the data is loaded. </div>
+            <p>
+            <div> In order to more accurately display the state of the node, the <code>leaf</code> field can be used by default (the default means that <code>props.leaf</code> is not set). </div>
+            <div> indicates whether this node is a leaf, otherwise it is simply determined by the presence or absence of child nodes. </div>
+            </p>
           </p>
         `
       },
@@ -142,10 +150,16 @@ export default {
       'demoId': 'props-children',
       'name': { 'zh-CN': '指定选项', 'en-US': 'Specify Options' },
       'desc': {
-        'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">Props</p>\n<p>通过 <code>children</code> 指定选项的子选项，默认为 children 。\n通过 <code>value</code> 指定指定选项的 value 值，默认为 value 。\n通过 <code>label</code> 指定选项标签,默认为 label 。</p>\n</div>\n',
-        'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title">Props</p>\n<p> uses <code>children</code> to specify the sub-option of the option. The default value is children. \n Use <code>value</code> to specify the value of a specified option. The default value is value. \nUse <code>label</code> to specify the option label. The default value is label. </p>\n</div>\n'
+        'zh-CN': `<p>
+          <div>通过 <code>props.children</code> 指定选项的子选项，默认为 'children' 。</div>
+          <div>通过 <code>props.value</code> 指定指定选项的 value 值，默认为 'value' 。</div>
+          <div>通过 <code>props.label</code> 指定选项标签,默认为 'label' 。</div>
+        <p/>`,
+        'en-US': `<p>
+          <div> specifies the suboptions of the option via <code>props.children</code>, which defaults to 'children'. </div>
+          <div> Specifies the value of the given option via <code>props.value</code>, which defaults to 'value'. </div>
+          <div> Specifies the option label via <code>props.label</code>, which defaults to 'label'. </div>
+        <p/>`
       },
       'codeFiles': ['props-children.vue']
     },
@@ -317,7 +331,7 @@ export default {
           'name': 'collapse-tags',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '多选模式下是否折叠Tag', 'en-US': 'Whether to collapse tags in multi-choice mode' },
+          'desc': { 'zh-CN': '多选模式下是否折叠 Tag', 'en-US': 'Whether to collapse tags in multi-choice mode' },
           'demoId': 'collapse-tags'
         },
         {
@@ -477,13 +491,13 @@ export default {
       ]
     },
     {
-      'name': 'ICascaderPanelConfig',
+      'name': 'ICascaderPanelConfig ',
       'type': 'interface',
       'props': [
         {
           'name': 'expandTrigger',
           'type': `'click' | 'hover'`,
-          'defaultValue': 'click',
+          'defaultValue': `'click'`,
           'desc': {
             'zh-CN': '次级菜单的展开方式',
             'en-US': 'The expansion mode of the secondary menu'

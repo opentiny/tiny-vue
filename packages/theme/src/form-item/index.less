@@ -27,6 +27,34 @@
 @select-prefix-cls: ~'@{css-prefix}select';
 @rate-prefix-cls: ~'@{css-prefix}rate';
 
+.size-height(@height, @line-height, @margin-bottom) {
+  margin-bottom: @margin-bottom;
+
+  .@{form-item-prefix-cls}__content {
+    line-height: @line-height;
+
+    .@{css-prefix}checkbox,
+    .@{css-prefix}radio {
+      line-height: @height;
+    }
+    .@{css-prefix}checkbox-group {
+      min-height: @height;
+    }
+    .@{numeric-prefix-cls} {
+      display: block;
+
+      &__input-inner {
+        height: @height;
+      }
+    }
+  }
+
+  .@{form-item-prefix-cls}__label {
+    height: @line-height;
+    line-height: @line-height;
+  }
+}
+
 .@{form-item-prefix-cls} {
   .component-css-vars-form-item();
 
@@ -38,85 +66,36 @@
     margin-bottom: 0;
   }
 
-  &&--mini {
-    margin-bottom: var(--ti-form-item-margin-bottom-mini);
-  }
-  &&--small {
-    margin-bottom: var(--ti-form-item-margin-bottom-small);
-  }
-  &--medium {
-    margin-bottom: var(--ti-form-item-margin-bottom-medium);
-  }
-
-  &--medium &__label {
-    height: var(--ti-form-item-medium-line-height);
-    line-height: var(--ti-form-item-medium-line-height);
-  }
-
-  &--small &__label {
-    height: var(--ti-form-item-small-line-height);
-    line-height: var(--ti-form-item-small-line-height);
-  }
-
   &--small &__error {
     padding-top: 2px;
   }
 
-  &--mini &__label {
-    height: var(--ti-form-item-mini-line-height);
-    line-height: var(--ti-form-item-mini-line-height);
-  }
-
-  &--medium &__content {
-    line-height: var(--ti-form-item-medium-line-height);
-    .@{css-prefix}checkbox,
-    .@{css-prefix}radio {
-      line-height: var(--ti-form-item-input-medium-height);
-    }
-    .@{css-prefix}checkbox-group {
-      min-height: var(--ti-form-item-input-medium-height);
-    }
-
-    .@{input-prefix-cls} .@{input-prefix-cls}__inner {
-      height: var(--ti-form-item-input-medium-height);
-      line-height: var(--ti-form-item-input-medium-height);
-    }
-  }
-
-  &--small &__content {
-    line-height: var(--ti-form-item-small-line-height);
-    .@{css-prefix}checkbox,
-    .@{css-prefix}radio {
-      line-height: var(--ti-form-item-input-small-height);
-    }
-    .@{css-prefix}checkbox-group {
-      min-height: var(--ti-form-item-input-small-height);
-    }
-
-    .@{input-prefix-cls} .@{input-prefix-cls}__inner {
-      height: var(--ti-form-item-input-small-height);
-      line-height: var(--ti-form-item-input-small-height);
-    }
-  }
-
-  &--mini &__content {
-    line-height: var(--ti-form-item-mini-line-height);
-    .@{css-prefix}checkbox,
-    .@{css-prefix}radio {
-      line-height: var(--ti-form-item-input-mini-height);
-    }
-    .@{css-prefix}checkbox-group {
-      min-height: var(--ti-form-item-input-mini-height);
-    }
-
-    .@{input-prefix-cls} .@{input-prefix-cls}__inner {
-      height: var(--ti-form-item-input-mini-height);
-      line-height: var(--ti-form-item-input-mini-height);
-    }
-  }
-
   &--mini &__error {
     padding-top: 1px;
+  }
+
+  &--medium {
+    .size-height(
+      var(--ti-form-item-medium-line-height),
+      var(--ti-form-item-medium-line-height),
+      var(--ti-form-item-margin-bottom-medium)
+    );
+  }
+
+  &--small {
+    .size-height(
+      var(--ti-form-item-small-line-height),
+      var(--ti-form-item-small-line-height),
+      var(--ti-form-item-margin-bottom-small)
+    );
+  }
+
+  &--mini {
+    .size-height(
+      var(--ti-form-item-mini-line-height),
+      var(--ti-form-item-mini-line-height),
+      var(--ti-form-item-margin-bottom-mini)
+    );
   }
 
   &__label-wrap {

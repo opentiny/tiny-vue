@@ -50,14 +50,15 @@ export default {
       'codeFiles': ['disabled.vue']
     },
     {
-      'demoId': 'closable',
-      'name': { 'zh-CN': '移除', 'en-US': 'Remove' },
+      'demoId': 'delete',
+      'name': { 'zh-CN': '删除操作', 'en-US': 'Delete' },
       'desc': {
-        'zh-CN': '通过 <code>closable</code> 设置展示关闭按钮， <code>close</code> 监听关闭按钮点击事件，做删除操作。',
+        'zh-CN':
+          '通过 <code>closable</code> 设置展示关闭按钮， <code>before-delete</code> 设置删除前的操作，可以在此钩子中做提示或确认；<code>close</code> 监听关闭按钮点击事件，做删除操作。',
         'en-US':
-          'Set the display close button through <code>close</code> , listen to the close button click event, and perform the deletion operation.'
+          'Set the display close button through<code>close</code>, and<code>before-delete</code>to set the operation before deletion, which can be prompted or confirmed in this hook< Code>close</code>Listen to the close button click event and perform the deletion operation.'
       },
-      'codeFiles': ['closable.vue']
+      'codeFiles': ['delete.vue']
     },
     {
       'demoId': 'create',
@@ -96,11 +97,18 @@ export default {
       'type': 'component',
       'props': [
         {
+          'name': 'before-delete',
+          'type': '(close: () => void) => void',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '删除前回调函数', 'en-US': 'Delete callback function before deletion' },
+          'demoId': 'delete'
+        },
+        {
           'name': 'closable',
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': { 'zh-CN': '是否可关闭', 'en-US': 'Can be disabled' },
-          'demoId': 'closable'
+          'demoId': 'delete'
         },
         {
           'name': 'color',
@@ -189,7 +197,7 @@ export default {
             'zh-CN': '点击关闭按钮时触发的事件',
             'en-US': 'Event triggered when the close button is clicked'
           },
-          'demoId': 'closable'
+          'demoId': 'delete'
         }
       ],
       'slots': [

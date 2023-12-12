@@ -326,6 +326,7 @@ import TextAlign from '@tiptap/extension-text-align'
 
 // code high light
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
+
 // Placeholder
 import Placeholder from '@tiptap/extension-placeholder'
 

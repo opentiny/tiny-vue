@@ -12,6 +12,17 @@
           <div class="col">gutter {{ gutter }}px</div>
         </tiny-col>
       </tiny-row>
+      <tiny-row :gutter="0" noSpace>
+        <tiny-col :span="4">
+          <div class="col">noSpace</div>
+        </tiny-col>
+        <tiny-col :span="4">
+          <div class="col">noSpace</div>
+        </tiny-col>
+        <tiny-col :span="4">
+          <div class="col">noSpace</div>
+        </tiny-col>
+      </tiny-row>
     </tiny-layout>
   </div>
 </template>

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('调整窗口大小后窗口显示的最小宽度', async ({ page }) => {
+test('调整窗口后显示的最小宽度', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('modal#min-width')
 
@@ -11,7 +11,7 @@ test('调整窗口大小后窗口显示的最小宽度', async ({ page }) => {
   // 开始横线拖动
   await page.mouse.move(x, y)
   await page.mouse.down()
-  await page.mouse.move(x + 1, y)
+  await page.mouse.move(x + 100, y)
   await page.mouse.move(x + 300, y)
   await page.mouse.up()
 

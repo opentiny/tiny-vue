@@ -1,5 +1,5 @@
 <template>
-  <tiny-pop-upload :action="action" :limit="3" multiple></tiny-pop-upload>
+  <tiny-pop-upload :action="action" :limit="2" multiple></tiny-pop-upload>
 </template>
 
 <script lang="jsx">

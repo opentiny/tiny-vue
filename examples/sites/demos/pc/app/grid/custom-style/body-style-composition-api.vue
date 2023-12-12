@@ -102,7 +102,7 @@ const cellClassName = ({ rowIndex, columnIndex }) => {
   color: palevioletred;
 }
 .grid-cell-style .tiny-grid-body__column.col-orange {
-  background-color: #f60;
+  background-color: pink;
   color: #fff;
 }
 </style>

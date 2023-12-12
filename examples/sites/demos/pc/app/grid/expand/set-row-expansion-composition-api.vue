@@ -6,7 +6,12 @@
       <tiny-button @click="toggleRowExpansion">手动切换展开行</tiny-button>
     </div>
     <br />
-    <tiny-grid :data="tableData" ref="grid" border :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+    <tiny-grid
+      :data="tableData"
+      ref="gridRef"
+      border
+      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+    >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
       <tiny-grid-column type="expand" title="操作" width="60">
@@ -82,11 +87,11 @@ const tableData = ref([
     boole: true
   }
 ])
-const gridRef = ref()
+const gridRef = ref('gridRef')
 
 const setRowExpansion = () => {
   gridRef.value.clearRowExpand()
-  gridRef.value.setRowExpansion([this.tableData[1], this.tableData[0]], true)
+  gridRef.value.setRowExpansion([tableData.value[1], tableData.value[0]], true)
 }
 
 const setAllRowExpansion = () => {
@@ -94,7 +99,7 @@ const setAllRowExpansion = () => {
 }
 
 const toggleRowExpansion = () => {
-  gridRef.value.toggleRowExpansion(this.tableData[1])
+  gridRef.value.toggleRowExpansion(tableData.value[1])
 }
 
 const checkboxEdit = (h, { row, column }) => {

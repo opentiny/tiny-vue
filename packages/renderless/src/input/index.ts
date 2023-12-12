@@ -10,7 +10,13 @@
  *
  */
 
-import type { IInputApi, IInputClassPrefixConstants, IInputRenderlessParams, IInputState } from 'types/input.type'
+import type {
+  IInputApi,
+  IInputClassPrefixConstants,
+  IInputRenderlessParamUtils,
+  IInputRenderlessParams,
+  IInputState
+} from 'types/input.type'
 
 const HIDDEN_STYLE = `
 height:0 !important;visibility:hidden !important;overflow:hidden !important;
@@ -55,6 +61,14 @@ export const showBox = (state: IInputState) => (): void => {
 
   state.boxVisibility = true
 }
+
+export const inputStyle =
+  ({ props }) =>
+  () => {
+    return {
+      textAlign: props.textAlign
+    }
+  }
 
 export const calculateNodeStyling =
   () =>
@@ -162,8 +176,8 @@ export const calcTextareaHeight =
     return textareaStyle
   }
 
-export const getInput = (refs: IInputRenderlessParams['refs']) => (): HTMLTextAreaElement | HTMLInputElement =>
-  refs.input || refs.textarea
+export const getInput = (vm: IInputRenderlessParamUtils['vm']) => (): HTMLTextAreaElement | HTMLInputElement =>
+  vm.$refs.input || vm.$refs.textarea
 
 export const blur = (api: IInputApi) => (): void => api.getInput().blur()
 
@@ -381,7 +395,7 @@ export const watchFormSelect =
 
       const filterData = props.selectMenu.length && props.selectMenu.filter((item) => item.id === value).shift()
 
-      state.checkedLable = filterData ? filterData.label : ''
+      state.checkedLabel = filterData ? filterData.label : ''
     }
   }
 

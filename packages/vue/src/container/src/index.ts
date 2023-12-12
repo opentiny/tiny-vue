@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile'
 
 const $constants = {
   DEFAULT: 'default',
@@ -44,6 +44,16 @@ export default defineComponent({
     footerHeight: {
       type: [Number, String],
       default: 60
+    },
+
+    // mobile
+    leftWidth: {
+      type: [Number, String],
+      default: 60
+    },
+    rightWidth: {
+      type: [Number, String],
+      default: 44
     }
   },
   setup(props, context) {

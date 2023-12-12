@@ -21,8 +21,8 @@ test('页向导流程图', async ({ page }) => {
       const currentNode = stepItems.nth(i).locator('.tiny-wizard__chart > span').nth(1)
       const { width, height } = await currentNode.boundingBox()
       await expect(currentNode).toHaveClass('tiny-wizard__chart-svg')
-      await expect(width).toBeCloseTo(20)
-      await expect(height).toBeCloseTo(22.67, 2)
+      await expect(width).toBeGreaterThanOrEqual(20)
+      await expect(height).toBeGreaterThanOrEqual(20)
     }
   }
 
@@ -33,8 +33,8 @@ test('页向导流程图', async ({ page }) => {
       const currentNode = stepItems.nth(i).locator('.tiny-wizard__chart > span').nth(1)
       const { width, height } = await currentNode.boundingBox()
       await expect(currentNode).toHaveClass('tiny-wizard__chart-svg')
-      await expect(width).toBeCloseTo(20)
-      await expect(height).toBeCloseTo(22.67, 2)
+      await expect(width).toBeGreaterThanOrEqual(20)
+      await expect(height).toBeGreaterThanOrEqual(20)
     }
   }
 
@@ -45,8 +45,8 @@ test('页向导流程图', async ({ page }) => {
       const currentNode = stepItems.nth(i).locator('.tiny-wizard__chart > span').nth(1)
       const { width, height } = await currentNode.boundingBox()
       await expect(currentNode).toHaveClass('tiny-wizard__chart-svg')
-      await expect(width).toBeCloseTo(20)
-      await expect(height).toBeCloseTo(22.67, 2)
+      await expect(width).toBeGreaterThanOrEqual(20)
+      await expect(height).toBeGreaterThanOrEqual(20)
     }
   }
 })

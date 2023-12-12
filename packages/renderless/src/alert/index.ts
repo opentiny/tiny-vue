@@ -9,7 +9,50 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import type { IAlertRenderlessParams } from '@/types'
+import type { CSSProperties } from 'vue'
+import type { IAlertRenderlessParams, ITinyVm } from '@/types'
+
+export const ALERT_TIMEOUT = 2000
+
+export const watchAutoHide =
+  ({ api, props }: Pick<IAlertRenderlessParams, 'api' | 'props'>) =>
+  (newVal: boolean) => {
+    if (props.autoHide && newVal) {
+      const timer = setTimeout(() => {
+        api.handleClose()
+        clearTimeout(timer)
+      }, ALERT_TIMEOUT)
+    }
+  }
+
+export const computedClass =
+  ({ props, mode }) =>
+  (): string[] => {
+    const { type, size, center } = props
+    if (mode === 'mobile') {
+      const alertClass = ['tiny-mobile-alert', 'tiny-mobile-alert--' + type, 'tiny-mobile-alert--' + size]
+      if (center) {
+        alertClass.push('is-center')
+      }
+
+      return alertClass
+    }
+
+    return []
+  }
+
+export const computedStyle =
+  ({ props, mode }) =>
+  (): CSSProperties | null => {
+    if (mode === 'mobile') {
+      const style = {
+        top: isNaN(props.offset) ? props.offset : `${props.offset}px`
+      }
+      return style
+    }
+
+    return null
+  }
 
 export const handleClose =
   ({ emit, state }: Pick<IAlertRenderlessParams, 'emit' | 'state'>) =>
@@ -51,4 +94,24 @@ export const handleHeaderClick =
         state.scrollStatus = true
       }
     }
+  }
+
+const getEl = (node: ITinyVm): HTMLElement => {
+  return node.$el || node
+}
+
+export const handlerTargetNode =
+  ({ props, parent, vm, nextTick }) =>
+  () => {
+    const { target } = props
+    const { $parent } = parent
+    nextTick(() => {
+      const alertParentNode = $parent?.$refs[target]
+      if (!target || !alertParentNode) {
+        return
+      }
+
+      const targetNode = Array.isArray(alertParentNode) ? alertParentNode[0] : alertParentNode
+      getEl(targetNode).insertBefore(vm.$el, getEl(targetNode).firstChild)
+    })
   }

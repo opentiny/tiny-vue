@@ -36,7 +36,9 @@
 import { ref, reactive } from 'vue'
 import { Select as TinySelect } from '@opentiny/vue'
 
-const radioValue = ref('')
+const value1 = ref('')
+const value2 = reactive([])
+const value3 = ref('')
 
 const gridOpSingle = reactive({
   data: [

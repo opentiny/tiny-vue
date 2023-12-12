@@ -14,7 +14,7 @@ export default {
       normalActive: 0,
       data: [
         {
-          name: 'Basic Info.'
+          name: 'Basic Info'
         },
         {
           name: 'AAAAA'

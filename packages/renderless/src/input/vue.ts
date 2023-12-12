@@ -47,7 +47,8 @@ import {
   handleEnterDisplayOnlyContent,
   hiddenPassword,
   dispatchDisplayedValue,
-  getDisplayedValue
+  getDisplayedValue,
+  inputStyle
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
 
@@ -81,7 +82,8 @@ export const api = [
   'isMemoryStorage',
   'hasSelection',
   'handleEnterDisplayOnlyContent',
-  'hiddenPassword'
+  'hiddenPassword',
+  'inputStyle'
 ]
 
 const initState = ({
@@ -101,7 +103,7 @@ const initState = ({
     passwordVisible: false,
     boxVisibility: false,
     textareaCalcStyle: {},
-    checkedLable: '',
+    checkedLabel: '',
     sheetvalue: props.modelValue,
     inputSize: computed(() => props.size || state.formItemSize),
     showClear: computed(
@@ -123,9 +125,11 @@ const initState = ({
         props.disabled || (parent.tinyForm || {}).disabled || state.isDisplayOnly || (parent.tinyForm || {}).displayOnly
     ),
     validateState: computed(() => (parent.formItem ? parent.formItem.validateState : '')),
+    inputStyle: computed(() => api.inputStyle()),
     textareaStyle: computed(() => ({
       ...state.textareaCalcStyle,
-      resize: props.resize
+      resize: props.resize,
+      textAlign: props.textAlign
     })),
     needStatusIcon: computed(() => (parent.tinyForm ? parent.tinyForm.statusIcon : false)),
     showPwdVisible: computed(
@@ -161,11 +165,14 @@ const initApi = ({
   dispatch,
   broadcast,
   emit,
-  refs,
+  vm,
   props,
   CLASS_PREFIX,
   parent
-}: Pick<IInputRenderlessParams, 'api' | 'state' | 'dispatch' | 'broadcast' | 'emit' | 'refs' | 'props' | 'parent'> & {
+}: Pick<
+  IInputRenderlessParams,
+  'api' | 'state' | 'dispatch' | 'broadcast' | 'emit' | 'refs' | 'props' | 'parent' | 'vm'
+> & {
   CLASS_PREFIX: IInputClassPrefixConstants
 }) => {
   Object.assign(api, {
@@ -174,7 +181,7 @@ const initApi = ({
     broadcast,
     showBox: showBox(state),
     clear: clear(emit),
-    getInput: getInput(refs),
+    getInput: getInput(vm),
     handleChange: handleChange(emit),
     watchFormSelect: watchFormSelect({ emit, props, state }),
     calcIconOffset: calcIconOffset({ CLASS_PREFIX, parent }),
@@ -183,7 +190,8 @@ const initApi = ({
     handleCompositionStart: handleCompositionStart(state),
     handleCompositionUpdate: handleCompositionUpdate(state),
     dispatchDisplayedValue: dispatchDisplayedValue({ state, props, dispatch, api }),
-    getDisplayedValue: getDisplayedValue({ state, props })
+    getDisplayedValue: getDisplayedValue({ state, props }),
+    inputStyle: inputStyle({ props })
   })
 }
 
@@ -327,7 +335,7 @@ export const renderless = (
   }
   const state = initState({ reactive, computed, mode, props, parent, constants, api })
 
-  initApi({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PREFIX, parent })
+  initApi({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PREFIX, parent, vm })
 
   const storages = useStorageBox({ api, props, reactive, toRefs })
 

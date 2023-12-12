@@ -728,8 +728,14 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile",
       "pc"
     ]
+  },
+  "ContainerMobile": {
+    "path": "vue/src/container/src/mobile.vue",
+    "type": "template",
+    "exclude": false
   },
   "ContainerPc": {
     "path": "vue/src/container/src/pc.vue",
@@ -1550,6 +1556,14 @@
     "path": "vue/src/logout/src/pc.vue",
     "type": "template",
     "exclude": false
+  },
+  "Mask": {
+    "path": "vue/src/mask/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
   },
   "Menu": {
     "path": "vue/src/menu/index.ts",

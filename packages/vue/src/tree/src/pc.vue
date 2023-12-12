@@ -228,7 +228,8 @@ export default defineComponent({
     'current-change',
     'node-click',
     'leave-plain-view',
-    'check-plain'
+    'check-plain',
+    'load-data'
   ],
   provide() {
     return {

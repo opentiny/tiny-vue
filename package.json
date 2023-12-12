@@ -33,6 +33,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "postinstall": "pnpm build:internals",
+    "prepare": "husky install",
     "bootstrap": "pnpm --filter=\"!./packages/dist/**\" install",
     "dev": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/vue3 dev",
     "dev:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue3 dev:saas",
@@ -40,7 +41,6 @@
     "dev2:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue2 dev:saas",
     "dev2.7": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/vue2.7 dev",
     "dev2.7:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue2.7 dev:saas",
-    "dev:react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm -C examples/react-docs run dev",
     "// ---------- 启动官网文档 ----------": "",
     "site": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/sites start",
     "site:open": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/sites start:open",
@@ -113,13 +113,18 @@
     "ci:deployBeta": "pnpm build:ui",
     "postci:deployBeta": "lerna publish from-package --yes --dist-tag beta",
     "analyse:depends": "pnpm --filter @opentiny/analyse_depends start",
+    "// ---------- react 相关脚本命令 ----------": "",
+    "dev:react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm -C examples/react-docs run dev",
     "build:entry-react": "pnpm -C internals/cli build:entry-react",
     "create:mapping-react": "pnpm -C internals/cli create:mapping-react",
     "build:react": "pnpm -C internals/cli build:react",
     "build:ui-react": "pnpm create:mapping-react && pnpm build:entry-react && pnpm build:react",
     "pub:react": "pnpm --filter=\"./packages/dist-react/**\" publish --no-git-checks --access=public",
     "dev:react-site": "pnpm --filter @opentiny/react-site start",
-    "build:react-site": "pnpm --filter @opentiny/react-site build"
+    "build:react-site": "pnpm --filter @opentiny/react-site build",
+    "prettier": "prettier --config .prettierrc --write .",
+    "// ---------- openinula 相关脚本命令 ----------": "",
+    "dev:openinula": "pnpm -C examples/openinula-docs run dev"
   },
   "dependencies": {
     "@vue/composition-api": "1.2.2",
@@ -135,8 +140,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
-    "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0",
     "@types/color": "^3.0.3",
     "@types/eslint": "^8.4.10",
     "@types/node": "^18.11.18",
@@ -159,7 +162,10 @@
     "gulp-svg-inline": "^1.0.1",
     "gulp-transform": "^3.0.5",
     "lerna": "^6.4.0",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "^15.2.0",
+    "husky": "^8.0.3",
+    "commitlint": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
     "minimist": "^1.2.8",
     "node-xlsx": "^0.21.0",
     "prettier": "^3.0.0",
@@ -170,23 +176,6 @@
     "vite": "^4.3.8",
     "vue": "^3.3.9",
     "vue-tsc": "^1.6.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,jsx,tsx,vue}": [
-      "prettier --write",
-      "eslint --fix"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   },
   "pnpm": {
     "patchedDependencies": {

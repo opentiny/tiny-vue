@@ -62,26 +62,28 @@ export default {
       'demoId': 'data-field-mapping',
       'name': { 'zh-CN': '数据字段映射', 'en-US': 'Data Field Mapping' },
       'desc': {
-        'zh-CN': `自定义 <code>data</code> 属性的键名和键值：<br/>
+        'zh-CN': `
           <div class="tip custom-block"><p class="custom-block-title">
-          通过 <code>completed-field</code> 设置完成状态对应的键值，默认为 <code>completed</code> ；<br/>
+          自定义 <code>data</code> 属性的键名和键值：<br/> </p>
+          <code>completed-field</code> 设置完成状态对应的键值，默认为 <code>completed</code> ；<br/>
           <code>flag-field</code> 设置旗子信息数组对应的键名，默认为 <code>flags</code> ；<br/>
           <code>flag-content-field</code> 设置旗子描述对应的键名，默认为 <code>content</code> ；<br/>
           <code>flag-name-field</code> 设置旗子标题对应的键名，默认为 <code>name</code> ；<br/>
           <code>flag-status-field</code> 设置旗子状态对应的键名，默认为 <code>status</code> ；<br/>
           <code>name-field</code> 设置节点名称对应的键名，默认为 <code>name</code> ；<br/>
           <code>status-field</code> 设置节点状态对应的键名，默认为 <code>status</code> ；<br/>
-          <code>time-field</code> 设置节点时间对应的键名，默认为 <code>time</code> 。</p></div>`,
-        'en-US': `Customize the key names and values of <code>data</code> attributes:<br/>
+          <code>time-field</code> 设置节点时间对应的键名，默认为 <code>time</code> 。</div>`,
+        'en-US': `
           <div class="tip custom-block"><p class="custom-block-title">
-          Set the key value corresponding to the completion status through <code>completed-field</code> , which defaults to <code>completed</code> ;<br/>
+          Customize the key names and values of <code>data</code> attributes:<br/> </p>
+          <code>completed-field</code> Set the key value corresponding to the completion status, which defaults to <code>completed</code> ;<br/>
           <code>flag-field</code> Set the key name corresponding to the flag information array, which defaults to <code>flags</code> ;<br/>
           <code>flag-content-field</code> Set the key name corresponding to the flag description, which defaults to <code>content</code> ;<br/>
           <code>flag-name-field</code> Set the key name corresponding to the flag subtitle, which defaults to <code>name</code> ;<br/>
           <code>flag-status-field</code> Set the key name corresponding to the flag state, which defaults to <code>status</code> ;<br/>
           <code>name-field</code> Set the key name corresponding to the node name, which defaults to <code>name</code> ;<br/>
           <code>status-field</code> Set the key name corresponding to the node state, which defaults to <code>status</code> ;<br/>
-          <code>time-field</code> Set the key name corresponding to the node time, which defaults to <code>time</code> .</p> </div>`
+          <code>time-field</code> Set the key name corresponding to the node time, which defaults to <code>time</code> . </div>`
       },
       'codeFiles': ['data-field-mapping.vue']
     },
@@ -142,7 +144,8 @@ export default {
         },
         {
           'name': 'data',
-          'type': 'object | object[]',
+          'type': 'ICustomData | ICustomData[]',
+          'typeAnchorName': 'ICustomData',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置步骤条的数据，可自定义键值映射',
@@ -303,7 +306,8 @@ export default {
       'events': [
         {
           'name': 'click',
-          'type': '(index: number, node: object) => void',
+          'type': '(index: number, node: ICustomData) => void',
+          'typeAnchorName': 'ICustomData',
           'defaultValue': '',
           'desc': {
             'zh-CN': '节点的点击事件，参数（index:节点索引, node：节点数据信息）',
@@ -313,18 +317,20 @@ export default {
         },
         {
           'name': 'flagclick',
-          'type': '(index: number, node: object) => void',
+          'type': '(index: number, node: ICustomData) => void',
+          'typeAnchorName': 'ICustomData',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '[deprecated v3.5.0废弃，v3.17.0移除；移除原因：命名规范，建议使用flag-click代替]',
+            'zh-CN': '[使用flag-click代替， deprecated v3.5.0废弃，v3.17.0移除；移除原因：命名规范]',
             'en-US':
-              '[deprecated in v3.5.0 and removed in v3.17.0; Reason for removal: It is recommended that flag-click be used instead of flag-click]'
+              '[It is recommended that flag-click be used instead of flag-click, deprecated in v3.5.0 and removed in v3.17.0; Reason for removal: ]'
           },
           'demoId': 'milestone-events'
         },
         {
           'name': 'flag-click',
-          'type': '(index: number, node: object) => void',
+          'type': '(index: number, node: ICustomData) => void',
+          'typeAnchorName': 'ICustomData',
           'defaultValue': '',
           'desc': {
             'zh-CN': '旗子的点击事件，参数（index:旗子索引, node：旗子数据信息）',
@@ -376,6 +382,19 @@ interface IStatus {
   back: string
   end: string
   cancel: string
+}`
+    },
+    {
+      name: 'ICustomData',
+      type: 'interface',
+      code: `
+interface ICustomData { 
+  name?: string
+  time?: string
+  status?: string
+  flags?: string
+  content?: string
+  [propName: string]: string // 可自定义以上的默认属性
 }`
     }
   ]

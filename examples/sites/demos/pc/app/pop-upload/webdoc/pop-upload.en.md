@@ -1,7 +1,7 @@
 ---
-title: PopUpload dialog box
+title: PopUpload
 ---
 
-# PopUpload dialog box
+# PopUpload
 
-<div>Click the element to display the upload dialog box.</div>
+<div>In the pop-up dialog box, implement the upload operation and display.</div>

@@ -5,7 +5,9 @@
       <tiny-grid-column field="name" title="名称"></tiny-grid-column>
       <tiny-grid-column field="employees" title="员工人数"></tiny-grid-column>
       <tiny-grid-column field="area" title="所属区域">
-        <template #header> <icon-mark-on></icon-mark-on> <span class="location-area">位置区域</span> </template>
+        <template #header>
+          <tiny-icon-mark-on></tiny-icon-mark-on> <span class="location-area">位置区域</span>
+        </template>
       </tiny-grid-column>
       <tiny-grid-column field="address" title="地址"></tiny-grid-column>
       <tiny-grid-column field="introduction" title="公司简介" show-overflow></tiny-grid-column>
@@ -70,6 +72,7 @@ const tableData = ref([
 ])
 const TinyIconMarkOn = IconMarkOn()
 </script>
+
 <style scoped>
 .location-area {
   margin-left: 10px;
