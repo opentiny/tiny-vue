@@ -1,7 +1,7 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import Slider from '@opentiny/vue-slider'
-import { nextTick } from 'vue'
+import { nextTick, ref } from 'vue'
 
 let value = 40
 
@@ -18,9 +18,37 @@ describe('PC Mode', () => {
 
   test.todo('disabled 是否禁用')
 
-  test.todo('min 设置最小值。')
+  test('min 设置最小值。', async () => {
+    const value = ref(60)
+    mount(() => <Slider v-model={value.value} min={50} />)
 
-  test.todo('max 设置最大值。必需是整数，可以负数。必需大于所设置的最小值。')
+    await nextTick()
+    value.value = 40
+    await nextTick()
+    expect(value.value).toBe(50)
+    value.value = 120
+    await nextTick()
+    expect(value.value).toBe(100)
+  })
+
+  test('max 设置最大值。必需是整数，可以负数。必需大于所设置的最小值。', async () => {
+    const value = ref(60)
+
+    mount(() => <Slider v-model={value.value} min={-10} max={-5} />)
+
+    await nextTick()
+    expect(value.value).toBe(-5)
+  })
+
+  test('min 大于 max的时候报错', async () => {
+    try {
+      const value = ref(60)
+      mount(() => <Slider v-model={value.value} min={10} max={5} />)
+    } catch (error: any) {
+      expect(error).to.be.an('error')
+      expect(error.message).to.equal('Slider min should not be greater than max.')
+    }
+  })
 
   test.todo('step 设置滑块移动时，每步位移距离，必需是大于0的正整数。')
 
