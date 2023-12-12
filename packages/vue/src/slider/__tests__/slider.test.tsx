@@ -48,8 +48,7 @@ describe('PC Mode', () => {
         show-input={true}
         v-slots={{
           default: (slotScope) => <b class="onlyText">{slotScope.slotScope}%</b>
-        }}
-      ></Slider>
+        }}></Slider>
     ))
     expect(wrapper.find('.onlyText').text()).toBe(`${value}%`)
   })
