@@ -11,7 +11,7 @@
  -->
 <template>
   <div class="tiny-bulletin-board">
-    <p v-if="title" class="tiny-bulletin-board__title">{{ title }}</p>
+    <p class="tiny-bulletin-board__title">{{ title }}</p>
     <tabs v-model="state.actName">
       <tab-item v-for="(item, index) of tabTitle" :key="index" :name="(index + 1).toString()">
         <template #title>
