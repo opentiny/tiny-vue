@@ -49,8 +49,8 @@ const getBarMeaAxis = (args) => {
 
 const factoryFmt =
   ({ meaAxisType, i, digit }) =>
-    (val) =>
-      getFormatted(val, meaAxisType[i], digit)
+  (val) =>
+    getFormatted(val, meaAxisType[i], digit)
 
 const getLegend = (args) => {
   const { legendName } = args

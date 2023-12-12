@@ -1,16 +1,17 @@
 <template>
-  <div class="hui-chart chart-box" ref="chartRef" :style="{ width: width, height: height }">
-  </div>
+  <div class="hui-chart chart-box" ref="chartRef" :style="{ width, height }"></div>
 </template>
+
 <script>
 import Core from '@opentiny/vue-chart-core-beta'
 import { pie } from './ring'
+
 export default {
   name: 'ChartRing',
   mixins: [Core],
   data() {
     return {
-      iChartName: 'PieChart',
+      iChartName: 'PieChart'
     }
   },
   methods: {
@@ -19,11 +20,10 @@ export default {
 
       const extra = {
         legendVisible: this.legendVisible,
-        tooltipVisible: this.tooltipVisible,
+        tooltipVisible: this.tooltipVisible
       }
       this.option = pie(columns, rows, this.settings, extra, true)
     }
-  },
-
+  }
 }
 </script>
