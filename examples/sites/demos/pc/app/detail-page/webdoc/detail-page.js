@@ -6,9 +6,16 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '<p>在数据对象中可设置 <code>hidden: true</code> 来指定默认隐藏的数据。</p>\n',
-        'en-US':
-          '<p>You can set <code>hidden: true</code> in the data object to specify the data to be hidden by default. </p>\n'
+        'zh-CN': `<p>
+          <div>通过 <code> modelValue / v-model</code> 设置要显示的数据。</div>
+          <div>在每个数据对象中可设置 <code>hidden: true</code> 来指定默认隐藏的数据。</div>
+          <div>用户点击组件右上角的图标可以弹出个性化弹窗，弹窗里能选择是否隐藏指定数据。</div>
+        </p>`,
+        'en-US': `<p>
+          <div> Sets the data to be displayed with <code> modelValue/v-model</code>. </div>
+          <div> can set <code>hidden: true</code> in each data object to specify the default hidden data. </div>
+          <div> The user clicks the icon in the upper right corner of the component to pop up a personalized popup window, which can choose whether to hide the specified data. </div>
+        </p>`
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -31,7 +38,8 @@ export default {
       'properties': [
         {
           'name': 'modelValue / v-model',
-          'type': 'Array',
+          'type': 'IDetailPageItem[]',
+          'typeAnchorName': 'IDetailPageItem',
           'defaultValue': '',
           'desc': { 'zh-CN': '设置表头详情栏的数据', 'en-US': 'Set the data in the table header details column' },
           'demoId': ''
@@ -41,18 +49,18 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': "详情栏标题;默认为 '带表头的详情栏'",
-            'en-US': 'Details column title; The default value is Detail Bar with Table Header.'
+            'zh-CN': `详情栏标, 默认为 '数据'`,
+            'en-US': `Details field, default value is' Data '`
           },
           'demoId': 'custom-show-text'
         },
         {
           'name': 'text-split',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': `'---'`,
           'desc': {
-            'zh-CN': "详情栏标题分隔符;默认为 ':'",
-            'en-US': "Details column title separator; The default value is ':'"
+            'zh-CN': `详情栏标题分隔符`,
+            'en-US': 'Details column title separator'
           },
           'demoId': 'custom-show-text'
         },
@@ -61,8 +69,8 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': "个性化弹窗标题;默认为 '个性化设置'",
-            'en-US': "Personalized pop-up window title; Default to'Personalization'"
+            'zh-CN': "个性化弹窗标题，默认为 '个性化标题'",
+            'en-US': "Personalize pop-up title, default is'Personalized title'"
           },
           'demoId': 'custom-show-text'
         },
@@ -71,8 +79,8 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': "个性化弹窗表头文本标题栏字段;默认为 '字段'",
-            'en-US': "Personalized pop-up window header text title bar field; The default value is'Field'"
+            'zh-CN': "个性化弹窗表头文本标题栏字段;默认为 '文本字段'",
+            'en-US': "Personalized pop-up window header text title bar field, The default value is 'Title'"
           },
           'demoId': 'custom-show-text'
         },
@@ -81,8 +89,8 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': "提示不能全部隐藏的提示语;默认为 '至少显示一个'",
-            'en-US': "Prompt message that cannot be completely hidden; The default value is'At least one is displayed'"
+            'zh-CN': "提示不能全部隐藏的提示语，默认为 '不能全部隐藏'",
+            'en-US': "Prompt message that cannot be completely hidden, The default value is 'Cannot hide all' "
           },
           'demoId': 'custom-show-text'
         },
@@ -91,8 +99,9 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': "个性化弹窗表头文本操作栏字段;默认为 '隐藏'",
-            'en-US': "Personalized pop-up window header text operation column field; The default value is'hidden'"
+            'zh-CN': "个性化弹窗表头文本操作栏字段，默认为 '勾选隐藏'",
+            'en-US':
+              "Personalized pop-up window header text operation column field, The default value is'Click to hide'"
           },
           'demoId': 'custom-show-text'
         },
@@ -101,8 +110,8 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': "个性化弹窗确定按钮的文本;默认为 '确 定'",
-            'en-US': "Text of the confirmation button in the personalized pop-up window; The default value is'OK'"
+            'zh-CN': "个性化弹窗确定按钮的文本，默认为 '确定'",
+            'en-US': "Text of the confirmation button in the personalized pop-up window, The default value is'Confirm'"
           },
           'demoId': 'custom-show-text'
         },
@@ -111,14 +120,25 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': "个性化弹窗取消按钮的文本;默认为 '取 消'",
-            'en-US': "Text of the cancel button in the personalized pop-up window; The default value is'Cancel'"
+            'zh-CN': "个性化弹窗取消按钮的文本，默认为 '取消'",
+            'en-US': "Text of the cancel button in the personalized pop-up window, The default value is'Cancel'"
           },
           'demoId': 'custom-show-text'
         }
       ],
       'events': [],
       'slots': []
+    }
+  ],
+  types: [
+    {
+      name: 'IDetailPageItem',
+      type: 'interface',
+      code: `interface IDetailPageItem {
+  label: string
+  value: string
+  hidden?: boolean
+}`
     }
   ]
 }
