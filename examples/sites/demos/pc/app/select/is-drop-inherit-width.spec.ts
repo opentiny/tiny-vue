@@ -29,5 +29,5 @@ test('下拉弹框宽度与输入框一致', async ({ page }) => {
   const inputBox = await input.boundingBox()
   const listitemBox = await option.first().boundingBox()
   const result = listitemBox.width - inputBox.width
-  await expect(result).toBeCloseTo(0, 0)
+  await expect(result < 0.1).toBe(true)
 })

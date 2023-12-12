@@ -26,7 +26,6 @@ test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
   await page.goto('select#copy-single')
 
   const wrap = page.locator('#copy-single')
-  const select = wrap.locator('.tiny-select').nth(1)
   const valueInput = wrap.locator('.custom .tiny-input__inner')
 
   await page.waitForTimeout(800)
