@@ -34,5 +34,5 @@ export default {
       'codeFiles': ['boxplot/vertical.vue']
     }
   ],
-  apis: [{ 'name': 'chart-boxplot', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-boxplot', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

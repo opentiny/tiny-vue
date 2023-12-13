@@ -50,5 +50,5 @@ export default {
       'codeFiles': ['candle/demo7.vue']
     }
   ],
-  apis: [{ 'name': 'chart-candle', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-candle', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

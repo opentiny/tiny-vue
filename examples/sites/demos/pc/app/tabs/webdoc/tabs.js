@@ -6,10 +6,10 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': ` <code>Tabs</code> ：通过 <code>v-model</code> 设置选中的页签项，对应 <code>TabItem</code> 页签项中 <code>name</code> 属性的值；<br />
-        <code>TabItem</code> ：通过 <code>title</code> 设置页签项标题。`,
-        'en-US': ` <code>Tabs</code> :Set the selected tag item through the <code>v-model</code> , corresponding to the value of the <code>name</code> attribute in the <code>TabItem</code> tag item;<br/>
-        <code>TabItem</code> :Set the label item title through <code>title</code> .`
+        'zh-CN': `<div class="tip custom-block"><code>Tabs</code> ：通过 v-model 设置选中的页签项，对应 TabItem 页签项中 name 属性的值；<br />
+        <code>TabItem</code> ：通过 title 设置页签项标题， name 设置页签项的值，disabled 设置页签项禁用，默认插槽自定义对应的内容。</div>`,
+        'en-US': `<div class="tip custom-block"><p> <code>Tabs</code> :Set the selected tag item through the v-model , corresponding to the value of the name attribute in the TabItem tag item;<br/>
+        <code>TabItem</code> :Set the label item title through title .nameSet the value of tab items.disabledSet tab items to be disabled.Customize the corresponding content for the default slot.</div>`
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -439,6 +439,81 @@ export default {
           'defaultValue': '',
           'desc': { 'zh-CN': '页签项标题插槽', 'en-US': 'Label Item Title Slot' },
           'demoId': 'custom-tab-title'
+        }
+      ]
+    },
+    {
+      'name': 'tab-item',
+      'type': 'component',
+      'props': [
+        {
+          'name': 'disabled',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '设置页签项禁用，设置为 true 则无法点击',
+            'en-US': 'Set tab items to disable, set to true to prevent clicking'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'lazy',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '设置本页签项内容是否为懒加载，默认为否',
+            'en-US': 'Set whether the content of this tab is lazy loading, default to no'
+          },
+          'demoId': 'lazy'
+        },
+        {
+          'name': 'name',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '页签项的值', 'en-US': 'Value of tab items' },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'title',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '页签项标题', 'en-US': 'Tab Item Title' },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'with-close',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '页签项是否展示删除按钮，与 Tabs 的 with-close 取或，只要有一个为true，则此项展示删除按钮',
+            'en-US': `Does the tab item display a delete button, which is equal to or greater than the 'with close' option in Tabs? As long as one of these options is true, this option displays the delete button`
+          },
+          'demoId': 'tabs-events-close'
+        }
+      ],
+      'events': [
+        {
+          'name': 'tab-nav-update',
+          'type': '() => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '当页签项的 title 值发生变化时触发',
+            'en-US': 'Triggered when the title value of the tab item changes'
+          },
+          'demoId': ''
+        }
+      ],
+      'slots': [
+        {
+          'name': 'default',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '页签项对应内容部分的默认插槽，用来自定义页签项对应的页面内容',
+            'en-US':
+              'The default slot for the content section corresponding to the tab item, used to customize the page content corresponding to the tab item'
+          },
+          'demoId': 'basic-usage'
         }
       ]
     }

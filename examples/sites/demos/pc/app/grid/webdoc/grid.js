@@ -81,7 +81,7 @@ export default {
         {
           'name': 'align',
           'type': `'left' | 'center' | 'right'`,
-          'defaultValue': 'left',
+          'defaultValue': `'left'`,
           'desc': {
             'zh-CN': '所有的列对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
             'en-US':
@@ -202,7 +202,7 @@ export default {
         {
           'name': 'footer-align',
           'type': `'left' | 'center' | 'right'`,
-          'defaultValue': '继承 align',
+          'defaultValue': `'left'`,
           'desc': {
             'zh-CN': '所有的表尾列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
             'en-US':
@@ -265,8 +265,8 @@ export default {
         },
         {
           'name': 'header-align',
-          'type': 'string',
-          'defaultValue': '继承 align',
+          'type': `'left' | 'center' | 'right'`,
+          'defaultValue': `'left'`,
           'desc': {
             'zh-CN': '所有的表头列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
             'en-US':
@@ -456,7 +456,7 @@ export default {
         {
           'name': 'row-id',
           'type': 'string',
-          'defaultValue': '_RID',
+          'defaultValue': `'_RID'`,
           'desc': {
             'zh-CN': '自定义行数据唯一主键的字段名（行数据必须要有唯一主键，默认自动生成）',
             'en-US':
@@ -485,7 +485,7 @@ export default {
         {
           'name': 'show-header',
           'type': 'boolean',
-          'defaultValue': 'false',
+          'defaultValue': 'true',
           'desc': { 'zh-CN': '是否显示表头', 'en-US': 'Whether to display the table header' },
           'demoId': 'grid-header#header-hide-grid-header'
         },
@@ -550,7 +550,7 @@ export default {
           'name': 'span-method',
           'type': '(args: ISpanMethodArgs) => { rowspan: number, colspan: number }',
           'typeAnchorName': 'ISpanMethodArgs',
-          'defaultValue': '{ rowspan: 1, colspan: 1}',
+          'defaultValue': '{ rowspan: 1, colspan: 1 }',
           'desc': {
             'zh-CN': '合并行或列，该函数返回计算后的值',
             'en-US': 'Consolidate rows or columns. This function returns the calculated value.'
@@ -1940,7 +1940,7 @@ export default {
         {
           'name': 'footer-align',
           'type': `'left' | 'center' | 'right'`,
-          'defaultValue': '继承 align > 继承 table 的 footer-align',
+          'defaultValue': `'left'`,
           'desc': {
             'zh-CN': '表尾列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
             'en-US':
@@ -1962,7 +1962,7 @@ export default {
         {
           'name': 'header-align',
           'type': "'left' | 'center' | 'right'",
-          'defaultValue': '继承 align > 继承 table 的 header-align',
+          'defaultValue': `'left'`,
           'desc': {
             'zh-CN': '表头列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
             'en-US':

@@ -18,7 +18,7 @@
       更多菜单
       <template #dropdown>
         <tiny-dropdown-menu>
-          <tiny-dropdown-item>黄金糕黄金糕黄金糕黄金糕黄金糕黄金糕黄金糕黄金糕黄金糕黄金糕</tiny-dropdown-item>
+          <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
           <tiny-dropdown-item>狮子头</tiny-dropdown-item>
           <tiny-dropdown-item>螺蛳粉</tiny-dropdown-item>
           <tiny-dropdown-item disabled>双皮奶</tiny-dropdown-item>

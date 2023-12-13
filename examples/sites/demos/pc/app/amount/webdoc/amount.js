@@ -75,7 +75,7 @@ export default {
     {
       'name': 'amount',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'placeholder',
           'type': 'string',

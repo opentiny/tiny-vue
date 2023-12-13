@@ -72,7 +72,7 @@ export default {
     {
       'name': 'link-menu',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
           'type': 'Array',

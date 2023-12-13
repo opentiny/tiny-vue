@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test'
 
-test('自定义数据映射规则', async ({ page }) => {
+test('自定义字段', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
 
-  await page.goto('time-line#different-data')
+  await page.goto('time-line#custom-field')
 
-  const timeline = page.locator('#preview .tiny-steps')
+  const timeline = page.locator('#custom-field .tiny-steps')
   const nodes = timeline.locator('.timeline')
 
   await expect(nodes.first().locator('.date-time .date')).toHaveText('2018-04-15')

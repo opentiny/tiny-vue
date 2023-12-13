@@ -1,0 +1,100 @@
+{
+  "Alert": {
+    "path": "react/src/alert/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "AlertMobile": {
+    "path": "react/src/alert/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "AlertMobileFirst": {
+    "path": "react/src/alert/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "AlertPc": {
+    "path": "react/src/alert/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Badge": {
+    "path": "react/src/badge/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile",
+      "pc"
+    ]
+  },
+  "BadgeMobile": {
+    "path": "react/src/badge/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "BadgePc": {
+    "path": "react/src/badge/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Button": {
+    "path": "react/src/button/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "ButtonMobile": {
+    "path": "react/src/button/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ButtonMobileFirst": {
+    "path": "react/src/button/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ButtonPc": {
+    "path": "react/src/button/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Common": {
+    "path": "react/common/src/index.ts",
+    "type": "module",
+    "exclude": false
+  },
+  "Icon": {
+    "path": "react/src/icon/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "Switch": {
+    "path": "react/src/switch/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile",
+      "pc"
+    ]
+  },
+  "SwitchMobile": {
+    "path": "react/src/switch/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "SwitchPc": {
+    "path": "react/src/switch/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  }
+}

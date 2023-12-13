@@ -122,7 +122,7 @@ export default {
     {
       'name': 'time-select',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue / v-model',
           'type': 'date(DatePicker) / array(DateRangePicker)',

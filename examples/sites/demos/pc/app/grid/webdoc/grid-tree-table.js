@@ -126,5 +126,5 @@ export default {
       'codeFiles': ['tree-table/tree-grid-keyboard-operation.vue']
     }
   ],
-  apis: [{ 'name': 'grid-tree-table', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-tree-table', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

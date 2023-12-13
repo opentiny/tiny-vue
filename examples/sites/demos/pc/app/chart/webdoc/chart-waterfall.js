@@ -38,5 +38,5 @@ export default {
       'codeFiles': ['waterfall/demo5.vue']
     }
   ],
-  apis: [{ 'name': 'chart-waterfall', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-waterfall', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }
