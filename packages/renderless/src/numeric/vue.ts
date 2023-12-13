@@ -143,7 +143,7 @@ const initWatch = ({
 }: Pick<INumericRenderlessParams, 'state' | 'watch' | 'props' | 'api'>): void => {
   
   watch(() => [props.max, props.min], ([curMax,curMin]) => {
-    if (curMax <= curMin){
+    if (curMax < curMin){
       throw new Error('[Numeric]: The maximum value should not be less than to the minimum value')
     }
   }, { immediate: true })
