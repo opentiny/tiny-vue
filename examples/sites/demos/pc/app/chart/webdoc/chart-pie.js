@@ -50,5 +50,5 @@ export default {
       'codeFiles': ['pie/demo7.vue']
     }
   ],
-  apis: [{ 'name': 'chart-pie', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-pie', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

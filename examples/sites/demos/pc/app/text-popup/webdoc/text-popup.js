@@ -66,7 +66,7 @@ export default {
     {
       'name': 'text-popup',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'value',
           'type': 'string',

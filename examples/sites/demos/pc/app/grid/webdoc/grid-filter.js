@@ -108,5 +108,5 @@ export default {
       'codeFiles': ['filter/default-relation.vue']
     }
   ],
-  apis: [{ 'name': 'grid-filter', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-filter', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

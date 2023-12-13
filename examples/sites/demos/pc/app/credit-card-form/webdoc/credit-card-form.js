@@ -32,7 +32,7 @@ export default {
     {
       'name': 'credit-card-form',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'background-image',
           'type': 'string , object',

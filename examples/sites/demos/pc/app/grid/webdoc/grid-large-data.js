@@ -117,5 +117,5 @@ export default {
       'codeFiles': ['large-data/scroll-to.vue']
     }
   ],
-  apis: [{ 'name': 'grid-large-data', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-large-data', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

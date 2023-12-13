@@ -9,5 +9,5 @@ export default {
       'codeFiles': ['import-export/export-excel.vue']
     }
   ],
-  apis: [{ 'name': 'grid-import-export', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-import-export', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

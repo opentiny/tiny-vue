@@ -32,5 +32,5 @@ export default {
       'codeFiles': ['pager/show-save-msg.vue']
     }
   ],
-  apis: [{ 'name': 'grid-pager', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-pager', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

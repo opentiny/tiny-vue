@@ -21,5 +21,5 @@ export default {
       'codeFiles': ['Font-usage-specifications.vue']
     }
   ],
-  apis: [{ 'name': 'font', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'font', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

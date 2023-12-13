@@ -137,7 +137,7 @@ export default {
     {
       'name': 'split',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'mode',
           'type': `'horizontal' | 'vertical'`,
