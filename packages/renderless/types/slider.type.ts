@@ -26,6 +26,7 @@ export interface ISliderState {
   leftBtnStyle: string
   leftBtnPercent: number
   leftBtnShow: true
+  mouseOuterBtn: boolean
   rightBtnStyle: string
   rightBtnPercent: number
   rightBtnShow: boolean
