@@ -14,15 +14,7 @@
             <component
               v-if="type"
               :is="state.getIcon"
-              :class="
-                m(
-                  'tiny-popconfirm-popover__icon',
-                  { 'fill-color-info-secondary': type === 'info' },
-                  { 'fill-color-error': type === 'error' },
-                  { 'fill-color-warning': type === 'warning' },
-                  { 'fill-color-success': type === 'success' }
-                )
-              "
+              :class="['tiny-popconfirm-popover__icon', type ? `tiny-popconfirm-popover--${type}` : '']"
             >
             </component>
             <div class="tiny-popconfirm-popover__title">
