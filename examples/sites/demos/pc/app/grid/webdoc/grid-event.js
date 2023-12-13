@@ -206,5 +206,5 @@ export default {
       'codeFiles': ['event/get-row-method.vue']
     }
   ],
-  apis: [{ 'name': 'grid-event', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-event', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

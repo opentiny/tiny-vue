@@ -86,7 +86,7 @@ export default {
     {
       'name': 'bulletin-board',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'active-name',
           'type': 'string',

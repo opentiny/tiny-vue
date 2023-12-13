@@ -25,7 +25,7 @@ export default {
     {
       'name': 'watermark',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'width',
           'type': 'Number',

@@ -62,7 +62,7 @@ export default {
     {
       'name': 'scroll-text',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'direction',
           'type': `'up' | 'left' | 'down' | 'right'`,

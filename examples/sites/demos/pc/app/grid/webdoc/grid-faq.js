@@ -40,5 +40,5 @@ export default {
       'codeFiles': ['faq/many-poppover.vue']
     }
   ],
-  apis: [{ 'name': 'grid-faq', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-faq', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

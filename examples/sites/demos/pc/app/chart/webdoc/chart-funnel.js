@@ -53,5 +53,5 @@ export default {
       'codeFiles': ['funnel/demo7.vue']
     }
   ],
-  apis: [{ 'name': 'chart-funnel', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-funnel', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

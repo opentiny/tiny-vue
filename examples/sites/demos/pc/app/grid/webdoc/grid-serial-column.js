@@ -35,5 +35,5 @@ export default {
       'codeFiles': ['serial-column/start-index.vue']
     }
   ],
-  apis: [{ 'name': 'grid-serial-column', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-serial-column', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

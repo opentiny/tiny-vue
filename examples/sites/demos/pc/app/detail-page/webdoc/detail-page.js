@@ -39,7 +39,7 @@ export default {
     {
       'name': 'detail-page',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue / v-model',
           'type': 'IDetailPageItem[]',

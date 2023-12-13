@@ -29,7 +29,7 @@ export default {
     {
       'name': 'espace',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
           'type': 'Array , object',

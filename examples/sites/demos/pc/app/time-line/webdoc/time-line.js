@@ -282,7 +282,7 @@ export default {
     {
       'name': 'timeline-item',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'node',
           'type': 'ITimelineItem',

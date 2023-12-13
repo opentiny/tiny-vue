@@ -20,5 +20,5 @@ export default {
       'codeFiles': ['sunburst/demo2.vue']
     }
   ],
-  apis: [{ 'name': 'chart-sunburst', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-sunburst', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

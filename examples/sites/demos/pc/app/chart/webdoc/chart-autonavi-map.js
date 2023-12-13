@@ -14,5 +14,5 @@ export default {
       'codeFiles': ['amap/base.vue']
     }
   ],
-  apis: [{ 'name': 'chart-autonavi-map', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-autonavi-map', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

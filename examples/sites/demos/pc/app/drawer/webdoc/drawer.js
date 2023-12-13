@@ -127,7 +127,7 @@ export default {
     {
       'name': 'drawer',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'visible',
           'type': 'boolean',
