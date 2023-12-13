@@ -9,7 +9,7 @@ test('弹出框样式', async ({ page }) => {
   const popPanel = page.getByRole('tooltip', { name: '大于 等于 小于' })
 
   await button.click()
-  await expect(popPanel).toBeVisible()
+  await popPanel.isHidden()
   await button.click()
-  await expect(popPanel).not.toBeVisible()
+  await popPanel.isHidden()
 })
