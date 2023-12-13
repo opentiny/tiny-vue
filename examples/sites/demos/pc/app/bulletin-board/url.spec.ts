@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('BulletinBoard 基于Url的跳转(', async ({ page }) => {
+test('BulletinBoard 基于Url的跳转', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('bulletin-board#url')
 
@@ -8,5 +8,5 @@ test('BulletinBoard 基于Url的跳转(', async ({ page }) => {
   const contentTitle = preview.locator('.tiny-bulletin-board__textTitle')
 
   // a标签href属性值
-  expect(await contentTitle.getAttribute('href')).toBe('localhost:3000/#/webcore/zh-CN/guide/changelog')
+  await expect(contentTitle).toHaveAttribute('href', 'localhost:3000/#/webcore/zh-CN/guide/changelog')
 })

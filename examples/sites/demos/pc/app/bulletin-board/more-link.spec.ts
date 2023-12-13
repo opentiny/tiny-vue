@@ -11,7 +11,7 @@ test('BulletinBoard 显示 “更多” 链接(', async ({ page }) => {
   await expect(moreLink.nth(1)).toContainText('更多')
   await expect(moreLink.nth(2)).toContainText('更多')
 
-  expect(await moreLink.nth(0).getAttribute('href')).toBe('/Alert')
-  expect(await moreLink.nth(1).getAttribute('href')).toBe('/Alert')
-  expect(await moreLink.nth(2).getAttribute('href')).toBe('/Alert')
+  await expect(moreLink.nth(0)).toHaveAttribute('href', '/Alert')
+  await expect(moreLink.nth(1)).toHaveAttribute('href', '/Alert')
+  await expect(moreLink.nth(2)).toHaveAttribute('href', '/Alert')
 })
