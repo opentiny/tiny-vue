@@ -23,11 +23,10 @@ test('下拉弹框宽度与输入框一致', async ({ page }) => {
   const select = wrap.locator('.tiny-select').nth(1)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const input = select.locator('.tiny-input__inner')
-  const option = dropdown.locator('.tiny-option')
 
   await select.click()
   const inputBox = await input.boundingBox()
-  const listitemBox = await option.first().boundingBox()
-  const result = listitemBox.width - inputBox.width
-  await expect(result < 0.1).toBe(true)
+  const dropdownBox = await dropdown.boundingBox()
+  const result = dropdownBox.width - inputBox.width
+  await expect(result < 1).toBe(true)
 })

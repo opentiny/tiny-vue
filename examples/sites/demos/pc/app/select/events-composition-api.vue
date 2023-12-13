@@ -45,7 +45,7 @@ const value2 = ref([])
 
 const change = () => {
   Modal.message({
-    message: 'change 事件',
+    message: '触发 change 事件',
     duration: 500
   })
 }
