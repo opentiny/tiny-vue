@@ -24,10 +24,10 @@
  * tooltipVisible boolean 是否显示提示框,true
  */
 
-import { deepCopy } from '@opentiny/vue-chart-core-beta/utils/deep-clone'
-import { getFormatted } from '@opentiny/vue-chart-core-beta/common/util'
-import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-chart-core-beta/common/constants'
-import { isDefined } from '@opentiny/vue-chart-core-beta/utils/type'
+import { deepCopy } from '@opentiny/vue-chart-core-beta'
+import { getFormatted } from '@opentiny/vue-chart-core-beta'
+import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-chart-core-beta'
+import { isDefined } from '@opentiny/vue-chart-core-beta'
 
 const PIE_RADIUS = 100
 const RING_RADIUS = [90, 100]

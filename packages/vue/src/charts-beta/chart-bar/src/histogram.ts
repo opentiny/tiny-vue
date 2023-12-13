@@ -1,7 +1,7 @@
-import { getFormatted, cloneDeep, getStackMap, get, set } from '@opentiny/vue-chart-core-beta/common/util'
-import { isNull } from '@opentiny/vue-chart-core-beta/common/type'
+import { getFormatted, cloneDeep, getStackMap, get, set } from '@opentiny/vue-chart-core-beta'
+import { isNull } from '@opentiny/vue-chart-core-beta'
 
-import { getRows, getTooltip } from '@opentiny/vue-chart-core-beta/utils/options'
+import { getRows, getTooltip } from '@opentiny/vue-chart-core-beta'
 
 const VALUE_AXIS_OPACITY = 0.5
 
@@ -49,8 +49,8 @@ const getBarMeaAxis = (args) => {
 
 const factoryFmt =
   ({ meaAxisType, i, digit }) =>
-    (val) =>
-      getFormatted(val, meaAxisType[i], digit)
+  (val) =>
+    getFormatted(val, meaAxisType[i], digit)
 
 const getLegend = (args) => {
   const { legendName } = args
