@@ -21,7 +21,8 @@ export default {
         'en-US': 'Select date range'
       },
       'desc': {
-        'zh-CN': '<p>设置 <code>type</code> 属性为 <code>daterange</code> / <code>datetimerange</code> / <code>monthrange</code> / <code>yearrange</code>，可以设置以日期范围的形式进行选择。</p>\n',
+        'zh-CN':
+          '<p>设置 <code>type</code> 属性为 <code>daterange</code> / <code>datetimerange</code> / <code>monthrange</code> / <code>yearrange</code>，可以设置以日期范围的形式进行选择。</p>\n',
         'en-US': '<p>Set <code>type</code> to <code>daterange</code>, you can select a date range.</p>\n'
       },
       'codeFiles': ['date-range.vue']
@@ -90,7 +91,8 @@ export default {
       },
       'desc': {
         'zh-CN': '<p>通过 <code>size</code> 属性可以设置日期输入框的尺寸，可选值有 medium、small、mini。</p>\n',
-        'en-US': '<p>You can set the size of the date text box through the <code>size</code> attribute. The options are medium, small, and mini. </p>\n'
+        'en-US':
+          '<p>You can set the size of the date text box through the <code>size</code> attribute. The options are medium, small, and mini. </p>\n'
       },
       'codeFiles': ['size.vue']
     },
@@ -101,8 +103,10 @@ export default {
         'en-US': 'Clear Input'
       },
       'desc': {
-        'zh-CN': '<p>选择日期后，鼠标悬停在输入框时，默认会显示清除图标，单击图标可以清除输入框内容。设置 <code>clearable</code> 属性为 false 后，则不显示清除图标，不可清除。通过 <code>clear-icon</code> 属性可以自定义清除图标。</p>',
-        'en-US': '<p>After you select a date, the clear icon is displayed by default when you hover the cursor over the text box. You can click the icon to clear the text box. If <code>clearable</code> is set to false, the clear icon is not displayed and cannot be cleared. The <code>clear-icon</code> property allows you to customize the clear icon. </p>\n'
+        'zh-CN':
+          '<p>选择日期后，鼠标悬停在输入框时，默认会显示清除图标，单击图标可以清除输入框内容。设置 <code>clearable</code> 属性为 false 后，则不显示清除图标，不可清除。通过 <code>clear-icon</code> 属性可以自定义清除图标。</p>',
+        'en-US':
+          '<p>After you select a date, the clear icon is displayed by default when you hover the cursor over the text box. You can click the icon to clear the text box. If <code>clearable</code> is set to false, the clear icon is not displayed and cannot be cleared. The <code>clear-icon</code> property allows you to customize the clear icon. </p>\n'
       },
       'codeFiles': ['clear.vue']
     },
@@ -172,8 +176,10 @@ export default {
         'en-US': 'Filter mode'
       },
       'desc': {
-        'zh-CN': '<p>通过 <code>shape="filter"</code> 属性切换至过滤器模式。</p><p>过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮。</p>',
-        'en-US': '<p>Switch to filter mode through the <code> shape=\'filter\' </code> attribute. </p><p> in filter mode, label display caption can be passed in, tip displays prompt information, and whether clearable displays the clear button.</p>'
+        'zh-CN':
+          '<p>通过 <code>shape="filter"</code> 属性切换至过滤器模式。</p><p>过滤器模式下可传入 label 显示标题，tip 显示提示信息，clearable 是否显示清除按钮。</p>',
+        'en-US':
+          "<p>Switch to filter mode through the <code> shape='filter' </code> attribute. </p><p> in filter mode, label display caption can be passed in, tip displays prompt information, and whether clearable displays the clear button.</p>"
       },
       'codeFiles': ['filter-mode.vue']
     },
@@ -216,8 +222,10 @@ export default {
         'en-US': 'Alignment'
       },
       'desc': {
-        'zh-CN': '<p>通过 <code>align</code> 属性可以设置日期选择面板与输入框之间的对齐方式，可选值有 left、right、center，默认为 left 左对齐。</p>\n',
-        'en-US': '<p>You can use the <code>align</code> attribute to set the alignment mode between the date selection panel and the text box. The options are left, right, and center. The default value is left. </p>\n'
+        'zh-CN':
+          '<p>通过 <code>align</code> 属性可以设置日期选择面板与输入框之间的对齐方式，可选值有 left、right、center，默认为 left 左对齐。</p>\n',
+        'en-US':
+          '<p>You can use the <code>align</code> attribute to set the alignment mode between the date selection panel and the text box. The options are left, right, and center. The default value is left. </p>\n'
       },
       'codeFiles': ['align.vue']
     },
@@ -246,8 +254,10 @@ export default {
         'en-US': 'Default time setting when the selector is enabled'
       },
       'desc': {
-        'zh-CN': '<p>范围选择时，默认情况下，在开始日期面板中单击上一月或上一年箭头图标时，结束日期面板中日期也联动切换到上一月或上一年。在结束日期面板中切换下一月或下一年时，开始日期面板也随之联动。但若配置 <code>unlink-panels</code> 属性为 true ，面板之间就不再联动，切换年月时只对当前面板生效。</p>\n',
-        'en-US': '<p><code>default-value</code> property specifies the date that is selected by default when the date picker panel opens. </p>\n'
+        'zh-CN':
+          '<p>范围选择时，默认情况下，在开始日期面板中单击上一月或上一年箭头图标时，结束日期面板中日期也联动切换到上一月或上一年。在结束日期面板中切换下一月或下一年时，开始日期面板也随之联动。但若配置 <code>unlink-panels</code> 属性为 true ，面板之间就不再联动，切换年月时只对当前面板生效。</p>\n',
+        'en-US':
+          '<p><code>default-value</code> property specifies the date that is selected by default when the date picker panel opens. </p>\n'
       },
       'codeFiles': ['unlink-panels.vue']
     },
@@ -276,7 +286,8 @@ export default {
         'en-US': 'Validate event'
       },
       'desc': {
-        'zh-CN': '<p>日期选择器在输入时默认会触发表单校验，触发方式有 blur、change。但若设置 <code>validate-event</code> 属性为 false，将不再触发表单校验。</p>\n',
+        'zh-CN':
+          '<p>日期选择器在输入时默认会触发表单校验，触发方式有 blur、change。但若设置 <code>validate-event</code> 属性为 false，将不再触发表单校验。</p>\n',
         'en-US': ''
       },
       'codeFiles': ['validate-event.vue']
@@ -288,7 +299,8 @@ export default {
         'en-US': 'Events'
       },
       'desc': {
-        'zh-CN': '<p>支持 <code>focus</code>、<code>blur</code>、<code>change</code>、<code>onPick</code> 事件。<br><code>onPick</code> 代表获取选中日期后执行的回调，需要与 <code>daterange</code> 或 <code>datetimerange</code> 类型配合使用才生效，配置在 <code>picker-options</code> 中。</p>',
+        'zh-CN':
+          '<p>支持 <code>focus</code>、<code>blur</code>、<code>change</code>、<code>onPick</code> 事件。<br><code>onPick</code> 代表获取选中日期后执行的回调，需要与 <code>daterange</code> 或 <code>datetimerange</code> 类型配合使用才生效，配置在 <code>picker-options</code> 中。</p>',
         'en-US': '<p>The main events are focus, blur and change.</p>'
       },
       'codeFiles': ['events.vue']
@@ -298,11 +310,11 @@ export default {
     {
       'name': 'date-picker',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'align',
-          'type': '\'left\' | \'center\' | \'right\'',
-          'defaultValue': '\'left\'',
+          'type': "'left' | 'center' | 'right'",
+          'defaultValue': "'left'",
           'desc': {
             'zh-CN': '日期选择面板和输入框的对齐方式',
             'en-US': 'Alignment of the date selection panel and the input box'
@@ -332,9 +344,10 @@ export default {
         {
           'name': 'default-time',
           'type': 'string | string[]',
-          'defaultValue': '\'00:00:00\' | [\'00:00:00\', \'00:00:00\']',
+          'defaultValue': "'00:00:00' | ['00:00:00', '00:00:00']",
           'desc': {
-            'zh-CN': 'type="datetime" 时，default-time 是一个字符串，用于设置选择一个日期后，时间输入框中的默认值；<br>type="datetimerange" 时，default-time 是一个字符串数组，用于设置选择一个日期范围后，开始和结束时间输入框中的默认值',
+            'zh-CN':
+              'type="datetime" 时，default-time 是一个字符串，用于设置选择一个日期后，时间输入框中的默认值；<br>type="datetimerange" 时，default-time 是一个字符串数组，用于设置选择一个日期范围后，开始和结束时间输入框中的默认值',
             'en-US': ''
           },
           'demoId': 'default-value'
@@ -344,8 +357,10 @@ export default {
           'type': 'string | Date',
           'defaultValue': 'new Date()',
           'desc': {
-            'zh-CN': '当选中的日期值为空时，选择器面板打开时默认显示的时间，可以是日期格式或者能被 new Date() 解析的字符串',
-            'en-US': 'Use the arrow button to select the time. This parameter is used when type is set to datetime or datetimerange. By default, the time is selected by scrolling the mouse wheel'
+            'zh-CN':
+              '当选中的日期值为空时，选择器面板打开时默认显示的时间，可以是日期格式或者能被 new Date() 解析的字符串',
+            'en-US':
+              'Use the arrow button to select the time. This parameter is used when type is set to datetime or datetimerange. By default, the time is selected by scrolling the mouse wheel'
           },
           'demoId': 'default-value'
         },
@@ -372,7 +387,7 @@ export default {
         {
           'name': 'end-placeholder',
           'type': 'string',
-          'defaultValue': '\'\'',
+          'defaultValue': "''",
           'desc': {
             'zh-CN': '范围选择时结束日期的占位内容',
             'en-US': 'Placeholder of the end date when the range is selected'
@@ -394,7 +409,8 @@ export default {
           'type': '(customWeeks: number, weekFirstDays: string[]) => string',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '格式化周次序号，该回调函数有两个参数，customWeeks 用来获取自定义周次的序号，weekFirstDays 用来获取每周次中的首个日期',
+            'zh-CN':
+              '格式化周次序号，该回调函数有两个参数，customWeeks 用来获取自定义周次的序号，weekFirstDays 用来获取每周次中的首个日期',
             'en-US': 'The following table lists the options of the current time and date selector.'
           },
           'demoId': 'custom-weeks'
@@ -404,18 +420,22 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '默认值为 false，设置为 true 时切换系统默认时区，时间依然显示为东八区时间，适用场景为海外地区显示东八区时间',
-            'en-US': 'The default value is false. If this parameter is set to true, the time in GMT+8 is still displayed when the default time zone is switched. Applicable scenario: The GMT+8 time is displayed in regions outside China'
+            'zh-CN':
+              '默认值为 false，设置为 true 时切换系统默认时区，时间依然显示为东八区时间，适用场景为海外地区显示东八区时间',
+            'en-US':
+              'The default value is false. If this parameter is set to true, the time in GMT+8 is still displayed when the default time zone is switched. Applicable scenario: The GMT+8 time is displayed in regions outside China'
           },
           'demoId': 'isutc8'
         },
         {
           'name': 'label',
           'type': 'string',
-          'defaultValue': '\'\'',
+          'defaultValue': "''",
           'desc': {
-            'zh-CN': '设置 shape="filter" 属性之后，代表过滤器模式下显示的标题，单独设置 label 属性可以使 label 放置在组件的开始位置',
-            'en-US': 'Optional. When the selected date is empty, the time displayed by default when the selector panel is opened. Set it to a value that can be parsed by new Date().'
+            'zh-CN':
+              '设置 shape="filter" 属性之后，代表过滤器模式下显示的标题，单独设置 label 属性可以使 label 放置在组件的开始位置',
+            'en-US':
+              'Optional. When the selected date is empty, the time displayed by default when the selector panel is opened. Set it to a value that can be parsed by new Date().'
           },
           'demoId': 'filter-mode'
         },
@@ -432,7 +452,7 @@ export default {
         {
           'name': 'name',
           'type': 'string',
-          'defaultValue': '\'\'',
+          'defaultValue': "''",
           'desc': {
             'zh-CN': '原生属性',
             'en-US': ''
@@ -445,15 +465,16 @@ export default {
           'typeAnchorName': 'IPickerOptions',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '配置部分禁用、快捷选项等，包含 firstDayOfWeek / disabledDate / onPick / shortcuts 属性，详细用法可参考 IPickerOptions 类型声明',
-            'en-US': 'Custom selector\'s rear icon'
+            'zh-CN':
+              '配置部分禁用、快捷选项等，包含 firstDayOfWeek / disabledDate / onPick / shortcuts 属性，详细用法可参考 IPickerOptions 类型声明',
+            'en-US': "Custom selector's rear icon"
           },
           'demoId': 'shortcuts'
         },
         {
           'name': 'placeholder',
           'type': 'string',
-          'defaultValue': '\'\'',
+          'defaultValue': "''",
           'desc': {
             'zh-CN': '非范围选择时的占位内容',
             'en-US': 'Placeholder content for non-range selection'
@@ -465,8 +486,10 @@ export default {
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
-            'zh-CN': '是否将弹出框插入至 body 元素，在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)',
-            'en-US': 'Indicates whether to insert a pop-up box to the body element. When a fault occurs in the dialog box that is displayed, you can set this attribute to false (for details, see the select component).'
+            'zh-CN':
+              '是否将弹出框插入至 body 元素，在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)',
+            'en-US':
+              'Indicates whether to insert a pop-up box to the body element. When a fault occurs in the dialog box that is displayed, you can set this attribute to false (for details, see the select component).'
           },
           'demoId': ''
         },
@@ -483,7 +506,7 @@ export default {
         {
           'name': 'range-separator',
           'type': 'string',
-          'defaultValue': '\'-\'',
+          'defaultValue': "'-'",
           'desc': {
             'zh-CN': '选择范围时的分隔符',
             'en-US': 'Custom Clear Icon'
@@ -532,8 +555,8 @@ export default {
         },
         {
           'name': 'size',
-          'type': '\'medium\' | \'small\' | \'\' | \'mini\'',
-          'defaultValue': '\'\'',
+          'type': "'medium' | 'small' | '' | 'mini'",
+          'defaultValue': "''",
           'desc': {
             'zh-CN': '输入框尺寸',
             'en-US': 'Text box size; The values of this attribute are medium, small, and mini'
@@ -543,7 +566,7 @@ export default {
         {
           'name': 'start-placeholder',
           'type': 'string',
-          'defaultValue': '\'\'',
+          'defaultValue': "''",
           'desc': {
             'zh-CN': '范围选择时开始日期的占位内容',
             'en-US': 'Placeholder of the start date when the range is selected'
@@ -556,7 +579,8 @@ export default {
           'typeAnchorName': 'time-picker#IStep',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置 type="datetime" 或者 type="datetimerange" 属性之后，可以通过 step 配置时间的步长，step 是一个对象，包含三个属性：hour、minute、second，分别用来配置时、分、秒的步长',
+            'zh-CN':
+              '设置 type="datetime" 或者 type="datetimerange" 属性之后，可以通过 step 配置时间的步长，step 是一个对象，包含三个属性：hour、minute、second，分别用来配置时、分、秒的步长',
             'en-US': 'Native attribute'
           },
           'demoId': 'step'
@@ -576,7 +600,8 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '通过箭头按钮控制时间选择，当 type 为 datetime、datetimerange 时使用，默认为 通过鼠标滚轮滚动选择时间',
+            'zh-CN':
+              '通过箭头按钮控制时间选择，当 type 为 datetime、datetimerange 时使用，默认为 通过鼠标滚轮滚动选择时间',
             'en-US': ''
           },
           'demoId': 'step'
@@ -584,10 +609,11 @@ export default {
         {
           'name': 'time-format',
           'type': 'string',
-          'defaultValue': '\'HH:mm:ss\'',
+          'defaultValue': "'HH:mm:ss'",
           'desc': {
             'zh-CN': '当自定义的 format 格式无法自动区分时间与日期时，可配置该选项用来辅助确定格式',
-            'en-US': 'If the user-defined format cannot automatically distinguish the time and date, you can set this parameter to assist in determining the format.'
+            'en-US':
+              'If the user-defined format cannot automatically distinguish the time and date, you can set this parameter to assist in determining the format.'
           },
           'demoId': 'format'
         },
@@ -597,7 +623,8 @@ export default {
           'defaultValue': '--',
           'desc': {
             'zh-CN': '过滤器模式下显示的提示信息',
-            'en-US': 'The specific time of the current day used by the selected date during range selection; The optional value of this attribute is see date format'
+            'en-US':
+              'The specific time of the current day used by the selected date during range selection; The optional value of this attribute is see date format'
           },
           'demoId': 'filter-mode'
         },
@@ -605,10 +632,11 @@ export default {
           'name': 'type',
           'type': 'IType',
           'typeAnchorName': 'IType',
-          'defaultValue': '\'date\'',
+          'defaultValue': "'date'",
           'desc': {
             'zh-CN': '显示类型，该属性的可选值可参考 IType 类型声明',
-            'en-US': 'Display type; The optional value of this attribute is year / month / dates / week / daterange / date / datetime / datetimerange / monthrange'
+            'en-US':
+              'Display type; The optional value of this attribute is year / month / dates / week / daterange / date / datetime / datetimerange / monthrange'
           },
           'demoId': 'basic-usage'
         },
@@ -638,7 +666,8 @@ export default {
           'defaultValue': 'Date 对象',
           'desc': {
             'zh-CN': '指定绑定值的格式，不指定则绑定值为 Date 对象',
-            'en-US': 'Specifies the format of the binding value. If this parameter is not specified, the binding value is Date'
+            'en-US':
+              'Specifies the format of the binding value. If this parameter is not specified, the binding value is Date'
           },
           'demoId': 'format'
         }
@@ -658,7 +687,8 @@ export default {
           'type': '(value: Date) => void',
           'desc': {
             'zh-CN': '用户确认选定的值时触发',
-            'en-US': 'This event is triggered when the user confirms the selected value. change (arg1) {//arg1 is the changed date or date set of datepicker}'
+            'en-US':
+              'This event is triggered when the user confirms the selected value. change (arg1) {//arg1 is the changed date or date set of datepicker}'
           },
           'demoId': 'events'
         },
@@ -667,7 +697,8 @@ export default {
           'type': '() => void',
           'desc': {
             'zh-CN': '当 input 获得焦点时触发',
-            'en-US': 'This event is triggered when the input is focused. focus(arg1}{\n// arg1 = to component vue instance\n//do something you want...\n}'
+            'en-US':
+              'This event is triggered when the input is focused. focus(arg1}{\n// arg1 = to component vue instance\n//do something you want...\n}'
           },
           'demoId': 'events'
         }
@@ -697,11 +728,11 @@ export default {
         },
         {
           'name': 'd',
-          'desc': { 'zh-CN': '日，不补0', 'en-US': '' },
+          'desc': { 'zh-CN': '日，不补0', 'en-US': '' }
         },
         {
           'name': 'dd',
-          'desc': { 'zh-CN': '日', 'en-US': '' },
+          'desc': { 'zh-CN': '日', 'en-US': '' }
         },
         {
           'name': 'h',
@@ -730,7 +761,7 @@ export default {
         },
         {
           'name': 'M',
-          'desc': { 'zh-CN': '月，不补0', 'en-US': '' },
+          'desc': { 'zh-CN': '月，不补0', 'en-US': '' }
         },
         {
           'name': 'mm',
@@ -739,7 +770,7 @@ export default {
         },
         {
           'name': 'MM',
-          'desc': { 'zh-CN': '月', 'en-US': '' },
+          'desc': { 'zh-CN': '月', 'en-US': '' }
         },
         {
           'name': 's',
@@ -753,16 +784,16 @@ export default {
         },
         {
           'name': 'W',
-          'desc': { 'zh-CN': '周，不补0', 'en-US': '' },
+          'desc': { 'zh-CN': '周，不补0', 'en-US': '' }
         },
         {
           'name': 'WW',
-          'desc': { 'zh-CN': '周', 'en-US': '' },
+          'desc': { 'zh-CN': '周', 'en-US': '' }
         },
         {
           'name': 'yyyy',
-          'desc': { 'zh-CN': '年', 'en-US': '' },
-        },
+          'desc': { 'zh-CN': '年', 'en-US': '' }
+        }
       ]
     }
   ],

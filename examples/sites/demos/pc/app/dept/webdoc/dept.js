@@ -109,7 +109,7 @@ export default {
     {
       'name': 'dept',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'value',
           'type': 'string ',

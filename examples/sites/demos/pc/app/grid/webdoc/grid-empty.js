@@ -31,5 +31,5 @@ export default {
       'codeFiles': ['empty/empty-data-iscenter.vue']
     }
   ],
-  apis: [{ 'name': 'grid-empty', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-empty', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -47,5 +47,5 @@ export default {
       'codeFiles': ['context-menu/menu-permissions.vue']
     }
   ],
-  apis: [{ 'name': 'grid-context-menu', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-context-menu', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

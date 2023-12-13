@@ -194,7 +194,8 @@ export default {
 
         {
           'name': 'placement',
-          'type': `'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'`,
+          'type': 'IPopperPlacement',
+          'typeAnchorName': 'IPopperPlacement',
           'defaultValue': '"bottom"',
           'desc': {
             'zh-CN': '弹出层出现的位置',
@@ -392,6 +393,13 @@ interface IPopperOption {
   followReferenceHide: boolean // 当触发源隐藏时，自动隐藏弹出层，默认true
   removeOnDestroy: boolean // 弹出层消失后，是否移除弹出层的DOM元素，布尔false
 }
+      `
+    },
+    {
+      name: 'IPopperPlacement',
+      type: 'type',
+      code: `
+type IPopperPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'
       `
     }
   ]

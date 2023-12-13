@@ -41,5 +41,5 @@ export default {
       'codeFiles': ['heatmap/demo5.vue']
     }
   ],
-  apis: [{ 'name': 'chart-heatmap', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-heatmap', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

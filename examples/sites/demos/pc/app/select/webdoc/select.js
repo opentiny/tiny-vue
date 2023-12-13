@@ -455,7 +455,7 @@ export default {
     {
       'name': 'select',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'allow-copy',
           'type': 'boolean',

@@ -244,7 +244,15 @@ export const cmpMenus = [
         }
       },
       { 'nameCn': '图片裁剪', 'name': 'Crop', 'key': 'crop' },
-      { 'nameCn': '表头详情栏', 'name': 'DetailPage', 'key': 'detail-page' },
+      {
+        'nameCn': '表头详情栏',
+        'name': 'DetailPage',
+        'key': 'detail-page',
+        'mark': {
+          'type': 'danger',
+          'text': 'Del'
+        }
+      },
       { 'nameCn': '图片预览', 'name': 'Image', 'key': 'image' },
       { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
       { 'nameCn': '文字滚动', 'name': 'ScrollText', 'key': 'scroll-text' },
