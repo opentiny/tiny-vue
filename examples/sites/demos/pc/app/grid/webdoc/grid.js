@@ -485,7 +485,7 @@ export default {
         {
           'name': 'show-header',
           'type': 'boolean',
-          'defaultValue': 'false',
+          'defaultValue': 'true',
           'desc': { 'zh-CN': '是否显示表头', 'en-US': 'Whether to display the table header' },
           'demoId': 'grid-header#header-hide-grid-header'
         },
