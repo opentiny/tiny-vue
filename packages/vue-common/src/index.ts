@@ -147,7 +147,7 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     designConfig,
     globalDesignConfig
   }
-  if (process.env.TINY_MODE === 'mobile-first') {
+  if (process.env.TINY_MODE !== 'pc') {
     utils.mergeClass = mergeClass
   }
 
@@ -169,7 +169,7 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     dp: utils.defineParentInstanceProperties,
     gcls: (key) => getElementCssClass(classes, key)
   }
-  if (process.env.TINY_MODE === 'mobile-first') {
+  if (process.env.TINY_MODE !== 'pc') {
     attrs.m = mergeClass
   }
   /**
@@ -220,7 +220,7 @@ export const svg = ({ name = 'Icon', component }) => {
           const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
           let className = 'tiny-svg'
 
-          if (process.env.TINY_MODE === 'mobile-first') {
+          if (process.env.TINY_MODE !== 'pc' && isMobileFirst) {
             className = mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
           }
 
