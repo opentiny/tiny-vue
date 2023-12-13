@@ -24,10 +24,7 @@
  * tooltipVisible boolean 是否显示提示框,true
  */
 
-import { deepCopy } from '@opentiny/vue-chart-core-beta'
-import { getFormatted } from '@opentiny/vue-chart-core-beta'
-import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-chart-core-beta'
-import { isDefined } from '@opentiny/vue-chart-core-beta'
+import { deepCopy, getFormatted, itemPoint, itemLabel, itemContent, isDefined } from '@opentiny/vue-chart-core-beta'
 
 const PIE_RADIUS = 100
 const RING_RADIUS = [90, 100]

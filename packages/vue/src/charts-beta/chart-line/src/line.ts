@@ -1,5 +1,4 @@
-import { getRows, getYAxis, getTooltip } from '@opentiny/vue-chart-core-beta'
-import { isNull } from '@opentiny/vue-chart-core-beta'
+import { getRows, getYAxis, getTooltip, isNull } from '@opentiny/vue-chart-core-beta'
 
 const getStackMap = (stack) => {
   const result = {}

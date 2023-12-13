@@ -1,7 +1,13 @@
-import { getFormatted, cloneDeep, getStackMap, get, set } from '@opentiny/vue-chart-core-beta'
-import { isNull } from '@opentiny/vue-chart-core-beta'
-
-import { getRows, getTooltip } from '@opentiny/vue-chart-core-beta'
+import {
+  getFormatted,
+  cloneDeep,
+  getStackMap,
+  get,
+  set,
+  isNull,
+  getRows,
+  getTooltip
+} from '@opentiny/vue-chart-core-beta'
 
 const VALUE_AXIS_OPACITY = 0.5
 
