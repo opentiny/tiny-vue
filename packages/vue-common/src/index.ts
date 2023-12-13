@@ -272,7 +272,8 @@ export const filterAttrs = (attrs, filters, include) => {
   return props
 }
 
-export const setupComponent = {}
+// eslint-disable-next-line import/no-mutable-exports
+export let setupComponent = {}
 
 export const initComponent = () => {
   for (let name in setupComponent) {
