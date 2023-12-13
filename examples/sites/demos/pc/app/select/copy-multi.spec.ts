@@ -10,7 +10,7 @@ test('多选复制单个标签', async ({ page }) => {
   const x = tagBox.x + tagBox.width
   const y = tagBox.y + tagBox.height - 5
 
-  await page.waitForTimeout(200)
+  await page.waitForTimeout(2000)
   await page.mouse.move(tagBox.x, tagBox.y)
   await page.waitForTimeout(200)
   await page.mouse.down()
@@ -36,6 +36,7 @@ test('多选一键复制所有标签', async ({ page }) => {
   const select = wrap.locator('.tiny-select').nth(1)
   const copyValueInput = wrap.locator('.copy-value .tiny-input__inner')
 
+  await page.waitForTimeout(2000)
   await select.hover()
   await select.locator('.tiny-select__copy > .tiny-svg > .st0').click()
 
@@ -50,6 +51,7 @@ test('多选设置复制文本分隔符', async ({ page }) => {
   const select = wrap.locator('.tiny-select').nth(2)
   const copyValueInput = wrap.locator('.copy-value .tiny-input__inner')
 
+  await page.waitForTimeout(2000)
   await select.hover()
   await select.locator('.tiny-select__copy > .tiny-svg > .st0').click()
 
