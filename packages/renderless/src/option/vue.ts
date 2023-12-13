@@ -66,7 +66,7 @@ const initApi = ({ api, props, state, select, constants, vm }) => {
     isEqual: isEqual({ select, state }),
     contains: contains({ select, state }),
     hoverItem: hoverItem({ select, vm, props, state }),
-    queryChange: queryChange({ select, props, state }),
+    queryChange: queryChange({ props, state }),
     selectOptionClick: selectOptionClick({ constants, vm, props, state, select }),
     handleGroupDisabled: handleGroupDisabled(state),
     initValue: initValue({ select, props, constants, vm })
@@ -100,6 +100,13 @@ const initWatch = ({ watch, props, state, select, constants }) => {
 
         select.state.selectEmitter.emit(constants.EVENT_NAME.setSelected)
       }
+    }
+  )
+
+  watch(
+    () => state.visible,
+    () => {
+      select.state.filteredOptionsCount += state.visible ? 1 : -1
     }
   )
 }
