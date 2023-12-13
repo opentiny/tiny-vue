@@ -416,7 +416,7 @@ export default {
     {
       'name': 'tree',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
           'type': 'Array',

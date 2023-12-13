@@ -19,7 +19,7 @@ export default {
     {
       'name': 'fullscreen',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'page-only',
           'type': 'boolean',

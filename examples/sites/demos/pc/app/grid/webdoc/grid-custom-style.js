@@ -44,5 +44,5 @@ export default {
       'codeFiles': ['custom-style/class-name.vue']
     }
   ],
-  apis: [{ 'name': 'grid-custom-style', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-custom-style', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

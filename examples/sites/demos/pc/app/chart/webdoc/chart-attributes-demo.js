@@ -80,5 +80,5 @@ export default {
       'codeFiles': ['props/demo3.vue']
     }
   ],
-  apis: [{ 'name': 'chart-attributes-demo', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-attributes-demo', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

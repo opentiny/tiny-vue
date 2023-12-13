@@ -75,5 +75,5 @@ export default {
       'codeFiles': ['editor/custom-edit.vue']
     }
   ],
-  apis: [{ 'name': 'grid-editor', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-editor', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -65,5 +65,5 @@ export default {
       'codeFiles': ['highlight/highlight-cell.vue']
     }
   ],
-  apis: [{ 'name': 'grid-highlight', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-highlight', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }
