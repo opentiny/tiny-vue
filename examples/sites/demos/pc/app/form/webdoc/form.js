@@ -60,9 +60,10 @@ export default {
       demoId: 'form-validation',
       name: { 'zh-CN': '表单校验、移除校验', 'en-US': 'Form Validation/Clear Validation' },
       desc: {
-        'zh-CN': `<p>通过 <code>rules</code> 设置校验规则， <code>rules</code> 的详情见 <a href="#IFormRules">IFormRules</a>
-          <br />
-          调用 <code>clearValidate</code> 方法移除表单项的校验结果。传入待移除的表单项的 <code>prop</code> 属性或者 <code>prop</code> 组成的数组，如不传则移除整个表单的校验结果。</p>`,
+        'zh-CN': `<p>通过 <code>rules</code> 设置校验规则，
+        调用 <code>clearValidate</code> 方法移除表单项的校验结果。传入待移除的表单项的 <code>prop</code> 属性或者 <code>prop</code> 组成的数组，如不传则移除整个表单的校验结果，
+        调用 <code>resetFields</code> 方法重置表单并移除校验结果。
+        </p>`,
         'en-US': `<p>Includes common verification rules such as mandatory fields, date, time, URL, and email. Use <code>trigger</code> to configure the mode of triggering the validation rule. If <code>change</code> is used, the validation is triggered when the value in the text box changes. If <code>blur</code> is used, the validation is triggered after the focus is lost. 
           <br />
           Use <code>clearValidate</code> method to clear the validation result. 
@@ -76,7 +77,7 @@ export default {
       'name': { 'zh-CN': '特定表单项校验', 'en-US': 'Form field Validation' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>validateField</code> 方法对特定表单项进行校验， <code>clearValidate</code> 方法移除特定表单项校验。</p>',
+          '<p>通过 <code>validateField</code> 方法对特定表单项进行校验， <code>clearValidate</code> 方法移除特定表单项校验， <code>resetField</code> 重置表单项并移除校验。</p>',
         'en-US':
           '<p>Verify specific form items using the <code>validateField</code> method, and remove specific form item validation using the <code>clearValidate</code> method.</p>'
       },
@@ -221,6 +222,15 @@ export default {
           'Set the <code>tip</code> type error prompt through <code>popper-options</code>. For example, when the parent element of the form is a scrolling element and the page scrolls, the prompt will be misaligned. Change the <code>bubbling</code> attribute Set to <code>true</code> to resolve this issue.'
       },
       codeFiles: ['popper-options.vue']
+    },
+    {
+      demoId: 'events',
+      name: { 'zh-CN': '表单事件', 'en-US': 'Form events' },
+      desc: {
+        'zh-CN': '<p>任一表单项被校验后触发 <code>validate</code>事件</p>',
+        'en-US': 'The <code>validate</code> event is triggered after any form item is verified.'
+      },
+      codeFiles: ['events.vue']
     }
   ],
   apis: [
@@ -498,7 +508,7 @@ export default {
             'zh-CN': '任一表单项被校验后触发',
             'en-US': 'Triggered after any form item is verified'
           },
-          demoId: 'form-validation'
+          demoId: 'events'
         }
       ]
     },
@@ -599,7 +609,7 @@ export default {
             'zh-CN': '是否显示校验错误信息',
             'en-US': 'Whether to display verification error information'
           },
-          demoId: 'form-validation'
+          demoId: 'novalid-tip'
         },
         {
           name: 'size',
@@ -641,7 +651,7 @@ export default {
             'zh-CN': '指定校验提示框显示的位置',
             'en-US': 'Specify the position where the verification dialog box is displayed'
           },
-          demoId: 'form-validation'
+          demoId: 'validation-position'
         },
         {
           name: 'validate-type',
@@ -695,7 +705,7 @@ export default {
             'zh-CN': '对该表单项进行重置，将其值重置为初始值并移除校验结果',
             'en-US': 'Reset the table item to the initial value and remove the verification result.'
           },
-          demoId: 'form-validation'
+          demoId: 'form-validate-field'
         }
       ],
       'events': []
