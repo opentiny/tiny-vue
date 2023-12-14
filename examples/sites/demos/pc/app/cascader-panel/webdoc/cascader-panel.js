@@ -33,10 +33,10 @@ export default {
       'name': { 'zh-CN': 'Props 选项', 'en-US': 'Props Options' },
       'desc': {
         'zh-CN': `<p>
-              <div>通过 <code>children</code> 指定子级选项，默认值为 children。</div>
+              <div>通过 <code>children</code> 指定子级选项，默认值为 'children'。</div>
               <div>通过 <code>emitPath</code> 是否返回由该节点所在的各级菜单的值所组成的数组。</div>
-              <div>通过 <code>label</code> 指定显示选项 label 值，默认为 label。</div>
-              <div>通过 <code>value</code> 指定值选项 value 值，默认为 value。</div>
+              <div>通过 <code>label</code> 指定显示选项 label 值，默认为 'label'。</div>
+              <div>通过 <code>value</code> 指定值选项 value 值，默认为 'value'。</div>
             </p>`,
         'en-US': `<p>
             <div> specifies the child options through <code>children</code>, which defaults to children. </div>
@@ -167,13 +167,13 @@ export default {
       ]
     },
     {
-      'name': 'ICascaderPanelConfig',
+      'name': 'ICascaderPanelConfig ',
       'type': 'interface',
       'props': [
         {
           'name': 'expandTrigger',
           'type': `'click' | 'hover'`,
-          'defaultValue': 'click',
+          'defaultValue': `'click'`,
           'desc': {
             'zh-CN': '次级菜单的展开方式',
             'en-US': 'The expansion mode of the secondary menu'

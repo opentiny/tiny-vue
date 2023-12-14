@@ -25,7 +25,7 @@ export default {
     {
       'name': 'user-account',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'getUserInfo',
           'type': 'Function',

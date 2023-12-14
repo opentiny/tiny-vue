@@ -12,7 +12,8 @@ import svgr from 'vite-plugin-svgr'
 import { requireModules } from './build-ui'
 import replace from 'rollup-plugin-replace'
 
-const moduleMap = require(pathFromWorkspaceRoot('packages/modules-react.json'))
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+const moduleMap = require(pathFromWorkspaceRoot('packages/react/modules.json'))
 type mode = 'pc' | 'mobile' | 'mobile-first'
 
 const pathFromPackages = (...args) => pathFromWorkspaceRoot('packages', ...args)
@@ -66,7 +67,7 @@ export function getAllModules(): Module[] {
   return getSortModules({ filterIntercept: () => true })
 }
 
-const getSortModules = ({ filterIntercept }: { filterIntercept: Function; }) => {
+const getSortModules = ({ filterIntercept }: { filterIntercept: Function }) => {
   let modules: Module[] = []
   let componentCount = 0
   const importName = `${scopeName}/react`
@@ -176,12 +177,10 @@ const getModules = (filterIntercept: Function) => {
 
 const getByName = ({
   name,
-  isSort = true,
   inversion = false,
   isOriginal = false
 }: {
   name: string
-  isSort: boolean
   inversion?: boolean
   isOriginal?: boolean
 }) => {
@@ -261,7 +260,7 @@ function generatePackageJson({ beforeWriteFile }): Plugin {
           let packageJson
           try {
             packageJson = JSON.parse(fs.readFileSync(packageJsonFile, { encoding: 'utf-8' }))
-          } catch { }
+          } catch {}
 
           const { filePath, content } = beforeWriteFile(path.dirname(item.fileName), packageJson)
 
@@ -289,14 +288,6 @@ function generatePackageJson({ beforeWriteFile }): Plugin {
   }
 }
 
-const getComponentAlias = (alias = {}) => {
-  getAllModules().forEach((item) => {
-    if (item.type === 'component')
-      alias[item.importName] = pathFromWorkspaceRoot('packages', item.path)
-  })
-  return alias
-}
-
 const getReactPlugins = (reactVersion: string) => {
   const pluginMap = {
     '18': () => {
@@ -310,14 +301,11 @@ const getReactPlugins = (reactVersion: string) => {
   return pluginMap[reactVersion]()
 }
 
-function getBaseConfig({
-  dts,
-  dtsInclude
-}) {
+function getBaseConfig() {
   return defineConfig({
     publicDir: false,
     resolve: {
-      extensions: ['.js', '.ts', '.tsx', '.jsx'],
+      extensions: ['.js', '.ts', '.tsx', '.jsx']
     },
     define: {
       'process.env.BUILD_TARGET': JSON.stringify('component')
@@ -334,8 +322,7 @@ function getBaseConfig({
             const newKey = key.replace('@opentiny/react', `${scopeName}/react`)
             if ((value as string).includes('workspace:~')) {
               dependencies[newKey] = '*'
-            }
-            else {
+            } else {
               dependencies[newKey] = value
             }
           })
@@ -345,10 +332,7 @@ function getBaseConfig({
           }
 
           // 如果是主入口或者svg图标则直接指向相同路径
-          if (
-            filePath === 'react' ||
-            filePath === 'react-icon'
-          ) {
+          if (filePath === 'react' || filePath === 'react-icon') {
             content.main = './index.js'
             content.module = './index.js'
           } else {
@@ -374,14 +358,7 @@ function getBaseConfig({
   })
 }
 
-async function batchBuild({
-  tasks,
-  formats,
-  message,
-  emptyOutDir,
-  dts,
-  outDir
-}) {
+async function batchBuild({ tasks, formats, message, emptyOutDir, dts, outDir }) {
   if (tasks.length === 0) return
   logGreen(`====== 开始构建 ${message} ======`)
   const entry = toEntry(tasks)
@@ -437,10 +414,7 @@ async function batchBuild({
             return true
           }
 
-          if ([
-            'react',
-            'react/jsx-runtime'
-          ].includes(source)) {
+          if (['react', 'react/jsx-runtime'].includes(source)) {
             return true
           }
 
@@ -449,7 +423,7 @@ async function batchBuild({
           }
 
           return external(source)
-        },
+        }
       },
       lib: {
         entry,
@@ -460,14 +434,7 @@ async function batchBuild({
   })
 }
 
-async function batchBuildAll({
-  tasks,
-  formats,
-  message,
-  emptyOutDir,
-  dts,
-  npmScope
-}) {
+async function batchBuildAll({ tasks, formats, message, emptyOutDir, dts, npmScope }) {
   const rootDir = pathFromPackages('')
   const outDir = path.resolve(rootDir, `dist-react/${npmScope}`)
   await batchBuild({
@@ -482,13 +449,7 @@ async function batchBuildAll({
 
 export async function buildReact(
   names: string[] = [],
-  {
-    buildTarget = '1.0.0',
-    formats = ['es'],
-    clean = false,
-    dts = true,
-    scope = '@opentiny'
-  }
+  { buildTarget = '1.0.0', formats = ['es'], clean = false, dts = true, scope = '@opentiny' }
 ) {
   scopeName = scope
   buildVersion = buildTarget

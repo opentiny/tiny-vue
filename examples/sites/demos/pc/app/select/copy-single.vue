@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>场景1：单选无需配置可复制</p>
-    <tiny-select ref="selectRef" v-model="value1" :options="options1"> </tiny-select>
+    <tiny-select v-model="value1" :options="options1"> </tiny-select>
     <p>场景2：单选可搜索配置 allow-copy 可复制</p>
     <tiny-select ref="selectRef" v-model="value1" :options="options1" filterable :filter-method="filter" allow-copy>
     </tiny-select>

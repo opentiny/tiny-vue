@@ -40,7 +40,7 @@ export default {
     {
       'name': 'floatbar',
       'type': 'component',
-      'properties': [],
+      'props': [],
       'events': [],
       'slots': [
         {

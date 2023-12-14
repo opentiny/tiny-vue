@@ -4,9 +4,13 @@
     <tiny-button @click="setCurrentKey" title="点击设置当前节点">setCurrentKey</tiny-button>
     <p>场景2：通过 setCurrentNode(node:ITreeNode) 设置当前节点</p>
     <tiny-button @click="setCurrentNode" title="点击设置当前节点">setCurrentNode</tiny-button>
-    <p>场景3：通过 getCurrentKey() 获取当前节点的 key 为：{{ currentKey }}</p>
+    <p>
+      场景3：通过 getCurrentKey() 获取当前节点的 key 为：<span class="current-node-key">{{ currentKey }}</span>
+    </p>
     <tiny-button @click="getCurrentKey" title="点击获取当前节点的 key">getCurrentKey</tiny-button>
-    <p>场景4：通过 getCurrentNode() 获取当前节点的数据为：{{ currentNode }}</p>
+    <p>
+      场景4：通过 getCurrentNode() 获取当前节点的数据为：<span class="current-node">{{ currentNode }}</span>
+    </p>
     <tiny-button @click="getCurrentNode" title="点击获取当前节点数据">getCurrentNode</tiny-button>
 
     <tiny-tree-menu
@@ -19,14 +23,12 @@
 </template>
 
 <script>
-import { TreeMenu, Button, Row, Col } from '@opentiny/vue'
+import { TreeMenu, Button } from '@opentiny/vue'
 
 export default {
   components: {
     TinyTreeMenu: TreeMenu,
-    TinyButton: Button,
-    TinyRow: Row,
-    TinyCol: Col
+    TinyButton: Button
   },
   data() {
     return {

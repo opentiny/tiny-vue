@@ -44,7 +44,7 @@ const getTemplateName = (currentPaths, entryObj) => {
 
 export const writeModuleMap = (moduleMap) => {
   fs.writeFileSync(
-    pathFromWorkspaceRoot('packages/modules-react.json'),
+    pathFromWorkspaceRoot('packages/react/modules.json'),
     prettierFormat({
       str: typeof moduleMap === 'string' ? moduleMap : JSON.stringify(moduleMap),
       options: {
@@ -64,7 +64,7 @@ function makeReactModules() {
     fileFilter({ file }) {
       return !/node_modules/.test(file)
     },
-    callback({ file, subPath, dirs, isDirectory }) {
+    callback({ file, subPath, dirs }) {
       const entryObj = getBuildEntryFile(file, dirs, subPath)
       const mode: string[] = []
 
@@ -105,7 +105,7 @@ try {
   makeReactModules()
 
   logGreen('npm run create:mapping-react done.')
-}
-catch (e) {
+} catch (e) {
+  // eslint-disable-next-line no-console
   console.log(e)
 }

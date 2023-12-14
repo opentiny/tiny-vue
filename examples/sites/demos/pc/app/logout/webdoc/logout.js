@@ -28,7 +28,7 @@ export default {
     {
       'name': 'logout',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'getLogoutUrl',
           'type': 'Function',

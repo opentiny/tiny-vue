@@ -5,7 +5,7 @@
     @edit-closed="editClosed"
     @edit-disabled="editDisabled"
     seq-serial
-    :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
+    :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true, activeMethod }"
   >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>

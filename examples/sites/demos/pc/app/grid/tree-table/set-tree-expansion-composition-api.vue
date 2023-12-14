@@ -124,15 +124,15 @@ const tableData = ref([
     ]
   }
 ])
-const gridRef = ref()
+const grid = ref('grid')
 
 const setTreeExpansion = () => {
-  gridRef.value.setTreeExpansion([this.tableData[1], this.tableData[3]], true)
+  grid.value.setTreeExpansion([tableData.value[1], tableData.value[3]], true)
 }
 const setAllTreeExpansion = () => {
-  gridRef.value.setAllTreeExpansion(true)
+  grid.value.setAllTreeExpansion(true)
 }
 const toggleTreeExpansion = () => {
-  gridRef.value.toggleTreeExpansion(this.tableData[1])
+  grid.value.toggleTreeExpansion(tableData.value[1])
 }
 </script>

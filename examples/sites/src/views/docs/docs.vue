@@ -13,8 +13,7 @@
 
 <script setup>
 import { ref, nextTick, watch, onMounted, computed, shallowRef } from 'vue'
-import { Anchor as TinyAnchor } from '@opentiny/vue'
-import { $t2 } from '@/tools'
+import { getWord } from '@/tools'
 import docMDs, { transformIdSelector } from './docConfig.js'
 import { router } from '@/router.js'
 
@@ -28,7 +27,7 @@ const catalog = ref([])
 const docCmp = shallowRef(null)
 
 async function loadPage() {
-  let suffix = $t2('', '-en')
+  let suffix = getWord('', '-en')
   const docKey = router.currentRoute.value.params.docId
   const docName = isOpen && openDocMap[docKey] ? openDocMap[docKey] : docKey
 

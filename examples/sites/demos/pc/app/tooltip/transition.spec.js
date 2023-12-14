@@ -10,6 +10,7 @@ test('测试自定义动画显示正常', async ({ page }) => {
   // 悬浮
   await button.hover()
   await expect(tooltip).toBeVisible()
+  await expect(tooltip).toHaveClass(/custom-transition-enter-to/)
 
   // 离开
   await page.mouse.move(0, 0)

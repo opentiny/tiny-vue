@@ -24,6 +24,6 @@ const groupData = ref([
 ])
 
 function handleEdit() {
-  Modal.message('edit事件触发了')
+  Modal.message({ message: 'edit事件触发了', status: 'info' })
 }
 </script>

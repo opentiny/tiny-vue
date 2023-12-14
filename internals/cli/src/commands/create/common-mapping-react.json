@@ -1,11 +1,11 @@
 {
   "Icon": {
-    "path": "react-icon/index.ts",
+    "path": "react/icon/index.ts",
     "type": "module",
-    "exclude": false
+    "exclude": true
   },
   "Common": {
-    "path": "react-common/src/index.ts",
+    "path": "react/common/src/index.ts",
     "type": "module",
     "exclude": false
   }

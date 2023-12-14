@@ -15,7 +15,8 @@ export default {
       'demoId': 'calendar-mode',
       'name': { 'zh-CN': '显示模式', 'en-US': 'Display mode' },
       'desc': {
-        'zh-CN': '<p>通过 <code>mode</code> 属性指定以年的形式显示，将展示当年的每个月份。可选值有 <code>month</code> / <code>timeline</code> / <code>schedule</code>。</p>\n',
+        'zh-CN':
+          '<p>通过 <code>mode</code> 属性指定以年的形式显示，将展示当年的每个月份。可选值有 <code>month</code> / <code>timeline</code> / <code>schedule</code>。</p>\n',
         'en-US':
           '<p>The <code>mode</code> attribute specifies that each month of the current year is displayed. The options are <code>month</code> / <code>timeline</code> / <code>schedule</code>. </p>\n'
       },
@@ -128,7 +129,7 @@ export default {
     {
       'name': 'calendar-view',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'day-times',
           'type': 'Array',

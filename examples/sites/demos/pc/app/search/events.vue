@@ -4,6 +4,8 @@
     <tiny-search @search="search" is-enter-search></tiny-search>
     <p>值变化事件</p>
     <tiny-search @change="change" @input="input"></tiny-search>
+    <p>值清空事件</p>
+    <tiny-search @clear="clear" clearable></tiny-search>
     <p>类型选中事件</p>
     <tiny-search :search-types="searchTypes" @select="select"></tiny-search>
   </div>
@@ -40,6 +42,9 @@ export default {
     },
     change(key, value) {
       Modal.message(`change: ${value}`)
+    },
+    clear() {
+      Modal.message('clear')
     },
     input(key, value) {
       Modal.message(`input: ${key}, ${JSON.stringify(value)}`)

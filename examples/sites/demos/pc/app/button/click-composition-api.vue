@@ -6,6 +6,6 @@
 import { Button as TinyButton, Modal } from '@opentiny/vue'
 
 function click() {
-  Modal.message('click')
+  Modal.message({ message: 'click', status: 'info' })
 }
 </script>

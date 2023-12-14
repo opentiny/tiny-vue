@@ -1,5 +1,5 @@
 <template>
-  <tiny-dropdown @visible-change="visibleChange">
+  <tiny-dropdown>
     <span>默认插槽</span>
     <template #suffix-icon>
       <tiny-icon-ascending></tiny-icon-ascending>

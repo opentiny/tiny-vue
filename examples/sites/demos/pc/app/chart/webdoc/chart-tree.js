@@ -38,5 +38,5 @@ export default {
       'codeFiles': ['tree/demo5.vue']
     }
   ],
-  apis: [{ 'name': 'chart-tree', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-tree', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

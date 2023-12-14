@@ -8,7 +8,7 @@ test('是否正常渲染', async ({ page }) => {
   const selector = page.locator('.tiny-search__selector')
   const firstPresent = first.locator('.tiny-search__present')
   const firstInput = first.locator('.tiny-search__input')
-  const icon = first.locator('a > svg')
+  const icon = page.locator('#basic-usage a svg')
 
   await expect(first).toHaveCount(1)
   await expect(icon).toHaveCount(1)

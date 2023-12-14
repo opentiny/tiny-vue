@@ -21,8 +21,7 @@ import './assets/custom-block.less'
 import { i18n } from './i18n/index'
 import { router } from './router'
 import App from './App.vue'
-import { $t, $t2 } from './i18n'
-import { $pub, appData } from './tools'
+import { appData } from './tools'
 import { ZH_CN_LANG, EN_US_LANG, LANG_PATH_MAP } from './const'
 import demoConfig from '@demos/config.js'
 
@@ -62,11 +61,7 @@ if (import.meta.env.VITE_TINY_THEME === 'saas') {
   import('./tailwind.css')
 }
 
-app
-  .use(router)
-  .use(i18n)
-  .use(createHead()) // 支持md修改title
-  .mixin({ methods: { $t, $t2, $pub } })
+app.use(router).use(i18n).use(createHead()) // 支持md修改title
 
 if (typeof demoConfig.initApp === 'function') {
   demoConfig.initApp(app)

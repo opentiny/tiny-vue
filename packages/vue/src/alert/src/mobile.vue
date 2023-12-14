@@ -13,7 +13,8 @@
   <transition name="tiny-mobile-alert-fade">
     <div
       v-if="state.show"
-      :class="['tiny-mobile-alert', 'tiny-mobile-alert--' + type, 'tiny-mobile-alert--' + size, 'is-center']"
+      :class="state.alertClass"
+      :style="state.alertStyle"
     >
       <component v-if="showIcon" :is="state.getIcon" class="tiny-mobile-alert__icon" />
       <div :class="['tiny-mobile-alert__content', { 'is-hideicon': !showIcon }]">
@@ -37,7 +38,7 @@ import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
 import '@opentiny/vue-theme-mobile/alert/index.less'
 
 export default defineComponent({
-  props: [...props, 'icon', 'type', 'size', 'description', 'closable', 'showIcon', 'closeText', 'duration'],
+  props: [...props, 'icon', 'type', 'size', 'description', 'closable', 'showIcon', 'closeText', 'duration', 'offset', 'autoHide', 'target', 'center'],
   components: {
     IconClose: iconClose(),
     IconSuccess: iconSuccess(),

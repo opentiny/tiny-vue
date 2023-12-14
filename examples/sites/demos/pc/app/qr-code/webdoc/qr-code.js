@@ -37,7 +37,7 @@ export default {
     {
       'name': 'qr-code',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'value',
           'type': 'String',

@@ -54,7 +54,7 @@ export default {
     {
       'name': 'dialog-select',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'auto-lookup ',
           'type': 'boolean',

@@ -4,7 +4,7 @@ test('自定义数据项', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('steps#custom-steps-item')
 
-  const advancedSteps = page.locator('#preview .tiny-steps')
+  const advancedSteps = page.locator('.pc-demo .tiny-steps')
   const nodes = advancedSteps.locator('li')
 
   await expect(nodes.first()).toContainText('name属性内容1')

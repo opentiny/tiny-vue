@@ -4,9 +4,9 @@ test('PopUpload 阻止删除文件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('pop-upload#prevent-delete-file')
 
-  const preview = page.locator('#preview')
+  const preview = page.locator('.all-demos-container')
   const modalAppearBtn = preview.getByRole('button', { name: '选择文件' })
-  const uploadModal = page.locator('.tiny-modal').nth(0)
+  const uploadModal = page.locator('.tiny-popupload__modal')
   const deleteModal = page.locator('.tiny-modal').nth(1)
   const selectFilesBtn = uploadModal.getByRole('button', { name: '选择文件' })
   const lists = uploadModal.locator('.tiny-popupload__dialog-table-item')

@@ -38,5 +38,5 @@ export default {
       'codeFiles': ['gauge/demo5.vue']
     }
   ],
-  apis: [{ 'name': 'chart-gauge', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-gauge', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

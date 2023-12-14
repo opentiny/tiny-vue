@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>场景1：单选无需配置可复制</p>
-    <tiny-select ref="selectRef" v-model="value1" :options="options1"> </tiny-select>
+    <tiny-select v-model="value1" :options="options1"> </tiny-select>
     <p>场景2：单选可搜索配置 allow-copy 可复制</p>
     <tiny-select ref="selectRef" v-model="value1" :options="options1" filterable :filter-method="filter" allow-copy>
     </tiny-select>
@@ -20,7 +20,7 @@
       <tiny-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
     <p class="font-style">粘贴至此处：</p>
-    <tiny-input v-model="inputVal" type="text"></tiny-input>
+    <tiny-input v-model="inputVal" type="text" class="custom"></tiny-input>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ const options2 = ref([])
 const value1 = ref('选项1')
 const value2 = ref('Alabama')
 const inputVal = ref('')
-const selectRef = ref()
+const selectRef = ref(null)
 const loading = ref(false)
 const list = ref([])
 

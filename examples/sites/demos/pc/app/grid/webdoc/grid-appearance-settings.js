@@ -23,5 +23,5 @@ export default {
       'codeFiles': ['appearance-settings/stripe.vue']
     }
   ],
-  apis: [{ 'name': 'grid-appearance-settings', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-appearance-settings', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

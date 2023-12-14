@@ -31,9 +31,9 @@ import type { ITabItemApi } from '@opentiny/vue-renderless/types/tab-item.type'
 export default defineComponent({
   name: $prefix + 'TabItem',
   componentName: 'TabItem',
+  emits: ['tab-nav-update'],
   props: {
     title: String,
-    labelContent: Function,
     name: String,
     withClose: Boolean,
     disabled: Boolean,

@@ -21,5 +21,5 @@ export default {
       'codeFiles': ['neutral-color.vue']
     }
   ],
-  apis: [{ 'name': 'color', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'color', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

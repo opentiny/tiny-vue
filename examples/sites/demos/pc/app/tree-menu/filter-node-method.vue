@@ -38,10 +38,6 @@ export default {
           label: '组件',
           children: [
             {
-              id: 300,
-              label: '组件'
-            },
-            {
               id: 301,
               label: '表单组件',
               children: [

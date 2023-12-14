@@ -70,10 +70,6 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    filters: {
-      type: Object,
-      default: () => ({})
-    },
     accept: String,
     submitButtonText: {
       typee: String,

@@ -10,7 +10,10 @@ test('提交前校验', async ({ page }) => {
     })
     .getByRole('textbox')
     .fill('')
-  await page.getByRole('button', { name: '保存' }).click()
-
+  await page.getByRole('button', { name: '提交数据' }).click()
   await expect(page.getByText('校验不通过', { exact: true })).toBeVisible()
+
+  await page.getByRole('button', { name: '确认' }).click()
+  await page.getByRole('button', { name: '保存（Promise）' }).click()
+  await expect(page.getByText('校验不通过，触发了catch', { exact: true })).toBeVisible()
 })
