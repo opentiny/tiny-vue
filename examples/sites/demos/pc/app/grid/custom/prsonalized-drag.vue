@@ -1,7 +1,12 @@
 <template>
   <tiny-grid :data="tableData" :resizable="true" border>
     <template #toolbar>
-      <tiny-grid-toolbar id="custom-sort-columns" :resizable="{ storage: true }" :setting="setting"></tiny-grid-toolbar>
+      <tiny-grid-toolbar
+        id="custom-sort-columns"
+        @on-before-move="onBeforeMove"
+        :resizable="{ storage: true }"
+        :setting="setting"
+      ></tiny-grid-toolbar>
     </template>
     <tiny-grid-column type="index" width="40"></tiny-grid-column>
     <tiny-grid-column type="selection" width="40"></tiny-grid-column>
@@ -22,6 +27,11 @@ export default {
     TinyGrid: Grid,
     TinyGridColumn: GridColumn,
     TinyGridToolbar: GridToolbar
+  },
+  methods: {
+    onBeforeMove() {
+      alert(11)
+    }
   },
   data() {
     return {

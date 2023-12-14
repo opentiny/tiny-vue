@@ -7,7 +7,7 @@ export default {
       'name': { 'zh-CN': '本地存储列宽', 'en-US': 'Column Width' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStroage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示。</p>\n',
+          '<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，<code>grid-column</code> 标签上配置 <code>resizable=&quot;false&quot;</code> 可以配置某一列不能调整列宽。并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStroage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示。</p>\n',
         'en-US':
           '<p>Configure <code>resizable=&quot;true&quot;</code> on the <code>grid</code> tag to adjust the column width, and configure <code>resizable=&quot;{storage: true}&quot;</code> on the <code>toolbar</code> tag to save the column width in <code>localStroage</code> on the local host. The column width of the table on the refreshed page is displayed based on the column width after being dragged.</p>\n'
       },
