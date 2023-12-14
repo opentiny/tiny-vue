@@ -10,7 +10,7 @@ test('基础用法', async ({ page }) => {
   await preview.locator('.tiny-carousel__container > button:nth-child(2)').click()
   await preview.locator('.tiny-carousel__container > button:nth-child(2)').click()
   await preview.locator('.tiny-carousel__container > button:nth-child(2)').click()
-  await expect(carouselItems.first()).toHaveCSS('transform', 'matrix(1, 0, 0, 1, -704, 0)')
+  await expect(carouselItems.first()).toHaveCSS('transform', 'matrix(1, 0, 0, 1, -712, 0)')
   await preview.locator('.tiny-carousel__arrow').first().click()
   await preview.locator('.tiny-carousel__arrow').first().click()
   await preview.locator('.tiny-carousel__arrow').first().click()
