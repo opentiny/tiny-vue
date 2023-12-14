@@ -8,55 +8,69 @@ test('组件式使用', async ({ page }) => {
   const teleport = page.getByLabel('teleport')
   const fullBtn = page.getByRole('button', { name: 'Request Fullscreen' })
   const exitFullBtn = page.getByRole('button', { name: 'Exit Fullscreen' })
-  const smallImg = page.locator('img').first()
-  const bigImg = page.locator('img').last()
+  const smallImg = page.locator('.tiny-fullscreen-wrapper img').first()
+  const bigImg = page.locator('.tiny-fullscreen-wrapper img').nth(1)
 
   // 初始化完成，默认非全屏模式
   await expect(fullBtn).toBeVisible()
   await expect(exitFullBtn).toHaveCount(0)
   await expect(smallImg).not.toHaveCSS('display', 'none')
   await expect(bigImg).toHaveCSS('display', 'none')
-  expect(await page.evaluate('document.fullscreenElement')).toBe(null)
+  const document1 = await page.evaluate('document.fullscreenElement')
+  await expect(document1).toBe(null)
 
   // 点击Request Fullscreen按钮，图片全屏展示
   await fullBtn.click()
   await expect(smallImg).toHaveCSS('display', 'none')
   await expect(bigImg).not.toHaveCSS('display', 'none')
-  expect(await page.evaluate('document.fullscreenElement')).toBe('ref: <Node>')
+  const document2 = await page.evaluate('document.fullscreenElement')
+  await expect(document2).toBe('ref: <Node>')
 
-  // 点击Exit Fullscreen按钮，退出全屏展示
+  //  选取需要添加样式的元素并设置新的CSS属性
+  await page.$eval('.tinyui-design-header', (el) => {
+    el.setAttribute('style', 'display: none;')
+  })
+
+  // // 点击Exit Fullscreen按钮，退出全屏展示
   await exitFullBtn.click()
   await expect(smallImg).not.toHaveCSS('display', 'none')
   await expect(bigImg).toHaveCSS('display', 'none')
-  expect(await page.evaluate('document.fullscreenElement')).toBe(null)
+  const document10 = await page.evaluate('document.fullscreenElement')
+  await expect(document10).toBe(null)
 
   // 全屏时，按Esc键退出全屏
   await fullBtn.click()
   await expect(smallImg).toHaveCSS('display', 'none')
   await expect(bigImg).not.toHaveCSS('display', 'none')
-  expect(await page.evaluate('document.fullscreenElement')).toBe('ref: <Node>')
+  const document9 = await page.evaluate('document.fullscreenElement')
+  await expect(document9).toBe('ref: <Node>')
   await exitFullBtn.press('Escape')
   await expect(smallImg).not.toHaveCSS('display', 'none')
   await expect(bigImg).toHaveCSS('display', 'none')
-  expect(await page.evaluate('document.fullscreenElement')).toBe(null)
+  const document3 = await page.evaluate('document.fullscreenElement')
+  await expect(document3).toBe(null)
 
   // pageOnly为true时，为网页全屏
   await pageOnly.check()
   await fullBtn.click()
   await expect(smallImg).toHaveCSS('display', 'none')
   await expect(bigImg).not.toHaveCSS('display', 'none')
-  expect(await page.evaluate('document.fullscreenElement')).toBe(null)
+  const document4 = await page.evaluate('document.fullscreenElement')
+  await expect(document4).toBe(null)
 
   // pageOnly为false时，为浏览器全屏
-  await exitFullBtn.click()
+  await exitFullBtn.press('Escape')
   await pageOnly.uncheck()
   await fullBtn.click()
-  expect(await page.evaluate('document.fullscreenElement')).toBe('ref: <Node>')
+  const document6 = await page.evaluate('document.fullscreenElement')
+  await expect(document6).toBe('ref: <Node>')
 
   // teleport默认true，目标元素移到body下，反之false时不移动目标元素
-  expect(await page.evaluate('document.fullscreenElement?.nodeName')).toBe('BODY') // 默认true时
-  await exitFullBtn.click()
+  const document7 = await page.evaluate('document.fullscreenElement?.nodeName')
+  await expect(document7).toBe('BODY') // 默认true时
+  await exitFullBtn.press('Escape')
   await teleport.uncheck()
   await fullBtn.click()
-  expect(await page.evaluate('document.fullscreenElement?.nodeName')).toBe('DIV')
+  const document8 = await page.evaluate('document.fullscreenElement?.nodeName')
+  await expect(document8).toBe('DIV')
 })
