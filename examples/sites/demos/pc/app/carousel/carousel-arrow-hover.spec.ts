@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('hover 时显示切换箭头', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('carousel#carousel-arrow-hover')
-  const preview = page.locator('#preview')
+  const preview = page.locator('#carousel-arrow-hover')
   const carousel = preview.locator('.tiny-carousel')
   const carouselItems = preview.locator('div.tiny-carousel__item')
 

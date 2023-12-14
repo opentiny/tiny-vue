@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('走马灯事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('carousel#carousel-events')
-  const preview = page.locator('#preview')
+  const preview = page.locator('#carousel-events')
   const carousel = preview.locator('.tiny-carousel')
   const carouselTip = preview.locator('.carousel-tip')
 
