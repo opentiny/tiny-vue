@@ -10,16 +10,18 @@ test('走马灯事件', async ({ page }) => {
   await carousel.hover()
   await page.waitForTimeout(300)
   const arrow = carousel.locator('.tiny-carousel__arrow')
+  const rightArrow = page.locator('.tiny-carousel__container > button:nth-child(2)')
+  await page.locator('.tiny-carousel__arrow').first().click()
   // 左侧切换按钮应该可见
   await expect(arrow.first()).toBeVisible()
   // 右侧切换按钮应该可见
-  await expect(arrow.nth(1)).toBeHidden()
+  await expect(rightArrow).toBeVisible()
 
   // 点击左侧切换按钮
   await arrow.first().click()
   await expect(carouselTip).toHaveText(/3\D+0/)
   await page.waitForTimeout(320)
   // 点击右侧切换按钮
-  await arrow.nth(1).click()
+  await rightArrow.click()
   await expect(carouselTip).toHaveText(/0\D+3/)
 })
