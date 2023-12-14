@@ -1,7 +1,6 @@
 import * as hooks from 'solid-js'
-import { createSignal, onCleanup } from 'solid-js'
+import { createSignal, onCleanup, createMemo } from 'solid-js'
 import '@opentiny/vue-theme/base/index.less'
-import { writableComputed as computed } from './computed'
 
 const EVENTS_PREFIX = 'on'
 
@@ -60,6 +59,14 @@ export const emitEvent = () => {
       return ''
     },
     broadcast
+  }
+}
+
+const computed = (callback) => {
+  try {
+    return createMemo(callback)
+  } catch (error) {
+    return []
   }
 }
 
