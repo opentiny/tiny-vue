@@ -1,68 +1,67 @@
 /**
  *  转义字符 防止xss攻击
  */
-const matchHtmlRegExp = /["'&<>/]/;
+const matchHtmlRegExp = /["'&<>/]/
 function escapeHtml(string) {
-  const str = `${string}`;
-  const match = matchHtmlRegExp.exec(str);
+  const str = `${string}`
+  const match = matchHtmlRegExp.exec(str)
   if (!match) {
-    return str;
+    return str
   }
-  let escape;
-  let html = '';
-  let index;
-  let lastIndex = 0;
+  let escape
+  let html = ''
+  let index
+  let lastIndex = 0
 
   for (index = match.index; index < str.length; index++) {
     switch (str.charCodeAt(index)) {
       case 34: // "
-        escape = '&quot;';
-        break;
+        escape = '&quot;'
+        break
       case 38: // &
-        escape = '&amp;';
-        break;
+        escape = '&amp;'
+        break
       case 39: // '
-        escape = '&#x27;';
-        break;
+        escape = '&#x27;'
+        break
       case 60: // <
-        escape = '&lt;';
-        break;
+        escape = '&lt;'
+        break
       case 62: // >
-        escape = '&gt;';
-        break; // /
+        escape = '&gt;'
+        break // /
       case 47:
-        escape = '&#x2F;';
-        break;
+        escape = '&#x2F;'
+        break
       default:
-        continue;
+        continue
     }
 
     if (lastIndex !== index) {
-      html += str.substring(lastIndex, index);
+      html += str.substring(lastIndex, index)
     }
 
-    lastIndex = index + 1;
-    html += escape;
+    lastIndex = index + 1
+    html += escape
   }
 
-  return lastIndex !== index ? html + str.substring(lastIndex, index) : html;
+  return lastIndex !== index ? html + str.substring(lastIndex, index) : html
 }
 
-
-const defendXSS = obj => {
+const defendXSS = (obj) => {
   if (typeof obj === 'string') {
-    return escapeHtml(obj);
+    return escapeHtml(obj)
   } else if (typeof obj === 'number') {
-    return obj;
+    return obj
   } else if (typeof obj === 'object') {
     for (const key in obj) {
-      obj[key] = defendXSS(obj[key]);
+      obj[key] = defendXSS(obj[key])
     }
-    return obj;
+    return obj
   } else {
-    return obj;
+    return obj
   }
-};
+}
 
-export default defendXSS;
-export { escapeHtml };
+export default defendXSS
+export { escapeHtml }

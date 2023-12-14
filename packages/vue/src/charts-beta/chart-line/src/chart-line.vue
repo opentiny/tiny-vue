@@ -1,17 +1,17 @@
 <template>
-  <div class="hui-chart chart-box" ref="chartRef" :style="{ width: width, height: height }">
-  </div>
+  <div class="hui-chart chart-box" ref="chartRef" :style="{ width, height }"></div>
 </template>
-<script>
 
+<script>
 import Core from '@opentiny/vue-chart-core-beta'
 import { line } from './line'
+
 export default {
   name: 'ChartLine',
   mixins: [Core],
   data() {
     return {
-      iChartName: 'LineChart',
+      iChartName: 'LineChart'
     }
   },
   methods: {
@@ -22,13 +22,13 @@ export default {
         legendVisible: this.legendVisible,
         extend: this.extend
       }
-      const option = line(columns, rows, this.settings, extra);
+      const option = line(columns, rows, this.settings, extra)
 
       this.option = {
         smooth: true,
-        ...option,
+        ...option
       }
-    },
-  },
+    }
+  }
 }
 </script>

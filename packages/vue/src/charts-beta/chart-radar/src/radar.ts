@@ -1,6 +1,4 @@
-import { getFormatted } from '@opentiny/vue-chart-core-beta/common/util'
-import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-chart-core-beta/common/constants'
-import { isNull } from '@opentiny/vue-chart-core-beta/common/type'
+import { getFormatted, itemPoint, itemLabel, itemContent, isNull } from '@opentiny/vue-chart-core-beta'
 
 const getRadarLegend = (rows, dimension, legendName, legendVisible) => {
   let legendData = rows.map((row) => row[dimension])
