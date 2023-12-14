@@ -287,7 +287,7 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': { 'zh-CN': '幻灯片名称', 'en-US': 'Slide Name' },
-          'demoId': 'show-title'
+          'demoId': 'manual-play'
         }
       ],
       'slots': [
