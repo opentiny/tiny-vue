@@ -200,7 +200,7 @@ export default {
           'demoId': 'basic-usage'
         },
         {
-          'name': 'modelValue',
+          'name': 'v-model / modelValue',
           'type': 'string[]',
           'defaultValue': '[]',
           'desc': {
@@ -518,7 +518,7 @@ export default {
           'type': '(name: string) => void',
           'defaultValue': '',
           'desc': { 'zh-CN': '清空某个面板的搜索关键词', 'en-US': 'Clear the search keywords of a panel.' },
-          'demoId': 'manual-clear-query'
+          'demoId': 'custom-filter'
         }
       ]
     }

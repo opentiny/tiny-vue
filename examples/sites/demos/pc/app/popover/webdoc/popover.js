@@ -218,7 +218,7 @@ export default {
             'zh-CN': '弹出层高度',
             'en-US': 'Layer height'
           },
-          'demoId': 'basic-usage'
+          'demoId': ''
         },
         {
           'name': 'disabled',
@@ -238,7 +238,7 @@ export default {
           'demoId': 'trigger'
         },
         {
-          'name': 'modelValue',
+          'name': 'v-model / modelValue',
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
