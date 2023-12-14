@@ -38,6 +38,8 @@ export const bindKeyDown =
       return
     }
 
+    event.preventDefault()
+
     let currentValue = 0
 
     switch (event.keyCode) {
