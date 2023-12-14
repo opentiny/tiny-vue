@@ -250,7 +250,7 @@ export default {
             'en-US':
               'The right offset of the child item is offset via the left property; it is recommended to use offset instead'
           },
-          'demoId': 'offset'
+          'demoId': ''
         },
         {
           'name': 'xs',
