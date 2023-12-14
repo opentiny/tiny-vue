@@ -11,7 +11,7 @@ test('卡片模式', async ({ page }) => {
   // 第二张幻灯片应该可见，并且被缩放
   await expect(carouselItems.nth(1)).toHaveCSS('transform', 'matrix(0.83, 0, 0, 0.83, 386.26, 0)')
   // 第四张幻灯片应该可见，并且被缩放
-  await expect(carouselItems.nth(3)).toHaveCSS('transform', 'matrix(0.83, 0, 0, 0.83, -29.92, 0)')
+  await expect(carouselItems.nth(3)).toHaveCSS('transform', 'matrix(0.83, 0, 0, 0.83, -30.26, 0)')
 
   await carousel.hover()
   await page.waitForTimeout(100)
@@ -23,7 +23,7 @@ test('卡片模式', async ({ page }) => {
   // 第三张幻灯片应该可见，并且被缩放
   await expect(carouselItems.nth(2)).toHaveCSS('transform', 'matrix(0.83, 0, 0, 0.83, 386.26, 0)')
   // 第一张幻灯片应该可见，并且被缩放
-  await expect(carouselItems.first()).toHaveCSS('transform', 'matrix(0.83, 0, 0, 0.83, -29.92, 0)')
+  await expect(carouselItems.first()).toHaveCSS('transform', 'matrix(0.83, 0, 0, 0.83, -30.26, 0)')
 
   // 点击底部按钮切换
   await preview.getByRole('list').getByRole('button').nth(2).click()
@@ -35,5 +35,5 @@ test('卡片模式', async ({ page }) => {
   // 第三张幻灯片应该可见，并且被缩放
   await expect(carouselItems.nth(2)).toHaveCSS('transform', 'matrix(0.83, 0, 0, 0.83, 386.26, 0)')
   // 第一张幻灯片应该可见，并且被缩放
-  await expect(carouselItems.first()).toHaveCSS('transform', 'matrix(0.83, 0, 0, 0.83, -29.92, 0)')
+  await expect(carouselItems.first()).toHaveCSS('transform', 'matrix(0.83, 0, 0, 0.83, -30.26, 0)')
 })

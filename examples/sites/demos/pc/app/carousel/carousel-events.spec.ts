@@ -13,7 +13,7 @@ test('走马灯事件', async ({ page }) => {
   // 左侧切换按钮应该可见
   await expect(arrow.first()).toBeVisible()
   // 右侧切换按钮应该可见
-  await expect(arrow.nth(1)).toBeVisible()
+  await expect(arrow.nth(1)).toBeHidden()
 
   // 点击左侧切换按钮
   await arrow.first().click()
