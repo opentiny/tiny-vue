@@ -8,7 +8,7 @@ test('Fullscreen 函数式使用', async ({ page }) => {
   const teleport = page.getByLabel('teleport')
   const fullBtn = page.getByRole('button', { name: 'Request Fullscreen' })
   const exitFullBtn = page.getByRole('button', { name: 'Exit Fullscreen' })
-  const smallImg = page.locator('.tiny-fullscreen-wrapper img').first()
+  const smallImg = page.locator('.tiny-fullscreen-wrapper img').nth(0)
   const bigImg = page.locator('.tiny-fullscreen-wrapper img').nth(1)
 
   // 初始化完成，默认非全屏模式
