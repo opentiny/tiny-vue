@@ -1,6 +1,5 @@
 <template>
   <div class="tiny-demo">
-    <tiny-button @click="multi = !multi">{{ `切换为${multi ? '单选' : '多选'}` }}</tiny-button>
     <tiny-button @click="visible = !visible">{{ `${visible ? '关闭' : '打开'}窗口` }}</tiny-button>
     <tiny-dialog-select
       ref="dialogSelect"
@@ -8,11 +7,9 @@
       :visible="visible"
       @update:visible="visible = $event"
       popseletor="grid"
-      :multi="multi"
       :dialog-op="dialogOp"
       :grid-op="gridOp"
       :pager-op="pagerOp"
-      :selected-box-op="selectedBoxOp"
       :remote-search="remoteSearch"
       :lookup-method="lookupMethod"
       :before-close="beforeClose"
@@ -38,8 +35,7 @@
 </template>
 
 <script>
-import { DialogSelect, Button, Search, Select } from '@opentiny/vue'
-import Sortable from 'sortablejs'
+import { DialogSelect, Button, Search, Select, Modal } from '@opentiny/vue'
 
 // 模拟服务侧数据
 const datas = [
@@ -81,7 +77,6 @@ export default {
   },
   data() {
     return {
-      multi: true,
       searchData: { name: '', city: '' },
       options: [
         { value: '福州', label: '福州' },
@@ -104,8 +99,7 @@ export default {
           { field: 'city', title: '城市', width: 80 }
         ],
         data: [],
-        selectConfig: { reserve: true, checkRowKeys: ['1', '6'] },
-        radioConfig: { checkRowKey: '3' }
+        radioConfig: { checkRowKey: '1' }
       },
       pagerOp: {
         currentPage: 1,
@@ -113,14 +107,6 @@ export default {
         pageSizes: [5, 10],
         total: 0,
         layout: 'prev, pager, next'
-      },
-      selectedBoxOp: {
-        config: {
-          pkField: 'id',
-          pkFieldType: 'string',
-          showField: ['name', 'city'],
-          plugin: Sortable
-        }
       }
     }
   },
@@ -166,7 +152,9 @@ export default {
       })
     },
     onDialogSelectChange(values, texts) {
-      console.log(values, texts)
+      Modal.message({
+        message: `values:${values},texts:${texts}`
+      })
     }
   }
 }

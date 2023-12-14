@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { DialogSelect, Button } from '@opentiny/vue'
+import { DialogSelect, Button, Modal } from '@opentiny/vue'
 
 // 模拟服务侧数据
 const datas = [
@@ -75,15 +75,25 @@ const queryPidsBySearchFn = (search) => {
 
 // 接口3：根据一组节点id找到匹配节点的所有父级节点id
 // （使用了接口2只是为了简化示例代码，实现为批量接口可提高查询效率）
-const queryPidsByIdsFn = (ids, pids = []) => (
-  ids.forEach((id) => (pids = [...pids, ...queryPidsBySearchFn(id)])), dedup(pids)
-)
+const queryPidsByIdsFn = (ids, pids = []) => {
+  let allPids = [...pids]
+
+  ids.forEach((id) => {
+    allPids = allPids.concat(queryPidsBySearchFn(id))
+  })
+
+  return dedup(allPids)
+}
 
 // 接口4：根据一组节点id查询这组节点
 const queryNodesByIds = (ids) => datas.filter((row) => ~ids.indexOf(row.id))
 
 // 去重
-const dedup = (ids, tmp = []) => (ids.forEach((id) => !~tmp.indexOf(id) && tmp.push(id)), tmp)
+const dedup = (ids, tmp = []) => {
+  const res = [...tmp, ...ids]
+
+  return Array.from(new Set(res))
+}
 
 export default {
   components: {
@@ -151,7 +161,9 @@ export default {
       })
     },
     onDialogSelectChange(values, texts) {
-      console.log(values, texts)
+      Modal.message({
+        message: `values:${values},texts:${texts}`
+      })
     }
   }
 }
