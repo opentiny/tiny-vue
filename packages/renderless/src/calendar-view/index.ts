@@ -1,12 +1,6 @@
-import { cloneDeep } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { getDirection } from '@opentiny/vue-renderless/common/deps/touch'
-import {
-  getDays,
-  lastMonth,
-  nextMonth,
-  getCalendar,
-  transformArray
-} from '@opentiny/vue-renderless/common/calendar/calendar'
+import { cloneDeep } from '../chart-core/deps/utils'
+import { getDirection } from '../common/deps/touch'
+import { getDays, lastMonth, nextMonth, getCalendar, transformArray } from '../common/calendar/calendar'
 
 const getTime = (date) => new Date(date).getTime()
 
