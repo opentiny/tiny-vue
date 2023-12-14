@@ -1,15 +1,15 @@
-import { typeOf as getType, isNull, isObject } from './type'
+import { typeOf as getType, isObject } from './type'
 import { copyArray } from './object'
-export { setObj as set, getObj as get } from './object'
 
 import _numerify from './numerify'
+
+export { setObj as set, getObj as get } from './object'
+
 export const $prefix = 'Tiny'
 
 export function toUpperCase(str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
-
-
 
 export const getFormatted = (value, type, digit, defaultVal = '-') => {
   if (isNaN(value)) {
@@ -127,4 +127,3 @@ export const getAmap = ({ key, version, url }) => {
 
   return amapPromise
 }
-

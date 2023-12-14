@@ -1,10 +1,11 @@
 <template>
-  <div class="hui-chart chart-box" ref="chartRef" :style="{ width: width, height: height }">
-  </div>
+  <div class="hui-chart chart-box" ref="chartRef" :style="{ width, height }"></div>
 </template>
+
 <script>
 import Core from '@opentiny/vue-chart-core-beta'
 import { radar } from './radar'
+
 export default {
   name: 'ChartRadar',
   mixins: [Core],
@@ -23,7 +24,7 @@ export default {
   },
   data() {
     return {
-      iChartName: 'RadarChart',
+      iChartName: 'RadarChart'
     }
   },
   methods: {
@@ -34,11 +35,11 @@ export default {
         legendVisible: this.legendVisible,
         extend: this.extend
       }
-      const option = radar(columns, rows, this.settings, extra);
+      const option = radar(columns, rows, this.settings, extra)
       this.option = {
-        ...option,
+        ...option
       }
-    },
-  },
+    }
+  }
 }
 </script>

@@ -124,7 +124,6 @@ export const defaultOnQueryChange =
       props.filterMethod(value)
       state.selectEmitter.emit(constants.COMPONENT_NAME.OptionGroup, constants.EVENT_NAME.queryChange)
     } else {
-      state.filteredOptionsCount = state.optionsCount
       state.selectEmitter.emit(constants.EVENT_NAME.queryChange, value)
     }
 

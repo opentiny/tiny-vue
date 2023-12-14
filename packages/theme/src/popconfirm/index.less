@@ -37,45 +37,55 @@
     font-size: var(--ti-popconfirm-popover-footer-font-size);
     color: var(--ti-popconfirm-popover-footer-font-color);
   }
+
   &__header {
     display: flex;
     align-items: center;
     line-height: var(--ti-popconfirm-popover-line-height);
   }
+
   &__icon {
     height: var(--ti-popconfirm-popover-icon-width);
     width: var(--ti-popconfirm-popover-icon-width);
     margin-right: var(--ti-popconfirm-popover-icon-margin-right);
   }
+
   &__title {
     flex: 1 1 auto;
   }
+
   &__content {
     color: #5c6976;
     line-height: var(--ti-popconfirm-popover-line-height);
   }
+
   &__footer {
     display: flex;
     justify-content: var(--ti-popconfirm-popover-footer-justify-content);
     margin-top: var(--ti-popconfirm-popover-footer-margin-top);
   }
+
   &__confirm-button {
     width: 72px;
   }
+
   &__cancel-button {
     width: 72px;
   }
 
-  .fill-color-info-secondary {
+  &--info {
     fill: #5cacff;
   }
-  .fill-color-error {
+
+  &--error {
     fill: #eb171f;
   }
-  .fill-color-warning {
+
+  &--warning {
     fill: #fdc000;
   }
-  .fill-color-success {
+
+  &--success {
     fill: #00a874;
   }
 }
