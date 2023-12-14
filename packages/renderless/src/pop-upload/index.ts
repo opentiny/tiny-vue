@@ -139,8 +139,6 @@ export const closeErrorTips = (state) => () => (state.errorTips = [])
 
 export const closeSuccessTips = (state) => () => (state.successTips = [])
 
-export const watchFilters = (state) => (value) => (state.filters = value)
-
 export const watchLimit = (state) => (value) => {
   state.limit = value
 

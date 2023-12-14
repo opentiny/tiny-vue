@@ -4,7 +4,7 @@ test('节点状态', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('time-line#status')
 
-  const timeline = page.locator('#preview .tiny-steps-timeline')
+  const timeline = page.locator('#status .tiny-steps-timeline')
   const timelineItems = timeline.locator('.tiny-timeline-item')
   await expect(timelineItems.first()).toHaveClass(/timeline-item--primary/)
   await expect(timelineItems.nth(1)).toHaveClass(/timeline-item--success/)

@@ -42,5 +42,5 @@ export default {
       'codeFiles': ['question/demo2.vue']
     }
   ],
-  apis: [{ 'name': 'chart-question', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-question', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

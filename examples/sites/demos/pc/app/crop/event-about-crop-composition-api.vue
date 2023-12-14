@@ -11,6 +11,8 @@
       @cropmove="cropmove"
       @cropend="cropend"
       @crop="crop"
+      @cropdata="cropdata"
+      enable
     ></tiny-crop>
   </div>
 </template>
@@ -26,6 +28,13 @@ const imgUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/moun
 function getCanvasData() {
   Modal.message({
     message: `Canvas 数据：${JSON.stringify(cropRef.value.getCropBoxData())}`,
+    status: 'info'
+  })
+}
+
+function cropdata(data) {
+  Modal.message({
+    message: `Canvas 数据：${JSON.stringify(data)}`,
     status: 'info'
   })
 }

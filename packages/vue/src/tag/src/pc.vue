@@ -37,10 +37,7 @@ export default defineComponent({
     ]
 
     const tagElement = (
-      <span
-        class={classes}
-        style={{ backgroundColor: color, display: state.show ? null : 'none' }}
-        onClick={handleClick}>
+      <span class={classes} style={{ backgroundColor: color }} onClick={handleClick}>
         {value ? <span>{value}</span> : slots.default && slots.default()}
         {closable && <icon-close class="tiny-svg-size tiny-tag__close " onClick={handleClose}></icon-close>}
       </span>

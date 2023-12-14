@@ -10,7 +10,6 @@ export const tabItemProps = {
     default: () => $constants
   },
   title: String,
-  labelContent: Function,
   name: String,
   withClose: Boolean,
   disabled: Boolean,

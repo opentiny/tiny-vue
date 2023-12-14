@@ -13,7 +13,7 @@ test('调整窗口大小', async ({ page }) => {
   // 开始拖动放大
   await page.mouse.move(x, y)
   await page.mouse.down()
-  await page.mouse.move(x, y - 50)
+  await page.mouse.move(x + 100, y + 100)
   await page.mouse.move(x - 50, y)
   await expect(modal).toHaveClass(/is__drag/)
   await page.mouse.up()

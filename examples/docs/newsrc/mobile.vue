@@ -1,12 +1,8 @@
 <template>
   <div class="wp100 hp100 f-r of-hidden">
     <div class="w230 pt20 of-auto">
-      <tiny-tree-menu
-        class="!w213"
-        :data="menuData"
-        :filter-node-method="fn.searchMenu"
-        @current-change="fn.clickMenu"
-      ></tiny-tree-menu>
+      <tiny-tree-menu class="!w213" :data="menuData" :filter-node-method="fn.searchMenu"
+        @current-change="fn.clickMenu"></tiny-tree-menu>
     </div>
     <div class="fi-1 f-c px20 pb30 f-c pr200 of-auto">
       <!-- 标题 -->
@@ -16,8 +12,7 @@
       <div id="preview" class="bg-white">
         <div class="mb20 py10 pl16 child<code>p4 child<code>bg-lightless">
           <div class="mr20 fw-bold">
-            {{ state.currDemo?.name['zh-CN'] }}( <span class="allselect">{{ state.currDemo?.codeFiles[0] }}</span
-            >):
+            {{ state.currDemo?.name['zh-CN'] }}( <span class="allselect">{{ state.currDemo?.codeFiles[0] }}</span>):
           </div>
           <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
@@ -78,13 +73,8 @@
     <!-- 右边浮动所有的demos -->
     <tiny-floatbar v-if="state.demos.length > 0" class="!top120 !z1 !right25">
       <div class="f12 ofy-auto">
-        <div
-          v-for="demo in state.demos"
-          :key="demo.demoId"
-          @click="fn.selectDemo(demo.demoId)"
-          class="w130 px10 py4 bg-light f-r f-pos-between"
-          :class="{ 'c-error': state.currDemo === demo }"
-        >
+        <div v-for="demo in state.demos" :key="demo.demoId" @click="fn.selectDemo(demo.demoId)"
+          class="w130 px10 py4 bg-light f-r f-pos-between" :class="{ 'c-error': state.currDemo === demo }">
           <div class="link-primary h:c-error h:td-under ellipsis">
             {{ demo.name['zh-CN'] }}
             <Icon-star-icon v-if="state.currDemo === demo" style="fill: #ee343f" />

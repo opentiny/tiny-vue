@@ -4,7 +4,7 @@ test('Textpopup 清空value值', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('text-popup#clear-value')
 
-  const preview = page.locator('#preview')
+  const preview = page.locator('#clear-value')
   const button = preview.getByRole('button', { name: '点击清除' })
   const small = preview.locator('input')
   const larger = preview.locator('textarea')

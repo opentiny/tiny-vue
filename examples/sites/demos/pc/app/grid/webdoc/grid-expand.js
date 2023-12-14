@@ -53,5 +53,5 @@ export default {
       'codeFiles': ['expand/set-row-expansion.vue']
     }
   ],
-  apis: [{ 'name': 'grid-expand', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-expand', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

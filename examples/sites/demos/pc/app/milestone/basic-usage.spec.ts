@@ -53,7 +53,7 @@ test('基本用法', async ({ page }) => {
       'box-shadow': 'rgba(250, 173, 20, 0.4) 0px 0px 0px 4px'
     }
   ]
-  const titles = ['completed状态', 'completed状态', 'doing状态', 'cancel状态', 'back状态', 'end状态']
+  const titles = ['completed 状态', 'completed 状态', 'doing 状态', 'cancel 状态', 'back 状态', 'end 状态']
   const flagContents = [/引导用户按照流程完成任务/, /test7欢迎使用vui/, /test8/, /test6/]
   const flagLineColors = ['rgb(245, 34, 45)', 'rgb(245, 34, 45)', 'rgb(126, 211, 33)', 'rgb(94, 124, 224)']
 

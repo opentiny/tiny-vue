@@ -45,7 +45,7 @@ export default {
     {
       'name': 'hrapprover',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'value',
           'type': 'string ',

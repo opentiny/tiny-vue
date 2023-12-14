@@ -13,12 +13,12 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <p>场景2：设置inherit-width</p>
+    <p>场景2：设置 inherit-width</p>
     <tiny-dropdown split-button type="success" :inherit-width="true">
       更多菜单
       <template #dropdown>
         <tiny-dropdown-menu>
-          <tiny-dropdown-item>黄金糕黄金糕黄金糕黄金糕黄金糕黄金糕黄金糕黄金糕黄金糕黄金糕</tiny-dropdown-item>
+          <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
           <tiny-dropdown-item>狮子头</tiny-dropdown-item>
           <tiny-dropdown-item>螺蛳粉</tiny-dropdown-item>
           <tiny-dropdown-item disabled>双皮奶</tiny-dropdown-item>

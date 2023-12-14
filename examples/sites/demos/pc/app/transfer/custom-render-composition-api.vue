@@ -41,7 +41,7 @@ const value = ref([1, 4])
 function renderDataItem(h, option) {
   return (
     <span>
-      <span class="red">{option.id}</span> - {option.text}- by jsx
+      <span class="red">{option.id}</span> - {option.text} - by jsx
     </span>
   )
 }

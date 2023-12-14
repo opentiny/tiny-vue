@@ -18,7 +18,7 @@ export default {
     {
       'name': 'chart',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data ',
           'type': 'object ',

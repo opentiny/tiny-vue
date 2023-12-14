@@ -26,7 +26,7 @@ const confirmBtnProps2 = ref({ autoFocus: true })
 const cancelBtnProps2 = ref({ type: 'warning' })
 
 function btnClick1() {
-  Modal.confirm({
+  TinyModal.confirm({
     message: '自定义确定按钮和取消按钮props',
     confirmBtnProps: confirmBtnProps1.value,
     cancelBtnProps: cancelBtnProps1.value

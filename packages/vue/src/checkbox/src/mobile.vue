@@ -16,7 +16,8 @@
       'is-disabled': state.isDisabled,
       'is-checked': state.isChecked,
       'is-indeterminate': indeterminate,
-      'is-focus': state.focus
+      'is-focus': state.focus,
+      'icon-position-top': state.iconPosition === 'top'
     }"
     :id="id"
   >
@@ -80,7 +81,8 @@ export default defineComponent({
     'name',
     'trueLabel',
     'falseLabel',
-    'id'
+    'id',
+    'iconPosition',
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

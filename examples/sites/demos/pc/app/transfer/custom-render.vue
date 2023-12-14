@@ -49,7 +49,7 @@ export default {
     renderDataItem(h, option) {
       return (
         <span>
-          <span class="red">{option.id}</span> - {option.text} -by jsx
+          <span class="red">{option.id}</span> - {option.text} - by jsx
         </span>
       )
     }

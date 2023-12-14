@@ -51,7 +51,7 @@ test('配置式：使用 menu-options 和 text-field', async ({ page }) => {
   const dropDownMenu = page.locator('body > .tiny-dropdown-menu')
   const dropDownMenuItem = dropDownMenu.locator('.tiny-dropdown-item')
 
-  await page.waitForTimeout(1200)
+  await page.waitForTimeout(2000)
   await dropDown.hover()
   await expect(dropDownMenu.first()).toBeVisible()
   await expect(dropDownMenuItem.first()).toContainText('老友粉')

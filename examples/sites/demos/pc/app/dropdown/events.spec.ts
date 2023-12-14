@@ -35,6 +35,7 @@ test('配置式内置事件', async ({ page }) => {
   const wrap = page.locator('#events')
   const notify = page.locator('.tiny-notify')
   const dropDown = wrap.locator('.tiny-dropdown').nth(1)
+
   await expect(dropDown).toHaveClass(/options-event/)
   const dropDownMenuItem = page.locator('body > .tiny-dropdown-menu > .tiny-dropdown-item')
 

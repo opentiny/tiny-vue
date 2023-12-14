@@ -7,7 +7,7 @@
       <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
       <tiny-grid-column field="city" title="城市"></tiny-grid-column>
       <tiny-grid-column title="操作" width="100">
-        <template v-slot="data">
+        <template #default="data">
           <div style="text-align: left; font-size: 16px">
             <icon-plus class="tiny-svg-size" @click="$refs.insertGrid.insertAt(record, data.row)"></icon-plus
             >&nbsp;&nbsp;

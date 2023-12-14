@@ -6,6 +6,10 @@ export interface ITagState {
   type: string | undefined
   show: boolean
   selected: boolean
+  text: string
+  color: string
+  mini: boolean
+  maxWidth: string | number
 }
 
 export interface ITagApi {

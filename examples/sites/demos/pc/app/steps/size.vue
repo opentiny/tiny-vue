@@ -1,5 +1,5 @@
 <template>
-  <tiny-steps vertical line size="small" :data="data" :active="advancedActive" @click="normalClick"></tiny-steps>
+  <tiny-steps vertical line size="small" :data="data" :active="active" @click="normalClick"></tiny-steps>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      advancedActive: 1,
+      active: 1,
       data: [
         {
           name: 'Basic Info',
@@ -20,7 +20,7 @@ export default {
         { name: 'BOQ Info', status: 'done', description: 'done 已完成' },
         { name: 'BBQ Info', status: 'error', description: 'error 错误' },
         {
-          name: 'Involved Parties Involved Parties Involved Parties',
+          name: 'Involved Parties',
           status: 'disabled'
         },
         { name: 'Billing', status: '', description: '默认无状态' }
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     normalClick(index, node) {
-      normalActive.value = index
+      this.active = index
     }
   }
 }

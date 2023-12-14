@@ -36,5 +36,5 @@ export default {
       'codeFiles': ['slot/header-slot.vue']
     }
   ],
-  apis: [{ 'name': 'grid-slot', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-slot', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -27,7 +27,7 @@ const $delay = (time) => new Promise((resolve) => setTimeout(resolve, time))
  */
 const $idle = () => new Promise((resolve) => (window.requestIdleCallback || window.requestAnimationFrame)(resolve))
 
-const $pub = (url) => {
+const pubUrl = (url) => {
   return baseUrl + url
 }
 
@@ -80,4 +80,4 @@ const fetchDemosFile = (path) => {
   })
 }
 
-export { $clone, $split, $delay, $idle, $pub, fetchDemosFile }
+export { $clone, $split, $delay, $idle, pubUrl, fetchDemosFile }

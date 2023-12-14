@@ -91,5 +91,5 @@ export default {
       'codeFiles': ['edit/trigger-mode-for-editing.vue']
     }
   ],
-  apis: [{ 'name': 'grid-edit', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-edit', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }
