@@ -113,7 +113,8 @@ export const cmpMenus = [
       { name: 'Icon', nameCn: '图标', key: 'icon' },
       { name: 'ActionSheet', nameCn: '上滑列表组件', key: 'actionsheet' },
       { name: 'MiniPicker', nameCn: 'mini选择器', key: 'minipicker' },
-      { name: 'UserHead', nameCn: '用户头像', key: 'user-head' }
+      { name: 'UserHead', nameCn: '用户头像', key: 'user-head' },
+      { name: 'Tag', nameCn: '标签', key: 'tag' }
     ]
   }
 ]

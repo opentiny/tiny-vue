@@ -2434,6 +2434,7 @@
     "exclude": false,
     "mode": [
       "mobile-first",
+      "mobile",
       "pc"
     ]
   },
@@ -2453,6 +2454,11 @@
   },
   "TagGroupPc": {
     "path": "vue/src/tag-group/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TagMobile": {
+    "path": "vue/src/tag/src/mobile.vue",
     "type": "template",
     "exclude": false
   },
