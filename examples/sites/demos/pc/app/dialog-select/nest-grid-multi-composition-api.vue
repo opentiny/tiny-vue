@@ -48,7 +48,8 @@ import {
   DialogSelect as TinyDialogSelect,
   Button as TinyButton,
   Search as TinySearch,
-  Select as TinySelect
+  Select as TinySelect,
+  Modal
 } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
@@ -135,13 +136,13 @@ const dialogSelect = ref('')
 
 const onSizeChange = (pageSize) => {
   state.pagerOp.pageSize = pageSize
-  console.log(dialogSelect)
+
   dialogSelect.value.valuequeryGridData()
 }
 
 const onCurrentChange = (currentPage) => {
   state.pagerOp.currentPage = currentPage
-  console.log(dialogSelect)
+
   dialogSelect.value.queryGridData()
 }
 
@@ -178,7 +179,9 @@ const lookupMethod = (values) => {
 }
 
 const onDialogSelectChange = (values, texts) => {
-  console.log(values, texts)
+  Modal.message({
+    message: `values:${values},texts:${texts}`
+  })
 }
 </script>
 

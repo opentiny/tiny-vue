@@ -1,16 +1,16 @@
 <template>
   <div class="tiny-demo">
-    <tiny-button @click="visible = !visible">{{ `${visible ? '关闭' : '打开'}窗口` }}</tiny-button>
+    <tiny-button @click="state.visible = !state.visible">{{ `${state.visible ? '关闭' : '打开'}窗口` }}</tiny-button>
     <tiny-dialog-select
       ref="dialogSelect"
       class="tiny-demo-tree-multi"
-      :visible="visible"
-      @update:visible="visible = $event"
+      :visible="state.visible"
+      @update:visible="state.visible = $event"
       popseletor="tree"
       multi
-      :dialog-op="dialogOp"
-      :tree-op="treeOp"
-      :selected-box-op="selectedBoxOp"
+      :dialog-op="state.dialogOp"
+      :tree-op="state.treeOp"
+      :selected-box-op="state.selectedBoxOp"
       :lookup-method="lookupMethod"
       :before-close="beforeClose"
       @change="onDialogSelectChange"
@@ -35,8 +35,9 @@
   </div>
 </template>
 
-<script>
-import { DialogSelect, Button } from '@opentiny/vue'
+<script setup lang="ts">
+import { reactive } from 'vue'
+import { DialogSelect as TinyDialogSelect, Button as TinyButton, Modal } from '@opentiny/vue'
 import { iconClose } from '@opentiny/vue-icon'
 import Sortable from 'sortablejs'
 
@@ -53,6 +54,7 @@ const datas = [
   { id: 9, pid: 4, label: '三级 9', isLeaf: true, children: [] }
 ]
 
+const tinyIconClose = iconClose()
 // 接口1：根据pid查询直接子节点
 const queryChildrenByPid = (pid) => datas.filter((record) => record.pid === pid)
 
@@ -93,96 +95,102 @@ const queryPidsBySearchFn = (search) => {
 
 // 接口3：根据一组节点id找到匹配节点的所有父级节点id
 // （使用了接口2只是为了简化示例代码，实现为批量接口可提高查询效率）
-const queryPidsByIdsFn = (ids, pids = []) => (
-  ids.forEach((id) => (pids = [...pids, ...queryPidsBySearchFn(id)])), dedup(pids)
-)
+const queryPidsByIdsFn = (ids, pids = []) => {
+  let allPids = [...pids]
+
+  ids.forEach((id) => {
+    allPids = allPids.concat(queryPidsBySearchFn(id))
+  })
+
+  return dedup(allPids)
+}
 
 // 接口4：根据一组节点id查询这组节点
 const queryNodesByIds = (ids) => datas.filter((row) => ~ids.indexOf(row.id))
 
 // 去重
-const dedup = (ids, tmp = []) => (ids.forEach((id) => !~tmp.indexOf(id) && tmp.push(id)), tmp)
+const dedup = (ids, tmp = []) => {
+  const res = [...tmp, ...ids]
 
-export default {
-  components: {
-    TinyDialogSelect: DialogSelect,
-    TinyButton: Button,
-    TinyIconClose: iconClose()
+  return Array.from(new Set(res))
+}
+
+const remoteSearch = (node, callback) => {
+  setTimeout(() => {
+    const res = queryChildrenByPid(node.level === 0 ? null : node.data.id)
+    callback(res)
+  }, 300)
+}
+
+const queryPidsBySearch = (search, callback) => {
+  setTimeout(() => {
+    const res = queryPidsBySearchFn(search)
+
+    callback(res)
+  }, 300)
+}
+
+const queryPidsByIds = (ids, callback) => {
+  setTimeout(() => {
+    const res = queryPidsByIdsFn(ids)
+    callback(res)
+  }, 300)
+}
+
+const beforeClose = () => {
+  return true
+}
+
+const state = reactive({
+  visible: false,
+  dialogOp: {
+    top: '20vh',
+    width: '800px',
+    title: '选择公司',
+    beforeClose,
+    dialogClass: 'custom-dialog-class'
   },
-  data() {
-    return {
-      visible: false,
-      dialogOp: {
-        top: '20vh',
-        width: '800px',
-        title: '选择公司',
-        beforeClose: this.beforeClose,
-        dialogClass: 'custom-dialog-class'
-      },
-      selectedBoxOp: {
-        config: {
-          pkField: 'id',
-          pkFieldType: 'number',
-          showField: ['label'],
-          plugin: Sortable
-        }
-      },
-      treeOp: {
-        nodeKey: 'id',
-        pathSplit: '/',
-        props: { children: 'children', label: 'label', isLeaf: 'isLeaf' },
-        checkStrictly: true,
-        baseIndent: 0,
-        load: this.remoteSearch,
-        queryPidsBySearch: this.queryPidsBySearch,
-        queryPidsByIds: this.queryPidsByIds,
-        defaultCheckedKeys: [1, 4, 8]
-      }
+  selectedBoxOp: {
+    config: {
+      pkField: 'id',
+      pkFieldType: 'number',
+      showField: ['label'],
+      plugin: Sortable
     }
   },
-  methods: {
-    beforeClose() {
-      return true
-    },
-    remoteSearch(node, callback) {
-      setTimeout(() => {
-        
-        const res = queryChildrenByPid(node.level === 0 ? null : node.data.id)
-        console.log(node.level,node.data?.id,res)
-        callback(res)
-      }, 300)
-    },
-    queryPidsBySearch(search, callback) {
-      setTimeout(() => {
-        const res = queryPidsBySearchFn(search)
-        callback(res)
-      }, 300)
-    },
-    queryPidsByIds(ids, callback) {
-      setTimeout(() => {
-        const res = queryPidsByIdsFn(ids)
-        callback(res)
-      }, 300)
-    },
-    lookupMethod(values) {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const res = queryNodesByIds(values)
-          // 序列化是为了模拟每次返回的都是新对象
-          const copy = JSON.parse(JSON.stringify(res))
-          // 已选栏在插槽中使用字段_$title和_$auxi做定制显示，所以要在lookup接口内设置；如果使用其它字段，就不用设置
-          copy.forEach((row) => {
-            row._$title = row.label
-            row._$auxi = '辅助文本'
-          })
-          resolve(copy)
-        }, 300)
-      })
-    },
-    onDialogSelectChange(values, texts) {
-      console.log(values, texts)
-    }
+  treeOp: {
+    nodeKey: 'id',
+    pathSplit: '/',
+    props: { children: 'children', label: 'label', isLeaf: 'isLeaf' },
+    checkStrictly: true,
+    baseIndent: 0,
+    load: remoteSearch,
+    queryPidsBySearch,
+    queryPidsByIds,
+    defaultCheckedKeys: [1, 4, 8]
   }
+})
+
+const lookupMethod = (values) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const res = queryNodesByIds(values)
+      // 序列化是为了模拟每次返回的都是新对象
+      const copy = JSON.parse(JSON.stringify(res))
+      // 已选栏在插槽中使用字段_$title和_$auxi做定制显示，所以要在lookup接口内设置；如果使用其它字段，就不用设置
+      copy.forEach((row) => {
+        row._$title = row.label
+        row._$auxi = '辅助文本'
+      })
+      resolve(copy)
+    }, 300)
+  })
+}
+
+const onDialogSelectChange = (values, texts) => {
+  Modal.message({
+    message: `values:${values},texts:${texts}`
+  })
 }
 </script>
 

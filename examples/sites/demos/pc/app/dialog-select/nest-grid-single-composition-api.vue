@@ -45,7 +45,8 @@ import {
   DialogSelect as TinyDialogSelect,
   Button as TinyButton,
   Search as TinySearch,
-  Select as TinySelect
+  Select as TinySelect,
+  Modal
 } from '@opentiny/vue'
 
 // 模拟服务侧数据
@@ -97,7 +98,7 @@ const state = reactive({
     top: '20vh',
     width: '800px',
     title: '选择公司',
-    beforeClose: beforeClose,
+    beforeClose,
     dialogClass: 'custom-dialog-class'
   },
   gridOp: {
@@ -162,7 +163,9 @@ const lookupMethod = (values) => {
 }
 
 const onDialogSelectChange = (values, texts) => {
-  console.log(values, texts)
+  Modal.message({
+    message: `values:${values},texts:${texts}`
+  })
 }
 </script>
 
