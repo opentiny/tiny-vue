@@ -220,7 +220,7 @@ export default {
             'zh-CN': '节点时间信息对应的字段名',
             'en-US': 'The name of the field corresponding to the node time information'
           },
-          'demoId': 'custome-filed'
+          'demoId': 'custom-field'
         },
         {
           'name': 'vertical',
