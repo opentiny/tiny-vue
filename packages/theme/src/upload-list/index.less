@@ -34,6 +34,10 @@
   padding: 0;
   list-style: none;
 
+  &__wrapper {
+    display: inline;
+  }
+
   a:hover {
     color: #333;
     text-decoration: var(--ti-upload-list-item-hover-text-decoration);
@@ -283,7 +287,7 @@
   }
 
   &__icon-operationfaild {
-    fill: var(--ti-upload-list-item-fail-text-color);
+    fill: #F23030;
     margin-right: 9px;
     padding-left: 4px;
     font-size: 16px;
@@ -489,6 +493,21 @@
         top: 50%;
       }
     }
+
+    // smb取消上传功能
+    .@{upload-list-prefix-cls}__item-cancel {
+      position: absolute;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #1476ff;
+      line-height: 22px;
+      letter-spacing: 0;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
   }
 
   &--picture &__item {
