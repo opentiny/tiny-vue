@@ -25,18 +25,33 @@ import Filter from './src/filter'
 import GridConfig from './src/config'
 import GridRadio from './src/radio'
 import GridButton from './src/button'
+import FetchData from './src/fetch-data'
+import Pager from './src/pager'
+import Toolbar from './src/toolbar'
 import * as GridTools from './src/tools'
 import { version } from './package.json'
+import type { Plugin } from './src/types/index.type'
 
-// 右键菜单、内置编辑器、导出、键盘操作、校验、响应式改变表格宽高（auto-resize）、筛选
-const components = [Menu, Edit, Export, Keyboard, Validator, Resize, Filter]
+/**
+ * Menu 右键菜单
+ * Edit 内置编辑器
+ * Export 导出
+ * Keyboard 键盘操作
+ * Validator 校验
+ * Resize 响应式改变表格宽高（auto-resize）
+ * Filter 筛选
+ * FetchData 远程数据处理
+ * Pager 分页处理逻辑
+ * Toolbar 工具栏处理逻辑
+ */
+const plugins: Plugin[] = [Menu, Edit, Export, Keyboard, Validator, Resize, Filter, FetchData, Pager, Toolbar]
 
 // 设置全局参数,配置GlobalConfig，提供比如国际化方法
 GridAdapter.setup({ i18n: t })
 GridAdapter.t = t
 
-// 把各个插件的方法都合并会$table
-components.map((component) => component.install(Table))
+// 将每个插件的方法都合并回自己的宿主组件
+plugins.map((plugin) => plugin.install(plugin.host === 'grid' ? Grid : Table))
 
 Grid.version = version
 

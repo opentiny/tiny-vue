@@ -23,71 +23,17 @@
  *
  */
 
-import { getObj } from '@opentiny/vue-renderless/common/object'
-import { isBoolean, slice } from '@opentiny/vue-renderless/grid/static/'
-import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
-import { getDataset } from '@opentiny/vue-renderless/common/dataset'
+import { isBoolean } from '@opentiny/vue-renderless/grid/static/'
 import { getListeners, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { extend } from '@opentiny/vue-renderless/common/object'
-import { h, hooks, emitter, $prefix, $props, setup, defineComponent, resolveMode } from '@opentiny/vue-common'
-import Modal from '@opentiny/vue-modal'
-import Pager from '@opentiny/vue-pager'
-import { Buttons } from '../adapter'
-import { error } from '../tools'
+import { h, emitter, $prefix, $props, setup, defineComponent, resolveMode } from '@opentiny/vue-common'
 import TinyGridTable from '../table'
 import GlobalConfig from '../config'
-import methods, { setBodyRecords, invokeSaveDataApi, doRemoveOrShowMsg } from './methods'
+import methods from './methods'
 import { iconMarkOn } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
 const propKeys = Object.keys(TinyGridTable.props)
-
-// 表格工具栏渲染器
-function getRenderedToolbar({ $slots, _vm, loading, tableLoading, toolbar }) {
-  return (_vm.renderedToolbar = (() => {
-    let res = null
-
-    if ($slots.toolbar) {
-      res = $slots.toolbar()
-    } else if (toolbar) {
-      res = h(hooks.toRaw(toolbar.component), {
-        ref: 'toolbar',
-        props: { loading: loading || tableLoading, ...toolbar },
-        class: _vm.viewCls('toolbar')
-      })
-    }
-
-    return res
-  })())
-}
-
-// 表格内置分页渲染器
-function renderPager({ $slots, _vm, loading, pager, pagerConfig, tableLoading, vSize }) {
-  let res = null
-  if ($slots.pager) {
-    res = $slots.pager()
-  } else if (pager) {
-    pager.component = pager.component || Pager
-    res = h(hooks.toRaw(pager.component), {
-      props: {
-        size: vSize,
-        loading: loading || tableLoading,
-        isBeforePageChange: _vm.isBeforePageChange || _vm.showSaveMsg,
-        accurateJumper: _vm.autoLoad,
-        ...pagerConfig
-      },
-      on: {
-        'size-change': _vm.pageSizeChange,
-        'current-change': _vm.pageCurrentChange,
-        'before-page-change': _vm.beforePageChangeHandler
-      },
-      ref: 'pager',
-      class: _vm.viewCls('pager')
-    })
-  }
-
-  return res
-}
 
 function renderColumnAnchor(params, _vm) {
   const { anchors = [], action = () => {} } = params || {}
@@ -151,7 +97,7 @@ function createRender(opt) {
       columnAnchor ? renderColumnAnchor(columnAnchorParams, _vm) : null,
       // 这里会渲染tiny-grid-column插槽内容，从而获取列配置
       h(TinyGridTable, { props, on: tableOns, ref: 'tinyTable' }, $slots.default && $slots.default()),
-      renderPager({
+      _vm.renderPager({
         $slots,
         _vm,
         loading,
@@ -348,7 +294,7 @@ export default defineComponent({
       remoteFilter,
       remoteSort,
       selectToolbar
-    } = this
+    } = this as any
     const {
       seqIndex,
       slots: $slots,
@@ -361,7 +307,7 @@ export default defineComponent({
       vSize,
       designConfig,
       viewType
-    } = this
+    } = this as any
     const { columnAnchor, columnAnchorParams } = this
 
     // grid全局替换smb图标
@@ -397,7 +343,7 @@ export default defineComponent({
     editConfig && (props.editConfig = Object.assign(editConfigOpt, { activeMethod: this.handleActiveMethod }))
 
     // 获取工具栏的渲染器
-    let renderedToolbar = getRenderedToolbar({ $slots, _vm: this, loading, tableLoading, toolbar })
+    let renderedToolbar = this.getRenderedToolbar({ $slots, _vm: this, loading, tableLoading, toolbar })
 
     // 创建表格最外层容器，并加载table组件
     return createRender({
@@ -420,40 +366,6 @@ export default defineComponent({
   },
   methods: {
     ...methods,
-    initPagerConfig() {
-      let { $slots, fetchOption, scrollLoad = {} } = this
-      let pagerProps = {}
-
-      if (fetchOption) {
-        let pagerSlot = $slots.pager && $slots.pager[0]
-
-        if (pagerSlot) {
-          let { componentOptions, children } = pagerSlot
-
-          if (componentOptions && !children) {
-            this.pagerSlot = pagerSlot
-            pagerProps = componentOptions.propsData
-          }
-        } else if (this.pager) {
-          pagerProps = this.pager.attrs
-        }
-
-        if (this.pager || $slots.pager || this.scrollLoad) {
-          return Object.assign(this.tablePage, { pageSize: scrollLoad.pageSize }, pagerProps)
-        }
-
-        return fetchOption.args && fetchOption.args.page
-      }
-    },
-    initFetchOption() {
-      let { fetchData = {}, dataset = {} } = this
-
-      if (fetchData.api || dataset.source || dataset.value || dataset.api) {
-        let { loading, fields, api } = fetchData || dataset.source || dataset.api || {}
-
-        return { api, dataset, fields, loading }
-      }
-    },
     updateParentHeight() {
       if (!this.tasks.updateParentHeight) {
         this.tasks.updateParentHeight = debounce(10, () => {
@@ -486,345 +398,6 @@ export default defineComponent({
         !~this.pendingRecords.indexOf(params.row) &&
         (!this.editConfig.activeMethod || this.editConfig.activeMethod(params))
       )
-    },
-    handleFetch(code, sortArg) {
-      let { pager, sortData, filterData, pagerConfig, fetchOption, fetchData, dataset } = this
-
-      if (code !== 'prefetch') {
-        this.clearRadioRow()
-        this.resetScrollTop()
-      }
-
-      if (!fetchOption) {
-        error('ui.grid.error.notQuery')
-        return this.$nextTick()
-      }
-
-      let { args, loading } = fetchData || dataset.source || dataset.api || {}
-      let { field, order, prop, property } = sortData
-      let sortByData = { field, order, prop, property }
-      let params = {
-        $grid: this,
-        sort: sortData,
-        sortBy: sortByData,
-        filters: filterData,
-        ...args
-      }
-      let search
-      this.tableLoading = loading
-
-      if (pagerConfig) {
-        params.page = pagerConfig
-      }
-
-      if (code === 'reload') {
-        if (pager || args.page) {
-          pagerConfig.currentPage = 1
-        }
-        this.sortData = params.sort = {}
-        this.filterData = params.filters = []
-        this.pendingRecords = []
-        this.clearAll()
-      }
-
-      if (sortArg && sortArg.length > 0) {
-        params.sortBy = sortArg
-      }
-
-      if (fetchData && fetchData.api) {
-        search = fetchData.api.apply(this, [params])
-      } else {
-        search = getDataset({ dataset, service: this.$service }, params)
-      }
-
-      return search.then(this.loadFetchData).catch((error) => {
-        this.tableLoading = false
-        throw error
-      })
-    },
-    loadFetchData(rest) {
-      if (!rest) {
-        this.tableData = []
-        this.tableLoading = false
-        return
-      }
-
-      let {
-        fetchOption: { fields = {} },
-        pagerConfig,
-        pagerSlot
-      } = this
-
-      if (pagerConfig && !Array.isArray(rest)) {
-        let total = getObj(rest, fields.total || 'page.total') || rest?.result?.length || 0
-        let data = getObj(rest, fields.result || fields.data || 'result') || []
-
-        this.tableData = data
-        pagerConfig.total = total
-        // 内置pager
-        let setTotal = pagerSlot && pagerSlot.componentInstance.setTotal
-
-        setTotal && setTotal(total)
-      } else {
-        this.tableData = (fields.list ? getObj(rest, fields.list) : rest) || []
-      }
-
-      if ((this.seqSerial || this.scrollLoad) && pagerConfig) {
-        this.seqIndex = (pagerConfig.currentPage - 1) * pagerConfig.pageSize
-      }
-
-      this.tableLoading = false
-    },
-    handleSave(code, args) {
-      let { saveData, isMsg } = this
-
-      if (!saveData) {
-        error('ui.grid.error.notSave')
-        return
-      }
-
-      let body = extend(true, { pendingRecords: this.pendingRecords }, this.getRecordset())
-      let { insertRecords, removeRecords, updateRecords, pendingRecords } = body
-      let validRows = insertRecords.concat(updateRecords)
-      let getCallback = (resolve) => (valid) => {
-        if (!valid) {
-          resolve(valid)
-          return
-        }
-
-        let canInvoke = invokeSaveDataApi({
-          _vm: this,
-          args,
-          body,
-          code,
-          removeRecords,
-          resolve,
-          saveData,
-          updateRecords,
-          valid
-        })
-
-        doRemoveOrShowMsg({ _vm: this, canInvoke, code, isMsg, pendingRecords, resolve, valid })
-      }
-
-      // 排除掉新增且标记为删除的数据，排除已标记为删除的数据
-      setBodyRecords({ body, insertRecords, pendingRecords })
-
-      // 只校验新增和修改的数据
-      return new Promise((resolve) => {
-        this.validate(validRows, getCallback(resolve))
-      })
-    },
-    handleDelete(code, args) {
-      let { deleteData, isMsg } = this
-
-      if (!deleteData) {
-        error('ui.grid.error.notDelete')
-        return
-      }
-
-      let selecteds = this.getSelectRecords(true)
-      let afterRemove = () => {
-        let removeds = this.getRemoveRecords()
-
-        if (!removeds.length && isMsg && !selecteds.length) {
-          Modal.message({
-            id: code,
-            message: GlobalConfig.i18n('ui.grid.selectOneRecord'),
-            status: 'warning'
-          })
-        }
-
-        if (removeds.length) {
-          let apiArgs = [{ $grid: this, changeRecords: { removeRecords: removeds } }, ...args]
-          let stopLoading = () => {
-            this.tableLoading = false
-          }
-
-          this.tableLoading = true
-
-          return deleteData.api
-            .apply(this, apiArgs)
-            .then(stopLoading)
-            .catch(stopLoading)
-            .then(() => this.commitProxy('reload'))
-        }
-      }
-
-      this.remove(selecteds).then(afterRemove)
-    },
-    handleFullScreen([show]) {
-      const cls = 'tiny-fullscreen-full'
-
-      show ? addClass(this.$el, cls) : removeClass(this.$el, cls)
-
-      this.recalculate()
-
-      emitEvent(this, 'fullscreen', show)
-      this.emitter.emit('fullscreen', show)
-    },
-    commitProxy(code) {
-      let btnMethod = Buttons.get(code)
-      let args = slice(arguments, 1)
-
-      if (code === 'insert') {
-        this.insert()
-      } else if (code === 'insert_actived') {
-        this.insert().then(({ row }) => this.setActiveRow(row))
-      } else if (code === 'mark_cancel') {
-        this.triggerPendingEvent(code)
-      } else if (code === 'delete_selection') {
-        this.handleDeleteRow(code, 'ui.grid.deleteSelectRecord', () =>
-          this.commitProxy.apply(this, ['delete'].concat(args))
-        )
-      } else if (code === 'remove_selection') {
-        this.handleDeleteRow(code, 'ui.grid.removeSelectRecord', () => this.removeSelecteds())
-      } else if (code === 'export') {
-        this.exportCsv()
-      } else if (code === 'reset_custom') {
-        this.resetAll()
-      } else if (~['reload', 'query', 'prefetch'].indexOf(code)) {
-        this.handleFetch(code, args)
-      } else if (code === 'delete') {
-        this.handleDelete(code, args)
-      } else if (code === 'save') {
-        this.handleSave()
-      } else if (code === 'fullscreen') {
-        this.handleFullScreen(args)
-      } else if (btnMethod) {
-        btnMethod.call(this, { code, $grid: this }, ...args)
-      }
-
-      return this.$nextTick()
-    },
-    handleDeleteRow(code, i18nKey, callback) {
-      let selecteds = this.getSelectRecords()
-
-      if (this.isMsg && selecteds.length) {
-        Modal.confirm(GlobalConfig.i18n(i18nKey)).then((type) => {
-          type === 'confirm' && callback()
-        })
-      }
-
-      if (this.isMsg && !selecteds.length) {
-        Modal.message({
-          id: code,
-          message: GlobalConfig.i18n('ui.grid.selectOneRecord'),
-          status: 'warning'
-        })
-      }
-
-      if (!this.isMsg && selecteds.length) {
-        callback()
-      }
-    },
-    getPendingRecords() {
-      return this.pendingRecords
-    },
-    triggerToolbarBtnEvent(button, event) {
-      let { events = {}, tableListeners } = this
-      let { code } = button
-
-      if (!events.toolbarButtonClick && !tableListeners['toolbar-button-click']) {
-        this.commitProxy(code, event)
-      }
-
-      emitEvent(this, 'toolbar-button-click', [{ code, button, $grid: this }, event])
-
-      this.emitter.emit('toolbar-button-click', { code, button, $grid: this }, event)
-    },
-    triggerPendingEvent(code) {
-      let { isMsg, pendingRecords: pendings } = this
-      let selectColumn = this.getColumns().filter((col) => ~['selection', 'radio'].indexOf(col.type))
-      let isSelection = selectColumn.length && selectColumn[0].type === 'selection'
-      let isRadio = selectColumn.length && selectColumn[0].type === 'radio'
-      let selecteds = isSelection ? this.getSelectRecords(true) : isRadio ? [this.getRadioRow()] : []
-
-      if (!selecteds.length && isMsg) {
-        Modal.message({
-          id: code,
-          message: GlobalConfig.i18n('ui.grid.selectOneRecord'),
-          status: 'warning'
-        })
-      }
-
-      if (selecteds.length) {
-        let { plus = [], minus = [], tmp } = {}
-
-        selecteds.forEach((data) => {
-          let selectedPending = pendings.includes(data)
-
-          tmp = selectedPending ? minus : plus
-          tmp.push(data)
-        })
-
-        tmp = minus.length ? pendings.filter((item) => !~minus.indexOf(item)) : pendings
-        this.pendingRecords = tmp.concat(plus)
-
-        isSelection && this.clearSelection()
-        isRadio && this.clearRadioRow()
-      }
-    },
-    pageChangeEvent(params) {
-      // 这里需要做下防抖操作，防止在pageSize从小变大的时候导致fetch-data触发多次
-      if (!this.tasks.updatePage) {
-        this.tasks.updatePage = debounce(200, () => {
-          const eventParams = { $grid: this, ...params }
-
-          // 处理标签式监听事件的：@page-change
-          emitEvent(this, 'page-change', eventParams)
-
-          // 处理配置式表格的监听事件
-          this.emitter.emit('page-change', eventParams)
-
-          // 触发fetchData
-          this.commitProxy('query')
-
-          if (this.toolBarVm) {
-            this.toolBarVm.orderSetting()
-          }
-        })
-      }
-      this.tasks.updatePage()
-    },
-    // size为页大小，load为false则触发change事件与查询，在个性化初始化时根据autoload控制是否加载数据
-    pageSizeChange(size, load) {
-      this.tablePage.pageSize = size
-      this.tablePage.currentPage = 1
-      load || this.pageChangeEvent(this.tablePage)
-    },
-    pageCurrentChange(current) {
-      this.tablePage.currentPage = current
-      this.pageChangeEvent(this.tablePage)
-    },
-    beforePageChangeHandler(params) {
-      if (!this.showSaveMsg) {
-        let eventParams = extend(false, { $grid: this }, params)
-
-        emitEvent(this, 'before-page-change', eventParams)
-        this.emitter.emit('before-page-change', eventParams)
-
-        return
-      }
-
-      let { callback, rollback } = params
-      let { insertRecords, removeRecords, updateRecords } = this.getRecordset()
-
-      if (insertRecords.length || removeRecords.length || updateRecords.length) {
-        let next = (res) => {
-          if (res === 'confirm') {
-            rollback && rollback()
-            emitEvent(this, 'cancel-page-change', this)
-            this.emitter.emit('cancel-page-change', this)
-          } else {
-            callback && callback()
-          }
-        }
-
-        Modal.confirm(GlobalConfig.i18n('ui.grid.isSaveMsg')).then(next)
-      } else {
-        callback && callback()
-      }
     },
     sortChangeEvent(params) {
       let remoteSort = this.remoteSort
@@ -872,7 +445,7 @@ export default defineComponent({
       }
 
       if (Array.isArray(columnAnchor) && columnAnchor.length) {
-        columnAnchor.map((item) => {
+        columnAnchor.forEach((item) => {
           if (typeof item === 'string') {
             getAnchor(item)
           } else if (Array.isArray(item) && item.length) {
@@ -901,7 +474,12 @@ export default defineComponent({
             const column = visibleColumn.find((col) => !col.type && col.property === field)
             const width = visibleColumn
               .filter((col) => !col.fixed)
-              .map((col) => (col === column && (found = true), found ? 0 : col.renderWidth))
+              .map((col) => {
+                if (col === column) {
+                  found = true
+                }
+                return found ? 0 : col.renderWidth
+              })
               .reduce((p, c) => p + c, 0)
 
             if (column) {
@@ -911,6 +489,7 @@ export default defineComponent({
         }
       }
     },
+    // 监听某个元素是否出现在视口中
     addIntersectionObserver() {
       if (this.intersectionOption && this.intersectionOption.disabled) return
 
