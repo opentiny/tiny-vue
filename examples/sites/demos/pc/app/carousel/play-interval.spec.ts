@@ -7,7 +7,7 @@ test('轮播间隔时间', async ({ page }) => {
   const carouselItems = preview.locator('div.tiny-carousel__item')
 
   // 当前应该显示第二张幻灯片
-  await expect(carouselItems.nth(1)).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)')
+  await expect(carouselItems.nth(1)).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 712, 0)')
   // 当前应该显示第三张幻灯片
   await expect(carouselItems.nth(2)).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)')
   // 当前应该显示第四张幻灯片

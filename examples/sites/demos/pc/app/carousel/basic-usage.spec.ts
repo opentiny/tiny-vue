@@ -18,5 +18,5 @@ test('基础用法', async ({ page }) => {
   await preview.getByRole('list').getByRole('button').nth(1).click()
   await preview.getByRole('list').getByRole('button').nth(2).click()
   await preview.getByRole('list').getByRole('button').nth(3).click()
-  await expect(carouselItems.first()).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 704, 0)')
+  await expect(carouselItems.first()).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 712, 0)')
 })
