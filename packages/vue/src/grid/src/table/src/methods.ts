@@ -1035,6 +1035,8 @@ const Methods = {
     return this.recalculate()
   },
   updateStyle() {
+    // 窗口resize后，手动调用recalculate父容器高度还是初始值，需要update一下
+    this.updateParentHeight()
     let { columnStore, currentRow, height, maxHeight, minHeight, parentHeight, tableColumn } = this
     let layoutList = ['header', 'body', 'footer']
     let { customHeight, scaleToPx } = {}
