@@ -107,7 +107,9 @@ import {
   computedGetIcon,
   computedGetTagType,
   computedShowDropdownIcon,
-  clearNoMatchValue
+  clearNoMatchValue,
+  debouncedQueryChange,
+  handleDebouncedQueryChange
 } from './index'
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
@@ -289,9 +291,8 @@ const addApi = ({ api, props, state, emit, constants, parent, nextTick, dispatch
     handleOptionSelect: handleOptionSelect({ api, nextTick, props, vm, state }),
     getPluginOption: getPluginOption({ api, props, state }),
     toggleCheckAll: toggleCheckAll({ api, emit, state, props }),
-    debouncedQueryChange: debounce(state.debounce, (event) => {
-      api.handleQueryChange(props.shape ? event : event.target.value)
-    }),
+    handleDebouncedQueryChange: handleDebouncedQueryChange({ state, api }),
+    debouncedQueryChange: debouncedQueryChange({ props, api }),
     debouncedOnInputChange: debounce(state.debounce, () => {
       api.onInputChange()
     }),
