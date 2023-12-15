@@ -1,7 +1,9 @@
 <template>
   <div>
-    <tiny-switch v-model="type" true-value="line" false-value="dot"> </tiny-switch>
-    当前类型：{{ type }}
+    <div class="demo-top mb10">
+      <tiny-switch v-model="type" true-value="line" false-value="dot"> </tiny-switch>
+      <span>当前类型：{{ type }}</span>
+    </div>
     <tiny-anchor :links="links" :type="type"></tiny-anchor>
   </div>
 </template>
@@ -55,3 +57,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-top {
+  display: flex;
+  align-items: center;
+}
+</style>
