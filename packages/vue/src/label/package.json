@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/vue-link",
+  "name": "@opentiny/vue-label",
   "version": "3.7.0",
   "description": "",
   "main": "lib/index.js",
