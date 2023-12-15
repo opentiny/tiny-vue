@@ -114,7 +114,8 @@ const initState = ({ reactive, computed, props, api, parent, inject }) => {
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
     disabled: computed(() => props.disabled || state.formDisabled),
     slotValue: '',
-    isSlotTyping: false
+    isSlotTyping: false,
+    mouseOuterBtn: false
   })
 
   return state
