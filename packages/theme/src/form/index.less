@@ -119,10 +119,12 @@
 
   &__valid {
     &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
-      // 华为云规范 12px 16px; 所以它直接按tooltip的默认值即可
-      // padding: 7px 4px;
+      .tooltip-validate-icon {
+        fill: var(--ti-tooltip-validate-icon-color);
+        margin-right: 8px;
+      }
 
-      &.is-error[x-placement^='top'] .popper__arrow {
+      &[x-placement^='top'] .popper__arrow {
         bottom: -4px;
       }
 
