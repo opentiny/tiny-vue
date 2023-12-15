@@ -124,7 +124,9 @@
     "build:react-site": "pnpm --filter @opentiny/react-site build",
     "prettier": "prettier --config .prettierrc --write .",
     "// ---------- openinula 相关脚本命令 ----------": "",
-    "dev:openinula": "pnpm -C examples/openinula-docs run dev"
+    "dev:openinula": "pnpm -C examples/openinula-docs run dev",
+    "// ---------- solid 相关脚本命令 ----------": "",
+    "dev:solid": "pnpm -C examples/solid-docs run dev"
   },
   "dependencies": {
     "@vue/composition-api": "1.2.2",

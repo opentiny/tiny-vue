@@ -502,7 +502,7 @@ export default {
             'zh-CN': '次级菜单的展开方式',
             'en-US': 'The expansion mode of the secondary menu'
           },
-          'demoId': 'basic-usage'
+          'demoId': 'expand-trigger'
         },
         {
           'name': 'multiple',
