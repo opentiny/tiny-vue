@@ -41,7 +41,7 @@ export function transformVirtualTemplateForBuild(code: string) {
           if (templateArr.length === 1) {
             return `return ${key}`
           } else {
-            return `if ('${value}' === (process.env.TINY_MODE || mode)) {return ${key}}`
+            return `if ('${value}' === (tinyMode || mode)) {return ${key}}`
           }
         })
         .join('\n')
@@ -53,6 +53,9 @@ export function transformVirtualTemplateForBuild(code: string) {
 ${getImports(params)}
 
 const ${localName} = (mode) => {
+
+  const tinyMode = typeof process === 'object' ? process.env?.TINY_MODE : null
+
   ${getTemplateFunction(params)}
 }
   `
