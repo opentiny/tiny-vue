@@ -201,8 +201,16 @@
               :stroke-width="listType === 'picture-card' ? state.progressStrokeWidth : 2"
               :width="state.progressWidth"
               :percentage="parsePercentage(file.percentage)"
+              :show-text="!state.progressWidth"
             >
             </Progress>
+            <div
+              v-if="file.status === 'uploading' && listType === 'picture-card' && state.progressWidth"
+              class="tiny-upload-list__item-cancel"
+              @click="$emit('remove', file)"
+            >
+              {{ t('ui.fileUpload.cancelFile') }}
+            </div>
             <tiny-tooltip placement="top" effect="light" :disabled="state.tooltipDisabled || file.status !== 'fail'">
               <template #content>
                 <span class="tiny-upload-list__item-tooltip"
@@ -211,7 +219,10 @@
                   }}</span
                 >
               </template>
-              <span class="tiny-upload-list__item-actions" v-if="listType === 'picture-card'">
+              <span
+                class="tiny-upload-list__item-actions"
+                v-if="listType === 'picture-card' && (state.progressWidth ? file.status !== 'uploading' : true)"
+              >
                 <span
                   v-if="openDownloadFile"
                   class="tiny-upload-list__item-download"

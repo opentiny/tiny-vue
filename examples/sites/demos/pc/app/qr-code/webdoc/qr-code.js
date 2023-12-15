@@ -40,7 +40,8 @@ export default {
       'props': [
         {
           'name': 'value',
-          'type': 'String',
+          'type': 'string',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '扫描后的文本',
             'en-US': 'scanned text'
@@ -49,7 +50,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '200',
           'desc': {
             'zh-CN': '二维码大小',
@@ -59,7 +60,7 @@ export default {
         },
         {
           'name': 'color',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '#000',
           'desc': {
             'zh-CN': '二维码颜色, 仅支持十六进制',
@@ -69,17 +70,18 @@ export default {
         },
         {
           'name': 'bordered',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '是否有边框',
             'en-US': 'Whether has border style'
           },
-          'demoId': 'basic-usage'
+          'demoId': ''
         },
         {
           'name': 'icon',
-          'type': 'String',
+          'type': 'string',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '二维码中图片的地址（目前只支持图片地址）',
             'en-US': 'include image url (only image link are supported)'
@@ -87,8 +89,8 @@ export default {
           'demoId': 'icon'
         },
         {
-          'name': 'iconSize',
-          'type': 'Number',
+          'name': 'icon-size',
+          'type': 'number',
           'defaultValue': '50',
           'desc': {
             'zh-CN': '二维码中图片的大小，icon 覆盖面积不能超过 30%， 否则影响扫码',
@@ -98,10 +100,10 @@ export default {
         },
         {
           'name': 'level',
-          'type': "'Low' | 'Medium' | 'Quality' | 'High'",
+          'type': 'string',
           'defaultValue': 'Medium',
           'desc': {
-            'zh-CN': '二维码纠错等级',
+            'zh-CN': "二维码纠错等级, 可选 'Low' | 'Medium' | 'Quality' | 'High'",
             'en-US': 'Error Code Level'
           },
           'demoId': 'level'

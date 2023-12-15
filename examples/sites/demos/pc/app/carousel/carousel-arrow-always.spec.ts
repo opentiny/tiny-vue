@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('总是显示切换箭头', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('carousel#carousel-arrow-always')
-  const preview = page.locator('#preview')
+  const preview = page.locator('#carousel-arrow-always')
   const carousel = preview.locator('.tiny-carousel')
   const carouselItems = preview.locator('div.tiny-carousel__item')
   // 默认显示第一张幻灯片

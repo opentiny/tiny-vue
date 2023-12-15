@@ -22,7 +22,11 @@ export const renderless = (
   const state: ITagState = reactive({
     type: computed(() => props.theme || props.type),
     show: true,
-    selected: false
+    selected: false,
+    mini: props.mini,
+    color: props.color,
+    text: props.text,
+    maxWidth: props.maxWidth
   })
 
   const api: ITagApi = {
