@@ -83,6 +83,7 @@
     "@opentiny/vue-chart-tree": "workspace:~",
     "@opentiny/vue-chart-waterfall": "workspace:~",
     "@opentiny/vue-chart-wordcloud": "workspace:~",
+    "@opentiny/vue-charts-beta": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
     "@opentiny/vue-checkbox-button": "workspace:~",
     "@opentiny/vue-checkbox-group": "workspace:~",
