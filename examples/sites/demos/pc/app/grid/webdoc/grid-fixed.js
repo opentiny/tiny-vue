@@ -36,5 +36,5 @@ export default {
       'codeFiles': ['fixed/multi-column-fixed.vue']
     }
   ],
-  apis: [{ 'name': 'grid-fixed', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-fixed', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

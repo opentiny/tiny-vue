@@ -426,7 +426,7 @@
     "exclude": false
   },
   "ChartBar": {
-    "path": "vue/src/chart/chart-bar/index.ts",
+    "path": "vue/src/charts-beta/chart-bar/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -441,7 +441,7 @@
     "exclude": false
   },
   "ChartCore": {
-    "path": "vue/src/chart/chart-core/index.ts",
+    "path": "vue/src/charts-beta/chart-core/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -466,12 +466,12 @@
     "exclude": false
   },
   "ChartHistogram": {
-    "path": "vue/src/chart/chart-histogram/index.ts",
+    "path": "vue/src/charts-beta/chart-histogram/index.ts",
     "type": "component",
     "exclude": false
   },
   "ChartLine": {
-    "path": "vue/src/chart/chart-line/index.ts",
+    "path": "vue/src/charts-beta/chart-line/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -486,17 +486,17 @@
     "exclude": false
   },
   "ChartPie": {
-    "path": "vue/src/chart/chart-pie/index.ts",
+    "path": "vue/src/charts-beta/chart-pie/index.ts",
     "type": "component",
     "exclude": false
   },
   "ChartRadar": {
-    "path": "vue/src/chart/chart-radar/index.ts",
+    "path": "vue/src/charts-beta/chart-radar/index.ts",
     "type": "component",
     "exclude": false
   },
   "ChartRing": {
-    "path": "vue/src/chart/chart-ring/index.ts",
+    "path": "vue/src/charts-beta/chart-ring/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -527,6 +527,11 @@
   },
   "ChartWordcloud": {
     "path": "vue/src/chart/chart-wordcloud/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartsBeta": {
+    "path": "vue/src/charts-beta/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -1448,6 +1453,19 @@
   },
   "IpAddressPc": {
     "path": "vue/src/ip-address/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Label": {
+    "path": "vue/src/label/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile"
+    ]
+  },
+  "LabelMobile": {
+    "path": "vue/src/label/src/mobile.vue",
     "type": "template",
     "exclude": false
   },
@@ -2434,6 +2452,7 @@
     "exclude": false,
     "mode": [
       "mobile-first",
+      "mobile",
       "pc"
     ]
   },
@@ -2453,6 +2472,11 @@
   },
   "TagGroupPc": {
     "path": "vue/src/tag-group/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TagMobile": {
+    "path": "vue/src/tag/src/mobile.vue",
     "type": "template",
     "exclude": false
   },

@@ -33,7 +33,7 @@ export default {
     {
       'name': 'flowchart',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           name: 'config',
           type: 'object',

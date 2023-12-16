@@ -1,42 +1,41 @@
 <template>
   <tiny-detail-page
     v-model="value"
-    title="数据："
-    text-split="--"
-    dialog-title="个性化"
-    label-title="文本字段"
-    value-title="勾选隐藏"
+    title="表头详情"
+    text-split="-"
+    dialog-title="表头设置"
+    label-title="表头名称"
+    value-title="是否隐藏"
     tips="不能全部隐藏"
     save-button="修改数据"
     cancel-button="取消修改"
   ></tiny-detail-page>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { DetailPage as TinyDetailPage } from '@opentiny/vue'
 
 const value = ref([
   {
     label: '标题1',
-    value: '测试文本1'
+    value: '描述1'
   },
   {
     label: '标题2',
-    value: '测试文本2',
-    hidden: true
+    value: '描述2'
   },
   {
     label: '标题3',
-    value: '测试文本3'
+    value: '描述3'
   },
   {
     label: '标题4',
-    value: '测试文本4'
+    value: '描述4'
   },
   {
     label: '标题5',
-    value: '测试文本5'
+    value: '描述5'
   }
 ])
 </script>

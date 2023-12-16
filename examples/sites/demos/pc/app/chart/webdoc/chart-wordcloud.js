@@ -32,5 +32,5 @@ export default {
       'codeFiles': ['wordcloud/demo4.vue']
     }
   ],
-  apis: [{ 'name': 'chart-wordcloud', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-wordcloud', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

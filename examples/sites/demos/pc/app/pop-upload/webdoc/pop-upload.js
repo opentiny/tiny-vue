@@ -228,7 +228,7 @@ export default {
           'type': 'number',
           'defaultValue': '',
           'desc': { 'zh-CN': '最大上传文件大小', 'en-US': 'Maximum size of files to be uploaded' },
-          'demoId': 'max-upload-file-size'
+          'demoId': 'file-type'
         },
         {
           'name': 'multiple',

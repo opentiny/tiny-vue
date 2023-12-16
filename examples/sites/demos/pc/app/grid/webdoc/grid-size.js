@@ -112,5 +112,5 @@ export default {
       'codeFiles': ['size/grid-size.vue']
     }
   ],
-  apis: [{ 'name': 'grid-size', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-size', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

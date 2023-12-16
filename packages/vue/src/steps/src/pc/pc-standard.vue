@@ -12,9 +12,9 @@
         @click="$emit('click', index, node)"
       >
         <slot name="item" :slot-scope="node" :index="index">
-          <a class="label" :title="node[nameField]"
-            ><span>{{ node[nameField] }}</span></a
-          >
+          <div class="label" :title="node[nameField]">
+            <span>{{ node[nameField] }}</span>
+          </div>
           <div v-if="node[countField]" class="count">
             {{ node[countField] }}
           </div>

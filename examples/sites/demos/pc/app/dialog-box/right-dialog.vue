@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-button @click="boxVisibility = true"> 右侧弹窗 </tiny-button>
-    <tiny-dialog-box right-slide v-model:visible="boxVisibility" title="消息">
+    <tiny-dialog-box right-slide v-model:visible="boxVisibility" title="消息" modal-append-to-body>
       <template #title>
         <div class="header">
           <span class="title">标题区</span>

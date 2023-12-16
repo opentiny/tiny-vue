@@ -50,5 +50,5 @@ export default {
       'codeFiles': ['bar/demo7.vue']
     }
   ],
-  apis: [{ 'name': 'chart-bar', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-bar', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -56,5 +56,5 @@ export default {
       'codeFiles': ['histogram/demo8.vue']
     }
   ],
-  apis: [{ 'name': 'chart-histogram', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-histogram', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

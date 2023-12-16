@@ -152,57 +152,6 @@ export default {
           'demoId': 'basic-usage'
         },
         {
-          'name': 'options.label',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '菜单项文本',
-            'en-US': 'Menu Item Text'
-          },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'options.children',
-          'type': 'IItemData[]',
-          'typeAnchorName': 'IItemData',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '菜单项的子集',
-            'en-US': 'Subset of menu items'
-          },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'options.divided',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '是否显示分割线',
-            'en-US': 'Whether to display split lines'
-          },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'options.disabled',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '是否禁用',
-            'en-US': 'Is it disabled'
-          },
-          'demoId': 'disabled'
-        },
-        {
-          'name': 'options.icon',
-          'type': 'VueComponent',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '菜单项图标',
-            'en-US': 'Icon of a menu item'
-          },
-          'demoId': 'icon'
-        },
-        {
           'name': 'popper-class',
           'type': 'string',
           'defaultValue': '',
@@ -309,7 +258,8 @@ interface IItemData {
   label: string           // 菜单项文本
   disabled: boolean       // 是否禁用
   divided: boolean        // 是否显示分割线
-  children: IItemData[] // 菜单项子集
+  children: IItemData[]   // 菜单项子集
+  icon: VueComponent      // 菜单项图标
 }
 `
     },

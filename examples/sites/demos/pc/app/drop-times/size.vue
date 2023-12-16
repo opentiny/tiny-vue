@@ -1,11 +1,12 @@
 <template>
-  <div style="width: 270px">
-    <tiny-drop-times size="medium" v-model="value" placeholder="请选择"></tiny-drop-times>
-    <p>当前选中值：{{ value }}</p>
+  <div class="drop-time-demo-size">
+    <tiny-drop-times size="medium" v-model="value" placeholder="尺寸：medium"></tiny-drop-times>
+    <tiny-drop-times size="small" v-model="value" placeholder="尺寸：small"></tiny-drop-times>
+    <tiny-drop-times size="mini" v-model="value" placeholder="尺寸：mini"></tiny-drop-times>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { DropTimes } from '@opentiny/vue'
 
 export default {
@@ -19,3 +20,12 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.drop-time-demo-size {
+  width: 270px;
+  & > * {
+    margin-top: 12px;
+  }
+}
+</style>

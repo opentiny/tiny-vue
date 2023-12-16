@@ -62,5 +62,5 @@ export default {
       'codeFiles': ['scatter/demo8.vue']
     }
   ],
-  apis: [{ 'name': 'chart-scatter', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-scatter', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }
