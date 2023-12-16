@@ -9,5 +9,5 @@ export default {
       'codeFiles': ['map/base.vue']
     }
   ],
-  apis: [{ 'name': 'chart-map', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-map', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

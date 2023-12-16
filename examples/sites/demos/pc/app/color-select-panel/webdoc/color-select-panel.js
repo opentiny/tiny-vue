@@ -61,16 +61,6 @@ export default {
       'type': 'component',
       'props': [
         {
-          name: 'modelValue',
-          type: 'String',
-          defaultValue: 'transparent',
-          desc: {
-            'zh-CN': '默认颜色',
-            'en-US': 'default color'
-          },
-          demoId: 'basic-usage'
-        },
-        {
           name: 'visible',
           type: 'boolean',
           defaultValue: 'false',

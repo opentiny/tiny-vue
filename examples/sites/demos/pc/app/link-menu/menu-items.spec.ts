@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('可收藏栏目数', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('link-menu#menu-items')
-  const preview = page.locator('#preview')
+  const preview = page.locator('#menu-items')
   const dialogBox = preview.locator('.tiny-dialog-box')
   const linkMenuList = preview.locator('.tiny-tree.tiny-link-menu__overflow > div')
   // 点击图标弹出对话框

@@ -36,5 +36,5 @@ export default {
       'codeFiles': ['drag/column-drag.vue']
     }
   ],
-  apis: [{ 'name': 'grid-drag', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-drag', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

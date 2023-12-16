@@ -24,5 +24,5 @@ export default {
       'codeFiles': ['row-grouping/row-group-render.vue']
     }
   ],
-  apis: [{ 'name': 'grid-row-grouping', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-row-grouping', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

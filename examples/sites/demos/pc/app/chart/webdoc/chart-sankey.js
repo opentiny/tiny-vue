@@ -20,5 +20,5 @@ export default {
       'codeFiles': ['sankey/demo2.vue']
     }
   ],
-  apis: [{ 'name': 'chart-sankey', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-sankey', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

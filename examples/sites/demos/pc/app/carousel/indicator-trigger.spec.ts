@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('指示器和触发方式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('carousel#indicator-trigger')
-  const preview = page.locator('#preview')
+  const preview = page.locator('#indicator-trigger')
   const carouselItems = preview.locator('div.tiny-carousel__item')
   const indicators = preview.getByRole('list').getByRole('button')
 

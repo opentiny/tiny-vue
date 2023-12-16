@@ -52,6 +52,10 @@ export default defineConfig({
   <p>为了避免<code> @opentiny/vue </code> 的月度版本(minor)升级带来的不确定因素，因此推荐在您的工程中的<code> package.json </code> 中依赖包的版本号前使用 ~，
     比如 <code>"@opentiny/vue": "~3.12.0</code>。</p>
 </div>
+<div class="tip custom-block">
+  <br>
+  <p><code> @opentiny/vue </code> 支持多种模式。如果您的工程非移动端工程，可以在上面配置代码中的<code>process.env</code>中，声明<code>TINY_MODE</code>的值，以使工程在构建时，能将移动端模式的代码摇掉，优化打包产物的体积。比如 <code>'process.env': { ...process.env,TINY_MODE:'pc' }</code>。</p>
+</div>
 
 ### 通过 CDN 方式引入
 

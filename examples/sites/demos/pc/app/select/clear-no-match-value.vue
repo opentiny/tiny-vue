@@ -1,11 +1,15 @@
 <template>
   <div>
-    <p>场景1：单选，val 找不到匹配值，val为：{{ val }}</p>
+    <p>
+      场景1：单选，val 找不到匹配值，val为： ,<span class="val">{{ val }}</span>
+    </p>
     <tiny-select v-model="val" :clear-no-match-value="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
 
-    <p>场景2：多选，multiVal 找不到匹配值，multiVal为：{{ multiVal }}</p>
+    <p>
+      场景2：多选，multiVal 找不到匹配值，multiVal为：<span class="multi-val">{{ multiVal }}</span>
+    </p>
     <tiny-select v-model="multiVal" :clear-no-match-value="true" multiple>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>

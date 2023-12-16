@@ -1,0 +1,103 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@label-prefix-cls: ~'@{css-prefix}mobile-label';
+
+.@{label-prefix-cls} {
+  display: inline-block;
+  word-break: break-word;
+  hyphens: auto;
+  white-space: normal;
+
+  &-isRequired {
+    color: var(--ti-mobile-label-text-color-required);
+    margin-left: var(--ti-mobile-label-required-padding-left);
+  }
+
+  &-wholeline {
+    width: 100%;
+  }
+
+  &-ellipsis2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &-bold {
+    font-weight: bold;
+  }
+
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-large {
+    font-size: var(--ti-mobile-label-text-size-large);
+    line-height: var(--ti-mobile-label-text-size-large);
+  }
+
+  &-normal {
+    font-size: var(--ti-mobile-label-text-size-normal);
+    line-height: var(--ti-mobile-label-text-size-normal);
+  }
+
+  &-small {
+    font-size: var(--ti-mobile-label-text-size-small);
+    line-height: var(--ti-mobile-label-text-size-small);
+  }
+
+  &-mini {
+    font-size: var(--ti-mobile-label-text-size-mini);
+    line-height: var(--ti-mobile-label-text-size-mini);
+  }
+
+  &-primary {
+    color: var(--ti-mobile-label-text-color-primary);
+  }
+
+  &-secondary {
+    color: var(--ti-mobile-label-text-color-secondary);
+  }
+
+  &-placeholder {
+    color: var(--ti-mobile-label-text-color-placeholder);
+  }
+
+  &-disabled {
+    color: var(--ti-mobile-label-text-color-disabled);
+  }
+
+  &-inverse {
+    color: var(--ti-mobile-label-text-color-inverse);
+  }
+
+  &-brand {
+    color: var(--ti-mobile-label-text-color-brand);
+  }
+
+  &-link {
+    color: var(--ti-mobile-label-text-color-link);
+  }
+}

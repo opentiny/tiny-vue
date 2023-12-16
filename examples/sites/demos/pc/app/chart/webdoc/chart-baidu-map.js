@@ -14,5 +14,5 @@ export default {
       'codeFiles': ['bmap/base.vue']
     }
   ],
-  apis: [{ 'name': 'chart-baidu-map', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-baidu-map', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -32,5 +32,5 @@ export default {
       'codeFiles': ['footer/footer-row-or-column-span.vue']
     }
   ],
-  apis: [{ 'name': 'grid-footer', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-footer', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -22,7 +22,7 @@ export default {
       'demoId': 'readonly',
       'name': { 'zh-CN': '只读', 'en-US': 'Read-only' },
       'desc': {
-        'zh-CN': '<p>可通过 <code>readonly</code> 设置是否只读。</p>\n',
+        'zh-CN': '<p>通过 <code>readonly</code> 设置是否只读。</p>\n',
         'en-US': '<p>You can use <code>readonly</code> to set whether to read only. </p>\n'
       },
       'codeFiles': ['readonly.vue']
@@ -31,7 +31,7 @@ export default {
       'demoId': 'separtor',
       'name': { 'zh-CN': '分隔符', 'en-US': 'Separator' },
       'desc': {
-        'zh-CN': '<p>可通过 <code>separtor</code> 设置分隔符,在文本框中输入回车就是分隔符的位置。</p>\n',
+        'zh-CN': '<p>通过 <code>separtor</code> 设置分隔符,在文本框中输入回车就是分隔符的位置。</p>\n',
         'en-US':
           '<p>You can use <code>separtor</code> to set the separator. Enter the position of the separator in the text box and press Enter. </p>\n'
       },
@@ -41,7 +41,7 @@ export default {
       'demoId': 'value',
       'name': { 'zh-CN': '绑定值', 'en-US': 'Bound Value' },
       'desc': {
-        'zh-CN': '<p>可通过 <code>value</code> 或 <code>v-model</code> 设置绑定值。</p>\n',
+        'zh-CN': '<p>通过 <code>value</code> 或 <code>v-model</code> 设置绑定值。</p>\n',
         'en-US': '<p>You can set the binding value using <code>value</code> or <code>v-model</code>. </p>\n'
       },
       'codeFiles': ['value.vue']
@@ -56,7 +56,7 @@ export default {
       'demoId': 'width',
       'name': { 'zh-CN': '宽度', 'en-US': 'Width' },
       'desc': {
-        'zh-CN': '<p>可通过 <code>width</code> 设置宽度。</p>\n',
+        'zh-CN': '<p>通过 <code>width</code> 设置宽度。</p>\n',
         'en-US': '<p>You can set the width through <code>width</code>. </p>\n'
       },
       'codeFiles': ['width.vue']
@@ -66,7 +66,7 @@ export default {
     {
       'name': 'text-popup',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'value',
           'type': 'string',
@@ -79,7 +79,7 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置输入框内的提示占位文本',
+            'zh-CN': '输入框内的提示占位文本',
             'en-US': 'Set the prompt placeholder text in the text box.'
           },
           'demoId': 'placeholder'
@@ -87,21 +87,21 @@ export default {
         {
           'name': 'readonly',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 false',
-          'desc': { 'zh-CN': '设置是否只读', 'en-US': 'Set whether to read only' },
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '是否只读', 'en-US': 'Set whether to read only' },
           'demoId': 'readonly'
         },
         {
           'name': 'width',
           'type': 'number , string',
-          'defaultValue': '该属性的默认值为 150',
-          'desc': { 'zh-CN': '设置宽度', 'en-US': 'Set width' },
+          'defaultValue': '150',
+          'desc': { 'zh-CN': '宽度', 'en-US': 'Set width' },
           'demoId': 'width'
         },
         {
           'name': 'separtor',
           'type': 'string',
-          'defaultValue': '该属性的默认值为 ,',
+          'defaultValue': '',
           'desc': { 'zh-CN': '分隔符', 'en-US': 'Separator' },
           'demoId': 'separtor'
         }

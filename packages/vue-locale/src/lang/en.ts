@@ -256,6 +256,7 @@ export default {
       previewFile: 'Preview file',
       updateFile: 'Update file',
       reUploadFile: 'refresh upload file',
+      cancelFile: 'Cancel Upload',
       deleteFile: 'Delete file',
       empty: 'is empty!',
       kiaScanTip:

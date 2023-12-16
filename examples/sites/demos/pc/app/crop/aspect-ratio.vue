@@ -10,6 +10,7 @@
       :preview="true"
       :quality="0.5"
       max-size="300KB"
+      @setAspectRatio="setAspectRatio"
     ></tiny-crop>
   </div>
 </template>
@@ -26,6 +27,14 @@ export default {
     return {
       visible: false,
       imgUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`
+    }
+  },
+  methods: {
+    setAspectRatio(aspectRatio) {
+      Modal.message({
+        message: `宽高比数据: ${JSON.stringify(aspectRatio)}`,
+        status: 'info'
+      })
     }
   }
 }

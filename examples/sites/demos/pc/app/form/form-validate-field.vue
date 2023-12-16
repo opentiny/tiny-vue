@@ -1,25 +1,19 @@
 <template>
   <div class="demo-form">
-    <tiny-form
-      ref="ruleFormRef"
-      hide-required-asterisk
-      :model="createData"
-      :rules="rules"
-      label-width="100px"
-      show-message
-    >
-      <tiny-form-item label="姓名" prop="users" required>
+    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules">
+      <tiny-form-item label="姓名" prop="users">
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
-      <tiny-form-item label="日期" prop="datepicker">
+      <tiny-form-item label="日期" prop="datepicker" ref="dateRef">
         <tiny-date-picker v-model="createData.datepicker"></tiny-date-picker>
       </tiny-form-item>
       <tiny-form-item label="URL" prop="url">
         <tiny-input v-model="createData.url"></tiny-input>
       </tiny-form-item>
       <tiny-form-item>
-        <tiny-button type="primary" @click="validateField"> 校验特定字段 </tiny-button>
-        <tiny-button type="primary" @click="clearValidate"> 移除特定字段校验 </tiny-button>
+        <tiny-button type="primary" @click="validateField"> 校验 </tiny-button>
+        <tiny-button type="primary" @click="clearValidate"> 移除校验 </tiny-button>
+        <tiny-button type="primary" @click="resetField"> 重置日期 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
@@ -69,6 +63,9 @@ export default {
     },
     clearValidate() {
       this.$refs.ruleFormRef.clearValidate(['url', 'datepicker'])
+    },
+    resetField() {
+      this.$refs.dateRef.resetField()
     }
   }
 }

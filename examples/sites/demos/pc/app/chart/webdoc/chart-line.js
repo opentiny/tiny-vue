@@ -62,5 +62,5 @@ export default {
       'codeFiles': ['line/demo9.vue']
     }
   ],
-  apis: [{ 'name': 'chart-line', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-line', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

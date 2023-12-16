@@ -1,7 +1,9 @@
 <template>
   <div class="wrap">
-    <tiny-switch v-model="isAffix"></tiny-switch>
-    <span>{{ isAffix ? '关闭固定模式' : '打开固定模式' }}</span>
+    <div class="demo-top mb10">
+      <tiny-switch v-model="isAffix"></tiny-switch>
+      <span>{{ isAffix ? '关闭固定模式' : '打开固定模式' }}</span>
+    </div>
     <tiny-anchor :links="links" :is-affix="isAffix"></tiny-anchor>
   </div>
 </template>
@@ -59,5 +61,9 @@ export default {
 <style scoped>
 .wrap {
   min-height: 180px;
+}
+.demo-top {
+  display: flex;
+  align-items: center;
 }
 </style>
