@@ -3,10 +3,10 @@
     <tiny-tree :data="data" :icon="icon"></tiny-tree>
     <tiny-tree
       :data="data"
-      :expandIcon="expandIcon"
-      expandIconColor="red"
-      :shrinkIcon="shrinkIcon"
-      shrinkIconColor="blue"
+      :expand-icon="expandIcon"
+      expand-icon-color="red"
+      :shrink-icon="shrinkIcon"
+      shrink-icon-color="blue"
     ></tiny-tree>
   </div>
 </template>

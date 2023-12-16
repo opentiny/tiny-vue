@@ -8,8 +8,8 @@ test('测试历史记录', async ({ page }) => {
   const arrow = page.locator('.tiny-collapse-item__arrow')
   await arrow.click()
   await expect(page.locator('.tiny-color-select-panel__history')).toHaveCount(1)
-  await page.locator('.mr20.fw-bold').click()
-  //用户行为更改历史记录测试
+  await page.getByRole('button', { name: '选择' }).click()
+  // 用户行为更改历史记录测试
   await page.getByRole('button', { name: 'Append history color' }).click()
   await page.locator('.tiny-color-picker').click()
   await page.waitForSelector('.tiny-collapse-item__arrow')
@@ -17,7 +17,7 @@ test('测试历史记录', async ({ page }) => {
   await expect(
     page.locator('.tiny-color-select-panel__history .tiny-color-select-panel__history__color-block:nth-child(2)')
   ).toBeVisible()
-  //点击色块中心，并点击选择，历史记录增加1的测试
+  // 点击色块中心，并点击选择，历史记录增加1的测试
   const black = page.locator('.black')
   const center = await black.boundingBox()
   const x = center?.x ?? 0 + (center?.width ?? 0) / 2

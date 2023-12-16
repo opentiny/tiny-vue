@@ -39,7 +39,7 @@ import {
   touchmove,
   touchend
 } from './index'
-import throttle from '@opentiny/vue-renderless/common/deps/throttle'
+import throttle from '../common/deps/throttle'
 
 export const api = [
   'state',

@@ -22,7 +22,7 @@ export default {
     {
       'name': 'logon-user',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'getUserInfo',
           'type': 'Function',

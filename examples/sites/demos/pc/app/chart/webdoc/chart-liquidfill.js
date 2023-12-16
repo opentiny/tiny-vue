@@ -41,5 +41,5 @@ export default {
       'codeFiles': ['liquidfill/demo5.vue']
     }
   ],
-  apis: [{ 'name': 'chart-liquidfill', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-liquidfill', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

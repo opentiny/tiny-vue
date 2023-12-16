@@ -1,7 +1,7 @@
 ---
-title: ConfigProvide 组件
+title: ConfigProvider 组件
 ---
 
-# ConfigProvide 组件
+# ConfigProvider 组件
 
 <div></div>

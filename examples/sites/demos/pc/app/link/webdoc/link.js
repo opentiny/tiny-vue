@@ -61,7 +61,7 @@ export default {
     {
       'name': 'link',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'type',
           'type': "'primary' | 'success' | 'warning' | 'danger' | 'info'",

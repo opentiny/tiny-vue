@@ -11,6 +11,7 @@ test('测试插槽', async ({ page }) => {
   const button3 = page.getByRole('button', { name: '校验错误' })
   const tooltip3 = page.getByText('该网段不可用')
 
+  await page.waitForTimeout(10)
   await button1.hover()
   await expect(tooltip1).toBeVisible()
   await page.waitForTimeout(10)
