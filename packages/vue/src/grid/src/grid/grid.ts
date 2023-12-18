@@ -30,37 +30,9 @@ import { h, emitter, $prefix, $props, setup, defineComponent, resolveMode } from
 import TinyGridTable from '../table'
 import GlobalConfig from '../config'
 import methods from './methods'
-import { iconMarkOn } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
 const propKeys = Object.keys(TinyGridTable.props)
-
-function renderColumnAnchor(params, _vm) {
-  const { anchors = [], action = () => {} } = params || {}
-  const { viewType } = _vm
-  return h(
-    'div',
-    {
-      class: ['tiny-grid__column-anchor', _vm.viewCls('columnAnchor')],
-      style: viewType === 'default' ? 'display:flex' : '',
-      key: _vm.columnAnchorKey
-    },
-    anchors.map((anchor) => {
-      const { active = false, label = '', field = '', render } = anchor
-
-      if (typeof render === 'function') {
-        return render({ h, anchor, action })
-      }
-
-      const itemClass = { 'tiny-grid__column-anchor-item': true, 'tiny-grid__column-anchor-item--active': active }
-      const itemOn = { click: (e) => action(field, e) }
-      const iconVnode = active ? h(iconMarkOn(), { class: 'tiny-grid__column-anchor-item-icon' }) : null
-      const spanVnode = h('span', label)
-
-      return h('div', { class: itemClass, on: itemOn }, [iconVnode, spanVnode])
-    })
-  )
-}
 
 // 渲染主入口，创建表格最外层节点
 function createRender(opt) {
@@ -94,7 +66,7 @@ function createRender(opt) {
     },
     [
       selectToolbar ? null : renderedToolbar,
-      columnAnchor ? renderColumnAnchor(columnAnchorParams, _vm) : null,
+      columnAnchor ? _vm.renderColumnAnchor(columnAnchorParams, _vm) : null,
       // 这里会渲染tiny-grid-column插槽内容，从而获取列配置
       h(TinyGridTable, { props, on: tableOns, ref: 'tinyTable' }, $slots.default && $slots.default()),
       _vm.renderPager({
@@ -150,6 +122,7 @@ export default defineComponent({
       filterData: [],
       listeners: {},
       pagerConfig: null,
+      // 存放标记为删除的行数据
       pendingRecords: [],
       seqIndex: this.startIndex,
       sortData: {},
@@ -168,16 +141,18 @@ export default defineComponent({
     }
   },
   computed: {
+    // 工具栏按钮保存和删除时是否弹出提示信息
     isMsg() {
       return this.proxyOpts.message !== false
     },
     tableProps() {
-      let rest = {}
+      const rest = {}
       // 这里收集table组件的props，然后提供给下层组件使用
       propKeys.forEach((key) => (rest[key] = this[key]))
       return rest
     },
     proxyOpts() {
+      // 此处需要深拷贝，不然会影响全局配置
       return extend(true, {}, GlobalConfig.grid.proxyConfig, this.proxyConfig)
     },
     vSize() {
@@ -316,34 +291,42 @@ export default defineComponent({
     }
 
     // 初始化虚拟滚动优化配置
-    let optimizOpt = { ...GlobalConfig.optimization, ...optimization }
-    let props = { ...tableProps, optimization: optimizOpt, startIndex: seqIndex }
+    const optimizOpt = { ...GlobalConfig.optimization, ...optimization }
+    const props = { ...tableProps, optimization: optimizOpt, startIndex: seqIndex }
+
     // 在用户没有配置stripe时读取design配置
     if (designConfig?.stripe !== undefined && !props.stripe) {
       // aurora规范默认带斑马条纹
       props.stripe = designConfig?.stripe
     }
 
-    let tableOns = { ...listeners, ...tableListeners }
-    let { handleRowClassName: rowClassName, sortChangeEvent, filterChangeEvent } = this
+    const tableOns = { ...listeners, ...tableListeners }
+    const { handleRowClassName: rowClassName, sortChangeEvent, filterChangeEvent } = this
 
     // fetchApi状态下初始化 loading、remoteSort、remoteFilter
-    fetchOption && Object.assign(props, { loading: loading || tableLoading, data: tableData, rowClassName })
-    fetchOption && remoteSort && (tableOns['sort-change'] = sortChangeEvent)
-    fetchOption && remoteFilter && (tableOns['filter-change'] = filterChangeEvent)
+    if (fetchOption) {
+      Object.assign(props, { loading: loading || tableLoading, data: tableData, rowClassName })
+      remoteSort && (tableOns['sort-change'] = sortChangeEvent)
+      remoteFilter && (tableOns['filter-change'] = filterChangeEvent)
+    }
 
     // 处理表格工具栏和个性化数据
     toolbar && !(toolbar.setting && toolbar.setting.storage) && (props.customs = tableCustoms)
     toolbar && (tableOns['update:customs'] = (value) => (this.tableCustoms = value))
 
-    // 初始化表格编辑配置
-    let editConfigOpt = { trigger: 'click', mode: 'cell', showStatus: true, ...editConfig }
-
     // 这里handleActiveMethod处理一些编辑器的声明周期的拦截，用户传递过来的activeMethod优先级最高
-    editConfig && (props.editConfig = Object.assign(editConfigOpt, { activeMethod: this.handleActiveMethod }))
+    if (editConfig) {
+      props.editConfig = {
+        trigger: 'click',
+        mode: 'cell',
+        showStatus: true,
+        ...editConfig,
+        activeMethod: this.handleActiveMethod
+      }
+    }
 
     // 获取工具栏的渲染器
-    let renderedToolbar = this.getRenderedToolbar({ $slots, _vm: this, loading, tableLoading, toolbar })
+    const renderedToolbar = this.getRenderedToolbar({ $slots, _vm: this, loading, tableLoading, toolbar })
 
     // 创建表格最外层容器，并加载table组件
     return createRender({
@@ -415,79 +398,6 @@ export default defineComponent({
     },
     viewCls(module) {
       return GlobalConfig.viewConfig[module][this.viewType] || ''
-    },
-    buildColumnAnchorParams() {
-      let { columnAnchor } = this
-      let visibleColumn = this.getColumns()
-      let anchors = []
-      let getAnchor = (property, label) => {
-        const column = visibleColumn.find((col) => !col.type && col.property === property)
-        let anchorName = ''
-        let anchorRender = null
-
-        if (typeof label !== 'undefined') {
-          if (typeof label === 'string') {
-            anchorName = label
-          } else if (Array.isArray(label) && label.length) {
-            anchorName = String(label[0])
-            anchorRender = label[1]
-          }
-        }
-
-        if (column) {
-          anchors.push({
-            label: anchorName || (typeof column.title === 'string' ? column.title : ''),
-            field: property,
-            active: false,
-            render: anchorRender
-          })
-        }
-      }
-
-      if (Array.isArray(columnAnchor) && columnAnchor.length) {
-        columnAnchor.forEach((item) => {
-          if (typeof item === 'string') {
-            getAnchor(item)
-          } else if (Array.isArray(item) && item.length) {
-            getAnchor(item[0], item[1])
-          }
-        })
-      }
-
-      this.columnAnchorParams = { anchors, action: (field, e) => this.anchorAction({ field, anchors, _vm: this, e }) }
-    },
-    anchorAction({ field, anchors, _vm }) {
-      const fromAnchor = anchors.find((anchor) => anchor.active)
-      const toAnchor = anchors.find((anchor) => anchor.field === field)
-
-      if (toAnchor && fromAnchor !== toAnchor) {
-        if (fromAnchor && fromAnchor.active) {
-          fromAnchor.active = false
-        }
-
-        if (!toAnchor.active) {
-          toAnchor.active = true
-          _vm.columnAnchorKey = field
-
-          _vm.$nextTick((found = false) => {
-            const visibleColumn = _vm.getColumns()
-            const column = visibleColumn.find((col) => !col.type && col.property === field)
-            const width = visibleColumn
-              .filter((col) => !col.fixed)
-              .map((col) => {
-                if (col === column) {
-                  found = true
-                }
-                return found ? 0 : col.renderWidth
-              })
-              .reduce((p, c) => p + c, 0)
-
-            if (column) {
-              _vm.scrollTo(width)
-            }
-          })
-        }
-      }
     },
     // 监听某个元素是否出现在视口中
     addIntersectionObserver() {

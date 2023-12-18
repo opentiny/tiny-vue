@@ -28,6 +28,7 @@ import GridButton from './src/button'
 import FetchData from './src/fetch-data'
 import Pager from './src/pager'
 import Toolbar from './src/toolbar'
+import columnAnchor from './src/column-anchor'
 import * as GridTools from './src/tools'
 import { version } from './package.json'
 import type { Plugin } from './src/types/index.type'
@@ -43,8 +44,21 @@ import type { Plugin } from './src/types/index.type'
  * FetchData 远程数据处理
  * Pager 分页处理逻辑
  * Toolbar 工具栏处理逻辑
+ * columnAnchor 表格列锚点
  */
-const plugins: Plugin[] = [Menu, Edit, Export, Keyboard, Validator, Resize, Filter, FetchData, Pager, Toolbar]
+const plugins: Plugin[] = [
+  Menu,
+  Edit,
+  Export,
+  Keyboard,
+  Validator,
+  Resize,
+  Filter,
+  FetchData,
+  Pager,
+  Toolbar,
+  columnAnchor
+]
 
 // 设置全局参数,配置GlobalConfig，提供比如国际化方法
 GridAdapter.setup({ i18n: t })

@@ -11,6 +11,7 @@
  */
 import Table from '../table'
 
+// 让用户可以通过grid组件的方法间接调用内层table组件的方法
 const getWrapFunc = (name) =>
   function (...args) {
     const tinyTable = this.$refs.tinyTable
@@ -20,11 +21,12 @@ const getWrapFunc = (name) =>
   }
 
 const methods = {}
-const methodNames = Object.keys(Table.methods).concat(['exportCsv', 'clearFilter', 'exportExcel'])
 
 // 将table组件的方法，传递给grid组件使用，this指向全部指向tinyTable
-methodNames.forEach((name) => {
-  methods[name] = getWrapFunc(name)
-})
+Object.keys(Table.methods)
+  .concat(['exportCsv', 'clearFilter', 'exportExcel'])
+  .forEach((name) => {
+    methods[name] = getWrapFunc(name)
+  })
 
 export default methods
