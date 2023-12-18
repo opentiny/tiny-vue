@@ -16,4 +16,5 @@ test('自定义前置图标', async ({ page }) => {
 
   const wrap = page.locator('#custom-icon')
   const treeMenu = wrap.locator('.tiny-tree-menu')
+  // TINY-TODO : 补充前置图标后再补充此测试用例
 })
