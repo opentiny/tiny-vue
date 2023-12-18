@@ -517,7 +517,7 @@ export default {
             'zh-CN': '绑定值',
             'en-US': 'Bound Value'
           },
-          'demoId': 'checkbox'
+          'demoId': 'checkbox-button'
         },
         {
           'name': 'name',
