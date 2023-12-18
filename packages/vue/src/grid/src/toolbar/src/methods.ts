@@ -5,6 +5,7 @@ import GlobalConfig from '../../config'
 import { emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { h, hooks } from '@opentiny/vue-common'
 import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
+import { extend } from '@opentiny/vue-renderless/common/object'
 
 export function setBodyRecords({ body, insertRecords, pendingRecords }) {
   if (insertRecords.length) {

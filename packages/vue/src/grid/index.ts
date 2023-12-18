@@ -29,6 +29,7 @@ import FetchData from './src/fetch-data'
 import Pager from './src/pager'
 import Toolbar from './src/toolbar'
 import columnAnchor from './src/column-anchor'
+import dragger from './src/dragger'
 import * as GridTools from './src/tools'
 import { version } from './package.json'
 import type { Plugin } from './src/types/index.type'
@@ -45,6 +46,7 @@ import type { Plugin } from './src/types/index.type'
  * Pager 分页处理逻辑
  * Toolbar 工具栏处理逻辑
  * columnAnchor 表格列锚点
+ * dragger 拖拽相关逻辑
  */
 const plugins: Plugin[] = [
   Menu,
@@ -57,7 +59,8 @@ const plugins: Plugin[] = [
   FetchData,
   Pager,
   Toolbar,
-  columnAnchor
+  columnAnchor,
+  dragger
 ]
 
 // 设置全局参数,配置GlobalConfig，提供比如国际化方法

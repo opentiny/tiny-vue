@@ -98,10 +98,9 @@ import {
 import { hasCheckFieldNoStrictly, hasNoCheckFieldNoStrictly, setSelectionNoStrictly } from './utils/setAllSelection'
 import { mapFetchColumnPromise } from './utils/handleResolveColumn'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
-import { createHandlerOnEnd } from './utils/rowDrop'
 import { calcTableWidth, calcFixedStickyPosition } from './utils/autoCellWidth'
 import { generateFixedClassName } from './utils/handleFixedColumn'
-import { funcs, headerProps, onEndEvent, handleAllColumnPromises } from './funcs'
+import { funcs, headerProps, handleAllColumnPromises } from './funcs'
 import {
   triggerHeaderTooltipEvent,
   triggerFooterTooltipEvent,
@@ -142,11 +141,13 @@ let focusSingle = null
 // 多字段排序
 const sortMultiple = (rows, columns, _vm) => {
   const greaterThan = (valueP, valueQ) => {
-    let typeP
-
-    return (typeP = typeof valueP) === typeof valueQ && ['number', 'string', 'boolean'].includes(typeP)
-      ? valueP > valueQ
-      : String(valueP) > String(valueQ)
+    const typeP = typeof valueP
+    const typeQ = typeof valueQ
+    if (typeP === typeQ && ['number', 'string', 'boolean'].includes(typeP)) {
+      return valueP > valueQ
+    } else {
+      return String(valueP) > String(valueQ)
+    }
   }
 
   const { multipleColumnSort } = _vm.sortOpts
@@ -174,57 +175,6 @@ const sortMultiple = (rows, columns, _vm) => {
 }
 
 const Methods = {
-  // 处理列拖拽
-  columnDrop() {
-    this.$nextTick(() => {
-      const { plugin, onBeforeMove, filter } = this.dropConfig
-      this.columnSortable = plugin.create(
-        this.$el.querySelector('.body__wrapper>.tiny-grid__header .tiny-grid-header__row'),
-        {
-          handle: '.tiny-grid-header__column:not(.col__fixed)',
-          filter,
-          onEnd: (event) => {
-            onEndEvent({ event, _this: this })
-          },
-          onStart: (event) => {
-            this.$emit('column-drop-start', event, this)
-          },
-          onMove: (event) => {
-            const cancel = typeof onBeforeMove === 'function' ? onBeforeMove('column', null, event, this) : true
-            this.$emit('column-drop-move', event, this)
-            return cancel === undefined || cancel
-          }
-        }
-      )
-    })
-  },
-  // 处理行拖拽
-  rowDrop() {
-    this.$nextTick(() => {
-      const { plugin, onBeforeMove, filter, refresh = true, trigger } = this.dropConfig
-      this.rowSortable = plugin.create(this.$el.querySelector('.body__wrapper>.tiny-grid__body tbody'), {
-        handle: trigger || '.tiny-grid-body__row',
-        filter,
-        onEnd: createHandlerOnEnd({ _vm: this, refresh }),
-        onStart: (event) => {
-          this.$emit('row-drop-start', event, this)
-        },
-        onMove: (event) => {
-          let insertRecords = this.getInsertRecords()
-          // 包含新增数据的表格不可再拖动行顺序
-          if (insertRecords.length) return false
-
-          let { dragged } = event
-          let selfRow = this.getRowNode(dragged).item
-          const cancel = typeof onBeforeMove === 'function' ? onBeforeMove('row', selfRow, event, this) : true
-
-          this.$emit('row-drop-move', event, this)
-
-          return cancel === undefined || cancel
-        }
-      })
-    })
-  },
   getParentElem() {
     let $el = this.$grid ? this.$grid.$el : this.$el
     return $el.parentNode
@@ -613,11 +563,6 @@ const Methods = {
       collectColumn: collectColumn.slice(0)
     }
   },
-  // 在v3.0中废弃getRecords
-  getRecords() {
-    warn('ui.grid.error.delGetRecords')
-    return this.getData.apply(this, arguments)
-  },
   // 获取表格所有数据
   getData(rowIndex) {
     let tableSynchData = this.data || this.tableSynchData
@@ -628,11 +573,6 @@ const Methods = {
       return tableSynchData[rowIndex]
     }
     return undefined
-  },
-  // 在v3.0中废弃getAllRecords
-  getAllRecords() {
-    warn('ui.grid.error.delGetAllRecords')
-    return this.getRecordset()
   },
   // 获取选中数据。notCopy为true不返回数据副本，表格内部要继续处理其返回值时设置为true
   getSelectRecords(notCopy) {
@@ -1664,7 +1604,11 @@ const Methods = {
     let eventParams = { $table: this, row, rowIndex: this.getRowIndex(row) }
     emitEvent(this, 'toggle-tree-change', [eventParams, event])
     this.$nextTick(() => {
-      currentRow ? this.setCurrentRow(currentRow) : currentColumn ? this.setCurrentColumn(currentColumn) : ''
+      if (currentRow) {
+        this.setCurrentRow(currentRow)
+      } else if (currentColumn) {
+        this.setCurrentColumn(currentColumn)
+      }
     })
     return rest
   },
@@ -1696,7 +1640,13 @@ const Methods = {
       })
       this.treeExpandeds = treeExpandeds
     }
-    expandAll ? doExpandAll() : rowids ? doExpandRows() : ''
+
+    if (expandAll) {
+      doExpandAll()
+    } else if (rowids) {
+      doExpandRows()
+    }
+
     setTreeScrollYCache(this)
   },
   setAllTreeExpansion(expanded) {
@@ -2293,14 +2243,15 @@ const Methods = {
       settingOpts: { storageKey },
       id: toolbarId
     } = toolBarVm
-    let remoteSelectedMethod, remoteSelectedPromise
+    let remoteSelectedMethod = toolBarVm.setting.multipleHistory.remoteSelectedMethod
+    let remoteSelectedPromise
 
     if (
       isMultipleHistory &&
       toolBarVm &&
       toolBarVm.setting &&
       toolBarVm.setting.multipleHistory &&
-      (remoteSelectedMethod = toolBarVm.setting.multipleHistory.remoteSelectedMethod)
+      remoteSelectedMethod
     ) {
       if (typeof remoteSelectedMethod === 'function') {
         remoteSelectedPromise = remoteSelectedMethod()
@@ -2414,8 +2365,8 @@ const Methods = {
   }
 }
 funcs.forEach((name) => {
-  Methods[name] = function () {
-    return this[`_${name}`] ? this[`_${name}`].apply(this, arguments) : null
+  Methods[name] = function (...args) {
+    return this[`_${name}`] ? this[`_${name}`](...args) : null
   }
 })
 export default Methods
