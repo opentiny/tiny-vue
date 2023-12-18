@@ -4,6 +4,7 @@ import Modal from '@opentiny/vue-modal'
 import GlobalConfig from '../../config'
 import { emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { h, hooks } from '@opentiny/vue-common'
+import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
 
 export function setBodyRecords({ body, insertRecords, pendingRecords }) {
   if (insertRecords.length) {

@@ -2,7 +2,9 @@ import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import Modal from '@opentiny/vue-modal'
 import Pager from '@opentiny/vue-pager'
+import { extend } from '@opentiny/vue-renderless/common/object'
 import { h, hooks } from '@opentiny/vue-common'
+import GlobalConfig from '../../config'
 
 export default {
   // 初始化表格分页配置
