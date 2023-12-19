@@ -1,0 +1,17 @@
+{
+  "name": "@opentiny/automate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "esno ./src/index.ts"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "esno": "^4.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
