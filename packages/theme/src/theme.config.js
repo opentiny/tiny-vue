@@ -76,5 +76,6 @@ export default {
   'user-contact': 'user-contact',
   'user-head': 'user-head',
   'user-link': 'user-link',
-  'year-table': 'year-table'
+  'year-table': 'year-table',
+  'transfer': 'transfer'
 }
