@@ -111,10 +111,10 @@ export function handleFilterCheckStr({ column, relationMethod, relations, row })
     value = modifyValueCheckStr(value)
     switch (relation) {
       case 'equals':
-        result = value == input
+        result = value === input
         break
       case 'unequal':
-        result = value != input
+        result = value !== input
         break
       case 'greaterThan':
         result = value > input

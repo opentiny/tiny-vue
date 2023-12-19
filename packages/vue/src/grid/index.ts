@@ -33,6 +33,7 @@ import dragger from './src/dragger'
 import sort from './src/sort'
 import tooltip from './src/tooltip'
 import checkbox from './src/checkbox'
+import tree from './src/tree'
 import * as GridTools from './src/tools'
 import { version } from './package.json'
 import type { Plugin } from './src/types/index.type'
@@ -53,6 +54,7 @@ import type { Plugin } from './src/types/index.type'
  * sort 排序相关逻辑
  * tooltip 提示相关逻辑
  * checkbox 多选相关逻辑
+ * tree 树表相关逻辑
  */
 const plugins: Plugin[] = [
   Menu,
@@ -69,7 +71,8 @@ const plugins: Plugin[] = [
   dragger,
   sort,
   tooltip,
-  checkbox
+  checkbox,
+  tree
 ]
 
 // 设置全局参数,配置GlobalConfig，提供比如国际化方法
