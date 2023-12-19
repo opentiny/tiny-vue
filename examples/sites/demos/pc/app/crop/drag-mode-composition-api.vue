@@ -5,7 +5,7 @@
       :cropvisible="visible"
       @update:cropvisible="visible = $event"
       :src="imgUrl"
-      :movable="false"
+      :movable="true"
       drag-mode="move"
     ></tiny-crop>
   </div>

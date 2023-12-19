@@ -50,7 +50,7 @@ export default {
             'zh-CN': '版型类型',
             'en-US': 'Measurement type'
           },
-          'demoId': 'custom-container'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'aside-width',

@@ -1,11 +1,11 @@
 <template>
-  <div style="width: 270px">
+  <div class="drop-time-demo-basic">
     <tiny-drop-times v-model="value" placeholder="请选择" @change="change"></tiny-drop-times>
     <p>当前选中值：{{ value }}</p>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { DropTimes, Modal } from '@opentiny/vue'
 
 export default {
@@ -24,3 +24,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.drop-time-demo-basic {
+  width: 270px;
+}
+</style>

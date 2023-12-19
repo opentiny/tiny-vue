@@ -64,6 +64,10 @@ export default {
         {
           code: 'savePromise',
           name: '保存（Promise）'
+        },
+        {
+          code: 'fullValidate',
+          name: '全量数据校验'
         }
       ],
       tableData: [
@@ -176,6 +180,19 @@ export default {
         case 'savePromise': {
           this.$refs.basicGrid
             .validate()
+            .then(() => {
+              TinyModal.alert('校验成功，触发了then！')
+            })
+            .catch((error) => {
+              // eslint-disable-next-line no-console
+              console.log(error)
+              TinyModal.alert('校验不通过，触发了catch')
+            })
+          break
+        }
+        case 'fullValidate': {
+          this.$refs.basicGrid
+            .fullValidate()
             .then(() => {
               TinyModal.alert('校验成功，触发了then！')
             })

@@ -22,7 +22,7 @@
   "prettier.enable": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "stylelint.validate": ["css", "less", "postcss", "scss", "sass"],
   "better-comments.highlightPlainText": true,

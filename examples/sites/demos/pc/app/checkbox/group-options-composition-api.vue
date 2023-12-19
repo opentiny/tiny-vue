@@ -7,7 +7,7 @@ import { ref } from 'vue'
 import { CheckboxGroup as TinyCheckboxGroup, Modal } from '@opentiny/vue'
 
 function handleClick() {
-  Modal.message({ message: 'click' })
+  Modal.message({ message: 'click', status: 'info' })
 }
 const checkList = ref(['A'])
 const options = ref([

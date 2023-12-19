@@ -688,14 +688,14 @@ export default {
             'zh-CN': '是否开启节点拖拽',
             'en-US': 'Whether to enable the node dragging function'
           },
-          'demoId': 'node-draggable'
+          'demoId': 'drag'
         },
         {
           'name': 'allow-drag',
           'type': '(node)=>boolean',
           'defaultValue': '',
           'desc': { 'zh-CN': '判断节点能否被拖拽', 'en-US': 'Whether a node can be dragged.' },
-          'demoId': 'allow-drag'
+          'demoId': 'drag'
         },
         {
           'name': 'allow-drop',
@@ -707,7 +707,7 @@ export default {
             'en-US':
               "Whether the target node can be placed during dragging. The type parameter has three situations: 'prev',' inner', and'next', which indicate that it is placed before the target node, inserted into the target node, and placed after the target node respectively"
           },
-          'demoId': 'allow-drop'
+          'demoId': 'drag'
         },
         {
           'name': 'show-contextmenu',
@@ -717,7 +717,7 @@ export default {
             'zh-CN': '是否启用右键菜单功能',
             'en-US': 'Whether to enable the right-click menu function'
           },
-          'demoId': 'node-draggable'
+          'demoId': 'contextmenu'
         },
         {
           'name': 'accordion',
@@ -747,7 +747,7 @@ export default {
             'zh-CN': '是否在第一次展开某个树节点后才渲染其子节点',
             'en-US': 'Whether to render child nodes after the first expansion of a tree node'
           },
-          'demoId': 'other'
+          'demoId': ''
         },
         {
           'name': 'show-check-easily',
@@ -839,7 +839,7 @@ export default {
             'zh-CN': '懒加载时，加载数据成功的事件;<br>参数说明：{data: 加载的数据}',
             'en-US': 'During lazy loading, data is loaded successfully. <br> Parameter description: {data: loaded data}'
           },
-          'demoId': 'check-op'
+          'demoId': 'lazy'
         },
         {
           'name': 'node-drop',
@@ -1039,7 +1039,7 @@ export default {
           'demoId': 'node-hl'
         },
         {
-          'name': 'getNodeKey ',
+          'name': 'getNodeKey',
           'type': '(node:object) => number',
           'defaultValue': '',
           'desc': {
@@ -1049,7 +1049,7 @@ export default {
           'demoId': 'node-hl'
         },
         {
-          'name': 'getNodePath ',
+          'name': 'getNodePath',
           'type': '(key:string) => object[]',
           'defaultValue': '',
           'desc': {
@@ -1066,7 +1066,7 @@ export default {
             'zh-CN': '通过 key 设置某个节点的当前选中状态',
             'en-US': 'Use key to set the selected status of a node'
           },
-          'demoId': 'node-key'
+          'demoId': 'node-op'
         },
         {
           'name': 'setCurrentNode',
@@ -1076,7 +1076,7 @@ export default {
             'zh-CN': '通过节点数据， 设置某个节点的当前选中状态',
             'en-US': 'This section describes how to set the selected status of a node based on node data'
           },
-          'demoId': 'node-key'
+          'demoId': 'node-op'
         },
         {
           'name': 'expandAllNodes',
@@ -1221,7 +1221,7 @@ export default {
           'demoId': 'check-op'
         },
         {
-          'name': 'setCurrentRadio ',
+          'name': 'setCurrentRadio',
           'type': '() => void',
           'defaultValue': '',
           'desc': {
@@ -1261,7 +1261,7 @@ export default {
           'demoId': 'edit'
         },
         {
-          'name': 'addNode ',
+          'name': 'addNode',
           'type': '(node:object) => void',
           'defaultValue': '',
           'desc': {

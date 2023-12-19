@@ -1,0 +1,59 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@tag-prefix-cls: ~'@{css-prefix}mobile-tag';
+
+.@{tag-prefix-cls} {
+  .component-css-vars-tag();
+
+  line-height: var(--ti-mobile-tag-height-default);
+  padding: 0 var(--ti-mobile-tag-padding-default);
+  text-align: center;
+  font-size: var(--ti-mobile-tag-font-size-default);
+  color: var(--ti-mobile-tag-color-default);
+  background-color: var(--ti-mobile-tag-bg-color-default);
+  display: inline-block;
+  border-radius: var(--ti-mobile-tag-border-radius-default);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &-mini {
+    line-height: var(--ti-mobile-tag-height-mini);
+    padding: 0 var(--ti-mobile-tag-padding-mini);
+    font-size: var(--ti-mobile-tag-font-size-mini);
+    border-radius: var(--ti-mobile-tag-border-radius-mini);
+  }
+
+  &-red {
+    color: var(--ti-mobile-tag-color-red);
+    background-color: var(--ti-mobile-tag-bg-color-red);
+  }
+
+  &-blue {
+    color: var(--ti-mobile-tag-color-blue);
+    background-color: var(--ti-mobile-tag-bg-color-blue);
+  }
+
+  &-yellow {
+    color: var(--ti-mobile-tag-color-yellow);
+    background-color: var(--ti-mobile-tag-bg-color-yellow);
+  }
+
+  &-green {
+    color: var(--ti-mobile-tag-color-green);
+    background-color: var(--ti-mobile-tag-bg-color-green);
+  }
+}

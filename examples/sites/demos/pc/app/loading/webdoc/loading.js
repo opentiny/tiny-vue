@@ -62,8 +62,7 @@ export default {
       'demoId': 'fullscreen',
       'name': { 'zh-CN': '全屏加载', 'en-US': 'Fullscreen Loading' },
       'desc': {
-        'zh-CN':
-          `<p>
+        'zh-CN': `<p>
             <div>通过 <code>v-loading.lock.fullscreen</code> 指令添加修饰符进行全屏加载</div>
             <div>也能通过<code>Loading.service</code>并配置属性进行全屏加载</div>
           </p>`,
@@ -105,8 +104,7 @@ export default {
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '属性为 true 显示全屏，同 v-loading 指令中的 fullscreen 修饰符',
-            'en-US':
-              'Set true to display the full screen. Same as the fullscreen modifier in the v-loading instruction'
+            'en-US': 'Set true to display the full screen. Same as the fullscreen modifier in the v-loading instruction'
           },
           'demoId': 'fullscreen'
         },
@@ -169,7 +167,7 @@ export default {
           'desc': { 'zh-CN': 'Loading 的自定义类名', 'en-US': 'User-defined loading class name' },
           'demoId': 'custom-class'
         }
-      ],
+      ]
     },
     {
       'name': 'loading',
@@ -226,8 +224,7 @@ export default {
           'desc': {
             'zh-CN': '命令修饰符：遮罩层是否在body上',
             'en-US': 'Command modifier: Whether the mask is on the body'
-          },
-          'demoId': 'fullscreen'
+          }
         },
         {
           'name': 'lock',
@@ -237,8 +234,8 @@ export default {
             'en-US': 'Command modifier: Whether to lock scroll in full screen'
           },
           'demoId': 'fullscreen'
-        },
-      ],
+        }
+      ]
     }
   ]
 }
