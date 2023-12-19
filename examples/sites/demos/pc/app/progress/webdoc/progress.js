@@ -148,7 +148,7 @@ export default {
         {
           'name': 'type',
           'type': 'string',
-          'defaultValue': 'line',
+          'defaultValue': `'line'`,
           'desc': {
             'zh-CN': '进度条类型；该属性的可选值为 line / circle / dashboard',
             'en-US': 'Progress bar type; The value of this attribute can be line, circle, or dashboard'
