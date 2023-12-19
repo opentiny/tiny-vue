@@ -176,17 +176,6 @@ export default {
       'codeFiles': ['fullscreen.vue']
     },
     {
-      'demoId': 'open-close-events',
-      'name': { 'zh-CN': '弹出与关闭事件', 'en-US': 'Pop-up and Close Event' },
-      'desc': {
-        'zh-CN':
-          '<p>通过设置事件<code>@open</code>：对话框打开时触发<code>@opened</code>：对话框打开动画结束时触发<code>@close</code>：对话框关闭时触发<code>@closed</code>：对话框关闭动画结束时触发。</p>\n',
-        'en-US':
-          '<p>By setting the event<code>@open</code>: triggered when the dialog box is opened<code>@opened</code>: triggered when the animation ends when the dialog box is opened<code>@close</code>: triggered when the dialog box is closed<code>@closed</code>: triggered when the animation ends when the dialog box is closed.</p>\n'
-      },
-      'codeFiles': ['open-close-events.vue']
-    },
-    {
       'demoId': 'form-in-dialog',
       'name': { 'zh-CN': '弹窗表单', 'en-US': 'Pop-up Window Form' },
       'desc': {
@@ -206,6 +195,17 @@ export default {
           '<p>By setting the<code>:destroy-on-close</code>attribute to<code>true</code>, all elements in the<code>dialog box</code>dialog box are destroyed when the pop-up window is closed, with the default value being<code>false</code>.</p>'
       },
       'codeFiles': ['destroy-on-close.vue']
+    },
+    {
+      'demoId': 'open-close-events',
+      'name': { 'zh-CN': '弹出与关闭事件', 'en-US': 'Pop-up and Close Event' },
+      'desc': {
+        'zh-CN':
+          '<p>通过设置事件<code>@open</code>：对话框打开时触发<code>@opened</code>：对话框打开动画结束时触发<code>@close</code>：对话框关闭时触发<code>@closed</code>：对话框关闭动画结束时触发。</p>\n',
+        'en-US':
+          '<p>By setting the event<code>@open</code>: triggered when the dialog box is opened<code>@opened</code>: triggered when the animation ends when the dialog box is opened<code>@close</code>: triggered when the dialog box is closed<code>@closed</code>: triggered when the animation ends when the dialog box is closed.</p>\n'
+      },
+      'codeFiles': ['open-close-events.vue']
     }
   ],
   apis: [
@@ -258,7 +258,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '是否开启弹窗的拖拽功能，默认值为 false',
+            'zh-CN': '是否开启弹窗的拖拽功能',
             'en-US': 'Whether to enable the drag and drop function of pop ups, with a default value of false'
           },
           'demoId': 'draggable'
@@ -327,7 +327,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '是否开启弹出右侧滑出功能，默认值为 false 。',
+            'zh-CN': '是否开启弹出右侧滑出功能',
             'en-US': 'Whether to disable the scroll bar when a log is displayed'
           },
           'demoId': 'right-dialog'
@@ -337,7 +337,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
-            'zh-CN': 'Dialog弹出时是否禁用滚动条',
+            'zh-CN': 'Dialog 弹出时是否禁用滚动条',
             'en-US': 'Indicates whether to display the pop-up header. The default value is true'
           },
           'demoId': 'lock-scroll'
@@ -346,7 +346,7 @@ export default {
           'name': 'show-header',
           'type': 'boolean',
           'defaultValue': 'true',
-          'desc': { 'zh-CN': '是否显示弹窗头部 header，默认值为 true 。', 'en-US': 'Pop-up dialog box title' },
+          'desc': { 'zh-CN': '是否显示弹窗头部 header', 'en-US': 'Pop-up dialog box title' },
           'demoId': 'hidden-header'
         },
         {
@@ -354,7 +354,7 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '弹出框标题。',
+            'zh-CN': '弹出框标题',
             'en-US':
               'Height between the pop-up box and the top of the window. The default value is 15% of the screen height'
           },
@@ -365,7 +365,7 @@ export default {
           'type': 'string',
           'defaultValue': '15vh',
           'desc': {
-            'zh-CN': '设置弹出框距离窗口顶部的高度，默认为屏高的 15%',
+            'zh-CN': '设置弹出框距离窗口顶部的高度',
             'en-US': 'Display and close pop-up boxes'
           },
           'demoId': 'dialog-top-height'
@@ -374,7 +374,7 @@ export default {
           'name': 'width',
           'type': 'string',
           'defaultValue': '500px',
-          'desc': { 'zh-CN': '弹出框的宽度。', 'en-US': 'Wideness of the dialog box that is displayed' },
+          'desc': { 'zh-CN': '弹出框的宽度', 'en-US': 'Wideness of the dialog box that is displayed' },
           'demoId': 'dialog-width'
         },
         {
@@ -395,70 +395,70 @@ export default {
       'events': [
         {
           'name': 'close',
-          'type': 'Function()',
+          'type': '() => {}',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Dialog 关闭的回调;Dialog 关闭的回调;无arguments',
+            'zh-CN': 'Dialog 关闭的回调',
             'en-US': 'Dialog disabled callback; Dialog closing callback; No arguments'
           },
           'demoId': 'open-close-events'
         },
         {
           'name': 'open',
-          'type': 'Function()',
+          'type': '() => {}',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Dialog 打开的回调;Dialog 打开的回调;无arguments',
+            'zh-CN': 'Dialog 打开的回调',
             'en-US': 'Dialog open callback; Dialog open callback; No arguments'
           },
           'demoId': 'open-close-events'
         },
         {
           'name': 'opened',
-          'type': 'Function()',
+          'type': '() => {}',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Dialog 打开动画结束时的回调;无arguments',
+            'zh-CN': 'Dialog 打开动画结束时的回调',
             'en-US': 'Dialog: callback when the animation ends; No arguments'
           },
           'demoId': 'open-close-events'
         },
         {
           'name': 'closed',
-          'type': 'Function()',
+          'type': '() => {}',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Dialog 关闭动画结束时的回调;无arguments',
+            'zh-CN': 'Dialog 关闭动画结束时的回调',
             'en-US': 'Dialog closes the callback when the animation ends. No arguments'
           },
           'demoId': 'open-close-events'
         },
         {
           'name': 'drag-start',
-          'type': 'Function(arg)',
+          'type': '(arg) => {}',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Dialog 拖拽开始事件;arg:event(包含弹窗的位置等信息)',
+            'zh-CN': 'Dialog 拖拽开始事件;arg包含弹窗的位置等信息',
             'en-US': 'Dialog drag start event; arg:event (including the location of the pop-up window)'
           },
           'demoId': 'draggable'
         },
         {
           'name': 'drag-move',
-          'type': 'Function(arg)',
+          'type': '(arg) => {}',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Dialog 拖拽移动事件;arg:event(包含弹窗的位置等信息)',
+            'zh-CN': 'Dialog 拖拽移动事件;arg包含弹窗的位置等信息',
             'en-US': 'Dialog dragging and moving event; arg:event (including the location of the pop-up window)'
           },
           'demoId': 'draggable'
         },
         {
           'name': 'drag-end',
-          'type': 'Function(arg)',
+          'type': '(arg) => {}',
           'defaultValue': '',
           'desc': {
-            'zh-CN': 'Dialog 拖拽结束事件;arg:event(包含弹窗的位置等信息)',
+            'zh-CN': 'Dialog 拖拽结束事件;arg包含弹窗的位置等信息',
             'en-US': 'Dialog drag end event; arg:event (including the location of the pop-up window)'
           },
           'demoId': 'draggable'
