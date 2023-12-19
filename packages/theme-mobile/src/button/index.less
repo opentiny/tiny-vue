@@ -41,6 +41,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: middle;
+  padding: 0 var(--ti-mobile-button-padding-large);
+  height: var(--ti-mobile-button-height-large);
+  min-width: var(--ti-mobile-button-min-width-large);
+  line-height: var(--ti-mobile-button-height-large);
+  font-size: var(--ti-mobile-button-font-size-default);
 
   // 主要
   &--primary {
@@ -145,14 +150,6 @@
       background-color: var(--ti-mobile-button-bg-color-disabled);
       border: none;
     }
-  }
-
-  &--large {
-    padding: 0 var(--ti-mobile-button-padding-large);
-    height: var(--ti-mobile-button-height-large);
-    min-width: var(--ti-mobile-button-min-width-large);
-    line-height: var(--ti-mobile-button-height-large);
-    font-size: var(--ti-mobile-button-font-size-default);
   }
 
   &--small {
