@@ -40,7 +40,7 @@ export default {
     {
       'name': 'rich-text-editor',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue',
           'type': 'string',

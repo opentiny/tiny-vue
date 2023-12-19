@@ -2,7 +2,7 @@
   <tiny-scroll-text class="scrollclass"></tiny-scroll-text>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ScrollText as TinyScrollText } from '@opentiny/vue'
 </script>
 

@@ -173,7 +173,7 @@ export const handleClick =
 
 export const computedGetIcon =
   ({ constants, designConfig }: Pick<IDropdownItemRenderlessParams, 'constants' | 'designConfig'>) =>
-  (name: string = 'leftWardArrow'): object => {
+  (name = 'leftWardArrow'): object | string => {
     return designConfig?.icons[name] || constants?.ICON_MAP[name]
   }
 

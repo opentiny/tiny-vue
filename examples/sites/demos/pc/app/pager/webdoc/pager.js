@@ -88,7 +88,7 @@ export default {
         'en-US':
           'Indicates whether to add an element in the <p> <code>popper-append-to-body</code> paging drop-down list box to the body element node.</p>'
       },
-      'codeFiles': ['page-append-to-body.vue']
+      'codeFiles': ['popper-append-to-body.vue']
     },
     {
       'demoId': 'popper-class',
@@ -338,7 +338,7 @@ export default {
             'en-US':
               'Whether to insert the pop-up box into the body element. You can set this attribute to false (refer to the select component)'
           },
-          'demoId': 'page-append-to-body'
+          'demoId': 'popper-append-to-body'
         },
         {
           'name': 'popper-class',

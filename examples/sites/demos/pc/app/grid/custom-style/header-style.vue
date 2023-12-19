@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="header-style">
     <h4 class="title">自定义表头行样式：</h4>
-    <tiny-grid class="grid-header-row-style" :data="tableData" :header-row-class-name="headerRowClassName">
+    <tiny-grid :data="tableData" :header-row-class-name="headerRowClassName">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
@@ -10,12 +10,12 @@
       <tiny-grid-column field="city" title="城市"></tiny-grid-column>
     </tiny-grid>
     <h4 class="title">自定义表头单元格样式：</h4>
-    <tiny-grid class="grid-header-cell-style" :data="tableData" :header-cell-class-name="headerCellClassName">
+    <tiny-grid :data="tableData" :header-cell-class-name="headerCellClassName">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
       <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
-      <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+      <tiny-grid-column field="createdDate" :header-class-name="headerClassName" title="创建日期"></tiny-grid-column>
       <tiny-grid-column field="city" title="城市"></tiny-grid-column>
     </tiny-grid>
   </div>
@@ -101,20 +101,13 @@ export default {
       if (column.property === 'name') {
         return 'header__cell--blue'
       }
+    },
+    headerClassName() {
+      return 'header-blue'
     }
   }
 }
 </script>
-
-<style>
-.grid-header-row-style .tiny-grid-header__row.header__row--red {
-  background-color: palevioletred;
-}
-.grid-header-cell-style .tiny-grid-header__column.header__cell--blue {
-  background-color: #2db7f5;
-  color: #fff;
-}
-</style>
 
 <style scoped>
 .title {
@@ -122,5 +115,16 @@ export default {
   padding: 15px;
   font-weight: bolder;
   color: #444;
+}
+.header-style :deep(.tiny-grid-header__row.header__row--red) {
+  background-color: palevioletred;
+}
+.header-style :deep(.tiny-grid-header__column.header__cell--blue) {
+  background-color: #2db7f5;
+  color: #fff;
+}
+.header-style :deep(.header-blue) {
+  background-color: #2db7f5;
+  color: #fff;
 }
 </style>

@@ -701,7 +701,9 @@ const Methods = {
 
       if (!sortedFlag) {
         let columnSortMethod = sortColumn.sortMethod
-        let sorted = columnSortMethod ? tableData.sort(columnSortMethod) : sortBy(tableData, sortColumn.property)
+        let sorted = columnSortMethod
+          ? tableData.sort(columnSortMethod)
+          : sortBy(tableData, sortColumn.sortBy ? sortColumn.sortBy : sortColumn.property)
 
         tableData = sortColumn.order === 'desc' ? sorted.reverse() : sorted
       }
@@ -1035,6 +1037,8 @@ const Methods = {
     return this.recalculate()
   },
   updateStyle() {
+    // 窗口resize后，手动调用recalculate父容器高度还是初始值，需要update一下
+    this.updateParentHeight()
     let { columnStore, currentRow, height, maxHeight, minHeight, parentHeight, tableColumn } = this
     let layoutList = ['header', 'body', 'footer']
     let { customHeight, scaleToPx } = {}

@@ -1,6 +1,12 @@
 <template>
   <tiny-tabs v-model="activeName" tab-style="card" :with-close="true" @close="close">
-    <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
+    <tiny-tab-item
+      :key="item.name"
+      v-for="item in Tabs"
+      :title="item.title"
+      :name="item.name"
+      :with-close="item.withClose"
+    >
       {{ item.content }}
     </tiny-tab-item>
   </tiny-tabs>
@@ -41,7 +47,8 @@ export default {
         {
           title: '其他组件',
           name: 'fifth',
-          content: '其他组件，更多种类组件。'
+          content: '其他组件，更多种类组件。',
+          withClose: false
         }
       ]
     }

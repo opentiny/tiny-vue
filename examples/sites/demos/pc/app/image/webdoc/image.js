@@ -155,7 +155,7 @@ export default {
             'en-US':
               'After lazy loading is enabled, the container listens for the scroll event. The default value of this property is the parent element of the last overflow value being auto or scroll'
           },
-          'demoId': 'lazy'
+          'demoId': ''
         },
         {
           'name': 'preview-src-list',
@@ -172,7 +172,7 @@ export default {
             'zh-CN': '设置图片预览外层元素的 z-index',
             'en-US': 'Set the z-index of the image preview wrapper'
           },
-          'demoId': 'preview'
+          'demoId': ''
         }
       ],
       'events': [

@@ -212,7 +212,7 @@ export default defineComponent({
             popperClass: `${classPrefix}form__valid`,
             arrowOffset: 0,
             adjustArrow: true,
-            type: 'error',
+            type: 'normal',
             disabled: state.getValidateType !== 'tip',
             placement: validatePosition,
             manual: true,

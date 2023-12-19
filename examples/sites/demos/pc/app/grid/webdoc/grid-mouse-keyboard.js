@@ -51,5 +51,5 @@ export default {
       'codeFiles': ['mouse-keyboard/mouse-config.vue']
     }
   ],
-  apis: [{ 'name': 'grid-mouse-keyboard', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-mouse-keyboard', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

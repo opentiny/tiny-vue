@@ -14,7 +14,7 @@ test('自定义按钮测试', async ({ page }) => {
   await expect(buttons.first()).toBeEnabled()
   await expect(buttons.nth(3)).toBeEnabled()
 
-  //全部移动到右侧
+  // 全部移动到右侧
   await buttons.first().click()
   await expect(rightPanel.locator('label').filter({ hasText: '列表 2 0 / 13' })).toHaveCount(1)
   await expect(buttons.first()).toBeDisabled()

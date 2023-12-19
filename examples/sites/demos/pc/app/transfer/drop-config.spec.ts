@@ -22,7 +22,7 @@ test('尝试拖拽', async ({ page }) => {
   await expect(rightPanel.locator('.tiny-transfer-panel__header').filter({ hasText: '列表 2 0 / 5' })).toHaveCount(1)
   await expect(leftPanel.locator('.tiny-transfer-panel__header').filter({ hasText: '列表 1 0 / 11' })).toHaveCount(1)
 
-  //尝试拖拽右侧某一项至左侧面板
+  // 尝试拖拽右侧某一项至左侧面板
   const dragDiv2 = rightPanel.locator('label').filter({ hasText: '备选项 3' })
   await page.waitForTimeout(100)
   await dragDiv2.hover()

@@ -36,5 +36,5 @@ export default {
       'codeFiles': ['align/grid-align.vue']
     }
   ],
-  apis: [{ 'name': 'grid-align', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-align', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

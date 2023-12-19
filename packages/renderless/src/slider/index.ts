@@ -38,6 +38,8 @@ export const bindKeyDown =
       return
     }
 
+    event.preventDefault()
+
     let currentValue = 0
 
     switch (event.keyCode) {
@@ -160,7 +162,9 @@ export const bindMouseUp =
       return
     }
 
-    state.showTip = false
+    if (state.mouseOuterBtn) {
+      state.showTip = false
+    }
     state.isDrag = false
 
     off(window, 'mouseup', api.bindMouseUp)
@@ -174,6 +178,7 @@ export const bindMouseUp =
 export const displayTip =
   ({ api, nextTick, state }: Pick<ISliderRenderlessParams, 'api' | 'nextTick' | 'state'>) =>
   (event) => {
+    state.mouseOuterBtn = false
     if (!state.showTip) {
       state.showTip = true
       api.changeActiveValue(api.getActiveButtonIndex(event) === 0)
@@ -184,7 +189,10 @@ export const displayTip =
     }
   }
 
-export const hideTip = (state: ISliderState) => () => !state.isDrag && (state.showTip = false)
+export const hideTip = (state: ISliderState) => () => {
+  state.mouseOuterBtn = true
+  !state.isDrag && (state.showTip = false)
+}
 
 export const setTipStyle =
   ({
@@ -483,6 +491,11 @@ export const watchActiveValue =
     } else {
       state.activeValue = nNewValue || 0
     }
+
+    // 正在输入时，不应该改变输入的内容
+    if (!state.isSlotTyping) {
+      state.slotValue = state.activeValue
+    }
   }
 
 export const watchModelValue =
@@ -554,3 +567,16 @@ export const inputValueChange =
     }
     api.initSlider([Math.min(...state.inputValue), Math.max(...state.inputValue)])
   }
+
+export const handleSlotInputFocus = (state: ISliderRenderlessParams['state']) => () => {
+  state.isSlotTyping = true
+}
+
+export const handleSlotInputBlur = (state: ISliderRenderlessParams['state']) => () => {
+  state.isSlotTyping = false
+  state.slotValue = state.activeValue
+}
+
+export const handleSlotInput = (state: ISliderRenderlessParams['state']) => (event: Event) => {
+  state.activeValue = Number((event.target as HTMLInputElement).value)
+}

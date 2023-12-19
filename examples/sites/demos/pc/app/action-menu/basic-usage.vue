@@ -1,5 +1,5 @@
 <template>
-  <tiny-action-menu :options="options" more-text="更多"> </tiny-action-menu>
+  <tiny-action-menu :options="options"> </tiny-action-menu>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
     return {
       options: [
         {
-          label: '远程登陆',
+          label: '远程登陆'
         },
         {
           label: '开机'

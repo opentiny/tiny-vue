@@ -12,18 +12,21 @@ test('测试表单文本对齐', async ({ page }) => {
   const firstItemContent = formItem.first().locator('.tiny-form-item__content')
 
   await getBtnByText('left').click()
+  await page.waitForTimeout(300)
   await expect(form).toHaveClass(/tiny-form--label-left/)
   let labelBox = await firstItemLabel.boundingBox()
   let contentBox = await firstItemContent.boundingBox()
   expect(labelBox?.y).toEqual(contentBox?.y)
 
   await getBtnByText('top').click()
+  await page.waitForTimeout(300)
   await expect(form).toHaveClass(/tiny-form--label-top/)
   labelBox = await firstItemLabel.boundingBox()
   contentBox = await firstItemContent.boundingBox()
   expect(labelBox?.y).toBeLessThan(contentBox?.y || 0)
 
   await getBtnByText('right').click()
+  await page.waitForTimeout(300)
   await expect(form).toHaveClass(/tiny-form--label-right/)
   labelBox = await firstItemLabel.boundingBox()
   contentBox = await firstItemContent.boundingBox()

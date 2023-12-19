@@ -446,58 +446,48 @@
     }
 
     &.@{button-prefix-cls}.@{button-prefix-cls}--large {
-      min-width: var(--ti-button-text-size-large-min-width);
-      height: var(--ti-button-text-size-large-height);
-      line-height: calc(var(--ti-button-text-size-large-height) - 2px);
-
-      svg {
-        width: var(--ti-button-text-size-large-svg-width);
-        height: var(--ti-button-text-size-large-svg-height);
-      }
+      .button-text-size(
+        var(--ti-button-text-size-large-min-width),
+        var(--ti-button-text-size-large-height),
+        var(--ti-button-text-size-large-svg-width),
+        var(--ti-button-text-size-large-svg-height)
+      );
     }
 
     &.@{button-prefix-cls}.@{button-prefix-cls}--medium {
-      min-width: var(--ti-button-text-size-medium-min-width);
-      height: var(--ti-button-text-size-medium-height);
-      line-height: calc(var(--ti-button-text-size-medium-height) - 2px);
-
-      svg {
-        width: var(--ti-button-text-size-medium-svg-width);
-        height: var(--ti-button-text-size-medium-svg-height);
-      }
+      .button-text-size(
+        var(--ti-button-text-size-medium-min-width),
+        var(--ti-button-text-size-medium-height),
+        var(--ti-button-text-size-medium-svg-width),
+        var(--ti-button-text-size-medium-svg-height)
+      );
     }
 
     &.@{button-prefix-cls} {
-      min-width: var(--ti-button-text-size-default-min-width);
-      height: var(--ti-button-text-size-default-height);
-      line-height: calc(var(--ti-button-text-size-default-height) - 2px);
-
-      svg {
-        width: var(--ti-button-text-size-default-svg-width);
-        height: var(--ti-button-text-size-default-svg-height);
-      }
+      .button-text-size(
+        var(--ti-button-text-size-default-min-width),
+        var(--ti-button-text-size-default-height),
+        var(--ti-button-text-size-default-svg-width),
+        var(--ti-button-text-size-default-svg-height)
+      );
     }
 
     &.@{button-prefix-cls}.@{button-prefix-cls}--small {
-      min-width: var(--ti-button-text-size-small-min-width);
-      height: var(--ti-button-text-size-small-height);
-      line-height: calc(var(--ti-button-text-size-small-height) - 2px);
-
-      svg {
-        width: var(--ti-button-text-size-small-svg-width);
-        height: var(--ti-button-text-size-small-svg-height);
-      }
+      .button-text-size(
+        var(--ti-button-text-size-small-min-width),
+        var(--ti-button-text-size-small-height),
+        var(--ti-button-text-size-small-svg-width),
+        var(--ti-button-text-size-small-svg-height)
+      );
     }
 
     &.@{button-prefix-cls}.@{button-prefix-cls}--mini {
-      min-width: var(--ti-button-text-size-mini-min-width);
-      height: var(--ti-button-text-size-mini-height);
-      line-height: calc(var(--ti-button-text-size-mini-height) - 2px);
-
-      svg {
-        width: var(--ti-button-text-size-mini-svg-width);
-        height: var(--ti-button-text-size-mini-svg-height);
-      }
+      .button-text-size(
+        var(--ti-button-text-size-mini-min-width),
+        var(--ti-button-text-size-mini-height),
+        var(--ti-button-text-size-mini-svg-width),
+        var(--ti-button-text-size-mini-svg-height)
+      );
     }
   }
 

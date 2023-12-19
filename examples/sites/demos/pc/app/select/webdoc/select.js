@@ -338,9 +338,9 @@ export default {
       'name': { 'zh-CN': '下拉表格禁用选项', 'en-US': 'Select Table Disable Options' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>select-config</code> （多选）或 <code>radio-config</code> （单选）属性的<code>checkMethod</code>自定义禁用逻辑，返回 true(启用) / false(禁用)。</p>\n',
+          '<p>通过 <code>select-config</code> （多选）或 <code>radio-config</code> （单选）属性的 <code>checkMethod</code> 自定义禁用逻辑，返回 true (启用) / false (禁用)。</p>\n',
         'en-US':
-          "<p>By customizing the disable logic through the <code>select-config</code> (multiple selection) or <code>radio-config</code> (single selection) attribute's<code>checkMethod</code>, return true(Enable) / false(disable)</p>"
+          "<p>By customizing the disable logic through the <code>select-config</code> (multiple selection) or <code>radio-config</code> (single selection) attribute's <code>checkMethod</code>, return true (Enable) / false (disable)</p>"
       },
       'codeFiles': ['nest-grid-disable.vue']
     },
@@ -455,7 +455,7 @@ export default {
     {
       'name': 'select',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'allow-copy',
           'type': 'boolean',
@@ -481,7 +481,7 @@ export default {
         {
           'name': 'autocomplete',
           'type': 'string',
-          'defaultValue': 'off',
+          'defaultValue': "'off'",
           'desc': {
             'zh-CN': '输入框的原生 autocomplete 属性',
             'en-US': 'The native autocomplete attribute of the input box'
@@ -500,7 +500,7 @@ export default {
         },
         {
           'name': 'clear-no-match-value',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '是否自动清空无法在 options 中找到匹配项的值',
@@ -539,7 +539,8 @@ export default {
   sortBy: 'frequency',
   sort: 'desc',
   dataKey: 'value',
-  highlightClass: 'memorize-highlight',
+  highlightClass: 
+  'memorize-highlight',
   highlightNum: Infinity,
   cacheNum: Infinity,
   serialize: JSON.stringify
@@ -607,8 +608,8 @@ export default {
         },
         {
           'name': 'input-box-type',
-          'type': '"input" | "underline"',
-          'defaultValue': 'input',
+          'type': "'input' | 'underline'",
+          'defaultValue': "'input'",
           'desc': {
             'zh-CN': '输入框的显示类型',
             'en-US': 'Display type of input box'
@@ -639,7 +640,7 @@ export default {
         {
           'name': 'loading-text',
           'type': 'string',
-          'defaultValue': '加载中',
+          'defaultValue': "'加载中'",
           'desc': {
             'zh-CN': '远程加载时显示的文本',
             'en-US': 'Text displayed during remote loading'
@@ -690,7 +691,7 @@ export default {
         {
           'name': 'no-match-text',
           'type': 'string',
-          'defaultValue': '无匹配数据',
+          'defaultValue': "'无匹配数据'",
           'desc': {
             'zh-CN': '搜索条件无匹配时显示的文本，也可以使用 empty 插槽设置',
             'en-US':
@@ -701,7 +702,7 @@ export default {
         {
           'name': 'no-data-text',
           'type': 'string',
-          'defaultValue': '暂无相关数据',
+          'defaultValue': "'暂无相关数据'",
           'desc': {
             'zh-CN': '选项列表为空时显示的文本，也可以使用 empty 插槽设置',
             'en-US': 'The text displayed when the option list is empty can also be set using empty slots'
@@ -723,7 +724,7 @@ export default {
           'name': 'placement',
           'type': 'IPlacement',
           'typeAnchorName': 'IPlacement',
-          'defaultValue': 'bottom-start',
+          'defaultValue': "'bottom-start'",
           'desc': {
             'zh-CN': '下拉弹框相对于触发源的弹出位置',
             'en-US': 'The pop-up position of the pull-down pop-up box relative to the trigger source'
@@ -733,7 +734,7 @@ export default {
         {
           'name': 'placeholder',
           'type': 'string',
-          'defaultValue': '请选择',
+          'defaultValue': "'请选择'",
           'desc': { 'zh-CN': '占位符', 'en-US': 'Placeholder' },
           'demoId': 'native-properties'
         },
@@ -790,7 +791,7 @@ export default {
         },
         {
           'name': 'render-type',
-          'type': '"tree" | "grid"',
+          'type': "'tree' | 'grid'",
           'defaultValue': '',
           'desc': {
             'zh-CN': '渲染为下拉表格或下拉树，需结合 grid-op / tree-op 使用',
@@ -820,7 +821,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': '"medium" | "small" | "mini"',
+          'type': "'medium' | 'small' | 'mini'",
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框尺寸。',
@@ -850,7 +851,7 @@ export default {
         },
         {
           'name': 'tag-type',
-          'type': '"success" | "info" | "warning" | "danger" ',
+          'type': "'success' | 'info' | 'warning' | 'danger'",
           'defaultValue': '',
           'desc': {
             'zh-CN': '标签类型，仅多选适用。使用 aurora 主题时设置该属性为 info',
@@ -874,7 +875,7 @@ export default {
         {
           'name': 'text-split',
           'type': 'string',
-          'defaultValue': ',',
+          'defaultValue': "','",
           'desc': {
             'zh-CN': '自定义复制文本的分隔符，需结合 copyable 属性使用',
             'en-US': 'The separator for custom copied text needs to be used in conjunction with the copyable attribute'
@@ -884,7 +885,7 @@ export default {
         {
           'name': 'text-field',
           'type': 'string',
-          'defaultValue': 'label',
+          'defaultValue': "'label'",
           'desc': {
             'zh-CN': '显示值字段',
             'en-US': 'Show Value Fields'
@@ -894,7 +895,7 @@ export default {
         {
           'name': 'value-field',
           'type': 'string',
-          'defaultValue': 'value',
+          'defaultValue': "'value'",
           'desc': {
             'zh-CN': '绑定值字段',
             'en-US': 'Bind Value Field'
@@ -904,7 +905,7 @@ export default {
         {
           'name': 'value-key',
           'type': 'string',
-          'defaultValue': 'value',
+          'defaultValue': "'value'",
           'desc': {
             'zh-CN': '作为 value 唯一标识的键名，绑定值为对象类型时必填',
             'en-US':
@@ -1063,7 +1064,7 @@ interface IOption {
 `
     },
     {
-      name: 'ICacheItem',
+      name: 'ICacheOp',
       type: 'interface',
       code: `
 interface ICacheItem {
@@ -1071,12 +1072,7 @@ interface ICacheItem {
   key: string
   time: number
 }
-`
-    },
-    {
-      name: 'ICacheOp',
-      type: 'interface',
-      code: `
+
 interface ICacheOp {
   key: string // 本地缓存的唯一 key 值
   sortBy?: 'frequency' | 'time' // 排序的字段，默认 frequency (频次)
@@ -1101,7 +1097,7 @@ interface IGridOption {
 `
     },
     {
-      name: 'ITreeNode',
+      name: 'ITreeOption',
       type: 'interface',
       code: `
 interface ITreeNode {
@@ -1109,12 +1105,7 @@ interface ITreeNode {
   id: number|string     // 树节点唯一标识
   children: ITreeNode[] // 子节点
 }
-`
-    },
-    {
-      name: 'ITreeOption',
-      type: 'interface',
-      code: `
+
 interface ITreeOption {
   data: ITreeNode[] // 树数据，用法同 Tree
 }

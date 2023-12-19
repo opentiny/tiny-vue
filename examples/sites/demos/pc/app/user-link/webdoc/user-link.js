@@ -92,7 +92,7 @@ export default {
     {
       'name': 'user-link',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'value',
           'type': 'string',

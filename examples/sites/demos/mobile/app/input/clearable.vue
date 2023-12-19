@@ -1,10 +1,10 @@
 <template>
-  <div class="input-wrap">
+  <div class="demo-input">
     <tiny-input v-model="input" clearable></tiny-input>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Input } from '@opentiny/vue'
 
 export default {
@@ -13,16 +13,16 @@ export default {
   },
   data() {
     return {
-      input: '这是输入框'
+      input: '可一键清空'
     }
   }
 }
 </script>
 
-<style>
-.input-wrap {
-  padding-top: 20px;
+<style scoped>
+.demo-input {
+  padding: 20px 16px;
   height: 100%;
-  background: #f4f4f4;
+  background: #f5f5f5;
 }
 </style>

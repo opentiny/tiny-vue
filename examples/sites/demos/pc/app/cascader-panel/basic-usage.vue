@@ -1,5 +1,5 @@
 <template>
-  <tiny-cascader-panel class="cascader-panel-demo" :options="optionsCascader"></tiny-cascader-panel>
+  <tiny-cascader-panel class="cascader-panel-demo" :options="optionsCascader" v-model="value"></tiny-cascader-panel>
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default {
   },
   data() {
     return {
+      value: '',
       optionsCascader: [
         {
           value: 'zhinan',

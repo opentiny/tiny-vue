@@ -154,6 +154,12 @@
   &.is-only-icon.is-disabled {
     border-color: var(--ti-button-only-icon-disabled-border-color);
   }
+  &.is-loading.is-disabled {
+    color: @color;
+    fill: @color;
+    border-color: @normal-border-color;
+    background-color: @normal-bg-color;
+  }
 }
 
 .button-text(@color, @hover-bg-color, @active-color, @disabled-color, @hover-weight) {
@@ -185,5 +191,20 @@
     border-color: transparent;
     background-color: transparent;
     font-weight: normal;
+  }
+}
+
+.button-text-size(@min-width, @height, @svg-width, @svg-height) {
+  min-width: @min-width;
+  height: @height;
+  line-height: calc(@height - 2px);
+
+  svg {
+    width: @svg-width;
+    height: @svg-height;
+  }
+
+  &.is-only-icon {
+    min-width: unset;
   }
 }

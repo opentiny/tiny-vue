@@ -1,7 +1,28 @@
 <template>
   <div class="demo-select">
+    <p>场景1：下拉树单选</p>
     <tiny-select
-      v-model="treeRadio"
+      v-model="treeValue1"
+      value-field="id"
+      text-field="label"
+      render-type="tree"
+      :tree-op="treeOp"
+    ></tiny-select>
+    <p>场景2：下拉树多选</p>
+    <tiny-select
+      v-model="treeValue2"
+      multiple
+      value-field="id"
+      text-field="label"
+      render-type="tree"
+      :tree-op="treeOp"
+    ></tiny-select>
+    <p>场景3：下拉树可搜索</p>
+    <tiny-select
+      v-model="treeValue3"
+      filterable
+      :filter-method="filter"
+      clearable
       value-field="id"
       text-field="label"
       render-type="tree"
@@ -14,7 +35,10 @@
 import { ref } from 'vue'
 import { Select as TinySelect } from '@opentiny/vue'
 
-const treeRadio = ref(10)
+const treeValue1 = ref(10)
+const treeValue2 = ref([9, 6])
+const treeValue3 = ref('')
+
 const treeOp = ref({
   data: [
     {
@@ -53,6 +77,12 @@ const treeOp = ref({
     }
   ]
 })
+
+const filter = (value, data) => {
+  if (!value) return true
+
+  return data.label.includes(value)
+}
 </script>
 
 <style scoped>

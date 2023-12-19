@@ -38,6 +38,7 @@ const createImportMap = (version) => {
     '@opentiny/vue-locale': `${getRuntime(version)}tiny-vue-locale.mjs`,
     '@opentiny/vue-common': `${getRuntime(version)}tiny-vue-common.mjs`,
     '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme@${version}/`,
+    '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless@${version}/`,
     'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
   }
   if (['aurora', 'smb'].includes(tinyTheme)) {

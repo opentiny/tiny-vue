@@ -6,10 +6,9 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>data</code> 设置按钮组数据，类型为 <a href="#IButtonGroupData">IButtonGroupData</a> ，通过 <code>v-model</code> 设置绑定值。</p>',
+        'zh-CN': '<p>通过 <code>data</code> 设置按钮组数据，<code>v-model</code> 设置绑定值。</p>',
         'en-US':
-          '<p>Set the button group data to type <a="# IButtonGroupData">IButtonGroupData</a> through <code>data</code> , and set the binding value through <code>v model</code> .</p>'
+          '<p>Set the button group data through <code>data</code> , and set the binding value through <code>v model</code> .</p>'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -86,6 +85,15 @@ export default {
           '<p>When the default slot mode is used, the <code>data, text-field, value-field, v-model, and size</code> attributes of the ButtonGroup do not take effect for buttons in the slot. </p>'
       },
       'codeFiles': ['slot-default.vue']
+    },
+    {
+      'demoId': 'slot-empty',
+      'name': { 'zh-CN': '空数据插槽', 'en-US': 'Empty slot' },
+      'desc': {
+        'zh-CN': '<p>当数据为空时，默认会显示暂无数据，通过默认插槽自定义内容。</p>',
+        'en-US': '<p>When the data is empty, customize the content via the <code>empty</code> slot.</p>'
+      },
+      'codeFiles': ['slot-empty.vue']
     },
     {
       'demoId': 'button-group-multiple',

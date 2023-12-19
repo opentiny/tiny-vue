@@ -26,5 +26,5 @@ export default {
       'codeFiles': ['graph/demo3.vue']
     }
   ],
-  apis: [{ 'name': 'chart-graph', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-graph', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

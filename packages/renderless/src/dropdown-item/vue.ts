@@ -112,7 +112,7 @@ export const renderless = (
   { parent, emit, vm, dispatch, mode, constants, designConfig }: IDropdownItemRenderlessParamUtils
 ): IDropdownItemApi => {
   const api = {} as IDropdownItemApi
-  const dropdownMenuVm = inject('dropdownMenuVm') as IDropdownMenuVm
+  const dropdownMenuVm = inject('dropdownMenuVm', null) as IDropdownMenuVm
 
   if (mode === 'mobile' && dropdownMenuVm) {
     dropdownMenuVm.state.children = [...dropdownMenuVm.state.children, vm]

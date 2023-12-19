@@ -22,14 +22,15 @@ export default {
       'codeFiles': ['disabled.vue']
     },
     {
-      'demoId': 'add-icon',
+      'demoId': 'icon',
       'name': { 'zh-CN': '图标', 'en-US': 'Icon' },
       'desc': {
-        'zh-CN': '通过属性 <code>icon</code> 配置菜单按钮前的图标。',
+        'zh-CN':
+          '通过 <code>icon</code> 属性设置菜单项的图标，<code>suffix-icon</code> 设置下拉触发源图标，<code>show-icon</code> 设置是否显示下拉触发源图标。',
         'en-US':
-          'The <code>icon</code> attribute is used to Configure the icon in front of the menu button.'
+          'Set the icon of the attribute setting menu item through <code>icon</code>, set the drop-down trigger source icon through <code>suffix-icon</code>, and set whether to display the drop-down trigger source icon through <code>show-icon</code>.'
       },
-      'codeFiles': ['add-icon.vue']
+      'codeFiles': ['icon.vue']
     },
     {
       'demoId': 'text-field',
@@ -47,7 +48,7 @@ export default {
       'desc': {
         'zh-CN': '<p>通过 <code>more-text</code> 属性设置下拉按钮文本,默认为 <code>更多</code>。</p>',
         'en-US':
-          '<p>Set the dropdown button text through the <code>more-text</code> attribute, default to<code>More</code></p>'
+          '<p>Set the dropdown button text through the <code>more-text</code> attribute, default to <code>More</code></p>'
       },
       'codeFiles': ['more-text.vue']
     },
@@ -75,11 +76,20 @@ export default {
       'demoId': 'max-show-num',
       'name': { 'zh-CN': '个数限制', 'en-US': 'Number limit' },
       'desc': {
-        'zh-CN': '<p>通过 <code>max-show-num</code> 属性设置显示最多显示菜单按钮的个数，默认为 2。</p>',
+        'zh-CN': '<p>通过 <code>max-show-num</code> 属性设置最多显示菜单按钮的个数，默认为 2。</p>',
         'en-US':
           '<p>By setting the <code>max-show-num</code> attribute, the maximum number of displayed menu buttons is set to 2 by default.</p>'
       },
       'codeFiles': ['max-show-num.vue']
+    },
+    {
+      'demoId': 'slot-item',
+      'name': { 'zh-CN': '菜单项插槽', 'en-US': 'Menu Slot' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>item</code> 插槽自定义下拉选项的 HTML 模板。</p>',
+        'en-US': '<p>Customize the HTML template for dropdown options through the <code>item</code> slot.</p>'
+      },
+      'codeFiles': ['slot-item.vue']
     },
     {
       'demoId': 'events',
@@ -102,22 +112,13 @@ export default {
           '</div>\n'
       },
       'codeFiles': ['events.vue']
-    },
-    {
-      'demoId': 'slot-item',
-      'name': { 'zh-CN': '菜单项插槽', 'en-US': 'Menu Slot' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>item</code> 插槽自定义下拉选项的 HTML 模板。</p>',
-        'en-US': '<p>Customize the HTML template for dropdown options through the <code>item</code> slot.</p>'
-      },
-      'codeFiles': ['slot-item.vue']
     }
   ],
   apis: [
     {
       'name': 'action-menu',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'max-show-num',
           'type': 'number',
@@ -132,19 +133,12 @@ export default {
         {
           'name': 'more-text',
           'type': 'string',
-          'defaultValue': '更多',
+          'defaultValue': "'更多'",
           'desc': {
             'zh-CN': '下拉按钮文本',
             'en-US': 'Dropdown button text'
           },
           'demoId': 'more-text'
-        },
-        {
-          'name': 'icon',
-          'type': 'component',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '菜单项显示值前的图标', 'en-US': 'Icon of a menu item' },
-          'demId': 'add-icon'
         },
         {
           'name': 'options',
@@ -156,47 +150,6 @@ export default {
             'en-US': 'Data for menu item list'
           },
           'demoId': 'basic-usage'
-        },
-        {
-          'name': 'options.label',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '菜单项文本',
-            'en-US': 'Menu Item Text'
-          },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'options.children',
-          'type': 'IItemData[]',
-          'typeAnchorName': 'IItemData',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '菜单项的子集',
-            'en-US': 'Subset of menu items'
-          },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'options.divided',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '是否显示分割线',
-            'en-US': 'Whether to display split lines'
-          },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'options.disabled',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '是否禁用',
-            'en-US': 'Is it disabled'
-          },
-          'demoId': 'disabled'
         },
         {
           'name': 'popper-class',
@@ -211,7 +164,7 @@ export default {
         {
           'name': 'spacing',
           'type': 'string | number',
-          'defaultValue': '5px',
+          'defaultValue': "'5px'",
           'desc': {
             'zh-CN': '菜单按钮之间的间距',
             'en-US': 'Spacing between menu buttons'
@@ -219,9 +172,29 @@ export default {
           'demoId': 'spacing'
         },
         {
+          'name': 'suffix-icon',
+          'type': 'VueComponent',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '下拉触发源图标',
+            'en-US': 'Dropdown trigger source icon'
+          },
+          'demoId': 'icon'
+        },
+        {
+          'name': 'show-icon',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否显示下拉触发源图标',
+            'en-US': 'Is the dropdown trigger source icon displayed'
+          },
+          'demoId': 'icon'
+        },
+        {
           'name': 'text-field',
           'type': 'string',
-          'defaultValue': 'label',
+          'defaultValue': "'label'",
           'desc': {
             'zh-CN': '菜单按钮文本的键值',
             'en-US': 'Key values for menu button text'
@@ -285,7 +258,8 @@ interface IItemData {
   label: string           // 菜单项文本
   disabled: boolean       // 是否禁用
   divided: boolean        // 是否显示分割线
-  children: IItemData[] // 菜单项子集
+  children: IItemData[]   // 菜单项子集
+  icon: VueComponent      // 菜单项图标
 }
 `
     },

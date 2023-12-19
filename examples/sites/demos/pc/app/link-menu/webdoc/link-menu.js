@@ -3,35 +3,15 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'data-resource1',
-      'name': { 'zh-CN': '数据源', 'en-US': 'Data Source' },
-      'desc': {
-        'zh-CN':
-          '<p>通过 <code>data</code> 属性设置菜单的数据源，同时在数据对象中可通过 <code>disabled</code> 设置该节点是否可被勾选。</p>\n',
-        'en-US':
-          '<p>Set the data source of the menu through the <code>data</code> attribute. In addition, you can set whether the node can be selected through <code>disabled</code> in the data object. </p>\n'
-      },
-      'codeFiles': ['data-resource.vue']
-    },
-    {
       'demoId': 'data-resource',
-      'name': { 'zh-CN': '收藏菜单标题', 'en-US': 'Collection Menu Title' },
+      'name': { 'zh-CN': '菜单设置', 'en-US': 'Data Source' },
       'desc': {
-        'zh-CN': '<p>通过 <code>title</code> 属性定义收藏菜单标题。</p>\n',
-        'en-US': '<p>The <code>title</code> attribute defines the title of the favorites menu. </p>\n'
-      },
-      'codeFiles': ['data-resource.vue']
-    },
-    {
-      'demoId': 'data-resource2',
-      'name': {
-        'zh-CN': '菜单内容超长时换行显示',
-        'en-US': 'The menu content is displayed in a new line when it is too long.'
-      },
-      'desc': {
-        'zh-CN': '<p>通过 <code>wrap</code> 属性设置菜单内容超长时换行显示。</p>\n',
-        'en-US':
-          '<p>The <code>wrap</code> attribute is used to set the menu content to be displayed in a line wrap when the menu content is too long. </p>\n'
+        'zh-CN': `<p>通过 <code>data</code> 属性设置菜单的数据源，同时在数据对象中可通过 <code>disabled</code> 设置该节点是否可被勾选。</p>\n
+          <p>通过 <code>title</code> 属性定义收藏菜单标题。</p>\n
+          <p>通过 <code>wrap</code> 属性设置菜单内容超长时换行显示。</p>\n`,
+        'en-US': `<p>Set the data source of the menu through the <code>data</code> attribute. In addition, you can set whether the node can be selected through <code>disabled</code> in the data object. </p>\n
+          <p>The <code>title</code> attribute defines the title of the favorites menu. </p>\n
+          <p>The <code>wrap</code> attribute is used to set the menu content to be displayed in a line wrap when the menu content is too long. </p>\n`
       },
       'codeFiles': ['data-resource.vue']
     },
@@ -92,7 +72,7 @@ export default {
     {
       'name': 'link-menu',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
           'type': 'Array',
