@@ -135,7 +135,7 @@ export default {
         {
           'name': 'completed-field',
           'type': 'string',
-          'defaultValue': 'completed',
+          'defaultValue': `'completed'`,
           'desc': {
             'zh-CN': '设置节点完成状态对应的键值',
             'en-US': 'Set the key values corresponding to the node completion status'
@@ -167,7 +167,7 @@ export default {
         {
           'name': 'flag-content-field',
           'type': 'string',
-          'defaultValue': 'content',
+          'defaultValue': `'content'`,
           'desc': {
             'zh-CN': '设置旗子内容描述部分对应的键名',
             'en-US': 'Set the key name corresponding to the flag content description section'
@@ -177,7 +177,7 @@ export default {
         {
           'name': 'flag-field',
           'type': 'string',
-          'defaultValue': 'flags',
+          'defaultValue': `'flags'`,
           'desc': {
             'zh-CN': '设置旗子信息数组对应的键名',
             'en-US': 'Set the key name corresponding to the flag information array'
@@ -187,7 +187,7 @@ export default {
         {
           'name': 'flag-name-field',
           'type': 'string',
-          'defaultValue': 'name',
+          'defaultValue': `'name'`,
           'desc': {
             'zh-CN': '设置旗子标题对应的键名',
             'en-US': 'Set the key name corresponding to the flag title'
@@ -197,7 +197,7 @@ export default {
         {
           'name': 'flag-status-field',
           'type': 'string',
-          'defaultValue': 'status',
+          'defaultValue': `'status'`,
           'desc': {
             'zh-CN': '设置旗子状态对应的键名',
             'en-US': 'Set the key name corresponding to the flag state'
@@ -206,7 +206,7 @@ export default {
         },
         {
           'name': 'line-style',
-          'type': 'number | string',
+          'type': `'number' | 'string'`,
           'defaultValue': '1',
           'desc': {
             'zh-CN': `线条颜色取值模式为数字时，只有1和2可选；如果为字符串则需传入 16 进制颜色值<br />
@@ -235,7 +235,7 @@ export default {
         {
           'name': 'name-field',
           'type': 'string',
-          'defaultValue': 'name',
+          'defaultValue': `'name'`,
           'desc': {
             'zh-CN': '设置节点名称对应的键名',
             'en-US': 'Set the key name corresponding to the node name'
@@ -285,7 +285,7 @@ export default {
         {
           'name': 'status-field',
           'type': 'string',
-          'defaultValue': 'status',
+          'defaultValue': `'status'`,
           'desc': {
             'zh-CN': '设置节点状态对应的键名',
             'en-US': 'Set the key name corresponding to the node state'
@@ -295,7 +295,7 @@ export default {
         {
           'name': 'time-field',
           'type': 'string',
-          'defaultValue': 'time',
+          'defaultValue': `'time'`,
           'desc': {
             'zh-CN': '设置节点时间信息对应的键名',
             'en-US': 'Set the key name corresponding to node time information'

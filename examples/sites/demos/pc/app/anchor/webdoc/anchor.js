@@ -89,7 +89,7 @@ export default {
         {
           'name': 'type',
           'type': '"line" | "dot"',
-          'defaultValue': '"line"',
+          'defaultValue': `'line'`,
           'desc': {
             'zh-CN': '锚点类型',
             'en-US': 'Anchor type'

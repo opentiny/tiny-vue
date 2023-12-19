@@ -258,7 +258,7 @@ export default {
           'name': 'position',
           'type': 'IPosition',
           'typeAnchorName': 'IPosition',
-          'defaultValue': 'top',
+          'defaultValue': `'top'`,
           'desc': {
             'zh-CN': '设置页签栏所在位置; 默认为 top',
             'en-US': 'Set the location of the label bar; Default to top'
