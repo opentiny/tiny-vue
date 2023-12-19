@@ -105,7 +105,7 @@ export default {
           'type': 'number',
           'defaultValue': '50',
           'desc': {
-            'zh-CN': '二维码中图片的大小，icon 覆盖面积不能超过 30%， 否则影响扫码',
+            'zh-CN': '二维码中图片的大小，icon 覆盖面积不能超过二维码面积的 30%， 否则影响扫码',
             'en-US': 'include image size，no more than 30%'
           },
           'demoId': 'icon'
