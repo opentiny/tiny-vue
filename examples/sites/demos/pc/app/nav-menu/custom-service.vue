@@ -282,23 +282,23 @@ export default {
         },
         {
           label: '规范',
-          urlField: '#/zh-CN/regular/rulelevel'
+          urlField: ''
         },
         {
           label: '性能',
-          urlField: '#/zh-CN/speed'
+          urlField: ''
         },
         {
           label: '案例',
-          urlField: '#/zh-CN/example'
+          urlField: ''
         },
         {
           label: '更新日志',
-          urlField: '#/zh-CN/guide/changelog'
+          urlField: ''
         },
         {
           label: '测试',
-          urlField: '#/zh-CN/guide/aaa'
+          urlField: ''
         }
       ]
 

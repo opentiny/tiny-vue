@@ -17,7 +17,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Form as TinyForm, FormItem as TinyFormItem, Select as TinySelect, Modal } from '@opentiny/vue'
+import { Select as TinySelect, Modal } from '@opentiny/vue'
 
 const buildOptions = () =>
   Array.from({ length: 100000 }).map((item, i) => JSON.parse(`{"value":"选项${i}","label":"黄金糕${i}"}`))
@@ -27,7 +27,10 @@ const value2 = ref([])
 const options = ref(buildOptions())
 
 const onChange = (value) => {
-  Modal.message(JSON.stringify(value))
+  Modal.message({
+    message: JSON.stringify(value),
+    status: 'info'
+  })
 }
 </script>
 
