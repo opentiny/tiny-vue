@@ -4,12 +4,13 @@
     <tiny-button type="primary" disabled>主要按钮不可用</tiny-button>
     <tiny-button type="secondary" disabled>次要按钮不可用</tiny-button>
     <tiny-button type="text" disabled>文字按钮不可用</tiny-button>
+    <tiny-button type="danger" disabled>危险按钮不可用</tiny-button>
     <tiny-button type="icon" :icon="IconMail" disabled></tiny-button>
     <tiny-button type="icon" :icon="IconMail" text="图标按钮" disabled></tiny-button>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button } from '@opentiny/vue'
 import { iconMail } from '@opentiny/vue-icon'
 

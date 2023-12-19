@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button } from '@opentiny/vue'
 import { iconMail } from '@opentiny/vue-icon'
 

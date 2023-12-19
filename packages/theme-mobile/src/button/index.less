@@ -10,7 +10,6 @@
 *
 */
 
-@import '../mixins/button.less';
 @import '../custom.less';
 @import './vars.less';
 
@@ -19,18 +18,14 @@
 }
 
 @button-prefix-cls: ~'@{css-prefix}mobile-button';
-@svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{button-prefix-cls} {
   position: relative;
   margin: 0;
 
   text-size-adjust: 100%;
-  border-width: 1px;
+  border-width: var(--ti-mobile-button-border-width);
   border-style: solid;
-  border-image: initial;
-  border-radius: 2px;
-  padding: 0 32px;
   transition:
     border 0.3s ease 0s,
     color 0.3s ease 0s,
@@ -47,69 +42,55 @@
   text-overflow: ellipsis;
   vertical-align: middle;
 
-  &:before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    border: inherit;
-    border-color: #000;
-    border-radius: inherit;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    content: ' ';
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &.is-disabled,
-  &.is-disabled:active,
-  &.is-disabled.is-active {
-    cursor: not-allowed;
-    .button-color(var(--ti-mobile-button-text-color-disabled),
-    var(--ti-mobile-button-bg-color-disabled),
-    var(--ti-mobile-button-bg-color-disabled));
-  }
-
   // 主要
   &--primary {
-    .button-type(var(--ti-mobile-button-text-color-white),
-    var(--ti-mobile-button-bg-color-primary));
+    color: var(--ti-mobile-button-text-color-white);
+    background-color: var(--ti-mobile-button-bg-color-black);
     border-radius: 999px;
+    border: none;
 
     &:active,
     &.is-active {
-      .button-type(var(--ti-mobile-button-text-color-white),
-      #595959);
+      background-color: var(--ti-mobile-button-bg-color-active);
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+      color: var(--ti-mobile-button-text-color-disabled);
+      background-color: var(--ti-mobile-button-bg-color-disabled);
+    }
+
+    &:hover {
+      background-color: var(--ti-mobile-button-bg-color-black);
+    }
+
+    &.is-loading {
+      background-color: var(--ti-mobile-button-bg-color-active);
     }
   }
 
   &--icon {
-    .button-type(var(--ti-mobile-button-text-color-default),
-    #fff);
+    color: var(--ti-mobile-button-text-color-black);
+    background-color: var(--ti-mobile-button-bg-color-white);
     min-width: 0 !important;
     padding: 0 !important;
     line-height: 0;
     border: none;
 
     .is-icon {
-      fill: var(--ti-mobile-button-text-color-default);
-      width: 24px;
-      height: 24px;
+      fill: var(--ti-mobile-button-text-color-black);
+      width: var(--ti-mobile-button-icon-size-large);
+      height: var(--ti-mobile-button-icon-size-large);
     }
 
     .small {
-      width: 16px;
-      height: 16px;
+      width: var(--ti-mobile-button-icon-size-small);
+      height: var(--ti-mobile-button-icon-size-small);
     }
 
     &:active .is-icon,
     &.is-active {
-      fill: #808080;
+      fill: var(--ti-mobile-button-bg-color-active);
     }
 
     &.is-disabled,
@@ -117,83 +98,73 @@
     &.is-disabled.is-active,
     &.is-disabled .is-icon {
       cursor: not-allowed;
-      background-color: #fff;
-      fill: #c2c2c2;
+      fill: var(--ti-mobile-button-text-color-disabled);
+    }
+
+    &.is-disabled {
+      color: var(--ti-mobile-button-text-color-disabled);
+      background-color: var(--ti-mobile-button-bg-color-white);
     }
   }
 
   &--danger {
-    .button-type(var(--ti-mobile-button-text-color-danger),
-    var(--ti-mobile-button-bg-color-default));
-    border-color: #f23030;
+    color: var(--ti-mobile-button-text-color-danger);
+    background-color: var(--ti-mobile-button-bg-color-white);
+    border-color: var(--ti-mobile-button-text-color-danger);
     border-radius: 999px;
 
-    &:active,
-    &.is-active {
-      .button-type(#faa9a5,
-      var(--ti-mobile-button-bg-color-default));
-      border-color: #f76360;
-    }
-  }
-
-  &--info {
-    .button-type(var(--ti-mobile-button-text-color-white),
-    var(--ti-mobile-button-bg-color-info));
-
-    &.is-plain {
-      .button-plain(var(--ti-mobile-button-bg-color-info));
+    &.is-disabled {
+      cursor: not-allowed;
+      color: var(--ti-mobile-button-text-color-disabled);
+      background-color: var(--ti-mobile-button-bg-color-disabled);
+      border: none;
     }
   }
 
   &--text {
-    .button-text(#1476ff,
-    var(--ti-mobile-button-text-color-hover),
-    var(#0f5ed4),
-    var(--ti-mobile-button-text-color-disabled));
+    color: var(--ti-mobile-button-text-color-blue);
+    background-color: var(--ti-mobile-button-bg-color-white);
+    border: none;
     min-width: 0 !important;
     padding: 0 !important;
+
+    &.is-disabled {
+      color: var(--ti-mobile-button-text-color-disabled);
+      background-color: var(--ti-mobile-button-bg-color-white);
+    }
   }
 
   &--secondary {
-    .button-type(var(--ti-mobile-button-text-color-default),
-    var(--ti-mobile-button-bg-color-secondary));
+    color: var(--ti-mobile-button-text-color-black);
+    background-color: var(--ti-mobile-button-bg-color-white);
     border-radius: 999px;
 
-    &:active,
-    &.is-active {
-      .button-type(#191919,
-      #ffffff);
-      border-color: #c2c2c2;
-    }
-
-    &.is-disabled,
-    &.is-disabled:active,
-    &.is-disabled.is-active {
+    &.is-disabled {
       cursor: not-allowed;
-      .button-color(var(--ti-mobile-button-text-color-disabled),
-      var(--ti-mobile-button-bg-color-disabled),
-      var(--ti-mobile-button-bg-color-disabled));
+      color: var(--ti-mobile-button-text-color-disabled);
+      background-color: var(--ti-mobile-button-bg-color-disabled);
+      border: none;
     }
   }
 
   &--large {
-    padding: 0 32px;
-    height: var(--ti-mobile-button-height);
-    min-width: 112px;
-    line-height: var(--ti-mobile-button-height);
+    padding: 0 var(--ti-mobile-button-padding-large);
+    height: var(--ti-mobile-button-height-large);
+    min-width: var(--ti-mobile-button-min-width-large);
+    line-height: var(--ti-mobile-button-height-large);
     font-size: var(--ti-mobile-button-font-size-default);
   }
 
   &--small {
-    padding: 0 16px;
-    height: 28px;
-    min-width: 72px;
-    line-height: 28px;
-    font-size: 12px;
+    padding: 0 var(--ti-mobile-button-padding-small);
+    height: var(--ti-mobile-button-height-small);
+    min-width: var(--ti-mobile-button-min-width-small);
+    line-height: var(--ti-mobile-button-height-small);
+    font-size: var(--ti-mobile-button-font-size-small);
 
     .is-icon {
-      width: 16px;
-      height: 16px;
+      width: var(--ti-mobile-button-icon-size-small);
+      height: var(--ti-mobile-button-icon-size-small);
     }
   }
 
@@ -209,20 +180,20 @@
 }
 
 .@{button-prefix-cls}-loading {
-  width: 16px;
-  height: 16px;
+  width: var(--ti-mobile-button-loading-size);
+  height: var(--ti-mobile-button-loading-size);
   border-radius: 50%;
   position: relative;
   float: left;
   animation: rotating 1.5s linear infinite;
   top: calc(50% - 8px);
-  margin-right: 4px;
+  margin-right: var(--ti-mobile-button-loading-padding);
 
   &-white {
     background-image: conic-gradient(rgb(255 255 255/ 0%), rgb(255 255 255 / 100%));
 
     .@{button-prefix-cls}-loading-inner {
-      background: #191919;
+      background: var(--ti-mobile-button-bg-color-active);
     }
   }
 
@@ -230,17 +201,17 @@
     background-image: conic-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 100%));
 
     .@{button-prefix-cls}-loading-inner {
-      background: #fff;
+      background: var(--ti-mobile-button-bg-color-white);
     }
   }
 
   &-inner {
-    width: 12px;
-    height: 12px;
+    width: var(--ti-mobile-button-loading-size-inner);
+    height: var(--ti-mobile-button-loading-size-inner);
     border-radius: 50%;
     position: absolute;
-    top: 2px;
-    left: 2px;
+    top: var(--ti-mobile-button-loading-padding-size-inner);
+    left: var(--ti-mobile-button-loading-padding-size-inner);
   }
 }
 

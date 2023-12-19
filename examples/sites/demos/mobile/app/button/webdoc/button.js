@@ -51,6 +51,30 @@ export default {
       codeFiles: ['size.vue']
     },
     {
+      demoId: 'icon',
+      name: {
+        'zh-CN': '图标',
+        'en-US': 'icon'
+      },
+      desc: {
+        'zh-CN': '<p>图标</p>',
+        'en-US': '<p>icon</p>'
+      },
+      codeFiles: ['icon.vue']
+    },
+    {
+      demoId: 'reset-time',
+      name: {
+        'zh-CN': '重置时间',
+        'en-US': 'reset time'
+      },
+      desc: {
+        'zh-CN': '<p>重置时间</p>',
+        'en-US': '<p>reset-time</p>'
+      },
+      codeFiles: ['reset-time.vue']
+    },
+    {
       demoId: 'event',
       name: {
         'zh-CN': '点击事件',
@@ -70,7 +94,7 @@ export default {
       properties: [
         {
           name: 'disabled',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>设置按钮是否被禁用,该属性默认为false</p>',
@@ -80,17 +104,17 @@ export default {
         },
         {
           name: 'icon',
-          type: 'Object',
+          type: 'VueComponent',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>svg 图片对象</p>',
             'en-US': 'display different button'
           },
-          demoId: 'base'
+          demoId: 'icon'
         },
         {
           name: 'loading',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: 'false',
           desc: {
             'zh-CN': '<p>svg 是否加载中状态，该属性默认为false</p>',
@@ -100,17 +124,17 @@ export default {
         },
         {
           name: 'reset-time',
-          type: 'Number',
+          type: 'number',
           defaultValue: '0',
           desc: {
             'zh-CN': '<p>设置按钮禁用时间，防止重复提交，单位毫秒,该属性默认为1000</p>',
             'en-US': 'display different button'
           },
-          demoId: 'base'
+          demoId: 'reset-time'
         },
         {
           name: 'size',
-          type: 'String',
+          type: 'string',
           defaultValue: '"large" | "medium" | "small" | "mini"',
           desc: {
             'zh-CN': '<p>尺寸</p>',
@@ -142,7 +166,7 @@ export default {
       events: [
         {
           name: 'click',
-          type: '',
+          type: '(event: PointEvent) => void',
           defaultValue: '',
           desc: {
             'zh-CN': '<p>设置当按钮被点击时触发的回调函数。</p>',
