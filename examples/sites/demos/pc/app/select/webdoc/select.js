@@ -539,7 +539,8 @@ export default {
   sortBy: 'frequency',
   sort: 'desc',
   dataKey: 'value',
-  highlightClass: 'memorize-highlight',
+  highlightClass: 
+  'memorize-highlight',
   highlightNum: Infinity,
   cacheNum: Infinity,
   serialize: JSON.stringify
@@ -1063,7 +1064,7 @@ interface IOption {
 `
     },
     {
-      name: 'ICacheItem',
+      name: 'ICacheOp',
       type: 'interface',
       code: `
 interface ICacheItem {
@@ -1071,12 +1072,7 @@ interface ICacheItem {
   key: string
   time: number
 }
-`
-    },
-    {
-      name: 'ICacheOp',
-      type: 'interface',
-      code: `
+
 interface ICacheOp {
   key: string // 本地缓存的唯一 key 值
   sortBy?: 'frequency' | 'time' // 排序的字段，默认 frequency (频次)
@@ -1101,7 +1097,7 @@ interface IGridOption {
 `
     },
     {
-      name: 'ITreeNode',
+      name: 'ITreeOption',
       type: 'interface',
       code: `
 interface ITreeNode {
@@ -1109,12 +1105,7 @@ interface ITreeNode {
   id: number|string     // 树节点唯一标识
   children: ITreeNode[] // 子节点
 }
-`
-    },
-    {
-      name: 'ITreeOption',
-      type: 'interface',
-      code: `
+
 interface ITreeOption {
   data: ITreeNode[] // 树数据，用法同 Tree
 }
