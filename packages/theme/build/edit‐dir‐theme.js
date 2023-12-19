@@ -63,169 +63,146 @@ const cssScopedMap = {
 
 const createTheme = (callbackFn) => {
   const createDir = (path, fn = null) => {
-    fs.mkdir(path, (err) => {
-      if (err) {
-        console.log(path, err)
-      }
-      fn && fn()
-    })
-  }
+    if (isPathExist(path)) {
+      return
+    }
 
-  let timer = null
-  const readerDirStart = () => {
-    clearTimeout(timer)
-    timer = null
-    timer = setTimeout(() => {
-      readDir(originRootPath, 'less')
-      readDir(originThemeRootPath, 'js')
-    }, 10)
+    fs.mkdirSync(path)
+
+    fn && fn()
   }
 
   const beginCreateDir = () => {
     for (let k in buildThemePathMap) {
-      createDir(originRootPath + k, readerDirStart)
+      createDir(originRootPath + k)
     }
+    readDir(originRootPath, 'less')
+    readDir(originThemeRootPath, 'js')
+    callbackFn()
   }
 
   const readDir = (originPath, type) => {
-    fs.readdir(originPath, (err, data) => {
-      if (err) {
-        console.log('readDir', err)
-        return
-      }
-
-      data.forEach((fileDir) => {
-        mkStat(originPath, fileDir, type)
-      })
+    const fileNames = fs.readdirSync(originPath)
+    fileNames.forEach((fileDir) => {
+      mkStat(originPath, fileDir, type)
     })
   }
 
   let isFinalTimer = null
 
-  const isFinalFn = () => {
-    clearTimeout(isFinalTimer)
-    isFinalTimer = null
-    isFinalTimer = setTimeout(() => {
-      callbackFn()
-    }, 20)
+  const copyDir = (originPath, targetPath) => {
+    fsExtra.copySync(originPath, targetPath)
   }
 
-  const copyDir = (originPath, targetPath) => {
-    fsExtra.copy(originPath, targetPath, (err) => {
-      if (err) {
-        console.log(err)
-      }
-    })
+  const isPathExist = (path) => {
+    return fs.existsSync(path)
   }
 
   const mkStat = (originPath, fileDir, type) => {
     const statPath = `${originPath}/${fileDir}`
-    const smbPath = `${originPath}/smb-theme/${fileDir}`
-    const auroraPath = `${originPath}/aurora-theme/${fileDir}`
-    fs.stat(statPath, (err, data) => {
-      if (err) {
-        console.log('mkStat', err)
-        return
-      }
-      if (data.isDirectory()) {
-        if (fileDir !== 'base' && fileDir !== 'theme') {
-          if (fileDir === 'images') {
-            copyDir(statPath, smbPath)
-            copyDir(statPath, auroraPath)
-          } else {
-            isFileExist(originPath, fileDir, type)
-          }
-        }
-      } else {
-        if (fileDir === 'index.less') {
+    const smbPath = `${originPath}/${smbThemeName}/${fileDir}`
+    const auroraPath = `${originPath}/${auroraThemeName}/${fileDir}`
+
+    if (!isPathExist(statPath)) {
+      return
+    }
+    const data = fs.statSync(statPath)
+
+    if (data.isDirectory()) {
+      if (fileDir !== 'base' && fileDir !== 'theme') {
+        if (fileDir === 'images') {
           copyDir(statPath, smbPath)
           copyDir(statPath, auroraPath)
+        } else {
+          isFileExist(originPath, fileDir, type)
         }
       }
-    })
+    } else {
+      if (fileDir === 'index.less') {
+        copyDir(statPath, smbPath)
+        copyDir(statPath, auroraPath)
+      }
+    }
   }
 
   const isFileExist = (originPath, fileDir, type) => {
     const parentPath = `${originPath}${fileDir}`
     const path = `${parentPath}/index.${type}`
-    fs.exists(path, (exist) => {
-      if (exist) {
-        if (type === 'less') {
-          readComponentsFile(fileDir)
-        } else if (type === 'js') {
-          readThemeFile(fileDir)
-        }
+    const exist = fs.existsSync(path)
+    if (exist) {
+      if (type === 'less') {
+        readComponentsFile(fileDir)
+      } else if (type === 'js') {
+        readThemeFile(fileDir)
       }
-    })
+    }
   }
 
   const writeThemeIndexLess = (path, fileDir, themeName) => {
-    fs.stat(path, (err, data) => {
-      const parentPath = `${originRootPath}${themeName}/${fileDir}`
-      const writeTheme = () => {
-        if (err) {
-          writeFile(parentPath + '/index.less', emptyThemeContent.replace('{{}}', fileDir))
+    const parentPath = `${originRootPath}${themeName}/${fileDir}`
 
-          return
-        }
-
-        if (!data.isDirectory()) {
-          fs.readFile(path, 'utf8', (subErr, dataStr) => {
-            if (subErr) {
-              console.log(subErr)
-              return
-            }
-            const startIndex = dataStr.indexOf('{') + 4
-            const endIndex = dataStr.indexOf('}')
-            const newDataStr =
-              dataStr
-                .slice(startIndex, endIndex)
-                .replace(/\'ti-/g, '--ti-')
-                .replace(/\'/g, '')
-                .replace(/\,\n/g, ';\n')
-                .replace(/\, \/\//g, '; //')
-                .slice(0, -1) + ';'
-
-            let scropedData = scopedTitle.replace('{{}}', fileDir)
-
-            if (cssScopedMap[fileDir]) {
-              if (Array.isArray(cssScopedMap[fileDir])) {
-                cssScopedMap[fileDir].forEach((item) => {
-                  scropedData += scopedContent.replace(/\{compName\}/g, item).replace(/\{var\}/g, newDataStr)
-                })
-              } else {
-                scropedData += scopedContent
-                  .replace(/\{compName\}/g, cssScopedMap[fileDir])
-                  .replace(/\{var\}/g, newDataStr)
-              }
-            } else {
-              scropedData += scopedContent.replace(/\{compName\}/g, fileDir).replace(/\{var\}/g, newDataStr)
-            }
-
-            writeFile(parentPath + '/index.less', scropedData)
-          })
-        }
+    const writeTheme = () => {
+      if (!isPathExist(path)) {
+        writeFile(parentPath + '/index.less', emptyThemeContent.replace('{{}}', fileDir))
+        return
       }
 
-      createDir(parentPath, writeTheme)
-    })
+      const data = fs.statSync(path)
+
+      if (!data.isDirectory()) {
+        const dataStr = fs.readFileSync(path, { encoding: 'utf8' })
+        const startIndex = dataStr.indexOf('{') + 4
+        const endIndex = dataStr.indexOf('}')
+        const newDataStr =
+          dataStr
+            .slice(startIndex, endIndex)
+            .replace(/\'ti-/g, '--ti-')
+            .replace(/\'/g, '')
+            .replace(/\,\n/g, ';\n')
+            .replace(/\, \/\//g, '; //')
+            .slice(0, -1) + ';'
+
+        let scropedData = scopedTitle.replace('{{}}', fileDir)
+
+        if (cssScopedMap[fileDir]) {
+          if (Array.isArray(cssScopedMap[fileDir])) {
+            cssScopedMap[fileDir].forEach((item) => {
+              scropedData += scopedContent.replace(/\{compName\}/g, item).replace(/\{var\}/g, newDataStr)
+            })
+          } else {
+            scropedData += scopedContent.replace(/\{compName\}/g, cssScopedMap[fileDir]).replace(/\{var\}/g, newDataStr)
+          }
+        } else {
+          scropedData += scopedContent.replace(/\{compName\}/g, fileDir).replace(/\{var\}/g, newDataStr)
+        }
+
+        writeFile(parentPath + '/index.less', scropedData)
+      }
+    }
+
+    createDir(parentPath, writeTheme)
   }
 
   const readComponentsFile = (fileDir) => {
+    if (fileDir === auroraThemeName || fileDir === smbThemeName) {
+      return
+    }
+
     const indexPath = `${originRootPath}/${fileDir}/${indexLessPath}`
+
+    if (!isPathExist(indexPath)) {
+      return
+    }
+
     const smbPath = `${originRootPath}/${fileDir}/${smbThemeName}.js`
     const auroraPath = `${originRootPath}/${fileDir}/${auroraThemeName}.js`
-    fs.readFile(indexPath, 'utf8', (err, dataStr) => {
-      if (err) {
-        console.log(err)
-      }
+    const dataStr = fs.readFileSync(indexPath, 'utf8')
 
-      // 写入smb-theme/**/index.less
-      writeThemeIndexLess(smbPath, fileDir, smbThemeName)
+    // // 写入smb-theme/**/index.less
+    writeThemeIndexLess(smbPath, fileDir, smbThemeName)
 
-      // 写入aurora-theme/**/index.less
-      writeThemeIndexLess(auroraPath, fileDir, auroraThemeName)
-    })
+    // 写入aurora-theme/**/index.less
+    writeThemeIndexLess(auroraPath, fileDir, auroraThemeName)
   }
 
   const readThemeFile = (fileDir) => {
@@ -235,38 +212,33 @@ const createTheme = (callbackFn) => {
       return
     }
 
-    fs.readFile(indexPath, 'utf8', (err, dataStr) => {
-      createDir(buildThemePathMap[fileDir])
+    if (!isPathExist(indexPath)) {
+      return
+    }
 
-      if (err) {
-        console.log(err)
-      }
+    const dataStr = fs.readFileSync(indexPath, 'utf8')
 
-      const startIndex = dataStr.indexOf('{') - 1
-      const endIndex = dataStr.indexOf('}')
-      let newDataStr = dataStr.slice(startIndex, endIndex)
-      const lastIndex = newDataStr.lastIndexOf("'")
-      newDataStr =
-        baseContent +
-        newDataStr
-          .slice(0, lastIndex)
-          .replace(/\'ti-/g, '--ti-')
-          .replace(/\'/g, '')
-          .replace(/\,\n/g, ';\n')
-          .replace(/\, \/\//g, '; //') +
-        ';\n}'
+    createDir(buildThemePathMap[fileDir])
 
-      writeFile(buildThemePathMap[fileDir] + '/index.less', newDataStr)
-    })
+    const startIndex = dataStr.indexOf('{') - 1
+    const endIndex = dataStr.indexOf('}')
+    let newDataStr = dataStr.slice(startIndex, endIndex)
+    const lastIndex = newDataStr.lastIndexOf("'")
+    newDataStr =
+      baseContent +
+      newDataStr
+        .slice(0, lastIndex)
+        .replace(/\'ti-/g, '--ti-')
+        .replace(/\'/g, '')
+        .replace(/\,\n/g, ';\n')
+        .replace(/\, \/\//g, '; //') +
+      ';\n}'
+
+    writeFile(buildThemePathMap[fileDir] + '/index.less', newDataStr)
   }
 
   const writeFile = (filePath, data) => {
-    fs.writeFile(filePath, data, 'utf8', (err) => {
-      if (err) {
-        console.log('writeFile', err)
-      }
-      isFinalFn()
-    })
+    fs.writeFileSync(filePath, data, 'utf8')
   }
 
   beginCreateDir()
