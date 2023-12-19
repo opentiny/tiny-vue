@@ -29,7 +29,6 @@ import { extend } from '@opentiny/vue-renderless/common/object'
 import { h, emitter, $prefix, $props, setup, defineComponent, resolveMode } from '@opentiny/vue-common'
 import TinyGridTable from '../table'
 import GlobalConfig from '../config'
-import methods from './methods'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
 const propKeys = Object.keys(TinyGridTable.props)
@@ -348,7 +347,6 @@ export default defineComponent({
     })
   },
   methods: {
-    ...methods,
     updateParentHeight() {
       if (!this.tasks.updateParentHeight) {
         this.tasks.updateParentHeight = debounce(10, () => {

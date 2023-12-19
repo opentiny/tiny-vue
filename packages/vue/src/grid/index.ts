@@ -28,12 +28,12 @@ import GridButton from './src/button'
 import FetchData from './src/fetch-data'
 import Pager from './src/pager'
 import Toolbar from './src/toolbar'
-import columnAnchor from './src/column-anchor'
-import dragger from './src/dragger'
-import sort from './src/sort'
-import tooltip from './src/tooltip'
-import checkbox from './src/checkbox'
-import tree from './src/tree'
+import ColumnAnchor from './src/column-anchor'
+import Dragger from './src/dragger'
+import Sort from './src/sort'
+import Tooltip from './src/tooltip'
+import Checkbox from './src/checkbox'
+import Tree from './src/tree'
 import * as GridTools from './src/tools'
 import { version } from './package.json'
 import type { Plugin } from './src/types/index.type'
@@ -49,12 +49,12 @@ import type { Plugin } from './src/types/index.type'
  * FetchData 远程数据处理
  * Pager 分页处理逻辑
  * Toolbar 工具栏处理逻辑
- * columnAnchor 表格列锚点
- * dragger 拖拽相关逻辑
- * sort 排序相关逻辑
- * tooltip 提示相关逻辑
- * checkbox 多选相关逻辑
- * tree 树表相关逻辑
+ * ColumnAnchor 表格列锚点
+ * Dragger 拖拽相关逻辑
+ * Sort 排序相关逻辑
+ * Tooltip 提示相关逻辑
+ * Checkbox 多选相关逻辑
+ * Tree 树表相关逻辑
  */
 const plugins: Plugin[] = [
   Menu,
@@ -67,12 +67,12 @@ const plugins: Plugin[] = [
   FetchData,
   Pager,
   Toolbar,
-  columnAnchor,
-  dragger,
-  sort,
-  tooltip,
-  checkbox,
-  tree
+  ColumnAnchor,
+  Dragger,
+  Sort,
+  Tooltip,
+  Checkbox,
+  Tree
 ]
 
 // 设置全局参数,配置GlobalConfig，提供比如国际化方法
@@ -81,6 +81,22 @@ GridAdapter.t = t
 
 // 将每个插件的方法都合并回自己的宿主组件
 plugins.map((plugin) => plugin.install(plugin.host === 'grid' ? Grid : Table))
+
+// 让用户可以通过grid组件的方法间接调用内层table组件的方法
+const getWrapFunc = (name) =>
+  function (...args) {
+    const tinyTable = this.$refs.tinyTable
+    if (tinyTable) {
+      return this.$refs.tinyTable[name].apply(tinyTable, args)
+    }
+  }
+
+// 将table组件的方法，传递给grid组件使用，this指向全部指向tinyTable
+Object.keys(Table.methods).forEach((name) => {
+  if (!Grid.methods[name]) {
+    Grid.methods[name] = getWrapFunc(name)
+  }
+})
 
 Grid.version = version
 
