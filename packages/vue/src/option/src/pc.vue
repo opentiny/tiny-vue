@@ -36,7 +36,7 @@
       </tiny-checkbox>
     </span>
     <slot>
-      <span>{{ state.currentLabel }}</span>
+      <span class="tiny-option__label">{{ state.currentLabel }}</span>
     </slot>
   </li>
 </template>
