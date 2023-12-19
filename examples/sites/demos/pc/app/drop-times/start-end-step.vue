@@ -1,18 +1,11 @@
 <template>
-  <div style="width: 270px">
-    <tiny-drop-times
-      v-model="value"
-      placeholder="请选择"
-      :end="720"
-      :start="60"
-      :step="5"
-      @change="change"
-    ></tiny-drop-times>
+  <div class="drop-time-demo-sse">
+    <tiny-drop-times v-model="value" placeholder="请选择" :start="60" :step="5" :end="720"></tiny-drop-times>
   </div>
 </template>
 
-<script lang="jsx">
-import { DropTimes, Modal } from '@opentiny/vue'
+<script>
+import { DropTimes } from '@opentiny/vue'
 
 export default {
   components: {
@@ -22,11 +15,12 @@ export default {
     return {
       value: ''
     }
-  },
-  methods: {
-    change(value) {
-      Modal.message({ message: 'change 事件，当前值为 ' + value })
-    }
   }
 }
 </script>
+
+<style scoped>
+.drop-time-demo-sse {
+  width: 270px;
+}
+</style>

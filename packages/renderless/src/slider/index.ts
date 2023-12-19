@@ -162,7 +162,9 @@ export const bindMouseUp =
       return
     }
 
-    state.showTip = false
+    if (state.mouseOuterBtn) {
+      state.showTip = false
+    }
     state.isDrag = false
 
     off(window, 'mouseup', api.bindMouseUp)
@@ -176,6 +178,7 @@ export const bindMouseUp =
 export const displayTip =
   ({ api, nextTick, state }: Pick<ISliderRenderlessParams, 'api' | 'nextTick' | 'state'>) =>
   (event) => {
+    state.mouseOuterBtn = false
     if (!state.showTip) {
       state.showTip = true
       api.changeActiveValue(api.getActiveButtonIndex(event) === 0)
@@ -186,7 +189,10 @@ export const displayTip =
     }
   }
 
-export const hideTip = (state: ISliderState) => () => !state.isDrag && (state.showTip = false)
+export const hideTip = (state: ISliderState) => () => {
+  state.mouseOuterBtn = true
+  !state.isDrag && (state.showTip = false)
+}
 
 export const setTipStyle =
   ({

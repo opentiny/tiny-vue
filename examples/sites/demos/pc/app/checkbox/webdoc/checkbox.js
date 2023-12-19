@@ -37,7 +37,7 @@ export default {
       'name': { 'zh-CN': '配置式复选框组', 'en-US': 'Profile Checkbox Group' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>options</code> 配置显示多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。 <code>options</code> 的类型为 <a href="#ICheckboxGroupOptions">ICheckboxGroupOptions[]</a> 。 <code>type</code> 属性配合 <code>options</code> 属性一起使用，将 <code>type</code> 配置为 <code>button</code> ，复选框组将以按钮的形式展示。</p>',
+          '<p>通过 <code>options</code> 配置显示多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。 <code>type</code> 属性配合 <code>options</code> 属性一起使用，将 <code>type</code> 配置为 <code>button</code> ，复选框组将以按钮的形式展示。</p>',
         'en-US':
           '<p>Configure the display of multiple selection box groups through <code>options</code> . After using this attribute, you no longer need to insert <code>checkbox</code> or <code>checkbox button</code> elements in the label as slots. The type of <code>options</code> is <a="# ICheckboxGroupOptions">ICheckboxGroupOptions[]</a> .The <code>type</code> attribute is used in conjunction with the <code>options</code> attribute to configure the <code>type</code> as <code>button</code> , and the checkbox group will be displayed in the form of a button.</p>'
       },
@@ -343,7 +343,7 @@ export default {
             'zh-CN': '按钮形式的 checkbox 激活时的填充色和边框色',
             'en-US': 'Fill color and border color when the checkbox in button mode is activated'
           },
-          'demoId': 'checkbox-button'
+          'demoId': 'custom-color'
         },
         {
           'name': 'max',
@@ -517,7 +517,7 @@ export default {
             'zh-CN': '绑定值',
             'en-US': 'Bound Value'
           },
-          'demoId': 'checkbox'
+          'demoId': 'checkbox-button'
         },
         {
           'name': 'name',
