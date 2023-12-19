@@ -12,6 +12,7 @@ import importPlugin from '@opentiny/vue-vite-import'
 import vue3SvgPlugin from 'vite-svg-loader'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
+import tailwindCss from 'tailwindcss'
 
 export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
@@ -97,13 +98,20 @@ export default defineConfig((config) => {
         strict: false,
         allow: ['..']
       }
+    },
+    define: {
+      __VUE_I18N_FULL_INSTALL__: true,
+      __VUE_I18N_LEGACY_API__: true,
+      __INTLIFY_PROD_DEVTOOLS__: false,
+      __INTLIFY_JIT_COMPILATION__: false,
+      __INTLIFY_DROP_MESSAGE_COMPILER__: false
     }
   }
 
   if (env.VITE_TINY_THEME === 'saas') {
     viteConfig.css = {
       postcss: {
-        plugins: [require('tailwindcss')]
+        plugins: [tailwindCss]
       }
     }
     // 这里逻辑是兼容saas官网工程的alias写法
@@ -114,9 +122,7 @@ export default defineConfig((config) => {
   }
 
   if (env.NODE_ENV === 'development') {
-    viteConfig.define = {
-      'process.env': {}
-    }
+    viteConfig.define['process.env'] = {}
   }
 
   return viteConfig

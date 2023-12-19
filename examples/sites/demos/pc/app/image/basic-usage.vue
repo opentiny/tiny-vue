@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <div style="float: left; width: 20%" v-for="fit in fits" :key="fit">
-      <div>{{ fit }}</div>
-      <tiny-image style="width: 100px; height: 100px" :src="url" :fit="fit"></tiny-image>
+  <div class="basic-container">
+    <div v-for="fit in fits" :key="fit">
+      <div class="title">{{ fit }}</div>
+      <tiny-image style="" :src="url" :fit="fit"></tiny-image>
     </div>
   </div>
 </template>
@@ -22,3 +22,19 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.basic-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 16px 16px 8px 0;
+}
+.tiny-image {
+  width: 100px;
+  height: 100px;
+  margin-right: 16px;
+}
+</style>

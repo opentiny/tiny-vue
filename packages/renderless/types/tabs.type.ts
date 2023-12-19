@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
-import { tabsProps, $constants } from '@/tabs/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
+import type { tabsProps, $constants } from '@/tabs/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils, ITinyVm } from './shared.type'
 import type {
   calcPaneInstances,
   calcMorePanes,

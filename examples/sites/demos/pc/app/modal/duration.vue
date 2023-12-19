@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, Modal } from '@opentiny/vue'
 
 export default {
@@ -20,14 +20,12 @@ export default {
     successClick() {
       Modal.message({
         message: '500ms后自动关闭提示框',
-        status: 'success',
         duration: '500'
       })
     },
     errorClick() {
       Modal.message({
         message: '5000ms后自动关闭提示框',
-        status: 'error',
         duration: '5000'
       })
     }

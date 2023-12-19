@@ -1,12 +1,6 @@
 <template>
   <div class="demo-form">
-    <tiny-form
-      ref="ruleFormRef"
-      :model="createData"
-      :rules="rules"
-      :validate-on-rule-change="isValidate"
-      @validate="validate"
-    >
+    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" :validate-on-rule-change="isValidate">
       <tiny-form-item label="用户名" prop="username">
         <tiny-input v-model="createData.username"></tiny-input>
       </tiny-form-item>
@@ -23,13 +17,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import {
-  Form as TinyForm,
-  FormItem as TinyFormItem,
-  Input as TinyInput,
-  Button as TinyButton,
-  Modal
-} from '@opentiny/vue'
+import { Form as TinyForm, FormItem as TinyFormItem, Input as TinyInput, Button as TinyButton } from '@opentiny/vue'
 
 const ruleFormRef = ref()
 const createData = reactive({
@@ -58,7 +46,9 @@ const rules = ref({
 })
 
 function handleSubmit() {
-  ruleFormRef.value.validate()
+  ruleFormRef.value.validate(() => {
+    // empty
+  })
 }
 
 function changeRule() {

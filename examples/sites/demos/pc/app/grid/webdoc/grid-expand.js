@@ -22,7 +22,7 @@ export default {
         'zh-CN': `
         <p>表格属性 <code>expand-config</code> 设置展开行配置项。</p>
         <p>表格属性 <code>expandConfig.activeMethod</code> 配置一个方法控制行是否可展开，参数为 <code>row</code> 和 <code>rowLevel</code>，返回 <code>false</code> 则此行不可展开，且不显示展开图标</p>
-        <p>表格属性 <code>expandConfig.showIcon</code> 配置是否显示展开图标，默认为 <code>true</code> 表示显示展开图标
+        <p>表格属性 <code>expandConfig.showIcon</code> 配置是否显示展开图标，默认为 <code>true</code> 表示显示展开图标。
         `,
         'en-US': '<p>Table property<code>expand-config</code>Set the configuration item of the expanded line. </p>\n'
       },
@@ -53,5 +53,5 @@ export default {
       'codeFiles': ['expand/set-row-expansion.vue']
     }
   ],
-  apis: [{ 'name': 'grid-expand', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-expand', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -42,11 +42,11 @@ export const getYearLabel =
 
     if (state.currentView === Year) {
       const startYear = state.startYear
-  
+
       if (yearTranslation) {
         return startYear + ' ' + yearTranslation + ' - ' + (startYear + PanelYearNum - 1) + ' ' + yearTranslation
       }
-  
+
       return startYear + ' - ' + (startYear + PanelYearNum - 1)
     }
 
@@ -286,7 +286,7 @@ export const handleYearPick =
       api.cusEmit(state.date)
     } else if ([DATEPICKER.Years].includes(state.selectionMode)) {
       state.date = value.map((year) => new Date(year, 0, 2))
-  
+
       api.cusEmit(state.date, state.selectionMode === DATEPICKER.YearRange ? value.length < 2 : true)
     } else {
       state.date = changeYearMonthAndClampDate(state.date, value, state.month)

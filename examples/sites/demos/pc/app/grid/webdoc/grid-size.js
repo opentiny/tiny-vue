@@ -65,9 +65,9 @@ export default {
       'name': { 'zh-CN': '开启响应式表格宽高', 'en-US': 'Enable responsive table width and height' },
       'desc': {
         'zh-CN':
-          '<p>表格属性设置 autoResize 属性开启响应式表格宽高的同时，将高度<code>heigh</code>设置为<code>auto</code>就可以自动跟随父容器高度。tips:在自动高度场景，请确保表格或其父容器被设置了一个固定的高度。</p>\n',
+          '<p>表格属性设置 autoResize 属性开启响应式表格宽高的同时，将高度<code>height</code>设置为<code>auto</code>就可以自动跟随父容器高度。tips:在自动高度场景，请确保表格或其父容器被设置了一个固定的高度。</p>\n',
         'en-US':
-          '<p>Table property setting autoResize property enabling responsive table width and height, set height <code>heigh</code> to <code>auto</code> to automatically follow the height of the parent container. </p>\n'
+          '<p>Table property setting autoResize property enabling responsive table width and height, set height <code>height</code> to <code>auto</code> to automatically follow the height of the parent container. </p>\n'
       },
       'codeFiles': ['size/auto-height.vue']
     },
@@ -75,7 +75,7 @@ export default {
       'demoId': 'size-resize-column-width',
       'name': { 'zh-CN': '开启列宽拖拽', 'en-US': 'Enable column width dragging' },
       'desc': {
-        'zh-CN': '<p>列宽默认开启，如需禁用需要设置<code>resizable</code>为<code>false</code></p>\n',
+        'zh-CN': '<p>列宽默认开启，如需禁用需要设置<code>resizable</code>为<code>false</code>。</p>\n',
         'en-US':
           '<p>Column width is enabled by default. To disable this function, set <code>resizable</code> to <code>false</code></p>\n'
       },
@@ -112,5 +112,5 @@ export default {
       'codeFiles': ['size/grid-size.vue']
     }
   ],
-  apis: [{ 'name': 'grid-size', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-size', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

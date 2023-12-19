@@ -1,8 +1,8 @@
 <template>
-  <tiny-dropdown @visible-change="visibleChange">
+  <tiny-dropdown>
     <span>默认插槽</span>
     <template #suffix-icon>
-      <tiny-icon-sandwich-collapse></tiny-icon-sandwich-collapse>
+      <tiny-icon-ascending></tiny-icon-ascending>
     </template>
     <template #dropdown>
       <tiny-dropdown-menu>
@@ -17,12 +17,12 @@
 </template>
 
 <script setup>
-import { iconSandwichCollapse } from '@opentiny/vue-icon'
+import { iconAscending } from '@opentiny/vue-icon'
 import {
   Dropdown as TinyDropdown,
   DropdownMenu as TinyDropdownMenu,
   DropdownItem as TinyDropdownItem
 } from '@opentiny/vue'
 
-const TinyIconSandwichCollapse = iconSandwichCollapse()
+const TinyIconAscending = iconAscending()
 </script>

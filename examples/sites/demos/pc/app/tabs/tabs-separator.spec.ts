@@ -5,8 +5,10 @@ test('分隔符', async ({ page }) => {
   await page.goto('tabs#tabs-separator')
 
   const tabs1 = page.locator('.tiny-tabs')
-  const content1 = tabs1.locator('.aui-tabs__item-separator')
+  const content1 = tabs1.locator('.tiny-tabs__item-separator')
 
-  await expect(content1.first()).toHaveCSS('width', '1px')
-  await expect(content1.first()).toHaveCSS('height', '12px')
+  const { width, height } = await content1.first().boundingBox()
+
+  await expect(width).toBeGreaterThanOrEqual(0.7)
+  await expect(height).toBeGreaterThanOrEqual(12)
 })

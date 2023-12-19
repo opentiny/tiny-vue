@@ -11,8 +11,8 @@
  */
 
 import type { ComputedRef, ExtractPropTypes, ComponentPublicInstance } from 'vue'
-import { actionMenuProps } from '@/action-menu/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { actionMenuProps } from '@/action-menu/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export interface IActionMenuState {
   visibleOptions: ComputedRef<object>
@@ -27,7 +27,7 @@ export type IActionMenuRenderlessParams = ISharedRenderlessFunctionParams<null> 
   props: IActionMenuProps
 }
 
-export type IActionMenuItemData = {
+export interface IActionMenuItemData {
   itemData: object
   vm: ComponentPublicInstance
   disabled: boolean

@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
-import { tabItemProps, $constants } from '@/tab-item/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
-import { ITabsVm } from './tabs.type'
+import type { tabItemProps, $constants } from '@/tab-item/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ITabsVm } from './tabs.type'
 import type { computedIsClosable, computedActive, computedPaneName, watchTitle } from '../src/tab-item'
 
 export interface ITabItemState {

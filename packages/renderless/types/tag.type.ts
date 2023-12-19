@@ -1,11 +1,15 @@
 import type { ExtractPropTypes } from 'vue'
-import { tagProps } from '@/tag/src'
-import { ISharedRenderlessFunctionParams } from './shared.type'
+import type { tagProps } from '@/tag/src'
+import type { ISharedRenderlessFunctionParams } from './shared.type'
 
 export interface ITagState {
   type: string | undefined
   show: boolean
   selected: boolean
+  text: string
+  color: string
+  mini: boolean
+  maxWidth: string | number
 }
 
 export interface ITagApi {

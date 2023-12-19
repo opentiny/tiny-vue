@@ -4,9 +4,10 @@ test('三大主题分别对应的五种类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
   await page.goto('tag#effect')
 
-  const light = page.locator('.tiny-tag--light')
-  const dark = page.locator('.tiny-tag--dark')
-  const plain = page.locator('.tiny-tag--plain')
+  const scoped = page.locator('.all-demos-container')
+  const light = scoped.locator('.tiny-tag--light')
+  const dark = scoped.locator('.tiny-tag--dark')
+  const plain = scoped.locator('.tiny-tag--plain')
 
   await expect(light).toHaveCount(5)
   await expect(dark).toHaveCount(5)

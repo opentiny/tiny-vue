@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('自定义菜单数据服务', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('link-menu#get-menu-data-sync')
-  const preview = page.locator('#preview')
+  const preview = page.locator('#get-menu-data-sync')
   const dialogBox = preview.locator('.tiny-dialog-box')
   const linkMenuList = preview.locator('.tiny-tree.tiny-link-menu__overflow > div')
   // 点击图标弹出对话框

@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { IBadgeRenderlessParams, IBadgeContent } from '@/types'
+import type { IBadgeRenderlessParams, IBadgeContent } from '@/types'
 
 export const computedContent =
   ({ props, state }: Pick<IBadgeRenderlessParams, 'props' | 'state'>) =>

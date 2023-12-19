@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Button as TinyButton, Modal, Notify } from '@opentiny/vue'
 
 function alertClick() {

@@ -21,10 +21,11 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Popover as TinyPopover, Button as TinyButton } from '@opentiny/vue'
+import { Popover as TinyPopover, Button as TinyButton, Switch as TinySwitch } from '@opentiny/vue'
 
 const disabled = ref(false)
 </script>
+
 <style scoped>
 .container {
   display: flex;

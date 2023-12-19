@@ -1,27 +1,27 @@
 <template>
-  <tiny-steps vertical line size="small" :data="data" :visible-num="4" :active="advancedActive"></tiny-steps>
+  <tiny-steps vertical line size="small" :data="data" :active="active" @click="normalClick"></tiny-steps>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
+import { Steps as TinySteps, Modal } from '@opentiny/vue'
 
-const normalActive = ref(0)
+const active = ref(0)
 const data = ref([
   {
-    name: 'Basic Info'
+    name: 'Basic Info',
+    status: 'done'
   },
-  {
-    name: 'AAAAA'
-  },
+  { name: 'BOQ Info', status: 'done', description: 'done 已完成' },
+  { name: 'BBQ Info', status: 'error', description: 'error 错误' },
   {
     name: 'Involved Parties',
-    error: true
+    status: 'disabled'
   },
-  {
-    name: 'Billing',
-    disabled: true
-  }
+  { name: 'Billing', status: '', description: '默认无状态' }
 ])
-const normalActive1 = ref(0)
+
+const normalClick = (index, node) => {
+  active.value = index
+}
 </script>

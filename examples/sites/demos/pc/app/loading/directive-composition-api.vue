@@ -1,10 +1,10 @@
 <template>
   <div class="tiny-demo-v-loading">
-    <tiny-button @click="handleClick">open loading</tiny-button>
+    <tiny-button @click="handleClick">change loading</tiny-button>
     <div
       v-loading="isLoading"
       tiny-loading__text="v-loadingText"
-      tiny-loading__background="rgba(0,0,0,0.6)"
+      tiny-loading__background="rgba(0,0,0,0.8)"
       tiny-loading__custom-class="tiny-demo-loading-custom"
     >
       <div class="tiny-demo-v-loading-bg">
@@ -23,10 +23,7 @@ const isLoading = ref(false)
 const vLoading = Loading.directive
 
 function handleClick() {
-  isLoading.value = true
-  setTimeout(() => {
-    isLoading.value = false
-  }, 5000)
+  isLoading.value = !isLoading.value
 }
 </script>
 
@@ -35,5 +32,9 @@ function handleClick() {
   height: 120px;
   line-height: 120px;
   text-align: center;
+}
+
+.tiny-demo-v-loading > *:not(:last-child) {
+  margin-bottom: 12px;
 }
 </style>

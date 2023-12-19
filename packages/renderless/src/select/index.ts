@@ -124,7 +124,6 @@ export const defaultOnQueryChange =
       props.filterMethod(value)
       state.selectEmitter.emit(constants.COMPONENT_NAME.OptionGroup, constants.EVENT_NAME.queryChange)
     } else {
-      state.filteredOptionsCount = state.optionsCount
       state.selectEmitter.emit(constants.EVENT_NAME.queryChange, value)
     }
 
@@ -296,11 +295,18 @@ export const getOption =
     }
 
     if (option) {
-      if (!option.currentLabel) {
-        option.currentLabel = option[props.textField]
-      }
+      if (props.optimization) {
+        // 此处克隆避免引起 state.datas 发生变化触发 computeOptimizeOpts
+        const cloneOption = extend(true, {}, option)
+        cloneOption.currentLabel = cloneOption[props.textField]
 
-      return option
+        return cloneOption
+      } else {
+        if (!option.currentLabel) {
+          option.currentLabel = option[props.textField]
+        }
+        return option
+      }
     }
 
     let label = ''
@@ -523,8 +529,8 @@ export const handleFocus =
       state.softFocus = false
     }
 
-    if (props.remote && state.filterOrSearch && state.firstAutoSeach) {
-      state.firstAutoSeach = false
+    if (props.remote && state.filterOrSearch && state.firstAutoSearch) {
+      state.firstAutoSearch = false
       api.resetFilter()
     }
   }
@@ -1584,8 +1590,6 @@ export const buildRadioConfig =
 export const onMouseenterNative =
   ({ state }) =>
   (e) => {
-    if (e.target === e.currentTarget) return
-
     state.inputHovering = true
 
     if (state.searchSingleCopy && state.selectedLabel) {

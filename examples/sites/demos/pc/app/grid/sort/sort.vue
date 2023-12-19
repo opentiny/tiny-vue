@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="click">sort</tiny-button>
+    <tiny-button @click="click">手动排序sort</tiny-button>
     <tiny-grid
       :data="tableData"
       ref="grid"

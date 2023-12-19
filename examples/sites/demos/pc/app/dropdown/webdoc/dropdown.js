@@ -5,7 +5,10 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '<p></p>\n', 'en-US': '<p></p>\n' },
+      'desc': {
+        'zh-CN': '<p>使用 tiny-dropdown-item 定义菜单节点。</p>\n',
+        'en-US': '<p>Define menu nodes using tiny-dropdown-item.</p>\n'
+      },
       'codeFiles': ['basic-usage.vue']
     },
     {
@@ -13,7 +16,8 @@ export default {
       'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
       'desc': {
         'zh-CN': '<p>通过 <code>disabled</code> 属性设置 菜单 或者 菜单项 为禁用状态。</p>\n',
-        'en-US': 'The <p>Use the<code>disabled</code>attribute to set the menu or menu item to a disabled state. </p>\n'
+        'en-US':
+          'The <p>Use the <code>disabled</code> attribute to set the menu or menu item to a disabled state. </p>\n'
       },
       'codeFiles': ['disabled.vue']
     },
@@ -24,17 +28,18 @@ export default {
         'zh-CN':
           '<p>通过 <code>size</code> 属性可配置其他尺寸，可选值：<code>medium</code> / <code>small</code> / <code>mini</code>。</p>\n',
         'en-US':
-          '<p>Use the<code>size</code>attribute to configure other sizes, with optional values:<code>medium</code>/<code>small</code>/<code>mini</code>. </p>\n'
+          '<p>Use the <code>size</code> attribute to configure other sizes, with optional values: <code>medium</code> / <code>small</code> / <code>mini</code>. </p>\n'
       },
       'codeFiles': ['size.vue']
     },
     {
       'demoId': 'show-icon',
-      'name': { 'zh-CN': '隐藏图标', 'en-US': 'Show icons' },
+      'name': { 'zh-CN': '图标', 'en-US': 'Show icons' },
       'desc': {
-        'zh-CN': '<p>通过 <code>show-icon</code> 属性设置触发源的图标显示或隐藏，默认显示，设置为 false 时隐藏。</p>\n',
+        'zh-CN':
+          '<p>通过 <code>show-icon</code> 属性设置是否显示下拉触发源图标，<code>suffix-icon</code> 设置下拉触发源图标。</p>\n',
         'en-US':
-          '<p>Additional sizes: <code>medium</code>, <code>small</code>, <code>mini</code>, configured by setting the <code>size</code> property. </p>\n'
+          '<p> Set whether to display the dropdown trigger source icon through the <code>show-icon</code> attribute, and set the dropdown trigger source icon through the <code>suffix-icon</code> setting. </p>\n'
       },
       'codeFiles': ['show-icon.vue']
     },
@@ -45,7 +50,7 @@ export default {
         'zh-CN':
           '<p>通过 <code>split-button</code> 属性，设置下拉菜单显示为按钮类型。仅按钮类型时，支持 <code>type</code> 属性设置按钮状态。</p>\n',
         'en-US':
-          '<p>Set the drop-down menu to display as a button type through the<code>split button</code>attribute. When only button types are used, the<code>type</code>attribute setting button status is supported.</p>\n'
+          '<p>Set the drop-down menu to display as a button type through the <code>split-button</code> attribute. When only button types are used, the <code>type</code> attribute setting button status is supported.</p>\n'
       },
       'codeFiles': ['split-button.vue']
     },
@@ -56,7 +61,7 @@ export default {
         'zh-CN':
           '<p>通过 <code>trigger</code> 属性设置触发下拉的方式，默认为 <code>hover</code>。可选值为: <code>click</code> / <code>hover</code> 。</p>\n',
         'en-US':
-          '<p>By setting the<code>trigger</code>attribute to trigger a drop-down, the default is<code>hover</code>. The optional values are:<code>click</code>/<code>hover</code>.</p>\n'
+          '<p>By setting the <code>trigger</code> attribute to trigger a drop-down, the default is <code>hover</code>. The optional values are: <code>click</code> / <code>hover</code>.</p>\n'
       },
       'codeFiles': ['trigger.vue']
     },
@@ -66,7 +71,7 @@ export default {
       'desc': {
         'zh-CN': '通过 <p><code>tip</code> 属性设置提示信息，<code>tip-position</code> 属性设置提示信息的位置。</p>\n',
         'en-US':
-          '<p>Set the prompt information through the<p><code>tip</code>attribute, and set the position of the prompt information through the<code>tip position</code>attribute.</p>\n'
+          '<p>Set the prompt information through the <code>tip</code> attribute, and set the position of the prompt information through the <code>tip-position</code> attribute.</p>\n'
       },
       'codeFiles': ['tip.vue']
     },
@@ -77,7 +82,7 @@ export default {
         'zh-CN':
           '<p>通过 <code>visible-arrow</code> 属性设置下拉弹框是否显示箭头，默认不显示。<code>visible-arrow</code> 为 true 时显示箭头。</p>\n',
         'en-US':
-          '<p>Use the <code>visible arrow</code> attribute to set whether the drop-down pop-up box displays an arrow, which is not displayed by default< Show arrows when code>visible arrow</code>is true.</p>\n'
+          '<p>Use the <code>visible-arrow</code> attribute to set whether the drop-down pop-up box displays an arrow, which is not displayed by default show arrows when <code>visible-arrow</code> is true.</p>\n'
       },
       'codeFiles': ['visible-arrow.vue']
     },
@@ -88,7 +93,7 @@ export default {
         'zh-CN':
           '<p>通过 <code>hide-on-click</code> 属性设置点击菜单项后是否收起菜单弹框。默认为 true，点击后收起。</p>\n',
         'en-US':
-          '<p>Use the <code>hide on click</code> attribute to set whether to collapse the menu pop-up after clicking on the menu item. The default is true, and it will be collapsed after clicking. </p>\n'
+          '<p>Use the <code>hide-on-click</code> attribute to set whether to collapse the menu pop-up after clicking on the menu item. The default is true, and it will be collapsed after clicking. </p>\n'
       },
       'codeFiles': ['hide-on-click.vue']
     },
@@ -98,7 +103,7 @@ export default {
       'desc': {
         'zh-CN': '<p>通过 <code>title</code> 属性设置触发源的文本，默认为 <code>下拉菜单</code>。</p>\n',
         'en-US':
-          '<p>Set the text of the trigger source through the<code>title</code>attribute, which defaults to the<code>drop-down menu</code>.</p>\n'
+          '<p>Set the text of the trigger source through the <code>title</code> attribute, which defaults to the <code>drop-down-menu</code>.</p>\n'
       },
       'codeFiles': ['title.vue']
     },
@@ -109,7 +114,7 @@ export default {
         'zh-CN':
           '<p><code>menu-options</code>属性：只使用 tiny-dropdown 组件配置式时使用。</p>\n<p><code>options</code>属性：使用 tiny-dropdown-menu 组件配置式时使用。</p>\n<p><code>text-field</code>属性：指定菜单文案显示的字段，默认为 label。 </p>\n<p><code>title</code>属性：设置触发源的文本。</p>\n',
         'en-US':
-          '<p><code>menu options</code>Properties: Used only when using the tiny dropdown component configuration</p>\n<p><code>options</code>Properties: Used when using the tiny dropdown menu component configuration</p> \n<p><code>text field</code>Attribute: specifies the field displayed in the menu copy, which defaults to label</p> \n<p><code>title</code>Property: Set the text of the trigger source</p>\n'
+          '<p><code>menu-options</code> properties: used only when using the tiny dropdown component configuration</p>\n<p> <code>options</code> properties: Used when using the tiny dropdown menu component configuration</p> \n<p><code>text-field</code> attribute: specifies the field displayed in the menu copy, which defaults to label</p> \n<p><code>title</code> attribute: Set the text of the trigger source</p>\n'
       },
       'codeFiles': ['options.vue']
     },
@@ -131,20 +136,9 @@ export default {
       'desc': {
         'zh-CN': '<p>通过 <code>inherit-width</code> 属性设置下拉弹框的最小宽度继承触发源的宽度。</p>\n',
         'en-US':
-          '<p>Inherit the width of the trigger source by setting the minimum width of the drop-down pop-up box through the<code>inherit width</code>attribute.</p>\n'
+          '<p>Inherit the width of the trigger source by setting the minimum width of the drop-down pop-up box through the <code>inherit-width</code> attribute.</p>\n'
       },
       'codeFiles': ['inherit-width.vue']
-    },
-    {
-      'demoId': 'events',
-      'name': { 'zh-CN': '事件', 'en-US': 'Events' },
-      'desc': {
-        'zh-CN':
-          '<p><code>button-click</code>：按钮类型时，监听左侧按钮点击事件。</p><p><code>item-click</code>：监听点击菜单项事件。</p><p><code>visible-change</code>：监听下拉弹框显示隐藏发生变化。</p>\n',
-        'en-US':
-          '<p><code>button-click</code>: When the button type is selected, listen for the left button click event.</p>\n<p><code>item-click</code>: Listens for menu item click events</p>\n<p>code>visible-change</code>: Listens for changes in the display and hiding of dropdown pop ups.</p>\n'
-      },
-      'codeFiles': ['events.vue']
     },
     {
       'demoId': 'slots',
@@ -153,16 +147,27 @@ export default {
         'zh-CN':
           '<p>通过 <code>default</code> 插槽自定义触发源文本区域。<code>suffix-icon</code> 插槽自定义触发源图标区域。</p>\n',
         'en-US':
-          '<p>Customize the trigger source text area through the<code>default</code>slot.</p>\n<p>Customize the trigger source icon area through the<code>suffix icon</code>slot.</p>\n'
+          '<p>Customize the trigger source text area through the <code>default</code> slot.</p>\n<p>Customize the trigger source icon area through the <code>suffix-icon</code> slot.</p>\n'
       },
       'codeFiles': ['slots.vue']
+    },
+    {
+      'demoId': 'events',
+      'name': { 'zh-CN': '事件', 'en-US': 'Events' },
+      'desc': {
+        'zh-CN':
+          '<p><code>button-click</code>：按钮类型时，监听左侧按钮点击事件。</p><p><code>item-click</code>：监听点击菜单项事件。</p><p><code>visible-change</code>：监听下拉弹框显示隐藏发生变化。</p>\n',
+        'en-US':
+          '<p><code>button-click</code>: When the button type is selected, listen for the left button click event.</p>\n<p><code>item-click</code>: Listens for menu item click events</p>\n<p><code>visible-change</code>: Listens for changes in the display and hiding of dropdown pop ups.</p>\n'
+      },
+      'codeFiles': ['events.vue']
     }
   ],
   apis: [
     {
       'name': 'dropdown',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'disabled',
           'type': 'boolean',
@@ -235,6 +240,16 @@ export default {
           'demoId': 'trigger'
         },
         {
+          'name': 'size',
+          'type': '"medium" | "small" | "mini"',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '菜单尺寸。注意：只在 split-button为 true 的情况下生效',
+            'en-US': 'Menu size. Note: Only takes effect when split-button is true'
+          },
+          'demoId': 'size'
+        },
+        {
           'name': 'split-button',
           'type': 'boolean',
           'defaultValue': 'false',
@@ -245,31 +260,40 @@ export default {
           'demoId': 'split-button'
         },
         {
-          'name': 'size',
-          'type': 'string',
+          'name': 'show-icon',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否显示下拉触发源图标',
+            'en-US': 'Is the dropdown trigger source icon displayed'
+          },
+          'demoId': 'show-icon'
+        },
+        {
+          'name': 'suffix-icon',
+          'type': 'VueComponent',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '菜单尺寸，可选值： medium / small / mini。注意：只在 split-button为 true 的情况下生效',
-            'en-US': 'Menu size, optional values: medium/small/mini. Note: Only takes effect when split-button is true'
+            'zh-CN': '下拉触发源图标',
+            'en-US': 'Dropdown trigger source icon'
           },
-          'demoId': 'size'
+          'demoId': 'show-icon'
         },
         {
           'name': 'type',
-          'type': 'string',
+          'type': 'IButtonType',
+          'typeAnchorName': 'IButtonType',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '按钮类型，可选值: primary / success / warning / danger / info / text。注意：只在split-button为 true 的情况下有效',
-            'en-US':
-              'Button type, optional values: primary/success/warning/danger/info/text. Note: Only valid if split button is true'
+            'zh-CN': '按钮类型。注意：只在 split-button 为 true 的情况下有效',
+            'en-US': 'Button type. Note: Only valid if split button is true'
           },
           'demoId': 'split-button'
         },
         {
           'name': 'title',
           'type': 'string',
-          'defaultValue': '下拉菜单',
+          'defaultValue': "'下拉菜单'",
           'desc': {
             'zh-CN': '自定义触发源的文本',
             'en-US': 'Text for custom trigger source'
@@ -278,11 +302,11 @@ export default {
         },
         {
           'name': 'trigger',
-          'type': 'string',
-          'defaultValue': 'hover',
+          'type': "'hover' | 'click'",
+          'defaultValue': "'hover'",
           'desc': {
-            'zh-CN': '触发下拉的方式。可选值：hover / click',
-            'en-US': 'Trigger the dropdown method. Optional values: hover / click'
+            'zh-CN': '触发下拉的方式',
+            'en-US': 'Trigger the dropdown method'
           },
           'demoId': 'trigger'
         },
@@ -310,8 +334,8 @@ export default {
       'events': [
         {
           'name': 'button-click',
-          'type': 'Function() => void',
-          'defaultValue': 'Function',
+          'type': '() => void',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '监听左侧按钮点击事件，仅 split-button 为 true 时生效',
             'en-US': 'Listen for the left button click event, only effective when split-button is true'
@@ -320,7 +344,8 @@ export default {
         },
         {
           'name': 'item-click',
-          'type': 'Function(data:IItemClickParam) => void',
+          'type': '(data:IItemClickParam) => void',
+          'typeAnchorName': 'IItemClickParam',
           'defaultValue': '',
           'desc': {
             'zh-CN': '监听点击菜单项事件',
@@ -330,7 +355,7 @@ export default {
         },
         {
           'name': 'visible-change',
-          'type': 'Function(status:boolean) => void',
+          'type': '(status:boolean) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '监听下拉框的显示或隐藏状态',
@@ -363,13 +388,13 @@ export default {
       ]
     },
     {
-      'name': 'dropdownMenu',
+      'name': 'dropdown-menu',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'options',
-          'type': 'IItem []',
-          'typeAnchorName': 'IItem',
+          'type': 'IItemData []',
+          'typeAnchorName': 'IItemData',
           'defaultValue': '[]',
           'desc': {
             'zh-CN': '通过配置式设置菜单项的属性',
@@ -379,18 +404,18 @@ export default {
         },
         {
           'name': 'placement',
-          'type': 'string',
-          'defaultValue': 'bottom-end',
+          'type': 'IPlacementType',
+          'typeAnchorName': 'IPlacementType',
+          'defaultValue': "'bottom-end'",
           'desc': {
-            'zh-CN': '菜单弹出位置。可选值: top / top-start / top-end / bottom / bottom-start / bottom-end',
-            'en-US':
-              'Menu pop-up location. Optional values: top / top-start / top-end/bottom / bottom-start / bottom-end'
+            'zh-CN': '菜单弹出位置',
+            'en-US': 'Menu pop-up location '
           },
           'demoId': 'basic-usage'
         },
         {
           'name': 'popper-class',
-          'type': '',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '下拉弹框的类名，用于自定义样式',
@@ -401,7 +426,7 @@ export default {
         {
           'name': 'text-field',
           'type': 'string',
-          'defaultValue': 'label',
+          'defaultValue': "'label'",
           'desc': {
             'zh-CN': '菜单项文本的字段,结合 options 属性使用',
             'en-US': 'The field of menu item text, used in conjunction with the options attribute'
@@ -423,28 +448,37 @@ export default {
       ]
     },
     {
-      'name': 'dropdownItem',
+      'name': 'dropdown-item',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'disabled',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否禁用', 'en-US': 'Is it disabled' },
+          'desc': {
+            'zh-CN': '是否禁用',
+            'en-US': 'Is it disabled'
+          },
           'demoId': 'disabled'
         },
         {
           'name': 'divided',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否显示分割线', 'en-US': 'Show split lines' },
+          'desc': {
+            'zh-CN': '是否显示分割线',
+            'en-US': 'Show split lines'
+          },
           'demoId': 'events'
         },
         {
           'name': 'icon',
-          'type': '',
+          'type': 'VueComponent',
           'defaultValue': '',
-          'desc': { 'zh-CN': '内嵌图标', 'en-US': 'Embedded icon' },
+          'desc': {
+            'zh-CN': '内嵌图标',
+            'en-US': 'Embedded icon'
+          },
           'demoId': 'events'
         },
         {
@@ -452,14 +486,20 @@ export default {
           'type': 'IItemData',
           'typeAnchorName': 'IItemData',
           'defaultValue': '',
-          'desc': { 'zh-CN': '菜单项的配置信息', 'en-US': 'Configuration information for menu items' },
+          'desc': {
+            'zh-CN': '菜单项的配置信息',
+            'en-US': 'Configuration information for menu items'
+          },
           'demoId': 'events'
         },
         {
           'name': 'label',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '菜单项的文本', 'en-US': 'Text for menu items' },
+          'desc': {
+            'zh-CN': '菜单项的文本',
+            'en-US': 'Text for menu items'
+          },
           'demoId': 'events'
         }
       ],
@@ -468,7 +508,10 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '菜单项文本区域', 'en-US': 'Menu item text area' },
+          'desc': {
+            'zh-CN': '菜单项文本区域',
+            'en-US': 'Menu item text area'
+          },
           'demoId': 'basic-usage'
         }
       ]
@@ -480,10 +523,10 @@ export default {
       type: 'interface',
       code: `
 interface IMenuOption {
-  "options": IItemData[]
-  "textField"?: string
-  "popper-class"?: string
-  "placement"?: top | top-start | top-end | bottom | bottom-start | bottom-end
+  options: IItemData[]
+  textField?: string
+  popperClass?: string
+  placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'
 }        
 `
     },
@@ -491,14 +534,14 @@ interface IMenuOption {
       name: 'IItemClickParam',
       type: 'interface',
       code: `        
-interface IMenuOption {
-  "itemData": IItemData
+interface IItemClickParam {
+  itemData: IItemData
   // dropdownItem 组件的实例
-  "vm": {
-    "selected": boolean
-    "textField: string
-    "tipPosition: string
-    "$el": HTMLElement
+  vm: {
+    selected: boolean
+    textField: string
+    tipPosition: string
+    $el: HTMLElement
   }
 }
 `
@@ -508,10 +551,24 @@ interface IMenuOption {
       type: 'interface',
       code: `        
 interface IItemData {
-  "label"?: string
-  "disabled"?: boolean
-  "divided"?: boolean
+  label?: string
+  disabled?: boolean
+  divided?: boolean
 }
+`
+    },
+    {
+      name: 'IButtonType',
+      type: 'type',
+      code: `        
+type IButtonType =  'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
+`
+    },
+    {
+      name: 'IPlacementType',
+      type: 'type',
+      code: `        
+type IPlacementType =  'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'
 `
     }
   ]

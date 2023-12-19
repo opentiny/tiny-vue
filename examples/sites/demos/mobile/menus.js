@@ -53,7 +53,10 @@ export const cmpMenus = [
     label: '容器组件',
     labelEn: 'Container',
     key: 'cmp_container',
-    children: [{ name: 'Dialog', nameCn: '对话框', key: 'dialogbox' }]
+    children: [
+      { name: 'Dialog', nameCn: '对话框', key: 'dialogbox' },
+      { name: 'Container', nameCn: '内容布局', key: 'container' }
+    ]
   },
   {
     label: '数据组件',
@@ -76,6 +79,7 @@ export const cmpMenus = [
       { name: 'Slider', nameCn: '滑块', key: 'slider' },
       { name: 'CheckboxGroup', nameCn: '复选框组', key: 'checkboxgroup' },
       { name: 'Input', nameCn: '输入框', key: 'input' },
+      { name: 'Label', nameCn: '文本', key: 'label' },
       { name: 'Radio', nameCn: '单选', key: 'radio' },
       { name: 'Search', nameCn: '搜索框', key: 'search' },
       { name: 'Switch', nameCn: '开关', key: 'switch' },
@@ -94,7 +98,9 @@ export const cmpMenus = [
       { name: 'Badge', nameCn: '徽章', key: 'badge' },
       { name: 'Loading', nameCn: '加载', key: 'loading' },
       { name: 'Modal', nameCn: '模态框', key: 'modal' },
-      { name: 'Popover', nameCn: '气泡', key: 'popover' }
+      { name: 'Popover', nameCn: '气泡', key: 'popover' },
+      { name: 'Toast', nameCn: '轻提示', key: 'toast' },
+      { name: 'Mask', nameCn: '遮罩层', key: 'mask' }
     ]
   },
   {
@@ -108,7 +114,8 @@ export const cmpMenus = [
       { name: 'Icon', nameCn: '图标', key: 'icon' },
       { name: 'ActionSheet', nameCn: '上滑列表组件', key: 'actionsheet' },
       { name: 'MiniPicker', nameCn: 'mini选择器', key: 'minipicker' },
-      { name: 'UserHead', nameCn: '用户头像', key: 'user-head' }
+      { name: 'UserHead', nameCn: '用户头像', key: 'user-head' },
+      { name: 'Tag', nameCn: '标签', key: 'tag' }
     ]
   }
 ]

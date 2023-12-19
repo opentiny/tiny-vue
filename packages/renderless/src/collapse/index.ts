@@ -9,13 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import {
-  ICollapseRenderlessParams
-} from '@/types'
+import type { ICollapseRenderlessParams } from '@/types'
 
 export const setActiveNames =
-  ({ emit, props, state }: Pick<ICollapseRenderlessParams, 'emit' | 'props' | 'state' >) =>
-  (activeNames: string | string[]):void => {
+  ({ emit, props, state }: Pick<ICollapseRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (activeNames: string | string[]): void => {
     activeNames = [].concat(activeNames)
     const value: string | string[] = props.accordion ? activeNames[0] : activeNames
     state.activeNames = activeNames
@@ -25,7 +23,7 @@ export const setActiveNames =
   }
 
 export const handleItemClick =
-  ({ api, props, state }: Pick<ICollapseRenderlessParams, 'api' | 'props' | 'state' >) =>
+  ({ api, props, state }: Pick<ICollapseRenderlessParams, 'api' | 'props' | 'state'>) =>
   (item?: Object) => {
     const activeNames = state.activeNames.slice(0)
     const index = activeNames.indexOf(item.name)

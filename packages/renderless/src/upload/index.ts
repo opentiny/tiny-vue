@@ -21,7 +21,7 @@ import type {
 
 import { KEY_CODE } from '../common'
 
-export const isImage = (str: string): boolean => str.indexOf('image') !== -1
+export const isImage = (str: string): boolean => str.includes('image')
 
 export const handleChange = (api: IUploadRenderlessParams['api']) => (event: Event) => {
   const files = (<HTMLInputElement>event.target).files

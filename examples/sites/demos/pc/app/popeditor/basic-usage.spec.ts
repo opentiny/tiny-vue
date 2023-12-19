@@ -4,9 +4,8 @@ test('PopEditor 基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popeditor#basic-usage')
 
-  const preview = page.locator('#preview')
-  const textBox = preview.getByPlaceholder('请选择')
-  const del = page.locator('#preview path').nth(2)
+  const textBox = page.getByRole('textbox', { name: '请选择' })
+  const del = page.locator('#basic-usage').getByRole('img')
   const dialogBox = page.locator('.tiny-dialog-box')
   const confirmBtn = dialogBox.getByRole('button', { name: '确 认' })
   const cancelBtn = dialogBox.getByRole('button', { name: '取 消' })
@@ -32,8 +31,7 @@ test('PopEditor 基本用法', async ({ page }) => {
 
   // 点击删除图标，清空文本框
   await del.click()
-  await expect(textBox).toHaveValue('')
-  // 编辑弹出框弹出后点击取消按钮，弹出框消失
+  await expect(textBox).toHaveValue('') // 编辑弹出框弹出后点击取消按钮，弹出框消失
   await textBox.click()
   await expect(dialogBox).toBeVisible()
   await cancelBtn.click()

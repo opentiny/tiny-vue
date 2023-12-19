@@ -1,6 +1,6 @@
 import type { ComputedRef, ExtractPropTypes } from 'vue'
-import { linkProps } from '@/link/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { linkProps } from '@/link/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export type ILinkProps = ExtractPropTypes<typeof linkProps>
 

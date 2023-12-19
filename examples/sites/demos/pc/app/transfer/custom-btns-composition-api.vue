@@ -1,11 +1,13 @@
 <template>
-  <span>功能控制：</span>
-  <tiny-button @click="toggleAllBtn()">
-    {{ showAllBtn ? '不显示all-btns' : '显示all-btns' }}
-  </tiny-button>
-  <tiny-button @click="toggleDisable()">
-    {{ alwaysDisable ? '无选时禁用' : '无选时高亮' }}
-  </tiny-button>
+  <div style="margin-bottom: 16px">
+    <span>功能控制：</span>
+    <tiny-button @click="toggleAllBtn()">
+      {{ showAllBtn ? '不显示all-btns' : '显示all-btns' }}
+    </tiny-button>
+    <tiny-button @click="toggleDisable()">
+      {{ alwaysDisable ? '无选中时禁用' : '无选中时高亮' }}
+    </tiny-button>
+  </div>
   <tiny-transfer
     v-model="value"
     :data="data"

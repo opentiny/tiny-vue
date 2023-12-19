@@ -1,6 +1,6 @@
 import { docMenus, cmpMenus } from '@menu/menus.js'
 
-import { appData, $t2 } from './tools'
+import { appData } from './tools'
 
 /**
  * 聚合doc  / cmp 两个页面的所有菜单.

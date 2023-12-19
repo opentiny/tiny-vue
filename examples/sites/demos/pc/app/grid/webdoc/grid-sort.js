@@ -50,12 +50,12 @@ export default {
       'name': { 'zh-CN': '表格服务端排序', 'en-US': 'Table server sorting' },
       'desc': {
         'zh-CN':
-          '<p>通过表格列设置 <code>sortable</code> 属性开启该列排序功能，然后表格设置 <code>remote-sort</code> 方法开启服务端排序。\n该示例中的 <code>services/getGridMockData</code> 服务需要自行实现，示例模拟了远程服务返回的数据\n</p>\n',
+          '<p>通过表格列设置 <code>sortable</code> 属性开启该列排序功能，然后表格设置 <code>remote-sort</code> 方法开启服务端排序。\n该示例中的 <code>services/getGridMockData</code> 服务需要自行实现，示例模拟了远程服务返回的数据。</p>\n',
         'en-US':
           '<p>Set the <code>sortable</code> attribute of the table column to enable the sorting function, and then set the <code>remote-sort</code> method to enable the sorting function on the server. \nIn this example, the <code>services/getGridMockData</code> service needs to be implemented. The example simulates the data returned by the remote service.\n</p>\n'
       },
       'codeFiles': ['sort/server-sort.vue']
     }
   ],
-  apis: [{ 'name': 'grid-sort', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-sort', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

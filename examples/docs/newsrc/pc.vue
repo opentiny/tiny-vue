@@ -69,7 +69,7 @@
                     <span v-else>{{ row.name }}</span>
                   </td>
                   <td>{{ row.type }}</td>
-                  <td>{{ row.defaultValue?.['zh-CN'] || row.defaultValue }}</td>
+                  <td v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"></td>
                   <td v-html="row.desc['zh-CN']"></td>
                 </tr>
               </tbody>

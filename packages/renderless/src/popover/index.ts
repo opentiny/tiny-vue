@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { IPopoverRenderlessParams, IPopoverState } from 'types/popover.type'
+import type { IPopoverRenderlessParams, IPopoverState } from 'types/popover.type'
 import { on, off, addClass, removeClass } from '../common/deps/dom'
 import { guid } from '../common/string'
 import { KEY_CODE } from '../common'

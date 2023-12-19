@@ -4,7 +4,7 @@ test('Textpopup 提示占位文本', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('text-popup#placeholder')
 
-  const preview = page.locator('#preview')
+  const preview = page.locator('#placeholder')
   const small = preview.locator('input')
   const larger = preview.locator('textarea')
 

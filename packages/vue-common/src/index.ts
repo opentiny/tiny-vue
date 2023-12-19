@@ -109,7 +109,7 @@ export const $setup = ({ props, context, template, extend = {} }) => {
   return renderComponent({ view, props, context, extend })
 }
 
-export const mergeClass = (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
+export const mergeClass = /* @__PURE__ */ (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
 
 // 提供给没有renderless层的组件使用（比如TinyVuePlus组件）
 export const design = {
@@ -144,9 +144,11 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     $prefix,
     t,
     ...tools(context, resolveMode(props, context)),
-    mergeClass,
     designConfig,
     globalDesignConfig
+  }
+  if (process.env.TINY_MODE !== 'pc') {
+    utils.mergeClass = mergeClass
   }
 
   resolveTheme({ props, context, utils })
@@ -165,10 +167,11 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     a: filterAttrs,
     d: utils.defineInstanceProperties,
     dp: utils.defineParentInstanceProperties,
-    gcls: (key) => getElementCssClass(classes, key),
-    m: mergeClass
+    gcls: (key) => getElementCssClass(classes, key)
   }
-
+  if (process.env.TINY_MODE !== 'pc') {
+    attrs.m = mergeClass
+  }
   /**
    * 修复 render 函数下 this.slots 不会动态更新的问题（vue3 环境没有问题）
    * 解决方法：在 instance 下注入 slots、scopedSlots
@@ -215,9 +218,12 @@ export const svg = ({ name = 'Icon', component }) => {
           const isMobileFirst = mode === 'mobile-first'
           const tinyTag = { 'data-tag': isMobileFirst ? 'tiny-svg' : null }
           const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
-          const className = isMobileFirst
-            ? mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
-            : 'tiny-svg'
+          let className = 'tiny-svg'
+
+          if (process.env.TINY_MODE !== 'pc' && isMobileFirst) {
+            className = mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
+          }
+
           const extend = Object.assign(
             {
               style: { fill, width, height },
@@ -233,7 +239,7 @@ export const svg = ({ name = 'Icon', component }) => {
           }
 
           // 解决富文本组件工具栏图标大小不正确的问题
-          if (name.indexOf('IconRichText') !== -1) {
+          if (name.includes('IconRichText')) {
             if (!isVue3) {
               extend.attrs.viewBox = '0 0 24 24'
             } else {
@@ -266,6 +272,7 @@ export const filterAttrs = (attrs, filters, include) => {
   return props
 }
 
+// eslint-disable-next-line import/no-mutable-exports
 export let setupComponent = {}
 
 export const initComponent = () => {

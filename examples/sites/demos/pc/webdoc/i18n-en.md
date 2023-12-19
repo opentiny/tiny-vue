@@ -87,11 +87,11 @@ Step 3 Modify `src/main.js` and add the highlighted part of the following code:
 ```js {3,7}
 import Vue from 'vue'
 import App from './App.vue'
-import i18n from './i18n'
+import initI18n from './i18n'
 import router from './router'
 
 new Vue({
-  i18n: i18n({ locale: 'zhCN' }),
+  i18n: initI18n({ locale: 'zhCN' }),
   router,
   render: (h) => h(App)
 }).$mount('#app')

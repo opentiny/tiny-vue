@@ -6,6 +6,7 @@
     @hide="hide"
     @after-leave="leave"
     @after-enter="enter"
+    trigger="hover"
     content="这是一段内容"
   >
     <template #reference>

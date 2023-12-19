@@ -25,12 +25,12 @@ export default {
       'name': { 'zh-CN': '表尾合并行或列', 'en-US': 'Merge Rows or Columns at the Table Foot' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>footer-method</code> 和 <code>footer-span-method</code> 设置表尾合计行或列逻辑 必须配置 <code>show-footer</code></p>\n',
+          '<p>通过 <code>footer-method</code> 和 <code>footer-span-method</code> 设置表尾合计行或列逻辑 必须配置 <code>show-footer</code>。</p>\n',
         'en-US':
           '<p>Use <code>footer-method</code> and <code>footer-span-method</code> to set the total row or column logic of the table tail. <code>show-footer</code></p>\n must be configured'
       },
       'codeFiles': ['footer/footer-row-or-column-span.vue']
     }
   ],
-  apis: [{ 'name': 'grid-footer', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-footer', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

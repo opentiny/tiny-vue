@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': { 'zh-CN': '', 'en-US': '' },
       'codeFiles': ['basic-usage.vue']
     },
     {
@@ -147,7 +147,7 @@ export default {
       'name': { 'zh-CN': '界限值', 'en-US': 'Boundaries' },
       'desc': {
         'zh-CN':
-          '<p>可通过 <code>low-threshold high-threshold</code> 分别设置下限值和上限值，通过<code>colors</code>配置显示星的颜色</p>\n',
+          '<p>可通过 <code>low-threshold high-threshold</code> 分别设置下限值和上限值，通过<code>colors</code>配置显示星的颜色。</p>',
         'en-US':
           '<p>You can set the lower limit and upper limit by using <code>low-threshold high-threshold</code>, and set the color of the displayed star by using <code>colors</p>\n'
       },
@@ -167,7 +167,7 @@ export default {
     {
       'name': 'rate',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'max',
           'type': 'number',

@@ -212,12 +212,12 @@ export default {
       'demoId': 'upload-events',
       'name': { 'zh-CN': '事件', 'en-US': 'Event' },
       'desc': {
-        'zh-CN': `<div class="tip custom-block"><p class="custom-block-title"> <code>preview</code> 监听文件点击事件；<br/> <code>remove</code> 监听文件移除事件；<br/> <code>error</code> 监听文件上传失败事件；<br/>
+        'zh-CN': `<div class="tip custom-block"><code>preview</code> 监听文件点击事件；<br/> <code>remove</code> 监听文件移除事件；<br/> <code>error</code> 监听文件上传失败事件；<br/>
           <code>exceed</code> 监听文件超出个数限制事件；<br/> <code>progress</code> 监听文件上传过程事件；<br/> <code>change</code> 监听文件改变事件（文件改变涵盖文件添加、上传成功和上传失败）；<br/>
-          <code>success</code> 监听文件上传成功事件；<br/> <code>hash-progress</code> 监听文件上传生成hash值事件。</p></div>`,
-        'en-US': `<div class="tip custom-block"><p class="custom-block-title"> <code>preview</code> Listen for file click events; <br /> <code>remove</code> Listen for file removal events; <br /> <code>error</code> Listen for file upload failure events;<br />
+          <code>success</code> 监听文件上传成功事件；<br/> <code>hash-progress</code> 监听文件上传生成hash值事件。</div>`,
+        'en-US': `<div class="tip custom-block"><code>preview</code> Listen for file click events; <br /> <code>remove</code> Listen for file removal events; <br /> <code>error</code> Listen for file upload failure events;<br />
         <code>exceeded</code> Listen for events where the number of files exceeds the limit; <br/> <code>progress</code> Listen for file upload process events;<br/> <code>change</code> Listen for file change events (file changes include file addition, successful upload, and failed upload);<br />
-        <code>success</code> Listen for file upload success events;<br/> <code>hash-progress</code> Listen for file upload to generate hash value events.</p></div>`
+        <code>success</code> Listen for file upload success events;<br/> <code>hash-progress</code> Listen for file upload to generate hash value events.</div>`
       },
       'codeFiles': ['upload-events.vue']
     },

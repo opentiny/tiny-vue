@@ -75,7 +75,19 @@ export const alertProps = {
     type: Boolean,
     default: false
   },
-  customClass: [String, Object, Array]
+  customClass: [String, Object, Array],
+  offset: {
+    type: [Number, String],
+    default: 0
+  },
+  autoHide: {
+    type: Boolean,
+    default: false
+  },
+  target: {
+    type: String,
+    default: ''
+  }
 }
 
 export default defineComponent({

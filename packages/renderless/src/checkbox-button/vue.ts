@@ -21,7 +21,14 @@ import {
   computedIsDisabled,
   toggleEvent
 } from './index'
-import { addToStore, computedIsChecked, computedStore, computedIsLimitDisabled, computedIsShowText, computedShowText } from '../checkbox'
+import {
+  addToStore,
+  computedIsChecked,
+  computedStore,
+  computedIsLimitDisabled,
+  computedIsShowText,
+  computedShowText
+} from '../checkbox'
 
 export const api = ['state', 'handleChange']
 

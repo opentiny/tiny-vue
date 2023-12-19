@@ -9,12 +9,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import { CheckboxButton as TinyCheckboxButton, CheckboxGroup as TinyCheckboxGroup } from '@opentiny/vue'
+import { CheckboxButton as TinyCheckboxButton, CheckboxGroup as TinyCheckboxGroup, Modal } from '@opentiny/vue'
 
 const checked = ref(['复选框1'])
-const logger = ref('')
 
 function valueChange(val) {
-  Modal.message(`change 事件触发了，选中值为：${val}`)
+  Modal.message({ message: `change 事件触发了，选中值为：${val}`, status: 'info' })
 }
 </script>

@@ -9,9 +9,9 @@
 | Vue2.x        | @opentiny/vue@2.x |
 | Vue3.x        | @opentiny/vue@3.x |
 
-**Vue2工程说明**
+**Vue2 工程说明**
 
-长期以来，TinyVue 都是只支持 Vue 2.6.14 版本。 从 TinyVue 2.11.0 开始，也支持 Vue 2.7+的工程了，请确保你安装了正确的Vue 2.x的依赖。
+长期以来，TinyVue 都是只支持 Vue 2.6.14 版本。 从 TinyVue 2.11.0 开始，也支持 Vue 2.7+的工程了，请确保你安装了正确的 Vue 2.x 的依赖。
 
 ### 全新项目配置
 
@@ -47,9 +47,19 @@ export default defineConfig({
 })
 ```
 
+<div class="tip custom-block">
+  <br>
+  <p>为了避免<code> @opentiny/vue </code> 的月度版本(minor)升级带来的不确定因素，因此推荐在您的工程中的<code> package.json </code> 中依赖包的版本号前使用 ~，
+    比如 <code>"@opentiny/vue": "~3.12.0</code>。</p>
+</div>
+<div class="tip custom-block">
+  <br>
+  <p><code> @opentiny/vue </code> 支持多种模式。如果您的工程非移动端工程，可以在上面配置代码中的<code>process.env</code>中，声明<code>TINY_MODE</code>的值，以使工程在构建时，能将移动端模式的代码摇掉，优化打包产物的体积。比如 <code>'process.env': { ...process.env,TINY_MODE:'pc' }</code>。</p>
+</div>
+
 ### 通过 CDN 方式引入
 
-为了更快地体验 TinyVue 的组件，你也可以通过 CDN 方式直接在 HTML 页面中引入 TinyVue。
+为了更快地体验 TinyVue 的组件，你也可以通过 CDN 方式直接在 HTML 页面中引入 TinyVue, 建议版本号写 2 个有效版本数字即可，具体配置如下:
 
 ```html
 <head>
@@ -57,11 +67,11 @@ export default defineConfig({
   <script type="importmap">
     {
       "imports": {
-        "vue": "https://unpkg.com/vue@3.2.45/dist/vue.esm-browser.js",
-        "@opentiny/vue": "https://unpkg.com/@opentiny/vue@3.9.1/runtime/tiny-vue.mjs",
-        "@opentiny/vue-common": "https://unpkg.com/@opentiny/vue@3.9.1/runtime/tiny-vue-common.mjs",
-        "@opentiny/vue-icon": "https://unpkg.com/@opentiny/vue@3.9.1/runtime/tiny-vue-icon.mjs",
-        "@opentiny/vue-locale": "https://unpkg.com/@opentiny/vue@3.9.1/runtime/tiny-vue-locale.mjs"
+        "vue": "https://unpkg.com/vue@3.3/dist/vue.esm-browser.js",
+        "@opentiny/vue": "https://unpkg.com/@opentiny/vue@3.12/runtime/tiny-vue.mjs",
+        "@opentiny/vue-common": "https://unpkg.com/@opentiny/vue@3.12/runtime/tiny-vue-common.mjs",
+        "@opentiny/vue-icon": "https://unpkg.com/@opentiny/vue@3.12/runtime/tiny-vue-icon.mjs",
+        "@opentiny/vue-locale": "https://unpkg.com/@opentiny/vue@3.12/runtime/tiny-vue-locale.mjs"
       }
     }
   </script>

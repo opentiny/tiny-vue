@@ -10,8 +10,15 @@ export default {
     },
     {
       'demoId': 'split-threshold',
-      'name': { 'zh-CN': '面板阈值', 'en-US': 'Panel Threshold' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'name': {
+        'zh-CN': '面板阈值',
+        'en-US': 'Panel Threshold'
+      },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>left-top-min</code> 设置左上方面板拖动的最小高度，通过 <code>right-bottom-min</code> 设置右下方面板拖动的最小高度</p>',
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['split-threshold.vue']
     },
     {
@@ -24,12 +31,6 @@ export default {
           '<p>Split type of the same mode. The options are <code>horizontal</code> (horizontal) and <code>vertical</code> (vertical). The default value is <code>horizontal</code>. </p>\n'
       },
       'codeFiles': ['split-mode.vue']
-    },
-    {
-      'demoId': 'basic-usage1',
-      'name': { 'zh-CN': '不可拖拽', 'en-US': 'Drag not allowed' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['basic-usage1.vue']
     },
     {
       'demoId': 'movestart-event',
@@ -136,14 +137,13 @@ export default {
     {
       'name': 'split',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'mode',
-          'type': 'string',
+          'type': `'horizontal' | 'vertical'`,
           'defaultValue': 'horizontal',
           'desc': {
-            'zh-CN':
-              '分割类型，可选值为 horizontal 或 vertical；默认值horizontal。;该属性的可选值为 horizontal / vertical',
+            'zh-CN': '分割类型，可选值为 horizontal 或 vertical；默认值horizontal',
             'en-US':
               'Separation type. The value can be horizontal or vertical. The default value is horizontal. ;The optional values of this attribute are horizontal / vertical'
           },
@@ -154,7 +154,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '简易模式启用左/上展开收起按钮。',
+            'zh-CN': '简易模式启用左/上展开收起按钮',
             'en-US': 'Easy Mode Enables Left/Top Expand Collapse Button'
           },
           'demoId': 'split-threshold'
@@ -181,23 +181,23 @@ export default {
         },
         {
           'name': 'left-top-min',
-          'type': 'number , string',
+          'type': 'number | string',
           'defaultValue': '40px',
-          'desc': { 'zh-CN': '左面板 / 上面板最小阈值。', 'en-US': 'Minimum threshold on the left or upper panel.' },
+          'desc': { 'zh-CN': '左面板 / 上面板最小阈值', 'en-US': 'Minimum threshold on the left or upper panel.' },
           'demoId': 'split-threshold'
         },
         {
           'name': 'right-bottom-min',
-          'type': 'number , string',
+          'type': 'number | string',
           'defaultValue': '40px',
-          'desc': { 'zh-CN': '右面板 / 下面板最小阈值。', 'en-US': 'Minimum threshold on the right or lower panel.' },
+          'desc': { 'zh-CN': '右面板 / 下面板最小阈值', 'en-US': 'Minimum threshold on the right or lower panel.' },
           'demoId': 'split-threshold'
         },
         {
           'name': 'modelValue',
-          'type': 'number , string',
+          'type': 'number | string',
           'defaultValue': '0.5',
-          'desc': { 'zh-CN': '分割面板的位置。', 'en-US': 'Position of the split panel.' },
+          'desc': { 'zh-CN': '分割面板的位置', 'en-US': 'Position of the split panel.' },
           'demoId': 'basic-usage'
         },
         {
@@ -218,37 +218,37 @@ export default {
       'events': [
         {
           'name': 'moveend',
-          'type': 'Function()',
+          'type': '()=> void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '拖拽结束的事件。;拖拽结束的事件。;无arguments',
+            'zh-CN': '拖拽结束的事件',
             'en-US': 'Drag end event. ;Drag end event. ;No arguments'
           },
           'demoId': 'moveend-event'
         },
         {
           'name': 'movestart',
-          'type': 'Function()',
+          'type': '()=> void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '拖拽开始的事件。;拖拽开始的事件。;无arguments',
+            'zh-CN': '拖拽开始的事件',
             'en-US': 'Drag start event. ;Drag start event. ;No arguments'
           },
           'demoId': 'movestart-event'
         },
         {
           'name': 'moving',
-          'type': 'Function(arg)',
+          'type': '(event: Event)=> void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '拖拽中的事件。;拖拽中的事件。;arg1:event (类型object)',
+            'zh-CN': '拖拽中的事件',
             'en-US': 'Draging events. ;Drag the event in. ; arg1:event (type object)'
           },
           'demoId': 'moving-event'
         },
         {
           'name': 'left-top-click',
-          'type': 'Function(arg)',
+          'type': '()=> void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '左箭头收起时触发',

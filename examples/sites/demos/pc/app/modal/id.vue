@@ -2,7 +2,7 @@
   <tiny-button @click="btnClick" :reset-time="0">不允许重复点击</tiny-button>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, Modal } from '@opentiny/vue'
 
 export default {

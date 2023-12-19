@@ -17,11 +17,40 @@
 - 欧若拉主题 `tinyAuroraTheme`
 - XDesign 主题 `tinySmbTheme`
 
-主题初始化和动态切换主题的具体使用方式如下文所示，在 main.ts 文件中增加以下代码。
+#### 通过 alias 使用预定义主题【目前仅支持：欧若拉主题 和 XDesign 主题】
+
+vue.config.js 定义
+
+```js
+chainWebpack: (config) => {
+  // XDesign 主题
+  config.resolve.alias.set('@opentiny/vue-theme', '@opentiny/vue-theme/smb-theme')
+  // aurora 主题 则是将以上smb主题中的'smb'字符全替换成 'aurora'即可
+}
+```
+
+vite.config.js 定义
+
+```js
+resolve: {
+  alias: [
+    // XDesign 主题
+    {
+      find: /\@opentiny\/vue-theme\/(?!(smb))/,
+      replacement: '@opentiny/vue-theme/smb-theme/'
+    }
+  ]
+}
+```
+
+#### 主题初始化和动态切换主题的具体使用方式如下文所示，在 main.ts 文件中增加以下代码。
 
 ```js
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
-import { tinySmbTheme } from '@opentiny/vue-theme/theme' // 导入主题
+
+import { tinySmbTheme } from '@opentiny/vue-theme/theme'
+
+// 导入主题
 
 new TinyThemeTool(tinySmbTheme, 'tinyStyleSheetId') // 初始化主题
 ```
@@ -136,11 +165,15 @@ el.style.setProperty('--ti-base-color-white', '#fefefe')
 
 步骤一、点击下载新旧变量的映射表`newVars.json`和替换脚本`replaceVar.js`
 
-<a :href="$pub('@demos/resource/newVars.json')" target="_blank" download="newVars.json">newVars.json 文件</a> 和 <a :href="$pub('@demos/resource/replaceVar.js')" target="_blank" download="replaceVar.js">replaceVar.js 文件</a>
+<script setup>
+  import { pubUrl } from '@/tools'
+</script>
+
+<a :href="pubUrl('@demos/resource/newVars.json')" target="_blank" download="newVars.json">newVars.json 文件</a> 和 <a :href="pubUrl('@demos/resource/replaceVar.js')" target="_blank" download="replaceVar.js">replaceVar.js 文件</a>
 
 步骤二、将 `newVars.json` 和 `replaceVar.js` 放到项目根目录下，与 src 目录同级；
 
-<img src="@demos/resource/theme-demo.png" class="image" style="box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14); width: 30vw" ><br><br>
+<img :src="pubUrl('@demos/resource/theme-demo.png')" class="image" style="box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14); width: 30vw" ><br><br>
 
 步骤三、在项目根目录下，执行以下命令进行替换；
 

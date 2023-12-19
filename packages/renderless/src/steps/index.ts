@@ -1,4 +1,4 @@
-import { IStepsRenderlessParams, IStepsVisibleConfig, IStepsNodePosConfig } from '@/types'
+import type { IStepsRenderlessParams, IStepsVisibleConfig, IStepsNodePosConfig } from '@/types'
 
 export const updateStartIndex =
   ({ state, props }: Pick<IStepsRenderlessParams, 'state' | 'props'>) =>

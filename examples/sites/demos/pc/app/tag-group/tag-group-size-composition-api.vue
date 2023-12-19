@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <span>中等标签：medium </span>
+  <div class="tiny-demo-tag-group-size">
+    <div>中等标签：medium </div>
     <tiny-tag-group :data="items" size="medium"> </tiny-tag-group>
-    <br />
-    <span>小型标签：small </span>
+    <div>小型标签：small </div>
     <tiny-tag-group :data="items" size="small"> </tiny-tag-group>
-    <br />
-    <span>超小标签：mini </span>
+    <div>超小标签：mini </div>
     <tiny-tag-group :data="items" size="mini"> </tiny-tag-group>
   </div>
 </template>
@@ -24,3 +22,9 @@ const items = ref([
   { type: 'info', name: '标签六' }
 ])
 </script>
+
+<style scoped>
+.tiny-demo-tag-group-size > *:not(:last-child) {
+  margin-bottom: 12px;
+}
+</style>

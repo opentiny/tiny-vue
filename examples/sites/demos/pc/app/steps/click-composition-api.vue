@@ -1,6 +1,5 @@
 <template>
   <div class="demo-steps-click">
-    <div>点击步骤条节点来切换选中状态</div>
     <tiny-steps :data="stepsData" :active="defaultActive" @click="normalClick"></tiny-steps>
     <div v-if="currentNode">
       <span>选中节点 index: {{ currentNode.index }} </span><br />

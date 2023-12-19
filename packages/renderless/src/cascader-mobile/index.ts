@@ -13,11 +13,11 @@ export const syncCheckStatus =
   (value) => {
     const { valueField, textField, modelValue: propsModelValue, visible } = props
     const { lazy, isLeaf: leafField } = api.getNodeConfig()
-    let currentData,
-      navList = [],
-      modelValue = value || propsModelValue || [],
-      len = modelValue.length,
-      isLeaf
+    let currentData
+    let navList = []
+    let modelValue = value || propsModelValue || []
+    let len = modelValue.length
+    let isLeaf
 
     if (!visible) {
       return
@@ -106,7 +106,7 @@ export const selectOption =
         option.loading = false
         state.loading = false
         option.loaded = true
-        nodes.map((data) => {
+        nodes.forEach((data) => {
           state.store.append(data, option.data)
           index = waitLoadList.indexOf(data[valueField])
           if (index !== -1) {

@@ -1,6 +1,12 @@
 export default {
   column: '2',
   owner: '',
+  metaData: {
+    stable: '3.12.0'
+  },
+  versionTipOption: {
+    stages: ['stable']
+  },
   demos: [
     {
       'demoId': 'basic',
@@ -19,10 +25,10 @@ export default {
     {
       'name': 'watermark',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'width',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '120',
           'desc': {
             'zh-CN': '水印的宽度, 最小宽度120',
@@ -32,7 +38,7 @@ export default {
         },
         {
           'name': 'height',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '64',
           'desc': {
             'zh-CN': '水印的高度, 最小高度64',
@@ -42,7 +48,7 @@ export default {
         },
         {
           'name': 'rotate',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '-22',
           'desc': {
             'zh-CN': '水印绘制时，旋转的角度，单位 °',
@@ -52,7 +58,7 @@ export default {
         },
         {
           'name': 'zIndex',
-          'type': 'Number',
+          'type': 'number',
           'defaultValue': '9',
           'desc': {
             'zh-CN': '追加的水印元素的 `z-index `',
@@ -62,7 +68,7 @@ export default {
         },
         {
           'name': 'image',
-          'type': 'String',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '图片源，建议导出 2 倍或 3 倍图，优先级高 (支持 base64 格式),此属性高于content',
@@ -72,7 +78,7 @@ export default {
         },
         {
           'name': 'content',
-          'type': 'String | String[]',
+          'type': 'string',
           'defaultValue': '',
           'desc': {
             'zh-CN': '水印文字内容，此属性低于image',
@@ -82,7 +88,7 @@ export default {
         },
         {
           'name': 'font',
-          'type': 'Font',
+          'type': 'object',
           'defaultValue': '',
           'desc': {
             'zh-CN': `文字样式,可配置字段如下{
@@ -98,7 +104,7 @@ export default {
         },
         {
           'name': 'gap',
-          'type': '[Number, Number] ',
+          'type': 'array',
           'defaultValue': '[100, 100]',
           'desc': {
             'zh-CN': '水印之间的间距',
@@ -108,7 +114,7 @@ export default {
         },
         {
           'name': 'offset',
-          'type': '[Number, Number] ',
+          'type': 'array',
           'defaultValue': '[20, 20] ',
           'desc': {
             'zh-CN': '水印距离容器左上角的偏移量，默认为`20 `',
@@ -118,7 +124,7 @@ export default {
         },
         {
           'name': 'interlaced',
-          'type': 'Boolean',
+          'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '水印是否交错',

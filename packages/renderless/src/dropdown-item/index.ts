@@ -10,7 +10,12 @@
  *
  */
 
-import { IDropdownItemRenderlessParams, IDropdownItemStyle, IDropdownItemTag, IDropdownItemOptionStyle } from '@/types'
+import type {
+  IDropdownItemRenderlessParams,
+  IDropdownItemStyle,
+  IDropdownItemTag,
+  IDropdownItemOptionStyle
+} from '@/types'
 import { on, off } from '../common/deps/dom'
 
 export const getTitle = (props: IDropdownItemRenderlessParams['props']) => (): string => {
@@ -168,7 +173,7 @@ export const handleClick =
 
 export const computedGetIcon =
   ({ constants, designConfig }: Pick<IDropdownItemRenderlessParams, 'constants' | 'designConfig'>) =>
-  (name: string = 'leftWardArrow'): object => {
+  (name = 'leftWardArrow'): object | string => {
     return designConfig?.icons[name] || constants?.ICON_MAP[name]
   }
 

@@ -26,8 +26,8 @@ import {
   mounted,
   deleteHander
 } from './index'
-import { ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from 'types/shared.type'
-import {
+import type { ISharedRenderlessParamHooks } from 'types/shared.type'
+import type {
   IImageApi,
   IImageProps,
   IImageState,

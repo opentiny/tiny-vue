@@ -45,17 +45,23 @@ Before submitting pull request, please make sure that your submission is in line
   1. type: must be one of build, chore, ci, docs, feat, fix, perf, refactor, revert, release, style, test, improvement.
 
   2. scope.
+
   - Package names in the `packages` directory, e.g. `vue-design-aurora, vue-design-saas, react ......`
   - Component name under the package name in the `packages` directory, e.g., `vue-design-aurora/alert, vue-design-saas/alert, react/alert ......`
   - The name of the folder to use: e.g.: `gulp, internals/playwright-config, sites`
   - The name of the component (lowercase, center dot): e.g.: `action-menu, alert ......`
 
-  3. Run e2e tests: Using `[componentName1, componentName2]` in the commit message will execute the test case for componentName1, componentName2, which needs to be declared when changing code that affects the component.
+- Pull Request title
 
-  4. Example.
-  - Supplemental documentation for the alert component: `docs(alert): [alert] xxxxxxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
-  - Add test case for the alert component: `test(alert): [alert] xxxxxxxxxxxxxxxxxx`.
-  - Fix a bug in the alter component @opentiny/vue-renderless: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxxxx`
+  1. The specification of the title is the same as the commit information, which is entered in the form of `type(scope): description information`.
+
+  2. e2e test of trigger components: Adding `[componentName1, componentName2]` to the Pull Request title will execute test cases for componentName1, componentName2, and declare this structure when changes to code affect components.
+
+  3. Example title:
+
+  - Supplement alert component document: `docs(alert): [alert] xxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
+  - Supplement alet component test case: `test(alert): [alert] xxxxxxxxxxxxxx`
+  - Fixed bug in alet component @opentiny/vue-renderless: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
 
 Local startup steps:
 

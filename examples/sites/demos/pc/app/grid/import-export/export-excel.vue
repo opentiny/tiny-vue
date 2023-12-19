@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, GridToolbar, Button } from '@opentiny/vue'
 
 export default {
@@ -83,9 +83,14 @@ export default {
     },
     toCsvEvent() {
       this.$refs.theGrid.exportCsv({
+        // 文件名称
         filename: 'table.csv',
         original: true,
+        // 是否导出表头
         isHeader: false,
+        // 是否在每行后面添加制表符
+        useTabs: false,
+        // 导出的数据
         data: this.tableData
       })
     }

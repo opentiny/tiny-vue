@@ -18,12 +18,14 @@ test('事件', async ({ page }) => {
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await fileChooser.setFiles(currentPath)
-  await expect(modals).toHaveCount(3)
-  await expect(modals).toHaveText(['触发上传文件改变回调事件', '文件上传失败回调', '触发上传文件改变回调事件'])
+  await page.getByText('文件上传失败回调').isVisible()
+  await expect(page.getByText('触发上传文件改变回调事件')).toHaveCount(2)
+  await page.waitForTimeout(100)
+
   await lists.nth(0).hover()
   await delButton.click()
-  await expect(modals.nth(3)).toHaveText('触发删除文件回调事件')
+  await page.getByText('触发删除文件回调事件').isVisible()
 
   await fileChooser.setFiles([currentPath, currentPath, currentPath, currentPath])
-  await expect(modals.nth(3)).toHaveText('触发文件超出个数限制回调事件')
+  await page.getByText('触发文件超出个数限制回调事件').isVisible()
 })

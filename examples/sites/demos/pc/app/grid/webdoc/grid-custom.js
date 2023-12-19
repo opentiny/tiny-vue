@@ -7,7 +7,7 @@ export default {
       'name': { 'zh-CN': '本地存储列宽', 'en-US': 'Column Width' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStroage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示</p>\n',
+          '<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，<code>grid-column</code> 标签上配置 <code>resizable=&quot;false&quot;</code> 可以配置某一列不能调整列宽。并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStroage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示。</p>\n',
         'en-US':
           '<p>Configure <code>resizable=&quot;true&quot;</code> on the <code>grid</code> tag to adjust the column width, and configure <code>resizable=&quot;{storage: true}&quot;</code> on the <code>toolbar</code> tag to save the column width in <code>localStroage</code> on the local host. The column width of the table on the refreshed page is displayed based on the column width after being dragged.</p>\n'
       },
@@ -18,7 +18,7 @@ export default {
       'name': { 'zh-CN': '简化版列设置', 'en-US': 'Manually Reset Columns' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{simple: true, customDisable: customDisable}&quot;</code> 开启简化版列设置 通过<code>customDisable</code> 方法自定义当前选项是否禁用</p>\n',
+          '<p>在 <code>toolbar</code> 标签上配置 <code>:setting=&quot;{simple: true, customDisable: customDisable}&quot;</code> 开启简化版列设置 通过<code>customDisable</code> 方法自定义当前选项是否禁用。</p>\n',
         'en-US':
           'Description of the <div class="tip custom-block"><p class="custom-block-title"> method </p>\n<p> <code>resetResizable()</code>: Manually reset the column width and drag the operation to the initial state \n<code>resetCustoms()</code>: Manually reset the display/hide operation of the column to the initial state.\n<code>resetAll()</code>: Manually reset all operations of the column. Restore to the initial state </p>\n</div>\n<p> Drag the column width or hide the column, and then click the corresponding button to view the effect. </p>\n'
       },
@@ -40,7 +40,7 @@ export default {
       'name': { 'zh-CN': '排序', 'en-US': 'Sort Type' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>column</code> 标签上配置 <code>sortable</code> 可以排序（未配置的列，在个性化面板中的排序图标会隐藏），并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里进行排序，排序过后会保存在本地的 <code>localStroage</code> 里，刷新页面页面上会显示排序过后的数据</p>\n',
+          '<p>在 <code>column</code> 标签上配置 <code>sortable</code> 可以排序（未配置的列，在个性化面板中的排序图标会隐藏），并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里进行排序，排序过后会保存在本地的 <code>localStroage</code> 里，刷新页面页面上会显示排序过后的数据。</p>\n',
         'en-US':
           '<p>Configure <code>sortable</code> on the <code>column</code> tab to enable sorting, and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. In the Personalization panel, select Other Settings. In Other Settings, you can select the sorting type. The sorting type includes the sorting on the current page and sorting on all data. The default value is Sort on the current page.</p>\n'
       },
@@ -62,7 +62,7 @@ export default {
       'name': { 'zh-CN': '排序类型', 'en-US': 'Column Freeze' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>column</code> 标签上配置 <code>sortable</code> 可以排序，并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里选择其它设置，其它设置里可以选择排序类型，排序类型有当前页排序和所有数据排序选项，默认是当前页排序</p>\n',
+          '<p>在 <code>column</code> 标签上配置 <code>sortable</code> 可以排序，并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里选择其它设置，其它设置里可以选择排序类型，排序类型有当前页排序和所有数据排序选项，默认是当前页排序。</p>\n',
         'en-US':
           '<p>Configure the <code>fixed=&quot;left&quot;</code> on the <code>column</code> tag to be fixed on the left, and configure <code>setting</code> on the <code>toolbar</code> tag to enable personalized settings. In the personalized panel, you can set whether the column is fixed.</p>\n'
       },
@@ -73,7 +73,7 @@ export default {
       'name': { 'zh-CN': '列冻结', 'en-US': 'Local Records' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>column</code> 标签上配置 <code>fixed=&quot;left&quot;</code> 可以固定在左侧，并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里可以设置是否固定列</p>\n',
+          '<p>在 <code>column</code> 标签上配置 <code>fixed=&quot;left&quot;</code> 可以固定在左侧，并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里可以设置是否固定列。</p>\n',
         'en-US':
           '<p>Set <code>sortable</code> of <code>setting</code> to <code>sortablejs</code> to implement the drag-and-drop sorting function. This function is invalid under multi-level column headers</p>\n'
       },
@@ -88,7 +88,7 @@ export default {
       'desc': {
         'zh-CN': `<p>配置 <code>setting</code> 的 <code>storage</code> 为 <code>local</code> 可实个性化的本地存储，
           配置 <code>setting</code> 的 <code>sortable</code> 为 <code>sortablejs</code> 可实现拖拽排序列功能，此功能在多级列头下无效，
-          并且可以通过三个事件<code>save-setting</code>、<code>cancel-setting</code>、<code>reset-setting</code>来分别监听确认、取消、重置按钮的点击事件</p>\n`,
+          并且可以通过三个事件<code>save-setting</code>、<code>cancel-setting</code>、<code>reset-setting</code>来分别监听确认、取消、重置按钮的点击事件。</p>\n`,
         'en-US': `<p>Configure <code>storage</code> of <code>setting</code> to <code>local</code> as a personalized local storage,
           Set <code>sortable</code> of <code>setting</code> to <code>sortablejs</code> to implement the drag-and-drop sorting function. This function is invalid in multi-level column headers,
           In addition, three events <code>save-setting</code>, <code>cancel-setting</code>, and <code>reset-setting</code> can be used to listen to the click events of the confirmation, cancellation, and reset buttons.</p>\n`
@@ -99,7 +99,7 @@ export default {
       'demoId': 'custom-ordercolumn-remote',
       'name': { 'zh-CN': '加载远端数据', 'en-US': 'Display and hide columns' },
       'desc': {
-        'zh-CN': '<p>通过 <code>reloadCustoms</code> 方法，将第二个参数置为 <code>true</code> 可按序加载列</p>\n',
+        'zh-CN': '<p>通过 <code>reloadCustoms</code> 方法，将第二个参数置为 <code>true</code> 可按序加载列。</p>\n',
         'en-US':
           '<p>Configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. In the personalized panel, you can set whether to display or hide columns</p>\n'
       },
@@ -110,7 +110,7 @@ export default {
       'name': { 'zh-CN': '列显示隐藏', 'en-US': 'Manually hide the displayed column' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里可以设置是否显示和隐藏列</p>\n',
+          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里可以设置是否显示和隐藏列。</p>\n',
         'en-US':
           '<p>Invoke the <code>hideColumn(column)</code> method to hide the specified column, and the <code>showColumn(column)</code> method to display the specified column. When you use the two methods to hide or display a column, you need to invoke the <code>refreshColumn()</code> method to refresh the column configuration for the modification to take effect. </p>\n'
       },
@@ -143,7 +143,7 @@ export default {
       'name': { 'zh-CN': '分页条数', 'en-US': 'Local Storage' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里选择其它设置，其它设置里可以选择每页显示的条数，可以通过 <code>setting</code> 的 <code>other</code> 属性控制显示其他设置，<code>boolean</code> 类型默认为 <code>true</code></p>\n',
+          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里选择其它设置，其它设置里可以选择每页显示的条数，可以通过 <code>setting</code> 的 <code>other</code> 属性控制显示其他设置，<code>boolean</code> 类型默认为 <code>true</code>。</p>\n',
         'en-US':
           '<p>Configure <code>:setting=&quot;{storage:\'local\'}&quot; on the <code>toolbar</code> tag </code>Enable personalization and save to local <code>localSotrage</code> </p>\n<div class="danger custom-block">\n</div>\n'
       },
@@ -171,5 +171,5 @@ export default {
       'codeFiles': ['custom/reset-method.vue']
     }
   ],
-  apis: [{ 'name': 'grid-custom', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-custom', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

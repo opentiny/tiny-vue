@@ -49,18 +49,15 @@ export const useRule = (props: RuleProps) => {
   const { moveRule, onPropChange, onRuleRemove } = actions
   const disabled = !!parentDisabled || !!disabledProp
 
-  const rule = ruleProp
-    ? ruleProp
-    : {
-        field: fieldProp!,
-        operator: operatorProp!,
-        value: valueProp,
-        valueSource: valueSourceProp
-      }
+  const rule = ruleProp || {
+    field: fieldProp!,
+    operator: operatorProp!,
+    value: valueProp,
+    valueSource: valueSourceProp
+  }
   const { field, operator, value, valueSource } = rule
 
   useDeprecatedProps('rule', !!ruleProp)
-
 
   const classNames = useMemo(
     () => ({

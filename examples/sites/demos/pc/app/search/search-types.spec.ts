@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test('下拉选择搜索类型', async ({ page }) => {
+test('搜索类型下拉选择', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('search#search-types')
 

@@ -1,1 +1,3 @@
-export type IColorPickerRef<T> = {value: T}
+export interface IColorPickerRef<T> {
+  value: T
+}

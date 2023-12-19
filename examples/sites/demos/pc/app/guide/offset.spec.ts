@@ -4,8 +4,8 @@ test('引导框偏移量', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('guide#offset')
 
-  const guideBtn1 = page.getByRole('button', { name: '新手引导1' })
-  const guideBtn2 = page.getByRole('button', { name: '新手引导2' })
+  const guideBtn1 = page.getByRole('button', { name: '默认' })
+  const guideBtn2 = page.getByRole('button', { name: '纵轴偏移 50px' })
   const guide = page.getByRole('dialog')
 
   // 引导1 没有设置

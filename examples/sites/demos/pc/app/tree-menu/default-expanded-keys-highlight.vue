@@ -1,10 +1,10 @@
 <template>
-  <div class="tiny-demo">
-    <h4>点击改变<tiny-button @click="changeHighlight">highlight</tiny-button></h4>
+  <div>
+    <tiny-button @click="changeHighlight" type="primary">设置展开并高亮</tiny-button>
     <tiny-tree-menu
       node-key="id"
       :data="treeData"
-      :default-expanded-keys="expandedKeys"
+      :default-expanded-keys="expandeArr"
       :default-expanded-keys-highlight="highlight"
     ></tiny-tree-menu>
   </div>
@@ -20,8 +20,8 @@ export default {
   },
   data() {
     return {
-      expandedKeys: [20101],
-      highlight: 401,
+      expandeArr: [30101],
+      highlight: 30101,
       treeData: [
         {
           id: 100,
@@ -59,7 +59,7 @@ export default {
                 {
                   id: 30101,
                   label: 'Button 按钮',
-                  url: 'http://his-beta.huawei.com/aurora/#/webcore/v3/zh-CN/component/button'
+                  url: 'https://tinyuidesign.cloudbu.huawei.com/tiny-vue/zh-CN/os-theme/components/button'
                 },
                 { id: 30102, label: 'Datepicker 日期', url: '' },
                 { id: 30103, label: 'Dropdown 下拉框', url: '' },
@@ -133,9 +133,20 @@ export default {
   methods: {
     changeHighlight() {
       setTimeout(() => {
-        this.highlight = 20101
+        this.expandeArr = this.expandeArr.concat([401])
+        this.highlight = 401
       }, 100)
     }
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+.tiny-button {
+  margin-bottom: 10px;
+}
+</style>

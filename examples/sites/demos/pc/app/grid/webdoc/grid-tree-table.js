@@ -10,7 +10,7 @@ export default {
       },
       'desc': {
         'zh-CN':
-          "<p>在 grid 标签上配置 tree-config={children: 'children',renderIcon},其中renderIcon可以自定义树表的展开收缩图标。以树的形式来展示数据,还需要在展示树节点的字段上配置 tree-node 属性</p>\n",
+          "<p>在 grid 标签上配置 tree-config={children: 'children',renderIcon},其中renderIcon可以自定义树表的展开收缩图标。以树的形式来展示数据,还需要在展示树节点的字段上配置 tree-node 属性。</p>\n",
         'en-US':
           "<p>Configure tree-config=&quot;{children:'children'}&quot; on the grid tab to display data in a tree. In addition, you need to configure the tree-node attribute</p>\n on the field that displays the tree node"
       },
@@ -21,7 +21,7 @@ export default {
       'name': { 'zh-CN': '扁平化数据结构', 'en-US': 'Flat Data Structure' },
       'desc': {
         'zh-CN':
-          '<p>注意：扁平化的数据结构需要调用 aggregateTableData 方法把数据转换成带有子级的数据才能正常的显示出树表的结构</p>\n',
+          '<p>注意：扁平化的数据结构需要调用 aggregateTableData 方法把数据转换成带有子级的数据才能正常的显示出树表的结构。</p>\n',
         'en-US':
           '<p>Note: For a flattened data structure, you need to invoke the aggregateTableData method to convert data into data with sublevels to display the tree table structure.</p>\n'
       },
@@ -32,7 +32,7 @@ export default {
       'name': { 'zh-CN': '自定义树表隐藏行', 'en-US': '' },
       'desc': {
         'zh-CN':
-          '<p>表格属性 <code>treeConfig.hideMethod</code> 配置一个方法控制行是否渲染，参数为 <code>row</code> 和 <code>rowLevel</code>，返回 <code>true</code> 则此行隐藏不渲染</p>\n',
+          '<p>表格属性 <code>treeConfig.hideMethod</code> 配置一个方法控制行是否渲染，参数为 <code>row</code> 和 <code>rowLevel</code>，返回 <code>true</code> 则此行隐藏不渲染。</p>\n',
         'en-US': ''
       },
       'codeFiles': ['tree-table/tree-grid-expand-active-method.vue']
@@ -41,7 +41,7 @@ export default {
       'demoId': 'tree-table-tree-grid-operation-column',
       'name': { 'zh-CN': '操作列', 'en-US': 'Operation Column' },
       'desc': {
-        'zh-CN': '<p>列通过配置 type=&quot;radio&quot; 实现单选，配置 type=&quot;selection&quot; 实现多选</p>\n',
+        'zh-CN': '<p>列通过配置 type=&quot;radio&quot; 实现单选，配置 type=&quot;selection&quot; 实现多选。</p>\n',
         'en-US':
           'In the <p> column, you can set type=&quot;radio&quot; to enable single selection and type=&quot;selection&quot; to enable multiple selection</p>\n'
       },
@@ -66,7 +66,7 @@ export default {
       'name': { 'zh-CN': '冻结列', 'en-US': 'Frozen Column' },
       'desc': {
         'zh-CN':
-          '<p>在列的标签上可以通过配置 fixed=&quot;left&quot; 属性把该列固定在左侧，配置 fixed=&quot;right&quot; 属性把该列固定在右侧</p>\n',
+          '<p>在列的标签上可以通过配置 fixed=&quot;left&quot; 属性把该列固定在左侧，配置 fixed=&quot;right&quot; 属性把该列固定在右侧。</p>\n',
         'en-US':
           '<p>On the column label, you can set the fixed=&quot;left&quot; attribute to fix the column on the left, and set the fixed=&quot;right&quot; attribute to fix the column on the right</p>\n'
       },
@@ -108,13 +108,23 @@ export default {
       'demoId': 'tree-table-tree-grid-keyboard-operation',
       'name': { 'zh-CN': '键盘操作', 'en-US': 'Keyboard operation' },
       'desc': {
-        'zh-CN':
-          '<p>键盘移动高亮行,设置斑马线属性 stripe 为 false,鼠标悬停高亮行 highlight-hover-row 为 false,高亮当前行 highlight-current-row ,并配置 keyboard-config={isArrow: true} 属性启用方向键功能\n | Arrow Up ↑ | 移动到高亮行的上一行\n | Arrow Down ↓ | 移动到高亮行的下一行\n | Enter | 展开节点，进入子节点\n | Backspace | 关闭节点，返回到父节点</p>\n',
+        'zh-CN': `
+        <p>键盘移动高亮行,设置斑马线属性 stripe 为 false,鼠标悬停高亮行 highlight-hover-row 为 false,高亮当前行 highlight-current-row ,并配置 keyboard-config={isArrow: true} 属性启用方向键功能。</p>
+        <div class="tip custom-block">
+          <p class="custom-block-title">按键说明：</p>
+          <ul>
+            <li><code>Arrow Up ↑</code>：移动到高亮行的上一行。</li>
+            <li><code>Arrow Down ↓</code>：移动到高亮行的下一行。</li>
+            <li><code>Enter</code>：展开节点，进入子节点。</li>
+            <li><code>Backspace</code>：关闭节点，返回到父节点。</li>
+          </ul>
+        </div>
+        `,
         'en-US':
           '<p>Move the highlighted row, set stripe to false, highlight-hover-row to false, and highlight-current-row to false. Configure the keyboard-config={isArrow: true} attribute to enable the arrow keys function.\n | Arrow Up | Move to the previous line of the highlighted line\n | Arrow Down | Move to the next line of the highlighted line\n | Enter | Expand the node. Enter the child node\n | Backspace | Close the node and return to the parent node</p>\n'
       },
       'codeFiles': ['tree-table/tree-grid-keyboard-operation.vue']
     }
   ],
-  apis: [{ 'name': 'grid-tree-table', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-tree-table', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -97,8 +97,8 @@ export const getCalendar = (year, month) => {
         end: lastDays
       },
       current: {
-        year: year,
-        month: month,
+        year,
+        month,
         start: 1,
         end: days
       },

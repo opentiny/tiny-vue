@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test('自定义搜索并且展示的字段', async ({ page }) => {
+test('定义搜索并且展示的字段类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('search#show-selected-types')
 

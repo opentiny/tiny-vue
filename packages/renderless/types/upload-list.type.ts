@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { uploadListProps } from '@/upload-list/src'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { uploadListProps } from '@/upload-list/src'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type { IFileUploadFile, IFileUploadConstants } from './file-upload.type'
 import type {
   getDeleteData,

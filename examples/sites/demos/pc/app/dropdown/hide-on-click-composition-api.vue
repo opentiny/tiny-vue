@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>点击后不收起菜单弹框:</p>
+    <p>点击后不收起菜单弹框：</p>
     <tiny-dropdown :hide-on-click="false">
       <template #dropdown>
         <tiny-dropdown-menu>

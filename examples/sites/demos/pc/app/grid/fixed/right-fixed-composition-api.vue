@@ -5,11 +5,11 @@
     <tiny-grid-column field="name" title="公司名称" width="500"></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数" width="500"></tiny-grid-column>
     <tiny-grid-column field="createdDate" title="创建日期" width="500"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市" width="200" fixed="right"></tiny-grid-column>
+    <tiny-grid-column field="city" title="城市右冻结" width="200" fixed="right"></tiny-grid-column>
   </tiny-grid>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
 

@@ -1,12 +1,6 @@
 <template>
   <div class="demo-form">
-    <tiny-form
-      ref="ruleFormRef"
-      :model="createData"
-      :rules="rules"
-      :validate-on-rule-change="isValidate"
-      @validate="validate"
-    >
+    <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" :validate-on-rule-change="isValidate">
       <tiny-form-item label="用户名" prop="username">
         <tiny-input v-model="createData.username"></tiny-input>
       </tiny-form-item>
@@ -22,7 +16,7 @@
 </template>
 
 <script>
-import { Form, FormItem, Input, Button, Modal } from '@opentiny/vue'
+import { Form, FormItem, Input, Button } from '@opentiny/vue'
 
 export default {
   components: {
@@ -60,7 +54,9 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$refs.ruleFormRef.validate()
+      this.$refs.ruleFormRef.validate(() => {
+        // empty
+      })
     },
     changeRule() {
       this.rules = {

@@ -1,5 +1,5 @@
 import { mounted, reRenderWatermark, unmounted, watchProps } from './index'
-import { IWatermarkApi } from 'types/watermark.type'
+import type { IWatermarkApi } from 'types/watermark.type'
 
 export const api = ['reRenderWatermark']
 

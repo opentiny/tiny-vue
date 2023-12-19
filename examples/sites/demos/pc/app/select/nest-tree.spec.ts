@@ -1,76 +1,81 @@
 import { test, expect } from '@playwright/test'
 
-test('radio-tree', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-radio-tree')
-  const input = page.locator('#preview .tiny-input__inner')
-  const suffixSvg = await page.locator('#preview .tiny-select__caret').first()
+test('下拉树单选', async ({ page }) => {
+  await page.goto('select#nest-tree')
+
+  const wrap = page.locator('#nest-tree')
+  const select = wrap.locator('.tiny-select').nth(0)
+  const input = select.locator('.tiny-input__inner')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret')
+  const treeNode = dropdown.locator('.tiny-tree-node')
 
   await expect(suffixSvg).toHaveCount(1)
   await expect(suffixSvg).toBeVisible()
   await expect(input).toHaveValue('三级 1-1-2')
+
   await input.click()
-  await page.waitForTimeout(1000)
-  await expect(page.getByRole('treeitem', { name: '三级 1-1-2' })).toHaveClass(/is-current/)
-  await page.getByRole('treeitem', { name: '二级 2-1' }).locator('div').filter({ hasText: '二级 2-1' }).click()
-  await page.waitForTimeout(1000)
+  await expect(treeNode.filter({ hasText: /^三级 1-1-2$/ })).toHaveClass(/is-current/)
+
+  await treeNode.filter({ hasText: /^二级 2-1$/ }).click()
   await expect(input).toHaveValue('二级 2-1')
   await input.click()
-  await page.waitForTimeout(1000)
-  await expect(page.getByRole('treeitem', { name: '二级 2-1' })).toHaveClass(/is-current/)
+  await expect(treeNode.filter({ hasText: /^二级 2-1$/ })).toHaveClass(/is-current/)
 })
 
-test('tree-multiple', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-checkbox-tree')
-  const suffix = page.locator('#preview .tiny-input__suffix')
-  const select = page.locator('#preview .tiny-select')
-  const selectDropdown = page.locator('.tiny-select-dropdown')
+test('下拉树多选', async ({ page }) => {
+  await page.goto('select#nest-tree')
+
+  const wrap = page.locator('#nest-tree')
+  const select = wrap.locator('.tiny-select').nth(1)
+
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const suffixSvg = select.locator('.tiny-input__suffix .tiny-select__caret')
+  const treeNode = dropdown.locator('.tiny-tree-node')
+  const checkedTreeNodes = dropdown.locator('.tiny-tree-node.is-checked')
   const tag = select.locator('.tiny-tag')
 
   await expect(tag).toHaveCount(2)
-  await suffix.click()
-  await page.waitForTimeout(500)
-  const treeNodes = selectDropdown.getByRole('treeitem')
-  const checkedTreeNodes = selectDropdown.locator('.tiny-tree-node.is-checked')
 
-  await page.waitForTimeout(500)
-  await expect(checkedTreeNodes).toHaveCount(4)
-  await expect(treeNodes).toHaveCount(7)
+  await suffixSvg.click()
+  await expect(checkedTreeNodes).toHaveCount(2)
+  await expect(treeNode).toHaveCount(7)
   await page
     .locator('div')
     .filter({ hasText: /^一级 2$/ })
     .locator('.tiny-checkbox')
     .click()
-  await page.waitForTimeout(500)
-  await expect(checkedTreeNodes).toHaveCount(7)
-  await expect(tag).toHaveCount(7)
+
+  await expect(checkedTreeNodes).toHaveCount(4)
+  await expect(tag).toHaveCount(4)
 })
 
+test('下拉树可搜索', async ({ page }) => {
+  await page.goto('select#nest-tree')
 
-test('filterable-tree', async ({ page }) => {
-  await page.goto('http://localhost:7130/pc/select/nest-filterable-tree')
-  const input = page.locator('#preview .tiny-input__inner')
-  const selectDropdown = page.locator('.tiny-select-dropdown')
+  const wrap = page.locator('#nest-tree')
+  const select = wrap.locator('.tiny-select').nth(2)
+  const input = select.locator('.tiny-input__inner')
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const treeNode = dropdown.locator('.tiny-tree-node')
+  const hiddenTreeNodes = dropdown.locator('.tiny-tree-node.is-hidden')
+  const checkedTreeNodes = dropdown.locator('.tiny-tree-node.is-current')
 
   await expect(input).toHaveValue('')
-  await expect(selectDropdown).toBeHidden()
+  await expect(dropdown).toBeHidden()
+
   await input.click()
-  await page.waitForTimeout(500)
-  const treeNodes = selectDropdown.getByRole('treeitem')
-  await expect(treeNodes).toHaveCount(7)
+  await expect(treeNode).toHaveCount(7)
+
   await input.fill('2-')
   await input.press('Enter')
-  await page.waitForTimeout(500)
-  const hiddenTreeNodes = selectDropdown.locator('.tiny-tree-node.is-hidden')
   await expect(hiddenTreeNodes).toHaveCount(4)
-  const checkedTreeNodes = selectDropdown.locator('.tiny-tree-node.is-checked')
   await expect(checkedTreeNodes).toHaveCount(0)
-  await page.getByRole('treeitem', { name: '一级 2' }).locator('div').filter({ hasText: '一级 2' }).click()
-  await page.waitForTimeout(500)
-  await expect(selectDropdown).toBeHidden()
-  await page.waitForTimeout(1000)
-  await expect(input).toHaveValue('一级 2')
+
+  await treeNode.getByText(/^一级 2$/).click()
+  await expect(dropdown).toBeHidden()
+  await expect(input).toHaveValue('一级 2')
+
   await input.click()
-  await page.waitForTimeout(1000)
-  await expect(checkedTreeNodes).toHaveCount(3)
-  await expect(page.locator('.is-current .tiny-tree-node__content')).toHaveText('二级 2-2')
+  await expect(checkedTreeNodes.locator('.tiny-tree-node__content').nth(0)).toHaveText(/^一级 2$/)
 })

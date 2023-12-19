@@ -2,7 +2,8 @@ import { test, expect } from '@playwright/test'
 
 test('测试tooltip主题', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('tooltip#tooltip-theme')
+  await page.goto('tooltip#theme')
+  await page.waitForTimeout(20)
 
   await page.getByRole('button', { name: 'Dark' }).hover()
   await expect(page.getByRole('tooltip', { name: 'dark 提示文字' })).toHaveClass(/is-dark/)
@@ -24,6 +25,4 @@ test('测试tooltip主题', async ({ page }) => {
 
   await page.getByRole('button', { name: 'success' }).hover()
   await expect(page.getByRole('tooltip', { name: 'success 提示文字' })).toHaveClass(/is-success/)
-
-  await page.waitForTimeout(300)
 })

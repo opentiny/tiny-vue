@@ -10,7 +10,13 @@
  *
  */
 
-import { IRadioApi, IRadioProps, IRadioState, ISharedRenderlessParamHooks, IRadioRenderlessParamUtils } from '@/types'
+import type {
+  IRadioApi,
+  IRadioProps,
+  IRadioState,
+  ISharedRenderlessParamHooks,
+  IRadioRenderlessParamUtils
+} from '@/types'
 import {
   handleChange,
   isGroup,

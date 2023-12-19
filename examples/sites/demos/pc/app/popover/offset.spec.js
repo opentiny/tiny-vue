@@ -2,16 +2,37 @@ import { test, expect } from '@playwright/test'
 
 test('箭头偏移', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('popover#arrow-offset')
+  await page.goto('popover#offset')
 
-  // 默认偏移和50偏移
-  await expect(page.locator('.popper__arrow').nth(0)).toHaveCSS('left', '8px')
-  await expect(page.locator('.popper__arrow').nth(1)).toHaveCSS('left', '50px')
+  const preview = page.locator('.pc-demo-container')
+  const input1 = preview.locator('.tiny-slider__input input').nth(0)
+  const input2 = preview.locator('.tiny-slider__input input').nth(1)
+  const arrow = page.getByText('箭头偏移的内容').locator('.popper__arrow')
+  const panel = page.getByText('面板偏移的内容')
 
-  // 偏移100时， 箭头超过 popper 的宽度了 。 所以它的left =  popper.width - 8px -12px
-  // 8px是保留宽度  12px是小箭头的宽度
-  let arrow = page.locator('.popper__arrow').nth(2)
-  let { width } = await page.locator('.tiny-popover').nth(2).boundingBox()
+  // 箭头偏移
+  await expect(arrow).toBeVisible()
+  let middle = await arrow.boundingBox()
+  await input1.fill('8')
+  await page.waitForTimeout(1000)
+  let left = await arrow.boundingBox()
+  await input1.fill('100')
+  await page.waitForTimeout(1000)
+  let right = await arrow.boundingBox()
 
-  await expect(arrow).toHaveCSS('left', `${width - 8 - 12}px`)
+  expect(left.x < middle.x)
+  expect(middle.x < right.x)
+
+  // 面板偏移
+  await expect(panel).toBeVisible()
+  middle = await panel.boundingBox()
+  await input2.fill('-100')
+  await page.waitForTimeout(1000)
+  left = await panel.boundingBox()
+  await input2.fill('100')
+  await page.waitForTimeout(1000)
+  right = await panel.boundingBox()
+
+  expect(left.x < middle.x)
+  expect(middle.x < right.x)
 })

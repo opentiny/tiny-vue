@@ -27,7 +27,7 @@ export default {
       'name': { 'zh-CN': '开启选中行高亮', 'en-US': 'Enable the selected row to be highlighted' },
       'desc': {
         'zh-CN':
-          '<p>设置 <code>highlight-current-row</code> 属性控制鼠标选中行是否开启高亮</p>\n<p>\n带有斑马线的行无高亮效果\n</p>\n',
+          '<p>设置 <code>highlight-current-row</code> 属性控制鼠标选中行是否开启高亮</p>\n<p>\n带有斑马线的行无高亮效果。\n</p>\n',
         'en-US':
           '<p>Set the <code>highlight-current-row</code> attribute to control whether to highlight selected lines.</p>\n<p>\nThe lines with zebra crossings are not highlighted.\n</p>\n'
       },
@@ -47,7 +47,7 @@ export default {
       'demoId': 'highlight-highlight-current-column',
       'name': { 'zh-CN': '选中列是否开启高亮', 'en-US': 'Specifies whether to highlight the selected column.' },
       'desc': {
-        'zh-CN': '<p>设置 <code>highlight-current-column</code> 属性控制鼠标选中的当前列是否开启高亮显示</p>\n',
+        'zh-CN': '<p>设置 <code>highlight-current-column</code> 属性控制鼠标选中的当前列是否开启高亮显示。</p>\n',
         'en-US':
           '<p>Set the <code>highlight-current-column</code> attribute to determine whether to highlight the current column.</p>\n'
       },
@@ -58,12 +58,12 @@ export default {
       'name': { 'zh-CN': '编辑时高亮单元格边框', 'en-US': 'Highlight cell borders during editing' },
       'desc': {
         'zh-CN':
-          '<p>设置 <code>highlight-cell</code> 是否在编辑时高亮单元格边框，只对 <code>editConfig</code> 配置时有效</p>\n',
+          '<p>设置 <code>highlight-cell</code> 是否在编辑时高亮单元格边框，只对 <code>editConfig</code> 配置时有效。</p>\n',
         'en-US':
           '<p>Sets whether <code>highlight-cell</code> highlights the cell border during editing. This parameter is valid only when <code>editConfig</code> is configured</p>\n'
       },
       'codeFiles': ['highlight/highlight-cell.vue']
     }
   ],
-  apis: [{ 'name': 'grid-highlight', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-highlight', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

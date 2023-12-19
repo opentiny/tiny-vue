@@ -62,8 +62,7 @@ export default {
       'demoId': 'fullscreen',
       'name': { 'zh-CN': '全屏加载', 'en-US': 'Fullscreen Loading' },
       'desc': {
-        'zh-CN':
-          `<p>
+        'zh-CN': `<p>
             <div>通过 <code>v-loading.lock.fullscreen</code> 指令添加修饰符进行全屏加载</div>
             <div>也能通过<code>Loading.service</code>并配置属性进行全屏加载</div>
           </p>`,
@@ -88,7 +87,7 @@ export default {
     {
       'name': 'loading',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'text',
           'type': 'string',
@@ -105,25 +104,24 @@ export default {
           'defaultValue': 'true',
           'desc': {
             'zh-CN': '属性为 true 显示全屏，同 v-loading 指令中的 fullscreen 修饰符',
-            'en-US':
-              'Set true to display the full screen. Same as the fullscreen modifier in the v-loading instruction'
+            'en-US': 'Set true to display the full screen. Same as the fullscreen modifier in the v-loading instruction'
           },
           'demoId': 'fullscreen'
         },
         {
           'name': 'size',
-          'type': 'medium | small | mini',
-          'defaultValue': 'small',
+          'type': `'medium' | 'small' | 'mini'`,
+          'defaultValue': `'small'`,
           'desc': { 'zh-CN': '加载图标尺寸', 'en-US': 'Load icon size' },
           'demoId': 'size'
         },
         {
           'name': 'target',
-          'type': 'object | string',
+          'type': 'HTMLElement | string',
           'defaultValue': 'document.body',
           'desc': {
             'zh-CN':
-              'Loading 需要覆盖的 DOM 节点。可传入一个 DOM 对象或字符串；若传入字符串，则会将其作为参数传入 document.querySelector以获取到对应 DOM 节点',
+              'Loading 需要覆盖的 DOM 节点。可传入一个 DOM 对象或字符串；若传入字符串，则会将其作为参数传入 document.querySelector 以获取到对应 DOM 节点',
             'en-US':
               'Loading the DOM node to be overwritten. A DOM object or character string can be transferred. If a character string is transferred, it is transferred to document.querySelector as a parameter to obtain the corresponding DOM node.'
           },
@@ -150,7 +148,7 @@ export default {
         },
         {
           'name': 'spinner',
-          'type': 'Component',
+          'type': 'VueComponent',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义加载图标', 'en-US': 'Customized loading icon class name' },
           'demoId': 'spinner'
@@ -169,8 +167,12 @@ export default {
           'desc': { 'zh-CN': 'Loading 的自定义类名', 'en-US': 'User-defined loading class name' },
           'demoId': 'custom-class'
         }
-      ],
-      'directive': [
+      ]
+    },
+    {
+      'name': 'loading',
+      'type': 'directive',
+      'props': [
         {
           'name': 'v-loading',
           'type': 'boolean',
@@ -222,8 +224,7 @@ export default {
           'desc': {
             'zh-CN': '命令修饰符：遮罩层是否在body上',
             'en-US': 'Command modifier: Whether the mask is on the body'
-          },
-          'demoId': 'fullscreen'
+          }
         },
         {
           'name': 'lock',
@@ -233,8 +234,8 @@ export default {
             'en-US': 'Command modifier: Whether to lock scroll in full screen'
           },
           'demoId': 'fullscreen'
-        },
-      ],
+        }
+      ]
     }
   ]
 }

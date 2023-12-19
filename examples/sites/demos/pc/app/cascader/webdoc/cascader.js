@@ -27,10 +27,14 @@ export default {
       'demoId': 'disabled-items',
       'name': { 'zh-CN': '禁用选项', 'en-US': 'Disable Options' },
       'desc': {
-        'zh-CN': 
-          `<p>通过在数据源中设置 <code>disabled</code> 字段来声明该选项是禁用的，在默认情况下，Cascader 会检查数据中每一项的 <code>disabled</code> 字段是否为 <code>true</code></p>`,
-        'en-US':
-          '<p>Declare that the option is disabled by setting the <code>disabled</code> field in the data source; by default, Cascader checks to see if the <code>disabled</code> field is <code>true</code> for each item in the data. </p>'
+        'zh-CN': `<p>
+            <div>通过在数据源<code>option</code>中设置 <code>disabled</code> 字段来声明该选项是禁用的，在默认情况下，Cascader 会检查数据中每一项的 <code>disabled</code> 字段是否为 <code>true</code>。</div>
+            <div>也可以通过直接设置 <code>disabled</code> 可以禁用组件。</div>
+          </p>`,
+        'en-US': `<p>
+            <div>Declare that the option is disabled by setting the <code>disabled</code> field in the data source; by default, Cascader checks to see if the <code>disabled</code> field is <code>true</code> for each item in the data. </div>
+            <div> Components can also be disabled by setting <code>disabled</code> directly.</div>
+          </p>`
       },
       'codeFiles': ['disabled-items.vue']
     },
@@ -53,13 +57,13 @@ export default {
       'codeFiles': ['clearable.vue']
     },
     {
-      'demoId': 'clearable2',
+      'demoId': 'size',
       'name': { 'zh-CN': '尺寸', 'en-US': 'Dimension' },
       'desc': {
         'zh-CN': '<p>通过 <code>size</code> 属性设置尺寸。</p>\n',
         'en-US': '<p>Sets the size through the <code>size</code> attribute. </p>\n'
       },
-      'codeFiles': ['clearable.vue']
+      'codeFiles': ['size.vue']
     },
     {
       'demoId': 'default-multiple',
@@ -75,9 +79,9 @@ export default {
       'name': { 'zh-CN': '折叠展示 Tag', 'en-US': 'Fold Tag' },
       'desc': {
         'zh-CN':
-          '<p>在开启多选模式后，默认情况下会展示所有已选中的选项的 Tag，可以使用 <code>collapse-tags</code> 来折叠 Tag 。\n通过 <code>disabled</code> 设置组件是否禁用，默认值为 false 。</p>\n',
+          '<p>在开启多选模式后，默认情况下会展示所有已选中的选项的 Tag，可以使用 <code>collapse-tags</code> 来折叠 Tag 。</p>',
         'en-US':
-          '<p>After the multi-selection mode is enabled, tags of all selected options are displayed by default. You can use <code>collapse-tags</code> to collapse tags. \n Use <code>disabled</code> to set whether to disable the component. The default value is false. </p>\n'
+          '<p>After the multi-selection mode is enabled, tags of all selected options are displayed by default. You can use <code>collapse-tags</code> to collapse tags. </p>'
       },
       'codeFiles': ['collapse-tags.vue']
     },
@@ -106,18 +110,26 @@ export default {
       'demoId': 'auto-load',
       'name': { 'zh-CN': '动态加载', 'en-US': 'Dynamic loading' },
       'desc': {
-        'zh-CN':`
+        'zh-CN': `
           <p>
-            当选中某一级时，动态加载该级下的选项。通过 <code>props</code> 属性中的 <code>lazy</code> 开启动态加载，并通过 <code>lazyload</code> 来设置加载数据源的方法。</br>
-            <code>lazyload</code> 方法有两个参数，第一个参数 node 为当前点击的节点，第二个 resolve 为数据加载完成的回调(必须调用)。</br>
-            为了更准确的显示节点的状态，默认地可以使用<code>leaf</code>字段对节点数据添加是否为叶子节点的标志位，否则会简单地以有无子节点来判断是否为叶子节点。
+            <div>当选中某一级时，动态加载该级下的选项。</dvi>
+            <div>通过 <code>props</code> 属性中的 <code>lazy</code> 开启动态加载，并通过 <code>lazyload</code> 来设置加载数据源的方法。</div>
+            <div><code>lazyload</code> 方法有两个参数，第一个参数 node 为当前点击的节点，第二个 resolve 为数据加载完成的回调(必须调用)。</div>
+            <p>
+              <div>为了更准确的显示节点的状态，默认地（默认指没有设置<code>props.leaf</code>）可以使用<code>leaf</code>字段。</div>
+              <div>表明此节点是否为叶子节点，否则会简单地以有无子节点来判断是否为叶子节点。</div>
+            </p>
           </p>
         `,
         'en-US': `
           <p>
-            When a level is selected, the options under the level are dynamically loaded. Enable dynamic loading with <code>lazy</code> in the <code>props</code> property, and set the method of loading the data source with <code>lazyload</code>. </br>
-            The <code>lazyload</code> method takes two parameters, the first parameter node is the currently clicked node, and the second parameter resolve is the callback when the data load is complete (which must be called). </br>
-            In order to display the status of the node more accurately, the <code>leaf</code> field can be used by default to add the flag bit of whether the node is a leaf node. Otherwise, it will simply judge whether the node is a leaf node by whether there are child nodes.
+            <div> When a level is selected, dynamically loads the options under that level. </dvi>
+            <div> enables dynamic loading with <code>lazy</code> in the <code>props</code> property, and sets the method of loading the data source with <code>lazyload</code>. </div>
+            <div>The<code>lazyload</code> method takes two arguments, node for the current clicked node, and resolve for the callback (which must be called) when the data is loaded. </div>
+            <p>
+            <div> In order to more accurately display the state of the node, the <code>leaf</code> field can be used by default (the default means that <code>props.leaf</code> is not set). </div>
+            <div> indicates whether this node is a leaf, otherwise it is simply determined by the presence or absence of child nodes. </div>
+            </p>
           </p>
         `
       },
@@ -138,10 +150,16 @@ export default {
       'demoId': 'props-children',
       'name': { 'zh-CN': '指定选项', 'en-US': 'Specify Options' },
       'desc': {
-        'zh-CN':
-          '<div class="tip custom-block"><p class="custom-block-title">Props</p>\n<p>通过 <code>children</code> 指定选项的子选项，默认为 children 。\n通过 <code>value</code> 指定指定选项的 value 值，默认为 value 。\n通过 <code>label</code> 指定选项标签,默认为 label 。</p>\n</div>\n',
-        'en-US':
-          '<div class="tip custom-block"><p class="custom-block-title">Props</p>\n<p> uses <code>children</code> to specify the sub-option of the option. The default value is children. \n Use <code>value</code> to specify the value of a specified option. The default value is value. \nUse <code>label</code> to specify the option label. The default value is label. </p>\n</div>\n'
+        'zh-CN': `<p>
+          <div>通过 <code>props.children</code> 指定选项的子选项，默认为 'children' 。</div>
+          <div>通过 <code>props.value</code> 指定指定选项的 value 值，默认为 'value' 。</div>
+          <div>通过 <code>props.label</code> 指定选项标签,默认为 'label' 。</div>
+        <p/>`,
+        'en-US': `<p>
+          <div> specifies the suboptions of the option via <code>props.children</code>, which defaults to 'children'. </div>
+          <div> Specifies the value of the given option via <code>props.value</code>, which defaults to 'value'. </div>
+          <div> Specifies the option label via <code>props.label</code>, which defaults to 'label'. </div>
+        <p/>`
       },
       'codeFiles': ['props-children.vue']
     },
@@ -149,16 +167,14 @@ export default {
       'demoId': 'filterable',
       'name': { 'zh-CN': '可搜索', 'en-US': 'Searchable' },
       'desc': {
-        'zh-CN':
-          `<p>
+        'zh-CN': `<p>
             将 <code>filterable</code> 赋值为 <code>true</code> 即可打开搜索功能，默认会匹配节点的 <code>label</code> 或所有父节点的 <code>label</code> (由 <code>show-all-levels</code> 决定)中包含输入值的选项。</br>
-            使用<code>empty</code> 插槽设置无匹配选项时显示的内容，使用<code>debounce</code>设置搜索延迟
+            使用<code>empty</code> 插槽设置无匹配选项时显示的内容，使用<code>debounce</code>设置搜索延迟。
           </p>`,
-        'en-US':
-          `<p>
+        'en-US': `<p>
             Set <code>filterable</code> to <code>true</code> to turn on the search function, By default, the <code>label</code> of the node or the <code>label</code> of all parent nodes (as determined by <code>show-all-levels</code>) will match the option containing the input value. </br>
-            Use the <code>empty</code> slot to set what will be displayed if there is no matching option, and use <code>debounce</code> to set the search delay
-          </p>`,
+            Use the <code>empty</code> slot to set what will be displayed if there is no matching option, and use <code>debounce</code> to set the search delay.
+          </p>`
       },
       'codeFiles': ['filterable.vue']
     },
@@ -197,31 +213,33 @@ export default {
       'demoId': 'events',
       'name': { 'zh-CN': '事件', 'en-US': 'Event' },
       'desc': {
-        'zh-CN':
-          `<p>
+        'zh-CN': `<p>
             Cascader 级联选择器的事件有：<code>change</code>、<code>expand-change</code>、<code>blur</code>、<code>focus</code>、<code>visible-change</code>。
-            使用 <code>props.emitPath</code> 能设置节点的返回类型。
+            <div>使用 <code>props.emitPath</code> 能设置节点的返回类型。</div>
           </p>`,
-        'en-US':
-          `<p>
+        'en-US': `<p>
             Cascader cascade selector events include: <code>change</code>, <code>expand-change</code>, <code>blur</code>, <code>focus</code>, < code>visible-change</code>. 
             Use <code>props.emitPath</code> to set the return type of the node.
           </p>`
       },
       'codeFiles': ['events.vue']
-    },
+    }
   ],
   apis: [
     {
       'name': 'cascader',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue / v-model',
           'type': 'ICascaderPanelNodePropValue',
           'typeAnchorName': 'ICascaderPanelNodeValue',
           'defaultValue': '',
-          'desc': { 'zh-CN': '选中项绑定值, 其类型由props.multiple、props.emitPath共同决定', 'en-US': 'Binding value of the selected item, its type is determined by props.multiple, props.emitPath together.' },
+          'desc': {
+            'zh-CN': '选中项绑定值, 其类型由 props.multiple、props.emitPath 共同决定',
+            'en-US':
+              'Binding value of the selected item, its type is determined by props.multiple, props.emitPath together.'
+          },
           'demoId': 'clearable'
         },
         {
@@ -241,8 +259,8 @@ export default {
           'typeAnchorName': 'ICascaderPanelConfig',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '配置选项，具体见 Cascader Props 表',
-            'en-US': 'Configuration options. For details, see the Cascader Props table.'
+            'zh-CN': '配置选项，具体见 ICascaderPanelConfig 表',
+            'en-US': 'Configuration options. For details, see the ICascaderPanelConfig table.'
           },
           'demoId': 'props-children'
         },
@@ -270,18 +288,18 @@ export default {
         },
         {
           'name': 'size',
-          'type': '"medium" | "small" | "mini"',
+          'type': `'medium' | 'small' | 'mini'`,
           'defaultValue': '',
           'desc': {
             'zh-CN': '尺寸',
             'en-US': 'Dimension;'
           },
-          'demoId': 'clearable2'
+          'demoId': 'size'
         },
         {
           'name': 'placeholder',
           'type': 'string',
-          'defaultValue': '请选择',
+          'defaultValue': `'请选择'`,
           'desc': { 'zh-CN': '输入框占位文本', 'en-US': 'Placeholder text in the text box' },
           'demoId': 'filterable'
         },
@@ -313,13 +331,13 @@ export default {
           'name': 'collapse-tags',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '多选模式下是否折叠Tag', 'en-US': 'Whether to collapse tags in multi-choice mode' },
+          'desc': { 'zh-CN': '多选模式下是否折叠 Tag', 'en-US': 'Whether to collapse tags in multi-choice mode' },
           'demoId': 'collapse-tags'
         },
         {
           'name': 'separator',
           'type': 'string',
-          'defaultValue': '/',
+          'defaultValue': `'/'`,
           'desc': { 'zh-CN': '选项分隔符', 'en-US': 'Option separator' },
           'demoId': 'clearable1'
         },
@@ -333,6 +351,7 @@ export default {
         {
           'name': 'filter-method',
           'type': '(node: ICascaderPanelNode, keyword: string) => boolean',
+          'typeAnchorName': 'ICascaderPanelNode',
           'defaultValue': '',
           'desc': {
             'zh-CN':
@@ -375,17 +394,18 @@ export default {
         {
           'name': 'change',
           'type': '(value: ICascaderPanelNodePropValue) => void',
+          'typeAnchorName': 'ICascaderPanelNodePropValue',
           'defaultValue': '',
           'desc': {
             'zh-CN': '当选中节点变化时触发',
-            'en-US':
-              'This event is triggered when the selected node changes.'
+            'en-US': 'This event is triggered when the selected node changes.'
           },
           'demoId': 'events'
         },
         {
           'name': 'expand-change',
           'type': '(value: ICascaderPanelNodeValue[]) => void',
+          'typeAnchorName': 'ICascaderPanelNodeValue',
           'defaultValue': '',
           'desc': {
             'zh-CN': '当展开节点发生变化时触发',
@@ -400,8 +420,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '当失去焦点时触发',
-            'en-US':
-              'This event is triggered when the focus is lost.'
+            'en-US': 'This event is triggered when the focus is lost.'
           },
           'demoId': 'events'
         },
@@ -411,8 +430,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '当获得焦点时触发',
-            'en-US':
-              'This event is triggered when the focus is obtained.'
+            'en-US': 'This event is triggered when the focus is obtained.'
           },
           'demoId': 'events'
         },
@@ -422,19 +440,18 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '下拉框出现/隐藏时触发',
-            'en-US':
-              'This event is triggered when the drop-down list box is displayed or hidden.'
+            'en-US': 'This event is triggered when the drop-down list box is displayed or hidden.'
           },
           'demoId': 'events'
         },
         {
           'name': 'remove-tag',
           'type': '(removeValue: ICascaderPanelNodeValue[]) => void',
+          'typeAnchorName': 'ICascaderPanelNodeValue',
           'defaultValue': '',
           'desc': {
             'zh-CN': '在多选模式下，移除Tag时触发',
-            'en-US':
-              'In multi-choice mode, this event is triggered when a tag is removed.'
+            'en-US': 'In multi-choice mode, this event is triggered when a tag is removed.'
           },
           'demoId': 'default-multiple'
         }
@@ -452,7 +469,8 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '自定义备选项的节点内容，参数为 { node: ICascaderPanelNode, data: ICascaderPanelData }，分别为当前节点的 Node 对象和数据',
+            'zh-CN':
+              '自定义备选项的节点内容，参数为 { node: ICascaderPanelNode, data: ICascaderPanelData }，分别为当前节点的 Node 对象和数据',
             'en-US':
               'User-defined candidate node content. The parameter is {node, data}, which indicates the node object and data of the current node.'
           }
@@ -462,25 +480,29 @@ export default {
         {
           'name': 'getCheckedNodes',
           'type': '(leafOnly: boolean = false) => ICascaderPanelNode[]',
+          'typeAnchorName': 'ICascaderPanelNode',
           'defaultValue': '',
           'desc': {
             'zh-CN': '获取选中的节点',
-            'en-US':
-              'Obtain the selected node'
+            'en-US': 'Obtain the selected node'
           },
           'demoId': 'events'
         }
-      ],
-      'casprops: ICascaderPanelConfig': [
+      ]
+    },
+    {
+      'name': 'ICascaderPanelConfig ',
+      'type': 'interface',
+      'props': [
         {
           'name': 'expandTrigger',
-          'type': '"click" | "hover"',
-          'defaultValue': 'click',
+          'type': `'click' | 'hover'`,
+          'defaultValue': `'click'`,
           'desc': {
             'zh-CN': '次级菜单的展开方式',
             'en-US': 'The expansion mode of the secondary menu'
           },
-          'demoId': 'basic-usage'
+          'demoId': 'expand-trigger'
         },
         {
           'name': 'multiple',
@@ -530,7 +552,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '加载动态数据的方法，仅在 lazy 为 true 时有效;参数说明： node为当前点击的节点，resolve为数据加载完成的回调(必须调用)',
+              '加载动态数据的方法，仅在 lazy 为 true 时有效;参数说明： node 为当前点击的节点，resolve 为数据加载完成的回调(必须调用)',
             'en-US':
               'Method for loading dynamic data. This parameter is valid only when lazy is set to true. Parameter description: node indicates the currently clicked node. resolve indicates the callback after data loading is complete (mandatory).'
           },
@@ -584,7 +606,7 @@ export default {
             'zh-CN': '指定选项的叶子节点的标志位为选项对象的某个属性值',
             'en-US': 'The flag bit of the leaf node of the specified option is an attribute value of the option object.'
           },
-          'demoId': 'check-strictly'
+          'demoId': 'props-children'
         }
       ]
     }

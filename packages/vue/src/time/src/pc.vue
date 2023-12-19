@@ -60,7 +60,9 @@ export default defineComponent({
     value: Date,
     step: {
       type: Object,
-      default() { return { hour: 1, minute: 1, second: 1 } }
+      default() {
+        return { hour: 1, minute: 1, second: 1 }
+      }
     }
   },
   setup(props, context) {

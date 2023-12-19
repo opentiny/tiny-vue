@@ -1,8 +1,13 @@
 <template>
-  <tiny-tree-menu :data="treeData"></tiny-tree-menu>
+  <div>
+    <p>场景1：静态数据</p>
+    <tiny-tree-menu :data="treeData"></tiny-tree-menu>
+    <p>场景2：服务端数据</p>
+    <tiny-tree-menu :get-menu-data-sync="getMenuDataSync"></tiny-tree-menu>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu } from '@opentiny/vue'
 
 export default {
@@ -118,6 +123,18 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    getMenuDataSync() {
+      return this.treeData
+    }
   }
 }
 </script>
+
+<style lang="less" scoped>
+p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+</style>

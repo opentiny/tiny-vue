@@ -66,7 +66,7 @@ export default {
     {
       'name': 'calendar',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'events',
           'type': 'Array',

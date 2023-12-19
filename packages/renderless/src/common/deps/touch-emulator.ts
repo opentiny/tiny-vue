@@ -74,19 +74,19 @@ const triggerTouch = (eventName, mouseEv) => {
 }
 
 const onMouse = (touchType) => (ev) => {
-  if ('mousedown' === ev.type) {
+  if (ev.type === 'mousedown') {
     initiated = true
   }
 
-  if ('mouseup' === ev.type) {
+  if (ev.type === 'mouseup') {
     initiated = false
   }
 
-  if ('mousemove' === ev.type && !initiated) {
+  if (ev.type === 'mousemove' && !initiated) {
     return
   }
 
-  if ('mousedown' === ev.type || !mouseTarget) {
+  if (ev.type === 'mousedown' || !mouseTarget) {
     mouseTarget = ev.target
   }
 
@@ -94,7 +94,7 @@ const onMouse = (touchType) => (ev) => {
     triggerTouch(touchType, ev)
   }
 
-  if ('mouseup' === ev.type) {
+  if (ev.type === 'mouseup') {
     eventTarget = null
     mouseTarget = null
   }

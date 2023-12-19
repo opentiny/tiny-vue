@@ -59,11 +59,9 @@ export const selectOptionClick =
   }
 
 export const queryChange =
-  ({ select, props, state }) =>
+  ({ props, state }) =>
   (query) => {
     state.visible = new RegExp(escapeRegexpString(query), 'i').test(state.currentLabel) || props.created
-
-    select.state.filteredOptionsCount += state.visible ? 1 : -1
   }
 
 export const toggleEvent = ({ props, vm, type }) => {

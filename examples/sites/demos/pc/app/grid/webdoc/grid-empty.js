@@ -24,12 +24,12 @@ export default {
       'name': { 'zh-CN': '固定居中', 'en-US': 'Fix Center' },
       'desc': {
         'zh-CN':
-          '<p>配置 <code>is-center-empty</code> 为 <code>true</code> 时，拖动横向滚动条可以保持空数据提示使终相对表格宽度居中显示</p>\n',
+          '<p>配置 <code>is-center-empty</code> 为 <code>true</code> 时，拖动横向滚动条可以保持空数据提示使终相对表格宽度居中显示。</p>\n',
         'en-US':
           '<p>When <code>is-center-empty</code> is set to <code>true</code>, drag the horizontal scroll bar to keep the empty data prompt so that the final data is displayed in the center of the table width</p>\n'
       },
       'codeFiles': ['empty/empty-data-iscenter.vue']
     }
   ],
-  apis: [{ 'name': 'grid-empty', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-empty', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

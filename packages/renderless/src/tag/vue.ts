@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { ITagState, ITagProps, ITagApi, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
+import type { ITagState, ITagProps, ITagApi, ISharedRenderlessParamHooks, ISharedRenderlessParamUtils } from '@/types'
 import { handleClose, handleClick } from './index'
 
 export const api = ['state', 'handleClose', 'handleClick']
@@ -22,7 +22,11 @@ export const renderless = (
   const state: ITagState = reactive({
     type: computed(() => props.theme || props.type),
     show: true,
-    selected: false
+    selected: false,
+    mini: props.mini,
+    color: props.color,
+    text: props.text,
+    maxWidth: props.maxWidth
   })
 
   const api: ITagApi = {

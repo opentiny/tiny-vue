@@ -2,13 +2,13 @@
   <tiny-tree-menu
     node-key="id"
     :data="treeData"
-    :default-expand-all="true"
-    :show-checkbox="true"
     :default-checked-keys="expandeArr"
+    default-expand-all
+    show-checkbox
   ></tiny-tree-menu>
 </template>
 
-<script lang="jsx">
+<script>
 import { TreeMenu } from '@opentiny/vue'
 
 export default {
@@ -44,10 +44,6 @@ export default {
           id: 300,
           label: '组件',
           children: [
-            {
-              id: 300,
-              label: '组件'
-            },
             {
               id: 301,
               label: '表单组件',
@@ -180,3 +176,10 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+.tiny-tree-menu {
+  height: 300px;
+  overflow: auto;
+}
+</style>

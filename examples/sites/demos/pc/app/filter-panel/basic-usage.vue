@@ -1,6 +1,15 @@
 <template>
   <div>
-    <tiny-filter-panel ref="filterPanel" label="物品数量" @handle-clear="handleClear" :value="value">
+    <div class="mb10">
+      <tiny-switch v-model="disabled"></tiny-switch><span class="ml10">{{ disabled ? '禁用' : '非禁用' }}</span>
+    </div>
+    <tiny-filter-panel
+      ref="filterPanel"
+      label="物品数量"
+      @handle-clear="handleClear"
+      :value="value"
+      :disabled="disabled"
+    >
       <tiny-radio-group v-model="radioVal" size="mini">
         <tiny-radio label="大于">大于</tiny-radio>
         <tiny-radio label="等于">等于</tiny-radio>
@@ -12,19 +21,21 @@
 </template>
 
 <script>
-import { FilterPanel, Radio, RadioGroup, Input } from '@opentiny/vue'
+import { FilterPanel, Radio, RadioGroup, Input, Switch } from '@opentiny/vue'
 
 export default {
   components: {
     TinyRadio: Radio,
     TinyRadioGroup: RadioGroup,
     TinyFilterPanel: FilterPanel,
-    TinyInput: Input
+    TinyInput: Input,
+    TinySwitch: Switch
   },
   data() {
     return {
       inputVal: '',
-      radioVal: ''
+      radioVal: '',
+      disabled: false
     }
   },
   computed: {

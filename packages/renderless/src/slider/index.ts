@@ -14,7 +14,7 @@ import { KEY_CODE } from '../common'
 import { emitEvent } from '../common/event'
 import { on, off, hasClass } from '../common/deps/dom'
 import { toNumber } from '../common/string'
-import { ISliderApi, ISliderRenderlessParams, ISliderState } from '@/types'
+import type { ISliderApi, ISliderRenderlessParams, ISliderState } from '@/types'
 
 export const bindEvent = (api: ISliderApi) => () => {
   on(window, 'resize', api.bindResize)
@@ -37,6 +37,8 @@ export const bindKeyDown =
     if (state.disabled || state.activeIndex < 0) {
       return
     }
+
+    event.preventDefault()
 
     let currentValue = 0
 
@@ -160,7 +162,9 @@ export const bindMouseUp =
       return
     }
 
-    state.showTip = false
+    if (state.mouseOuterBtn) {
+      state.showTip = false
+    }
     state.isDrag = false
 
     off(window, 'mouseup', api.bindMouseUp)
@@ -174,6 +178,7 @@ export const bindMouseUp =
 export const displayTip =
   ({ api, nextTick, state }: Pick<ISliderRenderlessParams, 'api' | 'nextTick' | 'state'>) =>
   (event) => {
+    state.mouseOuterBtn = false
     if (!state.showTip) {
       state.showTip = true
       api.changeActiveValue(api.getActiveButtonIndex(event) === 0)
@@ -184,7 +189,10 @@ export const displayTip =
     }
   }
 
-export const hideTip = (state: ISliderState) => () => !state.isDrag && (state.showTip = false)
+export const hideTip = (state: ISliderState) => () => {
+  state.mouseOuterBtn = true
+  !state.isDrag && (state.showTip = false)
+}
 
 export const setTipStyle =
   ({
@@ -388,7 +396,7 @@ export const calculateValue =
   (event) => {
     let currentValue = 0
 
-    if (state.sliderSize == 0) {
+    if (state.sliderSize === 0) {
       const handleEl = vm.$refs.slider
       state.sliderSize = handleEl['client' + (props.vertical ? 'Height' : 'Width')]
       state.sliderOffset = handleEl.getBoundingClientRect()
@@ -483,6 +491,11 @@ export const watchActiveValue =
     } else {
       state.activeValue = nNewValue || 0
     }
+
+    // 正在输入时，不应该改变输入的内容
+    if (!state.isSlotTyping) {
+      state.slotValue = state.activeValue
+    }
   }
 
 export const watchModelValue =
@@ -490,6 +503,7 @@ export const watchModelValue =
   (value) => {
     // 防止多触点下，触发双向绑定导致渲染异常
     if (!state.innerTrigger) {
+      state.isInit = true
       api.initSlider(value)
       api.setActiveButtonValue(value)
     } else {
@@ -553,3 +567,16 @@ export const inputValueChange =
     }
     api.initSlider([Math.min(...state.inputValue), Math.max(...state.inputValue)])
   }
+
+export const handleSlotInputFocus = (state: ISliderRenderlessParams['state']) => () => {
+  state.isSlotTyping = true
+}
+
+export const handleSlotInputBlur = (state: ISliderRenderlessParams['state']) => () => {
+  state.isSlotTyping = false
+  state.slotValue = state.activeValue
+}
+
+export const handleSlotInput = (state: ISliderRenderlessParams['state']) => (event: Event) => {
+  state.activeValue = Number((event.target as HTMLInputElement).value)
+}

@@ -12,7 +12,7 @@ export default {
       'codeFiles': ['basic-usage.vue']
     },
     {
-      'demoId': 'current-page/v-model:current-page',
+      'demoId': 'current-page',
       'name': { 'zh-CN': '当前所在页', 'en-US': 'Current Page' },
       'desc': {
         'zh-CN': '<p>通过 <code>current-page</code> 设置初始加载页码数。</p>\n',
@@ -30,16 +30,6 @@ export default {
           '<p>By setting the number of displayed entries per page through <code>page size</code> , <code>page sizes</code> provides a switchable <code>page size</code> list.</p>\n'
       },
       'codeFiles': ['page-size.vue']
-    },
-    {
-      'demoId': 'prev-next-click',
-      'name': { 'zh-CN': '上一页、下一页事件', 'en-US': 'Prev click and next click event' },
-      'desc': {
-        'zh-CN': '<p> <code>prev-click</code> 切换至上一页时触发， <code>next-click</code> 切换至下一页时触发。</p>\n',
-        'en-US':
-          '<p>Triggered when switching to the previous page, and triggered when switching to the next page.</p>\n'
-      },
-      'codeFiles': ['prev-next-click.vue']
     },
     {
       'demoId': 'align',
@@ -98,7 +88,7 @@ export default {
         'en-US':
           'Indicates whether to add an element in the <p> <code>popper-append-to-body</code> paging drop-down list box to the body element node.</p>'
       },
-      'codeFiles': ['page-append-to-body.vue']
+      'codeFiles': ['popper-append-to-body.vue']
     },
     {
       'demoId': 'popper-class',
@@ -348,7 +338,7 @@ export default {
             'en-US':
               'Whether to insert the pop-up box into the body element. You can set this attribute to false (refer to the select component)'
           },
-          'demoId': 'page-append-to-body'
+          'demoId': 'popper-append-to-body'
         },
         {
           'name': 'popper-class',

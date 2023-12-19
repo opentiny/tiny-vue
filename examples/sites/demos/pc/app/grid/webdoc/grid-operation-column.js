@@ -64,7 +64,7 @@ export default {
     },
     {
       'demoId': 'operation-column-custom-operation-column',
-      'name': { 'zh-CN': '自定义操作列内容', 'en-US': '' },
+      'name': { 'zh-CN': '自定义操作列内容。', 'en-US': '' },
       'desc': {
         'zh-CN':
           '<p>通过插槽设置自定义操作列，即 <code>&lt;tiny-grid-column&gt;</code> 自定义操作列内容 <code>&lt;/tiny-grid-column&gt;</code> 。</p>\n',
@@ -93,5 +93,5 @@ export default {
       'codeFiles': ['operation-column/header-select-disabled.vue']
     }
   ],
-  apis: [{ 'name': 'grid-operation-column', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-operation-column', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -4,7 +4,7 @@ test('PopEditor 多选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popeditor#multi')
 
-  const preview = page.locator('#preview')
+  const preview = page.locator('#multi')
   const textBox = preview.getByRole('textbox')
   const dialogBox = page.locator('.tiny-dialog-box')
   const confirmBtn = dialogBox.getByRole('button', { name: '确 认' })

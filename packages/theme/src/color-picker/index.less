@@ -1,128 +1,125 @@
 @import '../custom.less';
 @import './vars.less';
 
-@colorPickerPrefix: ~'@{css-prefix}color-picker';
+@color-picker-prefix-cls: ~'@{css-prefix}color-picker';
 
-.@{colorPickerPrefix} {
-  .component-css-vars-colorpicker();
+.@{color-picker-prefix-cls} {
+  .component-css-vars-color-picker();
 
-  &__trigger {
-    position: relative;
-    width: 32px;
-    height: 32px;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--ti-color-picker-border-radius-sm);
+  border: var(--ti-color-picker-border-weight) solid var(--ti-color-picker-border-color);
+  box-sizing: content-box;
+  padding: var(--ti-color-picker-padding-vertical) var(--ti-color-picker-padding-horizontal);
+  cursor: pointer;
+
+  &__inner {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
     border-radius: var(--ti-color-picker-border-radius-sm);
-    border: var(--ti-color-picker-border-weight) solid var(--ti-color-picker-border-color);
-    box-sizing: content-box;
-    padding: var(--ti-color-picker-spacing);
-    cursor: pointer;
-    .component-css-vars-colorpicker();
+    background: var(--ti-color-picker-bg-color);
+  }
 
-    .@{colorPickerPrefix}__inner {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    max-width: 300px;
+    z-index: var(--ti-color-picker__select__wrapper-zindex);
+    margin-top: var(--ti-color-picker-spacing);
+    background: var(--ti-color-picker__wrapper-bg);
+    gap: var(--ti-color-picker-spacing);
+    padding: var(--ti-color-picker-spacing-2x);
+    box-shadow: var(--ti-color-picker-shadow);
+
+    &__tools {
       display: flex;
-      width: 100%;
-      height: 100%;
-      align-items: center;
-      justify-content: center;
-      border-radius: var(--ti-color-picker-border-radius-sm);
-      background: var(--ti-color-picker-background);
+
+      .tiny-input {
+        flex: 1 0 0;
+      }
+
+      .tiny-button-group {
+        flex: 0 0 auto;
+      }
     }
 
-    .@{colorPickerPrefix}__wrapper {
+    &__inner {
       display: flex;
-      flex-direction: column;
-      position: absolute;
-      max-width: 300px;
-      z-index: var(--ti-color-picker__select__wrapper-zindex);
-      margin-top: var(--ti-color-picker-spacing);
-      background: var(--ti-color-picker__wrapper-bg);
-      gap: var(--ti-color-picker-spacing);
-      padding: var(--ti-color-picker-spacing-2x);
-      box-shadow: var(--ti-color-picker-shadow);
-
-      &__tools {
-        display: flex;
-
-        .tiny-input {
-          flex: 1 0 0;
-        }
-
-        .tiny-button-group {
-          flex: 0 0 auto;
-        }
-      }
-
-      &__inner {
-        display: flex;
-        gap: 12px;
-        &__color-select {
-          width: 280px;
-          height: 180px;
-          position: relative;
-
-          .white {
-            background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
-          }
-
-          .black {
-            background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
-          }
-
-          .white,
-          .black {
-            position: absolute;
-            inset: 0;
-          }
-
-          .cursor {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            border-radius: 100%;
-            border: 1px solid white;
-            background: rgba(0, 0, 0, .15);
-            box-shadow: inset 0 0 1px 1px #0000004d, 0 0 1px 2px #0006;
-          }
-        }
-
-        &__hue-select {
-          position: relative;
-          width: 18px;
-          border-radius: var(--ti-color-picker-border-radius-xs);
-          background: linear-gradient(to bottom, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
-
-          div {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            height: 4px;
-            background: #fff;
-            box-shadow: 0 0 2px rgba(0, 0, 0, .6);
-            border-radius: 1px;
-          }
-        }
-      }
-
-      &__alpha {
+      gap: 12px;
+      &__color-select {
+        width: 280px;
+        height: 180px;
         position: relative;
-        width: 100%;
-        height: 20px;
-        border-radius: var(--ti-color-picker-border-radius-xs);
-        margin-top: var(--ti-color-picker-spacing-2x);
-        &__slider {
-          width: 100%;
-          height: 100%;
+
+        .white {
+          background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
         }
 
-        &__thumb {
-          width: 4px;
-          height: 100%;
+        .black {
+          background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+        }
+
+        .white,
+        .black {
+          position: absolute;
+          inset: 0;
+        }
+
+        .cursor {
+          position: absolute;
+          width: 12px;
+          height: 12px;
+          border-radius: 100%;
+          border: 1px solid white;
+          background: rgba(0, 0, 0, .15);
+          box-shadow: inset 0 0 1px 1px #0000004d, 0 0 1px 2px #0006;
+        }
+      }
+
+      &__hue-select {
+        position: relative;
+        width: 18px;
+        border-radius: var(--ti-color-picker-border-radius-xs);
+        background: linear-gradient(to bottom, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+
+        div {
           position: absolute;
           top: 0;
-          left: 0;
+          width: 100%;
+          height: 4px;
           background: #fff;
           box-shadow: 0 0 2px rgba(0, 0, 0, .6);
           border-radius: 1px;
         }
+      }
+    }
+
+    &__alpha {
+      position: relative;
+      width: 100%;
+      height: 20px;
+      border-radius: var(--ti-color-picker-border-radius-xs);
+      margin-top: var(--ti-color-picker-spacing-2x);
+      &__slider {
+        width: 100%;
+        height: 100%;
+      }
+
+      &__thumb {
+        width: 4px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #fff;
+        box-shadow: 0 0 2px rgba(0, 0, 0, .6);
+        border-radius: 1px;
       }
     }
   }

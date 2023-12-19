@@ -27,12 +27,12 @@ export default {
       'name': { 'zh-CN': '列合并', 'en-US': 'Column Merge' },
       'desc': {
         'zh-CN':
-          '<p>列合并是通过表格列设置方法 <code>span-method</code> 实现的自定义合并规则。例如：</p>\n<blockquote>\n<p>实现2列合并</p>\n</blockquote>\n',
+          '<p>列合并是通过表格列设置方法 <code>span-method</code> 实现的自定义合并规则。例如：</p>\n<blockquote>\n<p>实现2列合并。</p>\n</blockquote>\n',
         'en-US':
           '<p>Column combination is a user-defined combination rule implemented by using the <code>span-method</code> table column setting method. For example, </p>\n<blockquote>\n<p> can combine two columns into </p>\n</blockquote>\n'
       },
       'codeFiles': ['span/column-span.vue']
     }
   ],
-  apis: [{ 'name': 'grid-span', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-span', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

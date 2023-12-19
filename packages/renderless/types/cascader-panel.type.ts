@@ -1,7 +1,7 @@
 import type { VNode } from 'vue'
 import type Node from '../src/cascader-panel/node'
 import type Store from '../src/cascader-panel/store'
-import { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type {
   getNodeByValue,
   calculateCheckedNodePaths,
@@ -41,7 +41,7 @@ export type ICascaderPanelNodePropValue =
   | ICascaderPanelNodeValue[]
   | ICascaderPanelNodeValue[][]
 
-/**懒加载时，提供给用户的根节点的node */
+/** 懒加载时，提供给用户的根节点的node */
 export interface ICascaderPanelLazyLoadNode {
   root: boolean
   level: number
@@ -70,7 +70,7 @@ export interface ICascaderPanelConfig {
 /**
  * ICascaderPanelData的结构里的key名由ICascaderPanelConfig的value、label、children、disabled、leaf的值决定
  */
-export type ICascaderPanelData = {
+export interface ICascaderPanelData {
   value?: ICascaderPanelNodeValue
   label?: string
   children?: ICascaderPanelData[]
@@ -81,7 +81,7 @@ export type ICascaderPanelData = {
 
 type IRenderLabelFunction = (arg1: { node: ICascaderPanelNode; data: ICascaderPanelData }) => VNode
 
-export type ICascaderPanelProps = {
+export interface ICascaderPanelProps {
   modelValue: ICascaderPanelNodePropValue
   options: ICascaderPanelData[]
   props: ICascaderPanelConfig

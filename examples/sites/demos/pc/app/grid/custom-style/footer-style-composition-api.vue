@@ -1,19 +1,36 @@
 <template>
-  <tiny-grid
-    class="grid-footer-cell-style"
-    :data="tableData"
-    show-footer
-    :footer-method="footerMethod"
-    border
-    :footer-cell-class-name="footerCellClassName"
-  >
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
-  </tiny-grid>
+  <div class="footer-style">
+    <h4 class="title">自定义表尾行样式：</h4>
+    <tiny-grid
+      :data="tableData"
+      show-footer
+      :footer-method="footerMethod"
+      border
+      :footer-row-class-name="footerRowClassName"
+    >
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+      <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+      <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+    </tiny-grid>
+    <h4 class="title">自定义表尾单元格样式：</h4>
+    <tiny-grid
+      :data="tableData"
+      show-footer
+      :footer-method="footerMethod"
+      border
+      :footer-cell-class-name="footerCellClassName"
+    >
+      <tiny-grid-column type="index" width="60"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+      <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+      <tiny-grid-column field="createdDate" title="创建日期" :footer-class-name="footerClassName"></tiny-grid-column>
+      <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+    </tiny-grid>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -79,7 +96,7 @@ const tableData = ref([
   }
 ])
 
-function footerMethod({ columns, data }) {
+const footerMethod = ({ columns, data }) => {
   return [
     columns.map((column, columnIndex) => {
       if (columnIndex === 0) {
@@ -105,17 +122,48 @@ function footerMethod({ columns, data }) {
     })
   ]
 }
-
-function footerCellClassName({ $rowIndex }) {
-  if ($rowIndex === 0) {
+const footerCellClassName = ({ column, $rowIndex }) => {
+  if ($rowIndex === 0 && column.property === 'employees') {
     return 'footer__cell--blue'
   }
 }
+const footerRowClassName = ({ $rowIndex }) => {
+  if ($rowIndex === 0) {
+    return 'footer__row--red'
+  }
+
+  if ($rowIndex === 1) {
+    return 'footer__row--green'
+  }
+}
+
+const footerClassName = () => {
+  return 'footer__cell--red'
+}
 </script>
 
-<style>
-.grid-footer-cell-style .tiny-grid-footer__column.footer__cell--blue {
+<style scoped>
+.title {
+  font-size: 16px;
+  padding: 15px;
+  font-weight: bolder;
+  color: #444;
+}
+.footer-style :deep(.tiny-grid-footer__column.footer__cell--blue) {
   background-color: #2db7f5;
+  color: #fff;
+}
+
+.footer-style :deep(.tiny-grid-footer__row.footer__row--red) {
+  background-color: palevioletred;
+  color: #fff;
+}
+.footer-style :deep(.tiny-grid-footer__row.footer__row--green) {
+  background-color: green;
+  color: #fff;
+}
+.footer-style :deep(.footer__cell--red) {
+  background-color: palevioletred;
   color: #fff;
 }
 </style>

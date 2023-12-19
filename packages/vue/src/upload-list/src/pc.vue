@@ -96,170 +96,189 @@
       @newImageList="getDeleteData"
     ></tiny-image-viewer>
   </div>
-  <transition-group
-    tag="ul"
-    v-else
-    :class="['tiny-upload-list', 'tiny-upload-list--' + listType, { 'is-disabled': disabled }]"
-    name="tiny-list"
-  >
-    <li v-for="file in files" :key="file.uid" tabindex="0" class="tiny-upload-list__li">
-      <div
-        :class="[
-          'tiny-upload-list__item',
-          'is-' + file.status,
-          state.focusing ? 'focusing' : '',
-          { isEdm: isEdm },
-          { showUpdate: listOption.showUpdate },
-          { showDel: listOption.showDel }
-        ]"
-        @keydown.delete="!disabled && $emit('remove', file)"
-        @focus="state.focusing = true"
-        @blur="state.focusing = false"
-        @click="state.focusing = false"
-      >
-        <slot :file="file">
-          <img
-            class="tiny-upload-list__item-thumbnail"
-            v-if="
-              file.status !== 'uploading' &&
-              file.status !== 'fail' &&
-              ['picture-card', 'picture'].indexOf(listType) > -1
-            "
-            :src="file.url"
-            alt=""
-          />
-          <tiny-tooltip placement="top" effect="light" :disabled="state.tooltipDisabled">
-            <template #content>
-              <span v-if="file.status === 'fail'" class="tiny-upload-list__item-tooltip"
-                ><icon-operationfaild class="tiny-upload-list__icon-operationfaild" />{{
-                  t('ui.fileUpload.networkError')
-                }}</span
+  <div v-else class="tiny-upload-list__wrapper">
+    <transition-group
+      tag="ul"
+      :class="['tiny-upload-list', 'tiny-upload-list--' + listType, { 'is-disabled': disabled }]"
+      name="tiny-list"
+    >
+      <li v-for="file in files" :key="file.uid" tabindex="0" class="tiny-upload-list__li">
+        <div
+          :class="[
+            'tiny-upload-list__item',
+            'is-' + file.status,
+            state.focusing ? 'focusing' : '',
+            { isEdm },
+            { showUpdate: listOption.showUpdate },
+            { showDel: listOption.showDel }
+          ]"
+          @keydown.delete="!disabled && $emit('remove', file)"
+          @focus="state.focusing = true"
+          @blur="state.focusing = false"
+          @click="state.focusing = false"
+        >
+          <slot :file="file">
+            <img
+              class="tiny-upload-list__item-thumbnail"
+              v-if="
+                file.status !== 'uploading' &&
+                file.status !== 'fail' &&
+                ['picture-card', 'picture'].indexOf(listType) > -1
+              "
+              :src="file.url"
+              alt=""
+            />
+            <tiny-tooltip placement="top" effect="light" :disabled="state.tooltipDisabled">
+              <template #content>
+                <span v-if="file.status === 'fail'" class="tiny-upload-list__item-tooltip"
+                  ><icon-operationfaild class="tiny-upload-list__icon-operationfaild" />{{
+                    t('ui.fileUpload.networkError')
+                  }}</span
+                >
+                <span v-else class="tiny-upload-list__item-tooltip">{{
+                  isFolderTitle ? (file.path || '') + file.name : file.name
+                }}</span>
+              </template>
+              <a
+                :class="['tiny-upload-list__item-name', { isFail: isEdm && file.status === 'fail' }]"
+                @click="handleClick($event, file)"
+                :title="state.tooltipDisabled ? (isFolderTitle ? (file.path || '') + file.name : file.name) : ''"
               >
-              <span v-else class="tiny-upload-list__item-tooltip">{{
-                isFolderTitle ? (file.path || '') + file.name : file.name
-              }}</span>
-            </template>
-            <a
-              :class="['tiny-upload-list__item-name', { isFail: isEdm && file.status === 'fail' }]"
-              @click="handleClick($event, file)"
-              :title="state.tooltipDisabled ? (isFolderTitle ? (file.path || '') + file.name : file.name) : ''"
+                <icon-attachment
+                  v-if="!isFolder"
+                  :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
+                  class="tiny-svg-size"
+                />{{ file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name }}
+              </a>
+            </tiny-tooltip>
+            <div :class="['tiny-upload-list__item-edminfo', { isFail: isEdm && file.status === 'fail' }]" v-if="isEdm">
+              <span>{{ file.docId }}</span>
+              <span>{{ file.version }}</span>
+              <span>{{ file.size }}</span>
+              <span>{{ file.serverName }}</span>
+            </div>
+            <label class="tiny-upload-list__item-status-label" v-if="!state.preViewComponent">
+              <icon-successful class="tiny-svg-size icon-successful" v-if="listType === 'text'" />
+              <icon-yes
+                class="tiny-svg-size tiny-icon-check"
+                v-if="['picture-card', 'picture'].indexOf(listType) > -1"
+              />
+            </label>
+            <span
+              v-if="isEdm && !isFolder && !disabled && file.status !== 'fail' && listOption.showUpdate"
+              :title="t('ui.fileUpload.updateFile')"
+              @click="$emit('update', file)"
             >
-              <icon-attachment
-                v-if="!isFolder"
+              <icon-file-cloudupload
+                class="tiny-svg-size icon-refres"
                 :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
-                class="tiny-svg-size"
-              />{{ file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name }}
-            </a>
-          </tiny-tooltip>
-          <div :class="['tiny-upload-list__item-edminfo', { isFail: isEdm && file.status === 'fail' }]" v-if="isEdm">
-            <span>{{ file.docId }}</span>
-            <span>{{ file.version }}</span>
-            <span>{{ file.size }}</span>
-            <span>{{ file.serverName }}</span>
-          </div>
-          <label class="tiny-upload-list__item-status-label" v-if="!state.preViewComponent">
-            <icon-successful class="tiny-svg-size icon-successful" v-if="listType === 'text'" />
-            <icon-yes class="tiny-svg-size tiny-icon-check" v-if="['picture-card', 'picture'].indexOf(listType) > -1" />
-          </label>
-          <span
-            v-if="isEdm && !isFolder && !disabled && file.status !== 'fail' && listOption.showUpdate"
-            :title="t('ui.fileUpload.updateFile')"
-            @click="$emit('update', file)"
-          >
-            <icon-file-cloudupload
-              class="tiny-svg-size icon-refres"
-              :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
-            ></icon-file-cloudupload>
-          </span>
-          <span
-            v-if="!disabled && reUploadable && file.status === 'fail'"
-            :title="t('ui.fileUpload.reUploadFile')"
-            @click="$emit('reUpload', file)"
-          >
-            <icon-refres class="tiny-svg-size icon-refres" :fill="isEdm ? '#f5222d' : ''"></icon-refres>
-          </span>
-          <span
-            v-if="!disabled && listOption.showDel"
-            :title="t('ui.fileUpload.deleteFile')"
-            @click="$emit('remove', file)"
-          >
-            <component
-              :is="state.closeComponent"
-              class="tiny-svg-size icon-close"
-              :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
-            ></component>
-          </span>
-          <i class="tiny-icon-close-tip" v-if="!disabled && listOption.showDel"> {{ t('ui.fileUpload.deleteTip') }}</i>
-          <Progress
-            v-if="file.status === 'uploading' || file.status === 'downloading'"
-            :type="listType === 'picture-card' ? state.progressType : 'line'"
-            :stroke-width="listType === 'picture-card' ? state.progressStrokeWidth : 2"
-            :width="state.progressWidth"
-            :percentage="parsePercentage(file.percentage)"
-          >
-          </Progress>
-          <tiny-tooltip placement="top" effect="light" :disabled="state.tooltipDisabled || file.status !== 'fail'">
-            <template #content>
-              <span class="tiny-upload-list__item-tooltip"
-                ><icon-operationfaild class="tiny-upload-list__icon-operationfaild" />{{
-                  t('ui.fileUpload.pictureNetworkError')
-                }}</span
-              >
-            </template>
-            <span class="tiny-upload-list__item-actions" v-if="listType === 'picture-card'">
-              <span
-                v-if="openDownloadFile"
-                class="tiny-upload-list__item-download"
-                :title="t('ui.fileUpload.downloadFile')"
-                @click="handleClick(file)"
-              >
-                <icon-download class="tiny-svg-size" />
-              </span>
-              <span
-                class="tiny-upload-list__item-preview"
-                v-if="handlePreview && file.status !== 'fail'"
-                :title="t('ui.fileUpload.previewFile')"
-                @click="handlePreview(file)"
-              >
-                <icon-fullscreen-left v-if="state.preViewComponent" class="tiny-svg-size tiny-svg-fullscreen" />
-                <icon-view v-else class="tiny-svg-size" />
-              </span>
-              <span
-                v-if="isEdm && !isFolder && !disabled"
-                :title="t('ui.fileUpload.updateFile')"
-                class="tiny-upload-list__item-refres"
-                @click="$emit('update', file)"
-              >
-                <icon-file-cloudupload class="tiny-svg-size" />
-              </span>
-              <span
-                v-if="!disabled"
-                class="tiny-upload-list__item-delete"
-                :title="t('ui.fileUpload.deleteFile')"
-                @click="$emit('remove', file)"
-              >
-                <icon-del class="tiny-svg-size" />
-              </span>
+              ></icon-file-cloudupload>
             </span>
-          </tiny-tooltip>
-        </slot>
-      </div>
-      <div
-        v-if="state.preViewComponent && listType === 'picture-card'"
-        :class="['tiny-upload-list__li-title', file.status === 'fail' && 'is-fail']"
-        :title="isFolderTitle ? (file.path || '') + file.name : file.name"
-      >
-        {{ file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name }}
-      </div>
-    </li>
-  </transition-group>
-  <div v-if="reUploadable && state.failUploadFileCount && listType === 'text'" class="tiny-upload-list__text-title">
-    <icon-operationfaild class="tiny-upload-list__icon-operationfaild" />{{
-      typeof reUploadTip === 'function'
-        ? reUploadTip(state.failUploadFileCount)
-        : t('ui.fileUpload.reUploadTip', { number: state.failUploadFileCount })
-    }}
-    <tiny-button type="text" @click="$emit('ReUploadTotal', files)">{{ t('ui.fileUpload.reUploadFile') }}</tiny-button>
+            <span
+              v-if="!disabled && reUploadable && file.status === 'fail'"
+              :title="t('ui.fileUpload.reUploadFile')"
+              @click="$emit('reUpload', file)"
+            >
+              <icon-refres class="tiny-svg-size icon-refres" :fill="isEdm ? '#f5222d' : ''"></icon-refres>
+            </span>
+            <span
+              v-if="!disabled && listOption.showDel"
+              :title="t('ui.fileUpload.deleteFile')"
+              @click="$emit('remove', file)"
+            >
+              <component
+                :is="state.closeComponent"
+                class="tiny-svg-size icon-close"
+                :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
+              ></component>
+            </span>
+            <i class="tiny-icon-close-tip" v-if="!disabled && listOption.showDel">
+              {{ t('ui.fileUpload.deleteTip') }}</i
+            >
+            <Progress
+              v-if="file.status === 'uploading' || file.status === 'downloading'"
+              :type="listType === 'picture-card' ? state.progressType : 'line'"
+              :stroke-width="listType === 'picture-card' ? state.progressStrokeWidth : 2"
+              :width="state.progressWidth"
+              :percentage="parsePercentage(file.percentage)"
+              :show-text="!state.progressWidth"
+            >
+            </Progress>
+            <div
+              v-if="file.status === 'uploading' && listType === 'picture-card' && state.progressWidth"
+              class="tiny-upload-list__item-cancel"
+              @click="$emit('remove', file)"
+            >
+              {{ t('ui.fileUpload.cancelFile') }}
+            </div>
+            <tiny-tooltip placement="top" effect="light" :disabled="state.tooltipDisabled || file.status !== 'fail'">
+              <template #content>
+                <span class="tiny-upload-list__item-tooltip"
+                  ><icon-operationfaild class="tiny-upload-list__icon-operationfaild" />{{
+                    t('ui.fileUpload.pictureNetworkError')
+                  }}</span
+                >
+              </template>
+              <span
+                class="tiny-upload-list__item-actions"
+                v-if="listType === 'picture-card' && (state.progressWidth ? file.status !== 'uploading' : true)"
+              >
+                <span
+                  v-if="openDownloadFile"
+                  class="tiny-upload-list__item-download"
+                  :title="t('ui.fileUpload.downloadFile')"
+                  @click="handleClick(file)"
+                >
+                  <icon-download class="tiny-svg-size" />
+                </span>
+                <span
+                  class="tiny-upload-list__item-preview"
+                  v-if="handlePreview && file.status !== 'fail'"
+                  :title="t('ui.fileUpload.previewFile')"
+                  @click="handlePreview(file)"
+                >
+                  <icon-fullscreen-left v-if="state.preViewComponent" class="tiny-svg-size tiny-svg-fullscreen" />
+                  <icon-view v-else class="tiny-svg-size" />
+                </span>
+                <span
+                  v-if="isEdm && !isFolder && !disabled"
+                  :title="t('ui.fileUpload.updateFile')"
+                  class="tiny-upload-list__item-refres"
+                  @click="$emit('update', file)"
+                >
+                  <icon-file-cloudupload class="tiny-svg-size" />
+                </span>
+                <span
+                  v-if="!disabled"
+                  class="tiny-upload-list__item-delete"
+                  :title="t('ui.fileUpload.deleteFile')"
+                  @click="$emit('remove', file)"
+                >
+                  <icon-del class="tiny-svg-size" />
+                </span>
+              </span>
+            </tiny-tooltip>
+          </slot>
+        </div>
+        <div
+          v-if="state.preViewComponent && listType === 'picture-card'"
+          :class="['tiny-upload-list__li-title', file.status === 'fail' && 'is-fail']"
+          :title="isFolderTitle ? (file.path || '') + file.name : file.name"
+        >
+          {{ file.name.length > maxNameLength ? file.name.substring(0, maxNameLength) + '...' : file.name }}
+        </div>
+      </li>
+    </transition-group>
+    <div v-if="reUploadable && state.failUploadFileCount && listType === 'text'" class="tiny-upload-list__text-title">
+      <icon-operationfaild class="tiny-upload-list__icon-operationfaild" />{{
+        typeof reUploadTip === 'function'
+          ? reUploadTip(state.failUploadFileCount)
+          : t('ui.fileUpload.reUploadTip', { number: state.failUploadFileCount })
+      }}
+      <tiny-button type="text" @click="$emit('ReUploadTotal', files)">{{
+        t('ui.fileUpload.reUploadFile')
+      }}</tiny-button>
+    </div>
   </div>
 </template>
 
@@ -305,9 +324,9 @@ export default defineComponent({
     IconError: iconError(),
     IconFileCloudupload: iconFileCloudupload(),
     IconDownload: iconDownload(),
-    iconRefres: iconRefres(),
-    iconOperationfaild: iconOperationfaild(),
-    iconFullscreenLeft: iconFullscreenLeft()
+    IconRefres: iconRefres(),
+    IconOperationfaild: iconOperationfaild(),
+    IconFullscreenLeft: iconFullscreenLeft()
   },
   props: [
     ...props,

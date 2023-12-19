@@ -1,22 +1,22 @@
-export type DndDropTargetType = 'rule' | 'ruleGroup' | 'inlineCombinator';
+export type DndDropTargetType = 'rule' | 'ruleGroup' | 'inlineCombinator'
 
 export interface DraggedItem {
-  path: number[];
+  path: number[]
 }
 
-export type DropEffect = 'move' | 'copy';
+export type DropEffect = 'move' | 'copy'
 
 export interface DropResult {
-  path: number[];
-  type: DndDropTargetType;
-  dropEffect?: DropEffect;
+  path: number[]
+  type: DndDropTargetType
+  dropEffect?: DropEffect
 }
 export interface DragCollection {
-  isDragging: boolean;
-  dragMonitorId: string | symbol;
+  isDragging: boolean
+  dragMonitorId: string | symbol
 }
 export interface DropCollection {
-  isOver: boolean;
-  dropMonitorId: string | symbol;
-  dropEffect?: DropEffect;
+  isOver: boolean
+  dropMonitorId: string | symbol
+  dropEffect?: DropEffect
 }

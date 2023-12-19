@@ -18,7 +18,7 @@ import type {
   INumericGetEmitValueParams,
   INumericUnitPrecision
 } from '@/types'
-import { BigIntDecimal } from '../common/bigInt'
+import type { BigIntDecimal } from '../common/bigInt'
 import { formatNumber, roundFixed } from '../common/decimal'
 import { getMiniDecimal, lessEquals, equalsDecimal } from '../common/bigInt'
 import { isNumber, isNull } from '../common/type'
@@ -315,7 +315,7 @@ export const handleInput =
       emitError()
 
       if (!(value === '' && props.allowEmpty)) {
-        value = value.indexOf('e') === -1 ? state.lastInput : value
+        value = !value.includes('e') ? state.lastInput : value
       }
     } else {
       value = value

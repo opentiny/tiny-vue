@@ -5,7 +5,6 @@ export const tinyButtonSmbTheme = {
   'ti-button-text-color': 'var(--ti-common-color-text-highlight)',
   'ti-button-text-hover-weight': 'var(--ti-common-font-weight-4)',
   'ti-button-text-color-hover': 'var(--ti-common-color-text-highlight)',
-  'ti-button-normal-hover-border-color': 'var(--ti-common-color-border)',
   'ti-button-normal-disabled-border-color': 'transparent',
   'ti-common-color-primary-disabled-border': 'transparent',
   'ti-common-color-success-disabled-border': 'transparent',
@@ -72,5 +71,8 @@ export const tinyButtonSmbTheme = {
   'ti-button-only-icon-border-radius': '6px',
   'ti-button-only-icon-border-color': '#c2c2c2',
   'ti-button-only-icon-hover-border-color': '#191919',
-  'ti-button-only-icon-disabled-border-color': '#dbdbdb'
+  'ti-button-only-icon-disabled-border-color': '#dbdbdb',
+  'ti-button-ghost-disabled-text-color': '#c2c2c2',
+  'ti-button-ghost-disabled-border-color': '#dbdbdb',
+  'ti-button-ghost-hover-border-color': '#c2c2c2'
 }

@@ -27,7 +27,7 @@ export default {
       'name': { 'zh-CN': '触发方式', 'en-US': 'Trigger Mode' },
       'desc': {
         'zh-CN': `
-          通过<code>trigger</code> 属性设定弹出框的触发方式，属性可选值为：  <code>click / hover / manual / focus</code>， 默认值为 <code> click </code>。<br>
+          通过<code>trigger</code> 属性设定弹出框的4种触发方式， 默认值为 <code> click </code>。<br>
           当触发方式为<code> manual</code>时，通过设置<code>v-model</code> 属性，动态控制显示和隐藏弹出框。
         `,
         'en-US': `
@@ -123,7 +123,6 @@ export default {
       },
       'codeFiles': ['transition.vue']
     },
-
     {
       'demoId': 'popper-options',
       'name': { 'zh-CN': '高级选项', 'en-US': 'Pop-up Options' },
@@ -134,6 +133,21 @@ export default {
       },
       'codeFiles': ['popper-options.vue']
     },
+    // 暂时屏蔽
+    // {
+    //   'demoId': 'dynamic-reference',
+    //   'name': { 'zh-CN': '动态触发源', 'en-US': 'Pop-up Options' },
+    //   'desc': {
+    //     'zh-CN': `
+    //       当组件不传入<code>reference</code> 插槽时,弹出框由于没有触发源而无法触发显示。<br>
+    //       通过 <code>reference</code> 属性，可以动态传入一个Dom元素作为动态触发源，之后调用<code>doShow() \ doClose() </code>，来控制弹出框显示与隐藏。
+    //       <div class="tip custom-block">通过这个高级技巧，可以实现在列表中共享一个<code> Popover</code> 组件实例,提升了列表时的性能。</div>
+    //     `,
+    //     'en-US':
+    //       'Run the <code>popper-options</code> command to configure the advanced pop-up options. For details, see the IPopperOption description at the bottom'
+    //   },
+    //   'codeFiles': ['dynamic-reference.vue']
+    // },
     {
       'demoId': 'events',
       'name': { 'zh-CN': '事件', 'en-US': 'Event' },
@@ -159,18 +173,18 @@ export default {
     {
       'name': 'popover',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'title',
           'type': 'string',
-          'defaultValue': '--',
+          'defaultValue': '',
           'desc': { 'zh-CN': '弹出层的标题', 'en-US': 'Layer Title' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'content',
           'type': 'string',
-          'defaultValue': '--',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '弹出层的内容',
             'en-US': 'Layer Content.'
@@ -180,8 +194,9 @@ export default {
 
         {
           'name': 'placement',
-          'type': `'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'`,
-          'defaultValue': `'bottom'`,
+          'type': 'IPopperPlacement',
+          'typeAnchorName': 'IPopperPlacement',
+          'defaultValue': '"bottom"',
           'desc': {
             'zh-CN': '弹出层出现的位置',
             'en-US': 'Layer Placement'
@@ -191,19 +206,19 @@ export default {
         {
           'name': 'width',
           'type': `'auto' | number`,
-          'defaultValue': `'auto'`,
+          'defaultValue': '"auto"',
           'desc': { 'zh-CN': '弹出层宽度', 'en-US': 'Layer width' },
           'demoId': 'basic-usage'
         },
         {
           'name': 'height',
           'type': `'auto' | number`,
-          'defaultValue': `'auto'`,
+          'defaultValue': '"auto"',
           'desc': {
             'zh-CN': '弹出层高度',
             'en-US': 'Layer height'
           },
-          'demoId': 'basic-usage'
+          'demoId': ''
         },
         {
           'name': 'disabled',
@@ -215,7 +230,7 @@ export default {
         {
           'name': 'trigger',
           'type': `'click' | 'focus' | 'hover' | 'manual'`,
-          'defaultValue': `'click'`,
+          'defaultValue': '"click"',
           'desc': {
             'zh-CN': '触发方式',
             'en-US': 'Trigger mode'
@@ -223,7 +238,7 @@ export default {
           'demoId': 'trigger'
         },
         {
-          'name': 'modelValue',
+          'name': 'v-model / modelValue',
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
@@ -286,7 +301,7 @@ export default {
         {
           'name': 'transition',
           'type': 'string',
-          'defaultValue': `'fade-in-linear'`,
+          'defaultValue': '"fade-in-linear"',
           'desc': { 'zh-CN': '定义渐变动画', 'en-US': 'Define gradient animation' },
           'demoId': 'transition'
         },
@@ -303,7 +318,7 @@ export default {
         {
           'name': 'popper-class',
           'type': 'string',
-          'defaultValue': '--',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '为弹出层添加类名',
             'en-US': 'Add a class name for the pop-up layer.'
@@ -378,6 +393,13 @@ interface IPopperOption {
   followReferenceHide: boolean // 当触发源隐藏时，自动隐藏弹出层，默认true
   removeOnDestroy: boolean // 弹出层消失后，是否移除弹出层的DOM元素，布尔false
 }
+      `
+    },
+    {
+      name: 'IPopperPlacement',
+      type: 'type',
+      code: `
+type IPopperPlacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'
       `
     }
   ]

@@ -1,6 +1,6 @@
 <template>
   <div class="demo-form">
-    <div class="title">标签位置： <tiny-switch v-model="isLabelAlign"></tiny-switch></div>
+    <div class="title">标签文字对齐： <tiny-switch v-model="isLabelAlign"></tiny-switch></div>
     <tiny-form ref="ruleFormRef" :model="createData" label-position="left" :label-align="isLabelAlign">
       <tiny-form-item label="用户名" prop="username" required>
         <tiny-input v-model="createData.username"></tiny-input>

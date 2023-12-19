@@ -1,7 +1,7 @@
 <template>
   <tiny-layout>
     <tiny-row>
-      <tiny-button>按钮</tiny-button>
+      <tiny-button>默认按钮</tiny-button>
       <tiny-button type="primary" native-type="submit"> 主要按钮 </tiny-button>
       <tiny-button type="success"> 成功按钮 </tiny-button>
       <tiny-button type="info"> 信息按钮 </tiny-button>
@@ -53,5 +53,7 @@ const IconSearch = iconSearch()
 }
 .tiny-button {
   margin-bottom: 10px;
+  margin-left: 0;
+  margin-right: 8px;
 }
 </style>

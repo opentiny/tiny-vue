@@ -10,7 +10,7 @@
  *
  */
 
-import { IRadioGroupRenderlessParams } from '@/types'
+import type { IRadioGroupRenderlessParams } from '@/types'
 import { KEY_CODE } from '../common'
 
 export const handleKeydown =

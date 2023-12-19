@@ -5,7 +5,7 @@
       ref="theGridRef"
       :data="tableData"
       seq-serial
-      :edit-config="{ trigger: 'manual', mode: 'row', autoClear: false }"
+      :edit-config="{ trigger: 'manual', mode: 'cell', autoClear: false }"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
@@ -23,7 +23,7 @@
       ></tiny-grid-column>
       <tiny-grid-column title="操作" width="200" align="center">
         <template #default="data">
-          <template v-if="$refs.theGrid && $refs.theGrid.hasActiveRow(data.row)">
+          <template v-if="$refs.theGridRef && $refs.theGridRef.hasActiveRow(data.row)">
             <tiny-button size="mini" @click="saveRowEvent(data.row)"> 保存 </tiny-button>
             <tiny-button size="mini" @click="cancelRowEvent(data.row)"> 取消 </tiny-button>
           </template>
@@ -90,12 +90,20 @@ const tableData = ref([
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
-const theGridRef = ref()
+const theGridRef = ref('theGridRef')
 
 function editRowEvent(row) {
-  theGridRef.value.setActiveRow(row).then(() => {
-    getActiveRow()
-  })
+  if (row.name === 'RFV有限责任公司') {
+    // 只激活区域单元格编辑
+    theGridRef.value.setActiveCell(row, 'area').then(() => {
+      this.getActiveRow()
+    })
+  } else {
+    // mode: 'cell' 时默认激活第一个单元格
+    theGridRef.value.setActiveRow(row).then(() => {
+      this.getActiveRow()
+    })
+  }
 }
 
 function saveRowEvent() {

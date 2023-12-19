@@ -4,7 +4,7 @@ test('PopEditor 弹出窗筛选条件支持可清空', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popeditor#clearable')
 
-  const preview = page.locator('#preview')
+  const preview = page.locator('#clearable')
   const textBox = preview.getByRole('textbox')
   const dialogBox = page.locator('.tiny-dialog-box')
   const company = dialogBox.getByRole('listitem').filter({ hasText: '公司名' }).getByRole('textbox')

@@ -1,0 +1,59 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import '../base/basic-var.less';
+@import './vars.less';
+
+@mask-prefix-cls: ~'@{css-prefix}mobile-mask';
+
+.@{mask-prefix-cls} {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--tiny-mobile-mask-bg-color);
+  height: 100%;
+}
+
+.mask-fade-enter-active {
+  animation: mask-fade-in 0.3s;
+}
+
+.mask-fade-leave-active {
+  animation: mask-fade-out 0.3s;
+}
+
+@keyframes mask-fade-in {
+  0% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes mask-fade-out {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+}

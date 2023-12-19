@@ -401,7 +401,7 @@ export default class TreeStore {
   getAllData() {
     const children = this.props.children
     const walkTree = (nodes) => {
-      return nodes.map(node => {
+      return nodes.map((node) => {
         return { ...node.data, [children]: walkTree(node.childNodes) }
       })
     }

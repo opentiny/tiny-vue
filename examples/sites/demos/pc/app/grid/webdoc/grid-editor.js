@@ -10,7 +10,7 @@ export default {
         <p> <code>grid</code> 标签上配置 <code>edit-config</code>。在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染内置编辑组件， <code>events</code> 配置组件事件。具体参考下面示例。</p>
         <div class="tip custom-block">
           <p class="custom-block-title">说明</p>
-          <p>内置编辑器只支持 <code>Input</code> 和 <code>Select</code> 组件，需要使用其他组件可参考自定义编辑器</p>
+          <p>内置编辑器只支持 <code>Input</code> 和 <code>Select</code> 组件，需要使用其他组件可参考自定义编辑器。</p>
         </div>
         `,
         'en-US':
@@ -23,7 +23,7 @@ export default {
       'name': { 'zh-CN': '自定义编辑器', 'en-US': 'Introducing the TINY component as the editor' },
       'desc': {
         'zh-CN': `
-        <p> <code>grid</code> 标签上配置 <code>edit-config</code>。\n在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染自定义编辑组件或者TinyVue提供的组件</p>
+        <p> <code>grid</code> 标签上配置 <code>edit-config</code>。\n在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染自定义编辑组件或者TinyVue提供的组件。</p>
         `,
         'en-US':
           '<p>Introduces the TinyVue <code>Select</code> component through <code>attribute configuration</code>. </p>\n'
@@ -59,7 +59,7 @@ export default {
       'name': { 'zh-CN': '维护编辑状态', 'en-US': '' },
       'desc': {
         'zh-CN':
-          "<p>假设 <code>名称字段</code> 和 <code>id 为 '3' 的行</code> 不可编辑，可以通过 <code>editConfig.activeMethod</code> 设置其单元格不可进入编辑，通过 <code>cellClassName</code> 设置其单元格的背景底色</p>",
+          "<p>假设 <code>名称字段</code> 和 <code>id 为 '3' 的行</code> 不可编辑，可以通过 <code>editConfig.activeMethod</code> 设置其单元格不可进入编辑，通过 <code>cellClassName</code> 设置其单元格的背景底色。</p>",
         'en-US': ''
       },
       'codeFiles': ['editor/editor-bg.vue']
@@ -75,5 +75,5 @@ export default {
       'codeFiles': ['editor/custom-edit.vue']
     }
   ],
-  apis: [{ 'name': 'grid-editor', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-editor', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }
