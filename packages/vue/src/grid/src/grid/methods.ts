@@ -24,7 +24,17 @@ const methods = {}
 
 // 将table组件的方法，传递给grid组件使用，this指向全部指向tinyTable
 Object.keys(Table.methods)
-  .concat(['exportCsv', 'clearFilter', 'exportExcel', 'setAllSelection', 'clearSelection', 'setSelection '])
+  .concat([
+    'exportCsv',
+    'clearFilter',
+    'exportExcel',
+    'setAllSelection',
+    'clearSelection',
+    'setSelection',
+    'setTreeExpansion',
+    'hasTreeExpand',
+    'clearTreeExpand'
+  ])
   .forEach((name) => {
     methods[name] = getWrapFunc(name)
   })
