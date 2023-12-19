@@ -24,7 +24,6 @@
  */
 import { getColumnList } from '@opentiny/vue-renderless/grid/utils'
 import { toDecimal } from '@opentiny/vue-renderless/common/string'
-import { getStyle } from '@opentiny/vue-renderless/common/deps/dom'
 import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import {
@@ -69,7 +68,6 @@ import { error, warn } from '../../tools'
 import TINYGrid, { Interceptor } from '../../adapter'
 import GlobalConfig from '../../config'
 import { handleLayout } from './utils/updateStyle'
-import { createTooltipRange, processContentMethod } from './utils/handleTooltip'
 import { hasCheckField, hasNoCheckField } from './utils/handleSelectRow'
 import {
   isTargetRadioOrCheckbox,
@@ -102,9 +100,6 @@ import { calcTableWidth, calcFixedStickyPosition } from './utils/autoCellWidth'
 import { generateFixedClassName } from './utils/handleFixedColumn'
 import { funcs, headerProps, handleAllColumnPromises } from './funcs'
 import {
-  triggerHeaderTooltipEvent,
-  triggerFooterTooltipEvent,
-  triggerTooltipEvent,
   handleGlobalMousedownEvent,
   handleGlobalBlurEvent,
   handleGlobalMousewheelEvent,
@@ -133,10 +128,9 @@ import {
 
 let run = (names, $table) => names.forEach((name) => $table[name].apply($table))
 let isWebkit = browser['-webkit']
-let debounceScrollDirDuration = browser.name === 'ie' ? 40 : 20
+let debounceScrollDirDuration = 20
 let debounceScrollLoadDuration = 200
 let AsyncCollectTimeout = 100
-let focusSingle = null
 
 // 多字段排序
 const sortMultiple = (rows, columns, _vm) => {
@@ -1046,99 +1040,6 @@ const Methods = {
   handleOtherKeyDown,
   handleGlobalKeydownEvent,
   handleGlobalResizeEvent,
-  triggerHeaderTooltipEvent,
-  triggerFooterTooltipEvent,
-  triggerTooltipEvent,
-  // 显示 tooltip 依赖的 popper 组件
-  activateTooltip(tooltip, isValid) {
-    if (!this.tasks.activateTooltip) {
-      this.tasks.activateTooltip = debounce(300, () => {
-        let sign = isValid !== undefined ? isValid : focusSingle
-
-        if (sign) {
-          tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
-          tooltip.doDestroy()
-          tooltip.show()
-          setTimeout(tooltip.updatePopper)
-        }
-      })
-    }
-
-    this.tasks.activateTooltip()
-  },
-  // 显示 tooltip 依赖的 popper 组件
-  activateTooltipValid(tooltip) {
-    if (!this.tasks.activateTooltipValid) {
-      this.tasks.activateTooltipValid = debounce(50, () => {
-        tooltip.handleShowPopper()
-        setTimeout(() => tooltip.updatePopper())
-      })
-    }
-
-    this.tasks.activateTooltipValid()
-  },
-  // 显示 tooltip
-  handleTooltip(event, column, row, showTip, isHeader) {
-    const cell = isHeader
-      ? event.currentTarget.querySelector('.tiny-grid-cell-text')
-      : event.currentTarget.querySelector('.tiny-grid-cell')
-
-    // 当用户悬浮在排序或者筛选图标按钮时不应该显示tooltip
-    if (isHeader && event.target !== cell) {
-      return
-    }
-    const tooltip = this.$refs.tooltip
-    const wrapperElem = cell
-    const content = cell.innerText.trim() || cell.textContent.trim()
-    const { contentMethod } = this.tooltipConfig
-    const range = createTooltipRange({ _vm: this, cell, column, isHeader })
-    const rangeWidth = range.getBoundingClientRect().width
-    const padding =
-      (parseInt(getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(getStyle(cell, 'paddingRight'), 10) || 0)
-    const isOverflow = rangeWidth + padding > cell.offsetWidth || wrapperElem.scrollWidth > wrapperElem.clientWidth
-
-    // content如果是空字符串，但是用户配置了contentMethod，则同样也可以触发提示
-    if ((contentMethod || content) && (showTip || isOverflow)) {
-      Object.assign(this.tooltipStore, { row, column, visible: true })
-
-      if (tooltip) {
-        processContentMethod({ _vm: this, column, content, contentMethod, event, isHeader, row, showTip })
-        tooltip.state.referenceElm = cell
-        tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
-
-        focusSingle = true
-        this.activateTooltip(tooltip)
-      }
-    }
-
-    return this.$nextTick()
-  },
-  // 提供关闭tips提示的方法
-  clostTooltip() {
-    let tooltip = this.$refs.tooltip
-    Object.assign(this.tooltipStore, {
-      content: null,
-      row: null,
-      visible: false,
-      column: null
-    })
-    focusSingle = false
-    if (tooltip && typeof tooltip.setExpectedState === 'function') {
-      tooltip.setExpectedState(false)
-      this.debounceClose(tooltip)
-    }
-    return this.$nextTick()
-  },
-  // 添加代码让用户代码可以划入popper
-  debounceClose(tooltip) {
-    if (!this.tasks.debounceClose) {
-      this.tasks.debounceClose = debounce(50, () => {
-        tooltip.handleClosePopper()
-      })
-    }
-
-    this.tasks.debounceClose()
-  },
   // 处理默认勾选
   handleSelectionDefChecked() {
     let fullDataRowIdData = this.fullDataRowIdData

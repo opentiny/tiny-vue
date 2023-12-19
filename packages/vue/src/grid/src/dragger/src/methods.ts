@@ -1,4 +1,4 @@
-import { createHandlerOnEnd } from './rowDrop'
+import { createHandlerOnEnd, onEndEvent } from './rowDrop'
 export default {
   // 处理列拖拽
   columnDrop() {

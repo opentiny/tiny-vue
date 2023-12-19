@@ -30,6 +30,8 @@ import Pager from './src/pager'
 import Toolbar from './src/toolbar'
 import columnAnchor from './src/column-anchor'
 import dragger from './src/dragger'
+import sort from './src/sort'
+import tooltip from './src/tooltip'
 import * as GridTools from './src/tools'
 import { version } from './package.json'
 import type { Plugin } from './src/types/index.type'
@@ -47,6 +49,8 @@ import type { Plugin } from './src/types/index.type'
  * Toolbar 工具栏处理逻辑
  * columnAnchor 表格列锚点
  * dragger 拖拽相关逻辑
+ * sort 排序相关逻辑
+ * tooltip 提示相关逻辑
  */
 const plugins: Plugin[] = [
   Menu,
@@ -60,7 +64,9 @@ const plugins: Plugin[] = [
   Pager,
   Toolbar,
   columnAnchor,
-  dragger
+  dragger,
+  sort,
+  tooltip
 ]
 
 // 设置全局参数,配置GlobalConfig，提供比如国际化方法
