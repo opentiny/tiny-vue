@@ -56,7 +56,7 @@ export default {
     {
       'name': 'area',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue / v-model',
           'type': 'string',

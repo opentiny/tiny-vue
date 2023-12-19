@@ -117,5 +117,5 @@ export default {
       'codeFiles': ['validation/asterisk-method.vue']
     }
   ],
-  apis: [{ 'name': 'grid-validation', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-validation', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

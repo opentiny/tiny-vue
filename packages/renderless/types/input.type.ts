@@ -15,7 +15,8 @@ import type {
   resizeTextarea,
   updateIconOffset,
   hiddenPassword,
-  dispatchDisplayedValue
+  dispatchDisplayedValue,
+  inputStyle
 } from '../src/input'
 
 export interface IInputState {
@@ -26,7 +27,8 @@ export interface IInputState {
   passwordVisible: boolean
   boxVisibility: boolean
   textareaCalcStyle: object
-  checkedLable: string
+  checkedLabel: string
+  width: string
   sheetvalue: string | number | undefined
   inputSize: ComputedRef<string>
   showClear: ComputedRef<boolean>
@@ -71,6 +73,7 @@ export interface IInputApi extends Pick<IInputRenderlessParamUtils, 'dispatch'> 
   calcIconOffset: ReturnType<typeof calcIconOffset>
   focus: ReturnType<typeof focus>
   getDisplayedValue: ReturnType<typeof getDisplayedValue>
+  inputStyle: ReturnType<typeof inputStyle>
 }
 
 export type IInputRenderlessParams = ISharedRenderlessFunctionParams<IInputConstants> & {

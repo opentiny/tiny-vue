@@ -34,5 +34,5 @@ export default {
       'codeFiles': ['span/column-span.vue']
     }
   ],
-  apis: [{ 'name': 'grid-span', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-span', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -21,7 +21,7 @@ export default {
     },
     {
       'demoId': 'size',
-      'name': { 'zh-CN': '设置组件大小的size属性', 'en-US': 'Set the size attribute of the component size' },
+      'name': { 'zh-CN': '尺寸', 'en-US': 'Set the size attribute of the component size' },
       'desc': {
         'zh-CN': '<p>可设置为：medium，small，mini</p>\n',
         'en-US': '<p>The value can be medium, small, or mini</p>\n'
@@ -33,20 +33,20 @@ export default {
     {
       'name': 'drop-times',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue / v-model',
-          'type': '—',
-          'defaultValue': '该属性的默认值为 {}',
+          'type': 'string',
+          'defaultValue': '--',
           'desc': { 'zh-CN': '绑定值', 'en-US': 'Set the component size. The value can be medium, small, or mini.' },
-          'demoId': 'start-end-step'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'size',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置组件大小，可以设置为：medium，small，mini',
+            'zh-CN': '输入框尺寸',
             'en-US': 'Class name added to the DropTimes drop-down list box'
           },
           'demoId': 'size'
@@ -54,7 +54,7 @@ export default {
         {
           'name': 'popper-class',
           'type': 'string',
-          'defaultValue': '',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '为 DropTimes 下拉弹框添加的 class 类名',
             'en-US':
@@ -65,7 +65,7 @@ export default {
         {
           'name': 'popper-append-to-body',
           'type': 'boolean',
-          'defaultValue': '该属性的默认值为 true',
+          'defaultValue': ' true',
           'desc': {
             'zh-CN':
               '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)',
@@ -81,14 +81,14 @@ export default {
             'zh-CN': '设置输入框内的提示占位文本',
             'en-US': 'Set the prompt placeholder text in the text box.'
           },
-          'demoId': 'start-end-step'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'end',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 1440',
+          'defaultValue': ' 1440',
           'desc': {
-            'zh-CN': '结束时间，以分钟计算，默认值为 1440。',
+            'zh-CN': '结束时间，以分钟计算',
             'en-US': 'End time, in minutes. The default value is 1440.'
           },
           'demoId': 'start-end-step'
@@ -96,9 +96,9 @@ export default {
         {
           'name': 'start',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 0',
+          'defaultValue': ' 0',
           'desc': {
-            'zh-CN': '开始时间，以分钟计算，默认值为 0。',
+            'zh-CN': '开始时间，以分钟计算',
             'en-US': 'Start time, in minutes. The default value is 0.'
           },
           'demoId': 'start-end-step'
@@ -106,24 +106,34 @@ export default {
         {
           'name': 'step',
           'type': 'number',
-          'defaultValue': '该属性的默认值为 15',
+          'defaultValue': ' 15',
           'desc': {
-            'zh-CN': '间隔时间，以分钟计算，默认值为 15。',
+            'zh-CN': '间隔时间，以分钟计算',
             'en-US': 'Interval, in minutes. The default value is 15.'
           },
           'demoId': 'start-end-step'
+        },
+        {
+          'name': 'disabled',
+          'type': 'boolean',
+          'defaultValue': ' false',
+          'desc': {
+            'zh-CN': '禁用状态',
+            'en-US': 'Disabled state'
+          },
+          'demoId': ''
         }
       ],
       'events': [
         {
           'name': 'change',
-          'type': '',
+          'type': '(value: string) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '下拉切换当前时间后触发该事件',
             'en-US': 'This event is triggered after the current time is switched by the pull-down button.'
           },
-          'demoId': 'start-end-step'
+          'demoId': 'basic-usage'
         }
       ],
       'slots': []

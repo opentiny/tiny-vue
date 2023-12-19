@@ -1,5 +1,5 @@
 <template>
-  <tiny-pop-upload :action="action" :headers="headers"></tiny-pop-upload>
+  <tiny-pop-upload :action="action" :headers="headers" with-credentials></tiny-pop-upload>
 </template>
 
 <script setup lang="jsx">

@@ -43,7 +43,7 @@ export default {
     {
       'name': 'drop-roles',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue / v-model',
           'type': 'string , number',

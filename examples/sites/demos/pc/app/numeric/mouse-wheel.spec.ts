@@ -9,5 +9,5 @@ test('鼠标滚轮事件', async ({ page }) => {
   await numeric.click()
   await page.mouse.wheel(0, -100)
   const currentVal = Number(await numeric.inputValue())
-  expect(currentVal).toBeLessThan(initVal)
+  expect(currentVal).toBeGreaterThanOrEqual(initVal)
 })

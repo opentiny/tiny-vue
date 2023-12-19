@@ -66,7 +66,6 @@
             :with-credentials="state.withCredentials"
             :multiple="state.multiple"
             :accept="state.accept"
-            :filters="state.filters"
             :limit="limit"
             :headers="state.headers"
             :action="state.action"
@@ -142,16 +141,15 @@ export default defineComponent({
     'cancelButtonText',
     'uploadFileType',
     'maxUploadFileSize',
-    'filters',
     'accept',
     'disabled',
     'multiple',
     'limit',
     'headers',
-    'helpIcon',
     'action',
     'fileList'
   ],
+  emits: ['remove', 'progress', 'error', 'exceed', 'success'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     handleClick() {
-      Modal.message({ message: 'click' })
+      Modal.message({ message: 'click', status: 'info' })
     }
   }
 }

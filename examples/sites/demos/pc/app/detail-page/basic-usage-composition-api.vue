@@ -2,7 +2,7 @@
   <tiny-detail-page v-model="value"></tiny-detail-page>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { DetailPage as TinyDetailPage } from '@opentiny/vue'
 

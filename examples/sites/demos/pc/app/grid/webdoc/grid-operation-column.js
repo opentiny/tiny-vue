@@ -93,5 +93,5 @@ export default {
       'codeFiles': ['operation-column/header-select-disabled.vue']
     }
   ],
-  apis: [{ 'name': 'grid-operation-column', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-operation-column', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

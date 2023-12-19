@@ -29,7 +29,7 @@ export default {
     {
       'name': 'roles',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'fetch-role',
           'type': 'Function',

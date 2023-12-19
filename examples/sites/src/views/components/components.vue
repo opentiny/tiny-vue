@@ -55,7 +55,7 @@
                         <th width="15%">{{ i18nByKey('name') }}</th>
                         <th width="85%">{{ i18nByKey('desc') }}</th>
                       </tr>
-                      <tr v-else-if="key.includes('events')">
+                      <tr v-else-if="key.includes('events') || key.includes('methods')">
                         <th width="15%">{{ i18nByKey('name') }}</th>
                         <th width="20%">{{ i18nByKey('propType') }}</th>
                         <th width="65%">{{ i18nByKey('desc') }}</th>
@@ -90,7 +90,7 @@
                           ></a>
                           <span v-else v-html="row.type"></span>
                         </td>
-                        <td v-if="!key.includes('slots') && !key.includes('events')">
+                        <td v-if="!key.includes('slots') && !key.includes('events') && !key.includes('methods')">
                           <span
                             v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"
                           ></span>

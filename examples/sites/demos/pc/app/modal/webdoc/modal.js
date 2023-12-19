@@ -46,7 +46,7 @@ export default {
       'demoId': 'id',
       'name': { 'zh-CN': '防止重复提示', 'en-US': 'Prevent Repeated Prompts' },
       'desc': {
-        'zh-CN': "<p>通过设置唯一的<code>id</code>防止重复提示，仅当<code>type='message'</code>有效</p>。",
+        'zh-CN': "<p>通过设置唯一的<code>id</code>防止重复提示，仅当<code>type='message'</code>有效。</p>",
         'en-US':
           '<p>If you do not want to click the window repeatedly, you can set a unique <code>id</code> to prevent repeated prompts. This parameter is valid only for type=message. </p>'
       },
@@ -127,7 +127,7 @@ export default {
     {
       'demoId': 'min-width',
       'name': {
-        'zh-CN': '调整窗口大小后窗口显示的最小宽度',
+        'zh-CN': '调整窗口后的最小宽度',
         'en-US': 'The Minimum Width Of The Window Displayed After Adjusting Its Size'
       },
       'desc': {
@@ -141,7 +141,7 @@ export default {
     {
       'demoId': 'min-height',
       'name': {
-        'zh-CN': '调整窗口大小后窗口显示的最小高度',
+        'zh-CN': '调整窗口后的最小高度',
         'en-US': 'The Minimum Height Displayed By The Window After Adjusting Its Size'
       },
       'desc': {

@@ -88,13 +88,15 @@ export default {
           组件支持显示一个输入框，去过滤显示在左右列表的数据项。<br>
           通过 <code>filterable</code> 属性开启左右侧列表的搜索功能，默认是根据label内容过滤。<br>
           通过 <code>filter-placeholder</code> 属性自定义左右搜索框占位符。<br>
-          通过 <code>filter-method</code> 钩子函数，可自定义左右列表搜索的方法。
+          通过 <code>filter-method</code> 钩子函数，可自定义左右列表搜索的方法。<br>
+          调用 <code>clearQuery()</code> 方法,可清空左右侧列表的搜索框，参数为 left 或者 right 。<br>
         `,
         'en-US': `
           At the top of the left and right lists, you can display an input field to filter the data items that display the left and right lists. <br>
           Use the <code>filterable</code> attribute to enable the search function of the left and right lists, which by default filter based on the label content. <br>
           Use the <code>filter-placeholder</code> attribute to define the placeholder for the left and right search boxes. <br>
-          The <code>filter-method</code> hook allows you to customize the way you search the left and right lists.
+          The <code>filter-method</code> hook allows you to customize the way you search the left and right lists.<br>
+          The <code>clearQuery()</code> method clears the search box in the left and right lists with either the left or right arguments.<br>
         `
       },
       'codeFiles': ['custom-filter.vue']
@@ -114,7 +116,6 @@ export default {
       },
       'codeFiles': ['default-checked.vue']
     },
-
     {
       'demoId': 'drop-config',
       'name': { 'zh-CN': '可拖拽', 'en-US': 'Drag left and right' },
@@ -136,16 +137,7 @@ export default {
       },
       'codeFiles': ['target-order.vue']
     },
-    {
-      'demoId': 'manual-clear-query',
-      'name': { 'zh-CN': '手动清空搜索框', 'en-US': 'Clear the search box manually' },
-      'desc': {
-        'zh-CN': '调用 <code>clearQuery()</code> 方法可清空左右侧列表的搜索框，参数为 left 或者 right 。',
-        'en-US':
-          'The <code>clearQuery()</code> method clears the search box in the left and right lists with either the left or right arguments.'
-      },
-      'codeFiles': ['manual-clear-query.vue']
-    },
+
     {
       'demoId': 'before-transfer',
       'name': { 'zh-CN': '穿梭拦截', 'en-US': 'Clear the search box manually' },
@@ -208,7 +200,7 @@ export default {
           'demoId': 'basic-usage'
         },
         {
-          'name': 'modelValue',
+          'name': 'v-model / modelValue',
           'type': 'string[]',
           'defaultValue': '[]',
           'desc': {
@@ -280,6 +272,7 @@ export default {
           'name': 'format',
           'type': 'object',
           'defaultValue':
+            // eslint-disable-next-line no-template-curly-in-string
             "{ <br>&nbsp; noChecked:'${checked}/${total}', <br>&nbsp; hasChecked: '${checked}/${total}' <br>}",
           'desc': { 'zh-CN': '列表顶部勾选状态文案', 'en-US': 'Check the status copy at the top of the list' },
           'demoId': 'custom-titles'
@@ -525,7 +518,7 @@ export default {
           'type': '(name: string) => void',
           'defaultValue': '',
           'desc': { 'zh-CN': '清空某个面板的搜索关键词', 'en-US': 'Clear the search keywords of a panel.' },
-          'demoId': 'manual-clear-query'
+          'demoId': 'custom-filter'
         }
       ]
     }

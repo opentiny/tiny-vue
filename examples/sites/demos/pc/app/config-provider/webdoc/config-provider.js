@@ -49,18 +49,11 @@ export default {
           'demoId': 'base'
         },
         {
-          'name': 'breakPoints',
-          'type': 'breakPoint',
-          'defaultValue': "{'xs': 480,'sm': 640,'md': 768,'lg': 1024,'xl': 1280,'2xl': 1536}",
-          'desc': { 'zh-CN': '断点, 为Layout提供', 'en-US': 'Breakpoints, providing layout with' },
-          'demoId': 'base'
-        },
-        {
           'name': 'direction',
           'type': "'ltr' | 'rtl'",
           'defaultValue': 'ltr',
           'desc': { 'zh-CN': '文字排版方向', 'en-US': 'Text layout direction' },
-          'demoId': 'text-dire'
+          'demoId': 'text-direct'
         },
         {
           'name': 'tag',
@@ -71,7 +64,7 @@ export default {
             'en-US':
               'Whether it is wrapped by elements, if it is Vue2 and there is no single node, the component will automatically create a div'
           },
-          'demoId': 'base'
+          'demoId': 'tag'
         }
       ],
       'events': [],

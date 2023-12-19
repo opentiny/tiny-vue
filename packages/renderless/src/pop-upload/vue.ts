@@ -35,7 +35,6 @@ import {
   closeErrorTips,
   watchUploaFileType,
   watchMaxUploadFileSize,
-  watchFilters,
   watchAccept,
   computedUploadButtonText,
   computedUploadsButtonText,
@@ -80,7 +79,6 @@ const initState = ({ reactive, props, computed, api }) =>
     isShowDialog: false,
     accept: props.accept,
     action: props.action,
-    filters: props.filters,
     headers: props.headers,
     disabled: props.disabled,
     multiple: props.multiple,
@@ -118,7 +116,6 @@ const initApi = ({ api, state, refs, emit, props, constants, t }) => {
     watchAccept: watchAccept(state),
     progressEvent: progressEvent(emit),
     watchHeaders: watchHeaders(state),
-    watchFilters: watchFilters(state),
     watchMultiple: watchMultiple(state),
     watchDisabled: watchDisabled(state),
     closeErrorTips: closeErrorTips(state),
@@ -169,8 +166,6 @@ const initWatch = ({ watch, props, api }) => {
   watch(() => props.action, api.watchAction, { immediate: true })
 
   watch(() => props.headers, api.watchHeaders, { immediate: true })
-
-  watch(() => props.filters, api.watchFilters, { immediate: true })
 
   watch(() => props.limit, api.watchLimit, { immediate: true })
 }
