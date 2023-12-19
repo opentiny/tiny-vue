@@ -1,7 +1,7 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility1 = true">显示在顶部</tiny-button>
-    <tiny-button @click="boxVisibility2 = true">距离顶部300px</tiny-button>
+    <tiny-button @click="boxVisibility1 = true" type="info">显示在顶部</tiny-button>
+    <tiny-button @click="boxVisibility2 = true">距离顶部 300px</tiny-button>
     <tiny-dialog-box top="0" v-model:visible="boxVisibility1" title="消息" width="30%">
       <span>dialog-box内容</span>
       <template #footer>
