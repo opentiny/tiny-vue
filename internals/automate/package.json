@@ -5,7 +5,8 @@
   "main": "./src/index.ts",
   "type": "module",
   "scripts": {
-    "start": "esno ./src/index.ts"
+    "start": "esno ./src/index.ts",
+    "scan": "esno ./src/demos-scan.ts"
   },
   "dependencies": {
     "fs-extra": "^11.2.0",
