@@ -131,7 +131,7 @@ export default {
           'name': 'effect',
           'type': 'IEffect',
           'typeAnchorName': 'IEffect',
-          'defaultValue': 'light',
+          'defaultValue': `'light'`,
           'desc': {
             'zh-CN': '主题',
             'en-US': 'Subject'
