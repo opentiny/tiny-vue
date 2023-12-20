@@ -12,6 +12,9 @@
     "fs-extra": "^11.2.0",
     "esno": "^4.0.0"
   },
+  "devDependencies": {
+    "@types/node": "^20.10.5"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
