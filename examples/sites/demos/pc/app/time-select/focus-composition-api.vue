@@ -13,7 +13,7 @@ const value = ref('')
 const timeSelectRef = ref()
 
 function hanleFocus() {
-  timeSelectRef.value.handleFocus()
+  timeSelectRef.value.focus()
 }
 </script>
 

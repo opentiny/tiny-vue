@@ -40,20 +40,15 @@
       :title="state.displayValue"
       :display-only="state.isDisplayOnly"
       :display-only-content="state.displayValue"
-      @update:modelValue="(value) => (state.userInput = value)"
+      @update:model-value="(value) => (state.userInput = value)"
       @change="handleChange"
       @mouseenter="handleMouseEnter"
       @mouseleave="state.showClose = false"
       :validate-event="false"
-      ref="reference"
+      ref="referenceInput"
     >
       <template v-if="label" #prefix>
-        <tiny-tooltip
-          effect="light"
-          :content="state.labelTooltip"
-          placement="top"
-          @mouseenter.native="handleEnterPickerlabel"
-        >
+        <tiny-tooltip effect="light" :content="state.labelTooltip" placement="top" @mouseenter="handleEnterPickerlabel">
           <span class="tiny-input__label" ref="label"> {{ label }} </span>
         </tiny-tooltip>
       </template>
@@ -100,12 +95,7 @@
       v-clickoutside="handleClose"
       v-else
     >
-      <tiny-tooltip
-        effect="light"
-        :content="state.labelTooltip"
-        placement="top"
-        @mouseenter.native="handleEnterPickerlabel"
-      >
+      <tiny-tooltip effect="light" :content="state.labelTooltip" placement="top" @mouseenter="handleEnterPickerlabel">
         <span v-if="label" class="tiny-input__label" ref="label"> {{ label }} </span>
       </tiny-tooltip>
       <input
@@ -152,7 +142,7 @@
         :content="state.displayOnlyTooltip"
         effect="light"
         placement="top"
-        @mouseenter.native="handleEnterDisplayOnlyContent"
+        @mouseenter="handleEnterDisplayOnlyContent"
       >
         <span>{{ state.displayValue && state.displayValue.join(` ${t('ui.datepicker.to')} `) }}</span>
       </tiny-tooltip>
