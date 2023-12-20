@@ -1525,7 +1525,7 @@ export default {
             'zh-CN': '用于可树形表格，切换展开树形节点',
             'en-US': 'This parameter is used to switch and expand tree nodes in a tree table.'
           },
-          'demoId': 'grid-expand#expand-set-tree-expansion'
+          'demoId': 'grid-tree-table#tree-table-set-tree-expansion'
         },
         {
           'name': 'validate',
