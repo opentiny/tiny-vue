@@ -296,7 +296,7 @@ export default {
           'demoId': 'native'
         },
         {
-          'name': 'memorySpace',
+          'name': 'memory-space',
           'type': 'number',
           'defaultValue': '5',
           'desc': {
