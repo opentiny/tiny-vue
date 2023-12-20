@@ -296,6 +296,16 @@ export default {
           'demoId': 'native'
         },
         {
+          'name': 'memorySpace',
+          'type': 'number',
+          'defaultValue': '5',
+          'desc': {
+            'zh-CN': '设置 addMemory 方法中，最大能保存条目的数量',
+            'en-US': 'Sets the maximum number of entries that can be saved in the addMemory method'
+          },
+          'demoId': 'method-addMemory'
+        },
+        {
           'name': 'maxlength',
           'type': 'number',
           'defaultValue': '',
