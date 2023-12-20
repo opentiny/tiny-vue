@@ -47,7 +47,11 @@ export const getColumnList = (columns) => {
   const result = []
 
   columns.forEach((column) => {
-    result.push.apply(result, column.children && column.children.length ? getColumnList(column.children) : [column])
+    if (column.children && column.children.length) {
+      result.push(...getColumnList(column.children))
+    } else {
+      result.push(column)
+    }
   })
 
   return result
@@ -137,9 +141,10 @@ export const destroyColumn = ($table, { columnConfig }) => {
   $table.collectColumn = $table.collectColumn.slice(0)
 }
 
-export const emitEvent = (vnode, type, args) => {
-  if (vnode.tableListeners[type]) {
-    vnode.$emit.apply(vnode, [type].concat(args))
+export const emitEvent = (vm, type, args) => {
+  if (vm.tableListeners[type]) {
+    const params = [].concat(args)
+    vm.$emit(type, ...params)
   }
 }
 
@@ -182,7 +187,7 @@ export const getListeners = ($attrs, $listeners) => {
     const event = $attrs[name]
 
     if (regEventPrefix.test(name) && typeof event === 'function') {
-      listeners[name.substr(2).replace(regHyphenate, '-$1').toLowerCase()] = event
+      listeners[name.slice(2).replace(regHyphenate, '-$1').toLowerCase()] = event
     }
   })
 
