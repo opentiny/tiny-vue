@@ -35,8 +35,9 @@
       >
       </tiny-checkbox>
     </span>
+    <component v-if="icon" :is="icon" class="tiny-option__icon"></component>
     <slot>
-      <span>{{ state.currentLabel }}</span>
+      <span class="tiny-option__label">{{ state.currentLabel }}</span>
     </slot>
   </li>
 </template>
@@ -74,7 +75,8 @@ export default defineComponent({
     required: {
       type: Boolean,
       default: false
-    }
+    },
+    icon: Object
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })

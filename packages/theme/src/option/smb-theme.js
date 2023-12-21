@@ -2,7 +2,7 @@ export const tinyOptionSmbTheme = {
   'ti-option-height': 'var(--ti-common-size-height-normal)',
   'ti-option-font-size': 'var(--ti-common-font-size-1)',
   'ti-option-border-radius': 'var(--ti-common-border-radius-0)',
-  'ti-option-selected-font-weight': 'var(--ti-common-font-weight-4)',
+  'ti-option-selected-font-weight': 'var(--ti-common-font-weight-6)',
   'ti-option-padding-horizontal': 'var(--ti-common-space-4x)',
   'ti-option-icon-color-selected': 'var(--ti-common-color-icon-graybg-active)',
   'ti-option-checkbox-border-color-hover': '#191919',
