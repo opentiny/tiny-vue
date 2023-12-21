@@ -1,5 +1,5 @@
-export const tinyTransferSMBTheme = {
-  // SMB主题
+export const tinyTransferSmbTheme = {
+  // transfer-SMB主题
   'ti-transfer-panel-item-text-color': 'var(--ti-common-color-info-normal, #191919)',
   'ti-transfer-button-bg-color': 'var(--ti-common-color-bg-light-normal, #1476ff)',
   'ti-transfer-font-size': 'var(--ti-common-font-size-1)',

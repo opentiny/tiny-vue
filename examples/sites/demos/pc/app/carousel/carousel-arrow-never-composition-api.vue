@@ -12,10 +12,10 @@ import { Carousel as TinyCarousel, CarouselItem as TinyCarouselItem } from '@ope
 
 <style scoped>
 .carousel-item-demo:nth-child(2n) {
-  background-color: #99a9bf;
+  background-color: #fafafa;
 }
 
 .carousel-item-demo:nth-child(2n + 1) {
-  background-color: #d3dce6;
+  background-color: #edf0f3;
 }
 </style>
