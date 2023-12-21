@@ -48,7 +48,12 @@
       ref="referenceInput"
     >
       <template v-if="label" #prefix>
-        <tiny-tooltip effect="light" :content="state.labelTooltip" placement="top" @mouseenter="handleEnterPickerlabel">
+        <tiny-tooltip
+          effect="light"
+          :content="state.labelTooltip"
+          placement="top"
+          @mouseenter.native="handleEnterPickerlabel"
+        >
           <span class="tiny-input__label" ref="label"> {{ label }} </span>
         </tiny-tooltip>
       </template>
@@ -95,7 +100,12 @@
       v-clickoutside="handleClose"
       v-else
     >
-      <tiny-tooltip effect="light" :content="state.labelTooltip" placement="top" @mouseenter="handleEnterPickerlabel">
+      <tiny-tooltip
+        effect="light"
+        :content="state.labelTooltip"
+        placement="top"
+        @mouseenter.native="handleEnterPickerlabel"
+      >
         <span v-if="label" class="tiny-input__label" ref="label"> {{ label }} </span>
       </tiny-tooltip>
       <input
@@ -142,7 +152,7 @@
         :content="state.displayOnlyTooltip"
         effect="light"
         placement="top"
-        @mouseenter="handleEnterDisplayOnlyContent"
+        @mouseenter.native="handleEnterDisplayOnlyContent"
       >
         <span>{{ state.displayValue && state.displayValue.join(` ${t('ui.datepicker.to')} `) }}</span>
       </tiny-tooltip>
