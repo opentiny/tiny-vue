@@ -182,10 +182,10 @@ const Methods = {
     }
     return this.clearActived()
   },
-  refreshData() {
-    let next = () => {
+  refreshData(data) {
+    const next = () => {
       this.tableData = []
-      return this.loadTableData(this.tableFullData)
+      return this.loadTableData(data || this.tableFullData)
     }
     return this.$nextTick().then(next)
   },
@@ -233,7 +233,7 @@ const Methods = {
     let { $refs, editStore, height, maxHeight } = this as any
     let { lastScrollLeft, lastScrollTop } = this as any
     let { scrollY } = this.optimizeOpts
-    // 原始全量数据
+    // 对原始数据进行浅拷贝
     let tableFullData = isArray(datas) ? datas.slice(0) : []
     let scrollYLoad = scrollY && scrollY.gt > 0 && scrollY.gt <= tableFullData.length
 
@@ -246,7 +246,7 @@ const Methods = {
     // 原始数据
     Object.assign(this, {
       tableSynchData: datas,
-      // 此处存在性能问题，如果用户表格数据量很大，这里深拷贝会带来性能问题,
+      // 此处存在性能问题，如果用户表格数据量很大，这里深拷贝会带来性能问题
       tableSourceData: clone(tableFullData, true),
       scrollYLoad
     })
@@ -367,21 +367,22 @@ const Methods = {
       fullColumnMap.set(column, colCache)
     })
   },
+  // 通过tr的dom元素获取行数据等相关信息
   getRowNode(tr) {
     if (!tr) {
       return null
     }
 
-    let { fullAllDataRowIdData, tableFullData, treeConfig } = this
-    let dataRowid = tr.getAttribute('data-rowid')
+    const { fullAllDataRowIdData, tableFullData, treeConfig } = this
+    const dataRowid = tr.getAttribute('data-rowid')
     if (treeConfig) {
-      let matches = findTree(tableFullData, (row) => getRowid(this, row) === dataRowid, treeConfig)
+      const matches = findTree(tableFullData, (row) => getRowid(this, row) === dataRowid, treeConfig)
       if (matches) {
         return matches
       }
     } else {
       if (fullAllDataRowIdData[dataRowid]) {
-        let rowCache = fullAllDataRowIdData[dataRowid]
+        const rowCache = fullAllDataRowIdData[dataRowid]
         return {
           item: rowCache.row,
           index: rowCache.index,
