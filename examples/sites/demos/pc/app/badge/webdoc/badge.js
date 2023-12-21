@@ -142,7 +142,7 @@ export default {
             'zh-CN': '指定跳转的目标页面地址',
             'en-US': 'Specify the URL of the target page.'
           },
-          'demoId': 'target'
+          'demoId': 'link'
         },
         {
           'name': 'is-dot',

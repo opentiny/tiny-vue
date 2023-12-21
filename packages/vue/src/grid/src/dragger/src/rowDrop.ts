@@ -24,7 +24,7 @@
  */
 import { findTree } from '@opentiny/vue-renderless/grid/static/'
 import Modal from '@opentiny/vue-modal'
-import GlobalConfig from '../../../config'
+import GlobalConfig from '../../config'
 
 function handleIfScrollYLoadTruthy({ isScrollYLoad, _vm, selfRow, prevTrElem, targetTrElem }) {
   if (!isScrollYLoad) {
@@ -49,7 +49,7 @@ function handleIfScrollYLoadTruthy({ isScrollYLoad, _vm, selfRow, prevTrElem, ta
   targetTrElem.remove()
 }
 
-function createHandlerOnEnd({ _vm, refresh }) {
+export const createHandlerOnEnd = ({ _vm, refresh }) => {
   return (event) => {
     let insertRecords = _vm.getInsertRecords()
     // 包含新增数据的表格不可再拖动行顺序
@@ -102,4 +102,62 @@ function createHandlerOnEnd({ _vm, refresh }) {
   }
 }
 
-export { createHandlerOnEnd }
+export const getSortColumns = (columns) => {
+  const left = []
+  const right = []
+  const center = []
+
+  columns.forEach((col) => {
+    const fixed = col.fixed
+
+    if (fixed === 'left') {
+      left.push(col)
+    } else if (fixed === 'right') {
+      right.push(col)
+    } else {
+      center.push(col)
+    }
+  })
+
+  return left.concat(center).concat(right)
+}
+
+export const onEndEvent = ({ event, _this }) => {
+  const { item, newIndex, oldIndex } = event
+  let { fullColumn, tableColumn } = _this.getTableColumn()
+  const sortVisibleCols = getSortColumns(tableColumn)
+  let targetThElem = item
+  let wrapperElem = targetThElem.parentNode
+  let newColumn = sortVisibleCols[newIndex]
+
+  if (newColumn.fixed) {
+    // 错误的移动
+    if (newIndex > oldIndex) {
+      for (let i = newIndex; i >= oldIndex; i--) {
+        wrapperElem.insertBefore(targetThElem, wrapperElem.children[i])
+      }
+    } else {
+      for (let i = newIndex; i <= oldIndex; i++) {
+        wrapperElem.insertBefore(targetThElem, wrapperElem.children[i])
+      }
+
+      wrapperElem.insertBefore(wrapperElem.children[oldIndex], targetThElem)
+    }
+
+    return Modal.message({
+      message: GlobalConfig.i18n('ui.grid.error.dargFixed'),
+      status: 'error'
+    })
+  }
+  // 转换真实索引
+  let oldColumnIndex = _this.getColumnIndex(sortVisibleCols[oldIndex])
+  let newColumnIndex = _this.getColumnIndex(sortVisibleCols[newIndex])
+  // 移动到目标列
+  let currCol = fullColumn.splice(oldColumnIndex, 1)[0]
+
+  fullColumn.splice(newColumnIndex, 0, currCol)
+  _this.loadColumn(fullColumn)
+  _this.$emit('column-drop-end', event, _this)
+
+  _this.isDragHeaderSorting && _this.$grid.toolBarVm && _this.$grid.toolBarVm.updateSetting()
+}

@@ -191,6 +191,18 @@ export const handleQueryChange =
     api.defaultOnQueryChange(value)
   }
 
+export const debouncedQueryChange =
+  ({ props, api }) =>
+  (event) => {
+    const value = props.shape ? event : event.target.value
+    api.handleDebouncedQueryChange(value)
+  }
+
+export const handleDebouncedQueryChange = ({ state, api }) =>
+  debounce(state.debounce, (value) => {
+    api.handleQueryChange(value)
+  })
+
 export const scrollToOption =
   ({ vm, constants }) =>
   (option) => {

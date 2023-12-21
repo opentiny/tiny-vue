@@ -60,6 +60,10 @@ export const inputProps = {
     type: String,
     default: 'text'
   },
+  memorySpace: {
+    type: Number,
+    default: 5
+  },
   vertical: {
     type: Boolean,
     default: false

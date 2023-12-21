@@ -426,7 +426,7 @@
     "exclude": false
   },
   "ChartBar": {
-    "path": "vue/src/charts-beta/chart-bar/index.ts",
+    "path": "vue/src/chart-beta/chart-bar/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -441,7 +441,7 @@
     "exclude": false
   },
   "ChartCore": {
-    "path": "vue/src/charts-beta/chart-core/index.ts",
+    "path": "vue/src/chart-beta/chart-core/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -466,12 +466,12 @@
     "exclude": false
   },
   "ChartHistogram": {
-    "path": "vue/src/charts-beta/chart-histogram/index.ts",
+    "path": "vue/src/chart-beta/chart-histogram/index.ts",
     "type": "component",
     "exclude": false
   },
   "ChartLine": {
-    "path": "vue/src/charts-beta/chart-line/index.ts",
+    "path": "vue/src/chart-beta/chart-line/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -486,17 +486,17 @@
     "exclude": false
   },
   "ChartPie": {
-    "path": "vue/src/charts-beta/chart-pie/index.ts",
+    "path": "vue/src/chart-beta/chart-pie/index.ts",
     "type": "component",
     "exclude": false
   },
   "ChartRadar": {
-    "path": "vue/src/charts-beta/chart-radar/index.ts",
+    "path": "vue/src/chart-beta/chart-radar/index.ts",
     "type": "component",
     "exclude": false
   },
   "ChartRing": {
-    "path": "vue/src/charts-beta/chart-ring/index.ts",
+    "path": "vue/src/chart-beta/chart-ring/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -531,7 +531,7 @@
     "exclude": false
   },
   "ChartsBeta": {
-    "path": "vue/src/charts-beta/index.ts",
+    "path": "vue/src/chart-beta/index.ts",
     "type": "component",
     "exclude": false
   },

@@ -420,7 +420,7 @@ export default {
           'name': 'list-type',
           'type': 'IListType',
           'typeAnchorName': 'IListType',
-          'defaultValue': 'text',
+          'defaultValue': `'text'`,
           'desc': {
             'zh-CN': '文件列表的类型',
             'en-US': 'File list type'
@@ -459,7 +459,7 @@ export default {
         {
           'name': 'name',
           'type': 'string',
-          'defaultValue': 'file',
+          'defaultValue': `'file'`,
           'desc': { 'zh-CN': '上传的文件字段名', 'en-US': 'Field name of the uploaded file' },
           'demoId': 'upload-file-list-slot'
         },

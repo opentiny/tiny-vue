@@ -26,6 +26,13 @@ import { isArray, isBoolean } from '@opentiny/vue-renderless/grid/static/'
 import { getFilters, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { getDataset } from '@opentiny/vue-renderless/common/dataset'
 import { hooks } from '@opentiny/vue-common'
+import {
+  handleFilterConditionCustom,
+  handleFilterConditionExtend,
+  handleFilterRelations,
+  handleFilterCheckStr,
+  handleFilterCheck
+} from './handleLocalFilter'
 
 function getClassName(elem) {
   if (elem && elem.nodeType) {
@@ -56,7 +63,9 @@ function closest(elem, parentClassName) {
       if (elem === document.body) {
         break
       }
-    } while ((elem = elem.parentNode))
+
+      elem = elem.parentNode
+    } while (elem)
   }
 
   return null
@@ -113,6 +122,36 @@ export default {
     }
 
     return Promise.resolve(filters)
+  },
+  // 关闭筛选
+  closeFilter() {
+    let { filterStore } = this
+    Object.assign(filterStore, {
+      visible: false,
+      targetElem: null,
+      targetElemParentTr: null
+    })
+    return this.$nextTick()
+  },
+  handleLocalFilter(row, column) {
+    let { property } = column
+    let {
+      filter: { condition, method, inputFilter }
+    } = column
+    let ret = handleFilterConditionCustom({ column, condition, method, property, row })
+    if (ret.flag) {
+      return ret.result
+    }
+    ret = handleFilterConditionExtend({ column, condition, property, row })
+    if (ret.flag) {
+      return ret.result
+    }
+    let { empty, input, relation, value, dateList } = condition
+    let { method: relationMethod } = condition
+    let relations = handleFilterRelations({ inputFilter })
+    let checkStr = handleFilterCheckStr({ column, relationMethod, relations, row })
+    let check = handleFilterCheck({ checkStr, empty, input, property, relation, row, valueList: value, dateList })
+    return check()
   },
   getOptions({ property, filter }) {
     const { values, value = 'value', label = 'label', dataset } = filter
