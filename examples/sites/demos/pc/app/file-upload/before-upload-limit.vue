@@ -1,5 +1,5 @@
 <template>
-  <tiny-file-upload ref="upload" :action="action" :file-list="fileList" :before-upload="beforeUpload">
+  <tiny-file-upload ref="upload" :action="action" :file-list="fileList" :before-upload="beforeAvatarUpload">
     <template #trigger>
       <tiny-button type="primary">选取文件</tiny-button>
     </template>
@@ -26,11 +26,21 @@ export default {
     }
   },
   methods: {
-    beforeUpload(file) {
+    beforeAvatarUpload(file) {
       return new Promise((resolve, reject) => {
-        Modal.confirm(`确定要上传 ${file.name}？`).then((res) => {
-          res === 'confirm' ? resolve() : reject()
-        })
+        const isJPG = file.type === 'image/jpeg'
+        const isLt2M = file.size / 1024 / 1024 < 2
+        const allow = isJPG && isLt2M
+
+        if (!allow) {
+          Modal.confirm(`自定义提示：《${file.name}》文件不合规范，文件类型或大小超出限制，确定要上传吗？`).then(
+            (res) => {
+              res === 'confirm' ? resolve() : reject()
+            }
+          )
+        } else {
+          resolve()
+        }
       })
     }
   }

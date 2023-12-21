@@ -65,6 +65,9 @@ const rules = reactive({
 const uploadSuccess = () => {
   // 模拟上传成功后，返回的数据信息,以此通过validatePass的校验
   createData.files = `https://res.hc-cdn.com/tiny-vue-web-doc/3.10.5.20230903162611/static/images/book.jpg`
+
+  // 上传成功后再进行表单验证
+  formValidate()
 }
 
 const beforeUpload = (file) => {
@@ -72,7 +75,7 @@ const beforeUpload = (file) => {
   uploadSuccess()
 }
 
-const handleSubmit = () => {
+const formValidate = () => {
   ruleFormRef.value.validate((valid) => {
     if (valid) {
       Modal.alert('校验通过')
@@ -83,10 +86,13 @@ const handleSubmit = () => {
   })
 }
 
+const handleSubmit = () => {
+  formValidate()
+}
+
 const handleRemove = (file) => {
   const index = fileList.findIndex((item) => item.name === file.name)
   fileList.splice(index, 1)
-  console.log('fileList', fileList)
   createData.files = ''
 }
 </script>

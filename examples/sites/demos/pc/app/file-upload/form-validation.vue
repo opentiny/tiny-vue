@@ -67,12 +67,15 @@ export default {
     uploadSuccess() {
       // 模拟上传成功后，返回的数据信息,以此通过validatePass的校验
       this.createData.files = `https://res.hc-cdn.com/tiny-vue-web-doc/3.10.5.20230903162611/static/images/book.jpg`
+
+      // 上传成功后再进行表单验证
+      this.formValidate()
     },
     beforeUpload(file) {
       this.fileList.push({ name: file.name, url: file.url })
       this.uploadSuccess()
     },
-    handleSubmit() {
+    formValidate() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
           Modal.alert('校验通过')
@@ -81,6 +84,9 @@ export default {
           return false
         }
       })
+    },
+    handleSubmit() {
+      this.formValidate()
     },
     handleRemove(file) {
       const index = this.fileList.findIndex((item) => item.name === file.name)
