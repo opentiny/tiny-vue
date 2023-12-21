@@ -1050,6 +1050,85 @@ export default {
           'demoId': 'manual-focus-blur'
         }
       ]
+    },
+    {
+      'name': 'option',
+      'type': 'component',
+      'props': [
+        {
+          'name': 'label',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '选项的显示文本',
+            'en-US': 'Display text for option'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'value',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '选项的值',
+            'en-US': 'Value for option'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'icon',
+          'type': 'VueComponent',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '自定义选项的图标',
+            'en-US': 'Customize icons for options'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'disabled',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '选项是否禁用',
+            'en-US': 'Is the option disabled'
+          },
+          'demoId': 'disabled'
+        },
+        {
+          'name': 'required',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '选项是否必选',
+            'en-US': 'Is it mandatory to select an option'
+          },
+          'demoId': ''
+        }
+        /* 
+        // TINY-TODO: 待确认是否暴露给用户使用
+         {
+          'name': 'visible',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '选项是否可见',
+            'en-US': 'Is the option visible'
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'highlight-class',
+          'type': 'string',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '选项高亮类名',
+            'en-US': 'Is the option visible'
+          },
+          'demoId': 'basic-usage'
+        },
+        */
+      ]
     }
   ],
   types: [
@@ -1060,6 +1139,9 @@ export default {
 interface IOption {
   value?: string | number
   label?: string
+  disabled?: boolean
+  icon?: VueComponent
+  required?:boolean
 }
 `
     },
