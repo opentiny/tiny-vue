@@ -21,7 +21,7 @@
             <tiny-button type="primary">选取文件</tiny-button>
           </template>
           <template #tip>
-            <div class="tiny-upload__tip">只能上传jpg/png文件</div>
+            <div class="tiny-upload__tip">只能上传 jpg/png 文件</div>
           </template>
         </tiny-file-upload>
       </tiny-form-item>
@@ -80,7 +80,7 @@ export default {
         if (valid) {
           Modal.alert('校验通过')
         } else {
-          Modal.message({ message: '校验不通过！！', status: 'warning' })
+          Modal.message({ message: '校验不通过', status: 'warning' })
           return false
         }
       })

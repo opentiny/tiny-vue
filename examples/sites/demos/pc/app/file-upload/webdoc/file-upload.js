@@ -84,7 +84,7 @@ export default {
     },
     {
       'demoId': 'upload-request',
-      'name': { 'zh-CN': '请求头部配置', 'en-US': 'Request header configuration' },
+      'name': { 'zh-CN': '定义请求头部', 'en-US': 'Custom request header' },
       'desc': {
         'zh-CN':
           '通过 <code>headers</code> 配置上传请求头部信息， <code>with-credentials</code> 设置允许发送 cookie 凭证信息。',
@@ -334,7 +334,8 @@ export default {
         },
         {
           'name': 'data',
-          'type': 'object',
+          'type': 'IData',
+          'typeAnchorName': 'IData',
           'defaultValue': '',
           'desc': {
             'zh-CN': '上传时附带的额外参数，参数自定义',
@@ -434,7 +435,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '配置 merge-service 为true 且开启多文件上传走默认服务会将多个上传服务合并为一个服务上传',
+            'zh-CN': '配置 merge-service 为 true 且开启多文件上传走默认服务会将多个上传服务合并为一个服务上传',
             'en-US':
               'If merge-service is set to true and multiple files are uploaded using the default service, multiple upload services are combined into one service'
           },
@@ -489,9 +490,9 @@ export default {
           'type': '(count: number) => string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '自定义重新上传的左侧提示文字，需要与re-uploadable搭配使用【3.12.0版本新增】',
+            'zh-CN': '自定义重新上传的左侧提示文字，需要与 re-uploadable 搭配使用【3.12.0版本新增】',
             'en-US':
-              'Customize the left prompt for re uploading, which needs to be used in conjunction with re uploadable [added in version 3.12.0]'
+              'Customize the left prompt for re uploading, which needs to be used in conjunction with re-uploadable [added in version 3.12.0]'
           },
           'demoId': 'custom-upload-tip'
         },
@@ -553,7 +554,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '文件上传失败时触发的事件； message 为错误信息事件对象，file 为当前上传失败文件信息，fileList为上传成功file数组',
+              '文件上传失败时触发的事件； message 为错误信息事件对象，file 为当前上传失败文件信息，fileList 为上传成功 file 数组',
             'en-US':
               'Event triggered when file upload fails; Message is the error message event object, file is the current upload failure file information, and fileList is the upload success file array'
           },
@@ -575,7 +576,7 @@ export default {
           'type': '(percentage: number) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '文件上传生成hash值触发的事件； percentage为生成的进度值',
+            'zh-CN': '文件上传生成 hash 值触发的事件； percentage 为生成的进度值',
             'en-US': 'Event triggered by file upload to generate hash value; percentage is the generated progress value'
           },
           'demoId': 'upload-events'
@@ -681,17 +682,11 @@ export default {
   ],
   types: [
     {
-      name: 'IThumbOption',
+      name: 'IData',
       type: 'interface',
       code: `
-interface IThumbOption {
-  width: number // 弹窗宽度，默认270
-  showDownload: boolean // 是否显示下载按钮，默认false
-  showDel: boolean // 是否显示删除按钮，布尔false
-  showTooltip: boolean // 文件名超出隐藏显示时是否启用tip，默认false
-  popperClass: string // 弹窗列表自定义类名
-  downloadFile: (file) => void // 点击下载按钮执行函数
-  icon: string | VueComponent // 列表结果前 icon ，默认为 'icon-attachment'
+interface IData {
+  [propsName?: any]: any // 上传参数可自定义
 }
       `
     },
@@ -735,6 +730,21 @@ interface IHeaders {
       type: 'type',
       code: `
 type IListType = 'text' | 'picture' | 'picture-card' | 'thumb'
+      `
+    },
+    {
+      name: 'IThumbOption',
+      type: 'interface',
+      code: `
+interface IThumbOption {
+  width: number // 弹窗宽度，默认270
+  showDownload: boolean // 是否显示下载按钮，默认false
+  showDel: boolean // 是否显示删除按钮，布尔false
+  showTooltip: boolean // 文件名超出隐藏显示时是否启用tip，默认false
+  popperClass: string // 弹窗列表自定义类名
+  downloadFile: (file) => void // 点击下载按钮执行函数
+  icon: string | VueComponent // 列表结果前 icon ，默认为 'icon-attachment'
+}
       `
     }
   ]
