@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     cancelUpload() {
-      Modal.message('手动取消上传')
+      Modal.message({ message: '手动取消上传', status: 'info' })
       this.$refs.upload.abort()
     }
   }

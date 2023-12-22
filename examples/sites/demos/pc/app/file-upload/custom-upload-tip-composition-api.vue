@@ -4,7 +4,7 @@
       <tiny-button type="primary">选取文件</tiny-button>
     </template>
     <template #tip>
-      <div class="tiny-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+      <div class="tiny-upload__tip">只能上传 jpg/png 文件，且不超过500 kb</div>
     </template>
   </tiny-file-upload>
 </template>
