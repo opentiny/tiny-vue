@@ -11,5 +11,5 @@ test('空数据插槽', async ({ page }) => {
 
   await input.click()
   await expect((await option.all()).length).toEqual(0)
-  await expect(page.locator('.tiny-select-dropdown')).toHaveText('空数据插槽')
+  await expect(page.locator('.tiny-select-dropdown')).toHaveText('APIG 网关异常')
 })
