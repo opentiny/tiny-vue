@@ -1,8 +1,9 @@
 export const tinySelectDropdownSmbTheme = {
   'ti-select-dropdown-border-radius': 'var(--ti-common-border-radius-3)',
-  'ti-select-dropdown-empty-text-color': 'var(--ti-common-color-text-weaken)',
+  'ti-select-dropdown-empty-text-color': 'var(--ti-common-color-text-secondary)',
   'ti-select-dropdown-empty-padding-horizontal': 'var(--ti-common-size-0)',
-  'ti-select-dropdown-empty-padding-vertical': 'var(--ti-common-space-2x)',
+  'ti-select-dropdown-empty-padding-vertical': '46px',
+  'ti-select-dropdown-empty-font-size': 'var(--ti-common-font-size-0)',
   'ti-select-dropdown-margin-top': 'var(--ti-common-space-base)',
   'ti-select-dropdown-box-shadow': 'var(--ti-common-shadow-2-down)',
   'ti-select-dropdown-padding-top': 'var(--ti-common-space-2x)',
