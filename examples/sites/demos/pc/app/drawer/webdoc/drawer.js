@@ -5,15 +5,14 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>详细用法参考如下示例</p>', 'en-US': '' },
+      'desc': { 'zh-CN': '<p>详细用法参考如下示例。</p>', 'en-US': '' },
       'codeFiles': ['basic-usage.vue']
     },
     {
       'demoId': 'placement',
       'name': { 'zh-CN': '抽屉方向', 'en-US': '' },
       'desc': {
-        'zh-CN':
-          '<p>添加 <code>placement</code> 属性设置抽屉的方向，可选值有 <code>left | right | top | bottom</code>，默认值为 <code>right</code>。</p>',
+        'zh-CN': `<p>添加 <code>placement</code> 属性设置抽屉的方向，可选值有 <code>'left' | 'right' | 'top' | 'bottom'</code>，默认值为 <code>'right'</code>。</p>`,
         'en-US': ''
       },
       'codeFiles': ['placement.vue']
@@ -21,7 +20,10 @@ export default {
     {
       'demoId': 'width',
       'name': { 'zh-CN': '抽屉宽度', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>添加<code>width</code> 属性设置抽屉的宽度，默认值为 <code>500px</code></p>', 'en-US': '' },
+      'desc': {
+        'zh-CN': '<p>添加<code>width</code> 属性设置抽屉的宽度，默认值为 <code>500px</code>。</p>',
+        'en-US': ''
+      },
       'codeFiles': ['width.vue']
     },
     {
@@ -83,7 +85,7 @@ export default {
     {
       'demoId': 'default-slot',
       'name': { 'zh-CN': '默认插槽', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>自定义抽屉主体内容</p>', 'en-US': '' },
+      'desc': { 'zh-CN': '<p>自定义抽屉主体内容。</p>', 'en-US': '' },
       'codeFiles': ['default-slot.vue']
     },
     {
@@ -129,38 +131,23 @@ export default {
       'type': 'component',
       'props': [
         {
-          'name': 'visible',
-          'type': 'boolean',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '控制抽屉显示与关闭', 'en-US': '' },
-          'demoId': 'basic-usage'
-        },
-        {
-          'name': 'placement',
-          'type': `'left' | 'right' | 'top' | 'bottom' `,
-          'defaultValue': 'right',
-          'desc': { 'zh-CN': '添加 placement 属性设置抽屉的方向', 'en-US': '' },
-          'demoId': 'placement'
-        },
-        {
-          'name': 'width',
-          'type': 'string',
-          'defaultValue': '500px',
-          'desc': { 'zh-CN': '设置抽屉的宽度', 'en-US': '' },
-          'demoId': 'width'
-        },
-        {
           'name': 'dragable',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '控制抽屉开启或关闭宽度拖拽功能', 'en-US': '' },
+          'desc': {
+            'zh-CN': '控制抽屉开启或关闭宽度拖拽功能',
+            'en-US': ''
+          },
           'demoId': 'dragable'
         },
         {
           'name': 'mask',
           'type': 'boolean',
           'defaultValue': 'true',
-          'desc': { 'zh-CN': '控制遮罩层显示隐藏 ', 'en-US': '' },
+          'desc': {
+            'zh-CN': '控制遮罩层显示隐藏 ',
+            'en-US': ''
+          },
           'demoId': 'mask'
         },
         {
@@ -174,31 +161,73 @@ export default {
           'demoId': 'mask-closable'
         },
         {
+          'name': 'placement',
+          'type': "'left' | 'right' | 'top' | 'bottom' ",
+          'defaultValue': "'right'",
+          'desc': {
+            'zh-CN': '添加 placement 属性设置抽屉的方向',
+            'en-US': ''
+          },
+          'demoId': 'placement'
+        },
+        {
           'name': 'show-close',
           'type': 'boolean',
           'defaultValue': 'true',
-          'desc': { 'zh-CN': '控制关闭图标显示', 'en-US': '' },
+          'desc': {
+            'zh-CN': '控制关闭图标显示',
+            'en-US': ''
+          },
           'demoId': 'show-close'
-        },
-        {
-          'name': 'show-header',
-          'type': 'boolean',
-          'defaultValue': 'true',
-          'desc': { 'zh-CN': '控制头部显示', 'en-US': '' },
-          'demoId': 'show-header'
         },
         {
           'name': 'show-footer',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '控制底部显示', 'en-US': '' },
+          'desc': {
+            'zh-CN': '控制底部显示',
+            'en-US': ''
+          },
           'demoId': 'show-footer'
+        },
+        {
+          'name': 'show-header',
+          'type': 'boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '控制头部显示',
+            'en-US': ''
+          },
+          'demoId': 'show-header'
+        },
+        {
+          'name': 'visible',
+          'type': 'boolean',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '控制抽屉显示与关闭',
+            'en-US': ''
+          },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'width',
+          'type': 'string',
+          'defaultValue': "'500px'",
+          'desc': {
+            'zh-CN': '设置抽屉的宽度',
+            'en-US': ''
+          },
+          'demoId': 'width'
         },
         {
           'name': 'z-index',
           'type': 'number',
           'defaultValue': '2000',
-          'desc': { 'zh-CN': '自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）', 'en-US': '' },
+          'desc': {
+            'zh-CN': '自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）',
+            'en-US': ''
+          },
           'demoId': 'z-index'
         }
       ],
@@ -207,14 +236,20 @@ export default {
           'name': 'close',
           'type': '()=> void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '关闭抽屉事件', 'en-US': '' },
+          'desc': {
+            'zh-CN': '关闭抽屉事件',
+            'en-US': ''
+          },
           'demoId': 'close-event'
         },
         {
           'name': 'confirm',
           'type': '()=> void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '确认事件，设置 :show-footer="true" 时有效', 'en-US': '' },
+          'desc': {
+            'zh-CN': '确认事件，设置 :show-footer="true" 时有效',
+            'en-US': ''
+          },
           'demoId': 'confirm-event'
         }
       ],
@@ -223,29 +258,41 @@ export default {
           'name': 'default',
           'type': '--',
           'defaultValue': '',
-          'desc': { 'zh-CN': '默认插槽', 'en-US': '' },
+          'desc': {
+            'zh-CN': '默认插槽',
+            'en-US': ''
+          },
           'demoId': 'default-slot'
+        },
+        {
+          'name': 'footer',
+          'type': '--',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '底部插槽',
+            'en-US': ''
+          },
+          'demoId': 'footer-slot'
         },
         {
           'name': 'header',
           'type': '--',
           'defaultValue': '',
-          'desc': { 'zh-CN': '头部插槽', 'en-US': '' },
+          'desc': {
+            'zh-CN': '头部插槽',
+            'en-US': ''
+          },
           'demoId': 'header-slot'
         },
         {
           'name': 'header-right',
           'type': '--',
           'defaultValue': '',
-          'desc': { 'zh-CN': '头部右侧插槽', 'en-US': '' },
+          'desc': {
+            'zh-CN': '头部右侧插槽',
+            'en-US': ''
+          },
           'demoId': 'header-right-slot'
-        },
-        {
-          'name': 'footer',
-          'type': '--',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '底部插槽', 'en-US': '' },
-          'demoId': 'footer-slot'
         }
       ]
     }
