@@ -247,6 +247,7 @@ export default defineComponent({
     'prefixIcon',
     'autocomplete',
     'showPassword',
+    'memorySpace',
     'validateEvent',
     'showWordLimit',
     'displayOnly',

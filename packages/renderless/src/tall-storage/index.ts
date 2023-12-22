@@ -63,8 +63,7 @@ export const keydown =
     }
   }
 
-const sortDeduplication = (array) => {
-  const memorySpace = 5 // 一个name的记忆量
+const sortDeduplication = (array, memorySpace = 5) => {
   const length = array.length
   let newArray = []
   let fillterObj = {}
@@ -106,7 +105,7 @@ const isJSONobject = (string, type) => {
   }
 }
 
-const setLocalStorageage = (name, value) => {
+const setLocalStorageage = (name, value, memorySpace = 5) => {
   if (typeof value === 'string') {
     const oldValue = localStorage.getItem(name)
     const isArray = isJSONobject(oldValue, Array)
@@ -116,7 +115,7 @@ const setLocalStorageage = (name, value) => {
       let oldArray = JSON.parse(localStorage.getItem(name))
 
       oldArray.unshift(value)
-      oldArray = sortDeduplication(oldArray)
+      oldArray = sortDeduplication(oldArray, memorySpace)
       newValue = JSON.stringify(oldArray)
     } else if (oldValue === null || oldValue === value) {
       newValue = value
@@ -130,7 +129,7 @@ const setLocalStorageage = (name, value) => {
 
 export const addMemory = (props) => (value) => {
   if (props.name && value) {
-    setLocalStorageage(props.name, value)
+    setLocalStorageage(props.name, value, props.memorySpace)
   }
 }
 

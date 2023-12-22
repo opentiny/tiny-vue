@@ -32,6 +32,14 @@ import { iconGroups } from './iconGroups.js'
 
 const all = Object.values(iconGroups).flat()
 iconGroups.Others = Object.keys(Svgs).filter((name) => !all.includes(name) && name[0] === 'I')
+
+// 排序
+Object.keys(iconGroups).forEach((k) => {
+  iconGroups[k] = iconGroups[k].sort((a, b) => {
+    return a > b ? 1 : -1
+  })
+})
+
 const searchName = ref('')
 
 function click(name) {

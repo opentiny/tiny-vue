@@ -13,16 +13,6 @@ export default {
       'codeFiles': ['basic-usage.vue']
     },
     {
-      'demoId': 'custom-trigger',
-      'name': { 'zh-CN': '触发源插槽', 'en-US': 'Trigger source slot' },
-      'desc': {
-        'zh-CN': '通过 <code>trigger</code> 插槽自定义文件选择触发源的内容，有触发文件选项框弹出的功能。',
-        'en-US':
-          'Select the content of the trigger source through the <code>trigger</code> slot customization file, and there is a function to pop up the trigger file option box.'
-      },
-      'codeFiles': ['custom-trigger.vue']
-    },
-    {
       'demoId': 'disabled',
       'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
       'desc': {
@@ -30,15 +20,6 @@ export default {
         'en-US': 'Disable the function by setting <code>disabled</code> .'
       },
       'codeFiles': ['disabled.vue']
-    },
-    {
-      'demoId': 'accept-file-image',
-      'name': { 'zh-CN': '限制文件类型', 'en-US': 'Restrict file types' },
-      'desc': {
-        'zh-CN': '通过 <code>accept</code> 设置限制上传文件的格式。',
-        'en-US': 'Limit the format of uploaded files by setting <code>accept</code> .'
-      },
-      'codeFiles': ['accept-file-image.vue']
     },
     {
       'demoId': 'multiple-file',
@@ -60,25 +41,35 @@ export default {
       'codeFiles': ['manual-upload.vue']
     },
     {
-      'demoId': 'upload-file-list',
-      'name': { 'zh-CN': '文件列表', 'en-US': 'Uploaded file list' },
+      'demoId': 'accept-file-image',
+      'name': { 'zh-CN': '限制文件类型', 'en-US': 'Restrict file types' },
       'desc': {
-        'zh-CN':
-          '通过 <code>file-list</code> 设置上传的文件列表，也可通过 <code>:show-file-list="false"</code> 关闭列表的显示； <code>open-download-file</code> 设置文件是否可下载。',
-        'en-US':
-          'Set the list of uploaded files through <code>file-list</code> , or turn off the display of the list through <code>: show-file-list="false"</code> ; <code>open-download-file</code> Set whether the file is downloadable.'
+        'zh-CN': '通过 <code>accept</code> 设置限制上传文件的格式。',
+        'en-US': 'Limit the format of uploaded files by setting <code>accept</code> .'
       },
-      'codeFiles': ['upload-file-list.vue']
+      'codeFiles': ['accept-file-image.vue']
     },
     {
-      'demoId': 'upload-file-list-slot',
-      'name': { 'zh-CN': '定义文件列表', 'en-US': 'Custom file list' },
+      'demoId': 'max-file-count',
+      'name': { 'zh-CN': '最大上传数', 'en-US': 'Maximum number of uploads' },
       'desc': {
-        'zh-CN': '通过 <code>name</code> 设置上传的文件字段名， <code>file</code> 插槽自定义文件列表。',
+        'zh-CN':
+          '通过 <code>limit</code> 设置限制上传文件的个数， <code>is-hidden</code> 设置达到最大上传数时是否隐藏上传按钮。',
         'en-US':
-          'Set the field name of the uploaded file through <code>name</code> , and customize the file list for the <code>file</code> slot.'
+          'Set a limit on the number of uploaded files by <code>limit</code> , and <code>is-hidden</code> whether to hide the upload button when the maximum number of uploads is reached.'
       },
-      'codeFiles': ['upload-file-list-slot.vue']
+      'codeFiles': ['max-file-count.vue']
+    },
+    {
+      'demoId': 'before-upload-limit',
+      'name': { 'zh-CN': '自定义上传前限制', 'en-US': 'Custom pre upload restrictions' },
+      'desc': {
+        'zh-CN':
+          '通过 <code>before-upload</code> 执行上传文件前的操作，对文件类型和大小做限制，返回 <code>false</code> 或 <code>reject</code> 则阻止上传。',
+        'en-US':
+          'Use<code>before-upload</code>to perform the operation before uploading a file, and limit the file type and size , and return <code>false</code> or <code>reject</code> to block the upload.'
+      },
+      'codeFiles': ['before-upload-limit.vue']
     },
     {
       'demoId': 'prevent-delete-file',
@@ -92,19 +83,8 @@ export default {
       'codeFiles': ['prevent-delete-file.vue']
     },
     {
-      'demoId': 'prevent-upload-file',
-      'name': { 'zh-CN': '阻止上传文件', 'en-US': 'Prevent upload files' },
-      'desc': {
-        'zh-CN':
-          '通过 <code>before-upload</code> 执行上传文件前的操作，返回 <code>false</code> 或 <code>reject</code> 则阻止上传。',
-        'en-US':
-          'Perform the operation before uploading the file by <code>before-upload</code> , and return <code>false</code> or <code>reject</code> to block the upload.'
-      },
-      'codeFiles': ['prevent-upload-file.vue']
-    },
-    {
       'demoId': 'upload-request',
-      'name': { 'zh-CN': '请求头部配置', 'en-US': 'Request header configuration' },
+      'name': { 'zh-CN': '定义请求头部', 'en-US': 'Custom request header' },
       'desc': {
         'zh-CN':
           '通过 <code>headers</code> 配置上传请求头部信息， <code>with-credentials</code> 设置允许发送 cookie 凭证信息。',
@@ -157,24 +137,25 @@ export default {
       'codeFiles': ['http-request.vue']
     },
     {
-      'demoId': 'upload-limit',
-      'name': { 'zh-CN': '上传前限制', 'en-US': 'Custom upload restrictions' },
-      'desc': {
-        'zh-CN': '通过 <code>before-upload</code> 设置上传前事件回调，对文件类型和大小做限制。',
-        'en-US': 'Set pre upload event callbacks through <code>before-upload</code> to limit file types and sizes.'
-      },
-      'codeFiles': ['upload-limit.vue']
-    },
-    {
-      'demoId': 'max-file-count',
-      'name': { 'zh-CN': '最大上传数', 'en-US': 'Maximum number of uploads' },
+      'demoId': 'upload-file-list',
+      'name': { 'zh-CN': '文件列表', 'en-US': 'Uploaded file list' },
       'desc': {
         'zh-CN':
-          '通过 <code>limit</code> 设置限制上传文件的个数， <code>is-hidden</code> 设置达到最大上传数时是否隐藏上传按钮。',
+          '通过 <code>file-list</code> 设置上传的文件列表，也可通过 <code>:show-file-list="false"</code> 关闭列表的显示； <code>open-download-file</code> 设置文件是否可下载。',
         'en-US':
-          'Set a limit on the number of uploaded files by <code>limit</code> , and <code>is-hidden</code> whether to hide the upload button when the maximum number of uploads is reached.'
+          'Set the list of uploaded files through <code>file-list</code> , or turn off the display of the list through <code>: show-file-list="false"</code> ; <code>open-download-file</code> Set whether the file is downloadable.'
       },
-      'codeFiles': ['max-file-count.vue']
+      'codeFiles': ['upload-file-list.vue']
+    },
+    {
+      'demoId': 'upload-file-list-slot',
+      'name': { 'zh-CN': '定义文件列表', 'en-US': 'Custom file list' },
+      'desc': {
+        'zh-CN': '通过 <code>name</code> 设置上传的文件字段名， <code>file</code> 插槽自定义文件列表。',
+        'en-US':
+          'Set the field name of the uploaded file through <code>name</code> , and customize the file list for the <code>file</code> slot.'
+      },
+      'codeFiles': ['upload-file-list-slot.vue']
     },
     {
       'demoId': 'picture-card',
@@ -189,7 +170,7 @@ export default {
     },
     {
       'demoId': 'file-picture-card',
-      'name': { 'zh-CN': '照片墙的预览、下载、删除', 'en-US': 'Preview, download, and delete photo walls' },
+      'name': { 'zh-CN': '定义照片墙列表', 'en-US': 'Custom photo wall list' },
       'desc': {
         'zh-CN':
           '通过 <code>downloadFile</code> 实例方法实现下载功能， <code>handleRemove</code> 实例方法实现删除功能。',
@@ -207,19 +188,6 @@ export default {
           'By setting <code>list-type="picture"</code> , the thumbnail display of the image list can be achieved.'
       },
       'codeFiles': ['picture-list.vue']
-    },
-    {
-      'demoId': 'upload-events',
-      'name': { 'zh-CN': '事件', 'en-US': 'Event' },
-      'desc': {
-        'zh-CN': `<div class="tip custom-block"><code>preview</code> 监听文件点击事件；<br/> <code>remove</code> 监听文件移除事件；<br/> <code>error</code> 监听文件上传失败事件；<br/>
-          <code>exceed</code> 监听文件超出个数限制事件；<br/> <code>progress</code> 监听文件上传过程事件；<br/> <code>change</code> 监听文件改变事件（文件改变涵盖文件添加、上传成功和上传失败）；<br/>
-          <code>success</code> 监听文件上传成功事件；<br/> <code>hash-progress</code> 监听文件上传生成hash值事件。</div>`,
-        'en-US': `<div class="tip custom-block"><code>preview</code> Listen for file click events; <br /> <code>remove</code> Listen for file removal events; <br /> <code>error</code> Listen for file upload failure events;<br />
-        <code>exceeded</code> Listen for events where the number of files exceeds the limit; <br/> <code>progress</code> Listen for file upload process events;<br/> <code>change</code> Listen for file change events (file changes include file addition, successful upload, and failed upload);<br />
-        <code>success</code> Listen for file upload success events;<br/> <code>hash-progress</code> Listen for file upload to generate hash value events.</div>`
-      },
-      'codeFiles': ['upload-events.vue']
     },
     {
       'demoId': 'clear-files',
@@ -242,17 +210,6 @@ export default {
       'codeFiles': ['abort-quest.vue']
     },
     {
-      'demoId': 'custom-upload-tip',
-      'name': { 'zh-CN': '定义上传提示', 'en-US': 'Customized Upload Prompt' },
-      'desc': {
-        'zh-CN':
-          '通过 <code>tip</code> 插槽自定义上传提示， <code>re-uploadable</code> 启用重新上传功能， <code>re-upload-tip</code> 自定义重新上传提示的左侧文字。',
-        'en-US':
-          'Customize the upload prompt through the <code>tip</code> slot, <code>re-uploadable</code> enable the re upload function, and <code>re-upload-tip</code> customize the left text of the re upload prompt.'
-      },
-      'codeFiles': ['custom-upload-tip.vue']
-    },
-    {
       'demoId': 'form-validation',
       'name': { 'zh-CN': '表单校验', 'en-US': 'Form verification' },
       'desc': {
@@ -272,13 +229,47 @@ export default {
     },
     {
       'demoId': 'image-size',
-      'name': { 'zh-CN': '获取图片的原始尺寸', 'en-US': 'Obtain the original size of the image' },
+      'name': { 'zh-CN': '获取图片原始尺寸', 'en-US': 'Obtain the original size of the image' },
       'desc': {
         'zh-CN': '通过 <code>FileReader.readAsDataURL()</code> 读取文件中的内容，获取图片的原始尺寸。',
         'en-US':
           'Read the content of the file through <code>FileReader. readAsDataURL()</code> to obtain the original size of the image.'
       },
       'codeFiles': ['image-size.vue']
+    },
+    {
+      'demoId': 'custom-trigger',
+      'name': { 'zh-CN': '触发源插槽', 'en-US': 'Trigger source slot' },
+      'desc': {
+        'zh-CN': '通过 <code>trigger</code> 插槽自定义文件选择触发源的内容，有触发文件选项框弹出的功能。',
+        'en-US':
+          'Select the content of the trigger source through the <code>trigger</code> slot customization file, and there is a function to pop up the trigger file option box.'
+      },
+      'codeFiles': ['custom-trigger.vue']
+    },
+    {
+      'demoId': 'custom-upload-tip',
+      'name': { 'zh-CN': '定义上传提示', 'en-US': 'Customized Upload Prompt' },
+      'desc': {
+        'zh-CN':
+          '通过 <code>tip</code> 插槽自定义上传提示， <code>re-uploadable</code> 启用重新上传功能， <code>re-upload-tip</code> 自定义重新上传提示的左侧文字。',
+        'en-US':
+          'Customize the upload prompt through the <code>tip</code> slot, <code>re-uploadable</code> enable the re upload function, and <code>re-upload-tip</code> customize the left text of the re upload prompt.'
+      },
+      'codeFiles': ['custom-upload-tip.vue']
+    },
+    {
+      'demoId': 'upload-events',
+      'name': { 'zh-CN': '事件', 'en-US': 'Event' },
+      'desc': {
+        'zh-CN': `<div class="tip custom-block"><code>preview</code> 监听文件点击事件；<br/> <code>remove</code> 监听文件移除事件；<br/> <code>error</code> 监听文件上传失败事件；<br/>
+          <code>exceed</code> 监听文件超出个数限制事件；<br/> <code>progress</code> 监听文件上传过程事件；<br/> <code>change</code> 监听文件改变事件（文件改变涵盖文件添加、上传成功和上传失败）；<br/>
+          <code>success</code> 监听文件上传成功事件；<br/> <code>hash-progress</code> 监听文件上传生成hash值事件。</div>`,
+        'en-US': `<div class="tip custom-block"><code>preview</code> Listen for file click events; <br /> <code>remove</code> Listen for file removal events; <br /> <code>error</code> Listen for file upload failure events;<br />
+        <code>exceeded</code> Listen for events where the number of files exceeds the limit; <br/> <code>progress</code> Listen for file upload process events;<br/> <code>change</code> Listen for file change events (file changes include file addition, successful upload, and failed upload);<br />
+        <code>success</code> Listen for file upload success events;<br/> <code>hash-progress</code> Listen for file upload to generate hash value events.</div>`
+      },
+      'codeFiles': ['upload-events.vue']
     }
   ],
   apis: [
@@ -339,11 +330,12 @@ export default {
             'en-US':
               'Hook before uploading a file. The parameter is the file to be uploaded. If false is returned or Promise is returned and rejected, the upload stops'
           },
-          'demoId': 'prevent-upload-file'
+          'demoId': 'before-upload-limit'
         },
         {
           'name': 'data',
-          'type': 'object',
+          'type': 'IData',
+          'typeAnchorName': 'IData',
           'defaultValue': '',
           'desc': {
             'zh-CN': '上传时附带的额外参数，参数自定义',
@@ -420,7 +412,7 @@ export default {
           'name': 'list-type',
           'type': 'IListType',
           'typeAnchorName': 'IListType',
-          'defaultValue': 'text',
+          'defaultValue': `'text'`,
           'desc': {
             'zh-CN': '文件列表的类型',
             'en-US': 'File list type'
@@ -443,7 +435,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '配置 merge-service 为true 且开启多文件上传走默认服务会将多个上传服务合并为一个服务上传',
+            'zh-CN': '配置 merge-service 为 true 且开启多文件上传走默认服务会将多个上传服务合并为一个服务上传',
             'en-US':
               'If merge-service is set to true and multiple files are uploaded using the default service, multiple upload services are combined into one service'
           },
@@ -459,7 +451,7 @@ export default {
         {
           'name': 'name',
           'type': 'string',
-          'defaultValue': 'file',
+          'defaultValue': `'file'`,
           'desc': { 'zh-CN': '上传的文件字段名', 'en-US': 'Field name of the uploaded file' },
           'demoId': 'upload-file-list-slot'
         },
@@ -498,9 +490,9 @@ export default {
           'type': '(count: number) => string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '自定义重新上传的左侧提示文字，需要与re-uploadable搭配使用【3.12.0版本新增】',
+            'zh-CN': '自定义重新上传的左侧提示文字，需要与 re-uploadable 搭配使用【3.12.0版本新增】',
             'en-US':
-              'Customize the left prompt for re uploading, which needs to be used in conjunction with re uploadable [added in version 3.12.0]'
+              'Customize the left prompt for re uploading, which needs to be used in conjunction with re-uploadable [added in version 3.12.0]'
           },
           'demoId': 'custom-upload-tip'
         },
@@ -562,7 +554,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '文件上传失败时触发的事件； message 为错误信息事件对象，file 为当前上传失败文件信息，fileList为上传成功file数组',
+              '文件上传失败时触发的事件； message 为错误信息事件对象，file 为当前上传失败文件信息，fileList 为上传成功 file 数组',
             'en-US':
               'Event triggered when file upload fails; Message is the error message event object, file is the current upload failure file information, and fileList is the upload success file array'
           },
@@ -584,7 +576,7 @@ export default {
           'type': '(percentage: number) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '文件上传生成hash值触发的事件； percentage为生成的进度值',
+            'zh-CN': '文件上传生成 hash 值触发的事件； percentage 为生成的进度值',
             'en-US': 'Event triggered by file upload to generate hash value; percentage is the generated progress value'
           },
           'demoId': 'upload-events'
@@ -690,17 +682,11 @@ export default {
   ],
   types: [
     {
-      name: 'IThumbOption',
+      name: 'IData',
       type: 'interface',
       code: `
-interface IThumbOption {
-  width: number // 弹窗宽度，默认270
-  showDownload: boolean // 是否显示下载按钮，默认false
-  showDel: boolean // 是否显示删除按钮，布尔false
-  showTooltip: boolean // 文件名超出隐藏显示时是否启用tip，默认false
-  popperClass: string // 弹窗列表自定义类名
-  downloadFile: (file) => void // 点击下载按钮执行函数
-  icon: string | VueComponent // 列表结果前 icon ，默认为 'icon-attachment'
+interface IData {
+  [propsName?: any]: any // 上传参数可自定义
 }
       `
     },
@@ -744,6 +730,21 @@ interface IHeaders {
       type: 'type',
       code: `
 type IListType = 'text' | 'picture' | 'picture-card' | 'thumb'
+      `
+    },
+    {
+      name: 'IThumbOption',
+      type: 'interface',
+      code: `
+interface IThumbOption {
+  width: number // 弹窗宽度，默认270
+  showDownload: boolean // 是否显示下载按钮，默认false
+  showDel: boolean // 是否显示删除按钮，布尔false
+  showTooltip: boolean // 文件名超出隐藏显示时是否启用tip，默认false
+  popperClass: string // 弹窗列表自定义类名
+  downloadFile: (file) => void // 点击下载按钮执行函数
+  icon: string | VueComponent // 列表结果前 icon ，默认为 'icon-attachment'
+}
       `
     }
   ]

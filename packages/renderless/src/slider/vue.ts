@@ -114,7 +114,8 @@ const initState = ({ reactive, computed, props, api, parent, inject }) => {
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
     disabled: computed(() => props.disabled || state.formDisabled),
     slotValue: '',
-    isSlotTyping: false
+    isSlotTyping: false,
+    mouseOuterBtn: false
   })
 
   return state
@@ -164,7 +165,16 @@ export const renderless = (
     handleSlotInput: handleSlotInput(state)
   })
 
-  watch(() => props.modelValue, api.watchModelValue, { immediate: true })
+  watch(
+    () => props.modelValue,
+    (value) => {
+      if (props.max < props.min) {
+        throw new Error('Slider min should not be greater than max.')
+      }
+      api.watchModelValue(value)
+    },
+    { immediate: true }
+  )
   watch(() => state.activeValue, api.watchActiveValue, { immediate: true })
 
   watch(

@@ -2,7 +2,7 @@
   <tiny-grid ref="basicGrid" v-bind="op"></tiny-grid>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, Pager, GridToolbar, Modal } from '@opentiny/vue'
 
 export default {
@@ -35,7 +35,7 @@ export default {
             },
             {
               code: 'cancel',
-              name: '取消删除'
+              name: '取消选择'
             },
             {
               code: 'save',
@@ -203,6 +203,7 @@ export default {
           if (data.length === 0) {
             Modal.alert('请至少选中一条记录')
           }
+          $grid.removeSelecteds()
           break
         }
         case 'save': {
