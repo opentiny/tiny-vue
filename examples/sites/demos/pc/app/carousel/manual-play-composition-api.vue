@@ -5,7 +5,7 @@
         <h3>{{ item }}</h3>
       </tiny-carousel-item>
     </tiny-carousel>
-    <div style="display: flex; justify-content: space-between; margin-top: 10px">
+    <div class="manual-layoutset">
       <div>
         <tiny-numeric id="num" v-model="index" @change="indexChange" :min="1" :max="8"></tiny-numeric>
       </div>
@@ -56,5 +56,11 @@ function prev() {
 
 .carousel-item-demo:nth-child(2n + 1) {
   background-color: #edf0f3;
+}
+
+.manual-layoutset {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 </style>
