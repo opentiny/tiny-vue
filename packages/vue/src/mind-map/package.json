@@ -1,0 +1,20 @@
+{
+  "name": "@opentiny/vue-mind-map",
+  "version": "5.12.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "dependencies": {
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "fabric": "^5.3.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/fabric": "^5.3.6"
+  }
+}

@@ -1609,6 +1609,14 @@
     "type": "template",
     "exclude": false
   },
+  "MindMap": {
+    "path": "vue/src/mind-map/src/pc.vue",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
   "MiniPicker": {
     "path": "vue/src/mini-picker/index.ts",
     "type": "component",
