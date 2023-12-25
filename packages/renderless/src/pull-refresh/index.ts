@@ -56,6 +56,8 @@ export const pullDownTouchMove = (state, refs, event) => {
   }
 
   if (refs.content.scrollTop <= 0) {
+    event.preventDefault()
+
     state.translate3d = (event.touches[0].clientY - state.draggposition) / 2
     state.pullDownReplaces =
       Math.abs(state.translate3d) > state.pullDown.headHeight ? state.loosingText : state.pullDown.pullingDownText

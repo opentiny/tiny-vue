@@ -34,6 +34,7 @@ module.exports = {
     'quote-props': 'off',
     'prefer-const': 'off',
     'multiline-ternary': 'off',
+    'vue/no-deprecated-v-on-native-modifier': 'off',
     '@typescript-eslint/comma-dangle': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
