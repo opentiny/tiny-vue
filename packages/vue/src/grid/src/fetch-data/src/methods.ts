@@ -53,6 +53,8 @@ export default {
       this.filterData = params.filters = []
       this.pendingRecords = []
       this.clearAll()
+
+      return this.$nextTick()
     }
 
     if (sortArg && sortArg.length > 0) {
