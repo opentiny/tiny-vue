@@ -10,12 +10,12 @@ test('添加日程事件', async ({ page }) => {
   const selectedDay14 = page.getByRole('listitem').filter({ hasText: '这是一条错误' })
   const datFun14 = page.getByText('这是一条错误').nth(2)
 
-  await selectedDay4.click()
+  await selectedDay4.hover()
   await expect(dayFun4).toBeDefined()
 
-  await selectedDay13.click()
+  await selectedDay13.hover()
   await expect(dayFun13).toBeDefined()
 
-  await selectedDay14.click()
+  await selectedDay14.hover()
   await expect(datFun14).toBeDefined()
 })
