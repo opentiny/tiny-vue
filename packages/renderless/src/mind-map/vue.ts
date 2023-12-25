@@ -24,11 +24,11 @@ export const renderless = (
     }
     const mindmap: HTMLElement = instance.refs.mindmap as HTMLElement
     const render = new MindElixir({
-      ...(props.options ?? {}),
-      el: mindmap,
       contextMenu: false,
       toolBar: false,
-      nodeMenu: false
+      nodeMenu: false,
+      ...(props.options ?? {}),
+      el: mindmap
     })
     destoryListener = initEvent(render, emit)
     emit('create', render)

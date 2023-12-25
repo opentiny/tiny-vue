@@ -10,11 +10,10 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "fabric": "^5.3.0"
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/fabric": "^5.3.6"
+    "mind-elixir": "^3.3.2"
   }
 }

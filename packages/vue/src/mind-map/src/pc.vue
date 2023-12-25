@@ -1,17 +1,29 @@
 <template>
-  <canvas ref="canvas" />
+  <div ref="mindmap"></div>
 </template>
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/mind-map/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { fabric } from 'fabric'
+import MindElixir from 'mind-elixir'
 
 export default defineComponent({
-  emits: ['update:modelValue'],
-  props: [...props, 'modelValue', 'theme'],
+  emits: [
+    'update:modelValue',
+    'operation',
+    'selectNode',
+    'selectNewNode',
+    'selectNodes',
+    'unselectNode',
+    'unselectNodes',
+    'expandNode,',
+    'import:before',
+    'import:after,',
+    'create'
+  ],
+  props: [...props, 'modelValue', 'options'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: false, extendOptions: { ...fabric } })
+    return setup({ props, context, renderless, api, mono: false, extendOptions: { MindElixir } })
   }
 })
 </script>

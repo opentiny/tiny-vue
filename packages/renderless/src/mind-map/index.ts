@@ -27,7 +27,7 @@ export const initEvent = (render, emit) => {
     emit('unselectNodes', { render })
   }
   const expandNode = (nodeObj) => {
-    emit('expandNode', { nodeObj })
+    emit('expandNode', { render, nodeObj })
   }
   render.bus.addListener('operation', onOperation)
   render.bus.addListener('selectNode', onSelectNode)

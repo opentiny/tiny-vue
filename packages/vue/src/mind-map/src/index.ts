@@ -14,10 +14,7 @@ export const MindMapProps = {
     type: Object,
     default: () => $constants
   },
-  modelValue: String,
-  theme: {
-    type: Object
-  },
+  modelValue: Object,
   options: Object
 }
 
