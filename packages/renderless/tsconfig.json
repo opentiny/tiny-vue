@@ -23,7 +23,5 @@
       ]
     }
   },
-  "include": [
-    "src/**/*.ts"
-, "src/button/react.js", "types/libs/fabric.d.ts"  ]
+  "include": ["src/**/*.ts","src/button/react.js"]
 }
