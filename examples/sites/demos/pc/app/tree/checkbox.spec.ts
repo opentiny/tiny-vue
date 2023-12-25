@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('多选功能', async ({ page }) => {
+test('测试多选功能', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#checkbox')
 
