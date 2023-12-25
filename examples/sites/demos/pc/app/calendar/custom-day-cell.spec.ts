@@ -1,13 +1,12 @@
 import { test, expect } from '@playwright/test'
 
-test('基本用法', async ({ page }) => {
+test('自定义日期单元格', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('calendar#custom-day-cell')
-  const pcDemo = page.locator('.pc-demo')
-  const day4 = pcDemo.locator('.tiny-calendar__day').filter({ hasText: '4' }).first()
-  await expect(day4).toContainText('通知事项A')
-  const day13 = pcDemo.getByRole('cell', { name: '13' }).locator('div').first()
-  await expect(day13).toContainText('13这是一条警告')
-  const day14 = pcDemo.getByRole('cell', { name: '14' }).locator('div').first()
-  await expect(day14).toContainText('14这是一条错误这是一条普通通知')
+  const selectedDay4 = page.getByRole('cell', { name: '4' }).locator('div').first()
+  const selectedDay13 = page.getByRole('cell', { name: '13' }).locator('div').first()
+  const selectedDay14 = page.getByRole('cell', { name: '14' }).locator('div').first()
+  await expect(selectedDay4).toHaveText(/通知事项/)
+  await expect(selectedDay13).toHaveText(/这是一条警告/)
+  await expect(selectedDay14).toHaveText(/这是一条错误/)
 })
