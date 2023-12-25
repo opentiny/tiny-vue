@@ -69,14 +69,12 @@ export const renderless = (
   { reactive, computed, watch }: ISharedRenderlessParamHooks,
   { emit, vm, nextTick, t }: IPagerRenderlessParamUtils
 ) => {
-  const api = {
-    getValidCurrentPage: getValidCurrentPage({ props })
-  } as IPagerApi
+  const api = {} as IPagerApi
 
   const state: IPagerState = reactive({
     showSizes: false,
-    internalCurrentPage: api.getValidCurrentPage(props.currentPage),
-    internalPageSize: 0,
+    internalCurrentPage: 1,
+    internalPageSize: props.pageSize,
     lastEmittedPage: -1,
     userChangePageSize: false,
     internalTotal: props.total,
@@ -94,13 +92,14 @@ export const renderless = (
     computedInternalLayout: computedInternalLayout({ props }),
     computedTotalText: computedTotalText({ props, t }),
     computedInternalPageCount: computedInternalPageCount({ props, state }),
+    getValidCurrentPage: getValidCurrentPage({ state }),
     handleJumperFocus: handleJumperFocus({ state }),
     handleSizeChange: handleSizeChange({ props, state, api, emit, vm }),
     handleJumperInput: handleJumperInput({ state }),
     handleJumperChange: handleJumperChange({ props, state, api }),
     handleJumperClick: handleJumperClick({ props, state, api }),
     isValueNumber: isValueNumber({ state }),
-    parseValueNumber: parseValueNumber({ state, props }),
+    parseValueNumber: parseValueNumber({ state }),
     handleSizeShowPopover: handleSizeShowPopover({ state, props }),
     handleSizeHidePopover: handleSizeHidePopover({ state }),
     canJumperGo: canJumperGo({ props, state, vm }),
@@ -122,6 +121,8 @@ export const renderless = (
     watchPageSize: watchPageSize({ state }),
     watchTotal: watchTotal({ state })
   })
+
+  state.internalCurrentPage = api.getValidCurrentPage(props.currentPage)
 
   watch(() => state.internalCurrentPage, api.watchInternalCurrentPage)
   watch(() => props.pageSizes, api.watchPageSizes, { immediate: true })

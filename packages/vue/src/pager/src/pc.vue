@@ -16,10 +16,11 @@
     :class="['tiny-pager tiny-pager__number', size ? 'tiny-pager--' + size : '', disabled ? 'is-disabled' : '']"
     :style="{ textAlign: align }"
   >
-    <template v-for="(item, index) in state.internalLayout" :key="index">
+    <template v-for="(item, index) in state.internalLayout">
       <!-- prev -->
       <button
         v-if="item === 'prev'"
+        :key="'prev' + index"
         type="button"
         class="tiny-pager__btn-prev"
         :disabled="disabled || state.internalCurrentPage <= 1"
@@ -30,10 +31,11 @@
       </button>
 
       <!-- jumper -->
-      <div v-else-if="item === 'jumper'" class="tiny-pager__group">
+      <div v-else-if="item === 'jumper'" :key="'jumper' + index" class="tiny-pager__group">
         <div class="tiny-pager__goto">
           <input
             type="text"
+            ref="jumperInput"
             :value="state.jumperValue"
             :disabled="disabled"
             @focus="handleJumperFocus"
@@ -47,7 +49,7 @@
       </div>
 
       <!-- current -->
-      <div v-else-if="item === 'current'" class="tiny-pager__group tiny-unselect">
+      <div v-else-if="item === 'current'" :key="'current' + index" class="tiny-pager__group tiny-unselect">
         <ul class="tiny-pager__pages">
           <li class="is-active">{{ state.internalCurrentPage }}</li>
         </ul>
@@ -56,6 +58,7 @@
       <!-- pager-item -->
       <pager
         v-else-if="item === 'pager'"
+        :key="'pager' + index"
         :is-before-page-change="isBeforePageChange"
         :current-page="state.internalCurrentPage"
         :page-count="state.internalPageCount"
@@ -68,6 +71,7 @@
       <!-- next -->
       <button
         v-else-if="item === 'next'"
+        :key="'next' + index"
         type="button"
         class="tiny-pager__btn-next"
         :disabled="disabled || state.internalCurrentPage === state.internalPageCount || state.internalPageCount === 0"
@@ -78,7 +82,7 @@
       </button>
 
       <!-- sizes -->
-      <div v-else-if="item === 'sizes'" class="tiny-pager__group tiny-pager__sizes">
+      <div v-else-if="item === 'sizes'" :key="'sizes' + index" class="tiny-pager__group tiny-pager__sizes">
         <tiny-popover
           ref="sizesList"
           placement="bottom-start"
@@ -120,6 +124,7 @@
       <!-- total -->
       <div
         v-else-if="item === 'total' && typeof state.internalTotal === 'number'"
+        :key="'total' + index"
         class="tiny-pager__group tiny-pager__pull-left"
         :class="{
           'is-disabled': disabled,

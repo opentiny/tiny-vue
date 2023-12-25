@@ -211,7 +211,7 @@ export const isValueNumber =
   }
 
 export const parseValueNumber =
-  ({ state, props }) =>
+  ({ state }) =>
   () => {
     let value = Number(
       String(state.jumperValue)
@@ -226,7 +226,7 @@ export const parseValueNumber =
     value = Number(value.toFixed(0))
 
     const min = 1
-    const max = props.internalPageCount || 1
+    const max = state.internalPageCount || 1
 
     if (value >= max) {
       state.jumperValue = String(max)
@@ -255,7 +255,7 @@ export const handleSizeHidePopover =
 export const canJumperGo =
   ({ props, state, vm }) =>
   () => {
-    const inputValue = Number(vm.$refs.jumper[0].$refs.input.value || 0)
+    const inputValue = Number(vm.$refs.jumperInput[0].value || 0)
     const currentPage = Number(state.internalCurrentPage || 0)
     return props.accurateJumper ? inputValue !== currentPage : true
   }
@@ -396,18 +396,19 @@ export const buildBeforePageChangeParam =
   }
 
 export const getValidCurrentPage =
-  ({ props }) =>
+  ({ state }) =>
   (val) => {
     val = parseInt(val, 10)
 
-    const hasPageCount = typeof props.internalPageCount === 'number'
+    const hasPageCount = typeof state.internalPageCount === 'number'
+
     let resetVal
 
     if (hasPageCount) {
       if (val < 1) {
         resetVal = 1
-      } else if (val > props.internalPageCount) {
-        resetVal = props.internalPageCount
+      } else if (val > state.internalPageCount) {
+        resetVal = state.internalPageCount
       }
     } else {
       if (isNaN(val) || val < 1) {
