@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('判断交换左侧备选项后是否位于右侧面板首位', async ({ page }) => {
+test('测试排序策略', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('transfer#target-order')
   const preview = page.locator('.pc-demo-container')

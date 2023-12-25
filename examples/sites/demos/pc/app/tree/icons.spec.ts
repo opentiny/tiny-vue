@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('自定义图标', async ({ page }) => {
+test('测试自定义图标', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#icons')
 

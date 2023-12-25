@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('判断是否触发了不同事件', async ({ page }) => {
+test('测试事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('transfer#transfer-events')
   const preview = page.locator('.pc-demo-container')
