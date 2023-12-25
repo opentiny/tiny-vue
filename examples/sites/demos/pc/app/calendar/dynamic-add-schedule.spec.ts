@@ -11,11 +11,11 @@ test('添加日程事件', async ({ page }) => {
   const datFun14 = page.getByText('这是一条错误').nth(2)
 
   await selectedDay4.hover()
-  await expect(dayFun4).toBeDefined()
+  await expect(dayFun4).not.toBeDisabled()
 
   await selectedDay13.hover()
-  await expect(dayFun13).toBeDefined()
+  await expect(dayFun13).not.toBeDisabled()
 
   await selectedDay14.hover()
-  await expect(datFun14).toBeDefined()
+  await expect(datFun14).not.toBeDisabled()
 })
