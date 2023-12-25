@@ -10,13 +10,15 @@ test('添加日程事件', async ({ page }) => {
   const selectedDay14 = page.getByRole('listitem').filter({ hasText: '这是一条错误' })
   const datFun14 = page.getByRole('tooltip', { name: '2019-9-14 9:0 这是一条错误 这是一条错误，还有错误' })
 
-  await page.waitForTimeout(2000)
   await selectedDay4.hover()
+  await page.waitForTimeout(200)
   await expect(dayFun4).toBeVisible()
 
   await selectedDay13.hover()
+  await page.waitForTimeout(200)
   await expect(dayFun13).toBeVisible()
 
   await selectedDay14.hover()
+  await page.waitForTimeout(200)
   await expect(datFun14).toBeVisible()
 })
