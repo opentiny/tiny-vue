@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('嵌套树', async ({ page }) => {
+test('测试嵌套树', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('transfer#nested-tree')
   const preview = page.locator('.pc-demo-container')
