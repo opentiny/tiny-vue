@@ -33,7 +33,7 @@ export const watchValue =
   }
 
 export const watchVisible =
-  ({ nextTick, vm, state, api }) =>
+  ({ nextTick, vm, state }) =>
   (value) => {
     if (value) {
       state.oldValue = state.value
