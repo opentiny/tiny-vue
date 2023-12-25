@@ -1,40 +1,20 @@
-import type {
-  ISharedRenderlessParamHooks,
-  Canvas as FCanvas,
-  Rect as FRect,
-  IText as FIText,
-  IMindMapProps,
-  Group as FGroup,
-  Theme,
-  Object
-} from '@/types'
-import { onMounted } from 'vue'
-import { Render } from './libs/Render'
+import type { ISharedRenderlessParamHooks, IMindMapProps } from '@/types'
+import { importData, initEvent } from '.'
 
-export const api = ['state']
+export const api = ['exportData']
 export const renderless = (
   props: IMindMapProps,
-  { ref, reactive, getCurrentInstance, inject }: ISharedRenderlessParamHooks,
-  // eslint-disable-next-line no-empty-pattern
-  {}: never,
+  { getCurrentInstance, onMounted, onUnmounted, watch }: ISharedRenderlessParamHooks,
+
+  { emit },
   {
-    Canvas,
-    Rect,
-    IText,
-    Group
-  }: { Canvas: typeof FCanvas; Rect: typeof FRect; IText: typeof FIText; Group: typeof FGroup }
+    MindElixir
+  }: {
+    MindElixir
+  }
 ) => {
-  const theme: Theme = (props.theme as Theme) ??
-    inject('TINY_MIND-MAP-THEME') ?? {
-      rounded: 8,
-      bg: ['#b31312', '#a9a9a9'],
-      text: ['#fff', '#000']
-    }
-  const canvas = ref<HTMLCanvasElement | null>(null)
-  const state = reactive({
-    canvas
-  })
-  const api = { state }
+  const api: Record<string, any> = {}
+  let destoryListener: (() => void) | null = null
   onMounted(() => {
     const instance = getCurrentInstance()
     if (!instance) {
@@ -42,69 +22,34 @@ export const renderless = (
         'Can not find instance. Please open Issue: https://github.com/opentiny/tiny-vue/issues/new/choose'
       )
     }
-    const canvasEl: HTMLCanvasElement = instance.refs.canvas as HTMLCanvasElement
-    const text = new IText('hello-world', {
-      originX: 'center',
-      originY: 'center'
+    const mindmap: HTMLElement = instance.refs.mindmap as HTMLElement
+    const render = new MindElixir({
+      ...(props.options ?? {}),
+      el: mindmap,
+      contextMenu: false,
+      toolBar: false,
+      nodeMenu: false
     })
-    const { width, height } = text
-    const render = new Render(canvasEl, Canvas, theme)
-    const { canvas } = render
-    let items: Object[] = []
-    const ungroup = function (group) {
-      items = group._objects
-      group._restoreObjectsState()
-      canvas.remove(group)
-      canvas.renderAll()
-      for (let i = 0; i < items.length; i++) {
-        canvas.add(items[i])
-      }
-      canvas.renderAll()
-    }
-    const rect = new Rect({
-      width: (width ?? 0) + 24,
-      height: (height ?? 0) + 8,
-      fill: theme.bg[0],
-      rx: 8,
-      ry: 8,
-      originX: 'center',
-      originY: 'center',
-      selectable: false
-    })
-    const prepare = () => {
-      const group = new Group([rect, text], {})
-      canvas.add(group)
-      canvas.centerObject(group)
-      group.on('mousedblclick', () => {
-        ungroup(group)
-        canvas.setActiveObject(text)
-        text.enterEditing()
-        text.selectAll()
-      })
-    }
-    text.on('changed', (e) => {
-      const { width, height } = text
-      rect.set('width', (width ?? 0) + 24)
-      rect.set('height', (height ?? 0) + 8)
-      rect.setCoords()
-    })
-    text.on('editing:exited', () => {
-      const items: Object[] = []
-      canvas.forEachObject((obj) => {
-        items.push(obj)
-        canvas.remove(obj)
-      })
-      const group = new Group(items, {})
-      group.on('mousedblclick', () => {
-        ungroup(group)
-        canvas.setActiveObject(text)
-        text.enterEditing()
-        text.selectAll()
-      })
-      canvas.add(group)
-    })
+    destoryListener = initEvent(render, emit)
+    emit('create', render)
 
-    prepare()
+    watch(
+      () => props.modelValue,
+      () => {
+        if (props.modelValue) {
+          emit('import:before', { render, data: props.modelValue })
+          importData(render, props.modelValue)
+          emit('import:after', { render, data: props.modelValue })
+        } else {
+          const root = MindElixir.new('root')
+          render.init(root)
+        }
+      },
+      { deep: true, immediate: true }
+    )
+  })
+  onUnmounted(() => {
+    destoryListener?.()
   })
   return api
 }

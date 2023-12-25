@@ -1,5 +1,5 @@
 <template>
-  <tiny-mind-map />
+  <tiny-mind-map style="width: 100%; height: 300px" />
 </template>
 
 <script lang="ts">

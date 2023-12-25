@@ -17,7 +17,8 @@ export const MindMapProps = {
   modelValue: String,
   theme: {
     type: Object
-  }
+  },
+  options: Object
 }
 
 export default defineComponent({
