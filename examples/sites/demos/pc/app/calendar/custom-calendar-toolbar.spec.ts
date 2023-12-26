@@ -4,12 +4,9 @@ test('自定义工具栏', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('calendar#custom-calendar-toolbar')
   const pcDemo = page.locator('.pc-demo')
-  const day = new Date().getDate()
-  const selectedDay = page.getByRole('cell', { name: '14' }).locator('div').first()
-  const time = page
-    .getByRole('cell', { name: `${day}` })
-    .locator('div')
-    .first()
+  const selectedDay = page.getByRole('cell', { name: '10' }).locator('div').first()
+  const time = page.locator('.today')
+
   // 校验选中功能
   await selectedDay.click()
   await page.waitForTimeout(200)

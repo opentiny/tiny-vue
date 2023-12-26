@@ -6,7 +6,7 @@
   </tiny-calendar>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Calendar as TinyCalendar } from '@opentiny/vue'
 

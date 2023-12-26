@@ -2,7 +2,7 @@
   <tiny-calendar :events="eventslist" :year="2019" :month="9"> </tiny-calendar>
 </template>
 
-<script lang="jsx">
+<script>
 import { Calendar } from '@opentiny/vue'
 
 export default {
