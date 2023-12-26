@@ -15,7 +15,8 @@
 </template>
 
 <script setup>
-import { Notify } from '@opentiny/vue'
+import { Notify, MindMap as TinyMindMap } from '@opentiny/vue'
+import { ref } from 'vue'
 
 const exmpleData = ref({
   'nodeData': {

@@ -1,5 +1,5 @@
 <template>
-  <div ref="mindmap"></div>
+  <div ref="mindmap" class="tiny-mind-map"></div>
 </template>
 
 <script lang="ts">
