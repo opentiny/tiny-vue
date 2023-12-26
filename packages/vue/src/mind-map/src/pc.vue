@@ -2,7 +2,7 @@
   <div ref="mindmap"></div>
 </template>
 
-<script>
+<script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/mind-map/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import MindElixir from 'mind-elixir'
