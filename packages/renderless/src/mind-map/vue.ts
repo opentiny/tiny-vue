@@ -1,7 +1,10 @@
 import type { ISharedRenderlessParamHooks, IMindMapProps } from '@/types'
-import { importData, initEvent } from '.'
+import { initEvent } from '.'
 
-export const api = ['exportData']
+export const importData = (instance, data: Object) => {
+  instance.init(data)
+}
+export const api = []
 export const renderless = (
   props: IMindMapProps,
   { getCurrentInstance, onMounted, onUnmounted, watch }: ISharedRenderlessParamHooks,

@@ -1,7 +1,7 @@
 <template>
   <tiny-mind-map
-    style="width: 100%; height: 300px"
     ref="mindmap"
+    class="mindmap"
     @create="onCreate"
     @operation="onOperation"
     @select-node="onSelectNode"
@@ -127,3 +127,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mindmap {
+  width: 100%;
+  height: 300px;
+}
+</style>

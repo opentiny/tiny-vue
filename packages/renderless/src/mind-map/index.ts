@@ -3,9 +3,6 @@ export const exportData = (instance) => {
     return instance.getData()
   }
 }
-export const importData = (instance, data: Object) => {
-  instance.init(data)
-}
 
 export const initEvent = (render, emit) => {
   const onOperation = (info) => {

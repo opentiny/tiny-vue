@@ -1,5 +1,5 @@
 <template>
-  <tiny-mind-map style="width: 100%; height: 300px" ref="mindmap" @create="onCreate" v-model="exampleData" />
+  <tiny-mind-map class="mindmap" ref="mindmap" @create="onCreate" v-model="exampleData" />
   <tiny-button @click="exportData">导出数据</tiny-button>
   <tiny-button @click="importData" :loading="loading">导入示例数据</tiny-button>
   <tiny-button @click="clearData" :loading="loading">清空数据</tiny-button>
@@ -110,3 +110,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.mindmap {
+  width: 100%;
+  height: 300px;
+}
+</style>
