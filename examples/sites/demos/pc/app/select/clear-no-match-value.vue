@@ -8,7 +8,7 @@
     </tiny-select>
 
     <p>
-      场景2：多选，multiVal 找不到匹配值，multiVal为：<span class="multi-val">{{ multiVal }}</span>
+      场景2：多选，multiVal 找不到匹配值，multiVal 为：<span class="multi-val">{{ multiVal }}</span>
     </p>
     <tiny-select v-model="multiVal" :clear-no-match-value="true" multiple>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>

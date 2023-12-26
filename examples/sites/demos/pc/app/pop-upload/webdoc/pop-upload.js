@@ -14,7 +14,7 @@ export default {
     },
     {
       'demoId': 'custom-request-headers',
-      'name': { 'zh-CN': '请求头部配置', 'en-US': 'Request header configuration' },
+      'name': { 'zh-CN': '定义请求头部', 'en-US': 'Custom request header' },
       'desc': {
         'zh-CN':
           '通过 <code>with-credentials</code> 开启支持发送 cookie 凭证信息，<code>headers</code> 自定义上传请求头信息。',
@@ -258,7 +258,7 @@ export default {
         {
           'name': 'upload-button-text',
           'type': 'string',
-          'defaultValue': "'选择文件'",
+          'defaultValue': `'选择文件'`,
           'desc': {
             'zh-CN': '打开弹出框的按钮的文本配置属性',
             'en-US': 'Text configuration attribute of the button for opening a dialog box'
@@ -278,7 +278,7 @@ export default {
         {
           'name': 'upload-name',
           'type': 'string',
-          'defaultValue': "'file'",
+          'defaultValue': `'file'`,
           'desc': { 'zh-CN': '上传的文件字段名', 'en-US': 'Field name of the uploaded file' },
           'demoId': 'basic-usage'
         },

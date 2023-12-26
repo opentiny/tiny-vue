@@ -1,33 +1,50 @@
 <template>
   <div class="button-wrap">
-    <tiny-button round>默认尺寸</tiny-button>
-    <tiny-button type="primary" size="large" round>large</tiny-button>
-    <tiny-button type="success" size="medium" round>medium</tiny-button>
-    <tiny-button type="info" size="small" round>small</tiny-button>
-    <tiny-button type="warning" size="mini" round>mini</tiny-button>
-    <tiny-button type="primary" size="large" round>大号按钮</tiny-button>
-    <tiny-button type="success" size="medium" round>中号按钮</tiny-button>
-    <tiny-button type="info" size="small" round>小号按钮</tiny-button>
-    <tiny-button type="warning" size="mini" round>mini按钮</tiny-button>
+    <h3>按钮小尺寸</h3>
+    <tiny-button type="primary" size="small">主要按钮</tiny-button>
+    <tiny-button type="secondary" size="small">次要按钮</tiny-button>
+    <tiny-button type="danger" size="small">危险按钮</tiny-button>
+    <tiny-button type="text" size="small">文字按钮</tiny-button>
+    <tiny-button type="icon" :icon="IconMail" size="small"></tiny-button>
+    <tiny-button type="icon" :icon="IconMail" text="图标按钮" size="small"></tiny-button>
+    <tiny-button type="primary" loading size="small">主要按钮-加载</tiny-button>
+    <tiny-button type="secondary" :loading="loading" @click="btnClick" size="small">点我加载</tiny-button>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button } from '@opentiny/vue'
+import { iconMail } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyButton: Button
   },
   data() {
-    return {}
+    return {
+      IconMail: iconMail(),
+      loading: false
+    }
+  },
+  methods: {
+    btnClick() {
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+      }, 2000)
+    }
   }
 }
 </script>
 
 <style scoped>
+body {
+  overflow: hidden;
+}
 .button-wrap {
   padding: 0 10px;
+  overflow-y: scroll;
+  height: 100%;
 }
 .button-wrap .tiny-mobile-button {
   margin-right: 16px;

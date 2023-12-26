@@ -34,7 +34,10 @@ export default {
   },
   methods: {
     onChange(value) {
-      Modal.message(JSON.stringify(value))
+      Modal.message({
+        message: JSON.stringify(value),
+        status: 'info'
+      })
     }
   }
 }

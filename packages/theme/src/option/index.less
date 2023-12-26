@@ -55,9 +55,23 @@
   height: var(--ti-option-height);
   display: flex;
   align-items: center;
-  padding: var(--ti-option-padding-vertical) var(--ti-option-padding-horizontal);
   cursor: pointer;
   line-height: 1.5;
+  box-sizing: border-box;
+  margin-top: var(--ti-option-margin-top);
+  border-radius: var(--ti-option-border-radius);
+
+  & > .@{option-prefix-cls}__label {
+    display: inline-block;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  & > .@{option-prefix-cls}__icon {
+    font-size: var(--ti-option-icon-size);
+    margin-right: var(--ti-option-icon-margin-right);
+  }
 
   &.is-disabled {
     color: var(--ti-option-disabled-text-color);

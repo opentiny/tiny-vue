@@ -6,7 +6,7 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '<p>配置 <code>name</code> 属性作为每个 collapse-item 的唯一标志符，配置 <code>v-model</code> 设置当前激活的面板。默认情况下可以同时展开多个面板，这个例子默认展开了第一和第三个面板。</p>',
+        'zh-CN': '<p>配置 <code>name</code> 属性作为每个 <code>collapse-item</code> 的唯一标志符，配置 <code>v-model</code> 设置当前激活的面板。默认情况下可以同时展开多个面板，这个例子默认展开了第一和第三个面板。</p>',
         'en-US': '<p>For details, see the following example.<br/>Configure the <code>name</code> attribute as the unique identifier for each collapse-item.</p>'
       },
       'codeFiles': ['basic-usage.vue']
@@ -15,7 +15,7 @@ export default {
       'demoId': 'accordion',
       'name': { 'zh-CN': '手风琴效果', 'en-US': 'Accordion Effect' },
       'desc': {
-        'zh-CN': '<p>配置 <code>accordion</code> 属性为 true 后，折叠面板将展示手风琴效果，一次只允许展开一个面板。</p>',
+        'zh-CN': '<p>配置 <code>accordion</code> 属性为 <code>true</code>  后，折叠面板将展示手风琴效果，一次只允许展开一个面板。</p>',
         'en-US': '<p>After <code>accordion</code> is set to true, the collapsed panel displays the accordion effect. <br/>Configure <code>v-model</code> to set the currently active panel. (In accordion mode, the binding value type must be string. Otherwise, the binding value type is array.) </p>'
       },
       'codeFiles': ['accordion.vue']
@@ -48,15 +48,6 @@ export default {
       'codeFiles': ['icon.vue']
     },
     {
-      'demoId': 'events',
-      'name': { 'zh-CN': '事件', 'en-US': 'Fold panel change event' },
-      'desc': {
-        'zh-CN': '<p>激活面板的值改变时将触发 <code>change</code> 事件。</p>',
-        'en-US': '<p>When the value of the active panel changes, the <code>change</code> event is triggered. </p>'
-      },
-      'codeFiles': ['events.vue']
-    },
-    {
       'demoId': 'before-close',
       'name': { 'zh-CN': '阻止切换', 'en-US': 'Prevent the event of closing the folding panel' },
       'desc': {
@@ -73,6 +64,15 @@ export default {
         'en-US': '<p>Embed the form through the default slot of the <code>collapse-item</code> element. </p>'
       },
       'codeFiles': ['nested-content.vue']
+    },
+    {
+      'demoId': 'events',
+      'name': { 'zh-CN': '事件', 'en-US': 'Fold panel change event' },
+      'desc': {
+        'zh-CN': '<p>激活面板的值改变时将触发 <code>change</code> 事件。</p>',
+        'en-US': '<p>When the value of the active panel changes, the <code>change</code> event is triggered. </p>'
+      },
+      'codeFiles': ['events.vue']
     }
   ],
   apis: [
