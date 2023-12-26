@@ -43,6 +43,11 @@ export const actionMenuProps = {
   trigger: {
     type: String,
     default: 'hover'
+  },
+  suffixIcon: Object,
+  showIcon: {
+    type: Boolean,
+    default: true
   }
 }
 

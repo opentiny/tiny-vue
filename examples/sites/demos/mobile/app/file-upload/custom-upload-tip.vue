@@ -3,7 +3,7 @@
     <template #trigger>
       <icon-upload></icon-upload>
     </template>
-    <template #tip> 只能上传jpg/png文件，且不超过500kb </template>
+    <template #tip> 只能上传 jpg/png 文件，且不超过500 kb </template>
   </tiny-file-upload>
 </template>
 

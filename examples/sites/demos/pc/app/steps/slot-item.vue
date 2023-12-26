@@ -1,14 +1,13 @@
 <template>
   <div class="demo-steps-slot-item">
-    <div>通过 item 插槽添加自定义图标：</div>
     <tiny-steps :data="stepsData">
       <template #item="data">
-        <a class="label"
-          ><span>{{ data.slotScope.name }}</span></a
-        >
+        <div class="label">
+          <span>{{ data.slotScope.name }}</span>
+        </div>
         <span>
           <div :class="['dot', data.slotScope.status]">
-            <component :is="data.slotScope.status == 'done' ? IconYes : IconClose" class="tiny-svg-size" />
+            <component :is="data.slotScope.status === 'done' ? IconYes : IconClose" class="tiny-svg-size" />
           </div>
         </span>
       </template>

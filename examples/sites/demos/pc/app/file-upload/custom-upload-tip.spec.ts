@@ -6,5 +6,5 @@ test('自定义上传提示', async ({ page }) => {
 
   const tip = page.locator('.tiny-upload__tip')
 
-  await expect(tip).toHaveText('只能上传jpg/png文件，且不超过500kb')
+  await expect(tip).toHaveText('只能上传 jpg/png 文件，且不超过500 kb')
 })

@@ -5,8 +5,8 @@ test('步长', async ({ page }) => {
   await page.goto('numeric#about-step')
 
   const input = page.getByRole('spinbutton')
-  const increaseBtn = page.locator('#preview .tiny-numeric__increase')
-  const decreaseBtn = page.locator('#preview .tiny-numeric__decrease')
+  const increaseBtn = page.locator('.tiny-numeric__increase')
+  const decreaseBtn = page.locator('.tiny-numeric__decrease')
   const value = Number(await input.inputValue())
   const step = 2
   await decreaseBtn.click()

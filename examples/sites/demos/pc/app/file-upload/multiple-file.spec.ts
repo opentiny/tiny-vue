@@ -16,6 +16,8 @@ test('文件多选', async ({ page }) => {
 
   await expect(fileChooser.isMultiple()).toBe(true)
   await fileChooser.setFiles([path1, path2, path3])
-  await expect(lists).toHaveCount(3)
+  await lists.getByText('测试.jpg').isVisible()
+  await lists.getByText('测试.svg').isVisible()
+  await lists.getByText('测试.png').isVisible()
   await expect(input).toHaveAttribute('multiple', '')
 })

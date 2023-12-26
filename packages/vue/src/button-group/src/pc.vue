@@ -15,93 +15,96 @@
     :class="[size ? 'tiny-button-group--' + size : '', border ? '' : 'tiny-button-group--borderless']"
   >
     <slot>
-      <ul v-if="!(showMore && showMore > 0)" class="tiny-group-item">
-        <li v-for="(node, index) in data" :key="index" :class="{ active: state.value === node[valueField] }">
-          <button
-            :class="getItemClass(node)"
-            :style="{
-              height: size === 'medium' ? '42px' : size === 'small' ? '32px' : size === 'mini' ? '24px' : '',
-              'line-height': size === 'medium' ? '40px' : size === 'small' ? '30px' : size === 'mini' ? '22px' : ''
-            }"
-            type="button"
-            @click="handleClick(node)"
-          >
-            {{ node[textField] }}
-          </button>
+      <template v-if="data.length > 0">
+        <ul v-if="!(showMore && showMore > 0)" class="tiny-group-item">
+          <li v-for="(node, index) in data" :key="index" :class="{ active: state.value === node[valueField] }">
+            <button
+              :class="getItemClass(node)"
+              :style="{
+                height: size === 'medium' ? '42px' : size === 'small' ? '32px' : size === 'mini' ? '24px' : '',
+                'line-height': size === 'medium' ? '40px' : size === 'small' ? '30px' : size === 'mini' ? '22px' : ''
+              }"
+              type="button"
+              @click="handleClick(node)"
+            >
+              {{ node[textField] }}
+            </button>
 
-          <span
-            v-if="node.sup"
-            :class="[
-              'tiny-group-item__sup',
-              {
-                'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
-                'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon
-              },
-              typeof node.sup.class === 'string' ? node.sup.class : '',
-              ...(Array.isArray(node.sup.class) ? node.sup.class : [])
-            ]"
+            <span
+              v-if="node.sup"
+              :class="[
+                'tiny-group-item__sup',
+                {
+                  'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
+                  'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon
+                },
+                typeof node.sup.class === 'string' ? node.sup.class : '',
+                ...(Array.isArray(node.sup.class) ? node.sup.class : [])
+              ]"
+            >
+              <slot v-if="node.sup.slot" :name="node.sup.slot" :sup="node.sup" />
+              <component v-else-if="node.sup.icon" :is="node.sup.icon"></component>
+              <span v-else-if="node.sup.text">{{ node.sup.text }}</span>
+            </span>
+          </li>
+        </ul>
+        <ul v-else class="tiny-group-item show-more">
+          <li
+            v-for="(node, index) in state.buttonData"
+            :key="index"
+            :class="{ active: state.value === node[valueField] }"
           >
-            <slot v-if="node.sup.slot" :name="node.sup.slot" :sup="node.sup" />
-            <component v-else-if="node.sup.icon" :is="node.sup.icon"></component>
-            <span v-else-if="node.sup.text">{{ node.sup.text }}</span>
-          </span>
-        </li>
-      </ul>
-      <ul v-else class="tiny-group-item show-more">
-        <li
-          v-for="(node, index) in state.buttonData"
-          :key="index"
-          :class="{ active: state.value === node[valueField] }"
-        >
-          <tiny-button :class="getItemClass(node)" @click="handleClick(node)">
-            {{ node[textField] }}
-          </tiny-button>
+            <tiny-button :class="getItemClass(node)" @click="handleClick(node)">
+              {{ node[textField] }}
+            </tiny-button>
 
-          <span
-            v-if="node.sup"
-            :class="[
-              'tiny-group-item__sup',
-              {
-                'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
-                'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon
-              },
-              typeof node.sup.class === 'string' ? node.sup.class : '',
-              ...(Array.isArray(node.sup.class) ? node.sup.class : [])
-            ]"
-          >
-            <slot v-if="node.sup.slot" :name="node.sup.slot" :sup="node.sup" />
-            <component v-else-if="node.sup.icon" :is="node.sup.icon"></component>
-            <span v-else-if="node.sup.text">{{ node.sup.text }}</span>
-          </span>
-        </li>
-        <li v-if="data.length > showMore" class="tiny-group-item__more">
-          <tiny-popover :visible-arrow="false" width="200" popper-class="tiny-group-item__more-popover">
-            <template #reference>
-              <tiny-button class="more-button">
-                <icon-popup></icon-popup>
-              </tiny-button>
-            </template>
-            <ul class="more-list">
-              <li
-                v-for="(moreNode, index) in state.moreData"
-                :key="index"
-                :class="{
-                  active: state.value === moreNode[valueField],
-                  'more-item': true
-                }"
-                @click="moreNodeClick(moreNode)"
-              >
-                {{ moreNode[textField] }}
-              </li>
-            </ul>
-          </tiny-popover>
-        </li>
-        <li v-if="showEdit" class="tiny-group-item__edit">
-          <tiny-button @click="$emit('edit')" class="edit-button">
-            <icon-writing></icon-writing>
-          </tiny-button>
-        </li>
-      </ul>
+            <span
+              v-if="node.sup"
+              :class="[
+                'tiny-group-item__sup',
+                {
+                  'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
+                  'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon
+                },
+                typeof node.sup.class === 'string' ? node.sup.class : '',
+                ...(Array.isArray(node.sup.class) ? node.sup.class : [])
+              ]"
+            >
+              <slot v-if="node.sup.slot" :name="node.sup.slot" :sup="node.sup" />
+              <component v-else-if="node.sup.icon" :is="node.sup.icon"></component>
+              <span v-else-if="node.sup.text">{{ node.sup.text }}</span>
+            </span>
+          </li>
+          <li v-if="data.length > showMore" class="tiny-group-item__more">
+            <tiny-popover :visible-arrow="false" width="200" popper-class="tiny-group-item__more-popover">
+              <template #reference>
+                <tiny-button class="more-button">
+                  <icon-popup></icon-popup>
+                </tiny-button>
+              </template>
+              <ul class="more-list">
+                <li
+                  v-for="(moreNode, index) in state.moreData"
+                  :key="index"
+                  :class="{
+                    active: state.value === moreNode[valueField],
+                    'more-item': true
+                  }"
+                  @click="moreNodeClick(moreNode)"
+                >
+                  {{ moreNode[textField] }}
+                </li>
+              </ul>
+            </tiny-popover>
+          </li>
+          <li v-if="showEdit" class="tiny-group-item__edit">
+            <tiny-button @click="$emit('edit')" class="edit-button">
+              <icon-writing></icon-writing>
+            </tiny-button>
+          </li>
+        </ul>
+      </template>
+      <span v-else class="tiny-button-group--empty"> 暂无数据 </span>
     </slot>
   </div>
 </template>

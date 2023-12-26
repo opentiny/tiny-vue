@@ -51,5 +51,5 @@ export default {
       'codeFiles': ['tip/cell-tip-config.vue']
     }
   ],
-  apis: [{ 'name': 'grid-tip', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-tip', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -25,7 +25,7 @@
 import type { PropType } from 'vue'
 import { defineComponent, computed } from 'vue'
 import { Tag as TinyTag, Alert as TinyAlert, Tooltip as TinyTooltip } from '@opentiny/vue'
-import { $t2 } from '../../i18n/index'
+import { getWord } from '../../i18n/index'
 
 enum STAGE {
   experimental = 'experimental',
@@ -140,9 +140,11 @@ export default defineComponent({
     })
 
     const generateDes = (desMap: typeof cnDesMap) => {
-      // 当前stable之后，不显示experimental的描述 
-      const isFilterExperimental = [STAGE.removed, STAGE.deprecated, STAGE.stable].includes(currentStageComputed.value as STAGE)
-      // 当前deprecated之后，不显示stable的描述 
+      // 当前stable之后，不显示experimental的描述
+      const isFilterExperimental = [STAGE.removed, STAGE.deprecated, STAGE.stable].includes(
+        currentStageComputed.value as STAGE
+      )
+      // 当前deprecated之后，不显示stable的描述
       const isFilterStable = [STAGE.removed, STAGE.deprecated].includes(currentStageComputed.value as STAGE)
 
       const goingStages = Object.entries(desMap).filter(([stage]) => {
@@ -163,17 +165,21 @@ export default defineComponent({
     }
 
     const tipComputed = computed(() => {
-      if (props.tip) return $t2(props.tip['zh-CN'], props.tip['en-US']) as string
+      if (props.tip) return getWord(props.tip['zh-CN'], props.tip['en-US']) as string
 
       if (!props.metaData) return ''
 
       const vertionDesZnCn = generateDes(cnDesMap)
-      const znChTip = `该${props.tipSubject === 'component' ? '组件' : '特性'}${vertionDesZnCn}。${props.extendTip?.['zh-CN'] || ''}`
+      const znChTip = `该${props.tipSubject === 'component' ? '组件' : '特性'}${vertionDesZnCn}。${
+        props.extendTip?.['zh-CN'] || ''
+      }`
 
       const vertionDesEnUs = generateDes(enDesMap)
-      const enUsTip = `This ${props.tipSubject === 'component' ? 'component' : 'feature'} is ${vertionDesEnUs}. ${props.extendTip?.['en-US'] || ''}`
+      const enUsTip = `This ${props.tipSubject === 'component' ? 'component' : 'feature'} is ${vertionDesEnUs}. ${
+        props.extendTip?.['en-US'] || ''
+      }`
 
-      return $t2(znChTip, enUsTip) as string
+      return getWord(znChTip, enUsTip) as string
     })
 
     const alertTypeComputed = computed(() => {

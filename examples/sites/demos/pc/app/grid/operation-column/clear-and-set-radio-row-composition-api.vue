@@ -20,6 +20,10 @@ const toolbarButtons = ref([
   {
     code: 'clearRadioRowData',
     name: '手动取消单选行'
+  },
+  {
+    code: 'setRadioRow',
+    name: '手动选中某一行'
   }
 ])
 const tableData = ref([
@@ -66,7 +70,7 @@ const tableData = ref([
     introduction: '公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
   }
 ])
-const gridRef = ref()
+const gridRef = ref('gridRef')
 
 function toolbarButtonClickEvent({ code }) {
   switch (code) {

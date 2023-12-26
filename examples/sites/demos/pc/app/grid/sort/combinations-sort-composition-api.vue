@@ -35,7 +35,7 @@ const tableData = ref([
   },
   {
     id: '2',
-    name: 'WWW科技YX公司',
+    name: 'BWW科技YX公司',
     city: '深圳',
     employees: 300,
     createdDate: '2016-07-08 12:36:22'
@@ -58,7 +58,7 @@ const tableData = ref([
     id: '5',
     name: 'YHN科技YX公司',
     city: '韶关',
-    employees: 810,
+    employees: 800,
     createdDate: '2012-12-12 12:12:12'
   },
   {
@@ -77,7 +77,7 @@ const tableData = ref([
   },
   {
     id: '8',
-    name: '深圳市福德宝网络技术YX公司',
+    name: 'SZ网络技术YX公司',
     city: '厦门',
     employees: 540,
     createdDate: '2016-06-03 13:53:25'

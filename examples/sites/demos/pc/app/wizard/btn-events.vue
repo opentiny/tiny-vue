@@ -10,7 +10,7 @@
 </template>
 
 <script lang="jsx">
-import { Wizard } from '@opentiny/vue'
+import { Wizard, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -44,16 +44,16 @@ export default {
   },
   methods: {
     handlePrev(datas) {
-      console.log('handlePrev：上一步，', datas)
+      Modal.message('btn-prev' + JSON.stringify(datas))
     },
     handleNext(datas) {
-      console.log('handleNext：下一步，', datas)
+      Modal.message('btn-next' + JSON.stringify(datas))
     },
     handleSave(datas) {
-      console.log('handleSave：保存，', datas)
+      Modal.message('btn-save' + JSON.stringify(datas))
     },
     handleSubmit(datas) {
-      console.log('handleSubmit：提交，', datas)
+      Modal.message('btn-submit' + JSON.stringify(datas))
     }
   }
 }

@@ -26,6 +26,7 @@ export interface ISliderState {
   leftBtnStyle: string
   leftBtnPercent: number
   leftBtnShow: true
+  mouseOuterBtn: boolean
   rightBtnStyle: string
   rightBtnPercent: number
   rightBtnShow: boolean
@@ -34,6 +35,10 @@ export interface ISliderState {
   tipValue: ComputedRef<string>
   formDisabled: ComputedRef<boolean>
   disabled: ComputedRef<boolean>
+  /** 使用这个值作为插槽中输入的值，而不是直接用activeValue，来实现在输入时不会被max min属性计算而改变 */
+  slotValue: number
+  /** 是否正在输入 */
+  isSlotTyping: boolean
 }
 
 export interface ISliderApi {
@@ -65,6 +70,9 @@ export interface ISliderApi {
   getPoints: () => void
   getLabels: () => void
   inputValueChange: () => void
+  handleSlotInputFocus: () => void
+  handleSlotInputBlur: () => void
+  handleSlotInput: (event: Event) => void
 }
 
 export type ISliderRenderlessParams = ISharedRenderlessFunctionParams<ISliderConstants> & {

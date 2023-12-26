@@ -24,13 +24,11 @@
  */
 import { getColumnList } from '@opentiny/vue-renderless/grid/utils'
 import { toDecimal } from '@opentiny/vue-renderless/common/string'
-import { getStyle } from '@opentiny/vue-renderless/common/deps/dom'
 import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import {
   isNumber,
   filterTree,
-  remove,
   isArray,
   isBoolean,
   findTree,
@@ -48,9 +46,7 @@ import {
   destructuring,
   clear,
   sum,
-  find,
-  toStringJSON,
-  toArray
+  find
 } from '@opentiny/vue-renderless/grid/static/'
 import browser from '@opentiny/vue-renderless/common/browser'
 import {
@@ -69,8 +65,6 @@ import { error, warn } from '../../tools'
 import TINYGrid, { Interceptor } from '../../adapter'
 import GlobalConfig from '../../config'
 import { handleLayout } from './utils/updateStyle'
-import { createTooltipRange, processContentMethod } from './utils/handleTooltip'
-import { hasCheckField, hasNoCheckField } from './utils/handleSelectRow'
 import {
   isTargetRadioOrCheckbox,
   onClickExpandColumn,
@@ -88,24 +82,12 @@ import {
   showGroupFixedError,
   onScrollXLoad
 } from './utils/refreshColumn'
-import {
-  handleFilterConditionCustom,
-  handleFilterConditionExtend,
-  handleFilterRelations,
-  handleFilterCheckStr,
-  handleFilterCheck
-} from './utils/handleLocalFilter'
-import { hasCheckFieldNoStrictly, hasNoCheckFieldNoStrictly, setSelectionNoStrictly } from './utils/setAllSelection'
 import { mapFetchColumnPromise } from './utils/handleResolveColumn'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
-import { createHandlerOnEnd } from './utils/rowDrop'
 import { calcTableWidth, calcFixedStickyPosition } from './utils/autoCellWidth'
 import { generateFixedClassName } from './utils/handleFixedColumn'
-import { funcs, headerProps, onEndEvent, handleAllColumnPromises } from './funcs'
+import { funcs, headerProps, handleAllColumnPromises } from './funcs'
 import {
-  triggerHeaderTooltipEvent,
-  triggerFooterTooltipEvent,
-  triggerTooltipEvent,
   handleGlobalMousedownEvent,
   handleGlobalBlurEvent,
   handleGlobalMousewheelEvent,
@@ -134,19 +116,20 @@ import {
 
 let run = (names, $table) => names.forEach((name) => $table[name].apply($table))
 let isWebkit = browser['-webkit']
-let debounceScrollDirDuration = browser.name === 'ie' ? 40 : 20
+let debounceScrollDirDuration = 20
 let debounceScrollLoadDuration = 200
 let AsyncCollectTimeout = 100
-let focusSingle = null
 
 // 多字段排序
 const sortMultiple = (rows, columns, _vm) => {
   const greaterThan = (valueP, valueQ) => {
-    let typeP
-
-    return (typeP = typeof valueP) === typeof valueQ && ['number', 'string', 'boolean'].includes(typeP)
-      ? valueP > valueQ
-      : String(valueP) > String(valueQ)
+    const typeP = typeof valueP
+    const typeQ = typeof valueQ
+    if (typeP === typeQ && ['number', 'string', 'boolean'].includes(typeP)) {
+      return valueP > valueQ
+    } else {
+      return String(valueP) > String(valueQ)
+    }
   }
 
   const { multipleColumnSort } = _vm.sortOpts
@@ -174,57 +157,6 @@ const sortMultiple = (rows, columns, _vm) => {
 }
 
 const Methods = {
-  // 处理列拖拽
-  columnDrop() {
-    this.$nextTick(() => {
-      const { plugin, onBeforeMove, filter } = this.dropConfig
-      this.columnSortable = plugin.create(
-        this.$el.querySelector('.body__wrapper>.tiny-grid__header .tiny-grid-header__row'),
-        {
-          handle: '.tiny-grid-header__column:not(.col__fixed)',
-          filter,
-          onEnd: (event) => {
-            onEndEvent({ event, _this: this })
-          },
-          onStart: (event) => {
-            this.$emit('column-drop-start', event, this)
-          },
-          onMove: (event) => {
-            const cancel = typeof onBeforeMove === 'function' ? onBeforeMove('column', null, event, this) : true
-            this.$emit('column-drop-move', event, this)
-            return cancel === undefined || cancel
-          }
-        }
-      )
-    })
-  },
-  // 处理行拖拽
-  rowDrop() {
-    this.$nextTick(() => {
-      const { plugin, onBeforeMove, filter, refresh = true, trigger } = this.dropConfig
-      this.rowSortable = plugin.create(this.$el.querySelector('.body__wrapper>.tiny-grid__body tbody'), {
-        handle: trigger || '.tiny-grid-body__row',
-        filter,
-        onEnd: createHandlerOnEnd({ _vm: this, refresh }),
-        onStart: (event) => {
-          this.$emit('row-drop-start', event, this)
-        },
-        onMove: (event) => {
-          let insertRecords = this.getInsertRecords()
-          // 包含新增数据的表格不可再拖动行顺序
-          if (insertRecords.length) return false
-
-          let { dragged } = event
-          let selfRow = this.getRowNode(dragged).item
-          const cancel = typeof onBeforeMove === 'function' ? onBeforeMove('row', selfRow, event, this) : true
-
-          this.$emit('row-drop-move', event, this)
-
-          return cancel === undefined || cancel
-        }
-      })
-    })
-  },
   getParentElem() {
     let $el = this.$grid ? this.$grid.$el : this.$el
     return $el.parentNode
@@ -613,11 +545,6 @@ const Methods = {
       collectColumn: collectColumn.slice(0)
     }
   },
-  // 在v3.0中废弃getRecords
-  getRecords() {
-    warn('ui.grid.error.delGetRecords')
-    return this.getData.apply(this, arguments)
-  },
   // 获取表格所有数据
   getData(rowIndex) {
     let tableSynchData = this.data || this.tableSynchData
@@ -628,11 +555,6 @@ const Methods = {
       return tableSynchData[rowIndex]
     }
     return undefined
-  },
-  // 在v3.0中废弃getAllRecords
-  getAllRecords() {
-    warn('ui.grid.error.delGetAllRecords')
-    return this.getRecordset()
   },
   // 获取选中数据。notCopy为true不返回数据副本，表格内部要继续处理其返回值时设置为true
   getSelectRecords(notCopy) {
@@ -653,26 +575,6 @@ const Methods = {
       rowList = tableFullData.filter((row) => ~selection.indexOf(row))
     }
     return notCopy ? rowList : clone(rowList, true)
-  },
-  handleLocalFilter(row, column) {
-    let { property } = column
-    let {
-      filter: { condition, method, inputFilter }
-    } = column
-    let ret = handleFilterConditionCustom({ column, condition, method, property, row })
-    if (ret.flag) {
-      return ret.result
-    }
-    ret = handleFilterConditionExtend({ column, condition, property, row })
-    if (ret.flag) {
-      return ret.result
-    }
-    let { empty, input, relation, value, dateList } = condition
-    let { method: relationMethod } = condition
-    let relations = handleFilterRelations({ inputFilter })
-    let checkStr = handleFilterCheckStr({ column, relationMethod, relations, row })
-    let check = handleFilterCheck({ checkStr, empty, input, property, relation, row, valueList: value, dateList })
-    return check()
   },
   // 对数据进行筛选和排序，获取处理后数据。服务端筛选和排序，在接口调用时已传入参数
   updateAfterFullData() {
@@ -701,7 +603,9 @@ const Methods = {
 
       if (!sortedFlag) {
         let columnSortMethod = sortColumn.sortMethod
-        let sorted = columnSortMethod ? tableData.sort(columnSortMethod) : sortBy(tableData, sortColumn.property)
+        let sorted = columnSortMethod
+          ? tableData.sort(columnSortMethod)
+          : sortBy(tableData, sortColumn.sortBy ? sortColumn.sortBy : sortColumn.property)
 
         tableData = sortColumn.order === 'desc' ? sorted.reverse() : sorted
       }
@@ -1035,6 +939,8 @@ const Methods = {
     return this.recalculate()
   },
   updateStyle() {
+    // 窗口resize后，手动调用recalculate父容器高度还是初始值，需要update一下
+    this.updateParentHeight()
     let { columnStore, currentRow, height, maxHeight, minHeight, parentHeight, tableColumn } = this
     let layoutList = ['header', 'body', 'footer']
     let { customHeight, scaleToPx } = {}
@@ -1104,258 +1010,6 @@ const Methods = {
   handleOtherKeyDown,
   handleGlobalKeydownEvent,
   handleGlobalResizeEvent,
-  triggerHeaderTooltipEvent,
-  triggerFooterTooltipEvent,
-  triggerTooltipEvent,
-  // 显示 tooltip 依赖的 popper 组件
-  activateTooltip(tooltip, isValid) {
-    if (!this.tasks.activateTooltip) {
-      this.tasks.activateTooltip = debounce(300, () => {
-        let sign = isValid !== undefined ? isValid : focusSingle
-
-        if (sign) {
-          tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
-          tooltip.doDestroy()
-          tooltip.show()
-          setTimeout(tooltip.updatePopper)
-        }
-      })
-    }
-
-    this.tasks.activateTooltip()
-  },
-  // 显示 tooltip 依赖的 popper 组件
-  activateTooltipValid(tooltip) {
-    if (!this.tasks.activateTooltipValid) {
-      this.tasks.activateTooltipValid = debounce(50, () => {
-        tooltip.handleShowPopper()
-        setTimeout(() => tooltip.updatePopper())
-      })
-    }
-
-    this.tasks.activateTooltipValid()
-  },
-  // 显示 tooltip
-  handleTooltip(event, column, row, showTip, isHeader) {
-    const cell = isHeader
-      ? event.currentTarget.querySelector('.tiny-grid-cell-text')
-      : event.currentTarget.querySelector('.tiny-grid-cell')
-
-    // 当用户悬浮在排序或者筛选图标按钮时不应该显示tooltip
-    if (isHeader && event.target !== cell) {
-      return
-    }
-    const tooltip = this.$refs.tooltip
-    const wrapperElem = cell
-    const content = cell.innerText.trim() || cell.textContent.trim()
-    const { contentMethod } = this.tooltipConfig
-    const range = createTooltipRange({ _vm: this, cell, column, isHeader })
-    const rangeWidth = range.getBoundingClientRect().width
-    const padding =
-      (parseInt(getStyle(cell, 'paddingLeft'), 10) || 0) + (parseInt(getStyle(cell, 'paddingRight'), 10) || 0)
-    const isOverflow = rangeWidth + padding > cell.offsetWidth || wrapperElem.scrollWidth > wrapperElem.clientWidth
-
-    // content如果是空字符串，但是用户配置了contentMethod，则同样也可以触发提示
-    if ((contentMethod || content) && (showTip || isOverflow)) {
-      Object.assign(this.tooltipStore, { row, column, visible: true })
-
-      if (tooltip) {
-        processContentMethod({ _vm: this, column, content, contentMethod, event, isHeader, row, showTip })
-        tooltip.state.referenceElm = cell
-        tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
-
-        focusSingle = true
-        this.activateTooltip(tooltip)
-      }
-    }
-
-    return this.$nextTick()
-  },
-  // 提供关闭tips提示的方法
-  clostTooltip() {
-    let tooltip = this.$refs.tooltip
-    Object.assign(this.tooltipStore, {
-      content: null,
-      row: null,
-      visible: false,
-      column: null
-    })
-    focusSingle = false
-    if (tooltip && typeof tooltip.setExpectedState === 'function') {
-      tooltip.setExpectedState(false)
-      this.debounceClose(tooltip)
-    }
-    return this.$nextTick()
-  },
-  // 添加代码让用户代码可以划入popper
-  debounceClose(tooltip) {
-    if (!this.tasks.debounceClose) {
-      this.tasks.debounceClose = debounce(50, () => {
-        tooltip.handleClosePopper()
-      })
-    }
-
-    this.tasks.debounceClose()
-  },
-  // 处理默认勾选
-  handleSelectionDefChecked() {
-    let fullDataRowIdData = this.fullDataRowIdData
-    let { checkAll, checkRowKeys } = this.selectConfig || {}
-
-    if (checkAll) {
-      this.setAllSelection(true)
-      return
-    }
-    if (checkRowKeys) {
-      let defCheckedRowids = checkRowKeys.map((key) => encodeURIComponent(key))
-      let defCheckedRows = []
-
-      defCheckedRowids.forEach((rowid) => {
-        let rowCache = fullDataRowIdData[rowid]
-        if (rowCache) {
-          defCheckedRows.push(rowCache.row)
-        }
-      })
-
-      this.setSelection(defCheckedRows, true)
-    }
-  },
-  setSelection(rows, value) {
-    if (rows) {
-      if (!isArray(rows)) {
-        rows = [rows]
-      }
-      rows.forEach((row) => this.handleSelectRow({ row }, !!value))
-    }
-    return this.$nextTick()
-  },
-  // 多选，行选中事件。value：选中true、不选false、不确定-1
-  handleSelectRow({ row }, value) {
-    hasCheckField({ row }, value, this)
-    hasNoCheckField({ row }, value, this)
-    this.checkSelectionStatus()
-  },
-  handleToggleCheckRowEvent(params, event) {
-    let selection = this.selection
-    let { checkField } = this.selectConfig || {}
-    let { row } = params
-    let value = checkField ? !get(row, checkField) : !~selection.indexOf(row)
-    if (event) {
-      this.triggerCheckRowEvent(event, params, value)
-    } else {
-      this.handleSelectRow(params, value)
-    }
-  },
-  triggerCheckRowEvent(event, params, value) {
-    let { selectConfig = {} } = this
-    let { checkMethod } = selectConfig
-    if (!checkMethod || checkMethod(params)) {
-      this.handleSelectRow(params, value)
-      emitEvent(this, 'select-change', [
-        {
-          selection: this.getSelectRecords(),
-          checked: value,
-          $table: this,
-          ...params
-        },
-        event
-      ])
-    }
-  },
-  // 多选，切换某一行的选中状态
-  toggleRowSelection(row) {
-    this.handleToggleCheckRowEvent({ row })
-    return this.$nextTick()
-  },
-  setAllSelection(value) {
-    let { afterFullData, selectConfig = {}, treeConfig, selection } = this
-    let { checkField: property, reserve, checkStrictly, checkMethod } = selectConfig
-    hasCheckFieldNoStrictly({ afterFullData, checkMethod, checkStrictly, property, selection, treeConfig, value })
-    let selectRows = hasNoCheckFieldNoStrictly({
-      afterFullData,
-      checkMethod,
-      checkStrictly,
-      property,
-      selection,
-      treeConfig,
-      value
-    })
-    setSelectionNoStrictly({ _vm: this, checkStrictly, reserve, selectRows, selection, value })
-    this.treeIndeterminates = []
-    this.checkSelectionStatus()
-  },
-  checkSelectionStatus() {
-    let { afterFullData, selection, treeIndeterminates } = this
-    let { checkField, checkStrictly, checkMethod } = this.selectConfig || {}
-    let { everyHandler, someHandler } = {}
-    if (checkStrictly) {
-      return
-    }
-    // 包含新增的数据
-    if (checkField) {
-      everyHandler = checkMethod
-        ? (row, rowIndex) => !checkMethod({ row, rowIndex }) || get(row, checkField)
-        : (row) => get(row, checkField)
-      someHandler = (row) => get(row, checkField) || ~treeIndeterminates.indexOf(row)
-      this.isAllSelected = false
-      afterFullData.length && (this.isAllSelected = afterFullData.every(everyHandler))
-      this.isIndeterminate = !this.isAllSelected && afterFullData.some(someHandler)
-    } else {
-      everyHandler = (row, rowIndex) => !checkMethod({ row, rowIndex })
-      this.headerCheckDisabled = checkMethod && afterFullData.length && afterFullData.every(everyHandler)
-      everyHandler = checkMethod
-        ? (row, rowIndex) => !checkMethod({ row, rowIndex }) || ~selection.indexOf(row)
-        : (row) => ~selection.indexOf(row)
-      someHandler = (row) => ~treeIndeterminates.indexOf(row) || ~selection.indexOf(row)
-      this.isAllSelected = false
-      afterFullData.length && (this.isAllSelected = afterFullData.every(everyHandler))
-      this.isIndeterminate = !this.isAllSelected && afterFullData.some(someHandler)
-    }
-  },
-  // 保留选中状态
-  reserveCheckSelection() {
-    let { fullDataRowIdData, selection } = this
-    let { reserve } = this.selectConfig || {}
-    let rowkey = getTableRowKey(this)
-    if (reserve && selection.length) {
-      this.selection = selection.map((row) => {
-        let rowCache = fullDataRowIdData[`${get(row, rowkey)}`]
-        return rowCache ? rowCache.row : row
-      })
-    }
-  },
-  // 多选，选中所有事件
-  triggerCheckAllEvent(event, value) {
-    this.setAllSelection(value)
-    let eventParams = {
-      selection: this.getSelectRecords(),
-      checked: value,
-      $table: this
-    }
-    emitEvent(this, 'select-all', [eventParams, event])
-  },
-  // 多选，切换所有行的选中状态
-  toggleAllSelection() {
-    this.triggerCheckAllEvent(null, !this.isAllSelected)
-    return this.$nextTick()
-  },
-  clearSelection() {
-    let { tableFullData, treeConfig } = this
-    let { checkField } = this.selectConfig || {}
-    if (checkField) {
-      treeConfig
-        ? eachTree(tableFullData, (item) => set(item, checkField, false), treeConfig)
-        : tableFullData.forEach((item) => set(item, checkField, false))
-    }
-    Object.assign(this, {
-      isAllSelected: false,
-      isIndeterminate: false,
-      selection: [],
-      treeIndeterminates: []
-    })
-
-    return this.$nextTick()
-  },
   // 处理单选框默认勾选
   handleRadioDefChecked() {
     let { fullDataRowIdData } = this
@@ -1569,16 +1223,6 @@ const Methods = {
 
     return this.handleTableData(true).then(this.refreshStyle)
   },
-  // 关闭筛选
-  closeFilter() {
-    let { filterStore } = this
-    Object.assign(filterStore, {
-      visible: false,
-      targetElem: null,
-      targetElemParentTr: null
-    })
-    return this.$nextTick()
-  },
   toggleGroupExpansion(row) {
     this.groupExpandeds.push(row)
   },
@@ -1653,116 +1297,6 @@ const Methods = {
   clearRowExpand() {
     let hasExpand = this.expandeds.length
     this.expandeds = []
-    return this.$nextTick().then(() => (hasExpand ? this.recalculate() : 0))
-  },
-  // 展开树节点事件
-  triggerTreeExpandEvent(event, { row }) {
-    let { currentColumn, currentRow } = this
-    let rest = this.toggleTreeExpansion(row)
-    let eventParams = { $table: this, row, rowIndex: this.getRowIndex(row) }
-    emitEvent(this, 'toggle-tree-change', [eventParams, event])
-    this.$nextTick(() => {
-      currentRow ? this.setCurrentRow(currentRow) : currentColumn ? this.setCurrentColumn(currentColumn) : ''
-    })
-    return rest
-  },
-  // 切换/展开树节点
-  toggleTreeExpansion(row) {
-    return this.setTreeExpansion(row)
-  },
-  // 处理默认展开树节点
-  handleDefaultTreeExpand() {
-    let { tableFullData, treeConfig } = this
-    if (!treeConfig) {
-      return
-    }
-    let { children, expandAll, expandRowKeys: rowids } = treeConfig
-    let treeExpandeds = []
-    let rowkey = getTableRowKey(this)
-    let isNonEmptyArr = (arr) => isArray(arr) && arr.length
-    // 展开所有行
-    let doExpandAll = () => {
-      filterTree(tableFullData, (row) => isNonEmptyArr(row[children]) && treeExpandeds.push(row), treeConfig)
-      this.treeExpandeds = treeExpandeds
-    }
-    // 展开指定行
-    let doExpandRows = () => {
-      rowids.forEach((rowid) => {
-        let matchObj = findTree(tableFullData, (item) => rowid === get(item, rowkey), treeConfig)
-
-        matchObj && isNonEmptyArr(matchObj.item[children]) && treeExpandeds.push(matchObj.item)
-      })
-      this.treeExpandeds = treeExpandeds
-    }
-    expandAll ? doExpandAll() : rowids ? doExpandRows() : ''
-    setTreeScrollYCache(this)
-  },
-  setAllTreeExpansion(expanded) {
-    let { tableFullData, treeConfig } = this
-    let children = treeConfig.children
-    let treeExpandeds = []
-    if (expanded) {
-      let rowHandler = (row) => {
-        if (row[children] && row[children].length) {
-          treeExpandeds.push(row)
-        }
-      }
-      eachTree(tableFullData, rowHandler, treeConfig)
-    }
-    this.treeExpandeds = treeExpandeds
-
-    setTreeScrollYCache(this)
-
-    return this.$nextTick().then(this.recalculate)
-  },
-  // 设置展开树形节点，二个参数设置这一行展开与否：支持单行，支持多行
-  setTreeExpansion(rows, expanded) {
-    let { treeConfig, treeExpandeds, tableFullData } = this
-    let { accordion, children } = treeConfig
-    let isToggle = arguments.length === 1
-    if (!rows) {
-      return this.$nextTick().then(this.recalculate)
-    }
-    if (!isArray(rows)) {
-      rows = [rows]
-    }
-    if (accordion) {
-      rows = rows.slice(rows.length - 1, rows.length)
-    }
-
-    // 这里需要进行一次浅拷贝，不能直接操作vue observe的数组，不然vue频繁的get、set、toRaw、reactive等操作从而导致卡顿
-    const treeExpandedsCopy = [...treeExpandeds]
-    rows.forEach((row) => {
-      if (row[children] && row[children].length) {
-        const index = treeExpandedsCopy.indexOf(row)
-        if (accordion) {
-          // 同一级只能展开一个
-          const matchObj = findTree(tableFullData, (item) => item === row, treeConfig)
-          remove(treeExpandedsCopy, (item) => ~matchObj.items.indexOf(item))
-        }
-        if (~index && (isToggle || !expanded)) {
-          treeExpandedsCopy.splice(index, 1)
-          return
-        }
-        if (!~index && (isToggle || expanded)) {
-          treeExpandedsCopy.push(row)
-        }
-      }
-    })
-
-    this.treeExpandeds = treeExpandedsCopy
-
-    setTreeScrollYCache(this)
-
-    return this.$nextTick().then(this.recalculate)
-  },
-  hasTreeExpand(row) {
-    return ~this.treeExpandeds.indexOf(row)
-  },
-  clearTreeExpand() {
-    const hasExpand = this.treeExpandeds.length
-    this.treeExpandeds = []
-    setTreeScrollYCache(this)
     return this.$nextTick().then(() => (hasExpand ? this.recalculate() : 0))
   },
   // 获取虚拟滚动状态
@@ -2285,105 +1819,6 @@ const Methods = {
   },
   // 检查触发源是否属于目标节点
   getEventTargetNode,
-  initMultipleHistory() {
-    const { isMultipleHistory, toolBarVm } = this.$grid
-    const {
-      settingOpts: { storageKey },
-      id: toolbarId
-    } = toolBarVm
-    let remoteSelectedMethod, remoteSelectedPromise
-
-    if (
-      isMultipleHistory &&
-      toolBarVm &&
-      toolBarVm.setting &&
-      toolBarVm.setting.multipleHistory &&
-      (remoteSelectedMethod = toolBarVm.setting.multipleHistory.remoteSelectedMethod)
-    ) {
-      if (typeof remoteSelectedMethod === 'function') {
-        remoteSelectedPromise = remoteSelectedMethod()
-
-        if (typeof remoteSelectedPromise.then === 'function') {
-          remoteSelectedPromise.then((storeStr) => {
-            let storeObj = toStringJSON(storeStr)
-            storeObj = (storeObj && storeObj[storageKey]) || null
-            storeObj = (storeObj || {})[toolbarId] || {}
-            const { columns, pageSize } = storeObj
-            toolBarVm.applySettings({ columns, pageSize })
-          })
-        }
-      }
-    }
-  },
-  // 显示多选工具栏
-  showSelectToolbar() {
-    let {
-      $grid: { selectToolbar, showHeader },
-      selectToolbarStore
-    } = this
-    if (selectToolbar && showHeader) {
-      selectToolbarStore.visible = false
-      let selectColumn = find(this.visibleColumn, (item) => item.type === 'selection')
-      let selected = this.getSelectRecords()
-      let position = typeof selectToolbar === 'object' ? selectToolbar.position : ''
-      if (selectColumn && selected && selected.length) {
-        let selectTh = this.$el.querySelector('th.tiny-grid-header__column.col__selection')
-        let headerWrapper = this.$el.querySelector('.tiny-grid>.tiny-grid__header-wrapper')
-        let tr = selectTh.parentNode
-        let thArr = toArray(tr.childNodes)
-        let range = document.createRange()
-        let rangeBoundingRect
-        let headerBoundingRect = headerWrapper.getBoundingClientRect()
-        let layout = { width: 0, height: 0, left: 0, top: 0, zIndex: 1 }
-        let adjust = 1
-        if (selectColumn.fixed === 'right') {
-          range.setStart(tr, thArr.indexOf(selectTh))
-          range.setEnd(tr, thArr.length)
-          rangeBoundingRect = range.getBoundingClientRect()
-          layout.left = `${adjust}px`
-        } else {
-          range.setStart(tr, 0)
-          range.setEnd(tr, thArr.indexOf(selectTh) + 1)
-          rangeBoundingRect = range.getBoundingClientRect()
-          layout.left = `${rangeBoundingRect.width + adjust}px`
-        }
-        layout.width = `${headerBoundingRect.width - rangeBoundingRect.width - 2 * adjust}px`
-        if (!selectColumn.fixed && position === 'left') {
-          range = document.createRange()
-          range.setStart(tr, 0)
-          range.setEnd(tr, thArr.indexOf(selectTh))
-          rangeBoundingRect = range.getBoundingClientRect()
-          layout.left = `${adjust}px`
-          layout.width = `${rangeBoundingRect.width - 2 * adjust}px`
-        }
-        layout.top = `${headerBoundingRect.height - rangeBoundingRect.height + adjust}px`
-        layout.height = `${rangeBoundingRect.height - 2 * adjust}px`
-        return this.$nextTick().then(() => {
-          selectToolbarStore.layout = layout
-          selectToolbarStore.visible = true
-        })
-      }
-    }
-    return this.$nextTick()
-  },
-  // 切换多选工具栏的显示
-  toggleSelectToolbarVisible() {
-    this.selectToolbarStore.visible = !this.selectToolbarStore.visible
-    return this.$nextTick()
-  },
-  // 在空数据时Selection列表头复选框禁用，headerAutoDisabled设置为false就会和旧版本兼容
-  handleSelectionHeader() {
-    const { tableFullData, visibleColumn, selectConfig = {} } = this
-    const { headerAutoDisabled } = selectConfig
-    const selectionColumn = visibleColumn.find((column) => column.type === 'selection')
-    if (
-      (typeof headerAutoDisabled === 'undefined' || (typeof headerAutoDisabled === 'boolean' && headerAutoDisabled)) &&
-      !tableFullData.length &&
-      selectionColumn
-    ) {
-      this.headerCheckDisabled = true
-    }
-  },
   // 可见性改变事件处理
   handleVisibilityChange(visible, entry) {
     if (visible) {
@@ -2412,8 +1847,8 @@ const Methods = {
   }
 }
 funcs.forEach((name) => {
-  Methods[name] = function () {
-    return this[`_${name}`] ? this[`_${name}`].apply(this, arguments) : null
+  Methods[name] = function (...args) {
+    return this[`_${name}`] ? this[`_${name}`](...args) : null
   }
 })
 export default Methods

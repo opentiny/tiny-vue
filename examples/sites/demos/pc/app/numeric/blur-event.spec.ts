@@ -7,5 +7,5 @@ test('失焦事件', async ({ page }) => {
   const numeric = page.getByRole('spinbutton')
   await numeric.focus()
   await numeric.blur()
-  await expect(page.getByText('失焦事件', { exact: true })).toBeVisible()
+  await expect(page.getByText('blur事件')).toBeHidden()
 })

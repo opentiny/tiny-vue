@@ -26,5 +26,5 @@ export default {
       'codeFiles': ['radar/demo3.vue']
     }
   ],
-  apis: [{ 'name': 'chart-radar', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-radar', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

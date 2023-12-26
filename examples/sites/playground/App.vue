@@ -17,11 +17,11 @@ import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
 
-const VERSION = 'tiny-vue-version'
+const VERSION = 'tiny-vue-version-3.12'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
 
-const versions = ['3.11', '3.10', '3.9', '3.8']
+const versions = ['3.12', '3.11', '3.10', '3.9', '3.8']
 const latestVersion = localStorage.getItem(VERSION) || versions[0]
 const cdnHost = localStorage.getItem('setting-cdn')
 const getRuntime = (version) => `${cdnHost}/@opentiny/vue@${version}/runtime/`
@@ -38,6 +38,7 @@ const createImportMap = (version) => {
     '@opentiny/vue-locale': `${getRuntime(version)}tiny-vue-locale.mjs`,
     '@opentiny/vue-common': `${getRuntime(version)}tiny-vue-common.mjs`,
     '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme@${version}/`,
+    '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless@${version}/`,
     'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
   }
   if (['aurora', 'smb'].includes(tinyTheme)) {

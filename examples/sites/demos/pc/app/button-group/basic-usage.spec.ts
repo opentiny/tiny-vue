@@ -10,6 +10,7 @@ test('按钮组基本示例', async ({ page }) => {
   const button3 = demo.getByRole('button', { name: 'Button3' })
 
   await button3.click()
+  await demo.getByRole('button', { name: 'Button2' }).hover()
   await expect(buttonGroup.locator('li').nth(2)).toHaveClass('active')
   await expect(button3).toHaveCSS('background-color', 'rgb(94, 124, 224)')
   await expect(button3).toHaveCSS('border-bottom-color', 'rgb(94, 124, 224)')

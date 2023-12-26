@@ -259,6 +259,7 @@ export default {
       previewFile: '预览文件',
       updateFile: '更新文件',
       reUploadFile: '重新上传',
+      cancelFile: '取消上传',
       deleteFile: '删除文件',
       empty: '是空文件！',
       kiaScanTip: '抱歉，从公网接入下载文档，需要通过KIA检测；当前文档正在KIA检测中，请稍后几分钟后再下载！',

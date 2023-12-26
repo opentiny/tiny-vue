@@ -25,9 +25,9 @@ export default {
       'name': { 'zh-CN': '滚动容器', 'en-US': 'Rolling Container' },
       'desc': {
         'zh-CN': `通过 <code>container-id</code> 设置滚动容器， <code>link-click</code> 监听锚点点击事件，阻止浏览器默认行为，实现单页面 <code>hash</code> 路由模式的页内跳转，在指定容器内滚动。<br/>
-            <code>mask-class</code> 设置自定义类名，高亮显示导航的目标元素。`,
+            <code>mark-class</code> 设置自定义类名，高亮显示导航的目标元素。`,
         'en-US': `By setting the scrolling container through <code>container-id</code> , <code>link-click</code> listens for anchor click events, prevents browser default behavior, and implements single page <code>hash</code> routing mode for page hopping, scrolling within the specified container<br/>
-             <code>mask-class</code> Set a custom class name to highlight the target element for navigation.`
+             <code>mark-class</code> Set a custom class name to highlight the target element for navigation.`
       },
       'codeFiles': ['set-container.vue']
     },
@@ -51,9 +51,10 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '用于单页面 hash 路由模式时指定滚动容器的id值，不指定则默认为 HTML 文档的根节点 body 元素',
+            'zh-CN':
+              '用于单页面 hash 路由模式时指定滚动容器的id值，id为空时则滚动容器默认为 HTML 文档的根节点 body 元素',
             'en-US':
-              'When using single page hash routing mode, specify the id value of the scrolling container. If not specified, it defaults to the root node body element of the HTML document'
+              'When used in single page hash routing mode, specify the id value of the scrolling container. If the id is empty, the scrolling container defaults to the body element of the root node of the HTML document'
           },
           'demoId': 'set-container'
         },
@@ -76,7 +77,7 @@ export default {
           'demoId': 'basic-usage'
         },
         {
-          'name': 'mask-class',
+          'name': 'mark-class',
           'type': 'string',
           'defaultValue': '',
           'desc': {
@@ -88,7 +89,7 @@ export default {
         {
           'name': 'type',
           'type': '"line" | "dot"',
-          'defaultValue': '"line"',
+          'defaultValue': `'line'`,
           'desc': {
             'zh-CN': '锚点类型',
             'en-US': 'Anchor type'
@@ -98,22 +99,12 @@ export default {
       ],
       'events': [
         {
-          'name': 'link-click',
-          'type': '(event: Event, currentLink: {link: string, title: string}) => void',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '锚点点击事件； currentLink: {link: 当前锚点链接, title: 当前锚点标题 }',
-            'en-US': 'Anchor click event; currentLink: {link: Current anchor link, title: Current anchor title}'
-          },
-          'demoId': 'set-container'
-        },
-        {
           'name': 'change',
           'type': '(hash: string) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '锚点链接改变事件； hash: 当前锚点的 hash 值',
-            'en-US': 'Anchor link change event; hash: hash value of the current anchor point'
+            'zh-CN': '锚点链接改变事件',
+            'en-US': 'Anchor link change event'
           },
           'demoId': 'change'
         },
@@ -122,11 +113,21 @@ export default {
           'type': '(hash: string) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '[deprecated v3.12.0废弃，v3.17.0移除；移除原因：命名规范，使用change代替]',
+            'zh-CN': '使用change代替；[deprecated v3.12.0废弃，v3.17.0移除；移除原因：命名规范]',
             'en-US':
-              '[deprecated v3.12.0 abandoned, v3.17.0 removed; reason for removal: naming convention, use change instead]'
+              'use change instead [deprecated v3.12.0 abandoned, v3.17.0 removed; reason for removal: naming convention]'
           },
           'demoId': 'change'
+        },
+        {
+          'name': 'link-click',
+          'type': '(event: Event, currentLink: {link: string, title: string}) => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '锚点点击事件',
+            'en-US': 'Anchor click event'
+          },
+          'demoId': 'set-container'
         }
       ],
       'slots': []

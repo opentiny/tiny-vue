@@ -56,5 +56,5 @@ export default {
       'codeFiles': ['renderer/async-colunm-render.vue']
     }
   ],
-  apis: [{ 'name': 'grid-renderer', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-renderer', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

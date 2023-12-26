@@ -41,7 +41,16 @@
   background-color: @background-color;
 }
 
-.button-type(@color, @normal-bg-color, @normal-border-color,@hover-bg-color, @hover-border-color, @active-color, @disabled-color, @disabled-bg-color, @plain-text-color, @plain-hover-text-color, @plain-bg-color, @plain-hover-bg-color,@plain-border-color, @plain-hover-border-color, @plain-dis-bg-color, @disabled-border-color: @disabled-bg-color) {
+.button-type(
+@color, @normal-bg-color, @normal-border-color
+, @hover-bg-color, @hover-border-color, @active-color, @disabled-color, @disabled-bg-color
+, @plain-text-color, @plain-hover-text-color
+, @plain-bg-color, @plain-hover-bg-color
+, @plain-border-color, @plain-hover-border-color
+, @plain-dis-bg-color, @disabled-border-color: @disabled-bg-color
+, @ghost-text-color, @ghost-hover-text-color, @ghost-disabled-text-color
+, @ghost-border-color, @ghost-hover-border-color, @ghost-disabled-border-color
+) {
   color: @color;
   fill: @color;
   border-color: @normal-border-color;
@@ -107,6 +116,50 @@
       background-color: @plain-dis-bg-color;
     }
   }
+
+  &.is-ghost {
+    color: @ghost-text-color;
+    fill: @ghost-text-color;
+    border-color: @ghost-border-color;
+    background-color: transparent;
+
+    &:hover {
+      color: @ghost-hover-text-color;
+      fill: @ghost-hover-text-color;
+      border-color: @ghost-hover-border-color;
+      background-color: transparent;
+    }
+
+    &:focus,
+    &:active,
+    &.is-active {
+      color: @ghost-hover-text-color;
+      fill: @ghost-hover-text-color;
+      border-color: @ghost-hover-border-color;
+      background-color: transparent;
+      outline: 0;
+    }
+
+    &.is-disabled,
+    &.is-disabled:active,
+    &.is-disabled:focus,
+    &.is-disabled:hover {
+      color: @ghost-disabled-text-color;
+      fill: @ghost-disabled-text-color;
+      border-color: @ghost-disabled-border-color;
+      background-color: transparent;
+    }
+  }
+
+  &.is-only-icon.is-disabled {
+    border-color: var(--ti-button-only-icon-disabled-border-color);
+  }
+  &.is-loading.is-disabled {
+    color: @color;
+    fill: @color;
+    border-color: @normal-border-color;
+    background-color: @normal-bg-color;
+  }
 }
 
 .button-text(@color, @hover-bg-color, @active-color, @disabled-color, @hover-weight) {
@@ -138,5 +191,20 @@
     border-color: transparent;
     background-color: transparent;
     font-weight: normal;
+  }
+}
+
+.button-text-size(@min-width, @height, @svg-width, @svg-height) {
+  min-width: @min-width;
+  height: @height;
+  line-height: calc(@height - 2px);
+
+  svg {
+    width: @svg-width;
+    height: @svg-height;
+  }
+
+  &.is-only-icon {
+    min-width: unset;
   }
 }

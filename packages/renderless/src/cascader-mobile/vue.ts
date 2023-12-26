@@ -54,7 +54,7 @@ export const renderless = (props, { computed, reactive, watch }, { emit, constan
     options: computed(() => {
       let arr
       let list = [state.rootData]
-      state.navList.map((option) => {
+      state.navList.forEach((option) => {
         arr = option.childNodes
         arr && arr.length && list.push(arr)
       })

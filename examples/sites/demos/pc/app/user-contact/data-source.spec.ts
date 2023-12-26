@@ -5,9 +5,6 @@ test('设置数据源', async ({ page }) => {
   await page.goto('user-contact#data-source')
   const partBox = page.locator('.dropdown-part')
   await partBox.hover()
-  const imageUrl = page.locator('.tiny-user-head div').first()
-  await expect(imageUrl).toHaveCSS(
-    'background-image',
-    'url("user-contact#static/images/fruit.jpg")'
-  )
+  const imageUrl = page.locator('.tiny-user-contact').first()
+  await expect(imageUrl).toHaveText('小红')
 })

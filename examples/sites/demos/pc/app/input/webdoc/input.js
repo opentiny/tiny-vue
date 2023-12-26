@@ -193,7 +193,7 @@ export default {
         {
           'name': 'autocomplete',
           'type': 'string',
-          'defaultValue': 'off',
+          'defaultValue': `'off'`,
           'desc': {
             'zh-CN': '原生 autocomplete 属性',
             'en-US': 'Native autocomplete attribute'
@@ -296,6 +296,16 @@ export default {
           'demoId': 'native'
         },
         {
+          'name': 'memory-space',
+          'type': 'number',
+          'defaultValue': '5',
+          'desc': {
+            'zh-CN': '设置 addMemory 方法中，最大能保存条目的数量',
+            'en-US': 'Sets the maximum number of entries that can be saved in the addMemory method'
+          },
+          'demoId': 'method-addMemory'
+        },
+        {
           'name': 'maxlength',
           'type': 'number',
           'defaultValue': '',
@@ -317,7 +327,7 @@ export default {
         },
         {
           'name': 'modelValue / v-model',
-          'type': 'string , number',
+          'type': 'string | number',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置文本的绑定值',
@@ -347,7 +357,7 @@ export default {
         },
         {
           'name': 'prefix-icon',
-          'type': 'Component',
+          'type': 'VueComponent',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框头部图标',
@@ -367,7 +377,7 @@ export default {
         },
         {
           'name': 'resize',
-          'type': '"both" | "horizontal" | "vertical" | "none"',
+          'type': `'both' | 'horizontal' | 'vertical' | 'none'`,
           'defaultValue': '',
           'desc': {
             'zh-CN': '控制是否能被用户缩放',
@@ -408,7 +418,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': '"medium" | "small" | "mini"',
+          'type': `'medium' | 'small' | 'mini'`,
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框尺寸，只在 type!="textarea" 时有效',
@@ -428,7 +438,7 @@ export default {
         },
         {
           'name': 'suffix-icon',
-          'type': 'Component',
+          'type': 'VueComponent',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框尾部图标',
@@ -441,19 +451,19 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '原生属性，输入框的tabindex',
+            'zh-CN': '原生属性，输入框的 tabindex',
             'en-US': 'Native attribute, tabindex in the text box'
           },
           'demoId': ''
         },
         {
           'name': 'type',
-          'type': '"text" | "textarea" | "password" | InputHTMLAttributes.type',
-          'defaultValue': 'text',
+          'type': `'text' | 'textarea' | 'password' | InputHTMLAttributes.type`,
+          'defaultValue': `'text'`,
           'desc': {
-            'zh-CN': '设置input框的type属性，默认为 text,可选值 text，textarea 和其他 原生 input 的 type 值',
+            'zh-CN': '设置 input 框的 type 属性，默认为 "text",可选值 "text"，"textarea" 和其他 原生 input 的 type 值',
             'en-US':
-              'Set the type attribute of the input box. The default value is text. The options are text, textarea, and type values of other native inputs.'
+              'Set the type attribute of the input box. The default value is "text". The options are "text", "textarea", and type values of other native inputs.'
           },
           'demoId': 'type'
         },

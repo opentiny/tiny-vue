@@ -2,8 +2,8 @@
   <tiny-grid :row-class-name="rowClassName" :data="tableData" row-key :drop-config="dropConfig">
     <tiny-grid-column field="id" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="触发源" width="100">
-      <template #default>
-        <div class="only-me-can-drag">拖拽触发源</div>
+      <template #default="{ row }">
+        <div class="only-me-can-drag">拖拽触发源{{ row.id }}</div>
       </template>
     </tiny-grid-column>
     <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
@@ -18,7 +18,7 @@ import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
 import Sortable from 'sortablejs'
 
-const dropConfig = ref({
+const dropConfig = {
   plugin: Sortable,
   row: true,
   trigger: '.only-me-can-drag', // 触发源控制
@@ -27,7 +27,7 @@ const dropConfig = ref({
     if (row.id === '8') return false // return false 时取消拖动
   },
   column: false // 取消列拖拽
-})
+}
 const tableData = ref([
   {
     id: '1',

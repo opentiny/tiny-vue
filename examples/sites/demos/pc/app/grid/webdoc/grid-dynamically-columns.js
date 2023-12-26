@@ -29,5 +29,5 @@ export default {
       'codeFiles': ['dynamically-columns/reverse-row.vue']
     }
   ],
-  apis: [{ 'name': 'grid-dynamically-columns', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-dynamically-columns', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

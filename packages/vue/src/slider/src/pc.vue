@@ -74,7 +74,14 @@
     <template v-if="showInput && !state.isDouble">
       <div class="tiny-slider__input">
         <slot :slot-scope="state.activeValue">
-          <input type="text" v-model="state.activeValue" :disabled="state.disabled" /><span>%</span>
+          <input
+            type="text"
+            v-model="state.slotValue"
+            @focus="handleSlotInputFocus"
+            @blur="handleSlotInputBlur"
+            @input="handleSlotInput"
+            :disabled="state.disabled"
+          /><span>%</span>
         </slot>
       </div>
     </template>

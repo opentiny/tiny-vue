@@ -34,7 +34,7 @@ export default {
     {
       'name': 'company',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue / v-model',
           'type': 'string , number',

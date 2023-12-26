@@ -15,6 +15,6 @@ test('是否可以拖拽上传', async ({ page }) => {
   await expect(drag).toHaveCSS('width', '360px')
   await expect(drag).toHaveCSS('height', '180px')
   await fileChooser.setFiles(currentPath)
-  await expect(lists).toHaveText(/测试.jpg/)
+  await lists.getByText('测试.jpg').isVisible()
   await expect(input).toHaveAttribute('accept', '.png,.jpeg,.jpg')
 })

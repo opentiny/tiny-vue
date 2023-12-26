@@ -68,7 +68,7 @@ export default {
             'en-US':
               'The row group attribute can be configured. Columns with the same value are displayed in a row group.'
           },
-          'demoId': 'grid-row-grouping#row-grouping'
+          'demoId': 'grid-row-grouping#row-grouping-row-grouping'
         },
         {
           'name': 'toolbar',
@@ -81,7 +81,7 @@ export default {
         {
           'name': 'align',
           'type': `'left' | 'center' | 'right'`,
-          'defaultValue': 'left',
+          'defaultValue': `'left'`,
           'desc': {
             'zh-CN': '所有的列对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
             'en-US':
@@ -202,7 +202,7 @@ export default {
         {
           'name': 'footer-align',
           'type': `'left' | 'center' | 'right'`,
-          'defaultValue': '继承 align',
+          'defaultValue': `'left'`,
           'desc': {
             'zh-CN': '所有的表尾列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
             'en-US':
@@ -265,8 +265,8 @@ export default {
         },
         {
           'name': 'header-align',
-          'type': 'string',
-          'defaultValue': '继承 align',
+          'type': `'left' | 'center' | 'right'`,
+          'defaultValue': `'left'`,
           'desc': {
             'zh-CN': '所有的表头列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
             'en-US':
@@ -369,7 +369,14 @@ export default {
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '表格是否显示加载中', 'en-US': 'Whether the table is being loaded.' },
-          'demoId': 'grid-loading#loading-grid-loading-off-tip'
+          'demoId': 'grid-loading#loading-grid-loading-tip'
+        },
+        {
+          'name': 'loading-component',
+          'type': 'VueComponent',
+          'defaultValue': '--',
+          'desc': { 'zh-CN': '自定义表格loading', 'en-US': 'Whether the table is being loaded.' },
+          'demoId': 'grid-loading#loading-grid-custom-loading'
         },
         {
           'name': 'max-height',
@@ -449,7 +456,7 @@ export default {
         {
           'name': 'row-id',
           'type': 'string',
-          'defaultValue': '_RID',
+          'defaultValue': `'_RID'`,
           'desc': {
             'zh-CN': '自定义行数据唯一主键的字段名（行数据必须要有唯一主键，默认自动生成）',
             'en-US':
@@ -478,7 +485,7 @@ export default {
         {
           'name': 'show-header',
           'type': 'boolean',
-          'defaultValue': 'false',
+          'defaultValue': 'true',
           'desc': { 'zh-CN': '是否显示表头', 'en-US': 'Whether to display the table header' },
           'demoId': 'grid-header#header-hide-grid-header'
         },
@@ -543,7 +550,7 @@ export default {
           'name': 'span-method',
           'type': '(args: ISpanMethodArgs) => { rowspan: number, colspan: number }',
           'typeAnchorName': 'ISpanMethodArgs',
-          'defaultValue': '{ rowspan: 1, colspan: 1}',
+          'defaultValue': '{ rowspan: 1, colspan: 1 }',
           'desc': {
             'zh-CN': '合并行或列，该函数返回计算后的值',
             'en-US': 'Consolidate rows or columns. This function returns the calculated value.'
@@ -848,10 +855,10 @@ export default {
             'zh-CN': '用于单选行，手动清空用户的选择',
             'en-US': 'This is used to select a single row. Manually clear the user selection.'
           },
-          'demoId': 'grid-operation-column#operation-column-default-serial-column'
+          'demoId': 'grid-operation-column#operation-column-clear-and-set-radio-row'
         },
         {
-          'name': 'clearRowExpand()',
+          'name': 'clearRowExpand',
           'type': '()=> void',
           'defaultValue': '--',
           'desc': {
@@ -1014,7 +1021,7 @@ export default {
             'zh-CN': '获取表格的可视列，也可以指定索引获取列',
             'en-US': 'Obtains the visual column of the table or specifies the index to obtain the column.'
           },
-          'demoId': 'grid-dynamically-columns#dynamically-columns-columns-dynamic'
+          'demoId': 'grid-custom#custom-server-storage'
         },
         {
           'name': 'getCurrentRow',
@@ -1212,7 +1219,7 @@ export default {
             'en-US':
               'Inserts one or more rows into a table. Second parameter: row specified position (tree tables are not supported), null inserted from the first row, and –1 inserted from the last row'
           },
-          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-remove-rows'
         },
         {
           'name': 'loadColumn',
@@ -1268,7 +1275,7 @@ export default {
             'en-US':
               'Data data is refreshed synchronously. If this method is used, the component does not record the status of adding, deleting, and modifying, and can only implement the corresponding logic. (This parameter may be used in some special scenarios, for example, when a node element in a deep tree changes.)'
           },
-          'demoId': 'grid-tree-grid#tree-table-tree-grid-insert-delete-update'
+          'demoId': 'grid-tree-table#tree-table-tree-grid-insert-delete-update'
         },
         {
           'name': 'reloadCustoms',
@@ -1416,14 +1423,14 @@ export default {
           'demoId': 'grid-tree-table#tree-table-set-tree-expansion'
         },
         {
-          'name': 'setCurrentRow(row)',
+          'name': 'setCurrentRow',
           'type': '(row: IRow)=> Promise',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于当前行，设置某一行为高亮状态',
             'en-US': 'Sets the highlight status of a row for the current row.'
           },
-          'demoId': 'grid-highlight#highlight-highlight-hover-row'
+          'demoId': 'grid-highlight#highlight-set-current-row'
         },
         {
           'name': 'setRadioRow',
@@ -1518,7 +1525,7 @@ export default {
             'zh-CN': '用于可树形表格，切换展开树形节点',
             'en-US': 'This parameter is used to switch and expand tree nodes in a tree table.'
           },
-          'demoId': 'grid-expand#expand-set-row-expansion'
+          'demoId': 'grid-tree-table#tree-table-set-tree-expansion'
         },
         {
           'name': 'validate',
@@ -1567,7 +1574,7 @@ export default {
             'en-US':
               'This event is valid only when toolbar.buttons are configured. This event is triggered when a toolbar button is clicked'
           },
-          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
+          'demoId': 'grid-event#event-toolbar-button-click-event'
         },
         {
           'name': 'cell-click',
@@ -1578,7 +1585,7 @@ export default {
             'zh-CN': '单元格被点击时会触发该事件',
             'en-US': 'This event is triggered when a cell is clicked'
           },
-          'demoId': 'grid-event#event-cell-click-event'
+          'demoId': 'grid-event#event-click-event'
         },
         {
           'name': 'cancel-page-change',
@@ -1611,7 +1618,7 @@ export default {
             'zh-CN': '单元格被双击时会触发该事件',
             'en-US': 'This event is triggered when a cell is double-clicked'
           },
-          'demoId': 'grid-event#event-cell-click-event'
+          'demoId': 'grid-event#event-click-event'
         },
         {
           'name': 'cell-mouseenter',
@@ -1668,7 +1675,7 @@ export default {
             'zh-CN': '单元格被激活编辑时会触发该事件',
             'en-US': 'This event is triggered when a cell is activated for editing'
           },
-          'demoId': 'grid-event#event-edit-actived-event'
+          'demoId': 'grid-event#event-edit-event'
         },
         {
           'name': 'edit-closed',
@@ -1679,7 +1686,7 @@ export default {
             'zh-CN': '单元格编辑状态下被关闭时会触发该事件',
             'en-US': 'This event is triggered when a cell is closed in the editing state'
           },
-          'demoId': 'grid-event#event-edit-actived-event'
+          'demoId': 'grid-event#event-edit-event'
         },
         {
           'name': 'edit-disabled',
@@ -1690,7 +1697,7 @@ export default {
             'zh-CN': '当单元格激活时如果是禁用状态时会触发该事件',
             'en-US': 'This event is triggered when a cell is activated and is disabled'
           },
-          'demoId': 'grid-event#event-edit-actived-event'
+          'demoId': 'grid-event#event-edit-event'
         },
         {
           'name': 'filter-change',
@@ -1933,7 +1940,7 @@ export default {
         {
           'name': 'footer-align',
           'type': `'left' | 'center' | 'right'`,
-          'defaultValue': '继承 align > 继承 table 的 footer-align',
+          'defaultValue': `'left'`,
           'desc': {
             'zh-CN': '表尾列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
             'en-US':
@@ -1955,7 +1962,7 @@ export default {
         {
           'name': 'header-align',
           'type': "'left' | 'center' | 'right'",
-          'defaultValue': '继承 align > 继承 table 的 header-align',
+          'defaultValue': `'left'`,
           'desc': {
             'zh-CN': '表头列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
             'en-US':
@@ -2324,7 +2331,7 @@ export default {
             'zh-CN': '列宽拖动配置（需要设置 id）',
             'en-US': 'Column width dragging configuration (id needs to be set)'
           },
-          'demoId': 'grid-customized#custom-column-width'
+          'demoId': 'grid-custom#custom-column-width'
         },
         {
           'name': 'setting',
@@ -2408,7 +2415,7 @@ export default {
             'zh-CN': '当工具栏的按钮被点击时会后触发该事件',
             'en-US': 'This event is triggered when a button on the toolbar is clicked'
           },
-          'demoId': 'grid-event#event-toolbar-button-click-event'
+          'demoId': 'grid-validation#validation-before-submit-validation'
         },
         {
           'name': 'save-setting',
@@ -2443,16 +2450,6 @@ export default {
             'en-US': 'Click the Reset button on the personalized panel to trigger the event.'
           },
           'demoId': 'grid-custom#custom-ordercolumn-local'
-        },
-        {
-          'name': 'on-before-move',
-          'type': `(type: 'column' | 'row', row: IRow)=> boolean`,
-          'defaultValue': '--',
-          'desc': {
-            'zh-CN': '个性化面板拖拽前事件',
-            'en-US': 'event before the personalized panel is dragged'
-          },
-          'demoId': 'grid-custom#custom-prsonalized-drag'
         }
       ]
     }

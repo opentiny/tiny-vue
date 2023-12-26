@@ -265,7 +265,7 @@ export default {
     {
       'name': 'user',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'value',
           'type': 'string',

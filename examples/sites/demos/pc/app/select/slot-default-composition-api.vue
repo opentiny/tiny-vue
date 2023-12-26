@@ -1,18 +1,22 @@
 <template>
   <tiny-select v-model="value" popper-class="slot-default">
-    <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-      <span class="left">{{ item.label }}</span>
-      <span class="right">{{ item.value }}</span>
-    </tiny-option>
+    <template v-for="item in options" :key="item.value">
+      <tiny-tooltip :content="item.tip" placement="right" effect="light">
+        <tiny-option :label="item.label" :value="item.value">
+          <span class="left">{{ item.label }}</span>
+          <tiny-tag v-if="item.tag" type="danger" effect="light" size="small">{{ item.tag }}</tiny-tag>
+        </tiny-option>
+      </tiny-tooltip>
+    </template>
   </tiny-select>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
+import { Select as TinySelect, Option as TinyOption, Tag as TinyTag, Tooltip as TinyTooltip } from '@opentiny/vue'
 
 const options = ref([
-  { value: '选项1', label: '黄金糕' },
+  { value: '选项1', label: '黄金糕', tag: 'New', tip: '自定义提示' },
   { value: '选项2', label: '双皮奶' },
   { value: '选项3', label: '蚵仔煎' },
   { value: '选项4', label: '龙须面' },
@@ -28,10 +32,6 @@ const value = ref('')
 .tiny-option {
   .left {
     margin-right: 8px;
-  }
-  .right {
-    color: #8492a6;
-    font-size: 12px;
   }
 }
 </style>

@@ -45,38 +45,44 @@ const value2 = ref([])
 
 const change = () => {
   Modal.message({
-    message: 'change 事件',
-    duration: 500
+    message: '触发 change 事件',
+    duration: 500,
+    status: 'info'
   })
 }
 
 const clear = () => {
   Modal.message({
-    message: '触发 clear 事件'
+    message: '触发 clear 事件',
+    status: 'info'
   })
 }
 
 const focus = () => {
   Modal.message({
-    message: '触发 focus 事件'
+    message: '触发 focus 事件',
+    status: 'info'
   })
 }
 
 const blur = () => {
   Modal.message({
-    message: '触发 blur 事件'
+    message: '触发 blur 事件',
+    status: 'info'
   })
 }
 
 const removeTag = () => {
   Modal.message({
-    message: '触发 remove-tag 事件'
+    message: '触发 remove-tag 事件',
+    status: 'info'
   })
 }
 
 const visibleChange = () => {
   Modal.message({
-    message: '触发 visible-change 事件'
+    message: '触发 visible-change 事件',
+    status: 'info'
   })
 }
 </script>

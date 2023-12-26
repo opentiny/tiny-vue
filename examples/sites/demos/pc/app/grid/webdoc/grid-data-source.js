@@ -64,5 +64,5 @@ export default {
       'codeFiles': ['data-source/defslot-protochain-fetch.vue']
     }
   ],
-  apis: [{ 'name': 'grid-data-source', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-data-source', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

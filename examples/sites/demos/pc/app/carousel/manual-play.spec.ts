@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('手动轮播', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('carousel#manual-play')
-  const preview = page.locator('#preview')
+  const preview = page.locator('#manual-play')
   const carouselItems = preview.locator('div.tiny-carousel__item')
   const numButtons = preview.locator('#num').getByRole('button')
 

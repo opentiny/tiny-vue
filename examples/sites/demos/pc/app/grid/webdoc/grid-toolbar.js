@@ -128,5 +128,5 @@ export default {
       'codeFiles': ['toolbar/toolbar-op-config.vue']
     }
   ],
-  apis: [{ 'name': 'grid-toolbar', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-toolbar', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

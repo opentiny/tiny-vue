@@ -22,7 +22,6 @@
   .component-css-vars-tall-storage();
 
   position: relative;
-  margin-top: 2px;
 
   .@{storage-list-style-prefix-cls} {
     position: absolute;
@@ -36,6 +35,8 @@
     .@{storage-list-prefix-cls} {
       padding: 0;
       list-style: none;
+      overflow-y: auto;
+      max-height: calc(var(--ti-tall-storage-item-height) * 5);
 
       .@{storage-item-prefix-cls} {
         height: var(--ti-tall-storage-item-height);

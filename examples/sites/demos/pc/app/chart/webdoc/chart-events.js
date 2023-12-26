@@ -14,5 +14,5 @@ export default {
       'codeFiles': ['events/base.vue']
     }
   ],
-  apis: [{ 'name': 'chart-events', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-events', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

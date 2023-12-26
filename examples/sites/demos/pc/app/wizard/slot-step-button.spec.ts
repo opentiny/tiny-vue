@@ -12,6 +12,6 @@ test('步骤插槽', async ({ page }) => {
   for (let i = 0; i < 3; i++) {
     await expect(buttons.nth(i)).toHaveText(texts[i])
     await buttons.nth(i).click()
-    await expect(modal.nth(i)).toHaveText(`步骤${i + 1}`)
+    await expect(modal.nth(i + 1)).toHaveText(`步骤${i + 1}`)
   }
 })

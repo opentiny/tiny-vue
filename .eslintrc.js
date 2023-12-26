@@ -34,6 +34,7 @@ module.exports = {
     'quote-props': 'off',
     'prefer-const': 'off',
     'multiline-ternary': 'off',
+    'vue/no-deprecated-v-on-native-modifier': 'off',
     '@typescript-eslint/comma-dangle': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
@@ -43,6 +44,7 @@ module.exports = {
     '@typescript-eslint/brace-style': 'off',
     '@typescript-eslint/restrict-plus-operands': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
-    '@typescript-eslint/restrict-template-expressions': 'off'
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/no-invalid-this': 'off'
   }
 }

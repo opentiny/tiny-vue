@@ -4,20 +4,30 @@ test('tree组件基本使用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#basic-usage')
 
-  const tree = page.locator('#preview .tiny-tree')
-  await tree.getByText('一级 1').click()
-  await expect(tree.locator('.tiny-tree-node').first()).toHaveClass(/is-current/)
-  await page.getByText('二级 1-1').click()
-  await expect(tree.locator('.tiny-tree-node').nth(1)).toHaveClass(/is-current/)
-  await page.getByRole('treeitem', { name: '三级 1-1-1' }).first().click()
-  await page.getByRole('treeitem', { name: '一级 3' }).locator('.tiny-svg').click()
-  await page
-    .getByRole('treeitem', { name: '一级 1' })
-    .first()
-    .locator('div')
-    .filter({ hasText: '一级 1' })
-    .first()
-    .click()
-  await expect(page.getByRole('treeitem', { name: '一级 1-1', includeHidden: true })).toBeHidden({ timeout: 0 })
-  await page.locator('.tiny-modal__box').first().click()
+  const preview = page.locator('.pc-demo-container')
+  const tree = preview.locator('.tiny-tree')
+  const showLineBtn = preview.locator('.tiny-radio').nth(0)
+  const miniBtn = preview.locator('.tiny-radio').nth(2)
+  const offsetBtn = preview.locator('.tiny-radio').nth(6)
+  const indentSpan = preview.locator('.tiny-tree-node__content-indent').nth(1)
+
+  // 测试渲染出数据
+  await expect(tree.getByText('数据 1-1-1')).toHaveCount(1)
+
+  // 测试连接线  有连线时，show-line
+  await showLineBtn.click()
+  await page.waitForTimeout(20)
+  expect(await tree.locator('.show-line').count()).toBeGreaterThan(1)
+
+  // 测试字体
+  await expect(tree.getByText('数据 1-1-1')).toHaveCSS('font-size', '14px')
+  await miniBtn.click()
+  await page.waitForTimeout(20)
+  await expect(tree.getByText('数据 1-1-1')).toHaveCSS('font-size', '12px')
+
+  // 测试偏移  18px + 8 padding
+  await expect(indentSpan).toHaveCSS('width', '26px')
+  await offsetBtn.click()
+  await page.waitForTimeout(20)
+  await expect(indentSpan).toHaveCSS('width', '46px')
 })

@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test'
 
-test('普通步骤条', async ({ page }) => {
+test('单链型步骤条', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('steps#normal-steps')
 
-  const steps = page.locator('#preview .tiny-steps')
+  const steps = page.locator('.pc-demo .tiny-steps')
   await expect(steps.locator('div').first()).toHaveClass(/tiny-steps-normal/)
   const nodes = steps.locator('.tiny-timeline-item')
 
