@@ -78,9 +78,9 @@ export const renderless = (
       () => props.modelValue,
       () => {
         if (props.modelValue) {
-          emit('import:before', { render, data: props.modelValue })
+          emit('beforeImport', { render, data: props.modelValue })
           importData(render, props.modelValue)
-          emit('import:after', { render, data: props.modelValue })
+          emit('afterImport', { render, data: props.modelValue })
         } else {
           const root = MindElixir.new('root')
           render.init(root)

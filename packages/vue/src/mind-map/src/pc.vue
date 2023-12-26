@@ -17,8 +17,8 @@ export default defineComponent({
     'unselectNode',
     'unselectNodes',
     'expandNode,',
-    'import:before',
-    'import:after,',
+    'beforeImport',
+    'afterImport,',
     'create'
   ],
   props: [...props, 'modelValue', 'options'],
