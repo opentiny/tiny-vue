@@ -341,7 +341,7 @@ export const handleInputChange =
     const value = event.target?.value === '-' ? 0 : event.target?.value
     if (props.stepStrictly) {
         const previousValue = Number((props.mouseWheel ? state.displayValue : props.modelValue) || 0)
-        if (Math.abs(previousValue - value) % +props.step === 0) return api.setCurrentValue(value)
+        if (Math.abs(previousValue - value) %  Number(props.step) === 0) return api.setCurrentValue(value)
 
         if (previousValue < 0 || value < 0)
             return api.setCurrentValue(
