@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('自定义列表标题', async ({ page }) => {
+test('测试自定义列表标题', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('transfer#custom-titles')
   const preview = page.locator('.pc-demo-container')

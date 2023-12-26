@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('右键菜单', async ({ page }) => {
+test('测试拖拽节点', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#drag')
 

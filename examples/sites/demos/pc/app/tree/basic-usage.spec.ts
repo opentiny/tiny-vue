@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('tree组件基本使用', async ({ page }) => {
+test('测试基本使用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#basic-usage')
 

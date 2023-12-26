@@ -10,12 +10,15 @@ test('基本用法', async ({ page }) => {
   const selectedMonth = page.getByRole('cell', { name: '7 月' }).locator('div').first()
   // 校验日期，查看页面显示是否是月
   await pcDemo.getByRole('listitem').filter({ hasText: '月' }).nth(2).click()
+  await page.waitForTimeout(100)
   await expect(pcDemo.locator('.tiny-calendar > div').last()).toHaveClass(/month/)
   // 校验日期选择，选中的样式有selected
   await selectedDay.click()
+  await page.waitForTimeout(100)
   await expect(selectedDay).toHaveClass(/selected/)
   // 校验今天按钮，选中的样式有selected today
   await pcDemo.getByRole('button', { name: '今天' }).click()
+  await page.waitForTimeout(100)
   await expect(
     pcDemo
       .getByRole('cell', { name: `${nowDate}` })
@@ -25,10 +28,13 @@ test('基本用法', async ({ page }) => {
 
   // 校验年里的月份代码逻辑一致
   await pcDemo.getByRole('listitem').filter({ hasText: '年' }).nth(2).click()
+  await page.waitForTimeout(100)
   await expect(pcDemo.locator('.tiny-calendar > div').last()).toHaveClass(/year/)
   await selectedMonth.click()
+  await page.waitForTimeout(100)
   await expect(selectedMonth).toHaveClass(/selected/)
   await pcDemo.getByRole('button', { name: '本月' }).click()
+  await page.waitForTimeout(100)
   await expect(
     pcDemo
       .getByRole('cell', { name: `${nowMonth}` + ' 月' })

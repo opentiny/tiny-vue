@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('多选的勾选 ', async ({ page }) => {
+test('测试多选勾选 ', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#check-op')
 

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('判断数据交换', async ({ page }) => {
+test('测试嵌套表格', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('transfer#nested-table')
   const preview = page.locator('.pc-demo-container')
