@@ -345,11 +345,11 @@ export const handleInputChange =
 
         if (previousValue < 0 || value < 0)
             return api.setCurrentValue(
-                -Math.round(Math.abs(previousValue - value) / +props.step) * +props.step + previousValue
+                -Math.round(Math.abs(previousValue - value) / Number(props.step)) * Number(props.step) + previousValue
             )
 
         return api.setCurrentValue(
-            Math.round(Math.abs(previousValue - value) / +props.step) * +props.step + previousValue
+            Math.round(Math.abs(previousValue - value) / Number(props.step)) * Number(props.step) + previousValue
         )
     }
     api.setCurrentValue(value)
