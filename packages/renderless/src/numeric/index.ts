@@ -342,15 +342,10 @@ export const handleInputChange =
     if (props.stepStrictly) {
         const previousValue = Number((props.mouseWheel ? state.displayValue : props.modelValue) || 0)
         if (Math.abs(previousValue - value) %  Number(props.step) === 0) return api.setCurrentValue(value)
-
-        if (previousValue < 0 || value < 0)
-            return api.setCurrentValue(
-                -Math.round(Math.abs(previousValue - value) / Number(props.step)) * Number(props.step) + previousValue
-            )
-
-        return api.setCurrentValue(
-            Math.round(Math.abs(previousValue - value) / Number(props.step)) * Number(props.step) + previousValue
-        )
+        const step = Number(props.step)
+        const difference = value - previousValue
+        const sign = difference >= 0 ? 1 : -1
+        return api.setCurrentValue(sign * Math.round(Math.abs(difference) / step) * step + previousValue)
     }
     api.setCurrentValue(value)
   }
