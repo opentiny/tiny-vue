@@ -1,9 +1,3 @@
-export const exportData = (instance) => {
-  return () => {
-    return instance.getData()
-  }
-}
-
 export const initEvent = (render, emit) => {
   const onOperation = (info) => {
     emit('operation', { render, info })
