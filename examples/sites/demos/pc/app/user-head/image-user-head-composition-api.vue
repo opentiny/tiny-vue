@@ -6,5 +6,5 @@
 import { ref } from 'vue'
 import { UserHead as TinyUserHead } from '@opentiny/vue'
 
-const imgUrl = ref('/static/images/ld.png')
+const imgUrl = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`)
 </script>
