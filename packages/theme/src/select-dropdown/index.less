@@ -48,6 +48,7 @@
     }
   }
 
+  // 下拉面板搜索框
   & &__search {
     margin: var(--ti-select-dropdown-search-margin-top) var(--ti-select-dropdown-search-margin-right)
       var(--ti-select-dropdown-search-margin-bottom) var(--ti-select-dropdown-search-margin-left);
@@ -59,6 +60,10 @@
       background-color: var(--ti-select-dropdown-search-bg-color);
       padding-right: var(--ti-select-dropdown-search-input-padding-right);
       padding-left: var(--ti-select-dropdown-search-input-padding-left);
+      border-radius: var(--ti-select-dropdown-search-border-radius);
+      border-top-color: var(--ti-select-dropdown-search-border-color-top);
+      border-left-color: var(--ti-select-dropdown-search-border-color-left);
+      border-right-color: var(--ti-select-dropdown-search-border-color-right);
     }
 
     .@{input-predix-cls}__suffix {
@@ -110,6 +115,16 @@
     & + div + .@{select-dropdown-prefix-cls}__empty-wrap {
       padding-top: var(--ti-select-dropdown-search-empty-padding-top);
       padding-bottom: var(--ti-select-dropdown-search-empty-padding-bottom);
+    }
+
+    & + .@{scrollbar-prefix-cls} {
+      .@{select-dropdown-prefix-cls}__wrap {
+        .tiny-option-group {
+          &:first-child .tiny-option-group__title {
+            margin-top: 0px;
+          }
+        }
+      }
     }
   }
 

@@ -4,6 +4,7 @@ export const tinyOptionSmbTheme = {
   'ti-option-border-radius': 'var(--ti-common-border-radius-0)',
   'ti-option-selected-font-weight': 'var(--ti-common-font-weight-6)',
   'ti-option-padding-horizontal': 'var(--ti-common-space-4x)',
+  'ti-option-padding-horizontal-group': 'var(--ti-common-space-4x)',
   'ti-option-icon-color-selected': 'var(--ti-common-color-icon-graybg-active)',
   'ti-option-checkbox-border-color-hover': '#191919',
   'ti-option-disabled-text-color': 'var(--ti-common-color-text-disabled)',
