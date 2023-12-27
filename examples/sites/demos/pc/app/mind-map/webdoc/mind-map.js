@@ -122,7 +122,7 @@ export default {
           }
         },
         {
-          name: 'import:before',
+          name: 'beforeImport',
           type: '({render, data}: {render:MindElixirInstance, data: })=>void',
           'desc': {
             'zh-CN': 'v-model更新前会触发',
@@ -130,7 +130,7 @@ export default {
           }
         },
         {
-          name: 'import:after',
+          name: 'afterImport',
           type: '({render, data}: {render:MindElixirInstance, data: })=>void',
           'desc': {
             'zh-CN': 'v-model更新后会触发',
