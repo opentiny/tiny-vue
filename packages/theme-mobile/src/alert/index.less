@@ -18,13 +18,19 @@
 @alert-prefix-cls: ~'@{css-prefix}mobile-alert';
 
 .@{alert-prefix-cls} {
+  display: flex;
+  align-items: top;
   clear: both;
   position: relative;
+  width: 100%;
   font-size: 0;
 
   .@{alert-prefix-cls}__content {
+    flex: 1;
     color: var(--ti-mobile-alert-content-text-color);
-    padding-left: 8px;
+    padding: 0 var(--ti-mobile-alert-content-padding-horizotal);
+    white-space: pre-wrap;
+    word-break: break-all;
   }
 
   &--normal {
@@ -34,8 +40,6 @@
 
     .@{alert-prefix-cls}__content {
       font-size: var(--ti-mobile-alert-content-font-size, 12px);
-      display: inline-block;
-      vertical-align: middle;
 
       &.is-hideicon {
         padding: 0;
@@ -47,9 +51,7 @@
     padding: var(--ti-mobile-alert-large-padding-vertical) var(--ti-mobile-alert-padding-right) var(--ti-mobile-alert-large-padding-vertical) var(--ti-mobile-alert-padding-left);
 
     .@{alert-prefix-cls}__content {
-      font-size: 15px;
-      display: inline-block;
-      vertical-align: middle;
+      font-size: var(--ti-mobile-alert-large-font-size);
 
       &.is-hideicoalert-variantn {
         padding: 0;
@@ -57,8 +59,11 @@
     }
 
     .is-custom {
-      font-size: 15px;
-      color: #fff;
+      font-size: var(--ti-mobile-alert-large-font-size);
+    }
+
+    .@{alert-prefix-cls}__icon {
+      margin-top: 4px;
     }
   }
 
@@ -95,7 +100,8 @@
   }
 
   &__icon {
-    font-size: var(--ti-mobile-alert-icon-size, 16px);
+    margin-top: 2px;
+    font-size: var(--ti-mobile-alert-icon-size);
   }
 
   &.is-center {
@@ -103,21 +109,13 @@
   }
 
   .is-custom {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
     cursor: pointer;
-    font-size: 12px;
-    color: #999;
+    font-size: var(--ti-mobile-alert-content-font-size);
+    color: var(--ti-mobile-alert-custom-text-color);
   }
 
   & &__close {
-    font-size: var(--ti-mobile-alert-content-font-size, 12px);
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
+    font-size: var(--ti-mobile-alert-close-icon-font-size);
     cursor: pointer;
   }
 }
