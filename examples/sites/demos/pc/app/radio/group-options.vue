@@ -1,5 +1,5 @@
 <template>
-  <tiny-radio-group v-model="value" :options="options"></tiny-radio-group>
+  <tiny-radio-group v-model="value" type="radio" :options="options"></tiny-radio-group>
 </template>
 
 <script>
@@ -20,7 +20,10 @@ export default {
   },
   methods: {
     handleClick() {
-      Modal.message({ message: 'click' })
+      Modal.message({
+        message: 'click',
+        status: 'info'
+      })
     }
   }
 }
