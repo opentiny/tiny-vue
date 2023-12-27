@@ -1,3 +1,10 @@
+import type {
+  IPagerApi,
+  IPagerProps,
+  IPagerState,
+  ISharedRenderlessParamHooks,
+  IPagerRenderlessParamUtils
+} from '@/types'
 import {
   computedShowPager,
   computedInternalLayout,
@@ -31,13 +38,6 @@ import {
   watchPageSize,
   watchTotal
 } from './index'
-import type {
-  IPagerApi,
-  IPagerProps,
-  IPagerState,
-  ISharedRenderlessParamHooks,
-  IPagerRenderlessParamUtils
-} from '@/types'
 
 export const api = [
   'state',
@@ -68,7 +68,7 @@ export const renderless = (
   props: IPagerProps,
   { reactive, computed, watch }: ISharedRenderlessParamHooks,
   { emit, vm, nextTick, t }: IPagerRenderlessParamUtils
-) => {
+): IPagerApi => {
   const api = {} as IPagerApi
 
   const state: IPagerState = reactive({

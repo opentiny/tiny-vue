@@ -1,3 +1,4 @@
+import type { PropType } from 'vue'
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
@@ -30,7 +31,7 @@ export const pagerProps = {
     default: () => 10
   },
   pageSizes: {
-    type: Array,
+    type: Array as PropType<number[]>,
     default: () => [10, 20, 30, 40, 50, 100]
   },
   pagerCount: {

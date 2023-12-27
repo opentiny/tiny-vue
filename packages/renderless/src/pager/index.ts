@@ -2,15 +2,15 @@ import type { IPagerRenderlessParams } from '@/types'
 import { emitEvent } from '../common/event'
 
 export const computedShowPager =
-  ({ props, state }) =>
-  () => {
+  ({ props, state }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
+  (): boolean => {
     const hidePager = props.hideOnSinglePage && (!state.internalPageCount || state.internalPageCount === 1)
     return state.internalLayout.length > 0 && !hidePager
   }
 
 export const computedInternalLayout =
-  ({ props }) =>
-  () => {
+  ({ props }: Pick<IPagerRenderlessParams, 'props'>) =>
+  (): string[] => {
     let layout = ''
 
     if (props.mode && !props.layout) {
@@ -33,19 +33,19 @@ export const computedInternalLayout =
   }
 
 export const computedTotalText =
-  ({ props, t }) =>
-  () => {
+  ({ props, t }: Pick<IPagerRenderlessParams, 'props' | 't'>) =>
+  (): string => {
     if (typeof props.customTotal === 'string') return props.customTotal
 
-    const totals = parseInt(props.total)
+    const totals = Number(props.total)
 
-    if (isNaN(totals)) return 0
+    if (isNaN(totals)) return '0'
 
     const HUNDRED_THOUSAND = 100000
     const MILLION = 1000000
     const TEN_MILLION = 10000000
     if (totals <= HUNDRED_THOUSAND) {
-      return totals
+      return String(totals)
     } else if (totals <= MILLION) {
       return t('ui.page.hundredThousand')
     } else if (totals <= TEN_MILLION) {
@@ -56,8 +56,8 @@ export const computedTotalText =
   }
 
 export const computedInternalPageCount =
-  ({ props, state }) =>
-  () => {
+  ({ props, state }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
+  (): number | null => {
     if (typeof props.total === 'number') {
       return Math.max(1, Math.ceil(props.total / state.internalPageSize))
     } else if (typeof props.pageCount === 'number') {
@@ -69,13 +69,13 @@ export const computedInternalPageCount =
 
 export const handleJumperFocus =
   ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
-  (e) => {
-    state.jumperBackup = e.target.value
+  (e: Event): void => {
+    state.jumperBackup = (e.target as HTMLInputElement)?.value
   }
 
 export const watchInternalCurrentPage =
-  ({ state, emit }) =>
-  (currentPage) => {
+  ({ state, emit }: Pick<IPagerRenderlessParams, 'state' | 'emit'>) =>
+  (currentPage: number): void => {
     const value = String(currentPage)
 
     if (state.jumperValue !== value) {
@@ -87,27 +87,27 @@ export const watchInternalCurrentPage =
   }
 
 export const watchPageSizes =
-  ({ state, props }) =>
-  (newVal) => {
+  ({ state, props }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
+  (newVal: number[]): void => {
     if (Array.isArray(newVal)) {
-      state.internalPageSize = newVal.includes(props.pageSize) ? props.pageSize : props.pageSizes[0]
+      state.internalPageSize = newVal.includes(props.pageSize) ? props.pageSize : newVal[0]
     }
   }
 
 export const watchCurrentPage =
-  ({ state, api }) =>
-  (curPage) => {
+  ({ state, api }: Pick<IPagerRenderlessParams, 'api' | 'state'>) =>
+  (curPage: number): void => {
     state.internalCurrentPage = api.getValidCurrentPage(curPage)
   }
 
 export const watchInternalPageCount =
-  ({ state, api }) =>
-  (pageCount) => {
+  ({ state, api }: Pick<IPagerRenderlessParams, 'api' | 'state'>) =>
+  (pageCount: number | null): void => {
     const oldCurPage = state.internalCurrentPage
 
-    if (pageCount > 0 && oldCurPage === 0) {
+    if (pageCount && pageCount > 0 && oldCurPage === 0) {
       state.internalCurrentPage = 1
-    } else if (oldCurPage > pageCount) {
+    } else if (oldCurPage > Number(pageCount)) {
       state.internalCurrentPage = pageCount || 1
       state.userChangePageSize && api.emitChange()
     }
@@ -116,27 +116,29 @@ export const watchInternalPageCount =
   }
 
 export const watchPageSize =
-  ({ state }) =>
-  (pageSize) => {
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+  (pageSize: number): void => {
     state.internalPageSize = isNaN(pageSize) ? 10 : pageSize
   }
 
 export const watchTotal =
-  ({ state }) =>
-  (total) => {
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+  (total: number | undefined): void => {
     state.internalTotal = total
   }
 
 export const handleSizeChange =
   ({ props, state, api, emit, vm }: Pick<IPagerRenderlessParams, 'props' | 'state' | 'api' | 'emit' | 'vm'>) =>
-  (val: string) => {
+  (val: number): void => {
+    // 防止用户pagerSizes传入字符串数组导致bug
+    val = Number(val)
     if (val !== state.internalPageSize) {
       const callback = () => {
         if (!api.beforeChangeHandler()) {
-          return false
+          return
         }
 
-        state.internalPageSize = val = parseInt(val, 10)
+        state.internalPageSize = val
         state.userChangePageSize = true
         state.showSizes = false
         emit('update:pageSize', val)
@@ -162,19 +164,20 @@ export const handleSizeChange =
   }
 
 export const handleJumperInput =
-  ({ state }) =>
-  (e) => {
-    if (!e.target.value) {
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+  (e: Event): void => {
+    const target = e.target as HTMLInputElement
+    if (!target.value) {
       state.jumperValue = ''
-    } else if (/^\d+$/.test(e.target.value)) {
-      state.jumperValue = e.target.value || '1'
+    } else if (/^\d+$/.test(target.value)) {
+      state.jumperValue = target.value || '1'
     }
-    e.target.value = state.jumperValue
+    target.value = state.jumperValue
   }
 
 export const handleJumperChange =
-  ({ props, state, api }) =>
-  () => {
+  ({ props, state, api }: Pick<IPagerRenderlessParams, 'props' | 'state' | 'api'>) =>
+  (): void => {
     api.parseValueNumber()
 
     const callback = () => {
@@ -196,8 +199,8 @@ export const handleJumperChange =
   }
 
 export const handleJumperClick =
-  ({ props, state, api }) =>
-  () => {
+  ({ props, state, api }: Pick<IPagerRenderlessParams, 'props' | 'state' | 'api'>) =>
+  (): void => {
     if (!api.canJumperGo() || props.disabled) return
 
     state.internalCurrentPage = api.getValidCurrentPage(state.jumperValue)
@@ -205,14 +208,14 @@ export const handleJumperClick =
   }
 
 export const isValueNumber =
-  ({ state }) =>
-  () => {
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+  (): boolean => {
     return !isNaN(Number(state.jumperValue))
   }
 
 export const parseValueNumber =
-  ({ state }) =>
-  () => {
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+  (): void => {
     let value = Number(
       String(state.jumperValue)
         .split(/[^0-9-+.]/)
@@ -238,30 +241,31 @@ export const parseValueNumber =
   }
 
 export const handleSizeShowPopover =
-  ({ state, props }) =>
-  () => {
+  ({ state, props }: Pick<IPagerRenderlessParams, 'props' | 'state'>) =>
+  (): void => {
     if (props.disabled) {
-      return (state.showSizes = false)
+      state.showSizes = false
+      return
     }
     state.showSizes = true
   }
 
 export const handleSizeHidePopover =
-  ({ state }) =>
-  () => {
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+  (): void => {
     state.showSizes = false
   }
 
 export const canJumperGo =
-  ({ props, state, vm }) =>
-  () => {
+  ({ props, state, vm }: Pick<IPagerRenderlessParams, 'props' | 'state' | 'vm'>) =>
+  (): boolean => {
     const inputValue = Number(vm.$refs.jumperInput[0].value || 0)
     const currentPage = Number(state.internalCurrentPage || 0)
     return props.accurateJumper ? inputValue !== currentPage : true
   }
 export const beforeSizeChangeHandler =
-  ({ state, emit }) =>
-  (params) => {
+  ({ state, emit }: Pick<IPagerRenderlessParams, 'emit' | 'state'>) =>
+  (params): void => {
     const { newPageSize, currentPageSize, callback } = params
     const newPage = 1
     const currentPage = state.internalCurrentPage
@@ -277,8 +281,8 @@ export const beforeSizeChangeHandler =
   }
 
 export const beforePagerChangeHandler =
-  ({ state, emit }) =>
-  (params) => {
+  ({ state, emit }: Pick<IPagerRenderlessParams, 'emit' | 'state'>) =>
+  (params): void => {
     const { newPage, currentPage, callback, rollback } = params
     const newPageSize = state.internalPageSize
     const currentPageSize = state.internalPageSize
@@ -295,8 +299,8 @@ export const beforePagerChangeHandler =
   }
 
 export const beforeJumperChangeHandler =
-  ({ state, emit }) =>
-  (params) => {
+  ({ state, emit }: Pick<IPagerRenderlessParams, 'emit' | 'state'>) =>
+  (params): void => {
     const { newPage, currentPage, callback, rollback } = params
     const newPageSize = state.internalPageSize
     const currentPageSize = state.internalPageSize
@@ -313,21 +317,21 @@ export const beforeJumperChangeHandler =
   }
 
 export const copyEmit =
-  ({ emit }) =>
-  (...args) => {
+  ({ emit }: Pick<IPagerRenderlessParams, 'emit'>) =>
+  (...args): void => {
     emit(args[0], ...args.slice(1))
   }
 
 export const beforeChangeHandler =
-  ({ state, api }) =>
-  (val = -1) => {
+  ({ state, api }: Pick<IPagerRenderlessParams, 'api' | 'state'>) =>
+  (val: number = -1) => {
     return emitEvent(api.copyEmit, 'before-change', state.internalCurrentPage, this, val)
   }
 export const handleCurrentChange =
-  ({ state, api }) =>
-  (val) => {
+  ({ state, api }: Pick<IPagerRenderlessParams, 'api' | 'state'>) =>
+  (val: number): void => {
     if (!api.beforeChangeHandler(val)) {
-      return false
+      return
     }
 
     state.internalCurrentPage = api.getValidCurrentPage(val)
@@ -336,11 +340,11 @@ export const handleCurrentChange =
   }
 
 export const prev =
-  ({ state, props, api, emit }) =>
-  () => {
+  ({ state, props, api, emit }: Pick<IPagerRenderlessParams, 'props' | 'state' | 'api' | 'emit'>) =>
+  (): void => {
     const callback = () => {
       if (props.disabled || !api.beforeChangeHandler(state.internalCurrentPage - 1)) {
-        return false
+        return
       }
 
       const newVal = state.internalCurrentPage - 1
@@ -361,11 +365,11 @@ export const prev =
   }
 
 export const next =
-  ({ props, state, api, emit }) =>
-  () => {
+  ({ props, state, api, emit }: Pick<IPagerRenderlessParams, 'props' | 'state' | 'api' | 'emit'>) =>
+  (): void => {
     const callback = () => {
       if (props.disabled || !api.beforeChangeHandler(state.internalCurrentPage + 1)) {
-        return false
+        return
       }
 
       const newVal = state.internalCurrentPage + 1
@@ -386,7 +390,7 @@ export const next =
   }
 
 export const buildBeforePageChangeParam =
-  ({ state }) =>
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
   (param) => {
     const currentPage = state.internalCurrentPage
     const newPageSize = state.internalPageSize
@@ -396,38 +400,38 @@ export const buildBeforePageChangeParam =
   }
 
 export const getValidCurrentPage =
-  ({ state }) =>
-  (val) => {
-    val = parseInt(val, 10)
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+  (val: string | number) => {
+    const parseVal = Number(val)
 
     const hasPageCount = typeof state.internalPageCount === 'number'
 
     let resetVal
 
     if (hasPageCount) {
-      if (val < 1) {
+      if (parseVal < 1) {
         resetVal = 1
-      } else if (val > state.internalPageCount) {
+      } else if (parseVal > (state.internalPageCount || 0)) {
         resetVal = state.internalPageCount
       }
     } else {
-      if (isNaN(val) || val < 1) {
+      if (isNaN(parseVal) || parseVal < 1) {
         resetVal = 1
       }
     }
 
-    if (resetVal === undefined && isNaN(val)) {
+    if (resetVal === undefined && isNaN(parseVal)) {
       resetVal = 1
     } else if (resetVal === 0) {
       resetVal = 1
     }
 
-    return resetVal === undefined ? val : resetVal
+    return resetVal === undefined ? parseVal : resetVal
   }
 
 export const emitChange =
-  ({ state, nextTick, emit }) =>
-  () => {
+  ({ state, nextTick, emit }: Pick<IPagerRenderlessParams, 'emit' | 'state' | 'nextTick'>) =>
+  (): void => {
     nextTick(() => {
       if (state.internalCurrentPage !== state.lastEmittedPage || state.userChangePageSize) {
         emit('update:current-page', state.internalCurrentPage)
@@ -443,7 +447,7 @@ export const emitChange =
   }
 
 export const setTotal =
-  ({ state }) =>
-  (val) => {
+  ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
+  (val: number): void => {
     state.internalTotal = val
   }
