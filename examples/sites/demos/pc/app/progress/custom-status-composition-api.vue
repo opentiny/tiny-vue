@@ -9,7 +9,7 @@
           </div>
           <tiny-progress class="progress" type="line" :percentage="percentage" status="exception"></tiny-progress>
           <div class="tiny-progress-demo-status">
-            <icon-operationfaild-l class="tiny-progress-demo-status-icon"></icon-operationfaild-l>
+            <tiny-icon-operationfaild-l class="tiny-progress-demo-status-icon"></tiny-icon-operationfaild-l>
             <div class="tiny-progress-demo-status-des">上传失败</div>
           </div>
         </div>
@@ -40,7 +40,7 @@
             </div>
             <tiny-progress class="progress" type="line" :percentage="percentage2" status="exception"></tiny-progress>
             <div class="tiny-progress-demo-status">
-              <icon-operationfaild-l class="tiny-progress-demo-status-icon"></icon-operationfaild-l>
+              <tiny-icon-operationfaild-l class="tiny-progress-demo-status-icon"></tiny-icon-operationfaild-l>
               <div class="tiny-progress-demo-status-des">
                 安装失败，请<i class="tiny-progress-demo-status-des-again" @click="reload">重试</i>
               </div>
@@ -58,7 +58,7 @@
             </div>
             <tiny-progress class="progress" type="line" :percentage="percentage3" status="success"></tiny-progress>
             <div class="tiny-progress-demo-status">
-              <icon-successfull class="tiny-progress-demo-status-icon"></icon-successfull>
+              <tiny-icon-successfull class="tiny-progress-demo-status-icon"></tiny-icon-successfull>
               <div class="tiny-progress-demo-status-des">安装成功</div>
             </div>
           </div>
@@ -73,8 +73,8 @@ import { ref, onMounted } from 'vue'
 import { Progress as TinyProgress } from '@opentiny/vue'
 import { iconOperationfaildL, iconSuccessful } from '@opentiny/vue-icon'
 
-const IconOperationfaildL = iconOperationfaildL()
-const IconSuccessfull = iconSuccessful()
+const TinyIconOperationfaildL = iconOperationfaildL()
+const TinyIconSuccessfull = iconSuccessful()
 
 const percentage = ref(50)
 const percentage1 = ref(0)
