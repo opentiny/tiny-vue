@@ -97,7 +97,7 @@ export const cmpMenus = [
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
-      { 'nameCn': '输入框', 'name': 'IpAddress', 'key': 'ip-address' },
+      { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
       { 'nameCn': '文字链接', 'name': 'Link', 'key': 'link' },
       { 'nameCn': '计数器', 'name': 'Numeric', 'key': 'numeric' },
       { 'nameCn': '弹出编辑', 'name': 'PopEditor', 'key': 'popeditor' },
