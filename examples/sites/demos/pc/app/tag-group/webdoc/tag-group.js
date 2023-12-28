@@ -62,8 +62,9 @@ export default {
         },
         {
           'name': 'size',
-          'type': "'medium' | 'small' | 'mini'",
-          'defaultValue': 'medium',
+          'type': 'ISize',
+          'typeAnchorName': 'ISize',
+          'defaultValue': "'medium'",
           'desc': {
             'zh-CN': '尺寸',
             'en-US': 'Size '
@@ -72,8 +73,9 @@ export default {
         },
         {
           'name': 'effect',
-          'type': "'dark' | 'light' | 'plain'",
-          'defaultValue': 'light',
+          'type': 'IEffect',
+          'typeAnchorName': 'IEffect',
+          'defaultValue': "'light'",
           'desc': {
             'zh-CN': '主题',
             'en-US': 'Effect'
@@ -103,6 +105,20 @@ export default {
       name: 'ITagGroupItemClick',
       type: 'type',
       code: `type ITagGroupItemClick = (item: ITagGroupDataItem, index: number, event: Event) => void`
+    },
+    {
+      name: 'IEffect',
+      type: 'type',
+      code: `
+type IEffect = 'dark' | 'light' | 'plain'
+`
+    },
+    {
+      name: 'ISize',
+      type: 'type',
+      code: `
+type ISize = 'medium' | 'small' | 'mini'
+`
     }
   ]
 }
