@@ -165,6 +165,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
+## ❤️ Credits
+
+Thanks to:
+
+- The [element](https://github.com/ElemeFE/element) project which is an old component library based on Vue.js. TinyVue draws on Element at the beginning of its design, and is compatible with Element's component API.
+- The [floating-ui](https://github.com/floating-ui/floating-ui) project which is a small library that helps you create "floating" elements such as tooltips, popovers, dropdowns, and more. Many components of TinyVue are based on the capabilities provided by Floating UI.
+- The [vxe-table](https://github.com/x-extends/vxe-table) project which is a Vue-based table component, supports rich features, TinyVue's Grid component is based on vxe-table.
+- The [sortablejs](https://github.com/SortableJS/Sortable) project which is a powerful drag-and-drop library. The drag-and-drop sorting function of TinyVue's Grid / Transfer / Tabs and other components is based on Sortable.
+- [@adamwathan](https://github.com/adamwathan)'s article [Renderless Components in Vue.js](https://adamwathan.me/renderless-components-in-vuejs/), which inspired TinyVue's renderless component design architecture and ultimately enabled cross-end and cross-framework capabilities in the TinyVue project.
+
 ## License
 
 [MIT](LICENSE)
