@@ -38,6 +38,7 @@ const createImportMap = (version) => {
     '@opentiny/vue-locale': `${getRuntime(version)}tiny-vue-locale.mjs`,
     '@opentiny/vue-common': `${getRuntime(version)}tiny-vue-common.mjs`,
     '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme@${version}/`,
+    '@opentiny/vue-theme-mobile/': `${cdnHost}/@opentiny/vue-theme-mobile@${version}/`,
     '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless@${version}/`,
     'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
   }
@@ -73,6 +74,7 @@ const getTinyTheme = (version) => {
 const hash = location.hash.slice(1)
 const shareData = hash.split('|')
 
+// eslint-disable-next-line new-cap
 const store = new useStore({
   serializedState: shareData.length === 2 ? shareData[1] : '',
   showOutput: true,
@@ -154,6 +156,11 @@ function insertStyleDom(version) {
     link.href = getTinyTheme(version)
     iframeWin.addEventListener('DOMContentLoaded', () => {
       iframeWin.document.head.append(link)
+
+      // 增加mobile支持，增加mobile的样式表
+      const mobileLink = link.cloneNode(true)
+      mobileLink.href = `${cdnHost}/@opentiny/vue-theme-mobile@${version}/index.css`
+      iframeWin.document.head.append(mobileLink)
     })
   })
 }
@@ -171,6 +178,7 @@ function getDemoName(name, apiMode) {
   return name.replace(/\.vue$/, `${apiMode === 'Options' ? '' : '-composition-api'}.vue`)
 }
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const getDemoCode = async ({ cmpId, fileName, apiMode, mode }) => {
   const demoName = getDemoName(`${getWebdocPath(cmpId)}/${fileName}`, apiMode)
   const path = tinyMode === 'mobile-first' ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
