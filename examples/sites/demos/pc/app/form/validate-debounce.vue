@@ -44,7 +44,7 @@ export default {
     handleSubmit() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.message('提交成功')
+          Modal.message({ message: '提交成功', status: 'info' })
         }
       })
     },
@@ -56,10 +56,10 @@ export default {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           if (value && value.length > 30) {
-            Modal.message('校验成功')
+            Modal.message({ message: '校验成功', status: 'info' })
             resolve()
           } else {
-            Modal.message('校验失败')
+            Modal.message({ message: '校验失败', status: 'info' })
             reject(new Error('The length must be greater than 30 characters.'))
           }
         }, 300)

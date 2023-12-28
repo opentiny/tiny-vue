@@ -37,7 +37,7 @@ import {
 } from '@opentiny/vue'
 
 function handleClick() {
-  Modal.message({ message: 'click' })
+  Modal.message({ message: 'click', status: 'info' })
 }
 
 const options = ref([

@@ -1210,6 +1210,7 @@ export default {
   IconSortTriangle,
   IconSortTriangleAscending,
   IconSortTriangleDescending,
+  IconPromptExclamation,
   IconPrompt,
   IconExpand,
   IconPutAway,
