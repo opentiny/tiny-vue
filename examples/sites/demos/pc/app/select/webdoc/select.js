@@ -196,7 +196,7 @@ export default {
       'name': { 'zh-CN': '分组', 'en-US': 'Group' },
       'desc': {
         'zh-CN':
-          '<p>使用 <code>tiny-option-group</code> 组件对备选项进行分组。通过 <code>label</code> 属性设置分组名，code>disabled</code> 属性设置该分组下所有选项为禁用。</p>\n',
+          '<p>使用 <code>tiny-option-group</code> 组件对备选项进行分组。通过 <code>label</code> 属性设置分组名，<code>disabled</code> 属性设置该分组下所有选项为禁用。</p>\n',
         'en-US':
           '<p>Use the <code>tiny-option-group</code> component to group alternative options. Set the group name through the <code>label</code> attribute, and set all options under the group to disabled through the <code>disabled</code> attribute. </p>\n'
       },

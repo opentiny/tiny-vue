@@ -80,7 +80,7 @@ export default {
         {
           'name': 'delimiter',
           'type': 'VueComponent',
-          'defaultValue': 'IconDotIpv4',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '设置IP段之间的分隔符，默认图标为IconDotIpv4',
             'en-US': 'Set the separator between IP segments, default icon is icon-dot-ipv4'
