@@ -13,7 +13,7 @@ export default {
     return {
       data: [
         {
-          name: '标签一',
+          name: '标签一'
         },
         {
           name: '标签二',
