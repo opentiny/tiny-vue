@@ -39,7 +39,7 @@ export const buttonProps = {
     type: String,
     default: '',
     validator(val: string) {
-      return ['large', 'medium', 'small', 'mini'].includes(val)
+      return ['large', 'medium', 'small', 'mini', ''].includes(val)
     }
   },
   round: Boolean,
