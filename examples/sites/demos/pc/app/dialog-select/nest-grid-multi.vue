@@ -104,7 +104,11 @@ export default {
           { field: 'city', title: '城市', width: 80 }
         ],
         data: [],
-        selectConfig: { reserve: true, checkRowKeys: ['1', '6'] },
+        selectConfig: {
+          reserve: true,
+          checkRowKeys: ['1', '6']
+        },
+        // 单选时生效
         radioConfig: { checkRowKey: '3' }
       },
       pagerOp: {
@@ -165,9 +169,10 @@ export default {
         }, 300)
       })
     },
-    onDialogSelectChange(values, texts) {
+    onDialogSelectChange(values, texts, selectedDatas) {
       Modal.message({
-        message: `values:${values},texts:${texts}`
+        message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
+        status: 'info'
       })
     }
   }
