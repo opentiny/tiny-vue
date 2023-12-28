@@ -26,7 +26,7 @@
   // 选择下拉框的顶部外边距
   --ti-select-dropdown-margin-top: var(--ti-common-dropdown-gap, 2px);
   // 下拉面板的最大高度
-  --ti-select-dropdown-max-height: calc(248px - var(--ti-select-dropdown-padding-top) - var(--ti-select-dropdown-padding-bottom) + var(--ti-common-space-base));
+  --ti-select-dropdown-max-height: calc(30px * 8 + 8px);
   // 远程搜索数据为空时下拉框文本色（hide）
   --ti-select-dropdown-empty-text-color: var(--ti-common-color-placeholder, #adb0b8);
   // 下拉面板空数据提示文本字号
@@ -75,6 +75,14 @@
   --ti-select-dropdown-search-width: 100%;
   // 下拉面板搜索框的边框宽度
   --ti-select-dropdown-search-border-width: var(--ti-common-size-0, 0px);
+  // 下拉面板搜索框的边框圆角
+  --ti-select-dropdown-search-border-radius: var(--ti-common-border-radius-0, 0px);
+  // 下拉面板搜索框的左边框色
+  --ti-select-dropdown-search-border-color-left: var(--ti-common-color-transparent, transparent);
+  // 下拉面板搜索框的右边框色
+  --ti-select-dropdown-search-border-color-right: var(--ti-common-color-transparent, transparent);
+  // 下拉面板搜索框的上边框色
+  --ti-select-dropdown-search-border-color-top: var(--ti-common-color-transparent, transparent);
   // 下拉面板搜索框尾部图标显示状态
   --ti-select-dropdown-search-suffix-display: 'block';
   // 下拉面板搜索框头部图标显示状态
