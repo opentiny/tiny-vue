@@ -11,11 +11,7 @@
  -->
 <template>
   <transition name="tiny-mobile-alert-fade">
-    <div
-      v-if="state.show"
-      :class="state.alertClass"
-      :style="state.alertStyle"
-    >
+    <div v-if="state.show" :class="state.alertClass" :style="state.alertStyle">
       <component v-if="showIcon" :is="state.getIcon" class="tiny-mobile-alert__icon" />
       <div :class="['tiny-mobile-alert__content', { 'is-hideicon': !showIcon }]">
         <slot>{{ description }}</slot>
@@ -33,18 +29,32 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconClose, iconSuccess, iconError, iconHelp, iconWarning } from '@opentiny/vue-icon'
+import { iconClose, iconSuccess, iconError, iconHelp, iconWarningTriangle } from '@opentiny/vue-icon'
 import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
 import '@opentiny/vue-theme-mobile/alert/index.less'
 
 export default defineComponent({
-  props: [...props, 'icon', 'type', 'size', 'description', 'closable', 'showIcon', 'closeText', 'duration', 'offset', 'autoHide', 'target', 'center'],
+  props: [
+    ...props,
+    'icon',
+    'type',
+    'size',
+    'description',
+    'closable',
+    'showIcon',
+    'closeText',
+    'duration',
+    'offset',
+    'autoHide',
+    'target',
+    'center'
+  ],
   components: {
     IconClose: iconClose(),
     IconSuccess: iconSuccess(),
     IconError: iconError(),
     IconHelp: iconHelp(),
-    IconWarning: iconWarning()
+    IconWarning: iconWarningTriangle() // key值在 $constants 中已定义
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IAlertApi
