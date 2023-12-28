@@ -54,7 +54,7 @@ import { iconWarning } from '@opentiny/vue-icon'
 
 const ruleFormRef = ref()
 function handleClick() {
-  Modal.message({ message: 'click' })
+  Modal.message({ message: 'click', status: 'info' })
 }
 const validateIcon = ref(iconWarning())
 const validType = ref('promise')
