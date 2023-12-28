@@ -174,7 +174,8 @@ export default {
         },
         {
           'name': 'type',
-          'type': "'success' | 'warning' | 'info' | 'error'",
+          'type': 'IType',
+          'typeAnchorName': 'IType',
           'defaultValue': "'info'",
           'desc': {
             'zh-CN': '警告的类型',
@@ -237,6 +238,15 @@ export default {
           'demoId': 'title'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IType',
+      type: 'type',
+      code: `
+type IType = 'success' | 'warning' | 'info' | 'error' | 'simple'
+`
     }
   ]
 }

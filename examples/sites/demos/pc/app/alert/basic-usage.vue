@@ -6,6 +6,7 @@
     <tiny-alert type="warning">
       <template #description> type 为 warning </template>
     </tiny-alert>
+    <tiny-alert type="simple" description="type 为 simple"></tiny-alert>
   </div>
 </template>
 
