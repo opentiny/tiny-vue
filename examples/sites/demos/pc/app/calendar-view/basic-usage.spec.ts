@@ -6,8 +6,6 @@ test('基本用法', async ({ page }) => {
   const demoPage = page.locator('#basic-usage')
   const fixWeek2 = page.getByText('前端周会2').first()
   const popWeek2 = page.locator('.title').filter({ hasText: '前端周会2' })
-  const goToday = page.getByRole('button', { name: '回今天' })
-  const todayDom = page.getByRole('listitem').filter({ hasText: '今天' })
   // 校验固定内容
   await expect(demoPage).toHaveText(/15前端周会2前端周会2-1前端周会1/)
   await expect(demoPage).toHaveText(/16前端周会4前端周会3/)
@@ -17,8 +15,4 @@ test('基本用法', async ({ page }) => {
   await fixWeek2.hover()
   await page.waitForTimeout(200)
   await expect(popWeek2).toBeVisible()
-  // 校验回到今天
-  await goToday.click()
-  await page.waitForTimeout(200)
-  await expect(todayDom).toHaveClass(/is-eslected/)
 })

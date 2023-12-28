@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     disabled(date) {
-      return date.split('-')[2] < 5
+      return date.split('-')[2] < 15
     }
   }
 }
