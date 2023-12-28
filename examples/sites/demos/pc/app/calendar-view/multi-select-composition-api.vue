@@ -11,13 +11,13 @@
   </tiny-calendar-view>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { CalendarView as TinyCalendarView, Modal } from '@opentiny/vue'
 
 const eventslist = ref([])
 
 const selectedDateChange = (date) => {
-  Modal.message(`当前选择${JSON.stringify(date)}`)
+  Modal.message({ message: `当前选择${JSON.stringify(date)}`, status: 'info' })
 }
 </script>

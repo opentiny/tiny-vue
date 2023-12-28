@@ -97,7 +97,7 @@ export default {
     },
     {
       'demoId': 'custom-day-bg-color',
-      'name': { 'zh-CN': '自定义日期单元格背景色', 'en-US': 'Add Schedule Event' },
+      'name': { 'zh-CN': '自定义单元格背景色', 'en-US': 'Add Schedule Event' },
       'desc': {
         'zh-CN':
           '<p>自定义日期单元格背景色。</p>\n<p>目前只支持预置的颜色，可选颜色blue、green、red、yellow、purple、cyan、grey</p>\n',
