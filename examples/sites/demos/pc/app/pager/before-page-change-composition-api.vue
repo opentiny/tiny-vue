@@ -18,7 +18,7 @@ const currentPage = ref(5)
 
 function onBeforePageChange(param) {
   const { callback, rollback } = param
-  Modal.confirm('您确定要放弃当前页的修改吗？').then((res) => {
+  Modal.confirm('您确定要继续变更操作吗？').then((res) => {
     if (res === 'confirm') {
       callback && callback()
     } else {

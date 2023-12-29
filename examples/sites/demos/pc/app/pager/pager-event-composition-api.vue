@@ -29,30 +29,35 @@ function debounce(fn, delay = 50) {
 
 function handleCurrentChange(val) {
   Modal.message({
-    message: `current-change 事件，当前页: ${val}`
+    message: `current-change 事件，当前页: ${val}`,
+    status: 'info'
   })
 }
 
 function handleSizeChange(val) {
   Modal.message({
-    message: `size-change 事件，每页条目数: ${val}`
+    message: `size-change 事件，每页条目数: ${val}`,
+    status: 'info'
   })
 }
 
 function prevClick(val) {
   Modal.message({
-    message: `prev-click 事件，当前页: ${val}`
+    message: `prev-click 事件，当前页: ${val}`,
+    status: 'info'
   })
 }
 
 function nextClick(val) {
   Modal.message({
-    message: `next-click 事件，当前页: ${val}`
+    message: `next-click 事件，当前页: ${val}`,
+    status: 'info'
   })
 }
 const fetchData = debounce(() => {
   Modal.message({
-    message: '模拟后台拉取数据'
+    message: '模拟后台拉取数据',
+    status: 'info'
   })
 })
 </script>
