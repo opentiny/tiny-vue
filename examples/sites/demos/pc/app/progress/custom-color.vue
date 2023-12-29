@@ -1,9 +1,11 @@
 <template>
   <div>
-    <tiny-button @click="add"> 点击增加改变颜色 </tiny-button>
-    <tiny-progress :percentage="value" :color="customColor"></tiny-progress>
-    <tiny-progress :percentage="value" :color="customColorMethod"></tiny-progress>
-    <tiny-progress :percentage="value" :color="customColors"></tiny-progress>
+    <tiny-button @click="add" class="mb10"> 点击增加改变颜色 </tiny-button>
+    <tiny-progress :percentage="value" :color="customColor" :stroke-width="24"></tiny-progress>
+    <br />
+    <tiny-progress :percentage="value" :color="customColorMethod" :stroke-width="24"></tiny-progress>
+    <br />
+    <tiny-progress :percentage="value" :color="customColors" :stroke-width="24"></tiny-progress>
   </div>
 </template>
 
@@ -17,7 +19,7 @@ export default {
   },
   data() {
     return {
-      value: 50,
+      value: 20,
       customColor: '#409eff',
       // 在什么进度显示什么样的颜色
       customColors: [
@@ -31,6 +33,9 @@ export default {
   },
   methods: {
     add() {
+      if (this.value + 20 > 100) {
+        return
+      }
       this.value += 20
     },
     // 在什么进度显示什么样的颜色

@@ -1,9 +1,11 @@
 <template>
   <div>
-    <tiny-button @click="add"> 点击增加改变颜色 </tiny-button>
-    <tiny-progress :percentage="value" :color="customColor"></tiny-progress>
-    <tiny-progress :percentage="value" :color="customColorMethod"></tiny-progress>
-    <tiny-progress :percentage="value" :color="customColors"></tiny-progress>
+    <tiny-button @click="add" class="mb10"> 点击增加改变颜色 </tiny-button>
+    <tiny-progress :percentage="value" :color="customColor" :stroke-width="24"></tiny-progress>
+    <br />
+    <tiny-progress :percentage="value" :color="customColorMethod" :stroke-width="24"></tiny-progress>
+    <br />
+    <tiny-progress :percentage="value" :color="customColors" :stroke-width="24"></tiny-progress>
   </div>
 </template>
 
@@ -11,7 +13,7 @@
 import { ref } from 'vue'
 import { Progress as TinyProgress, Button as TinyButton } from '@opentiny/vue'
 
-const value = ref(50)
+const value = ref(20)
 const customColor = ref('#409eff')
 // 在什么进度显示什么样的颜色
 const customColors = ref([
@@ -23,6 +25,9 @@ const customColors = ref([
 ])
 
 function add() {
+  if (value.value + 20 > 100) {
+    return
+  }
   value.value += 20
 }
 
