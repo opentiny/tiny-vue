@@ -115,12 +115,11 @@ export default {
         },
         {
           'name': 'status',
-          'type': 'string',
+          'type': `'success' | 'exception' | 'warning'`,
           'defaultValue': '',
           'desc': {
-            'zh-CN': '进度条当前状态；该属性的可选值为 success / exception / warning',
-            'en-US':
-              'Current status of the progress bar; The value of this attribute can be success, exception, or warning'
+            'zh-CN': '进度条当前状态',
+            'en-US': 'Current status of the progress bar'
           },
           'demoId': 'progress-status'
         },
@@ -147,11 +146,11 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'string',
+          'type': `'line' | 'circle' | 'dashboard'`,
           'defaultValue': `'line'`,
           'desc': {
-            'zh-CN': '进度条类型；该属性的可选值为 line / circle / dashboard',
-            'en-US': 'Progress bar type; The value of this attribute can be line, circle, or dashboard'
+            'zh-CN': '进度条类型',
+            'en-US': 'Progress bar type'
           },
           'demoId': 'progress-type-circle'
         },
