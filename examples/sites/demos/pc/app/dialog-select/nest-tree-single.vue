@@ -160,9 +160,10 @@ export default {
         }, 300)
       })
     },
-    onDialogSelectChange(values, texts) {
+    onDialogSelectChange(values, texts, selectedDatas) {
       Modal.message({
-        message: `values:${values},texts:${texts}`
+        message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
+        status: 'info'
       })
     }
   }

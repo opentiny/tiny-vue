@@ -46,6 +46,7 @@ const { SAAS: T_SAAS } = themes
 const { DEFAULT: V_DEFAULT, CARD: V_CARD, LIST: V_LIST } = viewConfig
 const { MF_SHOW_LIST: V_MF_LIST } = viewConfig
 
+// 校验插件是否被注册
 function verifyConfig(_vm) {
   if (!getRowkey(_vm)) {
     error('ui.grid.error.rowIdEmpty')
@@ -509,7 +510,7 @@ const getTableData = () => {
     elemStore: {},
     // 表尾高度
     footerHeight: 0,
-    // 缓存数据集
+    // 缓存数据集(键为rowid)
     fullAllDataRowIdData: {},
     fullAllDataRowMap: new Map(),
     fullColumnIdData: {},

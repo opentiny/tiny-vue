@@ -158,9 +158,10 @@ const lookupMethod = (values) => {
     }, 300)
   })
 }
-const onDialogSelectChange = (values, texts) => {
+const onDialogSelectChange = (values, texts, selectedDatas) => {
   Modal.message({
-    message: `values:${values},texts:${texts}`
+    message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
+    status: 'info'
   })
 }
 </script>

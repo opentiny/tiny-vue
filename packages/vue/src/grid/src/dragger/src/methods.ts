@@ -27,6 +27,7 @@ export default {
   // 处理行拖拽
   rowDrop() {
     this.$nextTick(() => {
+      // refresh：是否在拖拽后刷新数据，默认为true
       const { plugin, onBeforeMove, filter, refresh = true, trigger } = this.dropConfig
       this.rowSortable = plugin.create(this.$el.querySelector('.body__wrapper>.tiny-grid__body tbody'), {
         handle: trigger || '.tiny-grid-body__row',
@@ -36,12 +37,15 @@ export default {
           this.$emit('row-drop-start', event, this)
         },
         onMove: (event) => {
-          let insertRecords = this.getInsertRecords()
+          const insertRecords = this.getInsertRecords()
           // 包含新增数据的表格不可再拖动行顺序
-          if (insertRecords.length) return false
+          if (insertRecords.length) {
+            return false
+          }
 
-          let { dragged } = event
-          let selfRow = this.getRowNode(dragged).item
+          const { dragged } = event
+          // 获取被拖拽的行，这里在拖拽过程中被频繁触发，待优化
+          const selfRow = this.getRowNode(dragged).item
           const cancel = typeof onBeforeMove === 'function' ? onBeforeMove('row', selfRow, event, this) : true
 
           this.$emit('row-drop-move', event, this)
