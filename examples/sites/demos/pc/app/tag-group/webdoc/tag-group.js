@@ -62,8 +62,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': 'ISize',
-          'typeAnchorName': 'ISize',
+          'type': "'medium' | 'small' | 'mini'",
           'defaultValue': "'medium'",
           'desc': {
             'zh-CN': '尺寸',
@@ -73,8 +72,7 @@ export default {
         },
         {
           'name': 'effect',
-          'type': 'IEffect',
-          'typeAnchorName': 'IEffect',
+          'type': "'dark' | 'light' | 'plain'",
           'defaultValue': "'light'",
           'desc': {
             'zh-CN': '主题',
@@ -93,32 +91,6 @@ export default {
         }
       ],
       'slots': []
-    }
-  ],
-  types: [
-    {
-      name: 'ITagGroupDataItem',
-      type: 'type',
-      code: `type ITagGroupDataItem = { name: string, type?: 'success' | 'info' | 'warning' | 'danger' }`
-    },
-    {
-      name: 'ITagGroupItemClick',
-      type: 'type',
-      code: `type ITagGroupItemClick = (item: ITagGroupDataItem, index: number, event: Event) => void`
-    },
-    {
-      name: 'IEffect',
-      type: 'type',
-      code: `
-type IEffect = 'dark' | 'light' | 'plain'
-`
-    },
-    {
-      name: 'ISize',
-      type: 'type',
-      code: `
-type ISize = 'medium' | 'small' | 'mini'
-`
     }
   ]
 }
