@@ -63,7 +63,7 @@ export default {
         {
           'name': 'size',
           'type': "'medium' | 'small' | 'mini'",
-          'defaultValue': 'medium',
+          'defaultValue': "'medium'",
           'desc': {
             'zh-CN': '尺寸',
             'en-US': 'Size '
@@ -73,7 +73,7 @@ export default {
         {
           'name': 'effect',
           'type': "'dark' | 'light' | 'plain'",
-          'defaultValue': 'light',
+          'defaultValue': "'light'",
           'desc': {
             'zh-CN': '主题',
             'en-US': 'Effect'
