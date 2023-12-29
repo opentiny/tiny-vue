@@ -130,6 +130,19 @@
     }
   }
 
+  &&--simple {
+    .alert-variant(var(--ti-alert-title-text-color);
+      var(--ti-alert-simple-border-color);
+      var(--ti-alert-simple-icon-color);
+      var(--ti-alert-simple-link-text-color);
+      var(--ti-alert-simple-bg-color);
+      var(--ti-alert-simple-close-icon-color));
+
+    .@{alert-prefix-cls}__close:hover {
+      fill: var(--ti-alert-simple-close-hover-icon-color);
+    }
+  }
+
   &__icon {
     font-size: var(--ti-alert-icon-font-size);
   }

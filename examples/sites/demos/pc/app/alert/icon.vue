@@ -3,14 +3,14 @@
     <tiny-alert :icon="TinyIconBoat" description="自定义图标"></tiny-alert>
     <tiny-alert description="默认图标"></tiny-alert>
     <tiny-alert type="success" description="type 为 success 的默认图标"></tiny-alert>
-    <tiny-alert type="warning" description="type 为 warning 的默认图标"></tiny-alert>
+    <tiny-alert :icon="TinyIconWarningTriangle" type="warning" description="type 为 warning 的默认图标"></tiny-alert>
     <tiny-alert type="error" description="type 为 error 的默认图标"></tiny-alert>
   </div>
 </template>
 
 <script>
 import { Alert } from '@opentiny/vue'
-import { iconBoat } from '@opentiny/vue-icon'
+import { iconBoat, iconWarningTriangle } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -18,7 +18,8 @@ export default {
   },
   data() {
     return {
-      TinyIconBoat: iconBoat()
+      TinyIconBoat: iconBoat(),
+      TinyIconWarningTriangle: iconWarningTriangle()
     }
   }
 }
