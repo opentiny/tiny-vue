@@ -24,12 +24,12 @@ export default {
     },
     {
       'demoId': 'group-options',
-      'name': { 'zh-CN': '配置式单选组', 'en-US': 'Profile Radio Group' },
+      'name': { 'zh-CN': '单选组', 'en-US': 'Profile Radio Group' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>options</code> 配置式渲染单选组。 <code>options</code> 的类型为 <a href="#IRadioGroupOptions">IRadioGroupOptions[]</a> 。另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>radio</code> 。可以配置为 <code>button</code> ，配置后单选组将以按钮的形式展示。</p>\n',
+          '<p>通过 <code>options</code> 配置式渲染单选组。另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>radio</code> 。可以配置为 <code>button</code> ，配置后单选组将以按钮的形式展示。</p>\n',
         'en-US':
-          '<p>Provides the <code>options</code> attribute to render radio groups by configuring object array data. This property eliminates the need to insert a <code>&lt;radio&gt;</code> or <code>&lt;radio-button&gt;</code> tag as a slot in the tag. \n\nThe <code>options</code> object array contains three fields: <code>label</code> , <code>text</code> , and <code>events</code> . \n\n The <code>type</code> attribute is also provided, which is used together with the <code>options</code> attribute. The default value is <code>radio</code> . You can also set this parameter to <code>button</code> . After the configuration, the radio group is displayed as a button. </p>\n'
+          '<p>Rendaer radio groups with <code>options</code> profile. In addition, the <code>type</code> attribute is provided, which is used together with the <code>options</code> attribute. The default value is <code>radio</code>. The option gooup is displayed as a <code>button</code>. </p>\n'
       },
       'codeFiles': ['group-options.vue']
     },
