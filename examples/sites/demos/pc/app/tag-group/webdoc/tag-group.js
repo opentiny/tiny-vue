@@ -92,5 +92,17 @@ export default {
       ],
       'slots': []
     }
+  ],
+  types: [
+    {
+      name: 'ITagGroupDataItem',
+      type: 'type',
+      code: `type ITagGroupDataItem = { name: string, type?: 'success' | 'info' | 'warning' | 'danger' }`
+    },
+    {
+      name: 'ITagGroupItemClick',
+      type: 'type',
+      code: `type ITagGroupItemClick = (item: ITagGroupDataItem, index: number, event: Event) => void`
+    }
   ]
 }
