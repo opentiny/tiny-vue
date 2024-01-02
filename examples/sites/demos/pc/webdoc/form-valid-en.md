@@ -117,13 +117,19 @@ rules: {
 
 #### trigger
 
-By`trigger`Configure the method of triggering the verification rule.`change`When the input box value changes, the verification is triggered.`blur`When the focus is lost, the calibration is triggered. The following is an example:
+Configure the way to trigger the verification rules through `trigger`. When it is `change`, the verification is triggered when the input box value changes. When it is `blur`,
+the verification is triggered after the input box value is out of focus. Can be set to an array `['change', 'blur']` to trigger both scenarios. The default is to trigger both scenarios.
+If it is only triggered when the verification method is actively called, it can be set to an empty array `[]`. An example of usage is as follows:
 
 ```js
 rules: {
-  users: { len: 2, message: 'The length must be 2', trigger: 'change' }
+  users: { len: 2, message: 'The length must be 2', trigger: 'change' },
+  password: { len: 2, message: 'The length must be 2', trigger: ['change', 'blur'] },
+  nickname: { len: 10, message: 'Duplicate name already exists', trigger: [] }
 }
 ```
+
+````
 
 The configurable values are as follows:
 
@@ -139,7 +145,7 @@ Enumerated value validation, which verifies whether the value of the field is in
 rules: {
   role: { type: 'enum', enum: ['admin', 'user', 'guest'] }
 }
-```
+````
 
 #### whitespace
 

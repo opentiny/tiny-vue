@@ -4,7 +4,7 @@
       <div>validate用法：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
     </div>
     <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px">
-      <tiny-form-item label="必填" prop="users" required :validate-icon="validateIcon">
+      <tiny-form-item label="必填" prop="users" :validate-icon="validateIcon">
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="日期" prop="datepicker">

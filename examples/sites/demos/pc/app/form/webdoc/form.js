@@ -730,7 +730,8 @@ interface IFormRules {
   message?: number // 校验错误的提示
   // 内置的类型校验
   type?: 'date' | 'dateTime' | 'float' | 'array' | 'string' | 'number' | 'url' | 'time' | 'email' | 'object' | 'boolean' | 'enum'
-  trigger?: IFormTrigger | IFormTrigger[] // 校验触发时机， 可设置成数组 ['change', 'blur'] 两种场景都触发
+  // 校验触发时机， 默认为 ['change', 'blur'] 两种场景都触发，如果仅在主动调用校验方式时触发，可设置为空数组 []。
+  trigger?: IFormTrigger | IFormTrigger[] 
   // 同步检验函数，调用回调传递错误信息。
   validator?: (
     rule: IFormInnerRule, // from内部处理后的rule
