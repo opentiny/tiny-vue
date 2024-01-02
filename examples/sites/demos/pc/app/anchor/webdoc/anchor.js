@@ -52,7 +52,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '用于单页面 hash 路由模式时指定滚动容器的id值，id为空时则滚动容器默认为 HTML 文档的根节点 body 元素',
+              '用于单页面 hash 路由模式时指定滚动容器的 id 值，id 为空时则滚动容器默认为 HTML 文档的根节点 body 元素',
             'en-US':
               'When used in single page hash routing mode, specify the id value of the scrolling container. If the id is empty, the scrolling container defaults to the body element of the root node of the HTML document'
           },
@@ -71,7 +71,7 @@ export default {
           'typeAnchorName': 'ILink',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '导航数据配置项，可通过children嵌套',
+            'zh-CN': '导航数据配置项，可通过 children 嵌套',
             'en-US': 'Navigation data configuration items can be nested through children'
           },
           'demoId': 'basic-usage'
@@ -113,7 +113,7 @@ export default {
           'type': '(hash: string) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '使用change代替；[deprecated v3.12.0废弃，v3.17.0移除；移除原因：命名规范]',
+            'zh-CN': '使用 change 代替；[deprecated v3.12.0 废弃，v3.17.0 移除；移除原因：命名规范]',
             'en-US':
               'use change instead [deprecated v3.12.0 abandoned, v3.17.0 removed; reason for removal: naming convention]'
           },
