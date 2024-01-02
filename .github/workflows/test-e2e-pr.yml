@@ -8,6 +8,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
   cancel-in-progress: true
 
+env:
+  TZ: Asia/Shanghai
+
 jobs:
   parse-components:
     name: Parse Affected Components
