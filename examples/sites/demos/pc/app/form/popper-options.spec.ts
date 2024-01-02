@@ -13,6 +13,7 @@ test('错误提示配置', async ({ page }) => {
   let beforeBox = await tooltip.first().boundingBox()
   await page.locator('#app').click()
   await page.mouse.wheel(0, 2000)
+  await page.waitForTimeout(200)
   let afterBox = await tooltip.first().boundingBox()
   expect(afterBox?.y).toBeLessThan(beforeBox?.y || 0)
 })
