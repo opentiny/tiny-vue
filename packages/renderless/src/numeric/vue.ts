@@ -122,7 +122,7 @@ const initApi = ({
     displayValue: displayValue({ props, state }),
     internalDecrease: internalDecrease({ api, state }),
     internalIncrease: internalIncrease({ api, state }),
-    handleInputChange: handleInputChange({ api }),
+    handleInputChange: handleInputChange({ api, state, props }),
     mouseEvent: mouseEvent({ api, props, state }),
     handleBlur: handleBlur({ constants, dispatch, emit, props, state, api }),
     watchValue: watchValue({ api, state, nextTick }),
