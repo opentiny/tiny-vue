@@ -148,7 +148,7 @@ export default {
         },
         {
           'name': 'spinner',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': { 'zh-CN': '自定义加载图标', 'en-US': 'Customized loading icon class name' },
           'demoId': 'spinner'

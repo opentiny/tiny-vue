@@ -132,7 +132,7 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '传入图标组件自定义警告的图标，默认会根据 type 值自动使用对应图标',

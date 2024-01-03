@@ -79,7 +79,7 @@ export default {
       'props': [
         {
           'name': 'delimiter',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': {
             'zh-CN': '设置IP段之间的分隔符，默认图标为IconDotIpv4',

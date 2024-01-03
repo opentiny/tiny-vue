@@ -310,9 +310,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '展开节点后的事件。;节点被展开时触发的事件;//参数arg1:\n{children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title}\n//参数arg2:\nVueComponent 点击节点的componet对象信息\n//参数arg3:\n{ children: 点击节点的子节点id: 点击节点的id, label: 点击节点的title}',
+              '展开节点后的事件。;节点被展开时触发的事件;//参数arg1:\n{children: 点击节点的子节点, id: 点击节点的id, label: 点击节点的title}\n//参数arg2:\nComponent 点击节点的componet对象信息\n//参数arg3:\n{ children: 点击节点的子节点id: 点击节点的id, label: 点击节点的title}',
             'en-US':
-              'Event after a node is expanded. ; Event triggered when a node is expanded; / / Parameter arg1:\n{children: child node of the clicked node, id: ID of the clicked node, label: title of the clicked node}\n//Parameter arg2:\nVueComponent Componet object information of the clicked node\n//Parameter arg3:\n{children: subnode ID of the clicked node: ID of the clicked node, label: Click title} of the node'
+              'Event after a node is expanded. ; Event triggered when a node is expanded; / / Parameter arg1:\n{children: child node of the clicked node, id: ID of the clicked node, label: title of the clicked node}\n//Parameter arg2:\nComponent Componet object information of the clicked node\n//Parameter arg3:\n{children: subnode ID of the clicked node: ID of the clicked node, label: Click title} of the node'
           },
           'demoId': 'node-expand'
         },

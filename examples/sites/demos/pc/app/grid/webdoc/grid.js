@@ -373,7 +373,7 @@ export default {
         },
         {
           'name': 'loading-component',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '--',
           'desc': { 'zh-CN': '自定义表格loading', 'en-US': 'Whether the table is being loaded.' },
           'demoId': 'grid-loading#loading-grid-custom-loading'
@@ -1589,7 +1589,7 @@ export default {
         },
         {
           'name': 'cancel-page-change',
-          'type': '($grid: VueComponent)=> void',
+          'type': '($grid: Component)=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '切换分页时有未保存的数据时，提示框确定按钮事件',
@@ -1778,7 +1778,7 @@ export default {
         },
         {
           'name': 'radio-change',
-          'type': '($table: VueComponent, event: Event)=> void',
+          'type': '($table: Component, event: Event)=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '只对 type=radio 有效，当手动勾选并且值发生改变时触发的事件',
@@ -2196,7 +2196,7 @@ export default {
         },
         {
           'name': 'editor',
-          'type': 'IEditorConfig | (h, {row:Row, column: IColumnConfig})=> VueComponent',
+          'type': 'IEditorConfig | (h, {row:Row, column: IColumnConfig})=> Component',
           'typeAnchorName': 'IEditorConfig',
           'defaultValue': '--',
           'desc': {
@@ -2219,7 +2219,7 @@ export default {
         },
         {
           'name': 'renderer',
-          'type': 'IEditorConfig | (h, {row: IRow, column: IColumnConfig})=> VueComponent',
+          'type': 'IEditorConfig | (h, {row: IRow, column: IColumnConfig})=> Component',
           'typeAnchorName': 'IEditorConfig',
           'defaultValue': '--',
           'desc': {
@@ -2500,7 +2500,7 @@ interface IColumnConfig {
       type: 'interface',
       code: `
 interface IPagerConfig {
-  component?: VueComponent
+  component?: Component
   attrs: {
     currentPage: number
     pageSize: number
@@ -2833,7 +2833,7 @@ interface IRecordset {
       code: `
 interface IPageChangeArgs { 
   // table组件vue实例
-  $grid: VueComponent
+  $grid: Component
   // 当前页码
   currentPage: number
   //当前分页组件布局信息 'total, prev, pager, next, jumper, sizes'
@@ -2873,7 +2873,7 @@ interface IBeforePageChangeArgs {
       code: `
 interface IToolbarButtonClickArgs { 
   //表格组件实例对象信息 
-  $grid: VueComponent
+  $grid: Component
   //按钮信息对象 
   button: {
     code: string
@@ -2994,7 +2994,7 @@ interface IEditDisabledArgs {
       code: `
 interface IFilterChangeArgs {
   //表格的信息对象
-  $table: VueComponent
+  $table: Component
   //过滤列的过滤数据信息
   filters: object
 }
@@ -3008,7 +3008,7 @@ interface IFooterCellClickArgs {
   $columnIndex: number
   $rowIndex: number
   // table组件vue实例
-  $table: VueComponent
+  $table: Component
   // 当前单元格节点 
   cell: HTMLElement
   // 当前列信息
@@ -3025,7 +3025,7 @@ interface IContextMenuArgs {
   $columnIndex: number
   $rowIndex: number
   // table组件vue实例
-  $table: VueComponent
+  $table: Component
   // 当前单元格节点
   cell: HTMLElement
   // 当前列信息
@@ -3046,7 +3046,7 @@ interface IFooterCellDblClickArgs {
   $columnIndex: number
   $rowIndex: number
   // table组件vue实例
-  $table: VueComponent
+  $table: Component
   // 当前单元格节点
   cell: HTMLElement
   // 当前列信息
@@ -3063,7 +3063,7 @@ interface IHeaderCellClickArgs {
   $columnIndex: number
   $rowIndex: number
   // table组件vue实例
-  $table: VueComponent
+  $table: Component
   // 点击表头单元格
   cell: HTMLElement
   // 当前列信息
@@ -3086,7 +3086,7 @@ interface IHeaderCellDblClickArgs {
   // 列索引
   columnIndex: number
   // table组件 vue实例 
-  $table: VueComponent
+  $table: Component
   // 点击的单元格dom
   cell: HTMLElement
 }
@@ -3098,7 +3098,7 @@ interface IHeaderCellDblClickArgs {
       code: `
 interface IResizableChangeArgs {
   // table组件的vue 实例 
-  $table: VueComponent,
+  $table: Component,
   // 列配置信息 
   column: object 
   // 拖动列的索引
@@ -3114,7 +3114,7 @@ interface IResizableChangeArgs {
       code: `
 interface IScrollArgs {
   // 表格实例对象信息
-  $table: VueComponent
+  $table: Component
   fixed: boolean
   // X轴滚动
   isX: boolean
@@ -3137,7 +3137,7 @@ interface ISelectAllArgs {
   $rowIndex: number
   $seq: string
   // 表格实例对象信息
-  $table: VueComponent 
+  $table: Component 
   // 勾选状态
   checked: boolean
   // 列信息
@@ -3165,7 +3165,7 @@ interface ISelectAllArgs {
       code: `
 interface IToggleExpandChangeArgs { 
   // 表格实例对象信息
-  $table: VueComponent,
+  $table: Component,
   //点击展开行的数据信息对象
   row: IRow
   // 点击展开行的下标 
@@ -3179,7 +3179,7 @@ interface IToggleExpandChangeArgs {
       code: `
 interface IToggleTreeChangeArgs { 
   // 表格实例对象信息
-  $table: VueComponent,
+  $table: Component,
   //点击展开行的数据信息对象
   row: IRow
   // 点击展开行的下标 
@@ -3209,7 +3209,7 @@ interface IValidErrorArgs {
       code: `
 interface ISortChangeArgs { 
   // 表格实例对象信息
-  $grid: VueComponent
+  $grid: Component
   // 列信息
   column: IColumnConfig
   // 排序的字段名
@@ -3272,7 +3272,7 @@ interface IFormatConfig {
       code: `
 interface IButtonClick { 
   // 表格组件实例对象信息
-  $grid: VueComponent 
+  $grid: Component 
   // 按钮列表信息对象   
   button: {
     code: string
@@ -3333,7 +3333,7 @@ interface IExportCsvOptions {
       code: `
 interface IEditorConfig {
   // 内置组件名称或者自定义组件实例
-  component: 'input' | 'select' | VueComponent
+  component: 'input' | 'select' | Component
   // 传递给组件的事件集合
   events?: {
     [event]: ()=> void
