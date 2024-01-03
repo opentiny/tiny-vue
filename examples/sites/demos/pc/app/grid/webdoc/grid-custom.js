@@ -7,9 +7,9 @@ export default {
       'name': { 'zh-CN': '本地存储列宽', 'en-US': 'Column Width' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，<code>grid-column</code> 标签上配置 <code>resizable=&quot;false&quot;</code> 可以配置某一列不能调整列宽。并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStroage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示。</p>\n',
+          '<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，<code>grid-column</code> 标签上配置 <code>resizable=&quot;false&quot;</code> 可以配置某一列不能调整列宽。并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStorage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示。</p>\n',
         'en-US':
-          '<p>Configure <code>resizable=&quot;true&quot;</code> on the <code>grid</code> tag to adjust the column width, and configure <code>resizable=&quot;{storage: true}&quot;</code> on the <code>toolbar</code> tag to save the column width in <code>localStroage</code> on the local host. The column width of the table on the refreshed page is displayed based on the column width after being dragged.</p>\n'
+          '<p>Configure <code>resizable=&quot;true&quot;</code> on the <code>grid</code> tag to adjust the column width, and configure <code>resizable=&quot;{storage: true}&quot;</code> on the <code>toolbar</code> tag to save the column width in <code>localStorage</code> on the local host. The column width of the table on the refreshed page is displayed based on the column width after being dragged.</p>\n'
       },
       'codeFiles': ['custom/column-width.vue']
     },
@@ -31,7 +31,7 @@ export default {
         'zh-CN':
           '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p> <code>resetResizable()</code>：手动重置列宽拖动的操作，还原到初始状态\n<code>resetCustoms()</code>：手动重置列的显示/隐藏操作，还原到初始状态\n<code>resetAll()</code>：手动重置列的所有操作，还原到初始状态</p>\n</div>\n<p>请先对列宽进行拖动、隐藏列等操作，然后单击对应按钮查看效果。</p>\n',
         'en-US':
-          '<p>Configure <code>sortable</code> on the <code>column</code> label to sort data. (For columns that are not configured, the sorting icon in the personalization panel is hidden.) and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. Sort the settings in the personalized panel. The sorting results are saved in the local <code>localStroage</code>. Refresh the page. The sorted data is displayed on the page.</p>\n'
+          '<p>Configure <code>sortable</code> on the <code>column</code> label to sort data. (For columns that are not configured, the sorting icon in the personalization panel is hidden.) and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. Sort the settings in the personalized panel. The sorting results are saved in the local <code>localStorage</code>. Refresh the page. The sorted data is displayed on the page.</p>\n'
       },
       'codeFiles': ['custom/reset-resizable.vue']
     },
@@ -40,7 +40,7 @@ export default {
       'name': { 'zh-CN': '排序', 'en-US': 'Sort Type' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>column</code> 标签上配置 <code>sortable</code> 可以排序（未配置的列，在个性化面板中的排序图标会隐藏），并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里进行排序，排序过后会保存在本地的 <code>localStroage</code> 里，刷新页面页面上会显示排序过后的数据。</p>\n',
+          '<p>在 <code>column</code> 标签上配置 <code>sortable</code> 可以排序（未配置的列，在个性化面板中的排序图标会隐藏），并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里进行排序，排序过后会保存在本地的 <code>localStorage</code> 里，刷新页面页面上会显示排序过后的数据。</p>\n',
         'en-US':
           '<p>Configure <code>sortable</code> on the <code>column</code> tab to enable sorting, and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. In the Personalization panel, select Other Settings. In Other Settings, you can select the sorting type. The sorting type includes the sorting on the current page and sorting on all data. The default value is Sort on the current page.</p>\n'
       },
