@@ -634,7 +634,7 @@ export default {
         },
         {
           name: 'validate-icon',
-          type: 'VueComponent',
+          type: 'Component',
           'defaultValue': '--',
           desc: {
             'zh-CN': '校验提示框的图标，类型为组件',

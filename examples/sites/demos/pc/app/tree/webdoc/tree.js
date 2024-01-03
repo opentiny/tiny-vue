@@ -471,7 +471,7 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义节点图标',
@@ -481,7 +481,7 @@ export default {
         },
         {
           'name': 'expand-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': { 'zh-CN': '指示展开的图标', 'en-US': 'Indicates the expanded icon' },
           'demoId': 'icons'
@@ -498,7 +498,7 @@ export default {
         },
         {
           'name': 'shrink-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': { 'zh-CN': '指示收缩的图标', 'en-US': 'Icon indicating shrink' },
           'demoId': 'icons'

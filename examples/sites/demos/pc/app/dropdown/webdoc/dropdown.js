@@ -271,7 +271,7 @@ export default {
         },
         {
           'name': 'suffix-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': {
             'zh-CN': '下拉触发源图标',
@@ -473,7 +473,7 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': {
             'zh-CN': '内嵌图标',
