@@ -3,7 +3,7 @@
     <div>value: {{ value }}</div>
     <tiny-cascader
       v-model="value"
-      ref="cascader"
+      ref="cascaderRef"
       :options="options"
       @change="handleChange"
       @blur="handleblur"

@@ -16,7 +16,7 @@
           <tiny-tooltip
             placement="top"
             :append-to-body="false"
-            :content="demo.isOpen ? $t('hideCode') : $t('showCode')"
+            :content="demo.isOpen ? i18nByKey('hideCode') : i18nByKey('showCode')"
           >
             <i
               :class="!!demo.isOpen ? 'i-ti-codeslash' : 'i-ti-code'"
@@ -24,7 +24,7 @@
               @click="toggleDemoCode(demo)"
             />
           </tiny-tooltip>
-          <tiny-tooltip placement="top" :append-to-body="false" :content="$t('playground')">
+          <tiny-tooltip placement="top" :append-to-body="false" :content="i18nByKey('playground')">
             <i class="i-ti-playground ml8 h:c-success ti-w16 ti-h16 ti-cur-hand" @click="openPlayground(demo)" />
           </tiny-tooltip>
         </div>
@@ -65,8 +65,8 @@
 
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, watch, nextTick, inject } from 'vue'
-import { $t, $t2 } from '@/i18n'
-import { $split, appData, fetchDemosFile, $pub } from '@/tools'
+import { i18nByKey, getWord } from '@/i18n'
+import { $split, appData, fetchDemosFile } from '@/tools'
 import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
 import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from './cmpConfig'
 import { router } from '@/router.js'
@@ -108,7 +108,7 @@ export default defineComponent({
             .then((code) => {
               return code
             })
-            .catch((error) => {
+            .catch(() => {
               return `${demoName}示例资源不存在，请检查文件名是否正确？`
             })
           const ext = $split(fileName, '.', -1)
@@ -123,7 +123,7 @@ export default defineComponent({
     const state = reactive({
       tabValue: 'tab0',
       cmpId: router.currentRoute.value.params.cmpId,
-      langKey: $t2('zh-CN', 'en-US'),
+      langKey: getWord('zh-CN', 'en-US'),
       currDemoId: computed(() => {
         let hash = router.currentRoute.value.hash?.slice(1)
 
@@ -133,7 +133,7 @@ export default defineComponent({
         }
         return hash
       }),
-      copyTip: $t('copyCode'),
+      copyTip: i18nByKey('copyCode'),
       copyIcon: 'i-ti-copy'
     })
 
@@ -169,12 +169,12 @@ export default defineComponent({
 
           navigator.clipboard.writeText(demo.files[0].code)
         }
-        state.copyTip = $t('copyCodeOk')
+        state.copyTip = i18nByKey('copyCodeOk')
         state.copyIcon = 'i-ti-check'
       },
       resetTip() {
         setTimeout(() => {
-          state.copyTip = $t('copyCode')
+          state.copyTip = i18nByKey('copyCode')
           state.copyIcon = 'i-ti-copy'
         }, 300)
       },
@@ -218,7 +218,7 @@ export default defineComponent({
       }
     )
 
-    return { ...toRefs(state), ...fn, appData, vueComponents, demoConfig, cmp, isMobileFirst }
+    return { ...toRefs(state), ...fn, appData, vueComponents, demoConfig, cmp, isMobileFirst, i18nByKey }
   }
 })
 </script>
@@ -304,7 +304,7 @@ export default defineComponent({
     position: absolute;
     left: 11px;
     top: 79px;
-    transform: translateX(0);
+    transform: i18nByKeyX(0);
     overflow: hidden;
   }
 }

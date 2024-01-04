@@ -92,7 +92,7 @@ export const nodeExpand =
         state.loading = false
         option.loading = false
         option.loaded = true
-        nodes.map((data) => {
+        nodes.forEach((data) => {
           index = -1
           state.store.append(data, option.data)
           waitLoadCheckList.some((item, i) => {

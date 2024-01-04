@@ -111,6 +111,13 @@
             Default Theme
           </tiny-dropdown-item>
           <tiny-dropdown-item
+            label="tiny-infinity-theme"
+            class="minw160"
+            :class="{ '!c-primary': currThemeLabel === 'tiny-infinity-theme' }"
+          >
+            Infinity Theme
+          </tiny-dropdown-item>
+          <tiny-dropdown-item
             label="tiny-aurora-theme"
             class="minw160"
             :class="{ '!c-primary': currThemeLabel === 'tiny-aurora-theme' }"

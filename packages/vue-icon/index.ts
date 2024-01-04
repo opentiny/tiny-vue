@@ -408,6 +408,7 @@ import IconSortTriangleDescending from './src/sort-triangle-descending'
 
 import IconFinish from './src/finish'
 import IconWarn from './src/warn'
+import IconAddPicture from './src/add-picture'
 
 export {
   IconSubScript,
@@ -1199,7 +1200,9 @@ export {
   IconFinish,
   IconFinish as iconFinish,
   IconWarn,
-  IconWarn as iconWarn
+  IconWarn as iconWarn,
+  IconAddPicture,
+  IconAddPicture as iconAddPicture
 }
 
 export default {
@@ -1207,6 +1210,7 @@ export default {
   IconSortTriangle,
   IconSortTriangleAscending,
   IconSortTriangleDescending,
+  IconPromptExclamation,
   IconPrompt,
   IconExpand,
   IconPutAway,
@@ -1593,5 +1597,6 @@ export default {
   IconZoomIn,
   IconZoomOut,
   IconFinish,
-  IconWarn
+  IconWarn,
+  IconAddPicture
 }

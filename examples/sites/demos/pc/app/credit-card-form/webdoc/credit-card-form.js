@@ -1,6 +1,10 @@
 export default {
   column: '2',
   owner: '',
+  metaData: {
+    deprecated: '3.12.0',
+    removed: '3.15.0'
+  },
   demos: [
     {
       'demoId': 'basic-usage',
@@ -28,7 +32,7 @@ export default {
     {
       'name': 'credit-card-form',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'background-image',
           'type': 'string , object',

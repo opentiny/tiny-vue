@@ -1,14 +1,17 @@
 <template>
   <tiny-select v-model="value">
     <template #empty>
-      <div class="custom-empty">空数据插槽</div>
+      <div class="custom-empty">
+        <p>APIG 网关异常</p>
+        <tiny-button size="small">重新加载</tiny-button>
+      </div>
     </template>
   </tiny-select>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Select as TinySelect } from '@opentiny/vue'
+import { Select as TinySelect, Button as TinyButton } from '@opentiny/vue'
 
 const value = ref('')
 </script>
@@ -18,6 +21,16 @@ const value = ref('')
   width: 280px;
 }
 .custom-empty {
-  padding: 10px;
+  padding: 87px 0;
+  text-align: center;
+
+  p {
+    font-size: 12px;
+    color: #595959;
+    line-height: 1.5;
+  }
+  .tiny-button {
+    margin-top: 8px;
+  }
 }
 </style>

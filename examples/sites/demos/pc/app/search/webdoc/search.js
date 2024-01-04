@@ -83,12 +83,12 @@ export default {
       'demoId': 'events',
       'name': { 'zh-CN': '事件', 'en-US': 'Search event' },
       'desc': {
-        'zh-CN': `<div class="tip custom-block"><p class="custom-block-title">通过 <code>is-enter-search</code> 设置回车触发搜索事件， <code>search</code> 监听搜索事件；<br />
+        'zh-CN': `<div class="tip custom-block">通过 <code>is-enter-search</code> 设置回车触发搜索事件， <code>search</code> 监听搜索事件；<br />
               通过 <code>change</code> 监听输入框失焦时搜索值改变事件, <code>input</code> 监听搜索值实时改变事件；<br />
-              通过 <code>select</code> 监听搜索类型选中事件。</p></div>`,
-        'en-US': `<div class="tip custom-block"><p class="custom-block-title">Set a carriage return to trigger a search event by <code>is enter search</code> , and listen for search events by <code>search</code> <br />
+              通过 <code>select</code> 监听搜索类型选中事件。</div>`,
+        'en-US': `<div class="tip custom-block">Set a carriage return to trigger a search event by <code>is enter search</code> , and listen for search events by <code>search</code> <br />
               By <code>change</code> listening for search value change events when the input box is out of focus, and <code>input</code> listening for real-time search value change events<br />
-              Listen for search type selection events through <code>select</code> .</p></div>`
+              Listen for search type selection events through <code>select</code> .</div>`
       },
       'codeFiles': ['events.vue']
     }
@@ -113,7 +113,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
-            'zh-CN': '是否在按下键盘Enter键时触发search事件',
+            'zh-CN': '是否在按下键盘 Enter 键时触发 search 事件',
             'en-US': 'Whether to trigger the search event when pressing the Enter key on the keyboard'
           },
           'demoId': 'events'
@@ -123,7 +123,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '是否为迷你模式，配置为true时，默认显示为一个带图标的圆形按钮，点击后展开',
+            'zh-CN': '是否为迷你模式，配置为 true 时，默认显示为一个带图标的圆形按钮，点击后展开',
             'en-US':
               'Is it mini mode? When configured to true, it will default to a circular button with an icon, which will expand after clicking'
           },
@@ -190,6 +190,16 @@ export default {
             'zh-CN': '输入完成时触发的回调函数； value 为搜索类型，input 为当前输入值',
             'en-US':
               'The callback function triggered upon input completion; value is the search type, input is the current input value'
+          },
+          'demoId': 'events'
+        },
+        {
+          'name': 'clear',
+          'type': '() => void',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '清空值触发的回调函数',
+            'en-US': 'Callback function triggered by clearing values'
           },
           'demoId': 'events'
         },

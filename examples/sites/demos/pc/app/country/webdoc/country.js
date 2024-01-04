@@ -33,7 +33,7 @@ export default {
     {
       'name': 'country',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue / v-model',
           'type': 'string , number',

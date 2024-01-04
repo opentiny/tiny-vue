@@ -1,5 +1,5 @@
 <template>
-  <tiny-pop-upload :action="action"></tiny-pop-upload>
+  <tiny-pop-upload :action="action" upload-name="inputName" :data="requestData"></tiny-pop-upload>
 </template>
 
 <script lang="jsx">
@@ -11,7 +11,10 @@ export default {
   },
   data() {
     return {
-      action: 'http://localhost:3000/api/upload'
+      action: 'http://localhost:3000/api/upload',
+      requestData: {
+        id: 123
+      }
     }
   }
 }

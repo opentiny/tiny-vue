@@ -20,7 +20,7 @@ const i18n = initI18n({
   },
   messages
 })
-const $t = i18n.global.t
-const $t2 = (cn, en) => (i18n.global.locale === 'zhCN' ? cn : en)
+const i18nByKey = i18n.global.t
+const getWord = (cn, en) => (i18n.global.locale === 'zhCN' ? cn : en)
 
-export { i18n, $t, $t2 }
+export { i18n, i18nByKey, getWord }

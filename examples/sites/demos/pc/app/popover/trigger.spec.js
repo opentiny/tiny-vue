@@ -21,9 +21,9 @@ test('触发方式', async ({ page }) => {
   await expect(pop2).toBeVisible()
   await page.waitForTimeout(100)
 
-  // await page.keyboard.press('Tab')
-  // await expect(pop3).toBeVisible()
-  // await page.waitForTimeout(100)
+  await button3.focus()
+  await expect(pop3).toBeVisible()
+  await page.waitForTimeout(100)
 
   await button4.click()
   await expect(pop4).toBeVisible()

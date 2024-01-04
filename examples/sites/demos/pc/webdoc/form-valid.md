@@ -117,12 +117,14 @@ rules: {
 
 #### trigger
 
-通过 `trigger` 配置触发校验规则的方式，为 `change` 时，当输入框值改变即触发校验，为 `blur` 时则失焦后触发校验。可设置成数组 `['change', 'blur']` 两种场景都触发。使用示例如下所示：
+通过 `trigger` 配置触发校验规则的方式，为 `change` 时，当输入框值改变即触发校验，为 `blur` 时则失焦后触发校验。可设置成数组 `['change', 'blur']` 两种场景都触发，默认为两种场景都触发。
+如果如果仅在主动调用校验方式时触发，可设置为空数组 `[]`。使用示例如下所示：
 
 ```js
 rules: {
   users: { len: 2, message: '长度必须为2', trigger: 'change' },
   password: { len: 2, message: '长度必须为2', trigger: ['change', 'blur'] },
+  nickname: { len: 10, message: '已存在重复名称', trigger: [] }
 }
 ```
 

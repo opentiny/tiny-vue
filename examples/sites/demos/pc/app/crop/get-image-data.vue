@@ -1,6 +1,7 @@
 <template>
   <div>
     <tiny-button @click="getImageData" style="margin-bottom: 20px">获取图像数据</tiny-button>
+    <tiny-button @click="getCanvasData" style="margin-bottom: 20px">获取画布位置和大小数据</tiny-button>
     <tiny-button text="图片裁剪" @click="visible = !visible" style="margin-bottom: 20px"></tiny-button>
     <tiny-crop ref="crop" :cropvisible="visible" @update:cropvisible="visible = $event" :src="imgUrl"></tiny-crop>
   </div>
@@ -24,6 +25,12 @@ export default {
     getImageData() {
       Modal.message({
         message: `图像数据：${JSON.stringify(this.$refs.crop.getImageData())}`,
+        status: 'info'
+      })
+    },
+    getCanvasData() {
+      Modal.message({
+        message: `画布位置和大小数据: ${JSON.stringify(this.$refs.crop.getCanvasData())}`,
         status: 'info'
       })
     }

@@ -2,6 +2,7 @@
   <div>
     <tiny-grid
       :data="tableData"
+      @header-cell-context-menu="headerMenuClick"
       @footer-cell-context-menu="footerMenuClick"
       :context-menu="{
         header: { options: headerMenus },

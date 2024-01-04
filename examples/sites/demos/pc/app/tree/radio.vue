@@ -52,8 +52,6 @@ export default {
   },
   methods: {
     getChecks() {
-      const currentKey = this.$refs.treeRef.getCurrentKey()
-
       // 查询勾选的值
       const checkedKeys = this.$refs.treeRef.getCheckedKeys()
       // 查询勾选叶子的值
@@ -67,6 +65,7 @@ export default {
       // 查询半选的节点数据
       const checkedHalfNodes = this.$refs.treeRef.getHalfCheckedNodes()
 
+      // eslint-disable-next-line no-console
       console.log('当前组件的勾选状态为： ', this.$refs.treeRef, {
         checkedKeys,
         checkedKeysOnlyLeaf,
@@ -81,7 +80,8 @@ export default {
       this.$refs.treeRef.setCurrentRadio()
     },
     checkChange(data, checked, indeterminate) {
-      console.log('checkChange事件：', arguments)
+      // eslint-disable-next-line no-console
+      console.log('checkChange事件：', { data, checked, indeterminate })
     }
   }
 }

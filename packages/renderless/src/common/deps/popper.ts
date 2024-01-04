@@ -238,6 +238,9 @@ const getOffsetRect = (el: HTMLElement) => {
   return elementRect
 }
 
+const stopFn = (ev: Event) => {
+  ev.stopPropagation()
+}
 interface PopperOptions {
   arrowOffset: number
   arrowElement: string
@@ -366,6 +369,8 @@ class Popper {
   update() {
     let data = { instance: this, styles: {} } as unknown as UpdateData
 
+    this.stopEventBubble() // 每次更新都检查
+
     this.popperOuterSize = null as unknown as { width: number; height: number }
     data.placement = data._originalPlacement = this._options.placement
     data.offsets = this._getRefPopOffsets(this._popper, this._reference, data.placement)
@@ -377,6 +382,14 @@ class Popper {
     typeof this.state.updateCallback === 'function' && this.state.updateCallback(data)
   }
 
+  // 阻止popper的mousewheel等事件冒泡。 通过 onxxx 绑定，是为了避免重复绑定事件
+  stopEventBubble() {
+    if (!this._popper) return
+
+    if (!this._popper.onmousewheel) this._popper.onmousewheel = stopFn
+    if (!this._popper.onwheel) this._popper.onwheel = stopFn
+  }
+
   /** 按顺序执行Modifiers， 如果传入终点modifier,则执行到指定位置 */
   runModifiers(data: UpdateData, modifiers: Function[], ends?: Function) {
     let modifiersToRun = modifiers.slice()
@@ -385,7 +398,7 @@ class Popper {
     if (ends !== undefined) {
       modifiersToRun = this._options.modifierFns.slice(
         0,
-        _options.modifierFns.findIndex((m) => m == ends)
+        _options.modifierFns.findIndex((m) => m === ends)
       )
     }
 

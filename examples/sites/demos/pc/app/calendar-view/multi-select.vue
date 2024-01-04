@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     selectedDateChange(date) {
-      Modal.message(`当前选择${JSON.stringify(date)}`)
+      Modal.message({ message: `当前选择${JSON.stringify(date)}`, status: 'info' })
     }
   }
 }

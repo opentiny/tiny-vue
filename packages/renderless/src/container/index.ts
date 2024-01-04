@@ -115,3 +115,26 @@ export const computedFooterStyle =
       height: transferWidthOrHeight(props.footerHeight)
     }
   }
+
+// mobile
+export const computedLeftStyle =
+  ({ constants, props }) =>
+  () => {
+    return {
+      width: transferWidthOrHeight(props.leftWidth)
+    }
+  }
+
+export const computedShowRight =
+  ({ constants, props }) =>
+  () => {
+    return props.pattern === constants.DEFAULT ? false : true
+  }
+
+export const computedRightStyle =
+  ({ constants, props }) =>
+  () => {
+    return {
+      width: transferWidthOrHeight(props.rightWidth)
+    }
+  }

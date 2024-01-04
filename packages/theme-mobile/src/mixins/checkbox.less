@@ -14,9 +14,9 @@
 
 @checkbox-prefix-cls: ~'@{css-prefix}mobile-checkbox';
 
-.checkbox-input-disabled(@color, @bgcolor, @border-color) {
+.checkbox-input-disabled(@color, @bg-color, @checked-bg-color, @border-color) {
   .@{checkbox-prefix-cls}__inner {
-    background-color: @bgcolor;
+    background-color: @bg-color;
     border-color: @border-color;
     cursor: not-allowed;
   }
@@ -24,14 +24,14 @@
   &.is-checked {
     .@{checkbox-prefix-cls}__inner,
     .@{checkbox-prefix-cls}__inner:hover {
-      background-color: @border-color;
+      background-color: @checked-bg-color;
     }
   }
 
   &.is-indeterminate {
     .@{checkbox-prefix-cls}__inner,
     .@{checkbox-prefix-cls}__inner:hover {
-      background-color: @bgcolor;
+      background-color: @bg-color;
 
       &::before {
         background-color: @border-color;

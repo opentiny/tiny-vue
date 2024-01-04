@@ -25,7 +25,7 @@ export default {
         {
           title: 'Tab 1',
           name: '1',
-          content: 'Tab content '
+          content: 'Tab 1 content '
         },
         {
           title: 'Tab 2',

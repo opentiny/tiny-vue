@@ -88,7 +88,7 @@ export default {
         'en-US':
           'Indicates whether to add an element in the <p> <code>popper-append-to-body</code> paging drop-down list box to the body element node.</p>'
       },
-      'codeFiles': ['page-append-to-body.vue']
+      'codeFiles': ['popper-append-to-body.vue']
     },
     {
       'demoId': 'popper-class',
@@ -131,9 +131,9 @@ export default {
     },
     {
       'demoId': 'hide-on-single-page',
-      'name': { 'zh-CN': '只有一页时隐藏分页', 'en-US': 'Grid Table Pagination' },
+      'name': { 'zh-CN': '单页时隐藏', 'en-US': 'Grid Table Pagination' },
       'desc': {
-        'zh-CN': '<p>当 <code>hide-on-single-page</code> 为 <code>true</code> 时，只有一页时会隐藏分页。</p>\n',
+        'zh-CN': '<p>通过 <code>hide-on-single-page</code> 设置当仅有一页时是否隐藏分页组件。</p>\n',
         'en-US': '<p>When there is only one page, the pagination will be hidden.</p>\n'
       },
       'codeFiles': ['hide-on-single-page.vue']
@@ -164,7 +164,7 @@ export default {
       'name': { 'zh-CN': '分页变更前置处理', 'en-US': 'Pre processing of pagination changes' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>is-before-page-change</code> 开启前置处理特性，翻页或者改变页大小时会触发 <code>before-page-change</code> 事件。事件函数类型为 <a href="#IBeforeChangeEvent">IBeforeChangeEvent</a> ，调用传参中的 <code>callback</code> 继续变更，调用 <code>rollback</code> 中止变更。</p>\n',
+          '<p>通过 <code>is-before-page-change</code> 开启前置处理特性，翻页或者改变页大小时会触发 <code>before-page-change</code> 事件。调用传参中的 <code>callback</code> 继续变更，调用 <code>rollback</code> 中止变更。</p>\n',
         'en-US':
           '<p>By enabling the pre processing feature through <code>is before page change</code> , the <code>before page change</code> event is triggered when flipping or changing page size. The event function type is <a="#IBeforeChangeEvent">IBeforeChangeEvent</a> , call <code>callback</code> in the passed parameters to continue the change, and call <code>rollback</code> to abort the change.</p>\n'
       },
@@ -338,7 +338,7 @@ export default {
             'en-US':
               'Whether to insert the pop-up box into the body element. You can set this attribute to false (refer to the select component)'
           },
-          'demoId': 'page-append-to-body'
+          'demoId': 'popper-append-to-body'
         },
         {
           'name': 'popper-class',

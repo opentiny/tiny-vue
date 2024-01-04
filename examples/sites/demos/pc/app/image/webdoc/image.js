@@ -122,7 +122,7 @@ export default {
           'type': 'string',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置预览图片路径',
+            'zh-CN': '设置图片路径',
             'en-US': 'Set the path of the preview image.'
           },
           'demoId': 'basic-usage'
@@ -132,9 +132,8 @@ export default {
           'type': `'fill' | 'contain' | 'cover' | 'none' | 'scale-down '`,
           'defaultValue': '',
           'desc': {
-            'zh-CN': '确定图片如何适应容器框，同原生 object-fit',
-            'en-US':
-              'Determine how the image adapts to the container frame, which is the same as the native object-fit. '
+            'zh-CN': '确定图片如何适应容器大小',
+            'en-US': 'Determine how the image adapts to the container frame '
           },
           'demoId': 'basic-usage'
         },
@@ -142,7 +141,7 @@ export default {
           'name': 'lazy',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否开启懒加载', 'en-US': 'Whether to enable lazy loading' },
+          'desc': { 'zh-CN': '是否懒加载', 'en-US': 'Whether to enable lazy loading' },
           'demoId': 'lazy'
         },
         {
@@ -150,18 +149,23 @@ export default {
           'type': 'string | HTMLElement',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '开启懒加载后，监听 scroll 事件的容器,该属性的默认值为 最近一个 overflow 值为 auto 或 scroll 的父元素',
-            'en-US':
-              'After lazy loading is enabled, the container listens for the scroll event. The default value of this property is the parent element of the last overflow value being auto or scroll'
+            'zh-CN': `指定滚动容器。启用懒加载时，监听滚动容器的 scroll 事件来懒加载。
+                该属性用于设置图片的容器,当未设置容器时，默认会取最近一个 overflow 值为 auto 或 scroll 的父元素做为滚动容器
+              `,
+            'en-US': `Specifies the scroll container. When lazy loading is enabled, the scroll event of the image component container is monitored for lazy loading. 
+                This property is used to set the image container. When the container is not set, the default will take the parent element of the last overflow value as auto or scroll as the scroll container 
+              `
           },
-          'demoId': 'lazy'
+          'demoId': ''
         },
         {
           'name': 'preview-src-list',
           'type': 'string[]',
           'defaultValue': '[]',
-          'desc': { 'zh-CN': '开启图片预览功能', 'en-US': 'Enable the image preview function.' },
+          'desc': {
+            'zh-CN': '指定预览大图时的图片列表',
+            'en-US': 'Specifies the list of images to use when previewing a large image'
+          },
           'demoId': 'preview'
         },
         {
@@ -169,25 +173,31 @@ export default {
           'type': 'number',
           'defaultValue': '2000',
           'desc': {
-            'zh-CN': '设置图片预览外层元素的 z-index',
-            'en-US': 'Set the z-index of the image preview wrapper'
+            'zh-CN': '图片预览功能时，设置最外层元素的 z-index',
+            'en-US': 'For the image preview function, set the z-index of the outermost element'
           },
-          'demoId': 'preview'
+          'demoId': ''
         }
       ],
       'events': [
         {
           'name': 'load',
-          'type': '',
+          'type': '(ev) => void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '图片加载成功触发', 'en-US': 'When the image loading success triggered.' },
+          'desc': {
+            'zh-CN': '图片加载成功的触发的事件，参数为原生的成功事件',
+            'en-US': 'When the image loading success triggered,the parameter is a native success event.'
+          },
           'demoId': 'events'
         },
         {
           'name': 'error',
-          'type': '',
+          'type': '(ev) => void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '图片加载失败触发', 'en-US': 'When the Image loading failure triggered' },
+          'desc': {
+            'zh-CN': '图片加载失败后触发的事件，参数为原生的失败事件',
+            'en-US': 'When the Image loading failure triggered,the parameter is a native failure event'
+          },
           'demoId': 'events'
         }
       ],
@@ -196,14 +206,20 @@ export default {
           'name': 'placeholder',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '加载中的占位内容插槽', 'en-US': 'Placeholder Slot that is not loaded to the image' },
+          'desc': {
+            'zh-CN': '图片加载的占位内容插槽',
+            'en-US': 'Placeholder Slot that is not loaded to the image'
+          },
           'demoId': 'slot'
         },
         {
           'name': 'error',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '加载失败的占位内容插槽', 'en-US': 'Error Slot that fails to be loaded' },
+          'desc': {
+            'zh-CN': '图片加载失败的占位内容插槽',
+            'en-US': 'Error Slot that fails to be loaded'
+          },
           'demoId': 'slot'
         }
       ]

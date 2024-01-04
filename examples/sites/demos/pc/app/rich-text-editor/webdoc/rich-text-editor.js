@@ -1,6 +1,9 @@
 export default {
   column: '1',
   owner: '',
+  metaData: {
+    experimental: '3.11.0'
+  },
   demos: [
     {
       'demoId': 'basic-usage',
@@ -37,7 +40,7 @@ export default {
     {
       'name': 'rich-text-editor',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'modelValue',
           'type': 'string',

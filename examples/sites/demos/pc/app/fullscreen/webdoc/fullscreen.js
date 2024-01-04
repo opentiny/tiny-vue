@@ -19,7 +19,7 @@ export default {
     {
       'name': 'fullscreen',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'page-only',
           'type': 'boolean',
@@ -60,7 +60,7 @@ export default {
             'zh-CN': '自定义组件 wrapper 的样式类名',
             'en-US': 'Style class name of the custom component wrapper'
           },
-          'demoId': 'example-component'
+          'demoId': ''
         },
         {
           'name': 'fullscreen',
@@ -81,7 +81,7 @@ export default {
             'en-US':
               'When the component is used in component mode, click the component wrapper to determine whether to disable full-screen display. The default value is true.'
           },
-          'demoId': 'example-component'
+          'demoId': ''
         }
       ],
       'events': [
@@ -117,7 +117,7 @@ export default {
             'zh-CN': '函数式使用时，切换全屏模式',
             'en-US': 'Switch the full-screen mode when the function mode is used.'
           },
-          'demoId': 'example-component'
+          'demoId': 'example-api'
         }
       ]
     }

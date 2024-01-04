@@ -4,4 +4,4 @@ title: Tree control
 
 # Tree control
 
-<div>Data with parent and child levels can be displayed. Functions such as selection and asynchronous loading are supported.</div>
+<div>Can display parent-child level data, support selection, lazy loading, drag and drop and edit nodes and other functions.</div>

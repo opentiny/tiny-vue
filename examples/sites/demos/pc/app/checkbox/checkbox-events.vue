@@ -15,13 +15,12 @@ export default {
   },
   data() {
     return {
-      checked: ['复选框1'],
-      logger: ''
+      checked: ['复选框1']
     }
   },
   methods: {
     valueChange(val) {
-      Modal.message(`change 事件触发了，选中值为：${val}`)
+      Modal.message({ message: `change 事件触发了，选中值为：${val}`, status: 'info' })
     }
   }
 }

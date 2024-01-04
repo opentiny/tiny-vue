@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('自定义菜单弹窗底部', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('link-menu#custom-foot')
-  const preview = page.locator('#preview')
+  const preview = page.locator('#custom-foot')
   const dialogBox = preview.locator('.tiny-dialog-box')
   const linkMenuList = preview.locator('.tiny-tree.tiny-link-menu__overflow > div')
   // 点击图标，弹出弹框

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-grid ref="insertGridRef" :data="tableData">
+    <tiny-grid ref="insertGrid" :data="tableData">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
       <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>

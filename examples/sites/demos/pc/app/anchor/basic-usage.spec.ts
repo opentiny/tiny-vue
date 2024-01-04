@@ -6,7 +6,7 @@ test('基本用法', async ({ page }) => {
 
   const anchor = page.locator('.tiny-anchor')
   const link1 = anchor.getByRole('link', { name: '演示' })
-  const link2 = anchor.getByRole('link', { name: 'On Change' })
+  const link2 = anchor.getByRole('link', { name: 'change 事件' })
   const hash1 = await page.evaluate(() => window.location.hash)
 
   await link1.click()
@@ -18,5 +18,5 @@ test('基本用法', async ({ page }) => {
   await link2.click()
   const hash3 = await page.evaluate(() => window.location.hash)
 
-  await expect(hash3).toContain('#on-change')
+  await expect(hash3).toContain('#change')
 })

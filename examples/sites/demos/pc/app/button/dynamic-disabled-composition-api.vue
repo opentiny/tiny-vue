@@ -2,7 +2,6 @@
   <tiny-layout>
     <tiny-row> 是否禁用：<tiny-switch v-model="disabled"></tiny-switch> </tiny-row>
     <tiny-row>
-      <tiny-button :icon="IconSearch" type="text" size="mini" :disabled="disabled"></tiny-button>
       <tiny-button :disabled="disabled">默认按钮</tiny-button>
       <tiny-button type="primary" :disabled="disabled">主要按钮</tiny-button>
       <tiny-button type="success" :disabled="disabled">成功按钮</tiny-button>
@@ -19,6 +18,13 @@
       <tiny-button type="warning" :disabled="disabled" plain>警告按钮</tiny-button>
       <tiny-button type="danger" :disabled="disabled" plain>危险按钮</tiny-button>
     </tiny-row>
+
+    <tiny-row>
+      <tiny-button :disabled="disabled" ghost>幽灵按钮</tiny-button>
+      <tiny-button :icon="TinyIconSearch" :disabled="disabled">图标按钮</tiny-button>
+      <tiny-button :icon="TinyIconSearch" :disabled="disabled"> </tiny-button>
+      <tiny-button :icon="TinyIconSearch" :disabled="disabled" circle> </tiny-button>
+    </tiny-row>
   </tiny-layout>
 </template>
 
@@ -28,7 +34,7 @@ import { Button as TinyButton, Layout as TinyLayout, Row as TinyRow, Switch as T
 import { iconSearch } from '@opentiny/vue-icon'
 
 const disabled = ref(false)
-const IconSearch = iconSearch()
+const TinyIconSearch = iconSearch()
 </script>
 
 <style scoped>
@@ -38,5 +44,7 @@ const IconSearch = iconSearch()
 
 .tiny-button {
   margin-bottom: 10px;
+  margin-left: 0;
+  margin-right: 8px;
 }
 </style>

@@ -54,12 +54,14 @@ export default {
     change() {
       Modal.message({
         message: '触发 change 事件',
-        duration: 500
+        duration: 500,
+        status: 'info'
       })
     },
     clear() {
       Modal.message({
-        message: '触发 clear 事件'
+        message: '触发 clear 事件',
+        status: 'info'
       })
     },
     focus() {
@@ -69,17 +71,20 @@ export default {
     },
     blur() {
       Modal.message({
-        message: '触发 blur 事件'
+        message: '触发 blur 事件',
+        status: 'info'
       })
     },
     removeTag() {
       Modal.message({
-        message: '触发 remove-tag 事件'
+        message: '触发 remove-tag 事件',
+        status: 'info'
       })
     },
     visibleChange() {
       Modal.message({
-        message: '触发 visible-change 事件'
+        message: '触发 visible-change 事件',
+        status: 'info'
       })
     }
   }

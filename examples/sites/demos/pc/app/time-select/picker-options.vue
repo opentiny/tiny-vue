@@ -1,18 +1,20 @@
 <template>
-  <tiny-time-select
-    v-model="value"
-    :picker-options="{
-      start: '08:30',
-      step: '00:15',
-      end: '18:30',
-      minTime: '09:00',
-      maxTime: '12:30'
-    }"
-    placeholder="选择时间"
-  ></tiny-time-select>
+  <div class="time-select-demo-picker">
+    <tiny-time-select
+      v-model="value"
+      :picker-options="{
+        start: '08:30',
+        step: '00:15',
+        end: '18:30',
+        minTime: '09:00',
+        maxTime: '12:30'
+      }"
+      placeholder="选择时间"
+    ></tiny-time-select>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { TimeSelect } from '@opentiny/vue'
 
 export default {
@@ -21,8 +23,14 @@ export default {
   },
   data() {
     return {
-      value: '09:30'
+      value: ''
     }
   }
 }
 </script>
+
+<style scoped>
+.time-select-demo-picker {
+  width: 270px;
+}
+</style>

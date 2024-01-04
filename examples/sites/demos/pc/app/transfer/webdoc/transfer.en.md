@@ -1,7 +1,7 @@
 ---
-title: Transfer shuttle box
+title: Transfer
 ---
 
-# Transfer shuttle box
+# Transfer
 
-<div>Shuttle box, a component that realizes the two-way exchange of data between two tables.</div>
+<div>Transfer realizes the two-way exchange of data between two tables.</div>

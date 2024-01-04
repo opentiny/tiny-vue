@@ -14,11 +14,10 @@
     "@opentiny/vue-theme-saas": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",
     "@opentiny/vue-design-smb": "workspace:~",
-    "@playwright/test": "^1.29.2",
     "sortablejs": "1.15.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.29.2"
+    "@playwright/test": "^1.40.1"
   },
   "files": [
     "resources"

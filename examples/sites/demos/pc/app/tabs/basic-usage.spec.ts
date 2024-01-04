@@ -7,6 +7,7 @@ test('基本用法', async ({ page }) => {
   const tabs = page.locator('.tiny-tabs')
   const tabItems = tabs.getByRole('tab')
   const item1 = tabItems.nth(0)
+  const item2 = tabItems.nth(1)
   const content = tabs.getByRole('tabpanel')
   const activeBar = tabs.locator('.tiny-tabs__active-bar')
 
@@ -20,5 +21,10 @@ test('基本用法', async ({ page }) => {
   await expect(activeBar).toHaveCSS('width', '56px')
   await expect(activeBar).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)')
   await expect(item1).toHaveCSS('color', 'rgb(94, 124, 224)')
+  await expect(content).toHaveText(/表单组件/)
+
+  // 禁用
+  await item2.click()
+  await expect(item1).toHaveClass(/is-active/)
   await expect(content).toHaveText(/表单组件/)
 })

@@ -122,7 +122,7 @@ const initApi = ({
     displayValue: displayValue({ props, state }),
     internalDecrease: internalDecrease({ api, state }),
     internalIncrease: internalIncrease({ api, state }),
-    handleInputChange: handleInputChange({ api }),
+    handleInputChange: handleInputChange({ api, state, props }),
     mouseEvent: mouseEvent({ api, props, state }),
     handleBlur: handleBlur({ constants, dispatch, emit, props, state, api }),
     watchValue: watchValue({ api, state, nextTick }),
@@ -139,8 +139,15 @@ const initWatch = ({
   state,
   watch,
   props,
-  api
+  api,
 }: Pick<INumericRenderlessParams, 'state' | 'watch' | 'props' | 'api'>): void => {
+  
+  watch(() => [props.max, props.min], ([curMax,curMin]) => {
+    if (curMax < curMin){
+      throw new Error('[Numeric]: The maximum value should not be less than to the minimum value')
+    }
+  }, { immediate: true })
+  
   watch(() => props.modelValue, api.watchValue, { immediate: true })
 
   watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)

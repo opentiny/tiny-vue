@@ -109,7 +109,10 @@ export default {
     {
       'demoId': 'verticalOffset',
       'name': { 'zh-CN': '垂直偏移量', 'en-US': 'Vertical Offset' },
-      'desc': { 'zh-CN': '<p>可通过 <code>verticalOffset</code> 设置垂直方向偏离距离。', 'en-US': '<p> The vertical deviation distance can be set by using <code>verticalOffset</code>.' },
+      'desc': {
+        'zh-CN': '<p>可通过 <code>verticalOffset</code> 设置垂直方向偏离距离。',
+        'en-US': '<p> The vertical deviation distance can be set by using <code>verticalOffset</code>.'
+      },
       'codeFiles': ['verticalOffset.vue']
     },
     {
@@ -120,13 +123,13 @@ export default {
           <div>可通过 <code>beforeClose</code>  属性设置通知框关闭前的事件。</div>
           <div>可通过 <code>onClose</code> 属性设置通知点击关闭按钮时触发事件。</div>
         </p>`,
-        'en-US':`<p>
+        'en-US': `<p>
           <div> The property <code>beforeClose</code> sets the event before the notification box closes. </div>
           <div> can be set through the <code>onClose</code> property to notify the event that is triggered when the close button is clicked. </div>
         </p>`
       },
       'codeFiles': ['notify-events.vue']
-    },
+    }
   ],
   apis: [
     {
@@ -135,7 +138,7 @@ export default {
       'props': [
         {
           'name': 'type',
-          'type':`'info' | 'success' | 'warning' | 'error'`,
+          'type': `'info' | 'success' | 'warning' | 'error'`,
           'defaultValue': 'info',
           'desc': {
             'zh-CN': '通知消息类型',
@@ -205,14 +208,14 @@ export default {
         },
         {
           'name': 'closeIcon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': 'IconClose',
           'desc': { 'zh-CN': '关闭图标组件对象', 'en-US': 'Close icon component object' },
           'demoId': 'closeIcon'
         },
         {
           'name': 'statusIcon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': 'IconInfoSolid',
           'desc': { 'zh-CN': '类型图标组件对象', 'en-US': 'Type icon component object' },
           'demoId': 'statusIcon'

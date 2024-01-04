@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn } from '@opentiny/vue'
 import { IconMarkOn } from '@opentiny/vue-icon'
 
@@ -79,6 +79,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .location-area {
   margin-left: 10px;

@@ -1,7 +1,7 @@
 <template>
   <div>
     是否隐藏：<tiny-switch v-model="isHide"></tiny-switch>
-    <tiny-pager :hide-on-single-page="isHide" layout="prev, pager, next" :total="1"></tiny-pager>
+    <tiny-pager :hide-on-single-page="isHide" :total="1"></tiny-pager>
   </div>
 </template>
 
