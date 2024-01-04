@@ -160,6 +160,7 @@
     "@opentiny/vue-menu": "workspace:~",
     "@opentiny/vue-message": "workspace:~",
     "@opentiny/vue-milestone": "workspace:~",
+    "@opentiny/vue-mind-map": "workspace:~",
     "@opentiny/vue-mini-picker": "workspace:~",
     "@opentiny/vue-modal": "workspace:~",
     "@opentiny/vue-month-range": "workspace:~",
