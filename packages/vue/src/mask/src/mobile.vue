@@ -25,11 +25,12 @@
 </template>
 
 <script lang="ts">
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup, defineComponent, $prefix } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/mask/vue'
 import '@opentiny/vue-theme-mobile/mask/index.less'
 
 export default defineComponent({
+  name: $prefix + 'Mask',
   props: {
     ...props,
     visible: {
