@@ -6,6 +6,7 @@
       value-format="yyyy-MM"
       @change="handleChange"
     ></tiny-date-picker>
+    <br />
     <tiny-grid
       ref="gridRef"
       :fetch-data="fetchData"
@@ -14,7 +15,7 @@
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
     >
       <tiny-grid-column title="Group" field="group" header-align="center"> </tiny-grid-column>
-      <tiny-grid-column v-for="(item, index) in item" :key="index" :title="item.title" header-align="center">
+      <tiny-grid-column v-for="(item, index) in itemArr" :key="index" :title="item.title" header-align="center">
         <tiny-grid-column
           v-for="(item1, i) in item.content"
           :key="i"
@@ -41,7 +42,7 @@ const pagerConfig = ref({
   }
 })
 const value = ref([new Date(2020, 1), new Date()])
-const item = ref([])
+const itemArr = ref([])
 const tableData = ref([
   {
     id: '1',
@@ -178,7 +179,7 @@ function getData({ page, filterArgs }) {
 
 function forWeek(week) {
   week.forEach((i) => {
-    item.value.push({
+    itemArr.value.push({
       title: `${i}`,
       content: [
         { field: `W1${i}`, title: 'W1' },
@@ -192,7 +193,7 @@ function forWeek(week) {
 
 function handleChange(val) {
   if (val && val.length > 1) {
-    item.value = []
+    itemArr.value = []
     let monthLen = getMonthBetween(val[0], val[1])
 
     forWeek(monthLen)
@@ -212,6 +213,7 @@ function getMonthBetween(start, end) {
   max.setFullYear(e[0], e[1] * 1 - 1, 1) // 结束日期
   let curr = min
 
+  // eslint-disable-next-line no-unmodified-loop-condition
   while (curr <= max) {
     let month = curr.getMonth()
     result.push(month + 1)

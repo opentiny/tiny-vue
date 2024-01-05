@@ -31,7 +31,7 @@ export default {
       'demoId': 'filter-dynamic-filter',
       'name': { 'zh-CN': '动态改变筛选项', 'en-US': 'Filter' },
       'desc': {
-        'zh-CN': `<p>通过改变自定义的 <code>filter</code> 自定义筛选的规则中的 <code>values</code> 数组，或者将 <code>values</code> 定义成方法可以动态的返回筛选项`,
+        'zh-CN': `<p>通过改变自定义的 <code>filter</code> 自定义筛选的规则中的 <code>values</code> 数组，或者将 <code>values</code> 定义成方法可以动态的返回筛选项。`,
         'en-US': ''
       },
       'codeFiles': ['filter/dynamic-filter.vue']
@@ -41,7 +41,7 @@ export default {
       'name': { 'zh-CN': '简化版筛选-单选/多选菜单', 'en-US': 'Custom Parameter' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code></p>\n',
+          '<p>通过 <code>layout</code> 设置需要使用的筛选项为<code>simple</code>,其中<code>layout</code>可选项包括<code>input,enum,default,extends,base,simple</code> 。</p>\n',
         'en-US': '<p>Add custom parameters by <code>params</code>。</p>\n'
       },
       'codeFiles': ['filter/simple-filter.vue']
@@ -71,14 +71,14 @@ export default {
       'name': { 'zh-CN': '过滤高级设置', 'en-US': 'Custom Filter' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>inputFilter</code> 可以给input过滤区域配置自定义组件与条件，通过 <code>extends</code> 可以增加快捷过滤列表。</p>\n',
+          '<p>通过 <code>inputFilter</code> 可以给 <code>input</code> 过滤区域配置自定义组件与条件，通过 <code>extends</code> 可以增加快捷过滤列表。</p>',
         'en-US': '<p>Set additional parameters through the <code>params</code> attribute</p>\n'
       },
       'codeFiles': ['filter/advanced-filter.vue']
     },
     {
       'demoId': 'filter-custom-filter',
-      'name': { 'zh-CN': '设置列筛选规则', 'en-US': 'Server Filter' },
+      'name': { 'zh-CN': '列筛选规则', 'en-US': 'Server Filter' },
       'desc': {
         'zh-CN': '<p>通过 <code>filter</code> 属性设置列筛选规则。</p>\n',
         'en-US':
