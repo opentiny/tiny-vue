@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('只有一页时隐藏分页', async ({ page }) => {
+test('单页时隐藏', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('pager#hide-on-single-page')
 

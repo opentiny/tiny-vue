@@ -112,7 +112,12 @@ const state = reactive({
       { field: 'city', title: '城市', width: 80 }
     ],
     data: [],
-    selectConfig: { reserve: true, checkRowKeys: ['1', '6'] },
+    // 多选时生效
+    selectConfig: {
+      reserve: true,
+      checkRowKeys: ['1', '6']
+    },
+    // 单选时生效
     radioConfig: { checkRowKey: '3' }
   },
   pagerOp: {
@@ -178,9 +183,10 @@ const lookupMethod = (values) => {
   })
 }
 
-const onDialogSelectChange = (values, texts) => {
+const onDialogSelectChange = (values, texts, selectedDatas) => {
   Modal.message({
-    message: `values:${values},texts:${texts}`
+    message: `values:${values},texts:${texts},selectedDatas:${JSON.stringify(selectedDatas)}`,
+    status: 'info'
   })
 }
 </script>

@@ -31,19 +31,19 @@ const searchTypes = ref([
 ])
 
 function search(key, value) {
-  Modal.message(`${value}`)
+  Modal.message({ message: `search: ${value}`, status: 'info' })
 }
 
 function change(key, value) {
-  Modal.message(`change: ${value}`)
+  Modal.message({ message: `change: ${value}`, status: 'info' })
 }
 
 function clear() {
-  Modal.message('clear')
+  Modal.message({ message: 'clear', status: 'info' })
 }
 
 function input(key, value) {
-  Modal.message(`input: ${key}, ${JSON.stringify(value)}`)
+  Modal.message({ message: `input: ${key}, ${JSON.stringify(value)}`, status: 'info' })
 }
 
 function select(value) {

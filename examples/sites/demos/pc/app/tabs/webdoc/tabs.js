@@ -366,12 +366,12 @@ export default {
         },
         {
           'name': 'click',
-          'type': '(TabItem: VueComponent, event: Event) => void',
+          'type': '(TabItem: Component, event: Event) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '点击页签项时触发，tab 被选中时触发； TabItem: 点中页签项的vueComponent对象信息',
             'en-US':
-              'Trigger an event when clicking on a tab item, Triggered when tab is selected; TabItem: Click on the VueComponent object information of the tab item in the middle'
+              'Trigger an event when clicking on a tab item, Triggered when tab is selected; TabItem: Click on the Component object information of the tab item in the middle'
           },
           'demoId': 'tabs-events-click'
         },

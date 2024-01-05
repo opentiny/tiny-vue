@@ -156,7 +156,7 @@ export default {
         },
         {
           'name': 'type',
-          'type': "'info' | 'success' | 'warning' | 'error' | VueComponent",
+          'type': "'info' | 'success' | 'warning' | 'error' | Component",
           'defaultValue': '--',
           'desc': {
             'zh-CN': '提示图标类型，可以传入自定义图标',

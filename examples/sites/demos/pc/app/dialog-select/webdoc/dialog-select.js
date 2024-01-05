@@ -244,7 +244,7 @@ export default {
           'defaultValue': '{}',
           'desc': {
             'zh-CN': '使用树展示数据时，树组件的配置对象',
-            'en-US': ''
+            'en-US': 'When using a tree to display data, the configuration object of the tree component'
           },
           'demoId': 'nest-tree-multi'
         },
@@ -254,7 +254,7 @@ export default {
           'defaultValue': "'id'",
           'desc': {
             'zh-CN': '数据项的选中值字段',
-            'en-US': ''
+            'en-US': 'Selected value fields for data items'
           },
           'demoId': 'nest-grid-multi'
         },
@@ -264,7 +264,7 @@ export default {
           'defaultValue': "';'",
           'desc': {
             'zh-CN': '多选时用于拼接数据项的选中值',
-            'en-US': ''
+            'en-US': 'The selected value used for concatenating data items during multiple selection'
           },
           'demoId': ''
         },
@@ -274,19 +274,19 @@ export default {
           'defaultValue': 'false',
           'desc': {
             'zh-CN': '控制弹出框显示与关闭',
-            'en-US': ''
+            'en-US': 'Control pop-up display and closing'
           },
           'demoId': 'nest-grid-multi'
         }
       ],
       'methods': [
         {
-          'name': 'queryGridData()',
-          'type': '() => {}',
+          'name': 'queryGridData',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '使用表格展示数据时，加载表格数据的方法',
-            'en-US': ''
+            'en-US': 'The method of loading table data when using tables to display data'
           },
           'demoId': 'nest-grid-multi'
         }
@@ -294,121 +294,133 @@ export default {
       'events': [
         {
           'name': 'before-page-change',
-          'type': '() => {}',
+          'type': '(beforeChangeParam:IBeforeChangeParam) => void',
+          'typeAnchorName': 'IBeforeChangeParam',
           'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 Pager 的 before-page-change 事件',
-            'en-US': ''
+            'en-US': 'Before page change event of the transparent sub component Pager'
           },
           'demoId': ''
         },
         {
           'name': 'close',
-          'type': '() => {}',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 DialogBox 的 close 事件',
-            'en-US': ''
+            'en-US': 'Close event for transparent sub component DialogBox'
           },
           'demoId': ''
         },
         {
           'name': 'closed',
-          'type': '() => {}',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 DialogBox 的 closed 事件',
-            'en-US': ''
+            'en-US': 'The closed event of the transparent sub component DialogBox'
           },
           'demoId': ''
         },
         {
+          'name': 'change',
+          'type': '(changeParam:IChangeParam) => void',
+          'typeAnchorName': 'IChangeParam',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '监听弹窗选择的值发生变化的事件',
+            'en-US': 'Event where the value selected in the monitoring pop-up changes'
+          },
+          'demoId': 'nest-grid-multi'
+        },
+        {
           'name': 'current-change',
-          'type': '() => {}',
+          'type': '(currentPage: number) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 Pager 的 current-change 事件',
-            'en-US': ''
+            'en-US': 'The current change event of the transparent sub component Pager'
           },
           'demoId': 'nest-grid-multi'
         },
         {
           'name': 'drag-end',
-          'type': '() => {}',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 DialogBox 的 drag-end 事件',
-            'en-US': ''
+            'en-US': 'The drag end event of the transparent sub component DialogBox'
           },
           'demoId': ''
         },
         {
           'name': 'drag-move',
-          'type': '() => {}',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 DialogBox 的 drag-move 事件',
-            'en-US': ''
+            'en-US': 'The drag move event of the transparent sub component DialogBox'
           },
           'demoId': ''
         },
         {
           'name': 'drag-start',
-          'type': '() => {}',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 DialogBox 的 drag-start 事件',
-            'en-US': ''
+            'en-US': 'The drag start event of the transparent sub component DialogBox'
           },
           'demoId': ''
         },
         {
           'name': 'next-click',
-          'type': '() => {}',
+          'type': '(currentPage: number) => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 Pager 的 next-click 事件',
-            'en-US': ''
+            'en-US': 'Next click event for transparent sub component Pager'
           },
           'demoId': ''
         },
         {
           'name': 'open',
-          'type': '() => {}',
+          'type': '() => void',
           'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 DialogBox 的 open 事件',
-            'en-US': ''
+            'en-US': 'Open event for transparent sub component DialogBox'
           },
           'demoId': ''
         },
         {
           'name': 'opened',
-          'type': '() => {}',
-          'defaultValue': '() => {}',
+          'type': '() => void',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 DialogBox 的 opened 事件',
-            'en-US': ''
+            'en-US': 'The opened event of the transparent sub component DialogBox'
           },
           'demoId': ''
         },
         {
           'name': 'prev-click',
-          'type': '() => {}',
-          'defaultValue': '() => {}',
+          'type': '(currentPage: number) => void',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 Pager 的 prev-click 事件',
             'en-US': ''
           },
-          'demoId': ''
+          'demoId': 'The pre click event of the transparent sub component Pager'
         },
         {
           'name': 'size-change',
-          'type': '() => {}',
-          'defaultValue': '() => {}',
+          'type': '(pageSize: number) => void',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '透传子组件 Pager 的 size-change 事件',
-            'en-US': ''
+            'en-US': 'The size change event of the transparent sub component Pager'
           },
           'demoId': 'nest-grid-multi'
         }
@@ -420,7 +432,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '使用表格展示数据时，自定义已选栏的自定义按钮区域',
-            'en-US': ''
+            'en-US': 'When displaying data in a table, customize the custom button area of the selected column'
           },
           'demoId': ''
         },
@@ -430,7 +442,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '使用表格展示数据时，自定义已选栏的清空按钮区域',
-            'en-US': ''
+            'en-US': 'When displaying data in a table, customize the clear button area of the selected column'
           },
           'demoId': ''
         },
@@ -440,7 +452,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '使用表格展示数据时，自定义已选栏的选项的删除按钮',
-            'en-US': ''
+            'en-US': 'Customize the delete button for the selected column options when displaying data in a table'
           },
           'demoId': 'nest-tree-multi'
         },
@@ -450,7 +462,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义弹窗底部',
-            'en-US': ''
+            'en-US': 'Custom Pop Up Bottom'
           },
           'demoId': ''
         },
@@ -460,7 +472,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '使用表格展示数据时，自定义已选栏的选项',
-            'en-US': ''
+            'en-US': 'Customize options for selected columns when displaying data in a table'
           },
           'demoId': 'nest-tree-multi'
         },
@@ -470,7 +482,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '使用表格展示数据时，自定义搜索区域',
-            'en-US': ''
+            'en-US': 'Customize the search area when displaying data in a table'
           },
           'demoId': 'nest-grid-multi'
         },
@@ -480,7 +492,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '使用表格展示数据时，自定义已选栏的已选提示区域',
-            'en-US': ''
+            'en-US': 'When displaying data in a table, customize the selected prompt area for the selected column'
           },
           'demoId': ''
         },
@@ -490,7 +502,7 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义弹窗标题',
-            'en-US': ''
+            'en-US': 'Custom pop-up title'
           },
           'demoId': ''
         }
@@ -629,6 +641,42 @@ interface ITreeNodeData {
   "children"?: ITreeNodeData[]  
 }        
 `
+    },
+    {
+      name: 'IChangeParam',
+      type: 'interface',
+      code: `
+// 树组件的节点数据信息
+interface ItreeData = {
+  id: number|string
+  label: string
+  pid: number|string
+}
+
+// 用户自定义的表格行数据
+interface IGridData = {
+  id: number|string
+ [otherKeys] :any
+}
+
+interface IChangeParam = {
+ values: Array<number|string>|number|string
+ texts: string|Array<string>
+ selectedDatas: ItreeData[]|IGridData[]
+}
+`
+    },
+    {
+      name: 'IBeforeChangeParam',
+      type: 'interface',
+      code: `interface IBeforeChangeParam {
+callback: () => void   // 回调函数，调用则继续本次变更
+rollback: () => void   // 回滚函数，调用则阻止本次变更
+newPage: number // 变更后所在页
+newPageSize: number // 变更后分页大小
+currentPage: number // 当前所在页
+currentPageSize: number // 当前分页大小
+}`
     }
   ]
 }

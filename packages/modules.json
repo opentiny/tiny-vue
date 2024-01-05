@@ -394,13 +394,13 @@
       "mobile"
     ]
   },
-  "CascaderSelectMobileFirst": {
-    "path": "vue/src/cascader-select/src/mobile-first.vue",
+  "CascaderSelectMobile": {
+    "path": "vue/src/cascader-select/src/mobile.vue",
     "type": "template",
     "exclude": false
   },
-  "CascaderSelectMobile": {
-    "path": "vue/src/cascader-select/src/mobile.vue",
+  "CascaderSelectMobileFirst": {
+    "path": "vue/src/cascader-select/src/mobile-first.vue",
     "type": "template",
     "exclude": false
   },
@@ -427,6 +427,11 @@
   },
   "ChartBar": {
     "path": "vue/src/chart-beta/chart-bar/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartBeta": {
+    "path": "vue/src/chart-beta/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -527,11 +532,6 @@
   },
   "ChartWordcloud": {
     "path": "vue/src/chart/chart-wordcloud/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartsBeta": {
-    "path": "vue/src/chart-beta/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -1608,6 +1608,14 @@
     "path": "vue/src/milestone/src/pc.vue",
     "type": "template",
     "exclude": false
+  },
+  "MindMap": {
+    "path": "vue/src/mind-map/src/pc.vue",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "MiniPicker": {
     "path": "vue/src/mini-picker/index.ts",

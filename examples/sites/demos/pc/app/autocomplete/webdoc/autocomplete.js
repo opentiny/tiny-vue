@@ -271,14 +271,14 @@ export default {
         },
         {
           'name': 'prefix-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框头部图标', 'en-US': 'Icon on the header of the text box' },
           'demoId': 'custom-icon'
         },
         {
           'name': 'suffix-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': { 'zh-CN': '输入框尾部图标', 'en-US': 'Icon at the end of the text box' },
           'demoId': 'custom-icon'

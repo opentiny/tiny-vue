@@ -1077,7 +1077,7 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义选项的图标',
@@ -1140,7 +1140,7 @@ interface IOption {
   value?: string | number
   label?: string
   disabled?: boolean
-  icon?: VueComponent
+  icon?: Component
   required?:boolean
 }
 `

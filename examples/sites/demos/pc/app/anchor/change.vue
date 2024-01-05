@@ -20,29 +20,29 @@ export default {
             {
               key: 'basic-usage',
               link: '#basic-usage',
-              title: 'Basic Usage'
+              title: '基本用法'
             },
             {
               key: 'is-affix',
               link: '#is-affix',
-              title: 'Is Affix'
+              title: '固定模式'
             },
             {
               key: 'set-container',
               link: '#set-container',
-              title: 'Set Container'
+              title: '滚动容器'
             },
             {
               key: 'on-change',
-              link: '#on-change',
-              title: 'On Change'
+              link: '#change',
+              title: 'change 事件'
             }
           ]
         },
         {
           key: 'api',
-          link: '#api',
-          title: 'Api'
+          link: '#API',
+          title: 'API'
         }
       ]
     }

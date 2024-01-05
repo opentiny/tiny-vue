@@ -424,7 +424,138 @@ export const tinyBaseAuroraTheme = {
   'ti-common-size-height-medium': 'var(--ti-common-size-10x)', // NewCssVar
   'ti-common-size-height-small': 'var(--ti-common-size-8x)', // NewCssVar
   'ti-common-size-height-normal': '30px', // NewCssVar 基本高度值（Button、Input）
-  'ti-common-size-height-mini': 'var(--ti-common-size-6x)' // NewCssVar
+  'ti-common-size-height-mini': 'var(--ti-common-size-6x)', // NewCssVar
+
+  // 以下皆为新增变量
+  // 新增saurora缺少的basic-var.less变量
+  'ti-common-color-primary-hover': 'var(--ti-base-color-brand-5)',
+  'ti-common-color-primary-normal': 'var(--ti-base-color-brand-6)',
+
+  // aurora适配过程中产生的新变量如下
+  // 文本色
+  'ti-base-text-color-1': '#333d48',
+  'ti-base-text-color-2': '#161e26',
+  'ti-base-text-color-3': '#c4c4c4',
+  'ti-base-text-color-4': '#3eaf7c',
+  'ti-base-text-color-5': '#1F2D3D',
+  'ti-base-text-color-6': '#c0c4cc',
+
+  // 图标色
+  'ti-base-icon-color-1': '#939599',
+  'ti-base-icon-color-2': '#78828d',
+
+  // 文本或图标色带透明度
+  'ti-base-text-color-transparent-10': 'rgba(22, 30, 38, 0.1)',
+  'ti-base-text-color-transparent-30': 'rgba(22, 30, 38, 0.3)',
+  'ti-base-icon-color-transparent-75': 'rgba(0, 0, 0, 0.75)',
+
+  // 边框色
+  'ti-base-border-color-1': '#e4e7ed',
+  'ti-base-border-color-2': '#69c0ff',
+  'ti-base-border-color-3': '#b3d8ff',
+  'ti-base-border-color-4': '#c2e7b0',
+  'ti-base-border-color-5': '#fbc4c4',
+  'ti-base-border-color-6': '#f5dab1',
+
+  // 边框色带透明度
+  'ti-base-border-color-transparent-15': 'rgba(24,144,255,.15)',
+  'ti-base-border-color-transparent-30': 'rgba(57, 57, 57, 0.3)',
+  'ti-base-border-color-warn-transparent-6': 'rgba(250,173,20,.06)',
+  'ti-base-border-color-warn-transparent-15': 'rgba(250,173,20,.15)',
+  'ti-base-border-color-success-transparent-15': 'rgba(82,196,26,.15)',
+  'ti-base-border-color-danger-transparent-15': 'rgba(245,34,45,.15)',
+
+  // 背景色
+  'ti-base-bg-color-1': '#303133',
+  'ti-base-bg-color-2': '#0067d1', // 常用于聚焦背景色
+  'ti-base-bg-color-3': '#005bba',
+  'ti-base-bg-color-4': '#67c23a',
+  'ti-base-bg-color-5': '#e6a23c',
+  'ti-base-bg-color-6': '#f1f1f1',
+  'ti-base-bg-color-7': '#d8d8d8',
+  'ti-base-bg-color-8': '#0072e8', // 用于鼠标悬浮
+  'ti-base-bg-color-9': '#fa8c16', // 警告背景色
+  'ti-base-bg-color-10': '#dbdbdb',
+
+  // 背景色带透明度
+  'ti-base-bg-color-transparent-5': 'rgba(22, 30, 38, 0.05)',
+  'ti-base-bg-color-transparent-6': 'rgba(24,144,255,.06)',
+  'ti-base-bg-color-transparent-20': 'rgba(22, 30, 38, 0.2)',
+  'ti-base-bg-color-transparent-30': 'rgba(0, 103, 209, 0.3)',
+  'ti-base-bg-color-warn-transparent-6': 'rgba(24,144,255,.06)',
+  'ti-base-bg-color-danger-transparent-6': 'rgba(245,34,45,.06)',
+  'ti-base-bg-color-success-transparent-6': 'rgba(82,196,26,.06)',
+
+  // 阴影
+  'ti-base-box-shadow': '0 0 4px 0 #d9d9d9',
+
+  // 新属性
+  'ti-base-text-decoration-underline': 'underline',
+  'ti-base-rotate-0': 'rotate(0)',
+  'ti-base-rotate-90': 'rotate(90deg)',
+  'ti-base-percent-30': '30%',
+  'ti-base-percent-60': '60%',
+  'ti-base-text-align': 'center',
+  'ti-base-opacity-8': '0.8',
+
+  'ti-common-text-color-normal': 'var(--ti-base-text-color-1)', // 默认文本色2
+  'ti-common-text-color-secondary': 'var(--ti-base-text-color-2)', // 次要文本色
+  'ti-common-text-color-3': 'var(--ti-base-text-color-3)', // 次要文本色
+  'ti-common-text-color-4': 'var(--ti-base-text-color-4)',
+  'ti-common-text-color-5': 'var(--ti-base-text-color-5)',
+  'ti-common-text-color-6': 'var(--ti-base-text-color-6)',
+  'ti-common-text-color-transparent-10': 'var(--ti-base-text-color-transparent-10)',
+  'ti-common-text-color-transparent-30': 'var(--ti-base-text-color-transparent-30)',
+
+  'ti-common-icon-color-1': 'var(--ti-base-icon-color-1)',
+  'ti-common-icon-color-2': 'var(--ti-base-icon-color-2)',
+  'ti-common-icon-color-transparent-75': 'var(--ti-base-icon-color-transparent-75)', // 图标色
+
+  'ti-common-border-color-normal': 'var(--ti-base-border-color-1)',
+  'ti-common-border-color-info': 'var(--ti-base-border-color-2)', // 提示边框色
+  'ti-common-border-color-plain': 'var(--ti-base-border-color-3)',
+  'ti-common-border-color-success': 'var(--ti-base-border-color-4)',
+  'ti-common-border-color-danger': 'var(--ti-base-border-color-5)',
+  'ti-common-border-color-warn': 'var(--ti-base-border-color-6)',
+  'ti-common-border-color-transparent-15': 'var(--ti-base-border-color-transparent-15)',
+  'ti-common-border-color-transparent-30': 'var(--ti-base-border-color-transparent-30)',
+  'ti-common-border-color-warn-transparent-6': 'var(--ti-base-border-color-warn-transparent-6)',
+  'ti-common-border-color-warn-transparent-15': 'var(--ti-base-border-color-warn-transparent-15)',
+  'ti-common-border-color-success-transparent-15': 'var(--ti-base-border-color-success-transparent-15)',
+  'ti-common-border-color-danger-transparent-15': 'var(--ti-base-border-color-danger-transparent-15)',
+
+  'ti-common-bg-color-transparent-5': 'var(--ti-base-bg-color-transparent-5)', // 次要禁用背景色
+  'ti-common-bg-color-transparent-6': 'var(--ti-base-bg-color-transparent-6)', // 次要禁用背景色
+  'ti-common-bg-color-transparent-20': 'var(--ti-base-bg-color-transparent-20)',
+  'ti-common-bg-color-transparent-30': 'var(--ti-base-bg-color-transparent-30)', // 禁用背景色
+  'ti-common-bg-color-warn-transparent-6': 'var(--ti-base-bg-color-warn-transparent-6)',
+  'ti-common-bg-color-danger-transparent-6': 'var(--ti-base-bg-color-danger-transparent-6)',
+  'ti-common-bg-color-success-transparent-6': 'var(--ti-base-bg-color-success-transparent-6)',
+  'ti-common-bg-color-normal': 'var(--ti-base-bg-color-1)', // 弹框背景色
+  'ti-common-bg-color-focus': 'var(--ti-base-bg-color-2)', // 聚焦背景色
+  'ti-common-bg-color-active': 'var(--ti-base-bg-color-3)', // hover或点击背景色
+  'ti-common-bg-color-success': 'var(--ti-base-bg-color-4)', // 成功背景色
+  'ti-common-bg-color-warn': 'var(--ti-base-bg-color-5)', // 警告背景色
+  'ti-common-bg-color-header-1': 'var(--ti-base-bg-color-6)',
+  'ti-common-bg-color-header-2': 'var(--ti-base-bg-color-7)',
+  'ti-common-bg-color-hover': 'var(--ti-base-bg-color-8)',
+  'ti-common-bg-color-warn-1': 'var(--ti-base-bg-color-9)',
+  'ti-common-bg-color-10': 'var(--ti-base-bg-color-10)',
+
+  'ti-common-box-shadow': 'var(--ti-base-box-shadow)',
+
+  // 新属性变量
+  'ti-common-text-decoration-underline': 'var(--ti-base-text-decoration-underline)',
+
+  'ti-common-rotate-0': 'var(--ti-base-rotate-0)',
+  'ti-common-rotate-90': 'var(--ti-base-rotate-90)',
+
+  'ti-common-percent-30': 'var(--ti-base-percent-30)',
+  'ti-common-percent-60': 'var(--ti-base-percent-60)',
+  'ti-common-opacity-8': 'var(--ti-base-opacity-8)', // 透明度
+
+  // 文本居中
+  'ti-common-text-align': 'var(--ti-base-text-align)'
 }
 
-export * from './component'
+export * from './component.js'

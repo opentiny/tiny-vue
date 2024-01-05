@@ -113,7 +113,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': {
-            'zh-CN': '是否在按下键盘Enter键时触发search事件',
+            'zh-CN': '是否在按下键盘 Enter 键时触发 search 事件',
             'en-US': 'Whether to trigger the search event when pressing the Enter key on the keyboard'
           },
           'demoId': 'events'
@@ -123,7 +123,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '是否为迷你模式，配置为true时，默认显示为一个带图标的圆形按钮，点击后展开',
+            'zh-CN': '是否为迷你模式，配置为 true 时，默认显示为一个带图标的圆形按钮，点击后展开',
             'en-US':
               'Is it mini mode? When configured to true, it will default to a circular button with an icon, which will expand after clicking'
           },

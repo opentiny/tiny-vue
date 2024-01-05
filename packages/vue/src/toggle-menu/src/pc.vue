@@ -40,7 +40,7 @@
           'is-overflow': ellipsis,
           'is-node-hide': !state.showNode
         }"
-        :showCheckbox="showCheckbox"
+        :show-checkbox="showCheckbox"
         :data="state.datas"
         node-key="id"
         :accordion="accordion"
@@ -103,7 +103,8 @@ export default defineComponent({
     'props',
     'showFilter',
     'wrap',
-    'getMenuDataSync'
+    'getMenuDataSync',
+    'getMenuDataAsync'
   ],
   components: {
     TinyTree: Tree,
