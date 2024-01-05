@@ -1,6 +1,7 @@
 <template>
   <div>
-    <tiny-button @click="reverseTable" :reset-time="0">表格反转</tiny-button>
+    <div><tiny-button @click="reverseTable" :reset-time="0">表格反转</tiny-button></div>
+    <br />
     <tiny-grid :data="tableData" :columns="tableColumn" :show-header="false"> </tiny-grid>
   </div>
 </template>
@@ -146,6 +147,7 @@ function reverseTable() {
           width: 120
         }
       }
+      return undefined
     })
   )
 }
