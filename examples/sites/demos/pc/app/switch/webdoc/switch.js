@@ -78,7 +78,7 @@ export default {
       'props': [
         {
           'name': 'before-change',
-          'type': '(done: () => void) => void',
+          'type': 'boolean / Functioon',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '开关值变化前置处理',
