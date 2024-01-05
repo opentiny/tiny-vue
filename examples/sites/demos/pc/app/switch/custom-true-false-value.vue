@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-switch v-model="value" true-value="yes" false-value="no"> </tiny-switch>
-    当前值:{{ value }}
+    当前值: {{ value }}
   </div>
 </template>
 
