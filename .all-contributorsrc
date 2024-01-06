@@ -546,6 +546,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Floyd-bit",
+      "name": "Floyd",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59243597?v=4",
+      "profile": "https://github.com/Floyd-bit",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,
