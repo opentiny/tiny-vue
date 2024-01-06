@@ -519,6 +519,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "ichynul",
+      "name": "ichynul",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10061650?v=4",
+      "profile": "https://gitee.com/ichynul",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,

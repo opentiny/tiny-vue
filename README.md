@@ -156,6 +156,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/James-9696"><img src="https://avatars.githubusercontent.com/u/72028410?v=4?s=100" width="100px;" alt="James"/><br /><sub><b>James</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=James-9696" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://gitee.com/ichynul"><img src="https://avatars.githubusercontent.com/u/10061650?v=4?s=100" width="100px;" alt="ichynul"/><br /><sub><b>ichynul</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ichynul" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
