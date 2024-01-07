@@ -61,7 +61,7 @@ const toolbarButtons = ref([
   },
   {
     code: 'savePromise',
-    name: '保存（Promise）'
+    name: '保存 Promise'
   },
   {
     code: 'fullValidate',
@@ -178,12 +178,12 @@ function toolbarButtonClickEvent({ code }) {
       basicGridRef.value
         .validate()
         .then(() => {
-          TinyModal.alert('校验成功，触发了then！')
+          TinyModal.alert('校验成功，触发了 then！')
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error)
-          TinyModal.alert('校验不通过，触发了catch')
+          TinyModal.alert('校验不通过，触发了 catch')
         })
       break
     }
@@ -191,12 +191,12 @@ function toolbarButtonClickEvent({ code }) {
       basicGridRef.value
         .fullValidate()
         .then(() => {
-          TinyModal.alert('校验成功，触发了then！')
+          TinyModal.alert('校验成功，触发了 then！')
         })
         .catch((error) => {
           // eslint-disable-next-line no-console
           console.log(error)
-          TinyModal.alert('校验不通过，触发了catch')
+          TinyModal.alert('校验不通过，触发了 catch')
         })
       break
     }

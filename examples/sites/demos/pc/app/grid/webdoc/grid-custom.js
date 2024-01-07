@@ -80,22 +80,6 @@ export default {
       'codeFiles': ['custom/column-fixed.vue']
     },
     {
-      'demoId': 'custom-ordercolumn-local',
-      'name': {
-        'zh-CN': '个性化按钮点击事件',
-        'en-US': 'Local Record and Personalization Panel Button Click Event Listening'
-      },
-      'desc': {
-        'zh-CN': `<p>配置 <code>setting</code> 的 <code>storage</code> 为 <code>local</code> 可实个性化的本地存储，
-          配置 <code>setting</code> 的 <code>sortable</code> 为 <code>sortablejs</code> 可实现拖拽排序列功能，此功能在多级列头下无效，
-          并且可以通过三个事件<code>save-setting</code>、<code>cancel-setting</code>、<code>reset-setting</code>来分别监听确认、取消、重置按钮的点击事件。</p>\n`,
-        'en-US': `<p>Configure <code>storage</code> of <code>setting</code> to <code>local</code> as a personalized local storage,
-          Set <code>sortable</code> of <code>setting</code> to <code>sortablejs</code> to implement the drag-and-drop sorting function. This function is invalid in multi-level column headers,
-          In addition, three events <code>save-setting</code>, <code>cancel-setting</code>, and <code>reset-setting</code> can be used to listen to the click events of the confirmation, cancellation, and reset buttons.</p>\n`
-      },
-      'codeFiles': ['custom/ordercolumn-local.vue']
-    },
-    {
       'demoId': 'custom-ordercolumn-remote',
       'name': { 'zh-CN': '加载远端数据', 'en-US': 'Display and hide columns' },
       'desc': {
@@ -128,17 +112,6 @@ export default {
       'codeFiles': ['custom/hide-column.vue']
     },
     {
-      'demoId': 'custom-prsonalized-drag',
-      'name': { 'zh-CN': '个性化面板拖拽前事件', 'en-US': 'Number of records on each page' },
-      'desc': {
-        'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里配置 <code>onBeforeMove</code> 拖拽前事件，也可配置 <code>filter</code> 设置类名， 拖拽个性化面板某一行会触发个性化面板的拖拽前事件。</p>\n',
-        'en-US':
-          '<p>On the <code>toolbar</code> tab, configure <code>setting</code> to enable personalized settings. In the personalized panel, select other settings. You can select the number of records to be displayed on each page. You can use the <code>other</code> attribute of <code>setting</code> to control the display of other settings. The default value of <code>boolean</code> is <code>true</code></p>\n'
-      },
-      'codeFiles': ['custom/prsonalized-drag.vue']
-    },
-    {
       'demoId': 'custom-page-size',
       'name': { 'zh-CN': '分页条数', 'en-US': 'Local Storage' },
       'desc': {
@@ -169,6 +142,33 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['custom/reset-method.vue']
+    },
+    {
+      'demoId': 'custom-ordercolumn-local',
+      'name': {
+        'zh-CN': '个性化按钮点击事件',
+        'en-US': 'Local Record and Personalization Panel Button Click Event Listening'
+      },
+      'desc': {
+        'zh-CN': `<p>配置 <code>setting</code> 的 <code>storage</code> 为 <code>local</code> 可实个性化的本地存储，
+          配置 <code>setting</code> 的 <code>sortable</code> 为 <code>sortablejs</code> 可实现拖拽排序列功能，此功能在多级列头下无效，
+          并且可以通过三个事件<code>save-setting</code>、<code>cancel-setting</code>、<code>reset-setting</code>来分别监听确认、取消、重置按钮的点击事件。</p>\n`,
+        'en-US': `<p>Configure <code>storage</code> of <code>setting</code> to <code>local</code> as a personalized local storage,
+          Set <code>sortable</code> of <code>setting</code> to <code>sortablejs</code> to implement the drag-and-drop sorting function. This function is invalid in multi-level column headers,
+          In addition, three events <code>save-setting</code>, <code>cancel-setting</code>, and <code>reset-setting</code> can be used to listen to the click events of the confirmation, cancellation, and reset buttons.</p>\n`
+      },
+      'codeFiles': ['custom/ordercolumn-local.vue']
+    },
+    {
+      'demoId': 'custom-prsonalized-drag',
+      'name': { 'zh-CN': '个性化面板拖拽前事件', 'en-US': 'Number of records on each page' },
+      'desc': {
+        'zh-CN':
+          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里配置 <code>onBeforeMove</code> 拖拽前事件，也可配置 <code>filter</code> 设置类名， 拖拽个性化面板某一行会触发个性化面板的拖拽前事件。</p>\n',
+        'en-US':
+          '<p>On the <code>toolbar</code> tab, configure <code>setting</code> to enable personalized settings. In the personalized panel, select other settings. You can select the number of records to be displayed on each page. You can use the <code>other</code> attribute of <code>setting</code> to control the display of other settings. The default value of <code>boolean</code> is <code>true</code></p>\n'
+      },
+      'codeFiles': ['custom/prsonalized-drag.vue']
     }
   ],
   apis: [{ 'name': 'grid-custom', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

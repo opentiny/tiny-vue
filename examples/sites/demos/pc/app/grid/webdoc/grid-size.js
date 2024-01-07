@@ -4,7 +4,7 @@ export default {
   demos: [
     {
       'demoId': 'size-fixed-column-width',
-      'name': { 'zh-CN': '列属性设置宽度', 'en-US': 'Table column attribute width' },
+      'name': { 'zh-CN': '列属性宽度', 'en-US': 'Table column attribute width' },
       'desc': {
         'zh-CN': '<p>表格列属性设置 width 固定宽度，支持数值和百分比。</p>\n',
         'en-US': '<p>The fixed width of the table column attribute is set. Values and percentages are supported. </p>\n'
@@ -13,7 +13,7 @@ export default {
     },
     {
       'demoId': 'size-column-min-width',
-      'name': { 'zh-CN': '设置总体列宽', 'en-US': 'Minimum width of this column' },
+      'name': { 'zh-CN': '总体列宽', 'en-US': 'Minimum width of this column' },
       'desc': {
         'zh-CN':
           '<p>通过属性 <code>column-min-width</code> 设置总体列可以调整到的最小宽度，不设置时默认为列头 span 的宽度 + 36（头部固定宽度）。\n</p>\n',
@@ -34,7 +34,7 @@ export default {
     },
     {
       'demoId': 'size-column-width',
-      'name': { 'zh-CN': '设置所有列宽度', 'en-US': 'Recalculate Table' },
+      'name': { 'zh-CN': '所有列宽度', 'en-US': 'Recalculate Table' },
       'desc': {
         'zh-CN': '<p>通过属性 <code>column-width</code> 设置所有列宽度，默认值为均匀分配。\n</p>\n',
         'en-US':
@@ -44,7 +44,7 @@ export default {
     },
     {
       'demoId': 'size-fixed-grid-height',
-      'name': { 'zh-CN': '表格属性设置高度', 'en-US': 'Table Attribute Setting Height' },
+      'name': { 'zh-CN': '表格属性高度', 'en-US': 'Table Attribute Setting Height' },
       'desc': {
         'zh-CN': '<p>表格属性设置 height 固定表格高度。</p>\n',
         'en-US': '<p>Table attribute setting height Fixed table height. </p>\n'
@@ -53,7 +53,7 @@ export default {
     },
     {
       'demoId': 'size-max-min-grid-height',
-      'name': { 'zh-CN': '设置最大、最小高度', 'en-US': 'Set the maximum height of maxHeight' },
+      'name': { 'zh-CN': '最大、最小高度', 'en-US': 'Set the maximum height of maxHeight' },
       'desc': {
         'zh-CN': '<p>表格属性设置 minHeight 限制最小高度，maxHeight 限制最大高度。</p>\n',
         'en-US': 'For details, see the following example.'
@@ -75,7 +75,7 @@ export default {
       'demoId': 'size-resize-column-width',
       'name': { 'zh-CN': '开启列宽拖拽', 'en-US': 'Enable column width dragging' },
       'desc': {
-        'zh-CN': '<p>列宽默认开启，如需禁用需要设置<code>resizable</code>为<code>false</code>。</p>\n',
+        'zh-CN': '<p>列宽拖拽默认开启，如需禁用需要设置 <code>resizable</code> 为 <code>false</code>。</p>\n',
         'en-US':
           '<p>Column width is enabled by default. To disable this function, set <code>resizable</code> to <code>false</code></p>\n'
       },
