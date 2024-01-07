@@ -159,9 +159,9 @@ export default {
       'name': { 'zh-CN': '可拖拽的弹窗', 'en-US': 'Dragable pop-up window' },
       'desc': {
         'zh-CN':
-          '<p>可通过<code>draggable</code>属性设置<code>true</code>，鼠标点击标题区域拖拽。具体事件：<code>@drag-start</code><code>@drag-move</code><code>@drag-end</code>。</p>\n',
+          '<p>可通过<code>draggable</code>属性设置<code>true</code>，鼠标点击标题区域拖拽；通过<code>:dragOutsideWindow</code>属性设置<code>true</code>，将弹窗拖出窗口。具体事件：<code>@drag-start</code><code>@drag-move</code><code>@drag-end</code>。</p>\n',
         'en-US':
-          '<p>By setting the<code>draggable</code>attribute to<code>true</code>, click and drag in the title area with the mouse.Specific events:<code>@drag-start</code><code>@drag-move</code><code>@drag-end</code>.</p>\n'
+          '<p>By setting the<code>draggable</code>attribute to<code>true</code>, click and drag in the title area with the mouse; setting the code <code>dragOutsideWindow</code>attribute to<code>true</code>, drag the dialog box outside the window.Specific events:<code>@drag-start</code><code>@drag-move</code><code>@drag-end</code>.</p>\n'
       },
       'codeFiles': ['draggable.vue']
     },

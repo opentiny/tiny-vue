@@ -295,13 +295,25 @@ export const handleDrag =
 
       let offsetWidth = modalBoxElem.offsetWidth
       let offsetHeight = modalBoxElem.offsetHeight
-      let maxX = Math.max(visibleWidth - offsetWidth, 0)
-      let maxY = Math.max(visibleHeight - offsetHeight, 0)
-      let left = event.clientX - disX
-      let top = event.clientY - disY
+      let left: number
+      let top: number
+      if (!props.dragOutsideWindow) {
+        let maxX = Math.max(visibleWidth - offsetWidth, 0)
+        let maxY = Math.max(visibleHeight - offsetHeight, 0)
+        left = event.clientX - disX
+        top = event.clientY - disY
 
-      left = left < 0 ? 0 : left > maxX ? maxX : left
-      top = top < 0 ? 0 : top > maxY ? maxY : top
+        left = left < 0 ? 0 : left > maxX ? maxX : left
+        top = top < 0 ? 0 : top > maxY ? maxY : top
+      } else {
+        let maxX = visibleWidth - 10
+        let maxY = visibleHeight - 10
+        left = event.clientX - disX
+        top = event.clientY - disY
+
+        left = event.clientX < 0 ? -disX : left > maxX ? maxX : left
+        top = event.clientY < 0 ? -disY : top > maxY ? maxY : top
+      }
 
       modalBoxElem.style.left = `${left}px`
       modalBoxElem.style.top = `${top}px`
