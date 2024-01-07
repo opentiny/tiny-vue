@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('尝试拖拽', async ({ page }) => {
+test('测试可拖拽功能', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('transfer#drop-config')
   const preview = page.locator('.pc-demo-container')

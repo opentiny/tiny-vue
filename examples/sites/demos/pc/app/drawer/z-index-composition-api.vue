@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="fn" type="primary"> 自定义z-index </tiny-button>
+    <tiny-button @click="fn" type="primary"> 自定义 z-index </tiny-button>
     <tiny-drawer title="标题" :visible="visible" @update:visible="visible = $event" :z-index="zIndex">
       <div>
         <br />

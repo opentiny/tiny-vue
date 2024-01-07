@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('编辑', async ({ page }) => {
+test('测试编辑节点', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#edit')
 

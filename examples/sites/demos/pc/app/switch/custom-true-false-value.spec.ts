@@ -7,7 +7,7 @@ test('自定义开关取值', async ({ page }) => {
   const demo = page.locator('#custom-true-false-value')
   const switchBtn = demo.locator('.tiny-switch')
 
-  await expect(demo.locator('.pc-demo')).toHaveText('当前值:yes')
+  await expect(demo.locator('.pc-demo')).toHaveText('当前值: yes')
   await switchBtn.click()
-  await expect(demo.locator('.pc-demo')).toHaveText('当前值:no')
+  await expect(demo.locator('.pc-demo')).toHaveText('当前值: no')
 })

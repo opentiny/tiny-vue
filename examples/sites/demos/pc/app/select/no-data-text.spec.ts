@@ -21,7 +21,7 @@ test('自定义空数据文本', async ({ page }) => {
   const dropdown = page.locator('body > .tiny-select-dropdown')
 
   await input.click()
-  await expect(dropdown.locator('.tiny-select-dropdown__empty')).toHaveText('None')
+  await expect(dropdown.locator('.tiny-select-dropdown__empty')).toHaveText('暂无数据')
 })
 
 test('显示空数据图片', async ({ page }) => {

@@ -4,7 +4,7 @@ test('option-group', async ({ page }) => {
   await page.goto('select#option-group')
 
   const wrap = page.locator('#option-group')
-  const select = wrap.locator('.tiny-select')
+  const select = wrap.locator('.tiny-select').nth(0)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
   const title = dropdown.locator('.tiny-option-group__title')
@@ -16,6 +16,6 @@ test('option-group', async ({ page }) => {
   await expect(option.filter({ hasText: '上海' })).toHaveClass(/is-disabled/)
   await expect(option.filter({ hasText: '北京' })).toHaveClass(/is-disabled/)
   await expect(group.nth(0).locator('.tiny-option')).toHaveCount(2)
-  await expect(group.nth(1).locator('.tiny-option')).toHaveCount(4)
+  await expect(group.nth(1).locator('.tiny-option')).toHaveCount(8)
   await expect((await group.all()).length).toEqual(2)
 })

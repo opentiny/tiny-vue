@@ -173,7 +173,7 @@ export default {
         },
         {
           'name': 'suffix-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': {
             'zh-CN': '下拉触发源图标',
@@ -259,7 +259,7 @@ interface IItemData {
   disabled: boolean       // 是否禁用
   divided: boolean        // 是否显示分割线
   children: IItemData[]   // 菜单项子集
-  icon: VueComponent      // 菜单项图标
+  icon: Component      // 菜单项图标
 }
 `
     },

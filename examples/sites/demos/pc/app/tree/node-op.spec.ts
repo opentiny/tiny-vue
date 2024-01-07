@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('节点操作', async ({ page }) => {
+test('测试节点增删', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#node-op')
 

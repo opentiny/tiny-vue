@@ -357,7 +357,7 @@ export default {
         },
         {
           'name': 'prefix-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框头部图标',
@@ -438,7 +438,7 @@ export default {
         },
         {
           'name': 'suffix-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': {
             'zh-CN': '输入框尾部图标',

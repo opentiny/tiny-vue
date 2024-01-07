@@ -7,7 +7,7 @@ export default {
       'name': { 'zh-CN': '自定义表头样式', 'en-US': 'Set the table header style' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>header-cell-class-name</code> 和 <code>header-row-class-name</code> 设置表头的单元格和行样式。或者使用表格列的属性 <code>header-class-name</code> 设置表头单元格样式</p>',
+          '<p>通过 <code>header-cell-class-name</code> 和 <code>header-row-class-name</code> 设置表头的单元格和行样式。或者使用表格列的属性 <code>header-class-name</code> 设置表头单元格样式。</p>',
         'en-US':
           '<p>Set the cell and row styles of the table header through <code>header-cell-class-name</code> and <code>header-row-class-name</code></p>\n<h3>Set the cell style of the table header</h3>\n'
       },
@@ -18,7 +18,7 @@ export default {
       'name': { 'zh-CN': '自定义表体样式', 'en-US': 'Set Row Style' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>row-class-name</code> 自定义设置表格的行样式</p>\n<p>通过 <code>cell-class-name</code> 自定义设置表格的单元格样式。\n',
+          '<p>通过 <code>row-class-name</code> 自定义设置表格的行样式。</p>\n<p>通过 <code>cell-class-name</code> 自定义设置表格的单元格样式。\n',
         'en-US': '<p>Set the row style of the table by <code>row-class-name</code></p>\n<h3>Set the row style</h3>\n'
       },
       'codeFiles': ['custom-style/body-style.vue']

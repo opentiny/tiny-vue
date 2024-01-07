@@ -9,7 +9,7 @@
   </tiny-grid>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Grid as TinyGrid, GridColumn as TinyGridColumn, Pager, Modal } from '@opentiny/vue'
 
@@ -87,10 +87,10 @@ const tableData = ref([
 ])
 
 function sortChangeEvent({ order }) {
-  Modal.message({ message: `${order}`, status: 'info' })
+  Modal.message({ message: `${order || '取消排序'}`, status: 'info' })
 }
 
-function getData({ page, sort, data, filters }) {
+function getData({ page, filters }) {
   return new Promise((resolve) => {
     setTimeout(() => {
       // 此处为用户自定义的服务端分页、排序、过滤服务

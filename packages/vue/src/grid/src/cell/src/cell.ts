@@ -197,6 +197,7 @@ export const Cell = {
       renderHeader: this.renderHeader,
       renderCell: getCellRender(isTreeNode, 'renderTreeCell', 'renderCell', this)
     }
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     let _vm = this
 
     let ruleChains = [
@@ -770,9 +771,7 @@ export const Cell = {
 
     let vNodes = [
       isRequired && showAsterisk ? h('i', { class: `tiny-icon ${icon.required}` }) : null,
-      editConfig && !editConfig.showIcon && !column.showIcon
-        ? null
-        : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
+      !editConfig || !column.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
     ]
 
     vNodes = vNodes.concat(Cell.renderHeader(h, params))

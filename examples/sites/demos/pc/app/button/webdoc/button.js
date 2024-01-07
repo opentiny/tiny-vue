@@ -160,7 +160,7 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '按钮左侧展示的图标，接收为Icon组件',

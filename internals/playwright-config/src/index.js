@@ -40,7 +40,10 @@ const Config = ({ testDir, baseURL, storageState }) => ({
     headless: !!process.env.CI,
     ignoreHTTPSErrors: true,
     screenshot: 'only-on-failure',
-    permissions: ['clipboard-read']
+    permissions: ['clipboard-read'],
+
+    /* Emulates the user timezone */
+    timezoneId: 'Asia/Shanghai'
   },
 
   projects: [

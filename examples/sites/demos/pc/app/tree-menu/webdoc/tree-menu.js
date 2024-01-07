@@ -561,7 +561,7 @@ export default {
         },
         {
           'name': 'prefix-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '自定义前置图标',
@@ -571,7 +571,7 @@ export default {
         },
         {
           'name': 'suffix-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '自定义后置图标',
@@ -581,7 +581,7 @@ export default {
         },
         {
           'name': 'search-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '自定义搜索图标',
@@ -848,7 +848,7 @@ interface ITreeNodeData {
   // show-number 时展示的字段
   "number"?: number | string
   // 自定义每个节点的图标
-  "customIcon": VueComponent 
+  "customIcon": Component 
 }        
 `
     },

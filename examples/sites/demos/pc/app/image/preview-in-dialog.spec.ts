@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('对话框中预览图片', async ({ page }) => {
+test('测试对话框中预览图片', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('image#preview-in-dialog')
 

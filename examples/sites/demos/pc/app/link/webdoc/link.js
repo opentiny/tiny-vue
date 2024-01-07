@@ -95,7 +95,7 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': { 'zh-CN': '图标组件', 'en-US': 'Icon component' },
           'demoId': 'custom-icon'

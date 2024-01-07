@@ -1,15 +1,16 @@
 <template>
   <div class="button-wrap">
-    <tiny-button :icon="IconSearch"></tiny-button>
-    <tiny-button type="primary" :icon="IconEdit">编辑</tiny-button>
-    <tiny-button type="success" :icon="IconYes" text="好的"></tiny-button>
-    <tiny-button type="info" :icon="IconMail"></tiny-button>
-    <tiny-button type="warning" :icon="IconStarO"></tiny-button>
-    <tiny-button type="danger" :icon="IconDel"></tiny-button>
+    <h3>图标</h3>
+    <tiny-button type="icon" :icon="IconSearch"></tiny-button>
+    <tiny-button type="icon" :icon="IconEdit" text="编辑"></tiny-button>
+    <tiny-button type="icon" :icon="IconYes" text="好的"></tiny-button>
+    <tiny-button type="icon" :icon="IconMail"></tiny-button>
+    <tiny-button type="icon" :icon="IconStarO"></tiny-button>
+    <tiny-button type="icon" :icon="IconDel" size="small"></tiny-button>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button } from '@opentiny/vue'
 import { iconDel, iconYes, iconEdit, iconMail, iconStarO, iconSearch } from '@opentiny/vue-icon'
 

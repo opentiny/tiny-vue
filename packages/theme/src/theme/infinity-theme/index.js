@@ -10,7 +10,25 @@
  *
  */
 
-export const infinityTheme = {
+// 基础变量
+export const tinyBaseInfinityTheme = {
+  'ti-base-color-transparent': 'transparent', // 透明色
+
+  // 品牌主色
+  'ti-base-color-brand-6': '#5e7ce0', // 主色蓝
+  'ti-base-color-brand-2': '#e9edfa', // 品牌色-2
+
+  /* 1.4 功能色*/
+  'ti-base-color-error-3': '#f66f6a', // 错误-3
+  'ti-base-color-error-1': '#ffd5d4', // 错误-1
+
+  'ti-base-color-success-3': '#50d4ab', // 成功-3
+  'ti-base-color-success-1': '#cffcee', // 成功-1
+
+  // 告警色
+  'ti-base-color-warn-4': '#fa9841', // 告警-4
+  'ti-base-color-warn-1': '#ffe1c7', // 告警-1
+
   'ti-common-border-radius-normal': 'var(--ti-common-border-radius-1)',
   'ti-common-font-size-base': 'var(--ti-common-font-size-1)',
   'ti-common-color-line-dividing': '#f2f2f3',
@@ -35,366 +53,105 @@ export const infinityTheme = {
   'ti-common-dropdown-gap': '8px',
   'ti-common-color-bg-disabled': '#f5f5f5',
 
-  'ti-button-size-normal-height': 'var(--ti-common-space-8x)',
-  'ti-button-normal-background-color': '#ebebeb',
-  'ti-button-normal-border-color': 'var(--ti-base-color-transparent)',
-  'ti-button-normal-text-color': 'var(--ti-base-color-common-7)',
-  'ti-button-padding-vertical': '0',
-  'ti-button-normal-hover-bg-color': '#d1d1d1',
-  'ti-button-normal-hover-border-color': 'var(--ti-base-color-transparent)',
-  'ti-button-normal-hover-text-color': 'var(--ti-base-color-common-7)',
-  'ti-button-text-color': '#526ecc',
-  'ti-button-text-color-hover': 'var(--ti-base-color-brand-8)',
-  'ti-autocomplete-suggestion-border-color': '#fff',
-  'ti-autocomplete-suggestion-bg-color': '#fff',
-  'ti-autocomplete-li-hover-bg-color': 'var(--ti-common-color-hover-background)',
-  'ti-autocomplete-li-select-bg-color': '#f2f5fc',
-  'ti-autocomplete-li-height': '36px',
-  'ti-checkbox-border-color': '#d7d8da',
-  'ti-checkbox-border-color-hover': '#252b3a',
-  'ti-checkbox-icon-height': '6px',
-  'ti-checkbox-icon-width': '3px',
-  'ti-checkbox-icon-margin-top': '2px',
-  'ti-picker-panel-border-color': '#fff',
-  'ti-radio-inner-size': '10px',
-  'ti-radio-bordered-checked-hover-border-color': 'var(--ti-base-color-brand-8)',
-  'ti-radio-bordered-border-color': '#d7d8da',
-  'ti-radio-input-disabled-bg-color': '#f5f5f5',
-  'ti-switch-off-bg-color': '#d7d8da',
-  'ti-link-default-text-color': 'var(--ti-base-color-brand-7)',
-  'ti-link-default-hover-text-color': 'var(--ti-base-color-brand-8)',
-  'ti-numeric-input-normal-height': 'var(--ti-common-size-height-normal)',
-  'ti-numeric-input-width': '140px',
-  'ti-slider-height': '5px',
-  'ti-slider-range-height': '5px',
-  'ti-slider-handle-border-radius': '50%',
-  'ti-slider-handle-width': '14px',
-  'ti-slider-handle-height': '14px',
-  'ti-slider-range-top': '0',
-  'ti-slider-handle-top': '0',
-  'ti-slider-border-radius': '100px',
-  'ti-slider-range-border-radius': '100px',
-  'ti-slider-handle-border-weight': '2px',
-  'ti-slider-range-hover-bg-color': '#7693f5',
-  'ti-slider-handle-icon-display': 'none',
-  'ti-slider-tips-margin-left': '0',
-  'ti-slider-handle-transform': 'scale(1.3)',
-  'ti-slider-range-margin-top': '0',
-  'ti-slider-handle-margin-top': '-5px',
-  'ti-slider-handle-margin-horizontal': '-8px',
-  'ti-slider-handle-margin-bottom': '0',
-  'ti-slider-margin-vertical': '-8px',
-  'ti-slider-margin-right': '0',
-  'ti-slider-margin-left': '-4px',
-  'ti-time-panel-border-color': 'transparent',
-  'ti-time-panel-box-shadow': 'var(--ti-common-shadow-2-down)',
-  'ti-time-spinner-item-font-weight': 'normal',
-  'ti-time-panel-content-split-line-display': 'none',
-  'ti-time-spinner-item-bg-color': '#f2f5fc',
-  'ti-time-spinner-list-border-color': 'var(--ti-common-color-line-dividing)',
-  'ti-time-panel-btn-cancel-display': 'none',
-  'ti-time-panel-btn-confirm-text-color': 'var(--ti-common-color-info-normal)',
-  'ti-time-panel-btn-bg-color': '#EBEBEB',
-  'ti-time-panel-btn-padding-vertical': '0',
-  'ti-time-panel-btn-padding-horizontal': '12px',
-  'ti-time-panel-btn-height': '24px',
-  'ti-time-panel-btn-min-width': '56px',
-  'ti-time-panel-btn-font-weight': 'normal',
-  'ti-time-panel-btn-confirm-hover-bg-color': 'var(--ti-button-normal-hover-bg-color)',
-  'ti-tree-node-content-current-bg-color': 'var(--ti-common-color-selected-background)',
-  'ti-tree-node-content-hover-bg-color': 'var(--ti-common-color-hover-background)',
-  // tabs
-  'ti-tabs-header-font-active-border-color': 'var(--ti-base-color-common-7)',
-  'ti-tabs-header-text-color': 'var(--ti-base-color-common-7)',
-  'ti-tabs-header-font-normal-text-color': '#71757f',
-  'ti-tabs-item-margin-right': 'var(--ti-common-space-8x)',
-  'ti-tabs-item-padding-horizontal': 'var(--ti-common-space-4x)',
-  'ti-tabs-item-vertical-padding-horizontal': 'var(--ti-common-space-5x)',
-  'ti-tabs-item-active-border-weight': '2px',
-  'ti-tabs-item-active-border-style': 'solid',
-  'ti-tabs-item-active-border-color': 'var(--ti-tabs-header-font-active-border-color)',
-  'ti-tabs-item-bottom-border-weight': '1px',
-  'ti-tabs-item-bottom-border-style': 'solid',
-  'ti-tabs-item-bottom-border-color': '#f2f2f3',
-  'ti-tabs-item-card-active-bg-color': '#f7f7f9',
-  'ti-tabs-item-card-border-radius': 'var(--ti-common-border-radius-1) var(--ti-common-border-radius-1) 0 0',
-  'ti-tabs-icon-close-default-bg-color': '#d7d8da',
-  'ti-tabs-icon-close-hover-bg-color': 'var(--ti-base-color-common-7)',
-  'ti-tabs-icon-close-default-text-color': 'var(--ti-base-color-white)',
-  'ti-tabs-icon-close-hover-text-color': 'var(--ti-base-color-white)',
-  'ti-tabs-icon-size-close': '12px',
-  'ti-tabs-icon-close-margin-vertical': '0',
-  'ti-tabs-icon-close-margin-right': '0',
-  'ti-tabs-icon-close-margin-left': 'var(--ti-common-space-3x)',
-  // popover
-  'ti-popover-box-shadow': '0 8px 16px 0 rgba(37,43,58,.2)',
-  'ti-popover-text-color': '#dfe1e6',
-  'ti-popover-bg-color': '#464d6e',
-  'ti-popover-border-color': 'transparent',
-  'ti-popover-title-text-color': '#dfe1e6',
-  'ti-popover-arrow-border-color': 'var(--ti-popover-bg-color)',
-  'ti-popover-placement-arrow-after-border-color': 'var(--ti-popover-arrow-border-color)',
-  'ti-popover-padding-vertical': '8px',
-  'ti-popover-padding-horizontal': '14px',
-  // tooltip
-  'ti-tooltip-box-shadow': '0 8px 16px 0 rgba(37,43,58,.2)',
-  'ti-tooltip-popper-border-color': '#464d6e',
-  'ti-tooltip-popper-dark-bg-color': '#464d6e',
-  'ti-tooltip-popper-light-text-color': '#464d6e',
-  'ti-tooltip-popper-light-border-color': '#464d6e',
-  'ti-tooltip-padding-vertical': '8px',
-  'ti-tooltip-padding-horizontal': '14px',
-  'ti-tooltip-color': '#dfe1e6',
-  'ti-tooltip-popper-dark-text-color': '#dfe1e6',
+  /**
+   * 12.28 尺寸
+   **/
+  'ti-common-size-base': '4px', // 基础尺寸
+  'ti-common-size-2x': 'calc(var(--ti-common-size-base) * 2)', // 尺寸-2
+  'ti-common-size-3x': 'calc(var(--ti-common-size-base) * 3)', // 尺寸-3
+  'ti-common-size-4x': 'calc(var(--ti-common-size-base) * 4)', // 尺寸-4
+  'ti-common-size-5x': 'calc(var(--ti-common-size-base) * 5)', // 尺寸-5
+  'ti-common-size-6x': 'calc(var(--ti-common-size-base) * 6)', // 尺寸-6
+  'ti-common-size-7x': 'calc(var(--ti-common-size-base) * 7)', // 尺寸-7
+  'ti-common-size-8x': 'calc(var(--ti-common-size-base) * 8)', // 尺寸-8
+  'ti-common-size-9x': 'calc(var(--ti-common-size-base) * 9)', // 尺寸-9
+  'ti-common-size-10x': 'calc(var(--ti-common-size-base) * 10)', // 尺寸-10
+  'ti-common-size-11x': 'calc(var(--ti-common-size-base) * 11)', // 尺寸-11
+  'ti-common-size-12x': 'calc(var(--ti-common-size-base) * 12)', // 尺寸-12
+  'ti-common-size-13x': 'calc(var(--ti-common-size-base) * 13)', // 尺寸-13
+  'ti-common-size-14x': 'calc(var(--ti-common-size-base) * 14)', // 尺寸-14
+  'ti-common-size-15x': 'calc(var(--ti-common-size-base) * 15)', // 尺寸-15
+  'ti-common-size-16x': 'calc(var(--ti-common-size-base) * 16)', // 尺寸-16
+  'ti-common-size-17x': 'calc(var(--ti-common-size-base) * 17)', // 尺寸-17
+  'ti-common-size-18x': 'calc(var(--ti-common-size-base) * 18)', // 尺寸-18
+  'ti-common-size-19x': 'calc(var(--ti-common-size-base) * 19)', // 尺寸-19
+  'ti-common-size-20x': 'calc(var(--ti-common-size-base) * 20)', // 尺寸-20
+  'ti-common-size-21x': 'calc(var(--ti-common-size-base) * 21)', // 尺寸-21
+  'ti-common-size-22x': 'calc(var(--ti-common-size-base) * 22)', // 尺寸-22
+  'ti-common-size-23x': 'calc(var(--ti-common-size-base) * 23)', // 尺寸-23
+  'ti-common-size-24x': 'calc(var(--ti-common-size-base) * 24)', // 尺寸-24
+  'ti-common-size-25x': 'calc(var(--ti-common-size-base) * 25)', // 尺寸-25
+  'ti-common-size-26x': 'calc(var(--ti-common-size-base) * 26)', // 尺寸-26
+  'ti-common-size-27x': 'calc(var(--ti-common-size-base) * 27)', // 尺寸-27
+  'ti-common-size-28x': 'calc(var(--ti-common-size-base) * 28)', // 尺寸-28
+  'ti-common-size-29x': 'calc(var(--ti-common-size-base) * 29)', // 尺寸-29
+  'ti-common-size-30x': 'calc(var(--ti-common-size-base) * 30)', // 尺寸-30
+  'ti-common-size-31x': 'calc(var(--ti-common-size-base) * 31)', // 尺寸-31
+  'ti-common-size-32x': 'calc(var(--ti-common-size-base) * 32)', // 尺寸-32
+  'ti-common-size-33x': 'calc(var(--ti-common-size-base) * 33)', // 尺寸-33
+  'ti-common-size-34x': 'calc(var(--ti-common-size-base) * 34)', // 尺寸-34
+  'ti-common-size-35x': 'calc(var(--ti-common-size-base) * 35)', // 尺寸-35
+  'ti-common-size-36x': 'calc(var(--ti-common-size-base) * 36)', // 尺寸-36
+  'ti-common-size-37x': 'calc(var(--ti-common-size-base) * 37)', // 尺寸-37
+  'ti-common-size-38x': 'calc(var(--ti-common-size-base) * 38)', // 尺寸-38
+  'ti-common-size-39x': 'calc(var(--ti-common-size-base) * 39)', // 尺寸-39
+  'ti-common-size-40x': 'calc(var(--ti-common-size-base) * 40)', // 尺寸-40
+  'ti-common-size-41x': 'calc(var(--ti-common-size-base) * 41)', // 尺寸-41
+  'ti-common-size-42x': 'calc(var(--ti-common-size-base) * 42)', // 尺寸-42
+  'ti-common-size-43x': 'calc(var(--ti-common-size-base) * 43)', // 尺寸-43
+  'ti-common-size-44x': 'calc(var(--ti-common-size-base) * 44)', // 尺寸-44
+  'ti-common-size-45x': 'calc(var(--ti-common-size-base) * 45)', // 尺寸-45
+  'ti-common-size-46x': 'calc(var(--ti-common-size-base) * 46)', // 尺寸-46
+  'ti-common-size-47x': 'calc(var(--ti-common-size-base) * 47)', // 尺寸-47
+  'ti-common-size-48x': 'calc(var(--ti-common-size-base) * 48)', // 尺寸-48
+  'ti-common-size-49x': 'calc(var(--ti-common-size-base) * 49)', // 尺寸-49
+  'ti-common-size-50x': 'calc(var(--ti-common-size-base) * 50)', // 尺寸-50
 
-  'ti-dropdown-menu-padding-vertical': '12px',
-  'ti-dropdown-menu-padding-horizontal': '12px',
-  'ti-dropdown-menu-box-shadow': 'var(--ti-common-shadow-2-down)',
-  'ti-dropdown-menu-margin-vertical': '8px',
-  'ti-dropdown-item-height': '36px',
-  'ti-dropdown-item-padding-vertical': '0',
-  'ti-dropdown-item-padding-horizontal': '12px',
-  'ti-dropdown-item-hover-bg-color': '#f2f2f3',
-  'ti-dropdown-item-active-bg-color': 'var(--ti-dropdown-item-hover-bg-color)',
-  'ti-dropdown-item-text-color': '#252b3a',
-  'ti-dropdown-item-hover-text-color': 'var(--ti-dropdown-item-text-color)',
-  'ti-dropdown-item-active-text-color': 'var(--ti-dropdown-item-text-color)',
-  'ti-dropdown-item-border-radius': 'var(--ti-common-border-radius-normal)',
-  'ti-dropdown-item-disabled-text-color': '#cfd0d3',
-  'ti-dropdown-item-max-width': '100%',
-  'ti-split-trigger-bg-color': '#f2f2f3',
-  'ti-split-trigger-bar-bg-color': 'var(--ti-split-trigger-bg-color)',
-  'ti-split-trigger-hover-bg-color': '#7693f5',
-  'ti-split-trigger-bar-hover-bg-color': 'var(--ti-split-trigger-hover-bg-color)',
-  'ti-split-trigger-size': '2px',
-  'ti-split-trigger-bar-margin-left': '2px',
-  'ti-split-trigger-bar-margin-top': '2px',
-  'ti-split-trigger-con-col-cursor': 'col-resize',
-  'ti-split-trigger-con-row-cursor': 'row-resize',
-  'ti-picker-panel-box-shadow': 'var(--ti-common-shadow-2-down)',
-  'ti-date-picker-width': '249px',
-  'ti-date-picker-font-size': '12px',
-  'ti-date-table-td-today-border-color': 'transparent',
-  'ti-date-table-td-today-text-color': 'var(--ti-base-color-brand-6)',
-  'ti-date-picker-current-border-radius': 'var(--ti-common-border-radius-normal)',
-  'ti-date-picker-hover-bg-color': 'var(--ti-common-color-selected-background)',
-  'ti-date-table-td-width': '30px',
-  'ti-date-table-td-height': '22px',
-  'ti-date-table-td-padding-vertical': '0',
-  'ti-date-table-td-padding-horizontal': '4px',
-  'ti-date-table-td-span-width': '22px',
-  'ti-date-table-td-span-height': '22px',
-  'ti-date-editor-input-icon-color-fill': '#d7d8da',
-  // grid
-  'ti-grid-header-background-color': '#fff',
-  'ti-grid-header-column-height': '42px',
-  'ti-grid-icon-fill-hover-bg-color': '#252b3a',
-  // modal
-  'ti-modal-box-width': '346px',
-  'ti-modal-header-padding-top': '20px',
-  'ti-modal-header-padding-horizontal': '20px',
-  'ti-modal-header-padding-bottom': '0',
-  'ti-modal-close-btn-font-size': '32px',
-  'ti-modal-body-padding-top': '20px',
-  'ti-modal-body-padding-horizontal': '20px',
-  'ti-modal-body-padding-bottom': '0',
-  'ti-modal-footer-padding-top': '18px',
-  'ti-modal-footer-padding-horizontal': '32px',
-  'ti-modal-footer-padding-bottom': '20px',
-  'ti-modal-close-btn-top': '18px',
-  'ti-modal-close-btn-scale': 'scale(1)',
-  'ti-modal-btn-text-color': '#71757f',
-  'ti-modal-close-btn-background-color-hover': '#ebebeb',
-  'ti-modal-footer-default-display-button': 'none',
-  'ti-modal-box-shadow': '0 12px 24px 0 rgba(37,43,58,.2)',
-  'ti-modal-footer-btn-border-radius': '4px',
-  'ti-modal-box-border-radius': '8px',
-  'ti-modal-close-btn-padding-horizontal-vertical': '5px',
-  // pager
-  'ti-pager-input-height': '26px',
-  'ti-pager-normal-text-color': '#71757f',
-  'ti-pager-poplist-item-padding-vertical': '0',
-  'ti-pager-poplist-item-padding-horizontal': '10px',
-  'ti-pager-poplist-item-unchecked-box-shadow': ' 0 1px 3px 0 rgba(37, 43, 58, 0.1)',
-  'ti-pager-poplist-item-hover-bg-color': 'transparent',
-  'ti-pager-poplist-item-hover-border-color': 'var(--ti-common-color-line-dividing)',
-  'ti-pager-poplist-item-hover-text-color': 'var(--ti-common-color-info-normal)',
-  // alert
-  'ti-alert-success-bg-color': '#cffcee',
-  'ti-alert-description-font-size': '14px',
-  'ti-alert-success-border-color': 'transparent',
-  'ti-alert-warning-border-color': 'transparent',
-  'ti-alert-info-border-color': 'transparent',
-  'ti-alert-error-border-color': 'transparent',
-  'ti-alert-nomal-content-line-height': '18px',
-  'ti-alert-info-bg-color': 'var(--ti-base-color-brand-2)',
-  'ti-alert-warning-bg-color': '#ffe1c7',
-  'ti-alert-error-bg-color': '#ffd5d4',
-  'ti-alert-close-font-size': '15px',
-  // steps
-  'ti-steps-icon-size': '24px',
-  'ti-steps-done-icon-bg-color': 'var(--ti-common-color-success-normal)',
-  'ti-steps-done-active-border-color': 'var(--ti-common-color-success-normal)',
-  'ti-steps-done-icon-fill-color': '#fff',
-  'ti-steps-line-active-bg-color': 'var(--ti-common-color-border)',
-  'ti-steps-line-height': '1px',
-  'ti-steps-done-text-color': 'var(--ti-common-color-success-normal)',
-  // tag
-  'ti-tag-border-radius': 'var(--ti-common-border-radius-1)',
-  'ti-tag-height': 'var(--ti-common-size-5x)',
-  'ti-tag-close-font-size': 'var(--ti-common-font-size-base)',
-  // transfer
-  'ti-transfer-panel-width': '300px',
-  'ti-transfer-header-bg-color': '#fff',
-  'ti-transfer-header-border-color': 'var(--ti-common-color-line-dividing)',
-  'ti-transfer-panel-body-height': '320px',
-  'ti-transfer-panel-body-filter-height': '276px',
-  'ti-transfer-panel-item-height': '36px',
-  'ti-transfer-header-span-text-color': '#71757f',
-  'ti-transfer-button-border-radius': '100%',
-  'ti-transfer-button-disabled-bg-color': 'var(--ti-common-color-bg-disabled)',
-  // badge
-  'ti-badge-size': 'var(--ti-common-size-4x)',
-  'ti-badge-font-weight': 'var(--ti-common-font-weight-4)',
-  'ti-badge-border-radius': '100px',
-  // carousel
-  'ti-carousel-arrow-hover-bg-color': 'ti-common-color-selected-background',
-  'ti-carousel-arrow-bg-color': 'rgba(255,255,255,0.8)',
-  'ti-carousel-arrow-box-shadow': '0 8px 16px 0 rgba(37,43,58,.1)',
-  'ti-carousel-arrow-active-text-color': 'var(--ti-base-color-common-7)',
-  'ti-carousel-arrow-width': 'var(--ti-common-size-height-normal)',
-  'ti-carousel-arrow-height': 'var(--ti-common-size-height-normal)',
-  'ti-carousel-indicators-bg-color': 'none',
-  'ti-carousel-indicator-button-bg-color': '#71757f',
-  'ti-carousel-indicator-button-width': '6px',
-  'ti-carousel-indicator-button-height': '6px',
-  'ti-carousel-indicator-margin-right': 'var(--ti-common-size-2x)',
-  'ti-carousel-indicator-active-text-color': 'var(--ti-common-color-info-normal)',
-  'ti-carousel-indicator-active-border-radius': 'var(--ti-common-border-radius-1)',
-  'ti-carousel-indicator-active-width': 'var(--ti-common-size-6x)',
-  'ti-carousel-hover-opacity': '1',
-  'ti-carousel-indicator-active-transition': 'all 0.1s cubic-bezier(0.645,0.045,0.355,1)',
-  'ti-carousel-indicator-active-background-color': '#71757f',
-  'ti-carousel-indicator-active-button-width': 'var(--ti-common-size-6x)',
-  'ti-carousel-indicator-padding-vertical': '0',
-  'ti-carousel-indicator-padding-horizontal': '0',
-  'ti-carousel-indicator-active-transition-property': 'width',
-  // dialog-box
-  'ti-dialogbox-border-radius': 'var(--ti-common-border-radius-2)',
-  'ti-dialogbox-head-padding-top': '20px',
-  'ti-dialogbox-head-padding-horizontal': '20px',
-  'ti-dialogbox-head-padding-bottom': '0',
-  'ti-dialogbox-btn-background-color-hover': '#ebebeb',
-  'ti-dialogbox-head-font-icon-size': '20px',
-  'ti-dialogbox-close-icon-color': '#71757f',
-  'ti-dialogbox-close-icon-color-hover': '#71757f',
-  'ti-dialogbox-box-body-padding-vertical': '20px',
-  'ti-dialogbox-box-body-padding-horizontal': '20px',
-  'ti-dialogbox-box-body-margin-bottom': '0',
-  'ti-dialogbox-box-shadow': '0 12px 24px 0 rgba(37,43,58,.2)',
-  // notify
-  'ti-notify-max-width': '280px',
-  'ti-notify-bg-color': '#464d6e',
-  'ti-notify-text-color': 'var(--ti-base-color-common-1)',
-  'ti-notify-info-bg-color': 'var(--ti-notify-bg-color)',
-  'ti-notify-warning-bg-color': 'var(--ti-notify-bg-color)',
-  'ti-notify-error-bg-color': 'var(--ti-notify-bg-color)',
-  'ti-notify-success-bg-color': 'var(--ti-notify-bg-color)',
-  'ti-alert-info-icon-color': 'var(--ti-base-color-brand-6)',
-  'ti-alert-warning-icon-color': 'var(--ti-base-color-warn-4)',
-  'ti-alert-error-icon-color': 'var(--ti-base-color-error-3)',
-  'ti-alert-success-icon-color': 'var(--ti-base-color-success-3)',
-  'ti-notify-close-icon-color': 'var(--ti-base-color-common-1)',
-  'ti-notify-title-text-color': 'var(--ti-base-color-common-1)',
-  'ti-notify-title-margin-top': '0',
-  'ti-notify-title-margin-horizontal': '0',
-  'ti-notify-title-margin-bottom': '8px',
-  'ti-notify-title-height': '25px',
-  'ti-notify-title-line-height': '25px',
-  'ti-notify-title-font-size': 'var(--ti-common-font-size-1)',
-  'ti-notify-content-font-size': 'var(--ti-common-font-size-1)',
-  'ti-notify-icon-size': 'var(--ti-common-font-size-2)',
-  'ti-notify-message-margin-vertical': '6px',
-  'ti-notify-message-margin-right': 0,
-  'ti-notify-message-margin-left': 0,
-  'ti-notify-border-radius': 'var(--ti-common-border-radius-1)',
-  // image-preview
-  'ti-image-viewer-close-bg-color': 'rgba(255,255,255,0.8)',
-  'ti-image-viewer-text-color': '#71757f',
-  'ti-image-viewer-close-top': '55px',
-  'ti-image-viewer-close-right': '20px',
-  'ti-image-viewer-close-width': 'var(--ti-common-size-9x)',
-  'ti-image-viewer-close-height': 'var(--ti-common-size-9x)',
-  'ti-image-viewer-close-font-size': '18px',
-  'ti-image-viewer-actions-width': '100%',
-  'ti-image-viewer-actions-height': '50px',
-  'ti-image-viewer-actions-bottom': '0',
-  'ti-image-viewer-actions-border-radius': 'none',
-  'ti-image-viewer-actions-inner-justify-content': 'center',
-  'ti-image-viewer-actions-inner-font-size': '18px',
-  'ti-image-viewer-actions-inner-text-color': '#71757f',
-  'ti-image-viewer-next-width': '36px',
-  'ti-image-viewer-next-height': '36px',
-  'ti-image-viewer-mask-wrap-bg-color': 'rgba(37,43,58,.2)',
-  'ti-image-viewer-close-bg-color-hover': 'var(--ti-common-color-selected-background)',
-  'ti-image-viewer-btn-opacity': '1',
-  'ti-image-viewer-mask-bg-color': 'transparent',
-  // input
-  'ti-input-border-radius': 'var(--ti-common-border-radius-1)',
-  'ti-input-hover-border-color': 'var(--ti-common-color-border-hover)',
-  'ti-input-active-border-color': 'var(--ti-base-color-brand-7)',
-  'ti-input-height': '32px',
-  'ti-input-mini-height': '24px',
-  'ti-input-small-height': '32px',
-  'ti-input-medium-height': '40px',
-  // cascader
-  'ti-cascader-width': '300px',
-  'ti-cascader-medium-line-height': 'var(--ti-input-medium-height)',
-  'ti-cascader-small-line-height': 'var(--ti-input-small-height)',
-  'ti-cascader-mini-line-height': 'var(--ti-input-mini-height)',
-  'ti-cascader-menu-list-padding-vertical': 'var(--ti-common-space-3x)',
-  'ti-cascader-menu-list-padding-horizontal': 'var(--ti-common-space-3x)',
-  'ti-cascader-panel-node-height': '36px',
-  'ti-cascader-node-selectable-hover-bg-color': '#f2f2f3',
-  'ti-cascader-node-selectable-hover-text-color': 'var(--ti-base-color-brand-7)',
-  'ti-cascader-node-disabled-text-color': '#cfd0d3',
-  'ti-cascader-node-disabled-bg-color': '#f5f5f5',
-  'ti-cascader-node-icon-color': 'var(--ti-base-color-common-7)',
-  'ti-cascader-panel-node-label-padding-vertical': '0',
-  'ti-cascader-panel-node-label-padding-right': '30px',
-  'ti-cascader-panel-node-label-padding-left': '12px',
-  'ti-cascader-node-prefix-display': 'none',
-  'ti-cascader-node-label-padding-vertical': 0,
-  'ti-cascader-node-label-padding-horizontal': 0,
-  'ti-cascader-dropdown-box-shadow': '0 4px 8px 0 rgba(37, 43, 58, 0.2)',
-  'ti-cascader-dropdown-border-color': 'var(--ti-cascader-dropdown-bg-color)',
-  'ti-cascader-menu-border-color': 'var(--ti-common-color-hover-background)',
-  'ti-cascader-node-hover-bg-color': 'var(--ti-common-color-hover-background)',
-  'ti-cascader-menu-width': '200px',
-  'ti-cascader-panel-node-margin-top': 'var(--ti-common-space-base)',
-  'ti-cascader-tag-bg-color': 'var(--ti-base-color-brand-2)',
-  'ti-tag-info-text-color': '#71757f',
-  'ti-cascader-hover-border-color': '#71757f',
-  'ti-cascader-focus-border-color': 'var(--ti-base-color-brand-6)',
-  'ti-cascader-node-selectable-text-color': 'var(--ti-base-color-brand-7)',
-  'ti-cascader-node-hover-text-color': 'var(--ti-base-color-brand-7)',
-  // select
-  'ti-select-input-caret-icon-color': 'var(--ti-base-color-common-5)',
-  'ti-select-input-caret-hover-icon-color': 'var(--ti-base-color-common-7)',
-  // option
-  'ti-select-dropdown-list-padding-top': 'var(--ti-common-space-3x)',
-  'ti-select-dropdown-list-padding-horizontal': 'var(--ti-common-space-3x)',
-  'ti-select-dropdown-list-padding-bottom': 'var(--ti-common-space-3x)',
-  'ti-select-dropdown-border-color': 'var(--ti-base-color-white)',
-  'ti-option-padding-vertical': '0',
-  'ti-option-padding-horizontal': 'var(--ti-common-space-3x)',
-  'ti-option-margin-top': 'var(--ti-common-space-base)',
-  'ti-option-height': '36px',
-  'ti-option-selected-text-color': 'var(--ti-common-color-info-normal)',
-  'ti-option-selected-bg-color': 'var(--ti-base-color-brand-1)',
-  // form-item
-  'ti-form-item-error-text-color': 'var(--ti-base-color-error-3)',
-  'ti-form-item-error-bg-color': '#ffd5d4',
-  // search
-  'ti-search-input-btn-width': 'var(--ti-common-size-height-minor)'
+  /*  其他尺寸 */
+  'ti-common-size-0': '0px', // 其他尺寸-1
+  'ti-common-size-auto': 'auto', // 其他尺寸-2
+  'ti-common-size-3': '3px', // 基础尺寸
+
+  /**
+   * 2.12 字号
+   **/
+  'ti-common-font-size-base': '12px', // NewCssVar 正文-常规
+  'ti-common-font-size-1': '14px', // NewCssVar 标题-小
+  'ti-common-font-size-2': '16px', // NewCssVar 标题-中
+  'ti-common-font-size-3': '18px', // NewCssVar 标题-大
+  'ti-common-font-size-4': '20px', // NewCssVar 字号-4
+  'ti-common-font-size-5': '24px', // NewCssVar 字号-5
+  'ti-common-font-size-6': '32px', // NewCssVar 字号-6
+  'ti-common-font-size-7': '36px', // NewCssVar 字号-7
+
+  // 行高
+  'ti-common-line-height-4': '22px', // NewCssVar
+
+  /**
+   * 2.1 基础色
+   **/
+  'ti-common-color-transparent': 'var(--ti-base-color-transparent)',
+
+  /* 浅底背景状态色*/
+  'ti-common-color-bg-light-normal': 'var(--ti-base-color-brand-2)',
+
+  /**
+   * 2.3 交互类型颜色
+   **/
+  'ti-common-color-primary-normal': 'var(--ti-base-color-brand-6)', // NewCssVar
+
+  /**
+   * 2.2 提示类型颜色
+   * 用于 alert组件、Modal（message）组件、Tag 标签组件、Notify 通知组件涉及功能提示的背景、文字、图标等的颜色使用
+   **/
+  'ti-common-color-error': 'var(--ti-base-color-error-3)', // 错误-图标色/状态图标-危险、错误、失败/深色Tip中的价格文本
+  'ti-common-color-error-bg': 'var(--ti-base-color-error-1)', // 错误-背景色/校验背景色
+
+  'ti-common-color-success': 'var(--ti-base-color-success-3)', // 成功-图标色/状态图标-成功
+  'ti-common-color-success-bg': 'var(--ti-base-color-success-1)', // 成功-背景色
+
+  'ti-common-color-warn': 'var(--ti-base-color-warn-4)', // 告警-图标色/状态图标-警告
+  'ti-common-color-warn-bg': 'var(--ti-base-color-warn-1)' // 告警-背景色
 }
+
+export * from './component-vars.js'

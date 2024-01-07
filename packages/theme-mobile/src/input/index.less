@@ -55,8 +55,9 @@
     font-size: var(--ti-mobile-input-count-font-size);
   }
 
-  &.is-focus {
+  &.is-focus &__inner {
     border-color: var(--ti-mobile-input-border-color-active);
+    border-width: var(--ti-mobile-input-border-width-active);
   }
 
   &.is-showlimit &__inner {
@@ -112,6 +113,11 @@
   &::-webkit-scrollbar-track-piece {
     background: #fff;
     width: 6px;
+  }
+
+  &.is-focus &__wrapper {
+    border-color: var(--ti-mobile-input-border-color-active);
+    border-width: var(--ti-mobile-input-border-width-active);
   }
 
   &.is-exceed &__suffix &__count {
