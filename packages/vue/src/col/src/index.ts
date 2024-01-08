@@ -23,7 +23,7 @@ export default defineComponent({
     span: {
       type: Number,
       default: 12,
-      validator: (value: number) => Math.floor(value) === value && value > 0 && value <= 12
+      validator: (value: number) => Math.floor(value) === value && value > 0 && value <= 24
     },
 
     /**
