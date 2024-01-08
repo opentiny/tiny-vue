@@ -76,7 +76,7 @@ export const getVuePlugins = (vueVersion: string) => {
   return pluginMap[vueVersion]() || []
 }
 
-export const ns = (ver) => ({ '2': '2', '2.7': '2', '3': '3' }[ver] || '')
+export const ns = (ver) => ({ '2': '2', '2.7': '2', '3': '3' })[ver] || ''
 
 export interface BaseConfig {
   vueVersion: string
@@ -286,7 +286,8 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
           },
           output: {
             strict: false,
-            manualChunks: {}
+            manualChunks: {},
+            experimentalMinChunkSize: 5 * 1024 * 1024
           }
         },
         lib: {

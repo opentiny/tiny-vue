@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('设置列筛选规则', async ({ page }) => {
+test('列筛选规则', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('grid-filter#filter-custom-filter')
   await page.getByRole('cell', { name: '名称' }).getByRole('img').click()

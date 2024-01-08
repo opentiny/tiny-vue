@@ -13,7 +13,7 @@ export default {
     },
     {
       'demoId': 'footer-configuration-summary',
-      'name': { 'zh-CN': '设置配置式的统计', 'en-US': 'Set Profile Statistics' },
+      'name': { 'zh-CN': '配置式的统计', 'en-US': 'Set Profile Statistics' },
       'desc': {
         'zh-CN': '<p>通过 <code>summary-config</code> 设置配置式的统计。</p>\n',
         'en-US': '<p>Set the profile statistics using <code>summary-config</code>. </p>\n'
