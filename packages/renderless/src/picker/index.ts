@@ -731,8 +731,9 @@ export const showPicker =
     state.pickerVisible = state.picker.state.visible = true
     state.picker.state.value = state.parsedValue
     state.picker.resetView && state.picker.resetView()
-
-    updatePopper(state.picker.$el)
+    nextTick(() => {
+      updatePopper(state.picker.$el)
+    })
     state.picker.adjustSpinners && state.picker.adjustSpinners()
   }
 
