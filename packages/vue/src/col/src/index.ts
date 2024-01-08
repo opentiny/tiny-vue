@@ -18,7 +18,7 @@ export default defineComponent({
     ...$props,
 
     /**
-     * @property {number} [span=12] - 栅格占据的列数（一行以12栅格划分）
+     * @property {number} [span=12/24] - 栅格占据的列数（一行以12/24栅格划分）
      */
     span: {
       type: Number,
