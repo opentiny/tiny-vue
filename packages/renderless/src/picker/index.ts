@@ -731,10 +731,11 @@ export const showPicker =
     state.pickerVisible = state.picker.state.visible = true
     state.picker.state.value = state.parsedValue
     state.picker.resetView && state.picker.resetView()
+    // 使用nextTick方法解决time-picker组件的demo"下拉框类名"点击input，时间选择框弹出位置错误的问题，
     nextTick(() => {
       updatePopper(state.picker.$el)
+      state.picker.adjustSpinners && state.picker.adjustSpinners()
     })
-    state.picker.adjustSpinners && state.picker.adjustSpinners()
   }
 
 export const handlePick =
