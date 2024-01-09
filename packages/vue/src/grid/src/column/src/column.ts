@@ -164,6 +164,11 @@ export default defineComponent({
   },
   render() {
     const { slots, firstRow, columnConfig } = this
+
+    if (!firstRow || Object.keys(firstRow).length == 0) {
+      return h("div")
+    }
+    
     let slotVnode
 
     try {
