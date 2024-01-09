@@ -222,7 +222,7 @@ export const svg = ({ name = 'Icon', component }) => {
           let className = 'tiny-svg'
 
           const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
-          if (specifyPc && isMobileFirst) {
+          if (specifyPc !== 'pc' && isMobileFirst) {
             className = mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
           }
 
