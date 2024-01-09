@@ -140,15 +140,15 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
   const globalDesignConfig: DesignConfig = hooks.inject(design.configKey, {})
   const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
 
-  const mode = resolveMode(props, context)
+  const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
   const utils = {
     $prefix,
     t,
-    ...tools(context, mode),
+    ...tools(context, resolveMode(props, context)),
     designConfig,
     globalDesignConfig
   }
-  if (mode !== 'pc') {
+  if (specifyPc !== 'pc') {
     utils.mergeClass = mergeClass
   }
 
@@ -170,7 +170,7 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     dp: utils.defineParentInstanceProperties,
     gcls: (key) => getElementCssClass(classes, key)
   }
-  if (mode !== 'pc') {
+  if (specifyPc !== 'pc') {
     attrs.m = mergeClass
   }
   /**
@@ -221,7 +221,8 @@ export const svg = ({ name = 'Icon', component }) => {
           const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
           let className = 'tiny-svg'
 
-          if (isMobileFirst) {
+          const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
+          if (specifyPc && isMobileFirst) {
             className = mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
           }
 
