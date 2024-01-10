@@ -493,7 +493,7 @@ export default {
     },
     Methods: {},
     Slots: {
-      default: 'value',
+      default: 'grid-default',
       footer: 'footer-slot'
     }
   },

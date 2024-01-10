@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.message({ message: '不允许重复点击', id: 'unique' })
+      Modal.message({ status: 'info', message: '不允许重复点击', id: 'unique' })
     }
   }
 }

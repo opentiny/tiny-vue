@@ -4,7 +4,7 @@
     <tiny-button @click="successClick" :reset-time="0"> 成功提示框 </tiny-button>
     <tiny-button @click="errorClick" :reset-time="0"> 失败提示框 </tiny-button>
     <tiny-button @click="confirmClick" :reset-time="0"> 确认提示框 </tiny-button>
-    <tiny-button @click="jsxClick" :reset-time="0"> 支持传入jsx 提示框 </tiny-button>
+    <tiny-button @click="jsxClick" :reset-time="0"> 支持传入 jsx 提示框 </tiny-button>
   </div>
 </template>
 
@@ -37,8 +37,8 @@ function jsxClick() {
   Modal.alert({
     message: (
       <div>
-        <button>some button</button>
-        <b>some text</b>
+        <button> some button </button>
+        <b> some text </b>
       </div>
     ),
     status: 'success'

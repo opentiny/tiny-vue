@@ -1,7 +1,7 @@
 ---
-title: Modal modal box
+title: Modal dialog box
 ---
 
-# Modal modal box
+# Modal dialog box
 
-<div>Modal modal box</div>
+<div>Modal dialog box.</div>
