@@ -88,7 +88,7 @@ export default {
         },
         {
           'name': 'type',
-          'type': '"line" | "dot"',
+          'type': `'line' | 'dot'`,
           'defaultValue': `'line'`,
           'desc': {
             'zh-CN': '锚点类型',

@@ -25,7 +25,7 @@ export default {
       'demoId': 'mini-mode',
       'name': { 'zh-CN': '迷你模式', 'en-US': 'Mini mode' },
       'desc': {
-        'zh-CN': '通过 <code>mini</code> 设置为mini模式。',
+        'zh-CN': '通过 <code>mini</code> 设置为 mini 模式。',
         'en-US': 'Set to mini mode through <code>mini</code> .'
       },
       'codeFiles': ['mini-mode.vue']

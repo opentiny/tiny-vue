@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     handleChange(val) {
-      Modal.message({ message: `开关值：${val}` })
+      Modal.message({ message: `开关值：${val}`, status: 'info' })
     }
   }
 }
