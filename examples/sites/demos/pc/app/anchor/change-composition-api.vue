@@ -42,6 +42,6 @@ const links = ref([
 ])
 
 function handleChange(link) {
-  Modal.message(`change${link}`)
+  Modal.message({ message: `change${link}`, status: 'info' })
 }
 </script>
