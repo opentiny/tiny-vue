@@ -26,6 +26,51 @@ const dataSet = reactive([
   }
 ])
 
+const timeLineDataSet = reactive([
+  {
+    name: '提交',
+    status: 'ready',
+    imgUrl: `https://res.hc-cdn.com/tiny-vue-web-doc/2.1.47.20231217150537/static/images/fruit.jpg`,
+    users: 'xiaohong',
+    userName: '小红',
+    roleNumber: '123456890',
+    date: '2013-12-11 20:50',
+    values: [
+      { text: '部门', value: '某部门' },
+      { text: '邮件', value: 'example@example.com' },
+      { text: '手机', value: '1234567890' }
+    ]
+  },
+  {
+    name: '转他人处理',
+    status: 'ready',
+    imgUrl: `https://res.hc-cdn.com/tiny-vue-web-doc/2.1.47.20231217150537/static/images/fruit.jpg`,
+    users: 'xiaohu',
+    userName: '小胡',
+    roleNumber: ' 123456890',
+    date: '2013-12-11 21:50',
+    values: [
+      { text: '部门', value: '某部门' },
+      { text: '邮件', value: 'example@example.com' },
+      { text: '手机', value: '1234567890' }
+    ]
+  },
+  {
+    name: '主管审批',
+    status: 'ready',
+    imgUrl: `https://res.hc-cdn.com/tiny-vue-web-doc/2.1.47.20231217150537/static/images/fruit.jpg`,
+    users: 'xiaozhang',
+    userName: '小张',
+    roleNumber: '123456890',
+    date: '2013-12-14 20:50',
+    values: [
+      { text: '部门', value: '某部门' },
+      { text: '邮件', value: 'example@example.com' },
+      { text: '手机', value: '1234567890' }
+    ]
+  }
+])
+
 describe('PC Mode', () => {
   const mount = mountPcMode
   // props
@@ -42,20 +87,42 @@ describe('PC Mode', () => {
         data={dataSet}
         v-slots={{
           base: (data) => <span>{data.slotScope.status}</span>
-        }}
-      ></Wizard>
+        }}></Wizard>
     ))
     expect(wrapper.find('.tiny-wizard__name').text()).toEqual('ready')
   })
 
-  test.todo('base-flow 设置流程图为基本流程图模式')
+  test('base-flow 基本流程图模式', async () => {
+    const wrapper = mount(() => <Wizard data={dataSet} base-flow></Wizard>)
+    expect(wrapper.find('.tiny-wizard__nomarl').exists()).toBeTruthy()
+  })
 
-  test.todo('page-guide 设置流程图为页向导流程图，配合 base-flow 属性使用')
+  test('page-guide 页向导流程图', async () => {
+    const wrapper = mount(() => <Wizard data={dataSet} page-guide></Wizard>)
+    expect(wrapper.find('.tiny-wizard__nomarl').exists()).toBeTruthy()
+    expect(wrapper.find('.tiny-wizard__button').exists()).toBeTruthy()
+  })
 
-  test.todo('vertical 设置流程图为垂直流程图')
+  test('vertical 垂直流程图', async () => {
+    const wrapper = mount(() => <Wizard data={dataSet} vertical></Wizard>)
+    expect(wrapper.find('.tiny-wizard__vertical').exists()).toBeTruthy()
+  })
 
-  test.todo('time-line-flow 设置流程图为时间线流程图')
+  test('time-line-flow 时间线流程图', async () => {
+    const wrapper = mount(() => <Wizard data={timeLineDataSet} vertical time-line-flow></Wizard>)
+    expect(wrapper.find('.tiny-wizard__vertical').exists()).toBeTruthy()
+    expect(wrapper.find('.is-time-line-flow').exists()).toBeTruthy()
+  })
 
   // slots
-  test.todo('stepbutton 页向导流程图按钮插槽')
+  test('stepbutton 页向导流程图按钮插槽', async () => {
+    const wrapper = mount(() => (
+      <Wizard data={dataSet} page-guide>
+        {{
+          stepbutton: () => <button id="step_button">自定义按钮</button>
+        }}
+      </Wizard>
+    ))
+    expect(wrapper.find('#step_button').text()).toEqual('自定义按钮')
+  })
 })
