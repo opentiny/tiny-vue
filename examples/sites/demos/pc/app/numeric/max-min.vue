@@ -11,10 +11,10 @@ export default {
   },
   data() {
     return {
-      value: 10,
+      value: 20,
       step: 2,
       min: 0,
-      max: 5
+      max: 10
     }
   }
 }
