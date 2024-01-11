@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      value: 20,
+      value: 0,
       step: 2,
       min: 0,
       max: 10

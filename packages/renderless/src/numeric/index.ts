@@ -347,17 +347,17 @@ export const select = (refs: INumericRenderlessParams['refs']) => () => refs.inp
 export const mounted =
   ({ constants, parent, props, state }: Pick<INumericRenderlessParams, 'constants' | 'parent' | 'props' | 'state'>) =>
   (): void => {
-    if (state.currentValue < props.min) {
-      state.currentValue = props.min
-      state.lastInput = props.min
-      state.userInput = props.min
+    if (state.currentValue < (props.min as number)) {
+      state.currentValue = props.min as number
+      state.lastInput = props.min as number
+      state.userInput = props.min as number
     }
-    if (state.currentValue > props.max) {
-      state.currentValue = props.max
-      state.lastInput = props.max
-      state.userInput = props.max
+    if (state.currentValue > (props.max as number)) {
+      state.currentValue = props.max as number
+      state.lastInput = props.max as number
+      state.userInput = props.max as number
     }
-    const innerInput = parent.$el.querySelector('input')
+    const innerInput = parent.$el.querySelector('input')!
     innerInput.setAttribute(constants.KEY, constants.VALUE)
     innerInput.setAttribute(constants.MAX, props.max)
     innerInput.setAttribute(constants.MIN, props.min)
