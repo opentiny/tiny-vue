@@ -29,6 +29,12 @@
             >
           </tiny-checkbox-group>
         </tiny-form-item>
+        <tiny-form-item label="技能" prop="skill" required>
+          <tiny-select v-model="value">
+            <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+            </tiny-option>
+          </tiny-select>
+        </tiny-form-item>
       </tiny-form>
       <template #footer>
         <tiny-button type="primary" :loading="btnSubmit.loading" @click="handleSubmit">{{
@@ -51,8 +57,17 @@ import {
   RadioGroup as TinyRadioGroup,
   Checkbox as TinyCheckbox,
   CheckboxGroup as TinyCheckboxGroup,
-  Notify
+  Notify,
+  Option as TinyOption,
+  Select as TinySelect
 } from '@opentiny/vue'
+
+const options = ref([
+  { value: 'js', label: 'js' },
+  { value: 'java', label: 'java' }
+])
+
+const value = ref('')
 
 const btnSubmit = ref({
   loading: false,
