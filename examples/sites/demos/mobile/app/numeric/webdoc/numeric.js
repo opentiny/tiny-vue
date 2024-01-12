@@ -99,18 +99,6 @@ export default {
       codeFiles: ['precision.vue']
     },
     {
-      demoId: 'size',
-      name: {
-        'zh-CN': '尺寸',
-        'en-US': 'size'
-      },
-      desc: {
-        'zh-CN': '<p>尺寸</p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['size.vue']
-    },
-    {
       demoId: 'step',
       name: {
         'zh-CN': '步长',
@@ -219,16 +207,6 @@ export default {
           demoId: 'precision'
         },
         {
-          name: 'size',
-          type: 'Number | String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>计数器尺寸，可选值：larger</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'precision'
-        },
-        {
           name: 'step',
           type: 'Number',
           defaultValue: '1',
@@ -247,16 +225,6 @@ export default {
             'en-US': 'display different button'
           },
           demoId: 'step'
-        },
-        {
-          name: 'theme',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>设置圆角风格按钮</p>',
-            'en-US': 'display different button'
-          },
-          demoId: ''
         },
 
         {
