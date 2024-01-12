@@ -16,7 +16,7 @@
         v-for="(node, index) in state.nodes"
         :key="index"
         :style="{
-          width: horizontal ? 'auto' : space ? space + 'px' : 100 / state.nodes.length + '%'
+          width: horizontal ? (space ? space + 'px' : 100 / state.nodes.length + '%') : null
         }"
         :class="['normal', getStatusCls(index)]"
       >
