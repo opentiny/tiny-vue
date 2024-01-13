@@ -25,17 +25,17 @@
           <template #active-node-desc="slotScoped">
             <slot name="active-node-desc" :node="slotScoped.node"></slot>
           </template>
-          <template #top="node">
-            <slot name="top" :slot-scope="node.slotScope"></slot>
+          <template #top="slotNode">
+            <slot name="top" :slot-scope="slotNode.slotScope"></slot>
           </template>
-          <template #bottom="node">
-            <slot name="bottom" :slot-scope="node.slotScope"></slot>
+          <template #bottom="slotNode">
+            <slot name="bottom" :slot-scope="slotNode.slotScope"></slot>
           </template>
-          <template #left="node">
-            <slot name="left" :slot-scope="node.slotScope"></slot>
+          <template #left="slotNode">
+            <slot name="left" :slot-scope="slotNode.slotScope"></slot>
           </template>
-          <template #right="node">
-            <slot name="right" :slot-scope="node.slotScope"></slot>
+          <template #right="slotNode">
+            <slot name="right" :slot-scope="slotNode.slotScope"></slot>
           </template>
         </tiny-timeline-item>
       </slot>
@@ -47,7 +47,6 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/time-line/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconYes, iconClose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/steps/index.less'
 import TimelineItem from '@opentiny/vue-timeline-item'
 import type { ITimelineApi } from '@opentiny/vue-renderless/types/time-line.type'
@@ -75,8 +74,6 @@ export default defineComponent({
     'shape'
   ],
   components: {
-    IconYes: iconYes(),
-    IconClose: iconClose(),
     TinyTimelineItem: TimelineItem
   },
   setup(props, context) {
