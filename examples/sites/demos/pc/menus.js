@@ -208,7 +208,8 @@ export const cmpMenus = [
       { 'nameCn': '进度条', 'name': 'Progress', 'key': 'progress' },
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
       { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' },
-      { 'nameCn': '无限滚动', 'name': 'InfiniteScroll', 'key': 'infinite-scroll' }
+      { 'nameCn': '无限滚动', 'name': 'InfiniteScroll', 'key': 'infinite-scroll' },
+      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' }
     ]
   },
   {
