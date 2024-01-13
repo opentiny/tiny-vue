@@ -11,7 +11,7 @@
  -->
 <template>
   <div :class="['tiny-steps', { 'is-horizontal': horizontal && !vertical, 'tiny-steps--mini': size === 'mini' }]">
-    <div :class="state.computedWrapperClass" @click="contentClick">
+    <div :class="state.computedWrapperClass">
       <slot>
         <tiny-timeline-item
           v-for="(node, index) in state.nodes"
