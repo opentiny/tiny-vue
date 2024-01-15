@@ -190,7 +190,7 @@ export default {
           通过 <code> check-strictly </code> 属性，指定是否严格模式。属性默认为 <code> false </code>。严格模式时勾选父节点，子节点自动全选中；子节点全选中，自动勾选父节点。<br>
           通过 <code>  check-on-click-node </code> 属性，点击节点时，同时进行勾选/反勾选节点。 属性默认值为 <code> false </code>, 即点击节点不自动勾选。<br>
           通过 <code> default-checked-keys  </code> 属性，设置默认加载时，自动勾选的节点的keys数组。<br>
-          <div class="tip custom-block">  严格模式下父子不相互影响，勾选父节点时不会自动勾选子节点，适于于某些特殊场景。 </div>
+          <div class="tip custom-block">  严格模式下父子不相互影响，勾选父节点时不会自动勾选子节点，适用于某些特殊场景。 </div>
         `,
         'en-US': `Enable multiple selection by using the <code> show-checkbox </code> property. <br>
           The <code> check-strictly </code> property specifies whether strict mode is used. The default property is <code> false </code>. If you select the parent node, all child nodes are automatically selected. If all child nodes are selected, the parent node is automatically selected. <br>
@@ -212,7 +212,7 @@ export default {
             <code> setChecked </code> 勾选时，可以深度递归勾选(deep:true)，也可以只勾选某节点。<br> 
             建议使用 <code> setCheckedKeys </code>进行勾选，保证父子联动状态统一，详见下面例子。 
           </div>
-          通过 <code> check </code> 事件，监听勾选节点的事件。<br>
+          通过 <code> check </code> 事件，监听组件的勾选事件。<br>
           通过 <code> check-change </code> 事件，监听节点状态变化的回调。<br>
           <div class="tip custom-block"> 
               <code> check </code> 事件触发在点击的元素上， 事件参数为：被点击的节点和勾选后组件的整体勾选状态。<br>
@@ -416,7 +416,7 @@ export default {
     {
       'name': 'tree',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'data',
           'type': 'Array',
@@ -471,7 +471,7 @@ export default {
         },
         {
           'name': 'icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': {
             'zh-CN': '自定义节点图标',
@@ -481,7 +481,7 @@ export default {
         },
         {
           'name': 'expand-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': { 'zh-CN': '指示展开的图标', 'en-US': 'Indicates the expanded icon' },
           'demoId': 'icons'
@@ -490,12 +490,15 @@ export default {
           'name': 'expand-icon-color',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '指示展开的图标色', 'en-US': 'Indicates the expanded icon color' },
+          'desc': {
+            'zh-CN': '指示展开的图标色',
+            'en-US': 'Indicates the expanded icon color'
+          },
           'demoId': 'icons'
         },
         {
           'name': 'shrink-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '',
           'desc': { 'zh-CN': '指示收缩的图标', 'en-US': 'Icon indicating shrink' },
           'demoId': 'icons'
@@ -504,14 +507,20 @@ export default {
           'name': 'shrink-icon-color',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '指示收缩的图标色', 'en-US': 'Icon indicating shrink  color' },
+          'desc': {
+            'zh-CN': '指示收缩的图标色',
+            'en-US': 'Icon indicating shrink  color'
+          },
           'demoId': 'icons'
         },
         {
           'name': 'empty-text',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '内容为空的时候展示的文本', 'en-US': 'Text displayed when the content is empty' },
+          'desc': {
+            'zh-CN': '内容为空的时候展示的文本',
+            'en-US': 'Text displayed when the content is empty'
+          },
           'demoId': 'slot'
         },
         {
@@ -538,28 +547,40 @@ export default {
           'name': 'highlight-current',
           'type': 'boolean',
           'defaultValue': 'true',
-          'desc': { 'zh-CN': '是否高亮当前选中节点', 'en-US': 'Whether to highlight the selected node' },
+          'desc': {
+            'zh-CN': '是否高亮当前选中节点',
+            'en-US': 'Whether to highlight the selected node'
+          },
           'demoId': 'node-hl'
         },
         {
           'name': 'current-node-key',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '当前选中节点', 'en-US': 'Currently selected node' },
+          'desc': {
+            'zh-CN': '当前选中节点',
+            'en-US': 'Currently selected node'
+          },
           'demoId': 'node-hl'
         },
         {
           'name': 'default-expand-all',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否默认展开所有节点', 'en-US': 'Whether to expand all nodes by default' },
+          'desc': {
+            'zh-CN': '是否默认展开所有节点',
+            'en-US': 'Whether to expand all nodes by default'
+          },
           'demoId': 'expand-control'
         },
         {
           'name': 'default-expanded-keys',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '默认展开节点的keys', 'en-US': 'The keys of the node are expanded by default' },
+          'desc': {
+            'zh-CN': '默认展开节点的keys',
+            'en-US': 'The keys of the node are expanded by default'
+          },
           'demoId': 'expand-control'
         },
         {
@@ -573,24 +594,23 @@ export default {
           'demoId': 'expand-control'
         },
         {
-          'name': 'default-expand-all',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否默认展开所有节点', 'en-US': 'Whether to expand all nodes by default' },
-          'demoId': 'expand-control'
-        },
-        {
           'name': 'show-checkbox',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否为多选模式', 'en-US': 'Whether to select multiple mode' },
+          'desc': {
+            'zh-CN': '是否为多选模式',
+            'en-US': 'Whether to select multiple mode'
+          },
           'demoId': 'checkbox'
         },
         {
           'name': 'check-strictly',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否为父子严格模式', 'en-US': 'Whether it is in strict parent-child mode' },
+          'desc': {
+            'zh-CN': '是否为父子严格模式',
+            'en-US': 'Whether it is in strict parent-child mode'
+          },
           'demoId': 'checkbox'
         },
         {
@@ -607,14 +627,20 @@ export default {
           'name': 'default-checked-keys',
           'type': 'string[]',
           'defaultValue': '',
-          'desc': { 'zh-CN': '默认勾选的节点的keys', 'en-US': 'keys of the node selected by default' },
+          'desc': {
+            'zh-CN': '默认勾选的节点的keys',
+            'en-US': 'keys of the node selected by default'
+          },
           'demoId': 'checkbox'
         },
         {
           'name': 'show-radio',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否为单选模式', 'en-US': 'Whether to select an radio mode' },
+          'desc': {
+            'zh-CN': '是否为单选模式',
+            'en-US': 'Whether to select an radio mode'
+          },
           'demoId': 'radio'
         },
         {
@@ -688,14 +714,17 @@ export default {
             'zh-CN': '是否开启节点拖拽',
             'en-US': 'Whether to enable the node dragging function'
           },
-          'demoId': 'node-draggable'
+          'demoId': 'drag'
         },
         {
           'name': 'allow-drag',
           'type': '(node)=>boolean',
           'defaultValue': '',
-          'desc': { 'zh-CN': '判断节点能否被拖拽', 'en-US': 'Whether a node can be dragged.' },
-          'demoId': 'allow-drag'
+          'desc': {
+            'zh-CN': '判断节点能否被拖拽',
+            'en-US': 'Whether a node can be dragged.'
+          },
+          'demoId': 'drag'
         },
         {
           'name': 'allow-drop',
@@ -707,7 +736,7 @@ export default {
             'en-US':
               "Whether the target node can be placed during dragging. The type parameter has three situations: 'prev',' inner', and'next', which indicate that it is placed before the target node, inserted into the target node, and placed after the target node respectively"
           },
-          'demoId': 'allow-drop'
+          'demoId': 'drag'
         },
         {
           'name': 'show-contextmenu',
@@ -717,7 +746,7 @@ export default {
             'zh-CN': '是否启用右键菜单功能',
             'en-US': 'Whether to enable the right-click menu function'
           },
-          'demoId': 'node-draggable'
+          'demoId': 'contextmenu'
         },
         {
           'name': 'accordion',
@@ -747,7 +776,7 @@ export default {
             'zh-CN': '是否在第一次展开某个树节点后才渲染其子节点',
             'en-US': 'Whether to render child nodes after the first expansion of a tree node'
           },
-          'demoId': 'other'
+          'demoId': ''
         },
         {
           'name': 'show-check-easily',
@@ -839,7 +868,7 @@ export default {
             'zh-CN': '懒加载时，加载数据成功的事件;<br>参数说明：{data: 加载的数据}',
             'en-US': 'During lazy loading, data is loaded successfully. <br> Parameter description: {data: loaded data}'
           },
-          'demoId': 'check-op'
+          'demoId': 'lazy'
         },
         {
           'name': 'node-drop',
@@ -1039,7 +1068,7 @@ export default {
           'demoId': 'node-hl'
         },
         {
-          'name': 'getNodeKey ',
+          'name': 'getNodeKey',
           'type': '(node:object) => number',
           'defaultValue': '',
           'desc': {
@@ -1049,7 +1078,7 @@ export default {
           'demoId': 'node-hl'
         },
         {
-          'name': 'getNodePath ',
+          'name': 'getNodePath',
           'type': '(key:string) => object[]',
           'defaultValue': '',
           'desc': {
@@ -1066,7 +1095,7 @@ export default {
             'zh-CN': '通过 key 设置某个节点的当前选中状态',
             'en-US': 'Use key to set the selected status of a node'
           },
-          'demoId': 'node-key'
+          'demoId': 'node-op'
         },
         {
           'name': 'setCurrentNode',
@@ -1076,7 +1105,7 @@ export default {
             'zh-CN': '通过节点数据， 设置某个节点的当前选中状态',
             'en-US': 'This section describes how to set the selected status of a node based on node data'
           },
-          'demoId': 'node-key'
+          'demoId': 'node-op'
         },
         {
           'name': 'expandAllNodes',
@@ -1104,7 +1133,10 @@ export default {
           'name': 'insertBefore',
           'type': '(newData:object, targetNodeOrTargetKey: object | string) => void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '在一个节点的前面增加一个节点', 'en-US': 'Add a node before a tree node.' },
+          'desc': {
+            'zh-CN': '在一个节点的前面增加一个节点',
+            'en-US': 'Add a node before a tree node.'
+          },
           'demoId': 'node-op'
         },
         {
@@ -1221,7 +1253,7 @@ export default {
           'demoId': 'check-op'
         },
         {
-          'name': 'setCurrentRadio ',
+          'name': 'setCurrentRadio',
           'type': '() => void',
           'defaultValue': '',
           'desc': {
@@ -1242,7 +1274,10 @@ export default {
           'name': 'openEdit',
           'type': '() => void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '组件进入编辑状态', 'en-US': 'The component enters the edit state' },
+          'desc': {
+            'zh-CN': '组件进入编辑状态',
+            'en-US': 'The component enters the edit state'
+          },
           'demoId': 'edit'
         },
 
@@ -1250,7 +1285,10 @@ export default {
           'name': 'closeEdit',
           'type': '() => void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '组件退出编辑状态', 'en-US': 'The component exits the editing state' },
+          'desc': {
+            'zh-CN': '组件退出编辑状态',
+            'en-US': 'The component exits the editing state'
+          },
           'demoId': 'edit'
         },
         {
@@ -1261,7 +1299,7 @@ export default {
           'demoId': 'edit'
         },
         {
-          'name': 'addNode ',
+          'name': 'addNode',
           'type': '(node:object) => void',
           'defaultValue': '',
           'desc': {
@@ -1294,7 +1332,10 @@ export default {
           'name': 'closeMenu',
           'type': '() => void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '关闭节点的自定义菜单', 'en-US': 'Close the custom menu of the node' },
+          'desc': {
+            'zh-CN': '关闭节点的自定义菜单',
+            'en-US': 'Close the custom menu of the node'
+          },
           'demoId': 'contextmenu'
         }
       ]

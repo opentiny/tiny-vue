@@ -243,7 +243,7 @@ export default {
 </script>
 
 <style scoped>
-.cascader-panel-demo-event > :not(:last-child){
+.cascader-panel-demo-event > :not(:last-child) {
   margin-bottom: 12px;
 }
 </style>

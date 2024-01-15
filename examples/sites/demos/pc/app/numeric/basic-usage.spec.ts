@@ -5,8 +5,8 @@ test('基本用法', async ({ page }) => {
   await page.goto('numeric#basic-usage')
 
   const input = page.getByRole('spinbutton')
-  const increaseBtn = page.locator('#preview .tiny-numeric__increase')
-  const decreaseBtn = page.locator('#preview .tiny-numeric__decrease')
+  const increaseBtn = page.locator('.tiny-numeric__increase')
+  const decreaseBtn = page.locator('.tiny-numeric__decrease')
   const value = Number(await input.inputValue())
   await increaseBtn.click()
   const increasedVal = Number(await input.inputValue())

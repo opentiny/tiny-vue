@@ -47,7 +47,10 @@ resolve: {
 
 ```js
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
-import { tinySmbTheme } from '@opentiny/vue-theme/theme' // 导入主题
+
+import { tinySmbTheme } from '@opentiny/vue-theme/theme'
+
+// 导入主题
 
 new TinyThemeTool(tinySmbTheme, 'tinyStyleSheetId') // 初始化主题
 ```
@@ -162,11 +165,15 @@ el.style.setProperty('--ti-base-color-white', '#fefefe')
 
 步骤一、点击下载新旧变量的映射表`newVars.json`和替换脚本`replaceVar.js`
 
-<a :href="$pub('@demos/resource/newVars.json')" target="_blank" download="newVars.json">newVars.json 文件</a> 和 <a :href="$pub('@demos/resource/replaceVar.js')" target="_blank" download="replaceVar.js">replaceVar.js 文件</a>
+<script setup>
+  import { pubUrl } from '@/tools'
+</script>
+
+<a :href="pubUrl('@demos/resource/newVars.json')" target="_blank" download="newVars.json">newVars.json 文件</a> 和 <a :href="pubUrl('@demos/resource/replaceVar.js')" target="_blank" download="replaceVar.js">replaceVar.js 文件</a>
 
 步骤二、将 `newVars.json` 和 `replaceVar.js` 放到项目根目录下，与 src 目录同级；
 
-<img src="@demos/resource/theme-demo.png" class="image" style="box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14); width: 30vw" ><br><br>
+<img :src="pubUrl('@demos/resource/theme-demo.png')" class="image" style="box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14); width: 30vw" ><br><br>
 
 步骤三、在项目根目录下，执行以下命令进行替换；
 

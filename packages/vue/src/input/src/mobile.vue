@@ -15,123 +15,63 @@
       type === 'textarea' ? 'tiny-mobile-textarea' : 'tiny-mobile-input',
       state.inputSize ? 'tiny-mobile-input-' + state.inputSize : '',
       {
+        'is-focus': state.focused,
         'is-disabled': state.inputDisabled,
         'is-exceed': state.inputExceed,
-        'is-showtitle': showTitle && type === 'textarea',
-        'is-showcontent': slots.content && type === 'textarea',
         'is-showlimit': state.isWordLimitVisible && type === 'textarea',
         'tiny-mobile-input-group': slots.prepend || slots.append,
         'tiny-mobile-input-group-append': slots.append,
-        'tiny-mobile-input-group-prepend': slots.prepend,
-        'tiny-mobile-input-prefix': slots.prefix || prefixIcon,
-        'tiny-mobile-input-suffix': slots.suffix || suffixIcon || clearable || showPassword
+        'tiny-mobile-input-group-prepend': slots.prepend
       }
     ]"
+    :style="$attrs.style"
     @mouseenter="state.hovering = true"
     @mouseleave="state.hovering = false"
   >
-    <template v-if="type !== 'textarea' && type !== 'form'">
-      <!-- 前置元素 -->
-      <div class="tiny-mobile-input-group__prepend" v-if="slots.prepend">
-        <slot name="prepend"></slot>
-      </div>
-      <input
-        v-if="type !== 'textarea'"
-        ref="input"
-        :name="name"
-        v-bind="a($attrs, ['size', 'class', 'style', '^on\w+'])"
-        class="tiny-mobile-input__inner"
-        :tabindex="tabindex"
-        :type="showPassword ? (state.passwordVisible ? 'text' : 'password') : type"
-        :disabled="state.inputDisabled"
-        :readonly="readonly"
-        :autocomplete="autocomplete"
-        @compositionstart="handleCompositionStart"
-        @compositionupdate="handleCompositionUpdate"
-        @compositionend="handleCompositionEnd"
-        @input="handleInput"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @change="handleChange"
-        :aria-label="label"
-      />
-      <!-- 前置内容 -->
-      <span class="tiny-mobile-input__prefix" v-if="slots.prefix || prefixIcon">
-        <slot name="prefix"></slot>
-        <component v-if="prefixIcon" :is="prefixIcon" class="tiny-mobile-input__icon" />
-      </span>
-      <!-- 后置内容 -->
-      <span class="tiny-mobile-input__suffix" v-if="getSuffixVisible()">
-        <span class="tiny-mobile-input__suffix-inner">
-          <template v-if="!state.showClear || !state.showPwdVisible || !state.isWordLimitVisible">
-            <slot name="suffix"></slot>
-            <component v-if="suffixIcon" :is="suffixIcon" class="tiny-mobile-input__icon" />
-          </template>
-          <icon-operationfaild
-            v-if="state.showClear"
-            class="tiny-mobile-input__icon tiny-mobile-input__clear"
-            @mousedown.prevent
-            @click="clear"
-          ></icon-operationfaild>
-          <icon-eyeopen
-            v-if="state.showPwdVisible"
-            class="tiny-mobile-input__icon"
-            @click="handlePasswordVisible"
-          ></icon-eyeopen>
-          <span v-if="state.isWordLimitVisible" class="tiny-mobile-input__count">
-            <span class="tiny-mobile-input__count-inner">{{
-              state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength
-            }}</span>
-          </span>
-        </span>
-        <i
-          class="tiny-mobile-input__icon"
-          v-if="state.validateState"
-          :class="['tiny-mobile-input__validateIcon', validateIcon]"
-        >
-        </i>
-      </span>
-      <!-- 后置元素 -->
-      <div class="tiny-mobile-input-group__append" v-if="slots.append">
-        <slot name="append"></slot>
-      </div>
-    </template>
-    <template v-if="type === 'form'">
-      <div class="tiny-mobile-input-form">
-        <div v-if="isSelect" class="tiny-mobile-input-form__select" @click="showBox">
-          <input
-            type="text"
-            :disabled="state.inputDisabled"
-            :value="state.checkedLable"
-            v-bind="a($attrs, ['size', 'class', 'style', '^on[A-Z]'])"
-            @input="handleInput"
-            :name="name"
-            @change="handleChange"
-            :aria-label="label"
-            readonly
-            class="tiny-mobile-input-form__input tiny-mobile-input__inner"
-            :tabindex="tabindex"
-          />
-          <div
-            class="tiny-mobile-input-form__icon"
-            :style="{
-              transform: state.boxVisibility ? 'rotate(90deg)' : 'none'
-            }"
-          >
-            <IconChevronRight></IconChevronRight>
-          </div>
-        </div>
+    <div class="tiny-mobile-input__title" v-if="slots.title || title">
+      <slot name="title">{{ title }}</slot>
+    </div>
 
+    <div class="tiny-mobile-input__wrapper" v-if="type !== 'textarea'">
+      <!-- 下拉列表 -->
+      <div v-if="isSelect" class="tiny-mobile-input__select" @click="showBox">
         <input
-          v-else
-          ref="input"
+          type="text"
+          readonly
+          class="tiny-mobile-input__inner"
           v-bind="a($attrs, ['size', 'class', 'style', '^on[A-Z]'])"
-          :type="showPassword ? (state.passwordVisible ? 'text' : 'password') : 'text'"
+          :value="state.checkedLabel"
+          :disabled="state.inputDisabled"
           :name="name"
-          class="tiny-mobile-input-form__input tiny-mobile-input__inner"
+          :aria-label="label"
+          :style="state.inputStyle"
           :tabindex="tabindex"
+          @input="handleInput"
+          @change="handleChange"
+        />
+        <div
+          class="tiny-mobile-input__select-icon"
+          :style="{
+            transform: state.boxVisibility ? 'rotate(90deg)' : 'none'
+          }"
+        >
+          <IconChevronRight></IconChevronRight>
+        </div>
+      </div>
+
+      <template v-else>
+        <input
+          v-if="type !== 'textarea'"
+          ref="input"
+          :name="name"
+          v-bind="a($attrs, ['size', 'class', 'style', '^on\w+'])"
+          class="tiny-mobile-input__inner"
+          :style="state.inputStyle"
+          :tabindex="tabindex"
+          :type="showPassword ? (state.passwordVisible ? 'text' : 'password') : type"
           :disabled="state.inputDisabled"
           :readonly="readonly"
+          :autocomplete="autocomplete"
           @compositionstart="handleCompositionStart"
           @compositionupdate="handleCompositionUpdate"
           @compositionend="handleCompositionEnd"
@@ -141,32 +81,58 @@
           @change="handleChange"
           :aria-label="label"
         />
-        <tiny-action-sheet
-          v-model="state.sheetvalue"
-          :menus="selectMenu"
-          :ellipsis="ellipsis"
-          :contentStyle="contentStyle"
-          :visible="state.boxVisibility"
-          @update:visible="state.boxVisibility = $event"
-        ></tiny-action-sheet>
-      </div>
-      <div class="tiny-mobile-input-form__tips" v-if="mobileTips">
-        {{ mobileTips }}
-      </div>
-    </template>
+        <!-- 前置元素 -->
+        <div class="tiny-mobile-input-group__prepend" v-if="slots.prepend">
+          <span><slot name="prepend"></slot></span>
+        </div>
+        <!-- 前置内容 -->
+        <div class="tiny-mobile-input__prefix" v-if="slots.prefix || prefixIcon">
+          <slot name="prefix"></slot>
+          <component v-if="prefixIcon" :is="prefixIcon" class="tiny-mobile-input__icon" />
+        </div>
+        <!-- 后置内容 -->
+        <span class="tiny-mobile-input__suffix" v-if="getSuffixVisible()">
+          <template v-if="!state.showClear || !state.showPwdVisible || !state.isWordLimitVisible">
+            <slot name="suffix"></slot>
+            <component v-if="suffixIcon" :is="suffixIcon" class="tiny-mobile-input__icon" />
+          </template>
+          <icon-close
+            v-if="state.showClear"
+            class="tiny-mobile-input__icon tiny-mobile-input__clear"
+            @mousedown.prevent
+            @click="clear"
+          ></icon-close>
+          <component
+            v-if="state.showPwdVisible"
+            :is="state.passwordVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
+            class="tiny-mobile-input__icon"
+            @click="handlePasswordVisible"
+          ></component>
+          <span v-if="state.isWordLimitVisible" class="tiny-mobile-input__count">
+            <span class="tiny-mobile-input__count-inner">{{
+              state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength
+            }}</span>
+          </span>
+          <i
+            class="tiny-mobile-input__icon"
+            v-if="state.validateState"
+            :class="['tiny-mobile-input__validateIcon', validateIcon]"
+          >
+          </i>
+        </span>
+        <!-- 后置元素 -->
+        <div class="tiny-mobile-input-group__append" v-if="slots.append">
+          <slot name="append"></slot>
+        </div>
+      </template>
+    </div>
 
-    <div v-if="showTitle && type === 'textarea'" class="tiny-mobile-textarea__title">
-      {{ textareaTitle }}
-    </div>
-    <div v-if="slots.content && type === 'textarea'" class="tiny-mobile-textarea__content">
-      <slot name="content"></slot>
-    </div>
     <textarea
-      v-if="type === 'textarea'"
+      v-else
       ref="textarea"
       :name="name"
       v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
-      class="tiny-mobile-textarea__inner"
+      :class="['tiny-mobile-textarea__inner', { 'is-focus': state.focused }]"
       :tabindex="tabindex"
       @compositionstart="handleCompositionStart"
       @compositionupdate="handleCompositionUpdate"
@@ -175,23 +141,40 @@
       :disabled="state.inputDisabled"
       :readonly="readonly"
       :autocomplete="autocomplete"
-      :style="state.textareaStyle"
+      :style="{ ...state.textareaStyle, width: $attrs.cols ? 'auto' : '100%' }"
       @focus="handleFocus"
       @blur="handleBlur"
       @change="handleChange"
       :aria-label="label"
     >
     </textarea>
+
+    <!-- 字数限制 -->
     <span v-if="state.isWordLimitVisible && type === 'textarea'" class="tiny-mobile-textarea__count">{{
       state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength
     }}</span>
+
+    <!-- 下方提示 -->
+    <div class="tiny-mobile-input__tips" v-if="slots.tips || tips">
+      <slot name="tips">{{ tips }}</slot>
+    </div>
+
+    <!-- 下拉列表弹窗 -->
+    <tiny-action-sheet
+      v-model="state.sheetvalue"
+      :menus="selectMenu"
+      :ellipsis="ellipsis"
+      :content-style="contentStyle"
+      :visible="state.boxVisibility"
+      @update:visible="state.boxVisibility = $event"
+    ></tiny-action-sheet>
   </div>
 </template>
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/input/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconOperationfaild, iconEyeopen, iconChevronRight } from '@opentiny/vue-icon'
+import { iconClose, iconEyeopen, iconEyeclose, iconChevronRight } from '@opentiny/vue-icon'
 import ActionSheet from '@opentiny/vue-action-sheet'
 import '@opentiny/vue-theme-mobile/input/index.less'
 
@@ -210,20 +193,20 @@ export default defineComponent({
     'mouseleave'
   ],
   components: {
-    IconOperationfaild: iconOperationfaild(),
+    IconClose: iconClose(),
     IconChevronRight: iconChevronRight(),
     IconEyeopen: iconEyeopen(),
+    IconEyeclose: iconEyeclose(),
     TinyActionSheet: ActionSheet
   },
   props: [
     ...props,
     'name',
-    'form',
     'selectMenu',
     'ellipsis',
     'contentStyle',
     'labelWidth',
-    'mobileTips',
+    'tips',
     'isSelect',
     'type',
     'label',
@@ -231,18 +214,19 @@ export default defineComponent({
     'disabled',
     'readonly',
     'clearable',
-    'maxlength',
     'suffixIcon',
     'prefixIcon',
     'autocomplete',
     'showPassword',
     'validateEvent',
     'showWordLimit',
-    'showTitle',
-    'textareaTitle',
+    'title',
     'counter',
     'autosize',
-    'tabindex'
+    'tabindex',
+    'width',
+    'textAlign',
+    'resize'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

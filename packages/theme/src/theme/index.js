@@ -11,7 +11,7 @@
  */
 
 import { impressionTheme } from './impression-theme'
-import { infinityTheme } from './infinity-theme'
+import { tinyBaseInfinityTheme, infinityConcat } from './infinity-theme'
 import { deepTheme } from './deep-theme'
 import { galaxyTheme } from './galaxy-theme'
 import { tinyBaseAuroraTheme, concatTheme as auroraConcat } from './aurora-theme'
@@ -28,7 +28,7 @@ export const tinyInfinityTheme = {
   id: 'tiny-infinity-theme',
   name: 'Infinity',
   cnName: '无限',
-  data: infinityTheme
+  data: { ...tinyBaseInfinityTheme, ...infinityConcat }
 }
 
 export const tinyDeepTheme = {

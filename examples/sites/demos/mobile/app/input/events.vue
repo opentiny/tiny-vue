@@ -1,11 +1,14 @@
 <template>
-  <div class="input-wrap">
-    <tiny-input v-model="input" clearable @change="change" @clear="clear"></tiny-input>
+  <div class="demo-input-events">
+    <tiny-input v-model="inputValue" placeholder="input" @input="onInput"></tiny-input>
+    <tiny-input v-model="inputChange" placeholder="change" @change="onChange"></tiny-input>
+    <tiny-input v-model="focusBlur" placeholder="focus, blur" @focus="onFocus" @blur="onBlur"></tiny-input>
+    <tiny-input v-model="clearValue" placeholder="cleared" clearable @clear="onClear"></tiny-input>
   </div>
 </template>
 
-<script lang="jsx">
-import { Input } from '@opentiny/vue'
+<script>
+import { Input, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -13,24 +16,40 @@ export default {
   },
   data() {
     return {
-      input: '事件测试'
+      inputValue: '',
+      inputChange: '',
+      focusBlur: '',
+      clearValue: 'clear event'
     }
   },
   methods: {
-    change(val) {
-      console.log('当前内容：' + val)
+    onChange() {
+      Modal.message('change')
     },
-    clear() {
-      console.log('clear 事件')
+    onInput() {
+      Modal.message('input')
+    },
+    onBlur() {
+      Modal.message('blur')
+    },
+    onFocus() {
+      Modal.message('focus')
+    },
+    onClear() {
+      Modal.message('clear')
     }
   }
 }
 </script>
 
-<style>
-.input-wrap {
-  padding-top: 20px;
+<style scoped>
+.demo-input-events {
   height: 100%;
-  background: #f4f4f4;
+  padding: 20px 16px;
+  background: #f5f5f5;
+}
+
+.demo-input-events [class^='tiny'] {
+  margin-bottom: 16px;
 }
 </style>

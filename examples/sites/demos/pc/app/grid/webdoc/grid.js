@@ -5,13 +5,19 @@ export default {
     {
       'demoId': 'base-basic-usage',
       'name': { 'zh-CN': '标签式', 'en-US': 'Label' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '通过 <code>tiny-grid-column</code> 标签配置表格列。',
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['base/basic-usage.vue']
     },
     {
       'demoId': 'base-basic-usage-conf',
       'name': { 'zh-CN': '配置式', 'en-US': 'Profile' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '通过 <code>columns</code> 属性描述表格列。',
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['base/basic-usage-conf.vue']
     }
   ],
@@ -64,11 +70,11 @@ export default {
           'typeAnchorName': 'IRowGroup',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': 'row-group 属性可以配置行分组，行分组会将具有相同值的列进行分组展示。',
+            'zh-CN': 'row-group 属性可以配置行分组，行分组会将具有相同值的列进行分组展示',
             'en-US':
               'The row group attribute can be configured. Columns with the same value are displayed in a row group.'
           },
-          'demoId': 'grid-row-grouping#row-grouping'
+          'demoId': 'grid-row-grouping#row-grouping-row-grouping'
         },
         {
           'name': 'toolbar',
@@ -81,9 +87,9 @@ export default {
         {
           'name': 'align',
           'type': `'left' | 'center' | 'right'`,
-          'defaultValue': 'left',
+          'defaultValue': `'left'`,
           'desc': {
-            'zh-CN': '所有的列对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
+            'zh-CN': '所有表格列的对齐方式',
             'en-US':
               'All column alignment mode; The optional values of this attribute are left (left-aligned), center (center-aligned), and right (right-aligned)'
           },
@@ -113,7 +119,7 @@ export default {
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '是否打开页面改变时的前置处理特性。在值为true时，翻页操作或者改变页大小操作不会立即生效，留给用户处理业务逻辑，之后通过调用预留的callback或者rollback使之生效或者失效，详看事件before-page-change',
+              '是否打开页面改变时的前置处理特性。在值为 true 时，翻页操作或者改变页大小操作不会立即生效，留给用户处理业务逻辑，之后通过调用预留的 callback 或者 rollback 使之生效或者失效，详看事件 before-page-change ',
             'en-US':
               'Whether to enable the preprocessing feature when the page changes. If the value is true, the page turning operation or page size change operation does not take effect immediately. The service logic is left for the user to process. Then, the reserved callback or rollback is invoked to make the operation take effect or invalid. For details, see the before-page-change event'
           },
@@ -146,7 +152,7 @@ export default {
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '设置可以调整到的最小宽度，不设置时默认为列头 span 的宽度 + 36（头部固定宽度）。 ;所有最小列宽度；会自动将剩余空间按比例分配;该属性的可选值为 整数, px，%',
+              '设置可以调整到的最小宽度，不设置时默认为列头 span 的宽度 + 36（头部固定宽度） ；所有最小列宽度；会自动将剩余空间按比例分配；该属性的可选值为 整数, px，%',
             'en-US':
               'Minimum width that can be adjusted. If this parameter is not set, the default value is the width of the column head span plus 36 (fixed width of the head).; all minimum column widths; The remaining space will be allocated in proportion automatically. The optional values of this attribute are integers, px,%'
           },
@@ -157,7 +163,7 @@ export default {
           'type': 'number | string',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '所有列宽度;该属性的可选值为 整数, px，%',
+            'zh-CN': '所有列宽度；该属性的可选值为 整数, px，%',
             'en-US': 'Width of all columns; The optional values of this attribute are integers, px,%'
           },
           'demoId': 'grid-size#size-column-width'
@@ -202,9 +208,9 @@ export default {
         {
           'name': 'footer-align',
           'type': `'left' | 'center' | 'right'`,
-          'defaultValue': '继承 align',
+          'defaultValue': `'left'`,
           'desc': {
-            'zh-CN': '所有的表尾列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
+            'zh-CN': '所有的表尾列的对齐方式',
             'en-US':
               'Alignment mode of all table tail columns; The optional values of this attribute are left (left-aligned), center (center-aligned), and right (right-aligned)'
           },
@@ -232,6 +238,7 @@ export default {
         {
           'name': 'footer-method',
           'type': '({columns: IColumnConfig[], data: IRow[]}) => string[][]',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '表尾合计的计算方法 columns:所有的列配置数据, data： 当前所有的表格数据',
@@ -258,17 +265,17 @@ export default {
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '表尾合并行或列，该函数返回计算后的值;通过 footer-method 和 footer-span-method 设置表尾合计行或列逻辑 必须配置 show-footer',
+              '表尾合并行或列，该函数返回计算后的值；通过 footer-method 和 footer-span-method 设置表尾合计行或列逻辑 必须配置 show-footer',
             'en-US': ''
           },
           'demoId': 'grid-footer#footer-footer-row-or-column-span'
         },
         {
           'name': 'header-align',
-          'type': 'string',
-          'defaultValue': '继承 align',
+          'type': `'left' | 'center' | 'right'`,
+          'defaultValue': `'left'`,
           'desc': {
-            'zh-CN': '所有的表头列的对齐方式;该属性的可选值为 left（左对齐）, center（居中对齐）, right（右对齐）',
+            'zh-CN': '所有的表头列的对齐方式',
             'en-US':
               'Alignment mode of all table header columns; The optional values of this attribute are left (left-aligned), center (center-aligned), and right (right-aligned)'
           },
@@ -302,7 +309,7 @@ export default {
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '设置表格内容区域（不含表格头部，底部）的高度。 不设置时，表格内容区域的高度度自适应；表格的高度；支持铺满父容器或者固定宽高;该属性的可选值为 整数, px，%',
+              '设置表格内容区域（不含表格头部，底部）的高度。 不设置时，表格内容区域的高度度自适应；表格的高度；支持铺满父容器或者固定宽高；该属性的可选值为 整数, px，%',
             'en-US':
               'Set the height of the table content area (excluding the table header and bottom). If this parameter is not set, the height of the table content area is adaptive.; height of table; Supports full parent containers or fixed width and height. The optional values of this attribute are integers, px,%'
           },
@@ -369,14 +376,21 @@ export default {
           'type': 'boolean',
           'defaultValue': 'true',
           'desc': { 'zh-CN': '表格是否显示加载中', 'en-US': 'Whether the table is being loaded.' },
-          'demoId': 'grid-loading#loading-grid-loading-off-tip'
+          'demoId': 'grid-loading#loading-grid-loading-tip'
+        },
+        {
+          'name': 'loading-component',
+          'type': 'Component',
+          'defaultValue': '--',
+          'desc': { 'zh-CN': '自定义表格 loading ', 'en-US': 'Whether the table is being loaded.' },
+          'demoId': 'grid-loading#loading-grid-custom-loading'
         },
         {
           'name': 'max-height',
           'type': 'number | string',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置表格内容区域（不含表格头部，底部）的最大高度。;该属性的可选值为 整数, px，%',
+            'zh-CN': '设置表格内容区域（不含表格头部，底部）的最大高度；该属性的可选值为：整数, px，%',
             'en-US':
               'Set the maximum height of the table content area (excluding the table header and bottom).; The optional values of this attribute are integers, px,%'
           },
@@ -421,7 +435,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '是否将服务端的全部数据进行排序。默认为 false 不进行服务端排序。',
+            'zh-CN': '是否将服务端的全部数据进行排序。默认为 false 不进行服务端排序',
             'en-US':
               'Whether to sort all data on the server. The default value is false. The server-side sorting is not performed.'
           },
@@ -449,7 +463,7 @@ export default {
         {
           'name': 'row-id',
           'type': 'string',
-          'defaultValue': '_RID',
+          'defaultValue': `'_RID'`,
           'desc': {
             'zh-CN': '自定义行数据唯一主键的字段名（行数据必须要有唯一主键，默认自动生成）',
             'en-US':
@@ -478,7 +492,7 @@ export default {
         {
           'name': 'show-header',
           'type': 'boolean',
-          'defaultValue': 'false',
+          'defaultValue': 'true',
           'desc': { 'zh-CN': '是否显示表头', 'en-US': 'Whether to display the table header' },
           'demoId': 'grid-header#header-hide-grid-header'
         },
@@ -488,7 +502,7 @@ export default {
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '设置表头所有内容过长时显示为省略号;该属性的可选值为 ellipsis（只显示省略号）,title（并且显示为原生 title）,tooltip（并且显示为 tooltip 提示）',
+              '设置表头所有内容过长时显示为省略号；该属性的可选值为 ellipsis（只显示省略号）,title（并且显示为原生 title）,tooltip（并且显示为 tooltip 提示）',
             'en-US':
               'Sets the display of all contents in the table header as ellipsis if the length is too long. The optional values for this property are ellipsis (only the ellipsis is displayed), title (and the native title is displayed), and tooltip (and tooltip is displayed)'
           },
@@ -500,7 +514,7 @@ export default {
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '设置所有内容过长时显示为省略号（如果是固定列建议设置该值，提升渲染速度）;该属性的可选值为 ellipsis（只显示省略号）,title（并且显示为原生 title）,tooltip（并且显示为 tooltip 提示）',
+              '设置所有内容过长时显示为省略号（如果是固定列建议设置该值，提升渲染速度）；该属性的可选值为 ellipsis（只显示省略号）,title（并且显示为原生 title）,tooltip（并且显示为 tooltip 提示）',
             'en-US':
               'Set the display of all content as ellipsis when the content is too long. (If the column is fixed, you are advised to set this parameter to improve the rendering speed.) The optional values for this property are ellipsis (only the ellipsis is displayed), title (and the native title is displayed), tooltip (and the tooltip prompt is displayed)'
           },
@@ -511,7 +525,7 @@ export default {
           'type': `'medium' | 'small' | 'mini'`,
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '表格的尺寸;该属性的可选值为 medium, small, mini',
+            'zh-CN': '表格的尺寸',
             'en-US': 'Table size; The options of this attribute are medium, small, and mini'
           },
           'demoId': 'grid-size#size-grid-size'
@@ -530,10 +544,11 @@ export default {
         {
           'name': 'sort-method',
           'type': '(row1: IRow, row2: IRow)=> boolean',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '自定义所有列的排序方法，当触发排序时会调用该函数返回排序后的结果;自定义排序方法，类似原生的sort排序',
+              '自定义所有列的排序方法，当触发排序时会调用该函数返回排序后的结果；自定义排序方法，类似原生的sort排序',
             'en-US':
               'Customize the sorting method of all columns. When sorting is triggered, the function is invoked to return the sorting result. User-defined sorting method, similar to the native sort sorting method'
           },
@@ -543,7 +558,7 @@ export default {
           'name': 'span-method',
           'type': '(args: ISpanMethodArgs) => { rowspan: number, colspan: number }',
           'typeAnchorName': 'ISpanMethodArgs',
-          'defaultValue': '{ rowspan: 1, colspan: 1}',
+          'defaultValue': '{ rowspan: 1, colspan: 1 }',
           'desc': {
             'zh-CN': '合并行或列，该函数返回计算后的值',
             'en-US': 'Consolidate rows or columns. This function returns the calculated value.'
@@ -634,7 +649,7 @@ export default {
           'type': 'boolean',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置表格的列是否延迟加载;是否开启异步列功能，配合 scrollLoad 一起使用',
+            'zh-CN': '设置表格的列是否延迟加载；是否开启异步列功能，配合 scrollLoad 一起使用',
             'en-US':
               'Sets whether to delay the loading of columns in the table. Indicates whether to enable the asynchronous column function. This parameter is used together with scrollLoad'
           },
@@ -643,6 +658,7 @@ export default {
         {
           'name': 'columns',
           'type': 'IColumnConfig[]',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '表格列的配置信息，具体参考列配置项',
@@ -679,8 +695,9 @@ export default {
         {
           'name': 'data',
           'type': 'Row[]',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
-          'desc': { 'zh-CN': '设置表格的数据;', 'en-US': 'Set table data.' },
+          'desc': { 'zh-CN': '设置表格的数据', 'en-US': 'Set table data.' },
           'demoId': 'grid-data-source#data-source-static-data'
         },
         {
@@ -720,7 +737,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置行序号是否连续，开启分页时有效,seqSerial 当 showSeq 为 true 时有效。',
+            'zh-CN': '设置行序号是否连续，开启分页时有效, seqSerial 当 showSeq 为 true 时有效',
             'en-US':
               'Whether to set the row sequence number consecutive. This parameter is valid only when showSeq is set to true.'
           },
@@ -820,6 +837,7 @@ export default {
         {
           'name': 'clearData',
           'type': '(rows?: IRow | IRow[], field?: string)=> void',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -848,10 +866,10 @@ export default {
             'zh-CN': '用于单选行，手动清空用户的选择',
             'en-US': 'This is used to select a single row. Manually clear the user selection.'
           },
-          'demoId': 'grid-operation-column#operation-column-default-serial-column'
+          'demoId': 'grid-operation-column#operation-column-clear-and-set-radio-row'
         },
         {
-          'name': 'clearRowExpand()',
+          'name': 'clearRowExpand',
           'type': '()=> void',
           'defaultValue': '--',
           'desc': {
@@ -931,6 +949,7 @@ export default {
         {
           'name': 'createRow',
           'type': '(records: IRow | IRow[])=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '创建 IRow | IRows 对象（对于某些特殊场景需要对数据进行手动插入时可能会用到）',
@@ -954,6 +973,7 @@ export default {
         {
           'name': 'fullValidate',
           'type': '(rows: IRow[], callback: ()=> void)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '表格完整校验函数，和 validate 的区别就是会对全量数据的所有规则进行完整校验',
@@ -965,6 +985,7 @@ export default {
         {
           'name': 'getActiveRow',
           'type': '()=> IRow',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取已激活的行数据', 'en-US': 'Obtain activated row data' },
           'demoId': 'grid-edit#edit-trigger-mode-hm-editing'
@@ -972,6 +993,7 @@ export default {
         {
           'name': 'getColumnByField',
           'type': '(field: string)=> IColumnConfig',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': { 'zh-CN': '根据列的字段名获取列', 'en-US': 'Obtain columns based on column field names.' },
           'demoId': 'grid-large-data#large-data-scroll-to'
@@ -979,6 +1001,7 @@ export default {
         {
           'name': 'getColumnById',
           'type': '(colid: string)=> IColumnConfig',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据列的唯一主键获取列',
@@ -989,6 +1012,7 @@ export default {
         {
           'name': 'getColumnIndex',
           'type': '(column: IColumnConfig)=> number',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 column 获取相对于 columns 中的索引',
@@ -999,6 +1023,7 @@ export default {
         {
           'name': 'getColumnNode',
           'type': '(cell: HTMLElement)=> IColumnConfig',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 th/td 元素获取对应的 column 信息',
@@ -1009,16 +1034,18 @@ export default {
         {
           'name': 'getColumns',
           'type': '(columnIndex?: number)=> IColumnConfig | IColumnConfig[]',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '获取表格的可视列，也可以指定索引获取列',
             'en-US': 'Obtains the visual column of the table or specifies the index to obtain the column.'
           },
-          'demoId': 'grid-dynamically-columns#dynamically-columns-columns-dynamic'
+          'demoId': 'grid-custom#custom-server-storage'
         },
         {
           'name': 'getCurrentRow',
           'type': '()=> IRow',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于当前行，获取当前行的数据',
@@ -1029,6 +1056,7 @@ export default {
         {
           'name': 'getData',
           'type': '(rowIndex?: number)=> IRow | IRow[]',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '获取数据，和 data 的行为一致，也可以指定索引获取数据',
@@ -1040,6 +1068,7 @@ export default {
         {
           'name': 'getInsertRecords',
           'type': '()=> IRow[]',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取新增的数据', 'en-US': 'Obtain the new data' },
           'demoId': 'grid-toolbar#toolbar-insert-delete-update'
@@ -1047,6 +1076,7 @@ export default {
         {
           'name': 'getRadioRow',
           'type': '()=> IRow',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于单选行，获取当已选中的数据',
@@ -1069,6 +1099,7 @@ export default {
         {
           'name': 'getRemoveRecords',
           'type': '()=> IRow[]',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取已删除的数据', 'en-US': 'Obtain deleted data' },
           'demoId': 'grid-toolbar#toolbar-insert-delete-update'
@@ -1076,6 +1107,7 @@ export default {
         {
           'name': 'getRowById',
           'type': '(rowid: string)=> IRow',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据行的唯一主键获取行',
@@ -1086,6 +1118,7 @@ export default {
         {
           'name': 'getRowIndex',
           'type': '(row: IRow)=> number',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 row 获取相对于 data 中的索引',
@@ -1096,6 +1129,7 @@ export default {
         {
           'name': 'getRowNode',
           'type': '(tr: HTMLElement)=> IRow',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '根据 tr 元素获取对应的 row 信息',
@@ -1106,6 +1140,7 @@ export default {
         {
           'name': 'getSelectRecords',
           'type': '()=> IRow[]',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于多选行，获取已选中的数据',
@@ -1116,6 +1151,7 @@ export default {
         {
           'name': 'getTableColumn',
           'type': '()=> IRow[]',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '获取当前表格的列（完整的全量表头列、处理条件之后的全量表头列、当前渲染中的表头列）',
@@ -1127,6 +1163,7 @@ export default {
         {
           'name': 'getTableData',
           'type': '()=> IRow[]',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -1139,6 +1176,7 @@ export default {
         {
           'name': 'getUpdateRecords',
           'type': '()=> IRow[]',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': { 'zh-CN': '获取已修改的数据', 'en-US': 'Obtain modified data' },
           'demoId': 'grid-toolbar#toolbar-insert-delete-update'
@@ -1147,12 +1185,13 @@ export default {
           'name': 'handleFetch',
           'type': '()=> Promise',
           'defaultValue': '--',
-          'desc': { 'zh-CN': '触发表格的fetch-data', 'en-US': 'Fetch-data of the trigger table' },
+          'desc': { 'zh-CN': '触发表格的 fetch-data ', 'en-US': 'Fetch-data of the trigger table' },
           'demoId': 'grid-data-source#data-source-request-service'
         },
         {
           'name': 'hasActiveRow',
           'type': '(row: IRow)=> boolean',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '检查行是否已激活为编辑状态',
@@ -1163,6 +1202,7 @@ export default {
         {
           'name': 'hasRowChange',
           'type': '(row: IRow, field: string)=> boolean',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '检查行或列数据是否发生改变',
@@ -1173,6 +1213,7 @@ export default {
         {
           'name': 'hasRowExpand',
           'type': '(row: IRow)=> boolean',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': { 'zh-CN': '检查行是否已展开', 'en-US': 'Check whether the row is expanded.' },
           'demoId': 'grid-expand#expand-has-row-expand'
@@ -1180,6 +1221,7 @@ export default {
         {
           'name': 'hasTreeExpand',
           'type': '(row: IRow)=> boolean',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': { 'zh-CN': '检查树节点是否已展开', 'en-US': 'Check whether the tree node is expanded.' },
           'demoId': 'grid-tree-table#tree-table-has-tree-expand'
@@ -1187,6 +1229,7 @@ export default {
         {
           'name': 'hideColumn',
           'type': '(column: IColumnConfig)=> Promise',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': { 'zh-CN': '隐藏指定列', 'en-US': 'Hide a specified column.' },
           'demoId': 'grid-custom#custom-hide-column'
@@ -1194,9 +1237,10 @@ export default {
         {
           'name': 'insert',
           'type': '(records: IRow | IRow[])=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '在表格中新增数据;往表格插入数据，从第一行新增一行或多行新数据',
+            'zh-CN': '在表格中新增数据；往表格插入数据，从第一行新增一行或多行新数据',
             'en-US':
               'Add data to the table.; Insert data into the table, add one or more rows of data from the first row'
           },
@@ -1205,6 +1249,7 @@ export default {
         {
           'name': 'insertAt',
           'type': '(records: IRow | IRow[], row: IRow | null | -1)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -1212,11 +1257,12 @@ export default {
             'en-US':
               'Inserts one or more rows into a table. Second parameter: row specified position (tree tables are not supported), null inserted from the first row, and –1 inserted from the last row'
           },
-          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
+          'demoId': 'grid-toolbar#toolbar-insert-remove-rows'
         },
         {
           'name': 'loadColumn',
           'type': '(columns: IColumnConfig[])=> Promise',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '加载列配置（对于表格列需要重载、局部递增场景下可能会用到）',
@@ -1228,6 +1274,7 @@ export default {
         {
           'name': 'loadData',
           'type': '(data: IRow[])=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '加载数据（对于表格数据需要重载、局部递增场景下可能会用到）',
@@ -1268,11 +1315,12 @@ export default {
             'en-US':
               'Data data is refreshed synchronously. If this method is used, the component does not record the status of adding, deleting, and modifying, and can only implement the corresponding logic. (This parameter may be used in some special scenarios, for example, when a node element in a deep tree changes.)'
           },
-          'demoId': 'grid-tree-grid#tree-table-tree-grid-insert-delete-update'
+          'demoId': 'grid-tree-table#tree-table-tree-grid-insert-delete-update'
         },
         {
           'name': 'reloadCustoms',
           'type': '(customs: IColumnConfig[], sortable?: boolean)=> Promise',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -1285,6 +1333,7 @@ export default {
         {
           'name': 'remove',
           'type': '(rows: IRow | IRow[])=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '删除指定行数据，指定 row 或 [row, ...] 删除多条数据，如果为空则删除所有数据',
@@ -1336,6 +1385,7 @@ export default {
         {
           'name': 'revertData',
           'type': '(rows: IRow | IRow[], field?: string)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '还原更改，还原指定行 row 或者整个表格的数据',
@@ -1356,6 +1406,7 @@ export default {
         {
           'name': 'scrollToColumn',
           'type': '(column: IColumnConfig)=> Promise',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '如果有滚动条，则滚动到对应的列',
@@ -1366,6 +1417,7 @@ export default {
         {
           'name': 'scrollToRow',
           'type': '(row: IRow)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '如果有滚动条，则滚动到对应的行',
@@ -1376,6 +1428,7 @@ export default {
         {
           'name': 'setActiveCell',
           'type': '(row: IRow, field: string)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': { 'zh-CN': '激活单元格编辑', 'en-US': 'Activate cell editing' },
           'demoId': 'grid-edit#edit-trigger-mode-hm-editing'
@@ -1383,6 +1436,7 @@ export default {
         {
           'name': 'setActiveRow',
           'type': '(row: IRow)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '激活行编辑，如果是 mode=cell 则默认激活第一个单元格',
@@ -1416,18 +1470,20 @@ export default {
           'demoId': 'grid-tree-table#tree-table-set-tree-expansion'
         },
         {
-          'name': 'setCurrentRow(row)',
+          'name': 'setCurrentRow',
           'type': '(row: IRow)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于当前行，设置某一行为高亮状态',
             'en-US': 'Sets the highlight status of a row for the current row.'
           },
-          'demoId': 'grid-highlight#highlight-highlight-hover-row'
+          'demoId': 'grid-highlight#highlight-set-current-row'
         },
         {
           'name': 'setRadioRow',
           'type': '(row: IRow)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于单选行，设置某一行为选中状态',
@@ -1438,6 +1494,7 @@ export default {
         {
           'name': 'setRowExpansion',
           'type': '(rows: IRow | IRow[], checked: boolean)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '设置展开行，第二个参数设置这一行展开与否',
@@ -1448,6 +1505,7 @@ export default {
         {
           'name': 'setSelection',
           'type': '(rows: IRow | IRow[], checked: boolean)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于多选行，设置行为选中状态，第二个参数为选中与否',
@@ -1459,6 +1517,7 @@ export default {
         {
           'name': 'setTreeExpansion',
           'type': '(rows: IRow | IRow[], checked: boolean)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '设置展开树形节点，第二个参数设置这一行展开与否',
@@ -1469,6 +1528,7 @@ export default {
         {
           'name': 'showColumn',
           'type': '(column: IColumnConfig)=> Promise',
+          'typeAnchorName': 'IColumnConfig',
           'defaultValue': '--',
           'desc': { 'zh-CN': '显示指定列', 'en-US': 'Display the specified column.' },
           'demoId': 'grid-custom#custom-hide-column'
@@ -1496,6 +1556,7 @@ export default {
         {
           'name': 'toggleRowExpansion',
           'type': '(row: IRow)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': { 'zh-CN': '用于可展开表格，切换展开行', 'en-US': 'For expanding tables or switching rows.' },
           'demoId': 'grid-expand#expand-set-row-expansion'
@@ -1503,6 +1564,7 @@ export default {
         {
           'name': 'toggleRowSelection',
           'type': '(row: IRow)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于多选行，切换某一行的选中状态',
@@ -1513,16 +1575,18 @@ export default {
         {
           'name': 'toggleTreeExpansion',
           'type': '(row: IRow)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '用于可树形表格，切换展开树形节点',
             'en-US': 'This parameter is used to switch and expand tree nodes in a tree table.'
           },
-          'demoId': 'grid-expand#expand-set-row-expansion'
+          'demoId': 'grid-tree-table#tree-table-set-tree-expansion'
         },
         {
           'name': 'validate',
           'type': '(rows: IRow | IRow[], callback: ()=> void)=> Promise',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
@@ -1567,7 +1631,7 @@ export default {
             'en-US':
               'This event is valid only when toolbar.buttons are configured. This event is triggered when a toolbar button is clicked'
           },
-          'demoId': 'grid-toolbar#toolbar-insert-delete-update'
+          'demoId': 'grid-event#event-toolbar-button-click-event'
         },
         {
           'name': 'cell-click',
@@ -1578,11 +1642,11 @@ export default {
             'zh-CN': '单元格被点击时会触发该事件',
             'en-US': 'This event is triggered when a cell is clicked'
           },
-          'demoId': 'grid-event#event-cell-click-event'
+          'demoId': 'grid-event#event-click-event'
         },
         {
           'name': 'cancel-page-change',
-          'type': '($grid: VueComponent)=> void',
+          'type': '($grid: Component)=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '切换分页时有未保存的数据时，提示框确定按钮事件',
@@ -1611,7 +1675,7 @@ export default {
             'zh-CN': '单元格被双击时会触发该事件',
             'en-US': 'This event is triggered when a cell is double-clicked'
           },
-          'demoId': 'grid-event#event-cell-click-event'
+          'demoId': 'grid-event#event-click-event'
         },
         {
           'name': 'cell-mouseenter',
@@ -1668,7 +1732,7 @@ export default {
             'zh-CN': '单元格被激活编辑时会触发该事件',
             'en-US': 'This event is triggered when a cell is activated for editing'
           },
-          'demoId': 'grid-event#event-edit-actived-event'
+          'demoId': 'grid-event#event-edit-event'
         },
         {
           'name': 'edit-closed',
@@ -1679,7 +1743,7 @@ export default {
             'zh-CN': '单元格编辑状态下被关闭时会触发该事件',
             'en-US': 'This event is triggered when a cell is closed in the editing state'
           },
-          'demoId': 'grid-event#event-edit-actived-event'
+          'demoId': 'grid-event#event-edit-event'
         },
         {
           'name': 'edit-disabled',
@@ -1690,7 +1754,7 @@ export default {
             'zh-CN': '当单元格激活时如果是禁用状态时会触发该事件',
             'en-US': 'This event is triggered when a cell is activated and is disabled'
           },
-          'demoId': 'grid-event#event-edit-actived-event'
+          'demoId': 'grid-event#event-edit-event'
         },
         {
           'name': 'filter-change',
@@ -1771,7 +1835,7 @@ export default {
         },
         {
           'name': 'radio-change',
-          'type': '($table: VueComponent, event: Event)=> void',
+          'type': '($table: Component, event: Event)=> void',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '只对 type=radio 有效，当手动勾选并且值发生改变时触发的事件',
@@ -1888,9 +1952,9 @@ export default {
         {
           'name': 'align',
           'type': `'left' | 'center' | 'right'`,
-          'defaultValue': '继承 table 的 align',
+          'defaultValue': `'left'`,
           'desc': {
-            'zh-CN': '列对其方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
+            'zh-CN': '列对其方式',
             'en-US': 'Column pair mode; The optional values for this property are left, center, right'
           },
           'demoId': 'grid-align#align-grid-align'
@@ -1912,7 +1976,7 @@ export default {
           'defaultValue': 'true',
           'desc': {
             'zh-CN':
-              "是 filter 对象内置的属性，筛选是否允许多选;设置选择列是否显示复选框。当 columnType 为 'select' 时有效。",
+              '是 filter 对象内置的属性，筛选是否允许多选；设置选择列是否显示复选框。当 columnType 为 select 时有效',
             'en-US':
               "is an attribute built in the filter object. Whether multiple selections are allowed for filtering. Sets whether to display the check box in the selected column. This parameter is valid only when columnType is set to'select'."
           },
@@ -1920,11 +1984,11 @@ export default {
         },
         {
           'name': 'fixed',
-          'type': 'string',
+          'type': `'left' | 'right'`,
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '将列固定在左侧，其中 freezable 可冻结可解冻，在表格个性化面板中可操作，而 frozen 只能冻结不能解冻，在个性化面板中不可操作;将列固定在左侧或者右侧（注意：固定列应该放在左右两侧的位置）;该属性的可选值为 left（固定左侧）, right（固定右侧）',
+              '将列固定在左侧，其中 freezable 可冻结可解冻，在表格个性化面板中可操作，而 frozen 只能冻结不能解冻，在个性化面板中不可操作；将列固定在左侧或者右侧（注意：固定列应该放在左右两侧的位置）',
             'en-US':
               'Fix columns on the left. Freezable can be frozen or unfrozen, but can be operated in the table personalized panel. Frozen can only be frozen but cannot be operated in the personalized panel. Fix the column to the left or right (Note: The fixed columns should be placed on the left and right sides.) The optional values of this attribute are left (fixed left) and right (fixed right)'
           },
@@ -1933,9 +1997,9 @@ export default {
         {
           'name': 'footer-align',
           'type': `'left' | 'center' | 'right'`,
-          'defaultValue': '继承 align > 继承 table 的 footer-align',
+          'defaultValue': `'left'`,
           'desc': {
-            'zh-CN': '表尾列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
+            'zh-CN': '表尾列的对齐方式）',
             'en-US':
               'Alignment mode of the column at the end of the table; The optional values for this property are left, center, right'
           },
@@ -1955,9 +2019,9 @@ export default {
         {
           'name': 'header-align',
           'type': "'left' | 'center' | 'right'",
-          'defaultValue': '继承 align > 继承 table 的 header-align',
+          'defaultValue': `'left'`,
           'desc': {
-            'zh-CN': '表头列的对齐方式;该属性的可选值为 left（左对其）, center（居中对其）, right（右对齐）',
+            'zh-CN': '表头列的对齐方式',
             'en-US':
               'The alignment mode of the table header column; The optional values for this property are left, center, right'
           },
@@ -1969,7 +2033,7 @@ export default {
           'typeAnchorName': 'IClassNameArgs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置列头样式名称;给表头的单元格附加 className，也可以是函数',
+            'zh-CN': '设置列头样式名称；给表头的单元格附加 className，也可以是函数',
             'en-US': 'Set the column header style name. Add className to the cell in the table header, or the function'
           },
           'demoId': 'grid-custom-style#custom-style-header-style'
@@ -1988,9 +2052,9 @@ export default {
         {
           'name': 'min-width',
           'type': 'number | string',
-          'defaultValue': '继承 table 的 column-min-width',
+          'defaultValue': '--',
           'desc': {
-            'zh-CN': '最小列宽度；会自动将剩余空间按比例分配;该属性的可选值为 整数, px，%',
+            'zh-CN': '最小列宽度；会自动将剩余空间按比例分配；该属性的可选值为 整数, px，%',
             'en-US':
               'Minimum column width; The remaining space will be allocated in proportion. The optional values of this property are integers, px,%'
           },
@@ -2019,7 +2083,7 @@ export default {
         {
           'name': 'remote-sort',
           'type': 'boolean',
-          'defaultValue': '继承 table 的 remote-sort',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '是否使用服务端排序，如果设置为 true 则不会对数据进行处理',
             'en-US': 'Whether to use server sorting. If this parameter is set to true, data will not be processed.'
@@ -2029,9 +2093,9 @@ export default {
         {
           'name': 'resizable',
           'type': 'boolean',
-          'defaultValue': '继承 table 的 resizable',
+          'defaultValue': 'true',
           'desc': {
-            'zh-CN': '设置该列是否可以调整列宽;列是否允许拖动列宽调整大小',
+            'zh-CN': '设置该列是否可以调整列宽；列是否允许拖动列宽调整大小',
             'en-US':
               'Set whether the column width can be adjusted. Allows you to drag the column width to adjust the column size.'
           },
@@ -2040,10 +2104,10 @@ export default {
         {
           'name': 'show-header-overflow',
           'type': 'string | boolean',
-          'defaultValue': '继承 table 的 show-header-overflow',
+          'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '当表头内容过长时显示为省略号;该属性的可选值为 ellipsis（只显示省略号）, title（并且显示为原生 title）, tooltip（并且显示为 tooltip 提示）',
+              '当表头内容过长时显示为省略号；该属性的可选值为 ellipsis （只显示省略号）， title （并且显示为原生 title ）， tooltip （并且显示为 tooltip 提示）',
             'en-US':
               'When the table header content is too long, the ellipsis is displayed. The optional values for this property are ellipsis (only the ellipsis is displayed), title (and the native title is displayed), tooltip (and the tooltip prompt is displayed)'
           },
@@ -2052,10 +2116,10 @@ export default {
         {
           'name': 'show-overflow',
           'type': 'string | boolean',
-          'defaultValue': '继承 table 的 show-overflow',
+          'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '当内容过长时显示为省略号;该属性的可选值为 ellipsis（只显示省略号）, title（并且显示为原生 title）, tooltip（并且显示为 tooltip 提示）',
+              '当内容过长时显示为省略号；该属性的可选值为 ellipsis（只显示省略号）, title（并且显示为原生 title）, tooltip（并且显示为 tooltip 提示）',
             'en-US':
               'When the content is too long, an ellipsis is displayed. The optional values for this property are ellipsis (only the ellipsis is displayed), title (and the native title is displayed), tooltip (and the tooltip is displayed)'
           },
@@ -2093,7 +2157,7 @@ export default {
         {
           'name': 'sort-method',
           'type': '(row1: IRow, row2: IRow)=> boolean',
-          'typeAnchorName': 'IValidRules',
+          'typeAnchorName': 'IRow',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '自定义所有列的排序方法，当触发排序时会调用该函数',
@@ -2106,7 +2170,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置该列数据是否可以排序。;是否允许列排序',
+            'zh-CN': '设置该列数据是否可以排序',
             'en-US': 'Whether the data in the column can be sorted.; Allow Sorting Columns'
           },
           'demoId': 'grid-sort#sort-default-sort'
@@ -2133,11 +2197,11 @@ export default {
         },
         {
           'name': 'format-text',
-          'type': `'money' | 'enum' | 'select' | 'number' | 'integer' | 'filesize' | 'date' | 'dateTime' | 'longDateTime' | 'time' | 'longTime' | 'yearMonth' | 'ellipsis' | 'rate' | 'boole' | (params)=> string`,
+          'type': 'IFormatText',
+          'typeAnchorName': 'IFormatText',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '设置当前表格列的显示获取编辑类型;设置当前表格列的显示获取编辑类型，也可以是函数;该属性的可选值为 ',
+            'zh-CN': '设置当前表格列的显示获取编辑类型；设置当前表格列的显示获取编辑类型，也可以是函数',
             'en-US':
               'Sets the display and editing mode of the current table column. Sets the display and obtaining editing type of the current table column. It can also be the function'
           },
@@ -2148,7 +2212,7 @@ export default {
           'type': `'index' | 'selection' | 'radio' | 'expand'`,
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置内置列的类型;设置内置列的类型',
+            'zh-CN': '设置内置列的类型',
             'en-US': 'Set the type of the built-in column'
           },
           'demoId': 'grid-serial-column#serial-column-default-serial-column'
@@ -2156,10 +2220,10 @@ export default {
         {
           'name': 'width',
           'type': 'number | string',
-          'defaultValue': '继承 table 的 column-width',
+          'defaultValue': '--',
           'desc': {
             'zh-CN':
-              "设置列的宽度，可以是像素或者百分比或者'auto'，设置为'auto'时，列宽会自动适应。;列宽度;该属性的可选值为 整数 / px /%",
+              '设置列的宽度，可以是像素或者百分比或者 auto ，设置为 auto 时，列宽会自动适应；该属性的可选值为 整数 ， px ，%',
             'en-US':
               'Set the column width. The value can be pixel, percentage, or auto. If the value is auto, the column width automatically adapts.; column width; The optional value of this property is integer/px/%'
           },
@@ -2189,11 +2253,11 @@ export default {
         },
         {
           'name': 'editor',
-          'type': 'IEditorConfig | (h, {row:Row, column: IColumnConfig})=> VueComponent',
+          'type': 'IEditorConfig | (h, {row:Row, column: IColumnConfig})=> Component',
           'typeAnchorName': 'IEditorConfig',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '单元格编辑渲染配置项，也可以是函数 Function(h, params);设置表格列的编辑类型',
+            'zh-CN': '单元格编辑渲染配置项，也可以是函数返回 Vue 组件',
             'en-US':
               'Cell editing rendering configuration item, which can also be the function Function(h, params). Sets the editing type of the table column'
           },
@@ -2204,7 +2268,7 @@ export default {
           'type': 'boolean | IFilterConfig',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '设置表格列的筛选配置信息。默认值为 false 不配置筛选信息。',
+            'zh-CN': '设置表格列的筛选配置信息。默认值为 false 不配置筛选信息',
             'en-US':
               'Set the filtering configuration of the table column. The default value is false. No filtering information is configured.'
           },
@@ -2212,12 +2276,12 @@ export default {
         },
         {
           'name': 'renderer',
-          'type': 'IEditorConfig | (h, {row: IRow, column: IColumnConfig})=> VueComponent',
+          'type': 'IEditorConfig | (h, {row: IRow, column: IColumnConfig})=> Component',
           'typeAnchorName': 'IEditorConfig',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '设置表格列的渲染类型。其优先级高于列的 type 属性配置;单元格渲染配置项，其优先级高于列的 formatText 属性配置',
+              '设置表格列的渲染类型。其优先级高于列的 type 属性配置；单元格渲染配置项，其优先级高于列的 formatText 属性配置',
             'en-US':
               'Set the rendering type of the table column. The priority of the column is higher than that of the column type attribute. Cell rendering configuration item. Its priority is higher than that of the formatText attribute of the column'
           },
@@ -2318,21 +2382,22 @@ export default {
         },
         {
           'name': 'resizable',
-          'type': 'boolean | object',
+          'type': 'boolean | {storage: boolean}',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '列宽拖动配置（需要设置 id）',
             'en-US': 'Column width dragging configuration (id needs to be set)'
           },
-          'demoId': 'grid-customized#custom-column-width'
+          'demoId': 'grid-custom#custom-column-width'
         },
         {
           'name': 'setting',
-          'type': 'boolean | object',
+          'type': `boolean | IToolbarSetting`,
+          'typeAnchorName': 'IToolbarSetting',
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              '设置表格属性是否显示个性化面板，当设置表格的name属性时有效;设置工具栏属性是否显示个性化配置（需要设置 id）',
+              '设置表格属性是否显示个性化面板，当设置表格的 name 属性时有效；设置工具栏属性是否显示个性化配置（需要设置 id ）',
             'en-US':
               'Whether to display the table attribute on the personalized panel. This parameter is valid only when the name attribute of the table is set. Set whether to display personalized configuration for toolbar attributes (id needs to be set)'
           },
@@ -2343,7 +2408,7 @@ export default {
           'type': 'boolean',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '设置表格是否可以全屏，或者需要全屏的容器。;设置工具栏属性是否显示全屏按钮',
+            'zh-CN': '设置表格是否可以全屏，或者需要全屏的容器；设置工具栏属性是否显示全屏按钮',
             'en-US':
               'Sets whether the table can be displayed in full screen mode or whether the container needs to be displayed in full screen mode.; Sets whether to display the full-screen button on the toolbar.'
           },
@@ -2354,7 +2419,7 @@ export default {
           'type': `'medium' | 'small' | 'mini'`,
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '尺寸;该属性的可选值为 medium,small,mini',
+            'zh-CN': '表格的尺寸',
             'en-US': 'Dimension; The options of this attribute are medium, small, and mini'
           },
           'demoId': 'grid-toolbar#toolbar-copy-row-data'
@@ -2408,7 +2473,7 @@ export default {
             'zh-CN': '当工具栏的按钮被点击时会后触发该事件',
             'en-US': 'This event is triggered when a button on the toolbar is clicked'
           },
-          'demoId': 'grid-event#event-toolbar-button-click-event'
+          'demoId': 'grid-validation#validation-before-submit-validation'
         },
         {
           'name': 'save-setting',
@@ -2416,7 +2481,7 @@ export default {
           'typeAnchorName': 'ISettingConfigs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '点击个性化面板的确认按钮触发该事件;settingConfigs:表格的个性化数据',
+            'zh-CN': '点击个性化面板的确认按钮触发该事件',
             'en-US':
               'Click the OK button on the personalized panel to trigger the event. settingConfigs: personalized data of the table'
           },
@@ -2428,7 +2493,7 @@ export default {
           'typeAnchorName': 'ISettingConfigs',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '点击个性化面板的取消按钮触发该事件;settingConfigs:表格的个性化数据',
+            'zh-CN': '点击个性化面板的取消按钮触发该事件',
             'en-US':
               'Click the Cancel button on the personalized panel to trigger the event. settingConfigs: personalized data of the table'
           },
@@ -2443,16 +2508,6 @@ export default {
             'en-US': 'Click the Reset button on the personalized panel to trigger the event.'
           },
           'demoId': 'grid-custom#custom-ordercolumn-local'
-        },
-        {
-          'name': 'on-before-move',
-          'type': `(type: 'column' | 'row', row: IRow)=> boolean`,
-          'defaultValue': '--',
-          'desc': {
-            'zh-CN': '个性化面板拖拽前事件',
-            'en-US': 'event before the personalized panel is dragged'
-          },
-          'demoId': 'grid-custom#custom-prsonalized-drag'
         }
       ]
     }
@@ -2503,7 +2558,7 @@ interface IColumnConfig {
       type: 'interface',
       code: `
 interface IPagerConfig {
-  component?: VueComponent
+  component?: Component
   attrs: {
     currentPage: number
     pageSize: number
@@ -2717,7 +2772,7 @@ interface ISortConfig {
       type: 'type',
       code: `
 interface ITreeConfig {
-  // 展开子级触发方式：'default'(点击按钮触发)；'cell'(点击单元格触发);'row'(点击行触发)
+  // 展开子级触发方式：'default'(点击按钮触发)；'cell'(点击单元格触发)；'row'(点击行触发)
   trigger?: 'default' | 'cell' | 'row'
   // 子级索引是否按数字递增显示：true(子级索引按数字递增显示，父级1，子级2)；false(子级索引在父级索引基础上增加，父级1，子级1.1)
   ordered?: boolean
@@ -2836,7 +2891,7 @@ interface IRecordset {
       code: `
 interface IPageChangeArgs { 
   // table组件vue实例
-  $grid: VueComponent
+  $grid: Component
   // 当前页码
   currentPage: number
   //当前分页组件布局信息 'total, prev, pager, next, jumper, sizes'
@@ -2876,7 +2931,7 @@ interface IBeforePageChangeArgs {
       code: `
 interface IToolbarButtonClickArgs { 
   //表格组件实例对象信息 
-  $grid: VueComponent
+  $grid: Component
   //按钮信息对象 
   button: {
     code: string
@@ -2997,7 +3052,7 @@ interface IEditDisabledArgs {
       code: `
 interface IFilterChangeArgs {
   //表格的信息对象
-  $table: VueComponent
+  $table: Component
   //过滤列的过滤数据信息
   filters: object
 }
@@ -3011,7 +3066,7 @@ interface IFooterCellClickArgs {
   $columnIndex: number
   $rowIndex: number
   // table组件vue实例
-  $table: VueComponent
+  $table: Component
   // 当前单元格节点 
   cell: HTMLElement
   // 当前列信息
@@ -3028,7 +3083,7 @@ interface IContextMenuArgs {
   $columnIndex: number
   $rowIndex: number
   // table组件vue实例
-  $table: VueComponent
+  $table: Component
   // 当前单元格节点
   cell: HTMLElement
   // 当前列信息
@@ -3049,7 +3104,7 @@ interface IFooterCellDblClickArgs {
   $columnIndex: number
   $rowIndex: number
   // table组件vue实例
-  $table: VueComponent
+  $table: Component
   // 当前单元格节点
   cell: HTMLElement
   // 当前列信息
@@ -3066,7 +3121,7 @@ interface IHeaderCellClickArgs {
   $columnIndex: number
   $rowIndex: number
   // table组件vue实例
-  $table: VueComponent
+  $table: Component
   // 点击表头单元格
   cell: HTMLElement
   // 当前列信息
@@ -3089,7 +3144,7 @@ interface IHeaderCellDblClickArgs {
   // 列索引
   columnIndex: number
   // table组件 vue实例 
-  $table: VueComponent
+  $table: Component
   // 点击的单元格dom
   cell: HTMLElement
 }
@@ -3101,7 +3156,7 @@ interface IHeaderCellDblClickArgs {
       code: `
 interface IResizableChangeArgs {
   // table组件的vue 实例 
-  $table: VueComponent,
+  $table: Component,
   // 列配置信息 
   column: object 
   // 拖动列的索引
@@ -3117,7 +3172,7 @@ interface IResizableChangeArgs {
       code: `
 interface IScrollArgs {
   // 表格实例对象信息
-  $table: VueComponent
+  $table: Component
   fixed: boolean
   // X轴滚动
   isX: boolean
@@ -3140,7 +3195,7 @@ interface ISelectAllArgs {
   $rowIndex: number
   $seq: string
   // 表格实例对象信息
-  $table: VueComponent 
+  $table: Component 
   // 勾选状态
   checked: boolean
   // 列信息
@@ -3168,7 +3223,7 @@ interface ISelectAllArgs {
       code: `
 interface IToggleExpandChangeArgs { 
   // 表格实例对象信息
-  $table: VueComponent,
+  $table: Component,
   //点击展开行的数据信息对象
   row: IRow
   // 点击展开行的下标 
@@ -3182,7 +3237,7 @@ interface IToggleExpandChangeArgs {
       code: `
 interface IToggleTreeChangeArgs { 
   // 表格实例对象信息
-  $table: VueComponent,
+  $table: Component,
   //点击展开行的数据信息对象
   row: IRow
   // 点击展开行的下标 
@@ -3212,7 +3267,7 @@ interface IValidErrorArgs {
       code: `
 interface ISortChangeArgs { 
   // 表格实例对象信息
-  $grid: VueComponent
+  $grid: Component
   // 列信息
   column: IColumnConfig
   // 排序的字段名
@@ -3275,7 +3330,7 @@ interface IFormatConfig {
       code: `
 interface IButtonClick { 
   // 表格组件实例对象信息
-  $grid: VueComponent 
+  $grid: Component 
   // 按钮列表信息对象   
   button: {
     code: string
@@ -3336,7 +3391,7 @@ interface IExportCsvOptions {
       code: `
 interface IEditorConfig {
   // 内置组件名称或者自定义组件实例
-  component: 'input' | 'select' | VueComponent
+  component: 'input' | 'select' | Component
   // 传递给组件的事件集合
   events?: {
     [event]: ()=> void
@@ -3378,12 +3433,29 @@ interface IFilterConfig {
       type: 'type',
       code: `
 interface IOPConfig {
-  editConfig: IEditConfig
-  pagerConfig: IPagerConfig
+  editConfig?: IEditConfig
+  pagerConfig?: IPagerConfig
   columns: IColumnConfig[]
   data: IRow[]
-  }[]
 }
+      `
+    },
+    {
+      name: 'IFormatText',
+      type: 'type',
+      code: `
+      'money' | 'enum' | 'select' | 'number' | 'integer' | 'filesize' | 'date' | 'dateTime' | 'longDateTime' | 'time' | 'longTime' | 'yearMonth' | 'ellipsis' | 'rate' | 'boole' | (params)=> string
+      `
+    },
+    {
+      name: 'IToolbarSetting',
+      type: 'type',
+      code: `
+      interface IToolbarSetting {
+        remote?: boolean
+        storage?: string
+        sortable?: Sortable 
+      }
       `
     }
   ]

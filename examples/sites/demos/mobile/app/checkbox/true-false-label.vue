@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Checkbox } from '@opentiny/vue'
 
 export default {
@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .checkbox-wrap {
   padding: 20px;
 }

@@ -4,6 +4,8 @@
     <tiny-search @search="search" is-enter-search></tiny-search>
     <p>值变化事件</p>
     <tiny-search @change="change" @input="input"></tiny-search>
+    <p>值清空事件</p>
+    <tiny-search @clear="clear" clearable></tiny-search>
     <p>类型选中事件</p>
     <tiny-search :search-types="searchTypes" @select="select"></tiny-search>
   </div>
@@ -29,15 +31,19 @@ const searchTypes = ref([
 ])
 
 function search(key, value) {
-  Modal.message(`${value}`)
+  Modal.message({ message: `search: ${value}`, status: 'info' })
 }
 
 function change(key, value) {
-  Modal.message(`change: ${value}`)
+  Modal.message({ message: `change: ${value}`, status: 'info' })
+}
+
+function clear() {
+  Modal.message({ message: 'clear', status: 'info' })
 }
 
 function input(key, value) {
-  Modal.message(`input: ${key}, ${JSON.stringify(value)}`)
+  Modal.message({ message: `input: ${key}, ${JSON.stringify(value)}`, status: 'info' })
 }
 
 function select(value) {

@@ -50,5 +50,5 @@ export default {
       'codeFiles': ['ring/ring-title.vue']
     }
   ],
-  apis: [{ 'name': 'chart-ring', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-ring', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

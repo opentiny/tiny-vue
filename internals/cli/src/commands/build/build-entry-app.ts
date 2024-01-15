@@ -3,7 +3,6 @@
  */
 import fs from 'fs-extra'
 import { EOL as endOfLine } from 'node:os'
-import minimist from 'minimist'
 import {
   getopentinyVersion,
   pathFromWorkspaceRoot,
@@ -62,7 +61,7 @@ const buildFullRuntime = () => {
   })
 
   components.forEach((item) => {
-    if (item.inEntry !== false && !item.path.includes('river')) {
+    if (item.inEntry !== false && !item.path.includes('river') && !item.path.includes('chart-beta')) {
       const component = capitalizeKebabCase(item.name)
 
       componentsTemplate.push(`  ${component}`)

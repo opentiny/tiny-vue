@@ -6,8 +6,8 @@ export default {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
-        'zh-CN': '<p>不配置数据源时，默认从框架服务读取数据。</p>\n',
-        'en-US': '<p>If no data is configured, data is read from the framework service by default. </p>\n'
+        'zh-CN': '<p>通过引用组件标签即可，默认从框架服务读取数据 。</p>\n',
+        'en-US': '<p>By referencing component labels, data is read from the framework service by default. </p>\n'
       },
       'codeFiles': ['basic-usage.vue']
     },
@@ -294,7 +294,7 @@ export default {
     {
       'name': 'tree-menu',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'accordion',
           'type': 'boolean',
@@ -561,7 +561,7 @@ export default {
         },
         {
           'name': 'prefix-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '自定义前置图标',
@@ -571,7 +571,7 @@ export default {
         },
         {
           'name': 'suffix-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '自定义后置图标',
@@ -581,7 +581,7 @@ export default {
         },
         {
           'name': 'search-icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '自定义搜索图标',
@@ -848,7 +848,7 @@ interface ITreeNodeData {
   // show-number 时展示的字段
   "number"?: number | string
   // 自定义每个节点的图标
-  "customIcon": VueComponent 
+  "customIcon": Component 
 }        
 `
     },

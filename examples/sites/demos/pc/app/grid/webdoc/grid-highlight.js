@@ -15,7 +15,7 @@ export default {
     },
     {
       'demoId': 'highlight-set-current-row',
-      'name': { 'zh-CN': '设置指定行高亮', 'en-US': 'Highlight a specified line' },
+      'name': { 'zh-CN': '指定行高亮', 'en-US': 'Highlight a specified line' },
       'desc': {
         'zh-CN': '<p> <code>setCurrentRow(row)</code> 可设置某一行为高亮状态。</p>\n',
         'en-US': 'The <p> <code>setCurrentRow(row)</code> can be used to set the highlight status of a line. </p>\n'
@@ -27,7 +27,7 @@ export default {
       'name': { 'zh-CN': '开启选中行高亮', 'en-US': 'Enable the selected row to be highlighted' },
       'desc': {
         'zh-CN':
-          '<p>设置 <code>highlight-current-row</code> 属性控制鼠标选中行是否开启高亮</p>\n<p>\n带有斑马线的行无高亮效果。\n</p>\n',
+          '<p>设置 <code>highlight-current-row</code> 属性控制鼠标选中行是否开启高亮。</p>\n<p>\n带有斑马线的行无高亮效果。\n</p>\n',
         'en-US':
           '<p>Set the <code>highlight-current-row</code> attribute to control whether to highlight selected lines.</p>\n<p>\nThe lines with zebra crossings are not highlighted.\n</p>\n'
       },
@@ -65,5 +65,5 @@ export default {
       'codeFiles': ['highlight/highlight-cell.vue']
     }
   ],
-  apis: [{ 'name': 'grid-highlight', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-highlight', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

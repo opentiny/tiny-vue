@@ -5,10 +5,10 @@ test('最值与数值循环', async ({ page }) => {
   await page.goto('numeric#max-min')
 
   const input = page.getByRole('spinbutton')
-  const increaseBtn = page.locator('#preview .tiny-numeric__increase')
-  const decreaseBtn = page.locator('#preview .tiny-numeric__decrease')
+  const increaseBtn = page.locator('.tiny-numeric__increase')
+  const decreaseBtn = page.locator('.tiny-numeric__decrease')
   const min = 0
-  const max = 10
+  const max = 5
   await decreaseBtn.click()
   const decreasedVal = Number(await input.inputValue())
   expect(decreasedVal).toEqual(max)

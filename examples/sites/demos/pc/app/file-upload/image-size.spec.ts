@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('获取上传的片的原始尺寸', async ({ page }) => {
+test('获取图片的原始尺寸', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('file-upload#image-size')
 
@@ -12,5 +12,5 @@ test('获取上传的片的原始尺寸', async ({ page }) => {
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
   await fileChooser.setFiles(currentPath)
-  await expect(modal).toHaveText(/宽：\d+ 高：\d+/)
+  await expect(modal.nth(1)).toHaveText(/宽：\d+ 高：\d+/)
 })

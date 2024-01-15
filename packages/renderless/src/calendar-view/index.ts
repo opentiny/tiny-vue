@@ -1,12 +1,6 @@
-import { cloneDeep } from '@opentiny/vue-renderless/chart-core/deps/utils'
-import { getDirection } from '@opentiny/vue-renderless/common/deps/touch'
-import {
-  getDays,
-  lastMonth,
-  nextMonth,
-  getCalendar,
-  transformArray
-} from '@opentiny/vue-renderless/common/calendar/calendar'
+import { cloneDeep } from '../chart-core/deps/utils'
+import { getDirection } from '../common/deps/touch'
+import { getDays, lastMonth, nextMonth, getCalendar, transformArray } from '../common/calendar/calendar'
 
 const getTime = (date) => new Date(date).getTime()
 
@@ -301,7 +295,7 @@ export const getEventByMonth =
         day: state.weekDays[new Date(date).getDay()],
         events: []
       }
-      state.events.filter((item) => {
+      state.events.forEach((item) => {
         if (eventInThisTime(item, startTime, endTime)) {
           obj.events.push(item)
           state.monthEventsLength += 1
@@ -364,7 +358,7 @@ export const getEventByDate =
     const endTime = getTime(date + ' ' + state.dayEndTime)
     state.curWeekEvents[date] = []
     events ? (events = []) : (state.curWeekEvents[date] = [])
-    state.events.filter((item) => {
+    state.events.forEach((item) => {
       if (eventInThisTime(item, startTime, endTime)) {
         events ? events.push(item) : state.curWeekEvents[date].push(item)
       }

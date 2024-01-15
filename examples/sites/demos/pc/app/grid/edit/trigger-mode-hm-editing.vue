@@ -5,7 +5,7 @@
       ref="theGrid"
       :data="tableData"
       seq-serial
-      :edit-config="{ trigger: 'manual', mode: 'row', autoClear: false }"
+      :edit-config="{ trigger: 'manual', mode: 'cell', autoClear: false }"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, Button } from '@opentiny/vue'
 
 export default {
@@ -101,9 +101,17 @@ export default {
   },
   methods: {
     editRowEvent(row) {
-      this.$refs.theGrid.setActiveRow(row).then(() => {
-        this.getActiveRow()
-      })
+      if (row.name === 'RFV有限责任公司') {
+        // 只激活区域单元格编辑
+        this.$refs.theGrid.setActiveCell(row, 'area').then(() => {
+          this.getActiveRow()
+        })
+      } else {
+        // mode: 'cell' 时默认激活第一个单元格
+        this.$refs.theGrid.setActiveRow(row).then(() => {
+          this.getActiveRow()
+        })
+      }
     },
     saveRowEvent() {
       this.$refs.theGrid.clearActived().then(() => {

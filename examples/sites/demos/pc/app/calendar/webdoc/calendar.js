@@ -66,20 +66,21 @@ export default {
     {
       'name': 'calendar',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'events',
-          'type': 'Array',
+          'type': 'eventLists[]',
+          'typeAnchorName': 'eventLists',
           'defaultValue': '',
           'desc': { 'zh-CN': '事件列表', 'en-US': 'Event List' },
           'demoId': 'dynamic-add-schedule'
         },
         {
           'name': 'mode',
-          'type': 'string',
-          'defaultValue': '',
+          'type': "'month' | 'year'",
+          'defaultValue': "'month'",
           'desc': {
-            'zh-CN': '显示模式，month / year 可选，默认 month',
+            'zh-CN': '日历显示模式',
             'en-US': 'Display mode. The value can be month or year. The default value is month.'
           },
           'demoId': 'calendar-mode'
@@ -89,7 +90,7 @@ export default {
           'type': 'number',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '指定月份，默认当月',
+            'zh-CN': '指定月份，默认当前月份',
             'en-US': 'Specified month. The default value is the current month.'
           },
           'demoId': 'custom-day-cell'
@@ -97,15 +98,15 @@ export default {
         {
           'name': 'show-selected',
           'type': 'boolean',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '显示选中的日期', 'en-US': 'Display the selected date.' },
+          'defaultValue': 'false',
+          'desc': { 'zh-CN': '是否显示选中的日期', 'en-US': 'Display the selected date.' },
           'demoId': 'show-selected-date'
         },
         {
           'name': 'year',
           'type': 'number',
           'defaultValue': '',
-          'desc': { 'zh-CN': '指定年份，默认今年', 'en-US': 'Specified year. The default year is this year.' },
+          'desc': { 'zh-CN': '指定年份，默认当前年份', 'en-US': 'Specified year. The default year is this year.' },
           'demoId': 'custom-day-cell'
         }
       ],
@@ -126,6 +127,19 @@ export default {
           'demoId': 'custom-calendar-toolbar'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'eventLists',
+      type: 'interface',
+      code: `
+      interface eventLists [{
+        time: 1534297845236, // 指定需要展示事件的日期
+        title: '消息', // 指定事件标题
+        content: '这是一条消息', // 指定事件的具体内容
+        type: 'info' // 事件主题类型，包括 warning、error、info、success。
+      }]`
     }
   ]
 }

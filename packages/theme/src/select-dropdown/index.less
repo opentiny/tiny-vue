@@ -18,19 +18,22 @@
 @popper-prefix-cls: ~'@{css-prefix}popper';
 @scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
 @input-predix-cls: ~'@{css-prefix}input';
+@option-prefix-cls: ~'@{css-prefix}option';
 
 .@{select-dropdown-prefix-cls} {
   .component-css-vars-select-dropdown();
 
   position: absolute;
   z-index: 1001;
-  border: var(--ti-select-dropdown-border-weight) var(--ti-select-dropdown-border-style) var(--ti-select-dropdown-border-color);
+  border: var(--ti-select-dropdown-border-weight) var(--ti-select-dropdown-border-style)
+    var(--ti-select-dropdown-border-color);
   border-radius: var(--ti-select-dropdown-border-radius);
   background-color: var(--ti-select-dropdown-bg-color);
   box-shadow: var(--ti-select-dropdown-box-shadow);
   margin-top: var(--ti-select-dropdown-margin-top);
   box-sizing: border-box;
-  padding: var(--ti-select-dropdown-padding-top) var(--ti-select-dropdown-padding-horizontal) var(--ti-select-dropdown-padding-bottom);
+  padding: var(--ti-select-dropdown-padding-top) var(--ti-select-dropdown-padding-horizontal)
+    var(--ti-select-dropdown-padding-bottom);
 
   .@{tree-prefix-cls} {
     max-height: 300px;
@@ -45,8 +48,10 @@
     }
   }
 
+  // 下拉面板搜索框
   & &__search {
-    margin: var(--ti-select-dropdown-search-margin-top) var(--ti-select-dropdown-search-margin-right) var(--ti-select-dropdown-search-margin-bottom) var(--ti-select-dropdown-search-margin-left);
+    margin: var(--ti-select-dropdown-search-margin-top) var(--ti-select-dropdown-search-margin-right)
+      var(--ti-select-dropdown-search-margin-bottom) var(--ti-select-dropdown-search-margin-left);
     width: var(--ti-select-dropdown-search-width);
 
     .@{input-predix-cls}__inner {
@@ -55,6 +60,10 @@
       background-color: var(--ti-select-dropdown-search-bg-color);
       padding-right: var(--ti-select-dropdown-search-input-padding-right);
       padding-left: var(--ti-select-dropdown-search-input-padding-left);
+      border-radius: var(--ti-select-dropdown-search-border-radius);
+      border-top-color: var(--ti-select-dropdown-search-border-color-top);
+      border-left-color: var(--ti-select-dropdown-search-border-color-left);
+      border-right-color: var(--ti-select-dropdown-search-border-color-right);
     }
 
     .@{input-predix-cls}__suffix {
@@ -103,9 +112,19 @@
       fill: var(--ti-select-dropdown-svg-hover-bg-color);
     }
 
-    &+div+.@{select-dropdown-prefix-cls}__empty-wrap {
+    & + div + .@{select-dropdown-prefix-cls}__empty-wrap {
       padding-top: var(--ti-select-dropdown-search-empty-padding-top);
       padding-bottom: var(--ti-select-dropdown-search-empty-padding-bottom);
+    }
+
+    & + .@{scrollbar-prefix-cls} {
+      .@{select-dropdown-prefix-cls}__wrap {
+        .tiny-option-group {
+          &:first-child .tiny-option-group__title {
+            margin-top: 0px;
+          }
+        }
+      }
     }
   }
 
@@ -160,19 +179,15 @@
     text-align: left;
   }
 
-  & &__item {
-    white-space: nowrap;
-    box-sizing: border-box;
+  & .@{option-prefix-cls} {
     padding: var(--ti-option-padding-vertical) var(--ti-option-padding-horizontal);
-    margin-top: var(--ti-option-margin-top);
-    border-radius: var(--ti-option-border-radius);
   }
 
   & &__wrap.virtual {
     position: relative;
     margin-right: 0 !important;
 
-    & .@{select-dropdown-prefix-cls}__item {
+    & .@{option-prefix-cls} {
       position: absolute;
       width: 100%;
     }

@@ -196,6 +196,7 @@ export const iconGroups = {
   ],
   Tools: [
     'IconAdd',
+    'IconAddPicture',
     'IconAlignBaseline',
     'IconAlignCenter',
     'IconAlignFlexCenter',

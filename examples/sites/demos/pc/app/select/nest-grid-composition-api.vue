@@ -36,7 +36,9 @@
 import { ref, reactive } from 'vue'
 import { Select as TinySelect } from '@opentiny/vue'
 
-const radioValue = ref('')
+const value1 = ref('')
+const value2 = ref([])
+const value3 = ref('')
 
 const gridOpSingle = reactive({
   data: [
@@ -72,10 +74,10 @@ const gridOpMulti = reactive({
 
 const filter = (value) => {
   if (!value) {
-    return gridOpSingle.value.data
+    return gridOpSingle.data
   }
 
-  return gridOpSingle.value.data.filter((item) => {
+  return gridOpSingle.data.filter((item) => {
     return item.city.includes(value)
   })
 }

@@ -1,19 +1,24 @@
 <template>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    filterable
-    :filter-method="filterMethod"
-    filter-placeholder="请输入城市拼音"
-  ></tiny-transfer>
+  <div>
+    <tiny-button style="margin-bottom: 20px" @click="clearQuery">重置查询</tiny-button>
+    <tiny-transfer
+      ref="transferRef"
+      v-model="value"
+      :data="data"
+      filterable
+      :filter-method="filterMethod"
+      filter-placeholder="请输入城市拼音"
+    ></tiny-transfer>
+  </div>
 </template>
 
 <script lang="jsx">
-import { Transfer } from '@opentiny/vue'
+import { Transfer, Button } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTransfer: Transfer
+    TinyTransfer: Transfer,
+    TinyButton: Button
   },
   data() {
     const generateData = () => {
@@ -40,6 +45,10 @@ export default {
   methods: {
     filterMethod(query, item) {
       return item.pinyin.includes(query)
+    },
+    clearQuery() {
+      this.$refs.transferRef.clearQuery('left')
+      this.$refs.transferRef.clearQuery('right')
     }
   }
 }

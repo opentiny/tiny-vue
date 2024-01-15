@@ -5,6 +5,7 @@
       v-model="input"
       name="textMemory"
       placeholder="Please input"
+      :memory-space="3"
       @change="addMemory"
     ></tiny-input>
   </div>

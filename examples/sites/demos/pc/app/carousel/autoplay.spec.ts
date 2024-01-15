@@ -2,8 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('自动切换', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
+
   await page.goto('carousel#autoplay')
-  const preview = page.locator('#preview')
+  await page.waitForTimeout(100)
+  const preview = page.locator('#autoplay')
   const carousel = preview.locator('.tiny-carousel')
   const carouselItems = preview.locator('div.tiny-carousel__item')
   // 默认显示第一张幻灯片

@@ -14,6 +14,15 @@ export default {
       'codeFiles': ['basic-usage.vue']
     },
     {
+      'demoId': 'ghost',
+      'name': { 'zh-CN': '幽灵按钮', 'en-US': 'Ghost button' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>ghost</code> 设置幽灵按钮。</p>',
+        'en-US': '<p>Set up ghost buttons via <code>ghost</code>.</p>'
+      },
+      'codeFiles': ['ghost.vue']
+    },
+    {
       'demoId': 'dynamic-disabled',
       'name': { 'zh-CN': '动态禁用按钮', 'en-US': 'Dynamic Disable Button' },
       'desc': {
@@ -140,8 +149,18 @@ export default {
           'demoId': 'dynamic-disabled'
         },
         {
+          'name': 'ghost',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否幽灵按钮',
+            'en-US': 'Is ghost button'
+          },
+          'demoId': 'ghost'
+        },
+        {
           'name': 'icon',
-          'type': 'VueComponent',
+          'type': 'Component',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '按钮左侧展示的图标，接收为Icon组件',
@@ -221,7 +240,8 @@ export default {
         },
         {
           'name': 'type',
-          'type': "'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'",
+          'type': 'IButtonType',
+          'typeAnchorName': 'IButtonType',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '展示按钮不同的状态，设置为text则展示为文本按钮',
@@ -254,6 +274,13 @@ export default {
           'demoId': 'image'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IButtonType',
+      type: 'interface',
+      code: `type IButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'`
     }
   ]
 }

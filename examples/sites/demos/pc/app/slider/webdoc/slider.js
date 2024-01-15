@@ -47,19 +47,22 @@ export default {
       'codeFiles': ['range-select.vue']
     },
     {
-      'demoId': 'show-iput',
+      'demoId': 'show-input',
       'name': { 'zh-CN': '输入框模式', 'en-US': 'Text box mode' },
       'desc': {
-        'zh-CN': '<p>通过配置<code>show-input</code>，开启滑块输入框模式。</p>',
-        'en-US': '<p>Enable the slider text box mode by configuring <code>show-input</code>。</p>'
+        'zh-CN':
+          '<p>通过配置<code>show-input</code>，开启滑块输入框模式。可以通过配置<code>unit</code>来决定输入框后面显示的单位。</p>',
+        'en-US':
+          '<p>Enable the slider text box mode by configuring <code>show-input</code>。You can determine the units displayed after the input box by configuring<code>unit</code>.</p>'
       },
-      'codeFiles': ['show-iput.vue']
+      'codeFiles': ['show-input.vue']
     },
     {
       'demoId': 'shortcut-operation',
       'name': { 'zh-CN': '快捷键操作', 'en-US': 'Shortcut Key Operations' },
       'desc': {
-        'zh-CN': '<p>通过设置<code>num-pages</code>总步数，即按快捷键 PageDown/PageUp 时，每次移动的距离是 "⌈(max-min)/num-pages⌉"。</p>',
+        'zh-CN':
+          '<p>通过设置<code>num-pages</code>总步数，即按快捷键 PageDown/PageUp 时，每次移动的距离是 "⌈(max-min)/num-pages⌉"。</p>',
         'en-US':
           '<p>Set <code>num-pages</code>the total number of steps. That is, when you press the shortcut key PageDown or PageUp, the moving distance is "⌈(max-min)/num-pages⌉"。</p>'
       },
@@ -104,7 +107,7 @@ export default {
       'name': { 'zh-CN': '事件', 'en-US': 'Event' },
       'desc': { 'zh-CN': '<p>change、start、stop 事件。</p>', 'en-US': '<p>change, start, stop events.</p>' },
       'codeFiles': ['slider-event.vue']
-    },
+    }
   ],
   apis: [
     {
@@ -114,7 +117,10 @@ export default {
         {
           'name': 'v-model',
           'type': 'number | [number, number]',
-          'desc': { 'zh-CN': '设置单滑块的当前值，必需是整数或数组', 'en-US': 'Sets the current value of a single slider. The value must be an integer or an array.' },
+          'desc': {
+            'zh-CN': '设置单滑块的当前值，必需是整数或数组',
+            'en-US': 'Sets the current value of a single slider. The value must be an integer or an array.'
+          },
           'demoId': 'basic-usage'
         },
         {
@@ -161,7 +167,17 @@ export default {
             'zh-CN': '是否显示输入框，仅在非范围选择时有效',
             'en-US': 'Indicates whether to display the text box. This parameter is valid only for non-range selection'
           },
-          'demoId': 'show-iput'
+          'demoId': 'show-input'
+        },
+        {
+          'name': 'unit',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '输入框后面显示的单位，仅在输入框模式下有效',
+            'en-US': 'The units displayed after the input box, only valid in input box mode'
+          },
+          'demoId': 'show-input'
         },
         {
           'name': 'format-tooltip',
@@ -180,7 +196,10 @@ export default {
           'name': 'height',
           'type': 'string',
           'defaultValue': `'300px'`,
-          'desc': { 'zh-CN': 'Slider组件的高度，当vertical为true时有效', 'en-US': 'Height of Slider component, effective when vertical is true' },
+          'desc': {
+            'zh-CN': 'Slider 组件的高度，当 vertical 为 true 时有效',
+            'en-US': 'Height of Slider component, effective when vertical is true'
+          },
           'demoId': 'vertical-mode'
         },
         {
@@ -188,8 +207,7 @@ export default {
           'type': 'number',
           'defaultValue': '1',
           'desc': {
-            'zh-CN':
-              '设置总步数，即按快捷键 PageDown/PageUp 时，每次移动的距离是 "⌈(max-min)/num-pages⌉"',
+            'zh-CN': '设置总步数，即按快捷键 PageDown/PageUp 时，每次移动的距离是 "⌈(max-min)/num-pages⌉"',
             'en-US':
               'Set the total number of steps. That is, when you press PageDown or PageUp, the moving distance is "⌈(max-min)/num-pages⌉".'
           },
@@ -209,8 +227,7 @@ export default {
           'type': '(value: number | [number, number]) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '值改变时触发（使用鼠标拖曳时，只在松开鼠标后触发）',
+            'zh-CN': '值改变时触发（使用鼠标拖曳时，只在松开鼠标后触发）',
             'en-US':
               'Triggered when the value changes (When you drag the mouse, it is triggered only after you release the mouse).'
           },
@@ -221,22 +238,18 @@ export default {
           'type': '(event: Event, value: number | [number, number]) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '设置滑块滑动开始时，触发该事件',
-            'en-US':
-              'This event is triggered when the slider starts to slide.'
+            'zh-CN': '设置滑块滑动开始时，触发该事件',
+            'en-US': 'This event is triggered when the slider starts to slide.'
           },
           'demoId': 'slider-event'
         },
         {
-          'name': 'Stop',
+          'name': 'stop',
           'type': '(value: number | [number, number]) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN':
-              '设置滑块滑动结束时，触发该事件',
-            'en-US':
-              'This event is triggered when the slider sliding ends. '
+            'zh-CN': '设置滑块滑动结束时，触发该事件',
+            'en-US': 'This event is triggered when the slider sliding ends. '
           },
           'demoId': 'slider-event'
         }
@@ -246,7 +259,11 @@ export default {
           'name': 'default',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '显示滑块值的插槽，仅仅v-model是单数值时才有效，插槽参数为：slotArg: { slotScope: number }', 'en-US': 'Slot for displaying slider values, valid only if v-model is a single value. Slot parameters are: slotArg: {slotScope: number}' },
+          'desc': {
+            'zh-CN': '显示滑块值的插槽，仅仅 v-model 是单数值时才有效，插槽参数为：slotArg: { slotScope: number }',
+            'en-US':
+              'Slot for displaying slider values, valid only if v-model is a single value. Slot parameters are: slotArg: {slotScope: number}'
+          },
           'demoId': 'slider-slot'
         }
       ]

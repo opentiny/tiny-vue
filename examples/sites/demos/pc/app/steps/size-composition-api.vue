@@ -9,19 +9,16 @@ import { Steps as TinySteps, Modal } from '@opentiny/vue'
 const active = ref(0)
 const data = ref([
   {
-    name: 'Basic Info'
+    name: 'Basic Info',
+    status: 'done'
   },
-  {
-    name: 'AAAAA'
-  },
+  { name: 'BOQ Info', status: 'done', description: 'done 已完成' },
+  { name: 'BBQ Info', status: 'error', description: 'error 错误' },
   {
     name: 'Involved Parties',
-    error: true
+    status: 'disabled'
   },
-  {
-    name: 'Billing',
-    disabled: true
-  }
+  { name: 'Billing', status: '', description: '默认无状态' }
 ])
 
 const normalClick = (index, node) => {

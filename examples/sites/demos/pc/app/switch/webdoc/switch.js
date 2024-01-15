@@ -153,7 +153,7 @@ export default {
           'type': '(value: boolean | string | number) => void',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': 'switch 发生变化的回调函数',
+            'zh-CN': 'switch 状态发生变化时的回调函数',
             'en-US': 'Callback function for switch changes'
           },
           'demoId': 'event-change'

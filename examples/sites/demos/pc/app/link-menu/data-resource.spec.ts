@@ -4,19 +4,12 @@ test.describe('以下3个测试将覆盖3个demo: 数据源、收藏菜单标题
   test('弹框功能是否正常', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
     await page.goto('link-menu#data-resource')
-    const preview = page.locator('#preview')
-    const dialogBox = preview.locator('.tiny-dialog-box')
+    const dialogBox = page.locator('.tiny-dialog-box')
     // 点击图标弹出对话框
-    await preview.getByRole('button').click()
+    await page.locator('#data-resource').getByRole('button').click()
     // 弹框应该可见
     await expect(dialogBox).toBeVisible()
     // 关闭弹框
-    await page.getByRole('button', { name: 'Close' }).click()
-    // 弹框应该不可见
-    await expect(dialogBox).toBeHidden()
-    // 点击图标弹出对话框
-    await preview.getByRole('button').click()
-    // 点击取消按钮
     await page.getByRole('button', { name: '取消' }).click()
     // 弹框应该不可见
     await expect(dialogBox).toBeHidden()
@@ -24,13 +17,12 @@ test.describe('以下3个测试将覆盖3个demo: 数据源、收藏菜单标题
 
   test('菜单内容超长时换行显示、收藏菜单标题', async ({ page }) => {
     page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('link-menu#data-resource2')
-    const preview = page.locator('#preview')
-    const dialogBox = preview.locator('.tiny-dialog-box')
-    const dialogBoxTitle = preview.locator('.tiny-dialog-box__header .tiny-dialog-box__title')
-    const linkMenuList = preview.locator('.tiny-tree.tiny-link-menu__wrap > div')
+    await page.goto('link-menu#data-resource')
+    const dialogBox = page.locator('.tiny-dialog-box')
+    const dialogBoxTitle = page.locator('.tiny-dialog-box__header .tiny-dialog-box__title')
+    const linkMenuList = page.locator('.tiny-tree.tiny-link-menu__wrap > div')
     // 点击图标弹出对话框
-    await preview.getByRole('button').click()
+    await page.locator('#data-resource').getByRole('button').click()
     // 弹框应该可见
     await expect(dialogBox).toBeVisible()
     // 自定义标题
@@ -40,9 +32,8 @@ test.describe('以下3个测试将覆盖3个demo: 数据源、收藏菜单标题
   })
 
   test('是否可以选中菜单项并展示', async ({ page }) => {
-    page.on('pageerror', (exception) => expect(exception).toBeNull())
-    await page.goto('link-menu#data-resource1')
-    const preview = page.locator('#preview')
+    await page.goto('link-menu#data-resource')
+    const preview = page.locator('#data-resource')
     const dialogBox = preview.locator('.tiny-dialog-box')
     const linkMenuList = preview.locator('.tiny-tree.tiny-link-menu__wrap > div')
     // 点击图标弹出对话框

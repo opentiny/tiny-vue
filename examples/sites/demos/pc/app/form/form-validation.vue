@@ -4,7 +4,7 @@
       <div>validate用法：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
     </div>
     <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px">
-      <tiny-form-item label="必填" prop="users" required :validate-icon="validateIcon">
+      <tiny-form-item label="必填" prop="users" :validate-icon="validateIcon">
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="日期" prop="datepicker">
@@ -29,7 +29,8 @@
         <tiny-button type="primary" @click="validType === 'callback' ? handleSubmit() : handleSubmitPromise()">
           提交
         </tiny-button>
-        <tiny-button type="success" @click="clearFormValid"> 移除校验 </tiny-button>
+        <tiny-button type="primary" @click="clearFormValid"> 移除校验 </tiny-button>
+        <tiny-button type="primary" @click="resetForm"> 重置表单 </tiny-button>
       </tiny-form-item>
     </tiny-form>
   </div>
@@ -140,6 +141,9 @@ export default {
     },
     clearFormValid() {
       this.$refs.ruleFormRef.clearValidate()
+    },
+    resetForm() {
+      this.$refs.ruleFormRef.resetFields()
     }
   }
 }

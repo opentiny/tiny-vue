@@ -14,12 +14,22 @@
 @import './vars.less';
 
 @action-menu-prefix-cls: ~'@{css-prefix}action-menu';
+@dropdown-prefix-cls: ~'@{css-prefix}dropdown';
 @dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-item';
 
 .@{action-menu-prefix-cls} {
   .component-css-vars-action-menu();
 
+  .@{dropdown-prefix-cls} {
+    .@{dropdown-prefix-cls}-trigger {
+      .tiny-svg {
+        margin-right: var(--ti-action-menu-more-icon-margin-right);
+      }
+    }
+  }
+
   font-size: var(--ti-action-menu-font-size);
+  font-weight: var(--ti-action-menu-font-weight);
   color: var(--ti-action-menu-text-color);
 
   &__wrap {
@@ -34,6 +44,13 @@
         fill: var(--ti-action-menu-text-color); // TINY-TODO :没有使用--ti-base-color-brand-7的图标色
         margin: var(--ti-action-menu-item-svg-margin-top) var(--ti-action-menu-item-svg-margin-right)
           var(--ti-action-menu-item-svg-margin-bottom) var(--ti-action-menu-item-svg-margin-left);
+      }
+
+      &:not(:has(.tiny-dropdown)) {
+        .tiny-svg {
+          width: var(--ti-action-menu-more-icon-width);
+          height: var(--ti-action-menu-more-icon-height);
+        }
       }
 
       &:not(.is-disabled):hover {
@@ -62,6 +79,7 @@
 
           &:hover {
             background-color: var(--ti-action-menu-item-hover-bg-color);
+            text-decoration: var(--ti-action-menu-hover-text-decoratio);
           }
         }
 
@@ -74,7 +92,7 @@
 
       .@{action-menu-prefix-cls}__item-line {
         position: relative;
-        width: 1px;
+        width: var(--ti-action-menu-item-line-width);
         height: 12px;
         background: var(--ti-action-menu-item-line-bg-color);
         display: inline-block;

@@ -1,5 +1,5 @@
 <template>
-  <tiny-slider v-model="value3"></tiny-slider>
+  <tiny-slider v-model="value"></tiny-slider>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      value3: [20, 40]
+      value: [20, 40]
     }
   }
 }

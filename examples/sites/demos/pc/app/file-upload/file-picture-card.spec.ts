@@ -1,17 +1,17 @@
 import { test, expect } from '@playwright/test'
 
-test('文件缩略图', async ({ page, context }) => {
+test('照片墙的预览、下载与删除', async ({ page, context }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('file-upload#file-picture-card')
 
   const upload = page.locator('.tiny-upload')
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
   const lists = page.locator('.tiny-upload-list__item')
-  const prevPic = page.locator('#preview').getByRole('listitem').locator('svg').first()
+  const prevPic = page.locator('#file-picture-card svg').first()
   const prevImg = page.locator('.tiny-dialog-box__body > img')
   const dialogClose = page.getByRole('button', { name: 'Close' })
-  const dowPic = page.locator('#preview').getByRole('listitem').locator('svg').nth(1)
-  const delbutton = page.locator('#preview').getByRole('listitem').locator('svg').nth(2)
+  const dowPic = page.locator('#file-picture-card svg').nth(1)
+  const delbutton = page.locator('#file-picture-card svg').nth(2)
 
   const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
@@ -19,17 +19,18 @@ test('文件缩略图', async ({ page, context }) => {
   await expect(lists).toHaveCount(0)
   await fileChooser.setFiles(currentPath)
   await expect(lists).toHaveCount(1)
+  await lists.first().hover()
   const [newPage] = await Promise.all([context.waitForEvent('page'), dowPic.click()])
   await expect(newPage.url()).toContain('blob:http://localhost:')
   await newPage.close()
-  await lists.hover()
+  await lists.first().hover()
   await prevPic.click()
   await prevImg.isVisible()
   const { width, height } = await lists.boundingBox()
   await expect(width).toEqual(148)
   await expect(height).toEqual(148)
   await dialogClose.click()
-  await lists.hover()
+  await lists.first().hover()
   await delbutton.click()
   await expect(lists).toHaveCount(0)
 })

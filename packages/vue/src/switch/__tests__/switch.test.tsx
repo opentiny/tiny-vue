@@ -1,7 +1,7 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import Switch from '@opentiny/vue-switch'
-import { nextTick } from 'vue'
+import { nextTick, ref } from 'vue'
 
 let value = false
 
@@ -21,8 +21,7 @@ describe('PC Mode', () => {
         v-slots={{
           open: () => <span class="yes">是</span>,
           close: () => <span class="no">否</span>
-        }}
-      ></Switch>
+        }}></Switch>
     ))
     expect(wrapper.find('.no').exists()).toBe(true)
   })
@@ -35,7 +34,35 @@ describe('PC Mode', () => {
     expect(handleClick).toHaveBeenCalled()
   })
 
-  test.todo('base 基本用法')
-  test.todo('true-value & false-value 自定义开关取值')
-  test.todo('disable 禁用状态')
+  test('base 基本用法', async () => {
+    const switchValue = ref(false)
+    const wrapper = mount(() => <Switch v-model={switchValue.value}></Switch>)
+    expect(wrapper.find('.tiny-switch').exists()).toBe(true)
+    switchValue.value = true
+    await nextTick()
+    expect(wrapper.find('.tiny-switch.tiny-switch-checked').exists()).toBe(true)
+  })
+
+  test('tabindex', () => {
+    const wrapper = mount(() => <Switch tabindex="0" />)
+    expect(wrapper.find('.tiny-switch').attributes().tabindex).toBe('0')
+  })
+
+  test('true-value & false-value 自定义开关取值', async () => {
+    const switchValue = ref('yes')
+    const wrapper = mount(() => <Switch v-model={switchValue.value} true-value="yes" false-value="no"></Switch>)
+    expect(wrapper.find('.tiny-switch.tiny-switch-checked').exists()).toBe(true)
+    await wrapper.find('.tiny-switch').trigger('click')
+    await nextTick()
+    expect(switchValue.value).toBe('no')
+  })
+
+  test('disable 禁用状态', async () => {
+    const value = ref(true)
+    const wrapper = mount(() => <Switch disabled v-model={value.value} />)
+
+    expect(value.value).toEqual(true)
+    await wrapper.find('.tiny-switch').trigger('click')
+    expect(value.value).toEqual(true)
+  })
 })

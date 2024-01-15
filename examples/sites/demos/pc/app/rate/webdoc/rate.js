@@ -194,7 +194,7 @@ export default {
           'type': '[string, string, string]',
           'defaultValue': "['#FADB14', '#FADB14', '#FADB14']",
           'desc': {
-            'zh-CN': 'icon 的颜色数组，为 Threshold 3 个分段所对应的颜色',
+            'zh-CN': 'icon 的颜色数组，为 Threshold 三个分段所对应的颜色',
             'en-US': 'icon color array, which is the color corresponding to the Threshold three segments.'
           },
           'demoId': 'custom-3-threshold-colors'
@@ -209,12 +209,11 @@ export default {
         {
           'name': 'disabled-void-icon-class',
           'typeAnchorName': 'IRateIconName',
-          'type': "IRateIconName",
+          'type': 'IRateIconName',
           'defaultValue': "'icon-starActive'",
           'desc': {
             'zh-CN': '只读状态下未选中的图标样式名',
-            'en-US':
-              "Icon style name that is not selected in read-only state."
+            'en-US': 'Icon style name that is not selected in read-only state.'
           },
           'demoId': 'disabled-not-selected-class'
         },
@@ -305,11 +304,10 @@ export default {
           'name': 'void-icon-class',
           'type': 'IRateIconName',
           'typeAnchorName': 'IRateIconName',
-          'defaultValue': "'icon-starActive'",
+          'defaultValue': "'icon-starDisable'",
           'desc': {
             'zh-CN': '未选中 icon 的图标样式名',
-            'en-US':
-              "Class name of unselected icons."
+            'en-US': 'Class name of unselected icons.'
           },
           'demoId': 'not-selected-class'
         },
@@ -323,14 +321,14 @@ export default {
         {
           'name': 'size',
           'type': 'string',
-          'defaultValue': '18px',
+          'defaultValue': "'18px'",
           'desc': { 'zh-CN': '图标字体大小', 'en-US': 'Icon font size' },
           'demoId': 'size-and-space'
         },
         {
           'name': 'space',
           'type': 'string',
-          'defaultValue': '24px',
+          'defaultValue': "'24px'",
           'desc': { 'zh-CN': '每个图标所占宽度', 'en-US': 'Width of each icon' },
           'demoId': 'size-and-space'
         },
@@ -368,7 +366,7 @@ export default {
     {
       name: 'IRateIconName',
       type: 'type',
-      code: `type IRateIconName = 'icon-starDisable' | 'icon-frown' | 'icon-meh' | 'icon-smile'`
+      code: `type IRateIconName = 'icon-starDisable' | 'icon-starActive' | 'icon-frown' | 'icon-meh' | 'icon-smile'`
     }
   ]
 }

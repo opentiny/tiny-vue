@@ -97,7 +97,7 @@ export const cmpMenus = [
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
-      { 'nameCn': '输入框', 'name': 'IpAddress', 'key': 'ip-address' },
+      { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
       { 'nameCn': '文字链接', 'name': 'Link', 'key': 'link' },
       { 'nameCn': '计数器', 'name': 'Numeric', 'key': 'numeric' },
       { 'nameCn': '弹出编辑', 'name': 'PopEditor', 'key': 'popeditor' },
@@ -244,7 +244,15 @@ export const cmpMenus = [
         }
       },
       { 'nameCn': '图片裁剪', 'name': 'Crop', 'key': 'crop' },
-      { 'nameCn': '表头详情栏', 'name': 'DetailPage', 'key': 'detail-page' },
+      {
+        'nameCn': '表头详情栏',
+        'name': 'DetailPage',
+        'key': 'detail-page',
+        'mark': {
+          'type': 'danger',
+          'text': 'Del'
+        }
+      },
       { 'nameCn': '图片预览', 'name': 'Image', 'key': 'image' },
       { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
       { 'nameCn': '文字滚动', 'name': 'ScrollText', 'key': 'scroll-text' },
@@ -280,6 +288,11 @@ export const cmpMenus = [
         'mark': {
           'text': 'New'
         }
+      },
+      {
+        'nameCn': '脑图',
+        'name': 'mind-map',
+        'key': 'mind-map'
       }
     ]
   }

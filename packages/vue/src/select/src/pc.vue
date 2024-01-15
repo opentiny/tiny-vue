@@ -411,6 +411,7 @@
                 :value="item[valueField]"
                 :disabled="item.disabled"
                 :required="item.required"
+                :icon="item.icon"
                 :highlight-class="item._highlightClass"
                 :events="item.events"
                 @mousedown.stop

@@ -38,7 +38,7 @@ export default {
     {
       'name': 'locales',
       'type': 'component',
-      'properties': [
+      'props': [
         {
           'name': 'local',
           'type': 'boolean',

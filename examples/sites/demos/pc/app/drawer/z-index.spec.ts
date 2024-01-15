@@ -5,6 +5,6 @@ test('自定义堆叠顺序', async ({ page }) => {
   await page.goto('drawer#z-index')
 
   const drawer = page.locator('.tiny-drawer__main')
-  await page.getByRole('button', { name: '自定义z-index' }).click()
+  await page.getByRole('button', { name: '自定义 z-index' }).click()
   await expect(drawer).toHaveCSS('z-index', '3000')
 })

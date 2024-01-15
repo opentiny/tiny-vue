@@ -5,8 +5,6 @@
 </template>
 
 <script lang="jsx">
-// 因为柱状图内使用了折线图，使用前需先引入对应模块
-import 'echarts/lib/chart/line'
 import { ChartHistogram } from '@opentiny/vue'
 
 export default {

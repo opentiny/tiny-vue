@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 270px">
+  <div class="drop-time-demo-basic">
     <tiny-drop-times v-model="value" placeholder="请选择" @change="change"></tiny-drop-times>
     <p>当前选中值：{{ value }}</p>
   </div>
@@ -15,3 +15,9 @@ function change(value) {
   Modal.message({ message: 'change 事件，当前值为 ' + value })
 }
 </script>
+
+<style scoped>
+.drop-time-demo-basic {
+  width: 270px;
+}
+</style>

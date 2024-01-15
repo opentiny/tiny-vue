@@ -88,13 +88,15 @@ export default {
           组件支持显示一个输入框，去过滤显示在左右列表的数据项。<br>
           通过 <code>filterable</code> 属性开启左右侧列表的搜索功能，默认是根据label内容过滤。<br>
           通过 <code>filter-placeholder</code> 属性自定义左右搜索框占位符。<br>
-          通过 <code>filter-method</code> 钩子函数，可自定义左右列表搜索的方法。
+          通过 <code>filter-method</code> 钩子函数，可自定义左右列表搜索的方法。<br>
+          调用 <code>clearQuery()</code> 方法,可清空左右侧列表的搜索框，参数为 left 或者 right 。<br>
         `,
         'en-US': `
           At the top of the left and right lists, you can display an input field to filter the data items that display the left and right lists. <br>
           Use the <code>filterable</code> attribute to enable the search function of the left and right lists, which by default filter based on the label content. <br>
           Use the <code>filter-placeholder</code> attribute to define the placeholder for the left and right search boxes. <br>
-          The <code>filter-method</code> hook allows you to customize the way you search the left and right lists.
+          The <code>filter-method</code> hook allows you to customize the way you search the left and right lists.<br>
+          The <code>clearQuery()</code> method clears the search box in the left and right lists with either the left or right arguments.<br>
         `
       },
       'codeFiles': ['custom-filter.vue']
@@ -114,7 +116,6 @@ export default {
       },
       'codeFiles': ['default-checked.vue']
     },
-
     {
       'demoId': 'drop-config',
       'name': { 'zh-CN': '可拖拽', 'en-US': 'Drag left and right' },
@@ -136,16 +137,7 @@ export default {
       },
       'codeFiles': ['target-order.vue']
     },
-    {
-      'demoId': 'manual-clear-query',
-      'name': { 'zh-CN': '手动清空搜索框', 'en-US': 'Clear the search box manually' },
-      'desc': {
-        'zh-CN': '调用 <code>clearQuery()</code> 方法可清空左右侧列表的搜索框，参数为 left 或者 right 。',
-        'en-US':
-          'The <code>clearQuery()</code> method clears the search box in the left and right lists with either the left or right arguments.'
-      },
-      'codeFiles': ['manual-clear-query.vue']
-    },
+
     {
       'demoId': 'before-transfer',
       'name': { 'zh-CN': '穿梭拦截', 'en-US': 'Clear the search box manually' },
@@ -208,7 +200,7 @@ export default {
           'demoId': 'basic-usage'
         },
         {
-          'name': 'modelValue',
+          'name': 'v-model / modelValue',
           'type': 'string[]',
           'defaultValue': '[]',
           'desc': {
@@ -221,24 +213,30 @@ export default {
           'name': 'filterable',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否可搜索', 'en-US': 'Filterable or not' },
+          'desc': {
+            'zh-CN': '是否启用搜索的功能',
+            'en-US': 'Whether to enable the search function'
+          },
           'demoId': 'custom-filter'
         },
         {
           'name': 'filter-placeholder',
           'type': 'string',
           'defaultValue': '',
-          'desc': { 'zh-CN': '搜索框占位符', 'en-US': 'Search box placeholder' },
+          'desc': {
+            'zh-CN': '启用搜索时，搜索框占位符',
+            'en-US': "When Search, filter box's placeholder"
+          },
           'demoId': 'custom-filter'
         },
         {
           'name': 'filter-method',
-          'type': '(query:string ,  item:object) => boolean',
+          'type': '(query:string, item:object) => boolean',
           'defaultValue': '',
           'desc': {
             'zh-CN': `
-              设置穿梭框的搜索过滤函数，仅在默认列表和嵌套表时有效; <br>
-              嵌套树时，请使用treeConfig进行搜索配置;<br> 
+              设置穿梭框的搜索过滤函数，仅在默认列表和嵌套表时有效。<br>
+              嵌套树时，请使用treeConfig进行搜索配置。<br> 
             `,
             'en-US': `
               Set the search filter function for the transfer to work only for default lists and nested tables. <br>
@@ -253,9 +251,9 @@ export default {
           'defaultValue': '[]',
           'desc': {
             'zh-CN':
-              '自定义列表标题;不设置titles时，左右列表的标题默认显示为： <code> 列表 1</code><code> 列表 2</code>',
+              '自定义列表的标题;不设置titles时，左右列表的标题默认显示为： <code> 列表 1</code>，<code> 列表 2</code>',
             'en-US':
-              'Custom list titles When titles are not set, the titles of the left and right lists are displayed by default: <code> list 1</code><code> list 2</code>'
+              'Custom list titles When titles are not set, the titles of the left and right lists are displayed by default: <code> list 1</code>,<code> list 2</code>'
           },
           'demoId': 'custom-titles'
         },
@@ -263,7 +261,11 @@ export default {
           'name': 'button-texts',
           'type': 'string[]',
           'defaultValue': '[]',
-          'desc': { 'zh-CN': '自定义按钮文案', 'en-US': 'Custom Button Text' },
+          'desc': {
+            'zh-CN': '通过传入一个2值的字符串数组，自定义左右穿梭按钮的文案',
+            'en-US':
+              'Customize the copy of the left and right shuttle button by passing in an array of 2-valued strings'
+          },
           'demoId': 'custom-btns'
         },
         {
@@ -271,8 +273,8 @@ export default {
           'type': '(h: Vue.h, item: any) => vnode',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '自定义数据项渲染函数',
-            'en-US': 'Custom data item rendering function; Its type is declared as: (h, item) => vnode'
+            'zh-CN': '数据项的自定义渲染函数',
+            'en-US': 'Custom data item rendering function'
           },
           'demoId': 'custom-render'
         },
@@ -280,8 +282,12 @@ export default {
           'name': 'format',
           'type': 'object',
           'defaultValue':
-            "{ <br>&nbsp; noChecked:'${checked}/${total}', <br>&nbsp; hasChecked: '${checked}/${total}' <br>}",
-          'desc': { 'zh-CN': '列表顶部勾选状态文案', 'en-US': 'Check the status copy at the top of the list' },
+            // eslint-disable-next-line no-template-curly-in-string
+            "{ <br>&nbsp;&nbsp; noChecked:'${checked}/${total}', <br>&nbsp;&nbsp; hasChecked: '${checked}/${total}' <br>}",
+          'desc': {
+            'zh-CN': '列表顶部勾选状态文案',
+            'en-US': 'Check the status copy at the top of the list'
+          },
           'demoId': 'custom-titles'
         },
         {
@@ -299,8 +305,8 @@ export default {
           'type': 'string[]',
           'defaultValue': '[]',
           'desc': {
-            'zh-CN': '初始状态下左侧列表的已勾选项的 key 数组',
-            'en-US': 'Initially, the key array of the checked items in the left list'
+            'zh-CN': '默认左侧列表的已勾选项的 key 数组',
+            'en-US': 'The key array of the checked items in the left list'
           },
           'demoId': 'default-checked'
         },
@@ -309,8 +315,8 @@ export default {
           'type': 'string[]',
           'defaultValue': '[]',
           'desc': {
-            'zh-CN': '初始状态下右侧列表的已勾选项的 key 数组',
-            'en-US': 'Initially, the key array of the checked items in the right list'
+            'zh-CN': '默认右侧列表的已勾选项的 key 数组',
+            'en-US': 'The key array of the checked items in the right list'
           },
           'demoId': 'default-checked'
         },
@@ -319,13 +325,13 @@ export default {
           'type': 'string',
           'defaultValue': '"original"',
           'desc': {
-            'zh-CN': ` 右侧列表元素的插入排序策略,该属性的可选值为 original / push / unshift;<br>
-                &nbsp; 若为 original，则保持与数据源相同的顺序；<br>
-                &nbsp; 若为 push，则新加入的元素排在最后；<br>
-                &nbsp; 若为 unshift，则新加入的元素排在最前;`,
-            'en-US': `The insertion sort strategy for the elements in the list on the right, with the optional values original/push/unshift; <br>
-                &nbsp;  If original, it maintains the same order as the data source. <br>
-                &nbsp;  If it is a push, the new element is listed last. <br>
+            'zh-CN': ` 右侧列表元素的插入排序策略,该属性的可选值为 original / push / unshift; <br>
+                &nbsp; 若为 original，则保持与数据源相同的顺序； <br>
+                &nbsp; 若为 push，则新加入的元素排在最后； <br>
+                &nbsp; 若为 unshift，则新加入的元素排在最前。`,
+            'en-US': `The insertion sort strategy for the elements in the list on the right, with the optional values original/push/unshift;<br>
+                &nbsp;  If original, it maintains the same order as the data source.<br>
+                &nbsp;  If it is a push, the new element is listed last.<br>
                 &nbsp;  If unshift is used, the new element is listed first.
               `
           },
@@ -355,7 +361,10 @@ export default {
           'name': 'show-all-btn',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否展示全部移动按钮', 'en-US': 'Whether to show all move buttons' },
+          'desc': {
+            'zh-CN': '是否显示全部移动按钮',
+            'en-US': 'Whether to show all move buttons'
+          },
           'demoId': 'custom-btns'
         },
         {
@@ -364,8 +373,8 @@ export default {
           'typeAnchorName': 'IDropConfig',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '设置穿梭框列表项可拖拽',
-            'en-US': 'Make the transfer list item draggable'
+            'zh-CN': '设置穿梭框列表项可拖拽的参数，参见sortablejs插件',
+            'en-US': 'To set drag-and-drop parameters for shuttle list items, see sortablejs plugin'
           },
           'demoId': 'drop-config'
         },
@@ -375,7 +384,7 @@ export default {
           'typeAnchorName': 'grid#IColumnConfig',
           'defaultValue': '',
           'desc': {
-            'zh-CN': '在渲染类型为 table 时，设置穿梭框的表格列配置',
+            'zh-CN': '在渲染类型为 table 时，设置穿梭框表格的列配置',
             'en-US': `When the render type is table, set the transfer's table column configuration`
           },
           'demoId': 'nested-table'
@@ -385,7 +394,7 @@ export default {
           'type': 'boolean',
           'defaultValue': 'false',
           'desc': {
-            'zh-CN': '在渲染类型为 table 时，设置是否显示分页',
+            'zh-CN': '在渲染类型为 table 时，设置表格是否显示分页',
             'en-US': 'Sets whether pagination should be displayed when the render type is table.'
           },
           'demoId': 'nested-table'
@@ -396,7 +405,7 @@ export default {
           'typeAnchorName': 'IPagerOp',
           'defaultValue': "{ mode: 'fixed',pageVO: {currentPage: 1,pageSize: 10}",
           'desc': {
-            'zh-CN': '在渲染类型为 table 时，设置分页配置',
+            'zh-CN': '在渲染类型为 table 时，设置表格的分页配置',
             'en-US': 'When the render type is table, set the paging configuration'
           },
           'demoId': 'nested-table'
@@ -407,9 +416,9 @@ export default {
           'defaultValue': '',
           'desc': {
             'zh-CN':
-              '设置左右区域的渲染类型,Table 和 Tree 对象需要从组件包中引入相应的组件变量。该属性值的plugin设置为Table时设置渲染为表格;该属性值的pluginplugin设置为Tree渲染为树',
+              '设置左右区域的渲染类型,Table 和 Tree 对象需要从组件包中引入相应的组件变量。<br>该属性值的plugin设置为Table时设置渲染为表格;该属性值的pluginplugin设置为Tree渲染为树',
             'en-US':
-              'Sets the rendering type for the left and right regions. This property renders to a Table when plugin is set to table; The value of the pluginplugin set to Tree renders as a tree'
+              'Sets the rendering type for the left and right regions. <br>This property renders to a Table when plugin is set to table; The value of the pluginplugin set to Tree renders as a tree'
           },
           'demoId': 'nested-table'
         },
@@ -431,7 +440,7 @@ export default {
           'type': '(value:string[], move:string, keyArray:string[])=>void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': `右侧列表元素变化时触发;<br>
+            'zh-CN': `右侧列表元素变化时触发的事件;<br>
                 value: 穿梭框右侧数据值列表<br>
                 move: 数据移动方向，是left或者right<br>
                 keyArray: 被移动的数据值列表`,
@@ -448,7 +457,7 @@ export default {
           'type': '(checked:string[], statusChanged:string[]) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': `左侧列表元素被用户选中 / 取消选中时触发;<br>
+            'zh-CN': `左侧列表元素选择时触发的事件;<br>
               checked: 穿梭框左侧被选中的数据值列表<br>
               statusChanged: 穿梭框左侧选中状态发生变化的数据值列表`,
             'en-US': `Triggered when an element in the left list is selected/unselected by the user. <br>
@@ -462,7 +471,7 @@ export default {
           'type': '(checked:string[], statusChanged:string[]) => void',
           'defaultValue': '',
           'desc': {
-            'zh-CN': `右侧列表元素被用户选中 / 取消选中时触发;<br>
+            'zh-CN': `右侧列表元素选择时触发的事件;<br>
               checked: 穿梭框右侧被选中的数据值列表<br>
               statusChanged: 穿梭框右侧选中状态发生变化的数据值列表`,
             'en-US': `Triggered when an element in the list on the right is selected/unselected by the user <br>
@@ -487,35 +496,50 @@ export default {
           'name': 'left-footer',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '左侧列表底部的内容插槽', 'en-US': 'Content at the bottom of the left list' },
+          'desc': {
+            'zh-CN': '左侧列表底部的内容插槽',
+            'en-US': 'Content at the bottom of the left list'
+          },
           'demoId': 'custom-footer'
         },
         {
           'name': 'right-footer',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '右侧列表底部的内容插槽', 'en-US': 'Content at the bottom of the right list' },
+          'desc': {
+            'zh-CN': '右侧列表底部的内容插槽',
+            'en-US': 'Content at the bottom of the right list'
+          },
           'demoId': 'custom-footer'
         },
         {
           'name': 'button-panel',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '穿梭按钮插槽', 'en-US': 'Customized transfer button' },
+          'desc': {
+            'zh-CN': '穿梭按钮插槽',
+            'en-US': 'Customized transfer button'
+          },
           'demoId': ''
         },
         {
           'name': 'left-panel',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '左侧自定义内容插槽', 'en-US': 'Customized content on the left' },
+          'desc': {
+            'zh-CN': '左侧自定义内容插槽',
+            'en-US': 'Customized content on the left'
+          },
           'demoId': ''
         },
         {
           'name': 'right-panel',
           'type': '',
           'defaultValue': '',
-          'desc': { 'zh-CN': '右侧自定义内容插槽', 'en-US': 'Customized content on the right' },
+          'desc': {
+            'zh-CN': '右侧自定义内容插槽',
+            'en-US': 'Customized content on the right'
+          },
           'demoId': ''
         }
       ],
@@ -524,8 +548,11 @@ export default {
           'name': 'clearQuery',
           'type': '(name: string) => void',
           'defaultValue': '',
-          'desc': { 'zh-CN': '清空某个面板的搜索关键词', 'en-US': 'Clear the search keywords of a panel.' },
-          'demoId': 'manual-clear-query'
+          'desc': {
+            'zh-CN': '开启过滤功能时，清空左右面板的搜索关键词',
+            'en-US': 'When the filtering function is enabled, clear the search keywords on the left and right panels'
+          },
+          'demoId': 'custom-filter'
         }
       ]
     }
@@ -536,7 +563,7 @@ export default {
       type: 'interface',
       code: `
 interface IDropConfig {
-  plugin: object // 指定拖放排序的插件， 一般是通过 import Sortable from 'sortablejs' 导入
+  plugin: object // 指定拖放排序的插件Sortable, 该变量通过 import Sortable from 'sortablejs' 导入
 }
       `
     },
@@ -551,8 +578,7 @@ interface IPagerOp {
     currentPage: number
     pageSize: number
     pageSizes: number[]
-    // 分页组件布局默认值：'total, prev, pager, next, jumper, sizes'
-    layout: string 
+    layout: string   // 分页组件布局默认值：'total, prev, pager, next, jumper, sizes'
   }
 }
       `

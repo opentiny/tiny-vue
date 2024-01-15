@@ -60,6 +60,10 @@ export const inputProps = {
     type: String,
     default: 'text'
   },
+  memorySpace: {
+    type: Number,
+    default: 5
+  },
   vertical: {
     type: Boolean,
     default: false
@@ -80,7 +84,7 @@ export const inputProps = {
     type: Boolean,
     default: false
   },
-  mobileTips: String,
+  tips: String,
   counter: {
     type: Boolean,
     default: false
@@ -116,7 +120,7 @@ export const inputProps = {
   // mobile特有属性
   textareaTitle: {
     type: String,
-    default: '标题'
+    default: ''
   },
   displayOnly: {
     type: Boolean,
@@ -137,6 +141,13 @@ export const inputProps = {
   showEmptyValue: {
     type: Boolean,
     default: false
+  },
+  textAlign: {
+    type: String,
+    default: 'left'
+  },
+  width: {
+    type: [String, Number] as PropType<string | number | null>
   }
 }
 

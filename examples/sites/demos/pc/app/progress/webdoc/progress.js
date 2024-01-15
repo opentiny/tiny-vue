@@ -54,23 +54,14 @@ export default {
     },
     {
       'demoId': 'progress-type-circle',
-      'name': { 'zh-CN': '全封闭环形', 'en-US': 'Fully enclosed annular' },
+      'name': { 'zh-CN': '环形', 'en-US': 'Annular' },
       'desc': {
         'zh-CN':
-          '通过 <code>type="circle"</code> 设置为全封闭环形类型， <code>width</code> 设置环形进度条画布宽度，默认值为126px。',
+          '通过 <code>type="circle"</code> 设置为圆环类型，<code>type="dashboard"</code> 则为C型圆环类型; <code>width</code> 设置环形进度条画布宽度，默认值为126px。',
         'en-US':
-          'Set <code>type="circle"</code> to a fully enclosed circular type, and <code>width</code> to set the width of the circular progress bar canvas, with a default value of 126px.'
+          'Set<code>type="circle"</code>to the circular type, and<code>type="dashboard"</code>to the C-shaped circular type< Code>width</code>Set the width of the circular progress bar canvas, with a default value of 126px.'
       },
       'codeFiles': ['progress-type-circle.vue']
-    },
-    {
-      'demoId': 'progress-type-dashboard',
-      'name': { 'zh-CN': '非全封闭环形', 'en-US': 'Non fully enclosed annular' },
-      'desc': {
-        'zh-CN': '通过 <code>type="dashboard"</code> 设置为非全封闭环形类型。',
-        'en-US': 'Set to a semi enclosed circular type through <code>type="dashboard"</code> .'
-      },
-      'codeFiles': ['progress-type-dashboard.vue']
     }
   ],
   apis: [
@@ -115,12 +106,11 @@ export default {
         },
         {
           'name': 'status',
-          'type': 'string',
+          'type': `'success' | 'exception' | 'warning'`,
           'defaultValue': '',
           'desc': {
-            'zh-CN': '进度条当前状态；该属性的可选值为 success / exception / warning',
-            'en-US':
-              'Current status of the progress bar; The value of this attribute can be success, exception, or warning'
+            'zh-CN': '进度条当前状态',
+            'en-US': 'Current status of the progress bar'
           },
           'demoId': 'progress-status'
         },
@@ -147,11 +137,11 @@ export default {
         },
         {
           'name': 'type',
-          'type': 'string',
-          'defaultValue': 'line',
+          'type': `'line' | 'circle' | 'dashboard'`,
+          'defaultValue': `'line'`,
           'desc': {
-            'zh-CN': '进度条类型；该属性的可选值为 line / circle / dashboard',
-            'en-US': 'Progress bar type; The value of this attribute can be line, circle, or dashboard'
+            'zh-CN': '进度条类型',
+            'en-US': 'Progress bar type'
           },
           'demoId': 'progress-type-circle'
         },
