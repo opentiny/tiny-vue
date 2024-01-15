@@ -14,7 +14,7 @@ function alertClick() {
 }
 
 function messageClick() {
-  Modal.message('message 提示框')
+  Modal.message({ status: 'info', message: 'message 提示框' })
 }
 
 function confirmClick() {
@@ -22,7 +22,7 @@ function confirmClick() {
     Notify({
       type: 'info',
       title: '触发回调事件',
-      message: `点击${res}按钮`
+      message: `点击 ${res} 按钮`
     })
   })
 }

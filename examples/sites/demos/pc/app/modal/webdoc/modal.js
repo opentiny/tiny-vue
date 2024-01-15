@@ -175,7 +175,7 @@ export default {
       'name': { 'zh-CN': '消息状态', 'en-US': 'Position From The Top' },
       'desc': {
         'zh-CN':
-          '<p>可通过<code>status</code>属性设置消息状态，可选值有<code>info</code><code>success</code><code>warning</code><code>error</code><code>loading</code>。</p>',
+          '<p>可通过<code>status</code>属性设置消息状态，可选值有<code>info</code>、<code>success</code>、<code>warning</code>、<code>error</code>、<code>loading</code>。</p>',
         'en-US':
           '<p>Set the message status through<code>status</code>, with optional values including<code>info</code><code>success</code><code>warning</code><code>error</code><code>loading</code>.</p>'
       },
@@ -257,13 +257,13 @@ export default {
       'codeFiles': ['footer-slot.vue']
     },
     {
-      'demoId': 'grid',
+      'demoId': 'default-grid',
       'name': { 'zh-CN': '嵌套表格', 'en-US': 'Nested Tables' },
       'desc': {
         'zh-CN': '<p>可通过<code>#default</code>插槽设置嵌套表格组件。</p>',
         'en-US': 'Table components can be nested via <code>#default</code> slot.'
       },
-      'codeFiles': ['grid.vue']
+      'codeFiles': ['default-grid.vue']
     },
     {
       'demoId': 'event',
@@ -512,7 +512,8 @@ export default {
         },
         {
           'name': 'status',
-          'type': "'info' | 'success' | 'warning' | 'error' | 'loading'",
+          'type': 'IStatus',
+          'typeAnchorName': 'IStatus',
           'defaultValue': "'info'",
           'desc': {
             'zh-CN': "消息状态，当 type 为 'alert'、'message'、'confirm' 时有效",
@@ -648,7 +649,7 @@ export default {
             'zh-CN': '默认插槽',
             'en-US': 'Default slot'
           },
-          'demoId': 'grid'
+          'demoId': 'default-grid'
         },
         {
           'name': 'footer',
@@ -673,6 +674,13 @@ interface IModalEventParam {
   $modal: ComponentPublicInstance // Modal组件实例
 }
 `
+    },
+    {
+      name: 'IStatus',
+      type: 'type',
+      code: `
+          type IStatus = 'info' | 'success' | 'warning' | 'error' | 'loading'
+      `
     }
   ]
 }
