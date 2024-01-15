@@ -52,7 +52,22 @@ describe('PC Mode', () => {
 
   test.todo('step 设置滑块移动时，每步位移距离，必需是大于0的正整数。')
 
-  test.todo('show-input 是否显示输入框，仅在非范围选择时有效')
+  test('show-input 是否显示输入框，仅在非范围选择时有效', async () => {
+    const value = ref(60)
+    const wrapper = mount(() => <Slider v-model={value.value} showInput={true} min={0} max={100} />)
+
+    const input = wrapper.find('.tiny-slider__input input')
+    expect(input.exists()).toBe(true)
+    await input.setValue(110)
+    expect(value.value).toBe(100)
+  })
+
+  test('show-percent 是否显示百分比，仅在show-input为true时有效', async () => {
+    const value = ref(60)
+    const wrapper = mount(() => <Slider v-model={value.value} showInput={true} showPercent={true} min={0} max={100} />)
+
+    expect(wrapper.find('.tiny-slider__input span').text()).toBe('%')
+  })
 
   test.todo('format-tooltip 格式化 tooltip message')
 
