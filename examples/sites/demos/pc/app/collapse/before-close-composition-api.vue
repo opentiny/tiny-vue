@@ -26,8 +26,8 @@ import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem, Modal } fro
 
 const activeName = ref('1')
 
-function beforeClose(item, activeNames) {
-  Modal.message({ message: '阻止面板切换，当前点击面板：' + item.name, status: 'error' })
+function beforeClose(name, activeNames, item) {
+  Modal.message({ message: '阻止面板切换，当前点击面板：' + name, status: 'error' })
   return false
 }
 </script>

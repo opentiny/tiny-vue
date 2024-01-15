@@ -18,7 +18,7 @@
       <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
     </tiny-collapse-item>
   </tiny-collapse>
-  <button @click="click">click</button>
+  <button @click="click">通过绑定值修改</button>
 </template>
 
 <script>

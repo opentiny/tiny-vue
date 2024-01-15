@@ -29,6 +29,7 @@ export const collapseProps = {
   },
   accordion: Boolean,
   beforeClose: Function,
+  change: Function,
   modelValue: {
     type: [Array, String, Number],
     default: () => []

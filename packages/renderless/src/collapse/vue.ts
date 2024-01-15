@@ -44,15 +44,29 @@ export const renderless = (
   watch(
     () => props.modelValue,
     (value, oldValue) => {
-      if (oldValue && value !== oldValue) {
-        let result = props.beforeClose ? props.beforeClose(value || null, state.activeNames, null) : true
-        if (!result) {
+      if (Array.isArray(value)) {
+        try {
+          if (oldValue && value !== oldValue) {
+            value.forEach((val) => {
+              let result = props.beforeClose ? props.beforeClose(val || null, state.activeNames, null) : true
+              if (!result) {
+                throw new Error('error')
+              }
+            })
+          }
+        } catch (e) {
           return
         }
+        state.activeNames = value as string[]
+      } else {
+        if (oldValue && value !== oldValue) {
+          let result = props.beforeClose ? props.beforeClose(value || null, state.activeNames, null) : true
+          if (!result) {
+            return
+          }
+        }
+        state.activeNames = [value as string]
       }
-      const list: string[] = []
-      list.push(value as string)
-      state.activeNames = list
     },
     { immediate: true, deep: true }
   )

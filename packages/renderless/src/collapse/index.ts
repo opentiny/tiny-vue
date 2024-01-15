@@ -14,9 +14,10 @@ import type { ICollapseRenderlessParams } from '@/types'
 export const setActiveNames =
   ({ emit, props, state }: Pick<ICollapseRenderlessParams, 'emit' | 'props' | 'state'>) =>
   (activeNames: string | string[]): void => {
-    activeNames = Array.isArray(activeNames) ? new Array<string>().concat(activeNames) : [activeNames]
-    const value: string | string[] = props.accordion ? activeNames[0] : activeNames
-    state.activeNames = activeNames
+    // activeNames = [].concat(activeNames)
+    const Names: string[] = Array.isArray(activeNames) ? activeNames : [activeNames]
+    const value: string | string[] = props.accordion ? (Array.isArray(Names) ? Names[0] : Names) : Names
+    state.activeNames = Names
     emit('update:modelValue', value)
     emit('change', value)
   }
@@ -25,15 +26,14 @@ interface Object {
 }
 export const handleItemClick =
   ({ api, props, state }: Pick<ICollapseRenderlessParams, 'api' | 'props' | 'state'>) =>
-  (item: Object | undefined) => {
+  (item?: Object) => {
+    const activeNames = state.activeNames.slice(0)
     if (!item || !Object.keys(item).includes('name')) {
       return
     }
-    const activeNames = state.activeNames.slice(0)
     const index = activeNames.indexOf(item.name!)
     const beforeClose = () => {
-      let result = props.beforeClose ? props.beforeClose(item.name, state.activeNames, item) : true
-
+      let result = props.beforeClose ? props.beforeClose(item.name!, state.activeNames, item) : true
       return new Promise((resolve) => {
         if (result && result.then) {
           result.then(() => resolve(true)).catch(() => resolve(false))
@@ -49,7 +49,7 @@ export const handleItemClick =
           api.setActiveNames(activeNames[0] === item.name! ? '' : item.name!)
         }
       } else {
-        index > -1 ? next && activeNames.splice(index, 1) : activeNames.push(item.name!)
+        index > -1 ? next && activeNames.splice(index, 1) : next && activeNames.push(item.name!)
 
         api.setActiveNames(activeNames)
       }
