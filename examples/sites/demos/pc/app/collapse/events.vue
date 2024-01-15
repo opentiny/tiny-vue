@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     change(activeNames) {
-      console.log('activeNames', activeNames)
       Modal.message({
         message: 'change 事件，当前激活面板：' + activeNames,
         status: 'info'
