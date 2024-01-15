@@ -40,10 +40,8 @@ export default {
       'demoId': 'suffix-icon',
       'name': { 'zh-CN': '后置图标', 'en-US': 'Rear icon' },
       'desc': {
-        'zh-CN':
-          '<p>通过 <code>suffix-icon</code> 属性设置日期输入框后置图标，从 <code>@opentiny/vue-icon</code> 中导入一个图标并进行初始化后传给 <code>suffix-icon</code>。</p>\n',
-        'en-US':
-          '<p> uses the <code>suffix-icon</code> attribute to set the icon behind the date text box. An icon is imported from the <code>@opentiny/vue-icon</code>, initialized, and transferred to the <code>suffix-icon</code>. </p>\n'
+        'zh-CN': '<p>通过 <code>suffix-icon</code> 属性设置时间输入框后置图标。</p>\n',
+        'en-US': '<p> uses the <code>suffix-icon</code> attribute to set the icon behind the time text box. </p>\n'
       },
       'codeFiles': ['suffix-icon.vue']
     },
@@ -52,7 +50,7 @@ export default {
       'name': { 'zh-CN': '清空图标', 'en-US': 'Customized Clear Icon' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>clearable</code> 显示清空图标，通过 <code>clear-icon</code> 自定义清空图标，通过 <code>popper-class</code> 自定义原生属性。</p>',
+          '<p>通过 <code>clearable</code> 显示清空图标，通过 <code>clear-icon</code> 自定义清空图标，通过 <code>popper-class</code> 属性设置下拉框的类名。</p>',
         'en-US': '<p>Clear the icon by <code>clear-icon</code></p>\n'
       },
       'codeFiles': ['clear-icon.vue']
@@ -72,9 +70,9 @@ export default {
       'demoId': 'editable',
       'name': { 'zh-CN': '文本框不可编辑', 'en-US': 'The text box cannot be edited.' },
       'desc': {
-        'zh-CN': '<p>日期输入框默认可以输入日期，设置 <code>editable</code> 为 false 后，将不能输入。</p>\n',
+        'zh-CN': '<p>时间输入框默认可以输入时间，设置 <code>editable</code> 为 false 后，将不能输入。</p>\n',
         'en-US':
-          'By default, you can enter a date in the <p>Date text box. If you set <code>editable</code> to false, you cannot enter a date in the <p>Date text box. </p>\n'
+          'By default, you can enter a time in the <p>Time text box. If you set <code>editable</code> to false, you cannot enter a time in the <p>Time text box. </p>\n'
       },
       'codeFiles': ['editable.vue']
     },
