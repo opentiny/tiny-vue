@@ -29,6 +29,12 @@
             >
           </tiny-checkbox-group>
         </tiny-form-item>
+        <tiny-form-item label="技能" prop="skill" required>
+          <tiny-select v-model="value">
+            <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+            </tiny-option>
+          </tiny-select>
+        </tiny-form-item>
       </tiny-form>
       <template #footer>
         <tiny-button type="primary" :loading="btnSubmit.loading" @click="handleSubmit">{{
@@ -50,7 +56,9 @@ import {
   RadioGroup,
   Checkbox,
   CheckboxGroup,
-  Notify
+  Notify,
+  Select,
+  Option
 } from '@opentiny/vue'
 
 export default {
@@ -63,10 +71,17 @@ export default {
     TinyRadio: Radio,
     TinyRadioGroup: RadioGroup,
     TinyCheckbox: Checkbox,
-    TinyCheckboxGroup: CheckboxGroup
+    TinyCheckboxGroup: CheckboxGroup,
+    TinySelect: Select,
+    TinyOption: Option
   },
   data() {
     return {
+      options: [
+        { value: 'js', label: 'js' },
+        { value: 'java', label: 'java' }
+      ],
+      value: '',
       btnSubmit: {
         loading: false,
         text: {

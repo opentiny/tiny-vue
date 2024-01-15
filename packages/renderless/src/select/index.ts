@@ -572,9 +572,9 @@ export const handleBlur =
       } else {
         emit('blur', event)
       }
-
-      dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.formBlur, event?.target?.value)
     }, 200)
+    // 表单校验不能异步，否则弹窗中嵌套表单会出现弹窗关闭后再出现校验提示的bug
+    dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.formBlur, event?.target?.value)
 
     state.softFocus = false
   }
