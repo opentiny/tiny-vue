@@ -18,6 +18,7 @@
       <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
     </tiny-collapse-item>
   </tiny-collapse>
+  <button @click="click">click</button>
 </template>
 
 <script>
@@ -34,9 +35,12 @@ export default {
     }
   },
   methods: {
-    beforeClose(item, activeNames) {
-      Modal.message({ message: '阻止面板切换，当前点击面板：' + item.name, status: 'error' })
+    beforeClose(name, activeNames, item) {
+      Modal.message({ message: '阻止面板切换，当前点击面板：' + name, status: 'error' })
       return false
+    },
+    click() {
+      this.activeName = '3'
     }
   }
 }
