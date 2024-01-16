@@ -103,11 +103,13 @@ export default {
         },
         {
           'name': 'before-close',
-          'type': '(item: Component, activeNames: string | number | Array) => boolean',
+          'type': '(name: string, activeNames: string | number | Array,item?: Component) => boolean',
           'defaultValue': '--',
           'desc': {
-            'zh-CN': '阻止折叠面板切换',
-            'en-US': 'Do not close the folding panel.'
+            'zh-CN':
+              '设置 before-close 属性，如果返回 false，将阻止面板的切换（直接修改 modelValue，则无第三项参数item）。',
+            'en-US':
+              'Set the before-close property. If false is returned, the switch of the panel will be blocked (if the modelValue is modified directly, there is no third parameter item).'
           },
           'demoId': 'before-close'
         },

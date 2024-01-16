@@ -28,21 +28,46 @@ export const renderless = (
 ) => {
   const eventName = constants.EVENT_NAME.CollapseItemClick
 
-  const state: ICollapseState = reactive({
+  const state: ICollapseState = reactive<{
+    activeNames: any[]
+  }>({
     activeNames: []
   })
 
   const api: ICollapseApi = {
     state,
-    setActiveNames: setActiveNames({ emit, props, state })
+    setActiveNames: setActiveNames({ emit, props, state }),
+    handleItemClick: () => {}
   }
 
   api.handleItemClick = handleItemClick({ api, props, state })
-
   watch(
     () => props.modelValue,
-    (value) => {
-      state.activeNames = value || value === 0 ? [].concat(value) : []
+    (value, oldValue) => {
+      if (Array.isArray(value)) {
+        if (value && value !== oldValue && oldValue) {
+          try {
+            value.forEach((val) => {
+              let result = props.beforeClose ? props.beforeClose(val || null, state.activeNames, null) : true
+              if (!result) {
+                throw new Error('error')
+              }
+            })
+          } catch (e) {
+            return
+          }
+        }
+
+        state.activeNames = value as string[]
+      } else {
+        if (value && value !== oldValue && oldValue) {
+          let result = props.beforeClose ? props.beforeClose(value || null, state.activeNames, null) : true
+          if (!result) {
+            return
+          }
+        }
+        state.activeNames = [value as string]
+      }
     },
     { immediate: true, deep: true }
   )
