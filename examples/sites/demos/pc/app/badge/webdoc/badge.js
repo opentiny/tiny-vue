@@ -14,7 +14,7 @@ export default {
     },
     {
       'demoId': 'type',
-      'name': { 'zh-CN': '主題样式', 'en-US': 'Theme Style' },
+      'name': { 'zh-CN': '主题样式', 'en-US': 'Theme Style' },
       'desc': {
         'zh-CN':
           '<p>通过 <code>type</code> 设置显示主题，可选值： <code>primary</code> 、<code>success</code> 、<code>warning</code> 、<code>danger</code> 、<code>info</code>。</p>\n',
@@ -160,7 +160,7 @@ export default {
           'defaultValue': '--',
           'desc': {
             'zh-CN':
-              "指定徽章显示的最大值,如果实际获取的徽章值超过该最大值，则以最大值后接一个 '+' 的形式显示徽章数，要求 value 是 number 类型",
+              "指定徽章显示的最大值，如果实际获取的徽章值超过该最大值，则以最大值后接一个 '+' 的形式显示徽章数，要求 value 是 number 类型",
             'en-US':
               'Specifies the maximum number of badges to be displayed. If the actual badge value exceeds the maximum value, the number of badges is displayed in the format of "+". The value must be of the number type.'
           },
@@ -189,7 +189,8 @@ export default {
         },
         {
           'name': 'type',
-          'type': "'primary' | 'success' | 'warning' | 'danger' | 'info'",
+          'type': 'IPtype',
+          'typeAnchorName': 'IPtype',
           'defaultValue': "'danger'",
           'desc': {
             'zh-CN': '标记的类型',
@@ -231,6 +232,13 @@ export default {
           'demoId': 'slot-default'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IPtype',
+      type: 'type',
+      code: "type IPtype = 'primary' | 'success' | 'warning' | 'danger' | 'info'"
     }
   ]
 }
