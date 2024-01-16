@@ -18,11 +18,12 @@
       <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
     </tiny-collapse-item>
   </tiny-collapse>
+  <tiny-button @click="click">点击触发</tiny-button>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem, Modal } from '@opentiny/vue'
+import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem, Modal, Button as TinyButton } from '@opentiny/vue'
 
 const activeNames = ref([1, 3])
 
@@ -31,6 +32,9 @@ function change(activeNames) {
     message: 'change 事件，当前激活面板：' + activeNames,
     status: 'info'
   })
+}
+function click() {
+  activeNames.value = ['1', '2']
 }
 </script>
 
