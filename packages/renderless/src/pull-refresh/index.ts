@@ -12,6 +12,9 @@
 
 import { on, off } from '../common/deps/dom'
 
+// 上拉触发事件超时时间
+const PULL_UP_TIME_OUT = 300
+
 export const initPullRefresh =
   ({ t, props, state }) =>
   () => {
@@ -100,7 +103,7 @@ export const pullUpTouchEnd = (state, emit, refs) => {
       emit('update:modelValue', true)
       emit('pullUp')
     }
-  }, 100)
+  }, PULL_UP_TIME_OUT)
 }
 
 export const onScroll =
