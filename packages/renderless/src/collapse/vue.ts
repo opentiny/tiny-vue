@@ -41,7 +41,10 @@ export const renderless = (
 
   watch(
     () => props.modelValue,
-    (value) => {
+    (value, oldValue) => {
+      if (value !== oldValue && oldValue) {
+        emit('change', value)
+      }
       state.activeNames = value || value === 0 ? [].concat(value) : []
     },
     { immediate: true, deep: true }
