@@ -10,6 +10,15 @@
  *
  */
 
+import type {
+  IAmountProps,
+  IAmountState,
+  IAmountRenderlessParamUtils,
+  ISharedRenderlessParamHooks,
+  IAmountApi,
+  IAmountEditorState
+} from '@/types'
+
 import {
   closePopper,
   popInput,
@@ -50,7 +59,19 @@ export const api = [
   'getAmountText'
 ]
 
-const initState = ({ reactive, computed, props, $service, editorState }) => {
+const initState = ({
+  reactive,
+  computed,
+  props,
+  $service,
+  editorState
+}: {
+  reactive: ISharedRenderlessParamHooks['reactive']
+  computed: ISharedRenderlessParamHooks['computed']
+  props: IAmountProps
+  $service: any
+  editorState: IAmountApi['editorState']
+}) => {
   const state = reactive({
     visible: false,
     amount: props.modelValue || '',
@@ -72,15 +93,37 @@ const initState = ({ reactive, computed, props, $service, editorState }) => {
   return state
 }
 
-const initEditorState = ({ reactive, props }) =>
-  reactive({
+const initEditorState = ({
+  reactive,
+  props
+}: {
+  reactive: ISharedRenderlessParamHooks['reactive']
+  props: IAmountProps
+}) =>
+  reactive<IAmountEditorState>({
     amount: '',
     date: '',
     currency: props.currency,
     lastInput: props.modelValue
   })
 
-const initApi = ({ api, t, editorState, props, state, emit, refs }) => {
+const initApi = ({
+  api,
+  t,
+  editorState,
+  props,
+  state,
+  emit,
+  refs
+}: {
+  api: Partial<IAmountApi>
+  t: IAmountApi['t']
+  editorState: IAmountEditorState
+  props: IAmountProps
+  state: IAmountState
+  emit: IAmountRenderlessParamUtils['emit']
+  refs: IAmountRenderlessParamUtils['refs']
+}) => {
   Object.assign(api, {
     state,
     t,
@@ -97,8 +140,8 @@ const initApi = ({ api, t, editorState, props, state, emit, refs }) => {
     closePopper: closePopper(state),
     emitChange: emitChange({ emit, state }),
     popInput: popInput({ editorState, api, state, props }),
-    save: save({ api, state, editorState, props }),
-    reset: reset({ api, state, editorState }),
+    save: save({ api, state, editorState }),
+    reset: reset({ state, editorState }),
     handelClick: handelClick({ api, refs }),
     addOutSideEvent: addOutSideEvent(api),
     watchModelValue: watchModelValue({ api, state }),
@@ -107,7 +150,17 @@ const initApi = ({ api, t, editorState, props, state, emit, refs }) => {
   })
 }
 
-const initWatch = ({ watch, props, state, api }) => {
+const initWatch = ({
+  watch,
+  props,
+  state,
+  api
+}: {
+  watch: ISharedRenderlessParamHooks['watch']
+  props: IAmountProps
+  state: IAmountState
+  api: IAmountApi
+}) => {
   watch(() => props.modelValue, api.watchModelValue, { immediate: true })
 
   watch(() => props.currency, api.watchCurrency, { immediate: true })
@@ -124,6 +177,7 @@ const initWatch = ({ watch, props, state, api }) => {
   watch(
     () => props.rounding,
     (value) => {
+      // todo format 在 initState 初始化中是一个 ComputedRef<object>，写法是否有误？
       state.format.rounding = value
     }
   )
@@ -131,24 +185,29 @@ const initWatch = ({ watch, props, state, api }) => {
   watch(
     () => props.digits,
     (value) => {
+      // todo format 在 initState 初始化中是一个 ComputedRef<object>，写法是否有误？
       state.format.fraction = value
     }
   )
 }
 
-export const renderless = (props, { onUnmounted, computed, reactive, watch }, { t, emit, refs, service }) => {
-  const api = {}
+export const renderless = (
+  props: IAmountProps,
+  { onUnmounted, computed, reactive, watch }: ISharedRenderlessParamHooks,
+  { t, emit, refs, service }: IAmountRenderlessParamUtils
+) => {
+  const api: Partial<IAmountApi> = {}
   const $service = initService(service)
   const editorState = initEditorState({ reactive, props })
-  const state = initState({ reactive, computed, props, $service, editorState })
+  const state: IAmountState = initState({ reactive, computed, props, $service, editorState })
 
   initApi({ api, t, editorState, props, state, emit, refs })
 
-  api.getDecimal(0) // 初始化Decimal
+  api?.getDecimal?.(0) // 初始化Decimal
 
-  initWatch({ watch, props, state, api })
+  initWatch({ watch, props, state, api: api as IAmountApi })
 
-  onUnmounted(() => api.addOutSideEvent(false))
+  onUnmounted(() => api?.addOutSideEvent?.(false))
 
-  return api
+  return api as IAmountApi
 }
