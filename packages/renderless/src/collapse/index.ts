@@ -14,7 +14,6 @@ import type { ICollapseRenderlessParams } from '@/types'
 export const setActiveNames =
   ({ emit, props, state }: Pick<ICollapseRenderlessParams, 'emit' | 'props' | 'state'>) =>
   (activeNames: string | string[]): void => {
-    // activeNames = [].concat(activeNames)
     const Names: string[] = Array.isArray(activeNames) ? activeNames : [activeNames]
     const value: string | string[] = props.accordion ? (Array.isArray(Names) ? Names[0] : Names) : Names
     state.activeNames = Names
