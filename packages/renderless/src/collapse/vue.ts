@@ -45,7 +45,7 @@ export const renderless = (
     () => props.modelValue,
     (value, oldValue) => {
       if (Array.isArray(value)) {
-        if (value && value !== oldValue) {
+        if (value && value !== oldValue && oldValue) {
           try {
             value.forEach((val) => {
               let result = props.beforeClose ? props.beforeClose(val || null, state.activeNames, null) : true
@@ -60,7 +60,7 @@ export const renderless = (
 
         state.activeNames = value as string[]
       } else {
-        if (value && value !== oldValue) {
+        if (value && value !== oldValue && oldValue) {
           let result = props.beforeClose ? props.beforeClose(value || null, state.activeNames, null) : true
           if (!result) {
             return

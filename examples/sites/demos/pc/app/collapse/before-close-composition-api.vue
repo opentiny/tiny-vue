@@ -18,17 +18,21 @@
       <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
     </tiny-collapse-item>
   </tiny-collapse>
+  <tiny-button @click="click">通过绑定值修改</tiny-button>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem, Modal } from '@opentiny/vue'
+import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem, Modal, Button as TinyButton } from '@opentiny/vue'
 
 const activeName = ref('1')
 
 function beforeClose(name, activeNames, item) {
   Modal.message({ message: '阻止面板切换，当前点击面板：' + name, status: 'error' })
   return false
+}
+function click() {
+  activeName.value = '3'
 }
 </script>
 
