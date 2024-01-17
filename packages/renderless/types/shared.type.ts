@@ -114,7 +114,7 @@ export interface ISharedRenderlessParamUtils<CT = never> {
 }
 
 /** vue.ts的一个混合上下文，也是index.ts 文件中二层函数的入参混合体。 */
-export type ISharedRenderlessFunctionParams<CT> = {
+export type ISharedRenderlessFunctionParams<CT = null> = {
   api: object
   props: object
   state: object
