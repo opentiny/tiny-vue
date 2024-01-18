@@ -4,7 +4,7 @@
     <tiny-dialog-box v-model:visible="boxVisibility" title="消息" width="30%">
       <span>dialog-box 内容</span>
       <template #footer>
-        <div style="width: 100%; height: 100%; background: #dddddd">自定义footer区域</div>
+        <div style="width: 100%; height: 100%; background: #dddddd">自定义 footer 区域</div>
       </template>
     </tiny-dialog-box>
   </div>
