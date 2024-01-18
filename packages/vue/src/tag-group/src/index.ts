@@ -12,25 +12,27 @@
 import { $props, $setup, defineComponent, $prefix } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
+export const tagGroupProps = {
+  ...$props,
+  size: {
+    type: String,
+    default: 'medium',
+    validator: (value: string) => ['medium', 'small', 'mini'].includes(value)
+  },
+  data: {
+    type: Array,
+    default: () => []
+  },
+  effect: {
+    type: String,
+    default: 'light',
+    validator: (value: string) => ['dark', 'light', 'plain'].includes(value)
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'TagGroup',
-  props: {
-    ...$props,
-    size: {
-      type: String,
-      default: 'medium',
-      validator: (value: string) => ['medium', 'small', 'mini'].includes(value)
-    },
-    data: {
-      type: Array,
-      default: () => []
-    },
-    effect: {
-      type: String,
-      default: 'light',
-      validator: (value: string) => ['dark', 'light', 'plain'].includes(value)
-    }
-  },
+  props: tagGroupProps,
   setup(props, context): any {
     return $setup({ props, context, template })
   }
