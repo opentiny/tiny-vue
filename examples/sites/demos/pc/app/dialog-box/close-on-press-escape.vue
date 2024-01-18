@@ -1,8 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility = true" :title="'弹出 Dialog' + boxVisibility"
-      >弹出 Dialog{{ boxVisibility }}</tiny-button
-    >
+    <tiny-button @click="boxVisibility = true" title="弹出 Dialog">弹出 Dialog</tiny-button>
     <tiny-dialog-box :visible="boxVisibility" :close-on-press-escape="false" title="消息" width="30%" @close="close">
       <span>dialog-box内容</span>
       <template #footer>

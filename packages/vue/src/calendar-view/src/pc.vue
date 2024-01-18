@@ -27,7 +27,7 @@
         </div>
         <ul class="header-main">
           <li v-for="day in state.weekDays" :key="day">
-            <span>{{ t(`ui.calendarView.weekDays[${day}]`) }}</span>
+            <span>{{ t(`ui.calendarView.weekDays.${day}`) }}</span>
           </li>
         </ul>
         <div class="header-right" @click="goNextMonth">
@@ -111,7 +111,7 @@
               name="header"
               :slot-scope="{
                 date: date.value,
-                weekDay: t(`ui.calendarView.weekDays[${index}]`)
+                weekDay: t(`ui.calendarView.weekDays.${index}`)
               }"
             >
               <span class="date" :class="dateIsToday(date.value) && 'is-today'">
@@ -123,7 +123,7 @@
                 ></span>
               </span>
               <span class="week-day" :class="dateIsToday(date.value) && 'is-today'">{{
-                dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays[${index}]`)
+                dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`)
               }}</span>
             </slot>
           </li>

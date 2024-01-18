@@ -59,7 +59,7 @@ export default {
       'name': { 'zh-CN': '步长', 'en-US': 'Step' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>step</code> 设置步长，默认值为 <code>{ hour: 1, minute: 1, second: 1 }</code>，其中 <code>hour</code> 的设置范围是 <code>0-23</code>，<code>minute</code>、<code>second</code> 的设置范围是 <code>0-60</code>。可单独设置其中的一项或多项值，未设置的默认值为 <code>1</code>。</p>',
+          '<p>通过 <code>step</code> 设置步长，默认值为 <code>{ hour: 1, minute: 1, second: 1 }</code>，其中 <code>hour</code> 的设置范围是 <code>0-23</code>，<code>minute</code>、<code>second</code> 的设置范围是 <code>0-59</code>。可单独设置其中的一项或多项值，未设置的默认值为 <code>1</code>。</p>',
         'en-US':
           '<p>Set the step size through <code> step </code>. The default value is <code> {hour: 1, minute: 1, second: 1} </code>, where the setting range of <code> hour </code> is <code> 0-23 </code>, <code> minute </code>, <code> second </code> is <code> 0-60 </code>. One or more of these values can be set separately, and the unset default value is <code> 1 </code>.</p>'
       },
@@ -161,7 +161,7 @@ export default {
             'zh-CN': '是否使用箭头进行时间选择',
             'en-US': 'Whether to use arrows for time selection'
           },
-          'demoId': 'arrow-control'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'clearable',
@@ -175,14 +175,14 @@ export default {
         },
         {
           'name': 'clear-icon',
-          'type': 'object',
+          'type': 'Component',
           'defaultValue': 'IconOperationfaild',
           'desc': {
             'zh-CN': '自定义清空图标',
             'en-US':
               'Indicates whether to insert a pop-up box to the body element. If a fault occurs in locating the fault in the dialog box that is displayed, you can set this attribute to false'
           },
-          'demoId': 'clear-icon'
+          'demoId': 'clearable'
         },
         {
           'name': 'default-value',
@@ -261,8 +261,7 @@ export default {
           'typeAnchorName': 'IPickerOptions',
           'defaultValue': '--',
           'desc': {
-            'zh-CN':
-              '配置可选的时间范围、下拉框中显示的格式，包含 selectableRange / format 属性，详细用法可参考 IPickerOptions 类型声明',
+            'zh-CN': '配置可选的时间范围、下拉框中显示的格式',
             'en-US': ''
           },
           'demoId': 'disabled'

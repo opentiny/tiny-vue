@@ -47,13 +47,15 @@ export default {
       'codeFiles': ['range-select.vue']
     },
     {
-      'demoId': 'show-iput',
+      'demoId': 'show-input',
       'name': { 'zh-CN': '输入框模式', 'en-US': 'Text box mode' },
       'desc': {
-        'zh-CN': '<p>通过配置<code>show-input</code>，开启滑块输入框模式。</p>',
-        'en-US': '<p>Enable the slider text box mode by configuring <code>show-input</code>。</p>'
+        'zh-CN':
+          '<p>通过配置<code>show-input</code>，开启滑块输入框模式。可以通过配置<code>unit</code>来决定输入框后面显示的单位。</p>',
+        'en-US':
+          '<p>Enable the slider text box mode by configuring <code>show-input</code>。You can determine the units displayed after the input box by configuring<code>unit</code>.</p>'
       },
-      'codeFiles': ['show-iput.vue']
+      'codeFiles': ['show-input.vue']
     },
     {
       'demoId': 'shortcut-operation',
@@ -165,7 +167,17 @@ export default {
             'zh-CN': '是否显示输入框，仅在非范围选择时有效',
             'en-US': 'Indicates whether to display the text box. This parameter is valid only for non-range selection'
           },
-          'demoId': 'show-iput'
+          'demoId': 'show-input'
+        },
+        {
+          'name': 'unit',
+          'type': 'boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '输入框后面显示的单位，仅在输入框模式下有效',
+            'en-US': 'The units displayed after the input box, only valid in input box mode'
+          },
+          'demoId': 'show-input'
         },
         {
           'name': 'format-tooltip',

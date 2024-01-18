@@ -37,7 +37,7 @@ const toolbarButtons = ref([
   },
   {
     code: 'clearFilterName',
-    name: '清空表格name字段的过滤条件'
+    name: '清空表格 name 字段的过滤条件'
   },
   {
     code: 'closeFilter',

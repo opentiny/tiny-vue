@@ -5,7 +5,7 @@ export const tinyPagerSmbTheme = {
   'ti-pager-height': '32px',
   'ti-pager-input-height': '32px',
   'ti-pager-poplist-item-padding-horizontal': '8px',
-  'ti-pager-active-font-color': 'var(--ti-common-color-text-link)',
+  'ti-pager-active-font-color': 'var(--ti-common-color-text-primary)',
   'ti-pager-li-item-hover-text-color': 'var(--ti-pager-text-color)',
   'ti-pager-goto-btn-text-hover-color': 'var(--ti-common-color-selected-text-color)',
   'ti-pager-total-font-size': '14px',
