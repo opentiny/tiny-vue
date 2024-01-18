@@ -12,7 +12,7 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
-const $constants = {
+export const $constants = {
   PC_PREFIXCLS: 'tiny-popconfim',
   MOBILE_PREFIXCLS: 'tiny-mobile-popconfim',
   Mode: 'pc',
@@ -27,36 +27,38 @@ const $constants = {
   }
 }
 
+export const popconfirmProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  message: String,
+  customClass: String,
+  trigger: {
+    type: String,
+    default: 'hover',
+    validator: (value) => ['click', 'hover'].includes(value)
+  },
+  cancelButton: {
+    type: Boolean,
+    default: true
+  },
+  title: String,
+  placement: {
+    type: String,
+    default: 'top'
+  },
+  width: {
+    type: [String, Number],
+    default: '350'
+  },
+  type: [String, Object]
+}
+
 export default defineComponent({
   name: $prefix + 'Popconfim',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    message: String,
-    customClass: String,
-    trigger: {
-      type: String,
-      default: 'hover',
-      validator: (value: string) => ['click', 'hover'].includes(value)
-    },
-    cancelButton: {
-      type: Boolean,
-      default: true
-    },
-    title: String,
-    placement: {
-      type: String,
-      default: 'top'
-    },
-    width: {
-      type: [String, Number],
-      default: '350'
-    },
-    type: [String, Object]
-  },
+  props: popconfirmProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }
