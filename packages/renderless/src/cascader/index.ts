@@ -234,6 +234,7 @@ export const handleBlur =
 export const handleInput =
   ({ api, state, refs }) =>
   (val, event) => {
+    // TODO: window.event待整改
     event = event || window.event
 
     if (!event) {
@@ -380,7 +381,7 @@ export const calcCollapseTags =
 
         const tags = Array.from(content.querySelectorAll('.tiny-tag'))
         let { total, dom, idx } = { total: collapseTagWidth, dom: null, idx: 0 }
-        tags.some((tag, index) => {
+        tags.forEach((tag, index) => {
           if (tag !== tagsLength) {
             const { width: tagContentWidth, marginRight, marginLeft } = tag && window.getComputedStyle(tag)
             total += parseFloat(tagContentWidth) + parseFloat(marginRight) + parseFloat(marginLeft)
@@ -564,7 +565,8 @@ export const updateStyle =
     const tags = $el.querySelector(CASCADER.TagClass)
     let suggestionPanelEl = null
 
-    if (suggestionPanel && (suggestionPanelEl = suggestionPanel.$el)) {
+    if (suggestionPanel) {
+      suggestionPanelEl = suggestionPanel.$el
       const suggestionList = suggestionPanelEl.querySelector(CASCADER.ListClass)
       suggestionList.style.minWidth = inputInner.offsetWidth + 'px'
     }
