@@ -47,6 +47,14 @@ import {
 import { removeResizeListener } from '../common/deps/resize-event'
 import userPopper from '../common/deps/vue-popper'
 import { DATEPICKER } from '../common'
+import type {
+  ICascaderProps,
+  ICascaderApi,
+  ICascaderState,
+  ICascaderConstants,
+  ISharedRenderlessFunctionParams,
+  ICascadeRenderlessParamUtils
+} from '@/types'
 
 export const api = [
   'state',
@@ -68,7 +76,27 @@ export const api = [
   'handleMouseleave'
 ]
 
-const initState = ({ reactive, props, computed, parent, api, t, constants, refs, inject }) => {
+const initState = ({
+  reactive,
+  props,
+  computed,
+  parent,
+  api,
+  t,
+  constants,
+  refs,
+  inject
+}: {
+  reactive: ISharedRenderlessFunctionParams<null>['reactive']
+  props: ICascaderProps
+  computed: ISharedRenderlessFunctionParams<null>['computed']
+  parent: ICascadeRenderlessParamUtils['parent']
+  api: ICascaderApi
+  t: ICascadeRenderlessParamUtils['t']
+  constants: ICascaderConstants
+  refs: ICascadeRenderlessParamUtils['refs']
+  inject: ISharedRenderlessFunctionParams<null>['inject']
+}) => {
   const state = reactive({
     showAutoWidth: inject('showAutoWidth', null),
     /** popper 元素是否显示。 它是通过v-show 绑定到页面上，造成隐藏时，popperJs并没有destory,有一定的性能影响 */
@@ -104,10 +132,34 @@ const initState = ({ reactive, props, computed, parent, api, t, constants, refs,
     tooltipContent: ''
   })
 
-  return state
+  return state as ICascaderState
 }
 
-const initApi = ({ api, state, constants, dispatch, emit, refs, props, updatePopper, nextTick, parent, t }) => {
+const initApi = ({
+  api,
+  state,
+  constants,
+  dispatch,
+  emit,
+  refs,
+  props,
+  updatePopper,
+  nextTick,
+  parent,
+  t
+}: {
+  api: ICascaderApi
+  state: ICascaderState
+  constants: ICascaderConstants
+  dispatch: ICascadeRenderlessParamUtils['dispatch']
+  emit: ICascadeRenderlessParamUtils['emit']
+  refs: ICascadeRenderlessParamUtils['refs']
+  props: ICascaderProps
+  updatePopper: (popperElm?: HTMLElement | undefined) => void
+  nextTick: ICascadeRenderlessParamUtils['nextTick']
+  parent: ICascadeRenderlessParamUtils['parent']
+  t: ICascadeRenderlessParamUtils['t']
+}) => {
   Object.assign(api, {
     state,
     handleFocus: handleFocus(emit),
@@ -144,7 +196,21 @@ const initApi = ({ api, state, constants, dispatch, emit, refs, props, updatePop
   })
 }
 
-const initWatch = ({ watch, state, api, props, nextTick, updatePopper }) => {
+const initWatch = ({
+  watch,
+  state,
+  api,
+  props,
+  nextTick,
+  updatePopper
+}: {
+  watch: ISharedRenderlessFunctionParams<null>['watch']
+  state: ICascaderState
+  api: ICascaderApi
+  props: ICascaderProps
+  nextTick: ICascadeRenderlessParamUtils['nextTick']
+  updatePopper: (popperElm?: HTMLElement | undefined) => void
+}) => {
   watch(() => state.disabled, api.computePresentContent)
 
   watch(() => props.modelValue, api.watchValue)
@@ -190,9 +256,20 @@ const initWatch = ({ watch, state, api, props, nextTick, updatePopper }) => {
 }
 
 export const renderless = (
-  props,
-  { computed, onMounted, onBeforeUnmount, onDeactivated, onUpdated, onBeforeUpdate, reactive, toRefs, watch, inject },
-  { t, refs, emit, nextTick, constants, parent, slots, dispatch }
+  props: ICascaderProps,
+  {
+    computed,
+    onMounted,
+    onBeforeUnmount,
+    onDeactivated,
+    onUpdated,
+    onBeforeUpdate,
+    reactive,
+    toRefs,
+    watch,
+    inject
+  }: ISharedRenderlessFunctionParams<null>,
+  { t, refs, emit, nextTick, constants, parent, slots, dispatch }: ICascadeRenderlessParamUtils
 ) => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
@@ -215,21 +292,33 @@ export const renderless = (
     nextTick,
     onBeforeUnmount,
     onDeactivated
+  } as any)
+
+  const api: Partial<ICascaderApi> = {}
+  const state = initState({ reactive, props, computed, parent, api: api as ICascaderApi, t, constants, refs, inject })
+
+  initApi({
+    api: api as ICascaderApi,
+    state,
+    constants,
+    dispatch,
+    emit,
+    refs,
+    props,
+    updatePopper,
+    nextTick,
+    parent,
+    t
   })
 
-  const api = {}
-  const state = initState({ reactive, props, computed, parent, api, t, constants, refs, inject })
+  initWatch({ watch, state, api: api as ICascaderApi, props, nextTick, updatePopper })
 
-  initApi({ api, state, constants, dispatch, emit, refs, props, updatePopper, nextTick, parent, t })
+  onBeforeUpdate((api as ICascaderApi).handleBeforeUpdate)
+  onUpdated((api as ICascaderApi).updateStyle)
+  onMounted((api as ICascaderApi).selfMounted)
 
-  initWatch({ watch, state, api, props, nextTick, updatePopper })
-
-  onBeforeUpdate(api.handleBeforeUpdate)
-  onUpdated(api.updateStyle)
-  onMounted(api.selfMounted)
-
-  parent.$on('handle-clear', (event) => {
-    api.handleClear(event)
+  parent.$on('handle-clear', (event: ICascaderState) => {
+    ;(api as ICascaderApi).handleClear(event)
   })
 
   onBeforeUnmount(() => removeResizeListener(parent.$el, api.updateStyle))
