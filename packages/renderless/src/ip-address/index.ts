@@ -11,14 +11,15 @@
  */
 
 import { KEY_CODE, IPTHRESHOLD } from '../common'
+import type { IIpAddressProps, IIpAddressApi, IIpAddressRenderlessParamUtils, IIpAddressState } from '@/types'
 
-export const isIP6 = (str) => /^IPv6$/i.test(str)
+export const isIP6 = (str: string) => /^IPv6$/i.test(str)
 
-export const isIP4 = (str) => /^IPv4$/i.test(str)
+export const isIP4 = (str: string) => /^IPv4$/i.test(str)
 
 export const ipValidator =
-  ({ props, api }) =>
-  (value) => {
+  ({ props, api }: { props: IIpAddressProps; api: IIpAddressApi }) =>
+  (value: string) => {
     let result = true
 
     if (props.type) {
@@ -38,12 +39,13 @@ export const ipValidator =
 
 export const getCursorPosition = (el) => {
   let cursorPos = 0
-  let selectRange = null
+  let selectRange: any | null = null
+  type NewDocument = Document & { selection: Document }
   /* istanbul ignore if */
-  if (document.selection) {
-    selectRange = document.selection.createRange()
-    selectRange.moveStart('character', -el.value.length)
-    cursorPos = selectRange.text.length
+  if ((document as NewDocument | null)?.selection) {
+    selectRange = (document as NewDocument | null)?.selection?.createRange()
+    selectRange?.moveStart('character', -el.value.length)
+    cursorPos = selectRange?.text?.length
   }
   /* istanbul ignore if */
   if (el.selectionStart || el.selectionStart === '0') {
@@ -54,9 +56,9 @@ export const getCursorPosition = (el) => {
 }
 
 export const getValue =
-  ({ api, props, state }) =>
+  ({ api, props, state }: { api: IIpAddressApi; props: IIpAddressProps; state: IIpAddressState }) =>
   () => {
-    const valueArr = []
+    const valueArr: string[] = []
     let result = ''
 
     if (api.isIP6(props.type)) {
@@ -85,11 +87,11 @@ export const getValue =
   }
 
 export const setValue =
-  ({ api, props, state }) =>
-  (value) => {
+  ({ api, props, state }: { api: IIpAddressApi; props: IIpAddressProps; state: IIpAddressState }) =>
+  (value: string) => {
     if (value) {
       /* istanbul ignore else */
-      if (api.ipValidator(value)) {
+      if (api?.ipValidator?.(value)) {
         if (api.isIP6(props.type)) {
           state.address = value.split(':').map((item) => ({ value: item }))
           if (state.address.length < 8) {
@@ -116,7 +118,21 @@ export const setValue =
     }
   }
 
-const activeEvent = ({ emit, parent, state, index, event, type }) => {
+const activeEvent = ({
+  emit,
+  parent,
+  state,
+  index,
+  event,
+  type
+}: {
+  emit: IIpAddressRenderlessParamUtils['emit']
+  parent: IIpAddressRenderlessParamUtils['parent']
+  state: IIpAddressState
+  index: number
+  event: any
+  type: string
+}) => {
   const target = event && event.target ? event.target : parent.$el.querySelectorAll('input')[index || 0]
 
   type === 'focus' && (state.active = true)
@@ -138,52 +154,84 @@ const activeEvent = ({ emit, parent, state, index, event, type }) => {
 }
 
 export const focus =
-  ({ emit, parent, state }) =>
-  ({ index, event }) => {
+  ({
+    emit,
+    parent,
+    state
+  }: {
+    emit: IIpAddressRenderlessParamUtils['emit']
+    parent: IIpAddressRenderlessParamUtils['parent']
+    state: IIpAddressState
+    props?: IIpAddressProps
+  }) =>
+  ({ index, event }: { index: number; event?: any }) => {
     activeEvent({ emit, parent, state, index, event, type: 'focus' })
   }
 
 export const select =
-  ({ emit, parent, state }) =>
-  ({ index, event }) => {
+  ({
+    emit,
+    parent,
+    state
+  }: {
+    emit: IIpAddressRenderlessParamUtils['emit']
+    parent: IIpAddressRenderlessParamUtils['parent']
+    state: IIpAddressState
+    props?: IIpAddressProps
+  }) =>
+  ({ index, event }: { index: number; event?: any }) => {
     activeEvent({ emit, parent, state, index, event, type: 'select' })
   }
 
 export const inputEvent =
-  ({ api, componentName, emit, eventName, props }) =>
+  ({ api, componentName, emit, eventName, props }: { api: IIpAddressApi; componentName; emit; eventName; props }) =>
   ({ item, index }) => {
     const val = item.value.trim()
-    let value = ''
+    let value: string | undefined = ''
 
     if (api.isIP4(props.type)) {
-      if (!index && api.ipValidator(val)) {
-        api.setValue(val)
+      if (!index && api?.ipValidator?.(val)) {
+        api?.setValue?.(val)
       } else if (isNaN(val) || val < IPTHRESHOLD.Min || val > IPTHRESHOLD.Max) {
         item.value = ''
       }
     } else {
-      if (!index && api.ipValidator(val)) {
-        api.setValue(val)
+      if (!index && api?.ipValidator?.(val)) {
+        api?.setValue?.(val)
       } else if (val.length > 4) {
         item.value = item.value.slice(0, 4)
       }
     }
 
-    value = api.getValue()
+    value = api?.getValue?.()
 
     emit('update:modelValue', value, index)
     api.dispatch(componentName, eventName, [value])
   }
 
 export const change =
-  ({ api, emit }) =>
+  ({ api, emit }: { api: IIpAddressApi; emit: IIpAddressRenderlessParamUtils['emit'] }) =>
   () => {
-    const value = api.getValue()
+    const value = api?.getValue?.()
     emit('change', value)
   }
 
 export const blur =
-  ({ api, componentName, emit, eventName, props, state }) =>
+  ({
+    api,
+    componentName,
+    emit,
+    eventName,
+    props,
+    state
+  }: {
+    api: IIpAddressApi
+    componentName: string
+    emit: IIpAddressRenderlessParamUtils['emit']
+    eventName: string
+    props: IIpAddressProps
+    state: IIpAddressState
+  }) =>
   ({ item, index }) => {
     state.active = false
     state.isDel = false
@@ -197,7 +245,7 @@ export const blur =
   }
 
 export const keyup =
-  ({ api, props }) =>
+  ({ api, props }: { api: IIpAddressApi; props: IIpAddressProps; parent?: IIpAddressRenderlessParamUtils['parent'] }) =>
   ({ item, index, event }) => {
     const { keyCode } = event
     const value = item.value.trim()
@@ -240,8 +288,21 @@ export const keyup =
     }
   }
 
-const checkError1 = ({ Tab, Space, NumpadDecimal, NumpadComma, keyCode, value }) =>
-  [Tab, Space, NumpadDecimal, NumpadComma].includes(keyCode) && value
+const checkError1 = ({
+  Tab,
+  Space,
+  NumpadDecimal,
+  NumpadComma,
+  keyCode,
+  value
+}: {
+  Tab: number
+  Space: number
+  NumpadDecimal: number
+  NumpadComma: number
+  keyCode: number
+  value: string
+}) => [Tab, Space, NumpadDecimal, NumpadComma].includes(keyCode) && value
 
 // NEXT 屏蔽选中时，替换值大于255
 const checkError2 = (newValue) => newValue && (isNaN(newValue) || newValue > IPTHRESHOLD.Max)
@@ -257,7 +318,25 @@ const checkError4 = ({ isfilterKeyCodes, isSelected, value, key }) =>
 const checkError5 = ({ key, isfilterKeyCodes, value, ctrlKey, keyCode, KeyV }) =>
   isNaN(key) && !isfilterKeyCodes && !(!value && ctrlKey && keyCode === KeyV)
 
-const isError = ({ key, value, isSelected, isfilterKeyCodes, ctrlKey, keyCode, newValue }) => {
+const isError = ({
+  key,
+  value,
+  isSelected,
+  isfilterKeyCodes,
+  ctrlKey,
+  keyCode,
+  newValue
+}: {
+  key: string
+  value: string
+  isSelected: boolean
+  isfilterKeyCodes: boolean
+  ctrlKey: boolean
+  keyCode: number
+  newValue: string | false
+  api?: IIpAddressApi
+  props?: IIpAddressProps
+}) => {
   const { Tab, Space, NumpadDecimal, NumpadComma, KeyV } = KEY_CODE
 
   return (
@@ -270,12 +349,12 @@ const isError = ({ key, value, isSelected, isfilterKeyCodes, ctrlKey, keyCode, n
 }
 
 export const keydown =
-  ({ api, props, state }) =>
-  ({ item, index, event }) => {
+  ({ api, props, state }: { api: IIpAddressApi; props: IIpAddressProps; state: IIpAddressState }) =>
+  ({ item, index, event }: { item; index: number; event: KeyboardEvent }) => {
     const { target, key, keyCode, ctrlKey } = event
     const value = item.value
-    const selectionStart = target.selectionStart
-    const selectionEnd = target.selectionEnd
+    const selectionStart = (target as KeyboardEvent['target'] & { selectionStart: number })?.selectionStart
+    const selectionEnd = (target as KeyboardEvent['target'] & { selectionEnd: number })?.selectionEnd
     const isSelected = selectionStart !== selectionEnd
     const cursorPosition = api.getCursorPosition(target)
     const isfilterKeyCodes = state.filterKeyCodes.includes(keyCode)
