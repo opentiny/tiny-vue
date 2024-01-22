@@ -1,5 +1,5 @@
 <template>
-  <tiny-time-line :data="data" name-field="statusText" time-field="date"></tiny-time-line>
+  <tiny-time-line :data="data" name-field="statusText" :active="active" @click="click"></tiny-time-line>
 </template>
 
 <script lang="jsx">
@@ -15,48 +15,28 @@ export default {
       data: [
         {
           status: 'current',
-          date: '2019-11-12 14:20:15',
-          statusText: '筛选中',
+          statusText: '企业资料',
           personInfo: '张三',
           cycle: '周期：2天',
           overdue: '已超期 1 天'
         },
         {
           status: 'success',
-          date: '2019-11-12 14:20:15',
-          statusText: '筛选中',
-          personInfo: '张三',
-          cycle: '周期：2天',
-          overdue: '已超期 1 天'
-        },
-        {
-          status: 'fail',
-          date: '2019-11-12 14:20:15',
-          statusText: '筛选中',
+          statusText: '法人资料',
           personInfo: '张三',
           cycle: '周期：2天',
           overdue: '已超期 1 天'
         },
         {
           status: 'complete',
-          date: '2019-11-12 14:20:15',
-          statusText: '筛选中',
+          statusText: '校验身份',
           personInfo: '张三',
           cycle: '周期：2天',
           overdue: '已超期 1 天'
         },
         {
           status: 'complete',
-          date: '2019-11-12 14:20:15',
-          statusText: '筛选中',
-          personInfo: '张三',
-          cycle: '周期：2天',
-          overdue: '已超期 1 天'
-        },
-        {
-          status: 'complete',
-          date: '2019-11-11 00:01:30',
-          statusText: '筛选中',
+          statusText: '提交资料',
           personInfo: '张三',
           cycle: '周期：2天',
           overdue: '已超期 1 天'

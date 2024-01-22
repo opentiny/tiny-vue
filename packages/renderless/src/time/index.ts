@@ -38,7 +38,10 @@ export const watchVisible =
     if (value) {
       state.oldValue = state.value
 
-      nextTick(() => vm.$refs.spinner.emitSelectRange('hours'))
+      nextTick(() => {
+        vm.$refs.spinner.emitSelectRange('hours')
+        vm.$refs.spinner.adjustSpinners()
+      })
     } else {
       state.needInitAdjust = true
     }

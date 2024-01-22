@@ -5,7 +5,7 @@ test('底部插槽', async ({ page }) => {
   await page.goto('modal#footer-slot')
 
   const modal = page.locator('.tiny-modal')
-  await page.getByRole('button', { name: '自定义脚部' }).click()
-  await expect(modal.getByRole('button', { name: '自定义脚部信息' })).toBeVisible()
-  await modal.getByRole('button', { name: '自定义脚部信息' }).click()
+  await page.getByRole('button', { name: /自定义底部/ }).click()
+  await expect(modal.getByRole('button', { name: /自定义底部信息/ })).toBeVisible()
+  await modal.getByRole('button', { name: /自定义底部信息/ }).click()
 })
