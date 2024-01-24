@@ -9,9 +9,10 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import type { ITreeMenuApi, ITreeMenuState, ITreeMenuProps, ITreeMenuData, ITreeMenuNewData } from '@/types'
 
 export const initData =
-  ({ state, props, service, api }) =>
+  ({ state, props, service, api }: { state: ITreeMenuState; props: ITreeMenuProps; service: any; api: ITreeMenuApi }) =>
   () => {
     if (props.data) {
       state.data = props.data
@@ -26,11 +27,11 @@ export const initData =
   }
 
 export const setMenuKey =
-  (api) =>
-  ({ newData, menuData }) => {
+  (api: ITreeMenuApi) =>
+  ({ newData, menuData }: { newData: ITreeMenuNewData[]; menuData: ITreeMenuData[] }) => {
     Array.isArray(menuData) &&
       menuData.forEach((data) => {
-        const item = {}
+        const item: Partial<ITreeMenuNewData> = {}
 
         Object.keys(data).forEach((key) => {
           if (key === 'name') {
@@ -45,7 +46,7 @@ export const setMenuKey =
             }
           } else if (key === 'children' && data[key]) {
             item.children = api.setMenuKey({
-              newData: [],
+              newData: [] as ITreeMenuNewData[],
               menuData: data.children
             })
           } else {
@@ -53,7 +54,7 @@ export const setMenuKey =
           }
         })
 
-        newData.push({ ...data, ...item })
+        newData.push({ ...data, ...item } as ITreeMenuNewData)
       })
 
     return newData
@@ -136,7 +137,7 @@ export const collapseMenu =
   }
 
 export const expandMenu =
-  ({ state, props, api }) =>
+  ({ state, props, api }: { state: ITreeMenuState; props: ITreeMenuProps; api: ITreeMenuApi }) =>
   () => {
     if (props.menuCollapsible && state.isCollapsed) {
       api.collapseChange()
