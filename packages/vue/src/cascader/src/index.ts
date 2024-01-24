@@ -18,63 +18,65 @@ const $constants = {
   EVENT_NAME: { FormBlur: 'form.blur' }
 }
 
-export default defineComponent({
-  name: $prefix + 'Cascader',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    autoSize: Boolean,
-    beforeFilter: {
-      type: Function,
-      default: () => () => {
-        // do nothing
-      }
-    },
-    clearable: Boolean,
-    collapseTags: Boolean,
-    debounce: {
-      type: Number,
-      default: 300
-    },
-    disabled: Boolean,
-    filterMethod: Function,
-    filterable: Boolean,
-    modelValue: {},
-    options: Array,
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    popperAppendToBody: {
-      type: Boolean,
-      default: true
-    },
-    popperClass: String,
-    props: Object,
-    separator: {
-      type: String,
-      default: '/'
-    },
-    showAllLevels: {
-      type: Boolean,
-      default: true
-    },
-    size: String,
-    shape: String,
-    label: String,
-    tip: String,
-    displayOnly: {
-      type: Boolean,
-      default: false
-    },
-    hoverExpand: {
-      type: Boolean,
-      default: false
+export const cascaderProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  autoSize: Boolean,
+  beforeFilter: {
+    type: Function,
+    default: () => () => {
+      // do nothing
     }
   },
+  clearable: Boolean,
+  collapseTags: Boolean,
+  debounce: {
+    type: Number,
+    default: 300
+  },
+  disabled: Boolean,
+  filterMethod: Function,
+  filterable: Boolean,
+  modelValue: {},
+  options: Array,
+  placeholder: {
+    type: String,
+    default: ''
+  },
+  popperAppendToBody: {
+    type: Boolean,
+    default: true
+  },
+  popperClass: String,
+  props: Object,
+  separator: {
+    type: String,
+    default: '/'
+  },
+  showAllLevels: {
+    type: Boolean,
+    default: true
+  },
+  size: String,
+  shape: String,
+  label: String,
+  tip: String,
+  displayOnly: {
+    type: Boolean,
+    default: false
+  },
+  hoverExpand: {
+    type: Boolean,
+    default: false
+  }
+}
+
+export default defineComponent({
+  name: $prefix + 'Cascader',
+  props: cascaderProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }
