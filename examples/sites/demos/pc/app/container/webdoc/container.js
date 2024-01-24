@@ -44,7 +44,8 @@ export default {
       'props': [
         {
           'name': 'pattern',
-          'type': `'default' | 'simple' | 'legend' | 'classic' | 'fashion'`,
+          'type': 'IContainerPattern',
+          'typeAnchorName': 'IContainerPattern',
           'defaultValue': '"default"',
           'desc': {
             'zh-CN': '版型类型',
@@ -105,6 +106,13 @@ export default {
           'demoId': 'classic'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IContainerPattern',
+      type: 'interface',
+      code: `type IContainerPattern = 'default' | 'simple' | 'legend' | 'classic' | 'fashion'`
     }
   ]
 }
