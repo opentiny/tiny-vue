@@ -16,7 +16,8 @@ export default {
       'demoId': 'size',
       'name': { 'zh-CN': '尺寸', 'en-US': 'Customized loading prompt text' },
       'desc': {
-        'zh-CN': '<p>可通过 size 属性设置尺寸大小，可选值：medium / small / mini。</p>\n',
+        'zh-CN':
+          '<p>可通过 <code>size</code> 属性设置尺寸大小，可选值：<code>medium</code> / <code>small</code> / <code>mini </code>。</p>\n',
         'en-US': '<p>Customize the prompt text of the loaded text through <code>text</code>. </p>\n'
       },
       'codeFiles': ['size.vue']
@@ -52,9 +53,8 @@ export default {
       'demoId': 'directive',
       'name': { 'zh-CN': '指令', 'en-US': 'Directive' },
       'desc': {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US':
-          '<p>The <code>v-loading.lock.fullscreen</code> command mode or service mode is used for global loading. To use the command mode for global loading, perform the following operations: \n Add <code>Vue.use(Loading)</code>\n in the <code>Vue 2</code> environment and <code>app.use(Loading)</code></p>\n in the <code>Vue 3</code> environment'
+        'zh-CN': '<p>通过v-loading使用指令。</p>',
+        'en-US': `<p>Use instructions via v-loading</p>`
       },
       'codeFiles': ['directive.vue']
     },
@@ -176,6 +176,7 @@ export default {
         {
           'name': 'v-loading',
           'type': 'boolean',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '是否显示加载动画',
             'en-US': 'Whether to display loading animation'
@@ -185,6 +186,7 @@ export default {
         {
           'name': 'tiny-loading__text',
           'type': 'string',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '显示在加载图标下方的加载文案',
             'en-US': 'The load copy displayed below the load icon'
@@ -194,6 +196,7 @@ export default {
         {
           'name': 'tiny-loading__background',
           'type': 'string',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '遮罩背景色',
             'en-US': 'Mask background color'
@@ -203,6 +206,7 @@ export default {
         {
           'name': 'tiny-loading__custom-class',
           'type': 'string',
+          'defaultValue': '',
           'desc': {
             'zh-CN': 'Loading 的自定义类名',
             'en-US': 'Custom class name for Loading'
@@ -212,6 +216,7 @@ export default {
         {
           'name': 'fullscreen',
           'type': 'boolean',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '命令修饰符：是否显示全屏',
             'en-US': 'Command modifier: Whether to display full screen'
@@ -221,6 +226,7 @@ export default {
         {
           'name': 'body',
           'type': 'boolean',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '命令修饰符：遮罩层是否在body上',
             'en-US': 'Command modifier: Whether the mask is on the body'
@@ -229,6 +235,7 @@ export default {
         {
           'name': 'lock',
           'type': 'boolean',
+          'defaultValue': '',
           'desc': {
             'zh-CN': '命令修饰符：全屏时是否锁定滚动',
             'en-US': 'Command modifier: Whether to lock scroll in full screen'
