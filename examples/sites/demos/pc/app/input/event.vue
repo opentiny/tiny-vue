@@ -22,19 +22,19 @@ export default {
   },
   methods: {
     onChange() {
-      Modal.message('change')
+      Modal.message({ message: 'change 事件触发了', status: 'info' })
     },
     onInput() {
-      Modal.message('input')
+      Modal.message({ message: 'input 事件触发了', status: 'info' })
     },
     onBlur() {
-      Modal.message('blur')
+      Modal.message({ message: 'blur 事件触发了', status: 'info' })
     },
     onFocus() {
-      Modal.message('focus')
+      Modal.message({ message: 'focus 事件触发了', status: 'info' })
     },
     onClear() {
-      Modal.message('clear')
+      Modal.message({ message: 'clear 事件触发了', status: 'info' })
     }
   }
 }
