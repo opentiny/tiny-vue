@@ -221,11 +221,9 @@ export default defineComponent({
       () => apiModeState.apiMode,
       () => {
         if (props.demo.files?.length > 0) {
-          // 强制刷新示例显示格式
           getDemoCodeFn(props.demo, true).then((demoFiles) => {
             files.value = demoFiles
           })
-          // files.then(([files]) => {})
         }
       }
     )
