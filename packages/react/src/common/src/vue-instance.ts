@@ -1,18 +1,30 @@
-import { useRef } from 'react'
 import { useExcuteOnce, useOnceResult } from './hooks'
 import { reactive, nextTick, watch, computed } from '@vue/runtime-core'
 import { getPropByPath } from './utils'
 import { getParent, getRoot } from './render-stack'
 import { getFiberByDom, traverseFiber } from './fiber'
+import { useEffect } from 'react'
 
-const collectRefs = (rootEl, $children) => {
+const collectRefs = (rootEl, dom, $children) => {
   const refs = {}
-  if (!rootEl) return refs
-  const rootFiber = getFiberByDom(rootEl)
+  if (!rootEl && !dom) return refs
+  let rootFiber
+  let domFiber
+
+  rootEl && (rootFiber = getFiberByDom(rootEl))
+  dom && (domFiber = getFiberByDom(dom))
   // 收集普通元素 ref
   traverseFiber(rootFiber, (fiber) => {
     if (typeof fiber.type === 'string' && fiber.stateNode.getAttribute('v-ref')) {
       refs[fiber.stateNode.getAttribute('v-ref')] = fiber.stateNode
+    }
+  })
+  traverseFiber(domFiber, (fiber) => {
+    if (
+      typeof fiber.type === 'string' &&
+      (fiber.stateNode.getAttribute('v-ref') || fiber.stateNode.getAttribute('id'))
+    ) {
+      refs[fiber.stateNode.getAttribute('v-ref') || fiber.stateNode.getAttribute('id')] = fiber.stateNode
     }
   })
   // 收集组件元素 ref
@@ -24,8 +36,7 @@ const collectRefs = (rootEl, $children) => {
   return refs
 }
 
-export function useCreateVueInstance({ $bus, props }) {
-  const ref = useRef()
+export function useCreateVueInstance({ $bus, props, dom, ref }) {
   const vm = useOnceResult(() =>
     reactive({
       $el: undefined,
@@ -39,7 +50,9 @@ export function useCreateVueInstance({ $bus, props }) {
       $attrs: props.$attrs,
       // 通过 fiber 计算
       $children: [],
-      $refs: computed(() => collectRefs(vm.$el, vm.$children)),
+      $refs: computed(() => {
+        return collectRefs(vm.$el, dom.current, vm.$children)
+      }),
       // 方法
       $set: (target, property, value) => (target[property] = value),
       $delete: (target, property) => delete target[property],
@@ -53,11 +66,16 @@ export function useCreateVueInstance({ $bus, props }) {
       $on: (event, callback) => $bus.on(event, callback),
       $once: (event, callback) => $bus.once(event, callback),
       $off: (event, callback) => $bus.off(event, callback),
-      $emit: (event, ...args) => $bus.emit(event, ...args),
+      $emit: (type, ...args) => {
+        if (props.listeners) {
+          const callback = type in props.listeners ? props.listeners[type] : () => { }
+          callback.apply(null, args)
+        }
+      },
       $forceUpdate: () => $bus.emit('event:reload'),
       $nextTick: nextTick,
-      $destroy: () => {},
-      $mount: () => {}
+      $destroy: () => { },
+      $mount: () => { }
     })
   )
 
@@ -75,12 +93,10 @@ export function useCreateVueInstance({ $bus, props }) {
     if (Array.isArray(parent.$children)) {
       parent.$children.push(vm)
     }
-
-    nextTick(() => {
-      vm.$el = ref.current
-    })
   })
-
+  useEffect(() => {
+    vm.$el = ref?.current
+  }, [ref])
   return {
     ref,
     vm

@@ -193,7 +193,7 @@ export const candle = (columns, rows, settings, extra) => {
   const candleMetrics = metrics.slice(0, 4)
   const volumeMetrics = metrics[4]
 
-  defaultKName = t('ui.chart.kName')
+  defaultKName = t('ui.chart.kName') || ''
 
   if (isLiteData) {
     rows.forEach((row) => {
@@ -242,7 +242,6 @@ export const candle = (columns, rows, settings, extra) => {
 
   params = { values, volumes, upColor, downColor, showMA }
   Object.assign(params, { MA, showVol, labelMap, digit, itemStyle })
-
   const series = getCandleSeries(params)
 
   const axisPointer = { link: { xAxisIndex: 'all' } }

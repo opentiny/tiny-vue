@@ -1,5 +1,5 @@
 import { renderless, api } from '@opentiny/vue-renderless/button/vue'
-import { useSetup, If, Component, vc, useVm } from '@opentiny/react-common'
+import { useSetup, If, Component, vc, useVm, $props } from '@opentiny/react-common'
 import { IconLoading } from '@opentiny/react-icon'
 import '@opentiny/vue-theme/button/index.less'
 
@@ -35,23 +35,18 @@ export default function Button(props) {
     resetTime = 1000
   } = props
 
-  const defaultProps = Object.assign({
-    type,
-    nativeType,
-    resetTime
-  }, props)
+  const defaultProps = Object.assign(
+    $props,
+    {
+      type,
+      nativeType,
+      resetTime
+    },
+    props
+  )
+  const { ref, parent, current: vm } = useVm()
 
-  const {
-    ref,
-    parent,
-    current: vm
-  } = useVm()
-
-  const {
-    handleClick,
-    state,
-    a
-  } = useSetup({
+  const { handleClick, state, a } = useSetup({
     props: defaultProps,
     renderless,
     api,
@@ -83,16 +78,11 @@ export default function Button(props) {
       autoFocus={autofocus}
       type={nativeType}
       tabIndex={tabindex}
-      {...a($attrs, ['class', 'style'], true)}
-    >
+      {...a($attrs, ['class', 'style'], true)}>
       <If v-if={loading}>
         <IconLoading className="tiny-icon-loading tiny-svg-size" />
       </If>
-      <Component
-        v-if={icon && !loading}
-        is={icon}
-        className={(text || children) ? 'is-text' : ''}
-      />
+      <Component v-if={icon && !loading} is={icon} className={text || children ? 'is-text' : ''} />
       <span>{children || text}</span>
     </button>
   )

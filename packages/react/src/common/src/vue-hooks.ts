@@ -35,8 +35,8 @@ import { useExcuteOnce } from './hooks'
 import { useEffect } from 'react'
 
 // 通用
-const inject = () => {}
-const provide = () => {}
+const inject = () => { }
+const provide = () => { }
 
 export function generateVueHooks({ $bus }) {
   const reload = () => $bus.emit('event:reload')
@@ -93,41 +93,41 @@ export function generateVueHooks({ $bus }) {
     inject,
     provide,
     // 生命周期函数
-    onBeforeUnmount() {
-      $bus.on('hook:onBeforeUnmount')
+    onBeforeUnmount(fn) {
+      $bus.on('hook:onBeforeUnmount', fn)
     },
-    onMounted() {
-      $bus.on('hook:onMounted')
+    onMounted(fn) {
+      $bus.on('hook:onMounted', fn)
     },
-    onUpdated() {
-      $bus.on('hook:onUpdated')
+    onUpdated(fn) {
+      $bus.on('hook:onUpdated', fn)
     },
-    onUnmounted() {
-      $bus.on('hook:onUnmounted')
+    onUnmounted(fn) {
+      $bus.on('hook:onUnmounted', fn)
     },
-    onBeforeMount() {
-      $bus.on('hook:onBeforeMount')
+    onBeforeMount(fn) {
+      $bus.on('hook:onBeforeMount', fn)
     },
-    onBeforeUpdate() {
-      $bus.on('hook:onBeforeUpdate')
+    onBeforeUpdate(fn) {
+      $bus.on('hook:onBeforeUpdate', fn)
     },
-    onErrorCaptured() {
-      $bus.on('hook:onErrorCaptured')
+    onErrorCaptured(fn) {
+      $bus.on('hook:onErrorCaptured', fn)
     },
-    onRenderTracked() {
-      $bus.on('hook:onRenderTracked')
+    onRenderTracked(fn) {
+      $bus.on('hook:onRenderTracked', fn)
     },
-    onRenderTriggered() {
-      $bus.on('hook:onRenderTriggered')
+    onRenderTriggered(fn) {
+      $bus.on('hook:onRenderTriggered', fn)
     },
-    onActivated() {
-      $bus.on('hook:onActivated')
+    onActivated(fn) {
+      $bus.on('hook:onActivated', fn)
     },
-    onDeactivated() {
-      $bus.on('hook:onDeactivated')
+    onDeactivated(fn) {
+      $bus.on('hook:onDeactivated', fn)
     },
-    onServerPrefetch() {
-      $bus.on('hook:onServerPrefetch')
+    onServerPrefetch(fn) {
+      $bus.on('hook:onServerPrefetch', fn)
     }
   }
 }
