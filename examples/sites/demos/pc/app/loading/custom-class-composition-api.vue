@@ -8,7 +8,7 @@ import { Loading } from '@opentiny/vue'
 
 onMounted(() => {
   Loading.service({
-    text: '自定义loading类名',
+    text: '自定义 loading 类名',
     customClass: 'new-loading',
     target: document.getElementById('tiny-demo-loading-custom-class'),
     background: 'rgba(0, 0, 0, 0.7)'
