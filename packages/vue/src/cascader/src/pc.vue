@@ -52,7 +52,7 @@
         :class="{ 'is-focus': state.dropDownVisible }"
         @focus="handleFocus"
         @blur="handleBlur"
-        @update:modelValue="handleInput"
+        @update:modelValue="(val) => handleInput(val, {})"
       >
         <template #suffix>
           <icon-close
