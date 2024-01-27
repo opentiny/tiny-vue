@@ -1,0 +1,68 @@
+name: Preview Deploy
+
+on:
+  workflow_run:
+    workflows: ['Preview Build']
+    types:
+      - completed
+
+jobs:
+  success:
+    name: Build successfully
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Download Pr Artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          name: pr
+      - name: Save PR Id
+        id: pr
+        run: echo "::set-output name=id::$(<pr-id.txt)"
+      - name: Download Dist Artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          workflow_conclusion: success
+          name: site
+      - name: Upload To Surge
+        id: deploy
+        run: |
+          export DEPLOY_DOMAIN=https://tiny-vue-pr-${{ steps.pr.outputs.id }}.surge.sh
+          npx surge --project examples/sites/dist/ --domain $DEPLOY_DOMAIN --token ${{ secrets.SURGE_TOKEN }}
+      - name: Create Comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ steps.pr.outputs.id }}
+          body: |
+            PR preview has been successfully built and deployed to https://tiny-vue-pr-${{ steps.pr.outputs.id }}.surge.sh.
+      - run: |
+          rm -rf examples/sites/dist/
+      - name: The job Failed
+        if: ${{ failure() }}
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ steps.pr.outputs.id }}
+          body: |
+            Deploy PR preview failed.
+
+  failed:
+    name: Build failure
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: Download Pr Artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          name: pr
+      - name: Save PR Id
+        id: pr
+        run: echo "::set-output name=id::$(<pr-id.txt)"
+      - name: The job Failed
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ steps.pr.outputs.id }}
+          body: |
+            Deploy PR preview failed.
