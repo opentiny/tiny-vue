@@ -266,6 +266,7 @@ export const handleBlur =
 export const handleInput =
   ({ api, state, refs }) =>
   (val, event) => {
+    // TODO: window.event待整改
     event = event || window.event
 
     if (!event) {
