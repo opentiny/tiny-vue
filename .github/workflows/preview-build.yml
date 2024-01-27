@@ -18,11 +18,13 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
+        with:
+          version: 8.3.1
 
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
@@ -37,18 +39,22 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm install
 
       - name: Build website
         run: pnpm build:site
         env:
           NODE_OPTIONS: --max-old-space-size=4096
 
+      - name: Compressed into zip
+        run: |
+          zip -r site.zip examples/sites/dist/
+
       - name: Upload Site Artifact
         uses: actions/upload-artifact@v3
         with:
           name: site
-          path: examples/sites/dist/
+          path: site.zip
           retention-days: 3
 
       - name: Save PR number
