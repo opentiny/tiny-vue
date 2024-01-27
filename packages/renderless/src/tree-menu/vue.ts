@@ -35,6 +35,13 @@ import {
   setCurrentNode,
   getCurrentNode
 } from './index'
+import type {
+  ISharedRenderlessParamUtils,
+  ISharedRenderlessFunctionParams,
+  ITreeMenuProps,
+  ITreeMenuState,
+  ITreeMenuApi
+} from '@/types'
 
 export const api = [
   'state',
@@ -63,11 +70,15 @@ export const api = [
   'getCurrentNode'
 ]
 
-export const renderless = (props, { watch, reactive, onMounted }, { t, service, emit, vm }) => {
+export const renderless = (
+  props: ITreeMenuProps,
+  { watch, reactive, onMounted }: ISharedRenderlessFunctionParams,
+  { t, service, emit, vm }: ISharedRenderlessParamUtils
+) => {
   service = service || { base: {} }
   service = { getMenuDataSync: props.getMenuDataSync || service.base.getMenuDataSync }
-
-  const state = reactive({
+  const api: Partial<ITreeMenuApi> = {}
+  const state = reactive<ITreeMenuState>({
     data: [],
     filterText: '',
     isCollapsed: false
@@ -90,11 +101,11 @@ export const renderless = (props, { watch, reactive, onMounted }, { t, service, 
     currentChange: currentChange(emit),
     watchFilterText: watchFilterText({ vm }),
     getTitle: getTitle(props),
-    setMenuKey: setMenuKey(api),
-    initData: initData({ state, props, service, api }),
+    setMenuKey: setMenuKey(api as ITreeMenuApi),
+    initData: initData({ state, props, service, api: api as ITreeMenuApi }),
     collapseChange: collapseChange({ state, props, emit }),
     collapseMenu: collapseMenu({ state, props, api }),
-    expandMenu: expandMenu({ state, props, api }),
+    expandMenu: expandMenu({ state, props, api: api as ITreeMenuApi }),
     setCurrentKey: setCurrentKey({ vm }),
     getCurrentKey: getCurrentKey({ vm }),
     setCurrentNode: setCurrentNode({ vm }),
@@ -107,9 +118,9 @@ export const renderless = (props, { watch, reactive, onMounted }, { t, service, 
     { immediate: true }
   )
 
-  watch(() => state.filterText, api.watchFilterText, { deep: true })
+  watch(() => state.filterText, (api as ITreeMenuApi).watchFilterText, { deep: true })
 
-  onMounted(api.initData)
+  onMounted((api as ITreeMenuApi).initData)
 
-  return api
+  return api as ITreeMenuApi
 }

@@ -50,7 +50,7 @@
         </div>
         <ul data-tag="tiny-calendar-view-monthlist" class="flex justify-around flex-1 h-full">
           <li data-tag="tiny-calendar-view-monthitem" v-for="day in state.weekDays" :key="day" class="leading-10">
-            <span class="text-sm text-color-text-primary">{{ t(`ui.calendarView.weekDays[${day}]`) }}</span>
+            <span class="text-sm text-color-text-primary">{{ t(`ui.calendarView.weekDays.${day}`) }}</span>
           </li>
         </ul>
         <div
@@ -82,8 +82,8 @@
                   day.isLast || day.isNext || day.disabled
                     ? ''
                     : isSelectedDate(day)
-                    ? 'bg-color-brand-hover-subtle hover:bg-color-brand-hover-subtle'
-                    : 'hover:bg-color-brand-hover-subtler',
+                      ? 'bg-color-brand-hover-subtle hover:bg-color-brand-hover-subtle'
+                      : 'hover:bg-color-brand-hover-subtler',
                   gcls('bg-' + getDayBgColor(day))
                 )
               "
@@ -103,8 +103,8 @@
                     day.isLast || day.isNext
                       ? 'text-color-text-primary opacity-30'
                       : isToday(day) || isSelectedDate(day)
-                      ? 'text-color-brand'
-                      : 'text-color-text-primary',
+                        ? 'text-color-brand'
+                        : 'text-color-text-primary',
                     day.disabled ? 'text-color-none-hover' : ''
                   )
                 "
@@ -172,7 +172,7 @@
               name="header"
               :slot-scope="{
                 date: date.value,
-                weekDay: t(`ui.calendarView.weekDays[${index}]`)
+                weekDay: t(`ui.calendarView.weekDays.${index}`)
               }"
             >
               <span
@@ -189,9 +189,7 @@
               <span
                 class="text-sm"
                 :class="[dateIsToday(date.value) ? 'text-color-brand' : 'text-color-text-placeholder']"
-                >{{
-                  dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays[${index}]`)
-                }}</span
+                >{{ dateIsToday(date.value) ? t('ui.datepicker.today') : t(`ui.calendarView.weekDays.${index}`) }}</span
               >
             </slot>
           </li>

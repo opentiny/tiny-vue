@@ -38,22 +38,22 @@ export default {
   },
   methods: {
     handleShow() {
-      Modal.message({ message: 'show 事件触发了' })
+      Modal.message({ status: 'info', message: 'show 事件触发了' })
     },
     handleHide() {
-      Modal.message({ message: 'hide 事件触发了' })
+      Modal.message({ status: 'info', message: 'hide 事件触发了' })
     },
     handleConfirm() {
-      Modal.message({ message: 'confirm 事件触发了' })
+      Modal.message({ status: 'info', message: 'confirm 事件触发了' })
     },
     handleCancel() {
-      Modal.message({ message: 'cancel 事件触发了' })
+      Modal.message({ status: 'info', message: 'cancel 事件触发了' })
     },
     handleClose() {
-      Modal.message({ message: 'close 事件触发了' })
+      Modal.message({ status: 'info', message: 'close 事件触发了' })
     },
     handleZoom() {
-      Modal.message({ message: 'zoom 事件触发了' })
+      Modal.message({ status: 'info', message: 'zoom 事件触发了' })
     }
   }
 }

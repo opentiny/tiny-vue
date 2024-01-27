@@ -39,6 +39,16 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['pager/show-save-msg.vue']
+    },
+    {
+      'demoId': 'pager-in-grid',
+      'name': { 'zh-CN': '自定义分页', 'en-US': '' },
+      'desc': {
+        'zh-CN':
+          '<p>表格内置分页组件需要和 <code>fetch-data</code> 属性配合使用，若使用 <code>data</code> 设置表格数据源，则需要使用自动义分页。</p>\n',
+        'en-US': ''
+      },
+      'codeFiles': ['pager/pager-in-grid.vue']
     }
   ],
   apis: [{ 'name': 'grid-pager', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

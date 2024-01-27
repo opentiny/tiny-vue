@@ -60,7 +60,7 @@ export default {
     },
     {
       'demoId': 'width',
-      'name': { 'zh-CN': '设置宽度', 'en-US': 'Set width' },
+      'name': { 'zh-CN': '宽度', 'en-US': 'Set width' },
       'desc': {
         'zh-CN': '<p>通过 <code>width</code> 设置提示框宽度。</p>',
         'en-US': '<p>Set the width of the prompt box through<code>width</code></ P>'
@@ -115,8 +115,8 @@ export default {
         },
         {
           'name': 'placement',
-          'type':
-            "'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'",
+          'type': 'IPplacement',
+          'typeAnchorName': 'IPplacement',
           'defaultValue': "'top'",
           'desc': {
             'zh-CN': '气泡提示框显示位置',
@@ -156,7 +156,8 @@ export default {
         },
         {
           'name': 'type',
-          'type': "'info' | 'success' | 'warning' | 'error' | Component",
+          'type': 'IPtype',
+          'typeAnchorName': 'IPtype',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '提示图标类型，可以传入自定义图标',
@@ -184,7 +185,7 @@ export default {
             'zh-CN': '点击确认按钮时触发',
             'en-US': 'Triggered when confirm button is clicked'
           },
-          'demoId': 'confirm-event'
+          'demoId': 'event'
         },
         {
           'name': 'hide',
@@ -229,6 +230,19 @@ export default {
           'demoId': 'basic-usage'
         }
       ]
+    }
+  ],
+
+  types: [
+    {
+      name: 'IPplacement',
+      type: 'type',
+      code: "type IPplacement = 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'"
+    },
+    {
+      name: 'IPtype',
+      type: 'type',
+      code: "type IPtype = 'info' | 'success' | 'warning' | 'error' | Component"
     }
   ]
 }

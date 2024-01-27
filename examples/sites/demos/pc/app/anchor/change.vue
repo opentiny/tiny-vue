@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     handleChange(link) {
-      Modal.message(`change${link}`)
+      Modal.message({ message: `change${link}`, status: 'info' })
     }
   }
 }

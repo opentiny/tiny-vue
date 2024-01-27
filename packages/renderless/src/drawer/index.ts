@@ -1,15 +1,16 @@
 import debounce from '../common/deps/debounce'
 import { addClass, removeClass } from '../common/deps/dom'
+import type { IDrawerState, IDrawerProps, IDrawerApi, IDrawerCT, ISharedRenderlessParamUtils } from '@/types'
 
 export const close =
-  ({ emit, state }) =>
+  ({ emit, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState }) =>
   () => {
     state.toggle = false
     emit('close', state)
   }
 
 export const watchVisible =
-  ({ state }) =>
+  ({ state }: { state: IDrawerState }) =>
   (bool) => {
     setTimeout(() => {
       state.toggle = bool
@@ -17,22 +18,22 @@ export const watchVisible =
   }
 
 export const watchToggle =
-  ({ emit }) =>
-  (bool) => {
+  ({ emit }: { emit: ISharedRenderlessParamUtils['emit'] }) =>
+  (bool: boolean) => {
     setTimeout(() => {
       emit('update:visible', bool)
     }, 0)
   }
 
 export const confirm =
-  ({ emit, state }) =>
+  ({ emit, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState }) =>
   () => {
     state.toggle = false
     emit('confirm', state)
   }
 
 export const mousedown =
-  ({ state, vm }) =>
+  ({ state, vm }: { vm: ISharedRenderlessParamUtils<IDrawerCT>['vm']; state: IDrawerState }) =>
   (event) => {
     event.preventDefault()
 
@@ -44,7 +45,7 @@ export const mousedown =
     state.dragEvent.offsetWidth = drawerBox.offsetWidth
   }
 
-export const mousemove = ({ state, props }) =>
+export const mousemove = ({ state, props }: { state: IDrawerState; props: IDrawerProps }) =>
   debounce(1, (event) => {
     if (!state.dragEvent.isDrag) {
       return
@@ -67,21 +68,21 @@ export const mousemove = ({ state, props }) =>
     } else if (placement === 'right') {
       state.width = offsetWidth - offsetX
     }
-  })
+  }) as Parameters<Document['removeEventListener']>['1']
 
 export const mouseup =
-  ({ state }) =>
+  ({ state }: { state: IDrawerState }) =>
   () => {
     if (!state.dragEvent.isDrag) {
       return
     }
 
-    event.preventDefault()
+    ;(event as any).preventDefault()
     state.dragEvent.isDrag = false
   }
 
 export const addDragEvent =
-  ({ api, vm }) =>
+  ({ api, vm }: { api: IDrawerApi; vm: ISharedRenderlessParamUtils<IDrawerCT>['vm'] }) =>
   () => {
     const el = vm.$refs.dragBar
 
@@ -95,7 +96,7 @@ export const addDragEvent =
   }
 
 export const removeDragEvent =
-  ({ api, vm }) =>
+  ({ api, vm }: { api: IDrawerApi; vm: ISharedRenderlessParamUtils<IDrawerCT>['vm'] }) =>
   () => {
     const el = vm.$refs.dragBar
 
@@ -117,8 +118,8 @@ export const hideScrollbar = (lockScrollClass) => () => {
 }
 
 export const watchVisibleNotImmediate =
-  ({ api, props }) =>
-  (visible) => {
+  ({ api, props }: { api: IDrawerApi; props: IDrawerProps }) =>
+  (visible: boolean) => {
     if (props.lockScroll) {
       visible ? api.showScrollbar() : api.hideScrollbar()
     }

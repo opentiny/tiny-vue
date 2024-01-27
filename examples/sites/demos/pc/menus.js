@@ -288,6 +288,11 @@ export const cmpMenus = [
         'mark': {
           'text': 'New'
         }
+      },
+      {
+        'nameCn': '脑图',
+        'name': 'mind-map',
+        'key': 'mind-map'
       }
     ]
   }

@@ -567,7 +567,10 @@ export default {
           'name': 'default-expand-all',
           'type': 'boolean',
           'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否默认展开所有节点', 'en-US': 'Whether to expand all nodes by default' },
+          'desc': {
+            'zh-CN': '是否默认展开所有节点',
+            'en-US': 'Whether to expand all nodes by default'
+          },
           'demoId': 'expand-control'
         },
         {
@@ -587,16 +590,6 @@ export default {
           'desc': {
             'zh-CN': '节点在点击内容时,是否展开 / 收起',
             'en-US': 'Whether the node expands/collapses when it clicks on content'
-          },
-          'demoId': 'expand-control'
-        },
-        {
-          'name': 'default-expand-all',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '是否默认展开所有节点',
-            'en-US': 'Whether to expand all nodes by default'
           },
           'demoId': 'expand-control'
         },

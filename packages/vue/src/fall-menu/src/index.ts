@@ -12,12 +12,19 @@
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
+interface IData {
+  children: IData[]
+  url: string
+}
+
+export const fallMenuProps = {
+  ...$props,
+  data: { type: Array<IData>, default: () => [] }
+}
+
 export default defineComponent({
   name: $prefix + 'FallMenu',
-  props: {
-    ...$props,
-    data: { type: Array, default: () => [] }
-  },
+  props: fallMenuProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

@@ -14,11 +14,7 @@
           ></tiny-date-picker>
         </tiny-form-item>
         <tiny-form-item prop="date2">
-          <tiny-time-picker
-            :validate-event="false"
-            placeholder="选择时间"
-            v-model="ruleForm.date2"
-          ></tiny-time-picker>
+          <tiny-time-picker :validate-event="false" placeholder="选择时间" v-model="ruleForm.date2"></tiny-time-picker>
         </tiny-form-item>
       </tiny-form-item>
       <tiny-form-item>
@@ -75,9 +71,9 @@ export default {
     submitForm() {
       this.$refs.ruleFormRef.validate((valid) => {
         if (valid) {
-          Modal.message('Submitted successfully !')
+          Modal.message({ message: 'Submitted successfully !', status: 'success' })
         } else {
-          Modal.message('Data verification failed !')
+          Modal.message({ message: 'Data verification failed !', status: 'error' })
 
           return false
         }
@@ -90,8 +86,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .demo-date-picker-wrap {
   width: 400px;
+
+  :deep(.tiny-form-item .tiny-form-item) {
+    margin-bottom: 8px;
+  }
 }
 </style>

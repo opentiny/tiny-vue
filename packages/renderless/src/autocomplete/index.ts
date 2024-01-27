@@ -10,8 +10,26 @@
  *
  */
 
+import type {
+  IAutoCompleteProps,
+  IAutoCompleteState,
+  IAutoCompleteApi,
+  IAutoCompleteConstants,
+  IAutoCompleteRenderlessParamUtils
+} from '@/types'
+
 export const getData =
-  ({ props, state, updatePopper, nextTick }) =>
+  ({
+    props,
+    state,
+    updatePopper,
+    nextTick
+  }: {
+    props: IAutoCompleteProps
+    state: IAutoCompleteState
+    updatePopper: (popperElm?: HTMLElement | undefined) => void
+    nextTick: IAutoCompleteRenderlessParamUtils['nextTick']
+  }) =>
   (queryString) => {
     if (state.suggestionDisabled) {
       return
@@ -19,7 +37,7 @@ export const getData =
 
     state.loading = true
 
-    props.fetchSuggestions(queryString, (suggestions) => {
+    props?.fetchSuggestions?.(queryString, (suggestions) => {
       state.loading = false
 
       if (state.suggestionDisabled) {
@@ -38,7 +56,17 @@ export const getData =
   }
 
 export const handleChange =
-  ({ api, emit, state, props }) =>
+  ({
+    api,
+    emit,
+    state,
+    props
+  }: {
+    api: IAutoCompleteApi
+    emit: IAutoCompleteRenderlessParamUtils['emit']
+    state: IAutoCompleteState
+    props: IAutoCompleteProps
+  }) =>
   (value) => {
     state.activated = true
     emit('update:modelValue', value)
@@ -55,7 +83,17 @@ export const handleChange =
   }
 
 export const handleFocus =
-  ({ api, emit, props, state }) =>
+  ({
+    api,
+    emit,
+    props,
+    state
+  }: {
+    api: IAutoCompleteApi
+    emit: IAutoCompleteRenderlessParamUtils['emit']
+    state: IAutoCompleteState
+    props: IAutoCompleteProps
+  }) =>
   (event) => {
     state.activated = true
     emit('focus', event)
@@ -67,25 +105,37 @@ export const handleFocus =
   }
 
 export const handleBlur =
-  ({ emit, state }) =>
+  ({ emit, state }: { emit: IAutoCompleteRenderlessParamUtils['emit']; state: IAutoCompleteState }) =>
   (event) => {
     state.suggestionDisabled = true
     emit('blur', event)
   }
 
 export const handleClear =
-  ({ emit, state }) =>
+  ({ emit, state }: { emit: IAutoCompleteRenderlessParamUtils['emit']; state: IAutoCompleteState }) =>
   () => {
     state.activated = false
     emit('clear')
   }
 
-export const close = (state) => () => {
+export const close = (state: IAutoCompleteState) => () => {
   state.activated = false
 }
 
 export const handleKeyEnter =
-  ({ api, emit, nextTick, props, state }) =>
+  ({
+    api,
+    emit,
+    nextTick,
+    props,
+    state
+  }: {
+    api: IAutoCompleteApi
+    emit: IAutoCompleteRenderlessParamUtils['emit']
+    nextTick: IAutoCompleteRenderlessParamUtils['nextTick']
+    props: IAutoCompleteProps
+    state: IAutoCompleteState
+  }) =>
   (event) => {
     if (state.suggestionVisible && state.highlightedIndex >= 0 && state.highlightedIndex < state.suggestions.length) {
       event.preventDefault()
@@ -101,7 +151,17 @@ export const handleKeyEnter =
   }
 
 export const select =
-  ({ emit, nextTick, props, state }) =>
+  ({
+    emit,
+    nextTick,
+    props,
+    state
+  }: {
+    emit: IAutoCompleteRenderlessParamUtils['emit']
+    nextTick: IAutoCompleteRenderlessParamUtils['nextTick']
+    props: IAutoCompleteProps
+    state: IAutoCompleteState
+  }) =>
   (item) => {
     emit('update:modelValue', item[props.valueKey])
     emit('select', item)
@@ -114,7 +174,15 @@ export const select =
   }
 
 export const highlight =
-  ({ constants, refs, state }) =>
+  ({
+    constants,
+    refs,
+    state
+  }: {
+    constants: IAutoCompleteConstants
+    refs: IAutoCompleteRenderlessParamUtils['refs']
+    state: IAutoCompleteState
+  }) =>
   (index) => {
     if (!state.suggestionVisible || state.loading) {
       return
@@ -150,7 +218,7 @@ export const highlight =
     $input.setAttribute('aria-activedescendant', `${state.id}-item-${state.highlightedIndex}`)
   }
 
-export const computedVisible = (state) => {
+export const computedVisible = (state: IAutoCompleteState) => {
   const suggestions = state.suggestions
   let isValidData = Array.isArray(suggestions) && suggestions.length > 0
 
@@ -158,7 +226,13 @@ export const computedVisible = (state) => {
 }
 
 export const watchVisible =
-  ({ suggestionState, refs }) =>
+  ({
+    suggestionState,
+    refs
+  }: {
+    suggestionState: IAutoCompleteApi['suggestionState']
+    refs: IAutoCompleteRenderlessParamUtils['refs']
+  }) =>
   (val) => {
     let $input = refs.input.getInput()
 
@@ -169,7 +243,15 @@ export const watchVisible =
   }
 
 export const mounted =
-  ({ refs, state, suggestionState }) =>
+  ({
+    refs,
+    state,
+    suggestionState
+  }: {
+    refs: IAutoCompleteRenderlessParamUtils['refs']
+    state: IAutoCompleteState
+    suggestionState: IAutoCompleteApi['suggestionState']
+  }) =>
   () => {
     const input = refs.input
     const $input = input.getInput()
