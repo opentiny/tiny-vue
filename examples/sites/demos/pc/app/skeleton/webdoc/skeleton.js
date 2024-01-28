@@ -168,6 +168,7 @@ export default {
         {
           'name': 'variant',
           'type': 'IVariant',
+          'typeAnchorName': 'IVariant',
           'defaultValue': 'square',
           'desc': {
             'zh-CN': '骨架屏形态',
@@ -179,6 +180,7 @@ export default {
         {
           'name': 'size',
           'type': 'ISize',
+          'typeAnchorName': 'ISize',
           'defaultValue': 'medium',
           'desc': {
             'zh-CN': '针对 image 和 circle 形态，内置三种大小',

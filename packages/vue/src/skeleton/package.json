@@ -9,7 +9,8 @@
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-skeleton-item": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {
