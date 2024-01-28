@@ -57,5 +57,7 @@ packages/theme/scripts/theme.json
 packages/theme/scripts/theme-result.txt
 packages/theme/scripts/themeExcel.xlsx
 
+packages/theme/src/theme/*-theme/component.js
+
 pnpm-lock.yaml
 gulp/bundle.json

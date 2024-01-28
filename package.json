@@ -65,7 +65,7 @@
     "build:themeMobile": "pnpm -C packages/theme-mobile build:fast",
     "build:themejson": "gulp themeJson",
     "build:internals": "pnpm \"--filter=./internals/*\" build",
-    "build:site": "pnpm -C examples/sites build",
+    "build:site": "gulp themeConcat && pnpm -C examples/sites build",
     "release:aurora": "pnpm -C internals/cli release:aurora",
     "// ---------- 使用pnpm批量发布npm包 ----------": "",
     "pub2": "pnpm --filter=\"./packages/dist2/**\" publish --tag v2-latest --no-git-checks --access=public",
