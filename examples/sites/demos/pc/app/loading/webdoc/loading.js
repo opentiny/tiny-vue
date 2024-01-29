@@ -17,7 +17,7 @@ export default {
       'name': { 'zh-CN': '尺寸', 'en-US': 'Customized loading prompt text' },
       'desc': {
         'zh-CN':
-          '<p>可通过 <code>size</code> 属性设置尺寸大小，可选值：<code>medium</code> / <code>small</code> / <code>mini </code>。</p>\n',
+          '<p>可通过 <code>size</code> 属性设置尺寸大小，可选值：<code>medium</code> / <code>small</code> / <code>large </code>。</p>\n',
         'en-US': '<p>Customize the prompt text of the loaded text through <code>text</code>. </p>\n'
       },
       'codeFiles': ['size.vue']
@@ -110,7 +110,7 @@ export default {
         },
         {
           'name': 'size',
-          'type': `'medium' | 'small' | 'mini'`,
+          'type': `'medium' | 'small' | 'large'`,
           'defaultValue': `'small'`,
           'desc': { 'zh-CN': '加载图标尺寸', 'en-US': 'Load icon size' },
           'demoId': 'size'
