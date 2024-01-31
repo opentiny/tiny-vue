@@ -588,7 +588,7 @@ export const mounted =
         }
 
         props.extend.tooltip.formatter = customFormatter
-      } else {
+      } else if(props.extend.tooltip.formatter){
         let xssHtml = xss.filterHtml(props.extend.tooltip.formatter)
         props.extend.tooltip.formatter = xssHtml
       }
