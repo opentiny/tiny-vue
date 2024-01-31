@@ -10,6 +10,13 @@
  *
  */
 
+import type {
+  IActionSheetApi,
+  IActionSheetState,
+  IActionSheetProps,
+  ISharedRenderlessParamHooks,
+  IActionSheetRenderlessParamUtils
+} from '@/types'
 import {
   setSheetStyle,
   initScrollMenu,
@@ -37,9 +44,13 @@ export const api = [
   'hide'
 ]
 
-export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, vm }, { BScroll }) => {
-  const api = {}
-  const state = reactive({
+export const renderless = (
+  props: IActionSheetProps,
+  { reactive, watch }: ISharedRenderlessParamHooks,
+  { emit, nextTick, refs, vm }: IActionSheetRenderlessParamUtils,
+  { BScroll }
+): IActionSheetApi => {
+  const state = reactive<IActionSheetState>({
     toggle: false,
     active: null,
     sheetMaskStyle: {},
@@ -47,7 +58,7 @@ export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, v
     scroll: null
   })
 
-  Object.assign(api, {
+  const api: IActionSheetApi = {
     state,
     setSheetStyle: setSheetStyle({ state, props }),
     initScrollMenu: initScrollMenu({ state, nextTick, refs, BScroll }),
@@ -59,7 +70,7 @@ export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, v
     actionSelectOption: actionSelectOption({ emit }),
     close: close({ emit, vm }),
     hide: hide(emit)
-  })
+  }
 
   watch(
     () => props.visible,

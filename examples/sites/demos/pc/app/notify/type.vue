@@ -1,9 +1,9 @@
 <template>
   <div class="content">
-    <tiny-button @click="infoClick" :reset-time="0">info类型</tiny-button>
-    <tiny-button @click="successClick" :reset-time="0">success类型</tiny-button>
-    <tiny-button @click="errorClick" :reset-time="0">error类型</tiny-button>
-    <tiny-button @click="warningClick" :reset-time="0">warning类型</tiny-button>
+    <tiny-button @click="infoClick" :reset-time="0">info 类型</tiny-button>
+    <tiny-button @click="successClick" :reset-time="0">success 类型</tiny-button>
+    <tiny-button @click="errorClick" :reset-time="0">error 类型</tiny-button>
+    <tiny-button @click="warningClick" :reset-time="0">warning 类型</tiny-button>
   </div>
 </template>
 

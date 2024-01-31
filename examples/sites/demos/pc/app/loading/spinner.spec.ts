@@ -6,6 +6,6 @@ test('自定义加载图标', async ({ page }) => {
   const loadingText = page.locator('.tiny-loading__text')
 
   const svg = page.locator('#tiny-demo-loading-spinner .tiny-icon-loading')
-  await expect(loadingText).toContainText('自定义loading图标')
+  await expect(loadingText).toContainText('自定义 loading 图标')
   await expect(svg).toHaveClass(/tiny-icon-loading/)
 })

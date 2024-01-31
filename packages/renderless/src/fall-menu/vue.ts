@@ -22,10 +22,27 @@ import {
   computeLeft,
   computeData
 } from './index'
+import type {
+  ISharedRenderlessFunctionParams,
+  ISharedRenderlessParamUtils,
+  IFallMenuApi,
+  IFallMenuState,
+  IFallMenuProps
+} from '@/types'
 
 export const api = ['state', 'fall', 'arrowClick', 'mouseover', 'mouseout', 'overContent', 'reRender', 'left']
 
-const initState = ({ reactive, computed, api, props }) => {
+const initState = ({
+  reactive,
+  computed,
+  api,
+  props
+}: {
+  reactive: ISharedRenderlessFunctionParams<null>['reactive']
+  computed: ISharedRenderlessFunctionParams<null>['computed']
+  api: IFallMenuApi
+  props: IFallMenuProps
+}) => {
   const state = reactive({
     pager: 1,
     level2data: [],
@@ -39,7 +56,19 @@ const initState = ({ reactive, computed, api, props }) => {
   return state
 }
 
-const initApi = ({ api, state, fall, props, refs }) => {
+const initApi = ({
+  api,
+  state,
+  fall,
+  props,
+  refs
+}: {
+  api: IFallMenuApi
+  state: IFallMenuState
+  fall: IFallMenuApi['fall']
+  props: IFallMenuProps
+  refs: ISharedRenderlessFunctionParams<null>['refs']
+}) => {
   Object.assign(api, {
     fall,
     state,
@@ -56,15 +85,19 @@ const initApi = ({ api, state, fall, props, refs }) => {
   })
 }
 
-export const renderless = (props, { computed, reactive, onMounted, onBeforeUnmount, ref }, { refs }) => {
-  const api = {}
+export const renderless = (
+  props: IFallMenuProps,
+  { computed, reactive, onMounted, onBeforeUnmount, ref }: ISharedRenderlessFunctionParams,
+  { refs }: ISharedRenderlessParamUtils
+) => {
+  const api: Partial<IFallMenuApi> = {}
   const fall = ref(null)
-  const state = initState({ reactive, computed, api, props })
+  const state = initState({ reactive, computed, api: api as IFallMenuApi, props })
 
-  initApi({ api, state, fall, props, refs })
+  initApi({ api: api as IFallMenuApi, state, fall, props, refs })
 
-  onMounted(api.mounted)
-  onBeforeUnmount(api.beforeDestroy)
+  onMounted((api as IFallMenuApi).mounted)
+  onBeforeUnmount((api as IFallMenuApi).beforeDestroy)
 
   return api
 }

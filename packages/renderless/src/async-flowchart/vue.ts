@@ -8,16 +8,23 @@ import {
   handleClickGroup,
   refresh
 } from './index'
+import type {
+  IAsyncFlowchartProps,
+  IAsyncFlowchartState,
+  IAsyncFlowchartApi,
+  ISharedRenderlessParamHooks,
+  ISharedRenderlessParamUtils
+} from '@/types'
 
 export const api = ['state', 'handleClickNode', 'handleClickLink', 'handleClickBlank', 'handleClickGroup', 'refresh']
 
 export const renderless = (
-  props,
-  { reactive, onMounted, onBeforeUnmount, markRaw },
-  { nextTick, vm, emit },
+  props: IAsyncFlowchartProps,
+  { reactive, onMounted, onBeforeUnmount, markRaw }: ISharedRenderlessParamHooks,
+  { nextTick, vm, emit }: ISharedRenderlessParamUtils,
   { Loading }
 ) => {
-  const state = reactive({
+  const state = reactive<IAsyncFlowchartState>({
     loading: true,
     data: null,
     config: null
@@ -25,7 +32,7 @@ export const renderless = (
 
   state.temporary = {}
 
-  const api = {
+  const api: Partial<IAsyncFlowchartApi> = {
     state,
     observeContainerSize: observeContainerSize({ nextTick, vm, state }),
     unobserveContainerSize: unobserveContainerSize(state),
@@ -36,12 +43,12 @@ export const renderless = (
   }
 
   Object.assign(api, {
-    fetchData: fetchData({ Loading, props, state, vm, markRaw, api, nextTick }),
-    refresh: refresh(api)
+    fetchData: fetchData({ Loading, props, state, vm, markRaw, api: api as IAsyncFlowchartApi, nextTick }),
+    refresh: refresh(api as IAsyncFlowchartApi)
   })
 
-  onMounted(api.fetchData)
-  onBeforeUnmount(() => api.unobserveContainerSize())
+  onMounted((api as IAsyncFlowchartApi).fetchData)
+  onBeforeUnmount(() => (api as IAsyncFlowchartApi).unobserveContainerSize())
 
   return api
 }

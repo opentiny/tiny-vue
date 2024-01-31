@@ -12,44 +12,46 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
+export const ipAddressProps = {
+  ...$props,
+  size: String,
+
+  /**
+   * @property {String} value - 显示值
+   */
+  modelValue: String,
+
+  /**
+   * @property {String} [type = IPv4]  - IP地址输入组件类型（'IPv4', 'IPv6',）可选择
+   */
+  type: {
+    type: String,
+    default: 'IPv4',
+    validator: (value: string) => Boolean(~['IPv4', 'IPv6'].indexOf(value))
+  },
+
+  /**
+   * @property {Boolean} readonly - 只读
+   */
+  readonly: Boolean,
+
+  /**
+   *  @property {Boolean} disabled - 禁用
+   */
+  disabled: Boolean,
+
+  /**
+   * @property {String, Object} [delimiter = .] - 组件IP段显示的分隔符改为图标
+   */
+  delimiter: {
+    type: [String, Object],
+    default: 'icon-dot-ipv4'
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'IpAddress',
-  props: {
-    ...$props,
-    size: String,
-
-    /**
-     * @property {String} value - 显示值
-     */
-    modelValue: String,
-
-    /**
-     * @property {String} [type = IPv4]  - IP地址输入组件类型（'IPv4', 'IPv6',）可选择
-     */
-    type: {
-      type: String,
-      default: 'IPv4',
-      validator: (value: string) => Boolean(~['IPv4', 'IPv6'].indexOf(value))
-    },
-
-    /**
-     * @property {Boolean} readonly - 只读
-     */
-    readonly: Boolean,
-
-    /**
-     *  @property {Boolean} disabled - 禁用
-     */
-    disabled: Boolean,
-
-    /**
-     * @property {String, Object} [delimiter = .] - 组件IP段显示的分隔符改为图标
-     */
-    delimiter: {
-      type: [String, Object],
-      default: 'icon-dot-ipv4'
-    }
-  },
+  props: ipAddressProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

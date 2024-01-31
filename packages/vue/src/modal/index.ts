@@ -132,7 +132,8 @@ setupComponent.TINYModal = {
     const isVue2 = !!Vue.component
     const tinyMode = isVue2 ? Vue.prototype.tiny_mode : Vue.config.globalProperties.tiny_mode
     const tinyTheme = isVue2 ? Vue.prototype.tiny_theme : Vue.config.globalProperties.tiny_theme
-    TINYModal.tiny_mode = process.env.TINY_MODE || (tinyMode && tinyMode.value)
+    const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
+    TINYModal.tiny_mode = specifyPc || (tinyMode && tinyMode.value)
     TINYModal.tiny_theme = tinyTheme && tinyTheme.value
 
     TINYModal.installed = true

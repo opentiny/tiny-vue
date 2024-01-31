@@ -17,11 +17,11 @@ import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
 
-const VERSION = 'tiny-vue-version-3.12'
+const VERSION = 'tiny-vue-version-3.13'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
 
-const versions = ['3.12', '3.11', '3.10', '3.9', '3.8']
+const versions = ['3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
 const latestVersion = localStorage.getItem(VERSION) || versions[0]
 const cdnHost = localStorage.getItem('setting-cdn')
 const getRuntime = (version) => `${cdnHost}/@opentiny/vue@${version}/runtime/`
@@ -89,8 +89,7 @@ const store = new useStore({
 // repl 属性
 const state = reactive({
   layout: localStorage.getItem(LAYOUT) || 'horizon',
-  // 默认为反转，所以需要判断是否为'false'后取反
-  layoutReverse: !(localStorage.getItem(LAYOUT_REVERSE) === 'false'),
+  layoutReverse: localStorage.getItem(LAYOUT_REVERSE) === 'true',
   layoutOptions: [
     { value: 'horizon', text: '水平' },
     { value: 'vertical', text: '垂直' }

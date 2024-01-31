@@ -333,7 +333,7 @@ export default {
         },
         {
           'name': 'clear-icon',
-          'type': 'object',
+          'type': 'Component',
           'defaultValue': 'IconOperationfaild',
           'desc': {
             'zh-CN': '自定义清空图标',
@@ -397,7 +397,7 @@ export default {
         {
           'name': 'format',
           'type': 'string',
-          'defaultValue': 'yyyy-MM-dd',
+          'defaultValue': "'yyyy-MM-dd'",
           'desc': {
             'zh-CN': '显示在输入框中的格式',
             'en-US': 'Display format in the text box'
@@ -555,8 +555,8 @@ export default {
         },
         {
           'name': 'size',
-          'type': "'medium' | 'small' | '' | 'mini'",
-          'defaultValue': "''",
+          'type': "'medium' | 'small' | 'mini'",
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '输入框尺寸',
             'en-US': 'Text box size; The values of this attribute are medium, small, and mini'
@@ -587,7 +587,7 @@ export default {
         },
         {
           'name': 'suffix-icon',
-          'type': 'object',
+          'type': 'Component',
           'defaultValue': 'IconCalendar',
           'desc': {
             'zh-CN': '自定义选择器的后置图标',
@@ -663,7 +663,7 @@ export default {
         {
           'name': 'value-format',
           'type': 'string',
-          'defaultValue': 'Date 对象',
+          'defaultValue': '--',
           'desc': {
             'zh-CN': '指定绑定值的格式，不指定则绑定值为 Date 对象',
             'en-US':
