@@ -55,7 +55,11 @@
 
   1. 标题的规范与 commit 信息一样，以`type(scope): 描述信息` 的形式填写。
 
-  2. 触发组件的 e2e 测试: 在 Pull Request 标题里添加 `[componentName1, componentName2]`，将会执行 componentName1，componentName2 的测试用例，当改动的代码会影响组件时，需要声明这个结构。
+  2. 触发组件的 **e2e 测试**: 在 Pull Request 标题里添加 `[componentName1, componentName2]`，将会执行 componentName1，componentName2 的测试用例，当改动的代码会影响组件时，需要声明这个结构。
+
+     - 注：本项目下的 `github action` 会用`[componentName1, componentName2]`声明的组件名匹配 `examples/sites/demos` 目录下的路径名称，识别要执行的测试e2e用例。（因为全量跑测试用例太耗费时间）
+
+     - 当修改了某个组件的子组件，比如`col`组件，它本身没有对应的示例以及测试用例，这时应该要测试的是`layout`组件，因为`col`组件是`layout`组件的子组件，PR 标题可以这样： `fix(col): [layout] xxxxxxxxxxxxxx`
 
   3. 标题示例:
 
