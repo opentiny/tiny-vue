@@ -1,0 +1,32 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "composite": true,
+    "allowJs": true,
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "paths": {
+      "@opentiny/react-*": ["packages/react-*", "packages/react/src/*"],
+      "@opentiny/vue-renderless/types*": ["packages/renderless/types*"],
+      "@opentiny/vue-renderless*": ["packages/renderless/src*"],
+      "virtual:common/adapter/react": ["packages/react-common/src/adapter/react/index.ts"],
+      "virtual:locale/react": ["packages/react-locale/src/react/index.ts"]
+    },
+    "types": ["node", "vite/client"]
+  },
+  "include": [
+    "packages/react/**/*.ts",
+    "packages/react/**/*.tsx",
+    "packages/react-common/**/*.ts",
+    "packages/react-common/**/*.tsx",
+    "packages/react-icon/**/*.ts",
+    "packages/react-icon/**/*.tsx",
+    "packages/react-locale/**/*.ts",
+    "packages/react-locale/**/*.tsx",
+    "examples/react/shims-app.d.ts",
+    "examples/react/shims-react.d.ts"
+  ],
+  "exclude": ["**/node_modules", "**/dist*", "**/*.md"]
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <tiny-button @click="infoClick" :reset-time="0">默认bottom-right</tiny-button>
+    <tiny-button @click="infoClick" :reset-time="0">默认 bottom-right</tiny-button>
     <tiny-button @click="successClick" :reset-time="0">top-right</tiny-button>
   </div>
 </template>

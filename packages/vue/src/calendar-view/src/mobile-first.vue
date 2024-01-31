@@ -82,8 +82,8 @@
                   day.isLast || day.isNext || day.disabled
                     ? ''
                     : isSelectedDate(day)
-                    ? 'bg-color-brand-hover-subtle hover:bg-color-brand-hover-subtle'
-                    : 'hover:bg-color-brand-hover-subtler',
+                      ? 'bg-color-brand-hover-subtle hover:bg-color-brand-hover-subtle'
+                      : 'hover:bg-color-brand-hover-subtler',
                   gcls('bg-' + getDayBgColor(day))
                 )
               "
@@ -103,8 +103,8 @@
                     day.isLast || day.isNext
                       ? 'text-color-text-primary opacity-30'
                       : isToday(day) || isSelectedDate(day)
-                      ? 'text-color-brand'
-                      : 'text-color-text-primary',
+                        ? 'text-color-brand'
+                        : 'text-color-text-primary',
                     day.disabled ? 'text-color-none-hover' : ''
                   )
                 "

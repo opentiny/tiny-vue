@@ -4,8 +4,9 @@
     <pre v-else>{{ code }}</pre>
   </div>
 </template>
+
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import hljs from 'highlight.js/lib/core'
 import 'highlight.js/styles/github.css'
 import tsPath from 'highlight.js/lib/languages/typescript'
@@ -31,16 +32,21 @@ export default defineComponent({
 
       return textHtml
     }
-
-    // highlight和其他同步任务叠加容易形成长任务，改成异步消除长任务。
-    setTimeout(() => {
-      if (props.types && props.types === 'ts') {
-        highlightCode.value = getFormatCodes(props.types)
-      } else {
-        highlightCode.value = hljs.highlightAuto(props.code).value
-      }
-      highlightFinish.value = true
-    }, 0)
+    watch(
+      props,
+      () => {
+        setTimeout(() => {
+          // highlight和其他同步任务叠加容易形成长任务，改成异步消除长任务。
+          if (props.types && props.types === 'ts') {
+            highlightCode.value = getFormatCodes(props.types)
+          } else {
+            highlightCode.value = hljs.highlightAuto(props.code).value
+          }
+          highlightFinish.value = true
+        }, 0)
+      },
+      { deep: true, immediate: true }
+    )
     return {
       highlightFinish,
       highlightCode
@@ -48,6 +54,7 @@ export default defineComponent({
   }
 })
 </script>
+
 <style lang="less">
 .code-preview-box {
   max-height: 400px;

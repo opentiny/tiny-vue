@@ -5,7 +5,7 @@ export default {
     {
       'demoId': 'basic-usage',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': { 'zh-CN': '', 'en-US': '' },
+      'desc': { 'zh-CN': '通过函数调用的方式使用组件。', 'en-US': 'Components are used by means of function calls' },
       'codeFiles': ['basic-usage.vue']
     },
     {
@@ -61,9 +61,9 @@ export default {
       'demoId': 'showClose',
       'name': { 'zh-CN': '不显示关闭按钮', 'en-US': 'The close button is not displayed.' },
       'desc': {
-        'zh-CN': '<p>showClose <code>message</code>  属性设置通知框是否显示关闭按钮，默认值：true 。</p>\n',
+        'zh-CN': '<p> <code>showClose</code> 属性设置通知框是否显示关闭按钮，默认值：<code>true</code> 。</p>\n',
         'en-US':
-          '<p>showClose <code>message</code>: indicates whether the notification box displays the close button. The default value is true. </p>\n'
+          '<p>The showClose property sets whether the notification box displays the close button. The default value is true. </p>\n'
       },
       'codeFiles': ['showClose.vue']
     },
@@ -139,7 +139,7 @@ export default {
         {
           'name': 'type',
           'type': `'info' | 'success' | 'warning' | 'error'`,
-          'defaultValue': 'info',
+          'defaultValue': `'info'`,
           'desc': {
             'zh-CN': '通知消息类型',
             'en-US': 'Notification message type'
@@ -159,8 +159,8 @@ export default {
         },
         {
           'name': 'message',
-          'typeAnchorName': 'INotyfyMessage',
-          'type': 'INotyfyMessage',
+          'typeAnchorName': 'INotifyMessage',
+          'type': 'INotifyMessage',
           'defaultValue': '',
           'desc': {
             'zh-CN': '通知消息文本，可用 jsx 定制',
@@ -267,9 +267,9 @@ export default {
       code: `type INotifyTitle = string | (h: Vue.h, params: { titleClass: string, vm }) => JSX.Element`
     },
     {
-      name: 'INotyfyMessage',
+      name: 'INotifyMessage',
       type: 'type',
-      code: `type INotyfyMessage = string | (h: Vue.h, params: { messageClass: string, vm }) => JSX.Element`
+      code: `type INotifyMessage = string | (h: Vue.h, params: { messageClass: string, vm }) => JSX.Element`
     }
   ]
 }
