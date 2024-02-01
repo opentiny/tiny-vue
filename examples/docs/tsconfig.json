@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig.vue3.json",
+  "include": [
+    "types/shims-vue.d.ts",
+    "types/shims-app.d.ts"
+  ]
+}

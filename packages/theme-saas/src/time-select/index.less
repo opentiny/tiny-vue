@@ -1,0 +1,40 @@
+@import '../custom.less';
+
+@time-select-prefix-cls: ~'@{css-prefix}time-select';
+
+.@{time-select-prefix-cls} {
+  .@{scrollbar-prefix-cls}__wrap {
+    @apply p-0;
+    @apply !mb-0;
+  }
+
+  & &__item {
+    @apply text-color-text-primary;
+    @apply py-0 px-4;
+    @apply text-xs;
+    @apply leading-10;
+
+    &:not(.disabled):hover {
+      @apply bg-color-bg-4;
+      @apply cursor-pointer;
+    }
+
+    &.selected:not(.disabled) {
+      @apply text-color-brand;
+      @apply bg-color-bg-1;
+
+      &:hover {
+        @apply bg-color-bg-4;
+      }
+    }
+
+    &.disabled {
+      @apply text-color-text-disabled;
+      @apply cursor-not-allowed;
+
+      &.selected {
+        @apply text-color-brand-disabled;
+      }
+    }
+  }
+}

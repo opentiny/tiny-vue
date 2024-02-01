@@ -1,0 +1,155 @@
+@import '../custom.less';
+
+@cascader-node-prefix-cls: ~'@{css-prefix}cascader-node';
+@cascader-prefix-cls: ~'@{css-prefix}cascader';
+@radio-prefix-cls: ~'@{css-prefix}radio';
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+
+.@{cascader-node-prefix-cls} {
+  &.is-selectable.in-active-path {
+    @apply text-color-brand;
+  }
+
+  &.is-active {
+    > svg.@{cascader-node-prefix-cls}__prefix {
+      @apply hidden;
+    }
+  }
+
+  &:not(.is-disabled) {
+    @apply cursor-pointer;
+
+    &:hover {
+      @apply bg-color-bg-4;
+    }
+
+    &:active {
+      @apply bg-color-bg-3;
+    }
+
+    &.in-active-path,
+    &.is-active,
+    &.is-selectable.in-checked-path {
+      & {
+        @apply text-color-brand;
+      }
+
+      &:hover {
+        @apply bg-color-bg-2;
+      }
+
+      &:active {
+        @apply bg-color-bg-3;
+      }
+    }
+  }
+
+  &.is-disabled {
+    @apply cursor-not-allowed;
+    @apply text-color-text-disabled;
+
+    &:hover {
+      @apply bg-color-bg-1;
+    }
+
+    &.in-active-path,
+    &.is-active,
+    &.is-selectable.in-checked-path {
+      @apply text-color-text-disabled;
+    }
+
+    svg path {
+      @apply fill-color-icon-disabled;
+    }
+
+    .is-checked.is-disabled {
+      svg {
+        path:nth-of-type(2) {
+          @apply fill-color-text-inverse;
+        }
+      }
+    }
+  }
+
+  &__prefix,
+  &__postfix {
+    @apply text-sm;
+    @apply fill-color-text-primary;
+  }
+
+  &__prefix {
+    @apply absolute;
+    @apply ~'left-2.5';
+    @apply ~"top-1/2";
+    @apply ~"-translate-y-2/4";
+  }
+
+  &__postfix {
+    @apply absolute;
+    @apply ~"top-1/2";
+    @apply right-4;
+    @apply ~"-translate-y-2/4";
+  }
+
+  &__label {
+    max-width: 360px;
+    @apply flex-1;
+    @apply whitespace-nowrap;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+
+    // 兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      @apply basis-auto;
+    }
+  }
+
+  & > .@{checkbox-prefix-cls} + .@{cascader-node-prefix-cls}__label {
+    @apply pl-2;
+  }
+
+  & > .@{radio-prefix-cls} .@{radio-prefix-cls}__label {
+    @apply pl-0;
+  }
+}
+
+.@{cascader-prefix-cls}__dropdown.is-multiple {
+  .@{cascader-node-prefix-cls} {
+    &:not(.is-disabled) {
+      &.in-active-path,
+      &.is-active,
+      &.is-selectable.in-checked-path {
+        @apply text-color-text-primary;
+        @apply bg-color-bg-4;
+
+        &:hover {
+          @apply bg-color-bg-2;
+        }
+
+        &:active {
+          @apply bg-color-bg-3;
+        }
+      }
+    }
+  }
+
+  .@{cascader-prefix-cls}-menu {
+    &:last-child {
+      .@{cascader-node-prefix-cls}:not(.is-disabled) {
+        &.in-active-path,
+        &.is-active,
+        &.is-selectable.in-checked-path {
+          @apply bg-color-bg-1;
+
+          &:hover {
+            @apply bg-color-bg-4;
+          }
+
+          &:active {
+            @apply bg-color-bg-3;
+          }
+        }
+      }
+    }
+  }
+}

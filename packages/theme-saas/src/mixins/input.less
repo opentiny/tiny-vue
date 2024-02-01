@@ -1,0 +1,57 @@
+@import '../custom.less';
+
+.input-readonly(@color) {
+  &.readonly,
+  &[readonly] {
+    @apply cursor-not-allowed;
+    @apply shadow-none;
+
+    &:focus,
+    &:active,
+    &.active,
+    &[active],
+    &:hover {
+      border-color: @color;
+    }
+  }
+}
+
+.input-variant(@color-normal; @color-hover; @color-active; @color-disabled; @color-hover-shadow; @color-active-shadow) {
+  border-color: @color-normal;
+  .input-readonly(@color-normal);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    border-color: @color-active;
+    box-shadow: 0 0 0 @color-active-shadow;
+  }
+
+  &:hover {
+    border-color: @color-hover;
+    box-shadow: 0 0 0 @color-hover-shadow;
+  }
+
+  &.disabled,
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      border-color: @color-disabled;
+    }
+  }
+}
+
+.input-size(@height) {
+  .@{css-prefix}input__inner {
+    height: @height;
+    line-height: @height;
+  }
+
+  .@{css-prefix}input__suffix {
+    line-height: calc(@height - 2px);
+  }
+}

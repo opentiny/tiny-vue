@@ -1,0 +1,89 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@mobile-nav-bar-prefix-cls: ~'@{css-prefix}mobile-nav-bar';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{mobile-nav-bar-prefix-cls} {
+  position: relative;
+  z-index: 1;
+  height: var(--ti-mobile-nav-bar-height, 44px);
+  line-height: var(--ti-mobile-nav-bar-height, 44px);
+  padding: 0 10px;
+  text-align: center;
+  background-color: var(--ti-mobile-nav-bar-bgcolor, #343745);
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .@{svg-prefix-cls} {
+    fill: var(--ti-mobile-nav-bar-icon-color, #fff);
+    font-size: 24px;
+    position: relative;
+    text-rendering: auto;
+    vertical-align: middle;
+  }
+
+  &__fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &__title {
+    max-width: 60%;
+    color: var(--ti-mobile-nav-bar-title-color, #f0f0f0);
+    font-size: var(--ti-mobile-nav-bar-arrow-font-size, 17px);
+
+    .main-title,
+    .sub-title {
+      margin: 0;
+      line-height: 1;
+      .text-overflow();
+    }
+
+    .sub-title {
+      display: none;
+      font-size: 12px;
+      margin-top: 4px;
+
+      &.is-show-subtitle {
+        display: block;
+      }
+    }
+
+    p.main-title {
+      color: #f0f0f0;
+      font-size: 17px;
+    }
+  }
+
+  &__left,
+  &__right {
+    font-size: var(--ti-mobile-nav-bar-left-font-size, 16px);
+    cursor: pointer;
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
+
+  &__text {
+    color: var(--ti-mobile-nav-bar-title-color, #f0f0f0);
+  }
+}

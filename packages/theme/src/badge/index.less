@@ -1,0 +1,106 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@badge-prefix-cls: ~'@{css-prefix}badge';
+
+.@{badge-prefix-cls} {
+  &__wrapper {
+    .component-css-vars-badge();
+  }
+
+  display: inline-block;
+  min-width: var(--ti-badge-size);
+  height: var(--ti-badge-size);
+  line-height: var(--ti-badge-size);
+  border-radius: var(--ti-badge-border-radius);
+  padding: 0 4px;
+  font-size: var(--ti-badge-font-size);
+  font-weight: var(--ti-badge-font-weight);
+  color: var(--ti-badge-text-color);
+  background-color: var(--ti-badge-bg-color);
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+
+  &:empty {
+    display: none;
+  }
+
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+
+  a,
+  a:hover {
+    color: var(--ti-badge-text-color);
+    text-decoration: none;
+  }
+
+  a.badge {
+    &:hover,
+    &:focus {
+      color: var(--ti-badge-link-hover-text-color);
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  a.list-group-item.active > .badge,
+  .nav-pills > .active > a > .badge {
+    color: var(--ti-badge-active-text-color);
+    background-color: var(--ti-badge-active-bg-color);
+  }
+
+  .nav-pills > li > a > .badge {
+    margin-left: 3px;
+  }
+
+  &--max {
+    padding: 0 6px;
+    border-radius: 10px;
+  }
+
+  &--default {
+    width: 6px;
+    height: 6px;
+    min-width: auto;
+    background-color: var(--ti-badge-bg-color);
+    display: inline-block;
+    vertical-align: top;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  &--primary {
+    background-color: var(--ti-badge-primary-bg-color);
+  }
+
+  &--success {
+    background-color: var(--ti-badge-success-bg-color);
+  }
+
+  &--warning {
+    background-color: var(--ti-badge-warning-bg-color);
+  }
+
+  &--danger {
+    background-color: var(--ti-badge-danger-bg-color);
+  }
+
+  &--info {
+    background-color: var(--ti-badge-info-bg-color);
+  }
+}

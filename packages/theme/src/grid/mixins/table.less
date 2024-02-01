@@ -1,0 +1,73 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../../custom.less';
+
+@grid-cell-prefix-cls: ~'@{css-prefix}grid-cell';
+@grid-checkbox-prefix-cls: ~'@{css-prefix}grid-checkbox';
+
+.TextEllipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+// 表头单元格高度
+.DefaultHeaderColumnHeight() {
+  height: var(--ti-grid-default-header-column-height);
+}
+
+.MediumHeaderColumnHeight() {
+  height: var(--ti-grid-medium-header-column-height);
+}
+
+.SmallHeaderColumnHeight() {
+  height: var(--ti-grid-small-header-column-height);
+}
+
+.MiniHeaderColumnHeight() {
+  height: var(--ti-grid-mini-header-column-height);
+}
+
+// 表格主体单元格高度
+.DefaultColumnHeight() {
+  height: var(--ti-grid-default-column-height);
+}
+
+.MediumColumnHeight() {
+  height: var(--ti-grid-medium-column-height);
+}
+
+.SmallColumnHeight() {
+  height: var(--ti-grid-small-column-height);
+}
+
+.MiniColumnHeight() {
+  height: var(--ti-grid-mini-column-height);
+}
+
+.DefaultTdPadding() {
+  padding: var(--ti-grid-td-padding-vertical) var(--ti-grid-td-padding-horizontal);
+}
+
+.CellEllipsis() {
+  &:not(.col__actived) {
+    .@{grid-cell-prefix-cls} {
+      .TextEllipsis();
+      & > .@{grid-checkbox-prefix-cls} {
+        .TextEllipsis();
+        padding-left: 0;
+      }
+    }
+  }
+}

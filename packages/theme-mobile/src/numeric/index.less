@@ -1,0 +1,120 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/input.less';
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@numeric-prefix-cls: ~'@{css-prefix}mobile-numeric';
+@input-prefix-cls: ~'@{css-prefix}mobile-input';
+
+.@{numeric-prefix-cls} {
+  position: relative;
+  display: inline-block;
+  width: var(--ti-mobile-numeric-width);
+  outline: none;
+
+  &__input {
+    display: flex;
+
+    &.is-disabled &-inner {
+      cursor: not-allowed;
+      pointer-events: none;
+      border: none;
+      color: var(--ti-mobile-numeric-text-color-disabled);
+    }
+
+    &.is-disabled .@{input-prefix-cls}__icon {
+      cursor: not-allowed;
+    }
+  }
+
+  &__input-inner {
+    width: 100%;
+    height: var(--ti-mobile-numeric-height);
+    line-height: var(--ti-mobile-numeric-height);
+    font-size: var(--ti-mobile-numeric-font-size);
+    font-weight: var(--ti-mobile-numeric-font-weight);
+    color: var(--ti-mobile-numeric-text-color);
+    border: none;
+    padding: 0 var(--ti-mobile-numeric-height);
+    outline: 0;
+    display: inline-block;
+    box-sizing: border-box;
+    appearance: none;
+    text-align: center;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::-ms-clear {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  &__decrease,
+  &__increase {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    width: var(--ti-mobile-numeric-height);
+    height: var(--ti-mobile-numeric-height);
+    line-height: var(--ti-mobile-numeric-height);
+    background-color: var(--ti-mobile-numeric-button-background-color);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    svg {
+      fill: var(--ti-mobile-numeric-icon-color);
+      width: var(--ti-mobile-numeric-icon-height);
+      height: var(--ti-mobile-numeric-icon-height);
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+
+      svg {
+        fill: var(--ti-mobile-numeric-icon-color-disabled);
+      }
+    }
+  }
+
+  &__increase {
+    right: 0;
+  }
+
+  &__decrease {
+    left: 0;
+  }
+
+  &.is-disabled &__decrease,
+  &.is-disabled &__increase {
+    svg {
+      fill: var(--ti-mobile-numeric-icon-color-disabled);
+    }
+
+    &:hover {
+      cursor: not-allowed;
+
+      svg {
+        fill: var(--ti-mobile-numeric-icon-color-disabled);
+      }
+    }
+  }
+}

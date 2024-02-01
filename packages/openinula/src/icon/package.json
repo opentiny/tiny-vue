@@ -1,0 +1,16 @@
+{
+  "name": "@opentiny/openinula-icon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@opentiny/openinula-common": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

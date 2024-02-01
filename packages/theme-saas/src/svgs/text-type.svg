@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="多端组件" stroke="none" stroke-width="1">
+        <g id="文件上传" transform="translate(-319.000000, -1942.000000)">
+            <g id="Text" transform="translate(319.000000, 1942.000000)">
+                <rect id="矩形" fill="#9185F0" x="0" y="0" width="30" height="30" rx="2"></rect>
+                <polygon id="T" fill="#FFFFFF" fill-rule="nonzero" points="16.3002611 22.5 16.3002611 9.66505525 20.7597911 9.66505525 21 7.5 9.22976501 7.5 9 9.66505525 13.689295 9.66505525 13.689295 22.5"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

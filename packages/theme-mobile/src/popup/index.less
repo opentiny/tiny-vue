@@ -1,0 +1,180 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@fade-prefix-cls: ~'@{css-prefix}fade';
+@popup-prefix-cls: ~'@{css-prefix}popup';
+@overlay-prefix-cls: ~'@{css-prefix}overlay';
+
+.@{fade-prefix-cls} {
+  &-enter-active {
+    animation: 0.3s mobile-fade-in both ease-out;
+  }
+
+  &-leave-active {
+    animation: 0.3s mobile-fade-out both ease-in;
+  }
+}
+
+.@{overlay-prefix-cls} {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.@{css-prefix} {
+  &overflow-hidden {
+    overflow: hidden !important;
+  }
+
+  &popup {
+    position: fixed;
+    max-height: 100%;
+    overflow-y: auto;
+    background-color: #fff;
+    -webkit-overflow-scrolling: touch;
+    transition: transform 0.3s;
+
+    &--center {
+      transform: translate3d(-50%, -50%, 0);
+      left: 50%;
+      top: 50%;
+
+      &.@{popup-prefix-cls}--round {
+        border-radius: 20px;
+      }
+    }
+
+    &--top {
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      &.@{popup-prefix-cls}--round {
+        border-radius: 0 0 20px 20px;
+      }
+    }
+
+    &--right {
+      top: 50%;
+      right: 0;
+      transform: translate3d(0, -50%, 0);
+
+      &.@{popup-prefix-cls}--round {
+        border-radius: 20px 0 0 20px;
+      }
+    }
+
+    &--bottom {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+
+      &.@{popup-prefix-cls}--round {
+        border-radius: 20px 20px 0 0;
+      }
+    }
+
+    &--left {
+      top: 50%;
+      left: 0;
+      transform: translate3d(0, -50%, 0);
+
+      &.@{popup-prefix-cls}--round {
+        border-radius: 0 20px 20px 0;
+      }
+    }
+
+    &--safe-area-inset-bottom {
+      padding-bottom: constant(safe-area-inset-bottom);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    &-slide-top-enter,
+    &-slide-top-leave-active {
+      transform: translate3d(0, -100%, 0);
+    }
+
+    &-slide-right-enter,
+    &-slide-right-leave-active {
+      transform: translate3d(100%, -50%, 0);
+    }
+
+    &-slide-bottom-enter,
+    &-slide-bottom-leave-active {
+      transform: translate3d(0, 100%, 0);
+    }
+
+    &-slide-left-enter,
+    &-slide-left-leave-active {
+      transform: translate3d(-100%, -50%, 0);
+    }
+
+    &__close-icon {
+      position: absolute;
+      z-index: 1;
+      color: #c8c9cc;
+      font-size: 22px;
+      cursor: pointer;
+
+      &:active {
+        color: #969799;
+      }
+
+      &--top-left {
+        top: 16px;
+        left: 16px;
+      }
+
+      &--top-right {
+        top: 16px;
+        right: 16px;
+      }
+
+      &--bottom-left {
+        bottom: 16px;
+        left: 16px;
+      }
+
+      &--bottom-right {
+        right: 16px;
+        bottom: 16px;
+      }
+    }
+  }
+}
+
+@keyframes mobile-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mobile-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

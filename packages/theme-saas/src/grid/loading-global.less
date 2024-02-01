@@ -1,0 +1,112 @@
+@import '../custom.less';
+
+@grid-loading-prefix-cls: ~'@{css-prefix}grid-loading';
+
+// 加载中
+.@{grid-loading-prefix-cls} {
+  @apply hidden;
+  @apply absolute;
+  @apply w-full;
+  @apply h-full;
+  @apply top-0;
+  @apply left-0;
+  @apply ~'z-[99]';
+  @apply bg-black bg-opacity-20;
+
+  & &__wrap {
+    @apply absolute;
+    @apply ~"top-1/2";
+    @apply ~'left-1/2';
+    @apply ~"-translate-x-2/4" ~"-translate-y-2/4";
+  }
+
+  & &__round {
+    width: 46px;
+    height: 46px;
+    @apply relative;
+    @apply my-0 mx-auto;
+    // 兼容IE9 linear-gradient、animation属性不生效问题
+    background: url(./images/loading-64.gif) no-repeat center;
+    background: linear-gradient(to top, transparent, transparent);
+
+    span {
+      @apply inline-block;
+      @apply ~'w-2.5';
+      @apply ~'h-2.5';
+      @apply rounded-full;
+      background: linear-gradient(theme('colors.black'), theme('colors.black'));
+      @apply absolute;
+      animation: load 1.04s ease infinite;
+    }
+
+    @keyframes load {
+      0% {
+        @apply opacity-100;
+      }
+
+      100% {
+        @apply opacity-10;
+      }
+    }
+
+    span:nth-child(1) {
+      top: 68%;
+      left: 68%;
+      animation-delay: 0s;
+      -webkit-animation-delay: 0s;
+    }
+
+    span:nth-child(2) {
+      @apply ~"top-1/2";
+      @apply right-0;
+      @apply ~"-translate-y-2/4";
+      animation-delay: 0.1s;
+      -webkit-animation-delay: 0.1s;
+    }
+
+    span:nth-child(3) {
+      top: 10%;
+      left: 68%;
+      animation-delay: 0.2s;
+      -webkit-animation-delay: 0.2s;
+    }
+
+    span:nth-child(5) {
+      top: 10%;
+      left: 12%;
+      animation-delay: 0.4s;
+      -webkit-animation-delay: 0.4s;
+    }
+
+    span:nth-child(4) {
+      @apply top-0;
+      @apply ~'left-1/2';
+      @apply ~"-translate-x-2/4";
+      animation-delay: 0.3s;
+      -webkit-animation-delay: 0.3s;
+    }
+
+    span:nth-child(8) {
+      @apply bottom-0;
+      @apply ~'left-1/2';
+      @apply ~"-translate-x-2/4";
+      animation-delay: 0.7s;
+      -webkit-animation-delay: 0.7s;
+    }
+
+    span:nth-child(6) {
+      @apply ~"top-1/2";
+      @apply left-0;
+      @apply ~"-translate-y-2/4";
+      animation-delay: 0.5s;
+      -webkit-animation-delay: 0.5s;
+    }
+
+    span:nth-child(7) {
+      top: 68%;
+      left: 12%;
+      animation-delay: 0.6s;
+      -webkit-animation-delay: 0.6s;
+    }
+  }
+}

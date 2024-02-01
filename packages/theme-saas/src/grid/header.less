@@ -1,0 +1,238 @@
+@import '../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+@grid-header-prefix-cls: ~'@{css-prefix}grid-header';
+@grid-cell-prefix-cls: ~'@{css-prefix}grid-cell';
+@grid-checkbox-prefix-cls: ~'@{css-prefix}grid-checkbox';
+@header-suffix: ~'@{grid-prefix-cls}-cell__header-suffix';
+@cell-tooltip: ~'@{grid-prefix-cls}-cell__tooltip';
+
+.@{grid-prefix-cls}__header-wrapper {
+  @apply bg-color-fill-8;
+
+  .@{grid-prefix-cls}__repair {
+    @apply absolute;
+    @apply left-0;
+    @apply bottom-0;
+    @apply h-0;
+    @apply border-b border-b-color-border-separator;
+  }
+}
+
+.@{grid-header-prefix-cls}__column {
+  @apply relative;
+  @apply text-xs;
+  @apply text-color-text-primary;
+
+  &.is__sortable {
+    .@{grid-cell-prefix-cls} {
+      @apply pr-5;
+    }
+  }
+
+  &.is__editable {
+    .@{grid-cell-prefix-cls} {
+      @apply pl-5;
+    }
+  }
+
+  // 在表格个性化场景，动态的设置冻结列，这里需要在非冻结列情况下消除之前设置的left和right样式，并提升权重覆盖style属性
+  &:not(.fixed__column) {
+    left: unset !important;
+    right: unset !important;
+  }
+
+  &.col__title-checked {
+    @apply bg-color-bg-2;
+    .@{grid-prefix-cls}-edit-icon {
+      &.@{grid-prefix-cls}-icon__edit-outline {
+        &:before {
+          @apply bg-color-bg-2;
+        }
+      }
+    }
+  }
+
+  &.col__ellipsis {
+    .@{grid-prefix-cls}-edit-icon {
+      @apply static;
+      @apply translate-y-0;
+    }
+    &.is__editable {
+      .@{grid-prefix-cls}-required-icon {
+        @apply ml-5;
+        & + .@{grid-prefix-cls}-edit-icon {
+          @apply absolute;
+          @apply ~"-translate-y-2/4";
+        }
+      }
+    }
+  }
+
+  .@{grid-prefix-cls}-required-icon {
+    @apply inline-block;
+    @apply text-color-error;
+    line-height: 14px;
+    @apply text-sm;
+    &:before {
+      @apply ~"content-['*']";
+      @apply ~'w-2.5';
+      @apply ~'h-2.5';
+      @apply block;
+      @apply text-left;
+    }
+  }
+
+  .@{grid-prefix-cls}-edit-icon {
+    @apply absolute;
+    @apply left-2;
+    @apply ~'top-1/2';
+    @apply ~'-translate-y-2/4';
+    @apply text-center;
+    @apply text-sm;
+    @apply mr-1;
+    @apply fill-color-icon-disabled;
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      @apply ~'top-4.5';
+    }
+  }
+
+  .@{grid-prefix-cls}-thead-partition,
+  .@{grid-prefix-cls}-resizable {
+    @apply absolute;
+    @apply right-0;
+    @apply translate-x-1/2;
+    @apply bottom-0;
+    @apply top-0;
+    @apply m-auto;
+    @apply w-4;
+    @apply h-9;
+    @apply text-center;
+    @apply ~'z-[1]';
+    @apply select-none;
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      @apply m-0;
+    }
+
+    &.is__line {
+      &:before,
+      &:after {
+        @apply content-[''];
+        @apply block;
+        @apply align-middle;
+        @apply my-0 mx-auto;
+      }
+      &:before {
+        @apply w-px;
+        @apply h-3/5;
+        @apply bg-color-border-separator;
+      }
+      &:after {
+        @apply w-0;
+        @apply h-full;
+      }
+    }
+  }
+
+  .@{grid-prefix-cls}-resizable {
+    @apply cursor-col-resize;
+    @apply h-4;
+
+    &.is__line {
+      &:before {
+        @apply h-full;
+      }
+    }
+  }
+
+  &.is__multilevel {
+    .@{grid-prefix-cls}-resizable {
+      height: calc(100% - 16px);
+    }
+  }
+
+  .@{grid-checkbox-prefix-cls} {
+    > input {
+      &:not(:checked) {
+        & + .@{grid-checkbox-prefix-cls}__icon {
+          &:hover {
+            @apply border-color-border;
+          }
+        }
+      }
+    }
+  }
+
+  .@{grid-checkbox-prefix-cls}.is__indeterminate {
+    > input {
+      & + .@{grid-checkbox-prefix-cls}__icon {
+        &:hover {
+          @apply border-color-border-focus;
+        }
+      }
+    }
+  }
+}
+
+.@{grid-prefix-cls}__header {
+  .@{header-suffix} {
+    @apply relative;
+    min-height: 16px;
+
+    .suffix-icon-1 {
+      @apply absolute;
+      @apply right-3;
+    }
+
+    .suffix-icon-0 {
+      @apply absolute;
+      @apply right-0;
+    }
+  }
+
+  .col__ellipsis {
+    &.is__editable.is__sortable.is__filter {
+      .@{header-suffix}.@{cell-tooltip} {
+        @apply pr-7;
+      }
+    }
+
+    &.is__editable.is__sortable:not(.is__filter),
+    &.is__editable.is__filter:not(.is__sortable) {
+      .@{header-suffix}.@{cell-tooltip} {
+        @apply ~'pr-3.5';
+      }
+    }
+
+    &:not(.is__sortable):not(.is__filter) {
+      .@{header-suffix}.@{cell-tooltip} {
+        @apply pr-2;
+      }
+    }
+
+    &.is__sortable.is__filter:not(.is__editable) {
+      .@{header-suffix}.@{cell-tooltip} {
+        padding-right: 26px;
+      }
+    }
+
+    &.is__sortable:not(.is__filter):not(.is__editable),
+    &.is__filter:not(.is__sortable):not(.is__editable) {
+      .@{header-suffix}.@{cell-tooltip} {
+        @apply pr-3;
+      }
+    }
+  }
+}
+
+.@{grid-prefix-cls} {
+  th.col__selection > .@{grid-cell-prefix-cls} {
+    @apply relative;
+
+    & > .selection-dropdown-wrapper {
+      @apply absolute;
+      @apply right-0;
+      @apply top-0;
+    }
+  }
+}

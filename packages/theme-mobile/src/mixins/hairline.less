@@ -1,0 +1,184 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+.hairline-common(@color, @top, @right, @bottom, @left) {
+  content: '';
+  z-index: 1;
+  display: block;
+  background-color: @color;
+  position: absolute;
+  right: @right;
+  left: @left;
+  bottom: @bottom;
+  top: @top;
+}
+
+.hairline(@direction, @color: @border-color-base, @position: relative) when (@direction ='top') {
+  border-top: 1px solid @color;
+
+  html:not([data-scale]) & {
+    @media (min-resolution: 2dppx) {
+      border-top: none;
+      position: @position;
+
+      &::before {
+        .hairline-common(@color, 0, auto, auto, 0);
+        height: 1px;
+        width: 100%;
+        transform: scaleY(0.5);
+        transform-origin: 50% 50%;
+
+        @media (min-resolution: 3dppx) {
+          transform: scaleY(0.33);
+        }
+      }
+    }
+  }
+}
+
+.hairline(@direction, @color: @border-color-base) when (@direction ='right') {
+  border-right: 1px solid @color;
+  position: relative;
+
+  html:not([data-scale]) & {
+    @media (min-resolution: 2dppx) {
+      border-right: none;
+      position: relative;
+
+      &::after {
+        .hairline-common(@color, 0, 0, auto, auto);
+        height: 100%;
+        width: 1px;
+        background: @color;
+        transform: scaleX(0.5);
+        transform-origin: 100% 50%;
+
+        @media (min-resolution: 3dppx) {
+          transform: scaleX(0.33);
+        }
+      }
+    }
+  }
+}
+
+.hairline(@direction, @color: @border-color-base) when (@direction ='bottom') {
+  border-bottom: 1px solid @color;
+
+  html:not([data-scale]) & {
+    @media (min-resolution: 2dppx) {
+      border-bottom: none;
+      position: relative;
+
+      &::after {
+        .hairline-common(@color, auto, auto, 0, 0);
+        height: 1px;
+        width: 100%;
+        transform: scaleY(0.5);
+        transform-origin: 50% 100%;
+
+        @media (min-resolution: 3dppx) {
+          transform: scaleY(0.33);
+        }
+      }
+    }
+  }
+}
+
+.hairline(@direction, @color: @border-color-base) when (@direction ='left') {
+  border-left: 1px solid @color;
+
+  html:not([data-scale]) & {
+    @media (min-resolution: 2dppx) {
+      border-left: none;
+      position: relative;
+
+      &::before {
+        .hairline-common(@color, 0, auto, auto, 0);
+        height: 100%;
+        width: 1px;
+        transform: scaleX(0.5);
+        transform-origin: 100% 50%;
+
+        @media (min-resolution: 3dppx) {
+          transform: scaleX(0.33);
+        }
+      }
+    }
+  }
+}
+
+.hairline(@direction, @color: @border-color-base, @radius: 0) when (@direction ='all') {
+  border-radius: @radius;
+  border: 1px solid @color;
+
+  html:not([data-scale]) & {
+    @media (min-resolution: 2dppx) {
+      border: none;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: '';
+        height: 200%;
+        width: 200%;
+        border-radius: @radius * 2;
+        border: 1px solid @color;
+        transform: scale(0.5);
+        transform-origin: 0 0;
+        pointer-events: none;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+.hairline-remove(@position) when (@position ='left') {
+  border-left: 0;
+
+  &:before {
+    display: none !important;
+  }
+}
+
+.hairline-remove(@position) when (@position ='top') {
+  border-top: 0;
+
+  &:before {
+    display: none !important;
+  }
+}
+
+.hairline-remove(@position) when (@position ='all') {
+  border: 0;
+
+  &:before {
+    display: none !important;
+  }
+}
+
+.hairline-remove(@position) when (@position ='bottom') {
+  &:after {
+    display: none !important;
+  }
+
+  border-bottom: 0;
+}
+
+.hairline-remove(@position) when (@position ='right') {
+  border-right: 0;
+
+  &:after {
+    display: none !important;
+  }
+}

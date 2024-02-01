@@ -1,0 +1,32 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@filter-panel-prefix-cls: ~'@{css-prefix}filter-panel';
+
+.@{filter-panel-prefix-cls} {
+  &__popover.tiny-popover.tiny-popper {
+    min-width: 200px;
+
+    &[x-placement^='bottom'] {
+      margin-top: 4px;
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.16);
+    }
+
+    &[x-placement^='top'] {
+      margin-bottom: 4px;
+      box-shadow: 4px 0 12px 0 rgba(0, 0, 0, 0.16);
+    }
+  }
+}

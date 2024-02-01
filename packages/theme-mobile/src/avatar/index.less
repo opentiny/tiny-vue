@@ -1,0 +1,66 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import '../base/index.less';
+@import './vars.less';
+
+@avatar-prefix-cls: ~'@{css-prefix}mobile-avatar';
+
+.@{avatar-prefix-cls} {
+  display: inline-block;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 0;
+  color: var(--ti-mobile-avatar-color, #fff);
+  background: var(--ti-mobile-avatar-bgcolor, #c0c4cc);
+  width: var(--ti-mobile-avatar-size, 40px);
+  height: var(--ti-mobile-avatar-size, 40px);
+  line-height: var(--ti-mobile-avatar-size, 40px);
+  font-size: var(--ti-mobile-avatar-font-size, 14px);
+
+  & > img {
+    height: 100%;
+  }
+
+  &--square {
+    border-radius: var(--ti-mobile-avatar-square-border-radius, 4px);
+  }
+
+  &--icon {
+    font-size: var(--ti-mobile-avatar-icon-font-size, 18px);
+  }
+
+  &--large {
+    width: var(--ti-mobile-avatar-large-size, 80px);
+    height: var(--ti-mobile-avatar-large-size, 80px);
+    line-height: var(--ti-mobile-avatar-large-size, 80px);
+  }
+
+  &--medium {
+    width: var(--ti-mobile-avatar-medium-size, 56px);
+    height: var(--ti-mobile-avatar-medium-size, 56px);
+    line-height: var(--ti-mobile-avatar-medium-size, 56px);
+  }
+
+  &--small {
+    width: var(--ti-mobile-avatar-small-size, 48px);
+    height: var(--ti-mobile-avatar-small-size, 48px);
+    line-height: var(--ti-mobile-avatar-small-size, 48px);
+  }
+
+  &--bg-color {
+    background-color: var(--ti-mobile-base-color-brand-1);
+  }
+}

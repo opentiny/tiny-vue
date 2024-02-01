@@ -1,0 +1,36 @@
+{
+  "name": "@opentiny/vue-chart",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "files": [
+    "index.js",
+    "lib",
+    "index.d.ts",
+    "src"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "echarts": "5.4.1",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-chart-core": "workspace:~",
+    "@opentiny/vue-chart-bar": "workspace:~",
+    "@opentiny/vue-chart-line": "workspace:~",
+    "@opentiny/vue-chart-pie": "workspace:~",
+    "@opentiny/vue-chart-funnel": "workspace:~",
+    "@opentiny/vue-chart-radar": "workspace:~",
+    "@opentiny/vue-chart-waterfall": "workspace:~"
+  },
+  "license": "MIT"
+}

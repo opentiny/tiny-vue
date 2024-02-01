@@ -1,0 +1,201 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@user-contact-prefix-cls: ~'@{css-prefix}user-contact';
+@user-head-prefix-cls: ~'@{css-prefix}user-head';
+@espace-prefix-cls: ~'@{css-prefix}espace';
+@card-template-prefix-cls: ~'@{css-prefix}card-template';
+@logout-prefix-cls: ~'@{css-prefix}logout';
+
+.@{user-contact-prefix-cls} {
+  .component-css-vars-user-contact();
+
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+
+  & &__main {
+    width: 300px;
+    overflow: visible;
+    font-size: var(--ti-user-contact-roleInfo-font-size);
+
+    .@{user-head-prefix-cls} {
+      height: 100%;
+      width: 86px;
+      float: left;
+    }
+
+    .@{user-head-prefix-cls}__portrait {
+      margin-top: 16px;
+      width: 54px;
+      height: 54px;
+      line-height: 54px;
+      margin-left: 20px;
+    }
+
+    .@{user-contact-prefix-cls}__role {
+      height: 100%;
+      width: auto;
+      float: left;
+      margin-left: 0;
+    }
+
+    .@{user-contact-prefix-cls}__role-name {
+      display: block;
+      width: 100%;
+      color: var(--ti-user-contact-card-header-role-text-color);
+      margin: 16px 0 6px;
+      height: 24px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: var(--ti-user-contact-card-header-role-font-size);
+      text-align: left;
+    }
+
+    .@{user-contact-prefix-cls}__role-number {
+      display: block;
+      color: var(--ti-user-contact-card-header-roleNum-text-color);
+    }
+
+    .@{css-prefix}espace svg {
+      fill: var(--ti-user-contact-card-message-left-color);
+    }
+
+    .card-tools {
+      display: none;
+    }
+  }
+
+  & &__header {
+    line-height: 1.42857143;
+    border: 1px solid var(--ti-user-contact-card-border-color);
+    height: 86px;
+    background: var(--ti-user-contact-card-header-bg-color);
+    opacity: 0.9;
+  }
+
+  & &__title {
+    display: block;
+    height: 100%;
+    font-size: var(--ti-user-contact-roleInfo-font-size);
+    font-weight: normal;
+    line-height: 46px;
+  }
+
+  & &__role {
+    display: inline-block;
+    color: var(--ti-user-contact-roleInfo-text-color);
+    margin-left: 8px;
+    vertical-align: middle;
+    font-size: var(--ti-user-contact-roleInfo-font-size);
+    line-height: 1.5;
+  }
+
+  & &__arrow {
+    margin-left: 4px;
+    font-size: var(--ti-user-contact-roleInfo-font-size);
+    vertical-align: middle;
+    fill: var(--ti-user-contact-roleInfo-text-color);
+  }
+
+  & &__message {
+    padding: 10px 20px;
+  }
+
+  & &__state {
+    text-align: left;
+    margin-bottom: 0;
+
+    &:nth-of-type(2) {
+      margin-top: 3px;
+    }
+
+    &:nth-of-type(3) {
+      margin-top: 3px;
+    }
+  }
+
+  & &__state-left {
+    color: var(--ti-user-contact-card-message-text-color);
+    opacity: 1;
+    font-size: var(--ti-common-font-size-base);
+    font-family: MicrosoftYaHei;
+    line-height: 16px;
+    text-align: left;
+    width: auto;
+    margin-right: 0;
+  }
+
+  & &__state-right {
+    color: var(--ti-user-contact-card-message-text-color);
+    opacity: 1;
+    font-size: var(--ti-common-font-size-base);
+    font-family: MicrosoftYaHei;
+    line-height: 16px;
+  }
+
+  &.@{css-prefix}popover.@{css-prefix}popper {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .@{card-template-prefix-cls}__header.is-line {
+    height: auto;
+    border-bottom: 0;
+    padding: 0;
+  }
+
+  .@{card-template-prefix-cls}__body {
+    padding: 0;
+    border: 1px solid var(--ti-user-contact-card-border-color);
+  }
+
+  .@{user-head-prefix-cls} {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .@{espace-prefix-cls} {
+    padding: 0px 20px 10px;
+
+    .item-talk,
+    .item-call,
+    .item-email {
+      color: var(--ti-user-contact-card-espace-text-color);
+    }
+  }
+
+  &.show-arrow {
+    .@{user-contact-prefix-cls}__main {
+      width: auto;
+
+      .user-account-custom {
+        line-height: 30px;
+      }
+
+      .@{logout-prefix-cls} {
+        line-height: 30px;
+      }
+    }
+
+    .@{card-template-prefix-cls}__body {
+      min-width: 180px;
+      border-radius: 4px;
+    }
+  }
+}

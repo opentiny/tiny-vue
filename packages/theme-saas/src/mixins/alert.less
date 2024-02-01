@@ -1,0 +1,23 @@
+@import '../custom.less';
+
+.alert-variant(@color; @border-color; @icon-color; @link-color; @bgcolor; @close-icon-color) {
+  background: @bgcolor;
+  border-color: @border-color;
+  color: @color;
+
+  hr {
+    border-top-color: @link-color;
+  }
+
+  .alert-link {
+    color: @link-color;
+  }
+
+  .@{css-prefix}alert__icon {
+    fill: @icon-color;
+  }
+
+  .@{css-prefix}alert__close {
+    fill: @close-icon-color;
+  }
+}

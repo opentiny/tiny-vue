@@ -1,0 +1,235 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './basic-var.less';
+
+// 为了防止这些图标失去默认值，需要全局设置默认值
+
+.tiny-icon-success {
+  fill: #5cb300;
+}
+
+.tiny-icon-error {
+  fill: #f23030;
+}
+
+.tiny-icon-warning-triangle {
+  fill: #ff8800;
+}
+
+.tiny-icon-prompt {
+  fill: #1476ff;
+}
+
+.tiny-icon-text-type {
+  fill: #9185f0;
+}
+
+
+[class*=~'@{css-prefix}'] {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+  *:after,
+  *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  a {
+    cursor: pointer;
+    background-image: none;
+    text-decoration: none;
+    outline: none;
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+      text-decoration: none;
+    }
+  }
+
+  dl,
+  dt,
+  dd,
+  ul,
+  ol,
+  li,
+  th,
+  td {
+    margin: 0;
+    padding: 0;
+  }
+
+  ol,
+  ul {
+    list-style: none;
+  }
+
+  audio,
+  canvas,
+  video {
+    display: inline-block;
+  }
+
+  audio:not([controls]) {
+    display: none;
+    height: 0;
+  }
+
+  mark {
+    background: #ff0;
+    color: #000;
+  }
+
+  pre {
+    white-space: pre-wrap;
+  }
+
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+  }
+
+  legend {
+    border: 0;
+    padding: 0;
+  }
+
+  // 清除IE
+  input::-ms-clear,
+  input::-ms-reveal {
+    display: none;
+  }
+
+  button::-moz-focus-inner,
+  input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  textarea {
+    overflow: auto;
+    vertical-align: top;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .@{css-prefix}hide {
+    display: none;
+  }
+
+  .popper__arrow {
+
+    &,
+    &:after {
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+    }
+  }
+
+  @media (min-width: 768px) {
+    ::-webkit-scrollbar {
+      width: var(--ti-common-scrollbar-width);
+      height: var(--ti-common-scrollbar-height);
+    }
+
+    ::-webkit-scrollbar-track-piece {
+      background: var(--ti-common-scrollbar-track-piece-bg-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--ti-common-scrollbar-thumb-bg-color);
+      border-radius: var(--ti-common-scrollbar-thumb-border-radius);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--ti-common-scrollbar-thumb-hover-bg-color);
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+      background: var(--ti-common-scrollbar-thumb-active-bg-color);
+    }
+
+    .@{css-prefix}scrollbar::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    .@{css-prefix}scrollbar::-webkit-scrollbar-track-piece {
+      background: transparent;
+      border: 0;
+    }
+
+    .@{css-prefix}scrollbar::-webkit-scrollbar-thumb {
+      background: #bfbfbf;
+      border-radius: 4px;
+    }
+
+    .@{css-prefix}scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #999999;
+    }
+
+    .@{css-prefix}scrollbar::-webkit-scrollbar-thumb:active {
+      background: #999999;
+    }
+
+    .@{css-prefix}min-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    .@{css-prefix}min-scrollbar::-webkit-scrollbar-track-piece {
+      background: transparent;
+      border: 0;
+    }
+
+    .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb {
+      background: #bfbfbf;
+      border-radius: 2px;
+    }
+
+    .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #999999;
+    }
+
+    .@{css-prefix}min-scrollbar::-webkit-scrollbar-thumb:active {
+      background: #999999;
+    }
+  }
+}

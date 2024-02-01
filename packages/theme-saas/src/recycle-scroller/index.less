@@ -1,0 +1,65 @@
+@import '../custom.less';
+
+@recycle-scroller-prefix-cls: ~'@{css-prefix}recycle-scroller';
+
+.@{recycle-scroller-prefix-cls} {
+  @apply relative;
+
+  &.direction-vertical {
+    &:not(.page-mode) {
+      @apply overflow-y-auto;
+    }
+
+    .@{recycle-scroller-prefix-cls}__item-wrapper {
+      @apply w-full;
+    }
+  }
+
+  &.direction-horizontal {
+    @apply flex;
+
+    &:not(.page-mode) {
+      @apply overflow-x-auto;
+    }
+
+    .@{recycle-scroller-prefix-cls}__item-wrapper {
+      @apply h-full;
+    }
+  }
+
+  & &__slot {
+    @apply flex-grow-0;
+    @apply flex-shrink-0;
+    @apply basis-auto;
+  }
+
+  & &__item-wrapper {
+    @apply flex-grow;
+    @apply flex-shrink;
+    @apply basis-0;
+    @apply box-border;
+    @apply overflow-hidden;
+    @apply relative;
+  }
+
+  &.ready {
+    .@{recycle-scroller-prefix-cls}__item-view {
+      @apply absolute;
+      @apply top-0;
+      @apply left-0;
+      @apply will-change-transform;
+    }
+
+    &.direction-vertical {
+      .@{recycle-scroller-prefix-cls}__item-view {
+        @apply w-full;
+      }
+    }
+
+    &.direction-horizontal {
+      .@{recycle-scroller-prefix-cls}__item-view {
+        @apply h-full;
+      }
+    }
+  }
+}

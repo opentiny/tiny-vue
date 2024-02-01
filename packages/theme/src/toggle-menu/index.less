@@ -1,0 +1,172 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@toggle-menu-prefix-cls: ~'@{css-prefix}toggle-menu';
+@input-prefix-cls: ~'@{css-prefix}input';
+@tree-node-prefix-cls: ~'@{css-prefix}tree-node';
+@tree-prefix-cls: ~'@{css-prefix}tree';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{toggle-menu-prefix-cls} {
+  .component-css-vars-toggle-menu();
+
+  width: var(--ti-toggle-menu-width);
+  position: relative;
+
+  & &__body {
+    cursor: pointer;
+    line-height: 1;
+    padding-left: 4px;
+    width: 100%;
+
+    &,
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  & &__name {
+    color: var(--ti-toggle-menu-name-text-color);
+    font-size: var(--ti-toggle-menu-font-size);
+  }
+
+  & &__tree {
+    position: relative;
+  }
+
+  & &__filter {
+    position: relative;
+    margin-bottom: 4px;
+    width: calc(100% - 16px);
+  }
+
+  & &__filter-search {
+    width: var(--ti-toggle-menu-filter-search-size);
+    height: var(--ti-toggle-menu-filter-search-size);
+    line-height: var(--ti-toggle-menu-filter-search-size);
+    display: block;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .@{svg-prefix-cls} {
+      fill: var(--ti-toggle-menu-filter-search-icon-color);
+      font-size: var(--ti-toggle-menu-filter-search-font-size);
+    }
+  }
+
+  & &__toggle {
+    position: absolute;
+    top: 0;
+    left: calc(100% - 14px);
+    z-index: 2;
+    width: 14px;
+    height: var(--ti-toggle-menu-filter-search-size);
+    line-height: var(--ti-toggle-menu-filter-search-size);
+    background: var(--ti-toggle-menu-toggle-bg-color);
+    cursor: pointer;
+    transition: 0.2s linear;
+
+    .@{svg-prefix-cls} {
+      fill: var(--ti-toggle-menu-toggle-icon-color);
+    }
+
+    &:hover .@{svg-prefix-cls} {
+      fill: var(--ti-toggle-menu-toggle-icon-color-hover);
+    }
+  }
+
+  & &__link {
+    width: 100%;
+  }
+
+  &.is-toggle-right {
+    width: 80px;
+
+    .@{tree-node-prefix-cls}.is-current {
+      .@{tree-node-prefix-cls}__content {
+        background: none;
+      }
+    }
+
+    .@{tree-node-prefix-cls}__content:hover {
+      background: none;
+
+      .@{svg-prefix-cls} {
+        fill: var(--ti-toggle-menu-toggle-icon-color-hover);
+      }
+    }
+  }
+
+  &.is-toggle-right &__toggle {
+    position: relative;
+    left: 0;
+  }
+
+  &.is-toggle-right &__filter {
+    display: none;
+  }
+
+  .@{tree-prefix-cls} {
+    &.is-wrap {
+      .@{tree-node-prefix-cls}__content {
+        height: auto;
+      }
+
+      .@{toggle-menu-prefix-cls}__name {
+        display: inline-block;
+        white-space: normal;
+        line-height: normal;
+        word-break: break-word;
+      }
+    }
+
+    &.is-overflow {
+      .@{toggle-menu-prefix-cls}__name {
+        width: calc(100% - 18px);
+        vertical-align: middle;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &.is-node-hide {
+      .@{toggle-menu-prefix-cls}__body,
+      .@{tree-node-prefix-cls}__children {
+        display: none;
+      }
+    }
+  }
+
+  .@{input-prefix-cls}__inner {
+    font-size: var(--ti-toggle-menu-font-size);
+    padding-right: 30px;
+    border-radius: 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .@{tree-node-prefix-cls}__content {
+    height: var(--ti-toggle-menu-tree-node-height);
+    line-height: var(--ti-toggle-menu-tree-node-height);
+    font-size: var(--ti-toggle-menu-font-size);
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
