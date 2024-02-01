@@ -467,7 +467,7 @@ export default {
             'zh-CN': '自定义获取服务端数据源的方法，返回一个 Promise 对象',
             'en-US': 'Customize the method for obtaining server-side data sources and return a Promise object'
           },
-          'demoId': 'get-menu-data-sync'
+          'demoId': 'data-resource'
         },
         {
           'name': 'indent',
