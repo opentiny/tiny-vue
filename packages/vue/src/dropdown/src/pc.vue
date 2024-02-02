@@ -91,7 +91,7 @@ export default defineComponent({
     },
     suffixIcon: Object
   },
-  emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click', 'handle-click'],
+  emits: ['visible-change', 'item-click', 'button-click', 'menu-item-click', 'is-disabled', 'handle-click'],
   setup(props, context) {
     return setup({ props, context, renderless, api, h })
   },
