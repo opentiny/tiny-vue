@@ -1561,6 +1561,7 @@ const Methods = {
 
     // 这里最好使用transform3D,使用gpu加速，防止页面重绘
     if (tableElem) {
+      marginTop = marginTop || 0
       tableElem.style.transform = `translateY(${marginTop})`
     }
 

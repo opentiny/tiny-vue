@@ -204,6 +204,8 @@
     "@opentiny/vue-select-mobile": "workspace:~",
     "@opentiny/vue-select-view": "workspace:~",
     "@opentiny/vue-selected-box": "workspace:~",
+    "@opentiny/vue-skeleton": "workspace:~",
+    "@opentiny/vue-skeleton-item": "workspace:~",
     "@opentiny/vue-slide-bar": "workspace:~",
     "@opentiny/vue-slider": "workspace:~",
     "@opentiny/vue-slider-button": "workspace:~",

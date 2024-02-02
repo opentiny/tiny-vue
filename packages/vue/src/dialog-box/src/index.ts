@@ -62,6 +62,10 @@ export const dialogBoxProps = {
     type: Boolean,
     default: () => false
   },
+  dragOutsideWindow: {
+    type: Boolean,
+    default: () => false
+  },
   fullscreen: {
     type: Boolean,
     default: () => false

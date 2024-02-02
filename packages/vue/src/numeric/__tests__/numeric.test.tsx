@@ -67,6 +67,7 @@ describe('PC Mode', () => {
   test('min 规定组件可输入的最小数值', async () => {
     const inputValue = ref(1)
     const wrapper = mount(() => <Numeric v-model={inputValue.value} min={3}></Numeric>)
+    await nextTick()
     expect(wrapper.find('input').element.value).toEqual('3')
     wrapper.find('.tiny-numeric__decrease').trigger('mousedown')
     document.dispatchEvent(mouseup)
@@ -77,6 +78,7 @@ describe('PC Mode', () => {
   test('max 规定组件可输入的最大数值', async () => {
     const inputValue = ref(6)
     const wrapper = mount(() => <Numeric v-model={inputValue.value} max={3}></Numeric>)
+    await nextTick()
     expect(wrapper.find('input').element.value).toEqual('3')
     wrapper.find('.tiny-numeric__increase').trigger('mousedown')
     document.dispatchEvent(mouseup)

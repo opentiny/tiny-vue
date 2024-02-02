@@ -12,6 +12,7 @@
     "build:mobile:prod": "vite build --mode mobileprod",
     "build:inner:saas": "vite build --mode innersaas",
     "build:inner:prod": "vite build --mode innerprod",
+    "build": "vite build",
     "build:open": "vite build --mode open",
     "prettier": "npx prettier --write ./**/*.{ts,tsx,css,less,scss,vue}",
     "stylelint": "npx stylelint ./src/**/*.scss ./src/**/*.less ./src/**/*.css --fix",

@@ -421,9 +421,7 @@ export const calcCollapseTags =
 
         const tags: HTMLDivElement[] = Array.from(content.querySelectorAll('.tiny-tag'))
         let { total, dom, idx } = { total: collapseTagWidth as number, dom: null as HTMLDivElement | null, idx: 0 }
-
-        // eslint-disable-next-line array-callback-return
-        tags.some((tag, index) => {
+        tags.forEach((tag, index) => {
           if (tag !== tagsLength) {
             const { width: tagContentWidth, marginRight, marginLeft } = tag && window.getComputedStyle(tag)
             total += parseFloat(tagContentWidth) + parseFloat(marginRight) + parseFloat(marginLeft)
@@ -618,10 +616,10 @@ export const updateStyle =
     const tags = $el.querySelector(CASCADER.TagClass)
     let suggestionPanelEl: HTMLDivElement | null = null
 
-    // eslint-disable-next-line no-cond-assign
-    if (suggestionPanel && (suggestionPanelEl = suggestionPanel.$el)) {
-      const suggestionList: HTMLDivElement | null = suggestionPanelEl?.querySelector(CASCADER.ListClass)
-      suggestionList && (suggestionList.style.minWidth = inputInner.offsetWidth + 'px')
+    if (suggestionPanel) {
+      suggestionPanelEl = suggestionPanel.$el
+      const suggestionList: HTMLDivElement | null = suggestionPanelEl.querySelector(CASCADER.ListClass)
+      suggestionList.style.minWidth = inputInner.offsetWidth + 'px'
     }
 
     if (tags) {
