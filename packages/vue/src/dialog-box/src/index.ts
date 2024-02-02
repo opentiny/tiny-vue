@@ -11,7 +11,7 @@
  */
 
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 export const $constants = {
   DIALOG_SLIDER_RIGHT: 'dialog-slideRight',
@@ -51,7 +51,7 @@ export const dialogBoxProps = {
     default: () => true
   },
   destroyOnClose: {
-    Boolean,
+    type: Boolean,
     default: () => false
   },
   dialogClass: {
@@ -59,6 +59,10 @@ export const dialogBoxProps = {
     default: () => ''
   },
   draggable: {
+    type: Boolean,
+    default: () => false
+  },
+  dragOutsideWindow: {
     type: Boolean,
     default: () => false
   },

@@ -90,7 +90,6 @@ export const alertProps = {
   }
 }
 
-const aaa = {}
 export default defineComponent({
   name: $prefix + 'Alert',
   props: alertProps,

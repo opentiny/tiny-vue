@@ -19,31 +19,28 @@
         :class="
           m(
             gcls('loading-content'),
-            gcls({ 'loading-size-mini': state.size === 'mini' }),
-            gcls({ 'loading-size-unmini': state.size !== 'mini' })
+            gcls({ 'loading-size-mini': size === 'mini' }),
+            gcls({ 'loading-size-unmini': size !== 'mini' })
           )
         "
       >
-        <svg
+        <img
           v-if="!state.spinner"
           data-tag="tiny-loading-icon"
           :class="
             m(
-              gcls('loading-unspinner'),
               gcls({
-                'loading-unspinner-size-default':
-                  !state.size || !['large', 'medium', 'small', 'mini'].includes(state.size)
+                'loading-unspinner-size-default': !size || !['large', 'medium', 'small', 'mini'].includes(size)
               }),
-              gcls({ 'loading-unspinner-size-large': state.size === 'large' }),
-              gcls({ 'loading-unspinner-size-medium': state.size === 'medium' }),
-              gcls({ 'loading-unspinner-size-small': state.size === 'small' }),
-              gcls({ 'loading-unspinner-size-mini': state.size === 'mini' })
+              gcls({ 'loading-unspinner-size-large': size === 'large' }),
+              gcls({ 'loading-unspinner-size-medium': size === 'medium' }),
+              gcls({ 'loading-unspinner-size-small': size === 'small' }),
+              gcls({ 'loading-unspinner-size-mini': size === 'mini' })
             )
           "
-          viewBox="25 25 50 50"
-        >
-          <circle :class="m(gcls('loading-unspinner-svg-circle'))" cx="50" cy="50" r="24" fill="none" />
-        </svg>
+          :src="state.loadingImg"
+          :style="state.iconStyle"
+        />
         <component data-tag="tiny-loading-spinner" v-else :is="state.spinner" :class="m(gcls('loading-spinner'))" />
         <span
           data-tag="tiny-loading-text"
@@ -51,8 +48,8 @@
           :class="
             m(
               gcls('loading-spinner-text'),
-              gcls({ 'loading-spinner-size-mini': state.size === 'mini' }),
-              gcls({ 'loading-spinner-size-unmini': state.size !== 'mini' })
+              gcls({ 'loading-spinner-size-mini': size === 'mini' }),
+              gcls({ 'loading-spinner-size-unmini': size !== 'mini' })
             )
           "
           >{{ state.text }}</span
@@ -66,14 +63,23 @@
 import { $prefix, setup, $props, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/loading/vue'
 import { classes } from './tokens'
+import loadingImg from '@opentiny/vue-theme/images/loading.png'
 import type { ILoadingApi } from '@opentiny/vue-renderless/types/loading.type'
 
 export default defineComponent({
+  inheritAttrs: false,
   name: $prefix + 'Loading',
   emits: ['after-leave'],
   props: {
     ...$props,
-    _constants: Object
+    _constants: Object,
+    loadingImg: {
+      type: String,
+      default: loadingImg
+    },
+    size: {
+      type: String
+    }
   },
   setup(props, context) {
     return setup({ props, context, renderless, api, classes }) as unknown as ILoadingApi

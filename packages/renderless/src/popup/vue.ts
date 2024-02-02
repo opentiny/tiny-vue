@@ -52,27 +52,27 @@ const initState = ({ reactive, computed, props, api }) => {
   return state
 }
 
-const initApi = ({ api, props, state, refs, emit, nextTick, constants }) => {
+const initApi = ({ api, props, state, vm, emit, nextTick, constants }) => {
   Object.assign(api, {
     state,
     opened: opened(emit),
     closed: closed(emit),
     getStyle: getStyle(props),
     watchValue: watchValue(api),
-    updateZIndex: updateZIndex({ refs, state }),
+    updateZIndex: updateZIndex({ vm, state }),
     clickOverlay: clickOverlay({ api, emit, props }),
     renderOverlay: renderOverlay({ api, nextTick, props, state }),
-    onTouchMove: onTouchMove({ refs, state }),
+    onTouchMove: onTouchMove({ vm, state }),
     open: open({ api, constants, emit, props, state }),
     close: close({ api, constants, emit, props, state })
   })
 }
 
-export const renderless = (props, { computed, onMounted, reactive, watch, nextTick }, { constants, refs, emit }) => {
+export const renderless = (props, { computed, onMounted, reactive, watch, nextTick }, { constants, vm, emit }) => {
   const api = {}
   const state = initState({ reactive, computed, props, api })
 
-  initApi({ api, props, state, refs, emit, nextTick, constants })
+  initApi({ api, props, state, vm, emit, nextTick, constants })
 
   watch(() => props.modelValue, api.watchValue, { immediate: true })
 

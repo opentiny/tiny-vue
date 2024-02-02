@@ -9,7 +9,7 @@
   </tiny-grid>
 </template>
 
-<script lang="jsx">
+<script>
 import { Grid, GridColumn, Pager, Modal } from '@opentiny/vue'
 
 export default {
@@ -97,7 +97,7 @@ export default {
     sortChangeEvent({ order }) {
       Modal.message({ message: `${order}`, status: 'info' })
     },
-    getData({ page, sort, data, filters }) {
+    getData({ page, filters }) {
       return new Promise((resolve) => {
         setTimeout(() => {
           // 此处为用户自定义的服务端分页、排序、过滤服务

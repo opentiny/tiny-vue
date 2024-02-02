@@ -12,7 +12,6 @@ export interface ISliderState {
   moveStyle: object
   points: object[]
   labels: object[]
-  isInit: boolean
   isDrag: boolean
   sliderSize: number
   inputValue: [number, number]
@@ -26,6 +25,7 @@ export interface ISliderState {
   leftBtnStyle: string
   leftBtnPercent: number
   leftBtnShow: true
+  mouseOuterBtn: boolean
   rightBtnStyle: string
   rightBtnPercent: number
   rightBtnShow: boolean

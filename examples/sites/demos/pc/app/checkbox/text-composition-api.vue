@@ -13,8 +13,9 @@ const checked = ref('假文本')
 
 function getValue() {
   Modal.message({
-    message: '当前状态对应的值为:' + this.checked,
-    top: 200
+    message: '当前状态对应的值为:' + checked.value,
+    top: 200,
+    status: 'info'
   })
 }
 </script>

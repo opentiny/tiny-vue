@@ -1,3 +1,4 @@
+<!-- eslint-disable unused-imports/no-unused-vars -->
 <template>
   <div>
     <div class="node-tip">在开发者控制台中查看它的打印信息：</div>
@@ -22,6 +23,7 @@ import { ref } from 'vue'
 import { Tree as TinyTree, Button as TinyButton } from '@opentiny/vue'
 
 const treeRef = ref()
+const defaultRadioKey = ref(['1-1'])
 const data = ref([
   {
     id: '1',
@@ -44,8 +46,6 @@ const data = ref([
 ])
 
 function getChecks() {
-  const currentKey = treeRef.value.getCurrentKey()
-
   // 查询勾选的值
   const checkedKeys = treeRef.value.getCheckedKeys()
   // 查询勾选叶子的值
@@ -69,12 +69,12 @@ function getChecks() {
   })
 }
 function setCurrentRadio() {
-  this.defaultRadioKey = ['3-1']
-  this.$refs.treeRef.setCurrentRadio()
+  defaultRadioKey.value = ['3-1']
+  treeRef.value.setCurrentRadio()
 }
 
 function checkChange(data, checked, indeterminate) {
-  console.log('checkChange事件：', arguments)
+  console.log('checkChange事件：', { data, checked, indeterminate })
 }
 </script>
 

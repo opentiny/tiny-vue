@@ -57,5 +57,5 @@ export default {
       'codeFiles': ['sort/server-sort.vue']
     }
   ],
-  apis: [{ 'name': 'grid-sort', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-sort', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

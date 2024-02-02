@@ -25,6 +25,10 @@ export default {
 .demo-date-picker-wrap {
   width: 280px;
 
+  :deep(.tiny-date-editor--daterange.tiny-input__inner) {
+    width: 280px;
+  }
+
   & > * {
     margin-top: 12px;
   }

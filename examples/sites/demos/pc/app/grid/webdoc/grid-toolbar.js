@@ -7,7 +7,14 @@ export default {
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
       'desc': {
         'zh-CN': `
-        <p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>buttons</code> 进行按钮组相关配置。\n3、表格事件设置 <code>@toolbar-button-click</code> 获取工具栏 <code>buttons</code> 的事件，用户可自定义实现增删改操作的业务逻辑。</p>
+        <div class="tip custom-block">
+          <p class="custom-block-title">工具栏配置步骤：</p>
+          <ul>
+            <li>1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。</li>
+            <li>2、设置工具栏组件属性 <code>buttons</code> 进行按钮组相关配置。</li>
+            <li>3、表格事件设置 <code>@toolbar-button-click</code> 获取工具栏 <code>buttons</code> 的事件，用户可自定义实现增删改操作的业务逻辑。</li>
+          </ul>
+        </div>
         <div class="tip custom-block">
           <p class="custom-block-title">新增的行需要标记新增状态的样式时需要配置 edit-config 的 markInsert 项为 true。</p>
         </div>`,
@@ -65,10 +72,10 @@ export default {
     },
     {
       'demoId': 'toolbar-copy-row-data',
-      'name': { 'zh-CN': '设置工具栏尺寸大小', 'en-US': 'Set the toolbar size' },
+      'name': { 'zh-CN': '工具栏尺寸大小', 'en-US': 'Set the toolbar size' },
       'desc': {
         'zh-CN':
-          '<p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>buttons</code> 进行按钮组相关配置。\n3、表格事件设置 <code>@toolbar-button-click</code> 获取工具栏 <code>buttons</code> 的事件，用户可自定义实现复制行操作的业务逻辑。</p>\n<ul>\n<li><code>size</code> 属性设置工具栏尺寸大小,包括 large、medium、small、mini 四种不同大小。不设置时为默认尺寸。</li>\n</ul>\n',
+          '<p>通过 <code>size</code> 属性设置工具栏尺寸大小,包括 large、medium、small、mini 四种不同大小。不设置时为默认尺寸。</p>',
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>buttons</code> and configure the button group. \n3. Set the table event <code>@toolbar-button-click</code> to obtain the <code>buttons</code> event on the toolbar. You can customize the service logic for copying rows. The </p>\n<ul>\n<li><code>size</code> property specifies the size of the toolbar. The options are large, medium, small, and mini. If this parameter is not set, the default size is used. </li>\n</ul>\n'
       },
@@ -79,7 +86,7 @@ export default {
       'name': { 'zh-CN': '开启表格刷新功能', 'en-US': 'Enable the table refresh function' },
       'desc': {
         'zh-CN': `
-        <p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>
+        <p>设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>
         <ul>
           <li>设置表格属性 <code>loading</code> 开启/关闭加载中。\n自定义实现刷新时直接调用<code>handleFetch('reload')</code></li>
         </ul>`,
@@ -92,8 +99,7 @@ export default {
       'demoId': 'toolbar-grid-full-screen',
       'name': { 'zh-CN': '开启表格全屏功能', 'en-US': 'Enable the full-screen function of the table.' },
       'desc': {
-        'zh-CN':
-          '<p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件属性 <code>slot=&quot;toolbar&quot;</code> 。\n2、设置工具栏组件属性 <code>full-screen</code> 开启表格全屏功能。</p>\n',
+        'zh-CN': '<p>设置工具栏组件属性 <code>full-screen</code> 开启表格全屏功能。</p>\n',
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>full-screen</code> to enable the full-screen function. </p>\n'
       },
@@ -102,15 +108,17 @@ export default {
     {
       'demoId': 'toolbar-grid-full-screen-height',
       'name': { 'zh-CN': '全屏时改变表格高度', 'en-US': 'Change the table height in full screen mode' },
-      'desc': { 'zh-CN': '详细用法参考如下示例：', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '<p>通过表格属性<code>height</code> 在全屏是动态改变表格高度。</p>',
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['toolbar/grid-full-screen-height.vue']
     },
     {
       'demoId': 'toolbar-custom-toolbar',
       'name': { 'zh-CN': '工具栏自定义插槽', 'en-US': 'Toolbar Custom Slot' },
       'desc': {
-        'zh-CN':
-          '<p>工具栏配置步骤：\n1、表格以插槽方式引入表格工具栏组件 <code>GridToolbar</code>，并设置工具栏组件插槽 <code>#toolbar</code> 。\n2、通过工具栏组件的插槽 <code>#buttons</code> 自定义内容。</p>\n',
+        'zh-CN': '<p>通过工具栏组件的插槽 <code>#buttons</code> 自定义内容。</p>',
         'en-US':
           '<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component slot <code>#toolbar</code>. \n2. Customize content through the slot <code>#buttons</code> of the toolbar component. </p>\n'
       },
@@ -128,5 +136,5 @@ export default {
       'codeFiles': ['toolbar/toolbar-op-config.vue']
     }
   ],
-  apis: [{ 'name': 'grid-toolbar', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-toolbar', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

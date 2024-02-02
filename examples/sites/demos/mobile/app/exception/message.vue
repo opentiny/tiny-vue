@@ -3,7 +3,7 @@
     <tiny-exception
       type="nodata"
       message="自定义文本内容"
-      imageUrl="/static/images/planet1.jpg"
+      :imageUrl="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`"
       @btn-click="test"
     ></tiny-exception>
   </div>

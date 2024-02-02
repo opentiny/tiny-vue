@@ -167,10 +167,17 @@ const dataset = ref([
   { title: '更新日志', url: '#/zh-CN/guide/changelog' },
   { title: '测试', url: '' },
   { title: '帮助', url: '' },
-  { title: '支持', url: '' },
-  { title: '示例', url: '' },
-  { title: '工具', url: '' },
-  { title: '资源列表', url: '' }
+  { title: '支持列表', url: '' },
+  { title: '示例列表', url: '' },
+  { title: '工具列表', url: '' },
+  { title: '测试列表', url: '' },
+  { title: '开发列表', url: '' },
+  { title: '资源列表', url: '' },
+  { title: '测试开发', url: '' },
+  { title: '开发扩容', url: '' },
+  { title: '运维扩容', url: '' },
+  { title: '扩容部署', url: '' },
+  { title: '部署发布', url: '' }
 ])
 const TinyIconLeft = iconLeft()
 const TinyIconRight = iconRight()

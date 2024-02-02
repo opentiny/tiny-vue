@@ -5,19 +5,28 @@ export default {
     {
       'demoId': 'slot-default-slot',
       'name': { 'zh-CN': '默认插槽', 'en-US': 'Default slot' },
-      'desc': { 'zh-CN': '详细用法参考如下示例：', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': `<p>通过 <code>template</code> 标签并配置 <code>#default</code> 添加表格列的默认插槽。</p>`,
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['slot/default-slot.vue']
     },
     {
       'demoId': 'slot-buttons-slot',
       'name': { 'zh-CN': '工具栏插槽', 'en-US': 'Toolbar slot' },
-      'desc': { 'zh-CN': '详细用法参考如下示例：', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': `<p>通过 <code>template</code> 标签并配置 <code>#toolbar</code> 添加表格的工具栏插槽。</p>`,
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['slot/buttons-slot.vue']
     },
     {
       'demoId': 'slot-empty-slot',
       'name': { 'zh-CN': '空数据显示插槽', 'en-US': 'Empty data display slot' },
-      'desc': { 'zh-CN': '详细用法参考如下示例：', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': `<p>通过 <code>template</code> 标签并配置 <code>#empty</code> 添加表格的空数据插槽。</p>`,
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['slot/empty-slot.vue']
     },
     {
@@ -32,9 +41,12 @@ export default {
     {
       'demoId': 'slot-header-slot',
       'name': { 'zh-CN': '表头插槽', 'en-US': 'Table header slot' },
-      'desc': { 'zh-CN': '详细用法参考如下示例：', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': `<p>通过 <code>template</code> 标签并配置 <code>#header</code> 添加表格列的表头插槽。</p>`,
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['slot/header-slot.vue']
     }
   ],
-  apis: [{ 'name': 'grid-slot', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-slot', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

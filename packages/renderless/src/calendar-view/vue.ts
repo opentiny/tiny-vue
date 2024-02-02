@@ -39,7 +39,7 @@ import {
   touchmove,
   touchend
 } from './index'
-import throttle from '@opentiny/vue-renderless/common/deps/throttle'
+import throttle from '../common/deps/throttle'
 
 export const api = [
   'state',
@@ -139,6 +139,20 @@ const initState = ({ reactive, props, computed, api, images, modesIcon }) => {
 
 const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
   watch(
+    () => props.modelValue,
+    (value) => {
+      if (value) {
+        if (props.multiSelect && Array.isArray(value)) {
+          state.selectedDates = value
+        } else {
+          state.selectedDate = value
+        }
+      }
+    },
+    { immediate: true, deep: true }
+  )
+
+  watch(
     () => props.mode,
     () => {
       state.mode = props.mode
@@ -156,9 +170,6 @@ const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
   watch(
     () => state.selectedDate,
     () => {
-      if (state.mode === 'month') {
-        api.getEventByDate(state.selectedDate, state.selectedDateEvents)
-      }
       emit('selected-date-change', state.selectedDate)
     },
     { deep: true }
@@ -194,7 +205,10 @@ const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
       })
     }
   )
+  addWatch({ watch, props, state, emit, api })
+}
 
+const addWatch = ({ watch, props, state, emit, api }) => {
   watch(
     () => props.month,
     (val, oldVal) => {

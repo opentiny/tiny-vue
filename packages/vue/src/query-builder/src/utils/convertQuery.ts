@@ -22,7 +22,6 @@ const generateRuleGroupICWithConsistentCombinators = (rg: RuleGroupTypeIC): Rule
         j += 2
       }
       returnArr.push({
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error TS can't keep track of odd/even indexes here
         rules: rg.rules.slice(startIndex, i + 1).map(processRuleOrStringOrRuleGroupIC)
       })
@@ -49,13 +48,11 @@ const generateRuleGroupICWithConsistentCombinators = (rg: RuleGroupTypeIC): Rule
     }
   }
   if (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error TS still thinks returnArr has length 0
     returnArr.length === 1 &&
     typeof returnArr[0] === 'object' &&
     'rules' in returnArr[0]
   ) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error TS still thinks returnArr has length 0
     return { ...rg, ...returnArr[0] }
   }

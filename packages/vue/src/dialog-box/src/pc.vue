@@ -62,7 +62,7 @@
           <slot></slot>
         </div>
         <div v-if="slots.footer" class="tiny-dialog-box__footer">
-          <slot name="footer" :beforeClose="beforeClose"></slot>
+          <slot name="footer" :before-close="beforeClose"></slot>
         </div>
       </div>
     </div>
@@ -114,6 +114,7 @@ export default defineComponent({
     'top',
     'center',
     'draggable',
+    'dragOutsideWindow',
     'showHeader',
     'rightSlide',
     'destroyOnClose',

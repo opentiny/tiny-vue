@@ -26,16 +26,16 @@ export default {
   },
   methods: {
     handleFocus() {
-      this.$refs.timePickerRef.focus()
+      this.$refs.timePickerRef.$el.querySelector('input').focus()
     },
     blur() {
-      Modal.message('blur事件')
+      Modal.message({ message: 'blur事件', status: 'info' })
     },
     change() {
-      Modal.message('change事件')
+      Modal.message({ message: 'change事件', status: 'info' })
     },
     focus() {
-      Modal.message('focus事件')
+      Modal.message({ message: 'focus事件', status: 'info' })
     }
   }
 }

@@ -20,7 +20,7 @@
   >
     <slot>
       <template v-if="type === 'radio'">
-        <radio v-for="(item, index) in options" :key="index" v-bind="item"></radio>
+        <radio v-for="(item, index) in options" :display-only="displayOnly" :key="index" v-bind="item"></radio>
       </template>
       <template v-if="type === 'button'">
         <radio-button v-for="(item, index) in options" :key="index" v-bind="item"></radio-button>
@@ -42,7 +42,18 @@ export default defineComponent({
     RadioButton
   },
   emits: ['change', 'update:modelValue'],
-  props: [...props, 'options', 'modelValue', 'type', 'size', 'fill', 'textColor', 'disabled', 'vertical'],
+  props: [
+    ...props,
+    'options',
+    'modelValue',
+    'type',
+    'size',
+    'fill',
+    'textColor',
+    'disabled',
+    'vertical',
+    'displayOnly'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IRadioGroupApi
   }

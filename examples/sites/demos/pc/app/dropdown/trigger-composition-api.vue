@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>场景1： 默认悬浮时触发下拉</p>
-    <tiny-dropdown>
+    <tiny-dropdown trigger="hover">
       <template #dropdown>
         <tiny-dropdown-menu>
           <tiny-dropdown-item><tiny-icon-plus></tiny-icon-plus> 黄金糕</tiny-dropdown-item>
@@ -17,11 +17,11 @@
     <tiny-dropdown trigger="click">
       <template #dropdown>
         <tiny-dropdown-menu>
-          <tiny-dropdown-item :icon="iconPlus">黄金糕</tiny-dropdown-item>
-          <tiny-dropdown-item :icon="iconPlusCircle">狮子头</tiny-dropdown-item>
-          <tiny-dropdown-item :icon="iconPlusSquare">螺蛳粉</tiny-dropdown-item>
-          <tiny-dropdown-item :icon="iconCheckedLinear">双皮奶</tiny-dropdown-item>
-          <tiny-dropdown-item :icon="iconCheckedSur">蚵仔煎</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="tinyIconPlus">黄金糕</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="tinyIconPlusCircle">狮子头</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="tinyIconPlusSquare">螺蛳粉</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="tinyIconCheckedLinear">双皮奶</tiny-dropdown-item>
+          <tiny-dropdown-item :icon="tinyIconCheckedSur">蚵仔煎</tiny-dropdown-item>
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
@@ -36,11 +36,11 @@ import {
   DropdownItem as TinyDropdownItem
 } from '@opentiny/vue'
 
-const TinyIconPlus = iconPlus()
-const TinyIconPlusCircle = iconPlusCircle()
-const TinyIconPlusSquare = iconPlusSquare()
-const TinyIconCheckedLinear = iconCheckedLinear()
-const TinyIconCheckedSur = iconCheckedSur()
+const tinyIconPlus = iconPlus()
+const tinyIconPlusCircle = iconPlusCircle()
+const tinyIconPlusSquare = iconPlusSquare()
+const tinyIconCheckedLinear = iconCheckedLinear()
+const tinyIconCheckedSur = iconCheckedSur()
 </script>
 
 <style lang="less" scoped>

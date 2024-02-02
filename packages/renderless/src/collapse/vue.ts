@@ -32,17 +32,17 @@ export const renderless = (
     activeNames: []
   })
 
-  const api: ICollapseApi = {
+  const api: Partial<ICollapseApi> = {
     state,
     setActiveNames: setActiveNames({ emit, props, state })
   }
 
-  api.handleItemClick = handleItemClick({ api, props, state })
+  api.handleItemClick = handleItemClick({ api: api as ICollapseApi, props, state })
 
   watch(
     () => props.modelValue,
     (value) => {
-      state.activeNames = value || value === 0 ? [].concat(value) : []
+      state.activeNames = value || value === 0 ? ([] as Array<string>).concat(value as Array<string> | string) : []
     },
     { immediate: true, deep: true }
   )

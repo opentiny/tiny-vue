@@ -76,19 +76,12 @@ export default {
 
 <style scoped>
 .custom-loading {
-  position: absolute;
   font-size: 20px;
-  z-index: 999;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.3);
-}
-.custom-loading[visible='false'] {
-  display: none;
 }
 </style>

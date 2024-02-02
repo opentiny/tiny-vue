@@ -5,7 +5,7 @@ export const tinyPagerSmbTheme = {
   'ti-pager-height': '32px',
   'ti-pager-input-height': '32px',
   'ti-pager-poplist-item-padding-horizontal': '8px',
-  'ti-pager-active-font-color': 'var(--ti-common-color-text-link)',
+  'ti-pager-active-font-color': 'var(--ti-common-color-text-primary)',
   'ti-pager-li-item-hover-text-color': 'var(--ti-pager-text-color)',
   'ti-pager-goto-btn-text-hover-color': 'var(--ti-common-color-selected-text-color)',
   'ti-pager-total-font-size': '14px',
@@ -32,13 +32,12 @@ export const tinyPagerSmbTheme = {
   'ti-pager-min-width': '32px',
   'ti-pager-prev-next-hover-bg-color': 'transparent',
   'ti-pager-group-sizes-margin-right': '0px',
-  'ti-pager-sizes-input-width': '78px',
   'ti-pager-sizes-input-hover-text-color': '#595959',
-  'ti-pager-input-btn-width': '16px',
-  'ti-pager-input-btn-right': '12px',
+  'ti-pager-input-btn-width': '24px',
   'ti-pager-selector-padding-vertical': '8px',
   'ti-pager-pop-body-margin-top': '4px',
   'ti-pager-poplist-item-selected-bg-color': '#0000000D',
   'ti-pager-poplist-item-min-height': '32px',
-  'ti-pager-mini-min-width': '24px'
+  'ti-pager-mini-min-width': '24px',
+  'ti-pager-sizes-num-margin-right': '2px'
 }

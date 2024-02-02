@@ -26,16 +26,14 @@ import {
   tabIndex,
   getModel,
   setModel,
-  toggleEvent,
-  dispatchDisplayedValue,
-  getDisplayedValue
+  toggleEvent
 } from './index'
 
 export const api = ['state', 'handleChange']
 
 export const renderless = (
   props: IRadioProps,
-  { onMounted, onBeforeUnmount, computed, reactive, inject, watch }: ISharedRenderlessParamHooks,
+  { onMounted, onBeforeUnmount, computed, reactive, inject }: ISharedRenderlessParamHooks,
   { vm, parent, emit, constants, nextTick, dispatch }: IRadioRenderlessParamUtils
 ): IRadioApi => {
   parent.tinyForm = parent.tinyForm || inject('form', null)
@@ -44,7 +42,7 @@ export const renderless = (
 
   const state: IRadioState = reactive({
     vertical: inject('radioVertical', false),
-    size: props.size || inject('size', null),
+    size: computed(() => props.size || inject('size', null) || (parent.tinyForm || {}).size),
     focus: false,
     radioGroup: null,
     isGroup: computed(() => api.isGroup()),
@@ -68,15 +66,10 @@ export const renderless = (
     isDisabled: isDisabled({ props, state }),
     isDisplayOnly: isDisplayOnly({ props }),
     setModel: setModel({ constants, dispatch, emit, props, vm, state }),
-    handleChange: handleChange({ constants, dispatch, emit, state, nextTick }),
-    dispatchDisplayedValue: dispatchDisplayedValue({ state, api, dispatch }),
-    getDisplayedValue: getDisplayedValue({ vm, state, props })
+    handleChange: handleChange({ constants, dispatch, emit, state, nextTick })
   })
 
-  watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)
-
   onMounted(() => {
-    api.dispatchDisplayedValue()
     dispatch('Tooltip', 'tooltip-update')
     toggleEvent({ props, vm, type: 'add' })
   })

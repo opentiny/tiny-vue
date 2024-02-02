@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('单选', async ({ page }) => {
+test('测试单选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#radio')
 

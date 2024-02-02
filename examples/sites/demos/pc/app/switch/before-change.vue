@@ -16,9 +16,10 @@ export default {
   },
   methods: {
     beforeChange(done) {
-      Modal.message(
-        '开关切换功能已被拦截，必须调用 done 方法才能执行开关状态的切换，2s后将自动调用 done 方法切换开关状态'
-      )
+      Modal.message({
+        message: '开关切换功能已被拦截，必须调用 done 方法才能执行开关状态的切换，2s后将自动调用 done 方法切换开关状态',
+        status: 'info'
+      })
       setTimeout(done, 2000)
     }
   }

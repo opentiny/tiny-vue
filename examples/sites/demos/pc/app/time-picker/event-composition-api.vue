@@ -19,19 +19,19 @@ const value1 = ref(new Date(2016, 9, 10, 18, 40))
 const timePickerRef = ref()
 
 function handleFocus() {
-  timePickerRef.value.focus()
+  timePickerRef.value.$el.querySelector('input').focus()
 }
 
 function blur() {
-  Modal.message('blur事件')
+  Modal.message({ message: 'blur事件', status: 'info' })
 }
 
 function change() {
-  Modal.message('change事件')
+  Modal.message({ message: 'change事件', status: 'info' })
 }
 
 function focus() {
-  Modal.message('focus事件')
+  Modal.message({ message: 'focus事件', status: 'info' })
 }
 </script>
 

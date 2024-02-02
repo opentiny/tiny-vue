@@ -18,14 +18,14 @@ export default {
       Modal.alert('alert 弹框', '弹框')
     },
     messageClick() {
-      Modal.message('message 提示框')
+      Modal.message({ status: 'info', message: 'message 提示框' })
     },
     confirmClick() {
       Modal.confirm('您确定要删除吗？', '确定框').then((res) => {
         Notify({
           type: 'info',
           title: '触发回调事件',
-          message: `点击${res}按钮`
+          message: `点击 ${res} 按钮`
         })
       })
     }

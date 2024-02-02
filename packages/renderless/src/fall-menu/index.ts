@@ -14,17 +14,18 @@ import { REFRESH_INTERVAL } from '../common'
 import { on, off } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
 import { xss } from '../common/xss.js'
+import type { IFallMenuApi, IFallMenuState, IFallMenuProps, IPagerData } from '@/types'
 
-export const arrowClick = (state) => (opt) => {
+export const arrowClick = (state: IFallMenuState) => (opt) => {
   state.pager += opt
 }
 
-export const overContent = (state) => (on) => {
+export const overContent = (state: IFallMenuState) => (on) => {
   state.isActive = on
 }
 
 export const mouseover =
-  ({ fall, props, state }) =>
+  ({ fall, props, state }: { fall: any; props: IFallMenuProps; state: IFallMenuState }) =>
   (index) => {
     const popupBox = fall.value
 
@@ -48,19 +49,23 @@ export const mouseover =
     }
   }
 
-export const mouseout = (state) => () => {
+export const mouseout = (state: IFallMenuState) => () => {
   state.isActive = false
   state.activeNode = null
 }
 
 export const computePx =
-  ({ props, refs, state }) =>
+  ({ props, refs, state }: { props: IFallMenuProps; refs: any; state: IFallMenuState }) =>
   () => {
     const list = refs.list
     const width = list.parentElement.clientWidth
-    const arr = list.querySelectorAll('li')
-    const set = { data: [], offset: [], index: [] }
-    const liWidth = []
+    const arr = list.querySelectorAll('li') as NodeListOf<HTMLLIElement>
+    const set: IPagerData = {
+      data: [],
+      offset: [],
+      index: []
+    }
+    const liWidth: number[] = []
     let innerwidth = 0
     let start = 0
 
@@ -69,7 +74,8 @@ export const computePx =
       liWidth.push(arr[i].clientWidth)
 
       if (innerwidth > width || i === len - 1) {
-        set.data.push(props.data.slice(start, i))
+        // todo set.data 类型待确认
+        set.data.push(props.data.slice(start, i) as any)
         set.offset.push(`-${arr[start].offsetLeft}px`)
         set.index.push(i)
 
@@ -92,7 +98,7 @@ export const computePx =
   }
 
 export const reRender =
-  ({ api, state, timeout }) =>
+  ({ api, state, timeout }: { api: IFallMenuApi; state: IFallMenuState; timeout?: NodeJS.Timeout }) =>
   () => {
     timeout && clearTimeout(timeout)
 
@@ -119,7 +125,7 @@ export const computeLeft =
     state.pagerData.offset[state.pager - 1]
 
 export const computeData =
-  ({ props }) =>
+  ({ props }: { props: IFallMenuProps }) =>
   () => {
     if (Array.isArray(props.data) && props.data.length) {
       props.data.forEach((level1) => {

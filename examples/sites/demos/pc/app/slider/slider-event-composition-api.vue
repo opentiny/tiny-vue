@@ -1,12 +1,12 @@
 <template>
-  <tiny-slider v-model="value2" @change="change" @start="start" @stop="stop"></tiny-slider>
+  <tiny-slider v-model="value" @change="change" @start="start" @stop="stop"></tiny-slider>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { Slider as TinySlider, Notify } from '@opentiny/vue'
 
-const value2 = ref(40)
+const value = ref(40)
 
 function start(val) {
   Notify({

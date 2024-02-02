@@ -10,7 +10,7 @@ export default {
       },
       'desc': {
         'zh-CN':
-          "<p>在 grid 标签上配置 tree-config={children: 'children',renderIcon},其中renderIcon可以自定义树表的展开收缩图标。以树的形式来展示数据,还需要在展示树节点的字段上配置 tree-node 属性。</p>\n",
+          "<p>在 <code>grid</code> 标签上配置 <code>tree-config={children: 'children',renderIcon}</code>，其中 <code>renderIcon</code> 可以自定义树表的展开收缩图标。以树的形式来展示数据,还需要在展示树节点的字段上配置 <code>tree-node</code> 属性。</p>\n",
         'en-US':
           "<p>Configure tree-config=&quot;{children:'children'}&quot; on the grid tab to display data in a tree. In addition, you need to configure the tree-node attribute</p>\n on the field that displays the tree node"
       },
@@ -21,7 +21,7 @@ export default {
       'name': { 'zh-CN': '扁平化数据结构', 'en-US': 'Flat Data Structure' },
       'desc': {
         'zh-CN':
-          '<p>注意：扁平化的数据结构需要调用 aggregateTableData 方法把数据转换成带有子级的数据才能正常的显示出树表的结构。</p>\n',
+          '<p>注意：扁平化的数据结构需要调用 <code>aggregateTableData</code> 方法把数据转换成带有子级的数据才能正常的显示出树表的结构。</p>\n',
         'en-US':
           '<p>Note: For a flattened data structure, you need to invoke the aggregateTableData method to convert data into data with sublevels to display the tree table structure.</p>\n'
       },
@@ -41,11 +41,23 @@ export default {
       'demoId': 'tree-table-tree-grid-operation-column',
       'name': { 'zh-CN': '操作列', 'en-US': 'Operation Column' },
       'desc': {
-        'zh-CN': '<p>列通过配置 type=&quot;radio&quot; 实现单选，配置 type=&quot;selection&quot; 实现多选。</p>\n',
+        'zh-CN':
+          '<p>列通过配置 <code>type=&quot;radio&quot</code>; 实现单选，配置 <code>type=&quot;selection&quot</code>; 实现多选。</p>\n',
         'en-US':
           'In the <p> column, you can set type=&quot;radio&quot; to enable single selection and type=&quot;selection&quot; to enable multiple selection</p>\n'
       },
       'codeFiles': ['tree-table/tree-grid-operation-column.vue']
+    },
+    {
+      'demoId': 'tree-table-tree-grid-index-checkfield',
+      'name': { 'zh-CN': '选中关联字段', 'en-US': 'Operation Column' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>selectConfig</code> 属性中配置 <code>checkField</code> 为行字段名称，可以将行的选中与该字段关联。被关联字段应该为布尔取值，并且在父子关联时父行初始设置为选中，应保证其所有子行也设置为选中。</p>',
+        'en-US':
+          'In the <p> column, you can set type=&quot;radio&quot; to enable single selection and type=&quot;selection&quot; to enable multiple selection</p>\n'
+      },
+      'codeFiles': ['tree-table/tree-grid-index-checkfield.vue']
     },
     {
       'demoId': 'tree-table-set-tree-expansion',
@@ -66,7 +78,7 @@ export default {
       'name': { 'zh-CN': '冻结列', 'en-US': 'Frozen Column' },
       'desc': {
         'zh-CN':
-          '<p>在列的标签上可以通过配置 fixed=&quot;left&quot; 属性把该列固定在左侧，配置 fixed=&quot;right&quot; 属性把该列固定在右侧。</p>\n',
+          '<p>在列的标签上可以通过配置 <code>fixed=&quot;left&quot</code>; 属性把该列固定在左侧，配置 <code>fixed=&quot;right&quot</code>; 属性把该列固定在右侧。</p>',
         'en-US':
           '<p>On the column label, you can set the fixed=&quot;left&quot; attribute to fix the column on the left, and set the fixed=&quot;right&quot; attribute to fix the column on the right</p>\n'
       },
@@ -76,7 +88,8 @@ export default {
       'demoId': 'tree-table-has-tree-expand',
       'name': { 'zh-CN': '检查树节点是否已展开', 'en-US': 'Check whether the tree node is expanded.' },
       'desc': {
-        'zh-CN': '<p>通过 <code>hasTreeExpand(row)</code> 方法可以检查树节点是否已展开，参数 row 为行数据对象。</p>\n',
+        'zh-CN':
+          '<p>通过 <code>hasTreeExpand(row)</code> 方法可以检查树节点是否已展开，参数 <code>row</code> 为行数据对象。</p>\n',
         'en-US':
           '<p>You can use the <code>hasTreeExpand(row)</code> method to check whether a tree node is expanded. The row parameter indicates the row data object. </p>\n'
       },
@@ -98,7 +111,7 @@ export default {
       'name': { 'zh-CN': '增删改', 'en-US': 'Add, Delete, and Modify' },
       'desc': {
         'zh-CN':
-          '<p>在 grid-toolbar 标签上配置 slot=&quot;toolbar&quot; 插槽，配置相关的操作按钮 ，注意：新增数据需要在 grid 标签上配置 edit-config 编辑框的配置信息，并通过 ref 获取到组件实例调用方法进行相关操作，findTree、filterTree 是工具类里的查找和过滤方法。由于tree数据节构的特殊性，grid的<code>getInsertRecords</code>与<code>getRecordset</code>方法无法获取到新增数据，此类数据需要用户自行处理。</p>\n',
+          '<p>在 <code>grid-toolbar</code> 标签上配置 <code>slot=&quot;toolbar&quot</code>; 插槽，配置相关的操作按钮 ，注意：新增数据需要在 <code>grid</code> 标签上配置 <code>edit-config</code> 编辑框的配置信息，并通过 <code>ref</code> 获取到组件实例调用方法进行相关操作，<code>findTree、filterTree</code> 是工具类里的查找和过滤方法。由于tree</code> 数据节构的特殊性，<code>grid</code> 的 <code>getInsertRecords</code> 与 <code>getRecordset</code> 方法无法获取到新增数据，此类数据需要用户自行处理。</p>\n',
         'en-US':
           '<p>Set slot=&quot;toolbar&quot; on the grid-toolbar tab, and configure related operation buttons. Note: To add data, you need to configure the edit-config text box on the grid tab. In addition, the component instance invokes methods through ref to perform related operations. findTree and filterTree are search and filter methods in the tool class. Due to the special structure of tree data, the <code>getInsertRecords</code> and <code>getRecordset</code> methods of the grid cannot obtain new data. Such data needs to be processed by users. </p>\n'
       },
@@ -109,7 +122,7 @@ export default {
       'name': { 'zh-CN': '键盘操作', 'en-US': 'Keyboard operation' },
       'desc': {
         'zh-CN': `
-        <p>键盘移动高亮行,设置斑马线属性 stripe 为 false,鼠标悬停高亮行 highlight-hover-row 为 false,高亮当前行 highlight-current-row ,并配置 keyboard-config={isArrow: true} 属性启用方向键功能。</p>
+        <p>键盘移动高亮行,设置斑马线属性 <code>stripe</code> 为 <code>false</code>,鼠标悬停高亮行 <code>highlight-hover-row</code> 为 <code>false</code>,高亮当前行 <code>highlight-current-row</code> ,并配置 <code>keyboard-config={isArrow: true}</code> 属性启用方向键功能。</p>
         <div class="tip custom-block">
           <p class="custom-block-title">按键说明：</p>
           <ul>
@@ -126,5 +139,5 @@ export default {
       'codeFiles': ['tree-table/tree-grid-keyboard-operation.vue']
     }
   ],
-  apis: [{ 'name': 'grid-tree-table', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-tree-table', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

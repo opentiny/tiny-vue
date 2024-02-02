@@ -1,36 +1,35 @@
 <template>
   <div
-    data-tag="tiny-from-item"
+    data-tag="tiny-form-item"
     :class="
       m(
-        `flex min-h-[theme(spacing.12)] sm:min-h-[theme(spacing.7)] mb-0 p-0 sm:mb-4 box-border after:content-[''] after:table after:clear-both before:content-['']  before:table border-b-0.5 border-color-bg-3 sm:border-none`,
-        state.validateState === 'error' && state.validateType === 'text' ? 'mb-0 sm:mb-0 pb-1 sm:pb-1' : '',
+        `flex min-h-[theme(spacing.12)] sm:min-h-[theme(spacing.7)] mb-0 p-0 sm:mb-4 box-border after:content-[''] after:table after:clear-both before:content-['']  before:table border-b-0.5 border-color-border-separator sm:border-none`,
+        state.validateState === 'error' && state.validateType === 'text' ? 'mb-0 sm:mb-5' : '',
         state.formInline ? 'align-sub' : '',
         state.labelPosition === 'top' ? 'block mb-4' : '',
         state.validateState === 'error'
           ? '[&_input]:border-color-error [&_textarea]:border-color-error [&_input:focus]:border-color-error [&_input:hover]:border-color-error [&_textarea:focus]:border-color-error [&_textarea:hover]:border-color-error'
           : '',
         state.labelPosition === 'top' && !state.hideRequiredAsterisk ? 'pl-0' : '',
-        ['small', 'mini'].indexOf(state.formItemSize) >= 0 ? 'mb-2' : '',
-        !slots.label && !this.label ? 'border-none' : '',
+        !slots.label && !label ? 'border-none' : '',
         state.isDisplayOnly ? 'border-none py-0.5' : ''
       )
     "
   >
     <label-wrap
-      :isAutoWidth="state.labelStyle && state.labelStyle.width === 'auto'"
-      :updateAll="state.labelWidth === 'auto'"
-      :isMobileFirst="true"
+      :is-auto-width="state.labelStyle && state.labelStyle.width === 'auto'"
+      :update-all="state.labelWidth === 'auto'"
+      :is-mobile-first="true"
     >
       <label
         data-tag="tiny-item-label"
         v-if="slots.label || label"
         :class="
           m(
-            'py-3 sm:py-1.5 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm sm:text-xs text-color-text-secondary pr-0 sm:pr-4 box-border',
+            'py-3 sm:py-1.5 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border leading-5',
             'overflow-hidden text-ellipsis text-left sm:text-right',
             state.labelPosition === 'top'
-              ? 'float-none inline-block text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0'
+              ? 'float-none inline-block text-left sm:text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0 sm:py-0 sm:pb-0.5 sm:min-h-[theme(spacing.0)]'
               : 'min-h-[theme(spacing.9)]',
             state.labelPosition === 'left' ? 'text-left' : '',
             state.formInline && state.labelPosition === 'top' ? 'block' : '',
@@ -38,7 +37,9 @@
             tipContent ? 'pr-5 sm:pr-7' : '',
             state.labelPosition === 'top' && !state.hideRequiredAsterisk
               ? 'overflow-visible relative before:absolute before:-left-2.5'
-              : ''
+              : '',
+            state.disabled ? 'text-color-icon-placeholder sm:text-color-text-secondary' : 'text-color-text-secondary',
+            state.formItemSize === 'medium' ? 'sm:text-sm' : 'sm:text-xs'
           )
         "
         :style="state.labelStyle"
@@ -68,22 +69,29 @@
       </label>
     </label-wrap>
     <div
-      data-tag="tiny-from-item-inline"
+      data-tag="tiny-form-item-inline"
       :class="
         m(
-          `m-auto flex-1 relative sm:top-auto text-sm sm:text-xs  after:content-['']  after:table after:clear-both before:content-['']  before:table [&_button:not(:last-child)]:mr-2`,
-          '[&_[data-tag=tiny-checkbox]]:py-0 [&_[data-tag=tiny-input]]:w-full [&_[data-tag=tiny-input]_textarea]:w-full [&_[data-tag=tiny-input]_textarea]:pt-3.5 sm:[&_[data-tag=tiny-input]_textarea]:pt-2',
+          `flex-1 m-0 sm:m-auto relative sm:pt-0 sm:top-auto text-sm after:content-['']  after:table after:clear-both before:content-['']  before:table [&_button:not(:last-child)]:mr-2`,
+          '[&_[data-tag=tiny-checkbox]]:py-0 [&_[data-tag=tiny-input]]:w-full',
+          '[&_[data-tag=tiny-input]_textarea]:px-0 sm:[&_[data-tag=tiny-input]_textarea]:px-3 [&_[data-tag=tiny-input]_textarea]:w-full [&_[data-tag=tiny-input]_textarea]:pt-1 sm:[&_[data-tag=tiny-input]_textarea]:pt-2',
           state.formInline ? 'align-sub leading-none' : '',
           state.labelPosition === 'top' && !state.hideRequiredAsterisk
-            ? 'pl-2.5 sm:pl-0 [&_[data-tag=tiny-input]_input]:px-0 sm:[&_[data-tag=tiny-input]_input]:px-3'
-            : ''
+            ? state.isDisplayOnly
+              ? 'pl-0'
+              : 'pl-2 sm:pl-0'
+            : 'pt-2',
+          state.formItemSize === 'medium' ? 'sm:text-sm' : 'sm:text-xs'
         )
       "
     >
       <div
-        data-tag="tiny-from-item-display-only"
+        data-tag="tiny-form-item-display-only"
         v-if="state.isDisplayOnly && state.isBasicComp"
-        :class="['break-all', state.typeName === 'textarea' ? 'line-clamp-3' : 'line-clamp-1']"
+        :class="[
+          'break-all min-h-[28px] leading-7 text-color-text-primary',
+          state.typeName === 'textarea' ? 'line-clamp-3' : 'line-clamp-1'
+        ]"
         :type-name="state.typeName"
         @mouseenter="handleMouseenter"
         @mouseleave="handleMouseleave"
@@ -91,29 +99,32 @@
         {{ state.displayedValue || '-' }}
       </div>
       <div
-        data-tag="tiny-from-item-show"
+        data-tag="tiny-form-item-show"
         v-show="!(state.isDisplayOnly && state.isBasicComp)"
         :class="[
           '[&_[aria-label=checkbox-group]]:pl-0.5 sm:[&_[aria-label=checkbox-group]]:pl-0',
           '[&_>:first-child[data-tag=tiny-checkbox]]:pl-0.5 sm:[&_>:first-child[data-tag=tiny-checkbox]]:pl-0',
-          !state.isDisplayOnly
-            ? '[&_[data-tag=tiny-switch]]:ml-2.5 sm:[&_[data-tag=tiny-switch]]:ml-0 [&_[data-tag=tiny-numeric]]:ml-2.5 sm:[&_[data-tag=tiny-numeric]]:ml-0'
+          '[&_>:first-child[data-tag=tiny-cascader]]:w-full',
+          '[&_>:first-child[class=tiny-autocomplete]]:w-full',
+          '[&_>:first-child[class=tiny-cascader]]:w-full',
+          state.isDisplayOnly
+            ? '[&_>*:not([data-tag^=tiny-],[class^=tiny-])]:leading-8 [&_>*:not([data-tag^=tiny-],[class^=tiny-])]:sm:leading-normal'
             : ''
         ]"
       >
         <slot></slot>
       </div>
       <slot
-        data-tag="tiny-from-item-error"
+        data-tag="tiny-form-item-error"
         v-if="state.validateState === 'error' && showMessage && state.showMessage"
         name="error"
       >
         <div
           :class="
             m(
-              'relative text-color-error text-xs leading-normal pt-1',
+              ' relative sm:absolute left-0 bottom-1 sm:-bottom-5 text-color-error text-xs leading-normal line-clamp-3 sm:line-clamp-1',
               (typeof inlineMessage === 'boolean' && inlineMessage) || state.inlineMessage
-                ? 'relative top-auto left-auto inline-block ml-2.5'
+                ? 'relative top-auto left-auto inline-block'
                 : '',
               state.formItemSize === 'small' ? 'pt-0.5' : '',
               state.formItemSize === 'mini' ? 'pt-px' : ''
@@ -160,10 +171,9 @@ export default defineComponent({
     error: String,
     for: String,
     inlineMessage: {
-      type: Boolean,
-      default: undefined
+      type: [String, Boolean],
+      default: ''
     },
-    messageType: String,
     label: String,
     labelWidth: String,
     manual: Boolean,

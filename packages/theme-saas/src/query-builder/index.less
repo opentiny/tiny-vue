@@ -3,8 +3,12 @@
 @query-builder-prefix-cls: ~'@{css-prefix}query-builder';
 
 .@{query-builder-prefix-cls} {
+  ::-webkit-scrollbar {
+    height: 8px;
+  }
+
   .queryBuilder {
-    overflow: hidden;
+    overflow: auto;
   }
 
   .ruleGroup {

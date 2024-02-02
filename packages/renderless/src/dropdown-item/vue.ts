@@ -60,6 +60,7 @@ export const api = [
 
 const initState = ({ reactive, computed, api, props, parent, dropdownMenuVm }) => {
   const state: IDropdownItemState = reactive({
+    checkedStatus: dropdownMenuVm?.checkedStatus,
     sort: props.modelValue,
     transition: true,
     getTitle: false,
@@ -73,9 +74,12 @@ const initState = ({ reactive, computed, api, props, parent, dropdownMenuVm }) =
     itemStyle: computed(() => api.getItemStyle()),
     activeColor: computed(() => parent.activeColor),
     closeOnClickOverlay: computed(() => parent.closeOnClickOverlay),
+    dropdownMenuVm,
+    currentIndex: props.currentIndex,
     textField: dropdownMenuVm?.textField || props.textField,
     popperClass: dropdownMenuVm?.popperClass || '',
-    getIcon: computed(() => api.computedGetIcon())
+    getIcon: computed(() => api.computedGetIcon()),
+    children: []
   })
 
   return state
@@ -100,7 +104,7 @@ const initApi = ({ api, state, emit, props, parent, dispatch, vm, constants, des
     getItemStyle: getItemStyle({ parent, state }),
     bindScroll: bindScroll({ api, parent }),
     confirm: confirm({ emit, props, state }),
-    handleClick: handleClick({ props, dispatch, vm, emit }),
+    handleClick: handleClick({ state, props, dispatch, vm, emit }),
     computedGetIcon: computedGetIcon({ constants, designConfig }),
     getTip: getTip({ props, vm })
   })
@@ -108,22 +112,31 @@ const initApi = ({ api, state, emit, props, parent, dispatch, vm, constants, des
 
 export const renderless = (
   props: IDropdownItemProps,
-  { computed, reactive, watch, inject }: ISharedRenderlessParamHooks,
-  { parent, emit, vm, dispatch, mode, constants, designConfig }: IDropdownItemRenderlessParamUtils
+  { computed, onMounted, reactive, watch, inject }: ISharedRenderlessParamHooks,
+  { parent, emit, vm, dispatch, constants, designConfig }: IDropdownItemRenderlessParamUtils
 ): IDropdownItemApi => {
   const api = {} as IDropdownItemApi
-  const dropdownMenuVm = inject('dropdownMenuVm') as IDropdownMenuVm
-
-  if (mode === 'mobile' && dropdownMenuVm) {
-    dropdownMenuVm.state.children = [...dropdownMenuVm.state.children, vm]
-  }
-  parent = parent.$parent
-
+  const dropdownMenuVm = inject('dropdownMenuVm', null) as IDropdownMenuVm
   const state: IDropdownItemState = initState({ reactive, computed, api, props, parent, dropdownMenuVm })
 
   initApi({ api, state, emit, props, parent, dispatch, vm, constants, designConfig })
 
   watch(() => state.showPopup, api.bindScroll)
+
+  onMounted(() => {
+    const realParent = parent.$parent.$parent || {}
+    if (realParent.state && realParent.state.children) {
+      realParent.state.children.push(vm)
+    } else {
+      if (dropdownMenuVm) {
+        dropdownMenuVm.state.children = [...dropdownMenuVm.state.children, vm]
+      }
+    }
+
+    if (props.disabled) {
+      state.checkedStatus = false
+    }
+  })
 
   return api
 }

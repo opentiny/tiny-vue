@@ -10,12 +10,14 @@
  *
  */
 import Picker from '@opentiny/vue-picker'
+import '@opentiny/vue-theme/time-picker/index.less'
 import { extend } from '@opentiny/vue-renderless/common/object'
-import { $prefix } from '@opentiny/vue-common'
+import { $prefix, $props } from '@opentiny/vue-common'
 import { version } from './package.json'
 
 const TimePicker = extend(true, { props: { componentName: { type: String, default: 'TimePicker' } } }, Picker, {
   props: {
+    ...$props,
     type: {
       type: String,
       default: 'time'

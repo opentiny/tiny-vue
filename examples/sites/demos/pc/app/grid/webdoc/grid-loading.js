@@ -23,5 +23,5 @@ export default {
       'codeFiles': ['loading/grid-loading-tip.vue']
     }
   ],
-  apis: [{ 'name': 'grid-loading', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-loading', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

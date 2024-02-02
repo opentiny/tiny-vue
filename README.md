@@ -147,6 +147,20 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/AcWrong02"><img src="https://avatars.githubusercontent.com/u/147061401?v=4?s=100" width="100px;" alt="AcWrong02"/><br /><sub><b>AcWrong02</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/issues?q=author%3AAcWrong02" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/betavs"><img src="https://avatars.githubusercontent.com/u/34408516?v=4?s=100" width="100px;" alt="betavs"/><br /><sub><b>betavs</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=betavs" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/fanbingbing16"><img src="https://avatars.githubusercontent.com/u/84823288?v=4?s=100" width="100px;" alt="fanbingbing16"/><br /><sub><b>fanbingbing16</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=fanbingbing16" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/dyh333"><img src="https://avatars.githubusercontent.com/u/1221313?v=4?s=100" width="100px;" alt="dyh333"/><br /><sub><b>dyh333</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=dyh333" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/betterdancing"><img src="https://avatars.githubusercontent.com/u/25901461?v=4?s=100" width="100px;" alt="betterdancing"/><br /><sub><b>betterdancing</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=betterdancing" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/David-TechNomad"><img src="https://avatars.githubusercontent.com/u/23149356?v=4?s=100" width="100px;" alt="David"/><br /><sub><b>David</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=David-TechNomad" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/falcon-jin"><img src="https://avatars.githubusercontent.com/u/48880836?v=4?s=100" width="100px;" alt="falcon-jin"/><br /><sub><b>falcon-jin</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=falcon-jin" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/wuyiping0628"><img src="https://avatars.githubusercontent.com/u/42107997?v=4?s=100" width="100px;" alt="wuyiping0628"/><br /><sub><b>wuyiping0628</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=wuyiping0628" title="Tests">⚠️</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/James-9696"><img src="https://avatars.githubusercontent.com/u/72028410?v=4?s=100" width="100px;" alt="James"/><br /><sub><b>James</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=James-9696" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://gitee.com/ichynul"><img src="https://avatars.githubusercontent.com/u/10061650?v=4?s=100" width="100px;" alt="ichynul"/><br /><sub><b>ichynul</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ichynul" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Davont"><img src="https://avatars.githubusercontent.com/u/28757633?v=4?s=100" width="100px;" alt="Davont"/><br /><sub><b>Davont</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Davont" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/wNing50"><img src="https://avatars.githubusercontent.com/u/38874640?v=4?s=100" width="100px;" alt="Nick Wu"/><br /><sub><b>Nick Wu</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=wNing50" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Floyd-bit"><img src="https://avatars.githubusercontent.com/u/59243597?v=4?s=100" width="100px;" alt="Floyd"/><br /><sub><b>Floyd</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Floyd-bit" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Jevin0"><img src="https://avatars.githubusercontent.com/u/69580637?v=4?s=100" width="100px;" alt="Jevin"/><br /><sub><b>Jevin</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Jevin0" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
@@ -155,6 +169,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## ❤️ Credits
+
+Thanks to:
+
+- The [element](https://github.com/ElemeFE/element) project which is an old component library based on Vue.js. TinyVue draws on Element at the beginning of its design, and is compatible with Element's component API.
+- The [floating-ui](https://github.com/floating-ui/floating-ui) project which is a small library that helps you create "floating" elements such as tooltips, popovers, dropdowns, and more. Many components of TinyVue are based on the capabilities provided by Floating UI.
+- The [vxe-table](https://github.com/x-extends/vxe-table) project which is a Vue-based table component, supports rich features, TinyVue's Grid component is based on vxe-table.
+- The [sortablejs](https://github.com/SortableJS/Sortable) project which is a powerful drag-and-drop library. The drag-and-drop sorting function of TinyVue's Grid / Transfer / Tabs and other components is based on Sortable.
+- [@adamwathan](https://github.com/adamwathan)'s article [Renderless Components in Vue.js](https://adamwathan.me/renderless-components-in-vuejs/), which inspired TinyVue's renderless component design architecture and ultimately enabled cross-end and cross-framework capabilities in the TinyVue project.
 
 ## License
 

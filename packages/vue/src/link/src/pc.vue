@@ -16,9 +16,10 @@
       'tiny-link--additional',
       type ? `tiny-link--${type}` : '',
       state.disabled && 'is-disabled',
-      underline && !state.disabled && 'is-underline'
+      underline && !state.disabled && 'is-underline',
+      size === 'medium' ? `tiny-link--${size}` : 'tiny-link--base'
     ]"
-    :href="state.disabled ? null : href"
+    :href="state.disabled ? null : state.href"
     v-bind="a($attrs, ['^on[A-Z]'])"
     @click="handleClick"
   >
@@ -26,10 +27,14 @@
       :is="icon"
       v-if="icon"
       class="tiny-svg-size tiny-link-svg"
-      :class="{ 'tiny-link-svg-only': !slots.default }"
+      :class="{ 'tiny-link-svg-only': !(slots.default || value) }"
     />
 
-    <span v-if="slots.default" class="tiny-link__inner">
+    <span v-if="value" class="tiny-link__inner">
+      {{ value }}
+    </span>
+
+    <span v-else-if="slots.default" class="tiny-link__inner">
       <slot></slot>
     </span>
 
@@ -40,12 +45,13 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/link/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import type { ILinkApi } from '@opentiny/vue-renderless/types/link.type'
 
 export default defineComponent({
-  props: [...props, 'disabled', 'href', 'icon', 'type', 'underline'],
+  props: [...props, 'disabled', 'href', 'icon', 'type', 'underline', 'value', 'size'],
   emits: ['click'],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ILinkApi
   }
 })
 </script>

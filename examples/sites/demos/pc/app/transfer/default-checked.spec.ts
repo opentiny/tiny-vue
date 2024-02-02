@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('判断面板是否有默认勾选项', async ({ page }) => {
+test('测试面板的默认勾选项', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('transfer#default-checked')
 

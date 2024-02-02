@@ -55,7 +55,7 @@
                         <th width="15%">{{ i18nByKey('name') }}</th>
                         <th width="85%">{{ i18nByKey('desc') }}</th>
                       </tr>
-                      <tr v-else-if="key.includes('events')">
+                      <tr v-else-if="key.includes('events') || key.includes('methods')">
                         <th width="15%">{{ i18nByKey('name') }}</th>
                         <th width="20%">{{ i18nByKey('propType') }}</th>
                         <th width="65%">{{ i18nByKey('desc') }}</th>
@@ -90,7 +90,7 @@
                           ></a>
                           <span v-else v-html="row.type"></span>
                         </td>
-                        <td v-if="!key.includes('slots') && !key.includes('events')">
+                        <td v-if="!key.includes('slots') && !key.includes('events') && !key.includes('methods')">
                           <span
                             v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"
                           ></span>
@@ -270,7 +270,8 @@ export default defineComponent({
       // 将请求合并起来，这样页面更新一次，页面刷新的时机就固定了
       const promiseArr = [
         fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.${lang}.md`),
-        fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`)
+        fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`),
+        fetchDemosFile(`@demos/apis/${getWebdocPath(state.cmpId)}.js`)
       ]
       if (faqMdConfig[state.cmpId]) {
         promiseArr.push(
@@ -278,7 +279,7 @@ export default defineComponent({
         )
       }
 
-      Promise.all(promiseArr).then(([mdData, jsData, faqData]) => {
+      Promise.all(promiseArr).then(([mdData, jsData, apiData, faqData]) => {
         // 1、加载顶部md
         state.cmpTopMd = marked(mdData)
 
@@ -295,6 +296,27 @@ export default defineComponent({
           demos: $clone(json.demos || []), // 克隆一下,避免保存上次的isOpen
           column: json.column || '1' // columns可能为空
         }
+
+        if (apiData) {
+          // eslint-disable-next-line no-eval
+          const apiJson = eval('(' + apiData.slice(15) + ')')
+          // pc、mobile、mobile-first三种模式
+          const demoMode = templateModeState.isSaas ? templateModeState.mode : import.meta.env.VITE_APP_MODE
+          const demoKey = demoMode === 'mobile-first' ? 'mfDemo' : `${demoMode}Demo`
+          state.currJson.apis = apiJson.apis.map((item) => {
+            Object.keys(item).forEach((key) => {
+              const apiItem = item[key]
+              if (Array.isArray(apiItem)) {
+                item[key] = apiItem
+                  .filter((i) => !i.mode || i.mode.includes(demoMode))
+                  .map((filterItem) => ({ ...filterItem, demoId: filterItem[demoKey] }))
+              }
+            })
+            return item
+          })
+          state.currJson.types = apiJson.types
+        }
+
         if (state.cmpId?.startsWith('grid-')) {
           fetchDemosFile(`${staticDemoPath}/grid/webdoc/grid.js`).then((data) => {
             // eslint-disable-next-line no-eval

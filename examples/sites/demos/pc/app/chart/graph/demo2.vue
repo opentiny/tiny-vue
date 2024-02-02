@@ -2,7 +2,7 @@
   <tiny-graph :extend="extend" height="600px"></tiny-graph>
 </template>
 
-<script lang="jsx">
+<script>
 import { ChartGraph } from '@opentiny/vue'
 
 let axisData = ['周一', '周二', '周三', '很长很长的周四', '周五', '周六', '周日']
@@ -31,6 +31,9 @@ let option = {
   yAxis: {
     type: 'value'
   },
+  grid: {
+    right: 20
+  },
   series: [
     {
       type: 'graph',
@@ -39,18 +42,14 @@ let option = {
       coordinateSystem: 'cartesian2d',
       symbolSize: 40,
       label: {
-        normal: {
-          show: true
-        }
+        show: true
       },
       edgeSymbol: ['circle', 'arrow'],
       edgeSymbolSize: [4, 10],
       data,
       links,
       lineStyle: {
-        normal: {
-          color: '#2f4554'
-        }
+        color: '#2f4554'
       }
     }
   ]

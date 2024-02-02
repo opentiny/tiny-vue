@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { FileUpload as TinyFileUpload, Button as TinyButton, Modal } from '@opentiny/vue'
 
@@ -16,7 +16,7 @@ const action = ref('http://localhost:3000/api/upload')
 const uploadRef = ref()
 
 function cancelUpload() {
-  Modal.message('手动取消上传')
+  Modal.message({ message: '手动取消上传', status: 'info' })
   uploadRef.value.abort()
 }
 </script>

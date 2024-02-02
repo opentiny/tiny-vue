@@ -7,7 +7,7 @@ test('关闭按钮', async ({ page }) => {
   const demo = page.locator('#custom-close')
   const customAlert = demo.locator('.tiny-alert').first()
   const defaultClose = customAlert.locator('.tiny-alert__close')
-  const customClose = customAlert.locator('.icon')
+  const customClose = customAlert.locator('.is-custom .tiny-svg')
   const switchBtn = demo.locator('.tiny-switch')
 
   // 自定义关闭图标

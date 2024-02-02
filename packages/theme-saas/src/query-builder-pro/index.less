@@ -1,0 +1,241 @@
+@import '../custom.less';
+
+@query-builder-prefix-cls: ~'@{css-prefix}query-builder-pro';
+
+.@{query-builder-prefix-cls} {
+  ::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .ruleGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-color: #8081a2;
+    border-style: solid;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    background: rgba(0, 75, 183, 0.2);
+
+    .ruleGroup-body {
+      & > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      & > div:empty {
+        display: none;
+      }
+    }
+
+    .ruleGroup-header > div,
+    .rule > div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+  
+    .rule .rule-value:has(.rule-value-list-item) {
+      display: flex;
+      gap: 0.5rem;
+      align-items: baseline;
+    }
+  }
+
+
+  [data-inlinecombinators='disabled'] .dndOver.rule,
+  [data-inlinecombinators='disabled'] .dndOver.ruleGroup-header {
+    border-bottom-width: 2px;
+    border-bottom-style: dashed;
+    border-bottom-color: rebeccapurple;
+    padding-bottom: 0.5rem;
+  }
+
+  [data-inlinecombinators='disabled'] .dndOver.rule.dndCopy,
+  [data-inlinecombinators='disabled'] .dndOver.ruleGroup-header.dndCopy {
+    border-bottom-color: #669933;
+  }
+
+  [data-inlinecombinators='enabled'] .dndOver.rule:last-child,
+  [data-inlinecombinators='enabled'] .dndOver.ruleGroup-header,
+  [data-inlinecombinators='enabled'] .dndOver.rule + .betweenRules,
+  [data-inlinecombinators='enabled'] .dndOver.betweenRules {
+    border-bottom-width: 2px;
+    border-bottom-style: dashed;
+    border-bottom-color: rebeccapurple;
+    padding-bottom: 0.5rem;
+  }
+
+  [data-inlinecombinators='enabled'] .dndOver.rule:last-child.dndCopy,
+  [data-inlinecombinators='enabled'] .dndOver.ruleGroup-header.dndCopy,
+  [data-inlinecombinators='enabled'] .dndOver.rule + .betweenRules.dndCopy,
+  [data-inlinecombinators='enabled'] .dndOver.betweenRules.dndCopy {
+    border-bottom-color: #669933;
+  }
+
+  .ruleGroup .dndDragging,
+  .rule .dndDragging {
+    opacity: 0.5;
+  }
+
+  .ruleGroup .queryBuilder-dragHandle,
+  .rule .queryBuilder-dragHandle {
+    cursor: move;
+    user-select: none;
+  }
+
+  [data-dnd='disabled'] .queryBuilder-dragHandle {
+    display: none;
+  }
+
+  .queryBuilder-branches {
+    .ruleGroup-body {
+      margin-left: calc(2 * 0.5rem);
+    }
+  
+    .rule,
+    .ruleGroup .ruleGroup {
+      position: relative;
+    }
+  
+    .rule::before,
+    .rule::after,
+    .ruleGroup .ruleGroup::before,
+    .ruleGroup .ruleGroup::after {
+      content: '';
+      width: 0.5rem;
+      left: calc(-0.5rem - 1px);
+      border-color: #8081a2;
+      border-style: solid;
+      border-radius: 0;
+      position: absolute;
+    }
+  
+    .rule::before,
+    .ruleGroup .ruleGroup::before {
+      top: -0.5rem;
+      height: calc(50% + 0.5rem);
+      border-width: 0 0 1px 1px;
+    }
+  
+    .rule::after,
+    .ruleGroup .ruleGroup::after {
+      top: 50%;
+      height: 50%;
+      border-width: 0 0 0 1px;
+    }
+  
+    [data-draggable='true']:last-child > .rule:last-child::before,
+    [data-draggable='true']:last-child > .ruleGroup:last-child::before {
+      border-bottom-left-radius: 0.25rem;
+    }
+  
+    [data-draggable='true']:last-child > .rule:last-child::after,
+    [data-draggable='true']:last-child > .ruleGroup:last-child::after {
+      display: none;
+    }
+  
+    .ruleGroup .ruleGroup::before,
+    .ruleGroup .ruleGroup::after {
+      left: calc(calc(-0.5rem - 1px) - 1px);
+    }
+  
+    .ruleGroup .ruleGroup::before {
+      top: calc(-0.5rem - 1px);
+      height: calc(50% + 0.5rem + 1px);
+    }
+  
+    .ruleGroup .ruleGroup::after {
+      height: calc(50% + 1px);
+    }
+  
+    .betweenRules {
+      position: relative;
+    }
+  
+    .betweenRules::before {
+      content: '';
+      width: 0.5rem;
+      left: calc(-0.5rem - 1px);
+      border-color: #8081a2;
+      border-style: solid;
+      border-radius: 0;
+      position: absolute;
+      top: -0.5rem;
+      height: calc(100% + 0.5rem);
+      border-width: 0 0 0 1px;
+    }
+  }
+  
+
+  .queryBuilder .ruleGroup.queryBuilder-invalid {
+    background-color: #66339966;
+  }
+
+  .queryBuilder .ruleGroup.queryBuilder-invalid .ruleGroup-addRule {
+    font-weight: bold !important;
+  }
+
+  .queryBuilder .ruleGroup.queryBuilder-invalid > .ruleGroup-header::after {
+    content: 'Empty groups are considered invalid. Avoid them by using addRuleToNewGroups.';
+    color: white;
+  }
+
+  .queryBuilder .rule.queryBuilder-invalid .rule-value {
+    background-color: #66339966;
+  }
+
+  /* --------------- 0811 new --------------------- */
+  .ruleGroup-combinators {
+    width: 100px;
+    max-width: 100%;
+  }
+  .rule-fields {
+    max-width: 100%;
+    width: 270px;
+  }
+  .rule-operators {
+    width: 100px;
+    max-width: 100%;
+  }
+
+  .queryBuilder-branches .ruleGroup-header .ruleGroup-body {
+    margin-left: 5px;
+  }
+
+  .rule-value {
+    width: 270px;
+    max-width: 100%;
+  }
+
+  .rule-valueSource {
+    width: 100px;
+    max-width: 100%;
+  }
+
+  .ruleGroup-lock,
+  .rule-cloneRule,
+  .rule-remove,
+  .rule-lock,
+  .ruleGroup-cloneGroup,
+  .ruleGroup-lock,
+  .ruleGroup-remove,
+  .ruleGroup-addRule,
+  .ruleGroup-addGroup {
+    padding: 0;
+    margin: 0;
+    min-width: 20px;
+  }
+
+  .queryBuilder-control-box {
+    display: inline-flex;
+    gap: 0.5rem;
+  }
+
+  .queryBuilder-value-editor {
+    max-width: 100%;
+  }
+}

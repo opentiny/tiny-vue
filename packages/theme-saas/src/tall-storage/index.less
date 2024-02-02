@@ -23,10 +23,12 @@
       @apply list-none;
 
       .@{storage-item-prefix-cls} {
-        height: 30px;
-        line-height: 30px;
+        @apply h-7;
+        @apply leading-7;
         @apply py-0 px-2;
         @apply whitespace-nowrap;
+        @apply overflow-hidden;
+        @apply text-ellipsis;
 
         &:hover,
         &.item-hover {

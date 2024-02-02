@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import DatePanel from './src/pc.vue'
+import DatePanel from './src/index'
 import '@opentiny/vue-theme/date-panel/index.less'
 import { version } from './package.json'
 

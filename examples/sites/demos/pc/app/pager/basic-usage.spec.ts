@@ -1,4 +1,4 @@
-import { test, expect, Locator } from '@playwright/test'
+import { test, expect } from '@playwright/test'
 
 test('测试分页基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())

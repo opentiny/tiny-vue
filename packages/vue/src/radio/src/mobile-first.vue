@@ -127,6 +127,7 @@ import { renderless, api } from '@opentiny/vue-renderless/radio/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconRadio, iconRadioselected, iconMobileRadio, iconMobileRadioSelected } from '@opentiny/vue-icon'
 import { classes } from './token'
+import type { IRadioApi } from '@opentiny/vue-renderless/types/radio.type'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
@@ -150,8 +151,8 @@ export default defineComponent({
     IconMobileRadio: iconMobileRadio(),
     IconMobileRadioSelected: iconMobileRadioSelected()
   },
-  setup(props, context): any {
-    return setup({ props, context, renderless, api, classes })
+  setup(props, context) {
+    return setup({ props, context, renderless, api, classes }) as unknown as IRadioApi
   }
 })
 </script>

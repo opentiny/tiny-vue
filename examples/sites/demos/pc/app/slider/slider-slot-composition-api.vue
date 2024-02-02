@@ -1,5 +1,5 @@
 <template>
-  <tiny-slider v-model="value5" :show-input="true">
+  <tiny-slider v-model="value" :show-input="true">
     <template #default="slotScope">
       <b>{{ slotScope.slotScope }}%</b>
     </template>
@@ -10,5 +10,5 @@
 import { ref } from 'vue'
 import { Slider as TinySlider } from '@opentiny/vue'
 
-const value5 = ref(40)
+const value = ref(40)
 </script>

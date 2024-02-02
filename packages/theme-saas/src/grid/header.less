@@ -63,7 +63,7 @@
         @apply ml-5;
         & + .@{grid-prefix-cls}-edit-icon {
           @apply absolute;
-          @apply ~"-translate-y-2/4";
+          @apply ~'-translate-y-2/4';
         }
       }
     }
@@ -108,7 +108,7 @@
     @apply w-4;
     @apply h-9;
     @apply text-center;
-    @apply ~'z-[1]';
+    // 因为与AUI冻结实现方式不一样，此处不要同步  @apply ~'z-[1]'
     @apply select-none;
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
       @apply m-0;

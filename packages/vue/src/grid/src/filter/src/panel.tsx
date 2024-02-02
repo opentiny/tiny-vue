@@ -204,6 +204,7 @@ export default {
     const {
       filterStore,
       $grid,
+      $parent: $table,
       optimizeOpts,
       renderInput,
       renderEnumable,
@@ -238,7 +239,8 @@ export default {
           {
             'tiny-grid__animat': optimizeOpts.animat,
             [map.filterActive]: filterStore.visible,
-            'tiny-grid__filter-simple': layout.includes('simple')
+            'tiny-grid__filter-simple': layout.includes('simple'),
+            'filter-wrapper-saas': $table.isThemeSaas
           }
         ]}
         style={filterStore.style}>

@@ -24,14 +24,17 @@
       :data="data"
       :view-type="viewType"
       :filter-node-method="filterNodeMethod"
-      default-expand-all
       :show-auxi="showAuxi === 'show'"
+      default-expand-all
+      show-checkbox
+      node-key="id"
     >
       <!-- 屏蔽默认的后缀图标 -->
-      <template #suffix="{ node }"> <div></div> </template>
+      <template #suffix> <div></div> </template>
     </tiny-tree>
   </div>
 </template>
+
 <script setup lang="jsx">
 import { ref } from 'vue'
 import { Tree as TinyTree, RadioGroup as TinyRadioGroup, Radio as TinyRadio, Input as TinyInput } from '@opentiny/vue'
@@ -62,9 +65,10 @@ const data = ref([
 ])
 
 function inputChange() {
-  treeRef.value.filter(this.filterText)
+  treeRef.value.filter(filterText.value)
 }
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 function filterNodeMethod(text, data, node) {
   return data.label.includes(text)
 }

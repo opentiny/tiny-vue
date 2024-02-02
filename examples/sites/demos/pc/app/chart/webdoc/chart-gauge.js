@@ -32,11 +32,34 @@ export default {
       'codeFiles': ['gauge/demo4.vue']
     },
     {
+      'demoId': 'gauge-demo6',
+      'name': { 'zh-CN': '综合示例', 'en-US': 'Comprehensive example' },
+      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'codeFiles': ['gauge/demo6.vue']
+    },
+    {
       'demoId': 'gauge-demo5',
       'name': { 'zh-CN': '设置多表盘及修改样式', 'en-US': 'Set multiple watch faces and modify the style' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['gauge/demo5.vue']
     }
   ],
-  apis: [{ 'name': 'chart-gauge', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-gauge', 'type': 'component', 'props': [], 'events': [], 'slots': [] }],
+  types: [
+    {
+      name: 'IChartSettings',
+      type: 'interface',
+      code: `
+interface IChartSettings {
+  dataName: object // 表盘上显示的单位
+  dataType: object // 数据类型
+  digit: number // 设置数据类型为 percent 时保留的位数，默认为2
+  dimension: string // 维度，默认 columns[0]
+  labelMap: object // 设置指标的别名
+  metrics: string // 指标，默认 columns[1]
+  seriesMap: object // 附加到 series 中的设置
+}
+`
+    }
+  ]
 }

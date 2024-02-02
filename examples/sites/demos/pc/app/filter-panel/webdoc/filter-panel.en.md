@@ -1,7 +1,7 @@
 ---
-title: FilterPanel FilterPanel
+title: FilterPanel
 ---
 
-# FilterPanel FilterPanel
+# FilterPanel
 
-<div>FilterPanel Filterpanel.</div>
+<div>Used for filtering list data, icon card filtering, etc.</div>

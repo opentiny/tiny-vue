@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="time-select-demo-event">
     <tiny-time-select
       v-model="value1"
       @blur="bulr"
@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { TimeSelect, Modal } from '@opentiny/vue'
 
 export default {
@@ -26,8 +26,8 @@ export default {
     bulr() {
       Modal.message('blur事件')
     },
-    change() {
-      Modal.message('change事件')
+    change(value) {
+      Modal.message(value)
     },
     focus() {
       Modal.message('focus事件')
@@ -35,3 +35,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.time-select-demo-event {
+  width: 270px;
+}
+</style>

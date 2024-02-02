@@ -11,6 +11,7 @@
  -->
 <template>
   <span
+    v-if="!state.isDisplayOnly"
     :class="[state.wrapClasses, state.showText ? 'tiny-switch__text' : '']"
     :tabindex="tabindex"
     @click="toggle"
@@ -23,6 +24,10 @@
       </div>
     </span>
   </span>
+  <span v-else>
+    <slot v-if="state.currentValue === trueValue" name="open">{{ t('yes') }}</slot>
+    <slot v-if="state.currentValue === falseValue" name="close">{{ t('no') }}</slot></span
+  >
 </template>
 
 <script lang="ts">

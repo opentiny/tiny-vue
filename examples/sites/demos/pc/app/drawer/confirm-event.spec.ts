@@ -6,6 +6,6 @@ test('确认事件', async ({ page }) => {
 
   const message = page.locator('.tiny-modal.type__message').filter({ hasText: '确认事件' }).first()
   await page.getByRole('button', { name: '确认事件示例' }).click()
-  await page.getByRole('button', { name: '确认' }).nth(1).click()
+  await page.getByRole('button', { name: '确定' }).click()
   await expect(message).toBeVisible()
 })

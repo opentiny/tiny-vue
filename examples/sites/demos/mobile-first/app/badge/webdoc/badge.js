@@ -22,7 +22,8 @@ export default {
       },
       desc: {
         'zh-CN': '<p>`type` 设置显示主题，可选值：danger(默认)、primary、success、warning、info</p>',
-        'en-US': '<p>`type`Set the display theme. The options are danger (default), primary, success, warning, and info.</p>'
+        'en-US':
+          '<p>`type`Set the display theme. The options are danger (default), primary, success, warning, and info.</p>'
       },
       codeFiles: ['type.vue']
     },
@@ -34,7 +35,8 @@ export default {
       },
       desc: {
         'zh-CN': '<p>`show-left` 设置是否向左展示，仅对圆点生效</p>',
-        'en-US': '<p>`show-left` Sets whether to display the dots to the left. This parameter is valid only for dots.</p>'
+        'en-US':
+          '<p>`show-left` Sets whether to display the dots to the left. This parameter is valid only for dots.</p>'
       },
       codeFiles: ['type-left.vue']
     },
@@ -122,23 +124,5 @@ export default {
       },
       codeFiles: ['props-content.vue']
     }
-  ],
-  apis: [
-    {
-      'name': 'Badge',
-      'type': 'component',
-      'props': [
-        {
-          'name': 'show-Left',
-          'type': 'Boolean',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置是否向左展示，仅对圆点生效。',
-            'en-US': 'Indicates whether to display the dots to the left. This parameter is valid only for dots.'
-          },
-          'demoId': 'type-left'
-        },
-      ]
-    },
   ]
 }

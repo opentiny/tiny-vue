@@ -45,46 +45,25 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/date-table/vue'
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
-import { isDate } from '@opentiny/vue-renderless/common/deps/date-util'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  name: $prefix + 'DateTable',
   emits: ['changerange', 'pick'],
-  props: {
-    value: {},
-    defaultValue: {
-      validator(value) {
-        return value === null || isDate(value) || (Array.isArray(value) && value.every(isDate))
-      }
-    },
-    firstDayOfWeek: {
-      default: 7,
-      type: Number,
-      validator: (value: number) => value >= 1 && value <= 7
-    },
-    date: {},
-    selectionMode: {
-      default: 'day'
-    },
-    disabledDate: {},
-    cellClassName: {},
-    maxDate: {},
-    minDate: {},
-    showWeekNumber: {
-      type: Boolean,
-      default: false
-    },
-    rangeState: {
-      default() {
-        return {
-          endDate: null,
-          selecting: false
-        }
-      }
-    },
-    formatWeeks: Function
-  },
+  props: [
+    ...props,
+    'cellClassName',
+    'date',
+    'defaultValue',
+    'disabledDate',
+    'firstDayOfWeek',
+    'maxDate',
+    'minDate',
+    'rangeState',
+    'selectionMode',
+    'showWeekNumber',
+    'value',
+    'formatWeeks'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   }

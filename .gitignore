@@ -22,6 +22,7 @@ test-results
 /packages/react/pc.ts
 /packages/react/mobile.ts
 /packages/react/app.ts
+/packages/react/mobile-first.ts
 
 /examples/**/playwright-report
 /examples/**/test-results
@@ -60,3 +61,9 @@ packages/theme/src/theme/*-theme/component.js
 
 pnpm-lock.yaml
 gulp/bundle.json
+
+# 本地构建的saas相关资源文件
+examples/sites/public/tiny-vue*.js
+examples/sites/public/tiny-vue*.mjs
+examples/sites/public/tailwind.css
+examples/sites/public/index.css

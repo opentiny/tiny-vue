@@ -4,7 +4,7 @@ import { FunnelChart } from 'echarts/charts'
 import { CanvasRenderer } from 'echarts/renderers'
 import { funnel } from '@opentiny/vue-renderless/chart-funnel/index'
 import Core from '@opentiny/vue-chart-core'
-import { $prefix, defineComponent } from '@opentiny/vue-common'
+import { $props, $prefix, defineComponent } from '@opentiny/vue-common'
 
 echarts.use([ToolboxComponent, FunnelChart, CanvasRenderer])
 
@@ -15,6 +15,14 @@ export default defineComponent({
     data() {
       this.chartHandler = funnel
       return {}
+    },
+    props: {
+      ...$props,
+      ...Core.props,
+      colorMode: {
+        type: String,
+        default: 'blue'
+      }
     }
   }
 })

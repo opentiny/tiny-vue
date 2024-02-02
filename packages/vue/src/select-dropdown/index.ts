@@ -10,7 +10,6 @@
  *
  */
 import SelectDropdown from './src/index'
-import '@opentiny/vue-theme/select-dropdown/index.less'
 import { version } from './package.json'
 
 SelectDropdown.model = {

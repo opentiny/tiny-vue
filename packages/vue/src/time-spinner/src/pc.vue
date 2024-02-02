@@ -28,6 +28,7 @@
           @click="handleClick('hours', { value: hour, disabled })"
           v-for="{ disabled, hour } in state.hoursList"
           class="tiny-time-spinner__item"
+          data-tag="li"
           :key="hour"
           :class="{ active: hour === state.hours, disabled }"
         >
@@ -50,6 +51,7 @@
           v-for="{ disabled, minute } in state.minutesList"
           :key="minute"
           class="tiny-time-spinner__item"
+          data-tag="li"
           :class="{ active: minute === state.minutes, disabled: !disabled }"
         >
           <span>{{ ('0' + minute).slice(-2) }}</span>
@@ -72,6 +74,7 @@
           v-for="{ second } in state.secondsList"
           class="tiny-time-spinner__item"
           :class="{ active: second === state.seconds }"
+          data-tag="li"
           :key="second"
         >
           <span>{{ ('0' + second).slice(-2) }}</span>
@@ -90,6 +93,7 @@
         <ul class="tiny-time-spinner__list" ref="hours" :class="[state.animationName]">
           <li
             class="tiny-time-spinner__item"
+            data-tag="li"
             :class="{
               active: hour === state.hours,
               disabled:
@@ -115,6 +119,7 @@
         <ul class="tiny-time-spinner__list" ref="minutes" :class="[state.animationName + '-up']">
           <li
             class="tiny-time-spinner__item"
+            data-tag="li"
             :class="{ active: minute === state.minutes }"
             v-for="(minute, key) in state.arrowMinuteList"
             :key="key"
@@ -134,6 +139,7 @@
           <li
             v-for="(second, key) in state.arrowSecondList"
             class="tiny-time-spinner__item"
+            data-tag="li"
             :class="{ active: second === state.seconds }"
             :key="key"
           >
@@ -147,17 +153,12 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/time-spinner/vue'
-import { $prefix, setup, directive, defineComponent } from '@opentiny/vue-common'
+import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import Scrollbar from '@opentiny/vue-scrollbar'
 import bind from '@opentiny/vue-renderless/common/deps/repeat-click'
 import { iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 
-const $constants = {
-  ANIMATIONNAME: 'tiny-transition-timepicker'
-}
-
 export default defineComponent({
-  name: $prefix + 'TimeSpinner',
   emits: ['change', 'select-range'],
   components: {
     TinyScrollbar: Scrollbar,
@@ -167,41 +168,10 @@ export default defineComponent({
   directives: directive({
     repeatClick: { bind }
   }),
-  props: {
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    date: {},
-    defaultValue: {},
-    showSeconds: {
-      type: Boolean,
-      default: true
-    },
-    arrowControl: Boolean,
-    amPmMode: {
-      type: String,
-      default: '' // 'a': am/pm; 'A': AM/PM
-    },
-    step: {
-      type: Object,
-      default() {
-        return { hour: 1, minute: 1, second: 1 }
-      },
-      validator: ({ hour, minute, second }) => {
-        const validateArray = [
-          { value: hour, range: 24 },
-          { value: minute, range: 60 },
-          { value: second, range: 60 }
-        ]
-        return validateArray.every(({ value, range }) =>
-          value || value == 0 ? Math.floor(value) === value && value > 0 && value <= range : true
-        )
-      }
-    }
-  },
+  props: [...props, 'date', 'defaultValue', 'showSeconds', 'arrowControl', 'amPmMode', 'step'],
+
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

@@ -18,6 +18,7 @@
       :class="{
         'is-disabled': disabled,
         'tiny-dropdown-item--divided tiny-dropdown-menu__item--divided': divided,
+        'tiny-dropdown-item--check-status': state.checkedStatus && selected,
         'has-children': itemData.children && itemData.children.length
       }"
       ref="dropdownItem"
@@ -31,10 +32,10 @@
           v-if="itemData.children && itemData.children.length"
           class="tiny-dropdown-item__expand tiny-dropdown-menu__item-expand"
         >
-          <component :is="state.getIcon" />
+          <component :is="state.getIcon"></component>
         </span>
         <div class="tiny-dropdown-item__content tiny-dropdown-menu__item-content">
-          <component v-if="icon" :is="icon" class="tiny-svg-size" />
+          <component v-if="icon" :is="icon" class="tiny-svg-size"></component>
           <span class="tiny-dropdown-item__label">
             <slot :item-data="itemData">
               <span>{{ label }}</span>
@@ -79,24 +80,25 @@ import type { IDropdownItemApi } from '@opentiny/vue-renderless/types/dropdown-i
 export default defineComponent({
   name: $prefix + 'DropdownItem',
   componentName: $prefix + 'DropdownItem',
-  emits: ['item-click'],
+  emits: ['item-click', 'update:modelValue', 'change', 'closed', 'open', 'opened', 'close', 'confirm', 'reset'],
   props: [
     ...props,
     'disabled',
     'divided',
     'icon',
     'itemData',
+    'selected',
+    'currentIndex',
     'title',
     'titleClass',
     'options',
     'type',
     'label',
-    'appendToBody',
-    'textField',
-    'selected',
     'selectedField',
     'multiStage',
-    'currentIndex',
+    // tiny新增
+    'appendToBody',
+    'textField',
     'tip',
     'tipPosition'
   ],

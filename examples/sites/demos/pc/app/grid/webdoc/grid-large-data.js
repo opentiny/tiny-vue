@@ -15,11 +15,12 @@ export default {
             <li><code>scrollX</code>：横向 X 虚拟滚动配置（用于特殊场景手动调优）例如：{ gt: 100 }</li>
             <li><code>scrollY</code>：纵向 Y 虚拟滚动配置（用于特殊场景手动调优）例如：{ gt: 500 }</li>
           </ul>
-      </div>
-      <div class="tip custom-block">
-        <p class="custom-block-title">开启虚拟滚动注意事项</p>
-        <p>1、开启虚拟滚动的前提是需要保证每列的宽度一样，可以通过在 <code>&lt;tiny-grid&gt;</code> 标签上的 <code>column-width</code> 属性配置统一的宽度。\n2、开启虚拟滚动将会禁用列宽调整功能，因为列拖拽会改变列宽度，导致虚拟滚动渲染的列数计算有误从而引起表格样式错乱，所以禁止列拖拽。</p>\n
-      </div>`,
+        </div>
+        <div class="tip custom-block">
+          <p class="custom-block-title">开启虚拟滚动注意事项</p>
+          <p>1、开启虚拟滚动的前提是需要保证每列的宽度一样，可以通过在 <code>&lt;tiny-grid&gt;</code> 标签上的 <code>column-width</code> 属性配置统一的宽度。\n2、开启虚拟滚动将会禁用列宽调整功能，因为列拖拽会改变列宽度，导致虚拟滚动渲染的列数计算有误从而引起表格样式错乱，所以禁止列拖拽。</p>\n
+        </div>
+      `,
         'en-US': ''
       },
       'codeFiles': ['large-data/virtual-rolling.vue']
@@ -29,7 +30,8 @@ export default {
       'name': { 'zh-CN': '树表虚拟滚动', 'en-US': 'Virtual scrolling of the tree table' },
       'desc': {
         'zh-CN': `
-        <table class="table">
+        <p> <code>optimization</code> 虚拟滚动具体配置如下：</p>
+        <table class="api-table">
           <thead>
             <tr>
               <th>名称</th> 
@@ -116,5 +118,5 @@ export default {
       'codeFiles': ['large-data/scroll-to.vue']
     }
   ],
-  apis: [{ 'name': 'grid-large-data', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-large-data', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

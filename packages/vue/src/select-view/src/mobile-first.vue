@@ -100,7 +100,7 @@
             v-show="!state.search.filterOptions.length"
             class="flex-auto w-full flex justify-center items-center text-center py-2"
           >
-            <tiny-exception component-page type="nodata">
+            <tiny-exception component-page type="nodata" tiny_mode="mobile-first" tiny_mode_root>
               <template #content>{{ t('ui.select.noSearchData') }}</template>
             </tiny-exception>
           </div>
@@ -190,7 +190,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/select-view/vue'
 import { $prefix, setup, $props, defineComponent } from '@opentiny/vue-common'
-import { iconSearch, iconChevronLeft, iconChevronDown, iconChevronUp, iconOperationfaild } from '@opentiny/vue-icon'
+import { iconSearch, iconChevronLeft, iconChevronUp, iconOperationfaild } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
 import ActionSheet from '@opentiny/vue-action-sheet'
 import Exception from '@opentiny/vue-exception'
@@ -207,7 +207,6 @@ export default defineComponent({
     TinyButton: Button,
     TinyException: Exception,
     IconChevronUp: iconChevronUp(),
-    IconChevronDown: iconChevronDown(),
     IconSearch: iconSearch(),
     IconOperationfaild: iconOperationfaild(),
     IconChevronLeft: iconChevronLeft()

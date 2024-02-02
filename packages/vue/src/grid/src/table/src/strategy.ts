@@ -2,12 +2,14 @@ import { getRowkey } from '@opentiny/vue-renderless/grid/utils'
 
 const TEMPORARY_CHILDREN = '_$children_'
 const TEMPORARY_SHOW = '_$show_'
+const ROWKEY_MAP = new WeakMap()
+const TOTALROWS_MAP = new WeakMap()
+const CHART_MAP = new WeakMap()
 
 let rowUniqueId = 0
 
 const getRowUniqueId = () => `row_${++rowUniqueId}`
-
-const ROWKEY_MAP = new WeakMap()
+const isValidArray = (arr) => Array.isArray(arr) && arr.length
 
 const setTableRowKey = ($table) => {
   if (!ROWKEY_MAP.has($table)) {
@@ -25,37 +27,6 @@ const getTableRowKey = ($table) => {
   return ROWKEY_MAP.get($table)
 }
 
-const isParentExpand = (item, hasTreeExpand, parentRowMap) => {
-  const parentNode = parentRowMap.get(item)
-
-  if (!parentNode) {
-    return true
-  }
-
-  if (!hasTreeExpand(parentNode)) {
-    return false
-  }
-  return isParentExpand(parentNode, hasTreeExpand, parentRowMap)
-}
-
-const setTotalRows = (_vm) => {
-  const { afterFullData, scrollYLoad, treeConfig, treeExpandeds, hasTreeExpand, parentRowMap } = _vm
-  let totalRows = afterFullData.length
-
-  if (scrollYLoad && treeConfig) {
-    const { children } = treeConfig
-    // 如果展开节点的父节点或者祖宗节点只要有一个处于关闭状态，则需要过滤此项，否则在虚拟滚动情况下，渲染条数会计算错误
-    const newTreeExpandeds = treeExpandeds.filter((item) => isParentExpand(item, hasTreeExpand, parentRowMap))
-
-    Array.isArray(newTreeExpandeds) &&
-      newTreeExpandeds.forEach(
-        (expandRow) => Array.isArray(expandRow[children]) && (totalRows += expandRow[children].length)
-      )
-  }
-
-  TOTALROWS_MAP.set(_vm, totalRows)
-}
-
 const getTableCellKey = ({ $table, column, row }) => {
   if (!ROWKEY_MAP.has($table)) {
     setTableRowKey($table)
@@ -64,133 +35,90 @@ const getTableCellKey = ({ $table, column, row }) => {
   return `${row[ROWKEY_MAP.get($table)]}-${column.id}`
 }
 
-const TOTALROWS_MAP = new WeakMap()
-
 const setTreeScrollYCache = (_vm) => {
+  setCacheChartMap(_vm)
   setTotalRows(_vm)
 }
 
-const getChart = (_vm) => {
-  const { afterFullData, scrollYLoad, treeConfig, treeExpandeds, parentRowMap } = _vm
+const buildChart = (_vm) => {
+  const { afterFullData, scrollYLoad, treeConfig, treeExpandeds } = _vm
 
   if (!scrollYLoad || !treeConfig) return
 
-  const { children, temporaryChildren = TEMPORARY_CHILDREN, temporaryShow = TEMPORARY_SHOW } = treeConfig
-  const isValidArr = (arr) => Array.isArray(arr) && arr.length
-  const isExpand = (row) => ~treeExpandeds.indexOf(row)
   const chart = []
+  const stack = []
+  const isExpanded = (row) => ~treeExpandeds.indexOf(row)
+  const { children } = treeConfig
+  const iterate = (arr, chart) => isValidArray(arr) && arr.forEach((row) => traverse(row, chart))
+  const traverse = (row, chart) => {
+    chart.push([...stack, row])
 
-  const fnRow = (row, level) => {
-    const chartItem = Array.from({ length: level + 1 })
-
-    row[temporaryShow] = false
-    row[temporaryChildren] = []
-
-    chartItem.splice(level, 1, row)
-    chart.push(chartItem)
-
-    if (isExpand(row) && isValidArr(row[children])) {
-      row[children].forEach((child) => {
-        fnRow(child, level + 1)
-        // 为当前行和其父级行数据建立映射关系，树表支持拖拽后需要及时更新映射关系
-        parentRowMap.set(child, row)
-      })
+    if (isExpanded(row)) {
+      stack.push(row)
+      iterate(row[children], chart)
+      stack.pop()
     }
   }
 
-  if (isValidArr(afterFullData)) {
-    afterFullData.forEach((row) => fnRow(row, 0))
-  }
+  iterate(afterFullData, chart)
 
   return chart
 }
 
-const sliceTreeData = ({
-  afterFullData,
-  renderSize,
-  scrollYLoad,
-  startIndex,
-  treeConfig,
-  treeExpandeds,
-  parentRowMap
-}) => {
-  const { temporaryChildren = TEMPORARY_CHILDREN, temporaryShow = TEMPORARY_SHOW } = treeConfig
-  const chart = getChart({ afterFullData, scrollYLoad, treeConfig, treeExpandeds, parentRowMap })
-  const subChart = chart.slice(startIndex, startIndex + renderSize)
-  const subTree = []
-  const fnSubTree = (subChart, chart, startIndex, subTree) => {
-    subChart.forEach((chartItem, i) => {
-      let row = chartItem[chartItem.length - 1]
+const clearTreeShow = (_vm) => {
+  const { afterFullData, scrollYLoad, treeConfig, _subTree } = _vm
 
-      row[temporaryShow] = true
+  if (!scrollYLoad || !treeConfig) return
 
-      if (chartItem.length === 1) {
-        subTree.push(row)
-      } else {
-        let maxLen = chartItem.length
-        let parent
-        let j = startIndex + i - 1
-        let chartItemJ
-
-        const fnParent = () => {
-          for (; j >= 0; j--) {
-            chartItemJ = chart[j]
-
-            if (chartItemJ.length < maxLen) {
-              maxLen = chartItemJ.length
-              parent = chartItemJ[chartItemJ.length - 1]
-
-              if (parent[temporaryChildren]) {
-                !~parent[temporaryChildren].indexOf(row) && parent[temporaryChildren].push(row)
-              } else {
-                parent[temporaryChildren] = [row]
-              }
-
-              row = parent
-            }
-
-            if (chartItemJ.length === 1) {
-              return row
-            }
-          }
-        }
-
-        fnParent()
-
-        if (!~subTree.indexOf(parent)) {
-          subTree.push(parent)
-        }
-      }
-    })
+  const { children, temporaryChildren = TEMPORARY_CHILDREN, temporaryShow = TEMPORARY_SHOW } = treeConfig
+  const iterate = (arr) => isValidArray(arr) && arr.forEach((child) => traverse(child))
+  const traverse = (row) => {
+    row[temporaryShow] = false
+    row[temporaryChildren] = []
+    iterate(row[children])
   }
 
-  fnSubTree(subChart, chart, startIndex, subTree)
+  iterate(_subTree || afterFullData)
+}
 
+const sliceTreeData = (_vm) => {
+  clearTreeShow(_vm)
+
+  const chart = getCacheChartMap(_vm)
+  const { scrollYStore, treeConfig } = _vm
+  const { renderSize, startIndex } = scrollYStore
+  const subChart = chart.slice(startIndex, startIndex + renderSize)
+  const subTree = []
+  const { temporaryChildren = TEMPORARY_CHILDREN, temporaryShow = TEMPORARY_SHOW } = treeConfig
+  const pushIfNot = (arr, item) => !~arr.indexOf(item) && arr.push(item)
+
+  subChart.forEach((chartItem) => {
+    const lastIndex = chartItem.length - 1
+
+    for (let i = lastIndex; i > -1; i--) {
+      if (i === lastIndex) {
+        chartItem[i][temporaryShow] = true
+      } else {
+        pushIfNot(chartItem[i][temporaryChildren], chartItem[i + 1])
+      }
+    }
+
+    pushIfNot(subTree, chartItem[0])
+  })
+
+  // 优化清除，只清除被渲染的数据，而不是全量数据
+  _vm._subTree = subTree
   return subTree
 }
 
-const sliceFullData = ({
-  afterFullData,
-  renderSize,
-  scrollYLoad,
-  startIndex,
-  treeConfig,
-  treeExpandeds,
-  parentRowMap
-}) => {
+const sliceFullData = (_vm) => {
+  let { afterFullData, scrollYLoad, scrollYStore, treeConfig } = _vm
+  let { renderSize, startIndex } = scrollYStore
   let result
 
   if (scrollYLoad) {
     if (treeConfig) {
-      result = sliceTreeData({
-        afterFullData,
-        renderSize,
-        scrollYLoad,
-        startIndex,
-        treeConfig,
-        treeExpandeds,
-        parentRowMap
-      })
+      result = sliceTreeData(_vm)
     } else {
       result = afterFullData.slice(startIndex, startIndex + renderSize)
     }
@@ -199,6 +127,17 @@ const sliceFullData = ({
   }
 
   return result
+}
+
+const setTotalRows = (_vm) => {
+  const { afterFullData, scrollYLoad, treeConfig } = _vm
+  let totalRows = afterFullData.length
+
+  if (scrollYLoad && treeConfig) {
+    totalRows = getCacheChartMap(_vm).length
+  }
+
+  TOTALROWS_MAP.set(_vm, totalRows)
 }
 
 const getTotalRows = (_vm) => {
@@ -253,15 +192,18 @@ const sliceVisibleColumn = (args) => {
   let tableColumn2 = tableColumn
   let lastStartIndex2 = lastStartIndex
   let visibleColumnChanged2 = visibleColumnChanged
+  let sliced = false
 
   if (scrollXLoad && treeConfig) {
     if (visibleColumnChanged || !~lastStartIndex || lastStartIndex !== startIndex) {
       tableColumn2 = visibleColumn.slice(startIndex, startIndex + renderSize)
       lastStartIndex2 = startIndex
       visibleColumnChanged2 = false
+      sliced = true
     }
   } else {
     tableColumn2 = visibleColumn.slice(startIndex, startIndex + renderSize)
+    sliced = true
   }
 
   // x轴虚拟滚动时，需要一直保持冻结列显示
@@ -270,9 +212,12 @@ const sliceVisibleColumn = (args) => {
   return {
     tableColumn: tableColumn2,
     lastStartIndex: lastStartIndex2,
-    visibleColumnChanged: visibleColumnChanged2
+    visibleColumnChanged: visibleColumnChanged2,
+    sliced
   }
 }
+
+const removeSliceColumnTree = (_vm) => _vm._sliceColumnTree && (_vm._sliceColumnTree = null)
 
 const clearOnTableUnmount = ($table) => {
   if (ROWKEY_MAP.has($table)) {
@@ -282,7 +227,102 @@ const clearOnTableUnmount = ($table) => {
   if (TOTALROWS_MAP.has($table)) {
     TOTALROWS_MAP.delete($table)
   }
+
+  if (CHART_MAP.has($table)) {
+    CHART_MAP.delete($table)
+  }
+
+  removeSliceColumnTree($table)
 }
+
+const setCacheChartMap = (_vm) => CHART_MAP.set(_vm, buildChart(_vm))
+
+const getCacheChartMap = (_vm) => CHART_MAP.get(_vm)
+
+// 返回一个函数，用于多级表头场景对表头进行虚滚剪切
+const sliceColumnTree = (_vm) => {
+  const { collectColumn } = _vm
+  const columnChart = []
+  const stack = []
+  let maxLevel = 1
+
+  const buildColumnChart = (columns, columnChart, stack) => {
+    for (let i = 0; i < columns.length; i++) {
+      const column = columns[i]
+
+      setColumnLevel(column, stack)
+      column.rowSpan = 1
+      column.colSpan = 1
+
+      if (Array.isArray(column.children) && column.children.length) {
+        stack.push(column)
+        buildColumnChart(column.children, columnChart, stack)
+        stack.pop()
+      } else {
+        columnChart.push([...stack, column])
+      }
+    }
+  }
+
+  const setColumnLevel = (column, stack) => {
+    column.level = stack.length + 1
+
+    if (column.level > maxLevel) {
+      maxLevel = column.level
+    }
+  }
+
+  const setColumnRowSpan = (columnChart) => {
+    columnChart.forEach((cols) => {
+      const lastColumn = cols[cols.length - 1]
+      lastColumn.rowSpan = maxLevel - lastColumn.level + 1
+    })
+  }
+
+  const findChartItem = (lastColumn) => {
+    for (let i = 0; i < columnChart.length; i++) {
+      const chartItem = columnChart[i]
+
+      if (chartItem[chartItem.length - 1] === lastColumn) {
+        return chartItem
+      }
+    }
+  }
+
+  buildColumnChart(collectColumn, columnChart, stack)
+  setColumnRowSpan(columnChart)
+
+  return () => {
+    const { tableColumn } = _vm
+    const levelColumns = []
+    const subChart = []
+
+    tableColumn.forEach((column) => {
+      subChart.push(findChartItem(column))
+    })
+
+    subChart.forEach((chartItem) => {
+      chartItem.forEach((column) => {
+        const levelIndex = column.level - 1
+
+        if (!levelColumns[levelIndex]) levelColumns[levelIndex] = []
+
+        const levelArr = levelColumns[levelIndex]
+
+        if (levelArr[levelArr.length - 1] === column) {
+          column.colSpan += 1
+        } else {
+          levelArr.push(column)
+          column.colSpan = 1
+        }
+      })
+    })
+
+    return levelColumns
+  }
+}
+
+const setSliceColumnTree = (_vm) => _vm.isGroup && (_vm._sliceColumnTree = sliceColumnTree(_vm))
 
 export {
   clearOnTableUnmount,
@@ -295,5 +335,6 @@ export {
   setTreeScrollYCache,
   setTableRowKey,
   sliceFullData,
-  sliceVisibleColumn
+  sliceVisibleColumn,
+  setSliceColumnTree
 }

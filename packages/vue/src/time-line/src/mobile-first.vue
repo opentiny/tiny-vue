@@ -11,7 +11,7 @@
     >
       <ul class="inline-flex sm:items-start" data-tag="tiny-timeline-list">
         <slot v-if="subField" name="left" :slot-scope="node">
-          <li class="text-color-text-secondary text-left pr-0.5 inline-flex text-xs">
+          <li class="text-color-text-secondary text-left !mr-2 inline-flex text-xs">
             <div class="sm:inline-block hidden leading-5 w-32">
               <span>{{ getDate(node[timeField]).date }}</span>
               <span class="ml-1">{{ getDate(node[timeField]).time }}</span>
@@ -56,7 +56,7 @@
         <slot v-if="!subField" name="left" :slot-scope="node">
           <li
             data-tag="tiny-timeline-list-left"
-            class="sm:text-color-text-secondary text-color-text-placeholder text-left sm:pl-3 pl-2 inline-flex flex-col sm:flex-row"
+            class="sm:text-color-text-secondary text-color-text-placeholder text-left sm:pl-3 !pl-2 inline-flex flex-col sm:flex-row"
           >
             <span class="inline-block sm:text-xs text-sm sm:leading-5 leading-5.5"
               >{{ getDate(node[timeField]).date }} {{ getDate(node[timeField]).time }}</span
@@ -76,7 +76,7 @@
         <li
           :class="[
             'hidden sm:text-xs text-sm text-color-text-primary sm:inline-flex flex-col',
-            subField ? 'ml-4.5' : 'ml-3 '
+            subField ? '!ml-4.5' : '!ml-3 '
           ]"
         >
           <span
@@ -94,7 +94,7 @@
         </li>
         <li
           v-if="subField"
-          :class="['sm:hidden text-xs text-color-text-primary inline-flex flex-col', subField ? 'ml-4.5' : 'ml-3 ']"
+          :class="['sm:hidden text-xs text-color-text-primary inline-flex flex-col', subField ? '!ml-4.5' : '!ml-3 ']"
         >
           <span
             class="inline-block leading-5.5 sm:text-xs text-sm overflow-hidden text-ellipsis whitespace-nowrap max-w-[theme(spacing.56)]"

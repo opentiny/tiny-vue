@@ -40,20 +40,17 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/time-panel/vue'
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Scrollbar from '@opentiny/vue-scrollbar'
 
 export default defineComponent({
-  name: $prefix + 'TimePanel',
   emits: ['dodestroy', 'pick'],
   components: {
     TinyScrollbar: Scrollbar
   },
-  props: {
-    emitter: Object
-  },
+  props: [...props, 'emitter'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

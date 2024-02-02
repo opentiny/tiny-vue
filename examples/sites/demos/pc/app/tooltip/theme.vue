@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    Effects示例：
+    Effects 示例：
     <tiny-tooltip content="dark 提示文字" placement="top">
       <tiny-button>Dark</tiny-button>
     </tiny-tooltip>
@@ -9,7 +9,7 @@
     </tiny-tooltip>
   </div>
   <div class="box">
-    Types示例：
+    Types 示例：
     <tiny-tooltip type="normal" content="normal 提示文字" placement="top">
       <tiny-button>normal</tiny-button>
     </tiny-tooltip>

@@ -29,7 +29,7 @@ const initState = ({ reactive, computed, props, api, markRaw, select, parent }) 
     created: computed(() => props.created),
     index: -1,
     select: markRaw(select),
-    hover: false,
+    hover: computed(() => (!state.select.optimization && state.select.state.hoverIndex === state.index) || false),
     visible: true,
     hitState: false,
     groupDisabled: false,
@@ -37,18 +37,19 @@ const initState = ({ reactive, computed, props, api, markRaw, select, parent }) 
     isObject: computed(() => Object.prototype.toString.call(props.value).toLowerCase() === '[object object]'),
     currentLabel: computed(() => props.label || (state.isObject ? '' : props.value)),
     currentValue: computed(() => props.value || props.label || ''),
+    showTitle: false,
     itemSelected: computed(() => {
       if (!select.multiple) {
-        return api.isEqual(props.value, select.modelValue)
+        return api.isEqual(props.value, select.state.modelValue)
       } else {
-        return api.contains(select.modelValue, props.value)
+        return api.contains(select.state.modelValue, props.value)
       }
     }),
 
     limitReached: computed(() => {
       if (select.multiple) {
         const multipleLimit = select.state.multipleLimit
-        return !state.itemSelected && (select.modelValue || []).length >= multipleLimit && multipleLimit > 0
+        return !state.itemSelected && (select.state.modelValue || []).length >= multipleLimit && multipleLimit > 0
       } else {
         return false
       }
@@ -66,9 +67,9 @@ const initApi = ({ api, props, state, select, constants, vm }) => {
     isEqual: isEqual({ select, state }),
     contains: contains({ select, state }),
     hoverItem: hoverItem({ select, vm, props, state }),
-    queryChange: queryChange({ select, props, state }),
+    queryChange: queryChange({ props, state }),
     selectOptionClick: selectOptionClick({ constants, vm, props, state, select }),
-    handleGroupDisabled: handleGroupDisabled(state),
+    handleGroupDisabled: handleGroupDisabled({ state, vm }),
     initValue: initValue({ select, props, constants, vm })
   })
 }
@@ -100,6 +101,13 @@ const initWatch = ({ watch, props, state, select, constants }) => {
 
         select.state.selectEmitter.emit(constants.EVENT_NAME.setSelected)
       }
+    }
+  )
+
+  watch(
+    () => state.visible,
+    () => {
+      select.state.filteredOptionsCount += state.visible ? 1 : -1
     }
   )
 }
@@ -145,9 +153,10 @@ export const renderless = (
 
   select.state.options.push(markRaw(vm))
   select.state.cachedOptions.push(markRaw(vm))
+  state.index = select.state.optionsCount
   select.state.optionsCount++
   select.state.filteredOptionsCount++
-  vm.$on(constants.EVENT_NAME.handleGroupDisabled, api.handleGroupDisabled)
+  parent.$on(constants.EVENT_NAME.handleGroupDisabled, api.handleGroupDisabled)
 
   return api
 }

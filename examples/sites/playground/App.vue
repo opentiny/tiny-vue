@@ -17,19 +17,39 @@ import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
 
-const VERSION = 'tiny-vue-version-3.12'
+const VERSION = 'tiny-vue-version-3.13'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
 
-const versions = ['3.12', '3.11', '3.10', '3.9', '3.8']
-const latestVersion = localStorage.getItem(VERSION) || versions[0]
-const cdnHost = localStorage.getItem('setting-cdn')
-const getRuntime = (version) => `${cdnHost}/@opentiny/vue@${version}/runtime/`
-
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')
-const tinyTheme = tinyMode === 'saas' ? 'aurora' : searchObj.get('theme')
+const tinyTheme = searchObj.get('theme')
 const isMobileFirst = tinyMode === 'mobile-first'
+const isSaas = tinyTheme === 'saas'
+const isPreview = searchObj.get('openMode') === 'preview' // 是否多端弹窗预览
+
+const versions = ['3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
+const latestVersion = isPreview ? versions[0] : localStorage.getItem(VERSION) || versions[0]
+const cdnHost = localStorage.getItem('setting-cdn')
+const getRuntime = (version) => {
+  if (isSaas) {
+    return import.meta.env.VITE_APP_BUILD_BASE_URL
+  }
+  return `${cdnHost}/@opentiny/vue@${version}/runtime/`
+}
+
+const changeImportSuffix = (imports, verison) => {
+  const newImports = {}
+  Object.keys(imports).forEach((key) => {
+    const url = imports[key]
+    if (url.startsWith(getRuntime(verison))) {
+      newImports[key] = url.replace('.mjs', '.js')
+    } else {
+      newImports[key] = url
+    }
+  })
+  return newImports
+}
 
 const createImportMap = (version) => {
   const imports = {
@@ -38,16 +58,19 @@ const createImportMap = (version) => {
     '@opentiny/vue-locale': `${getRuntime(version)}tiny-vue-locale.mjs`,
     '@opentiny/vue-common': `${getRuntime(version)}tiny-vue-common.mjs`,
     '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme@${version}/`,
+    '@opentiny/vue-theme-mobile/': `${cdnHost}/@opentiny/vue-theme-mobile@${version}/`,
+    '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless@${version}/`,
     'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
   }
-  if (['aurora', 'smb'].includes(tinyTheme)) {
+  if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
     imports[`@opentiny/vue-design-${tinyTheme}`] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}@${version}/index.js`
   }
-  if (isMobileFirst) {
+  if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
+    imports[`@opentiny/vue-design-saas`] = `${getRuntime(version)}tiny-vue-design-saas.js`
   }
   return {
-    imports
+    imports: changeImportSuffix(imports, version)
   }
 }
 
@@ -55,7 +78,10 @@ const getTinyTheme = (version) => {
   if (isMobileFirst) {
     return `${getRuntime(version)}tailwind.css`
   }
-  let theme = tinyMode === 'saas' ? 'saas' : tinyTheme
+  if (isSaas) {
+    return `${getRuntime(version)}index.css`
+  }
+  let theme = tinyTheme
   if (!['smb', 'default', 'aurora', 'saas'].includes(theme)) {
     theme = 'default'
   }
@@ -72,6 +98,7 @@ const getTinyTheme = (version) => {
 const hash = location.hash.slice(1)
 const shareData = hash.split('|')
 
+// eslint-disable-next-line new-cap
 const store = new useStore({
   serializedState: shareData.length === 2 ? shareData[1] : '',
   showOutput: true,
@@ -86,8 +113,7 @@ const store = new useStore({
 // repl 属性
 const state = reactive({
   layout: localStorage.getItem(LAYOUT) || 'horizon',
-  // 默认为反转，所以需要判断是否为'false'后取反
-  layoutReverse: !(localStorage.getItem(LAYOUT_REVERSE) === 'false'),
+  layoutReverse: localStorage.getItem(LAYOUT_REVERSE) === 'true',
   layoutOptions: [
     { value: 'horizon', text: '水平' },
     { value: 'vertical', text: '垂直' }
@@ -111,8 +137,8 @@ function setTinyDesign() {
   if (isMobileFirst) {
     useCode += 'app.provide("TinyMode", "mobile-first");\n'
   }
-  // 目前只有aurora和smb有design包
-  if (['aurora', 'smb'].includes(tinyTheme)) {
+
+  if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
     importCode += `import designConfig from '@opentiny/vue-design-${tinyTheme}';
       import { design } from '@opentiny/vue-common';\n`
     useCode += 'app.provide(design.configKey, designConfig);\n'
@@ -153,6 +179,11 @@ function insertStyleDom(version) {
     link.href = getTinyTheme(version)
     iframeWin.addEventListener('DOMContentLoaded', () => {
       iframeWin.document.head.append(link)
+
+      // 增加mobile支持，增加mobile的样式表
+      const mobileLink = link.cloneNode(true)
+      mobileLink.href = `${cdnHost}/@opentiny/vue-theme-mobile@${version}/index.css`
+      iframeWin.document.head.append(mobileLink)
     })
   })
 }
@@ -170,6 +201,7 @@ function getDemoName(name, apiMode) {
   return name.replace(/\.vue$/, `${apiMode === 'Options' ? '' : '-composition-api'}.vue`)
 }
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const getDemoCode = async ({ cmpId, fileName, apiMode, mode }) => {
   const demoName = getDemoName(`${getWebdocPath(cmpId)}/${fileName}`, apiMode)
   const path = tinyMode === 'mobile-first' ? `@demos/mobile-first/app/${demoName}` : `${staticDemoPath}/${demoName}`
@@ -255,7 +287,7 @@ function share() {
       </span>
       <span class="ml20">
         OpenTiny Vue 版本:
-        <tiny-select v-model="state.selectVersion" @change="selectVersion" style="width: 150px">
+        <tiny-select v-model="state.selectVersion" @change="selectVersion" style="width: 150px" :disabled="isPreview">
           <tiny-option v-for="item in state.versions" :key="item.value" :label="item.value" :value="item.value">
           </tiny-option>
         </tiny-select>

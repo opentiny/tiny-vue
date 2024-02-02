@@ -7,22 +7,18 @@
         :placement="placement"
         trigger="manual"
         :width="width"
+        :title="title"
         :popper-class="m('tiny-popconfirm-popover', customClass)"
+        :reference="reference"
+        @show="handleEmit('show')"
+        @hide="handleEmit('hide')"
       >
         <div class="tiny-popconfirm-popover__container">
           <div class="tiny-popconfirm-popover__header">
             <component
               v-if="type"
               :is="state.getIcon"
-              :class="
-                m(
-                  'tiny-popconfirm-popover__icon',
-                  { 'fill-color-info-secondary': type === 'info' },
-                  { 'fill-color-error': type === 'error' },
-                  { 'fill-color-warning': type === 'warning' },
-                  { 'fill-color-success': type === 'success' }
-                )
-              "
+              :class="['tiny-popconfirm-popover__icon', type ? `tiny-popconfirm-popover--${type}` : '']"
             >
             </component>
             <div class="tiny-popconfirm-popover__title">
@@ -35,10 +31,10 @@
           <div class="tiny-popconfirm-popover__footer">
             <slot name="footer">
               <tiny-button v-if="cancelButton" class="tiny-popconfirm-popover__cancel-button" size="mini" @click="hide">
-                {{ t('ui.buttonMessage.cancel') }}
+                {{ t('ui.button.cancel') }}
               </tiny-button>
               <tiny-button class="tiny-popconfirm-popover__confirm-button" size="mini" type="primary" @click="confirm">
-                {{ t('ui.buttonMessage.confirm') }}
+                {{ t('ui.button.confirm') }}
               </tiny-button>
             </slot>
           </div>
@@ -96,7 +92,9 @@ export default defineComponent({
       type: [String, Number],
       default: '350'
     },
-    type: [String, Object]
+    type: [String, Object],
+    reference: {},
+    events: Object
   },
   emits: ['hide', 'show', 'confirm'],
   setup(props, context): any {

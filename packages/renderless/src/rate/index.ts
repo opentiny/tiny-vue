@@ -10,31 +10,32 @@
  *
  */
 
+import type { IRateProps, IRateRenderlessParams, IRateState } from 'types/rate.type'
 import { KEY_CODE } from '../common'
 
-export const computedActiveColor = (props) => (state) => {
+export const computedActiveColor = (props: IRateProps) => (state: IRateState) => {
   let result = ''
 
   if (state.currentValue <= props.lowThreshold) {
-    result = state.colorMap.lowColor
+    result = state.colorMap.lowColor as string
   } else if (state.currentValue >= props.highThreshold) {
-    result = state.colorMap.highColor
+    result = state.colorMap.highColor as string
   } else {
-    result = state.colorMap.mediumColor
+    result = state.colorMap.mediumColor as string
   }
 
   return result
 }
 
-export const computedActiveClass = (props) => (state) => {
+export const computedActiveClass = (props: IRateProps) => (state: IRateState) => {
   let result = ''
 
   if (state.currentValue <= props.lowThreshold) {
-    result = state.classMap.lowClass
+    result = state.classMap.lowClass as string
   } else if (state.currentValue >= props.highThreshold) {
-    result = state.classMap.highClass
+    result = state.classMap.highClass as string
   } else {
-    result = state.classMap.mediumClass
+    result = state.classMap.mediumClass as string
   }
 
   return result
@@ -189,7 +190,7 @@ export const getIconStyle =
     }
   }
 
-export const computedText = ({ props, state }) => {
+export const computedText = ({ props, state }: Pick<IRateRenderlessParams, 'props' | 'state'>) => {
   let result = ''
   let currentValue = 0
 
@@ -202,19 +203,19 @@ export const computedText = ({ props, state }) => {
   }
 
   if (props.showScore) {
-    result = props.scoreTemplate.replace(/\{\s*value\s*\}/, currentValue)
+    result = props.scoreTemplate.replace(/\{\s*value\s*\}/, String(currentValue))
     return result
   }
 
   if (props.showText && currentValue > 0) {
     currentValue = Math.ceil(currentValue) - 1
-    result = props.texts[currentValue]
+    result = props.texts[currentValue] as string
   }
 
   return result
 }
 
-export const computedDecimalStyle = ({ props, state }) => {
+export const computedDecimalStyle = ({ props, state }: Pick<IRateRenderlessParams, 'props' | 'state'>) => {
   let width = ''
   let clip = ''
   let clipPath = ''
@@ -241,13 +242,13 @@ export const computedDecimalStyle = ({ props, state }) => {
   }
 }
 
-export const computedClasses = ({ props, state }) => {
+export const computedClasses = ({ props, state }: Pick<IRateRenderlessParams, 'props' | 'state'>) => {
   let i = 0
-  let result = []
+  let result: string[] = []
   let threshold = state.currentValue
 
   if (props.radio) {
-    result = props.iconClasses
+    result = props.iconClasses as string[]
   } else {
     if (props.allowHalf && state.currentValue !== Math.floor(state.currentValue)) {
       threshold--
@@ -267,7 +268,7 @@ export const computedClasses = ({ props, state }) => {
   return result
 }
 
-export const computedClassMap = (props) => ({
+export const computedClassMap = (props: IRateProps) => ({
   lowClass: props.iconClasses[0],
   mediumClass: props.iconClasses[1],
   highClass: props.iconClasses[2],
@@ -275,7 +276,7 @@ export const computedClassMap = (props) => ({
   disabledVoidClass: props.disabledVoidIconClass
 })
 
-export const computedColorMap = (props) => ({
+export const computedColorMap = (props: IRateProps) => ({
   lowColor: props.colors[0],
   mediumColor: props.colors[1],
   highColor: props.colors[2],
@@ -283,5 +284,5 @@ export const computedColorMap = (props) => ({
   disabledVoidColor: props.disabledVoidColor
 })
 
-export const computedVoidClass = ({ props, state }) =>
+export const computedVoidClass = ({ props, state }: Pick<IRateRenderlessParams, 'props' | 'state'>) =>
   props.disabled ? state.classMap.disabledVoidClass : state.classMap.voidClass

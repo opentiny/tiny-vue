@@ -12,6 +12,7 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.sha }}
   cancel-in-progress: true
+
 jobs:
   dispatch-tests:
     name: Dispatch Tests

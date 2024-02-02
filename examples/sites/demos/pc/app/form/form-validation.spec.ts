@@ -44,7 +44,7 @@ test('测试表单输入变化和失焦是否出现校验', async ({ page }) => 
   await firstInput.click()
   await expect(page.getByRole('tooltip', { name: '不符合规则的日期格式' })).toBeVisible()
   await datePicker.click()
-  await page.locator('.tiny-date-picker .tiny-date-table__row').getByText('15').nth(1).click()
+  await page.locator('.tiny-date-picker .tiny-date-table__row').getByText('15').first().click()
   await expect(page.getByRole('tooltip', { name: '不符合规则的日期格式' })).not.toBeVisible()
 
   // url输入框

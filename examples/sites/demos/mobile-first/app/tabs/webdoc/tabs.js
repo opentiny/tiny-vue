@@ -216,15 +216,68 @@ export default {
     {
       demoId: 'tabs-separator',
       name: {
-        'zh-CN': '标签页嵌套2',
-        'en-US': 'events'
+        'zh-CN': '分隔符',
+        'en-US': 'Separator'
       },
       desc: {
         'zh-CN': '<p> 通过 <code>separator</code>属性设置分隔符</p>',
         'en-US': '<p>Set the separator using the <code>separator</code> attribute.</p>'
       },
       codeFiles: ['tabs-separator.vue']
+    },
+    {
+      demoId: 'optimized',
+      name: {
+        'zh-CN': '优化渲染',
+        'en-US': 'Optimize Rendering'
+      },
+      desc: {
+        'zh-CN':
+          '<p>多端标签默认开启优化渲染，只渲染当前标签的内容。可以通过设置 <code>optimized</code> 为 <code>false</code> 关闭优化渲染。默认值为 <code>true</code>。</p>',
+        'en-US':
+          '<p>By default, optimized rendering is enabled for multi-end tags. Only the content of the current tag is rendered. You can turn off optimized rendering by setting <code>optimized</code> to <code>false</code>. The default value is <code>true</code>.</p>'
+      },
+      codeFiles: ['optimized.vue']
+    },
+    {
+      demoId: 'optimized-lazy',
+      name: {
+        'zh-CN': '标签项延时加载',
+        'en-US': 'Delayed loading of label items'
+      },
+      desc: {
+        'zh-CN':
+          '<p>在关闭优化渲染时，可以设置标签项的 <code>lazy</code> 属性为 <code>true</code>，使标签项内容延时加载。默认值为 <code>false</code>。</p>',
+        'en-US':
+          '<p>When you disable optimized rendering, you can set the <code>lazy</code> attribute of a tag item to <code>true</code> to delay loading of the tag item content. The default value is <code>false</code>.</p>'
+      },
+      codeFiles: ['optimized-lazy.vue']
+    },
+    {
+      demoId: 'reactive',
+      name: {
+        'zh-CN': '标签项内容的响应性',
+        'en-US': 'Responsiveness of Tag Item Content'
+      },
+      desc: {
+        'zh-CN': '<p>标签项中状态改变时，标签项可以正常更新.</p>',
+        'en-US': '<p>When the status of a label item changes, the label item can be updated normally.</p>'
+      },
+      codeFiles: ['reactive.vue']
+    },
+    {
+      demoId: 'size',
+      name: {
+        'zh-CN': '尺寸',
+        'en-US': 'Size'
+      },
+      desc: {
+        'zh-CN':
+          '<p>可通过 <code>size</code> 设置 <code>tabs</code> 标签页尺寸，该属性可选值为 <code>large</code>。</p>',
+        'en-US':
+          '<p>You can use <code>size</code> to set the size of the <code>tabs</code> tab page. The value of this attribute can be <code>large</code>.</p>'
+      },
+      codeFiles: ['size.vue']
     }
-  ],
-  apis: []
+  ]
 }

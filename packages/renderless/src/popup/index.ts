@@ -86,12 +86,12 @@ export const close =
   }
 
 export const onTouchMove =
-  ({ refs, state }) =>
+  ({ vm, state }) =>
   (event) => {
     touchMove(event)
 
     const direction = state.deltaY > 0 ? '10' : '01'
-    const el = getScroller()(event.target, refs.$el)
+    const el = getScroller()(event.target, vm.$refs.$el)
     const { scrollHeight, offsetHeight, scrollTop } = el
     let status = '11'
 
@@ -123,9 +123,9 @@ export const renderOverlay =
   }
 
 export const updateZIndex =
-  ({ refs, state }) =>
+  ({ vm, state }) =>
   (value = 0) =>
-    (refs.popup.style.zIndex = ++state.context.zIndex + value)
+    (vm.$refs.popup.style.zIndex = ++state.context.zIndex + value)
 
 export const clickOverlay =
   ({ api, props, emit }) =>

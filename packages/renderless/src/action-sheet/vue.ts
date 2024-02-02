@@ -10,6 +10,13 @@
  *
  */
 
+import type {
+  IActionSheetApi,
+  IActionSheetState,
+  IActionSheetProps,
+  ISharedRenderlessParamHooks,
+  IActionSheetRenderlessParamUtils
+} from '@/types'
 import {
   setSheetStyle,
   initScrollMenu,
@@ -20,7 +27,8 @@ import {
   selectOption,
   confirm,
   actionSelectOption,
-  hide
+  hide,
+  handleClose
 } from './index'
 
 export const api = [
@@ -37,28 +45,33 @@ export const api = [
   'hide'
 ]
 
-export const renderless = (props, { reactive, watch }, { emit, nextTick, refs, vm }, { BScroll }) => {
-  const api = {}
-  const state = reactive({
+export const renderless = (
+  props: IActionSheetProps,
+  { reactive, watch }: ISharedRenderlessParamHooks,
+  { emit, nextTick, refs, vm }: IActionSheetRenderlessParamUtils,
+  { BScroll }
+): IActionSheetApi => {
+  const state = reactive<IActionSheetState>({
     toggle: false,
-    active: null,
     sheetMaskStyle: {},
     sheetContentStyle: {},
     scroll: null
   })
 
+  const api: IActionSheetApi = {} as IActionSheetApi
   Object.assign(api, {
     state,
     setSheetStyle: setSheetStyle({ state, props }),
     initScrollMenu: initScrollMenu({ state, nextTick, refs, BScroll }),
     visibleHandle: visibleHandle({ emit, state }),
-    watchVisible: watchVisible({ emit, props, state }),
+    watchVisible: watchVisible({ emit, state }),
     menuHandle: menuHandle({ state, emit }),
-    confirm: confirm({ state, emit }),
+    confirm: confirm({ state, api }),
     selectOption: selectOption({ emit, props }),
     actionSelectOption: actionSelectOption({ emit }),
-    close: close({ emit, vm }),
-    hide: hide(emit)
+    hide: hide({ api }),
+    close: close({ api }),
+    handleClose: handleClose({ vm, emit, props })
   })
 
   watch(

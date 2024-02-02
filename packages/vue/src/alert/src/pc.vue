@@ -13,7 +13,7 @@
   <transition name="tiny-transition-alert-fade">
     <div
       v-if="state.show"
-      :class="m('tiny-alert', 'tiny-alert--' + type, 'tiny-alert--' + size, { 'is-center': center }, customClass)"
+      :class="['tiny-alert', 'tiny-alert--' + type, 'tiny-alert--' + size, { 'is-center': center }, customClass]"
     >
       <component v-if="showIcon" :is="state.getIcon" class="tiny-svg-size tiny-alert__icon" />
       <div class="tiny-alert__content">

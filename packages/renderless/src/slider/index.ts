@@ -38,6 +38,8 @@ export const bindKeyDown =
       return
     }
 
+    event.preventDefault()
+
     let currentValue = 0
 
     switch (event.keyCode) {
@@ -160,7 +162,9 @@ export const bindMouseUp =
       return
     }
 
-    state.showTip = false
+    if (state.mouseOuterBtn) {
+      state.showTip = false
+    }
     state.isDrag = false
 
     off(window, 'mouseup', api.bindMouseUp)
@@ -174,6 +178,7 @@ export const bindMouseUp =
 export const displayTip =
   ({ api, nextTick, state }: Pick<ISliderRenderlessParams, 'api' | 'nextTick' | 'state'>) =>
   (event) => {
+    state.mouseOuterBtn = false
     if (!state.showTip) {
       state.showTip = true
       api.changeActiveValue(api.getActiveButtonIndex(event) === 0)
@@ -184,7 +189,10 @@ export const displayTip =
     }
   }
 
-export const hideTip = (state: ISliderState) => () => !state.isDrag && (state.showTip = false)
+export const hideTip = (state: ISliderState) => () => {
+  state.mouseOuterBtn = true
+  !state.isDrag && (state.showTip = false)
+}
 
 export const setTipStyle =
   ({
@@ -373,13 +381,11 @@ export const initSlider =
         state.rightBtnShow = true
       }
 
-      if (state.isInit) {
-        api.changeActiveValue(index === 0)
-      }
+      api.changeActiveValue(index === 0)
 
       api.setButtonStyle()
     })
-    state.isInit = false
+
     api.setBarStyle()
   }
 
@@ -495,7 +501,6 @@ export const watchModelValue =
   (value) => {
     // 防止多触点下，触发双向绑定导致渲染异常
     if (!state.innerTrigger) {
-      state.isInit = true
       api.initSlider(value)
       api.setActiveButtonValue(value)
     } else {

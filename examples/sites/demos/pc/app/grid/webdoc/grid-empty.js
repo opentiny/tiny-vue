@@ -16,7 +16,10 @@ export default {
     {
       'demoId': 'empty-empty-data-default-tip',
       'name': { 'zh-CN': '默认提示', 'en-US': 'Default Prompt' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '默认情况下就展示表格组件的默认提示图标和文字。',
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['empty/empty-data-default-tip.vue']
     },
     {
@@ -31,5 +34,5 @@ export default {
       'codeFiles': ['empty/empty-data-iscenter.vue']
     }
   ],
-  apis: [{ 'name': 'grid-empty', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-empty', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

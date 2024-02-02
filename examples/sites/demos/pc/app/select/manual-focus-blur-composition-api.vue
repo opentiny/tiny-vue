@@ -1,12 +1,37 @@
 <template>
   <div>
-    <div>
-      <tiny-button @click="handleFocus"> 点击获取焦点 </tiny-button>
-      <tiny-button @click="handleBlur"> 点击失去焦点 </tiny-button>
+    <div class="demo1">
+      <div>场景1：默认 focus() 后仅聚焦，不下拉</div>
+      <br />
+      <tiny-button @click="handleFocus1"> 点击获取焦点 </tiny-button>
+      <tiny-button @click="handleBlur1"> 点击失去焦点 </tiny-button>
+      <br />
+      <tiny-select v-model="value" ref="drop1">
+        <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+      </tiny-select>
     </div>
-    <tiny-select v-model="value" ref="drop" filterable>
-      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
-    </tiny-select>
+    <br />
+    <div class="demo2">
+      <div>场景2：配置 filterable，focus() 后聚焦并自动下拉</div>
+      <br />
+      <tiny-button @click="handleFocus2"> 点击获取焦点 </tiny-button>
+      <tiny-button @click="handleBlur2"> 点击失去焦点 </tiny-button>
+      <br />
+      <tiny-select v-model="value" ref="drop2" filterable>
+        <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+      </tiny-select>
+    </div>
+    <br />
+    <div class="demo3">
+      <div>场景2：配置 automaticDropdown，focus() 后聚焦并自动下拉</div>
+      <br />
+      <tiny-button @click="handleFocus3"> 点击获取焦点 </tiny-button>
+      <tiny-button @click="handleBlur3"> 点击失去焦点 </tiny-button>
+      <br />
+      <tiny-select v-model="value" ref="drop3" automatic-dropdown>
+        <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+      </tiny-select>
+    </div>
   </div>
 </template>
 
@@ -21,15 +46,34 @@ const options = ref([
   { value: '选项4', label: '龙须面' },
   { value: '选项5', label: '北京烤鸭' }
 ])
-const value = ref('')
-const dropRef = ref()
 
-const handleFocus = () => {
-  dropRef.value.focus()
+const value = ref('')
+const drop1 = ref(null)
+const drop2 = ref(null)
+const drop3 = ref(null)
+
+const handleFocus1 = () => {
+  drop1.value.focus()
 }
 
-const handleBlur = () => {
-  dropRef.value.blur()
+const handleBlur1 = () => {
+  drop1.value.blur()
+}
+
+const handleFocus2 = () => {
+  drop2.value.focus()
+}
+
+const handleBlur2 = () => {
+  drop2.value.blur()
+}
+
+const handleFocus3 = () => {
+  drop3.value.focus()
+}
+
+const handleBlur3 = () => {
+  drop3.value.blur()
 }
 </script>
 
@@ -40,9 +84,5 @@ const handleBlur = () => {
 .tiny-button {
   max-width: unset;
   margin-bottom: 10px;
-}
-p {
-  font-size: 14px;
-  line-height: 1.5;
 }
 </style>

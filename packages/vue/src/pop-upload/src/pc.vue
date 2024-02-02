@@ -22,26 +22,27 @@
       <div class="tiny-popupload__dialog">
         <div class="tiny-popupload__dialog-header">
           <tiny-alert
-            type="info"
             size="large"
-            v-if="state.tipsTitle[0] != undefined || state.tipsTitle[1] != undefined || state.tipsTitle[2] != undefined"
+            v-if="
+              state.tipsTitle[0] !== undefined || state.tipsTitle[1] !== undefined || state.tipsTitle[2] !== undefined
+            "
             :title="state.tipsTitleText"
           >
             <div class="tiny-popupload__dialog-tips">
-              <p v-for="(item, index) in state.tipsTitle.filter((value) => value != undefined)" :key="index">
-                {{ item.count != undefined ? state.limitCountTips + ':' + item.count : '' }}
-                {{ item.type != undefined ? state.limitTypeTips + ':' + item.type : '' }}
-                {{ item.size != undefined ? state.limitSizeTips + ':' + item.size : '' }}
+              <p v-for="(item, index) in state.tipsTitle.filter((value) => value !== undefined)" :key="index">
+                {{ item.count !== undefined ? state.limitCountTips + ':' + item.count : '' }}
+                {{ item.type !== undefined ? state.limitTypeTips + ':' + item.type : '' }}
+                {{ item.size !== undefined ? state.limitSizeTips + ':' + item.size : '' }}
               </p>
             </div>
           </tiny-alert>
           <tiny-alert type="error" size="large" v-if="state.errorTips.length > 0" @close="closeErrorTips">
             <div class="tiny-popupload__dialog-tips">
               <p v-for="(item, index) in state.errorTips" :key="index">
-                {{ item.size != undefined ? item.size + ':' + state.errorSizeTips : '' }}
-                {{ item.type != undefined ? item.type + ':' + state.errorTypeTips : '' }}
-                {{ item.num != undefined ? state.errorNumTips : '' }}
-                {{ item.error != undefined ? state.uploadErrorTips : '' }}
+                {{ item.size !== undefined ? item.size + ':' + state.errorSizeTips : '' }}
+                {{ item.type !== undefined ? item.type + ':' + state.errorTypeTips : '' }}
+                {{ item.num !== undefined ? state.errorNumTips : '' }}
+                {{ item.error !== undefined ? state.uploadErrorTips : '' }}
               </p>
             </div>
           </tiny-alert>
@@ -56,7 +57,7 @@
             ref="upload"
             :data="data"
             @change="fileUploadChange"
-            :httpRequest="httpRequest"
+            :http-request="httpRequest"
             :name="uploadName"
             @error="errorEvent"
             @exceed="handleExceed"
@@ -88,7 +89,7 @@
               <ul class="tiny-popupload__dialog-table-list">
                 <li class="tiny-popupload__dialog-table-item" v-for="(item, index) in state.uploadList" :key="index">
                   <p class="body-col col1">{{ item.name }}</p>
-                  <p class="body-col col2">{{ Math.floor(Number(item.size) / 1024) }}KB</p>
+                  <p class="body-col col2">{{ formatFileSize(item.size) }}</p>
                   <p class="body-col col3">
                     <span>
                       <IconDel class="delIcon" @click="deleteFile(item)"></IconDel>
@@ -99,8 +100,14 @@
             </div>
           </div>
         </div>
-        <div class="tiny-popupload__dialog-footer">
-          <tiny-button type="primary" :disabled="state.uploadList.length == 0" @click="uploadSubmit">{{
+        <div class="tiny-popupload__dialog-footer" v-if="state.theme === 'saas'">
+          <tiny-button @click="closeDialog">{{ state.cancelButtonText }}</tiny-button>
+          <tiny-button type="primary" :disabled="state.uploadList.length === 0" @click="uploadSubmit">{{
+            state.submitButtonText
+          }}</tiny-button>
+        </div>
+        <div class="tiny-popupload__dialog-footer" v-else>
+          <tiny-button type="primary" :disabled="state.uploadList.length === 0" @click="uploadSubmit">{{
             state.submitButtonText
           }}</tiny-button>
           <tiny-button @click="closeDialog">{{ state.cancelButtonText }}</tiny-button>
@@ -142,16 +149,15 @@ export default defineComponent({
     'cancelButtonText',
     'uploadFileType',
     'maxUploadFileSize',
-    'filters',
     'accept',
     'disabled',
     'multiple',
     'limit',
     'headers',
-    'helpIcon',
     'action',
     'fileList'
   ],
+  emits: ['remove', 'progress', 'error', 'exceed', 'success'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

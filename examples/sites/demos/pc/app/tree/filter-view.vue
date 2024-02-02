@@ -24,11 +24,13 @@
       :data="data"
       :view-type="viewType"
       :filter-node-method="filterNodeMethod"
-      default-expand-all
       :show-auxi="showAuxi === 'show'"
+      default-expand-all
+      show-checkbox
+      node-key="id"
     >
       <!-- 屏蔽默认的后缀图标 -->
-      <template #suffix="{ node }"> <div></div> </template>
+      <template #suffix> <div></div> </template>
     </tiny-tree>
   </div>
 </template>
@@ -74,6 +76,7 @@ export default {
     inputChange() {
       this.$refs.treeRef.filter(this.filterText)
     },
+    // eslint-disable-next-line unused-imports/no-unused-vars
     filterNodeMethod(text, data, node) {
       return data.label.includes(text)
     }

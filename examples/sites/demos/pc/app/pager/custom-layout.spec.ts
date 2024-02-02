@@ -10,6 +10,11 @@ test('测试自定义分页布局', async ({ page }) => {
   const next = pager.first().locator('.tiny-pager__btn-next')
   const slot = pager.first().getByText('默认插槽')
 
+  await page.setViewportSize({
+    width: 1000,
+    height: 700
+  })
+
   await expect(slot).toBeVisible()
   const totalBox = await pager.first().locator('.tiny-pager__total').boundingBox()
   const pageSizeBox = await pager.first().locator('.tiny-pager__page-size').boundingBox()

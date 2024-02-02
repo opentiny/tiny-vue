@@ -56,7 +56,7 @@ import { setup, $props, defineComponent } from '@opentiny/vue-common'
 import { IconSubScript } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  emits: ['click'],
+  emits: ['click', 'update:modelValue'],
   components: { IconSubScript: IconSubScript() },
   model: {
     prop: 'modelValue',

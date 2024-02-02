@@ -143,7 +143,7 @@ const $constants = {
 
 export default defineComponent({
   name: $prefix + 'Card',
-  emits: ['icon-click', 'update:modelValue', 'change'],
+  emits: ['icon-click', 'update:modelValue', 'change', 'click'],
   components: {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,

@@ -22,7 +22,9 @@ import {
   antialiasing,
   getNodeDef,
   getNode,
-  clickGroup
+  clickGroup,
+  setAdjustY,
+  runAdjustYTask
 } from './index'
 import throttle from '../common/deps/throttle'
 
@@ -50,9 +52,14 @@ export const renderless = (
     dropdowns: {}
   })
 
-  state.temporary = { graphWidth: 0, adjustX: 0, emitter: emitter(), customLinks: [] }
-
-  provide('graphEmitter', state.temporary.emitter)
+  state.temporary = {
+    graphWidth: 0,
+    adjustX: 0,
+    emitter: emitter(),
+    customLinks: [],
+    lastRowAfterNodes: [],
+    adjustY: 0
+  }
 
   const api = {
     state,
@@ -82,8 +89,13 @@ export const renderless = (
     hitTest: hitTest({ api, state, vm }),
     clearHoverAfterLink: throttle(10, clearHoverAfterLink({ api, state, vm })),
     clickNode: clickNode({ api, emit }),
-    getNode: getNode(api)
+    getNode: getNode(api),
+    setAdjustY: setAdjustY({ api, state }),
+    runAdjustYTask: runAdjustYTask({ api, state })
   })
+
+  provide('graphEmitter', state.temporary.emitter)
+  provide('graphInstance', { setAdjustY: api.setAdjustY })
 
   if (api.isMf()) {
     api.computeMf()

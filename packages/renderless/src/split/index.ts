@@ -95,7 +95,7 @@ export const handleUp =
 export const handleMousedown =
   ({ api, emit, on, props, state, vm }) =>
   (event) => {
-    if (state.dragable) {
+    if (!props.disabled) {
       state.initOffset = state.isHorizontal ? event.pageX : event.pageY
       if (state.offset === 0) {
         state.oldOffset = 0

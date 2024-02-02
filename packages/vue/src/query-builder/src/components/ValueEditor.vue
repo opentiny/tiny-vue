@@ -11,6 +11,7 @@
         v-if="type === 'text'"
         :type="allProps.inputTypeCoerced"
         :value="modelValue[key]"
+        :schema="schema"
         :props="{
           key,
           placeholder: allProps.placeHolderText,
@@ -28,6 +29,7 @@
         v-bind="otherProps"
         :class="standardClassnames.valueListItem"
         :disabled="disabled"
+        :bind-props="(schema.bindProps && schema.bindProps.select) || {}"
       ></component>
       <component v-if="i === 0" :is="separator"></component>
     </div>
@@ -37,15 +39,16 @@
     v-else-if="['select', 'multiselect'].includes(type)"
     :is="allProps.SelectorComponent"
     v-bind="allProps.props"
-    :testID="testID"
-    :className="className"
+    :test-i-d="testID"
+    :class-name="className"
     :title="title"
-    :handleOnChange="handleOnChange"
+    :handle-on-change="handleOnChange"
     :disabled="disabled"
     :value="value"
     :options="values"
     :multiple="type === 'multiselect'"
-    :listsAsArrays="listsAsArrays"
+    :lists-as-arrays="listsAsArrays"
+    :bind-props="(schema.bindProps && schema.bindProps.select) || {}"
   ></component>
 
   <span v-else-if="type === 'radio'" :data-testid="testID" :class="className + ' rule-radio'" :title="title">
@@ -54,6 +57,7 @@
       :key="key"
       :type="type"
       :value="value"
+      :schema="schema"
       :props="{
         label: v.name,
         text: v.label,
@@ -67,6 +71,7 @@
     <custom-input
       :type="allProps.inputTypeCoerced"
       :value="type === 'checkbox' ? !!value : value"
+      :schema="schema"
       :props="{
         'data-testid': testID,
         placeholder: allProps.placeHolderText,
@@ -172,14 +177,18 @@ export default defineComponent({
       const inputTypeCoerced = ['textarea', 'switch', 'checkbox'].includes(type)
         ? type
         : ['in', 'notIn'].includes(operator)
-        ? 'text'
-        : inputType || 'text'
+          ? 'text'
+          : inputType || 'text'
 
       if (Array.isArray(valueAsArray)) {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.modelValue.from = valueAsArray[0]
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.modelValue.to = valueAsArray[1]
       } else {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.modelValue.from = ''
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.modelValue.to = ''
       }
 

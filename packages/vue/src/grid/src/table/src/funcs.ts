@@ -9,8 +9,6 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Modal from '@opentiny/vue-modal'
-import GlobalConfig from '../../config'
 import { warn } from '../../tools'
 import { isArray, get } from '@opentiny/vue-renderless/grid/static/'
 import { preprocessDataObjectFormat, preventDupRender, handleResolveColumnComplete } from './utils/handleResolveColumn'
@@ -51,66 +49,6 @@ export const funcs = [
 // 分组表头的属性
 export const headerProps = {
   children: 'children'
-}
-
-export const getSortColumns = (columns) => {
-  const left = []
-  const right = []
-  const center = []
-
-  columns.forEach((col) => {
-    const fixed = col.fixed
-
-    if (fixed === 'left') {
-      left.push(col)
-    } else if (fixed === 'right') {
-      right.push(col)
-    } else {
-      center.push(col)
-    }
-  })
-
-  return left.concat(center).concat(right)
-}
-
-export const onEndEvent = ({ event, _this }) => {
-  const { item, newIndex, oldIndex } = event
-  let { fullColumn, tableColumn } = _this.getTableColumn()
-  const sortVisibleCols = getSortColumns(tableColumn)
-  let targetThElem = item
-  let wrapperElem = targetThElem.parentNode
-  let newColumn = sortVisibleCols[newIndex]
-
-  if (newColumn.fixed) {
-    // 错误的移动
-    if (newIndex > oldIndex) {
-      for (let i = newIndex; i >= oldIndex; i--) {
-        wrapperElem.insertBefore(targetThElem, wrapperElem.children[i])
-      }
-    } else {
-      for (let i = newIndex; i <= oldIndex; i++) {
-        wrapperElem.insertBefore(targetThElem, wrapperElem.children[i])
-      }
-
-      wrapperElem.insertBefore(wrapperElem.children[oldIndex], targetThElem)
-    }
-
-    return Modal.message({
-      message: GlobalConfig.i18n('ui.grid.error.dargFixed'),
-      status: 'error'
-    })
-  }
-  // 转换真实索引
-  let oldColumnIndex = _this.getColumnIndex(sortVisibleCols[oldIndex])
-  let newColumnIndex = _this.getColumnIndex(sortVisibleCols[newIndex])
-  // 移动到目标列
-  let currCol = fullColumn.splice(oldColumnIndex, 1)[0]
-
-  fullColumn.splice(newColumnIndex, 0, currCol)
-  _this.loadColumn(fullColumn)
-  _this.$emit('column-drop-end', event, _this)
-
-  _this.isDragHeaderSorting && _this.$grid.toolBarVm && _this.$grid.toolBarVm.updateSetting()
 }
 
 export const handleAllColumnPromises = (opt, ctx) => {

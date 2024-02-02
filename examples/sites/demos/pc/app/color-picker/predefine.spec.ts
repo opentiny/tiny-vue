@@ -10,8 +10,8 @@ test('测试预定义颜色', async ({ page }) => {
   await expect(
     page.locator('.tiny-color-select-panel__predefine .tiny-color-select-panel__predefine__color-block:nth-child(8)')
   ).toBeVisible()
-  await page.locator('.mr20.fw-bold').click()
-  //用户行为预定义颜色测试
+  await page.getByRole('button', { name: '选择' }).click()
+  // 用户行为预定义颜色测试
   await page.getByRole('button', { name: 'Append predefine color' }).click()
   await page.locator('.tiny-color-picker').click()
   await page.waitForSelector('.tiny-collapse-item__arrow')

@@ -10,7 +10,7 @@
  *
  */
 
-import type { ICascaderMenuRenderlessParamUtils, ICascaderMenuRenderlessParams, ICascaderMenuState } from '@/types'
+import type { ICascaderMenuRenderlessParams, ICascaderMenuState } from '@/types'
 
 export const handleExpand = (state: ICascaderMenuState) => (e: MouseEvent) =>
   (state.activeNode = e.target as HTMLElement)
@@ -19,15 +19,14 @@ export const handleMouseMove =
   ({
     api,
     parent,
-    refs,
+    vm,
     state,
     svg
-  }: Pick<ICascaderMenuRenderlessParams, 'api' | 'parent' | 'state'> & {
+  }: Pick<ICascaderMenuRenderlessParams, 'api' | 'parent' | 'state' | 'vm'> & {
     svg: string
-    refs: ICascaderMenuRenderlessParams['vm']['$refs']
   }) =>
   (e: MouseEvent) => {
-    const { hoverZone } = refs
+    const hoverZone = vm.$refs.hoverZone
 
     if (!state.activeNode || !hoverZone) {
       return
@@ -38,9 +37,9 @@ export const handleMouseMove =
         clearTimeout(state.hoverTimer)
       }
 
-      const { left } = refs.cascaderMenu.$parent.$el.getBoundingClientRect()
+      const { left } = vm.$refs.cascaderMenu.$parent.$el.getBoundingClientRect()
       const startX = e.clientX - left
-      const { offsetWidth, offsetHeight } = refs.cascaderMenu.$parent.$el
+      const { offsetWidth, offsetHeight } = vm.$refs.cascaderMenu.$parent.$el
       const top = state.activeNode.offsetTop
       const bottom = top + state.activeNode.offsetHeight
 
@@ -49,16 +48,18 @@ export const handleMouseMove =
       ${svg}${startX} ${bottom} L${offsetWidth} ${offsetHeight} V${bottom} Z" />
     `
     } else if (!state.hoverTimer) {
-      state.hoverTimer = setTimeout(api.clearHoverZone, parent.state.config.hoverThreshold)
+      state.hoverTimer = setTimeout(api.clearHoverZone, parent.$parent.state.config.hoverThreshold)
     }
   }
 
-export const clearHoverZone = (refs: ICascaderMenuRenderlessParamUtils['vm']['$refs']) => () => {
-  const { hoverZone } = refs
+export const clearHoverZone =
+  ({ vm }: Pick<ICascaderMenuRenderlessParams, 'vm'>) =>
+  () => {
+    const { hoverZone } = vm.$refs.hoverZone
 
-  if (!hoverZone) {
-    return
+    if (!hoverZone) {
+      return
+    }
+
+    hoverZone.innerHTML = ''
   }
-
-  hoverZone.innerHTML = ''
-}

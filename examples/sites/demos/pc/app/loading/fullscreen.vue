@@ -1,9 +1,9 @@
 <template>
   <div>
     <tiny-button @click="handleClick" v-loading.lock.fullscreen="fullscreenLoading">
-      指令方式加载全屏Loading
+      指令方式加载全屏 Loading
     </tiny-button>
-    <tiny-button @click="handleClick2">静态方法加载全屏Loading</tiny-button>
+    <tiny-button @click="handleClick2">静态方法加载全屏 Loading</tiny-button>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
       }, 2500)
     },
     handleClick2() {
-      const loading =  Loading.service({
+      const loading = Loading.service({
         lock: true,
         text: 'Loading',
         background: 'rgba(0, 0, 0, 0.8)'

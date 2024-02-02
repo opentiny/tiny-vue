@@ -157,10 +157,18 @@ export const clickOutside = (parent: IDropdownItemRenderlessParams['parent']) =>
 }
 
 export const handleClick =
-  ({ props, dispatch, vm, emit }: Pick<IDropdownItemRenderlessParams, 'props' | 'dispatch' | 'vm' | 'emit'>) =>
+  ({
+    state,
+    props,
+    dispatch,
+    vm,
+    emit
+  }: Pick<IDropdownItemRenderlessParams, 'state' | 'props' | 'dispatch' | 'vm' | 'emit'>) =>
   (event: MouseEvent): void => {
     // 此处需要手动阻止事件冒泡，如果使用@click.sotp在vue2.x下会导致在自循环组件（dropdown-item）事件绑定错乱
     event.stopPropagation()
+    state.currentIndex = `${props.currentIndex}`
+
     const data = { itemData: props.itemData, vm, disabled: props.disabled }
 
     if (!props.disabled) {
@@ -169,11 +177,12 @@ export const handleClick =
     // 此处需要传递一个对象，如果是数组[param1,param2],会导致vue2和vue3的表现形式不一样,aui 目前还是数组形式
     dispatch('TinyDropdown', 'menu-item-click', data)
     dispatch('TinyDropdown', 'is-disabled', [props.disabled])
+    dispatch('TinyDropdown', 'selected-index', [state.currentIndex])
   }
 
 export const computedGetIcon =
   ({ constants, designConfig }: Pick<IDropdownItemRenderlessParams, 'constants' | 'designConfig'>) =>
-  (name: string = 'leftWardArrow'): object => {
+  (name = 'leftWardArrow'): object | string => {
     return designConfig?.icons[name] || constants?.ICON_MAP[name]
   }
 

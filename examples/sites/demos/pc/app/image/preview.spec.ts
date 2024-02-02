@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('图片大图', async ({ page }) => {
+test('测试图片预览大图', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
 
   await page.goto('image#preview')

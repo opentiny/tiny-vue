@@ -13,7 +13,7 @@
   </tiny-file-upload>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { FileUpload as TinyFileUpload, Button as TinyButton, Modal } from '@opentiny/vue'
 
@@ -30,7 +30,7 @@ const headers = ref({
 })
 
 function beforeUpload() {
-  Modal.message('查看请求头示例请打开浏览器开发者工具 network 的 upload 请求')
+  Modal.message({ message: '查看请求头示例请打开浏览器开发者工具 network 的 upload 请求', status: 'info' })
 
   return true
 }

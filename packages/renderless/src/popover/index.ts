@@ -176,11 +176,11 @@ export const handleMouseLeave =
 
 /* istanbul ignore next */
 export const handleDocumentClick =
-  ({ refs, state }: Pick<IPopoverRenderlessParams, 'state' | 'refs'>) =>
+  ({ vm, state }: Pick<IPopoverRenderlessParams, 'state' | 'vm'>) =>
   (event: MouseEvent) => {
     const reference = state.referenceElm
     const popperElm = state.popperElm
-    const $el = refs.root
+    const $el = vm.$refs.root
     let target = event.target as HTMLElement
 
     // 解决组件在webcomponents中触发document的click事件，但是e.target始终是webcomponents自定义标签，从而引起的判断失效的bug
@@ -255,9 +255,9 @@ export const destroyed =
 export const computedTooltipId = (constants: { IDPREFIX: string }) => () => `${constants.IDPREFIX}-${guid('', 4)}`
 
 export const wrapMounted =
-  ({ api, props, refs, state }: Pick<IPopoverRenderlessParams, 'state' | 'api' | 'props' | 'refs'>) =>
+  ({ api, props, vm, state }: Pick<IPopoverRenderlessParams, 'state' | 'api' | 'props' | 'vm'>) =>
   () => {
-    const { reference, popper, wrapper } = refs
+    const { reference, popper, wrapper } = vm.$refs
     const referenceElm = (state.referenceElm = props.reference || reference)
 
     state.popperElm = state.popperElm || popper

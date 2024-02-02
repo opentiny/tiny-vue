@@ -3,185 +3,84 @@ export default {
   owner: '',
   demos: [
     {
-      'demoId': 'basic-usage',
-      'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': {
-        'zh-CN': '<p>过滤器面板用于列表数据过滤、图标卡片过滤，自定义过滤面板内容</p>\n',
-        'en-US':
-          '<p>The filter panel is used to filter list data, filter icon cards, and customize the filter panel content</p>\n'
+      demoId: 'basic-usage',
+      name: {
+        'zh-CN': '基本用法',
+        'en-US': 'Basic Usage'
       },
-      'codeFiles': ['basic-usage.vue']
-    },
-    {
-      'demoId': 'disabled',
-      'name': { 'zh-CN': '禁用', 'en-US': 'Disabled' },
-      'desc': {
-        'zh-CN': '<p>通过 <code>disabled</code> 设置禁用</p>\n',
-        'en-US': '<p>Disabling by <code>disabled</code> </p>\n'
-      },
-      'codeFiles': ['disabled.vue']
-    },
-    {
-      'demoId': 'clearable',
-      'name': { 'zh-CN': '显示清空按钮', 'en-US': 'Show Clear Button' },
-      'desc': {
+      desc: {
         'zh-CN':
-          '<p>给组件加上 <code>clearable</code> 属性可以显示清空按钮，配合 <code>handle-clear</code> 事件一起使用清空内容区域的值</p>\n',
+          '通过 <code>label</code> 设置标题，<code>value</code> 设置标题右侧内容，<code>disabled</code> 设置是否禁用；通过默认插槽自定义过滤面板内容。',
         'en-US':
-          '<p>The <code>clearable</code> attribute is added to the component to display the clear button. This attribute is used together with the <code>handle-clear</code> event to clear the value of the content area.</p>\n'
+          'Set the title through<code>label</code>,<code>value</code>set the content to the right of the title, and<code>disabled</code>set whether to disable it; \n          Customize filter panel content through default slots.'
       },
-      'codeFiles': ['clearable.vue']
+      codeFiles: ['basic-usage.vue']
     },
     {
-      'demoId': 'tip',
-      'name': { 'zh-CN': 'tip 提示', 'en-US': 'Tip' },
-      'desc': {
-        'zh-CN': '<p>标题右侧添加提示信息</p>\n',
-        'en-US': '<p>Add a message to the right of the title.</p>\n'
+      demoId: 'popper-class',
+      name: {
+        'zh-CN': '自定义下拉面板',
+        'en-US': 'Custom dropdown box'
       },
-      'codeFiles': ['tip.vue']
-    },
-    {
-      'demoId': 'manual-hide',
-      'name': { 'zh-CN': '手动隐藏', 'en-US': 'Manually hide' },
-      'desc': {
-        'zh-CN': '<p>通过给元素添加 ref，然后主动调用组件的 hide 方法可以手动隐藏下拉框</p>',
-        'en-US':
-          '<p>You can manually hide the drop-down list box by adding ref to the element and invoking the hide method of the component.</p>'
-      },
-      'codeFiles': ['manual-hide.vue']
-    },
-    {
-      'demoId': 'event',
-      'name': { 'zh-CN': '事件', 'en-US': 'Event' },
-      'desc': {
-        'zh-CN': '<p> <code>visible-change</code> 事件在下拉面板显示/隐藏时触发</p>',
-        'en-US':
-          '<p> <code>visible-change</code> event is triggered when the drop-down panel is displayed or hidden</p>'
-      },
-      'codeFiles': ['event.vue']
-    },
-    {
-      'demoId': 'popper-class',
-      'name': { 'zh-CN': '弹出框样式', 'en-US': 'Pop-up dialog box style' },
-      'desc': {
+      desc: {
         'zh-CN':
-          '<p>通过 <code>popper-class</code> 属性可自定义下拉弹框的样式。popper-append-to-body 指定是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false</p>',
+          '通过 <code>placement</code> 控制下拉面板的位置， <code>popper-class</code> 设置类名，自定义下拉面板的样式；<code>popper-append-to-body</code> 设置弹下拉面板是否插入至 body 元素。在下拉面板的定位出现问题时，可将其设置为 false。',
         'en-US':
-          '<p>You can use the <code>popper-class</code> attribute to customize the style of the drop-down list box. popper-append-to-body Specifies whether to insert a pop-up box into the body element. If a fault occurs in locating the fault in the dialog box that is displayed, you can set this attribute to false</p>'
+          'Control the position of the drop-down panel through<code>placement</code>. Set the class name and customize the style of the dropdown box through<code>popper-class</code>. <code>popper-append-to-body</code>Set whether the pop-up \n          menu is inserted into the body element. When there is an issue with the positioning of the dropdown box, it can be set to false.'
       },
-      'codeFiles': ['popper-class.vue']
-    }
-  ],
-  apis: [
+      codeFiles: ['popper-class.vue']
+    },
     {
-      'name': 'filter-panel',
-      'type': 'component',
-      'props': [
-        {
-          'name': 'clearable ',
-          'type': 'boolean',
-          'defaultValue': 'true',
-          'desc': {
-            'zh-CN': '显示清空按钮，配合`handle-clear`事件一起使用清空内容区域的值，默认为true。',
-            'en-US':
-              'Displays the Clear button, which is used together with the `handle-clear` event to clear the value of the content area. The default value is true.'
-          },
-          'demoId': 'clearable'
-        },
-        {
-          'name': 'disabled',
-          'type': 'boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '是否禁用',
-            'en-US': 'Whether to disable'
-          },
-          'demoId': 'disabled'
-        },
-        {
-          'name': 'label',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '标题',
-            'en-US': 'The title'
-          },
-          'demoId': 'popper-class'
-        },
-        {
-          'name': 'placement',
-          'type': 'string',
-          'defaultValue': 'bottom-start',
-          'desc': {
-            'zh-CN': '弹出框位置，默认值为bottom-start',
-            'en-US': 'Position of the pop-up dialog box. The default value is bottom-start.'
-          },
-          'demoId': ''
-        },
-        {
-          'name': 'popper-append-to-body',
-          'type': 'boolean',
-          'defaultValue': 'true',
-          'desc': {
-            'zh-CN': '下拉框是否添加到body中',
-            'en-US': 'Indicates whether to add the drop-down list box to the body.'
-          },
-          'demoId': 'popper-class'
-        },
-        {
-          'name': 'popper-class',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '下拉框的class',
-            'en-US': 'Class in the drop-down list box'
-          },
-          'demoId': 'popper-class'
-        },
-        {
-          'name': 'tip',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '标题右侧的提示信息',
-            'en-US': 'Message on the right of the title'
-          },
-          'demoId': 'tip'
-        },
-        {
-          'name': 'value',
-          'type': 'string',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '显示的值',
-            'en-US': 'Displayed Values'
-          },
-          'demoId': 'basic-usage'
-        }
-      ],
-      'events': [
-        {
-          'name': 'handle-clear',
-          'type': '() => void',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '清除按钮点击事件。',
-            'en-US': 'Clear button click event.'
-          },
-          'demoId': 'event'
-        },
-        {
-          'name': 'visible-change',
-          'type': '() => void',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '下拉框显示隐藏事件。',
-            'en-US': 'The drop-down list box displays hidden events.'
-          },
-          'demoId': 'event'
-        }
-      ]
+      demoId: 'tip',
+      name: {
+        'zh-CN': '背景与提示',
+        'en-US': 'Background and Tips'
+      },
+      desc: {
+        'zh-CN':
+          "通过 <code>blank</code> 控制过滤器背景是否透明； <code>:clearable='false'</code> 隐藏清空按钮；配合 <code>tip</code> 添加标题右侧提示信息。",
+        'en-US':
+          "Use <code>blank</code> to control whether the filter background is transparent. <code>:clearable='false'</code>Hide the Clear button; Add the prompt information on the right of the title together with <code>tip</code>."
+      },
+      codeFiles: ['tip.vue']
+    },
+    {
+      demoId: 'manual-hide',
+      name: {
+        'zh-CN': '手动隐藏',
+        'en-US': 'Manually hide'
+      },
+      desc: {
+        'zh-CN': '手动调用 <code>hide</code> 实例方法完成收起下拉面板功能。',
+        'en-US': 'Manually call the<code>hide</code>instance method to complete the collapse dropdown function.'
+      },
+      codeFiles: ['manual-hide.vue']
+    },
+    {
+      demoId: 'code',
+      name: {
+        'zh-CN': '批量编码',
+        'en-US': 'Batch coding'
+      },
+      desc: {
+        'zh-CN': '通过默认插槽定义下拉框内容。',
+        'en-US': 'Define the contents of the drop-down list box by default slot.'
+      },
+      codeFiles: ['code.vue']
+    },
+    {
+      demoId: 'event',
+      name: {
+        'zh-CN': '事件',
+        'en-US': 'Event'
+      },
+      desc: {
+        'zh-CN':
+          '<code>handle-clear</code> 监听清空按钮点击事件，执行删除操作； <code>visible-change</code> 监听下拉面板的显隐事件。',
+        'en-US':
+          '<code>handle-clear</code>Listen to the clear button click event and execute the delete operation<code>visible-change</code>listens to the explicit and implicit events of the drop-down panel.'
+      },
+      codeFiles: ['event.vue']
     }
   ]
 }

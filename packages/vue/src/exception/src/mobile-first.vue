@@ -1,15 +1,19 @@
 <template>
   <div
     data-tag="tiny-exception"
-    :class="m('flex t-0 justify-center items-center w-full h-full bg-color-bg-1 text-center', exceptionClass)"
+    :class="
+      m(
+        'flex t-0 justify-center items-center w-full h-full bg-transparent sm:bg-color-bg-1 text-center',
+        exceptionClass
+      )
+    "
   >
     <div data-tag="tiny-exception-body">
       <div class="bg-cover" data-tag="tiny-exception-image">
-        <img
+        <component
+          :is="_constants.ICONCONFIG[type.toUpperCase()]"
           v-if="state.urlType"
-          :class="['inline-block', componentPage ? 'w-24' : 'w-52']"
-          :src="state.images[state.urlType]"
-          alt=""
+          :custom-class="componentPage ? 'w-24 h-24' : 'w-52 h-40'"
         />
       </div>
       <slot name="content">
@@ -18,7 +22,7 @@
             data-tag="tiny-exception-componentpage"
             :class="['text-color-text-primary mt-1 text-center text-sm', componentPage ? 'sm:text-xs' : 'sm:text-sm']"
           >
-            {{ t(_constants[type]) }}
+            {{ t(_constants.INTERNALCONFIG[type.toUpperCase()]) }}
           </div>
           <div
             data-tag="tiny-exception-submessage"
@@ -40,31 +44,56 @@
 import { renderless, api } from '@opentiny/vue-renderless/exception/vue'
 import { setup, defineComponent, $props } from '@opentiny/vue-common'
 import Button from '@opentiny/vue-button'
-import noperm from '@opentiny/vue-theme/images/empty-noaccess.png'
-import nodata from '@opentiny/vue-theme/images/empty-nodata.png'
-import weaknet from '@opentiny/vue-theme/images/empty-nonetwork.png'
-import nonews from '@opentiny/vue-theme/images/empty-nonotice.png'
-import noresult from '@opentiny/vue-theme/images/empty-noresult.png'
-import pagenoperm from '@opentiny/vue-theme/images/empty-page-noaccess.png'
-import pageweaknet from '@opentiny/vue-theme/images/empty-page-nonetwork.png'
-import pagenothing from '@opentiny/vue-theme/images/empty-page-nothing.png'
-import pageservererror from '@opentiny/vue-theme/images/empty-page-servererror.png'
+
+import {
+  iconNoData,
+  iconNoNews,
+  iconNoPerm,
+  iconNoResult,
+  iconWeaknet,
+  iconPageNoperm,
+  iconPageNothing,
+  iconPageServererror,
+  iconPageWeaknet
+} from '@opentiny/vue-icon'
 
 const $constants = {
-  nodata: 'ui.exception.nodatamf',
-  noperm: 'ui.exception.nopermmf',
-  weaknet: 'ui.exception.weaknetmf',
-  noresult: 'ui.exception.noresult',
-  nonews: 'ui.exception.nonews',
-  pagenoperm: 'ui.exception.pagenoperm',
-  pageweaknet: 'ui.exception.pageweaknet',
-  pagenothing: 'ui.exception.pagenothing',
-  pageservererror: 'ui.exception.pageservererror'
+  INTERNALCONFIG: {
+    NODATA: 'ui.exception.nodatamf',
+    NOPERM: 'ui.exception.nopermmf',
+    WEAKNET: 'ui.exception.weaknetmf',
+    NORESULT: 'ui.exception.noresult',
+    NONEWS: 'ui.exception.nonews',
+    PAGENOPERM: 'ui.exception.pagenoperm',
+    PAGEWEAKNET: 'ui.exception.pageweaknet',
+    PAGENOTHING: 'ui.exception.pagenothing',
+    PAGESERVERERROR: 'ui.exception.pageservererror'
+  },
+  ICONCONFIG: {
+    NODATA: 'icon-no-data',
+    NOPERM: 'icon-no-perm',
+    NONEWS: 'icon-no-news',
+    WEAKNET: 'icon-weaknet',
+    NORESULT: 'icon-no-result',
+    PAGENOPERM: 'icon-page-noperm',
+    PAGENOTHING: 'icon-page-nothing',
+    PAGESERVERERROR: 'icon-page-servererror',
+    PAGEWEAKNET: 'icon-page-weaknet'
+  }
 }
 
 export default defineComponent({
   components: {
-    TinyButton: Button
+    TinyButton: Button,
+    IconNoData: iconNoData(),
+    IconNoNews: iconNoNews(),
+    IconNoPerm: iconNoPerm(),
+    IconNoResult: iconNoResult(),
+    IconWeaknet: iconWeaknet(),
+    IconPageNoperm: iconPageNoperm(),
+    IconPageNothing: iconPageNothing(),
+    IconPageServererror: iconPageServererror(),
+    IconPageWeaknet: iconPageWeaknet()
   },
   emits: ['click'],
   props: {
@@ -93,21 +122,7 @@ export default defineComponent({
       props,
       context,
       renderless,
-      api,
-      mono: true,
-      extendOptions: {
-        images: {
-          noperm,
-          nodata,
-          weaknet,
-          noresult,
-          nonews,
-          pagenoperm,
-          pageweaknet,
-          pagenothing,
-          pageservererror
-        }
-      }
+      api
     })
   }
 })

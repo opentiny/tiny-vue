@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p>单选</p>
+    <div>单选</div>
+    <br />
     <tiny-select
       v-model="value1"
       clearable
@@ -9,11 +10,14 @@
       @focus="focus"
       @visible-change="visibleChange"
       @clear="clear"
+      @dropdown-click="dropdownClick"
     >
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-
-    <p>多选</p>
+    <br />
+    <br />
+    <div>多选</div>
+    <br />
     <tiny-select
       v-model="value2"
       multiple
@@ -23,6 +27,7 @@
       @focus="focus"
       @visible-change="visibleChange"
       @remove-tag="removeTag"
+      @dropdown-click="dropdownClick"
     >
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
@@ -54,12 +59,14 @@ export default {
     change() {
       Modal.message({
         message: '触发 change 事件',
-        duration: 500
+        duration: 500,
+        status: 'info'
       })
     },
     clear() {
       Modal.message({
-        message: '触发 clear 事件'
+        message: '触发 clear 事件',
+        status: 'info'
       })
     },
     focus() {
@@ -69,17 +76,26 @@ export default {
     },
     blur() {
       Modal.message({
-        message: '触发 blur 事件'
+        message: '触发 blur 事件',
+        status: 'info'
       })
     },
     removeTag() {
       Modal.message({
-        message: '触发 remove-tag 事件'
+        message: '触发 remove-tag 事件',
+        status: 'info'
       })
     },
     visibleChange() {
       Modal.message({
-        message: '触发 visible-change 事件'
+        message: '触发 visible-change 事件',
+        status: 'info'
+      })
+    },
+    dropdownClick() {
+      Modal.message({
+        message: '触发 dropdown-click 事件',
+        status: 'info'
       })
     }
   }

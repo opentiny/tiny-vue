@@ -45,17 +45,27 @@
   1. type: 必须是 build, chore, ci, docs, feat, fix, perf, refactor, revert, release, style, test, improvement 其中的一个。
 
   2. scope:
+
   - `packages`目录下的包名，比如：`vue-design-aurora, vue-design-saas, react ......`
   - `packages`目录下的包名下的组件名，比如：`vue-design-aurora/alert, vue-design-saas/alert, react/alert ......`
   - 用文件夹的名称: 比如: `gulp, internals/playwright-config, sites`
   - 组件的名称(小写，中划线): 比如: `action-menu, alert ......`
 
-  3. 运行e2e测试: 在提交信息里使用 `[componentName1, componentName2]`，将会执行componentName1，componentName2的测试用例，当改动的代码会影响组件时，需要声明这个结构。
+- Pull Request 的标题
 
-  4. 示例:
-  - 补充alert组件文档： `docs(alert): [alert] xxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
-  - 补充alet组件测试用例: `test(alert): [alert] xxxxxxxxxxxxxx`
-  - 修复alet组件@opentiny/vue-renderless下的缺陷: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
+  1. 标题的规范与 commit 信息一样，以`type(scope): 描述信息` 的形式填写。
+
+  2. 触发组件的 **e2e 测试**: 在 Pull Request 标题里添加 `[componentName1, componentName2]`，将会执行 componentName1，componentName2 的测试用例，当改动的代码会影响组件时，需要声明这个结构。
+
+     - 注：本项目下的 `github action` 会用`[componentName1, componentName2]`声明的组件名匹配 `examples/sites/demos` 目录下的路径名称，识别要执行的测试e2e用例。（因为全量跑测试用例太耗费时间）
+
+     - 当修改了某个组件的子组件，比如`col`组件，它本身没有对应的示例以及测试用例，这时应该要测试的是`layout`组件，因为`col`组件是`layout`组件的子组件，PR 标题可以这样： `fix(col): [layout] xxxxxxxxxxxxxx`
+
+  3. 标题示例:
+
+  - 补充 alert 组件文档： `docs(alert): [alert] xxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
+  - 补充 alet 组件测试用例: `test(alert): [alert] xxxxxxxxxxxxxx`
+  - 修复 alet 组件 @opentiny/vue-renderless 下的缺陷: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
 
 本地启动步骤：
 

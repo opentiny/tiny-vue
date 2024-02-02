@@ -6,6 +6,6 @@
 import { Switch as TinySwitch, Modal } from '@opentiny/vue'
 
 function handleChange(val) {
-  Modal.message({ message: `开关值：${val}` })
+  Modal.message({ message: `开关值：${val}`, status: 'info' })
 }
 </script>

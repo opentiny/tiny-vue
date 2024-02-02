@@ -136,7 +136,8 @@ export default defineComponent({
           [`tiny-tabs--${!state.separator ? position : 'top'}`]: true,
           'tiny-tabs--border-card': tabStyle === 'border-card',
           'tiny-tabs--button-card': tabStyle === 'button-card',
-          'tiny-tabs--small': size === 'small'
+          'tiny-tabs--small': size === 'small',
+          'tiny-tabs--large': size === 'large'
         }}>
         {position !== 'bottom' ? [header, panels] : [panels, header]}
       </div>

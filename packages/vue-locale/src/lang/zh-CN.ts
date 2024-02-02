@@ -18,9 +18,15 @@ export default {
   yes: '是',
   no: '否',
   ui: {
-    buttonMessage: {
-      cancel: '取消',
-      confirm: '确定'
+    numeric: {
+      equalTo: '等于',
+      notEqualTo: '不等于',
+      moreThan: '大于',
+      moreThanOrEqualTo: '大于等于',
+      lessThan: '小于',
+      lessThanOrEqualTo: '小于等于',
+      empty: '为空',
+      nonEmpty: '不为空'
     },
     wizard: {
       previousStep: '上一步',
@@ -48,7 +54,15 @@ export default {
     amount: {
       currency: '币种',
       amount: '金额',
-      date: '日期'
+      date: '日期',
+      equalTo: '等于',
+      notEqualTo: '不等于',
+      moreThan: '大于',
+      moreThanOrEqualTo: '大于等于',
+      lessThan: '小于',
+      lessThanOrEqualTo: '小于等于',
+      empty: '为空',
+      nonEmpty: '不为空'
     },
     actionMenu: {
       moreText: '更多'
@@ -61,11 +75,16 @@ export default {
       edit: '编辑',
       more: '更多',
       reset: '重置',
+      clear: '清空',
       comma: '，'
     },
     button: {
       cancel: '取消',
-      confirm: '确认'
+      confirm: '确定'
+    },
+    buttonMessage: {
+      cancel: '取消',
+      confirm: '确定'
     },
     cell: {
       placeholder: '请选择'
@@ -212,7 +231,7 @@ export default {
       selected: '已选'
     },
     detailpage: {
-      saveButtonText: '确认',
+      saveButtonText: '确定',
       cancelButtonText: '取消',
       localTips: '不能全部隐藏',
       localTitle: '数据',
@@ -259,6 +278,7 @@ export default {
       previewFile: '预览文件',
       updateFile: '更新文件',
       reUploadFile: '重新上传',
+      cancelFile: '取消上传',
       deleteFile: '删除文件',
       empty: '是空文件！',
       kiaScanTip: '抱歉，从公网接入下载文档，需要通过KIA检测；当前文档正在KIA检测中，请稍后几分钟后再下载！',
@@ -280,6 +300,7 @@ export default {
       encryptDialogTitle: '水印及加密设置',
       addWatermark: '添加水印',
       encrypted: '加密',
+      docPreview: '文档预览',
       networkError: '网络出错',
       pictureNetworkError: '网络出错，上传失败',
       reUploadTip: '{number}个文件上传失败！'
@@ -413,7 +434,7 @@ export default {
         switchapply: '使用',
         switchedit: '编辑',
         switchdel: '删除',
-        switchconfirm: '确认',
+        switchconfirm: '确定',
         switchonlytemp: '保存模板',
         switchtempapply: '保存并使用模板',
         switchtempoverwrite: '覆盖并使用模板',
@@ -457,8 +478,8 @@ export default {
       pageClassifier: '页',
       pagesize: '条/页',
       prev: '上一页',
-      total: '总条数',
-      totals: '总计：',
+      total: '共',
+      totals: '总条数：',
       jump: '跳至',
       hundredThousand: '10万+',
       million: '100万+',
@@ -513,10 +534,19 @@ export default {
       search: '搜索',
       selected: '已选',
       selectedNum: '已选 {num} 个',
-      noSearchData: '无相关搜索结果，请重新输入'
+      noSearchData: '无相关搜索结果，请重新输入',
+      add: '新增'
     },
     search: {
       placeholder: '搜索'
+    },
+    signature: {
+      confirm: '确认',
+      rewrite: '重写',
+      cancel: '取消',
+      tips: '请手写签名',
+      resign: '重新签名',
+      placeholder: '请在此签名（必填）'
     },
     tabs: {
       moreItem: '更多'
@@ -744,7 +774,7 @@ export default {
     string: {
       len: '%s 必须是 %s 个字符',
       min: '%s 必须至少为 %s 个字符',
-      max: '%s不 能大于 %s 个字符',
+      max: '%s 不能大于 %s 个字符',
       range: '%s 必须介于 %s 和 %s 个字符之间'
     },
     types: {

@@ -7,7 +7,7 @@
         v-if="mask && visible"
         :class="['tiny-drawer__mask', { 'show-bg-color': state.toggle }]"
         :style="{ zIndex }"
-        @click="maskClosable && close()"
+        @click="handleClose('mask')"
       ></div>
     </transition>
 
@@ -26,6 +26,7 @@
             'drag-effects': !state.dragEvent.isDrag,
             'toggle': state.toggle
           },
+          'tiny-drawer-main',
           customClass
         ]"
         :style="{
@@ -47,21 +48,38 @@
                 </div>
               </div>
             </slot>
-            <button v-if="showClose" type="button" class="tiny-drawer__headerbtn" aria-label="Close" @click="close">
+            <button
+              v-if="showClose"
+              type="button"
+              class="tiny-drawer__headerbtn"
+              aria-label="Close"
+              @click="handleClose('close')"
+            >
               <icon-close class="tiny-svg-size tiny-drawer__close" />
             </button>
           </div>
 
           <!-- body -->
-          <div data-tag="drawer-body" ref="body" :class="['tiny-drawer__body', { 'flex flex-col': flex }]">
+          <div
+            data-tag="drawer-body"
+            ref="body"
+            :class="['tiny-drawer__body', { 'flex flex-col': flex }, 'drawer-body']"
+          >
             <slot></slot>
           </div>
 
           <!-- footer -->
           <div data-tag="drawer-footer" ref="footer" v-if="showFooter" class="tiny-drawer__footer">
             <slot name="footer">
-              <tiny-button type="primary" @click="confirm">{{ t('ui.button.confirm') }}</tiny-button>
-              <tiny-button plain @click="close">{{ t('ui.button.cancel') }}</tiny-button>
+              <tiny-button
+                type="primary"
+                :style="{ order: state.isSaasTheme ? 1 : 0 }"
+                @click="handleClose('confirm')"
+                >{{ t('ui.button.confirm') }}</tiny-button
+              >
+              <tiny-button plain :style="{ order: state.isSaasTheme ? 0 : 1 }" @click="handleClose('cancel')">{{
+                t('ui.button.cancel')
+              }}</tiny-button>
             </slot>
           </div>
         </div>
@@ -97,7 +115,8 @@ export default {
     'lockScroll',
     'flex',
     'showClose',
-    'zIndex'
+    'zIndex',
+    'beforeClose'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

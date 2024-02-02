@@ -14,7 +14,6 @@
 @import '../mixins/input.less';
 @import '../custom.less';
 @import './vars.less';
-@import '../transition/zoom-in-top.less';
 
 @calendar-prefix-cls: ~'@{css-prefix}calendar';
 @popover-prefix-cls: ~'@{css-prefix}popover';
@@ -75,8 +74,8 @@
 
     > input {
       width: 100%;
-      height: var(--ti-calendar-input-height);
-      line-height: var(--ti-calendar-input-height);
+      height: var(--ti-calendar-input-height, 28px);
+      line-height: var(--ti-calendar-input-height, 28px);
       border: 1px solid var(--ti-calendar-border-color);
       color: var(--ti-calendar-text-color-info);
       border-radius: var(--ti-calendar-input-border-radius);
@@ -98,7 +97,7 @@
       }
 
       &[readonly] {
-        cursor: not-allowed;
+        cursor: pointer;
       }
     }
   }
@@ -134,8 +133,8 @@
       position: relative;
       float: left;
       width: calc(var(--ti-calendar-tool-width) / 2);
-      height: var(--ti-calendar-input-height);
-      line-height: var(--ti-calendar-input-height);
+      height: var(--ti-calendar-input-height, 28px);
+      line-height: var(--ti-calendar-input-height, 28px);
       border: 1px solid var(--ti-calendar-border-color);
       text-align: center;
       font-size: var(--ti-calendar-input-font-size);

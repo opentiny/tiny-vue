@@ -7,8 +7,8 @@
         :options="rg.schema.combinators"
         :value="rg.combinator"
         :title="rg.translations.combinators.title"
-        :className="rg.classNames.combinators"
-        :handleOnChange="rg.onCombinatorChange"
+        :class-name="rg.classNames.combinators"
+        :handle-on-change="rg.onCombinatorChange"
         :rules="rg.ruleGroup.rules"
         :level="rg.path.length"
         :context="rg.context"
@@ -16,7 +16,7 @@
         :component="controls.combinatorSelector"
         :path="getFields[idx].thisPath"
         :disabled="rg.disabled"
-        :independentCombinators="rg.schema.independentCombinators"
+        :independent-combinators="rg.schema.independentCombinators"
         :schema="rg.schema"
       ></component>
 
@@ -26,8 +26,8 @@
         :options="rg.schema.combinators"
         :value="r"
         :title="rg.translations.combinators.title"
-        :className="rg.classNames.combinators"
-        :handleOnChange="(val) => rg.onIndependentCombinatorChange(val, idx)"
+        :class-name="rg.classNames.combinators"
+        :handle-on-change="(val) => rg.onIndependentCombinatorChange(val, idx)"
         :rules="rg.ruleGroup.rules"
         :level="rg.path.length"
         :context="rg.context"
@@ -35,7 +35,7 @@
         :component="CombinatorSelectorControlElement"
         :path="getFields[idx].thisPath"
         :disabled="getFields[idx].thisPathDisabled"
-        :independentCombinators="rg.schema.independentCombinators"
+        :independent-combinators="rg.schema.independentCombinators"
         :schema="rg.schema"
       ></component>
 
@@ -47,12 +47,12 @@
         :actions="rg.actions"
         :path="getFields[idx].thisPath"
         :translations="rg.translations"
-        :ruleGroup="r"
+        :rule-group="r"
         :rules="r.rules"
         :combinator="'combinator' in r ? r.combinator : undefined"
         :not="!!r.not"
         :disabled="getFields[idx].thisPathDisabled"
-        :parentDisabled="rg.parentDisabled || rg.disabled"
+        :parent-disabled="rg.parentDisabled || rg.disabled"
         :context="rg.context"
       ></component>
 
@@ -64,15 +64,15 @@
         :field="r.field"
         :operator="r.operator"
         :value="r.value"
-        :valueSource="r.valueSource"
+        :value-source="r.valueSource"
         :schema="rg.schema"
         :actions="rg.actions"
         :path="getFields[idx].thisPath"
         :disabled="getFields[idx].thisPathDisabled"
-        :parentDisabled="rg.parentDisabled || rg.disabled"
+        :parent-disabled="rg.parentDisabled || rg.disabled"
         :translations="rg.translations"
         :context="rg.context"
-        :onlyOne="onlyOne"
+        :only-one="onlyOne"
       ></component>
     </div>
   </div>

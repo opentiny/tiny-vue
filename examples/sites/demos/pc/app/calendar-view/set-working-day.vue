@@ -35,7 +35,7 @@ export default {
   methods: {
     setDays(type) {
       if (!this.selectedDate.length) {
-        Modal.message('请选择日期')
+        Modal.message({ message: '请选择日期', status: 'info' })
         return
       }
       this[type].push(...this.selectedDate)
