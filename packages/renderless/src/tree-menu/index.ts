@@ -13,14 +13,14 @@ import type { ITreeMenuApi, ITreeMenuState, ITreeMenuProps, ITreeMenuData, ITree
 
 export const initData =
   ({ state, props, service, api }: { state: ITreeMenuState; props: ITreeMenuProps; service: any; api: ITreeMenuApi }) =>
-  () => {
+  async () => {
     if (props.data) {
       state.data = props.data
       return
     }
 
     if (typeof service.getMenuDataSync === 'function') {
-      const menuData = service.getMenuDataSync()
+      const menuData = await service.getMenuDataSync()
 
       state.data = api.setMenuKey({ newData: [], menuData })
     }

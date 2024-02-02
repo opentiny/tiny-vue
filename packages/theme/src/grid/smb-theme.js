@@ -19,5 +19,9 @@ export const tinyGridSmbTheme = {
   'ti-grid-icon-color': 'var(--ti-common-color-icon)',
   'ti-grid-checkbox-icon-size': 'var(--ti-common-font-size-2)',
   'ti-grid-checkbox-bg-color-checked': '#1476FF',
-  'ti-grid-radio-bg-color-checked': '#1476FF'
+  'ti-grid-radio-bg-color-checked': '#1476FF',
+  'ti-grid-toolbar-btn-height': 'var(--ti-common-size-8x, 32px)',
+  'ti-grid-toolbar-btn-width': 'var(--ti-common-size-8x, 32px)',
+  'ti-grid-toolbar-btn-border-color': 'var(--ti-common-color-line-normal, #c2c2c2)',
+  'ti-grid-toolbar-btn-border-radius': 'calc(var(--ti-common-size-base, 4px) + 2px)'
 }
