@@ -16,7 +16,8 @@ import type {
   IInputRenderlessParamUtils,
   IInputRenderlessParams,
   IInputState
-} from 'types/input.type'
+} from '@/types'
+import { unref } from 'vue'
 
 const HIDDEN_STYLE = `
 height:0 !important;visibility:hidden !important;overflow:hidden !important;
@@ -54,7 +55,7 @@ const STYLE = {
 const isServer = typeof window === 'undefined'
 const isKorean = (text: string): boolean => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(text)
 
-export const showBox = (state: IInputState) => (): void => {
+export const showBox = (state: IInputState) => (): void | boolean => {
   if (state.inputDisabled) {
     return false
   }
@@ -142,7 +143,7 @@ export const calcTextareaHeight =
       }
 
       if (props.size) {
-        minHeight = props.size == 'mini' ? minHeight * 0.67 : props.size == 'small' ? minHeight : minHeight * 1.17
+        minHeight = props.size === 'mini' ? minHeight * 0.67 : props.size === 'small' ? minHeight : minHeight * 1.17
       }
 
       if (props.height) {
@@ -226,7 +227,7 @@ export const handleInput =
       return
     }
 
-    if ((event.target as HTMLInputElement | HTMLTextAreaElement).value === state.nativeInputValue) {
+    if ((event.target as HTMLInputElement | HTMLTextAreaElement).value === unref(state.nativeInputValue)) {
       return
     }
 
@@ -280,14 +281,14 @@ export const setNativeInputValue =
       return
     }
 
-    if (input.value === state.nativeInputValue) {
+    if (input.value === unref(state.nativeInputValue)) {
       return
     }
 
-    input.value = state.nativeInputValue
+    input.value = unref(state.nativeInputValue)
   }
 
-export const handleCompositionStart = (state: IInputState) => (): void => (state.isComposing = true)
+export const handleCompositionStart = (state: IInputState) => (): boolean => (state.isComposing = true)
 
 export const handleCompositionUpdate =
   (state: IInputState) =>
@@ -335,13 +336,13 @@ export const calcIconOffset =
     const pendant = pendantMap[place]
 
     if (parent.$slots[pendant]) {
-      const dom = parent.$el.querySelector(`.${CLASS_PREFIX.InputGroup}${pendant}`)
+      const dom = parent.$el.querySelector(`.${CLASS_PREFIX.InputGroup}${pendant}`) as HTMLDivElement
       let transform
 
       if (place === 'suffix') {
-        transform = `translateX(-${dom.offsetWidth}px)`
+        transform = `translateX(-${dom?.offsetWidth}px)`
       } else if (place === 'prefix') {
-        transform = `translate(${dom.offsetWidth}px, -50%)`
+        transform = `translate(${dom?.offsetWidth}px, -50%)`
       }
 
       el.style.transform = transform
@@ -371,12 +372,14 @@ export const handlePasswordVisible =
 export const getSuffixVisible =
   ({ parent, props, state }: Pick<IInputRenderlessParams, 'parent' | 'props' | 'state'>) =>
   (): boolean =>
-    parent.$slots.suffix ||
-    props.suffixIcon ||
-    state.showClear ||
-    props.showPassword ||
-    state.isWordLimitVisible ||
-    (state.validateState && state.needStatusIcon)
+    !!(
+      parent.$slots.suffix ||
+      props.suffixIcon ||
+      state.showClear ||
+      props.showPassword ||
+      state.isWordLimitVisible ||
+      (state.validateState && state.needStatusIcon)
+    )
 
 export const textLength = (value: number | string | undefined): number => {
   if (typeof value === 'number') {
@@ -414,7 +417,7 @@ export const handleEnterDisplayOnlyContent =
       ((target as HTMLElement).scrollWidth > (target as HTMLElement).offsetWidth ||
         (type === 'textarea' && (target as HTMLElement).scrollHeight > (target as HTMLElement).offsetHeight))
     ) {
-      state.displayOnlyTooltip = props.displayOnlyContent || state.nativeInputValue
+      state.displayOnlyTooltip = unref(props.displayOnlyContent || state.nativeInputValue)
     }
   }
 
@@ -422,7 +425,7 @@ export const hiddenPassword =
   ({ state, props }: Pick<IInputRenderlessParams, 'state' | 'props'>) =>
   (): string => {
     let str = ''
-    const password = props.displayOnlyContent || state.nativeInputValue
+    const password = unref(props.displayOnlyContent || state.nativeInputValue)
 
     for (let i = 0; i < password.length; i++) {
       str += '*'
@@ -445,8 +448,8 @@ export const getDisplayedValue =
   ({ state, props }: Pick<IInputRenderlessParams, 'state' | 'props'>) =>
   (): string => {
     if (props.type === 'password') {
-      return state.hiddenPassword || '-'
+      return unref(state.hiddenPassword) || '-'
     } else {
-      return props.displayOnlyContent || state.nativeInputValue || '-'
+      return unref(props.displayOnlyContent || state.nativeInputValue) || '-'
     }
   }
