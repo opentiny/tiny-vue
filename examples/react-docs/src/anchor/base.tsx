@@ -44,7 +44,7 @@ function App() {
       setType((typeIt) => (typeIt === 'dot' ? 'line' : 'dot'))
       setIsAffix((isAffixIt) => !isAffixIt)
     },
-    linkClick: (e) => {
+    linkClick: (e: any) => {
       e.preventDefault()
     },
     change: () => {
