@@ -1,0 +1,88 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@userlink-prefix-cls: ~'@{css-prefix}userlink';
+@user-card-prefix-cls: ~'@{css-prefix}user-card';
+
+.@{userlink-prefix-cls} {
+  .component-css-vars-user-link();
+
+  li {
+    float: left;
+    list-style: none;
+
+    .@{css-prefix}popover__reference {
+      font-size: var(--ti-common-font-size-base);
+      color: #1890ff;
+
+      &:hover {
+        color: #40a9ff;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .@{user-card-prefix-cls} {
+    width: 600px;
+  }
+}
+
+.@{user-card-prefix-cls} {
+  .card-box {
+    font-size: var(--ti-user-link-font-size);
+    color: var(--ti-user-link-text-color);
+    font-weight: var(--ti-user-link-font-weight);
+
+    .card-box__body {
+      .card-top-img,
+      .card-top-text {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .card-top-img {
+        width: 80px;
+        border-radius: var(--ti-user-link-border-radius);
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .card-top-text {
+        padding: 5px 10px;
+        overflow: hidden;
+      }
+
+      .card-center {
+        margin-top: 10px;
+      }
+    }
+
+    .box__footer {
+      text-align: center;
+      cursor: pointer;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+  }
+
+  &.@{css-prefix}popover.@{css-prefix}popper {
+    padding: 24px;
+  }
+}

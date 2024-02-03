@@ -1,0 +1,45 @@
+@import '../custom.less';
+
+@float-bar-prefix-cls: ~'@{css-prefix}float-bar';
+
+.@{float-bar-prefix-cls} {
+  @apply fixed;
+  @apply ~"top-1/2";
+  @apply ~'right-2.5';
+  @apply ~'z-[99999]';
+  box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.15);
+  @apply rounded;
+  @apply overflow-hidden;
+  @apply bg-color-bg-1;
+  @apply py-1 px-0;
+
+  ul {
+    li {
+      @apply block;
+      @apply bg-color-bg-1;
+      @apply text-color-text-primary;
+      @apply text-sm;
+      min-width: 80px;
+      min-height: 32px;
+      @apply leading-8;
+      @apply text-center;
+
+      &:hover {
+        @apply bg-color-brand-hover-subtler;
+      }
+
+      a {
+        @apply w-full;
+        @apply h-full;
+        @apply text-color-text-primary;
+        @apply cursor-pointer;
+        @apply outline-0;
+
+        &:hover,
+        &:focus {
+          @apply no-underline;
+        }
+      }
+    }
+  }
+}

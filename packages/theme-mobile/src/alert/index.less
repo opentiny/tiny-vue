@@ -1,0 +1,121 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/alert.less';
+@import '../custom.less';
+@import '../base/index.less';
+@import './vars.less';
+
+@alert-prefix-cls: ~'@{css-prefix}mobile-alert';
+
+.@{alert-prefix-cls} {
+  display: flex;
+  align-items: top;
+  clear: both;
+  position: relative;
+  width: 100%;
+  font-size: 0;
+
+  .@{alert-prefix-cls}__content {
+    flex: 1;
+    color: var(--ti-mobile-alert-content-text-color);
+    padding: 0 var(--ti-mobile-alert-content-padding-horizotal);
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  &--normal {
+    height: var(--ti-mobile-alert-height, 36px);
+    line-height: 1.5;
+    padding: var(--ti-mobile-alert-padding-top) var(--ti-mobile-alert-padding-right) var(--ti-mobile-alert-padding-bottom) var(--ti-mobile-alert-padding-left);
+
+    .@{alert-prefix-cls}__content {
+      font-size: var(--ti-mobile-alert-content-font-size, 12px);
+
+      &.is-hideicon {
+        padding: 0;
+      }
+    }
+  }
+
+  &&--large {
+    padding: var(--ti-mobile-alert-large-padding-vertical) var(--ti-mobile-alert-padding-right) var(--ti-mobile-alert-large-padding-vertical) var(--ti-mobile-alert-padding-left);
+
+    .@{alert-prefix-cls}__content {
+      font-size: var(--ti-mobile-alert-large-font-size);
+
+      &.is-hideicoalert-variantn {
+        padding: 0;
+      }
+    }
+
+    .is-custom {
+      font-size: var(--ti-mobile-alert-large-font-size);
+    }
+
+    .@{alert-prefix-cls}__icon {
+      margin-top: 4px;
+    }
+  }
+
+  &--success {
+    .alert-variant(
+      var(--ti-mobile-alert-success-icon-color) ;
+        var(--ti-mobile-alert-success-link-color) ;
+        var(--ti-mobile-alert-success-bg-color)
+    );
+  }
+
+  &--info {
+    .alert-variant(
+      var(--ti-mobile-alert-info-icon-color) ;
+        var(--ti-mobile-alert-info-link-color) ;
+        var(--ti-mobile-alert-info-bg-color)
+    );
+  }
+
+  &--warning {
+    .alert-variant(
+      var(--ti-mobile-alert-warning-icon-color) ;
+        var(--ti-mobile-alert-warning-link-color) ;
+        var(--ti-mobile-alert-warning-bg-color)
+    );
+  }
+
+  &--error {
+    .alert-variant(
+      var(--ti-mobile-alert-error-icon-color) ;
+        var(--ti-mobile-alert-error-link-color) ;
+        var(--ti-mobile-alert-error-bg-color)
+    );
+  }
+
+  &__icon {
+    margin-top: 2px;
+    font-size: var(--ti-mobile-alert-icon-size);
+  }
+
+  &.is-center {
+    text-align: center;
+  }
+
+  .is-custom {
+    cursor: pointer;
+    font-size: var(--ti-mobile-alert-content-font-size);
+    color: var(--ti-mobile-alert-custom-text-color);
+  }
+
+  & &__close {
+    font-size: var(--ti-mobile-alert-close-icon-font-size);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,628 @@
+@import '../mixins/wizard.less';
+@import '../custom.less';
+
+@wizard-prefix-cls: ~'@{css-prefix}wizard';
+@user-contact-prefix-cls: ~'@{css-prefix}user-contact';
+@user-head-prefix-cls: ~'@{css-prefix}user-head';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@svg-wrapper-prefix-cls: ~'@{css-prefix}wizard__chart-svg';
+
+.@{wizard-prefix-cls} {
+  & &__nomarl {
+    .@{wizard-prefix-cls}__steps {
+      @apply flex;
+    }
+
+    .@{wizard-prefix-cls}__chart span {
+      @apply inline-block;
+    }
+
+    .@{wizard-prefix-cls}__name {
+      @apply ~'mt-1.5';
+      @apply overflow-hidden;
+      @apply text-center;
+
+      .name {
+        @apply text-xs;
+        @apply w-full;
+      }
+    }
+
+    .@{wizard-prefix-cls}__button {
+      @apply ~'mt-2.5';
+      @apply text-right;
+    }
+  }
+
+  & &__vertical {
+    .@{wizard-prefix-cls}__steps-item {
+      &.is-doing {
+        .@{wizard-prefix-cls}__chart-icon {
+          .wizard-icon-color(theme('colors.color.bg.1'), theme('colors.color.brand.DEFAULT'));
+
+          .@{wizard-prefix-cls}__chart-line {
+            &,
+            &.is-time-line {
+              .wizard-line-color(theme('colors.color.brand.DEFAULT'));
+            }
+          }
+        }
+      }
+    }
+
+    .@{wizard-prefix-cls}__chart-line {
+      height: 88px;
+      @apply w-1;
+      @apply top-0;
+      @apply relative;
+      @apply inline-block;
+    }
+
+    .@{wizard-prefix-cls}__chart-name {
+      @apply text-sm;
+      margin-left: 23px;
+      @apply inline-flex;
+      @apply flex-col;
+      @apply ~"-translate-y-2/4";
+
+      .children-name {
+        @apply text-xs;
+        @apply text-color-text-secondary;
+        @apply h-3;
+        @apply mt-2;
+        @apply leading-3;
+      }
+    }
+
+    .@{wizard-prefix-cls}__chart-icon {
+      @apply relative;
+      @apply ~'left-1/2';
+      @apply ~"-top-3";
+      @apply ~"-translate-x-2/4";
+    }
+
+    .@{wizard-prefix-cls}__time-wrapper {
+      @apply relative;
+      @apply ~'left-1/2';
+      @apply ~"-top-[3.5]";
+      @apply ~"-translate-x-2/4";
+      @apply fill-color-brand;
+      @apply text-xl;
+      @apply box-border;
+      @apply w-6;
+      @apply h-6;
+      @apply inline-block;
+      @apply rounded-full;
+      @apply text-center;
+      @apply bg-color-bg-1;
+      @apply border border-solid border-color-border-focus;
+
+      svg {
+        @apply w-4;
+        height: 22px;
+        @apply align-top;
+      }
+    }
+
+    .@{wizard-prefix-cls}__chart-children {
+      @apply relative;
+
+      .children-name {
+        @apply absolute;
+        margin-left: 15px;
+      }
+    }
+  }
+
+  & &__date {
+    min-width: 100px;
+    @apply w-auto;
+    @apply text-color-text-primary;
+    @apply text-xs;
+    line-height: 1.2em;
+    @apply inline-block;
+    @apply text-right;
+    @apply relative;
+    top: -15px;
+    right: 15px;
+
+    .date-icon {
+      @apply ml-1;
+    }
+
+    span {
+      @apply align-middle;
+    }
+  }
+
+  & &__steps-item {
+    &.is-ready {
+      .name {
+        @apply text-color-brand;
+      }
+
+      .@{wizard-prefix-cls}__chart-icon {
+        .wizard-icon-color(theme('colors.color.bg.1'), theme('colors.color.brand.DEFAULT'));
+      }
+
+      .@{wizard-prefix-cls}__chart-line {
+        .wizard-line-color(theme('colors.color.brand.DEFAULT'));
+      }
+    }
+
+    ul {
+      @apply list-none;
+    }
+  }
+
+  & &__chart {
+    @apply flex;
+    @apply justify-start;
+    @apply items-center;
+
+    & > .@{svg-wrapper-prefix-cls} {
+      & > .@{svg-prefix-cls} {
+        @apply text-xl;
+        @apply fill-color-brand;
+      }
+    }
+  }
+
+  & &__steps-item,
+  & &__chart-children {
+    &.is-ready,
+    &.is-doing {
+      .@{wizard-prefix-cls}__chart-icon {
+        .wizard-icon-color(theme('colors.color.bg.1'), theme('colors.color.brand.DEFAULT'));
+      }
+    }
+
+    &.is-doing .@{wizard-prefix-cls}__chart-line {
+      .wizard-line-color(theme('colors.color.brand.DEFAULT'));
+    }
+  }
+
+  & &__chart-children.is-ready .@{wizard-prefix-cls}__chart-line,
+  & &__chart-line.is-time-line {
+    .wizard-line-color(theme('colors.color.brand.DEFAULT'));
+  }
+
+  & &__chart-detail {
+    @apply py-1 px-2;
+    @apply rounded-sm;
+    min-height: 26px;
+    @apply h-auto;
+    @apply ml-3;
+    @apply inline-block;
+    @apply absolute;
+    @apply ~"-top-5";
+
+    &:hover {
+      @apply bg-color-warning-hover;
+
+      &::before {
+        @apply content-[''];
+        @apply w-0;
+        @apply h-0;
+        @apply ~"-mt-1";
+        @apply border-solid;
+        @apply border-y-4 border-r-4 border-l-0;
+        @apply border-y-transparent border-x-color-warning-hover;
+        @apply absolute;
+        @apply ~"-left-1";
+        @apply ~'top-2.5';
+      }
+
+      .detail-title,
+      .@{user-contact-prefix-cls}__role {
+        @apply text-color-text-inverse;
+      }
+    }
+
+    .detail-title {
+      @apply text-color-text-primary;
+      @apply text-sm;
+      @apply font-bold;
+    }
+  }
+
+  & &__chart-icon {
+    @apply w-5;
+    @apply h-5;
+    @apply leading-5;
+    @apply rounded-full;
+    @apply text-xs;
+    @apply text-center;
+    @apply bg-color-bg-2;
+    @apply text-color-text-inverse;
+    @apply box-content;
+    @apply inline-block;
+
+    &.time-line-icon {
+      @apply w-3;
+      @apply h-3;
+      @apply leading-3;
+    }
+  }
+
+  & &__chart-icon,
+  & &__chart-name,
+  & &__date,
+  .@{svg-prefix-cls} {
+    @apply cursor-pointer;
+  }
+
+  & &__chart-line {
+    @apply h-1;
+    @apply bg-color-bg-5;
+    width: 50px;
+  }
+
+  & &__chart-line &__chart-icon-time {
+    @apply text-xl;
+    @apply fill-color-brand;
+    @apply bg-color-bg-1;
+  }
+
+  .@{user-contact-prefix-cls} {
+    .dropdown-part .@{user-head-prefix-cls},
+    .@{svg-prefix-cls} {
+      @apply hidden;
+    }
+
+    .@{user-contact-prefix-cls}__role {
+      @apply ml-0;
+      span {
+        @apply inline-block;
+      }
+    }
+  }
+}
+
+.@{wizard-prefix-cls} {
+  .@{wizard-prefix-cls}__nomarl {
+    .@{wizard-prefix-cls}__steps-item {
+      .@{wizard-prefix-cls}__chart-icon {
+        @apply w-6;
+        @apply h-6;
+        line-height: 22px;
+        @apply text-sm;
+        @apply border border-solid border-color-border-disabled;
+        @apply bg-color-bg-1;
+        @apply text-color-text-disabled;
+        @apply box-border;
+      }
+
+      .@{wizard-prefix-cls}__chart-line {
+        @apply h-px;
+        @apply bg-color-text-disabled;
+        @apply border-color-border-disabled;
+      }
+
+      .@{wizard-prefix-cls}__name {
+        @apply mt-3;
+
+        .name {
+          @apply text-sm;
+          line-height: 14px;
+          @apply text-color-text-disabled;
+        }
+      }
+
+      &.is-doing {
+        .@{wizard-prefix-cls}__chart-icon {
+          @apply border-color-border-focus;
+          @apply bg-color-brand;
+          @apply text-color-text-inverse;
+        }
+
+        .@{wizard-prefix-cls}__name .name {
+          @apply text-color-brand;
+        }
+
+        .@{wizard-prefix-cls}__chart-line:first-child {
+          @apply bg-color-text-primary;
+          @apply border-color-border-hover;
+        }
+
+        .@{wizard-prefix-cls}__chart-svg {
+          @apply w-6;
+          @apply h-6;
+          @apply border border-solid border-color-border-focus;
+          @apply rounded-full;
+          @apply text-center;
+          @apply bg-color-bg-1;
+          @apply fill-color-brand;
+          @apply text-base;
+
+          & > .tiny-svg {
+            @apply ~"-translate-y-0.5";
+          }
+        }
+      }
+
+      &.is-ready {
+        .@{wizard-prefix-cls}__chart-icon {
+          @apply border-color-border-focus;
+          @apply bg-color-bg-1;
+          @apply text-color-brand;
+        }
+
+        .@{wizard-prefix-cls}__name .name {
+          @apply text-color-text-primary;
+        }
+
+        .@{wizard-prefix-cls}__chart-line {
+          @apply bg-color-text-primary;
+          @apply border-color-border-hover;
+        }
+
+        &:hover {
+          .@{wizard-prefix-cls}__chart-icon {
+            @apply border-color-brand-hover;
+            @apply text-color-brand-hover;
+          }
+
+          .@{wizard-prefix-cls}__name .name {
+            @apply text-color-brand-hover;
+          }
+        }
+
+        &:active {
+          .@{wizard-prefix-cls}__chart-icon {
+            @apply border-color-brand-active;
+            @apply text-color-brand-active;
+          }
+
+          .@{wizard-prefix-cls}__name .name {
+            @apply text-color-brand-active;
+          }
+        }
+      }
+
+      &:first-child {
+        .@{wizard-prefix-cls}__chart-line:first-child {
+          @apply invisible;
+        }
+      }
+
+      &:last-child {
+        .@{wizard-prefix-cls}__chart-line:last-child {
+          @apply invisible;
+        }
+      }
+    }
+  }
+}
+
+.@{wizard-prefix-cls} {
+  .@{wizard-prefix-cls}__vertical {
+    .@{wizard-prefix-cls}__steps-item {
+      .@{wizard-prefix-cls}__chart-line {
+        @apply w-px;
+        @apply bg-color-text-disabled;
+
+        .@{wizard-prefix-cls}__chart-icon {
+          @apply w-6;
+          @apply h-6;
+          @apply leading-6;
+          @apply box-border;
+          @apply border border-solid border-color-border-disabled;
+          @apply bg-color-bg-1;
+        }
+      }
+
+      .@{wizard-prefix-cls}__chart-line .@{wizard-prefix-cls}__chart-icon,
+      .@{wizard-prefix-cls}__chart-name .name {
+        @apply text-sm;
+        @apply text-color-text-disabled;
+      }
+
+      .@{wizard-prefix-cls}__chart-children .children-name {
+        @apply text-xs;
+        @apply text-color-text-disabled;
+      }
+
+      .@{wizard-prefix-cls}__chart-name {
+        @apply relative;
+        @apply ~'-top-1.5';
+      }
+
+      &.is-ready {
+        .@{wizard-prefix-cls}__chart-line {
+          @apply bg-color-text-primary;
+          @apply border-color-border-hover;
+
+          .@{wizard-prefix-cls}__chart-icon {
+            @apply border-color-border-focus;
+            @apply text-color-brand;
+          }
+        }
+
+        .@{wizard-prefix-cls}__chart-name .name {
+          @apply text-color-text-primary;
+        }
+
+        .@{wizard-prefix-cls}__chart-children .children-name {
+          @apply text-color-text-primary;
+        }
+
+        &:hover {
+          .@{wizard-prefix-cls}__chart-line .@{wizard-prefix-cls}__chart-icon {
+            @apply border-color-brand-hover;
+            @apply text-color-brand-hover;
+          }
+
+          .@{wizard-prefix-cls}__chart-name .name {
+            @apply text-color-brand-hover;
+          }
+        }
+
+        &:active {
+          .@{wizard-prefix-cls}__chart-line .@{wizard-prefix-cls}__chart-icon {
+            @apply border-color-brand-active;
+            @apply text-color-brand-active;
+          }
+
+          .@{wizard-prefix-cls}__chart-name .name {
+            @apply text-color-brand-active;
+          }
+        }
+      }
+
+      &.is-doing {
+        .@{wizard-prefix-cls}__chart-line .@{wizard-prefix-cls}__chart-icon {
+          @apply border-color-border-focus;
+          @apply bg-color-brand;
+          @apply text-color-text-inverse;
+        }
+
+        .@{wizard-prefix-cls}__chart-name .name {
+          @apply text-color-brand;
+        }
+
+        .@{wizard-prefix-cls}__chart-children .children-name {
+          @apply text-color-brand;
+        }
+      }
+    }
+  }
+}
+
+.@{wizard-prefix-cls} {
+  .@{wizard-prefix-cls}__vertical.is-time-line-flow {
+    .@{wizard-prefix-cls}__steps-item {
+      .@{wizard-prefix-cls}__chart-line {
+        @apply w-px;
+        @apply bg-color-text-disabled;
+      }
+
+      &.is-time-line-ready > .@{wizard-prefix-cls}__node-wrapper > .@{wizard-prefix-cls}__chart-line,
+      &.is-time-line-doing > .@{wizard-prefix-cls}__node-wrapper > .@{wizard-prefix-cls}__chart-line,
+      .@{wizard-prefix-cls}__chart-children.is-ready .@{wizard-prefix-cls}__chart-line {
+        @apply bg-color-text-primary;
+      }
+
+      & > .@{wizard-prefix-cls}__node-wrapper > .@{wizard-prefix-cls}__chart-line .@{wizard-prefix-cls}__time-wrapper {
+        @apply relative;
+        @apply ~'left-1/2';
+        @apply ~"top-[3.5]";
+        @apply ~"-translate-x-2/4";
+        @apply text-base;
+        @apply fill-color-text-disabled;
+        @apply box-border;
+        @apply w-6;
+        @apply h-6;
+        @apply inline-block;
+        @apply rounded-full;
+        @apply text-center;
+        @apply bg-color-bg-1;
+      }
+
+      &.is-time-line-ready
+        > .@{wizard-prefix-cls}__node-wrapper
+        > .@{wizard-prefix-cls}__chart-line
+        .@{wizard-prefix-cls}__time-wrapper,
+      &.is-time-line-doing
+        > .@{wizard-prefix-cls}__node-wrapper
+        > .@{wizard-prefix-cls}__chart-line
+        .@{wizard-prefix-cls}__time-wrapper {
+        @apply fill-color-brand;
+      }
+
+      &:last-child > ul .@{wizard-prefix-cls}__chart-line {
+        background: none !important;
+      }
+
+      .@{wizard-prefix-cls}__chart-children {
+        .@{wizard-prefix-cls}__chart-icon {
+          @apply w-3;
+          @apply h-3;
+          @apply leading-3;
+          @apply bg-color-bg-1;
+          @apply border border-solid border-color-border-hover;
+          @apply rounded-full;
+          @apply box-border;
+        }
+
+        .@{wizard-prefix-cls}__chart-detail .detail-title {
+          @apply text-color-text-disabled;
+          @apply text-sm;
+        }
+
+        .time-line-text,
+        .@{wizard-prefix-cls}__chart-detail .tiny-user-contact__role {
+          @apply text-color-text-disabled;
+          @apply text-xs;
+        }
+
+        .@{wizard-prefix-cls}__chart-detail:hover {
+          .detail-title,
+          .tiny-user-contact__role {
+            @apply text-color-text-inverse;
+          }
+        }
+
+        &.is-ready {
+          .@{wizard-prefix-cls}__chart-detail .detail-title {
+            @apply text-color-text-primary;
+          }
+
+          .time-line-text,
+          .@{wizard-prefix-cls}__chart-detail .tiny-user-contact__role {
+            @apply text-color-text-primary;
+          }
+
+          .@{wizard-prefix-cls}__chart-detail:hover {
+            .detail-title,
+            .tiny-user-contact__role {
+              @apply text-color-text-inverse;
+            }
+          }
+        }
+
+        &.is-doing {
+          .@{wizard-prefix-cls}__chart-detail .detail-title {
+            @apply text-color-brand;
+          }
+
+          .time-line-text,
+          .@{wizard-prefix-cls}__chart-detail .tiny-user-contact__role {
+            @apply text-color-brand;
+          }
+
+          .@{wizard-prefix-cls}__chart-detail:hover {
+            .detail-title,
+            .tiny-user-contact__role {
+              @apply text-color-text-inverse;
+            }
+          }
+        }
+      }
+
+      & > .@{wizard-prefix-cls}__node-wrapper .@{wizard-prefix-cls}__date {
+        @apply text-xs;
+        @apply text-color-text-disabled;
+
+        .@{wizard-prefix-cls}__date-wrapper .date-icon {
+          @apply text-xs;
+          @apply fill-color-text-disabled;
+        }
+      }
+
+      &.is-time-line-ready {
+        & > .@{wizard-prefix-cls}__node-wrapper .@{wizard-prefix-cls}__date {
+          @apply text-color-text-primary;
+        }
+
+        &
+          > .@{wizard-prefix-cls}__node-wrapper
+          .@{wizard-prefix-cls}__date
+          .@{wizard-prefix-cls}__date-wrapper
+          .date-icon {
+          @apply fill-color-text-primary;
+        }
+      }
+    }
+  }
+}

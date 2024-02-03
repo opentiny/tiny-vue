@@ -1,0 +1,76 @@
+@import '../custom.less';
+@import '../mixins/common.less';
+
+@dept-prefix-cls: ~'@{css-prefix}dept';
+@input-prefix-cls: ~'@{css-prefix}input';
+@col-prefix-cls: ~'@{css-prefix}col';
+
+.@{dept-prefix-cls} {
+  &__search {
+    @apply mb-3;
+  }
+
+  &__text,
+  &__label {
+    @apply text-xs;
+    @apply text-color-text-secondary;
+    @apply whitespace-nowrap;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+  }
+
+  &__label {
+    @apply text-left;
+
+    &.is-selected {
+      @apply text-left;
+      @apply my-2 mx-0;
+      @apply text-color-text-primary;
+    }
+  }
+
+  &__selected-info {
+    @apply text-color-text-primary;
+    @apply text-sm;
+    @apply bg-color-bg-2;
+    @apply ~'py-1.5' px-4;
+    @apply m-0;
+    @apply rounded;
+
+    .@{dept-prefix-cls}__selected-split_line {
+      @apply py-0 px-2;
+      @apply text-xs;
+      @apply text-color-text-disabled;
+    }
+  }
+
+  &__item {
+    @apply mb-4;
+  }
+
+  &__search &__label,
+  &__item &__label {
+    &.@{col-prefix-cls} {
+      line-height: 30px;
+      @apply pl-0;
+      @apply pr-2;
+
+      & + .@{col-prefix-cls} {
+        @apply p-0;
+      }
+    }
+  }
+
+  &__search .@{col-prefix-cls} {
+    @apply p-0;
+  }
+
+  .@{input-prefix-cls}__inner {
+    .text-overflow();
+  }
+
+  .@{input-prefix-cls}__icon {
+    @apply align-middle;
+    @apply fill-color-text-placeholder;
+  }
+}

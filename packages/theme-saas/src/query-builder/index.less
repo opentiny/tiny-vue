@@ -1,0 +1,266 @@
+@import '../custom.less';
+
+@query-builder-prefix-cls: ~'@{css-prefix}query-builder';
+
+.@{query-builder-prefix-cls} {
+  .queryBuilder {
+    overflow: hidden;
+  }
+
+  .ruleGroup {
+    display: flex;
+    position: relative;
+    padding-left: 45px;
+    border-radius: 4px;
+  }
+
+  .ruleGroup-header {
+    position: relative;
+    height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ruleGroup-body {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .group-rule-body {
+    flex: auto;
+    gap: 8px;
+  }
+
+  .group-rule-branches {
+    position: absolute;
+    top: 0;
+    bottom: 44px;
+    left: 14px;
+  }
+
+  .group-rule-action {
+    flex: none;
+  }
+
+  .group-combinator-box {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .combinator-branches {
+    position: absolute;
+    top: 14px;
+    bottom: 14px;
+    right: -16px;
+    left: 50%;
+    border: 1px solid #e8ebef;
+    border-radius: 4px;
+    border-right: 0;
+  }
+
+  .combinator-btn {
+    position: relative;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+    background: #f5f6f8;
+    border-radius: 2px;
+    cursor: pointer;
+    color: #0067d1;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+
+  .combinator-btn.is-disabled {
+    color: #8081a2;
+    cursor: not-allowed;
+  }
+
+  .query-builder-button {
+    min-width: auto;
+    padding: 0;
+    margin: 0;
+    flex: none;
+  }
+
+  .primary-svg {
+    fill: currentColor;
+  }
+
+  .tiny-button.query-builder-button {
+    & > .btn-icon {
+      font-size: 16px;
+      fill: currentColor;
+      color: #b5bbc1;
+    }
+
+    & > .btn-font {
+      font-size: 14px;
+      color: #b5bbc1;
+    }
+
+    &:hover > .btn-icon,
+    &:hover > .btn-font {
+      color: #78828d;
+      fill: currentColor;
+    }
+
+    &.is-disabled {
+      & > .btn-font,
+      & > svg.btn-icon {
+        color: rgba(181, 187, 193, 50%);
+        fill: currentColor;
+      }
+    }
+  }
+
+  .query-builder-rule {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .rule-fields {
+    min-width: 20%;
+    max-width: 40%;
+  }
+
+  .rule-operators {
+    flex: 1;
+  }
+
+  .rule-value {
+    flex: auto;
+    width: 100%;
+  }
+
+  .ruleGroup-body:empty {
+    display: none;
+  }
+
+  .rule--wrap {
+    display: flex;
+    flex: auto;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .rule-radio {
+    display: flex;
+  }
+
+  .rule-value-editor {
+    display: flex;
+    min-width: 20%;
+    flex: auto;
+    gap: 8px;
+  }
+
+  .rule-value-editor > div {
+    flex: auto;
+  }
+
+  .rule-item--wrap {
+    display: flex;
+    padding: 0 10px;
+  }
+
+  .group-button {
+    margin-left: 10px;
+  }
+
+  .rule-value-list-item {
+    height: 100%;
+  }
+
+  .rule-group--wrap {
+    display: flex;
+    gap: 12px;
+  }
+
+  .rule-lock {
+    margin-left: 10px;
+  }
+
+  .ruleGroup-notToggle {
+    display: flex;
+    align-items: center;
+    color: #0067d1;
+  }
+
+  .ruleGroup-notToggle input {
+    margin-right: 2px;
+  }
+
+  .query-builder-select {
+    min-width: 20%;
+    display: flex;
+  }
+
+  .query-builder-select > div {
+    flex: 1;
+  }
+
+  .betweenRules {
+    max-width: 20%;
+    margin-bottom: 12px;
+  }
+
+  .queryBuilder-branches {
+    .ruleGroup {
+      padding-left: 40px;
+    }
+
+    .ruleGroup-body {
+      padding: 0 12px;
+    }
+
+    .ruleGroup-header {
+      margin-left: 10px;
+    }
+
+    .ruleGroup .ruleGroup {
+      border: 1px solid #e8ebef;
+
+      .group-rule-branches {
+        top: 12px;
+      }
+
+      .ruleGroup-header {
+        margin-left: 6px;
+      }
+
+      .combinator-branches {
+        top: 14px;
+        right: -12px;
+        bottom: 14px;
+      }
+
+      .ruleGroup-body {
+        padding: 12px 8px 0;
+      }
+    }
+  }
+
+  .display-only-field {
+    .rule--wrap {
+      & > .rule-value-editor,
+      & > .rule-value,
+      & > .rule-valueSource,
+      & > .rule-operators {
+        display: none;
+      }
+    }
+
+    .rule-fields {
+      max-width: none;
+    }
+  }
+}

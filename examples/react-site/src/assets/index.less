@@ -1,0 +1,67 @@
+// 重置代码
+html,
+body {
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+  font-size: 12px;
+}
+* {
+  box-sizing: border-box;
+}
+:root {
+  --white: #fff;
+  --black: #000;
+  --main: #2b292d; // 主字体色
+  --mainless: #2c2e30;
+  --second: #7e8085; // 次级字色
+  --secondless: lighten(#7e8085, 20%); // 次级字色
+
+  --light: #f6f8f9; // 非常浅的背景色
+  --lightless: #f1f2f3; // 非常浅的
+
+  --primary: #2f5bea; // 四个主色
+  --success: #5073e5;
+  --warning: #ffbe0e;
+  --error: #ee343f;
+  --primaryless: lighten(#2f5bea, 20%); // 四个主色的浅色，比如鼠标移上时
+  --successless: lighten(#5073e5, 20%);
+  --warningless: lighten(#ffbe0e, 20%);
+  --errorless: lighten(#ee343f, 20%);
+
+  --border-style: solid;
+  --border-color: #ddd;
+  --border-width: 1px;
+  --radius-sm: 5px;
+  --radius-lg: 30px;
+  --shadow-sm: 0px 1px 3px 3px RGBA(0, 0, 0, 0.1);
+  --shadow-lg: 0px 6px 18px 18px RGBA(0, 0, 0, 0.1);
+
+  --text-shadow-sm: rgb(0, 0, 0, 0.4) 0px 1px 3px;
+  --text-shadow-lg: rgb(0, 0, 0, 0.4) 0px 6px 3px;
+
+  --mask: fade(#000, 45%);
+  --trans-time: 0.4s;
+  --trans-time-slow: 1s;
+
+  // echarts 的9种颜色
+  --c0: #efefef;
+  --c1: #5470c6;
+  --c2: #91cc75;
+  --c3: #fac858;
+  --c4: #ee6666;
+  --c5: #73c0de;
+  --c6: #3ba272;
+  --c7: #fc8452;
+  --c8: #9a60b4;
+  --c9: #ea7ccc;
+}
+
+.theme-dark {
+  --lightless: #3d3d3d; // 非常浅的
+  --border-color: #6b6a6a;
+}
+
+[draggable='true'] {
+  user-select: none;
+}

@@ -1,0 +1,131 @@
+@import '../custom.less';
+
+@grid-radio-prefix-cls: ~'@{css-prefix}grid-radio';
+
+// radio
+.@{grid-radio-prefix-cls} {
+  @apply inline-block;
+  @apply select-none;
+  @apply cursor-pointer;
+
+  &.size__small,
+  &.size__mini {
+    @apply text-base;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+
+    > input {
+      & + .@{grid-radio-prefix-cls}__icon {
+        @apply text-base;
+
+        > svg {
+          @apply block;
+        }
+      }
+    }
+  }
+
+  > input {
+    @apply hidden;
+
+    & + .@{grid-radio-prefix-cls}__icon {
+      @apply relative;
+      @apply inline-block;
+      width: 1em;
+      height: 1em;
+      @apply align-middle;
+      @apply rounded-full;
+      @apply text-base;
+
+      > svg {
+        @apply fill-color-icon-secondary;
+        @apply align-top;
+
+        &:hover {
+          @apply fill-color-icon-hover;
+        }
+
+        &:active {
+          @apply fill-color-icon-active;
+        }
+
+        &.icon-radio-selected {
+          @apply hidden;
+        }
+      }
+    }
+
+    &:checked + .@{grid-radio-prefix-cls}__icon {
+      > svg {
+        &.icon-radio {
+          @apply hidden;
+        }
+
+        &.icon-radio-selected {
+          @apply inline-block;
+          @apply fill-color-brand;
+
+          &:hover {
+            @apply fill-color-icon-hover;
+          }
+
+          &:active {
+            @apply fill-color-icon-active;
+          }
+        }
+      }
+
+      & + .@{grid-radio-prefix-cls}__label {
+        @apply text-color-brand;
+      }
+    }
+  }
+
+  & &__label {
+    @apply pl-2;
+    @apply align-middle;
+    @apply inline-block;
+  }
+
+  & + & {
+    @apply ~'ml-2.5';
+  }
+
+  &.is__disabled {
+    @apply cursor-not-allowed;
+
+    > input {
+      & + .@{grid-radio-prefix-cls}__icon {
+        > svg {
+          @apply fill-color-text-disabled;
+
+          path:last-child {
+            @apply fill-color-border-disabled;
+          }
+        }
+
+        &:before {
+          @apply border-color-bg-2;
+          @apply bg-color-bg-2;
+        }
+
+        & + .@{grid-radio-prefix-cls}__label {
+          @apply text-color-text-disabled;
+        }
+      }
+
+      &:checked + .@{grid-radio-prefix-cls}__icon {
+        > svg,
+        > svg:hover,
+        > svg:active {
+          @apply fill-color-brand-disabled;
+
+          > path:first-child {
+            @apply fill-color-brand-disabled;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="93.9601682%" y1="100%" x2="6.17703115%" y2="6.32052235%" id="linearGradient-1">
+            <stop stop-color="#F7C041" offset="0%"></stop>
+            <stop stop-color="#F69836" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-80.0%" y="-80.0%" width="260.0%" height="260.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.964705882   0 0 0 0 0.596078431   0 0 0 0 0.211764706  0 0 0 0.7 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="iconpro_search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="搜索icon">
+            <g id="业务对象/40*40_BOM"></g>
+            <g id="search">
+                <rect id="矩形备份-7" fill="url(#linearGradient-1)" x="0" y="0" width="40" height="40" rx="6"></rect>
+                <path d="M24.0051775,24.1025784 C23.4409287,24.6750211 23.4409287,25.6030048 24.0051775,26.1754474 L29.1151732,31.2432705 C29.679542,31.8155903 30.5944363,31.8155903 31.1588051,31.2432705 C31.7230529,30.670828 31.7230529,29.7428455 31.1588051,29.170403 L26.0488108,24.1025784 C25.7882833,23.837933 25.4378834,23.6842965 25.0693341,23.6731164 C24.6714428,23.6615155 24.2864509,23.8168868 24.0051775,24.1025784 Z" id="路径" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+        <g id="编组-16" filter="url(#filter-2)" transform="translate(9.000000, 9.000000)" fill="#FFFFFF">
+            <path d="M10.1086957,2.60869565 C14.2685977,2.60869565 17.6086957,5.94879305 17.6086957,10.1086957 C17.6086957,14.2685977 14.2685977,17.6086957 10.1086957,17.6086957 C5.94879305,17.6086957 2.60869565,14.2685977 2.60869565,10.1086957 C2.60869565,5.94879305 5.94879305,2.60869565 10.1086957,2.60869565 Z" id="路径" fill-rule="nonzero" opacity="0.7"></path>
+            <path d="M10,0 C15.5059271,0 20,4.49407343 20,10 C20,15.5059271 15.5059271,20 10,20 C4.49407343,20 0,15.5059271 0,10 C0,4.49407343 4.49407343,0 10,0 Z M10,3 C6.11742424,3 3,6.11742424 3,10 C3,13.8825752 6.11742424,17 10,17 C13.8825752,17 17,13.8825752 17,10 C17,6.11742424 13.8825752,3 10,3 Z" id="形状结合"></path>
+        </g>
+        <g id="编组" transform="translate(24.581991, 24.672510)"></g>
+    </g>
+</svg>

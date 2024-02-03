@@ -1,0 +1,134 @@
+@import '../custom.less';
+
+@time-spinner-prefix-cls: ~'@{css-prefix}time-spinner';
+
+.@{time-spinner-prefix-cls} {
+  &__wrapper {
+    max-height: 276px;
+    @apply overflow-auto;
+    @apply inline-block;
+    @apply ~'w-1/2';
+    @apply align-top;
+    @apply relative;
+
+    .@{scrollbar-prefix-cls}__wrap:not(.@{scrollbar-prefix-cls}__wrap--hidden-default) {
+      padding-bottom: 15px;
+    }
+
+    &.is-arrow {
+      @apply left-0;
+      @apply box-border;
+      @apply text-center;
+      @apply overflow-hidden;
+
+      .@{time-spinner-prefix-cls}__list {
+        @apply ~"-translate-y-8";
+
+        &::after,
+        &::before {
+          height: 98px;
+        }
+      }
+
+      .@{time-spinner-prefix-cls}__item:hover:not(.disabled):not(.active) {
+        background: none;
+        @apply cursor-default;
+      }
+    }
+
+    .@{time-spinner-prefix-cls}__list {
+      @apply ~"-translate-y-1.5";
+    }
+  }
+
+  &__arrow {
+    @apply text-xs;
+    @apply text-color-text-placeholder;
+    @apply h-3;
+    @apply leading-3;
+    @apply absolute;
+    @apply left-0;
+    @apply w-full;
+    @apply ~'z-[1]';
+    @apply text-center;
+    @apply cursor-pointer;
+
+    .@{svg-prefix-cls} {
+      @apply fill-color-text-primary;
+    }
+
+    &:hover .@{svg-prefix-cls} {
+      @apply fill-color-brand;
+    }
+
+    &.@{css-prefix}icon-arrow-up {
+      @apply top-9;
+    }
+
+    &.@{css-prefix}icon-arrow-down {
+      @apply bottom-9;
+    }
+
+    &.@{input-prefix-cls} {
+      width: 70%;
+
+      .@{input-prefix-cls}__inner {
+        @apply p-0;
+        @apply text-center;
+      }
+    }
+  }
+
+  &__list {
+    @apply p-0;
+    @apply m-0;
+    @apply list-none;
+    @apply text-center;
+
+    &::after,
+    &::before {
+      @apply content-[''];
+      @apply block;
+      @apply w-full;
+      height: 120px;
+    }
+  }
+
+  &__item {
+    @apply text-sm;
+    @apply text-color-text-primary;
+    @apply h-12;
+    line-height: 48px;
+
+    span {
+      @apply inline-block;
+      @apply leading-6;
+      @apply h-6;
+      @apply py-0 px-1;
+      @apply my-3 mx-0;
+      @apply rounded;
+    }
+
+    &:hover:not(.disabled):not(.active) {
+      @apply cursor-pointer;
+
+      span {
+        @apply bg-color-brand-hover-subtle;
+      }
+    }
+
+    &.active:not(.disabled) {
+      @apply text-color-text-primary;
+      @apply font-bold;
+    }
+
+    &.disabled {
+      @apply text-color-text-placeholder;
+      @apply cursor-not-allowed;
+    }
+  }
+
+  &.has-seconds .@{time-spinner-prefix-cls}__wrapper {
+    @apply ~"w-1/3";
+  }
+}

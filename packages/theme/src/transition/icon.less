@@ -1,0 +1,58 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+// input右边icon显示隐藏动画
+.@{css-prefix}transition-icon-out-in-enter-active {
+  animation: bounce-in 0.3s;
+}
+
+.@{css-prefix}transition-icon-out-in-leave-active {
+  animation: bounce-in 0.3s reverse;
+}
+
+.@{css-prefix}transition-icon-scale-in-enter-active {
+  animation: scale-in 0.3s;
+}
+
+.@{css-prefix}transition-icon-scale-in-leave-active {
+  animation: scale-in 0.3s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: translateY(-50%) scale(0);
+  }
+
+  50% {
+    transform: translateY(-50%) scale(1.2);
+  }
+
+  100% {
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

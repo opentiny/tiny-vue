@@ -1,0 +1,269 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@select-prefix-cls: ~'@{css-prefix}select';
+@input-prefix-cls: ~'@{css-prefix}input';
+@tag-prefix-cls: ~'@{css-prefix}tag';
+
+.@{select-prefix-cls} {
+  .component-css-vars-select();
+
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  outline: 0;
+
+  &&__multiple:not(&__collapse-tags):not(&__filterable) &__tags>span {
+
+    // 兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active),
+    (-ms-high-contrast: none) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+    }
+
+    // 兼容edge
+    @supports (-ms-ime-align: auto) {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+    }
+  }
+
+  &&__collapse-tags {
+    .@{select-prefix-cls}__tags {
+      &>span {
+        display: flex;
+        width: 100%;
+
+        &>span:not(:only-child):first-child {
+          max-width: 70%;
+        }
+      }
+    }
+
+    &.@{select-prefix-cls}__filterable {
+      .@{select-prefix-cls}__tags {
+        &>span {
+          width: auto;
+          max-width: 76%;
+
+          &>span:first-child {
+            flex: 1;
+
+            // 兼容ie10-ie11
+            @media screen and (-ms-high-contrast: active),
+            (-ms-high-contrast: none) {
+              flex-basis: auto;
+            }
+          }
+
+          &>span:only-child,
+          &>span:not(:only-child):first-child {
+            max-width: 100%;
+          }
+
+          &>span:not(:only-child):not(:first-child) {
+
+            @media screen and (-ms-high-contrast: active),
+            (-ms-high-contrast: none) {
+              // 兼容ie10-ie11
+              flex-shrink: 0;
+              flex-basis: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &&__filterable {
+    .@{select-prefix-cls}__tags {
+      .@{select-prefix-cls}__input {
+        cursor: text;
+      }
+    }
+  }
+
+  &__tags {
+    position: absolute;
+    line-height: normal;
+    white-space: normal;
+    padding-left: var(--ti-select-tags-wrap-padding-left);
+    padding-right: var(--ti-select-tags-wrap-padding-right);
+    padding-bottom: var(--ti-select-tags-wrap-padding-bottom);
+    padding-top: var(--ti-select-tags-wrap-padding-top);
+    z-index: 1;
+    top: 50%;
+    margin-left: 1px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+
+    &>span {
+      display: contents;
+    }
+
+    .@{select-prefix-cls}__input {
+      cursor: pointer;
+      border: none;
+      outline: 0;
+      padding: 0;
+      margin-left: 8px;
+      color: var(--ti-select-input-text-color);
+      font-size: var(--ti-select-input-font-size);
+      height: 28px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: transparent;
+
+      &.is-mini {
+        height: var(--ti-select-input-mini-height);
+      }
+
+      &.is-small {
+        height: var(--ti-select-input-small-height);
+      }
+
+      &.is-medium {
+        height: var(--ti-select-input-medium-height);
+      }
+    }
+
+    &.is-showicon {
+      padding-left: 24px;
+    }
+
+    .@{tag-prefix-cls} {
+      white-space: nowrap;
+      box-sizing: border-box;
+      border-color: transparent;
+      margin: var(--ti-select-tags-margin-top) var(--ti-select-tags-margin-right) var(--ti-select-tags-margin-bottom) var(--ti-select-tags-margin-left);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: inline-flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .@{select-prefix-cls}__tags-text {
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      &+.@{tag-prefix-cls}__close {
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  &-tip &-tipcontent {
+    max-width: 300px;
+  }
+
+  & .@{input-prefix-cls} {
+    display: block;
+
+    .@{input-prefix-cls}__inner[readonly] {
+      cursor: pointer;
+    }
+
+    .@{select-prefix-cls}__caret {
+      fill: var(--ti-select-input-caret-icon-color);
+      font-size: var(--ti-select-input-caret-font-size);
+      transition: transform 0.3s;
+      transform: rotateZ(180deg);
+      cursor: pointer;
+
+      &.@{select-prefix-cls}__close {
+        margin-right: var(--ti-select-input-icon-close-margin-right);
+      }
+
+      &:hover {
+        fill: var(--ti-select-input-caret-hover-icon-color);
+      }
+
+      &.is-reverse {
+        transform: rotateZ(0);
+      }
+    }
+
+    .@{select-prefix-cls}__copy {
+      cursor: pointer;
+    }
+
+    .@{input-prefix-cls}__suffix {
+      top: var(--ti-select-input-icon-top);
+    }
+
+    &-medium .@{input-prefix-cls}__suffix {
+      top: var(--ti-select-input-icon-top-medium);
+    }
+
+    &-small .@{input-prefix-cls}__suffix {
+      top: var(--ti-select-input-icon-top-small);
+    }
+
+    &-mini .@{input-prefix-cls}__suffix {
+      top: var(--ti-select-input-icon-top-mini);
+    }
+
+    &.is-disabled {
+      .@{select-prefix-cls}__caret {
+        fill: var(--ti-select-input-disabled-caret-text-color);
+        cursor: not-allowed;
+      }
+
+      .@{input-prefix-cls}__inner {
+        cursor: not-allowed;
+
+        &:hover {
+          border-color: var(--ti-select-input-disabled-hover-border-color);
+        }
+      }
+    }
+
+    &.is-focus .@{input-prefix-cls}__inner {
+      border-color: var(--ti-select-inner-border-color-active);
+    }
+  }
+
+  &__underline {
+
+    .@{input-prefix-cls},
+    .@{input-prefix-cls}.is-disabled {
+      .@{input-prefix-cls}__inner {
+        border-radius: 0;
+        border-top-width: 0px;
+        border-left-width: 0px;
+        border-right-width: 0px;
+        padding-left: 0px;
+        background-color: var(--ti-input-bg-color);
+      }
+
+      &__suffix {
+        right: 0px;
+      }
+    }
+  }
+}

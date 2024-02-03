@@ -1,0 +1,115 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import '../mixins/hairline.less';
+@import './vars.less';
+
+@dropdown-menu-prefix-cls: ~'@{css-prefix}mobile-dropdown-menu';
+
+.@{dropdown-menu-prefix-cls} {
+  user-select: none;
+
+  &__item {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    outline: 0;
+    cursor: pointer;
+
+    &:active {
+      opacity: 0.7;
+    }
+
+    &.is-disabled {
+      &:active {
+        opacity: 1;
+      }
+
+      .@{dropdown-menu-prefix-cls}__title {
+        color: #969799;
+      }
+    }
+  }
+
+  &__title {
+    position: relative;
+    box-sizing: border-box;
+    max-width: 100%;
+    padding-left: 16px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1;
+
+    &-wrap {
+      .@{css-prefix}svg {
+        font-size: 10px;
+
+        &.filter-icon {
+          font-size: 16px;
+        }
+      }
+    }
+
+    &-icon {
+      position: relative;
+      height: 18px;
+      display: inline-block;
+      vertical-align: text-bottom;
+
+      .up {
+        position: absolute;
+        top: 0;
+      }
+
+      .down {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+
+    &-text {
+      position: relative;
+      width: auto;
+      max-width: calc(100% - 16px);
+      margin-right: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      -webkit-box-flex: 1;
+    }
+
+    &.is-active {
+      color: #f36f64;
+    }
+
+    &.is-down {
+      &::after {
+        margin-top: -1px;
+        transform: rotate(135deg);
+      }
+    }
+  }
+
+  &__bar {
+    position: relative;
+    display: flex;
+    background-color: #fff;
+    .hairline('bottom', #ccc);
+  }
+
+  &__bar--opened {
+    z-index: 11;
+  }
+}

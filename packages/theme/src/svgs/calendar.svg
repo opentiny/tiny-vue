@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg  viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <filter x="-50.0%" y="-53.6%" width="200.0%" height="205.4%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="1" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.145098039   0 0 0 0 0.168627451   0 0 0 0 0.22745098  0 0 0 0.08 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="icon/16/日历/默认" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形备份-22" x="0" y="0" width="16" height="16"></rect>
+        <g id="编组" filter="url(#filter-1)" transform="translate(1.000000, 1.474361)">
+            <rect id="矩形" fill="currentColor" fill-rule="nonzero" x="3" y="4.5256386" width="2" height="2"></rect>
+            <rect id="矩形" fill="currentColor" fill-rule="nonzero" x="6" y="4.5256386" width="2" height="2"></rect>
+            <rect id="矩形" fill="currentColor" fill-rule="nonzero" x="9" y="4.5256386" width="2" height="2"></rect>
+            <rect id="矩形" fill="currentColor" fill-rule="nonzero" x="3" y="8.5256386" width="2" height="2"></rect>
+            <rect id="矩形" fill="currentColor" fill-rule="nonzero" x="6" y="8.5256386" width="2" height="2"></rect>
+            <rect id="矩形" fill="currentColor" fill-rule="nonzero" x="9" y="8.5256386" width="2" height="2"></rect>
+            <rect id="矩形备份-4" stroke="currentColor" x="0" y="0.525638599" width="14" height="13" rx="2"></rect>
+            <line x1="3.4743614" y1="1" x2="5.4743614" y2="1" id="路径-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(4.474361, 1.000000) rotate(90.000000) translate(-4.474361, -1.000000) "></line>
+            <line x1="8.4743614" y1="1" x2="10.4743614" y2="1" id="路径-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(9.474361, 1.000000) rotate(90.000000) translate(-9.474361, -1.000000) "></line>
+        </g>
+    </g>
+</svg>

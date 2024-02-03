@@ -1,0 +1,97 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@badge-prefix-cls: ~'@{css-prefix}mobile-badge';
+
+.@{badge-prefix-cls} {
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+
+  &__content {
+    height: var(--ti-mobile-badge-size, 18px);
+    line-height: var(--ti-mobile-badge-size, 18px);
+    padding: 0 6px;
+    font-size: var(--ti-mobile-badge-font-size, 13px);
+    color: var(--ti-mobile-badge-color, #fff);
+    background-color: var(--ti-mobile-badge-danger-bgcolor, #f36f64);
+    border-radius: 10px;
+    font-family: 'Microsoft YaHei', Arial;
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+
+    &.is-fixed {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(100%, -50%);
+    }
+
+    &.is-dot {
+      height: 8px;
+      width: 8px;
+      padding: 0;
+      border-radius: 50%;
+      vertical-align: super;
+    }
+
+    &.is-mini {
+      height: 14px;
+      line-height: 14px;
+
+      &,
+      &.is-circle {
+        padding: 0 4px;
+      }
+    }
+
+    &.is-circle {
+      padding: 0 5px;
+
+      &.is-dot {
+        padding: 0;
+      }
+    }
+  }
+
+  &__content&--primary {
+    background-color: var(--ti-mobile-badge-primary-bgcolor, #1890ff);
+  }
+
+  &__content&--success {
+    background-color: var(--ti-mobile-badge-success-bgcolor, #52c41a);
+  }
+
+  &__content&--warning {
+    background-color: var(--ti-mobile-badge-warning-bgcolor, #faad14);
+  }
+
+  &__content&--danger {
+    background-color: var(--ti-mobile-badge-danger-bgcolor, #f36f64);
+  }
+
+  &__content&--info {
+    background-color: var(--ti-mobile-badge-info-bgcolor, #333);
+  }
+
+  & &__link {
+    color: var(--ti-mobile-badge-color, #fff);
+    &:hover {
+      color: var(--ti-mobile-badge-color, #fff);
+      text-decoration: none;
+    }
+  }
+}

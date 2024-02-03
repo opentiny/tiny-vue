@@ -1,0 +1,182 @@
+@import '../mixins/tooltip.less';
+@import '../custom.less';
+
+@tooltip-prefix-cls: ~'@{css-prefix}tooltip';
+
+.@{tooltip-prefix-cls} {
+  &:focus:hover,
+  &:focus:not(.focusing) {
+    @apply outline-0;
+  }
+
+  &&__popper {
+    @apply absolute;
+    @apply ~"-left-[9999px]";
+    @apply rounded;
+    @apply ~"py-2.5" px-4;
+    @apply text-xs;
+    line-height: 1.2;
+    min-width: 10px;
+    max-width: 450px;
+    @apply ~'z-[2000]';
+    word-wrap: break-word;
+    @apply rounded;
+    @apply shadow;
+
+    .popper__arrow,
+    .popper__arrow::after {
+      @apply absolute;
+      @apply block;
+      @apply w-0;
+      @apply h-0;
+      @apply border-transparent;
+      @apply border-solid;
+    }
+
+    .popper__arrow {
+      border-width: 6px;
+    }
+
+    .popper__arrow::after {
+      @apply ~"content-['']";
+      border-width: 5px;
+    }
+
+    &[x-placement^='top'] {
+      @apply mb-3;
+
+      .popper__arrow {
+        @apply ~'-bottom-1.5';
+        @apply border-t-color-text-primary;
+        @apply border-b-0;
+
+        &::after {
+          @apply bottom-px;
+          margin-left: -5px;
+          @apply border-t-color-text-primary;
+          @apply border-b-0;
+        }
+      }
+    }
+
+    &[x-placement^='bottom'] {
+      @apply mt-3;
+
+      .popper__arrow {
+        @apply ~'-top-1.5';
+        @apply border-t-0;
+        @apply border-b-color-text-primary;
+
+        &::after {
+          @apply top-px;
+          margin-left: -5px;
+          @apply border-t-0;
+          @apply border-b-color-text-primary;
+        }
+      }
+    }
+
+    &[x-placement^='right'] {
+      @apply ml-3;
+
+      .popper__arrow {
+        @apply ~'-left-1.5';
+        @apply border-r-color-text-primary;
+        @apply border-l-0;
+
+        &::after {
+          bottom: -5px;
+          @apply left-px;
+          @apply border-r-color-text-primary;
+          @apply border-l-0;
+        }
+      }
+    }
+
+    &[x-placement^='left'] {
+      @apply mr-3;
+
+      .popper__arrow {
+        @apply ~'-right-1.5';
+        @apply border-r-0;
+        @apply border-l-color-text-primary;
+
+        &::after {
+          @apply right-px;
+          bottom: -5px;
+          margin-left: -5px;
+          @apply border-r-0;
+          @apply border-l-color-text-primary;
+        }
+      }
+    }
+
+    &.is-normal {
+      .tooltip-type(theme('colors.color.bg.1'), theme('colors.color.text.primary'), theme('colors.color.text.primary'));
+    }
+
+    &.is-info {
+      .tooltip-type(theme('colors.color.bg.1'), theme('colors.color.info.secondary.DEFAULT'), theme('colors.color.info.secondary.DEFAULT'));
+    }
+
+    &.is-error {
+      .tooltip-type(theme('colors.color.bg.1'), theme('colors.color.error.DEFAULT'), theme('colors.color.error.DEFAULT'));
+    }
+
+    &.is-warning {
+      .tooltip-type(theme('colors.color.bg.1'), theme('colors.color.warning.DEFAULT'), theme('colors.color.warning.DEFAULT'));
+    }
+
+    &.is-success {
+      .tooltip-type(theme('colors.color.bg.1'), theme('colors.color.success.DEFAULT'), theme('colors.color.success.DEFAULT'));
+    }
+
+    &.is-dark {
+      @apply bg-color-text-primary;
+      @apply text-color-text-inverse;
+    }
+
+    &.is-light {
+      .tooltip-light(theme('colors.color.text.primary'), theme('colors.color.bg.1'), theme('colors.color.bg.1'));
+    }
+
+    &.is-blank-content {
+      @apply hidden;
+    }
+  }
+
+  &&__hidden-true {
+    @apply hidden;
+  }
+
+  &&__show-tips {
+    max-width: 200px;
+    margin-left: -18px;
+  }
+}
+
+.@{css-prefix} {
+  &fade-in-linear-enter-active,
+  &fade-in-linear-leave-active {
+    @apply transition-opacity duration-200 ease-linear;
+  }
+
+  &fade-in-linear-enter,
+  &fade-in-linear-enter-from,
+  &fade-in-linear-leave,
+  &fade-in-linear-leave-from,
+  &fade-in-linear-leave-active {
+    @apply opacity-0;
+  }
+
+  &fade-in-enter-active,
+  &fade-in-leave-active {
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+  }
+
+  &fade-in-enter,
+  &fade-in-enter-from,
+  &fade-in-leave-active {
+    @apply opacity-0;
+  }
+}

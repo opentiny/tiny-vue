@@ -1,0 +1,168 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@image-viewer-prefix-cls: ~'@{css-prefix}mobile-image-viewer';
+
+.@{image-viewer-prefix-cls} {
+  &__wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+  }
+
+  &__mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    background: var(--ti-mobile-image-viewer-mask-background, #000);
+  }
+
+  &__btn {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    opacity: 0.8;
+    box-sizing: border-box;
+    .user-select(none);
+
+    svg {
+      fill: var(--ti-mobile-image-viewer-color, #fff);
+    }
+  }
+
+  &__close {
+    top: 40px;
+    right: 40px;
+    width: 22px;
+    height: 22px;
+    font-size: 20px;
+    background-color: var(--ti-mobile-image-viewer-close-bgcolor, #606266);
+  }
+
+  &__next,
+  &__prev {
+    top: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 24px;
+    background-color: var(--ti-mobile-image-viewer-close-bgcolor, #606266);
+
+    &.is-arrow-disabled {
+      background-color: var(--ti-mobile-image-viewer-arrow-disabled-bgcolor, #bfbfbf);
+
+      svg {
+        fill: var(--ti-mobile-image-viewer-arrow-disabled-color, #999);
+      }
+    }
+  }
+
+  &__prev {
+    transform: translateY(-50%);
+    left: 40px;
+  }
+
+  &__next {
+    transform: translateY(-50%);
+    right: 40px;
+    text-indent: 2px;
+  }
+
+  &__actions {
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    width: 282px;
+    height: 44px;
+    padding: 0 23px;
+    background-color: var(--ti-mobile-image-viewer-close-bgcolor, #606266);
+    border-radius: 22px;
+  }
+
+  &__actions-inner {
+    width: 100%;
+    height: 100%;
+    text-align: justify;
+    cursor: default;
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &__canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__wrap {
+    display: flex;
+    height: 100%;
+    width: 1080px;
+  }
+
+  &__item {
+    position: relative;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__detail {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition-property: transform;
+    display: inline-block;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    &.is-full-screen {
+      object-fit: fill;
+    }
+  }
+
+  &__index {
+    left: 50%;
+    top: 30px;
+    transform: translateX(-50%);
+    width: auto;
+    height: 44px;
+    padding: 0 23px;
+    border-radius: 0px;
+
+    span {
+      color: var(--ti-mobile-image-viewer-color, #fff);
+      margin-right: 5px;
+    }
+  }
+}

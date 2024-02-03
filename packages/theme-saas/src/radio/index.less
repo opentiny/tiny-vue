@@ -1,0 +1,223 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@radio-prefix-cls: ~'@{css-prefix}radio';
+
+.@{radio-prefix-cls} {
+  @apply text-color-text-primary;
+  @apply font-medium;
+  @apply mr-2;
+  @apply inline-flex;
+  @apply items-center;
+  @apply relative;
+  @apply cursor-pointer;
+  .user-select(none);
+
+  &:last-child {
+    @apply mr-0;
+  }
+
+  &.is-bordered {
+    @apply py-1 px-3;
+    @apply rounded-sm;
+    @apply border border-solid border-color-border;
+    @apply box-border;
+    @apply h-10;
+
+    & + & {
+      @apply ~'ml-2.5';
+    }
+
+    &.is-checked {
+      @apply border-color-brand;
+    }
+
+    &.is-disabled {
+      @apply cursor-not-allowed;
+      @apply border-color-border-disabled;
+    }
+  }
+
+  &,
+  &__input {
+    @apply whitespace-nowrap;
+    @apply leading-none;
+    @apply outline-0;
+    @apply ~'p-0.5';
+  }
+
+  &__input {
+    @apply cursor-pointer;
+    @apply inline-flex;
+    @apply p-0;
+
+    // 兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      @apply inline-block;
+    }
+
+    // 兼容edge
+    @supports (-ms-ime-align: auto) {
+      @apply inline-block;
+    }
+
+    &.is-checked {
+      .@{radio-prefix-cls}__inner {
+        @apply bg-color-brand;
+        @apply border-color-brand;
+
+        &::after {
+          transform: translate(-50%, -50%) scale(1);
+          @apply bg-color-bg-1;
+        }
+      }
+      &:hover .@{radio-prefix-cls}__inner::after {
+        @apply bg-color-bg-1;
+      }
+
+      &:not(.is-disabled) {
+        .@{radio-prefix-cls}__inner {
+          &:hover {
+            @apply bg-color-brand;
+          }
+        }
+      }
+    }
+
+    &.is-disabled {
+      .@{radio-prefix-cls}__inner {
+        @apply border-color-text-disabled;
+        @apply bg-color-bg-3;
+
+        &,
+        &::after {
+          @apply cursor-not-allowed;
+          @apply bg-color-bg-3;
+        }
+
+        & + .@{radio-prefix-cls}__label {
+          @apply cursor-not-allowed;
+        }
+      }
+
+      &.is-checked .@{radio-prefix-cls}__inner {
+        @apply bg-color-brand-disabled;
+        @apply border-transparent;
+
+        &::after {
+          @apply bg-color-bg-1;
+        }
+      }
+
+      & + span.@{radio-prefix-cls}__label {
+        @apply text-color-text-disabled;
+        @apply cursor-not-allowed;
+      }
+    }
+  }
+
+  &__inner {
+    border: 1px solid var(--ti-radio-bordered-border-color);
+    @apply border border-solid border-color-border;
+    @apply rounded-full;
+    @apply ~'w-3.5';
+    @apply ~'h-3.5';
+    @apply bg-color-bg-1;
+    @apply relative;
+    @apply inline-block;
+    @apply cursor-pointer;
+    @apply box-border;
+    @apply outline-0;
+
+    &:hover {
+      @apply border-color-brand;
+    }
+
+    &:active {
+      @apply border-color-brand;
+    }
+
+    &::after {
+      @apply ~'w-1.5';
+      @apply ~'h-1.5';
+      @apply rounded-full;
+      @apply bg-color-bg-1;
+      content: '';
+      @apply absolute;
+      @apply left-1/2;
+      @apply top-1/2;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.15s ease-in;
+    }
+  }
+
+  &__original {
+    @apply opacity-0;
+    @apply outline-0;
+    @apply absolute;
+    @apply ~'-z-[1]';
+    @apply m-0;
+    @apply w-0;
+    @apply h-0;
+  }
+
+  &__label {
+    @apply text-xs;
+    @apply pl-2;
+    @apply align-middle;
+  }
+
+  &--medium {
+    &.is-bordered {
+      @apply rounded-full;
+      @apply h-9;
+
+      .@{radio-prefix-cls}__inner {
+        @apply ~'w-3.5';
+        @apply ~'h-3.5';
+      }
+
+      .@{radio-prefix-cls}__label {
+        @apply text-sm;
+      }
+    }
+  }
+
+  &--small {
+    &.is-bordered {
+      @apply rounded-full;
+      @apply h-8;
+
+      .@{radio-prefix-cls}__label {
+        @apply text-xs;
+      }
+    }
+  }
+
+  &--mini {
+    &.is-bordered {
+      @apply py-0 px-2;
+      @apply h-7;
+      line-height: 26px;
+
+      .@{radio-prefix-cls}__label {
+        @apply text-xs;
+      }
+    }
+  }
+  &.is-checked.is-display-only {
+    @apply visible;
+    @apply leading-none;
+
+    .tiny-radio__input {
+      @apply p-0;
+      @apply hidden;
+    }
+    .tiny-radio__label {
+      @apply pl-0;
+    }
+  }
+  &.is-display-only {
+    @apply invisible;
+  }
+}

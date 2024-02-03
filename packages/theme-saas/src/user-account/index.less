@@ -1,0 +1,38 @@
+@import '../custom.less';
+
+@user-account-prefix-cls: ~'@{css-prefix}user-account';
+@user-contact-prefix-cls: ~'@{css-prefix}user-contact';
+@logout-prefix-cls: ~'@{css-prefix}logout';
+@card-prefix-cls: ~'@{css-prefix}card-template';
+
+.@{user-account-prefix-cls}.@{user-contact-prefix-cls} {
+  @apply text-color-text-primary;
+  @apply text-sm;
+
+  .@{user-contact-prefix-cls}__main {
+    width: 168px;
+    @apply py-1 px-0;
+
+    .user-account-pop > div {
+      @apply py-0 px-4;
+      @apply block;
+      @apply text-color-text-primary;
+    }
+
+    .user-account-custom {
+      @apply leading-8;
+    }
+
+    .@{card-prefix-cls}__body {
+      @apply p-0;
+    }
+
+    .@{logout-prefix-cls} {
+      @apply leading-9;
+
+      &:hover {
+        @apply bg-color-bg-3;
+      }
+    }
+  }
+}

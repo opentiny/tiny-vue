@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "useWorkspaces": true,
+  "version": "independent",
+  "npmClient": "pnpm",
+  "command": {
+    "version": {
+      "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"],
+      "allowBranch": ["pnpm-vite*"],
+      "changelogPreset": "angular",
+      "conventionalCommits": true,
+      "includeMergedTags": true,
+      "message": "chore(release): publish [ci skip] ***NO_CI***",
+      "noPush": true,
+      "yes": true
+    },
+    "publish": {
+      "registry": "http://localhost:4873/"
+    }
+  }
+}

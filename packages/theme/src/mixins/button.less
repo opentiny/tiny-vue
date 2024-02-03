@@ -1,0 +1,210 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+.button-size(@font-size, @height, @padding, @minimal-width) {
+  height: @height;
+  line-height: calc(@height - 2px);
+  font-size: @font-size;
+  padding: 0 @padding;
+  min-width: @minimal-width;
+
+  &.is-round {
+    border-radius: calc(@height / 2);
+  }
+
+  &.is-circle {
+    border-radius: 50%;
+  }
+}
+
+.button-circle-size(@size, @padding) {
+  min-width: @size;
+  min-height: @size;
+  height: auto;
+  line-height: 1;
+  padding: @padding;
+}
+
+.button-color(@color, @border-color, @background-color) {
+  color: @color;
+  fill: @color;
+  border-color: @border-color;
+  background-color: @background-color;
+}
+
+.button-type(
+@color, @normal-bg-color, @normal-border-color
+, @hover-bg-color, @hover-border-color, @active-color, @disabled-color, @disabled-bg-color
+, @plain-text-color, @plain-hover-text-color
+, @plain-bg-color, @plain-hover-bg-color
+, @plain-border-color, @plain-hover-border-color
+, @plain-dis-bg-color, @disabled-border-color: @disabled-bg-color
+, @ghost-text-color, @ghost-hover-text-color, @ghost-disabled-text-color
+, @ghost-border-color, @ghost-hover-border-color, @ghost-disabled-border-color
+) {
+  color: @color;
+  fill: @color;
+  border-color: @normal-border-color;
+  background-color: @normal-bg-color;
+
+  &:hover {
+    color: @color;
+    fill: @color;
+    border-color: @hover-border-color;
+    background-color: @hover-bg-color;
+  }
+
+  &:focus,
+  &:active,
+  &.is-active {
+    color: @color;
+    fill: @color;
+    border-color: @active-color;
+    background-color: @active-color;
+    outline: 0;
+  }
+
+  &.is-disabled,
+  &.is-disabled:active,
+  &.is-disabled:focus,
+  &.is-disabled:hover {
+    color: @disabled-color;
+    fill: @disabled-color;
+    border-color: @disabled-border-color;
+    background-color: @disabled-bg-color;
+  }
+
+  &.is-plain {
+    color: @plain-text-color;
+    fill: @plain-text-color;
+    border-color: @plain-border-color;
+    background-color: @plain-bg-color;
+
+    &:hover {
+      color: @plain-hover-text-color;
+      fill: @plain-hover-text-color;
+      border-color: @plain-hover-border-color;
+      background-color: @plain-hover-bg-color;
+    }
+
+    &:focus,
+    &:active,
+    &.is-active {
+      color: @color;
+      fill: @color;
+      border-color: @active-color;
+      background-color: @active-color;
+      outline: 0;
+    }
+
+    &.is-disabled,
+    &.is-disabled:active,
+    &.is-disabled:focus,
+    &.is-disabled:hover {
+      color: var(--ti-button-plain-disabled-text-color);
+      fill: var(--ti-button-plain-disabled-text-color);
+      border-color: @disabled-bg-color;
+      background-color: @plain-dis-bg-color;
+    }
+  }
+
+  &.is-ghost {
+    color: @ghost-text-color;
+    fill: @ghost-text-color;
+    border-color: @ghost-border-color;
+    background-color: transparent;
+
+    &:hover {
+      color: @ghost-hover-text-color;
+      fill: @ghost-hover-text-color;
+      border-color: @ghost-hover-border-color;
+      background-color: transparent;
+    }
+
+    &:focus,
+    &:active,
+    &.is-active {
+      color: @ghost-hover-text-color;
+      fill: @ghost-hover-text-color;
+      border-color: @ghost-hover-border-color;
+      background-color: transparent;
+      outline: 0;
+    }
+
+    &.is-disabled,
+    &.is-disabled:active,
+    &.is-disabled:focus,
+    &.is-disabled:hover {
+      color: @ghost-disabled-text-color;
+      fill: @ghost-disabled-text-color;
+      border-color: @ghost-disabled-border-color;
+      background-color: transparent;
+    }
+  }
+
+  &.is-only-icon.is-disabled {
+    border-color: var(--ti-button-only-icon-disabled-border-color);
+  }
+  &.is-loading.is-disabled {
+    color: @color;
+    fill: @color;
+    border-color: @normal-border-color;
+    background-color: @normal-bg-color;
+  }
+}
+
+.button-text(@color, @hover-bg-color, @active-color, @disabled-color, @hover-weight) {
+  color: @color;
+  font-size: var(--ti-common-font-size-1);
+  border-color: transparent;
+  background-color: transparent;
+
+  &:hover {
+    color: @hover-bg-color;
+    font-weight: @hover-weight;
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  &:focus,
+  &:active,
+  &.is-active {
+    color: @active-color;
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  &.is-disabled,
+  &.is-disabled:active,
+  &.is-disabled:focus,
+  &.is-disabled:hover {
+    color: @disabled-color;
+    border-color: transparent;
+    background-color: transparent;
+    font-weight: normal;
+  }
+}
+
+.button-text-size(@min-width, @height, @svg-width, @svg-height) {
+  min-width: @min-width;
+  height: @height;
+  line-height: calc(@height - 2px);
+
+  svg {
+    width: @svg-width;
+    height: @svg-height;
+  }
+
+  &.is-only-icon {
+    min-width: unset;
+  }
+}

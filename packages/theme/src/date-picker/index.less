@@ -1,0 +1,107 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@date-picker-prefix-cls: ~'@{css-prefix}date-picker';
+
+.@{date-picker-prefix-cls} {
+  .component-css-vars-date-picker();
+
+  width: var(--ti-date-picker-width);
+
+  &.has-sidebar.has-time {
+    width: 434px;
+  }
+
+  &.has-sidebar {
+    width: 398px;
+  }
+
+  &.has-time {
+    .@{picker-panel-prefix-cls}__body-wrapper {
+      position: relative;
+    }
+  }
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  &__editor-wrap {
+    position: relative;
+    display: table-cell;
+    padding: 0 5px;
+  }
+
+  &__time-header {
+    position: relative;
+    border-bottom: 1px solid var(--ti-date-picker-border-color);
+    font-size: var(--ti-date-picker-font-size);
+    padding: 8px 5px 5px;
+    display: table;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__header {
+    margin: 12px;
+    text-align: center;
+  }
+
+  &__header--bordered {
+    margin-bottom: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ti-date-picker-border-color);
+
+    & + .@{picker-panel-prefix-cls}__content {
+      margin-top: 0;
+    }
+  }
+
+  &__header-label {
+    font-size: var(--ti-date-picker-font-size);
+    font-weight: 700;
+    padding: 0 4px;
+    text-align: center;
+    cursor: pointer;
+    color: var(--ti-date-picker-text-color);
+    vertical-align: middle;
+
+    &.active,
+    &:hover {
+      color: var(--ti-date-picker-header-label-hover-text-color);
+    }
+  }
+
+  &__prev-btn {
+    float: left;
+  }
+
+  &__next-btn {
+    float: right;
+  }
+
+  &__time-wrap {
+    padding: 10px;
+    text-align: center;
+  }
+
+  &__time-label {
+    float: left;
+    cursor: pointer;
+    line-height: 30px;
+    margin-left: 10px;
+  }
+}

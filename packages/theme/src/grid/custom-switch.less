@@ -1,0 +1,84 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@grid-custom-switch-prefix-cls: ~'@{css-prefix}grid-custom-switch';
+
+// custom-switch
+.@{grid-custom-switch-prefix-cls} {
+  margin-top: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #d9d9d9;
+
+  .@{grid-custom-switch-prefix-cls}__title {
+    margin-bottom: 12px;
+    font-weight: 400;
+
+    .@{css-prefix}svg {
+      font-size: var(--ti-common-font-size-3);
+    }
+
+    .@{css-prefix}alert__description {
+      font-size: var(--ti-common-font-size-1);
+    }
+  }
+
+  .@{grid-custom-switch-prefix-cls}__label {
+    text-align: right;
+    position: relative;
+    top: 2px;
+    padding-right: 3px;
+  }
+
+  .@{grid-custom-switch-prefix-cls}__content {
+    position: relative;
+    top: -4px;
+  }
+
+  .@{grid-custom-switch-prefix-cls}__icon-btn {
+    fill: #1890ff;
+    font-size: var(--ti-common-font-size-1);
+    cursor: pointer;
+
+    &:hover {
+      fill: #096dd9;
+    }
+
+    &--disabled,
+    &--disabled:hover {
+      fill: #bfbfbf;
+      cursor: not-allowed;
+    }
+
+    & + .@{grid-custom-switch-prefix-cls}__icon-btn {
+      margin-left: 12px;
+    }
+
+    &:first-child {
+      margin-left: 20px;
+    }
+  }
+}
+
+// dialog box
+.@{grid-custom-switch-prefix-cls}__dialog-box {
+  .@{grid-custom-switch-prefix-cls}__confirm-btns {
+    display: flex;
+    justify-content: flex-end;
+    width: 85%;
+  }
+
+  .@{grid-custom-switch-prefix-cls}__del-tip {
+    text-align: center;
+  }
+}
