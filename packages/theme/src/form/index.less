@@ -1,0 +1,208 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@form-prefix-cls: ~'@{css-prefix}form';
+@form-item-prefix-cls: ~'@{css-prefix}form-item';
+@tooltip-prefix-cls: ~'@{css-prefix}tooltip';
+@input-prefix-cls: ~'@{css-prefix}input';
+@textarea-prefix-cls: ~'@{css-prefix}textarea';
+@switch-prefix-cls: ~'@{css-prefix}switch';
+@range-editor-prefix-cls: ~'@{css-prefix}range-editor';
+
+.@{form-prefix-cls} {
+  .component-css-vars-form();
+
+  width: 100%;
+  overflow: hidden;
+
+  div {
+    outline: none;
+  }
+
+  &--inline {
+    .@{form-item-prefix-cls},
+    .@{form-item-prefix-cls}__content {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .@{form-item-prefix-cls} {
+      margin-right: var(--ti-form-item-margin-right);
+    }
+
+    .@{form-item-prefix-cls}__label {
+      float: none;
+      display: inline-block;
+    }
+
+    .@{form-prefix-cls}--label-top .@{form-item-prefix-cls}__content {
+      display: block;
+    }
+  }
+
+  &--label-left {
+    &.has-required {
+      .@{form-item-prefix-cls}__label {
+        padding-left: 12px;
+      }
+    }
+    .@{form-item-prefix-cls}__label {
+      text-align: left;
+    }
+    &.label-align {
+      .@{form-item-prefix-cls} {
+        &.is-required {
+          .@{form-item-prefix-cls}__label {
+            padding-left: 12px;
+            position: relative;
+            &::before {
+              font-size: 20px;
+              line-height: 1;
+              position: absolute;
+              left: 0;
+              top: 60%;
+              transform: translateY(-50%);
+            }
+          }
+          & ~ .@{form-item-prefix-cls} {
+            .@{form-item-prefix-cls}__label {
+              padding-left: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--label-top {
+    .@{form-item-prefix-cls}__label {
+      float: none;
+      display: inline-block;
+      text-align: left;
+      padding: 0 0 8px;
+      height: var(--ti-form-item-label-top-label-height);
+      line-height: var(--ti-form-item-label-top-label-line-height);
+    }
+
+    .@{form-item-prefix-cls} {
+      margin-bottom: var(--ti-form-item-label-top-margin-bottom);
+    }
+  }
+
+  &--label-top & {
+    margin-bottom: var(--ti-form-item-label-top-margin-bottom);
+  }
+
+  &--inline&--label-top {
+    .@{form-item-prefix-cls} {
+      margin-bottom: 16px;
+      margin-right: 64px;
+    }
+
+    .@{form-item-prefix-cls}__label {
+      display: block;
+      text-align: left;
+    }
+  }
+
+  &__valid {
+    &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
+      .tooltip-validate-icon {
+        fill: var(--ti-tooltip-validate-icon-color);
+        margin-right: 8px;
+      }
+
+      &[x-placement^='top'] .popper__arrow {
+        bottom: -4px;
+      }
+
+      &[x-placement^='top'] {
+        margin-bottom: 6px;
+      }
+
+      &[x-placement^='bottom'] {
+        margin-top: 6px;
+      }
+    }
+    .@{form-item-prefix-cls}__validate-message {
+      vertical-align: middle;
+    }
+  }
+
+  &.is-display-only {
+    .tiny-form-item__label {
+      line-height: 1.5;
+      height: auto;
+      vertical-align: inherit;
+    }
+    .tiny-form-item__content {
+      line-height: 1.5;
+      font-size: 14px;
+      height: auto;
+      vertical-align: inherit;
+    }
+
+    .@{form-item-prefix-cls}.is-required:not(.is-no-asterisk) {
+      .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
+      & > .@{form-item-prefix-cls}__label:before {
+        content: '';
+      }
+    }
+
+    .@{form-item-prefix-cls}__content {
+      .tiny-checkbox {
+        line-height: 1.5;
+      }
+      .tiny-radio {
+        line-height: 1;
+        padding: 0;
+      }
+      .@{switch-prefix-cls} {
+        margin-top: 0;
+      }
+      .@{input-prefix-cls} {
+        &.@{range-editor-prefix-cls}.@{input-prefix-cls}__inner {
+          height: 18px;
+        }
+      }
+      .@{textarea-prefix-cls}__inner {
+        height: 0;
+        padding: 0;
+        border-style: none;
+      }
+    }
+    .@{form-item-prefix-cls}--medium .@{form-item-prefix-cls}__content,
+    .@{form-item-prefix-cls}--small .@{form-item-prefix-cls}__content,
+    .@{form-item-prefix-cls}--mini .@{form-item-prefix-cls}__content {
+      .@{input-prefix-cls} .@{input-prefix-cls}__inner {
+        height: 36px;
+        line-height: 36px;
+      }
+    }
+    .@{form-item-prefix-cls}--medium {
+      .@{form-item-prefix-cls}__label,
+      .@{form-item-prefix-cls}__content {
+        font-size: 14px;
+      }
+      .@{form-item-prefix-cls}__content .@{css-prefix}tooltip {
+        font-size: 14px;
+      }
+
+      .@{form-item-prefix-cls}__label {
+        padding-bottom: 12px;
+      }
+    }
+  }
+}

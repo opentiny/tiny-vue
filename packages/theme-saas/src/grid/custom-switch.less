@@ -1,0 +1,72 @@
+@import '../custom.less';
+
+@grid-custom-switch-prefix-cls: ~'@{css-prefix}grid-custom-switch';
+
+// custom-switch
+.@{grid-custom-switch-prefix-cls} {
+  @apply mt-2;
+  @apply pb-3;
+  @apply border-b border-b-color-border;
+
+  .@{grid-custom-switch-prefix-cls}__title {
+    @apply mb-3;
+    @apply font-normal;
+
+    .@{css-prefix}svg {
+      @apply text-lg;
+    }
+
+    .@{css-prefix}alert__description {
+      @apply text-sm;
+    }
+  }
+
+  .@{grid-custom-switch-prefix-cls}__label {
+    @apply text-right;
+    @apply relative;
+    @apply ~'top-0.5';
+    padding-right: 3px;
+  }
+
+  .@{grid-custom-switch-prefix-cls}__content {
+    @apply relative;
+    @apply -top-1;
+  }
+
+  .@{grid-custom-switch-prefix-cls}__icon-btn {
+    @apply fill-color-brand;
+    @apply text-sm;
+    @apply cursor-pointer;
+
+    &:hover {
+      @apply fill-color-icon-active;
+    }
+
+    &--disabled,
+    &--disabled:hover {
+      @apply fill-color-icon-disabled;
+      @apply cursor-not-allowed;
+    }
+
+    & + .@{grid-custom-switch-prefix-cls}__icon-btn {
+      @apply ml-3;
+    }
+
+    &:first-child {
+      @apply ml-5;
+    }
+  }
+}
+
+// dialog box
+.@{grid-custom-switch-prefix-cls}__dialog-box {
+  .@{grid-custom-switch-prefix-cls}__confirm-btns {
+    @apply flex;
+    @apply justify-end;
+    width: 85%;
+  }
+
+  .@{grid-custom-switch-prefix-cls}__del-tip {
+    @apply text-center;
+  }
+}

@@ -1,0 +1,153 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../base/basic-var.less';
+@import '../mixins/common.less';
+@import '../mixins/checkbox.less';
+@import '../custom.less';
+@import './vars.less';
+
+@checkbox-prefix-cls: ~'@{css-prefix}mobile-checkbox';
+
+.@{checkbox-prefix-cls} {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: var(--ti-mobile-checkbox-margin-right);
+  cursor: pointer;
+  .user-select(none);
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  &__input {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    outline: 0;
+    cursor: pointer;
+    width: var(--ti-mobile-checkbox-width);
+    height: var(--ti-mobile-checkbox-height);
+    line-height: var(--ti-mobile-checkbox-line-height);
+  }
+
+  &__inner {
+    display: inline-block;
+    position: relative;
+    background-color: var(--ti-mobile-checkbox-bg-color);
+    border: 1.5px solid var(--ti-mobile-checkbox-border-color);
+    border-radius: var(--ti-mobile-checkbox-border-radius, 3px);
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition:
+      border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+      background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+
+    &:hover {
+      border-color: var(--ti-mobile-checkbox-checked-border-color);
+    }
+
+    &::after {
+      box-sizing: content-box;
+      content: '';
+      border-width: 2px;
+      border-style: solid;
+      border-color: var(--ti-mobile-checkbox-selected-border-color);
+      border-left: 0;
+      border-top: 0;
+      height: 11px;
+      width: 7px;
+      position: absolute;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%) rotate(45deg) scaleY(0);
+      transition: all 0.15s ease-in 0.05s;
+      transform-origin: center;
+      opacity: 0;
+    }
+  }
+
+  &__original {
+    opacity: 0;
+    outline: 0;
+    position: absolute;
+    margin: 0;
+    width: 0;
+    height: 0;
+    z-index: -1;
+  }
+
+  &__label {
+    display: inline-block;
+    padding-left: var(--ti-mobile-checkbox-label-padding-left);
+    line-height: 24px;
+    color: var(--ti-mobile-checkbox-text-color);
+    font-size: var(--ti-mobile-checkbox-font-size, 16px);
+    vertical-align: middle;
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
+  &.is-checked &__inner {
+    background-color: var(--ti-mobile-checkbox-checked-bg-color);
+  }
+
+  &.is-checked &__inner::after {
+    border-color: var(--ti-mobile-checkbox-selected-border-color);
+    transform: translate(-50%, -50%) rotate(45deg) scaleY(1);
+    opacity: 1;
+  }
+
+  &.is-indeterminate &__inner {
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      border-radius: 2px;
+      background-color: var(--ti-mobile-checkbox-indeterminate-bg-color);
+      height: 10px;
+      width: 10px;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &.is-checked &__inner,
+  &.is-indeterminate &__inner {
+    background-color: var(--ti-mobile-checkbox-checked-bg-color);
+    border-color: var(--ti-mobile-checkbox-checked-border-color);
+  }
+
+  &.is-disabled {
+    .checkbox-input-disabled(
+      var(--ti-mobile-checkbox-disabled-text-color),
+      var(--ti-mobile-checkbox-disabled-bg-color),
+      var(--ti-mobile-checkbox-checked-disabled-bg-color),
+      var(--ti-mobile-checkbox-disabled-border-color)
+    );
+  }
+
+  &.icon-position-top  &__input {
+    vertical-align: top;
+  }
+}

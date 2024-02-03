@@ -1,0 +1,117 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@grid-radio-prefix-cls: ~'@{css-prefix}grid-radio';
+
+// radio
+.@{grid-radio-prefix-cls} {
+  display: inline-block;
+  user-select: none;
+  cursor: pointer;
+
+  &.size__small,
+  &.size__mini {
+    font-size: var(--ti-grid-font-size);
+
+    > input {
+      & + .@{grid-radio-prefix-cls}__icon {
+        font-size: var(--ti-common-font-size-1);
+      }
+    }
+  }
+
+  > input {
+    display: none;
+
+    & + .@{grid-radio-prefix-cls}__icon {
+      position: relative;
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      vertical-align: middle;
+      border-radius: 50%;
+      font-size: var(--ti-common-font-size-2);
+
+      > svg {
+        fill: var(--ti-grid-radio-border-color);
+        vertical-align: top;
+
+        &:hover {
+          fill: var(--ti-grid-primary-hover-color);
+        }
+
+        &.icon-radio-selected {
+          display: none;
+        }
+      }
+    }
+
+    &:checked + .@{grid-radio-prefix-cls}__icon {
+      > svg {
+        &.icon-radio {
+          display: none;
+        }
+
+        &.icon-radio-selected {
+          display: inline-block;
+          fill: var(--ti-grid-radio-bg-color-checked);
+        }
+      }
+
+      & + .@{grid-radio-prefix-cls}__label {
+        color: var(--ti-grid-primary-color);
+      }
+    }
+  }
+
+  &.is__disabled {
+    cursor: not-allowed;
+
+    > input {
+      & + .@{grid-radio-prefix-cls}__icon {
+        > svg {
+          fill: var(--ti-grid-border-color);
+
+          path:last-child {
+            fill: var(--ti-grid-input-disabled-bg-color);
+          }
+        }
+
+        & + .@{grid-radio-prefix-cls}__label {
+          color: var(--ti-grid-radio-border-color);
+        }
+      }
+
+      &:checked + .@{grid-radio-prefix-cls}__icon {
+        > svg {
+          fill: var(--ti-grid-input-disabled-bg-color);
+
+          path:first-child {
+            fill: var(--ti-grid-input-disabled-bg-color);
+          }
+        }
+      }
+    }
+  }
+
+  & &__label {
+    padding-left: 5px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  & + & {
+    margin-left: 10px;
+  }
+}

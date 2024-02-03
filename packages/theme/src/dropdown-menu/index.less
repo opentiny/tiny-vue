@@ -1,0 +1,194 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@dropdown-menu-prefix-cls: ~'@{css-prefix}dropdown-menu';
+@dropdown-item-prefix-cls: ~'@{css-prefix}dropdown-item';
+
+.@{dropdown-menu-prefix-cls} {
+  .component-css-vars-dropdown-menu();
+
+  position: absolute;
+  padding: var(--ti-dropdown-menu-padding-vertical) var(--ti-dropdown-menu-padding-horizontal);
+  background-color: var(--ti-dropdown-menu-bg-color);
+  border-radius: var(--ti-dropdown-menu-border-radius);
+  box-shadow: var(--ti-dropdown-menu-box-shadow);
+  width: max-content;
+  min-width: var(--ti-dropdown-menu-min-width);
+  margin: var(--ti-dropdown-menu-margin-vertical) 0;
+  border: var(--ti-dropdown-menu-border-width) solid var(--ti-dropdown-menu-border-color);
+
+  .@{dropdown-menu-prefix-cls} {
+    padding: var(--ti-dropdown-menu-padding-vertical) var(--ti-dropdown-menu-padding-horizontal);
+  }
+
+  &:has(.has-children) li:not(.has-children) {
+    .@{dropdown-item-prefix-cls}__content {
+      margin-left: var(--ti-dropdown-item-content-margin-left);
+    }
+  }
+
+  &.@{css-prefix}popper .popper__arrow,
+  &.@{css-prefix}popper .popper__arrow:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: var(--ti-dropdown-menu-arrow-after-default-border-color);
+    border-style: solid;
+  }
+
+  &.@{css-prefix}popper .popper__arrow {
+    border-width: var(--ti-dropdown-menu-arrow-border-width);
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));
+  }
+
+  &.@{css-prefix}popper .popper__arrow::after {
+    content: ' ';
+    border-width: var(--ti-dropdown-menu-arrow-border-width);
+  }
+
+  &.@{css-prefix}popper[x-placement^='top'] {
+    margin-bottom: var(--ti-dropdown-menu-arrow-margin-bottom);
+  }
+
+  &.@{css-prefix}popper[x-placement^='top'] .popper__arrow {
+    bottom: -6px;
+    left: 50%;
+    margin-right: 3px;
+    border-top-color: var(--ti-dropdown-menu-arrow-border-color);
+    border-bottom-width: 0;
+  }
+
+  &.@{css-prefix}popper[x-placement^='top'] .popper__arrow:after {
+    bottom: 1px;
+    margin-left: -6px;
+    border-top-color: var(--ti-dropdown-menu-arrow-after-border-color);
+    border-bottom-width: 0;
+  }
+
+  &.@{css-prefix}popper[x-placement^='bottom'] {
+    margin-top: var(--ti-dropdown-menu-arrow-margin-top);
+  }
+
+  &.@{css-prefix}popper[x-placement^='bottom'] .popper__arrow {
+    top: -6px;
+    left: 50%;
+    margin-right: 3px;
+    border-top-width: 0;
+    border-bottom-color: var(--ti-dropdown-menu-arrow-border-color);
+  }
+
+  &.@{css-prefix}popper[x-placement^='bottom'] .popper__arrow:after {
+    top: 1px;
+    margin-left: -6px;
+    border-top-width: 0;
+    border-bottom-color: var(--ti-dropdown-menu-arrow-after-border-color);
+  }
+
+  &.@{css-prefix}popper[x-placement^='right'] {
+    margin-left: 12px;
+  }
+
+  &.@{css-prefix}popper[x-placement^='right'] .popper__arrow {
+    top: 50%;
+    left: -6px;
+    margin-bottom: 3px;
+    border-right-color: var(--ti-dropdown-menu-arrow-border-color);
+    border-left-width: 0;
+  }
+
+  &.@{css-prefix}popper[x-placement^='right'] .popper__arrow:after {
+    bottom: -6px;
+    left: 1px;
+    border-right-color: var(--ti-dropdown-menu-arrow-after-border-color);
+    border-left-width: 0;
+  }
+
+  &.@{css-prefix}popper[x-placement^='left'] {
+    margin-right: 12px;
+  }
+
+  &.@{css-prefix}popper[x-placement^='left'] .popper__arrow {
+    top: 50%;
+    right: -6px;
+    margin-bottom: 3px;
+    border-right-width: 0;
+    border-left-color: var(--ti-dropdown-menu-arrow-border-color);
+  }
+
+  &.@{css-prefix}popper[x-placement^='left'] .popper__arrow:after {
+    right: 1px;
+    bottom: -6px;
+    margin-left: -6px;
+    border-right-width: 0;
+    border-left-color: var(--ti-dropdown-menu-arrow-after-border-color);
+  }
+}
+
+.@{dropdown-menu-prefix-cls}--medium {
+  padding: var(--ti-dropdown-menu-medium-padding-vertical) var(--ti-dropdown-menu-medium-padding-horizontal);
+
+  .@{dropdown-item-prefix-cls} {
+    line-height: var(--ti-dropdown-item-medium-line-height);
+
+    font-size: var(--ti-dropdown-item-medium-font-size);
+
+    &.@{dropdown-item-prefix-cls}--divided {
+      margin-top: var(--ti-dropdown-item-medium-divided-margin-top);
+    }
+
+    &.@{dropdown-item-prefix-cls}--divided:before {
+      height: var(--ti-dropdown-item-medium-before-height);
+      margin: var(--ti-dropdown-item-before-margin-vertical) var(--ti-dropdown-item-medium-before-margin-horizontal);
+    }
+  }
+}
+
+.@{dropdown-menu-prefix-cls}--small {
+  padding: var(--ti-dropdown-menu-small-padding-vertical) var(--ti-dropdown-menu-small-padding-horizontal);
+
+  .@{dropdown-item-prefix-cls} {
+    line-height: var(--ti-dropdown-item-small-line-height);
+
+    font-size: var(--ti-dropdown-item-small-font-size);
+
+    &.@{dropdown-item-prefix-cls}--divided {
+      margin-top: var(--ti-dropdown-item-small-divided-margin-top);
+    }
+
+    &.@{dropdown-item-prefix-cls}--divided:before {
+      height: var(--ti-dropdown-item-small-before-height);
+      margin: var(--ti-dropdown-item-before-margin-vertical) var(--ti-dropdown-item-small-before-margin-horizontal);
+    }
+  }
+}
+
+.@{dropdown-menu-prefix-cls}--mini {
+  padding: 3px 0;
+
+  .@{dropdown-item-prefix-cls} {
+    line-height: var(--ti-dropdown-item-mini-line-height);
+    font-size: var(--ti-dropdown-item-mini-font-size);
+
+    &.@{dropdown-item-prefix-cls}--divided {
+      margin-top: var(--ti-dropdown-item-mini-divided-margin-top);
+    }
+
+    &.@{dropdown-item-prefix-cls}--divided:before {
+      height: var(--ti-dropdown-item-small-before-height);
+      margin: var(--ti-dropdown-item-before-margin-vertical) var(--ti-dropdown-item-mini-before-margin-horizontal);
+    }
+  }
+}

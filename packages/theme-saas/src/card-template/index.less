@@ -1,0 +1,144 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@card-template-prefix-cls: ~'@{css-prefix}card-template';
+
+.@{card-template-prefix-cls} {
+  @apply rounded-none;
+  @apply bg-color-bg-1;
+  @apply overflow-hidden;
+  @apply relative;
+  @apply shadow-none;
+  @apply border-0;
+
+  & &__header {
+    @apply py-0 px-6;
+    height: 46px;
+    line-height: 46px;
+
+    &.is-line {
+      @apply border-b border-b-color-border;
+    }
+  }
+
+  & &__title {
+    @apply font-bold;
+    @apply text-sm;
+    @apply text-color-text-primary;
+    @apply float-left;
+  }
+
+  & &__tools {
+    .clearfix();
+
+    .@{css-prefix-iconfont} {
+      @apply text-base;
+      @apply cursor-pointer;
+    }
+  }
+
+  & &__list {
+    @apply overflow-hidden;
+    float: right;
+
+    > li {
+      height: 46px;
+      line-height: 46px;
+      @apply float-left;
+      @apply text-base;
+      @apply mt-0 mr-3 mb-0 ml-0;
+
+      svg {
+        @apply fill-color-brand;
+        @apply cursor-pointer;
+      }
+
+      .@{css-prefix-iconfont} {
+        @apply text-color-brand;
+
+        &:hover {
+          @apply text-color-brand-hover;
+        }
+
+        &:active {
+          @apply text-color-brand-active;
+        }
+      }
+
+      &:last-child {
+        @apply m-0;
+      }
+    }
+  }
+
+  & &__more {
+    @apply absolute;
+    top: 45px;
+    right: 5px;
+    @apply border border-solid border-color-border;
+    @apply rounded-sm;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    @apply bg-color-bg-1;
+    @apply text-color-text-primary;
+    @apply ~'mt-0.5';
+
+    &:before {
+      @apply content-[''];
+      @apply absolute;
+      @apply block;
+      top: -5px;
+      right: 21px;
+      @apply w-0;
+      @apply h-0;
+      @apply border-solid;
+      border-width: 6px;
+      @apply border-t-color-bg-1 border-r-color-bg-1 border-b-transparent border-l-transparent;
+      @apply ~"-rotate-45";
+      box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    > ul {
+      > li {
+        @apply h-10;
+        @apply leading-10;
+        @apply py-0 ~"px-4.5";
+        @apply text-color-text-primary;
+        @apply flex;
+        @apply items-center;
+
+        .@{css-prefix-iconfont} {
+          @apply text-color-brand;
+          @apply ~'mr-2.5';
+        }
+
+        svg {
+          @apply fill-color-brand;
+          @apply text-base;
+        }
+
+        &:hover {
+          @apply cursor-pointer;
+          @apply text-color-brand;
+          @apply bg-color-bg-2;
+
+          .@{css-prefix-iconfont} {
+            @apply text-color-brand-hover;
+          }
+        }
+
+        &:active {
+          @apply text-color-brand-active;
+          @apply bg-color-bg-2;
+
+          .@{css-prefix-iconfont} {
+            @apply text-color-brand-active;
+          }
+        }
+      }
+    }
+  }
+
+  & &__body {
+    @apply pt-3 pr-6 pb-6 pl-6;
+  }
+}

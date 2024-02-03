@@ -1,0 +1,14 @@
+@import '../custom.less';
+
+@logout-prefix-cls: ~'@{css-prefix}logout';
+
+.@{logout-prefix-cls} {
+  @apply cursor-pointer;
+  @apply inline;
+  @apply text-sm;
+  @apply text-color-brand;
+
+  &:hover {
+    @apply text-color-brand-hover;
+  }
+}

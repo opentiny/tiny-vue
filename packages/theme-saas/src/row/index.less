@@ -1,0 +1,46 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+@import '../grid-system/index.less';
+
+@row-prefix-cls: ~'@{css-prefix}row';
+
+.@{row-prefix-cls} {
+  @apply w-auto;
+  .clearfix();
+
+  &.row-flex {
+    @apply flex;
+  }
+
+  &.row-justify-start {
+    @apply justify-start;
+  }
+
+  &.row-justify-end {
+    @apply justify-end;
+  }
+
+  &.row-justify-center {
+    @apply justify-center;
+  }
+
+  &.row-justify-space-around {
+    @apply justify-around;
+  }
+
+  &.row-justify-space-between {
+    @apply justify-between;
+  }
+
+  &.row-align-top {
+    @apply items-start;
+  }
+
+  &.row-align-middle {
+    @apply items-center;
+  }
+
+  &.row-align-bottom {
+    @apply items-end;
+  }
+}

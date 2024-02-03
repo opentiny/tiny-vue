@@ -1,0 +1,140 @@
+@import '../custom.less';
+
+@notify-prefix-cls: ~'@{css-prefix}notify';
+
+.@{notify-prefix-cls} {
+  @apply fixed;
+  @apply ~'z-[1101]';
+  max-width: 400px;
+  @apply w-full;
+  @apply box-border;
+  @apply transition-all duration-300;
+  @apply overflow-hidden;
+  @apply whitespace-nowrap;
+  @apply p-4;
+  @apply rounded-sm;
+  @apply text-sm;
+  @apply flex;
+  @apply flex-row;
+  @apply items-start;
+  box-shadow: 0 4px 12px #d9d9d9;
+  @apply rounded;
+  @apply bg-color-bg-1;
+
+  &.top-left {
+    @apply ~'left-2.5';
+    top: 25px;
+  }
+
+  &.bottom-left {
+    @apply ~'left-2.5';
+    bottom: 25px;
+  }
+
+  &.top-right {
+    @apply ~'right-2.5';
+    top: 25px;
+  }
+
+  &.bottom-right {
+    @apply ~'right-2.5';
+    bottom: 25px;
+  }
+
+  & &__title {
+    @apply font-bold;
+    @apply text-sm;
+    @apply text-color-text-primary;
+    line-height: 1.74;
+    @apply whitespace-nowrap;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+  }
+
+  & &__icon {
+    @apply text-color-brand;
+  }
+
+  & &__content {
+    @apply m-0;
+    @apply p-0;
+    @apply text-sm;
+    @apply text-color-text-primary;
+    @apply break-all;
+    @apply whitespace-pre-wrap;
+  }
+
+  & &__closebtn {
+    @apply cursor-pointer;
+    @apply text-color-brand;
+    @apply absolute;
+    @apply ~"top-1/2";
+    @apply ~'right-2.5';
+    @apply ~"-translate-y-2/4";
+  }
+
+  & &__icon-zone {
+    @apply w-6;
+    @apply h-6;
+    @apply text-2xl;
+  }
+
+  & &__message-zone {
+    width: calc(100% - 40px);
+    @apply ~'ml-2.5';
+  }
+
+  & &__close-zone {
+    @apply w-4;
+    @apply h-4;
+    @apply text-base;
+    @apply cursor-pointer;
+  }
+
+  &--info &__icon-zone {
+    @apply fill-color-info-secondary;
+  }
+
+  &--warning &__icon-zone {
+    @apply fill-color-warning;
+  }
+
+  &--error &__icon-zone {
+    @apply fill-color-error;
+  }
+
+  &--success &__icon-zone {
+    @apply fill-color-success;
+  }
+
+  &__icon-zone &__icon-status {
+    @apply relative;
+    top: -7px;
+  }
+
+  &--no-close &__message-zone {
+    width: calc(100% - 24px);
+  }
+
+  &__message-zone &__title-wrapper {
+    @apply h-6;
+    @apply leading-6;
+    @apply mb-2;
+  }
+
+  &__message-zone &__content-wrapper {
+    @apply h-auto;
+    @apply leading-6;
+    max-height: 96px;
+    @apply overflow-y-auto;
+  }
+
+  &__close-zone &__icon-close {
+    @apply relative;
+    top: -5px;
+  }
+
+  &--no-icon &__message-zone {
+    @apply w-full;
+  }
+}

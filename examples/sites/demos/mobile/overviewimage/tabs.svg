@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="125px" height="125px" viewBox="0 0 125 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Tabs 页签</title>
+    <defs>
+        <linearGradient x1="50%" y1="45.9685271%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#ECF3FB" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.3956523%" y1="35.9331967%" x2="50%" y2="64.0668033%" id="linearGradient-2">
+            <stop stop-color="#E3EFFD" stop-opacity="0.00575352382" offset="0%"></stop>
+            <stop stop-color="#E5F0FD" offset="34.0601199%"></stop>
+            <stop stop-color="#F0F6FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.3333333%" y1="34.495573%" x2="96.9740837%" y2="65.4421891%" id="linearGradient-3">
+            <stop stop-color="#D5E6F9" offset="0%"></stop>
+            <stop stop-color="#F7FBFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="90.9912104%" y1="29.4309598%" x2="33.3333333%" y2="67.7472684%" id="linearGradient-4">
+            <stop stop-color="#D5E6F9" offset="0%"></stop>
+            <stop stop-color="#E7F0F9" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-5">
+            <stop stop-color="#CEE6FE" offset="0%"></stop>
+            <stop stop-color="#8AB5F2" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-6">
+            <stop stop-color="#BFD6F9" offset="0%"></stop>
+            <stop stop-color="#F3F6FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="89.8473889%" y1="61.7348066%" x2="0%" y2="61.7348066%" id="linearGradient-7">
+            <stop stop-color="#CAD9F3" offset="0%"></stop>
+            <stop stop-color="#D5E3F7" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-18.5%" y="-60.0%" width="136.9%" height="220.0%" filterUnits="objectBoundingBox" id="filter-8">
+            <feGaussianBlur stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="44.0988019%" y1="61.2505872%" x2="128.792906%" y2="21.3457772%" id="linearGradient-9">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="63.1864578%" x2="128.792906%" y2="16.4152907%" id="linearGradient-10">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="63.1864578%" x2="128.792906%" y2="16.4152907%" id="linearGradient-11">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <path d="M2,18 L76,18 C77.1045695,18 78,18.8954305 78,20 C78,21.1045695 77.1045695,22 76,22 L2,22 C0.8954305,22 1.3527075e-16,21.1045695 0,20 C-1.3527075e-16,18.8954305 0.8954305,18 2,18 Z" id="path-12"></path>
+        <filter x="-5.1%" y="-50.0%" width="110.3%" height="300.0%" filterUnits="objectBoundingBox" id="filter-13">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.368627451   0 0 0 0 0.48627451   0 0 0 0 0.878431373  0 0 0 0.349865467 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="44.0988019%" y1="54.1286689%" x2="128.792906%" y2="39.4846556%" id="linearGradient-14">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.5803233%" y1="86.8386573%" x2="122.363624%" y2="-43.8247114%" id="linearGradient-15">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="52.0395104%" x2="128.792906%" y2="44.8055523%" id="linearGradient-16">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面一" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-TinyUI-ICON-1-【9-2】-无阴影" transform="translate(-697.000000, -3209.000000)">
+            <g id="Tabs-页签" transform="translate(697.000000, 3209.000000)">
+                <g id="编组">
+                    <g transform="translate(9.000000, 1.000000)" id="多边形">
+                        <polygon fill="url(#linearGradient-1)" opacity="0.54620216" points="53.2605623 0 106.521125 30.75 53.2605623 62 0 30.75"></polygon>
+                        <polygon fill="url(#linearGradient-2)" points="53.2605623 61.5 106.521125 86.75 53.2605623 118 0 86.75"></polygon>
+                        <polygon fill="url(#linearGradient-3)" opacity="0.600606283" points="53.2605623 62 53.2605623 123 7.39138783e-15 92.25 0 30.75"></polygon>
+                        <polygon fill="url(#linearGradient-4)" opacity="0.791265578" points="53.2605623 62 106.521125 30.75 106.521125 92.25 53.2605623 123"></polygon>
+                        <polygon fill="url(#linearGradient-5)" points="53.2605623 118.007802 53.2605623 123 7.39138783e-15 92.25 0 86.9161706"></polygon>
+                        <polygon fill="url(#linearGradient-6)" transform="translate(79.630281, 104.958085) scale(-1, 1) translate(-79.630281, -104.958085) " points="106.260562 118.007802 106.260562 123 53 92.25 53 86.9161706"></polygon>
+                    </g>
+                    <ellipse id="椭圆形" fill="url(#linearGradient-7)" filter="url(#filter-8)" cx="62.5" cy="90" rx="32.5" ry="10"></ellipse>
+                </g>
+                <g id="编组-19" transform="translate(24.000000, 34.000000)">
+                    <path d="M3,18 L75,18 C76.1045695,18 77,18.8954305 77,20 L77,58 C77,59.1045695 76.1045695,60 75,60 L3,60 C1.8954305,60 1,59.1045695 1,58 L1,20 C1,18.8954305 1.8954305,18 3,18 Z" id="矩形" fill="url(#linearGradient-9)" opacity="0.303770519"></path>
+                    <rect id="矩形-2" fill="url(#linearGradient-10)" opacity="0.303770519" x="25.7" y="0" width="23" height="14" rx="4"></rect>
+                    <rect id="矩形-2备份-3" fill="url(#linearGradient-10)" opacity="0.303770519" x="51.1" y="0" width="23" height="14" rx="4"></rect>
+                    <rect id="矩形-2备份" stroke="url(#linearGradient-10)" fill="url(#linearGradient-11)" x="-1.81188398e-13" y="0" width="23" height="14" rx="4"></rect>
+                    <g id="形状结合备份">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-13)" xlink:href="#path-12"></use>
+                        <use fill="#5073E5" fill-rule="evenodd" xlink:href="#path-12"></use>
+                    </g>
+                    <path d="M36,29 L61,29 C61.5522847,29 62,29.4477153 62,30 L62,37 C62,37.5522847 61.5522847,38 61,38 L36,38 C35.4477153,38 35,37.5522847 35,37 L35,30 C35,29.4477153 35.4477153,29 36,29 Z" id="形状结合备份-35" fill="url(#linearGradient-14)" opacity="0.604724702"></path>
+                    <path d="M8,29 L29,29 C29.5522847,29 30,29.4477153 30,30 L30,52 C30,52.5522847 29.5522847,53 29,53 L8,53 C7.44771525,53 7,52.5522847 7,52 L7,30 C7,29.4477153 7.44771525,29 8,29 Z" id="形状结合备份-38" fill="url(#linearGradient-15)" opacity="0.604724702"></path>
+                    <path d="M36,44 L68,44 C68.5522847,44 69,44.4477153 69,45 L69,52 C69,52.5522847 68.5522847,53 68,53 L36,53 C35.4477153,53 35,52.5522847 35,52 L35,45 C35,44.4477153 35.4477153,44 36,44 Z" id="形状结合备份-36" fill="url(#linearGradient-16)" opacity="0.604724702"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

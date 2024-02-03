@@ -1,0 +1,319 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@split-prefix-cls: ~'@{css-prefix}split';
+
+.@{split-prefix-cls} {
+  &-wrapper {
+    @apply relative;
+    @apply w-full;
+    @apply h-full;
+    @apply overflow-hidden;
+    box-shadow: 0 0 0 #d9d9d9;
+  }
+
+  &-pane {
+    @apply absolute;
+
+    &.left-pane,
+    &.right-pane {
+      @apply top-0;
+      @apply bottom-0;
+      @apply overflow-hidden;
+    }
+
+    &.left-pane {
+      @apply left-0;
+    }
+
+    &.right-pane {
+      @apply right-0;
+    }
+
+    &.top-pane,
+    &.bottom-pane {
+      @apply left-0;
+      @apply right-0;
+      @apply overflow-hidden;
+    }
+
+    &.top-pane {
+      @apply top-0;
+    }
+
+    &.bottom-pane {
+      @apply bottom-0;
+    }
+  }
+
+  &-trigger {
+    &-con {
+      @apply absolute;
+      @apply ~"-translate-x-2/4" ~"-translate-y-2/4";
+      @apply z-10;
+    }
+
+    &-bar-con {
+      @apply absolute;
+      @apply bg-color-bg-1;
+
+      &.vertical {
+        @apply ~"top-1/2";
+        @apply h-7;
+        @apply translate-x-0 ~"-translate-y-1/2";
+      }
+
+      &.horizontal {
+        @apply ~'left-1/2';
+        @apply w-7;
+        @apply ~"-translate-x-1/2" translate-y-0;
+      }
+    }
+
+    &-vertical {
+      @apply w-1;
+      @apply h-full;
+      @apply bg-color-border-separator;
+      @apply cursor-e-resize;
+
+      .@{split-prefix-cls}-trigger-bar {
+        @apply w-1;
+        @apply h-1;
+        @apply bg-color-text-secondary;
+        @apply float-left;
+        @apply mt-1;
+        @apply rounded-full;
+      }
+    }
+
+    &-horizontal {
+      @apply h-1;
+      @apply w-full;
+      @apply bg-color-border-separator;
+      @apply cursor-n-resize;
+
+      .@{split-prefix-cls}-trigger-bar {
+        @apply h-1;
+        @apply w-1;
+        @apply bg-color-text-secondary;
+        @apply float-left;
+        @apply ml-1;
+        @apply rounded-full;
+      }
+    }
+  }
+
+  &-horizontal {
+    .@{split-prefix-cls}-trigger-con {
+      @apply ~"top-1/2";
+      @apply h-full;
+      @apply w-0;
+
+      .@{split-prefix-cls}-trigger-button {
+        @apply w-3;
+        @apply h-12;
+        @apply absolute;
+        @apply ~"top-1/2";
+
+        &-active {
+          @apply w-4;
+        }
+      }
+
+      .@{split-prefix-cls}-trigger-left-button {
+        @apply translate-x-0 ~"-translate-y-1/2";
+        @apply -left-1;
+        @apply rounded-l-lg rounded-r-none;
+        @apply border-r-0;
+
+        &.@{split-prefix-cls}-trigger-button-active {
+          @apply -left-2;
+        }
+      }
+
+      .@{split-prefix-cls}-trigger-right-button {
+        @apply translate-x-px ~"-translate-y-1/2";
+        @apply rounded-l-none rounded-r-lg;
+        @apply border-l-0;
+      }
+    }
+
+    .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-disabled {
+      .@{split-prefix-cls}-trigger-vertical,
+      .@{split-prefix-cls}-trigger-horizontal {
+        @apply cursor-auto;
+
+        &:hover {
+          @apply bg-color-border-separator;
+        }
+      }
+    }
+
+    .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-left-active {
+      @apply -ml-px;
+    }
+
+    .@{split-prefix-cls}-vertical .@{split-prefix-cls}-trigger-con {
+      @apply ~'left-1/2';
+      @apply h-0;
+      @apply w-full;
+    }
+
+    .@{split-prefix-cls}-trigger-con-drag {
+      @apply cursor-e-resize;
+    }
+
+    .@{split-prefix-cls}-pane-moving {
+      @apply cursor-e-resize;
+    }
+  }
+
+  &-vertical {
+    .@{split-prefix-cls}-trigger-con {
+      @apply ~'left-1/2';
+      @apply h-0;
+      @apply w-full;
+
+      .@{split-prefix-cls}-trigger-button {
+        @apply w-12;
+        @apply h-3;
+        @apply absolute;
+        @apply ~'left-1/2';
+
+        &-active {
+          @apply h-4;
+        }
+      }
+
+      .@{split-prefix-cls}-trigger-top-button {
+        @apply ~"-translate-x-1/2" translate-y-0;
+        @apply rounded-t-lg rounded-b-none;
+        @apply -top-1;
+        @apply border-b-0;
+
+        &.@{split-prefix-cls}-trigger-button-active {
+          @apply -top-2;
+        }
+
+        .@{css-prefix}svg {
+          @apply rotate-90;
+        }
+      }
+
+      .@{split-prefix-cls}-trigger-bottom-button {
+        @apply ~"-translate-x-1/2" translate-y-0;
+        @apply rounded-t-none rounded-b-lg;
+        @apply border-t-0;
+
+        .@{css-prefix}svg {
+          @apply rotate-90;
+        }
+      }
+    }
+
+    .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-disabled {
+      .@{split-prefix-cls}-trigger-vertical,
+      .@{split-prefix-cls}-trigger-horizontal {
+        @apply cursor-auto;
+
+        &:hover {
+          @apply bg-color-border-separator;
+        }
+      }
+    }
+
+    .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-top-active {
+      @apply -mt-px;
+    }
+
+    .@{split-prefix-cls}-horizontal .@{split-prefix-cls}-trigger-con {
+      @apply ~"top-1/2";
+      @apply h-full;
+      @apply w-0;
+    }
+
+    .@{split-prefix-cls}-trigger-con-drag {
+      @apply cursor-n-resize;
+    }
+
+    .@{split-prefix-cls}-pane-moving {
+      @apply cursor-n-resize;
+    }
+  }
+
+  .no-select {
+    .user-select(none);
+  }
+
+  &-trigger-button {
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    @apply border border-solid border-color-border-separator;
+    @apply bg-color-bg-1;
+    @apply transition-all duration-100;
+    @apply invisible;
+
+    .@{css-prefix}svg {
+      @apply fill-color-none-hover;
+    }
+
+    &:hover {
+      @apply cursor-pointer;
+
+      .@{css-prefix}svg {
+        @apply fill-color-icon-primary;
+      }
+    }
+  }
+
+  &-trigger-button-active {
+    .@{css-prefix}svg {
+      @apply fill-color-none-hover;
+    }
+
+    &:hover {
+      .@{css-prefix}svg {
+        @apply fill-color-icon-primary;
+      }
+    }
+  }
+
+  &-trigger-button-show {
+    @apply visible;
+  }
+
+  &-trigger-con {
+    @apply transition-all duration-100;
+  }
+
+  &-trigger-con-drag {
+    @apply transition-none;
+  }
+
+  &-trigger-con-vertical.@{split-prefix-cls}-trigger-con-simple {
+    @apply py-0 px-2;
+    @apply cursor-e-resize;
+  }
+
+  &-trigger-con-horizontal.@{split-prefix-cls}-trigger-con-simple {
+    @apply py-2 px-0;
+    @apply cursor-n-resize;
+  }
+
+  &-trigger-con-simple {
+    .@{split-prefix-cls}-trigger-vertical {
+      @apply w-px;
+    }
+
+    .@{split-prefix-cls}-trigger-horizontal {
+      @apply h-px;
+    }
+
+    &:hover {
+      .@{split-prefix-cls}-trigger {
+        @apply bg-color-brand-hover;
+      }
+    }
+  }
+}

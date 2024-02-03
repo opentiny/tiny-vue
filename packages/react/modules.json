@@ -1,0 +1,238 @@
+{
+  "Alert": {
+    "path": "react/src/alert/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "AlertMobile": {
+    "path": "react/src/alert/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "AlertMobileFirst": {
+    "path": "react/src/alert/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "AlertPc": {
+    "path": "react/src/alert/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Anchor": {
+    "path": "react/src/anchor/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "AnchorPc": {
+    "path": "react/src/anchor/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "AutonaviMap": {
+    "path": "react/src/chart/autonavi-map/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "Badge": {
+    "path": "react/src/badge/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile",
+      "pc"
+    ]
+  },
+  "BadgeMobile": {
+    "path": "react/src/badge/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "BadgePc": {
+    "path": "react/src/badge/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "BaiduMap": {
+    "path": "react/src/chart/baidu-map/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "Button": {
+    "path": "react/src/button/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "ButtonMobile": {
+    "path": "react/src/button/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ButtonMobileFirst": {
+    "path": "react/src/button/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ButtonPc": {
+    "path": "react/src/button/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Chart": {
+    "path": "react/src/chart/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartBar": {
+    "path": "react/src/chart/chart-bar/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartBoxplot": {
+    "path": "react/src/chart/chart-boxplot/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartCandle": {
+    "path": "react/src/chart/chart-candle/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartCore": {
+    "path": "react/src/chart/chart-core/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartFunnel": {
+    "path": "react/src/chart/chart-funnel/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartGauge": {
+    "path": "react/src/chart/chart-gauge/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartGraph": {
+    "path": "react/src/chart/chart-graph/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartHeatmap": {
+    "path": "react/src/chart/chart-heatmap/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartHistogram": {
+    "path": "react/src/chart/chart-histogram/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartLine": {
+    "path": "react/src/chart/chart-line/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartLiquidfill": {
+    "path": "react/src/chart/chart-liquidfill/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartMap": {
+    "path": "react/src/chart/chart-map/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartMount": {
+    "path": "react/src/chart/chart-mount/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartPie": {
+    "path": "react/src/chart/chart-pie/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartRadar": {
+    "path": "react/src/chart/chart-radar/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartRing": {
+    "path": "react/src/chart/chart-ring/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartSankey": {
+    "path": "react/src/chart/chart-sankey/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartScatter": {
+    "path": "react/src/chart/chart-scatter/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartSunburst": {
+    "path": "react/src/chart/chart-sunburst/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartTree": {
+    "path": "react/src/chart/chart-tree/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartWaterfall": {
+    "path": "react/src/chart/chart-waterfall/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartWordcloud": {
+    "path": "react/src/chart/chart-wordcloud/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "Common": {
+    "path": "react/common/src/index.ts",
+    "type": "module",
+    "exclude": false
+  },
+  "Icon": {
+    "path": "react/src/icon/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "Switch": {
+    "path": "react/src/switch/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile",
+      "pc"
+    ]
+  },
+  "SwitchMobile": {
+    "path": "react/src/switch/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "SwitchPc": {
+    "path": "react/src/switch/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  }
+}

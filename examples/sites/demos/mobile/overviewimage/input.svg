@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="125px" height="125px" viewBox="0 0 125 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Text 文本框</title>
+    <defs>
+        <linearGradient x1="50%" y1="45.9685271%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#ECF3FB" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.3956523%" y1="35.9331967%" x2="50%" y2="64.0668033%" id="linearGradient-2">
+            <stop stop-color="#E3EFFD" stop-opacity="0.00575352382" offset="0%"></stop>
+            <stop stop-color="#E5F0FD" offset="34.0601199%"></stop>
+            <stop stop-color="#F0F6FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.3333333%" y1="34.495573%" x2="96.9740837%" y2="65.4421891%" id="linearGradient-3">
+            <stop stop-color="#D5E6F9" offset="0%"></stop>
+            <stop stop-color="#F7FBFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="90.9912104%" y1="29.4309598%" x2="33.3333333%" y2="67.7472684%" id="linearGradient-4">
+            <stop stop-color="#D5E6F9" offset="0%"></stop>
+            <stop stop-color="#E7F0F9" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-5">
+            <stop stop-color="#CEE6FE" offset="0%"></stop>
+            <stop stop-color="#8AB5F2" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-6">
+            <stop stop-color="#BFD6F9" offset="0%"></stop>
+            <stop stop-color="#F3F6FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="89.8473889%" y1="61.7348066%" x2="0%" y2="61.7348066%" id="linearGradient-7">
+            <stop stop-color="#CAD9F3" offset="0%"></stop>
+            <stop stop-color="#D5E3F7" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-18.5%" y="-60.0%" width="136.9%" height="220.0%" filterUnits="objectBoundingBox" id="filter-8">
+            <feGaussianBlur stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="44.0988019%" y1="85.3197022%" x2="128.792906%" y2="-39.956071%" id="linearGradient-9">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="50.3683866%" x2="128.792906%" y2="49.0617529%" id="linearGradient-10">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <path d="M50,60 L75,60 C75.5522847,60 76,60.4477153 76,61 L76,65 C76,65.5522847 75.5522847,66 75,66 L50,66 C49.4477153,66 49,65.5522847 49,65 L49,61 C49,60.4477153 49.4477153,60 50,60 Z" id="path-11"></path>
+        <filter x="-14.8%" y="-33.3%" width="129.6%" height="233.3%" filterUnits="objectBoundingBox" id="filter-12">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.368627451   0 0 0 0 0.48627451   0 0 0 0 0.878431373  0 0 0 0.349865467 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M47,45 L78,45 C78.5522847,45 79,45.4477153 79,46 L79,50 C79,50.5522847 78.5522847,51 78,51 L47,51 C46.4477153,51 46,50.5522847 46,50 L46,46 C46,45.4477153 46.4477153,45 47,45 Z" id="path-13"></path>
+        <filter x="-12.1%" y="-33.3%" width="124.2%" height="233.3%" filterUnits="objectBoundingBox" id="filter-14">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.368627451   0 0 0 0 0.48627451   0 0 0 0 0.878431373  0 0 0 0.349865467 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="44.0988019%" y1="86.8386573%" x2="128.792906%" y2="-43.8247114%" id="linearGradient-15">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="86.8386573%" x2="128.792906%" y2="-43.8247114%" id="linearGradient-16">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面一" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-TinyUI-ICON-1-【9-2】-无阴影" transform="translate(-697.000000, -1350.000000)">
+            <g id="Text-文本框" transform="translate(697.000000, 1350.000000)">
+                <g id="编组">
+                    <g transform="translate(9.000000, 1.000000)" id="多边形">
+                        <polygon fill="url(#linearGradient-1)" opacity="0.54620216" points="53.2605623 0 106.521125 30.75 53.2605623 62 0 30.75"></polygon>
+                        <polygon fill="url(#linearGradient-2)" points="53.2605623 61.5 106.521125 86.75 53.2605623 118 0 86.75"></polygon>
+                        <polygon fill="url(#linearGradient-3)" opacity="0.600606283" points="53.2605623 62 53.2605623 123 7.39138783e-15 92.25 0 30.75"></polygon>
+                        <polygon fill="url(#linearGradient-4)" opacity="0.791265578" points="53.2605623 62 106.521125 30.75 106.521125 92.25 53.2605623 123"></polygon>
+                        <polygon fill="url(#linearGradient-5)" points="53.2605623 118.007802 53.2605623 123 7.39138783e-15 92.25 0 86.9161706"></polygon>
+                        <polygon fill="url(#linearGradient-6)" transform="translate(79.630281, 104.958085) scale(-1, 1) translate(-79.630281, -104.958085) " points="106.260562 118.007802 106.260562 123 53 92.25 53 86.9161706"></polygon>
+                    </g>
+                    <ellipse id="椭圆形" fill="url(#linearGradient-7)" filter="url(#filter-8)" cx="62.5" cy="90" rx="32.5" ry="10"></ellipse>
+                </g>
+                <path d="M41,40 L85,40 C86.1045695,40 87,40.8954305 87,42 L87,85 C87,86.1045695 86.1045695,87 85,87 L41,87 C39.8954305,87 39,86.1045695 39,85 L39,42 C39,40.8954305 39.8954305,40 41,40 Z" id="形状结合备份-6" fill="url(#linearGradient-9)" opacity="0.204287574"></path>
+                <path d="M49.5,80 L76.5,80 C77.3284271,80 78,80.6715729 78,81.5 C78,82.3284271 77.3284271,83 76.5,83 L49.5,83 C48.6715729,83 48,82.3284271 48,81.5 C48,80.6715729 48.6715729,80 49.5,80 Z" id="形状结合备份" fill="url(#linearGradient-10)" opacity="0.303770519"></path>
+                <g id="形状结合备份-16" transform="translate(62.500000, 63.000000) rotate(-90.000000) translate(-62.500000, -63.000000) ">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-12)" xlink:href="#path-11"></use>
+                    <use fill="#5073E5" fill-rule="evenodd" xlink:href="#path-11"></use>
+                </g>
+                <g id="形状结合备份-2">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-14)" xlink:href="#path-13"></use>
+                    <use fill="#5073E5" fill-rule="evenodd" xlink:href="#path-13"></use>
+                </g>
+                <path d="M90,32 C92.209139,32 94,33.790861 94,36 L94,90 C94,92.209139 92.209139,94 90,94 L36,94 C33.790861,94 32,92.209139 32,90 L32,36 C32,33.790861 33.790861,32 36,32 L90,32 Z M38,35 C36.3431458,35 35,36.3431458 35,38 L35,38 L35,88 C35,89.6568542 36.3431458,91 38,91 L38,91 L88,91 C89.6568542,91 91,89.6568542 91,88 L91,88 L91,38 C91,36.3431458 89.6568542,35 88,35 L88,35 Z" id="形状结合" stroke="url(#linearGradient-16)" fill="url(#linearGradient-15)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

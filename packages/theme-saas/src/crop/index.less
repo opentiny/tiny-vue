@@ -1,0 +1,583 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@crop-prefix-cls: ~'@{css-prefix}crop';
+@croppreview-prefix-cls: ~'@{css-prefix}croppreview';
+
+.@{crop-prefix-cls} {
+  @apply text-color-text-primary;
+
+  .cropper-container {
+    direction: ltr;
+    font-size: 0;
+    @apply ~'leading-[0]';
+    @apply relative;
+    @apply touch-none;
+    .user-select(none);
+  }
+
+  .cropper-container img {
+    @apply block;
+    @apply h-full;
+    image-orientation: 0deg;
+    @apply ~"!max-h-[none]";
+    @apply ~"!max-w-[none]";
+    @apply !min-h-0;
+    @apply !min-w-0;
+    @apply w-full;
+  }
+
+  .cropper-wrap-box,
+  .cropper-canvas,
+  .cropper-drag-box,
+  .cropper-crop-box,
+  .cropper-modal {
+    @apply bottom-0;
+    @apply left-0;
+    @apply absolute;
+    @apply right-0;
+    @apply top-0;
+  }
+
+  .cropper-wrap-box,
+  .cropper-canvas {
+    @apply overflow-hidden;
+  }
+
+  .cropper-drag-box {
+    @apply bg-color-bg-1;
+    @apply opacity-0;
+  }
+
+  .cropper-modal {
+    @apply bg-black;
+    @apply opacity-50;
+  }
+
+  .cropper-view-box {
+    @apply block;
+    @apply h-full;
+    @apply outline-color-brand;
+    @apply outline-1 outline outline-color-brand;
+    @apply overflow-hidden;
+    @apply w-full;
+  }
+
+  .cropper-dashed {
+    @apply border-0 border-dashed border-color-border;
+    @apply block;
+    @apply opacity-50;
+    @apply absolute;
+  }
+
+  .cropper-dashed.dashed-h {
+    @apply border-y;
+    @apply ~"h-1/3";
+    @apply left-0;
+    @apply ~'top-1/3';
+    @apply w-full;
+  }
+
+  .cropper-dashed.dashed-v {
+    @apply border-x;
+    @apply h-full;
+    @apply ~'left-1/3';
+    @apply top-0;
+    @apply ~'w-1/3';
+  }
+
+  .cropper-center {
+    @apply block;
+    @apply h-0;
+    @apply ~'left-1/2';
+    @apply opacity-75;
+    @apply absolute;
+    @apply ~"top-1/2";
+    @apply w-0;
+  }
+
+  .cropper-center:before,
+  .cropper-center:after {
+    @apply bg-color-bg-2;
+    @apply ~"content-['']";
+    @apply block;
+    @apply absolute;
+  }
+
+  .cropper-center:before {
+    @apply h-px;
+    left: -3px;
+    @apply top-0;
+    width: 7px;
+  }
+
+  .cropper-center:after {
+    height: 7px;
+    @apply left-0;
+    top: -3px;
+    @apply w-px;
+  }
+
+  .cropper-face,
+  .cropper-line,
+  .cropper-point {
+    @apply block;
+    @apply h-full;
+    @apply opacity-10;
+    @apply absolute;
+    @apply w-full;
+  }
+
+  .cropper-face {
+    @apply bg-color-bg-1;
+    @apply left-0;
+    @apply top-0;
+  }
+
+  .cropper-line {
+    @apply bg-color-brand;
+  }
+
+  .cropper-line.line-e {
+    @apply cursor-ew-resize;
+    right: -3px;
+    @apply top-0;
+    width: 5px;
+  }
+
+  .cropper-line.line-n {
+    @apply cursor-ns-resize;
+    height: 5px;
+    @apply left-0;
+    top: -3px;
+  }
+
+  .cropper-line.line-w {
+    @apply cursor-ew-resize;
+    left: -3px;
+    @apply top-0;
+    width: 5px;
+  }
+
+  .cropper-line.line-s {
+    bottom: -3px;
+    @apply cursor-ns-resize;
+    height: 5px;
+    @apply left-0;
+  }
+
+  .cropper-point {
+    @apply bg-color-brand;
+    height: 5px;
+    @apply opacity-50;
+    width: 5px;
+  }
+
+  .cropper-point.point-e {
+    @apply cursor-ew-resize;
+    margin-top: -3px;
+    right: -3px;
+    @apply ~"top-1/2";
+  }
+
+  .cropper-point.point-n {
+    @apply cursor-ns-resize;
+    @apply ~'left-1/2';
+    margin-left: -3px;
+    top: -3px;
+  }
+
+  .cropper-point.point-w {
+    @apply cursor-ew-resize;
+    left: -3px;
+    margin-top: -3px;
+    @apply ~"top-1/2";
+  }
+
+  .cropper-point.point-s {
+    bottom: -3px;
+    @apply cursor-s-resize;
+    @apply ~'left-1/2';
+    margin-left: -3px;
+  }
+
+  .cropper-point.point-ne {
+    @apply cursor-nesw-resize;
+    right: -3px;
+    top: -3px;
+  }
+
+  .cropper-point.point-nw {
+    @apply cursor-nwse-resize;
+    left: -3px;
+    top: -3px;
+  }
+
+  .cropper-point.point-sw {
+    bottom: -3px;
+    @apply cursor-nesw-resize;
+    left: -3px;
+  }
+
+  .cropper-point.point-se {
+    bottom: -3px;
+    @apply cursor-nwse-resize;
+    @apply h-5;
+    @apply opacity-100;
+    right: -3px;
+    @apply w-5;
+  }
+
+  @media (min-width: 768px) {
+    .cropper-point.point-se {
+      height: 15px;
+      width: 15px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .cropper-point.point-se {
+      @apply ~'h-2.5';
+      @apply ~'w-2.5';
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .cropper-point.point-se {
+      height: 5px;
+      @apply opacity-75;
+      width: 5px;
+    }
+  }
+
+  .cropper-point.point-se:before {
+    @apply bg-color-brand;
+    @apply ~'-bottom-1/2';
+    @apply ~"content-['']";
+    @apply block;
+    height: 200%;
+    @apply opacity-0;
+    @apply absolute;
+    @apply ~'-right-1/2';
+    width: 200%;
+  }
+
+  .cropper-invisible {
+    @apply opacity-0;
+  }
+
+  .cropper-bg {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC');
+  }
+
+  .cropper-hide {
+    @apply block;
+    @apply h-0;
+    @apply absolute;
+    @apply w-0;
+  }
+
+  .cropper-hidden {
+    @apply !hidden;
+  }
+
+  .cropper-move {
+    @apply cursor-move;
+  }
+
+  .cropper-crop {
+    @apply cursor-crosshair;
+  }
+
+  .cropper-disabled .cropper-drag-box,
+  .cropper-disabled .cropper-face,
+  .cropper-disabled .cropper-line,
+  .cropper-disabled .cropper-point {
+    @apply cursor-not-allowed;
+  }
+
+  .img-container {
+    @apply m-auto;
+    @apply overflow-hidden;
+  }
+
+  .img-container > img {
+    @apply ~"max-w-[100%]";
+  }
+
+  .opration {
+    height: 30px;
+    line-height: 30px;
+    @apply text-center;
+    background-color: rgba(55, 55, 55, 0.3);
+    @apply relative;
+  }
+
+  .opration span {
+    width: 26px;
+    height: 26px;
+    @apply my-0 ~'mx-0.5';
+    @apply inline-block;
+    @apply text-color-text-inverse;
+    @apply cursor-pointer;
+    @apply rounded-full;
+    @apply bg-black bg-opacity-50;
+  }
+
+  .opration span:hover {
+    @apply bg-black bg-opacity-80;
+    @apply w-7;
+    @apply h-7;
+  }
+
+  .opration span.@{css-prefix-iconfont}::before {
+    @apply relative;
+  }
+
+  .crop-modal-mask {
+    @apply fixed;
+    @apply top-0;
+    @apply bottom-0;
+    @apply left-0;
+    @apply right-0;
+    @apply bg-color-bg-6;
+    @apply h-full;
+    @apply ~'z-[1000]';
+  }
+
+  .crop-modal-warp {
+    @apply fixed;
+    @apply overflow-auto;
+    @apply top-0;
+    @apply right-0;
+    @apply bottom-0;
+    @apply left-0;
+    @apply ~'z-[1000]';
+    -webkit-overflow-scrolling: touch;
+    @apply outline-0;
+  }
+
+  .crop-modal {
+    @apply relative;
+    top: 100px;
+    margin: 0 auto 50px;
+    @apply bg-color-bg-1;
+    @apply rounded-sm;
+    @apply box-border;
+    @apply ~'w-1/2';
+  }
+
+  .moda-close {
+    @apply absolute;
+    @apply -top-10;
+    @apply -right-10;
+    @apply w-20;
+    @apply h-20;
+    @apply cursor-pointer;
+    @apply rounded-full;
+    @apply bg-black bg-opacity-50;
+  }
+
+  .moda-close .@{css-prefix-iconfont} {
+    top: 45px;
+    @apply left-4;
+    @apply text-color-text-inverse;
+    @apply ~'z-[9999999]';
+  }
+
+  .img-preview-box {
+    @apply fixed;
+    top: 100px;
+  }
+
+  .img-preview {
+    @apply h-36;
+    @apply w-64;
+    @apply overflow-hidden;
+  }
+
+  @media (max-width: 768px) {
+    .preview-lg {
+      @apply hidden;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .preview-md {
+      @apply hidden;
+    }
+  }
+
+  .preview-lg {
+    @apply h-36;
+    @apply w-64;
+    @apply mt-1;
+  }
+
+  .preview-md {
+    height: 4.5rem;
+    @apply w-32;
+    @apply mt-1;
+  }
+
+  .preview-sm {
+    @apply h-9;
+    @apply w-16;
+    @apply mt-1;
+  }
+
+  .img-preview > img {
+    @apply ~"max-w-[100%]";
+  }
+
+  .nopic {
+    height: 200px;
+    @apply text-center;
+    @apply bg-black bg-opacity-30;
+  }
+
+  .nopic-center {
+    @apply relative;
+    font-size: 50px;
+    @apply text-white text-opacity-60;
+    @apply cursor-pointer;
+    top: 50px;
+  }
+
+  input[type='file'] {
+    @apply hidden;
+  }
+}
+
+.@{crop-prefix-cls} {
+  @apply fixed;
+  @apply h-full;
+  @apply w-full;
+  @apply flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply top-0;
+  @apply left-0;
+  @apply ~'z-[1000]';
+  background: rgba(97, 97, 97, 0.5);
+
+  &__dialog-content__handle {
+    @apply flex;
+    @apply justify-center;
+    @apply m-6;
+  }
+
+  &__dialog-content__handle__button {
+    @apply flex;
+    @apply justify-between;
+  }
+
+  &__dialog {
+    width: 652px;
+    @apply flex;
+    @apply flex-col;
+    @apply items-center;
+    @apply box-border;
+    @apply bg-color-bg-1;
+    @apply ~'z-[1001]';
+  }
+
+  &__dialog-cropper {
+    width: 652px;
+    height: 300px;
+    @apply overflow-hidden;
+  }
+
+  &__dialog-content {
+    @apply w-full;
+    @apply flex;
+    @apply items-center;
+    @apply mb-8;
+    @apply justify-center;
+  }
+
+  &__dialog-content__crop {
+    width: 344px;
+    height: 196px;
+    @apply border-2 border-dashed border-color-border-separator;
+    @apply box-border;
+    @apply overflow-hidden;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply rounded;
+
+    h1 {
+      @apply text-sm;
+      @apply font-normal;
+    }
+
+    img {
+      @apply h-full;
+      @apply w-full;
+    }
+  }
+}
+
+.@{croppreview-prefix-cls} {
+  @apply fixed;
+  top: calc(100% - 50% -150px);
+  left: calc(100% - 50% + 336px);
+  height: 300px;
+  width: 300px;
+  @apply flex;
+  @apply ~'z-[1002]';
+  @apply flex-col;
+  @apply justify-between;
+}
+
+.iconButton {
+  @apply rounded-full;
+  @apply h-6;
+  @apply w-6;
+  @apply flex;
+  @apply justify-center;
+  @apply items-center;
+  @apply cursor-pointer;
+
+  .iconButtonset {
+    @apply fill-color-text-primary;
+    @apply h-6;
+    @apply w-6;
+    .user-select(none);
+
+    &:hover {
+      @apply fill-color-brand-hover;
+    }
+  }
+
+  & + .iconButton {
+    @apply ml-4;
+  }
+}
+
+.croppreview {
+  @apply h-full;
+  @apply w-full;
+}
+
+.croppreviewb {
+  width: 214px;
+  height: 140px;
+  @apply overflow-hidden;
+  @apply bg-color-bg-1;
+}
+
+.croppreviewm {
+  width: 114px;
+  @apply h-20;
+  @apply overflow-hidden;
+  @apply bg-color-bg-1;
+}
+
+.croppreviews {
+  width: 84px;
+  height: 60px;
+  @apply overflow-hidden;
+  @apply bg-color-bg-1;
+}

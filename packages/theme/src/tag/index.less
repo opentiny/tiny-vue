@@ -1,0 +1,213 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/tag.less';
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@tag-prefix-cls: ~'@{css-prefix}tag';
+
+.@{tag-prefix-cls} {
+  .component-css-vars-tag();
+
+  height: var(--ti-tag-height);
+  line-height: var(--ti-tag-height);
+  padding: 0 8px;
+  font-size: var(--ti-tag-font-size);
+  border-width: var(--ti-tag-border-weight); // smb新增
+  border-radius: var(--ti-tag-border-radius);
+  border-style: solid;
+  box-sizing: border-box;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+
+  .tag-variant(
+    var(--ti-tag-primary-text-color),
+    var(--ti-tag-primary-border-color),
+    var(--ti-tag-primary-background-color)
+  );
+
+  & &__close {
+    font-size: var(--ti-tag-close-font-size);
+    margin-left: var(--ti-tag-close-margin-left); // smb新增
+    margin-right: var(--ti-tag-close-margin-right); // smb新增
+    opacity: var(--ti-tag-primary-close-opacity); // smb新增
+    fill: var(--ti-tag-primary-close-icon-color); // smb新增
+    &:hover {
+      cursor: pointer;
+      // smb新增
+      fill: var(--ti-tag-primary-close-hover-icon-color);
+    }
+  }
+
+  &&--info {
+    .tag-variant(
+      var(--ti-tag-info-text-color),
+      var(--ti-tag-info-border-color),
+      var(--ti-tag-info-background-color)
+    );
+  }
+
+  &&--success {
+    .tag-variant(
+      var(--ti-tag-success-text-color),
+      var(--ti-tag-success-border-color),
+      var(--ti-tag-success-background-color)
+    );
+  }
+
+  &&--warning {
+    .tag-variant(
+      var(--ti-tag-warning-text-color),
+      var(--ti-tag-warning-border-color),
+      var(--ti-tag-warning-background-color)
+    );
+  }
+
+  &&--danger {
+    .tag-variant(
+      var(--ti-tag-danger-text-color),
+      var(--ti-tag-danger-border-color),
+      var(--ti-tag-danger-background-color)
+    );
+  }
+
+  &--dark {
+    .tag-dark-variant(
+      var(--ti-tag-dark-text-color),
+      var(--ti-tag-dark-bg-color)
+    );
+  }
+
+  &--dark&--info {
+    .tag-dark-variant(
+      var(--ti-tag-dark-text-color),
+      var(--ti-tag-dark-info-bg-color)
+    );
+  }
+
+  &--dark&--success {
+    .tag-dark-variant(
+      var(--ti-tag-dark-text-color),
+      var(--ti-tag-dark-success-bg-color)
+    );
+  }
+
+  &--dark&--warning {
+    .tag-dark-variant(
+      var(--ti-tag-dark-text-color),
+      var(--ti-tag-dark-warning-bg-color)
+    );
+  }
+
+  &--dark&--danger {
+    .tag-dark-variant(
+      var(--ti-tag-dark-text-color),
+      var(--ti-tag-dark-danger-bg-color)
+    );
+  }
+
+  &--plain {
+    .tag-variant(
+      var(--ti-tag-plain-text-color),
+      var(--ti-tag-plain-border-color),
+      var(--ti-tag-plain-background-color)
+    );
+  }
+
+  &--plain&--info {
+    .tag-variant(
+      var(--ti-tag-plain-info-text-color),
+      var(--ti-tag-plain-info-border-color),
+      var(--ti-tag-plain-background-color)
+    );
+  }
+
+  &--plain&--success {
+    .tag-variant(
+      var(--ti-tag-plain-success-text-color),
+      var(--ti-tag-plain-success-border-color),
+      var(--ti-tag-plain-background-color)
+    );
+  }
+
+  &--plain&--warning {
+    .tag-variant(
+      var(--ti-tag-plain-warning-text-color),
+      var(--ti-tag-plain-warning-border-color),
+      var(--ti-tag-plain-background-color)
+    );
+  }
+
+  &--plain&--danger {
+    .tag-variant(
+      var(--ti-tag-plain-danger-text-color),
+      var(--ti-tag-plain-danger-border-color),
+      var(--ti-tag-plain-background-color)
+    );
+  }
+
+  &--medium {
+    height: var(--ti-tag-medium-height);
+    line-height: var(--ti-tag-medium-height); // smb修正
+    padding: 0 var(--ti-tag-medium-padding-horizontal); // smb新增
+    border-radius: var(--ti-tag-medium-border-radius); // smb新增
+    // smb新增
+    .@{tag-prefix-cls}__close {
+      margin-left: var(--ti-tag-close-medium-margin-left);
+      margin-right: var(--ti-tag-close-medium-margin-right);
+    }
+  }
+
+  &--small {
+    height: var(--ti-tag-small-height);
+    line-height: var(--ti-tag-small-height); // smb修正
+    padding: 0 var(--ti-tag-small-padding-horizontal); // smb新增
+    font-size: 12px; // smb新增
+    border-radius: var(--ti-tag-small-border-radius); // smb新增
+    // smb新增
+    .@{tag-prefix-cls}__close {
+      margin-left: var(--ti-tag-close-small-margin-left);
+      margin-right: var(--ti-tag-close-small-margin-right);
+    }
+  }
+
+  &--mini {
+    height: var(--ti-tag-mini-height);
+    line-height: var(--ti-tag-mini-height); // smb修正
+    padding: 0 var(--ti-tag-small-padding-horizontal); // smb新增
+    font-size: 12px; // smb新增
+    border-radius: var(--ti-tag-small-border-radius); // smb新增
+    // smb新增
+    .@{tag-prefix-cls}__close {
+      margin-left: var(--ti-tag-close-small-margin-left);
+      margin-right: var(--ti-tag-close-small-margin-right);
+    }
+  }
+
+  // smb新增
+  &.is-disabled,
+  &.is-disabled:focus,
+  &.is-disabled:hover {
+    cursor: not-allowed;
+    color: #c2c2c2;
+    background-color: rgba(0, 0, 0, 0.05);
+    svg,
+    svg:hover,
+    .@{tag-prefix-cls}__close {
+      cursor: not-allowed;
+      fill: #c2c2c2;
+    }
+  }
+}

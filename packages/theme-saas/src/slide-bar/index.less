@@ -1,0 +1,130 @@
+@import '../custom.less';
+
+@slide-bar-prefix-cls: ~'@{css-prefix}slide-bar';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{slide-bar-prefix-cls} {
+  @apply py-0 px-8;
+  @apply relative;
+
+  > .@{svg-prefix-cls} {
+    @apply absolute;
+    @apply ~"top-1/2";
+    @apply ~"-translate-y-2/4";
+    font-size: 2em;
+    @apply cursor-pointer;
+    @apply fill-color-bg-2;
+
+    &:hover {
+      @apply fill-color-icon-secondary;
+    }
+
+    &.@{css-prefix}disabled,
+    &.@{css-prefix}disabled:hover {
+      @apply bg-transparent;
+      @apply fill-color-icon-inverse;
+      @apply cursor-default;
+    }
+  }
+
+  > .icon-chevron-left {
+    @apply left-0;
+  }
+
+  > .icon-chevron-right {
+    @apply right-0;
+  }
+
+  li li div {
+    margin: 15px 0;
+    @apply text-xs;
+    @apply text-color-text-primary;
+
+    &:nth-child(2) {
+      @apply border-b border-b-color-border;
+    }
+
+    svg {
+      float: right;
+      @apply ~"-mt-1.5" mr-0 mb-0 ml-0;
+      @apply bg-color-bg-1;
+      @apply fill-color-border;
+    }
+  }
+
+  & &__content {
+    @apply w-full;
+    min-height: 170px;
+    @apply relative;
+    @apply overflow-hidden;
+  }
+
+  & &__list {
+    @apply absolute;
+    min-height: 170px;
+    @apply flex;
+
+    > li {
+      width: 23%;
+      @apply p-5;
+      @apply float-left;
+      margin-left: 2%;
+      @apply relative;
+      border: 5px solid theme('colors.color.bg.1');
+      @apply box-border;
+      @apply flex;
+      @apply items-center;
+
+      &:first-child {
+        @apply ml-0;
+      }
+
+      &:hover {
+        @apply border-color-bg-5;
+      }
+
+      > .icon-chevron-down {
+        @apply absolute;
+        top: 98.8%;
+        @apply ~'left-1/2';
+        @apply ~"-ml-2.5";
+        font-size: 2em;
+        width: 22px;
+        @apply !hidden;
+
+        &:before {
+          @apply content-[''];
+          @apply absolute;
+          @apply w-5;
+          @apply h-5;
+          border-right: 5px solid theme('colors.color.bg.5');
+          border-bottom: 5px solid theme('colors.color.bg.5');
+          @apply rotate-45;
+          @apply bg-color-bg-1;
+          top: -5px;
+        }
+      }
+
+      > ul {
+        @apply w-full;
+        @apply list-none;
+      }
+    }
+
+    > li.@{slide-bar-prefix-cls}__select {
+      @apply border-color-bg-5;
+
+      > .icon-chevron-down {
+        @apply !block;
+      }
+
+      li .@{css-prefix-iconfont} {
+        @apply text-color-bg-5;
+      }
+
+      li:nth-child(2) {
+        @apply border-b border-b-color-bg-5;
+      }
+    }
+  }
+}

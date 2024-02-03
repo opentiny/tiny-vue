@@ -1,0 +1,210 @@
+@import '../custom.less';
+@import '../transition/carousel-arrow.less';
+
+@carousel-prefix-cls: ~'@{css-prefix}carousel';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{carousel-prefix-cls} {
+  @apply overflow-hidden;
+  @apply relative;
+
+  &&--card {
+    .@{carousel-prefix-cls}__indicators {
+      @apply hidden;
+    }
+  }
+
+  &__container {
+    @apply relative;
+    @apply h-72;
+
+    .@{carousel-prefix-cls}__arrow {
+      @apply border-none;
+      @apply outline-0;
+      @apply p-0;
+      @apply m-0;
+      @apply h-8;
+      @apply w-8;
+      @apply cursor-pointer;
+      @apply duration-300;
+      @apply rounded-full;
+      @apply bg-color-bg-3;
+      @apply text-color-text-inverse;
+      @apply absolute;
+      @apply ~"top-1/2";
+      @apply ~'z-[3]';
+      @apply ~"-translate-y-2/4";
+      @apply text-center;
+      @apply text-xs;
+      @apply flex;
+      @apply items-center;
+      @apply justify-center;
+
+      .@{svg-prefix-cls} {
+        @apply ~"w-4.5";
+        @apply ~"h-4.5";
+        @apply fill-color-bg-2;
+      }
+
+      &.@{carousel-prefix-cls}__arrow-left {
+        @apply left-4;
+      }
+
+      &.@{carousel-prefix-cls}__arrow-right {
+        @apply right-4;
+      }
+
+      &.@{carousel-prefix-cls}__arrow-top {
+        @apply top-8;
+        @apply ~'left-1/2';
+        @apply ~"-translate-x-2/4";
+      }
+
+      &.@{carousel-prefix-cls}__arrow-bottom {
+        @apply bottom-0;
+        @apply ~'left-1/2';
+        top: unset;
+        @apply ~"-translate-x-2/4";
+      }
+
+      &:hover {
+        @apply bg-color-text-primary;
+
+        .@{svg-prefix-cls} {
+          @apply fill-color-icon-inverse;
+        }
+      }
+
+      i {
+        @apply cursor-pointer;
+      }
+    }
+  }
+
+  & &__indicators {
+    @apply absolute;
+    @apply w-full;
+    @apply list-none;
+    @apply bottom-0;
+    @apply ~'left-1/2';
+    @apply ~"-translate-x-2/4";
+    @apply m-0;
+    @apply py-0 px-1;
+    @apply ~'z-[2]';
+    @apply h-12;
+
+    .@{carousel-prefix-cls}__indicator {
+      @apply inline-block;
+      @apply ~"h-4.5";
+      @apply bg-transparent;
+      @apply ~"pt-1.5" px-0 pb-2;
+      @apply my-4 mx-1;
+      @apply cursor-pointer;
+
+      .@{carousel-prefix-cls}__button {
+        @apply block;
+        @apply w-10;
+        @apply h-1;
+        @apply bg-white bg-opacity-30;
+        @apply border-none;
+        @apply outline-0;
+        @apply p-0;
+        @apply m-0;
+        @apply cursor-pointer;
+        @apply duration-300;
+      }
+
+      &:hover button {
+        @apply bg-white bg-opacity-70;
+      }
+
+      &.is-active button {
+        @apply bg-color-bg-1;
+      }
+    }
+
+    &.@{carousel-prefix-cls}__indicators-outside {
+      @apply text-center;
+      @apply static;
+      @apply transform-none;
+      @apply bg-transparent;
+      @apply mt-px;
+
+      .@{carousel-prefix-cls}__button {
+        @apply bg-color-border;
+      }
+
+      .@{carousel-prefix-cls}__indicator {
+        &:hover button {
+        }
+
+        &.is-active button {
+          @apply bg-color-text-primary;
+        }
+      }
+    }
+
+    &.@{carousel-prefix-cls}__indicators-labels {
+      @apply left-0;
+      @apply right-0;
+      @apply transform-none;
+      @apply text-center;
+
+      .@{carousel-prefix-cls}__button {
+        @apply ~"py-0.5" ~"px-4.5";
+        @apply text-xs;
+      }
+
+      .@{carousel-prefix-cls}__indicator {
+        @apply ~'py-1.5' px-1;
+      }
+    }
+
+    &.@{carousel-prefix-cls}__indicators-title {
+      @apply left-auto;
+      @apply right-3;
+      @apply bottom-1;
+      @apply transform-none;
+      @apply bg-transparent;
+    }
+
+    &.@{carousel-prefix-cls}__indicators-vertical {
+      @apply flex;
+      @apply flex-col;
+      @apply items-center;
+      @apply justify-center;
+      @apply left-0;
+      @apply bottom-0;
+      @apply transform-none;
+      @apply w-12;
+      @apply h-full;
+      @apply py-1 px-0;
+
+      .@{carousel-prefix-cls}__indicator {
+        @apply block;
+        @apply h-auto;
+        @apply my-1 mx-0;
+        @apply p-0;
+
+        &:first-child {
+          @apply pl-0;
+        }
+
+        &:last-child {
+          @apply pr-0;
+        }
+
+        .@{carousel-prefix-cls}__button {
+          @apply h-10;
+          @apply w-1;
+        }
+      }
+    }
+
+    &:not(.@{carousel-prefix-cls}__indicators-vertical) {
+      @apply flex;
+      @apply justify-center;
+      @apply items-center;
+    }
+  }
+}

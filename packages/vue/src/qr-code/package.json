@@ -1,0 +1,23 @@
+{
+  "name": "@opentiny/vue-qr-code",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "qrcode": "1.5.1"
+  },
+  "license": "MIT"
+}

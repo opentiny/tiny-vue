@@ -1,0 +1,15 @@
+{
+  "name": "@opentiny-internal/vue-test-utils",
+  "private": true,
+  "version": "1.0.5-mf.0",
+  "description": "",
+  "main": "src/index.ts",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@opentiny/vue-common": "workspace:~",
+    "@vue/test-utils": "^2.2.7",
+    "vue": "^3.3.9"
+  }
+}
