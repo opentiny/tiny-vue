@@ -3,7 +3,7 @@ import template from 'virtual-template?pc'
 import { iconSearch } from '@opentiny/vue-icon'
 
 export const treeMenuProps = {
-  $props,
+  ...$props,
   placeholder: {
     default: '',
     type: String
