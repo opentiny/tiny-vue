@@ -30,6 +30,7 @@ import {
   scrollToOption,
   handleMenuEnter,
   emitChange,
+  directEmitChange,
   getOption,
   setSelected,
   handleFocus,
@@ -224,7 +225,7 @@ const initStateAdd = ({ computed, props, api, parent }) => ({
   filterOrSearch: computed(() => props.filterable || props.searchable)
 })
 
-const initState = ({ reactive, computed, props, api, emitter, parent, constants, designConfig }) => {
+const initState = ({ reactive, computed, props, api, emitter, parent, constants }) => {
   const stateAdd = initStateAdd({ computed, props, api, parent })
   const state = reactive({
     ...stateAdd,
@@ -257,7 +258,7 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     key: 0,
     isSelectAll: computed(() => state.selectCls === 'checked-sur'),
     isHalfSelect: computed(() => state.selectCls === 'halfselect'),
-    getIcon: computed(() => api.computedGetIcon((name = 'dropdownIcon'))),
+    getIcon: computed(() => api.computedGetIcon()),
     getTagType: computed(() => api.computedGetTagType()),
     isShowDropdownIcon: computed(() => api.computedShowDropdownIcon())
   })
@@ -290,7 +291,7 @@ const addApi = ({ api, props, state, emit, constants, parent, nextTick, dispatch
     handleQueryChange: handleQueryChange({ api, constants, nextTick, props, vm, state }),
     handleOptionSelect: handleOptionSelect({ api, nextTick, props, vm, state }),
     getPluginOption: getPluginOption({ api, props, state }),
-    toggleCheckAll: toggleCheckAll({ api, emit, state, props }),
+    toggleCheckAll: toggleCheckAll({ api, state }),
     handleDebouncedQueryChange: handleDebouncedQueryChange({ state, api }),
     debouncedQueryChange: debouncedQueryChange({ props, api }),
     debouncedOnInputChange: debounce(state.debounce, () => {
@@ -342,6 +343,7 @@ const initApi = ({
     getChildValue: getChildValue(),
     getOption: getOption({ props, state }),
     emitChange: emitChange({ emit, props, state, constants }),
+    directEmitChange: directEmitChange({ emit, props, state }),
     toggleMenu: toggleMenu({ vm, state, props }),
     showTip: showTip({ props, state, vm }),
     onOptionDestroy: onOptionDestroy(state),

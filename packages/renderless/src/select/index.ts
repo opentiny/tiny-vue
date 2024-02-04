@@ -101,7 +101,7 @@ export const gridOnQueryChange =
           state.remoteData = data.filter((row) => !~selectedIds.indexOf(row[valueField])).concat(state.selected)
         } else {
           vm.$refs.selectGrid.clearRadioRow()
-          vm.$refs.selectGrid.setRadioRow(find(data, (item) => props.modelValue == item[props.valueField]))
+          vm.$refs.selectGrid.setRadioRow(find(data, (item) => props.modelValue === item[props.valueField]))
           state.remoteData = data
         }
 
@@ -273,6 +273,14 @@ export const emitChange =
     }
   }
 
+export const directEmitChange =
+  ({ emit, props, state }) =>
+  (value, key) => {
+    if (state.device === 'mb' && props.multiple) return
+
+    emit('change', value, key)
+  }
+
 export const clearNoMatchValue =
   ({ props, emit }) =>
   (newModelValue) => {
@@ -402,7 +410,7 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
     props.remote &&
     (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
   const nestdata = isRemote ? state.remoteData : isTree ? api.getTreeData(state.treeData) : state.gridData
-  const data = find(nestdata, (item) => props.modelValue == item[props.valueField])
+  const data = find(nestdata, (item) => props.modelValue === item[props.valueField])
 
   if (isEmptyObject(data)) {
     api.clearNoMatchValue('')
@@ -463,7 +471,7 @@ export const getPluginOption =
       (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
     const { textField, valueField } = props
     const sourceData = isRemote ? state.remoteData : isTree ? api.getTreeData(state.treeData) : state.gridData
-    const selNode = find(sourceData, (item) => item[valueField] == value)
+    const selNode = find(sourceData, (item) => item[valueField] === value)
     const items = []
 
     if (selNode) {
@@ -475,14 +483,26 @@ export const getPluginOption =
   }
 
 export const toggleCheckAll =
-  ({ api, emit, state, props }) =>
+  ({ api, state }) =>
   () => {
     const getEnabledValues = (options) => {
       let values = []
 
       for (let i = 0; i < options.length; i++) {
-        if (!options[i].state.disabled && !options[i].state.groupDisabled) {
-          values.push(options[i].value)
+        const isEnabled = !options[i].state.disabled && !options[i].state.groupDisabled
+        const isRequired = options[i].required
+        const isDisabledAndChecked = !isEnabled && options[i].state.selectCls === 'checked-sur'
+
+        if (state.isSelectAll) {
+          // 取消选中全部，必填和禁用且选中项不可取消
+          if (isRequired || isDisabledAndChecked) {
+            values.push(options[i].value)
+          }
+        } else {
+          // 选中全部，非禁用项 和 必填项和 禁用且选中项 需选中
+          if (isEnabled || isRequired || isDisabledAndChecked) {
+            values.push(options[i].value)
+          }
         }
       }
 
@@ -498,25 +518,13 @@ export const toggleCheckAll =
 
       unchecked.length ? (value = getEnabledValues(state.options)) : (value = [])
     } else if (state.selectCls === 'checked-sur') {
-      value = []
-    }
-
-    const requiredValue = []
-    if (props.multiple) {
-      state.options.forEach((opt) => {
-        if (opt.required) requiredValue.push(opt.value)
-      })
-    }
-
-    if (Array.isArray(value)) {
-      value = requiredValue.concat(value.filter((val) => !requiredValue.find((requireVal) => requireVal === val)))
+      value = getEnabledValues(state.options)
     }
 
     api.setSoftFocus()
-
     state.isSilentBlur = true
     api.updateModelValue(value)
-    emit('change', value)
+    api.directEmitChange(value)
   }
 
 export const resetFilter =
@@ -1160,7 +1168,7 @@ export const calcOverFlow =
           for (let i = 1; i < tags.length; i++) {
             let tx = tags[i].getBoundingClientRect().x
 
-            if (tx == x) {
+            if (tx === x) {
               state.overflow = i - 1
               break
             }
@@ -1284,7 +1292,7 @@ export const toHide =
         )
       } else {
         vm.$refs.selectGrid.clearRadioRow()
-        vm.$refs.selectGrid.setRadioRow(find(fullData, (item) => props.modelValue == item[props.valueField]))
+        vm.$refs.selectGrid.setRadioRow(find(fullData, (item) => props.modelValue === item[props.valueField]))
       }
 
       if (state.filterOrSearch && typeof props.filterMethod === 'function') {
@@ -1489,6 +1497,8 @@ export const nodeCheckClick =
     state.selected = checkedNodes.filter((node) => {
       node.currentLabel = node[props.textField]
       node.value = node[props.valueField]
+
+      return node
     })
 
     api.updateModelValue(checkedKeys)
@@ -1601,7 +1611,7 @@ export const buildRadioConfig =
 
 export const onMouseenterNative =
   ({ state }) =>
-  (e) => {
+  () => {
     state.inputHovering = true
 
     if (state.searchSingleCopy && state.selectedLabel) {
@@ -1681,7 +1691,7 @@ export const calcCollapseTags =
     const tagList = Array.from(tags.querySelectorAll('.tiny-tag'))
 
     let { total, dom, idx } = { total: collapseTagWidth, dom: null, idx: 0 }
-    tagList.some((tag, index) => {
+    tagList.forEach((tag, index) => {
       if (tag !== collapseTag) {
         const { width: tagContentWidth, marginRight } = tag && window.getComputedStyle(tag)
         total += parseFloat(tagContentWidth) + parseFloat(marginRight)
@@ -2152,8 +2162,8 @@ export const watchShowClose =
 
 export const computedGetIcon =
   ({ constants, designConfig, props }) =>
-  (name) => {
-    return props.dropdownIcon || designConfig?.icons[name] || constants?.ICON_MAP[name]
+  (iconKey = 'dropdownIcon') => {
+    return props.dropdownIcon || designConfig?.icons[iconKey] || constants?.ICON_MAP[iconKey]
   }
 
 export const computedGetTagType =
