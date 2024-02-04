@@ -66,6 +66,32 @@
     "type": "component",
     "exclude": false
   },
+  "Breadcrumb": {
+    "path": "react/src/breadcrumb/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "BreadcrumbItem": {
+    "path": "react/src/breadcrumb-item/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "BreadcrumbItemPc": {
+    "path": "react/src/breadcrumb-item/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "BreadcrumbPc": {
+    "path": "react/src/breadcrumb/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
   "Button": {
     "path": "react/src/button/index.ts",
     "type": "component",

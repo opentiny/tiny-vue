@@ -56,7 +56,6 @@ export default function Alert(props) {
     vm,
     parent
   })
-
   return (
     <div className="tiny-transition-alert-fade" ref={ref}>
       <If v-if={state.show}>

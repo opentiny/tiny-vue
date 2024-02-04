@@ -2,7 +2,7 @@ import { Svg } from './svg-render'
 import { generateVueHooks, useVueLifeHooks } from './vue-hooks.js'
 import { emitEvent } from './event.js'
 import { If, Component, Slot, For, Transition } from './virtual-comp'
-import { filterAttrs, vc, getElementCssClass, eventBus } from './utils.js'
+import { filterAttrs, vc, getElementCssClass, eventBus, emitter } from './utils.js'
 import { useFiber } from './fiber.js'
 import { useVm } from './vm.js'
 import { twMerge } from 'tailwind-merge'
@@ -27,7 +27,13 @@ export const $props = {
   'tiny_chart_theme': '',
   'listeners': {}
 }
-
+const onBeforeMount = (instance, refs) => {
+  for (let name in instance.$refs) {
+    if (Object.prototype.hasOwnProperty.call(instance.$refs, name)) {
+      refs[name] = instance.$refs[name]
+    }
+  }
+}
 export const mergeClass = (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
 const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, constants, vm, parent, $bus }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
@@ -43,14 +49,24 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
     broadcast,
     t() { },
     mergeClass,
-    mode: props.tiny_mode
+    mode: props.tiny_mode,
+    emitter,
+    refs: {},
+    router: vm.$router
   }
+  let timer = 0
+  const inter = setInterval(() => {
+    if (timer >= 1500 || vm.$refs) {
+      onBeforeMount(vm, utils.refs)
+      clearInterval(inter)
+    }
+    timer++
+  }, 200)
+  const vueHooks = generateVueHooks({ $bus })
   const sdk = render(
     props,
     {
-      ...generateVueHooks({
-        $bus
-      })
+      ...vueHooks
     },
     utils,
     extendOptions
@@ -60,7 +76,9 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
     a: filterAttrs,
     m: mergeClass,
     vm: utils.vm,
-    gcls: (key) => getElementCssClass(classes, key)
+    gcls: (key) => getElementCssClass(classes, key),
+    provide: vueHooks.provide,
+    inject: vueHooks.inject
   }
   if (Array.isArray(api)) {
     api.forEach((name) => {

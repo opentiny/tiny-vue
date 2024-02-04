@@ -24,6 +24,7 @@ import WatwrfallChart from './chart/watwrfallChart.jsx'
 import Wordcloud from './chart/wordcloud.jsx'
 import Anchor from './anchor/base.tsx'
 import Guide from './guide/base.jsx'
+import Breadcrumb from './breadcrumb/base.jsx'
 
 // 在这里导入组件，进行 api 调试
 function App() {
@@ -75,6 +76,7 @@ function App() {
       </div>
       <Anchor></Anchor>
       <Guide></Guide>
+      <Breadcrumb></Breadcrumb>
     </div>
   )
 }

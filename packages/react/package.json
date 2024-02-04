@@ -16,6 +16,8 @@
     "@opentiny/react-autonavi-map": "workspace:~",
     "@opentiny/react-badge": "workspace:~",
     "@opentiny/react-baidu-map": "workspace:~",
+    "@opentiny/react-breadcrumb": "workspace:~",
+    "@opentiny/react-breadcrumb-item": "workspace:~",
     "@opentiny/react-button": "workspace:~",
     "@opentiny/react-chart": "workspace:~",
     "@opentiny/react-chart-bar": "workspace:~",

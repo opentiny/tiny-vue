@@ -44,7 +44,55 @@ const collectRefs = (rootEl, doms, $children) => {
   })
   return refs
 }
-
+// 模拟vue-router
+const createRouter = () => {
+  const jumpFunc = (url, replace = false) => {
+    replace ? window.location.replace(url) : window.location.assign(url)
+  }
+  const push = (data) => {
+    if (typeof data === 'string') {
+      window.location.assign(data)
+    } else {
+      const { path = '', name = '', params, query, replace = false } = data
+      if (!path && name) {
+        let url = name
+        if (params && typeof params === 'object') {
+          for (const key in params) {
+            if (typeof params[key] !== 'string') return
+            params[key] = params[key][0] === '/' ? params[key].slice(1) : params[key]
+            url += `/${params[key]}`
+          }
+        }
+        jumpFunc(url, replace)
+      } else if (path) {
+        let url = path
+        if (query && typeof query === 'object') {
+          url += '?'
+          for (const key in query) {
+            if (url.slice(-1)[0] !== '?') url += '&'
+            url += `${key}=${query[key]}`
+          }
+        }
+        jumpFunc(url, replace)
+      }
+    }
+  }
+  const go = (num) => {
+    window.history.go(num)
+  }
+  const replace = (data) => {
+    if (typeof data === 'string') {
+      push({ path: data, replace: true })
+    } else {
+      push(Object.assign(data, { replace: true }))
+    }
+  }
+  return {
+    push,
+    go,
+    replace
+  }
+}
 export function useCreateVueInstance({ $bus, props, doms, ref }) {
   const vm = useOnceResult(() =>
     reactive({
@@ -86,7 +134,8 @@ export function useCreateVueInstance({ $bus, props, doms, ref }) {
       $forceUpdate: () => $bus.emit('event:reload'),
       $nextTick: nextTick,
       $destroy: () => { },
-      $mount: () => { }
+      $mount: () => { },
+      $router: createRouter()
     })
   )
 

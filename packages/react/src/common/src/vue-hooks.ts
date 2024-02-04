@@ -17,6 +17,7 @@ import {
   isProxy,
   isReactive,
   isReadonly,
+
   // 响应式：进阶
   shallowRef,
   triggerRef,
@@ -35,8 +36,13 @@ import { useExcuteOnce } from './hooks'
 import { useEffect } from 'react'
 
 // 通用
-const inject = () => { }
-const provide = () => { }
+const commonData = {}
+const inject = (key, defaultValue) => {
+  return commonData[key] || defaultValue
+}
+const provide = (key, value) => {
+  commonData[key] = value
+}
 
 export function generateVueHooks({ $bus }) {
   const reload = () => $bus.emit('event:reload')
