@@ -14,7 +14,7 @@
     "build:saas:alpha": "vite build --mode innersaas",
     "build:saas:open": "vite build --mode saasopen",
     "build:saas:prod": "vite build --mode saasprod",
-    "build": "vite build",
+    "build": "vite build && node copyStatic.mjs",
     "build:open": "vite build --mode open",
     "prettier": "npx prettier --write ./**/*.{ts,tsx,css,less,scss,vue}",
     "stylelint": "npx stylelint ./src/**/*.scss ./src/**/*.less ./src/**/*.css --fix",

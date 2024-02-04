@@ -90,13 +90,13 @@ export default defineConfig((config) => {
         },
         output: {
           manualChunks(id: any) {
-            let res = id.match(/\/demos\/pc\/app\/(\w+)\//) || id.match(/\/packages\/vue\/src\/(\w+)\//)
+            let res = id.match(/\/demos\/pc\/app\/(.*?)\//) || id.match(/\/packages\/vue\/src\/(.*?)\//)
             if (id.includes('echarts')) {
               return 'echarts'
             } else if (id.includes('tiptap')) {
               return 'tiptap'
-            } else if (id.includes('highlight')) {
-              return 'highlight'
+            } else if (id.includes('vue-common')) {
+              return 'vue-common'
             } else if (id.includes('node_modules')) {
               return 'vendor'
             } else if (res) {
