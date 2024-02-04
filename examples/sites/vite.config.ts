@@ -18,16 +18,21 @@ export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
   const isSaas = env.VITE_TINY_THEME === 'saas'
   const menuPath = isSaas ? path.resolve('./demos/saas') : path.resolve(`./demos/${env.VITE_APP_MODE}`)
-  const copyTarget = [
-    {
-      src: `./demos/${env.VITE_APP_MODE}/**`,
-      dest: '@demos'
-    },
-    {
-      src: `./demos/apis/**`,
-      dest: '@demos/apis'
-    }
-  ]
+
+  let copyTarget = []
+  if (env.NODE_ENV === 'development') {
+    copyTarget = [
+      {
+        src: `./demos/${env.VITE_APP_MODE}/**`,
+        dest: '@demos'
+      },
+      {
+        src: `./demos/apis/**`,
+        dest: '@demos/apis'
+      }
+    ]
+  }
+
   if (isSaas) {
     copyTarget.push({
       src: `./demos/mobile-first/**`,
@@ -76,11 +81,29 @@ export default defineConfig((config) => {
     ],
     optimizeDeps: getOptimizeDeps(3),
     build: {
+      cssCodeSplit: false,
       rollupOptions: {
         input: {
           index: path.resolve(__dirname, './index.html'),
           // design-server中添加一个专门路由指向 playground.html
           playground: path.resolve(__dirname, './playground.html')
+        },
+        output: {
+          manualChunks(id: any) {
+            let res = id.match(/\/demos\/pc\/app\/(\w+)\//) || id.match(/\/packages\/vue\/src\/(\w+)\//)
+            if (id.includes('echarts')) {
+              return 'echarts'
+            } else if (id.includes('tiptap')) {
+              return 'tiptap'
+            } else if (id.includes('highlight')) {
+              return 'highlight'
+            } else if (id.includes('node_modules')) {
+              return 'vendor'
+            } else if (res) {
+              let [_, moduleName] = res
+              return moduleName
+            }
+          }
         }
       }
     },
