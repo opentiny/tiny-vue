@@ -7,7 +7,7 @@ import {
 } from '../../messages'
 import { usePrevious } from './usePrevious'
 
-const __RQB_DEV__: boolean = false
+const __RQB_DEV__ = false
 
 export interface UseControlledOrUncontrolledParams {
   defaultQuery?: RuleGroupTypeAny

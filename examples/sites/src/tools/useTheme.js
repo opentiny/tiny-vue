@@ -5,6 +5,7 @@ import { hooks } from '@opentiny/vue-common'
 import { Notify } from '@opentiny/vue'
 import designSmbConfig from '@opentiny/vue-design-smb'
 import designAuroraConfig from '@opentiny/vue-design-aurora'
+import designSaasConfig from '@opentiny/vue-design-saas'
 import { appData } from './appData'
 
 const CURRENT_THEME_KEY = 'tiny-current-theme'
@@ -41,6 +42,9 @@ const theme = new TinyThemeTool()
 const lastThemeKey = localStorage.getItem(CURRENT_THEME_KEY)
 const currThemeLabel = hooks.ref(lastThemeKey || 'tiny-default-theme')
 const designConfig = computed(() => {
+  if (import.meta.env.VITE_TINY_THEME === 'saas') {
+    return designSaasConfig
+  }
   return designConfigMap[currThemeLabel.value]
 })
 

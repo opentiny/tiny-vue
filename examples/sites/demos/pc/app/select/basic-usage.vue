@@ -1,12 +1,17 @@
 <template>
   <div>
-    <p>选中的值为： {{ value }}</p>
-    <p>场景1：标签式</p>
+    <div>选中的值为： {{ value }}</div>
+    <br />
+    <div>场景1：标签式</div>
+    <br />
     <tiny-select v-model="value">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :icon="item.icon">
       </tiny-option>
     </tiny-select>
-    <p>场景1：配置式</p>
+    <br />
+    <br />
+    <div>场景2：配置式</div>
+    <br />
     <tiny-select v-model="value" :options="options"> </tiny-select>
   </div>
 </template>
@@ -38,9 +43,5 @@ export default {
 <style lang="less" scoped>
 .tiny-select {
   width: 280px;
-}
-p {
-  font-size: 14px;
-  line-height: 1.5;
 }
 </style>

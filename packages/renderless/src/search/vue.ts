@@ -92,7 +92,9 @@ export const renderless = (
     collapse: props.mini,
     currentValue: props.modelValue,
     ...formatSearchTypes.state,
-    showClear: computed(() => props.clearable && (state.focus || state.hovering) && state.currentValue)
+    showClear: computed(() => props.clearable && (state.focus || state.hovering) && state.currentValue),
+    formItemSize: computed(() => (parent.formItem || {}).formItemSize),
+    searchSize: computed(() => props.size || state.formItemSize)
   })
 
   const api = {

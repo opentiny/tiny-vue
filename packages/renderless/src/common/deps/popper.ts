@@ -302,7 +302,7 @@ interface ReferenceOffsets {
   width: number
   height: number
 }
-interface PopperOffsets {
+export interface PopperOffsets {
   position: 'absolute' | 'fixed'
   top: number
   left: number
@@ -316,7 +316,7 @@ interface arrowOffsets {
   left: number
 }
 /** update时的data变量 */
-interface UpdateData {
+export interface UpdateData {
   instance: Popper
   styles: {}
   placement: string
@@ -414,7 +414,7 @@ class Popper {
   stopEventBubble() {
     if (!this._popper) return
 
-    if (!this._popper.onmousewheel) this._popper.onmousewheel = stopFn
+    if (!this._popper.onmousewheel) this._popper.onmousewheel = stopFn // onmousewheel 是非标准属性
     if (!this._popper.onwheel) this._popper.onwheel = stopFn
   }
 
@@ -445,9 +445,13 @@ class Popper {
     let left = Math.round(data.offsets.popper.left)
     let top = Math.round(data.offsets.popper.top)
 
-    // 始终使用 translate3d
-    styles.transform = `translate3d(${left}px, ${top}px, 0)`
-    Object.assign(styles, { top: 0, left: 0 })
+    // 加速模式时，使用transform, 否则使用left,top
+    if (this._options.gpuAcceleration) {
+      styles.transform = `translate3d(${left}px, ${top}px, 0)`
+      Object.assign(styles, { top: 0, left: 0 })
+    } else {
+      Object.assign(styles, { top, left })
+    }
 
     Object.assign(styles, data.styles)
 

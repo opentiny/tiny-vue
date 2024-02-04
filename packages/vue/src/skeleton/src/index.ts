@@ -2,7 +2,7 @@ import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import type { PropType } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
-const $constants = {}
+export const $constants = {}
 
 export const skeletonProps = {
   ...$props,

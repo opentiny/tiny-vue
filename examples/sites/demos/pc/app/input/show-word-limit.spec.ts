@@ -7,17 +7,16 @@ test('[Input]show-word-limit', async ({ page }) => {
   const inputComponent = page.locator('.demo-input .tiny-input')
   const input = inputComponent.locator('input')
   const inputLength = inputComponent.locator('.tiny-input__count-text-length')
-  const inputLimit= inputComponent.locator('.tiny-input__count-upper-limit')
+  const inputLimit = inputComponent.locator('.tiny-input__count-upper-limit')
 
   await expect(inputLimit).toContainText('/10')
   await input.fill('22')
   await expect(inputLength).toContainText('2')
 
-
   const textareaComponent = page.locator('.demo-input .tiny-textarea')
   const textarea = textareaComponent.locator('textarea')
   const textareaLength = textareaComponent.locator('.tiny-input__count-text-length')
-  const textareaLimit= textareaComponent.locator('.tiny-input__count-upper-limit')
+  const textareaLimit = textareaComponent.locator('.tiny-input__count-upper-limit')
 
   await expect(textareaLimit).toContainText('/20')
   await textarea.fill('555')

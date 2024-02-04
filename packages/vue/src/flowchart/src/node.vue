@@ -14,37 +14,18 @@
     <div
       ref="icon"
       :class="[
-        'border-solid rounded-full flex items-center justify-center',
-        'absolute z-0 translate-x-1 translate-y-1 w-4 h-4 text-base',
-        'hover:ring hover:ring-color-bg-2 stroke-2 cursor-pointer',
-        { 'sm:w-2 sm:h-2': state.sizeMini, 'sm:w-6 sm:h-6 sm:text-2xl': state.sizeMedium },
-        {
-          'border-4 bg-clip-padding border-color-brand-hover-subtle bg-color-border-focus':
-            (state.isSmall && state.statOngoing) || (!state.isSmall && state.statOngoing && state.sizeMedium),
-          'border-0 border-color-bg-1 bg-color-border-focus': !state.isSmall && state.statOngoing && !state.sizeMedium,
-          'border-2 border-color-border bg-color-bg-1': state.statNotStarted
-        },
-        state.isActive
-          ? {
-              'border-2 bg-clip-padding border-color-brand-hover-subtle bg-color-border-focus': state.statCompleted,
-              'border-2 bg-clip-padding border-color-brand-hover-subtle bg-color-error': state.statFail
-            }
-          : {
-              'border-2 border-color-border-focus bg-color-bg-1': state.statCompleted,
-              'border-2 border-color-error bg-color-bg-1': state.statFail
-            }
+        'w-4 h-4 absolute z-0 rounded-full flex items-center justify-center',
+        'translate-x-1 translate-y-1 text-base cursor-pointer',
+        { 'sm:w-2 sm:h-2': state.icon.size === 'mini', 'sm:w-6 sm:h-6': state.icon.size === 'medium' }
       ]"
     >
-      <template v-if="!state.sizeMini || (state.sizeMini && state.isSmall)">
-        <span class="inline-flex origin-center stroke-color-bg-1" :class="state.isSmall ? 'scale-75' : 'scale-95'">
-          <template v-if="state.statCompleted">
-            <tiny-icon-yes :class="{ 'stroke-color-border-focus': !state.isActive }"></tiny-icon-yes>
-          </template>
-          <template v-if="state.statFail">
-            <tiny-icon-close :class="{ 'stroke-color-error': !state.isActive }"></tiny-icon-close>
-          </template>
-        </span>
-      </template>
+      <component
+        :is="state.icon.svg()"
+        :custom-class="[
+          'w-4 h-4 inline-block',
+          { 'sm:w-2 sm:h-2': state.icon.size === 'mini', 'sm:w-6 sm:h-6': state.icon.size === 'medium' }
+        ]"
+      ></component>
     </div>
     <div
       ref="title"
@@ -98,16 +79,28 @@
 <script lang="ts">
 import { setup, props, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/flowchart/node'
-import { IconYes as iconYes, IconClose as iconClose } from '@opentiny/vue-icon'
+import {
+  iconNotStarted,
+  iconNotStartedMini,
+  iconOnGoing,
+  iconOnGoingMini,
+  iconExceptionO,
+  iconExceptionMiniO,
+  iconDone,
+  iconDoneMini
+} from '@opentiny/vue-icon'
+
+const icons = {
+  'not-started': { mini: iconNotStartedMini, other: iconNotStarted },
+  'ongoing': { mini: iconOnGoingMini, other: iconOnGoing },
+  'fail': { mini: iconExceptionMiniO, other: iconExceptionO },
+  'completed': { mini: iconDoneMini, other: iconDone }
+}
 
 export default defineComponent({
   props: [...props, 'node', 'config', 'titleClass'],
-  components: {
-    TinyIconYes: iconYes(),
-    TinyIconClose: iconClose()
-  },
   setup(props: any, context: any): any {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api, mono: true, extendOptions: { icons } })
   }
 })
 </script>

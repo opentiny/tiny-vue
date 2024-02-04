@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Button @click="changeVisible">Show Color select panel</Button>
+    <tiny-button @click="changeVisible">Show Color select panel</tiny-button>
     <div style="position: relative">
       <tiny-color-select-panel v-model="color" :visible="visible" @confirm="hidden" @cancel="hidden" alpha />
     </div>
@@ -8,23 +8,25 @@
 </template>
 
 <script>
-import {ref} from 'vue';
-import {ColorSelectPanel,Button} from '@opentiny/vue';
+import { ColorSelectPanel, Button } from '@opentiny/vue'
+
 export default {
   components: {
     TinyColorSelectPanel: ColorSelectPanel,
-    Button
+    TinyButton: Button
   },
-  setup(){
-    const color = ref('#66ccff');
-    const visible = ref(false);
-    const changeVisible = () => visible.value = !visible.value;
-    const hidden = () => visible.value = false;
+  data() {
     return {
-      color,
-      visible,
-      changeVisible,
-      hidden
+      color: '#66ccff',
+      visible: false
+    }
+  },
+  methods: {
+    changeVisible() {
+      this.visible = !this.visible
+    },
+    hidden() {
+      this.visible = false
     }
   }
 }

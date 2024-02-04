@@ -27,7 +27,7 @@
       </template>
     </tiny-dropdown>
     <div class="content-layout ti-fi-1" :has-sider="!isFrame">
-      <div id="layoutSider" class="layout-sider" v-if="!isFrame">
+      <div id="layoutSider" class="layout-sider" :class="{ 'saas-border': templateModeState.isSaas }" v-if="!isFrame">
         <div v-show="!isCollapsed" class="api-type-box" :class="{ 'is-collapsed': isCollapsed }">
           <div class="api-type">
             <div :class="{ 'api-mode': true, active: apiModeState.apiMode === 'Options' }">
@@ -81,7 +81,7 @@
         >
           <template #default="{ data }">
             <div class="node-name-container">
-              <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain">多端</tiny-tag>
+              <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain" class="absolute-tag">多端</tiny-tag>
               <span class="node-name-label">{{ data.label }}</span>
               <tiny-tag v-if="data.mark?.text" class="node-float-tip" effect="dark" :type="data.mark?.type">
                 {{ data.mark.text }}
@@ -104,6 +104,7 @@
 </template>
 
 <script>
+import { useRoute } from 'vue-router'
 import { defineComponent, reactive, computed, toRefs, onMounted, onUnmounted } from 'vue'
 import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip, Tag } from '@opentiny/vue'
 import { iconHelpCircle } from '@opentiny/vue-icon'
@@ -141,7 +142,9 @@ export default defineComponent({
     })
 
     const lang = getWord('zh-CN', 'en-US')
-    const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${lang}/os-theme/${route}${key}`
+    const allPathParam = useRoute().params.all
+    const allPath = allPathParam ? allPathParam + '/' : ''
+    const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/os-theme/${route}${key}`
 
     const changeLanguage = () => {
       appFn.toggleLang()
@@ -156,7 +159,7 @@ export default defineComponent({
 
     const clickMenu = (menu) => {
       if (menu.type === 'overview') {
-        router.push(`${import.meta.env.VITE_CONTEXT}${lang}/overview`)
+        router.push(`${import.meta.env.VITE_CONTEXT}${allPath}${lang}/overview`)
       } else if (menu.type === 'docs') {
         router.push(getTo('docs/', menu.key))
       } else if (menu.type === 'components') {
@@ -293,6 +296,14 @@ export default defineComponent({
     min-width: 0;
   }
 
+  .tiny-tree-node__content {
+    position: relative;
+  }
+  .absolute-tag {
+    position: absolute;
+    right: 4px;
+    top: 12px;
+  }
   height: calc(100% - var(--layout-api-mode-height));
   .tiny-tree {
     height: calc(100% - var(--layout-tree-menu-input-height));
@@ -370,6 +381,9 @@ export default defineComponent({
 #layoutSider {
   background: #fff;
   height: calc(100vh - 60px);
+  &.saas-border {
+    border-right: 1px solid #ddd;
+  }
 }
 
 @media (max-width: 1023px) {

@@ -35,40 +35,61 @@
       >
         <slot name="prepend"></slot>
       </div>
-      <span class="relative" data-tag="tiny-input-display-only">
+      <span
+        class="relative text-sm"
+        :class="[state.inputSizeMf === 'medium' ? 'sm:text-sm' : 'sm:text-xs']"
+        data-tag="tiny-input-display-only"
+      >
         <tiny-tooltip
           v-if="state.isDisplayOnly"
           effect="light"
           :content="state.displayOnlyTooltip"
           :display="type === 'password'"
           placement="top"
+          :popper-options="{ bubbling: true }"
           @mouseenter.native="handleEnterDisplayOnlyContent"
         >
           <span
-            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap"
+            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap leading-7 sm:leading-normal text-color-text-primary"
             v-if="type === 'password'"
             >{{ state.hiddenPassword }}</span
           >
-          <span class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap" v-else>{{
-            displayOnlyContent || state.nativeInputValue
-          }}</span>
+          <span
+            class="absolute top-0 left-0 max-w-full flex items-center leading-7 sm:leading-normal text-color-text-primary"
+            v-else-if="mask"
+          >
+            <span class="flex-1 overflow-hidden text-ellipsis whitespace-nowrap mr-4">
+              {{ state.displayedMaskValue }}
+            </span>
+            <component
+              :is="state.maskValueVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
+              @click.native="state.maskValueVisible = !state.maskValueVisible"
+            ></component>
+          </span>
+          <span
+            class="absolute top-0 left-0 max-w-full overflow-hidden text-ellipsis whitespace-nowrap leading-7 sm:leading-normal text-color-text-primary"
+            v-else
+          >
+            {{ state.displayOnlyText }}
+          </span>
         </tiny-tooltip>
         <input
           v-if="type !== 'textarea'"
           ref="input"
+          data-tag="tiny-input-inner"
           :name="name"
           v-bind="a($attrs, ['type', 'class', 'style', '^on\w+'])"
           :class="
             m(
-              'w-full border-0 px-3 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
+              'w-full border-0 sm:border px-0 sm:px-3 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
                 'sm:focus:border-color-brand-focus sm:disabled:border-color-border ' +
                 'placeholder:text-color-text-placeholder placeholder:text-sm text-sm sm:placeholder:text-xs sm:text-xs text-color-text-primary ' +
                 'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled ' +
-                'disabled:bg-color-bg-4 py-0 outline-0 transition-colors duration-200 ease-in-out ',
+                'sm:disabled:bg-color-bg-4 py-0 outline-0 transition-colors duration-200 ease-in-out ',
               state.inputSizeMf === 'medium'
-                ? 'h-8 leading-8'
+                ? `h-8 leading-8 ${m('sm:text-sm')} placeholder:text-sm`
                 : state.inputSizeMf === 'mini'
-                ? 'h-6 leading-6'
+                ? 'h-6 leading-6 text-xs placeholder:text-xs'
                 : 'h-7 leading-7',
               slots.prepend || slots.append ? 'align-middle table-cell' : 'inline-block',
               slots.prepend && slots.append
@@ -78,15 +99,22 @@
                 : slots.append
                 ? 'rounded-tl rounded-bl rounded-tr-none rounded-br-none'
                 : 'rounded',
-              readonly ? 'sm:border-0 text-ellipsis overflow-hidden whitespace-nowrap' : 'sm:border',
+              readonly ? ' text-ellipsis overflow-hidden whitespace-nowrap' : 'sm:border',
               (slots.prefix || prefixIcon) && (slots.suffix || suffixIcon || clearable || showPassword)
-                ? 'pl-6 pr-6'
+                ? 'px-6 sm:px-6'
                 : slots.prefix || prefixIcon
-                ? 'pl-6 pr-3'
+                ? 'pl-6 sm:pl-6 pr-0 sm:pr-3'
                 : slots.suffix || suffixIcon || clearable || showPassword
-                ? 'pl-3 pr-6'
+                ? 'pl-0 sm:pl-3 pr-6 sm:pr-6'
                 : '',
+              mask && state.inputDisabled
+                ? !state.maskValueVisible
+                  ? 'font-[serif] pr-6 sm:pr-6'
+                  : 'pr-6 sm:pr-6'
+                : '',
+              (slots.suffix || suffixIcon || showPassword) && clearable ? 'pr-10 sm:pr-10' : '',
               state.isDisplayOnly ? 'invisible h-auto leading-none border-0' : '',
+              state.isWordLimitVisible ? (clearable ? 'pr-18 sm:pr-18' : 'pr-14 sm:pr-14') : '',
               customClass
             )
           "
@@ -118,6 +146,7 @@
       ></tiny-tall-storage>
       <!-- 前置内容 -->
       <span
+        data-tag="tiny-input-prefix"
         ref="prefix"
         class="left-2 transition-all duration-300 ease-in-out text-xs absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center"
         v-if="(slots.prefix || prefixIcon) && !state.isDisplayOnly"
@@ -136,8 +165,9 @@
       </span>
       <!-- 后置内容 -->
       <span
+        data-tag="tiny-input-suffix"
         ref="suffix"
-        class="right-2 transition-all duration-300 ease-in-out pointer-events-none text-xs absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center"
+        class="right-2 transition-all duration-300 ease-in-out pointer-events-none text-xs absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center z-[1]"
         v-if="!state.isDisplayOnly && getSuffixVisible()"
       >
         <span class="pointer-events-auto text-xs flex justify-start items-center">
@@ -191,11 +221,22 @@
             "
             @click.native="handlePasswordVisible"
           ></component>
+          <component
+            v-if="mask && state.inputDisabled"
+            :is="state.maskValueVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
+            :class="
+              m(
+                'text-center transition-all duration-300 ease-in-out text-xs fill-color-text-placeholder',
+                state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
+              )
+            "
+            @click.native="state.maskValueVisible = !state.maskValueVisible"
+          ></component>
           <span
             v-if="state.isWordLimitVisible"
             class="h-full inline-flex items-center text-xs text-color-text-placeholder"
           >
-            <span class="bg-white leading-none inline-block">{{
+            <span class="bg-color-bg-1 leading-none inline-block">{{
               state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength
             }}</span>
           </span>
@@ -231,18 +272,25 @@
         effect="light"
         :content="state.displayOnlyTooltip"
         placement="top"
-        @mouseenter.native="handleEnterDisplayOnlyContent"
+        :popper-options="{ bubbling: true }"
+        @mouseenter.native="handleEnterDisplayOnlyContent($event, 'textarea')"
       >
-        <span class="max-w-full text-ellipsis break-words line-clamp-5">{{
-          displayOnlyContent || state.nativeInputValue
-        }}</span>
+        <span
+          class="max-w-full text-ellipsis break-words line-clamp-5 text-sm pt-1.5 text-color-text-primary"
+          :class="[state.inputSizeMf === 'medium' ? 'sm:text-sm' : 'sm:text-xs']"
+          >{{ state.displayOnlyText }}</span
+        >
       </tiny-tooltip>
       <textarea
         ref="textarea"
         v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
         :tabindex="tabindex"
-        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-xs text-xs text-color-text-primary bg-white disabled:cursor-not-allowed disabled:text-color-text-disabled disabled:bg-color-bg-4 leading-normal"
-        :class="[readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-3 py-2', state.isDisplayOnly ? 'hidden' : '']"
+        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-sm text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:bg-color-bg-4 leading-normal"
+        :class="[
+          readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-3 py-2',
+          state.isDisplayOnly ? 'hidden' : '',
+          state.inputSizeMf === 'medium' ? 'sm:placeholder:text-sm sm:text-sm' : 'sm:placeholder:text-xs sm:text-xs'
+        ]"
         @compositionstart="handleCompositionStart"
         @compositionupdate="handleCompositionUpdate"
         @compositionend="handleCompositionEnd"
@@ -262,7 +310,7 @@
     <span
       data-tag="tiny-input-limit"
       v-if="state.isWordLimitVisible && type === 'textarea'"
-      class="bg-white text-color-text-placeholder text-xs absolute bottom-1 right-3"
+      class="bg-color-bg-1 text-color-text-placeholder text-xs absolute bottom-1 right-3"
       >{{ state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength }}</span
     >
     <slot></slot>
@@ -289,7 +337,8 @@ export default defineComponent({
     'paste',
     'mouseenter',
     'mouseleave',
-    'click'
+    'click',
+    'input'
   ],
   components: {
     IconClose: IconClose(),
@@ -306,6 +355,7 @@ export default defineComponent({
     'size',
     'form',
     'type',
+    'mask',
     'label',
     'modelValue',
     'height',
@@ -324,7 +374,8 @@ export default defineComponent({
     'showWordLimit',
     'customClass',
     'displayOnly',
-    'displayOnlyContent'
+    'displayOnlyContent',
+    'showEmptyValue'
   ],
   setup(props, context): any {
     return setup({ props, context, renderless, api })

@@ -23,7 +23,17 @@ export const $constants = {
     blur: 'form.blur',
     change: 'form.change'
   },
-  COMPONENT_NAME: 'FormItem'
+  COMPONENT_NAME: 'FormItem',
+  FILTER_OPTION: [
+    'ui.numeric.equalTo',
+    'ui.numeric.notEqualTo',
+    'ui.numeric.moreThan',
+    'ui.numeric.moreThanOrEqualTo',
+    'ui.numeric.lessThan',
+    'ui.numeric.lessThanOrEqualTo',
+    'ui.numeric.empty',
+    'ui.numeric.nonEmpty'
+  ]
 }
 
 export const numericProps = {
@@ -121,6 +131,24 @@ export const numericProps = {
   showEmptyValue: {
     type: Boolean,
     default: false
+  },
+  title: {
+    type: String,
+    default: ''
+  },
+  tip: String,
+  shape: String,
+  clearable: {
+    type: Boolean,
+    default: true
+  },
+  filter: {
+    type: Boolean,
+    default: true
+  },
+  blank: {
+    type: Boolean,
+    default: true
   }
 }
 

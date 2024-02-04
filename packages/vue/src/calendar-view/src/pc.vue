@@ -253,13 +253,15 @@ import {
 
 export default defineComponent({
   emits: [
+    'update:modelValue',
     'new-schedule',
     'selected-date-change',
     'prev-week-click',
     'next-week-click',
     'week-change',
     'year-change',
-    'month-change'
+    'month-change',
+    'date-click'
   ],
   components: {
     TinyButton: Button,

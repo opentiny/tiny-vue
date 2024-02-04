@@ -6,7 +6,7 @@ import template from 'virtual-template?pc'
 export type VariantType = 'image' | 'circle' | 'square'
 export type SizeType = 'large' | 'medium' | 'small'
 
-const $constants = {}
+export const $constants = {}
 
 export const skeletonItemProps = {
   ...$props,

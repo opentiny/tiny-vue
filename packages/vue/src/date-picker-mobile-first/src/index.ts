@@ -1,6 +1,7 @@
 import { $prefix, $setup, $props, defineComponent } from '@opentiny/vue-common'
 import NormalTemplate from './normal.vue'
 import YearMonthTemplate from './year-month-range.vue'
+import { t } from '@opentiny/vue-locale'
 
 const $constants = {
   TYPE: {
@@ -38,6 +39,10 @@ export default defineComponent({
       default: 'date',
       validator: (value) => !value || ~Object.values($constants.TYPE).indexOf(value)
     },
+    clearable: {
+      type: Boolean,
+      default: false
+    },
     lockScroll: {
       type: Boolean,
       default: true
@@ -47,6 +52,25 @@ export default defineComponent({
       default: () => ({
         disabledDate: null
       })
+    },
+    customClass: [String, Object, Array],
+    step: {
+      type: Object,
+      default() {
+        return { hour: 1, minute: 1, second: 1 }
+      }
+    },
+    endPlaceholder: {
+      type: String,
+      default: () => t('ui.datepicker.endTime')
+    },
+    rangeSeparator: {
+      type: [Object, String],
+      default: '~'
+    },
+    showTimeSecond: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {

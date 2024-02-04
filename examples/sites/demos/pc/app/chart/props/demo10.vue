@@ -1,27 +1,34 @@
 <template>
   <div class="demo10">
-    <button @click="addDataZoomImg">点击添加dataZoom自定义图片</button>
+    <tiny-button @click="addDataZoomImg">点击添加dataZoom自定义图片</tiny-button>
     <tiny-line
-      ref="chart"
+      ref="chartRef"
       :data="chartData"
       :data-zoom="dataZoom"
       :init-options="initOptions"
       :resize-delay="1000"
+      :extend="extend"
     ></tiny-line>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 // 使用前需先引入对应模块
 import 'echarts/lib/component/dataZoom'
-import { ChartLine } from '@opentiny/vue'
+import { ChartLine, Button } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLine: ChartLine
+    TinyLine: ChartLine,
+    TinyButton: Button
   },
   data() {
     return {
+      extend: {
+        legend: {
+          top: 0
+        }
+      },
       initOptions: {
         width: '800px',
         height: '400px'
@@ -49,17 +56,8 @@ export default {
   methods: {
     addDataZoomImg() {
       this.dataZoom[0].handleIcon = `image://${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/data-zoom.png`
-      this.$refs.chart.dataHandler()
+      this.$refs.chartRef.dataHandler()
     }
   }
 }
 </script>
-
-<style>
-.demo10 button {
-  line-height: 1.7em;
-  font-size: 16px;
-  font-family: 'yahei';
-  color: #5e6d82;
-}
-</style>

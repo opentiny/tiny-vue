@@ -36,7 +36,7 @@ export const jsonLogicAdditionalOperators: Record<'startsWith' | 'endsWith', (..
 
 export const numerifyValues = (rg: RuleGroupTypeAny): RuleGroupTypeAny => ({
   ...rg,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
   // @ts-expect-error TS can't keep track of odd/even indexes here
   rules: rg.rules.map((r) => {
     if (typeof r === 'string') {

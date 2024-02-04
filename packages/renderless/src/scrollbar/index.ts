@@ -63,12 +63,12 @@ export const clickThumbHandler =
   }
 
 export const clickTrackHandler =
-  ({ refs, state }) =>
+  ({ vm, state }) =>
   (event) => {
     const offset = Math.abs(event.target.getBoundingClientRect()[state.bar.direction] - event[state.bar.client])
 
-    const thumbHalf = refs.thumb[state.bar.offset] / 2
-    const thumbPositionPercentage = ((offset - thumbHalf) * 100) / refs.bar[state.bar.offset]
+    const thumbHalf = vm.$refs.thumb[state.bar.offset] / 2
+    const thumbPositionPercentage = ((offset - thumbHalf) * 100) / vm.$refs.bar[state.bar.offset]
 
     state.wrap[state.bar.scroll] = (thumbPositionPercentage * state.wrap[state.bar.scrollSize]) / 100
   }
@@ -87,7 +87,7 @@ export const startDrag =
   }
 
 export const mouseMoveDocumentHandler =
-  ({ refs, state }) =>
+  ({ vm, state }) =>
   (event) => {
     if (state.cursorDown === false) {
       return
@@ -99,10 +99,10 @@ export const mouseMoveDocumentHandler =
       return
     }
 
-    const offset = (refs.bar.getBoundingClientRect()[state.bar.direction] - event[state.bar.client]) * -1
+    const offset = (vm.$refs.bar.getBoundingClientRect()[state.bar.direction] - event[state.bar.client]) * -1
 
-    const thumbClickPosition = refs.thumb[state.bar.offset] - prevPage
-    const thumbPositionPercentage = ((offset - thumbClickPosition) * 100) / refs.bar[state.bar.offset]
+    const thumbClickPosition = vm.$refs.thumb[state.bar.offset] - prevPage
+    const thumbPositionPercentage = ((offset - thumbClickPosition) * 100) / vm.$refs.bar[state.bar.offset]
 
     state.wrap[state.bar.scroll] = (thumbPositionPercentage * state.wrap[state.bar.scrollSize]) / 100
   }
@@ -117,9 +117,9 @@ export const mouseUpDocumentHandler =
   }
 
 export const handleScroll =
-  ({ refs, state, emit }) =>
+  ({ vm, state, emit }) =>
   (event) => {
-    const wrap = refs.wrap
+    const wrap = vm.$refs.wrap
 
     state.moveY = (wrap.scrollTop * 100) / wrap.clientHeight
     state.moveX = (wrap.scrollLeft * 100) / wrap.clientWidth
@@ -128,10 +128,10 @@ export const handleScroll =
   }
 
 export const update =
-  ({ refs, state }) =>
+  ({ vm, state }) =>
   () => {
     let heightPercentage, widthPercentage
-    const wrap = refs.wrap
+    const wrap = vm.$refs.wrap
 
     if (!wrap) {
       return

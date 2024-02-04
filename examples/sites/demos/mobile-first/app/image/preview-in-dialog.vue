@@ -20,8 +20,11 @@ export default {
   data() {
     return {
       visible3: false,
-      url: '/static/images/1.jpg',
-      srcList: ['/static/images/1.jpg', '/static/images/3.jpg']
+      url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+      srcList: [
+        `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+        `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/3.jpg`
+      ]
     }
   }
 }

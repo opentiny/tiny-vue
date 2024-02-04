@@ -10,7 +10,7 @@
  *
  -->
 <template>
-  <span class="tiny-breadcrumb__item">
+  <span :class="['tiny-breadcrumb__item', state.size ? 'tiny-breadcrumb__item--' + state.size : '']">
     <span :class="['tiny-breadcrumb__inner', to ? 'is-link' : '']" ref="link" role="link" @click="linkClick">
       <slot>
         <span>{{ label }}</span>
@@ -30,7 +30,7 @@ import { renderless, api } from '@opentiny/vue-renderless/breadcrumb-item/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  props: [...props, 'to', 'replace', 'label', 'option'],
+  props: [...props, 'to', 'replace', 'label', 'option', 'size'],
   inject: ['breadcrumb'],
   emits: ['select'],
   setup(props, context) {

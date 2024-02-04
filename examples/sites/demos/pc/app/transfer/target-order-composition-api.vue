@@ -1,11 +1,13 @@
 <template>
-  <div style="margin-bottom: 12px">
-    <span>右侧插入排序策略：</span>
-    <tiny-radio v-for="order in ['original', 'push', 'unshift']" v-model="targetOrder" :label="order">
-      {{ order }}
-    </tiny-radio>
+  <div>
+    <div style="margin-bottom: 12px">
+      <span>右侧插入排序策略：</span>
+      <tiny-radio v-for="order in ['original', 'push', 'unshift']" v-model="targetOrder" :label="order" :key="order">
+        {{ order }}
+      </tiny-radio>
+    </div>
+    <tiny-transfer v-model="value" :data="data" :target-order="targetOrder"></tiny-transfer>
   </div>
-  <tiny-transfer v-model="value" :data="data" :target-order="targetOrder"></tiny-transfer>
 </template>
 
 <script setup lang="jsx">

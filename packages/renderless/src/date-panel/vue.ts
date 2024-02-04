@@ -53,7 +53,9 @@ import {
   computerVisibleTime,
   computerVisibleDate,
   computerTimeFormat,
-  watchVisible
+  watchVisible,
+  getDisabledNow,
+  getDisabledConfirm
 } from './index'
 import { getWeekNumber, extractDateFormat } from '../common/deps/date-util'
 import { DATEPICKER, DATE } from '../common'
@@ -115,6 +117,8 @@ const initState = ({ reactive, computed, api, i18n }) => {
     selectedTz: null,
     animationName: '',
     startYear: Math.floor(new Date().getFullYear() / 10) * 10,
+    disabledNow: computed(() => api.getDisabledNow()),
+    disabledConfirm: computed(() => api.getDisabledConfirm()),
     year: computed(() => !Array.isArray(state.date) && state.date.getFullYear()),
     month: computed(() => !Array.isArray(state.date) && state.date.getMonth()),
     week: computed(() => getWeekNumber(state.date)),
@@ -217,7 +221,9 @@ const initApi = ({ api, state, t, emit, nextTick, vm, watch }) => {
     handleShortcutClick: handleShortcutClick(api),
     computerVisibleDate: computerVisibleDate({ state, t }),
     handleVisibleTimeChange: handleVisibleTimeChange({ api, vm, state, t }),
-    computerTimeFormat: computerTimeFormat({ state })
+    computerTimeFormat: computerTimeFormat({ state }),
+    getDisabledNow: getDisabledNow({ state }),
+    getDisabledConfirm: getDisabledConfirm({ state })
   })
 }
 

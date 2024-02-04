@@ -1,14 +1,16 @@
+import { off, on } from '../common/deps/dom'
+
 export const getClientWidth =
   ({ state, vm }) =>
   () => {
-    if (vm.$el) {
-      state.centerSpace = (document.documentElement.clientWidth - vm.$el.clientWidth) / 2
+    if (vm.$refs.floatingButton) {
+      state.centerSpace = (document.documentElement.clientWidth - vm.$refs.floatingButton.clientWidth) / 2
     }
   }
 
 export const handleClick =
   ({ props, state, emit }) =>
-  (event) => {
+  (event, index) => {
     if (state.disabled) return
 
     if (props.resetTime > 0) {
@@ -18,42 +20,78 @@ export const handleClick =
         state.disabled = false
       }, props.resetTime)
     }
-    emit('touchstart', event)
+
+    if (state.isExpand) {
+      state.isExpand = !state.isExpand
+    } else if (props.isExpand) {
+      state.isExpand = true
+    }
+
+    emit('click', event, index)
   }
 
-export const clearTimer = (state) => () => clearTimeout(state.initTimer)
-
-export const useTouchEvent =
-  ({ state, vm, props }) =>
+export const clearTimer =
+  ({ state, api }) =>
   () => {
-    const screenHeight = window.innerHeight
+    clearTimeout(state.initTimer)
 
-    state.scrolling = false
+    off(window, 'resize', api.getClientWidth)
+    off(window, 'scroll', api.onScroll)
+    off(window, 'scroll', api.getScrollListener)
+  }
 
-    window.addEventListener('scroll', function () {
-      clearTimeout(state.stayTime)
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+export const getScrollListener =
+  ({ vm, props, state }) =>
+  () => {
+    const scrollElement = props.elementSelector ? state.scrollElement : window
+    const screenHeight = props.elementSelector ? state.elementHeight : state.screenHeight
 
+    clearTimeout(state.stayTime)
+
+    const scrollTop = props.elementSelector
+      ? scrollElement.scrollTop
+      : document.documentElement.scrollTop || document.body.scrollTop
+
+    if (vm.$refs.floatingButton) {
       if (props.animated && scrollTop > screenHeight / 2) {
-        state.commHiddenSpace = vm.$el.clientWidth * 0.7
+        state.commHiddenSpace = vm.$refs.floatingButton.clientWidth * 0.7
         state.centerSpace = -state.commHiddenSpace
-
-        state.specialHiddenSpace = window.innerWidth - vm.$el.clientWidth * 0.3
+        state.specialHiddenSpace = -vm.$refs.floatingButton.clientWidth * 0.7
 
         state.stayTime = setTimeout(function () {
           if (scrollTop === state.lastScrollTop) {
-            state.centerSpace = (document.documentElement.clientWidth - vm.$el.clientWidth) / 2
+            state.centerSpace = (document.documentElement.clientWidth - vm.$refs.floatingButton.clientWidth) / 2
             state.commHiddenSpace = ''
             state.specialHiddenSpace = ''
           }
         }, 1000)
         state.lastScrollTop = scrollTop
       } else {
-        state.centerSpace = (document.documentElement.clientWidth - vm.$el.clientWidth) / 2
+        state.centerSpace = (document.documentElement.clientWidth - vm.$refs.floatingButton.clientWidth) / 2
         state.commHiddenSpace = ''
         state.specialHiddenSpace = ''
       }
-    })
+    }
+  }
+
+export const useTouchEvent =
+  ({ state, props, nextTick, api }) =>
+  () => {
+    state.scrolling = false
+
+    if (props.elementSelector) {
+      nextTick(() => {
+        state.scrollElement = document.querySelector(props.elementSelector)
+
+        state.elementHeight = state.scrollElement.scrollHeight
+
+        state.scrollElement.addEventListener('scroll', api.getScrollListener)
+      })
+    } else {
+      state.screenHeight = window.innerHeight
+
+      window.addEventListener('scroll', api.getScrollListener)
+    }
   }
 
 export const onScroll =
@@ -88,3 +126,26 @@ export const computedStyle =
 
     return styleObj
   }
+
+export const getExpandList =
+  ({ props, state }) =>
+  () => {
+    if (props.expandList && props.expandList.length > 0) {
+      const expandList = props.expandList.map((item) => {
+        item.title = item.title.slice(0, 4)
+        return item
+      })
+      if (props.expandList.length > 3) {
+        state.expandList = expandList.slice(0, 3)
+      } else {
+        state.expandList = expandList
+      }
+    }
+  }
+
+export const mounted = (api) => () => {
+  api.getClientWidth()
+  api.onScroll()
+  api.getExpandList()
+  on(window, 'resize', api.getClientWidth)
+}

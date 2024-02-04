@@ -29,6 +29,7 @@ export const getDecimal = (props) => (value) => getMiniDecimal(value, props.plug
 
 export const closePopper = (state) => () => {
   state.visible = false
+  state.editorPhase = 'close'
 }
 
 export const popInput =
@@ -58,9 +59,9 @@ export const popInput =
   }
 
 export const toggleVisible =
-  ({ api, props, state, editorState }) =>
+  ({ api, props, state, editorState, uiMode, isMobileFirstMode: mf }) =>
   () => {
-    if (props.disabled || !props.popUp) {
+    if (state.disabled || !props.popUp) {
       return
     }
 
@@ -70,14 +71,51 @@ export const toggleVisible =
     if (state.visible) {
       const { date, currency } = state
 
-      Object.assign(editorState, {
-        amount: state.amount,
-        date,
-        currency
-      })
+      if (!state.clearValues) {
+        Object.assign(editorState, {
+          amount: state.amount,
+          date,
+          currency
+        })
+      }
+      if (props.date || props.dateAllowEmpty) {
+        state.editorPhase = 'selection'
+      } else {
+        state.editorPhase = 'currency'
+      }
 
-      api.addOutSideEvent(state.visible)
+      if (!mf || uiMode.value !== 'default') {
+        api.addOutSideEvent(state.visible)
+      }
+    } else {
+      state.editorPhase = 'close'
     }
+  }
+export const openDetailEditor =
+  ({ state }) =>
+  (option, index) => {
+    const optionPhase = ['currency', 'date']
+    state.editorPhase = optionPhase[index]
+    state.visible = true
+  }
+
+export const closeDetailEidtor =
+  ({ state, props, api }) =>
+  (triggerCondition) => {
+    if (!triggerCondition) {
+      return
+    }
+    const inSelectionPhase = state.editorPhase === 'selection'
+    const isMultipleStep = props.date || props.dateAllowEmpty
+    if (!inSelectionPhase && isMultipleStep) {
+      state.editorPhase = 'selection'
+      state.visible = true
+    } else {
+      api.toggleVisible()
+    }
+    setTimeout(() => {
+      api.save(true)
+    }, 0)
   }
 
 export const innerFormat =
@@ -106,14 +144,16 @@ export const innerFormat =
 
 export const save =
   ({ api, state, editorState }) =>
-  () => {
+  (keepOpen) => {
     const { amount, date, currency } = editorState
 
     Object.assign(state, { amount, date, currency })
 
-    api.closePopper()
+    if (keepOpen !== true) {
+      api.closePopper()
+    }
 
-    let num = api.innerFormat(String(state.amount))
+    let num = api.innerFormat(state.amount + '')
 
     state.amount = isNaN(num) ? 0 : num
 
@@ -136,12 +176,18 @@ export const reset =
   }
 
 export const emitChange =
-  ({ emit, state }) =>
+  ({ emit, state, props, api }) =>
   () => {
     const { date, currency } = state
-    const emitAmount = Number(state.amount)
+    let emitAmount = props.stringMode ? api.getDecimal(state.amount).toString() : Number(state.amount)
 
-    emit('update:modelValue', emitAmount)
+    if (props.numAllowEmpty && state.amount === '') {
+      emitAmount = state.amount
+    }
+
+    state.amount && (state.clearValues = false)
+    !state.clearValues && emit('update:modelValue', emitAmount)
+
     emit('update:currency', currency)
     emit('update:date', date)
     emit('change', { amount: emitAmount, date, currency })
@@ -150,7 +196,7 @@ export const emitChange =
 export const inputFocus =
   ({ state, props }) =>
   () => {
-    let amount = String(state.amount)
+    let amount = state.amount + ''
 
     state.isFocus = true
     state.lock = false
@@ -169,7 +215,7 @@ export const inputBlur =
   ({ api, state, props }) =>
   () => {
     if (state.amountText !== '') {
-      let amount = api.innerFormat(String(state.amountText))
+      let amount = api.innerFormat(state.amountText + '')
 
       if (isNaN(amount)) {
         state.amount = ''
@@ -189,9 +235,9 @@ export const inputBlur =
   }
 
 export const handelClick =
-  ({ api, refs }) =>
+  ({ api, vm }) =>
   (e) => {
-    const contains = refs.root.contains(e.target)
+    const contains = vm.$refs.root.contains(e.target)
 
     if (!contains) {
       api.closePopper()
@@ -209,7 +255,7 @@ export const addOutSideEvent = (api) => (visible) => {
 export const initText =
   ({ state }) =>
   () => {
-    let amount = String(state.amount)
+    let amount = state.amount + ''
 
     state.amountText = amount ? (state.isFocus ? amount : formatNumber(state.amount, state.format)) : ''
   }
@@ -240,7 +286,10 @@ export const onInput =
 
     const { fraction, groupSeparator } = state.format
 
-    value = event.target.value.replace(/^-+/, '-')
+    value =
+      event.target.value !== undefined // 清除的时候会报错，理论上不应该从event获取，保留以兼容代码
+        ? event.target.value.replace(/^-+/, '-')
+        : value.replace(/^-+/, '-')
 
     const groups = value.split(groupSeparator).map((val) => val.trim())
 
@@ -289,12 +338,23 @@ export const getPrecision = ({ service, props, currency }) => {
 
 export const getAmountText =
   ({ state, props }) =>
-  () =>
-    props.hideCurrency
-      ? typeof state.amountText === 'string'
-        ? state.amountText.replace(state.currency, '')
-        : state.amountText
-      : state.amountText
+  () => {
+    const isFilter = props.shape === 'filter' && props.filter
+
+    if (props.hideCurrency && typeof state.amountText === 'string') {
+      return isFilter
+        ? state.radioVal + state.amountText.replace(state.currency, '')
+        : state.amountText.replace(state.currency, '')
+    } else {
+      return isFilter ? state.radioVal + state.amountText : state.amountText
+    }
+  }
+
+export const getAmountTextWithoutCurrncy =
+  ({ state }) =>
+  () => {
+    return state.amountText.replace(state.currency, '')
+  }
 
 export const watchModelValue =
   ({ api, state }) =>
@@ -317,15 +377,48 @@ export const watchCurrency =
     api.initText()
   }
 
-export const initAmount = (props) => () => {
-  let value = props.modelValue
-
-  value = value === null || isNaN(Number(value)) ? '' : value
-
-  if (!props.negative && value && Number(value) < 0) {
-    value -= 0
-    value = Math.abs(value)
+export const watchUiMode =
+  ({ api, isMobileFirstMode: mf }) =>
+  (value) => {
+    if (mf && value === 'default') {
+      api.addOutSideEvent(false)
+    }
   }
 
-  return value
-}
+export const initAmount =
+  ({ props, api }) =>
+  () => {
+    let value = props.modelValue
+
+    value = value === null || isNaN(Number(value)) ? '' : value
+
+    if (!props.negative && value && Number(value) < 0) {
+      if (props.stringMode) {
+        value = api.getDecimal(String(value).replace(/^-/, '')).toString()
+      } else {
+        value -= 0
+        value = Math.abs(value)
+      }
+    }
+
+    return value
+  }
+
+export const handleClearClick =
+  ({ state, emit, editorState }) =>
+  (event) => {
+    event.stopPropagation()
+
+    state.amountText = ''
+    state.radioVal = ''
+    editorState.amount = ''
+    state.clearValues = true
+
+    emit('clear')
+  }
+
+export const handleChange =
+  ({ state, emit }) =>
+  () => {
+    emit('filter-change', state.radioVal)
+  }

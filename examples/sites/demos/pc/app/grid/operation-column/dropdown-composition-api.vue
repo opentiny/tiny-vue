@@ -1,7 +1,7 @@
 <template>
   <tiny-grid ref="gridRef" :data="tableData">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60">
+    <tiny-grid-column type="selection" width="80">
       <template #dropdown>
         <tiny-dropdown title="" @item-click="itemClick">
           <template #dropdown>

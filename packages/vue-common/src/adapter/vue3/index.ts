@@ -482,6 +482,10 @@ export const isVue2 = false
 
 export const isVue3 = true
 
+export const isVnode = hooks.isVNode
+
+export const KeepAlive = hooks.KeepAlive
+
 export type {
   PropType,
   ExtractPropTypes,

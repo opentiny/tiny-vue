@@ -23,12 +23,7 @@ export default defineComponent({
         typeof item.visible === 'undefined' || item.visible
           ? h(TabNavItem, {
               key: item.name,
-              props: {
-                title: item.title,
-                name: item.name,
-                selected: item.selected,
-                navItem: item
-              }
+              props: { title: item.title, name: item.name, selected: item.selected, navItem: item }
             })
           : null
       ),
@@ -36,10 +31,7 @@ export default defineComponent({
         class: m('absolute bottom-0.5 h-0.5 bg-color-brand transition-all duration-300', {
           'hidden': !state.currentNav
         }),
-        style: {
-          width: state.currentWidth + 'px',
-          left: state.currentPosition + 'px'
-        }
+        style: { width: state.currentWidth + 'px', left: state.currentPosition + 'px' }
       })
     ])
   }

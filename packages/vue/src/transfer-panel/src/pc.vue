@@ -17,10 +17,10 @@
         {{ title }}
         <div class="headSort" v-if="render && state.renderType !== 'TinyTable' && data.flag === 'sort'">
           <div class="sort-btn disabled up" @click="setPosition('up', $event)">
-            <icon-arrow-up fill="#1890ff"></icon-arrow-up>
+            <icon-arrow-up></icon-arrow-up>
           </div>
           <div class="sort-btn disabled down" @click="setPosition('down', $event)">
-            <icon-arrow-down fill="#1890ff"></icon-arrow-down>
+            <icon-arrow-down></icon-arrow-down>
           </div>
         </div>
         <span>{{ state.checkedSummary }}</span>
@@ -40,9 +40,7 @@
           <i :class="['tiny-input__icon', 'tiny-icon-' + state.inputIcon]" @click="clearQuery"></i>
         </template>
       </tiny-input>
-      <transition-group
-        name="tiny-transition-transfer-fade"
-        tag="div"
+      <div
         v-show="!render"
         role="group"
         aria-label="checkbox-group"
@@ -85,11 +83,11 @@
             <option-content :option="optionRender(item)"></option-content>
           </span>
         </label>
-      </transition-group>
+      </div>
       <component
         ref="plugin"
         v-if="render && render.plugin"
-        :is="markRaw(toRaw(render.plugin))"
+        :is="toRaw(render.plugin)"
         v-bind="state.render"
         v-on="state.render.on"
       ></component>
@@ -130,6 +128,37 @@ import Input from '@opentiny/vue-input'
 import Pager from '@opentiny/vue-pager'
 import { iconArrowUp, iconArrowDown, iconCheckedSur, iconCheck } from '@opentiny/vue-icon'
 
+export const transferPanelProps = {
+  columns: Array,
+  data: {
+    type: Array,
+    default() {
+      return []
+    }
+  },
+  defaultChecked: Array,
+  filterMethod: Function,
+  filterable: Boolean,
+  format: Object,
+  isToLeft: Boolean,
+  optionRender: Function,
+  pagerOp: Object,
+  placeholder: String,
+  props: Object,
+  render: Object,
+  renderContent: Function,
+  showLeft: Boolean,
+  showPager: Boolean,
+  title: String,
+  treeOp: Object,
+  value: {
+    type: Array,
+    default() {
+      return []
+    }
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'TransferPanel',
   componentName: 'TransferPanel',
@@ -151,36 +180,7 @@ export default defineComponent({
       }
     }
   },
-  props: {
-    columns: Array,
-    data: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
-    defaultChecked: Array,
-    filterMethod: Function,
-    filterable: Boolean,
-    format: Object,
-    isToLeft: Boolean,
-    optionRender: Function,
-    pagerOp: Object,
-    placeholder: String,
-    props: Object,
-    render: Object,
-    renderContent: Function,
-    showLeft: Boolean,
-    showPager: Boolean,
-    title: String,
-    treeOp: Object,
-    value: {
-      type: Array,
-      default() {
-        return []
-      }
-    }
-  },
+  props: transferPanelProps,
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true })
   }

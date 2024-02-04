@@ -90,7 +90,7 @@ export const getInternalValue =
         result = 'U'
       }
 
-      return result
+      return result || props.value
     } else {
       return props.modelValue
     }

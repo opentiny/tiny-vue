@@ -1,5 +1,6 @@
 import debounce from '../common/deps/debounce'
 import { omitText as omit } from '../common/string'
+import { fastdom } from '../common/deps/fastdom'
 
 export const compute =
   ({ api, markRaw, props, state }) =>
@@ -211,14 +212,16 @@ const realDraw = ({ afterLink, afterNodes, config, ctx, state }) => {
   } else if (Array.isArray(config.drawLink)) {
     if (config.drawLink.length) {
       for (let i = 0; i < config.drawLink.length; i++) {
-        if ((drawn = hitMatch(config.drawLink[i], afterLink))) {
+        drawn = hitMatch(config.drawLink[i], afterLink)
+        if (drawn) {
           config.drawLink[i].method({ ctx, afterLink, afterNodes })
           break
         }
       }
     }
   } else if (config.drawLink && typeof config.drawLink.method === 'function') {
-    if ((drawn = hitMatch(config.drawLink, afterLink))) {
+    drawn = hitMatch(config.drawLink, afterLink)
+    if (drawn) {
       config.drawLink.method({ ctx, afterLink, afterNodes })
     }
   }
@@ -301,6 +304,7 @@ export const refresh =
     state.refreshKey++
 
     nextTick(() => {
+      api.antialiasing()
       api.drawAfterLink()
       api.addListeners()
 
@@ -313,9 +317,9 @@ export const getAllItem = (props) => (nodes) => {
   const { config } = props
   const { headUrl } = config
 
-  nodes.map(({ info: { items } }) => {
+  nodes.forEach(({ info: { items } }) => {
     if (Array.isArray(items) && items.length) {
-      items.map(({ key }) => {
+      items.forEach(({ key }) => {
         allItem[key] = (headUrl || '').replace('{0}', String(key))
       })
     }
@@ -339,7 +343,7 @@ export const getVars = () => (afterNode, config) => {
   const isFailFn = () => statusFn() === config.statusFail
   const half = (qty) => qty >>> 1
   const white = '#fff'
-  let { background, borderColor, statusName } = {}
+  let background, borderColor, statusName
 
   background = borderColor = config.colors[statusFn()]
   statusName = config.status[statusFn()]
@@ -414,11 +418,11 @@ const buildLinkHoverState = ({ afterLinks, hoverMap, hoverList, config }) => {
     }
   }
 
-  afterLinks.map((afterLink) => {
+  afterLinks.forEach((afterLink) => {
     const { p } = afterLink
     let cur, next
 
-    p.map((p) => {
+    p.forEach((p) => {
       const parts = p.split(',')
 
       if (parts[0] === 'm') {
@@ -509,7 +513,8 @@ export const setListeners =
     })
   }
 
-const pointInTriangle = (x0, y0, x1, y1, x2, y2, px, py) => {
+const pointInTriangle = (points, px, py) => {
+  const [x0, y0, x1, y1, x2, y2] = points
   const v0 = [x2 - x0, y2 - y0]
   const v1 = [x1 - x0, y1 - y0]
   const v2 = [px - x0, py - y0]
@@ -541,12 +546,13 @@ export const hitTest =
     const { afterData } = state
     const { hoverState } = afterData
     const { hoverMap, hoverList, groupHoverMap, groupHoverList } = hoverState
-    let tri = hoverList.find((item) => pointInTriangle(...item, x, y))
+
+    let tri = hoverList.find((item: number[]) => pointInTriangle(item, x, y))
 
     state.hoverAfterLink = tri ? hoverMap.get(tri) : null
 
     if (!tri) {
-      tri = groupHoverList.find((item) => pointInTriangle(...item, x, y))
+      tri = groupHoverList.find((item: number[]) => pointInTriangle(item, x, y))
       state.hoverAfterGroup = tri ? groupHoverMap.get(tri) : null
     }
 
@@ -583,7 +589,7 @@ export const clickNode =
 export const clearDropdown = (state) => (nodeName) => {
   const { dropdowns } = state
 
-  Object.keys(dropdowns).map((item) => {
+  Object.keys(dropdowns).forEach((item) => {
     if (dropdowns[item] && ((nodeName && item !== nodeName) || !nodeName)) {
       dropdowns[item] = false
     }
@@ -601,13 +607,13 @@ export const computeMf =
     const getCol = buildGetCol({ afterConfig, api })
     const rectRow = buildRectRow({ afterConfig, getRow })
     const rectNode = buildRectNode({ afterConfig, api, getRow, rectRow })
-    let args = { afterConfig, api, getCol, getRow, groups, nodes, rectNode, state }
+    const buildAfterNodeGraphArgs = { afterConfig, api, getCol, getRow, groups, nodes, rectNode, state }
 
-    const { afterGroups, afterNodes, graph } = buildAfterNodeGraph(args)
+    const { afterGroups, afterNodes, graph } = buildAfterNodeGraph(buildAfterNodeGraphArgs)
 
-    args = { afterConfig, afterNodes, graph, links }
+    const buildAfterLinkArrowArgs = { afterConfig, afterNodes, graph, links }
 
-    const { afterLinks, arrows } = buildAfterLinkArrow(args)
+    const { afterLinks, arrows } = buildAfterLinkArrow(buildAfterLinkArrowArgs)
     const hoverState = api.buildHoverState({ afterGroups, afterLinks })
 
     state.afterData = markRaw({ afterConfig, afterGroups, afterLinks, afterNodes, arrows, graph, hoverState })
@@ -750,7 +756,7 @@ const normalRowCol = ({ afterConfig, nodes }) => {
   rows.forEach((row, i) => rowMap.set(row, autoAdjustPos ? i : row))
 
   const afterNodes = nodes.map((node) => {
-    return { type: 'node', row: rowMap.get(node.info.row), col: 0, raw: node }
+    return { type: 'node', row: rowMap.get(node.info.row), col: 0, raw: node, lastCol: false, lastRow: false }
   })
 
   rows.forEach((r, row) => {
@@ -773,14 +779,23 @@ const defaultLayout = ({ afterConfig, afterNodes, getCol, getRow, graph, maxCol,
   let tmp
 
   for (let i = 0; i <= maxRow; i++) {
-    if ((tmp = getRow(afterNodes, i, 'width')) > graph.width) graph.width = tmp
+    tmp = getRow(afterNodes, i, 'width')
+    if (tmp > graph.width) graph.width = tmp
   }
 
   for (let i = 0; i <= maxCol; i++) {
-    if ((tmp = getCol(afterNodes, i, 'height')) > graph.height) graph.height = tmp
+    tmp = getCol(afterNodes, i, 'height')
+    if (tmp > graph.height) graph.height = tmp
   }
 
-  afterNodes.forEach((afterNode) => Object.assign(afterNode, rectNode(afterNode, afterNodes, graph)))
+  afterNodes.forEach((afterNode) => {
+    Object.assign(afterNode, rectNode(afterNode, afterNodes, graph))
+
+    afterNode.lastCol = afterNode.lastRow = false
+
+    if (afterNode.col === maxCol) afterNode.lastCol = true
+    if (afterNode.row === maxRow) afterNode.lastRow = true
+  })
 
   if (padding > 0) {
     tmp = 2 * padding
@@ -816,6 +831,7 @@ const dotModeAdjust = ({ afterConfig, afterNodes, graph, maxCol, state }) => {
 
     afterNodes.forEach((afterNode) => {
       afterNode.x = ~~((afterNode.col + 0.5) * colSize + padding) + state.temporary.adjustX
+      afterNode.y += state.temporary.adjustY
     })
   }
 }
@@ -843,10 +859,12 @@ const calcGraphMinSize = ({ afterConfig, afterNodes, api, graph, maxCol, maxRow 
   let tempSize
 
   afterNodes.forEach((afterNode) => {
-    if ((tempSize = api.getNode(afterNode.raw, 'width')) > maxNodeSize.width) {
+    tempSize = api.getNode(afterNode.raw, 'width')
+    if (tempSize > maxNodeSize.width) {
       maxNodeSize.width = tempSize
     }
-    if ((tempSize = api.getNode(afterNode.raw, 'height')) > maxNodeSize.height) {
+    tempSize = api.getNode(afterNode.raw, 'height')
+    if (tempSize > maxNodeSize.height) {
       maxNodeSize.height = tempSize
     }
   })
@@ -1057,6 +1075,29 @@ const validLinkPath = (res) => {
   return { points, midpoint, middir, linear, flag }
 }
 
+const getFromToRect = ({ afterLink, afterNodes }) => {
+  const afterNodeCouple = [afterLink.raw.from, afterLink.raw.to].map((name) =>
+    afterNodes.find((afterNode) => afterNode.raw.name === name)
+  )
+  const { x: x0, y: y0, width: w0, height: h0 } = afterNodeCouple[0]
+  const { x: x1, y: y1, width: w1, height: h1 } = afterNodeCouple[1]
+
+  return {
+    from: { x: x0, y: y0, width: w0, height: h0 },
+    to: { x: x1, y: y1, width: w1, height: h1 }
+  }
+}
+
+const linkPathApis = {
+  getTop: (rect) => ({ x: rect.x + rect.width / 2, y: rect.y }),
+  getRight: (rect) => ({ x: rect.x + rect.width, y: rect.y + rect.height / 2 }),
+  getBottom: (rect) => ({
+    x: rect.x + rect.width / 2,
+    y: rect.y + rect.height
+  }),
+  getLeft: (rect) => ({ x: rect.x, y: rect.y + rect.height / 2 })
+}
+
 const customRoute = ({ adjust, afterConfig, afterLink, afterNodes, arrow }) => {
   const { linkPath, radius } = afterConfig
   let valid = false
@@ -1064,7 +1105,15 @@ const customRoute = ({ adjust, afterConfig, afterLink, afterNodes, arrow }) => {
   if (Array.isArray(linkPath)) {
     for (let i = 0; i < linkPath.length; i++) {
       if (hitMatch(linkPath[i], afterLink)) {
-        const { points, midpoint, middir, linear, flag } = validLinkPath(linkPath[i].method({ afterLink, afterNodes }))
+        const fromToRect = getFromToRect({ afterLink, afterNodes })
+        const { points, midpoint, middir, linear, flag } = validLinkPath(
+          linkPath[i].method({
+            afterLink,
+            afterNodes,
+            ...fromToRect,
+            api: linkPathApis
+          })
+        )
 
         if (flag) {
           valid = true
@@ -1076,7 +1125,15 @@ const customRoute = ({ adjust, afterConfig, afterLink, afterNodes, arrow }) => {
     }
   } else if (linkPath && typeof linkPath.method === 'function') {
     if (hitMatch(linkPath, afterLink)) {
-      const { points, midpoint, middir, linear, flag } = validLinkPath(linkPath.method({ afterLink, afterNodes }))
+      const fromToRect = getFromToRect({ afterLink, afterNodes })
+      const { points, midpoint, middir, linear, flag } = validLinkPath(
+        linkPath.method({
+          afterLink,
+          afterNodes,
+          ...fromToRect,
+          api: linkPathApis
+        })
+      )
 
       if (flag) {
         valid = true
@@ -1419,4 +1476,73 @@ export const handleNodeResize =
 
       state.nodeWidth = vm.$refs.title.offsetWidth + paddingLeft + padding
     }
+  }
+
+export const runAdjustYTask =
+  ({ api, state }) =>
+  () => {
+    if (state.temporary.adjustYTask) {
+      fastdom.clear(state.temporary.adjustYTask)
+      state.temporary.adjustYTask = null
+    }
+
+    state.temporary.adjustYTask = fastdom.measure(() => {
+      state.temporary.adjustYTask = null
+      api.refresh()
+    })
+  }
+
+export const setAdjustY =
+  ({ api, state }) =>
+  (param) => {
+    let { lastRowAfterNodes, adjustY } = state.temporary
+
+    if (!lastRowAfterNodes.length) {
+      lastRowAfterNodes = state.temporary.lastRowAfterNodes = state.afterData.afterNodes.filter(
+        (afterNode) => afterNode.lastRow
+      )
+    }
+
+    const lastRowNodeNames = lastRowAfterNodes.map((afterNode) => afterNode.raw.name)
+
+    if (Array.isArray(lastRowNodeNames) && lastRowNodeNames.includes(param.node) && param.value < adjustY) {
+      state.temporary.adjustY = param.value
+      api.runAdjustYTask()
+    }
+  }
+
+export const setNodeAdjustY =
+  ({ vm, state }) =>
+  () => {
+    const elRect = vm.$el.getBoundingClientRect()
+    const titleRect = vm.$refs.title.getBoundingClientRect()
+
+    if (state.layUpdown) {
+      state.temporary.graphInstance.setAdjustY({ node: state.nodeName, value: -titleRect.height / 2 })
+    } else {
+      state.temporary.graphInstance.setAdjustY({
+        node: state.nodeName,
+        value: titleRect.height > elRect.height ? (elRect.height - titleRect.height) / 2 : 0
+      })
+    }
+  }
+
+// 计算多端流程图dot模式节点图标
+export const computedIcon =
+  ({ state, icons }) =>
+  () => {
+    let svg, size
+
+    if (state.isSmall) {
+      svg = icons[state.nodeStatus].other
+      size = 'small'
+    } else if (state.sizeMini) {
+      svg = icons[state.nodeStatus].mini
+      size = 'mini'
+    } else {
+      svg = icons[state.nodeStatus].other
+      size = state.nodeSize
+    }
+
+    return { svg, size }
   }

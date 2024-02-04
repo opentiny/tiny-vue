@@ -54,7 +54,7 @@
         data-tag="tiny-progress-circle-style"
         class="inline-block"
         :class="[size === 'small' && 'w-12 h-12', size === 'medium' && 'w-24 h-24', size === 'large' && 'w-40 h-40']"
-        :style="state.circleStyle"
+        :style="width ? state.circleStyle : {}"
         v-else
       >
         <svg viewBox="0 0 100 100">
@@ -101,7 +101,7 @@
           <span v-if="type === 'line'">
             {{ state.content }}
           </span>
-          <div v-else>
+          <div v-else class="text-[0]">
             <span :style="{ fontSize: state.progressTextSize + 'px' }">{{
               typeof format === 'function' ? state.content : percentage
             }}</span>

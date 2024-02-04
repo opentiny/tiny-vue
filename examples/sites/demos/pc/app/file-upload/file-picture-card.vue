@@ -33,7 +33,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { FileUpload, DialogBox } from '@opentiny/vue'
 import { IconPlus, IconView, IconDownload, IconDel } from '@opentiny/vue-icon'
 

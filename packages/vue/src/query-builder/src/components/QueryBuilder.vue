@@ -10,7 +10,7 @@
       <component
         :is="ruleGroup"
         :translations="qb.translations"
-        :ruleGroup="query"
+        :rule-group="query"
         :rules="query.rules"
         :combinator="'combinator' in query ? query.combinator : undefined"
         :not="!!query.not"
@@ -19,7 +19,7 @@
         :id="query.id"
         :path="[]"
         :disabled="!!query.disabled || qb.queryDisabled"
-        :parentDisabled="qb.queryDisabled"
+        :parent-disabled="qb.queryDisabled"
         :context="qb.context"
       ></component>
     </div>
@@ -77,13 +77,13 @@ export default defineComponent({
     'addRuleToNewGroups',
     'listsAsArrays',
     'parseNumbers',
-    'disabled',
     'validateQuery',
     'validator',
     'idGenerator',
     'context',
     'displayOnlyField',
-    'showBranches'
+    'showBranches',
+    'bindProps'
   ], // :QueryBuilderProps
   computed: {
     qb(): any {

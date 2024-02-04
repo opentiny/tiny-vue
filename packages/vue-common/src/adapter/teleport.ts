@@ -1,7 +1,7 @@
 let globalId = 0
 
 const getHasComment = (state) => (comment) => {
-  const childNodes = Array.from(state.parent.childNodes) as any
+  const childNodes = state.parent ? Array.from(state.parent.childNodes) : []
 
   for (let i = 0; i < childNodes.length; i++) {
     if (childNodes[i].textContent === comment) {
@@ -15,11 +15,38 @@ const getGetFragment =
   (commentFlag) => {
     const fragment = document.createDocumentFragment()
 
-    commentFlag && !hasComment(startComment) && fragment.appendChild(document.createComment(startComment))
+    if (commentFlag) {
+      !hasComment(startComment) && fragment.appendChild(document.createComment(startComment))
+      state.nodes.forEach((node) => fragment.appendChild(node))
+      !hasComment(endComment) && fragment.appendChild(document.createComment(endComment))
+    } else {
+      const children = state.parent ? Array.from(state.parent.childNodes) : []
 
-    state.nodes.forEach((node) => fragment.appendChild(node))
+      let start, end
 
-    commentFlag && !hasComment(endComment) && fragment.appendChild(document.createComment(endComment))
+      start = end = 0
+
+      for (let i = 0; i < children.length; i++) {
+        const node = children[i]
+
+        if (node.nodeType !== 8) {
+          continue
+        }
+
+        if (node.textContent === startComment) {
+          start = i
+        }
+
+        if (node.textContent === endComment) {
+          end = i
+          break
+        }
+      }
+
+      if (end > start) {
+        children.slice(start + 1, end).forEach((node) => fragment.appendChild(node))
+      }
+    }
 
     return fragment
   }
@@ -29,9 +56,10 @@ const getDisable =
   () => {
     instance.$el.appendChild(getFragment())
 
-    const indices = [] as any
+    const indices = []
+    const children = state.parent ? Array.from(state.parent.childNodes) : []
 
-    ;(Array.from(state.parent.childNodes) as any).forEach((child, i) => {
+    children.forEach((child, i) => {
       if (child.nodeType === 8) {
         if (child.textContent === startComment || child.textContent === endComment) {
           indices.push(i)
@@ -42,10 +70,10 @@ const getDisable =
     const minIndex = Math.min(...indices)
     const maxIndex = Math.max(...indices)
 
-    Array.from(state.parent.childNodes)
+    children
       .slice(minIndex, maxIndex + 1)
       .reverse()
-      .forEach((child) => state.parent.removeChild(child))
+      .forEach((child) => state.parent && state.parent.removeChild(child))
 
     state.parent = null
   }

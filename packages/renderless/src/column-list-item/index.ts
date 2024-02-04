@@ -81,3 +81,24 @@ export const getItemChecked =
       return state.model === props.label
     }
   }
+
+export const computedOptions =
+  ({ props }) =>
+  () => {
+    return props.options
+      .filter((item) => {
+        const hidden = typeof item.hidden === 'function' ? item.hidden(props.data) : item.hidden
+        return !hidden
+      })
+      .map((opt) => {
+        return {
+          ...opt,
+          disabled: typeof opt.disabled === 'function' ? opt.disabled(props.data) : opt.disabled
+        }
+      })
+  }
+
+export const getType =
+  ({ props, state }) =>
+  () =>
+    state.isGroup ? state.columnGroup.type || props.type : props.type

@@ -18,7 +18,10 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~"
+    "@opentiny/vue-checkbox": "workspace:~",
+    "@opentiny/vue-checkbox-group": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-popconfirm": "workspace:~"
   },
   "license": "MIT"
 }

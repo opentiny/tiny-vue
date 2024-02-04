@@ -15,7 +15,7 @@ import { log } from '../xss'
 
 const formatRegExp = /%[sdj%]/g
 
-export let warning = () => undefined
+export const warning = () => undefined
 
 /**
  * @description 转换返回错误的数据结构
@@ -38,18 +38,19 @@ export function convertFieldsError(errors) {
 
 /**
  * @description 生成校验错误的提示信息
+ * @param i18nTemplate 带占位符的字符串
+ * @param rest 替换占位符的字符串
+ * 例：format('%s 必须等于 %s', 'A', 'B') 返回 A 必须等于 B
  */
-export function format(...args) {
-  let i = 1
-  const checkData = args[0]
-  const len = args.length
-
-  if (typeof checkData === 'function') {
-    return checkData.apply(null, args.slice(1))
+export function format(i18nTemplate: Function | string, ...rest: string[]) {
+  if (typeof i18nTemplate === 'function') {
+    return i18nTemplate(...rest)
   }
 
-  if (typeof checkData === 'string') {
-    let str = String(checkData).replace(formatRegExp, (matchChar) => {
+  if (typeof i18nTemplate === 'string') {
+    let i = 0
+    const len = rest.length
+    let str = String(i18nTemplate).replace(formatRegExp, (matchChar) => {
       if (matchChar === '%%') {
         return '%'
       }
@@ -61,14 +62,14 @@ export function format(...args) {
       switch (matchChar) {
         case '%j':
           try {
-            return JSON.stringify(args[i++])
+            return JSON.stringify(rest[i++])
           } catch (e) {
             return '[Circular]'
           }
         case '%d':
-          return Number(args[i++])
+          return Number(rest[i++])
         case '%s':
-          return String(args[i++])
+          return String(rest[i++])
         default:
           return matchChar
       }
@@ -77,7 +78,7 @@ export function format(...args) {
     return str
   }
 
-  return checkData
+  return i18nTemplate
 }
 
 /**
@@ -138,7 +139,7 @@ function asyncParallelArray(arrData, func, callback) {
   const arrLength = arrData.length
 
   function checkCount(errors) {
-    results.push.apply(results, errors)
+    results.push(...errors)
 
     count++
 
@@ -185,7 +186,7 @@ function flattenObjArr(objArr) {
   const result = []
 
   Object.keys(objArr).forEach((item) => {
-    result.push.apply(result, objArr[item])
+    result.push(...objArr[item])
   })
 
   return result
@@ -224,7 +225,7 @@ export function asyncMap(objArray, option, func, callback) {
   const pending = new Promise((resolve, reject) => {
     const errorFn = reject
     const next = (errors) => {
-      results.push.apply(results, errors)
+      results.push(...errors)
       total++
       if (total === objArrLength) {
         callback(results)

@@ -68,6 +68,12 @@ export const renderless = (props, { computed, reactive, watch }, { emit, constan
     computedNavList: computed(() => api.computedNavListHandler()),
     showButton: computed(() => {
       const len = state.navList.length
+      // 如果 checkStrictly = false, 只能选叶子节点，此时需要动态隐藏掉“确定"。 当有三列时，level=0,1时，要隐藏
+      if (!props.nodeConfig.checkStrictly) {
+        if (state.level < len - 1) {
+          return false
+        }
+      }
       return len && (props.nodeConfig.checkStrictly || state.navList[len - 1].isLeaf)
     })
   })
@@ -95,6 +101,7 @@ export const renderless = (props, { computed, reactive, watch }, { emit, constan
   })
 
   api.created()
+  api.syncCheckStatus() // 强制同步一次值，以便触发navList有值
 
   watch(() => props.visible, api.watchVisible)
   watch(() => props.modelValue, api.watchModelValue, { immediate: true, deep: true })

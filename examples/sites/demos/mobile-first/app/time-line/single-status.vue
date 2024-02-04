@@ -15,7 +15,8 @@ import { IconCopy, IconLoading } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyTimeLine: TimeLine
+    TinyTimeLine: TimeLine,
+    IconCopy: IconCopy()
   },
   data() {
     return {

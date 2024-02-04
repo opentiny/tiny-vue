@@ -30,6 +30,8 @@ export default defineComponent({
     native: Boolean,
     // 如果container尺寸不会发生变化，最好设置它可以优化性能
     noresize: Boolean,
+    // select 选择器下拉框数据过多时默认显示滚动条
+    show: Boolean,
     tag: {
       type: String,
       default: 'div'
@@ -53,6 +55,7 @@ export default defineComponent({
       viewClass,
       handleScroll,
       state,
+      show,
       marginBottomAdjust
     } = this
     const gutter = scrollbarWidth()
@@ -105,8 +108,8 @@ export default defineComponent({
     } else {
       nodes = [
         wrap,
-        <Bar move={state.moveX} size={state.sizeWidth}></Bar>,
-        <Bar vertical move={state.moveY} size={state.sizeHeight}></Bar>
+        <Bar move={state.moveX} size={state.sizeWidth} show={show}></Bar>,
+        <Bar vertical move={state.moveY} size={state.sizeHeight} show={show}></Bar>
       ]
     }
 

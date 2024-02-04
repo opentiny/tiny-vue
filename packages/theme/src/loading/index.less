@@ -61,7 +61,7 @@
 
   &__spinner {
     top: 50%;
-    margin-top: var(--ti-loading-spinner-margin-top);
+    transform: translateY(-50%);
     width: 100%;
     text-align: center;
     position: absolute;
@@ -73,21 +73,24 @@
     }
 
     &-small {
-      svg {
+      svg,
+      img {
         height: var(--ti-loading-spinner-small-height);
         width: var(--ti-loading-spinner-small-width);
       }
     }
 
     &-medium {
-      svg {
+      svg,
+      img {
         height: var(--ti-loading-spinner-medium-height);
         width: var(--ti-loading-spinner-medium-width);
       }
     }
 
     &-large {
-      svg {
+      svg,
+      img {
         height: var(--ti-loading-spinner-large-height);
         width: var(--ti-loading-spinner-large-width);
       }
@@ -95,6 +98,7 @@
 
     .circular {
       animation: loading-rotate 2s linear infinite;
+      display: inline-block;
     }
 
     .path {

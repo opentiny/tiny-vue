@@ -17,7 +17,6 @@
     @apply align-middle;
 
     & li {
-      line-height: 30px;
       @apply bg-color-bg-1;
       @apply float-left;
       @apply relative;
@@ -142,7 +141,7 @@
 
       &:first-child {
         button {
-          @apply rounded-tl-sm rounded-tr-none rounded-br-none rounded-bl-sm;
+          @apply rounded-tl rounded-tr-none rounded-br-none rounded-bl;
           @apply border-l-color-border;
           @apply border-r-transparent;
         }
@@ -162,7 +161,7 @@
 
       &:last-child {
         button {
-          @apply rounded-tl-none rounded-tr-sm rounded-br-sm rounded-bl-none;
+          @apply rounded-tl-none rounded-tr rounded-br rounded-bl-none;
         }
       }
 
@@ -223,10 +222,10 @@
     }
 
     &:first-child:last-child {
-      @apply rounded-sm;
+      @apply rounded;
 
       &.is-round {
-        border-radius: 15px;
+        @apply rounded-2xl;
       }
 
       &.is-circle {

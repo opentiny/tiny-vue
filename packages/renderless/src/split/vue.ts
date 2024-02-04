@@ -43,12 +43,10 @@ export const renderless = (props, hooks, { vm, nextTick, emit, constants }) => {
     computedleftTopMin: computed(() => api.getComputedThresholdValue('leftTopMin')),
     computedrightBottomMin: computed(() => api.getComputedThresholdValue('rightBottomMin')),
     wrapperClasses: computed(() => [`${state.prefix}-wrapper`, state.isMoving ? 'no-select' : '']),
-    paneClasses: computed(() => [`${state.prefix}-pane`, { [`${state.prefix}-pane-moving`]: state.isMoving }]),
-    dragable: !props.disabled,
-    triggerSimple: props.triggerSimple,
-    collapseLeftTop: props.collapseLeftTop,
-    collapseRightBottom: props.collapseRightBottom,
-    isThreeAreas: props.threeAreas,
+    paneClasses: computed(() => [
+      `${state.prefix}-pane ${props.scrollable ? 'tiny-split-scroll' : ''}`,
+      { [`${state.prefix}-pane-moving`]: state.isMoving }
+    ]),
     ...getUseOffset.state
   })
 

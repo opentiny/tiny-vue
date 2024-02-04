@@ -8,6 +8,7 @@ export const actionSheetProps = {
     default: () => []
   },
   modelValue: [Number, String, Array],
+  beforeClose: Function,
   visible: {
     type: Boolean,
     default: false
@@ -37,6 +38,14 @@ export const actionSheetProps = {
     type: Boolean,
     default: false
   },
+  showClose: {
+    type: Boolean,
+    default: () => true
+  },
+  fullscreen: {
+    type: Boolean,
+    default: () => false
+  },
   customClass: [String, Object, Array],
   contentClass: String,
   type: {
@@ -48,6 +57,14 @@ export const actionSheetProps = {
     default: true
   },
   maskClosable: {
+    type: Boolean,
+    default: true
+  },
+  lockScroll: {
+    type: Boolean,
+    default: true
+  },
+  flex: {
     type: Boolean,
     default: true
   },

@@ -14,7 +14,10 @@
     @apply overflow-hidden;
   }
 
+  // 这里因为dom结构差异，需要特殊处理
   &__header {
+    @apply flex; // tiny适配saas
+    @apply justify-between; // tiny适配saas
     @apply p-0;
     @apply relative;
     @apply m-0;
@@ -31,7 +34,6 @@
     }
 
     .@{tabs-prefix-cls}__new-tab {
-      float: right;
       @apply border border-solid border-color-border;
       @apply ~"h-4.5";
       line-height: 18px;
@@ -59,6 +61,13 @@
       @apply -mb-px;
       @apply relative;
 
+      &.is-scrollable {
+        @apply py-0 px-5;
+        @apply box-border;
+      }
+    }
+
+    .@{tabs-prefix-cls}__nav-wrap-not-separator {
       &::after {
         @apply content-[''];
         @apply absolute;
@@ -68,11 +77,6 @@
         @apply h-px;
         @apply bg-color-border-separator;
         @apply ~'z-[1]';
-      }
-
-      &.is-scrollable {
-        @apply py-0 px-5;
-        @apply box-border;
       }
     }
 
@@ -168,10 +172,34 @@
         @apply text-center;
       }
     }
+
+    .@{tabs-prefix-cls}__item-separator-space:last-child {
+      .@{tabs-prefix-cls}__item-separator{
+        @apply hidden;
+      }
+    }
+
+    // tiny适配saas新增
+    &.is-show-active-bar .@{tabs-prefix-cls}__item {
+      @apply mr-6;
+    }
+
+    // tiny适配saas新增
+    &.is-show-active-bar .@{tabs-prefix-cls}__item.@{tabs-prefix-cls}__item-separator-space {
+      @apply mr-0;
+    }
+  }
+
+  &__item-separator-space {
+    @apply ~"px-3.5";
+  }
+
+  &__item-base {
+    @apply px-6;
   }
 
   &__item {
-    @apply py-0 px-6;
+    @apply py-0;
     @apply h-10;
     @apply box-border;
     @apply leading-10;
@@ -296,6 +324,26 @@
     }
   }
 
+  //大尺寸
+  &&--large  {
+    &.@{tabs-prefix-cls}--top {
+      .@{tabs-prefix-cls}__header {
+        .@{tabs-prefix-cls}__nav-wrap{
+          .@{tabs-prefix-cls}__nav-scroll{
+            .@{tabs-prefix-cls}__nav{
+              .@{tabs-prefix-cls}__item{
+                @apply text-base;
+                &.is-active {
+                  @apply text-base;
+                }
+              }
+            }
+          }
+        }
+      } 
+    }
+  }
+
   //一层tab页签
   &&--card {
     &.@{tabs-prefix-cls}--left .@{tabs-prefix-cls}__nav,
@@ -320,10 +368,6 @@
           }
         }
       }
-
-      // > .@{tabs-prefix-cls}__header .@{tabs-prefix-cls}__nav-scroll .@{tabs-prefix-cls}__item.is-active:before {
-      //   @apply -ml-6;
-      // }
     }
 
     &.@{tabs-prefix-cls}--bottom {
@@ -455,7 +499,7 @@
           line-height: 14px;
           @apply align-middle;
           @apply overflow-hidden;
-          transform-origin: 100% 50%;
+          @apply origin-right;
         }
 
         &.is-active.is-closable .@{tabs-prefix-cls}__icon-close,
@@ -616,6 +660,7 @@
 
     &.@{tabs-prefix-cls}--card {
       .@{tabs-prefix-cls}__item {
+        @apply text-center; // tiny适配saas
         @apply border-t border-t-color-border;
         border-bottom: none;
         @apply bg-color-bg-2;
@@ -1083,7 +1128,18 @@
   &&--top,
   &&--bottom {
     &:not(.@{tabs-prefix-cls}--card):not(.@{tabs-prefix-cls}--border-card) .@{tabs-prefix-cls}__item {
-      @apply pl-0;
+      &-base {
+        @apply pl-0;
+      }
+      &-separator-space {
+        @apply ~"px-3.5";
+        &:nth-child(2) {
+          @apply ml-0;
+        }
+        &:not(:nth-child(2)) {
+          @apply ml-px;
+        }
+      }
 
       &.is-left {
         @apply py-0 px-6;
@@ -1144,12 +1200,11 @@
   &&--top:not(&--small):not(&--card):not(&--border-card) > &__header &__nav-prev svg,
   &&--top:not(&--small):not(&--card):not(&--border-card) > &__header &__nav-next svg {
     @apply relative;
-    @apply ~'-top-0.5';
   }
 
   &&--top:not(&--small):not(&--card):not(&--border-card) > &__header &__new-tab {
     @apply border border-solid border-color-border-separator;
-    margin-top: 3px;
+    @apply ~"mt-2.5";
     @apply mb-0;
   }
 
@@ -1299,6 +1354,17 @@
         @apply fill-color-icon-active;
       }
     }
+  }
+
+  &&--top &__item-separator {
+    @apply w-px;
+    @apply h-3;
+    @apply inline-block;
+    @apply relative;
+    @apply ~"left-3.5";
+    @apply top-1;
+    @apply bg-color-border-separator;
+    @apply align-top;
   }
 
   &&--top:not(&--small)&--card > &__header &__item.is-closable &__icon-close,

@@ -12,7 +12,6 @@
 
 import { find } from '../common/array'
 import { getObj, isEqual } from '../common/object'
-import { hasClass } from '../common/deps/dom'
 import { isKorean } from '../common/string'
 import scrollIntoView from '../common/deps/scroll-into-view'
 import PopupManager from '../common/deps/popup-manager'
@@ -25,6 +24,7 @@ import { extend } from '../common/object'
 import { BROWSER_NAME } from '../common'
 import browserInfo from '../common/browser'
 import { fastdom } from '../common/deps/fastdom'
+import { deepClone } from '../picker-column'
 
 export const handleComposition =
   ({ api, nextTick, state }) =>
@@ -101,7 +101,7 @@ export const gridOnQueryChange =
           state.remoteData = data.filter((row) => !~selectedIds.indexOf(row[valueField])).concat(state.selected)
         } else {
           vm.$refs.selectGrid.clearRadioRow()
-          vm.$refs.selectGrid.setRadioRow(find(data, (item) => props.modelValue == item[props.valueField]))
+          vm.$refs.selectGrid.setRadioRow(find(data, (item) => props.modelValue === item[props.valueField]))
           state.remoteData = data
         }
 
@@ -163,6 +163,7 @@ export const handleQueryChange =
       }
     }
 
+    state.query = value
     state.previousQuery = value
 
     window.requestAnimationFrame(() => {
@@ -188,30 +189,28 @@ export const handleQueryChange =
       return
     }
 
+    state.triggerSearch = true
     api.defaultOnQueryChange(value)
   }
 
-export const debouncedQueryChange =
-  ({ props, api }) =>
-  (event) => {
-    const value = props.shape ? event : event.target.value
-    api.handleDebouncedQueryChange(value)
+export const resetFilter =
+  ({ state, api }) =>
+  () => {
+    state.query = ''
+    state.previousQuery = undefined
+    api.handleQueryChange(state.query)
   }
-
-export const handleDebouncedQueryChange = ({ state, api }) =>
-  debounce(state.debounce, (value) => {
-    api.handleQueryChange(value)
-  })
 
 export const scrollToOption =
   ({ vm, constants }) =>
   (option) => {
-    const target = Array.isArray(option) && option[0] ? option[0].el : option.el
+    const target =
+      Array.isArray(option) && option[0] && option[0].state ? option[0].state.el : option.state ? option.state.el : ''
 
     if (vm.$refs.popper && target) {
       const menu = vm.$refs.popper.$el.querySelector(constants.CLASS.SelectDropdownWrap)
 
-      scrollIntoView(menu, target)
+      setTimeout(() => scrollIntoView(menu, target))
     }
 
     vm.$refs.scrollbar && vm.$refs.scrollbar.handleScroll()
@@ -225,7 +224,9 @@ export const handleMenuEnter =
 
 export const emitChange =
   ({ emit, props, state, constants }) =>
-  (value) => {
+  (value, changed) => {
+    if (state.device === 'mb' && props.multiple && !changed) return
+
     const seekItem = (val, arr, items, flag) => {
       if (constants.TYPE.Tree === flag) {
         const recurNode = (node) => {
@@ -244,7 +245,7 @@ export const emitChange =
       }
     }
 
-    if (!isEqual(props.modelValue, value)) {
+    if (!isEqual(props.modelValue, state.compareValue)) {
       if (props.renderType === constants.TYPE.Grid && props.multiple) {
         value = value || []
 
@@ -271,6 +272,14 @@ export const emitChange =
         emit('change', value)
       }
     }
+  }
+
+export const directEmitChange =
+  ({ emit, props, state }) =>
+  (value, key) => {
+    if (state.device === 'mb' && props.multiple) return
+
+    emit('change', value, key)
   }
 
 export const clearNoMatchValue =
@@ -358,12 +367,12 @@ const getOptionOfSetSelected = ({ api, props }) => {
 }
 
 // 多选，获取匹配的option
-const getResultOfSetSelected = ({ props, isGrid, isTree, api }) => {
+const getResultOfSetSelected = ({ state, props, isGrid, isTree, api }) => {
   let result = []
   const newModelValue = []
 
-  if (Array.isArray(props.modelValue)) {
-    props.modelValue.forEach((value) => {
+  if (Array.isArray(state.modelValue)) {
+    state.modelValue.forEach((value) => {
       if (isGrid || isTree) {
         const option = api.getPluginOption(value, isTree)
         result = result.concat(option)
@@ -402,7 +411,7 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
     props.remote &&
     (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
   const nestdata = isRemote ? state.remoteData : isTree ? api.getTreeData(state.treeData) : state.gridData
-  const data = find(nestdata, (item) => props.modelValue == item[props.valueField])
+  const data = find(nestdata, (item) => props.modelValue === item[props.valueField])
 
   if (isEmptyObject(data)) {
     api.clearNoMatchValue('')
@@ -443,7 +452,7 @@ export const setSelected =
       return
     }
 
-    const result = getResultOfSetSelected({ props, isGrid, isTree, api })
+    const result = getResultOfSetSelected({ state, props, isGrid, isTree, api })
 
     state.selectCls = result.length ? (result.length === state.options.length ? 'checked-sur' : 'halfselect') : 'check'
     state.selected = result
@@ -463,7 +472,7 @@ export const getPluginOption =
       (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
     const { textField, valueField } = props
     const sourceData = isRemote ? state.remoteData : isTree ? api.getTreeData(state.treeData) : state.gridData
-    const selNode = find(sourceData, (item) => item[valueField] == value)
+    const selNode = find(sourceData, (item) => item[valueField] === value)
     const items = []
 
     if (selNode) {
@@ -475,14 +484,26 @@ export const getPluginOption =
   }
 
 export const toggleCheckAll =
-  ({ api, emit, state, props }) =>
+  ({ api, state }) =>
   () => {
     const getEnabledValues = (options) => {
       let values = []
 
       for (let i = 0; i < options.length; i++) {
-        if (!options[i].state.disabled && !options[i].state.groupDisabled) {
-          values.push(options[i].value)
+        const isEnabled = !options[i].state.disabled && !options[i].state.groupDisabled
+        const isRequired = options[i].required
+        const isDisabledAndChecked = !isEnabled && options[i].state.selectCls === 'checked-sur'
+
+        if (state.isSelectAll) {
+          // 取消选中全部，必填和禁用且选中项不可取消
+          if (isRequired || isDisabledAndChecked) {
+            values.push(options[i].value)
+          }
+        } else {
+          // 选中全部，非禁用项 和 必填项和 禁用且选中项 需选中
+          if (isEnabled || isRequired || isDisabledAndChecked) {
+            values.push(options[i].value)
+          }
         }
       }
 
@@ -498,37 +519,17 @@ export const toggleCheckAll =
 
       unchecked.length ? (value = getEnabledValues(state.options)) : (value = [])
     } else if (state.selectCls === 'checked-sur') {
-      value = []
-    }
-
-    const requiredValue = []
-    if (props.multiple) {
-      state.options.forEach((opt) => {
-        if (opt.required) requiredValue.push(opt.value)
-      })
-    }
-
-    if (Array.isArray(value)) {
-      value = requiredValue.concat(value.filter((val) => !requiredValue.find((requireVal) => requireVal === val)))
+      value = getEnabledValues(state.options)
     }
 
     api.setSoftFocus()
-
     state.isSilentBlur = true
     api.updateModelValue(value)
-    emit('change', value)
-  }
-
-export const resetFilter =
-  ({ state, api }) =>
-  () => {
-    state.query = ''
-    state.previousQuery = undefined
-    api.handleQueryChange(state.query)
+    api.directEmitChange(value)
   }
 
 export const handleFocus =
-  ({ emit, props, state, api }) =>
+  ({ emit, props, state }) =>
   (event) => {
     if (!state.softFocus) {
       if (props.automaticDropdown || props.filterable) {
@@ -538,12 +539,10 @@ export const handleFocus =
 
       emit('focus', event)
     } else {
+      if (state.searchSingleCopy && state.selectedLabel) {
+        emit('focus', event)
+      }
       state.softFocus = false
-    }
-
-    if (props.remote && state.filterOrSearch && state.firstAutoSearch) {
-      state.firstAutoSearch = false
-      api.resetFilter()
     }
   }
 
@@ -576,6 +575,7 @@ export const handleBlur =
     // 表单校验不能异步，否则弹窗中嵌套表单会出现弹窗关闭后再出现校验提示的bug
     dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.formBlur, event?.target?.value)
 
+    state.triggerSearch = false
     state.softFocus = false
   }
 
@@ -604,6 +604,10 @@ export const toggleLastOptionHitState =
       return
     }
 
+    if (option.required) {
+      return true
+    }
+
     const hitTarget = option.state || option
 
     if (hit === true || hit === false) {
@@ -621,9 +625,11 @@ export const deletePrevTag =
   ({ api, constants, props, state, vm }) =>
   (event) => {
     if (event.target.value.length <= 0 && !api.toggleLastOptionHitState()) {
-      const value = props.modelValue.slice()
+      const value = state.modelValue.slice()
 
       value.pop()
+
+      state.compareValue = deepClone(value)
 
       api.updateModelValue(value)
 
@@ -669,9 +675,7 @@ export const resetInputHeight =
         return
       }
 
-      const inputChildNodes = vm.$refs.reference.$el.childNodes
-      const inputContainer = [].filter.call(inputChildNodes, (item) => hasClass(item, 'tiny-input-display-only'))[0]
-      const input = inputContainer && inputContainer.querySelector('input')
+      let input = vm.$refs.reference.type === 'text' && vm.$refs.reference.$el.querySelector('input')
       const tags = vm.$refs.tags
 
       if (!input) {
@@ -682,8 +686,10 @@ export const resetInputHeight =
         api.calcCollapseTags()
       }
 
-      const sizeInMap = designConfig?.state?.initialInputHeight || state.initialInputHeight
+      const sizeInMap = state.initialInputHeight
+
       const noSelected = state.selected.length === 0
+      const spacingHeight = designConfig ? designConfig.state?.spacingHeight : constants.SPACING_HEIGHT
 
       if (!state.isDisplayOnly) {
         if (!noSelected && tags) {
@@ -691,13 +697,11 @@ export const resetInputHeight =
             const tagsClientHeight = tags.clientHeight
 
             fastdom.mutate(() => {
-              input.style.height =
-                Math.max(tagsClientHeight + (tagsClientHeight > sizeInMap ? constants.BORDER_HEIGHT : 0), sizeInMap) +
-                'px'
+              input.style.height = Math.max(tagsClientHeight + spacingHeight, sizeInMap) + 'px'
             })
           })
         } else {
-          input.style.height = noSelected ? sizeInMap + 'px' : Math.max(0, sizeInMap) + 'px'
+          input.style.height = sizeInMap + 'px'
         }
       } else {
         input.style.height = 'auto'
@@ -734,7 +738,7 @@ export const handleOptionSelect =
     state.memorize && state.memorize.updateByKey(option[state.memorize._dataKey] || option.value)
 
     if (props.multiple) {
-      const value = (props.modelValue || []).slice()
+      const value = (state.modelValue || []).slice()
       const optionIndex = api.getValueIndex(value, option.value)
 
       if (optionIndex > -1) {
@@ -742,6 +746,8 @@ export const handleOptionSelect =
       } else if (state.multipleLimit <= 0 || value.length < state.multipleLimit) {
         value.push(option.value)
       }
+
+      state.compareValue = deepClone(value)
 
       api.updateModelValue(value)
       api.emitChange(value)
@@ -761,6 +767,8 @@ export const handleOptionSelect =
         state.visible = false
       }
     } else {
+      state.compareValue = deepClone(option.value)
+
       api.updateModelValue(option.value)
       api.emitChange(option.value)
 
@@ -825,12 +833,20 @@ export const getValueIndex =
   }
 
 export const toggleMenu =
-  ({ vm, state, props }) =>
+  ({ vm, state, props, api }) =>
   (e) => {
+    if (props.keepFocus && state.visible && props.filterable) {
+      return
+    }
+
     const event = e || window.event
     const enterCode = 13
     const nodeName = event.target && event.target.nodeName
     const toggleVisible = props.ignoreEnter ? event.keyCode !== enterCode && nodeName === 'INPUT' : true
+
+    if (!props.displayOnly) {
+      event.stopPropagation()
+    }
 
     if (!state.selectDisabled) {
       toggleVisible && !state.softFocus && (state.visible = !state.visible)
@@ -841,6 +857,7 @@ export const toggleMenu =
         if (!(props.filterable && props.shape)) {
           const dom = vm.$refs.input || vm.$refs.reference
           dom?.focus()
+          api.setOptionHighlight()
         }
       }
     }
@@ -861,12 +878,12 @@ export const selectOption =
 export const deleteSelected =
   ({ api, constants, emit, props, vm, state }) =>
   (event) => {
-    event.stopPropagation()
+    event?.stopPropagation()
 
     let selectedValue = []
     if (props.multiple) {
       const requireOptions = state.options.filter((opt) => opt.required && opt.value)
-      selectedValue = props.modelValue.slice().filter((v) => requireOptions.find((opt) => opt.value === v))
+      selectedValue = state.modelValue.slice().filter((v) => requireOptions.find((opt) => opt.value === v))
     }
 
     const value = props.multiple ? selectedValue : ''
@@ -883,9 +900,10 @@ export const deleteSelected =
     }
 
     state.showTip = false
+    state.compareValue = deepClone(value)
 
-    api.updateModelValue(value)
-    api.emitChange(value)
+    api.updateModelValue(value, true)
+    api.emitChange(value, true)
 
     state.visible = false
 
@@ -921,7 +939,7 @@ export const deleteTag =
     }
 
     if (index > -1 && !state.selectDisabled) {
-      const value = props.modelValue.slice()
+      const value = state.modelValue.slice()
       value.splice(index, 1)
 
       if (props.renderType === constants.TYPE.Tree) {
@@ -933,6 +951,8 @@ export const deleteTag =
         refs.selectGrid.clearSelection()
         refs.selectGrid.setSelection(rows, true)
       }
+
+      state.compareValue = deepClone(value)
 
       api.updateModelValue(isTree ? treeValue : value)
       api.emitChange(value)
@@ -990,6 +1010,17 @@ export const handleResize =
     }
   }
 
+export const setOptionHighlight = (state) => () => {
+  for (let i = 0; i < state.options.length; ++i) {
+    const option = state.options[i]
+
+    if (!option.disabled && !option.groupDisabled && option.state.visible && option.state.itemSelected) {
+      state.hoverIndex = i
+      break
+    }
+  }
+}
+
 export const checkDefaultFirstOption = (state) => () => {
   state.hoverIndex = -1
 
@@ -1035,8 +1066,14 @@ export const getValueKey = (props) => (item) => {
 }
 
 export const navigateOptions =
-  ({ api, nextTick, state }) =>
+  ({ api, nextTick, state, props }) =>
   (direction) => {
+    const { optimization } = props
+
+    if (optimization) {
+      return
+    }
+
     const len = state.options.length
 
     if (!state.visible) {
@@ -1065,7 +1102,7 @@ export const navigateOptions =
 
       const option = state.options[state.hoverIndex]
 
-      if (option.disabled === true || option.groupDisabled === true || !option.visible) {
+      if (option.disabled === true || option.groupDisabled === true || !option.visible || option.state.limitReached) {
         api.navigateOptions(direction)
       }
 
@@ -1074,38 +1111,38 @@ export const navigateOptions =
   }
 
 export const emptyText =
-  ({ I18N, props, state, t }) =>
+  ({ I18N, props, state, t, isMobileFirstMode }) =>
   () => {
     if (props.loading) {
       return props.loadingText || t(I18N.loading)
     } else {
       if (props.remote && state.query === '' && props.renderType) {
-        if (props.multiple) {
-          return state.selected.length > 0 || state.remoteData.length > 0
-        }
+        return remoteEmptyText(props, state)
+      }
 
-        return state.selected[props.valueField] || state.remoteData.length > 0
+      if (props.remote && state.query === '' && state.options.length === 0 && !state.triggerSearch) {
+        return props.shape === 'filter' || isMobileFirstMode ? '' : false
       }
 
       if (state.filterOrSearch && state.query && state.options.length >= 0 && state.filteredOptionsCount === 0) {
         return props.noMatchText || t(I18N.noMatch)
       }
 
-      if (!state.options.some((option) => option.visible)) {
+      if (!state.options.some((option) => option.visible && option.state.visible)) {
         return props.noDataText || t(I18N.noData)
-      }
-
-      if (props.remote && state.query === '' && state.options.length === 0) {
-        if (props.shape === 'filter') {
-          return ''
-        } else {
-          return false
-        }
       }
     }
 
     return null
   }
+
+const remoteEmptyText = function (props, state) {
+  if (props.multiple) {
+    return state.selected.length > 0 || state.remoteData.length >= 0
+  }
+
+  return state.selected[props.valueField] || state.remoteData.length >= 0
+}
 
 export const watchValue =
   ({ api, constants, dispatch, props, vm, state }) =>
@@ -1148,7 +1185,7 @@ export const calcOverFlow =
       state.overflow = false
 
       const tagDom = vm.$refs.tags
-      const tags = tagDom.querySelectorAll('.tiny-tag')
+      const tags = tagDom.querySelectorAll('[data-tag="tiny-tag"]')
 
       if (tags.length) {
         tagDom.scrollTo && tagDom.scrollTo({ top: 0 })
@@ -1160,7 +1197,7 @@ export const calcOverFlow =
           for (let i = 1; i < tags.length; i++) {
             let tx = tags[i].getBoundingClientRect().x
 
-            if (tx == x) {
+            if (tx === x) {
               state.overflow = i - 1
               break
             }
@@ -1225,7 +1262,7 @@ export const toVisible =
     state.previousQuery !== state.query && api.initQuery().then(() => api.setSelected())
 
     if (props.renderType !== constants.TYPE.Tree) {
-      state.previousQuery = props.remoteConfig.clearData && state.previousQuery !== state.query ? undefined : null
+      state.previousQuery = null
     }
 
     api.resetHoverIndex()
@@ -1246,27 +1283,30 @@ export const toVisible =
 export const toHide =
   ({ constants, state, props, vm, api, nextTick }) =>
   () => {
+    const { remote, remoteConfig, shape, renderType, multiple, valueField } = props
+
     state.selectEmitter.emit(constants.COMPONENT_NAME.SelectDropdown)
     nextTick(() => {
       state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
     })
 
     if (state.filterOrSearch) {
-      state.query =
-        props.remote || props.shape ? '' : props.renderType !== constants.TYPE.Tree ? state.selectedLabel : ''
+      state.query = remote || shape ? '' : renderType !== constants.TYPE.Tree ? state.selectedLabel : ''
 
-      state.previousQuery !== state.query && api.handleQueryChange(state.query)
+      const isChange = remote && remoteConfig.autoSearch && (state.firstAutoSearch || remoteConfig.clearData)
+      state.firstAutoSearch = false
+      api.handleQueryChange(state.query, isChange)
 
-      if (props.multiple) {
+      if (multiple) {
         // Select组件，下拉面板顶部增加搜索框时修改
         props.filterable ? vm.$refs.input?.focus() : vm.$refs.reference?.focus()
       } else {
-        if (!props.remote) {
+        if (!remote) {
           state.selectEmitter.emit(constants.EVENT_NAME.queryChange)
           state.selectEmitter.emit(constants.COMPONENT_NAME.OptionGroup)
         }
 
-        if (state.selectedLabel && !props.shape) {
+        if (state.selectedLabel && !shape) {
           state.currentPlaceholder = state.selectedLabel
           state.selectedLabel = ''
         }
@@ -1275,23 +1315,23 @@ export const toHide =
 
     if (vm.$refs.selectGrid) {
       let { fullData } = vm.$refs.selectGrid.getTableData()
-      if (props.multiple) {
-        const selectedIds = state.selected.map((sel) => sel[props.valueField])
+      if (multiple) {
+        const selectedIds = state.selected.map((sel) => sel[valueField])
         vm.$refs.selectGrid.clearSelection()
         vm.$refs.selectGrid.setSelection(
-          fullData.filter((row) => ~selectedIds.indexOf(row[props.valueField])),
+          fullData.filter((row) => ~selectedIds.indexOf(row[valueField])),
           true
         )
       } else {
         vm.$refs.selectGrid.clearRadioRow()
-        vm.$refs.selectGrid.setRadioRow(find(fullData, (item) => props.modelValue == item[props.valueField]))
+        vm.$refs.selectGrid.setRadioRow(find(fullData, (item) => props.modelValue === item[props.valueField]))
       }
 
       if (state.filterOrSearch && typeof props.filterMethod === 'function') {
         vm.$refs.selectGrid.handleTableData(true)
       } else if (
         state.filterOrSearch &&
-        props.remote &&
+        remote &&
         (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
       ) {
         vm.$refs.selectGrid.handleTableData()
@@ -1300,7 +1340,7 @@ export const toHide =
   }
 
 export const watchVisible =
-  ({ api, constants, emit, state, vm, props }) =>
+  ({ api, constants, emit, state, vm, props, isMobileFirstMode }) =>
   (value) => {
     if ((state.filterOrSearch || props.remote) && !value) {
       vm.$refs.reference?.blur()
@@ -1308,6 +1348,10 @@ export const watchVisible =
 
     if (api.onCopying()) {
       return
+    }
+
+    if (value && props.multiple && state.device === 'mb') {
+      state.selectedCopy = state.selected.slice()
     }
 
     setTimeout(() => {
@@ -1322,11 +1366,22 @@ export const watchVisible =
 
     emit(constants.EVENT_NAME.visibleChange, value)
 
+    setTimeout(() => {
+      state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
+      if (value && vm.$refs.scrollbar) {
+        vm.$refs.scrollbar.handleScroll()
+      }
+    }, props.updateDelay)
+
     if (!value && props.shape === 'filter') {
       state.softFocus = false
     }
 
     if (value && state.optimizeStore.flag) {
+      if (isMobileFirstMode) {
+        optmzApis.queryWrap(vm.$refs).addEventListener('scroll', api.getScrollListener)
+      }
+
       optmzApis.createMacro(() => {
         optmzApis.setScrollTop({ refs: vm.$refs, state })
         api.getScrollListener()
@@ -1385,7 +1440,7 @@ export const handleCopyClick =
   }
 
 export const selectChange =
-  ({ emit, props, state, api }) =>
+  ({ props, state, api }) =>
   ({ $table, selection, checked, row }) => {
     const { textField, valueField } = props
     const remoteItem = (row) => {
@@ -1399,7 +1454,7 @@ export const selectChange =
     } else {
       checked
         ? (state.selected = state.selected.concat(
-            selection.filter((row) => !~props.modelValue.indexOf(row[valueField]))
+            selection.filter((row) => !~state.modelValue.indexOf(row[valueField]))
           ))
         : $table.tableFullData.forEach((row) => remoteItem(row))
     }
@@ -1407,7 +1462,7 @@ export const selectChange =
     const keys = state.selected.map((item) => item[valueField])
 
     api.updateModelValue(keys)
-    emit('change', keys, state.selected)
+    api.directEmitChange(keys, state.selected)
   }
 
 export const getcheckedData =
@@ -1428,7 +1483,7 @@ export const getcheckedData =
   }
 
 export const radioChange =
-  ({ emit, props, state, api }) =>
+  ({ props, state, api }) =>
   ({ row }) => {
     row.value = row[props.valueField]
     row.currentLabel = row[props.textField]
@@ -1437,7 +1492,7 @@ export const radioChange =
     state.currentKey = row[props.valueField]
 
     api.updateModelValue(row.value)
-    emit('change', row)
+    api.directEmitChange(row)
   }
 
 export const getTreeData = (props) => (data) => {
@@ -1459,7 +1514,7 @@ export const getTreeData = (props) => (data) => {
 }
 
 export const treeNodeClick =
-  ({ emit, props, state, api, vm }) =>
+  ({ props, state, api, vm }) =>
   (data) => {
     if (!props.multiple) {
       data.currentLabel = data[props.textField]
@@ -1468,7 +1523,7 @@ export const treeNodeClick =
       state.visible = false
 
       api.updateModelValue(data.value)
-      emit('change', data)
+      api.directEmitChange(data)
     } else {
       if (props.treeOp.checkOnClickNode) {
         const checkedNodes = vm.$refs.selectTree.getCheckedNodes()
@@ -1479,7 +1534,7 @@ export const treeNodeClick =
   }
 
 export const nodeCheckClick =
-  ({ emit, props, state, api }) =>
+  ({ props, state, api }) =>
   (data, { checkedKeys, checkedNodes }) => {
     const selected = state.selected.map((item) => api.getValueKey(item))
     if (isEqual(selected, checkedKeys)) {
@@ -1489,10 +1544,12 @@ export const nodeCheckClick =
     state.selected = checkedNodes.filter((node) => {
       node.currentLabel = node[props.textField]
       node.value = node[props.valueField]
+
+      return checkedNodes
     })
 
     api.updateModelValue(checkedKeys)
-    emit('change', checkedKeys, checkedNodes)
+    api.directEmitChange(checkedKeys, checkedNodes)
   }
 
 export const nodeCollapse =
@@ -1601,7 +1658,7 @@ export const buildRadioConfig =
 
 export const onMouseenterNative =
   ({ state }) =>
-  (e) => {
+  () => {
     state.inputHovering = true
 
     if (state.searchSingleCopy && state.selectedLabel) {
@@ -1666,22 +1723,22 @@ export const calcCollapseTags =
     }
 
     const tags = vm.$refs.tags
+    const collapseTag = tags && tags.querySelector('[data-tag="tags-collapse"]')
 
-    if (!tags) {
+    if (!tags || !collapseTag) {
       return
     }
 
     const { width: tagsContentWidth, paddingLeft, paddingRight } = window.getComputedStyle(tags)
     const tagsWidth = parseFloat(tagsContentWidth) - parseFloat(paddingLeft) - parseFloat(paddingRight)
 
-    const collapseTag = tags.querySelector('.tiny-select__tags-collapse')
     const { width: collapseTagContentWidth, marginRight } = collapseTag && window.getComputedStyle(collapseTag)
     const collapseTagWidth = collapseTag && parseFloat(collapseTagContentWidth) + parseFloat(marginRight) // 4为右margin值
 
-    const tagList = Array.from(tags.querySelectorAll('.tiny-tag'))
+    const tagList = Array.from(tags.querySelectorAll('[data-tag="tiny-tag"]'))
 
     let { total, dom, idx } = { total: collapseTagWidth, dom: null, idx: 0 }
-    tagList.some((tag, index) => {
+    tagList.forEach((tag, index) => {
       if (tag !== collapseTag) {
         const { width: tagContentWidth, marginRight } = tag && window.getComputedStyle(tag)
         total += parseFloat(tagContentWidth) + parseFloat(marginRight)
@@ -1749,7 +1806,7 @@ export const initQuery =
   }
 
 export const mounted =
-  ({ api, parent, state, props, vm, constants }) =>
+  ({ api, parent, state, props, vm, designConfig }) =>
   () => {
     state.defaultCheckedKeys = state.gridCheckedData
     const parentEl = parent.$el
@@ -1763,15 +1820,14 @@ export const mounted =
 
     state.completed = true
 
-    const sizeMap = { mini: 28, small: 32, medium: 36 }
+    const defaultSizeMap = { default: 28, mini: 24, small: 32, medium: 40 }
+    const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
 
     if (props.multiple && Array.isArray(props.modelValue) && props.modelValue.length > 0) {
       state.currentPlaceholder = ''
     }
 
-    state.initialInputHeight = state.isDisplayOnly
-      ? sizeMap[state.selectSize] || constants.DEFAULT_HEIGHT
-      : inputClientRect.height || sizeMap[state.selectSize] || constants.DEFAULT_HEIGHT
+    state.initialInputHeight = sizeMap[state.selectSize || 'default']
 
     addResizeListener(parentEl, api.handleResize)
 
@@ -1843,7 +1899,7 @@ const optmzApis = {
     const { optimizeOpts } = state
     const { optionHeight } = optimizeOpts
 
-    return `height:${optionHeight * options.length}px`
+    return `height:${optionHeight * options.length}px` // 计算总高度
   },
   getStoreDatas: ({ props, state }) => {
     const { options, valueField, modelValue, multiple } = props
@@ -1872,7 +1928,7 @@ const optmzApis = {
     return sliced
   },
   queryWrap: (refs) => refs.scrollbar.$el.querySelector('.tiny-scrollbar__wrap.virtual'),
-  queryItems: (refs) => refs.scrollbar.$el.querySelectorAll('.tiny-option.virtual'),
+  queryItems: (refs) => refs.scrollbar.$el.querySelectorAll('[data-tag="tiny-option"].virtual'),
   createMacro: (cb) => setTimeout(cb),
   setScrollTop: ({ refs, state }) => {
     const { optimizeOpts, optimizeStore } = state
@@ -1927,6 +1983,7 @@ export const computeOptimizeOpts =
   ({ props, state }) =>
   () => {
     const { optimization } = props
+    // TINY-TODO 和 aui 不同
     const baseOpts = { gt: 20, rSize: 10, optionHeight: 30, limit: 20 }
 
     let optOpts
@@ -2008,10 +2065,15 @@ export const computeMultipleLimit =
   }
 
 export const updateModelValue =
-  ({ emit, state }) =>
-  (value) => {
+  ({ props, emit, state }) =>
+  (value, needUpdate) => {
     state.isClickChoose = true
-    emit('update:modelValue', value)
+
+    if (state.device === 'mb' && props.multiple && !needUpdate) {
+      state.modelValue = value
+    } else {
+      emit('update:modelValue', value)
+    }
   }
 
 export const getLabelSlotValue =
@@ -2044,6 +2106,7 @@ export const computedTagsStyle =
 export const computedReadonly =
   ({ props, state }) =>
   () =>
+    state.device === 'mb' ||
     props.readonly ||
     !props.filterable ||
     props.multiple ||
@@ -2054,7 +2117,7 @@ export const computedShowClose =
   () =>
     props.clearable &&
     !state.selectDisabled &&
-    state.inputHovering && //  新增 || (props.multiple && state.visible)
+    (state.inputHovering || (props.multiple && state.visible)) && //  新增 || (props.multiple && state.visible)
     (props.multiple
       ? Array.isArray(props.modelValue) && props.modelValue.length > 0
       : !isNull(props.modelValue) && props.modelValue !== '')
@@ -2063,11 +2126,16 @@ export const computedCollapseTagSize = (state) => () => state.selectSize
 
 export const computedShowNewOption =
   ({ props, state }) =>
-  () =>
-    props.filterable &&
-    props.allowCreate &&
-    state.query !== '' &&
-    !state.options.filter((option) => !option.created).some((option) => option.state.currentLabel === state.query)
+  () => {
+    const query = state.device === 'mb' ? state.queryValue : state.query
+
+    return (
+      props.filterable &&
+      props.allowCreate &&
+      query !== '' &&
+      !state.options.filter((option) => !option.created).some((option) => option.state.currentLabel === state.query)
+    )
+  }
 
 export const computedShowCopy =
   ({ props, state }) =>
@@ -2140,7 +2208,7 @@ export const watchShowClose =
   () => {
     nextTick(() => {
       const parentEl = parent.$el
-      const inputEl = parentEl.querySelector('input.tiny-input__inner')
+      const inputEl = parentEl.querySelector('input[data-tag="tiny-input-inner"]')
 
       if (inputEl) {
         const { paddingRight } = getComputedStyle(inputEl)
@@ -2152,8 +2220,16 @@ export const watchShowClose =
 
 export const computedGetIcon =
   ({ constants, designConfig, props }) =>
-  (name) => {
-    return props.dropdownIcon || designConfig?.icons[name] || constants?.ICON_MAP[name]
+  (iconKey = 'dropdownIcon') => {
+    const defaultDropdownIcon = {
+      icon: designConfig?.icons[iconKey] || constants?.ICON_MAP[iconKey],
+      isDefault: true
+    }
+    if (props.dropdownIcon) {
+      return { icon: props.dropdownIcon }
+    }
+
+    return defaultDropdownIcon
   }
 
 export const computedGetTagType =

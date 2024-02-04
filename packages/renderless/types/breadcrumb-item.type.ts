@@ -9,6 +9,7 @@ export type IBreadcrumbItemRenderlessParams = ISharedRenderlessFunctionParams<ne
 }
 
 export interface IBreadcrumbItemApi {
+  state: string | undefined
   linkClick: (event: MouseEvent) => void
 }
 

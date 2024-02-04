@@ -1,7 +1,8 @@
 <template>
   <div>
-    <p>场景1：分组 + 多选 + 面板可搜索</p>
-    <tiny-select v-model="value" multiple filterable :searchable="true">
+    <div>场景1：分组 + 多选 + 面板可搜索</div>
+    <br />
+    <tiny-select v-model="value1" multiple filterable :searchable="true">
       <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">
         <tiny-option
           v-for="item in group.options"
@@ -11,8 +12,39 @@
         ></tiny-option>
       </tiny-option-group>
     </tiny-select>
-    <p>场景2：分组</p>
-    <tiny-select v-model="value" filterable>
+    <br />
+    <br />
+    <div>场景2：单选分组</div>
+    <br />
+    <tiny-select v-model="value2" filterable>
+      <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">
+        <tiny-option
+          v-for="item in group.options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        ></tiny-option>
+      </tiny-option-group>
+    </tiny-select>
+    <br />
+    <br />
+    <div>场景3：分组 + 多选</div>
+    <br />
+    <tiny-select v-model="value2" multiple>
+      <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">
+        <tiny-option
+          v-for="item in group.options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        ></tiny-option>
+      </tiny-option-group>
+    </tiny-select>
+    <br />
+    <br />
+    <div>场景4：分组 + 多选 + 可搜索</div>
+    <br />
+    <tiny-select v-model="value2" filterable multiple>
       <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">
         <tiny-option
           v-for="item in group.options"
@@ -36,6 +68,8 @@ export default {
   },
   data() {
     return {
+      value1: [],
+      value2: '',
       options3: [
         {
           label: '热门城市',
@@ -67,9 +101,5 @@ export default {
 <style lang="less" scoped>
 .tiny-select {
   width: 280px;
-}
-p {
-  font-size: 14px;
-  line-height: 1.5;
 }
 </style>

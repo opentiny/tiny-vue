@@ -163,5 +163,9 @@ export const onEndEvent = ({ event, _this }) => {
   _this.loadColumn(fullColumn)
   _this.$emit('column-drop-end', event, _this)
 
-  _this.isDragHeaderSorting && _this.$grid.toolBarVm && _this.$grid.toolBarVm.updateSetting()
+  const toolbarVm = _this.getVm('toolbar')
+
+  if (_this.isDragHeaderSorting && toolbarVm) {
+    toolbarVm.updateSetting()
+  }
 }

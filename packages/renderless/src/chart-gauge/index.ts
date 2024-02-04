@@ -20,6 +20,7 @@ const getTooltip = (args) => {
   return {
     formatter(options) {
       if (tooltipFormatter) {
+        // eslint-disable-next-line prefer-spread, prefer-rest-params
         return tooltipFormatter.apply(null, arguments)
       }
 
@@ -75,10 +76,10 @@ function getSeries(args) {
       axisLabel: { formatter: formatter2 },
       itemStyle: { color: '#6D8FF0' },
       pointer: getPoint(),
-      axisLine: { roundCap: true },
+      axisLine: { roundCap: true, lineStyle: { width: 8, color: [[1, 'rgba(25,25,25,0.1)']] } },
       progress: { show: true, roundCap: true, width: 8, color: '#6D8FF0' },
       axisTick: { show: false },
-      splitLine: { length: 8, distance: 0, lineStyle: { width: 1, color: 'rgba(25,25,25,0.10)' } },
+      splitLine: { length: 8, distance: 0, lineStyle: { width: 1, color: 'rgba(25,25,25,0.1)' } },
       title: { offsetCenter: [0, '25%'], color: '#191919', fontSize: 14 }
     }
 

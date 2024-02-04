@@ -42,22 +42,6 @@ export default {
         { label: 'A', text: '很好', events: { click: this.handleClick } },
         { label: 'B', text: '一般' }
       ],
-      options2: [
-        {
-          value: 'zhinan',
-          label: '指南',
-          children: [
-            {
-              value: 'anzhuang',
-              label: '安装'
-            },
-            {
-              value: 'kaifa',
-              label: '开发'
-            }
-          ]
-        }
-      ],
       createData: {
         radio: 'A',
         users: '',

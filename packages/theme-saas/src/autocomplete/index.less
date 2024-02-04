@@ -25,7 +25,7 @@
     }
 
     &__wrap {
-      max-height: 280px;
+      @apply ~'max-h-[theme(spacing.72)]';
       @apply box-border;
     }
 
@@ -45,7 +45,7 @@
     & &__list-item {
       @apply py-0 px-3;
       @apply m-0;
-      line-height: 30px;
+      @apply leading-8;
       @apply text-color-text-primary;
       @apply text-xs;
       @apply list-none;
@@ -78,8 +78,8 @@
 
     &.is-loading &__list-loading {
       @apply text-center;
-      height: 100px;
-      line-height: 100px;
+      @apply h-8;
+      @apply leading-8;
       @apply text-xl;
 
       svg {

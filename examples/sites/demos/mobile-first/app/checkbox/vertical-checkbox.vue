@@ -1,18 +1,18 @@
 <template>
   <tiny-checkbox-group v-model="checkboxGroup" vertical text-color="#fff">
-    <tiny-checkbox-button v-for="city in cities" :label="city" :key="city">
+    <tiny-checkbox v-for="city in cities" :label="city" :key="city">
       {{ city }}
-    </tiny-checkbox-button>
+    </tiny-checkbox>
   </tiny-checkbox-group>
 </template>
 
 <script>
-import { CheckboxGroup, CheckboxButton } from '@opentiny/vue'
+import { CheckboxGroup, Checkbox } from '@opentiny/vue'
 
 export default {
   components: {
     TinyCheckboxGroup: CheckboxGroup,
-    TinyCheckboxButton: CheckboxButton
+    TinyCheckbox: Checkbox
   },
   data() {
     return {

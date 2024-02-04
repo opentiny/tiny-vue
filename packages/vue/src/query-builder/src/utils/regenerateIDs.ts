@@ -36,8 +36,8 @@ export const regenerateIDs = (
     typeof r === 'string'
       ? r
       : isPojo(r) && 'rules' in r
-      ? regenerateIDs(r, { idGenerator })
-      : regenerateID(r, { idGenerator })
+        ? regenerateIDs(r, { idGenerator })
+        : regenerateID(r, { idGenerator })
   ) as RuleGroupICArray
   return { ...ruleOrGroup, id: idGenerator(), rules }
 }

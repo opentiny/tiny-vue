@@ -1,37 +1,32 @@
 @import '../custom.less';
 
-@select-group-prefix-cls: ~'@{css-prefix}select-group';
+@select-group-prefix-cls: ~'@{css-prefix}option-group';
 
 .@{select-group-prefix-cls} {
+  @apply relative;
+  @apply list-none;
   @apply m-0;
   @apply p-0;
 
-  &__wrap {
-    @apply relative;
-    @apply list-none;
-    @apply m-0;
-    @apply p-0;
+  &:not(:last-of-type) {
+    @apply pb-6;
+  }
 
-    &:not(:last-of-type) {
-      @apply pb-6;
-    }
+  &:not(:last-of-type)::after {
+    @apply content-[''];
+    @apply absolute;
+    @apply block;
+    @apply left-2;
+    @apply right-2;
+    @apply bottom-3;
+    @apply h-px;
+    @apply bg-color-bg-2;
+  }
 
-    &:not(:last-of-type)::after {
-      @apply content-[''];
-      @apply absolute;
-      @apply block;
-      @apply left-2;
-      @apply right-2;
-      @apply bottom-3;
-      @apply h-px;
-      @apply bg-color-bg-2;
-    }
-
-    .@{select-group-prefix-cls}__title {
-      @apply pl-2;
-      @apply text-xs;
-      @apply text-color-text-secondary;
-      line-height: 30px;
-    }
+  .@{select-group-prefix-cls}__title {
+    @apply pl-2;
+    @apply text-xs;
+    @apply text-color-text-secondary;
+    @apply leading-5;
   }
 }

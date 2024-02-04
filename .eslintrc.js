@@ -10,6 +10,8 @@ module.exports = {
         order: [['script', 'template'], 'style']
       }
     ],
+    'vue/attribute-hyphenation': 'off',
+    'vue/v-on-event-hyphenation': 'off',
     'vue/order-in-components': 'off',
     'vue/component-name-in-template-casing': 'off',
     'vue/custom-event-name-casing': 'off',
@@ -21,6 +23,7 @@ module.exports = {
     'vue/comma-dangle': 'off',
     'vue/prefer-template': 'off',
     'vue/no-unused-refs': 'off',
+    'vue/require-component-is': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'curly': 'off',
     'sort-imports': 'off',

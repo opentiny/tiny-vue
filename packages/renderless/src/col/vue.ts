@@ -20,7 +20,7 @@ export const renderless = (props, { computed, reactive, inject }, { parent }) =>
     row: computed(() => api.row()),
     style: computed(() => api.getStyle()),
     className: computed(() => api.getClassName()),
-    layout: inject('layout')
+    layout: inject('layout', {})
   })
 
   Object.assign(api, {

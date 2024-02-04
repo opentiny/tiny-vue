@@ -14,10 +14,11 @@
   @apply align-bottom;
   @apply text-xs;
 
+
   &.is-disabled &__inner {
     @apply bg-color-border-disabled;
     @apply border-color-border;
-    @apply text-color-text-secondary;
+    @apply text-color-text-disabled;
     @apply cursor-not-allowed;
     .placeholder(@color: theme('colors.color.text.disabled'));
   }
@@ -44,7 +45,7 @@
   &__inner {
     @apply block;
     @apply w-full;
-    @apply ~"min-h-[theme(spacing.16)]";
+    @apply ~'min-h-[theme(spacing.16)]';
     @apply text-color-text-primary;
     @apply border border-solid border-color-border;
     @apply rounded;
@@ -74,7 +75,7 @@
 
     &.@{textarea-prefix-cls}__fix-height{
       @apply h-7;
-      @apply ~"min-h-[theme(spacing.7)]";
+      @apply ~'min-h-[theme(spacing.7)]';
       @apply py-0 px-2;
       @apply leading-7;
       @apply overflow-hidden;
@@ -103,7 +104,7 @@
     @apply w-full;
 
     .@{textarea-prefix-cls}__inner{
-      @apply ~"min-w-[theme(spacing.40)]";
+      @apply ~'min-w-[theme(spacing.40)]';
       @apply absolute;
       @apply h-7;
       @apply ~'z-[2000]';
@@ -217,7 +218,7 @@
   &.is-disabled &__inner {
     @apply cursor-not-allowed;
     @apply border border-solid border-color-border;
-    @apply text-color-text-secondary;
+    @apply text-color-text-disabled;
     @apply bg-color-border-disabled;
     .placeholder(@color:theme('colors.color.text.disabled'));
 
@@ -296,6 +297,10 @@
     @apply overflow-hidden;
     @apply whitespace-nowrap;
 
+    &:focus-visible {
+      outline: none;
+    }
+
     &:hover,
     &:focus {
       @apply outline-0;
@@ -330,8 +335,8 @@
   &__prefix,
   &__suffix {
     @apply absolute;
-    @apply ~"top-1/2";
-    @apply ~"-translate-y-2/4";
+    @apply ~'top-1/2';
+    @apply ~'-translate-y-2/4';
     @apply transition-all duration-300;
     @apply text-center;
     @apply text-color-text-secondary;
@@ -416,13 +421,19 @@
     @apply pl-3;
   }
 
+  &-word-limit &__inner {
+    @apply pr-14;
+    @apply pl-3;
+  }
+
   &-prefix &__inner {
     @apply pl-12;
     @apply pr-7;
   }
-
+ 
   &-medium {
     .input-size(32px);
+    @apply text-sm;
   }
 
   &-small {
@@ -448,7 +459,7 @@
         @apply absolute;
         @apply top-2/4;
         @apply left-0;
-        @apply ~"-translate-y-2/4";
+        @apply ~'-translate-y-2/4';
         @apply max-w-full;
         @apply truncate;
         @apply text-color-text-primary;
@@ -458,7 +469,7 @@
         @apply absolute;
         @apply top-2/4;
         @apply left-0;
-        @apply ~"-translate-y-2/4";
+        @apply ~'-translate-y-2/4';
         @apply max-w-full;
         @apply flex;
         @apply items-center;

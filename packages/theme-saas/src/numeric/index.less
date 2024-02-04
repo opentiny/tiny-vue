@@ -2,23 +2,36 @@
 @import '../mixins/common.less';
 @import '../custom.less';
 
+
 @numeric-prefix-cls: ~'@{css-prefix}numeric';
 @input-prefix-cls: ~'@{css-prefix}input';
+@radio-prefix-cls: ~'@{css-prefix}radio';
+@filter-panel-prefix-cls: ~'@{css-prefix}filter-panel';
 
 .@{numeric-prefix-cls} {
   @apply relative;
   @apply inline-block;
-  width: 114px;
+  @apply w-28;
   @apply select-none;
+
+  &--base{
+    @apply w-full;
+    @apply inline-block;
+  }
 
   &__input {
     @apply block;
     @apply box-border;
     @apply h-7;
     @apply leading-normal;
-    padding: 0 30px;
+    @apply py-0 px-8;
     @apply border border-solid border-color-border;
-    @apply rounded-sm;
+    @apply rounded;
+    @apply bg-color-bg-1;
+
+    &.@{numeric-prefix-cls}__read-only {
+      @apply bg-transparent;
+    }
 
     &:not(.is-disabled):hover {
       @apply border-color-border-hover;
@@ -29,13 +42,14 @@
     }
 
     &.is-disabled {
-      @apply border border-solid border-color-border-disabled;
+      @apply border border-solid border-color-text-disabled;
+      @apply bg-color-bg-3;
 
       .@{numeric-prefix-cls}__input-inner {
         @apply cursor-not-allowed;
         @apply pointer-events-none;
         @apply border border-solid border-transparent;
-        @apply text-color-text-secondary;
+        @apply text-color-text-disabled;
         @apply bg-transparent;
         .placeholder(@color: theme('colors.color.text.placeholder'));
       }
@@ -46,8 +60,9 @@
     }
 
     &.has-unit {
-      padding: 0 58px 0 8px;
+      @apply py-0 pr-14 pl-2;
     }
+
     &.text-align-left {
       .@{numeric-prefix-cls}__input-inner {
         @apply text-left;
@@ -61,12 +76,10 @@
 
   &__input-inner {
     @apply w-full;
-    height: 26px;
-    line-height: 26px;
+    @apply h-full;
     @apply border-none;
     @apply text-color-text-primary;
     @apply bg-color-bg-1;
-    @apply text-xs;
     @apply outline-0;
     @apply inline-block;
     @apply box-border;
@@ -75,6 +88,10 @@
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     @apply p-0;
     .placeholder(@color: theme('colors.color.text.placeholder'));
+
+    &:focus-visible {
+      outline: none;
+    }
 
     &:focus,
     &:active {
@@ -96,12 +113,14 @@
 
   &__decrease,
   &__increase {
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
     @apply absolute;
     @apply ~'z-[1]';
     @apply top-0;
     @apply w-7;
     @apply h-full;
-    line-height: 26px;
     @apply text-sm;
     @apply text-center;
     @apply cursor-pointer;
@@ -139,10 +158,10 @@
       @apply content-[''];
       @apply inline-block;
       @apply w-px;
-      height: calc(100% - 16px);
+      @apply ~"h-[calc(100%-theme(spacing.4))]";
       @apply absolute;
-      @apply ~"top-1/2";
-      @apply ~"-translate-x-2/4" ~"-translate-y-2/4";
+      @apply ~'top-1/2';
+      @apply ~'-translate-x-2/4' ~'-translate-y-2/4';
       @apply bg-color-bg-3;
     }
   }
@@ -170,9 +189,9 @@
     @apply absolute;
     @apply ~'z-[1]';
     @apply top-px;
-    width: 50px;
-    height: calc(100% - 2px);
-    @apply text-color-text-secondary;
+    @apply w-12;
+    @apply ~'h-[calc(100%-theme(spacing[0.5]))]';
+    @apply text-color-text-disabled;
     @apply text-xs;
     @apply flex;
     @apply justify-center;
@@ -184,21 +203,21 @@
   }
 
   &.is-disabled {
-    @apply bg-color-bg-4;
+    @apply bg-color-bg-3;
 
     .@{numeric-prefix-cls}__decrease,
     .@{numeric-prefix-cls}__increase {
       @apply border-transparent;
 
       svg {
-        @apply fill-color-icon-disabled;
+        @apply fill-color-text-disabled;
       }
 
       &:hover {
         @apply cursor-not-allowed;
 
         svg {
-          @apply fill-color-icon-disabled;
+          @apply fill-color-text-disabled;
         }
       }
     }
@@ -221,7 +240,17 @@
       @apply p-0;
       @apply leading-4;
       @apply h-4;
+
+      &.@{input-prefix-cls}-small,
+      &.@{input-prefix-cls}-medium,
+      &.@{input-prefix-cls}-mini {
+        @apply border-none;
+        @apply p-0;
+        @apply leading-4;
+        @apply h-4;
+      }
     }
+
     .@{numeric-prefix-cls}__input-inner,
     .@{numeric-prefix-cls}__unit,
     .@{numeric-prefix-cls}__decrease,
@@ -231,55 +260,56 @@
   }
 
   &--medium {
-    width: 270px;
+    @apply w-32;
     @apply h-8;
 
     .@{numeric-prefix-cls}__decrease,
     .@{numeric-prefix-cls}__increase {
       @apply w-8;
-      line-height: 30px;
       @apply text-base;
     }
 
     .@{numeric-prefix-cls}__input {
-      padding: 0 33px;
+      @apply py-0 px-4;
       @apply h-8;
 
       &.has-unit {
-        padding: 0 58px 0 12px;
+        @apply py-0 pr-14 pl-3;
       }
     }
 
     .@{numeric-prefix-cls}__input-inner {
-      height: 30px;
-      line-height: 30px;
+      @apply h-full;
+      @apply text-sm;
     }
   }
 
   &--small {
-    width: 200px;
+    @apply w-28;
     @apply h-7;
 
     .@{numeric-prefix-cls}__decrease,
     .@{numeric-prefix-cls}__increase {
-      width: 26px;
-      line-height: 26px;
+      @apply w-7;
       @apply text-xs;
     }
 
     .@{numeric-prefix-cls}__input {
-      padding: 0 37px;
+      @apply py-0 px-4;
       @apply h-7;
+
+      &.has-unit {
+        @apply py-0 pr-14 pl-2;
+      }
     }
 
     .@{numeric-prefix-cls}__input-inner {
-      height: 26px;
-      line-height: 26px;
+      @apply h-full;
     }
   }
 
   &--mini {
-    width: 130px;
+    @apply w-24;
     @apply h-6;
 
     .@{numeric-prefix-cls}__decrease,
@@ -290,13 +320,16 @@
     }
 
     .@{numeric-prefix-cls}__input {
-      padding: 0 25px;
+      @apply py-0 px-4;
       @apply h-6;
+
+      &.has-unit {
+        @apply py-0 pr-14 pl-2;
+      }
     }
 
     .@{numeric-prefix-cls}__input-inner {
-      height: 22px;
-      line-height: 22px;
+      @apply h-full;
     }
   }
 
@@ -322,16 +355,15 @@
   &.is-controls-right {
     .@{numeric-prefix-cls}__input-inner {
       @apply pl-2;
-      padding-right: 38px;
+      @apply pr-9;
     }
 
     .@{numeric-prefix-cls}__decrease,
     .@{numeric-prefix-cls}__increase {
-      @apply h-auto;
-      line-height: 11px;
+      @apply ~'h-3.5';
 
       svg {
-        transform: scale(0.8);
+        @apply scale-75;
       }
     }
 
@@ -352,7 +384,7 @@
       @apply rounded-t-none rounded-bl-none rounded-br;
 
       svg {
-        transform: scale(0.8);
+        @apply scale-75;
       }
     }
 
@@ -360,21 +392,83 @@
       [class*='decrease'],
       [class*='increase'] {
         @apply leading-5;
+        @apply h-4;
       }
     }
 
     &[class*='small'] {
       [class*='decrease'],
       [class*='increase'] {
-        line-height: 17px;
+        @apply leading-4;
+        @apply ~'h-3.5';
       }
     }
 
     &[class*='mini'] {
       [class*='decrease'],
       [class*='increase'] {
-        line-height: 8px;
+        @apply leading-3;
+        @apply h-3;
       }
     }
+  }
+
+  &__popover-filter-content {
+    @apply ~'w-[theme(spacing.54)]';
+    @apply mb-1;
+    @apply text-xs;
+    @apply cursor-pointer;
+
+    .@{radio-prefix-cls}-group {
+      @apply inline-block;
+    }
+    .popover-filter-botton {
+      @apply bg-color-bg-2;
+      @apply py-px;
+      @apply box-border;
+      @apply mb-2;
+      @apply mr-2;
+      @apply ml-0;
+      @apply inline-flex;
+      @apply items-center;
+      @apply justify-center; 
+      @apply h-6;
+      @apply rounded-sm;
+      @apply ~'min-w-[theme(spacing.12)]';
+      @apply text-center;
+      @apply max-w-none;
+      @apply px-2;
+      @apply border;
+      @apply border-color-bg-2;
+      @apply border-solid;
+      @apply font-normal;
+
+      &.is-checked {
+        @apply text-color-brand;
+        @apply border-color-brand;
+      }
+
+      .@{radio-prefix-cls}__input {
+        @apply hidden;
+      }
+
+      .@{radio-prefix-cls}__label {
+        @apply px-0;
+        @apply leading-5;
+        @apply h-5;
+        @apply inline-block;
+      }
+    }
+  }
+  
+  &.is-filter{
+    @apply w-full;
+  }
+}
+
+.@{filter-panel-prefix-cls}{
+  &__popover{
+    @apply !px-3;
+    @apply !py-4;
   }
 }

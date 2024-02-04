@@ -9,7 +9,7 @@
     @apply flex justify-between items-center text-xs text-color-text-primary px-2;
 
     .@{selected-box-prefix-cls}__header-select {
-      max-width: 8rem;
+      @apply ~"max-w-[theme(spacing.32)]";
 
       .@{selected-box-prefix-cls}__header-select-label {
         @apply cursor-pointer;
@@ -37,7 +37,7 @@
 
       .@{selected-box-prefix-cls}__item-grid {
         @apply grid;
-        grid-template-columns: auto 24px;
+        grid-template-columns: auto theme('spacing.6');
 
         .@{selected-box-prefix-cls}__item-grid-left {
           @apply truncate;

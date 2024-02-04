@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-docs",
-  "version": "2.2.10",
+  "version": "2.2.13",
   "license": "MIT",
   "scripts": {
     "start": "vite",
@@ -25,6 +25,7 @@
     "@opentiny/vue-icon-saas": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",
     "@opentiny/vue-design-smb": "workspace:~",
+    "@opentiny/vue-design-saas": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-vite-import": "workspace:~",

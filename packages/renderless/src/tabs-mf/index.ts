@@ -4,14 +4,30 @@ import { fastdom } from '../common/deps/fastdom'
 
 // --- tabs ---
 export const setActive =
-  ({ emit, state, props }) =>
+  ({ state, props, api }) =>
   (name) => {
     const current = state.currentItem ? state.currentItem.name : ''
 
-    if (current && current !== name && props.beforeLeave && !props.beforeLeave(name, current)) {
-      return
-    }
+    if (current && current !== name && props.beforeLeave) {
+      const before = props.beforeLeave(name, current)
 
+      if (before && before.then) {
+        before
+          .then(() => {
+            api.changeCurrentName(name)
+          })
+          .catch(() => null)
+      } else if (before !== false) {
+        api.changeCurrentName(name)
+      }
+    } else {
+      api.changeCurrentName(name)
+    }
+  }
+
+export const changeCurrentName =
+  ({ emit, state }) =>
+  (name) => {
     state.items.forEach((item) => (item.selected = item.name === name))
 
     emit('update:activeName', name)
@@ -59,7 +75,7 @@ export const clickMore = (api) => (name) => {
 
 export const removeItem =
   ({ state, emit }) =>
-  (name) => {
+  (name, silent = false) => {
     const itemIndex = state.items.findIndex((item) => item.name === name)
     const navIndex = state.navs.findIndex((item) => item.name === name)
 
@@ -70,8 +86,10 @@ export const removeItem =
       state.navs.splice(navIndex, 1)
       state.navs = [...state.navs]
 
-      emit('edit', name, 'remove')
-      emit('close', name)
+      if (!silent) {
+        emit('edit', name, 'remove')
+        emit('close', name)
+      }
     }
   }
 

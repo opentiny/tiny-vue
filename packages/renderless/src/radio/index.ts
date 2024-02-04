@@ -103,24 +103,3 @@ export const toggleEvent = ({ props, vm, type }: Pick<IRadioRenderlessParams, 'p
     })
   }
 }
-
-export const dispatchDisplayedValue =
-  ({ state, dispatch, api }: Pick<IRadioRenderlessParams, 'state' | 'dispatch' | 'api'>) =>
-  (): void => {
-    if (state.isDisplayOnly) {
-      dispatch('FormItem', 'displayed-value-changed', {
-        type: 'radio',
-        val: api.getDisplayedValue()
-      })
-    }
-  }
-
-export const getDisplayedValue =
-  ({ vm, state, props }: Pick<IRadioRenderlessParams, 'vm' | 'props' | 'state'>) =>
-  (): string => {
-    if (state.model === props.label) {
-      return (vm.$refs.label && vm.$refs.label.innerText) || props.text || props.label
-    } else {
-      return ''
-    }
-  }

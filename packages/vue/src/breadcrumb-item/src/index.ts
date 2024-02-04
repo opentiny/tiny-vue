@@ -19,6 +19,7 @@ export const breadcrumbItemProps = {
     type: Boolean,
     default: false
   },
+  size: String,
   option: {
     type: Object,
     default: () => ({})

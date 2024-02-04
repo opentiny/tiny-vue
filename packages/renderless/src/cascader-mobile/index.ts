@@ -11,17 +11,13 @@ export const close =
 export const syncCheckStatus =
   ({ state, props, api }) =>
   (value) => {
-    const { valueField, textField, modelValue: propsModelValue, visible } = props
+    const { valueField, textField, modelValue: propsModelValue } = props
     const { lazy, isLeaf: leafField } = api.getNodeConfig()
     let currentData
     let navList = []
     let modelValue = value || propsModelValue || []
     let len = modelValue.length
     let isLeaf
-
-    if (!visible) {
-      return
-    }
 
     for (let i = 0; i < len; i++) {
       const id = modelValue[i]
@@ -55,7 +51,6 @@ export const watchVisible =
 
     if (visible) {
       api.watchModelValue(modelValue)
-      api.initTreeStore()
     }
 
     setTimeout(() => {
@@ -148,20 +143,38 @@ const loopSearchOption = ({
   textField,
   prefixValue,
   prefixText,
-  textSplit = '/'
+  textSplit = '/',
+  filterMethod,
+  level,
+  checkStrictly
 }) => {
   const list = []
   options.forEach((item) => {
+    if (item.disabled) {
+      return
+    }
+
     const text = item[textField]
     const textNavStr = prefixText ? prefixText + textSplit + text : text
     const value = [...prefixValue, item[valueField]]
     const children = item[childrenField]
 
-    if (text.includes(input)) {
-      list.push({
-        [valueField]: value,
-        [textField]: textNavStr
-      })
+    // 父子严格， 遍历每一个节点。 父子不严格，则仅判断children为空时的叶子节点
+    if (checkStrictly === true || !children || children.length === 0) {
+      if (typeof filterMethod === 'function') {
+        const matched = filterMethod({ data: item, label: item.label, value: item.value, level }, input)
+        if (matched) {
+          list.push({
+            [valueField]: value,
+            [textField]: textNavStr
+          })
+        }
+      } else if (text.includes(input)) {
+        list.push({
+          [valueField]: value,
+          [textField]: textNavStr
+        })
+      }
     }
 
     if (children && children.length) {
@@ -173,7 +186,10 @@ const loopSearchOption = ({
         textField,
         prefixValue: value,
         prefixText: textNavStr,
-        textSplit
+        textSplit,
+        filterMethod,
+        level: level + 1,
+        checkStrictly
       })
       list.push(...arr)
     }
@@ -200,7 +216,10 @@ export const searchMethod =
         valueField,
         textField,
         prefixValue: [],
-        prefixText: ''
+        prefixText: '',
+        filterMethod: searchConfig.filterMethod,
+        level: 0,
+        checkStrictly: props.nodeConfig.checkStrictly
       })
     }
 
@@ -213,14 +232,14 @@ export const searchMethod =
 
 export const searchBoxToggle =
   ({ state, props, api }) =>
-  (bool) => {
+  (isShow) => {
     const { searchConfig = {} } = props
     const { lazy } = api.getNodeConfig()
 
-    state.search.show = bool
+    state.search.show = isShow
     state.search.input = ''
 
-    if (bool) {
+    if (isShow) {
       state.search.options =
         !lazy && searchConfig.options && searchConfig.options.length ? searchConfig.options : state.store.getAllData()
       api.searchMethod()
@@ -262,9 +281,7 @@ export const created =
 export const loadData =
   ({ props, state }) =>
   (data) => {
-    const { visible } = props
-
-    if (!visible) {
+    if (!props.visible) {
       return
     }
 
@@ -315,7 +332,7 @@ export const getNodeConfig =
 export const initTreeStore =
   ({ props, state, api }) =>
   () => {
-    const { data, textField, visible } = props
+    const { data, textField } = props
     const {
       nodeKey,
       lazy,
@@ -332,11 +349,6 @@ export const initTreeStore =
       defaultExpandAll,
       filterNodeMethod
     } = api.getNodeConfig()
-
-    if (!visible || state.store) {
-      api.syncCheckStatus()
-      return
-    }
 
     state.store = new TreeStore({
       key: nodeKey,

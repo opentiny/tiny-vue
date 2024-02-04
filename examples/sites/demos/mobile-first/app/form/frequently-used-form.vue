@@ -1,5 +1,5 @@
 <template>
-  <tiny-form label-suffix="：" class="w-96">
+  <tiny-form class="w-96">
     <tiny-form-item label="姓名">
       <tiny-input v-model="formData.name" placeholder="123"></tiny-input>
     </tiny-form-item>

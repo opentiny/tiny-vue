@@ -181,15 +181,6 @@ const defineProperties = (vm, instance, filter) => {
 
 const filter = (name) => name.indexOf('$') === 0 || name.indexOf('_') === 0 || name === 'constructor'
 
-const customEmit = (context, emit) => {
-  return function (...args) {
-    emit.apply(context, args)
-
-    // vue3 下 emit('update:modelValue') 会同时触发 input 事件，vue2 不会
-    if (args[0] === 'update:modelValue') emit.apply(context, ['input'].concat(args.slice(1)))
-  }
-}
-
 const createVm = (vm, instance, context = undefined) => {
   context || defineProperties(vm, instance, filter)
 
@@ -197,7 +188,7 @@ const createVm = (vm, instance, context = undefined) => {
     $attrs: { get: () => instance.$attrs },
     $children: { get: () => generateChildren(instance.$children) },
     $constants: { get: () => instance._constants },
-    $emit: { get: () => customEmit(instance, instance.$emit) },
+    $emit: { get: () => instance.$emit.bind(instance) },
     $el: { get: () => instance.$el },
     $listeners: { get: () => instance.$listeners },
     $mode: { get: () => instance._tiny_mode },
@@ -262,7 +253,7 @@ export const tools = (context, mode) => {
   return {
     framework: 'vue2',
     vm,
-    emit: customEmit(context, emit),
+    emit,
     emitter,
     route,
     router,
@@ -362,3 +353,8 @@ export type {
 } from '@vue/composition-api'
 
 export type DefineComponent = typeof defineComponent
+
+export const isVnode = (vnode) =>
+  ['isStatic', 'isRootInsert', 'isComment', 'isCloned', 'isOnce'].every((key) => typeof vnode[key] !== 'undefined')
+
+export const KeepAlive = Vue.component('KeepAlive')

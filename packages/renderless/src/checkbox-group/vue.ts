@@ -40,5 +40,7 @@ export const renderless = (props, { computed, reactive, watch, provide }, { disp
 
   provide('iconPosition', props.iconPosition)
 
+  provide('shape', props.shape)
+
   return api
 }

@@ -36,6 +36,7 @@
       :query-debounce="queryDebounce"
       :ignore-enter="ignoreEnter"
       :show-tips="showTips"
+      :keep-focus="keepFocus"
     >
       <template #prefix>
         <div>
@@ -119,7 +120,8 @@ export default defineComponent({
     'hideSelected',
     'ignoreEnter',
     'showTips',
-    'maxWidth'
+    'maxWidth',
+    'keepFocus'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

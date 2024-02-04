@@ -1,15 +1,22 @@
-export const renderless = (props, { inject }, { slots }) => {
+export const renderless = (props, { inject, onBeforeUnmount, reactive, toRef, markRaw }, { slots, vm }) => {
   const tabs = inject('tabs', null)
-  const { title, name } = props
-  const item = { title, name, slotDefault: slots.default, slotTitle: slots.title, slotSetting: slots.setting }
+  const { lazy } = props
+  const item = reactive({
+    title: toRef(props, 'title'),
+    name: toRef(props, 'name'),
+    slotDefault: slots.default,
+    slotTitle: props.renderTitle ? toRef(props, 'renderTitle') : slots.title,
+    slotSetting: props.renderSetting ? toRef(props, 'renderSetting') : slots.setting,
+    lazy,
+    selected: false,
+    vm: markRaw(vm)
+  })
 
-  if (props.renderTitle) item.slotTitle = props.renderTitle
-
-  if (props.renderSetting) item.slotSetting = props.renderSetting
-
-  item.selected = (tabs.activeName || tabs.modelValue) === name
+  item.selected = (tabs.activeName || tabs.modelValue) === item.name
 
   tabs.addItem(item)
+
+  onBeforeUnmount(() => tabs.removeItem(item.name, true))
 
   return {}
 }

@@ -18,7 +18,7 @@ export const calcPaneInstances =
     state,
     childrenHandler
   }: Pick<ITabsRenderlessParams, 'constants' | 'parent' | 'state' | 'childrenHandler'>) =>
-  (isForceUpdate: boolean = false) => {
+  (isForceUpdate = false) => {
     const tabItemVNodes = parent.$slots.default
 
     /* istanbul ignore if */
@@ -147,10 +147,12 @@ export const setCurrentName =
       const before = props.beforeLeave(value, state.currentName)
 
       if (before && before.then) {
-        before.then(() => {
-          api.changeCurrentName(value)
-          refs.nav && refs.nav.removeFocus(value)
-        })
+        before
+          .then(() => {
+            api.changeCurrentName(value)
+            refs.nav && refs.nav.removeFocus(value)
+          })
+          .catch(() => null)
       } else if (before !== false) {
         api.changeCurrentName(value)
       }

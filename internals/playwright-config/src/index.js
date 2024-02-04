@@ -54,41 +54,43 @@ const Config = ({ testDir, baseURL, storageState }) => ({
       }
     },
     {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox']
-      }
-    },
-    {
-      name: 'webkit',
-      use: {
-        ...devices['Desktop Safari']
-      }
-    },
-    {
-      name: 'Mobile Chrome',
+      name: 'android',
       use: {
         ...devices['Pixel 5']
       }
     },
     {
-      name: 'Mobile Safari',
+      name: 'iphone',
       use: {
         ...devices['iPhone 12']
       }
-    },
-    {
-      name: 'Microsoft Edge',
-      use: {
-        channel: 'msedge'
-      }
-    },
-    {
-      name: 'Google Chrome',
-      use: {
-        channel: 'chrome'
-      }
     }
+    // 以下屏蔽，防止测试目标列表过长
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox']
+    //   }
+    // },
+    // {
+    //   name: 'webkit',
+    //   use: {
+    //     ...devices['Desktop Safari']
+    //   }
+    // },
+
+    // {
+    //   name: 'edge',
+    //   use: {
+    //     channel: 'msedge'
+    //   }
+    //  },
+    // {
+    //   name: 'chrome',
+    //   use: {
+    //     channel: 'chrome'
+    //   }
+    // }
   ]
 })
 
