@@ -13,6 +13,7 @@ import vue3SvgPlugin from 'vite-svg-loader'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
 import tailwindCss from 'tailwindcss'
+import { chunkSplitPlugin } from 'vite-plugin-chunk-split'
 
 export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
@@ -77,6 +78,22 @@ export default defineConfig((config) => {
       Unocss(UnoCssConfig),
       viteStaticCopy({
         targets: copyTarget
+      }),
+      chunkSplitPlugin({
+        customChunk: (args) => {
+          let { file, id, moduleId, root } = args
+          let res = id.match(/\/demos\/pc\/app\/(.*?)\//) || id.match(/\/packages\/vue\/src\/(.*?)\//)
+          if (res) {
+            let [_, moduleName] = res
+            return moduleName
+          }
+          return null
+        },
+        customSplitting: {
+          'tiny-vue': ['@opentiny/vue', '@opentiny/vue-common'],
+          'tiny-vue-icon': ['@opentiny/vue-icon'],
+          'vue': ['vue']
+        }
       })
     ],
     optimizeDeps: getOptimizeDeps(3),
@@ -87,23 +104,6 @@ export default defineConfig((config) => {
           index: path.resolve(__dirname, './index.html'),
           // design-server中添加一个专门路由指向 playground.html
           playground: path.resolve(__dirname, './playground.html')
-        },
-        output: {
-          manualChunks(id: any) {
-            let res = id.match(/\/demos\/pc\/app\/(.*?)\//) || id.match(/\/packages\/vue\/src\/(.*?)\//)
-            if (id.includes('echarts')) {
-              return 'echarts'
-            } else if (id.includes('tiptap')) {
-              return 'tiptap'
-            } else if (id.includes('vue-common')) {
-              return 'vue-common'
-            } else if (id.includes('node_modules')) {
-              return 'vendor'
-            } else if (res) {
-              let [_, moduleName] = res
-              return moduleName
-            }
-          }
         }
       }
     },
