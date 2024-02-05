@@ -1,7 +1,8 @@
-import { $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import { $prefix, $setup, defineComponent, $props } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
 export const areaProps = {
+  ...$props,
   modelValue: {},
   placeholder: {
     type: String,
