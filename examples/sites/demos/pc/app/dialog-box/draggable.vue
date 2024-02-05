@@ -6,6 +6,7 @@
       v-model:visible="boxVisibility"
       title="鼠标移入标题区域单击拖拽"
       width="30%"
+      :drag-outside-window="true"
       @drag-start="dragStart"
       @drag-end="dragEnd"
       @drag-move="dragMove"
