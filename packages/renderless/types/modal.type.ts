@@ -44,6 +44,8 @@ export interface IModalApi {
   mounted: () => void
   beforeUnmouted: () => void
   selfClickEvent: (event: MouseEvent) => void
+  mouseEnterEvent: () => void
+  mouseLeaveEvent: () => void
   updateZindex: () => void
   handleEvent: (type: string, event: Event, options?: any[]) => void
   closeEvent: (event: PointerEvent) => void
