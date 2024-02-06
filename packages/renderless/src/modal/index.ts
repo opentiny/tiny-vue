@@ -38,7 +38,7 @@ import type {
 
 const DragClass = 'is__drag'
 
-let timer: any
+let timer: number
 
 const emitZoom = ({ params, parent, emit, event }: IModalEmitZoomParam): void => {
   let { $listeners, events = {} } = parent
@@ -143,7 +143,7 @@ export const mouseLeaveEvent =
   (): void => {
     api.addMsgQueue()
 
-    timer = setTimeout(
+    timer = window.setTimeout(
       () => {
         api.close('close')
       },
@@ -247,7 +247,7 @@ export const open =
       if (state.isMsg) {
         api.addMsgQueue()
 
-        timer = setTimeout(
+        timer = window.setTimeout(
           () => {
             api.close(params.type)
           },

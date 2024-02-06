@@ -1,6 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 import type { modalProps, $constants } from '@/modal/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type { mouseEnterEvent, mouseLeaveEvent } from '../src/modal'
 
 type zoomLocatType = null | {
   top: number
@@ -44,8 +45,8 @@ export interface IModalApi {
   mounted: () => void
   beforeUnmouted: () => void
   selfClickEvent: (event: MouseEvent) => void
-  mouseEnterEvent: () => void
-  mouseLeaveEvent: () => void
+  mouseEnterEvent: ReturnType<typeof mouseEnterEvent>
+  mouseLeaveEvent: ReturnType<typeof mouseLeaveEvent>
   updateZindex: () => void
   handleEvent: (type: string, event: Event, options?: any[]) => void
   closeEvent: (event: PointerEvent) => void
