@@ -13,6 +13,7 @@ import vue3SvgPlugin from 'vite-svg-loader'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
 import tailwindCss from 'tailwindcss'
+console.log('====================start build=================');
 
 export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
