@@ -3,6 +3,8 @@ run-name: E2E Test PR--${{ github.event.pull_request.title }}
 on:
   pull_request:
     types: [opened, reopened, synchronize, edited]
+permissions:
+  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
@@ -14,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       testComponents: ${{ steps.parseTitle.outputs.testComponents }}
+      testclis: ${{ steps.parsetestCli.outputs.testClis }}
     steps:
       - name: Parse Title
         id: parseTitle
@@ -32,17 +35,37 @@ jobs:
               components = [...new Set(components)].slice(0, 3).join(' ')
               core.setOutput('testComponents', components)
             } else {
-              const warningString =`
+              const warningString =`**[e2e-test-warn]**
               The component to be tested is missing.
 
               The title of the Pull request should look like "fix(vue-renderless): [action-menu, alert] fix xxx bug".
               
               Please make sure you've read our [contributing guide](https://github.com/opentiny/tiny-vue/blob/dev/CONTRIBUTING.md)
               `
+              core.setOutput('tip', warningString)
               core.warning(warningString)
             }
+      - name: User Tip
+        if: ${{ steps.parseTitle.outputs.tip }}
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.parseTitle.outputs.tip }}
+          comment_tag: e2e-tip
+      - name: Parse Test Cli
+        id: parsetestCli
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const testClis = '${{ vars.PLAYWRIGHT_CLIS }}' ? '${{ vars.PLAYWRIGHT_CLIS }}'.split(',') : ['pnpm test:e2e3']
+            core.setOutput('testclis', JSON.stringify(testClis))
+
   pr-test:
     if: ${{ needs.parse-components.outputs.testComponents }}
+    strategy:
+      matrix:
+        testcli: ${{ fromJson(needs.parse-components.outputs.testclis) }}
+
     name: PR E2E Test
     needs: parse-components
     runs-on: ubuntu-latest
@@ -78,11 +101,8 @@ jobs:
       - name: Install dependencies
         run: pnpm i --no-frozen-lockfile
 
-      - name: dev start
-        run: pnpm site & sleep 5
-
       - name: Install Playwright browsers
         run: pnpm install:browser --with-deps chromium
 
       - name: E2E Test
-        run: pnpm test:e2e3 ${{ env.TEST_COMPONENTS }} --reporter=line --retries=1 --workers=2
+        run: ${{ matrix.testcli }} ${{ env.TEST_COMPONENTS }} --retries=1 --workers=2
