@@ -1252,13 +1252,15 @@ const moveStart = (inputElem, moveStartIndex) => {
   }
 }
 
+// 这个是 input 组件的 input 事件，应该只有一个 event 参数，input 组件的具体值从 event.target.value 中获取。
 export const handleInput =
   ({ state, props, api }) =>
-  (val, event) => {
+  (event) => {
     if (props.autoFormat) {
       const value = api.formatInputValue({ event, prevValue: state.displayValue })
       state.userInput = value
     } else {
+      const val = event.target.value
       state.userInput = val
     }
   }
