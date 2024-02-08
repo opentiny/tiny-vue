@@ -54,13 +54,13 @@ const Config = ({ testDir, baseURL, storageState }) => ({
       }
     },
     {
-      name: 'android',
+      name: 'mobile-android',
       use: {
         ...devices['Pixel 5']
       }
     },
     {
-      name: 'iphone',
+      name: 'mobile-iphone',
       use: {
         ...devices['iPhone 12']
       }
