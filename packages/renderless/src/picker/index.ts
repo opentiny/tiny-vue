@@ -528,16 +528,18 @@ export const handleChange =
     }
   }
 
-export const handleStartInput = (state, props, api) => (event) => {
-  const value = props.autoFormat
-    ? api.formatInputValue({ event, prevValue: state.displayValue[0] })
-    : event.target.value
-  if (state.userInput) {
-    state.userInput = [value, state.userInput[1]]
-  } else {
-    state.userInput = [value, null]
+export const handleStartInput =
+  ({ state, props, api }) =>
+  (event) => {
+    const value = props.autoFormat
+      ? api.formatInputValue({ event, prevValue: state.displayValue[0] })
+      : event.target.value
+    if (state.userInput) {
+      state.userInput = [value, state.userInput[1]]
+    } else {
+      state.userInput = [value, null]
+    }
   }
-}
 
 export const handleEndInput =
   ({ state, props, api }) =>
