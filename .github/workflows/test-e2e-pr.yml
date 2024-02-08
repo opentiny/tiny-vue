@@ -3,8 +3,6 @@ run-name: E2E Test PR--${{ github.event.pull_request.title }}
 on:
   pull_request:
     types: [opened, reopened, synchronize, edited]
-permissions:
-  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
@@ -12,6 +10,9 @@ concurrency:
 
 jobs:
   parse-components:
+    permissions:
+      issues: write
+      pull-requests: write
     name: Parse Affected Components
     runs-on: ubuntu-latest
     outputs:
