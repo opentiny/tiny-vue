@@ -69,7 +69,7 @@
     "release:aurora": "pnpm -C internals/cli release:aurora",
     "// ---------- 使用pnpm批量发布npm包 ----------": "",
     "pub2": "pnpm --filter=\"./packages/dist2/**\" publish --tag v2-latest --no-git-checks --access=public",
-    "pub3": "pnpm --filter=\"./packages/dist3/**\" publish --no-git-checks --access=public",
+    "pub3": "pnpm --filter=\"./packages/dist3/**\" publish --tag alpha --no-git-checks --access=public",
     "pub2.7": "pnpm --filter=\"./packages/dist2.7/**\" publish --tag v2.7-latest --no-git-checks --access=public",
     "pub:aurora": "pnpm --filter=\"./packages/dist2/@aurora/**\" publish --no-git-checks --access=public",
     "// ---------- unit单元测试 ----------": "",
