@@ -129,6 +129,7 @@
     "@opentiny/vue-filter-bar": "workspace:~",
     "@opentiny/vue-filter-box": "workspace:~",
     "@opentiny/vue-filter-panel": "workspace:~",
+    "@opentiny/vue-float-button": "workspace:~",
     "@opentiny/vue-floatbar": "workspace:~",
     "@opentiny/vue-floating-button": "workspace:~",
     "@opentiny/vue-flowchart": "workspace:~",
