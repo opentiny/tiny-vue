@@ -155,14 +155,34 @@ export const unMounted =
     }
   }
 
+export const useMouseEventDown =
+  ({ state }: Pick<IDialogBoxRenderlessParams, 'state'>) =>
+  (event: MouseEvent): void => {
+    state.mouseDownWrapperFlag = false
+    if (/tiny-dialog-box__wrapper/.test(event.target.className) && event.type === 'mousedown') {
+      state.mouseDownWrapperFlag = true
+    }
+  }
+
+export const useMouseEventUp =
+  ({ state }: Pick<IDialogBoxRenderlessParams, 'state'>) =>
+  (event: MouseEvent): void => {
+    state.mouseUpWrapperFlag = false
+    if (/tiny-dialog-box__wrapper/.test(event.target.className) && event.type === 'mouseup') {
+      state.mouseUpWrapperFlag = true
+    }
+  }
+
 export const handleWrapperClick =
-  ({ api, props }: Pick<IDialogBoxRenderlessParams, 'api' | 'props'>) =>
+  ({ api, props, state }: Pick<IDialogBoxRenderlessParams, 'api' | 'props' | 'state'>) =>
   (): void => {
     if (!props.closeOnClickModal) {
       return
     }
-
-    api.handleClose('mask')
+    // 判断是否有点击wrapper的状态
+    if (state.mouseDownWrapperFlag && state.mouseUpWrapperFlag) {
+      api.handleClose('mask')
+    }
   }
 
 export const handleClose =
