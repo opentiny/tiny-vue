@@ -14,7 +14,6 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'datetime',
       name: {
@@ -103,6 +102,5 @@ export default {
       },
       codeFiles: ['year-month-disabled.vue']
     }
-  ],
-  apis: []
+  ]
 }

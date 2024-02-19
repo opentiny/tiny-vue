@@ -1,9 +1,9 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile-first'
+import template from 'virtual-template?pc'
 import { iconSearch } from '@opentiny/vue-icon'
 
 export const treeMenuProps = {
-  $props,
+  ...$props,
   placeholder: {
     default: '',
     type: String

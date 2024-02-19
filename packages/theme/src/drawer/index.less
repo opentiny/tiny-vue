@@ -172,10 +172,12 @@
 
       .@{drawer-prefix-cls}__footer {
         flex: none;
+        display: flex;
+        justify-content: var(--ti-drawer-footer-justify-content);
         padding: var(--ti-drawer-footer-padding-top) var(--ti-drawer-footer-padding-right)
           var(--ti-drawer-footer-padding-bottom) var(--ti-drawer-footer-padding-left);
         border-top: 1px solid var(--ti-drawer-divider-border-color);
-        text-align: var(--ti-drawer-footer-text-align);
+        
       }
     }
   }

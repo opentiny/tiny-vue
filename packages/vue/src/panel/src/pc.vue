@@ -52,6 +52,7 @@ export default defineComponent({
     IconChevronDown: iconChevronDown(),
     IconChevronRight: iconChevronRight()
   },
+  emits: ['expand', 'collapse'],
   props: [...props, 'expand', 'foot', 'head', 'iconOpen', 'iconClose', 'isToggle', 'transition'],
   setup(props, context) {
     return setup({ props, context, renderless, api })

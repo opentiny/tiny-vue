@@ -155,23 +155,5 @@ export default {
       },
       codeFiles: ['slot-icon.vue']
     }
-  ],
-  apis: [
-    {
-      'name': 'Collapse',
-      'type': 'component',
-      'slots': [
-        {
-          'name': 'icon',
-          'type': '',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '展开收起icon插槽',
-            'en-US': 'Expand and collapse icon slot'
-          },
-          'demoId': 'slot-icon'
-        }
-      ]
-    }
   ]
 }

@@ -24,7 +24,6 @@
  */
 
 import { isObject, isNull } from '@opentiny/vue-renderless/common/type'
-import { convertToRows } from '@opentiny/vue-renderless/grid/plugins/header'
 import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, getOffsetPos, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
@@ -193,7 +192,7 @@ function renderThPartition({ border, column, isColGroup, resizable }) {
 }
 
 function renderThCell(args) {
-  let { column, fixedHiddenColumn, headerSuffixIconAbsolute, params } = args
+  let { column, fixedHiddenColumn, headerSuffixIconAbsolute, params, $table } = args
   let { showEllipsis, showHeaderTip, showTitle, showTooltip } = args
 
   return h(
@@ -209,7 +208,8 @@ function renderThCell(args) {
         }
       ]
     },
-    column.renderHeader(h, { isHidden: fixedHiddenColumn, ...params })
+    // 如果不是表格形态，就只保留表格结构（到tiny-grid-cell），不渲染具体的内容
+    $table.isShapeTable ? column.renderHeader(h, { isHidden: fixedHiddenColumn, ...params }) : null
   )
 }
 function renderThResize({ _vm, border, column, fixedHiddenColumn, isColGroup, params, resizable }) {
@@ -288,7 +288,7 @@ function getThHandler(args) {
     addListenerMousedown({ $table, mouseConfig, params, thOns })
     args1 = { column, columnIndex, columnKey, fixedHiddenColumn, hasEllipsis, headAlign }
     Object.assign(args1, { headerCellClassName, headerClassName, isColGroup, isDragHeaderSorting, params, thOns })
-    let args2 = { column, fixedHiddenColumn, headerSuffixIconAbsolute, params }
+    let args2 = { column, fixedHiddenColumn, headerSuffixIconAbsolute, params, $table }
     Object.assign(args2, { showEllipsis, showHeaderTip, showTitle, showTooltip })
 
     return h('th', getThPropsArg(args1), [
@@ -337,8 +337,10 @@ function renderTableThead(args) {
 }
 
 function updateResizableToolbar($table) {
-  if ($table.$toolbar) {
-    $table.$toolbar.updateResizable()
+  const toolbarVm = $table.getVm('toolbar')
+
+  if (toolbarVm) {
+    toolbarVm.updateResizable()
   }
 }
 
@@ -463,7 +465,7 @@ export default {
   },
   methods: {
     uploadColumn() {
-      this.headerColumn = this.isGroup ? convertToRows(this.collectColumn) : [this.tableColumn]
+      this.headerColumn = this.isGroup ? this.$parent._sliceColumnTree(this.tableColumn) : [this.tableColumn]
     },
     resizeMousedown(event, params) {
       let { $el, $parent: $table } = this

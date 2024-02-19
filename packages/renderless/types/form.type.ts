@@ -40,6 +40,8 @@ export interface IFormState {
   validateIcon: object | null
   isErrorInline: boolean
   isErrorBlock: boolean
+  labelWidth: string
+  tooltipType: string
 }
 
 export type IFormProps = ExtractPropTypes<typeof formProps>

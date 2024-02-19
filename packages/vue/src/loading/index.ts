@@ -9,13 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import service from './src/service.js'
-import directive from './src/directive.js'
-import '@opentiny/vue-theme/loading/index.less'
+import service from './src/service'
+import directive from './src/directive'
 import { setupComponent } from '@opentiny/vue-common'
 import { version } from './package.json'
 
-let Loadings: any = {
+const Loadings: any = {
   install(app) {
     app.directive('loading', directive)
   },
@@ -33,7 +32,8 @@ if (process.env.BUILD_TARGET === 'runtime') {
 
 setupComponent.TINYLoading = {
   init(root) {
-    root.$loading = service
+    let prefix = root.$apiPrefix || '$'
+    root[`${prefix}loading`] = service
   }
 }
 

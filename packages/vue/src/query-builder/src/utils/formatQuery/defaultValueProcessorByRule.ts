@@ -7,7 +7,7 @@ export const defaultValueProcessorByRule: ValueProcessorByRule = (
   // istanbul ignore next
   { escapeQuotes, parseNumbers } = {}
 ) => {
-  const escapeSingleQuotes = (v: any) => (typeof v !== 'string' || !escapeQuotes ? v : v.replaceAll(`'`, `''`))
+  const escapeSingleQuotes = (v: any) => (typeof v !== 'string' || !escapeQuotes ? v : v.replace(/'/g, `''`))
   const valueIsField = valueSource === 'field'
   const operatorLowerCase = operator.toLowerCase()
   if (operatorLowerCase === 'null' || operatorLowerCase === 'notnull') {

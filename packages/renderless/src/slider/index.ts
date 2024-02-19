@@ -381,13 +381,11 @@ export const initSlider =
         state.rightBtnShow = true
       }
 
-      if (state.isInit) {
-        api.changeActiveValue(index === 0)
-      }
+      api.changeActiveValue(index === 0)
 
       api.setButtonStyle()
     })
-    state.isInit = false
+
     api.setBarStyle()
   }
 
@@ -503,7 +501,6 @@ export const watchModelValue =
   (value) => {
     // 防止多触点下，触发双向绑定导致渲染异常
     if (!state.innerTrigger) {
-      state.isInit = true
       api.initSlider(value)
       api.setActiveButtonValue(value)
     } else {

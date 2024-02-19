@@ -9,10 +9,10 @@ export const getFieldsArray = (fields?: OptionList<Field> | Record<string, Field
   const fieldsArray = !fields
     ? []
     : Array.isArray(fields)
-    ? fields
-    : Object.keys(fields)
-        .map((flds) => ({ ...fields[flds], name: flds }))
-        .sort((x, y) => x.label.localeCompare(y.label))
+      ? fields
+      : Object.keys(fields)
+          .map((flds) => ({ ...fields[flds], name: flds }))
+          .sort((x, y) => x.label.localeCompare(y.label))
   if (isOptionGroupArray(fieldsArray)) {
     fieldsFlats = uniqByName(fieldsFlats.concat(...fieldsArray.map((opt) => opt.options)))
   } else {

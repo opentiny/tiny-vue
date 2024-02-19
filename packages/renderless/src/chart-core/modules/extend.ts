@@ -21,6 +21,7 @@ export default ({ options, extend }) => {
 
   Object.keys(extend).forEach((key) => {
     const value = extend[key]
+
     if (~key.indexOf('.')) {
       set(options, key, value)
     } else if (typeof value === 'function') {

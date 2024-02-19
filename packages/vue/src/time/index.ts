@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Time from './src/pc.vue'
+import Time from './src/index'
 import '@opentiny/vue-theme/time-panel/index.less'
 import { version } from './package.json'
 

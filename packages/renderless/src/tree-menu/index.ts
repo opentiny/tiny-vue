@@ -13,14 +13,14 @@ import type { ITreeMenuApi, ITreeMenuState, ITreeMenuProps, ITreeMenuData, ITree
 
 export const initData =
   ({ state, props, service, api }: { state: ITreeMenuState; props: ITreeMenuProps; service: any; api: ITreeMenuApi }) =>
-  () => {
+  async () => {
     if (props.data) {
       state.data = props.data
       return
     }
 
     if (typeof service.getMenuDataSync === 'function') {
-      const menuData = service.getMenuDataSync()
+      const menuData = await service.getMenuDataSync()
 
       state.data = api.setMenuKey({ newData: [], menuData })
     }
@@ -101,10 +101,14 @@ export const nodeCollapse = (emit) => (nodeData, node) => {
   emit('node-collapse', nodeData, node)
 }
 
-export const nodeClick = (emit) => (nodeData, node) => {
-  emit('node-click', nodeData, node)
-}
-
+export const nodeClick =
+  ({ emit, props, state }) =>
+  (nodeData, node) => {
+    emit('node-click', nodeData, node)
+    if (props.showExpand && state.isExpand) {
+      state.isExpand = false
+    }
+  }
 export const checkChange = (emit) => (data, checked, indeterminate) => {
   emit('check-change', data, checked, indeterminate)
 }
@@ -166,4 +170,28 @@ export const getCurrentNode =
   ({ vm }) =>
   () => {
     return vm.$refs.tree.getCurrentNode()
+  }
+
+export const handleToggleMenu =
+  ({ state, vm }) =>
+  (type) => {
+    state.isExpand = !state.isExpand
+    if (type === 'expand') {
+      state.currentKey = state.nodeKey !== null ? [state.nodeKey] : []
+    } else {
+      state.nodeKey = vm.$refs.tree.getCurrentKey()
+      vm.$refs.tree.expandAllNodes(false)
+    }
+  }
+export const computedTreeStyle =
+  ({ props }) =>
+  () => {
+    let minusHeight = 0
+    if (props.showExpand) {
+      minusHeight += 64
+    }
+    if (props.showFilter) {
+      minusHeight += 42
+    }
+    return { 'height': `calc(100% - ${minusHeight}px)` }
   }

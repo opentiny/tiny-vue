@@ -6,14 +6,17 @@
   "type": "module",
   "scripts": {
     "start": "esno ./src/index.ts",
-    "scan": "esno ./src/demos-scan.ts"
+    "scan": "esno ./src/demos-scan.ts",
+    "diff": "esno ./src/aui-diff.ts"
   },
   "dependencies": {
     "fs-extra": "^11.2.0",
     "esno": "^4.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.10.5"
+    "@types/node": "^20.10.5",
+    "lodash-es": "^4.17.21",
+    "sheetjs-style": "^0.15.8"
   },
   "keywords": [],
   "author": "",

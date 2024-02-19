@@ -31,7 +31,7 @@ export const api = [
   'mouseMoveDocumentHandler'
 ]
 
-export const renderless = (props, { computed, onUnmounted, reactive }, { refs, parent }) => {
+export const renderless = (props, { computed, onUnmounted, reactive }, { vm, parent }) => {
   const state = reactive({
     bar: computed(() => BAR_MAP[props.vertical ? 'vertical' : 'horizontal']),
     wrap: computed(() => parent.$refs.wrap)
@@ -40,8 +40,8 @@ export const renderless = (props, { computed, onUnmounted, reactive }, { refs, p
   const api = {
     state,
     renderThumbStyle,
-    clickTrackHandler: clickTrackHandler({ refs, state }),
-    mouseMoveDocumentHandler: mouseMoveDocumentHandler({ refs, state })
+    clickTrackHandler: clickTrackHandler({ vm, state }),
+    mouseMoveDocumentHandler: mouseMoveDocumentHandler({ vm, state })
   }
 
   onUnmounted(() => off(document, 'mouseup', api.mouseUpDocumentHandler))

@@ -44,29 +44,17 @@
 
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/time/vue'
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 import TimeSpinner from '@opentiny/vue-time-spinner'
 
 export default defineComponent({
-  name: $prefix + 'Time',
   emits: ['dodestroy', 'pick', 'select-range'],
   components: {
     TimeSpinner
   },
-  props: {
-    show: Boolean,
-    timeArrowControl: Boolean,
-    emitter: Object,
-    value: Date,
-    step: {
-      type: Object,
-      default() {
-        return { hour: 1, minute: 1, second: 1 }
-      }
-    }
-  },
+  props: [...props, 'show', 'timeArrowControl', 'emitter', 'value', 'step'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

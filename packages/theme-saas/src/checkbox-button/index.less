@@ -62,10 +62,10 @@
     @apply text-center;
     @apply box-border;
     @apply m-0;
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    @apply transition-all duration-300 ease-linear;
     @apply py-3 px-5;
     @apply text-xs;
-    min-width: 80px;
+    @apply ~'min-w-[theme(spacing.20)]';
     @apply rounded-none;
     .user-select(none);
 
@@ -97,22 +97,22 @@
   }
 
   &--small &__inner {
-    padding: 8px 15px;
+    @apply py-2 px-4;
     @apply text-xs;
     @apply rounded-none;
 
     &.is-round {
-      padding: 8px 15px;
+      @apply py-2 px-4;
     }
   }
 
   &--mini &__inner {
-    padding: 5px 15px;
+    @apply py-1 px-4;
     @apply text-xs;
     @apply rounded-none;
 
     &.is-round {
-      padding: 5px 15px;
+      @apply py-1 px-4;
     }
   }
 }

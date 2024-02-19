@@ -12,7 +12,7 @@
 import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
-interface IData {
+export interface IData {
   children: IData[]
   url: string
 }

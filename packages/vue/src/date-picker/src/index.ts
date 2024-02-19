@@ -11,7 +11,7 @@
  */
 import type { PropType } from '@opentiny/vue-common'
 import { $setup, $prefix, defineComponent } from '@opentiny/vue-common'
-import { iconOperationfaild } from '@opentiny/vue-icon'
+import { iconClose } from '@opentiny/vue-icon'
 import template from 'virtual-template?pc|mobile'
 
 const currentYear = new Date().getFullYear()
@@ -63,6 +63,41 @@ const $props = {
 
 export const datePickerProps = {
   ...$props,
+
+  tabindex: {
+    type: String,
+    default: '1'
+  },
+  timeFormat: String,
+  suffixIcon: Object,
+  label: String,
+  shape: String,
+  tip: String,
+  changeOnConfirm: {
+    type: Boolean,
+    default: false
+  },
+  popperAppendToBody: {
+    type: Boolean,
+    default: true
+  },
+  isutc8: {
+    type: Boolean,
+    default: false
+  },
+  dbTimezone: Number,
+  timezoneOffset: Number,
+  iso8601: Boolean,
+  autoFormat: {
+    type: Boolean,
+    default: false
+  },
+  title: String,
+  blank: {
+    type: Boolean,
+    default: false
+  },
+
   type: {
     type: String as PropType<
       | 'date'
@@ -99,7 +134,7 @@ export const datePickerProps = {
   clearIcon: {
     type: Object,
     default() {
-      return iconOperationfaild()
+      return iconClose()
     }
   },
   name: {

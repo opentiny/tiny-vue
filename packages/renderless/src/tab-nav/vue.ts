@@ -55,7 +55,8 @@ export const api = [
   'expandTabShow',
   'expandTabHide',
   'computedHeaderStyle',
-  'swiperHandle'
+  'swiperHandle',
+  'updated'
 ]
 
 export const renderless = (
@@ -67,7 +68,10 @@ export const renderless = (
   const state = reactive({
     dragging: false,
     navOffset: 0,
-    lineOffset: 0,
+    lineStyle: {
+      width: 20,
+      offset: 0
+    },
     scrollable: false,
     isFocus: false,
     focusable: false,

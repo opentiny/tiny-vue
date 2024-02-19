@@ -34,7 +34,7 @@ export default defineComponent({
   components: {
     TinyBreadcrumbItem: BreadcrumbItem
   },
-  props: [...props, 'separator', 'separatorIcon', 'textField', 'options'],
+  props: [...props, 'separator', 'separatorIcon', 'textField', 'options', 'size'],
   provide() {
     return {
       breadcrumb: this

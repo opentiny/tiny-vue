@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Image as TinyImage } from '@opentiny/vue'
 

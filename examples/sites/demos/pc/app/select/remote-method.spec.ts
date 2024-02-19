@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('远程搜索单选', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#remote-method')
 
   const wrap = page.locator('#remote-method')
@@ -11,7 +12,7 @@ test('远程搜索单选', async ({ page }) => {
 
   await input.focus()
   await expect(option).toHaveCount(0)
-  await expect(dropdown.locator('.tiny-select-dropdown__empty')).toBeVisible()
+  await expect(dropdown).toBeHidden()
 
   await input.fill('al')
   await input.press('Enter')
@@ -22,6 +23,7 @@ test('远程搜索单选', async ({ page }) => {
 })
 
 test('远程搜索多选 + 保留搜索关键字', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#remote-method')
 
   const wrap = page.locator('#remote-method')
@@ -50,6 +52,7 @@ test('远程搜索多选 + 保留搜索关键字', async ({ page }) => {
 })
 
 test('获焦时触发远程搜索', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#remote-method')
 
   const wrap = page.locator('#remote-method')

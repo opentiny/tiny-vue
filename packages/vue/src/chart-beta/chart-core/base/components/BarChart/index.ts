@@ -66,7 +66,6 @@ class BarChart {
     mergeSeries(iChartOption, this.baseOption)
     // 合并用户自定义visualMap
     mergeVisualMap(iChartOption, this.baseOption)
-    console.log({ ...this.baseOption }, '==-====')
   }
 
   // 根据渲染出的结果，二次计算option

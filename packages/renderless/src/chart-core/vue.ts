@@ -76,6 +76,7 @@ export const renderless = (
     computedCanvasStyle: computedCanvasStyle(props),
     computedInitColor: computedInitColor(props)
   }
+
   onMounted(() => api.mounted())
   onBeforeUnmount(() => api.clean())
 

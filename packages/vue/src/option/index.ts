@@ -9,8 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Option from './src/pc.vue'
-import '@opentiny/vue-theme/option/index.less'
+import Option from './src/index'
 import { version } from './package.json'
 
 /* istanbul ignore next */

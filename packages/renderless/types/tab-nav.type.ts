@@ -32,6 +32,11 @@ export type ITabNavProps = { _mode: string } & ExtractPropTypes<typeof tabNavPcP
 
 interface ITabNavStyle {}
 
+interface ITabLineStyle {
+  width: number
+  offset: number
+}
+
 interface ITabNavScrollable {
   prev: number
   next: boolean
@@ -40,7 +45,7 @@ interface ITabNavScrollable {
 export interface ITabNavState {
   dragging: boolean
   navOffset: number
-  lineOffset: number
+  lineStyle: ITabLineStyle
   scrollable: boolean | ITabNavScrollable
   isFocus: boolean
   focusable: boolean

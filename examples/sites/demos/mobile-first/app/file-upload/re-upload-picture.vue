@@ -17,7 +17,7 @@ export default {
       fileList: [
         {
           name: 'test3',
-          url: '/static/images/ld.png',
+          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`,
           status: 'fail'
         }
       ]

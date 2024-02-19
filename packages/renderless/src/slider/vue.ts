@@ -91,7 +91,6 @@ const initState = ({ reactive, computed, props, api, parent, inject }) => {
     moveStyle: [],
     points: [],
     labels: [],
-    isInit: true,
     inputValue: [0, 0],
     isDrag: false,
     sliderSize: 0,

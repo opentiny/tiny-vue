@@ -45,7 +45,10 @@ import {
   initService,
   dispatchDisplayedValue,
   getDisplayedValue,
-  getDisplayOnlyText
+  getDisplayOnlyText,
+  filterValue,
+  handleClear,
+  handleChange
 } from './index'
 
 export const api = [
@@ -58,10 +61,20 @@ export const api = [
   'handleInputChange',
   'mouseEvent',
   'focus',
-  'select'
+  'select',
+  'handleClear',
+  'handleChange'
 ]
 
-const initState = ({ reactive, computed, props, api, $service, parent }: INumericInitStateParams): INumericState => {
+const initState = ({
+  reactive,
+  computed,
+  props,
+  api,
+  $service,
+  constants,
+  parent
+}: INumericInitStateParams): INumericState => {
   const state = reactive({
     currentValue: props.modelValue,
     userInput: props.modelValue,
@@ -84,8 +97,14 @@ const initState = ({ reactive, computed, props, api, $service, parent }: INumeri
 
     format: computed(() => getUnitPrecision({ service: $service, props })),
 
+    filterMenu: constants.FILTER_OPTION,
+    filterValue: computed(() => api.filterValue()),
+
+    handleClear: computed(() => api.handleClear()),
+    handleChange: computed(() => api.handleClear()),
     isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly),
-    displayOnlyText: computed(() => api.getDisplayOnlyText())
+    displayOnlyText: computed(() => api.getDisplayOnlyText()),
+    controls: props.controls
   })
   return state
 }
@@ -95,31 +114,31 @@ const initApi = ({
   props,
   state,
   parent,
-  refs,
+  vm,
   emit,
   dispatch,
   constants,
   nextTick
 }: Pick<
   INumericRenderlessParams,
-  'api' | 'props' | 'state' | 'parent' | 'refs' | 'emit' | 'dispatch' | 'constants' | 'nextTick'
+  'api' | 'props' | 'state' | 'parent' | 'vm' | 'emit' | 'dispatch' | 'constants' | 'nextTick'
 >): void => {
   Object.assign(api, {
     state,
-    focus: focus(refs),
-    select: select(refs),
+    focus: focus(vm),
+    select: select(vm),
     getPrecision: getPrecision(),
     toPrecision: toPrecision(state),
     updated: updated({ constants, parent, state }),
     mounted: mounted({ constants, parent, props, state }),
     unmounted: unmounted({ parent, state }),
     getDecimal: getDecimal(props),
-    handleFocus: handleFocus({ emit, state, props, api, refs }),
+    handleFocus: handleFocus({ emit, state, props, api, vm }),
     decrease: decrease({ api, props, state }),
     increase: increase({ api, props, state }),
     handleInput: handleInput({ state, api, emit, props }),
     getNumPecision: getNumPecision({ api, props }),
-    displayValue: displayValue({ props, state }),
+    displayValue: displayValue({ props, state, api }),
     internalDecrease: internalDecrease({ api, state }),
     internalIncrease: internalIncrease({ api, state }),
     handleInputChange: handleInputChange({ api, state, props }),
@@ -129,7 +148,10 @@ const initApi = ({
     setCurrentValue: setCurrentValue({ api, constants, dispatch, emit, props, state }),
     dispatchDisplayedValue: dispatchDisplayedValue({ api, state, dispatch }),
     getDisplayedValue: getDisplayedValue({ state, props }),
-    getDisplayOnlyText: getDisplayOnlyText({ parent, props, state })
+    getDisplayOnlyText: getDisplayOnlyText({ parent, props, state }),
+    filterValue: filterValue({ state }),
+    handleClear: handleClear({ state, emit }),
+    handleChange: handleChange({ state, emit })
   })
 
   api.getDecimal(0)
@@ -139,15 +161,18 @@ const initWatch = ({
   state,
   watch,
   props,
-  api,
+  api
 }: Pick<INumericRenderlessParams, 'state' | 'watch' | 'props' | 'api'>): void => {
-  
-  watch(() => [props.max, props.min], ([curMax,curMin]) => {
-    if (curMax < curMin){
-      throw new Error('[Numeric]: The maximum value should not be less than to the minimum value')
-    }
-  }, { immediate: true })
-  
+  watch(
+    () => [props.max, props.min],
+    ([curMax, curMin]) => {
+      if (curMax < curMin) {
+        throw new Error('[Numeric]: The maximum value should not be less than to the minimum value')
+      }
+    },
+    { immediate: true }
+  )
+
   watch(() => props.modelValue, api.watchValue, { immediate: true })
 
   watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)
@@ -156,15 +181,15 @@ const initWatch = ({
 export const renderless = (
   props: INumericProps,
   { computed, onMounted, onUpdated, onUnmounted, reactive, watch, inject }: ISharedRenderlessParamHooks,
-  { parent, emit, refs, constants, dispatch, service, nextTick }: INumericRenderlessParamUtils
+  { parent, emit, vm, constants, dispatch, service, nextTick }: INumericRenderlessParamUtils
 ): INumericApi => {
   const api = {} as INumericApi
   const $service = initService(service)
-  const state = initState({ reactive, computed, props, api, $service, parent })
+  const state = initState({ reactive, computed, props, api, constants, $service, parent })
 
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  initApi({ api, props, state, parent, refs, emit, dispatch, constants, nextTick })
+  initApi({ api, props, state, parent, vm, emit, dispatch, constants, nextTick })
   initWatch({ state, watch, props, api })
 
   onMounted(() => {

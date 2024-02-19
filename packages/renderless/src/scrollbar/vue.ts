@@ -15,7 +15,7 @@ import { addResizeListener, removeResizeListener } from '../common/deps/resize-e
 
 export const api = ['state', 'update', 'handleScroll']
 
-export const renderless = (props, { onBeforeUnmount, onMounted, reactive }, { refs, nextTick, emit }) => {
+export const renderless = (props, { onBeforeUnmount, onMounted, reactive }, { vm, nextTick, emit }) => {
   const state = reactive({
     sizeWidth: '0',
     sizeHeight: '0',
@@ -25,8 +25,8 @@ export const renderless = (props, { onBeforeUnmount, onMounted, reactive }, { re
 
   const api = {
     state,
-    update: update({ refs, state }),
-    handleScroll: handleScroll({ refs, state, emit })
+    update: update({ vm, state }),
+    handleScroll: handleScroll({ vm, state, emit })
   }
 
   onMounted(() => {
@@ -36,7 +36,7 @@ export const renderless = (props, { onBeforeUnmount, onMounted, reactive }, { re
 
     nextTick(api.update)
 
-    !props.noresize && addResizeListener(refs.resize, api.update)
+    !props.noresize && addResizeListener(vm.$refs.resize, api.update)
   })
 
   onBeforeUnmount(() => {
@@ -44,7 +44,7 @@ export const renderless = (props, { onBeforeUnmount, onMounted, reactive }, { re
       return
     }
 
-    !props.noresize && removeResizeListener(refs.resize, api.update)
+    !props.noresize && removeResizeListener(vm.$refs.resize, api.update)
   })
 
   return api

@@ -10,11 +10,11 @@ export default {
       },
       desc: {
         'zh-CN': '<p>通过 `image-size` 设置预览的图片尺寸大小，通过`round`设置是否展示圆形。</p>',
-        'en-US': '<p>Use `image-size` to set the size of the previewed image and use `round` to set whether to display a circle.</p>'
+        'en-US':
+          '<p>Use `image-size` to set the size of the previewed image and use `round` to set whether to display a circle.</p>'
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'show-hover',
       name: {
@@ -36,7 +36,8 @@ export default {
       desc: {
         'zh-CN':
           '<p>可通过 `fit` 属性确定图片如何适应到容器框，同原生 css 的 object-fit 属性。<br> object-fit 说明<br>fill：被替换的内容将被缩放，以在填充元素的内容框时保持其宽高比<br>contain：被替换的内容大小可以填充元素的内容框<br> cover：被替换的内容大小保持其宽高比，同时填充元素的整个内容框<br>none：被替换的内容尺寸不会被改变<br>scale-down：内容的尺寸就像是指定了 none 或 contain，取决于哪一个将导致更小的对象尺寸。</p>',
-        'en-US': '<p>You can use the `fit` attribute to determine how an image adapts to the container box, which is the same as the object-fit attribute of the native CSS.<br>Object-fit Description<br>fill: The replaced content is scaled to maintain its aspect ratio when filling the element\'s content box.<br>cover: The size of the replaced content keeps its aspect ratio and fills the entire content box of the element.<br>none: The size of the content to be replaced is not changed.<br>scale-down: The size of the content is as if none or contain were specified, depending on which would result in a smaller object size.</p>'
+        'en-US':
+          "<p>You can use the `fit` attribute to determine how an image adapts to the container box, which is the same as the object-fit attribute of the native CSS.<br>Object-fit Description<br>fill: The replaced content is scaled to maintain its aspect ratio when filling the element's content box.<br>cover: The size of the replaced content keeps its aspect ratio and fills the entire content box of the element.<br>none: The size of the content to be replaced is not changed.<br>scale-down: The size of the content is as if none or contain were specified, depending on which would result in a smaller object size.</p>"
       },
       codeFiles: ['auto-fit-container-size.vue']
     },
@@ -48,7 +49,8 @@ export default {
       },
       desc: {
         'zh-CN': '<p>通过 `preview-src-list` 开启预览大图的功能，通过添加`show-index`开启图片序列号展示。</p>',
-        'en-US': '<p>Use the `preview-src-list` command to enable the function of previewing large images, and add the `show-index` command to enable the display of image sequence numbers.</p>'
+        'en-US':
+          '<p>Use the `preview-src-list` command to enable the function of previewing large images, and add the `show-index` command to enable the display of image sequence numbers.</p>'
       },
       codeFiles: ['preview-src-list.vue']
     },
@@ -60,7 +62,8 @@ export default {
       },
       desc: {
         'zh-CN': '<p>通过 `image-size` 设置预览的图片尺寸大小，通过 round 设置是否展示圆形。</p>',
-        'en-US': '<p>Use `image-size` to set the size of the previewed image and use round to set whether to display a circle.</p>'
+        'en-US':
+          '<p>Use `image-size` to set the size of the previewed image and use round to set whether to display a circle.</p>'
       },
       codeFiles: ['round.vue']
     },
@@ -85,7 +88,8 @@ export default {
       desc: {
         'zh-CN':
           '<p>可通过 `lazy` 开启懒加载功能，当图片滚动到可视范围内才会加载。可通过 `scroll-container` 来设置滚动容器，若未定义，则为最近一个 `overflow` 值为 `auto` 或 `scroll` 的父元素。</p>',
-        'en-US': '<p>You can use `lazy` to enable lazy loading. Images are loaded only when they are scrolled to the visible range. You can use `scroll-container` to set the scrolling container. If it is not defined, the scrolling container is the parent element whose latest `overflow` value is `auto` or `scroll`.</p>'
+        'en-US':
+          '<p>You can use `lazy` to enable lazy loading. Images are loaded only when they are scrolled to the visible range. You can use `scroll-container` to set the scrolling container. If it is not defined, the scrolling container is the parent element whose latest `overflow` value is `auto` or `scroll`.</p>'
       },
       codeFiles: ['lazy-load.vue']
     },
@@ -170,7 +174,8 @@ export default {
       desc: {
         'zh-CN':
           '<p>通过 `modal-view` 属性开启模态缩略图视图的功能，可以通过modal-height属性设置模态框内对应的高度，默认值为 400。</p>',
-        'en-US': '<p>You can use the `modal-view` attribute to enable the modal thumbnail view function. You can use the modal-height attribute to set the height of the modal box. The default value is 400.</p>'
+        'en-US':
+          '<p>You can use the `modal-view` attribute to enable the modal thumbnail view function. You can use the modal-height attribute to set the height of the modal box. The default value is 400.</p>'
       },
       codeFiles: ['thumbnail-modal-view.vue']
     },
@@ -195,7 +200,8 @@ export default {
       desc: {
         'zh-CN':
           '<p>通过 `modal-view` 属性开启模态目录视图的功能，可以通过`modal-height`属性设置模态框内对应的高度，默认值为 400。</p>',
-        'en-US': '<p>Use the `modal-view` attribute to enable the modal directory view function. You can use the `modal-height` attribute to set the height of the modal box. The default value is 400.</p>'
+        'en-US':
+          '<p>Use the `modal-view` attribute to enable the modal directory view function. You can use the `modal-height` attribute to set the height of the modal box. The default value is 400.</p>'
       },
       codeFiles: ['menu-modal-view.vue']
     },
@@ -247,75 +253,5 @@ export default {
       },
       codeFiles: ['menu-rename.vue']
     }
-  ],
-  apis: [
-    {
-      'name': 'Image',
-      'type': 'component',
-      'props': [
-        {
-          'name': 'image-size ',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置预览的图片的大小',
-            'en-US': 'Sets the size of the previewed picture.'
-          },
-          'demoId': 'round'
-        },
-        {
-          'name': 'preview-visible',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '开启移动端预览大图的功能',
-            'en-US': 'Enable the function of previewing large images on mobile devices.'
-          },
-          'demoId': ''
-        },
-        {
-          'name': 'round',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '通过 round 设置是否展示圆形',
-            'en-US': 'Use round to set whether to display a circle.'
-          },
-          'demoId': 'round'
-        },
-        {
-          'name': 'show-hover',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置预览的图片的悬浮效果',
-            'en-US': 'Sets the floating effect of the previewed image.'
-          },
-          'demoId': 'show-hover'
-        },
-        {
-          'name': 'show-index',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '开启图片序列号展示',
-            'en-US': 'Enable the display of image serial numbers.'
-          },
-          'demoId': 'preview-src-list'
-        },
-      ],
-      'events': [
-        {
-          'name': 'delete',
-          'type': 'Function()',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '图片删除触发',
-            'en-US': 'Triggered by image deletion.'
-          },
-          'demoId': ''
-        }
-      ],
-    },
   ]
 }

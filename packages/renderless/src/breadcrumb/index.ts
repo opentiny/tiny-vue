@@ -19,8 +19,6 @@ export const breadcrumbItemSelect = ({
   constants
 }: Pick<IBreadcrumbRenderlessParams, 'api' | 'emit' | 'state' | 'constants'>) => {
   state.breadcrumbEmitter.on(constants.EVENT_NAME.breadcrumbItemSelect, (value) => {
-    console.log(state, 'state')
-
     state.currentBreadcrumbItem = value
     emit('select', value)
   })

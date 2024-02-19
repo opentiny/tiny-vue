@@ -7,6 +7,7 @@
     :title="title"
     :disabled="disabled"
     :multiple="!!multiple"
+    v-bind="bindProps"
     @change="selectElementChangeHandler"
     hover-expand
   >
@@ -53,7 +54,8 @@ export default defineComponent({
     'multiple',
     'listsAsArrays',
     'disabled',
-    'testID'
+    'testID',
+    'bindProps'
   ],
   setup() {
     return {

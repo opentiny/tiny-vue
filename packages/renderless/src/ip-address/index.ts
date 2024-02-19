@@ -206,6 +206,7 @@ export const inputEvent =
     value = api?.getValue?.()
 
     emit('update:modelValue', value, index)
+    emit('input', value, index)
     api.dispatch(componentName, eventName, [value])
   }
 

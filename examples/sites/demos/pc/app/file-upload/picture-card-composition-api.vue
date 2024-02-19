@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { FileUpload as TinyFileUpload, DialogBox as TinyDialogBox } from '@opentiny/vue'
 import { iconPlus } from '@opentiny/vue-icon'

@@ -38,7 +38,7 @@ export const api = ['state', 'handleClick', 'getStatusCls', 'getStatus', 'getDat
 export const renderless = (
   props: ITimelineProps,
   { computed, reactive, provide, watch }: ISharedRenderlessParamHooks,
-  { t, emit, constants }: ITimelineRenderlessParamUtils
+  { t, emit, constants, designConfig }: ITimelineRenderlessParamUtils
 ): ITimelineApi => {
   const api = {} as ITimelineApi
   const state: ITimelineState = reactive({

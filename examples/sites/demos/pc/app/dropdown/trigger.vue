@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>场景1： 默认悬浮时触发下拉</p>
-    <tiny-dropdown>
+    <tiny-dropdown trigger="hover">
       <template #dropdown>
         <tiny-dropdown-menu>
           <tiny-dropdown-item><tiny-icon-plus></tiny-icon-plus> 黄金糕</tiny-dropdown-item>

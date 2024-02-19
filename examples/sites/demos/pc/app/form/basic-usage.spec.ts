@@ -35,7 +35,7 @@ test('测试基本表单', async ({ page }) => {
   await expect(page.getByRole('tooltip', { name: 'TinyUI Form Demo' })).toBeVisible()
 
   // 提交按钮
-  const dialog = page.getByText('消息提示提交确认')
+  const dialog = page.locator('.tiny-modal.active')
   await demo.getByRole('button', { name: '提交' }).click()
   await expect(dialog).toBeVisible()
 })

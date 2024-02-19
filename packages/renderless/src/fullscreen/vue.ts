@@ -20,7 +20,7 @@ import {
   shadeClick,
   keypressCallback,
   fullScreenCallback,
-  onChangeFullscreen,
+  onChangeFullScreen,
   computeWrapperStyle
 } from './index'
 
@@ -34,7 +34,7 @@ export const api = [
   'shadeClick',
   'keypressCallback',
   'fullScreenCallback',
-  'onChangeFullscreen'
+  'onChangeFullScreen'
 ]
 
 export const renderless = (props, { reactive, computed, watch }, { vm, emit }) => {
@@ -60,7 +60,7 @@ export const renderless = (props, { reactive, computed, watch }, { vm, emit }) =
     request: request({ props, state, vm, sf, api }),
     fullScreenCallback: fullScreenCallback({ state, sf, api }),
     computeWrapperStyle: computeWrapperStyle({ props, state }),
-    onChangeFullscreen: onChangeFullscreen({ props, state, vm, emit })
+    onChangeFullScreen: onChangeFullScreen({ props, state, vm, emit })
   })
 
   watch(

@@ -1,10 +1,15 @@
 <template>
   <div>
-    <p>场景1： 下拉禁用</p>
+    <br />
+    <div>场景1： 下拉禁用</div>
+    <br />
     <tiny-select v-model="value1" disabled autocomplete>
       <tiny-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
-    <p>场景2：多选 + 下拉某项禁用</p>
+    <br />
+    <br />
+    <div>场景2：多选 + 下拉某项禁用</div>
+    <br />
     <tiny-select v-model="value2" multiple>
       <tiny-option
         v-for="item in options2"
@@ -15,7 +20,10 @@
       >
       </tiny-option>
     </tiny-select>
-    <p>场景3：单选 + 下拉某项禁用</p>
+    <br />
+    <br />
+    <div>场景3：单选 + 下拉某项禁用</div>
+    <br />
     <tiny-select v-model="value3">
       <tiny-option
         v-for="item in options2"
@@ -26,7 +34,10 @@
       >
       </tiny-option>
     </tiny-select>
-    <p>场景4：多选 + 禁用项默认选中</p>
+    <br />
+    <br />
+    <div>场景4：多选 + 禁用项默认选中</div>
+    <br />
     <tiny-select v-model="value4" multiple>
       <tiny-option
         v-for="item in options2"
@@ -37,6 +48,21 @@
       >
       </tiny-option>
     </tiny-select>
+    <br />
+    <br />
+    <div>场景5：多选 hover-expand 模式下禁用</div>
+    <br />
+    <tiny-select
+      v-model="value5"
+      placeholder="请选择"
+      multiple
+      disabled
+      hover-expand
+      disabled-tooltip-content="我是自定义内容"
+    >
+      <tiny-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+    <br />
   </div>
 </template>
 
@@ -48,7 +74,7 @@ const options1 = ref([
   { value: '选项1', label: '黄金糕' },
   { value: '选项2', label: '双皮奶' },
   { value: '选项3', label: '蚵仔煎' },
-  { value: '选项4', label: '龙须面' },
+  { value: '选项4', label: '龙须面龙须面超长超长超长超长超长超长超长超长超长' },
   { value: '选项5', label: '北京烤鸭' }
 ])
 
@@ -64,14 +90,11 @@ const value1 = ref('')
 const value2 = ref([])
 const value3 = ref('')
 const value4 = ref(['选项2', '选项3'])
+const value5 = ref(['选项1', '选项2', '选项3', '选项4', '选项5'])
 </script>
 
 <style lang="less" scoped>
 .tiny-select {
   width: 280px;
-}
-p {
-  font-size: 14px;
-  line-height: 1.5;
 }
 </style>

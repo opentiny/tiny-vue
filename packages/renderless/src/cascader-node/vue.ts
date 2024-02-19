@@ -18,9 +18,16 @@ import type {
   ICascaderNodeRenderlessParams,
   ICascaderNodeState
 } from '@/types'
-import { comptCheckPath, handleExpand, isInPath, handleCheckChange, handleMultiCheckChange } from './index'
+import {
+  comptCheckPath,
+  handleExpand,
+  isInPath,
+  handleCheckChange,
+  handleMultiCheckChange,
+  handleNodeClick
+} from './index'
 
-export const api = ['state', 'handleMultiCheckChange', 'handleCheckChange', 'handleExpand']
+export const api = ['state', 'handleMultiCheckChange', 'handleCheckChange', 'handleExpand', 'handleNodeClick']
 
 export const renderless = (
   props: ICascaderNodeProps,
@@ -37,7 +44,12 @@ export const renderless = (
     isChecked: computed(() => props.node.isSameNode(state.checkedValue)),
     inActivePath: computed(() => api.isInPath(parent.state.activePath)),
     inCheckedPath: computed(() => api.comptCheckPath()),
-    value: computed(() => props.node.getValueByOption())
+    value: computed(() => props.node.getValueByOption()),
+    nodeLabel: computed(() => {
+      return parent.state.renderLabelFn
+        ? parent.state.renderLabelFn({ node: props.node, data: props.node.data })
+        : props.node.label
+    })
   }) as ICascaderNodeState
 
   Object.assign(api, {
@@ -46,7 +58,8 @@ export const renderless = (
     handleExpand: handleExpand({ api, props, parent, state }),
     comptCheckPath: comptCheckPath({ api, parent, state }),
     handleCheckChange: handleCheckChange({ api, parent, dispatch, state }),
-    handleMultiCheckChange: handleMultiCheckChange({ parent, props })
+    handleMultiCheckChange: handleMultiCheckChange({ parent, props }),
+    handleNodeClick: handleNodeClick({ state, api })
   })
 
   return api

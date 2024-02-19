@@ -6,6 +6,7 @@
     :fetch-dept-list="fetchDeptList"
     :fetch-dept-by-value="fetchDeptByValue"
     :fetch-dept="fetchDept"
+    :display-only="displayOnly"
     @close="resetPerson"
     @confirm="hrChange"
     :disabled="disabled"
@@ -54,6 +55,7 @@ import { t } from '@opentiny/vue-locale'
 
 export default defineComponent({
   inheritAttrs: false,
+  emits: ['update:approvalPerson', 'update:modelValue'],
   props: [
     ...props,
     'modelValue',
@@ -64,7 +66,8 @@ export default defineComponent({
     'fetchHrapprover',
     'fetchDeptByValue',
     'fetchDept',
-    'title'
+    'title',
+    'displayOnly'
   ],
   components: {
     Dept,

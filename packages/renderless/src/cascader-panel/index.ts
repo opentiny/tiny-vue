@@ -348,7 +348,7 @@ export const getCheckedNodes =
       return nodes.filter((node) => node.checked && isCascaderChecked(node.value, cascaderCheckedValue))
     }
 
-    const node = api.getNodeByValue(state.checkedValue)
+    const node = api.getNodeByValue(cascaderCheckedValue || state.checkedValue)
 
     return isEmpty(state.checkedValue) || !node ? [] : [node]
   }

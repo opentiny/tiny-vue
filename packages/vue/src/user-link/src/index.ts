@@ -28,11 +28,11 @@ export default defineComponent({
     },
     valueField: {
       type: String,
-      default: () => 'userId'
+      default: () => ''
     },
     textField: {
       type: String,
-      default: () => 'userCN'
+      default: () => ''
     },
     card: {
       type: Boolean,

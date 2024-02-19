@@ -61,7 +61,7 @@ const getWaterfallYAxis = (args) => {
 
 const getWaterfallSeries = (args) => {
   const { dataSum, dataType, digit, metrics, remainStatus, rows, t, totalNum } = args
-  const seriesBase = { type: 'bar', stack: t('ui.chart.summation')||'总量' }
+  const seriesBase = { type: 'bar', stack: t('ui.chart.summation') || '总量' }
   let { dataSumTemp = dataSum, totalNumTemp = totalNum, assistData, mainData } = {}
   const rowData = rows.map((row) => row[metrics])
 
@@ -75,7 +75,7 @@ const getWaterfallSeries = (args) => {
 
   const series = []
   let seriesAdv = {
-    name: t('ui.chart.auxiliary')||'辅助',
+    name: t('ui.chart.auxiliary') || '辅助',
     itemStyle: { opacity: 0 },
     emphasis: { itemStyle: { opacity: 0 } },
     data: assistData
@@ -88,7 +88,7 @@ const getWaterfallSeries = (args) => {
   }
 
   seriesAdv = {
-    name: t('ui.chart.value')||'数值',
+    name: t('ui.chart.value') || '数值',
     label: { show: true, position: 'top', formatter },
     data: mainData
   }
@@ -110,7 +110,7 @@ const getWaterfallRemainStatus = (dataSum, totalNum) =>
 export const waterfall = (columns, rows, settings, extra) => {
   const { tooltipVisible, t } = extra
   const { axisVisible = true, dataType = 'normal', dimension = columns[0] } = settings
-  const { remainName = t('ui.chart.other')||'其他', totalName = t('ui.chart.total')||'总计' } = settings
+  const { remainName = t('ui.chart.other') || '其他', totalName = t('ui.chart.total') || '总计' } = settings
   const { totalNum, xAxisName = dimension, digit = 2, labelMap = {} } = settings
 
   let metricsTemp = columns.slice()

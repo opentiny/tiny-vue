@@ -74,6 +74,7 @@ export const renderless = (
   onMounted(api.mounted)
   onUpdated(api.updated)
   onUnmounted(api.unmounted)
+
   watch(
     () => props.links,
     () => {

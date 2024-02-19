@@ -20,6 +20,7 @@ const getTooltip = (args) => {
   return {
     formatter(options) {
       if (tooltipFormatter) {
+        // eslint-disable-next-line prefer-spread, prefer-rest-params
         return tooltipFormatter.apply(null, arguments)
       }
 
@@ -35,30 +36,17 @@ const getTooltip = (args) => {
   }
 }
 
-const getPoint = (pointerShow) => ({
-  show: pointerShow,
-  'offsetCenter': [0, '-20%'],
-  'itemStyle': {
-    'color': 'auto'
-  }
+const getPoint = () => ({
+  show: false,
+  width: 10,
+  length: 10,
+  icon: 'path://M511.999488 819.413462 72.8374 204.586538 951.1626 204.586538Z',
+  offsetCenter: [0, '-106%'],
+  itemStyle: { color: 'auto' }
 })
 
 function getSeries(args) {
-  const {
-    dataName,
-    dataType,
-    digit,
-    dimension,
-    labelMap,
-    metrics,
-    rows,
-    seriesMap,
-    labelShow,
-    pointerShow,
-    tickShow,
-    splitLineShow,
-    width
-  } = args
+  const { dataName, dataType, digit, dimension, labelMap, metrics, rows, seriesMap } = args
 
   const series = rows.map((row) => {
     const label = row[dimension]
@@ -80,23 +68,18 @@ function getSeries(args) {
         formatter: !dataType
           ? '{value}'
           : (value) => {
-            const res = getFormated(value, dataType[label], digit)
-            return dataType[label] === 'percent' ? res.split('%')[0] + '{percent|%}' : res
-          },
+              const res = getFormated(value, dataType[label], digit)
+              return dataType[label] === 'percent' ? res.split('%')[0] + '{percent|%}' : res
+            },
         rich: { percent: { fontSize: 12, color: '#4e4e4e', padding: [0, 0, -20, 0] } }
       },
-      axisLabel: { formatter: formatter2, show: labelShow },
+      axisLabel: { formatter: formatter2 },
       itemStyle: { color: '#6D8FF0' },
-      pointer: getPoint(pointerShow),
-      axisLine: {
-        roundCap: true,
-        lineStyle: {
-          width
-        }
-      },
-      progress: { show: true, roundCap: true, width, color: '#6D8FF0' },
-      axisTick: { show: tickShow },
-      splitLine: { show: splitLineShow, length: 8, distance: 0, lineStyle: { width: 1, color: 'rgba(25,25,25,0.10)' } },
+      pointer: getPoint(),
+      axisLine: { roundCap: true, lineStyle: { width: 8, color: [[1, 'rgba(25,25,25,0.1)']] } },
+      progress: { show: true, roundCap: true, width: 8, color: '#6D8FF0' },
+      axisTick: { show: false },
+      splitLine: { length: 8, distance: 0, lineStyle: { width: 1, color: 'rgba(25,25,25,0.1)' } },
       title: { offsetCenter: [0, '25%'], color: '#191919', fontSize: 14 }
     }
 
@@ -105,6 +88,7 @@ function getSeries(args) {
         isObject(result[key]) ? Object.assign(result[key], seriesItem[key]) : (result[key] = seriesItem[key])
       )
     }
+
     return result
   })
 
@@ -113,25 +97,11 @@ function getSeries(args) {
 
 export const gauge = (columns, rows, settings, extra) => {
   const { dataName = {}, dataType = {}, digit = 2, labelMap = {} } = settings
-  const { dimension = columns[0], metrics = columns[1], seriesMap = {}, width = 8 } = settings
-  const { labelShow = true, pointerShow = true, tickShow = true, splitLineShow = true } = settings
+  const { dimension = columns[0], metrics = columns[1], seriesMap = {} } = settings
   const { tooltipFormatter, tooltipVisible } = extra
   const tooltip = tooltipVisible && getTooltip({ tooltipFormatter, dataType })
-  const seriesParams = {
-    rows,
-    dimension,
-    metrics,
-    digit,
-    dataType,
-    labelMap,
-    seriesMap,
-    dataName,
-    labelShow,
-    pointerShow,
-    tickShow,
-    splitLineShow,
-    width
-  }
+  const seriesParams = { rows, dimension, metrics, digit, dataType, labelMap, seriesMap, dataName }
   const series = getSeries(seriesParams)
+
   return { tooltip, series }
 }

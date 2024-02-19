@@ -9,7 +9,7 @@
   @apply shadow-md;
   @apply rounded;
   @apply absolute;
-  width: 274px;
+  @apply w-60;
   @apply right-0;
   @apply ~'z-[1000]';
   @apply box-content;
@@ -19,22 +19,6 @@
     font-size: 0;
     @apply relative;
     @apply overflow-hidden;
-
-    &:before {
-      @apply content-[''];
-      @apply ~"top-1/2";
-      @apply absolute;
-      @apply ~"-translate-y-2/4";
-      @apply h-12;
-      @apply ~'-z-[1]';
-      @apply left-0;
-      @apply right-0;
-      @apply box-border;
-      @apply ~"pt-1.5";
-      @apply text-left;
-      @apply border-t border-t-color-bg-3;
-      @apply border-b border-b-color-bg-3;
-    }
 
     &:after {
       @apply ~'left-1/2';
@@ -79,17 +63,19 @@
     @apply outline-0;
     @apply p-0;
     @apply m-0;
-    @apply rounded-sm;
+    @apply rounded;
     @apply text-xs;
 
     &.cancel {
       @apply text-color-brand;
       @apply text-left;
+      @apply rounded;
     }
 
     &.confirm {
       @apply text-color-text-inverse;
       @apply bg-color-brand;
+      @apply rounded;
 
       &:hover {
         @apply bg-color-brand-hover;

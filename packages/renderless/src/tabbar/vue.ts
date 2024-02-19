@@ -17,7 +17,7 @@ export const api = ['state', 'onChange', 'getChildrens']
 
 export const renderless = (
   props,
-  { computed, onMounted, reactive, watch, onBeforeUnmount },
+  { computed, onMounted, reactive, watch, onBeforeUnmount, provide },
   { vm, emit, nextTick, childrenHandler }
 ) => {
   const api = {}
@@ -28,7 +28,8 @@ export const renderless = (
     activeItem: false,
     showIndex: 0,
     showNumber: computed(() => (props.showNumber > 0 ? props.showNumber : -1)),
-    tabbarWidth: null
+    tabbarWidth: null,
+    itemList: computed(() => props.itemList || [])
   })
 
   Object.assign(api, {
@@ -45,12 +46,18 @@ export const renderless = (
   onMounted(() => {
     on(window, 'resize', api.initPage)
 
-    state.tabbarWidth = vm.$refs && vm.$refs.tabbar.offsetWidth
+    state.tabbarWidth = vm.$refs.tabbar && vm.$refs.tabbar.offsetWidth
     if (props.placeholder && props.fixed) {
       nextTick(() => {
         state.height = vm.$refs.tabbar.getBoundingClientRect().height
       })
     }
+
+    state.itemList.forEach((item) => {
+      if (item.customIcon) {
+        provide('customIcon', item.customIcon)
+      }
+    })
   })
 
   vm.$on('updateItems', api.getItems)

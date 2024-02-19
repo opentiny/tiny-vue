@@ -14,7 +14,6 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'max-min',
       name: {
@@ -187,6 +186,5 @@ export default {
       },
       codeFiles: ['left-right-slot.vue']
     }
-  ],
-  apis: []
+  ]
 }

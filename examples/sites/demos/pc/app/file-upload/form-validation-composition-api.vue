@@ -28,7 +28,7 @@
   <tiny-button type="success" @click="handleSubmit">提交</tiny-button>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref, reactive } from 'vue'
 import {
   Form as TinyForm,
@@ -64,7 +64,7 @@ const rules = reactive({
 
 const uploadSuccess = () => {
   // 模拟上传成功后，返回的数据信息,以此通过validatePass的校验
-  createData.files = `https://res.hc-cdn.com/tiny-vue-web-doc/3.10.5.20230903162611/static/images/book.jpg`
+  createData.files = `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/book.jpg`
 
   // 上传成功后再进行表单验证
   formValidate()

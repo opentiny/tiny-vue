@@ -12,8 +12,8 @@ type IsOdd<T extends `${number}`> = T extends `${infer Int}${infer Rest}` // Det
       ? true
       : false
     : Rest extends `${number}` // Type Definition
-    ? IsOdd<Rest>
-    : false
+      ? IsOdd<Rest>
+      : false
   : false
 type Compare<Num extends number> = Num extends number ? (IsOdd<`${Num}`> extends true ? Num : never) : never
 type OddRange = Compare<NumberRange>
@@ -32,7 +32,7 @@ export type MappedTuple<
 > = Count['length'] extends MAXIMUM_ALLOWED_BOUNDARY
   ? Result
   : Tuple extends []
-  ? []
-  : Result extends []
-  ? MappedTuple<Tuple, Tuple, [...Count, 1]> // recursion
-  : MappedTuple<Tuple, Result | [...Result, ...Tuple], [...Count, 1]>
+    ? []
+    : Result extends []
+      ? MappedTuple<Tuple, Tuple, [...Count, 1]> // recursion
+      : MappedTuple<Tuple, Result | [...Result, ...Tuple], [...Count, 1]>

@@ -74,17 +74,17 @@ export default {
       content: '主文本',
       text: '次文本',
       des: '辅助说明文字',
-      imgsrc: '/static/images/icon.png',
+      imgsrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/icon.png`,
       dataList: [
         {
           id: 1,
           content: '相机胶卷（2023）',
-          img: '/static/images/dog1.png'
+          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog1.png`
         },
         {
           id: 2,
           content: '相机胶卷（2023）',
-          img: '/static/images/dog2.png'
+          img: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
         }
       ]
     }

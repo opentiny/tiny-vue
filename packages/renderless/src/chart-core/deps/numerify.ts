@@ -179,6 +179,7 @@ function numberToFormat(options, value, format, roundingFunction) {
     value: value || 0,
     roundingFunction
   }
+
   if (format.includes('(')) {
     params.negFlag = true
     params.format = format.replace(/[(|)]/g, '')
@@ -196,6 +197,7 @@ function numberToFormat(options, value, format, roundingFunction) {
     params.optDec = true
     params.format = format.replace('[.]', '.')
   }
+
   const number = formatNumber(params)
 
   return getOutStr(params, number)
@@ -213,6 +215,7 @@ let numerifyPercent = {
   format: function format(value, formatType, roundingFunction, numerify) {
     let space = formatType.includes(' %') ? ' ' : ''
     let outStr = void 0
+
     if (numerify.options.scalePercentBy100) {
       value = value * 100
     }
@@ -227,6 +230,7 @@ let numerifyPercent = {
     } else {
       outStr = outStr + space + '%'
     }
+
     return outStr
   }
 }
@@ -255,9 +259,11 @@ function format(value, formatType, roundingFunc) {
         break
       }
     }
+
     fmtFunc = fmtFunc || numberToFormat.bind(null, options)
     output = fmtFunc(value, formatType, roundingFunc, numerify)
   }
+
   return output
 }
 
@@ -294,6 +300,7 @@ function numerify(input, formatType, roundingFunc) {
       value = null
     }
   }
+
   return format(value, formatType, roundingFunc)
 }
 

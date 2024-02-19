@@ -93,6 +93,7 @@ export interface IFormItemState {
   validateIcon: object | null
   isErrorInline: boolean
   isErrorBlock: boolean
+  tooltipType: string
 }
 
 export type IFormItemConstants = typeof $constants

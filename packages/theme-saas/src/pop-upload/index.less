@@ -11,7 +11,7 @@
   @apply items-center;
 
   &__dialog {
-    max-height: 512px;
+    @apply ~"max-h-[theme('spacing.112')]";
     @apply w-full;
     @apply flex;
     @apply flex-col;
@@ -44,7 +44,7 @@
   }
 
   &__dialog-table {
-    height: 280px;
+    @apply h-80;
     @apply w-full;
     @apply ~'mt-2.5';
 
@@ -64,15 +64,15 @@
     }
 
     .col1 {
-      @apply ~"w-3/5";
+      @apply ~'w-3/5';
     }
 
     .col2 {
-      @apply ~"w-1/5";
+      @apply ~'w-1/5';
     }
 
     .col3 {
-      @apply ~"w-1/5";
+      @apply ~'w-1/5';
     }
   }
 
@@ -90,7 +90,7 @@
 
   &__dialog-table-body {
     @apply w-full;
-    height: calc(100% - 36px);
+    height: calc(100% - theme('spacing.9'));
     @apply overflow-y-auto;
     @apply border-b border-b-color-bg-3;
   }
@@ -110,8 +110,8 @@
     }
 
     .delIcon {
-      height: 17px;
-      width: 17px;
+      @apply h-4;
+      @apply w-4;
       @apply fill-color-text-primary;
       @apply cursor-pointer;
 

@@ -31,9 +31,9 @@
       @apply bg-color-bg-3;
       @apply text-color-text-inverse;
       @apply absolute;
-      @apply ~"top-1/2";
+      @apply ~'top-1/2';
       @apply ~'z-[3]';
-      @apply ~"-translate-y-2/4";
+      @apply ~'-translate-y-2/4';
       @apply text-center;
       @apply text-xs;
       @apply flex;
@@ -41,9 +41,9 @@
       @apply justify-center;
 
       .@{svg-prefix-cls} {
-        @apply ~"w-4.5";
-        @apply ~"h-4.5";
-        @apply fill-color-bg-2;
+        @apply ~'w-4.5';
+        @apply ~'h-4.5';
+        @apply fill-color-icon-primary;
       }
 
       &.@{carousel-prefix-cls}__arrow-left {
@@ -57,18 +57,18 @@
       &.@{carousel-prefix-cls}__arrow-top {
         @apply top-8;
         @apply ~'left-1/2';
-        @apply ~"-translate-x-2/4";
+        @apply ~'-translate-x-2/4';
       }
 
       &.@{carousel-prefix-cls}__arrow-bottom {
         @apply bottom-0;
         @apply ~'left-1/2';
         top: unset;
-        @apply ~"-translate-x-2/4";
+        @apply ~'-translate-x-2/4';
       }
 
       &:hover {
-        @apply bg-color-text-primary;
+        @apply bg-color-bg-7;
 
         .@{svg-prefix-cls} {
           @apply fill-color-icon-inverse;
@@ -87,7 +87,7 @@
     @apply list-none;
     @apply bottom-0;
     @apply ~'left-1/2';
-    @apply ~"-translate-x-2/4";
+    @apply ~'-translate-x-2/4';
     @apply m-0;
     @apply py-0 px-1;
     @apply ~'z-[2]';
@@ -95,9 +95,9 @@
 
     .@{carousel-prefix-cls}__indicator {
       @apply inline-block;
-      @apply ~"h-4.5";
+      @apply ~'h-4.5';
       @apply bg-transparent;
-      @apply ~"pt-1.5" px-0 pb-2;
+      @apply ~'pt-1.5' px-0 pb-2;
       @apply my-4 mx-1;
       @apply cursor-pointer;
 
@@ -151,7 +151,7 @@
       @apply text-center;
 
       .@{carousel-prefix-cls}__button {
-        @apply ~"py-0.5" ~"px-4.5";
+        @apply ~'py-0.5' ~'px-4.5';
         @apply text-xs;
       }
 

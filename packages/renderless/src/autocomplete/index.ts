@@ -99,6 +99,8 @@ export const handleFocus =
     emit('focus', event)
 
     if (props.triggerOnFocus) {
+      state.suggestions = []
+      state.highlightedIndex = -1
       state.suggestionDisabled = false
       api.debouncedGetData(props.modelValue)
     }
@@ -120,6 +122,10 @@ export const handleClear =
 
 export const close = (state: IAutoCompleteState) => () => {
   state.activated = false
+}
+
+export const open = (api) => () => {
+  api.handleFocus()
 }
 
 export const handleKeyEnter =
@@ -176,11 +182,10 @@ export const select =
 export const highlight =
   ({
     constants,
-    refs,
+    vm,
     state
   }: {
     constants: IAutoCompleteConstants
-    refs: IAutoCompleteRenderlessParamUtils['refs']
     state: IAutoCompleteState
   }) =>
   (index) => {
@@ -197,7 +202,7 @@ export const highlight =
       index = state.suggestions.length - 1
     }
 
-    const suggestion = refs.popper.querySelector(constants.WARP_CLS)
+    const suggestion = vm.$refs.popper.querySelector(constants.WARP_CLS)
     const suggestionList = suggestion.querySelectorAll(constants.ITEM_CLS)
     let highlightItem = suggestionList[index]
     let scrollTop = suggestion.scrollTop
@@ -213,7 +218,7 @@ export const highlight =
 
     state.highlightedIndex = index
 
-    let $input = refs.input.getInput()
+    let $input = vm.$refs.input.getInput()
 
     $input.setAttribute('aria-activedescendant', `${state.id}-item-${state.highlightedIndex}`)
   }
@@ -228,13 +233,12 @@ export const computedVisible = (state: IAutoCompleteState) => {
 export const watchVisible =
   ({
     suggestionState,
-    refs
+    vm
   }: {
     suggestionState: IAutoCompleteApi['suggestionState']
-    refs: IAutoCompleteRenderlessParamUtils['refs']
   }) =>
   (val) => {
-    let $input = refs.input.getInput()
+    let $input = vm.$refs.input.getInput()
 
     if ($input) {
       suggestionState.dropdownWidth = $input.offsetWidth + 'px'
@@ -244,19 +248,18 @@ export const watchVisible =
 
 export const mounted =
   ({
-    refs,
+    vm,
     state,
     suggestionState
   }: {
-    refs: IAutoCompleteRenderlessParamUtils['refs']
     state: IAutoCompleteState
     suggestionState: IAutoCompleteApi['suggestionState']
   }) =>
   () => {
-    const input = refs.input
+    const input = vm.$refs.input
     const $input = input.getInput()
 
-    suggestionState.popperElm = refs.popper
+    suggestionState.popperElm = state.popperElm = vm.$refs.popper
     suggestionState.referenceElm = $input
 
     $input.setAttribute('role', 'textbox')

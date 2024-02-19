@@ -10,12 +10,27 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
+import { t } from '@opentiny/vue-locale'
 
 const $constants = {
   placeholder: 'ui.cascader.placeholder',
   COMPONENT_NAME: { FormItem: 'FormItem' },
-  EVENT_NAME: { FormBlur: 'form.blur' }
+  EVENT_NAME: { FormBlur: 'form.blur' },
+  defaultNodeConfig: {
+    lazy: false,
+    load: null,
+    isLeaf: 'leaf',
+    afterLoad: null,
+    currentNodeKey: null,
+    checkStrictly: false,
+    checkDescendants: null,
+    defaultCheckedKeys: null,
+    defaultExpandedKeys: null,
+    autoExpandParent: null,
+    defaultExpandAll: null,
+    filterNodeMethod: null
+  }
 }
 
 export const cascaderProps = {
@@ -44,17 +59,20 @@ export const cascaderProps = {
   options: Array,
   placeholder: {
     type: String,
-    default: ''
+    default: t('ui.select.placeholder')
   },
   popperAppendToBody: {
     type: Boolean,
     default: true
   },
   popperClass: String,
-  props: Object,
+  props: {
+    type: Object,
+    default: () => ({})
+  },
   separator: {
     type: String,
-    default: '/'
+    default: ' /'
   },
   showAllLevels: {
     type: Boolean,
@@ -71,11 +89,23 @@ export const cascaderProps = {
   hoverExpand: {
     type: Boolean,
     default: false
+  },
+  // mf时，传入action-sheet的title
+  title: String,
+  showHeader: {
+    type: Boolean,
+    default: true
+  },
+  levelTitle: Array, // 用来接受小屏下，传入的数组标题，赋值给 cascader-mobile的placeholder属性
+  blank: {
+    type: Boolean,
+    default: false
   }
 }
 
 export default defineComponent({
   name: $prefix + 'Cascader',
+  componentName: 'Cascader',
   props: cascaderProps,
   setup(props, context) {
     return $setup({ props, context, template })

@@ -390,3 +390,17 @@ export const scrollEnd =
     state.loading = true
     state.isYearMonthPanel ? api.loadYearMonth('down') : api.loadingDate('down')
   }
+
+export const clear = ({ state, emit, api }) => () => {
+  state.date = Array.isArray(state.date) ? [] : ''
+
+  emit('update:modelValue', state.date)
+  emit('clear', state.date)
+  api.close()
+}
+
+export const close = ({ emit, vm }) => () => {
+  vm.$refs.actionSheet.close()
+
+  emit('close')
+}

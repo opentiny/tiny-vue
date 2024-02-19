@@ -60,6 +60,7 @@ export const getFormated = (value, type, digit, defaultVal = '-') => {
   } else if (type === 'percent') {
     formatter = digit ? `0,0${digitStr}%` : '0,0.[00]%'
   }
+
   return _numerify(value, formatter)
 }
 

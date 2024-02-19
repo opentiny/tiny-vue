@@ -12,20 +12,23 @@ const context = import.meta.env.VITE_CONTEXT
 let routes = [
   // 组件总览
   {
-    path: `${context}:lang/overview`,
+    path: `${context}:all?/:lang/overview`,
     component: Layout,
+    name: 'overview',
     children: [{ name: 'Overview', path: '', component: Overview, meta: { title: '组件总览 | TinyVue' } }]
   },
   // 文档
   {
-    path: `${context}:lang/:theme/docs/:docId`,
+    path: `${context}:all?/:lang/:theme/docs/:docId`,
     component: Layout,
+    name: 'docs',
     children: [{ name: 'Docs', path: '', component: Docs }]
   },
   // 组件
   {
-    path: `${context}:lang/:theme/components/:cmpId`,
+    path: `${context}:all?/:lang/:theme/components/:cmpId`,
     component: Layout,
+    name: 'components',
     children: [{ name: 'Components', path: '', component: Components }]
   },
   // 未匹配到目标地址时，进行路由重定向

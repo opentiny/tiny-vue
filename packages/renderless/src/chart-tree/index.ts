@@ -11,7 +11,7 @@
  */
 
 import { isObject } from '../chart-core/deps/utils'
-import { itemLabel, itemContent, SAAS_DEFAULT_COLORS_10 } from '../chart-core/deps/constants'
+import { itemLabel, itemContent, SAAS_DEFAULT_COLORS } from '../chart-core/deps/constants'
 
 const getTreeLegend = (args) => {
   const { dimension, rows } = args
@@ -28,6 +28,7 @@ const getTreeTooltip = (args) => {
     triggerOn: 'mousemove',
     formatter(item) {
       if (tooltipFormatter) {
+        // eslint-disable-next-line prefer-spread, prefer-rest-params
         return tooltipFormatter.apply(null, arguments)
       }
       let template = []
@@ -51,7 +52,7 @@ const getTreeSeries = (args) => {
   rows.forEach((row) => {
     const seriesItem = seriesMap[row[dimension]]
     const label = { position: 'right', fontSize: 12, color: '#191919' }
-    const itemStyle = { color: SAAS_DEFAULT_COLORS_10[0] }
+    const itemStyle = { color: SAAS_DEFAULT_COLORS[0] }
     const lineStyle = { color: 'rgba(25 ,25 ,25 , 0.10)' }
     const symbolSize = 16
     const result = { type: 'tree', name: row[dimension], data: row[metrics], itemStyle, label, lineStyle, symbolSize }
@@ -80,5 +81,6 @@ export const tree = (columns, rows, settings, extra) => {
   const legendParam = { dimension, rows }
   const legend = legendVisible && rows.length > 1 && getTreeLegend(legendParam)
   const tooltip = tooltipVisible && getTreeTooltip({ tooltipFormatter })
+
   return { series, legend, tooltip }
 }

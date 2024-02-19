@@ -96,8 +96,12 @@ export default defineComponent({
     TinySelect: Select,
     TinyOption: Option
   },
+  emits: ['update:modelValue', 'change-office', 'change-jcr', 'change-region', 'change-rep'],
   props: {
-    modelValue: {},
+    modelValue: {
+      type: Array,
+      default: () => []
+    },
     placeholder: {
       type: String,
       default: ''
@@ -133,7 +137,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

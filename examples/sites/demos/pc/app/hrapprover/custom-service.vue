@@ -2,7 +2,7 @@
   <tiny-hrapprover
     v-model="value"
     :approval-person="person"
-    @update:approval-person="person = $event"
+    @update:approvalPerson="person = $event"
     :fetch-hrapprover="getFetchHrapprover"
     :category="category"
   ></tiny-hrapprover>

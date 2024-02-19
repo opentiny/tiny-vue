@@ -26,6 +26,11 @@ export const loadPickerData =
   () => {
     state.dataSource = cloneDeep(props.dataSource)
     state.defaultSelectedIndexs = cloneDeep(props.defaultSelectedIndexs)
+
+    if (!state.dataSource.length) {
+      return
+    }
+
     const level_1 = state.dataSource
     const level_n = getNextLevel([], state.dataSource, state.defaultSelectedIndexs, 0)
     if (level_n.length === 0) {

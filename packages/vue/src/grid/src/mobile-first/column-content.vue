@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, h, $props } from '@opentiny/vue-common'
+import { defineComponent, h, $props, isVnode } from '@opentiny/vue-common'
 import Tag from '@opentiny/vue-tag'
 import Cell from '../cell'
 import type { Datas, FieldConfig } from './type'
@@ -14,7 +14,7 @@ export default defineComponent({
     const { cardConfig = {} } = config
     const props = {
       attrs: { 'data-tag': 'tiny-table-column-content' },
-      class: 'my-0.5 truncate space-y-2 sm:space-y-1'
+      class: 'my-0.5 truncate space-y-2 sm:space-y-1 [&_[data-tag=tiny-input]]:leading-7'
     }
     const ons = () => ({ mouseenter: this.handleMouseenter, mouseleave: this.handleMouseleave })
 
@@ -75,7 +75,7 @@ export default defineComponent({
       const gridCls = ['grid mb-3', hasLogo ? 'grid-cols-[theme(spacing.11)_auto]' : 'grid-cols-[auto]']
       const logoCls = 'w-11 h-11 overflow-hidden rounded'
       const primCls = [
-        'text-base sm:text-sm text-color-text-primary font-normal leading-5',
+        'text-base sm:text-sm text-color-text-primary font-medium leading-5',
         'overflow-hidden text-ellipsis whitespace-normal line-clamp-2 sm:line-clamp-1',
         { 'ml-3': hasLogo }
       ]
@@ -97,7 +97,7 @@ export default defineComponent({
       ])
     } else {
       const cls = [
-        'w-full text-base sm:text-sm text-color-text-primary font-normal',
+        'w-full text-base sm:text-sm text-color-text-primary font-medium leading-5',
         'overflow-hidden text-ellipsis whitespace-normal line-clamp-2 sm:line-clamp-1'
       ]
 
@@ -107,14 +107,26 @@ export default defineComponent({
     contentVnodes = contentColumns.map((contentColumn) => {
       const params = genParams(contentColumn, row)
       const cls = [
-        'w-full text-sm sm:text-xs text-color-text-secondary font-light sm:font-normal leading-5 sm:leading-5',
-        'overflow-hidden text-ellipsis whitespace-normal line-clamp-2 sm:line-clamp-1'
+        'w-full text-sm sm:text-xs text-color-fill-9 font-normal sm:font-normal leading-5 sm:leading-5',
+        'overflow-hidden text-ellipsis whitespace-normal '
       ]
+      const cellNode = Cell.renderCell(h, params)
+      let cellIsVnode = false
 
-      return h('div', { class: cls, on: ons() }, [
-        h('span', {}, [Cell.renderHeader(h, params)]),
+      if (Array.isArray(cellNode)) {
+        cellIsVnode = isVnode(cellNode[0])
+      }
+
+      const VnodeCls = cellIsVnode
+        ? 'inline-block flex-grow [&_span]:leading-5 [&_div[data-tag=tiny-input]]:leading-5 ml-1'
+        : 'text-color-text-primary'
+      const divCls = cellIsVnode ? 'flex' : 'line-clamp-2 sm:line-clamp-1'
+
+      return h('div', { class: cls + divCls, on: ons() }, [
+        // 这里需要兼容AUI与TinyVue表头实现方式的差异，此处勿同步
+        h('span', { class: 'shrink-0' }, [Cell.renderHeader(h, params, 'card')]),
         h('span', {}, cardConfig.split || ':\u{20}'),
-        h('span', {}, [Cell.renderCell(h, params)])
+        h('span', { class: VnodeCls }, [cellNode])
       ])
     })
 

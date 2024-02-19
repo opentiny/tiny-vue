@@ -9,19 +9,22 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import type { ITransferProps, ITransferRenderlessParams } from '@/types'
 import { copyArray } from '../common/object'
 
-export const getObj = (props) => () => props.data.reduce((o, cur) => (o[cur[props.props.key]] = cur) && o, {})
+/** 生成全量数据对应的一个大对象 */
+export const getObj = (props: ITransferProps) => () =>
+  props.data.reduce((o, cur) => (o[cur[props.props.key]] = cur) && o, {})
 
+/** 返回左边的数据项 */
 export const getSourceData =
-  ({ props, Tree }) =>
+  ({ props, Tree }: Pick<ITransferRenderlessParams, 'props'> & { Tree: string }) =>
   () => {
     if (props.render && props.render.plugin.name === Tree) {
       return props.data
     }
 
-    return props.data.filter((item) => !props.modelValue.includes(item[props.props.key]))
+    return props.data.filter((item: any) => !props.modelValue.includes(item[props.props.key]))
   }
 
 export const getFlatData = (data, hasChildren) => {
@@ -49,8 +52,14 @@ export const getFlatData = (data, hasChildren) => {
   return nodes
 }
 
+/** 返回右边的数据项 */
 export const getTargetData =
-  ({ props, state, Tree, Table }) =>
+  ({
+    props,
+    state,
+    Tree,
+    Table
+  }: Pick<ITransferRenderlessParams, 'props' | 'state'> & { Tree: string; Table: string }) =>
   () => {
     if (props.render && props.render.plugin.name === Tree) {
       const nodes = getFlatData(copyArray(props.data), true)
@@ -90,8 +99,8 @@ export const getTargetData =
   }
 
 export const onSourceCheckedChange =
-  ({ emit, state }) =>
-  (val, movedKeys) => {
+  ({ emit, state }: Pick<ITransferRenderlessParams, 'emit' | 'state'>) =>
+  (val: string[], movedKeys: string[]) => {
     state.leftChecked = val
 
     if (movedKeys === undefined) {
@@ -102,8 +111,8 @@ export const onSourceCheckedChange =
   }
 
 export const onTargetCheckedChange =
-  ({ emit, state }) =>
-  (val, movedKeys) => {
+  ({ emit, state }: Pick<ITransferRenderlessParams, 'emit' | 'state'>) =>
+  (val: string[], movedKeys: string[]) => {
     state.rightChecked = val
 
     if (movedKeys === undefined) {
@@ -114,8 +123,8 @@ export const onTargetCheckedChange =
   }
 
 export const addToLeft =
-  ({ emit, props, state }) =>
-  (value) => {
+  ({ emit, props, state }: Pick<ITransferRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (value: undefined | 'all') => {
     const change = () => {
       state.isToLeft = true
 
@@ -143,8 +152,14 @@ export const addToLeft =
   }
 
 export const addToRight =
-  ({ emit, refs, props, state, Tree }) =>
-  (value) => {
+  ({
+    emit,
+    refs,
+    props,
+    state,
+    Tree
+  }: Pick<ITransferRenderlessParams, 'emit' | 'props' | 'state' | 'refs'> & { Tree: string }) =>
+  (value: undefined | 'all') => {
     const change = () => {
       state.isToLeft = false
 
@@ -192,7 +207,7 @@ export const addToRight =
     props.beforeTransfer ? props.beforeTransfer(change) : change()
   }
 
-export const clearQuery = (refs) => (which) => {
+export const clearQuery = (refs: ITransferRenderlessParams['refs']) => (which: 'left' | 'right') => {
   if (which === 'left') {
     refs.leftPanel.state.query = ''
   } else if (which === 'right') {
@@ -200,9 +215,10 @@ export const clearQuery = (refs) => (which) => {
   }
 }
 
+/** SortableJs 插件的回调逻辑， 添加，删除，更新事件后，触发本函数 */
 export const logicFun =
-  ({ props, emit, state }) =>
-  ({ event, isAdd, pullMode }) => {
+  ({ props, emit, state }: Pick<ITransferRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  ({ event, isAdd, pullMode }: { event: any; isAdd?: boolean; pullMode?: 'sort' }) => {
     let currentValue = props.modelValue.slice()
     let movedKeys = []
 
@@ -234,13 +250,21 @@ export const logicFun =
     emit('change', currentValue, 'left', movedKeys)
   }
 
+/** 组件加载后，给左右面板初始化Sortable的功能 */
 export const sortableEvent =
-  ({ api, droppanel, props, queryDom, refs }) =>
+  ({
+    api,
+    droppanel,
+    props,
+    queryDom,
+    refs
+  }: Pick<ITransferRenderlessParams, 'api' | 'props' | 'refs'> & { droppanel: string; queryDom: string }) =>
   () => {
     if (props.dropConfig) {
       const leftPanel = refs.leftPanel.$el.querySelector(droppanel)
       const Sortable = props.dropConfig.plugin
 
+      // eslint-disable-next-line no-new
       new Sortable(leftPanel, {
         group: 'sorting',
         handle: queryDom,
@@ -256,6 +280,7 @@ export const sortableEvent =
 
       const rightPanle = refs.rightPanel.$el.querySelector(droppanel)
 
+      // eslint-disable-next-line no-new
       new Sortable(rightPanle, {
         group: 'sorting',
         handle: queryDom,
@@ -273,35 +298,11 @@ export const sortableEvent =
   }
 
 export const getLeftCheckedData =
-  ({ props, state }) =>
+  ({ props, state }: Pick<ITransferRenderlessParams, 'state' | 'props'>) =>
   () =>
     state.sourceData.filter((item) => !item[props.props.disabled])
 
 export const getRightCheckedData =
-  ({ props, state }) =>
+  ({ props, state }: Pick<ITransferRenderlessParams, 'state' | 'props'>) =>
   () =>
     state.targetData.filter((item) => !item[props.props.disabled])
-
-export const recursiveData =
-  ({ api, props, state }) =>
-  (data, isCasader, sign) => {
-    const propChildren = (props.treeOp && props.treeOp.props && props.treeOp.props.children) || 'children'
-    const values = props.modelValue.slice()
-    const key = props.props.key
-
-    data.forEach((obj) => {
-      const isChecked = ~values.indexOf(obj[key])
-
-      if (sign && !isCasader) {
-        state.treeData.push(obj)
-      } else {
-        if (isChecked) {
-          state.treeData.push(obj)
-        }
-      }
-
-      if (obj[propChildren] && obj[propChildren].length > 0) {
-        api.recursiveData(obj[propChildren], isCasader, !!isChecked)
-      }
-    })
-  }

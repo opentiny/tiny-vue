@@ -23,18 +23,12 @@ export const dropdownMenuProps = {
     type: Boolean,
     default: false
   },
-  visibleArrow: {
-    type: Boolean,
-    default: false
-  },
+  visibleArrow: Boolean,
   arrowOffset: {
     type: Number,
     default: 0
   },
-  placement: {
-    type: String,
-    default: 'bottom-end' // aui的默认值为bottom-start
-  },
+  placement: String, // 默认主题 'bottom-end'
   popperClass: String,
   popperAppendToBody: {
     type: Boolean,

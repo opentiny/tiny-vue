@@ -11,9 +11,9 @@ const spinnerIcon = iconLoadingShadow()
 
 onMounted(() => {
   Loading.service({
-    text: '自定义loading图标',
+    text: '自定义 loading 图标',
     spinner: spinnerIcon,
-    target: document.getElementById('tiny-demo-loading-spinner'),
+    target: document.getElementById('tiny-demo-loading-spinner')
   })
 })
 </script>

@@ -10,7 +10,7 @@ export const standaloneMenus = [
 export const docMenus = [
   {
     label: '使用指南',
-    labelEn: 'Guide', //* **********
+    labelEn: 'Guide', //***********
     key: 'doc_use',
     children: [
       {
@@ -22,22 +22,22 @@ export const docMenus = [
   },
 ];
 
-// -------------------------------------------------------------------
+//-------------------------------------------------------------------
 export const cmpMenus = [
   {
     label: '表单选择',
     labelEn: 'Form Selection',
     key: 'cmp_formselect',
-    children: [{ name: 'Button', nameCn: '按钮', key: 'button' }],
+    children: [
+      { name: 'Button', nameCn: '按钮', key: 'button' }
+    ]
   },
   {
-    label: '提示组件',
-    labelEn: 'Tips Components',
-    key: 'cmp_tips_components',
-    children: [
-      { nameCn: '警告', name: 'Alert', key: 'alert' },
-      { nameCn: '面包屑', name: 'Breadcrumb', key: 'breadcrumb' },
-      { nameCn: '图表', name: 'Chart', key: 'chart' },
-    ],
-  },
+    'label': '提示组件',
+    'labelEn': 'Tips Components',
+    'key': 'cmp_tips_components',
+    'children': [
+      { 'nameCn': '警告', 'name': 'Alert', 'key': 'alert' }
+    ]
+  }
 ];

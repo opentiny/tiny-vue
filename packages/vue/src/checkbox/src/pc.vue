@@ -18,7 +18,8 @@
       { 'is-bordered': border },
       { 'is-checked': state.isChecked },
       { 'is-group-display-only': state.isGroupDisplayOnly },
-      { 'is-display-only': state.isDisplayOnly }
+      { 'is-display-only': state.isDisplayOnly },
+      { 'is-filter': state.shape === 'filter' }
     ]"
     :id="id"
     tabindex="-1"
@@ -36,7 +37,7 @@
       :aria-checked="indeterminate ? 'mixed' : false"
     >
       <span class="tiny-checkbox__inner" tabindex="1">
-        <icon-halfselect v-if="indeterminate" class="tiny-svg-size icon-halfselect" />
+        <icon-halfselect v-if="indeterminate && state.shape !== 'filter'" class="tiny-svg-size icon-halfselect" />
         <icon-checked-sur v-else-if="state.isChecked" class="tiny-svg-size icon-checked-sur" />
         <icon-check v-else class="tiny-svg-size icon-check" />
       </span>
@@ -73,8 +74,19 @@
     <span
       v-if="(slots.default && slots.default()) || state.isShowText"
       class="tiny-checkbox__label tiny-checkbox-display-only"
+      @mouseenter="handleLabelMouseenter"
+      @mouseleave="handleMouseleave"
     >
       <slot>{{ state.showText }}</slot>
+      <tiny-tooltip
+        ref="tooltip"
+        v-model="state.tooltipVisible"
+        :manual="true"
+        effect="light"
+        :content="state.displayedValue"
+        placement="top"
+      >
+      </tiny-tooltip>
     </span>
   </label>
 </template>
@@ -85,9 +97,10 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/checkbox/index.less'
 import { iconHalfselect, iconCheckedSur, iconCheck } from '@opentiny/vue-icon'
 import type { ICheckboxApi } from '@opentiny/vue-renderless/types/checkbox.type'
+import Tooltip from '@opentiny/vue-tooltip'
 
 export default defineComponent({
-  emits: ['change', 'update:modelValue', 'complete'],
+  emits: ['update:modelValue', 'change', 'complete', 'click'],
   props: [
     ...props,
     'modelValue',
@@ -105,12 +118,14 @@ export default defineComponent({
     'size',
     'border',
     'validateEvent',
-    'displayOnly'
+    'displayOnly',
+    'shape'
   ],
   components: {
     IconHalfselect: iconHalfselect(),
     IconCheckedSur: iconCheckedSur(),
-    IconCheck: iconCheck()
+    IconCheck: iconCheck(),
+    TinyTooltip: Tooltip
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ICheckboxApi

@@ -36,7 +36,11 @@
               ? 'w-10 h-10 p-2'
               : 'h-10 px-4 min-w-[theme(spacing.12)] max-w-[theme(spacing.32)] text-sm leading-10'
             : state.type !== 'icon' && 'h-6 px-2 min-w-[theme(spacing.10)] max-w-[theme(spacing.28)] text-xs leading-6',
-          { 'p-1 w-7 h-7 [&_svg]:w-4.5 [&_svg]:h-4.5': state.size === 'medium' && state.type === 'icon' },
+          state.size === 'medium'
+            ? state.type === 'icon'
+              ? 'p-1 w-7 h-7 [&_svg]:w-4.5 [&_svg]:h-4.5'
+              : 'text-sm h-7 leading-7'
+            : '',
           state.type === 'icon' && state.value === (label || text)
             ? 'fill-color-brand active:fill-color-brand'
             : 'fill-color-none-hover active:fill-color-none-hover hover:fill-color-icon-secondary',
@@ -65,8 +69,7 @@ import { renderless, api } from '@opentiny/vue-renderless/slider-button/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  emits: ['change'],
-  props: [...props, 'label', 'events', 'text', 'size', 'disabled'],
+  props: [...props, 'label', 'events', 'text', 'disabled'],
   setup(props, context): any {
     return setup({ props, context, renderless, api })
   }

@@ -1,6 +1,7 @@
 @import '../custom.less';
 
 @select-dropdown-prefix-cls: ~'@{css-prefix}select-dropdown';
+@input-prefix-cls: ~'@{css-prefix}input';
 @tree-prefix-cls: ~'@{css-prefix}tree';
 @popper-prefix-cls: ~'@{css-prefix}popper';
 @scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
@@ -14,9 +15,10 @@
   @apply shadow-md;
   @apply ~'mt-0.5';
   @apply box-border;
+  @apply leading-normal;
 
   .@{tree-prefix-cls} {
-    max-height: 300px;
+    @apply ~"max-h-[theme(spacing.72)]";
     @apply overflow-y-auto;
   }
 
@@ -32,22 +34,32 @@
     }
   }
 
-  &__empty {
+  &__empty-wrap {
     @apply ~'py-2.5 px-0';
     @apply m-0;
     @apply text-center;
     @apply text-color-text-secondary;
     @apply text-xs;
+
+    .@{select-dropdown-prefix-cls}__empty-images {
+      background-image: url('../images/select-nodata.png');
+      @apply w-16;
+      @apply h-16;
+      @apply mb-2;
+      @apply bg-cover;
+      @apply bg-no-repeat;
+      @apply inline-block;
+      @apply align-bottom;
+    }
   }
 
   & &__wrap {
-    max-height: 200px;
+    @apply max-h-56;
   }
 
   & &__list {
     @apply list-none;
     @apply m-0;
-    @apply py-1;
     @apply box-border;
     @apply text-left;
   }
@@ -56,6 +68,8 @@
     @apply whitespace-nowrap;
     @apply box-border;
     @apply py-0 px-3;
+    @apply m-1;
+    @apply rounded;
 
     > .tiny-svg,
     > span > .tiny-svg {
@@ -83,6 +97,31 @@
         @apply stroke-color-brand;
         stroke-linecap: round;
       }
+    }
+  }
+
+  // 下拉面板搜索框
+  & &__search {
+    @apply -mt-1;
+    @apply mr-4;
+    @apply ml-5;
+    @apply mb-2;
+    @apply w-10/12;
+
+    .@{input-prefix-cls}__inner {
+      @apply box-border;
+      @apply border;
+      @apply bg-white;
+      @apply pl-7;
+      @apply pr-3;
+      @apply rounded-none;
+      @apply border-t-transparent;
+      @apply border-r-transparent;
+      @apply border-l-transparent;
+    }
+
+    .@{input-prefix-cls}__suffix {
+      @apply hidden;
     }
   }
 }

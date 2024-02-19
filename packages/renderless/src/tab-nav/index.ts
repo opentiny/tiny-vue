@@ -15,12 +15,14 @@ import { capitalize } from '../common/string'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 import { on, off } from '../common/deps/dom'
 
-export const computedNavStyle = (state: ITabNavRenderlessParams['state']): { transform: string } => {
+export const computedNavStyle = (state: ITabNavRenderlessParams['state']): { transform: string; width?: string } => {
   const dir = ~[POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) ? 'X' : 'Y'
 
   if (state.mode === 'mobile') {
+    const { offset, width } = state.lineStyle
     return {
-      transform: `translate${dir}(${state.lineOffset}px) translate${dir}(-50%)`
+      width: `${width}px`,
+      transform: `translate${dir}(${offset}px) translate${dir}(-50%)`
     }
   } else {
     return {
@@ -48,7 +50,9 @@ export const scrollIntoView =
 
     if (state.mode === 'mobile') {
       nav.scrollLeft += to - from
-      state.lineOffset = activeTab.offsetLeft + activeTab.offsetWidth / 2
+      const nameHtml = activeTab.querySelector('.tiny-mobile-tabs__name') as HTMLElement
+      state.lineStyle.width = nameHtml.offsetWidth
+      state.lineStyle.offset = activeTab.offsetLeft + activeTab.offsetWidth / 2
     }
   }
 
@@ -72,10 +76,11 @@ export const updated =
         }
 
         if (item.classList && item.classList.contains('is-active')) {
-          const line = item.querySelector('.tiny-mobile-tabs__name')
+          const nameHtml = item.querySelector('.tiny-mobile-tabs__name') as HTMLElement
 
           state.isActive = true
-          state.lineOffset = item.offsetLeft + item.offsetWidth / 2
+          state.lineStyle.width = nameHtml.offsetWidth
+          state.lineStyle.offset = item.offsetLeft + item.offsetWidth / 2
         }
       })
     }

@@ -1,9 +1,5 @@
 <template>
-  <tiny-hrapprover
-    v-model="value"
-    :approval-person="person"
-    @update:approval-person="person = $event"
-  ></tiny-hrapprover>
+  <tiny-hrapprover v-model="value" :approval-person="person" @update:approvalPerson="person = $event"></tiny-hrapprover>
 </template>
 
 <script lang="jsx">
