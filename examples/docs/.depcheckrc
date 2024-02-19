@@ -1,0 +1,1 @@
+ignores: ["tailwindcss", "postcss", "autoprefixer", "flexsearch", "@root/typings-vue3"]

@@ -1,0 +1,175 @@
+@import '../custom.less';
+
+@grid-custom-prefix-cls: ~'@{css-prefix}grid-custom';
+@grid-prefix-cls: ~'@{css-prefix}grid';
+@grid-radio-prefix-cls: ~'@{css-prefix}grid-radio';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{grid-custom-prefix-cls} {
+  @apply w-full;
+
+  & &__tabs {
+    .@{grid-custom-prefix-cls}__tabs-head {
+      @apply whitespace-nowrap;
+      @apply m-0;
+      @apply overflow-hidden;
+      @apply h-10;
+      @apply w-full;
+      @apply relative;
+
+      ul {
+        @apply h-10;
+        @apply border-b border-b-color-border;
+        @apply list-none;
+        @apply box-border;
+
+        li {
+          @apply float-left;
+          @apply -mr-px;
+          @apply cursor-pointer;
+          @apply leading-7;
+          @apply py-0 px-5;
+          @apply text-color-text-primary;
+          min-width: 90px;
+          @apply h-10;
+          @apply leading-10;
+
+          &.@{grid-custom-prefix-cls}__tabs-selected {
+            @apply text-color-brand;
+            border-bottom: 3px solid theme('colors.color.brand.DEFAULT');
+            @apply font-bold;
+          }
+        }
+      }
+    }
+
+    .@{grid-custom-prefix-cls}__tabs-body {
+      @apply overflow-y-auto;
+      @apply border-0;
+      @apply py-3 px-0;
+
+      .tabs-body-item {
+        .@{grid-custom-prefix-cls}__alert {
+          @apply relative;
+          @apply border border-solid;
+          @apply rounded-sm;
+          @apply h-9;
+          @apply leading-9;
+          @apply pl-2;
+          @apply overflow-hidden;
+          @apply bg-color-bg-2;
+          @apply border-color-brand;
+          @apply text-color-text-primary;
+          @apply flex;
+          @apply items-center;
+
+          .@{svg-prefix-cls} {
+            @apply text-lg;
+            @apply fill-color-brand;
+          }
+
+          p {
+            @apply inline-block;
+            @apply leading-4;
+            @apply pl-2;
+          }
+        }
+
+        .@{grid-custom-prefix-cls}__setting {
+          @apply border-b border-b-color-border;
+          @apply pt-3 pr-0 pb-6 pl-0;
+
+          .setting-item {
+            @apply text-xs;
+            @apply ~'py-2.5' px-2;
+            @apply overflow-hidden;
+            @apply relative;
+            @apply flex;
+            @apply items-start;
+            @apply justify-between;
+
+            .setting-icon {
+              // 解决inline-block间隙问题
+              font-size: 0;
+              .icon {
+                @apply inline-block;
+                &:not(:last-child) {
+                  @apply mr-3;
+                }
+              }
+
+              .@{svg-prefix-cls} {
+                @apply text-sm;
+                @apply fill-color-icon-secondary;
+                @apply cursor-pointer;
+
+                &:hover {
+                  @apply fill-color-icon-placeholder;
+                }
+
+                &.open,
+                &.lock,
+                &.sort {
+                  @apply fill-color-brand;
+
+                  &:hover {
+                    @apply fill-color-icon-hover;
+                  }
+                }
+
+                &.is-visible {
+                  @apply invisible;
+                  @apply pointer-events-none;
+                }
+              }
+            }
+          }
+
+          &.other-setting {
+            @apply flex;
+            @apply flex-col;
+
+            .setting-item {
+              span.label {
+                width: 26%;
+                @apply inline-block;
+                @apply text-right;
+                @apply pr-6;
+              }
+
+              span.selection {
+                @apply flex-1;
+                @apply inline-block;
+
+                .@{grid-radio-prefix-cls} {
+                  @apply ~'mr-2.5';
+                  @apply !ml-0;
+                }
+
+                .@{grid-radio-prefix-cls}__label {
+                  @apply h-4;
+                  line-height: 18px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .@{grid-prefix-cls}__body-wrapper {
+      @apply ~'max-h-[45vh]';
+      @apply border-b-0;
+    }
+  }
+
+  & &__footer {
+    @apply m-3;
+    @apply text-center;
+    @apply flex;
+
+    .@{css-prefix}button--primary {
+      @apply ml-2;
+    }
+  }
+}

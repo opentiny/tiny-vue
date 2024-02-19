@@ -1,0 +1,20 @@
+@import '../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+
+.@{grid-prefix-cls}__footer-wrapper {
+  @apply -mt-px;
+  @apply bg-color-bg-1;
+
+  &.body__wrapper {
+    @apply overflow-x-auto;
+  }
+}
+
+.@{grid-prefix-cls} .@{grid-prefix-cls}__footer-border-line {
+  @apply w-full;
+  @apply h-px;
+  @apply bg-color-bg-4;
+  @apply absolute;
+  @apply z-10;
+}

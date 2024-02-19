@@ -1,0 +1,137 @@
+@import '../mixins/progress.less';
+@import '../custom.less';
+
+@progress-prefix-cls: ~'@{css-prefix}progress';
+
+.@{progress-prefix-cls} {
+  @apply relative;
+  @apply leading-none;
+
+  &.is-success {
+    .progress-status(theme('colors.color.success.DEFAULT'));
+  }
+
+  &.is-warning {
+    .progress-status(theme('colors.color.warning.DEFAULT'));
+  }
+
+  &.is-exception {
+    .progress-status(theme('colors.color.error.DEFAULT'));
+  }
+
+  &__text {
+    @apply text-xs;
+    @apply text-color-text-primary;
+    @apply inline-block;
+    @apply align-middle;
+    @apply ml-3;
+    @apply leading-none;
+
+    i {
+      @apply align-middle;
+      @apply inline-block;
+    }
+  }
+
+  &--circle,
+  &--dashboard {
+    @apply inline-block;
+
+    .@{progress-prefix-cls}__text {
+      @apply absolute;
+      @apply ~"top-1/2";
+      @apply left-0;
+      @apply w-full;
+      @apply text-center;
+      @apply m-0;
+      @apply translate-x-0 ~"-translate-y-1/2";
+
+      i {
+        @apply align-middle;
+        @apply inline-block;
+      }
+    }
+  }
+
+  &--without-text &__text {
+    @apply hidden;
+  }
+
+  &--without-text &-bar {
+    @apply pr-0;
+    @apply mr-0;
+    @apply block;
+  }
+
+  &--text-inside &-bar {
+    @apply pr-0;
+    @apply mr-0;
+  }
+
+  &-bar {
+    padding-right: 50px;
+    @apply w-full;
+    @apply -mr-12;
+    @apply box-border;
+
+    &__outer {
+      @apply ~'h-1.5';
+      border-radius: 100px;
+      @apply bg-color-bg-3;
+      @apply overflow-hidden;
+      @apply relative;
+      @apply align-middle;
+    }
+
+    &__inner {
+      @apply absolute;
+      @apply left-0;
+      @apply top-0;
+      @apply h-full;
+      @apply bg-color-brand;
+      @apply text-right;
+      border-radius: 100px;
+      @apply leading-none;
+      @apply whitespace-nowrap;
+      transition: width 0.6s ease;
+
+      &::after {
+        @apply content-[''];
+        @apply h-full;
+      }
+    }
+
+    &__innerText {
+      @apply text-color-text-inverse;
+      @apply text-xs;
+      @apply mr-3;
+    }
+
+    &,
+    &__inner::after,
+    &__innerText {
+      @apply inline-block;
+      @apply align-middle;
+    }
+  }
+}
+
+@-webkit-keyframes progress {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 32px 0;
+  }
+}
+
+@keyframes progress {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 32px 0;
+  }
+}

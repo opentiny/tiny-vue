@@ -1,0 +1,169 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@upload-list-prefix-cls: ~'@{css-prefix}mobile-upload-list';
+@image-viewer-prefix-cls: ~'@{css-prefix}mobile-image-viewer';
+@progress-prefix-cls: ~'@{css-prefix}progress';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{upload-list-prefix-cls} {
+  & &__item {
+    position: relative;
+    display: flex;
+    border-radius: var(--ti-mobile-upload-list-item-border-radius, 2px);
+    margin: 0 10px 8px 10px;
+    background-color: var(--ti-mobile-upload-list-item-bgcolor, #f9f9f9);
+    line-height: 48px;
+
+    &:focus {
+      outline: 0;
+    }
+
+    .icon-close {
+      fill: var(--ti-mobile-upload-list-icon-close-color, #606266);
+      font-size: var(--ti-mobile-upload-list-icon-size, 24px);
+      opacity: 0.75;
+      cursor: pointer;
+    }
+
+    .@{progress-prefix-cls} {
+      position: absolute;
+      top: unset;
+      bottom: 0;
+    }
+  }
+
+  // 图片墙样式
+  &--picture-card &__item {
+    width: var(--ti-mobile-file-upload-picture-card-size, 64px);
+    height: var(--ti-mobile-file-upload-picture-card-size, 64px);
+    margin: 0 12px 12px 0;
+    box-sizing: border-box;
+    float: left;
+
+    .card-close {
+      font-size: var(--ti-mobile-upload-list-picture-card-close-size, 16px);
+      fill: var(--ti-mobile-upload-list-picture-card-close-color, #f36f64);
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
+      z-index: 999;
+    }
+
+    .@{progress-prefix-cls} {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      bottom: auto;
+    }
+  }
+
+  &--picture-card &__item-thumbnail {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__card {
+    height: 100%;
+    width: 100%;
+  }
+
+  &--picture-card {
+    .@{progress-prefix-cls}-circle {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .@{progress-prefix-cls}__text {
+      color: #fff;
+    }
+  }
+
+  // 列表
+  &__list {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .file-type {
+      font-size: 0;
+
+      .@{svg-prefix-cls} {
+        font-size: var(--ti-mobile-upload-list-file-type-icon-size, 40px);
+        fill: var(--ti-mobile-upload-list-file-type-icon-color, #606266);
+        line-height: 1;
+        margin: 4px 8px 4px 4px;
+      }
+
+      .file-type-icon {
+        width: var(--ti-mobile-upload-list-file-type-icon-size, 40px);
+        height: var(--ti-mobile-upload-list-file-type-icon-size, 40px);
+        margin: 4px 8px 4px 4px;
+      }
+    }
+
+    .file-delete {
+      margin: 0 8px 0 12px;
+    }
+  }
+
+  &__text {
+    position: relative;
+    flex: 1;
+    max-width: calc(100% - 96px);
+
+    &-details {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &:focus {
+        outline: 0;
+      }
+    }
+
+    .file-name {
+      margin-top: 4px;
+      color: var(--ti-mobile-upload-list-file-name-color, #333);
+      font-size: var(--ti-mobile-upload-list-file-name-font-size, 14px);
+      line-height: 1.42857143;
+    }
+
+    .file-size {
+      color: var(--ti-mobile-upload-list-file-size-color, #999);
+      font-size: var(--ti-mobile-upload-list-file-size-font-size, 12px);
+      line-height: 1.41666667;
+    }
+  }
+
+  .@{progress-prefix-cls}-bar__outer {
+    background-color: var(--ti-mobile-upload-list-progress-outer-bgcolor, #e6e6e6);
+  }
+
+  .@{image-viewer-prefix-cls}__btn {
+    .@{image-viewer-prefix-cls}__actions {
+      background-color: none;
+    }
+
+    .@{image-viewer-prefix-cls}__actions-inner {
+      .@{svg-prefix-cls}:not(:last-child) {
+        display: none;
+      }
+    }
+  }
+}

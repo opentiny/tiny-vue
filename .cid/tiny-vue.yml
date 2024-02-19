@@ -1,0 +1,197 @@
+version: 0.1.0
+name: tiny-vue
+language: nodejs
+
+#  构建工具
+dependencies:
+  base:
+    nodejs: best
+
+#  构建机器
+machine:
+  standard:
+    euler:
+      - default
+
+#  构建脚本
+scripts:
+  - sh build.sh
+
+#  构建产物
+artifacts:
+  npm_deploy:
+    - config_path: ./dist/${componentName}/package.json
+    # - config_path: ./dist/alert/package.json
+    # - config_path: ./dist/action-menu/package.json
+    # - config_path: ./dist/button/package.json
+    # - config_path: ./dist/vue/package.json
+    # - config_path: ./dist/action-sheet/package.json
+    # - config_path: ./dist/amount/package.json
+    # - config_path: ./dist/area/package.json
+    # - config_path: ./dist/autocomplete/package.json
+    # - config_path: ./dist/avatar/package.json
+    # - config_path: ./dist/badge/package.json
+    # - config_path: ./dist/breadcrumb/package.json
+    # - config_path: ./dist/breadcrumb-item/package.json
+    # - config_path: ./dist/bulletin-board/package.json
+    # - config_path: ./dist/button-group/package.json
+    # - config_path: ./dist/calendar/package.json
+    # - config_path: ./dist/card-template/package.json
+    # - config_path: ./dist/carousel/package.json
+    # - config_path: ./dist/carousel-item/package.json
+    # - config_path: ./dist/cascader/package.json
+    # - config_path: ./dist/cascader-menu/package.json
+    # - config_path: ./dist/cascader-node/package.json
+    # - config_path: ./dist/cascader-panel/package.json
+    # - config_path: ./dist/chart/package.json
+    # - config_path: ./dist/chart/autonavi-map/package.json
+    # - config_path: ./dist/chart/baidu-map/package.json
+    # - config_path: ./dist/chart/chart-bar/package.json
+    # - config_path: ./dist/chart/chart-boxplot/package.json
+    # - config_path: ./dist/chart/chart-candle/package.json
+    # - config_path: ./dist/chart/chart-core/package.json
+    # - config_path: ./dist/chart/chart-funnel/package.json
+    # - config_path: ./dist/chart/chart-gauge/package.json
+    # - config_path: ./dist/chart/chart-graph/package.json
+    # - config_path: ./dist/chart/chart-heatmap/package.json
+    # - config_path: ./dist/chart/chart-histogram/package.json
+    # - config_path: ./dist/chart/chart-line/package.json
+    # - config_path: ./dist/chart/chart-liquidfill/package.json
+    # - config_path: ./dist/chart/chart-map/package.json
+    # - config_path: ./dist/chart/chart-pie/package.json
+    # - config_path: ./dist/chart/chart-radar/package.json
+    # - config_path: ./dist/chart/chart-ring/package.json
+    # - config_path: ./dist/chart/chart-sankey/package.json
+    # - config_path: ./dist/chart/chart-scatter/package.json
+    # - config_path: ./dist/chart/chart-sunburst/package.json
+    # - config_path: ./dist/chart/chart-tree/package.json
+    # - config_path: ./dist/chart/chart-waterfall/package.json
+    # - config_path: ./dist/chart/chart-wordcloud/package.json
+    # - config_path: ./dist/checkbox/package.json
+    # - config_path: ./dist/checkbox-button/package.json
+    # - config_path: ./dist/checkbox-group/package.json
+    # - config_path: ./dist/col/package.json
+    # - config_path: ./dist/collapse/package.json
+    # - config_path: ./dist/collapse-item/package.json
+    # - config_path: ./dist/collapse-transition/package.json
+    # - config_path: ./dist/common/package.json
+    # - config_path: ./dist/company/package.json
+    # - config_path: ./dist/container/package.json
+    # - config_path: ./dist/country/package.json
+    # - config_path: ./dist/credit-card/package.json
+    # - config_path: ./dist/credit-card-form/package.json
+    # - config_path: ./dist/crop/package.json
+    # - config_path: ./dist/currency/package.json
+    # - config_path: ./dist/date-panel/package.json
+    # - config_path: ./dist/date-picker/package.json
+    # - config_path: ./dist/date-range/package.json
+    # - config_path: ./dist/date-table/package.json
+    # - config_path: ./dist/dept/package.json
+    # - config_path: ./dist/detail-page/package.json
+    # - config_path: ./dist/dialog-box/package.json
+    # - config_path: ./dist/dialog-select/package.json
+    # - config_path: ./dist/drop-roles/package.json
+    # - config_path: ./dist/drop-times/package.json
+    # - config_path: ./dist/dropdown/package.json
+    # - config_path: ./dist/dropdown-item/package.json
+    # - config_path: ./dist/dropdown-menu/package.json
+    # - config_path: ./dist/espace/package.json
+    # - config_path: ./dist/exception/package.json
+    # - config_path: ./dist/file-upload/package.json
+    # - config_path: ./dist/filter-panel/package.json
+    # - config_path: ./dist/floatbar/package.json
+    # - config_path: ./dist/form/package.json
+    # - config_path: ./dist/form-item/package.json
+    # - config_path: ./dist/fullscreen/package.json
+    # - config_path: ./dist/fall-menu/package.json
+    # - config_path: ./dist/grid/package.json
+    # - config_path: ./dist/grid-column/package.json
+    # - config_path: ./dist/grid-manager/package.json
+    # - config_path: ./dist/grid-toolbar/package.json
+    # - config_path: ./dist/hrapprover/package.json
+    # - config_path: ./dist/icon/package.json
+    # - config_path: ./dist/infinite-scroll/package.json
+    # - config_path: ./dist/image/package.json
+    # - config_path: ./dist/image-viewer/package.json
+    # - config_path: ./dist/input/package.json
+    # - config_path: ./dist/ip-address/package.json
+    # - config_path: ./dist/layout/package.json
+    # - config_path: ./dist/link/package.json
+    # - config_path: ./dist/link-menu/package.json
+    # - config_path: ./dist/list/package.json
+    # - config_path: ./dist/loading/package.json
+    # - config_path: ./dist/locale/package.json
+    # - config_path: ./dist/locales/package.json
+    # - config_path: ./dist/logon-user/package.json
+    # - config_path: ./dist/logout/package.json
+    # - config_path: ./dist/milestone/package.json
+    # - config_path: ./dist/mini-picker/package.json
+    # - config_path: ./dist/modal/package.json
+    # - config_path: ./dist/month-range/package.json
+    # - config_path: ./dist/month-table/package.json
+    # - config_path: ./dist/nav-bar/package.json
+    # - config_path: ./dist/nav-menu/package.json
+    # - config_path: ./dist/notify/package.json
+    # - config_path: ./dist/numeric/package.json
+    # - config_path: ./dist/option/package.json
+    # - config_path: ./dist/option-group/package.json
+    # - config_path: ./dist/pager/package.json
+    # - config_path: ./dist/pager-item/package.json
+    # - config_path: ./dist/panel/package.json
+    # - config_path: ./dist/picker/package.json
+    # - config_path: ./dist/picker-column/package.json
+    # - config_path: ./dist/pop-upload/package.json
+    # - config_path: ./dist/popeditor/package.json
+    # - config_path: ./dist/popover/package.json
+    # - config_path: ./dist/popup/package.json
+    # - config_path: ./dist/progress/package.json
+    # - config_path: ./dist/pull-refresh/package.json
+    # - config_path: ./dist/radio/package.json
+    # - config_path: ./dist/radio-button/package.json
+    # - config_path: ./dist/radio-group/package.json
+    # - config_path: ./dist/rate/package.json
+    # - config_path: ./dist/roles/package.json
+    # - config_path: ./dist/row/package.json
+    # - config_path: ./dist/scroll-text/package.json
+    # - config_path: ./dist/scrollbar/package.json
+    # - config_path: ./dist/search/package.json
+    # - config_path: ./dist/select/package.json
+    # - config_path: ./dist/select-dropdown/package.json
+    # - config_path: ./dist/slide-bar/package.json
+    # - config_path: ./dist/slider/package.json
+    # - config_path: ./dist/split/package.json
+    # - config_path: ./dist/steps/package.json
+    # - config_path: ./dist/svg-icon/package.json
+    # - config_path: ./dist/switch/package.json
+    # - config_path: ./dist/tab-item/package.json
+    # - config_path: ./dist/tabbar/package.json
+    # - config_path: ./dist/tabbar-item/package.json
+    # - config_path: ./dist/table/package.json
+    # - config_path: ./dist/tabs/package.json
+    # - config_path: ./dist/tag/package.json
+    # - config_path: ./dist/tag-group/package.json
+    # - config_path: ./dist/text-popup/package.json
+    # - config_path: ./dist/time/package.json
+    # - config_path: ./dist/time-line/package.json
+    # - config_path: ./dist/time-panel/package.json
+    # - config_path: ./dist/time-picker/package.json
+    # - config_path: ./dist/time-range/package.json
+    # - config_path: ./dist/time-select/package.json
+    # - config_path: ./dist/time-spinner/package.json
+    # - config_path: ./dist/toggle-menu/package.json
+    # - config_path: ./dist/tooltip/package.json
+    # - config_path: ./dist/top-box/package.json
+    # - config_path: ./dist/transfer/package.json
+    # - config_path: ./dist/transfer-panel/package.json
+    # - config_path: ./dist/tree/package.json
+    # - config_path: ./dist/tree-menu/package.json
+    # - config_path: ./dist/upload/package.json
+    # - config_path: ./dist/upload-dragger/package.json
+    # - config_path: ./dist/upload-list/package.json
+    # - config_path: ./dist/user/package.json
+    # - config_path: ./dist/user-account/package.json
+    # - config_path: ./dist/user-contact/package.json
+    # - config_path: ./dist/user-head/package.json
+    # - config_path: ./dist/user-link/package.json
+    # - config_path: ./dist/wizard/package.json
+    # - config_path: ./dist/year-table/package.json

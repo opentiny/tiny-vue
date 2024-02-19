@@ -1,0 +1,22 @@
+export const tinyTagSMBTheme = {
+  'ti-tag-primary-close-icon-color': 'var(--ti-common-color-bg-secondary)',
+  'ti-tag-font-size': 'var(--ti-common-font-size-1)',
+  'ti-tag-small-height': 'var(--ti-common-line-height-base)',
+  'ti-tag-height': 'var(--ti-common-line-height-2)',
+  'ti-tag-medium-height': 'var(--ti-common-size-height-normal)',
+  'ti-tag-medium-padding-horizontal': 'var(--ti-common-space-3x)',
+  'ti-tag-small-padding-horizontal': 'var(--ti-common-space-base)',
+  'ti-tag-small-border-radius': 'var(--ti-common-border-radius-1)',
+  'ti-tag-primary-background-color': 'var(--ti-base-color-bg-6)',
+  'ti-tag-border-weight': '0',
+  'ti-tag-border-radius': 'var(--ti-common-border-radius-2)',
+  'ti-tag-close-font-size': 'var(--ti-common-font-size-2)',
+  'ti-tag-close-margin-left': 'var(--ti-common-space-base)',
+  'ti-tag-close-margin-right': 'calc(var(--ti-common-space-base) * -1)',
+  'ti-tag-close-medium-margin-left': 'var(--ti-common-space-2x)',
+  'ti-tag-close-medium-margin-right': 'calc(var(--ti-common-space-base) * -1)',
+  'ti-tag-close-small-margin-left': 'var(--ti-common-space-2)',
+  'ti-tag-close-small-margin-right': 'calc(var(--ti-common-space-2) * -1)',
+  'ti-tag-primary-close-opacity': '1',
+  'ti-tag-primary-close-hover-icon-color': 'var(--ti-common-color-icon-graybg-hover)'
+}

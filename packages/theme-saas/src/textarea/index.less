@@ -1,0 +1,132 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/input.less';
+@import '../mixins/common.less';
+@import '../custom.less';
+@import '../transition/icon.less';
+
+@textarea-prefix-cls: ~'@{css-prefix}textarea';
+@input-prefix-cls: ~'@{css-prefix}input';
+
+.@{textarea-prefix-cls} {
+  @apply relative;
+  @apply inline-block;
+  @apply w-full;
+  @apply align-bottom;
+  @apply text-xs;
+
+  &.is-disabled &__inner {
+    @apply bg-color-bg-4;
+    @apply border-color-border-disabled;
+    @apply text-color-text-secondary;
+    @apply cursor-not-allowed;
+    .placeholder(@color: theme('colors.color.text.placeholder'));
+  }
+
+  &.is-exceed {
+    .@{textarea-prefix-cls}__inner {
+      @apply border-color-error;
+    }
+
+    .@{input-prefix-cls}__count {
+      @apply border-color-error;
+    }
+  }
+
+  .@{input-prefix-cls}__count {
+    @apply text-color-text-placeholder;
+    @apply bg-color-bg-1;
+    @apply text-xs;
+    @apply absolute;
+    @apply bottom-1;
+    @apply right-4;
+  }
+
+  &__inner {
+    @apply block;
+    @apply w-full;
+    min-height: 60px;
+    @apply text-color-text-primary;
+    @apply border border-solid border-color-border;
+    @apply rounded-sm;
+    @apply bg-color-bg-1;
+    @apply py-2 px-3;
+    @apply leading-normal;
+    font-size: inherit;
+    @apply resize-y;
+    @apply box-border;
+    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    .placeholder(theme('colors.color.text.placeholder'));
+
+    &:hover,
+    &:focus {
+      @apply outline-0;
+      @apply border-color-border-hover;
+    }
+
+    &:focus {
+      @apply border-color-border-focus;
+      @apply caret-color-brand;
+    }
+
+    &:active {
+      @apply border-color-border-focus;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1;
+
+    &:horizontal {
+      @apply h-1;
+    }
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-sm;
+    @apply w-1;
+    @apply bg-color-text-disabled;
+  }
+  &.is-display-only {
+    .@{textarea-prefix-cls}-display-only {
+      .@{textarea-prefix-cls}-display-only__content {
+        @apply left-0;
+        @apply max-w-full;
+        @apply text-ellipsis;
+        display: -webkit-box;
+        /* autoprefixer: ignore next */
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        @apply overflow-hidden;
+        @apply break-words;
+        @apply whitespace-pre-wrap;
+      }
+    }
+    .@{textarea-prefix-cls}-autosize-display-only {
+      .@{textarea-prefix-cls}-display-only__content {
+        @apply left-0;
+        @apply max-w-full;
+        @apply absolute;
+        @apply break-words;
+        @apply whitespace-pre-line;
+        @apply leading-normal;
+      }
+    }
+    .@{textarea-prefix-cls}__inner {
+      @apply h-0;
+      @apply p-0;
+      @apply border-none;
+      @apply invisible;
+    }
+  }
+}

@@ -1,0 +1,89 @@
+@import '../custom.less';
+
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
+
+.checkbox-border-disabled(@color, @border-color) {
+  border-color: @border-color;
+  color: @color;
+  @apply pointer-events-none;
+  @apply cursor-not-allowed;
+
+  .@{checkbox-prefix-cls}__inner,
+  .@{checkbox-prefix-cls}__inner:hover {
+    border-color: @border-color;
+    @apply cursor-not-allowed;
+  }
+
+  &.is-checked {
+    border-color: @color;
+
+    .@{checkbox-prefix-cls}__inner,
+    .@{checkbox-prefix-cls}__inner:hover {
+      background-color: @color;
+      border-color: @color;
+
+      &::after {
+        border-color: @border-color;
+      }
+    }
+  }
+}
+
+.checkbox-input-disabled(@color, @bgcolor, @color-checked, @path-color) {
+  .@{checkbox-prefix-cls}__inner {
+    @apply cursor-not-allowed;
+
+    & + .@{checkbox-prefix-cls}__label {
+      @apply cursor-not-allowed;
+    }
+
+    svg {
+      fill: @bgcolor;
+    }
+  }
+  svg.icon-check path:nth-of-type(1) {
+    fill: @path-color;
+  }
+  svg.icon-check path:nth-of-type(2) {
+    fill: @bgcolor;
+  }
+
+  svg.icon-checked-sur path:nth-of-type(1) {
+    fill: @color-checked;
+  }
+
+  svg.icon-halfselect path:nth-of-type(1) {
+    fill: @color-checked;
+  }
+
+  &.is-checked {
+    .@{checkbox-prefix-cls}__inner,
+    .@{checkbox-prefix-cls}__inner:hover {
+      svg {
+        fill: @color-checked;
+      }
+    }
+  }
+
+  &.is-indeterminate {
+    .@{checkbox-prefix-cls}__inner,
+    .@{checkbox-prefix-cls}__inner:hover {
+      svg {
+        fill: @color-checked;
+      }
+    }
+  }
+
+  & + span.@{checkbox-prefix-cls}__label {
+    color: @color;
+    @apply cursor-not-allowed;
+  }
+
+  &:not(.is-checked):not(.is-indeterminate) {
+    svg {
+      > path:first-child {
+        fill: @path-color;
+      }
+    }
+  }
+}

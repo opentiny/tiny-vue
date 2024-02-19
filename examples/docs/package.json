@@ -1,0 +1,25 @@
+{
+  "name": "@opentiny/vue-localhost-dev",
+  "type": "module",
+  "version": "1.0.8",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@opentiny/vue": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme-saas": "workspace:~",
+    "@opentiny/vue-design-aurora": "workspace:~",
+    "@opentiny/vue-design-smb": "workspace:~",
+    "sortablejs": "1.15.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.1"
+  },
+  "files": [
+    "resources"
+  ]
+}

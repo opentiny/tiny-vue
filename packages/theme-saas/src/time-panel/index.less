@@ -1,0 +1,99 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@time-panel-prefix-cls: ~'@{css-prefix}time-panel';
+
+.@{time-panel-prefix-cls} {
+  margin: 5px 0;
+  @apply bg-color-bg-1;
+  @apply shadow-md;
+  @apply rounded;
+  @apply absolute;
+  width: 274px;
+  @apply right-0;
+  @apply ~'z-[1000]';
+  @apply box-content;
+  .user-select(none);
+
+  &__content {
+    font-size: 0;
+    @apply relative;
+    @apply overflow-hidden;
+
+    &:before {
+      @apply content-[''];
+      @apply ~"top-1/2";
+      @apply absolute;
+      @apply ~"-translate-y-2/4";
+      @apply h-12;
+      @apply ~'-z-[1]';
+      @apply left-0;
+      @apply right-0;
+      @apply box-border;
+      @apply ~"pt-1.5";
+      @apply text-left;
+      @apply border-t border-t-color-bg-3;
+      @apply border-b border-b-color-bg-3;
+    }
+
+    &:after {
+      @apply ~'left-1/2';
+      margin-left: 12%;
+      margin-right: 12%;
+    }
+
+    &:before {
+      padding-left: 50%;
+      margin-right: 12%;
+      margin-left: 12%;
+    }
+
+    &.has-seconds {
+      &:after {
+        left: calc(100% / 3 * 2);
+      }
+
+      &:before {
+        padding-left: calc(100% / 3);
+      }
+    }
+  }
+
+  &__footer {
+    @apply border-t border-t-color-bg-3;
+    @apply py-3 px-4;
+    @apply h-14;
+    @apply leading-8;
+    @apply box-border;
+    @apply flex;
+    @apply justify-between;
+  }
+
+  &__btn {
+    @apply border-none;
+    @apply leading-7;
+    min-width: 72px;
+    @apply h-7;
+    @apply cursor-pointer;
+    @apply bg-transparent;
+    @apply outline-0;
+    @apply p-0;
+    @apply m-0;
+    @apply rounded-sm;
+    @apply text-xs;
+
+    &.cancel {
+      @apply text-color-brand;
+      @apply text-left;
+    }
+
+    &.confirm {
+      @apply text-color-text-inverse;
+      @apply bg-color-brand;
+
+      &:hover {
+        @apply bg-color-brand-hover;
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+/**
+* Copyright (c) 2023 - present TinyVue Authors.
+* Copyright (c) 202 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@dialog-select-prefix-cls: ~'@{css-prefix}dialog-select';
+@dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
+
+.@{dialog-select-prefix-cls} {
+  .component-css-vars-dialog-select();
+
+  .@{dialog-box-prefix-cls}__body {
+    margin-top: var(--ti-dialog-box-body-margin-top);
+    margin-bottom: var(--ti-dialog-box-body-margin-bottom);
+  }
+
+  .@{dialog-select-prefix-cls}__body {
+
+    &-search,
+    &-selector {
+      margin-bottom: var(--ti-dialog-select-body-margin-bottom);
+    }
+
+    &-tree {
+      margin-right: var(--ti-dialog-select-tree-margin-right);
+    }
+
+    &-box {
+      border: var(--ti-dialog-select-body-box-border-weight) var(--ti-dialog-select-body-box-border-style) var(--ti-dialog-select-body-box-border-color);
+      border-left: none;
+    }
+
+    &-tree-wrapper {
+      overflow: auto;
+    }
+  }
+
+  .@{dialog-select-prefix-cls}__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--ti-dialog-select-footer-padding-vertical) var(--ti-dialog-select-footer-padding-horizontal);
+
+    &-pager {
+      .tiny-pager {
+        padding: var(--ti-dialog-select-pager-padding-vertical) var(--ti-dialog-select-pager-padding-horizontal);
+
+        &__btn-prev {
+          margin-left: var(--ti-dialog-select-pager-prev-margin-left);
+        }
+      }
+    }
+  }
+
+  .tiny-grid__body-wrapper {
+    border-bottom: var(--ti-dialog-select-grid-body-border-weight-bottom);
+  }
+
+  .tiny-split-trigger-con-vertical.tiny-split-trigger-con-simple {
+    padding-left: var(--ti-dialog-select-split-simple-padding-left);
+    padding-right: var(--ti-dialog-select-split-simple-padding-right);
+  }
+
+  .tiny-split-trigger-vertical {
+    background-color: var(--ti-dialog-select-split-bg-color);
+  }
+
+  .tiny-split-wrapper {
+    box-shadow: none;
+  }
+
+  &.radio-check {
+    .tiny-split-trigger-con-vertical.tiny-split-trigger-con-simple {
+      display: none;
+    }
+
+    .tiny-dialog-select__body-tree {
+      margin-right: var(--ti-dialog-select-tree-radio-margin-right);
+    }
+  }
+}

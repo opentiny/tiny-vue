@@ -1,0 +1,119 @@
+@import '../mixins/input.less';
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@ip-address-prefix-cls: ~'@{css-prefix}ip-address';
+
+.@{ip-address-prefix-cls} {
+  @apply w-72;
+  @apply ~"max-w-[100%]";
+  @apply outline-0;
+  @apply inline-table;
+  @apply text-left;
+  @apply box-border;
+
+  &__input {
+    @apply relative;
+    @apply p-0;
+    @apply w-full;
+    @apply h-7;
+    @apply border border-solid border-color-border;
+    @apply text-color-text-primary;
+    @apply rounded-sm;
+    @apply bg-color-bg-1;
+    @apply text-xs;
+    @apply block;
+    @apply whitespace-nowrap;
+    @apply bg-none;
+    .user-select(auto);
+    @apply ~"transition-[border]" duration-300;
+    @apply outline-0;
+    @apply box-border;
+    .input-readonly(@color: theme('colors.color.brand.DEFAULT'));
+    .placeholder(@color: theme('colors.color.text.placeholder'));
+
+    &:hover {
+      @apply border-color-border-focus;
+    }
+
+    &:focus,
+    &:active,
+    &.active,
+    &[active] {
+      @apply border-color-border-focus;
+    }
+
+    &:focus {
+      @apply caret-color-brand;
+    }
+
+    &.disabled,
+    &[disabled] {
+      @apply cursor-not-allowed;
+      @apply pointer-events-none;
+      @apply shadow-none;
+      @apply bg-color-bg-4;
+      @apply border-color-border-disabled;
+      @apply text-color-text-disabled;
+      .placeholder(@color: theme('colors.color.text.disabled'));
+
+      .@{css-prefix}svg {
+        @apply fill-color-text-disabled;
+      }
+    }
+
+    li {
+      @apply float-left;
+      @apply overflow-hidden;
+      @apply ~'w-1/4';
+      @apply inline-flex;
+      @apply items-center;
+
+      > input {
+        @apply border-none;
+        @apply text-center;
+        @apply outline-0;
+        background: none;
+        @apply text-color-text-primary;
+        width: ~'calc(100% - theme(spacing.3))';
+        @apply float-left;
+        @apply h-7;
+        @apply leading-7;
+        @apply p-0;
+        @apply text-xs;
+
+        &.disabled,
+        &[disabled] {
+          @apply text-color-text-disabled;
+        }
+      }
+
+      svg {
+        @apply align-middle;
+        @apply fill-color-text-primary;
+      }
+
+      &:last-child {
+        > svg {
+          @apply hidden;
+        }
+
+        > input {
+          @apply w-full;
+          @apply text-xs;
+        }
+      }
+
+      &:only-child {
+        @apply w-full;
+
+        > input {
+          @apply w-full;
+          @apply text-left;
+          @apply py-0 px-2;
+          @apply text-xs;
+        }
+      }
+    }
+  }
+}

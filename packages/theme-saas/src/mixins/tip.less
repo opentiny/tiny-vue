@@ -1,0 +1,69 @@
+.tip-variant(@color; @fontColor; @shadow; @top) {
+  background: @color;
+  color: @fontColor;
+  border-radius: 3px;
+  box-shadow: @shadow;
+  margin-top: @top;
+
+  &:before {
+    .tip-make-arrow(4px 4px 4px 0; transparent @color);
+  }
+
+  &.tips-bottom {
+    &:before {
+      .tip-make-arrow(0 4px 4px 4px; @color transparent);
+    }
+  }
+
+  &.tips-left {
+    &:before {
+      .tip-make-arrow(4px 0 4px 4px; transparent @color);
+    }
+  }
+
+  &.tips-top {
+    &:before {
+      .tip-make-arrow(4px 4px 0 4px; @color transparent);
+    }
+  }
+
+  &.tips-bottom-left {
+    &:before {
+      .tip-make-arrow(0 4px 4px 4px; @color transparent);
+    }
+  }
+
+  &.tips-bottom-right {
+    &:before {
+      .tip-make-arrow(0 4px 4px 4px; @color transparent);
+    }
+  }
+
+  &.tips-top-left {
+    &:before {
+      .tip-make-arrow(4px 4px 0 4px; @color transparent);
+    }
+  }
+
+  &.tips-top-right {
+    &:before {
+      .tip-make-arrow(4px 4px 0 4px; @color transparent);
+    }
+  }
+}
+
+.tip-arrow (@tips-arrow-left; @tips-arrow-top; @tips-arrow-margin-top) {
+  @apply content-[''];
+  left: @tips-arrow-left;
+  top: @tips-arrow-top;
+  margin-top: @tips-arrow-margin-top;
+}
+
+.tip-make-arrow (@border-width; @arrow-color) {
+  @apply absolute;
+  @apply w-0;
+  @apply h-0;
+  @apply border-solid;
+  border-width: @border-width;
+  border-color: @arrow-color;
+}

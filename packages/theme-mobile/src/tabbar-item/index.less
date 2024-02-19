@@ -1,0 +1,89 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@tabbar-item-prefix-cls: ~'@{css-prefix}mobile-tabbar-item';
+@info-prefix-cls: ~'@{css-prefix}mobile-info';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{tabbar-item-prefix-cls} {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  cursor: pointer;
+
+  &__icon {
+    position: relative;
+    margin-bottom: 2px;
+
+    .@{svg-prefix-cls} {
+      display: block;
+      min-width: 1em;
+      font-size: var(--ti-mobile-tabbar-item-icon-size, 18px);
+      fill: var(--ti-mobile-tabbar-item-color, #666);
+    }
+
+    img {
+      display: block;
+      height: var(--ti-mobile-tabbar-item-icon-size, 18px);
+    }
+  }
+
+  &__text {
+    font-size: var(--ti-mobile-tabbar-item-text-font-size, 10px);
+    color: var(--ti-mobile-tabbar-item-color, #666);
+  }
+
+  &.is-active &__icon {
+    .@{svg-prefix-cls} {
+      fill: var(--ti-mobile-tabbar-item-active-color, #f04b3d);
+    }
+  }
+
+  &.is-active &__text {
+    color: var(--ti-mobile-tabbar-item-active-color, #f04b3d);
+  }
+
+  .@{info-prefix-cls} {
+    margin-top: 2px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    min-width: 16px;
+    padding: 0 3px;
+    color: #fff;
+    font-weight: 500;
+    font-size: var(--ti-mobile-tabbar-item-info-font-size, 12px);
+    font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 14px;
+    text-align: center;
+    background-color: var(--ti-mobile-tabbar-item-info-bgcolor, #ee0a24);
+    border: 1px solid #fff;
+    border-radius: var(--ti-mobile-tabbar-item-info-border-radius, 16px);
+    transform: translate(50%, -50%);
+    transform-origin: 100%;
+  }
+
+  .@{info-prefix-cls}--dot {
+    width: 8px;
+    min-width: 0;
+    height: 8px;
+    background-color: var(--ti-mobile-tabbar-item-info-bgcolor, #ee0a24);
+    border-radius: 100%;
+  }
+}
