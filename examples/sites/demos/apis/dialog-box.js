@@ -62,6 +62,14 @@ export default {
           pcDemo: 'destroy-on-close'
         },
         {
+          name: 'drag-outside-window',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: { 'zh-CN': '可将弹窗拖出窗口', 'en-US': 'Pop ups can be dragged out of the window' },
+          mode: ['pc'],
+          pcDemo: 'draggable'
+        },
+        {
           name: 'dialog-class',
           type: 'string',
           defaultValue: '',
