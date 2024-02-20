@@ -11,6 +11,7 @@
  */
 
 import { getObj } from '../common/object'
+import { omitText } from '../common/string'
 
 const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
 
@@ -37,13 +38,24 @@ export const contains =
     }
   }
 
-export const handleGroupDisabled = (state) => (val) => {
-  state.groupDisabled = val
-}
+export const handleGroupDisabled =
+  ({ state, vm }) =>
+  (val) => {
+    state.groupDisabled = val
+    vm.groupDisabled = val
+  }
 
 export const hoverItem =
   ({ select, props, state, vm }) =>
-  () => {
+  (e) => {
+    // 选项超出省略时新增title提示
+    const dom = e.target
+    const text = dom.textContent
+    const font = window.getComputedStyle(dom).font
+    const rect = dom.getBoundingClientRect()
+    const res = omitText(text, font, rect.width)
+    state.showTitle = res.o
+
     if (!props.disabled && !state.groupDisabled) {
       select.state.hoverIndex = select.state.options.indexOf(vm)
     }
@@ -61,7 +73,7 @@ export const selectOptionClick =
 export const queryChange =
   ({ props, state }) =>
   (query) => {
-    state.visible = new RegExp(escapeRegexpString(query), 'i').test(state.currentLabel) || props.created
+    state.visible = new RegExp(escapeRegexpString(query), 'i').test(state.currentLabel) || !!props.created
   }
 
 export const toggleEvent = ({ props, vm, type }) => {

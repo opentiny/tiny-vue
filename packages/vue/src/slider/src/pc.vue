@@ -81,7 +81,7 @@
             @blur="handleSlotInputBlur"
             @input="handleSlotInput"
             :disabled="state.disabled"
-          /><span>%</span>
+          /><span>{{ unit }}</span>
         </slot>
       </div>
     </template>
@@ -107,6 +107,7 @@ export default defineComponent({
     'numPages',
     'showTip',
     'showInput',
+    'unit',
     'height',
     'range',
     'formatTooltip'

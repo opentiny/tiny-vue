@@ -13,6 +13,8 @@
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-date-picker": "workspace:~",
+    "@opentiny/vue-radio-button": "workspace:~",
+    "@opentiny/vue-radio-group": "workspace:~",
     "@opentiny/vue-slider-button": "workspace:~",
     "@opentiny/vue-slider-button-group": "workspace:~"
   },

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('单选找不到匹配值', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#clear-no-match-value')
   const wrap = page.locator('#clear-no-match-value')
   const input = wrap.locator('.tiny-input__inner').nth(0)
@@ -11,6 +12,7 @@ test('单选找不到匹配值', async ({ page }) => {
 })
 
 test('多选找不到匹配值', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#clear-no-match-value')
   const wrap = page.locator('#clear-no-match-value')
   const tag = wrap.locator('.tiny-select').nth(1).locator('.tiny-tag')

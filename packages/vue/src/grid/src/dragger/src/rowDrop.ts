@@ -25,6 +25,7 @@
 import { findTree } from '@opentiny/vue-renderless/grid/static/'
 import Modal from '@opentiny/vue-modal'
 import GlobalConfig from '../../config'
+import { isVue2 } from '@opentiny/vue-common'
 
 function handleIfScrollYLoadTruthy({ isScrollYLoad, _vm, selfRow, prevTrElem, targetTrElem }) {
   if (!isScrollYLoad) {
@@ -51,25 +52,27 @@ function handleIfScrollYLoadTruthy({ isScrollYLoad, _vm, selfRow, prevTrElem, ta
 
 export const createHandlerOnEnd = ({ _vm, refresh }) => {
   return (event) => {
-    let insertRecords = _vm.getInsertRecords()
+    const insertRecords = _vm.getInsertRecords()
     // 包含新增数据的表格不可再拖动行顺序
-    if (insertRecords.length) return false
-    let options = { children: 'children' }
-    let targetTrElem = event.item
-    let { parentNode: wrapperElem, previousElementSibling: prevTrElem } = targetTrElem
-    let tableTreeData = _vm.data || _vm.tableData
-    let selfRow = _vm.getRowNode(targetTrElem).item
-    let selfNode = findTree(tableTreeData, (row) => row === selfRow, options)
-    let isScrollYLoad = _vm.scrollYLoad
-
+    if (insertRecords.length) {
+      return false
+    }
+    const options = { children: 'children' }
+    const targetTrElem = event.item
+    const { parentNode: wrapperElem, previousElementSibling: prevTrElem } = targetTrElem
+    // 这里优先使用用户通过props传递过来的表格数据，所以拖拽后会改变原始数据
+    const tableTreeData = _vm.data || _vm.tableData
+    const selfRow = _vm.getRowNode(targetTrElem).item
+    const selfNode = findTree(tableTreeData, (row) => row === selfRow, options)
+    const isScrollYLoad = _vm.scrollYLoad
     if (!isScrollYLoad) {
       if (prevTrElem) {
         // 移动到节点
-        let prevRow = _vm.getRowNode(prevTrElem).item
-        let prevNode = findTree(tableTreeData, (row) => row === prevRow, options)
+        const prevRow = _vm.getRowNode(prevTrElem).item
+        const prevNode = findTree(tableTreeData, (row) => row === prevRow, options)
         if (findTree(selfRow[options.children], (row) => prevRow === row, options)) {
           // 错误的移动
-          let oldTrElem = wrapperElem.children[event.oldIndex]
+          const oldTrElem = wrapperElem.children[event.oldIndex]
           wrapperElem.insertBefore(targetTrElem, oldTrElem)
 
           return Modal.message({
@@ -78,7 +81,7 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
           })
         }
 
-        let currRow = selfNode.items.splice(selfNode.index, 1)[0]
+        const currRow = selfNode.items.splice(selfNode.index, 1)[0]
         if (_vm.hasTreeExpand(prevRow)) {
           // 移动到当前的子节点
           prevRow[options.children].splice(0, 0, currRow)
@@ -89,7 +92,7 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
         }
       } else {
         // 移动到第一行
-        let currRow = selfNode.items.splice(selfNode.index, 1)[0]
+        const currRow = selfNode.items.splice(selfNode.index, 1)[0]
         tableTreeData.unshift(currRow)
         _vm.tableFullData = [].concat(tableTreeData)
       }
@@ -98,7 +101,8 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
     handleIfScrollYLoadTruthy({ isScrollYLoad, _vm, selfRow, prevTrElem, targetTrElem })
     // 如果变动了树层级，需要刷新数据
     _vm.$emit('row-drop-end', event, _vm, _vm.scrollYLoad ? tableTreeData : _vm.tableFullData)
-    refresh && _vm.data && _vm.refreshData()
+    // 因为vue2劫持了数组方法，所以在data通过splice改变数组时（数组长度不变）会触发更新，但是vue3是浅层响应，所以需要通过传递数据让表格更新
+    refresh && _vm.data && !isVue2 && _vm.refreshData(_vm.data)
   }
 }
 
@@ -159,5 +163,9 @@ export const onEndEvent = ({ event, _this }) => {
   _this.loadColumn(fullColumn)
   _this.$emit('column-drop-end', event, _this)
 
-  _this.isDragHeaderSorting && _this.$grid.toolBarVm && _this.$grid.toolBarVm.updateSetting()
+  const toolbarVm = _this.getVm('toolbar')
+
+  if (_this.isDragHeaderSorting && toolbarVm) {
+    toolbarVm.updateSetting()
+  }
 }

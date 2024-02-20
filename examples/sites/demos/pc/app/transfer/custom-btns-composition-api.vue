@@ -1,21 +1,23 @@
 <template>
-  <div style="margin-bottom: 16px">
-    <span>功能控制：</span>
-    <tiny-button @click="toggleAllBtn()">
-      {{ showAllBtn ? '不显示all-btns' : '显示all-btns' }}
-    </tiny-button>
-    <tiny-button @click="toggleDisable()">
-      {{ alwaysDisable ? '无选中时禁用' : '无选中时高亮' }}
-    </tiny-button>
+  <div>
+    <div style="margin-bottom: 16px">
+      <span>功能控制：</span>
+      <tiny-button @click="toggleAllBtn()">
+        {{ showAllBtn ? '不显示all-btns' : '显示all-btns' }}
+      </tiny-button>
+      <tiny-button @click="toggleDisable()">
+        {{ alwaysDisable ? '无选时中禁用' : '无选中时高亮' }}
+      </tiny-button>
+    </div>
+    <tiny-transfer
+      v-model="value"
+      :data="data"
+      :show-all-btn="showAllBtn"
+      :button-texts="['left', 'right']"
+      :to-left-disable="alwaysDisable"
+      :to-right-disable="alwaysDisable"
+    ></tiny-transfer>
   </div>
-  <tiny-transfer
-    v-model="value"
-    :data="data"
-    :show-all-btn="showAllBtn"
-    :button-texts="['left', 'right']"
-    :to-left-disable="alwaysDisable"
-    :to-right-disable="alwaysDisable"
-  ></tiny-transfer>
 </template>
 
 <script setup lang="jsx">
@@ -42,7 +44,7 @@ const showAllBtn = ref(true)
 const alwaysDisable = ref(false)
 
 function toggleAllBtn() {
-  this.showAllBtn = !this.showAllBtn
+  showAllBtn.value = !showAllBtn.value
 }
 function toggleDisable() {
   alwaysDisable.value = !alwaysDisable.value

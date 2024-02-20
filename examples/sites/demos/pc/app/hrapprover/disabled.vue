@@ -4,7 +4,7 @@
     <tiny-hrapprover
       :value="value"
       :approval-person="person"
-      @update:approval-person="person = $event"
+      @update:approvalPerson="person = $event"
       :disabled="disabled"
     ></tiny-hrapprover>
   </div>

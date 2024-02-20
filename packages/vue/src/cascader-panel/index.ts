@@ -9,8 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import CascaderPanel from './src/pc.vue'
-import '@opentiny/vue-theme/cascader-panel/index.less'
+import CascaderPanel from './src/index'
 import { version } from './package.json'
 
 CascaderPanel.model = {

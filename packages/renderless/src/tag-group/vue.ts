@@ -1,18 +1,29 @@
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 import debounce from '../common/deps/debounce'
 import { getHiddenTags, handelItemClick } from './index'
+import type {
+  ISharedRenderlessParamHooks,
+  ITagGroupApi,
+  ITagGroupProps,
+  ITagGroupRenderlessParamUtils,
+  ITagGroupState
+} from '@/types'
 
 export const api = ['state', 'handelItemClick']
 
-export const renderless = (props, { onMounted, onBeforeUnmount, reactive }, { vm, emit }) => {
+export const renderless = (
+  props: ITagGroupProps,
+  { onMounted, onBeforeUnmount, reactive }: ISharedRenderlessParamHooks,
+  { vm, emit }: ITagGroupRenderlessParamUtils
+): ITagGroupApi => {
   const delay = 100
 
-  const state = reactive({
+  const state = reactive<ITagGroupState>({
     showMore: false,
     hiddenTags: []
   })
 
-  const api = {
+  const api: ITagGroupApi = {
     state,
     getHiddenTags: getHiddenTags({ props, vm, state }),
     handelItemClick: handelItemClick({ emit })

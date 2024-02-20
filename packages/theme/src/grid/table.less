@@ -483,10 +483,6 @@
     white-space: normal;
     word-break: break-word;
 
-    .@{grid-cell-prefix-cls}-text {
-      width: 100%;
-    }
-
     .@{grid-prefix-cls}-checkbox {
       vertical-align: middle;
     }
@@ -546,6 +542,19 @@
     .@{grid-cell-prefix-cls} {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
+    }
+
+    &.col__center {
+      .@{grid-cell-prefix-cls} {
+        justify-content: center;
+      }
+    }
+
+    &.col__right {
+      .@{grid-cell-prefix-cls} {
+        justify-content: end;
+      }
     }
 
     &.col__ellipsis {

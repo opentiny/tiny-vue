@@ -7,14 +7,26 @@ import {
   getElementCssClass,
   getElementStatusClass
 } from './adapter'
-import { defineAsyncComponent, directive, emitter, h, markRaw, Teleport } from './adapter'
-import { parseVnode, isEmptyVnode, renderComponent, rootConfig, tools, useRouter, getComponentName } from './adapter'
+import { defineAsyncComponent, directive, emitter, h, markRaw, Teleport, KeepAlive } from './adapter'
+import {
+  parseVnode,
+  isEmptyVnode,
+  renderComponent,
+  rootConfig,
+  tools,
+  useRouter,
+  getComponentName,
+  isVnode
+} from './adapter'
 import { t } from '@opentiny/vue-locale'
 import { stringifyCssClass } from './csscls'
 import { twMerge } from 'tailwind-merge'
 import '@opentiny/vue-theme/base/index.less'
-
 import { defineComponent, isVue2, isVue3 } from './adapter'
+import { useBreakpoint } from './breakpoint'
+import { useDefer } from './usedefer'
+
+export { useBreakpoint, useDefer }
 
 export { version } from '../package.json'
 
@@ -46,7 +58,14 @@ export const resolveMode = (props, context) => {
   let config = rootConfig(context)
   let tinyModeProp = typeof props.tiny_mode === 'string' ? props.tiny_mode : null
   let tinyModeInject = hooks.inject('TinyMode', null)
-  let tinyModeGlobal = config.tiny_mode && config.tiny_mode.value
+  let tinyModeGlobal
+
+  // 解决modal、loading、notify 组件（函数式组件，脱离组件树）的内部组件模式判断错误问题。
+  if (typeof config.tiny_mode === 'string') {
+    tinyModeGlobal = config.tiny_mode
+  } else if (config.tiny_mode) {
+    tinyModeGlobal = config.tiny_mode.value
+  }
 
   if (!isRightMode(tinyModeProp)) tinyModeProp = null
   if (!isRightMode(tinyModeInject)) tinyModeInject = null
@@ -69,7 +88,7 @@ export const resolveMode = (props, context) => {
   return tinyMode
 }
 
-const resolveTheme = ({ props, context, utils }) => {
+export const resolveTheme = (props, context) => {
   const isRightTheme = (theme) => ~['tiny', 'saas'].indexOf(theme)
   const config = rootConfig(context)
   let tinyThemeProp = typeof props.tiny_theme === 'string' ? props.tiny_theme : null
@@ -82,10 +101,10 @@ const resolveTheme = ({ props, context, utils }) => {
 
   const tinyTheme = tinyThemeProp || tinyThemeInject || tinyThemeGlobal || 'tiny'
 
-  return (utils.vm.theme = tinyTheme)
+  return tinyTheme
 }
 
-const resolveChartTheme = ({ props, context, utils }) => {
+const resolveChartTheme = (props, context) => {
   const config = rootConfig(context)
   let tinyChartProp = typeof props.tiny_chart_theme === 'object' ? props.tiny_chart_theme : null
   let tinyChartInject = hooks.inject('TinyChartTheme', null)
@@ -93,7 +112,7 @@ const resolveChartTheme = ({ props, context, utils }) => {
 
   const tinyChartTheme = tinyChartProp || tinyChartInject || tinyChartGlobal || null
 
-  return (utils.vm.chart_theme = tinyChartTheme)
+  return tinyChartTheme
 }
 
 export const $setup = ({ props, context, template, extend = {} }) => {
@@ -133,26 +152,37 @@ interface DesignConfig {
   version?: string
 }
 
+interface CustomDesignConfig {
+  designConfig: null | DesignConfig
+}
+
+// 允许自定义主题规范，适用于MetaERP项目
+export const customDesignConfig: CustomDesignConfig = {
+  designConfig: null
+}
+
 export const setup = ({ props, context, renderless, api, extendOptions = {}, mono = false, classes = {} }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
 
   // 获取组件级配置和全局配置（inject需要带有默认值，否则控制台会报警告）
-  const globalDesignConfig: DesignConfig = hooks.inject(design.configKey, {})
+  const globalDesignConfig: DesignConfig = customDesignConfig.designConfig || hooks.inject(design.configKey, {})
   const designConfig = globalDesignConfig?.components?.[getComponentName().replace($prefix, '')]
 
+  const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
   const utils = {
     $prefix,
     t,
     ...tools(context, resolveMode(props, context)),
     designConfig,
-    globalDesignConfig
+    globalDesignConfig,
+    useBreakpoint
   }
-  if (process.env.TINY_MODE !== 'pc') {
+  if (specifyPc !== 'pc') {
     utils.mergeClass = mergeClass
   }
 
-  resolveTheme({ props, context, utils })
-  resolveChartTheme({ props, context, utils })
+  utils.vm.theme = resolveTheme(props, context)
+  utils.vm.chartTheme = resolveChartTheme(props, context)
   const sdk = render(props, hooks, utils, extendOptions)
 
   // 加载全局配置，合并api
@@ -169,7 +199,7 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
     dp: utils.defineParentInstanceProperties,
     gcls: (key) => getElementCssClass(classes, key)
   }
-  if (process.env.TINY_MODE !== 'pc') {
+  if (specifyPc !== 'pc') {
     attrs.m = mergeClass
   }
   /**
@@ -178,18 +208,22 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
    * 注意：renderless 下尽量使用 vm.$refs、vm.$slots
    */
   attrs.d({
-    slots: { get: () => utils.vm.$slots },
-    scopedSlots: { get: () => utils.vm.$scopedSlots }
+    slots: { get: () => utils.vm.$slots, configurable: true },
+    scopedSlots: { get: () => utils.vm.$scopedSlots, configurable: true }
   })
 
   attrs.dp({
-    slots: { get: () => utils.parent.$slots },
-    scopedSlots: { get: () => utils.parent.$scopedSlots }
+    slots: { get: () => utils.parent.$slots, configurable: true },
+    scopedSlots: { get: () => utils.parent.$scopedSlots, configurable: true }
   })
 
   initComponent()
 
-  Array.isArray(api) &&
+  if (Array.isArray(api)) {
+    // 允许 design里定义的api扩展出来，
+    if (Array.isArray(designConfig?.api)) {
+      api = api.concat(designConfig.api)
+    }
     api.forEach((name) => {
       const value = sdk[name]
 
@@ -202,11 +236,13 @@ export const setup = ({ props, context, renderless, api, extendOptions = {}, mon
         }
       }
     })
+  }
 
   return attrs
 }
 
-export const svg = ({ name = 'Icon', component }) => {
+// 这里需要使用函数声明语句，可以提升变量，保证saas-common可以正常运行
+export function svg({ name = 'Icon', component }) {
   return (propData?) =>
     markRaw(
       defineComponent({
@@ -220,7 +256,8 @@ export const svg = ({ name = 'Icon', component }) => {
           const attrs = isVue3 ? tinyTag : { attrs: tinyTag }
           let className = 'tiny-svg'
 
-          if (process.env.TINY_MODE !== 'pc' && isMobileFirst) {
+          const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
+          if (specifyPc !== 'pc' && isMobileFirst) {
             className = mergeClass('h-4 w-4 inline-block', customClass || '', mergeProps.class || '')
           }
 
@@ -236,15 +273,6 @@ export const svg = ({ name = 'Icon', component }) => {
           // 解决本地运行会报大量警告的问题
           if (process.env.BUILD_TARGET) {
             extend.nativeOn = context.listeners
-          }
-
-          // 解决富文本组件工具栏图标大小不正确的问题
-          if (name.includes('IconRichText')) {
-            if (!isVue3) {
-              extend.attrs.viewBox = '0 0 24 24'
-            } else {
-              extend.viewBox = '0 0 24 24'
-            }
           }
 
           return renderComponent({
@@ -317,7 +345,9 @@ export {
   createComponent,
   defineAsyncComponent,
   getElementStatusClass,
-  Teleport
+  Teleport,
+  KeepAlive,
+  isVnode
 }
 
 export default {
@@ -340,5 +370,6 @@ export default {
   setup,
   hooks,
   getElementStatusClass,
-  $install
+  $install,
+  isVnode
 }

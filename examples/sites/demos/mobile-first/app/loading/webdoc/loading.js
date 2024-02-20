@@ -14,7 +14,6 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'loading-tip-text',
       name: {
@@ -89,18 +88,6 @@ export default {
       codeFiles: ['spinner.vue']
     },
     {
-      demoId: 'target',
-      name: {
-        'zh-CN': '区域加载',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>通过 `target` 指定 Loading 需要覆盖的 DOM 节点。<p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['target.vue']
-    },
-    {
       demoId: 'loading-size',
       name: {
         'zh-CN': '尺寸',
@@ -113,6 +100,5 @@ export default {
       },
       codeFiles: ['loading-size.vue']
     }
-  ],
-  apis: []
+  ]
 }

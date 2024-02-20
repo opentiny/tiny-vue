@@ -36,6 +36,10 @@
     @apply appearance-none;
     @apply bg-transparent;
 
+    &:focus-visible {
+      outline: none;
+    }
+
     &.is-mini {
       @apply h-6;
     }
@@ -53,6 +57,14 @@
     .@{input-prefix-cls}__suffix {
       @apply ~'top-1.5';
       @apply transform-none;
+    }
+
+    .@{input-prefix-cls} {
+      &.is-show-close {
+        .icon-close {
+          @apply mr-1;
+        }
+      }
     }
   }
 
@@ -123,6 +135,10 @@
     }
   }
 
+  &&__collapse-tags &__tags &__tags-number {
+    @apply overflow-visible;
+  }
+
   & &__placeholder {
     @apply h-7;
     @apply invisible;
@@ -166,6 +182,11 @@
       @apply items-center;
       @apply border-transparent;
       @apply text-color-text-primary;
+      @apply bg-color-bg-2;
+
+      .@{tag-prefix-cls}__close {
+        @apply fill-color-none;
+      }
     }
   }
 
@@ -284,6 +305,8 @@
         @apply whitespace-nowrap;
         @apply text-ellipsis;
         @apply overflow-hidden;
+        @apply text-color-text-disabled;
+        @apply text-xs;
       }
     }
   }
@@ -313,7 +336,7 @@
         @apply pr-12;
       }
 
-      .icon-close {
+      .@{select-prefix-cls}__close {
         @apply mr-2;
         @apply fill-color-text-placeholder;
 
@@ -426,6 +449,32 @@
     @apply pb-1;
     &.@{select-prefix-cls}__remote-input {
       @apply pb-3;
+    }
+  }
+
+  &__top-create {
+    @apply my-0 mx-4;
+    @apply border-b border-color-bg-8;
+
+    > div {
+      @apply h-9;
+      @apply w-fit;
+      @apply flex;
+      @apply items-center;
+      @apply text-xs;
+      @apply leading-5;
+      @apply text-color-brand;
+      @apply cursor-pointer;
+
+      &:hover {
+        @apply text-color-brand-hover;
+      }
+
+      svg {
+        @apply fill-color-brand;
+        @apply text-sm;
+        @apply mr-1;
+      }
     }
   }
 }

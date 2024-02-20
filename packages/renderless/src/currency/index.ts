@@ -39,14 +39,19 @@ export const initService = ({ props, service }) => {
     valueField: 'currency_code'
   }
 
-  const { setting = {}, fetchCurrency } = service || {}
-  const { options = {} } = setting
+  const { getCurrency, getDefaultCurrency, setDefaultCurrency } = service?.common || {}
+  const { setting } = service || {}
+  const { options = {} } = setting || {}
 
-  const fetchCurrencyNoop = () => Promise.resolve([])
+  const fetchCurrencyNoop = () => {
+    return Promise.resolve([])
+  }
 
   return {
-    fetchCurrency: props.fetchCurrency || fetchCurrency || fetchCurrencyNoop,
-    fields: props.fields || options.Currency || defaultCurrencySetting
+    fetchCurrency: props.fetchCurrency || getCurrency || fetchCurrencyNoop,
+    fields: props.fields || options.Currency || defaultCurrencySetting,
+    fetchDefaultCurrency: props.fetchDefaultCurrency || getDefaultCurrency,
+    setDefaultCurrency: props.setDefaultCurrency || setDefaultCurrency
   }
 }
 
@@ -82,3 +87,73 @@ export const fixServiceData =
       resolve(result)
     })
   }
+
+export const fetchDefaultCurrency =
+  ({ state, props, emit, service }) =>
+  () => {
+    if (!service.fetchDefaultCurrency || !props.setDefault) return
+
+    const result = service.fetchDefaultCurrency()
+    if (result.then) {
+      result.then((res) => {
+        if (!res) return
+        state.defaultCurrency = res
+        emit('update:modelValue', res)
+      })
+    } else {
+      state.defaultCurrency = result
+      emit('update:modelValue', result)
+    }
+  }
+
+export const toogleDefaultCurrency =
+  ({ state, service }) =>
+  (value, isActive) => {
+    if (!service.setDefaultCurrency) return
+
+    let setValue = isActive ? '' : value
+    const result = service.setDefaultCurrency(setValue)
+    if (result.then) {
+      result.then(() => {
+        state.defaultCurrency = setValue
+      })
+    }
+  }
+
+export const computedSearchConfig =
+  ({ props, service }) =>
+  () => {
+    const { textField, valueField } = service.fields
+    const { searchConfig } = props
+
+    const handleOptions = (options) => {
+      return options.map((item) => ({
+        label: item[textField],
+        value: item[valueField]
+      }))
+    }
+
+    const searchMethod = (...args) => {
+      return new Promise((resolve) => {
+        const options = searchConfig.searchMethod(...args)
+        if (typeof options.then === 'function') {
+          options.then((result) => resolve(handleOptions(result)))
+        } else {
+          resolve(handleOptions(options))
+        }
+      })
+    }
+
+    const config = { ...props.searchConfig }
+
+    if (searchConfig && searchConfig.searchMethod) {
+      config.searchMethod = searchMethod
+    }
+
+    return config
+  }
+
+export const visibleChange = (emit) => (value) => {
+  emit('update:visible', value)
+  emit('visible-change', value)
+}

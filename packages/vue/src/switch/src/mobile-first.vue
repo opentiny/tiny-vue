@@ -45,16 +45,16 @@
                   ? 'switch-inner-true-word'
                   : `switch-inner-true-${size ? size : 'small'}-icon`
                 : types === 'word'
-                ? `switch-inner-false-${size ? size : 'small'}-word`
-                : 'switch-inner-false-icon'
+                  ? `switch-inner-false-${size ? size : 'small'}-word`
+                  : 'switch-inner-false-icon'
             }`
           )
         )
       "
     >
       <div data-tag="tiny-switch-word" v-if="types === 'word'" class="sm:text-xs text-sm">
-        <slot v-if="state.currentValue === trueValue" name="open">A</slot>
-        <slot v-if="state.currentValue === falseValue" name="close">B</slot>
+        <slot v-if="state.currentValue === trueValue" name="open">{{ t('yes') }}</slot>
+        <slot v-if="state.currentValue === falseValue" name="close">{{ t('no') }}</slot>
       </div>
       <div data-tag="tiny-switch-icon" v-if="types === 'icon'">
         <slot v-if="state.currentValue === trueValue" name="open">
@@ -133,9 +133,8 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/switch/vue'
-import { props, setup } from '@opentiny/vue-common'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { classes } from './token'
-import { defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],

@@ -90,7 +90,7 @@ export const getDayBgColor =
   (day) => {
     const date = day.year + '-' + day.month + '-' + day.value
     const isFunction = props.setDayBgColor instanceof Function
-    const bgColor = isFunction ? props.setDayBgColor(date) : ''
+    const bgColor = isFunction ? props.setDayBgColor(date) : 'white'
 
     return bgColor
   }
@@ -259,7 +259,9 @@ export const selectDay =
         state.selectedDates.push(date)
       }
 
+      emit('update:modelValue', state.selectedDates)
       emit('selected-date-change', state.selectedDates)
+      emit('date-click', date)
     } else {
       if (day.isNext) {
         const { year, month } = nextMonth(state.activeYear, state.activeMonth)
@@ -276,6 +278,9 @@ export const selectDay =
       state.selectedDate =
         day.value.toString().length > 2 ? day.value : `${state.activeYear}-${state.activeMonth}-${day.value}`
       state.showSelectedDateEvents = true
+
+      emit('update:modelValue', state.selectedDate)
+      emit('date-click', state.selectedDate)
     }
   }
 

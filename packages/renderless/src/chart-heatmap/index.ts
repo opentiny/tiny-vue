@@ -11,7 +11,7 @@
  */
 
 import { getFormated, getBmap, getAmap, getMapJSON } from '../chart-core/deps/utils'
-import { HEAT_MAP_COLOR, itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
+import { HEAT_MAP_COLOR, HEAT_DEFAULT_COLOR, itemPoint, itemLabel, itemContent } from '../chart-core/deps/constants'
 
 const getAxisList = (rows, label) => {
   const result = []
@@ -36,7 +36,7 @@ const getData = (args) => {
       extra = extraMetrics.map((m) => row[m] || '-')
       value = metrics ? row[metrics] : 1
 
-      return { value: [xIndex, yIndex, value].concat(extra), label: { show: true, color: '#191919' } }
+      return { value: [xIndex, yIndex, value].concat(extra) }
     })
   }
 
@@ -56,7 +56,7 @@ let getAxis = (list, name, type) => ({
 })
 
 const getVisualMap = (args) => {
-  const { innerMin: min, innerMax: max, type, heatColor, series } = args
+  const { innerMin: min, innerMax: max, type, heatColor, series, visualMapConfig } = args
   let { extra } = {}
 
   if (type === 'map') {
@@ -68,9 +68,12 @@ const getVisualMap = (args) => {
     extra = { dimension: 2 }
   }
 
-  const defaultColor = type === 'map' || type === 'bmap' || type === 'amap' ? HEAT_MAP_COLOR : ['#fff', '#6D8FF0']
+  const visualMapColor = visualMapConfig && visualMapConfig.color
 
-  return Object.assign(extra, {
+  const defaultColor =
+    type === 'map' || type === 'bmap' || type === 'amap' ? HEAT_MAP_COLOR : visualMapColor || HEAT_DEFAULT_COLOR
+
+  let result = Object.assign(extra, {
     min,
     max,
     calculable: true,
@@ -79,12 +82,19 @@ const getVisualMap = (args) => {
     orient: 'vertical',
     align: 'left',
     borderColor: '#6D8FF0',
-    inverse: true,
-    inRange: { color: heatColor || defaultColor }
+    inverse: true
   })
+
+  if (type !== 'cartesian' || !visualMapColor) {
+    Object.assign(result, {
+      inRange: { color: heatColor || defaultColor }
+    })
+  }
+
+  return Object.assign(result, visualMapConfig)
 }
 
-const getSeries = (args) => [{ type: 'heatmap', data: args.chartData }]
+const getSeries = (args) => [{ type: 'heatmap', data: args.chartData, label: { show: true, color: '#191919' } }]
 
 const getTooltip = (args) => {
   const { dataType, innerXAxisList, innerYAxisList, digit, extraMetrics, metrics } = args
@@ -177,7 +187,7 @@ const getResult = (args) => {
   return res
 }
 
-export const heatmap = (columns, rows, settings, extra) => {
+export const heatmap = (columns, rows, settings, extra, extend) => {
   const { type = 'cartesian' } = settings // cartesian, map, bmap,
   const { dimension = [columns[0], columns[1]] } = settings
   const { dataType = 'normal', min, max, digit, bmap, amap, geo, key, v = '2.0', url } = settings
@@ -185,6 +195,7 @@ export const heatmap = (columns, rows, settings, extra) => {
   const { heatColor, yAxisName, xAxisName, beforeRegisterMapOnce, specialAreas = {} } = settings
   const { metrics = columns[2], mapURLProfix = 'https://unpkg.com/echarts@3.6.2/map/json/' } = settings
   const { tooltipVisible, echartsLib: echarts } = extra
+  const visualMapConfig = extend && extend.visualMap
 
   let { xAxisList: innerXAxisList, yAxisList: innerYAxisList } = settings
   // add extraMetrics prop for data which only display in tooltip
@@ -207,7 +218,7 @@ export const heatmap = (columns, rows, settings, extra) => {
   const xAxis = getAxis(innerXAxisList, xAxisName, 'x')
   const yAxis = getAxis(innerYAxisList, yAxisName, 'y')
   const series = getSeries({ chartData })
-  const visualMap = getVisualMap({ innerMin, innerMax, type, heatColor, series })
+  const visualMap = getVisualMap({ innerMin, innerMax, type, heatColor, series, visualMapConfig })
   const tooltipParams = { dataType, innerXAxisList, innerYAxisList, digit, extraMetrics, metrics }
   const tooltip = tooltipVisible && getTooltip(tooltipParams)
   const options = { visualMap, series, grid: { left: 25, right: 80, width: 'auto', height: 'auto' } }

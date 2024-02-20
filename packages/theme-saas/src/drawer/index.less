@@ -54,6 +54,7 @@
       @apply top-0;
       @apply translate-x-full;
       @apply ~'border-l-0.5';
+      @apply rounded-l-lg;
 
       .@{drawer-prefix-cls}__drag-bar {
         @apply -left-1;
@@ -69,6 +70,7 @@
       @apply top-0;
       @apply -translate-x-full;
       @apply ~'border-r-0.5';
+      @apply rounded-r-lg;
 
       .@{drawer-prefix-cls}__drag-bar {
         @apply -right-1;
@@ -84,6 +86,7 @@
       @apply top-0;
       @apply -translate-y-full;
       @apply ~'border-b-0.5';
+      @apply rounded-b-lg;
 
       &.toggle {
         @apply translate-y-0;
@@ -95,6 +98,7 @@
       @apply bottom-0;
       @apply translate-y-full;
       @apply ~'border-t-0.5';
+      @apply rounded-t-lg;
 
       &.toggle {
         @apply translate-y-0;
@@ -182,9 +186,9 @@
         @apply px-4;
         @apply py-3;
         @apply flex-none;
-        @apply text-right;
+        @apply flex justify-end;
 
-        .@{button-prefix-cls}:not(:first-of-type) {
+        .@{button-prefix-cls} {
           @apply ml-2;
         }
       }

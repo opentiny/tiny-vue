@@ -10,6 +10,7 @@ const cryptoModule = globalThis.crypto
  * @returns Valid v4 UUID
  */
 // Default implementation adapted from https://stackoverflow.com/a/68141099/217579
+// eslint-disable-next-line import/no-mutable-exports
 export let generateID = () =>
   '00-0-4-2-000'.replace(/[^-]/g, (s: any) => (((random() + ~~s) * 0x10000) >> s).toString(16).padStart(4, '0'))
 
@@ -41,7 +42,7 @@ if (cryptoModule) {
     generateID = () => {
       cryptoModule.getRandomValues(container)
       let i = -1
-      return template.replaceAll(re, (char) => {
+      return template.replace(re, (char) => {
         i++
         return char === 'y' ? position19vals[container[i] % 4] : (container[i] % 16).toString(16)
       })

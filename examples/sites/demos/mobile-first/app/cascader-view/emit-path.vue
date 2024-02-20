@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-96">
     <tiny-button @click="fn" type="primary"> 隐藏值路径 </tiny-button> 值：{{ value }}
     <tiny-cascader-view
       v-model="value"

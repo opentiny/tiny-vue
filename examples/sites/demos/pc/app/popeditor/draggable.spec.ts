@@ -4,7 +4,8 @@ test('PopEditor 拖动窗口', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('popeditor#draggable')
 
-  const textBox = page.getByRole('textbox').nth(1)
+  const demo = page.locator('#draggable')
+  const textBox = demo.locator('.tiny-popeditor').first()
   const dialogBox = page.locator('.tiny-dialog-box').nth(1)
 
   await textBox.click()

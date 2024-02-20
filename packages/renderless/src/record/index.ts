@@ -188,7 +188,9 @@ export const handleConfirm =
   ({ state, emit, props, constants, api }) =>
   ($event) => {
     if (props.isHwh5) {
-      api.triggerClick($event, constants.HWH5_STATUS.CANCEL, () => emit('update:modelValue', false))
+      api.triggerClick($event, constants.HWH5_STATUS.END, () => {
+        emit('update:modelValue', false)
+      })
     } else {
       state.isClickConfirm = true
       emit('update:modelValue', false)
@@ -252,6 +254,7 @@ const calcVoice = (analyser) => {
     if (highValue <= val) {
       return (voiceNum = idx + 1 + (val === 0 ? lowValue / 1000 : highValue / val))
     }
+    return false
   })
   !ismatch && (voiceNum = 6)
 

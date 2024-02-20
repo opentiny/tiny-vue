@@ -9,6 +9,7 @@
       @focus="focus"
       @visible-change="visibleChange"
       @clear="clear"
+      @dropdown-click="dropdownClick"
     >
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
@@ -23,6 +24,7 @@
       @focus="focus"
       @visible-change="visibleChange"
       @remove-tag="removeTag"
+      @dropdown-click="dropdownClick"
     >
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
@@ -82,6 +84,13 @@ const removeTag = () => {
 const visibleChange = () => {
   Modal.message({
     message: '触发 visible-change 事件',
+    status: 'info'
+  })
+}
+
+const dropdownClick = () => {
+  Modal.message({
+    message: '触发 dropdown-click 事件',
     status: 'info'
   })
 }

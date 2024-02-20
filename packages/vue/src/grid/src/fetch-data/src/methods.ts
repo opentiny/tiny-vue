@@ -46,13 +46,21 @@ export default {
     }
 
     if (code === 'reload') {
+      let currentPage = 1
+
       if (pager || args.page) {
+        currentPage = pagerConfig.currentPage
         pagerConfig.currentPage = 1
       }
+
       this.sortData = params.sort = {}
       this.filterData = params.filters = []
       this.pendingRecords = []
       this.clearAll()
+
+      if (currentPage !== 1) {
+        return this.$nextTick()
+      }
     }
 
     if (sortArg && sortArg.length > 0) {
@@ -89,16 +97,13 @@ export default {
 
       this.tableData = data
       pagerConfig.total = total
+
       // 内置pager
       let setTotal = pagerSlot && pagerSlot.componentInstance.setTotal
 
       setTotal && setTotal(total)
     } else {
       this.tableData = (fields.list ? getObj(rest, fields.list) : rest) || []
-    }
-
-    if ((this.seqSerial || this.scrollLoad) && pagerConfig) {
-      this.seqIndex = (pagerConfig.currentPage - 1) * pagerConfig.pageSize
     }
 
     this.tableLoading = false

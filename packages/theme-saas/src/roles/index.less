@@ -14,7 +14,7 @@
   &__selector.@{popover-prefix-cls} {
     @apply mt-2;
     @apply border-0;
-    width: 216px;
+    @apply w-52;
     @apply text-color-text-primary;
 
     &.@{css-prefix}popper {
@@ -27,14 +27,14 @@
   }
 
   &__selector-body {
-    max-height: 300px;
+    @apply ~'max-h-[theme(spacing.72)]';
     @apply overflow-y-auto;
     @apply overflow-x-hidden;
     @apply py-1 px-0;
   }
 
   &__poplist {
-    min-width: 180px;
+    @apply ~"min-w-[theme('spacing.18')]";
   }
 
   .reference-wrapper > .@{popover-prefix-cls}__reference {
@@ -42,10 +42,10 @@
   }
 
   li&__poplist-item {
-    min-height: 32px;
+    @apply ~'min-h-[theme(spacing.7)]';
     @apply leading-8;
     @apply !py-0 !px-3;
-    @apply ~"max-w-[100%]";
+    @apply ~'max-w-[100%]';
     @apply overflow-hidden;
     @apply text-ellipsis;
     @apply whitespace-nowrap;

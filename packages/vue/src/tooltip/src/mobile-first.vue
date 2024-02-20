@@ -145,8 +145,9 @@ export default defineComponent({
                 appendToBody={this.appendToBody}
                 class={mergeClass([
                   classes.tooltip,
-                  this.effect === 'dark' ? 'bg-color-text-primary text-color-text-inverse shadow-none' : '',
-                  this.effect === 'light' ? 'bg-color-bg-1 text-color-text-primary shadow-md' : '',
+                  !this.effect && !this.type && classes['tooltip-sm'],
+                  this.effect && classes[`effect-${this.effect}`],
+                  this.type && classes[`is-${this.type}`],
                   this.disabled || !this.state.showPopper ? 'hidden' : '',
                   this.popperClass
                 ])}
@@ -161,8 +162,10 @@ export default defineComponent({
                     class={mergeClass([
                       classes.arrow,
                       classes['placement-' + xPlacement.split('-')[0]],
+                      !this.effect && !this.type && classes['placement-' + xPlacement.split('-')[0] + '-sm'],
                       this.effect === 'light' ? classes['placement-' + xPlacement.split('-')[0] + '-light'] : '',
-                      this.effect === 'dark' ? classes['placement-' + xPlacement.split('-')[0] + '-dark'] : ''
+                      this.effect === 'dark' ? classes['placement-' + xPlacement.split('-')[0] + '-dark'] : '',
+                      this.type ? classes[`arrow-${xPlacement.split('-')[0]}-${this.type}`] : ''
                     ])}></div>
                 ) : (
                   ''

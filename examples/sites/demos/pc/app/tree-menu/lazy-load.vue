@@ -19,7 +19,6 @@ export default {
       if (node.level === 0) {
         return resolve([{ label: '表单组件' }, { label: '数据组件' }])
       }
-      console.log(1232)
 
       if (node.level > 3) return resolve([])
 

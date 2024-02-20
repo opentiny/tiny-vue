@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility = true">弹出Dialog{{ boxVisibility }}</tiny-button>
+    <tiny-button @click="boxVisibility = true">弹出 Dialog {{ boxVisibility }}</tiny-button>
     <tiny-dialog-box v-model:visible="boxVisibility" title="消息" width="30%">
       <tiny-grid
         :data="tableData"

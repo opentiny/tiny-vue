@@ -118,7 +118,7 @@ import CascaderSelect from '@opentiny/vue-cascader-select'
 import CalendarItem from './calendar-item.vue'
 
 export default defineComponent({
-  emits: ['update:modelValue', 'expand'],
+  emits: ['update:modelValue', 'expand', 'week-change'],
   props: [...props, 'modelValue', 'config', 'cascaderPosition'],
   components: {
     TinyCascaderSelect: CascaderSelect,

@@ -336,7 +336,113 @@ export const tinyBaseSmbTheme = {
   'ti-common-scrollbar-thumb-bg-color': 'var(--ti-base-color-common-4)',
   'ti-common-scrollbar-thumb-border-radius': '4px',
   'ti-common-scrollbar-thumb-hover-bg-color': 'var(--ti-base-color-common-4)',
-  'ti-common-scrollbar-thumb-active-bg-color': 'var(--ti-base-color-common-4)'
+  'ti-common-scrollbar-thumb-active-bg-color': 'var(--ti-base-color-common-4)',
+
+  // 以下皆为新增变量
+  // 新增smb缺少的basic-var.less变量
+  // 新增尺寸
+  'ti-common-size-base': '4px',
+  'ti-common-size-2x': 'calc(var(--ti-common-size-base) * 2)',
+  'ti-common-size-3x': 'calc(var(--ti-common-size-base) * 3)',
+  'ti-common-size-4x': 'calc(var(--ti-common-size-base) * 4)',
+  'ti-common-size-5x': 'calc(var(--ti-common-size-base) * 5)',
+  'ti-common-size-6x': 'calc(var(--ti-common-size-base) * 6)',
+  'ti-common-size-7x': 'calc(var(--ti-common-size-base) * 7)',
+  'ti-common-size-8x': 'calc(var(--ti-common-size-base) * 8)',
+  'ti-common-size-9x': 'calc(var(--ti-common-size-base) * 9)',
+  'ti-common-size-10x': 'calc(var(--ti-common-size-base) * 10)',
+  'ti-common-size-11x': 'calc(var(--ti-common-size-base) * 11)',
+  'ti-common-size-12x': 'calc(var(--ti-common-size-base) * 12)',
+  'ti-common-size-13x': 'calc(var(--ti-common-size-base) * 13)',
+  'ti-common-size-14x': 'calc(var(--ti-common-size-base) * 14)',
+  'ti-common-size-15x': 'calc(var(--ti-common-size-base) * 15)',
+  'ti-common-size-16x': 'calc(var(--ti-common-size-base) * 16)',
+  'ti-common-size-17x': 'calc(var(--ti-common-size-base) * 17)',
+  'ti-common-size-18x': 'calc(var(--ti-common-size-base) * 18)',
+  'ti-common-size-19x': 'calc(var(--ti-common-size-base) * 19)',
+  'ti-common-size-20x': 'calc(var(--ti-common-size-base) * 20)',
+  'ti-common-size-21x': 'calc(var(--ti-common-size-base) * 21)',
+  'ti-common-size-22x': 'calc(var(--ti-common-size-base) * 22)',
+  'ti-common-size-23x': 'calc(var(--ti-common-size-base) * 23)',
+  'ti-common-size-24x': 'calc(var(--ti-common-size-base) * 24)',
+  'ti-common-size-25x': 'calc(var(--ti-common-size-base) * 25)',
+  'ti-common-size-26x': 'calc(var(--ti-common-size-base) * 26)',
+  'ti-common-size-27x': 'calc(var(--ti-common-size-base) * 27)',
+  'ti-common-size-28x': 'calc(var(--ti-common-size-base) * 28)',
+  'ti-common-size-29x': 'calc(var(--ti-common-size-base) * 29)',
+  'ti-common-size-30x': 'calc(var(--ti-common-size-base) * 30)',
+  'ti-common-size-31x': 'calc(var(--ti-common-size-base) * 31)',
+  'ti-common-size-32x': 'calc(var(--ti-common-size-base) * 32)',
+  'ti-common-size-33x': 'calc(var(--ti-common-size-base) * 33)',
+  'ti-common-size-34x': 'calc(var(--ti-common-size-base) * 34)',
+  'ti-common-size-35x': 'calc(var(--ti-common-size-base) * 35)',
+  'ti-common-size-36x': 'calc(var(--ti-common-size-base) * 36)',
+  'ti-common-size-37x': 'calc(var(--ti-common-size-base) * 37)',
+  'ti-common-size-38x': 'calc(var(--ti-common-size-base) * 38)',
+  'ti-common-size-39x': 'calc(var(--ti-common-size-base) * 39)',
+  'ti-common-size-40x': 'calc(var(--ti-common-size-base) * 40)',
+  'ti-common-size-41x': 'calc(var(--ti-common-size-base) * 41)',
+  'ti-common-size-42x': 'calc(var(--ti-common-size-base) * 42)',
+  'ti-common-size-43x': 'calc(var(--ti-common-size-base) * 43)',
+  'ti-common-size-44x': 'calc(var(--ti-common-size-base) * 44)',
+  'ti-common-size-45x': 'calc(var(--ti-common-size-base) * 45)',
+  'ti-common-size-46x': 'calc(var(--ti-common-size-base) * 46)',
+  'ti-common-size-47x': 'calc(var(--ti-common-size-base) * 47)',
+  'ti-common-size-48x': 'calc(var(--ti-common-size-base) * 48)',
+  'ti-common-size-49x': 'calc(var(--ti-common-size-base) * 49)',
+  'ti-common-size-50x': 'calc(var(--ti-common-size-base) * 50)',
+
+  // 透明度颜色：主要用于边框色，背景色
+  'ti-base-bg-color-transparent-5': '#0000000D', // 5% 等于 rgba(0, 0, 0, 0.05)
+  'ti-base-bg-color-transparent-8': 'rgba(0,0,0,0.08)',
+  'ti-base-bg-color-transparent-15': 'rgba(0,0,0,0.15)',
+  'ti-base-bg-color-transparent-40': 'rgba(0, 0, 0, 0.4)',
+  'ti-base-bg-color-transparent-50': '#C2C2C280',
+  'ti-base-bg-color-loading-transparent-50': 'rgba(255, 255, 255, 0.5)',
+  'ti-base-bg-color-disabled-transparent-5': 'rgba(0,0,0,0.05)',
+
+  // 文本色
+  'ti-base-text-color-1': '#F76360',
+  'ti-base-text-color-2': '#F2F2F2',
+
+  'ti-base-font-family': '"Manrop","Manrope-Medium"',
+
+  // 新增阴影
+  'ti-base-box-shadow-1': '0px 2px 12px 0px rgba(0,0,0,0.08)',
+
+  // 新属性变量
+  'ti-base-text-decoration-underline': 'underline',
+  'ti-base-display-block': 'block',
+  'ti-base-opacity-10': '1',
+
+  'ti-common-color-transparent': 'var(--ti-base-color-transparent)',
+  'ti-common-font-weight-4': 'normal',
+  'ti-common-border-weight-normal': '1px',
+  'ti-common-size-0': '0px',
+  'ti-common-size-auto': 'auto',
+  'ti-common-font-weight-6': '600',
+  'ti-common-border-radius-0': '0px',
+  'ti-common-border-weight-1': '2px',
+  'ti-common-line-height-number': '1.5',
+
+  // 新属性变量
+  'ti-common-text-decoration-underline': 'var(--ti-base-text-decoration-underline)',
+  'ti-common-display-block': 'var(--ti-base-display-block)',
+  'ti-common-opacity-1': 'var(--ti-base-opacity-10)',
+
+  'ti-common-bg-color-active': 'var(--ti-base-bg-color-transparent-5)', // 活跃背景色
+  'ti-common-bg-color-hover-40': 'var(--ti-base-bg-color-transparent-40)',
+  'ti-common-bg-color-transparent-15': 'var(--ti-base-bg-color-transparent-15)', // 活跃背景色
+  'ti-common-bg-color-transparent-50': 'var(--ti-base-bg-color-transparent-50)', // 禁用背景色
+  'ti-common-bg-color-loading-transparent-50': 'var(--ti-base-bg-color-loading-transparent-50)', // 加载中背景色
+  'ti-common-bg-color-disabled-transparent-5': 'var(--ti-base-bg-color-disabled-transparent-5)', // 禁用背景色
+  'ti-common-text-color-active': 'var(--ti-base-text-color-1)', // 文本色
+  'ti-common-box-shadow-popover': 'var(--ti-base-box-shadow-1)', // 弹出框阴影
+  'ti-common-text-color-disabled': 'var(--ti-base-text-color-2)', // 禁用色
+
+  'ti-common-border-color-transparent-8': 'var(--ti-base-bg-color-transparent-8)', // 折叠框边框色
+
+  'ti-common-input-font-family': 'var(--ti-base-font-family)' // 输入框字体
 }
 
-export * from './component'
+export * from './component.js'

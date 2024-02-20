@@ -6,6 +6,8 @@ export const tinyTooltipAuroraTheme = {
   'ti-tooltip-popper-normal-text-color': '#fff',
   'ti-tooltip-popper-info-bg-color': '#69c0ff',
   'ti-tooltip-popper-info-border-color': '#69c0ff',
-  'ti-tooltip-padding-vertical': '10px',
-  'ti-tooltip-padding-horizontal': '10px'
+  'ti-tooltip-padding-vertical': '7px',
+  'ti-tooltip-padding-horizontal': '4px',
+  'ti-tooltip-popper-error-border-color': '#ff7875',
+  'ti-tooltip-popper-error-bg-color': '#ff7875'
 }

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('默认尺寸', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#size')
 
   const wrap = page.locator('#size')
@@ -13,6 +14,7 @@ test('默认尺寸', async ({ page }) => {
 })
 
 test('medium 尺寸', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#size')
 
   const wrap = page.locator('#size')
@@ -26,6 +28,7 @@ test('medium 尺寸', async ({ page }) => {
 })
 
 test('small 尺寸', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#size')
 
   const wrap = page.locator('#size')
@@ -39,6 +42,7 @@ test('small 尺寸', async ({ page }) => {
 })
 
 test('mini 尺寸', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#size')
 
   const wrap = page.locator('#size')

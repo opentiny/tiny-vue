@@ -7,9 +7,15 @@
           <div class="tiny-progress-content-des">
             <div class="tiny-progress-content-des-title">安装进度</div>
           </div>
-          <tiny-progress class="progress" type="line" :percentage="percentage" status="exception"></tiny-progress>
+          <tiny-progress
+            class="progress"
+            type="line"
+            :percentage="percentage"
+            status="exception"
+            :stroke-width="24"
+          ></tiny-progress>
           <div class="tiny-progress-demo-status">
-            <icon-operationfaild-l class="tiny-progress-demo-status-icon"></icon-operationfaild-l>
+            <tiny-icon-operationfaild-l class="tiny-progress-demo-status-icon"></tiny-icon-operationfaild-l>
             <div class="tiny-progress-demo-status-des">上传失败</div>
           </div>
         </div>
@@ -26,7 +32,7 @@
                 <div class="tiny-progress-content-des-on" @click="cancel">取消</div>
               </div>
             </div>
-            <tiny-progress class="progress" type="line" :percentage="percentage1"></tiny-progress>
+            <tiny-progress class="progress" type="line" :percentage="percentage1" :stroke-width="24"></tiny-progress>
           </div>
         </div>
       </div>
@@ -38,9 +44,15 @@
             <div class="tiny-progress-content-des">
               <div class="tiny-progress-content-des-title">安装进度</div>
             </div>
-            <tiny-progress class="progress" type="line" :percentage="percentage2" status="exception"></tiny-progress>
+            <tiny-progress
+              class="progress"
+              type="line"
+              :percentage="percentage2"
+              status="exception"
+              :stroke-width="24"
+            ></tiny-progress>
             <div class="tiny-progress-demo-status">
-              <icon-operationfaild-l class="tiny-progress-demo-status-icon"></icon-operationfaild-l>
+              <tiny-icon-operationfaild-l class="tiny-progress-demo-status-icon"></tiny-icon-operationfaild-l>
               <div class="tiny-progress-demo-status-des">
                 安装失败，请<i class="tiny-progress-demo-status-des-again" @click="reload">重试</i>
               </div>
@@ -56,9 +68,15 @@
             <div class="tiny-progress-content-des">
               <div class="tiny-progress-content-des-title">安装进度</div>
             </div>
-            <tiny-progress class="progress" type="line" :percentage="percentage3" status="success"></tiny-progress>
+            <tiny-progress
+              class="progress"
+              type="line"
+              :percentage="percentage3"
+              status="success"
+              :stroke-width="24"
+            ></tiny-progress>
             <div class="tiny-progress-demo-status">
-              <icon-successfull class="tiny-progress-demo-status-icon"></icon-successfull>
+              <tiny-icon-successfull class="tiny-progress-demo-status-icon"></tiny-icon-successfull>
               <div class="tiny-progress-demo-status-des">安装成功</div>
             </div>
           </div>
@@ -73,8 +91,8 @@ import { ref, onMounted } from 'vue'
 import { Progress as TinyProgress } from '@opentiny/vue'
 import { iconOperationfaildL, iconSuccessful } from '@opentiny/vue-icon'
 
-const IconOperationfaildL = iconOperationfaildL()
-const IconSuccessfull = iconSuccessful()
+const TinyIconOperationfaildL = iconOperationfaildL()
+const TinyIconSuccessfull = iconSuccessful()
 
 const percentage = ref(50)
 const percentage1 = ref(0)
@@ -103,16 +121,17 @@ const getTimer1 = () => {
 }
 
 const reload = () => {
+  clearInterval(process2.value)
   percentage2.value = 0
-  location.reload()
+  getTimer2()
 }
 
 const getTimer2 = () => {
   process2.value = setInterval(() => {
     percentage2.value += 5
 
-    if (percentage2.value == 50) {
-      clearTimeout(process2.value)
+    if (percentage2.value === 50) {
+      clearInterval(process2.value)
     }
   }, 300)
 }

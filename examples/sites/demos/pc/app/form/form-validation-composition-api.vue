@@ -4,7 +4,7 @@
       <div>validate用法：<tiny-button-group :data="validTypeList" v-model="validType"></tiny-button-group></div>
     </div>
     <tiny-form ref="ruleFormRef" :model="createData" :rules="rules" label-width="100px">
-      <tiny-form-item label="必填" prop="users" required :validate-icon="validateIcon">
+      <tiny-form-item label="必填" prop="users" :validate-icon="validateIcon">
         <tiny-input v-model="createData.users"></tiny-input>
       </tiny-form-item>
       <tiny-form-item label="日期" prop="datepicker">
@@ -54,7 +54,7 @@ import { iconWarning } from '@opentiny/vue-icon'
 
 const ruleFormRef = ref()
 function handleClick() {
-  Modal.message({ message: 'click' })
+  Modal.message({ message: 'click', status: 'info' })
 }
 const validateIcon = ref(iconWarning())
 const validType = ref('promise')
@@ -65,22 +65,6 @@ const validTypeList = ref([
 const options = ref([
   { label: 'A', text: '很好', events: { click: handleClick } },
   { label: 'B', text: '一般' }
-])
-const options2 = ref([
-  {
-    value: 'zhinan',
-    label: '指南',
-    children: [
-      {
-        value: 'anzhuang',
-        label: '安装'
-      },
-      {
-        value: 'kaifa',
-        label: '开发'
-      }
-    ]
-  }
 ])
 const createData = reactive({
   radio: '',

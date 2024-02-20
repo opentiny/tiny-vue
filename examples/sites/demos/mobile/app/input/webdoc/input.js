@@ -17,14 +17,17 @@ export default {
       codeFiles: ['basic-usage.vue']
     },
     {
-      'demoId': 'clearable',
-      'name': { 'zh-CN': '一键清空', 'en-US': 'Clearable' },
-      'desc': {
+      demoId: 'clearable',
+      name: {
+        'zh-CN': '一键清空',
+        'en-US': 'Clearable'
+      },
+      desc: {
         'zh-CN': '<p>可通过 <code>clearable</code> 属性设置输入框显示清空图标按钮。</p>',
         'en-US':
           '<p>You can set the <code>clearable</code> attribute to display the clear icon button in the input.</p>'
       },
-      'codeFiles': ['clearable.vue']
+      codeFiles: ['clearable.vue']
     },
     {
       demoId: 'type',
@@ -60,9 +63,10 @@ export default {
         'en-US': 'Scalable Textarea'
       },
       desc: {
-        'zh-CN': `<p>可通过 <code>resize</code> 属性设置文本框的缩放。可选值：<code>none | both | horizontal | vertical</code>。</p><p>可通过 <code>autosize</code> 属性设置文本框自适应内容高度。可传入对象，如 <code>{ minRows: 2, maxRows: 6 }</code>。`,
-        'en-US': `<p>You can use the <code>resize</code> property to set the zoom of the text field. The value can be <code>none | both | horizontal | vertical</code> . Note: This parameter is valid only when <code>type="textarea"</code> is used. </p>
-        <p>You can use the <code>autosize</code> attribute to set the text field to adapt to the content height. You can transfer an object, for example, <code>{minRows: 2, maxRows: 6}</code> . Note: This parameter is valid only for <code>type="textarea"</code> . </p>`
+        'zh-CN':
+          '<p>可通过 <code>resize</code> 属性设置文本框的缩放。可选值：<code>none | both | horizontal | vertical</code>。</p><p>可通过 <code>autosize</code> 属性设置文本框自适应内容高度。可传入对象，如 <code>{ minRows: 2, maxRows: 6 }</code>。',
+        'en-US':
+          '<p>You can use the <code>resize</code> property to set the zoom of the text field. The value can be <code>none | both | horizontal | vertical</code> . Note: This parameter is valid only when <code>type="textarea"</code> is used. </p>\n        <p>You can use the <code>autosize</code> attribute to set the text field to adapt to the content height. You can transfer an object, for example, <code>{minRows: 2, maxRows: 6}</code> . Note: This parameter is valid only for <code>type="textarea"</code> . </p>'
       },
       codeFiles: ['textarea-scalable.vue']
     },
@@ -108,7 +112,10 @@ export default {
     },
     {
       demoId: 'prefix-suffix-icon',
-      name: { 'zh-CN': '图标', 'en-US': 'Icon' },
+      name: {
+        'zh-CN': '图标',
+        'en-US': 'Icon'
+      },
       desc: {
         'zh-CN': '<p>可通过 <code>prefix-icon, suffix-icon</code> 属性设置输入框头部、尾部图标</p>',
         'en-US':
@@ -147,24 +154,10 @@ export default {
         'en-US': 'Events'
       },
       desc: {
-        'zh-CN': `
-          <p>输入框的事件，包括
-            <code>input</code>(输入值时触发), 
-            <code>blur</code>(失去焦点时触发), 
-            <code>focus</code>(获取焦点时触发), 
-            <code>change</code>(值改变时触发), 
-            <code>clear</code>(清除按钮时触发)
-          </p>
-        `,
-        'en-US': `
-          <p>Event of the text box, including:
-            <code>input</code> (triggered when a value is entered)
-            <code>blur</code> (triggered when the focus is lost)
-            <code>focus</code> (triggered when the focus is obtained)
-            <code>change</code> (triggered when the value changes)
-            <code>clear</code> (triggered when the button is cleared)
-          </p>
-        `
+        'zh-CN':
+          '\n          <p>输入框的事件，包括\n            <code>input</code>(输入值时触发), \n            <code>blur</code>(失去焦点时触发), \n            <code>focus</code>(获取焦点时触发), \n            <code>change</code>(值改变时触发), \n            <code>clear</code>(清除按钮时触发)\n          </p>\n        ',
+        'en-US':
+          '\n          <p>Event of the text box, including:\n            <code>input</code> (triggered when a value is entered)\n            <code>blur</code> (triggered when the focus is lost)\n            <code>focus</code> (triggered when the focus is obtained)\n            <code>change</code> (triggered when the value changes)\n            <code>clear</code> (triggered when the button is cleared)\n          </p>\n        '
       },
       codeFiles: ['events.vue']
     },
@@ -206,448 +199,6 @@ export default {
           '<p>You can set the <code>validate-event</code> attribute to trigger form validation upon input. Use <code>trigger</code> to configure the mode of triggering the validation rule. If <code>change</code> is used, the validation is triggered when the value in the text box changes. If <code>blur</code> is used, the validation is triggered after the focus is lost</p>'
       },
       codeFiles: ['validate-event.vue']
-    }
-  ],
-  apis: [
-    {
-      name: 'Input', // 组件名称展示使用
-      type: 'component', // API 类型
-      properties: [
-        {
-          name: 'autocomplete',
-          type: 'String',
-          defaultValue: 'off',
-          desc: {
-            'zh-CN': '原生属性，自动补全',
-            'en-US': 'Native autocomplete attribute'
-          },
-          demoId: 'native-attributes'
-        },
-        {
-          name: 'autofocus',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '原生属性，自动获取焦点',
-            'en-US': 'Native attribute. The focus is automatically obtained during page loading.'
-          },
-          demoId: 'native-attributes'
-        },
-        {
-          name: 'autosize',
-          type: 'Boolean | Object',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '自适应内容高度，只对 type="textarea"有效。可传入对象，如，{ minRows: 2, maxRows: 6 }',
-            'en-US':
-              'Adaptive content height. This parameter is valid only for <code>type="textarea"</code>. Objects can be transferred, for example, { minRows: 2, maxRows: 6 }'
-          },
-          demoId: 'textarea-scalable'
-        },
-        {
-          name: 'clearable',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否显示清除按钮，该属性不适用于 <code>type="textarea"</code>',
-            'en-US':
-              'Whether to display the clear button. This attribute is not applicable to <code>type="textarea"</code>'
-          },
-          demoId: 'clearable'
-        },
-        {
-          name: 'cols',
-          type: 'Number',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '原生属性，设置宽度，在 type ="textarea"时有效',
-            'en-US':
-              'Native attribute, which is used to set the width. This parameter is valid only when type is "textarea"'
-          },
-          demoId: 'textarea-rows-cols'
-        },
-        {
-          name: 'counter',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否显示字数统计，只在 type = "text" 或 type = "textarea" 时有效',
-            'en-US':
-              'Whether to display the word count statistics. This parameter is valid only when type is "text" or type is "textarea"'
-          },
-          demoId: 'counter'
-        },
-        {
-          name: 'disabled',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否禁用',
-            'en-US': 'Disabled'
-          },
-          demoId: 'disabled'
-        },
-        {
-          name: 'is-select',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否可下拉选择',
-            'en-US': 'display different button'
-          },
-          demoId: 'type-select'
-        },
-        {
-          name: 'label',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '等价于原生 aria-label 属性',
-            'en-US': 'equal to aria-label attribute'
-          },
-          demoId: ''
-        },
-        {
-          name: 'max',
-          type: 'number',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '原生属性，设置最大值',
-            'en-US': 'Native attribute, set the maximum value'
-          },
-          demoId: 'native-attributes'
-        },
-        {
-          name: 'maxlength',
-          type: 'Number',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '原生属性，最大输入长度',
-            'en-US': 'Native attribute, maximum input length'
-          },
-          demoId: 'counter'
-        },
-        {
-          name: 'min',
-          type: 'number',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '原生属性，设置最小值',
-            'en-US': 'Native attribute, which sets the minimum value'
-          },
-          demoId: 'native-attributes'
-        },
-        {
-          name: 'minlength',
-          type: 'Number',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '原生属性，最小输入长度',
-            'en-US': 'Native attribute, minimum input length'
-          },
-          demoId: 'counter'
-        },
-        {
-          name: 'tips',
-          type: 'String | Slot',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '提示信息',
-            'en-US': 'tips under input'
-          },
-          demoId: 'slots'
-        },
-        {
-          name: 'name',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '原生 name 属性',
-            'en-US': 'native name attribute'
-          },
-          demoId: 'native-attributes'
-        },
-        {
-          name: 'placeholder',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '输入框占位文本',
-            'en-US': 'placeholder text'
-          },
-          demoId: 'basic-usage'
-        },
-        {
-          name: 'prefix-icon',
-          type: 'Component',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '输入框头部图标',
-            'en-US': 'Icon at the head'
-          },
-          demoId: 'prefix-suffix-icon'
-        },
-        {
-          name: 'readonly',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '原生属性，是否只读',
-            'en-US': 'Native attribute, read-only'
-          },
-          demoId: 'native-attributes'
-        },
-        {
-          name: 'rows',
-          type: 'Number',
-          defaultValue: '2',
-          desc: {
-            'zh-CN': '输入框行数，只对 type="textarea"有效',
-            'en-US': 'Number of lines in the input box. This parameter is valid only for type="textarea"'
-          },
-          demoId: 'textarea-rows-cols'
-        },
-        {
-          name: 'select-menu',
-          type: 'Array',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '下拉选择的选项',
-            'en-US': 'options of select'
-          },
-          demoId: 'type-select'
-        },
-        {
-          name: 'show-password',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否显示切换密码图标',
-            'en-US': 'Whether to display the switchover password icon'
-          },
-          demoId: 'show-password'
-        },
-        {
-          name: 'show-word-limit',
-          type: 'Boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否显示输入字数统计，只在 type = ‘text’ 或 type = ‘textarea’ 时有效，该属性默认为false',
-            'en-US':
-              'Whether to display the number of input words. This parameter is valid only when type is "text" or type is "textarea"'
-          },
-          demoId: 'counter'
-        },
-        {
-          name: 'step',
-          type: 'Number',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '原生属性，设置输入字段的合法数字间隔',
-            'en-US': 'Native attribute, which is used to set the valid digit interval of the input field'
-          },
-          demoId: 'native-attributes'
-        },
-        {
-          name: 'suffix-icon',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '输入框尾部图标',
-            'en-US': 'Icon at the right'
-          },
-          demoId: 'prefix-suffix-icon'
-        },
-        {
-          name: 'title',
-          type: 'String | Slot',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '自定义标题',
-            'en-US': 'custom title'
-          },
-          demoId: ''
-        },
-        {
-          name: 'type',
-          type: 'String',
-          defaultValue: 'text',
-          desc: {
-            'zh-CN': '类型，同原生 input 标签的 type 属性',
-            'en-US': 'the type of input'
-          },
-          demoId: 'type'
-        },
-        {
-          name: 'validate-event',
-          type: 'Boolean',
-          defaultValue: 'true',
-          desc: {
-            'zh-CN': '输入时是否触发表单的校验',
-            'en-US': ' Whether form validation is triggered when entering data'
-          },
-          demoId: 'validate-event'
-        },
-        {
-          name: 'v-model / modelValue',
-          type: 'String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '绑定值',
-            'en-US': 'input value'
-          },
-          demoId: 'basic-usage'
-        },
-        {
-          name: 'width',
-          type: 'Number | String',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '宽度，取值为数字或元素 width 属性有效值，如果是数字则以 px 为单位',
-            'en-US':
-              'width, accepts a numerical value or a valid value for the width property, and if it is a number, it is measured in pixels.'
-          },
-          demoId: ''
-        }
-      ],
-      methods: [
-        {
-          name: 'blur',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '使 input 失去焦点',
-            'en-US': 'Make the input lose focus.'
-          },
-          demoId: 'methods'
-        },
-        {
-          name: 'focus',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '使 input 获取焦点',
-            'en-US': 'Focus the input'
-          },
-          demoId: 'methods'
-        },
-        {
-          name: 'select',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '选中 input 中的文字',
-            'en-US': 'Select the text in the input'
-          },
-          demoId: 'methods'
-        }
-      ],
-      events: [
-        {
-          name: 'change',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '在 Input 值改变时触发',
-            'en-US': 'callback when value has changed'
-          },
-          demoId: 'events'
-        },
-        {
-          name: 'blur',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '在 Input 失去焦点时触发',
-            'en-US': 'callback when input lost focus'
-          },
-          demoId: 'events'
-        },
-        {
-          name: 'focus',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '在 Input 获得焦点时触发',
-            'en-US': 'callback when input gains focus'
-          },
-          demoId: 'events'
-        },
-        {
-          name: 'clear',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '在点击由 clearable 属性生成的清空按钮时触发',
-            'en-US': 'callback when click clear icon'
-          },
-          demoId: 'events'
-        },
-        {
-          name: 'input',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '输入值时触发事件',
-            'en-US': 'callback when user input'
-          },
-          demoId: 'events'
-        }
-      ],
-      slots: [
-        {
-          name: 'append',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '输入框后置内容，只对 type="text"有效',
-            'en-US': 'append content for input fields only works with type="text"'
-          },
-          demoId: 'slots'
-        },
-        {
-          name: 'prepend',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '输入框前置内容，只对 type="text"有效',
-            'en-US': 'prepend content for input fields only works with type="text"'
-          },
-          demoId: 'slots'
-        },
-        {
-          name: 'prefix',
-          desc: {
-            'zh-CN': '输入框头部内容，只对 type="text"有效',
-            'en-US': 'prefix content for input fields only works with type="text"'
-          },
-          demoId: 'slots'
-        },
-        {
-          name: 'suffix',
-          desc: {
-            'zh-CN': '输入框尾部内容，只对 type="text"有效',
-            'en-US': 'suffix content for input fields only works with type="text"'
-          },
-          demoId: 'slots'
-        },
-        {
-          name: 'title',
-          desc: {
-            'zh-CN': '标题插槽',
-            'en-US': 'title slot'
-          },
-          demoId: 'slots'
-        },
-        {
-          name: 'tips',
-          desc: {
-            'zh-CN': '提示信息插槽',
-            'en-US': 'tips slot'
-          },
-          demoId: 'slots'
-        }
-      ]
     }
   ]
 }

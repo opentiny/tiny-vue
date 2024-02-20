@@ -1,6 +1,10 @@
 <template>
   <div>
-    <tiny-column-list-item image="/static/images/1.jpg" @icon-click="iconClick" :options="options">
+    <tiny-column-list-item
+      :image="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`"
+      @icon-click="iconClick"
+      :options="options"
+    >
       <template #column1>
         <ul>
           <li class="text-sm mb-1 sm:mb-1.5">智能手机智能手机</li>

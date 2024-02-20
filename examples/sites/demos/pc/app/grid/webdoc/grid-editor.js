@@ -7,7 +7,7 @@ export default {
       'name': { 'zh-CN': '内置编辑器', 'en-US': 'Grid-editor-built-in editor' },
       'desc': {
         'zh-CN': `
-        <p> <code>grid</code> 标签上配置 <code>edit-config</code>。在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染内置编辑组件， <code>events</code> 配置组件事件。具体参考下面示例。</p>
+        <p>通过在 <code>grid</code> 标签上配置 <code>edit-config</code>。在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染内置编辑组件， <code>events</code> 配置组件事件。</p>
         <div class="tip custom-block">
           <p class="custom-block-title">说明</p>
           <p>内置编辑器只支持 <code>Input</code> 和 <code>Select</code> 组件，需要使用其他组件可参考自定义编辑器。</p>
@@ -23,7 +23,7 @@ export default {
       'name': { 'zh-CN': '自定义编辑器', 'en-US': 'Introducing the TINY component as the editor' },
       'desc': {
         'zh-CN': `
-        <p> <code>grid</code> 标签上配置 <code>edit-config</code>。\n在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染自定义编辑组件或者TinyVue提供的组件。</p>
+        <p> <code>grid</code> 标签上配置 <code>edit-config</code>。\n在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染自定义编辑组件或者 TinyVue 提供的组件。</p>
         `,
         'en-US':
           '<p>Introduces the TinyVue <code>Select</code> component through <code>attribute configuration</code>. </p>\n'

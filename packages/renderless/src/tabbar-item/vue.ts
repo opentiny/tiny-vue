@@ -17,7 +17,7 @@ export const api = ['state', 'onClick', 'getTabbarItemsWidth']
 
 export const renderless = (
   props,
-  { computed, onMounted, reactive },
+  { computed, onMounted, reactive, inject },
   { parent, emit, nextTick, route, router, dispatch, vm }
 ) => {
   const api = {}
@@ -32,7 +32,8 @@ export const renderless = (
     renderColor: computed(() => parent.$parent[state.active ? 'activeColor' : 'inactiveColor']),
     showVm: true,
     itemWidth: null,
-    childrenNumber: 0
+    childrenNumber: 0,
+    customIcon: inject('customIcon', null) || props.customIcon
   })
 
   Object.assign(api, {

@@ -18,6 +18,7 @@
       :class="{
         'is-disabled': disabled,
         'tiny-dropdown-item--divided tiny-dropdown-menu__item--divided': divided,
+        'tiny-dropdown-item--check-status': state.checkedStatus && selected,
         'has-children': itemData.children && itemData.children.length
       }"
       ref="dropdownItem"
@@ -79,24 +80,25 @@ import type { IDropdownItemApi } from '@opentiny/vue-renderless/types/dropdown-i
 export default defineComponent({
   name: $prefix + 'DropdownItem',
   componentName: $prefix + 'DropdownItem',
-  emits: ['item-click'],
+  emits: ['item-click', 'update:modelValue', 'change', 'closed', 'open', 'opened', 'close', 'confirm', 'reset'],
   props: [
     ...props,
     'disabled',
     'divided',
     'icon',
     'itemData',
+    'selected',
+    'currentIndex',
     'title',
     'titleClass',
     'options',
     'type',
     'label',
-    'appendToBody',
-    'textField',
-    'selected',
     'selectedField',
     'multiStage',
-    'currentIndex',
+    // tiny新增
+    'appendToBody',
+    'textField',
     'tip',
     'tipPosition'
   ],

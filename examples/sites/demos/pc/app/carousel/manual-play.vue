@@ -5,12 +5,17 @@
         <h3>{{ item }}</h3>
       </tiny-carousel-item>
     </tiny-carousel>
-    <label for="num">切换到</label>
-    <tiny-numeric id="num" v-model="index" @change="indexChange" :min="1" :max="8"></tiny-numeric>
-    <tiny-button-group>
-      <tiny-button type="primary" @click="prev" :disabled="index === 1"> 上一张 </tiny-button>
-      <tiny-button type="primary" @click="next" :disabled="index === 8"> 下一张 </tiny-button>
-    </tiny-button-group>
+    <div class="manual-layoutset">
+      <div>
+        <tiny-numeric id="num" v-model="index" @change="indexChange" :min="1" :max="8"></tiny-numeric>
+      </div>
+      <div>
+        <tiny-button-group>
+          <tiny-button type="primary" @click="prev" :disabled="index === 1"> 上一张 </tiny-button>
+          <tiny-button type="primary" @click="next" :disabled="index === 8"> 下一张 </tiny-button>
+        </tiny-button-group>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -50,10 +55,15 @@ export default {
 
 <style scoped>
 .carousel-item-demo:nth-child(2n) {
-  background-color: #99a9bf;
+  background-color: #fafafa;
 }
 
 .carousel-item-demo:nth-child(2n + 1) {
-  background-color: #d3dce6;
+  background-color: #edf0f3;
+}
+.manual-layoutset {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 </style>

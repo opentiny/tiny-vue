@@ -1,23 +1,24 @@
 <template>
   <div>
     <p>
-      <button @click="changeWidth">点击改变父元素宽度</button>
-      <button @click="resize">点击执行resize()</button>
+      <tiny-button @click="changeWidth">点击改变父元素宽度</tiny-button>
+      <tiny-button @click="resize">点击执行resize()</tiny-button>
     </p>
     <br />
     <p>当前父元素宽度: {{ parentElementWidth }}，chart 组件{{ isAction ? '已' : '未' }}执行 resize()。</p>
-    <div :style="`width: ${parentElementWidth}`">
-      <tiny-line ref="chart" :data="chartData" :change-delay="1000" :settings="chartSettings" resizeable></tiny-line>
+    <div :style="{ width: parentElementWidth }">
+      <tiny-line ref="chartRef" :data="chartData" :change-delay="1000" :settings="chartSettings" resizeable></tiny-line>
     </div>
   </div>
 </template>
 
-<script lang="jsx">
-import { ChartLine } from '@opentiny/vue'
+<script>
+import { ChartLine, Button } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLine: ChartLine
+    TinyLine: ChartLine,
+    TinyButton: Button
   },
   data() {
     return {
@@ -39,13 +40,13 @@ export default {
   },
   methods: {
     changeWidth() {
-      let random = Math.ceil(800 * Math.random())
+      const random = Math.ceil(800 * Math.random())
 
       this.parentElementWidth = (random < 200 ? random + 200 : random) + 'px'
       this.isAction = false
     },
     resize() {
-      this.$refs.chart.resize()
+      this.$refs.chartRef.resize()
       this.isAction = true
     }
   }

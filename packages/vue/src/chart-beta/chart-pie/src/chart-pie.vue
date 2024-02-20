@@ -4,6 +4,7 @@
 
 <script>
 import Core from '@opentiny/vue-chart-core-beta'
+import { t } from '@opentiny/vue-locale'
 import { pie } from './pie'
 
 export default {
@@ -21,7 +22,8 @@ export default {
 
       const extra = {
         legendVisible: this.legendVisible,
-        tooltipVisible: this.tooltipVisible
+        tooltipVisible: this.tooltipVisible,
+        t
       }
       this.option = pie(columns, rows, this.settings, extra)
     }

@@ -9,14 +9,12 @@ export default {
         'en-US': 'basic usage'
       },
       desc: {
-        'zh-CN': `<p>通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 Radio，变量值对应 <code>label</code> 属性的值。<br>
-          通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致<br>
-          <code>label</code> 可以是 <code>String</code>、<code>Number</code> 或 <code>Boolean</code>。</p>`,
+        'zh-CN':
+          '<p>通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 Radio，变量值对应 <code>label</code> 属性的值。<br>\n          通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致<br>\n          <code>label</code> 可以是 <code>String</code>、<code>Number</code> 或 <code>Boolean</code>。</p>',
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'group-options',
       name: {
@@ -24,11 +22,8 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': `<p>提供 <code>options</code> 属性，支持通过配置对象数组数据的形式来渲染单选组。<br>
-          使用该属性后，可以不用再在标签中以插槽的形式插入 <code><radio></code> 或 <code><radio-button></code> 标签。<br />
-          <code>options</code> 对象数组中包括三个字段：<code>label</code>、<code>text</code>、<code>events</code>。 <br />
-          另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>radio</code>。<br>
-          还可以配置为 <code>button</code>，配置后单选组将以按钮的形式展示。<p>`,
+        'zh-CN':
+          '<p>提供 <code>options</code> 属性，支持通过配置对象数组数据的形式来渲染单选组。<br>\n          使用该属性后，可以不用再在标签中以插槽的形式插入 <code><radio></code> 或 <code><radio-button></code> 标签。<br />\n          <code>options</code> 对象数组中包括三个字段：<code>label</code>、<code>text</code>、<code>events</code>。 <br />\n          另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>radio</code>。<br>\n          还可以配置为 <code>button</code>，配置后单选组将以按钮的形式展示。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['group-options.vue']
@@ -96,7 +91,7 @@ export default {
       codeFiles: ['radio-events.vue']
     },
     {
-      demoId: 'group-options',
+      demoId: 'group-options1',
       name: {
         'zh-CN': '循环配置',
         'en-US': 'events'
@@ -131,6 +126,5 @@ export default {
       },
       codeFiles: ['read-only.vue']
     }
-  ],
-  apis: []
+  ]
 }

@@ -167,7 +167,7 @@ export default class Node {
     })
     const isLeafKey = this.store?.props?.isLeaf || defaultIsLeafKey
     this.isLeaf = !!(this.data && this.data[isLeafKey])
-    this.loaded = false
+    this.loaded = this.isLeaf
     this.loading = false
     this.childNodes = []
     this.level = this.parent ? this.parent.level + 1 : 0

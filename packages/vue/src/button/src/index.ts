@@ -35,11 +35,15 @@ export const buttonProps = {
     type: String,
     default: 'button'
   },
+  href: {
+    type: String,
+    default: ''
+  },
   size: {
     type: String,
     default: '',
     validator(val: string) {
-      return ['large', 'medium', 'small', 'mini'].includes(val)
+      return ['large', 'medium', 'small', 'mini', ''].includes(val)
     }
   },
   round: Boolean,

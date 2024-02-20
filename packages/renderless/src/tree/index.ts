@@ -292,7 +292,7 @@ const afterLoadHandler =
 export const initTreeStore =
   ({ api, props, state, emit }) =>
   () => {
-    const { nodeKey, data, lazy, load, afterLoad, currentNodeKey, checkStrictly, checkDescendants } = props
+    const { nodeKey, data, lazy, load, currentNodeKey, checkStrictly, checkDescendants } = props
     const { defaultCheckedKeys, defaultExpandedKeys, autoExpandParent, defaultExpandAll, filterNodeMethod } = props
 
     state.store = new TreeStore({
@@ -315,7 +315,10 @@ export const initTreeStore =
     state.root = state.store.root
 
     api.initIsCurrent()
-    api.initPlainNodeStore()
+
+    if (props.willChangeView) {
+      api.initPlainNodeStore()
+    }
   }
 
 export const created =
@@ -786,6 +789,11 @@ export const addNode =
   ({ api }) =>
   (node) => {
     const newNode = { label: '' }
+    const isLeafField = node.store && node.store.props.isLeaf
+
+    if (isLeafField) {
+      newNode[isLeafField] = true
+    }
 
     Object.defineProperty(newNode, '_isNewNode', {
       value: true,
@@ -842,7 +850,7 @@ export const deleteAction =
   }
 
 export const deleteConfirm =
-  ({ state }) =>
+  ({ state, props, api }) =>
   (event, node) => {
     state.action.type = 'delete'
     state.action.node = node
@@ -850,6 +858,18 @@ export const deleteConfirm =
     state.action.referenceElm = event.currentTarget
     state.action.popoverVisible = false
     state.action.isSaveChildNode = false
+
+    if (typeof props.deleteNodeMethod === 'function') {
+      const promise = props.deleteNodeMethod({ event, node })
+
+      if (promise && typeof promise.then === 'function') {
+        promise.then((bool) => bool && api.deleteAction())
+      } else if (promise) {
+        api.deleteAction()
+      }
+
+      return
+    }
 
     setTimeout(() => {
       state.action.popoverVisible = true
@@ -959,7 +979,9 @@ export const initPlainNodeStore =
 export const handleCheckPlainNode =
   ({ props, emit }) =>
   (e, plainNode) => {
-    plainNode.node.setChecked(e, !props.checkStrictly)
+    if (props.showCheckbox) {
+      plainNode.node.setChecked(e, !props.checkStrictly)
+    }
 
     emit('check-plain', plainNode, e)
   }

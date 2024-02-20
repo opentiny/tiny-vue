@@ -34,7 +34,7 @@ const TinyIconDel = iconDel()
 const TinyIconFilletExternalLink = iconFilletExternalLink()
 </script>
 
-<style>
+<style scoped>
 .tiny-link {
   margin-right: 8px;
 }

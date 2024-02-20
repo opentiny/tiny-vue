@@ -165,19 +165,20 @@ export default {
     return this.$nextTick()
   },
   initMultipleHistory() {
-    const { isMultipleHistory, toolBarVm } = this.$grid
+    const { isMultipleHistory } = this.$grid
+    const toolbarVm = this.getVm('toolbar')
     const {
       settingOpts: { storageKey },
       id: toolbarId
-    } = toolBarVm
-    let remoteSelectedMethod = toolBarVm.setting.multipleHistory.remoteSelectedMethod
+    } = toolbarVm
+    let remoteSelectedMethod = toolbarVm.setting.multipleHistory.remoteSelectedMethod
     let remoteSelectedPromise
 
     if (
       isMultipleHistory &&
-      toolBarVm &&
-      toolBarVm.setting &&
-      toolBarVm.setting.multipleHistory &&
+      toolbarVm &&
+      toolbarVm.setting &&
+      toolbarVm.setting.multipleHistory &&
       remoteSelectedMethod
     ) {
       if (typeof remoteSelectedMethod === 'function') {
@@ -189,7 +190,7 @@ export default {
             storeObj = (storeObj && storeObj[storageKey]) || null
             storeObj = (storeObj || {})[toolbarId] || {}
             const { columns, pageSize } = storeObj
-            toolBarVm.applySettings({ columns, pageSize })
+            toolbarVm.applySettings({ columns, pageSize })
           })
         }
       }

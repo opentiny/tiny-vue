@@ -52,6 +52,7 @@
           state.showTips && 'sm:pr-7'
         )
       "
+      :style="state.value === label ? state.activeStyle : null"
       @keydown.stop
     >
       <slot></slot>

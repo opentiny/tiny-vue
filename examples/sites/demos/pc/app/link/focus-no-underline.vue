@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Link } from '@opentiny/vue'
 
 export default {
@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .tiny-link {
   margin-right: 8px;
 }

@@ -16,7 +16,7 @@
       <div
         data-tag="tiny-slider-range"
         role="tiny-slider__range"
-        class="absolute rounded left-0 -bottom-px h-1"
+        class="absolute rounded left-0 h-1"
         :class="[state.disabled ? 'bg-color-none' : 'bg-color-brand']"
         :style="state.barStyle"
       ></div>
@@ -104,7 +104,7 @@
         {{ max }}
       </slot>
     </div>
-    <template data-tag="tiny-slider-showinput" v-if="showInput">
+    <template v-if="showInput">
       <div
         data-tag="tiny-slider-isdouble"
         v-if="state.isDouble"

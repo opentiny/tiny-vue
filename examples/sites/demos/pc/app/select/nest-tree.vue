@@ -1,6 +1,7 @@
 <template>
-  <div class="demo-select">
-    <p>场景1：下拉树单选</p>
+  <div>
+    <div>场景1：下拉树（单选）</div>
+    <br />
     <tiny-select
       v-model="treeValue1"
       value-field="id"
@@ -8,7 +9,10 @@
       render-type="tree"
       :tree-op="treeOp"
     ></tiny-select>
-    <p>场景2：下拉树多选</p>
+    <br />
+    <br />
+    <div>场景2：下拉树（多选）</div>
+    <br />
     <tiny-select
       v-model="treeValue2"
       multiple
@@ -17,7 +21,10 @@
       render-type="tree"
       :tree-op="treeOp"
     ></tiny-select>
-    <p>场景3：下拉树可搜索</p>
+    <br />
+    <br />
+    <div>场景3：下拉树可搜索</div>
+    <br />
     <tiny-select
       v-model="treeValue3"
       filterable
@@ -27,6 +34,31 @@
       text-field="label"
       render-type="tree"
       :tree-op="treeOp"
+    ></tiny-select>
+    <br />
+    <br />
+    <div>场景4：下拉树懒加载（单选）</div>
+    <br />
+    <tiny-select
+      v-model="treeValue4"
+      value-field="id"
+      text-field="label"
+      render-type="tree"
+      :tree-op="treeOpLazy"
+      placeholder="请选择"
+    ></tiny-select>
+    <br />
+    <br />
+    <div>场景5：下拉树懒加载（多选）</div>
+    <br />
+    <tiny-select
+      v-model="treeValue5"
+      value-field="id"
+      text-field="label"
+      render-type="tree"
+      :tree-op="treeOpLazy"
+      multiple
+      placeholder="请选择"
     ></tiny-select>
   </div>
 </template>
@@ -41,8 +73,10 @@ export default {
   data() {
     return {
       treeValue1: 10,
-      treeValue2: [9, 6],
+      treeValue2: [1, 9],
       treeValue3: '',
+      treeValue4: 3,
+      treeValue5: [1],
       treeOp: {
         data: [
           {
@@ -80,6 +114,36 @@ export default {
             ]
           }
         ]
+      },
+      treeOpLazy: {
+        lazy: true,
+        load(node, resolve) {
+          if (node.level === 0) {
+            return resolve([
+              {
+                id: 3,
+                label: '一级 3'
+              }
+            ])
+          }
+          if (node.level > 1) return resolve([])
+
+          setTimeout(() => {
+            const data = [
+              {
+                id: 1,
+                label: '一级 1'
+              },
+              {
+                id: 2,
+                label: '一级 2',
+                isLeaf: true
+              }
+            ]
+
+            resolve(data)
+          }, 500)
+        }
       }
     }
   },
@@ -94,7 +158,7 @@ export default {
 </script>
 
 <style scoped>
-.demo-select .tiny-select {
+.tiny-select {
   width: 270px;
 }
 </style>

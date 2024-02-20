@@ -13,8 +13,8 @@ import afterLeave from '@opentiny/vue-renderless/common/deps/after-leave'
 import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
 import { addClass, getStyle, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
 import Loading from './index'
-import { hooks, directive, createComponent } from '@opentiny/vue-common'
-import { constants } from './service'
+import { hooks, directive, createComponent, appProperties } from '@opentiny/vue-common'
+import { constants, defaults } from './service'
 
 const insertDom = (parent, el, binding) => {
   if (!el.domVisible && getStyle(el, 'display') !== 'none' && getStyle(el, 'visibility') !== 'hidden') {
@@ -131,12 +131,14 @@ const vLoading = {
     const mask = createComponent({
       component: Loading,
       propsData: {
-        _constants: constants
+        _constants: constants,
+        tiny_mode: vm.tiny_mode?.value || appProperties().tiny_mode?.value
       },
       el: document.createElement('div')
     })
 
     const config = {
+      ...defaults,
       text: (vm && vm[textExr]) || textExr,
       spinner: (vm && vm[spinnerExr]) || spinnerExr,
       background: (vm && vm[backgroundExr]) || backgroundExr,

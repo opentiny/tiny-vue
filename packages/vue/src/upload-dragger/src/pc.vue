@@ -29,6 +29,7 @@ import type { IUploadDraggerApi } from '@opentiny/vue-renderless/types/upload-dr
 
 export default defineComponent({
   name: $prefix + 'UploadDragger',
+  emits: ['file'],
   props: {
     ...$props,
     disabled: Boolean

@@ -10,7 +10,6 @@
  *
  */
 import Cascader from './src/index'
-import '@opentiny/vue-theme/cascader/index.less'
 import { version } from './package.json'
 
 Cascader.model = {

@@ -25,7 +25,7 @@ export default function (rule, checkValue, callback, source, options) {
 
     rules.required({ rule, checkValue, source, errors, options })
 
-    if (undefined !== checkValue) {
+    if (checkValue !== undefined && checkValue !== '') {
       rules.type(rule, checkValue, source, errors, options)
       rules.range(rule, checkValue, source, errors, options)
     }

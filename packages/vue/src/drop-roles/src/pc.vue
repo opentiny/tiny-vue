@@ -4,6 +4,7 @@
     v-model="state.selectedValue"
     :placeholder="placeholder"
     v-bind="f(state.attrs)"
+    :display-only="displayOnly"
     :popper-class="'tiny-drop-roles' + (popperClass ? ' ' + popperClass : '')"
     :popper-append-to-body="popperAppendToBody"
     @change="change"
@@ -37,7 +38,8 @@ export default defineComponent({
     'fetchCurrentRole',
     'fields',
     'popperClass',
-    'popperAppendToBody'
+    'popperAppendToBody',
+    'displayOnly'
   ],
   emits: ['change', 'render', 'update:modelValue'],
   setup(props, context) {

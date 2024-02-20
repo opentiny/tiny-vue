@@ -13,7 +13,6 @@ export default {
     message: String,
     subMessage: String,
     exceptionClass: String,
-    buttonText: String,
     imageUrl: String,
     pageEmpty: {
       type: Boolean,

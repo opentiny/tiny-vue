@@ -1,0 +1,22 @@
+import { test, expect } from '@playwright/test'
+
+test('设置工作日或节假日', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('calendar-view#set-working-day')
+  const workDay = page.getByRole('button', { name: '工作日' })
+  const restDay = page.getByRole('button', { name: '休息日' })
+  const holiDay = page.getByRole('button', { name: '节假日' })
+  const selectDay16 = page.getByRole('listitem').filter({ hasText: '16' })
+  const selectDay17 = page.getByRole('listitem').filter({ hasText: '17' })
+  const selectDay18 = page.getByRole('listitem').filter({ hasText: '18' })
+  await selectDay16.click()
+  await workDay.click()
+  await selectDay17.click()
+  await restDay.click()
+  await selectDay18.click()
+  await holiDay.click()
+  await page.waitForTimeout(200)
+  await expect(selectDay16).toHaveClass(/bg-blue/)
+  await expect(selectDay17).toHaveClass(/bg-green/)
+  await expect(selectDay18).toHaveClass(/bg-yellow/)
+})

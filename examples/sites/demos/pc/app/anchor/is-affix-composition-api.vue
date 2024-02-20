@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="demo-top mb10">
       <tiny-switch v-model="isAffix"></tiny-switch>
-      <span>{{ isAffix ? '关闭固定模式' : '打开固定模式' }}</span>
+      <span>{{ isAffix ? '打开固定模式' : '关闭固定模式' }}</span>
     </div>
     <tiny-anchor :links="links" :is-affix="isAffix"></tiny-anchor>
   </div>
@@ -22,29 +22,29 @@ const links = ref([
       {
         key: 'basic-usage',
         link: '#basic-usage',
-        title: 'Basic Usage'
+        title: '基本用法'
       },
       {
         key: 'is-affix',
         link: '#is-affix',
-        title: 'Is Affix'
+        title: '固定模式'
       },
       {
         key: 'set-container',
         link: '#set-container',
-        title: 'Set Container'
+        title: '滚动容器'
       },
       {
         key: 'on-change',
-        link: '#on-change',
-        title: 'On Change'
+        link: '#change',
+        title: 'change 事件'
       }
     ]
   },
   {
     key: 'api',
-    link: '#api',
-    title: 'Api'
+    link: '#API',
+    title: 'API'
   }
 ])
 </script>

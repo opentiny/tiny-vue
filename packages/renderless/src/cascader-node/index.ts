@@ -37,9 +37,11 @@ export const handleExpand =
           api.handleExpand()
         }
 
-        if (multiple) {
+        if (multiple && state.isLeaf) {
           const checked = state.isLeaf ? props.node.checked : false
           api.handleMultiCheckChange(Boolean(checked))
+        } else {
+          parent.handleExpand(props.node)
         }
       })
     } else {
@@ -67,4 +69,17 @@ export const isInPath =
   (pathNodes: ICascaderPanelNode[]): boolean => {
     const selectedPathNode = pathNodes[props.node.level - 1] || {}
     return selectedPathNode.uid === props.node.uid
+  }
+
+// mobile-first 模板调用，只处理单选和父子关联
+export const handleNodeClick =
+  ({ state, api }: Pick<ICascaderNodeRenderlessParams, 'api' | 'state'>) =>
+  () => {
+    if (!state.isDisabled) {
+      if (state.isLeaf) {
+        api.handleCheckChange()
+      } else {
+        api.handleExpand()
+      }
+    }
   }

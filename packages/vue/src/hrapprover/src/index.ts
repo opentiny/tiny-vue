@@ -22,7 +22,11 @@ export default defineComponent({
     fetchHrapprover: Function,
     fetchDeptList: Function,
     fetchDeptByValue: Function,
-    fetchDept: Function
+    fetchDept: Function,
+    displayOnly: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

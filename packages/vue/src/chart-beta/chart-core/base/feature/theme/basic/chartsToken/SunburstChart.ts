@@ -1,10 +1,12 @@
-const SunburstChart = (basicToken, mapToken) => {
-  const { borderRadiusSM, border } = basicToken
+const SunburstChart = (aliasToken) => {
+  const { colorBorder, colorLabel } = aliasToken
 
   return {
     itemStyle: {
-      borderRadius: borderRadiusSM,
-      borderWidth: border
+      borderColor: colorBorder
+    },
+    label: {
+      color: colorLabel
     }
   }
 }

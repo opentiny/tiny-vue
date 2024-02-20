@@ -56,6 +56,5 @@ export default {
       },
       codeFiles: ['placeholder.vue']
     }
-  ],
-  apis: []
+  ]
 }

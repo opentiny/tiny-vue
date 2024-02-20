@@ -19,6 +19,11 @@
     "type": "module",
     "exclude": false
   },
+  "SaasCommon": {
+    "path": "vue-saas-common/src/index.ts",
+    "type": "module",
+    "exclude": false
+  },
   "DesignSmb": {
     "path": "design/smb/index.ts",
     "type": "module",

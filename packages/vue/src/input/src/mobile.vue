@@ -132,7 +132,7 @@
       ref="textarea"
       :name="name"
       v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
-      class="tiny-mobile-textarea__inner"
+      :class="['tiny-mobile-textarea__inner', { 'is-focus': state.focused }]"
       :tabindex="tabindex"
       @compositionstart="handleCompositionStart"
       @compositionupdate="handleCompositionUpdate"
@@ -164,7 +164,7 @@
       v-model="state.sheetvalue"
       :menus="selectMenu"
       :ellipsis="ellipsis"
-      :contentStyle="contentStyle"
+      :content-style="contentStyle"
       :visible="state.boxVisibility"
       @update:visible="state.boxVisibility = $event"
     ></tiny-action-sheet>

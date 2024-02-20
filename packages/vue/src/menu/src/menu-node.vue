@@ -26,8 +26,8 @@
                 nodes.isCurrent
                   ? 'fill-color-brand'
                   : nodes.disabled
-                  ? 'fill-color-icon-disabled'
-                  : 'fill-color-icon-primary'
+                    ? 'fill-color-icon-disabled'
+                    : 'fill-color-icon-primary'
               ]"
             ></component>
             <span class="line-clamp-1">{{ nodes.label }}</span>
@@ -39,8 +39,8 @@
               nodes.isCurrent
                 ? 'fill-color-brand'
                 : nodes.disabled
-                ? 'fill-color-icon-disabled'
-                : 'fill-color-icon-secondary',
+                  ? 'fill-color-icon-disabled'
+                  : 'fill-color-icon-secondary',
               state.showNodes || nodes.visible ? 'rotate-90' : ''
             ]"
           ></icon-rightward>

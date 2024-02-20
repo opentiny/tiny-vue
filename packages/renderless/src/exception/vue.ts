@@ -10,23 +10,19 @@
  *
  */
 
-import { create, getMessage } from './index'
+import { emitClick } from './index'
 
 export const api = ['state', 'create']
 
-export const renderless = (props, { computed, reactive }, { t, emit }, { images }) => {
-  const api = {
-    create: create(emit),
-    getMessage: getMessage({ props, t })
-  }
-
+export const renderless = (props, { reactive }, { emit }) => {
   const state = reactive({
-    urlType: props.type,
-    images,
-    message: computed(() => api.getMessage({ props, t }))
+    urlType: props.type
   })
 
-  api.state = state
+  const api = {
+    state,
+    create: emitClick(emit)
+  }
 
   return api
 }

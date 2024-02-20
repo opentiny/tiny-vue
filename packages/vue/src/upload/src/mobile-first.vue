@@ -42,7 +42,9 @@ export default defineComponent({
     'displayOnly',
     'customClass',
     'handleTriggerClick',
-    'mode'
+    'mode',
+    'showTitle',
+    'isHwh5'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h, extendOptions: { Modal } }) as unknown as IUploadApi
@@ -62,7 +64,8 @@ export default defineComponent({
       displayOnly,
       customClass,
       sourceType,
-      mode
+      mode,
+      showTitle
     } = this as any
 
     const defaultSlot = (this as any).slots.default && (this as any).slots.default()
@@ -70,16 +73,21 @@ export default defineComponent({
     const operateSlot = (this as any).slots.operate && (this as any).slots.operate()
 
     const isBubbleMode = mode === 'bubble'
+    const isShowTitle = showTitle
 
     return (
       <div
+        data-tag="tiny-upload"
         class={
           !displayOnly && listType === 'text'
-            ? `flex justify-between mt-4 mb-2 ${isBubbleMode ? 'sm:my-0' : 'sm:my-3'}`
+            ? `flex justify-between mt-4 mb-2 ${
+                isBubbleMode ? 'sm:my-0' : !isShowTitle ? 'sm:mt-0 sm:mb-3' : 'sm:my-3'
+              }`
             : 'h-full'
         }>
         {tipSlot && <div class="flex items-center sm:hidden inline-block text-sm">{tipSlot}</div>}
         <div
+          data-tag="tiny-upload-drag-single"
           class="h-full"
           onClick={($event) => handleClick($event, sourceType)}
           onKeydown={handleKeydown}
@@ -93,7 +101,7 @@ export default defineComponent({
           )}
         </div>
         {operateSlot}
-        {tipSlot && <div class="hidden sm:inline-block flex-1 w-0 self-center">{tipSlot}</div>}
+        {tipSlot && <div class="hidden sm:inline-flex flex-1 w-0 items-center">{tipSlot}</div>}
         <input
           class="hidden"
           type="file"

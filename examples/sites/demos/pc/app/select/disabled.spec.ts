@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('下拉禁用', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#disabled')
   const wrap = page.locator('#disabled')
   const input = wrap.locator('.tiny-input__inner').first()
@@ -10,6 +11,7 @@ test('下拉禁用', async ({ page }) => {
 })
 
 test('多选某项禁用', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#disabled')
   const wrap = page.locator('#disabled')
   const select = wrap.locator('.tiny-select').nth(1)
@@ -30,6 +32,7 @@ test('多选某项禁用', async ({ page }) => {
 })
 
 test('单选某项禁用', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#disabled')
   const wrap = page.locator('#disabled')
   const select = wrap.locator('.tiny-select').nth(2)
@@ -51,6 +54,7 @@ test('单选某项禁用', async ({ page }) => {
 })
 
 test('多选，禁用项默认选中', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#disabled')
   const wrap = page.locator('#disabled')
   const select = wrap.locator('.tiny-select').nth(3)

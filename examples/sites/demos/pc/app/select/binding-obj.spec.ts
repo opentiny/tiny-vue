@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('binding-obj', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#binding-obj')
 
   const wrap = page.locator('#binding-obj')

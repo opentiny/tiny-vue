@@ -16,9 +16,9 @@ export const queryChange =
     state.visible = true
 
     if (Array.isArray(select.state.options)) {
-      const groupOptions = select.state.options.filter(
-        (option) => option.state.parent && vm && option.state.parent.label === vm.label
-      )
+      const groupOptions = select.state.options.filter((option) => {
+        return option.state.parent.$parent && vm && option.state.parent.$parent.label === vm.label
+      })
 
       if (Array.isArray(groupOptions)) {
         state.visible = groupOptions.some((option) => option.visible === true)

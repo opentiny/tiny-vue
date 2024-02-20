@@ -34,7 +34,7 @@ export const request =
       if (state.isPageOnly) {
         state.isFullscreen = true
 
-        api.onChangeFullscreen()
+        api.onChangeFullScreen()
         off(document, 'keyup', api.keypressCallback)
         on(document, 'keyup', api.keypressCallback)
       } else {
@@ -70,7 +70,7 @@ export const exit =
       if (state.isPageOnly) {
         state.isFullscreen = false
 
-        api.onChangeFullscreen()
+        api.onChangeFullScreen()
         off(document, 'keyup', api.keypressCallback)
       } else {
         sf.exit()
@@ -100,7 +100,7 @@ export const fullScreenCallback =
 
     state.isFullscreen = sf.isFullscreen
 
-    api.onChangeFullscreen()
+    api.onChangeFullScreen()
   }
 
 // 按键回调
@@ -111,7 +111,7 @@ export const keypressCallback = (api) => (e) => {
 }
 
 // isFullscreen变化时，上报事件
-export const onChangeFullscreen =
+export const onChangeFullScreen =
   ({ props, state, vm, emit }) =>
   () => {
     if (!state.isFullscreen) {

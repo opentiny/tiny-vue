@@ -19,7 +19,7 @@ export default {
         title: '通知',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
         beforeClose: () => {
-          Modal.message({ message: '在通知框关闭前触发的事件,返回 false 可阻止关闭通知框' })
+          Modal.message({ message: '在通知框关闭前触发的事件,返回 false 可阻止关闭通知框', status: 'info' })
           return false
         },
         duration: 500000,
@@ -31,7 +31,7 @@ export default {
         type: 'info',
         title: '通知',
         message: '通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文，通知消息的正文',
-        onClose: () => Modal.message({ message: '点击关闭按钮时触发事件' }),
+        onClose: () => Modal.message({ message: '点击关闭按钮时触发事件', status: 'info' }),
         duration: 500000,
         position: 'top-right'
       })

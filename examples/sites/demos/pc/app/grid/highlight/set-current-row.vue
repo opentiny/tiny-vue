@@ -1,6 +1,9 @@
 <template>
   <div>
-    <tiny-button @click="click">setCurrentRow</tiny-button>
+    <div>
+      <tiny-button @click="click">setCurrentRow</tiny-button>
+    </div>
+    <br />
     <tiny-grid
       :data="tableData"
       ref="grid"

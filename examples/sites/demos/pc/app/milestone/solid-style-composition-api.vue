@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="handleClick(!isSolid)" style="max-width: cancel">设置 solid 值为{{ !isSolid }}</tiny-button>
+    <tiny-button @click="handleClick(!isSolid)" style="max-width: cancel">设置 solid 值为 {{ !isSolid }}</tiny-button>
     <tiny-milestone :data="milestoneData" :milestones-status="statusMap" :solid="isSolid"></tiny-milestone>
   </div>
 </template>

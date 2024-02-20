@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, CSSProperties } from 'vue'
-import { alertProps, $constants } from '@/alert/src'
+import type { alertProps, $constants } from '@/alert/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export interface IAlertState {

@@ -8,7 +8,10 @@ export default {
         'zh-CN': '根据日期动态生成列',
         'en-US': 'Grid-Dynamic column generation based on the selected date'
       },
-      'desc': { 'zh-CN': '详细用法参考如下示例：', 'en-US': 'For details, see the following example.' },
+      'desc': {
+        'zh-CN': '根据日期范围选择框的日期范围动态的生成表格列。',
+        'en-US': 'For details, see the following example.'
+      },
       'codeFiles': ['dynamically-columns/dynamically-columns.vue']
     },
     {

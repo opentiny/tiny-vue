@@ -161,6 +161,9 @@
           <tiny-button @click="handleReset">
             {{ t('ui.grid.individuation.resetBtn') }}
           </tiny-button>
+          <tiny-button v-if="showHideAll" @click="showOrHideAllColumns(!showAll)">{{
+            showAll ? t('ui.grid.individuation.hideAll') : t('ui.grid.individuation.showAll')
+          }}</tiny-button>
           <tiny-button @click="cancelSettings">
             {{ t('ui.grid.individuation.cancelBtn') }}
           </tiny-button>
@@ -256,7 +259,9 @@ export default defineComponent({
     },
     numberSorting: Boolean,
     multipleHistory: [Object, Boolean],
-    resetMethod: Function
+    resetMethod: Function,
+    showHideAll: Boolean,
+    fixedSorting: Boolean
   },
   emits: ['input', 'saveSettings', 'resetSettings', 'cancelSettings', 'showModal'],
   data() {
@@ -365,17 +370,42 @@ export default defineComponent({
 
               return column
             }
+
+            return undefined
           })
           .filter((i) => i)
       }
       if (configs.length && (this as any).$grid) {
         const { collectColumn } = (this as any).$grid.getTableColumn()
-        const columns = getColNodes(collectColumn)
+        let columns = getColNodes(collectColumn)
+
+        columns = this.doFixedSorting(columns)
 
         this.initNumberSorting(columns)
 
         return columns
       }
+    },
+    doFixedSorting(columns) {
+      if (this.isGroup || !this.fixedSorting) {
+        return columns
+      }
+
+      const fixedLeft = []
+      const normal = []
+      const fixedRight = []
+
+      columns.forEach((column) => {
+        if (!column.fixed) {
+          normal.push(column)
+        } else if (column.fixed === 'left') {
+          fixedLeft.push(column)
+        } else if (column.fixed === 'right') {
+          fixedRight.push(column)
+        }
+      })
+
+      return [...fixedLeft, ...normal, ...fixedRight]
     },
     initNumberSorting(columns) {
       if (this.isGroup) return
@@ -424,6 +454,10 @@ export default defineComponent({
 
       if (!this.isGroup) {
         column.fixed = fixed ? (fixed === 'left' ? 'right' : undefined) : 'left'
+        if (this.fixedSorting) {
+          this.columns = this.doFixedSorting(this.columns)
+          this.initNumberSorting(this.columns)
+        }
       } else {
         for (let i = 0; i < this.columns.length; i++) {
           if (this.columns[i].children) {
@@ -480,9 +514,10 @@ export default defineComponent({
       }
     },
     handleVisible(column) {
-      const invisibleCols = this.fullColumn.filter((item) => item.visible).length
+      const visibleColumnCount = this.tinyTable.visibleColumn.filter((item) => item.visible).length
+      // 当前列是最后一个未隐藏列时，要对其进行隐藏时，进行提示
 
-      if (column.visible && invisibleCols === 1) {
+      if (column.visible && visibleColumnCount === 1) {
         // 最后一条显示的列不能隐藏
         Modal.message({ id: 'customSetting', message: t('ui.grid.individuation.hideMsg'), status: 'warning' })
       } else {
@@ -606,7 +641,7 @@ export default defineComponent({
               let settingColumns = []
               let gridColumns = []
 
-              columns.map((source) => {
+              columns.forEach((source) => {
                 let settingCol = find(this.settings.columns, (item) => source.property === item.property)
                 let targetCol = find(this.columns, (item) => source.property === item.property)
 

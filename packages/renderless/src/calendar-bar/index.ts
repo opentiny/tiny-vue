@@ -268,7 +268,7 @@ export const showWeekChange =
   ({ state }) =>
   (value) => {
     if (value) {
-      state.weekDates = state.calendarDays.filter((day) => day.row === state.activeRow)
+      getWeekDatesByActiveRow(state)
     } else {
       state.calendarDays.forEach((date) => {
         if (state.activeDate === date.dateStr) {
@@ -283,6 +283,14 @@ export const showWeekChange =
 const formatDate = (date) => {
   const newDate = new Date(date)
   return newDate.getFullYear() + '-' + pad0(newDate.getMonth() + 1) + '-' + pad0(newDate.getDate())
+}
+
+const getWeekDatesByActiveRow = (state) => {
+  state.weekDates = state.calendarDays.filter((day) => day.row === state.activeRow)
+  if (!state.weekDates.length) {
+    state.activeRow = 0
+    state.weekDates = state.calendarDays.filter((day) => day.row === state.activeRow)
+  }
 }
 
 export const computedCurrentRow = (state) => () => {
@@ -341,11 +349,18 @@ export const handleClickDay =
       }
 
       const showCalendarDays = [...state.calendarDays, ...state.weekDates]
-      showCalendarDays.forEach((date) => (date.isCur = day.dateStr === date.dateStr))
+      state.activeRow = day.row
+      showCalendarDays.forEach((date) => {
+        if (day.dateStr === date.dateStr) {
+          date.isCur = true
+          state.activeRow = date.row
+        } else {
+          date.isCur = false
+        }
+      })
 
       state.activeDate = day.dateStr
       state.currentDate = day.dateArr[2]
-      state.activeRow = day.row
 
       emit('update:modelValue', day.dateStr)
     }
@@ -514,7 +529,7 @@ export const handleCascaderChange =
     api.getCalendarDays(dateStr, props.config, 'last')
     api.getCalendarDays(dateStr, props.config, 'next')
     emit('update:modelValue', dateStr)
-    state.weekDates = state.calendarDays.filter((day) => day.row === state.activeRow)
+    getWeekDatesByActiveRow(state)
   }
 
 export const computeCascaderOptions = (t) => () => [

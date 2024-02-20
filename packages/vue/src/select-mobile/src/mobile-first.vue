@@ -31,8 +31,8 @@
               state.checkList.length === 0
                 ? 'icon-check'
                 : state.checkList.length === menus.length
-                ? 'icon-checked-sur'
-                : 'icon-halfselect'
+                  ? 'icon-checked-sur'
+                  : 'icon-halfselect'
             "
             :class="['flex-none mt-1 mr-2', state.checkList.length ? 'fill-color-brand' : 'fill-color-icon-disabled']"
             custom-class="w-4.5 h-4.5"
@@ -46,9 +46,9 @@
           :key="item[valueField]"
           :multiple="multiple"
           :ellipsis="ellipsis"
-          :textField="textField"
-          :textField2="textField2"
-          :textField3="textField3"
+          :text-field="textField"
+          :text-field2="textField2"
+          :text-field3="textField3"
           :option="item"
           :selected="isSelected(item)"
           @click="selectOption(item, index)"
@@ -59,7 +59,7 @@
       <div data-tag="tiny-select-mobile-box" :class="[state.search.show ? 'flex flex-col flex-auto' : 'hidden']">
         <!-- search header -->
         <div data-tag="tiny-select-mobile-header" class="flex leading-6 pt-4 pb-4 px-4 text-base items-center">
-          <div class="flex-auto flex items-center h-8 py-1 px-3 bg-color-bg-4 rounded">
+          <div class="flex-auto flex items-center h-8 py-1 px-3 bg-color-bg-4 rounded-full">
             <IconSearch custom-class="h-4 w-4" class="mr-1 fill-color-icon-disabled"></IconSearch>
             <input
               v-model="state.search.input"
@@ -84,9 +84,9 @@
               :key="item[valueField]"
               :multiple="multiple"
               :ellipsis="ellipsis"
-              :textField="textField"
-              :textField2="textField2"
-              :textField3="textField3"
+              :text-field="textField"
+              :text-field2="textField2"
+              :text-field3="textField3"
               :option="item"
               :selected="isSelected(item)"
               @click="searchSelectHandler(item, index)"
@@ -100,8 +100,10 @@
             v-show="!state.search.filterOptions.length"
             class="w-full flex justify-center items-center text-center flex-auto"
           >
-            <tiny-exception component-page type="nodata">
-              <template #content>{{ t('ui.select.noSearchData') }}</template>
+            <tiny-exception component-page type="nodata" tiny_mode="mobile-first" tiny_mode_root>
+              <template #content>
+                <span class="text-color-icon-secondary">{{ t('ui.select.noSearchData') }}</span>
+              </template>
             </tiny-exception>
           </div>
         </div>
@@ -127,7 +129,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/select-mobile/vue'
 import { $prefix, setup, $props, defineComponent } from '@opentiny/vue-common'
-import { IconSearch, IconClose, IconHalfselect, IconCheckedSur, IconCheck } from '@opentiny/vue-icon'
+import { iconSearch, iconClose, iconHalfselect, iconCheckedSur, iconCheck } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
 import ActionSheet from '@opentiny/vue-action-sheet'
 import Exception from '@opentiny/vue-exception'
@@ -137,17 +139,17 @@ import Option from './option.vue'
 
 export default defineComponent({
   name: $prefix + 'SelectMobile',
-  emits: ['click', 'search-click', 'update:visible', 'update:text'],
+  emits: ['click', 'search-click', 'update:visible', 'update:text', 'update:modelValue', 'confirm', 'close'],
   components: {
     TinyActionSheet: ActionSheet,
     TinyOption: Option,
     TinyButton: Button,
     TinyException: Exception,
-    IconCheck: IconCheck(),
-    IconCheckedSur: IconCheckedSur(),
-    IconHalfselect: IconHalfselect(),
-    IconSearch: IconSearch(),
-    IconClose: IconClose(),
+    IconCheck: iconCheck(),
+    IconCheckedSur: iconCheckedSur(),
+    IconHalfselect: iconHalfselect(),
+    IconSearch: iconSearch(),
+    IconClose: iconClose(),
     TinyInput: Input,
     TinyCell: Cell
   },

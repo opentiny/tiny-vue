@@ -20,21 +20,6 @@ const filteData = [
   { label: '龙岩', value: '龙岩' },
   { label: '韶关', value: '韶关' }
 ]
-
-const toolbarButtons = ref([
-  {
-    code: 'clearFilter',
-    name: '清空表格所有过滤条件'
-  },
-  {
-    code: 'clearFilterName',
-    name: '清空表格name字段的过滤条件'
-  },
-  {
-    code: 'closeFilter',
-    name: '手动关闭筛选面板'
-  }
-])
 const tableData = ref([
   {
     id: '1',

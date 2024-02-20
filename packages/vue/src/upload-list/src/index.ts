@@ -85,9 +85,7 @@ export const uploadListProps = {
   lockScroll: {
     type: Boolean,
     default: true
-  },
-  reUploadable: Boolean,
-  reUploadTip: Function
+  }
 }
 
 export default defineComponent({
