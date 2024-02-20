@@ -41,15 +41,13 @@ export default class TreeStore {
   }
 
   filter(value) {
-    const { lazy, getMappingData, filterNodeMethod } = this
+    const { lazy, filterNodeMethod } = this
 
     const walkTree = (node) => {
       const childNodes = node.root ? node.root.childNodes : node.childNodes
 
       childNodes.forEach((child) => {
-        const mappingData = getMappingData.call(this, child.data)
-
-        child.visible = filterNodeMethod.call(child, value, mappingData, child)
+        child.visible = filterNodeMethod.call(child, value, child.data, child)
 
         walkTree(child)
       })
@@ -73,19 +71,6 @@ export default class TreeStore {
     }
 
     walkTree(this)
-  }
-
-  getMappingData(data) {
-    const props = this.props || {}
-    const mapping = {}
-
-    Object.keys(props).forEach((key) => {
-      if (hasOwn.call(props, key)) {
-        mapping[key] = data[props[key]]
-      }
-    })
-
-    return Object.assign(data, mapping)
   }
 
   setData(newVal) {

@@ -37,7 +37,7 @@
     }
 
     .@{alert-prefix-cls}__description {
-      @apply ~"mb-1.5";
+      @apply ~'mb-1.5';
       @apply mt-2;
       @apply leading-none;
 
@@ -68,7 +68,7 @@
   }
 
   &&--info {
-    .alert-variant(theme('colors.color.text.primary'); theme('colors.color.bg.1'); theme('colors.color.info.secondary.DEFAULT'); theme('colors.color.info.secondary.DEFAULT'); theme('colors.color.info.secondary.subtle'); theme('colors.color.text.primary'));
+    .alert-variant(theme('colors.color.text.primary'); theme('colors.color.bg.1'); theme('colors.color.info.primary.DEFAULT'); theme('colors.color.info.primary.DEFAULT'); theme('colors.color.info.primary.subtler'); theme('colors.color.text.primary'));
   }
 
   &&--warning {
@@ -90,18 +90,18 @@
 
   .is-custom {
     @apply absolute;
-    @apply ~"top-1/2";
+    @apply ~'top-1/2';
     @apply right-3;
-    @apply ~"-translate-y-2/4";
+    @apply ~'-translate-y-2/4';
     @apply cursor-pointer;
   }
 
   & &__close {
     @apply text-base;
     @apply absolute;
-    @apply ~"top-1/2";
+    @apply ~'top-1/2';
     @apply right-3;
-    @apply ~"-translate-y-2/4";
+    @apply ~'-translate-y-2/4';
     @apply cursor-pointer;
 
     &:hover {
@@ -138,7 +138,6 @@
 
   & &__description {
     @apply text-sm;
-    @apply text-color-text-primary;
   }
 
   p {

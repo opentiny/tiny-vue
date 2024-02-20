@@ -4,7 +4,7 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{milestone-prefix-cls} {
-  padding-top: 38px;
+  @apply pt-10;
   @apply overflow-hidden;
 
   & &__node {
@@ -64,7 +64,7 @@
     @apply relative;
     @apply text-xs;
     @apply text-center;
-    left: ~'calc(50% - 10px)';
+    left: ~'calc(50% - theme(spacing[2.5]))';
     @apply top-1;
     @apply rounded-full;
     @apply text-color-text-inverse;
@@ -94,7 +94,7 @@
   }
 
   & &__description {
-    line-height: 14px;
+    @apply leading-5;
     @apply mt-2;
     @apply relative;
     @apply overflow-hidden;
@@ -135,16 +135,16 @@
       @apply border-t-8 border-r-8 border-b-0 border-l-8;
       @apply border-y-color-border border-x-transparent;
       @apply content-[''];
-      left: ~'calc(50% - 4px)';
+      left: ~'calc(50% - theme(spacing.1))';
       @apply ~'-bottom-1.5';
     }
   }
 
   & &__flag {
     @apply absolute;
-    left: ~'calc(50% - 29px)';
-    bottom: 5px;
-    width: 58px;
+    left: ~'calc(50% - theme(spacing.8))';
+    @apply bottom-2;
+    @apply w-16;
     @apply text-center;
     @apply ~'z-[1]';
 
@@ -154,10 +154,10 @@
   }
 
   & &__flag-content {
-    width: 58px;
-    height: 34px;
+    @apply w-16;
+    @apply h-8;
     @apply p-0;
-    line-height: 15px;
+    @apply ~'leading-5.5';
     @apply text-sm;
     @apply rounded;
     @apply text-color-text-inverse;
@@ -168,7 +168,7 @@
 
     p {
       @apply text-color-text-inverse;
-      width: 42px;
+      @apply h-12;
       @apply text-xs;
       @apply whitespace-nowrap;
       @apply text-ellipsis;
@@ -180,9 +180,9 @@
   }
 
   & &__flag-line {
-    height: 30px;
+    @apply h-8;
     @apply w-px;
-    @apply ~"ml-[50%]";
+    @apply ~'ml-[50%]';
     @apply bg-color-bg-3;
   }
 
@@ -191,10 +191,10 @@
     @apply bg-color-bg-1;
     @apply border-solid border;
     @apply rounded-full;
-    width: 5px;
-    height: 5px;
+    @apply ~'w-[calc(theme(spacing[2.5])/2)]';
+    @apply ~'h-[calc(theme(spacing[2.5])/2)]';
     @apply relative;
-    bottom: -29px;
+    @apply -bottom-8;
     @apply ~'right-0.5';
   }
 }
@@ -264,12 +264,20 @@
         }
       }
     }
+
+    &.@{milestone-prefix-cls}__icon-custom.is-completed {
+      @apply border-color-brand;
+
+      .@{svg-prefix-cls} {
+        @apply fill-color-brand;
+      }
+    }
   }
 
   .@{milestone-prefix-cls}__node {
     .@{milestone-prefix-cls}__description {
       @apply relative;
-      top: 3px;
+      @apply top-1;
       @apply mt-0;
       @apply pt-3;
       @apply pb-2;
@@ -286,7 +294,7 @@
       .@{milestone-prefix-cls}__description-name {
         @apply text-sm;
         @apply font-bold;
-        line-height: 1.2rem;
+        @apply ~'leading-5.5';
       }
 
       .@{milestone-prefix-cls}__description-status {
@@ -402,7 +410,7 @@
   }
 
   .@{milestone-prefix-cls}__flag {
-    @apply bottom-0;
+    @apply ~'bottom-1.5';
 
     .@{milestone-prefix-cls}__flag-content {
       @apply !bg-color-bg-1;

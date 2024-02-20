@@ -31,8 +31,7 @@ export function Modal(options) {
       let events = options.events || {}
       let $modal
 
-      options.events = {
-        ...events,
+      options.events = Object.assign({}, events, {
         hide(params) {
           events.hide && events.hide.call(this, params)
           if ($modal.beforeUnmouted) {
@@ -46,7 +45,7 @@ export function Modal(options) {
         show(params) {
           events.show && events.show.call(this, params)
         }
-      }
+      })
 
       $modal = createComponent({
         el: document.createElement('div'),
@@ -67,12 +66,9 @@ export function Modal(options) {
       setTimeout(() => (modalPromise.vm = $modal), 0)
     }
   })
-
   return modalPromise
 }
-
 const modal = Modal
-
 const types = ['alert', 'confirm', 'message', 'popconfirm']
 
 const defOpts = {
@@ -135,11 +131,10 @@ setupComponent.TINYModal = {
     const specifyPc = typeof process === 'object' ? process.env?.TINY_MODE : null
     TINYModal.tiny_mode = specifyPc || (tinyMode && tinyMode.value)
     TINYModal.tiny_theme = tinyTheme && tinyTheme.value
-
     TINYModal.installed = true
   },
   init(root) {
-    let prefix = root.$TinyModalApiPrefix || '$'
+    let prefix = root.$TinyModalApiPrefix || root.$apiPrefix || '$'
 
     root[`${prefix}alert`] = (Modal as any).alert
     root[`${prefix}message`] = (Modal as any).message

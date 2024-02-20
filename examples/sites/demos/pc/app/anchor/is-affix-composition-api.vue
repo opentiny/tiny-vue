@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="demo-top mb10">
       <tiny-switch v-model="isAffix"></tiny-switch>
-      <span>{{ isAffix ? '关闭固定模式' : '打开固定模式' }}</span>
+      <span>{{ isAffix ? '打开固定模式' : '关闭固定模式' }}</span>
     </div>
     <tiny-anchor :links="links" :is-affix="isAffix"></tiny-anchor>
   </div>

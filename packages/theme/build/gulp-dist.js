@@ -10,6 +10,7 @@ const prefixer = require('gulp-autoprefixer')
 const fg = require('fast-glob')
 const fs = require('node:fs')
 const { createTheme, removeDir } = require('./edit‐dir‐theme.js')
+const { buildSvg } = require('./build-svg-to-css.js')
 
 const source = '../src'
 const dist = '../dist'
@@ -30,6 +31,8 @@ const note = fs.readFileSync('../src/index.less', { encoding: 'utf-8' }).match(/
 fs.writeFileSync('../src/index.less', `${note}\n\n${importStr}`)
 
 gulp.task('build-dir', createTheme)
+
+gulp.task('build-svg', buildSvg)
 
 gulp.task('compile', () => {
   return gulp
@@ -81,6 +84,7 @@ gulp.task(
   'build',
   gulp.series(
     'build-dir',
+    // 'build-svg',
     'compile',
     'copycssvar',
     'copysvgs',

@@ -1,0 +1,186 @@
+<template>
+  <div>
+    <tiny-button @click="checkStrictly = checkStrictly ? false : true">
+      {{ checkStrictly ? '切换到不严格关联' : '切换到严格关联' }}
+    </tiny-button>
+
+    <tiny-cascader
+      :options="options"
+      v-model="value"
+      :props="{ checkStrictly }"
+      title="搜索文档"
+      filterable
+      :filter-method="filterMethod"
+    ></tiny-cascader>
+  </div>
+</template>
+
+<script>
+import { Cascader, Button } from '@opentiny/vue'
+
+export default {
+  components: {
+    TinyCascader: Cascader,
+    TinyButton: Button
+  },
+  data() {
+    return {
+      value: '',
+      checkStrictly: false,
+      filterMethod(node, keyword) {
+        if (!keyword) return true
+
+        return node.label.includes(keyword)
+      },
+      options: [
+        {
+          value: 'zhinan',
+          label: '指南',
+          children: [
+            {
+              value: 'anzhuang',
+              label: '安装',
+              children: [
+                {
+                  value: 'xiangmudengji',
+                  label: '项目登记'
+                },
+                {
+                  value: 'huanjingzhunbei',
+                  label: '环境准备'
+                },
+                {
+                  value: 'anzhuangcli',
+                  label: '安装 CLI'
+                },
+                {
+                  value: 'chuangjianxiangmu',
+                  label: '创建项目'
+                }
+              ]
+            },
+            {
+              value: 'kaifa',
+              label: '开发',
+              children: [
+                {
+                  value: 'yinruzujian',
+                  label: '引入组件'
+                },
+                {
+                  value: 'monishuju',
+                  label: '模拟数据'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          value: 'zujian',
+          label: '组件-------测试长名称',
+          children: [
+            {
+              value: 'basic',
+              label: '框架风格',
+              children: [
+                {
+                  value: 'layout',
+                  label: 'Layout 布局'
+                },
+                {
+                  value: 'color',
+                  label: 'Color 色彩'
+                },
+                {
+                  value: 'font',
+                  label: 'Font 字体'
+                },
+                {
+                  value: 'icon',
+                  label: 'Icon 图标'
+                }
+              ]
+            },
+            {
+              value: 'form',
+              label: '表单组件',
+              children: [
+                {
+                  value: 'radio',
+                  label: 'Radio 单选框'
+                },
+                {
+                  value: 'checkbox',
+                  label: 'Checkbox 多选框'
+                },
+                {
+                  value: 'input',
+                  label: 'Input 输入框'
+                },
+                {
+                  value: 'number',
+                  label: 'Numeric 计数器'
+                },
+                {
+                  value: 'select',
+                  label: 'Select 选择器'
+                }
+              ]
+            },
+            {
+              value: 'data',
+              label: '数据组件',
+              children: [
+                {
+                  value: 'tree',
+                  label: 'Tree 树形控件'
+                },
+                {
+                  value: 'pager',
+                  label: 'Pager 分页'
+                }
+              ]
+            },
+            {
+              value: 'notice',
+              label: '提示组件',
+              children: [
+                {
+                  value: 'alert',
+                  label: 'Alert 警告'
+                },
+                {
+                  value: 'loading',
+                  label: 'Loading 加载'
+                }
+              ]
+            },
+            {
+              value: 'navigation',
+              label: '导航组件',
+              children: [
+                {
+                  value: 'menu',
+                  label: 'NavMenu 导航菜单'
+                },
+                {
+                  value: 'tabs',
+                  label: 'Tabs 标签页'
+                },
+                {
+                  value: 'breadcrumb',
+                  label: 'Breadcrumb 面包屑'
+                },
+                {
+                  value: 'steps',
+                  label: 'Steps 步骤条'
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+</script>

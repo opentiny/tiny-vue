@@ -4,7 +4,6 @@ import type { ISharedRenderlessParamUtils } from './shared.type'
 
 export interface IActionSheetState {
   toggle: boolean
-  active: null | string
   sheetMaskStyle: CSSProperties
   sheetContentStyle: CSSProperties
   scroll: null | object

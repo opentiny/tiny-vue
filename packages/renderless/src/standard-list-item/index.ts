@@ -23,3 +23,19 @@ export const handleTitleClick =
 
     props.titleOption.click()
   }
+
+export const computedOptions =
+  ({ props }) =>
+  () => {
+    return props.options
+      .filter((item) => {
+        const hidden = typeof item.hidden === 'function' ? item.hidden(props.data) : item.hidden
+        return !hidden
+      })
+      .map((op) => {
+        return {
+          ...op,
+          disabled: typeof op.disabled === 'function' ? op.disabled(props.data) : op.disabled
+        }
+      })
+  }

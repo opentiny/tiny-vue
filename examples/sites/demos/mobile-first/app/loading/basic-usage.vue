@@ -19,7 +19,8 @@ export default {
   },
   mounted() {
     this.loadingInstance = Loading.service({
-      target: document.getElementById('tiny-loading1')
+      target: document.getElementById('tiny-loading1'),
+      tiny_mode: 'mobile-first'
     })
   },
   methods: {

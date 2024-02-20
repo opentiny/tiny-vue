@@ -2,6 +2,16 @@
 @import '../custom.less';
 
 @slider-prefix-cls: ~'@{css-prefix}slider';
+@slider-container-prefix-cls: ~'@{css-prefix}slider-container';
+
+.@{slider-container-prefix-cls} {
+  @apply relative;
+
+  &&__horizontal {
+    @apply flex;
+    @apply items-center;
+  }
+}
 
 .@{slider-prefix-cls} {
   @apply rounded-full;
@@ -76,7 +86,6 @@
     @apply ~'z-[1]';
     @apply h-1;
     @apply bg-color-brand;
-    @apply -top-px;
   }
 
   &__left {

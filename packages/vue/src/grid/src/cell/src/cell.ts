@@ -28,7 +28,7 @@ import { getColumnConfig, getFuncText, formatText } from '@opentiny/vue-renderle
 import { Renderer } from '../../adapter'
 import { getCellLabel } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
-import { hooks } from '@opentiny/vue-common'
+import { hooks, isVnode } from '@opentiny/vue-common'
 import {
   iconCheckedSur,
   iconHalfselect,
@@ -188,6 +188,27 @@ const isCheckStrictly = (selectConfig) =>
   (selectConfig && selectConfig.checkStrictly && !selectConfig.showHeader) ||
   (selectConfig && !selectConfig.checkStrictly && selectConfig.showHeader === false)
 
+export const runRender = (render, ...params) => {
+  let vnode
+
+  try {
+    vnode = render(...params)
+  } catch (e) {
+    warn('ui.grid.error.renderParamError')
+  } finally {
+    if (!vnode || !isVnode(vnode)) {
+      try {
+        vnode = hooks.h(render)
+      } catch (e) {
+        vnode = null
+        warn('ui.grid.error.classComponentError')
+      }
+    }
+  }
+
+  return vnode
+}
+
 export const Cell = {
   createColumn($table, colProps) {
     let { type, filter, editor, treeNode } = colProps
@@ -235,7 +256,7 @@ export const Cell = {
     return getColumnConfig(colProps, renMaps, GLOBAL_CONFIG)
   },
   // 单元格
-  renderHeader(h, params) {
+  renderHeader(h, params, type?: string) {
     let { column } = params
     let { slots, own, title } = column
 
@@ -245,6 +266,10 @@ export const Cell = {
 
     if (typeof title === 'function') {
       return [title(h, params)]
+    }
+
+    if (type === 'card') {
+      return [formatText(getFuncText(own.title), 1)]
     }
 
     return [h('div', { class: 'tiny-grid-cell-text' }, [formatText(getFuncText(own.title), 1)])]
@@ -400,9 +425,6 @@ export const Cell = {
       }
     }
 
-    const map = {
-      isDisabled: 'is__disabled'
-    }
     return [
       h('label', { class: ['tiny-grid-radio', { [`size__${vSize}`]: vSize, 'is__disabled': disabled }] }, [
         h('input', options),
@@ -873,7 +895,9 @@ export const Cell = {
         ? [classes, 'tiny-grid__oper-col-button--disabled', disabledClass]
         : classes
       const childNodes =
-        typeof buttonConfig.icon === 'function' ? [buttonConfig.icon(h, mergeParams)] : [h(buttonConfig.icon)]
+        typeof buttonConfig.icon === 'function'
+          ? [runRender(buttonConfig.icon, h, mergeParams)]
+          : [h(buttonConfig.icon)]
 
       return flag ? h('span', { class: clazz, attrs, on }, childNodes) : null
     }
@@ -894,8 +918,10 @@ export const Cell = {
       return (typeof hidden === 'boolean' && hidden) || (typeof hidden === 'function' && hidden(row))
     }
 
-    const handleItemClick = (name) => {
-      const buttonConfig = visibleButtons.find(({ name: buttonName }) => buttonName === name)
+    const handleItemClick = (itemData) => {
+      // 兼容不同itemData数据类型
+      const realName = itemData?.name || itemData
+      const buttonConfig = visibleButtons.find(({ name: buttonName }) => buttonName === realName)
       buttonConfig.click(window.event || {}, { buttonConfig, ...params })
     }
 

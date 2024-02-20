@@ -14,9 +14,11 @@ export default {
   data() {
     return {
       srcList: [
-        '/static/images/3.jpg',
-        '/static/images/1.jpg',
-        'https://his-beta.huawei.com/opentiny/webnova/static/img/featuremap.c5e796e.png'
+        `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+        `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/3.jpg`,
+        `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/4.jpg`,
+        `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/5.jpg`,
+        `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/6.jpg`
       ]
     }
   }

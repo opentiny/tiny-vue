@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('cache-op', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#cache-usage')
 
   const wrap = page.locator('#cache-usage')

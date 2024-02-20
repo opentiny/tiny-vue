@@ -6,7 +6,7 @@
   </tiny-file-upload>
 </template>
 
-<script lang="jsx">
+<script>
 import { FileUpload, Button } from '@opentiny/vue'
 
 export default {

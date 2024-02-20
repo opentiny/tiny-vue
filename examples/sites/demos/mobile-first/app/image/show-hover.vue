@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      url: '/static/images/1.jpg'
+      url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`
     }
   }
 }

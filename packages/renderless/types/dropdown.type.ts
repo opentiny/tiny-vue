@@ -27,7 +27,6 @@ export interface IDropdownState {
   listId: string
   showIcon: boolean
   showSelfIcon: boolean
-  isDisabled: boolean
   designConfig: IDropdownRenderlessParamUtils['designConfig']
 }
 

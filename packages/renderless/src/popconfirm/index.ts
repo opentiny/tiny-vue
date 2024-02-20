@@ -9,7 +9,6 @@ export const hide =
     }, 300)
 
     state.showPopover = false
-    emit('hide', state.showPopover)
   }
 
 export const show =
@@ -20,15 +19,13 @@ export const show =
     }
 
     state.showPopover = true
-    emit('show', state.showPopover)
   }
 
 export const confirm =
-  ({ state, emit }: Pick<IPopconfirmRenderlessParams, 'state' | 'emit'>) =>
+  ({ state, api }: Pick<IPopconfirmRenderlessParams, 'state' | 'api'>) =>
   () => {
     state.showPopover = false
-    emit('confirm', state.showPopover)
-    emit('hide', state.showPopover)
+    api.handleEmit('confirm')
   }
 
 export const handleEmit =
@@ -39,6 +36,6 @@ export const handleEmit =
     if (events[type]) {
       events[type].call(vm, { $modal: vm, type })
     } else {
-      emit(type, state.showPopover)
+      emit(type, state)
     }
   }

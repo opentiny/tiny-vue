@@ -8,7 +8,7 @@
   @apply left-0;
   @apply z-10;
   @apply py-1 px-0;
-  margin: 5px 0;
+  @apply my-1 mx-0;
   @apply bg-color-bg-1;
   @apply rounded;
   @apply shadow-md;
@@ -119,9 +119,9 @@
   @apply ~'py-1.5' px-0;
 
   .@{dropdown-prefix-cls}__item {
-    line-height: 30px;
-    padding: 0 17px;
-    @apply text-xs;
+    @apply leading-8;
+    @apply py-0 px-3;
+    @apply text-sm;
 
     &.@{dropdown-prefix-cls}__item--divided {
       @apply ~'mt-1.5';
@@ -129,7 +129,7 @@
 
     &.@{dropdown-prefix-cls}__item--divided:before {
       @apply ~'h-1.5';
-      margin: 0 -17px;
+      @apply my-0 -mx-3;
     }
   }
 }
@@ -138,8 +138,8 @@
   @apply ~'py-1.5' px-0;
 
   .@{dropdown-prefix-cls}__item {
-    line-height: 27px;
-    padding: 0 15px;
+    @apply leading-6;
+    @apply py-0 px-4;
     @apply text-xs;
 
     &.@{dropdown-prefix-cls}__item--divided {
@@ -148,13 +148,13 @@
 
     &.@{dropdown-prefix-cls}__item--divided:before {
       @apply h-1;
-      margin: 0 -15px;
+      @apply my-0 -mx-4;
     }
   }
 }
 
 .@{dropdown-prefix-cls}--mini {
-  padding: 3px 0;
+  @apply py-1 px-0;
 
   .@{dropdown-prefix-cls}__item {
     @apply leading-6;
@@ -162,11 +162,11 @@
     @apply text-xs;
 
     &.@{dropdown-prefix-cls}__item--divided {
-      margin-top: 3px;
+      @apply mt-1;
     }
 
     &.@{dropdown-prefix-cls}__item--divided:before {
-      height: 3px;
+      @apply h-px;
       @apply my-0 ~'-mx-2.5';
     }
   }

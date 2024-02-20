@@ -22,7 +22,7 @@ const classes = {
   enter: 'v-modal-enter',
   modal: 'v-modal'
 }
-interface IModalStack {
+export interface IModalStack {
   id: string
   zIndex: number
   modalClass: string

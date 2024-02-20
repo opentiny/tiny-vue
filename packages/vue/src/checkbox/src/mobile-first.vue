@@ -3,8 +3,15 @@
     data-tag="tiny-checkbox"
     :class="
       m(
-        'inline-flex sm:items-center text-sm sm:py-2 leading-5 cursor-pointer',
+        'inline-flex sm:items-center text-sm leading-5 cursor-pointer',
         state.size === 'medium' ? 'sm:text-sm' : 'sm:text-xs',
+        { 'sm:py-2': state.vertical },
+        state.isDisplayOnly || state.isGroupDisplayOnly
+          ? state.isChecked
+            ? `cursor-default after:content-[';'] after:inline-block last:after:content-['']`
+            : 'hidden'
+          : '',
+        state.showLabel ? 'inline-flex' : '',
         customClass
       )
     "
@@ -14,7 +21,7 @@
   >
     <span
       :class="[
-        'relative w-11 h-11 sm:p-0',
+        'relative w-7 h-7 mr-2 sm:mr-0 sm:p-0',
         state.size === 'medium' ? 'sm:w-6 sm:h-6' : 'sm:h-4 sm:w-4',
         state.isDisplayOnly || state.isGroupDisplayOnly ? 'hidden' : ''
       ]"
@@ -64,11 +71,11 @@
       </span>
       <input
         v-if="trueLabel || falseLabel"
-        class="absolute inset-0 w-0 h-0 -z-10 opacity-0"
+        class="absolute left-0 right-0 top-0 bottom-0 w-0 h-0 -z-10 opacity-0"
         type="checkbox"
         :aria-hidden="indeterminate ? 'true' : 'false'"
         :name="name"
-        :disabled="state.isDisabled"
+        :disabled="state.inputDisabled"
         :true-value="trueLabel"
         :false-value="falseLabel"
         v-model="state.model"
@@ -79,10 +86,10 @@
       />
       <input
         v-else
-        class="absolute inset-0 w-0 h-0 -z-10 opacity-0"
+        class="absolute left-0 right-0 top-0 bottom-0 w-0 h-0 -z-10 opacity-0"
         type="checkbox"
         :aria-hidden="indeterminate ? 'true' : 'false'"
-        :disabled="state.isDisabled"
+        :disabled="state.inputDisabled"
         :value="label"
         :name="name"
         v-model="state.model"
@@ -94,11 +101,20 @@
     </span>
     <span
       ref="label"
-      class="py-3 sm:py-0 pl-0 sm:pl-2 text-color-text-primary mr-5 flex-auto"
+      :class="
+        m(
+          'py-0 pl-0 sm:pl-2 mr-5 flex-auto leading-7 sm:leading-none',
+          state.isDisabled ? 'cursor-not-allowed text-color-text-disabled' : 'text-color-text-primary',
+          state.isDisplayOnly || state.isGroupDisplayOnly ? 'p-0 sm:p-0 m-0 text-color-text-primary cursor-default' : ''
+        )
+      "
       v-if="(slots.default && slots.default()) || text || label"
     >
       <slot>{{ text || label }}</slot>
     </span>
+    <template v-else>
+      <span v-if="state.isDisplayOnly" class="text-color-text-primary cursor-default"> {{ state.displayLabel }}</span>
+    </template>
   </label>
 </template>
 
@@ -135,7 +151,7 @@ export default defineComponent({
     IconCheckedSur: iconCheckedSur(),
     IconCheck: iconCheck()
   },
-  setup(props, context): any {
+  setup(props, context) {
     return setup({ props, context, renderless, api })
   }
 })

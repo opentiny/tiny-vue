@@ -78,7 +78,12 @@ export const uploadProps = {
     type: Function,
     default: () => {}
   },
-  mode: String
+  mode: String,
+  showTitle: Boolean,
+  isHwh5: {
+    type: Boolean,
+    default: false
+  }
 }
 
 export default defineComponent({

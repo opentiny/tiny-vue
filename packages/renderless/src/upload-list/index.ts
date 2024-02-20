@@ -40,6 +40,7 @@ export const downloadFile = (service: IUploadListRenderlessParams['service']) =>
   if (Array.isArray(data)) {
     responseFile = data[0]
   } else if (data && typeof data === 'object') {
+    // eslint-disable-next-line no-unreachable-loop
     for (let key in data) {
       responseFile = data[key]
       break
@@ -148,43 +149,43 @@ export const getFileIcon =
     let iconTypes = {
       [EXCEL]: {
         name: 'icon-excel-type',
-        color: '#00A2B5'
+        color: '#09AA71'
       },
       [FILE]: {
         name: 'icon-file-type',
-        color: '#71C14C'
+        color: '#09AA71'
       },
       [PDF]: {
         name: 'icon-pdf-type',
-        color: '#FC916E'
+        color: '#E02128'
       },
       [PICTURE]: {
         name: 'icon-picture-type',
-        color: '#2E94FF'
+        color: '#5531EB'
       },
       [PPT]: {
         name: 'icon-ppt-type',
-        color: '#F46087'
+        color: '#E02128'
       },
       [TEXT]: {
         name: 'icon-text-type',
-        color: '#9185F0'
+        color: '#2CB8C9'
       },
       [WORD]: {
         name: 'icon-word-type',
-        color: '#2070F3'
+        color: '#0067D1'
       },
       [ZIP]: {
         name: 'icon-zip-type',
-        color: '#FDC000'
+        color: '#2CB8C9'
       },
       [VIDEO]: {
         name: 'icon-video-type',
-        color: '#2E94FF'
+        color: '#0067D1'
       },
       [AUDIO]: {
         name: 'icon-audio',
-        color: '#2E94FF'
+        color: '#5531EB'
       },
       default: {
         name: 'icon-other-type',
@@ -214,8 +215,8 @@ export const calcUploadListLiWidth =
     const { listType } = props
     const { LIST_TYPE } = constants
     nextTick(() => {
-      const uploadListEle = vm.$refs['upload-list']
-      const uploadListLiEle = vm.$refs['upload-list-li']
+      const uploadListEle = vm.$refs.uploadList
+      const uploadListLiEle = vm.$refs.uploadListLi
 
       if (!uploadListEle || !(uploadListLiEle && uploadListLiEle[0])) return
 
@@ -296,14 +297,14 @@ export const handleTriggerClick =
 export const mounted =
   ({ api, vm }: Pick<IUploadListRenderlessParams, 'api' | 'vm'>) =>
   () => {
-    const el = vm.$refs['upload-list']
+    const el = vm.$refs.uploadList
     el && addResizeListener(el, api.calcUploadListLiWidth)
   }
 
 export const destroyed =
   ({ api, props, vm }: Pick<IUploadListRenderlessParams, 'api' | 'props' | 'vm'>) =>
   () => {
-    removeResizeListener(vm.$refs['upload-list'], api.calcUploadListLiWidth)
+    removeResizeListener(vm.$refs.uploadList, api.calcUploadListLiWidth)
 
     props.files.forEach((file) => {
       removePlayEventListener({ type: 'ended', el: file.el }, file.playEvent)

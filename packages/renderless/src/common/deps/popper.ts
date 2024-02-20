@@ -103,6 +103,24 @@ const isScrollElement = (el: HTMLElement) => {
   )
 }
 
+/** 设置transform等样式后，fixed定位不再相对于视口，使用1X1PX透明元素获取fixed定位相对于视口的修正偏移量。 */
+const getAdjustOffset = (parent: HTMLElement) => {
+  const placeholder = document.createElement('div')
+  setStyle(placeholder, {
+    opacity: 0,
+    position: 'fixed',
+    width: 1,
+    height: 1,
+    top: 0,
+    left: 0,
+    'z-index': '-99'
+  })
+  parent.appendChild(placeholder)
+  const result = getBoundingClientRect(placeholder)
+  parent.removeChild(placeholder)
+  return result
+}
+
 /** 查找滚动父元素，只找第一个就返回 */
 export const getScrollParent: (el: HTMLElement) => HTMLElement = (el) => {
   let parent = el.parentNode
@@ -126,11 +144,21 @@ export const getScrollParent: (el: HTMLElement) => HTMLElement = (el) => {
 }
 
 /** 计算 el 在父元素中的定位 */
-const getOffsetRectRelativeToCustomParent = (el: HTMLElement, parent: HTMLElement, fixed: boolean) => {
+const getOffsetRectRelativeToCustomParent = (
+  el: HTMLElement,
+  parent: HTMLElement,
+  fixed: boolean,
+  popper: HTMLElement
+) => {
   let { top, left, width, height } = getBoundingClientRect(el)
 
-  // 如果是fixed定位，直接返回相对视口位置
+  // 如果是fixed定位，需计算要修正的偏移量。
   if (fixed) {
+    if (popper.parentElement) {
+      const { top: adjustTop, left: adjustLeft } = getAdjustOffset(popper.parentElement)
+      top -= adjustTop
+      left -= adjustLeft
+    }
     return {
       top,
       left,
@@ -274,7 +302,7 @@ interface ReferenceOffsets {
   width: number
   height: number
 }
-interface PopperOffsets {
+export interface PopperOffsets {
   position: 'absolute' | 'fixed'
   top: number
   left: number
@@ -288,7 +316,7 @@ interface arrowOffsets {
   left: number
 }
 /** update时的data变量 */
-interface UpdateData {
+export interface UpdateData {
   instance: Popper
   styles: {}
   placement: string
@@ -386,7 +414,7 @@ class Popper {
   stopEventBubble() {
     if (!this._popper) return
 
-    if (!this._popper.onmousewheel) this._popper.onmousewheel = stopFn
+    if (!this._popper.onmousewheel) this._popper.onmousewheel = stopFn // onmousewheel 是非标准属性
     if (!this._popper.onwheel) this._popper.onwheel = stopFn
   }
 
@@ -417,9 +445,13 @@ class Popper {
     let left = Math.round(data.offsets.popper.left)
     let top = Math.round(data.offsets.popper.top)
 
-    // 始终使用 translate3d
-    styles.transform = `translate3d(${left}px, ${top}px, 0)`
-    Object.assign(styles, { top: 0, left: 0 })
+    // 加速模式时，使用transform, 否则使用left,top
+    if (this._options.gpuAcceleration) {
+      styles.transform = `translate3d(${left}px, ${top}px, 0)`
+      Object.assign(styles, { top: 0, left: 0 })
+    } else {
+      Object.assign(styles, { top, left })
+    }
 
     Object.assign(styles, data.styles)
 
@@ -680,7 +712,12 @@ class Popper {
     let popperOffsets = { position: this.state.position } as PopperOffsets
 
     let isParentFixed = popperOffsets.position === 'fixed'
-    let referenceOffsets = getOffsetRectRelativeToCustomParent(reference, getOffsetParent(popper), isParentFixed)
+    let referenceOffsets = getOffsetRectRelativeToCustomParent(
+      reference,
+      getOffsetParent(popper),
+      isParentFixed,
+      popper
+    )
 
     // 利用 popperOuterSize 来减少一次outerSize的计算
     const { width, height } = this.popperOuterSize

@@ -47,7 +47,8 @@ export const formProps = {
   },
   labelWidth: {
     type: String,
-    default: '80px'
+    // 默认值挪到design中
+    default: ''
   },
   labelAlign: {
     type: Boolean,

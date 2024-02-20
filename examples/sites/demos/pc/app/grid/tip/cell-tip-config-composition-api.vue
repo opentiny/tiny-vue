@@ -86,7 +86,7 @@ const tableData = ref([
   }
 ])
 
-function contentMethod({ row, column, isHeader, content }, h) {
+function contentMethod({ row, column, isHeader, content }) {
   // 自定义表格tip提示，既支持字符串也支持jsx或者h函数写法
   return isHeader ? (
     content

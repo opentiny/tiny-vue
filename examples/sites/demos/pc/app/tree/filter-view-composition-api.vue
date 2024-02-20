@@ -24,8 +24,10 @@
       :data="data"
       :view-type="viewType"
       :filter-node-method="filterNodeMethod"
-      default-expand-all
       :show-auxi="showAuxi === 'show'"
+      default-expand-all
+      show-checkbox
+      node-key="id"
     >
       <!-- 屏蔽默认的后缀图标 -->
       <template #suffix> <div></div> </template>

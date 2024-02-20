@@ -21,6 +21,7 @@ const params = reactive({
   },
   rotate: -22,
   gap: [100, 100],
+  offset: [20, 20],
   zIndex: 9,
   customClass: 'test',
   interlaced: true

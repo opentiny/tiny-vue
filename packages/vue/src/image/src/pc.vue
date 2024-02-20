@@ -22,7 +22,7 @@
       class="tiny-image__inner"
       v-bind="$attrs"
       @click="clickHandler"
-      :src="src"
+      :src="state.src"
       :style="state.getImageStyle"
       :class="{
         'tiny-image__inner-center': state.getAlignCenter,

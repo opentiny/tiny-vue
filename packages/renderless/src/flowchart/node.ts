@@ -1,10 +1,11 @@
-import { handleNodeResize } from './index'
+import { handleNodeResize, setNodeAdjustY, computedIcon } from './index'
 
 export const api = ['state']
 
-export const renderless = (props, { reactive, computed, inject, onBeforeUnmount }, { vm }) => {
+export const renderless = (props, { reactive, computed, inject, onMounted, onBeforeUnmount }, { vm }, { icons }) => {
   const { node, config } = props
   const state = reactive({
+    icon: computed(() => api.computedIcon()),
     nodeName: node.name,
     nodeLayout: computed(() => node.layout || config.nodeLayout || 'up-down'),
     nodeSize: computed(() => config.nodeSize || 'small'),
@@ -37,14 +38,23 @@ export const renderless = (props, { reactive, computed, inject, onBeforeUnmount 
     statNotStarted: computed(() => state.nodeStatus === 'not-started')
   })
 
-  state.temporary = { padding: 8, height: 24, graphEmitter: inject('graphEmitter') }
+  state.temporary = {
+    padding: 8,
+    height: 24,
+    graphEmitter: inject('graphEmitter'),
+    graphInstance: inject('graphInstance')
+  }
 
   const api = {
     state,
-    handleNodeResize: handleNodeResize({ state, vm })
+    handleNodeResize: handleNodeResize({ state, vm }),
+    setNodeAdjustY: setNodeAdjustY({ vm, state }),
+    computedIcon: computedIcon({ state, icons })
   }
 
   state.temporary.graphEmitter.on('after-graph-refresh', api.handleNodeResize)
+
+  onMounted(() => api.setNodeAdjustY())
 
   onBeforeUnmount(() => {
     state.temporary.graphEmitter.off('after-graph-refresh', api.handleNodeResize)

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-popconfirm :title="title" :content="content" width="200">
+    <tiny-popconfirm :title="title" :message="message" width="200">
       <template #reference>
         <tiny-button>悬浮我提示</tiny-button>
       </template>
@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       title: '这是气泡标题',
-      content: '这是气泡确认框提示内容。'
+      message: '这是气泡确认框提示内容。'
     }
   }
 }

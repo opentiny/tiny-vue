@@ -149,7 +149,8 @@ const renderfoots = (opt) => {
                 {
                   class: ['tiny-grid-cell', { [classMap.cellSummary]: $table.summaryConfig }]
                 },
-                formatText(list[$table.tableColumn.indexOf(column)], 1)
+                // 如果不是表格形态，就只保留表格结构（到tiny-grid-cell），不渲染具体的内容
+                $table.isShapeTable ? formatText(list[$table.tableColumn.indexOf(column)], 1) : null
               )
             ]
           )

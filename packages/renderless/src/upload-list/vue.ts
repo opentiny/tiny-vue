@@ -31,6 +31,7 @@ import {
   getNotSuccessFiles
 } from './index'
 import { getToken, initService } from '../file-upload'
+import { formatFileSize } from '../common/string'
 import { getApi } from '../file-upload/vue'
 
 export const api = [
@@ -52,7 +53,8 @@ export const api = [
   'reUpload',
   'remove',
   'handleTriggerClick',
-  'chooseFile'
+  'chooseFile',
+  'formatFileSize'
 ]
 
 export const renderless = (
@@ -112,7 +114,8 @@ export const renderless = (
     handleTriggerClick: handleTriggerClick({ state, props }),
     chooseFile: chooseFile({ state, constants }),
     calcVisible: calcVisible({ props, constants, emit }),
-    getNotSuccessFiles: getNotSuccessFiles({ props, constants })
+    getNotSuccessFiles: getNotSuccessFiles({ props, constants }),
+    formatFileSize
   })
 
   props.listType === constants.LIST_TYPE.DRAG_SINGLE &&

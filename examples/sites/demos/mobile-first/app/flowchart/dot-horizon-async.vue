@@ -10,8 +10,7 @@
 </template>
 
 <script>
-import Flowchart from '@opentiny/vue-flowchart'
-import AsyncFlowchart from '@opentiny/vue-async-flowchart'
+import { Flowchart, AsyncFlowchart, Modal } from '@opentiny/vue'
 
 const { createConfig, Node } = Flowchart
 const nodeWrapperSize = 32
@@ -66,8 +65,8 @@ const chartData = {
     }
   ],
   links: [
-    { from: '0', to: '1', fromJoint: 'right', toJoint: 'left', info: { status: 3, style: 'solid' } },
-    { from: '1', to: '2', fromJoint: 'right', toJoint: 'left', info: { status: 3, style: 'solid' } },
+    { from: '0', to: '1', fromJoint: 'right', toJoint: 'left', info: { status: 2, style: 'solid' } },
+    { from: '1', to: '2', fromJoint: 'right', toJoint: 'left', info: { status: 2, style: 'solid' } },
     { from: '2', to: '3', fromJoint: 'right', toJoint: 'left', info: { status: 3, style: 'solid' } },
     { from: '3', to: '4', fromJoint: 'right', toJoint: 'left', info: { status: 3, style: 'solid' } }
   ]
@@ -78,7 +77,7 @@ const chartConfig = createConfig()
 Object.assign(chartConfig, {
   width: 0,
   extraWidth: 100, // 图形预留宽度，用于图形最小宽度计算，适当修改保证图形宽度不被过分挤压
-  height: 0,
+  height: 90,
   gap: 60,
   padding: 12,
   prior: 'vertical',
@@ -91,7 +90,9 @@ Object.assign(chartConfig, {
     return h(Node, { props: { node, config: chartConfig } })
   },
   type: 'dot',
-  nodeWrapperSize
+  nodeWrapperSize,
+  showArrow: false,
+  nodeSize: 'medium' /* mini/small/medium */
 })
 
 export default {
@@ -100,13 +101,16 @@ export default {
   },
   methods: {
     onClickNode(afterNode, e) {
-      console.log(afterNode, e)
+      // console.log(afterNode, e)
+      Modal.message('click-node')
     },
     onClickLink(afterLink, e) {
-      console.log(afterLink, e)
+      // console.log(afterLink, e)
+      Modal.message('click-link')
     },
     onClickBlank(param, e) {
-      console.log(param, e)
+      // console.log(param, e)
+      Modal.message('click-blank')
     },
     fetchFunc() {
       return new Promise((resolve) => {

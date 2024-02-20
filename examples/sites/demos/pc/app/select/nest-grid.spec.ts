@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('嵌套表格（单选）', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#nest-grid')
 
   const wrap = page.locator('#nest-grid')
@@ -24,6 +25,7 @@ test('嵌套表格（单选）', async ({ page }) => {
 })
 
 test('嵌套表格（多选）', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#nest-grid')
 
   const wrap = page.locator('#nest-grid')
@@ -62,6 +64,7 @@ test('嵌套表格（多选）', async ({ page }) => {
 })
 
 test('嵌套表格 + 可搜索 + 可清除', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#nest-grid')
 
   const wrap = page.locator('#nest-grid')

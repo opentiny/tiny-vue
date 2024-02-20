@@ -22,12 +22,7 @@
         type ? 'tiny-badge--' + type : '',
         badgeClass || ''
       ]"
-      :style="{
-        transform: `translate(
-          ${offset[0]}${typeof offset[0] === 'number' ? 'px' : ''},
-          ${offset[1]}${typeof offset[1] === 'number' ? 'px' : ''}
-        )`
-      }"
+      :style="state.transform"
     >
       <slot name="content">
         <a v-if="state.href" :href="state.href" :target="target" rel="noopener noreferrer">{{ state.content }}</a>

@@ -57,7 +57,10 @@ const options = [
   }
 ]
 
-const itemClick = (data) => {
+const itemClick = (data, vm) => {
+  // Aurora主题 item-click 有第二个参数，其他主题只有第一个参数
+  const label = vm?.label || data.vm.label
+
   Notify({
     type: 'info',
     title: 'itemClick 回调事件',

@@ -170,8 +170,8 @@ const dataset = ref([
   { title: '测试', url: '' },
   { title: '帮助', url: '' },
   { title: '支持', url: '' },
-  { title: '示例', url: '' },
-  { title: '工具', url: '' },
+  { title: '示例列表', url: '' },
+  { title: '工具列表', url: '' },
   { title: '资源列表', url: '' }
 ])
 </script>

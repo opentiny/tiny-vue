@@ -18,7 +18,7 @@ import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
 let idSeed = 1
 const isServer = typeof window === 'undefined'
 
-interface IPopupState {
+export interface IPopupState {
   opened: boolean
   rendered: boolean
 }

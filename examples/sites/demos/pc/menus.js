@@ -119,7 +119,8 @@ export const cmpMenus = [
       { 'nameCn': '时间选择器', 'name': 'TimePicker', 'key': 'time-picker' },
       { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' },
       { 'nameCn': '颜色选择器', 'name': 'ColorPicker', 'key': 'color-picker' },
-      { 'nameCn': '颜色选择面板', 'name': 'ColorSelectPanel', 'key': 'color-select-panel' }
+      { 'nameCn': '颜色选择面板', 'name': 'ColorSelectPanel', 'key': 'color-select-panel' },
+      { 'nameCn': '查询生成器', 'name': 'QueryBuilder ', 'key': 'query-builder' }
     ]
   },
   {
@@ -208,7 +209,8 @@ export const cmpMenus = [
       { 'nameCn': '进度条', 'name': 'Progress', 'key': 'progress' },
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
       { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' },
-      { 'nameCn': '无限滚动', 'name': 'InfiniteScroll', 'key': 'infinite-scroll' }
+      { 'nameCn': '无限滚动', 'name': 'InfiniteScroll', 'key': 'infinite-scroll' },
+      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' }
     ]
   },
   {
@@ -298,8 +300,11 @@ export const cmpMenus = [
     ]
   }
 ]
+
+const showBusiness = location.pathname.split('/')?.[2] === 'all'
+
 // 对内文档开放业务组件
-if (!isOpen) {
+if (!isOpen || showBusiness) {
   cmpMenus.splice(8, 0, {
     'label': '业务组件',
     'labelEn': 'Business Components',

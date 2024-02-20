@@ -30,6 +30,7 @@ import {
   scrollToOption,
   handleMenuEnter,
   emitChange,
+  directEmitChange,
   getOption,
   setSelected,
   handleFocus,
@@ -57,6 +58,7 @@ import {
   resetInputWidth,
   handleResize,
   checkDefaultFirstOption,
+  setOptionHighlight,
   getValueKey,
   emptyText,
   watchValue,
@@ -103,13 +105,11 @@ import {
   watchInitValue,
   watchShowClose,
   loadTreeData,
-  resetFilter,
   computedGetIcon,
   computedGetTagType,
   computedShowDropdownIcon,
   clearNoMatchValue,
-  debouncedQueryChange,
-  handleDebouncedQueryChange
+  resetFilter
 } from './index'
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
@@ -140,6 +140,7 @@ export const api = [
   'resetInputHeight',
   'managePlaceholder',
   'checkDefaultFirstOption',
+  'setOptionHighlight',
   'toggleLastOptionHitState',
   'deleteTag',
   'setSelected',
@@ -170,6 +171,7 @@ export const api = [
   'handleEnterTag',
   'getLabelSlotValue',
   'loadTreeData',
+  'updateModelValue',
   'resetFilter',
   'computedGetIcon'
 ]
@@ -212,7 +214,7 @@ const initStateAdd = ({ computed, props, api, parent }) => ({
   popperElm: null,
   debounce: computed(() => (isNumber(props.queryDebounce) ? props.queryDebounce : props.remote ? 300 : 0)),
   emptyText: computed(() => api.emptyText()),
-  formItemSize: computed(() => (parent.formItem || {}).formItemSize),
+  formItemSize: computed(() => (parent.formItem || { state: {} }).state.formItemSize),
   selectDisabled: computed(() => api.computedSelectDisabled()),
   isDisplayOnly: computed(() => props.displayOnly || (parent.form || {}).displayOnly),
   gridCheckedData: computed(() => api.getcheckedData()),
@@ -224,7 +226,7 @@ const initStateAdd = ({ computed, props, api, parent }) => ({
   filterOrSearch: computed(() => props.filterable || props.searchable)
 })
 
-const initState = ({ reactive, computed, props, api, emitter, parent, constants, designConfig }) => {
+const initState = ({ reactive, computed, props, api, emitter, parent, useBreakpoint }) => {
   const stateAdd = initStateAdd({ computed, props, api, parent })
   const state = reactive({
     ...stateAdd,
@@ -238,10 +240,10 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     selected: props.multiple ? [] : {},
     softFocus: false,
     hover: false,
+    triggerSearch: false,
     firstAutoSearch: props.remoteConfig.autoSearch,
     tagsStyle: computed(() => api.computedTagsStyle()),
     readonly: computed(() => api.computedReadonly()),
-    iconClass: computed(() => (state.visible ? '' : constants.CLASS.IsReverse)),
     showClose: computed(() => api.computedShowClose()),
     optionsAllDisabled: computed(() => api.computedOptionsAllDisabled()),
     collapseTagSize: computed(() => api.computedCollapseTagSize()),
@@ -252,12 +254,28 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     collapseTags: computed(() => api.computeCollapseTags()),
     multipleLimit: computed(() => api.computeMultipleLimit()),
     disabledTooltipContent: computed(() => api.computedDisabledTooltipContent()),
+    isExpand: computed(() => (state.selectHover || state.visible) && props.hoverExpand && !props.disabled),
     collapseTagsLength: 0,
     initValue: [],
     key: 0,
+    device: '',
+    timer: null,
+    modelValue: [],
+    queryValue: '',
+    selectedCopy: [],
+    compareValue: null,
+    selectedVal: computed(() =>
+      state.device === 'mb' && props.multiple && state.visible ? state.selectedCopy : state.selected
+    ),
+    displayOnlyContent: computed(() =>
+      props.multiple && Array.isArray(state.selected)
+        ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
+        : ''
+    ),
+    breakpoint: useBreakpoint ? useBreakpoint().current : '',
     isSelectAll: computed(() => state.selectCls === 'checked-sur'),
     isHalfSelect: computed(() => state.selectCls === 'halfselect'),
-    getIcon: computed(() => api.computedGetIcon((name = 'dropdownIcon'))),
+    getIcon: computed(() => api.computedGetIcon()),
     getTagType: computed(() => api.computedGetTagType()),
     isShowDropdownIcon: computed(() => api.computedShowDropdownIcon())
   })
@@ -265,7 +283,19 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
   return state
 }
 
-const addApi = ({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, designConfig }) => {
+const addApi = ({
+  api,
+  props,
+  state,
+  emit,
+  constants,
+  parent,
+  nextTick,
+  dispatch,
+  vm,
+  designConfig,
+  isMobileFirstMode
+}) => {
   Object.assign(api, {
     resetInputHeight: resetInputHeight({ api, constants, nextTick, props, vm, state, designConfig }),
     calcOverFlow: calcOverFlow({ vm, props, state }),
@@ -278,27 +308,28 @@ const addApi = ({ api, props, state, emit, constants, parent, nextTick, dispatch
     selectOption: selectOption({ api, state, props }),
     handleResize: handleResize({ api, props, state }),
     watchOptions: watchOptions({ api, constants, nextTick, parent, props, state }),
-    watchVisible: watchVisible({ api, constants, emit, state, vm, props }),
+    watchVisible: watchVisible({ api, constants, emit, state, vm, props, isMobileFirstMode }),
     deletePrevTag: deletePrevTag({ api, constants, props, state, vm }),
     onInputChange: onInputChange({ api, props, state, constants, nextTick }),
     deleteSelected: deleteSelected({ api, constants, emit, props, vm, state }),
     handleMenuEnter: handleMenuEnter({ api, nextTick, state }),
     resetInputState: resetInputState({ api, vm, state }),
-    navigateOptions: navigateOptions({ api, nextTick, state }),
+    navigateOptions: navigateOptions({ api, nextTick, state, props }),
     handleClearClick: handleClearClick(api),
     handleComposition: handleComposition({ api, nextTick, state }),
     handleQueryChange: handleQueryChange({ api, constants, nextTick, props, vm, state }),
     handleOptionSelect: handleOptionSelect({ api, nextTick, props, vm, state }),
     getPluginOption: getPluginOption({ api, props, state }),
-    toggleCheckAll: toggleCheckAll({ api, emit, state, props }),
-    handleDebouncedQueryChange: handleDebouncedQueryChange({ state, api }),
-    debouncedQueryChange: debouncedQueryChange({ props, api }),
+    toggleCheckAll: toggleCheckAll({ api, state }),
+    debouncedQueryChange: debounce(state.debounce, (event) => {
+      api.handleQueryChange(props.shape ? event : event.target.value)
+    }),
     debouncedOnInputChange: debounce(state.debounce, () => {
       api.onInputChange()
     }),
     debouncRquest: debouncRquest({ api, state, props }),
     defaultOnQueryChange: defaultOnQueryChange({ props, state, constants, api }),
-    mounted: mounted({ api, parent, state, props, vm, constants }),
+    mounted: mounted({ api, parent, state, props, vm, constants, designConfig }),
     unMount: unMount({ api, parent, vm, state }),
     watchOptimizeOpts: watchOptimizeOpts({ api, props, vm, state }),
     handleDropdownClick: handleDropdownClick({ emit }),
@@ -327,7 +358,8 @@ const initApi = ({
   dispatch,
   t,
   vm,
-  designConfig
+  designConfig,
+  isMobileFirstMode
 }) => {
   Object.assign(api, {
     state,
@@ -342,7 +374,8 @@ const initApi = ({
     getChildValue: getChildValue(),
     getOption: getOption({ props, state }),
     emitChange: emitChange({ emit, props, state, constants }),
-    toggleMenu: toggleMenu({ vm, state, props }),
+    directEmitChange: directEmitChange({ emit, props, state, constants }),
+    toggleMenu: toggleMenu({ vm, state, props, api, isMobileFirstMode }),
     showTip: showTip({ props, state, vm }),
     onOptionDestroy: onOptionDestroy(state),
     setSoftFocus: setSoftFocus({ vm, state }),
@@ -357,11 +390,12 @@ const initApi = ({
     managePlaceholder: managePlaceholder({ vm, state }),
     nodeCheckClick: nodeCheckClick({ emit, props, state, api }),
     checkDefaultFirstOption: checkDefaultFirstOption(state),
+    setOptionHighlight: setOptionHighlight(state),
     nodeExpand: nodeExpand({ state, constants, nextTick }),
     nodeCollapse: nodeCollapse({ state, constants, nextTick }),
     handleBlur: handleBlur({ constants, dispatch, emit, state }),
     toggleLastOptionHitState: toggleLastOptionHitState({ state }),
-    emptyText: emptyText({ I18N: constants.I18N, props, state, t }),
+    emptyText: emptyText({ I18N: constants.I18N, props, state, t, isMobileFirstMode }),
     watchPropsOption: watchPropsOption({ constants, parent, props, state }),
     buildSelectConfig: buildSelectConfig({ props, state }),
     buildRadioConfig: buildRadioConfig({ props, state }),
@@ -376,7 +410,7 @@ const initApi = ({
     computeMultipleLimit: computeMultipleLimit({ props, state }),
     watchInputHover: watchInputHover({ vm }),
     initQuery: initQuery({ props, state, constants, vm }),
-    updateModelValue: updateModelValue({ emit, state }),
+    updateModelValue: updateModelValue({ props, emit, state }),
     computedTagsStyle: computedTagsStyle({ props, parent, state }),
     computedReadonly: computedReadonly({ props, state }),
     computedShowClose: computedShowClose({ props, state }),
@@ -391,7 +425,7 @@ const initApi = ({
     watchShowClose: watchShowClose({ nextTick, state, parent })
   })
 
-  addApi({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, designConfig })
+  addApi({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, designConfig, isMobileFirstMode })
 }
 
 const addWatch = ({ watch, props, api, state, nextTick }) => {
@@ -456,12 +490,54 @@ const initWatch = ({ watch, props, api, state, nextTick }) => {
     }
   )
 
-  watch(() => props.modelValue, api.watchValue)
+  watch(
+    () => props.modelValue,
+    () => {
+      if (props.multiple && Array.isArray(props.modelValue)) {
+        state.modelValue = [...props.modelValue]
+      } else {
+        state.modelValue = props.modelValue
+      }
+    },
+    { immediate: true, deep: true }
+  )
+
+  watch(() => state.modelValue, api.watchValue)
+
+  watch(
+    () => state.selectedLabel,
+    () => {
+      if (props.trim) {
+        state.selectedLabel = state.selectedLabel.trim()
+      }
+    }
+  )
 
   watch(
     () => props.extraQueryParams,
     () => api.handleQueryChange(state.previousQuery, true),
     { deep: true }
+  )
+
+  watch(
+    () => state.breakpoint,
+    (val) => {
+      if (val === 'default') {
+        state.device = 'mb'
+      } else {
+        state.device = 'pc'
+      }
+    },
+    { immediate: true, deep: true }
+  )
+
+  watch(
+    () => state.device,
+    (newVal, oldVal) => {
+      if (oldVal !== '' && state.visible) {
+        api.updateModelValue(state.modelValue, true)
+      }
+    }
   )
 
   watch(() => state.visible, api.watchVisible)
@@ -474,17 +550,31 @@ const initWatch = ({ watch, props, api, state, nextTick }) => {
 export const renderless = (
   props,
   { computed, onBeforeUnmount, onMounted, reactive, watch, provide },
-  { vm, parent, emit, constants, nextTick, dispatch, t, emitter, designConfig }
+  { vm, parent, emit, constants, nextTick, dispatch, t, emitter, isMobileFirstMode, useBreakpoint, designConfig }
 ) => {
   const api = {}
-  const state = initState({ reactive, computed, props, api, emitter, parent, constants, designConfig })
+  const state = initState({ reactive, computed, props, api, emitter, parent, constants, designConfig, useBreakpoint })
 
   provide('selectEmitter', state.selectEmitter)
   provide('selectVm', vm)
 
   const maskState = reactive({ width: '', height: '', top: '' })
 
-  initApi({ api, props, state, emit, maskState, constants, parent, nextTick, dispatch, t, vm, designConfig })
+  initApi({
+    api,
+    props,
+    state,
+    emit,
+    maskState,
+    constants,
+    parent,
+    nextTick,
+    dispatch,
+    t,
+    vm,
+    designConfig,
+    isMobileFirstMode
+  })
   initWatch({ watch, props, api, state, nextTick })
 
   onMounted(api.mounted)

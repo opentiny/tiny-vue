@@ -53,6 +53,5 @@ export default {
       },
       codeFiles: ['enumeration.vue']
     }
-  ],
-  apis: []
+  ]
 }

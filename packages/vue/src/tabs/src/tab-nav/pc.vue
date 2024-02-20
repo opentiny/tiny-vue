@@ -241,6 +241,7 @@ export default {
           attrs: {
             id: `tab-${tabName}`,
             'aria-controls': `pane-${tabName}`,
+            'data-index': index + 1,
             role: 'tab',
             'aria-selected': pane.state.active,
             tabindex,

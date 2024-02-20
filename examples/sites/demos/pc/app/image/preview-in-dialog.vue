@@ -2,8 +2,8 @@
   <div>
     <tiny-button @click="show = true"> 弹出Dialog </tiny-button>
     <tiny-dialog-box v-model:visible="show" title="消息" width="30%">
-      <div>
-        <tiny-image style="width: 100px; height: 100px" :src="url" :preview-src-list="srcList"></tiny-image>
+      <div class="demo-image__preview__in">
+        <tiny-image :src="url" :preview-src-list="srcList"></tiny-image>
       </div>
       <template #footer>
         <tiny-button type="primary" @click="show = false"> 确 定 </tiny-button>
@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Button, DialogBox, Image } from '@opentiny/vue'
 
 export default {
@@ -34,3 +34,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-image__preview__in {
+  width: 200px;
+  height: 200px;
+}
+</style>

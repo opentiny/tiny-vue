@@ -31,10 +31,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-:deep(.tiny-drawer .tiny-drawer__main.is-right) {
-  height: calc(100% - 50px);
-  margin-top: 50px;
-}
-</style>

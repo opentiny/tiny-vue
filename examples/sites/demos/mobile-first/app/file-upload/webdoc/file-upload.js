@@ -14,7 +14,6 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'file-type',
       name: {
@@ -330,14 +329,38 @@ export default {
     {
       demoId: 'assist-content',
       name: {
-        'zh-CN': '插槽',
-        'en-US': 'events'
+        'zh-CN': '辅助内容插槽',
+        'en-US': 'Secondary Content Slot'
       },
       desc: {
-        'zh-CN': '<p>`assist-content` 辅助内容插槽<p>',
-        'en-US': '<p>button click</p>'
+        'zh-CN': '<p><code>assist-content</code> 辅助内容插槽。<p>',
+        'en-US': '<p><code>assist-content</code> secondary content slot.</p>'
       },
       codeFiles: ['assist-content.vue']
+    },
+    {
+      demoId: 'slot-operate',
+      name: {
+        'zh-CN': '操作区域插槽',
+        'en-US': 'Operating Area Slot'
+      },
+      desc: {
+        'zh-CN': '<p><code>operate</code> 定义操作区域插槽。<p>',
+        'en-US': '<p><code>operate</code>Define operation area slot.</p>'
+      },
+      codeFiles: ['slot-operate.vue']
+    },
+    {
+      demoId: 'notice',
+      name: {
+        'zh-CN': '公告通知插槽',
+        'en-US': 'Bulletin Notification Slot'
+      },
+      desc: {
+        'zh-CN': '<p><code>notice</code> 定义公告通知插槽。<p>',
+        'en-US': '<p><code>notice</code> Defines the bulletin notification slot.</p>'
+      },
+      codeFiles: ['notice.vue']
     },
     {
       demoId: 'encrypt-config',
@@ -346,11 +369,12 @@ export default {
         'en-US': 'Watermark and Encryption Configuration'
       },
       desc: {
-        'zh-CN': `<p>设置 <code>:encrypt-config: { enabled: true, ... }</code> 开启水印和加密弹窗配置，<code>encrypt-config</code> 默认值为 <code>{ enabled: false, encrypt: false, watermark: '' }</code><p>`,
-        'en-US': `<p>Set the <code>:encrypt-config: {enabled: true, ...}</code> to enable the watermark and encryption pop-up window configuration. <code>encrypt-config</code>The default value is <code>{enabled: false, encrypt: false, watermark: ''}</code><p>`
+        'zh-CN':
+          "<p>设置 <code>:encrypt-config: { enabled: true, ... }</code> 开启水印和加密弹窗配置，<code>encrypt-config</code> 默认值为 <code>{ enabled: false, encrypt: false, watermark: '' }</code><p>",
+        'en-US':
+          "<p>Set the <code>:encrypt-config: {enabled: true, ...}</code> to enable the watermark and encryption pop-up window configuration. <code>encrypt-config</code>The default value is <code>{enabled: false, encrypt: false, watermark: ''}</code><p>"
       },
       codeFiles: ['encrypt-config.vue']
     }
-  ],
-  apis: []
+  ]
 }

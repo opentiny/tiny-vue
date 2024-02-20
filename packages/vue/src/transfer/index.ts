@@ -10,7 +10,6 @@
  *
  */
 import Transfer from './src/index.js'
-import '@opentiny/vue-theme/transfer/index.less'
 import { version } from './package.json'
 
 Transfer.model = {

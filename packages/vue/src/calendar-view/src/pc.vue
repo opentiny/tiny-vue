@@ -57,8 +57,8 @@
                   day.isLast || day.isNext
                     ? 'is-next-or-last'
                     : isToday(day) || isSelectedDate(day)
-                    ? 'is-selected'
-                    : '',
+                      ? 'is-selected'
+                      : '',
                   day.disabled ? 'is-disabled' : ''
                 ]"
               >
@@ -253,13 +253,15 @@ import {
 
 export default defineComponent({
   emits: [
+    'update:modelValue',
     'new-schedule',
     'selected-date-change',
     'prev-week-click',
     'next-week-click',
     'week-change',
     'year-change',
-    'month-change'
+    'month-change',
+    'date-click'
   ],
   components: {
     TinyButton: Button,

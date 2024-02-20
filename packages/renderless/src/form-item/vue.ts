@@ -118,7 +118,9 @@ const initState = ({
     getValidateType: computed(() => api.computedGetValidateType()),
     validateIcon: computed(() => api.computedValidateIcon()),
     isErrorInline: computed(() => api.computedIsErrorInline()),
-    isErrorBlock: computed(() => api.computedIsErrorBlock())
+    isErrorBlock: computed(() => api.computedIsErrorBlock()),
+    disabled: computed(() => state.formInstance.disabled),
+    tooltipType: computed(() => state.formInstance.state.tooltipType)
   })
 
   return state

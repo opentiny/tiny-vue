@@ -63,7 +63,8 @@ export default function (t) {
       ...getDateFormat(config),
       NumberFormat: getNumberFormat(config.NumberFormat),
       DbTimezone: getStrTimezone(config.DbTimezone),
-      Timezone: getStrTimezone(config.Timezone)
+      Timezone: getStrTimezone(config.Timezone),
+      TimezoneOffset: config.TimezoneOffset
     }
 
     const tools = {
@@ -82,7 +83,8 @@ export default function (t) {
           TimeFormat: opt.TimeFormat,
           Timezone: opt.Timezone,
           DateFormat: opt.DateFormat,
-          DbTimezone: opt.DbTimezone
+          DbTimezone: opt.DbTimezone,
+          TimezoneOffset: opt.TimezoneOffset
         }
       },
 
@@ -106,9 +108,8 @@ export default function (t) {
           dbtimezone = getStrTimezone(value)
           date = toDate(value.replace('T', ' ').slice(0, -5))
         }
-
         if (!convers) {
-          date = this.getDateWithNewTimezone(date, dbtimezone, opt.Timezone)
+          date = this.getDateWithNewTimezone(date, dbtimezone, opt.Timezone, opt.TimezoneOffset)
         }
 
         return isDate(date) ? formatDate(date, format || opt.DateFormat, t) : null
@@ -141,11 +142,11 @@ export default function (t) {
        * @param {Number} to
        * @returns {String}
        */
-      getDateWithNewTimezone(value, from, to) {
+      getDateWithNewTimezone(value, from, to, timezoneOffset) {
         from = from === 0 ? from : from || opt.DbTimezone
         to = to === 0 ? to : to || opt.Timezone
-
-        return getDateWithNewTimezone(value, from, to)
+        timezoneOffset = timezoneOffset === 0 ? timezoneOffset : timezoneOffset || opt.TimezoneOffset
+        return getDateWithNewTimezone(value, from, to, timezoneOffset)
       }
     }
 

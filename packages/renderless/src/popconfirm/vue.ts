@@ -27,7 +27,7 @@ export const renderless = (
     state,
     show: show({ state, emit, props }),
     hide: hide({ state, emit }),
-    confirm: confirm({ state, emit }),
+    confirm: confirm({ state, api }),
     handleEmit: handleEmit({ state, emit, vm })
   })
 

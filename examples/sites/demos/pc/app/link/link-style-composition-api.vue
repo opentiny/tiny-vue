@@ -9,11 +9,11 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Link as TinyLink } from '@opentiny/vue'
 </script>
 
-<style>
+<style scoped>
 .tiny-link {
   margin-right: 8px;
 }

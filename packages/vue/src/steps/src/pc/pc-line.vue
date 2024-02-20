@@ -9,9 +9,9 @@
       <div class="tiny-steps-main">
         <div :class="['line left-line', { 'not-vertical': !vertical }]"></div>
         <div class="tiny-steps-icon">
-          <div class="item-number">
+          <span class="item-number">
             {{ size === 'mini' ? '' : state.startIndex }}
-          </div>
+          </span>
           <template v-if="state.startIndex - 1 > 0">
             <div
               v-for="(item, index) in state.startIndex - 1"
@@ -121,9 +121,9 @@
           ]"
         ></div>
         <div class="tiny-steps-icon">
-          <div class="item-number">
+          <span class="item-number">
             {{ size === 'mini' ? '' : state.endIndex + 1 }}
-          </div>
+          </span>
           <template v-if="state.rightNodePositions.length > 0">
             <div v-for="(item, index) in state.rightNodePositions" class="item-circle" :style="item" :key="index"></div
           ></template>

@@ -10,7 +10,23 @@
  *
  */
 
-import { created, handleClick, confirm, reset, wheelChange, clickWheelItem, loadDefault } from './index'
+import {
+  created,
+  initValue,
+  handleClick,
+  confirm,
+  reset,
+  wheelChange,
+  clickWheelItem,
+  loadDefault,
+  handleSearchBtnClick,
+  handleOptionSelect,
+  handleClose,
+  toggleItemExpand,
+  computedCurrentOptions,
+  updateValue,
+  handleSearchInput
+} from './index'
 
 export const api = [
   'state',
@@ -20,37 +36,53 @@ export const api = [
   'reset',
   'wheelChange',
   'clickWheelItem',
-  'loadDefault'
+  'loadDefault',
+  'handleSearchBtnClick',
+  'handleClose',
+  'handleSearchInput'
 ]
 
-const initState = (reactive) => {
+const initState = ({ emitter, reactive, computed, api }) => {
   const state = reactive({
     dataSource: [],
     wheelData: [],
+    isSearching: false,
     headerIndex: -1,
-    showWheel: false,
+    showOptions: false,
     labelLevelsInfo: [],
     labelsStyle: [],
     wheelIndex: [],
     wheelText: '',
     headerInfo: [],
     defaultSelectedIndexs: [],
-    defaultSelectedArray: []
+    defaultSelectedArray: [],
+    multiSelectEmitter: emitter(),
+    searchValue: '',
+    optionMap: [],
+    currentOptions: computed(() => api.computedCurrentOptions())
   })
 
   return state
 }
 
-const initApi = ({ api, props, state, emit, nextTick, refs }) => {
+const initApi = ({ api, props, state, emit, nextTick, refs, vm }) => {
   Object.assign(api, {
     state,
-    created: created({ props, state, refs, nextTick }),
+    created: created({ api, emit, props, state, refs, nextTick }),
+    initValue: initValue({ props, emit }),
     handleClick: handleClick({ api, props, state }),
     confirm: confirm({ state, emit }),
     reset: reset({ api, props, state, emit }),
     wheelChange: wheelChange(state),
     clickWheelItem: clickWheelItem({ state, emit }),
-    loadDefault: loadDefault({ props, state })
+    loadDefault: loadDefault({ props, state }),
+    handleSearchBtnClick: handleSearchBtnClick({ props, state, nextTick, vm }),
+    handleOptionSelect: handleOptionSelect({ api, state, emit }),
+    handleClose: handleClose(state),
+    toggleItemExpand: toggleItemExpand({ state }),
+    computedCurrentOptions: computedCurrentOptions({ state, props }),
+    updateValue: updateValue({ state, props, emit }),
+    handleSearchInput: handleSearchInput({ props, state, emit })
   })
 }
 
@@ -69,17 +101,26 @@ const initWatch = ({ watch, props, state, refs, nextTick }) => {
   )
 }
 
-export const renderless = (props, { onMounted, reactive, watch }, { emit, nextTick, refs }) => {
+export const renderless = (
+  props,
+  { onMounted, reactive, watch, provide, computed },
+  { emit, nextTick, refs, vm, emitter }
+) => {
   const api = {}
-  const state = initState(reactive)
+  const state = initState({ emitter, reactive, computed, api })
 
-  initApi({ api, props, state, emit, nextTick, refs })
+  provide('multiSelect', vm)
+
+  initApi({ api, props, state, emit, nextTick, refs, vm })
 
   initWatch({ watch, props, state, refs, nextTick })
 
   onMounted(() => {
     api.created({ props, state, refs, nextTick })
   })
+
+  state.multiSelectEmitter.on('multiSelectItemClick', api.handleOptionSelect)
+  state.multiSelectEmitter.on('toggleItemExpand', api.toggleItemExpand)
 
   return api
 }

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('多选复制单个标签', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#copy-multi')
 
   const wrap = page.locator('#copy-multi')

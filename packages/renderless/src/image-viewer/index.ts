@@ -50,19 +50,15 @@ export const deviceSupportInstall =
     on(window, 'resize', api.initPage)
 
     state.urlList = state.urlList.map((subItem) => {
-      return xss.filterUrl(subItem)
-    })
-
-    state.urlList = state.urlList.map((subItem) => {
       let subItemObj = {}
       let lastSlashIndex = ''
 
       if (typeof subItem === 'string') {
-        subItem = xss.filterUrl(subItem)
+        subItem = api.filterImageUrl(subItem)
+
         if (state.isThumbnail || state.isMenuView) {
           lastSlashIndex = subItem.lastIndexOf('/')
           state.fileName = subItem.substring(lastSlashIndex + 1)
-
           subItemObj.url = subItem
           subItemObj.name = state.fileName
 
@@ -74,13 +70,16 @@ export const deviceSupportInstall =
           return { url: subItem, name: state.fileName }
         }
       } else if (typeof subItem === 'object' && subItem !== null) {
+        subItem.url = api.filterImageUrl(subItem.url)
+
         if (!subItem.name) {
           lastSlashIndex = subItem.url.lastIndexOf('/')
           state.fileName = subItem.url.substring(lastSlashIndex + 1)
-
           subItem.name = state.fileName
         }
         return subItem
+      } else {
+        return null
       }
     })
 
@@ -170,7 +169,7 @@ export const handleMouseDown = (state) => (event) => {
 
   if (state._clearMouse) {
     state._clearMouse()
-    state._clearMouse = void 0
+    state._clearMouse = undefined
   }
 
   on(document, 'mouseup', state._removeDrag)
@@ -242,23 +241,19 @@ export const prev =
       prevElement = vm.$refs[`isMenuView_${state.index}`][0] || vm.$refs[`isMenuView_${state.index}`]
     }
 
-    switch (state.index) {
-      case 1:
-        state.isThumbnail && vm.$refs.isThumbnailContent && (vm.$refs.isThumbnailContent.scrollTop = 0)
-        state.isMenuView && vm.$refs.isMenuViewContent && (vm.$refs.isMenuViewContent.scrollTop = 0)
-        state.scrollTop = 0
-        break
-      case state.urlList.length - 1:
-        api.getLastPrev(prevElement)
-        break
-      case state.urlList.length - 2:
-        break
-      case state.urlList.length - 3:
-        state.scrollTop = prevElement.offsetHeight
-        break
-      default:
-        api.getDefaultPrev(prevElement)
-        break
+    if (state.index === 1) {
+      state.isThumbnail && vm.$refs.isThumbnailContent && (vm.$refs.isThumbnailContent.scrollTop = 0)
+      state.isMenuView && vm.$refs.isMenuViewContent && (vm.$refs.isMenuViewContent.scrollTop = 0)
+      state.scrollTop = 0
+    } else if (state.index === state.urlList.length - 1) {
+      api.getLastPrev(prevElement)
+    } else if (state.index === state.urlList.length - 2) {
+      // empty
+      // 判断逻辑需要return，提交代码eslint阻止提交，因此使用注释留空。
+    } else if (state.index === state.urlList.length - 3) {
+      state.scrollTop = prevElement.offsetHeight
+    } else {
+      api.getDefaultPrev(prevElement)
     }
   }
 
@@ -303,35 +298,49 @@ export const next =
       element = vm.$refs[`isMenuView_${state.index}`][0] || vm.$refs[`isMenuView_${state.index}`]
     }
 
-    const rect = element && element.getBoundingClientRect()
+    state.centerIndex = api.getCenterPosition(element) - 1
+    let slientIndex = -1
 
-    const top = rect.height
+    if (state.centerIndex > state.index) {
+      slientIndex = state.index
+    }
 
-    switch (state.index) {
-      case 0:
-        state.isThumbnail && vm.$refs.isThumbnailContent && (vm.$refs.isThumbnailContent.scrollTop = 0)
-        state.isMenuView && vm.$refs.isMenuViewContent && (vm.$refs.isMenuViewContent.scrollTop = 0)
-        state.scrollTop = 0
-        break
-      case 1:
-        break
-      case 2:
-        break
-      case 3:
-        state.scrollTop = top
-        break
-      default:
-        if (state.isThumbnail) {
-          vm.$refs.isThumbnailContent && (vm.$refs.isThumbnailContent.scrollTop = state.scrollTop)
-          state.scrollTop = state.scrollTop + element.offsetHeight + state.thumbnailTop
-        } else if (state.isMenuView) {
-          vm.$refs.isMenuViewContent && (vm.$refs.isMenuViewContent.scrollTop = state.scrollTop)
-          state.scrollTop = state.scrollTop + element.offsetHeight + state.menuTop
-        }
-        break
+    if (state.index === 0) {
+      state.isThumbnail && vm.$refs.isThumbnailContent && (vm.$refs.isThumbnailContent.scrollTop = 0)
+      state.isMenuView && vm.$refs.isMenuViewContent && (vm.$refs.isMenuViewContent.scrollTop = 0)
+      state.scrollTop = 0
+    } else if (state.index === slientIndex) {
+      // empty
+      // 判断逻辑需要return，提交代码eslint阻止提交，因此使用注释留空。
+    } else {
+      if (state.isThumbnail) {
+        vm.$refs.isThumbnailContent && (vm.$refs.isThumbnailContent.scrollTop = state.scrollTop)
+        state.scrollTop = state.scrollTop + element.offsetHeight + state.thumbnailTop
+      } else if (state.isMenuView) {
+        vm.$refs.isMenuViewContent && (vm.$refs.isMenuViewContent.scrollTop = state.scrollTop)
+        state.scrollTop = state.scrollTop + element.offsetHeight + state.menuTop
+      }
     }
   }
 
+export const getCenterPosition =
+  ({ state, vm }) =>
+  (element) => {
+    let contentHeight = 0
+    let eleHeight = 0
+
+    if (state.isThumbnail && vm.$refs.isThumbnailContent) {
+      contentHeight = vm.$refs.isThumbnailContent.getBoundingClientRect().height
+      eleHeight = element.getBoundingClientRect().height + parseFloat(getComputedStyle(element).marginBottom) - 0
+
+      return Math.ceil(contentHeight / eleHeight) / 2
+    } else if (vm.$refs.isMenuViewContent && vm.$refs.isMenuViewContent) {
+      contentHeight = vm.$refs.isMenuViewContent.getBoundingClientRect().height
+      eleHeight = element.getBoundingClientRect().height + parseFloat(getComputedStyle(element).marginTop) - 0
+
+      return Math.ceil(contentHeight / eleHeight) / 2
+    }
+  }
 export const handleActions =
   (state, props, emit) =>
   (action, options = {}) => {
@@ -401,13 +410,15 @@ export const computedIsLast =
   () =>
     state.index === props.urlList.length - 1
 
-export const computedCurrentImg = (state) => () => {
-  if (typeof state.urlList[0] === 'string') {
-    return state.urlList[state.index]
-  } else if (typeof state.urlList[0] === 'object' && state.urlList[0] !== null) {
-    return state.urlList[state.index].url
+export const computedCurrentImg =
+  ({ state, api }) =>
+  () => {
+    if (typeof state.urlList[0] === 'string') {
+      return api.filterImageUrl(state.urlList[state.index])
+    } else if (typeof state.urlList[0] === 'object' && state.urlList[0] !== null) {
+      return api.filterImageUrl(state.urlList[state.index].url)
+    }
   }
-}
 
 export const computedImgStyle =
   ({ state, constants }) =>
@@ -480,7 +491,7 @@ export const getImageWidth =
     state.imageItemWidth = imageW
     state.imageAllWidth = state.urlList.length * imageW
 
-    if (mode !== 'mobile-first') {
+    if (mode === 'mobile') {
       if (props.startPosition > 0) {
         state.index = props.startPosition
         state.imageTransition = 0
@@ -568,7 +579,7 @@ export const swipeRight =
       state.arrowStyle = null
     }
 
-    if (state.imageTransform == 0 && state.index == 0) {
+    if (state.imageTransform === 0 && state.index === 0) {
       return
     }
 
@@ -616,9 +627,13 @@ export const langClick = (state) => () => {
     window.navigator.msSaveOrOpenBlob(blob, 'img' + '.' + 'png')
   } else {
     const a = document.createElement('a')
-    a.href = state.currentImg
+    a.style = 'dispaly:none'
+    a.href = state.currentImg + '?response-content-type=application/octet-stream'
     a.setAttribute('download', 'img')
+    a.setAttribute('target', 'downloadFile')
+    document.body.appendChild(a)
     a.click()
+    document.body.removeChild(a)
   }
 }
 
@@ -774,15 +789,15 @@ export const beforeDestroy =
 
     if (state._clearMouse) {
       state._clearMouse()
-      state._clearMouse = void 0
+      state._clearMouse = undefined
     }
 
     if (state._dragHandler) {
-      state._dragHandler = void 0
+      state._dragHandler = undefined
     }
 
     if (state._removeDrag) {
-      state._removeDrag = void 0
+      state._removeDrag = undefined
     }
   }
 
@@ -851,3 +866,9 @@ export const selectOption =
         break
     }
   }
+
+export const filterImageUrl = () => (imageUrl) => {
+  const isBase64 = /^data:image\/(png|jpg|jpeg|gif);base64,([a-zA-Z0-9+/]+={0,2})/
+
+  return isBase64.test(imageUrl) ? imageUrl : xss.filterUrl(imageUrl)
+}

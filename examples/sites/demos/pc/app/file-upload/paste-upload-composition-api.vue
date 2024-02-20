@@ -4,7 +4,7 @@
   </tiny-file-upload>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { FileUpload as TinyFileUpload } from '@opentiny/vue'
 import { iconFileupload } from '@opentiny/vue-icon'
 

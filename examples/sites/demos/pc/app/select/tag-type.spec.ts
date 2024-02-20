@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('标签类型', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#tag-type')
 
   const wrap = page.locator('#tag-type')

@@ -19,7 +19,7 @@
   width: fit-content;
   height: 28px;
   line-height: 28px;
-  border-radius: 2px;
+  border-radius: 4px;
   background: #f5f6f8;
   color: #161e26;
   padding: 4px 6px;
@@ -35,7 +35,7 @@
     cursor: not-allowed;
 
     .title label {
-      color: #b5bbce;
+      color: #b5bbc1;
     }
 
     .value {
@@ -50,6 +50,8 @@
 
   .title {
     height: inherit;
+    line-height: inherit;
+    font-size: 12px;
 
     label {
       display: inline-block;
@@ -83,10 +85,17 @@
   .value {
     max-width: 100px;
     height: inherit;
+    line-height: inherit;
     margin-right: 4px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-size: 12px;
+    color: #161e26;
+
+    &.placeholder {
+      color: #aeaeae;
+    }
   }
 
   .filter-box-icon {
@@ -105,10 +114,14 @@
     width: 16px;
     height: 16px;
     cursor: pointer;
-    fill: #b5bbce;
+    fill: #b5bbc1;
 
     &:hover {
       fill: #78828d;
     }
+  }
+
+  &.is-blank {
+    background-color: transparent;
   }
 }

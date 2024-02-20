@@ -1,6 +1,5 @@
 @import '../mixins/transfer.less';
 @import '../custom.less';
-@import '../transition/transfer.less';
 
 @transfer-prefix-cls: ~'@{css-prefix}transfer';
 @transfer-panel-prefix-cls: ~'@{css-prefix}transfer-panel';
@@ -37,7 +36,7 @@
     }
 
     .@{button-prefix-cls} {
-      @apply ~"min-w-[auto]";
+      @apply ~'min-w-[auto]';
       @apply mt-0 mx-0 mb-2;
     }
   }
@@ -47,14 +46,13 @@
     @apply my-0 mx-auto;
     @apply border-color-border-focus;
     @apply bg-color-brand;
-    min-width: 30px;
-    min-height: 30px;
+    @apply ~'min-w-[theme(spacing.8)]';
+    @apply ~'min-h-[theme(spacing.8)]';
     @apply leading-normal;
     @apply p-2;
 
     &.is-with-texts {
       @apply rounded-sm;
-      min-width: 60px;
     }
 
     &.@{button-prefix-cls}:not(.is-circle) .@{svg-prefix-cls} {
@@ -80,8 +78,7 @@
     @apply bg-color-bg-1;
     @apply text-color-text-primary;
     @apply leading-none;
-    padding: 8px 7px;
-    min-width: 32px;
+    @apply ~'min-w-[theme(spacing.8)]';
 
     .@{svg-prefix-cls} {
       @apply fill-color-text-primary;
@@ -126,31 +123,31 @@
   @apply rounded;
   @apply overflow-hidden;
   @apply bg-color-bg-1;
-  width: 274px;
-  @apply ~"max-h-[100%]";
+  @apply w-72;
+  @apply ~'max-h-[100%]';
   @apply align-middle;
   @apply box-border;
   @apply relative;
 
   &__body {
     @apply relative;
-    height: 234px;
+    @apply h-60;
     @apply text-left;
 
     &.is-with-footer {
       @apply pb-10;
-      height: calc(100% - 40px);
+      height: calc(100% - theme('spacing.10'));
     }
 
     .@{tree-prefix-cls} {
       @apply h-full;
       @apply pt-0 px-2 pb-2;
       @apply overflow-auto;
-      .transfer-scrollbar(8px);
+      .transfer-scrollbar(theme('spacing.2'));
     }
 
     .@{transfer-panel-prefix-cls}__filter ~ .@{tree-prefix-cls} {
-      height: calc(100% - 46px);
+      height: calc(100% - theme('spacing.12'));
     }
   }
 
@@ -158,7 +155,7 @@
     @apply m-0;
     @apply py-2 px-0;
     @apply list-none;
-    height: 240px;
+    @apply h-60;
     @apply overflow-auto;
     @apply box-border;
     @apply block;
@@ -169,11 +166,15 @@
   }
 
   &.is-filterable &__body {
-    height: 240px;
+    @apply h-60;
+  }
+
+  &.is-filterable &__body.is-with-footer {
+    height: calc(100% - theme('spacing.10'));
   }
 
   &.is-filterable &__list {
-    height: 200px;
+    @apply h-52;
     @apply pt-0;
     @apply flex;
     @apply flex-col;
@@ -186,7 +187,7 @@
   }
 
   &__item {
-    line-height: 30px;
+    @apply leading-8;
     @apply flex;
     @apply transition-all duration-500;
 
@@ -270,14 +271,14 @@
     @apply w-auto;
 
     .@{input-prefix-cls}__inner {
-      height: 30px;
-      line-height: 30px;
+      @apply h-7;
+      @apply leading-7;
       @apply w-full;
       @apply text-xs;
       @apply inline-block;
       @apply box-border;
       @apply rounded-sm;
-      padding-right: 30px;
+      @apply pr-7;
       @apply pl-2;
     }
 
@@ -292,7 +293,6 @@
 
   & &__header {
     @apply h-12;
-    line-height: 48px;
     @apply m-0;
     @apply py-0 px-4;
     @apply border-b border-b-color-bg-3;
@@ -312,7 +312,7 @@
         @apply text-sm;
         @apply text-color-text-primary;
         @apply font-bold;
-        width: calc(100% - 38px);
+        width: calc(100% - theme('spacing.14'));
         @apply overflow-hidden;
         @apply text-ellipsis;
         @apply whitespace-nowrap;
@@ -330,8 +330,8 @@
     .headSort {
       @apply absolute;
       @apply ~'left-1/2';
-      @apply ~"top-1/2";
-      @apply ~"-translate-y-2/4";
+      @apply ~'top-1/2';
+      @apply ~'-translate-y-2/4';
 
       div {
         @apply w-5;
@@ -345,8 +345,8 @@
         @apply cursor-pointer;
 
         i {
-          @apply ~"w-4.5";
-          @apply ~"h-4.5";
+          @apply ~'w-4.5';
+          @apply ~'h-4.5';
           @apply block;
         }
       }
@@ -381,16 +381,15 @@
   & &__empty {
     @apply absolute;
     @apply w-full;
-    top: calc(50% - 33px);
+    @apply top-1/2;
+    @apply -translate-y-1/2;
     @apply m-0;
-    height: 30px;
-    line-height: 30px;
     @apply text-color-text-secondary;
     @apply text-center;
   }
 
   &.transferGrid {
-    width: 600px;
+    @apply w-144;
 
     .@{transfer-panel-prefix-cls}__body {
       @apply h-full;
@@ -399,7 +398,7 @@
     .@{table-prefix-cls}.simple {
       @apply w-full;
       @apply py-0 px-2;
-      height: 400px;
+      @apply h-108;
       @apply overflow-y-auto;
 
       table {

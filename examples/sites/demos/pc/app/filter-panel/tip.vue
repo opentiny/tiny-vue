@@ -1,6 +1,9 @@
 <template>
   <div>
-    <tiny-filter-panel ref="filterPanel" label="物品数量" :tip="tip" :value="value" :clearable="false">
+    <div class="mb10">
+      <tiny-switch v-model="isBlank"></tiny-switch><span class="ml10">{{ isBlank ? '透明' : '非透明' }}</span>
+    </div>
+    <tiny-filter-panel ref="filterPanel" label="物品数量" :tip="tip" :value="value" :clearable="false" :blank="isBlank">
       <tiny-radio-group v-model="radioVal" size="mini">
         <tiny-radio label="大于">大于</tiny-radio>
         <tiny-radio label="等于">等于</tiny-radio>
@@ -12,20 +15,22 @@
 </template>
 
 <script>
-import { FilterPanel, Radio, RadioGroup, Input } from '@opentiny/vue'
+import { FilterPanel, Radio, RadioGroup, Input, Switch } from '@opentiny/vue'
 
 export default {
   components: {
     TinyRadio: Radio,
     TinyRadioGroup: RadioGroup,
     TinyFilterPanel: FilterPanel,
-    TinyInput: Input
+    TinyInput: Input,
+    TinySwitch: Switch
   },
   data() {
     return {
       tip: '请选择物品数量',
       inputVal: '',
-      radioVal: ''
+      radioVal: '',
+      isBlank: false
     }
   },
   computed: {

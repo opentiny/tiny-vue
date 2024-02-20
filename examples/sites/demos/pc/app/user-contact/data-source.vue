@@ -2,14 +2,14 @@
   <tiny-user-contact :data="data"></tiny-user-contact>
 </template>
 
-<script lang="jsx">
+<script>
 import { UserContact } from '@opentiny/vue'
 
 export default {
   components: {
     TinyUserContact: UserContact
   },
-  setup() {
+  data() {
     return {
       data: {
         imgUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`,

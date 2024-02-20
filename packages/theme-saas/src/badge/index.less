@@ -5,7 +5,7 @@
 
 .@{badge-prefix-cls} {
   @apply inline-block;
-  min-width: 20px;
+  @apply ~'min-w-[theme(spacing.4)]';
   @apply h-5;
   @apply leading-5;
   @apply rounded-xl;
@@ -20,13 +20,13 @@
 
   &&--max {
     @apply py-0 ~'px-1.5';
-    border-radius: 10px;
+    @apply rounded-xl;
   }
 
   &&--default {
     @apply ~'w-1.5';
     @apply ~'h-1.5';
-    @apply ~"min-w-[auto]";
+    @apply ~'min-w-[auto]';
     @apply bg-color-error;
     @apply inline-block;
     @apply align-top;
@@ -94,9 +94,9 @@ a.list-group-item.active > .badge,
 
   .@{badge-prefix-cls} {
     @apply absolute;
-    @apply ~"top-1/2";
-    transform: translate(5px, -50%);
-    min-width: 16px;
+    @apply ~'top-1/2';
+    @apply translate-x-1 -translate-y-1/2;
+    @apply ~'min-w-[theme(spacing.4)]';
     @apply h-4;
     @apply leading-4;
     @apply text-color-text-inverse;
@@ -109,9 +109,9 @@ a.list-group-item.active > .badge,
 
   .@{badge-prefix-cls}--default {
     @apply absolute;
-    @apply ~"top-1/2";
-    @apply translate-x-1 ~"-translate-y-2/4";
-    @apply ~"min-w-[auto]";
+    @apply ~'top-1/2';
+    @apply translate-x-1 ~'-translate-y-2/4';
+    @apply ~'min-w-[auto]';
     @apply ~'w-1.5';
     @apply ~'h-1.5';
     @apply bg-color-error;

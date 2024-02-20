@@ -14,7 +14,6 @@
 @import '../mixins/input.less';
 @import '../custom.less';
 @import './vars.less';
-@import '../transition/zoom-in-top.less';
 
 @calendar-prefix-cls: ~'@{css-prefix}calendar';
 @popover-prefix-cls: ~'@{css-prefix}popover';
@@ -53,11 +52,11 @@
     float: right;
     margin-bottom: 8px;
 
-    >li {
+    > li {
       float: left;
       margin-right: 8px;
 
-      >span {
+      > span {
         display: inline-block;
       }
 
@@ -73,7 +72,7 @@
     position: relative;
     outline: 0;
 
-    >input {
+    > input {
       width: 100%;
       height: var(--ti-calendar-input-height, 28px);
       line-height: var(--ti-calendar-input-height, 28px);
@@ -130,7 +129,7 @@
     list-style: none;
     overflow: hidden;
 
-    >li {
+    > li {
       position: relative;
       float: left;
       width: calc(var(--ti-calendar-tool-width) / 2);
@@ -157,7 +156,7 @@
       }
     }
 
-    >.active {
+    > .active {
       color: var(--ti-calendar-text-color-primary);
       border: 1px solid var(--ti-calendar-text-color-primary);
       z-index: 1;
@@ -171,8 +170,8 @@
     table {
       width: 100%;
 
-      >tr {
-        >th {
+      > tr {
+        > th {
           line-height: 18px;
           padding: 0 10px 5px 10px;
           font-size: var(--ti-calendar-content-heard-font-size);
@@ -180,14 +179,14 @@
           width: 100% / 7;
         }
 
-        >td {
+        > td {
           text-align: right;
           padding: 0 5px 0 0;
         }
       }
     }
 
-    &.year table>tr>td {
+    &.year table > tr > td {
       width: 100% / 3;
     }
   }

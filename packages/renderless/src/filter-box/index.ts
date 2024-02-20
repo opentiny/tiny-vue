@@ -4,6 +4,7 @@ export const handleClear =
     dispatch('Picker', 'handle-clear', $event)
     dispatch('Select', 'handle-clear', $event)
     dispatch('Cascader', 'handle-clear', $event)
+    dispatch('Amount', 'handle-clear', $event)
 
     emit('handle-clear')
   }

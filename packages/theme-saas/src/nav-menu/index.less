@@ -1,5 +1,4 @@
 @import '../custom.less';
-@import '../transition/zoom-in-top.less';
 
 @nav-menu-prefix-cls: ~'@{css-prefix}nav-menu';
 
@@ -18,7 +17,7 @@
   > .slot-logo {
     @apply float-left;
     @apply overflow-hidden;
-    margin: 0 100px 0 0;
+    @apply mr-24 my-0 ml-0;
     @apply ~'leading-[3rem]';
   }
 
@@ -31,8 +30,8 @@
       @apply my-0 mr-0 ml-6;
 
       > .@{css-prefix}icon {
-        font-size: 22px;
-        line-height: 48px;
+        @apply text-2xl;
+        @apply leading-10;
         @apply cursor-pointer;
         @apply text-color-text-inverse;
       }
@@ -40,7 +39,7 @@
       > .more-setting {
         @apply absolute;
         @apply right-0;
-        min-width: 120px;
+        @apply ~"min-w-[theme('spacing.28')]";
         @apply bg-color-bg-1;
         @apply border border-solid border-color-border;
         @apply shadow-sm;
@@ -121,6 +120,12 @@
     @apply ~'leading-[3rem]';
     @apply box-border;
 
+    &:hover {
+      @apply no-underline;
+      @apply border-b-2 border-b-color-brand;
+      @apply text-color-brand;
+    }
+
     &.selected {
       border-bottom: 3px solid;
       @apply border-b-color-brand;
@@ -133,12 +138,16 @@
     @apply w-fit;
     @apply h-auto;
     @apply shadow-sm;
-    max-height: ~'calc(100vh - 48px)';
+    max-height: ~'calc(100vh - theme(spacing.12))';
     max-width: ~'calc(100% - 64px)';
     @apply overflow-y-auto;
     @apply left-0;
     @apply px-8 py-7;
     @apply rounded-t-none rounded-b;
+
+    &.show-left-menu {
+      @apply px-0 pt-5 pb-7;
+    }
 
     &.display-flex {
       .sub-menu-ul {
@@ -161,14 +170,14 @@
         }
 
         .sub-menu-li {
-          margin-right: 0;
+          @apply mr-0;
         }
       }
     }
 
     > .more-menu {
       @apply float-left;
-      width: 212px;
+      @apply w-52;
       @apply h-full;
       @apply overflow-y-auto;
       max-height: ~'calc(66vh - 56px)';
@@ -179,9 +188,8 @@
         @apply list-none;
 
         > li {
-          @apply h-10;
-          @apply leading-10;
-          @apply pr-4;
+          @apply h-14;
+          @apply pr-4 pl-8;
           @apply flex;
           @apply justify-between;
           @apply items-center;
@@ -190,8 +198,8 @@
           > span,
           > a {
             @apply block;
-            @apply h-10;
-            @apply leading-10;
+            @apply h-14;
+            @apply ~'leading-[theme(spacing.14)]';
             @apply text-base;
             @apply w-full;
             @apply whitespace-nowrap;
@@ -200,7 +208,7 @@
             @apply text-color-text-primary;
 
             &.showicon {
-              width: calc(~'100% - 12px');
+              width: calc(~'100% - theme(spacing.3)');
             }
           }
 
@@ -225,7 +233,7 @@
 
     > .sub-menu {
       @apply float-left;
-      width: ~'calc(100% - 212px)';
+      width: ~'calc(100% - theme(spacing.52))';
       @apply box-border;
 
       &:not(.full-width) {
@@ -233,7 +241,8 @@
         @apply h-full;
         @apply overflow-y-auto;
         max-height: ~'calc(66vh - 56px)';
-        @apply pl-8;
+        @apply pl-8 pr-8;
+        @apply ~'pt-2.5';
       }
 
       &.full-width {
@@ -293,15 +302,11 @@
             }
 
             &:only-child {
-              border-bottom: none;
+              @apply border-b-0;
             }
 
             &:hover {
-              @apply text-color-brand-hover;
-            }
-
-            &:active {
-              @apply text-color-brand-active;
+              @apply text-color-brand;
             }
           }
 
@@ -334,12 +339,7 @@
 
             > a:hover,
             > span:hover {
-              @apply text-color-brand-hover;
-            }
-
-            > a:active,
-            > span:active {
-              @apply text-color-brand-active;
+              @apply text-color-brand;
             }
           }
         }
@@ -360,19 +360,19 @@
         @apply px-0 py-4;
 
         .@{nav-menu-prefix-cls}__sub-menu-title {
-          padding: 4px 0 12px;
+          @apply px-0 pt-1 pb-3;
           @apply mx-8 my-0;
 
           &.@{nav-menu-prefix-cls}__sub-menu-title-blank {
-            padding: 0;
-            border: none;
+            @apply p-0;
+            @apply border-none;
           }
         }
 
         > .title {
           @apply m-0;
           @apply leading-10;
-          padding: 0 32px;
+          @apply py-0 px-8;
         }
 
         > .sub-item {
@@ -380,10 +380,6 @@
           @apply leading-normal;
           @apply py-2 px-8;
           @apply m-0;
-
-          &:hover {
-            @apply bg-color-bg-2;
-          }
         }
       }
     }
@@ -407,7 +403,6 @@
     > svg {
       @apply w-6;
       @apply h-6;
-      padding: 3px;
     }
 
     & + ul.menu {

@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import TimeSpinner from './src/pc.vue'
+import TimeSpinner from './src/index'
 import '@opentiny/vue-theme/time-spinner/index.less'
 import { version } from './package.json'
 

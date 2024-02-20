@@ -13,56 +13,54 @@ export default {
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['basic-usage.vue']
-    }
-  ],
-  apis: [
+    },
     {
-      name: 'multiSelect', // 组件名称展示使用
-      type: 'component', // API 类型
-      properties: [
-        {
-          name: 'dataSource',
-          type: '[]',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>数据</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'basic-usage'
-        },
-        {
-          name: 'defaultSelectedArray',
-          type: '[]',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>默认值</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'basic-usage'
-        }
-      ],
-      events: [
-        {
-          name: 'confim',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>确认事件</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'basic-usage'
-        },
-        {
-          name: 'reset',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '<p>重置事件</p>',
-            'en-US': 'display different button'
-          },
-          demoId: 'basic-usage'
-        }
-      ]
+      demoId: 'disabled',
+      name: {
+        'zh-CN': '禁用',
+        'en-US': 'Disabled'
+      },
+      desc: {
+        'zh-CN': '<p>基础用法</p>',
+        'en-US': '<p>button type</p>'
+      },
+      codeFiles: ['disabled.vue']
+    },
+    {
+      demoId: 'filter',
+      name: {
+        'zh-CN': '选项过滤',
+        'en-US': 'Filter'
+      },
+      desc: {
+        'zh-CN': '<p></p>',
+        'en-US': '<p>button type</p>'
+      },
+      codeFiles: ['filter.vue']
+    },
+    {
+      demoId: 'type-wheel',
+      name: {
+        'zh-CN': '滑轮模式',
+        'en-US': 'Type Wheel'
+      },
+      desc: {
+        'zh-CN': '<p></p>',
+        'en-US': '<p>button type</p>'
+      },
+      codeFiles: ['type-wheel.vue']
+    },
+    {
+      demoId: 'event-click-item',
+      name: {
+        'zh-CN': '点击选项事件',
+        'en-US': 'Type Wheel'
+      },
+      desc: {
+        'zh-CN': '<p></p>',
+        'en-US': '<p>button type</p>'
+      },
+      codeFiles: ['event-click-item.vue']
     }
   ]
 }

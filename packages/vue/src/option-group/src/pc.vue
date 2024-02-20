@@ -26,12 +26,14 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/option-group/vue'
-import { setup, $prefix, defineComponent } from '@opentiny/vue-common'
+import { setup, $prefix, props, defineComponent } from '@opentiny/vue-common'
+import '@opentiny/vue-theme/option-group/index.less'
 
 export default defineComponent({
   name: $prefix + 'OptionGroup',
   componentName: 'OptionGroup',
   props: {
+    ...props,
     label: String,
     disabled: {
       type: Boolean,

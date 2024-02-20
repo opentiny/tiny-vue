@@ -133,21 +133,15 @@ const initWatcher = ({ watch, state, api, props, Table }) => {
   )
 }
 
-export const renderless = (
-  props,
-  { computed, reactive, watch, toRaw, markRaw },
-  { $prefix, t, emit, parent, nextTick, refs, vm, slots }
-) => {
+export const renderless = (props, { computed, reactive, watch, toRaw }, { $prefix, emit, parent, vm, slots }) => {
   const api = {}
   const Table = $prefix + 'Table'
   const Tree = $prefix + 'Tree'
   const state = initState({ reactive, props, parent, computed, api, slots })
 
   Object.assign(api, {
-    t,
     state,
     toRaw,
-    markRaw,
     sizesChange: sizesChange(state),
     setPosition: setPosition({ parent, state }),
     selectChange: selectChange(state),
@@ -156,14 +150,14 @@ export const renderless = (
     checkedEvent: checkedEvent(state),
     getDeteminate: getDeteminate(state),
     updateAllChecked: updateAllChecked({ state, Table, Tree }),
-    handleAllCheckedChange: handleAllCheckedChange({ nextTick, props, state, Table, Tree, vm }),
+    handleAllCheckedChange: handleAllCheckedChange({ state, Table, Tree, vm }),
     getCheckedSummary: getCheckedSummary({ props, state, Tree }),
     getFilterTreeData: getFilterTreeData({ props, state }),
     getTreeCheckableData: getTreeCheckableData(state),
     getStrictData: getStrictData({ props, state }),
     setExpandCache: setExpandCache(state),
     getCheckableData: getCheckableData({ api, state, Tree }),
-    getFilterData: getFilterData({ api, parent, props, refs, state, Table, Tree }),
+    getFilterData: getFilterData({ api, props, state, Table, Tree }),
     watchData: watchData({ api, props, state, Tree }),
     watchDefaultCheckded: watchDefaultCheckded({ api, props, state, Tree }),
     watchChecked: watchChecked({ api, emit, state })

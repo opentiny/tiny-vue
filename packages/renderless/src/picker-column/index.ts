@@ -277,7 +277,7 @@ export const deepClone = (obj) => {
     return obj.map((item) => deepClone(item))
   }
 
-  if (typeof obj === 'object') {
+  if (typeof obj === 'object' && obj !== null) {
     return deepAssign({}, obj)
   }
 

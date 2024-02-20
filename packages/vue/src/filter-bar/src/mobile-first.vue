@@ -17,10 +17,10 @@
     >
       <slot :data="item" :index="index" :active="modelValue === index">
         <span data-tag="tiny-filter-bar-item" class="truncate" :title="item">{{ item }}</span>
-        <IconDown
+        <IconArrowBottom
           custom-class="flex-none w-3 h-3 ml-2 fill-current transition-transform duration-300"
           :class="modelValue !== index ? 'text-color-icon-placeholder rotate-0' : 'rotate-180'"
-        ></IconDown>
+        ></IconArrowBottom>
       </slot>
     </div>
     <div class="h-full flex items-center justify-center truncate" data-tag="tiny-filter-bar-icon">
@@ -32,11 +32,13 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/filter-bar/vue'
 import { setup, $props, defineComponent } from '@opentiny/vue-common'
-import { IconDown } from '@opentiny/vue-icon'
+import { IconChevronDown, IconArrowBottom, IconUnfilter } from '@opentiny/vue-icon'
 
 export default defineComponent({
   components: {
-    IconDown: IconDown()
+    IconUnfilter: IconUnfilter(),
+    IconChevronDown: IconChevronDown(),
+    IconArrowBottom: IconArrowBottom()
   },
   emits: ['click', 'update:modelValue'],
   props: {

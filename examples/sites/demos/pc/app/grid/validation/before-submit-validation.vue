@@ -184,7 +184,6 @@ export default {
               TinyModal.alert('校验成功，触发了 then！')
             })
             .catch((error) => {
-              // eslint-disable-next-line no-console
               console.log(error)
               TinyModal.alert('校验不通过，触发了 catch')
             })
@@ -197,7 +196,6 @@ export default {
               TinyModal.alert('校验成功，触发了 then！')
             })
             .catch((error) => {
-              // eslint-disable-next-line no-console
               console.log(error)
               TinyModal.alert('校验不通过，触发了 catch')
             })
