@@ -33,7 +33,8 @@ export default {
       const loading = this.$loading({
         lock: true,
         text: 'Loading',
-        background: 'rgba(0, 0, 0, 0.7)'
+        background: 'rgba(0, 0, 0, 0.7)',
+        tiny_mode: 'mobile-first'
       })
       setTimeout(() => {
         loading.close()

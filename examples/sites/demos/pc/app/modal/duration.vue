@@ -26,7 +26,7 @@ export default {
     },
     errorClick() {
       Modal.message({
-        status: 'console.error();',
+        status: 'error',
         message: `5000ms 后自动关闭提示框`,
         duration: '5000'
       })

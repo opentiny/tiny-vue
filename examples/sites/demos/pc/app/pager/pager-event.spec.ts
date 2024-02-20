@@ -13,7 +13,7 @@ test('事件', async ({ page }) => {
   await expect(modalBox.getByText('current-change 事件，当前页: 10')).toBeVisible()
 
   // 每页展示条目数改变
-  const sizeChange = pager.nth(2).locator('.tiny-pager__sizes')
+  const sizeChange = pager.nth(1).locator('.tiny-pager__sizes')
   const sizeSelect = page.locator('.tiny-pager__selector')
 
   await sizeChange.click()
@@ -21,13 +21,13 @@ test('事件', async ({ page }) => {
   await expect(modalBox.getByText('size-change 事件，每页条目数: 20')).toBeVisible()
 
   // 上一页、下一页
-  await pager.nth(3).locator('.tiny-pager__btn-next').click()
+  await pager.nth(2).locator('.tiny-pager__btn-next').click()
   await expect(modalBox.getByText('next-click 事件，当前页: 2')).toBeVisible()
-  await pager.nth(3).locator('.tiny-pager__btn-prev').click()
+  await pager.nth(2).locator('.tiny-pager__btn-prev').click()
   await expect(modalBox.getByText('prev-click 事件，当前页: 1')).toBeVisible()
 
   // 每页条目数和当前页同时改变
-  await pager.nth(5).locator('.tiny-pager__sizes').click()
+  await pager.nth(3).locator('.tiny-pager__sizes').click()
   await sizeSelect.nth(3).getByText('20').click()
   await expect(modalBox.getByText('模拟后台拉取数据')).toBeVisible()
   await expect(modalBox.getByText('模拟后台拉取数据')).toHaveCount(1)

@@ -88,6 +88,77 @@
   input[type='file'] {
     display: none;
   }
+
+  &.@{upload-prefix-cls}--saas {
+    display: flex;
+    margin-bottom: 12px;
+
+    .trigger-btn {
+      display: inline-block;
+
+      button {
+        > span {
+          margin-left: 8px;
+        }
+      }
+    }
+
+    .operate-content {
+      display: inline-block;
+      vertical-align: middle;
+
+      > button {
+        margin-left: 8px;
+      }
+
+      .button-wrap {
+        display: flex;
+        align-items: center;
+
+        > span {
+          margin-left: 8px;
+        }
+      }
+    }
+
+    .tip-wrap {
+      display: inline-block;
+      width: 100%;
+      padding-left: 16px;
+      color: #aeaeae;
+
+      .tip-content {
+        font-size: 12px;
+        line-height: 28px;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  &-title {
+    > span {
+      margin-right: 4px;
+      font-size: 14px;
+      color: #191919;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .title-show {
+      display: inline-block;
+
+      &.display-only {
+        margin-bottom: 0;
+      }
+    }
+
+    .title-hide {
+      display: none;
+    }
+  }
 }
 
 .@{upload-cover-prefix-cls} {
@@ -219,8 +290,8 @@
     position: relative;
     z-index: 1;
   }
-}
 
-.is-hidden {
-  display: none;
+  &.is-hidden {
+    display: none;
+  }
 }

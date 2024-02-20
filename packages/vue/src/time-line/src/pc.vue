@@ -25,17 +25,17 @@
           <template #active-node-desc="slotScoped">
             <slot name="active-node-desc" :node="slotScoped.node"></slot>
           </template>
-          <template #top="slotNode">
-            <slot name="top" :slot-scope="slotNode.slotScope"></slot>
+          <template #top="{ slotScope }">
+            <slot name="top" :slot-scope="slotScope"></slot>
           </template>
-          <template #bottom="slotNode">
-            <slot name="bottom" :slot-scope="slotNode.slotScope"></slot>
+          <template #bottom="{ slotScope }">
+            <slot name="bottom" :slot-scope="slotScope"></slot>
           </template>
-          <template #left="slotNode">
-            <slot name="left" :slot-scope="slotNode.slotScope"></slot>
+          <template #left="{ slotScope }">
+            <slot name="left" :slot-scope="slotScope"></slot>
           </template>
-          <template #right="slotNode">
-            <slot name="right" :slot-scope="slotNode.slotScope"></slot>
+          <template #right="{ slotScope }">
+            <slot name="right" :slot-scope="slotScope"></slot>
           </template>
         </tiny-timeline-item>
       </slot>

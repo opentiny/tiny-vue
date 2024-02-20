@@ -47,7 +47,7 @@ export const renderless = (
 ): IDropdownMenuApi => {
   const api = {} as IDropdownMenuApi
   const { reactive, provide, onMounted, inject } = hooks
-  const { nextTick, mode, vm, parent, dispatch, emit } = instance
+  const { nextTick, mode, vm, parent, dispatch, emit, designConfig } = instance
 
   const state: IDropdownMenuState = reactive({
     offset: 0,
@@ -58,7 +58,8 @@ export const renderless = (
     label: '',
     showContent: false,
     selected: false,
-    selectedIndex: -1
+    selectedIndex: -1,
+    canvasHeight: inject('change-size', null)
   })
 
   provide('dropdownMenuVm', vm)
@@ -70,7 +71,7 @@ export const renderless = (
       state.scroller = getScroller(vm.$refs.menu as HTMLElement)
     })
   } else {
-    useVuePopper({ api, hooks, props, instance, state, dropdownVm })
+    useVuePopper({ api, hooks, props, instance, state, dropdownVm, designConfig })
   }
 
   Object.assign(api, {

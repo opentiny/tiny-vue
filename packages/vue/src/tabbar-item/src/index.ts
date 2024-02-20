@@ -14,7 +14,11 @@ export default {
     name: [Number, String],
     text: String,
     info: [Number, String],
-    badge: [Number, String]
+    badge: [Number, String],
+    customIcon: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

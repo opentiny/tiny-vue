@@ -1,9 +1,11 @@
-import { typeOf as getType, isObject } from './type'
+import { typeOf as getType, isNull, isObject } from './type'
 import { copyArray } from './object'
 
 import _numerify from './numerify'
 
-export { setObj as set, getObj as get } from './object'
+import { escapeHtml } from './defendXSS'
+
+export { setObj as set, getObj as get, isEqual } from './object'
 
 export const $prefix = 'Tiny'
 
@@ -36,17 +38,20 @@ export const getFormatted = (value, type, digit, defaultVal = '-') => {
   } else if (type === 'percent') {
     formatter = digit ? `0,0${digitStr}%` : '0,0.[00]%'
   }
+
   return _numerify(value, formatter)
 }
 
 export const cloneDeep = (data) => {
   if (isObject(data)) {
     return extend(true, data)
-  } else if (Array.isArray(data)) {
-    return copyArray(data)
-  } else {
-    return data
   }
+
+  if (Array.isArray(data)) {
+    return copyArray(data)
+  }
+
+  return data
 }
 
 export const getStackMap = (stack) => {
@@ -99,24 +104,25 @@ let { amapPromise = null, bmapPromise = null } = {}
 export const getBmap = ({ key, version, url }) => {
   if (!bmapPromise) {
     bmapPromise = new Promise((resolve) => {
-      let cbName = 'bmap' + Date.now()
-      let script = document.createElement('script')
-      let ver = version || '2.0'
+      const cbName = 'bmap' + Date.now()
+      const script = document.createElement('script')
+      const ver = version || '2.0'
 
       window[cbName] = resolve
       script.src = [`${url}?v=${ver}`, `ak=${key}`, `callback=${cbName}`].join('&')
       document.body.appendChild(script)
     })
   }
+
   return bmapPromise
 }
 
 export const getAmap = ({ key, version, url }) => {
   if (!amapPromise) {
     amapPromise = new Promise((resolve) => {
-      let cbName = 'amap' + Date.now()
-      let script = document.createElement('script')
-      let ver = version || '1.4.3'
+      const cbName = 'amap' + Date.now()
+      const script = document.createElement('script')
+      const ver = version || '1.4.3'
 
       window[cbName] = resolve
       script.src = [`${url}?v=${ver}`, `key=${key}`, `callback=${cbName}`].join('&')
@@ -126,4 +132,46 @@ export const getAmap = ({ key, version, url }) => {
   }
 
   return amapPromise
+}
+
+export const getLegend = (args, legendItemStyle) => {
+  const { metrics, legendName, labelMap } = args
+
+  if (!labelMap && !legendName) {
+    return { data: metrics }
+  }
+
+  const data = labelMap ? metrics.map((item) => (isNull(labelMap[item]) ? item : labelMap[item])) : metrics
+
+  return {
+    ...legendItemStyle,
+    data,
+    formatter(name) {
+      return isNull(legendName[name]) ? name : legendName[name]
+    }
+  }
+}
+
+export const htmlHandler = (data) => {
+  if (!data || !Array.isArray(data)) {
+    return data
+  }
+
+  return cloneDeep(data).map((item) => {
+    if (typeof item === 'string' && /<[a-z]+/i.test(item)) {
+      return escapeHtml(item)
+    }
+
+    if (typeof item === 'object') {
+      for (const key in item) {
+        if (typeof item[key] === 'string' && /<[a-z]+/i.test(item[key])) {
+          item[key] = escapeHtml(item[key])
+        }
+      }
+
+      return item
+    }
+
+    return item
+  })
 }

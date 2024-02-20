@@ -59,6 +59,10 @@ export const tabNavMobileProps = {
   expandTabsMode: {
     type: String,
     default: 'columns'
+  },
+  stretch: {
+    type: Boolean,
+    default: false
   }
 }
 

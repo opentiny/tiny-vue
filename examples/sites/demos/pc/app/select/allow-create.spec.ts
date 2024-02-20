@@ -6,8 +6,9 @@ test('点击选中', async ({ page }) => {
   await page.goto('select#allow-create')
 
   const wrap = page.locator('#allow-create')
-  const dropdown = page.locator('.tiny-select-dropdown')
-  const input = wrap.locator('.tiny-input__inner').first()
+  const select = wrap.locator('.tiny-select').nth(0)
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const input = select.locator('.tiny-input__inner')
 
   await input.click()
   await input.fill('测试allow-create')
@@ -29,8 +30,9 @@ test('enter 选中', async ({ page }) => {
   await page.goto('select#allow-create')
 
   const wrap = page.locator('#allow-create')
-  const dropdown = page.locator('.tiny-select-dropdown').nth(1)
-  const input = wrap.locator('.tiny-input__inner').nth(1)
+  const select = wrap.locator('.tiny-select').nth(1)
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const input = select.locator('.tiny-input__inner')
 
   await input.click()
   await input.press('a')

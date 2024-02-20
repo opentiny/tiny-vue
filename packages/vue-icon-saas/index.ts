@@ -67,6 +67,7 @@ import IconCopySolid from './src/copy-solid'
 import IconCopy from './src/copy'
 import IconCourse from './src/course'
 import IconCueL from './src/cue-l'
+import IconCueLO from './src/cue-l-o'
 import IconCustom from './src/custom'
 import IconCustomerService from './src/customer-service'
 import IconCrop from './src/crop'
@@ -410,10 +411,59 @@ import IconFinish from './src/finish'
 import IconWarn from './src/warn'
 import IconAddPicture from './src/add-picture'
 
+// sync aui icons
+import IconAdministratorO from './src/administrator-o'
+import IconAudit from './src/audit'
+import IconBatchFill from './src/batch-fill'
+import IconCardMode from './src/card-mode'
+import IconDone from './src/done'
+import IconDoneMini from './src/done-mini'
+import IconEarthLined from './src/earth-lined'
+import IconEditorEraserFilled from './src/editor-eraser-filled'
+import IconExceptionO from './src/exception-o'
+import IconExceptionMiniO from './src/exception-mini-o'
+import IconExecutionPhase from './src/execution-phase'
+import IconFileuploadPro from './src/fileupload-pro'
+import IconHistoryRecord from './src/history-record'
+import IconImageAdd from './src/image-add'
+import IconListMode from './src/list-mode'
+import IconMaterial from './src/material'
+import IconMilestone from './src/milestone'
+import IconMinscreenRight from './src/minscreen-right'
+import IconNoData from './src/no-data'
+import IconNoNews from './src/no-news'
+import IconNoPerm from './src/no-perm'
+import IconNoResult from './src/no-result'
+import IconNotStarted from './src/not-started'
+import IconNotStartedMini from './src/not-started-mini'
+import IconOnGoing from './src/on-going'
+import IconOnGoingMini from './src/on-going-mini'
+import IconPageNoperm from './src/page-noperm'
+import IconPageNothing from './src/page-nothing'
+import IconPageServererror from './src/page-servererror'
+import IconPageWeaknet from './src/page-weaknet'
+import IconPublicHome from './src/public-home'
+import IconPublicNotice from './src/public-notice'
+import IconPublish from './src/publish'
+import IconScan from './src/scan'
+import IconSearchResource from './src/search-resource'
+import IconSettingData from './src/setting-data'
+import IconSortO from './src/sort-o'
+import IconSplit from './src/split'
+import IconSplitLeft from './src/split-left'
+import IconSplitRight from './src/split-right'
+import IconTableMode from './src/table-mode'
+import IconTransform from './src/transform'
+import IconUpgrading from './src/upgrading'
+import IconWeaknet from './src/weaknet'
+import IconWorkPackage from './src/work-package'
+
 export {
   IconSubScript,
   IconSubScript as iconSubScript,
   IconSortTriangle,
+  IconScan,
+  IconScan as iconScan,
   IconSortTriangle as iconSortTriangle,
   IconSortTriangleAscending,
   IconSortTriangleAscending as iconSortTriangleAscending,
@@ -583,6 +633,8 @@ export {
   IconCourse as iconCourse,
   IconCueL,
   IconCueL as iconCueL,
+  IconCueLO,
+  IconCueLO as iconCueLO,
   IconCustom,
   IconCustom as iconCustom,
   IconCustomerService,
@@ -1202,10 +1254,101 @@ export {
   IconWarn,
   IconWarn as iconWarn,
   IconAddPicture,
-  IconAddPicture as iconAddPicture
+  IconAddPicture as iconAddPicture,
+
+  // sync aui icons
+  IconAdministratorO,
+  IconAdministratorO as iconAdministratorO,
+  IconAudit,
+  IconAudit as iconAudit,
+  IconBatchFill,
+  IconBatchFill as iconBatchFill,
+  IconCardMode,
+  IconCardMode as iconCardMode,
+  IconDone,
+  IconDone as iconDone,
+  IconDoneMini,
+  IconDoneMini as iconDoneMini,
+  IconEarthLined,
+  IconEarthLined as iconEarthLined,
+  IconEditorEraserFilled,
+  IconEditorEraserFilled as iconEditorEraserFilled,
+  IconExceptionO,
+  IconExceptionO as iconExceptionO,
+  IconExceptionMiniO,
+  IconExceptionMiniO as iconExceptionMiniO,
+  IconExecutionPhase,
+  IconExecutionPhase as iconExecutionPhase,
+  IconFileuploadPro,
+  IconFileuploadPro as iconFileuploadPro,
+  IconHistoryRecord,
+  IconHistoryRecord as iconHistoryRecord,
+  IconImageAdd,
+  IconImageAdd as iconImageAdd,
+  IconListMode,
+  IconListMode as iconListMode,
+  IconMaterial,
+  IconMaterial as iconMaterial,
+  IconMilestone,
+  IconMilestone as iconMilestone,
+  IconMinscreenRight,
+  IconMinscreenRight as iconMinscreenRight,
+  IconNoData,
+  IconNoData as iconNoData,
+  IconNoNews,
+  IconNoNews as iconNoNews,
+  IconNoPerm,
+  IconNoPerm as iconNoPerm,
+  IconNoResult,
+  IconNoResult as iconNoResult,
+  IconNotStarted,
+  IconNotStarted as iconNotStarted,
+  IconNotStartedMini,
+  IconNotStartedMini as iconNotStartedMini,
+  IconOnGoing,
+  IconOnGoing as iconOnGoing,
+  IconOnGoingMini,
+  IconOnGoingMini as iconOnGoingMini,
+  IconPageNoperm,
+  IconPageNoperm as iconPageNoperm,
+  IconPageNothing,
+  IconPageNothing as iconPageNothing,
+  IconPageServererror,
+  IconPageServererror as iconPageServererror,
+  IconPageWeaknet,
+  IconPageWeaknet as iconPageWeaknet,
+  IconPublicHome,
+  IconPublicHome as iconPublicHome,
+  IconPublicNotice,
+  IconPublicNotice as iconPublicNotice,
+  IconPublish,
+  IconPublish as iconPublish,
+  IconSearchResource,
+  IconSearchResource as iconSearchResource,
+  IconSettingData,
+  IconSettingData as iconSettingData,
+  IconSortO,
+  IconSortO as iconSortO,
+  IconSplit,
+  IconSplit as iconSplit,
+  IconSplitLeft,
+  IconSplitLeft as iconSplitLeft,
+  IconSplitRight,
+  IconSplitRight as iconSplitRight,
+  IconTableMode,
+  IconTableMode as iconTableMode,
+  IconTransform,
+  IconTransform as iconTransform,
+  IconUpgrading,
+  IconUpgrading as iconUpgrading,
+  IconWeaknet,
+  IconWeaknet as iconWeaknet,
+  IconWorkPackage,
+  IconWorkPackage as iconWorkPackage
 }
 
 export default {
+  IconScan,
   IconSubScript,
   IconSortTriangle,
   IconSortTriangleAscending,
@@ -1291,6 +1434,7 @@ export default {
   IconCrop,
   IconCourse,
   IconCueL,
+  IconCueLO,
   IconCustom,
   IconCustomerService,
   IconDataSource,
@@ -1598,5 +1742,50 @@ export default {
   IconZoomOut,
   IconFinish,
   IconWarn,
-  IconAddPicture
+  IconAddPicture,
+  // sync aui icons
+  IconAdministratorO,
+  IconAudit,
+  IconBatchFill,
+  IconCardMode,
+  IconDone,
+  IconDoneMini,
+  IconEarthLined,
+  IconEditorEraserFilled,
+  IconExceptionO,
+  IconExceptionMiniO,
+  IconExecutionPhase,
+  IconFileuploadPro,
+  IconHistoryRecord,
+  IconImageAdd,
+  IconListMode,
+  IconMaterial,
+  IconMilestone,
+  IconMinscreenRight,
+  IconNoData,
+  IconNoNews,
+  IconNoPerm,
+  IconNoResult,
+  IconNotStarted,
+  IconNotStartedMini,
+  IconOnGoing,
+  IconOnGoingMini,
+  IconPageNoperm,
+  IconPageNothing,
+  IconPageServererror,
+  IconPageWeaknet,
+  IconPublicHome,
+  IconPublicNotice,
+  IconPublish,
+  IconSearchResource,
+  IconSettingData,
+  IconSortO,
+  IconSplit,
+  IconSplitLeft,
+  IconSplitRight,
+  IconTableMode,
+  IconTransform,
+  IconUpgrading,
+  IconWeaknet,
+  IconWorkPackage
 }

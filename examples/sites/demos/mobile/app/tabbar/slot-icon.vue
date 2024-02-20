@@ -29,8 +29,8 @@ export default {
       IconGroup: iconGroup(),
       IconSetting: iconSetting(),
       icon: {
-        active: '/static/images/dog1.png',
-        inactive: '/static/images/dog2.png'
+        active: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog1.png`,
+        inactive: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`
       }
     }
   }

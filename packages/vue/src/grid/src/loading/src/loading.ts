@@ -9,53 +9,40 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { h, $prefix, defineComponent, $props } from '@opentiny/vue-common'
+
+import { $prefix, $props, h, isVue2, hooks, defineComponent, isVnode } from '@opentiny/vue-common'
+import Loading from '@opentiny/vue-loading'
 
 export default defineComponent({
   name: $prefix + 'GridLoading',
+  directives: {
+    loading: Loading.directive
+  },
   props: {
     ...$props,
-    visible: Boolean
+    visible: Boolean,
+    loadingComponent: Object
   },
   render() {
-    return h(
-      'div',
-      {
-        class: 'tiny-grid-loading',
-        style: {
-          display: this.visible ? 'block' : 'none'
-        }
-      },
-      [
-        h(
-          'div',
-          {
-            class: 'tiny-loading tiny-grid-loading__wrap tiny-loading__spinner'
-          },
-          [
-            h(
-              'svg',
-              {
-                class: 'circular',
-                attrs: {
-                  viewBox: '25 25 50 50'
-                }
-              },
-              [
-                h('circle', {
-                  class: 'path',
-                  attrs: {
-                    cx: '50',
-                    cy: '50',
-                    r: '24',
-                    fill: 'none'
-                  }
-                })
-              ]
-            )
-          ]
-        )
-      ]
-    )
+    // vue2 指令通过属性 directives 设置
+    let loadingSpinner = h('div', {
+      class: 'tiny-grid-loading__wrap tiny-loading__spinner',
+      directives: isVue2 ? [{ name: 'loading', value: true }] : null
+    })
+
+    if (!isVue2) {
+      // vue3 指令通过 withDirectives 帮助函数设置
+      loadingSpinner = hooks.withDirectives(loadingSpinner, [[Loading.directive, true]])
+    }
+
+    let loadingComponent
+
+    // vue2的h函数，如果第一个参数是vnode节点无法正常渲染，只能渲染VueComponents。vue3的函数同时可以兼容vnode和VueComponents
+    if (this.loadingComponent) {
+      loadingComponent = isVnode(this.loadingComponent) ? this.loadingComponent : h(this.loadingComponent)
+    }
+    return h('div', { class: 'tiny-grid-loading', style: { display: this.visible ? 'block' : 'none' } }, [
+      loadingComponent || loadingSpinner
+    ])
   }
 })

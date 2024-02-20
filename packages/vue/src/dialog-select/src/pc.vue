@@ -35,9 +35,8 @@
                 v-if="visible || state.multiGridStore.inited"
                 ref="multiGrid"
                 v-bind="gridOp"
-                border
+                :border="state.theme !== 'saas'"
                 :stripe="false"
-                size="small"
                 auto-resize
                 :height="`${mainHeight}px`"
                 :loading="state.multiGridStore.loading"
@@ -116,29 +115,28 @@
       </div>
     </div>
     <!-- footer -->
-    <template v-if="slots.footer" #footer="params">
-      <slot name="footer" v-bind="params"></slot>
-    </template>
-    <template v-if="!slots.footer" #footer>
-      <div class="tiny-dialog-select__footer">
-        <div class="tiny-dialog-select__footer-pager">
-          <tiny-pager
-            v-if="popseletor === 'grid' && showPager"
-            ref="pager"
-            v-bind="pagerOp"
-            :pager-count="7"
-            @size-change="$emit('size-change', $event)"
-            @current-change="$emit('current-change', $event)"
-            @prev-click="$emit('prev-click', $event)"
-            @next-click="$emit('next-click', $event)"
-            @before-page-change="$emit('before-page-change', $event)"
-          ></tiny-pager>
+    <template #footer="params">
+      <slot name="footer" v-bind="params">
+        <div class="tiny-dialog-select__footer">
+          <div class="tiny-dialog-select__footer-pager">
+            <tiny-pager
+              v-if="popseletor === 'grid' && showPager"
+              ref="pager"
+              v-bind="pagerOp"
+              :pager-count="7"
+              @size-change="$emit('size-change', $event)"
+              @current-change="$emit('current-change', $event)"
+              @prev-click="$emit('prev-click', $event)"
+              @next-click="$emit('next-click', $event)"
+              @before-page-change="$emit('before-page-change', $event)"
+            ></tiny-pager>
+          </div>
+          <div class="tiny-dialog-select__footer-buttons">
+            <tiny-button @click="onFooterCancel">{{ t('ui.button.cancel') }}</tiny-button>
+            <tiny-button @click="onFooterConfirm" type="primary">{{ t('ui.button.confirm') }}</tiny-button>
+          </div>
         </div>
-        <div class="tiny-dialog-select__footer-buttons">
-          <tiny-button @click="onFooterCancel">{{ t('ui.button.cancel') }}</tiny-button>
-          <tiny-button @click="onFooterConfirm" type="primary">{{ t('ui.button.confirm') }}</tiny-button>
-        </div>
-      </div>
+      </slot>
     </template>
   </tiny-dialog-box>
 </template>

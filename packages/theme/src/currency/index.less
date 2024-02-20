@@ -9,3 +9,50 @@
 * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
 *
 */
+@import '../custom.less';
+
+@currency-prefix-cls: ~'@{css-prefix}currency';
+
+.@{currency-prefix-cls} {
+  &-option.set-default {
+    display: flex;
+
+    .@{currency-prefix-cls}-option-label {
+      flex: 1;
+    }
+
+    .@{currency-prefix-cls}-option-set {
+      display: none;
+      padding-left: 12px;
+      color: #333;
+
+      .tiny-svg {
+        font-size: 14px;
+        margin-top: 0;
+        margin-right: 4px;
+      }
+    }
+
+    &.is-active {
+      .@{currency-prefix-cls}-option-set {
+        display: flex;
+        align-items: center;
+
+        .tiny-svg {
+          fill: #1890ff;
+        }
+      }
+    }
+
+    &:not(.is-active):hover {
+      .@{currency-prefix-cls}-option-set {
+        display: flex;
+        align-items: center;
+
+        .tiny-svg {
+          fill: #d9d9d9;
+        }
+      }
+    }
+  }
+}

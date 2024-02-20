@@ -35,6 +35,7 @@ export const breadcrumbProps = {
     type: String,
     default: 'label'
   },
+  size: String,
   options: {
     type: Array,
     default: () => []

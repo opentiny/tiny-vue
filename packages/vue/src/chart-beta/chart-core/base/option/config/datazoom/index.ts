@@ -38,7 +38,6 @@ function datazoom(iChartOption) {
     }
     merge(dataZoom[0], self)
   }
-  // dataZoom = self;
   return dataZoom
 }
 

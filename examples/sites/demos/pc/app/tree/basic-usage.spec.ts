@@ -26,8 +26,10 @@ test('测试基本使用', async ({ page }) => {
   await expect(tree.getByText('数据 1-1-1')).toHaveCSS('font-size', '12px')
 
   // 测试偏移  18px + 8 padding
-  await expect(indentSpan).toHaveCSS('width', '26px')
+  const { width: widthOrigin } = await indentSpan.boundingBox()
+  await expect(widthOrigin).toBeCloseTo(26, 1)
   await offsetBtn.click()
   await page.waitForTimeout(20)
-  await expect(indentSpan).toHaveCSS('width', '46px')
+  const { width: widthChanged } = await indentSpan.boundingBox()
+  await expect(widthChanged).toBeCloseTo(46, 1)
 })

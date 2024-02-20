@@ -1,5 +1,5 @@
 <template>
-  <tiny-tabs v-model="activeName1" :swipeable="true">
+  <tiny-tabs v-model="activeName" :swipeable="true">
     <tiny-tab-item title="标签1" name="first"> 内容1 </tiny-tab-item>
     <tiny-tab-item title="标签2" name="second"> 内容2 </tiny-tab-item>
     <tiny-tab-item title="标签3" name="third"> 内容3 </tiny-tab-item>
@@ -10,7 +10,7 @@
   </tiny-tabs>
 </template>
 
-<script lang="jsx">
+<script>
 import { Tabs, TabItem } from '@opentiny/vue'
 
 export default {
@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      activeName1: 'second'
+      activeName: 'second'
     }
   }
 }

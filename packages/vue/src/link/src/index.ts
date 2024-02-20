@@ -18,13 +18,15 @@ export const linkProps = {
     type: String,
     default: 'default'
   },
+  value: String,
   underline: {
     type: Boolean,
     default: true
   },
   href: String,
   icon: [Object, String],
-  disabled: Boolean
+  disabled: Boolean,
+  size: String
 }
 
 export default defineComponent({

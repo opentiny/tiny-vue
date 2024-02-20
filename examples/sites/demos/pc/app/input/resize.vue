@@ -6,8 +6,30 @@
     <tiny-input type="textarea" v-model="input" resize="horizontal" placeholder="resize = horizontal"></tiny-input>
     <tiny-input type="textarea" v-model="input" resize="vertical" placeholder="resize = vertical"></tiny-input>
     <p>autosize</p>
-    <tiny-input type="textarea" v-model="textarea" placeholder="autosize = { minRows: 2, maxRows: 3 }" :autosize="{ minRows: 2, maxRows: 3 }"></tiny-input>
+    <tiny-input
+      type="textarea"
+      v-model="textarea"
+      placeholder="autosize = { minRows: 2, maxRows: 3 }"
+      :autosize="{ minRows: 2, maxRows: 3 }"
+    ></tiny-input>
     <tiny-input type="textarea" v-model="textarea" placeholder="autosize" autosize></tiny-input>
+    <p>hover-expand</p>
+    <tiny-input
+      class="expand"
+      type="textarea"
+      v-model="hoverText"
+      placeholder="hover-expand autosize = { minRows: 6, maxRows: 10 }"
+      :autosize="{ minRows: 6, maxRows: 10 }"
+      hover-expand
+    ></tiny-input>
+    <tiny-input
+      class="expand"
+      type="textarea"
+      v-model="hoverText"
+      placeholder="autosize  hover-expand"
+      autosize
+      hover-expand
+    ></tiny-input>
   </div>
 </template>
 
@@ -21,7 +43,8 @@ export default {
   data() {
     return {
       input: '',
-      textarea: ''
+      textarea: '',
+      hoverText: ''
     }
   }
 }
@@ -31,5 +54,9 @@ export default {
 .demo-input .tiny-textarea {
   width: auto;
   margin: 5px;
+}
+
+.demo-input .expand {
+  width: 200px;
 }
 </style>

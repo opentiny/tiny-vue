@@ -3,12 +3,13 @@
 </template>
 
 <script lang="tsx">
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { $prefix, setup, defineComponent, $props } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/logon-user/vue'
 
 export default defineComponent({
   name: $prefix + 'LogonUser',
   props: {
+    ...$props,
     getUserInfo: Function
   },
   setup(props, context) {

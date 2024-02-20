@@ -76,7 +76,7 @@
 
     .@{grid-header-prefix-cls}__column {
       .@{grid-prefix-cls}-resizable {
-        .MediumColumnHeight();
+        @apply h-4;
       }
     }
   }
@@ -110,7 +110,7 @@
 
     .@{grid-header-prefix-cls}__column {
       .@{grid-prefix-cls}-resizable {
-        .SmallColumnHeight();
+        @apply h-4;
       }
     }
   }
@@ -144,7 +144,7 @@
 
     .@{grid-header-prefix-cls}__column {
       .@{grid-prefix-cls}-resizable {
-        .MiniColumnHeight();
+        @apply h-4;
       }
     }
   }
@@ -221,7 +221,6 @@
     }
 
     .@{grid-prefix-cls}-header__column,
-    .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
       background-image: linear-gradient(-90deg, transparent, transparent),
         linear-gradient(
@@ -234,7 +233,33 @@
       background-position: 100% 0, 100% 100%;
     }
 
-    .@{grid-prefix-cls}__body-wrapper {
+    .@{grid-prefix-cls}-body__column {
+      background-image: linear-gradient(-90deg, transparent, transparent),
+        linear-gradient(
+          -180deg,
+          theme('colors.color.border.separator.DEFAULT'),
+          theme('colors.color.border.separator.DEFAULT')
+        );
+      @apply bg-no-repeat;
+      background-size: 1px 100%, 100% 1px;
+      background-position: 100% 0, 100% 99%;
+    }
+
+    .@{grid-prefix-cls}-body__row:last-child {
+      .@{grid-prefix-cls}-body__column {
+        background-position: 100% 0, 100% 100%;
+      }
+    }
+
+    .@{grid-prefix-cls}__fixed-left-wrapper {
+      .@{grid-prefix-cls}-body__column {
+        @apply border-r-color-border;
+      }
+    }
+
+    .@{grid-prefix-cls}__body-wrapper,
+    .@{grid-prefix-cls}__fixed-left-body-wrapper,
+    .@{grid-prefix-cls}__fixed-right-body-wrapper {
       border-bottom: none;
     }
 
@@ -527,8 +552,8 @@
       .@{grid-prefix-cls}__rate-text {
         @apply absolute;
         @apply left-2;
-        @apply ~"top-1/2";
-        @apply ~"-translate-y-2/4";
+        @apply ~'top-1/2';
+        @apply ~'-translate-y-2/4';
       }
     }
   }
@@ -620,7 +645,7 @@
   & &-tree-wrapper {
     @apply inline-block;
     @apply align-bottom;
-    @apply ~"w-4.5";
+    @apply ~'w-4.5';
     @apply cursor-pointer;
 
     &.is__active {
@@ -858,6 +883,8 @@
       .@{grid-prefix-cls}-cell {
         @apply flex;
         @apply items-center;
+        // 解决树表的省略隐藏样式和AUI不兼容的问题，勿同步
+        @apply w-full;
 
         .@{grid-prefix-cls}-tree-wrapper {
           @apply w-5;

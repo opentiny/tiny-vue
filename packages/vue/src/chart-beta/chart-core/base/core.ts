@@ -6,7 +6,7 @@ import throttle from './util/throttle'
 import { mergeExtend } from './util/merge'
 import BaseChart from './components/BaseChart'
 import readScreen from './feature/readScreen'
-import mediaScreen from './feature/mediaScreen'
+import MediaScreen from './feature/mediaScreen'
 
 const SELF_CHART = [
   'FlowChart',
@@ -16,7 +16,9 @@ const SELF_CHART = [
   'BaiduMapChart',
   'HoneycombChart',
   'OrganizationChart',
-  'AutonaviMapChart'
+  'AutonaviMapChart',
+  'SnowFlakeChart',
+  'TimelineChart'
 ]
 
 // 图表核心对象，按需引入图表 class 给 CoreChart 渲染，打包容量较小
@@ -34,7 +36,7 @@ export default class CoreChart extends BaseChart {
     // 图表所在容器
     this.dom = null
     // 图表类型
-    this.chartClass
+    this.chartClass = null
     // 图表依赖的三方插件
     this.plugins = {}
     // 图表还没有执行render()方法
@@ -78,7 +80,7 @@ export default class CoreChart extends BaseChart {
 
   // 开启响应式布局（类媒体查询效果）
   mediaScreen(dom, screenOption) {
-    this.mediaScreenObserver = new mediaScreen(dom, screenOption, (option) => {
+    this.mediaScreenObserver = new MediaScreen(dom, screenOption, (option) => {
       this.setSimpleOption(this.chartClass, option, this.plugins, false)
       this.render()
     })
@@ -122,7 +124,7 @@ export default class CoreChart extends BaseChart {
   }
 
   // 传入简化后的icharts-option
-  setSimpleOption(chartClass, iChartOption, plugins = {}, isInit = true) {
+  setSimpleOption(ChartClass, iChartOption, plugins = {}, isInit = true) {
     if (isInit) {
       Theme.setDefaultTheme(iChartOption.theme)
       this.mediaScreenObserver && this.mediaScreenObserver.setInitOption(iChartOption)
@@ -130,31 +132,31 @@ export default class CoreChart extends BaseChart {
     if (iChartOption.readScreen) {
       readScreen(this.dom, iChartOption.readScreen)
     }
-    if (this.isSelfChart(chartClass)) {
-      this.redirectSelfChart(chartClass, iChartOption)
+    if (this.isSelfChart(ChartClass)) {
+      this.redirectSelfChart(ChartClass, iChartOption)
       return
     }
     this.plugins = plugins
-    this.chartClass = chartClass
+    this.chartClass = ChartClass
     this.iChartOption = iChartOption
-    this.ichartsIns = new chartClass(iChartOption, this.echartsIns, this.plugins)
+    this.ichartsIns = new ChartClass(iChartOption, this.echartsIns, this.plugins)
     this.eChartOption = this.ichartsIns.getOption()
     mergeExtend(this.iChartOption, this.eChartOption)
   }
 
   // 若自研图表，走自研图表路径，并更改this指向
-  redirectSelfChart(selfChart, option) {
+  redirectSelfChart(SelfChart, option, plugins) {
     const stateDom = this.dom.getElementsByClassName('huicharts-state-container')[0]
     this.uninstall()
     this.dom.innerHTML = ''
-    const instance = new selfChart()
+    const instance = new SelfChart()
     instance.init(this.dom)
-    instance.setSimpleOption(selfChart, option)
+    instance.setSimpleOption(SelfChart, option, plugins)
     instance.renderCallBack = this.renderCallBack
     if (stateDom) {
       this.dom.appendChild(stateDom)
     }
-    this.__proto__ = instance
+    Object.setPrototypeOf(this, instance)
     for (const key in this) {
       if (Object.hasOwnProperty.call(this, key)) {
         delete this[key]
@@ -183,7 +185,6 @@ export default class CoreChart extends BaseChart {
   setOption(eChartOption, option) {
     option = merge({ notMerge: true }, option)
     eChartOption && this.echartsIns.setOption(eChartOption, option)
-    console.log('eChartOption: ', eChartOption)
   }
 
   // 第二次渲染: 有些图表需要根据第一次渲染出来的结果进行二次计算
@@ -217,13 +218,13 @@ export default class CoreChart extends BaseChart {
   }
 
   // 给echarts单独绑定事件
-  on() {
-    this.echartsIns && this.echartsIns.on(...arguments)
+  on(...rest) {
+    this.echartsIns && this.echartsIns.on(rest)
   }
 
   // 给echarts单独解绑事件
-  off() {
-    this.echartsIns && this.echartsIns.off(...arguments)
+  off(...rest) {
+    this.echartsIns && this.echartsIns.off(rest)
   }
 
   // 给echarts实例绑定事件

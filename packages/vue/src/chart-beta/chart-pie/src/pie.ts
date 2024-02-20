@@ -32,8 +32,8 @@ const ROSE_RING_RADIUS = [20, 100]
 const PIE_OFFSET = '50%'
 
 const getTooltip = (args) => {
-  const { dataType, digit, dimension, innerRows, limitShowNum, metrics } = args
-  let { localeOther = '其他', remainArr, sum = 0 } = {}
+  const { dataType, digit, dimension, innerRows, limitShowNum, metrics, t } = args
+  let { localeOther = t('ui.chart.other'), remainArr, sum = 0 } = {}
   let mapHandler = (row) => {
     sum += row[metrics]
     return { name: row[dimension], value: row[metrics] }
@@ -132,7 +132,7 @@ const getInnerData = (args) => {
 }
 
 const getDataOrSeries = (args) => {
-  const { innerData, isRing, radius, level, limitShowNum } = args
+  const { innerData, isRing, radius, level, limitShowNum, t } = args
   let series
 
   const getLimitData = (data) => {
@@ -141,7 +141,7 @@ const getDataOrSeries = (args) => {
       // 多出数据合并为其他
       const remainArr = tempData.slice(limitShowNum, innerData.length)
       const sum = remainArr.reduce((a, c) => a + c.value, 0)
-      tempData.splice(limitShowNum, Infinity, { name: '其他', value: sum })
+      tempData.splice(limitShowNum, Infinity, { name: t('ui.chart.other'), value: sum })
     }
     return tempData
   }
@@ -244,7 +244,7 @@ export const pie = (columns, rows, settings, extra, isRing) => {
 
   const { radius = isRing ? (roseType ? ROSE_RING_RADIUS : RING_RADIUS) : PIE_RADIUS } = settings
 
-  const { legendVisible, tooltipVisible } = extra
+  const { legendVisible, tooltipVisible, t } = extra
 
   // 设置 limitShowNum 时，数据会按照由大到小顺序显示
   limitShowNum && innerRows.sort((a, b) => b[metrics] - a[metrics])
@@ -265,7 +265,7 @@ export const pie = (columns, rows, settings, extra, isRing) => {
   const ichartLegend = getLegend({ legendVisible, dimension, innerRows, legendLimit, level, limitShowNum })
 
   // 图表数据(必填)
-  const dataOrSeries = getDataOrSeries({ innerData, isRing, radius, level, limitShowNum })
+  const dataOrSeries = getDataOrSeries({ innerData, isRing, radius, level, limitShowNum, t })
 
   // ichart 配置项
   let ichartOption = {
@@ -282,7 +282,7 @@ export const pie = (columns, rows, settings, extra, isRing) => {
 
   // 悬浮提示框内容配置
   if (tooltipVisible) {
-    const tipHtml = getTooltip({ dataType, innerRows, limitShowNum, digit, metrics, dimension })
+    const tipHtml = getTooltip({ dataType, innerRows, limitShowNum, digit, metrics, dimension, t })
     ichartOption.tipHtml = tipHtml
   } else {
     ichartOption.tooltip = {

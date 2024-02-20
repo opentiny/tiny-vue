@@ -11,14 +11,15 @@ export default {
       text: '自定义loading类名',
       customClass: 'new-loading',
       target: document.getElementById('tiny-loading'),
-      background: 'rgba(0, 0, 0, 0.7)'
+      background: 'rgba(0, 0, 0, 0.7)',
+      tiny_mode: 'mobile-first'
     })
   }
 }
 </script>
 
 <style scoped>
-:deep(.tiny-loading__spinner .tiny-loading__text) {
-  color: darkorange;
+:deep(.new-loading .tiny-tailwind-text) {
+  color: darkgreen;
 }
 </style>

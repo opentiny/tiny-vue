@@ -132,7 +132,7 @@ export const api = [
 
 const initState = ({ reactive, emitter, props, computed, api }) => {
   const state = reactive({
-    loaded: false,
+    loaded: !props.lazy,
     checkEasily: false,
     root: null,
     store: null,
@@ -179,7 +179,7 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
   return state
 }
 
-const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, refs }) => ({
+const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit }) => ({
   state,
   dispatch,
   broadcast,
@@ -224,14 +224,14 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, re
   setCheckedByNodeKey: setCheckedByNodeKey({ props, state })
 })
 
-const initWatcher = ({ watch, props, api, state }) => {
+const initWatcher = ({ watch, props, api, state, isVue2 }) => {
   watch(() => props.defaultCheckedKeys, api.watchDefaultCheckedKeys)
 
   watch(() => props.defaultExpandedKeys, api.watchDefaultExpandedKeys)
 
   watch(() => props.defaultExpandedKeysHighlight, api.initIsCurrent)
 
-  watch(() => props.data, api.watchData, { deep: true })
+  watch(() => props.data, api.watchData, { deep: !isVue2 })
 
   watch(() => props.checkboxItems, api.watchCheckboxItems)
 
@@ -255,13 +255,16 @@ const initWatcher = ({ watch, props, api, state }) => {
     { immediate: true }
   )
 
-  watch(() => state.root, api.initPlainNodeStore, { deep: true })
+  if (props.willChangeView) {
+    watch(() => state.root, api.initPlainNodeStore, { deep: true })
+  }
 }
 
 export const renderless = (
   props,
   { computed, onMounted, onUpdated, reactive, watch, provide, onBeforeUnmount },
-  { vm, t, emit, constants, broadcast, dispatch, service, emitter, nextTick }
+  { vm, t, emit, constants, broadcast, dispatch, service, emitter, nextTick },
+  { isVue2 }
 ) => {
   const api = {}
   const state = initState({ reactive, emitter, props, computed, api })
@@ -278,7 +281,7 @@ export const renderless = (
     wrapMounted: wrapMounted({ api, props, service }),
     initTreeStore: initTreeStore({ api, props, state, emit }),
     deleteAction: deleteAction({ state, api, emit }),
-    deleteConfirm: deleteConfirm({ state }),
+    deleteConfirm: deleteConfirm({ state, props, api }),
     getSameDataIndex,
     loopGetTreeData,
     cancelDelete: cancelDelete({ state }),
@@ -300,7 +303,7 @@ export const renderless = (
 
   api.created()
 
-  initWatcher({ watch, props, api, state })
+  initWatcher({ watch, props, api, state, isVue2 })
 
   onMounted(api.wrapMounted)
 

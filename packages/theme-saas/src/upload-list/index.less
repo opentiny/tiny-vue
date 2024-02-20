@@ -12,6 +12,11 @@
   @apply list-none;
   @apply mt-4;
 
+  // 以下为tiny适配 saas官网
+  &__wrapper {
+    @apply inline;
+  }
+
   & &__item {
     transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
     @apply text-xs;
@@ -158,9 +163,9 @@
       &.icon-close {
         @apply hidden;
         @apply absolute;
-        @apply ~"top-1/2";
+        @apply ~'top-1/2';
         @apply right-2;
-        @apply ~"-translate-y-2/4";
+        @apply ~'-translate-y-2/4';
         @apply fill-color-icon-primary;
         @apply text-base;
         @apply opacity-75;
@@ -180,9 +185,9 @@
       &.icon-refres {
         @apply hidden;
         @apply absolute;
-        @apply ~"top-1/2";
+        @apply ~'top-1/2';
         @apply right-7;
-        @apply ~"-translate-y-2/4";
+        @apply ~'-translate-y-2/4';
         @apply fill-color-icon-primary;
         @apply text-xs;
         @apply opacity-75;
@@ -196,9 +201,9 @@
       &.icon-refres {
         @apply hidden;
         @apply absolute;
-        @apply ~"top-1/2";
+        @apply ~'top-1/2';
         @apply right-7;
-        @apply ~"-translate-y-2/4";
+        @apply ~'-translate-y-2/4';
         @apply fill-color-icon-primary;
         @apply text-xs;
         @apply opacity-75;
@@ -284,6 +289,19 @@
     @apply inline;
     @apply align-top;
 
+    // 以下为tiny适配 saas官网
+    .@{upload-list-prefix-cls}__li {
+      @apply inline-block;
+
+      .is-fail {
+        @apply text-color-error;
+      }
+
+      &-title:not(.is-fail) {
+        @apply text-color-text-primary;
+      }
+    }
+
     .@{upload-list-prefix-cls}__item {
       @apply overflow-hidden;
       @apply bg-color-bg-1;
@@ -332,7 +350,7 @@
       .@{svg-prefix-cls} {
         @apply text-xs;
         margin-top: 11px;
-        @apply ~"-rotate-45";
+        @apply ~'-rotate-45';
       }
     }
 
@@ -386,14 +404,14 @@
     }
 
     .@{progress-prefix-cls} {
-      @apply ~"top-1/2";
+      @apply ~'top-1/2';
       @apply ~'left-1/2';
-      @apply ~"-translate-x-2/4" ~"-translate-y-2/4";
+      @apply ~'-translate-x-2/4' ~'-translate-y-2/4';
       @apply bottom-auto;
       width: 126px;
 
       .@{progress-prefix-cls}__text {
-        @apply ~"top-1/2";
+        @apply ~'top-1/2';
       }
     }
   }
@@ -469,7 +487,7 @@
     .@{svg-prefix-cls} {
       @apply text-xs;
       @apply mt-3;
-      @apply ~"-rotate-45";
+      @apply ~'-rotate-45';
     }
   }
 

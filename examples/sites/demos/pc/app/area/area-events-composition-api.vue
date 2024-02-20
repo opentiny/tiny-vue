@@ -8,7 +8,7 @@
   ></tiny-area>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Area as TinyArea, Notify } from '@opentiny/vue'
 

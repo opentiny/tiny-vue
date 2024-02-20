@@ -9,8 +9,8 @@ export default {
         'en-US': 'Basic Usage'
       },
       desc: {
-        'zh-CN': '<p><、p>',
-        'en-US': '<p></p>'
+        'zh-CN': '',
+        'en-US': ''
       },
       codeFiles: ['basic-usage.vue']
     },
@@ -121,6 +121,5 @@ export default {
       },
       codeFiles: ['event.vue']
     }
-  ],
-  apis: []
+  ]
 }

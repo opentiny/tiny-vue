@@ -10,6 +10,7 @@
  *
  */
 
+import type { IUserHeadApi, IUserHeadProps, IUserHeadRenderlessParamUtils, IUserHeadState } from 'types/user-head.type'
 import {
   computedMessage,
   computedStyle,
@@ -19,13 +20,18 @@ import {
   handleClick,
   mouseEnter
 } from './index'
+import type { ISharedRenderlessParamHooks } from 'types/shared.type'
 
 export const api = ['state', 'handleClick', 'mouseEnter']
 
-export const renderless = (props, { reactive, computed, inject }, { mode, emit }) => {
+export const renderless = (
+  props: IUserHeadProps,
+  { reactive, computed, inject }: ISharedRenderlessParamHooks,
+  { mode, emit }: IUserHeadRenderlessParamUtils
+): IUserHeadApi => {
   const groupSize = inject('groupSize', null)
 
-  const state = reactive({
+  const state: IUserHeadState = reactive({
     internalValue: computed(() => api.getInternalValue()),
     label: computed(() => api.computedLabel()),
     style: computed(() => api.computedStyle()),
@@ -36,7 +42,7 @@ export const renderless = (props, { reactive, computed, inject }, { mode, emit }
     backgroundColor: inject('backgroundColor', null) || props.backgroundColor
   })
 
-  const api = {
+  const api: IUserHeadApi = {
     state,
     computedLabel: computedLabel({ state, props }),
     computedStyle: computedStyle({ state, props }),

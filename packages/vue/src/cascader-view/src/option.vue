@@ -8,7 +8,7 @@
       <div class="absolute left-0 right-0 top-0 bottom-0 z-10"></div>
       <tiny-checkbox
         custom-class="flex h-full w-full items-center justify-center"
-        :checked="!option.indeterminate && option.checked"
+        :model-value="!option.indeterminate && option.checked"
         :indeterminate="option.indeterminate"
         :disabled="data.disabled"
       ></tiny-checkbox>
@@ -46,13 +46,13 @@
 
 <script>
 import Checkbox from '@opentiny/vue-checkbox'
-import { iconChevronRight } from '@opentiny/vue-icon'
+import { IconChevronRight } from '@opentiny/vue-icon'
 
 export default {
   emits: ['click'],
   components: {
     TinyCheckbox: Checkbox,
-    IconChevronRight: iconChevronRight()
+    IconChevronRight: IconChevronRight()
   },
   props: ['selected', 'ellipsis', 'option', 'textField', 'textField2', 'textField3', 'loading'],
   computed: {

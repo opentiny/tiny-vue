@@ -12,14 +12,14 @@ test('事件', async ({ page }) => {
   await demo.getByRole('button', { name: '显示、关闭事件' }).click()
   await expect(modal).toBeVisible()
   await expect(messageModal.getByText('show 事件触发了')).toBeVisible()
-  await modal.getByRole('button', { name: '确认' }).click()
+  await modal.getByRole('button', { name: '确定' }).click()
   await expect(modal).not.toBeVisible()
   await expect(messageModal.getByText('hide 事件触发了')).toBeVisible()
 
   // 确认、取消事件
   await demo.getByRole('button', { name: '确认、取消事件' }).click()
   await expect(modal).toBeVisible()
-  await modal.getByRole('button', { name: '确认' }).click()
+  await modal.getByRole('button', { name: '确定' }).click()
   await expect(modal).not.toBeVisible()
   await expect(messageModal.getByText('confirm 事件触发了')).toBeVisible()
   await demo.getByRole('button', { name: '确认、取消事件' }).click()

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-docs",
-  "version": "2.2.10",
+  "version": "2.2.13",
   "license": "MIT",
   "scripts": {
     "start": "vite",
@@ -10,8 +10,10 @@
     "build:inner:alpha": "vite build --mode inneralpha",
     "build:mobile:alpha": "vite build --mode mobilealpha",
     "build:mobile:prod": "vite build --mode mobileprod",
-    "build:inner:saas": "vite build --mode innersaas",
     "build:inner:prod": "vite build --mode innerprod",
+    "build:saas:alpha": "vite build --mode innersaas",
+    "build:saas:open": "vite build --mode saasopen",
+    "build:saas:prod": "vite build --mode saasprod",
     "build": "vite build",
     "build:open": "vite build --mode open",
     "prettier": "npx prettier --write ./**/*.{ts,tsx,css,less,scss,vue}",
@@ -25,6 +27,7 @@
     "@opentiny/vue-icon-saas": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",
     "@opentiny/vue-design-smb": "workspace:~",
+    "@opentiny/vue-design-saas": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-vite-import": "workspace:~",

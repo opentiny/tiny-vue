@@ -18,10 +18,10 @@ type Mapped<
 > = Count['length'] extends MAXIMUM_ALLOWED_BOUNDARY
   ? Result
   : Tuple extends []
-  ? []
-  : Result extends []
-  ? Mapped<Tuple, Tuple, [...Count, 1]>
-  : Mapped<Tuple, Result | [...Result, ...Tuple], [...Count, 1]>
+    ? []
+    : Result extends []
+      ? Mapped<Tuple, Tuple, [...Count, 1]>
+      : Mapped<Tuple, Result | [...Result, ...Tuple], [...Count, 1]>
 /**
  * Used for the "if" operation, which takes an array of odd length
  * and a minimum of three (3) elements.

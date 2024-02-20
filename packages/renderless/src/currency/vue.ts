@@ -10,24 +10,39 @@
  *
  */
 
-import { init, fixServiceData, change, initService } from './index'
+import {
+  init,
+  fixServiceData,
+  change,
+  initService,
+  fetchDefaultCurrency,
+  toogleDefaultCurrency,
+  computedSearchConfig,
+  visibleChange
+} from './index'
 
-export const api = ['state', 'change']
+export const api = ['state', 'change', 'toogleDefaultCurrency', 'visibleChange']
 
-export const renderless = (props, { watch, reactive }, { service, emit }) => {
+export const renderless = (props, { watch, reactive, computed }, { service, emit }) => {
   const api = {}
   const $service = initService({ props, service })
 
   const state = reactive({
     options: [],
-    selectedValue: props.modelValue
+    selectedValue: props.modelValue,
+    defaultCurrency: '',
+    searchConfig: computed(() => api.computedSearchConfig())
   })
 
   Object.assign(api, {
     state,
     change: change(emit),
+    visibleChange: visibleChange(emit),
     fixServiceData: fixServiceData({ props, service: $service }),
-    init: init({ state, service: $service, api })
+    init: init({ state, service: $service, api }),
+    fetchDefaultCurrency: fetchDefaultCurrency({ state, props, emit, service: $service }),
+    toogleDefaultCurrency: toogleDefaultCurrency({ state, props, service: $service }),
+    computedSearchConfig: computedSearchConfig({ props, service: $service })
   })
 
   watch(
@@ -39,6 +54,8 @@ export const renderless = (props, { watch, reactive }, { service, emit }) => {
   )
 
   api.init()
+
+  api.fetchDefaultCurrency()
 
   return api
 }

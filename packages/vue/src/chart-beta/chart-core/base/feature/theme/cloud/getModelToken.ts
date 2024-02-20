@@ -191,7 +191,6 @@ function getModelToken(mapToken) {
 
     // 圆盘图
     seriesItemStyleBorderWidthZero: borderWidthZero,
-    // seriesItemStyleBorderWidth:
 
     legendInactiveBorderWidth: borderWidthZero,
     legendBorderWidth: borderWidthZero,

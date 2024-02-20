@@ -12,7 +12,8 @@
           gcls({ 'pc-search-line-focus': state.focus }),
           gcls({ 'pc-search-line-unfocus': !state.focus }),
           gcls({ 'pc-search-line-big': big }),
-          gcls({ 'pc-search-line-unbig': !big })
+          gcls(`pc-search-line-${size}`),
+          gcls({ 'pc-search-line-unbig': size === 'small' && !big })
         )
       "
       data-tag="tiny-search__line"
@@ -25,7 +26,8 @@
             m(
               gcls('pc-search-present'),
               gcls({ 'pc-search-present-big': big }),
-              gcls({ 'pc-search-present-unbig': !big })
+              gcls(`pc-search-present-${size}`),
+              gcls({ 'pc-search-present-unbig': size === 'small' && !big })
             )
           "
           @click="showSelector"
@@ -51,9 +53,11 @@
             gcls({ 'pc-search-input-collapse': state.collapse }),
             gcls({ 'pc-search-input-uncollapse': !state.collapse }),
             gcls({ 'pc-search-input-collapse-big': state.collapse && big }),
-            gcls({ 'pc-search-input-collapse-unbig': state.collapse && !big }),
+            gcls(`pc-search-input-collapse-${size}`),
+            gcls({ 'pc-search-input-collapse-unbig': state.collapse && size === 'small' && !big }),
             gcls({ 'pc-search-input-big': big }),
-            gcls({ 'pc-search-input-unbig': !big })
+            gcls(`pc-search-input-${size}`),
+            gcls({ 'pc-search-input-unbig': size === 'small' && !big })
           )
         "
         :style="
@@ -68,7 +72,7 @@
         data-tag="tiny-search__input"
         @keyup.enter="searchEnterKey"
         @input="handleInput"
-        @change="handleInput"
+        @change="handleChange"
         @focus="state.focus = true"
         @blur="state.focus = false"
         @select.stop
@@ -81,7 +85,8 @@
             m(
               gcls('pc-search-input-btn-transtion'),
               gcls({ 'pc-search-input-btn-transtion-big': big }),
-              gcls({ 'pc-search-input-btn-transtion-unbig': !big })
+              gcls(`pc-search-input-btn-transtion-${size}`),
+              gcls({ 'pc-search-input-btn-transtion-unbig': size === 'small' && !big })
             )
           "
           v-if="state.showClear && !state.collapse"
@@ -91,7 +96,8 @@
               m(
                 gcls('pc-search-input-btn-transtion-a'),
                 gcls({ 'pc-search-input-btn-transtion-a-big': big }),
-                gcls({ 'pc-search-input-btn-transtion-a-unbig': !big })
+                gcls(`pc-search-input-btn-transtion-a-${size}`),
+                gcls({ 'pc-search-input-btn-transtion-a-unbig': size === 'small' && !big })
               )
             "
             @click="clear"
@@ -110,7 +116,8 @@
           m(
             gcls('pc-search-input-btn'),
             gcls({ 'pc-search-input-btn-big': big }),
-            gcls({ 'pc-search-input-btn-unbig': !big })
+            gcls(`pc-search-input-btn-${size}`),
+            gcls({ 'pc-search-input-btn-unbig': size === 'small' && !big })
           )
         "
       >
@@ -119,7 +126,8 @@
             m(
               gcls('pc-search-input-btn-a'),
               gcls({ 'pc-search-input-btn-a-big': big }),
-              gcls({ 'pc-search-input-btn-a-unbig': !big })
+              gcls(`pc-search-input-btn-a-${size}`),
+              gcls({ 'pc-search-input-btn-a-unbig': size === 'small' && !big })
             )
           "
           @click="searchClick"
@@ -153,7 +161,8 @@
                 m(
                   gcls('search-selector-poplist-item'),
                   gcls({ 'search-selector-poplist-item-big': big }),
-                  gcls({ 'search-selector-poplist-item-unbig': !big })
+                  gcls(`search-selector-poplist-item-${size}`),
+                  gcls({ 'search-selector-poplist-item-unbig': size === 'small' && !big })
                 )
               "
               @click="changeKey(item)"
@@ -168,8 +177,15 @@
       <tiny-input
         v-model="state.currentValue"
         @input="handleInput"
-        :custom-class="m(gcls('mobile-search-input'), gcls({ 'mobile-search-input-bg-change': changeBgColor }))"
+        :custom-class="
+          m(
+            gcls('mobile-search-input'),
+            gcls({ 'mobile-search-input-bg-change': changeBgColor }),
+            gcls({ 'mobile-search-input-big': big })
+          )
+        "
         :placeholder="placeholder"
+        :size="size"
       >
         <template #prefix>
           <icon-search
@@ -180,10 +196,10 @@
           />
         </template>
         <template v-if="state.showClear && !state.collapse" #suffix>
-          <span class="inline-block w-3.5 h-3.5 rounded-full bg-color-none-hover">
-            <icon-close
+          <span class="inline-block rounded-full">
+            <icon-error
               data-tag="tiny-svg-size"
-              custom-class="w-3 h-3 fill-color-bg-1 relative -top-0.5"
+              custom-class="w-4 h-4 fill-color-none-hover relative -top-0.5"
               @click="clear"
             />
           </span>
@@ -201,19 +217,21 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/search/vue'
-import { props, setup } from '@opentiny/vue-common'
-import { IconChevronDown, IconSearch, IconClose } from '@opentiny/vue-icon'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { IconChevronDown, IconSearch, IconClose, IconError } from '@opentiny/vue-icon'
 import Input from '@opentiny/vue-input'
 import Button from '@opentiny/vue-button'
 import { classes } from './token'
-import { defineComponent } from '@opentiny/vue-common'
 import type { ISearchApi } from '@opentiny/vue-renderless/types/search.type'
 
 export default defineComponent({
+  emits: ['change', 'update:modelValue', 'input', 'select', 'search', 'clear'],
   props: [
     ...props,
     'mini',
     'big',
+    'size',
+    'suffixIcon',
     'transparent',
     'searchTypes',
     'placeholder',
@@ -228,10 +246,10 @@ export default defineComponent({
     IconChevronDown: IconChevronDown(),
     IconSearch: IconSearch(),
     IconClose: IconClose(),
+    IconError: IconError(),
     TinyInput: Input,
     TinyButton: Button
   },
-  emits: ['change', 'update:modelValue', 'select', 'search', 'clear', 'input'],
   setup(props: any, context: any) {
     return setup({ props, context, renderless, api, classes }) as unknown as ISearchApi
   }

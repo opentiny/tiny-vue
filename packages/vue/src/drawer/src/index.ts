@@ -7,7 +7,8 @@ const $constants = {
       'mobile-first': 'overflow-hidden'
     }
     return (scrollLockClasses[mode] || '') as string
-  }
+  },
+  DEFAULT_WIDTH: '500px'
 }
 export const drawerProps = {
   ...$props,
@@ -25,8 +26,7 @@ export const drawerProps = {
     default: 'right'
   },
   width: {
-    type: String,
-    default: '500px'
+    type: String
   },
   title: String,
   showClose: {
@@ -61,8 +61,10 @@ export const drawerProps = {
   zIndex: {
     type: Number,
     default: 2000
-  }
+  },
+  beforeClose: Function
 }
+
 export default {
   name: $prefix + 'Drawer',
   props: drawerProps,

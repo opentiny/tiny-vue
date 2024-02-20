@@ -1,8 +1,10 @@
 <template>
-  <tiny-image style="width: 100px; height: 100px" :src="url" :preview-src-list="srcList" :z-index="3000"></tiny-image>
+  <div class="demo-image__preview">
+    <tiny-image :src="url" :preview-src-list="srcList" :z-index="3000"></tiny-image>
+  </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Image as TinyImage } from '@opentiny/vue'
 
@@ -13,3 +15,10 @@ const srcList = ref([
   `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/bridge.jpg`
 ])
 </script>
+
+<style scoped>
+.demo-image__preview {
+  width: 200px;
+  height: 200px;
+}
+</style>

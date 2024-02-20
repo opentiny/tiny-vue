@@ -40,7 +40,7 @@
             <router-link :to="getTo(cell.key)" class="decoration-none">
               <div class="ti-br-4 component-card">
                 <img
-                  class="ti-h125 ti-w125"
+                  class="ti-h125 ti-w125 inline-block"
                   :src="pubUrl(`@demos/overviewimage/${getSvg(cell.key)}.svg`)"
                   :onerror="`this.src='${pubUrl(`@demos/overviewimage/dev.svg`)}'`"
                 />
@@ -62,6 +62,7 @@
 
 <script lang="js">
 import { defineComponent, reactive, toRefs, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { cmpMenus } from '@menu/menus.js'
 import TinyInput from '@opentiny/vue-input'
 import noDataSvg from '@/assets/images/no-data.svg?url'
@@ -115,9 +116,11 @@ export default defineComponent({
       state.searchMenus = searchMenus
     }
     const lang = getWord('zh-CN', 'en-US')
+    const allPathParam = useRoute().params.all
+    const allPath = allPathParam ? allPathParam + '/' : ''
     let fn = {
       searchHandler: debounce(searchResultFn, 300),
-      getTo: (key) => `${import.meta.env.VITE_CONTEXT}${lang}/os-theme/components/${key}`,
+      getTo: (key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/os-theme/components/${key}`,
       getSvg: (key) => {
         // 表格示例单独另起了许多路由，统一使用表格组件图标
         if (key.startsWith('grid-')) {

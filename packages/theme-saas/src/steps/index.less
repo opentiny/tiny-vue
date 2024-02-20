@@ -3,6 +3,7 @@
 @steps-prefix-cls: ~'@{css-prefix}steps';
 @steps-senior-prefix-cls: ~'@{css-prefix}steps-senior';
 @steps-line-prefix-cls: ~'@{css-prefix}steps-line';
+@timeline-prefix-cls: ~'@{css-prefix}timeline';
 @default-color: theme('colors.color.text.primary');
 @active-color: theme('colors.color.brand.DEFAULT');
 @disabled-color: theme('colors.color.text.disabled');
@@ -76,7 +77,7 @@
     @apply justify-center;
     @apply ~'mr-1.5';
     @apply bg-color-bg-2;
-    @apply text-gray-200;
+    @apply text-color-text-disabled;
 
     &.left {
       @apply ~'mr-1.5';
@@ -90,7 +91,7 @@
       @apply text-color-text-primary;
 
       &:hover {
-        @apply bg-blue-200;
+        @apply bg-color-info-secondary-subtle;
         @apply text-color-brand;
       }
     }
@@ -108,17 +109,17 @@
     @apply rounded-sm;
     @apply relative;
     @apply cursor-pointer;
-    @apply text-gray-500;
+    @apply text-color-text-secondary;
     @apply my-0 mx-px;
     @apply overflow-hidden;
-    @apply bg-gray-50;
+    @apply bg-color-bg-3;
 
     .right-arrow.hide {
       @apply hidden;
     }
 
     &:hover {
-      @apply bg-gray-100;
+      @apply bg-color-none-disabled;
     }
 
     &.active {
@@ -135,10 +136,10 @@
 
     &.done {
       @apply text-color-text-primary;
-      @apply bg-blue-50;
+      @apply bg-color-info-primary-subtler;
 
       &:hover {
-        @apply bg-blue-100;
+        @apply bg-color-info-secondary-disabled;
       }
 
       &.active {
@@ -152,11 +153,11 @@
 
     &.doing {
       @apply text-color-text-primary;
-      @apply bg-blue-50;
+      @apply bg-color-info-primary-subtler;
 
       &:hover {
-        @apply text-color-text-primary;
-        @apply bg-brand-400;
+        @apply text-color-text-inverse;
+        @apply bg-color-brand-hover;
       }
 
       &.active {
@@ -173,14 +174,14 @@
       @apply bg-color-error-subtler;
 
       &:hover {
-        @apply bg-red-100;
+        @apply bg-color-error-disabled;
       }
 
       &.active {
-        @apply bg-red-500;
+        @apply bg-color-error;
 
         &:hover {
-          @apply bg-red-500;
+          @apply bg-color-error;
         }
       }
     }
@@ -255,7 +256,7 @@
       @apply justify-center;
       @apply rounded-full;
       @apply mr-2;
-      @apply bg-gray-200;
+      @apply bg-color-text-disabled;
       @apply text-color-text-inverse;
 
       &.done,
@@ -270,7 +271,7 @@
       }
 
       &.fault {
-        @apply bg-red-500;
+        @apply bg-color-error;
         @apply text-color-text-inverse;
 
         &.active {
@@ -302,6 +303,53 @@
       &.active:not(.disabled) {
         @apply text-color-text-inverse;
       }
+
+      .@{steps-prefix-cls}-text-name {
+        @apply truncate;
+      }
+
+      .@{steps-prefix-cls}-text-description {
+        @apply text-xs;
+        @apply truncate;
+      }
+    }
+  }
+
+  &.large {
+    .more-button {
+      @apply h-12;
+    }
+
+    .@{steps-prefix-cls}-block {
+      @apply h-12;
+
+      .arrow {
+        border-top-width: var(--ti-spacing-6, 1.5rem);
+        border-bottom-width: var(--ti-spacing-6, 1.5rem);
+        border-left-width: var(--ti-spacing-2, 0.5625rem);
+      }
+
+      .@{steps-prefix-cls}-content {
+        @apply h-12;
+
+        .@{steps-prefix-cls}-icon {
+          @apply w-6;
+          @apply h-6;
+          @apply mr-3;
+
+          .icon {
+            @apply ~'w-3.5';
+            @apply ~'h-3.5';
+          }
+        }
+      }
+
+      &:not(.active):not(:hover).done,
+      &:not(.active):not(:hover).doing {
+        .@{steps-prefix-cls}-text-description {
+          @apply text-color-text-secondary;
+        }
+      }
     }
   }
 }
@@ -330,7 +378,7 @@
       @apply opacity-0;
 
       &.not-vertical {
-        @apply ~"min-w-[theme(spacing.6)]";
+        @apply ~'min-w-[theme(spacing.6)]';
         @apply hidden;
         @apply mr-4;
       }
@@ -341,15 +389,15 @@
       @apply flex-auto;
 
       &.not-vertical {
-        @apply ~"min-w-[theme(spacing.6)]";
+        @apply ~'min-w-[theme(spacing.6)]';
         @apply mr-4;
       }
     }
   }
 
   .item-number {
-    @apply w-full;
-    @apply h-full;
+    @apply w-6;
+    @apply h-6;
     @apply flex;
     @apply items-center;
     @apply justify-center;
@@ -359,6 +407,7 @@
     @apply bg-color-bg-1;
     @apply relative;
     @apply z-10;
+    @apply box-border;
   }
 
   .item-circle {
@@ -370,6 +419,7 @@
     @apply bg-color-bg-1;
     @apply font-normal;
     @apply absolute;
+    @apply box-border;
   }
 
   .@{steps-prefix-cls}-icon {
@@ -379,6 +429,7 @@
     @apply flex;
     @apply relative;
     @apply z-10;
+    @apply leading-none;
   }
 
   .@{steps-prefix-cls}-main {
@@ -399,7 +450,7 @@
     @apply text-center;
 
     &.not-vertical {
-      @apply ~"min-w-[theme(spacing.32)]";
+      @apply ~'min-w-[theme(spacing.32)]';
       @apply max-w-xs;
       @apply mr-4;
       @apply text-left;
@@ -413,30 +464,30 @@
       @apply items-center;
       @apply justify-center;
       @apply rounded-full;
-      @apply border border-current;
-      @apply bg-gray-50;
-      @apply text-gray-300;
+      @apply border border-current border-solid;
+      @apply bg-color-bg-3;
+      @apply text-color-text-placeholder;
       @apply text-sm;
 
       &:hover {
-        @apply bg-gray-100;
+        @apply bg-color-none-disabled;
       }
 
       &.active {
-        @apply bg-gray-300;
+        @apply bg-color-text-placeholder;
         @apply text-color-text-inverse;
       }
 
       &.active.fault {
         @apply text-color-error;
         @apply border border-color-error;
-        @apply bg-red-50;
+        @apply bg-color-error-subtler;
       }
 
       &.active.disabled {
-        @apply bg-gray-200;
+        @apply bg-color-text-disabled;
         @apply text-color-text-inverse;
-        @apply border-gray-200;
+        @apply border-color-border;
       }
 
       .icon-finish {
@@ -458,7 +509,7 @@
 
     &.normal {
       &:hover {
-        @apply text-brand-400;
+        @apply text-color-brand-hover;
       }
     }
 
@@ -467,11 +518,15 @@
 
       .description:not(.disabled) {
         @apply text-color-brand;
+
+        &.fault {
+          @apply text-color-error;
+        }
       }
     }
 
     &.disabled {
-      @apply text-gray-200;
+      @apply text-color-text-disabled;
     }
 
     &.fault {
@@ -485,7 +540,7 @@
         &:hover {
           @apply text-color-error;
           @apply border border-color-error;
-          @apply bg-red-50;
+          @apply bg-color-error-subtler;
         }
       }
     }
@@ -493,11 +548,11 @@
     &.doing .@{steps-prefix-cls}-icon {
       @apply border border-current;
       @apply text-color-brand;
-      @apply bg-blue-50;
+      @apply bg-color-info-primary-subtler;
 
       &:hover {
         @apply border-none;
-        @apply bg-brand-400;
+        @apply bg-color-brand-hover;
         @apply text-color-text-inverse;
       }
 
@@ -509,11 +564,11 @@
     }
 
     &.done .@{steps-prefix-cls}-icon {
-      @apply bg-blue-50;
+      @apply bg-color-info-primary-subtler;
       @apply border-color-brand;
 
       &:hover {
-        @apply border-brand-400;
+        @apply border-color-brand-hover;
       }
 
       &.active {
@@ -523,9 +578,9 @@
     }
 
     .@{steps-prefix-cls}-icon.disabled {
-      @apply text-gray-200;
-      @apply bg-gray-50;
-      @apply border-gray-100;
+      @apply text-color-text-disabled;
+      @apply bg-color-bg-3;
+      @apply border-color-border-separator;
     }
 
     .title {
@@ -536,7 +591,7 @@
     }
 
     .line {
-      @apply border-t border-t-gray-200;
+      @apply border-t border-t-color-border border-solid;
       @apply flex-auto;
     }
 
@@ -545,7 +600,7 @@
     }
 
     .left-line.not-vertical {
-      @apply ~"min-w-[theme(spacing.6)]";
+      @apply ~'min-w-[theme(spacing.6)]';
       @apply hidden;
       @apply ml-4;
     }
@@ -560,7 +615,7 @@
       }
 
       &.not-vertical {
-        @apply ~"min-w-[theme(spacing.6)]";
+        @apply ~'min-w-[theme(spacing.6)]';
         @apply ml-4;
       }
     }
@@ -579,15 +634,15 @@
 
     .description {
       @apply text-xs;
-      @apply text-gray-500;
+      @apply text-color-text-secondary;
       @apply mt-2;
       @apply line-clamp-2;
-      @apply ml-5;
+      @apply ml-8;
       @apply mr-5;
       @apply break-all;
 
       .disabled {
-        @apply text-gray-200;
+        @apply text-color-text-disabled;
       }
 
       .fault {
@@ -624,7 +679,7 @@
 
         &.fault {
           @apply border border-color-error;
-          @apply bg-red-50;
+          @apply bg-color-error-subtler;
 
           &.active {
             @apply bg-color-error;
@@ -727,7 +782,7 @@
     @apply text-center;
 
     &.not-vertical {
-      @apply ~"min-w-[theme(spacing.32)]";
+      @apply ~'min-w-[theme(spacing.32)]';
       @apply max-w-xs;
       @apply text-left;
     }
@@ -739,7 +794,7 @@
     }
 
     .line {
-      @apply border-t border-t-gray-200;
+      @apply border-t border-t-color-border;
       @apply flex-auto;
     }
 
@@ -748,7 +803,7 @@
     }
 
     .line.not-vertical {
-      @apply ~"min-w-[theme(spacing.6)]";
+      @apply ~'min-w-[theme(spacing.6)]';
       @apply hidden;
       @apply ml-4;
     }
@@ -761,8 +816,6 @@
     }
 
     .item-number {
-      @apply w-full;
-      @apply h-full;
       @apply flex;
       @apply items-center;
       @apply justify-center;
@@ -858,101 +911,12 @@
 
   & &-advanced {
     & li {
-      @apply ~"leading-[theme(spacing.12)]";
+      @apply ~'leading-[theme(spacing.8)]';
       @apply inline-block;
-      @apply bg-color-bg-1;
       @apply relative;
       @apply cursor-pointer;
 
-      &:not(:last-child)::after {
-        @apply content-[''];
-        border-top: 25px solid transparent;
-        border-bottom: 25px solid transparent;
-        border-left: 20px solid theme('colors.color.bg.1');
-        @apply absolute;
-        @apply right-px;
-        @apply top-0;
-        @apply ~'z-[1]';
-      }
-      &:hover:not(:last-child)::after {
-        border-left-color: @active-color;
-      }
-
-      &:not(:last-child)::before {
-        @apply content-[''];
-        border-top: 25px solid transparent;
-        border-bottom: 25px solid transparent;
-        border-left: 20px solid @default-color;
-        @apply absolute;
-        @apply right-0;
-        @apply top-0;
-      }
-
-      &.current:not(:last-child)::before,
-      &:hover:not(:last-child)::before {
-        border-left-color: @active-color;
-      }
-
-      &:not(:first-child) a::after {
-        @apply content-[''];
-        border-top: 24px solid transparent;
-        border-bottom: 24px solid transparent;
-        border-left: 20px solid theme('colors.color.bg.1');
-        @apply absolute;
-        @apply -left-px;
-        @apply top-0;
-        @apply ~'z-[1]';
-      }
-
-      &:not(:first-child) a::before {
-        @apply content-[''];
-        border-top: 24px solid transparent;
-        border-bottom: 24px solid transparent;
-        border-left: 20px solid @default-color;
-        @apply absolute;
-        @apply left-0;
-        @apply top-0;
-      }
-
-      &.current:not(:first-child) a::before,
-      &:hover:not(:first-child) a::before {
-        border-left-color: @active-color;
-      }
-
-      &:first-child a {
-        @apply pl-3;
-      }
-
-      &.current {
-        a.label {
-          background: @active-color;
-          @apply border;
-          @apply border-solid;
-          border-color: @active-color;
-          @apply text-color-text-inverse;
-          @apply font-bold;
-        }
-
-        &::after {
-          border-left-color: @active-color;
-        }
-      }
-
-      &:last-child a {
-        @apply mr-0;
-      }
-
-      &:hover a.label {
-        background: @active-color;
-        border-color: @active-color;
-        @apply text-color-text-inverse;
-        @apply no-underline;
-      }
-
-      a.label {
-        @apply border;
-        @apply border-solid;
-        border-color: @default-color;
+      .label {
         @apply border-r-0;
         @apply flex;
         @apply relative;
@@ -961,7 +925,12 @@
         @apply pr-11;
         color: @default-color;
         @apply text-sm;
-        @apply mr-5;
+        @apply ~'mr-[theme(spacing[1.5])]';
+        @apply bg-color-bg-5;
+
+        // background-color: blue;
+
+
         > span {
           @apply w-full;
           @apply h-full;
@@ -969,19 +938,74 @@
           @apply whitespace-nowrap;
           @apply overflow-hidden;
         }
+
+      }
+
+      &:not(:last-child) .label::after {
+        @apply content-[''];
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+        border-left: 6px solid theme('colors.color.bg.5');
+
+        @apply absolute;
+        @apply right-0;
+        @apply top-0;
+        @apply ~'z-[1]';
+        @apply transform translate-x-full;
+      }
+
+      &:not(:first-child) .label::before {
+        @apply content-[''];
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+        border-left: 6px solid theme('colors.color.bg.1');
+        @apply absolute;
+        @apply ~'-left-[1px]';
+        @apply top-0;
+      }
+
+      &.current:not(:last-child) .label::after,
+      &:hover .label::after
+       {
+        border-left: 6px solid theme('colors.color.brand.DEFAULT');
+      }
+
+      &:first-child .label {
+        @apply pl-3;
+      }
+
+      &.current {
+        .label.label {
+          background: @active-color;
+          @apply border;
+          @apply border-solid;
+          border-color: @active-color;
+          @apply text-color-text-inverse;
+          @apply font-bold;
+        }
+
+      }
+
+      &:last-child .label {
+        @apply mr-0;
+      }
+
+      &:hover .label {
+        background: @active-color;
+        border-color: @active-color;
+        @apply text-color-text-inverse;
+        @apply no-underline;
       }
 
       &:first-child {
-        a {
+        .label {
           @apply rounded-tl-sm;
           @apply rounded-bl-sm;
         }
       }
 
       &:last-child {
-        a {
-          @apply border-r;
-          border-right-color: @default-color;
+        .label {
           @apply rounded-tr-sm;
           @apply rounded-br-sm;
           @apply mr-0;
@@ -996,8 +1020,8 @@
         @apply leading-5;
         @apply cursor-pointer;
         @apply right-8;
-        @apply ~"top-1/2";
-        @apply ~"-translate-y-2/4";
+        @apply ~'top-1/2';
+        @apply ~'-translate-y-2/4';
         @apply flex;
         @apply absolute;
         svg {
@@ -1022,13 +1046,13 @@
       @apply inline-block;
       @apply text-xs;
       @apply font-normal;
-      @apply ~"h-4.5";
+      @apply ~'h-4.5';
       @apply leading-normal;
       @apply py-0 ~'px-1.5';
       @apply text-center;
       @apply whitespace-nowrap;
       @apply absolute;
-      @apply ~"-top-2.5";
+      @apply ~'-top-2.5';
       @apply right-8;
       @apply ~'z-[1]';
     }
@@ -1048,6 +1072,8 @@
 
   .line {
     @apply bg-color-border-separator;
+    @apply  ~'w-[calc(100%-40px)]';
+    @apply ~'translate-x-[20px]';
   }
 
   .icon {
@@ -1069,7 +1095,7 @@
 
   .process-done {
     .icon {
-      @apply bg-color-bg-1;
+      @apply bg-color-bg-5;
       @apply w-6;
       @apply h-6;
       @apply leading-6;
@@ -1088,7 +1114,7 @@
     }
 
     .line {
-      @apply bg-color-text-primary;
+      @apply bg-color-brand;
     }
   }
 
@@ -1101,7 +1127,6 @@
     .name {
       @apply text-sm;
       @apply float-left;
-      @apply font-bold;
       @apply w-full;
     }
 
@@ -1147,18 +1172,12 @@
     .line {
       @apply h-px;
       @apply ~'left-1/2';
-      @apply ~"-top-3";
+      @apply ~'-top-3';
       @apply relative;
     }
 
     .line-end {
       @apply w-0;
-    }
-
-    .process-done {
-      .line {
-        @apply bg-color-text-primary;
-      }
     }
 
     .icon {
@@ -1173,22 +1192,36 @@
 
     .timeline {
       @apply overflow-hidden;
+      @apply flex;
+      @apply h-24;
+
+      .@{timeline-prefix-cls}-item__pillar {
+        @apply flex flex-col ;
+      }
 
       .line {
         @apply w-px;
-        @apply float-left;
+        @apply flex-1;
 
         .@{css-prefix}svg {
           @apply align-baseline;
         }
       }
 
+      &:last-child {
+        @apply h-auto;
+
+        .line {
+          @apply hidden;
+        }
+      }
+
       .date-time {
         @apply w-24;
-        @apply float-left;
-        @apply pr-6;
-        @apply text-right;
+        @apply pr-3;
+        @apply pb-5;
         @apply text-xs;
+        @apply text-right;
 
         .time {
           @apply block;
@@ -1207,11 +1240,36 @@
         @apply ml-6;
         @apply text-sm;
         @apply font-bold;
-        @apply ~"leading-6.5";
+        @apply ~'leading-6.5';
       }
 
       .icon {
         @apply top-0;
+      }
+    }
+  }
+
+  .@{timeline-prefix-cls}-item {
+    .line {
+      @apply ~'w-[calc(100%-24px)]';
+      @apply transform ~'translate-x-[12px]';
+
+      &.line-done {
+        @apply bg-color-bg-7;
+      }
+
+      &.line-end {
+        @apply w-0;
+      }
+    }
+    .date-time {
+      @apply text-center;
+      @apply mb-1;
+    }
+
+    .node-description {
+      .name {
+        @apply font-bold;
       }
     }
   }
@@ -1240,7 +1298,7 @@
             height: 45px;
             @apply text-4xl;
             @apply relative;
-            @apply ~"-left-5";
+            @apply ~'-left-5';
           }
         }
 
@@ -1257,3 +1315,4 @@
     }
   }
 }
+

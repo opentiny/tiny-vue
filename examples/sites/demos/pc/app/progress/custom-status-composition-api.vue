@@ -130,7 +130,7 @@ const getTimer2 = () => {
   process2.value = setInterval(() => {
     percentage2.value += 5
 
-    if (percentage2.value == 50) {
+    if (percentage2.value === 50) {
       clearInterval(process2.value)
     }
   }, 300)

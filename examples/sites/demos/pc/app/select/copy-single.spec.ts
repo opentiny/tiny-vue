@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('单选无需配置可复制', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#copy-single')
 
   const wrap = page.locator('#copy-single')
@@ -23,6 +24,7 @@ test('单选无需配置可复制', async ({ page }) => {
 })
 
 test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#copy-single')
 
   const wrap = page.locator('#copy-single')
@@ -47,6 +49,7 @@ test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
 })
 
 test('单选远程搜索配置 allow-copy 可复制', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#copy-single')
 
   const wrap = page.locator('#copy-single')

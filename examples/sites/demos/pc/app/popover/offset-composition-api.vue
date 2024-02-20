@@ -48,6 +48,8 @@ const offset = ref(true)
 <style scoped>
 .row {
   margin-bottom: 70px;
+  margin-left: 24px;
+  margin-right: 24px;
 }
 h1 {
   font-size: 18px;

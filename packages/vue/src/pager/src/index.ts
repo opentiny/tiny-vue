@@ -59,9 +59,12 @@ export const pagerProps = {
     default: ''
   },
   align: {
-    // 分页对齐方式 【left，center，right】
     type: String,
     validator: (value) => ['left', 'center', 'right'].includes(value)
+  },
+  totalFixedLeft: {
+    type: Boolean,
+    default: undefined
   }
 }
 

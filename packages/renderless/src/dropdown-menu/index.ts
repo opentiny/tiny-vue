@@ -20,7 +20,7 @@ export const toggleItem =
       return
     }
 
-    if (item.type == 'sort') {
+    if (item.type === 'sort') {
       if (!item.modelValue || item.modelValue === 'desc') {
         item.state.sort = 'asc'
         item.$emit('update:modelValue', 'asc')
@@ -95,9 +95,21 @@ export const getScroller = (el: HTMLElement, root?: HTMLElement): HTMLElement | 
   return root || null
 }
 
-export const useVuePopper = ({ api, props, hooks, instance, state, dropdownVm }: IDropdownMenuPopperParams): void => {
+export const useVuePopper = ({
+  api,
+  props,
+  hooks,
+  instance,
+  state,
+  dropdownVm,
+  designConfig
+}: IDropdownMenuPopperParams): void => {
   const { nextTick, onBeforeUnmount, onDeactivated, onMounted, reactive, toRefs, watch } = hooks
-  const { emit, refs, slots, vm, parent } = instance
+  const { emit, slots, vm, parent } = instance
+  const designProps = {
+    placement: props.placement || designConfig?.props?.placement || 'bottom-end',
+    visibleArrow: props.visibleArrow || designConfig?.props?.visibleArrow || false
+  }
 
   const popper = userPopper({
     emit,
@@ -108,10 +120,11 @@ export const useVuePopper = ({ api, props, hooks, instance, state, dropdownVm }:
       popperOptions: { boundariesPadding: 0, gpuAcceleration: false },
       offset: 0,
       boundariesPadding: 5,
-      ...props
+      ...props,
+      ...designProps
     },
     reactive,
-    refs,
+    vm,
     slots,
     toRefs,
     watch
@@ -161,7 +174,7 @@ export const useVuePopper = ({ api, props, hooks, instance, state, dropdownVm }:
 export const mounted =
   ({ api, parent, state }: Pick<IDropdownMenuRenderlessParams, 'api' | 'parent' | 'state'>) =>
   (): void => {
-    parent.$on('menuselectedIndex', (selectedIndex) => {
+    parent.$on('menu-selected-index', (selectedIndex) => {
       state.selectedIndex = selectedIndex
     })
     parent.$on('menu-item-click', api.handleMenuItemClick)

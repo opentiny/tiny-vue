@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="-1 -1 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="流程图&amp;步骤条" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="【PC】流程图-Flowchart（待评审）" transform="translate(-546.000000, -938.000000)" stroke="#0067D1">
+            <g id="3.导航类-Navigation/步骤条-Steps/2.横向单链型/垂直节点/中尺寸备份-9" transform="translate(330.000000, 936.000000)">
+                <g id="导航类/Steps步骤条/圆形节点/纵向节点/默认备份" transform="translate(200.000000, 2.000000)">
+                    <g id="导航类/Steps步骤条/圆形节点/子节点/默认" transform="translate(16.000000, 0.000000)">
+                        <path d="M12,0.5 C15.1625,0.5 18.0371816,1.79428833 20.1214466,3.87855339 C22.2057117,5.96281845 23.5,8.8375 23.5,12 C23.5,15.1625 22.2057117,18.0371816 20.1214466,20.1214466 C18.0371816,22.2057117 15.1625,23.5 12,23.5 C8.8375,23.5 5.96281845,22.2057117 3.87855339,20.1214466 C1.79428833,18.0371816 0.5,15.1625 0.5,12 C0.5,8.8375 1.79428833,5.96281845 3.87855339,3.87855339 C5.96281845,1.79428833 8.8375,0.5 12,0.5 Z" id="路径" fill="#EEF3FE"></path>
+                        <g id="ic/checkmask" transform="translate(5.166667, 7.333333)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                            <polyline id="路径-24" points="8.8817842e-16 4.33672645 4.62674887 8.88333333 13.6666667 0"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

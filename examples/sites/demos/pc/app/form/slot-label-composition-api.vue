@@ -44,22 +44,6 @@ const options = ref([
   { label: 'A', text: '很好', events: { click: handleClick } },
   { label: 'B', text: '一般' }
 ])
-const options2 = ref([
-  {
-    value: 'zhinan',
-    label: '指南',
-    children: [
-      {
-        value: 'anzhuang',
-        label: '安装'
-      },
-      {
-        value: 'kaifa',
-        label: '开发'
-      }
-    ]
-  }
-])
 const createData = reactive({
   radio: 'A',
   users: '',

@@ -1,7 +1,6 @@
 @import '../mixins/input.less';
 @import '../mixins/common.less';
 @import '../custom.less';
-@import '../transition/zoom-in-top.less';
 @import '../transition/search-line.less';
 @import '../transition/icon.less';
 
@@ -18,11 +17,10 @@
     @apply w-full;
     @apply h-7;
     @apply border border-solid border-color-border;
-    @apply rounded-sm;
+    @apply rounded;
     @apply bg-color-bg-1;
-    transition: 0.4s;
+    @apply duration-300;
     @apply border-separate;
-    @apply pr-1;
 
     &:hover {
       @apply border-color-border-hover;
@@ -34,6 +32,7 @@
     }
   }
 
+  & &__prefix, // tiny左侧插槽适配saas官网样式
   & &__present,
   & &__input,
   & &__input-btn {
@@ -45,8 +44,8 @@
 
   & &__input {
     @apply w-full;
-    height: 26px;
-    line-height: 26px;
+    @apply ~'h-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))]';
+    @apply ~'leading-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))]';
     @apply text-color-text-primary;
     @apply pl-3;
     @apply pr-2;
@@ -61,16 +60,17 @@
     }
   }
 
+  & &__prefix, // tiny左侧插槽适配saas官网样式
   & &__input-btn {
     @apply w-8;
-    height: 26px;
+    @apply ~'h-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))]';
     @apply py-0 px-2;
     @apply text-center;
 
     a {
       @apply no-underline;
       @apply block;
-      line-height: 26px;
+      @apply ~'leading-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))]';
     }
 
     svg {
@@ -84,9 +84,15 @@
     }
   }
 
+  // tiny左侧插槽适配saas官网样式
+  & &__prefix {
+    @apply w-4;
+    @apply pr-0;
+  }
+
   & &__present {
     @apply text-color-text-primary;
-    line-height: 26px;
+    @apply ~'leading-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))]';
     @apply table-cell;
     @apply pl-2;
     @apply w-px;
@@ -94,8 +100,7 @@
     @apply border-r border-r-color-border;
 
     .icon-outer {
-      @apply ~"h-4.5";
-      line-height: 18px;
+      @apply ~'h-4.5';
       @apply inline-block;
       @apply py-0 pr-2 pl-1;
       @apply cursor-pointer;
@@ -103,7 +108,7 @@
       svg {
         @apply text-sm;
         @apply fill-color-icon-primary;
-        @apply ~"mb-0.5";
+        @apply ~'mb-0.5';
       }
     }
   }
@@ -113,27 +118,27 @@
     @apply top-7;
     @apply left-0;
     @apply overflow-hidden;
-    min-width: 68px;
+    @apply ~'min-w-[theme(spacing.18)]';
     @apply border border-solid border-color-border;
     @apply rounded-sm;
     @apply text-xs;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    @apply shadow-md;
     @apply bg-color-bg-1;
     @apply text-color-text-primary;
     @apply ~'mt-0.5';
   }
 
   & &__selector-body {
-    max-height: 300px;
+    @apply ~'max-h-[theme(spacing.72)]';
     @apply overflow-y-auto;
     @apply overflow-x-hidden;
   }
 
   & &__poplist-item {
-    min-height: 28px;
+    @apply ~'min-h-[theme(spacing.8)]';
     @apply py-0 px-2;
     @apply leading-7;
-    @apply ~"max-w-[100%]";
+    @apply ~'max-w-[100%]';
     @apply text-xs;
     @apply overflow-hidden;
     @apply text-left;
@@ -159,9 +164,13 @@
   }
 
   &.mini &__line {
-    border-radius: 30px;
+    @apply rounded-full;
     @apply w-full;
     float: right;
+  }
+
+  &.mini.collapse {
+    @apply visible;
   }
 
   &.mini.collapse &__input-btn {
@@ -171,18 +180,17 @@
   }
 
   &.mini &__input {
-    border-radius: 30px;
+    @apply rounded-full;
   }
 
   &.collapse &__input {
     @apply p-0;
-    width: 30px;
+    @apply w-8;
     float: right;
   }
 
   &.mini.collapse &__line {
-    width: 30px;
-    float: right;
+    @apply w-8;
     @apply bg-transparent;
     @apply border-separate;
   }
@@ -199,5 +207,50 @@
   .fade-enter,
   .fade-leave-to {
     @apply opacity-0;
+  }
+  &.@{search-prefix-cls}--medium {
+    .@{search-prefix-cls}__line {
+      @apply h-8;
+      .@{search-prefix-cls}__present {
+        @apply ~'leading-[calc(theme(spacing.8)-2*theme(borderWidth.DEFAULT))]';
+      }
+      .@{search-prefix-cls}__input-btn {
+        @apply ~'h-[calc(theme(spacing.8)-2*theme(borderWidth.DEFAULT))]';
+        a {
+          @apply ~'leading-[calc(theme(spacing.8)-2*theme(borderWidth.DEFAULT))]';
+        }
+      }
+    }
+    .@{search-prefix-cls}__input {
+      @apply ~'h-[calc(theme(spacing.8)-2*theme(borderWidth.DEFAULT))]';
+      @apply ~'leading-[calc(theme(spacing.8)-2*theme(borderWidth.DEFAULT))]';
+      @apply text-sm;
+      &::placeholder {
+        @apply text-sm;
+      }
+    }
+  }
+
+  &.@{search-prefix-cls}--mini {
+    .@{search-prefix-cls}__line {
+      @apply h-6;
+      .@{search-prefix-cls}__present {
+        @apply ~'leading-[calc(theme(spacing.6)-2*theme(borderWidth.DEFAULT))]';
+      }
+      .@{search-prefix-cls}__input-btn {
+        @apply ~'h-[calc(theme(spacing.6)-2*theme(borderWidth.DEFAULT))]';
+        a {
+          @apply ~'leading-[calc(theme(spacing.6)-2*theme(borderWidth.DEFAULT))]';
+        }
+      }
+    }
+    .@{search-prefix-cls}__input {
+      @apply ~'h-[calc(theme(spacing.6)-2*theme(borderWidth.DEFAULT))]';
+      @apply ~'leading-[calc(theme(spacing.6)-2*theme(borderWidth.DEFAULT))]';
+      @apply text-xs;
+      &::placeholder {
+        @apply text-xs;
+      }
+    }
   }
 }

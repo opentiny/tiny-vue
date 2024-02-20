@@ -18,9 +18,15 @@ export default {
   yes: 'Yes',
   no: 'No',
   ui: {
-    buttonMessage: {
-      cancel: 'Cancel',
-      confirm: 'Confirm'
+    numeric: {
+      equalTo: 'Equal to',
+      notEqualTo: 'Not equal to',
+      moreThan: 'More than',
+      moreThanOrEqualTo: 'More than or equal to',
+      lessThan: 'Less than',
+      lessThanOrEqualTo: 'Less than or equal to',
+      empty: 'Empty',
+      nonEmpty: 'Non-empty'
     },
     wizard: {
       previousStep: 'LastStep',
@@ -48,7 +54,15 @@ export default {
     amount: {
       currency: 'Currency',
       amount: 'Amount',
-      date: 'Date'
+      date: 'Date',
+      equalTo: 'Equal to',
+      notEqualTo: 'Not equal to',
+      moreThan: 'More than',
+      moreThanOrEqualTo: 'More than or equal to',
+      lessThan: 'Less than',
+      lessThanOrEqualTo: 'Less than or equal to',
+      empty: 'Empty',
+      nonEmpty: 'Non-empty'
     },
     base: {
       all: 'All',
@@ -58,11 +72,16 @@ export default {
       edit: 'Edit',
       more: 'More',
       reset: 'Reset',
+      clear: 'Clear',
       comma: ','
     },
     button: {
       cancel: 'Cancel',
-      confirm: 'OK'
+      confirm: 'Confirm'
+    },
+    buttonMessage: {
+      cancel: 'Cancel',
+      confirm: 'Confirm'
     },
     cell: {
       placeholder: 'Select'
@@ -279,9 +298,10 @@ export default {
       encryptDialogTitle: 'Watermark and encryption settings',
       addWatermark: 'Add Watermark',
       encrypted: 'Encrypted',
+      docPreview: 'Document Preview',
       networkError: 'Network Error',
       pictureNetworkError: 'Network error, upload failed',
-      ReUploadTip: '{number} files failed to upload!'
+      reUploadTip: '{number} files failed to upload!'
     },
     uploadList: {
       pictureUploading: 'Picture uploading',
@@ -514,10 +534,19 @@ export default {
       search: 'Search',
       selected: 'Selected',
       selectedNum: '{num} selected',
-      noSearchData: 'No search results. Please try again'
+      noSearchData: 'No search results. Please try again',
+      add: 'Add'
     },
     search: {
       placeholder: 'search'
+    },
+    signature: {
+      confirm: 'Confirm',
+      rewrite: 'Rewrite',
+      cancel: 'Cancel',
+      tips: 'Please sign by hand',
+      resign: 'Resign',
+      placeholder: 'Please sign here (required)'
     },
     tabs: {
       moreItem: 'more'

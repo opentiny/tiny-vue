@@ -1,13 +1,15 @@
 @import '../custom.less';
 
-@dropdown-prefix-cls: ~'@{css-prefix}dropdown-menu__item';
+@dropdown-prefix-cls: ~'@{css-prefix}dropdown-item';
 
 .@{dropdown-prefix-cls} {
   @apply list-none;
   @apply leading-8;
-  @apply py-0 !px-4;
-  @apply m-0;
-  @apply text-xs;
+  @apply py-0;
+  @apply !px-2;
+  @apply !mx-1;
+  @apply rounded-sm;
+  @apply text-sm;
   @apply text-color-text-primary;
   @apply cursor-pointer;
   @apply outline-0;
@@ -18,27 +20,36 @@
   }
 
   svg {
-    margin-right: 5px;
+    @apply mr-1;
     @apply ~'-mt-0.5';
   }
 
   &.is-disabled {
-    @apply cursor-default;
+    @apply cursor-not-allowed;
     @apply text-color-text-disabled;
-    @apply pointer-events-none;
   }
+}
+
+.@{dropdown-prefix-cls}:not(:last-of-type) {
+  @apply !mb-1;
 }
 
 .@{dropdown-prefix-cls}--divided {
   @apply relative;
   @apply ~'mt-1.5';
-  @apply border-t border-t-color-bg-2;
 
   &:before {
+    @apply border-t;
+    @apply border-t-color-bg-2;
     @apply content-[''];
     @apply ~'h-1.5';
-    @apply my-0 -mx-4;
+    @apply my-0 -mx-3;
     @apply block;
     @apply bg-color-bg-1;
   }
+}
+
+.@{dropdown-prefix-cls}--check-status {
+  @apply bg-color-fill-6;
+  @apply text-color-brand;
 }

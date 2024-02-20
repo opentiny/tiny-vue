@@ -14,7 +14,7 @@
   <div
     v-if="state.showPager"
     :class="['tiny-pager tiny-pager__number', size ? 'tiny-pager--' + size : '', disabled ? 'is-disabled' : '']"
-    :style="{ textAlign: align }"
+    :style="{ textAlign: state.align }"
   >
     <template v-for="(item, index) in state.internalLayout">
       <!-- prev -->
@@ -33,6 +33,7 @@
       <!-- jumper -->
       <div v-else-if="item === 'jumper'" :key="'jumper' + index" class="tiny-pager__group">
         <div class="tiny-pager__goto">
+          <span class="tiny-pager__goto-text">{{ t('ui.page.jump') }}</span>
           <input
             type="text"
             ref="jumperInput"
@@ -42,9 +43,9 @@
             @input="handleJumperInput"
             @change="handleJumperChange"
           />
-          <button :class="['tiny-btn', disabled ? 'is-disabled' : '']" type="button" @click="handleJumperClick">
-            {{ t('ui.page.goto') }}
-          </button>
+          <span v-if="state.showJumperSufix" class="tiny-pager__goto-text tiny-pager__goto-text-sufix">{{
+            t('ui.page.pageClassifier')
+          }}</span>
         </div>
       </div>
 
@@ -95,16 +96,17 @@
           @hide="handleSizeHidePopover"
         >
           <template #reference>
-            <div class="tiny-pager__popover">
-              <div class="tiny-pager__page-size">
+            <div class="tiny-pager__popover" @click="clickSizes">
+              <div ref="pageSize" class="tiny-pager__page-size">
                 <span class="sizes">{{ state.internalPageSize }}</span>
+                <span>{{ t('ui.page.page') }}</span>
                 <div class="tiny-pager__page-size-btn">
                   <triangle-down :class="['tiny-svg-size', state.showSizes ? 'tiny-svg-size__reverse-180' : '']" />
                 </div>
               </div>
             </div>
           </template>
-          <div class="tiny-pager tiny-pager__selector-body">
+          <div class="tiny-pager__selector-body">
             <ul class="tiny-pager__selector-poplist">
               <li
                 v-for="(sizeItem, sizeIndex) in pageSizes"
@@ -125,10 +127,11 @@
       <div
         v-else-if="item === 'total' && typeof state.internalTotal === 'number'"
         :key="'total' + index"
-        class="tiny-pager__group tiny-pager__pull-left"
+        class="tiny-pager__group"
         :class="{
           'is-disabled': disabled,
-          'tiny-pager__loading': showTotalLoading
+          'tiny-pager__loading': showTotalLoading,
+          'tiny-pager__pull-left': state.totalFixedLeft
         }"
       >
         <div :class="['tiny-pager__total', size ? 'tiny-pager--' + size : '']">
@@ -136,9 +139,14 @@
             <div v-loading="showTotalLoading" class="tiny-pager__total-loading"></div>
             <span class="tiny-pager__loading-text">{{ t('ui.page.loadingTotals') }}</span>
           </template>
-          <template v-else>
-            <span>{{ t('ui.page.total') }}：</span>
+          <template v-else-if="state.totalI18n === 'total'">
+            <span>{{ t('ui.page.total') }}</span>
             <span class="tiny-pager__total-allpage"> {{ customTotal ? state.totalText : state.internalTotal }} </span>
+            <span>{{ t('ui.page.item') }}</span>
+          </template>
+          <template v-else>
+            <span>{{ t('ui.page.totals') }}</span>
+            <span> {{ customTotal ? state.totalText : state.internalTotal }} </span>
           </template>
         </div>
       </div>

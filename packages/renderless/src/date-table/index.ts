@@ -528,3 +528,9 @@ export const handleClick =
       emit('pick', newValue)
     }
   }
+
+export const getCssToken = ({ api }) => (cell, prexfix = '') => {
+  const cssStr = api.getCellClasses(cell) || ''
+
+  return cssStr.split(' ').map((className) => prexfix + className)
+}

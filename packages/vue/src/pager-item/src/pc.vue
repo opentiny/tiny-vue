@@ -49,6 +49,7 @@ import { iconPopup, iconDoubleLeft, iconDoubleRight } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'PagerItem',
+  emits: ['click', 'change'],
   components: {
     IconPopup: iconPopup(),
     IconDoubleLeft: iconDoubleLeft(),

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('原生属性', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#native-properties')
 
   const wrap = page.locator('#native-properties')

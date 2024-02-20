@@ -157,7 +157,7 @@ const GlobalConfig = {
     operButton: { default: 'inline-block', mf: 'hidden sm:inline-block', card: 'hidden' }
   },
   themes: {
-    AURORA: 'aurora',
+    TINY: 'tiny',
     SAAS: 'saas'
   }
 }

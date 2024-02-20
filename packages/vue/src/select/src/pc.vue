@@ -47,10 +47,7 @@
     <div
       ref="tagsGroup"
       :style="state.selectFiexd"
-      :class="[
-        'tiny-select__tags-group',
-        { 'is-expand': (state.selectHover || state.visible) && hoverExpand && !disabled }
-      ]"
+      :class="['tiny-select__tags-group', { 'is-expand': state.isExpand }]"
     >
       <slot name="reference">
         <tiny-filter-box
@@ -58,6 +55,7 @@
           ref="reference"
           @click="toggleMenu"
           :show-close="clearable"
+          :placeholder="placeholder"
           :disabled="state.selectDisabled"
           :label="label"
           :tip="tip"
@@ -67,6 +65,7 @@
               : state.selectedLabel
           "
           :drop-down-visible="state.visible"
+          :blank="blank"
         >
         </tiny-filter-box>
         <div
@@ -117,6 +116,7 @@
                 :closable="false"
                 :size="state.collapseTagSize"
                 disable-transitions
+                class="tiny-select__tags-number"
               >
                 <span class="tiny-select__tags-text">+ {{ state.selected.length - 1 }}</span>
               </tiny-tag>
@@ -127,6 +127,7 @@
                 :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden }]"
                 type="info"
                 key="tags-collapse"
+                data-tag="tags-collapse"
                 :closable="false"
                 :size="state.collapseTagSize"
               >
@@ -224,6 +225,7 @@
         </div>
         <tiny-input
           v-if="!shape"
+          tiny_mode="pc"
           ref="reference"
           v-model="state.selectedLabel"
           type="text"
@@ -235,11 +237,7 @@
           :disabled="state.selectDisabled"
           :readonly="state.readonly"
           :display-only="state.isDisplayOnly"
-          :display-only-content="
-            multiple
-              ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
-              : ''
-          "
+          :display-only-content="state.displayOnlyContent"
           :unselectable="state.readonly ? 'on' : 'off'"
           :validate-event="false"
           :class="{ 'is-focus': state.visible, overflow: state.overflow, 'is-show-close': state.showClose }"
@@ -255,6 +253,7 @@
           @paste="debouncedOnInputChange"
           @mouseenter="onMouseenterNative"
           @mouseleave="onMouseleaveNative"
+          @compositionend.native="handleComposition"
         >
           <template #prefix v-if="slots.prefix">
             <slot name="prefix"></slot>
@@ -273,13 +272,19 @@
             <!-- 下拉图标  -->
             <component
               v-show="state.isShowDropdownIcon"
-              :is="state.getIcon"
-              :class="['tiny-svg-size', 'tiny-select__caret', state.iconClass]"
+              :is="state.getIcon.icon"
+              :class="[
+                'tiny-svg-size',
+                'tiny-select__caret',
+                { 'is-reverse': !state.visible && state.getIcon.isDefault },
+                { 'not-reverse': !state.getIcon.isDefault }
+              ]"
               @click="handleDropdownClick"
             ></component>
           </template>
         </tiny-input>
       </slot>
+
       <transition name="tiny-zoom-in-top" @before-enter="handleMenuEnter" @after-leave="doDestroy">
         <tiny-select-dropdown
           ref="popper"
@@ -288,6 +293,7 @@
           :append-to-body="popperAppendToBody"
           v-show="!onCopying() && !hideDrop && state.visible && state.emptyText !== false"
           :style="dropStyle"
+          :popper-options="popperOptions"
         >
           <div
             v-if="shape && filterable"
@@ -304,6 +310,14 @@
               autofocus
             ></tiny-input>
           </div>
+
+          <div v-if="topCreate" class="tiny-select__top-create">
+            <div @click="$emit('top-create-click', $event)">
+              <icon-plus></icon-plus>
+              <span>{{ topCreateText }}</span>
+            </div>
+          </div>
+
           <tiny-grid
             v-if="renderType === 'grid'"
             auto-resize
@@ -330,7 +344,7 @@
             :node-key="valueField"
             :default-expand-all="state.isExpandAll"
             :check-strictly="treeOp.checkStrictly"
-            :default-checked-keys="state.defaultCheckedKeys"
+            :default-checked-keys="multiple ? state.defaultCheckedKeys : []"
             ref="selectTree"
             :current-node-key="!multiple ? state.currentKey : ''"
             :show-checkbox="multiple"
@@ -366,9 +380,11 @@
               ></icon-search>
             </template>
           </tiny-input>
+
           <tiny-scrollbar
             v-if="!~['grid', 'tree'].indexOf(renderType)"
             ref="scrollbar"
+            show
             :tag="state.optimizeStore.flag ? 'div' : 'ul'"
             :native="state.optimizeStore.flag"
             :view-style="state.optimizeStore.flag ? state.optimizeStore.viewStyle : ''"
@@ -386,7 +402,14 @@
             <li
               v-if="multiple && showCheck && showAlloption && !filterable && !state.multipleLimit && !state.emptyText"
               class="tiny-option tiny-select-dropdown__item"
-              :class="{ hover: state.hoverIndex === -9, virtual: state.optimizeStore.flag }"
+              data-tag="tiny-option"
+              :class="[
+                {
+                  hover: state.hoverIndex === -9 && state.selectCls !== 'checked-sur',
+                  virtual: state.optimizeStore.flag
+                },
+                { 'selected': state.selectCls === 'checked-sur' }
+              ]"
               @click.stop="toggleCheckAll"
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
@@ -419,6 +442,7 @@
               </tiny-option>
             </slot>
           </tiny-scrollbar>
+
           <template
             v-if="
               renderType !== 'grid' &&
@@ -431,9 +455,9 @@
               <div v-if="loadingText" class="tiny-select-dropdown__empty">
                 {{ state.emptyText }}
               </div>
-
               <div
-                v-loading.tiny-select-dropdown__loading="loading && !loadingText"
+                v-else
+                v-loading.tiny-select-dropdown__loading="!loadingText"
                 class="tiny-select-dropdown__loading-svg"
               ></div>
             </div>
@@ -481,7 +505,8 @@ import {
   iconCopy,
   iconSearch,
   iconDeltaDown,
-  iconLoadingShadow
+  iconLoadingShadow,
+  iconPlus
 } from '@opentiny/vue-icon'
 
 const getReference = (el, binding, vnode) => {
@@ -507,11 +532,12 @@ export default defineComponent({
     'remove-tag',
     'visible-change',
     'handleDropdownClick',
-    'dropdown-click'
+    'dropdown-click',
+    'top-create-click'
   ],
   directives: directive({
     Clickoutside,
-    Loading,
+    Loading: Loading.directive,
     popover: {
       bind(el, binding, vnode) {
         getReference(el, binding, vnode)
@@ -540,7 +566,8 @@ export default defineComponent({
     IconCheckedSur: iconCheckedSur(),
     IconSearch: iconSearch(),
     IconDeltaDown: iconDeltaDown(),
-    IconLoadingShadow: iconLoadingShadow()
+    IconLoadingShadow: iconLoadingShadow(),
+    IconPlus: iconPlus()
   },
   props: [
     ...props,
@@ -610,7 +637,15 @@ export default defineComponent({
     'shape',
     'label',
     'tip',
+    'updateDelay',
     'showTips',
+    'popperOptions',
+    'trim',
+    'topCreate',
+    'topCreateText',
+    'keepFocus',
+    'blank',
+    // 以下为 tiny 新增
     'searchable',
     'showEmptyImage',
     'inputBoxType',

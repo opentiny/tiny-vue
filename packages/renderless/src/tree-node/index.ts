@@ -102,6 +102,7 @@ export const handleClick =
 
     if (state.tree.checkOnClickNode && !props.node.disabled) {
       e.target.checked = !props.node.checked
+      // 当点击节点文字时，需要通知checkbox
 
       api.handleCheckChange(null, e)
     }
@@ -201,9 +202,11 @@ export const handleExpandClick =
     }
   }
 
+// 点击节点 或 点击checkbox的，都会进入该函数
 export const handleCheckChange =
   ({ nextTick, props, state }) =>
   (value, event = {}) => {
+    // 下面不要同步
     if (event.type === 'click' || event.type === 'mousedown') {
       props.node.setChecked(event.target.checked, !state.tree.checkStrictly)
     }
@@ -302,10 +305,12 @@ export const onSiblingToggleExpand =
 export const watchExpandedChange =
   ({ state, props }) =>
   () => {
-    state.parentEmitter.emit('sibling-node-toggle-expand', {
-      isExpand: props.node.expanded,
-      sibling: props.node
-    })
+    if (state.tree.accordion) {
+      state.parentEmitter.emit('sibling-node-toggle-expand', {
+        isExpand: props.node.expanded,
+        sibling: props.node
+      })
+    }
   }
 
 export const openEdit =
@@ -349,18 +354,18 @@ export const addNode =
 
 export const computedExpandIcon =
   ({ designConfig }) =>
-  ({ showLine }, { tree, expanded, isSaaSTheme }) => {
-    if (tree.icon) {
-      return tree.icon
+  (treeRoot, state) => {
+    if (state.tree.icon) {
+      return state.tree.icon
     }
 
-    if (showLine) {
+    if (treeRoot.showLine) {
       const expandIcon = designConfig?.icons.expanded || 'icon-minus-square'
       const collapseIcon = designConfig?.icons.collapse || 'icon-plus-square'
-      return expanded ? expandIcon : collapseIcon
+      return state.expanded ? expandIcon : collapseIcon
     }
 
-    return isSaaSTheme ? 'icon-arrow-bottom' : 'icon-chevron-right'
+    return 'icon-chevron-right'
   }
 
 export const computedIndent =

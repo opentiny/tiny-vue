@@ -16,11 +16,11 @@ import { getLength } from '../../string'
 
 function getErro({ min, max, val, key, rule, errors, util, options }) {
   if (min && !max && val < rule.min) {
-    errors.push(util.format(options.messages[key].min, rule.fullField, rule.min))
+    errors.push(util.format(options.messages[key].min, '', rule.min))
   } else if (max && !min && val > rule.max) {
-    errors.push(util.format(options.messages[key].max, rule.fullField, rule.max))
+    errors.push(util.format(options.messages[key].max, '', rule.max))
   } else if (min && max && (val < rule.min || val > rule.max)) {
-    errors.push(util.format(options.messages[key].range, rule.fullField, rule.min, rule.max))
+    errors.push(util.format(options.messages[key].range, '', rule.min, rule.max))
   }
 }
 
@@ -29,8 +29,8 @@ export default function (rule, checkValue, source, errors, options) {
   const min = isNumber(rule.min)
   const max = isNumber(rule.max)
   let val = checkValue
-  let key = null
-  const num = isNumber(checkValue)
+  let key: string | null = null
+  const num = isNumber(Number(checkValue))
   const str = typeof checkValue === 'string'
   const arr = Array.isArray(checkValue)
 
@@ -54,9 +54,13 @@ export default function (rule, checkValue, source, errors, options) {
     val = getLength(checkValue, 'string')
   }
 
+  if (rule.type === 'number') {
+    val = checkValue
+  }
+
   if (len) {
     if (val !== rule.len) {
-      errors.push(util.format(options.messages[key].len, rule.fullField, rule.len))
+      errors.push(util.format(options.messages[key].len, '', rule.len))
     }
   } else {
     getErro({ min, max, val, key, rule, errors, util, options })

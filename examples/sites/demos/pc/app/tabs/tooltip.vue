@@ -1,9 +1,8 @@
 <template>
   <div class="tab-demo-position">
     <div class="mb10 tip">
-      <tiny-switch v-model="value" @change="handleChange" class="mr10"></tiny-switch>当前tooltip-config是{{
-        value ? 'tooltip配置' : '字符串title'
-      }}。
+      <tiny-switch v-model="value" @change="handleChange" class="mr10"></tiny-switch>
+      当前 tooltip-config 是 {{ value ? 'tooltip配置' : '字符串title' }}。
     </div>
     <tiny-tabs v-model="activeName4" tab-style="card" position="left" :tooltip-config="tooltipConfig">
       <tiny-tab-item v-for="item in tabs3" :key="item.name" :title="item.title" :name="item.name">
@@ -25,6 +24,7 @@ export default {
   data() {
     return {
       activeName4: 'navigation1',
+      value: true,
       tooltipConfig: { effect: 'light', placement: 'left', visible: 'auto' },
       tabs3: [
         {

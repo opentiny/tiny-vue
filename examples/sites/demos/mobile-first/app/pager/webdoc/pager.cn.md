@@ -1,9 +1,7 @@
 ---
-title: Filter 过滤器
+title: Pager 分页
 ---
 
-# Filter 过滤器
+# Pager 分页
 
-<div>
-
-</div>
+<div>当数据量过多时，使用分页分解数据，常用于 Grid 和 Repeater 组件。</div>

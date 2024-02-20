@@ -175,7 +175,7 @@ export const dataHandler =
       data = props.beforeConfig(data)
     }
 
-    let options = api.chartHandler(columns, rows, props.settings, extra)
+    let options = api.chartHandler(columns, rows, props.settings, extra, props.extend)
 
     if (options) {
       if (typeof options.then === 'function') {

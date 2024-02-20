@@ -23,7 +23,7 @@
       v-else
       v-bind="$attrs"
       @click="clickHandler"
-      :src="src"
+      :src="state.src"
       :style="state.getImageStyle"
       :class="[
         'align-top w-full h-full rounded cursor-pointer',

@@ -22,6 +22,10 @@ export default defineConfig((config) => {
     {
       src: `./demos/${env.VITE_APP_MODE}/**`,
       dest: '@demos'
+    },
+    {
+      src: `./demos/apis/**`,
+      dest: '@demos/apis'
     }
   ]
   if (isSaas) {

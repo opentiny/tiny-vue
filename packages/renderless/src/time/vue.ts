@@ -61,7 +61,7 @@ export const renderless = (props, { computed, onMounted, reactive, watch, nextTi
     adjustSpinners: adjustSpinners(vm),
     handleCancel: handleCancel({ state, emit }),
     setSelectionRange: setSelectionRange({ state, emit }),
-    watchVisible: watchVisible({ nextTick, vm, state }),
+    watchVisible: watchVisible({ nextTick, vm, state, api }),
     isValidValue: isValidValue({ state }),
     changeSelectionRange: changeSelectionRange({ vm, state }),
     handleConfirm: handleConfirm({ state, emit }),

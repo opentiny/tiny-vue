@@ -129,6 +129,10 @@ export default defineComponent({
     maxWidth: {
       type: [String, Number],
       default: 200
+    },
+    keepFocus: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {

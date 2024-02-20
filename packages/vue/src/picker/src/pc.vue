@@ -1,14 +1,3 @@
-<!--
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- -->
 <template>
   <div ref="reference" class="tiny-date-container">
     <tiny-filter-box
@@ -16,11 +5,13 @@
       v-clickoutside="handleClose"
       @click="handleFocus"
       :show-close="clearable"
+      :placeholder="placeholder"
       :disabled="state.pickerDisabled"
       :label="label"
       :tip="tip"
       :value="state.displayValue.toString()"
       :drop-down-visible="state.pickerVisible"
+      :blank="blank"
     ></tiny-filter-box>
     <tiny-input
       :tabindex="tabindex"
@@ -37,15 +28,14 @@
       @focus="handleFocus"
       @keydown="handleKeydown"
       :model-value="state.displayValue"
-      :title="state.displayValue"
+      :title="state.type === 'date' ? '' : state.displayValue"
       :display-only="state.isDisplayOnly"
       :display-only-content="state.displayValue"
-      @update:modelValue="(value) => (state.userInput = value)"
+      @input="handleInput"
       @change="handleChange"
       @mouseenter="handleMouseEnter"
       @mouseleave="state.showClose = false"
       :validate-event="false"
-      ref="reference"
     >
       <template v-if="label" #prefix>
         <tiny-tooltip
@@ -72,16 +62,6 @@
           <component :is="state.triggerClass" @click="handleFocus" class="tiny-svg-size" />
         </i>
       </template>
-      <template #panel>
-        <component
-          :is="state.panel"
-          ref="picker"
-          :visible="state.pickerVisible"
-          @pick="handlePick"
-          @select-range="handleSelectRange"
-          @select-change="handleSelectChange"
-        ></component>
-      </template>
     </tiny-input>
     <div
       class="tiny-date-editor tiny-range-editor tiny-input tiny-input__inner"
@@ -96,7 +76,6 @@
       @mouseenter="handleMouseEnter"
       @mouseleave="state.showClose = false"
       @keydown="handleKeydown"
-      ref="reference"
       v-clickoutside="handleClose"
       v-else
     >
@@ -174,7 +153,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/picker/vue'
-import { $prefix, setup, directive, defineComponent } from '@opentiny/vue-common'
+import { setup, directive, defineComponent } from '@opentiny/vue-common'
 import Input from '@opentiny/vue-input'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import DatePanel from '@opentiny/vue-date-panel'
@@ -184,21 +163,19 @@ import YearRangePanel from '@opentiny/vue-year-range'
 import TimePanel from '@opentiny/vue-time'
 import TimeRangePanel from '@opentiny/vue-time-range'
 import TimeSelect from '@opentiny/vue-time-panel'
-import { iconCalendar, iconTime, iconClose } from '@opentiny/vue-icon'
 import TinyTooltip from '@opentiny/vue-tooltip'
 import FilterBox from '@opentiny/vue-filter-box'
+import { iconCalendar, iconTime } from '@opentiny/vue-icon'
 import { pickerProps } from './type'
+import '@opentiny/vue-theme/picker/index.less'
 
 export default defineComponent({
-  name: $prefix + 'Picker',
-  componentName: 'Picker',
   components: {
     TinyInput: Input,
     TinyFilterBox: FilterBox,
+    TinyTooltip,
     IconCalendar: iconCalendar(),
-    IconTime: iconTime(),
-    IconClose: iconClose(),
-    TinyTooltip
+    IconTime: iconTime()
   },
   emits: ['created', 'select-change', 'update:modelValue', 'blur', 'focus', 'change'],
   props: pickerProps,

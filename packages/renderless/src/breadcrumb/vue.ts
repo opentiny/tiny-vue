@@ -19,7 +19,7 @@ import type {
 } from '@/types'
 import { breadcrumbItemSelect } from './index'
 
-export const api = ['breadcrumbItemSelect']
+export const api = ['breadcrumbItemSelect', 'state']
 
 export const renderless = (
   props: IBreadcrumbProps,
@@ -28,6 +28,7 @@ export const renderless = (
 ): IBreadcrumbApi => {
   const state: IBreadcrumbState = reactive({
     breadcrumbEmitter: emitter(),
+    size: props.size,
     currentBreadcrumbItem: {}
   })
 
@@ -35,6 +36,8 @@ export const renderless = (
     state,
     breadcrumbItemSelect: () => breadcrumbItemSelect({ api, emit, state, constants })
   }
+
+  provide('size', state.size)
 
   provide('breadcrumbEmitter', state.breadcrumbEmitter)
 
