@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-button @click="fn" type="primary"> 头部右侧插槽示例 </tiny-button>
-    <tiny-drawer title="标题" :visible="visible" @update:visible="visible = $event">
+    <tiny-drawer title="标题" :visible="visible" @update:visible="visible = $event" :show-close="false">
       <template #header-right>
         <div class="my-header-right">
           <span>自定义头部右侧</span>

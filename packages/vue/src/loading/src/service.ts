@@ -12,22 +12,19 @@
 
 import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
 import { getStyle, addClass } from '@opentiny/vue-renderless/common/deps/dom'
-import { createComponent, hooks } from '@opentiny/vue-common'
+import { createComponent, hooks, appProperties } from '@opentiny/vue-common'
 import Loading from './index'
 
-const defaults = {
+export const defaults = {
   text: null,
   body: false,
   lock: false,
   customClass: '',
   fullscreen: true,
-  type: 'primary',
-  tiny_mode: 'pc'
+  iconSize: ''
 }
 
 let fullscreenLoading = null
-
-export let tinyMode = null
 
 export const constants = {
   TEXT_ATTR: 'tiny-loading__text',
@@ -75,7 +72,7 @@ const addStyle = (options, parent, instance) => {
 
 export default (configs = {}) => {
   configs = { ...defaults, ...configs }
-  tinyMode = configs.tiny_mode
+
   if (typeof configs.target === 'string') {
     configs.target = document.querySelector(configs.target)
   }
@@ -96,7 +93,10 @@ export default (configs = {}) => {
   let instance = createComponent({
     component: Loading,
     propsData: {
-      _constants: constants
+      _constants: constants,
+      size: configs.size,
+      loadingImg: configs.loadingImg,
+      tiny_mode: configs.tiny_mode || appProperties().tiny_mode?.value
     },
     el: document.createElement('div')
   })

@@ -9,11 +9,17 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import type {
+  ITransferApi,
+  ITransferProps,
+  ITransferState,
+  ISharedRenderlessParamHooks,
+  ITransferRenderlessParamUtils
+} from '@/types'
 
 import {
   getObj,
   getSourceData,
-  recursiveData,
   getLeftCheckedData,
   getRightCheckedData,
   getTargetData,
@@ -28,7 +34,7 @@ import {
 
 export const api = ['state', 'onSourceCheckedChange', 'onTargetCheckedChange', 'addToLeft', 'addToRight', 'clearQuery']
 
-const initState = ({ reactive, computed, api, props, h, slots }) =>
+const initState = ({ reactive, computed, api, props, h, slots }): ITransferState =>
   reactive({
     leftChecked: [],
     rightChecked: [],
@@ -38,8 +44,6 @@ const initState = ({ reactive, computed, api, props, h, slots }) =>
     sourceData: computed(() => api.getSourceData()),
     targetData: computed(() => api.getTargetData()),
     hasButtonTexts: computed(() => props.buttonTexts.length === 2),
-    treeData: [],
-    sourceTreeData: [],
     isToLeft: false,
     optionRender: computed(() => (option) => {
       if (props.renderContent) {
@@ -54,8 +58,12 @@ const initState = ({ reactive, computed, api, props, h, slots }) =>
     })
   })
 
-export const renderless = (props, { computed, onMounted, reactive, h }, { $prefix, emit, refs, parent, slots }) => {
-  const api = {}
+export const renderless = (
+  props: ITransferProps,
+  { computed, onMounted, reactive, h }: ISharedRenderlessParamHooks,
+  { $prefix, emit, refs, parent, slots }: ITransferRenderlessParamUtils
+) => {
+  const api = {} as ITransferApi
   const Tree = $prefix + 'Tree'
   const Table = $prefix + 'Table'
   const state = initState({ reactive, computed, api, props, h, slots })
@@ -63,7 +71,6 @@ export const renderless = (props, { computed, onMounted, reactive, h }, { $prefi
 
   Object.assign(api, {
     state,
-    $slots: parent.$slots,
     getObj: getObj(props),
     clearQuery: clearQuery(refs),
     getSourceData: getSourceData({ props, Tree }),
@@ -75,10 +82,8 @@ export const renderless = (props, { computed, onMounted, reactive, h }, { $prefi
     onSourceCheckedChange: onSourceCheckedChange({ emit, state }),
     logicFun: logicFun({ props, emit, state }),
     getTargetData: getTargetData({ props, state, Tree, Table }),
-    recursiveData: recursiveData({ api, props, state }),
-    sortableEvent: sortableEvent({ api, droppanel: DROPPANEL, props, queryDom: TRANSFERPANEL, refs, state })
+    sortableEvent: sortableEvent({ api, droppanel: DROPPANEL, props, queryDom: TRANSFERPANEL, refs })
   })
-
   onMounted(api.sortableEvent)
 
   return api

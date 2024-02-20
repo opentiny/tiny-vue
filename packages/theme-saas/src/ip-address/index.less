@@ -6,7 +6,7 @@
 
 .@{ip-address-prefix-cls} {
   @apply w-72;
-  @apply ~"max-w-[100%]";
+  @apply ~'max-w-[100%]';
   @apply outline-0;
   @apply inline-table;
   @apply text-left;
@@ -19,14 +19,14 @@
     @apply h-7;
     @apply border border-solid border-color-border;
     @apply text-color-text-primary;
-    @apply rounded-sm;
+    @apply rounded;
     @apply bg-color-bg-1;
     @apply text-xs;
     @apply block;
     @apply whitespace-nowrap;
     @apply bg-none;
     .user-select(auto);
-    @apply ~"transition-[border]" duration-300;
+    @apply ~'transition-[border]' duration-300;
     @apply outline-0;
     @apply box-border;
     .input-readonly(@color: theme('colors.color.brand.DEFAULT'));
@@ -53,7 +53,7 @@
       @apply pointer-events-none;
       @apply shadow-none;
       @apply bg-color-bg-4;
-      @apply border-color-border-disabled;
+      @apply border-color-border;
       @apply text-color-text-disabled;
       .placeholder(@color: theme('colors.color.text.disabled'));
 

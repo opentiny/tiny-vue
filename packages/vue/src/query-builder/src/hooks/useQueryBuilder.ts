@@ -41,6 +41,7 @@ export const useQueryBuilder = <RG extends RuleGroupType | RuleGroupTypeIC>(
 ) => {
   const {
     defaultQuery,
+    bindProps,
     query: queryProp,
     fields: fieldsPropOriginal,
     operators = defaultOperators,
@@ -82,6 +83,7 @@ export const useQueryBuilder = <RG extends RuleGroupType | RuleGroupTypeIC>(
     displayOnlyField = false,
     validator,
     debugMode: debugModeProp = false,
+    // eslint-disable-next-line no-console
     onLog = console.log,
     idGenerator = generateID
   } = props as QueryBuilderProps<RG>
@@ -592,7 +594,8 @@ export const useQueryBuilder = <RG extends RuleGroupType | RuleGroupTypeIC>(
       listsAsArrays,
       parseNumbers,
       validationMap,
-      disabledPaths
+      disabledPaths,
+      bindProps
     }),
     [
       addRuleToNewGroups,
@@ -622,7 +625,8 @@ export const useQueryBuilder = <RG extends RuleGroupType | RuleGroupTypeIC>(
       showCombinatorsBetweenRules,
       showLockButtons,
       showNotToggle,
-      validationMap
+      validationMap,
+      bindProps
     ]
   )
 

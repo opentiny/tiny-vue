@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('输入框前缀插槽', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#slot-prefix')
 
   const wrap = page.locator('#slot-prefix')

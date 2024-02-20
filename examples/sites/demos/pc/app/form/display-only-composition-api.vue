@@ -1,7 +1,7 @@
 <template>
   <div class="demo-form">
     <div class="title">表单是否仅展示：<tiny-switch v-model="displayOnly"></tiny-switch></div>
-    <tiny-form :inline="inline" label-position="right" :display-only="displayOnly">
+    <tiny-form :inline="inline" label-position="top" :display-only="displayOnly">
       <tiny-form-item label="超长文字">
         <tiny-input v-model="formData.input"></tiny-input>
       </tiny-form-item>
@@ -55,7 +55,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import {
   Form as TinyForm,
   FormItem as TinyFormItem,
@@ -63,12 +63,10 @@ import {
   Radio as TinyRadio,
   DatePicker as TinyDatePicker,
   Input as TinyInput,
-  Button as TinyButton,
   Checkbox as TinyCheckbox,
   CheckboxGroup as TinyCheckboxGroup,
   Switch as TinySwitch,
   Autocomplete as TinyAutocomplete,
-  Cascader as TinyCascader,
   Select as TinySelect,
   Option as TinyOption,
   Modal

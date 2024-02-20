@@ -1,12 +1,12 @@
 <template>
   <div
     data-tag="tiny-cell"
-    class="border-0 border-color-border rounded relative w-full h-7 leading-7 sm:leading-6.5 pr-5 sm:pr-7 cursor-pointer line-clamp-1 pl-3"
+    class="border-0 border-color-border rounded relative w-full h-7 leading-7 sm:leading-6.5 pr-5 sm:pr-7 pl-0 sm:pl-3 cursor-pointer line-clamp-1"
     :class="[
       m(
         data ? 'text-color-text-primary' : 'text-color-icon-placeholder',
         state.isDisplayOnly ? 'pointer-events-none cursor-default text-color-text-primary pl-0' : 'sm:border',
-        state.isDisabled ? 'bg-color-bg-4 cursor-not-allowed' : ''
+        state.isDisabled ? 'sm:bg-color-bg-4 cursor-not-allowed' : ''
       )
     ]"
     @click="state.isDisabled ? '' : $emit('click', $event)"

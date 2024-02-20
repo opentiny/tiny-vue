@@ -1,15 +1,17 @@
 <template>
-  <tiny-popeditor
-    v-model="value"
-    :show-clear-btn="true"
-    :grid-op="gridOp"
-    text-field="name"
-    value-field="name"
-    :remote-search="remoteSearch"
-    suggest
-    :conditions="conditions"
-  ></tiny-popeditor>
-  <p>value值：{{ value }}</p>
+  <div>
+    <tiny-popeditor
+      v-model="value"
+      :show-clear-btn="true"
+      :grid-op="gridOp"
+      text-field="name"
+      value-field="name"
+      :remote-search="remoteSearch"
+      suggest
+      :conditions="conditions"
+    ></tiny-popeditor>
+    <p>value值：{{ value }}</p>
+  </div>
 </template>
 
 <script>

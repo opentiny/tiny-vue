@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('option-group', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#option-group')
 
   const wrap = page.locator('#option-group')

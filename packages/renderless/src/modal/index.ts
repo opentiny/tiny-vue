@@ -38,6 +38,8 @@ import type {
 
 const DragClass = 'is__drag'
 
+let timer: number
+
 const emitZoom = ({ params, parent, emit, event }: IModalEmitZoomParam): void => {
   let { $listeners, events = {} } = parent
   if ($listeners.zoom) {
@@ -130,6 +132,23 @@ export const selfClickEvent =
     if (props.maskClosable && event.target === parent.$el) {
       api.close('mask')
     }
+  }
+
+export const mouseEnterEvent = () => (): void => {
+  clearTimeout(timer)
+}
+
+export const mouseLeaveEvent =
+  ({ api, props }: Pick<IModalRenderlessParams, 'api' | 'props'>) =>
+  (): void => {
+    api.addMsgQueue()
+
+    timer = window.setTimeout(
+      () => {
+        api.close('close')
+      },
+      parseFloat(props.duration as string)
+    )
   }
 
 export const updateZindex =
@@ -228,7 +247,7 @@ export const open =
       if (state.isMsg) {
         api.addMsgQueue()
 
-        setTimeout(
+        timer = window.setTimeout(
           () => {
             api.close(params.type)
           },

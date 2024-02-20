@@ -11,7 +11,12 @@
  -->
 <template>
   <div
-    :class="['tiny-search', { mini }, { collapse: state.collapse }]"
+    :class="[
+      'tiny-search',
+      { mini },
+      { collapse: state.collapse },
+      state.searchSize ? 'tiny-search--' + state.searchSize : ''
+    ]"
     @mouseenter="state.hovering = true"
     @mouseleave="state.hovering = false"
   >
@@ -104,7 +109,8 @@ export default defineComponent({
     'tabindex',
     'clearable',
     'isEnterSearch',
-    'typeValue'
+    'typeValue',
+    'size'
   ],
   emits: ['change', 'search', 'update:modelValue', 'clear', 'select', 'input'],
   components: {

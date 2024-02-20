@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Image } from '@opentiny/vue'
 
 export default {

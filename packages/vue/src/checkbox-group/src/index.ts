@@ -49,7 +49,11 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    iconPosition: String as PropType<IconPosition>
+    iconPosition: String as PropType<IconPosition>,
+    shape: {
+      type: String,
+      default: ''
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

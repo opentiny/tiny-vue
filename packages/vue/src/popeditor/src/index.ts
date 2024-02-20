@@ -10,7 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import { iconPopup, iconSearch } from '@opentiny/vue-icon'
+import { IconPopup, IconSearch } from '@opentiny/vue-icon'
 import template from 'virtual-template?pc'
 
 export const $constants = {
@@ -66,13 +66,13 @@ export const popeditorProps = {
   icon: {
     type: Object,
     default() {
-      return iconPopup()
+      return IconPopup()
     }
   },
   iconSearch: {
     type: Object,
     default() {
-      return iconSearch()
+      return IconSearch()
     }
   },
   title: {
@@ -206,6 +206,10 @@ export const popeditorProps = {
     default: () => ({})
   },
   autoReset: {
+    type: Boolean,
+    default: false
+  },
+  radioChangeClose: {
     type: Boolean,
     default: false
   }

@@ -5,6 +5,7 @@ import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } fro
 export interface IBreadcrumbState {
   breadcrumbEmitter: object
   currentBreadcrumbItem: object
+  size: string | undefined
 }
 
 export type IBreadcrumbProps = ExtractPropTypes<typeof breadcrumbProps>

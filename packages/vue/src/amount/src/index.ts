@@ -1,8 +1,25 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
+
+const $constants = {
+  FILTER_OPTION: [
+    'ui.amount.equalTo',
+    'ui.amount.notEqualTo',
+    'ui.amount.moreThan',
+    'ui.amount.moreThanOrEqualTo',
+    'ui.amount.lessThan',
+    'ui.amount.lessThanOrEqualTo',
+    'ui.amount.empty',
+    'ui.amount.nonEmpty'
+  ]
+}
 
 export const amountProps = {
   ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
   modelValue: {
     type: [Number, String]
   },
@@ -24,6 +41,10 @@ export const amountProps = {
   digits: {
     type: Number,
     default: 2
+  },
+  stringMode: {
+    type: Boolean,
+    default: false
   },
   rounding: {
     type: Boolean,
@@ -73,11 +94,42 @@ export const amountProps = {
   hideCurrency: {
     type: Boolean,
     default: false
+  },
+  displayOnly: {
+    type: Boolean,
+    default: false
+  },
+  hideIcon: {
+    type: Boolean,
+    default: false
+  },
+  numAllowEmpty: {
+    type: Boolean,
+    default: false
+  },
+  label: {
+    type: String,
+    default: ''
+  },
+  tip: String,
+  shape: String,
+  clearable: {
+    type: Boolean,
+    default: false
+  },
+  filter: {
+    type: Boolean,
+    default: false
+  },
+  blank: {
+    type: Boolean,
+    default: false
   }
 }
 
 export default defineComponent({
   name: $prefix + 'Amount',
+  componentName: 'Amount',
   props: amountProps,
   setup(props, context) {
     return $setup({ props, context, template })

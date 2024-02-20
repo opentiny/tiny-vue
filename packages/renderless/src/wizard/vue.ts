@@ -41,14 +41,15 @@ export const api = [
 export const renderless = (
   props: IWizardProps,
   { onMounted, reactive }: ISharedRenderlessParamHooks,
-  { emit, constants }: IWizardRenderlessParamUtils
+  { emit, constants, designConfig }: IWizardRenderlessParamUtils
 ): IWizardApi => {
   const state: IWizardState = reactive({
     datas: props.data,
     submitShow: false,
     doing: constants.DOING_STATUS,
     ready: constants.READY_STATUS,
-    wait: constants.WAIT_STATUS
+    wait: constants.WAIT_STATUS,
+    iconYes: designConfig?.icons?.IconYes || 'tiny-icon-successful'
   })
 
   const api = {

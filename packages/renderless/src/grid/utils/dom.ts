@@ -150,12 +150,18 @@ export const colToVisible = ($table, column, move) => {
   })
 }
 
+export const hasDataTag = (el, value) => {
+  if (!el || !value) return false
+
+  return (' ' + el.getAttribute('data-tag') + ' ').includes(' ' + value + ' ')
+}
+
 export const getEventTargetNode = (event, container, queryCls) => {
   let targetEl
   let target = getActualTarget(event)
 
   while (target && target.nodeType && target !== document) {
-    if (queryCls && hasClass(target, queryCls)) {
+    if (queryCls && (hasClass(target, queryCls) || hasDataTag(target, queryCls))) {
       targetEl = target
     } else if (target === container) {
       return {

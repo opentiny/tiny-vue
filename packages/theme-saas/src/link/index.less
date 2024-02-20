@@ -14,7 +14,23 @@
   @apply outline-0;
   @apply cursor-pointer;
   @apply p-0;
-  @apply text-xs;
+
+  &--base {
+    @apply text-xs;
+  }
+
+  &--medium {
+    @apply text-sm;
+    @apply ~'h-4.5';
+    @apply ~'py-0.5';
+    @apply box-border;
+
+    .@{link-prefix-cls}__inner {
+      @apply ~'h-4.5';
+      @apply flex;
+      @apply items-center;
+    }
+  }
 
   &,
   &__inner {
@@ -24,7 +40,7 @@
   }
 
   &-svg {
-    @apply mr-2;
+    @apply ~'mr-0.5';
 
     &-only {
       @apply mr-0;
@@ -46,7 +62,7 @@
   }
 
   &&--default {
-    .link-type(theme('colors.color.brand.DEFAULT'), theme('colors.color.brand.DEFAULT'), theme('colors.color.brand.hover.DEFAULT'), theme('colors.color.border.disabled'), theme('colors.color.brand.active'));
+    .link-type(theme('colors.color.brand.DEFAULT'), theme('colors.color.brand.DEFAULT'), theme('colors.color.brand.hover.DEFAULT'), theme('colors.color.brand.disabled'), theme('colors.color.brand.active'));
   }
 
   &&--primary {

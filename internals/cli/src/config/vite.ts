@@ -12,19 +12,18 @@ const getComponentAlias = (alias = {}) => {
   return alias
 }
 
-const getAlias = (vueVersion: string | number, theme = '') => {
+const getAlias = (vueVersion: string | number, theme = '', design) => {
   const ns = (t: string) => (t ? '-' + t : '')
 
-  return {
+  const map = {
     // 主模块映射
     // vite 4 不支持 exports 语法自动拼接 index 文件 https://github.com/vitejs/vite/issues/7267
     '@opentiny/vue-icon-saas$': pathFromWorkspaceRoot('packages/vue-icon-saas/index.ts'),
     '@opentiny/vue-icon-saas': pathFromWorkspaceRoot('packages/vue-icon-saas/src'),
-    '@opentiny/vue-icon$': pathFromWorkspaceRoot(`packages/vue-icon${ns(theme)}/index.ts`),
-    '@opentiny/vue-icon': pathFromWorkspaceRoot(`packages/vue-icon${ns(theme)}/src`),
+    '@opentiny/vue-icon$': pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/index.ts`),
     '@opentiny/vue-renderless': pathFromWorkspaceRoot('packages/renderless/src'),
     '@opentiny/vue-theme-mobile': pathFromWorkspaceRoot('packages/theme-mobile/src'),
-    '@opentiny/vue-theme': pathFromWorkspaceRoot(`packages/theme${ns(theme)}/src`),
+    '@opentiny/vue-theme': pathFromWorkspaceRoot(`packages/theme${ns(design || theme)}/src`),
     '@opentiny/vue-theme-saas': pathFromWorkspaceRoot('packages/theme-saas/src'),
     '@opentiny/vue-common': pathFromWorkspaceRoot('packages/vue-common/src'),
     '@opentiny/vue-locale': pathFromWorkspaceRoot('packages/vue-locale/src'),
@@ -38,6 +37,12 @@ const getAlias = (vueVersion: string | number, theme = '') => {
     '@opentiny/vue-example/docs': pathFromWorkspaceRoot('examples/docs/components/pc'),
     ...getComponentAlias()
   }
+
+  if (!design) {
+    map['@opentiny/vue-icon'] = pathFromWorkspaceRoot(`packages/vue-icon${ns(design || theme)}/src`)
+  }
+
+  return map
 }
 
 const createContainer = (klass, defaultTitle) => {

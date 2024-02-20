@@ -1,5 +1,5 @@
 <template>
-  <div class="hui-chart chart-bar" ref="chartRef" :style="{ height }"></div>
+  <div class="hui-chart chart-box" ref="chartRef" :style="{ height }"></div>
 </template>
 
 <script>

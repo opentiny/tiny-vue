@@ -1,36 +1,40 @@
 <template>
   <div>
     <tiny-color-picker v-model="color" :history="history" />
-    <Button @click="addHistoryColor">Append history color</Button>
-    <Button @click="popHistoryColor">Pop history color</Button>
+    <tiny-button @click="addHistoryColor">Append history color</tiny-button>
+    <tiny-button @click="popHistoryColor">Pop history color</tiny-button>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
-import { ColorPicker, Button } from '@opentiny/vue';
+import { ColorPicker, Button } from '@opentiny/vue'
+
 export default {
   components: {
     TinyColorPicker: ColorPicker,
-    Button
+    TinyButton: Button
   },
-  setup() {
-    const color = ref('#66ccff');
-    const history = ref(['#66ccff25']);
-    const randomHex = () => "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
-    const addHistoryColor = () => {
-      history.value.push(
-        randomHex()
-      );
-    }
-    const popHistoryColor = () => {
-      history.value.pop();
-    }
+  data() {
     return {
-      color,
-      history,
-      addHistoryColor,
-      popHistoryColor
+      color: '#66ccff',
+      history: []
+    }
+  },
+  methods: {
+    randomHex() {
+      return (
+        '#' +
+        Math.floor(Math.random() * 0xffffff)
+          .toString(16)
+          .padEnd(6, '0')
+      )
+    },
+    addHistoryColor() {
+      let colorDefine = this.randomHex()
+      this.history.push(colorDefine)
+    },
+    popHistoryColor() {
+      this.history.pop()
     }
   }
 }

@@ -28,6 +28,8 @@ class Touch {
     this.screenY = pos.screenY + deltaY
     this.clientX = pos.clientX + deltaX
     this.clientY = pos.clientY + deltaY
+    this.offsetX = pos.offsetX + deltaX
+    this.offsetY = pos.offsetY + deltaY
   }
 }
 
@@ -90,7 +92,9 @@ const onMouse = (touchType) => (ev) => {
     mouseTarget = ev.target
   }
 
-  if ((eventTarget = closest(mouseTarget, '[data-tiny-touch-simulate-container]')) && eventTarget.dispatchEvent) {
+  eventTarget = closest(mouseTarget, '[data-tiny-touch-simulate-container]')
+
+  if (eventTarget && eventTarget.dispatchEvent) {
     triggerTouch(touchType, ev)
   }
 

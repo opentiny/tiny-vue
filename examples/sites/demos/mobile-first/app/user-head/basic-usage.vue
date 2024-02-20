@@ -30,7 +30,7 @@ export default {
     return {
       text: '中文',
       textEn: 'Meta',
-      imgUrl: '/static/images/1.jpg'
+      imgUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`
     }
   }
 }

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Button @click="changeVisible">Show Color select panel</Button>
-    <Button @click="addHistoryColor">Append history color</Button>
-    <Button @click="popHistoryColor">Pop history color</Button>
+    <tiny-button @click="changeVisible">Show Color select panel</tiny-button>
+    <tiny-button @click="addHistoryColor">Append history color</tiny-button>
+    <tiny-button @click="popHistoryColor">Pop history color</tiny-button>
     <div style="position: relative">
       <tiny-color-select-panel
         v-model="color"
@@ -11,60 +11,63 @@
         @cancel="onCancel"
         :history="history"
         alpha
-    />
+      />
     </div>
   </div>
 </template>
 
 <script>
-import {ref} from 'vue';
-import {ColorSelectPanel,Button,Notify} from '@opentiny/vue';
+import { ColorSelectPanel, Button, Notify } from '@opentiny/vue'
+
 export default {
   components: {
     TinyColorSelectPanel: ColorSelectPanel,
-    Button
+    TinyButton: Button
   },
-  setup(){
-    const color = ref('#66ccff');
-    const visible = ref(false);
-    const changeVisible = () => visible.value = !visible.value;
-    const hidden = () => visible.value = false;
-    const onConfirm = (hex) => {
+  data() {
+    return {
+      color: '#66ccff',
+      visible: false,
+      history: ['#66ccff']
+    }
+  },
+  methods: {
+    changeVisible() {
+      this.visible = !this.visible
+    },
+    hidden() {
+      this.visible = false
+    },
+    onConfirm(msg) {
       Notify({
         type: 'success',
         position: 'top-right',
         title: '用户点击了选择',
-        message: hex
-      });
-      hidden();
-    }
-    const onCancel = (hex) => {
+        message: msg
+      })
+      this.hidden()
+    },
+    onCancel() {
       Notify({
-        type: 'success',
+        type: 'error',
         position: 'top-right',
-        title: '用户点击了取消',
-      });
-      hidden();
-    }
-    const history = ref(['#66ccff25']);
-    const randomHex = () => "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
-    const addHistoryColor = () => {
-      history.value.push(
-        randomHex()
-      );
-    }
-    const popHistoryColor = () => {
-      history.value.pop();
-    }
-    return {
-      color,
-      visible,
-      changeVisible,
-      onCancel,
-      onConfirm,
-      history,
-      addHistoryColor,
-      popHistoryColor
+        title: '用户点击了取消'
+      })
+      this.hidden()
+    },
+    randomHex() {
+      return (
+        '#' +
+        Math.floor(Math.random() * 0xffffff)
+          .toString(16)
+          .padEnd(6, '0')
+      )
+    },
+    addHistoryColor() {
+      this.history.push(this.randomHex())
+    },
+    popHistoryColor() {
+      this.history.pop()
     }
   }
 }

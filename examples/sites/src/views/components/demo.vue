@@ -179,10 +179,12 @@ export default defineComponent({
       },
       openPlayground(demo, open = true) {
         const cmpId = router.currentRoute.value.params.cmpId
-        const tinyTheme = currThemeLabel.value.split('-')[1]
-        const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${demo.codeFiles[0]}&apiMode=${
-          apiModeState.apiMode
-        }&mode=${templateModeState.mode}&theme=${tinyTheme}`
+        const tinyTheme = templateModeState.isSaas ? 'saas' : currThemeLabel.value.split('-')[1]
+        const openModeQuery = open ? '' : '&openMode=preview'
+        // TODO: 目前mf只有Options写法，后续再放开compositon
+        const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${
+          demo.codeFiles[0]
+        }&apiMode=Options&mode=${templateModeState.mode}&theme=${tinyTheme}${openModeQuery}`
 
         if (open) {
           window.open(url)

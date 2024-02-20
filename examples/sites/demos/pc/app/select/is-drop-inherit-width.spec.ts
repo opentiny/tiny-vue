@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('默认下拉弹框宽度由内容撑开', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#is-drop-inherit-width')
 
   const wrap = page.locator('#is-drop-inherit-width')
@@ -18,6 +19,7 @@ test('默认下拉弹框宽度由内容撑开', async ({ page }) => {
 })
 
 test('下拉弹框宽度与输入框一致', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#is-drop-inherit-width')
   const wrap = page.locator('#is-drop-inherit-width')
   const select = wrap.locator('.tiny-select').nth(1)

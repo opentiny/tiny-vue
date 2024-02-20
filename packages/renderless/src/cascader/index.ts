@@ -91,8 +91,21 @@ export const watchValue =
   }
 
 export const watchCheckedValue =
-  ({ api, emit, state }: { api: ICascaderApi; emit: ICascadeRenderlessParamUtils['emit']; state: ICascaderState }) =>
+  ({
+    nextTick,
+    constants,
+    dispatch,
+    api,
+    emit,
+    state
+  }: {
+    api: ICascaderApi
+    emit: ICascadeRenderlessParamUtils['emit']
+    state: ICascaderState
+  }) =>
   (value) => {
+    state.presentText = state.presentTags.length ? '' : null
+
     const { checkStrictly, multiple } = state.config
 
     api.computePresentContent()
@@ -100,6 +113,12 @@ export const watchCheckedValue =
     if (!multiple && !checkStrictly && state.dropDownVisible) {
       api.toggleDropDownVisible(false)
     }
+
+    nextTick(() => {
+      dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.FormBlur, [
+        state.multiple ? state.presentText : state.inputValue
+      ])
+    })
 
     emit('update:modelValue', value)
     emit('change', value)
@@ -143,20 +162,20 @@ export const selfMounted =
     api,
     parent,
     props,
-    refs,
+    vm,
     state
   }: {
     api: ICascaderApi
     parent: ICascadeRenderlessParamUtils['parent']
     props: ICascaderProps
-    refs: ICascadeRenderlessParamUtils['refs']
+    vm: ICascadeRenderlessParamUtils['vm']
     state: ICascaderState
   }) =>
   () => {
-    const { input } = refs
+    const { input } = vm.$refs
     const inputSizeMap = { medium: 36, small: 32, mini: 28 }
 
-    input && (input.$parent.popperElm = refs.popper)
+    input && (input.$parent.popperElm = vm.$refs.popper)
 
     if (input && input.$el) {
       state.inputInitialHeight = input.$el.offsetHeight || inputSizeMap[state.realSize] || 30
@@ -189,14 +208,12 @@ export const selfMounted =
 export const toggleDropDownVisible =
   ({
     emit,
-    nextTick: _,
-    refs,
+    vm,
     state,
     updatePopper
   }: {
     emit: ICascadeRenderlessParamUtils['emit']
-    nextTick: ICascadeRenderlessParamUtils['nextTick']
-    refs: ICascadeRenderlessParamUtils['refs']
+    vm: ICascadeRenderlessParamUtils['vm']
     state: ICascaderState
     updatePopper: (popperElm?: HTMLElement | undefined) => void
   }) =>
@@ -205,7 +222,7 @@ export const toggleDropDownVisible =
       return
     }
 
-    const { input } = refs
+    const { input } = vm.$refs
 
     visible = !isNull(visible) ? visible : !state.dropDownVisible
     if (visible !== state.dropDownVisible) {
@@ -252,19 +269,17 @@ export const handleFocus = (emit) => (e) => {
 }
 
 export const handleBlur =
-  ({ constants, dispatch, emit, state, api, props }) =>
+  ({ emit, api, props }) =>
   (e) => {
     if (props.filterable) {
       api.computePresentContent()
     }
-    dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.FormBlur, [
-      state.multiple ? state.presentText : state.inputValue
-    ])
+
     emit('blur', e)
   }
 
 export const handleInput =
-  ({ api, state, refs }) =>
+  ({ api, state, vm }) =>
   (val, event) => {
     // TODO: window.event待整改
     event = event || window.event
@@ -273,7 +288,7 @@ export const handleInput =
       return
     }
 
-    const reference = refs.reference
+    const reference = vm.$refs.reference
     const key = 'init-flag'
     const value = 'true'
     const isIE = browser.name === 'ie'
@@ -310,7 +325,7 @@ export const handleExpandChange =
         state.multiple ? state.presentText : state.inputValue
       ])
 
-      updatePopper(state.panel.$parent)
+      updatePopper(state.panel.$parent.$el)
     })
 
     emit('expand-change', value)
@@ -318,9 +333,9 @@ export const handleExpandChange =
   }
 
 export const focusFirstNode =
-  ({ refs, state }: { refs: ICascadeRenderlessParamUtils['refs']; state: ICascaderState }) =>
+  ({ vm, state }: { refs: ICascadeRenderlessParamUtils['refs']; state: ICascaderState }) =>
   () => {
-    const { popper, suggestionPanel } = refs
+    const { popper, suggestionPanel } = vm.$refs
     let firstNode: HTMLLIElement | null = null
 
     if (state.filtering && suggestionPanel) {
@@ -382,6 +397,8 @@ export const computePresentTags =
 
     state.checkedNodes = checkedNodes
     state.presentTags = tags
+    state.inputValue = null
+    state.presentText = null
     if (props.hoverExpand) {
       api.calcCollapseTags()
     }
@@ -390,16 +407,16 @@ export const computePresentTags =
 export const calcCollapseTags =
   ({
     state,
-    refs,
+    vm,
     nextTick
   }: {
     state: ICascaderState
-    refs: ICascadeRenderlessParamUtils['refs']
+    vm: ICascadeRenderlessParamUtils['vm']
     nextTick: ICascadeRenderlessParamUtils['nextTick']
   }) =>
   () => {
     nextTick(() => {
-      const content = refs['tags-content']
+      const content = vm.$refs['tags-content']
 
       if (state.inputHover || state.dropDownVisible) {
         return (state.isHidden = true)
@@ -421,9 +438,7 @@ export const calcCollapseTags =
 
         const tags: HTMLDivElement[] = Array.from(content.querySelectorAll('.tiny-tag'))
         let { total, dom, idx } = { total: collapseTagWidth as number, dom: null as HTMLDivElement | null, idx: 0 }
-
-        // eslint-disable-next-line array-callback-return
-        tags.some((tag, index) => {
+        tags.forEach((tag, index) => {
           if (tag !== tagsLength) {
             const { width: tagContentWidth, marginRight, marginLeft } = tag && window.getComputedStyle(tag)
             total += parseFloat(tagContentWidth) + parseFloat(marginRight) + parseFloat(marginLeft)
@@ -453,21 +468,21 @@ export const calcCollapseTags =
   }
 
 export const watchInputHover =
-  ({ refs }: { refs: ICascadeRenderlessParamUtils['refs'] }) =>
+  ({ vm }: { vm: ICascadeRenderlessParamUtils['vm'] }) =>
   (newVal) => {
     const [inputHover, dropDownVisible] = newVal
     if (!inputHover && !dropDownVisible) {
-      const content = refs['tags-content']
+      const content = vm.$refs['tags-content']
       content && content.scrollTo({ top: 0, left: 0 })
     }
   }
 
 export const handleMouseenter =
-  ({ refs, state }: { refs: ICascadeRenderlessParamUtils['refs']; state: ICascaderState }) =>
+  ({ vm, state }: { vm: ICascadeRenderlessParamUtils['vm']; state: ICascaderState }) =>
   ($event) => {
     const dom = $event.target
     const textNode = dom && dom.querySelector('span')
-    const { tooltip } = refs
+    const { tooltip } = vm.$refs
 
     if (textNode && tooltip && textNode.scrollWidth > textNode.offsetWidth) {
       const text = textNode.textContent
@@ -605,10 +620,10 @@ export const deleteTag =
   }
 
 export const updateStyle =
-  ({ parent, refs, state, updatePopper, nextTick, props }) =>
+  ({ parent, vm, state, updatePopper, nextTick, props }) =>
   () => {
     const $el = parent.$el
-    const { suggestionPanel } = refs
+    const { suggestionPanel } = vm.$refs
     const inputInner = $el.querySelector(CASCADER.InputClass)
 
     if (!inputInner) {
@@ -618,10 +633,10 @@ export const updateStyle =
     const tags = $el.querySelector(CASCADER.TagClass)
     let suggestionPanelEl: HTMLDivElement | null = null
 
-    // eslint-disable-next-line no-cond-assign
-    if (suggestionPanel && (suggestionPanelEl = suggestionPanel.$el)) {
-      const suggestionList: HTMLDivElement | null = suggestionPanelEl?.querySelector(CASCADER.ListClass)
-      suggestionList && (suggestionList.style.minWidth = inputInner.offsetWidth + 'px')
+    if (suggestionPanel) {
+      suggestionPanelEl = suggestionPanel.$el
+      const suggestionList: HTMLDivElement | null = suggestionPanelEl.querySelector(CASCADER.ListClass)
+      suggestionList.style.minWidth = inputInner.offsetWidth + 'px'
     }
 
     if (tags) {
@@ -638,7 +653,7 @@ export const updateStyle =
       updatePopper()
     } else {
       nextTick(() => {
-        if (state.displayOnly) {
+        if (state.multiple && state.isDisplayOnly) {
           inputInner.style.height = 'auto'
         }
       })

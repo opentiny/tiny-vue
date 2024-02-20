@@ -29,12 +29,12 @@ import type { RuleGroupType, RuleType } from './ruleGroups'
 import type { RuleGroupTypeAny, RuleGroupTypeIC, RuleOrGroupArray } from './ruleGroupsIC'
 import type { QueryValidator, ValidationMap } from './validation'
 
-interface ComponentType<P> {}
-interface ForwardRefExoticComponent<P> {}
+interface ComponentType {}
+interface ForwardRefExoticComponent {}
 interface VueMouseEvent extends Event {}
-export interface VueNode {}
-export interface Ref<T> {}
-interface RefAttributes<T> {}
+interface VueNode {}
+interface Ref {}
+interface RefAttributes {}
 
 export interface ActionProps extends CommonSubComponentProps {
   label?: string
@@ -259,6 +259,8 @@ type QueryBuilderPropsBase<RG extends RuleGroupType | RuleGroupTypeIC> = (RG ext
      * this function (otherwise `console.log` is used)
      */
     onLog?(obj: any): void
+
+    bindProps?(obj: any): void
     /**
      * The array of fields that should be used. Each field should be an object
      * with {name: String, label: String}

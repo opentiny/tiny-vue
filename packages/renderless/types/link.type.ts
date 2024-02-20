@@ -1,12 +1,13 @@
-import type { ComputedRef, ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes } from 'vue'
 import type { linkProps } from '@/link/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export type ILinkProps = ExtractPropTypes<typeof linkProps>
 
 export interface ILinkState {
-  formDisabled: ComputedRef<boolean>
-  disabled: ComputedRef<boolean>
+  formDisabled: boolean
+  disabled: boolean
+  href: string
 }
 
 export interface ILinkApi {

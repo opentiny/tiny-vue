@@ -6,18 +6,17 @@ export default defineComponent({
     ...$props,
     item: Object
   },
-  render() {
-    let content = null
-
-    if (this.item) {
-      if (typeof this.item.slotDefault === 'function') {
-        content = (this.item as any).slotDefault()
-      } else if (this.item.slotDefault) {
-        content = (this.item as any).slotDefault
-      }
+  setup(props) {
+    if (props.item) {
+      // eslint-disable-next-line vue/no-mutating-props
+      props.item.rendered = true
     }
+  },
+  render() {
+    // eslint-disable-next-line vue/no-deprecated-dollar-scopedslots-api
+    const slots = '$scopedSlots' in this ? this.$scopedSlots : this.$slots
 
-    return h('div', { attrs: { 'data-tag': 'tiny-tab-panel' } }, [content])
+    return h('div', { attrs: { 'data-tag': 'tiny-tab-panel' } }, typeof slots.default === 'function' && slots.default())
   }
 })
 </script>

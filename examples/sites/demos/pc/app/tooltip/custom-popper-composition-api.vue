@@ -22,7 +22,7 @@
         </template>
       </tiny-switch>
     </div>
-    <div class="row">自定义类名popper1, 让字体变大</div>
+    <div class="row">自定义类名 popper1 , 让字体变大</div>
     <div style="margin-top: 16px">
       <tiny-tooltip
         content="我是提示内容"

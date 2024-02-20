@@ -9,7 +9,6 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
-
 <template>
   <div
     class="tiny-select-dropdown tiny-popper"
@@ -27,6 +26,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/select-dropdown/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import '@opentiny/vue-theme/select-dropdown/index.less'
 
 export default defineComponent({
   props: [
@@ -36,6 +36,7 @@ export default defineComponent({
     'popperOptions',
     'visibleArrow',
     'appendToBody',
+    'transformOrigin',
     'reference',
     'popper',
     'offset',

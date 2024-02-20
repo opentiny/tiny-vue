@@ -100,7 +100,7 @@ export default defineComponent({
       handleMouseleave
     } = this as unknown as IFormItemInstance
 
-    const { validateIcon, isErrorInline, isErrorBlock } = state
+    const { validateIcon, isErrorInline, isErrorBlock, tooltipType } = state
     const isMobile = state.mode === 'mobile'
     const classPrefix = isMobile ? 'tiny-mobile-' : 'tiny-'
     const labelSlot = slots.label ? slots.label() : null
@@ -181,8 +181,8 @@ export default defineComponent({
         typeof this.appendToBody === 'boolean'
           ? this.appendToBody
           : typeof formAppendToBody === 'boolean'
-          ? formAppendToBody
-          : true
+            ? formAppendToBody
+            : true
       const validatePosition =
         this.validatePosition || (state.formInstance && state.formInstance.validatePosition) || 'top-end'
 
@@ -212,7 +212,7 @@ export default defineComponent({
             popperClass: `${classPrefix}form__valid`,
             arrowOffset: 0,
             adjustArrow: true,
-            type: 'normal',
+            type: tooltipType,
             disabled: state.getValidateType !== 'tip',
             placement: validatePosition,
             manual: true,

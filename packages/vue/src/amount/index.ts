@@ -1,4 +1,4 @@
-import Amount from './src/pc.vue'
+import Amount from './src/index'
 import '@opentiny/vue-theme/amount/index.less'
 import { version } from './package.json'
 

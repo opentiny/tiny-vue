@@ -79,7 +79,7 @@ export const api = [
   'handleMaxTimeClose'
 ]
 
-const initState = ({ reactive, computed, api, constants }) => {
+const initState = ({ reactive, computed, api, constants, designConfig }) => {
   const state = reactive({
     popperElm: null,
     popperClass: '',
@@ -125,7 +125,12 @@ const initState = ({ reactive, computed, api, constants }) => {
     timeFormat: computed(() => (state.format ? extractTimeFormat(state.format) : 'HH:mm:ss')),
     dateFormat: computed(() => (state.format ? extractDateFormat(state.format) : 'yyyy-MM-dd')),
     enableMonthArrow: computed(() => api.getEnableMonthArrow()),
-    enableYearArrow: computed(() => api.computerEnableYearArrow())
+    enableYearArrow: computed(() => api.computerEnableYearArrow()),
+    confirmButtonProps: {
+      plain: true,
+      type: 'default',
+      ...designConfig?.state?.confirmButtonProps
+    }
   })
 
   return state
@@ -189,10 +194,10 @@ const initApi = ({ api, state, t, vm, nextTick, emit, constants }) => {
   })
 }
 
-export const renderless = (props, { computed, reactive, watch, nextTick }, { t, emit: $emit, vm, constants }) => {
+export const renderless = (props, { computed, reactive, watch, nextTick }, { t, emit: $emit, vm, constants, designConfig }) => {
   const api = {}
   const emit = props.emitter ? props.emitter.emit : $emit
-  const state = initState({ reactive, computed, api, constants })
+  const state = initState({ reactive, computed, api, constants, designConfig })
 
   initApi({ api, state, t, vm, nextTick, emit, constants })
   initWatch({ watch, state, api })

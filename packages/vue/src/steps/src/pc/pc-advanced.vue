@@ -1,5 +1,5 @@
 <template>
-  <div data-tag="tiny-steps-senior" class="tiny-steps-senior">
+  <div data-tag="tiny-steps-senior" :class="['tiny-steps-senior', size]">
     <SlideBar ref="slideBar" :data="data" :duration="duration" :no-arrow="noArrow" :flex="flex">
       <!-- left button -->
       <template #left-button="slotScoped">
@@ -51,7 +51,21 @@
                   { 'active': index === active }
                 ]"
               >
-                {{ node[nameField] }}
+                <div
+                  class="tiny-steps-text-name"
+                  @mouseenter="handleMouseenter($event, 'top')"
+                  @mouseleave="handleMouseleave($event, 'top')"
+                >
+                  {{ node[nameField] }}
+                </div>
+                <div
+                  v-if="size === 'large' && node[descriptionField]"
+                  class="tiny-steps-text-description"
+                  @mouseenter="handleMouseenter($event, 'bottom')"
+                  @mouseleave="handleMouseleave($event, 'bottom')"
+                >
+                  {{ node[descriptionField] }}
+                </div>
               </div>
             </slot>
           </div>
@@ -63,10 +77,20 @@
         <slot name="block-bottom" :node="node" :index="index"></slot>
       </template>
     </SlideBar>
+
+    <tiny-popover
+      ref="popover"
+      v-model="state.popoverVisible"
+      :placement="state.popoverPlacement"
+      trigger="manual"
+      class="tiny-steps-senior__popover"
+      :content="state.popoverContent"
+    ></tiny-popover>
   </div>
 </template>
 
 <script lang="ts">
+import Popover from '@opentiny/vue-popover'
 import { renderless, api } from '@opentiny/vue-renderless/steps/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconFinish, iconWarn, iconChevronLeft, iconChevronRight } from '@opentiny/vue-icon'
@@ -75,6 +99,7 @@ import SlideBar from './slide-bar.vue'
 export default defineComponent({
   emits: ['click'],
   components: {
+    TinyPopover: Popover,
     SlideBar,
     IconFinish: iconFinish(),
     IconWarn: iconWarn(),
@@ -86,12 +111,14 @@ export default defineComponent({
     'vertical',
     'nameField',
     'statusField',
+    'descriptionField',
     'data',
     'active',
     'visibleNum',
     'duration',
     'noArrow',
-    'flex'
+    'flex',
+    'size'
   ],
   setup(props: any, context: any) {
     return setup({ props, context, renderless, api })

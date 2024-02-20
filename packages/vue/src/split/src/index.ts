@@ -52,7 +52,7 @@ export default defineComponent({
       type: [Number, String],
       default: '40px'
     },
-    'disabled': {
+    disabled: {
       type: Boolean,
       default: false
     },
@@ -69,6 +69,10 @@ export default defineComponent({
       default: false
     },
     'three-areas': {
+      type: Boolean,
+      default: false
+    },
+    scrollable: {
       type: Boolean,
       default: false
     }

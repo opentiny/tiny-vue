@@ -97,16 +97,13 @@ export default {
 
       this.tableData = data
       pagerConfig.total = total
+
       // 内置pager
       let setTotal = pagerSlot && pagerSlot.componentInstance.setTotal
 
       setTotal && setTotal(total)
     } else {
       this.tableData = (fields.list ? getObj(rest, fields.list) : rest) || []
-    }
-
-    if ((this.seqSerial || this.scrollLoad) && pagerConfig) {
-      this.seqIndex = (pagerConfig.currentPage - 1) * pagerConfig.pageSize
     }
 
     this.tableLoading = false

@@ -140,7 +140,8 @@ export const clear =
     refs.input.focus()
     state.focus = true
 
-    emit('change', [], '')
+    // 应先更新modelValue的值，才能触发change事件。所以不同步aui
     api.emitInput('', state.searchValue)
+    emit('change', [], '')
     emit('clear')
   }

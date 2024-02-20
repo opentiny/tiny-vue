@@ -119,13 +119,11 @@ export default {
       this.percentage1 = 0
     },
     getTimer1() {
-      var that = this
-
       this.process1 = setInterval(() => {
-        that.percentage1 += 5
+        this.percentage1 += 5
 
-        if (that.percentage1 === 100) {
-          clearTimeout(that.process1)
+        if (this.percentage1 === 100) {
+          clearTimeout(this.process1)
         }
       }, 300)
     },
@@ -135,11 +133,10 @@ export default {
       this.getTimer2()
     },
     getTimer2() {
-      var that = this
       this.process2 = setInterval(() => {
-        that.percentage2 += 5
+        this.percentage2 += 5
 
-        if (this.percentage2 == 50) {
+        if (this.percentage2 === 50) {
           clearInterval(this.process2)
         }
       }, 300)

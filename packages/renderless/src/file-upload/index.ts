@@ -122,7 +122,7 @@ export const watchListType =
           try {
             file.url = URL.createObjectURL(file.raw)
           } catch (err) {
-            return
+            return null
           }
         }
 
@@ -547,7 +547,9 @@ export const getFileHash =
     })
   }
 
-const handleHwh5Files = (files: IFileUploadFile[]): IFileUploadFile[] | object[] => {
+const handleHwh5Files = (files: IFileUploadFile[], hwh5: object): IFileUploadFile[] | object[] => {
+  const fileMap = hwh5 && hwh5.fileMap
+
   return files.map((file) => {
     if (file instanceof File) return file
     let url
@@ -561,7 +563,9 @@ const handleHwh5Files = (files: IFileUploadFile[]): IFileUploadFile[] | object[]
     const [name, index] = url.match(/[^/]*$/)
     const [type] = url.match(/\.[^.]*$/)
     const filePath = url.substring(0, index)
-    return { ...f, type, name, filePath, webkitRelativePath: filePath }
+    const updateFile = { ...f, type, name, filePath, webkitRelativePath: filePath }
+
+    return typeof fileMap === 'function' ? fileMap(updateFile) : updateFile
   })
 }
 
@@ -575,7 +579,7 @@ export const handleStart =
   }: Pick<IFileUploadRenderlessParams, 'api' | 'constants' | 'props' | 'state' | 'vm'>) =>
   (rawFiles: IFileUploadFile[], updateId: string, reUpload: boolean = false) => {
     if (state.isHwh5) {
-      rawFiles = handleHwh5Files(rawFiles)
+      rawFiles = handleHwh5Files(rawFiles, props.hwh5)
     }
     state.currentUploadingFileUids = []
     rawFiles.forEach((rawFile) => api.addFileToList(rawFile, updateId, reUpload))
@@ -625,18 +629,16 @@ export const handleStart =
 
     if (!state.isEdm && props.autoUpload) {
       if (props.multiple && props.mergeService) {
-        const handler = (file) => (
-          vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw), undefined
-        )
+        const handler = (file) =>
+          vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
 
         rawFiles.length && api.beforeUpload({ raw: rawFiles }, true, handler)
       } else {
         rawFiles.forEach((rawFile) => {
           const file = api.getFile(rawFile)
           if (!file) return
-          const handler = (file) => (
-            vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw), undefined
-          )
+          const handler = (file) =>
+            vm.$refs[constants.UPLOAD_INNER].$refs[constants.UPLOAD_INNER_TEMPLATE].upload(file.raw)
 
           api.beforeUpload(file, true, handler)
         })
@@ -742,7 +744,7 @@ export const handleSuccess =
     } else {
       const file = api.getFile(rawFile)
 
-      const status = res.data && res.data.status
+      const status = res?.data?.status
       const { STATUS_SPECIAL_CHARACTERS, NOT_SUPPORT_SPECIAL_CHARACTERS } = constants.EDM
 
       delete file.cancelToken
@@ -1041,8 +1043,8 @@ const getTranslateFile =
       const type = !name.includes('.')
         ? data.headers['content-type']
         : type !== 'zip'
-        ? 'application / x - xls'
-        : 'application/zip'
+          ? 'application / x - xls'
+          : 'application/zip'
       const blob = new Blob([data.data], { type })
       aLinkDownload({ blob, name })
     }
@@ -1527,10 +1529,10 @@ export const getDownloadFileInfo =
             data: { docInfoVO: { ids: [docId], docType: '', docVersion: '' } }
           })
           .then((res) => {
-            const { data, outDocQueryList } = res || {}
+            const { data } = res || {}
 
             if (data && data.status === 200) {
-              const fileInfo = outDocQueryList && outDocQueryList[0].verInfo[0].docInfo[0]
+              const fileInfo = data.result.outDocQueryList && data.result.outDocQueryList[0].verInfo[0].docInfo[0]
 
               resolve(fileInfo)
             } else {
@@ -2418,7 +2420,7 @@ export const getPreviewUrlSync =
           authToken: edmToken,
           jslibhtml: html,
           docId: file.docId,
-          docVersion: file.docVersion || file.version || 'V1',
+          docVersion: file.docVersion || file.version || '',
           type: 'doc',
           pageNum: '1'
         })
@@ -2510,7 +2512,7 @@ export const previewImageBatch =
   }
 
 export const getDialogConfigObj =
-  ({ props, state }: Pick<IFileUploadRenderlessParams, 'props' | 'state'>) =>
+  ({ props, state, t, constants }: Pick<IFileUploadRenderlessParams, 'props' | 'state' | 't' | 'constants'>) =>
   (): object => {
     const dialogConfigDefault = {
       class: 'single-download-modal single-download-modal1',
@@ -2519,7 +2521,7 @@ export const getDialogConfigObj =
         lockScroll: true,
         visible: state.showPreview,
         dragable: true,
-        title: '文档预览',
+        title: t(constants.EDM.DOC_PREVIEW),
         width: '60%'
       },
       on: {
@@ -2568,6 +2570,7 @@ export const computeDocChunkSize =
           chunkSize = Math.max(size, SIZE_2M)
           return true
         }
+        return false
       })
     }
 
@@ -2677,10 +2680,60 @@ export const mounted =
   }
 
 export const encryptDialogConfirm =
-  ({ state }) =>
+  ({ state }: Pick<IFileUploadRenderlessParams, 'state'>) =>
   () => {
     const selectFileMethod = state.encryptDialogConfig.selectFileMethod
 
     state.encryptDialogConfig.show = false
     typeof selectFileMethod === 'function' && selectFileMethod()
+  }
+
+export const closeRecordPanel =
+  ({ vm, constants, state, props }: Pick<IFileUploadRenderlessParams, 'vm' | 'constants' | 'state' | 'props'>) =>
+  () => {
+    const { PICTURE_CARD } = constants.LIST_TYPE
+    const { isHwh5 } = state
+    const { listType } = props
+
+    if (listType === PICTURE_CARD && isHwh5) {
+      vm.$refs[constants.UPLOAD_LIST_INNER].$refs[constants.UPLOAD_LIST_INNER_TEMPLATE].state.showAudioPanel = false
+    }
+  }
+
+export const getTipMessage =
+  ({ t, api, constants }: Pick<IFileUploadRenderlessParams, 't' | 'api' | 'constants'>) =>
+  ({ accept, fileSize, limit }: { accept: string; fileSize: string; limit: number }) => {
+    let acceptTip = accept
+      ? t(constants.ONLY_SUPPORT, {
+          type: accept
+            .split(',')
+            .map((item) => item.trim().replace(/^\./, ''))
+            .join(t(constants.COMMA))
+        })
+      : ''
+
+    if (fileSize && acceptTip.length !== 0) {
+      acceptTip += `${t(constants.COMMA)} `
+    }
+
+    let fileSizeTip = ''
+    let kibibyte = 1024
+    if (typeof fileSize === 'number') {
+      fileSizeTip = `${t(constants.FILE_NOT_LESS_THAN)}${api.formatFileSize(fileSize * kibibyte)}`
+    } else if (Array.isArray(fileSize)) {
+      fileSizeTip += !isNaN(fileSize[0])
+        ? `${t(constants.FILE_NOT_LESS_THAN)}${api.formatFileSize(Number(fileSize[0]) * kibibyte)}${t(constants.COMMA)}`
+        : ''
+      fileSizeTip += !isNaN(fileSize[1])
+        ? `${t(constants.FILE_NOT_MORE_THAN)}${api.formatFileSize(Number(fileSize[1]) * kibibyte)}`
+        : ''
+    }
+
+    let limitTip = limit ? t(constants.NUMBER_LIMIT, { number: limit }) : ''
+
+    if ((fileSize || acceptTip.length !== 0) && limit) {
+      limitTip = `${t(constants.COMMA)} ` + limitTip
+    }
+
+    return acceptTip + fileSizeTip + limitTip
   }

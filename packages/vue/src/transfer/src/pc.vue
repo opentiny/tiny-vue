@@ -22,9 +22,9 @@
       :show-pager="showPager"
       :pager-op="pagerOp"
       ref="leftPanel"
-      :pageVO="pageVO"
+      :page-v-o="pageVO"
       :render-type="renderType"
-      :columns="columns"
+      :columns="leftColumns || columns"
       :data="state.sourceData"
       :title="titles[0] || t('ui.transfer.titles.0')"
       :default-checked="leftDefaultChecked"
@@ -90,9 +90,9 @@
       :is-to-left="state.isToLeft"
       :pager-op="pagerOp"
       ref="rightPanel"
-      :pageVO="pageVO"
+      :page-v-o="pageVO"
       :render-type="renderType"
-      :columns="columns"
+      :columns="rightColumns || columns"
       :data="state.targetData"
       :title="titles[1] || t('ui.transfer.titles.1')"
       :default-checked="rightDefaultChecked"
@@ -114,6 +114,9 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Button from '@opentiny/vue-button'
 import TransferPanel from '@opentiny/vue-transfer-panel'
 import { iconDoubleLeft, iconChevronLeft, iconChevronRight, iconDoubleRight } from '@opentiny/vue-icon'
+import '@opentiny/vue-theme/transfer/index.less'
+
+import type { ITransferApi } from '@opentiny/vue-renderless/types/transfer.type'
 
 export default defineComponent({
   components: {
@@ -144,6 +147,8 @@ export default defineComponent({
     'toLeftDisable',
     'toRightDisable',
     'renderType',
+    'leftColumns',
+    'rightColumns',
     'columns',
     'pageVO',
     'pagerOp',
@@ -153,7 +158,7 @@ export default defineComponent({
     'beforeTransfer'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ITransferApi
   }
 })
 </script>

@@ -12,6 +12,11 @@
 import UserHead from './src/index'
 import { version } from './package.json'
 
+UserHead.model = {
+  prop: 'modelValue',
+  event: 'update:modelValue'
+}
+
 /* istanbul ignore next */
 UserHead.install = function (Vue) {
   Vue.component(UserHead.name, UserHead)

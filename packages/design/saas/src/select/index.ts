@@ -5,6 +5,13 @@ export default {
     dropdownIcon: iconChevronDown()
   },
   state: {
+    sizeMap: {
+      default: 28,
+      mini: 24,
+      small: 28,
+      medium: 32
+    },
+    spacingHeight: 4,
     initialInputHeight: 30
   },
   props: {

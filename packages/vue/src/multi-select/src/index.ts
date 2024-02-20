@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+import type { PropType } from '@opentiny/vue-common'
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?mobile'
 
@@ -16,7 +17,35 @@ export default defineComponent({
   name: $prefix + 'MultiSelect',
   inject: {},
   props: {
-    ...$props
+    ...$props,
+    dataSource: {
+      type: Array,
+      default: () => []
+    },
+    modelValue: {
+      type: [String, Array],
+      default: ''
+    },
+    searchValue: {
+      type: String,
+      default: ''
+    },
+    defaultSelectedArray: {
+      type: Array,
+      default: () => []
+    },
+    filterable: {
+      type: Boolean,
+      default: false
+    },
+    type: {
+      type: String as PropType<'list' | 'wheel'>,
+      default: 'list'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

@@ -1,12 +1,14 @@
 <template>
-  <tiny-image :src="url" @load="loadHandler" @error="errorHandler"></tiny-image>
+  <tiny-image :src="errUrl" @error="errorHandler"></tiny-image>
+  <tiny-image :src="url" @load="loadHandler"></tiny-image>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Image as TinyImage, Modal } from '@opentiny/vue'
 
-const url = ref('')
+const errUrl = ref('')
+const url = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
 
 function errorHandler() {
   Modal.message({ message: '加载失败触发事件', status: 'info' })

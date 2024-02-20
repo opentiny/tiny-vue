@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { FileUpload as TinyFileUpload, Button as TinyButton, Modal } from '@opentiny/vue'
 

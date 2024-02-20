@@ -12,7 +12,8 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-chart-core-beta": "workspace:~"
+    "@opentiny/vue-chart-core-beta": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~"
   },
   "license": "MIT"
 }

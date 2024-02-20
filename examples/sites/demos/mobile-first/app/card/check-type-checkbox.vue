@@ -1,13 +1,13 @@
 <template>
   <div>
-    <tiny-card title="这是mini尺寸卡片" v-model="value" check-type="checkbox" label="1">
+    <tiny-card title="这是mini尺寸卡片" v-model="checkboxValue" check-type="checkbox" label="1">
       <p>
         这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，
         这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，
       </p>
     </tiny-card>
     <br />
-    <tiny-card title="这是small尺寸卡片" v-model="value" check-type="radio" label="2">
+    <tiny-card title="这是small尺寸卡片" v-model="radioValue" check-type="radio" label="2">
       <p>
         这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，
         这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，
@@ -25,7 +25,8 @@ export default {
   },
   data() {
     return {
-      value: ['1']
+      checkboxValue: true,
+      radioValue: false
     }
   }
 }

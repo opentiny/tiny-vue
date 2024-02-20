@@ -58,13 +58,7 @@ export const renderless = (props, context, { emit }) => {
     },
     { deep: true }
   )
-  context.watch(
-    state,
-    () => {
-      state.color = state.color
-    },
-    { deep: true }
-  )
+
   context.watch(modelValue, (newValue) => {
     pre.value = res.value
     hex.value = newValue

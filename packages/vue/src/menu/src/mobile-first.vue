@@ -49,7 +49,7 @@ import { IconSearch } from '@opentiny/vue-icon'
 export default defineComponent({
   name: $prefix + 'Menu',
   componentName: 'Menu',
-  emits: ['current-change', 'node-click'],
+  emits: ['current-change', 'node-click', 'node-clicked', 'node-changed'],
   components: {
     MenuNode,
     TinyInput: Input,

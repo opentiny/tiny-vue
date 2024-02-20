@@ -9,9 +9,7 @@ import type {
   isDisplayOnly,
   tabIndex,
   getModel,
-  setModel,
-  dispatchDisplayedValue,
-  getDisplayedValue
+  setModel
 } from '../src/radio'
 
 export type IRadioProps = ExtractPropTypes<typeof radioProps>
@@ -48,8 +46,6 @@ export interface IRadioApi {
   tabIndex: ReturnType<typeof tabIndex>
   getModel: ReturnType<typeof getModel>
   setModel: ReturnType<typeof setModel>
-  dispatchDisplayedValue: ReturnType<typeof dispatchDisplayedValue>
-  getDisplayedValue: ReturnType<typeof getDisplayedValue>
 }
 
 export type IRadioRenderlessParamUtils = ISharedRenderlessParamUtils<IRadioConstants>

@@ -31,6 +31,8 @@
   &:not(.col__actived) {
     .@{grid-cell-prefix-cls} {
       .TextEllipsis();
+      @apply leading-normal;
+      
       & > .@{grid-checkbox-prefix-cls} {
         .TextEllipsis();
         @apply pl-0;

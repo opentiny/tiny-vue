@@ -6,7 +6,7 @@
   </tiny-file-upload>
 </template>
 
-<script lang="jsx">
+<script>
 import { FileUpload, Button, Modal } from '@opentiny/vue'
 
 export default {
@@ -35,7 +35,7 @@ export default {
         if (!allow) {
           Modal.confirm(`自定义提示：《${file.name}》文件不合规范，文件类型或大小超出限制，确定要上传吗？`).then(
             (res) => {
-              res === 'confirm' ? resolve() : reject()
+              res === 'confirm' ? resolve() : reject(new Error('取消上传'))
             }
           )
         } else {

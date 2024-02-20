@@ -87,6 +87,7 @@ const emitEvent = (vm) => {
       }
 
       if (parent) {
+        // eslint-disable-next-line prefer-spread
         parent.$emit.apply(parent, [eventName].concat(params))
       }
     },
@@ -187,6 +188,7 @@ const filter = (name) => name.indexOf('$') === 0 || name.indexOf('_') === 0 || n
 
 const customEmit = (context, emit) => {
   return function () {
+    // eslint-disable-next-line prefer-rest-params
     const args = Array.prototype.slice.apply(arguments)
 
     emit.apply(context, args)
@@ -358,6 +360,8 @@ export default hooks
 export const isVue2 = true
 
 export const isVue3 = false
+
+export const KeepAlive = Vue.component('KeepAlive')
 
 export type {
   PropType,

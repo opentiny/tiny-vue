@@ -57,15 +57,11 @@ const columns = ref([
   },
   {
     field: 'name',
-    title: '名称',
-    sortable: true,
-    editor: { component: 'input', autoselect: true },
-    showOverflow: true
+    title: '名称'
   },
   {
     field: 'area',
-    title: '所属区域',
-    sortable: true
+    title: '所属区域'
   }
 ])
 const pagerOp = ref({

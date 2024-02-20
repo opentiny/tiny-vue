@@ -12,7 +12,7 @@
 
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
 
 const $constants = {
   CLASS: {
@@ -50,6 +50,7 @@ const $constants = {
     Tree: 'tree'
   },
   MAX_WIDTH: 132,
+  // tiny 新增
   InputBoxType: {
     Input: 'input',
     Underline: 'underline'
@@ -57,8 +58,7 @@ const $constants = {
   ICON_MAP: {
     dropdownIcon: 'icon-delta-down'
   },
-  BORDER_HEIGHT: 2, // 上下边框各1px,加起来是2
-  DEFAULT_HEIGHT: 28 // 默认主题的默认高度
+  SPACING_HEIGHT: 2
 }
 
 export default defineComponent({
@@ -97,6 +97,7 @@ export default defineComponent({
         }
       }
     },
+    title: String,
     shape: String,
     tip: String,
     label: String,
@@ -150,6 +151,10 @@ export default defineComponent({
     placeholder: {
       type: String,
       default: () => t('ui.select.placeholder')
+    },
+    searchPlaceholder: {
+      type: String,
+      default: () => t('ui.select.pleaseSearch')
     },
     autocomplete: {
       type: String,
@@ -248,10 +253,43 @@ export default defineComponent({
       type: [Object, String, Boolean, Array, Number],
       default: ''
     },
+    updateDelay: {
+      type: Number,
+      default: 0
+    },
     showTips: {
       type: Boolean,
       default: true
     },
+    closeByMask: {
+      type: Boolean,
+      default: true
+    },
+    keepFocus: {
+      type: Boolean,
+      default: false
+    },
+    popperOptions: {
+      type: Object,
+      default: () => ({ gpuAcceleration: false, boundariesPadding: 0 })
+    },
+    trim: {
+      type: Boolean,
+      default: false
+    },
+    topCreate: {
+      type: Boolean,
+      default: false
+    },
+    topCreateText: {
+      type: String,
+      default: () => t('ui.select.add')
+    },
+    blank: {
+      type: Boolean,
+      default: false
+    },
+    // 以下为 tiny 新增
     searchable: {
       type: Boolean,
       default: false
@@ -266,7 +304,7 @@ export default defineComponent({
     },
     tagType: {
       type: String,
-      default: '' // aui 默认 info
+      default: ''
     },
     clearNoMatchValue: {
       type: Boolean,

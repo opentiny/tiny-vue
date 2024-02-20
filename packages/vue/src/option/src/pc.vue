@@ -16,13 +16,14 @@
     @mouseenter="hoverItem"
     @click.stop="selectOptionClick"
     @mousedown.stop=""
+    data-tag="tiny-option"
     class="tiny-option tiny-select-dropdown__item"
     v-show="visible && state.visible"
     :class="[
       {
         selected: state.itemSelected,
         'is-disabled': disabled || state.groupDisabled || state.limitReached,
-        hover: state.hover,
+        hover: state.hover && !state.limitReached,
         'is-required': required
       },
       highlightClass
@@ -37,15 +38,18 @@
     </span>
     <component v-if="icon" :is="icon" class="tiny-option__icon"></component>
     <slot>
-      <span class="tiny-option__label">{{ state.currentLabel }}</span>
+      <span class="tiny-option__label" :title="state.showTitle ? state.currentLabel : ''">
+        {{ state.currentLabel }}
+      </span>
     </slot>
   </li>
 </template>
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/option/vue'
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { $prefix, props, setup, defineComponent } from '@opentiny/vue-common'
 import Checkbox from '@opentiny/vue-checkbox'
+import '@opentiny/vue-theme/option/index.less'
 
 export default defineComponent({
   name: $prefix + 'Option',
@@ -54,6 +58,7 @@ export default defineComponent({
     TinyCheckbox: Checkbox
   },
   props: {
+    ...props,
     value: {
       required: true
     },
@@ -76,10 +81,11 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    // tiny 新增
     icon: Object
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

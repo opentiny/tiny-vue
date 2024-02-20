@@ -11,12 +11,12 @@
  */
 
 export const fetchDefaultData =
-  ({ emit, fetchArea, nextTick, props, refs, state }) =>
+  ({ emit, fetchArea, nextTick, props, vm, state }) =>
   () => {
     let parent = ''
 
     nextTick(() => {
-      emit('change-jcr', parent, refs.refInstance.$parent)
+      emit('change-jcr', parent, vm.$refs.refInstance.$parent)
     })
 
     let promise
@@ -42,12 +42,12 @@ export const fetchDefaultData =
   }
 
 export const getRegion =
-  ({ emit, fetchArea, nextTick, props, refs, state }) =>
+  ({ emit, fetchArea, nextTick, props, vm, state }) =>
   (value) => {
     state.jcr = value
 
     nextTick(() => {
-      emit('change-region', value, refs.refInstance.$parent)
+      emit('change-region', value, vm.$refs.refInstance.$parent)
     })
 
     let promise
@@ -72,12 +72,12 @@ export const getRegion =
   }
 
 export const getRep =
-  ({ emit, fetchArea, nextTick, props, refs, state }) =>
+  ({ emit, fetchArea, nextTick, props, vm, state }) =>
   (value) => {
     state.region = value
 
     nextTick(() => {
-      emit('change-rep', value, refs.refInstance.$parent)
+      emit('change-rep', value, vm.$refs.refInstance.$parent)
     })
 
     let promise
@@ -101,12 +101,12 @@ export const getRep =
   }
 
 export const getOffice =
-  ({ emit, fetchArea, nextTick, props, refs, state }) =>
+  ({ emit, fetchArea, nextTick, props, vm, state }) =>
   (value) => {
     state.rep = value
 
     nextTick(() => {
-      emit('change-office', value, refs.refInstance.$parent)
+      emit('change-office', value, vm.$refs.refInstance.$parent)
     })
 
     let promise

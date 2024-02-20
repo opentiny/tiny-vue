@@ -1,6 +1,6 @@
 export const classes = {
   'button':
-    'inline-block  text-center overflow-hidden overflow-ellipsis whitespace-nowrap transition-button duration-300 delay-[0ms]',
+    'inline-block text-center overflow-hidden overflow-ellipsis whitespace-nowrap transition-button duration-300 delay-[0ms] active:transition-all active:scale-[0.95] active:ease-[cubic-bezier(0.33,0,0.67,1)]',
   'button-base-width': 'sm:max-w-[theme(spacing.36)]',
   'size-default': 'h-10 text-sm sm:h-7 sm:text-xs',
   'size-medium': 'h-10 text-sm sm:h-8 sm:text-xs',

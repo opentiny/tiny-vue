@@ -51,6 +51,7 @@ import {
   fileUploadChange,
   deleteFile
 } from './index'
+import { formatFileSize } from '../common/string'
 
 export const api = [
   'state',
@@ -67,6 +68,7 @@ export const api = [
   'showDialog',
   'closeDialog',
   'fileUploadChange',
+  'formatFileSize',
   'deleteFile'
 ]
 
@@ -108,6 +110,7 @@ const initState = ({ reactive, props, computed, api }) =>
 const initApi = ({ api, state, refs, emit, props, constants, t }) => {
   Object.assign(api, {
     state,
+    formatFileSize,
     abort: abort(refs),
     showDialog: showDialog(state),
     watchLimit: watchLimit(state),
