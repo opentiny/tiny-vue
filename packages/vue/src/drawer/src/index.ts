@@ -64,7 +64,8 @@ export default {
     zIndex: {
       type: Number,
       default: 2000
-    }
+    },
+    tipsProps: Object
   },
   setup(props, context) {
     return $setup({ props, context, template })

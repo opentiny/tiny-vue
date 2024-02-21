@@ -41,7 +41,12 @@
           <div data-tag="drawer-header" ref="header" v-if="showHeader" class="tiny-drawer__header-wrapper">
             <slot name="header">
               <div class="tiny-drawer__header">
-                <div v-if="title" class="tiny-drawer__title">{{ title }}</div>
+                <div class="tiny-drawer__header-left">
+                  <div v-if="title" class="tiny-drawer__title">{{ title }}</div>
+                  <tiny-tooltip v-if="tipsProps" v-bind="tipsProps">
+                    <icon-help-circle class="tiny-drawer__help-icon"></icon-help-circle>
+                  </tiny-tooltip>
+                </div>
                 <div class="tiny-drawer__header-right">
                   <slot name="header-right"></slot>
                 </div>
@@ -60,8 +65,12 @@
           <!-- footer -->
           <div data-tag="drawer-footer" ref="footer" v-if="showFooter" class="tiny-drawer__footer">
             <slot name="footer">
-              <tiny-button type="primary" @click="confirm">{{ t('ui.button.confirm') }}</tiny-button>
-              <tiny-button plain @click="close">{{ t('ui.button.cancel') }}</tiny-button>
+              <tiny-button class="tiny-drawer__confirm-btn" type="primary" @click="confirm">{{
+                t('ui.button.confirm')
+              }}</tiny-button>
+              <tiny-button class="tiny-drawer__cancel-btn" plain @click="close">{{
+                t('ui.button.cancel')
+              }}</tiny-button>
             </slot>
           </div>
         </div>
@@ -74,13 +83,16 @@
 import { renderless, api } from '@opentiny/vue-renderless/drawer/vue'
 import { setup, props } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/drawer/index.less'
-import { IconClose } from '@opentiny/vue-icon'
+import { iconClose, iconHelpCircle } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
+import Tooltip from '@opentiny/vue-tooltip'
 
 export default {
   components: {
     TinyButton: Button,
-    IconClose: IconClose()
+    TinyTooltip: Tooltip,
+    IconClose: iconClose(),
+    IconHelpCircle: iconHelpCircle()
   },
   props: [
     ...props,
@@ -97,7 +109,8 @@ export default {
     'lockScroll',
     'flex',
     'showClose',
-    'zIndex'
+    'zIndex',
+    'tipsProps'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

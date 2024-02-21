@@ -21,6 +21,8 @@
   --ti-drawer-padding-left: var(--ti-common-space-8x);
   // 右内边距
   --ti-drawer-padding-right: var(--ti-common-space-10x);
+  // 遮罩层背景色
+  --ti-drawer-mask-bg-color: rgba(0, 0, 0, 0.3);
   // 阴影
   --ti-drawer-shadow: var(--ti-common-shadow-4-down);
   // 头部与底部边框颜色
@@ -40,8 +42,10 @@
   --ti-drawer-head-title-font-size: var(--ti-common-font-size-2);
   // 头部文本色(hide)
   --ti-drawer-head-text-color: var(--ti-common-color-text-primary);
-  // 头部字重
+  // 头部标题字重
   --ti-drawer-head-title-font-weight: var(--ti-common-font-weight-7);
+  // 头部标题字体色
+  --ti-drawer-head-title-text-color: var(--ti-common-text-primary);
   // 关闭按钮宽度
   --ti-drawer-btn-width: var(--ti-common-size-8x);
   // 关闭按钮高度
@@ -50,12 +54,20 @@
   --ti-drawer-close-icon-size: var(--ti-common-font-size-1);
   // 关闭按钮圆角
   --ti-drawer-btn-border-radius: var(--ti-common-border-radius-1);
+  // 关闭按钮图标色
+  --ti-drawer-close-icon-color: var(--ti-common-color-icon-normal);
   // 关闭按钮悬浮图标色
   --ti-drawer-close-icon-color-hover: var(--ti-common-color-icon-hover);
   // 关闭按钮与上边框的距离(hide)
   --ti-drawer-btn-position-top: var(--ti-common-space-5x);
   // 关闭按钮与右边框的距离(hide)
   --ti-drawer-btn-position-right: var(--ti-common-space-5x);
+  // 标题与帮助图标间距
+  --ti-drawer-help-icon-margin-left: var(--ti-common-space-2x);
+  // 帮助图标宽高
+  --ti-drawer-help-icon-width-height: var(--ti-common-space-4x);
+  // 帮助图标色
+  --ti-drawer-help-icon-color: var(--ti-common-color-info);
 
   // 内容上内边距
   --ti-drawer-body-padding-top: var(--ti-common-space-0);
@@ -65,8 +77,8 @@
   --ti-drawer-body-padding-left: var(--ti-common-space-0);
   // 内容右内边距
   --ti-drawer-header-padding-right: var(--ti-common-space-0);
-  // 底部文本对齐方式
-  --ti-drawer-footer-text-align: right;
+  // 底部按钮对齐方式
+  --ti-drawer-footer-justify-content: flex-end;
   // 底部上内边距
   --ti-drawer-footer-padding-top: var(--ti-common-space-5x);
   // 底部下内边距
@@ -79,4 +91,8 @@
   --ti-drawer-footer-margin-left: var(--ti-common-space-8x);
   // 底部右外边距
   --ti-drawer-footer-margin-right: var(--ti-common-space-10x);
+  // 确定按钮边距
+  --ti-drawer-confirm-btn-margin: 0;
+  // 确定按钮order(hide)
+  --ti-drawer-confirm-btn-order: 0;
 }
