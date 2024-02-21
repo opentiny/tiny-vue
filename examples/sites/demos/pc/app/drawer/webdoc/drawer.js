@@ -47,6 +47,16 @@ export default {
       'codeFiles': ['mask-closable.vue']
     },
     {
+      'demoId': 'tips-props',
+      'name': { 'zh-CN': '帮助提示', 'en-US': 'Help tips' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>tips-props</code> 属性可自定义标题帮助提示信息，具体属性配置参考 <a href="tooltip#tooltip">ToolTip 组件</a> 的 props 说明。</p>',
+        'en-US': ''
+      },
+      'codeFiles': ['tips-props.vue']
+    },
+    {
       'demoId': 'show-close',
       'name': { 'zh-CN': '关闭图标显示', 'en-US': '' },
       'desc': { 'zh-CN': '<p><code>show-close</code> 控制显示关闭图标，默认值为 true</p>', 'en-US': '' },
@@ -73,12 +83,6 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['z-index.vue']
-    },
-    {
-      'demoId': 'default-slot',
-      'name': { 'zh-CN': '默认插槽', 'en-US': '' },
-      'desc': { 'zh-CN': '<p>自定义抽屉主体内容</p>', 'en-US': '' },
-      'codeFiles': ['default-slot.vue']
     },
     {
       'demoId': 'header-slot',
@@ -183,6 +187,13 @@ export default {
           'demoId': 'show-footer'
         },
         {
+          'name': 'tips-props',
+          'type': '<a href="tooltip#tooltip">tooltipProps</a>',
+          'defaultValue': '--',
+          'desc': { 'zh-CN': '帮助提示设置，属性详见 <a href="tooltip#tooltip">ToolTip 组件</a> Api文档', 'en-US': '' },
+          'demoId': 'tips-props'
+        },
+        {
           'name': 'z-index',
           'type': 'number',
           'defaultValue': '该属性的默认值为 2000',
@@ -212,7 +223,7 @@ export default {
           'type': '',
           'defaultValue': '',
           'desc': { 'zh-CN': '默认插槽', 'en-US': '' },
-          'demoId': 'default-slot'
+          'demoId': 'basic-usage'
         },
         {
           'name': 'header',
