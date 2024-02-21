@@ -1,0 +1,73 @@
+@import '../custom.less';
+
+@chart-prefix-cls: ~'@{css-prefix}chart';
+
+.@{chart-prefix-cls} {
+  &-data-empty {
+    @apply absolute;
+    @apply left-0;
+    @apply right-0;
+    @apply top-0;
+    @apply bottom-0;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    @apply bg-white bg-opacity-90;
+    @apply text-color-text-secondary;
+    @apply text-sm;
+  }
+
+  &-component-loading {
+    @apply absolute;
+    @apply left-0;
+    @apply right-0;
+    @apply top-0;
+    @apply bottom-0;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    @apply bg-white bg-opacity-90;
+
+    .circular {
+      @apply w-10;
+      @apply h-10;
+      animation: loading-rotate 2s linear infinite;
+    }
+
+    .path {
+      animation: loading-dash 1.5s ease-in-out infinite;
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: 0;
+      @apply stroke-2;
+      stroke: #20a0ff;
+      stroke-linecap: round;
+    }
+  }
+
+  &-mask-status {
+    filter: blur(1px);
+  }
+}
+
+@keyframes loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}

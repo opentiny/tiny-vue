@@ -1,0 +1,11 @@
+{
+  "name": "vue2.7-common",
+  "private": true,
+  "version": "5.0.2-mf.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "devDependencies": {
+    "vue": "~2.7.10"
+  }
+}

@@ -1,0 +1,652 @@
+@import '../custom.less';
+
+@calendar-view-prefix-cls: ~'@{css-prefix}calendar-view';
+
+.@{calendar-view-prefix-cls} {
+  @apply w-full;
+  @apply h-auto;
+
+  &__header {
+    @apply flex;
+    @apply justify-around;
+    @apply items-center;
+    @apply mb-3;
+  }
+
+  &__picker {
+    @apply ml-5;
+    @apply shrink-0;
+  }
+
+  &__tool {
+    @apply text-xs;
+    @apply flex-1;
+    @apply mx-5;
+  }
+
+  &__radio {
+    @apply shrink-0;
+
+    .fill-brand{
+      @apply fill-color-bg-1;
+    }
+  }
+
+  .@{calendar-view-prefix-cls}-month {
+    @apply shadow-sm;
+
+    &__header {
+      @apply flex;
+      @apply relative;
+      @apply justify-around;
+      @apply h-10;
+      @apply shadow-sm;
+
+      .header-left{
+        @apply absolute;
+        @apply left-3;
+        @apply ~'top-2.5';
+        @apply cursor-pointer;
+
+        >svg{
+          @apply w-4;
+          @apply h-4;
+        }
+      }
+
+      .header-main{
+        @apply flex;
+        @apply justify-around;
+        @apply flex-1;
+        @apply h-full;
+
+        >li{
+          @apply leading-10;
+
+          >span{
+            @apply text-sm;
+            @apply text-color-text-primary;
+          }
+        }
+      }
+
+      .header-right{
+        @apply absolute;
+        @apply right-3;
+        @apply ~'top-2.5';
+        @apply cursor-pointer;
+
+        >svg{
+          @apply w-4;
+          @apply h-4;
+        }
+      }
+    }
+
+    &__main {
+      @apply w-full;
+      @apply overflow-hidden;
+
+      .main-container{
+        @apply w-full;
+        @apply ~'mt-0.5';
+        
+        >ul{
+          @apply w-full;
+          @apply flex;
+          @apply justify-around;
+          @apply border-b;
+          @apply border-color-bg-2;
+
+          >li{
+            @apply text-xs;
+            @apply ~'py-0.5';
+            @apply relative;
+            @apply h-20;
+            @apply overflow-hidden;
+            @apply border-r;
+            @apply border-color-bg-2;
+            @apply bg-color-bg-1;
+
+            &.is-weekends {
+              @apply bg-color-bg-6;
+            }
+
+            &.is-selected{
+              @apply bg-color-brand-hover-subtle;
+
+              &:hover{
+                @apply bg-color-brand-hover-subtle;
+              }
+            }
+
+            &.not-selected{
+              &:hover{
+                @apply bg-color-brand-hover-subtler;
+              }
+            }
+
+            &.bg-blue {
+              @apply bg-color-brand-hover-subtle;
+            }
+
+            &.bg-green {
+              @apply bg-color-success-subtler;
+            }
+
+            &.bg-red {
+              @apply bg-color-error-subtler;
+            }
+
+            &.bg-yellow {
+              @apply bg-color-alert-subtler;
+            }
+
+            &.bg-purple {
+              @apply bg-color-chart-11-subtler;
+            }
+
+            &.bg-cyan {
+              @apply bg-color-chart-5-subtler;
+            }
+
+            &.bg-grey {
+              @apply bg-color-none-disabled;
+            }
+
+            &.bg-blank {
+              @apply bg-color-bg-1;
+            }
+          }
+        }
+
+        .day-selected{
+          @apply absolute;
+          @apply top-0;
+          @apply right-0;
+          @apply bg-color-brand;
+          @apply h-4;
+          @apply w-4;
+          @apply overflow-hidden;
+          @apply rounded-bl-lg;
+
+          >svg{
+            @apply w-4;
+            @apply h-4;
+            @apply fill-color-brand;
+            @apply relative;
+            @apply -right-px;
+            @apply ~'-top-1.5';
+          }
+        }
+
+        .date{
+          @apply ~'py-1.5';
+          @apply pl-2;
+          @apply text-color-text-primary;
+
+          &.is-next-or-last{
+            @apply text-color-text-primary;
+            @apply opacity-30;
+          }
+
+          &.is-selected{
+            @apply text-color-brand;
+          }
+
+          &.is-disabled{
+            @apply text-color-none-hover;
+          }
+        }
+
+        .day-events {
+          @apply overflow-y-auto;
+          @apply scrollbar-size-0;
+          @apply w-full;
+
+          .events-container{
+            @apply ~'mb-0.5';
+          }
+
+          .events-start{
+            @apply ~'pl-0.5';
+            @apply ~'pr-0.5';
+
+            &.multi-day{
+              @apply pr-0;
+            }
+          }
+
+          .events-title{
+            @apply ~'px-1.5';
+            @apply inline-block;
+            @apply rounded-sm;
+            @apply leading-5;
+            @apply line-clamp-1;
+
+            &.theme-blue {
+              @apply text-color-brand;
+              @apply bg-color-brand-hover-subtle;
+              @apply border-l-2;
+              @apply border-color-brand;
+            }
+
+            &.theme-green {
+              @apply text-color-success;
+              @apply bg-color-success-subtler;
+              @apply border-l-2;
+              @apply border-color-success;
+            }
+
+            &.theme-red {
+              @apply text-color-error;
+              @apply bg-color-error-subtler;
+              @apply border-l-2;
+              @apply border-color-error;
+            }
+
+            &.theme-yellow {
+              @apply text-color-alert;
+              @apply bg-color-alert-subtler;
+              @apply border-l-2;
+              @apply border-color-alert;
+            }
+
+            &.theme-purple {
+              @apply text-color-chart-11;
+              @apply bg-color-chart-11-subtler;
+              @apply border-l-2;
+              @apply border-color-chart-11;
+            }
+
+            &.theme-cyan {
+              @apply text-color-chart-5;
+              @apply bg-color-chart-5-subtler;
+              @apply border-l-2;
+              @apply border-color-chart-5;
+            }
+
+            &.theme-grey {
+              @apply text-color-text-placeholder;
+              @apply bg-color-none-disabled;
+              @apply border-l-2;
+              @apply border-color-text-placeholder;
+            }
+          }
+
+          .events-end{
+            @apply h-5;
+            @apply leading-5;
+            @apply mr-0;
+
+            &.is-end{
+              @apply ~'mr-0.5';
+            }
+
+            &.bg-blue {
+              @apply bg-color-brand-hover-subtle;
+            }
+
+            &.bg-green {
+              @apply bg-color-success-subtler;
+            }
+
+            &.bg-red {
+              @apply bg-color-error-subtler;
+            }
+
+            &.bg-yellow {
+              @apply bg-color-alert-subtler;
+            }
+
+            &.bg-purple {
+              @apply bg-color-chart-11-subtler;
+            }
+
+            &.bg-cyan {
+              @apply bg-color-chart-5-subtler;
+            }
+
+            &.bg-grey {
+              @apply bg-color-none-disabled;
+            }
+
+            &.bg-blank {
+              @apply bg-color-bg-1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .@{calendar-view-prefix-cls}-week {
+    @apply shadow-sm;
+
+    &__header {
+      @apply flex;
+      @apply justify-around;
+      @apply items-center;
+      @apply h-10;
+      @apply shadow-sm;
+    }
+
+    .header-left{
+      @apply w-7;
+      @apply shrink-0;
+      @apply text-right;
+      @apply cursor-pointer;
+
+      >svg{
+        @apply w-4;
+        @apply h-4;
+      }
+    }
+
+    .header-main{
+      @apply flex;
+      @apply justify-around;
+      @apply flex-1;
+      @apply h-full;
+
+      >li{
+        @apply leading-10;
+
+        .date{
+          @apply relative;
+          @apply ~'mr-2.5';
+          @apply text-base;
+          @apply text-color-text-primary;
+
+          &.is-today{
+            @apply text-color-brand;
+          }
+        }
+        
+        .mark{
+          @apply ~'w-1.5';
+          @apply ~'h-1.5';
+          @apply absolute;
+          @apply -bottom-2;
+          @apply rounded-full;
+          @apply ~'left-0.5';
+
+          &.is-two-digit{
+            @apply left-2;
+          }
+
+          &.mark-blue {
+            @apply bg-color-brand;
+          }
+
+          &.mark-green {
+            @apply bg-color-success;
+          }
+
+          &.mark-red {
+            @apply bg-color-error;
+          }
+
+          &.mark-yellow {
+            @apply bg-color-alert;
+          }
+
+          &.mark-purple {
+            @apply bg-color-chart-11;
+          }
+
+          &.mark-cyan {
+            @apply bg-color-chart-5;
+          }
+
+          &.mark-grey {
+            @apply bg-color-none;
+          }
+        }
+        
+        .week-day{
+          @apply text-sm;
+          @apply text-color-text-placeholder;
+          &.is-today{
+            @apply text-color-brand;
+          }
+        }
+      }
+    }
+
+    .header-right{
+      @apply w-7;
+      @apply shrink-0;
+      @apply text-left;
+      @apply cursor-pointer;
+
+      >svg{
+        @apply w-4;
+        @apply h-4;
+      }
+    }
+  }
+
+  .@{calendar-view-prefix-cls}-week__timeline {
+    @apply w-full;
+    @apply h-112;
+    @apply flex;
+    @apply overflow-y-auto;
+    @apply mt-1;
+
+      .day-times{
+        @apply w-12;
+
+        ul>li{
+          @apply h-5;
+          @apply text-center;
+          @apply border-b;
+          @apply border-b-color-bg-1;
+
+          &.is-odd-num{
+            @apply border-b-color-bg-2;
+          }
+
+          span{
+            @apply text-sm;
+            @apply text-color-text-primary;
+          }
+        }
+      }
+
+      .day-events{
+        @apply flex-1;
+
+        >ul{
+          @apply w-full;
+          @apply flex;
+          @apply justify-around;
+
+          >li{
+            @apply relative;
+
+            &.is-weekends{
+              @apply bg-color-bg-6;
+            }
+          }
+        }
+
+        .events-list{
+          >li{
+            @apply relative;
+            @apply h-4;
+            @apply ~'p-0.5';
+            @apply list-none;
+            @apply border-b;
+            @apply border-color-bg-2;
+
+            &.is-even-num{
+              @apply border-dashed;
+            }
+          }
+
+          .events-item{
+            @apply text-xs;
+            @apply w-11/12;
+            @apply flex;
+            @apply items-center;
+            @apply ~'px-1.5';
+            @apply absolute;
+            @apply top-0;
+            @apply left-0;
+            @apply z-10;
+            @apply leading-normal;
+            @apply rounded-sm;
+
+            &.theme-blue {
+              @apply text-color-brand;
+              @apply bg-color-brand-hover-subtle;
+              @apply border-l-2;
+              @apply border-color-brand;
+            }
+
+            &.theme-green {
+              @apply text-color-success;
+              @apply bg-color-success-subtler;
+              @apply border-l-2;
+              @apply border-color-success;
+            }
+
+            &.theme-red {
+              @apply text-color-error;
+              @apply bg-color-error-subtler;
+              @apply border-l-2;
+              @apply border-color-error;
+            }
+
+            &.theme-yellow {
+              @apply text-color-alert;
+              @apply bg-color-alert-subtler;
+              @apply border-l-2;
+              @apply border-color-alert;
+            }
+
+            &.theme-purple {
+              @apply text-color-chart-11;
+              @apply bg-color-chart-11-subtler;
+              @apply border-l-2;
+              @apply border-color-chart-11;
+            }
+
+            &.theme-cyan {
+              @apply text-color-chart-5;
+              @apply bg-color-chart-5-subtler;
+              @apply border-l-2;
+              @apply border-color-chart-5;
+            }
+
+            &.theme-grey {
+              @apply text-color-text-placeholder;
+              @apply bg-color-none-disabled;
+              @apply border-l-2;
+              @apply border-color-text-placeholder;
+            }
+          }
+        }
+      }
+  }
+  
+  .@{calendar-view-prefix-cls}-week__schedule {
+    @apply w-full;
+    @apply px-6;
+    @apply pb-4;
+    @apply overflow-y-auto;
+    @apply h-112;
+
+    >ul{
+      @apply flex;
+      @apply w-full;
+
+      >li{
+        @apply h-full;
+        @apply py-3;
+        @apply px-2;
+      }
+    }
+
+    .day-events{
+      @apply text-xs;
+      @apply ~'py-1.5';
+      @apply h-auto;
+      @apply border;
+      @apply border-color-border-separator;
+      @apply rounded;
+      @apply mb-2;
+      @apply shadow-sm;
+
+      .title{
+        @apply ~'px-1.5';
+        @apply ~'mb-1.5';
+        @apply border-l-2;
+        @apply border-color-brand;
+      }
+
+      .date{
+        @apply ~'mb-1.5';
+        @apply px-2;
+        @apply text-color-text-placeholder;
+      }
+
+      .content{
+        @apply px-2;
+        @apply text-color-icon-primary;
+        @apply line-clamp-2;
+      }
+    }
+
+    .new-schedule{
+      @apply h-8;
+      @apply text-center;
+      @apply leading-8;
+      @apply w-full;
+      @apply mt-2;
+      @apply border;
+      @apply border-color-border-separator;
+      @apply rounded;
+      @apply cursor-pointer;
+
+      >svg{
+        @apply w-4;
+        @apply h-4;
+        @apply align-sub;
+        @apply fill-color-text-placeholder;
+      }
+
+      >span{
+        @apply ml-1;
+        @apply text-color-text-placeholder;
+      }
+    }
+  }
+}
+
+.@{calendar-view-prefix-cls}-tooltip{
+  @apply absolute;
+  @apply ~'max-w-[theme(spacing.80)]';
+
+  .tooltip-main{
+    @apply p-2;
+
+    .title{
+      @apply ~'px-1.5';
+      @apply ~'mb-1.5';
+      @apply border-l-2 border-color-brand;
+    }
+
+    .date{
+      @apply ~'mb-1.5';
+      @apply px-2;
+      @apply text-color-text-placeholder;
+    }
+
+    .content{
+      @apply px-2;
+      @apply text-color-icon-primary;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 14.8 14.8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="128.248383%" y1="50%" x2="26.8114638%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0.0956075175%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="128.248383%" y1="50%" x2="26.8114638%" y2="0%" id="linearGradient-2">
+            <stop stop-color="#191919" stop-opacity="0" offset="0.0956075175%"></stop>
+            <stop stop-color="#191919" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="状态（2）" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="编组备份-20" transform="translate(-0.600000, -0.600000)">
+            <polygon id="Fill-1" points="0 16 16 16 16 0 0 0"></polygon>
+            <path d="M8,0.6 C8.49705627,0.6 8.9,1.00294373 8.9,1.5 C8.9,1.99705627 8.49705627,2.4 8,2.4 C4.90705627,2.4 2.4,4.90705627 2.4,8 C2.4,11.0929437 4.90705627,13.6 8,13.6 C11.0929437,13.6 13.6,11.0929437 13.6,8 C13.6,7.50294373 14.0029437,7.1 14.5,7.1 C14.9970563,7.1 15.4,7.50294373 15.4,8 C15.4,12.0870563 12.0870563,15.4 8,15.4 C3.91294373,15.4 0.6,12.0870563 0.6,8 C0.6,3.91294373 3.91294373,0.6 8,0.6 Z" id="Stroke-2" fill="url(#linearGradient-2)" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

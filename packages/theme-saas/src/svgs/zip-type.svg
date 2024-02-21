@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="文件类型方案" transform="translate(-736.000000, -68.000000)">
+            <g id="IconZipType" transform="translate(736.000000, 68.000000)">
+                <g id="Group-2">
+                    <rect id="Rectangle-Copy" x="0" y="0" width="24" height="24" rx="4"></rect>
+                </g>
+                <polygon id="形状结合-path备份-3" fill="#FFFFFF" points="15 3 15 6 12 6 12 3"></polygon>
+                <polygon id="形状结合-path备份-4" fill="#FFFFFF" points="12 6 12 9 9 9 9 6"></polygon>
+                <polygon id="形状结合-path备份-5" fill="#FFFFFF" points="15 9 15 12 12 12 12 9"></polygon>
+                <polygon id="形状结合-path备份-6" fill="#FFFFFF" points="12 12 12 15 9 15 9 12"></polygon>
+                <polygon id="形状结合-path备份-7" fill="#FFFFFF" points="15 15 15 18 12 18 12 15"></polygon>
+                <polygon id="形状结合-path备份-8" fill="#FFFFFF" points="12 18 12 21 9 21 9 18"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

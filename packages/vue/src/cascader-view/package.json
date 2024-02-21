@@ -1,0 +1,26 @@
+{
+  "name": "@opentiny/vue-cascader-view",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "dependencies": {
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-exception": "workspace:~",
+    "@opentiny/vue-action-sheet": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  }
+}

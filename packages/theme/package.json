@@ -1,0 +1,90 @@
+{
+  "name": "@opentiny/vue-theme",
+  "version": "3.13.1",
+  "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
+  "main": "index.css",
+  "homepage": "https://opentiny.design/tiny-vue",
+  "keywords": [
+    "vue",
+    "vue3",
+    "frontend",
+    "component-library",
+    "components",
+    "vue-components",
+    "opentiny",
+    "renderless-components",
+    "headless-components"
+  ],
+  "author": "OpenTiny Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opentiny/tiny-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-vue/issues"
+  },
+  "exports": {
+    "./*": "./src/*"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build:theme": "gulp build --gulpfile build/gulp-dist.js",
+    "build": "npm run clean && npm run build:theme && node build/replace-img.js",
+    "build:fast": "npm run build && npm run release",
+    "release": "node build/release.js && node build/postbuild.js && shx cp README.md dist",
+    "build:copy-remote": "npm run build:theme && cp-cli dist ../tiny-vue/node_modules/@opentiny/vue-theme",
+    "publishTgz": "node .cloudbuild/publish-tgzs.js",
+    "postversion": "pnpm build",
+    "stylelint": "stylelint \"**/*.less\" --fix"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-less": "^5.0.0",
+    "gulp-svg-inline": "^1.0.1",
+    "gulp-transform": "3.0.5",
+    "gulp-concat": "2.6.1",
+    "svgo": "3.2.0",
+    "rimraf": "^2.6.2",
+    "fast-glob": "^3.2.12",
+    "stylelint": "^14.14.0",
+    "stylelint-config-standard": "^29.0.0"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.less"
+        ],
+        "customSyntax": "postcss-less"
+      }
+    ],
+    "rules": {
+      "selector-pseudo-element-colon-notation": "single",
+      "import-notation": null,
+      "string-quotes": "single",
+      "selector-class-pattern": null,
+      "declaration-empty-line-before": null,
+      "at-rule-empty-line-before": null,
+      "at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": [
+            "apply",
+            "variants",
+            "responsive",
+            "screen"
+          ]
+        }
+      ]
+    }
+  }
+}

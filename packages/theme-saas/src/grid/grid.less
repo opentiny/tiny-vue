@@ -1,0 +1,34 @@
+@import '../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+@grid-body-prefix-cls: ~'@{css-prefix}grid-body';
+
+.@{grid-prefix-cls} {
+  .@{grid-body-prefix-cls}__row {
+    &.row__pending {
+      @apply text-color-error;
+      @apply line-through;
+      @apply cursor-no-drop;
+
+      .@{grid-body-prefix-cls}__column {
+        @apply relative;
+
+        &:after {
+          @apply content-[''];
+          @apply absolute;
+          @apply ~'top-1/2';
+          @apply left-0;
+          @apply w-full;
+          @apply h-0;
+          @apply border-b border-b-color-error;
+          @apply ~'z-[1]';
+        }
+      }
+    }
+  }
+  &.mark-insert {
+    .@{grid-body-prefix-cls}__row.row__new {
+      @apply bg-color-bg-2;
+    }
+  }
+}

@@ -1,0 +1,320 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+@import '../transition/timepicker.less';
+@import '../date-picker/vars.less';
+
+@date-container-prefix-cls: ~'@{css-prefix}date-container';
+@date-editor-prefix-cls: ~'@{css-prefix}date-editor';
+@range-editor-prefix-cls: ~'@{css-prefix}range-editor';
+@range-prefix-cls: ~'@{css-prefix}range';
+
+.@{date-container-prefix-cls} {
+  position: relative;
+}
+
+.@{date-editor-prefix-cls} {
+  .component-css-vars-picker();
+  .component-css-vars-date-picker();
+
+  position: relative;
+  display: inline-block;
+  text-align: left;
+
+  &.@{input-prefix-cls},
+  &.@{input-prefix-cls}__inner {
+    width: 100%;
+  }
+
+  &--monthrange {
+    &.@{input-prefix-cls},
+    &.@{input-prefix-cls}__inner {
+      width: 350px;
+    }
+  }
+
+  &--daterange,
+  &--timerange {
+    &.@{input-prefix-cls},
+    &.@{input-prefix-cls}__inner {
+      width: 350px;
+    }
+  }
+
+  &--datetimerange {
+    &.@{input-prefix-cls},
+    &.@{input-prefix-cls}__inner {
+      width: 400px;
+    }
+  }
+
+  &--dates {
+    .@{input-prefix-cls}__inner {
+      .text-overflow();
+    }
+  }
+
+  &.show-auto-width {
+    &.@{input-prefix-cls},
+    &.@{input-prefix-cls}__inner {
+      width: 100%;
+    }
+  }
+
+  .@{input-prefix-cls}__label {
+    color: #8d959e;
+    font-size: 12px;
+    margin-right: 8px;
+    max-width: 100px;
+    display: inline-block;
+    text-align: left;
+    .text-overflow();
+  }
+
+  .@{input-prefix-cls}__icon-container {
+    width: initial;
+    cursor: pointer;
+    fill: var(--ti-date-editor-input-icon-color-fill);
+
+    .baseClearicon {
+      margin-right: 8px;
+      fill: #252b3a;
+
+      &:hover {
+        fill: var(--ti-input-clear-text-color-hover);
+      }
+    }
+
+    &:not(.@{range-prefix-cls}__icon) {
+      display: flex;
+    }
+  }
+
+  .@{range-prefix-cls}__icon {
+    font-size: var(--ti-date-picker-icon-font-size);
+    color: #c0c4cc;
+    margin-left: -5px;
+    float: left;
+    line-height: 1;
+  }
+
+  .@{range-prefix-cls}-input,
+  .@{range-prefix-cls}-separator {
+    font-size: var(--ti-date-picker-font-size);
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .@{range-prefix-cls}-input {
+    appearance: none;
+    border: none;
+    outline: 0;
+    padding: 0;
+    width: 39%;
+    color: var(--ti-date-picker-text-color);
+    .text-overflow();
+    .placeholder();
+  }
+
+  .@{range-prefix-cls}-separator {
+    padding: 0 5px;
+    line-height: 22px;
+    width: 12%;
+    color: var(--ti-range-separator-text-color);
+  }
+
+  .@{range-prefix-cls}__close-icon {
+    font-size: var(--ti-date-picker-icon-font-size);
+    width: 25px;
+    float: right;
+    line-height: 32px;
+    margin-right: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &,
+    &:hover {
+      fill: var(--ti-input-icon-close-text-color);
+    }
+  }
+}
+
+.@{range-editor-prefix-cls} {
+  &.@{input-prefix-cls}__inner {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+  }
+
+  .@{range-prefix-cls}-input {
+    line-height: 1;
+  }
+
+  &.is-active,
+  &.is-active:hover {
+    border-color: var(--ti-date-picker-current-border-color);
+  }
+
+  &--medium {
+    &.@{input-prefix-cls}__inner {
+      height: 42px;
+    }
+
+    .@{range-prefix-cls}-separator {
+      line-height: 34px;
+      font-size: var(--ti-common-font-size-2);
+    }
+
+    .@{range-prefix-cls}-input {
+      font-size: var(--ti-common-font-size-2);
+    }
+
+    .@{range-prefix-cls}__close-icon,
+    .@{range-prefix-cls}__icon {
+      line-height: 34px;
+    }
+  }
+
+  &--small {
+    &.@{input-prefix-cls}__inner {
+      height: 36px;
+    }
+
+    .@{range-prefix-cls}-separator {
+      line-height: 28px;
+      font-size: var(--ti-common-font-size-1);
+    }
+
+    .@{range-prefix-cls}-input {
+      font-size: var(--ti-common-font-size-1);
+    }
+
+    .@{range-prefix-cls}__close-icon,
+    .@{range-prefix-cls}__icon {
+      line-height: 28px;
+    }
+  }
+
+  &--mini {
+    &.@{input-prefix-cls}__inner {
+      height: 24px;
+    }
+
+    .@{range-prefix-cls}-separator {
+      line-height: 16px;
+      font-size: var(--ti-common-font-size-base);
+    }
+
+    .@{range-prefix-cls}-input {
+      font-size: var(--ti-common-font-size-base);
+    }
+
+    .@{range-prefix-cls}__close-icon,
+    .@{range-prefix-cls}__icon {
+      line-height: 16px;
+    }
+  }
+
+  &.is-disabled {
+    background-color: var(--ti-date-picker-disabled-bg-color);
+    border-color: var(--ti-date-picker-border-color);
+    color: var(--ti-date-picker-disabled-text-color);
+    cursor: not-allowed;
+
+    &:focus,
+    &:hover {
+      border-color: var(--ti-date-picker-border-color);
+    }
+
+    input {
+      color: var(--ti-date-picker-disabled-text-color);
+      background-color: var(--ti-date-picker-disabled-bg-color);
+      cursor: not-allowed;
+      .placeholder();
+    }
+
+    .@{range-prefix-cls}-separator {
+      color: var(--ti-date-picker-disabled-text-color);
+    }
+  }
+}
+
+.@{scrollbar-prefix-cls} {
+  overflow: hidden;
+  position: relative;
+
+  &:active > &__bar,
+  &:focus > &__bar,
+  &:hover > &__bar {
+    opacity: 1;
+    transition: opacity 340ms ease-out;
+  }
+
+  &__wrap {
+    overflow: scroll;
+    height: 100%;
+  }
+
+  &__wrap--hidden-default::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  &__thumb {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 0;
+    cursor: pointer;
+    border-radius: inherit;
+    background-color: rgba(144, 147, 153, 0.3);
+    transition: 0.3s background-color;
+
+    &:hover {
+      background-color: rgba(144, 147, 153, 0.5);
+    }
+  }
+
+  &__bar {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    z-index: 1;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 120ms ease-out;
+
+    &.is-vertical {
+      width: 6px;
+      top: 2px;
+
+      & > div {
+        width: 100%;
+      }
+    }
+
+    &.is-horizontal {
+      height: 6px;
+      left: 2px;
+
+      & > div {
+        height: 100%;
+      }
+    }
+  }
+}

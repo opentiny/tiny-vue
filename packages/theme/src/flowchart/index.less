@@ -1,0 +1,49 @@
+@import '../custom.less';
+
+@flowchart-prefix-cls: ~'@{css-prefix}flow-chart';
+
+.@{flowchart-prefix-cls} {
+  position: relative;
+
+  & &__canvas {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  & &__node-icon-wrapper {
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+
+    .@{flowchart-prefix-cls}__node-icon {
+      border-width: 1px;
+      border-style: solid;
+      text-align: center;
+      line-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .@{flowchart-prefix-cls}__node-label {
+      position: absolute;
+      top: 100%;
+      font-size: 12px;
+      text-align: initial;
+      cursor: auto;
+    }
+
+    .@{flowchart-prefix-cls}__node-label > .label-item {
+      margin-top: 4px;
+      cursor: pointer;
+    }
+
+    .@{flowchart-prefix-cls}__node-item {
+      position: absolute;
+      left: 100%;
+      top: 0;
+    }
+  }
+}

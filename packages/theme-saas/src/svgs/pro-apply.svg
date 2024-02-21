@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="-3.47638585e-13%" y1="4.23272528e-14%" x2="100%" y2="100%"
+            id="linearGradient-1">
+            <stop stop-color="#2670F3" offset="0%"></stop>
+            <stop stop-color="#2E94FF" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-70.0%" y="-70.0%" width="240.0%" height="240.0%" filterUnits="objectBoundingBox"
+            id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix
+                values="0 0 0 0 0.149019608   0 0 0 0 0.447058824   0 0 0 0 0.952941176  0 0 0 1 0"
+                type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="iconpro_apply" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形备份-37" fill="url(#linearGradient-1)" x="0" y="0" width="40" height="40" rx="6"></rect>
+        <g id="编组-13" filter="url(#filter-2)" transform="translate(9.000000, 8.224089)"
+            fill="#FFFFFF" fill-rule="nonzero">
+            <path
+                d="M7.126,13.488961 C8.366,13.488961 9.375,14.497961 9.375,15.737961 L9.375,20.614961 C9.375,21.854961 8.366,22.863961 7.126,22.863961 L2.249,22.863961 C1.009,22.863961 0,21.854961 0,20.614961 L0,15.737961 C0,14.497961 1.009,13.488961 2.249,13.488961 L7.126,13.488961 Z"
+                id="形状结合-path"></path>
+            <path
+                d="M19.126,13.488961 C20.366,13.488961 21.375,14.497961 21.375,15.737961 L21.375,20.614961 C21.375,21.854961 20.366,22.863961 19.126,22.863961 L14.249,22.863961 C13.009,22.863961 12,21.854961 12,20.614961 L12,15.737961 C12,14.497961 13.009,13.488961 14.249,13.488961 L19.126,13.488961 Z"
+                id="形状结合-path备份"></path>
+            <path
+                d="M7.126,1.86396103 C8.366,1.86396103 9.375,2.87296103 9.375,4.11296103 L9.375,8.98996103 C9.375,10.229961 8.366,11.238961 7.126,11.238961 L2.249,11.238961 C1.009,11.238961 0,10.229961 0,8.98996103 L0,4.11296103 C0,2.87296103 1.009,1.86396103 2.249,1.86396103 L7.126,1.86396103 Z"
+                id="形状结合-path"></path>
+            <path
+                d="M18.84096,1.86396103 C20.03136,1.86396103 21,2.83260103 21,4.02300103 L21,8.70492103 C21,9.89532103 20.03136,10.863961 18.84096,10.863961 L14.15904,10.863961 C12.96864,10.863961 12,9.89532103 12,8.70492103 L12,4.02300103 C12,2.83260103 12.96864,1.86396103 14.15904,1.86396103 L18.84096,1.86396103 Z"
+                id="形状结合-path备份-2" opacity="0.7"
+                transform="translate(16.500000, 6.363961) rotate(45.000000) translate(-16.500000, -6.363961) "></path>
+        </g>
+    </g>
+</svg>

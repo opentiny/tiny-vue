@@ -1,0 +1,11 @@
+# package.json is formatted by package managers, so we ignore it here
+package.json
+lib
+build
+demo/*.js
+demo/*.css
+module
+.*
+docs
+*.log
+node_modules

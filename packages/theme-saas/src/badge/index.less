@@ -1,0 +1,119 @@
+@import '../custom.less';
+
+@badge-prefix-cls: ~'@{css-prefix}badge';
+@badge-wrapper-prefix-cls: ~'@{css-prefix}badge__wrapper';
+
+.@{badge-prefix-cls} {
+  @apply inline-block;
+  @apply ~'min-w-[theme(spacing.4)]';
+  @apply h-5;
+  @apply leading-5;
+  @apply rounded-xl;
+  @apply py-0 px-1;
+  @apply text-xs;
+  @apply font-bold;
+  @apply text-color-text-inverse;
+  @apply bg-color-error;
+  @apply align-baseline;
+  @apply whitespace-nowrap;
+  @apply text-center;
+
+  &&--max {
+    @apply py-0 ~'px-1.5';
+    @apply rounded-xl;
+  }
+
+  &&--default {
+    @apply ~'w-1.5';
+    @apply ~'h-1.5';
+    @apply ~'min-w-[auto]';
+    @apply bg-color-error;
+    @apply inline-block;
+    @apply align-top;
+    @apply p-0;
+    @apply rounded-full;
+  }
+
+  &&--primary {
+    @apply bg-color-brand;
+  }
+
+  &&--success {
+    @apply bg-color-success;
+  }
+
+  &&--warning {
+    @apply bg-color-warning;
+  }
+
+  &&--danger {
+    @apply bg-color-error;
+  }
+
+  &&--info {
+    @apply bg-color-info-secondary;
+  }
+
+  &:empty {
+    @apply hidden;
+  }
+
+  .btn & {
+    @apply relative;
+    @apply -top-px;
+  }
+
+  a,
+  a:hover {
+    @apply text-color-text-inverse;
+    @apply no-underline;
+  }
+}
+
+a.badge {
+  &:hover,
+  &:focus {
+    @apply text-color-text-inverse;
+    @apply no-underline;
+    @apply cursor-pointer;
+  }
+}
+
+a.list-group-item.active > .badge,
+.nav-pills > .active > a > .badge {
+  @apply text-color-brand;
+  @apply bg-color-bg-1;
+}
+
+.nav-pills > li > a > .badge {
+  margin-left: 3px;
+}
+
+.@{badge-wrapper-prefix-cls} {
+  @apply relative;
+
+  .@{badge-prefix-cls} {
+    @apply absolute;
+    @apply ~'top-1/2';
+    @apply translate-x-1 -translate-y-1/2;
+    @apply ~'min-w-[theme(spacing.4)]';
+    @apply h-4;
+    @apply leading-4;
+    @apply text-color-text-inverse;
+    @apply text-xs;
+
+    &__content-text {
+      @apply relative;
+    }
+  }
+
+  .@{badge-prefix-cls}--default {
+    @apply absolute;
+    @apply ~'top-1/2';
+    @apply translate-x-1 ~'-translate-y-2/4';
+    @apply ~'min-w-[auto]';
+    @apply ~'w-1.5';
+    @apply ~'h-1.5';
+    @apply bg-color-error;
+  }
+}

@@ -1,0 +1,45 @@
+@import '../custom.less';
+
+.@{css-prefix}transition-icon-out-in-enter-active {
+  animation: bounce-in 0.3s;
+}
+
+.@{css-prefix}transition-icon-out-in-leave-active {
+  animation: bounce-in 0.3s reverse;
+}
+
+.@{css-prefix}transition-icon-scale-in-enter-active {
+  animation: scale-in 0.3s;
+}
+
+.@{css-prefix}transition-icon-scale-in-leave-active {
+  animation: scale-in 0.3s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    @apply ~'-translate-y-2/4' scale-0;
+  }
+
+  50% {
+    transform: translateY(-50%) scale(1.2);
+  }
+
+  100% {
+    @apply ~'-translate-y-2/4' scale-100;
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    @apply scale-0;
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    @apply scale-100;
+  }
+}

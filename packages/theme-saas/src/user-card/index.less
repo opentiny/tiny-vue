@@ -1,0 +1,75 @@
+@import '../custom.less';
+
+@card-prefix-cls: ~'@{css-prefix}card';
+
+.@{card-prefix-cls} {
+  @apply border border-solid border-color-border;
+  @apply shadow-sm;
+
+  .dialog-foot {
+    @apply block;
+
+    > div {
+      @apply w-full;
+      @apply text-center;
+    }
+  }
+
+  h5,
+  p {
+    margin: 5px 0;
+  }
+
+  .card-top {
+    @apply ~'mb-2.5';
+
+    img {
+      @apply w-20;
+      @apply h-20;
+      border-radius: 3px;
+    }
+
+    .card-top-text {
+      padding: 10px - 5px 10px;
+      @apply overflow-hidden;
+    }
+
+    .card-top-img,
+    .card-top-text {
+      @apply inline-block;
+      @apply align-middle;
+    }
+  }
+
+  .card-bottom {
+    @apply text-center;
+    @apply block;
+    @apply h-5;
+    @apply mt-0 ~'-mx-5' ~'-mb-5';
+  }
+
+  .espace-online {
+    @apply text-color-success;
+  }
+
+  .espace-busy {
+    @apply text-color-error;
+    font-size: 23px;
+    @apply align-middle;
+    margin-top: -5px;
+  }
+
+  .espace-goaway {
+    @apply text-color-warning;
+    @apply bg-color-bg-1;
+    @apply rounded-full;
+    font-size: 13px;
+  }
+
+  .espace-offline {
+    @apply text-color-none;
+    font-size: 23px;
+    @apply align-middle;
+    margin-top: -5px;
+  }
+}

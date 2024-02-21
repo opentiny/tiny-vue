@@ -1,0 +1,102 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@pull-refresh-prefix-cls: ~'@{css-prefix}mobile-pull-refresh';
+
+.@{pull-refresh-prefix-cls} {
+  height: 100%;
+  user-select: none;
+  overflow: hidden;
+
+  &__track {
+    position: relative;
+    height: 100%;
+    transition-property: transform;
+  }
+
+  &__tips {
+    width: 100%;
+    overflow: hidden;
+    color: var(--ti-mobile-pull-refresh-text-color);
+    font-size: var(--ti-mobile-pull-refresh-font-size);
+    text-align: center;
+  }
+
+  &__head {
+    transform: translateY(-100%);
+    height: 20px;
+    position: absolute;
+    top: -20px;
+  }
+
+  &__content {
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  &-loading-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__loading {
+    border-radius: 50%;
+    width: var(--ti-mobile-pull-refresh-head-loading-icon-size-outside);
+    height: var(--ti-mobile-pull-refresh-head-loading-icon-size-outside);
+    display: inline-block;
+    background-image: var(--ti-mobile-pull-refresh-head-loading-bg-image);
+    position: relative;
+
+    &-animation {
+      animation: turn-around 1.5s linear infinite;
+    }
+
+    &-inner {
+      width: var(--ti-mobile-pull-refresh-head-loading-icon-size-inside);
+      height: var(--ti-mobile-pull-refresh-head-loading-icon-size-inside);
+      border-radius: 50%;
+      background: var(--ti-mobile-pull-refresh-head-loading-icon-bg-color);
+      position: absolute;
+      top: 2px;
+      left: 2px;
+    }
+  }
+
+  &__text {
+    font-size: var(--ti-mobile-pull-refresh-font-size);
+    color: var(--ti-mobile-pull-refresh-text-color);
+    padding-left: 8px;
+  }
+
+  &__foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--ti-mobile-pull-refresh-font-size);
+    color: var(--ti-mobile-pull-refresh-text-color);
+    height: var(--ti-mobile-pull-refresh-foot-size-height);
+  }
+
+  @keyframes turn-around {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

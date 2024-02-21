@@ -1,0 +1,140 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@table-prefix-cls: ~'@{css-prefix}mobile-table';
+@table-header-prefix-cls: ~'@{css-prefix}mobile-table-header';
+@table-cell-prefix-cls: ~'@{css-prefix}mobile-table-cell';
+@svg-prefix-cls: ~'@{css-prefix}mobile-svg';
+
+.@{table-prefix-cls} {
+  .component-css-vars-table();
+
+  &.simple {
+    overflow: auto;
+
+    table {
+      table-layout: fixed;
+
+      tr {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+      }
+
+      tbody {
+        tr {
+          color: var(--ti-mobile-table-text-color);
+          font-weight: 400;
+
+          td {
+            background: var(--ti-mobile-table-bg-color);
+          }
+
+          &:nth-child(odd),
+          td {
+            background: var(--ti-mobile-table-odd-bg-color);
+          }
+
+          &.is-disabled {
+            background: var(--ti-mobile-table-disabled-bg-color);
+            color: var(--ti-mobile-table-disabled-text-color);
+          }
+        }
+
+        .noData {
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          color: var(--ti-mobile-table-nodata-text-color);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      th {
+        padding-left: 20px;
+        height: var(--ti-mobile-table-td-height);
+        border-left: none;
+      }
+
+      td {
+        padding-left: 20px;
+        height: var(--ti-mobile-table-td-height);
+        font-size: var(--ti-mobile-table-td-font-size);
+
+        .overflow {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      thead {
+        text-align: left;
+        color: var(--ti-mobile-table-head-text-color);
+
+        th {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          text-align: left;
+          font-size: var(--ti-mobile-table-td-font-size);
+          color: var(--ti-mobile-table-head-text-color);
+          font-weight: 500;
+          line-height: 1.7em;
+          background: var(--ti-mobile-table-thead-bg-color);
+
+          .overflow {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+
+      .fixed {
+        position: sticky;
+        z-index: 1;
+      }
+    }
+
+    .@{table-cell-prefix-cls} {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      position: relative;
+
+      .@{svg-prefix-cls} {
+        font-size: var(--ti-mobile-table-icon-font-size);
+        fill: var(--ti-mobile-table-border-color);
+
+        &.is-check {
+          fill: var(--ti-mobile-table-check-icon-color);
+        }
+      }
+
+      .shadow {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 8px;
+        opacity: 0.05;
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0), #000);
+      }
+    }
+  }
+}

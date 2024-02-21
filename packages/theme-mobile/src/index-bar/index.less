@@ -1,0 +1,52 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/button.less';
+@import '../custom.less';
+@import './vars.less';
+
+@index-bar-prefix-cls: ~'@{css-prefix}mobile-index-bar';
+
+.@{index-bar-prefix-cls} {
+  &__side {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    width: 22px;
+    padding: 4px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: var(--ti-mobile-index-bar-side-bg-color);
+  }
+
+  &__label {
+    width: 100%;
+    font-size: 10px;
+    line-height: 16px;
+    font-weight: 500;
+    color: var(--ti-mobile-index-bar-text-color);
+  }
+
+  &__label--active {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    color: var(--ti-mobile-index-bar-text-color-active);
+    background: var(--ti-mobile-index-bar-bg-color-active);
+  }
+}

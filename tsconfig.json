@@ -1,0 +1,3 @@
+{
+  "references": [{ "path": "./tsconfig.react.json" }, { "path": "./tsconfig.vue3.json" }]
+}

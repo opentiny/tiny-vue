@@ -1,0 +1,156 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@anchor-prefix-cls: ~'@{css-prefix}anchor';
+
+.@{anchor-prefix-cls} {
+  &__wrapper {
+    .component-css-vars-anchor();
+  }
+  
+  background-color: var(--ti-anchor-bg-color);
+  width: var(--ti-anchor-width);
+  position: relative;
+  color: var(--ti-anchor-text-color);
+  font-size: var(--ti-anchor-font-size);
+
+  &__affix {
+    position: fixed;
+    z-index: 1;
+  }
+
+  &__line {
+    
+    .@{anchor-prefix-cls}-link + .@{anchor-prefix-cls}-link {
+      margin-top: 0.5em;
+    }
+
+    .@{anchor-prefix-cls}-link-mask {
+      position: absolute;
+      max-width: 0;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      left: var(--ti-anchor-orbit-width / 2);
+      width: 100%;
+      background-color: var(--ti-anchor-link-mask-bg-color);
+    }
+  
+    .@{anchor-prefix-cls}-orbit {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: var(--ti-anchor-orbit-width);
+      border-radius: calc(var(--ti-anchor-orbit-width / 2));
+      background-color: var(--ti-anchor-orbit-bg-color);
+      &-skid {
+        position: absolute;
+        left: 0;
+        width: var(--ti-anchor-orbit-skid-width);
+        background-color: var(--ti-anchor-orbit-bg-color);
+        &--active {
+          background-color: var(--ti-anchor-link-active-bg-color);
+        }
+      }
+    }
+  }
+
+  &-link-title:hover {
+    color: var(--ti-anchor-link-hover-text-color);
+  }
+
+  &-link {
+    margin: 0 0 0 var(--ti-anchor-link-margin-left);
+    cursor: pointer;
+    line-height: 22px;
+
+    &-title {
+      display: block;
+      max-width: 100%;
+      padding: var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-right)
+        var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-left);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      color: var(--ti-anchor-text-color);
+      &&--active {
+        color: var(--ti-anchor-link-active-text-color);
+      }
+    }
+  }
+
+  &__dot {
+    width: 160px;
+
+    .@{anchor-prefix-cls} {
+      padding: 0 16px;
+    }
+
+    .@{anchor-prefix-cls}-link {
+      position: relative;
+      padding-left: 10px;
+      margin-bottom: 16px;
+    }
+
+    .@{anchor-prefix-cls}-link-title {
+      padding-left: 16px;
+      padding-right: 0;
+      -webkit-line-clamp: 2;
+
+      &:before {
+        content: "";
+        display: block;
+        width: 10px;
+        height: 10px;
+        border: 2px solid var(--ti-anchor-text-color);
+        opacity: 0.08;
+        position: absolute;
+        border-radius: 50%;
+        left: 0px;
+        top: 6px;
+      }
+  
+      &:after {
+        content: "";
+        display: block;
+        width: 1px;
+        background-color: var(--ti-anchor-text-color);
+        opacity: 0.08;
+        position: absolute;
+        border-radius: 50%;
+        left: 5px;
+        top: 20px;
+        bottom: -18px;
+      }
+
+      &:hover,
+      &--active {
+        color: var(--ti-anchor-link-active-text-color);
+
+        &:before {
+          border: 2px solid var(--ti-anchor-link-active-text-color);
+          opacity: 1;
+        }
+      }
+    }
+
+    .@{anchor-prefix-cls}-link:last-child > .@{anchor-prefix-cls}-link-title:after {
+      display: none;
+    }
+
+  }
+}

@@ -1,0 +1,80 @@
+@import '../custom.less';
+@import './vars.less';
+
+@skeleton-item-prefix-cls: ~'@{css-prefix}skeleton-item';
+
+.@{skeleton-item-prefix-cls} {
+  .component-css-vars-skeleton-item();
+
+  &--active {
+    &.@{skeleton-item-prefix-cls} {
+      background: linear-gradient(100deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 60%) #f2f2f3;
+      background-size: 200% 100%;
+      background-position-x: 180%;
+      animation: 2s skeleton-loading ease-in-out infinite;
+    }
+  }
+
+  background-color: var(--ti-skeleton-item-bg-color);
+  border-radius: var(--ti-skeleton-item-border-radius);
+
+  &--square {
+    width: 100%;
+    height: var(--ti-skeleton-item-square-height);
+  }
+
+  &--circle {
+    border-radius: var(--ti-skeleton-item-circle-border-radius);
+    &.@{skeleton-item-prefix-cls} {
+      &--small {
+        width: var(--ti-skeleton-item-circle-small-size);
+        height: var(--ti-skeleton-item-circle-small-size);
+      }
+
+      &--medium {
+        width: var(--ti-skeleton-item-circle-medium-size);
+        height: var(--ti-skeleton-item-circle-medium-size);
+      }
+
+      &--large {
+        width: var(--ti-skeleton-item-circle-large-size);
+        height: var(--ti-skeleton-item-circle-large-size);
+      }
+    }
+  }
+
+  &--image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 40%;
+      height: 40%;
+      fill: var(--ti-skeleton-item-image-icon-color);
+    }
+
+    &.@{skeleton-item-prefix-cls} {
+      &--small {
+        width: var(--ti-skeleton-item-image-small-size-width);
+        height: var(--ti-skeleton-item-image-small-size-height);
+      }
+
+      &--medium {
+        width: var(--ti-skeleton-item-image-medium-size-width);
+        height: var(--ti-skeleton-item-image-medium-size-height);
+      }
+
+      &--large {
+        width: var(--ti-skeleton-item-image-large-size-width);
+        height: var(--ti-skeleton-item-image-large-size-height);
+      }
+    }
+  }
+}
+
+@keyframes skeleton-loading {
+  to {
+    background-position-x: -20%;
+  }
+}

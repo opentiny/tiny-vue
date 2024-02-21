@@ -1,0 +1,72 @@
+@import '../custom.less';
+
+@switch-prefix-cls: ~'@{css-prefix}switch';
+
+.@{switch-prefix-cls} {
+  @apply inline-block;
+  width: 50px;
+  @apply h-5;
+  @apply leading-5;
+  @apply rounded-3xl;
+  @apply align-middle;
+  @apply bg-color-text-placeholder;
+  @apply relative;
+  @apply cursor-pointer;
+  @apply outline-0;
+  @apply transition-all duration-200 ease-in-out;
+
+  & &-inner {
+    @apply text-color-text-inverse;
+    @apply text-xs;
+    @apply absolute;
+    left: 22px;
+    @apply top-0;
+  }
+
+  &.mini {
+    width: 38px;
+  }
+
+  &&-checked.disabled,
+  &.disabled {
+    @apply cursor-not-allowed;
+    @apply bg-color-text-disabled;
+    @apply border-color-text-primary;
+  }
+
+  &&-checked.disabled {
+    @apply bg-color-brand-disabled;
+  }
+
+  &::after {
+    @apply content-[''];
+    @apply w-4;
+    @apply h-4;
+    @apply rounded-full;
+    @apply bg-color-bg-1;
+    @apply absolute;
+    @apply ~'left-0.5';
+    @apply ~'translate-y-0.5';
+    @apply cursor-pointer;
+    transition: left 0.2s ease-in-out, width 0.2s ease-in-out;
+  }
+
+  &:not(.disabled)::after {
+    @apply shadow-xsm;
+  }
+
+  &&-checked {
+    @apply border-color-border-focus;
+    @apply bg-color-brand;
+
+    .@{switch-prefix-cls}-inner {
+      @apply left-2;
+      width: calc(~'100% - 25px');
+      @apply overflow-hidden;
+    }
+
+    &:after {
+      left: calc(~'100% - 18px');
+    }
+  }
+}

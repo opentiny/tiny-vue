@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="流程图&amp;步骤条" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="【PC】流程图-Flowchart（待评审）" transform="translate(-946.000000, -938.000000)">
+            <g id="3.导航类-Navigation/步骤条-Steps/子元素/小尺寸/图标节点-选中异常" transform="translate(946.000000, 938.000000)">
+                <path d="M12,0.5 C15.1625,0.5 18.0371816,1.79428833 20.1214466,3.87855339 C22.2057117,5.96281845 23.5,8.8375 23.5,12 C23.5,15.1625 22.2057117,18.0371816 20.1214466,20.1214466 C18.0371816,22.2057117 15.1625,23.5 12,23.5 C8.8375,23.5 5.96281845,22.2057117 3.87855339,20.1214466 C1.79428833,18.0371816 0.5,15.1625 0.5,12 C0.5,8.8375 1.79428833,5.96281845 3.87855339,3.87855339 C5.96281845,1.79428833 8.8375,0.5 12,0.5 Z" id="路径" stroke="#E02128" fill="#FEE7E8"></path>
+                <rect id="矩形" fill="#E02128" fill-rule="nonzero" x="11.25" y="6" width="1.5" height="8" rx="0.75"></rect>
+                <circle id="椭圆形" fill="#E02128" fill-rule="nonzero" cx="12" cy="17" r="1"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

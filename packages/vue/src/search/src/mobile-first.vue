@@ -1,0 +1,257 @@
+<template>
+  <div
+    :class="m(gcls('search-default'))"
+    data-tag="tiny-search"
+    @mouseenter="state.hovering = true"
+    @mouseleave="state.hovering = false"
+  >
+    <div
+      :class="
+        m(
+          gcls('pc-search-line'),
+          gcls({ 'pc-search-line-focus': state.focus }),
+          gcls({ 'pc-search-line-unfocus': !state.focus }),
+          gcls({ 'pc-search-line-big': big }),
+          gcls(`pc-search-line-${size}`),
+          gcls({ 'pc-search-line-unbig': size === 'small' && !big })
+        )
+      "
+      data-tag="tiny-search__line"
+    >
+      <transition name="mf-transition-search-line-fade" mode="out-in">
+        <div
+          v-show="!state.collapse && state.types.length"
+          data-tag="tiny-search__present"
+          :class="
+            m(
+              gcls('pc-search-present'),
+              gcls({ 'pc-search-present-big': big }),
+              gcls(`pc-search-present-${size}`),
+              gcls({ 'pc-search-present-unbig': size === 'small' && !big })
+            )
+          "
+          @click="showSelector"
+        >
+          <slot name="text" :slot-scope="state.searchValue">
+            <span data-tag="tiny-search__text" :class="m(gcls('pc-search-present-pointer'))">{{
+              state.searchValue.text
+            }}</span>
+          </slot>
+          <span data-tag="tiny-icon-outer" :class="m(gcls('pc-search-present-icon-outer'))">
+            <icon-chevron-down data-tag="tiny-svg-size" :class="m(gcls('pc-search-present-icon-chevron-down'))" />
+          </span>
+        </div>
+      </transition>
+      <input
+        ref="input"
+        v-model="state.currentValue"
+        :class="
+          m(
+            gcls({ 'pc-search-input-background-transparent': transparent }),
+            gcls({ 'pc-search-input-background-transparent-collapse': transparent && state.collapse }),
+            gcls('pc-search-input-default'),
+            gcls({ 'pc-search-input-collapse': state.collapse }),
+            gcls({ 'pc-search-input-uncollapse': !state.collapse }),
+            gcls({ 'pc-search-input-collapse-big': state.collapse && big }),
+            gcls(`pc-search-input-collapse-${size}`),
+            gcls({ 'pc-search-input-collapse-unbig': state.collapse && size === 'small' && !big }),
+            gcls({ 'pc-search-input-big': big }),
+            gcls(`pc-search-input-${size}`),
+            gcls({ 'pc-search-input-unbig': size === 'small' && !big })
+          )
+        "
+        :style="
+          transparent && state.collapse
+            ? {
+                background: 'rgba(255,255,255,0.3)'
+              }
+            : {}
+        "
+        :placeholder="placeholder"
+        type="text"
+        data-tag="tiny-search__input"
+        @keyup.enter="searchEnterKey"
+        @input="handleInput"
+        @change="handleChange"
+        @focus="state.focus = true"
+        @blur="state.focus = false"
+        @select.stop
+        :tabindex="tabindex"
+      />
+      <transition name="mf-transition-icon-scale-in">
+        <div
+          data-tag="tiny-search__input-btn"
+          :class="
+            m(
+              gcls('pc-search-input-btn-transtion'),
+              gcls({ 'pc-search-input-btn-transtion-big': big }),
+              gcls(`pc-search-input-btn-transtion-${size}`),
+              gcls({ 'pc-search-input-btn-transtion-unbig': size === 'small' && !big })
+            )
+          "
+          v-if="state.showClear && !state.collapse"
+        >
+          <a
+            :class="
+              m(
+                gcls('pc-search-input-btn-transtion-a'),
+                gcls({ 'pc-search-input-btn-transtion-a-big': big }),
+                gcls(`pc-search-input-btn-transtion-a-${size}`),
+                gcls({ 'pc-search-input-btn-transtion-a-unbig': size === 'small' && !big })
+              )
+            "
+            @click="clear"
+          >
+            <icon-close
+              @mousedown.prevent
+              data-tag="tiny-svg-size"
+              :class="m(gcls('pc-search-input-btn-transtion-svg-size'))"
+            />
+          </a>
+        </div>
+      </transition>
+      <div
+        data-tag="tiny-search__input-btn"
+        :class="
+          m(
+            gcls('pc-search-input-btn'),
+            gcls({ 'pc-search-input-btn-big': big }),
+            gcls(`pc-search-input-btn-${size}`),
+            gcls({ 'pc-search-input-btn-unbig': size === 'small' && !big })
+          )
+        "
+      >
+        <a
+          :class="
+            m(
+              gcls('pc-search-input-btn-a'),
+              gcls({ 'pc-search-input-btn-a-big': big }),
+              gcls(`pc-search-input-btn-a-${size}`),
+              gcls({ 'pc-search-input-btn-a-unbig': size === 'small' && !big })
+            )
+          "
+          @click="searchClick"
+        >
+          <icon-search
+            :class="
+              m(
+                gcls('pc-search-input-btn-icon-search'),
+                gcls({ 'pc-search-input-btn-icon-search-transparent': state.collapse && transparent })
+              )
+            "
+            data-tag="tiny-svg-size"
+          />
+        </a>
+      </div>
+    </div>
+    <transition name="mf-transition-zoom-in-top" mode="out-in">
+      <div
+        v-show="state.show && state.types.length"
+        ref="selector"
+        data-tag="tiny-search__selector"
+        :class="m(gcls('search-selector'))"
+      >
+        <div data-tag="tiny-search__selector-body" :class="m(gcls('search-selector-body'))">
+          <ul data-tag="tiny-search__poplist">
+            <li
+              v-for="(item, index) in state.types"
+              :key="index"
+              data-tag="tiny-search__poplist-item"
+              :class="
+                m(
+                  gcls('search-selector-poplist-item'),
+                  gcls({ 'search-selector-poplist-item-big': big }),
+                  gcls(`search-selector-poplist-item-${size}`),
+                  gcls({ 'search-selector-poplist-item-unbig': size === 'small' && !big })
+                )
+              "
+              @click="changeKey(item)"
+            >
+              <slot name="poplist" :slot-scope="item">{{ item.text }} </slot>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </transition>
+    <div :class="m(gcls('mobile-search'))">
+      <tiny-input
+        v-model="state.currentValue"
+        @input="handleInput"
+        :custom-class="
+          m(
+            gcls('mobile-search-input'),
+            gcls({ 'mobile-search-input-bg-change': changeBgColor }),
+            gcls({ 'mobile-search-input-big': big })
+          )
+        "
+        :placeholder="placeholder"
+        :size="size"
+      >
+        <template #prefix>
+          <icon-search
+            :class="
+              m(gcls('mobile-search-svg-size'), gcls({ 'mobile-search-svg-size-color': state.collapse && transparent }))
+            "
+            data-tag="tiny-svg-size"
+          />
+        </template>
+        <template v-if="state.showClear && !state.collapse" #suffix>
+          <span class="inline-block rounded-full">
+            <icon-error
+              data-tag="tiny-svg-size"
+              custom-class="w-4 h-4 fill-color-none-hover relative -top-0.5"
+              @click="clear"
+            />
+          </span>
+        </template>
+      </tiny-input>
+      <tiny-button
+        type="text"
+        @click="searchClick"
+        :class="m(gcls('mobile-search-button'), gcls({ 'mobile-search-button-notShowButton': !showButton }))"
+        >{{ t('ui.search.placeholder') }}</tiny-button
+      >
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { renderless, api } from '@opentiny/vue-renderless/search/vue'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { IconChevronDown, IconSearch, IconClose, IconError } from '@opentiny/vue-icon'
+import Input from '@opentiny/vue-input'
+import Button from '@opentiny/vue-button'
+import { classes } from './token'
+import type { ISearchApi } from '@opentiny/vue-renderless/types/search.type'
+
+export default defineComponent({
+  emits: ['change', 'update:modelValue', 'input', 'select', 'search', 'clear'],
+  props: [
+    ...props,
+    'mini',
+    'big',
+    'size',
+    'suffixIcon',
+    'transparent',
+    'searchTypes',
+    'placeholder',
+    'modelValue',
+    'tabindex',
+    'clearable',
+    'isEnterSearch',
+    'showButton',
+    'changeBgColor'
+  ],
+  components: {
+    IconChevronDown: IconChevronDown(),
+    IconSearch: IconSearch(),
+    IconClose: IconClose(),
+    IconError: IconError(),
+    TinyInput: Input,
+    TinyButton: Button
+  },
+  setup(props: any, context: any) {
+    return setup({ props, context, renderless, api, classes }) as unknown as ISearchApi
+  }
+})
+</script>

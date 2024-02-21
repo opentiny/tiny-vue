@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="流程图&amp;步骤条" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="【PC】流程图-Flowchart（待评审）" transform="translate(-744.000000, -936.000000)">
+            <g id="3.导航类-Navigation/步骤条-Steps/2.横向单链型/垂直节点/中尺寸备份-9" transform="translate(330.000000, 936.000000)">
+                <g id="导航类/Steps步骤条/圆形节点/纵向节点/默认备份-2" transform="translate(386.000000, 0.000000)">
+                    <g id="导航类/Steps步骤条/圆形节点/子节点/默认" transform="translate(28.000000, 0.000000)">
+                        <path d="M14,0 C21.7,0 28,6.3 28,14 C28,21.7 21.7,28 14,28 C6.3,28 0,21.7 0,14 C0,6.3 6.3,0 14,0 Z" id="路径" fill="#EEF3FE"></path>
+                        <path d="M14,6 C18.4,6 22,9.6 22,14 C22,18.4 18.4,22 14,22 C9.6,22 6,18.4 6,14 C6,9.6 9.6,6 14,6 Z" id="路径备份" fill="#0067D1"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

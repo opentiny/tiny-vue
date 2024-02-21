@@ -1,0 +1,177 @@
+@import '../custom.less';
+
+@form-prefix-cls: ~'@{css-prefix}form';
+@form-item-prefix-cls: ~'@{css-prefix}form-item';
+@tooltip-prefix-cls: ~'@{css-prefix}tooltip';
+@input-prefix-cls: ~'@{css-prefix}input';
+@textarea-prefix-cls: ~'@{css-prefix}textarea';
+@switch-prefix-cls: ~'@{css-prefix}switch';
+@range-editor-prefix-cls: ~'@{css-prefix}range-editor';
+
+.@{form-prefix-cls} {
+  @apply w-full;
+  @apply overflow-hidden;
+
+  div {
+    @apply outline-0;
+  }
+
+  &--inline {
+    .@{form-item-prefix-cls},
+    .@{form-item-prefix-cls}__content {
+      @apply inline-block;
+      @apply align-top;
+    }
+
+    .@{form-item-prefix-cls} {
+      @apply mr-18;
+    }
+
+    .@{form-item-prefix-cls}__label {
+      @apply float-none;
+      @apply inline-block;
+    }
+
+    .@{form-prefix-cls}--label-top .@{form-item-prefix-cls}__content {
+      @apply block;
+    }
+
+    .@{form-item-prefix-cls}--small .@{form-item-prefix-cls}__form-inline--small {
+      @apply h-7 leading-7;
+    }
+
+    .@{form-item-prefix-cls}--mini .@{form-item-prefix-cls}__form-inline--mini {
+      @apply h-6 leading-6;
+    }
+
+    .@{form-item-prefix-cls}--medium .@{form-item-prefix-cls}__form-inline--medium {
+      @apply h-8 leading-8;
+    }
+  }
+
+  &--label-left {
+    .@{form-item-prefix-cls}__label {
+      @apply text-left;
+    }
+  }
+
+  &--label-top {
+    .@{form-item-prefix-cls}__label {
+      @apply float-none;
+      @apply inline-block;
+      @apply text-left;
+      @apply leading-5;
+      @apply pt-0 pr-0 pb-1 pl-0;
+      @apply h-5;
+      @apply box-content;
+      @apply w-full;
+      @apply truncate;
+    }
+  }
+
+  &--label-top & {
+    @apply mb-4;
+  }
+
+  &--inline&--label-top {
+    .@{form-item-prefix-cls} {
+      @apply mb-4;
+      @apply mr-18;
+    }
+
+    .@{form-item-prefix-cls}__label {
+      @apply block;
+      @apply text-left;
+    }
+  }
+
+  &__valid {
+    &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
+      @apply p-1;
+      @apply leading-normal;
+
+      &.is-error[x-placement^='top'] .popper__arrow {
+        @apply -bottom-1;
+      }
+
+      &[x-placement^='top'] {
+        @apply ~'mb-1.5';
+      }
+
+      &[x-placement^='bottom'] {
+        @apply ~'mt-1.5';
+      }
+    }
+  }
+
+  &.asterisk-form {
+    @apply overflow-visible;
+
+    .@{form-item-prefix-cls} {
+      .@{form-item-prefix-cls}__label {
+        @apply overflow-hidden;
+        @apply relative;
+      }
+    }
+  }
+  &.asterisk-form.is-display-only {
+    .@{form-item-prefix-cls} {
+      @apply pl-0;
+    }
+  }
+  &.is-display-only {
+    .tiny-form-item__label {
+      @apply leading-normal;
+      @apply h-auto;
+      vertical-align: inherit;
+    }
+
+    .@{form-item-prefix-cls}.is-required:not(.is-no-asterisk) {
+      .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
+      & > .@{form-item-prefix-cls}__label:before {
+        @apply ~"content-['']";
+        @apply mr-0;
+      }
+    }
+
+    .@{form-item-prefix-cls}__content {
+      .tiny-checkbox {
+        @apply leading-normal;
+      }
+      .tiny-radio {
+        @apply leading-none;
+        @apply p-0;
+      }
+      .@{switch-prefix-cls} {
+        @apply mt-0;
+      }
+      .@{input-prefix-cls} {
+        &.@{range-editor-prefix-cls}.@{input-prefix-cls}__inner {
+          @apply h-4;
+        }
+      }
+      .@{textarea-prefix-cls}__inner {
+        @apply h-0;
+        @apply p-0;
+        @apply border-none;
+      }
+    }
+    .@{form-item-prefix-cls}--medium .@{form-item-prefix-cls}__content,
+    .@{form-item-prefix-cls}--small .@{form-item-prefix-cls}__content,
+    .@{form-item-prefix-cls}--mini .@{form-item-prefix-cls}__content {
+      .@{input-prefix-cls} .@{input-prefix-cls}__inner {
+        @apply h-4;
+        @apply leading-4;
+      }
+    }
+    .@{form-item-prefix-cls}--medium {
+      .@{form-item-prefix-cls}__label,
+      .@{form-item-prefix-cls}__content {
+        @apply text-sm;
+      }
+      .@{form-item-prefix-cls}__content .@{css-prefix}tooltip {
+        @apply text-sm;
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@import '../custom.less';
+
+@rate-prefix-cls: ~'@{css-prefix}rate';
+
+.@{rate-prefix-cls} {
+  @apply outline-0;
+
+  &:active,
+  &:focus {
+    @apply outline-0;
+  }
+
+  & &__star {
+    @apply relative;
+    @apply inline-block;
+    font-size: 0px;
+    @apply align-middle;
+    @apply text-center;
+    @apply leading-none;
+
+    .ratehalf {
+      @apply !fill-color-bg-3;
+    }
+  }
+
+  svg {
+    @apply duration-300;
+  }
+
+  svg.hover {
+    @apply scale-125;
+  }
+
+  & &__decimal {
+    @apply inline-block;
+    @apply overflow-hidden;
+    @apply text-base;
+    @apply absolute;
+    @apply top-0;
+    @apply ~'left-1/2';
+    @apply ~'-translate-x-2/4';
+  }
+
+  & &__text {
+    @apply align-middle;
+    @apply ml-3;
+    @apply text-xs;
+  }
+
+  & &__bottom-text {
+    @apply relative;
+    @apply text-xs;
+    @apply text-center;
+    @apply text-clip;
+    @apply overflow-hidden;
+    @apply mt-2;
+  }
+}
