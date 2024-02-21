@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-button @click="dragDialog"> 可拖拽弹窗 </tiny-button>
-    <tiny-button @click="dragDialogOutSide"> 可编辑拖拽弹窗 </tiny-button>
+    <tiny-button @click="dragDialogOutSide"> 可拖拽出窗口弹窗 </tiny-button>
     <tiny-dialog-box
       v-if="boxVisibility"
       draggable
