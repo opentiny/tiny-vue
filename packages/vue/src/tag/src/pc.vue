@@ -46,7 +46,7 @@ export default defineComponent({
         <span></span>
       )
 
-    return tagElement
+    return state.show && tagElement
   }
 })
 </script>

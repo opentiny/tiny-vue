@@ -16,7 +16,7 @@ export const handleClose =
   (event: Event) => {
     if (props.disabled) return
     event.stopPropagation()
-    state.show = false
+    !props.beforeDelete && (state.show = false)
     const close = () => emit('close', event)
     props.beforeDelete ? props.beforeDelete(close) : close()
   }
