@@ -1,12 +1,13 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility = true"> 可拖拽弹窗 </tiny-button>
-    <tiny-button @click="boxVisibility = true"> 可编辑拖拽弹窗 </tiny-button>
+    <tiny-button @click="dragDialog"> 可拖拽弹窗 </tiny-button>
+    <tiny-button @click="dragDialogOutSide"> 可编辑拖拽弹窗 </tiny-button>
     <tiny-dialog-box
+      v-if="boxVisibility"
       draggable
       v-model:visible="boxVisibility"
       title="鼠标移入标题区域单击拖拽"
-      :drag-outside-window="true"
+      :drag-outside-window="isDragOutSideFlag"
       width="30%"
       @drag-start="dragStart"
       @drag-end="dragEnd"
@@ -32,6 +33,7 @@ import { ref } from 'vue'
 import { Button as TinyButton, DialogBox as TinyDialogBox, Notify, Input as TinyInput, Modal } from '@opentiny/vue'
 
 const boxVisibility = ref(false)
+const isDragOutSideFlag = ref(false)
 const isNotifyMoving = ref(false)
 const input = ref('鼠标移入标题区域单击拖拽')
 
@@ -60,5 +62,14 @@ function dragMove() {
 }
 function beforeClose() {
   Modal.message({ message: 'before-close', status: 'info' })
+}
+function dragDialog() {
+  boxVisibility.value = true
+  isDragOutSideFlag.value = false
+}
+
+function dragDialogOutSide() {
+  boxVisibility.value = true
+  isDragOutSideFlag.value = true
 }
 </script>
