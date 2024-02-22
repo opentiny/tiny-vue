@@ -42,7 +42,12 @@
           <div data-tag="drawer-header" ref="header" v-if="showHeader" class="tiny-drawer__header-wrapper">
             <slot name="header">
               <div class="tiny-drawer__header">
-                <div v-if="title" class="tiny-drawer__title">{{ title }}</div>
+                <div class="tiny-drawer__header-left">
+                  <div v-if="title" class="tiny-drawer__title">{{ title }}</div>
+                  <tiny-tooltip v-if="tipsProps" v-bind="tipsProps">
+                    <icon-help-circle class="tiny-drawer__help-icon"></icon-help-circle>
+                  </tiny-tooltip>
+                </div>
                 <div class="tiny-drawer__header-right">
                   <slot name="header-right"></slot>
                 </div>
@@ -73,13 +78,16 @@
             <slot name="footer">
               <tiny-button
                 type="primary"
-                :style="{ order: state.isSaasTheme ? 1 : 0 }"
+                :class="['tiny-drawer__confirm-btn', { reverse: state.btnOrderReversed }]"
                 @click="handleClose('confirm')"
                 >{{ t('ui.button.confirm') }}</tiny-button
               >
-              <tiny-button plain :style="{ order: state.isSaasTheme ? 0 : 1 }" @click="handleClose('cancel')">{{
-                t('ui.button.cancel')
-              }}</tiny-button>
+              <tiny-button
+                plain
+                :class="['tiny-drawer__cancel-btn', { reverse: state.btnOrderReversed }]"
+                @click="handleClose('cancel')"
+                >{{ t('ui.button.cancel') }}</tiny-button
+              >
             </slot>
           </div>
         </div>
@@ -92,13 +100,16 @@
 import { renderless, api } from '@opentiny/vue-renderless/drawer/vue'
 import { setup, props } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/drawer/index.less'
-import { IconClose } from '@opentiny/vue-icon'
+import { iconClose, iconHelpCircle } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
+import Tooltip from '@opentiny/vue-tooltip'
 
 export default {
   components: {
     TinyButton: Button,
-    IconClose: IconClose()
+    TinyTooltip: Tooltip,
+    IconClose: iconClose(),
+    IconHelpCircle: iconHelpCircle()
   },
   props: [
     ...props,
@@ -116,7 +127,8 @@ export default {
     'flex',
     'showClose',
     'zIndex',
-    'beforeClose'
+    'beforeClose',
+    'tipsProps'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
