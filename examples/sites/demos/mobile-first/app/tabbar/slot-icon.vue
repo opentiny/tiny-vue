@@ -28,8 +28,8 @@ export default {
       IconMarkOn: IconMarkOn(),
       IconUser: IconUser(),
       icon: {
-        active: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`,
-        inactive: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`
+        active: 'https://his-beta.huawei.com/opentiny/webnova/static/img/tiny3bg.b5dd307.jpg',
+        inactive: '/static/images/3.jpg'
       }
     }
   }

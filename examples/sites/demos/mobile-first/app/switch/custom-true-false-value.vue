@@ -8,7 +8,7 @@
         <span>否</span>
       </template>
     </tiny-switch>
-    当前值: {{ value }}
+    当前值:{{ value }}
   </div>
 </template>
 

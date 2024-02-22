@@ -1,12 +1,12 @@
 <template>
   <div>
-    <tiny-line :data="chartData" :settings="chartSettings" :extend="extend"></tiny-line>
+    <tiny-chart-line :data="chartData" :settings="chartSettings" :extend="extend"></tiny-chart-line>
   </div>
 </template>
 
-<script setup>
+<script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartLine as TinyLine } from '@opentiny/vue'
+import { ChartLine as TinyChartLine } from '@opentiny/vue'
 
 const chartData = ref({
   columns: ['日期', '访问用户', '下单用户', '下单率'],
@@ -24,7 +24,9 @@ const chartSettings = ref({})
 const extend = ref({
   series: {
     label: {
-      show: true
+      normal: {
+        show: true
+      }
     }
   }
 })

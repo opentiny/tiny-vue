@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<script lang="jsx">
 import { Area, Button } from '@opentiny/vue'
 
 export default {

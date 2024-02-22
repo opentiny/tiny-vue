@@ -10,8 +10,7 @@ export default {
     Loading.service({
       text: '自定义背景颜色和透明度',
       target: document.getElementById('boxtwo'),
-      background: 'rgba(0, 0, 0, 0.3)',
-      tiny_mode: 'mobile-first'
+      background: 'rgba(0, 0, 0, 0.3)'
     })
   }
 }

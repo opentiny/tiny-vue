@@ -38,22 +38,5 @@ export default {
       'codeFiles': ['waterfall/demo5.vue']
     }
   ],
-  apis: [{ 'name': 'chart-waterfall', 'type': 'component', 'props': [], 'events': [], 'slots': [] }],
-  types: [
-    {
-      name: 'IChartSettings',
-      type: 'interface',
-      code: `
-interface IChartSettings {
-  dataType: string // 数据类型，可选值: KMB , normal , percent 
-  digit: number // 设置数据类型为 percent 时保留的位数，默认为2
-  dimension: string // 维度，默认 columns 第一项为维度
-  metrics: string // 指标，默认 columns 第二项为指标
-  remainName: string // 剩余的显示文案，默认显示其他
-  totalName: string // 总量的显示文案，默认显示总计
-  totalNum: number // 总量，默认瀑布图总量为所有数据的和
-}
-`
-    }
-  ]
+  apis: [{ 'name': 'chart-waterfall', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

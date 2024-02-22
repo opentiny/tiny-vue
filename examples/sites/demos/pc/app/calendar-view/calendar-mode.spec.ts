@@ -3,9 +3,9 @@ import { test, expect } from '@playwright/test'
 test('显示模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('calendar-view#calendar-mode')
-  const monthBtn = page.locator('label').nth(1)
-  const timelineBtn = page.locator('label').nth(2)
-  const scheduleBtn = page.locator('label').nth(3)
+  const monthBtn = page.locator('label').nth(2)
+  const timelineBtn = page.locator('label').nth(3)
+  const scheduleBtn = page.locator('label').nth(4)
   const dmonthDom = page.locator('.tiny-calendar-view-month__main')
   const timelineDom = page.locator('.tiny-calendar-view-week__timeline')
   const scheduleDom = page.locator('.tiny-calendar-view-week__schedule')

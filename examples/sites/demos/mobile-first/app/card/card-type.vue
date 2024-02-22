@@ -7,11 +7,7 @@
       </p>
     </tiny-card>
     <br />
-    <tiny-card
-      title="这是图片类型"
-      type="image"
-      :src="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`"
-    >
+    <tiny-card title="这是图片类型" type="image" src="/static/images/dsj.png">
       <p>
         这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，
         这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，
@@ -29,12 +25,7 @@
       </p>
     </tiny-card>
     <br />
-    <tiny-card
-      title="这是logo类型"
-      type="logo"
-      size="mini"
-      :src="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/user-head.png`"
-    >
+    <tiny-card title="这是logo类型" type="logo" size="mini" src="/static/images/user-head.png">
       <p>这是一段长文本内容，这是一段长文本内容</p>
     </tiny-card>
   </div>

@@ -50,5 +50,87 @@ export default {
       },
       codeFiles: ['event.vue']
     }
+  ],
+  apis: [
+    {
+      name: 'Radio', // 组件名称展示使用
+      type: 'component', // API 类型
+      properties: [
+        {
+          name: 'disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否禁用</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'disabled'
+        },
+        {
+          name: 'label',
+          type: 'object | string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>Radio 的 value,该属性默认为{}</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'label'
+        },
+        {
+          name: 'name',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>原生 name 属性</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'base'
+        },
+        {
+          name: 'text',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>文本</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'base'
+        },
+        {
+          name: 'value',
+          type: 'object | string',
+          defaultValue: '{}',
+          desc: {
+            'zh-CN': '<p>绑定值，该属性默认为{}</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'base'
+        }
+      ],
+      events: [
+        {
+          name: 'change',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>绑定值变化时触发的事件,可获取changeValue</p>',
+            'en-US': 'Click'
+          },
+          demoId: 'event'
+        }
+      ],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>Radio的内容</p>',
+            'en-US': 'Click'
+          },
+          demoId: ''
+        }
+      ]
+    }
   ]
 }

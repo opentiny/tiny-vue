@@ -1,5 +1,9 @@
 ---
-title: SliderButton 滑动按钮组
+title: Radio 单选框
 ---
 
-# SliderButton 滑动按钮组
+# Radio 单选框
+
+<div>
+用于配置不同场景的选项，在一组备选项中进行单选
+</div>

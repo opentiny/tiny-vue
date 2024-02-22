@@ -34,14 +34,9 @@ test('测试日期范围选择', async ({ page }) => {
   await page.locator('li:nth-child(2) > span').first().click()
   await page.getByRole('button', { name: '确定' }).first().click()
   await page.getByRole('textbox', { name: '结束时间' }).click()
-  await page
-    .locator(
-      'span:nth-child(3) > span:nth-child(2) > .tiny-time-panel > .tiny-time-panel__content > .tiny-time-spinner > div > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(3) > span'
-    )
-    .first()
-    .click()
+  await page.locator('span:nth-child(3) > span:nth-child(2) > .tiny-time-panel > .tiny-time-panel__content > .tiny-time-spinner > div > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(3) > span').first().click()
   await page.getByRole('button', { name: '确定' }).first().click()
-  await page.locator('.tiny-picker-panel__footer').getByRole('button', { name: '确定' }).click()
+  await page.getByRole('button', { name: '确定' }).click()
   await expect(startDateTime).toHaveValue('2023-06-04 01:00:00')
   await expect(endDateTime).toHaveValue('2023-07-10 02:00:00')
 

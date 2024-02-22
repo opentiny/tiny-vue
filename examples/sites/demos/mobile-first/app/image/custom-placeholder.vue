@@ -2,11 +2,11 @@
   <div class="flex">
     <div class="px-5">
       <p>默认</p>
-      <tiny-image :src="url" :image-size="500"></tiny-image>
+      <tiny-image :src="url" :image-size="600"></tiny-image>
     </div>
     <div class="px-5">
       <p>自定义</p>
-      <tiny-image :src="url" :image-size="500">
+      <tiny-image :src="url" :image-size="600">
         <template #placeholder>
           <div class="image-slot">加载中<span>...</span></div>
         </template>
@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/9.jpg`
+      url: '/static/images/9.jpg'
     }
   }
 }

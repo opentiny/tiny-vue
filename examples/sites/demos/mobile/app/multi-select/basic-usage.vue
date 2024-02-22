@@ -1,12 +1,23 @@
 <template>
-  <div class="demo-multi-select">
-    <tiny-multi-select :data-source="data" v-model="value"> </tiny-multi-select>
-
-    <p>value: {{ value }}</p>
+  <div>
+    <div class="page__hd">
+      <h1 class="page__title">MultiSelect</h1>
+      <p class="page__desc">下拉选择器</p>
+    </div>
+    <div class="page__content">
+      <tiny-multi-select
+        ref="multiSelect"
+        :data-source="data"
+        :default-selected-array="defaultSelectedArray"
+        @confirm="confirm"
+        @reset="reset"
+      >
+      </tiny-multi-select>
+    </div>
   </div>
 </template>
 
-<script>
+<script lang="jsx">
 import { MultiSelect } from '@opentiny/vue'
 
 export default {
@@ -15,55 +26,49 @@ export default {
   },
   data() {
     return {
-      value: ['', '', ''],
       data: [
         {
           title: '时间',
-          options: [
+          hasFooter: true,
+          children: [
             {
               label: '2020年',
-              value: '2020年',
               children: [
                 {
                   label: '2020全年',
-                  children: [],
-                  value: '2020全年'
+                  children: [
+                    {
+                      label: '年'
+                    }
+                  ]
                 },
                 {
                   label: '2020年Q1',
                   children: [
                     {
-                      label: '2020年Q1一月',
-                      value: '2020年Q1一月'
+                      label: '2020年Q1一月'
                     },
                     {
-                      label: '2020年Q1二月',
-                      value: '2020年Q1二月'
+                      label: '2020年Q1二月'
                     },
                     {
-                      label: '2020年Q1三月',
-                      value: '2020年Q1三月'
+                      label: '2020年Q1三月'
                     }
-                  ],
-                  value: '2020年Q1'
+                  ]
                 },
                 {
                   label: '2020年Q2',
                   children: [
                     {
-                      label: '2020年Q2四月',
-                      value: '2020年Q2四月'
+                      label: '2020年Q2四月'
                     },
                     {
-                      label: '2020年Q2五月',
-                      value: '2020年Q2五月'
+                      label: '2020年Q2五月'
                     },
                     {
-                      label: '2020年Q2六月',
-                      value: '2020年Q2六月'
+                      label: '2020年Q2六月'
                     }
-                  ],
-                  value: '2020年Q2'
+                  ]
                 }
               ]
             },
@@ -74,50 +79,39 @@ export default {
                   label: '2021全年',
                   children: [
                     {
-                      label: '年',
-                      value: '年'
+                      label: '年'
                     }
-                  ],
-                  value: '2021全年'
+                  ]
                 },
                 {
                   label: '2021年Q1',
                   children: [
                     {
-                      label: '2021年Q1一月',
-                      value: '2021年Q1一月'
+                      label: '2021年Q1一月'
                     },
                     {
-                      label: '2021年Q1二月',
-                      value: '2021年Q1二月'
+                      label: '2021年Q1二月'
                     },
                     {
-                      label: '2021年Q1三月',
-                      value: '2021年Q1三月'
+                      label: '2021年Q1三月'
                     }
-                  ],
-                  value: '2021年Q1'
+                  ]
                 },
                 {
                   label: '2021年Q2',
                   children: [
                     {
-                      label: '2021年Q2四月',
-                      value: '2021年Q2四月'
+                      label: '2021年Q2四月'
                     },
                     {
-                      label: '2021年Q2五月',
-                      value: '2021年Q2五月'
+                      label: '2021年Q2五月'
                     },
                     {
-                      label: '2021年Q2六月',
-                      value: '2021年Q2六月'
+                      label: '2021年Q2六月'
                     }
-                  ],
-                  value: '2021年Q2'
+                  ]
                 }
-              ],
-              value: '2021年'
+              ]
             },
             {
               label: '2022年',
@@ -126,129 +120,133 @@ export default {
                   label: '2022全年',
                   children: [
                     {
-                      label: '年',
-                      value: '年'
+                      label: '年'
                     }
-                  ],
-                  value: '2022全年'
+                  ]
                 },
                 {
                   label: '2022年Q1',
                   children: [
                     {
-                      label: '2022年Q1一月',
-                      value: '2022年Q1一月'
+                      label: '2022年Q1一月'
                     },
                     {
-                      label: '2022年Q1二月',
-                      value: '2022年Q1二月'
+                      label: '2022年Q1二月'
                     },
                     {
-                      label: '2022年Q1三月',
-                      value: '2022年Q1三月'
+                      label: '2022年Q1三月'
                     }
-                  ],
-                  value: '2022年Q1'
+                  ]
                 },
                 {
                   label: '2022年Q2',
                   children: [
                     {
-                      label: '2022年Q2四月',
-                      value: '2022年Q2四月'
+                      label: '2022年Q2四月'
                     },
                     {
-                      label: '2022年Q2五月',
-                      value: '2022年Q2五月'
+                      label: '2022年Q2五月'
                     },
                     {
-                      label: '2022年Q2六月',
-                      value: '2022年Q2六月'
+                      label: '2022年Q2六月'
                     }
-                  ],
-                  value: '2022年Q2'
+                  ]
                 }
-              ],
-              value: '2022年'
+              ]
             }
           ]
         },
         {
           title: '区域',
-          multiple: true,
-          options: [
+          hasFooter: true,
+          children: [
             {
               label: '海外',
               children: [
                 {
-                  label: '欧洲巴黎',
-                  value: '欧洲巴黎'
+                  label: '欧洲巴黎'
                 },
                 {
-                  label: '巴基斯坦',
-                  value: '巴基斯坦'
+                  label: '巴基斯坦'
                 },
                 {
-                  label: '土耳其',
-                  value: '土耳其'
+                  label: '土耳其'
                 }
-              ],
-              value: '海外'
+              ]
             },
             {
               label: '中国',
               children: [
                 {
-                  label: '北京',
-                  value: '北京'
+                  label: '北京'
                 },
                 {
-                  label: '上海',
-                  value: '上海'
+                  label: '上海'
                 },
                 {
-                  label: '南京',
-                  value: '南京'
+                  label: '南京'
                 }
-              ],
-              value: '中国'
+              ]
             }
           ]
         },
         {
           title: '云类型',
-          options: [
+          hasFooter: false,
+          children: [
             {
-              label: '公有云',
-              value: '公有云'
+              label: '公有云'
             },
             {
-              label: '私有云',
-              value: '私有云'
+              label: '私有云'
             },
             {
-              label: '伙伴云',
-              value: '伙伴云'
+              label: '伙伴云'
             },
             {
-              label: '公有云1',
-              value: '公有云1'
+              label: '公有云1'
             },
             {
-              label: '公有云2',
-              value: '公有云2'
+              label: '公有云2'
             }
           ]
         }
-      ]
+      ],
+      defaultSelectedArray: []
+    }
+  },
+  methods: {
+    confirm(...arg) {
+      console.log(...arg)
+    },
+    reset(...arg) {
+      console.log(...arg)
     }
   }
 }
 </script>
 
 <style scoped>
-.demo-multi-select {
-  position: relative;
-  height: 100%;
+.page__hd {
+  padding: 40px;
+}
+
+.page__title {
+  font-weight: 400;
+  font-size: 21px;
+  text-align: left;
+}
+
+.page__desc {
+  margin-top: 5px;
+  color: #888;
+  font-size: 14px;
+  text-align: left;
+}
+
+.page__content {
+  width: 375px;
+  height: 48px;
+  background-color: #fff;
 }
 </style>

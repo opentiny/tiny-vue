@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script>
+<script lang="jsx">
 import { FileUpload, Button, Modal } from '@opentiny/vue'
 
 export default {

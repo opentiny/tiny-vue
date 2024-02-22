@@ -14,6 +14,7 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
+
     {
       demoId: 'checked-status',
       name: {
@@ -210,44 +211,84 @@ export default {
         'en-US': '<p>The maximum height of the drop-down can be set by adding the `max-height` attribute.</p>'
       },
       codeFiles: ['max-height.vue']
+    }
+  ],
+  apis: [
+    {
+      'name': 'Dropdown',
+      'type': 'component',
+      'props': [
+        {
+          'name': 'show-self-icon ',
+          'type': 'Boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '更多图标下拉菜单。',
+            'en-US': 'More icon drop-down list.'
+          },
+          'demoId': 'many-dropdown'
+        },
+        {
+          'name': 'single-button',
+          'type': 'Boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '下拉触发元素呈现为按钮组。',
+            'en-US': 'The drop-down trigger element is rendered as a button group.'
+          },
+          'demoId': 'button-dropdown'
+        }
+      ]
     },
     {
-      demoId: 'disabled',
-      name: {
-        'zh-CN': '禁用',
-        'en-US': 'Disabled'
-      },
-      desc: {
-        'zh-CN': '<p>Dropdown、DropdownItem 两个组件分别可以通过 disabled 属性设置禁用状态。</p>',
-        'en-US': '<p>The Dropdown and DropdownItem components can be disabled through the disabled attribute.</p>'
-      },
-      codeFiles: ['disabled.vue']
+      'name': 'Dropdown-Menu',
+      'type': '属性',
+      'props': [
+        {
+          'name': 'custom-class',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '设置弹出下拉自定义样式。',
+            'en-US': 'Set the custom style of the pop-up drop-down list.'
+          }
+        },
+        {
+          'name': 'max-height',
+          'type': 'Number | String',
+          'defaultValue': '400',
+          'desc': {
+            'zh-CN': '设置下拉最大高度。',
+            'en-US': 'Sets the maximum pull-down height. '
+          },
+          'demoId': 'max-height'
+        },
+        {
+          'name': 'multi-stage',
+          'type': 'Boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '设置二级下拉菜单。',
+            'en-US': 'Sets the level-2 drop-down list. '
+          },
+          'demoId': 'multi-stage'
+        }
+      ]
     },
     {
-      demoId: 'hide-on-click',
-      name: {
-        'zh-CN': '菜单隐藏方式',
-        'en-US': 'Menu Hiding Mode'
-      },
-      desc: {
-        'zh-CN':
-          '<p>下拉菜单默认在点击菜单项后会被隐藏，由 `hide-on-click` 属性控制，默认为 `true`，设置为 `false` 可以关闭此功能。</p>',
-        'en-US':
-          '<p>By default, the drop-down menu is hidden after a menu item is clicked. The drop-down menu is controlled by the `hide-on-click` attribute. The default value is `true`. You can set this parameter to `false` to disable this function.</p>'
-      },
-      codeFiles: ['hide-on-click.vue']
-    },
-    {
-      demoId: 'round',
-      name: {
-        'zh-CN': '圆角',
-        'en-US': 'Round'
-      },
-      desc: {
-        'zh-CN': '<p>`border` 为 `true` 时，通过 `round` 属性设置是否为圆角。</p>',
-        'en-US': '<p>When `border` is set to `true`, the `round` attribute is used to set whether to round corners.</p>'
-      },
-      codeFiles: ['round.vue']
+      'name': 'Dropdown-Item',
+      'type': '属性',
+      'props': [
+        {
+          'name': 'level',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '设置二级下拉菜单标志',
+            'en-US': 'Sets the level-2 drop-down menu flag.'
+          }
+        }
+      ]
     }
   ]
 }

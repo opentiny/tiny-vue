@@ -86,5 +86,107 @@ export default {
       },
       codeFiles: ['event.vue']
     }
+  ],
+  apis: [
+    {
+      name: 'Button', // 组件名称展示使用
+      type: 'component', // API 类型
+      properties: [
+        {
+          name: 'disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>设置按钮是否被禁用,该属性默认为false</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'disabled'
+        },
+        {
+          name: 'icon',
+          type: 'VueComponent',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>svg 图片对象</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'icon'
+        },
+        {
+          name: 'loading',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>svg 是否加载中状态，该属性默认为false</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'loading'
+        },
+        {
+          name: 'reset-time',
+          type: 'number',
+          defaultValue: '0',
+          desc: {
+            'zh-CN': '<p>设置按钮禁用时间，防止重复提交，单位毫秒,该属性默认为1000</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'reset-time'
+        },
+        {
+          name: 'size',
+          type: 'string',
+          defaultValue: '"large" | "medium" | "small" | "mini"',
+          desc: {
+            'zh-CN': '<p>尺寸</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'size'
+        },
+        {
+          name: 'type',
+          type: '"primary" | "secondary" | "text" |"icon" | "danger"',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>类型</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'base'
+        },
+        {
+          name: 'text',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置按钮显示的文本，可配置国际化 </p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'base'
+        }
+      ],
+      events: [
+        {
+          name: 'click',
+          type: '(event: PointEvent) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置当按钮被点击时触发的回调函数。</p>',
+            'en-US': 'Click'
+          },
+          demoId: 'event'
+        }
+      ],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>组件默认插槽</p>',
+            'en-US': 'Click'
+          },
+          demoId: ''
+        }
+      ]
+    }
   ]
 }

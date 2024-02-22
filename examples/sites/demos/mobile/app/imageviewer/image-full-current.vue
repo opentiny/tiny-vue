@@ -22,11 +22,7 @@ export default {
   },
   data() {
     return {
-      srcList: [
-        `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog1.png`,
-        `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`,
-        `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog3.png`
-      ],
+      srcList: ['/static/images/dog1.png', '/static/images/dog2.png', '/static/images/dog3.png'],
       shows: false
     }
   },

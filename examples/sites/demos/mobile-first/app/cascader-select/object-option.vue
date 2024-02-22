@@ -1,7 +1,6 @@
 <template>
   <div date-tag="tiny-demo">
     <tiny-button @click="showCascader">点击显示级联选择</tiny-button>
-    值: {{ value }}
     <tiny-cascader-select
       v-model="value"
       :options="optionList"

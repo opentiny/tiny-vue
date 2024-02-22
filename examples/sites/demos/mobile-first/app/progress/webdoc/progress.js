@@ -14,6 +14,7 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
+
     {
       demoId: 'progress-type',
       name: {
@@ -58,7 +59,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p><code>stroke-width<code>自定义进度条的宽度，单位 px。<p>',
+        'zh-CN': '<p><code>stroke-width<code>自定义进度条的宽度，单位 px<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['progress-width.vue']
@@ -66,62 +67,14 @@ export default {
     {
       demoId: 'progress-status',
       name: {
-        'zh-CN': '进度条状态',
-        'en-US': 'Progress bar status'
+        'zh-CN': '状态',
+        'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p><code>status</code>进度条状态（success/exception/warning）。<p>',
-        'en-US': '<p><code>status</code>Progress bar status (success/exception/warning).</p>'
+        'zh-CN': '<p><code>status</code>进度条当前状态（success/exception/warning）<p>',
+        'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['progress-status.vue']
-    },
-    {
-      demoId: 'status-loading',
-      name: {
-        'zh-CN': '定义加载状态',
-        'en-US': 'Defines the loading status'
-      },
-      desc: {
-        'zh-CN': '<p>定义加载状态。<p>',
-        'en-US': '<p>Defines the loading status.</p>'
-      },
-      codeFiles: ['status-loading.vue']
-    },
-    {
-      demoId: 'status-error',
-      name: {
-        'zh-CN': '定义错误状态',
-        'en-US': 'Defines the error status'
-      },
-      desc: {
-        'zh-CN': '<p>定义错误状态。<p>',
-        'en-US': '<p>Defines the error status.</p>'
-      },
-      codeFiles: ['status-error.vue']
-    },
-    {
-      demoId: 'status-reloading',
-      name: {
-        'zh-CN': '定义重载状态',
-        'en-US': 'Defines the overload status'
-      },
-      desc: {
-        'zh-CN': '<p>定义重载状态。<p>',
-        'en-US': '<p>Defines the overload status.</p>'
-      },
-      codeFiles: ['status-reloading.vue']
-    },
-    {
-      demoId: 'status-sucess',
-      name: {
-        'zh-CN': '定义成功状态',
-        'en-US': 'Define Success Status'
-      },
-      desc: {
-        'zh-CN': '<p>定义成功状态。<p>',
-        'en-US': '<p>Define Success Status.</p>'
-      },
-      codeFiles: ['status-sucess.vue']
     },
     {
       demoId: 'text-inside-or-no-text',
@@ -172,5 +125,6 @@ export default {
       },
       codeFiles: ['dynamic-control-changes.vue']
     }
-  ]
+  ],
+  apis: []
 }

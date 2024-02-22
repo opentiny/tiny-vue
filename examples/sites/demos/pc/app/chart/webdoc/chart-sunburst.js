@@ -18,12 +18,6 @@ export default {
       'name': { 'zh-CN': '复杂示例', 'en-US': 'Complex Example' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['sunburst/demo2.vue']
-    },
-    {
-      'demoId': 'sunburst-demo3',
-      'name': { 'zh-CN': '配置 lable', 'en-US': 'Configuring Labels' },
-      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
-      'codeFiles': ['sunburst/demo3.vue']
     }
   ],
   apis: [{ 'name': 'chart-sunburst', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

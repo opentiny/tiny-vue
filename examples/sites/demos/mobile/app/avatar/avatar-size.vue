@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      circleUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/circle.png`
+      circleUrl: '/static/images/circle.png'
     }
   }
 }

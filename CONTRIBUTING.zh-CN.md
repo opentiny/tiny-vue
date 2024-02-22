@@ -40,45 +40,30 @@
 
 ### Pull Request 规范
 
-#### Commit 信息
+- commit 信息要以 `type(scope): 描述信息` 的形式填写，例如 `fix(vue-renderless): [scrollbar, action-menu] fix xxx bug`。
 
-commit 信息要以 `type(scope): 描述信息` 的形式填写，例如 `fix(vue-renderless): [scrollbar, action-menu] fix xxx bug`。
+  1. type: 必须是 build, chore, ci, docs, feat, fix, perf, refactor, revert, release, style, test, improvement 其中的一个。
 
-1. type: 必须是 build, chore, ci, docs, feat, fix, perf, refactor, revert, release, style, test, improvement 其中的一个。
+  2. scope:
 
-2. scope:
+  - `packages`目录下的包名，比如：`vue-design-aurora, vue-design-saas, react ......`
+  - `packages`目录下的包名下的组件名，比如：`vue-design-aurora/alert, vue-design-saas/alert, react/alert ......`
+  - 用文件夹的名称: 比如: `gulp, internals/playwright-config, sites`
+  - 组件的名称(小写，中划线): 比如: `action-menu, alert ......`
 
-- `packages`目录下的包名，比如：`vue-design-aurora, vue-design-saas, react ......`
-- `packages`目录下的包名下的组件名，比如：`vue-design-aurora/alert, vue-design-saas/alert, react/alert ......`
-- 用文件夹的名称: 比如: `gulp, internals/playwright-config, sites`
-- 组件的名称(小写，中划线): 比如: `action-menu, alert ......`
+- Pull Request 的标题
 
-#### Pull Request 的标题
+  1. 标题的规范与 commit 信息一样，以`type(scope): 描述信息` 的形式填写。
 
-1. 标题的规范与 commit 信息一样，以`type(scope): 描述信息` 的形式填写。
+  2. 触发组件的 e2e 测试: 在 Pull Request 标题里添加 `[componentName1, componentName2]`，将会执行 componentName1，componentName2 的测试用例，当改动的代码会影响组件时，需要声明这个结构。
 
-2. 触发组件的 **e2e 测试**: 在 Pull Request 标题里添加 `[componentName1, componentName2]`，将会执行 componentName1，componentName2 的测试用例，当改动的代码会影响组件时，需要声明这个结构。
+  3. 标题示例:
 
-   - 注：本项目下的 `github action` 会用`[componentName1, componentName2]`声明的组件名匹配 `examples/sites/demos` 目录下的路径名称，识别要执行的测试e2e用例。（因为全量跑测试用例太耗费时间）
+  - 补充 alert 组件文档： `docs(alert): [alert] xxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
+  - 补充 alet 组件测试用例: `test(alert): [alert] xxxxxxxxxxxxxx`
+  - 修复 alet 组件 @opentiny/vue-renderless 下的缺陷: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
 
-   - 当修改了某个组件的子组件，比如`col`组件，它本身没有对应的示例以及测试用例，这时应该要测试的是`layout`组件，因为`col`组件是`layout`组件的子组件，PR 标题可以这样： `fix(col): [layout] xxxxxxxxxxxxxx`
-
-3. 标题示例:
-
-- 补充 alert 组件文档： `docs(alert): [alert] xxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
-- 补充 alet 组件测试用例: `test(alert): [alert] xxxxxxxxxxxxxx`
-- 修复 alet 组件 @opentiny/vue-renderless 下的缺陷: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
-
-#### Pull Request 的描述
-
-PR 描述使用了模板，需要按照模板填写 PR 相关信息，主要包括：
-
-- PR 自检项：Commit 信息是够符合规范、是否补充了 E2E 测试用例、是否补充了文档
-- PR 类型：缺陷修复、新特性、代码格式调整、重构等
-- 关联的 Issue 编号
-- 是否包含破坏性变更
-
-### 本地启动步骤
+本地启动步骤：
 
 - 点击 [TinyVue](https://github.com/opentiny/tiny-vue) 代码仓库右上角的 Fork 按钮，将上游仓库 Fork 到个人仓库
 - Clone 个人仓库到本地
@@ -105,7 +90,7 @@ pnpm dev
 pnpm dev:vue2
 ```
 
-### 提交 PR 的步骤
+提交 PR 的步骤：
 
 - 请确保你已经完成本地启动中的步骤，并能正常访问：[http://127.0.0.1:7130/](http://127.0.0.1:7130/)
 - 同步上游仓库 dev 分支最新代码：git pull upstream dev
@@ -114,7 +99,6 @@ pnpm dev:vue2
 - 遵循 [Commit Message Format](https://www.conventionalcommits.org/zh-hans/v1.0.0/) 规范进行提交，不符合提交规范的 PR 将不会被合并
 - 提交到远程仓库：git push origin branchName
 - 打开 TinyVue 代码仓库的 [Pull requests](https://github.com/opentiny/tiny-vue/pulls) 链接，点击 New pull request 按钮提交 PR
-- 按照 PR 模板补充相关信息，包括 PR 自检项、PR 类型、关联的 Issue 编号、是否是破坏性变更
 - 项目 Committer 进行 Code Review，并提出意见
 - PR 作者根据意见调整代码，请注意一个分支发起了 PR 后，后续的 commit 会自动同步，无需重新提交 PR
 - 项目管理员合并 PR

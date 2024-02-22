@@ -14,6 +14,7 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
+
     {
       demoId: 'clearable',
       name: {
@@ -124,6 +125,30 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['suffix-icon.vue']
+    },
+    {
+      demoId: 'slot-prefix',
+      name: {
+        'zh-CN': '可通过 slot="prefix" 设置头部图标',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p><p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['slot-prefix.vue']
+    },
+    {
+      demoId: 'slot-suffix',
+      name: {
+        'zh-CN': '可通过 slot="suffix" 设置尾部图标',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p><p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['slot-suffix.vue']
     },
     {
       demoId: 'resize',
@@ -466,20 +491,6 @@ export default {
       codeFiles: ['method-select.vue']
     },
     {
-      demoId: 'mask',
-      name: {
-        'zh-CN': '掩码',
-        'en-US': 'Mask'
-      },
-      desc: {
-        'zh-CN':
-          '<p>\n        <p>可通过 mask 属性启用掩码功能，只在 disabled 和 display-only 状态下生效。</p>\n        <p>注意：不要与 type="password" 和 show-password 一同使用</p>\n      </p>',
-        'en-US':
-          '<p>\n        <p> The mask attribute can be used to enable the mask function, which takes effect only in the disabled and display-only states. </p>\n        <p> Note: Do not use </p> with type="password" and show-password\n      </p>'
-      },
-      codeFiles: ['mask.vue']
-    },
-    {
       demoId: 'custom-class',
       name: {
         'zh-CN': '自定义样式',
@@ -503,5 +514,6 @@ export default {
       },
       codeFiles: ['display-only-content.vue']
     }
-  ]
+  ],
+  apis: []
 }

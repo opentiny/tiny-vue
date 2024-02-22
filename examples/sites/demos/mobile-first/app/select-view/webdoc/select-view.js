@@ -14,6 +14,7 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
+
     {
       demoId: 'field',
       name: {
@@ -89,5 +90,6 @@ export default {
       },
       codeFiles: ['place-holder.vue']
     }
-  ]
+  ],
+  apis: []
 }

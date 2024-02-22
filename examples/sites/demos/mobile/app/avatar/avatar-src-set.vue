@@ -17,12 +17,11 @@ export default {
     TinyAvatar: Avatar
   },
   data() {
-    const urlPrefix = import.meta.env.VITE_APP_BUILD_BASE_URL
     return {
       IconClockWork: iconClockWork(),
-      circleUrl: `${urlPrefix}static/images/circle.png`,
-      circleUrlfit: `${urlPrefix}static/images/dog1.png`,
-      srcSet: `${urlPrefix}static/images/dog1.png 100w,${urlPrefix}static/images/dog2.png 300w,${urlPrefix}static/images/dog3.png 500w`,
+      circleUrl: '/static/images/circle.png',
+      circleUrlfit: '/static/images/dog1.png',
+      srcSet: '/static/images/dog1.png 100w,/static/images/dog2.png 300w,/static/images/dog3.png 500w',
       errorUrl: 'error.png', // 使用错误路径
       onError() {
         console.log('加载失败')

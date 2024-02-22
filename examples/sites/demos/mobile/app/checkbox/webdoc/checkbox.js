@@ -91,5 +91,129 @@ export default {
       },
       codeFiles: ['event-change.vue']
     }
+  ],
+  apis: [
+    {
+      name: 'Checkbox', // 组件名称展示使用
+      type: 'component', // API 类型
+      properties: [
+        {
+          name: 'checked',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否选中</p>',
+            'en-US': '<p>whether checked</p>'
+          },
+          demoId: ''
+        },
+        {
+          name: 'disabled',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否禁用</p>',
+            'en-US': '<p>whether disabled</p>'
+          },
+          demoId: 'disabled'
+        },
+        {
+          name: 'false-label',
+          type: 'String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>未选中的值</p>',
+            'en-US': '<p>alue when no option is selected</p>'
+          },
+          demoId: 'custom-value'
+        },
+        {
+          name: 'icon-position',
+          type: 'String',
+          defaultValue: 'center',
+          desc: {
+            'zh-CN': "<p>图标与文本的对齐方式，可选值：'center' | 'top'</p>",
+            'en-US': "<p>Alignment of icon and text, optional value: 'center' | 'top'</p>"
+          },
+          demoId: 'icon-position'
+        },
+        {
+          name: 'true-label',
+          type: 'String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>选中时的值</p>',
+            'en-US': '<p>selected value</p>'
+          },
+          demoId: 'custom-value'
+        },
+        {
+          name: 'indeterminate',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>设置 indeterminate 状态，只负责样式控制,该属性默认为 false</p>',
+            'en-US':
+              '<p>Setting an indeterminate state, which only controls the style, and this property by default is false.</p>'
+          },
+          demoId: 'indeterminate'
+        },
+        {
+          name: 'label',
+          type: 'String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>选中状态的值（只有在checkbox-group或者绑定对象类型为array时有效）</p>',
+            'en-US':
+              '<p>The value of the selected state (only valid for checkbox-group or when the bound object is of type array)</p>'
+          },
+          demoId: 'basic-usage'
+        },
+        {
+          name: 'name',
+          type: 'String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>原生 name 属性</p>',
+            'en-US': '<p>native name attribute.</p>'
+          },
+          demoId: ''
+        },
+        {
+          name: 'v-model / modelValue',
+          type: 'String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>绑定值</p>',
+            'en-US': '<p>value</p>'
+          },
+          demoId: 'basic-usage'
+        }
+      ],
+      events: [
+        {
+          name: 'change',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>当绑定值变化时触发的事件,该事件可获取更新后的值</p>',
+            'en-US': '<p>This event is triggered when the binding value changes</p>'
+          },
+          demoId: 'event-change'
+        }
+      ],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>标签文本内容</p>',
+            'en-US': '<p>label content</p>'
+          },
+          demoId: ''
+        }
+      ]
+    }
   ]
 }

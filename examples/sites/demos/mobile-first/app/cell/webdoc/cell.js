@@ -62,5 +62,44 @@ export default {
       },
       codeFiles: ['icon.vue']
     }
+  ],
+  apis: [
+    {
+      'name': 'Cell',
+      'type': 'component',
+      'props': [
+        {
+          'name': 'data',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': { 'zh-CN': '数据', 'en-US': 'data' },
+          'demoId': 'basic-usage'
+        },
+        {
+          'name': 'disabled',
+          'type': 'Boolean',
+          'defaultValue': 'true',
+          'desc': { 'zh-CN': '禁用', 'en-US': 'disabled' },
+          'demoId': 'disabled'
+        },
+        {
+          'name': 'icon',
+          'type': 'Object',
+          'defaultValue': '{}',
+          'desc': { 'zh-CN': '设置图标', 'en-US': 'Set icon' },
+          'demoId': 'icon'
+        },
+        {
+          'name': 'placeholder',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '占位文本',
+            'en-US': 'Placeholder Text'
+          },
+          'demoId': 'placeholder'
+        }
+      ]
+    }
   ]
 }

@@ -1,39 +1,36 @@
 <template>
   <div>
     <tiny-color-picker v-model="color" :predefine="predefine" />
-    <tiny-button @click="addPredefineColor">Append predefine color</tiny-button>
-    <tiny-button @click="popPredefineColor">Pop predefine color</tiny-button>
+    <Button @click="addPredefineColor">Append predefine color</Button>
+    <Button @click="popPredefineColor">Pop predefine color</Button>
   </div>
 </template>
 
 <script>
-import { ColorPicker, Button } from '@opentiny/vue'
-
+import { ref } from 'vue';
+import { ColorPicker, Button } from '@opentiny/vue';
 export default {
   components: {
     TinyColorPicker: ColorPicker,
-    TinyButton: Button
+    Button
   },
-  data() {
-    return {
-      color: '#66ccff',
-      predefine: new Array(8).fill(0).map(() => this.randomHex())
+  setup() {
+    const color = ref('#66ccff');
+    const randomHex = () => "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
+    const predefine = ref(new Array(8).fill(0).map(() => randomHex()))
+    const addPredefineColor = () => {
+      predefine.value.push(
+        randomHex()
+      );
     }
-  },
-  methods: {
-    randomHex() {
-      return (
-        '#' +
-        Math.floor(Math.random() * 0xffffff)
-          .toString(16)
-          .padEnd(6, '0')
-      )
-    },
-    addPredefineColor() {
-      this.predefine.push(this.randomHex())
-    },
-    popPredefineColor() {
-      this.predefine.pop()
+    const popPredefineColor = () => {
+      predefine.value.pop();
+    }
+    return {
+      color,
+      predefine,
+      addPredefineColor,
+      popPredefineColor
     }
   }
 }

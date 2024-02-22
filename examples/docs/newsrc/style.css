@@ -90,20 +90,3 @@ body,
   transform: translateX(0);
   overflow: hidden;
 }
-
-@media screen and (max-width: 1023px) {
-  .sm-show {
-    display: block;
-  }
-
-  .sm-hidden {
-    display: none;
-  }
-
-  .fixed-menu {
-    display: block;
-    position: fixed;
-    height: 100%;
-    z-index: 99;
-  }
-}

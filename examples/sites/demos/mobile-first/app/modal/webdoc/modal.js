@@ -281,7 +281,7 @@ export default {
       codeFiles: ['zoom-event.vue']
     },
     {
-      demoId: 'default-slot',
+      demoId: 'value',
       name: {
         'zh-CN': '默认插槽',
         'en-US': 'events'
@@ -329,5 +329,6 @@ export default {
       },
       codeFiles: ['before-close.vue']
     }
-  ]
+  ],
+  apis: []
 }

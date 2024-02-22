@@ -1,14 +1,12 @@
 <template>
   <div>
-    <div>
-      <tiny-button-group :data="groupData" disabled v-model="value"></tiny-button-group>
-    </div>
-    <div class="mt-12">
-      <tiny-button-group :data="groupData" :border="false" v-model="value" disabled></tiny-button-group>
-    </div>
-    <div class="mt-12">
-      <tiny-button-group :data="disabledGroup" v-model="value"></tiny-button-group>
-    </div>
+    <tiny-button-group :data="groupData" disabled v-model="value"></tiny-button-group>
+  </div>
+  <div class="mt-12">
+    <tiny-button-group :data="groupData" :border="false" v-model="value" disabled></tiny-button-group>
+  </div>
+  <div class="mt-12">
+    <tiny-button-group :data="disabledGroup" v-model="value"></tiny-button-group>
   </div>
 </template>
 

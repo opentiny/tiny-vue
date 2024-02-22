@@ -26,19 +26,19 @@ export default {
   },
   methods: {
     prevWeekClick(date) {
-      Modal.message({ message: `上一周按钮点击事件： ${date[0].value}`, status: 'info' })
+      console.log(date)
     },
     nextWeekClick(date) {
-      Modal.message({ message: `下一周按钮点击事件： ${date[0].value}`, status: 'info' })
+      console.log(date)
     },
-    weekChange(weekDate) {
-      Modal.message({ message: `周改变事件： ${weekDate[0].value}`, status: 'info' })
+    weekChange(oldVal, newVal) {
+      console.log(oldVal, newVal)
     },
-    yearChange(newVal, oldVal) {
-      Modal.message({ message: `年改变事件: ${newVal}年, ${oldVal}年`, status: 'info' })
+    yearChange(oldVal, newVal) {
+      console.log(oldVal, newVal)
     },
-    monthChange(newVal, oldVal) {
-      Modal.message({ message: `月改变事件: ${newVal}月, ${oldVal}月`, status: 'info' })
+    monthChange(oldVal, newVal) {
+      console.log(oldVal, newVal)
     }
   }
 }

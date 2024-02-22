@@ -1,5 +1,5 @@
 <template>
-  <div class="demo-date-picker-mobile-container">
+  <div>
     <tiny-button @click="fn" type="primary"> 日期时间选择器 </tiny-button>
     <p>值：{{ value }}</p>
     <p>格式化值：{{ formatValue }}</p>

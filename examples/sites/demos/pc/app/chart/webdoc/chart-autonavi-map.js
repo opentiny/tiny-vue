@@ -14,19 +14,5 @@ export default {
       'codeFiles': ['amap/base.vue']
     }
   ],
-  apis: [{ 'name': 'chart-autonavi-map', 'type': 'component', 'props': [], 'events': [], 'slots': [] }],
-  types: [
-    {
-      name: 'IChartSettings',
-      type: 'interface',
-      code: `
-interface IChartSettings {
-  amap: object // 高德地图配置项，参考高德地图文档配置
-  key: string // 高德地图 access_key 
-  useOuterMap: boolean // 使用全局的地图依赖
-  v: string // 高德地图版本，默认1.4.3
-}
-`
-    }
-  ]
+  apis: [{ 'name': 'chart-autonavi-map', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

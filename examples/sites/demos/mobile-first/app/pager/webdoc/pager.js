@@ -9,106 +9,50 @@ export default {
         'en-US': 'basic usage'
       },
       desc: {
-        'zh-CN': '',
-        'en-US': ''
+        'zh-CN':
+          '<p>过滤类型 <code>type</code> 包括 <code>单选、多选、枚举单选 (radio | checkbox | enum-radio)<code>。</p>',
+        'en-US': '<p>button type</p>'
       },
       codeFiles: ['basic-usage.vue']
     },
     {
-      demoId: 'current-page',
+      demoId: 'column-num',
       name: {
-        'zh-CN': '当前页',
-        'en-US': ''
+        'zh-CN': '面板每行标签数',
+        'en-US': 'button round'
       },
       desc: {
-        'zh-CN': '通过 `current-page` 设置初始加载页码数, 通过 `total` 设置总条数',
-        'en-US': ''
+        'zh-CN': '<p>通过 <code>column-num</code> 属性设置面板每行标签数，默认值为 3。</p>',
+        'en-US': '<p>button round</p>'
       },
-      codeFiles: ['current-page.vue']
+      codeFiles: ['column-num.vue']
     },
     {
-      demoId: 'page-size',
+      demoId: 'filter-group',
       name: {
-        'zh-CN': '每页显示数量',
-        'en-US': ''
+        'zh-CN': '过滤组',
+        'en-US': '过滤组'
       },
       desc: {
-        'zh-CN': '`page-sizes` 和 `page-size` 结合使用调整每页显示数量',
-        'en-US': ''
+        'zh-CN':
+          '<p>通过 <code>filter-group</code> 属性开启过滤组功能，<code>filter-value</code> 绑定过滤组的值。过滤组类型 <code>type</code> 包括 <code>单选、多选 (radio | checkbox)</code>。<p>',
+        'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['page-size.vue']
+      codeFiles: ['filter-group.vue']
     },
     {
-      demoId: 'hide-on-single-page',
+      demoId: 'enumeration',
       name: {
-        'zh-CN': '只有一页时隐藏分页',
-        'en-US': ''
+        'zh-CN': '枚举单选',
+        'en-US': 'events'
       },
       desc: {
-        'zh-CN': '`hide-on-single-page` 只有一页时隐藏分页',
-        'en-US': ''
+        'zh-CN':
+          '<p>设置过滤类型 <code>type: "enum-radio"</code> 时，当前数据为枚举单选，通过 <code>showAll: true</code> 显示 <code>全部</code> 选择项。<p>',
+        'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['hide-on-single-page.vue']
-    },
-    {
-      demoId: 'custom-next-prev-text',
-      name: {
-        'zh-CN': '自定义上下页按钮文本',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '`prev-text` ,`next-text` 自定义上下页按钮文本',
-        'en-US': ''
-      },
-      codeFiles: ['custom-next-prev-text.vue']
-    },
-    {
-      demoId: 'current-change',
-      name: {
-        'zh-CN': '当前页改变事件',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '`current-change` 切换当前页码时触发',
-        'en-US': ''
-      },
-      codeFiles: ['current-change.vue']
-    },
-    {
-      demoId: 'prev-click',
-      name: {
-        'zh-CN': '上一页事件',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '`prev-click` 切换至前一页时触发',
-        'en-US': ''
-      },
-      codeFiles: ['prev-click.vue']
-    },
-    {
-      demoId: 'next-click',
-      name: {
-        'zh-CN': '下一页事件',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '`next-click` 切换至后一页时触发',
-        'en-US': ''
-      },
-      codeFiles: ['next-click.vue']
-    },
-    {
-      demoId: 'before-page-change',
-      name: {
-        'zh-CN': '切换分页前事件',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '`before-page-change` 切换分页前事件',
-        'en-US': ''
-      },
-      codeFiles: ['before-page-change.vue']
+      codeFiles: ['enumeration.vue']
     }
-  ]
+  ],
+  apis: []
 }

@@ -12,9 +12,10 @@
 </template>
 
 <script>
-import { Flowchart, Modal } from '@opentiny/vue'
+import Flowchart from '@opentiny/vue-flowchart'
 import { hooks } from '@opentiny/vue-common'
 import { IconSuccessful } from '@opentiny/vue-icon'
+import { Modal } from '@opentiny/vue'
 
 const { createConfig } = Flowchart
 

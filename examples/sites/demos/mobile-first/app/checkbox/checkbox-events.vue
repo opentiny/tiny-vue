@@ -1,26 +1,30 @@
 <template>
-  <tiny-checkbox-group v-model="checked" @change="valueChange">
-    <tiny-checkbox label="复选框1"></tiny-checkbox>
-    <tiny-checkbox label="复选框2"></tiny-checkbox>
-  </tiny-checkbox-group>
+  <div>
+    <tiny-checkbox-group v-model="checked" @change="valueChange">
+      <tiny-checkbox-button label="复选框1"></tiny-checkbox-button>
+      <tiny-checkbox-button label="复选框2"></tiny-checkbox-button>
+    </tiny-checkbox-group>
+    {{ logger }}
+  </div>
 </template>
 
 <script>
-import { Checkbox, CheckboxGroup, Modal } from '@opentiny/vue'
+import { CheckboxButton, CheckboxGroup } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCheckbox: Checkbox,
+    TinyCheckboxButton: CheckboxButton,
     TinyCheckboxGroup: CheckboxGroup
   },
   data() {
     return {
-      checked: ['复选框1']
+      checked: ['复选框1'],
+      logger: ''
     }
   },
   methods: {
     valueChange(val) {
-      Modal.message({ message: `change 事件触发了，选中值为：${val}`, status: 'info' })
+      this.logger = `当前选择：${JSON.stringify(val)}`
     }
   }
 }

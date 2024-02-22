@@ -1,8 +1,13 @@
 <template>
-  <div class="demo-tabs">
-    <tiny-tabs v-model="activeName" show-expand-tabs expand-tabs-title="请选择" expand-tabs-mode="columns">
-      <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name"> </tiny-tab-item>
-    </tiny-tabs>
+  <div>
+    <div>
+      <h2 style="font-size: 16px; margin: 12px 0 24px 8px">基本用法</h2>
+      <div>
+        <tiny-tabs v-model="activeName" show-expand-tabs expand-tabs-title="请选择" expand-tabs-mode="columns">
+          <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name"> </tiny-tab-item>
+        </tiny-tabs>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -68,11 +73,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.demo-tabs {
-  height: 100%;
-  background: #f5f5f5;
-  text-align: center;
-}
-</style>

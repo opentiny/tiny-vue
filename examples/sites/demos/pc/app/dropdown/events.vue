@@ -61,14 +61,11 @@ export default {
     }
   },
   methods: {
-    itemClick(data, vm) {
-      // Aurora主题 item-click 有第二个参数，其他主题只有第一个参数
-      const label = vm?.label || data.vm.label
-
+    itemClick(data) {
       Notify({
         type: 'info',
         title: 'itemClick 回调事件',
-        message: `使用 dropdown-item 的label属性：${label}`,
+        message: `使用 dropdown-item 的label属性：${data.vm.label}`,
         position: 'top-right',
         duration: 2000
       })

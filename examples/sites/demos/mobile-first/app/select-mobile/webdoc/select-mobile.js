@@ -14,6 +14,7 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
+
     {
       demoId: 'multiple',
       name: {
@@ -76,5 +77,6 @@ export default {
       },
       codeFiles: ['mode-form.vue']
     }
-  ]
+  ],
+  apis: []
 }

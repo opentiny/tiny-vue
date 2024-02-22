@@ -15,6 +15,18 @@ export default {
       codeFiles: ['basic-usage.vue']
     },
     {
+      demoId: 'cycle-roll',
+      name: {
+        'zh-CN': '循环滚动',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>设置属性 `cycle-roll` 为 `true` 打开选项循环滚动功能。默认值为 `false`。<p>',
+        'en-US': '<p>bbutton click</p>'
+      },
+      codeFiles: ['cycle-roll.vue']
+    },
+    {
       demoId: 'disabled-array',
       name: {
         'zh-CN': '数组选项禁用',
@@ -77,5 +89,6 @@ export default {
       },
       codeFiles: ['cities.vue']
     }
-  ]
+  ],
+  apis: []
 }

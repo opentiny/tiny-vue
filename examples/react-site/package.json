@@ -51,7 +51,7 @@
     "markdown-it-sup": "^1.0.0",
     "markdown-it-table-of-contents": "^0.6.0",
     "markdown-it-toc-done-right": "^4.2.0",
-    "naive-ui": "~2.30.6",
+    "naive-ui": "^2.30.6",
     "prettier": "^2.7.1",
     "stylelint": "^14.9.1",
     "stylelint-config-standard": "^26.0.0",

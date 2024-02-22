@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="jsx">
 import { ref } from 'vue'
 import { Area as TinyArea, Button as TinyButton } from '@opentiny/vue'
 

@@ -9,12 +9,14 @@ export default {
         'en-US': 'basic usage'
       },
       desc: {
-        'zh-CN':
-          '通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 Radio，变量值对应 <code>label</code> 属性的值。<br>\n        通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致<br>\n        <code>label</code> 可以是 <code>String、Number 或 Boolean</code>。</p>',
+        'zh-CN': `通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 Radio，变量值对应 <code>label</code> 属性的值。<br>
+        通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致<br>
+        <code>label</code> 可以是 <code>String、Number 或 Boolean</code>。</p>`,
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['basic-usage.vue']
     },
+
     {
       demoId: 'dynamic-disable',
       name: {
@@ -22,7 +24,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>设置 <code>disabled</code> 属性即可启动禁用状态，默认为 false 。<p>',
+        'zh-CN': `<p>设置 <code>disabled</code> 属性即可启动禁用状态，默认为 false 。<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['dynamic-disable.vue']
@@ -84,11 +86,12 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN':
-          '<p>通过添加<code>show-tips</code>属性设置是否展示 tips 提示图标，通过添加<code>tip-content</code>属性设置 tips 内容<br>\n        仅支持通过 <code>label</code> 属性可以设置 <code>Radio</code> 的内容时生效，自定义插槽下不生效<p>',
+        'zh-CN': `<p>通过添加<code>show-tips</code>属性设置是否展示 tips 提示图标，通过添加<code>tip-content</code>属性设置 tips 内容<br>
+        仅支持通过 <code>label</code> 属性可以设置 <code>Radio</code> 的内容时生效，自定义插槽下不生效<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['radio-tips.vue']
     }
-  ]
+  ],
+  apis: []
 }

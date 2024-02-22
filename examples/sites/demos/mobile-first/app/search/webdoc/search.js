@@ -14,6 +14,7 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
+
     {
       demoId: 'clearable',
       name: {
@@ -25,20 +26,6 @@ export default {
         'en-US': '<p>You can use the `clearable` property to set the display of the clear icon button.</p>'
       },
       codeFiles: ['clearable.vue']
-    },
-    {
-      demoId: 'size',
-      name: {
-        'zh-CN': '尺寸',
-        'en-US': 'Size'
-      },
-      desc: {
-        'zh-CN':
-          '<p>通过 <code>size</code> 定义输入框尺寸，可选项有 <code>medium</code>、<code>small</code>、<code>mini</code>，默认为 <code>small</code>。</p>',
-        'en-US':
-          '<p>Set <code>size</code> to define the text box size. The options include <code>medium</code>, <code>small</code>, and <code>mini</code>. The default value is <code>small</code>.</p>'
-      },
-      codeFiles: ['size.vue']
     },
     {
       demoId: 'big-mode',
@@ -171,6 +158,45 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['change-bg.vue']
+    }
+  ],
+  apis: [
+    {
+      'name': 'Search',
+      'type': 'component',
+      'props': [
+        {
+          'name': 'big',
+          'type': 'Boolean',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '大尺寸，配置为true时，搜索框高度将变高。',
+            'en-US': 'Large size. If this parameter is set to true, the height of the search box increases.'
+          },
+          'demoId': 'big-mode'
+        },
+        {
+          'name': 'change-bg-color',
+          'type': 'Boolean',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '可通过 change-bg-color 属性切换背景色(只针对移动端有效)。',
+            'en-US':
+              'You can use the change-bg-color attribute to switch the background color (only for mobile devices)'
+          },
+          'demoId': 'change-bg'
+        },
+        {
+          'name': 'show-button',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '可通过 show-button 属性对移动端设置按钮搜索。',
+            'en-US': 'You can use the show-button attribute to set button search for mobile devices.'
+          },
+          'demoId': 'search-types'
+        }
+      ]
     }
   ]
 }

@@ -41,7 +41,7 @@ export default {
       userHeadOption: {
         type: 'image',
         size: 40,
-        value: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+        value: '/static/images/1.jpg',
         round: true
       },
       iconOptions: [

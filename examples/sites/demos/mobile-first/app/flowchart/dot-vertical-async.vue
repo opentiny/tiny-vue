@@ -11,7 +11,8 @@
 </template>
 
 <script>
-import { Flowchart, AsyncFlowchart, Modal } from '@opentiny/vue'
+import Flowchart from '@opentiny/vue-flowchart'
+import AsyncFlowchart from '@opentiny/vue-async-flowchart'
 
 const { createConfig, Node } = Flowchart
 const nodeWrapperSize = 32
@@ -197,20 +198,16 @@ export default {
   },
   methods: {
     onClickNode(afterNode, e) {
-      // console.log(afterNode, e)
-      Modal.message('click-node')
+      console.log(afterNode, e)
     },
     onClickLink(afterLink, e) {
-      // console.log(afterLink, e)
-      Modal.message('click-link')
+      console.log(afterLink, e)
     },
     onClickBlank(param, e) {
-      // console.log(param, e)
-      Modal.message('click-blank')
+      console.log(param, e)
     },
     onClickGroup(afterGroup, e) {
-      // console.log(afterGroup, e)
-      Modal.message('click-group')
+      console.log(afterGroup, e)
     },
     fetchFunc() {
       return new Promise((resolve) => {

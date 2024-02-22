@@ -3,11 +3,12 @@
 </template>
 
 <script>
-import { FileUpload } from '@opentiny/vue'
+import { FileUpload, Button } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFileUpload: FileUpload
+    TinyFileUpload: FileUpload,
+    TinyButton: Button
   },
   data() {
     return {
@@ -60,13 +61,6 @@ export default {
           name: 'test5超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长.doc',
           docSize: 17252 * 1024,
           size: 17252 * 1024,
-          serverName: 'ShenZhen'
-        },
-        {
-          docId: 'M1T2A1N548572512085860353',
-          path: 'edm/one/',
-          docVersion: 'V1',
-          name: '没有文件大小.doc',
           serverName: 'ShenZhen'
         }
       ]

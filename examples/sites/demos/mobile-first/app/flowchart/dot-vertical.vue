@@ -12,8 +12,9 @@
 </template>
 
 <script>
-import { Flowchart, Modal } from '@opentiny/vue'
+import Flowchart from '@opentiny/vue-flowchart'
 import { hooks } from '@opentiny/vue-common'
+import { Modal } from '@opentiny/vue'
 
 const { createConfig, Node, resizeMixin } = Flowchart
 const nodeWrapperSize = 32

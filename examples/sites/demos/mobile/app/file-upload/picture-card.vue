@@ -50,37 +50,37 @@ export default {
       fileList1: [
         {
           name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+          url: '/static/images/ld.png'
         },
         {
           name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+          url: '/static/images/ry.png'
         },
         {
           name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+          url: '/static/images/ld.png'
         },
         {
           name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+          url: '/static/images/ry.png'
         },
         {
           name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+          url: '/static/images/ld.png'
         },
         {
           name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+          url: '/static/images/ry.png'
         }
       ],
       fileList2: [
         {
           name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+          url: '/static/images/ld.png'
         },
         {
           name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+          url: '/static/images/ry.png'
         }
       ]
     }

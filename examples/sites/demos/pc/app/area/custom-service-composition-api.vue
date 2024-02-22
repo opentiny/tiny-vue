@@ -10,7 +10,7 @@
   ></tiny-area>
 </template>
 
-<script setup>
+<script setup lang="jsx">
 import { ref } from 'vue'
 import { Area as TinyArea } from '@opentiny/vue'
 

@@ -27,11 +27,10 @@ export default {
       value: [2023, 1],
       optionList: [years, months],
       textColorClass: {
-        default: 'text-color-error',
-        first: 'text-color-brand',
-        second: 'text-color-success',
-        third: 'text-color-error',
-        disabled: 'text-color-chart-10-subtle'
+        first: 'text-color-text-primary',
+        second: 'text-color-text-secondary',
+        third: 'text-color-text-placeholder',
+        disabled: 'text-color-text-disabled'
       }
     }
   },

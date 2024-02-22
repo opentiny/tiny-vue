@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      value: new Date().toLocaleDateString(),
+      value: '2022-12-18',
       config: {
         renderItem: this.renderItem
       }

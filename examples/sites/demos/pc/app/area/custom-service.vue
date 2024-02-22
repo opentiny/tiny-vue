@@ -10,7 +10,7 @@
   ></tiny-area>
 </template>
 
-<script>
+<script lang="jsx">
 import { Area } from '@opentiny/vue'
 
 export default {

@@ -14,6 +14,7 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
+
     {
       demoId: 'checkbox-group',
       name: {
@@ -21,8 +22,9 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>checkbox-group</code> 元素把多个 <code>checkbox</code> 元素管理为一组，在 <code>checkbox-group</code> 中使用 <code>v-model</code> 绑定 Array 类型的变量即可实现双向绑定。<br>\n          <code>checkbox</code> 的 <code>label</code> 属性是其对应的值，若该标签中无内容，则该属性也充当 checkbox 后的介绍。<br>\n          <code>label</code> 与数组中的元素值相对应，如果存在指定的值则为选中状态，否则为不选中。<p>',
+        'zh-CN': `<p>通过 <code>checkbox-group</code> 元素把多个 <code>checkbox</code> 元素管理为一组，在 <code>checkbox-group</code> 中使用 <code>v-model</code> 绑定 Array 类型的变量即可实现双向绑定。<br>
+          <code>checkbox</code> 的 <code>label</code> 属性是其对应的值，若该标签中无内容，则该属性也充当 checkbox 后的介绍。<br>
+          <code>label</code> 与数组中的元素值相对应，如果存在指定的值则为选中状态，否则为不选中。<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['checkbox-group.vue']
@@ -34,24 +36,13 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN':
-          '<p>提供 <code>options</code> 属性，支持通过配置对象数组数据的形式来渲染多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。<br />\n          <code>options</code> 对象数组中包括三个字段：<code>label</code>、<code>text</code>、<code>events</code>。<br />\n          另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>checkbox</code>。\n          还可以配置为 <code>button</code>，配置后复选框组将以按钮的形式展示。<p>',
+        'zh-CN': `<p>提供 <code>options</code> 属性，支持通过配置对象数组数据的形式来渲染多选框组。使用该属性后，可以不用再在标签中以插槽的形式插入 <code>checkbox</code> 或 <code>checkbox-button</code> 元素。<br />
+          <code>options</code> 对象数组中包括三个字段：<code>label</code>、<code>text</code>、<code>events</code>。<br />
+          另外还提供 <code>type</code> 属性，配合 <code>options</code> 属性一起使用，默认值为 <code>checkbox</code>。
+          还可以配置为 <code>button</code>，配置后复选框组将以按钮的形式展示。<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['group-options.vue']
-    },
-    {
-      demoId: 'checkbox-button',
-      name: {
-        'zh-CN': '复选框按钮',
-        'en-US': 'Checkbox button'
-      },
-      desc: {
-        'zh-CN': '<p>通过 <code>checkbox-button</code> 以按钮的形式展示复选框，用法与 <code>checkbox</code> 相似。</p>',
-        'en-US':
-          '<p> <code>checkbox button</code> Display checkboxes in the form of buttons, similar in usage to <code>checkbox</code> .</p>'
-      },
-      codeFiles: ['checkbox-button.vue']
     },
     {
       demoId: 'checkbox-size',
@@ -147,37 +138,11 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN':
-          '<p>当 CheckBox 只有一个勾选框，没有 label 时，只读状态下默认显示 是/否，可通过设置<code>true-label</code>与<code>false-label</code>指定需要显示的值，<br>\n        此功能只适用于单个 CheckBox 用作选择框<p>',
+        'zh-CN': `<p>当 CheckBox 只有一个勾选框，没有 label 时，只读状态下默认显示 是/否，可通过设置<code>true-label</code>与<code>false-label</code>指定需要显示的值，<br>
+        此功能只适用于单个 CheckBox 用作选择框<p>`,
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['display-only-no-label.vue']
-    },
-    {
-      demoId: 'text',
-      name: {
-        'zh-CN': '文本',
-        'en-US': 'Text'
-      },
-      desc: {
-        'zh-CN': '<p>通过 <code>true-label</code> 设置选中的值， <code>false-label</code> 设置未选中的值。</p>',
-        'en-US':
-          '<p>Use <code>true-label</code> to set the selected value, and <code>false-label</code> to set the unselected value. </p>'
-      },
-      codeFiles: ['text.vue']
-    },
-    {
-      demoId: 'dynamic-create-checkbox',
-      name: {
-        'zh-CN': '动态生成复选框组',
-        'en-US': 'Dynamic generate check box groups'
-      },
-      desc: {
-        'zh-CN': '<p>复选框组所需数据可通过请求服务从后台取得，然后动态生成。</p>',
-        'en-US':
-          '<p>The data required by the check box group can be obtained from the background through the request service and then dynamically generated. </p>'
-      },
-      codeFiles: ['dynamic-create-checkbox.vue']
     },
     {
       demoId: 'checkbox-slot',
@@ -190,18 +155,7 @@ export default {
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['checkbox-slot.vue']
-    },
-    {
-      demoId: 'checkbox-events',
-      name: {
-        'zh-CN': '事件',
-        'en-US': 'Event'
-      },
-      desc: {
-        'zh-CN': '<p>勾选值改变后将触发 <code>change</code> 事件。</p>',
-        'en-US': '<p>The <code>change</code> event is triggered when the value of the check box is changed. </p>'
-      },
-      codeFiles: ['checkbox-events.vue']
     }
-  ]
+  ],
+  apis: []
 }

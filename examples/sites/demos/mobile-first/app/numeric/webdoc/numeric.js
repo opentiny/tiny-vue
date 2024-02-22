@@ -14,6 +14,7 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
+
     {
       demoId: 'numeric-size',
       name: {
@@ -117,7 +118,7 @@ export default {
     {
       demoId: 'blur-event',
       name: {
-        'zh-CN': '失焦事件',
+        'zh-CN': 'blur event',
         'en-US': 'events'
       },
       desc: {
@@ -138,5 +139,6 @@ export default {
       },
       codeFiles: ['change-event.vue']
     }
-  ]
+  ],
+  apis: []
 }

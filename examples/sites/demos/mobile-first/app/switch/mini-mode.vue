@@ -27,9 +27,6 @@ import { Switch } from '@opentiny/vue'
 export default {
   components: {
     TinySwitch: Switch
-  },
-  data() {
-    return { value1: true }
   }
 }
 </script>

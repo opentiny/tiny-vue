@@ -12,29 +12,29 @@
   </tiny-calendar-view>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import { CalendarView as TinyCalendarView, Modal } from '@opentiny/vue'
+import { CalendarView as TinyCalendarView } from '@opentiny/vue'
 
 const eventslist = ref([])
 
 const prevWeekClick = (date) => {
-  Modal.message({ message: `上一周按钮点击事件： ${date[0].value}`, status: 'info' })
+  console.log(date)
 }
 
 const nextWeekClick = (date) => {
-  Modal.message({ message: `下一周按钮点击事件： ${date[0].value}`, status: 'info' })
+  console.log(date)
 }
 
-const weekChange = (weekDate) => {
-  Modal.message({ message: `周改变事件： ${weekDate[0].value}`, status: 'info' })
+const weekChange = (oldVal, newVal) => {
+  console.log(oldVal, newVal)
 }
 
-const yearChange = (newVal, oldVal) => {
-  Modal.message({ message: `年改变事件: ${newVal}年, ${oldVal}年`, status: 'info' })
+const yearChange = (oldVal, newVal) => {
+  console.log(oldVal, newVal)
 }
 
-const monthChange = (newVal, oldVal) => {
-  Modal.message({ message: `月改变事件: ${newVal}月, ${oldVal}月`, status: 'info' })
+const monthChange = (oldVal, newVal) => {
+  console.log(oldVal, newVal)
 }
 </script>

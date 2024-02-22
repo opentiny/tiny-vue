@@ -21,7 +21,7 @@ export default {
       fileList: [
         {
           name: 'test1名字很长名字很长名字很长名字很长名字很长名字很长',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`,
+          url: '/static/images/ld.png',
           size: '1M',
           fileType: 'png'
         },
@@ -34,11 +34,11 @@ export default {
       ],
       iconList: [
         {
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog2.png`,
+          url: '/static/images/dog2.png',
           type: 'png'
         },
         {
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog1.png`,
+          url: '/static/images/dog1.png',
           type: 'xlsx'
         }
       ]

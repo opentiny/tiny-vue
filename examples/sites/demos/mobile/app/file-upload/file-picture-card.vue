@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <tiny-file-upload :action="action" class="upload-demo picture-demo" :file-list="fileList" list-type="picture-card">
-      <icon-plus v-slot class="tiny-svg-size" />
+      <icon-plus #default class="tiny-svg-size" />
       <template #file="data">
         <div>
           <img class="tiny-upload-list__item-thumbnail" :src="data.file.url" alt="" />
@@ -47,27 +47,27 @@ export default {
       fileList: [
         {
           name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+          url: '/static/images/ld.png'
         },
         {
           name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+          url: '/static/images/ry.png'
         },
         {
           name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+          url: '/static/images/ld.png'
         },
         {
           name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+          url: '/static/images/ry.png'
         },
         {
           name: 'test1',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`
+          url: '/static/images/ld.png'
         },
         {
           name: 'test2',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ry.png`
+          url: '/static/images/ry.png'
         }
       ]
     }

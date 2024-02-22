@@ -34,49 +34,11 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<ul>\n            <li><code>show-header</code>: 显示头部，默认值为 true；</li>\n            <li><code>show-search</code>: 显示头部搜索功能，默认值为 true；</li>\n            <li><code>show-footer</code>: 显示底部，默认值为 false；</li>\n          </ul>',
+          '<p>show-header: 显示头部，默认值为 true；- show-search: 显示头部搜索功能，默认值为 true；- show-footer: 显示底部，默认值为 false；</p>',
         'en-US':
-          '<ul>\n            <li><code>show-header</code>: displays the header. The default value is true.</li>\n            <li><code>show-search</code>: displays the header search function. The default value is true. </li>\n            <li><code>show-footer</code>: displays the bottom. The default value is false</li>'
+          '<p>show-header: displays the header. The default value is true. - show-search: displays the header search function. The default value is true. - show-footer: displays the bottom. The default value is false</p>'
       },
       codeFiles: ['show.vue']
-    },
-    {
-      demoId: 'before-close',
-      name: {
-        'zh-CN': '关闭拦截',
-        'en-US': 'Block Close'
-      },
-      desc: {
-        'zh-CN':
-          '\n          <p>通过 <code>before-close</code> 属性可以配置一个拦截弹窗关闭的方法。如果方法返回 <code>false</code> 值，则拦截弹窗关闭；否则不拦截。</p>\n          <p>可以通过参数 <code>type</code> 获取触发关闭的方法名称, 一共有以下类型：<code>confirm</code> | <code>hide</code> | <code>close</code>。</p>\n        ',
-        'en-US':
-          '<p>The <code>before-close</code> attribute can be used to configure a method that intercepts closing of the pop-up window. If the method returns a value of <code>false</code>, then the pop-up window is prevented from closing; otherwise it is not intercepted.</p>\n        <p>The method name that triggers the close action can be obtained through the <code>type</code> parameter. There are three types available: <code>confirm</code>, <code>hide</code>, and <code>close</code>.</p>\n          '
-      },
-      codeFiles: ['before-close.vue']
-    },
-    {
-      demoId: 'fullscreen',
-      name: {
-        'zh-CN': '全屏显示',
-        'en-US': 'Display fullscreen'
-      },
-      desc: {
-        'zh-CN': '<p>通过 <code>fullscreen</code> 设置动作面板全屏显示。</p>',
-        'en-US': '<p>Set action sheet display fullscreen.</p>'
-      },
-      codeFiles: ['fullscreen.vue']
-    },
-    {
-      demoId: 'mask',
-      name: {
-        'zh-CN': '遮罩层1',
-        'en-US': 'Mask layer one'
-      },
-      desc: {
-        'zh-CN': '<p>添加 `mask` 属性可以关闭遮罩层，默认值为 `true` 。</p>',
-        'en-US': '<p>bAdd the `mask` attribute to turn off the mask layer. The default value is `true`.</p>'
-      },
-      codeFiles: ['mask.vue']
     },
     {
       demoId: 'mask',
@@ -129,6 +91,229 @@ export default {
         'en-US': '<p>Added attribute `ellipsis` content meeting super surviving.</p>'
       },
       codeFiles: ['ellipsis.vue']
+    }
+  ],
+  apis: [
+    {
+      'name': 'ActionSheet',
+      'type': 'component',
+      'props': [
+        {
+          'name': 'custom-class',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '自定义 class 样式',
+            'en-US': 'Customize the class style.'
+          }
+        },
+        {
+          'name': 'flex',
+          'type': 'Boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '设置弹性布局,默认为 true',
+            'en-US': 'Sets the elastic layout. The default value is true.'
+          }
+        },
+        {
+          'name': 'mask',
+          'type': 'Boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否显示遮罩层，默认值为 true',
+            'en-US': 'Indicates whether to display the mask layer. The default value is true.'
+          },
+          'demoId': 'mask'
+        },
+        {
+          'name': 'mask-closable',
+          'type': 'Boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '单击遮罩层是否关闭弹窗，默认值为 true',
+            'en-US':
+              'Indicates whether to close the pop-up window when you click the mask layer. The default value is true.'
+          },
+          'demoId': 'mask-event'
+        },
+        {
+          'name': 'menus',
+          'type': 'Array',
+          'defaultValue': '[]',
+          'desc': {
+            'zh-CN': '操作列表，设置 type 为 action 启用操作列表模式时有效。',
+            'en-US': 'Operation list. This parameter is valid only when type is set to action.'
+          },
+          'demoId': 'action'
+        },
+        {
+          'name': 'show-footer',
+          'type': 'Boolean',
+          'defaultValue': 'false',
+          'desc': {
+            'zh-CN': '是否显示底部，默认值为 false',
+            'en-US': 'Indicates whether to display the bottom. The default value is false.'
+          },
+          'demoId': 'show'
+        },
+        {
+          'name': 'show-header',
+          'type': 'Boolean',
+          'defaultValue': 'true',
+          'desc': {
+            'zh-CN': '是否显示头部，默认值为 true',
+            'en-US': 'Indicates whether to display the header. The default value is true.'
+          },
+          'demoId': 'show'
+        },
+        {
+          'name': 'title',
+          'type': 'String',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '面板标题',
+            'en-US': 'Panel Title'
+          },
+          'demoId': 'actoin'
+        },
+        {
+          'name': 'type',
+          'type': 'Array[string]',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '设置 type 为 action 启用操作列表模式',
+            'en-US': 'Set type to action to enable the operation list mode.'
+          },
+          'demoId': 'action'
+        },
+        {
+          'name': 'v-model',
+          'type': 'Number | String | Array',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '双向数据绑定',
+            'en-US': 'bidirectional data binding'
+          }
+        },
+        {
+          'name': 'visible',
+          'type': 'Boolean',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '是否弹出面板',
+            'en-US': 'Indicates whether to display the panel.'
+          }
+        }
+      ],
+      'methods': [
+        {
+          'name': 'actionSelectOption',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '选择列表项，设置 type 为 action 启用操作列表模式时有效',
+            'en-US':
+              'Select a list item and set type to action. This parameter is valid only when the operation list mode is enabled.'
+          }
+        },
+        {
+          'name': 'close',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '关闭面板',
+            'en-US': 'Close the panel.'
+          },
+          'demoId': 'action'
+        }
+      ],
+      'events': [
+        {
+          'name': 'click',
+          'type': 'Function()',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '点击列表选项时触发，设置 type 为 action 启用操作列表模式时有效。',
+            'en-US':
+              'This event is triggered when a list option is clicked. This event is valid only when type is set to action and the operation list mode is enabled.'
+          },
+          'demoId': 'action'
+        },
+        {
+          'name': 'close',
+          'type': 'Function()',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '关闭面板时触发的事件。',
+            'en-US': 'Event triggered when a panel is closed.'
+          },
+          'demoId': 'action'
+        },
+        {
+          'name': 'confirm',
+          'type': 'Function()',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '点击底部按钮时触发，设置 show-footer 为 true 时有效。',
+            'en-US':
+              'This event is triggered when the bottom button is clicked. It is valid only when show-footer is set to true.'
+          }
+        },
+        {
+          'name': 'update:visible',
+          'type': 'Function()',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '面板显示或隐藏时触发',
+            'en-US': 'riggered when the panel is displayed or hidden'
+          },
+          'demoId': 'slot'
+        }
+      ],
+      'slots': [
+        {
+          'name': 'default',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '组件默认插槽，设置 type 为 action 启用操作列表模式会提供参数 data 列表项和 index 列表索引。',
+            'en-US':
+              'Component default slot. Set type to action to enable the operation list mode. The parameter data list item and index list index are provided.'
+          },
+          'demoId': 'slot'
+        },
+        {
+          'name': 'footer',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '底部插槽，设置 show-footer 为 true 时有效',
+            'en-US': 'Bottom slot. This parameter is valid only when show-footer is set to true.'
+          },
+          'demoId': 'slot'
+        },
+        {
+          'name': 'header-left',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '头部左侧插槽，设置 show-header 为 true 时有效',
+            'en-US': 'Slot on the left of the header. This parameter is valid only when show-header is set to true.'
+          },
+          'demoId': 'slot'
+        },
+        {
+          'name': 'header-right ',
+          'type': '',
+          'defaultValue': '',
+          'desc': {
+            'zh-CN': '头部右侧插槽，设置 show-header 为 true 时有效',
+            'en-US': 'Slot on the right of the header. This parameter is valid only when show-header is set to true.'
+          },
+          'demoId': 'slot'
+        }
+      ]
     }
   ]
 }

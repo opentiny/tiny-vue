@@ -160,5 +160,167 @@ export default {
       },
       codeFiles: ['vertical-mode.vue']
     }
+  ],
+  apis: [
+    {
+      name: 'Slider', // 组件名称展示使用
+      type: 'component', // API 类型
+      properties: [
+        {
+          name: 'disabled',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否禁用</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'dynamic-disable'
+        },
+        {
+          name: 'format-tooltip',
+          type: 'Function(value)',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>格式化 tooltip message</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'format-tooltip'
+        },
+        {
+          name: 'max',
+          type: 'Number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置最大值。必需是整数，可以负数。必需大于所设置的最小值。</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'max-min'
+        },
+        {
+          name: 'min',
+          type: 'Number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置最小值。</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'max-min'
+        },
+        {
+          name: 'num-pages',
+          type: 'Number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置总步数，即按快捷键 PageDown/PageUp 时，每次移动的距离是(最大值-最小值)/分页数</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'shortcut-operation'
+        },
+        {
+          name: 'range',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否为范围选择</p>',
+            'en-US': 'display different button'
+          },
+          demoId: ''
+        },
+        {
+          name: 'show-input',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否显示输入框，仅在非范围选择时有效</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'show-input'
+        },
+        {
+          name: 'show-tip',
+          type: 'Boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN': '<p>是否显示 tooltip</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'show-tip'
+        },
+        {
+          name: 'step',
+          type: 'Number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置滑块移动时，每步位移距离，必需是大于0的正整数。</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'about-step'
+        },
+        {
+          name: 'value',
+          type: 'Number | Array',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置单滑块的当前值，必需是整数或数组。</p>',
+            'en-US': 'display different button'
+          },
+          demoId: ''
+        },
+        {
+          name: 'vertical',
+          type: 'Boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>是否竖向模式</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'vertical-mode'
+        }
+      ],
+      events: [
+        {
+          name: 'change',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>值改变时触发（使用鼠标拖曳时，只在松开鼠标后触发）</p>',
+            'en-US': 'Click'
+          },
+          demoId: 'slider-event-change'
+        },
+        {
+          name: 'start',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置滑块滑动开始时，触发该事件</p>',
+            'en-US': 'Click'
+          },
+          demoId: 'slider-event-start'
+        },
+        {
+          name: 'stop',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置滑块滑动结束时，触发该事件</p>',
+            'en-US': 'Click'
+          },
+          demoId: 'slider-event-stop'
+        }
+      ],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>组件默认插槽</p>',
+            'en-US': 'Click'
+          },
+          demoId: ''
+        }
+      ]
+    }
   ]
 }

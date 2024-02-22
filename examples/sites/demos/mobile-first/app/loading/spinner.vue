@@ -12,8 +12,7 @@ export default {
       text: '自定义loading图标',
       spinner: IconLoading(), // 添加自定义类名，动画需要自己实现
       target: document.getElementById('boxseven'),
-      background: 'rgba(0, 0, 0, 0.7)',
-      tiny_mode: 'mobile-first'
+      background: 'rgba(0, 0, 0, 0.7)'
     })
   }
 }

@@ -14,11 +14,7 @@ test('[DatePicker] 测试事件', async ({ page }) => {
   await dateInputBlur.fill('2023-05-20')
   await dateInputBlur.press('Enter')
 
-  await page
-    .locator('div')
-    .filter({ hasText: /^blur:$/ })
-    .getByRole('textbox')
-    .click()
+  await page.getByRole('textbox', { name: '2023-05-20' }).click()
   await page.getByRole('cell', { name: '15' }).getByText('15').click()
   const blurEventMessageDom = page.locator('div').filter({ hasText: '触发 blur 事件' }).nth(1)
   await expect(blurEventMessageDom).toBeVisible()
@@ -28,17 +24,13 @@ test('[DatePicker] 测试事件', async ({ page }) => {
   await dateInputChange.fill('2023-05-20')
   await dateInputChange.press('Enter')
 
-  await page
-    .locator('div')
-    .filter({ hasText: /^change:$/ })
-    .getByRole('textbox')
-    .click()
+  await page.getByRole('textbox', { name: '2023-05-20' }).click()
   await page.getByRole('cell', { name: '15' }).getByText('15').click()
   const changeEventMessageDom = page.locator('div').filter({ hasText: '触发 change 事件，组件绑定值为：' }).nth(1)
   await expect(changeEventMessageDom).toBeVisible()
 
   // onPick 事件
-  await page.locator('div').filter({ hasText: /^-$/ }).click()
+  await page.locator('#events').getByRole('textbox').nth(3).click()
   await page.getByRole('cell', { name: '10' }).getByText('10').first().click()
   const onPickEventMessageDom = page.locator('div').filter({ hasText: '触发 onPick 事件，开始日期为：' }).nth(1)
   await expect(onPickEventMessageDom).toBeVisible()

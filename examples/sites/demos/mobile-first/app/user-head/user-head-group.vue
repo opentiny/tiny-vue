@@ -117,67 +117,67 @@ export default {
       imageList1: [
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         }
       ],
       imageList2: [
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         }
       ],
       imageList3: [
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         },
         {
           type: 'image',
-          modelValue: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
+          modelValue: '/static/images/1.jpg',
           round: true
         }
       ],
       text: '中文',
       textEn: 'Meta',
-      imgUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`
+      imgUrl: '/static/images/1.jpg'
     }
   }
 }

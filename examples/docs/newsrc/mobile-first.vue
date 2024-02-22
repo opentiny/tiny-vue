@@ -1,6 +1,6 @@
 <template>
   <div class="wp100 hp100 f-r of-hidden">
-    <div class="w230 pt20 of-auto sm-hidden b-r bg-white" :class="{ 'fixed-menu': showFixedMenu }">
+    <div class="w230 pt20 of-auto">
       <tiny-tree-menu
         class="!w213"
         :data="menuData"
@@ -23,14 +23,8 @@
           <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
         <!-- 预览 -->
-        <!-- modeState.demoId === 'preview-in-dialog' 修复preview-in-dialog demo弹窗内容被遮罩层遮挡 -->
-        <div
-          class="rel px20 minh200"
-          :style="{ transform: modeState.demoId === 'preview-in-dialog' ? '' : 'translateX(0)' }"
-        >
-          <config-provider :design="design">
-            <component :is="state.comp"></component>
-          </config-provider>
+        <div class="rel px20 minh200" style="transform: translateX(0)">
+          <component :is="state.comp"></component>
         </div>
       </div>
       <!-- API表格 -->
@@ -78,8 +72,8 @@
       </div>
     </div>
     <!-- 右边浮动所有的demos -->
-    <tiny-floatbar v-if="state.demos.length > 0" class="!top120 !z1 !right25 sm-hidden">
-      <div class="f12 ofy-auto h700">
+    <tiny-floatbar v-if="state.demos.length > 0" class="!top120 !z1 !right25">
+      <div class="f12 ofy-auto">
         <div
           v-for="demo in state.demos"
           :key="demo.demoId"
@@ -100,27 +94,19 @@
 
 <script>
 import { hooks } from '@opentiny/vue-common'
-import { Floatbar, TreeMenu, Button, Tooltip, ConfigProvider } from '@opentiny/vue'
+import { Floatbar, TreeMenu, Button, Tooltip } from '@opentiny/vue'
 import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
 import { menuData, apis, demoStr, demoVue, mds } from './resourceMobileFirst.js'
 import { useModeCtx } from './uses'
-import designAuroraConfig from '@opentiny/vue-design-aurora'
-import designSaasConfig from '@opentiny/vue-design-saas'
-
-const isSaasMode = process.env.VITE_TINY_THEME === 'saas'
 
 export default {
-  props: {
-    showFixedMenu: Boolean
-  },
   components: {
     TinyFloatbar: Floatbar,
     TinyTreeMenu: TreeMenu,
     TinyButton: Button,
     TinyTooltip: Tooltip,
     IconStarIcon: iconStarActive(),
-    IconOpeninVscode: iconSelect(),
-    ConfigProvider
+    IconOpeninVscode: iconSelect()
   },
   setup() {
     import('./tailwind.css')
@@ -192,37 +178,21 @@ export default {
       modeFn.pushToUrl()
     }
 
-    // mobile-first都是aui组件，限定使用它的规范。saas 模式下，只使用designSaasConfig，否则 designAuroraConfig
-    const design = isSaasMode ? designSaasConfig : designAuroraConfig
-
     return {
       menuData,
       state,
       fn,
       modeState,
-      modeFn,
-      design
+      modeFn
     }
   }
 }
 </script>
 
-<style lang="less">
+<style>
 .component-md h1,
 .component-md h2 {
   font-size: 1.5em;
   font-weight: bold;
-}
-
-.demo-date-picker-mobile-container {
-  min-height: 500px;
-
-  .tiny-recycle-scroller {
-    height: 220px !important;
-  }
-
-  div[data-tag='tiny-drawer-main'] {
-    min-height: auto;
-  }
 }
 </style>

@@ -86,5 +86,97 @@ export default {
       },
       codeFiles: ['slot-icon.vue']
     }
+  ],
+  apis: [
+    {
+      name: 'Tabbar', // 组件名称展示使用
+      type: 'component', // API 类型
+      properties: [
+        {
+          name: 'active-color',
+          type: 'String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>选中标签的颜色</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'active-inactive-color'
+        },
+        {
+          name: 'border',
+          type: 'Boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>是否显示外边框，该属性默认为true</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'border'
+        },
+        {
+          name: 'fixed',
+          type: 'Boolen',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>是否固定在底部，该属性默认为true</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'border'
+        },
+        {
+          name: 'inactive-color',
+          type: 'String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>未选中标签的颜色</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'active-inactive-color'
+        },
+        {
+          name: 'route',
+          type: 'Boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>是否开启路由模式，该属性默认为false</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'route'
+        },
+        {
+          name: 'z-index',
+          type: 'Number | String',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>元素 z-index</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'border'
+        }
+      ],
+      events: [
+        {
+          name: 'change',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>切换标签时触发,value: 当前选中标签的名称或索引值</p>',
+            'en-US': 'Click'
+          },
+          demoId: 'event-change'
+        }
+      ],
+      slot: [
+        {
+          name: 'icon',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>自定义图标</p>',
+            'en-US': 'Click'
+          },
+          demoId: 'slot-icon'
+        }
+      ]
+    }
   ]
 }

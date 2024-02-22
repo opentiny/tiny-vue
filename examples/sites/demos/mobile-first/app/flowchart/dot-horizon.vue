@@ -11,8 +11,9 @@
 </template>
 
 <script>
-import { Flowchart, Modal } from '@opentiny/vue'
+import Flowchart from '@opentiny/vue-flowchart'
 import { hooks } from '@opentiny/vue-common'
+import { Modal } from '@opentiny/vue'
 
 const { createConfig, Node, resizeMixin } = Flowchart
 const nodeWrapperSize = 32
@@ -67,8 +68,8 @@ const chartData = {
     }
   ],
   links: [
-    { from: '0', to: '1', fromJoint: 'right', toJoint: 'left', info: { status: 2, style: 'solid' } },
-    { from: '1', to: '2', fromJoint: 'right', toJoint: 'left', info: { status: 2, style: 'solid' } },
+    { from: '0', to: '1', fromJoint: 'right', toJoint: 'left', info: { status: 3, style: 'solid' } },
+    { from: '1', to: '2', fromJoint: 'right', toJoint: 'left', info: { status: 3, style: 'solid' } },
     { from: '2', to: '3', fromJoint: 'right', toJoint: 'left', info: { status: 3, style: 'solid' } },
     { from: '3', to: '4', fromJoint: 'right', toJoint: 'left', info: { status: 3, style: 'solid' } }
   ]
@@ -79,7 +80,7 @@ const chartConfig = createConfig()
 Object.assign(chartConfig, {
   width: 0,
   extraWidth: 100, // 图形预留宽度，用于图形最小宽度计算，适当修改保证图形宽度不被过分挤压
-  height: 90,
+  height: 0,
   gap: 60,
   padding: 12,
   prior: 'vertical',
@@ -92,9 +93,7 @@ Object.assign(chartConfig, {
     return h(Node, { props: { node, config: chartConfig } })
   },
   type: 'dot',
-  nodeWrapperSize,
-  showArrow: false,
-  nodeSize: 'medium' /* mini/small/medium */
+  nodeWrapperSize
 })
 
 export default {

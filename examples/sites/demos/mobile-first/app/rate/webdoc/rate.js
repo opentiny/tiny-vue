@@ -14,6 +14,7 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
+
     {
       demoId: 'custom-3-threshold-colors',
       name: {
@@ -207,5 +208,6 @@ export default {
       },
       codeFiles: ['rate-events.vue']
     }
-  ]
+  ],
+  apis: []
 }

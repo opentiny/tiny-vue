@@ -1,15 +1,15 @@
 <template>
   <tiny-checkbox-group v-model="checked" @change="valueChange">
-    <tiny-checkbox v-for="item in list" :label="item.title" :key="item.id"></tiny-checkbox>
+    <tiny-checkbox-button v-for="item in list" :label="item.title" :key="item.id"></tiny-checkbox-button>
   </tiny-checkbox-group>
 </template>
 
 <script>
-import { Checkbox, CheckboxGroup, Modal } from '@opentiny/vue'
+import { CheckboxButton, CheckboxGroup, Modal } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCheckbox: Checkbox,
+    TinyCheckboxButton: CheckboxButton,
     TinyCheckboxGroup: CheckboxGroup
   },
   data() {

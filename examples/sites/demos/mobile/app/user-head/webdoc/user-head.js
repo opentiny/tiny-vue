@@ -159,5 +159,125 @@ export default {
       },
       codeFiles: ['round-user-head.vue']
     }
+  ],
+  apis: [
+    {
+      name: 'UserHead', // 组件名称展示使用
+      type: 'component', // API 类型
+      properties: [
+        {
+          name: 'type',
+          type: 'string',
+          defaultValue: 'label',
+          desc: {
+            'zh-CN': '<p>头像类型，该属性的可选值为 icon / image / label</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'basic-usage'
+        },
+        {
+          name: 'value',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设type=icon 时为图标类名，type=label时为字体串，type=image时为资源路径</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'basic-usage'
+        },
+        {
+          name: 'size',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置头像尺寸</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'basic-usage'
+        },
+        {
+          name: 'backgroundColor',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置背景色</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'custom-background-color'
+        },
+        {
+          name: 'color',
+          type: 'string',
+          defaultValue: '#ffffff',
+          desc: {
+            'zh-CN': '<p>头像为icon或文字类型时的颜色</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'color'
+        },
+        {
+          name: 'messageTotal',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>右上角消息计数</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'message-count-limit'
+        },
+        {
+          name: 'messageUpperLimit',
+          type: 'number',
+          defaultValue: '0',
+          desc: {
+            'zh-CN': '<p>右上角消息显示上限</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'message-count-limit'
+        },
+        {
+          name: 'messageType',
+          type: 'string',
+          defaultValue: 'details',
+          desc: {
+            'zh-CN': '<p>右上角消息提醒类型，basic显示小圆点不显示消息数量</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'message-count-type'
+        },
+        {
+          name: 'min',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>小尺寸模式</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'min-user-head'
+        },
+        {
+          name: 'round',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '<p>圆形模式</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'round-user-head'
+        }
+      ],
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>自定义图像内容</p>',
+            'en-US': 'display different button'
+          },
+          demoId: 'round-user-head'
+        }
+      ]
+    }
   ]
 }

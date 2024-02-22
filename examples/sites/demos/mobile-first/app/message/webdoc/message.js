@@ -51,5 +51,6 @@ export default {
       },
       codeFiles: ['id.vue']
     }
-  ]
+  ],
+  apis: []
 }

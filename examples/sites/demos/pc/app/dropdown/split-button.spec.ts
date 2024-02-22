@@ -5,7 +5,7 @@ test('按钮类型', async ({ page }) => {
   await page.goto('dropdown#split-button')
 
   const wrap = page.locator('#split-button')
-  const dropDown = wrap.locator('.tiny-dropdown').nth(1)
+  const dropDown = wrap.locator('.tiny-dropdown')
   const dropDownMenu = page.locator('body > .tiny-dropdown-menu')
   const textBtn = dropDown.locator('button').first()
   const dropDownBtn = dropDown.locator('button').nth(1)

@@ -2,7 +2,7 @@
   <tiny-area size="medium" v-model="area" placeholder="请选择"></tiny-area>
 </template>
 
-<script setup>
+<script setup lang="jsx">
 import { ref } from 'vue'
 import { Area as TinyArea } from '@opentiny/vue'
 

@@ -26,5 +26,6 @@ export default {
       },
       codeFiles: ['horizon.vue']
     }
-  ]
+  ],
+  apis: []
 }

@@ -12,11 +12,7 @@
     <div class="item-content">
       <tiny-user-head type="label" v-model="name" :size="80"></tiny-user-head>
       <tiny-user-head type="icon" :size="80"></tiny-user-head>
-      <tiny-user-head
-        type="image"
-        :modelValue="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`"
-        :size="80"
-      ></tiny-user-head>
+      <tiny-user-head type="image" modelValue="/static/images/fruit.jpg" :size="80"></tiny-user-head>
     </div>
 
     <div class="title">自定义</div>
