@@ -6,7 +6,7 @@ test('是否能阻止删除或正常删除标签', async ({ page }) => {
 
   const first = page.locator('.tiny-tag').filter({ hasText: '标签一' })
   const close = first.locator('.tiny-tag__close')
-  const modal = page.locator('.tiny-modal__box').getByText('消息提示确认删除？确认取消')
+  const modal = page.locator('.tiny-modal__box').getByText('消息提示确认删除？确定取消')
 
   await close.click()
   await modal.waitFor({ state: 'attached', timeout: 100 })
@@ -14,6 +14,6 @@ test('是否能阻止删除或正常删除标签', async ({ page }) => {
   await first.isVisible()
   await close.click()
   await modal.waitFor({ state: 'attached', timeout: 100 })
-  await page.getByRole('button', { name: '确认' }).click()
+  await page.getByRole('button', { name: '确定' }).click()
   await expect(first).not.toBeVisible()
 })
