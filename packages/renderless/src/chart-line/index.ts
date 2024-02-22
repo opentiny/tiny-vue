@@ -12,7 +12,7 @@
 
 import { getFormated, getStackMap, getLegend, hexToRgb, set } from '../chart-core/deps/utils'
 import { isNull } from '../common/type'
-import { itemPoint, itemLabel, itemContent, SAAS_DEFAULT_COLORS } from '../chart-core/deps/constants'
+import { itemPoint, itemLabel, itemContent, SAAS_DEFAULT_COLORS_10 } from '../chart-core/deps/constants'
 
 const getLineXAxis = (args) => {
   const { xAxisType, dimension, rows, xAxisName, axisVisible, xAxisSettings = [] } = args
@@ -47,10 +47,10 @@ const getAreaSeries = ({ color, seriesItem }) => {
 const setSingLineSeries = ({ defaultSeriesItem, seriesItem }) => {
   // 单条折线
   defaultSeriesItem.showSymbol = true
-  set(defaultSeriesItem, 'emphasis.itemStyle.color', SAAS_DEFAULT_COLORS[0])
+  set(defaultSeriesItem, 'emphasis.itemStyle.color', SAAS_DEFAULT_COLORS_10[0])
   seriesItem.label = { show: true, ...seriesItem.label }
   seriesItem.itemStyle = { color: 'transparent', ...seriesItem.itemStyle }
-  seriesItem.lineStyle = { color: SAAS_DEFAULT_COLORS[0], ...seriesItem.lineStyle }
+  seriesItem.lineStyle = { color: SAAS_DEFAULT_COLORS_10[0], ...seriesItem.lineStyle }
   seriesItem.animation = seriesItem.animation || false
 }
 
@@ -119,15 +119,16 @@ const getLineYAxis = (args) => {
 
   for (let k = 0; k < 2; k++) {
     if (yAxisType[k]) {
-      yAxis[k] = Object.assign({}, yAxisBase, {
+      yAxis[k] = {
+        ...yAxisBase,
         axisLabel: {
           formatter(val) {
             return getFormated(val, yAxisType[k], digit)
           }
         }
-      })
+      }
     } else {
-      yAxis[k] = Object.assign({}, yAxisBase)
+      yAxis[k] = { ...yAxisBase }
     }
 
     yAxis[k].name = yAxisName[k] || ''
@@ -150,7 +151,6 @@ const getLineTooltip = (args) => {
   return {
     formatter(items) {
       if (tooltipFormatter) {
-        // eslint-disable-next-line prefer-spread, prefer-rest-params
         return tooltipFormatter.apply(null, arguments)
       }
 
@@ -162,7 +162,7 @@ const getLineTooltip = (args) => {
 
       items.forEach(({ seriesName, data, color }) => {
         if (color === 'transparent' && items.length === 1) {
-          color = SAAS_DEFAULT_COLORS[0]
+          color = SAAS_DEFAULT_COLORS_10[0]
         }
         let showData = null
 
@@ -207,7 +207,7 @@ export const line = (columns, rows, settings, extra) => {
 
   let legendItemStyle
   if (metrics.length === 1) {
-    legendItemStyle = { itemStyle: { color: SAAS_DEFAULT_COLORS[0] } }
+    legendItemStyle = { itemStyle: { color: SAAS_DEFAULT_COLORS_10[0] } }
   }
 
   const legend = legendVisible && getLegend({ legendName, metrics, labelMap, legendItemStyle })
@@ -226,5 +226,5 @@ export const line = (columns, rows, settings, extra) => {
 
   let options = { legend, xAxis, series, yAxis, tooltip }
 
-  return options
+  return { ...options, ...settings }
 }
