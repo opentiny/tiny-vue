@@ -1,16 +1,11 @@
 <template>
   <div class="demo-steps-click">
     <tiny-steps :data="stepsData" :active="defaultActive" @click="normalClick"></tiny-steps>
-    <div v-if="currentNode">
-      <span>选中节点 index: {{ currentNode.index }}</span
-      ><br />
-      <span>选中节点 node: {{ currentNode.node }} </span>
-    </div>
   </div>
 </template>
 
 <script>
-import { Steps } from '@opentiny/vue'
+import { Steps, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -40,17 +35,14 @@ export default {
           status: 'done'
         }
       ],
-      defaultActive: 1,
-      currentNode: null
+      defaultActive: 1
     }
   },
   methods: {
     normalClick(index, node) {
       this.defaultActive = index
-      this.currentNode = {
-        index,
-        node: JSON.stringify(node)
-      }
+
+      Modal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
     }
   }
 }
