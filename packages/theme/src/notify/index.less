@@ -77,7 +77,9 @@
     font-size: var(--ti-notify-title-font-size);
     color: var(--ti-notify-title-text-color);
     line-height: 1.5;
-    white-space: normal;
+    white-space: var(--ti-notify-title-white-space);
+    overflow-x: hidden;
+    text-overflow: ellipsis;
   }
 
   & &__icon {
