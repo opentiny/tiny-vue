@@ -4,6 +4,8 @@
     <tiny-dialog-box
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
+      resize
+      max-height="500"
       title="消息"
       width="30%"
       :is-form-reset="false"

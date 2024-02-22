@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="title">折线图</h3>
-    <button @click="switchTheme">切换主题</button>
+    <tiny-button @click="switchTheme">切换主题</tiny-button>
     <div class="content">
       <tiny-chart :data="chartData" :settings="chartSettings1" :theme="newTheme"></tiny-chart>
     </div>
@@ -12,16 +12,25 @@
     </div>
 
     <h3 class="title">饼图</h3>
+    <tiny-button @click="switchColorMode">color-mode切换</tiny-button>
     <div class="content">
-      <tiny-chart :data="chartData" :settings="chartSettings3"></tiny-chart>
+      <tiny-chart
+        @handle-color="handleColor"
+        :data="chartData"
+        :settings="chartSettings3"
+        :color-mode="colorMode"
+        :key="key"
+      ></tiny-chart>
     </div>
   </div>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Chart as TinyChart } from '@opentiny/vue'
+import { Chart as TinyChart, Button as TinyButton } from '@opentiny/vue'
 
+const colorMode = ref('default')
+const key = ref(0)
 const themeName = ref({
   backgroundColor: '#2bf666'
 })
@@ -68,5 +77,15 @@ function switchTheme() {
     ],
     backgroundColor: '#f00'
   }
+}
+
+function switchColorMode() {
+  const colorModes = ['default', 'blue', 'green']
+  colorMode.value = colorModes[(key.value + 1) % 3]
+  key.value++
+}
+
+function handleColor(color) {
+  console.log('handle-color', color)
 }
 </script>

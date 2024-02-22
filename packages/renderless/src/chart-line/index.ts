@@ -119,16 +119,15 @@ const getLineYAxis = (args) => {
 
   for (let k = 0; k < 2; k++) {
     if (yAxisType[k]) {
-      yAxis[k] = {
-        ...yAxisBase,
+      yAxis[k] = Object.assign({}, yAxisBase, {
         axisLabel: {
           formatter(val) {
             return getFormated(val, yAxisType[k], digit)
           }
         }
-      }
+      })
     } else {
-      yAxis[k] = { ...yAxisBase }
+      yAxis[k] = Object.assign({}, yAxisBase)
     }
 
     yAxis[k].name = yAxisName[k] || ''
@@ -151,6 +150,7 @@ const getLineTooltip = (args) => {
   return {
     formatter(items) {
       if (tooltipFormatter) {
+        // eslint-disable-next-line prefer-spread, prefer-rest-params
         return tooltipFormatter.apply(null, arguments)
       }
 
@@ -226,5 +226,5 @@ export const line = (columns, rows, settings, extra) => {
 
   let options = { legend, xAxis, series, yAxis, tooltip }
 
-  return { ...options, ...settings }
+  return options
 }

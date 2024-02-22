@@ -50,5 +50,30 @@ export default {
       'codeFiles': ['candle/demo7.vue']
     }
   ],
-  apis: [{ 'name': 'chart-candle', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-candle', 'type': 'component', 'props': [], 'events': [], 'slots': [] }],
+  types: [
+    {
+      name: 'IChartSettings',
+      type: 'interface',
+      code: `
+interface IChartSettings {
+  MA: array // 移动平均线指标周期，默认[5,10,20,30]
+  dataType: string // 数据展示格式，可选值: KMB , normal , percent 
+  digit: number // 设置数据类型为 percent 时保留的位数，默认为2
+  dimension: string // 维度，默认为 columns[0]
+  downColor: string // 下降颜色，默认为#ec0000
+  end: number //  dataZoom 控件的结束位置，默认为100，即末尾位置
+  itemStyle: object // 图形样式
+  labelMap: object // 设置指标的别名
+  legendName: object // 设置图表上方图例的别名
+  metrics: array // 指标，默认为[columns[1] ~ columns[5]]
+  showDataZoom: boolean // 是否展示 dataZoom 控件，默认为 false 
+  showMA: boolean // 是否展示移动平均线指标，默认为 false 
+  showVol: boolean // 是否展示成交量，默认为 false 
+  start: number //  dataZoom 控件的起始位置，默认为50，即中间位置
+  upColor: string // 上升颜色，默认为 #00da3c
+}
+`
+    }
+  ]
 }

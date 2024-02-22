@@ -16,7 +16,7 @@ import { itemLabel, itemContent, SAAS_DEFAULT_COLORS } from '../chart-core/deps/
 
 const getWaterfallTooltip = (dataType, digit) => {
   let trigger = 'axis'
-  let axisPointer = { type: 'shadow' }
+  let axisPointer = { type: 'shadow', z: 1, shadowStyle: { color: '#f5f5f5' } }
   let formatter = function (items) {
     const item = items[1]
 
@@ -40,12 +40,10 @@ const getWaterfallXAxis = (args) => {
 
   const xAxis = { type: 'category', name, splitLine: { show: false }, data: xAxisData, show: axisVisible }
   const axisLine = { show: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 } }
-  const axisPointer = { type: 'shadow', z: 1, shadowStyle: { color: '#f5f5f5' } }
 
   return {
     ...xAxis,
-    axisLine,
-    axisPointer
+    axisLine
   }
 }
 

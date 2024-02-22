@@ -1,6 +1,6 @@
 <template>
   <div class="wp100 hp100 f-r of-hidden">
-    <div class="w230 pt20 of-auto">
+    <div class="w230 pt20 of-auto sm-hidden b-r bg-white" :class="{ 'fixed-menu': showFixedMenu }">
       <tiny-tree-menu
         class="!w213"
         :data="menuData"
@@ -97,7 +97,7 @@
       </div>
     </tiny-floatbar>
     <!-- 切换主题 -->
-    <tiny-dropdown class="!fixed bottom20 right140" :show-icon="false" @item-click="changeTheme">
+    <tiny-dropdown class="!fixed bottom20 right140" :show-icon="false" @item-click="changeTheme" :disabled="isSaasMode">
       <span title="切换主题">
         <SvgTheme></SvgTheme>
       </span>
@@ -153,9 +153,12 @@ import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
 import Loading from '@opentiny/vue-loading'
 import designSmbConfig from '@opentiny/vue-design-smb'
 import designAuroraConfig from '@opentiny/vue-design-aurora'
+import designSaasConfig from '@opentiny/vue-design-saas'
 import { menuData, apis, demoStr, demoVue, mds } from './resourcePc.js'
 import { useTheme, useModeCtx } from './uses'
 import SvgTheme from './assets/theme.svg'
+
+const isSaasMode = process.env.VITE_TINY_THEME === 'saas'
 
 const getPath = (path) => {
   if (path.startsWith('grid-')) {
@@ -167,6 +170,9 @@ const getPath = (path) => {
 }
 
 export default {
+  props: {
+    showFixedMenu: Boolean
+  },
   components: {
     TinyFloatbar: Floatbar,
     TinyTreeMenu: TreeMenu,
@@ -185,7 +191,7 @@ export default {
   },
   setup() {
     const { state: modeState, fn: modeFn } = useModeCtx()
-    const { changeTheme, currThemeLabel } = useTheme()
+    const { changeTheme, currThemeLabel } = useTheme({ readCacheImmediate: !isSaasMode })
     const rightRef = hooks.ref('')
     const state = hooks.reactive({
       demos: [], // 组件的所有示例  {component,content,demoId,findIntroStr,link,title}[]
@@ -266,6 +272,9 @@ export default {
 
     const lastThemeKey = localStorage.getItem('tinyThemeToolkey')
 
+    // saas 模式下，只使用designSaasConfig，并且禁用主题切换
+    const design = isSaasMode ? designSaasConfig : designConfigMap[lastThemeKey] || {}
+
     return {
       menuData,
       state,
@@ -275,7 +284,8 @@ export default {
       modeState,
       modeFn,
       rightRef,
-      design: designConfigMap[lastThemeKey] || {}
+      design,
+      isSaasMode
     }
   }
 }

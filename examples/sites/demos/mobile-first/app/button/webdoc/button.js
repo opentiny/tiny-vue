@@ -3,16 +3,16 @@ export default {
   owner: '',
   demos: [
     {
-      demoId: 'click',
+      demoId: 'basic-usage',
       name: {
-        'zh-CN': '默认按钮',
+        'zh-CN': '基本用法',
         'en-US': 'basic usage'
       },
       desc: {
-        'zh-CN': '<p>按钮的单击事件，该示例中单击按钮将会出现提示信息</p>',
-        'en-US': '<p>Click event of a button. In this example, a message is displayed when a button is clicked.</p>'
+        'zh-CN': '<p></p>',
+        'en-US': '<p></p>'
       },
-      codeFiles: ['click.vue']
+      codeFiles: ['basic-usage.vue']
     },
     {
       demoId: 'text',
@@ -121,12 +121,12 @@ export default {
     {
       demoId: 'click',
       name: {
-        'zh-CN': '事件',
-        'en-US': 'events'
+        'zh-CN': '点击事件',
+        'en-US': 'basic usage'
       },
       desc: {
-        'zh-CN': '<p>按钮的单击事件，该示例中单击按钮将会出现提示信息。<p>',
-        'en-US': '<p>Click event of a button. In this example, a message is displayed when a button is clicked</p>'
+        'zh-CN': '<p>按钮的单击事件，该示例中单击按钮将会出现提示信息</p>',
+        'en-US': '<p>Click event of a button. In this example, a message is displayed when a button is clicked.</p>'
       },
       codeFiles: ['click.vue']
     },
@@ -201,41 +201,6 @@ export default {
         'en-US': '<p>Configure the <code>round</code> attribute to set whether to round the button.</p>'
       },
       codeFiles: ['round.vue']
-    }
-  ],
-  apis: [
-    {
-      'name': 'Button',
-      'type': 'component',
-      'props': [
-        {
-          'name': 'banner ',
-          'type': 'Boolean',
-          'defaultValue': '',
-          'desc': { 'zh-CN': '设置通栏按钮', 'en-US': 'Setting the bar button' },
-          'demoId': 'banner'
-        },
-        {
-          'name': 'custom-class',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置 custom-class 属性定制按钮样式',
-            'en-US': 'Set the custom-class attribute to customize the button style'
-          },
-          'demoId': 'button-class'
-        },
-        {
-          'name': 'href',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '通过设置 href 属性可跳转到指定页面',
-            'en-US': 'Set the href attribute to jump to a specified page'
-          },
-          'demoId': 'link'
-        }
-      ]
     }
   ]
 }

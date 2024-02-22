@@ -14,7 +14,6 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'popover-content',
       name: {
@@ -204,6 +203,5 @@ export default {
       },
       codeFiles: ['popover-events.vue']
     }
-  ],
-  apis: []
+  ]
 }

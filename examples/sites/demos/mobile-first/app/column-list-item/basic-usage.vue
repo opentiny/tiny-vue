@@ -3,7 +3,7 @@
     <tiny-column-list-item
       v-model="value"
       :show-checkbox="true"
-      image="/static/images/1.jpg"
+      :image="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`"
       size="medium"
       :options="options1"
       :flex-grow="[1, 1]"
@@ -26,7 +26,12 @@
         </ul>
       </template>
     </tiny-column-list-item>
-    <tiny-column-list-item image="/static/images/1.jpg" size="medium" :options="options2" class="mb-3">
+    <tiny-column-list-item
+      :image="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`"
+      size="medium"
+      :options="options2"
+      class="mb-3"
+    >
       <template #column1>
         <ul class="text-color-fill-secondary">
           <li class="text-sm text-color-text-primary font-medium mb-1 sm:mb-1.5">智能手机智能手机</li>

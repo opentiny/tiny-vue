@@ -6,7 +6,7 @@
   </tiny-file-upload>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { FileUpload as TinyFileUpload, Button as TinyButton, Modal } from '@opentiny/vue'
 
@@ -26,7 +26,7 @@ function beforeAvatarUpload(file) {
 
     if (!allow) {
       Modal.confirm(`自定义提示：《${file.name}》文件不合规范，文件类型或大小超出限制，确定要上传吗？`).then((res) => {
-        res === 'confirm' ? resolve() : reject()
+        res === 'confirm' ? resolve() : reject(new Error('取消上传'))
       })
     } else {
       resolve()

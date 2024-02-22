@@ -1,6 +1,8 @@
 <template>
   <div>
-    <tiny-button @click="handleClick" style="max-width: unset"> 设置v-loading.body的值为true </tiny-button>
+    <tiny-button @click="isBody = !isBody" style="max-width: unset">
+      设置v-loading.body的值为 {{ !isBody }}
+    </tiny-button>
     <div id="boxnine" v-loading.body="isBody"></div>
   </div>
 </template>
@@ -18,22 +20,6 @@ export default {
   data() {
     return {
       isBody: false
-    }
-  },
-  mounted() {
-    Loading.service({
-      lock: true,
-      text: '同 v——loading 指令中的 body 修饰符',
-      target: document.getElementById('boxnine'),
-      background: 'rgba(0, 0, 0, 0.7)'
-    })
-  },
-  methods: {
-    handleClick() {
-      this.isBody = true
-      setTimeout(() => {
-        this.isBody = false
-      }, 20000)
     }
   }
 }
