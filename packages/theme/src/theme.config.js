@@ -37,6 +37,7 @@ export default {
   'date-picker': 'date-picker',
   'data-range': 'data-range',
   'date-table': 'date-table',
+  'date-editor': 'date-editor',
   'fall-menu': 'fall-menu',
   'form-item': 'form-item',
   'img-preview': 'img-preview',

@@ -123,6 +123,13 @@
         bottom: 5px;
       }
 
+      span {
+        min-width: var(--ti-date-table-td-today-width);
+        height: var(--ti-date-table-td-today-height);
+        border-radius: var(--ti-date-table-td-today-border-radius);
+        border: solid 1px var(--ti-date-table-td-today-circle-border-color);
+      }
+
       &.end-date,
       &.start-date {
         span {
@@ -134,12 +141,20 @@
     &.available:hover span {
       background-color: var(--ti-date-table-hover-bg-color);
       border-radius: var(--ti-date-table-border-radius-current-select);
+      border-color: transparent;
     }
 
-    &.current:not(.disabled) span {
-      color: var(--ti-date-table-td-normal-text-color);
-      background-color: var(--ti-date-table-bg-color-current-select);
-      border-radius: var(--ti-date-table-border-radius-current-select);
+    &.current:not(.disabled) {
+      span {
+        color: var(--ti-date-table-td-normal-text-color);
+        background-color: var(--ti-date-table-bg-color-current-select);
+        border-radius: var(--ti-date-table-border-radius-current-select);
+        border-color: transparent;
+      }
+
+      &::after {
+        background-color: transparent;
+      }
     }
 
     &.end-date,
