@@ -32,7 +32,7 @@
 
   tr, td {
     text-align: center;
-    padding: 16px 0;
+    padding: 16px 4px;
     cursor: pointer;
 
     &.current {
@@ -47,8 +47,9 @@
 
     &.today {
       .cell {
-        color: var(--ti-month-table-td-text-bg-color);
-        font-weight: 700;
+        color: var(--ti-month-table-cell-today-text-color);
+        font-weight: var(--ti-month-table-cell-today-font-weight);
+        border: solid 1px var(--ti-month-table-cell-today-border-color);
       }
 
       &.end-date,
@@ -73,14 +74,15 @@
 
     .cell {
       width: 100%;
-      height: 32px;
-      line-height: 32px;
+      height: var(--ti-month-table-cell-height);
+      line-height: var(--ti-month-table-cell-height);
       display: block;
       color: var(--ti-date-picker-text-color);
 
       &:hover {
         color: var(--ti-date-picker-text-color);
-        background: var(--ti-date-picker-hover-bg-color);
+        background: var(--ti-month-table-cell-hover-bg-color);
+        border-color: transparent;
       }
     }
 
@@ -106,7 +108,7 @@
     &:not(.in-range) {
       .cell {
         width: auto;
-        border-radius: 2px;
+        border-radius: var(--ti-month-table-cell-border-radius);
       }
     }
 
@@ -115,6 +117,7 @@
       &:hover {
         color: var(--ti-date-table-td-normal-text-color);
         background: var(--ti-month-table-td-text-bg-color);
+        border-color: transparent;
       }
     }
   }

@@ -9,5 +9,6 @@ export const tinyDateTableSmbTheme = {
   'ti-date-table-td-today-height': '26px',
   'ti-date-table-td-today-border-radius': '13px',
   'ti-date-table-td-today-circle-border-color': 'var(--ti-base-color-brand)',
+  'ti-date-table-td-today-circle-border-width': '1px',
   'ti-date-table-hover-bg-color': 'var(--ti-base-color-brand-8)'
 }

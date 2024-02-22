@@ -127,7 +127,7 @@
         min-width: var(--ti-date-table-td-today-width);
         height: var(--ti-date-table-td-today-height);
         border-radius: var(--ti-date-table-td-today-border-radius);
-        border: solid 1px var(--ti-date-table-td-today-circle-border-color);
+        border: solid var(--ti-date-table-td-today-circle-border-width) var(--ti-date-table-td-today-circle-border-color);
       }
 
       &.end-date,
@@ -152,7 +152,7 @@
         border-color: transparent;
       }
 
-      &::after {
+      &:after {
         background-color: transparent;
       }
     }
