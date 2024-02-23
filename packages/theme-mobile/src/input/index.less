@@ -1,0 +1,448 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../base/basic-var.less';
+@import '../mixins/input.less';
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@textarea-prefix-cls: ~'@{css-prefix}mobile-textarea';
+@input-prefix-cls: ~'@{css-prefix}mobile-input';
+@input-group-prefix-cls: ~'@{css-prefix}mobile-input-group';
+
+.@{textarea-prefix-cls} {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  line-height: var(--ti-mobile-input-line-height);
+
+  &__inner {
+    padding: var(--ti-mobile-textarea-padding-vertical) var(--ti-mobile-textarea-padding-horizontal);
+    font-size: var(--ti-mobile-textarea-inner-font-size, 16px);
+    font-family: var(--ti-mobile-input-font-family);
+    color: var(--ti-mobile-textarea-inner-text-color);
+    border: var(--ti-mobile-input-border-width) solid var(--ti-mobile-input-border-color);
+    border-radius: var(--ti-mobile-input-radius);
+    display: block;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    .placeholder(
+      @color: var(--ti-mobile-textarea-inner-placeholder-color)
+    );
+
+    &:hover,
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__count {
+    position: absolute;
+    right: var(--ti-mobile-textarea-padding-horizontal);
+    bottom: var(--ti-mobile-textarea-padding-vertical);
+    color: var(--ti-mobile-input-count-text-color);
+    font-size: var(--ti-mobile-input-count-font-size);
+  }
+
+  &.is-focus &__inner {
+    border-color: var(--ti-mobile-input-border-color-active);
+    border-width: var(--ti-mobile-input-border-width-active);
+  }
+
+  &.is-showlimit &__inner {
+    padding-bottom: calc(var(--ti-mobile-input-count-font-size) * 1.5 + var(--ti-mobile-textarea-padding-vertical));
+  }
+
+  &.is-disabled {
+    .@{textarea-prefix-cls}__inner {
+      border-color: var(--ti-mobile-border-color-disabled);
+      background-color: var(--ti-mobile-input-bg-color-disabled);
+      color: var(--ti-mobile-input-text-color-disabled);
+      cursor: not-allowed;
+      .placeholder(@color: var(--ti-mobile-input-text-color-disabled));
+    }
+  }
+
+  &.is-exceed {
+    border-color: var();
+    &__count {
+      color: var(--ti-mobile-input-exceed-text-color);
+    }
+  }
+}
+
+.@{input-prefix-cls} {
+  position: relative;
+  width: 100%;
+  line-height: var(--ti-mobile-input-line-height);
+
+  &::-webkit-scrollbar {
+    z-index: 11;
+    width: 6px;
+
+    &:horizontal {
+      height: 6px;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    width: 6px;
+    background: #b4bccc;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: #fff;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #fff;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background: #fff;
+    width: 6px;
+  }
+
+  &.is-focus &__wrapper {
+    border-color: var(--ti-mobile-input-border-color-active);
+    border-width: var(--ti-mobile-input-border-width-active);
+  }
+
+  &.is-exceed &__suffix &__count {
+    color: var(--ti-mobile-input-exceed-text-color);
+  }
+
+  &.is-disabled {
+    .@{input-prefix-cls}__wrapper {
+      border-color: var(--ti-mobile-border-color-disabled);
+      background: var(--ti-mobile-input-bg-color-disabled);
+    }
+
+    .@{input-prefix-cls}__inner {
+      cursor: not-allowed;
+      color: var(--ti-mobile-input-text-color-disabled);
+      .placeholder(@color: var(--ti-mobile-input-text-color-disabled));
+    }
+
+    .@{input-prefix-cls}__icon {
+      cursor: not-allowed;
+
+      &.@{css-prefix}svg {
+        &,
+        &:hover {
+          fill: var(--ti-mobile-input-icon-color-disabled);
+        }
+      }
+    }
+
+    .@{input-prefix-cls}__prefix,
+    .@{input-prefix-cls}__suffix {
+      .@{css-prefix}svg {
+        &,
+        &:hover {
+          fill: var(--ti-mobile-input-icon-color-disabled);
+        }
+      }
+    }
+  }
+
+  &.@{input-group-prefix-cls}-prepend &__wrapper {
+    padding-left: 0;
+  }
+
+  &.@{input-group-prefix-cls}-append &__wrapper {
+    padding-right: 0;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    height: var(--ti-mobile-input-height);
+    overflow: hidden;
+    border: var(--ti-mobile-input-border-width) solid var(--ti-mobile-input-border-color);
+    border-radius: var(--ti-mobile-input-radius);
+    background: var(--ti-mobile-input-bg-color);
+  }
+
+  &__inner {
+    flex: 1;
+    order: 3;
+    width: 100%;
+    height: 100%;
+    padding: 0 var(--ti-mobile-input-padding-horizontal);
+    font-size: var(--ti-mobile-input-font-size);
+    font-family: var(--ti-mobile-input-font-family);
+    color: var(--ti-mobile-input-text-color);
+    border: 0;
+    outline: 0;
+    display: inline-block;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    .placeholder(@color: var(--ti-mobile-input-placeholder-text-color));
+
+    &:hover,
+    &:focus,
+    &:active {
+      outline: 0;
+    }
+
+    &::-ms-clear {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  & &__clear {
+    font-size: var(--ti-mobile-input-icon-font-size, 16px);
+    cursor: pointer;
+    transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    &,
+    &:hover {
+      fill: var(--ti-mobile-input-icon-color);
+    }
+  }
+
+  & &__count {
+    height: 100%;
+    display: inline-flex;
+    color: var(--ti-mobile-input-count-text-color);
+    font-size: var(--ti-mobile-input-count-font-size);
+
+    .@{input-prefix-cls}__count-inner {
+      background: var(--ti-mobile-input-bg-color, #fff);
+      line-height: initial;
+      display: inline-block;
+    }
+  }
+
+  &__prefix,
+  &__suffix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    text-align: center;
+  }
+
+  &__prefix {
+    padding-left: var(--ti-mobile-input-padding-horizontal);
+    order: 2;
+    transition: all 0.3s;
+    font-size: var(--ti-mobile-input-icon-font-size);
+  }
+
+  &__suffix {
+    order: 4;
+    padding-right: var(--ti-mobile-input-padding-horizontal);
+    transition: all 0.3s;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.is-active &__inner,
+  &__inner:focus {
+    outline: 0;
+  }
+
+  &__icon {
+    line-height: var(--ti-mobile-input-line-height, 30px);
+    text-align: center;
+    transition: all 0.3s;
+    font-size: var(--ti-mobile-input-icon-font-size);
+
+    &,
+    &:hover {
+      fill: var(--ti-mobile-input-icon-color);
+    }
+
+    &:after {
+      content: '';
+      height: 100%;
+      width: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .svg-operationfaild {
+      &,
+      &:hover {
+        fill: var(--ti-mobile-input-icon-color);
+      }
+    }
+  }
+
+  &__validateIcon {
+    pointer-events: none;
+  }
+
+  &-medium {
+    .input-size(var(--ti-mobile-input-medium-height, 42px));
+  }
+
+  &-small {
+    .input-size(var(--ti-mobile-input-small-height, 36px));
+  }
+
+  &-mini {
+    .input-size(var(--ti-mobile-input-mini-height, 24px));
+  }
+}
+
+.@{input-prefix-cls}__title {
+  margin-bottom: var(--ti-mobile-input-title-margin-bottom);
+}
+
+.@{input-group-prefix-cls} {
+  line-height: normal;
+  display: inline-table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  > .@{input-prefix-cls}__inner {
+    vertical-align: middle;
+    display: table-cell;
+  }
+
+  &__append,
+  &__prepend {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    white-space: nowrap;
+
+    &:focus {
+      outline: 0;
+    }
+
+    .@{css-prefix}button,
+    .@{css-prefix}select {
+      display: inline-block;
+      margin: -10px -20px;
+    }
+
+    .@{css-prefix}button,
+    .@{css-prefix}input {
+      font-size: inherit;
+    }
+
+    button.@{css-prefix}button,
+    div.@{css-prefix}select .@{input-prefix-cls}__inner,
+    div.@{css-prefix}select:hover .@{input-prefix-cls}__inner {
+      background-color: transparent;
+      color: inherit;
+    }
+  }
+
+  &__prepend {
+    order: 1;
+    padding: 0 var(--ti-mobile-input-prepend-padding-horizontal);
+    color: var(--ti-mobile-input-prepend-text-color);
+    background-color: var(--ti-mobile-input-prepend-bg-color);
+  }
+
+  &__append {
+    order: 5;
+    padding: 0 var(--ti-mobile-input-append-padding-horizontal);
+    color: var(--ti-mobile-input-append-text-color);
+    background-color: var(--ti-mobile-input-append-bg-color);
+  }
+}
+
+.@{input-prefix-cls}__select {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--ti-mobile-input-bg-color, #fff);
+
+  &-icon {
+    order: 5;
+    height: 20px;
+    margin-right: var(--ti-mobile-input-padding-horizontal);
+    line-height: 20px;
+    width: 20px;
+    font-size: 0;
+    transform-origin: center center;
+    transition: all linear 0.3s;
+
+    svg {
+      fill: var(--ti-mobile-input-icon-color);
+      font-size: 20px;
+      vertical-align: text-bottom;
+    }
+  }
+
+  &-label {
+    box-sizing: border-box;
+    width: 35%;
+    padding: 0 12px 0 16px;
+    line-height: 1.376;
+    color: #333;
+    font-size: 22px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__error {
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    font-size: 13px;
+    color: var(--ti-mobile-common-color-error-text-1);
+    text-overflow: ellipsis;
+    bottom: -36px;
+    background: var(--ti-mobile-input-form-bg-color-error);
+    border-radius: 4px;
+    padding: 0px 12px;
+    &.align-right {
+      text-align: right;
+    }
+
+    &.align-left {
+      text-align: left;
+    }
+  }
+}
+
+.@{css-prefix-iconfont}-loading {
+  font-size: 14px;
+  line-height: 1;
+  vertical-align: text-top;
+  animation: rotating 2s linear infinite;
+}
+
+.@{input-prefix-cls}__tips {
+  margin-top: var(--ti-mobile-input-tips-margin-top);
+  font-size: var(--ti-mobile-input-tips-font-size);
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

@@ -1,0 +1,416 @@
+@import '../mixins/tip.less';
+@import '../mixins/input.less';
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@pager-prefix-cls: ~'@{css-prefix}pager';
+@popover-prefix-cls: ~'@{css-prefix}popover';
+@popper-prefix-cls: ~'@{css-prefix}popper';
+
+.@{pager-prefix-cls} {
+  @apply text-right;
+  @apply py-3 px-0;
+  @apply text-color-text-primary;
+
+  svg {
+    @apply transition-transform duration-300;
+  }
+
+  & &__group {
+    @apply inline-block;
+    @apply align-middle;
+    @apply text-xs;
+    @apply h-7;
+    @apply leading-7;
+
+    > span {
+      @apply inline-block;
+      @apply align-middle;
+    }
+  }
+
+  & &__total {
+    @apply h-7;
+    @apply leading-7;
+    @apply text-xs;
+    @apply text-color-text-primary;
+  }
+
+  & &__total-loading {
+    @apply inline-block;
+    @apply align-baseline;
+    @apply ~"h-3.5";
+    @apply ~"w-3.5";
+    @apply ~'mr-1.5';
+    .tiny-loading__spinner .circular {
+      @apply ~"h-3.5";
+      @apply ~"w-3.5";
+    }
+  }
+
+  & &__loading-text {
+    @apply text-color-text-secondary;
+  }
+
+  & &__total-allpage {
+    @apply my-0;
+    @apply mx-1;
+  }
+
+  & &__pull-left {
+    @apply float-left;
+  }
+
+  & &__pages {
+    @apply inline-flex;
+    @apply text-xs;
+
+    li {
+      @apply bg-transparent;
+      @apply inline-flex;
+      @apply items-center;
+      @apply justify-center;
+      @apply text-xs;
+      @apply ml-2;
+      @apply cursor-pointer;
+      @apply text-center;
+      @apply h-7;
+      @apply ~"min-w-[theme(spacing.7)]";
+      @apply text-color-text-primary;
+      @apply py-0 px-1;
+      @apply box-border;
+      @apply transition-all duration-500 ease-linear;
+      @apply border border-solid border-transparent;
+      @apply rounded;
+
+      a {
+        @apply text-color-text-primary;
+      }
+
+      svg {
+        @apply fill-color-icon-primary;
+        @apply align-middle;
+        @apply text-base;
+      }
+
+      &.dot {
+        @apply w-4;
+        @apply min-w-0;
+        @apply p-0;
+        @apply border-none;
+
+        &:hover {
+          svg {
+            @apply fill-color-brand;
+          }
+        }
+
+        &:active {
+          svg {
+            @apply fill-color-icon-hover;
+          }
+        }
+      }
+
+      &.is-active {
+        @apply text-color-brand;
+        @apply bg-color-fill-6;
+      }
+
+      &:not(.is-active):hover {
+        @apply bg-color-border-disabled;
+      }
+
+      &:not(.is-active):active {
+        @apply text-color-brand-active;
+        @apply bg-color-fill-6;
+      }
+    }
+  }
+
+  &__goto {
+    @apply text-xs;
+
+    input[type='text'] {
+      @apply w-8;
+      @apply text-center;
+      @apply align-top;
+      @apply rounded;
+      @apply inline-block;
+      position: inherit;
+      @apply h-7;
+      @apply border border-solid border-color-border;
+      @apply text-color-text-primary;
+      @apply text-xs;
+      @apply ~"transition-[border]" duration-300;
+      @apply outline-0;
+      @apply box-border;
+      @apply mr-0;
+      @apply bg-color-bg-1;
+
+      &:hover {
+        @apply border border-solid border-color-icon-primary;
+        @apply text-color-icon-primary;
+      }
+
+      &:focus,
+      &:active,
+      &.active,
+      &[active] {
+        @apply border border-solid border-color-border-focus;
+        @apply shadow-sm;
+        @apply text-color-icon-primary;
+      }
+    }
+
+    &-text {
+      @apply text-xs;
+      @apply pl-4 pr-2;
+      @apply text-color-text-primary;
+    }
+
+    button {
+      @apply ~"min-w-[theme('spacing.10')]";
+      @apply w-9;
+      @apply h-7;
+      @apply border border-solid border-color-border;
+      @apply text-color-text-primary;
+      @apply rounded-sm;
+      @apply bg-color-bg-1;
+      @apply text-xs;
+      @apply py-0 px-2;
+      @apply text-center;
+      @apply inline-block;
+      @apply box-border;
+      @apply whitespace-nowrap;
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+      @apply cursor-pointer;
+      @apply transition-all duration-300;
+      @apply outline-0;
+      .user-select(none);
+      @apply ml-2;
+    }
+  }
+
+  &__btn-prev,
+  &__btn-next {
+    @apply ~"min-w-[theme('spacing.7')]";
+    @apply h-7;
+    @apply text-xs;
+    @apply text-color-text-primary;
+    @apply bg-color-bg-1;
+    @apply border border-solid border-color-border;
+    @apply rounded;
+    @apply outline-0;
+    @apply p-0;
+    @apply ml-2;
+    @apply align-bottom;
+    @apply inline-flex;
+    @apply justify-center;
+    @apply items-center;
+    @apply cursor-pointer;
+
+    span {
+      @apply text-color-brand;
+    }
+
+    svg {
+      @apply fill-color-text-primary;
+      @apply text-base;
+      @apply align-middle;
+      @apply relative;
+    }
+
+    &:not([disabled]):hover {
+      @apply bg-color-border-disabled;
+      @apply border-color-border;
+    }
+
+    &:not([disabled]):active {
+      @apply bg-color-fill-6;
+      @apply border-color-brand;
+
+      svg {
+        @apply fill-color-brand;
+      }
+    }
+
+    &[disabled] {
+      @apply bg-color-border-disabled;
+      @apply cursor-not-allowed;
+
+      span {
+        @apply text-color-text-disabled;
+      }
+
+      svg {
+        @apply fill-color-border;
+      }
+    }
+  }
+
+  &__btn-next {
+    @apply align-middle;
+    @apply text-center;
+  }
+
+  &__selector {
+    &.@{popover-prefix-cls}.@{popper-prefix-cls} {
+      @apply w-24;
+      @apply p-0;
+
+      &[x-placement^='bottom'] {
+        @apply mt-0;
+      }
+
+      &[x-placement^='top'] {
+        @apply ~'mb-0.5';
+      }
+    }
+
+    &-body {
+      @apply ~"max-h-[theme('spacing.72')]";
+      @apply overflow-y-auto;
+      @apply overflow-x-hidden;
+    }
+
+    &-poplist {
+      .list-item {
+        @apply ~"min-h-[theme('spacing.8')]";
+        @apply py-0 px-2;
+        @apply leading-8;
+        @apply ~"max-w-[100%]";
+        @apply overflow-hidden;
+        @apply text-ellipsis;
+        @apply text-center;
+        @apply whitespace-nowrap;
+        @apply m-1;
+        @apply rounded;
+
+        &:hover {
+          @apply cursor-pointer;
+          @apply bg-color-bg-2;
+          @apply text-color-text-primary;
+        }
+
+        &.is-selected {
+          @apply text-color-brand;
+          @apply bg-color-fill-6;
+        }
+      }
+    }
+  }
+
+  & &__popover {
+    @apply m-0;
+    @apply ml-2;
+  }
+
+  & .reference-wrapper-show {
+    .@{pager-prefix-cls}__page-size {
+      @apply border-color-border-focus;
+      @apply bg-color-fill-6;
+      @apply text-color-border-focus;
+    }
+
+    svg {
+      @apply rotate-180;
+      @apply fill-color-brand-hover;
+    }
+  }
+
+  &__page-size {
+    @apply ~"min-w-[theme('spacing.18')]";
+    @apply ~"max-w-[theme('spacing.40')]";
+    @apply relative;
+    @apply text-left;
+    @apply h-7;
+    @apply leading-7;
+    @apply border border-solid border-color-border;
+    @apply text-color-text-primary;
+    @apply rounded;
+    @apply bg-color-bg-1;
+    @apply text-xs;
+    @apply py-0;
+    @apply pr-1;
+    @apply pl-3;
+    @apply block;
+    @apply whitespace-nowrap;
+    @apply ~"transition-[border]" duration-300;
+    @apply outline-0;
+    @apply box-border;
+    .user-select(none);
+
+    &:hover {
+      @apply bg-color-border-disabled;
+      @apply border-color-border;
+    }
+
+    &:active {
+      @apply border-color-border-focus;
+      @apply bg-color-fill-6;
+      @apply text-color-brand;
+
+      svg {
+        @apply fill-color-brand;
+      }
+    }
+
+    span {
+      @apply relative;
+      @apply -top-px;
+      @apply mr-1;
+    }
+
+    &-btn {
+      @apply w-7;
+      @apply h-7;
+      @apply leading-7;
+      @apply relative;
+      @apply float-right;
+      @apply -top-px;
+      @apply outline-0;
+      @apply box-border;
+      @apply text-center;
+      @apply overflow-hidden;
+      @apply cursor-pointer;
+
+      svg {
+        @apply fill-color-text-primary;
+        @apply text-sm;
+        @apply absolute;
+        @apply top-0;
+        @apply left-0;
+        @apply right-0;
+        @apply bottom-0;
+        @apply m-auto;
+      }
+
+      &:hover {
+        @apply fill-color-icon-hover;
+      }
+    }
+  }
+
+  .@{popover-prefix-cls}__reference {
+    @apply outline-0;
+  }
+
+  &__sizes {
+    @apply text-xs;
+    @apply text-color-text-primary;
+    @apply relative;
+    @apply -top-px;
+  }
+}
+
+@media (max-width: 768px) {
+  .@{pager-prefix-cls} {
+    @apply text-left;
+
+    & &__pull-left {
+      @apply !float-none;
+    }
+  }
+}

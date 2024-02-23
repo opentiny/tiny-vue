@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="91.0954237%" y1="100%" x2="4.40908163%" y2="5.12368807%"
+            id="linearGradient-1">
+            <stop stop-color="#91D770" offset="0%"></stop>
+            <stop stop-color="#71C04C" offset="100%"></stop>
+        </linearGradient>
+        <path
+            d="M8.932,8.778 C7.62585668,7.5348251 5.57414332,7.5348251 4.268,8.778 L0,13.046 L0,18.7 C0.00543642183,20.5202831 1.47971692,21.9945636 3.3,22 L18.7,22 C19.5965,22 20.4545,21.6337 21.076,20.988 L8.932,8.778 Z"
+            id="path-2"></path>
+        <filter x="-47.4%" y="-56.5%" width="194.9%" height="241.3%" filterUnits="objectBoundingBox"
+            id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix
+                values="0 0 0 0 0.447058824   0 0 0 0 0.756862745   0 0 0 0 0.301960784  0 0 0 0.7 0"
+                type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="iconpro_pic" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形备份-48" fill="url(#linearGradient-1)" x="0" y="0" width="40" height="40" rx="6"></rect>
+        <g id="编组-20" transform="translate(9.000000, 9.000000)">
+            <g id="编组-15" fill="#FFFFFF" fill-rule="nonzero">
+                <g id="编组">
+                    <path
+                        d="M18.7,0 L3.3,0 C1.47971692,0.00543642183 0.00543642183,1.47971692 0,3.3 L0,13.046 L4.268,8.778 C5.57414332,7.5348251 7.62585668,7.5348251 8.932,8.778 L12.0901,11.9537 L13.0669,10.9769 C14.3575483,9.69347521 16.4424517,9.69347521 17.7331,10.9769 L22,15.246 L22,3.3 C21.9945636,1.47971692 20.5202831,0.00543642183 18.7,0 Z"
+                        id="路径" opacity="0.5"></path>
+                    <path
+                        d="M22.0000027,15.2438 L17.7331,10.9769 C16.4424517,9.69347521 14.3575483,9.69347521 13.0669,10.9769 L12.0901,11.9537 L21.0716,20.9836 C21.6678,20.3731 22.0011,19.5536 22.0000027,18.7 L22.0000027,15.2438 Z"
+                        id="路径" opacity="0.8"></path>
+                </g>
+            </g>
+            <circle id="椭圆形" fill="#FFFFFF" cx="16" cy="5" r="2"></circle>
+            <g id="路径">
+                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+            </g>
+        </g>
+    </g>
+</svg>

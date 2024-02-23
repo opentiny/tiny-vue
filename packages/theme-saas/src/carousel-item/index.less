@@ -1,0 +1,77 @@
+@import '../custom.less';
+
+@carousel-prefix-cls: ~'@{css-prefix}carousel';
+
+.@{carousel-prefix-cls} {
+  &__item,
+  &__mask {
+    @apply absolute;
+    @apply h-full;
+    @apply top-0;
+    @apply left-0;
+  }
+
+  &__item {
+    @apply w-full;
+    @apply inline-block;
+    @apply overflow-hidden;
+    @apply z-0;
+
+    .item-title {
+      @apply absolute;
+      @apply bottom-0;
+      @apply h-6;
+      @apply w-full;
+      @apply leading-6;
+      @apply text-color-text-inverse;
+      @apply text-left;
+      @apply bg-black bg-opacity-30;
+
+      span {
+        @apply py-0 px-3;
+        @apply text-xs;
+        @apply ~'w-4/5';
+        @apply inline-block;
+        @apply text-ellipsis;
+        @apply overflow-hidden;
+        @apply whitespace-nowrap;
+      }
+    }
+
+    &.is-active {
+      @apply ~'z-[2]';
+    }
+
+    &.is-animating {
+      @apply duration-300 ~'transition-[transform]' ease-in-out;
+    }
+  }
+
+  &__item--card {
+    @apply ~'w-1/2';
+    @apply duration-300 ~'transition-[transform]' ease-in-out;
+
+    &.is-in-stage {
+      @apply cursor-pointer;
+      @apply ~'z-[1]';
+
+      &.is-hover,
+      &:hover {
+        .@{carousel-prefix-cls}__mask {
+          @apply opacity-10;
+        }
+      }
+    }
+
+    &.is-active {
+      @apply ~'z-[2]';
+    }
+  }
+
+  &__mask {
+    @apply w-full;
+    @apply bg-color-bg-1;
+    @apply opacity-20;
+    @apply duration-200;
+  }
+}

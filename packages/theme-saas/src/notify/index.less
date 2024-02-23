@@ -1,0 +1,141 @@
+@import '../custom.less';
+
+@notify-prefix-cls: ~'@{css-prefix}notify';
+
+.@{notify-prefix-cls} {
+  @apply fixed;
+  @apply ~'z-[1101]';
+  @apply ~"max-w-[theme('spacing.108')]";
+  @apply w-full;
+  @apply box-border;
+  @apply transition-all duration-300;
+  @apply overflow-hidden;
+  @apply whitespace-nowrap;
+  @apply p-6;
+  @apply rounded-sm;
+  @apply text-sm;
+  @apply flex;
+  @apply flex-row;
+  @apply items-start;
+  @apply shadow-xl;
+  @apply rounded;
+  @apply bg-color-bg-1;
+
+  &.top-left {
+    @apply ~'left-2.5';
+    @apply top-6;
+  }
+
+  &.bottom-left {
+    @apply ~'left-2.5';
+    @apply bottom-6;
+  }
+
+  &.top-right {
+    @apply ~'right-2.5';
+    @apply top-6;
+  }
+
+  &.bottom-right {
+    @apply ~'right-2.5';
+    @apply bottom-6;
+  }
+
+  & &__title {
+    @apply font-bold;
+    @apply text-sm;
+    @apply text-color-text-primary;
+    @apply ~'leading-6.5';
+    @apply whitespace-nowrap;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+  }
+
+  & &__icon {
+    @apply text-color-brand;
+  }
+
+  & &__content {
+    @apply m-0;
+    @apply p-0;
+    @apply text-sm;
+    @apply text-color-text-primary;
+    @apply break-all;
+    @apply whitespace-pre-wrap;
+  }
+
+  & &__closebtn {
+    @apply cursor-pointer;
+    @apply text-color-brand;
+    @apply absolute;
+    @apply ~'top-1/2';
+    @apply ~'right-2.5';
+    @apply ~'-translate-y-2/4';
+  }
+
+  & &__icon-zone {
+    @apply w-6;
+    @apply h-6;
+    @apply text-2xl;
+  }
+
+  & &__message-zone {
+    @apply w-full;
+    @apply ~'ml-2.5';
+  }
+
+  & &__close-zone {
+    @apply w-4;
+    @apply h-4;
+    @apply text-base;
+    @apply cursor-pointer;
+  }
+
+  &--info &__icon-zone {
+    @apply fill-color-info-secondary;
+  }
+
+  &--warning &__icon-zone {
+    @apply fill-color-warning;
+  }
+
+  &--error &__icon-zone {
+    @apply fill-color-error;
+  }
+
+  &--success &__icon-zone {
+    @apply fill-color-success;
+  }
+
+  &__icon-zone &__icon-status {
+    @apply relative;
+    @apply -top-1;
+  }
+
+  &--no-close &__message-zone {
+    @apply w-full;
+  }
+
+  &__message-zone &__title-wrapper {
+    @apply h-6;
+    @apply leading-6;
+    @apply mb-2;
+    @apply text-color-text-primary;
+  }
+
+  &__message-zone &__content-wrapper {
+    @apply h-auto;
+    @apply leading-6;
+    @apply ~'max-h-[theme(spacing.24)]';
+    @apply overflow-y-auto;
+  }
+
+  &__close-zone &__icon-close {
+    @apply relative;
+    @apply ~'top-0.5';
+  }
+
+  &--no-icon &__message-zone {
+    @apply w-full;
+  }
+}

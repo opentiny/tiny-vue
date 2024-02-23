@@ -1,0 +1,178 @@
+@import '../custom.less';
+
+@scroll-text-prefix-cls: ~'@{css-prefix}scroll-text';
+
+.@{scroll-text-prefix-cls} {
+  @apply w-72;
+  @apply h-9;
+  @apply bg-color-bg-4;
+  @apply my-0 mx-auto;
+  @apply py-2;
+
+  & &__content {
+    @apply h-5;
+    @apply leading-5;
+    @apply w-max;
+    @apply py-0 px-2;
+    @apply w-full;
+    @apply overflow-hidden;
+    @apply text-center;
+    @apply flex;
+
+    & > div {
+      @apply flex;
+      @apply items-center;
+      @apply whitespace-nowrap;
+      @apply justify-center;
+      @apply relative;
+
+      @apply text-center;
+      animation: infinite linear;
+      animation-iteration-count: infinite;
+
+      &.left {
+        animation-name: moveLeft;
+      }
+
+      &.right {
+        animation-name: moveRight;
+      }
+
+      &.up {
+        animation-name: moveUp;
+      }
+
+      &.down {
+        animation-name: moveDown;
+      }
+
+      &.singleUp {
+        animation-name: singleUp;
+      }
+
+      &.stop {
+        animation-play-state: paused;
+      }
+
+      &.up,
+      &.down {
+        @apply w-full;
+        @apply whitespace-normal;
+      }
+
+      p {
+        @apply w-auto;
+        @apply leading-none;
+        @apply m-0;
+        @apply text-xs;
+        @apply text-color-text-primary;
+      }
+
+      // 兼容ie10-ie11
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        @apply inline-block;
+      }
+
+      // 兼容edge
+      @supports (-ms-ime-align: auto) {
+        @apply inline-block;
+      }
+    }
+  }
+
+  &.width-adapt {
+    @apply w-full;
+    @apply overflow-hidden;
+
+    .@{scroll-text-prefix-cls}__content {
+      @apply w-fit;
+      @apply min-w-full;
+
+      > div.left {
+        @apply min-w-full;
+        animation-name: moveLeftWidthAdapt;
+      }
+
+      > div.right {
+        @apply min-w-full;
+        animation-name: moveRightWidthAdapt;
+      }
+    }
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(theme('spacing.72'));
+  }
+
+  50% {
+    transform: translateX(calc((theme('spacing.72') - 100%) / 2));
+  }
+
+  100% {
+    @apply ~'-translate-x-full';
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    @apply ~'-translate-x-full';
+  }
+
+  50% {
+    transform: translateX(calc((theme('spacing.72') - 100%) / 2));
+  }
+
+  100% {
+    transform: translateX(theme('spacing.72'));
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(theme('spacing.5'));
+  }
+
+  100% {
+    transform: translateY(calc(theme('spacing.5') * -1));
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(calc(theme('spacing.5') * -1));
+  }
+
+  100% {
+    transform: translateY(theme('spacing.5'));
+  }
+}
+
+@keyframes moveLeftWidthAdapt {
+  0% {
+    @apply translate-x-full;
+  }
+
+  50% {
+    transform: translateX(0);
+  }
+
+  100% {
+    @apply ~'-translate-x-full';
+  }
+}
+
+@keyframes moveRightWidthAdapt {
+  0% {
+    @apply ~'-translate-x-full';
+  }
+
+  50% {
+    transform: translateX(0);
+  }
+
+  100% {
+    @apply translate-x-full;
+  }
+}

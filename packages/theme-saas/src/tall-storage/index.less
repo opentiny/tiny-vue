@@ -1,0 +1,41 @@
+@import '../custom.less';
+
+@tall-storage-prefix-cls: ~'@{css-prefix}tall-storage';
+@storage-list-style-prefix-cls: ~'@{css-prefix}storage-list-style';
+@storage-list-prefix-cls: ~'@{css-prefix}storage-list';
+@storage-item-prefix-cls: ~'@{css-prefix}storage-item';
+
+.@{tall-storage-prefix-cls} {
+  @apply relative;
+  @apply ~'mt-0.5';
+
+  .@{storage-list-style-prefix-cls} {
+    @apply absolute;
+    @apply bg-color-bg-1;
+    @apply shadow-sm;
+    @apply rounded-sm;
+    @apply w-full;
+    @apply box-border;
+    @apply z-10;
+
+    .@{storage-list-prefix-cls} {
+      @apply p-0;
+      @apply list-none;
+
+      .@{storage-item-prefix-cls} {
+        @apply h-7;
+        @apply leading-7;
+        @apply py-0 px-2;
+        @apply whitespace-nowrap;
+        @apply overflow-hidden;
+        @apply text-ellipsis;
+
+        &:hover,
+        &.item-hover {
+          @apply cursor-pointer;
+          @apply bg-color-bg-2;
+        }
+      }
+    }
+  }
+}

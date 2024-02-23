@@ -1,0 +1,62 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+.slider-img {
+  @apply relative;
+
+  > .icon-chevron-left,
+  > .icon-chevron-right {
+    @apply h-full;
+    @apply absolute;
+    .opacity(@opacity: 0);
+    @apply w-20;
+    font-size: 50px;
+    @apply text-color-text-placeholder;
+
+    &:before {
+      top: 45%;
+      @apply absolute;
+      @apply py-0 px-5;
+    }
+
+    &:hover {
+      .opacity(@opacity: 0.6);
+      @apply cursor-pointer;
+    }
+  }
+
+  .icon-chevron-right {
+    @apply right-0;
+    @apply top-0;
+  }
+
+  > ul > li {
+    @apply hidden;
+    @apply text-center;
+  }
+
+  .slider-imgnav {
+    @apply text-center;
+    @apply absolute;
+    @apply bottom-2;
+    @apply ~'left-1/2';
+    @apply ~'-translate-x-2/4';
+
+    span {
+      @apply inline-block;
+      @apply my-0 ~'-mx-0.5';
+      @apply cursor-pointer;
+      @apply text-base;
+      @apply text-color-text-placeholder;
+
+      &:hover,
+      &.imgnav-selected {
+        @apply text-color-text-inverse;
+      }
+    }
+  }
+
+  .@{css-prefix}repeat {
+    @apply overflow-y-auto;
+  }
+}

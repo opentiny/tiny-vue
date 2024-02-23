@@ -1,0 +1,123 @@
+@import '../custom.less';
+
+@user-head-prefix-cls: ~'@{css-prefix}user-head';
+
+.@{user-head-prefix-cls} {
+  @apply inline-block;
+  @apply relative;
+  @apply text-color-text-primary;
+  @apply text-sm;
+
+  &__portrait {
+    @apply overflow-hidden;
+    @apply w-20;
+    @apply h-20;
+    line-height: 80px;
+    @apply text-center;
+    @apply rounded;
+    @apply bg-center;
+    @apply bg-no-repeat;
+    @apply bg-cover;
+    @apply relative;
+
+    &.round {
+      @apply rounded-full;
+    }
+
+    &.min {
+      @apply w-8;
+      @apply h-8;
+      @apply leading-8;
+    }
+    svg {
+      @apply w-12;
+      @apply h-12;
+      @apply absolute;
+      @apply ~'top-1/2';
+      @apply ~'left-1/2';
+      @apply ~'-translate-x-2/4' ~'-translate-y-2/4';
+    }
+
+    &.icon {
+      font-size: 40px;
+
+      &.min {
+        @apply text-sm;
+
+        svg {
+          // @apply align-text-top;
+          @apply w-6;
+          @apply h-6;
+        }
+      }
+    }
+
+    &.label {
+      > span {
+        @apply overflow-hidden;
+        width: calc(~'100% - 6px');
+        @apply block;
+        margin: 0 3px;
+      }
+    }
+  }
+
+  &__message {
+    @apply absolute;
+    @apply ~'-top-2';
+    left: 63px;
+    @apply h-4;
+    @apply leading-4;
+    min-width: 32px;
+    @apply w-auto;
+    @apply rounded-2xl;
+    @apply bg-color-error;
+    @apply text-color-text-inverse;
+    @apply text-center;
+    @apply py-0 ~'px-1.5';
+    @apply text-xs;
+    word-break: initial;
+    @apply box-border;
+
+    &.round {
+      @apply top-0;
+      left: 54px;
+    }
+
+    &.min {
+      @apply -top-2;
+      @apply left-5;
+      @apply h-4;
+      min-width: 16px;
+      @apply py-0 px-1;
+      @apply text-xs;
+      @apply leading-4;
+    }
+
+    &.basic {
+      @apply ~'-top-1.5';
+      @apply ~'-right-1.5';
+      @apply left-auto;
+      @apply h-3;
+      @apply w-3;
+      @apply ~'min-w-[auto]';
+      @apply p-0;
+      @apply ~'leading-[0]';
+      @apply rounded-md;
+
+      &.round {
+        @apply ~'top-2.5';
+        @apply left-16;
+      }
+
+      &.min {
+        @apply -top-1;
+        left: 26px;
+
+        &.round {
+          @apply top-0;
+        }
+      }
+    }
+  }
+}

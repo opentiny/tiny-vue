@@ -1,0 +1,136 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@amount-prefix-cls: ~'@{css-prefix}amount';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@input-prefix-cls: ~'@{css-prefix}input';
+@popover-prefix-cls: ~'@{css-prefix}popover';
+@radio-prefix-cls: ~'@{css-prefix}radio';
+
+.@{amount-prefix-cls} {
+  .component-css-vars-amount();
+
+  width: 270px;
+  &-filter-box {
+    .popover-left {
+      font-size: 12px;
+    }
+  }
+
+  & &-input-icon {
+    .@{svg-prefix-cls} {
+      fill: var(--ti-amount-icon-color);
+      font-size: var(--ti-amount-icon-font-size);
+    }
+  }
+
+  &-popper {
+    width: 270px;
+
+    .popover-filter-content {
+      margin-bottom: 12px;
+      font-size: 12px;
+      cursor: pointer;
+
+      .@{radio-prefix-cls}-group {
+        display: inline-block;
+      }
+      .popover-filter-botton {
+        background-color: #f5f6f8;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        box-sizing: border-box;
+        margin-bottom: 8px;
+        margin-left: 0px;
+        margin-right: 8px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 24px;
+        border-radius: 2px;
+        min-width: 48px;
+        text-align: center;
+        max-width: none;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-width: 1px;
+        border-color: #f5f6f8;
+        border-style: solid;
+        font-style: normal;
+
+        &.is-checked {
+          color: var(--ti-base-bg-color-2);
+          border-color:var(--ti-base-bg-color-2);
+        }
+
+        .@{radio-prefix-cls}__input {
+          display: none;
+        }
+
+        .@{radio-prefix-cls}__label {
+          padding-left: 0px;
+          padding-right: 0px;
+          line-height: 20px;
+          height: 20px;
+          display: inline-block;
+        }
+      }
+
+      .popover-filter-botton:nth-child(4),
+      .popover-filter-botton:nth-child(8) {
+        margin-right: 0px;
+      }
+    }
+
+    .popover-con {
+      .module:not(:last-child) {
+        margin-bottom: 12px;
+      }
+
+      .module {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .popover-left {
+          flex: 0 0 auto;
+          margin-right: 8px;
+          text-align: right;
+          & + .tiny-date-container {
+            width: 100%;
+          }
+        }
+
+        .popover-right:not(.@{input-prefix-cls}-prefix):not(.@{input-prefix-cls}-suffiX) {
+          .@{input-prefix-cls}__inner {
+            padding: 0 8px;
+          }
+        }
+
+        .popover-right.@{input-prefix-cls} {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .@{input-prefix-cls} {
+    outline: none;
+  }
+
+  span.@{popover-prefix-cls}__reference {
+    width: 100%;
+  }
+}

@@ -1,0 +1,146 @@
+@import '../custom.less';
+
+@time-spinner-prefix-cls: ~'@{css-prefix}time-spinner';
+
+.@{time-spinner-prefix-cls} {
+  &__wrapper {
+    max-height: 276px;
+    @apply overflow-auto;
+    @apply inline-block;
+    @apply ~'w-1/2';
+    @apply align-top;
+    @apply relative;
+
+    .@{scrollbar-prefix-cls}__wrap:not(.@{scrollbar-prefix-cls}__wrap--hidden-default) {
+      padding-bottom: 15px;
+    }
+
+    &.is-arrow {
+      @apply left-0;
+      @apply box-border;
+      @apply text-center;
+      @apply overflow-hidden;
+
+      .@{time-spinner-prefix-cls}__list {
+        @apply ~'-translate-y-8';
+
+        &::after,
+        &::before {
+          height: 98px;
+        }
+      }
+
+      .@{time-spinner-prefix-cls}__item:hover:not(.disabled):not(.active) {
+        background: none;
+        @apply cursor-default;
+      }
+    }
+
+    .@{time-spinner-prefix-cls}__list {
+      @apply ~'-translate-y-1.5';
+    }
+
+    .@{time-spinner-prefix-cls}__item {
+      @apply py-1;
+      @apply ml-4;
+    }
+  }
+
+  &__arrow {
+    @apply text-xs;
+    @apply text-color-text-placeholder;
+    @apply h-3;
+    @apply leading-3;
+    @apply absolute;
+    @apply left-0;
+    @apply w-full;
+    @apply ~'z-[1]';
+    @apply text-center;
+    @apply cursor-pointer;
+
+    .@{svg-prefix-cls} {
+      @apply fill-color-text-primary;
+    }
+
+    &:hover .@{svg-prefix-cls} {
+      @apply fill-color-brand;
+    }
+
+    &.@{css-prefix}icon-arrow-up {
+      @apply top-9;
+    }
+
+    &.@{css-prefix}icon-arrow-down {
+      @apply bottom-9;
+    }
+
+    &.@{input-prefix-cls} {
+      width: 70%;
+
+      .@{input-prefix-cls}__inner {
+        @apply p-0;
+        @apply text-center;
+      }
+    }
+  }
+
+  &__list {
+    @apply p-0;
+    @apply m-0;
+    @apply list-none;
+    @apply text-center;
+
+    &::after,
+    &::before {
+      @apply content-[''];
+      @apply block;
+      @apply w-full;
+      height: 120px;
+    }
+  }
+
+  &__item {
+    @apply text-sm;
+    @apply text-color-text-primary;
+    @apply h-14;
+    @apply w-12;
+    @apply cursor-pointer;
+
+    span {
+      @apply rounded;
+      @apply my-0;
+      @apply block;
+      @apply h-full;
+      @apply ~'leading-[theme(spacing.12)]';
+    }
+
+    &:hover:not(.disabled):not(.active) {
+      @apply py-1;
+
+      > span {
+        @apply text-color-text-primary;
+        @apply bg-color-bg-2;
+        @apply ~'leading-[theme(spacing.12)]';
+      }
+    }
+
+    &.active:not(.disabled) {
+      @apply py-1;
+
+      span {
+        @apply bg-color-fill-6;
+        @apply text-color-brand;
+        @apply ~'leading-[theme(spacing.12)]';
+      }
+    }
+
+    &.disabled {
+      @apply text-color-text-placeholder;
+      @apply cursor-not-allowed;
+    }
+  }
+
+  &.has-seconds .@{time-spinner-prefix-cls}__wrapper {
+    @apply ~'w-1/3';
+  }
+}

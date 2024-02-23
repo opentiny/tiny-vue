@@ -1,0 +1,61 @@
+@import '../custom.less';
+
+@recycle-scroller-prefix-cls: ~'@{css-prefix}recycle-scroller';
+
+.@{recycle-scroller-prefix-cls} {
+  position: relative;
+
+  &.direction-vertical {
+    &:not(.page-mode) {
+      overflow-y: auto;
+    }
+
+    .@{recycle-scroller-prefix-cls}__item-wrapper {
+      width: 100%;
+    }
+  }
+
+  &.direction-horizontal {
+    display: flex;
+
+    &:not(.page-mode) {
+      overflow-x: auto;
+    }
+
+    .@{recycle-scroller-prefix-cls}__item-wrapper {
+      height: 100%;
+    }
+  }
+
+  & &__slot {
+    flex: auto 0 0;
+  }
+
+  & &__item-wrapper {
+    flex: 1;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+  }
+
+  &.ready {
+    .@{recycle-scroller-prefix-cls}__item-view {
+      position: absolute;
+      top: 0;
+      left: 0;
+      will-change: transform;
+    }
+
+    &.direction-vertical {
+      .@{recycle-scroller-prefix-cls}__item-view {
+        width: 100%;
+      }
+    }
+
+    &.direction-horizontal {
+      .@{recycle-scroller-prefix-cls}__item-view {
+        height: 100%;
+      }
+    }
+  }
+}

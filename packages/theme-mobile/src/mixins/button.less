@@ -1,0 +1,97 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+.button-color(@color, @border-color, @background-color) {
+  color: @color;
+  border-color: @border-color;
+  background-color: @background-color;
+}
+
+.button-text(@color, @hover-color, @active-color, @disabled-color) {
+  color: @color;
+  border-color: transparent;
+  background-color: transparent;
+
+  &:hover {
+    color: @hover-color;
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  &:focus,
+  &:active,
+  &.is-active {
+    color: @active-color;
+    border-color: transparent;
+    background-color: transparent;
+
+    &::before {
+      opacity: 0;
+    }
+  }
+
+  &.is-disabled,
+  &.is-disabled:active,
+  &.is-disabled:focus,
+  &.is-disabled:hover {
+    color: @disabled-color;
+    border-color: transparent;
+    background-color: transparent;
+  }
+}
+
+.button-type(@color, @normal-color) {
+  color: @color;
+  border-color: @normal-color;
+  background-color: @normal-color;
+
+  .is-icon {
+    fill: @color;
+  }
+}
+
+.button-size(@height, @font-size) {
+  height: @height;
+  line-height: @height;
+  font-size: @font-size;
+
+  .is-icon,
+  &.is-loading svg {
+    font-size: @font-size;
+  }
+}
+
+.button-plain(@color) {
+  color: @color;
+  border-color: @color;
+  background-color: transparent;
+
+  .is-icon,
+  &.is-loading svg {
+    fill: @color;
+  }
+
+  &.is-disabled {
+    &,
+    &:active,
+    &.is-active {
+      color: #ccc;
+      border-color: #ddd;
+      background-color: transparent;
+    }
+
+    .is-icon,
+    &.is-loading svg {
+      fill: #ccc;
+    }
+  }
+}

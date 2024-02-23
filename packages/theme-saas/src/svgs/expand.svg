@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg  viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="icon/tree/展开" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形" stroke="#191919" x="0.5" y="0.5" width="15" height="15" rx="4"></rect>
+        <line x1="5" y1="8" x2="11" y2="8" id="路径-5" stroke="#191919"></line>
+    </g>
+</svg>

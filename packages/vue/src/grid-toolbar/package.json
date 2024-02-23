@@ -1,0 +1,34 @@
+{
+  "name": "@opentiny/vue-grid-toolbar",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-select": "workspace:~",
+    "@opentiny/vue-option": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-modal": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-grid": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-layout": "workspace:~",
+    "@opentiny/vue-row": "workspace:~",
+    "@opentiny/vue-col": "workspace:~",
+    "@opentiny/vue-alert": "workspace:~",
+    "@opentiny/vue-dialog-box": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~"
+  },
+  "license": "MIT"
+}

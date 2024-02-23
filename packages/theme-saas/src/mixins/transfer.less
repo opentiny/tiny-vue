@@ -1,0 +1,23 @@
+.transfer-scrollbar(@size) {
+  &::-webkit-scrollbar {
+    width: @size;
+    height: @size;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    @apply bg-color-bg-2;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-color-bg-3;
+    border-radius: calc(@size / 2);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    @apply bg-color-text-disabled;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    @apply bg-color-text-disabled;
+  }
+}

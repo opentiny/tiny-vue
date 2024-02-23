@@ -1,0 +1,14 @@
+@import '../custom.less';
+
+@drop-roles-prefix-cls: ~'@{css-prefix}drop-roles';
+
+.@{drop-roles-prefix-cls} {
+  .user-icon {
+    @apply hidden;
+    float: right;
+    @apply relative;
+    @apply ~'top-1/2';
+    @apply ~'-translate-y-2/4';
+    @apply ~'ml-2.5';
+  }
+}

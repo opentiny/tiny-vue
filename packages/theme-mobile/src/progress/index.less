@@ -1,0 +1,151 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/progress.less';
+@import '../custom.less';
+@import './vars.less';
+
+@progress-prefix-cls: ~'@{css-prefix}mobile-progress';
+
+.@{progress-prefix-cls} {
+  position: relative;
+  line-height: 1;
+
+  &.is-success {
+    .progress-status(var(--ti-progress-success-color, #52c41a));
+  }
+
+  &.is-warning {
+    .progress-status(var(--ti-progress-warning-color, #faad14));
+  }
+
+  &.is-exception {
+    .progress-status(var(--ti-progress-exception-color, #f5222d));
+  }
+
+  &--circle,
+  &--dashboard {
+    display: inline-block;
+
+    .@{progress-prefix-cls}-text {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      transform: translate(0, -50%);
+
+      i {
+        vertical-align: middle;
+        display: inline-block;
+      }
+    }
+  }
+
+  &__without-text &-text {
+    display: none;
+  }
+
+  &__without-text &-bar {
+    padding-right: 0;
+    margin-right: 0;
+    display: block;
+  }
+
+  &__inside-text &-bar {
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  &-bar {
+    padding-right: 50px;
+    width: 100%;
+    margin-right: -55px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    &__outer {
+      height: 2px;
+      border-radius: var(--ti-progress-bar-border-radius, 100px);
+      background-color: var(--ti-progress-bar-outer-bgcolor, #f5f5f5);
+      overflow: hidden;
+      position: relative;
+      vertical-align: middle;
+    }
+
+    &__inner {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background-color: #00c696;
+      text-align: right;
+      border-radius: var(--ti-progress-bar-border-radius, 100px);
+      line-height: 1;
+      white-space: nowrap;
+      transition: width 0.6s ease;
+
+      &::after {
+        content: '';
+        height: 100%;
+      }
+    }
+
+    &__innerText {
+      color: var(--ti-progress-bar-inner-text-color, #fff);
+      font-size: var(--ti-progress-text-font-size, 12px);
+      margin: 0 5px;
+    }
+
+    &,
+    &__inner::after,
+    &__innerText {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  &-text {
+    font-size: var(--ti-progress-text-font-size, 12px);
+    color: var(--ti-progress-text-color, #333);
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 12px;
+    line-height: 1;
+
+    i {
+      vertical-align: middle;
+      display: inline-block;
+    }
+  }
+}
+
+@-webkit-keyframes progress {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 32px 0;
+  }
+}
+
+@keyframes progress {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 32px 0;
+  }
+}

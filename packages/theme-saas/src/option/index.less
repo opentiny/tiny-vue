@@ -1,0 +1,140 @@
+@import '../custom.less';
+
+@select-dropdown-prefix-cls: ~'@{css-prefix}select-dropdown';
+@select-dropdown-item-prefix-cls: ~'@{css-prefix}option';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{select-dropdown-item-prefix-cls} {
+  @apply relative;
+  @apply overflow-hidden;
+  @apply text-ellipsis;
+  @apply whitespace-nowrap;
+  @apply text-color-text-primary;
+  @apply text-xs;
+  @apply h-8;
+  @apply leading-8;
+  @apply cursor-pointer;
+
+  &.is-disabled,
+  &.is-required {
+    @apply text-color-text-primary;
+    @apply cursor-not-allowed;
+
+    &:hover {
+      @apply bg-color-bg-1;
+    }
+  }
+
+  &.is-disabled {
+    @apply text-color-text-disabled;
+  }
+
+  &.hover,
+  &:hover {
+    @apply bg-color-bg-4;
+
+    & > span > svg {
+      @apply fill-color-brand-hover;
+    }
+  }
+
+  &:active {
+    @apply bg-color-bg-3;
+  }
+
+  &.selected {
+    &:not(.is-disabled),
+    &:not(.is-required) {
+      @apply text-color-brand;
+      @apply bg-color-fill-6;
+    }
+
+    &.is-disabled {
+      @apply text-color-brand-disabled;
+    }
+
+    &.is-required {
+      .@{svg-prefix-cls} {
+        path:first-of-type {
+          @apply fill-color-brand-disabled;
+        }
+      }
+
+      & > span:nth-of-type(2) {
+        @apply text-color-text-disabled;
+      }
+    }
+  }
+
+  .@{svg-prefix-cls} {
+    @apply fill-color-icon-secondary;
+    @apply text-base;
+    @apply mr-2;
+  }
+
+  .checked-sur.@{svg-prefix-cls} {
+    @apply fill-color-brand;
+  }
+
+  &.hover .@{svg-prefix-cls} {
+    @apply fill-color-icon-hover;
+  }
+
+  &.active .@{svg-prefix-cls} {
+    @apply fill-color-icon-active;
+  }
+
+  &.selected .@{svg-prefix-cls} {
+    @apply fill-color-brand;
+  }
+
+  .halfselect.@{svg-prefix-cls} {
+    @apply fill-color-brand;
+  }
+
+  &.is-disabled {
+    .@{svg-prefix-cls} {
+      @apply fill-color-icon-disabled;
+
+      path:first-of-type {
+        @apply fill-color-bg-3;
+      }
+    }
+  }
+
+  &:not(.is-disabled).hover,
+  &:not(.is-required).hover {
+    .@{svg-prefix-cls} {
+      @apply fill-color-brand-hover;
+    }
+  }
+
+  &.memorize-highlight {
+    @apply text-color-brand;
+  }
+}
+
+.@{select-dropdown-prefix-cls} {
+  &.is-multiple {
+    .@{select-dropdown-item-prefix-cls} {
+      &.selected {
+        &:not(.is-disabled),
+        &:not(.is-required) {
+          @apply text-color-brand;
+          @apply bg-color-fill-6;
+        }
+
+        &.is-disabled {
+          @apply text-color-text-disabled;
+        }
+
+        &.is-disabled,
+        &.is-required {
+          .@{svg-prefix-cls} {
+            @apply fill-color-brand-disabled;
+          }
+        }
+      }
+    }
+  }
+}

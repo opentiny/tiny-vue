@@ -1,0 +1,14 @@
+.button-group-type(@color) {
+  &:first-child {
+    border-right-color: @color;
+  }
+
+  &:last-child {
+    border-left-color: @color;
+  }
+
+  &:not(:first-child):not(:last-child) {
+    border-left-color: @color;
+    border-right-color: @color;
+  }
+}

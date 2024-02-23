@@ -1,0 +1,131 @@
+@import '../custom.less';
+
+@popupload-prefix-cls: ~'@{css-prefix}popupload';
+@upload-list-prefix-cls: ~'@{css-prefix}upload-list';
+@grid-modal-prefix-cls: ~'@{css-prefix}grid-modal';
+@alert-prefix-cls: ~'@{css-prefix}alert';
+
+.@{popupload-prefix-cls} {
+  @apply text-xs;
+  @apply flex;
+  @apply items-center;
+
+  &__dialog {
+    @apply ~"max-h-[theme('spacing.112')]";
+    @apply w-full;
+    @apply flex;
+    @apply flex-col;
+  }
+
+  &__dialog-header {
+    .@{alert-prefix-cls} {
+      @apply ~'mb-2.5';
+    }
+  }
+
+  &__dialog-body {
+    @apply pb-6;
+
+    .@{upload-list-prefix-cls} {
+      @apply hidden;
+    }
+  }
+
+  &__dialog-footer {
+    @apply w-full;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+  }
+
+  &__dialog-tips {
+    @apply flex;
+    @apply flex-col;
+  }
+
+  &__dialog-table {
+    @apply h-80;
+    @apply w-full;
+    @apply ~'mt-2.5';
+
+    .header-col {
+      @apply border-r border-r-color-text-disabled;
+      @apply py-0 px-2;
+
+      &:last-child {
+        @apply border-r-0;
+      }
+    }
+
+    .body-col {
+      @apply py-2 px-3;
+      @apply m-0;
+      @apply leading-5;
+    }
+
+    .col1 {
+      @apply ~'w-3/5';
+    }
+
+    .col2 {
+      @apply ~'w-1/5';
+    }
+
+    .col3 {
+      @apply ~'w-1/5';
+    }
+  }
+
+  &__dialog-table-header {
+    @apply h-9;
+    @apply w-full;
+    @apply text-color-text-primary;
+    @apply font-bold;
+    @apply flex;
+    @apply items-center;
+    @apply justify-between;
+    @apply bg-color-bg-2;
+    @apply border-b border-b-color-bg-3;
+  }
+
+  &__dialog-table-body {
+    @apply w-full;
+    height: calc(100% - theme('spacing.9'));
+    @apply overflow-y-auto;
+    @apply border-b border-b-color-bg-3;
+  }
+
+  &__dialog-table-list {
+    @apply list-none;
+  }
+
+  &__dialog-table-item {
+    @apply w-full;
+    @apply flex;
+    @apply items-center;
+    @apply justify-between;
+
+    &:nth-child(even) {
+      @apply bg-color-bg-6;
+    }
+
+    .delIcon {
+      @apply h-4;
+      @apply w-4;
+      @apply fill-color-text-primary;
+      @apply cursor-pointer;
+
+      &:hover {
+        @apply fill-color-icon-hover;
+      }
+
+      &:active {
+        @apply fill-color-icon-active;
+      }
+    }
+  }
+
+  &__modal .@{grid-modal-prefix-cls}__body {
+    @apply overflow-y-auto;
+  }
+}
