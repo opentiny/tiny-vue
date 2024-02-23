@@ -20,7 +20,9 @@
     "@opentiny/vue-user-head": "workspace:~",
     "@opentiny/vue-card-template": "workspace:~",
     "@opentiny/vue-popover": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-espace": "workspace:~"
   },
   "license": "MIT"
 }

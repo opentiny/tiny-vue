@@ -18,7 +18,8 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-radio": "workspace:~",
-    "@opentiny/vue-radio-button": "workspace:~"
+    "@opentiny/vue-radio-button": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

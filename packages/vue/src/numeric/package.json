@@ -21,7 +21,10 @@
     "@opentiny/vue-filter-panel": "workspace:~",
     "@opentiny/vue-radio": "workspace:~",
     "@opentiny/vue-radio-group": "workspace:~",
-    "@opentiny/vue-tag": "workspace:~"
+    "@opentiny/vue-tag": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/renderless": "workspace:~"
   },
   "license": "MIT"
 }

@@ -29,7 +29,9 @@
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-switch": "workspace:~",
     "streamsaver": "2.0.6",
-    "crypto-js": "4.2.0"
+    "crypto-js": "4.2.0",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   },
   "license": "MIT"
 }
