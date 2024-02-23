@@ -32,7 +32,7 @@
 
   tr, td {
     text-align: center;
-    padding: 16px 4px;
+    padding: 16px 0;
     cursor: pointer;
 
     &.current {
@@ -41,8 +41,9 @@
     }
 
     div {
-      height: 32px;
+      height: var(--ti-month-table-td-div-height);
       box-sizing: border-box;
+      padding: 0 4px;
     }
 
     &.today {
