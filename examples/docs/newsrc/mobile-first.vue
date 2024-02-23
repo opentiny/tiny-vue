@@ -25,6 +25,7 @@
         <!-- 预览 -->
         <!-- modeState.demoId === 'preview-in-dialog' 修复preview-in-dialog demo弹窗内容被遮罩层遮挡 -->
         <div
+          :id="state.currDemo?.demoId"
           class="rel px20 minh200"
           :style="{ transform: modeState.demoId === 'preview-in-dialog' ? '' : 'translateX(0)' }"
         >
@@ -34,8 +35,7 @@
         </div>
       </div>
       <!-- API表格 -->
-      <div v-if="state.currApi.length" class="mt20 f24 fw-bold">组件API</div>
-
+      <div v-if="state.currApi?.length" class="mt20 f24 fw-bold">组件API</div>
       <div v-for="(oneGroup, idx) in state.currApi" :key="idx">
         <div class="mt20 f-r f-pos-start fw-bold">
           <div :id="oneGroup.name" class="f18">
@@ -53,8 +53,8 @@
             <table class="api-table">
               <thead>
                 <tr>
-                  <th width="15%">名称</th>
-                  <th width="20%">类型</th>
+                  <th width="20%">名称</th>
+                  <th width="15%">类型</th>
                   <th width="20%">默认值</th>
                   <th width="55%">说明</th>
                 </tr>
@@ -102,10 +102,11 @@
 import { hooks } from '@opentiny/vue-common'
 import { Floatbar, TreeMenu, Button, Tooltip, ConfigProvider } from '@opentiny/vue'
 import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
-import { menuData, apis, demoStr, demoVue, mds } from './resourceMobileFirst.js'
-import { useModeCtx } from './uses'
 import designAuroraConfig from '@opentiny/vue-design-aurora'
 import designSaasConfig from '@opentiny/vue-design-saas'
+import { menuData, demos, demoStr, demoVue, mds } from './resourceMobileFirst.js'
+import { useModeCtx } from './uses'
+import { getDemosConfig, getApisConfig } from './utils/componentsDoc'
 
 const isSaasMode = process.env.VITE_TINY_THEME === 'saas'
 
@@ -165,18 +166,12 @@ export default {
 
     // 以下私有方法，无须传递给vue模板的。
     async function _switchPath() {
-      // 查找API
-      const apiModule = apis[`../../sites/demos/mobile-first/app/${modeState.pathName}/webdoc/${modeState.pathName}.js`]
-      if (apiModule) {
-        const module = await apiModule()
-        const apiRoot = module.default
-        state.currApi = apiRoot.apis
-        state.demos = apiRoot.demos || []
-        state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
-      } else {
-        state.currApi = null
-        state.currDemos = []
-      }
+      const demosModule =
+        demos[`../../sites/demos/mobile-first/app/${modeState.pathName}/webdoc/${modeState.pathName}.js`]
+      const demosConfig = await getDemosConfig(demosModule)
+      state.demos = demosConfig.demos
+      state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
+      state.currApi = (await getApisConfig(modeState.pathName, 'mobile-first')).apis
       await _switchDemo()
     }
     async function _switchDemo() {

@@ -46,12 +46,12 @@ export const getDecimal =
     getMiniDecimal(value, props.plugin)
 
 export const watchValue =
-  ({ api, state, nextTick }: Pick<INumericRenderlessParams, 'api' | 'state' | 'nextTick'>) =>
+  ({ api, props, state, nextTick }: Pick<INumericRenderlessParams, 'api' | 'state' | 'nextTick' | 'props'>) =>
   (value: number): void => {
     if (value === state.currentValue) {
       return
     }
-    api.setCurrentValue(value)
+    api.setCurrentValue(value, props.changeCompat)
     nextTick(() => {
       api.dispatchDisplayedValue()
     })
@@ -256,7 +256,7 @@ export const setCurrentValue =
     props,
     state
   }: Pick<INumericRenderlessParams, 'api' | 'constants' | 'dispatch' | 'emit' | 'props' | 'state'>) =>
-  (newVal: number): void => {
+  (newVal: number, emitChangeFlag: boolean = true): void => {
     const { max, min, allowEmpty, validateEvent, stringMode, plugin } = props
     const { format } = state
     const oldVal = state.currentValue
@@ -284,7 +284,9 @@ export const setCurrentValue =
 
     if (emitValue !== oldVal) {
       emit('update:modelValue', emitValue)
-      emit('change', emitValue, oldVal)
+      if (emitChangeFlag) {
+        emit('change', emitValue, oldVal)
+      }
 
       state.currentValue = emitValue
       state.userInput = emitValue

@@ -24,9 +24,23 @@
   line-height: var(--ti-mobile-multi-select-item-height);
   background: var(--ti-mobile-multi-select-item-bg-color);
   color: var(--ti-mobile-multi-select-item-text-color);
+  font-size: var(--ti-mobile-multi-select-item-font-size);
+
+  &:active {
+    background-color: var(--ti-mobile-multi-select-item-bg-color-touch);
+  }
 
   &.is-active {
-    font-weight: var(--ti-mobile-multi-selected-item-font-weight);
+    color: var(--ti-mobile-multi-select-item-text-color-active);
+    font-weight: var(--ti-mobile-multi-select-item-font-weight-active);
+  }
+
+  &.is-disabled {
+    color: var(--ti-mobile-multi-select-item-text-color-disabled);
+
+    .@{multi-select-item-prefix-cls}__suffix-icon svg {
+      fill: var(--ti-mobile-multi-select-item-icon-color-disabled);
+    }
   }
 
   &__wrap {

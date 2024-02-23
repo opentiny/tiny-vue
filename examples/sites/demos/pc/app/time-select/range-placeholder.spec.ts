@@ -4,7 +4,7 @@ test('固定时间范围', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('time-select#range-placeholder')
   const timeInput = page.getByRole('textbox', { name: '起始时间' })
-  const options = page.locator('.tiny-picker-panel').nth(3).locator('div')
+  const options = page.locator('.tiny-picker-panel').nth(1).locator('div')
   await timeInput.click()
   // options的第一条是options.first()，时间是08:30；最后一条（最大时间）是options.nth(43)，时间是18：30
   await expect(options.first()).toContainText('08:30')
@@ -14,7 +14,7 @@ test('固定时间范围', async ({ page }) => {
   await expect(page.locator('.tiny-input-suffix .tiny-input__inner').first()).toHaveValue('10:00')
 
   const timeEnd = page.getByRole('textbox', { name: '结束时间' })
-  const endOptions = page.locator('.tiny-picker-panel').nth(3).locator('div')
+  const endOptions = page.locator('.tiny-picker-panel').nth(1).locator('div')
   await timeEnd.click()
   await expect(endOptions.first()).toContainText('08:30')
   await expect(endOptions.nth(43)).toContainText('18:30')

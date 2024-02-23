@@ -10,8 +10,10 @@
  *
  */
 
+import type { IUserHeadRenderlessParams } from '@/types'
+
 export const computedStyle =
-  ({ state, props }) =>
+  ({ state, props }: Pick<IUserHeadRenderlessParams, 'state' | 'props'>) =>
   () => {
     return {
       fill: state.color,
@@ -22,13 +24,13 @@ export const computedStyle =
   }
 
 export const computedMessage =
-  ({ props }) =>
+  ({ props }: Pick<IUserHeadRenderlessParams, 'props'>) =>
   () => {
     let result = ''
-    const total = Math.floor(props.messageTotal)
+    const total = Math.floor(props.messageTotal || NaN)
 
     if (props.messageType === 'details' && !isNaN(total) && total > 0) {
-      result = total
+      result = String(total)
 
       if (props.messageUpperLimit && total > props.messageUpperLimit) {
         result = `${props.messageUpperLimit}+`
@@ -39,7 +41,7 @@ export const computedMessage =
   }
 
 export const computedFontSize =
-  ({ props, state, mode }) =>
+  ({ props, state, mode }: Pick<IUserHeadRenderlessParams, 'props' | 'state' | 'mode'>) =>
   () => {
     let fontSize = ''
 
@@ -74,12 +76,12 @@ export const computedFontSize =
   }
 
 export const computedLabel =
-  ({ state, props }) =>
+  ({ state, props }: Pick<IUserHeadRenderlessParams, 'state' | 'props'>) =>
   () =>
     props.min ? state.internalValue.substr(0, 2) : state.internalValue.substr(0, 6)
 
 export const getInternalValue =
-  ({ props }) =>
+  ({ props }: Pick<IUserHeadRenderlessParams, 'props'>) =>
   () => {
     if (props.modelValue === null) {
       let result = ''

@@ -16,7 +16,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>content</code> 属性设置水印的文字。</br>通过 <code>font</code> 属性设置水印的样式</p>。',
+          '<p>通过 <code>content</code> 属性设置水印的文字。</br>通过 <code>font</code> 属性设置水印的样式。</p>',
         'en-US':
           'Set the text of the watermark through the <code>content</code> attribute.</br> Set the style of the watermark through the <code>font</code> attribute. '
       },

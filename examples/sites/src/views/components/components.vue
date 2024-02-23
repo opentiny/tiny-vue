@@ -452,6 +452,7 @@ table.api-table {
     text-decoration: none;
     color: #5e7ce0;
     cursor: pointer;
+    word-wrap: break-word;
   }
 
   tbody tr:hover {

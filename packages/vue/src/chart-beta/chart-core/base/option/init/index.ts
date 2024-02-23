@@ -1,5 +1,5 @@
 import { isArray, isString } from '../../util/type'
-import Theme, { THEMES } from '../../feature/theme'
+import Theme, { THEMES } from '../../feature/token'
 
 /**
  * 设置默认主题

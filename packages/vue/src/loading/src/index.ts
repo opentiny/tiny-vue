@@ -26,6 +26,13 @@ export const loadingProps = {
   _constants: {
     type: Object,
     default: () => constants
+  },
+  loadingImg: {
+    type: String
+  },
+  size: {
+    type: String,
+    default: 'small'
   }
 }
 

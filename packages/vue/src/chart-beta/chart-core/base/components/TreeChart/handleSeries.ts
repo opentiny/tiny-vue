@@ -1,4 +1,4 @@
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 import { setChartPadding } from './handleOptipn'
 
 /**
@@ -71,7 +71,7 @@ function handleTypeSeries(type) {
 /**
  * 组装echarts所需要的series
  */
-export function setSeries(type, theme, iChartOption) {
+export function setSeries(type, iChartOption) {
   const { data } = iChartOption
   if (!data) return
   if (data && data.length !== 0) {
@@ -89,11 +89,11 @@ export function setSeries(type, theme, iChartOption) {
       // 设置初始打开层级
       seriesItem.initialTreeDepth = iChartOption.initialTreeDepth ? iChartOption.initialTreeDepth : 1
       // 设置主题文本颜色
-      seriesItem.label.color = Theme.color.base.font
+      seriesItem.label.color = chartToken.labelColor
       // 设置主题线条颜色
-      seriesItem.lineStyle.color = Theme.color.base.axis
+      seriesItem.lineStyle.color = chartToken.lineColor
       // 设置主题图元颜色
-      seriesItem.itemStyle.color = theme === 'dark' ? '#1F55B5' : '#5990FD'
+      seriesItem.itemStyle.color = chartToken.colorInfo
       // 设置具体属性
       switch (type) {
         case 'LineTreeChart':

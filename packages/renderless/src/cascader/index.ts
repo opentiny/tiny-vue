@@ -115,7 +115,7 @@ export const watchCheckedValue =
     }
 
     nextTick(() => {
-      dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.FormBlur, [
+      dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.FormChange, [
         state.multiple ? state.presentText : state.inputValue
       ])
     })

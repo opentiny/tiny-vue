@@ -1,4 +1,4 @@
-import Theme from '../../../feature/theme'
+import Theme from '../../../feature/token'
 
 const chartType = [
   'CircleProcessChart',
@@ -27,18 +27,19 @@ function getbaseOption(chartName) {
         color: Theme.config.tooltipAxisPointerLineColor
       },
       shadowStyle: {
-        color: Theme.config.tooltipAxisPointerShadow
+        color: Theme.config.tooltipAxisPointerShadowColor
       }
     },
     textStyle: {
-      color: Theme.config.tooltipAxisPointerTextColor,
+      color: Theme.config.tooltipTextColor,
       fontSize: Theme.config.tooltipTextFontSize
     },
-    borderWidth: 0,
-    // 待定
-    padding: [14, 16],
+    borderWidth: Theme.config.tooltipBorderWidth,
+    padding: Theme.config.tooltipPadding,
     backgroundColor: Theme.config.tooltipBg,
-    formatter: undefined
+    formatter: undefined,
+    extraCssText: `box-shadow:0 ${Theme.config.tooltipShadowOffsetY}px 
+    ${Theme.config.tooltipShadowBlur}px 0 ${Theme.config.tooltipShadowColor};`
   }
 }
 

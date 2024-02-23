@@ -12,6 +12,7 @@
 import type { PropType } from '@opentiny/vue-common'
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?mobile'
+import { t } from '@opentiny/vue-locale'
 
 export default defineComponent({
   name: $prefix + 'MultiSelect',
@@ -38,6 +39,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    searchPlaceholder: {
+      type: String,
+      default: () => t('ui.search.placeholder')
+    },
     type: {
       type: String as PropType<'list' | 'wheel'>,
       default: 'list'
@@ -45,6 +50,14 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    mask: {
+      type: Boolean,
+      default: true
+    },
+    maskOptions: {
+      type: Object,
+      default: () => ({})
     }
   },
   setup(props, context) {

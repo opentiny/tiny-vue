@@ -488,7 +488,7 @@ describe('PC Mode', () => {
   test.todo('fullscreen 全屏时或关闭全屏时触发的时间')
 
   // columnattrs
-  test.todo('align 列对其方式')
+  test.todo('align 列对齐方式')
 
   test.todo('class-name 给单元格附加 className，也可以是函数')
 

@@ -34,6 +34,8 @@
     left: 0;
     overflow: hidden;
     margin: 0;
+    display: var(--ti-dialog-box-wrapper-display);
+    align-items: var(--ti-dialog-box-wrapper-align-items);
   }
 
   &.is-fullscreen {
@@ -62,6 +64,7 @@
   }
 
   & &__header {
+    height: var(--ti-dialog-box-header-height);
     padding: var(--ti-dialog-box-head-padding-top) var(--ti-dialog-box-head-padding-horizontal)
       var(--ti-dialog-box-head-padding-bottom);
     background: var(--ti-dialog-box-bg-color);
@@ -84,7 +87,6 @@
       background: none;
       padding: 0;
       line-height: 1;
-      position: absolute;
       top: calc(
         var(--ti-dialog-box-btn-position-top) - (var(--ti-dialog-box-btn-height) - var(--ti-dialog-box-close-icon-size)) /
           2
@@ -94,8 +96,6 @@
           (var(--ti-dialog-box-btn-width) - var(--ti-dialog-box-close-icon-size)) / 2
       );
       cursor: pointer;
-      height: var(--ti-dialog-box-btn-height);
-      width: var(--ti-dialog-box-btn-width);
 
       &:hover {
         background-color: var(--ti-dialog-box-btn-background-color-hover);

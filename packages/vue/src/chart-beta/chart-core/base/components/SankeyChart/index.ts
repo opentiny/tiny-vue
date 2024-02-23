@@ -31,7 +31,6 @@ class SankeyChart {
 
   updateOption() {
     const iChartOption = this.iChartOption
-    const theme = iChartOption.theme
     const padding = iChartOption.padding || iChartOption.chartPadding
     // 配置数据
     const { nodes, links } = iChartOption.data

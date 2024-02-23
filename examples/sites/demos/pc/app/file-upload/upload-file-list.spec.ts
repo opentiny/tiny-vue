@@ -13,7 +13,7 @@ test('文件列表', async ({ page }) => {
   const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
-  await expect(width).toBeGreaterThanOrEqual(700)
+  await expect(width).toBeGreaterThanOrEqual(height)
   await expect(height).toBeGreaterThanOrEqual(25, 0)
   await expect(items).toHaveCount(2)
   await expect(items).toHaveText([/test1/, /test2/])

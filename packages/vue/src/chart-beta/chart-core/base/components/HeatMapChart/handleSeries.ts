@@ -1,6 +1,6 @@
 import { CHARTTYPE, SERIESUNIT } from './BaseOption'
 import cloneDeep from '../../util/cloneDeep'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 
 // 蜂窝的render函数
 function handleRenderItem(params, api) {
@@ -21,7 +21,7 @@ function handleRenderItem(params, api) {
           points
         },
         style: {
-          stroke: Theme.color.base.main,
+          stroke: chartToken.customStrokeColor,
           fill: api.visual('color'),
           lineWidth: 1
         }
@@ -39,7 +39,7 @@ function handleCalendarSeries(seriesUnit, iChartOpt, data) {
   seriesUnit.data = data[2]
   seriesUnit.itemStyle.borderColor = iChartOpt.borderColor || iChartOpt.color
   seriesUnit.label.show = iChartOpt.showLabel ?? true
-  seriesUnit.label.color = Theme.color.base.font
+  seriesUnit.label.color = chartToken.labelColor
   if (iChartOpt.changeProperty && iChartOpt.changeProperty === 'color') {
     seriesUnit.itemStyle.borderWidth = 0
   }

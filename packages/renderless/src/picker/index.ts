@@ -528,16 +528,18 @@ export const handleChange =
     }
   }
 
-export const handleStartInput = (state, props, api) => (event) => {
-  const value = props.autoFormat
-    ? api.formatInputValue({ event, prevValue: state.displayValue[0] })
-    : event.target.value
-  if (state.userInput) {
-    state.userInput = [value, state.userInput[1]]
-  } else {
-    state.userInput = [value, null]
+export const handleStartInput =
+  ({ state, props, api }) =>
+  (event) => {
+    const value = props.autoFormat
+      ? api.formatInputValue({ event, prevValue: state.displayValue[0] })
+      : event.target.value
+    if (state.userInput) {
+      state.userInput = [value, state.userInput[1]]
+    } else {
+      state.userInput = [value, null]
+    }
   }
-}
 
 export const handleEndInput =
   ({ state, props, api }) =>
@@ -1252,13 +1254,15 @@ const moveStart = (inputElem, moveStartIndex) => {
   }
 }
 
+// 这个是 input 组件的 input 事件，应该只有一个 event 参数，input 组件的具体值从 event.target.value 中获取。
 export const handleInput =
   ({ state, props, api }) =>
-  (val, event) => {
+  (event) => {
     if (props.autoFormat) {
       const value = api.formatInputValue({ event, prevValue: state.displayValue })
       state.userInput = value
     } else {
+      const val = event.target.value
       state.userInput = val
     }
   }

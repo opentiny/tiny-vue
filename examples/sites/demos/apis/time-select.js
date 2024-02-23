@@ -188,7 +188,7 @@ export default {
       ],
       methods: [
         {
-          name: 'handleFocus',
+          name: 'focus',
           type: '( ) => void',
           defaultValue: '',
           desc: {

@@ -1,6 +1,6 @@
 <template>
   <div
-    data-tag="aui-column-list-group"
+    data-tag="tiny-column-list-group"
     class="w-full"
     :class="type !== 'list' ? '[&_[role=column-list-item]]:mb-3 [&_[role=column-list-item]:last-child]:mb-0' : ''"
   >

@@ -1,22 +1,50 @@
 <template>
-  <tiny-select
-    ref="select"
-    v-model="value"
-    placeholder="请选择"
-    filterable
-    :filter-method="filter"
-    clearable
-    title="标题"
-  >
-    <tiny-option
-      v-for="item in options"
-      v-show="!item.filter"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
+  <div>
+    <div>场景1：单选 + 可搜索</div>
+    <br />
+    <tiny-select
+      ref="select"
+      v-model="value1"
+      placeholder="请选择"
+      filterable
+      :filter-method="filter"
+      clearable
+      title="标题"
     >
-    </tiny-option>
-  </tiny-select>
+      <tiny-option
+        v-for="item in options"
+        v-show="!item.filter"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      >
+      </tiny-option>
+    </tiny-select>
+    <br />
+    <br />
+    <div>场景2：多选 + 折叠tag + 可搜索</div>
+    <br />
+    <tiny-select
+      ref="select"
+      v-model="value2"
+      placeholder="请选择"
+      multiple
+      collapse-tags
+      filterable
+      :filter-method="filter"
+      clearable
+      title="标题"
+    >
+      <tiny-option
+        v-for="item in options"
+        v-show="!item.filter"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      >
+      </tiny-option>
+    </tiny-select>
+  </div>
 </template>
 
 <script>
@@ -51,7 +79,8 @@ export default {
           label: '北京烤鸭'
         }
       ],
-      value: ''
+      value1: '',
+      value2: []
     }
   },
   methods: {

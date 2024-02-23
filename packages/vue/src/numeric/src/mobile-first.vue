@@ -164,7 +164,8 @@ export default defineComponent({
     'strictInput',
     'hideUnit',
     'unitCenter',
-    'displayOnly'
+    'displayOnly',
+    'changeCompat'
   ],
   emits: ['update:modelValue', 'change', 'blur', 'focus'],
   setup(props, context): any {

@@ -97,7 +97,7 @@
         >
           <template #reference>
             <div class="tiny-pager__popover" @click="clickSizes">
-              <div ref="pageSize" class="tiny-pager__page-size">
+              <div ref="pageSize" class="tiny-pager__page-size" :class="{ disabled }">
                 <span class="sizes">{{ state.internalPageSize }}</span>
                 <span>{{ t('ui.page.page') }}</span>
                 <div class="tiny-pager__page-size-btn">

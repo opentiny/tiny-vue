@@ -1,10 +1,8 @@
 export const tinyTextareaSmbTheme = {
   'ti-textarea-border-color': 'var(--ti-common-color-line-normal)',
   'ti-textarea-count-font-size': 'var(--ti-common-font-size-0)',
-  'ti-textarea-hover-border-color': 'var(--ti-common-color-line-normal)',
   'ti-textarea-padding-horizontal': 'var(--ti-common-space-3x)',
   'ti-textarea-padding-right': 'var(--ti-common-space-base)',
-  'ti-textarea-hover-border-color': 'var(--ti-common-color-line-hover)',
   'ti-textarea-active-border-color': 'var(--ti-common-color-line-active)',
   'ti-textarea-count-width': 'calc(100% - 16px)',
   'ti-textarea-count-bottom': '0',

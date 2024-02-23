@@ -370,6 +370,19 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'change-compat',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '设置除加减按钮及直接输入数值之外，值改变后是否触发change事件',
+            'en-US':
+              'Set whether to trigger the change event after the value is changed, except for the plus and minus buttons and direct input of values.'
+          },
+          mode: ['pc', 'mobile-first', 'mobile'],
+          pcDemo: 'change-event',
+          mfDemo: ''
+        },
+        {
           name: 'validate-event',
           type: 'Boolean',
           defaultValue: '',

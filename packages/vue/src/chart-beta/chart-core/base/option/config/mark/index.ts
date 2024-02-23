@@ -1,4 +1,4 @@
-import Theme from '../../../feature/theme'
+import Theme from '../../../feature/token'
 
 export function getMarkLineDefault() {
   return {
@@ -8,14 +8,14 @@ export function getMarkLineDefault() {
       show: false
     },
     lineStyle: {
-      width: Theme.config.seriesMarkLineWidth
+      width: Theme.config.markLineWidth
     },
     emphasis: {
       label: {
         show: false
       },
       lineStyle: {
-        width: Theme.config.seriesMarkLineEmphasisWidth
+        width: Theme.config.markLineEmphasisWidth
       }
     },
     data: []

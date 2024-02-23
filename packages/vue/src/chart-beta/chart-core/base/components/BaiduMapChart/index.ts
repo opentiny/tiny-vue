@@ -39,25 +39,33 @@ export default class BaiduMapChart extends BaseChart {
     return false
   }
 
+  loadMap({ key, version, url }) {
+    return new Promise((resolve) => {
+      let cbName = 'bmap' + Date.now()
+      let script = document.createElement('script')
+      let ver = version || '2.0'
+
+      window[cbName] = resolve
+      script.src = [`${url}?v=${ver}`, `ak=${key}`, `callback=${cbName}`].join('&')
+      document.body.appendChild(script)
+    })
+  }
+
   // 加载百度api，并渲染图表
   render() {
-    let url = this.option.url || 'https://api.map.baidu.com/getscript'
+    let url = this.option.url
     let ver = this.option.v || '2.0'
     let key = this.option.key
     let src = [`${url}?${ver}`, `ak=${key}`].join('&')
+    let bmap = this.option.bmap
     let scriptExists = this.isScriptExist(src)
     // 判断是否重复加载script
     if (scriptExists) {
       this.renderInit()
     } else {
-      // 加载script
-      let script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src = src
-      document.body.appendChild(script)
-      script.onload = () => {
+      this.loadMap({ key, version: ver, url }).then(() => {
         this.renderInit()
-      }
+      })
     }
   }
 

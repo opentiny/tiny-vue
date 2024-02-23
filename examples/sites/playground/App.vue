@@ -32,10 +32,8 @@ const versions = ['3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
 const latestVersion = isPreview ? versions[0] : localStorage.getItem(VERSION) || versions[0]
 const cdnHost = localStorage.getItem('setting-cdn')
 const getRuntime = (version) => {
-  if (isSaas) {
-    return import.meta.env.VITE_APP_BUILD_BASE_URL
-  }
-  return `${cdnHost}/@opentiny/vue@${version}/runtime/`
+  const useVersion = import.meta.env.VITE_PLAYGROUND_VERIOSN || version
+  return `${cdnHost}/@opentiny/vue@${useVersion}/runtime/`
 }
 
 const changeImportSuffix = (imports, verison) => {
@@ -67,7 +65,6 @@ const createImportMap = (version) => {
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
-    imports[`@opentiny/vue-design-saas`] = `${getRuntime(version)}tiny-vue-design-saas.js`
   }
   return {
     imports: changeImportSuffix(imports, version)

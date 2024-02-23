@@ -102,7 +102,8 @@ export default defineComponent({
     'placeholder',
     'precision',
     'circulate',
-    'theme'
+    'theme',
+    'changeCompat'
   ],
   emits: ['update:modelValue', 'change', 'blur', 'focus'],
   setup(props, context) {

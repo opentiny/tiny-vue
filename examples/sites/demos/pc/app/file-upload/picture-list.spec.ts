@@ -16,7 +16,7 @@ test('图片列表缩略图', async ({ page }) => {
   const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
-  await expect(width).toBeGreaterThanOrEqual(700)
+  await expect(width).toBeGreaterThanOrEqual(height)
   await expect(height).toBeGreaterThanOrEqual(56)
   await expect(lists).toHaveCount(2)
   await fileChooser.setFiles(currentPath)

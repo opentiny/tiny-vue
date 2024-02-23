@@ -142,8 +142,10 @@ const classMap = {
 }
 
 function getThPropsArg(args) {
-  let { column, columnIndex, columnKey, fixedHiddenColumn, hasEllipsis, headAlign } = args
-  let { headerCellClassName, headerClassName, isColGroup, isDragHeaderSorting, params, thOns } = args
+  let { column, columnIndex, columnKey, fixedHiddenColumn, hasEllipsis, headAlign, columnStore } = args
+  let { headerCellClassName, headerClassName, isColGroup, isDragHeaderSorting, params, thOns, scrollbarWidth } = args
+  const { leftList, rightList } = columnStore
+
   return {
     class: [
       'tiny-grid-header__column',
@@ -160,7 +162,9 @@ function getThPropsArg(args) {
         [classMap.isSortable]: !['index', 'radio', 'selection'].includes(column.type) && column.sortable,
         [classMap.isEditable]: column.editor,
         [classMap.isFilter]: isObject(column.filter),
-        [classMap.filterActive]: column.filter && column.filter.hasFilter
+        [classMap.filterActive]: column.filter && column.filter.hasFilter,
+        'fixed-left-last__column': column.fixed === 'left' && leftList[leftList.length - 1] === column,
+        'fixed-right-first__column': column.fixed === 'right' && rightList[0] === column
       },
       getClass(headerClassName, params),
       getClass(headerCellClassName, params)
@@ -169,6 +173,10 @@ function getThPropsArg(args) {
       'data-colid': column.id,
       colspan: column.colSpan,
       rowspan: column.rowSpan
+    },
+    style: {
+      left: `${column.style?.left}px`,
+      right: `${column.style?.right + scrollbarWidth}px`
     },
     on: thOns,
     key: isDragHeaderSorting ? random() : columnKey || isColGroup ? column.id : columnIndex
@@ -219,8 +227,8 @@ function renderThResize({ _vm, border, column, fixedHiddenColumn, isColGroup, pa
     isLine: 'is__line'
   }
 
+  // 删除fixedHiddenColumn，冻结表头放开可以拖拽调节宽度。
   if (
-    !fixedHiddenColumn &&
     !isColGroup &&
     !~['index', 'radio', 'selection'].indexOf(column.type) &&
     (isBoolean(column.resizable) ? column.resizable : resizable)
@@ -269,6 +277,7 @@ function getThHandler(args) {
     let showTooltip = headOverflow === true || headOverflow === 'tooltip'
     let thOns = {}
     let hasEllipsis = showTitle || showTooltip || showEllipsis
+    const { columnStore, scrollbarWidth } = $table
 
     // 索引列、选择列如果不配置对齐方式则默认为居中对齐
     headAlign = modifyHeadAlign({ column, headAlign })
@@ -286,7 +295,7 @@ function getThHandler(args) {
 
     // 按下事件处理
     addListenerMousedown({ $table, mouseConfig, params, thOns })
-    args1 = { column, columnIndex, columnKey, fixedHiddenColumn, hasEllipsis, headAlign }
+    args1 = { column, columnIndex, columnKey, fixedHiddenColumn, hasEllipsis, headAlign, columnStore, scrollbarWidth }
     Object.assign(args1, { headerCellClassName, headerClassName, isColGroup, isDragHeaderSorting, params, thOns })
     let args2 = { column, fixedHiddenColumn, headerSuffixIconAbsolute, params, $table }
     Object.assign(args2, { showEllipsis, showHeaderTip, showTitle, showTooltip })

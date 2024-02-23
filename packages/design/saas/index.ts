@@ -15,6 +15,7 @@ import Loading from './src/loading'
 import Input from './src/input'
 import DateRange from './src/date-range'
 import Pager from './src/pager'
+import DialogBox from './src/dialog-box'
 import { version } from './package.json'
 
 export default {
@@ -37,6 +38,7 @@ export default {
     TimelineItem,
     Input,
     DateRange,
-    Pager
+    Pager,
+    DialogBox
   }
 }

@@ -2,19 +2,19 @@ import LineChart from './components/LineChart'
 import BarChart from './components/BarChart'
 import PieChart from './components/PieChart'
 import RadarChart from './components/RadarChart'
-import FunnelChart from './components/FunnelChart'
 import GaugeChart from './components/GaugeChart'
 import BubbleChart from './components/BubbleChart'
-import TreeChart from './components/TreeChart'
-import SankeyChart from './components/SankeyChart'
-import CandlestickChart from './components/CandlestickChart'
-import HeatMapChart from './components/HeatMapChart'
-import RegionChart from './components/RegionChart'
-import LiquidfillChart from './components/LiquidfillChart'
 import WordCloudChart from './components/WordCloudChart'
-import BoxplotChart from './components/BoxplotChart'
-import GraphChart from './components/GraphChart'
+import SankeyChart from './components/SankeyChart'
+import HeatMapChart from './components/HeatMapChart'
+import TreeChart from './components/TreeChart'
 import SunburstChart from './components/SunburstChart'
+import FunnelChart from './components/FunnelChart'
+import LiquidfillChart from './components/LiquidfillChart'
+import BoxplotChart from './components/BoxplotChart'
+import RegionChart from './components/RegionChart'
+import CandlestickChart from './components/CandlestickChart'
+import GraphChart from './components/GraphChart'
 
 function Register() {
   this.registeredComp = {}
@@ -54,14 +54,6 @@ const components = [
     component: PieChart
   },
   {
-    name: 'RadarChart',
-    component: RadarChart
-  },
-  {
-    name: 'FunnelChart',
-    component: FunnelChart
-  },
-  {
     name: 'GaugeChart',
     component: GaugeChart
   },
@@ -70,44 +62,52 @@ const components = [
     component: BubbleChart
   },
   {
-    name: 'TreeChart',
-    component: TreeChart
-  },
-  {
-    name: 'SankeyChart',
-    component: SankeyChart
-  },
-  {
-    name: 'CandlestickChart',
-    component: CandlestickChart
-  },
-  {
-    name: 'HeatMapChart',
-    component: HeatMapChart
-  },
-  {
-    name: 'RegionChart',
-    component: RegionChart
-  },
-  {
-    name: 'LiquidfillChart',
-    component: LiquidfillChart
+    name: 'RadarChart',
+    component: RadarChart
   },
   {
     name: 'WordCloudChart',
     component: WordCloudChart
   },
   {
-    name: 'BoxplotChart',
-    component: BoxplotChart
+    name: 'HeatMapChart',
+    component: HeatMapChart
   },
   {
-    name: 'GraphChart',
-    component: GraphChart
+    name: 'SankeyChart',
+    component: SankeyChart
+  },
+  {
+    name: 'TreeChart',
+    component: TreeChart
   },
   {
     name: 'SunburstChart',
     component: SunburstChart
+  },
+  {
+    name: 'FunnelChart',
+    component: FunnelChart
+  },
+  {
+    name: 'LiquidfillChart',
+    component: LiquidfillChart
+  },
+  {
+    name: 'BoxplotChart',
+    component: BoxplotChart
+  },
+  {
+    name: 'RegionChart',
+    component: RegionChart
+  },
+  {
+    name: 'CandlestickChart',
+    component: CandlestickChart
+  },
+  {
+    name: 'GraphChart',
+    component: GraphChart
   }
 ]
 

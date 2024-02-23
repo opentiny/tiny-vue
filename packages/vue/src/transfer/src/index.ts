@@ -29,6 +29,8 @@ export const transferProps = {
     default: () => []
   },
   columns: Array,
+  leftColumns: Array,
+  rightColumns: Array,
   data: {
     type: Array,
     default: () => []

@@ -15,22 +15,21 @@ import { cloneDeep } from '../chart-core/deps/utils'
 export const initValue =
   ({ props, emit }) =>
   () => {
-    const { dataSource = [] } = props
-    let value
-    if (dataSource.length === 1 && !dataSource[0]?.multiple) {
-      value = ''
-    } else {
-      value = []
-      dataSource?.forEach((data, index) => {
-        if (data.multiple && !Array.isArray(props.modelValue[index])) {
-          value.push([])
-        }
+    const { modelValue, dataSource = [], disabled } = props
 
-        if (!data.multiple && Array.isArray(props.modelValue)) {
-          value.push('')
-        }
-      })
+    if (disabled) {
+      return
     }
+
+    let value = []
+    dataSource?.forEach((data, index) => {
+      const isArrayVal = Array.isArray(modelValue[index])
+      if (data.multiple) {
+        value.push(isArrayVal ? modelValue[index] : [])
+      } else {
+        value.push(isArrayVal ? '' : modelValue[index] || '')
+      }
+    })
 
     emit('update:modelValue', value)
   }
@@ -40,6 +39,10 @@ export const updateValue =
   (value: string) => {
     const activeIndex = state.headerIndex
     const values = cloneDeep(props.modelValue)
+    if (!values) {
+      return
+    }
+
     if (Array.isArray(values[state.headerIndex])) {
       const currentVal = values[activeIndex]
       values[activeIndex] = currentVal.includes(value) ? currentVal.filter((i) => i !== value) : [...currentVal, value]
@@ -50,10 +53,39 @@ export const updateValue =
     emit('update:modelValue', values)
   }
 
+export const getOption = (options, target) => {
+  for (const option of options) {
+    if (option.value === target) {
+      return option
+    }
+
+    if (option.children?.length) {
+      const result = getOption(option.children, target)
+      if (result) {
+        return result
+      }
+    }
+  }
+
+  return null
+}
+
+export const updateTitle =
+  ({ props, state }) =>
+  () => {
+    const { modelValue = [], dataSource = [] } = props
+    const { headerInfo } = state
+
+    modelValue.forEach((value, index) => {
+      if (!dataSource[index].multiple) {
+        headerInfo[index].title = getOption(dataSource[index].options, value)?.label || headerInfo[index].title
+      }
+    })
+  }
+
 export const created =
   ({ api, emit, props, state, refs, nextTick }) =>
   () => {
-    api.initValue({ props, emit })
     nextTick(() => {
       state.dataSource = cloneDeep(props.dataSource)
       state.defaultSelectedArray = cloneDeep(props.defaultSelectedArray)
@@ -62,6 +94,7 @@ export const created =
       state.headerInfo = state.dataSource.map((item) => {
         return { isSelected: false, title: item.title, isUP: false }
       })
+      api.initValue({ props, emit })
 
       if (props.type === 'list') {
         state.dataSource.forEach((item, index) => {
@@ -156,7 +189,11 @@ export const handleOptionSelect =
   ({ api, state, emit }) =>
   (option) => {
     api.updateValue(option.value)
-    emit('item-click', state.optionMap[state.headerIndex][option.id])
+    emit('item-click', state.optionMap[state.headerIndex][option.id], state.headerIndex)
+
+    if (!state.dataSource[state.headerIndex].multiple) {
+      api.handleClose()
+    }
   }
 
 export const handleSearchInput =
@@ -349,6 +386,7 @@ export const getLabelsStyle = (state) => {
   if (len === 1) {
     return [
       {
+        flex: 1,
         justifyContent: 'space-between'
       }
     ]

@@ -1,7 +1,7 @@
 import { getRandom } from '../../util/math'
 import { getColor } from '../../util/color'
 import cloneDeep from '../../util/cloneDeep'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 
 export const seriesInit = {
   type: 'wordCloud',
@@ -36,6 +36,7 @@ export const seriesInit = {
   },
   // hover时样式
   emphasis: {
+    // focus: 'self',
     textStyle: {
       textShadowBlur: 20,
       textShadowOffsetY: 2,
@@ -53,21 +54,9 @@ export const seriesInit = {
  * @returns
  */
 function handleSeries(params) {
-  const {
-    theme,
-    data,
-    width,
-    height,
-    gridSize,
-    sizeRange,
-    rotationRange,
-    rotationStep,
-    shape,
-    maskImage,
-    textColor,
-    colors
-  } = params
-  seriesInit.emphasis.textStyle.textShadowColor = Theme.color.base.subg
+  const { data, width, height, gridSize, sizeRange, rotationRange, rotationStep, shape, maskImage, textColor, colors } =
+    params
+  seriesInit.emphasis.textStyle.textShadowColor = chartToken.emphasisTextShadowColor
   // 组装数据
   const series = []
   const seriesUnit = cloneDeep(seriesInit)

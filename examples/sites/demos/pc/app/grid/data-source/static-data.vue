@@ -3,7 +3,7 @@
     <div class="button-box">
       <tiny-button @click="addRow">添加数据</tiny-button>
       <tiny-button @click="deleteRow">减少数据</tiny-button>
-      <tiny-button @click="changeTableData">改变tableData引用地址</tiny-button>
+      <tiny-button @click="changeTableData">改变 tableData 引用地址</tiny-button>
     </div>
     <tiny-grid :data="tableData">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>

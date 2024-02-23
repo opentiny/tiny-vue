@@ -1,8 +1,7 @@
 import { getFormatted, itemPoint, itemLabel, itemContent, isNull } from '@opentiny/vue-chart-core-beta'
 
 const getRadarLegend = (rows, dimension, legendName, legendVisible) => {
-  let legendData = rows.map((row) => row[dimension])
-
+  let legendData = rows.map((row) => row[dimension]).filter((i) => i)
   function formatter(value) {
     return isNull(legendName[value]) ? value : legendName[value]
   }
