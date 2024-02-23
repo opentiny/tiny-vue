@@ -19,5 +19,6 @@ export const tinyDateTableSmbTheme = {
   'ti-date-table-td-border-radius': '14px',
   'ti-date-table-td-span-top': '3px',
   'ti-date-table-start-date-border-radius': '14px',
-  'ti-date-table-td-today-border-color': 'transparent'
+  'ti-date-table-td-today-border-color': 'transparent',
+  'ti-date-table-cell-selected-border-radius': '14px'
 }
