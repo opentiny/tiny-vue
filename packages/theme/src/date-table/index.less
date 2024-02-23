@@ -79,8 +79,8 @@
     position: relative;
 
     div {
-      height: 24px;
-      min-width: 36px;
+      height: var(--ti-date-table-td-div-height);
+      min-width: var(--ti-date-table-td-div-width);
       padding: 3px 0;
       box-sizing: border-box;
     }
@@ -93,7 +93,7 @@
       margin: 0 auto;
       position: absolute;
       left: 50%;
-      top: 5px;
+      top: var(--ti-date-table-td-span-top);
       transform: translateX(-50%);
     }
 
@@ -138,7 +138,7 @@
       }
     }
 
-    &.available:hover span {
+    &.available:not(.today):hover span {
       background-color: var(--ti-date-table-hover-bg-color);
       border-radius: var(--ti-date-table-border-radius-current-select);
       border-color: transparent;
@@ -165,6 +165,8 @@
 
       span {
         background-color: var(--ti-date-table-bg-color-current-select);
+        border-radius: var(--ti-date-table-start-date-border-radius);
+        border: 0;
       }
     }
 
