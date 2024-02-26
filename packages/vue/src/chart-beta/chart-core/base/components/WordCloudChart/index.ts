@@ -17,14 +17,12 @@ class WordCloudChart {
 
   updateOption() {
     const iChartOption = this.iChartOption
-    const theme = iChartOption.theme
     // 图表基础颜色
     this.baseOption.color = iChartOption.color
     // 图表鼠标悬浮提示框
     this.baseOption.tooltip = setTooltip(iChartOption)
     // 数据
     this.baseOption.series = handleSeries({
-      theme,
       data: iChartOption.data,
       width: iChartOption.width,
       height: iChartOption.height,

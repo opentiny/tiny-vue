@@ -1,8 +1,6 @@
-<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink">
-	<path
-		d="M8 0C3.58789 0 0 3.58984 0 8C0 12.4102 3.58789 16 8 16C12.4121 16 16 12.4102 16 8C16 3.58984 12.4121 0 8 0Z"
-		fill-rule="evenodd" />
-	<path d="M8 4L8 9.19922" stroke="#FFFFFF" stroke-linecap="round" />
-	<circle r="0.800000" transform="matrix(1 0 0 1 8 11.6016)" fill="#FFFFFF" />
+<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs/>
+	<path id="路径" d="M8 0C3.58789 0 0 3.58984 0 8C0 12.4102 3.58789 16 8 16C12.4121 16 16 12.4102 16 8C16 3.58984 12.4121 0 8 0Z" fill-rule="evenodd"/>
+	<path id="路径 3" d="M8 4L8 9.19922" stroke="#FFFFFF" stroke-linecap="round"/>
+	<circle id="椭圆形" r="0.800000" transform="matrix(1 0 0 1 8 11.6016)" fill="#FFFFFF"/>
 </svg>

@@ -45,6 +45,17 @@ export default {
       'codeFiles': ['renderer/custom-renderer.vue']
     },
     {
+      'demoId': 'renderer-inner-renderer-date',
+      'name': { 'zh-CN': '日期渲染器', 'en-US': 'Custom Renderer' },
+      'desc': {
+        'zh-CN':
+          '<p>在日期字段为字符串值时，需要给日期渲染器提供 <code>valueFormat</code> 配置才能正常解析日期字符串。</p>\n',
+        'en-US':
+          '<p>The custom renderer can customize the rendering of cells or a <code>vue component</code>. Configure <code>renderer</code> in the <code>grid-column</code> column to support method and object configuration. For details, see the following example. </p>\n'
+      },
+      'codeFiles': ['renderer/inner-renderer-date.vue']
+    },
+    {
       'demoId': 'render-async-colunm-render',
       'name': { 'zh-CN': '列异步数据渲染', 'en-US': 'Column Asynchronous Data Rendering' },
       'desc': {

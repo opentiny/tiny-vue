@@ -62,8 +62,20 @@
         v-if="multiple && !state.isDisplayOnly && !shape"
         :style="state.tagsStyle"
       >
-        <span v-if="!state.selectDisabled" class="flex w-full">
-          <span v-if="(collapseTags || state.device === 'mb') && state.selectedVal.length" class="contents">
+        <span
+          v-if="!state.selectDisabled"
+          :class="[
+            collapseTags
+              ? filterable && state.device === 'pc'
+                ? 'w-auto max-w-[76%] flex'
+                : 'w-full flex'
+              : 'contents'
+          ]"
+        >
+          <span
+            v-if="(collapseTags || state.device === 'mb') && state.selectedVal.length"
+            :class="['contents', collapseTags && filterable ? 'max-w-full flex-1' : '']"
+          >
             <tiny-tag
               :closable="!state.selectDisabled && state.device !== 'mb'"
               :size="state.collapseTagSize"
@@ -101,6 +113,7 @@
               v-if="state.selectedVal.length > 1"
               :closable="false"
               :size="state.collapseTagSize"
+              class="overflow-visible"
               :class="gcls('tag-info')"
               type="info"
               disable-transitions
@@ -108,7 +121,7 @@
               <span :class="gcls('tags-text')">+ {{ state.selectedVal.length - 1 }}</span>
             </tiny-tag>
           </span>
-          <span ref="tags-content" v-if="!collapseTags" class="sm:inline-block hidden">
+          <span ref="tags-content" v-if="!collapseTags" class="sm:contents hidden">
             <tiny-tag
               v-if="hoverExpand"
               :class="

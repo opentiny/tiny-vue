@@ -4,24 +4,23 @@ export default {
   columnDrop() {
     this.$nextTick(() => {
       const { plugin, onBeforeMove, filter } = this.dropConfig
-      this.columnSortable = plugin.create(
-        this.$el.querySelector('.body__wrapper>.tiny-grid__header .tiny-grid-header__row'),
-        {
-          handle: '.tiny-grid-header__column:not(.col__fixed)',
-          filter,
-          onEnd: (event) => {
-            onEndEvent({ event, _this: this })
-          },
-          onStart: (event) => {
-            this.$emit('column-drop-start', event, this)
-          },
-          onMove: (event) => {
-            const cancel = typeof onBeforeMove === 'function' ? onBeforeMove('column', null, event, this) : true
-            this.$emit('column-drop-move', event, this)
-            return cancel === undefined || cancel
-          }
+      const mainHeaderTable = this.elemStore['main-header-table']
+
+      this.columnSortable = plugin.create(mainHeaderTable.querySelector('.tiny-grid-header__row'), {
+        handle: '.tiny-grid-header__column:not(.col__fixed)',
+        filter,
+        onEnd: (event) => {
+          onEndEvent({ event, _this: this })
+        },
+        onStart: (event) => {
+          this.$emit('column-drop-start', event, this)
+        },
+        onMove: (event) => {
+          const cancel = typeof onBeforeMove === 'function' ? onBeforeMove('column', null, event, this) : true
+          this.$emit('column-drop-move', event, this)
+          return cancel === undefined || cancel
         }
-      )
+      })
     })
   },
   // 处理行拖拽
@@ -29,7 +28,9 @@ export default {
     this.$nextTick(() => {
       // refresh：是否在拖拽后刷新数据，默认为true
       const { plugin, onBeforeMove, filter, refresh = true, trigger } = this.dropConfig
-      this.rowSortable = plugin.create(this.$el.querySelector('.body__wrapper>.tiny-grid__body tbody'), {
+      const mainBodyWrapper = this.elemStore['main-body-wrapper']
+
+      this.rowSortable = plugin.create(mainBodyWrapper.querySelector('tbody'), {
         handle: trigger || '.tiny-grid-body__row',
         filter,
         onEnd: createHandlerOnEnd({ _vm: this, refresh }),

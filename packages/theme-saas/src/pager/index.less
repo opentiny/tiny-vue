@@ -148,18 +148,24 @@
       @apply mr-0;
       @apply bg-color-bg-1;
 
-      &:hover {
+      &:hover:not(:disabled) {
         @apply border border-solid border-color-icon-primary;
         @apply text-color-icon-primary;
       }
 
-      &:focus,
-      &:active,
-      &.active,
-      &[active] {
+      &:focus:not(:disabled),
+      &:active:not(:disabled),
+      &.active:not(:disabled),
+      &[active]:not(:disabled) {
         @apply border border-solid border-color-border-focus;
         @apply shadow-sm;
         @apply text-color-icon-primary;
+      }
+
+      &:disabled {
+        @apply bg-color-border-disabled;
+        @apply text-color-border;
+        @apply cursor-not-allowed;
       }
     }
 
@@ -342,18 +348,30 @@
     @apply box-border;
     .user-select(none);
 
-    &:hover {
+    &:hover:not(.disabled) {
       @apply bg-color-border-disabled;
       @apply border-color-border;
     }
 
-    &:active {
+    &:active:not(.disabled) {
       @apply border-color-border-focus;
       @apply bg-color-fill-6;
       @apply text-color-brand;
 
       svg {
         @apply fill-color-brand;
+      }
+    }
+
+    &.disabled {
+      @apply bg-color-border-disabled;
+      @apply text-color-border;
+      @apply cursor-not-allowed;
+
+      div,
+      svg {
+        @apply fill-color-border;
+        @apply cursor-not-allowed;
       }
     }
 

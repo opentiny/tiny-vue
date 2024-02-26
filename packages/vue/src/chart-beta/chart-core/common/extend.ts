@@ -1,4 +1,4 @@
-import { merge } from './util'
+import { merge, get } from './util'
 import { isObject } from './type'
 import { setObj as set } from './object'
 
@@ -72,5 +72,19 @@ export default ({ option, extend }) => {
       }
     }
   })
+  const { series } = option
+  if (series) {
+    if (Array.isArray(series)) {
+      options.series = series.map((item) => {
+        if (get(item, 'type') === 'line' && get(item, 'label.show')) {
+          item.showSymbol = true
+        }
+
+        return item
+      })
+    } else {
+      options.series.label = { show: false, ...option.series.label }
+    }
+  }
   return options
 }

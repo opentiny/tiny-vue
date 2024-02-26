@@ -19,8 +19,9 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-mask": "workspace:~",
     "@opentiny/vue-multi-select-item": "workspace:~",
     "@opentiny/vue-wheel": "workspace:~"
   },

@@ -171,7 +171,7 @@
   .fixed__column {
     position: sticky !important;
     z-index: 1;
-    background-color: var(--ti-grid-light-color);
+    background-color: inherit;
 
     &.fixed-left-last__column:after {
       position: absolute;
@@ -206,6 +206,9 @@
 
   th.fixed__column {
     background-color: var(--ti-grid-header-background-color);
+    &.tiny-grid-header__column .tiny-grid-resizable.is__line::before {
+      transform: translateX(-1px);
+    }
   }
 
   &-fixed__left {
@@ -577,7 +580,9 @@
 
   // 排序
   & &-sort-wrapper {
-    padding-left: 4px;
+    margin-left: 4px;
+    position: var(--ti-grid-sort-icon-position);
+    right: var(--ti-grid-sort-icon-right);
 
     .@{grid-prefix-cls}-sort__btn {
       display: block;

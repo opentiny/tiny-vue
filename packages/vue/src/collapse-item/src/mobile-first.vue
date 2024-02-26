@@ -1,5 +1,8 @@
 <template>
-  <div data-tag="tiny-collapse-item" class="border-b-0.5 sm:border-b border-solid border-color-border-disabled last:border-0">
+  <div
+    data-tag="tiny-collapse-item"
+    class="border-b-0.5 sm:border-b border-solid border-color-border-disabled last:border-0"
+  >
     <div
       role="tab"
       data-tag="tiny-collapse-item-tab"
@@ -9,7 +12,7 @@
     >
       <div
         data-tag="tiny-collapse-item-body"
-        class="flex relative items-center h-12 sm:h-14 py-0 sm:pr-0 pl-4 pr-10 text-sm font-bold justify-between whitespace-nowrap"
+        class="flex relative items-center h-12 sm:h-10 py-0 sm:pr-0 pl-4 pr-10 text-sm font-bold justify-between whitespace-nowrap"
         :id="`tiny-collapse-head-${state.id}`"
         :tabindex="disabled ? undefined : 0"
         @keyup.space.enter.stop="handleEnterClick"

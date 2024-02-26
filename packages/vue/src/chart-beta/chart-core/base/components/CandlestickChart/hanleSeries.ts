@@ -3,13 +3,13 @@ import { BASICSERIES } from './BaseOption'
 import LineChart from '../LineChart'
 import BarChart from '../BarChart'
 import { xkey } from '../../option/RectSys'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 
 function handleSeries(baseOpt, iChartOpt, data, chartInstance) {
   const { upColor, downColor } = iChartOpt
-  const colorState = Theme.color.state
-  const upStateColor = upColor || colorState.error
-  const downStateColor = downColor || colorState.success
+  const { colorState } = chartToken
+  const upStateColor = upColor || colorState.colorError
+  const downStateColor = downColor || colorState.colorSuccess
   const baseSeries = cloneDeep(BASICSERIES)
   baseSeries[0].data = data.total
   baseSeries[0].itemStyle.color = upStateColor

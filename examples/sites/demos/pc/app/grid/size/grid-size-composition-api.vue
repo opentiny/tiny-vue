@@ -1,33 +1,40 @@
 <template>
-  <p>medium</p>
-  <tiny-grid :data="tableData" size="medium">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
-  </tiny-grid>
-  <p>small</p>
-  <tiny-grid :data="tableData" size="small">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
-  </tiny-grid>
-  <p>mini</p>
-  <tiny-grid :data="tableData" size="mini">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60"></tiny-grid-column>
-    <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
-    <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
-    <tiny-grid-column field="city" title="城市"></tiny-grid-column>
-  </tiny-grid>
+  <tiny-tabs v-model="activeName" tab-style="card">
+    <tiny-tab-item title="medium" name="medium">
+      <tiny-grid :data="tableData" size="medium" :auto-resize="true">
+        <tiny-grid-column type="index" width="60"></tiny-grid-column>
+        <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+        <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+        <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+        <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+      </tiny-grid>
+    </tiny-tab-item>
+    <tiny-tab-item title="small" name="small">
+      <tiny-grid :data="tableData" size="small" :auto-resize="true">
+        <tiny-grid-column type="index" width="60"></tiny-grid-column>
+        <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+        <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+        <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+        <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+      </tiny-grid>
+    </tiny-tab-item>
+    <tiny-tab-item title="mini" name="mini">
+      <tiny-grid :data="tableData" size="mini" :auto-resize="true">
+        <tiny-grid-column type="index" width="60"></tiny-grid-column>
+        <tiny-grid-column type="selection" width="60"></tiny-grid-column>
+        <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
+        <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
+        <tiny-grid-column field="city" title="城市"></tiny-grid-column>
+      </tiny-grid>
+    </tiny-tab-item>
+  </tiny-tabs>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { Grid as TinyGrid, GridColumn as TinyGridColumn, Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
+
+const activeName = ref('medium')
 
 const tableData = ref([
   {

@@ -12,7 +12,7 @@
 
 import { isPlainObject, isNumber, isNumeric, isNull } from './type'
 import { getObj, toJsonStr } from './object'
-import { toFixed } from './decimal'
+import { toFixed, Decimal } from './decimal'
 
 /**
  * 文本替换格式类型
@@ -711,7 +711,7 @@ export const toBoolValue = (value) => {
  * @returns {String}
  */
 export const toRate = (value, total = 1, fraction = 2) =>
-  isNumber(value) && isNumber(total) ? `${toDecimal((value * 100) / total, fraction)}%` : value
+  isNumber(value) && isNumber(total) ? toDecimal(Decimal(value).mul(100).div(total).toNumber(), fraction) + '%' : value
 
 /**
  * 文件大小值 单位互相转换。

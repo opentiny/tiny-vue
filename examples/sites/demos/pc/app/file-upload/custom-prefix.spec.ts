@@ -9,7 +9,7 @@ test('文件选择前确认', async ({ page }) => {
   await upload.click()
   await page.locator('.tiny-modal').filter({ hasText: 'beforeAddFile 钩子函数' }).isVisible()
 
-  const confirmBtn = page.getByRole('button', { name: '确认' })
+  const confirmBtn = page.getByRole('button', { name: '确定' })
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), confirmBtn.click()])
 
   // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires

@@ -36,39 +36,42 @@ export const onDrop =
 
     const notAcceptedFiles = [] as File[]
 
-    const filteredFile = [].slice.call(files).filter((file: File) => {
-      const { type, name } = file
-      const extension = name.includes('.') ? `.${name.split('.').pop()}` : ''
-      const baseType = type.replace(/\/.*$/, '')
+    // 这里用来判断拖拽的文件是否要抛出drop-error事件，并非用来判断accept过滤非法文件，在beforeUpload中处理accept过滤
+    if (files) {
+      Array.from(files).filter((file: File) => {
+        const { type, name } = file
+        const extension = name.includes('.') ? `.${name.split('.').pop()}` : ''
+        const baseType = type.replace(/\/.*$/, '')
 
-      let isValid = accept
-        .split(',')
-        .map((type) => type.trim())
-        .filter((type) => type)
-        .some((type) => {
-          if (/\..+$/.test(type)) {
-            return extension === type
-          }
+        let isValid = accept
+          .split(',')
+          .map((type) => type.trim())
+          .filter((type) => type)
+          .some((type) => {
+            if (/\..+$/.test(type)) {
+              return extension === type
+            }
 
-          if (/\/\*$/.test(type)) {
-            return baseType === type.replace(/\/\*$/, '')
-          }
+            if (/\/\*$/.test(type)) {
+              return baseType === type.replace(/\/\*$/, '')
+            }
 
-          if (/^[^/]+\/[^/]+$/.test(type)) {
-            return true
-          }
+            if (/^[^/]+\/[^/]+$/.test(type)) {
+              return true
+            }
 
-          return false
-        })
+            return false
+          })
 
-      !isValid && notAcceptedFiles.push(file)
+        !isValid && notAcceptedFiles.push(file)
 
-      return isValid
-    })
+        return isValid
+      })
 
-    notAcceptedFiles.length && state.uploader.$emit('drop-error', notAcceptedFiles)
+      notAcceptedFiles.length && state.uploader.$emit('drop-error', notAcceptedFiles)
+    }
 
-    emit('file', filteredFile)
+    emit('file', files)
   }
 
 export const watchDragover =

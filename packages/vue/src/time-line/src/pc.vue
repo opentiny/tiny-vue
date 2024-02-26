@@ -10,7 +10,12 @@
  *
  -->
 <template>
-  <div :class="['tiny-steps', { 'is-horizontal': horizontal && !vertical, 'tiny-steps--mini': size === 'mini' }]">
+  <div
+    :class="[
+      'tiny-timeline tiny-steps',
+      { 'is-horizontal': horizontal && !vertical, 'tiny-steps--mini': size === 'mini' }
+    ]"
+  >
     <div :class="state.computedWrapperClass">
       <slot>
         <tiny-timeline-item

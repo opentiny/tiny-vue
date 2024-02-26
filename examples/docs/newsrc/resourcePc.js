@@ -8,8 +8,8 @@ import { cmpMenus } from '../../sites/demos/pc/menus.js'
 export const demoStr = import.meta.glob('../../sites/demos/pc/app/**/*.vue', { eager: false, as: 'raw' })
 export const demoVue = import.meta.glob('../../sites/demos/pc/app/**/*.vue', { eager: false })
 
-// api属性
-export const apis = import.meta.glob('../../sites/demos/pc/app/*/webdoc/*.js', { eager: false })
+// demos配置
+export const demos = import.meta.glob('../../sites/demos/pc/app/*/webdoc/*.js', { eager: false })
 
 // 组件的md
 const allMD = import.meta.glob('../../sites/demos/pc/app/*/webdoc/*.cn.md', { eager: true })

@@ -1,16 +1,16 @@
-import Theme from '../../../feature/theme'
+import Theme from '../../../feature/token'
 import proxy from '../../../util/proxy'
 
 function getChartToken() {
   const {
-    areaStyle: { color: colorAreaTP }
+    areaStyle: { color: colorBgTransparent }
   } = Theme.config.AreaChart
 
-  const { errorColor } = Theme.config.colorState
+  const { colorError } = Theme.config.colorState
 
   return {
-    colorAreaTP,
-    errorColor
+    colorAreaTP: colorBgTransparent,
+    colorError
   }
 }
 

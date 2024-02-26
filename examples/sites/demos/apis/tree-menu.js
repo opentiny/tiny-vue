@@ -403,7 +403,7 @@ export default {
         {
           name: 'check-change',
           typeAnchorName: 'ITreeNodeVm',
-          type: '(node:ITreeNodeVm,checked:boolean,indeterminate:boolean) => void',
+          type: '(node:ITreeNodeVm, checked:boolean, indeterminate:boolean) => void',
           defaultValue: '',
           desc: {
             'zh-CN': '监听可勾选节点的勾选状态发生变化时的事件',
@@ -415,7 +415,7 @@ export default {
         {
           name: 'current-change',
           typeAnchorName: 'ITreeNodeVm',
-          type: '(nodeData:ITreeNodeData,node:ITreeNodeVm) => void',
+          type: '(nodeData:ITreeNodeData, node:ITreeNodeVm) => void',
           defaultValue: '',
           desc: {
             'zh-CN': '监听当前选中节点发生变化时的事件',
@@ -427,7 +427,7 @@ export default {
         {
           name: 'node-click',
           typeAnchorName: 'ITreeNodeVm',
-          type: '(nodeData:ITreeNodeData,node:ITreeNodeVm) => void',
+          type: '(nodeData:ITreeNodeData, node:ITreeNodeVm) => void',
           defaultValue: '',
           desc: {
             'zh-CN': '监听节点被点击时的事件',
@@ -439,7 +439,7 @@ export default {
         {
           name: 'node-collapse',
           typeAnchorName: 'ITreeNodeVm',
-          type: '(nodeData:ITreeNodeData,node:ITreeNodeVm) => void',
+          type: '(nodeData:ITreeNodeData, node:ITreeNodeVm) => void',
           defaultValue: '',
           desc: {
             'zh-CN': '监听节点被点击收起时的事件;',
@@ -475,7 +475,7 @@ export default {
         {
           name: 'node-expand',
           typeAnchorName: 'ITreeNodeVm',
-          type: '(nodeData:ITreeNodeData,node:ITreeNodeVm) => void',
+          type: '(nodeData:ITreeNodeData, node:ITreeNodeVm) => void',
           defaultValue: '',
           desc: {
             'zh-CN': '监听节点被点击展开时的事件;',

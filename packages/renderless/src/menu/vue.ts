@@ -5,28 +5,27 @@ import {
   getActivedKeysPath,
   setNodeHidden,
   setAllNodeVisible,
-  filterInput
+  filterInput,
+  computeData
 } from './index'
 import debounce from '../common/deps/debounce'
 
 export const api = ['state', 'setIsCurrent', 'filterNodes', 'filterInput']
-
-export const renderless = (props, { reactive, watch, onMounted, computed }, { vm, emit, nextTick }) => {
-  const api = {}
-
+const initState = ({ reactive, computed, props, api }) => {
   const state = reactive({
     isEmpty: computed(() => props.data.length !== 0 && state.filterValue && state.filterData.length === 0),
     activedNodeId: null,
-    filterCheckedId: null,
-    activedKeys: props.activedKeys,
-    expandedKeysPath: [],
-    activedKeysPath: [],
-    filterText: '',
     filterValue: '',
     currentPaths: [],
     filterData: [],
-    data: props.data
+    data: computed(() => api.computeData())
   })
+  return state
+}
+export const renderless = (props, { reactive, watch, onMounted, computed }, { vm, emit, nextTick }) => {
+  const api = {}
+
+  const state = initState({ reactive, computed, props, api })
 
   Object.assign(api, {
     state,
@@ -36,7 +35,8 @@ export const renderless = (props, { reactive, watch, onMounted, computed }, { vm
     getActivedKeysPath: getActivedKeysPath({ state }),
     getExpandedKeysPath: getExpandedKeysPath({ state }),
     setAllNodeVisible: setAllNodeVisible({ vm, state }),
-    filterInput: filterInput({ state })
+    filterInput: filterInput({ state }),
+    computeData: computeData({ props, vm })
   })
 
   watch(
@@ -62,20 +62,26 @@ export const renderless = (props, { reactive, watch, onMounted, computed }, { vm
     },
     { deep: true, immediate: true }
   )
+
   watch(
     () => props.activedKeys,
-    () => {
-      state.activedKeys = props.activedKeys
-      api.getActivedKeysPath(props.activedKeys)
+    (val) => {
+      if (val || val === 0) {
+        state.activedKeys = props.activedKeys
+        api.getActivedKeysPath(props.activedKeys)
+        api.setIsCurrent(props.data, { id: props.activedKeys })
+      }
     },
     { immediate: true }
   )
+
   watch(
     () => props.data,
-    () => {
-      state.data = props.data
-    },
-    { deep: true, immediate: true }
+    (val) => {
+      nextTick(() => {
+        api.setIsCurrent(val, { id: props.activedKeys })
+      })
+    }
   )
 
   onMounted(() => {

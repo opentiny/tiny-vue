@@ -25,7 +25,6 @@ class CandlestickChart {
   }
 
   updateOption() {
-    const theme = this.iChartOption.theme
     const iChartOption = this.iChartOption
     const volume = this.iChartOption.volume
     const data = handleData(iChartOption)
@@ -39,7 +38,7 @@ class CandlestickChart {
     handleTooltip(this.baseOption, iChartOption)
     handleDataZoom(this.baseOption, iChartOption)
     handleLegend(this.baseOption, iChartOption)
-    handleAxisPointer(this.baseOption, theme)
+    handleAxisPointer(this.baseOption)
     event(this.chartInstance, iChartOption.event)
     mergeSeries(iChartOption, this.baseOption)
   }

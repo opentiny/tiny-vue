@@ -11,7 +11,13 @@
  -->
 <template>
   <transition :name="state.animationName" @after-enter="afterEnter" @after-leave="afterLeave">
-    <div v-show="visible" :class="['tiny-dialog-box__wrapper', dialogClass]" @click.self="handleWrapperClick">
+    <div
+      v-show="visible"
+      :class="['tiny-dialog-box__wrapper', dialogClass]"
+      @click.self="handleWrapperClick"
+      @mouseup="useMouseEventUp"
+      @mousedown="useMouseEventDown"
+    >
       <div
         ref="dialog"
         v-if="destroyOnClose ? visible : true"

@@ -40,7 +40,7 @@
         state.inputHovering = true
       }
     "
-    @click.stop="toggleMenu"
+    @click="toggleMenu"
     v-clickoutside="handleClose"
     v-bind="a($attrs, ['class', 'style'], true)"
   >

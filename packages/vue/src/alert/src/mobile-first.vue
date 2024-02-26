@@ -5,7 +5,7 @@
       v-if="state.show"
       :class="
         m(
-          'min-h-min flex py-2 sm:py-3 px-4 my-2 rounded box-border font-light sm:font-normal',
+          'min-h-min flex py-2 sm:py-3 px-4 my-2 rounded box-border font-light sm:font-normal text-color-text-primary',
           { 'bg-color-info-primary-subtler': type === 'info' || !type },
           { 'bg-color-error-subtler': type === 'error' },
           { 'bg-color-warning-subtler': type === 'warning' },
@@ -61,6 +61,7 @@
         >
           <div
             data-tag="tiny-alert-singline"
+            class="text-color-text-secondary"
             :class="[
               { 'truncate': singleLine },
               {
@@ -91,7 +92,7 @@
         data-tag="tiny-alert-notfoldable"
         v-else
         class="flex-1 leading-6 text-sm overflow-hidden cursor-pointer"
-        :class="showIcon ? 'mx-2' : 'mr-2'"
+        :class="[showIcon ? 'ml-2' : '', closable ? 'mr-2' : '']"
       >
         <div data-tag="tiny-alert-large" v-if="size === 'large'" class="font-medium">
           <slot name="title">{{ state.getTitle }}</slot>
