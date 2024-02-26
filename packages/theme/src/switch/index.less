@@ -29,7 +29,14 @@
   position: relative;
   cursor: pointer;
   outline: none;
-  transition: all 0.2s ease-in-out;
+  transition:
+    border 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+
+  &:focus-visible {
+    outline: 2px solid var(--ti-switch-on-bg-color);
+    outline-offset: 1px;
+  }
 
   & &-inner {
     color: var(--ti-switch-text-color);
