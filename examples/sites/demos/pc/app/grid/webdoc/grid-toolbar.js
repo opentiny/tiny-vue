@@ -109,10 +109,19 @@ export default {
       'demoId': 'toolbar-grid-full-screen-height',
       'name': { 'zh-CN': '全屏时改变表格高度', 'en-US': 'Change the table height in full screen mode' },
       'desc': {
-        'zh-CN': '<p>通过表格属性<code>height</code> 在全屏是动态改变表格高度。</p>',
+        'zh-CN': '<p>通过表格属性 <code>height</code> 在全屏是动态改变表格高度。</p>',
         'en-US': 'For details, see the following example.'
       },
       'codeFiles': ['toolbar/grid-full-screen-height.vue']
+    },
+    {
+      'demoId': 'toolbar-grid-full-screen-teleport',
+      'name': { 'zh-CN': '推荐基于 Teleport 的全屏方案', 'en-US': 'Change the table height in full screen mode' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>teleport</code> 实现表格全屏。</p>',
+        'en-US': 'For details, see the following example.'
+      },
+      'codeFiles': ['toolbar/grid-full-screen-teleport.vue']
     },
     {
       'demoId': 'toolbar-custom-toolbar',

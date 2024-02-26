@@ -25,7 +25,7 @@ function markLineArea(baseOption, iChartOption, YAxiMax) {
   ) {
     const temp = []
     baseOption.series.forEach((item) => {
-      const bottomColor = codeToRGB(iChartOption.markLine.bottomColor, 0.15) || chartToken.errorColor
+      const bottomColor = codeToRGB(iChartOption.markLine.bottomColor, 0.15) || chartToken.colorError
       const minValue = min(item.data)
       const percent = (iChartOption.markLine.bottom - minValue) / (YAxiMax - minValue)
       if (iChartOption.markLine.bottom >= minValue) {

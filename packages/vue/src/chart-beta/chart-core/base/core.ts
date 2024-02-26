@@ -1,8 +1,9 @@
 import tips from './util/tips'
 import merge from './util/merge'
 import * as echarts from 'echarts'
-import Theme from './feature/theme'
+import Theme from './feature/token'
 import throttle from './util/throttle'
+import axistip from './feature/axistip'
 import { mergeExtend } from './util/merge'
 import BaseChart from './components/BaseChart'
 import readScreen from './feature/readScreen'
@@ -18,7 +19,8 @@ const SELF_CHART = [
   'OrganizationChart',
   'AutonaviMapChart',
   'SnowFlakeChart',
-  'TimelineChart'
+  'TimelineChart',
+  'MilestoneChart'
 ]
 
 // 图表核心对象，按需引入图表 class 给 CoreChart 渲染，打包容量较小
@@ -141,6 +143,7 @@ export default class CoreChart extends BaseChart {
     this.iChartOption = iChartOption
     this.ichartsIns = new ChartClass(iChartOption, this.echartsIns, this.plugins)
     this.eChartOption = this.ichartsIns.getOption()
+    this.iChartOption.axistip && axistip(this.dom, this.echartsIns, this.eChartOption)
     mergeExtend(this.iChartOption, this.eChartOption)
   }
 
@@ -219,12 +222,12 @@ export default class CoreChart extends BaseChart {
 
   // 给echarts单独绑定事件
   on(...rest) {
-    this.echartsIns && this.echartsIns.on(rest)
+    this.echartsIns && this.echartsIns.on(...rest)
   }
 
   // 给echarts单独解绑事件
   off(...rest) {
-    this.echartsIns && this.echartsIns.off(rest)
+    this.echartsIns && this.echartsIns.off(...rest)
   }
 
   // 给echarts实例绑定事件

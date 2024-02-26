@@ -1,15 +1,15 @@
-import Theme from '../../feature/theme'
+import Theme from '../../feature/token'
 import proxy from '../../util/proxy'
 
 function getChartToken() {
   const {
     itemStyle: { borderWidth, borderColor, borderRadius, color },
-    label: { color: labelColor, fontSize },
+    label: { color: colorLabel, fontSize },
     barWidth
   } = Theme.config.BarChart
 
   const {
-    colorState: { errorColor }
+    colorState: { colorError }
   } = Theme.config
 
   return {
@@ -17,10 +17,10 @@ function getChartToken() {
     borderColor,
     borderRadius,
     color,
-    labelColor,
+    labelColor: colorLabel,
     fontSize,
     barWidth,
-    errorColor
+    colorError
   }
 }
 

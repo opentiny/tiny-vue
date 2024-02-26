@@ -20,5 +20,8 @@ export const tinyDialogBoxAuroraTheme = {
   'ti-dialog-box-drawer-header-padding-top': 'var(--ti-common-space-2x)',
   'ti-dialog-box-drawer-header-padding-bottom': 'var(--ti-common-space-2x)',
   'ti-dialog-box-drawer-header-padding-left': 'var(--ti-common-space-6x)',
-  'ti-dialog-box-drawer-body-padding-right': 'var(--ti-common-space-6x)'
+  'ti-dialog-box-drawer-body-padding-right': 'var(--ti-common-space-6x)',
+  'ti-dialog-box-wrapper-display': 'flex',
+  'ti-dialog-box-wrapper-align-items': 'center',
+  'ti-dialog-box-header-height': 'var(--ti-common-size-10x)'
 }

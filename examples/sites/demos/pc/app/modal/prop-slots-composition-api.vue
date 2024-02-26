@@ -22,14 +22,14 @@ function baseClick() {
           {
             on: {
               click: (e) => {
-                params.footerSlotParams.confirm(e)
+                params.confirm(e)
               }
             },
             props: { type: 'primary' }
           },
           '点我确定'
         ),
-        h(TinyButton, { on: { click: (e) => params.footerSlotParams.cancel(e) } }, '点我取消')
+        h(TinyButton, { on: { click: (e) => params.cancel(e) } }, '点我取消')
       ]
     }
   })

@@ -10,17 +10,21 @@
   @apply rounded;
 
   &&--normal {
-    @apply py-2 px-4;
+    @apply py-3 px-4;
     @apply my-2 mx-0;
     @apply flex;
     @apply justify-start;
-    @apply items-center;
 
     .@{alert-prefix-cls}__content {
       @apply py-0 px-2;
       @apply table-cell;
-      @apply leading-normal;
+      @apply ~'leading-5.5';
       max-width: calc(100% - theme('spacing.8'));
+
+      &.close-hidden {
+        @apply pr-0;
+        @apply max-w-full;
+      }
     }
   }
 
@@ -80,7 +84,9 @@
   }
 
   &__icon {
-    @apply text-base;
+    @apply text-xl;
+    @apply ~'mt-0.5';
+    @apply shrink-0;
   }
 
   &.is-center {
@@ -99,7 +105,7 @@
   & &__close {
     @apply text-base;
     @apply absolute;
-    @apply ~'top-1/2';
+    @apply ~'top-5';
     @apply right-3;
     @apply ~'-translate-y-2/4';
     @apply cursor-pointer;

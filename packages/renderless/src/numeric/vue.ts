@@ -144,7 +144,7 @@ const initApi = ({
     handleInputChange: handleInputChange({ api, state, props }),
     mouseEvent: mouseEvent({ api, props, state }),
     handleBlur: handleBlur({ constants, dispatch, emit, props, state, api }),
-    watchValue: watchValue({ api, state, nextTick }),
+    watchValue: watchValue({ api, props, state, nextTick }),
     setCurrentValue: setCurrentValue({ api, constants, dispatch, emit, props, state }),
     dispatchDisplayedValue: dispatchDisplayedValue({ api, state, dispatch }),
     getDisplayedValue: getDisplayedValue({ state, props }),

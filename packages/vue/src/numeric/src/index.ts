@@ -149,6 +149,10 @@ export const numericProps = {
   blank: {
     type: Boolean,
     default: true
+  },
+  changeCompat: {
+    type: Boolean,
+    default: false
   }
 }
 

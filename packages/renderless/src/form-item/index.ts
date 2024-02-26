@@ -374,7 +374,7 @@ export const getRules =
   (): IFormItemRule[] => {
     let formRules = state.form.rules || {}
     const selfRules = props.rules as IFormItemRule[]
-    const requiredRule = props.required !== undefined ? { required: !!props.required } : []
+    const requiredRule = props.required !== undefined ? { required: Boolean(props.required) } : []
     const prop = getPropByPath(formRules, props.prop || '')
 
     formRules = formRules ? prop.o[props.prop || ''] || prop.v : []

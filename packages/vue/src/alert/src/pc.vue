@@ -16,7 +16,7 @@
       :class="['tiny-alert', 'tiny-alert--' + type, 'tiny-alert--' + size, { 'is-center': center }, customClass]"
     >
       <component v-if="showIcon" :is="state.getIcon" class="tiny-svg-size tiny-alert__icon" />
-      <div class="tiny-alert__content">
+      <div class="tiny-alert__content" :class="{ 'close-hidden': !closable }">
         <div v-if="size === 'large'" class="tiny-alert__title">
           <slot name="title">
             {{ state.getTitle }}

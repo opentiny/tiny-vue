@@ -23,13 +23,13 @@ export const computedAnimationName =
 export const computedAddUnit = (value: string): string => (isNaN(Number(value)) ? value : value + 'px')
 
 export const computedStyle =
-  ({ props, state }: Pick<IDialogBoxRenderlessParams, 'props' | 'state'>) =>
+  ({ props, state, designConfig }: Pick<IDialogBoxRenderlessParams, 'props' | 'state' | 'designConfig'>) =>
   (): IDialogBoxStyle => {
-    const style = {} as IDialogBoxStyle
+    let style = {} as IDialogBoxStyle
     let { width, top, rightSlide, maxHeight } = props
 
     if (top === undefined) {
-      top = rightSlide ? '0' : '15vh'
+      top = rightSlide ? '0' : designConfig?.state?.top ? '' : '15vh'
     }
 
     width = computedAddUnit(width)
@@ -47,6 +47,10 @@ export const computedStyle =
       } else {
         style.left = state.left || 'calc((100vw - ' + width + ') / 2)'
       }
+    }
+
+    if (state.dragStyle) {
+      style = { ...style, ...state.dragStyle }
     }
 
     return style
@@ -155,14 +159,34 @@ export const unMounted =
     }
   }
 
+export const useMouseEventDown =
+  ({ state }: Pick<IDialogBoxRenderlessParams, 'state'>) =>
+  (event: MouseEvent): void => {
+    state.mouseDownWrapperFlag = false
+    if (/tiny-dialog-box__wrapper/.test(event.target.className) && event.type === 'mousedown') {
+      state.mouseDownWrapperFlag = true
+    }
+  }
+
+export const useMouseEventUp =
+  ({ state }: Pick<IDialogBoxRenderlessParams, 'state'>) =>
+  (event: MouseEvent): void => {
+    state.mouseUpWrapperFlag = false
+    if (/tiny-dialog-box__wrapper/.test(event.target.className) && event.type === 'mouseup') {
+      state.mouseUpWrapperFlag = true
+    }
+  }
+
 export const handleWrapperClick =
-  ({ api, props }: Pick<IDialogBoxRenderlessParams, 'api' | 'props'>) =>
+  ({ api, props, state }: Pick<IDialogBoxRenderlessParams, 'api' | 'props' | 'state'>) =>
   (): void => {
     if (!props.closeOnClickModal) {
       return
     }
-
-    api.handleClose('mask')
+    // mouseDownFlag、mouseUpFlag判断是否点击wrapper状态
+    if (state.mouseDownWrapperFlag && state.mouseUpWrapperFlag) {
+      api.handleClose('mask')
+    }
   }
 
 export const handleClose =
@@ -315,8 +339,8 @@ export const handleDrag =
         top = event.clientY < 0 ? -disY : top > maxY ? maxY : top
       }
 
-      modalBoxElem.style.left = `${left}px`
-      modalBoxElem.style.top = `${top}px`
+      state.dragStyle = { left: `${left}px`, top: `${top}px` }
+
       state.left = `${left}px`
       state.top = `${top}px`
 

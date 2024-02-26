@@ -44,7 +44,7 @@ import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
 const { themes, viewConfig } = GlobalConfig
 const { SAAS: T_SAAS } = themes
-const { GANTT: V_GANTT } = viewConfig
+const { GANTT: V_GANTT, MF: V_MF, CARD: V_CARD } = viewConfig
 
 const propKeys = Object.keys(TinyGridTable.props)
 
@@ -65,19 +65,19 @@ function createRender(opt) {
     tableLoading,
     viewType,
     columnAnchorParams,
-    columnAnchor
+    columnAnchor,
+    fullScreenClass
   } = opt
   return h(
     'div',
     {
-      class: [
-        `tiny-grid__wrapper tiny-grid view_${viewType}`,
-        { '!bg-transparent sm:!bg-color-bg-1': viewType === 'mf' || viewType === 'card' },
-        {
-          [`size__${vSize}`]: vSize,
-          'tiny-grid__animat': props.optimization.animat
-        }
-      ]
+      class: {
+        [`tiny-grid__wrapper tiny-grid view_${viewType}`]: true,
+        '!bg-transparent sm:!bg-color-bg-1': viewType === V_MF || viewType === V_CARD,
+        [`size__${vSize}`]: vSize,
+        'tiny-grid__animat': props.optimization.animat,
+        [fullScreenClass]: true
+      }
     },
     [
       selectToolbar ? null : renderedToolbar,
@@ -150,7 +150,8 @@ export default defineComponent({
       },
       columnAnchorParams: {},
       columnAnchorKey: '',
-      tasks: {}
+      tasks: {},
+      fullScreenClass: ''
     }
   },
   computed: {
@@ -198,6 +199,15 @@ export default defineComponent({
     },
     tableCustoms() {
       this.toolbar && this.$refs.toolbar && this.$refs.toolbar.loadStorage()
+    },
+    columnAnchorParams() {
+      setTimeout(() => this.emitter.emit('active-anchor'), this.columnAnchorParams.activeAnchor.delay)
+    },
+    viewType(value) {
+      // 在全屏状态下切换到表格视图时额外刷新一次表格布局，解决此场景下列宽未自动撑开问题
+      if (value === V_MF && this.fullScreenClass) {
+        this.$nextTick(() => this.recalculate(true))
+      }
     }
   },
   created() {
@@ -335,7 +345,7 @@ export default defineComponent({
       designConfig,
       viewType
     } = this as any
-    const { columnAnchor, columnAnchorParams } = this
+    const { columnAnchor, columnAnchorParams, fullScreenClass } = this
 
     // grid全局替换smb图标
     if (designConfig?.icons) {
@@ -398,7 +408,8 @@ export default defineComponent({
       tableLoading,
       viewType,
       columnAnchorParams,
-      columnAnchor
+      columnAnchor,
+      fullScreenClass
     })
   },
   methods: {
@@ -407,11 +418,12 @@ export default defineComponent({
         this.tasks.updateParentHeight = debounce(10, () => {
           const { $el, $refs } = this
           const { tinyTable } = $refs
+          const toolbarVm = this.getVm('toolbar')
 
           if (tinyTable) {
             tinyTable.parentHeight =
               $el.parentNode.clientHeight -
-              ($refs.toolbar ? $refs.toolbar.$el.clientHeight : 0) -
+              (toolbarVm ? toolbarVm.$el.clientHeight : 0) -
               ($refs.pager ? $refs.pager.$el.clientHeight : 0)
           }
         })
@@ -434,7 +446,7 @@ export default defineComponent({
     },
     // 从缓存获取实例
     getVm(name) {
-      if (name && typeof name === 'string') {
+      if (name && typeof name === 'string' && this.vmStore) {
         return this.vmStore[name]
       }
     },

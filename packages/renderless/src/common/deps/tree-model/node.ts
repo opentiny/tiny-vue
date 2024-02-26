@@ -293,7 +293,7 @@ export default class Node {
 
     if (!(child instanceof Node)) {
       if (!batch) {
-        const children = this.getChildren(true)
+        const children = this.getChildren(true) || []
 
         if (!~children.indexOf(child.data)) {
           insertNode({ arr: children, index, item: child.data })

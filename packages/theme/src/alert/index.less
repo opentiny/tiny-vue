@@ -21,7 +21,7 @@
   .component-css-vars-alert();
 
   position: relative;
-  border: 1px solid;
+  border: var(--ti-alert-border-weight) solid;
   border-radius: var(--ti-alert-border-radius);
   font-family: var(--ti-alert-font-family);
 
@@ -146,7 +146,7 @@
   &__icon {
     font-size: var(--ti-alert-icon-font-size);
   }
-  &__icon:first-child{
+  &__icon:first-child {
     margin-top: var(--ti-alert-icon-margin-top);
   }
 

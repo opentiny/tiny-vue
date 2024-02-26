@@ -355,7 +355,7 @@ function getTableAttrs(args) {
       'all-head-overflow': showHeaderOverflow,
       'tiny-grid-cell__highlight': highlightCell,
       'tiny-grid__animat': optimizeOpts.animat,
-      'tiny-grid__stripe': stripe,
+      'tiny-grid__stripe': !isThemeSaas && stripe, // saas主题下，无此类名
       'tiny-grid__stripe-saas': isThemeSaas && stripeSaas,
       'tiny-grid__border': border || isGroup,
       'tiny-grid__border-saas': isThemeSaas && borderSaas,
@@ -548,8 +548,10 @@ const getTableData = () => {
     afterMounted: false,
     // 临时任务
     tasks: {},
-    // 表格列就绪
-    isColumnInitReady: false
+    // 列初始就绪
+    isColumnInitReady: false,
+    // 列就绪
+    isColumnReady: false
   }
   return tableData
 }
@@ -557,7 +559,7 @@ const getTableData = () => {
 export default {
   name: `${$prefix}GridTable`,
   props: {
-    // 所有的列对其方式
+    // 所有的列对齐方式
     align: { type: String, default: () => GlobalConfig.align },
     // 是否自动监听父容器变化去更新响应式表格宽高
     autoResize: Boolean,
@@ -735,7 +737,9 @@ export default {
     // 数据预取配置
     prefetch: [Boolean, Array],
     // 相交配置
-    intersectionOption: Object
+    intersectionOption: Object,
+    // 值比较方法
+    equals: Function
   },
   provide() {
     return {
@@ -849,6 +853,10 @@ export default {
     height() {
       this.$nextTick(this.recalculate)
     },
+    data() {
+      // data的监控处理：a、在vue2中，数组对象替换、数组长度改变和数组项属性改变；b、在vue3中，数组对象替换
+      this.handleDataChange()
+    },
     // 此属性暂时没有找到应用的demo，从语义上来说，觉得可以删除，官网有对应api但是没有对应的示例
     syncResize(value) {
       // 是否自动根据状态属性去更新响应式表格宽高
@@ -859,8 +867,6 @@ export default {
       this.analyColumnWidth()
       // 处理空数据时表头是否禁用
       this.handleSelectionHeader()
-      // 设置列锚点数据
-      this.columnAnchor && this.$grid.buildColumnAnchorParams()
     },
     parentHeight() {
       this.$nextTick(this.recalculate)
@@ -893,6 +899,9 @@ export default {
     GlobalEvent.on(this, 'resize', this.handleGlobalResizeEvent)
     GlobalEvent.on(this, 'contextmenu', this.handleGlobalContextmenuEvent)
 
+    // vue3下额外监控数组长度改变，解决push无响应等问题
+    this.watchDataForVue3()
+
     // 设置表格实例
     this.$grid.connect({ name: 'table', vm: this })
   },
@@ -904,8 +913,12 @@ export default {
         // 使用ResizeObserver监听表格父元素尺寸，然后动态计算表格各种尺寸
         this.bindResize()
       }
-      // 在body上挂载弹出框类的表格内部组件：右键菜单、筛选框、提示
-      document.body.appendChild(this.$refs.tableWrapper)
+
+      // 复杂场景下，当表格刚开始挂载就被用户使用v-if销毁，会导致$refs全部被清空
+      if (this.$refs.tableWrapper) {
+        // 在body上挂载弹出框类的表格内部组件：右键菜单、筛选框、提示
+        document.body.appendChild(this.$refs.tableWrapper)
+      }
     })
 
     setTimeout(() => {
@@ -929,15 +942,6 @@ export default {
 
     // TINY主题变量
     const tinyTheme = hooks.ref(resolveTheme(props, context))
-
-    /**
-     * vue2会拦截数组的push、pop、shift、unshift等数组常规操作，所以不用深度监听也可触发视图更新
-     * vue3不会拦截数组的常规操作，如果深度监听会影响效率，所以需要额外监控数组长度改变，解决push无响应等问题
-     * 如果是vue3需要同时监听data和数组长度，如果分多个watch监听会导致重复渲染，影响效率
-     */
-    hooks.watch([() => table.data, () => table.data && table.data.length], () => {
-      table.handleDataChange()
-    })
 
     hooks.onBeforeUnmount(() => {
       const { elemStore, $refs } = table

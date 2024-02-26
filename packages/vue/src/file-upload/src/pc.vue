@@ -79,7 +79,8 @@ export default defineComponent({
     'encryptConfig',
     'title',
     'showTitle',
-    'displayOnly'
+    'displayOnly',
+    'compact'
   ],
   setup(props, context) {
     // 内置crypto-js和streamsaver进行上传下载
@@ -141,8 +142,11 @@ export default defineComponent({
       a,
       encryptConfig,
       encryptDialogConfirm,
+      handleTriggerClick,
+      handleClickFileList,
       displayOnly,
-      listType
+      listType,
+      compact
     } = this
     const isPictureCard = listType === 'picture-card'
     const isSaasType = listType === 'saas'
@@ -163,7 +167,7 @@ export default defineComponent({
     const getTriggerContent = (t: any, disabled: boolean) => {
       return (
         <div class="trigger-btn">
-          <tiny-button disabled={disabled}>
+          <tiny-button disabled={disabled} onClick={handleTriggerClick}>
             <icon-plus />
             <span>{t('ui.fileUpload.uploadFile')}</span>
           </tiny-button>
@@ -291,7 +295,8 @@ export default defineComponent({
             handlePreview: preview,
             handleDownloadFile,
             handleReUpload: reUpload,
-            openDownloadFile: this.openDownloadFile
+            openDownloadFile: this.openDownloadFile,
+            compact
           },
           scopedSlots: {
             default: (props: any) => {
@@ -319,6 +324,7 @@ export default defineComponent({
             reUploadTotal: handleReUploadTotal,
             update: updateFile,
             start: this.handleStart,
+            'click-file-list': handleClickFileList,
             'update:visible': (visible: Boolean) => (this.state.visible = visible)
           },
           ref: 'upload-list-inner'

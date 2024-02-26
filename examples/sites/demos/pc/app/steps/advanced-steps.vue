@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      advancedActive: 2,
+      advancedActive: 1,
       data: [
         { name: 'Basic Info', count: 3, status: 'done' },
         { name: 'BOQ Info', count: 0, status: 'doing' },

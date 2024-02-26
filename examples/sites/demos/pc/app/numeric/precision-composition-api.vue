@@ -1,6 +1,6 @@
 <template>
   <p>1、数值精度</p>
-  <tiny-numeric v-model="value" :precision="precision" :format="format"></tiny-numeric>
+  <tiny-numeric v-model="value" :precision="precision"></tiny-numeric>
   <p>2、数值格式</p>
   <tiny-numeric style="width: 300px" v-model="value1" :format="format"></tiny-numeric>
 </template>

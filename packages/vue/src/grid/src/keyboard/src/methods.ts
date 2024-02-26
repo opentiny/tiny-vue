@@ -39,20 +39,10 @@ import { handleHeaderCellMousedownEvent } from './utils/triggerHeaderCellMousedo
 const removeCellClass = (bodyRef, clazz) =>
   arrayEach(bodyRef.$el.querySelectorAll('.' + clazz), (elem) => removeClass(elem, clazz))
 
-const getCellIndex = ({ cell, elemStore, bodyList }) => {
+const getCellIndex = ({ cell, bodyList }) => {
   let trElem = cell.parentNode
   let cIndex = arrayIndexOf(trElem.children, cell)
-  let leftBodyList = (elemStore['left-body-list'] || { children: [] }).children
-  let rightBodyList = (elemStore['right-body-list'] || { children: [] }).children
   let rIndex = arrayIndexOf(bodyList, trElem)
-
-  if (rIndex === undefined || rIndex === -1) {
-    rIndex = arrayIndexOf(leftBodyList, trElem)
-  }
-
-  if (rIndex === undefined || rIndex === -1) {
-    rIndex = arrayIndexOf(rightBodyList, trElem)
-  }
 
   return { rIndex, cIndex }
 }

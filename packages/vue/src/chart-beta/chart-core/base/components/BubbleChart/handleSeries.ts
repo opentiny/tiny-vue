@@ -1,8 +1,9 @@
 import { getColor, codeToRGB } from '../../util/color'
 import cloneDeep from '../../util/cloneDeep'
 import { getMarkLineDefault } from '../../option/config/mark'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 import merge from '../../util/merge'
+
 export const seriesInit = {
   // 数据
   data: [],
@@ -24,22 +25,9 @@ export const seriesInit = {
   itemStyle: {}
 }
 
-/**
- * 组装echarts所需要的series
- * @param {图表数据} seriesData
- * @param {图例数据} legendData
- * @param {主题} theme
- * @param {是否面积图} isArea
- * @param {是否曲线} isSmooth
- * @param {是否阶梯线} isStep
- * @param {阈值线} markLine
- * @param {阈值箭头} markPoint
- * @param {颜色集合} colors
- * @returns
- */
-export function setSeries({ theme, legendData, data, markLine, color, iChartOption }) {
+export function setSeries({ legendData, data, markLine, color, iChartOption }) {
   // 更改hover时显示的label颜色
-  seriesInit.emphasis.label.color = Theme.color.base.axislabel
+  seriesInit.emphasis.label.color = chartToken.emphasisLabelColor
   const series = []
   legendData.forEach((legend, index) => {
     const seriesUnit = cloneDeep(seriesInit)
@@ -72,7 +60,7 @@ export function setSeries({ theme, legendData, data, markLine, color, iChartOpti
 // 添加seires属性
 export function handleSeriesExtra(baseOpt, iChartOption) {
   const { symbol, symbolRotate, symbolOffset, cursor, label, itemStyle, emphasis } = iChartOption
-  baseOpt.series.forEach((item, index) => {
+  baseOpt.series.forEach((item) => {
     item.symbol = symbol
     item.symbolRotate = symbolRotate
     item.symbolOffset = symbolOffset

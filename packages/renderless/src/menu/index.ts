@@ -1,10 +1,27 @@
-import { cloneDeep } from '../chart-core/deps/utils'
+import { xss } from '../common/xss'
+import { deepClone } from '../picker-column'
 
 export const filterInput =
   ({ state }) =>
   (val) => {
     state.filterValue = val
   }
+
+export const computeData =
+  ({ props, vm }) =>
+  () =>
+    filterNodeUrl(props.data || [], vm)
+
+const filterNodeUrl = (data, vm) => {
+  data.forEach((node) => {
+    node.url = xss.filterUrl(node.url)
+    vm.$set(node, 'isCurrent', false)
+    if (node.children) {
+      filterNodeUrl(node.children, vm)
+    }
+  })
+  return data
+}
 
 export const setIsCurrent =
   ({ props, vm, state }) =>
@@ -43,7 +60,7 @@ export const filterNodes =
   ({ state, api, nextTick }) =>
   (label) => {
     if (label !== '') {
-      state.filterData = filterTree(cloneDeep(state.data), label)
+      state.filterData = filterTree(deepClone(state.data), label)
     } else {
       state.filterData = []
 

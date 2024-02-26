@@ -3,8 +3,8 @@ import { cmpMenus } from '../../sites/demos/mobile-first/menus.js'
 export const demoStr = import.meta.glob('../../sites/demos/mobile-first/app/**/*.vue', { eager: false, as: 'raw' })
 export const demoVue = import.meta.glob('../../sites/demos/mobile-first/app/**/*.vue', { eager: false })
 
-// api属性
-export const apis = import.meta.glob('../../sites/demos/mobile-first/app/*/webdoc/*.js', { eager: false })
+// demos配置
+export const demos = import.meta.glob('../../sites/demos/mobile-first/app/*/webdoc/*.js', { eager: false })
 
 // 组件的md
 const allMD = import.meta.glob('../../sites/demos/mobile-first/app/*/webdoc/*.cn.md', { eager: true })

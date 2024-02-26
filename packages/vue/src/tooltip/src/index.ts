@@ -39,7 +39,7 @@ export const tooltipProps = {
   },
   effect: {
     type: String,
-    default: () => 'dark'
+    default: () => ''
   },
   openDelay: {
     type: Number,

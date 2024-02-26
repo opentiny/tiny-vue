@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off } from './dom'
+import { on, off, isDisplayNone } from './dom'
 import PopupManager from './popup-manager'
 import globalConfig from '../global'
 import { typeOf } from '../type'
@@ -25,11 +25,12 @@ const DEFAULTS = {
   boundariesPadding: 5,
   flipBehavior: 'flip', // 全局没有修改过它，所以它一直是flip
   forceAbsolute: false,
-  gpuAcceleration: true, // 这个用不到了，默认使用tranform3d
+  gpuAcceleration: true,
   offset: 0,
   placement: 'bottom',
   preventOverflowOrder: positions,
-  modifiers // 此处是string数组， 构造函数调用之后转为函数数组
+  modifiers, // 此处是string数组， 构造函数调用之后转为函数数组
+  updateHiddenPopperOnScroll: false // 滚动过程中是否更新隐藏的弹出层位置
 }
 
 /** 用 styles 对象赋值el.style */
@@ -292,6 +293,7 @@ interface PopperState {
   scrollTarget: HTMLElement | null
   scrollTargets: HTMLElement[] | null
   updateBoundFn: () => void
+  scrollUpdate: () => void
 }
 
 interface ReferenceOffsets {
@@ -753,6 +755,14 @@ class Popper {
 
   _setupEventListeners() {
     this.state.updateBoundFn = this.update.bind(this)
+    this.state.scrollUpdate = () => {
+      if (this._options.updateHiddenPopperOnScroll) {
+        this.state.updateBoundFn()
+      } else {
+        if (isDisplayNone(this._popper)) return
+        this.state.updateBoundFn()
+      }
+    }
 
     on(window, 'resize', this.state.updateBoundFn)
 
@@ -770,10 +780,10 @@ class Popper {
 
         this.state.scrollTargets = targets || []
         targets.forEach((target) => {
-          on(target, 'scroll', this.state.updateBoundFn)
+          on(target, 'scroll', this.state.scrollUpdate)
         })
       } else {
-        on(target, 'scroll', this.state.updateBoundFn)
+        on(target, 'scroll', this.state.scrollUpdate)
       }
     }
   }
@@ -782,7 +792,7 @@ class Popper {
     off(window, 'resize', this.state.updateBoundFn)
 
     if (this._options.boundariesElement !== 'window' && this.state.scrollTarget) {
-      off(this.state.scrollTarget, 'scroll', this.state.updateBoundFn)
+      off(this.state.scrollTarget, 'scroll', this.state.scrollUpdate)
       this.state.scrollTarget = null
 
       // 移除祖先监听
@@ -790,13 +800,14 @@ class Popper {
         let targets = this.state.scrollTargets || []
 
         targets.forEach((target) => {
-          off(target, 'scroll', this.state.updateBoundFn)
+          off(target, 'scroll', this.state.scrollUpdate)
         })
         this.state.scrollTargets = null
       }
     }
 
     this.state.updateBoundFn = null as any
+    this.state.scrollUpdate = null as any
   }
 
   /** 实时计算一下Boundary的位置 */

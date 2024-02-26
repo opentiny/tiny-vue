@@ -282,8 +282,7 @@ export default defineComponent({
         defaultTip = (
           <div
             title={tipMsg}
-            class="text-xs leading-5 text-color-text-placeholder overflow-hidden text-ellipsis whitespace-nowrap"
-          >
+            class="leading-5 text-color-text-placeholder overflow-hidden text-ellipsis whitespace-nowrap">
             {(slots.tip && slots.tip()) || tipMsg}
           </div>
         )

@@ -1,6 +1,6 @@
 export const classes = {
   'steps-icon':
-    'flex-none flex items-center justify-center rounded-full border-0.5 border-current text-gray-300 bg-gray-50',
+    'flex-none flex items-center justify-center rounded-full border-0.5 border-current text-color-icon-tertiary bg-color-bg-3',
   'steps-icon-left':
     'w-full h-full flex items-center justify-center rounded-full border-0.5 border-color-brand text-color-brand bg-color-bg-1 relative z-10',
   'steps-icon-right':
@@ -10,13 +10,13 @@ export const classes = {
   'icon-medium': 'w-6 h-6 text-sm',
   'icon-large': 'w-8 h-8 text-base',
   'icon-error': 'text-color-error bg-color-bg-1',
-  'icon-doing': 'text-color-brand bg-blue-50',
-  'icon-done': 'text-color-brand bg-blue-50',
-  'icon-disabled': 'bg-gray-50 text-gray-200',
-  'icon-error-active': 'bg-red-50 border-red-500',
+  'icon-doing': 'text-color-brand bg-color-info-primary-subtler',
+  'icon-done': 'text-color-brand bg-color-info-primary-subtler',
+  'icon-disabled': 'bg-color-bg-3 text-color-border',
+  'icon-error-active': 'bg-color-error-subtler border-color-error',
   'icon-doing-active': 'bg-color-brand border-color-brand text-color-text-inverse',
   'icon-done-active': 'bg-color-brand border-color-brand text-color-text-inverse',
-  'icon-disabled-active': 'bg-gray-50 text-gray-200',
+  'icon-disabled-active': 'bg-color-bg-3 text-color-border',
   'steps-line': 'border-t-0.5 sm:border-t border-color-text flex-auto',
   'left-line-mini': 'mr-1',
   'left-line-small': 'mr-2',

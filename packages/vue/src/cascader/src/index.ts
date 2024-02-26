@@ -16,7 +16,7 @@ import { t } from '@opentiny/vue-locale'
 const $constants = {
   placeholder: 'ui.cascader.placeholder',
   COMPONENT_NAME: { FormItem: 'FormItem' },
-  EVENT_NAME: { FormBlur: 'form.blur' },
+  EVENT_NAME: { FormBlur: 'form.blur', FormChange: 'form.change' },
   defaultNodeConfig: {
     lazy: false,
     load: null,

@@ -165,21 +165,21 @@
       // 支持所有行 hover 背景颜色
       &:not(.row__hover) {
         &:nth-child(2n) {
-          @apply bg-color-fill-8;
+          background-color: #f4f6fb;
         }
 
         &.row__current {
-          @apply bg-color-fill-10;
+          background-color: #e8eef7;
         }
       }
 
       &.row__selected {
         &:nth-child(2n) {
-          @apply bg-color-fill-10;
+          background-color: #e8eef7;
         }
 
         &:nth-child(2n + 1) {
-          @apply bg-color-fill-8;
+          background-color: #f4f6fb;
         }
       }
     }
@@ -201,7 +201,8 @@
       @apply left-0;
       @apply w-full;
       @apply h-0;
-      @apply ~'z-[1]';
+      // 修复冻结列遮挡saas表格下边框的问题勿同步
+      @apply ~'z-[2]';
     }
 
     &:before {
@@ -453,15 +454,15 @@
     }
 
     &.row__selected {
-      @apply bg-color-fill-8;
+      background-color: #f4f6fb;
 
       &.row__hover {
-        @apply bg-color-fill-8;
+        background-color: #f4f6fb;
       }
     }
 
     &.row__current {
-      @apply bg-color-fill-8;
+      background-color: #f4f6fb;
     }
   }
 

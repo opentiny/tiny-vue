@@ -123,17 +123,9 @@ function insertStateDom(container, state, option = { theme: 'light' }) {
     ? `<img style="display: block;width: ${defendXSS(imageSize)}px;" src="${defendXSS(option.image)}" />`
     : image
   text = option.text || text
-  let stateDom = `<div class="huicharts-state-container huicharts-${defendXSS(
-    state
-  )}" style="background-color: ${defendXSS(
-    backgroundColor
-  )};position:absolute;top: 0;left: 0;width: 100%;height: 100%;display: flex;align-items: center;flex-direction: column;justify-content: center;z-index: 99;">
-            <div style="display: ${imageShow ? 'flex' : 'none'};width: ${defendXSS(imageSize)}px;height: ${defendXSS(
-              imageSize
-            )}px;padding: 0;margin: 0;align-items: center;justify-content: center;">${image}</div>
-            <div style="color: ${defendXSS(textColor)};font-size: ${defendXSS(textSize)}px;line-height: ${defendXSS(
-              textSize
-            )}px;display: ${textShow ? 'block' : 'none'};margin-top: 14px;letter-spacing: 0.5px;">${text}</div>
+  let stateDom = `<div class="huicharts-state-container huicharts-${defendXSS(state)}" style="background-color: ${defendXSS(backgroundColor)};position:absolute;top: 0;left: 0;width: 100%;height: 100%;display: flex;align-items: center;flex-direction: column;justify-content: center;z-index: 99;">
+            <div style="display: ${imageShow ? 'flex' : 'none'};width: ${defendXSS(imageSize)}px;height: ${defendXSS(imageSize)}px;padding: 0;margin: 0;align-items: center;justify-content: center;">${image}</div>
+            <div style="color: ${defendXSS(textColor)};font-size: ${defendXSS(textSize)}px;line-height: ${defendXSS(textSize)}px;display: ${textShow ? 'block' : 'none'};margin-top: 14px;letter-spacing: 0.5px;">${text}</div>
         </div>`
   container.insertAdjacentHTML('beforeend', stateDom)
 }

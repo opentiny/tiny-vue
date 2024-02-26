@@ -36,6 +36,7 @@
                 state.singleSelect && shortcut.type === state.shortcutType && shortcut.text === state.shortcutText
             }"
             @click="handleShortcutClick(shortcut)"
+            :title="shortcut.text"
           >
             {{ shortcut.text }}
           </button>

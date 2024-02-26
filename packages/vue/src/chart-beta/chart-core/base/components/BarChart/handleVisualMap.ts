@@ -28,7 +28,7 @@ export function setVisualMap(legendData, seriesData, markLine, colors) {
           }
         ],
         outOfRange: {
-          color: chartToken.errorColor
+          color: chartToken.colorError
         }
       })
     })

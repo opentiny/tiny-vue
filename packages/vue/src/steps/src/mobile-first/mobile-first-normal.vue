@@ -84,10 +84,13 @@
             m(
               gcls('steps-icon'),
               gcls(`icon-${size}`),
-              { 'bg-gray-300 border-gray-300 text-color-text-inverse': index === active },
+              { 'bg-color-icon-tertiary border-color-icon-tertiary text-color-text-inverse': index === active },
               gcls(`icon-${node[statusField]}`),
               index === active && gcls(`icon-${node[statusField]}-active`),
-              { 'bg-red-500 border-red-500': index === active && size === 'mini' && node[statusField] === 'error' }
+              {
+                'bg-color-error border-color-error':
+                  index === active && size === 'mini' && node[statusField] === 'error'
+              }
             )
           "
         >

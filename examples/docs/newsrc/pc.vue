@@ -24,7 +24,7 @@
           <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
         <!-- 预览  -->
-        <div class="rel px20 py60 b-a bs-dotted">
+        <div class="rel px20 py60 b-a bs-dotted" :id="state.currDemo?.demoId">
           <div class="abs top10 right10">
             <span title="点击在vscode中打开">
               <IconOpeninVscode @click="fn.openInVscode(state.currDemo)" class="ml12 cur-hand" />
@@ -154,20 +154,12 @@ import Loading from '@opentiny/vue-loading'
 import designSmbConfig from '@opentiny/vue-design-smb'
 import designAuroraConfig from '@opentiny/vue-design-aurora'
 import designSaasConfig from '@opentiny/vue-design-saas'
-import { menuData, apis, demoStr, demoVue, mds } from './resourcePc.js'
+import { menuData, demoStr, demoVue, mds, demos } from './resourcePc.js'
 import { useTheme, useModeCtx } from './uses'
+import { getDemosConfig, getPath, getApisConfig } from './utils/componentsDoc'
 import SvgTheme from './assets/theme.svg'
 
 const isSaasMode = process.env.VITE_TINY_THEME === 'saas'
-
-const getPath = (path) => {
-  if (path.startsWith('grid-')) {
-    return 'grid'
-  } else if (path.startsWith('chart-')) {
-    return 'chart'
-  }
-  return path
-}
 
 export default {
   props: {
@@ -235,20 +227,14 @@ export default {
     // 以下私有方法，无须传递给vue模板的。
     async function _switchPath() {
       state.demoLoading = true
-      // 查找API
-      const apiModule = apis[`../../sites/demos/pc/app/${getPath(modeState.pathName)}/webdoc/${modeState.pathName}.js`]
+      const componentName = getPath(modeState.pathName)
+      // 查找demos配置
+      const demosModule = demos[`../../sites/demos/pc/app/${componentName}/webdoc/${modeState.pathName}.js`]
 
-      if (apiModule) {
-        const module = await apiModule()
-        const apiRoot = module.default
-        state.currApi = apiRoot.apis
-        state.demos = apiRoot.demos || []
-        state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
-      } else {
-        state.currApi = null
-        state.currDemos = []
-      }
-
+      const demosConfig = await getDemosConfig(demosModule)
+      state.demos = demosConfig.demos
+      state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
+      state.currApi = (await getApisConfig(componentName, 'pc')).apis
       await _switchDemo()
     }
     async function _switchDemo() {

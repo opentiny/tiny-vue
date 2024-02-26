@@ -13,7 +13,7 @@ function yAxis(baseOpt, iChartOpt, chartName) {
     yAxisOpt = [yAxisOpt]
   }
   if (isNeedTitle(yAxisOpt, yAxisName)) {
-    baseOpt.title = title(iChartOpt, chartName)
+    baseOpt.title = title(iChartOpt, chartName, yAxisOpt[0]?.nameTextStyle)
   }
   // 循环y轴配置
   const yAxis = []
@@ -35,7 +35,7 @@ function yAxis(baseOpt, iChartOpt, chartName) {
       item.splitLine = Object.assign(temp.splitLine, item.splitLine)
     }
     // 静态给定y轴优化范围
-    if (item && item.fluctuation == true) {
+    if (item && item.fluctuation === true) {
       const newdata = transformData(data)
       const value = fluctuation(newdata)
       temp.min = value[0]
