@@ -45,7 +45,7 @@ export default {
   'ip-address': 'ip-address',
   'link-menu': 'link-menu',
   'month-range': 'month-range',
-  'month-table': 'month-table',
+  'month-table': 'month-table,year-table',
   'nav-menu': 'nav-menu',
   'option-group': 'option-group',
   'popup-horiz-menu': 'popup-horiz-menu',
