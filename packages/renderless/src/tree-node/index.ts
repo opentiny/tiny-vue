@@ -360,8 +360,8 @@ export const computedExpandIcon =
     }
 
     if (treeRoot.showLine) {
-      const expandIcon = designConfig?.icons.expanded || 'icon-minus-square'
-      const collapseIcon = designConfig?.icons.collapse || 'icon-plus-square'
+      const expandIcon = designConfig?.icons?.expanded || 'icon-minus-square'
+      const collapseIcon = designConfig?.icons?.collapse || 'icon-plus-square'
       return state.expanded ? expandIcon : collapseIcon
     }
 
