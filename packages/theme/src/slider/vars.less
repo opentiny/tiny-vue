@@ -30,6 +30,8 @@
   --ti-slider-range-top: calc(-1 * var(--ti-common-space-base));
   // 滑块进度条顶部外边距
   --ti-slider-range-margin-top: calc(-1 * var(--ti-common-space-base));
+  // 滑块进度条禁用时背景色
+  --ti-slider-range-disabled-bg-color: var(--ti-common-color-text-disabled);
 
   // 滑块点宽度
   --ti-slider-handle-width: var(--ti-common-size-5x, 20px);
@@ -70,6 +72,10 @@
   --ti-slider-handle-margin-horizontal: calc(var(--ti-common-space-2x, 8px) * -1);
   // 滑块点底部外边距
   --ti-slider-handle-margin-bottom: var(--ti-common-space-0, 0px);
+  // 滑块点禁用时图标颜色
+  --ti-slider-handle-icon-disabled-fill-color: var(--ti-common-color-text-disabled);
+  // 滑块点禁用时边框颜色
+  --ti-slider-handle-disabled-border-color: var(--ti-common-color-text-disabled);
 
   // 滑块输入框高度
   --ti-slider-input-height: var(--ti-common-size-height-normal, 30px);
@@ -83,6 +89,19 @@
   --ti-slider-input-text-color: var(--ti-common-color-info-normal, #333);
   // 滑块输入框背景色
   --ti-slider-input-bg-color: var(--ti-common-color-light, #fff);
+  // 滑块输入框左边外间距
+  --ti-slider-input-margin-left: var(--ti-common-size-3x, 12px);
+  // 滑块输入框单位左边padding
+  --ti-slider-input-unit-margin-left: var(--ti-common-space-2x, 8px);
+  // 滑块输入框单位文字对齐方式(hide)
+  --ti-slider-input-text-align: center;
+
+  // 滑块刻度的宽度，竖向模式时作为滑块刻度的高度
+  --ti-slider-mark-point-width: calc(var(--ti-common-space-base, 4px) / 2);
+  // 滑块刻度背景色
+  --ti-slider-mark-point-bg-color: var(--ti-common-color-light, #fff);
+  // 滑块刻度的label的顶部间距，竖向模式时作为左间距
+  --ti-slider-mark-label-margin-top: calc(var(--ti-common-space-base, 4px) * 2 + var(--ti-slider-height));
 
   // 滑块活动时提示框背景色
   --ti-slider-tips-bg-color: var(--ti-common-color-bg-dark-normal, #464c59);
