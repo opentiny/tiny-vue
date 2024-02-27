@@ -29,6 +29,18 @@ export default {
       codeFiles: ['vertical-mode.vue']
     },
     {
+      demoId: 'marks',
+      name: {
+        'zh-CN': '标记',
+        'en-US': 'marks'
+      },
+      desc: {
+        'zh-CN': '使用marks属性，给滑杆的值添加标记。',
+        'en-US': 'Mark the value of the slider.'
+      },
+      codeFiles: ['marks.vue']
+    },
+    {
       demoId: 'max-min',
       name: {
         'zh-CN': '最大最小值',

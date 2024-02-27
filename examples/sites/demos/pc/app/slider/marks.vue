@@ -1,6 +1,9 @@
 <template>
-  <tiny-slider v-model="value" :show-input="true" unit="%"></tiny-slider>
-  <tiny-slider v-model="value2" :show-input="true"></tiny-slider>
+  <div>
+    <div>
+      <tiny-slider v-model="value" :marks="marks"></tiny-slider>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -13,7 +16,11 @@ export default {
   data() {
     return {
       value: 40,
-      value2: [40, 60]
+      marks: {
+        10: '10%',
+        40: '40%',
+        50: '50%'
+      }
     }
   }
 }

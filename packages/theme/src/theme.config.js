@@ -60,6 +60,7 @@ export default {
   'time-range': 'time-range',
   'time-select': 'time-select',
   'scroll-text': 'scroll-text',
+  'slider-input': 'slider__input',
   'slide-bar': 'slide-bar',
   'slide-img': 'slide-img',
   'select-dropdown': 'select-dropdown',
