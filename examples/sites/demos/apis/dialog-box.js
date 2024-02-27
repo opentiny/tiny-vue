@@ -209,7 +209,7 @@ export default {
         {
           name: 'top',
           type: 'string',
-          defaultValue: '15vh',
+          defaultValue: `'15vh'`,
           desc: {
             'zh-CN': '设置弹出框距离窗口顶部的高度',
             'en-US': 'Display and close pop-up boxes'
@@ -231,7 +231,7 @@ export default {
         {
           name: 'width',
           type: 'string',
-          defaultValue: '500px',
+          defaultValue: `'500px'`,
           desc: {
             'zh-CN': '弹出框的宽度',
             'en-US': 'Wideness of the dialog box that is displayed'
