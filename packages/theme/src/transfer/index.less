@@ -61,6 +61,12 @@
       margin-right: var(--ti-transfer-buttons-margin-right);
       margin-top: var(--ti-transfer-buttons-margin-top);
       margin-bottom: var(--ti-transfer-buttons-margin-bottom);
+      background: var(--ti-transfer-svg-background);
+      border-color: var(--ti-transfer-btn-border-color);
+
+      &:hover {
+        background: var(--ti-transfer-panel-btn-hover-bg-color);
+      }
     }
   }
 
@@ -72,8 +78,8 @@
     margin-bottom: var(--ti-transfer-button-margin-bottom);
     border-color: var(--ti-transfer-button-bg-color);
     background-color: var(--ti-transfer-button-bg-color);
-    min-width: 30px;
-    min-height: 30px;
+    width: var(--ti-transfer-button-width);
+    height: var(--ti-transfer-button-height);
     border-radius: var(--ti-transfer-button-border-radius);
     line-height: normal;
     padding-left: var(--ti-transfer-button-padding-left);
@@ -87,6 +93,7 @@
     }
 
     &.@{button-prefix-cls}:not(.is-circle) .@{svg-prefix-cls} {
+      font-size: var(--ti-transfer-svg-font-size);
       margin-right: 0;
     }
 
