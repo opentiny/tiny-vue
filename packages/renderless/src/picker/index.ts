@@ -22,7 +22,16 @@ import globalTimezone from './timezone'
 const iso8601Reg = /^\d{4}-\d{2}-\d{2}(.)\d{2}:\d{2}:\d{2}(.+)$/
 
 export const getPanel =
-  ({ DatePanel, DateRangePanel, MonthRangePanel, YearRangePanel, TimePanel, TimeRangePanel, TimeSelect }) =>
+  ({
+    DatePanel,
+    DateRangePanel,
+    MonthRangePanel,
+    YearRangePanel,
+    TimePanel,
+    TimeRangePanel,
+    QuarterPanel,
+    TimeSelect
+  }) =>
   (type) => {
     if (type === DATEPICKER.DateRange || type === DATEPICKER.DateTimeRange) {
       return DateRangePanel
@@ -36,6 +45,8 @@ export const getPanel =
       return TimePanel
     } else if (type === DATEPICKER.TimeSelect) {
       return TimeSelect
+    } else if (type === DATEPICKER.Quarter) {
+      return QuarterPanel
     }
 
     return DatePanel
@@ -390,6 +401,13 @@ const getDatesOfTypeValueResolveMap = (api) => ({
   }
 })
 
+const MONTH_QUARTER_MAP = {
+  0: 1,
+  3: 2,
+  6: 3,
+  9: 4
+}
+
 export const typeValueResolveMap =
   ({ api, props, t }) =>
   () => ({
@@ -407,7 +425,11 @@ export const typeValueResolveMap =
     years: getDatesOfTypeValueResolveMap(api),
     yearrange: getDatesOfTypeValueResolveMap(api),
     number: getNumberOfTypeValueResolveMap(),
-    dates: getDatesOfTypeValueResolveMap(api)
+    dates: getDatesOfTypeValueResolveMap(api),
+    quarter: {
+      formatter: (value) => `${value.getFullYear()}-Q${MONTH_QUARTER_MAP[value.getMonth()]}`,
+      parser: api.dateParser
+    }
   })
 
 export const firstInputId =

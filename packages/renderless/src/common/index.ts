@@ -128,7 +128,7 @@ export const DATE = {
 }
 
 const TriggerTypes =
-  'date,datetime,time,time-select,week,month,year,years,yearrange,daterange,monthrange,timerange,datetimerange,dates'
+  'date,datetime,time,time-select,week,month,year,years,yearrange,daterange,monthrange,timerange,datetimerange,dates,quarter'
 
 export const DATEPICKER = {
   Day: 'day',
@@ -184,6 +184,7 @@ export const DATEPICKER = {
   },
   Time: 'time',
   TimeRange: 'timerange',
+  Quarter: 'quarter',
   IconTime: 'icon-time',
   IconDate: 'icon-Calendar',
   DateRange: 'daterange',
