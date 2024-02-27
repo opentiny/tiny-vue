@@ -28,7 +28,20 @@
     "@opentiny/vue-col": "workspace:~",
     "@opentiny/vue-alert": "workspace:~",
     "@opentiny/vue-dialog-box": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-split": "workspace:~",
+    "@opentiny/vue-checkbox": "workspace:~",
+    "@opentiny/vue-radio": "workspace:~",
+    "@opentiny/vue-checkbox-group": "workspace:~",
+    "@opentiny/vue-radio-group": "workspace:~",
+    "@opentiny/vue-search": "workspace:~",
+    "@opentiny/vue-dropdown": "workspace:~",
+    "@opentiny/vue-dropdown-menu": "workspace:~",
+    "@opentiny/vue-dropdown-item": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-popover": "workspace:~"
   },
   "license": "MIT"
 }

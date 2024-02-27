@@ -18,7 +18,8 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "cropperjs": "1.5.7"
+    "cropperjs": "1.5.7",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

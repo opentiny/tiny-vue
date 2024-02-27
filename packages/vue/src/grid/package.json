@@ -29,7 +29,8 @@
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-popover": "workspace:~",
     "@opentiny/vue-tag": "workspace:~",
-    "@opentiny/vue-loading": "workspace:~"
+    "@opentiny/vue-loading": "workspace:~",
+    "@opentiny/vue-common": "workspace:~"
   },
   "license": "MIT"
 }
