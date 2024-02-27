@@ -79,8 +79,8 @@
     position: relative;
 
     div {
-      height: 24px;
-      min-width: 36px;
+      height: var(--ti-date-table-td-div-height);
+      min-width: var(--ti-date-table-td-div-width);
       padding: 3px 0;
       box-sizing: border-box;
     }
@@ -93,7 +93,7 @@
       margin: 0 auto;
       position: absolute;
       left: 50%;
-      top: 5px;
+      top: var(--ti-date-table-td-span-top);
       transform: translateX(-50%);
     }
 
@@ -123,6 +123,13 @@
         bottom: 5px;
       }
 
+      span {
+        min-width: var(--ti-date-table-td-today-width);
+        height: var(--ti-date-table-td-today-height);
+        border-radius: var(--ti-date-table-td-today-border-radius);
+        border: solid var(--ti-date-table-td-today-circle-border-width) var(--ti-date-table-td-today-circle-border-color);
+      }
+
       &.end-date,
       &.start-date {
         span {
@@ -131,15 +138,23 @@
       }
     }
 
-    &.available:hover span {
+    &.available:not(.today):hover span {
       background-color: var(--ti-date-table-hover-bg-color);
       border-radius: var(--ti-date-table-border-radius-current-select);
+      border-color: transparent;
     }
 
-    &.current:not(.disabled) span {
-      color: var(--ti-date-table-td-normal-text-color);
-      background-color: var(--ti-date-table-bg-color-current-select);
-      border-radius: var(--ti-date-table-border-radius-current-select);
+    &.current:not(.disabled) {
+      span {
+        color: var(--ti-date-table-td-normal-text-color);
+        background-color: var(--ti-date-table-bg-color-current-select);
+        border-radius: var(--ti-date-table-border-radius-current-select);
+        border-color: transparent;
+      }
+
+      &:after {
+        background-color: transparent;
+      }
     }
 
     &.end-date,
@@ -150,6 +165,8 @@
 
       span {
         background-color: var(--ti-date-table-bg-color-current-select);
+        border-radius: var(--ti-date-table-start-date-border-radius);
+        border: 0;
       }
     }
 
@@ -214,6 +231,7 @@
         background-color: var(--ti-date-table-bg-color-current-select);
         color: var(--ti-date-table-td-normal-text-color);
         border: none;
+        border-radius: var(--ti-date-table-cell-selected-border-radius);
       }
 
       &.available:hover span {
