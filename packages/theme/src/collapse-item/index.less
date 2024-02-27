@@ -94,12 +94,16 @@
 
     .@{collapse-item-prefix-cls}__title__right {
       margin-left: auto;
+      color: var(--ti-collapse-item-title-right-color);
+      fill: var(--ti-collapse-item-title-right-fill);
     }
+
     &.is-active {
       border-bottom-color: transparent;
 
       .@{collapse-item-prefix-cls}__arrow {
         transform: var(--ti-collapse-item-is-active-arrow-transform);
+
         svg {
           fill: var(--ti-collapse-item-is-active-arrow-text-color);
         }
@@ -124,9 +128,9 @@
 
   &__content {
     padding-top: var(--ti-collapse-item-content-padding-top);
+    padding-left: var(--ti-collapse-item-content-padding-left);
     padding-right: var(--ti-collapse-item-content-padding-right);
     padding-bottom: var(--ti-collapse-item-content-padding-bottom);
-    padding-left: var(--ti-collapse-item-content-padding-left);
     font-size: var(--ti-collapse-item-content-font-size);
     color: var(--ti-collapse-item-text-color);
     border: 1px solid var(--ti-collapse-item-content-border-color);
