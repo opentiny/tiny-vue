@@ -1,0 +1,33 @@
+@import '../custom.less';
+@import './vars.less';
+
+@quarter-panel-prefix-cls: ~'@{css-prefix}quarter-panel';
+
+.@{quarter-panel-prefix-cls} {
+  .component-css-vars-quarter-panel();
+
+  width: 288px;
+  padding: 12px;
+  background: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  &__header {
+    margin: 12px;
+    text-align: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #dfe1e6;
+  }
+
+  &__content {
+
+  }
+
+  &__table {
+    width: 100%;
+    text-align: center;
+
+    td {
+      padding: 16px 0;
+    }
+  }
+}
