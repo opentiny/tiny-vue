@@ -170,6 +170,13 @@ const vLoading = {
       el.mask && el.mask.parentNode && el.mask.parentNode.removeChild(el.mask)
       toggleLoading(el, { value: false, modifiers: binding.modifiers })
     }
+
+    // 手动释放独立组件实例
+    if (el.instance) {
+      typeof el.instance.$destroy === 'function' && el.instance.$destroy()
+      el.instance = null
+      el.mask = null
+    }
   }
 }
 

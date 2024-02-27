@@ -67,7 +67,6 @@ function handleRange(type, seriesUnit) {
  * 组装echarts所需要的series
  * @param {图表数据} seriesData
  * @param {图例数据} legendData
- * @param {主题} theme
  * @param {是否面积图} isArea
  * @param {是否曲线} isSmooth
  * @param {是否阶梯线} isStep
@@ -93,7 +92,14 @@ export function setSeries(seriesData, legendData, iChartOption) {
     handleFocus(seriesUnit, iChartOption)
     // 数据 / 数据名称
     seriesUnit.name = legend
-    seriesUnit.data = seriesData[legend]
+    // 如果设置了 barMinHeight，那么就把数据里面的0设置成null
+    if (iChartOption.itemStyle && iChartOption.itemStyle.barMinHeight) {
+      seriesUnit.data = seriesData[legend].map((item) => {
+        return item === 0 ? undefined : item
+      })
+    } else {
+      seriesUnit.data = seriesData[legend]
+    }
     // 阈值线
     handleMarkLine(seriesUnit, iChartOption, direction)
     // 堆叠图
@@ -155,14 +161,13 @@ function handleLabel(seriesUnit, iChartOption, index) {
 
 function handleMarkLine(seriesUnit, iChartOption, direction) {
   const name = seriesUnit.name
-  const theme = iChartOption.theme
   const markLine = iChartOption.markLine
   const isTopMarkLine = markLine && markLine.top && !(markLine.topUse && !markLine.topUse.includes(name))
   const isBottomMarkLine = markLine && markLine.bottom && !(markLine.bottomUse && !markLine.bottomUse.includes(name))
   if (isTopMarkLine || isBottomMarkLine) {
     seriesUnit.markLine = cloneDeep(getMarkLineDefault())
     merge(seriesUnit.markLine, markLine)
-    seriesUnit.markLine.lineStyle.color = markLine.color || chartToken.errorColor
+    seriesUnit.markLine.lineStyle.color = markLine.color || chartToken.colorError
   }
   if (isTopMarkLine) {
     if (direction && direction === 'horizontal') {
@@ -262,11 +267,11 @@ function handleColorStops(percent, originColor, markLineColor) {
   const colorStops = [
     {
       offset: 0,
-      color: markLineColor || chartToken.errorColor
+      color: markLineColor || chartToken.colorError
     },
     {
       offset: percent,
-      color: markLineColor || chartToken.errorColor
+      color: markLineColor || chartToken.colorError
     },
     {
       offset: percent + 0.001,
@@ -314,24 +319,24 @@ function handleBottomObj(d, direction, percent, originColor, markLineColor) {
   return bottomObj
 }
 const colorStopsOrigin = [
-  { offset: 0, color: chartToken.errorColor },
-  { offset: 1, color: chartToken.errorColor }
+  { offset: 0, color: chartToken.colorError },
+  { offset: 1, color: chartToken.colorError }
 ]
 
 function handleColorStopsTop(originColor, bottomPercent) {
   const colorStops = [
     { offset: 0, color: originColor },
     { offset: bottomPercent, color: originColor },
-    { offset: bottomPercent + 0.0001, color: chartToken.errorColor },
-    { offset: 1, color: chartToken.errorColor }
+    { offset: bottomPercent + 0.0001, color: chartToken.colorError },
+    { offset: 1, color: chartToken.colorError }
   ]
   return colorStops
 }
 
 function handleColorStopsBottom(originColor, topPercent) {
   const colorStops = [
-    { offset: 0, color: chartToken.errorColor },
-    { offset: topPercent, color: chartToken.errorColor },
+    { offset: 0, color: chartToken.colorError },
+    { offset: topPercent, color: chartToken.colorError },
     { offset: topPercent + 0.0001, color: originColor },
     { offset: 1, color: originColor }
   ]
@@ -340,12 +345,12 @@ function handleColorStopsBottom(originColor, topPercent) {
 
 function handleColorStopsOther(originColor, topPercent, bottomPercent) {
   const colorStops = [
-    { offset: 0, color: chartToken.errorColor },
-    { offset: topPercent, color: chartToken.errorColor },
+    { offset: 0, color: chartToken.colorError },
+    { offset: topPercent, color: chartToken.colorError },
     { offset: topPercent + 0.0001, color: originColor },
     { offset: bottomPercent, color: originColor },
-    { offset: bottomPercent + 0.0001, color: chartToken.errorColor },
-    { offset: 1, color: chartToken.errorColor }
+    { offset: bottomPercent + 0.0001, color: chartToken.colorError },
+    { offset: 1, color: chartToken.colorError }
   ]
   return colorStops
 }
@@ -558,7 +563,7 @@ export function setWaterFall(baseOption, iChartOption) {
  * 因此在 tooltip 中应该被屏蔽这些series
  * 因此对 tooltip.formatter 进行二次封装
  */
-export function setLimitFormatter(baseOption, iChartOption) {
+export function setLimitFormatter(baseOption, iChartOption, seriesData) {
   const type = iChartOption.type
   const toolTipFormatter = baseOption.tooltip.formatter
   const exclude = ['Placeholder']
@@ -590,7 +595,7 @@ export function setLimitFormatter(baseOption, iChartOption) {
                               ${defendXSS(
                                 type === 'range'
                                   ? `${`${`[${params[index * 2].value}`}-${params[index * 2].value + item.value}`}]`
-                                  : item.value
+                                  : item.value || seriesData[item.seriesName][item.dataIndex]
                               )}
                             </span>
                         </span>

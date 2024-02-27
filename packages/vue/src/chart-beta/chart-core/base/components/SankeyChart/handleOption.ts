@@ -20,9 +20,7 @@ function handleTooltip(params) {
     }
     const value = params.data.value || params.value
     htmlString +=
-      `<span style="display:inline-block;margin-right:5px;border-radius:50%;height:10px;">${defendXSS(
-        params.name
-      )}</span>` +
+      `<span style="display:inline-block;margin-right:5px;border-radius:50%;height:10px;">${defendXSS(params.name)}</span>` +
       '<br/>' +
       '<span style="display:inline-block;margin-right:5px;border-radius:50%;height:10px;">' +
       'value' +

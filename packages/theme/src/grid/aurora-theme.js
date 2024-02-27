@@ -15,5 +15,7 @@ export const tinyGridAuroraTheme = {
   'ti-grid-column-icon-text-color': '#c0c4cc',
   'ti-grid-header-icon-font-size': 'var(--ti-common-font-size-1)',
   'ti-grid-column-icon-scale-size': '0.8',
-  'ti-grid-tree-icon-color': '#939599'
+  'ti-grid-tree-icon-color': '#939599',
+  'ti-grid-sort-icon-position': 'absolute',
+  'ti-grid-sort-icon-right': '6px'
 }

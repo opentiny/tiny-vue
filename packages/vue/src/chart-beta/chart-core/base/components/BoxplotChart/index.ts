@@ -3,7 +3,7 @@ import { event } from '../../util/event'
 import { setDataset, setSeries } from './handleSeries'
 import { setDirection, setTooltip } from './handleOption'
 import RectCoordSys from '../../option/RectSys'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 
 const CHART_NAME = 'BoxplotChart'
 export default class BoxplotChart {
@@ -25,7 +25,7 @@ export default class BoxplotChart {
     // 配置默认dataset
     if (iChartOption.data && !iChartOption.dataset) {
       this.baseOption.dataset = setDataset(iChartOption.data)
-      this.baseOption.series = setSeries(iChartOption.theme)
+      this.baseOption.series = setSeries()
     }
     // 自定义dataset和series
     if (iChartOption.dataset && iChartOption.series) {
@@ -33,7 +33,7 @@ export default class BoxplotChart {
       this.baseOption.series = iChartOption.series
       this.baseOption.series.forEach((item) => {
         item.itemStyle = {}
-        item.itemStyle.color = Theme.color.base.bg
+        item.itemStyle.color = chartToken.itemColor
       })
     }
     // 横向

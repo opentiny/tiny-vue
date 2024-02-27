@@ -129,7 +129,7 @@ export default {
       })
     },
     pageChange() {
-      Modal.message('取消分页')
+      Modal.message({ message: '取消分页', status: 'info' })
     }
   }
 }

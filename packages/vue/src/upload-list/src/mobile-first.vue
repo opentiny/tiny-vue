@@ -26,13 +26,17 @@
           @click="$emit('click-file-list', file)"
         >
           <slot :file="file">
-            <div data-tag="tiny-upload-list-status" class="relative inline-block w-8 h-8 mr-2 align-top">
+            <div
+              data-tag="tiny-upload-list-status"
+              class="relative inline-block w-8 h-8 mr-2 align-top"
+              :class="{ 'bg-color-error rounded-sm': ~['fail'].indexOf(file.status) }"
+            >
               <template v-if="~['uploading'].indexOf(file.status)">
                 <div class="w-full h-full absolute top-0 left-0 bg-black opacity-50 rounded-sm"></div>
                 <div
                   class="w-full h-full absolute top-0 left-0 overflow-hidden flex px-1 items-center justify-center rounded-sm"
                 >
-                  <div data-tag="tiny-upload-list-animation" class="bg-color-icon-tertiary w-full h-0.5 rounded-sm">
+                  <div data-tag="tiny-upload-list-animation" class="bg-color-icon-tertiary w-full h-0.5 rounded">
                     <div
                       class="bg-white h-full transition-all"
                       :style="{
@@ -51,9 +55,9 @@
               <div
                 data-tag="tiny-upload-list-fail"
                 v-if="~['fail'].indexOf(file.status)"
-                class="relative w-full h-full bg-color-error-subtler rounded-sm"
+                class="relative w-full h-full bg-black/50 rounded"
               >
-                <icon-cue-l class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-color-error" />
+                <icon-cue-l-o class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-color-error" />
               </div>
             </div>
             <div
@@ -62,7 +66,7 @@
             >
               <div class="flex h-4" data-tag="tiny-upload-list-name">
                 <div
-                  class="flex-1 sm:mr-6 text-sm sm:text-xs leading-4 sm:leading-3 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
+                  class="flex-1 sm:mr-6 text-sm sm:text-xs leading-3 sm:leading-3 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
                 >
                   <span :title="file.name">{{
                     file.name
@@ -141,7 +145,12 @@
           </slot>
         </div>
       </div>
-      <div data-tag="tiny-upload-list-noattachments" v-else class="mt-4 text-color-none text-xs">
+      <div
+        data-tag="tiny-upload-list-noattachments"
+        v-else
+        class="mt-4 text-color-none text-xs sm:block"
+        :class="displayOnly ? '' : 'hidden'"
+      >
         {{ t('ui.uploadList.noAttachments') }}
       </div>
     </div>
@@ -415,7 +424,7 @@
         <div data-tag="tiny-upload-list-download" class="text-center">
           <div
             v-if="handleDownloadFile"
-            class="h-12 flex items-center justify-center cursor-pointer"
+            class="h-12 flex items-center justify-center border-b border-color-border-separator cursor-pointer"
             @click="
               () => {
                 state.showPanel = false

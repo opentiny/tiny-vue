@@ -90,8 +90,10 @@ const renderBorder = (h, type) => {
 }
 
 function buildColumnProps(args) {
-  let { attrs, cellAlign, cellClassName, className, column, columnActived, columnIndex, columnKey, editor } = args
-  let { fixedHiddenColumn, hasEllipsis, isDirty, params, tdOns, validError, validated } = args
+  const { attrs, cellAlign, cellClassName, className, column, columnActived, columnIndex, columnKey, editor } = args
+  const { fixedHiddenColumn, hasEllipsis, isDirty, params, tdOns, validError, validated, columnStore } = args
+
+  const { leftList, rightList } = columnStore
 
   return {
     class: [
@@ -110,11 +112,17 @@ function buildColumnProps(args) {
         [classMap.colActived]: columnActived,
         'col__valid-error': validError && validated,
         'col__valid-success': columnActived ? !validError && !validated : isDirty && !validated,
-        'col__treenode': column.treeNode
+        'col__treenode': column.treeNode,
+        'fixed-left-last__column': column.fixed === 'left' && leftList[leftList.length - 1] === column,
+        'fixed-right-first__column': column.fixed === 'right' && rightList[0] === column
       },
       getClass(className, params),
       getClass(cellClassName, params)
     ],
+    style: {
+      left: `${column.style?.left}px`,
+      right: `${column.style?.right}px`
+    },
     key: columnKey ? column.id : columnIndex,
     attrs,
     on: tdOns
@@ -307,7 +315,7 @@ function doSpan({ attrs, params, rowSpan, spanMethod }) {
   return true
 }
 
-function isCellDirty({ $table, column, editConfig, fixedHiddenColumn, isDirty, row }) {
+function isCellDirty({ $table, column, editConfig, isDirty, row }) {
   const { showStatus = false, relationFields = true } = editConfig || {}
   // 关联字段配置为true，或者配置包含当前字段时，支持脏数据检查
   const canChange =
@@ -377,7 +385,7 @@ function renderColumn(args1) {
   let { h, row } = args1
   let { align: allAlign, cellClassName, columnKey, editConfig } = $table
   let { editRules, editStore, rowId, rowSpan, height } = $table
-  let { tableData, validOpts, validStore, validatedMap, spanMethod } = $table
+  let { tableData, validOpts, validStore, validatedMap, spanMethod, columnStore } = $table
   let { isDirty, attrs = { 'data-colid': column.id } } = {}
   let { message } = validOpts
   let { actived } = editStore
@@ -409,7 +417,18 @@ function renderColumn(args1) {
   }
   // 编辑后的显示状态（是否该单元格数据被更改）此处如果是树表大数据虚拟滚动+表格编辑器，会造成卡顿，这里需要递归树表数据
   isDirty = isCellDirty({ $table, column, editConfig, isDirty, row })
-  args = { attrs, cellAlign, cellClassName, className, column, columnActived, columnIndex, columnKey, editor }
+  args = {
+    attrs,
+    cellAlign,
+    cellClassName,
+    className,
+    column,
+    columnActived,
+    columnIndex,
+    columnKey,
+    editor,
+    columnStore
+  }
   Object.assign(args, { fixedHiddenColumn, hasEllipsis, isDirty, params, tdOns, validError, validated })
 
   // 组装渲染单元格td所需要的props属性

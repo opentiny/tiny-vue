@@ -430,7 +430,7 @@
     @apply pl-12;
     @apply pr-7;
   }
- 
+
   &-medium {
     .input-size(32px);
     @apply text-sm;
@@ -481,6 +481,8 @@
       }
 
       &__mask-text {
+        @apply inline-block;
+        @apply ~'min-w-[theme(spacing.4)]';
         @apply truncate;
         @apply flex-1;
         @apply mr-4;
@@ -503,8 +505,7 @@
 
   &__append,
   &__prepend {
-    @apply bg-color-bg-2;
-    @apply text-color-text-secondary;
+    @apply text-color-text-primary;
     @apply border border-solid border-color-border;
     @apply rounded;
     @apply py-0 px-5;

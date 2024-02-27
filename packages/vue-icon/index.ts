@@ -457,8 +457,32 @@ import IconTransform from './src/transform'
 import IconUpgrading from './src/upgrading'
 import IconWeaknet from './src/weaknet'
 import IconWorkPackage from './src/work-package'
+import IconActivation from './src/activation'
+import IconGenerating from './src/generating'
+import IconProcessing from './src/processing'
+import IconReportSubmission from './src/report-submission'
+import IconStartO from './src/start-o'
+import IconTeams from './src/teams'
+import IconTurnOn from './src/turn-on'
+import IconWarningO from './src/warning-o'
 
 export {
+  IconActivation,
+  IconActivation as iconActivation,
+  IconGenerating,
+  IconGenerating as iconGenerating,
+  IconProcessing,
+  IconProcessing as iconProcessing,
+  IconReportSubmission,
+  IconReportSubmission as iconReportSubmission,
+  IconStartO,
+  IconStartO as iconStartO,
+  IconTeams,
+  IconTeams as iconTeams,
+  IconTurnOn,
+  IconTurnOn as iconTurnOn,
+  IconWarningO,
+  IconWarningO as iconWarningO,
   IconSubScript,
   IconSubScript as iconSubScript,
   IconSortTriangle,
@@ -1348,6 +1372,14 @@ export {
 }
 
 export default {
+  IconActivation,
+  IconGenerating,
+  IconProcessing,
+  IconReportSubmission,
+  IconStartO,
+  IconTeams,
+  IconTurnOn,
+  IconWarningO,
   IconScan,
   IconSubScript,
   IconSortTriangle,

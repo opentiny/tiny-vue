@@ -111,8 +111,8 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '是否显示输入框，仅在非范围选择时有效',
-            'en-US': 'Indicates whether to display the text box. This parameter is valid only for non-range selection'
+            'zh-CN': '是否显示输入框',
+            'en-US': 'Indicates whether to display the text box.'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'show-input',
@@ -202,6 +202,17 @@ export default {
           },
           mode: ['mobile'],
           mobileDemo: ''
+        },
+        {
+          name: 'marks',
+          type: `{ [key:number]: string }`,
+          defaultValue: '',
+          desc: {
+            'zh-CN': '<p>设置滑杆的刻度值</p>',
+            'en-US': 'Set the scale value of the slide bar'
+          },
+          mode: ['pc'],
+          pcDemo: 'marks'
         },
         {
           name: 'vertical',

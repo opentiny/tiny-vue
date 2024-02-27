@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",

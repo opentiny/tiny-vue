@@ -1,6 +1,10 @@
 import BaseChart from '../BaseChart'
 import * as echarts from 'echarts/lib/echarts'
 
+// 常规的调用方法
+// integrateChart.init(chartRef.current);
+// integrateChart.setSimpleOption(AutonaviMapChart, option, {});
+// integrateChart.render();
 let amapPromise = null
 
 export default class AutonaviMapChart extends BaseChart {

@@ -3,7 +3,7 @@ import max from '../../util/sort/max'
 import { VISUALMAPUNIT, CHARTTYPE } from './BaseOption'
 import cloneDeep from '../../util/cloneDeep'
 import merge from '../../util/merge'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 
 /**
  * 设置日历热力图视觉滑块控制手柄
@@ -15,7 +15,7 @@ function handleCalendar(iChartOption, visualMapItem, maxValue, minValue) {
     visualMapItem.text = iChartOption.handle.text || [maxValue, minValue]
     visualMapItem.orient = iChartOption.handle.orient || 'vertical'
     visualMapItem.calculable = !!iChartOption.handle.calculable
-    visualMapItem.textStyle.color = Theme.color.base.font
+    visualMapItem.textStyle.color = chartToken.visualMapTextColor
     visualMapItem.itemWidth = iChartOption.handle.width || 20
     visualMapItem.itemHeight = iChartOption.handle.height || 400
     if (iChartOption.handle.position) {

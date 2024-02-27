@@ -9,7 +9,7 @@ export function setVisualMap(legendData, seriesData, markLine, colors, theme) {
   if (markLine) {
     let topValue = markLine.top
     let bottomValue = markLine.bottom
-    const vmColor = chartToken.errorColor
+    const vmColor = chartToken.colorError
     const topColor = markLine.topColor || vmColor
     const bottomColor = markLine.bottomColor || vmColor
     if (!isNumber(topValue)) {

@@ -36,6 +36,19 @@ const getRuntime = (version) => {
   return `${cdnHost}/@opentiny/vue@${useVersion}/runtime/`
 }
 
+const changeImportSuffix = (imports, verison) => {
+  const newImports = {}
+  Object.keys(imports).forEach((key) => {
+    const url = imports[key]
+    if (url.startsWith(getRuntime(verison))) {
+      newImports[key] = url.replace('.mjs', '.js')
+    } else {
+      newImports[key] = url
+    }
+  })
+  return newImports
+}
+
 const createImportMap = (version) => {
   const imports = {
     '@opentiny/vue': `${getRuntime(version)}tiny-vue.mjs`,
@@ -54,13 +67,16 @@ const createImportMap = (version) => {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
   }
   return {
-    imports
+    imports: changeImportSuffix(imports, version)
   }
 }
 
 const getTinyTheme = (version) => {
   if (isMobileFirst) {
     return `${getRuntime(version)}tailwind.css`
+  }
+  if (isSaas) {
+    return `${getRuntime(version)}index.css`
   }
   let theme = tinyTheme
   if (!['smb', 'default', 'aurora', 'saas'].includes(theme)) {

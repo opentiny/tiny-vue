@@ -13,7 +13,7 @@ test('禁用和尺寸', async ({ page }) => {
 
   await demo.locator('.tiny-switch').click()
   await expect(sizeChange).toHaveCSS('color', 'rgb(138, 142, 153)')
-  await expect(sizeChange).toHaveCSS('border-top-color', 'rgb(223, 225, 230)')
+  await expect(sizeChange).toHaveCSS('border-top-color', 'rgba(0, 0, 0, 0)')
   await expect(prev).toBeDisabled()
   await expect(next).toBeDisabled()
   await expect(pageItem.first()).toHaveCSS('cursor', 'not-allowed')

@@ -8,6 +8,18 @@ const appendDom = (dom, child) => {
   dom.insertAdjacentElement('beforeend', child)
 }
 
+// 创建元素
+const createDom = (name) => {
+  return document.createElementNS('http://www.w3.org/2000/svg', name)
+}
+
+// 元素绑定样式
+const setStyle = (dom, option) => {
+  for (let i in option) {
+    dom.setAttribute(i, option[i])
+  }
+}
+
 // 判断父元素是否为指定的 class
 const isParent = (targetElement, parentClass) => {
   if (targetElement === document.body) {
@@ -33,4 +45,4 @@ const getTextWidth = (text, fontSize = 12) => {
   return result
 }
 
-export { appendHTML, appendDom, isParent, getTextWidth }
+export { appendHTML, appendDom, createDom, setStyle, isParent, getTextWidth }

@@ -1,7 +1,8 @@
 import core from './core'
 import Register from './register'
-import Theme from './feature/theme'
+import Theme from './feature/token'
 import { isFunction } from './util/type'
+import axistip from './feature/axistip'
 import { mergeExtend } from './util/merge'
 import readScreen from './feature/readScreen'
 import mediaScreen from './feature/mediaScreen'
@@ -24,7 +25,7 @@ export default class HuiCharts extends core {
       readScreen(this.dom, iChartOption.readScreen)
     }
     if (isFunction(chartName)) {
-      this.redirectSelfChart(chartName, iChartOption)
+      this.redirectSelfChart(chartName, iChartOption, plugins)
       return
     }
     this.plugins = plugins
@@ -33,6 +34,7 @@ export default class HuiCharts extends core {
     const ChartClass = this.getChartClass(chartName)
     this.ichartsIns = new ChartClass(iChartOption, this.echartsIns, this.plugins)
     this.eChartOption = this.ichartsIns.getOption()
+    this.iChartOption.axistip && axistip(this.dom, this.echartsIns, this.eChartOption)
     mergeExtend(this.iChartOption, this.eChartOption)
   }
 
@@ -54,5 +56,6 @@ export default class HuiCharts extends core {
     this.iChartOption = iChartOption
     this.setSimpleOption(this.chartName, iChartOption, this.plugins)
     this.render()
+    this.mediaScreenObserver && this.mediaScreenObserver.refresh()
   }
 }

@@ -36,7 +36,7 @@ export const renderless = (props, { reactive, inject }, { emit, nextTick, refs, 
   const api = {}
   const multiSelect = inject('multiSelect')
   const state = reactive({})
-  initApi({ api, multiSelect, props, state, emit, nextTick, refs, vm })
+  initApi({ api, multiSelect, props, state })
 
   return api
 }

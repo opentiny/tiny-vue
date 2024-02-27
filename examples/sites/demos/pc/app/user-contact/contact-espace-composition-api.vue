@@ -8,6 +8,7 @@ import { reactive } from 'vue'
 
 const data = reactive({
   imgUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/ld.png`,
+  userName: '张三',
   roleNumber: 'z00100001',
   values: [
     { text: '部门', value: '某部门' },

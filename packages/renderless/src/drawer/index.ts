@@ -14,7 +14,7 @@ export const computedWidth =
       return state.width + 'px'
     }
 
-    return props.width || designConfig?.constants.DEFAULT_WIDTH || constants.DEFAULT_WIDTH
+    return props.width || designConfig?.constants?.DEFAULT_WIDTH || constants.DEFAULT_WIDTH
   }
 
 export const close =

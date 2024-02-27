@@ -1,5 +1,5 @@
-import Theme from '../../feature/theme'
 import cloneDeep from '../../util/cloneDeep'
+import chartToken from './chartToken'
 
 export const seriesInit = {
   type: 'funnel',
@@ -32,12 +32,11 @@ const POSITION_NAME = ['left', 'right', 'top', 'bottom', 'funnelAlign', 'orient'
  * @returns
  */
 export function setSeries(iChartOption) {
-  const colorBase = Theme.color.base
   const { data, sort, size, position, gap } = iChartOption
   let series = []
   const selfSeries = iChartOption.series
   // 处理series里多个数据的优先级配置方法
-  if (selfSeries !== undefined && selfSeries.length !== 0) {
+  if (selfSeries !== undefined && selfSeries.length != 0) {
     selfSeries.forEach((seriesItem) => {
       const seriesUnit = seriesItem
       // 处理size的优先级
@@ -69,7 +68,7 @@ export function setSeries(iChartOption) {
       // 处理label
       const defaultLabel = {
         show: true,
-        color: colorBase.font
+        color: chartToken.labelColor
       }
       seriesUnit.label = Object.assign(defaultLabel, seriesUnit.label)
       // 处理gap、sort的优先级
@@ -88,7 +87,7 @@ export function setSeries(iChartOption) {
       }
       // 处理图形边框颜色
       const defaultItemStyle = {
-        borderColor: colorBase.bg,
+        borderColor: chartToken.borderColor,
         borderWidth: 1
       }
       seriesUnit.itemStyle = Object.assign(defaultItemStyle, seriesUnit.itemStyle)
@@ -107,7 +106,7 @@ export function setSeries(iChartOption) {
     setSize(size, seriesUnit)
     setPosition(position, seriesUnit)
     // 处理图形边框颜色
-    seriesUnit.itemStyle.borderColor = colorBase.bg
+    seriesUnit.itemStyle.borderColor = chartToken.borderColor
     series.push(seriesUnit)
   }
   return series
@@ -135,7 +134,7 @@ function setPosition(position, seriesUnit) {
 
 // 设置label的属性主要是formatter
 function setLabel(seriesUnit, iChartOption) {
-  seriesUnit.label.color = Theme.color.base.font
+  seriesUnit.label.color = chartToken.labelColor
   seriesUnit.label.position = 'inside'
   seriesUnit.label.show = true
   Object.assign(seriesUnit.label, iChartOption.label)

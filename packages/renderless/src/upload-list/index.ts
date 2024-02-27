@@ -69,7 +69,7 @@ export const getDeleteData = (emit: IUploadListRenderlessParams['emit']) => (dat
 
 export const showOperatePanel =
   ({ state }: Pick<IUploadListRenderlessParams, 'state'>) =>
-  (file: IFileUploadFile) => {
+  ({ file }: { file: IFileUploadFile }) => {
     state.currentFile = file
     state.showPanel = true
   }
@@ -216,11 +216,11 @@ export const calcUploadListLiWidth =
     const { LIST_TYPE } = constants
     nextTick(() => {
       const uploadListEle = vm.$refs.uploadList
-      const uploadListLiEle = vm.$refs.uploadListLi
+      const uploadListLiEle = uploadListEle && uploadListEle.querySelectorAll('[data-tag="tiny-upload-list-item"]')
 
       if (!uploadListEle || !(uploadListLiEle && uploadListLiEle[0])) return
 
-      if (listType === LIST_TYPE.TEXT) {
+      if (listType === LIST_TYPE.TEXT || listType === LIST_TYPE.SAAS) {
         const { minWidth } = window.getComputedStyle(uploadListLiEle && uploadListLiEle[0])
         const marginRight = 8
 

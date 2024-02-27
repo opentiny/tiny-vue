@@ -8,7 +8,7 @@ test.describe('树表增删改功能', () => {
     await page.getByRole('row', { name: '1 新数据' }).getByRole('textbox').click()
     await page.getByRole('row', { name: '1 新数据' }).getByRole('textbox').fill('zzcd')
     await page.locator('.tiny-grid-toolbar').click()
-    await page.getByRole('button', { name: '确认' }).click()
+    await page.getByRole('button', { name: '确定' }).click()
     await expect(page.getByRole('cell', { name: 'zzcd' })).toBeVisible()
     await page.getByRole('row', { name: '1 新数据' }).locator('path').nth(1).click()
     await page.getByRole('button', { name: '移除选中' }).click()

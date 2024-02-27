@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup, $props, defineComponent } from '@opentiny/vue-common'
+import { $prefix, setup, props, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/loading/vue'
 import '@opentiny/vue-theme/loading/index.less'
 import type { ILoadingApi } from '@opentiny/vue-renderless/types/loading.type'
@@ -37,17 +37,7 @@ export default defineComponent({
   inheritAttrs: false,
   name: $prefix + 'Loading',
   emits: ['after-leave'],
-  props: {
-    ...$props,
-    _constants: Object,
-    loadingImg: {
-      type: String
-    },
-    size: {
-      type: String,
-      default: 'small'
-    }
-  },
+  props: [...props, '_constants', 'loadingImg', 'size'],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ILoadingApi
   }

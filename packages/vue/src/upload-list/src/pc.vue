@@ -24,8 +24,10 @@
       <div
         ref="uploadListLi"
         class="tiny-upload-list-item"
+        data-tag="tiny-upload-list-item"
         :class="{
-          'selected': file.uid === (selected && selected.uid)
+          'selected': file.uid === (selected && selected.uid),
+          'compact': compact
         }"
         v-for="file in state.files"
         :key="file.uid"
@@ -378,6 +380,7 @@ export default defineComponent({
     IconZipType: iconZipType(),
     IconFileuploadPro: iconFileuploadPro()
   },
+  emits: ['click-file-list', 'remove', 'start', 'update:visible', 'update', 'reUpload', 'ReUploadTotal'],
   props: [
     ...props,
     'disabled',
@@ -399,9 +402,9 @@ export default defineComponent({
     'selected',
     'displayOnly',
     'handleDownloadFile',
-    'handleReUpload'
+    'handleReUpload',
+    'compact'
   ],
-  emits: ['click-file-list', 'remove', 'start', 'update:visible', 'update', 'reUpload', 'ReUploadTotal'],
   setup(props, context) {
     return setup({ props, context, renderless, api, extendOptions: { Modal } }) as unknown as IUploadListApi
   }

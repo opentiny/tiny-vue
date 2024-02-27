@@ -1,21 +1,21 @@
-import Theme from '../../feature/theme'
+import Theme from '../../feature/token'
 import proxy from '../../util/proxy'
 
 function getChartToken() {
   const {
-    itemStyle: { borderWidth, borderColor, borderWidthZero, borderRadius },
-    label: { distance, color: labelColor, fontSize },
-    lineStyle: { color: lineColor },
+    itemStyle: { borderWidth, borderColor, borderWidthNone, borderRadius },
+    label: { distance, color: colorLabel, fontSize },
+    lineStyle: { color: colorLabelLine },
     emptyCircleStyle: { color: emptyColor }
   } = Theme.config.PieChart
 
   return {
     borderWidth,
     borderColor,
-    borderWidthZero,
+    borderWidthNone,
     distance,
-    labelColor,
-    lineColor,
+    labelColor: colorLabel,
+    labelLineColor: colorLabelLine,
     emptyColor,
     fontSize,
     borderRadius

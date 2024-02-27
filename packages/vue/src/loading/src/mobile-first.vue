@@ -60,27 +60,16 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup, $props, defineComponent } from '@opentiny/vue-common'
+import { $prefix, setup, props, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/loading/vue'
 import { classes } from './tokens'
-import loadingImg from '@opentiny/vue-theme/images/loading.png'
 import type { ILoadingApi } from '@opentiny/vue-renderless/types/loading.type'
 
 export default defineComponent({
   inheritAttrs: false,
   name: $prefix + 'Loading',
   emits: ['after-leave'],
-  props: {
-    ...$props,
-    _constants: Object,
-    loadingImg: {
-      type: String,
-      default: loadingImg
-    },
-    size: {
-      type: String
-    }
-  },
+  props: [...props, '_constants', 'loadingImg', 'size'],
   setup(props, context) {
     return setup({ props, context, renderless, api, classes }) as unknown as ILoadingApi
   }

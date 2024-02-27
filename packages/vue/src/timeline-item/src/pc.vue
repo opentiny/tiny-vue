@@ -113,13 +113,13 @@
               : ''
           }}</span>
         </div>
-        <div v-else class="dot-container">
+        <div v-else class="dot-container" @click="handleClick(node)">
           <span class="dot"></span>
         </div>
         <div class="line"></div>
       </div>
       <slot name="right" :slot-scope="node">
-        <div class="tiny-timeline-item__content">
+        <div class="tiny-timeline-item__content" @click="handleClick(node)">
           <div class="name">{{ node[rootProps.nameField] }}</div>
           <div v-if="shape === 'dot'" class="time">{{ node[rootProps.timeField] }}</div>
         </div>

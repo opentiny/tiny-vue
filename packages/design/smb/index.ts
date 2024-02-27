@@ -1,6 +1,7 @@
 import Alert from './src/alert'
 import ActionMenu from './src/action-menu'
 import Popconfirm from './src/popconfirm'
+import Drawer from './src/drawer'
 import Dropdown from './src/dropdown'
 import DropdownItem from './src/dropdown-item'
 import Form from './src/form'
@@ -17,6 +18,7 @@ export default {
     Alert,
     ActionMenu,
     Popconfirm,
+    Drawer,
     Dropdown,
     DropdownItem,
     Form,

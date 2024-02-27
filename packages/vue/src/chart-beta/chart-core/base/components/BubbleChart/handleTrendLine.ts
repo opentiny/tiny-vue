@@ -1,5 +1,5 @@
 import * as echarts from 'echarts'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 
 /**
  * 针对趋势线需求，图表需要进行特殊处理
@@ -9,7 +9,6 @@ export function handleTrendLine(option, iChartOption, plugins) {
   if (iChartOption.trendLineConfig) {
     if (ecStat) {
       echarts.registerTransform(ecStat.transform.regression)
-      const theme = iChartOption.theme
       // 集合数据
       option.dataset.push({
         transform: {
@@ -28,7 +27,7 @@ export function handleTrendLine(option, iChartOption, plugins) {
         label: {
           show: true,
           fontSize: 14,
-          color: Theme.color.base.axislabel
+          color: chartToken.labelColor
         },
         labelLayout: {
           dx: -20

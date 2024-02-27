@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue",
   "private": true,
-  "version": "3.13.0",
+  "version": "3.14.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "keywords": [
@@ -281,7 +281,7 @@
     "@opentiny/vue-year-table": "workspace:~"
   },
   "devDependencies": {
-    "@vue/composition-api": "1.2.2",
+    "@vue/composition-api": "1.7.2",
     "@vue/runtime-core": "^3.3.9",
     "@vue/runtime-dom": "^3.3.9",
     "vue2": "npm:vue@2.6.14",

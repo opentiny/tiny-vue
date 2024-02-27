@@ -21,6 +21,7 @@
     ]"
     :href="state.disabled ? null : state.href"
     v-bind="a($attrs, ['^on[A-Z]'])"
+    rel="noopener noreferrer"
     @click="handleClick"
   >
     <component

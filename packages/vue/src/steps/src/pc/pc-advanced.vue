@@ -1,5 +1,5 @@
 <template>
-  <div data-tag="tiny-steps-senior" :class="['tiny-steps-senior', size]">
+  <div data-tag="tiny-steps-senior" :class="['tiny-steps tiny-steps-senior', size]">
     <SlideBar ref="slideBar" :data="data" :duration="duration" :no-arrow="noArrow" :flex="flex">
       <!-- left button -->
       <template #left-button="slotScoped">
