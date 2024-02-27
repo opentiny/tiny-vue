@@ -1,6 +1,14 @@
-import type { ExtractPropTypes, ComputedRef } from 'vue'
+import type { ExtractPropTypes, ComputedRef, CSSProperties } from 'vue'
 import type { sliderProps, $constants } from '@/slider/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type {
+  getMarkList,
+  getActiveButtonValue,
+  handleSlotInputFocus,
+  handleSlotInputBlur,
+  handleSlotInput,
+  updateSlotValue
+} from '../src/slider'
 
 export type ISliderProps = ExtractPropTypes<typeof sliderProps>
 
@@ -8,7 +16,7 @@ export type ISliderConstants = typeof $constants
 
 export interface ISliderState {
   tipStyle: object
-  barStyle: object
+  barStyle: CSSProperties
   moveStyle: object
   points: object[]
   labels: object[]
@@ -33,11 +41,12 @@ export interface ISliderState {
   rangeDiff: ComputedRef<number>
   tipValue: ComputedRef<string>
   formDisabled: ComputedRef<boolean>
-  disabled: ComputedRef<boolean>
+  disabled: boolean
   /** 使用这个值作为插槽中输入的值，而不是直接用activeValue，来实现在输入时不会被max min属性计算而改变 */
-  slotValue: number
+  slotValue: number | number[] | string
   /** 是否正在输入 */
   isSlotTyping: boolean
+  markList: ReturnType<ISliderApi['getMarkList']>
 }
 
 export interface ISliderApi {
@@ -49,7 +58,7 @@ export interface ISliderApi {
   bindResize: () => void
   setButtonStyle: () => void
   calculateValue: (event: Event) => number
-  getActiveButtonValue: () => number
+  getActiveButtonValue: ReturnType<typeof getActiveButtonValue>
   getActiveButtonIndex: (event: Event) => number
   setTipStyle: () => void
   customAfterAppearHook: () => void
@@ -63,15 +72,17 @@ export interface ISliderApi {
   bindMouseMove: () => void
   bindMouseDown: () => void
   setActiveButtonValue: (currentValue: number) => void
-  initSlider: (inputValue: number | [number, number]) => void
+  initSlider: (inputValue: number | number[]) => void
   watchModelValue: () => void
   watchActiveValue: () => void
   getPoints: () => void
   getLabels: () => void
   inputValueChange: () => void
-  handleSlotInputFocus: () => void
-  handleSlotInputBlur: () => void
-  handleSlotInput: (event: Event) => void
+  handleSlotInputFocus: ReturnType<typeof handleSlotInputFocus>
+  handleSlotInputBlur: ReturnType<typeof handleSlotInputBlur>
+  handleSlotInput: ReturnType<typeof handleSlotInput>
+  getMarkList: ReturnType<typeof getMarkList>
+  updateSlotValue: ReturnType<typeof updateSlotValue>
 }
 
 export type ISliderRenderlessParams = ISharedRenderlessFunctionParams<ISliderConstants> & {

@@ -456,9 +456,7 @@ export default defineComponent({
                           class:
                             'py-2.5 sm:pb-6 sm:pt-0 px-6 border-t-0.5 sm:border-t-0 border-color-border-separator text-center sm:text-right'
                         },
-                        footerSlot
-                          ? footerSlot.call(this, { $modal: this, beforeClose: this.beforeClose, footerSlotParams }, h)
-                          : footerBottom
+                        footerSlot ? footerSlot.call(this, footerSlotParams, h) : footerBottom
                       )
                     : null,
                   !isMsg && resize

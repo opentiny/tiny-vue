@@ -10,7 +10,7 @@ export default {
           type: 'Component',
           defaultValue: '',
           desc: {
-            'zh-CN': '设置IP段之间的分隔符，默认图标为IconDotIpv4',
+            'zh-CN': '设置 ip 段之间的分隔符，默认图标为 IconDotIpv4 ',
             'en-US': 'Set the separator between IP segments, default icon is icon-dot-ipv4'
           },
           mode: ['pc'],
@@ -54,7 +54,7 @@ export default {
           type: "'IPv4' | 'IPv6'",
           defaultValue: "'IPv4'",
           desc: {
-            'zh-CN': '设置 ip 地址输入框的 类型',
+            'zh-CN': '设置 ip 地址输入框的类型',
             'en-US': 'Sets the type attribute in the IpAddress box'
           },
           mode: ['pc'],

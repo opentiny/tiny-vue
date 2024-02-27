@@ -1,0 +1,23 @@
+{
+  "name": "my-vue-app",
+  "description": "",
+  "author": "",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@opentiny/vue": "~3.12.1",
+    "@opentiny/vue-alert": "~3.13.0",
+    "@opentiny/vue-button-group": "~3.13.0",
+    "@opentiny/vue-icon": "^3.12.0",
+    "vue": "^3.3.9"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "vite": "link:../node_modules/vite",
+    "vite-plugin-inspect": "^0.8.3"
+  }
+}

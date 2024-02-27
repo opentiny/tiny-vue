@@ -9,10 +9,12 @@ export interface IButtonGroupItemClass {
   disabled?: boolean
   plain?: boolean
 }
+
+// 可以通过textField和validField指定建值，因此属性都为可选
 export interface IButtonGroupNode {
-  text: string
-  value: string
-  disabled: boolean
+  text?: string
+  value?: string
+  disabled?: boolean
   [otherKey: string]: any
 }
 

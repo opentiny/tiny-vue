@@ -33,7 +33,21 @@ export const getVuePlugins = (vueVersion: string) => {
             }
           }
         }),
-        vue2SvgPlugin({ svgoConfig: { plugins: ['preset-default', 'prefixIds'] } })
+        vue2SvgPlugin({
+          svgoConfig: {
+            plugins: [
+              {
+                name: 'preset-default',
+                params: {
+                  overrides: {
+                    removeViewBox: false
+                  }
+                }
+              },
+              'prefixIds'
+            ]
+          }
+        })
       ]
     },
     '2.7': () => {
@@ -52,7 +66,21 @@ export const getVuePlugins = (vueVersion: string) => {
           }
         }),
         vue27JsxPlugin({ injectH: false }),
-        vue2SvgPlugin({ svgoConfig: { plugins: ['preset-default', 'prefixIds'] } })
+        vue2SvgPlugin({
+          svgoConfig: {
+            plugins: [
+              {
+                name: 'preset-default',
+                params: {
+                  overrides: {
+                    removeViewBox: false
+                  }
+                }
+              },
+              'prefixIds'
+            ]
+          }
+        })
       ]
     },
     '3': () => {
@@ -68,7 +96,22 @@ export const getVuePlugins = (vueVersion: string) => {
           }
         }),
         vue3JsxPlugin(),
-        vue3SvgPlugin({ defaultImport: 'component', svgoConfig: { plugins: ['preset-default', 'prefixIds'] } })
+        vue3SvgPlugin({
+          defaultImport: 'component',
+          svgoConfig: {
+            plugins: [
+              {
+                name: 'preset-default',
+                params: {
+                  overrides: {
+                    removeViewBox: false
+                  }
+                }
+              },
+              'prefixIds'
+            ]
+          }
+        })
       ]
     }
   }
@@ -146,7 +189,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
             })
 
             if (filePath.includes('vue-common') && vueVersion === '2') {
-              dependencies['@vue/composition-api'] = '~1.2.2'
+              dependencies['@vue/composition-api'] = '1.7.2'
             }
 
             const matchList = ['vue-icon', 'vue-icon-saas', 'vue', 'design/smb', 'design/aurora', 'design/saas']

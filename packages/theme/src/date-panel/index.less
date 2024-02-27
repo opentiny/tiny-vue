@@ -40,6 +40,10 @@
 
   &__content {
     position: relative;
+    border-top: solid 1px var(--ti-picker-panel-content-border-color);
+    padding-top: var(--ti-picker-panel-content-padding-top);
+    padding-left: var(--ti-picker-panel-content-padding-left);
+    padding-right: var(--ti-picker-panel-content-padding-right);
   }
 
   &__footer {
@@ -109,7 +113,7 @@
 
   &__icon-btn {
     font-size: var(--ti-picker-panel-font-size);
-    line-height: 30px;
+    line-height: var(--ti-picker-panel-icon-btn-line-height);
     fill: var(--ti-picker-panel-icon-color-btn);
     border: 0;
     background: 0 0;

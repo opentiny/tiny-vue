@@ -4,8 +4,9 @@ import xAxis from '../../option/config/xAxis'
 import yAxis from '../../option/config/yAxis'
 import grid from '../../option/config/grid'
 import tooltip from '../../option/config/tooltip'
+
 import defendXSS from '../../util/defendXSS'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 import merge from '../../util/merge'
 import { isArray } from '../../util/type'
 
@@ -168,7 +169,7 @@ function handleCalendarYaxis(yAxis, data) {
     show: true,
     lineStyle: {
       width: 2,
-      color: Theme.color.base.subaxis
+      color: chartToken.axisLineColor
     }
   }
 }

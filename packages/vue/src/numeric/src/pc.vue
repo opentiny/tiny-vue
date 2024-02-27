@@ -255,7 +255,8 @@ export default defineComponent({
     'tip',
     'clearable',
     'filter',
-    'blank'
+    'blank',
+    'changeCompat'
   ],
   emits: ['update:modelValue', 'change', 'blur', 'focus', 'paste-error', 'filter-change', 'clear'],
   setup(props, context) {

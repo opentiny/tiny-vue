@@ -16,14 +16,13 @@ class PieChart {
 
   updateOption(chartInstance) {
     const iChartOption = this.iChartOption
-    const theme = iChartOption.theme
     const type = iChartOption.type || 'circle'
     // 装载除series之外的其他配置
     PolarCoordSys(this.baseOption, this.iChartOption, 'PieChart')
     // 兼容旧属性chartPosition
     const position = iChartOption.position || iChartOption.chartPosition
-    // 赋值数据
-    this.baseOption.series = handleSeries(type, theme, iChartOption, position)
+    // 处理series数据
+    this.baseOption.series = handleSeries(type, iChartOption, chartInstance, position)
     // 针对多重圆环图表需求，图表需要进行特殊处理
     handleMulti(type, this.baseOption, iChartOption.legend, iChartOption.data)
     // 配置图表事件

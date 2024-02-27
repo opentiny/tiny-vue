@@ -24,7 +24,6 @@ class BubbleChart {
 
   updateOption(plugins) {
     const iChartOption = this.iChartOption
-    const theme = iChartOption.theme
     // 装载除series之外的其他配置
     RectCoordSys(this.baseOption, this.iChartOption, 'BubbleChart')
     // 增加气泡图的默认悬浮提示框
@@ -36,18 +35,8 @@ class BubbleChart {
     if (
       legendData &&
       legendData[0] &&
-      legendData[0] &&
-      legendData[0] &&
-      iChartOption.data[legendData[0]] &&
-      iChartOption.data[legendData[0]] &&
       iChartOption.data[legendData[0]] &&
       iChartOption.data[legendData[0]][0] &&
-      iChartOption.data[legendData[0]][0] &&
-      iChartOption.data[legendData[0]][0] &&
-      iChartOption.data[legendData[0]][0] &&
-      iChartOption.data[legendData[0]][0][0] &&
-      iChartOption.data[legendData[0]][0][0] &&
-      iChartOption.data[legendData[0]][0][0] &&
       iChartOption.data[legendData[0]][0][0] &&
       typeof iChartOption.data[legendData[0]][0][0] === 'string'
     ) {
@@ -61,9 +50,8 @@ class BubbleChart {
       })
     }
     // 赋值数据
-    this.baseOption.legend.data = legendData
+    this.baseOption.legend.data = this.baseOption.legend.data || legendData
     this.baseOption.series = setSeries({
-      theme,
       legendData,
       data: iChartOption.data,
       markLine: iChartOption.markLine,

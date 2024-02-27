@@ -8,7 +8,7 @@ export const seriesInit = () => {
     label: { show: false },
     // 连线上的小圆点样式
     symbol: 'emptyCircle',
-    symbolSize: chartToken.symbolSize,
+    symbolSize: chartToken.symbolSizeLG,
     showSymbol: false,
     // 数据
     data: [],
@@ -129,7 +129,7 @@ function handleYaxis(series, yAxis) {
 function handleMarkLine(markLine, seriesUnit, theme, seriesName) {
   seriesUnit.markLine = cloneDeep(getMarkLineDefault())
   if (markLine.top && !(markLine.topUse && !markLine.topUse.includes(seriesName))) {
-    var markLineData = {}
+    let markLineData = {}
     if (isString(markLine.top)) {
       markLineData = { type: markLine.top }
     } else {
@@ -141,7 +141,7 @@ function handleMarkLine(markLine, seriesUnit, theme, seriesName) {
     markLine.topLabel && (markLineData.label.show = true)
     markLine.topLabel && (markLineData.label.formatter = markLine.topLabel)
     if (!markLine.topColor) {
-      markLine.topColor = chartToken.errorColor
+      markLine.topColor = chartToken.colorError
     }
     if (markLine.topColor === 'auto') {
       markLine.topColor = undefined
@@ -154,7 +154,7 @@ function handleMarkLine(markLine, seriesUnit, theme, seriesName) {
     seriesUnit.markLine.data.push(markLineData)
   }
   if (markLine.bottom && !(markLine.bottomUse && !markLine.bottomUse.includes(seriesName))) {
-    var markLineData = {}
+    let markLineData = {}
     if (isString(markLine.bottom)) {
       markLineData = { type: markLine.bottom }
     } else {
@@ -166,7 +166,7 @@ function handleMarkLine(markLine, seriesUnit, theme, seriesName) {
     markLine.bottomLabel && (markLineData.label.show = true)
     markLine.bottomLabel && (markLineData.label.formatter = markLine.bottomLabel)
     if (!markLine.bottomColor) {
-      markLine.bottomColor = chartToken.errorColor
+      markLine.bottomColor = chartToken.colorError
     }
     if (markLine.bottomColor === 'auto') {
       markLine.bottomColor = undefined
@@ -186,9 +186,9 @@ function handleMarkPoint(markPoint, seriesUnit, theme, seriesName) {
     const max = {
       type: 'max',
       symbolOffset: [0, -11],
-      itemStyle: { color: markPoint.maxColor || chartToken.errorColor }
+      itemStyle: { color: markPoint.maxColor || chartToken.colorError }
     }
-    if (markPoint.maxColor == 'auto') delete max.itemStyle
+    if (markPoint.maxColor === 'auto') delete max.itemStyle
     seriesUnit.markPoint.data.push(max)
   }
   if (markPoint.min && !(markPoint.minUse && !markPoint.minUse.includes(seriesName))) {
@@ -196,9 +196,9 @@ function handleMarkPoint(markPoint, seriesUnit, theme, seriesName) {
       type: 'min',
       symbolOffset: [0, 11],
       symbolRotate: 180,
-      itemStyle: { color: markPoint.minColor || chartToken.errorColor }
+      itemStyle: { color: markPoint.minColor || chartToken.colorError }
     }
-    if (markPoint.minColor == 'auto') delete min.itemStyle
+    if (markPoint.minColor === 'auto') delete min.itemStyle
     seriesUnit.markPoint.data.push(min)
   }
 }

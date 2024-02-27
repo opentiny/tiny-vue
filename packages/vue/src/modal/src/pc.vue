@@ -271,7 +271,7 @@ export default defineComponent({
                     }
                   },
                   footerSlot
-                    ? footerSlot.call(this, { $modal: this, beforeClose: this.beforeClose, footerSlotParams }, h)
+                    ? footerSlot.call(this, footerSlotParams, h)
                     : state.theme === 'saas'
                     ? [
                         type === 'confirm'

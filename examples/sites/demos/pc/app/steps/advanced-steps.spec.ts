@@ -11,11 +11,11 @@ test('高级向导', async ({ page }) => {
 
   await expect(stepsWrapper).toBeVisible()
   await expect(nodes.first()).toHaveClass('doing')
-  await expect(nodes.nth(1)).toHaveClass('done')
-  await expect(nodes.nth(2)).toHaveClass(/current/)
+  await expect(nodes.nth(1)).toHaveClass(/done/)
+  await expect(nodes.nth(1)).toHaveClass(/current/)
   await nodes.nth(3).click()
   await expect(nodes.nth(3)).toHaveClass(/current/)
-  await expect(nodes.nth(2)).not.toHaveClass(/current/)
+  await expect(nodes.nth(1)).not.toHaveClass(/current/)
 
   // advanced 高级向导模式
   const advancedSteps = page.locator('.pc-demo .tiny-steps-senior')

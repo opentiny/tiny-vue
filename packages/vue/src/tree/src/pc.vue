@@ -129,13 +129,13 @@
         </div>
         <div class="tiny-tree__del-content">
           <template v-if="state.action.isLeaf">
-            <div>{{ t('ui.tree.preserveSubnodeTip') }}</div>
+            <div>{{ t('ui.tree.deleteTip1') }}</div>
           </template>
           <template v-else>
-            <div>{{ t('ui.tree.preserveSubnodeTip') }}</div>
+            <div>{{ t('ui.tree.deleteTip2') }}</div>
             <div class="tiny-tree__del-checkbox">
               <tiny-checkbox v-model="state.action.isSaveChildNode" ref="deleteCheckbox">{{
-                t('ui.tree.preserveSubnodeData')
+                t('ui.tree.deleteTip3')
               }}</tiny-checkbox>
             </div>
           </template>

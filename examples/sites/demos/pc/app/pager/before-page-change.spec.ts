@@ -9,7 +9,7 @@ test('分页变更前置处理', async ({ page }) => {
   const prev = pager.locator('.tiny-pager__btn-prev')
   const next = pager.locator('.tiny-pager__btn-next')
   const tipModal = page.locator('.tiny-modal__box').filter({ hasText: '消息提示' })
-  const confirmBtn = tipModal.getByRole('button', { name: '确认' })
+  const confirmBtn = tipModal.getByRole('button', { name: '确定' })
 
   await pager.locator('li').getByText('6').click()
   await expect(tipModal).toBeVisible()

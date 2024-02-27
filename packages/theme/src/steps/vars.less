@@ -29,6 +29,8 @@
   --ti-steps-text-color-hover: var(--ti-common-color-primary-normal, #5e7ce0);
   // 序号圆圈大小
   --ti-steps-icon-size: var(--ti-common-size-5x, 20px);
+  // 序号悬浮字体色
+  --ti-steps-icon-hover-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
   // 步骤条字号(hide)
   --ti-steps-font-size-7: var(--ti-common-font-size-7, 36px);
   // 节点间横线厚度
@@ -133,6 +135,12 @@
   --ti-steps-disabled-border-color: var(--ti-steps-disabled-icon-color);
   // 禁用节点描述文本色
   --ti-steps-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  // 禁用节点名称文本色
+  --ti-steps-disabled-name-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  // 禁用节点选中背景色
+  --ti-steps-disabled-select-icon-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+  // 禁用节点选中序号文本色
+  --ti-steps-disabled-select-icon-color: var(--ti-common-color-text-disabled, #adb0b8);
 
   // mini尺寸序号圆圈大小
   --ti-steps-mini-icon-size: var(--ti-common-font-size-5, 24px);
@@ -213,13 +221,15 @@
   // 竖式步骤条节点左侧时间预留宽度
   --ti-steps-timeline-vertical-time-width: var(--ti-common-size-25x, 100px);
   // 竖式步骤条线条上下间距
-  --ti-steps-timeline-line-margin-vertical: 0;
+  --ti-steps-timeline-line-margin-vertical: var(--ti-common-size-base, 4px);
   // 竖式步骤条线条背景色
   --ti-steps-timeline-vertical-line-bg-color: var(--ti-common-color-line-dividing, #dfe1e6);
   // 竖式步骤条线条左间距
   --ti-steps-timeline-vertical-line-margin-left: var(--ti-common-size-3x, 12px);
   // 竖式步骤条线条右间距
   --ti-steps-timeline-vertical-line-margin-right: var(--ti-steps-timeline-vertical-line-margin-left);
+  // 竖式步骤条圆点与内容间隔
+  --ti-steps-timeline-shape-dot-content-margin-left: var(--ti-common-size-3x, 12px);
   // 竖式步骤条圆点尺寸
   --ti-steps-timeline-dot-width: var(--ti-common-size-2x, 8px);
   // 竖式步骤条圆点边框色

@@ -1,4 +1,4 @@
-import Theme from '../../feature/theme'
+import Theme from '../../feature/token'
 import proxy from '../../util/proxy'
 
 function getChartToken() {

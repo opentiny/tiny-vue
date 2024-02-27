@@ -1,5 +1,5 @@
 <template>
-  <div class="tiny-steps">
+  <div class="tiny-steps tiny-steps-standard">
     <ul class="tiny-steps-advanced">
       <li
         v-for="(node, index) in data"
@@ -32,7 +32,6 @@
 import { renderless, api } from '@opentiny/vue-renderless/steps/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconRefres, iconYes } from '@opentiny/vue-icon'
-import '@opentiny/vue-theme/steps/index.less'
 
 export default defineComponent({
   emits: ['click'],

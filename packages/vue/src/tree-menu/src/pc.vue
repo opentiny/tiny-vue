@@ -105,7 +105,21 @@ import { iconSearch, iconLeftWardArrow, iconEditorMenuLeft, iconEditorMenuRight 
 
 export default defineComponent({
   name: $prefix + 'TreeMenu',
-  emits: ['change'],
+  emits: [
+    'change',
+    'current-change',
+    'node-drag-start',
+    'node-drag-enter',
+    'node-drag-over',
+    'node-drag-end',
+    'node-drop',
+    'node-expand',
+    'node-click',
+    'check-change',
+    'check',
+    'collapse-change',
+    'node-collapse'
+  ],
   components: {
     TinyTree: Tree,
     TinyInput: Input,

@@ -1,4 +1,4 @@
-import Theme from '../../../feature/theme'
+import Theme from '../../../feature/token'
 
 // 直角坐标系中的title用于y轴名称
 function getBaseOption() {

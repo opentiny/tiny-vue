@@ -23,15 +23,18 @@ if (!isServer) {
 
   on(document, 'mouseup', (event) => {
     nodeList.forEach((node) => node[nameSpace].documentHandler(event, startClick))
+    startClick = void 0
   })
 }
 
 const createDocumentHandler = (el, binding, vnode) =>
   function (mouseup = {}, mousedown = {}) {
-    let popperElm = vnode.context.popperElm || vnode.context.state.popperElm
+    let popperElm = vnode.context.popperElm || (vnode.context.state && vnode.context.state.popperElm)
 
     if (
+      !mouseup ||
       !mouseup.target ||
+      !mousedown ||
       !mousedown.target ||
       el.contains(mouseup.target) ||
       el.contains(mousedown.target) ||
@@ -87,6 +90,10 @@ export default {
         nodeList.splice(i, 1)
         break
       }
+    }
+
+    if (nodeList.length === 0 && startClick) {
+      startClick = null
     }
 
     delete el[nameSpace]

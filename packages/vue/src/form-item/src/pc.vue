@@ -169,7 +169,7 @@ export default defineComponent({
 
       const tooltipTriggerContent =
         ItemContent.length > 1
-          ? h('div', { class: 'tiny-mobile-form-item__content-muti-children' }, ItemContent)
+          ? h('div', { class: 'tiny-form-item__content-muti-children' }, ItemContent)
           : ItemContent[0]
 
       if (!this.showMessage) {

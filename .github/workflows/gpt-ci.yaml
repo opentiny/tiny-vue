@@ -1,0 +1,26 @@
+name: GPT Code Review
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  Review:
+    if: ${{ contains(github.event.*.labels.*.name, 'gpt-review') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anc95/ChatGPT-CodeReview@main
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          OPENAI_API_KEY: ${{secrets.OPENAI_API_KEY}}
+          LANGUAGE: Chinese
+          PROMPT: ${{ secrets.PROMPT }}
+          max_tokens: ${{ secrets.MAX_TOKEN }} 
+          top_p: 1
+          temperature: 1
+          MAX_PATCH_LENGTH: ${{ secrets.MAX_PATH_LENGTH }} # 当修改行数超过设定值后, 则不会请求gpt进行code review
+          MODEL: ${{ secrets.MODEL }} # https://platform.openai.com/docs/models

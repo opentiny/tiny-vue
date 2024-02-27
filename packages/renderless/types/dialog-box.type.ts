@@ -17,6 +17,8 @@ import type {
   handleConfirm,
   updatePopper,
   handleWrapperClick,
+  useMouseEventDown,
+  useMouseEventUp,
   hide,
   handleClose,
   watchVisible,
@@ -58,6 +60,8 @@ export interface IDialogBoxState {
   animationName: string
   opened?: boolean
   rendered?: boolean
+  mouseUpWrapperFlag: boolean
+  mouseDownWrapperFlag: boolean
 }
 
 export interface IDialogBoxApi {
@@ -69,6 +73,8 @@ export interface IDialogBoxApi {
   handleConfirm: ReturnType<typeof handleConfirm>
   updatePopper: ReturnType<typeof updatePopper>
   handleWrapperClick: ReturnType<typeof handleWrapperClick>
+  useMouseEventDown: ReturnType<typeof useMouseEventDown>
+  useMouseEventUp: ReturnType<typeof useMouseEventUp>
   hide: ReturnType<typeof hide>
   handleClose: ReturnType<typeof handleClose>
   watchVisible: ReturnType<typeof watchVisible>

@@ -16,6 +16,7 @@ export const emitter = () => {
       const callbacks = listeners[eventName]
 
       if (callbacks) {
+        // eslint-disable-next-line prefer-spread, prefer-rest-params
         callbacks.forEach((callback) => callback.apply(null, [].slice.call(arguments, 1)))
 
         listeners[eventName] = callbacks.filter((callback) => !callback.once)
@@ -98,18 +99,19 @@ export const getElementStatusClass = (className, status) => {
  *
  *     getElementCssClass({ button: 'border-color' }, 'button') // 'border-color'
  *     getElementCssClass({ button: 'border-color' }, { 'button': true }) // 'border-color'
+ *     getElementCssClass({ button: 'border-color', 'mini': 'p-1', 'small': 'p-2' }, ['button', 'small']) // 'border-color p-2'
  *
  * @method
  * @param {Object} classes - 类名集合
- * @param {String|Object} key - 状态
+ * @param {String|Object|Array} key - 状态或状态集合
  * @returns {String} - 类名配置值
  */
 export const getElementCssClass = (classes = {}, key) => {
   if (typeof key === 'object') {
-    const keys = Object.keys(key)
+    const keys = Array.isArray(key) ? key : Object.keys(key).filter((k) => key[k])
     let cls = ''
     keys.forEach((k) => {
-      if (key[k] && classes[k]) cls += `${classes[k]} `
+      if (classes[k]) cls += `${classes[k]} `
     })
     return cls
   } else {

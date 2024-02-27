@@ -1,4 +1,4 @@
-import Theme from '../../../feature/theme'
+import Theme from '../../../feature/token'
 
 function axisPointer(tooltip, chartName) {
   switch (chartName) {
@@ -7,7 +7,7 @@ function axisPointer(tooltip, chartName) {
       tooltip.axisPointer = {
         type: 'shadow',
         shadowStyle: {
-          color: Theme.config.tooltipAxisPointerShadow
+          color: Theme.config.tooltipAxisPointerShadowColor
         }
       }
       break

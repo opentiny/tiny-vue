@@ -30,6 +30,7 @@
     border-color: #e8ebef;
     border-style: solid;
     box-shadow: var(--ti-drawer-shadow);
+    overflow: hidden;
 
     &.drag-effects {
       transition-timing-function: linear;
@@ -51,6 +52,7 @@
       top: 0;
       right: 0;
       border-left-width: 0.5px;
+      border-radius: var(--ti-drawer-radius) 0 0 var(--ti-drawer-radius);
 
       .@{drawer-prefix-cls}__drag-bar {
         left: -4px;
@@ -61,6 +63,7 @@
       top: 0;
       left: 0;
       border-right-width: 0.5px;
+      border-radius: 0 var(--ti-common-border-radius-2) var(--ti-common-border-radius-2) 0;
 
       .@{drawer-prefix-cls}__drag-bar {
         right: -4px;
@@ -71,12 +74,14 @@
       top: 0;
       left: 0;
       border-bottom-width: 0.5px;
+      border-radius: 0 0 var(--ti-common-border-radius-2) var(--ti-common-border-radius-2);
     }
 
     &.is-bottom {
       bottom: 0;
       left: 0;
       border-top-width: 0.5px;
+      border-radius: var(--ti-common-border-radius-2)  var(--ti-common-border-radius-2) 0 0;
     }
 
     .@{drawer-prefix-cls}__drag-bar {
