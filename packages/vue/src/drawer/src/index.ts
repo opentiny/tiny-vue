@@ -62,7 +62,8 @@ export const drawerProps = {
     type: Number,
     default: 2000
   },
-  beforeClose: Function
+  beforeClose: Function,
+  tipsProps: Object
 }
 
 export default {

@@ -28,6 +28,16 @@ export default {
       codeFiles: ['placement.vue']
     },
     {
+      demoId: 'tips-props',
+      name: { 'zh-CN': '帮助提示', 'en-US': 'Help tips' },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>tips-props</code> 属性可自定义标题帮助提示信息，具体属性配置参考 <a href="tooltip#tooltip">ToolTip 组件</a> 的 props 说明。</p>',
+        'en-US': ''
+      },
+      codeFiles: ['tips-props.vue']
+    },
+    {
       demoId: 'width',
       name: {
         'zh-CN': '抽屉宽度',
@@ -138,18 +148,6 @@ export default {
         'en-US': ''
       },
       codeFiles: ['z-index.vue']
-    },
-    {
-      demoId: 'default-slot',
-      name: {
-        'zh-CN': '默认插槽',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '<p>自定义抽屉主体内容。</p>',
-        'en-US': ''
-      },
-      codeFiles: ['default-slot.vue']
     },
     {
       demoId: 'header-slot',
