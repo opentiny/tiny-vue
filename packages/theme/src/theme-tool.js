@@ -105,7 +105,9 @@ export default class TinyThemeTool {
     const twoKey = `${compNameList[1]}-${compNameList[2]}`
 
     // 优先三段式命名的组件名，优先级从高到低为三段-二段-一段
-    return this.getSelectorByKey(threeKey) || this.getSelectorByKey(twoKey) || compNameList[1]
+    return (
+      this.getSelectorByKey(threeKey) || this.getSelectorByKey(twoKey) || '.tiny-' + compNameList[1] + '[class*=tiny]'
+    )
   }
 
   formatCSSVariables(themeData) {

@@ -30,7 +30,8 @@
     "@opentiny/vue-filter-box": "workspace:~",
     "@opentiny/vue-date-picker-mobile-first": "workspace:~",
     "@opentiny/vue-time-picker-mobile": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

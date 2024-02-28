@@ -18,7 +18,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
-    "@opentiny/vue-time-spinner": "workspace:~"
+    "@opentiny/vue-time-spinner": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

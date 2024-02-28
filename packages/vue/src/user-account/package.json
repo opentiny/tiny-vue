@@ -18,7 +18,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-user-contact": "workspace:~",
-    "@opentiny/vue-logout": "workspace:~"
+    "@opentiny/vue-logout": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

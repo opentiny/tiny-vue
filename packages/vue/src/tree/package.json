@@ -24,7 +24,8 @@
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-switch": "workspace:~",
     "@opentiny/vue-popover": "workspace:~",
-    "@opentiny/vue-button": "workspace:~"
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

@@ -50,7 +50,8 @@
     "create:mapping": "esno src/commands/create/create-mapping.ts",
     "build:entry-react": "esno src/index.ts build:entry-react",
     "create:mapping-react": "esno src/commands/create/create-mapping-react.ts",
-    "build:react": "esno src/index.ts build:react"
+    "build:react": "esno src/index.ts build:react",
+    "build:chartTheme": "esno src/index.ts build:chartTheme"
   },
   "dependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",

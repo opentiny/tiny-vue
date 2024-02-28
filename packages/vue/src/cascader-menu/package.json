@@ -19,7 +19,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-scrollbar": "workspace:~",
-    "@opentiny/vue-cascader-node": "workspace:~"
+    "@opentiny/vue-cascader-node": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

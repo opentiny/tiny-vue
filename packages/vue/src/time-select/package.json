@@ -15,7 +15,10 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-picker": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

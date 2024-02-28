@@ -225,7 +225,8 @@ export const cmpMenus = [
       { 'nameCn': '弹出框', 'name': 'Popover', 'key': 'popover' },
       { 'nameCn': '气泡确认框组件', 'name': 'Popconfirm', 'key': 'popconfirm' },
       { 'nameCn': '模态框', 'name': 'Modal', 'key': 'modal' },
-      { 'nameCn': '通知', 'name': 'Notify', 'key': 'notify' }
+      { 'nameCn': '通知', 'name': 'Notify', 'key': 'notify' },
+      { 'name': 'FloatButton', 'nameCn': '悬浮按钮', 'key': 'float-button' }
     ]
   },
   {
