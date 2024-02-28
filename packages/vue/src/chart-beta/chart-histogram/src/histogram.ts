@@ -102,6 +102,9 @@ const getValueData = (seriesTemp, dims) => {
 
 const getBarSeries = (args) => {
   const { axisSite, barGap, dimAxisType, dims, innerRows, isHistogram, itemStyle } = args
+  if (!itemStyle.barWidth) {
+    itemStyle.barWidth = 'auto'
+  }
   const { label, labelMap, metrics, opacity, showLine = [], stack } = args
   let { secondAxis, secondDimAxisIndex, series = [], seriesTemp = {}, stackMap, stackNum = 0 } = {}
   secondAxis = (isHistogram ? axisSite?.right : axisSite?.top) || []
