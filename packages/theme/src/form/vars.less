@@ -11,8 +11,12 @@
 */
 
 .component-css-vars-form() {
+  // 表单校验水平内边距
+  --ti-form-valid-padding-horizontal: calc(var(--ti-common-space-2x, 8px) + 2px);
+  // 表单校验垂直内边距
+  --ti-form-valid-padding-vertical: calc(var(--ti-common-space-2x, 8px) + 2px);
   // 行内表单输入框右边距(hide)
-  --ti-form-item-margin-right: 10px;
+  --ti-form-item-margin-right: calc(var(--ti-common-space-2x, 8px) + 2px);
 
   // 表单项垂直排列时的下边距(hide)
   --ti-form-item-label-top-margin-bottom: 16px;

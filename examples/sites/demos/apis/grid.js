@@ -565,7 +565,7 @@ export default {
           type: 'number | string',
           defaultValue: '',
           desc: {
-            'zh-CN': '设置表格内容区域（不含表格头部，底部）的最小高度。',
+            'zh-CN': '设置表格内容区域（不含表格头部，底部）的最小高度',
             'en-US': 'Set the minimum height of the table content area (excluding the table header and bottom).'
           },
           mode: ['pc', 'mobile-first'],
@@ -1019,6 +1019,7 @@ export default {
         {
           name: 'tooltip-config',
           type: 'IToolTipConfig',
+          typeAnchorName: 'IToolTipConfig',
           defaultValue: '',
           desc: {
             'zh-CN': 'Grid 内置 tooltip 配置项，请参考 Tooltip 组件属性说明',
@@ -2497,7 +2498,7 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '在表格中新增数据。 ',
+            'zh-CN': '在表格中新增数据',
             'en-US': ''
           },
           mode: ['mobile-first'],
@@ -3330,7 +3331,7 @@ export default {
           type: "'left' | 'center' | 'right'",
           defaultValue: "'left'",
           desc: {
-            'zh-CN': '列对其方式',
+            'zh-CN': '列对齐方式',
             'en-US': 'Column pair mode; The optional values for this property are left, center, right'
           },
           mode: ['pc'],
@@ -3416,7 +3417,7 @@ export default {
           type: 'IFormatConfig',
           defaultValue: '',
           desc: {
-            'zh-CN': '开启该列数据异步渲染。',
+            'zh-CN': '开启该列数据异步渲染',
             'en-US': 'Enable the asynchronous rendering of the column data'
           },
           mode: ['pc'],
@@ -3824,7 +3825,7 @@ export default {
           type: 'boolean',
           defaultValue: '',
           desc: {
-            'zh-CN': '工具栏组件开启表格刷新功能。',
+            'zh-CN': '工具栏组件开启表格刷新功能',
             'en-US': 'The table refresh function is enabled for the toolbar component.'
           },
           mode: ['pc'],
@@ -3898,7 +3899,7 @@ export default {
           type: '()=> void',
           defaultValue: '',
           desc: {
-            'zh-CN': '点击个性化面板的重置按钮触发该事件。',
+            'zh-CN': '点击个性化面板的重置按钮触发该事件',
             'en-US': 'Click the Reset button on the personalized panel to trigger the event.'
           },
           mode: ['pc'],
@@ -4030,6 +4031,21 @@ interface IToolbarConfig {
     code: string
     name: string
   }[]
+}
+      `
+    },
+    {
+      name: 'IToolTipConfig',
+      type: 'type',
+      code: `
+interface IToolTipConfig {
+  placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'
+  visibleArrow?: boolean
+  enterable?: boolean
+  type?: 'normal' | 'warning' | 'error' | 'info' | 'success'
+  effect?: 'dark' | 'light'
+  // 自定义提示内容
+  contentMethod?: ()=> string | VNode
 }
       `
     },
@@ -4379,27 +4395,11 @@ interface IToolbarButtonClickArgs {
       code: `
 interface ICellClickArgs {
   // 当前行
-  row: object,
+  row: IRow,
   // 当前行的下标
   rowIndex: number
   // 当前列
-  column: object
-  // 当前列的下标
-  columnIndex: number
-}
-      `
-    },
-    {
-      name: 'ICellClickArgs',
-      type: 'type',
-      code: `
-interface ICellClickArgs {
-  // 当前行
-  row: object
-  // 当前行的下标
-  rowIndex: number
-  // 当前列
-  column: object
+  column: IColumnConfig
   // 当前列的下标
   columnIndex: number
 }
@@ -4411,7 +4411,7 @@ interface ICellClickArgs {
       code: `
 interface ICellContextMenuArgs {
   // 当前行
-  row: object
+  row: IRow
 }
       `
     },
@@ -4421,11 +4421,11 @@ interface ICellContextMenuArgs {
       code: `
 interface ICellArgs {
   //当前行
-  row: object
+  row: IRow
   //当前行的下标
   rowIndex: number
   // 当前列 
-  column: object
+  column: IColumnConfig
   // 当前列的下标 
   columnIndex: number
 }
@@ -4437,7 +4437,7 @@ interface ICellArgs {
       code: `
 interface ICurrentChangeArgs {
   // 当前行
-  row: object
+  row: IRow
 }
       `
     },
@@ -4447,9 +4447,9 @@ interface ICurrentChangeArgs {
       code: `
 interface IEditActivedArgs {
   // 当前行
-  row: object
+  row: IRow
   // 当前列 
-  column: object
+  column: IColumnConfig
 }
       `
     },
@@ -4459,9 +4459,9 @@ interface IEditActivedArgs {
       code: `
 interface IEditClosedArgs {
   // 当前行
-  row: object
+  row: IRow
   // 当前列 
-  column: object
+  column: IColumnConfig
 }
       `
     },
@@ -4471,9 +4471,9 @@ interface IEditClosedArgs {
       code: `
 interface IEditDisabledArgs {
   //当前行
-  row: object
+  row: IRow
   // 当前列 
-  column: object
+  column: IColumnConfig
 }
       `
     },
@@ -4501,7 +4501,7 @@ interface IFooterCellClickArgs {
   // 当前单元格节点 
   cell: HTMLElement
   // 当前列信息
-  column: object
+  column: IColumnConfig
   columnIndex: number
 }
       `
@@ -4518,7 +4518,7 @@ interface IContextMenuArgs {
   // 当前单元格节点
   cell: HTMLElement
   // 当前列信息
-  column: object
+  column: IColumnConfig
   columnIndex: number
   // 配置清除等功能信息
   options: object[]
@@ -4539,7 +4539,7 @@ interface IFooterCellDblClickArgs {
   // 当前单元格节点
   cell: HTMLElement
   // 当前列信息
-  column: object
+  column: IColumnConfig
   columnIndex: number
 }
       `
@@ -4556,7 +4556,7 @@ interface IHeaderCellClickArgs {
   // 点击表头单元格
   cell: HTMLElement
   // 当前列信息
-  column: object
+  column: IColumnConfig
   columnIndex: number
   // 当前点击节点过滤标识
   triggerFilter: boolean
@@ -4571,7 +4571,7 @@ interface IHeaderCellClickArgs {
       code: `
 interface IHeaderCellDblClickArgs {
   // 列数据
-  column: object  
+  column: IColumnConfig  
   // 列索引
   columnIndex: number
   // table组件 vue实例 
@@ -4589,7 +4589,7 @@ interface IResizableChangeArgs {
   // table组件的vue 实例 
   $table: Component,
   // 列配置信息 
-  column: object 
+  column: IColumnConfig 
   // 拖动列的索引
   columnIndex: number
   // 是否固定列

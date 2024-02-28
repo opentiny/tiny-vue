@@ -27,8 +27,7 @@ export default class RegionChart {
       event(chartInstance, iChartOption.event)
     }
     // 删除部分不需要的默认值
-
-    // delete this.baseOption.legend
+    delete this.baseOption.legend
     delete this.baseOption.dataZoom
     delete this.baseOption.xAxis
   }

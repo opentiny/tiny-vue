@@ -97,8 +97,11 @@ const getItemCount = (arr, item) => {
  */
 const getRandom = () => {
   const array = new Uint32Array(1)
-  self.crypto.getRandomValues(array)
-  const random = parseFloat(`0.${array[0].toString()}`)
+  let random = Math.random()
+  if (self.crypto) {
+    self.crypto.getRandomValues(array)
+    random = parseFloat(`0.${array[0].toString()}`)
+  }
   return random
 }
 

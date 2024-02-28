@@ -1,32 +1,30 @@
-import Theme from '../../feature/theme'
+import Theme from '../../feature/token'
 import proxy from '../../util/proxy'
 
 const getChartToken = () => {
   const {
-    symbolSize: { symbolSizeXS, symbolSize },
-    itemStyle: { borderZero, borderLG, border, borderColor },
-    lineStyle: { lineWidthLG, lineWidth },
+    symbolSize: { symbolSizeSM, symbolSizeLG },
+    itemStyle: { borderZero, border, borderColor },
+    lineStyle: { lineWidth },
     markLine: {
       lineStyle: { color }
     }
   } = Theme.config.LineChart
 
-  const { errorColor } = Theme.config.colorState
+  const { colorError } = Theme.config.colorState
 
-  const { tooltipFontColor, visualMapPiecesColor, visualMapDashColor } = Theme.config
+  const { tooltipTextColor, visualMapPiecesColor, visualMapDashColor } = Theme.config
 
   return {
-    symbolSizeXS,
+    symbolSizeSM,
     borderZero,
-    lineWidthLG,
-    symbolSize,
-    borderLG,
+    symbolSizeLG,
     lineWidth,
     color,
     border,
     borderColor,
-    errorColor,
-    tooltipFontColor,
+    colorError,
+    tooltipTextColor,
     visualMapPiecesColor,
     visualMapDashColor
   }

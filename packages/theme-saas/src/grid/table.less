@@ -165,8 +165,8 @@
   // 冻结列，采用sticky布局代替多表格渲染，至少少渲染一半的dom元素
   .fixed__column {
     position: sticky !important;
-    z-index: 1;
-    @apply bg-color-bg-1;
+    z-index: 2;
+    background-color: inherit;
 
     &.fixed-left-last__column:after {
       position: absolute;
@@ -201,6 +201,9 @@
 
   th.fixed__column {
     background-color: #f4f6fb;
+    &.tiny-grid-header__column .tiny-grid-resizable.is__line::before {
+      transform: translateX(-1px);
+    }
   }
 
   &-fixed__left {
@@ -227,27 +230,27 @@
       // 支持所有行 hover 背景颜色
       &:not(.row__hover) {
         &:nth-child(2n) {
-          @apply bg-color-fill-8;
+          background-color: #f4f6fb;
         }
 
         &.row__current {
-          @apply bg-color-fill-10;
+          background-color: #e8eef7;
         }
       }
 
       &.row__hover {
         &:nth-child(2n) {
-          @apply bg-color-fill-10;
+          background-color: #e8eef7;
         }
       }
 
       &.row__selected {
         &:nth-child(2n) {
-          @apply bg-color-fill-10;
+          background-color: #e8eef7;
         }
 
         &:nth-child(2n + 1) {
-          @apply bg-color-fill-8;
+          background-color: #f4f6fb;
         }
       }
     }
@@ -266,7 +269,7 @@
       }
     }
   }
- 
+
   &&__border,
   &&__border-saas {
     // 启用 border 只有表头生效，默认不建议启用 border 属性，另外如果内嵌列，则表头会自动启用 border 属性
@@ -277,7 +280,8 @@
       @apply left-0;
       @apply w-full;
       @apply h-0;
-      @apply ~'z-[1]';
+      // 修复冻结列遮挡saas表格下边框的问题勿同步
+      @apply ~'z-[2]';
     }
 
     &:before {
@@ -513,14 +517,14 @@
   }
 
   & &-body__row {
-    @apply bg-transparent;
+    @apply bg-color-bg-1;
 
     &.row__hover {
       @apply bg-color-bg-4;
     }
 
     &.row__selected {
-      @apply bg-color-fill-8;
+      background-color: #f4f6fb;
 
       // 目前saas的单元格背景色都是带透明度的颜色，会造成冻结列产生透视效果，此处将颜色改为不带透明度的颜色
       .fixed__column {
@@ -528,12 +532,12 @@
       }
 
       &.row__hover {
-        @apply bg-color-fill-8;
+        background-color: #f4f6fb;
       }
     }
 
     &.row__current {
-      @apply bg-color-fill-8;
+      background-color: #f4f6fb;
     }
   }
 
@@ -541,7 +545,7 @@
     background-color: #f3f3f3;
 
     .fixed__column {
-      background-color: #f3f3f3;
+      background-color: inherit;
     }
   }
 
@@ -653,6 +657,7 @@
     &.col__ellipsis {
       .@{grid-cell-prefix-cls}-text {
         .TextEllipsis();
+        @apply pl-0;
       }
     }
   }
@@ -671,6 +676,8 @@
   // 排序
   & &-sort-wrapper {
     padding-left: 4px;
+    position: absolute;
+    right: 6px;
 
     .@{grid-prefix-cls}-sort__btn {
       @apply ~'h-3.5';

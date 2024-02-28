@@ -1,5 +1,5 @@
 import merge from '../../util/merge'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 
 /**
  * 装载除series以外的一级属性
@@ -9,9 +9,9 @@ import Theme from '../../feature/theme'
 export function setOption(iChartOption) {
   const { visualMap } = iChartOption
   // 处理visualMap字体颜色随主题变化
-  let defaultVisualMap = {
+  const defaultVisualMap = {
     textStyle: {
-      color: Theme.color.base.font
+      color: chartToken.visualMapTextColor
     }
   }
   visualMap && merge(visualMap, defaultVisualMap)

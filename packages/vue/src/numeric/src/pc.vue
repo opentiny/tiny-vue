@@ -198,7 +198,7 @@ import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import bind from '@opentiny/vue-renderless/common/deps/repeat-click'
 import { iconChevronDown, iconChevronUp, iconMinus, iconPlus } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/numeric/index.less'
-import type { INumericApi } from '@opentiny/renderless/types/numeric.type'
+import type { INumericApi } from '@opentiny/vue-renderless/types/numeric.type'
 import FilterPanel from '@opentiny/vue-filter-panel'
 import Radio from '@opentiny/vue-radio'
 import RadioGroup from '@opentiny/vue-radio-group'
@@ -255,7 +255,8 @@ export default defineComponent({
     'tip',
     'clearable',
     'filter',
-    'blank'
+    'blank',
+    'changeCompat'
   ],
   emits: ['update:modelValue', 'change', 'blur', 'focus', 'paste-error', 'filter-change', 'clear'],
   setup(props, context) {

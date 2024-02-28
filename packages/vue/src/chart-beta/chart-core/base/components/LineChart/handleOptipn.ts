@@ -27,7 +27,7 @@ export function discrete(iChartOption, baseOption) {
     baseOption.series.forEach((series) => {
       const newSeries = cloneDeep(series)
       newSeries.symbol = 'circle'
-      newSeries.symbolSize = chartToken.symbolSizeXS
+      newSeries.symbolSize = chartToken.symbolSizeSM
       newSeries.itemStyle.borderWidth = chartToken.borderZero
       newSeries.showSymbol = true
       newSeries.showAllSymbol = true

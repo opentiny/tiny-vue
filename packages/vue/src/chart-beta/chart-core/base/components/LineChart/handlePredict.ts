@@ -67,14 +67,13 @@ export function handlePredict(option, predict, tipHtml, lineStyle) {
     const dataLength = data.length
     const xAxisDataLength = option.xAxis[0].data.length
     const predictIndex = option.xAxis[0].data.indexOf(predict)
-    const colorBase = Theme.color.base
-    const fontColor = colorBase.font
     // 制作虚线的series(只有匹配成功即predictIndex>-1时，才设置阈值线的样式)
     if (predictIndex > -1) {
       for (let index = 0; index < dataLength; index++) {
         const temp = cloneDeep(data[index])
         temp.lineStyle = {
-          width: chartToken.lineWidthLG,
+          // 为了视觉上看不见盖住粗细+1
+          width: chartToken.lineWidth + 1,
           type: [5, 8]
         }
         temp.itemStyle = {
@@ -95,6 +94,6 @@ export function handlePredict(option, predict, tipHtml, lineStyle) {
       }
     }
     // 修改tooltip,不显示虚线的tooltip
-    option.tooltip.formatter = setToolTip(dataLength, chartToken.tooltipFontColor, tipHtml)
+    option.tooltip.formatter = setToolTip(dataLength, chartToken.tooltipTextColor, tipHtml)
   }
 }

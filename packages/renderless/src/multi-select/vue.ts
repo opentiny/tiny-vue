@@ -25,7 +25,8 @@ import {
   toggleItemExpand,
   computedCurrentOptions,
   updateValue,
-  handleSearchInput
+  handleSearchInput,
+  updateTitle
 } from './index'
 
 export const api = [
@@ -42,7 +43,7 @@ export const api = [
   'handleSearchInput'
 ]
 
-const initState = ({ emitter, reactive, computed, api }) => {
+const initState = ({ emitter, reactive, computed, api, props }) => {
   const state = reactive({
     dataSource: [],
     wheelData: [],
@@ -59,7 +60,8 @@ const initState = ({ emitter, reactive, computed, api }) => {
     multiSelectEmitter: emitter(),
     searchValue: '',
     optionMap: [],
-    currentOptions: computed(() => api.computedCurrentOptions())
+    currentOptions: computed(() => api.computedCurrentOptions()),
+    showMask: computed(() => props.mask && state.showOptions)
   })
 
   return state
@@ -82,11 +84,12 @@ const initApi = ({ api, props, state, emit, nextTick, refs, vm }) => {
     toggleItemExpand: toggleItemExpand({ state }),
     computedCurrentOptions: computedCurrentOptions({ state, props }),
     updateValue: updateValue({ state, props, emit }),
-    handleSearchInput: handleSearchInput({ props, state, emit })
+    updateTitle: updateTitle({ props, state }),
+    handleSearchInput: handleSearchInput({ state, emit })
   })
 }
 
-const initWatch = ({ watch, props, state, refs, nextTick }) => {
+const initWatch = ({ api, watch, props, state, refs, nextTick }) => {
   watch(
     () => props.dataSource,
     () => {
@@ -99,6 +102,13 @@ const initWatch = ({ watch, props, state, refs, nextTick }) => {
       api.created({ props, state, refs, nextTick })
     }
   )
+  watch(
+    () => props.modelValue,
+    () => {
+      api.updateTitle()
+    },
+    { deep: true }
+  )
 }
 
 export const renderless = (
@@ -107,13 +117,13 @@ export const renderless = (
   { emit, nextTick, refs, vm, emitter }
 ) => {
   const api = {}
-  const state = initState({ emitter, reactive, computed, api })
+  const state = initState({ emitter, reactive, computed, api, props })
 
   provide('multiSelect', vm)
 
   initApi({ api, props, state, emit, nextTick, refs, vm })
 
-  initWatch({ watch, props, state, refs, nextTick })
+  initWatch({ api, watch, props, state, refs, nextTick })
 
   onMounted(() => {
     api.created({ props, state, refs, nextTick })

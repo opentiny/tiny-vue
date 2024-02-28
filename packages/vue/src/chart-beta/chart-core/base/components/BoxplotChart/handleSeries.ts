@@ -1,5 +1,5 @@
 import cloneDeep from '../../util/cloneDeep'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 
 const datasetInit = [
   {
@@ -43,13 +43,8 @@ export function setDataset(data) {
   return dataset
 }
 
-/**
- * 组装echarts所需要的series
- * @param {传入主题} theme
- * @returns
- */
-export function setSeries(theme) {
+export function setSeries() {
   const series = cloneDeep(seriesInit)
-  series[0].itemStyle.color = Theme.color.base.bg
+  series[0].itemStyle.color = chartToken.itemColor
   return series
 }

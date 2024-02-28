@@ -16,7 +16,7 @@ export function setLegend(baseOption) {
 function sortData(sort, data) {
   let legendName = []
   // 升序
-  if (sort === 'ascending') {
+  if (sort == 'ascending') {
     const sortedData = [...data].sort((a, b) => {
       return a.value - b.value
     })

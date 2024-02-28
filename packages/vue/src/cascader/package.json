@@ -23,7 +23,10 @@
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-scrollbar": "workspace:~",
     "@opentiny/vue-cascader-panel": "workspace:~",
-    "@opentiny/vue-filter-box": "workspace:~"
+    "@opentiny/vue-filter-box": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-cascader-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

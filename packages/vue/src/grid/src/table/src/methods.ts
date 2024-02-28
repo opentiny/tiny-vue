@@ -82,6 +82,7 @@ import {
   onScrollXLoad
 } from './utils/refreshColumn'
 import { mapFetchColumnPromise } from './utils/handleResolveColumn'
+import { hooks, isVue2 } from '@opentiny/vue-common'
 import { computeScrollYLoad, computeScrollXLoad } from './utils/computeScrollLoad'
 import { calcTableWidth, calcFixedStickyPosition } from './utils/autoCellWidth'
 import { generateFixedClassName } from './utils/handleFixedColumn'
@@ -510,6 +511,25 @@ const Methods = {
   hasRowInsert(row) {
     return ~this.editStore.insertList.indexOf(row)
   },
+  compareRow(row, originalRow, field) {
+    const value = get(row, field)
+    const originalValue = get(originalRow, field)
+    const column = this.getColumnByField(field)
+    const equals = column.equals || this.equals
+    let result
+
+    // 如果存在列级或表格级自定义比较配置，就进行外部比较
+    if (equals) {
+      result = equals({ value, originalValue, field, row, originalRow, column, $table: this })
+    }
+
+    // 如果外部比较的返回值不是布尔类型，仍然进行内部比较
+    if (typeof result !== 'boolean') {
+      result = isEqual(originalValue, value)
+    }
+
+    return result
+  },
   hasRowChange(row, field) {
     let { tableSourceData, treeConfig, visibleColumn, backupMap } = this
     let argsLength = arguments.length
@@ -533,12 +553,12 @@ const Methods = {
     }
     if (originRow) {
       if (argsLength > 1) {
-        return !isEqual(get(originRow, field), get(row, field))
+        return !this.compareRow(row, originRow, field)
       }
 
       for (let i = 0; i < visibleColumn.length; i++) {
         let { property } = visibleColumn[i]
-        if (property && !isEqual(get(originRow, property), get(row, property))) {
+        if (property && !this.compareRow(row, originRow, property)) {
           return true
         }
       }
@@ -791,14 +811,22 @@ const Methods = {
     this.tableFullColumn = fullColumn
     this.cacheColumnMap()
 
-    // 在列初始化完毕后触发一次表格列就绪事件，动态列配置也只合并一次
+    // 在列初始化完毕后，合并一次动态列配置，并触发一次表格列初始就绪事件
     if (!this.isColumnInitReady) {
       this.isColumnInitReady = true
       customs && this.mergeCustomColumn(customs)
       this.$emit('column-init-ready')
     }
 
+    // 经过动态列个性化合并后，部分列可能被操作隐藏等，此步骤计算可见列
     this.refreshColumn()
+
+    // 可见列确定之后触发一次列就绪事件
+    if (!this.isColumnReady) {
+      this.isColumnReady = true
+      this.$emit('column-ready')
+    }
+
     this.handleTableData(true)
 
     if (toolbarVm) {
@@ -860,6 +888,9 @@ const Methods = {
     // 需要渲染的列数据
     this.tableColumn = tableColumn
     this.visibleColumn = visibleColumn
+    this.visibleColumnChanged = true
+
+    this.columnAnchor && this.$grid.buildColumnAnchorParams()
     return this.$nextTick().then(() => {
       this.updateFooter()
       this.recalculate()
@@ -957,7 +988,7 @@ const Methods = {
     let scrollbarWidth = overflowY ? bodyEl.offsetWidth - bodyW : 0
     let parentHeight = this.parentHeight
 
-    // 经过calcTableWidth计算出了所有列的宽度，下一步进行所有冻结列sticky布局的left和right值
+    // 经过calcTableWidth计算出了所有列的宽度，下一步设置所有冻结列sticky布局的left和right值
     calcFixedStickyPosition({ headerEl, bodyEl, columnStore, scrollbarWidth })
 
     Object.assign(this, { overflowY, parentHeight, scrollbarWidth, tableHeight, tableWidth })
@@ -1570,8 +1601,7 @@ const Methods = {
   },
   // 更新横向 X 可视渲染上下剩余空间大小
   updateScrollXSpace() {
-    const { $refs, elemStore, scrollXLoad, scrollXStore, scrollbarWidth, tableWidth, visibleColumn } = this
-    const { tableBody, tableFooter, tableHeader } = $refs
+    const { elemStore, scrollXLoad, scrollXStore, scrollbarWidth, tableWidth, visibleColumn } = this
     const { startIndex } = scrollXStore
     let { bodyElem, footerElem, headerElem, leftSpaceWidth, marginLeft } = {}
 
@@ -1581,7 +1611,11 @@ const Methods = {
     footerElem = elemStore['main-footer-table']
 
     // 累加已滚动出渲染范围的列的总渲染宽度
-    leftSpaceWidth = visibleColumn.slice(0, startIndex).reduce((previous, column) => previous + column.renderWidth, 0)
+    leftSpaceWidth = visibleColumn.slice(0, startIndex).reduce((previous, column) => {
+      // 左侧冻结列，不计算margin
+      if (column.fixed === 'left') return previous
+      return previous + column.renderWidth
+    }, 0)
     marginLeft = scrollXLoad ? `${leftSpaceWidth}px` : ''
 
     // 设置主表头/主表体/主表尾表格元素的marginLeft（已滚动出渲染范围的列，不渲染但是保留宽度占位，保证对齐）
@@ -1924,6 +1958,21 @@ const Methods = {
   // 按顺序切换列的排序状态（null --> asc --> desc --> null --> ...）
   toggleColumnOrder(column) {
     return column.order ? (column.order === 'asc' ? 'desc' : null) : 'asc'
+  },
+  watchDataForVue3() {
+    if (isVue2) return
+
+    const stopWatch = hooks.watch(
+      [() => this.data, () => this.data && this.data.length],
+      ([newData, newLength], [oldData, oldLength]) => {
+        // vue3下额外监控数组长度改变，解决push无响应等问题
+        if (Array.isArray(this.data) && newData === oldData && newLength !== oldLength) {
+          this.handleDataChange()
+        }
+      }
+    )
+
+    hooks.onBeforeUnmount(() => stopWatch())
   },
   getVm(name) {
     return this.$grid.getVm(name)

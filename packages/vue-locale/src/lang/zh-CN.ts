@@ -358,7 +358,9 @@ export default {
         remoteSelectedMethod: '个性化模板管理远端存储需要设置 multipleHistory.remoteSelectedMethod',
         chainCallError: '列的默认插槽中存在语法错误，请检查。',
         renderParamError: '期望配置一个生成 VNode 的渲染方法。',
-        classComponentError: '类组件渲染出错。'
+        classComponentError: '类组件渲染出错。',
+        groupColumnFixedError: '同一个分组内不能设置不同的固定类型。',
+        missingValueFormat: '渲染器无法格式化日期字符串，需要提供 valueFormat 源日期格式配置。'
       },
       filter: {
         allFilter: '全部',
@@ -575,10 +577,10 @@ export default {
       edit: '编辑',
       delete: '删除',
       addChild: '新增下级',
-      deleteTip: '删除后数据不可恢复，确定删除吗？',
-      preserveSubnodeTip: '该节点存在下级节点，是否保留下级节点数据？',
-      preserveSubnodeData: '保留下级节点数据',
-      newNodeTitle: '新增下级'
+      newNodeTitle: '新增下级',
+      deleteTip1: '删除后数据不可恢复，确定删除吗？',
+      deleteTip2: '该节点存在下级节点，是否保留下级节点数据？',
+      deleteTip3: '保留下级节点数据'
     },
     usercard: {
       address: '地址',

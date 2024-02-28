@@ -33,8 +33,7 @@
                 state.headerInfo[index]?.isSelected ? 'tiny-mobile-multi-select__header__active' : ''
               ]"
             >
-              <span v-if="!state.headerInfo[index]?.isSelected">{{ item.title }}</span>
-              <span v-else>{{ state.headerInfo[index]?.title }}</span>
+              {{ state.headerInfo[index]?.title }}
             </div>
 
             <div
@@ -51,7 +50,11 @@
           </div>
         </div>
 
-        <div v-if="filterable" class="tiny-mobile-multi-select__header-search-icon" @click="handleSearchBtnClick">
+        <div
+          v-show="filterable && state.showOptions"
+          class="tiny-mobile-multi-select__header-search-icon"
+          @click="handleSearchBtnClick"
+        >
           <IconSearch></IconSearch>
         </div>
       </template>
@@ -62,7 +65,7 @@
             ref="searchInput"
             type="text"
             v-model="state.searchValue"
-            placeholder="搜索内容"
+            :placeholder="searchPlaceholder"
             @input="handleSearchInput"
           >
             <template #prefix>
@@ -70,9 +73,13 @@
             </template>
           </tiny-input>
         </div>
-        <div class="tiny-mobile-multi-select__header-cancel-btn" @click="handleSearchBtnClick">取消</div>
+        <div class="tiny-mobile-multi-select__header-cancel-btn" @click="handleSearchBtnClick">
+          {{ t('ui.base.cancel') }}
+        </div>
       </template>
     </div>
+
+    <tiny-mask :visible="state.showMask" @click="handleClose"></tiny-mask>
 
     <div
       :class="['tiny-mobile-multi-select__content', !dataSource[state.headerIndex]?.hasFooter ? 'noFooter' : '']"
@@ -95,13 +102,15 @@
         @click-wheel-item="clickWheelItem"
       ></tiny-wheel>
 
-      <div
-        class="tiny-mobile-multi-select__footer"
-        v-show="state.showOptions && dataSource[state.headerIndex]?.hasFooter"
-      >
-        <tiny-button round size="large" @click="reset">{{ t('ui.base.reset') }}</tiny-button>
-        <tiny-button round size="large" type="primary" @click="confirm">{{ t('ui.button.confirm') }}</tiny-button>
-      </div>
+      <slot name="footer">
+        <div
+          class="tiny-mobile-multi-select__footer"
+          v-show="state.showOptions && dataSource[state.headerIndex]?.hasFooter"
+        >
+          <tiny-button round size="large" type="secondary" @click="reset">{{ t('ui.base.reset') }}</tiny-button>
+          <tiny-button round size="large" type="primary" @click="confirm">{{ t('ui.button.confirm') }}</tiny-button>
+        </div>
+      </slot>
     </div>
   </div>
 </template>
@@ -112,10 +121,12 @@ import { $prefix, setup, defineComponent, directive } from '@opentiny/vue-common
 import { renderless, api } from '@opentiny/vue-renderless/multi-select/vue'
 import { iconChevronDown, iconSearch } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
-import Wheel from '@opentiny/vue-wheel'
-import MultiSelectItem from '@opentiny/vue-multi-select-item'
 import Input from '@opentiny/vue-input'
+import Mask from '@opentiny/vue-mask'
+import MultiSelectItem from '@opentiny/vue-multi-select-item'
+import Wheel from '@opentiny/vue-wheel'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { t } from '@opentiny/vue-locale'
 
 export default defineComponent({
   name: $prefix + 'MultiSelect',
@@ -124,12 +135,11 @@ export default defineComponent({
     IconSearch: iconSearch(),
     TinyButton: Button,
     TinyWheel: Wheel,
+    TinyMask: Mask,
     TinyMultiSelectItem: MultiSelectItem,
     TinyInput: Input
   },
-  directives: directive({
-    Clickoutside
-  }),
+  directives: directive({ Clickoutside }),
   props: {
     dataSource: {
       type: Array,
@@ -151,6 +161,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    searchPlaceholder: {
+      type: String,
+      default: () => t('ui.search.placeholder')
+    },
     type: {
       type: String as PropType<'list' | 'wheel'>,
       default: 'list'
@@ -158,6 +172,14 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    mask: {
+      type: Boolean,
+      default: true
+    },
+    maskOptions: {
+      type: Object,
+      default: () => ({})
     }
   },
   emits: ['update:modelValue', 'update:searchValue', 'item-click'],

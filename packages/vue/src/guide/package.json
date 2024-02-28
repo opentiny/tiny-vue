@@ -14,7 +14,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "shepherd.js": "11.0.1",
-    "@floating-ui/dom": "^1.0.10"
+    "@floating-ui/dom": "^1.0.10",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

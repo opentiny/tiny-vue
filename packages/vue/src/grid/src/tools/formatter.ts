@@ -38,6 +38,7 @@ import { find } from '@opentiny/vue-renderless/grid/static/'
 import { isNumber, isDate, isNull } from '@opentiny/vue-renderless/common/type'
 import { toDateStr, getDateWithNewTimezone, toDate, format } from '@opentiny/vue-renderless/common/date'
 import { iconClose, iconYes } from '@opentiny/vue-icon'
+import { warn } from './logger'
 
 const DateFormat = {
   FULLDATETIME: 'yyyy-MM-dd hh:mm:ss.SSS',
@@ -52,6 +53,26 @@ const DateFormat = {
 
 const dateFormat = function (value, formatString) {
   const userFormat = { dateFormat: formatString, ...this.own.formatConfig }
+
+  if (value) {
+    // 如果源值是日期字符串
+    if (typeof value === 'string') {
+      // 如果提供了源值日期格式，就转换为日期对象
+      if (userFormat.valueFormat) {
+        value = toDate(value, userFormat.valueFormat)
+      } else {
+        // 如果未提供了源值日期格式，就触发警告
+        warn('ui.grid.error.missingValueFormat')
+        // 如果源值字符串无法被正常解析，就返回源值字符串，不进行格式化转换
+        if (isNaN(Date.parse(value))) {
+          return value
+        }
+      }
+    } else if (typeof value === 'number') {
+      // 如果源值是数字
+      value = new Date(value)
+    }
+  }
 
   if (userFormat.isutc8) {
     if (!value) {

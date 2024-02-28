@@ -202,7 +202,7 @@ export const DATEPICKER = {
   queryClass: '.tiny-picker-panel__content',
   disableClass: '.time-select-item:not(.disabled)',
   defaultClass: '.default',
-  Qurtyli: 'li',
+  Qurtyli: '[data-tag="li"]',
   MappingKeyCode: { 40: 1, 38: -1 },
   DatePicker: 'DatePicker',
   TimePicker: 'TimePicker'

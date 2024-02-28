@@ -20,7 +20,7 @@ export default {
     normalClick(index, node) {
       this.normalActive = index
 
-      Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
+      Modal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
     }
   }
 }

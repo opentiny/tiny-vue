@@ -1413,6 +1413,14 @@
       "pc"
     ]
   },
+  "FloatButton": {
+    "path": "vue/src/float-button/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
   "FloatbarPc": {
     "path": "vue/src/floatbar/src/pc.vue",
     "type": "template",

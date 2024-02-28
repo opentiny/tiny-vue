@@ -1,5 +1,5 @@
 <template>
-  <div data-tag="tiny-steps" :class="['tiny-steps-line', size]">
+  <div data-tag="tiny-steps" :class="['tiny-steps tiny-steps-line', size, { vertical }]">
     <!-- hidden left step section -->
     <div
       v-show="state.startIndex !== 0"

@@ -108,8 +108,11 @@ export default {
     load || this.pageChangeEvent(this.tablePage)
   },
   pageCurrentChange(current) {
-    this.tablePage.currentPage = current
-    this.pageChangeEvent(this.tablePage)
+    // 只有在当前页改变时，才修改状态和触发新的查询
+    if (this.tablePage.currentPage !== current) {
+      this.tablePage.currentPage = current
+      this.pageChangeEvent(this.tablePage)
+    }
   },
   beforePageChangeHandler(params) {
     if (!this.showSaveMsg) {

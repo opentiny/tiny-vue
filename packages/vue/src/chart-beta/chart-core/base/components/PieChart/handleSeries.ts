@@ -1,6 +1,9 @@
 import merge from '../../util/merge'
-import cloneDeep from '../../util/cloneDeep'
+import setLabel from './handleLabel'
 import chartToken from './chartToken'
+import cloneDeep from '../../util/cloneDeep'
+import { percentToDecimal } from '../../util/math'
+import { isArray, isNumber, isString } from '../../util/type'
 
 export const seriesInit = () => {
   return {
@@ -22,86 +25,6 @@ export const seriesInit = () => {
   }
 }
 
-function handleHasLabel(hasLabel, seriesUnit, theme) {
-  if (hasLabel) {
-    seriesUnit.label = merge({ color: chartToken.labelColor, fontSize: chartToken.fontSize }, seriesUnit.label)
-  } else {
-    seriesUnit.label = { show: false }
-  }
-}
-
-function handleHasLabelLine(hasLabelLine, seriesUnit, label, theme) {
-  const lineColor = label?.lineColor
-  const lineLength =
-    label !== undefined ? (label.distance !== undefined ? label.distance : chartToken.distance) : chartToken.distance
-  if (hasLabelLine) {
-    seriesUnit.labelLine = merge(
-      {
-        show: true,
-        lineStyle: {
-          color: lineColor || chartToken.lineColor
-        },
-        smooth: 0.3,
-        length: lineLength,
-        length2: lineLength
-      },
-      seriesUnit.labelLine
-    )
-  } else {
-    seriesUnit.labelLine = {
-      show: false,
-      length: lineLength,
-      length2: lineLength
-    }
-  }
-}
-
-function hasLabelFormatterFun(labelFormatterType, seriesUnit, sum) {
-  switch (labelFormatterType) {
-    case 'percent':
-      seriesUnit.label.formatter = (params) => {
-        if (params.value === 0) {
-          return '0(0 %)'
-        } else {
-          return `${params.value}(${Math.round(((params.value * 100) / sum) * 100) / 100} %)`
-        }
-      }
-      break
-    case 'value':
-      seriesUnit.label.formatter = (params) => {
-        return `${params.value}`
-      }
-      break
-    default:
-      break
-  }
-}
-
-function handleHasLabelFormatter(hasLabel, hasLabelFormatter, seriesUnit, labelFormatterType, sum) {
-  if (hasLabel && hasLabelFormatter) {
-    seriesUnit.label.formatter = hasLabelFormatter
-  } else {
-    hasLabelFormatterFun(labelFormatterType, seriesUnit, sum)
-  }
-}
-
-/**
- * 配置圆盘图的label
- */
-function setLabel(theme, seriesUnit, label, data) {
-  const hasLabel = !(label && label.show === false)
-  const hasLabelLine = !(label && label.line === false)
-  const hasLabelFormatter = label && label.labelHtml
-  const labelFormatterType = (label && label.type) || ''
-  let sum = data.reduce((x, y) => ({ value: x.value + y.value }), { value: 0 })
-  sum = sum.value
-  handleHasLabel(hasLabel, seriesUnit, theme, label)
-  handleHasLabelLine(hasLabelLine, seriesUnit, label, theme)
-  handleHasLabelFormatter(hasLabel, hasLabelFormatter, seriesUnit, labelFormatterType, sum)
-  // 合并label其他属性
-  merge(seriesUnit.label, label)
-}
-
 /**
  * 根据参数计算出圆盘图的半径
  */
@@ -118,7 +41,6 @@ function setPieRadius(pieType, radius) {
         radius = ['44%', '50%']
         break
       case 'multi-circle':
-        // 待修改
         radius = ['44%', '50%']
         break
       default:
@@ -132,15 +54,16 @@ function setPieRadius(pieType, radius) {
 /**
  * 数据为零时添加背景
  */
-function handleEmptyData(data, series, theme, center, radius) {
+function handleEmptyData(data, series, center, radius) {
   const total = data.reduce((pre, cur) => {
     pre = pre + cur.value
     return pre
   }, 0)
+
   if (total === 0) {
     series.forEach((item) => {
       item.stillShowZeroSum = false
-      item.itemStyle.borderWidth = chartToken.borderWidthZero
+      item.itemStyle.borderWidth = chartToken.borderWidthNone
     })
     series.push({
       type: 'pie',
@@ -158,7 +81,43 @@ function handleEmptyData(data, series, theme, center, radius) {
   }
 }
 
-// 合并默认值到series
+// 余弦定理计算最小1px时的角度
+function minAngle(radius, chartInstance) {
+  const decimalRadiusArr = []
+  let decimalRadius = null
+  let newRadius = null
+
+  if (isNumber(radius)) {
+    newRadius = radius
+  } else if (isString(radius)) {
+    if (radius.endsWith('%')) {
+      decimalRadius = percentToDecimal(radius)
+      newRadius = (Math.min(chartInstance.getWidth(), chartInstance.getHeight()) * decimalRadius) / 2
+    } else {
+      newRadius = parseFloat(radius)
+    }
+  } else if (isArray(radius)) {
+    for (let i = 0; i < radius.length; i++) {
+      if (isNumber(radius[i])) {
+        decimalRadiusArr.push(radius[i] / Math.min(chartInstance.getWidth(), chartInstance.getHeight()))
+      } else if (isString(radius[i])) {
+        if (radius[i].endsWith('%')) {
+          decimalRadiusArr.push(percentToDecimal(radius[i]))
+        } else {
+          decimalRadiusArr.push(parseFloat(radius[i]))
+        }
+      }
+    }
+    decimalRadius = decimalRadiusArr[0] === 0 ? decimalRadiusArr[1] : decimalRadiusArr[0]
+    newRadius = (Math.min(chartInstance.getWidth(), chartInstance.getHeight()) * decimalRadius) / 2
+  }
+  const cosA = (newRadius ** 2 + newRadius ** 2 - 3 ** 2) / (2 * newRadius * newRadius)
+  const angleAInRadians = Math.acos(cosA)
+  const minAngle = angleAInRadians * (180 / Math.PI)
+  return minAngle
+}
+
+// 合并默认值seriesInit到series
 function mergeDefaultSeries(seriesUnit) {
   for (const key in seriesInit()) {
     if (Object.hasOwnProperty.call(seriesInit(), key)) {
@@ -175,10 +134,10 @@ function mergeDefaultSeries(seriesUnit) {
 
 /**
  * 组装echarts所需要的series
- * @param {主题} theme
  * @param {数据} data
  * @returns
  */
+
 const config = [
   'label',
   'labelLine',
@@ -186,33 +145,20 @@ const config = [
   'radius',
   'center',
   'silent',
-  'minAngle',
   'emphasis',
   'stillShowZeroSum',
   'selectedMode',
-  'roseType'
+  'roseType',
+  'minAngle'
 ]
 
-function handleSeries(pieType, theme, iChartOption, position) {
-  const { data, itemStyle, stillShowZeroSum } = iChartOption
+function handleSeries(pieType, iChartOption, chartInstance, position) {
+  const { data, stillShowZeroSum } = iChartOption
   position = position || {}
   iChartOption.center = position?.center
   iChartOption.radius = position?.radius
 
-  // 更改扇面边框样式
-  if (itemStyle && itemStyle.borderColor) {
-    seriesInit().itemStyle.borderColor = itemStyle.borderColor
-  } else {
-    seriesInit().itemStyle.borderColor = chartToken.borderColor
-  }
-  if (itemStyle && itemStyle.borderRadius) {
-    seriesInit().itemStyle.borderRadius = itemStyle.borderRadius
-  }
-  if (itemStyle && itemStyle.borderWidth) {
-    seriesInit().itemStyle.borderWidth = itemStyle.borderWidth
-  }
-
-  // 组装数据
+  // 组装series数据
   let series = []
   let selfSeries = iChartOption.series
   if (selfSeries === undefined) {
@@ -230,13 +176,15 @@ function handleSeries(pieType, theme, iChartOption, position) {
     })
     seriesUnit.data = seriesUnit.data || iChartOption.data
     seriesUnit.radius = setPieRadius(pieType, seriesUnit.radius)
-    setLabel(theme, seriesUnit, seriesUnit.label, seriesUnit.data)
+    seriesUnit.minAngle =
+      seriesUnit.minAngle !== undefined ? seriesUnit.minAngle : minAngle(seriesUnit.radius, chartInstance)
+    setLabel(seriesUnit, seriesUnit.label, seriesUnit.data)
     // 默认样式合并
     mergeDefaultSeries(seriesUnit)
   })
   // 数据和为0时不显示扇区 数据和为0时series属性都是一级
   if (stillShowZeroSum === false) {
-    handleEmptyData(data, selfSeries, theme, selfSeries[0].center, selfSeries[0].radius)
+    handleEmptyData(data, selfSeries, selfSeries[0].center, selfSeries[0].radius)
   }
   series = selfSeries
   return series

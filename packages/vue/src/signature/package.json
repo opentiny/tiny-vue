@@ -19,6 +19,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
-    "@opentiny/vue-modal": "workspace:~"
+    "@opentiny/vue-modal": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   }
 }

@@ -12,7 +12,10 @@
     "@opentiny/vue-option": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
-    "@opentiny/vue-color-select-panel": "workspace:~"
+    "@opentiny/vue-color-select-panel": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-color-picker": "workspace:~"
   },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",

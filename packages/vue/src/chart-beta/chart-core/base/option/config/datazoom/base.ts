@@ -1,5 +1,5 @@
 import cloneDeep from '../../../util/cloneDeep'
-import Theme from '../../../feature/theme'
+import Theme from '../../../feature/token'
 
 const baseOption = [
   {
@@ -61,18 +61,17 @@ const baseOption = [
 
 function base(theme) {
   const option = cloneDeep(baseOption)
-  const colorBase = Theme.color.base
   if (theme.includes('dark')) {
     // 手柄中心填充色
-    option[0].handleStyle.color = colorBase.subfont
+    option[0].handleStyle.color = Theme.config.dataZoomHandleColor
     // 手柄外框色
-    option[0].handleStyle.borderColor = colorBase.main
+    option[0].handleStyle.borderColor = Theme.config.dataZoomHandleBorderColor
     // 手柄阴影色
-    option[0].handleStyle.shadowColor = '#444444'
+    option[0].handleStyle.shadowColor = Theme.config.dataZoomHandleShadowColor
     // 手柄hover时中心填充色
-    option[0].emphasis.handleStyle.color = colorBase.font
+    option[0].emphasis.handleStyle.color = Theme.config.dataZoomEmphasisHandleColor
     // 手柄hover时外框色
-    option[0].emphasis.handleStyle.borderColor = colorBase.main
+    option[0].emphasis.handleStyle.borderColor = Theme.config.dataZoomEmphasisHandleBorderColor
 
     // 空白部分底色
     option[0].backgroundColor = '#090909'

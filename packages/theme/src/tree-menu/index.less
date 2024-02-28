@@ -223,7 +223,7 @@
       .@{tree-node-prefix-cls} {
         .@{tree-node-prefix-cls}__content {
           &-box {
-            max-width: 100%;
+            max-width: calc(100% - 26px);
             padding-right: 0;
           }
 
@@ -233,10 +233,6 @@
             text-overflow: ellipsis;
             display: block;
             padding-right: 0;
-          }
-
-          .tree-node {
-            width: calc(100% - 24px);
           }
         }
 

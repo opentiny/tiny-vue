@@ -53,7 +53,7 @@
                   m(
                     'w-4 h-4 flex flex-none items-center justify-center rounded-full mr-2 text-color-text-inverse',
                     size === 'large' ? 'w-6 h-6 mr-3' : 'w-4 h-4 mr-2',
-                    node[statusField] === 'done' ? 'bg-color-brand' : 'bg-gray-200',
+                    node[statusField] === 'done' ? 'bg-color-brand' : 'bg-color-border',
                     {
                       ' bg-color-brand group-hover:text-color-brand group-hover:bg-color-bg-1 ':
                         node[statusField] === 'doing'

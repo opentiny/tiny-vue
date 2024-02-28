@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      advancedActive: 2,
+      advancedActive: 1,
       data: [
         { name: 'Basic Info', count: 3, status: 'done' },
         { name: 'BOQ Info', count: 0, status: 'doing' },
@@ -30,7 +30,7 @@ export default {
     advancedClick(index, node) {
       this.advancedActive = index
 
-      Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
+      Modal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
     }
   }
 }

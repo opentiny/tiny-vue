@@ -46,10 +46,7 @@ export default {
     }
 
     if (code === 'reload') {
-      let currentPage = 1
-
       if (pager || args.page) {
-        currentPage = pagerConfig.currentPage
         pagerConfig.currentPage = 1
       }
 
@@ -57,10 +54,6 @@ export default {
       this.filterData = params.filters = []
       this.pendingRecords = []
       this.clearAll()
-
-      if (currentPage !== 1) {
-        return this.$nextTick()
-      }
     }
 
     if (sortArg && sortArg.length > 0) {

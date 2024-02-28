@@ -1,6 +1,6 @@
 {
   "name": "opentiny-vue",
-  "version": "3.7.12",
+  "version": "3.14.0",
   "private": true,
   "packageManager": "pnpm@8.3.1",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
@@ -136,7 +136,7 @@
     "dev:solid": "pnpm -C examples/solid-docs run dev"
   },
   "dependencies": {
-    "@vue/composition-api": "1.2.2",
+    "@vue/composition-api": "1.7.2",
     "color": "^4.2.3",
     "cropperjs": "1.5.12",
     "crypto-js": "4.2.0",

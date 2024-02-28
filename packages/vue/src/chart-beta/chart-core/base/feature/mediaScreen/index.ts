@@ -31,6 +31,12 @@ class mediaScreen {
     }
   }
 
+  // 强制触发一次监听，(解决页面挂载就调用refresh配置的问题)
+  refresh() {
+    this.curRange = []
+    this.observe()
+  }
+
   // 设置图表初始配置
   setInitOption(option) {
     this.initOption = cloneDeep(option)

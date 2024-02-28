@@ -2,7 +2,7 @@ import { isArray } from '../../util/type'
 import cloneDeep from '../../util/cloneDeep'
 import { VOLUMEGRID } from './BaseOption'
 import merge from '../../util/merge'
-import Theme from '../../feature/theme'
+import chartToken from './chartToken'
 import { xkey } from '../../option/RectSys'
 
 function handleData(iChartOpt) {
@@ -102,8 +102,7 @@ function handleGrid(baseOpt, iChartOpt) {
   }
 }
 
-function handleAxisPointer(baseOpt, theme) {
-  const baseColor = Theme.color.base
+function handleAxisPointer(baseOpt) {
   const axisPointer = {
     link: [
       {
@@ -111,8 +110,7 @@ function handleAxisPointer(baseOpt, theme) {
       }
     ],
     label: {
-      color: baseColor.subfont,
-      backgroundColor: baseColor.subg
+      color: chartToken.axisPointerLabelColor
     }
   }
   baseOpt.axisPointer = axisPointer

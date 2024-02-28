@@ -79,7 +79,7 @@ function operArrs({ _vm, editStore, newRecords, newRecordsCopy, nowData, row, ta
   Array.prototype.push.apply(_vm.temporaryRows, newRecordsCopy)
 }
 
-function removeFromTableSourceData({ _vm, rows, tableSourceData }) {
+export function removeFromTableSourceData({ _vm, rows, tableSourceData }) {
   for (let i = 0; i < rows.length; i++) {
     for (let j = tableSourceData.length - 1; j >= 0; j--) {
       if (getRowid(_vm, rows[i]) === getRowid(_vm, tableSourceData[j])) {
@@ -268,7 +268,7 @@ export default {
   },
   _revert(...args) {
     warn('ui.grid.error.delRevert')
-    return this.revertData.apply(this, args)
+    return this.revertData(...args)
   },
 
   /**
@@ -544,7 +544,7 @@ export default {
       return
     }
 
-    let listElem = elemStore[`${column.fixed}-body-list`] || elemStore['main-body-list']
+    let listElem = elemStore['main-body-list']
     let rowid = getRowid(this, row)
     let trElem = listElem.querySelector(`[data-rowid="${rowid}"]`)
 

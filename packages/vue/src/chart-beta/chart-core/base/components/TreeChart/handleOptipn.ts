@@ -10,14 +10,6 @@ export function setTooltip(iChartOpt) {
 }
 
 /**
- * 配置主题
- */
-export function setTheme(iChartOption) {
-  iChartOption.theme = iChartOption.theme || 'light'
-  return iChartOption.theme
-}
-
-/**
  * 设置ChartPadding
  */
 export function setChartPadding(type, iChartOption) {

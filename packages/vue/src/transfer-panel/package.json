@@ -20,7 +20,8 @@
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
-    "@opentiny/vue-pager": "workspace:~"
+    "@opentiny/vue-pager": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT"
 }

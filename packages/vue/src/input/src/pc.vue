@@ -201,6 +201,9 @@
         @mouseenter="handleEnterTextarea($event)"
         @mouseleave="handleLeaveTextarea($event)"
         :aria-label="label"
+        @keyup="$emit('keyup', $event)"
+        @keydown="$emit('keydown', $event)"
+        @paste="$emit('paste', $event)"
       >
       </textarea>
     </span>

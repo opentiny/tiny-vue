@@ -12,7 +12,7 @@
 
 import PopupManager from './popup-manager'
 import PopperJS from './popper'
-import { on } from './dom'
+import { on, off, isDisplayNone } from './dom'
 import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
 import type Popper from './popper'
 
@@ -92,7 +92,7 @@ export default (options: IPopperInputParams) => {
     const { followReferenceHide = true } = props?.popperOptions || {}
     const { _popper: popper, _reference: reference } = popperInstance
 
-    if (followReferenceHide && getComputedStyle(reference).position !== 'fixed' && reference.offsetParent === null) {
+    if (followReferenceHide && isDisplayNone(reference)) {
       popper.style.display = 'none'
     }
   }
@@ -108,7 +108,7 @@ export default (options: IPopperInputParams) => {
       return
     }
 
-    const options = props.popperOptions || {}
+    const options = props.popperOptions || { gpuAcceleration: false }
     state.popperElm = state.popperElm || props.popper || vm.$refs.popper || popperVmRef.popper
     const popper = state.popperElm
     let reference = getReference({ state, props, vm, slots })
@@ -185,6 +185,7 @@ export default (options: IPopperInputParams) => {
   const destroyPopper = (remove: 'remove' | boolean) => {
     if (remove) {
       if (state.popperElm) {
+        off(state.popperElm, 'click', stop)
         state.popperElm.remove()
       }
     }
@@ -207,13 +208,17 @@ export default (options: IPopperInputParams) => {
   onBeforeUnmount(() => {
     nextTick(() => {
       doDestroy(true)
-      destroyPopper('remove')
+      if (props.appendToBody || props.popperAppendToBody) {
+        destroyPopper('remove')
+      }
     })
   })
 
   onDeactivated(() => {
     doDestroy(true)
-    destroyPopper('remove')
+    if (props.appendToBody || props.popperAppendToBody) {
+      destroyPopper('remove')
+    }
   })
 
   return { updatePopper, destroyPopper, doDestroy, ...toRefs(state) }

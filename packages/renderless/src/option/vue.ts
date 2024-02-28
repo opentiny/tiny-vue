@@ -128,7 +128,7 @@ const initOnBeforeUnmount = ({ onBeforeUnmount, props, select, vm }) => {
 
     toggleEvent({ props, vm, type: 'remove' })
 
-    if (index === -1) {
+    if (index !== -1) {
       select.state.cachedOptions.splice(index, 1)
     }
 

@@ -1,7 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "compilerOptions": {
-    "composite": true,
     "allowJs": true,
     "noImplicitAny": false,
     "baseUrl": ".",
@@ -21,27 +20,9 @@
     "target": 3
   },
   "include": [
-    "packages/design/**/*.ts",
-    "packages/design/**/*.tsx",
-    "packages/design/**/*.vue",
-    "packages/renderless/**/*.ts",
-    "packages/renderless/**/*.tsx",
-    "packages/renderless/**/*.vue",
-    "packages/vue/**/*.ts",
-    "packages/vue/**/*.tsx",
-    "packages/vue/**/*.vue",
-    "packages/vue-common/**/*.ts",
-    "packages/vue-common/**/*.tsx",
-    "packages/vue-common/**/*.vue",
-    "packages/vue-icon/**/*.ts",
-    "packages/vue-icon/**/*.tsx",
-    "packages/vue-icon/**/*.vue",
-    "packages/vue-icon-saas/**/*.ts",
-    "packages/vue-icon-saas/**/*.tsx",
-    "packages/vue-icon-saas/**/*.vue",
-    "packages/vue-locale/**/*.ts",
-    "packages/vue-locale/**/*.tsx",
-    "packages/vue-locale/**/*.vue",
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.vue",
     "examples/vue3/shims-app.d.ts",
     "examples/vue3/shims-vue.d.ts"
   ],

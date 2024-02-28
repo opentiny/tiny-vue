@@ -52,7 +52,7 @@ describe('PC Mode', () => {
 
   test.todo('step 设置滑块移动时，每步位移距离，必需是大于0的正整数。')
 
-  test('show-input 是否显示输入框，仅在非范围选择时有效', async () => {
+  test('show-input 是否显示输入框', async () => {
     const value = ref(60)
     const wrapper = mount(() => <Slider v-model={value.value} showInput={true} min={0} max={100} />)
 
@@ -60,6 +60,19 @@ describe('PC Mode', () => {
     expect(input.exists()).toBe(true)
     await input.setValue(110)
     expect(value.value).toBe(100)
+
+    // 双输入框
+    const value2 = ref([40, 60])
+    const wrapper2 = mount(() => <Slider v-model={value2.value} showInput={true} min={0} max={100} />)
+    const input1 = wrapper2.find('.tiny-slider__input input')
+    expect(input1.exists()).toBe(true)
+    const input2 = wrapper2.find('.tiny-slider__input input:nth-child(3)')
+    expect(input2.exists()).toBe(true)
+
+    await input1.setValue(70)
+    await input1.trigger('blur')
+
+    expect(value2.value).toStrictEqual([60, 60])
   })
 
   test('show-percent 是否显示百分比，仅在show-input为true时有效', async () => {
@@ -114,4 +127,22 @@ describe('PC Mode', () => {
   test.todo(
     'Stop 设置滑块滑动结束时，触发该事件;arg:{Number|Array 滑块非范围选择时，是滑块当前值；滑块是范围选择时，是滑块当前值数组}'
   )
+
+  test('marks', async () => {
+    const marks = {
+      10: '10%',
+      40: '40%',
+      50: '50%'
+    }
+    const value = ref(20)
+
+    const wrapper = mount(() => <Slider v-model={value.value} marks={marks}></Slider>)
+    const points = wrapper.findAll('.tiny-slider__mark-point')
+    const labels = wrapper.findAll('.tiny-slider__mark-label')
+
+    Object.entries(marks).forEach(([key], index) => {
+      expect(points[index].attributes('style')).toContain(`left: ${key}%`)
+      expect(labels[index].attributes('style')).toContain(`left: ${key}%`)
+    })
+  })
 })
