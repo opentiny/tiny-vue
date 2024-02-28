@@ -6,6 +6,6 @@
 import { Button as TinyButton, Modal } from '@opentiny/vue'
 
 function btnClick() {
-  Modal.alert({ message: '不显示头部及底部', showHeader: false, showFooter: true })
+  Modal.alert({ message: '控制显示头部及底部', showHeader: false, showFooter: true })
 }
 </script>
