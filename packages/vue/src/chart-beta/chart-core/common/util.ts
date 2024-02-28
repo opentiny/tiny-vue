@@ -1,4 +1,4 @@
-import { typeOf as getType, isObject } from './type'
+import { typeOf as getType, isNull, isObject } from './type'
 import { copyArray } from './object'
 
 import _numerify from './numerify'
