@@ -23,18 +23,23 @@ export default defineComponent({
       type: String,
       default: 'name'
     },
+    countField: {
+      type: String,
+      default: 'count'
+    },
     statusField: {
       type: String,
       default: 'status'
     },
     data: [Object, Array],
+    space: [String, Number],
     active: {
       type: Number,
       default: -1
     },
     visibleNum: {
       type: Number,
-      default: 3
+      default: 5
     },
     descriptionField: {
       type: String,

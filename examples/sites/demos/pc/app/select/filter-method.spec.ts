@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('默认搜索', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#filter-method')
   const wrap = page.locator('#filter-method')
   const select = wrap.locator('.tiny-select').first()
@@ -44,6 +45,7 @@ test('默认搜索', async ({ page }) => {
 })
 
 test('自定义过滤', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#filter-method')
   const wrap = page.locator('#filter-method')
   const select = wrap.locator('.tiny-select').nth(1)
@@ -53,12 +55,12 @@ test('自定义过滤', async ({ page }) => {
 
   // 1.1 没有过滤到内容
   await input.click()
-  // 1.1.1 验证 no-match-text (待修复)
-  // await expect(page.getByText('No Match')).toBeHidden()
+  // 1.1.1 验证 no-match-text
+  await expect(page.getByText('No Match')).toBeHidden()
   await input.press('1')
   await expect(input).toHaveValue('1')
   await input.press('Enter')
-  // await expect(page.getByText('No Match')).toBeVisible()
+  await expect(page.getByText('No Match')).toBeVisible()
 
   await page.waitForTimeout(500)
   let allListItems = await option.all()

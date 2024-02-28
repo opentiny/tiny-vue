@@ -58,7 +58,11 @@ export const tabsProps = {
   showExpandTabs: Boolean,
   expandTabsTitle: String,
   expandTabsMode: String,
-  tooltipConfig: [String, Object]
+  tooltipConfig: [String, Object],
+  optimized: {
+    type: Boolean,
+    default: true
+  }
 }
 
 export default defineComponent({

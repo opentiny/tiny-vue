@@ -11,7 +11,9 @@
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-time-picker-mobile": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-recycle-scroller": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {

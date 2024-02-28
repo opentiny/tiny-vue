@@ -13,5 +13,6 @@ export const tinyPagerAuroraTheme = {
   'ti-pager-prev-next-hover-bg-color': 'transparent',
   'ti-pager-poplist-item-hover-bg-color': 'transparent',
   'ti-pager-active-bg-color': 'transparent',
-  'ti-pager-mini-min-width': '24px'
+  'ti-pager-mini-min-width': '24px',
+  'ti-pager-disabled-border-color': '#dfe1e6'
 }

@@ -12,89 +12,111 @@
 
 <template>
   <div
-    :class="['tiny-mobile-upload-list', 'tiny-mobile-upload-list--' + listType, { 'is-disabled': disabled }]"
-    v-if="state.screenType"
+    v-if="listType === 'saas'"
+    ref="uploadList"
+    class="tiny-upload-list--saas"
+    :class="[
+      state.files.length || mode === 'bubble' ? 'border-zero' : 'border-top',
+      { 'mode-bubble': mode === 'bubble' }
+    ]"
   >
-    <transition-group tag="ul" name="tiny-list">
-      <li
-        v-for="(file, index) in files"
-        :class="['tiny-mobile-upload-list__item', 'is-' + file.status, state.focusing ? 'focusing' : '']"
+    <div v-if="state.files.length" class="tiny-upload-list-panel">
+      <div
+        ref="uploadListLi"
+        class="tiny-upload-list-item"
+        data-tag="tiny-upload-list-item"
+        :class="{
+          'selected': file.uid === (selected && selected.uid),
+          'compact': compact
+        }"
+        v-for="file in state.files"
         :key="file.uid"
         tabindex="0"
-        @keydown.delete="!disabled && $emit('remove', file)"
-        @click="picturefilePreview(index)"
+        @click="$emit('click-file-list', file)"
       >
         <slot :file="file">
-          <div class="tiny-mobile-upload-list__card" v-if="['picture-card'].indexOf(listType) > -1">
-            <img
-              class="tiny-mobile-upload-list__item-thumbnail"
-              v-if="file.status !== 'uploading' && ['picture-card'].indexOf(listType) > -1"
-              :src="file.url"
-              alt=""
+          <div class="tiny-upload-list-thumb">
+            <template v-if="~['uploading'].indexOf(file.status)">
+              <div class="uploading-mask"></div>
+              <div class="uploading-progress">
+                <div class="uploading-progress-panel">
+                  <div
+                    class="uploading-progress-bar"
+                    :style="{
+                      width: `${parsePercentage(Math.max(0, Math.min(file.percentage || 0, 100)))}%`
+                    }"
+                  ></div>
+                </div>
+              </div>
+            </template>
+            <component
+              v-if="~['uploading', 'success', 'downloading'].indexOf(file.status)"
+              class="file-icon"
+              :style="{ fill: getFileIcon({ type: getFileType({ file }) }).color }"
+              :is="getFileIcon({ type: getFileType({ file }) }).name"
             />
-            <icon-error
-              class="icon-close card-close"
-              v-if="listType === 'picture-card' && display"
-              @click.stop="$emit('remove', file)"
-            ></icon-error>
-            <Progress
-              v-if="file.status === 'uploading'"
-              type="circle"
-              :percentage="parsePercentage(file.percentage)"
-              :stroke-width="1.4"
-              :width="32"
-            >
-            </Progress>
+            <div v-if="~['fail'].indexOf(file.status)" class="upload-fail">
+              <icon-cue-l class="upload-fail-icon" />
+            </div>
           </div>
-          <div class="tiny-mobile-upload-list__list" v-else>
-            <div class="file-type">
-              <icon-attachment v-if="filesIcon.length === 0" />
-              <template v-for="(item, index) in filesIcon">
-                <img
-                  :class="['file-type-icon', 'is-' + item.type]"
-                  :key="index"
-                  :src="item.url"
-                  v-if="filesIcon && state.screenType && file.fileType === item.type"
-                />
-              </template>
+          <div class="tiny-upload-list-content">
+            <div class="file-name">
+              <div class="file-name-box">
+                <span :title="file.name">{{
+                  file.name
+                    .split('.')
+                    .filter((item, i, arr) => arr.length - 1 > i || arr.length === 1)
+                    .join('.')
+                }}</span>
+                <span>.{{ file.name.split('.')[file.name.split('.').length - 1] }}</span>
+              </div>
+              <div class="operate-panel">
+                <slot name="operate" :file="file">
+                  <span
+                    v-if="handlePreview && ~['success', 'downloading'].indexOf(file.status)"
+                    class="operate-btn"
+                    @click="handlePreview(file)"
+                    >{{ t('ui.uploadList.preview') }}</span
+                  >
+                  <span
+                    v-if="handleDownloadFile && !~['fail', 'uploading'].indexOf(file.status)"
+                    class="operate-btn"
+                    @click="handleDownloadFile(file)"
+                    >{{ t('ui.uploadList.download') }}</span
+                  >
+                  <span
+                    v-if="(isEdm ? true : handleReUpload) && ~['fail'].indexOf(file.status)"
+                    class="operate-btn"
+                    @click="reUpload(file)"
+                    >{{ t('ui.uploadList.reUpload') }}</span
+                  >
+                  <span v-if="!displayOnly" class="operate-btn" @click.stop="remove({ file })">{{
+                    t('ui.uploadList.delete')
+                  }}</span>
+                </slot>
+              </div>
             </div>
-            <div class="tiny-mobile-upload-list__text file-content" @click="handleClick(file)">
-              <p class="tiny-mobile-upload-list__text-details file-name">
-                {{ file.name }}
-              </p>
-              <p class="tiny-mobile-upload-list__text-details file-size">
-                {{ file.size }}
-              </p>
-              <Progress
-                v-if="file.status === 'uploading'"
-                :show-text="false"
-                :stroke-width="2"
-                :percentage="parsePercentage(file.percentage)"
-              >
-              </Progress>
-            </div>
-            <div class="file-delete">
-              <icon-close-circle
-                class="icon-close"
-                v-if="listType !== 'picture-card' && display"
-                @click="$emit('remove', file)"
-              ></icon-close-circle>
+            <div class="file-size">
+              <span class="file-size-content">
+                <span v-if="~['fail'].indexOf(file.status)" class="fail">
+                  <span>{{ t('ui.uploadList.uploadFailed') }}</span>
+                </span>
+                <span v-else-if="~['uploading'].indexOf(file.status)">{{
+                  formatFileSize((file.size * file.percentage) / 100) + '/' + formatFileSize(file.size)
+                }}</span>
+                <span v-else>{{ formatFileSize(file.size) }}</span>
+              </span>
+              <span class="file-size-right">
+                <slot name="assist-content" :file="file"></slot>
+              </span>
             </div>
           </div>
         </slot>
-      </li>
-    </transition-group>
-    <tiny-image-viewer
-      v-if="listType === 'picture-card'"
-      :url-list="srcList"
-      :close-show="true"
-      :show-index="true"
-      :start-position="state.startPostion"
-      tool-show
-      @update:preview-visible="state.shows = $event"
-      delete-button
-      @newImageList="getDeleteData"
-    ></tiny-image-viewer>
+      </div>
+    </div>
+    <div v-else class="no-attachments">
+      {{ t('ui.uploadList.noAttachments') }}
+    </div>
   </div>
   <div v-else class="tiny-upload-list__wrapper">
     <transition-group
@@ -195,14 +217,22 @@
             <i class="tiny-icon-close-tip" v-if="!disabled && listOption.showDel">
               {{ t('ui.fileUpload.deleteTip') }}</i
             >
-            <Progress
+            <tiny-progress
               v-if="file.status === 'uploading' || file.status === 'downloading'"
               :type="listType === 'picture-card' ? state.progressType : 'line'"
               :stroke-width="listType === 'picture-card' ? state.progressStrokeWidth : 2"
               :width="state.progressWidth"
               :percentage="parsePercentage(file.percentage)"
+              :show-text="!state.progressWidth"
             >
-            </Progress>
+            </tiny-progress>
+            <div
+              v-if="file.status === 'uploading' && listType === 'picture-card' && state.progressWidth"
+              class="tiny-upload-list__item-cancel"
+              @click="$emit('remove', file)"
+            >
+              {{ t('ui.fileUpload.cancelFile') }}
+            </div>
             <tiny-tooltip placement="top" effect="light" :disabled="state.tooltipDisabled || file.status !== 'fail'">
               <template #content>
                 <span class="tiny-upload-list__item-tooltip"
@@ -211,7 +241,10 @@
                   }}</span
                 >
               </template>
-              <span class="tiny-upload-list__item-actions" v-if="listType === 'picture-card'">
+              <span
+                class="tiny-upload-list__item-actions"
+                v-if="listType === 'picture-card' && (state.progressWidth ? file.status !== 'uploading' : true)"
+              >
                 <span
                   v-if="openDownloadFile"
                   class="tiny-upload-list__item-download"
@@ -277,7 +310,6 @@ import { renderless, api } from '@opentiny/vue-renderless/upload-list/vue'
 import Progress from '@opentiny/vue-progress'
 import Tooltip from '@opentiny/vue-tooltip'
 import Button from '@opentiny/vue-button'
-import ImageViewer from '@opentiny/vue-image-viewer'
 import {
   iconAttachment,
   iconSuccessful,
@@ -289,9 +321,25 @@ import {
   iconError,
   iconFileCloudupload,
   iconDownload,
+  iconCueL,
   iconRefres,
   iconOperationfaild,
-  iconFullscreenLeft
+  iconFullscreenLeft,
+  iconRight,
+  iconPause,
+  iconAudio,
+  iconEllipsis,
+  iconExcelType,
+  iconFileType,
+  iconOtherType,
+  iconPdfType,
+  iconPictureType,
+  iconPptType,
+  iconTextType,
+  iconVideoType,
+  iconWordType,
+  iconZipType,
+  iconFileuploadPro
 } from '@opentiny/vue-icon'
 import Modal from '@opentiny/vue-modal'
 import type { IUploadListApi } from '@opentiny/vue-renderless/types/upload-list.type'
@@ -299,10 +347,9 @@ import type { IUploadListApi } from '@opentiny/vue-renderless/types/upload-list.
 export default defineComponent({
   name: $prefix + 'UploadList',
   components: {
-    Progress,
+    TinyProgress: Progress,
     TinyTooltip: Tooltip,
     TinyButton: Button,
-    TinyImageViewer: ImageViewer,
     IconAttachment: iconAttachment(),
     IconSuccessful: iconSuccessful(),
     IconClose: iconClose(),
@@ -313,10 +360,27 @@ export default defineComponent({
     IconError: iconError(),
     IconFileCloudupload: iconFileCloudupload(),
     IconDownload: iconDownload(),
+    IconCueL: iconCueL(),
     IconRefres: iconRefres(),
     IconOperationfaild: iconOperationfaild(),
-    IconFullscreenLeft: iconFullscreenLeft()
+    IconFullscreenLeft: iconFullscreenLeft(),
+    IconRight: iconRight(),
+    IconPause: iconPause(),
+    IconAudio: iconAudio(),
+    IconEllipsis: iconEllipsis(),
+    IconExcelType: iconExcelType(),
+    IconFileType: iconFileType(),
+    IconOtherType: iconOtherType(),
+    IconPdfType: iconPdfType(),
+    IconPictureType: iconPictureType(),
+    IconPptType: iconPptType(),
+    IconTextType: iconTextType(),
+    IconVideoType: iconVideoType(),
+    IconWordType: iconWordType(),
+    IconZipType: iconZipType(),
+    IconFileuploadPro: iconFileuploadPro()
   },
+  emits: ['click-file-list', 'remove', 'start', 'update:visible', 'update', 'reUpload', 'ReUploadTotal'],
   props: [
     ...props,
     'disabled',
@@ -334,7 +398,12 @@ export default defineComponent({
     'maxNameLength',
     'mode',
     'reUploadable',
-    'reUploadTip'
+    'reUploadTip',
+    'selected',
+    'displayOnly',
+    'handleDownloadFile',
+    'handleReUpload',
+    'compact'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, extendOptions: { Modal } }) as unknown as IUploadListApi

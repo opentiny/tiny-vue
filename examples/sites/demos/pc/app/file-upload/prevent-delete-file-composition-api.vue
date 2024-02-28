@@ -6,7 +6,7 @@
   </tiny-file-upload>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { FileUpload as TinyFileUpload, Button as TinyButton, Modal } from '@opentiny/vue'
 
@@ -21,7 +21,7 @@ const fileList = ref([
 function beforeRemove(file) {
   return new Promise((resolve, reject) => {
     Modal.confirm(`确定移除 ${file.name}？`).then((res) => {
-      res === 'confirm' ? resolve() : reject(new Error())
+      res === 'confirm' ? resolve() : reject(new Error('取消移除'))
     })
   })
 }

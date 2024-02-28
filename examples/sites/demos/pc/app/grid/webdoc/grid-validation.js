@@ -7,7 +7,7 @@ export default {
       'name': { 'zh-CN': '编辑时校验', 'en-US': 'Verify during editing' },
       'desc': {
         'zh-CN':
-          '<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则。具体参考下面示例。</p>\n',
+          '<p><code>grid</code> 标签配置 <code>edit-config</code> 对象，并配置 <code>edit-rules</code> 对象来设置校验对象和校验规则。</p>\n',
         'en-US':
           'The <p>grid tag configures the edit-config object, and configures the edit-rules object to set the validation object and validation rule. For details, see the following example. </p>\n'
       },
@@ -18,7 +18,7 @@ export default {
       'name': { 'zh-CN': '常显编辑器校验', 'en-US': 'Verify hidden columns during editing' },
       'desc': {
         'zh-CN':
-          '<p>grid 标签配置 edit-config 对象且列配置type：visible 且配置isValidAlways属性时, 即列总是显示可编辑状态时，支持编辑时校验,并配置 edit-rules 对象来设置校验对象和校验规则。具体参考下面示例。</p>\n',
+          '<p><code>grid</code> 标签配置 <code>edit-config</code> 对象且列配置 <code>type：visible</code> 且配置 <code>isValidAlways</code> 属性时, 即列总是显示可编辑状态时，支持编辑时校验,并配置 <code>edit-rules</code> 对象来设置校验对象和校验规则。</p>\n',
         'en-US':
           '<p>When the edit-config object is configured for the grid tag, type is set to visible, and isValidAlways is configured for the column, that is, the column is always editable, verification during editing is supported. Configure the edit-rules object to set the verification object and verification rule. For details, see the following example. </p>\n'
       },
@@ -54,7 +54,7 @@ export default {
       'name': { 'zh-CN': '选中时校验', 'en-US': 'Verify when selected' },
       'desc': {
         'zh-CN':
-          '<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。</p>\n',
+          '<p><code>grid</code> 标签配置 <code>edit-config</code> 对象，并配置 <code>edit-rules</code> 对象来设置校验对象和校验规则，通过按钮点击事件调用 <code>this.$refs.basicGrid.validate()</code> 方法来触发表格校验，具体参考下面示例。</p>\n',
         'en-US':
           'The <p>grid tag configures the edit-config object, configures the edit-rules object to set the validation object and validation rule, and invokes the this.$refs.basicGrid.validate() method to trigger table validation through the button click event. For details, see the following example. </p>\n'
       },
@@ -65,7 +65,7 @@ export default {
       'name': { 'zh-CN': '提交前校验', 'en-US': 'Verify Before Submission' },
       'desc': {
         'zh-CN':
-          '<p>grid 标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。注意：如果传递了 callback 回调就不能正常 catch 到 validate 捕获到的错误。</p>\n',
+          '<p><code>grid</code> 标签配置 <code>edit-config</code> 对象，并配置 <code>edit-rules</code> 对象来设置校验对象和校验规则，通过按钮点击事件调用 <code>this.$refs.basicGrid.validate()</code> 方法来触发表格校验，具体参考下面示例。注意：如果传递了 callback 回调就不能正常 catch 到 validate 捕获到的错误。</p>\n',
         'en-US':
           'The <p>grid tag configures the edit-config object, configures the edit-rules object to set the validation object and validation rule, and invokes the this.$refs.basicGrid.validate() method to trigger table validation through the button click event. For details, see the following example. </p>\n'
       },
@@ -79,7 +79,7 @@ export default {
       },
       'desc': {
         'zh-CN':
-          '<p>通过配置 tooltipConfig.popperOptions.bubbling 为 true ，可实现表格的校验提示跟随其外部的滚动条滚动。</p>\n',
+          '<p>通过配置 <code>tooltipConfig.popperOptions.bubbling</code> 为 <code>true</code> ，可实现表格的校验提示跟随其外部的滚动条滚动。</p>\n',
         'en-US':
           '<p>The grid editor introduces the tiny.0 component, configures the edit-config object in the tag, and configures the edit-rules object to set the verification object and verification rule. Invoke the this.$refs.basicGrid.validate() method through the button click event to trigger table validation. For details, see the following example. </p>\n'
       },
@@ -90,7 +90,7 @@ export default {
       'name': { 'zh-CN': '触发校验时自动定位到当前校验的单元格', 'en-US': 'Error prompt configuration item' },
       'desc': {
         'zh-CN':
-          '<p>grid 编辑器引入 tiny 组件，标签配置 edit-config 对象，并配置 edit-rules 对象来设置校验对象和校验规则，通过按钮点击事件调用 this.$refs.basicGrid.validate()方法来触发表格校验，具体参考下面示例。</p>\n',
+          '<p><code>grid</code> 编辑器引入 <code>TinyVue</code> 组件，标签配置 <code>edit-config</code> 对象，并配置 <code>edit-rules</code> 对象来设置校验对象和校验规则，通过按钮点击事件调用 <code>this.$refs.basicGrid.validate()</code> 方法来触发表格校验，具体参考下面示例。</p>\n',
         'en-US':
           '<p>The default error message is displayed on <code>body</code>. You can set <code>appendTobody</code> in <code>tooltip-config</code> to <code>false</code> to solve the problem that the tip position is incorrect during page scrolling. Set the <code>placement</code> property to adjust the default display direction. For details about the <code>tooltip-config</code> configuration, see the tooltip component</p>\n'
       },
@@ -117,5 +117,5 @@ export default {
       'codeFiles': ['validation/asterisk-method.vue']
     }
   ],
-  apis: [{ 'name': 'grid-validation', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-validation', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

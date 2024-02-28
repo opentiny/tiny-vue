@@ -14,7 +14,6 @@
     @apply h-full;
     @apply text-xs;
     @apply text-color-text-primary;
-    font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
     transition: top 0.4s;
 
     &.active {
@@ -144,6 +143,7 @@
         @apply whitespace-normal;
         word-wrap: break-word;
         @apply break-all;
+        @apply overflow-auto;
       }
     }
 
@@ -156,7 +156,6 @@
         @apply mt-0;
         @apply w-auto;
         @apply shadow-lg;
-        transform: translateY(-10%);
 
         .@{modal-prefix-cls}__body {
           &:after {
@@ -230,7 +229,7 @@
         @apply pl-0;
 
         svg {
-          @apply ~"p-[0.125rem]";
+          @apply ~'p-[0.125rem]';
         }
       }
     }
@@ -392,7 +391,7 @@
   }
 
   &__zoom-btn {
-    right: 52px;
+    @apply right-11;
     @apply border-color-border-separator;
 
     &:hover {
@@ -404,6 +403,10 @@
     @apply shrink-0;
     @apply text-right;
     @apply pt-0 pr-6 pb-6 pl-6;
+
+    & &-move {
+      @apply cursor-move;
+    }
   }
 
   &__resize {
@@ -439,8 +442,8 @@
     .sest-resize,
     .swlb-resize,
     .selb-resize {
-      @apply ~"w-2.5";
-      @apply ~"h-2.5";
+      @apply ~'w-2.5';
+      @apply ~'h-2.5';
       @apply ~'z-[101]';
     }
 

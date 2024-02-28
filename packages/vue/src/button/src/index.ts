@@ -35,6 +35,10 @@ export const buttonProps = {
     type: String,
     default: 'button'
   },
+  href: {
+    type: String,
+    default: ''
+  },
   size: {
     type: String,
     default: '',

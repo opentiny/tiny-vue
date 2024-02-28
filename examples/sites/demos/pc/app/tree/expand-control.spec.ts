@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('节点的展开', async ({ page }) => {
+test('测试节点的展开', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tree#expand-control')
 

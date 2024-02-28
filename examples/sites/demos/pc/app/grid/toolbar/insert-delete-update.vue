@@ -140,7 +140,8 @@ export default {
           break
         }
         case 'getDelete': {
-          $grid.getRemoveRecords() // 获取删除的数据
+          const deleteData = $grid.getRemoveRecords() // 获取删除的数据
+          Modal.alert('获取删除的数据：' + JSON.stringify(deleteData))
           break
         }
         case 'save': {

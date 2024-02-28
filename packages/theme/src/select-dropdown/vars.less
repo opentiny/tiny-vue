@@ -26,7 +26,7 @@
   // 选择下拉框的顶部外边距
   --ti-select-dropdown-margin-top: var(--ti-common-dropdown-gap, 2px);
   // 下拉面板的最大高度
-  --ti-select-dropdown-max-height: calc(248px - var(--ti-select-dropdown-padding-top) - var(--ti-select-dropdown-padding-bottom) + var(--ti-common-space-base));
+  --ti-select-dropdown-max-height: calc(30px * 8 + 8px);
   // 远程搜索数据为空时下拉框文本色（hide）
   --ti-select-dropdown-empty-text-color: var(--ti-common-color-placeholder, #adb0b8);
   // 下拉面板空数据提示文本字号
@@ -75,6 +75,14 @@
   --ti-select-dropdown-search-width: 100%;
   // 下拉面板搜索框的边框宽度
   --ti-select-dropdown-search-border-width: var(--ti-common-size-0, 0px);
+  // 下拉面板搜索框的边框圆角
+  --ti-select-dropdown-search-border-radius: var(--ti-common-border-radius-0, 0px);
+  // 下拉面板搜索框的左边框色
+  --ti-select-dropdown-search-border-color-left: var(--ti-common-color-transparent, transparent);
+  // 下拉面板搜索框的右边框色
+  --ti-select-dropdown-search-border-color-right: var(--ti-common-color-transparent, transparent);
+  // 下拉面板搜索框的上边框色
+  --ti-select-dropdown-search-border-color-top: var(--ti-common-color-transparent, transparent);
   // 下拉面板搜索框尾部图标显示状态
   --ti-select-dropdown-search-suffix-display: 'block';
   // 下拉面板搜索框头部图标显示状态
@@ -93,4 +101,20 @@
   --ti-select-dropdown-icon-size: var(--ti-common-font-size-1, 14px);
   // 下拉面板图标颜色
   --ti-select-dropdown-icon-color: var(--ti-common-color-icon-normal, #575d6c);
+  // 下拉面板新增按钮的文本色
+  --ti-select-dropdown-top-create-text-color: var(--ti-common-color-text-link);
+  // 下拉面板新增按钮的文本悬浮色
+  --ti-select-dropdown-top-create-text-color-hover: var(--ti-common-color-text-link-hover);
+  // 下拉面板新增按钮图标色
+  --ti-select-dropdown-top-create-icon-color: var(--ti-common-color-icon-active);
+  // 下拉面板新增按钮底部边框尺寸
+  --ti-select-dropdown-top-create-border-weight-bottom: var(--ti-common-border-weight-normal);
+  // 下拉面板新增按钮底部边框样式
+  --ti-select-dropdown-top-create-border-style-bottom: var(--ti-common-border-style-solid);
+  // 下拉面板新增按钮底部边框颜色
+  --ti-select-dropdown-top-create-border-color-bottom: var(--ti-common-color-line-dividing);
+  // 下拉面板加载区域的垂直内边距
+  --ti-select-dropdown-loading-padding-vertical: var(--ti-common-space-6, 6px);
+  //下拉面板加载区域的水平内边距
+  --ti-select-dropdown-loading-padding-horizontal: var(--ti-common-space-10, 10px);
 }

@@ -21,7 +21,8 @@
     "@opentiny/vue-radio": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-loading": "workspace:~",
-    "@opentiny/vue-modal": "workspace:~"
+    "@opentiny/vue-modal": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

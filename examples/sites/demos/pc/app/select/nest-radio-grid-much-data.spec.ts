@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('下拉表格大数据', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#nest-radio-grid-much-data')
 
   const wrap = page.locator('#nest-radio-grid-much-data')

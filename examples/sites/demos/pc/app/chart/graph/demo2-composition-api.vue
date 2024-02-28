@@ -2,7 +2,7 @@
   <tiny-chart-graph :extend="extend" height="600px"></tiny-chart-graph>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { ChartGraph as TinyChartGraph } from '@opentiny/vue'
 
@@ -32,6 +32,9 @@ let option = {
   yAxis: {
     type: 'value'
   },
+  grid: {
+    right: 20
+  },
   series: [
     {
       type: 'graph',
@@ -40,18 +43,14 @@ let option = {
       coordinateSystem: 'cartesian2d',
       symbolSize: 40,
       label: {
-        normal: {
-          show: true
-        }
+        show: true
       },
       edgeSymbol: ['circle', 'arrow'],
       edgeSymbolSize: [4, 10],
       data,
       links,
       lineStyle: {
-        normal: {
-          color: '#2f4554'
-        }
+        color: '#2f4554'
       }
     }
   ]

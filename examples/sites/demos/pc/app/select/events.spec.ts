@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('单选事件', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#events')
   const wrap = page.locator('#events')
   const select = wrap.locator('.tiny-select').first()
@@ -32,6 +33,7 @@ test('单选事件', async ({ page }) => {
 })
 
 test('多选事件', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#events')
   const wrap = page.locator('#events')
   const select = wrap.locator('.tiny-select').nth(1)

@@ -18,6 +18,10 @@ export default defineComponent({
     popperAppendToBody: {
       type: Boolean,
       default: true
+    },
+    displayOnly: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

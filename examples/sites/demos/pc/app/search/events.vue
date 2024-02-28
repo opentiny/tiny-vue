@@ -38,16 +38,16 @@ export default {
   },
   methods: {
     search(key, value) {
-      Modal.message(`${value}`)
+      Modal.message({ message: `search: ${value}`, status: 'info' })
     },
     change(key, value) {
-      Modal.message(`change: ${value}`)
+      Modal.message({ message: `change: ${value}`, status: 'info' })
     },
     clear() {
-      Modal.message('clear')
+      Modal.message({ message: 'clear', status: 'info' })
     },
     input(key, value) {
-      Modal.message(`input: ${key}, ${JSON.stringify(value)}`)
+      Modal.message({ message: `input: ${key}, ${JSON.stringify(value)}`, status: 'info' })
     },
     select(value) {
       Modal.message({ message: `${value.text}`, status: 'info' })

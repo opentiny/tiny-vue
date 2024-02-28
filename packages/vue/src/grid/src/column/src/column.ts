@@ -33,7 +33,7 @@ export default defineComponent({
   componentName: 'GridColumn',
   props: {
     ...$props,
-    // 列对其方式
+    // 列对齐方式
     align: String,
     // 给单元格附加 className
     className: [String, Function],
@@ -127,7 +127,9 @@ export default defineComponent({
     // 列宽度
     width: [Number, String],
     // 操作列配置
-    operationConfig: Object
+    operationConfig: Object,
+    // 值比较方法
+    equals: Function
   },
   provide() {
     return { $column: this }

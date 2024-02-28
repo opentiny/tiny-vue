@@ -4,4 +4,6 @@ title: Image preview
 
 # Image preview
 
-<div>Image container, which supports lazy loading, customized placeholder, and loading failure while retaining the native IMG feature.</div>
+<div>
+Image components, support lazy loading and adaptive container size, etc., but also support the function of clicking full-screen browse album.
+</div>

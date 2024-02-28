@@ -1,6 +1,8 @@
 <template>
   <div
-    :class="mergeClass(datas.rowClass, currentRowId === rowid ? 'border sm:border-2 border-color-brand' : '')"
+    :class="
+      mergeClass(datas.rowClass, currentRowId === rowid && isCardType ? 'border sm:border-2 sm:border-color-brand' : '')
+    "
     data-tag="tiny-table-row"
     :data-rowid="rowid"
     @click="handleClick"
@@ -17,6 +19,7 @@ import ColumnLayout from './column-layout.vue'
 export default defineComponent({
   components: { ColumnLayout },
   props: { ...$props, datas: Object, currentRowId: String },
+  emits: ['card-click'],
   data() {
     return {
       mergeClass
@@ -24,18 +27,23 @@ export default defineComponent({
   },
   computed: {
     row() {
-      const { datas } = this
+      const { datas } = this as any
       return datas.row
     },
     rowid() {
-      const { datas } = this
+      const { datas } = this as any
       const { config, row } = datas
       const { tableVm } = config
-
       return getRowid(tableVm, row)
+    },
+    isCardType() {
+      const { datas } = this as any
+      const { config } = datas
+      const { viewType } = config?.tableVm?.$grid
+
+      return viewType === 'card'
     }
   },
-  emits: ['card-click'],
   methods: {
     handleClick(e: any) {
       if (

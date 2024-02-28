@@ -19,10 +19,18 @@
   --ti-steps-font-size-base: var(--ti-common-font-size-base, 12px);
   // 节点内容悬浮字号
   --ti-steps-font-size-hover: var(--ti-common-font-weight-4, normal);
+  // 节点文本色
+  --ti-steps-text-color: var(--ti-common-color-text-primary, #252b3a);
+  // 节点内容悬浮背景色
+  --ti-steps-bg-color-hover: var(--ti-common-color-bg-white-normal, #fff);
+  // 节点内容悬浮边框色
+  --ti-steps-border-color-hover: var(--ti-common-color-line-active, #5e7ce0);
   // 节点内容悬浮字体色
   --ti-steps-text-color-hover: var(--ti-common-color-primary-normal, #5e7ce0);
   // 序号圆圈大小
   --ti-steps-icon-size: var(--ti-common-size-5x, 20px);
+  // 序号悬浮字体色
+  --ti-steps-icon-hover-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
   // 步骤条字号(hide)
   --ti-steps-font-size-7: var(--ti-common-font-size-7, 36px);
   // 节点间横线厚度
@@ -45,11 +53,23 @@
   --ti-steps-bottom-divider-margin-top: var(--ti-common-space-4x, 16px);
   // 底部分割线的颜色
   --ti-steps-bottom-divider-bg-color: var(--ti-common-color-line-dividing, #dfe1e6);
+  // 描述信息字号
+  --ti-steps-description-font-size: var(--ti-common-font-size-base, 12px);
+  // 描述信息字体色
+  --ti-steps-description-text-color: var(--ti-common-color-text-secondary, #575d6c);
   // 描述信息最小宽度
   --ti-steps-description-min-width: calc(var(--ti-common-space-10, 10px) * 10);
+  // 垂直单链型描述上边距
+  --ti-steps-vertical-description-margin-top: var(--ti-common-space-2x);
 
   // 活跃节点背景色
   --ti-steps-advanced-active-bg-color: var(--ti-common-color-bg-emphasize, #5e7ce0);
+  // 活跃节点悬浮背景色
+  --ti-steps-done-active-bg-color-hover: var(--ti-common-color-primary-hover, #7693f5);
+  // 活跃节点边框色
+  --ti-steps-advanced-active-border-color: var(--ti-common-color-line-active, #5e7ce0);
+  // 活跃节点序号图标色
+  --ti-steps-line-active-icon-color: var(--ti-common-color-icon-white, #fff);
   // 活跃节点字重
   --ti-steps-active-font-weight: var(--ti-common-font-weight-4, normal);
   // 活跃节点内容字体色
@@ -61,6 +81,8 @@
   --ti-steps-line-active-bg-color: var(--ti-common-color-line-active, #5e7ce0);
   // 已完成节点边框色
   --ti-steps-done-active-border-color: var(--ti-common-color-line-active, #5e7ce0);
+  // 已完成节点悬浮边框色
+  --ti-steps-done-active-border-color-hover: var(--ti-common-color-primary-hover, #7693f5);
   // 已完成节点图标(或文本)色
   --ti-steps-done-icon-color: var(--ti-common-color-icon-active, #5e7ce0);
   // 已完成节点图标大小
@@ -83,8 +105,19 @@
   // 未完成节点内容文本色
   --ti-steps-timeline-date-time-text-color: var(--ti-common-color-text-primary, #252b3a);
 
+  // 处理中节点边框色
+  --ti-steps-doing-border-color: var(--ti-common-color-line-active, #5e7ce0);
+  // 处理中节点悬浮边框色
+  --ti-steps-doing-border-color-hover: var(--ti-common-color-primary-hover, #7693f5);
+  // 处理中节点图标(或文本)色
+  --ti-steps-doing-icon-color: var(--ti-common-color-icon-active, #5e7ce0);
+  // 处理中节点序号背景色
+  --ti-steps-doing-icon-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+
   // 错误节点的背景色
   --ti-steps-error-icon-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+  // 错误节点悬浮背景色
+  --ti-steps-error-icon-bg-color-hover: var(--ti-common-color-error-bg, #ffeeed);
   // 错误节点图标色
   --ti-steps-error-icon-color: var(--ti-common-color-error-text, #de504e);
   // 错误节点图标大小
@@ -102,6 +135,12 @@
   --ti-steps-disabled-border-color: var(--ti-steps-disabled-icon-color);
   // 禁用节点描述文本色
   --ti-steps-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  // 禁用节点名称文本色
+  --ti-steps-disabled-name-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  // 禁用节点选中背景色
+  --ti-steps-disabled-select-icon-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+  // 禁用节点选中序号文本色
+  --ti-steps-disabled-select-icon-color: var(--ti-common-color-text-disabled, #adb0b8);
 
   // mini尺寸序号圆圈大小
   --ti-steps-mini-icon-size: var(--ti-common-font-size-5, 24px);
@@ -150,19 +189,47 @@
   --ti-steps-advanced-dot-wait-bg-color: var(--ti-common-color-success-normal, #50d4ab);
   // 向导步骤条已完成节点背景色(hide)
   --ti-steps-advanced-dot-done-bg-color: var(--ti-common-color-success-normal, #50d4ab);
+  // 向导步骤条默认背景色
+  --ti-steps-advanced-default-bg-color: var(--ti-common-color-bg-normal, #eef0f5);
+  // 向导步骤条悬浮背景色
+  --ti-steps-advanced-bg-color-hover: #dfe1e6;
+  // 向导步骤条已完成节点背景色
+  --ti-steps-advanced-done-bg-color: var(--ti-common-color-bg-light-normal, #e9edfa);
+  // 向导步骤条已完成节点悬浮背景色
+  --ti-steps-advanced-done-bg-color-hover: var(--ti-base-color-brand-3, #beccfa);
+  // 向导步骤条进行中节点背景色
+  --ti-steps-advanced-doing-bg-color: var(--ti-common-color-bg-light-normal, #e9edfa);
+  // 向导步骤条已完成节点悬浮背景色
+  --ti-steps-advanced-doing-bg-color-hover: var(--ti-base-color-brand-3, #beccfa);
+  // 向导步骤条异常节点背景色
+  --ti-steps-advanced-error-bg-color: var(--ti-common-color-error-bg, #ffeeed);
+  // 向导步骤条异常节点悬浮背景色
+  --ti-steps-advanced-error-bg-color-hover: var(--ti-common-color-error-border-secondary, #ffbcba);
+  // 向导步骤条异常节点选中背景色
+  --ti-steps-advanced-error-bg-color-selected: #de504e;
+  // 向导步骤条异常节点图标色
+  --ti-steps-advanced-error-icon-color: var(--ti-common-color-error-text, #de504e);
+  // 向导步骤条禁用节点背景色
+  --ti-steps-advanced-disabled-bg-color: var(--ti-common-color-bg-disabled, #f5f5f5);
+  // 向导步骤条禁用节点悬浮背景色
+  --ti-steps-advanced-disabled-bg-color-hover: var(--ti-common-color-bg-disabled, #f5f5f5);
+  // 向导步骤条禁用节点点击背景色
+  --ti-steps-advanced-disabled-bg-color-active: var(--ti-common-color-bg-disabled, #f5f5f5);
 
   // 竖式步骤条节点左右字号
   --ti-steps-timeline-name-font-size: var(--ti-common-font-size-1, 14px);
   // 竖式步骤条节点左侧时间预留宽度
   --ti-steps-timeline-vertical-time-width: var(--ti-common-size-25x, 100px);
   // 竖式步骤条线条上下间距
-  --ti-steps-timeline-line-margin-vertical: 0;
+  --ti-steps-timeline-line-margin-vertical: var(--ti-common-size-base, 4px);
   // 竖式步骤条线条背景色
   --ti-steps-timeline-vertical-line-bg-color: var(--ti-common-color-line-dividing, #dfe1e6);
   // 竖式步骤条线条左间距
   --ti-steps-timeline-vertical-line-margin-left: var(--ti-common-size-3x, 12px);
   // 竖式步骤条线条右间距
   --ti-steps-timeline-vertical-line-margin-right: var(--ti-steps-timeline-vertical-line-margin-left);
+  // 竖式步骤条圆点与内容间隔
+  --ti-steps-timeline-shape-dot-content-margin-left: var(--ti-common-size-3x, 12px);
   // 竖式步骤条圆点尺寸
   --ti-steps-timeline-dot-width: var(--ti-common-size-2x, 8px);
   // 竖式步骤条圆点边框色

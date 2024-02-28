@@ -38,5 +38,18 @@ export default {
       'codeFiles': ['tree/demo5.vue']
     }
   ],
-  apis: [{ 'name': 'chart-tree', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'chart-tree', 'type': 'component', 'props': [], 'events': [], 'slots': [] }],
+  types: [
+    {
+      name: 'IChartSettings',
+      type: 'interface',
+      code: `
+interface IChartSettings {
+  dimension: string // 维度，默认 columns 第一项为维度
+  metrics: string // 指标，默认 columns 第二项为指标
+  seriesMap: object // 附加到 series 中的设置
+}
+`
+    }
+  ]
 }

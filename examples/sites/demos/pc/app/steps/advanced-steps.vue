@@ -1,5 +1,10 @@
 <template>
-  <tiny-steps :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
+  <div class="demo-steps">
+    <tiny-steps :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
+
+    <p>通过 <code>advanced</code> 属性启用高级向导功能:</p>
+    <tiny-steps advanced :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
+  </div>
 </template>
 
 <script>
@@ -11,12 +16,13 @@ export default {
   },
   data() {
     return {
-      advancedActive: 2,
+      advancedActive: 1,
       data: [
-        { name: 'Basic Info', count: 3, status: 'doing' },
-        { name: 'BOQ Info', count: 0, status: 'done' },
+        { name: 'Basic Info', count: 3, status: 'done' },
+        { name: 'BOQ Info', count: 0, status: 'doing' },
         { name: 'Involved Parties', count: 10, status: 'error' },
-        { name: 'Billing', count: 0, status: 'disabled' }
+        { name: 'Billing', count: 0, status: 'disabled' },
+        { name: 'Appraise', count: 3 }
       ]
     }
   },
@@ -24,7 +30,7 @@ export default {
     advancedClick(index, node) {
       this.advancedActive = index
 
-      Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
+      Modal.message({ message: `节点 index: ${index}; 节点信息: ${JSON.stringify(node)}`, status: 'info' })
     }
   }
 }

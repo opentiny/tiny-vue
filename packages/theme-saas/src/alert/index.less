@@ -10,17 +10,21 @@
   @apply rounded;
 
   &&--normal {
-    @apply py-2 px-4;
+    @apply py-3 px-4;
     @apply my-2 mx-0;
     @apply flex;
     @apply justify-start;
-    @apply items-center;
 
     .@{alert-prefix-cls}__content {
       @apply py-0 px-2;
       @apply table-cell;
-      @apply leading-normal;
+      @apply ~'leading-5.5';
       max-width: calc(100% - theme('spacing.8'));
+
+      &.close-hidden {
+        @apply pr-0;
+        @apply max-w-full;
+      }
     }
   }
 
@@ -37,7 +41,7 @@
     }
 
     .@{alert-prefix-cls}__description {
-      @apply ~"mb-1.5";
+      @apply ~'mb-1.5';
       @apply mt-2;
       @apply leading-none;
 
@@ -68,7 +72,7 @@
   }
 
   &&--info {
-    .alert-variant(theme('colors.color.text.primary'); theme('colors.color.bg.1'); theme('colors.color.info.secondary.DEFAULT'); theme('colors.color.info.secondary.DEFAULT'); theme('colors.color.info.secondary.subtle'); theme('colors.color.text.primary'));
+    .alert-variant(theme('colors.color.text.primary'); theme('colors.color.bg.1'); theme('colors.color.info.primary.DEFAULT'); theme('colors.color.info.primary.DEFAULT'); theme('colors.color.info.primary.subtler'); theme('colors.color.text.primary'));
   }
 
   &&--warning {
@@ -80,7 +84,9 @@
   }
 
   &__icon {
-    @apply text-base;
+    @apply text-xl;
+    @apply ~'mt-0.5';
+    @apply shrink-0;
   }
 
   &.is-center {
@@ -90,18 +96,18 @@
 
   .is-custom {
     @apply absolute;
-    @apply ~"top-1/2";
+    @apply ~'top-1/2';
     @apply right-3;
-    @apply ~"-translate-y-2/4";
+    @apply ~'-translate-y-2/4';
     @apply cursor-pointer;
   }
 
   & &__close {
     @apply text-base;
     @apply absolute;
-    @apply ~"top-1/2";
+    @apply ~'top-5';
     @apply right-3;
-    @apply ~"-translate-y-2/4";
+    @apply ~'-translate-y-2/4';
     @apply cursor-pointer;
 
     &:hover {
@@ -138,7 +144,6 @@
 
   & &__description {
     @apply text-sm;
-    @apply text-color-text-primary;
   }
 
   p {

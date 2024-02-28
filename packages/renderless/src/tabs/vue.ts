@@ -61,6 +61,7 @@ const initState = ({ reactive, props }: Pick<ITabsRenderlessParams, 'reactive' |
     offsetY: 0,
     direction: '',
     expandPanesWidth: '',
+    activeIndex: 1,
     separator: props.separator
   }) as ITabsState
 

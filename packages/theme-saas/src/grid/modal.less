@@ -1,7 +1,10 @@
-@import './mixins/common.less';
 @import '../custom.less';
+@import './icon.less';
 
 @grid-modal-prefix-cls: ~'@{css-prefix}grid-modal';
+@grid-toolbar-modal-prefix-cls: ~'@{css-prefix}grid-toolbar-modal';
+@modal-prefix-cls: ~'@{css-prefix}modal';
+@grid-custom-prefix-cls: ~'@{css-prefix}grid-custom';
 
 .@{grid-modal-prefix-cls} {
   &__wrapper {
@@ -13,7 +16,6 @@
     @apply h-full;
     @apply text-xs;
     @apply text-color-text-primary;
-    font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
     transition: top 0.4s;
 
     &.active {
@@ -34,9 +36,12 @@
       }
 
       &:not(.type__message) {
-        .@{grid-modal-prefix-cls}__box:not(.is__drag) {
+        .@{grid-modal-prefix-cls}__box {
           top: 15vh;
-          transition: top 0.3s ease-in, opacity 0.4s ease-in;
+
+          &:not(.is__drag) {
+            transition: top 0s ease-in, opacity 0.4s ease-in;
+          }
         }
       }
 
@@ -58,6 +63,16 @@
       @apply overflow-auto;
     }
 
+    &:not(.type__message) {
+      .@{grid-modal-prefix-cls}__text {
+        @apply text-sm;
+      }
+      .@{grid-custom-prefix-cls} {
+        @apply text-sm;
+        @apply font-normal;
+      }
+    }
+
     &.lock__view,
     &.is__mask {
       &:before {
@@ -74,21 +89,22 @@
 
     &.is__mask {
       &:before {
-        @apply bg-black bg-opacity-0;
+        @apply bg-black;
+        @apply bg-opacity-0;
       }
     }
 
     &.is__animat {
       &.is__mask {
         &:before {
-          .animatTransition(background-color, 0.2s);
+          transition: background-color, 0.2s, ease-in-out;
         }
       }
 
       &.type__message {
         .@{grid-modal-prefix-cls}__box {
           &:not(.is__drag) {
-            .animatTransition(all, 0.2s, ease-out);
+            @apply transition-all duration-200 ease-out;
           }
         }
       }
@@ -129,6 +145,7 @@
         @apply whitespace-normal;
         word-wrap: break-word;
         @apply break-all;
+        @apply overflow-auto;
       }
     }
 
@@ -174,6 +191,8 @@
         @apply absolute;
         @apply ~'left-1/2';
         @apply top-0;
+        @apply rounded;
+        @apply border-none;
         @apply shadow-xl;
 
         .@{grid-modal-prefix-cls}__header {
@@ -196,38 +215,47 @@
     &.type__confirm {
       .@{grid-modal-prefix-cls}__status-wrapper {
         @apply text-2xl;
-        @apply ~'pt-0 pr-2.5 pb-0 pl-0.5';
+        @apply pr-2;
+        @apply pl-0;
+
+        svg {
+          @apply ~"p-[0.125rem]";
+        }
       }
     }
 
     &.status__info {
       .@{grid-modal-prefix-cls}__status-wrapper {
-        @apply text-color-brand;
+        @apply fill-color-info-secondary;
       }
     }
 
     &.status__warning,
     &.status__question {
       .@{grid-modal-prefix-cls}__status-wrapper {
-        @apply text-color-warning;
+        @apply fill-color-warning;
       }
     }
 
     &.status__success {
       .@{grid-modal-prefix-cls}__status-wrapper {
-        @apply text-color-success;
+        @apply fill-color-success;
       }
     }
 
     &.status__error {
       .@{grid-modal-prefix-cls}__status-wrapper {
-        @apply text-color-error;
+        @apply fill-color-error;
       }
     }
 
     &.status__loading {
       .@{grid-modal-prefix-cls}__status-wrapper {
-        @apply text-color-info-secondary;
+        @apply fill-color-info-secondary;
+      }
+
+      svg.roll {
+        animation: rollCircle 1s infinite linear;
       }
     }
 
@@ -256,7 +284,8 @@
   &__box {
     @apply w-108;
     @apply bg-color-bg-1;
-    @apply border border-solid border-color-bg-2;
+    @apply border-none;
+    @apply rounded;
     @apply text-sm;
     @apply text-left;
     @apply pointer-events-auto;
@@ -290,7 +319,7 @@
 
   &__status-wrapper {
     @apply shrink-0;
-    @apply flex;
+    @apply inline-flex;
     @apply items-center;
   }
 
@@ -299,7 +328,7 @@
   }
 
   &__content {
-    @apply flex-grow;
+    @apply w-full;
   }
 
   &__header,
@@ -312,38 +341,62 @@
     @apply flex;
     @apply flex-grow;
     @apply p-6;
+
+    &.is-message {
+      @apply px-4;
+      @apply py-2;
+      @apply ~'leading-5.5';
+    }
   }
 
   &__header {
     @apply shrink-0;
     @apply text-sm;
+    @apply leading-6;
     @apply font-bold;
     @apply pt-6 pr-6 pb-0 pl-6;
-    @apply border-b border-b-color-border;
+    border-bottom: none;
     @apply select-none;
+    @apply text-color-text-primary;
+    @apply flex;
+
+    .@{grid-modal-prefix-cls}__title {
+      @apply mr-4;
+      @apply break-all;
+    }
+  }
+
+  &__header-icon + .@{grid-modal-prefix-cls}__body {
+    @apply pl-14;
   }
 
   &__zoom-btn,
   &__close-btn {
-    @apply text-sm;
+    @apply text-base;
     @apply absolute;
     @apply right-6;
     @apply top-7;
     @apply ~'z-[1]';
-    @apply text-color-text-placeholder;
+    @apply text-color-text-primary;
     @apply cursor-pointer;
 
     &:hover {
-      @apply text-color-brand;
+      @apply text-color-brand-hover;
+      @apply fill-color-icon-hover;
+    }
+
+    &:active {
+      @apply text-color-brand-active;
+      @apply fill-color-icon-active;
     }
   }
 
   &__zoom-btn {
     @apply right-11;
-    @apply border-color-text-placeholder;
+    @apply border-color-border-separator;
 
     &:hover {
-      @apply border-x-color-border-hover;
+      @apply border-color-border;
     }
   }
 
@@ -351,6 +404,10 @@
     @apply shrink-0;
     @apply text-right;
     @apply pt-0 pr-6 pb-6 pl-6;
+
+    & &-move {
+      @apply cursor-move;
+    }
   }
 
   &__resize {
@@ -386,8 +443,8 @@
     .sest-resize,
     .swlb-resize,
     .selb-resize {
-      @apply ~'w-2.5';
-      @apply ~'h-2.5';
+      @apply ~"w-2.5";
+      @apply ~"h-2.5";
       @apply ~'z-[101]';
     }
 
@@ -436,5 +493,25 @@
     .sb-resize {
       bottom: calc(-1 * theme('spacing.2') / 2 + theme('spacing.px'));
     }
+  }
+}
+
+// 解决列设置的左侧padding不为0, 勿覆盖
+.@{grid-toolbar-modal-prefix-cls} {
+  .@{modal-prefix-cls}__body {
+    @apply flex;
+    @apply flex-grow;
+    @apply p-0;
+    @apply ~'pb-2.5';
+  }
+}
+
+@keyframes rollCircle {
+  0% {
+    @apply rotate-0;
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -1,6 +1,8 @@
+@import '../custom.less';
 @import './vars.less';
+@rich-text-editor-prefix-cls: ~'@{css-prefix}rich-text-editor';
 
-.tiny-rich-text-editor {
+.@{rich-text-editor-prefix-cls} {
   .component-css-vars-rich-text-editor();
 
   strong {
@@ -115,24 +117,23 @@
           border-width: 1px;
           border-left: none;
         }
+
         &:nth-child(1) {
           border-left-width: 1px;
         }
       }
     }
   }
-}
 
-// p-h1~6
-.tiny-rich-text-editor {
+  // p-h1~6
   .h-box {
     position: relative;
 
     .h-options {
       position: absolute;
       padding: 0.15rem;
-      background-color: var(--ti-rich-text-edito-options-bg-color);
-      left: 0px;
+      background-color: var(--ti-rich-text-editor-options-bg-color);
+      left: 0;
       display: none;
       border-radius: var(--ti-rich-text-editor-options-border-radius);
       box-shadow: var(--ti-rich-text-editor-options-box-shadow);
@@ -143,12 +144,15 @@
         margin: 0;
         text-align: center;
         line-height: var(--ti-common-line-height-3);
+
         svg,
         path {
           fill: black;
         }
+
         &:hover {
           background-color: var(--ti-rich-text-edito-options-item-bg-color);
+
           svg,
           path {
             fill: var(--ti-rich-text-edito-options-item-hover-color);
@@ -168,10 +172,8 @@
       }
     }
   }
-}
 
-// 表格区域样式
-.tiny-rich-text-editor {
+  // 表格区域样式
   .table-button {
     .table-box {
       display: flex;
@@ -217,10 +219,8 @@
       }
     }
   }
-}
 
-// 颜色选择样式
-.tiny-rich-text-editor {
+  // 颜色选择样式
   .color-button {
     position: relative;
     padding-right: 1.2rem;
@@ -242,10 +242,8 @@
       }
     }
   }
-}
 
-// 图片样式
-.tiny-rich-text-editor {
+  // 图片样式
   .image-button {
     position: relative;
 
@@ -283,115 +281,90 @@
       width: 0;
     }
   }
-}
 
-.tiny-rich-text-editor .tiny-rich-text-editor__toolbar {
-  .line-height-button {
-    position: relative;
+  .tiny-rich-text-editor__toolbar {
+    .line-height-button {
+      position: relative;
 
     .line-height-options {
       position: absolute;
       padding: 0.15rem;
-      background-color: var(--ti-rich-text-edito-options-bg-color);
-      left: 0px;
+      background-color: var(--ti-rich-text-editor-options-bg-color);
+      left: 0;
       display: none;
       border-radius: var(--ti-rich-text-editor-options-border-radius);
       box-shadow: var(--ti-rich-text-editor-options-box-shadow);
       z-index: 999;
 
-      button {
-        color: black;
-        margin: 0;
-        text-align: center;
-        line-height: var(--ti-common-line-height-3);
-        &:hover {
-          background-color: var(--ti-rich-text-editor-options-item-bg-color);
-          color: var(--ti-rich-text-editor-options-item-hover-color);
+        button {
+          color: black;
+          margin: 0;
+          text-align: center;
+          line-height: var(--ti-common-line-height-3);
+
+          &:hover {
+            background-color: var(--ti-rich-text-editor-options-item-bg-color);
+            color: var(--ti-rich-text-editor-options-item-hover-color);
+          }
+        }
+      }
+
+      &:hover {
+        .line-height-options {
+          display: flex;
+          flex-direction: column;
+
+          button {
+            width: auto;
+          }
         }
       }
     }
 
-    &:hover {
-      .line-height-options {
-        display: flex;
-        flex-direction: column;
+    .font-size-box {
+      position: relative;
+
+      .font-size-options {
+        display: none;
+        position: absolute;
+        border-radius: var(--ti-rich-text-editor-options-border-radius);
+        background-color: var(--ti-rich-text-editor-options-bg-color);
+        box-shadow: var(--ti-rich-text-editor-options-box-shadow);
+        z-index: 99;
 
         button {
-          width: auto;
+          color: black;
+          margin: 0;
+          text-align: center;
+          line-height: var(--ti-common-line-height-3);
+
+          &:hover {
+            background-color: var(--ti-rich-text-editor-options-item-bg-color);
+            color: var(--ti-rich-text-editor-options-item-hover-color);
+          }
+        }
+      }
+
+      &:hover {
+        background-color: var(--ti-rich-text-editor-options-item-bg-color);
+
+        .font-size-options {
+          display: flex;
+          flex-direction: column;
         }
       }
     }
   }
-}
 
-.tiny-rich-text-editor {
   .bubble-menu {
     button {
       background-color: #f1f3f5;
     }
   }
-}
 
-.tiny-rich-text-editor .tiny-rich-text-editor__toolbar {
-  .font-size-box {
-    position: relative;
-
-    .font-size-options {
-      display: none;
-      position: absolute;
-      border-radius: var(--ti-rich-text-editor-options-border-radius);
-      background-color: var(--ti-rich-text-editor-options-bg-color);
-      box-shadow: var(--ti-rich-text-editor-options-box-shadow);
-      z-index: 99;
-
-      button {
-        color: black;
-        margin: 0;
-        text-align: center;
-        line-height: var(--ti-common-line-height-3);
-        &:hover {
-          background-color: var(--ti-rich-text-editor-options-item-bg-color);
-          color: var(--ti-rich-text-editor-options-item-hover-color);
-        }
-      }
-    }
-
-    &:hover {
-      background-color: var(--ti-rich-text-editor-options-item-bg-color);
-
-      .font-size-options {
-        display: flex;
-        flex-direction: column;
-      }
-    }
-  }
-}
-
-// 富文本编辑器的主题区域，需要对高度进行调整，达到融为一体
-.tiny-rich-text-editor__container {
-  overflow: auto;
-  padding: 10px;
-  height: 100%;
-  border: 1px solid var(--ti-rich-text-editor-box-border-color);
-  border-top: 0;
-
-  &::-webkit-scrollbar {
-    width: 4px;
-    height: 0px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgb(0, 0, 0);
-    border-radius: 8px;
-  }
-}
-
-.tiny-rich-text-editor {
   .ProseMirror {
     outline: none !important;
-  }
 
-  .ProseMirror {
     > * + * {
       margin-top: 0.75em;
     }
@@ -444,21 +417,6 @@
       color: #616161;
     }
 
-    pre {
-      background: #0d0d0d;
-      color: #fff;
-      font-family: 'JetBrainsMono', monospace;
-      padding: 0.75rem 1rem;
-      border-radius: 0.5rem;
-
-      code {
-        color: inherit;
-        padding: 0;
-        background: none;
-        font-size: 0.8rem;
-      }
-    }
-
     img {
       max-width: 100%;
       height: auto;
@@ -474,9 +432,7 @@
       border-top: 2px solid rgba(#0d0d0d, 0.1);
       margin: 2rem 0;
     }
-  }
 
-  .ProseMirror {
     .img-button {
       resize: both;
       overflow: hidden;
@@ -525,7 +481,7 @@
         right: 0;
         top: 0;
         bottom: 0;
-        background: rgba(200, 200, 255, 0.4);
+        background: #c8c8ff66;
         pointer-events: none;
       }
 
@@ -553,9 +509,7 @@
       cursor: ew-resize;
       cursor: col-resize;
     }
-  }
 
-  .ProseMirror {
     ul[data-type='taskList'] {
       list-style: none;
       padding: 0;
@@ -575,12 +529,6 @@
         }
       }
     }
-  }
-
-  .ProseMirror {
-    > * + * {
-      margin-top: 0.75em;
-    }
 
     .code-block {
       position: relative;
@@ -598,7 +546,7 @@
     pre {
       background: #0d0d0d;
       color: #fff;
-      font-family: 'JetBrainsMono', monospace;
+      font-family: JetBrainsMono, monospace;
       padding: 0.75rem 1rem;
       border-radius: 0.5rem;
 
@@ -618,7 +566,6 @@
       .hljs-template-variable,
       .hljs-attribute,
       .hljs-tag,
-      .hljs-name,
       .hljs-regexp,
       .hljs-link,
       .hljs-name,
@@ -663,11 +610,30 @@
     }
   }
 
-  .ProseMirror p.is-editor-empty:first-child::before {
+  ~ .ProseMirror p.is-editor-empty:first-child:before {
     content: attr(data-placeholder);
     float: left;
     color: #9a9a9a;
     pointer-events: none;
     height: 0;
+  }
+
+  // 富文本编辑器的主题区域，需要对高度进行调整，达到融为一体
+  &__container {
+    overflow: auto;
+    padding: 10px;
+    height: 100%;
+    border: 1px solid var(--ti-rich-text-editor-box-border-color);
+    border-top: 0;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #000;
+      border-radius: 8px;
+    }
   }
 }

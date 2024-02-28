@@ -7,7 +7,7 @@
     <tiny-collapse-item name="2">
       <template #title>
         <div class="title">
-          <div>效率 Efficiency</div>
+          <div>反馈 Feedback</div>
           <tiny-icon-star-o class="tiny-icon-star-o"></tiny-icon-star-o>
         </div>
       </template>
@@ -57,7 +57,8 @@ const TinyIconSetting = iconSetting()
   margin-left: 12px;
 }
 
-.tiny-icon-star-o, .tiny-icon-setting {
+.tiny-icon-star-o,
+.tiny-icon-setting {
   font-size: 18px;
 }
 </style>

@@ -79,7 +79,8 @@ export default defineComponent({
     confirmContent: String,
     cancelContent: String,
     position: String,
-    customClass: String
+    customClass: String,
+    slots: Object
   },
   emits: [
     'update:modelValue',
@@ -93,7 +94,6 @@ export default defineComponent({
     'custom-mousemove'
   ],
   components: {
-    Button,
     Checkbox,
     CheckboxGroup
   },
@@ -105,6 +105,7 @@ export default defineComponent({
   },
   render() {
     let {
+      $props = {},
       state,
       slots,
       type,
@@ -125,10 +126,16 @@ export default defineComponent({
       position,
       customClass
     } = this
-
+    let { slots: propSlots = {} } = $props
     let { zoomLocat, visible, contentVisible, modalTop, isMsg } = state
-    let defaultSlot = slots.default
-    let footerSlot = slots.footer
+    let defaultSlot = slots.default || propSlots.default
+    let footerSlot = slots.footer || propSlots.footer
+    let footerSlotParams = {
+      $modal: this,
+      beforeClose: this.beforeClose,
+      confirm: this.confirmEvent,
+      cancel: this.cancelEvent
+    }
     const isBottomRight = position === 'bottom-right'
 
     const statusIcon = typeof status === 'string' ? STATUS_MAPPING_COMPINENT[status.toUpperCase()] : status
@@ -229,7 +236,7 @@ export default defineComponent({
                     click: this.cancelEvent
                   }
                 },
-                t('ui.button.cancel')
+                cancelContent || t('ui.button.cancel')
               )
             : null,
           type === 'confirm' ? h('span', { class: 'border-r border-r-color-border-separator' }) : null,
@@ -245,7 +252,7 @@ export default defineComponent({
                 click: this.confirmEvent
               }
             },
-            t('ui.button.confirm')
+            confirmContent || t('ui.button.confirm')
           )
         ]
       )
@@ -360,7 +367,7 @@ export default defineComponent({
                             'span',
                             {
                               class: [
-                                'flex-none sm:flex-auto text-base sm:text-sm w-full flex-1',
+                                'sm:flex-auto text-base sm:text-sm w-full flex-1',
                                 { 'truncate font-semibold': type !== 'message' },
                                 {
                                   'line-clamp-2 text-center leading-5.5 sm:text-left': type === 'message'
@@ -449,9 +456,7 @@ export default defineComponent({
                           class:
                             'py-2.5 sm:pb-6 sm:pt-0 px-6 border-t-0.5 sm:border-t-0 border-color-border-separator text-center sm:text-right'
                         },
-                        footerSlot
-                          ? footerSlot.call(this, { $modal: this, beforeClose: this.beforeClose }, h)
-                          : footerBottom
+                        footerSlot ? footerSlot.call(this, footerSlotParams, h) : footerBottom
                       )
                     : null,
                   !isMsg && resize

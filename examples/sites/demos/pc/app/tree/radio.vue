@@ -52,8 +52,6 @@ export default {
   },
   methods: {
     getChecks() {
-      const currentKey = this.$refs.treeRef.getCurrentKey()
-
       // 查询勾选的值
       const checkedKeys = this.$refs.treeRef.getCheckedKeys()
       // 查询勾选叶子的值
@@ -81,7 +79,7 @@ export default {
       this.$refs.treeRef.setCurrentRadio()
     },
     checkChange(data, checked, indeterminate) {
-      console.log('checkChange事件：', arguments)
+      console.log('checkChange事件：', { data, checked, indeterminate })
     }
   }
 }

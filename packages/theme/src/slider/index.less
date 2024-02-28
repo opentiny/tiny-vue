@@ -57,10 +57,20 @@
 
   &.disabled {
     cursor: default;
-  }
 
-  &.disabled .@{slider-prefix-cls}__handle {
-    cursor: not-allowed;
+    .@{slider-prefix-cls}__range  {
+      background-color: var(--ti-slider-range-disabled-bg-color);
+    }
+
+    .@{slider-prefix-cls}__handle {
+      cursor: not-allowed;
+      border-color: var(--ti-slider-handle-disabled-border-color);
+
+      &:hover svg, svg {
+        fill: var(--ti-slider-handle-icon-disabled-fill-color);
+      }
+    }
+    
   }
 
   &__vertical {
@@ -94,6 +104,19 @@
       margin: var(--ti-slider-margin-vertical) var(--ti-slider-margin-right) var(--ti-slider-margin-vertical)
         var(--ti-slider-margin-left);
     }
+
+    .@{slider-prefix-cls}__mark-point {
+      transform: translateY(50%);
+      height: var(--ti-slider-mark-point-width);
+      width: var(--ti-slider-height);
+    }
+
+    .@{slider-prefix-cls}__mark-label {
+      transform: translateY(50%);
+      margin-left: var(--ti-slider-mark-label-margin-top);
+      margin-top: 0;
+    }
+
   }
 
   &__range {
@@ -169,6 +192,7 @@
     border: 1px solid var(--ti-slider-tips-border-color);
     border-radius: var(--ti-common-border-radius-1);
     color: var(--ti-slider-tips-text-color);
+    box-shadow: var(--ti-slider-tips-box-shadow);
 
     &:before {
       margin-left: -6px;
@@ -189,12 +213,33 @@
     }
   }
 
+  &__mark-point {
+    position: absolute;
+    pointer-events: none;
+    transform: translateX(-50%);
+    width: var(--ti-slider-mark-point-width);
+    height: var(--ti-slider-height);
+    background-color: var(--ti-slider-mark-point-bg-color);
+  }
+
+  &__mark-label {
+    position: absolute;
+    transform: translateX(-50%);
+    margin-top: var(--ti-slider-mark-label-margin-top);
+    color: var(--ti-slider-mark-label-text-color);
+    font-size: var(--ti-slider-mark-label-font-size);
+  }
+
   &__input {
     display: inline-block;
     line-height: var(--ti-slider-input-height);
     vertical-align: top;
-    margin-left: 12px;
+    margin-left:var(--ti-slider-input-margin-left);
     font-size: var(--ti-common-font-size-base);
+
+    &__split {
+      padding: 0 4px;
+    }
 
     input {
       width: var(--ti-slider-input-width);
@@ -209,11 +254,11 @@
       outline: 0;
       display: inline-block;
       box-sizing: border-box;
-      text-align: center;
+      text-align: var(--ti-slider-input-text-align);
     }
 
-    span {
-      padding-left: 8px;
+    &__unit {
+      margin-left: var(--ti-slider-input-unit-margin-left);
     }
   }
 }

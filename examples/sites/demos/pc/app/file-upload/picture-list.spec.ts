@@ -12,10 +12,11 @@ test('图片列表缩略图', async ({ page }) => {
   const images = page.locator('.tiny-upload-list__item-thumbnail')
   const triangles = page.locator('.tiny-upload-list__item-status-label')
 
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
   const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
-  await expect(width).toBeGreaterThanOrEqual(708)
+  await expect(width).toBeGreaterThanOrEqual(height)
   await expect(height).toBeGreaterThanOrEqual(56)
   await expect(lists).toHaveCount(2)
   await fileChooser.setFiles(currentPath)

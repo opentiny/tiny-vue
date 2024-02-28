@@ -18,7 +18,7 @@ export default {
       'name': { 'zh-CN': '拖拽控制', 'en-US': 'Drag Control' },
       'desc': {
         'zh-CN':
-          '<p>可以通过设置 <code>drop-config</code> 的 <code>onBeforeMove</code> 事件控制行拖动，配置<code>drop-config</code> 的 <code>trigger</code> 来指定拖拽的触发源（一般是 <code>class</code> 类名），也可以配置<code>drop-config</code> 的 <code>filter</code> 与自定义样式结合使用来限制拖动。</p>\n',
+          '<p>通过设置 <code>drop-config</code> 的 <code>onBeforeMove</code> 事件控制行拖动，配置<code>drop-config</code> 的 <code>trigger</code> 来指定拖拽的触发源（一般是 <code>class</code> 类名），也可以配置<code>drop-config</code> 的 <code>filter</code> 与自定义样式结合使用来限制拖动。</p>\n',
         'en-US':
           '<p>You can set the <code>onBeforeMove</code> event of <code>drop-config</code> to control row dragging. You can also configure <code>filter</code> of <code>drop-config</code> in conjunction with a custom style to restrict drag</p>\n'
       },
@@ -36,5 +36,5 @@ export default {
       'codeFiles': ['drag/column-drag.vue']
     }
   ],
-  apis: [{ 'name': 'grid-drag', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-drag', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

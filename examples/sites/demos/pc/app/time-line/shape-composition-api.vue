@@ -3,7 +3,7 @@
     <tiny-button type="primary" @click="changeShape">
       点击切换 shape 为 {{ shape === 'dot' ? 'circle' : 'dot' }}
     </tiny-button>
-    <tiny-time-line vertical :data="data" :shape="shape"></tiny-time-line>
+    <tiny-time-line vertical :data="data" :shape="shape" :active="active" @click="onClick"></tiny-time-line>
   </div>
 </template>
 
@@ -17,11 +17,14 @@ const data = reactive([
   { name: '已签收', time: '2019-11-13 20:45:50' },
   { name: '已评价', time: '2019-11-14 20:45:50' }
 ])
-
+const active = ref(1)
 const shape = ref('dot')
 
 const changeShape = () => {
   shape.value = shape.value === 'dot' ? 'circle' : 'dot'
+}
+const onClick = (index: number) => {
+  active.value = index
 }
 </script>
 

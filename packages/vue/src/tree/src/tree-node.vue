@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <!--
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -57,6 +58,7 @@
         <span
           class="tiny-tree-node__content-indent"
           v-for="i in showLine ? 1 : node.level - 1"
+          :key="i"
           :style="{ width: state.computedIndent, flexShrink: 0 }"
         ></span>
         <div class="tiny-tree-node__content-left">
@@ -64,7 +66,11 @@
             <span class="tree-node-number">{{ node.data.number }}</span>
           </template>
           <template v-else>
-            <span v-if="!node.isLeaf" class="tree-node-icon" @click="handleExpandIconClick($event, node)">
+            <span
+              v-if="!node.isLeaf"
+              :class="['tree-node-icon', { 'is-disabled': node.disabled }]"
+              @click="handleExpandIconClick($event, node)"
+            >
               <template v-if="state.expandIcon !== undefined && state.shrinkIcon !== undefined">
                 <component
                   :is="state.expanded ? state.shrinkIcon : state.expandIcon"
@@ -88,20 +94,20 @@
             </span>
           </template>
 
-          <checkbox
+          <tiny-checkbox
             v-if="showCheckbox"
-            :modelValue="node.checked"
+            :model-value="node.checked"
             ref="checkbox"
             :indeterminate="node.indeterminate"
             :disabled="!!node.disabled"
             :validate-event="false"
             @change="handleCheckChange"
           >
-          </checkbox>
+          </tiny-checkbox>
           <tiny-radio
             v-if="showRadio"
             :model-value="currentRadio.value"
-            @update:model-value="$emit('radio-change', $event)"
+            @update:modelValue="$emit('radio-change', $event)"
             :validate-event="false"
             :label="node.id"
             :disabled="!!node.disabled"
@@ -126,18 +132,24 @@
           </div>
           <slot name="suffix" :node="node"></slot>
         </div>
-        <div class="tiny-tree-node__content-right">
+        <div :class="['tiny-tree-node__content-right', { 'is-disabled': node.disabled }]">
+          <span
+            class="tiny-tree-node__checked-mark"
+            v-if="showCheckedMark && !showCheckbox && !node.disabled && node.isCurrent"
+          >
+            <icon-finish> </icon-finish>
+          </span>
           <slot name="operation" :node="node"></slot>
           <template v-if="action.show">
-            <span :title="t('ui.base.edit')">
+            <span :title="t('ui.tree.edit')">
               <icon-edit
-                v-if="!action.deleteDisabled.includes(node.data[nodeKey])"
+                v-if="!action.editDisabled.includes(node.data[nodeKey])"
                 @click.stop="openEdit(node)"
               ></icon-edit>
             </span>
-            <span :title="t('ui.base.delete')">
+            <span :title="t('ui.tree.delete')">
               <icon-minus-square
-                v-if="!action.editDisabled.includes(node.data[nodeKey])"
+                v-if="!action.deleteDisabled.includes(node.data[nodeKey])"
                 @click.stop="deleteNode($event, node)"
               ></icon-minus-square>
             </span>
@@ -183,6 +195,7 @@
               :show-checkbox="showCheckbox"
               :show-number="showNumber"
               :node-height="nodeHeight"
+              :show-checked-mark="showCheckedMark"
               :key="getNodeKey(child)"
               :node-key="nodeKey"
               :check-easily="checkEasily"
@@ -229,7 +242,8 @@ import {
   iconArrowBottom,
   iconEdit,
   iconMinusSquare,
-  iconPlusSquare
+  iconPlusSquare,
+  iconFinish
 } from '@opentiny/vue-icon'
 import Checkbox from '@opentiny/vue-checkbox'
 import Radio from '@opentiny/vue-radio'
@@ -295,11 +309,12 @@ export default {
     action: Object,
     nodeKey: String,
     theme: String,
+    showCheckedMark: Boolean,
     showLine: Boolean
   },
   components: {
     CollapseTransition,
-    Checkbox,
+    TinyCheckbox: Checkbox,
     TinyRadio: Radio,
     TinyInput: Input,
     IconChevronRight: iconChevronRight(),
@@ -308,6 +323,7 @@ export default {
     IconEdit: iconEdit(),
     IconMinusSquare: iconMinusSquare(),
     IconPlusSquare: iconPlusSquare(),
+    IconFinish: iconFinish(),
     MenuContext: {
       props: {
         node: {

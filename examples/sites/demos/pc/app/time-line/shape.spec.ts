@@ -7,6 +7,8 @@ test('圆点外观', async ({ page }) => {
   const timeline = page.locator('#shape .tiny-steps-timeline')
   await expect(timeline.locator('.dot').first()).toBeVisible()
   await expect(timeline.locator('.tiny-timeline-item__content .time').first()).toBeVisible()
+  await timeline.getByText('已签收').click()
+  await expect(timeline.locator('.tiny-timeline-item').nth(2)).toHaveClass(/process-current/)
 
   await page.getByRole('button', { name: '点击切换 shape 为 circle' }).click()
   await expect(timeline.locator('.dot').first()).not.toBeVisible()

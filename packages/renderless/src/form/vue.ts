@@ -80,7 +80,9 @@ export const renderless = (
       } else {
         return false
       }
-    })
+    }),
+    labelWidth: computed(() => props.labelWidth || designConfig?.state?.labelWidth || '80px'),
+    tooltipType: computed(() => designConfig?.state?.tooltipType || 'normal')
   })
 
   Object.assign(api, {

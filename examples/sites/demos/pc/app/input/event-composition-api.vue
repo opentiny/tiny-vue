@@ -15,23 +15,23 @@ const focusBlur = ref('')
 const clearValue = ref('clear')
 
 function onChange() {
-  Modal.message('change')
+  Modal.message({ message: 'change 事件触发了', status: 'info' })
 }
 
 function onInput() {
-  Modal.message('input')
+  Modal.message({ message: 'input 事件触发了', status: 'info' })
 }
 
 function onBlur() {
-  Modal.message('blur')
+  Modal.message({ message: 'blur 事件触发了', status: 'info' })
 }
 
 function onFocus() {
-  Modal.message('focus')
+  Modal.message({ message: 'focus 事件触发了', status: 'info' })
 }
 
 function onClear() {
-  Modal.message('clear')
+  Modal.message({ message: 'clear 事件触发了', status: 'info' })
 }
 </script>
 

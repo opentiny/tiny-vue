@@ -7,9 +7,9 @@ export default {
       'name': { 'zh-CN': '本地存储列宽', 'en-US': 'Column Width' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStroage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示。</p>\n',
+          '<p>在 <code>grid</code> 标签上配置 <code>resizable=&quot;true&quot;</code> 可以调整列宽，<code>grid-column</code> 标签上配置 <code>resizable=&quot;false&quot;</code> 可以配置某一列不能调整列宽。并在 <code>toolbar</code> 标签上配置 <code>resizable=&quot;{storage: true}&quot;</code> 保存在本地的 <code>localStorage</code> 里，刷新页面表格的列宽按照拖动后的列宽显示。</p>\n',
         'en-US':
-          '<p>Configure <code>resizable=&quot;true&quot;</code> on the <code>grid</code> tag to adjust the column width, and configure <code>resizable=&quot;{storage: true}&quot;</code> on the <code>toolbar</code> tag to save the column width in <code>localStroage</code> on the local host. The column width of the table on the refreshed page is displayed based on the column width after being dragged.</p>\n'
+          '<p>Configure <code>resizable=&quot;true&quot;</code> on the <code>grid</code> tag to adjust the column width, and configure <code>resizable=&quot;{storage: true}&quot;</code> on the <code>toolbar</code> tag to save the column width in <code>localStorage</code> on the local host. The column width of the table on the refreshed page is displayed based on the column width after being dragged.</p>\n'
       },
       'codeFiles': ['custom/column-width.vue']
     },
@@ -31,7 +31,7 @@ export default {
         'zh-CN':
           '<div class="tip custom-block"><p class="custom-block-title">方法说明</p>\n<p> <code>resetResizable()</code>：手动重置列宽拖动的操作，还原到初始状态\n<code>resetCustoms()</code>：手动重置列的显示/隐藏操作，还原到初始状态\n<code>resetAll()</code>：手动重置列的所有操作，还原到初始状态</p>\n</div>\n<p>请先对列宽进行拖动、隐藏列等操作，然后单击对应按钮查看效果。</p>\n',
         'en-US':
-          '<p>Configure <code>sortable</code> on the <code>column</code> label to sort data. (For columns that are not configured, the sorting icon in the personalization panel is hidden.) and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. Sort the settings in the personalized panel. The sorting results are saved in the local <code>localStroage</code>. Refresh the page. The sorted data is displayed on the page.</p>\n'
+          '<p>Configure <code>sortable</code> on the <code>column</code> label to sort data. (For columns that are not configured, the sorting icon in the personalization panel is hidden.) and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. Sort the settings in the personalized panel. The sorting results are saved in the local <code>localStorage</code>. Refresh the page. The sorted data is displayed on the page.</p>\n'
       },
       'codeFiles': ['custom/reset-resizable.vue']
     },
@@ -40,7 +40,7 @@ export default {
       'name': { 'zh-CN': '排序', 'en-US': 'Sort Type' },
       'desc': {
         'zh-CN':
-          '<p>在 <code>column</code> 标签上配置 <code>sortable</code> 可以排序（未配置的列，在个性化面板中的排序图标会隐藏），并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里进行排序，排序过后会保存在本地的 <code>localStroage</code> 里，刷新页面页面上会显示排序过后的数据。</p>\n',
+          '<p>在 <code>column</code> 标签上配置 <code>sortable</code> 可以排序（未配置的列，在个性化面板中的排序图标会隐藏），并在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里进行排序，排序过后会保存在本地的 <code>localStorage</code> 里，刷新页面页面上会显示排序过后的数据。</p>\n',
         'en-US':
           '<p>Configure <code>sortable</code> on the <code>column</code> tab to enable sorting, and configure <code>setting</code> on the <code>toolbar</code> tab to enable personalized settings. In the Personalization panel, select Other Settings. In Other Settings, you can select the sorting type. The sorting type includes the sorting on the current page and sorting on all data. The default value is Sort on the current page.</p>\n'
       },
@@ -80,22 +80,6 @@ export default {
       'codeFiles': ['custom/column-fixed.vue']
     },
     {
-      'demoId': 'custom-ordercolumn-local',
-      'name': {
-        'zh-CN': '个性化按钮点击事件',
-        'en-US': 'Local Record and Personalization Panel Button Click Event Listening'
-      },
-      'desc': {
-        'zh-CN': `<p>配置 <code>setting</code> 的 <code>storage</code> 为 <code>local</code> 可实个性化的本地存储，
-          配置 <code>setting</code> 的 <code>sortable</code> 为 <code>sortablejs</code> 可实现拖拽排序列功能，此功能在多级列头下无效，
-          并且可以通过三个事件<code>save-setting</code>、<code>cancel-setting</code>、<code>reset-setting</code>来分别监听确认、取消、重置按钮的点击事件。</p>\n`,
-        'en-US': `<p>Configure <code>storage</code> of <code>setting</code> to <code>local</code> as a personalized local storage,
-          Set <code>sortable</code> of <code>setting</code> to <code>sortablejs</code> to implement the drag-and-drop sorting function. This function is invalid in multi-level column headers,
-          In addition, three events <code>save-setting</code>, <code>cancel-setting</code>, and <code>reset-setting</code> can be used to listen to the click events of the confirmation, cancellation, and reset buttons.</p>\n`
-      },
-      'codeFiles': ['custom/ordercolumn-local.vue']
-    },
-    {
       'demoId': 'custom-ordercolumn-remote',
       'name': { 'zh-CN': '加载远端数据', 'en-US': 'Display and hide columns' },
       'desc': {
@@ -128,17 +112,6 @@ export default {
       'codeFiles': ['custom/hide-column.vue']
     },
     {
-      'demoId': 'custom-prsonalized-drag',
-      'name': { 'zh-CN': '个性化面板拖拽前事件', 'en-US': 'Number of records on each page' },
-      'desc': {
-        'zh-CN':
-          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里配置 <code>onBeforeMove</code> 拖拽前事件，也可配置 <code>filter</code> 设置类名， 拖拽个性化面板某一行会触发个性化面板的拖拽前事件。</p>\n',
-        'en-US':
-          '<p>On the <code>toolbar</code> tab, configure <code>setting</code> to enable personalized settings. In the personalized panel, select other settings. You can select the number of records to be displayed on each page. You can use the <code>other</code> attribute of <code>setting</code> to control the display of other settings. The default value of <code>boolean</code> is <code>true</code></p>\n'
-      },
-      'codeFiles': ['custom/prsonalized-drag.vue']
-    },
-    {
       'demoId': 'custom-page-size',
       'name': { 'zh-CN': '分页条数', 'en-US': 'Local Storage' },
       'desc': {
@@ -169,7 +142,34 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['custom/reset-method.vue']
+    },
+    {
+      'demoId': 'custom-ordercolumn-local',
+      'name': {
+        'zh-CN': '个性化按钮点击事件',
+        'en-US': 'Local Record and Personalization Panel Button Click Event Listening'
+      },
+      'desc': {
+        'zh-CN': `<p>配置 <code>setting</code> 的 <code>storage</code> 为 <code>local</code> 可实个性化的本地存储，
+          配置 <code>setting</code> 的 <code>sortable</code> 为 <code>sortablejs</code> 可实现拖拽排序列功能，此功能在多级列头下无效，
+          并且可以通过三个事件<code>save-setting</code>、<code>cancel-setting</code>、<code>reset-setting</code>来分别监听确认、取消、重置按钮的点击事件。</p>\n`,
+        'en-US': `<p>Configure <code>storage</code> of <code>setting</code> to <code>local</code> as a personalized local storage,
+          Set <code>sortable</code> of <code>setting</code> to <code>sortablejs</code> to implement the drag-and-drop sorting function. This function is invalid in multi-level column headers,
+          In addition, three events <code>save-setting</code>, <code>cancel-setting</code>, and <code>reset-setting</code> can be used to listen to the click events of the confirmation, cancellation, and reset buttons.</p>\n`
+      },
+      'codeFiles': ['custom/ordercolumn-local.vue']
+    },
+    {
+      'demoId': 'custom-prsonalized-drag',
+      'name': { 'zh-CN': '个性化面板拖拽前事件', 'en-US': 'Number of records on each page' },
+      'desc': {
+        'zh-CN':
+          '<p>在 <code>toolbar</code> 标签上配置 <code>setting</code> 开启个性化设置，在个性化面板里配置 <code>onBeforeMove</code> 拖拽前事件，也可配置 <code>filter</code> 设置类名， 拖拽个性化面板某一行会触发个性化面板的拖拽前事件。</p>\n',
+        'en-US':
+          '<p>On the <code>toolbar</code> tab, configure <code>setting</code> to enable personalized settings. In the personalized panel, select other settings. You can select the number of records to be displayed on each page. You can use the <code>other</code> attribute of <code>setting</code> to control the display of other settings. The default value of <code>boolean</code> is <code>true</code></p>\n'
+      },
+      'codeFiles': ['custom/prsonalized-drag.vue']
     }
   ],
-  apis: [{ 'name': 'grid-custom', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-custom', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

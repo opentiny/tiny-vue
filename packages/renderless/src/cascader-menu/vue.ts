@@ -28,7 +28,6 @@ export const renderless = (
   { computed, reactive }: ISharedRenderlessParamHooks,
   { vm, parent }: ICascaderMenuRenderlessParamUtils
 ): ICascaderMenuApi => {
-  const refs = vm.$refs
   const api = {} as ICascaderMenuApi
   const state: ICascaderMenuState = reactive({
     activeNode: null,
@@ -40,9 +39,9 @@ export const renderless = (
 
   Object.assign(api, {
     state,
-    clearHoverZone: clearHoverZone(refs),
+    clearHoverZone: clearHoverZone({ vm }),
     handleExpand: handleExpand(state),
-    handleMouseMove: handleMouseMove({ api, parent, refs, state, svg: CASCADER.SvgStr })
+    handleMouseMove: handleMouseMove({ api, parent, vm, state, svg: CASCADER.SvgStr })
   })
 
   return api

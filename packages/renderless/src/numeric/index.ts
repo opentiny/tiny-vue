@@ -46,13 +46,12 @@ export const getDecimal =
     getMiniDecimal(value, props.plugin)
 
 export const watchValue =
-  ({ api, state, nextTick }: Pick<INumericRenderlessParams, 'api' | 'state' | 'nextTick'>) =>
+  ({ api, props, state, nextTick }: Pick<INumericRenderlessParams, 'api' | 'state' | 'nextTick' | 'props'>) =>
   (value: number): void => {
     if (value === state.currentValue) {
       return
     }
-
-    api.setCurrentValue(value)
+    api.setCurrentValue(value, props.changeCompat)
     nextTick(() => {
       api.dispatchDisplayedValue()
     })
@@ -183,10 +182,10 @@ export const handleBlur =
   }
 
 export const handleFocus =
-  ({ emit, state, props, api, refs }: Pick<INumericRenderlessParams, 'emit' | 'state' | 'props' | 'api' | 'refs'>) =>
+  ({ emit, state, props, api, vm }: Pick<INumericRenderlessParams, 'emit' | 'state' | 'props' | 'api' | 'vm'>) =>
   (event: FocusEvent): void => {
     if (props.disabled) {
-      refs.input.blur()
+      vm.$refs.input.blur()
     }
 
     state.inputStatus = true
@@ -208,8 +207,8 @@ export const handleFocus =
     emit('focus', event)
   }
 
-export const focus = (refs: INumericRenderlessParams['refs']) => (): void => {
-  refs.input.focus()
+export const focus = (vm: INumericRenderlessParams['vm']) => (): void => {
+  vm.$refs.input.focus()
 }
 
 const getEmitValue = (
@@ -257,7 +256,7 @@ export const setCurrentValue =
     props,
     state
   }: Pick<INumericRenderlessParams, 'api' | 'constants' | 'dispatch' | 'emit' | 'props' | 'state'>) =>
-  (newVal: number): void => {
+  (newVal: number, emitChangeFlag: boolean = true): void => {
     const { max, min, allowEmpty, validateEvent, stringMode, plugin } = props
     const { format } = state
     const oldVal = state.currentValue
@@ -285,7 +284,9 @@ export const setCurrentValue =
 
     if (emitValue !== oldVal) {
       emit('update:modelValue', emitValue)
-      emit('change', emitValue, oldVal)
+      if (emitChangeFlag) {
+        emit('change', emitValue, oldVal)
+      }
 
       state.currentValue = emitValue
       state.userInput = emitValue
@@ -336,18 +337,40 @@ export const handleInput =
   }
 
 export const handleInputChange =
-  ({ api }: Pick<INumericRenderlessParams, 'api'>) =>
+  ({ api, state, props }: Pick<INumericRenderlessParams, 'api' | 'state' | 'props'>) =>
   (event: Event): void => {
-    const value = event.target.value
-
-    api.setCurrentValue(value === '-' ? 0 : value)
+    const value = event.target?.value === '-' ? 0 : event.target?.value
+    if (props.stepStrictly) {
+      const previousValue = Number((props.mouseWheel ? state.displayValue : props.modelValue) || 0)
+      if (Math.abs(previousValue - value) % Number(props.step) === 0) return api.setCurrentValue(value)
+      const step = Number(props.step)
+      const difference = value - previousValue
+      const sign = difference >= 0 ? 1 : -1
+      return api.setCurrentValue(sign * Math.round(Math.abs(difference) / step) * step + previousValue)
+    }
+    api.setCurrentValue(value)
   }
 
-export const select = (refs: INumericRenderlessParams['refs']) => () => refs.input.select()
+export const select = (vm: INumericRenderlessParams['vm']) => () => vm.$refs.input.select()
 
 export const mounted =
   ({ constants, parent, props, state }: Pick<INumericRenderlessParams, 'constants' | 'parent' | 'props' | 'state'>) =>
   (): void => {
+    if (props.shape === 'filter') {
+      state.controls = false
+    }
+
+    if (state.currentValue < (props.min as number)) {
+      state.currentValue = props.min as number
+      state.lastInput = props.min as number
+      state.userInput = props.min as number
+    }
+    if (state.currentValue > (props.max as number)) {
+      state.currentValue = props.max as number
+      state.lastInput = props.max as number
+      state.userInput = props.max as number
+    }
+
     const innerInput = parent.$el.querySelector('input')
 
     innerInput.setAttribute(constants.KEY, constants.VALUE)
@@ -381,9 +404,13 @@ export const updated =
   }
 
 export const displayValue =
-  ({ props, state }: Pick<INumericRenderlessParams, 'props' | 'state'>) =>
+  ({ props, state, api }: Pick<INumericRenderlessParams, 'props' | 'state' | 'api'>) =>
   (): string | number => {
     const { currentValue, inputStatus, userInput } = state
+
+    if (props.shape === 'filter' && props.filter) {
+      api.filterValue()
+    }
 
     if (inputStatus) {
       return userInput
@@ -474,4 +501,27 @@ export const getDisplayOnlyText =
         return '-'
       }
     }
+  }
+
+export const filterValue =
+  ({ state }: Pick<INumericRenderlessParams, 'state'>) =>
+  (): number | string => {
+    return (state.radioVal || '') + state.lastInput
+  }
+
+export const handleClear =
+  ({ state, emit }: Pick<INumericRenderlessParams, 'state' | 'emit'>) =>
+  () => {
+    state.currentValue = ''
+    state.userInput = ''
+    state.lastInput = ''
+    state.radioVal = ''
+
+    emit('clear')
+  }
+
+export const handleChange =
+  ({ state, emit }: Pick<INumericRenderlessParams, 'state' | 'emit'>) =>
+  () => {
+    emit('filter-change', state.radioVal)
   }

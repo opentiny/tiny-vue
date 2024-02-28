@@ -1,5 +1,9 @@
 <template>
-  <div class="w-full [&_[role=column-list-item]]:mb-3 [&_[role=column-list-item]:last-child]:mb-0">
+  <div
+    data-tag="tiny-column-list-group"
+    class="w-full"
+    :class="type !== 'list' ? '[&_[role=column-list-item]]:mb-3 [&_[role=column-list-item]:last-child]:mb-0' : ''"
+  >
     <slot></slot>
   </div>
 </template>
@@ -20,6 +24,10 @@ export default defineComponent({
     size: {
       type: String,
       default: 'medium'
+    },
+    type: {
+      type: String,
+      default: ''
     },
     showCheckbox: {
       type: Boolean,

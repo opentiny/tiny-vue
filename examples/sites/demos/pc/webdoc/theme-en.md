@@ -48,21 +48,23 @@ resolve: {
 #### The specific usage of theme initialization and dynamic theme switching is shown below, and the following code is added to the main.ts file.
 
 ```js
-import TinyThemeTool from' @opentiny/vue-theme/theme-tool.js'
-import {tinyInfinityTheme} from'@opentiny/vue-theme/theme' //Infinite theme
+import TinyThemeTool from ' @opentiny/vue-theme/theme-tool.js'
 
-const theme = new TinyThemeTool(tinyInfinityTheme,'tinyStyleSheetId') / / Initialize the infinite theme.
+// Infinite theme
+import { tinyInfinityTheme } from '@opentiny/vue-theme/theme'
 
-//Customize the theme data format.
+// Initialize the infinite theme.
+const theme = new TinyThemeTool(tinyInfinityTheme, 'tinyStyleSheetId')
 
+// Customize the theme data format.
 const tinyTestTheme = {
-id: 'tiny-test-theme', //Unique ID of a topic. Each topic must be unique.
-name: 'testTheme', //English name of the theme
-cnName:'Test Topic', //Chinese name of the topic
-data: {'ti-base-color':'#f2f2f3'} //Subject data
+  id: 'tiny-test-theme', // Unique ID of a topic. Each topic must be unique.
+  name: 'testTheme', // English name of the theme
+  cnName: 'Test Topic', // Chinese name of the topic
+  data: { 'ti-base-color': '#f2f2f3' } // Subject data
 }
 
-//Dynamic theme switching
+// Dynamic theme switching
 
 theme.changeTheme(tinyTestTheme)
 ```

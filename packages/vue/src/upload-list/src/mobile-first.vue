@@ -1,21 +1,24 @@
 <template>
-  <div>
+  <div data-tag="tiny-upload-list">
     <div
-      v-if="listType === 'text'"
-      ref="upload-list"
+      data-tag="tiny-upload-list-text"
+      v-if="listType === 'text' || listType === 'saas'"
+      ref="uploadList"
       class="border-dashed border-color-border"
       :class="[
         state.files.length || mode === 'bubble' ? 'sm:border-0' : 'sm:border-t',
         { 'sm:h-52 overflow-y-auto overflow-x-hidden': mode === 'bubble' }
       ]"
     >
-      <div v-if="state.files.length" class="text-[0]">
+      <div data-tag="tiny-upload-list-files" v-if="state.files.length" class="text-[0]">
         <div
-          ref="upload-list-li"
-          class="group relative sm:inline-block min-w-full sm:min-w-[theme(spacing.112)] p-3 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
+          data-tag="tiny-upload-list-item"
+          ref="uploadListLi"
+          class="group relative sm:inline-block min-w-full p-3 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
           :class="{
             'sm:border-color-brand border-color-border-separator': file.uid === (selected && selected.uid),
-            'mb-2': index !== state.files.length - 1
+            'mb-2': index !== state.files.length - 1,
+            'sm:min-w-[theme(spacing.112)]': compact
           }"
           v-for="(file, index) in state.files"
           :key="file.uid"
@@ -23,33 +26,26 @@
           @click="$emit('click-file-list', file)"
         >
           <slot :file="file">
-            <div class="relative inline-block w-8 h-8 mr-2 align-top">
-              <div
-                v-if="~['uploading'].indexOf(file.status)"
-                class="w-1/2 h-full absolute top-0 left-0 rounded-l overflow-hidden"
-              >
+            <div
+              data-tag="tiny-upload-list-status"
+              class="relative inline-block w-8 h-8 mr-2 align-top"
+              :class="{ 'bg-color-error rounded-sm': ~['fail'].indexOf(file.status) }"
+            >
+              <template v-if="~['uploading'].indexOf(file.status)">
+                <div class="w-full h-full absolute top-0 left-0 bg-black opacity-50 rounded-sm"></div>
                 <div
-                  class="absolute w-16 h-16 top-1/2 right-0 origin-right bg-color-bg-7"
-                  :style="{
-                    transform: `translateY(-50%) rotate(${parsePercentage(
-                      (Math.max(0, Math.min(file.percentage || 0, 100) - 50) / 50) * 180
-                    )}deg)`
-                  }"
-                ></div>
-              </div>
-              <div
-                v-if="~['uploading'].indexOf(file.status)"
-                class="w-1/2 h-full absolute top-0 left-1/2 rounded-r overflow-hidden"
-              >
-                <div
-                  class="absolute w-16 h-16 top-1/2 left-0 origin-left bg-color-bg-7"
-                  :style="{
-                    transform: `translateY(-50%) rotate(${parsePercentage(
-                      (Math.min(50, file.percentage || 0) / 50) * 180
-                    )}deg)`
-                  }"
-                ></div>
-              </div>
+                  class="w-full h-full absolute top-0 left-0 overflow-hidden flex px-1 items-center justify-center rounded-sm"
+                >
+                  <div data-tag="tiny-upload-list-animation" class="bg-color-icon-tertiary w-full h-0.5 rounded">
+                    <div
+                      class="bg-white h-full transition-all"
+                      :style="{
+                        width: `${parsePercentage(Math.max(0, Math.min(file.percentage || 0, 100)))}%`
+                      }"
+                    ></div>
+                  </div>
+                </div>
+              </template>
               <component
                 v-if="~['uploading', 'success', 'downloading'].indexOf(file.status)"
                 custom-class="w-full h-full rounded-sm"
@@ -57,14 +53,18 @@
                 :is="getFileIcon({ type: getFileType({ file }) }).name"
               />
               <div
+                data-tag="tiny-upload-list-fail"
                 v-if="~['fail'].indexOf(file.status)"
-                class="relative w-full h-full bg-color-error-subtler rounded-sm"
+                class="relative w-full h-full bg-black/50 rounded"
               >
-                <icon-cue-l class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-color-error" />
+                <icon-cue-l-o class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-color-error" />
               </div>
             </div>
-            <div class="relative inline-block w-[calc(100%-theme(spacing.10))] text-xs pr-10 sm:pr-0">
-              <div class="flex h-4">
+            <div
+              data-tag="tiny-upload-list-content"
+              class="relative inline-block w-[calc(100%-theme(spacing.10))] text-xs pr-10 sm:pr-0"
+            >
+              <div class="flex h-4" data-tag="tiny-upload-list-name">
                 <div
                   class="flex-1 sm:mr-6 text-sm sm:text-xs leading-3 sm:leading-3 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
                 >
@@ -77,6 +77,7 @@
                   <span>.{{ file.name.split('.')[file.name.split('.').length - 1] }}</span>
                 </div>
                 <div
+                  data-tag="tiny-upload-list-operate"
                   class="hidden sm:block sm:invisible sm:group-hover:visible min-w-fit text-color-brand-hover text-xs"
                 >
                   <slot name="operate" :file="file">
@@ -104,30 +105,30 @@
                   </slot>
                 </div>
               </div>
-              <div class="flex h-4 leading-5">
+              <div class="flex h-4 leading-5" data-tag="tiny-upload-list-content">
                 <span class="overflow-hidden text-ellipsis whitespace-nowrap font-light sm:font-normal">
-                  <span v-if="~['fail'].indexOf(file.status)" class="hidden sm:inline text-color-error-hover">{{
-                    t('ui.uploadList.uploadFailed')
-                  }}</span>
-                  <span v-if="~['fail'].indexOf(file.status)" class="inline sm:hidden text-color-error-hover">{{
-                    t('ui.uploadList.uploadFailedAndReupload')
-                  }}</span>
+                  <span v-if="~['fail'].indexOf(file.status)">
+                    <span class="hidden sm:inline text-color-error-hover">{{ t('ui.uploadList.uploadFailed') }}</span>
+                    <span class="inline sm:hidden text-color-error-hover">{{
+                      t('ui.uploadList.uploadFailedAndReupload')
+                    }}</span>
+                  </span>
                   <span v-else-if="~['uploading'].indexOf(file.status)" class="text-color-text-placeholder">{{
-                    `${
-                      ~['uploading'].indexOf(file.status)
-                        ? `${Math.round(((file.size * file.percentage) / 100 / 1024 / 1024) * 10) / 10}M/`
-                        : ''
-                    }${Math.round((file.size / 1024 / 1024) * 10) / 10}M`
+                    formatFileSize((file.size * file.percentage) / 100) + '/' + formatFileSize(file.size)
                   }}</span>
+                  <span v-else class="text-color-text-placeholder">{{ formatFileSize(file.size) }}</span>
                 </span>
                 <span class="flex-1 ml-2 overflow-hidden text-ellipsis whitespace-nowrap text-right text-color-none">
                   <slot name="assist-content" :file="file"></slot>
                 </span>
               </div>
-              <div class="sm:invisible absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer">
+              <div
+                data-tag="tiny-upload-list-icon"
+                class="sm:invisible absolute top-1/2 right-2 -translate-y-1/2 cursor-pointer"
+              >
                 <icon-ellipsis
                   v-if="~['success', 'downloading'].indexOf(file.status)"
-                  @click="showOperatePanel(file)"
+                  @click="showOperatePanel({ file })"
                   class="fill-color-text-primary"
                 />
                 <icon-error
@@ -144,19 +145,28 @@
           </slot>
         </div>
       </div>
-      <div v-else class="my-4 text-color-none text-xs">
+      <div
+        data-tag="tiny-upload-list-noattachments"
+        v-else
+        class="mt-4 text-color-none text-xs sm:block"
+        :class="displayOnly ? '' : 'hidden'"
+      >
         {{ t('ui.uploadList.noAttachments') }}
       </div>
     </div>
-    <div v-else-if="listType === 'drag-single'" class="border-dashed border-color-border text-center">
+    <div
+      data-tag="tiny-upload-list-drag-single"
+      v-else-if="listType === 'drag-single'"
+      class="border-dashed border-color-border text-center"
+    >
       <slot name="upload"></slot>
       <div class="absolute w-full h-full top-0 left-0" :class="[files.length ? 'z-0' : 'z-[-1]']">
         <div v-if="!files.length">
-          <icon-cloud-upload
-            custom-class="w-12 h-12 mt-6"
+          <icon-fileupload-pro
+            custom-class="w-20 h-20 mt-6"
             :class="[isDragover ? 'fill-color-brand' : 'fill-color-none-hover']"
           />
-          <div class="mb-0.5 text-sm text-color-text-secondary" :class="isDragover ? 'mt-4' : 'mt-3'">
+          <div class="mb-0.5 text-sm text-color-text-secondary" :class="isDragover ? 'mt-4' : ''">
             {{ isDragover ? t('ui.uploadList.releaseAndUpload') : t('ui.uploadList.dragOrClickImport') }}
           </div>
           <slot v-if="!isDragover" name="tip"></slot>
@@ -165,7 +175,7 @@
           <div v-for="file in files" :key="file.uid" tabindex="0">
             <slot :file="file">
               <div v-if="['fail'].includes(file.status)">
-                <icon-cloud-upload
+                <icon-fileupload-pro
                   custom-class="w-12 h-12 mt-6"
                   :class="[isDragover ? 'fill-color-brand' : 'fill-color-none-hover']"
                 />
@@ -224,6 +234,7 @@
       </div>
     </div>
     <div
+      data-tag="tiny-upload-list-picture-card"
       v-else
       :class="[
         { 'grid grid-cols-3 gap-x-4 sm:grid-cols-[repeat(auto-fit,theme(spacing.24))]': listType === 'picture-card' },
@@ -410,7 +421,7 @@
       custom-class="!min-h-0 py-0"
     >
       <slot name="operate" :file="state.currentFile || {}">
-        <div class="text-center">
+        <div data-tag="tiny-upload-list-download" class="text-center">
           <div
             v-if="handleDownloadFile"
             class="h-12 flex items-center justify-center border-b border-color-border-separator cursor-pointer"
@@ -424,6 +435,7 @@
             {{ t('ui.uploadList.download') }}
           </div>
           <div
+            data-tag="tiny-upload-list-handle-preview"
             v-if="handlePreview"
             class="h-12 flex items-center justify-center border-b border-color-border-separator cursor-pointer"
             @click="
@@ -436,6 +448,7 @@
             {{ t('ui.uploadList.preview') }}
           </div>
           <div
+            data-tag="tiny-upload-list-panel"
             v-if="!displayOnly"
             class="h-12 flex items-center justify-center cursor-pointer"
             @click.stop="
@@ -461,23 +474,23 @@
       @update:visible="state.showTriggerPanel = $event"
       custom-class="!min-h-0 py-0"
     >
-      <div class="text-center">
+      <div data-tag="tiny-upload-list-vadio-content" class="text-center">
         <div
           class="h-12 flex items-center justify-center cursor-pointer"
           @click="handleTriggerClick($event, state.triggerClickType === 'video' ? 3 : 2)"
         >
           {{ t('ui.uploadList.shoot') }}
         </div>
-        <div class="h-12 flex items-center cursor-pointer" @click="handleTriggerClick($event, 1)">
+        <div class="h-12 flex items-center justify-center cursor-pointer" @click="handleTriggerClick($event, 1)">
           {{ t('ui.uploadList.selectFromAlbum') }}
         </div>
         <div class="h-2 bg-color-bg-2"></div>
-        <div class="h-12 flex items-center cursor-pointer" @click="state.showTriggerPanel = false">
+        <div class="h-12 flex items-center justify-center cursor-pointer" @click="state.showTriggerPanel = false">
           {{ t('ui.uploadList.cancel') }}
         </div>
       </div>
     </tiny-action-sheet>
-    <tiny-record :isHwh5="isHwh5" @trigger-click="handleTriggerClick" v-model="state.showAudioPanel"></tiny-record>
+    <tiny-record :is-hwh5="isHwh5" @trigger-click="handleTriggerClick" v-model="state.showAudioPanel"></tiny-record>
   </div>
 </template>
 
@@ -488,27 +501,27 @@ import Progress from '@opentiny/vue-progress'
 import ActionSheet from '@opentiny/vue-action-sheet'
 import Record from '@opentiny/vue-record'
 import {
-  IconError,
-  IconCueL,
-  IconEyeopen,
-  IconDownload,
-  IconDel,
-  IconRefres,
-  IconRight,
-  IconPause,
-  IconAudio,
-  IconEllipsis,
-  IconExcelType,
-  IconFileType,
-  IconOtherType,
-  IconPdfType,
-  IconPictureType,
-  IconPptType,
-  IconTextType,
-  IconVideoType,
-  IconWordType,
-  IconZipType,
-  IconCloudUpload
+  iconError,
+  iconCueL,
+  iconEyeopen,
+  iconDownload,
+  iconDel,
+  iconRefres,
+  iconRight,
+  iconPause,
+  iconAudio,
+  iconEllipsis,
+  iconExcelType,
+  iconFileType,
+  iconOtherType,
+  iconPdfType,
+  iconPictureType,
+  iconPptType,
+  iconTextType,
+  iconVideoType,
+  iconWordType,
+  iconZipType,
+  iconFileuploadPro
 } from '@opentiny/vue-icon'
 import Modal from '@opentiny/vue-modal'
 import type { IUploadListApi } from '@opentiny/vue-renderless/types/upload-list.type'
@@ -517,30 +530,31 @@ export default defineComponent({
   name: $prefix + 'UploadList',
   components: {
     TinyProgress: Progress,
-    IconError: IconError(),
-    IconCueL: IconCueL(),
-    IconEyeopen: IconEyeopen(),
-    IconDownload: IconDownload(),
-    IconDel: IconDel(),
-    IconRefres: IconRefres(),
-    IconRight: IconRight(),
-    IconPause: IconPause(),
-    IconAudio: IconAudio(),
-    IconEllipsis: IconEllipsis(),
+    IconError: iconError(),
+    IconCueL: iconCueL(),
+    IconEyeopen: iconEyeopen(),
+    IconDownload: iconDownload(),
+    IconDel: iconDel(),
+    IconRefres: iconRefres(),
+    IconRight: iconRight(),
+    IconPause: iconPause(),
+    IconAudio: iconAudio(),
+    IconEllipsis: iconEllipsis(),
     TinyActionSheet: ActionSheet,
-    IconExcelType: IconExcelType(),
-    IconFileType: IconFileType(),
-    IconOtherType: IconOtherType(),
-    IconPdfType: IconPdfType(),
-    IconPictureType: IconPictureType(),
-    IconPptType: IconPptType(),
-    IconTextType: IconTextType(),
-    IconVideoType: IconVideoType(),
-    IconWordType: IconWordType(),
-    IconZipType: IconZipType(),
-    IconCloudUpload: IconCloudUpload(),
+    IconExcelType: iconExcelType(),
+    IconFileType: iconFileType(),
+    IconOtherType: iconOtherType(),
+    IconPdfType: iconPdfType(),
+    IconPictureType: iconPictureType(),
+    IconPptType: iconPptType(),
+    IconTextType: iconTextType(),
+    IconVideoType: iconVideoType(),
+    IconWordType: iconWordType(),
+    IconZipType: iconZipType(),
+    IconFileuploadPro: iconFileuploadPro(),
     TinyRecord: Record
   },
+  emits: ['remove', 'start', 'update:visible', 'click-file-list'],
   props: [
     ...props,
     'disabled',
@@ -569,7 +583,8 @@ export default defineComponent({
     'isHwh5',
     'triggerPlay',
     'mode',
-    'lockScroll'
+    'lockScroll',
+    'compact'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, extendOptions: { Modal } }) as unknown as IUploadListApi

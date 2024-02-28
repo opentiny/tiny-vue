@@ -1,5 +1,9 @@
 <template>
-  <div data-tag="tiny-menu" class="w-28 sm:w-56 h-full pt-0 sm:pt-4 bg-color-bg-2 sm:bg-color-bg-1 overflow-y-auto">
+  <div
+    data-tag="tiny-menu"
+    class="h-full pt-0 sm:pt-4 bg-color-bg-2 sm:bg-color-bg-1 overflow-y-auto"
+    :class="[widthAdapt ? 'w-full' : 'w-28 sm:w-56']"
+  >
     <div
       data-tag="tiny-menu-filter"
       v-if="showFilter"
@@ -13,7 +17,7 @@
       ></tiny-input>
     </div>
     <div data-tag="tiny-menu-empty" v-if="state.isEmpty" class="relative w-full min-h-[theme(spacing.16)]">
-      <tiny-exception component-page type="noresult"></tiny-exception>
+      <tiny-exception component-page type="noresult" tiny_mode="mobile-first" tiny_mode_root></tiny-exception>
     </div>
     <div data-tag="tiny-slot-empty" v-if="!data.length">
       <slot name="empty">
@@ -49,7 +53,7 @@ import { IconSearch } from '@opentiny/vue-icon'
 export default defineComponent({
   name: $prefix + 'Menu',
   componentName: 'Menu',
-  emits: ['current-change', 'node-click'],
+  emits: ['current-change', 'node-click', 'node-clicked', 'node-changed'],
   components: {
     MenuNode,
     TinyInput: Input,
@@ -92,6 +96,10 @@ export default defineComponent({
       default: () => {
         return []
       }
+    },
+    widthAdapt: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

@@ -1,5 +1,5 @@
 <template>
-  <tiny-slider v-model="value2" :num-pages="3"></tiny-slider>
+  <tiny-slider v-model="value" :num-pages="3"></tiny-slider>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      value2: 40
+      value: 40
     }
   }
 }

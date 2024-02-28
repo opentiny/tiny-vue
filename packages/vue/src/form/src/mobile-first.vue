@@ -1,9 +1,8 @@
 <template>
   <form
-    data-tag="tiny-from"
-    class="w-full overflow-hidden p-4 sm:p-0"
+    data-tag="tiny-form"
+    class="w-full overflow-hidden"
     :class="{
-      'overflow-x-visible': labelPosition === 'top' && !hideRequiredAsterisk,
       'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4': inline
     }"
     @submit.prevent
@@ -61,7 +60,8 @@ export default defineComponent({
     'manual',
     'appendToBody',
     'popperOptions',
-    'displayOnly'
+    'displayOnly',
+    'showEmptyValue'
   ],
   setup(props, context): any {
     return setup({ props, context, renderless, api }) as unknown as IFormApi

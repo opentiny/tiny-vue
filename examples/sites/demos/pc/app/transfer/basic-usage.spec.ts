@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('基本用法', async ({ page }) => {
+test('测试基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('transfer#basic-usage')
   const preview = page.locator('.pc-demo-container')

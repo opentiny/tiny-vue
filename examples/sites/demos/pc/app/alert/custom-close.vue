@@ -3,7 +3,7 @@
     是否显示自定义告警组件：<tiny-switch v-model="show"></tiny-switch>
     <tiny-alert description="自定义告警组件" v-show="show" :closable="false">
       <template #close>
-        <icon-close-circle @click="show = !show"></icon-close-circle>
+        <tiny-icon-close-circle @click="show = !show"></tiny-icon-close-circle>
       </template>
     </tiny-alert>
     <tiny-alert type="error" description="关闭按钮自定义文本" close-text="关闭"></tiny-alert>
@@ -13,15 +13,14 @@
 </template>
 
 <script>
-import { Button, Alert, Modal, Switch } from '@opentiny/vue'
+import { Alert, Notify, Switch } from '@opentiny/vue'
 import { iconCloseCircle } from '@opentiny/vue-icon'
 
 export default {
   components: {
-    TinyButton: Button,
     TinyAlert: Alert,
     TinySwitch: Switch,
-    IconCloseCircle: iconCloseCircle()
+    TinyIconCloseCircle: iconCloseCircle()
   },
   data() {
     return {
@@ -30,7 +29,12 @@ export default {
   },
   methods: {
     close() {
-      Modal.message('关闭了')
+      Notify({
+        type: 'success',
+        message: '触发关闭事件',
+        position: 'top-right',
+        duration: 10000
+      })
     }
   }
 }

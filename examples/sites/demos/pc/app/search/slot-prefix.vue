@@ -5,7 +5,7 @@
         <icon-search />
       </template>
     </tiny-search>
-    {{ value }}
+    <div class="mt10">{{ value }}</div>
   </div>
 </template>
 

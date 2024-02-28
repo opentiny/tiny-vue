@@ -10,55 +10,35 @@
  *
  */
 
-const sf = () => ({ show: false })
+const SF = () => ({ show: false })
 const DEFAULT_THEME = {
-  categoryAxis: { axisLine: sf(), axisTick: sf(), splitLine: sf() },
-  valueAxis: { axisLine: sf() },
+  categoryAxis: { axisLine: SF(), axisTick: SF(), splitLine: SF() },
+  valueAxis: { axisLine: SF() },
   line: { smooth: true },
   grid: { containLabel: true, left: 10, right: 10 }
 }
 
-let DEFAULT_COLORS = ['#19d4ae', '#5ab1ef', '#fa6e86', '#ffb980', '#0067a6', '#c4b4e4']
-
-DEFAULT_COLORS = DEFAULT_COLORS.concat(['#d87a80', '#9cbbff', '#d9d0c7', '#87a997', '#d49ea2', '#5b4947', '#7ba3a8'])
+const DEFAULT_COLORS = [
+  '#19d4ae',
+  '#5ab1ef',
+  '#fa6e86',
+  '#ffb980',
+  '#0067a6',
+  '#c4b4e4',
+  '#d87a80',
+  '#9cbbff',
+  '#d9d0c7',
+  '#87a997',
+  '#d49ea2',
+  '#5b4947',
+  '#7ba3a8'
+]
 
 const HEAT_MAP_COLOR = ['#5990FD', '#2DA769', '#EEBA18', '#F43146']
 
 const HEAT_BMAP_COLOR = ['blue', 'blue', 'green', 'yellow', 'red']
 
-const SAAS_DEFAULT_COLORS_10 = [
-  '#6d8ff0',
-  '#00a874',
-  '#bd72f0',
-  '#54bcce',
-  '#fdc000',
-  '#9185f0',
-  '#82dbb1',
-  '#f46087',
-  '#2070f3',
-  '#ee8ddb'
-]
-
-const SAAS_DEFAULT_COLORS_18 = [
-  '#2070f3',
-  '#50c291',
-  '#bd72f0',
-  '#54bcce',
-  '#fdc000',
-  '#6d8ff0',
-  '#71c14c',
-  '#87d5e5',
-  '#9185f0',
-  '#82dbb1',
-  '#ada6ed',
-  '#97da7e',
-  '#f46087',
-  '#ee8ddb',
-  '#f09596',
-  '#f36900',
-  '#daa61b',
-  '#efb9e3'
-]
+const HEAT_DEFAULT_COLOR = ['#fff', '#6D8FF0']
 
 const _SAAS_DEFAULT_COLORS1 = ['#2070F3', '#55CCD9', '#715AF8', '#8AC8F3', '#EB74DF', '#87C859', '#D19F00']
 const _SAAS_DEFAULT_COLORS2 = ['#36C18D', '#CB8EFB', '#ED448A', '#F7C45C', '#E7434A', '#2A8290', '#EE8DDB']
@@ -136,29 +116,45 @@ const itemLabel = (seriesName, onlyLabel) =>
     `">${seriesName}</span>`
   ].join('')
 
-const itemContent = (content) =>
-  ['<span style="', 'float:right;', 'font-size:14px;', 'color:#191919;', `">${content}</span>`].join('')
+const itemContent = (content) => {
+  return ['<span style="', `float:right;`, `font-size:14px;`, `color:#191919;`, `">${content}</span>`].join('')
+}
 
 const STATIC_PROPS = ['initOptions', 'loading', 'dataEmpty', 'judgeWidth', 'widthChangeDelay']
 
-let ECHARTS_SETTINGS = ['grid', 'dataZoom', 'visualMap', 'toolbox', 'title', 'legend', 'xAxis']
-
-ECHARTS_SETTINGS = ECHARTS_SETTINGS.concat(['yAxis', 'radar', 'tooltip', 'axisPointer', 'brush', 'geo'])
-ECHARTS_SETTINGS = ECHARTS_SETTINGS.concat(['timeline', 'graphic', 'series', 'backgroundColor', 'textStyle'])
+const ECHARTS_SETTINGS = [
+  'grid',
+  'dataZoom',
+  'visualMap',
+  'toolbox',
+  'title',
+  'legend',
+  'xAxis',
+  'yAxis',
+  'radar',
+  'tooltip',
+  'axisPointer',
+  'brush',
+  'geo',
+  'timeline',
+  'graphic',
+  'series',
+  'backgroundColor',
+  'textStyle'
+]
 
 export {
   DEFAULT_THEME,
   DEFAULT_COLORS,
   HEAT_MAP_COLOR,
   HEAT_BMAP_COLOR,
+  HEAT_DEFAULT_COLOR,
   itemPoint,
   itemLabel,
   itemContent,
   STATIC_PROPS,
   ECHARTS_SETTINGS,
   DEFAULT_CONFIG,
-  SAAS_DEFAULT_COLORS_10,
-  SAAS_DEFAULT_COLORS_18,
   SAAS_DEFAULT_COLORS,
   SAAS_DEFAULT_SAME_COLORS
 }

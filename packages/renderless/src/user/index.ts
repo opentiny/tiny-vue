@@ -31,7 +31,9 @@ const request = {
     }
 
     queryIds.forEach((id) => {
-      if (!~this.group[valueField].indexOf(id)) !this.group[valueField].push(id)
+      if (!~this.group[valueField].indexOf(id)) {
+        this.group[valueField].push(id)
+      }
     })
   },
   removeRequest(item) {
@@ -68,6 +70,7 @@ const request = {
     return args
   },
   setCache(data, valueField) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const me = this
 
     if (valueField && !this.group[valueField]) {
@@ -96,11 +99,12 @@ const request = {
       })
   },
   batchRequest(api) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const me = this
     const reqParamsSeq = me.getParams()
     let reqLen = reqParamsSeq.length
 
-    reqParamsSeq.map((params) => {
+    reqParamsSeq.forEach((params) => {
       api
         .fetchW3Accounts(params)
         .then((data) => {
@@ -543,7 +547,7 @@ export const visibleChange =
 export const initUser =
   ({ api, props, state }) =>
   (value) => {
-    if (value === state.lastValue) {
+    if (value === state.lastValue && value !== null) {
       return
     }
 

@@ -34,6 +34,10 @@
   padding: 0;
   list-style: none;
 
+  &__wrapper {
+    display: inline;
+  }
+
   a:hover {
     color: #333;
     text-decoration: var(--ti-upload-list-item-hover-text-decoration);
@@ -55,7 +59,7 @@
 
     li + li {
       .@{upload-list-prefix-cls}__item.is-uploading,
-      .@{upload-list-prefix-cls}__item.is-downloading{
+      .@{upload-list-prefix-cls}__item.is-downloading {
         margin-top: 18px;
         margin-bottom: 18px;
       }
@@ -283,7 +287,7 @@
   }
 
   &__icon-operationfaild {
-    fill: var(--ti-upload-list-item-fail-text-color);
+    fill: #f23030;
     margin-right: 9px;
     padding-left: 4px;
     font-size: 16px;
@@ -381,7 +385,6 @@
             fill: #191919;
           }
         }
-
       }
 
       .@{icon-check-prefix-cls} {
@@ -489,6 +492,20 @@
         top: 50%;
       }
     }
+
+    // smb取消上传功能
+    .@{upload-list-prefix-cls}__item-cancel {
+      position: absolute;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #1476ff;
+      line-height: 22px;
+      letter-spacing: 0;
+      white-space: nowrap;
+      cursor: pointer;
+    }
   }
 
   &--picture &__item {
@@ -570,5 +587,196 @@
   &--picture .@{progress-prefix-cls} {
     position: relative;
     top: -7px;
+  }
+}
+
+// 多端fileUpload组件文件上传列表样式
+.@{upload-list-prefix-cls}--saas {
+  border: 0px dashed #c9c9c9;
+
+  &.border-zero {
+    border-width: 0;
+  }
+
+  &.border-top {
+    border-top-width: 1px;
+  }
+
+  &.mode-bubble {
+    height: 208px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .@{upload-list-prefix-cls}-panel {
+    font-size: 0;
+
+    .@{upload-list-prefix-cls}-item {
+      position: relative;
+      display: inline-block;
+      min-width: 100%;
+      padding: 12px;
+      margin-right: 8px;
+      border: 1px solid #dfdfdf;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: #f5f6f8;
+
+        .operate-panel {
+          visibility: visible;
+        }
+      }
+
+      &.selected {
+        border-color: #0067d1;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  .@{upload-list-prefix-cls}-thumb {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+    vertical-align: top;
+
+    .uploading-mask {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #000;
+      opacity: 0.5;
+      border-radius: 2px;
+    }
+
+    .uploading-progress {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      display: flex;
+      padding: 0 4px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+    }
+
+    .uploading-progress-panel {
+      background-color: #aeaeae;
+      width: 100%;
+      height: 2px;
+      border-radius: 2px;
+    }
+
+    .uploading-progress-bar {
+      background-color: #fff;
+      height: 100%;
+      transition: all cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+    }
+
+    .file-icon {
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+    }
+
+    .upload-fail {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+      background-color: #fee7e8;
+    }
+
+    .upload-fail-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      fill: #e02128;
+      font-size: 18px;
+    }
+  }
+
+  .@{upload-list-prefix-cls}-content {
+    position: relative;
+    display: inline-block;
+    width: calc(100% - 40px);
+    font-size: 12px;
+
+    .file-name {
+      display: flex;
+      height: 16px;
+    }
+
+    .file-name-box {
+      flex: 1;
+      margin-right: 24px;
+      font-size: 12px;
+      line-height: 12px;
+      color: #191919;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .operate-panel {
+      visibility: hidden;
+      min-width: fit-content;
+      color: #2e86de;
+      font-size: 12px;
+
+      .operate-btn {
+        cursor: pointer;
+        margin-right: 8px;
+
+        &:last-of-type {
+          margin-right: 0px;
+        }
+      }
+    }
+
+    .file-size {
+      display: flex;
+      height: 16px;
+      line-height: 20px;
+    }
+
+    .file-size-content {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #aeaeae;
+
+      .fail > span {
+        color: #e7434a;
+      }
+    }
+
+    .file-size-right {
+      flex: 1;
+      margin-left: 8px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: right;
+      color: #aeaeae;
+    }
+  }
+
+  .no-attachments {
+    margin-top: 16px;
+    color: #aeaeae;
+    font-size: 12px;
   }
 }

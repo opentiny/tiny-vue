@@ -2,6 +2,7 @@
   <div data-tag="tiny-table-wrapper" class="scrollbar-size-0" :class="wrapperClass" :style="wrapperStyle">
     <exception
       tiny_mode="mobile-first"
+      tiny_mode_root
       v-if="exceptionVisible"
       class="min-h-[theme(spacing.72)]"
       component-page
@@ -99,7 +100,7 @@ export default defineComponent({
       return mergeClass(
         'w-full h-full overflow-y-auto',
         config?.tableVm?.viewCls('mfTable'),
-        this.exceptionVisible ? 'border border-solid border-color-border-separator rounded-sm' : ''
+        this.exceptionVisible ? 'sm:border sm:border-solid sm:border-color-border-separator rounded-sm' : ''
       )
     },
     tableClass() {
@@ -117,10 +118,11 @@ export default defineComponent({
     },
     rowClass() {
       const { cardView, cardConfig } = this as any
-      let rowCls = 'border-b border-solid border-color-border-separator last:border-color-bg-1 py-3'
+      let rowCls = 'border-b-0.5 sm:border-b border-solid border-color-border-separator last:border-color-bg-1 py-3'
 
       if (cardView) {
-        rowCls = 'border-0.5 sm:border border-solid border-color-border-separator p-3 rounded hover:shadow-lg'
+        rowCls =
+          'border-0 sm:border border-solid border-color-border-separator p-3 rounded hover:shadow-lg bg-color-bg-1'
         rowCls += cardConfig?.cardSize === 'small' ? ' min-w-[theme(spacing.64)]' : ' min-w-[theme(spacing.80)]'
       }
 
@@ -137,10 +139,10 @@ export default defineComponent({
     exceptionVisible() {
       const { config, tableData } = this as any
       const { viewType } = config?.tableVm?.$grid
-      const { CARD } = GlobalConfig.viewConfig
+      const { CARD, LIST, MF } = GlobalConfig.viewConfig
       const isException = tableData.length === 0
 
-      return isException && viewType === CARD
+      return isException && (viewType === CARD || viewType === LIST || viewType === MF)
     }
   },
   watch: {

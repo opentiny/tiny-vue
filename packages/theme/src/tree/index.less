@@ -148,6 +148,13 @@
     align-items: center;
     color: var(--ti-tree-text-color);
     fill: var(--ti-tree-text-color);
+
+    .@{radio-prefix-cls} {
+      margin-right: 0;
+      .@{radio-prefix-cls}__label {
+        display: none;
+      }
+    }
   }
 
   & &__plain-node-auxi {

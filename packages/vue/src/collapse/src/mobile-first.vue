@@ -1,5 +1,5 @@
 <template>
-  <div role="tablist" aria-multiselectable="true">
+  <div role="tablist" aria-multiselectable="true" data-tag="tiny-collapse">
     <slot></slot>
   </div>
 </template>

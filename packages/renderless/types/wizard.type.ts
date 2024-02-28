@@ -29,6 +29,7 @@ export interface IWizardState {
   doing: string
   ready: string
   wait: string
+  iconYes: 'tiny-icon-yes' | 'tiny-icon-successful'
 }
 
 export type IWizardConstants = typeof $constants

@@ -519,6 +519,52 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "ichynul",
+      "name": "ichynul",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10061650?v=4",
+      "profile": "https://gitee.com/ichynul",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Davont",
+      "name": "Davont",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28757633?v=4",
+      "profile": "https://github.com/Davont",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "wNing50",
+      "name": "Nick Wu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/38874640?v=4",
+      "profile": "https://github.com/wNing50",
+      "contributions": [
+        "code"
+      ]
+    },
+	
+    {
+      "login": "Floyd-bit",
+      "name": "Floyd",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59243597?v=4",
+      "profile": "https://github.com/Floyd-bit",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Jevin0",
+      "name": "Jevin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/69580637?v=4",
+      "profile": "https://github.com/Jevin0",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 8,

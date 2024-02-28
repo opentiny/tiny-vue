@@ -10,6 +10,7 @@
  *
  */
 import type { IBadgeRenderlessParams, IBadgeContent } from '@/types'
+import type { StyleValue } from 'vue'
 
 export const computedContent =
   ({ props, state }: Pick<IBadgeRenderlessParams, 'props' | 'state'>) =>
@@ -28,4 +29,18 @@ export const computedValueRef =
     }
 
     return typeof props.modelValue === 'number' ? props.modelValue : undefined
+  }
+
+export const computedTransform =
+  ({ designConfig, props }: Pick<IBadgeRenderlessParams, 'designConfig' | 'props'>) =>
+  (): StyleValue => {
+    if (designConfig?.transform === 'unset') {
+      return null
+    }
+    return {
+      transform: `translate(
+        ${props.offset[0]}${typeof props.offset[0] === 'number' ? 'px' : ''},
+        ${props.offset[1]}${typeof props.offset[1] === 'number' ? 'px' : ''}
+      )`
+    }
   }

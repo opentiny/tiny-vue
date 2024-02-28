@@ -1,12 +1,38 @@
 :root {
-  --ti-mobile-multi-select-bg: #fff;
-  --ti-mobile-multi-select-header-bg: #fff;
-  --ti-mobile-multi-select-header-item-height: 28px;
-  --ti-mobile-multi-select-header-item-bg: rgba(0, 0, 0, 0.03);
-  --ti-mobile-multi-select-header-item-margin-top: 10px;
-  --ti-mobile-multi-select-header-label-text-color: #595959;
-  --ti-mobile-multi-select-header-label-font-size: 12px;
-  --ti-mobile-multi-select-svg-fill-color: #c2c2c2;
-  --ti-mobile-multi-select-content-height: 226px;
+  // 背景色
+  --ti-mobile-multi-select-bg:  var(--ti-mobile-color-bg-container-1, #fff);
+  // 头部高度
+  --ti-mobile-multi-select-header-height: var(--ti-mobile-space-12x, 48px);
+  // 头部水平内边距
+  --ti-mobile-multi-select-header-padding-horizontal: var(--ti-mobile-space-4x, 16px);
+  // 头部底部分割线背景色
+  --ti-mobile-multi-select-header-border-bottom-color: var(--ti-mobile-color-border-divider, #f0f0f0);
+  // 头部背景色
+  --ti-mobile-multi-select-header-bg:  var(--ti-mobile-color-bg-container-1, #fff);
+  // 头部子节点右边距
+  --ti-mobile-multi-select-header-item-margin-right: var(--ti-mobile-space-4x, 16px);
+  // 头部子节点背景色
+  --ti-mobile-multi-select-header-item-bg: var(--ti-mobile-color-bg-container-1, #fff);
+  // 头部标签文本色
+  --ti-mobile-multi-select-header-label-text-color: var(--ti-mobile-color-text-primary, #191919);
+  // 头部标题禁用字体色
+  --ti-mobile-multi-select-header-text-color-disabled: var(--ti-mobile-color-text-disabled, #c2c2c2);
+  // 头部图标禁用色
+  --ti-mobile-multi-select-header-icon-color-disabled: var(--ti-mobile-color-icon-disabled, #c2c2c2);
+  // 头部标签字体色
+  --ti-mobile-multi-select-header-label-font-size: var(--ti-mobile-font-size-m, 14px);
+  // 头部选择标签字重
+  --ti-mobile-multi-select-header-label-font-weight: var(--ti-mobile-font-weight-medium, 500);
+  // 头部搜索按钮高度
+  --ti-mobile-multi-select-search-icon-width: var(--ti-mobile-multi-select-header-height);
+  // 头部图标大小
+  --ti-mobile-multi-select-header-icon-font-size: var(--ti-mobile-font-size-l, 16px);
+  // 头部图标颜色
+  --ti-mobile-multi-select-header-svg-fill-color: var(--ti-mobile-color-icon-control, #191919);
+  // 下拉选项最大高度
+  --ti-mobile-multi-select-option-list-max-height: 60vh;
+  // 下拉选项阴影
+  --ti-mobile-multi-select-option-list-shadow: var(--ti-mobile-shadow-s);
+  // 底部宽度
   --ti-mobile-multi-select-footer-width: 164px;
 }

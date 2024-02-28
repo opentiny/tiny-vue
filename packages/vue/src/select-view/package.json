@@ -9,7 +9,10 @@
   "dependencies": {
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-exception": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-action-sheet": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {

@@ -71,16 +71,18 @@ function formatQuery(ruleGroup: RuleGroupTypeAny, options: FormatQueryOptions | 
               ? valueProcessor(r.field, r.operator, r.value, r.valueSource)
               : valueProcessor(r, opts)
         : format === 'jsonlogic'
-        ? ruleProcessorInternal ?? defaultRuleProcessorJsonLogic
-        : defaultValueProcessorByRule
+          ? ruleProcessorInternal ?? defaultRuleProcessorJsonLogic
+          : defaultValueProcessorByRule
     if (Array.isArray(options.quoteFieldNamesWith)) {
       quoteFieldNamesWith = options.quoteFieldNamesWith
     } else if (typeof options.quoteFieldNamesWith === 'string') {
+      // eslint-disable-next-line unused-imports/no-unused-vars
       quoteFieldNamesWith = [options.quoteFieldNamesWith, options.quoteFieldNamesWith]
     }
     validator = options.validator ?? (() => true)
     fields = options.fields ?? []
     fallbackExpression = options.fallbackExpression ?? ''
+    // eslint-disable-next-line unused-imports/no-unused-vars
     paramPrefix = options.paramPrefix ?? ':'
     parseNumbers = !!options.parseNumbers
     placeholderFieldName = options.placeholderFieldName ?? defaultPlaceholderFieldName

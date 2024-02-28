@@ -1,15 +1,14 @@
 <template>
   <div>
-    <tiny-tree lazy :load="load" :afterLoad="afterLoad" @load-data="loadedData"></tiny-tree>
+    <tiny-tree lazy :load="load" :after-load="afterLoad" @load-data="loadedData"></tiny-tree>
   </div>
 </template>
 
 <script setup lang="jsx">
-import { ref } from 'vue'
 import { Tree as TinyTree } from '@opentiny/vue'
 
+// node为点击的节点， resolve为回调函数，用于异步返回下层节点的数据
 function load(node, resolve) {
-  // node为点击的节点， resolve为回调函数，用于异步返回下层节点的数据
   console.log('即将加载节点下级数据：', node)
 
   // 通过 level =0 来识别第一次加载

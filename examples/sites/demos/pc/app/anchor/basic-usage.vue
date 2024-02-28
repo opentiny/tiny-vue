@@ -1,7 +1,9 @@
 <template>
   <div>
-    <tiny-switch v-model="type" true-value="line" false-value="dot"> </tiny-switch>
-    当前类型：{{ type }}
+    <div class="demo-top mb10">
+      <tiny-switch v-model="type" true-value="line" false-value="dot"> </tiny-switch>
+      <span>当前类型：{{ type }}</span>
+    </div>
     <tiny-anchor :links="links" :type="type"></tiny-anchor>
   </div>
 </template>
@@ -25,29 +27,29 @@ export default {
             {
               key: 'basic-usage',
               link: '#basic-usage',
-              title: 'Basic Usage'
+              title: '基本用法'
             },
             {
               key: 'is-affix',
               link: '#is-affix',
-              title: 'Is Affix'
+              title: '固定模式'
             },
             {
               key: 'set-container',
               link: '#set-container',
-              title: 'Set Container'
+              title: '滚动容器'
             },
             {
               key: 'on-change',
-              link: '#on-change',
-              title: 'On Change'
+              link: '#change',
+              title: 'change 事件'
             }
           ]
         },
         {
           key: 'api',
-          link: '#api',
-          title: 'Api'
+          link: '#API',
+          title: 'API'
         }
       ],
       type: 'dot'
@@ -55,3 +57,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-top {
+  display: flex;
+  align-items: center;
+}
+</style>

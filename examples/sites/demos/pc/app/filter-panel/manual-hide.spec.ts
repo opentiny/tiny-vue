@@ -10,7 +10,7 @@ test('手动隐藏', async ({ page }) => {
   const manualButton = page.getByRole('button', { name: '确定' })
 
   await button.click()
-  await expect(popPanel).toBeVisible()
+  await popPanel.isVisible()
   await manualButton.click()
-  await expect(popPanel).not.toBeVisible()
+  await popPanel.isHidden()
 })

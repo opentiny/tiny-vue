@@ -70,18 +70,43 @@
       <div ref="sliderTip" class="tiny-slider__tips" v-show="showTip && state.showTip" :style="state.tipStyle">
         {{ state.tipValue }}
       </div>
+      <div v-if="state.markList">
+        <template v-for="mark in state.markList" :key="mark.value">
+          <div class="tiny-slider__mark-point" :style="mark.positionStyle"></div>
+          <div class="tiny-slider__mark-label" :style="mark.positionStyle">{{ mark.label }}</div>
+        </template>
+      </div>
     </div>
-    <template v-if="showInput && !state.isDouble">
+    <template v-if="showInput">
       <div class="tiny-slider__input">
-        <slot :slot-scope="state.activeValue">
+        <slot :slot-scope="state.slotValue">
           <input
+            v-if="!state.isDouble"
             type="text"
-            v-model="state.slotValue"
+            :value="state.slotValue"
             @focus="handleSlotInputFocus"
             @blur="handleSlotInputBlur"
-            @input="handleSlotInput"
+            @input="handleSlotInput($event)"
             :disabled="state.disabled"
-          /><span>%</span>
+          />
+          <template v-else>
+            <input
+              :value="state.slotValue[0]"
+              @focus="handleSlotInputFocus"
+              @blur="handleSlotInputBlur"
+              @input="handleSlotInput($event)"
+              :disabled="state.disabled"
+            />
+            <span class="tiny-slider__input__split">-</span>
+            <input
+              :value="state.slotValue[1]"
+              @focus="handleSlotInputFocus"
+              @blur="handleSlotInputBlur"
+              @input="handleSlotInput($event, false)"
+              :disabled="state.disabled"
+            />
+          </template>
+          <span class="tiny-slider__input__unit">{{ unit }}</span>
         </slot>
       </div>
     </template>
@@ -106,7 +131,9 @@ export default defineComponent({
     'step',
     'numPages',
     'showTip',
+    'marks',
     'showInput',
+    'unit',
     'height',
     'range',
     'formatTooltip'

@@ -7,7 +7,7 @@ export const tinyUploadListSmbTheme = {
   'ti-upload-list-item-line-height': '22px',
   'ti-upload-list-item-margin-top': '8px',
   'ti-upload-list-picture-card-item-margin-right': '16px',
-  'ti-upload-list-item-border-radius': '8px',
+  'ti-upload-list-item-border-radius': 'var(--ti-common-border-radius-1)',
   'ti-upload-picture-card-border-radius': '8px',
   'ti-upload-list-svg-close-icon-color': '#191919',
   'ti-upload-list-item-hover-background-color': 'rgba(0, 0, 0, 0.05)',

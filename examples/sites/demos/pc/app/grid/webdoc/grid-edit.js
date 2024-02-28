@@ -80,6 +80,17 @@ export default {
       'codeFiles': ['edit/status-of-editing.vue']
     },
     {
+      'demoId': 'edit-grid-equals',
+      'name': { 'zh-CN': '自定义比较方法', 'en-US': 'Enable editing' },
+      'desc': {
+        'zh-CN':
+          '<p>配置列属性 <code>equals</code> 可实现列值自定义比较。此方法接收字段原始值和当前值等作为参数，期望用户返回布尔结果。返回 <code>false</code> 表示已改变，<code>true</code> 表示未改变，其它值表示使用内部预置比较。表格也支持 <code>equals</code> 属性，用于定义所有字段的比较方法，使用参数 <code>field</code> 区分具体的字段，此方式的影响范围是整个表格，需要谨慎使用。</p>',
+        'en-US':
+          '<p>Table attribute settings<code>edit-config</code>Enable the editing mode, Set <code>showStatus</code> in the attribute object to enable or disable the cell update status (inverted triangle update flag in the upper left corner of the cell). The default value is <code>true</code>. </p>\n'
+      },
+      'codeFiles': ['edit/grid-equals.vue']
+    },
+    {
       'demoId': 'edit-trigger-mode-for-editing',
       'name': { 'zh-CN': '触发编辑方式', 'en-US': 'Click to trigger editing' },
       'desc': {
@@ -91,5 +102,5 @@ export default {
       'codeFiles': ['edit/trigger-mode-for-editing.vue']
     }
   ],
-  apis: [{ 'name': 'grid-edit', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-edit', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

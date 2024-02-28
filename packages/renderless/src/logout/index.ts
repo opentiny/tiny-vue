@@ -17,7 +17,7 @@ export const logout =
   () => {
     let { isMock, isLocal, redirectUrl = '', getLogoutUrl, showLogin } = service
 
-    if (typeof props.beforeLogout === 'function') {
+    if (typeof props.beforeLogout === 'function' && !state.logout) {
       if (props.beforeLogout(redirectUrl) === false) {
         return
       }

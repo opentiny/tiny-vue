@@ -11,6 +11,8 @@
       @cropmove="cropmove"
       @cropend="cropend"
       @crop="crop"
+      @cropdata="cropdata"
+      enable
     ></tiny-crop>
   </div>
 </template>
@@ -33,6 +35,12 @@ export default {
     getCanvasData() {
       Modal.message({
         message: `Canvas 数据：${JSON.stringify(this.$refs.crop.getCropBoxData())}`,
+        status: 'info'
+      })
+    },
+    cropdata(data) {
+      Modal.message({
+        message: `Canvas 数据：${JSON.stringify(data)}`,
         status: 'info'
       })
     },

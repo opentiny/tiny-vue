@@ -45,7 +45,7 @@
 
     &.suggest {
       .@{input-prefix-cls}__inner {
-        padding-right: 50px;
+        @apply pr-12;
       }
       .@{svg-prefix-cls}__popeditor {
         &.@{css-prefix}chevron {
@@ -72,8 +72,7 @@
       @apply cursor-pointer;
 
       .@{svg-prefix-cls}__popeditor {
-        height: 30px;
-        line-height: 30px;
+        @apply h-7;
         @apply text-sm;
         @apply fill-color-text-placeholder;
         @apply cursor-pointer;
@@ -126,7 +125,7 @@
 
     .@{popeditor-prefix-cls}__search-footer {
       @apply w-full;
-      @apply text-center;
+      @apply text-right;
       @apply my-3 mx-auto;
     }
   }
@@ -167,7 +166,7 @@
           li {
             @apply float-left;
             @apply h-8;
-            padding-top: 5px;
+            @apply pt-1;
             @apply -mr-px;
             @apply cursor-pointer;
             @apply text-color-text-primary;
@@ -195,7 +194,7 @@
 
           .@{grid-prefix-cls}.size__mini {
             .@{grid-prefix-cls}-cell {
-              @apply leading-none;
+              @apply leading-normal;
             }
           }
         }

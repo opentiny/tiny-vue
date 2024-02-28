@@ -31,7 +31,7 @@ export const watchVisible =
   }
 
 export const watchFocusing = (parent: IDropdownRenderlessParams['parent']) => (value: boolean) => {
-  const selfDefine = parent.$el.querySelector('.tiny-dropdown-selfdefine')
+  const selfDefine: HTMLElement | null = parent.$el.querySelector('.tiny-dropdown-selfdefine')
 
   if (selfDefine) {
     value ? addClass(selfDefine, 'focusing') : removeClass(selfDefine, 'focusing')
@@ -51,7 +51,7 @@ export const show =
       () => {
         state.visible = true
       },
-      props.trigger === 'click' ? 0 : props.showTimeout
+      state.trigger === 'click' ? 0 : props.showTimeout
     )
   }
 
@@ -74,7 +74,7 @@ export const hide =
       () => {
         state.visible = false
       },
-      props.trigger === 'click' ? 0 : props.hideTimeout
+      state.trigger === 'click' ? 0 : props.hideTimeout
     )
   }
 
@@ -199,12 +199,12 @@ export const initEvent =
       on(state.triggerElm, 'click', toggleFocus({ state, value: false }))
     }
 
-    if (props.trigger === 'hover') {
+    if (state.trigger === 'hover') {
       on(state.triggerElm, 'mouseenter', api.show)
       on(state.triggerElm, 'mouseleave', api.hide)
       on(state.dropdownElm, 'mouseenter', api.show)
       on(state.dropdownElm, 'mouseleave', api.hide)
-    } else if (props.trigger === 'click') {
+    } else if (state.trigger === 'click') {
       on(state.triggerElm, 'click', api.handleClick)
     }
 
@@ -259,8 +259,8 @@ export const mounted =
 
     vm.$on('menu-item-click', api.handleMenuItemClick)
     vm.$on('current-item-click', api.handleMenuItemClick)
-    vm.$on('selectedIndex', (selectedIndex) => {
-      broadcast('TinyDropdownMenu', 'menuselectedIndex', selectedIndex)
+    vm.$on('selected-index', (selectedIndex) => {
+      broadcast('TinyDropdownMenu', 'menu-selected-index', selectedIndex)
     })
     vm.$on('is-disabled', api.clickOutside)
   }
@@ -290,7 +290,7 @@ export const beforeDistory =
   }
 
 export const clickOutside =
-  ({ props, api, state }: Pick<IDropdownRenderlessParams, 'props' | 'api' | 'state'>) =>
+  ({ props, api }: Pick<IDropdownRenderlessParams, 'props' | 'api'>) =>
   (disabled: boolean) => {
     if (props.hideOnClick) {
       disabled ? api.show() : api.hide()

@@ -1,7 +1,6 @@
 @import '../mixins/common.less';
 @import '../mixins/input.less';
 @import '../custom.less';
-@import '../transition/zoom-in-top.less';
 
 @calendar-prefix-cls: ~'@{css-prefix}calendar';
 @popover-prefix-cls: ~'@{css-prefix}popover';
@@ -26,11 +25,10 @@
 
   & &__selected {
     @apply border border-solid border-color-brand;
-    background: rgba(24, 144, 255, 0.1);
+    @apply bg-color-brand-hover-subtle;
     @apply p-2;
     @apply text-color-text-primary;
-    line-height: 140%;
-    border-radius: 3px;
+    @apply rounded;
     @apply mb-2;
   }
 
@@ -55,7 +53,7 @@
   }
 
   & &__input {
-    width: 104px;
+    @apply w-24;
     @apply relative;
     @apply outline-0;
 
@@ -71,7 +69,7 @@
       @apply pt-0 pr-10 pb-0 pl-4;
       @apply block;
       @apply whitespace-nowrap;
-      @apply ~"transition-[border]" duration-300;
+      @apply ~'transition-[border]' duration-300;
       @apply outline-0;
       @apply box-border;
 
@@ -118,7 +116,8 @@
     > li {
       @apply relative;
       @apply float-left;
-      width: 62px;
+      @apply ~'min-w-[theme(spacing.12)]';
+      @apply px-3;
       @apply h-7;
       @apply leading-7;
       @apply border border-solid border-color-border;
@@ -131,12 +130,14 @@
       @apply box-border;
 
       &:first-child {
-        border-radius: 3px 0 0 3px;
+        @apply rounded-l-sm;
+        @apply rounded-r-none;
       }
 
       &:last-child {
         @apply -ml-px;
-        border-radius: 0 3px 3px 0;
+        @apply rounded-r-sm;
+        @apply rounded-l-none;
       }
 
       &:hover {
@@ -185,15 +186,15 @@
     }
 
     &.year {
-      padding-bottom: 30px;
+      @apply pb-6;
 
       table > tr {
         & > td {
-          @apply ~"w-1/4";
+          @apply ~'w-1/4';
 
           .@{calendar-prefix-cls}__day {
-            height: 170px;
-            padding-right: 5px;
+            @apply h-20;
+            @apply pr-2;
           }
         }
       }
@@ -252,7 +253,7 @@
 
   & &__events {
     @apply text-left;
-    height: calc(~'100% - 26px');
+    height: calc(~'100% - theme(spacing.6)');
     @apply overflow-y-auto;
     @apply py-1 px-0;
     @apply text-sm;
@@ -395,16 +396,16 @@
   }
 
   & &__selector {
-    width: 104px;
-    max-height: 300px;
+    @apply w-24;
+    @apply ~'max-h-[theme(spacing.72)]';
     @apply overflow-y-auto;
     @apply overflow-x-hidden;
   }
 
   & &__list-item {
-    min-height: 32px;
+    @apply ~'min-h-[theme(spacing.8)]';
     @apply leading-8;
-    @apply ~"max-w-[100%]";
+    @apply ~'max-w-[100%]';
     @apply overflow-hidden;
     @apply text-ellipsis;
     @apply whitespace-nowrap;

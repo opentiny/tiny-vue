@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('searchable-single', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#searchable')
 
   const wrap = page.locator('#searchable')
@@ -32,6 +33,7 @@ test('searchable-single', async ({ page }) => {
 })
 
 test('searchable-multiple', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#searchable')
 
   const wrap = page.locator('#searchable')

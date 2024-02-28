@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('下拉表格远程搜索基础用法', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#nest-grid-remote-multi')
   const wrap = page.locator('#nest-grid-remote-multi')
   const select = wrap.locator('.tiny-select').nth(0)
@@ -32,6 +33,7 @@ test('下拉表格远程搜索基础用法', async ({ page }) => {
 })
 
 test('下拉表格远程搜索 + 自动搜索 + 显示按钮', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#nest-grid-remote-multi')
 
   const wrap = page.locator('#nest-grid-remote-multi')

@@ -19,7 +19,8 @@
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-scrollbar": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-common": "workspace:~"
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

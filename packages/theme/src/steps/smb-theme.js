@@ -1,8 +1,10 @@
 export const tinyStepsSmbTheme = {
+  'ti-steps-circle-width-height': 'var(--ti-common-size-height-normal)',
   'ti-steps-icon-size': 'var(--ti-common-size-height-normal)',
   'ti-steps-text-margin-left': 'var(--ti-common-space-2x)',
   'ti-steps-font-size-hover': 'var(--ti-common-font-weight-bold)',
   'ti-steps-text-color-hover': 'var(--ti-common-color-text-primary)',
+  'ti-steps-icon-hover-text-color': 'var(--ti-common-color-text-primary)',
   'ti-steps-content-margin-top': 'var(--ti-common-space-2x)',
   'ti-steps-advanced-li-text-color': 'var(--ti-common-color-text-white)',
   'ti-steps-unselected-border-color': 'var(--ti-common-color-text-primary)',
@@ -17,17 +19,20 @@ export const tinyStepsSmbTheme = {
   'ti-steps-error-icon-size': 'var(--ti-common-font-size-2)',
   'ti-steps-disabled-icon-bg-color': 'var(--ti-common-color-bg-disabled)',
   'ti-steps-disabled-border-color': 'var(--ti-common-color-line-disabled)',
+  'ti-steps-disabled-name-text-color': 'var(--ti-common-color-text-disabled)',
+  'ti-steps-disabled-select-icon-bg-color': 'var(--ti-common-color-bg-disabled)',
+  'ti-steps-disabled-select-icon-color': 'var(--ti-common-color-text-disabled)',
   'ti-steps-timeline-date-time-text-color': 'var(--ti-common-color-text-primary)',
   'ti-steps-timeline-date-time-font-size': 'var(--ti-common-font-size-0)',
   'ti-steps-mini-number-font-size': 'var(--ti-common-font-size-0)',
   'ti-steps-mini-font-size-base': 'var(--ti-common-font-size-0)',
   'ti-steps-bottom-divider-margin-top': 'calc(var(--ti-common-space-6x) + 1px)',
-  'ti-steps-timeline-dot-bg-color': 'var(--ti-common-color-light)',
   'ti-steps-timeline-line-margin-vertical': 'var(--ti-common-space-base)',
   'ti-steps-timeline-dot-border-color': 'var(--ti-base-color-brand-5)',
   'ti-steps-timeline-dot-bg-color': 'var(--ti-common-color-light)',
   'ti-steps-timeline-dot-primary-bg-color': 'var(--ti-base-color-brand-5)',
   'ti-steps-timeline-item-secondary-text-font-size': 'var(--ti-common-font-size-0)',
   'ti-steps-timeline-vertical-line-margin-left': 'var(--ti-common-space-4x)',
-  'ti-steps-timeline-item-padding-bottom': 'var(--ti-common-space-6x)'
+  'ti-steps-timeline-item-padding-bottom': 'var(--ti-common-space-6x)',
+  'ti-steps-timeline-vertical-line-bg-color': 'rgba(0, 0, 0, 8%)'
 }

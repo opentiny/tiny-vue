@@ -1,5 +1,5 @@
 <template>
-  <div class="tiny-query-builder">
+  <div class="tiny-query-builder" :style="style">
     <query-builder
       key="queryIC"
       v-bind="config"
@@ -34,12 +34,12 @@ export default {
   props: {
     config: Object,
     query: Object,
-    onQueryChange: Function
+    onQueryChange: Function,
+    maxHeight: String
   },
   data() {
     return {
       getFormatQuery: getFormatQueryString,
-      // onQueryChange: () => {},
       validator: null
     }
   },
@@ -48,6 +48,14 @@ export default {
       const rules = this.query?.rules || []
 
       return this.getRuleTotal(rules) <= 1
+    },
+    style() {
+      return !this.maxHeight
+        ? {}
+        : {
+            maxHeight: isNaN(Number(this.maxHeight)) ? this.maxHeight : this.maxHeight + 'px',
+            overflow: 'auto'
+          }
     }
   },
   watch: {

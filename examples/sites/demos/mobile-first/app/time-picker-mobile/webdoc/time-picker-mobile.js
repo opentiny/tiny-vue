@@ -14,6 +14,5 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     }
-  ],
-  apis: []
+  ]
 }

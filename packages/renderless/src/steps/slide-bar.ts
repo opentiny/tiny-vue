@@ -64,7 +64,14 @@ const updatePosition = ({ state, vm, props, api }) =>
   debounce(10, (isInit) => {
     state.positionList = props.data.map((item, index) => {
       const blockRef = vm.$refs['block' + index]
-      const position = (blockRef && blockRef[0].getBoundingClientRect()) || {}
+      let position = {}
+      if (blockRef) {
+        if (Array.isArray(blockRef)) {
+          position = blockRef[0] && blockRef[0].getBoundingClientRect()
+        } else {
+          position = blockRef.getBoundingClientRect()
+        }
+      }
       return Object.assign(position, { index })
     })
 

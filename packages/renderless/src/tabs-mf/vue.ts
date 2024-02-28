@@ -1,5 +1,5 @@
 import { random } from '../common/string'
-import { setActive, addItem, addNav, scrollTo, clickMore, removeItem } from './index'
+import { setActive, addItem, addNav, scrollTo, clickMore, removeItem, changeCurrentName } from './index'
 
 export const api = ['state', 'setActive', 'addItem', 'addNav', 'scrollTo', 'clickMore', 'removeItem']
 
@@ -12,16 +12,16 @@ export const renderless = (props, { onMounted, onBeforeUnmount, provide, reactiv
     separator: props.separator
   })
 
-  const api = {
-    setActive: setActive({ emit, state, props }),
-    addItem: addItem(state),
-    addNav: addNav(state),
-    scrollTo: scrollTo({ vm, state }),
-    removeItem: removeItem({ state, emit })
-  }
+  const api = {}
 
   Object.assign(api, {
     state,
+    setActive: setActive({ api, state, props }),
+    addItem: addItem(state),
+    addNav: addNav(state),
+    scrollTo: scrollTo({ vm, state }),
+    removeItem: removeItem({ state, emit }),
+    changeCurrentName: changeCurrentName({ state, emit }),
     clickMore: clickMore(api)
   })
 

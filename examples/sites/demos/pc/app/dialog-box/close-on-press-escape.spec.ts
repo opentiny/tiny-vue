@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('dialogBox 禁用 ESC 关闭', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('dialog-box#close-on-press-escape')
-  const button = page.getByRole('button', { name: '弹出Dialog' })
+  const button = page.getByRole('button', { name: /Dialog/ })
   const dialogBox = page.locator('.tiny-dialog-box')
   // dialogBox弹出后，禁用 ESC 关闭
   await button.click()

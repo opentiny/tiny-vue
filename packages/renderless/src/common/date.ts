@@ -33,6 +33,7 @@ const dateFormatRegs = {
   'M{1,2}': /M{1,2}/,
   'd{1,2}': /d{1,2}/,
   'h{1,2}': /h{1,2}/,
+  'H{1,2}': /H{1,2}/,
   'm{1,2}': /m{1,2}/,
   's{1,2}': /s{1,2}/,
   'S{1,3}': /S{1,3}/,
@@ -80,6 +81,9 @@ const getTimezone = (date) => {
  */
 export const isLeapYear = (year) => year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
 
+const getMilliseconds = (milliseconds) =>
+  milliseconds > maxDateValues.MILLISECOND ? Number(String(milliseconds).substring(0, 3)) : milliseconds
+
 const getDateFromData = ({ year, month, date, hours, minutes, seconds, milliseconds }) => {
   let daysInMonth = daysInMonths[month]
 
@@ -88,7 +92,7 @@ const getDateFromData = ({ year, month, date, hours, minutes, seconds, milliseco
   }
 
   if (date <= daysInMonth) {
-    return new Date(year, month, date, hours, minutes, seconds, milliseconds)
+    return new Date(year, month, date, hours, minutes, seconds, getMilliseconds(milliseconds))
   }
 }
 
@@ -175,7 +179,8 @@ const iso8601DateParser = (m) => {
       actHours = sign === '+' ? hours - offsetHours - offset / 60 : Number(hours) + Number(offsetHours) - offset / 60
       actMinutes = sign === '+' ? minutes - offsetMinutes : Number(minutes) + Number(offsetMinutes)
     }
-    return new Date(year, month, date, actHours, actMinutes, seconds, milliseconds)
+
+    return new Date(year, month, date, actHours, actMinutes, seconds, getMilliseconds(milliseconds))
   }
 }
 
@@ -406,6 +411,7 @@ export const format = function (date, dateFormat = 'yyyy/MM/dd hh:mm:ss') {
         'M{1,2}': date.getMonth() + 1,
         'd{1,2}': date.getDate(),
         'h{1,2}': date.getHours(),
+        'H{1,2}': date.getHours(),
         'm{1,2}': date.getMinutes(),
         's{1,2}': date.getSeconds(),
         'S{1,3}': date.getMilliseconds(),
@@ -439,24 +445,26 @@ export const format = function (date, dateFormat = 'yyyy/MM/dd hh:mm:ss') {
 /**
  * 将当前操作的时间变更时区，主要用于转换一个其他时区的时间。
  *
- *     let date = new Date(2017, 0, 1)
+ *     var date = new Date(2017, 0, 1)
  *     getDateWithNewTimezone(date, 0, -2)
  *
  * @param {Date} date Date 实例或日期字符串
  * @param {Number} otz 原时区 -12~13
  * @param {Number} ntz 目标时区 -12~13 默认为当前时区
+ * @param {Boolean} TimezoneOffset 时区偏移量
  * @returns {Date}
  */
-export const getDateWithNewTimezone = (date, otz, ntz) => {
-  if (!isDate(date) || !isNumeric(otz) || !isNumeric(ntz)) {
+export const getDateWithNewTimezone = (date, otz, ntz, timezoneOffset = 0) => {
+  if (!isDate(date) || !isNumeric(otz) || !isNumeric(ntz) || !isNumeric(timezoneOffset)) {
     return
   }
 
   const otzOffset = -otz * 60
   const ntzOffset = -ntz * 60
+  const dstOffeset = timezoneOffset * 60
   const utc = date.getTime() + otzOffset * 60000
 
-  return new Date(utc - ntzOffset * 60000)
+  return new Date(utc - (ntzOffset - dstOffeset) * 60000)
 }
 
 /**

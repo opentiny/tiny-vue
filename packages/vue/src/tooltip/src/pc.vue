@@ -13,7 +13,16 @@
 
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/tooltip/vue'
-import { $prefix, setup, createComponent, parseVnode, h, defineComponent } from '@opentiny/vue-common'
+import {
+  $prefix,
+  setup,
+  createComponent,
+  parseVnode,
+  h,
+  defineComponent,
+  $props,
+  isEmptyVnode
+} from '@opentiny/vue-common'
 import type { ITinyVm } from '@opentiny/vue-renderless/types/shared.type'
 import '@opentiny/vue-theme/tooltip/index.less'
 import type { ITooltipApi } from '@opentiny/vue-renderless/types/tooltip.type'
@@ -22,6 +31,7 @@ export default defineComponent({
   name: $prefix + 'Tooltip',
   componentName: 'Tooltip',
   props: {
+    ...$props,
     visible: {
       type: String,
       default: () => 'always',
@@ -126,63 +136,58 @@ export default defineComponent({
 
       return attrContent
     }
+    if (!Object.prototype.hasOwnProperty.call(this, 'popperVM')) {
+      let popperVM = createComponent({
+        el: document.createElement('div'),
+        propsData: null,
+        component: {
+          render: () => {
+            const content = getContent(this)
+            const propsData = {
+              attrs: { name: this.transition },
+              on: { 'after-leave': this.doDestroy }
+            }
+            const typeClass = 'is-' + (this.type || this.effect || 'dark')
+            const mouseenter = () => this.setExpectedState(true)
+            const mouseleave = () => {
+              this.setExpectedState(false)
+              this.debounceClose()
+            }
 
-    Object.prototype.hasOwnProperty.call(this, 'popperVM') ||
-      this.d({
-        popperVM: {
-          get: () =>
-            // 使用适配器里的createComponent创建一个新的vue的vnode节点为一个新组件，挂载到el下面去
-            createComponent({
-              el: document.createElement('div'),
-              propsData: null,
-              component: {
-                render: () => {
-                  let content = getContent(this)
-                  let propsData = {
-                    attrs: { name: this.transition },
-                    on: { 'after-leave': this.doDestroy }
-                  }
-                  let typeClass = 'is-' + (this.type || this.effect)
-                  let mouseenter = () => this.setExpectedState(true)
-                  let mouseleave = () => {
-                    this.setExpectedState(false)
-                    this.debounceClose()
-                  }
-
-                  // 直接 updatePopper 会造成scroll事件的绑定，即使tooltip不显示，也在滚动时带来性能影响
-                  this.$nextTick(() => {
-                    // 取 v-show的条件， v-show时，要更新一下位置
-                    if (!this.disabled && this.state.showPopper && content) {
-                      this.updatePopper()
-                    }
-                  })
-
-                  return h('transition', propsData, [
-                    <div
-                      ref="popper"
-                      id={this.state.tooltipId}
-                      v-show={!this.disabled && this.state.showPopper && content}
-                      class={[
-                        'tiny-tooltip',
-                        'tiny-tooltip__popper',
-                        typeClass,
-                        this.popperClass,
-                        { 'tiny-tooltip__show-tips': this.state.showContent }
-                      ]}
-                      style={`max-width:${this.state.tipsMaxWidth}px`}
-                      role="tooltip"
-                      aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
-                      onMouseenter={() => mouseenter()}
-                      onMouseleave={() => mouseleave()}>
-                      {content}
-                    </div>
-                  ])
-                }
+            // 直接 updatePopper 会造成scroll事件的绑定，即使tooltip不显示，也在滚动时带来性能影响
+            this.$nextTick(() => {
+              // 取 v-show的条件， v-show时，要更新一下位置
+              if (!this.disabled && this.state.showPopper && content) {
+                this.updatePopper()
               }
             })
+
+            return h('transition', propsData, [
+              <div
+                ref="popper"
+                id={this.state.tooltipId}
+                v-show={!this.disabled && this.state.showPopper && content}
+                class={[
+                  'tiny-tooltip',
+                  'tiny-tooltip__popper',
+                  typeClass,
+                  this.popperClass,
+                  { 'tiny-tooltip__show-tips': this.state.showContent }
+                ]}
+                style={`max-width:${this.state.tipsMaxWidth}px`}
+                role="tooltip"
+                aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
+                onMouseenter={() => mouseenter()}
+                onMouseleave={() => mouseleave()}>
+                {content}
+              </div>
+            ])
+          }
         }
       })
 
+      this.d({ popperVM: { get: () => popperVM, set: (v) => (popperVM = v) } })
+    }
     const stringifyClassObj = (classObj: Record<string, string>) =>
       Object.keys(classObj)
         .filter((key) => classObj[key])
@@ -223,8 +228,9 @@ export default defineComponent({
       for (let index = 0; index < slots.length; index++) {
         const vnode = parseVnode(slots[index])
 
-        if (vnode && vnode.type) {
+        if (!isEmptyVnode(vnode)) {
           element = vnode
+          break
         }
       }
 

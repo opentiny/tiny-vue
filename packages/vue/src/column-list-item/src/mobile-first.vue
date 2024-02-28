@@ -2,11 +2,17 @@
   <div
     data-tag="tiny-column-list-item"
     role="column-list-item"
-    class="block sm:flex w-full py-2.5 px-3 sm:pb-2.5 text-sm sm:text-xs border-0.5 sm:border rounded-lg sm:rounded hover:shadow border-color-border-separator"
-    :class="[
-      state.effectOptions.length ? 'pb-0' : 'pb-3',
-      image && !state.showCheckbox && !state.showRadio ? 'pl-4' : 'pl-3'
-    ]"
+    class="block sm:flex bg-color-bg-1 w-full py-2.5 px-3 sm:pb-2.5 text-sm sm:text-xs border-color-border-separator"
+    :class="
+      m(
+        state.effectOptions.length ? 'pb-0' : 'pb-3',
+        image && !state.showCheckbox && !state.showRadio ? 'pl-4' : 'pl-3',
+        state.type === 'list'
+          ? 'pl-0 pr-0 border-b-0.5 sm:border-b-px [&:last-child]:border-none'
+          : 'border-0.5 sm:border rounded-lg sm:rounded hover:shadow',
+        customClass
+      )
+    "
     @click="$emit('click', $event)"
   >
     <div
@@ -37,7 +43,18 @@
       :class="[state.size === 'small' ? 'w-9 h-11' : 'w-14 sm:w-11 h-16']"
     >
       <slot name="image">
-        <img :src="image" class="rounded" :class="[state.size === 'small' ? 'w-9 h-9' : 'w-14 sm:w-11 h-14 sm:h-11']" />
+        <img
+          v-if="typeof image === 'string'"
+          :src="image"
+          class="rounded"
+          :class="[state.size === 'small' ? 'w-9 h-9' : 'w-14 sm:w-11 h-14 sm:h-11']"
+        />
+        <component
+          v-else
+          :is="image"
+          class="rounded"
+          :class="[state.size === 'small' ? 'w-9 h-9' : 'w-14 sm:w-11 h-14 sm:h-11']"
+        ></component>
       </slot>
     </div>
     <div data-tag="tiny-column-list-item-column1" class="block text-left sm:flex flex-auto flex-wrap">
@@ -83,7 +100,7 @@
     <div
       data-tag="tiny-column-list-item-operatebox"
       v-if="state.effectOptions.length || (slots.operate && slots.operate())"
-      class="w-full sm:w-auto px-0 sm:pl-5 sm:pr-2 h-12 sm:h-auto flex flex-row sm:flex-col items-center justify-around sm:justify-center sm:items-start shadow-none sm:shadow-[-6px_0px_5px_-5px_#e8ebef] shrink-0 text-color-text-primary"
+      class="w-full sm:w-auto px-0 sm:pl-5 sm:pr-1 h-12 sm:h-auto flex flex-row sm:flex-col items-center justify-around sm:justify-center sm:items-start shadow-none sm:shadow-[-6px_0px_5px_-5px_#e8ebef] shrink-0 text-color-text-primary"
     >
       <slot name="operate">
         <div
@@ -95,7 +112,7 @@
           @click.stop="handelIconClick(item, index, $event)"
         >
           <component :is="item.icon" class="w-4 h-4" :class="[item.disabled ? 'fill-color-icon-disabled' : '']" />
-          <span v-if="item.text" class="ml-1 align-middle sm:align-bottom">{{ item.text }}</span>
+          <span v-if="item.text" class="ml-1 align-middle">{{ item.text }}</span>
         </div>
         <div
           data-tag="tiny-column-list-item-iconnum"
@@ -109,7 +126,7 @@
             class="w-4 h-4"
             :class="[state.effectOptions[state.sliceNum].disabled ? 'fill-color-icon-disabled' : '']"
           />
-          <span v-if="state.effectOptions[state.sliceNum].text" class="ml-1 align-middle sm:align-bottom">{{
+          <span v-if="state.effectOptions[state.sliceNum].text" class="ml-1 align-middle">{{
             state.effectOptions[state.sliceNum].text
           }}</span>
         </div>
@@ -158,7 +175,7 @@ const $constants = {
 
 export default defineComponent({
   name: $prefix + 'ColumnListItem',
-  emits: ['icon-click', 'update:modelValue', 'change'],
+  emits: ['icon-click', 'update:modelValue', 'change', 'click'],
   components: {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
@@ -175,6 +192,12 @@ export default defineComponent({
     },
     modelValue: {},
     label: {},
+    data: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
     options: {
       type: Array,
       default: () => {
@@ -221,6 +244,14 @@ export default defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    type: {
+      type: String,
+      default: ''
+    },
+    customClass: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {

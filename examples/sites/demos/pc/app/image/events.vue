@@ -1,8 +1,11 @@
 <template>
-  <tiny-image :src="url" @load="loadHandler" @error="errorHandler"></tiny-image>
+  <div>
+    <tiny-image :src="errUrl" @error="errorHandler"></tiny-image>
+    <tiny-image :src="url" @load="loadHandler"></tiny-image>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Image, Modal } from '@opentiny/vue'
 
 export default {
@@ -11,7 +14,8 @@ export default {
   },
   data() {
     return {
-      url: ''
+      errUrl: '',
+      url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`
     }
   },
   methods: {

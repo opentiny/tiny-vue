@@ -20,7 +20,8 @@
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@better-scroll/core": "2.5.0",
-    "@better-scroll/wheel": "2.5.0"
+    "@better-scroll/wheel": "2.5.0",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   },
   "license": "MIT"
 }

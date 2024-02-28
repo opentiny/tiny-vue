@@ -41,7 +41,9 @@ import {
   inputValueChange,
   handleSlotInputFocus,
   handleSlotInputBlur,
-  handleSlotInput
+  handleSlotInput,
+  getMarkList,
+  updateSlotValue
 } from './index'
 
 import type {
@@ -91,7 +93,7 @@ const initState = ({ reactive, computed, props, api, parent, inject }) => {
     moveStyle: [],
     points: [],
     labels: [],
-    isInit: true,
+    markList: computed(() => api.getMarkList()),
     inputValue: [0, 0],
     isDrag: false,
     sliderSize: 0,
@@ -114,7 +116,8 @@ const initState = ({ reactive, computed, props, api, parent, inject }) => {
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
     disabled: computed(() => props.disabled || state.formDisabled),
     slotValue: '',
-    isSlotTyping: false
+    isSlotTyping: false,
+    mouseOuterBtn: false
   })
 
   return state
@@ -160,11 +163,22 @@ export const renderless = (
     getLabels: getLabels({ props, state }),
     inputValueChange: inputValueChange({ props, api, state }),
     handleSlotInputFocus: handleSlotInputFocus(state),
-    handleSlotInputBlur: handleSlotInputBlur(state),
-    handleSlotInput: handleSlotInput(state)
+    handleSlotInputBlur: handleSlotInputBlur({ state, api }),
+    handleSlotInput: handleSlotInput({ state, api }),
+    getMarkList: getMarkList({ props }),
+    updateSlotValue: updateSlotValue({ state })
   })
 
-  watch(() => props.modelValue, api.watchModelValue, { immediate: true })
+  watch(
+    () => props.modelValue,
+    (value) => {
+      if (props.max < props.min) {
+        throw new Error('Slider min should not be greater than max.')
+      }
+      api.watchModelValue(value)
+    },
+    { immediate: true }
+  )
   watch(() => state.activeValue, api.watchActiveValue, { immediate: true })
 
   watch(

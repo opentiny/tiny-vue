@@ -1,15 +1,30 @@
 import debounce from '../common/deps/debounce'
 import { addClass, removeClass } from '../common/deps/dom'
+import type { IDrawerState, IDrawerProps, IDrawerApi, IDrawerCT, ISharedRenderlessParamUtils } from '@/types'
+
+export const computedWidth =
+  ({
+    state,
+    designConfig,
+    props,
+    constants
+  }: Pick<ISharedRenderlessParamUtils, 'state' | 'designConfig' | 'props' | 'constants'>) =>
+  (): string => {
+    if (state.width) {
+      return state.width + 'px'
+    }
+
+    return props.width || designConfig?.constants?.DEFAULT_WIDTH || constants.DEFAULT_WIDTH
+  }
 
 export const close =
-  ({ emit, state }) =>
-  () => {
-    state.toggle = false
-    emit('close', state)
+  ({ api }) =>
+  (force = false) => {
+    api.handleClose('close', force)
   }
 
 export const watchVisible =
-  ({ state }) =>
+  ({ state }: { state: IDrawerState }) =>
   (bool) => {
     setTimeout(() => {
       state.toggle = bool
@@ -17,22 +32,34 @@ export const watchVisible =
   }
 
 export const watchToggle =
-  ({ emit }) =>
-  (bool) => {
+  ({ emit }: { emit: ISharedRenderlessParamUtils['emit'] }) =>
+  (bool: boolean) => {
     setTimeout(() => {
       emit('update:visible', bool)
     }, 0)
   }
 
 export const confirm =
-  ({ emit, state }) =>
+  ({ api }) =>
   () => {
+    api.handleClose('confirm')
+  }
+
+export const handleClose =
+  ({ emit, props, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState }) =>
+  (type, force) => {
+    const isMaskNotClosable = type === 'mask' && !props.maskClosable
+    const isBlockClose = !force && typeof props.beforeClose === 'function' && props.beforeClose(type) === false
+    if (isMaskNotClosable || isBlockClose) {
+      return
+    }
+
     state.toggle = false
-    emit('confirm', state)
+    emit(['close', 'confirm'].includes(type) ? type : 'close', state)
   }
 
 export const mousedown =
-  ({ state, vm }) =>
+  ({ state, vm }: { vm: ISharedRenderlessParamUtils<IDrawerCT>['vm']; state: IDrawerState }) =>
   (event) => {
     event.preventDefault()
 
@@ -44,7 +71,7 @@ export const mousedown =
     state.dragEvent.offsetWidth = drawerBox.offsetWidth
   }
 
-export const mousemove = ({ state, props }) =>
+export const mousemove = ({ state, props }: { state: IDrawerState; props: IDrawerProps }) =>
   debounce(1, (event) => {
     if (!state.dragEvent.isDrag) {
       return
@@ -67,21 +94,21 @@ export const mousemove = ({ state, props }) =>
     } else if (placement === 'right') {
       state.width = offsetWidth - offsetX
     }
-  })
+  }) as Parameters<Document['removeEventListener']>['1']
 
 export const mouseup =
-  ({ state }) =>
+  ({ state }: { state: IDrawerState }) =>
   () => {
     if (!state.dragEvent.isDrag) {
       return
     }
 
-    event.preventDefault()
+    ;(event as any).preventDefault()
     state.dragEvent.isDrag = false
   }
 
 export const addDragEvent =
-  ({ api, vm }) =>
+  ({ api, vm }: { api: IDrawerApi; vm: ISharedRenderlessParamUtils<IDrawerCT>['vm'] }) =>
   () => {
     const el = vm.$refs.dragBar
 
@@ -95,7 +122,7 @@ export const addDragEvent =
   }
 
 export const removeDragEvent =
-  ({ api, vm }) =>
+  ({ api, vm }: { api: IDrawerApi; vm: ISharedRenderlessParamUtils<IDrawerCT>['vm'] }) =>
   () => {
     const el = vm.$refs.dragBar
 
@@ -117,8 +144,8 @@ export const hideScrollbar = (lockScrollClass) => () => {
 }
 
 export const watchVisibleNotImmediate =
-  ({ api, props }) =>
-  (visible) => {
+  ({ api, props }: { api: IDrawerApi; props: IDrawerProps }) =>
+  (visible: boolean) => {
     if (props.lockScroll) {
       visible ? api.showScrollbar() : api.hideScrollbar()
     }

@@ -14,12 +14,13 @@ import { setSubitemAttrValue, setGlobalAttrValue, getClassName, getStyle, row } 
 
 export const api = ['state']
 
-export const renderless = (props, { computed, reactive }, { parent }) => {
+export const renderless = (props, { computed, reactive, inject }, { parent }) => {
   const api = {}
   const state = reactive({
     row: computed(() => api.row()),
     style: computed(() => api.getStyle()),
-    className: computed(() => api.getClassName())
+    className: computed(() => api.getClassName()),
+    layout: inject('layout', {})
   })
 
   Object.assign(api, {

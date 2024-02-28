@@ -19,7 +19,9 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-dropdown": "workspace:~",
     "@opentiny/vue-dropdown-menu": "workspace:~",
-    "@opentiny/vue-dropdown-item": "workspace:~"
+    "@opentiny/vue-dropdown-item": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~"
   },
   "license": "MIT"
 }

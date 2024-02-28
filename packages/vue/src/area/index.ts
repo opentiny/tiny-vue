@@ -1,4 +1,4 @@
-import Area from './src/pc.vue'
+import Area from './src/index'
 import '@opentiny/vue-theme/area/index.less'
 import { version } from './package.json'
 

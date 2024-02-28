@@ -28,12 +28,12 @@ export default {
       'name': { 'zh-CN': '序号列的起始值', 'en-US': 'Start value of the user-defined sequence number column' },
       'desc': {
         'zh-CN':
-          '<p>表格列属性设置 <code>type=&quot;index&quot;</code> 显示序号列，<code>start-index</code> 设置自定义序号列的起始值。</p>\n',
+          '<p>表格列属性设置 <code>type=&quot;index&quot;</code> 显示序号列，<code>start-index</code> 设置自定义序号列的起始值；通过 <code>seq-serial</code> 设置序号连续</p>\n',
         'en-US':
           '<p>Set the table column attribute <code>type=&quot;index&quot;</code> to display the sequence number column, and <code>start-index</code> to set the start value of the customized sequence number column. </p>\n'
       },
       'codeFiles': ['serial-column/start-index.vue']
     }
   ],
-  apis: [{ 'name': 'grid-serial-column', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-serial-column', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

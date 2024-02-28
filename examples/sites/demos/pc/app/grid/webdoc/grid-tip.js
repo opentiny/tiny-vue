@@ -6,7 +6,7 @@ export default {
       'demoId': 'tip-column-header-tip',
       'name': { 'zh-CN': '列头提示', 'en-US': 'Column Header Prompt' },
       'desc': {
-        'zh-CN': `<p>列头提示有2种，一种是 <code>show-header-tip</code> 提示（内容是否超出都会提示），另一种是 <code>show-header-overflow</code> 内容超出当前行时隐藏并提示。</p>
+        'zh-CN': `<p>列头提示有两种，一种是 <code>show-header-tip</code> 提示（内容是否超出都会提示），另一种是 <code>show-header-overflow</code> 内容超出当前行时隐藏并提示。</p>
           <div class="tip custom-block">
             <p class="custom-block-title">TIP</p>\n<p> <code>show-header-overflow</code> 可选值有：</p>
             <ul>
@@ -25,14 +25,14 @@ export default {
       'name': { 'zh-CN': '单元格提示', 'en-US': 'Cell Prompt' },
       'desc': {
         'zh-CN': `
-        <p>单元格提示有2种，一种是 <code>show-tip</code> 提示（内容是否超出都会提示），另一种是 <code>show-overflow</code> 内容超出当前行时隐藏并提示。</p>
+        <p>单元格提示有两种，一种是 <code>show-tip</code> 提示（内容是否超出都会提示），另一种是 <code>show-overflow</code> 内容超出当前行时隐藏并提示。</p>
         <div class="tip custom-block">
           <p class="custom-block-title">TIP</p>
           <p> <code>show-overflow</code> 可选值有：</p>
           <ul>
+            <li><code>tooltip</code>：内容超出部分显示 <code>...</code>，左侧/右侧弹出提示层显示全部信息</li>
             <li><code>title</code>：和原生标签的 <code>title</code> 属性一致</li>
             <li><code>ellipsis</code>：内容超出部分显示 <code>...</code>，没有提示</li>
-            <li><code>tooltip</code>：内容超出部分显示 <code>...</code>，左侧/右侧弹出提示层显示全部信息</li>
           </ul>
         </div>\n`,
         'en-US':
@@ -51,5 +51,5 @@ export default {
       'codeFiles': ['tip/cell-tip-config.vue']
     }
   ],
-  apis: [{ 'name': 'grid-tip', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-tip', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

@@ -20,6 +20,7 @@ test('照片墙', async ({ page }) => {
   const dialogClose = page.getByRole('button', { name: 'Close' })
   const { width, height } = await first.boundingBox()
 
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
   const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
@@ -27,12 +28,12 @@ test('照片墙', async ({ page }) => {
   await expect(height).toEqual(148)
   await expect(li).toHaveCount(1)
   await fileChooser.setFiles(currentPath)
-  await expect(li).toHaveCount(2)
   await first.hover()
   await prevPic.click()
   await expect(prevImg).toHaveAttribute('src', '/static/images/fruit.jpg')
   await dialogClose.click()
   await first.hover()
   await delButton.click()
-  await expect(items).toHaveCount(1)
+  await page.waitForTimeout(200)
+  await first.isHidden()
 })

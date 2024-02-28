@@ -28,6 +28,6 @@ function fn() {
 }
 
 function confirm() {
-  Modal.message('确认事件')
+  Modal.message({ message: '确认事件', status: 'info' })
 }
 </script>

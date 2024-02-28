@@ -18,6 +18,6 @@ test('过滤高级设置', async ({ page }) => {
   await expect(page.getByRole('cell', { name: 'WWW科技YX公司' })).toHaveCount(1)
 
   // 清楚筛选
-  await page.getByRole('button', { name: '清空表格name字段的过滤条件' }).click()
+  await page.getByRole('button', { name: '清空表格 name 字段的过滤条件' }).click()
   await expect(page.getByRole('cell', { name: 'RFV有限责任公司' })).toHaveCount(1)
 })

@@ -1,0 +1,41 @@
+.drag-container {
+  width: 10000px;
+  height: 10000px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.drag-tools {
+  display: none; // 此次巴展先不展示手动缩放按钮
+  width: 32px;
+  bottom: 48px;
+  right: 32px;
+  font-size: 14px;
+  text-align: center;
+  padding-top: 6px;
+  border-radius: 4px;
+  padding-bottom: 6px;
+  position: absolute;
+  border: 1px solid rgba(238, 238, 238, 0.8);
+  background-color: rgba(238, 238, 238, 0.8);
+
+  .drag-tool-item {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    line-height: 30px;
+
+    &:hover {
+      color: #2070f3;
+    }
+  }
+
+  .drag-tools-enlarge {
+  }
+
+  .drag-tools-center {
+  }
+
+  .drag-tools-shrunk {
+  }
+}

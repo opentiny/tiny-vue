@@ -13,10 +13,9 @@
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "shepherd.js": "11.0.1"
-  },
-  "peerDependencies": {
-    "@floating-ui/dom": "^1.0.10"
+    "shepherd.js": "11.0.1",
+    "@floating-ui/dom": "^1.0.10",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

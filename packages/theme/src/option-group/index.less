@@ -41,12 +41,20 @@
   .@{option-group-prefix-cls}__title {
     padding: 0 var(--ti-option-group-title-padding-horizontal);
     font-size: var(--ti-option-group-title-font-size);
+    font-weight: var(--ti-option-group-title-font-weight);
     color: var(--ti-option-group-title-text-color);
     line-height: var(--ti-option-group-title-line-height);
+    height: var(--ti-option-group-title-height);
     margin-top: var(--ti-option-group-title-margin-top);
   }
 
   &:first-child .@{option-group-prefix-cls}__title {
-    margin-top: 12px;
+    margin-top: var(--ti-option-group-title-margin-top-first);
+  }
+
+  .@{option-group-prefix-cls}__list {
+    .tiny-option {
+      padding: var(--ti-option-padding-vertical) var(--ti-option-padding-horizontal-group);
+    }
   }
 }

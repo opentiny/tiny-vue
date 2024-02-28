@@ -43,7 +43,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .tiny-link {
   margin-right: 8px;
 }

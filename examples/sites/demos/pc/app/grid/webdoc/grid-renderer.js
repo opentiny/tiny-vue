@@ -14,17 +14,17 @@ export default {
             <li><code>integer</code>：显示成整数。</li>
             <li><code>number</code>：显示成小数。</li>
             <li><code>money</code>：显示成钱数。</li>
-            <li>rate：显示成百分比的数据。</li>
-            <li>filesize：显示成文件大小的数据。</li>
-            <li>boole：显示成对号或者叉号的图标。</li>
-            <li>date：显示成年月日。</li>
-            <li>dateTime：显示成年月日时分。</li>
-            <li>longDateTime：显示成年月日时分秒。</li>
-            <li>time：显示成时分。</li>
-            <li>longTime：显示成时分秒。</li>
-            <li>yearMonth：显示成年月。</li>
-            <li>enum：通过数据的值，查询出要显示的文本。</li>
-            <li>ellipsis：显示成省略的内容，鼠标移到该单元格上，显示完整内容的提示信息。需要同时配置 format 的 len 属性。</li>
+            <li><code>rate</code>：显示成百分比的数据。</li>
+            <li><code>filesize</code>：显示成文件大小的数据。</li>
+            <li><code>boole</code>：显示成对号或者叉号的图标。</li>
+            <li><code>date</code>：显示成年月日。</li>
+            <li><code>dateTime</code>：显示成年月日时分。</li>
+            <li><code>longDateTime</code>：显示成年月日时分秒。</li>
+            <li><code>time</code>：显示成时分。</li>
+            <li><code>longTime</code>：显示成时分秒。</li>
+            <li><code>yearMonth</code>：显示成年月。</li>
+            <li><code>enum</code>：通过数据的值，查询出要显示的文本。</li>
+            <li><code>ellipsis</code>：显示成省略的内容，鼠标移到该单元格上，显示完整内容的提示信息。需要同时配置 format 的 len 属性。</li>
           </ul>
         </div>
         `,
@@ -45,6 +45,17 @@ export default {
       'codeFiles': ['renderer/custom-renderer.vue']
     },
     {
+      'demoId': 'renderer-inner-renderer-date',
+      'name': { 'zh-CN': '日期渲染器', 'en-US': 'Custom Renderer' },
+      'desc': {
+        'zh-CN':
+          '<p>在日期字段为字符串值时，需要给日期渲染器提供 <code>valueFormat</code> 配置才能正常解析日期字符串。</p>\n',
+        'en-US':
+          '<p>The custom renderer can customize the rendering of cells or a <code>vue component</code>. Configure <code>renderer</code> in the <code>grid-column</code> column to support method and object configuration. For details, see the following example. </p>\n'
+      },
+      'codeFiles': ['renderer/inner-renderer-date.vue']
+    },
+    {
       'demoId': 'render-async-colunm-render',
       'name': { 'zh-CN': '列异步数据渲染', 'en-US': 'Column Asynchronous Data Rendering' },
       'desc': {
@@ -56,5 +67,5 @@ export default {
       'codeFiles': ['renderer/async-colunm-render.vue']
     }
   ],
-  apis: [{ 'name': 'grid-renderer', 'type': 'component', 'properties': [], 'events': [], 'slots': [] }]
+  apis: [{ 'name': 'grid-renderer', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]
 }

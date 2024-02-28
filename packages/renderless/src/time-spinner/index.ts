@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -47,10 +48,6 @@ export const decrease =
 export const modifyDateField =
   ({ emit, props, state }) =>
   (type, value) => {
-    if (state[type] === value) {
-      return
-    }
-
     switch (type) {
       case 'hours':
         emit('change', modifyTime(props.date, value, state.minutes, state.seconds))

@@ -3,19 +3,20 @@ import { test, expect } from '@playwright/test'
 test('[DatePicker] 测试日期格式化', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('date-picker#format')
-  const dateInputDefault = page.getByRole('textbox', { name: '2023 年 05 月 20 日' })
-  const dateInputTimestamp = page.getByRole('textbox', { name: '2020 年 5 月 20 日 0 时 0 分钟 0 秒 AM' })
-  const dateInputString = page.getByRole('textbox', { name: '2020 年 05 月 20 日' })
 
-  await page.getByRole('textbox', { name: '2023 年 05 月 24 日' }).click()
+  // format: 日期输入框中显示的格式
+  await page.getByRole('textbox', { name: '2023 年 05 月 24 日' }).first().click()
   await page.getByRole('cell', { name: '20' }).getByText('20').click()
-  await expect(dateInputDefault).toBeVisible()
+  await expect(page.getByRole('textbox', { name: '2023 年 05 月 20 日' }).first()).toBeVisible()
 
-  await page.getByRole('textbox', { name: '2020 年 5 月 22 日 0 时 0 分钟 0 秒 AM' }).click()
-  await page.getByRole('cell', { name: '20' }).getByText('20').nth(1).click()
-  await expect(dateInputTimestamp).toBeVisible()
+  // time-format: 时间输入框中显示的格式
+  await page.locator('.tiny-date-editor input').nth(1).click()
+  await page.getByRole('row', { name: '21 22 23 24 25 26 27' }).getByText('24').click()
+  await page.getByRole('button', { name: '确定' }).click()
+  await expect(page.locator('.tiny-date-editor input').nth(1)).toHaveValue('2023 年 05 月 24 日 08 时 00 分 00 秒')
 
-  await page.getByRole('textbox', { name: '2020 年 05 月 22 日' }).click()
-  await page.getByRole('cell', { name: '20' }).getByText('20').nth(1).click()
-  await expect(dateInputString).toBeVisible()
+  // value-format: 选中值的格式
+  await page.locator('.tiny-date-editor input').nth(2).click()
+  await page.getByRole('cell', { name: '20' }).getByText('20').click()
+  await expect(page.locator('.select-date')).toHaveText(`当前选中时间：${1589904000000}`)
 })

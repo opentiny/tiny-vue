@@ -1,7 +1,7 @@
 .ql-container {
   @apply box-border;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  @apply text-xs;
   @apply h-full;
   @apply m-0;
   @apply relative;
@@ -52,9 +52,9 @@
       &::before,
       &::after {
         @apply left-0;
-        @apply ~"ml-[50%]";
+        @apply ~'ml-[50%]';
         @apply absolute;
-        @apply ~"-translate-x-1/2" ~"-translate-y-full";
+        @apply ~'-translate-x-1/2' ~'-translate-y-full';
         transition: visibility 0s ease 200ms;
         @apply invisible;
       }
@@ -68,11 +68,11 @@
 }
 
 .ql-clipboard {
-  @apply ~"left-[-10000px]";
+  @apply ~'left-[-10000px]';
   @apply h-px;
   @apply overflow-y-hidden;
   @apply absolute;
-  @apply ~"top-1/2";
+  @apply ~'top-1/2';
 
   p {
     @apply m-0;
@@ -80,17 +80,17 @@
   }
 }
 
-.quill-editor.ql-editor {
+.quill-editor {
   overflow: initial;
   @apply p-0;
 }
 .ql-editor {
   @apply box-border;
-  line-height: 1.42;
+  @apply leading-normal;
   @apply h-full;
   @apply outline-0;
   @apply overflow-y-auto;
-  padding: 12px 15px;
+  @apply py-3 px-4;
   tab-size: 4;
   -moz-tab-size: 4;
   @apply text-left;
@@ -419,7 +419,7 @@
 
   .ql-video {
     @apply block;
-    @apply ~"max-w-[100%]";
+    @apply ~'max-w-[100%]';
 
     &.ql-align-center {
       @apply my-0 mx-auto;
@@ -524,22 +524,27 @@
   }
 
   &.ql-blank::before {
-    color: #999;
+    @apply text-color-text-placeholder;
     content: attr(data-placeholder);
     @apply italic;
     @apply absolute;
-    left: 15px;
-    right: 15px;
+    @apply left-3;
+    @apply right-3;
   }
 }
 
 .is-display-only {
   .ql-toolbar.ql-snow {
-    display: none;
+    @apply hidden;
 
     & + .ql-container.ql-snow {
-      border-top: 1px solid #d9d9d9;
-      margin: -15px 0;
+      @apply border-0;
+      .ql-editor {
+        @apply p-0;
+        &.ql-blank:before {
+          @apply left-0;
+        }
+      }
     }
   }
 }
@@ -551,7 +556,7 @@
   }
 
   &.ql-container {
-    border: 1px solid #d9d9d9;
+    @apply border border-color-border;
     @apply rounded-sm;
   }
 
@@ -573,14 +578,14 @@
       @apply cursor-pointer;
       @apply float-left;
       @apply h-6;
-      padding: 3px 5px;
+      @apply ~'py-0.5 px-1';
       @apply w-7;
 
       svg {
         @apply float-left;
         @apply h-full;
         &.icon {
-          fill: #ccc;
+          @apply fill-color-bg-2;
           @apply text-lg;
         }
       }
@@ -630,7 +635,7 @@
 
   .ql-tooltip {
     @apply absolute;
-    transform: translateY(10px);
+    @apply ~'translate-y-2.5';
 
     a {
       @apply cursor-pointer;
@@ -638,7 +643,7 @@
     }
 
     &.ql-flip {
-      transform: translateY(-10px);
+      @apply ~'-translate-y-2.5';
     }
   }
 
@@ -670,7 +675,7 @@
 
   .ql-fill,
   .ql-stroke.ql-fill {
-    fill: #ccc;
+    @apply fill-color-bg-2;
   }
 
   .ql-empty {
@@ -708,27 +713,27 @@
 
   .ql-editor {
     h1 {
-      font-size: 2em;
+      @apply text-3xl;
     }
 
     h2 {
-      font-size: 1.5em;
+      @apply text-xl;
     }
 
     h3 {
-      font-size: 1.17em;
+      @apply text-base;
     }
 
     h4 {
-      font-size: 1em;
+      @apply text-sm;
     }
 
     h5 {
-      font-size: 0.83em;
+      @apply text-xs;
     }
 
     h6 {
-      font-size: 0.67em;
+      @apply text-xs;
     }
 
     a {
@@ -736,27 +741,26 @@
     }
 
     blockquote {
-      border-left: 4px solid #ccc;
-      margin-bottom: 5px;
-      margin-top: 5px;
+      @apply border-l-4 border-l-color-bg-2;
+      @apply mt-1;
       @apply pl-4;
     }
 
     code,
     pre {
-      background-color: #f0f0f0;
-      border-radius: 3px;
+      @apply bg-color-bg-2;
+      @apply rounded-sm;
     }
 
     pre {
       @apply whitespace-pre-wrap;
-      margin-bottom: 5px;
-      margin-top: 5px;
-      padding: 5px 10px;
+      @apply mb-1;
+      @apply mt-1;
+      @apply p-1;
 
       &.ql-syntax {
-        background-color: #23241f;
-        color: #f8f8f2;
+        @apply bg-color-text-primary;
+        @apply text-color-bg-2;
         @apply overflow-visible;
       }
     }
@@ -767,7 +771,7 @@
     }
 
     img {
-      @apply ~"max-w-[100%]";
+      @apply ~'max-w-[100%]';
     }
   }
 
@@ -783,10 +787,10 @@
 
     &:not(.ql-color-picker):not(.ql-icon-picker) svg {
       @apply absolute;
-      margin-top: -9px;
+      @apply -mt-2;
       @apply right-0;
-      @apply ~"top-1/2";
-      @apply ~"w-4.5";
+      @apply ~'top-1/2';
+      @apply ~'w-4.5';
     }
 
     &.ql-header,
@@ -799,7 +803,7 @@
     }
 
     &.ql-header {
-      width: 98px;
+      @apply w-24;
 
       .ql-picker-label::before,
       .ql-picker-item::before {
@@ -837,32 +841,32 @@
       }
 
       .ql-picker-item[data-value='1']::before {
-        font-size: 2em;
+        @apply text-3xl;
       }
 
       .ql-picker-item[data-value='2']::before {
-        font-size: 1.5em;
+        @apply text-xl;
       }
 
       .ql-picker-item[data-value='3']::before {
-        font-size: 1.17em;
+        @apply text-base;
       }
 
       .ql-picker-item[data-value='4']::before {
-        font-size: 1em;
+        @apply text-sm;
       }
 
       .ql-picker-item[data-value='5']::before {
-        font-size: 0.83em;
+        @apply text-xs;
       }
 
       .ql-picker-item[data-value='6']::before {
-        font-size: 0.67em;
+        @apply text-xs;
       }
     }
 
     &.ql-font {
-      width: 108px;
+      @apply w-28;
 
       .ql-picker-label::before,
       .ql-picker-item::before {
@@ -889,7 +893,7 @@
     }
 
     &.ql-size {
-      width: 98px;
+      @apply w-24;
 
       .ql-picker-label::before,
       .ql-picker-item::before {
@@ -920,7 +924,7 @@
       }
 
       .ql-picker-item[data-value='huge']::before {
-        font-size: 32px;
+        @apply text-3xl;
       }
     }
   }
@@ -930,13 +934,13 @@
     @apply inline-block;
     @apply h-full;
     @apply pl-2;
-    @apply ~"pr-0.5";
+    @apply ~'pr-0.5';
     @apply relative;
     @apply w-full;
 
     &::before {
       @apply inline-block;
-      line-height: 22px;
+      @apply ~'leading-5.5';
     }
   }
 
@@ -951,8 +955,8 @@
     .ql-picker-item {
       @apply cursor-pointer;
       @apply block;
-      padding-bottom: 5px;
-      padding-top: 5px;
+      @apply pb-1;
+      @apply pt-1;
       @apply outline-0;
     }
   }
@@ -1006,15 +1010,15 @@
 
   .ql-color-picker {
     .ql-picker-options {
-      padding: 3px 5px;
-      width: 152px;
+      @apply ~'py-0.5 px-1';
+      @apply w-40;
     }
 
     .ql-picker-item {
       @apply border border-solid border-transparent;
       @apply float-left;
       @apply h-4;
-      @apply ~"m-0.5";
+      @apply ~'m-0.5';
       @apply p-0;
       @apply w-4;
     }
@@ -1024,7 +1028,7 @@
     }
 
     &.ql-color .ql-picker-item {
-      background-color: #000;
+      @apply bg-color-bg-7;
     }
 
     svg {
@@ -1091,8 +1095,7 @@
       @apply bg-transparent;
       @apply border-none;
       @apply text-color-text-inverse;
-      font-size: 13px;
-      @apply h-full;
+      @apply text-xs;
       @apply outline-0;
       @apply ~'py-2.5' px-5;
       @apply absolute;
@@ -1123,7 +1126,7 @@
 
         .ql-fill,
         .ql-stroke.ql-fill {
-          fill: #ccc;
+          @apply fill-color-bg-2;
         }
 
         .ql-stroke,
@@ -1155,7 +1158,7 @@
       @apply cursor-pointer;
       @apply float-left;
       @apply h-6;
-      padding: 3px 5px;
+      @apply ~'py-0.5 px-1';
       @apply w-7;
 
       svg {
@@ -1182,11 +1185,11 @@
     .ql-picker-label.ql-active,
     .ql-picker-item:hover,
     .ql-picker-item.ql-selected {
-      color: #06c;
+      @apply text-color-brand;
 
       .ql-fill,
       .ql-stroke.ql-fill {
-        fill: #06c;
+        @apply fill-color-brand;
       }
 
       .ql-stroke,
@@ -1207,7 +1210,7 @@
 
   .ql-tooltip {
     @apply absolute;
-    transform: translateY(10px);
+    @apply ~'translate-y-2.5';
 
     a {
       @apply cursor-pointer;
@@ -1215,7 +1218,7 @@
     }
 
     &.ql-flip {
-      transform: translateY(-10px);
+      @apply ~'-translate-y-2.5';
     }
   }
 
@@ -1232,7 +1235,7 @@
 
   .ql-stroke {
     @apply fill-none;
-    stroke: #444;
+    @apply stroke-color-icon-primary;
     stroke-linecap: round;
     stroke-linejoin: round;
     @apply stroke-2;
@@ -1240,14 +1243,14 @@
 
   .ql-stroke-miter {
     @apply fill-none;
-    stroke: #444;
+    @apply stroke-color-icon-primary;
     stroke-miterlimit: 10;
     @apply stroke-2;
   }
 
   .ql-fill,
   .ql-stroke.ql-fill {
-    fill: #444;
+    @apply fill-color-icon-primary;
   }
 
   .ql-empty {
@@ -1285,27 +1288,27 @@
 
   .ql-editor {
     h1 {
-      font-size: 2em;
+      @apply text-3xl;
     }
 
     h2 {
-      font-size: 1.5em;
+      @apply text-xl;
     }
 
     h3 {
-      font-size: 1.17em;
+      @apply text-base;
     }
 
     h4 {
-      font-size: 1em;
+      @apply text-sm;
     }
 
     h5 {
-      font-size: 0.83em;
+      @apply text-xs;
     }
 
     h6 {
-      font-size: 0.67em;
+      @apply text-xs;
     }
 
     a {
@@ -1313,27 +1316,26 @@
     }
 
     blockquote {
-      border-left: 4px solid #ccc;
-      margin-bottom: 5px;
-      margin-top: 5px;
+      @apply border-l-4 border-l-color-bg-2;
+      @apply mt-1;
       @apply pl-4;
     }
 
     code,
     pre {
-      background-color: #f0f0f0;
-      border-radius: 3px;
+      @apply bg-color-bg-2;
+      @apply rounded-sm;
     }
 
     pre {
       @apply whitespace-pre-wrap;
-      margin-bottom: 5px;
-      margin-top: 5px;
-      padding: 5px 10px;
+      @apply mb-1;
+      @apply mt-1;
+      @apply p-1;
 
       &.ql-syntax {
-        background-color: #23241f;
-        color: #f8f8f2;
+        @apply bg-color-text-primary;
+        @apply text-color-bg-2;
         @apply overflow-visible;
       }
     }
@@ -1344,12 +1346,12 @@
     }
 
     img {
-      @apply ~"max-w-[100%]";
+      @apply ~'max-w-[100%]';
     }
   }
 
   .ql-picker {
-    color: #444;
+    @apply text-color-text-primary;
     @apply float-left;
     @apply text-sm;
     @apply font-medium;
@@ -1364,7 +1366,7 @@
         @apply ~'z-[2]';
 
         .ql-fill {
-          fill: #ccc;
+          @apply fill-color-bg-2;
         }
 
         .ql-stroke {
@@ -1382,10 +1384,10 @@
 
     &:not(.ql-color-picker):not(.ql-icon-picker) svg {
       @apply absolute;
-      margin-top: -9px;
+      @apply -mt-2;
       @apply right-0;
-      @apply ~"top-1/2";
-      @apply ~"w-4.5";
+      @apply ~'top-1/2';
+      @apply ~'w-4.5';
     }
 
     &.ql-header,
@@ -1398,7 +1400,7 @@
     }
 
     &.ql-header {
-      width: 98px;
+      @apply w-24;
 
       .ql-picker-label::before,
       .ql-picker-item::before {
@@ -1436,32 +1438,32 @@
       }
 
       .ql-picker-item[data-value='1']::before {
-        font-size: 2em;
+        @apply text-3xl;
       }
 
       .ql-picker-item[data-value='2']::before {
-        font-size: 1.5em;
+        @apply text-xl;
       }
 
       .ql-picker-item[data-value='3']::before {
-        font-size: 1.17em;
+        @apply text-base;
       }
 
       .ql-picker-item[data-value='4']::before {
-        font-size: 1em;
+        @apply text-sm;
       }
 
       .ql-picker-item[data-value='5']::before {
-        font-size: 0.83em;
+        @apply text-xs;
       }
 
       .ql-picker-item[data-value='6']::before {
-        font-size: 0.67em;
+        @apply text-xs;
       }
     }
 
     &.ql-font {
-      width: 108px;
+      @apply w-28;
 
       .ql-picker-label::before,
       .ql-picker-item::before {
@@ -1488,7 +1490,7 @@
     }
 
     &.ql-size {
-      width: 98px;
+      @apply w-24;
 
       .ql-picker-label::before,
       .ql-picker-item::before {
@@ -1519,7 +1521,7 @@
       }
 
       .ql-picker-item[data-value='huge']::before {
-        font-size: 32px;
+        @apply text-3xl;
       }
     }
   }
@@ -1529,13 +1531,13 @@
     @apply inline-block;
     @apply h-full;
     @apply pl-2;
-    @apply ~"pr-0.5";
+    @apply ~'pr-0.5';
     @apply relative;
     @apply w-full;
 
     &::before {
       @apply inline-block;
-      line-height: 22px;
+      @apply ~'leading-5.5';
     }
   }
 
@@ -1550,8 +1552,8 @@
     .ql-picker-item {
       @apply cursor-pointer;
       @apply block;
-      padding-bottom: 5px;
-      padding-top: 5px;
+      @apply pb-1;
+      @apply pt-1;
       @apply outline-0;
     }
   }
@@ -1583,15 +1585,15 @@
 
   .ql-color-picker {
     .ql-picker-options {
-      padding: 3px 5px;
-      width: 152px;
+      @apply ~'py-0.5 px-1';
+      @apply w-40;
     }
 
     .ql-picker-item {
       @apply border border-solid border-transparent;
       @apply float-left;
       @apply h-4;
-      @apply ~"m-0.5";
+      @apply ~'m-0.5';
       @apply p-0;
       @apply w-4;
     }
@@ -1601,12 +1603,12 @@
     }
 
     &.ql-color .ql-picker-item {
-      background-color: #000;
+      @apply bg-color-bg-7;
     }
   }
 
   &.ql-toolbar {
-    border: 1px solid #d9d9d9;
+    @apply border border-color-border;
     @apply box-border;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     @apply p-2;
@@ -1647,7 +1649,7 @@
 
   .ql-tooltip {
     @apply bg-color-bg-1;
-    border: 1px solid #ccc;
+    @apply border border-color-border-separator;
     box-shadow: 0px 0px 5px #ddd;
     color: #444;
     padding: 5px 12px;
@@ -1661,11 +1663,10 @@
 
     input[type='text'] {
       @apply hidden;
-      border: 1px solid #ccc;
-      font-size: 13px;
-      height: 26px;
+      @apply border border-color-border-separator;
+      @apply text-xs;
       @apply m-0;
-      padding: 3px 5px;
+      @apply ~'py-0.5 px-1';
       width: 170px;
     }
 
@@ -1724,11 +1725,11 @@
   }
 
   a {
-    color: #06c;
+    @apply text-color-brand;
   }
 
   &.ql-container {
-    border: 1px solid #d9d9d9;
+    @apply border border-color-border;
   }
 }
 
@@ -1737,17 +1738,17 @@
     &.ql-toolbar,
     .ql-toolbar {
       button:hover:not(.ql-active) {
-        color: #444;
+        @apply text-color-text-primary;
       }
 
       .ql-fill,
       .ql-stroke.ql-fill {
-        fill: #444;
+        @apply fill-color-icon-primary;
       }
 
       .ql-stroke,
       .ql-stroke-miter {
-        stroke: #444;
+        @apply stroke-color-icon-primary;
       }
     }
   }
@@ -1755,7 +1756,7 @@
 
 .toolbar-icon {
   @apply absolute;
-  @apply ~"-left-[9999px]";
+  @apply ~'-left-[9999px]';
   @apply opacity-0;
   @apply ~'-z-[1]';
   @apply w-0;
@@ -1764,7 +1765,7 @@
 
 .ql-editor table {
   @apply table-fixed;
-  @apply ~"max-w-[100%]";
+  @apply ~'max-w-[100%]';
   @apply border-collapse;
 }
 .ql-editor table td {

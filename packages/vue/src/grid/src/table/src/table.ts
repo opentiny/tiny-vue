@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { h, hooks, $prefix, appProperties } from '@opentiny/vue-common'
+import { h, hooks, $prefix, resolveTheme } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
@@ -42,10 +42,11 @@ import { clearOnTableUnmount } from './strategy'
 import MfTable from '../../mobile-first/index.vue'
 
 const { themes, viewConfig } = GlobalConfig
-const { SAAS: T_SAAS } = themes
-const { DEFAULT: V_DEFAULT, CARD: V_CARD, LIST: V_LIST } = viewConfig
+const { TINY: T_TINY, SAAS: T_SAAS } = themes
+const { DEFAULT: V_DEFAULT, MF: V_MF, CARD: V_CARD, LIST: V_LIST } = viewConfig
 const { MF_SHOW_LIST: V_MF_LIST } = viewConfig
 
+// 校验插件是否被注册
 function verifyConfig(_vm) {
   if (!getRowkey(_vm)) {
     error('ui.grid.error.rowIdEmpty')
@@ -354,7 +355,7 @@ function getTableAttrs(args) {
       'all-head-overflow': showHeaderOverflow,
       'tiny-grid-cell__highlight': highlightCell,
       'tiny-grid__animat': optimizeOpts.animat,
-      'tiny-grid__stripe': stripe,
+      'tiny-grid__stripe': !isThemeSaas && stripe, // saas主题下，无此类名
       'tiny-grid__stripe-saas': isThemeSaas && stripeSaas,
       'tiny-grid__border': border || isGroup,
       'tiny-grid__border-saas': isThemeSaas && borderSaas,
@@ -509,10 +510,13 @@ const getTableData = () => {
     elemStore: {},
     // 表尾高度
     footerHeight: 0,
-    // 缓存数据集
+    // 缓存数据集 rowid --> { row, rowid: rowId, index }
     fullAllDataRowIdData: {},
+    // 缓存数据集 row --> { row, rowid: rowId, index }
     fullAllDataRowMap: new Map(),
+    // 缓存数据集 columnId --> { colid: column.id, column, index }
     fullColumnIdData: {},
+    // 缓存数据集 column --> { colid: column.id, column, index }
     fullColumnMap: new Map(),
     fullDataRowIdData: {},
     fullDataRowMap: new Map(),
@@ -543,7 +547,11 @@ const getTableData = () => {
     // 表格已挂载完成
     afterMounted: false,
     // 临时任务
-    tasks: {}
+    tasks: {},
+    // 列初始就绪
+    isColumnInitReady: false,
+    // 列就绪
+    isColumnReady: false
   }
   return tableData
 }
@@ -551,7 +559,7 @@ const getTableData = () => {
 export default {
   name: `${$prefix}GridTable`,
   props: {
-    // 所有的列对其方式
+    // 所有的列对齐方式
     align: { type: String, default: () => GlobalConfig.align },
     // 是否自动监听父容器变化去更新响应式表格宽高
     autoResize: Boolean,
@@ -729,7 +737,9 @@ export default {
     // 数据预取配置
     prefetch: [Boolean, Array],
     // 相交配置
-    intersectionOption: Object
+    intersectionOption: Object,
+    // 值比较方法
+    equals: Function
   },
   provide() {
     return {
@@ -814,19 +824,21 @@ export default {
     validOpts() {
       return extend(true, { message: 'tooltip' }, GlobalConfig.validConfig, this.validConfig)
     },
-    tinyTheme() {
-      const ctx = appProperties()
-
-      return (ctx.tiny_theme ? ctx.tiny_theme.value : '') || 'tiny'
-    },
     computerTableBodyHeight() {
       return this.tableBodyHeight === 0 ? 'calc(100% - 36px)' : `${this.tableBodyHeight}px`
+    },
+    isThemeTiny() {
+      return this.tinyTheme === T_TINY
     },
     isThemeSaas() {
       return this.tinyTheme === T_SAAS
     },
     isViewDefault() {
       return this.viewType === V_DEFAULT
+    },
+    isShapeTable() {
+      // 表格处于默认视图或mf视图大屏时显示为普通表格；其它视图都显示为多端形式
+      return this.isViewDefault || (this.viewType === V_MF && this.$grid.currentBreakpoint !== 'default')
     }
   },
   watch: {
@@ -841,6 +853,10 @@ export default {
     height() {
       this.$nextTick(this.recalculate)
     },
+    data() {
+      // data的监控处理：a、在vue2中，数组对象替换、数组长度改变和数组项属性改变；b、在vue3中，数组对象替换
+      this.handleDataChange()
+    },
     // 此属性暂时没有找到应用的demo，从语义上来说，觉得可以删除，官网有对应api但是没有对应的示例
     syncResize(value) {
       // 是否自动根据状态属性去更新响应式表格宽高
@@ -851,8 +867,6 @@ export default {
       this.analyColumnWidth()
       // 处理空数据时表头是否禁用
       this.handleSelectionHeader()
-      // 设置列锚点数据
-      this.columnAnchor && this.$grid.buildColumnAnchorParams()
     },
     parentHeight() {
       this.$nextTick(this.recalculate)
@@ -862,12 +876,17 @@ export default {
     let { scrollXStore, scrollYStore, optimizeOpts, data } = Object.assign(this, getTableData())
     let { scrollX, scrollY } = optimizeOpts
 
+    // 判断表格对应的插件是否注册，没注册会报对应的警告（这块插件还没有进行解耦，待整改）
     verifyConfig(this)
+
+    // 合并用户传递过来的虚拟滚动相关逻辑
     mergeScrollDirStore(scrollX, scrollXStore)
     mergeScrollDirStore(scrollY, scrollYStore)
 
     // 初始化表格渲染数据
     loadStatic(data, this)
+
+    // 合并树表配置项
     mergeTreeConfig(this)
 
     // 处理拖拽的逻辑
@@ -879,6 +898,12 @@ export default {
     GlobalEvent.on(this, 'keydown', this.handleGlobalKeydownEvent)
     GlobalEvent.on(this, 'resize', this.handleGlobalResizeEvent)
     GlobalEvent.on(this, 'contextmenu', this.handleGlobalContextmenuEvent)
+
+    // vue3下额外监控数组长度改变，解决push无响应等问题
+    this.watchDataForVue3()
+
+    // 设置表格实例
+    this.$grid.connect({ name: 'table', vm: this })
   },
   mounted() {
     this.$nextTick().then(() => {
@@ -888,8 +913,12 @@ export default {
         // 使用ResizeObserver监听表格父元素尺寸，然后动态计算表格各种尺寸
         this.bindResize()
       }
-      // 在body上挂载弹出框类的表格内部组件：右键菜单、筛选框、提示
-      document.body.appendChild(this.$refs.tableWrapper)
+
+      // 复杂场景下，当表格刚开始挂载就被用户使用v-if销毁，会导致$refs全部被清空
+      if (this.$refs.tableWrapper) {
+        // 在body上挂载弹出框类的表格内部组件：右键菜单、筛选框、提示
+        document.body.appendChild(this.$refs.tableWrapper)
+      }
     })
 
     setTimeout(() => {
@@ -907,17 +936,12 @@ export default {
         .then(() => this.scrollTo(lastScrollLeft, lastScrollTop))
     }
   },
-  setup(props, { slots, attrs, listeners }) {
+  setup(props, context) {
+    const { slots, attrs, listeners } = context
     const table = hooks.getCurrentInstance().proxy
 
-    /**
-     * vue2会拦截数组的push、pop、shift、unshift等数组常规操作，所以不用深度监听也可触发视图更新
-     * vue3不会拦截数组的常规操作，如果深度监听会影响效率，所以需要额外监控数组长度改变，解决push无响应等问题
-     * 如果是vue3需要同时监听data和数组长度，如果分多个watch监听会导致重复渲染，影响效率
-     */
-    hooks.watch([() => table.data, () => table.data && table.data.length], () => {
-      table.handleDataChange()
-    })
+    // TINY主题变量
+    const tinyTheme = hooks.ref(resolveTheme(props, context))
 
     hooks.onBeforeUnmount(() => {
       const { elemStore, $refs } = table
@@ -958,13 +982,13 @@ export default {
 
     const tableListeners = getListeners(attrs, listeners)
 
-    return { slots, tableListeners }
+    return { slots, tableListeners, tinyTheme }
   },
   render() {
     let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn } = this as any
     let { highlightHoverRow, isGroup, loading, loadingComponent, mouseConfig = {}, optimizeOpts } = this as any
     let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow, isThemeSaas } = this as any
-    let { stripe, tableColumn, tableData, vSize, visibleColumn, slots, $slots, stripeSaas, borderSaas, isViewDefault } =
+    let { stripe, tableColumn, tableData, vSize, visibleColumn, slots, $slots, stripeSaas, borderSaas, isShapeTable } =
       this as any
     let { borderVertical, cardConfig, listConfig, ganttConfig } = this
     let { leftList, rightList } = columnStore
@@ -1003,13 +1027,16 @@ export default {
       // 列拖拽参考线
       renderResizeBar(),
       // 加载中
-      h(loadingComponent || GridLoading, { props: { visible: loading }, class: this.viewCls('gridLoading') }),
+      h(GridLoading, {
+        props: { visible: loading, loadingComponent },
+        class: this.viewCls('gridLoading')
+      }),
       // 筛选、快捷菜单、Tip提示、校验提示
       renderPluginWrapper(),
       // 多选工具栏
       renderSelectToolbar(),
-      // 多端表格（只在多端模式加载）
-      !isViewDefault ? h(MfTable, { ref: 'mfTable', props }) : null,
+      // 多端表格（默认主题或默认视图/mf大屏下，不渲染）
+      !isShapeTable ? h(MfTable, { ref: 'mfTable', props }) : null,
       // 表尾边框线
       renderFooterBorder(this)
     ])
@@ -1017,6 +1044,7 @@ export default {
   methods: {
     ...methods,
     handleDataChange() {
+      // handleDefault：处理一些默认值（默认选中、默认展开）
       if (Array.isArray(this.data)) {
         !this._isUpdateData &&
           this.loadTableData(this.data, true).then(this.handleDefault).then(this.handleSelectionHeader)

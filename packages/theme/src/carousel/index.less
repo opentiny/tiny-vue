@@ -55,6 +55,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      opacity: var(--ti-carousel-opacity);
 
       .@{svg-prefix-cls} {
         fill: var(--ti-carousel-indicator-active-text-color);
@@ -62,14 +63,17 @@
 
       &.@{carousel-prefix-cls}__arrow-left {
         left: 16px;
+        color: var(--ti-carousel-arrow-text-color);
       }
 
       &.@{carousel-prefix-cls}__arrow-right {
         right: 16px;
+        color: var(--ti-carousel-arrow-text-color);
       }
 
       &:hover {
         background-color: var(--ti-carousel-arrow-hover-bg-color);
+        color: var(--ti-carousel-arrow-hover-text-color);
       }
 
       i {

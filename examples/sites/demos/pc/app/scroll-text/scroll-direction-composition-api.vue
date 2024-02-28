@@ -10,6 +10,6 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ScrollText as TinyScrollText } from '@opentiny/vue'
 </script>

@@ -171,7 +171,7 @@
   .fixed__column {
     position: sticky !important;
     z-index: 1;
-    background-color: var(--ti-grid-light-color);
+    background-color: inherit;
 
     &.fixed-left-last__column:after {
       position: absolute;
@@ -206,6 +206,9 @@
 
   th.fixed__column {
     background-color: var(--ti-grid-header-background-color);
+    &.tiny-grid-header__column .tiny-grid-resizable.is__line::before {
+      transform: translateX(-1px);
+    }
   }
 
   &-fixed__left {
@@ -483,10 +486,6 @@
     white-space: normal;
     word-break: break-word;
 
-    .@{grid-cell-prefix-cls}-text {
-      width: 100%;
-    }
-
     .@{grid-prefix-cls}-checkbox {
       vertical-align: middle;
     }
@@ -546,6 +545,19 @@
     .@{grid-cell-prefix-cls} {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
+    }
+
+    &.col__center {
+      .@{grid-cell-prefix-cls} {
+        justify-content: center;
+      }
+    }
+
+    &.col__right {
+      .@{grid-cell-prefix-cls} {
+        justify-content: end;
+      }
     }
 
     &.col__ellipsis {
@@ -568,7 +580,9 @@
 
   // 排序
   & &-sort-wrapper {
-    padding-left: 4px;
+    margin-left: 4px;
+    position: var(--ti-grid-sort-icon-position);
+    right: var(--ti-grid-sort-icon-right);
 
     .@{grid-prefix-cls}-sort__btn {
       display: block;

@@ -35,7 +35,9 @@ export default defineComponent({
     'childrenTabs',
     'swipeable',
     'expandTabsTitle',
-    'expandTabsMode'
+    'expandTabsMode',
+    'stretch',
+    'size'
   ],
   components: {
     TabNav,
@@ -86,7 +88,9 @@ export default defineComponent({
       swipeable,
       activeColor,
       expandTabsTitle,
-      expandTabsMode
+      expandTabsMode,
+      stretch,
+      size
     } = this
 
     const newButton =
@@ -114,7 +118,8 @@ export default defineComponent({
         showExpandTabs,
         expandPanesWidth: state.expandPanesWidth,
         expandTabsTitle,
-        expandTabsMode
+        expandTabsMode,
+        stretch
       },
       ref: 'nav'
     }
@@ -149,7 +154,8 @@ export default defineComponent({
       <div
         class={{
           'tiny-mobile-tabs': true,
-          [`tiny-mobile--${position}`]: true
+          [`tiny-mobile--${position}`]: true,
+          'tiny-mobile-tabs-small': size === 'small'
         }}>
         {[header, panels]}
       </div>

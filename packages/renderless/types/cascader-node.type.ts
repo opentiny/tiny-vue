@@ -1,3 +1,4 @@
+import type { VNode } from 'vue'
 import type {
   ICascaderPanelApi,
   ICascaderPanelConfig,
@@ -11,7 +12,8 @@ import type {
   handleExpand,
   comptCheckPath,
   handleCheckChange,
-  handleMultiCheckChange
+  handleMultiCheckChange,
+  handleNodeClick
 } from '../src/cascader-node'
 
 export interface ICascaderNodeProps {
@@ -28,6 +30,7 @@ export interface ICascaderNodeState {
   inActivePath: boolean
   inCheckedPath: boolean
   value: ICascaderPanelNodePropValue
+  nodeLabel: string | VNode
 }
 
 export interface ICascaderNodeApi {
@@ -37,6 +40,7 @@ export interface ICascaderNodeApi {
   comptCheckPath: ReturnType<typeof comptCheckPath>
   handleCheckChange: ReturnType<typeof handleCheckChange>
   handleMultiCheckChange: ReturnType<typeof handleMultiCheckChange>
+  handleNodeClick: ReturnType<typeof handleNodeClick>
 }
 
 export type ICascaderNodeRenderlessParams = ISharedRenderlessFunctionParams<never> & {

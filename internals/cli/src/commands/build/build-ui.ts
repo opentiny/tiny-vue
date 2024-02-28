@@ -33,7 +33,21 @@ export const getVuePlugins = (vueVersion: string) => {
             }
           }
         }),
-        vue2SvgPlugin({ svgoConfig: { plugins: ['preset-default', 'prefixIds'] } })
+        vue2SvgPlugin({
+          svgoConfig: {
+            plugins: [
+              {
+                name: 'preset-default',
+                params: {
+                  overrides: {
+                    removeViewBox: false
+                  }
+                }
+              },
+              'prefixIds'
+            ]
+          }
+        })
       ]
     },
     '2.7': () => {
@@ -52,7 +66,21 @@ export const getVuePlugins = (vueVersion: string) => {
           }
         }),
         vue27JsxPlugin({ injectH: false }),
-        vue2SvgPlugin({ svgoConfig: { plugins: ['preset-default', 'prefixIds'] } })
+        vue2SvgPlugin({
+          svgoConfig: {
+            plugins: [
+              {
+                name: 'preset-default',
+                params: {
+                  overrides: {
+                    removeViewBox: false
+                  }
+                }
+              },
+              'prefixIds'
+            ]
+          }
+        })
       ]
     },
     '3': () => {
@@ -68,7 +96,22 @@ export const getVuePlugins = (vueVersion: string) => {
           }
         }),
         vue3JsxPlugin(),
-        vue3SvgPlugin({ defaultImport: 'component', svgoConfig: { plugins: ['preset-default', 'prefixIds'] } })
+        vue3SvgPlugin({
+          defaultImport: 'component',
+          svgoConfig: {
+            plugins: [
+              {
+                name: 'preset-default',
+                params: {
+                  overrides: {
+                    removeViewBox: false
+                  }
+                }
+              },
+              'prefixIds'
+            ]
+          }
+        })
       ]
     }
   }
@@ -76,7 +119,7 @@ export const getVuePlugins = (vueVersion: string) => {
   return pluginMap[vueVersion]() || []
 }
 
-export const ns = (ver) => ({ '2': '2', '2.7': '2', '3': '3' }[ver] || '')
+export const ns = (ver) => ({ '2': '2', '2.7': '2', '3': '3' })[ver] || ''
 
 export interface BaseConfig {
   vueVersion: string
@@ -85,11 +128,15 @@ export interface BaseConfig {
   buildTarget: string
   npmScope?: string
   isRuntime: boolean
+  design: string
 }
 
-export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRuntime }: BaseConfig) => {
+export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRuntime, design }: BaseConfig) => {
   // 处理tsconfig中配置，主要是处理paths映射，确保dts可以找到正确的包
   const compilerOptions = require(pathFromWorkspaceRoot(`tsconfig.vue${vueVersion}.json`)).compilerOptions
+  const versionTarget = isValidVersion(buildTarget) ? buildTarget : `${ns(vueVersion)}.${buildTarget}`
+  const themeAndRenderlessVersion = isValidVersion(buildTarget) ? buildTarget : `3.${buildTarget}`
+  const isThemeOrRenderless = (key) => key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
 
   return defineConfig({
     publicDir: false,
@@ -128,11 +175,6 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
       !isRuntime &&
         generatePackageJsonPlugin({
           beforeWriteFile: (filePath, content) => {
-            const versionTarget = isValidVersion(buildTarget) ? buildTarget : `${ns(vueVersion)}.${buildTarget}`
-            const themeAndRenderlessVersion = isValidVersion(buildTarget) ? buildTarget : `3.${buildTarget}`
-            const isThemeOrRenderless = (key) =>
-              key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
-
             const dependencies = {}
 
             Object.entries(content.dependencies).forEach(([key, value]) => {
@@ -147,7 +189,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
             })
 
             if (filePath.includes('vue-common') && vueVersion === '2') {
-              dependencies['@vue/composition-api'] = '~1.2.2'
+              dependencies['@vue/composition-api'] = '1.7.2'
             }
 
             const matchList = ['vue-icon', 'vue-icon-saas', 'vue', 'design/smb', 'design/aurora', 'design/saas']
@@ -173,7 +215,9 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
 
             content.types = 'index.d.ts'
 
-            if (filePath.includes('vue-common') || filePath.includes('vue-locale')) {
+            const matchTypeList = ['vue-common', 'vue-locale', 'vue-saas-common']
+
+            if (matchTypeList.some((item) => filePath.includes(item))) {
               content.types = './src/index.d.ts'
             }
 
@@ -190,12 +234,12 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
             }
           }
         }),
-      !isRuntime && replaceModuleNamePlugin(`${ns(vueVersion)}.${buildTarget}`)
+      !isRuntime && replaceModuleNamePlugin(versionTarget)
     ],
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
       alias: {
-        ...getAlias(vueVersion),
+        ...getAlias(vueVersion, '', design),
         '@tiptap/vue': `${
           vueVersion === '2'
             ? path.resolve(pathFromPackages(''), 'vue/src/rich-text-editor/node_modules/@tiptap/vue-2')
@@ -210,7 +254,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
   })
 }
 
-async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget, npmScope }) {
+async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget, npmScope, design }) {
   const rootDir = pathFromPackages('')
   const outDir = path.resolve(rootDir, `dist${vueVersion}/${npmScope}`)
   await batchBuild({
@@ -219,7 +263,8 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
     formats,
     message,
     emptyOutDir,
-    dts
+    dts,
+    design
   })
 
   function toEntry(libs) {
@@ -238,7 +283,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
     )
   }
 
-  async function batchBuild({ vueVersion, tasks, formats, message, emptyOutDir, dts }) {
+  async function batchBuild({ vueVersion, tasks, formats, message, emptyOutDir, dts, design }) {
     if (tasks.length === 0) return
     logGreen(`====== 开始构建 ${message} ======`)
     const entry = toEntry(tasks)
@@ -246,7 +291,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
     const dtsInclude = toTsInclude(tasks) as BaseConfig['dtsInclude']
     await build({
       configFile: false,
-      ...getBaseConfig({ vueVersion, dtsInclude, dts, buildTarget, isRuntime: false }),
+      ...getBaseConfig({ vueVersion, dtsInclude, dts, buildTarget, isRuntime: false, design }),
       build: {
         emptyOutDir,
         minify: false,
@@ -262,9 +307,19 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
               return false
             }
 
-            // 图标入口排除子图标
-            if (/vue-icon\/index/.test(importer)) {
+            // 此处为了适配MetaERP, 构建对应设计规范的common包，需要将icon、design、common打到一起去，防止循环依赖造成构建报错
+            if (design) {
+              if (source.includes('vue-design-') || source.includes('vue-icon') || source.includes('vue-common')) {
+                return false
+              }
+            } else if (/vue-icon(-saas)?\/index/.test(importer)) {
+              // 图标入口排除子图标
               return /^\.\//.test(source)
+            }
+
+            // design包不排除png文件
+            if (/design\/(saas|aurora|smb|)/.test(importer) && /\.png/.test(source)) {
+              return false
             }
 
             // 子图标排除周边引用, 这里注意不要排除svg图标
@@ -309,6 +364,7 @@ export interface BuildUiOption {
   dts: boolean // 是否生成TS类型声明文件
   scope?: string // npm的组织名称
   min?: boolean // 是否压缩产物
+  design?: string // 构建目标的设计规范
 }
 
 function getEntryTasks(): Module[] {
@@ -355,7 +411,8 @@ export async function buildUi(
     formats = ['es'],
     clean = false,
     dts = true,
-    scope = '@opentiny'
+    scope = '@opentiny',
+    design = ''
   }: BuildUiOption
 ) {
   // 是否清空构建目录
@@ -377,7 +434,7 @@ export async function buildUi(
   // 要构建的vue框架版本
   for (const vueVersion of vueVersions) {
     const message = `TINY for vue${vueVersion}: ${JSON.stringify(names.length ? names : '全量')}`
-    await batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget, npmScope: scope })
+    await batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir, dts, buildTarget, npmScope: scope, design })
     // 确保只运行一次
     emptyOutDir = false
   }

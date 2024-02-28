@@ -6,6 +6,6 @@ test('[Input]counter', async ({ page }) => {
   const input = page.locator('.demo-input > .tiny-input')
   await input.getByRole('textbox').click()
   await input.getByRole('textbox').fill('123')
-  const num = page.locator('.tiny-input__count-upper-limit')
+  const num = page.locator('.tiny-input__count-inner')
   await expect(num).toHaveText('3')
 })

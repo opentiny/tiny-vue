@@ -77,7 +77,7 @@
 
     .@{grid-header-prefix-cls}__column {
       .@{grid-prefix-cls}-resizable {
-        .MediumColumnHeight();
+        @apply h-4;
       }
     }
 
@@ -115,7 +115,7 @@
 
     .@{grid-header-prefix-cls}__column {
       .@{grid-prefix-cls}-resizable {
-        .SmallColumnHeight();
+        @apply h-4;
       }
     }
 
@@ -153,7 +153,7 @@
 
     .@{grid-header-prefix-cls}__column {
       .@{grid-prefix-cls}-resizable {
-        .MiniColumnHeight();
+        @apply h-4;
       }
     }
 
@@ -165,8 +165,8 @@
   // 冻结列，采用sticky布局代替多表格渲染，至少少渲染一半的dom元素
   .fixed__column {
     position: sticky !important;
-    z-index: 1;
-    @apply bg-color-bg-1;
+    z-index: 2;
+    background-color: inherit;
 
     &.fixed-left-last__column:after {
       position: absolute;
@@ -201,6 +201,9 @@
 
   th.fixed__column {
     background-color: #f4f6fb;
+    &.tiny-grid-header__column .tiny-grid-resizable.is__line::before {
+      transform: translateX(-1px);
+    }
   }
 
   &-fixed__left {
@@ -227,33 +230,42 @@
       // 支持所有行 hover 背景颜色
       &:not(.row__hover) {
         &:nth-child(2n) {
-          @apply bg-color-fill-8;
+          background-color: #f4f6fb;
         }
 
         &.row__current {
-          @apply bg-color-fill-10;
+          background-color: #e8eef7;
         }
       }
 
       &.row__hover {
         &:nth-child(2n) {
-          @apply bg-color-fill-10;
+          background-color: #e8eef7;
         }
       }
 
       &.row__selected {
         &:nth-child(2n) {
-          @apply bg-color-fill-10;
+          background-color: #e8eef7;
         }
 
         &:nth-child(2n + 1) {
-          @apply bg-color-fill-8;
+          background-color: #f4f6fb;
         }
       }
     }
     &.mark-insert {
       .@{grid-prefix-cls}-body__row.row__new {
         @apply bg-color-bg-2;
+      }
+    }
+  }
+
+  &.view_card,
+  &.view_list {
+    .@{grid-prefix-cls}__border-saas {
+      &:after {
+        @apply border-0;
       }
     }
   }
@@ -268,7 +280,8 @@
       @apply left-0;
       @apply w-full;
       @apply h-0;
-      @apply ~'z-[1]';
+      // 修复冻结列遮挡saas表格下边框的问题勿同步
+      @apply ~'z-[2]';
     }
 
     &:before {
@@ -288,7 +301,6 @@
     }
 
     .@{grid-prefix-cls}-header__column,
-    .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
       background-image: linear-gradient(-90deg, transparent, transparent),
         linear-gradient(
@@ -301,7 +313,33 @@
       background-position: 100% 0, 100% 100%;
     }
 
-    .@{grid-prefix-cls}__body-wrapper {
+    .@{grid-prefix-cls}-body__column {
+      background-image: linear-gradient(-90deg, transparent, transparent),
+        linear-gradient(
+          -180deg,
+          theme('colors.color.border.separator.DEFAULT'),
+          theme('colors.color.border.separator.DEFAULT')
+        );
+      @apply bg-no-repeat;
+      background-size: 1px 100%, 100% 1px;
+      background-position: 100% 0, 100% 99%;
+    }
+
+    .@{grid-prefix-cls}-body__row:last-child {
+      .@{grid-prefix-cls}-body__column {
+        background-position: 100% 0, 100% 100%;
+      }
+    }
+
+    .@{grid-prefix-cls}__fixed-left-wrapper {
+      .@{grid-prefix-cls}-body__column {
+        @apply border-r-color-border;
+      }
+    }
+
+    .@{grid-prefix-cls}__body-wrapper,
+    .@{grid-prefix-cls}__fixed-left-body-wrapper,
+    .@{grid-prefix-cls}__fixed-right-body-wrapper {
       border-bottom: none;
     }
 
@@ -338,7 +376,7 @@
         @apply top-0;
         @apply w-0;
         @apply h-full;
-        @apply ~"z-[1]";
+        @apply ~'z-[1]';
         @apply border-l;
         @apply border-l-color-border-separator;
       }
@@ -349,7 +387,7 @@
         @apply top-0;
         @apply w-full;
         @apply h-0;
-        @apply ~"z-[1]";
+        @apply ~'z-[1]';
         @apply border-t;
         @apply border-t-color-border-separator;
       }
@@ -385,7 +423,7 @@
         @apply left-0;
         @apply w-0;
         @apply h-full;
-        @apply ~"z-[1]";
+        @apply ~'z-[1]';
         @apply border-l;
         @apply border-l-color-border-separator;
       }
@@ -397,7 +435,7 @@
         @apply right-0;
         @apply w-0;
         @apply h-full;
-        @apply ~"z-[1]";
+        @apply ~'z-[1]';
         @apply border-r;
         @apply border-r-color-border-separator;
       }
@@ -479,22 +517,27 @@
   }
 
   & &-body__row {
-    @apply bg-transparent;
+    @apply bg-color-bg-1;
 
     &.row__hover {
       @apply bg-color-bg-4;
     }
 
     &.row__selected {
-      @apply bg-color-fill-8;
+      background-color: #f4f6fb;
+
+      // 目前saas的单元格背景色都是带透明度的颜色，会造成冻结列产生透视效果，此处将颜色改为不带透明度的颜色
+      .fixed__column {
+        background-color: #f4f6fb;
+      }
 
       &.row__hover {
-        @apply bg-color-fill-8;
+        background-color: #f4f6fb;
       }
     }
 
     &.row__current {
-      @apply bg-color-fill-8;
+      background-color: #f4f6fb;
     }
   }
 
@@ -502,7 +545,7 @@
     background-color: #f3f3f3;
 
     .fixed__column {
-      background-color: #f3f3f3;
+      background-color: inherit;
     }
   }
 
@@ -538,10 +581,6 @@
     @apply whitespace-normal;
     -ms-word-break: break-all;
     word-break: break-word;
-
-    .@{grid-cell-prefix-cls}-text {
-      width: 100%;
-    }
 
     .@{grid-prefix-cls}-checkbox {
       @apply align-bottom;
@@ -590,8 +629,8 @@
       .@{grid-prefix-cls}__rate-text {
         @apply absolute;
         @apply left-2;
-        @apply ~"top-1/2";
-        @apply ~"-translate-y-2/4";
+        @apply ~'top-1/2';
+        @apply ~'-translate-y-2/4';
       }
     }
   }
@@ -600,11 +639,25 @@
     .@{grid-cell-prefix-cls} {
       @apply flex;
       @apply items-center;
+      @apply justify-start;
+    }
+
+    &.col__center {
+      .@{grid-cell-prefix-cls} {
+        @apply justify-center;
+      }
+    }
+
+    &.col__right {
+      .@{grid-cell-prefix-cls} {
+        @apply justify-end;
+      }
     }
 
     &.col__ellipsis {
       .@{grid-cell-prefix-cls}-text {
         .TextEllipsis();
+        @apply pl-0;
       }
     }
   }
@@ -623,6 +676,8 @@
   // 排序
   & &-sort-wrapper {
     padding-left: 4px;
+    position: absolute;
+    right: 6px;
 
     .@{grid-prefix-cls}-sort__btn {
       @apply ~'h-3.5';
@@ -665,7 +720,7 @@
   & &-tree-wrapper {
     @apply inline-block;
     @apply align-bottom;
-    @apply ~"w-4.5";
+    @apply ~'w-4.5';
     @apply cursor-pointer;
 
     &.is__active {
@@ -870,7 +925,7 @@
         @apply absolute;
         bottom: calc(100% + 4px);
         @apply ~'left-1/2';
-        @apply ~"-translate-x-2/4";
+        @apply ~'-translate-x-2/4';
         @apply text-center;
         @apply pointer-events-none;
         @apply ~'z-[9]';
@@ -906,6 +961,8 @@
       .@{grid-prefix-cls}-cell {
         @apply flex;
         @apply items-center;
+        // 解决树表的省略隐藏样式和AUI不兼容的问题，勿同步
+        @apply w-full;
 
         .@{grid-prefix-cls}-tree-wrapper {
           @apply w-5;

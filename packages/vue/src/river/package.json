@@ -11,7 +11,7 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
-    "echarts": "5.2.1"
+    "echarts": "5.4.1"
   },
   "license": "MIT",
   "devDependencies": {

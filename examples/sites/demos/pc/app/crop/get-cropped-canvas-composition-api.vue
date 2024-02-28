@@ -4,7 +4,13 @@
       获取裁剪后的图片数据
     </tiny-button>
     <tiny-button text="图片裁剪" @click="visible = !visible" style="margin-bottom: 20px"></tiny-button>
-    <tiny-crop ref="cropRef" :cropvisible="visible" @update:cropvisible="visible = $event" :src="imgUrl"></tiny-crop>
+    <tiny-crop
+      ref="cropRef"
+      :cropvisible="visible"
+      @update:cropvisible="visible = $event"
+      :src="imgUrl"
+      :crop-type="blob"
+    ></tiny-crop>
   </div>
 </template>
 

@@ -7,7 +7,7 @@ test('关闭按钮', async ({ page }) => {
   const demo = page.locator('#custom-close')
   const customAlert = demo.locator('.tiny-alert').first()
   const defaultClose = customAlert.locator('.tiny-alert__close')
-  const customClose = customAlert.locator('.icon')
+  const customClose = customAlert.locator('.is-custom .tiny-svg')
   const switchBtn = demo.locator('.tiny-switch')
 
   // 自定义关闭图标
@@ -49,7 +49,7 @@ test('关闭按钮事件', async ({ page }) => {
   // 点击关闭后警告消失，自定义事件modalBox提示出现
   await close.click()
   await expect(alertWarning).not.toBeVisible()
-  await expect(page.locator('.tiny-modal__box').getByText('关闭了')).toBeVisible()
+  await expect(page.locator('.tiny-notify__content').getByText('触发关闭事件')).toBeVisible()
 })
 
 test('不可关闭警告', async ({ page }) => {

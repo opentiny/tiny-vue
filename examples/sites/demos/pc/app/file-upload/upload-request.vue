@@ -13,7 +13,7 @@
   </tiny-file-upload>
 </template>
 
-<script lang="jsx">
+<script>
 import { FileUpload, Button, Modal } from '@opentiny/vue'
 
 export default {
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     beforeUpload() {
-      Modal.message('查看请求头示例请打开浏览器开发者工具 network 的 upload 请求')
+      Modal.message({ message: '查看请求头示例请打开浏览器开发者工具 network 的 upload 请求', status: 'info' })
 
       return true
     }

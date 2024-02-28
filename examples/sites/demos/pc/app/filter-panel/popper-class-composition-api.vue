@@ -7,6 +7,7 @@
       :popper-append-to-body="false"
       :value="value"
       :clearable="false"
+      placement="top-start"
     >
       <tiny-radio-group v-model="radioVal" size="mini">
         <tiny-radio label="大于">大于</tiny-radio>

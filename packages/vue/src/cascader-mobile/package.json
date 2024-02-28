@@ -11,7 +11,9 @@
     "@opentiny/vue-action-sheet": "workspace:~",
     "@opentiny/vue-exception": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~"
   },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",

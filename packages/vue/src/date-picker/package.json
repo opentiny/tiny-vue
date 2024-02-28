@@ -20,7 +20,8 @@
     "@opentiny/vue-picker": "workspace:~",
     "@opentiny/vue-mini-picker": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

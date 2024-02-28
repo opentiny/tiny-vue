@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="time-select-demo-event">
     <tiny-time-select
       v-model="value1"
       @blur="bulr"
@@ -10,21 +10,27 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { TimeSelect as TinyTimeSelect, Modal } from '@opentiny/vue'
 
 const value1 = ref('08:30')
 
 function bulr() {
-  Modal.message('blur事件')
+  Modal.message({ message: 'blur事件', status: 'info' })
 }
 
 function change() {
-  Modal.message('change事件')
+  Modal.message({ message: 'change事件', status: 'info' })
 }
 
 function focus() {
-  Modal.message('focus事件')
+  Modal.message({ message: 'focus事件', status: 'info' })
 }
 </script>
+
+<style scoped>
+.time-select-demo-event {
+  width: 270px;
+}
+</style>

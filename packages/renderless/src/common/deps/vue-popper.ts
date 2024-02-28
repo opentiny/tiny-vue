@@ -12,11 +12,11 @@
 
 import PopupManager from './popup-manager'
 import PopperJS from './popper'
-import { on } from './dom'
+import { on, off, isDisplayNone } from './dom'
 import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
 import type Popper from './popper'
 
-interface IPopperState {
+export interface IPopperState {
   popperJS: Popper
   appended: boolean
   popperElm: HTMLElement
@@ -37,13 +37,9 @@ const stop = (e: Event) => e.stopPropagation()
 const isServer = typeof window === 'undefined'
 
 // 由于多个组件传入reference元素的方式不同，所以这里从多处查找。
-const getReference = ({
-  state,
-  props,
-  refs,
-  slots
-}: Pick<IPopperInputParams, 'state' | 'props' | 'refs' | 'slots'>) => {
-  let reference = state.referenceElm || props.reference || (refs.reference && refs.reference.$el) || refs.reference
+const getReference = ({ state, props, vm, slots }: Pick<IPopperInputParams, 'state' | 'props' | 'vm' | 'slots'>) => {
+  let reference =
+    state.referenceElm || props.reference || (vm.$refs.reference && vm.$refs.reference.$el) || vm.$refs.reference
 
   if (!reference && slots.reference && slots.reference()[0]) {
     state.referenceElm = slots.reference()[0].elm || slots.reference()[0].el
@@ -54,8 +50,20 @@ const getReference = ({
 }
 
 export default (options: IPopperInputParams) => {
-  const { parent, emit, nextTick, onBeforeUnmount, onDeactivated, props, watch, reactive, refs, slots, toRefs } =
-    options
+  const {
+    parent,
+    emit,
+    nextTick,
+    onBeforeUnmount,
+    onDeactivated,
+    props,
+    watch,
+    reactive,
+    vm,
+    slots,
+    toRefs,
+    popperVmRef
+  } = options
   const state = reactive<IPopperState>({
     popperJS: null as any,
     appended: false, // arrow 是否添加
@@ -84,7 +92,7 @@ export default (options: IPopperInputParams) => {
     const { followReferenceHide = true } = props?.popperOptions || {}
     const { _popper: popper, _reference: reference } = popperInstance
 
-    if (followReferenceHide && getComputedStyle(reference).position !== 'fixed' && reference.offsetParent === null) {
+    if (followReferenceHide && isDisplayNone(reference)) {
       popper.style.display = 'none'
     }
   }
@@ -100,10 +108,10 @@ export default (options: IPopperInputParams) => {
       return
     }
 
-    const options = props.popperOptions || {}
-    state.popperElm = state.popperElm || props.popper || refs.popper
+    const options = props.popperOptions || { gpuAcceleration: false }
+    state.popperElm = state.popperElm || props.popper || vm.$refs.popper || popperVmRef.popper
     const popper = state.popperElm
-    let reference = getReference({ state, props, refs, slots })
+    let reference = getReference({ state, props, vm, slots })
 
     if (!popper || !reference || reference.nodeType !== Node.ELEMENT_NODE) {
       return
@@ -149,9 +157,13 @@ export default (options: IPopperInputParams) => {
 
     const popperJS = state.popperJS
     if (popperJS) {
-      // popperJS._reference = state.referenceElm
-      // popperJS._popper = state.popperElm
       popperJS.update()
+
+      // 每次递增 z-index
+      if (popperJS._popper) {
+        popperJS._popper.style.zIndex = PopupManager.nextZIndex().toString()
+        followHide(state.popperJS)
+      }
     } else {
       createPopper()
     }
@@ -173,6 +185,7 @@ export default (options: IPopperInputParams) => {
   const destroyPopper = (remove: 'remove' | boolean) => {
     if (remove) {
       if (state.popperElm) {
+        off(state.popperElm, 'click', stop)
         state.popperElm.remove()
       }
     }
@@ -195,13 +208,17 @@ export default (options: IPopperInputParams) => {
   onBeforeUnmount(() => {
     nextTick(() => {
       doDestroy(true)
-      destroyPopper('remove')
+      if (props.appendToBody || props.popperAppendToBody) {
+        destroyPopper('remove')
+      }
     })
   })
 
   onDeactivated(() => {
     doDestroy(true)
-    destroyPopper('remove')
+    if (props.appendToBody || props.popperAppendToBody) {
+      destroyPopper('remove')
+    }
   })
 
   return { updatePopper, destroyPopper, doDestroy, ...toRefs(state) }

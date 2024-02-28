@@ -1,8 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility = true" :title="'弹出Dialog' + boxVisibility"
-      >弹出Dialog{{ boxVisibility }}</tiny-button
-    >
+    <tiny-button @click="boxVisibility = true" title="弹出 Dialog">弹出 Dialog</tiny-button>
     <tiny-dialog-box v-model:visible="boxVisibility" width="30%">
       <template #title>
         <div style="width: 80%; height: 100%; background: #dddddd">自定义title区域</div>

@@ -38,6 +38,8 @@ export const bindKeyDown =
       return
     }
 
+    event.preventDefault()
+
     let currentValue = 0
 
     switch (event.keyCode) {
@@ -93,6 +95,7 @@ export const bindMouseDown =
     const handleEl = event.target
     let isClickBar: boolean | undefined = false
     let isClickBtn: boolean | undefined = false
+    let isClickLabel: boolean | undefined = false
 
     if (mode === 'mobile-first') {
       const role = Array.from(handleEl.attributes).find((attr) => attr.name === 'role')
@@ -106,8 +109,9 @@ export const bindMouseDown =
         hasClass(handleEl, constants.buttonCls(mode)) ||
         hasClass(handleEl, constants.leftSvgCls(mode)) ||
         hasClass(handleEl, constants.rightSvgCls(mode))
+      isClickLabel = hasClass(handleEl, constants.PC_LABEL_CLS)
     }
-    if (state.disabled || (!isClickBtn && !isClickBar)) {
+    if (state.disabled || (!isClickBtn && !isClickBar && !isClickLabel)) {
       state.activeIndex = -1
       return
     }
@@ -120,7 +124,7 @@ export const bindMouseDown =
     state.isDrag = isClickBtn
     isClickBtn && (state.activeIndex = api.getActiveButtonIndex(event))
 
-    if (isClickBar) {
+    if (isClickBar || isClickLabel) {
       const currentValue = api.calculateValue(event)
       if (state.isDouble) {
         if (Math.abs(currentValue - state.leftBtnValue) > Math.abs(state.rightBtnValue - currentValue)) {
@@ -160,7 +164,9 @@ export const bindMouseUp =
       return
     }
 
-    state.showTip = false
+    if (state.mouseOuterBtn) {
+      state.showTip = false
+    }
     state.isDrag = false
 
     off(window, 'mouseup', api.bindMouseUp)
@@ -174,6 +180,7 @@ export const bindMouseUp =
 export const displayTip =
   ({ api, nextTick, state }: Pick<ISliderRenderlessParams, 'api' | 'nextTick' | 'state'>) =>
   (event) => {
+    state.mouseOuterBtn = false
     if (!state.showTip) {
       state.showTip = true
       api.changeActiveValue(api.getActiveButtonIndex(event) === 0)
@@ -184,7 +191,10 @@ export const displayTip =
     }
   }
 
-export const hideTip = (state: ISliderState) => () => !state.isDrag && (state.showTip = false)
+export const hideTip = (state: ISliderState) => () => {
+  state.mouseOuterBtn = true
+  !state.isDrag && (state.showTip = false)
+}
 
 export const setTipStyle =
   ({
@@ -373,13 +383,11 @@ export const initSlider =
         state.rightBtnShow = true
       }
 
-      if (state.isInit) {
-        api.changeActiveValue(index === 0)
-      }
+      api.changeActiveValue(index === 0)
 
       api.setButtonStyle()
     })
-    state.isInit = false
+
     api.setBarStyle()
   }
 
@@ -420,7 +428,7 @@ export const changeActiveValue = (state) => (isLeft) => {
 export const formatTipValue = (props) => (value) =>
   props.formatTooltip instanceof Function ? props.formatTooltip(value) : value
 
-export const getActiveButtonValue = (state) => () =>
+export const getActiveButtonValue = (state: ISliderRenderlessParams['state']) => (): number | number[] =>
   state.isDouble ? [state.leftBtnValue, state.rightBtnValue] : state.leftBtnValue
 
 export const autoSlider = (api) => (value) => {
@@ -483,11 +491,6 @@ export const watchActiveValue =
     } else {
       state.activeValue = nNewValue || 0
     }
-
-    // 正在输入时，不应该改变输入的内容
-    if (!state.isSlotTyping) {
-      state.slotValue = state.activeValue
-    }
   }
 
 export const watchModelValue =
@@ -495,7 +498,6 @@ export const watchModelValue =
   (value) => {
     // 防止多触点下，触发双向绑定导致渲染异常
     if (!state.innerTrigger) {
-      state.isInit = true
       api.initSlider(value)
       api.setActiveButtonValue(value)
     } else {
@@ -505,6 +507,11 @@ export const watchModelValue =
         api.initSlider(value)
         api.setActiveButtonValue(value)
       }
+    }
+
+    // 正在输入时，不应该改变输入的内容
+    if (!state.isSlotTyping) {
+      api.updateSlotValue()
     }
   }
 
@@ -544,6 +551,41 @@ export const getLabels =
     }
   }
 
+interface IMarkListItem {
+  value: number
+  label: string
+  percent: number
+  positionStyle: { [key: string]: string }
+}
+
+export const getMarkList =
+  ({ props }: Pick<ISliderRenderlessParams, 'props'>) =>
+  (): IMarkListItem[] => {
+    const markList: IMarkListItem[] = []
+
+    if (!props.marks) {
+      return markList
+    }
+
+    for (const [key, label] of Object.entries(props.marks)) {
+      const markValue = Number(key)
+
+      if (markValue >= props.min && markValue <= props.max) {
+        const percent = (markValue - props.min) / (props.max - props.min)
+        markList.push({
+          value: markValue,
+          label,
+          percent,
+          positionStyle: {
+            [props.vertical ? 'bottom' : 'left']: percent * 100 + '%'
+          }
+        })
+      }
+    }
+
+    return markList
+  }
+
 export const inputValueChange =
   ({ props, state, api }: Pick<ISliderRenderlessParams, 'api' | 'props' | 'state'>) =>
   ($event, pos) => {
@@ -564,11 +606,30 @@ export const handleSlotInputFocus = (state: ISliderRenderlessParams['state']) =>
   state.isSlotTyping = true
 }
 
-export const handleSlotInputBlur = (state: ISliderRenderlessParams['state']) => () => {
-  state.isSlotTyping = false
-  state.slotValue = state.activeValue
-}
+export const handleSlotInputBlur =
+  ({ state, api }: Pick<ISliderRenderlessParams, 'api' | 'state'>) =>
+  () => {
+    state.isSlotTyping = false
+    api.updateSlotValue()
+  }
 
-export const handleSlotInput = (state: ISliderRenderlessParams['state']) => (event: Event) => {
-  state.activeValue = Number((event.target as HTMLInputElement).value)
-}
+export const updateSlotValue =
+  ({ state }: Pick<ISliderRenderlessParams, 'state'>) =>
+  () => {
+    if (!state.isDouble) {
+      state.slotValue = state.activeValue
+    } else {
+      state.slotValue =
+        state.activeIndex === 0 ? [state.activeValue, state.rightBtnValue] : [state.leftBtnValue, state.activeValue]
+    }
+  }
+
+export const handleSlotInput =
+  ({ state, api }: Pick<ISliderRenderlessParams, 'api' | 'state'>) =>
+  (event: Event, isLeftInput: boolean = true): void => {
+    const inputValue = (event.target as HTMLInputElement).value
+
+    api.changeActiveValue(state.isDouble ? isLeftInput : true)
+    state.activeValue = Number(inputValue)
+    api.updateSlotValue()
+  }

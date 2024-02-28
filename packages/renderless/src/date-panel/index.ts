@@ -294,6 +294,26 @@ export const handleYearPick =
     }
   }
 
+export const getDisabledNow =
+  ({ state }) =>
+  () => {
+    let disabledDate = state.disabledDate
+    if (!disabledDate) return false
+
+    return disabledDate(new Date())
+  }
+
+export const getDisabledConfirm =
+  ({ state }) =>
+  () => {
+    let disabledDate = state.disabledDate
+
+    if (!disabledDate) return false
+    if (!state.value) return true
+
+    return disabledDate(state.value)
+  }
+
 const dateToLocaleStringForIE = (timezone, value) => {
   const localTimezone = getLocalTimezone()
   const offsetTimezone = timezone - localTimezone
