@@ -177,7 +177,7 @@ export default {
     {
       demoId: 'show-header-footer',
       name: {
-        'zh-CN': '不显头部及底部',
+        'zh-CN': '控制显示头部及底部',
         'en-US': 'Do Not Display Header and Bottom'
       },
       desc: {
