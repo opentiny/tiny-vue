@@ -210,7 +210,8 @@ export const cmpMenus = [
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
       { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' },
       { 'nameCn': '无限滚动', 'name': 'InfiniteScroll', 'key': 'infinite-scroll' },
-      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' }
+      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' },
+      { 'nameCn': '统计', 'name': 'Statistic', 'key': 'statistic' }
     ]
   },
   {
