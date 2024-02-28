@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     hanleFocus() {
-      this.$refs.timeSelect.$el.querySelector('input').focus()
+      this.$refs.timeSelect.focus()
     }
   }
 }
