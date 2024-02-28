@@ -1,5 +1,5 @@
 <template>
-  <tiny-button @click="btnClick" :reset-time="0">不显示底部</tiny-button>
+  <tiny-button @click="btnClick" :reset-time="0">控制显示头部及底部</tiny-button>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     btnClick() {
-      Modal.alert({ message: '不显示底部', showFooter: false })
+      Modal.alert({ message: '不显示头部及底部', showHeader: false, showFooter: true })
     }
   }
 }
