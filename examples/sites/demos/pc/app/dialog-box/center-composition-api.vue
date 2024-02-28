@@ -2,7 +2,7 @@
   <div>
     <tiny-button @click="boxVisibility = true" title="弹出 Dialog">弹出 Dialog</tiny-button>
     <tiny-dialog-box v-model:visible="boxVisibility" center title="消息" width="30%">
-      <span>dialog-box内容</span>
+      <span>dialog-box 内容</span>
       <template #footer>
         <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
       </template>
