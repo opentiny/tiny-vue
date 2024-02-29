@@ -28,7 +28,7 @@
     "./*": "./src/*"
   },
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist src/aurora-theme src/smb-theme",
     "build:theme": "gulp build --gulpfile build/gulp-dist.js",
     "build": "npm run clean && npm run build:theme && node build/replace-img.js",
     "build:fast": "npm run build && npm run release",
