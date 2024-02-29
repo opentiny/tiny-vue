@@ -401,13 +401,6 @@ const getDatesOfTypeValueResolveMap = (api) => ({
   }
 })
 
-const MONTH_QUARTER_MAP = {
-  0: 1,
-  3: 2,
-  6: 3,
-  9: 4
-}
-
 export const typeValueResolveMap =
   ({ api, props, t }) =>
   () => ({
@@ -427,7 +420,7 @@ export const typeValueResolveMap =
     number: getNumberOfTypeValueResolveMap(),
     dates: getDatesOfTypeValueResolveMap(api),
     quarter: {
-      formatter: (value) => `${value.getFullYear()}-Q${MONTH_QUARTER_MAP[value.getMonth()]}`,
+      formatter: (value) => `${value.getFullYear()}-Q${DATEPICKER.MonthQuarterMap[value.getMonth()]}`,
       parser: api.dateParser
     }
   })

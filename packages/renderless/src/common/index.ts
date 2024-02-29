@@ -173,6 +173,12 @@ export const DATEPICKER = {
     2: 6,
     3: 9
   },
+  MonthQuarterMap: {
+    0: 1,
+    3: 2,
+    6: 3,
+    9: 4
+  },
   TriggerTypes: TriggerTypes.split(','),
   DateFormats: {
     year: 'yyyy',
