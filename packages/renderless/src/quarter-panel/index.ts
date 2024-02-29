@@ -1,10 +1,31 @@
 import { modifyDate, nextYear, prevYear } from '../common/deps/date-util'
 import { DATEPICKER } from '../common'
 
+const getTarget = (event) => {
+  let target = event.target
+  const tagName = target.tagName
+
+  if (tagName === 'A') {
+    target = target.parentNode.parentNode
+  }
+
+  if (tagName === 'DIV') {
+    target = target.parentNode
+  }
+
+  if (target.tagName !== 'TD') {
+    return
+  }
+
+  return target
+}
+
 export const handleQuarterTableClick =
   ({ state, emit }) =>
   (event) => {
-    const currentDate = new Date(state.date.getFullYear(), DATEPICKER.QuarterMap[event.target.cellIndex], 1)
+    const target = getTarget(event)
+    const currentDate = new Date(state.date.getFullYear(), DATEPICKER.QuarterMap[target.cellIndex], 1)
+    state.value = currentDate
     emit('pick', currentDate)
   }
 
@@ -44,4 +65,17 @@ export const getYearLabel =
   ({ state, t }) =>
   () => {
     return state.date.getFullYear()
+  }
+
+export const getCellStyle =
+  ({ api, props, state }) =>
+  (cell) => {
+    const year = state.date.getFullYear()
+    const quarter = cell.text.slice(1) - 1
+
+    const style = {}
+    style.current =
+      state.value && state.value.getFullYear() === year && state.value.getMonth() === DATEPICKER.QuarterMap[quarter]
+
+    return style
   }

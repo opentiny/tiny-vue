@@ -1,15 +1,13 @@
 @import '../custom.less';
 @import './vars.less';
+@import '../month-table/index.less';
+@import '../month-table/vars.less';
+@import '../date-table/vars.less';
 
 @quarter-panel-prefix-cls: ~'@{css-prefix}quarter-panel';
 
 .@{quarter-panel-prefix-cls} {
   .component-css-vars-quarter-panel();
-
-  width: 288px;
-  padding: 12px;
-  background: #fff;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   table {
     table-layout: fixed;
@@ -17,10 +15,11 @@
   }
 
   &__header {
-    margin: 12px;
+    margin: 12px 12px 0 12px;
     text-align: center;
     padding-bottom: 12px;
-    border-bottom: 1px solid #dfe1e6;
+    border-bottom: 1px solid var(--ti-date-picker-border-color);
+    line-height: var(--ti-date-picker-header-line-height);
   }
 
   &__content {
@@ -28,11 +27,9 @@
   }
 
   &__table {
-    width: 100%;
-    text-align: center;
+    .component-css-vars-month-table();
+    .component-css-vars-date-table();
 
-    td {
-      padding: 16px 0;
-    }
+    .month-table();
   }
 }

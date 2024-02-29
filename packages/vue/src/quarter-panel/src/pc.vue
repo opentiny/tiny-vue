@@ -1,6 +1,6 @@
 <template>
   <transition name="tiny-zoom-in-top">
-    <div v-show="state.visible" class="tiny-quarter-panel">
+    <div v-show="state.visible" class="tiny-quarter-panel tiny-picker-panel tiny-date-picker">
       <!-- 上一年/下一年 -->
       <div class="tiny-quarter-panel__header">
         <button
@@ -20,7 +20,7 @@
         </button>
       </div>
 
-      <div class="tiny-quarter-panel__content">
+      <div class="tiny-quarter-panel__content tiny-picker-panel__content">
         <table
           class="tiny-quarter-panel__table"
           v-if="state.currentView === 'quarter'"
@@ -28,8 +28,10 @@
         >
           <tbody>
             <tr>
-              <td v-for="(row, key) in state.rows" :key="key">
-                {{ row.text }}
+              <td v-for="(row, key) in state.rows" :key="key" :class="getCellStyle(row)">
+                <div>
+                  <a class="cell" v-text="row.text"></a>
+                </div>
               </td>
             </tr>
           </tbody>
