@@ -4,7 +4,7 @@ test('动态加载且父子级不相关联 lazyload & checkStrictly', async ({ p
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('cascader#auto-load-checkStrictly')
   await page.locator('.tiny-cascader').click()
-  const svg = page.locator('.tiny-cascader-node__postfix > .st0')
+  const svg = page.locator('.tiny-cascader-node__postfix > path')
   await expect(svg).toBeVisible()
   await page.locator('li[role="menuitem"]').click()
   const loadingSvg = page.getByRole('menuitem', { name: '选项1' }).locator('path')
