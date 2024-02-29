@@ -5,7 +5,8 @@ import {
   handleYearPick,
   cusPrevYear,
   cusNextYear,
-  getYearLabel
+  getYearLabel,
+  getCellStyle
 } from './index'
 
 export const api = [
@@ -14,7 +15,8 @@ export const api = [
   'showYearPicker',
   'handleYearPick',
   'cusPrevYear',
-  'cusNextYear'
+  'cusNextYear',
+  'getCellStyle'
 ]
 
 export const renderless = (props, { reactive, computed }, { emit, t }) => {
@@ -36,7 +38,8 @@ export const renderless = (props, { reactive, computed }, { emit, t }) => {
     handleYearPick: handleYearPick({ state }),
     cusPrevYear: cusPrevYear({ state }),
     cusNextYear: cusNextYear({ state }),
-    getYearLabel: getYearLabel({ state, t })
+    getYearLabel: getYearLabel({ state, t }),
+    getCellStyle: getCellStyle({ api, props, state })
   })
 
   return api
