@@ -161,56 +161,32 @@ export default {
       codeFiles: ['resize.vue']
     },
     {
-      demoId: 'min-width',
+      demoId: 'min-width-height',
       name: {
-        'zh-CN': '调整窗口后的最小宽度',
-        'en-US': 'The Minimum Width Of The Window Displayed After Adjusting Its Size'
+        'zh-CN': '调整窗口后的最小宽高度',
+        'en-US': 'Minimum width and height after adjusting the window'
       },
       desc: {
         'zh-CN':
-          '<p>可通过<code>resize</code>属性设置可拖拽属性为<code>true</code>后，<code>min-width</code>属性设置拖拽后窗口的最小宽度。</p>',
+          '<p>可通过<code>resize</code>属性设置可拖拽属性为<code>true</code>后，<code>min-height</code>属性设置拖拽后窗口的最小高度，<code>min-width</code>属性设置拖拽后窗口的最小宽度。</p>',
         'en-US':
-          '<p>By setting the<code>resize</code>drag property to<code>true</code>, the minimum width of the window after dragging can be set through the<code>min-width</code>property.</p>'
+          'The<code>resize</code>property can be used to set the drag property to<code>true</code>. The<code>min-height</code>property sets the minimum height of the window after dragging, and the<code>min-width</code>property sets the minimum width of the window after dragging.'
       },
-      codeFiles: ['min-width.vue']
+      codeFiles: ['min-width-height.vue']
     },
     {
-      demoId: 'min-height',
+      demoId: 'show-header-footer',
       name: {
-        'zh-CN': '调整窗口后的最小高度',
-        'en-US': 'The Minimum Height Displayed By The Window After Adjusting Its Size'
+        'zh-CN': '控制显示头部及底部',
+        'en-US': 'Do Not Display Header and Bottom'
       },
       desc: {
         'zh-CN':
-          '<p>可通过<code>resize</code>属性设置可拖拽属性为<code>true</code>后，<code>min-height</code>属性设置拖拽后窗口的最小高度。</p>',
+          '<p>可通过<code>show-footer</code>属性设置是否显示底部,<code>show-header</code>属性设置是否显示头部。</p>',
         'en-US':
-          '<p>By setting the<code>resize</code>drag property to<code>true</code>, the minimum height of the window after dragging can be set through the<code>min-height</code>property.</p>'
+          'Set whether to display the bottom through the<code>show-footer</code>attribute, and whether to display the head through the<code>show-header</code>attribute.'
       },
-      codeFiles: ['min-height.vue']
-    },
-    {
-      demoId: 'showFooter',
-      name: {
-        'zh-CN': '不显示底部',
-        'en-US': 'Do Not Display Bottom'
-      },
-      desc: {
-        'zh-CN': '<p>可通过<code>show-footer</code>属性设置是否显示底部。</p>',
-        'en-US': '<p>Set whether to display the bottom through<code>show-root</code>.</p>'
-      },
-      codeFiles: ['showFooter.vue']
-    },
-    {
-      demoId: 'showHeader',
-      name: {
-        'zh-CN': '不显示头部',
-        'en-US': 'Do Not Display The Head'
-      },
-      desc: {
-        'zh-CN': '<p>可通过<code>show-header</code>属性设置是否显示头部。</p>',
-        'en-US': '<p>Set whether to display the header through<code>show-header</code>.</p>'
-      },
-      codeFiles: ['showHeader.vue']
+      codeFiles: ['show-header-footer.vue']
     },
     {
       demoId: 'status',

@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('调整窗口后显示的最小宽度', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('modal#min-width')
+  await page.goto('modal#min-width-height')
 
-  await page.getByRole('button', { name: '提示框最小宽度为700' }).click()
+  await page.getByRole('button', { name: '最小宽高度' }).click()
   const modal = page.locator('.tiny-modal.active .tiny-modal__box')
   // 获取弹窗位置
   const { x, y } = await modal.boundingBox()

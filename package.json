@@ -59,6 +59,7 @@
     "build:runtime": "pnpm -C internals/cli build:runtime",
     "// ---------- 构建相关脚本 ----------": "",
     "build:ui": "pnpm create:icon-saas && pnpm create:mapping && pnpm build:entry && gulp themeConcat && pnpm -C internals/cli build:ui",
+    "build:chartTheme": "pnpm -C internals/cli build:chartTheme",
     "build:renderless": "pnpm -C packages/renderless build:fast",
     "build:theme": "gulp themeConcat && pnpm -C packages/theme build:fast",
     "build:themeSaas": "pnpm -C packages/theme-saas build:fast",
