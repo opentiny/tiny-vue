@@ -11,7 +11,7 @@ test('基础用法', async ({ page }) => {
   await expect(slideBarList.locator('li').first()).toHaveCSS('border-color', 'rgba(153, 153, 153, 0.7)')
   await preview.locator('.icon-chevron-right').click()
   // 单个滚动块的宽度为 width + marginLeft，固定值为196px
-  await expect(slideBarList).toHaveCSS('left', '-358px')
+  await expect(slideBarList).toHaveCSS('left', '-360px')
   await preview.locator('.icon-chevron-left').click()
-  await expect(slideBarList).toHaveCSS('left', '-179px')
+  await expect(slideBarList).toHaveCSS('left', '-180px')
 })

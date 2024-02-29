@@ -7,8 +7,8 @@
     "*"
   ],
   "scripts": {
-    "dev": "vite --port 7126",
-    "dev:saas": "vite --port 7126 --mode saas",
+    "dev": "vite --port 3101",
+    "dev:saas": "vite --port 3101 --mode saas",
     "build": "vite build",
     "preview": "vite preview",
     "test:e2e": "playwright test",
