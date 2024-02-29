@@ -7,13 +7,13 @@ test('dialogBox 可拖拽的弹窗', async ({ page }) => {
   const button = page.getByRole('button', { name: '可拖拽弹窗' })
   const notify = page.locator('.tiny-notify')
   const dialogBox = page.locator('.tiny-dialog-box')
-  const title = dialogBox.locator('.tiny-dialog-box__title')
+  const header = dialogBox.locator('.tiny-dialog-box__header')
 
   await button.click()
   await expect(dialogBox).toBeVisible()
 
   // 获取拖拽元素的位置
-  const { x, y } = await title.boundingBox()
+  const { x, y } = await header.boundingBox()
 
   // 开始拖拽
   await page.mouse.move(x + 2, y + 2)
