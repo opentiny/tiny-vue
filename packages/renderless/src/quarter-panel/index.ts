@@ -1,17 +1,10 @@
 import { modifyDate, nextYear, prevYear } from '../common/deps/date-util'
 import { DATEPICKER } from '../common'
 
-const QUARTER_MAP = {
-  0: 0,
-  1: 3,
-  2: 6,
-  3: 9
-}
-
 export const handleQuarterTableClick =
   ({ state, emit }) =>
   (event) => {
-    const currentDate = new Date(state.date.getFullYear(), QUARTER_MAP[event.target.cellIndex], 1)
+    const currentDate = new Date(state.date.getFullYear(), DATEPICKER.QuarterMap[event.target.cellIndex], 1)
     emit('pick', currentDate)
   }
 
