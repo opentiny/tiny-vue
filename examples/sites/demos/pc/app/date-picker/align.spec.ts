@@ -11,7 +11,7 @@ test('[DatePicker] 测试对齐方式', async ({ page }) => {
 
   await leftDateInputDom.click()
   await page.waitForTimeout(200)
-  await expect(leftDatePanelDom).toHaveAttribute('x-placement', /bottom-satrt|top-start/)
+  await expect(leftDatePanelDom).toHaveAttribute('x-placement', /bottom-start|top-start/)
   await leftClosePanel.click()
 
   // 居中对齐
