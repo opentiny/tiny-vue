@@ -9,6 +9,7 @@
         :width="width"
         :title="title"
         :popper-class="m('tiny-popconfirm-popover', customClass)"
+        :popper-options="popperOptions"
         :reference="reference"
         @show="handleEmit('show')"
         @hide="handleEmit('hide')"
@@ -72,6 +73,7 @@ export default defineComponent({
       type: Object,
       default: () => ({})
     },
+    popperOptions: Object,
     message: String,
     customClass: String,
     trigger: {
