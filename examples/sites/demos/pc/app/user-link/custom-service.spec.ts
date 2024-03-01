@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('user-link-custom-service', async ({ page }) => {
   await page.goto('user-link#custom-service')
   const card = page.locator('.tiny-popper.tiny-user-card')
-  const reference = page.locator('#preview .tiny-userlink .tiny-popover__reference')
+  const reference = page.locator('.reference-wrapper')
   const img = card.locator('.card-top-img img')
 
   await expect(reference).toHaveText('test3')
