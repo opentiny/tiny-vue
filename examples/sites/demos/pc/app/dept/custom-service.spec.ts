@@ -5,7 +5,7 @@ test('自定义服务数据', async ({ page }) => {
   await page.goto('dept#custom-service')
   const iconBox = page.locator('.tiny-input__suffix-inner svg')
   await iconBox.first().click()
-  await page.getByPlaceholder('可输入部门编码或名称').frist().click()
+  await page.getByPlaceholder('可输入部门编码或名称').first().click()
   await page.getByText('无线网络业务架构与设计部').click()
   await page
     .locator('div')
