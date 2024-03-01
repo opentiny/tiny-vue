@@ -21,7 +21,9 @@
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-time": "workspace:~",
-    "@opentiny/vue-date-table": "workspace:~"
+    "@opentiny/vue-date-table": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT"
 }

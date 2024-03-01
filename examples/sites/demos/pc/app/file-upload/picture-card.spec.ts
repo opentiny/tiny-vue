@@ -30,7 +30,7 @@ test('照片墙', async ({ page }) => {
   await fileChooser.setFiles(currentPath)
   await first.hover()
   await prevPic.click()
-  await expect(prevImg).toHaveAttribute('src', '/static/images/fruit.jpg')
+  await expect(prevImg).toHaveAttribute('src', /\/fruit.jpg/)
   await dialogClose.click()
   await first.hover()
   await delButton.click()

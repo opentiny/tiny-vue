@@ -8,7 +8,8 @@
   "type": "module",
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {

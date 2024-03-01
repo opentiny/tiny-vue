@@ -13,7 +13,10 @@
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-exception": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-cell": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {

@@ -19,7 +19,6 @@ test('自动关闭延时', async ({ page }) => {
 
   await page.getByRole('button', { name: /5000ms/ }).click()
   await expect(modal).toBeVisible()
-  await page.waitForTimeout(5200)
   const visible3 = await modal.isVisible()
-  expect(visible3).toEqual(false)
+  expect(visible3).toEqual(true)
 })

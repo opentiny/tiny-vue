@@ -41,7 +41,9 @@ import {
   inputValueChange,
   handleSlotInputFocus,
   handleSlotInputBlur,
-  handleSlotInput
+  handleSlotInput,
+  getMarkList,
+  updateSlotValue
 } from './index'
 
 import type {
@@ -91,6 +93,7 @@ const initState = ({ reactive, computed, props, api, parent, inject }) => {
     moveStyle: [],
     points: [],
     labels: [],
+    markList: computed(() => api.getMarkList()),
     inputValue: [0, 0],
     isDrag: false,
     sliderSize: 0,
@@ -160,8 +163,10 @@ export const renderless = (
     getLabels: getLabels({ props, state }),
     inputValueChange: inputValueChange({ props, api, state }),
     handleSlotInputFocus: handleSlotInputFocus(state),
-    handleSlotInputBlur: handleSlotInputBlur(state),
-    handleSlotInput: handleSlotInput(state)
+    handleSlotInputBlur: handleSlotInputBlur({ state, api }),
+    handleSlotInput: handleSlotInput({ state, api }),
+    getMarkList: getMarkList({ props }),
+    updateSlotValue: updateSlotValue({ state })
   })
 
   watch(

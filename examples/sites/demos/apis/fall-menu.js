@@ -7,10 +7,10 @@ export default {
       props: [
         {
           name: 'data',
-          type: 'object | object[]',
+          type: 'Array',
           defaultValue: '',
           desc: {
-            'zh-CN': '设置瀑布菜单的数据。',
+            'zh-CN': '设置瀑布菜单的数据',
             'en-US': 'Set the waterfall menu data. ;Set the data of the waterfall menu.'
           },
           mode: ['pc'],

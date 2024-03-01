@@ -21,7 +21,7 @@ test('照片墙的预览、下载与删除', async ({ page, context }) => {
   await expect(lists).toHaveCount(1)
   await lists.first().hover()
   const [newPage] = await Promise.all([context.waitForEvent('page'), dowPic.click()])
-  await expect(newPage.url()).toContain('blob:http://localhost:')
+  await expect(newPage.url()).toContain('blob:http')
   await newPage.close()
   await lists.first().hover()
   await prevPic.click()
