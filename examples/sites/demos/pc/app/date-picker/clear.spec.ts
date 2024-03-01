@@ -31,6 +31,6 @@ test('[DatePicker] 测试清除输入', async ({ page }) => {
 
   // 测试清除功能
   await expect(datePickerCustomClearIcon).toHaveValue('2023-05-24')
-  await page.locator('.tiny-input__icon-container > svg > .st0').click()
+  await page.locator('.close_svg__st0').first().click()
   await expect(datePickerCustomClearIcon).toHaveValue('')
 })
