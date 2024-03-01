@@ -1,6 +1,6 @@
 import Config from '@opentiny-internal/playwright-config'
 
-const origin = 'http://localhost:3101'
+const origin = 'http://localhost:7126'
 const baseURL = `${origin}/pc/`
 const devServerCommon = 'pnpm run -w dev2'
 
