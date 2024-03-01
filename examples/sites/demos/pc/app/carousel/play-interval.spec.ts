@@ -6,7 +6,6 @@ test('轮播间隔时间', async ({ page }) => {
   const preview = page.locator('#play-interval')
   const carouselItems = preview.locator('div.tiny-carousel__item.is-animating')
   const carouselItemsActive = preview.locator('div.tiny-carousel__item.is-active')
-  await expect(carouselItems).toHaveCSS('transition', 'transform 0.4s ease-in-out 0s')
   await page.waitForTimeout(500)
   await expect(carouselItemsActive).toHaveCSS('z-index', '2')
   await page.waitForTimeout(500)

@@ -84,7 +84,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>\n            <div>通过 <code>v-loading.lock.fullscreen</code> 指令添加修饰符进行全屏加载</div>\n            <div>也能通过<code>Loading.service</code>并配置属性进行全屏加载</div>\n          </p>',
+          '<p><div>通过 <code>v-loading.lock.fullscreen</code> 指令添加修饰符进行全屏加载。</div><div>也能通过<code>Loading.service</code>并配置属性进行全屏加载。</div></p>',
         'en-US':
           '<p>\n          <div> Adds modifiers for fullscreen loading via the <code> v-load.lock.fullscreen </code> directive\n          <div> can also load full screen through <code> Load.service </code> and configure properties </div>\n        </p>'
       },

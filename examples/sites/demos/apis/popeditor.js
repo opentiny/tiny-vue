@@ -96,8 +96,8 @@ export default {
         },
         {
           name: 'grid-op',
-          typeAnchorName: 'grid#IGridOp',
-          type: 'IGridOp',
+          typeAnchorName: 'grid#API',
+          type: `InstanceType&#60typeof TinyGrid&#62['$props']`,
           defaultValue: '',
           desc: {
             'zh-CN': '设置弹出面板中表格组件的配置信息',
@@ -141,8 +141,8 @@ export default {
         },
         {
           name: 'pager-op',
-          typeAnchorName: 'pager#IPagerOp',
-          type: 'IPagerOp',
+          typeAnchorName: 'pager#API',
+          type: `InstanceType&#60typeof TinyPager&#62['$props']`,
           defaultValue: '',
           desc: {
             'zh-CN': '设置分页配置',
@@ -165,7 +165,7 @@ export default {
         {
           name: 'popseletor',
           type: 'string',
-          defaultValue: 'grid',
+          defaultValue: `'grid'`,
           desc: {
             'zh-CN': '设置弹出面板中可显示的树或者表格组件',
             'en-US': 'Set the tree or table components that can be displayed in the pop-up panel.'
@@ -198,7 +198,8 @@ export default {
         },
         {
           name: 'remote-search',
-          type: '({ page, conditions }) => void',
+          type: 'IRemoteSearch',
+          typeAnchorName: 'IRemoteSearch',
           defaultValue: '',
           desc: {
             'zh-CN': '配置远程搜索',
@@ -220,8 +221,8 @@ export default {
         },
         {
           name: 'selected-box-op',
-          typeAnchorName: 'ISelectedBoxOp',
-          type: 'ISelectedBoxOp',
+          typeAnchorName: 'dialog-select#ISelectedBoxOption',
+          type: 'ISelectedBoxOption',
           defaultValue: '',
           desc: {
             'zh-CN': '通过属性 selected-box-op 指定 SelectedBox 组件配置，可以把已选表格显示为已选栏',
@@ -301,7 +302,7 @@ export default {
         {
           name: 'tabindex',
           type: 'string',
-          defaultValue: '1',
+          defaultValue: `'1'`,
           desc: {
             'zh-CN': '设置通过 Tab 键获焦及获焦顺序（readonly 属性设置为 false 时有效）',
             'en-US':
@@ -313,7 +314,7 @@ export default {
         {
           name: 'text-field',
           type: 'string',
-          defaultValue: 'label',
+          defaultValue: `'label'`,
           desc: {
             'zh-CN': '设置输入框中显示文本的字段，提交数据时，不提交该显示文本',
             'en-US': 'Set the text field in the text box. When data is submitted, the text is not submitted.'
@@ -324,7 +325,7 @@ export default {
         {
           name: 'text-split',
           type: 'string',
-          defaultValue: '/',
+          defaultValue: `'/'`,
           desc: {
             'zh-CN': '在多选的情况下，设置输入框中要显示多个数据时的分隔符',
             'en-US': 'Separator for displaying multiple records in the text box when multiple records are selected.'
@@ -359,7 +360,7 @@ export default {
         {
           name: 'value-field',
           type: 'string',
-          defaultValue: 'id',
+          defaultValue: `'id'`,
           desc: {
             'zh-CN': '设置输入框要提交数据的字段',
             'en-US': 'Set the field to which data is to be submitted in the text box.'
@@ -370,7 +371,7 @@ export default {
         {
           name: 'value-split',
           type: 'string',
-          defaultValue: ';',
+          defaultValue: `';'`,
           desc: {
             'zh-CN': '在多选的情况下，设置输入框要提交多个数据时的分隔符',
             'en-US':
@@ -395,7 +396,7 @@ export default {
       events: [
         {
           name: 'change',
-          type: '(commitValue, selectedDatas) => void',
+          type: '(commitValue: number, selectedDatas: Object) => void',
           defaultValue: '',
           desc: {
             'zh-CN':
@@ -476,6 +477,11 @@ interface IConditions {
   label: string
 }
       `
+    },
+    {
+      name: 'IRemoteSearch',
+      type: 'type',
+      code: `type IRemoteSearch = ({ page: { currentPage: number, pageSize: number }, conditions: { [K in IConditions['field']]: string } }) => void`
     }
   ]
 }

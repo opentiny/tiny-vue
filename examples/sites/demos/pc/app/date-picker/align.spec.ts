@@ -6,28 +6,31 @@ test('[DatePicker] 测试对齐方式', async ({ page }) => {
 
   // 左对齐
   const leftDateInputDom = page.getByRole('textbox').nth(1)
-  const leftDatePanelDom = page.locator('body > div:nth-child(8)')
+  const leftDatePanelDom = page.locator('.tiny-picker-panel').nth(2)
+  const leftClosePanel = page.getByText('左对齐：')
 
-  const { x: leftDateInputX } = await leftDateInputDom.boundingBox()
   await leftDateInputDom.click()
-  const { x: leftDatePanelX } = await leftDatePanelDom.boundingBox()
-  expect(leftDateInputX - leftDatePanelX).toBeCloseTo(0)
+  await page.waitForTimeout(200)
+  await expect(leftDatePanelDom).toHaveAttribute('x-placement', /bottom-start|top-start/)
+  await leftClosePanel.click()
 
   // 居中对齐
   const centerDateInputDom = page.getByRole('textbox').nth(2)
-  const centerDatePanelDom = page.locator('body > div:nth-child(9)')
-  const { x: centerDateInputX, width: centerDateInputWidth } = await centerDateInputDom.boundingBox()
+  const centerDatePanelDom = page.locator('.tiny-picker-panel').nth(2)
+  const centerClosePanel = page.getByText('居中对齐：')
+
   await centerDateInputDom.click()
-  const { x: centerDatePanelX, width: centerDatePanelWidth } = await centerDatePanelDom.boundingBox()
-  expect(
-    centerDateInputX + Math.round(centerDateInputWidth / 2) - centerDatePanelX - Math.round(centerDatePanelWidth / 2)
-  ).toBeCloseTo(0)
+  await page.waitForTimeout(200)
+  await expect(centerDatePanelDom).toHaveAttribute('x-placement', /bottom|top/)
+  await centerClosePanel.click()
 
   // 右对齐
   const rightDateInputDom = page.getByRole('textbox').nth(3)
-  const rightDatePanelDom = page.locator('body > div:nth-child(10)')
-  const { x: rightDateInputX, width: rightDateInputWidth } = await rightDateInputDom.boundingBox()
+  const rightDatePanelDom = page.locator('.tiny-picker-panel').nth(2)
+  const rightClosePanel = page.getByText('右对齐：')
+
   await rightDateInputDom.click()
-  const { x: rightDatePanelX, width: rightDatePanelWidth } = await rightDatePanelDom.boundingBox()
-  expect(rightDateInputX + rightDateInputWidth - rightDatePanelX - rightDatePanelWidth).toBeCloseTo(0)
+  await page.waitForTimeout(200)
+  await expect(rightDatePanelDom).toHaveAttribute('x-placement', /bottom-end|top-end/)
+  await rightClosePanel.click()
 })

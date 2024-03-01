@@ -35,6 +35,7 @@ export const popConfirmProps = {
   },
   message: String,
   customClass: String,
+  popperOptions: Object,
   trigger: {
     type: String,
     default: 'hover',
