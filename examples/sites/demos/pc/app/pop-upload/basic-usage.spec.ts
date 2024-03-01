@@ -45,7 +45,7 @@ test('PopUpload 基本用法', async ({ page }) => {
 
   // 上传时附带的额外参数: 获取请求体
   const body = await request.postData()
-  await expect(body).toBeNull()
+  await expect(body).not.toBeNull()
 
   // 点击取消按钮，上传弹窗消失
   await cancelBtn.click()

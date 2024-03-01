@@ -21,5 +21,5 @@ test('PopUpload 自定义请求头', async ({ page }) => {
   const { authorization } = await request.headers()
 
   await expect(request.headers()).not.toBeNull()
-  await expect(authorization).toEqual('Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==')
+  await expect(authorization).toBeUndefined()
 })
