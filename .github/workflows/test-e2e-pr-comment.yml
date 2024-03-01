@@ -38,10 +38,6 @@ jobs:
             cat user-tip.txt >> $GITHUB_OUTPUT
             echo 'EOF' >> $GITHUB_OUTPUT
           fi
-      - run: |
-          echo  ${{ steps.txtToOutput.outputs.text }}
-      - run: |
-          echo  ${{ steps.pr.outputs.id }}
       - uses: thollander/actions-comment-pull-request@v2
         if: ${{ steps.txtToOutput.outputs.text && steps.pr.outputs.id }}
         with:
