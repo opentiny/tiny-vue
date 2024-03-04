@@ -1,0 +1,183 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../base/basic-var.less';
+@import '../custom.less';
+@import '../mixins/hairline.less';
+@import './vars.less';
+
+@multi-select-prefix-cls: ~'@{css-prefix}mobile-multi-select';
+
+.@{multi-select-prefix-cls} {
+  position: relative;
+  background: var(--ti-mobile-multi-select-bg, #fff);
+  width: 100%;
+  border-radius: 0 0 16px 16px;
+
+  &__header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--ti-mobile-multi-select-header-height);
+    padding: 0 var(--ti-mobile-multi-select-header-padding-horizontal);
+    background: var(--ti-mobile-multi-select-header-bg, #fff);
+    border-bottom: 1px solid var(--ti-mobile-multi-select-header-border-bottom-color);
+    z-index: 100;
+
+    &.is-disabled,
+    & .item-disabled {
+      .@{multi-select-prefix-cls}__header__label {
+        color: var(--ti-mobile-multi-select-header-text-color-disabled);
+      }
+      .@{multi-select-prefix-cls}__header__icon svg {
+        fill: var(--ti-mobile-multi-select-header-icon-color-disabled);
+      }
+    }
+
+    &.show-search {
+      padding-right: 0;
+    }
+
+    &.is-searching {
+      height: 56px;
+    }
+
+    &-item-box {
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      overflow-x: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      width: fix-content;
+      height: 100%;
+      margin-right: var(--ti-mobile-multi-select-header-item-margin-right);
+      background: var(--ti-mobile-multi-select-header-item-bg);
+      border-radius: 4px;
+      padding: 5px 0;
+      user-select: none;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    &__label {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      font-size: var(--ti-mobile-multi-select-header-label-font-size);
+      font-weight: var(--ti-mobile-multi-select-header-label-font-weight);
+      color: var(--ti-mobile-multi-select-header-label-text-color, #595959);
+      line-height: 18px;
+    }
+
+    &__icon {
+      margin-left: 4px;
+      font-size: 0;
+      transform-origin: center center;
+      transition: all linear 0.3s;
+
+      svg {
+        fill: var(--ti-mobile-multi-select-header-svg-fill-color);
+        font-size: var(--ti-mobile-multi-select-header-icon-font-size);
+        vertical-align: text-bottom;
+      }
+    }
+
+    &-search-icon {
+      flex: 0 0 var(--ti-mobile-multi-select-search-icon-width);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    &-search {
+      flex: 1;
+      margin: var(--ti-mobile-space-2x) 0;
+    }
+
+    &-prefix-icon {
+      fill: var(--ti-mobile-color-text-placeholder);
+      color: var(--ti-mobile-color-text-placeholder);
+      font-size: var(--ti-mobile-font-size-l);
+    }
+
+    &-cancel-btn {
+      flex: 0;
+      white-space: nowrap;
+      margin: 0 var(--ti-mobile-space-6x) 0 var(--ti-mobile-space-3x);
+    }
+  }
+
+  &__content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background-color: var(--ti-mobile-multi-select-item-bg-color);
+  }
+
+  .noFooter {
+    border-radius: 0 0 16px 16px;
+  }
+
+  &__option-list {
+    max-height: var(--ti-mobile-multi-select-option-list-max-height);
+    overflow-y: scroll;
+    box-shadow: var(--ti-mobile-multi-select-option-list-shadow);
+  }
+
+  &__footer {
+    height: 74px;
+    padding: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 -1px 3px 0 #f8f8f8;
+
+    button {
+      width: var(--ti-mobile-multi-select-footer-width, 164px);
+    }
+
+    :first-child {
+      margin-right: 15px;
+    }
+
+    .tiny-mobile-button--primary {
+      color: var(--ti-mobile-button-color, #fff);
+      border-color: var(--ti-mobile-base-color-brand-1, #4a79fe);
+      background-color: var(--ti-mobile-base-color-brand-1, #4a79fe);
+    }
+
+    .tiny-mobile-button--default {
+      color: #191919;
+    }
+  }
+}

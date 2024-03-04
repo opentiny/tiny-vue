@@ -1,0 +1,150 @@
+@import '../custom.less';
+
+@select-dropdown-prefix-cls: ~'@{css-prefix}select-dropdown';
+@input-prefix-cls: ~'@{css-prefix}input';
+@tree-prefix-cls: ~'@{css-prefix}tree';
+@popper-prefix-cls: ~'@{css-prefix}popper';
+@scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
+
+.@{select-dropdown-prefix-cls} {
+  @apply absolute;
+  @apply ~'z-[1001]';
+  @apply border-none;
+  @apply rounded;
+  @apply bg-color-bg-1;
+  @apply shadow-md;
+  @apply ~'mt-0.5';
+  @apply box-border;
+  @apply leading-normal;
+
+  .@{tree-prefix-cls} {
+    @apply ~"max-h-[theme(spacing.72)]";
+    @apply overflow-y-auto;
+  }
+
+  &.@{popper-prefix-cls} {
+    @apply mt-1;
+  }
+
+  & .@{scrollbar-prefix-cls} {
+    @apply rounded;
+
+    &.is-empty &__list {
+      @apply p-0;
+    }
+  }
+
+  &__empty-wrap {
+    @apply ~'py-2.5 px-0';
+    @apply m-0;
+    @apply text-center;
+    @apply text-color-text-secondary;
+    @apply text-xs;
+
+    .@{select-dropdown-prefix-cls}__empty-images {
+      background-image: url('../images/select-nodata.png');
+      @apply w-16;
+      @apply h-16;
+      @apply mb-2;
+      @apply bg-cover;
+      @apply bg-no-repeat;
+      @apply inline-block;
+      @apply align-bottom;
+    }
+  }
+
+  & &__wrap {
+    @apply max-h-56;
+  }
+
+  & &__list {
+    @apply list-none;
+    @apply m-0;
+    @apply box-border;
+    @apply text-left;
+  }
+
+  & &__item {
+    @apply whitespace-nowrap;
+    @apply box-border;
+    @apply py-0 px-3;
+    @apply m-1;
+    @apply rounded;
+
+    > .tiny-svg,
+    > span > .tiny-svg {
+      @apply ~'-mt-0.5';
+    }
+  }
+
+  & &__loading {
+    @apply text-center;
+    @apply ~'py-2.5 px-0';
+
+    > .circular {
+      @apply fill-color-brand;
+      @apply h-4;
+      @apply w-4;
+      animation: loading-rotate 2s linear infinite;
+      @apply inline-block;
+      @apply align-top;
+
+      .path {
+        animation: loading-dash 1.5s ease-in-out infinite;
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: 0;
+        @apply stroke-2;
+        @apply stroke-color-brand;
+        stroke-linecap: round;
+      }
+    }
+  }
+
+  // 下拉面板搜索框
+  & &__search {
+    @apply -mt-1;
+    @apply mr-4;
+    @apply ml-5;
+    @apply mb-2;
+    @apply w-10/12;
+
+    .@{input-prefix-cls}__inner {
+      @apply box-border;
+      @apply border;
+      @apply bg-white;
+      @apply pl-7;
+      @apply pr-3;
+      @apply rounded-none;
+      @apply border-t-transparent;
+      @apply border-r-transparent;
+      @apply border-l-transparent;
+    }
+
+    .@{input-prefix-cls}__suffix {
+      @apply hidden;
+    }
+  }
+}
+
+@keyframes loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}

@@ -1,0 +1,45 @@
+@import '../custom.less';
+
+@currency-prefix-cls: ~'@{css-prefix}currency';
+
+.@{currency-prefix-cls} {
+  &-option.set-default {
+    @apply flex;
+
+    .@{currency-prefix-cls}-option-label {
+      @apply flex-auto;
+    }
+
+    .@{currency-prefix-cls}-option-set {
+      @apply hidden;
+      @apply pl-3;
+      @apply text-color-text-primary;
+    }
+
+    &.is-active {
+      .@{currency-prefix-cls}-option-set {
+        @apply flex;
+        @apply items-center;
+
+        .tiny-svg {
+          @apply mt-0;
+          @apply ~'mr-0.5';
+          @apply fill-color-brand;
+        }
+      }
+    }
+
+    &:not(.is-active):hover {
+      .@{currency-prefix-cls}-option-set {
+        @apply flex;
+        @apply items-center;
+
+        .tiny-svg {
+          @apply mt-0;
+          @apply ~'mr-0.5';
+          @apply fill-color-text-disabled;
+        }
+      }
+    }
+  }
+}

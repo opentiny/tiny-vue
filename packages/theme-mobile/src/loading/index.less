@@ -1,0 +1,109 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@loading-prefix-cls: ~'@{css-prefix}mobile-loading';
+
+.@{loading-prefix-cls} {
+  .component-css-vars-loading();
+  display: block;
+  position: absolute;
+  margin: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--ti-mobile-loading-bg-color-primary);
+  color: var(--ti-mobile-loading-font-color);
+
+  &__fullscreen {
+    position: fixed;
+    opacity: 0.8;
+  }
+
+  &__body {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    // 默认图标
+    .@{loading-prefix-cls}__icon {
+      width: var(--ti-mobile-loading-icon-width);
+      height: var(--ti-mobile-loading-icon-height);
+      stroke-width: 2;
+    }
+
+    // 自定义图标
+    .@{loading-prefix-cls}__spinner {
+      line-height: var(--tiny-lineHeight-none, 1);
+      animation: spin 2s linear infinite;
+      fill: var(--ti-mobile-loading-icon-color);
+    }
+
+    .@{loading-prefix-cls}__text {
+      display: inline-block;
+      margin-top: var(--ti-mobile-loading-text-margin-top);
+      font-size: var(--ti-mobile-loading-text-font-size);
+    }
+  }
+
+  &-mini {
+    flex-direction: row;
+
+    .@{loading-prefix-cls}__icon {
+      width: var(--ti-mobile-loading-mini-icon-width);
+      height: var(--ti-mobile-loading-mini-icon-height);
+      stroke-width: 1;
+    }
+
+    .@{loading-prefix-cls}__text {
+      margin-top: 0;
+      margin-left: var(--ti-mobile-loading-mini-text-margin-left);
+    }
+  }
+
+  &-small {
+    .@{loading-prefix-cls}__icon {
+      width: var(--ti-mobile-loading-small-icon-width);
+      height: var(--ti-mobile-loading-small-icon-height);
+    }
+    stroke-width: 1;
+  }
+
+  &-medium {
+    .@{loading-prefix-cls}__icon {
+      width: var(--ti-mobile-loading-medium-icon-width);
+      height: var(--ti-mobile-loading-medium-icon-height);
+    }
+  }
+
+  &-large {
+    .@{loading-prefix-cls}__icon {
+      width: var(--ti-mobile-loading-large-icon-width);
+      height: var(--ti-mobile-loading-large-icon-height);
+    }
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

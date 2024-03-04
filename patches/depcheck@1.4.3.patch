@@ -1,0 +1,39 @@
+diff --git a/dist/cli.js b/dist/cli.js
+index 8141a0fc3e83688b98448fd83d2e36ec99c92a68..69877a452ba8c9ce6001a13b431acbe44fb3c929 100644
+--- a/dist/cli.js
++++ b/dist/cli.js
+@@ -85,6 +85,7 @@ function print(result, log, opt, rootDir) {
+     const content = deps.concat(devDeps, missing).join('\n');
+     log(content);
+   }
++  log(rootDir + '/package.json');
+ 
+   return result;
+ }
+diff --git a/dist/constants.js b/dist/constants.js
+index 5d79cb47845c497ce25cd8ff9e9758b55c3e33c0..12c274e75b62d17387b929f1541b923349babf1e 100644
+--- a/dist/constants.js
++++ b/dist/constants.js
+@@ -44,7 +44,8 @@ const defaultOptions = {
+     '**/*.sass': availableParsers.sass,
+     '**/*.scss': availableParsers.sass,
+     '**/*.vue': availableParsers.vue,
+-    '**/*.svelte': availableParsers.svelte
++    '**/*.svelte': availableParsers.svelte,
++    '**/*.mjs': availableParsers.es6
+   },
+   detectors: [availableDetectors.importDeclaration, availableDetectors.exportDeclaration, availableDetectors.requireCallExpression, availableDetectors.requireResolveCallExpression, availableDetectors.typescriptImportEqualsDeclaration, availableDetectors.importCallExpression, availableDetectors.gruntLoadTaskCallExpression],
+   specials: _lodash.default.values(availableSpecials)
+diff --git a/dist/parser/vue.js b/dist/parser/vue.js
+index 1806187981ee9390f52846b31a14b14083841906..02bc8f96b2c14f4c5d3538af9a6382d3b6638801 100644
+--- a/dist/parser/vue.js
++++ b/dist/parser/vue.js
+@@ -25,7 +25,7 @@ async function parseVue(filename) {
+     // Because we only parse them, not evaluate any code, it is safe to do so.
+     // note that babel/parser 7+ does not support *, due to plugin incompatibilities
+     // Because the guys using React always want the newest syntax.
+-    plugins: ['asyncGenerators', 'bigInt', 'classProperties', 'classPrivateProperties', 'classPrivateMethods', // ['decorators', { decoratorsBeforeExport: true }],
++    plugins: ['typescript', 'asyncGenerators', 'bigInt', 'classProperties', 'classPrivateProperties', 'classPrivateMethods', // ['decorators', { decoratorsBeforeExport: true }],
+     'decorators-legacy', // Vue cannot support both decorators
+     'doExpressions', 'dynamicImport', 'exportDefaultFrom', 'exportNamespaceFrom', 'functionBind', 'functionSent', 'importMeta', 'logicalAssignment', 'nullishCoalescingOperator', 'numericSeparator', 'objectRestSpread', 'optionalCatchBinding', 'optionalChaining', ['pipelineOperator', {
+       proposal: 'minimal'

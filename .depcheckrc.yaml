@@ -1,0 +1,10 @@
+ignores: 
+# Unused dependencies
+
+# Unused devDependencies
+  
+# Missing dependencies
+  
+
+ignore-patterns:
+  - "node_modules"

@@ -1,0 +1,33 @@
+@import '../custom.less';
+
+.@{css-prefix}transition-timepicker {
+  animation: fadein 0.3s;
+}
+
+.@{css-prefix}transition-timepicker-up {
+  animation: fadeup 0.3s;
+}
+
+@keyframes fadein {
+  0% {
+    @apply -translate-y-52;
+    @apply ~'-z-[999]';
+  }
+
+  100% {
+    @apply translate-y-0;
+    @apply z-0;
+  }
+}
+
+@keyframes fadeup {
+  0% {
+    @apply translate-y-52;
+    @apply ~'-z-[999]';
+  }
+
+  100% {
+    @apply translate-y-0;
+    @apply z-0;
+  }
+}

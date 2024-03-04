@@ -1,0 +1,21 @@
+{
+  "name": "@opentiny/vue-color-select-panel",
+  "version": "5.10.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-collapse": "workspace:~",
+    "@opentiny/vue-collapse-item": "workspace:~",
+    "@opentiny/vue-button-group": "workspace:~"
+  },
+  "license": "MIT"
+}

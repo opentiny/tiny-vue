@@ -1,0 +1,87 @@
+@import '../mixins/link.less';
+@import '../custom.less';
+
+@link-prefix-cls: ~'@{css-prefix}link';
+
+.@{link-prefix-cls} {
+  @apply inline-flex;
+  @apply flex-row;
+  @apply items-center;
+  @apply justify-center;
+  @apply align-middle;
+  @apply relative;
+  @apply no-underline;
+  @apply outline-0;
+  @apply cursor-pointer;
+  @apply p-0;
+
+  &--base {
+    @apply text-xs;
+  }
+
+  &--medium {
+    @apply text-sm;
+    @apply ~'h-4.5';
+    @apply ~'py-0.5';
+    @apply box-border;
+
+    .@{link-prefix-cls}__inner {
+      @apply ~'h-4.5';
+      @apply flex;
+      @apply items-center;
+    }
+  }
+
+  &,
+  &__inner {
+    svg {
+      @apply text-base;
+    }
+  }
+
+  &-svg {
+    @apply ~'mr-0.5';
+
+    &-only {
+      @apply mr-0;
+    }
+  }
+
+  &.is-underline:hover:after {
+    @apply content-[''];
+    @apply absolute;
+    @apply left-0;
+    @apply right-0;
+    @apply h-0;
+    @apply bottom-0;
+    @apply border-b border-b-color-brand-active;
+  }
+
+  &.is-disabled {
+    @apply cursor-not-allowed;
+  }
+
+  &&--default {
+    .link-type(theme('colors.color.brand.DEFAULT'), theme('colors.color.brand.DEFAULT'), theme('colors.color.brand.hover.DEFAULT'), theme('colors.color.brand.disabled'), theme('colors.color.brand.active'));
+  }
+
+  &&--primary {
+    .link-type(theme('colors.color.brand.DEFAULT'), theme('colors.color.brand.DEFAULT'), theme('colors.color.brand.hover.DEFAULT'), theme('colors.color.brand.disabled'), theme('colors.color.brand.active'));
+  }
+
+  &&--danger {
+    .link-type(theme('colors.color.error.DEFAULT'), theme('colors.color.error.DEFAULT'), theme('colors.color.error.hover'), theme('colors.color.error.disabled'), theme('colors.color.error.active'));
+  }
+
+  &&--success {
+    .link-type(theme('colors.color.success.DEFAULT'), theme('colors.color.success.DEFAULT'), theme('colors.color.success.hover'), theme('colors.color.success.disabled'), theme('colors.color.success.active'));
+  }
+
+  &&--warning {
+    .link-type(theme('colors.color.warning.DEFAULT'), theme('colors.color.warning.DEFAULT'), theme('colors.color.warning.hover'), theme('colors.color.warning.disabled'), theme('colors.color.warning.active'));
+  }
+
+  &&--info {
+    .link-type(theme('colors.color.info.secondary.DEFAULT'), theme('colors.color.info.secondary.DEFAULT'), theme('colors.color.info.secondary.hover'), theme('colors.color.info.secondary.disabled'), theme('colors.color.info.secondary.active'));
+  }
+}

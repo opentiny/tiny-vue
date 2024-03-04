@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg class="tiny-icon-warning-triangle" version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	viewBox="0 0 14 14" style="enable-background:new 0 0 14 14;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+</style>
+<path class="st0" d="M7.84,1l6.05,11.13c0.25,0.46,0.07,1.02-0.39,1.27c-0.14,0.07-0.29,0.11-0.45,0.11H0.95
+	C0.43,13.5,0,13.08,0,12.56c0-0.15,0.04-0.31,0.11-0.44L6.16,1c0.25-0.46,0.83-0.63,1.29-0.39C7.62,0.7,7.75,0.83,7.84,1z"/>
+<path class="st1" d="M7.75,10.75c0,0.41-0.34,0.75-0.75,0.75s-0.75-0.34-0.75-0.75S6.59,10,7,10S7.75,10.34,7.75,10.75z M7,9
+	c0.28,0,0.5-0.22,0.5-0.5V5c0-0.28-0.22-0.5-0.5-0.5S6.5,4.72,6.5,5v3.5C6.5,8.78,6.72,9,7,9z"/>
+</svg>

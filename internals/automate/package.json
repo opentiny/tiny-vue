@@ -1,0 +1,26 @@
+{
+  "name": "@opentiny/automate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "esno ./src/index.ts",
+    "scan": "esno ./src/demos-scan.ts",
+    "diff": "esno ./src/aui-diff.ts",
+    "add-dep": "esno ./src/add-dependencies.ts"
+  },
+  "dependencies": {
+    "esno": "^4.0.0",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "lodash-es": "^4.17.21",
+    "sheetjs-style": "^0.15.8"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

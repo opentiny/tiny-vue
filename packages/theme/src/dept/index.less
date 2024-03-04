@@ -1,0 +1,80 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import '../mixins/common.less';
+@import './vars.less';
+
+@dept-prefix-cls: ~'@{css-prefix}dept';
+@input-prefix-cls: ~'@{css-prefix}input';
+@col-prefix-cls: ~'@{css-prefix}col';
+
+.@{dept-prefix-cls} {
+  .component-css-vars-dept();
+
+  &__search {
+    margin-bottom: 12px;
+  }
+
+  &__text,
+  &__label {
+    font-size: var(--ti-dept-label-font-size);
+    color: var(--ti-dept-label-text-color);
+    font-weight: var(--ti-dept-label-font-weight);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__label {
+    text-align: right;
+
+    &.is-selected {
+      text-align: left;
+      margin-bottom: 4px;
+    }
+  }
+
+  &__selected-info {
+    color: var(--ti-dept-selected-info-text-color);
+    font-size: var(--ti-dept-label-font-size);
+    background: var(--ti-dept-selected-info-bg-color);
+    padding: 5px;
+    border-radius: var(--ti-dept-selected-info-border-radius);
+  }
+
+  &__item {
+    margin-bottom: 12px;
+  }
+
+  &__search &__label,
+  &__item &__label {
+    &.@{col-prefix-cls} {
+      line-height: 30px;
+      padding-left: 0;
+      padding-right: 8px;
+
+      & + .@{col-prefix-cls} {
+        padding: 0;
+      }
+    }
+  }
+
+  .@{input-prefix-cls}__inner {
+    .text-overflow();
+  }
+
+  .@{input-prefix-cls}__icon {
+    vertical-align: middle;
+    fill: var(--ti-dept-selected-info-text-color);
+  }
+}

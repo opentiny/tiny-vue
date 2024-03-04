@@ -1,0 +1,18 @@
+{
+  "name": "@opentiny/vue-chart-line-beta",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/vue-chart-core-beta": "workspace:~"
+  },
+  "license": "MIT"
+}

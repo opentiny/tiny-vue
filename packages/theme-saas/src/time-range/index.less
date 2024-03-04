@@ -1,0 +1,33 @@
+@import '../custom.less';
+
+@time-range-picker-prefix-cls: ~'@{css-prefix}time-range-picker';
+
+.@{time-range-picker-prefix-cls} {
+  width: 548px;
+  @apply overflow-visible;
+
+  &__content {
+    @apply relative;
+    @apply text-center;
+    @apply flex;
+    @apply justify-start;
+    @apply items-start;
+  }
+
+  &__cell {
+    @apply box-border;
+    @apply m-0;
+    @apply ~'w-1/2';
+  }
+
+  &__header {
+    @apply p-4;
+    @apply h-12;
+    @apply text-center;
+    @apply text-xs;
+  }
+
+  &__body {
+    @apply border-r border-r-color-bg-3;
+  }
+}

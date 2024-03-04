@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="125px" height="125px" viewBox="0 0 125 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Hrapprover 权签人</title>
+    <defs>
+        <linearGradient x1="50%" y1="45.9685271%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#ECF3FB" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.3956523%" y1="35.9331967%" x2="50%" y2="64.0668033%" id="linearGradient-2">
+            <stop stop-color="#E3EFFD" stop-opacity="0.00575352382" offset="0%"></stop>
+            <stop stop-color="#E5F0FD" offset="34.0601199%"></stop>
+            <stop stop-color="#F0F6FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.3333333%" y1="34.495573%" x2="96.9740837%" y2="65.4421891%" id="linearGradient-3">
+            <stop stop-color="#D5E6F9" offset="0%"></stop>
+            <stop stop-color="#F7FBFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="90.9912104%" y1="29.4309598%" x2="33.3333333%" y2="67.7472684%" id="linearGradient-4">
+            <stop stop-color="#D5E6F9" offset="0%"></stop>
+            <stop stop-color="#E7F0F9" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-5">
+            <stop stop-color="#CEE6FE" offset="0%"></stop>
+            <stop stop-color="#8AB5F2" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-6">
+            <stop stop-color="#BFD6F9" offset="0%"></stop>
+            <stop stop-color="#F3F6FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="89.8473889%" y1="61.7348066%" x2="0%" y2="61.7348066%" id="linearGradient-7">
+            <stop stop-color="#CAD9F3" offset="0%"></stop>
+            <stop stop-color="#D5E3F7" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-18.5%" y="-60.0%" width="136.9%" height="220.0%" filterUnits="objectBoundingBox" id="filter-8">
+            <feGaussianBlur stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <linearGradient x1="44.0988019%" y1="86.8386573%" x2="128.792906%" y2="-43.8247114%" id="linearGradient-9">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="83.2468882%" x2="128.792906%" y2="-34.6768021%" id="linearGradient-10">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="44.0988019%" y1="86.8386573%" x2="128.792906%" y2="-43.8247114%" id="linearGradient-11">
+            <stop stop-color="#5073E5" offset="0%"></stop>
+            <stop stop-color="#5E7CE0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面一" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-TinyUI-Vue-组件总览2" transform="translate(-1087.000000, -884.000000)">
+            <g id="编组-25备份-10" transform="translate(989.000000, 851.000000)">
+                <g id="Hrapprover-权签人" transform="translate(98.000000, 33.000000)">
+                    <g id="编组">
+                        <g transform="translate(9.000000, 1.000000)" id="多边形">
+                            <polygon fill="url(#linearGradient-1)" opacity="0.54620216" points="53.2605623 0 106.521125 30.75 53.2605623 62 0 30.75"></polygon>
+                            <polygon fill="url(#linearGradient-2)" points="53.2605623 61.5 106.521125 86.75 53.2605623 118 0 86.75"></polygon>
+                            <polygon fill="url(#linearGradient-3)" opacity="0.600606283" points="53.2605623 62 53.2605623 123 7.39138783e-15 92.25 0 30.75"></polygon>
+                            <polygon fill="url(#linearGradient-4)" opacity="0.791265578" points="53.2605623 62 106.521125 30.75 106.521125 92.25 53.2605623 123"></polygon>
+                            <polygon fill="url(#linearGradient-5)" points="53.2605623 118.007802 53.2605623 123 7.39138783e-15 92.25 0 86.9161706"></polygon>
+                            <polygon fill="url(#linearGradient-6)" transform="translate(79.630281, 104.958085) scale(-1, 1) translate(-79.630281, -104.958085) " points="106.260562 118.007802 106.260562 123 53 92.25 53 86.9161706"></polygon>
+                        </g>
+                        <ellipse id="椭圆形" fill="url(#linearGradient-7)" filter="url(#filter-8)" cx="62.5" cy="90" rx="32.5" ry="10"></ellipse>
+                    </g>
+                    <g id="盖章-(1)" transform="translate(34.000000, 40.000000)">
+                        <path d="M51.4912601,42 L32.6663188,42 C31.4719541,42 30.4967389,41.0353549 30.4967389,39.8539355 C30.4967389,38.6725161 31.4719541,37.707871 32.6663188,37.707871 L51.4912601,37.707871 C52.6746674,37.707871 53.6389251,36.7540645 53.6389251,35.5834839 L53.6389251,6.42735487 C53.6389251,5.25677423 52.6746674,4.30296776 51.4912601,4.30296776 L22.486825,4.30296776 C21.3034177,4.30296776 20.3391599,5.25677423 20.3391599,6.42735487 L20.3391599,14.2095484 C20.3391599,15.3909677 19.3639447,16.3556129 18.16958,16.3556129 C16.9752152,16.3556129 16,15.3909677 16,14.2095484 L16,6.42735487 C16,2.88309681 18.9146882,0 22.4977824,0 L51.5022176,0 C55.0853118,0 58,2.88309675 58,6.42735487 L58,35.5726451 C57.9890425,39.1169032 55.0743543,42 51.4912601,42 L51.4912601,42 Z" id="路径" fill="url(#linearGradient-9)" opacity="0.204287574"></path>
+                        <g id="盖章" transform="translate(29.000000, 10.000000)"></g>
+                        <path d="M40.163698,19.6677592 C41.2723951,18.7372529 41.9122501,17.3626625 41.9109415,15.9141836 C41.9109415,13.2023242 39.7056828,11 36.9971728,11 C34.2886627,11 32.0890585,13.2079857 32.0890585,15.9141836 C32.0890585,17.420143 32.7675997,18.7675805 33.836302,19.6677592 C29.8668363,20.9982122 27,24.7404648 27,29.1564362 C27,29.6206794 27.3788521,30 27.8425219,30 L46.1574781,30 C46.6211479,30 47,29.6206794 47,29.1564362 C46.9943455,24.7404648 44.1275092,20.9982121 40.163698,19.6677592 L40.163698,19.6677592 Z" id="形状" fill="url(#linearGradient-10)" opacity="0.604724702"></path>
+                        <path d="M20.6666667,29.4782222 L20.6666667,36.3191111 L26.6666667,36.3191111 C28.1671111,36.3475556 29.424,36.8702222 30.4373333,37.8835555 C31.4506667,38.9004444 31.9715555,40.1591111 32,41.6595555 L0,41.6595555 C0.0266666667,40.1573333 0.549333333,38.8986667 1.56266667,37.8835555 C2.576,36.8702222 3.83466667,36.3475555 5.33333333,36.3191111 L11.3333333,36.3191111 L11.3333333,29.4782222 C9.91644446,28.4204444 8.944,27.0853333 8.416,25.4728889 C7.888,23.8586667 7.89511112,22.2106667 8.43733333,20.5288889 C8.97955554,18.8453333 9.93066667,17.5031111 11.2924445,16.5022222 C12.6524445,15.5013333 14.2222222,15 16,15 C17.7777778,15 19.3475555,15.5013333 20.7075555,16.5022222 C22.0693333,17.5031111 23.0204444,18.8453333 23.5626667,20.5288889 C24.1048889,22.2106667 24.112,23.8586667 23.584,25.4711111 C23.056,27.0853333 22.0835555,28.4204445 20.6666667,29.4782222 L20.6666667,29.4782222 Z M0,47 L0,44.3297778 L32,44.3297778 L32,47 L0,47 Z" id="形状" stroke="url(#linearGradient-9)" fill="url(#linearGradient-11)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

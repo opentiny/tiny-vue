@@ -1,0 +1,253 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@date-table-prefix-cls: ~'@{css-prefix}date-table';
+
+.@{date-table-prefix-cls} {
+  .component-css-vars-date-table();
+
+  font-size: var(--ti-date-table-font-size);
+  .user-select(none);
+
+  &.is-week-mode &__row:hover {
+    td {
+      &.available:hover {
+        color: var(--ti-date-table-text-color);
+      }
+
+      &:first-child div {
+        margin-left: 5px;
+        border-top-left-radius: var(--ti-date-table-td-border-radius);
+        border-bottom-left-radius: var(--ti-date-table-td-border-radius);
+      }
+
+      &:last-child div {
+        margin-right: 5px;
+        border-top-right-radius: var(--ti-date-table-td-border-radius);
+        border-bottom-right-radius: var(--ti-date-table-td-border-radius);
+      }
+    }
+
+    div {
+      background-color: var(--ti-date-table-hover-bg-color);
+    }
+  }
+
+  &.is-week-mode &__row.current {
+    div {
+      background-color: var(--ti-date-table-week-bg-color-current-select);
+
+      &:hover {
+        background-color: var(--ti-date-table-week-bg-color-current-hover);
+      }
+    }
+
+    td.available {
+      &:hover span {
+        background-color: transparent;
+      }
+
+      &.start-date span,
+      &.end-date span {
+        background-color: var(--ti-date-table-bg-color-current-select);
+        border-radius: var(--ti-date-table-border-radius-current-select);
+      }
+    }
+  }
+
+  td {
+    width: var(--ti-date-table-td-width);
+    height: var(--ti-date-table-td-height);
+    padding: var(--ti-date-table-td-padding-vertical) var(--ti-date-table-td-padding-horizontal);
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+
+    div {
+      height: var(--ti-date-table-td-div-height);
+      min-width: var(--ti-date-table-td-div-width);
+      padding: 3px 0;
+      box-sizing: border-box;
+    }
+
+    span {
+      min-width: var(--ti-date-table-td-span-width);
+      height: var(--ti-date-table-td-span-height);
+      line-height: var(--ti-date-table-td-span-height);
+      display: block;
+      margin: 0 auto;
+      position: absolute;
+      left: 50%;
+      top: var(--ti-date-table-td-span-top);
+      transform: translateX(-50%);
+    }
+
+    &.next-month,
+    &.pre-month {
+      color: var(--ti-date-table-td-pre-month-text-color);
+      cursor: pointer;
+
+      & span:hover {
+        background: var(--ti-datetime-beside-day-bg-color-hover);
+      }
+    }
+
+    &.today {
+      position: relative;
+      color: var(--ti-date-table-td-today-text-color);
+
+      &:after {
+        content: '';
+        width: 12px;
+        height: 1px;
+        background: var(--ti-date-table-td-today-border-color);
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: 5px;
+      }
+
+      span {
+        min-width: var(--ti-date-table-td-today-width);
+        height: var(--ti-date-table-td-today-height);
+        border-radius: var(--ti-date-table-td-today-border-radius);
+        border: solid var(--ti-date-table-td-today-circle-border-width) var(--ti-date-table-td-today-circle-border-color);
+      }
+
+      &.end-date,
+      &.start-date {
+        span {
+          color: var(--ti-date-table-td-normal-text-color);
+        }
+      }
+    }
+
+    &.available:not(.today):hover span {
+      background-color: var(--ti-date-table-hover-bg-color);
+      border-radius: var(--ti-date-table-border-radius-current-select);
+      border-color: transparent;
+    }
+
+    &.current:not(.disabled) {
+      span {
+        color: var(--ti-date-table-td-normal-text-color);
+        background-color: var(--ti-date-table-bg-color-current-select);
+        border-radius: var(--ti-date-table-border-radius-current-select);
+        border-color: transparent;
+      }
+
+      &:after {
+        background-color: transparent;
+      }
+    }
+
+    &.end-date,
+    &.start-date {
+      div {
+        color: var(--ti-date-table-td-normal-text-color);
+      }
+
+      span {
+        background-color: var(--ti-date-table-bg-color-current-select);
+        border-radius: var(--ti-date-table-start-date-border-radius);
+        border: 0;
+      }
+    }
+
+    &.start-date {
+      div {
+        margin-left: 5px;
+        border-top-left-radius: var(--ti-date-table-td-border-radius);
+        border-bottom-left-radius: var(--ti-date-table-td-border-radius);
+      }
+    }
+
+    &.end-date {
+      div {
+        margin-right: 5px;
+        border-top-right-radius: var(--ti-date-table-td-border-radius);
+        border-bottom-right-radius: var(--ti-date-table-td-border-radius);
+      }
+    }
+
+    &.disabled {
+      div {
+        background-color: var(--ti-date-table-disabled-bg-color);
+        opacity: 1;
+        cursor: not-allowed;
+        color: var(--ti-date-table-disabled-text-color);
+      }
+    }
+
+    &.in-range {
+      div {
+        background-color: var(--ti-date-table-range-bg-color);
+
+        &:hover {
+          background-color: var(--ti-date-table-range-hover-bg-color);
+        }
+      }
+
+      &.end-date:hover,
+      &.start-date:hover {
+        span {
+          background-color: var(--ti-date-table-bg-color-current-select);
+        }
+      }
+    }
+
+    &.available {
+      padding: 0;
+    }
+
+    &.selected {
+      div {
+        margin-left: 5px;
+        margin-right: 5px;
+        background-color: var(--ti-date-table-td-range-bg-color);
+
+        &:hover {
+          background-color: var(--ti-date-table-td-range-bg-color);
+        }
+      }
+
+      span {
+        background-color: var(--ti-date-table-bg-color-current-select);
+        color: var(--ti-date-table-td-normal-text-color);
+        border: none;
+        border-radius: var(--ti-date-table-cell-selected-border-radius);
+      }
+
+      &.available:hover span {
+        background-color: var(--ti-date-table-bg-color-current-select);
+      }
+    }
+
+    &.week {
+      font-size: 80%;
+      color: var(--ti-date-table-text-color);
+    }
+  }
+
+  th {
+    color: var(--ti-date-table-th-text-color);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,168 @@
+@import '../custom.less';
+
+@amount-prefix-cls: ~'@{css-prefix}amount';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@input-prefix-cls: ~'@{css-prefix}input';
+@popover-prefix-cls: ~'@{css-prefix}popover';
+@radio-prefix-cls: ~'@{css-prefix}radio';
+
+.@{amount-prefix-cls} {
+  &-filter-box {
+    @apply w-80;
+    .popover-left {
+      @apply text-xs;
+    }
+  }
+
+  & &-input-icon {
+    .@{svg-prefix-cls} {
+      @apply fill-color-text-placeholder;
+      @apply text-base;
+
+      &:hover {
+        @apply fill-color-brand-hover;
+      }
+    }
+  }
+
+  &-popper.@{popover-prefix-cls} {
+    @apply ~'max-w-[theme(spacing.96)]';
+    @apply p-4;
+    @apply box-border;
+    @apply text-color-text-secondary;
+    @apply border-0;
+
+    .popover-con {
+      .popover-filter-content {
+        @apply mb-3;
+        @apply text-xs;
+        @apply cursor-pointer;
+
+        .@{radio-prefix-cls}-group {
+          @apply inline-block;
+        }
+        .popover-filter-botton {
+          @apply bg-color-bg-2;
+          @apply py-px;
+          @apply box-border;
+          @apply mb-2;
+          @apply mr-2;
+          @apply ml-0;
+          @apply inline-flex;
+          @apply items-center;
+          @apply justify-center;
+          @apply h-6;
+          @apply rounded-sm;
+          @apply ~'min-w-[theme(spacing.12)]';
+          @apply text-center;
+          @apply max-w-none;
+          @apply px-2;
+          @apply border;
+          @apply border-color-bg-2;
+          @apply border-solid;
+          @apply font-normal;
+
+          &.is-checked {
+            @apply text-color-brand;
+            @apply border-color-brand;
+          }
+
+          .@{radio-prefix-cls}__input {
+            @apply hidden;
+          }
+
+          .@{radio-prefix-cls}__label {
+            @apply px-0;
+            @apply leading-5;
+            @apply h-5;
+            @apply inline-block;
+          }
+        }
+      }
+
+      .module:not(:last-child) {
+        @apply mb-4;
+      }
+
+      .module {
+        @apply flex;
+        @apply justify-end;
+        @apply items-center;
+
+        .popover-left {
+          @apply grow-0 shrink-0 ~'basis-[auto]';
+          @apply mr-2;
+          @apply ~'w-1/5';
+        }
+
+        .popover-right:not(.@{input-prefix-cls}-prefix):not(.@{input-prefix-cls}-suffiX) {
+          .@{input-prefix-cls}__inner {
+            @apply py-0 px-2;
+          }
+        }
+
+        .popover-right.@{input-prefix-cls} {
+          @apply inline-block;
+        }
+      }
+    }
+
+    &[x-placement^='bottom'] {
+      @apply mt-1;
+
+      div.popper__arrow {
+        @apply filter-none;
+        @apply border-y-transparent;
+        @apply hidden;
+
+        &::after {
+          @apply top-0;
+          @apply border-y-transparent;
+        }
+      }
+    }
+
+    &[x-placement^='top'] {
+      @apply mb-1;
+
+      div.popper__arrow {
+        @apply filter-none;
+        @apply border-y-transparent;
+        @apply hidden;
+
+        &::after {
+          @apply top-0;
+          @apply border-y-transparent;
+        }
+      }
+    }
+  }
+
+  .@{input-prefix-cls} {
+    @apply outline-0;
+
+    &__suffix {
+      .@{amount-prefix-cls}-input-icon {
+        @apply flex;
+      }
+    }
+
+    &-display-only {
+      > .@{input-prefix-cls}-display-only__content {
+        @apply whitespace-normal;
+      }
+    }
+  }
+
+  span.@{popover-prefix-cls}__reference {
+    @apply w-full;
+  }
+
+  &:has(.is-display-only) {
+    @apply w-auto;
+  }
+
+  &.hide-icon .@{input-prefix-cls}__inner {
+    @apply pr-3;
+  }
+}

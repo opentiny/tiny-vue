@@ -1,0 +1,97 @@
+.DefaultWidthHeight() {
+  width: 1em;
+  height: 1em;
+  @apply leading-4;
+}
+
+.grid-icon-caret() {
+  .DefaultWidthHeight();
+  &:before {
+    @apply content-[''];
+    @apply left-0;
+    bottom: 0.25em;
+    @apply absolute;
+    border-width: 0.5em;
+    @apply border-solid;
+    @apply border-t-transparent;
+    @apply border-r-transparent;
+    border-bottom-color: inherit;
+    @apply border-l-transparent;
+    transition: border 0.1s ease-in-out;
+  }
+}
+
+.BeforeArrowTop() {
+  &:before {
+    @apply content-[''];
+    @apply absolute;
+    top: 0.38em;
+    left: 0.12em;
+    width: 0.5em;
+    height: 0.5em;
+    border-width: 0.1em;
+    @apply border-solid;
+    border-top-color: inherit;
+    border-right-color: inherit;
+    @apply border-b-transparent;
+    @apply border-l-transparent;
+  }
+}
+
+.BeforeDArrowTop() {
+  &:before {
+    @apply content-[''];
+    @apply absolute;
+    top: 0.24em;
+    left: 0.26em;
+    width: 0.5em;
+    height: 0.5em;
+    border-width: 0.08em;
+    @apply border-solid;
+    border-top-color: inherit;
+    border-right-color: inherit;
+    @apply border-b-transparent;
+    @apply border-l-transparent;
+  }
+}
+
+.AfterDArrowTop() {
+  &:after {
+    @apply content-[''];
+    @apply absolute;
+    top: 0.42em;
+    left: 0.1em;
+    width: 0.5em;
+    height: 0.5em;
+    border-width: 0.08em;
+    @apply border-solid;
+    border-top-color: inherit;
+    border-right-color: inherit;
+    @apply border-b-transparent;
+    @apply border-l-transparent;
+  }
+}
+
+.BeforeSolidRadius() {
+  @apply content-[''];
+  @apply rounded-full;
+  border-width: 0.5em;
+  @apply border-solid;
+  border-color: inherit;
+  @apply absolute;
+  @apply top-0;
+  @apply left-0;
+}
+
+.AfterSolidRadius() {
+  @apply absolute;
+  @apply text-color-text-inverse;
+  font-size: 0.7em;
+  @apply inline-block;
+  @apply top-0;
+  @apply left-0;
+  width: inherit;
+  height: inherit;
+  @apply text-center;
+  @apply font-bold;
+}

@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.vue3.json",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    ".ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/dist",
+    "**/*.md"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "../docs/newsrc/*"
+      ]
+    }
+  }
+}

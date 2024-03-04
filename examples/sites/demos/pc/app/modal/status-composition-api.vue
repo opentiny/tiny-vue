@@ -1,0 +1,33 @@
+<template>
+  <div class="content">
+    <tiny-button @click="baseClick" :reset-time="0">基本提示图标</tiny-button>
+    <tiny-button @click="successClick" :reset-time="0">成功提示图标</tiny-button>
+    <tiny-button @click="warningClick" :reset-time="0">警告提示图标</tiny-button>
+    <tiny-button @click="errorClick" :reset-time="0">错误提示图标</tiny-button>
+    <tiny-button @click="loadingClick" :reset-time="0">加载提示图标</tiny-button>
+  </div>
+</template>
+
+<script setup>
+import { Button as TinyButton, Modal } from '@opentiny/vue'
+
+function baseClick() {
+  Modal.message({ message: '基本提示图标', status: 'info' })
+}
+
+function successClick() {
+  Modal.message({ message: '成功提示图标', status: 'success' })
+}
+
+function warningClick() {
+  Modal.message({ message: '警告提示图标', status: 'warning' })
+}
+
+function errorClick() {
+  Modal.message({ message: '错误提示图标', status: 'error' })
+}
+
+function loadingClick() {
+  Modal.message({ message: '加载提示图标', status: 'loading' })
+}
+</script>

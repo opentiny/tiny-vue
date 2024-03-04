@@ -1,0 +1,106 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/button.less';
+@import '../custom.less';
+@import './vars.less';
+
+.dialog-pbi {
+  .component-css-vars-pbi();
+
+  &.@{css-prefix}dialog {
+    .dialog-body {
+      font-size: var(--ti-pbi-font-size-base);
+      font-weight: normal;
+    }
+  }
+
+  .@{css-prefix}selected {
+    color: var(--ti-pbi-selected-text-color);
+    background: var(--ti-pbi-selected-bg-color);
+  }
+
+  .pbi_col {
+    width: 200px;
+    float: left;
+  }
+
+  .pbi_list {
+    height: 460px;
+    overflow-y: auto;
+    border: 1px solid var(--ti-pbi-list-border-color);
+    padding: 4px;
+  }
+}
+
+// dialog 基础样式
+.@{css-prefix}dialog {
+  background: var(--ti-dialog-background);
+  padding: 0;
+  box-shadow: var(--ti-dialog-shadow);
+  animation: dialog-fade-in 0.3s;
+  animation: dialog-fade-in 0.3s;
+
+  .dialog-head {
+    background: var(--ti-dialog-head-background);
+    font-size: var(--ti-dialog-head-font-size);
+
+    .dialog-title {
+      color: var(--ti-dialog-title-color);
+      display: inline-block;
+      font-size: var(--ti-dialog-title-font-size);
+      font-weight: var(--ti-dialog-title-font-weight);
+      margin: 0;
+    }
+
+    .dialog-operation {
+      float: right;
+
+      > a {
+        color: var(--ti-dialog-operation-color);
+
+        &:hover {
+          color: var(--ti-dialog-operation-hover-color);
+        }
+
+        .@{css-prefix}small-close {
+          font-size: var(--ti-dialog-head-font-size);
+        }
+      }
+    }
+  }
+
+  .dialog-body {
+    width: 100%;
+    padding: var(--ti-dialog-body-padding);
+    min-height: var(--ti-dialog-body-min-height);
+    font-size: var(--ti-dialog-body-font-size);
+    font-weight: bold;
+    overflow: auto;
+    overflow-x: hidden;
+    color: var(--ti-dialog-body-color);
+    max-height: 55vh !important; // erralert警告弹窗设置最高高度
+  }
+
+  .dialog-head-alert-confirm {
+    padding: 0 24px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #d9d9d9;
+  }
+}
+
+// button 基础样式
+.@{css-prefix}toolbar {
+  clear: both;
+  text-align: center;
+}

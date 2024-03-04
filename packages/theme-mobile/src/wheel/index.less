@@ -1,0 +1,104 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import '../mixins/hairline.less';
+@import './vars.less';
+
+@wheel-prefix-cls: ~'@{css-prefix}mobile-wheel';
+
+.@{wheel-prefix-cls} {
+  width: 100%;
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__container {
+    width: 100%;
+    z-index: 100;
+    overflow: hidden;
+    text-align: center;
+    font-size: var(--ti-mobile-wheel-content-font-size, 14px);
+  }
+
+  &__picker__panel {
+    z-index: 600;
+  }
+
+  &__picker__content {
+    position: relative;
+    top: 0px;
+  }
+
+  &__wheel__wrapper {
+    display: flex;
+    padding: 0 16px;
+
+    .wheel {
+      flex: 1;
+      width: 1%;
+      height: var(--ti-mobile-wheel-wrapper-height, 224px);
+      overflow: hidden;
+      font-size: var(--ti-mobile-wheel-wrapper-font-size, 14px);
+
+      .wheel__scroll_hasFooter {
+        padding: 0px;
+        margin-top: var(--ti-mobile-wheel-wrapper-scroll-margin-top, 38px);
+        line-height: var(--ti-mobile-wheel-scroll-hasfooter-line-height, 36px);
+        list-style: none;
+
+        .wheel__item {
+          list-style: none;
+          height: var(--ti-mobile-wheel-scroll-hasfooter-height, 36px);
+          overflow: hidden;
+          white-space: nowrap;
+          color: var(--ti-mobile-wheel-scroll-hasfooter-text-color, #595959);
+          font-weight: 500;
+        }
+
+        .wheel__item__selected {
+          color: var(--ti-mobile-base-color-brand-1, #4a79fe);
+        }
+      }
+
+      .wheel__scroll_noFooter {
+        padding: 0px;
+        margin-top: 0px;
+        line-height: var(--ti-mobile-wheel-scroll-nofooter-line-height, 44px);
+        list-style: none;
+
+        .wheel__item {
+          list-style: none;
+          height: var(--ti-mobile-wheel-scroll-nofooter-height, 44px);
+          overflow: hidden;
+          white-space: nowrap;
+          color: var(--ti-mobile-wheel-scroll-nofooter-text-color, #191919);
+          font-weight: 500;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .wheel__item__selected {
+          color: var(--ti-mobile-base-color-brand-1, #4a79fe);
+          fill: var(--ti-mobile-base-color-brand-1, #4a79fe);
+        }
+
+        .size20 {
+          font-size: var(--ti-mobile-wheel-scroll-icon-font-size, 20px);
+        }
+      }
+    }
+  }
+}

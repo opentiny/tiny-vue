@@ -1,0 +1,125 @@
+@import '../custom.less';
+
+@grid-prefix-cls: ~'@{css-prefix}grid';
+
+// tooltip
+.@{grid-prefix-cls}__tooltip-wrapper {
+  @apply hidden;
+  @apply absolute;
+  @apply -top-full;
+  @apply -left-full;
+  @apply text-xs;
+  max-width: 400px;
+  @apply rounded;
+  @apply py-2 px-3;
+  @apply whitespace-normal;
+  word-break: break-word;
+  @apply shadow-sm;
+  @apply text-color-text-secondary;
+  font-family: Helvetica, Arial, 'Microsoft YaHei', sans-serif;
+  @apply pointer-events-none;
+  @apply ~'z-[4000]';
+
+  &.is__visible {
+    @apply block;
+  }
+
+  &.is__arrow {
+    .@{grid-prefix-cls}__tooltip-arrow {
+      @apply block;
+    }
+  }
+
+  &.placement__top {
+    .@{grid-prefix-cls}__tooltip-arrow {
+      @apply -bottom-3;
+
+      &:before {
+        top: -7px;
+      }
+    }
+  }
+
+  &.placement__bottom {
+    .@{grid-prefix-cls}__tooltip-arrow {
+      @apply ~'-top-3';
+
+      &:before {
+        @apply -top-1;
+      }
+    }
+  }
+
+  &.theme__light {
+    @apply bg-color-bg-1;
+    @apply border border-solid border-color-border;
+
+    &.placement__top {
+      .@{grid-prefix-cls}__tooltip-arrow {
+        @apply border-t-color-border;
+
+        &:before {
+          @apply border-t-color-bg-1;
+        }
+      }
+    }
+
+    &.placement__bottom {
+      .@{grid-prefix-cls}__tooltip-arrow {
+        @apply border-b-color-border;
+
+        &:before {
+          @apply border-b-color-bg-1;
+        }
+      }
+    }
+  }
+
+  &.theme__dark {
+    @apply bg-color-bg-3;
+    @apply text-color-text-inverse;
+
+    &.placement__top {
+      .@{grid-prefix-cls}__tooltip-arrow {
+        @apply border-t-color-border;
+
+        &:before {
+          @apply border-t-color-border;
+        }
+      }
+    }
+
+    &.placement__bottom {
+      .@{grid-prefix-cls}__tooltip-arrow {
+        @apply border-b-color-border;
+
+        &:before {
+          @apply border-b-color-border;
+        }
+      }
+    }
+  }
+
+  .@{grid-prefix-cls}__tooltip-arrow {
+    @apply hidden;
+    @apply absolute;
+    @apply border-transparent;
+    border-width: 6px;
+    @apply border-solid;
+    @apply ~'left-1/2';
+
+    &:before {
+      @apply content-[''];
+      @apply absolute;
+      @apply border-transparent;
+      border-width: 5px;
+      @apply border-solid;
+      left: -5px;
+    }
+  }
+
+  &.@{grid-prefix-cls}__valid-error {
+    @apply bg-color-error;
+    @apply text-color-text-inverse;
+  }
+}

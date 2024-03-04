@@ -1,0 +1,117 @@
+@import '../custom.less';
+
+@filter-box-prefix-cls: ~'@{css-prefix}filter-box';
+
+.@{filter-box-prefix-cls} {
+  @apply w-fit;
+  @apply max-w-full;
+  @apply h-7;
+  @apply leading-7;
+  @apply rounded;
+  @apply bg-color-bg-2;
+  @apply text-color-text-primary;
+  @apply py-1;
+  @apply ~'px-1.5';
+  @apply flex;
+  @apply items-center;
+  @apply text-xs;
+
+  &:hover {
+    @apply bg-color-info-primary-subtler;
+  }
+
+  &.disabled {
+    @apply cursor-not-allowed;
+
+    .title label {
+      @apply text-color-text-disabled;
+    }
+
+    .value {
+      @apply text-color-text-secondary;
+    }
+
+    svg.filter-box-icon {
+      @apply fill-color-icon-disabled;
+      @apply cursor-not-allowed;
+    }
+  }
+
+  .title {
+    height: inherit;
+    @apply text-xs;
+    @apply ~'leading-[inherit]';
+
+    label {
+      @apply ~'max-w-[theme(spacing.28)]';
+      @apply inline-block;
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+      @apply whitespace-nowrap;
+      @apply text-color-none-active;
+      @apply mr-1;
+    }
+
+    &.active label {
+      @apply text-color-brand;
+    }
+
+    svg {
+      @apply w-4;
+      @apply h-4;
+      @apply mr-1;
+      @apply fill-color-icon-placeholder;
+      @apply relative;
+      @apply -top-px;
+      @apply align-super;
+
+      &:hover {
+        @apply fill-color-brand;
+      }
+    }
+  }
+
+  .value {
+    @apply ~'max-w-[theme(spacing.28)]';
+    height: inherit;
+    @apply mr-1;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+    @apply whitespace-nowrap;
+    @apply text-xs;
+    @apply ~'leading-[inherit]';
+    @apply text-color-text-primary;
+
+    &.placeholder {
+      @apply text-color-text-placeholder;
+    }
+  }
+
+  .filter-box-icon {
+    @apply w-3;
+    @apply h-3;
+    @apply cursor-pointer;
+    @apply fill-color-fill-secondary;
+    @apply ~'transition-[transform]' duration-300;
+
+    &.is-reverse {
+      @apply rotate-180;
+    }
+  }
+
+  .filter-icon-close {
+    @apply w-4;
+    @apply h-4;
+    @apply cursor-pointer;
+    @apply fill-color-none-hover;
+    @apply shrink-0;
+
+    &:hover {
+      @apply fill-color-fill-secondary;
+    }
+  }
+
+  &.is-blank {
+    @apply bg-transparent;
+  }
+}

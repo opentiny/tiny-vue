@@ -1,0 +1,208 @@
+@import '../custom.less';
+@popeditor-prefix-cls: ~'@{css-prefix}popeditor';
+@input-prefix-cls: ~'@{css-prefix}input';
+@pager-prefix-cls: ~'@{css-prefix}pager';
+@dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+@grid-prefix-cls: ~'@{css-prefix}grid';
+
+.@{popeditor-prefix-cls} {
+  .@{input-prefix-cls} {
+    &:not(.is-disabled).@{popeditor-prefix-cls}-readonly .@{input-prefix-cls}__inner {
+      &:hover,
+      &:focus,
+      &:active {
+        @apply cursor-pointer;
+        @apply border-color-border;
+      }
+    }
+
+    &.is-disabled {
+      .@{input-prefix-cls}__inner {
+        &:hover,
+        &:focus,
+        &:active {
+          @apply cursor-not-allowed;
+
+          & + .@{input-prefix-cls}__suffix {
+            .@{svg-prefix-cls}__popeditor {
+              @apply fill-color-icon-disabled;
+            }
+          }
+        }
+      }
+
+      .@{input-prefix-cls}__suffix {
+        @apply cursor-not-allowed;
+
+        .@{svg-prefix-cls}__popeditor,
+        .@{svg-prefix-cls}__popeditor:hover {
+          @apply fill-color-icon-disabled;
+          @apply cursor-not-allowed;
+        }
+      }
+    }
+
+    &.suggest {
+      .@{input-prefix-cls}__inner {
+        @apply pr-12;
+      }
+      .@{svg-prefix-cls}__popeditor {
+        &.@{css-prefix}chevron {
+          @apply mr-2;
+        }
+      }
+    }
+
+    .@{input-prefix-cls}__inner {
+      &:hover,
+      &:focus,
+      &:active {
+        & + .@{input-prefix-cls}__suffix {
+          @apply cursor-not-allowed;
+
+          .@{svg-prefix-cls}__popeditor {
+            @apply fill-color-brand-hover;
+          }
+        }
+      }
+    }
+
+    .@{input-prefix-cls}__suffix {
+      @apply cursor-pointer;
+
+      .@{svg-prefix-cls}__popeditor {
+        @apply h-7;
+        @apply text-sm;
+        @apply fill-color-text-placeholder;
+        @apply cursor-pointer;
+
+        &:hover {
+          @apply fill-color-brand-hover;
+        }
+      }
+    }
+  }
+
+  .@{dialog-box-prefix-cls} {
+    .@{dialog-box-prefix-cls}__body {
+      @apply pt-2 px-2 pb-0;
+    }
+  }
+
+  &-top {
+    .@{popeditor-prefix-cls}__search-lists {
+      @apply w-full;
+      @apply flex;
+      @apply justify-between;
+      @apply items-center;
+      @apply flex-wrap;
+
+      .@{input-prefix-cls} {
+        @apply relative;
+        @apply text-xs;
+        @apply inline-block;
+        @apply w-full;
+      }
+
+      .@{popeditor-prefix-cls}__search-item {
+        @apply flex;
+        @apply justify-end;
+        @apply items-center;
+        @apply mb-3;
+
+        .@{popeditor-prefix-cls}__search-label {
+          @apply text-right;
+          @apply pr-2;
+          @apply text-xs;
+        }
+      }
+
+      .@{popeditor-prefix-cls}__search-input {
+        @apply flex-1;
+      }
+    }
+
+    .@{popeditor-prefix-cls}__search-footer {
+      @apply w-full;
+      @apply text-right;
+      @apply my-3 mx-auto;
+    }
+  }
+
+  &-body {
+    @apply w-full;
+    @apply flex;
+    @apply justify-between;
+    @apply items-start;
+
+    &__left,
+    &__right {
+      @apply ~'w-1/2';
+      @apply align-top;
+
+      &.@{popeditor-prefix-cls}-body__radio {
+        @apply w-full;
+      }
+    }
+
+    &__right {
+      @apply ml-4;
+    }
+
+    .@{popeditor-prefix-cls}__tabs {
+      .@{popeditor-prefix-cls}__tabs-head {
+        @apply whitespace-nowrap;
+        @apply m-0;
+        @apply overflow-hidden;
+        @apply h-8;
+        @apply w-full;
+        @apply relative;
+
+        ul {
+          @apply h-8;
+          @apply box-border;
+
+          li {
+            @apply float-left;
+            @apply h-8;
+            @apply pt-1;
+            @apply -mr-px;
+            @apply cursor-pointer;
+            @apply text-color-text-primary;
+
+            &.@{popeditor-prefix-cls}__tabs-selected {
+              @apply text-color-brand;
+              @apply font-bold;
+              @apply border-b-2 border-b-color-brand;
+            }
+          }
+
+          li + li {
+            @apply ml-6;
+          }
+        }
+      }
+
+      .@{popeditor-prefix-cls}__tabs-body {
+        .tabs-body-item {
+          @apply pt-3;
+
+          .@{pager-prefix-cls} {
+            @apply pb-0;
+          }
+
+          .@{grid-prefix-cls}.size__mini {
+            .@{grid-prefix-cls}-cell {
+              @apply leading-normal;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &_filter-input {
+    @apply mb-5;
+  }
+}

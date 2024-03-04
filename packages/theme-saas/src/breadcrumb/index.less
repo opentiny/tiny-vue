@@ -1,0 +1,83 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@breadcrumb-prefix-cls: ~'@{css-prefix}breadcrumb';
+
+.@{breadcrumb-prefix-cls} {
+  @apply text-xs;
+  @apply leading-4;
+  .clearfix();
+
+  & &__item {
+    @apply cursor-pointer;
+    @apply inline-flex;
+    @apply items-center;
+
+    &:last-child {
+      .@{breadcrumb-prefix-cls}__inner {
+        @apply font-bold;
+
+        a {
+          @apply cursor-text;
+        }
+
+        &:hover,
+        &:active,
+        & a:hover,
+        & a:active {
+          @apply text-color-text-primary;
+        }
+      }
+
+      .@{breadcrumb-prefix-cls}__separator,
+      .@{breadcrumb-prefix-cls}__separator-cls {
+        @apply hidden;
+      }
+    }
+  }
+
+  & &__item--medium {
+    @apply text-sm;
+  }
+
+  & &__inner {
+    @apply align-middle;
+
+    &,
+    & a {
+      @apply text-color-text-primary;
+    }
+
+    &:hover {
+      @apply text-color-brand-hover;
+    }
+
+    &:active {
+      @apply text-color-brand-active;
+    }
+  }
+
+  & &__separator {
+    @apply text-color-border;
+    @apply py-0 px-2;
+    @apply align-middle;
+  }
+
+  & &__separator-cls {
+    @apply text-xs;
+    @apply fill-color-text-disabled;
+    @apply my-0 mx-2;
+    @apply align-middle;
+  }
+
+  & &__inner a:hover,
+  & &__item:last-child:hover {
+    @apply text-color-brand-hover;
+    @apply no-underline;
+  }
+
+  & &__inner a:active,
+  & &__item:last-child:active {
+    @apply text-color-brand-active;
+  }
+}

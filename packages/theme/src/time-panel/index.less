@@ -1,0 +1,117 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@time-panel-prefix-cls: ~'@{css-prefix}time-panel';
+
+.@{time-panel-prefix-cls} {
+  .component-css-vars-time-panel();
+
+  margin: 5px 0;
+  border: 1px solid var(--ti-time-panel-border-color);
+  background-color: var(--ti-time-panel-bg-color);
+  box-shadow: var(--ti-time-panel-box-shadow);
+  border-radius: var(--ti-time-panel-border-radius);
+  position: absolute;
+  width: 180px;
+  left: 0;
+  z-index: 1000;
+  box-sizing: content-box;
+  .user-select(none);
+
+  &__content {
+    font-size: 0;
+    position: relative;
+    overflow: hidden;
+
+    &:after,
+    &:before {
+      display: var(--ti-time-panel-content-split-line-display);
+      content: '';
+      top: 50%;
+      position: absolute;
+      margin-top: -19px;
+      height: 32px;
+      z-index: -1;
+      left: 0;
+      right: 0;
+      box-sizing: border-box;
+      padding-top: 6px;
+      text-align: left;
+      border-top: 1px solid var(--ti-time-panel-border-color);
+      border-bottom: 1px solid var(--ti-time-panel-border-color);
+    }
+
+    &:after {
+      left: 50%;
+      margin-left: 12%;
+      margin-right: 12%;
+    }
+
+    &:before {
+      padding-left: 50%;
+      margin-right: 12%;
+      margin-left: 12%;
+    }
+
+    &.has-seconds {
+      &:after {
+        left: calc(100% / 3 * 2);
+      }
+
+      &:before {
+        padding-left: calc(100% / 3);
+      }
+    }
+  }
+
+  &__footer {
+    border-top: 1px solid var(--ti-time-panel-border-color);
+    padding: 4px;
+    height: 36px;
+    height: var(--ti-time-panel-footer-height, 36px);
+    line-height: 25px;
+    text-align: right;
+    box-sizing: border-box;
+  }
+
+  &__btn {
+    min-width: var(--ti-time-panel-btn-min-width);
+    border: none;
+    line-height: var(--ti-time-panel-btn-height);
+    padding: var(--ti-time-panel-btn-padding-vertical) var(--ti-time-panel-btn-padding-horizontal);
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: var(--ti-time-panel-btn-bg-color);
+    outline: 0;
+    font-size: 12px;
+    color: var(--ti-time-panel-btn-text-color);
+    border-radius: var(--ti-time-panel-btn-border-radius);
+    transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    &.cancel {
+      display: var(--ti-time-panel-btn-cancel-display);
+    }
+
+    &.confirm {
+      font-weight: var(--ti-time-panel-btn-font-weight);
+      color: var(--ti-time-panel-btn-confirm-text-color);
+
+      &:hover {
+        background-color: var(--ti-time-panel-btn-confirm-hover-bg-color);
+      }
+    }
+  }
+}

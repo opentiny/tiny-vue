@@ -1,0 +1,11 @@
+@import '../custom.less';
+
+@area-prefix-cls: ~'@{css-prefix}area';
+@select-prefix-cls: ~'@{css-prefix}select';
+
+.@{area-prefix-cls} {
+  .@{select-prefix-cls} {
+    @apply mr-2;
+    @apply mb-2;
+  }
+}
