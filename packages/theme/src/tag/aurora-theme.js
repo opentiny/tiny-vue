@@ -29,5 +29,6 @@ export const tinyTagAuroraTheme = {
   'ti-tag-plain-info-border-color': '#d3d4d6',
   'ti-tag-plain-danger-border-color': '#fbc4c4',
   'ti-tag-plain-warning-text-color': '#e6a23c',
-  'ti-tag-plain-warning-border-color': '#f5dab1'
+  'ti-tag-plain-warning-border-color': '#f5dab1',
+  'ti-tag-close-font-size': 'var(--ti-common-font-size-base, 12px)'
 }

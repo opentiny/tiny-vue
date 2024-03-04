@@ -32,7 +32,6 @@ export const useRuleGroup = (props: RuleGroupProps) => {
     createRuleGroup,
     independentCombinators,
     validationMap,
-    enableDragAndDrop,
     getRuleGroupClassname = () => ''
   } = schema
   const { onGroupAdd, onGroupRemove, onPropChange, onRuleAdd, moveRule } = actions
@@ -45,8 +44,8 @@ export const useRuleGroup = (props: RuleGroupProps) => {
     ruleGroupProp && 'combinator' in ruleGroupProp
       ? ruleGroupProp.combinator
       : !ruleGroupProp
-      ? combinatorProp ?? firstCombinator
-      : firstCombinator
+        ? combinatorProp ?? firstCombinator
+        : firstCombinator
 
   if (!independentCombinators) {
     ;(ruleGroup as RuleGroupType).combinator = combinator

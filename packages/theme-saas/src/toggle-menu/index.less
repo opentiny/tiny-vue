@@ -7,7 +7,7 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{toggle-menu-prefix-cls} {
-  width: 210px;
+  @apply w-64;
   @apply relative;
   @apply py-4 px-0;
 
@@ -34,13 +34,14 @@
   & &__filter {
     @apply relative;
     @apply mb-1;
-    width: calc(100% - 16px);
+    width: calc(100% - theme('spacing.4'));
     @apply pl-4;
   }
 
   & &__filter-search {
-    line-height: 26px;
-    @apply block;
+    @apply flex;
+    @apply items-center;
+    @apply h-7;
     @apply text-center;
     @apply absolute;
     @apply right-4;
@@ -54,18 +55,20 @@
 
   & &__toggle {
     @apply absolute;
-    @apply ~"top-1/2";
+    @apply ~'top-1/2';
     @apply left-full;
-    @apply ~"-translate-y-2/4";
+    @apply ~'-translate-y-2/4';
     @apply ~'z-[2]';
-    @apply ~"w-4.5";
-    height: 92px;
-    line-height: 92px;
+    @apply ~'w-4.5';
+    @apply h-24;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
     background: url(../images/menu-close.svg) no-repeat center center;
     @apply cursor-pointer;
 
     .@{svg-prefix-cls}:not(.icon-menu-close) {
-      @apply fill-color-text-primary;
+      @apply fill-color-text-inverse;
     }
 
     &:hover .@{svg-prefix-cls}:not(.icon-menu-close) {
@@ -125,7 +128,7 @@
     &.is-wrap {
       .@{tree-node-prefix-cls}__content {
         @apply h-auto;
-        min-height: 36px;
+        @apply ~'min-h-[theme(spacing.12)]';
       }
 
       .@{toggle-menu-prefix-cls}__name {
@@ -138,7 +141,7 @@
 
     &.is-overflow {
       .@{toggle-menu-prefix-cls}__name {
-        width: calc(100% - 18px);
+        width: calc(100% - theme('spacing[4.5]'));
         @apply align-middle;
         @apply inline-block;
         @apply whitespace-nowrap;

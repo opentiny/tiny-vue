@@ -39,7 +39,8 @@ export const cmpMenus = [
       { name: 'Scrollbar', nameCn: '滚动条', key: 'scrollbar' },
       { name: 'CascaderSelect', nameCn: '级联选择', key: 'cascader-select' },
       { name: 'CascaderMobile', nameCn: '级联选择移动', key: 'cascader-mobile' },
-      { name: 'CascaderView', nameCn: '级联选择视图', key: 'cascader-view' }
+      { name: 'CascaderView', nameCn: '级联选择视图', key: 'cascader-view' },
+      { name: 'DialogBox', nameCn: '对话框', key: 'dialog-box' }
     ]
   },
   {
@@ -57,13 +58,16 @@ export const cmpMenus = [
       { name: 'Radio', nameCn: '单选框', key: 'radio' },
       { name: 'RadioButton', nameCn: '单选块', key: 'radio-block' },
       { name: 'Search', nameCn: '搜索', key: 'search' },
+      { name: 'Select', nameCn: '选择器', key: 'select' },
       { name: 'SelectMobile', nameCn: '面板选择器', key: 'select-mobile' },
       { name: 'SelectView', nameCn: '页面选择器', key: 'select-view' },
       { name: 'Slider', nameCn: '滑块', key: 'slider' },
       { name: 'SliderButton', nameCn: '滑动按钮组', key: 'slider-button' },
       { name: 'Switch', nameCn: '开关', key: 'switch' },
       { name: 'FileUpload', nameCn: '文件上传', key: 'file-upload' },
-      { name: 'Record', nameCn: '语音录入', key: 'record' }
+      { name: 'Record', nameCn: '语音录入', key: 'record' },
+      { name: 'Signature', nameCn: '手写签名', key: 'signature' },
+      { name: 'Cascader', nameCn: '级联选择器', key: 'cascader' }
     ]
   },
   {
@@ -71,12 +75,18 @@ export const cmpMenus = [
     labelEn: 'Data',
     key: 'cmp_data_components',
     children: [
-      { name: 'Grid', nameCn: '表格', key: 'grid' },
       { name: 'ColumnListItem', nameCn: '分区列表项', key: 'column-list-item' },
       { name: 'StandardListItem', nameCn: '标准列表项', key: 'standard-list-item' },
       { name: 'Progress', nameCn: '进度条', key: 'progress' },
-      { name: 'PullRefresh', nameCn: '下拉刷新', key: 'pull-refresh' }
+      { name: 'PullRefresh', nameCn: '下拉刷新', key: 'pull-refresh' },
+      { name: 'Pager', nameCn: '分页', key: 'pager' }
     ]
+  },
+  {
+    'label': '表格组件',
+    'labelEn': 'Table Components',
+    'key': 'cmp_table_components',
+    'children': [{ 'nameCn': '基本用法', 'name': 'Grid', 'key': 'grid' }]
   },
   {
     label: '提示组件',
@@ -104,7 +114,11 @@ export const cmpMenus = [
       { name: 'Rate', nameCn: '评分', key: 'rate' },
       { name: 'Tag', nameCn: '标签', key: 'tag' },
       { name: 'TagGroup', nameCn: '标签组', key: 'tag-group' },
-      { name: 'UserHead', nameCn: '用户头像', key: 'user-head' }
+      { name: 'UserHead', nameCn: '用户头像', key: 'user-head' },
+      { name: 'Amount', nameCn: '金额', key: 'amount' },
+      { name: 'currency', nameCn: '币种', key: 'currency' },
+      { name: 'CalendarView', nameCn: '日历', key: 'calendar-view' },
+      { name: 'FloatingButton', nameCn: '悬浮按钮', key: 'floating-button' }
     ]
   }
 ]

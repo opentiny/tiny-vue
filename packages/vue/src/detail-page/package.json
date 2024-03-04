@@ -20,7 +20,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
-    "@opentiny/vue-modal": "workspace:~"
+    "@opentiny/vue-modal": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

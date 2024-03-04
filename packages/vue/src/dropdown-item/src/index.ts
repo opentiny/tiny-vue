@@ -33,28 +33,29 @@ export const dropdownItemProps = {
     default: ''
   },
   title: String,
-  label: {
-    type: String,
-    default: ''
-  },
+  label: String,
   level: String,
   titleClass: String,
   options: {
     type: Array,
     default: () => []
   },
+  // mobile 属性，可选值 selection | filter | sort
   type: {
     type: String,
     default: 'selection'
   },
+  // 是否选中，勾选状态功能
   selected: {
     type: Boolean,
     default: false
   },
+  // 暂没找到使用的地方
   selectedField: {
     type: String,
     default: 'selected'
   },
+  // 暂没找到使用的地方
   multiStage: {
     type: Boolean,
     default: false
@@ -63,7 +64,7 @@ export const dropdownItemProps = {
     type: Number,
     default: () => -1
   },
-  // tiny新增
+  // 以下为 tiny 新增
   appendToBody: {
     type: Boolean,
     default: true

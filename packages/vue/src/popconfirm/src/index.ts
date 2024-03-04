@@ -27,7 +27,7 @@ export const $constants = {
   }
 }
 
-export const popconfirmProps = {
+export const popConfirmProps = {
   ...$props,
   _constants: {
     type: Object,
@@ -35,10 +35,11 @@ export const popconfirmProps = {
   },
   message: String,
   customClass: String,
+  popperOptions: Object,
   trigger: {
     type: String,
     default: 'hover',
-    validator: (value) => ['click', 'hover'].includes(value)
+    validator: (value: string) => ['click', 'hover'].includes(value)
   },
   cancelButton: {
     type: Boolean,
@@ -49,16 +50,15 @@ export const popconfirmProps = {
     type: String,
     default: 'top'
   },
-  width: {
-    type: [String, Number],
-    default: '350'
-  },
-  type: [String, Object]
+  width: [String, Number],
+  type: [String, Object],
+  reference: {},
+  events: Object
 }
 
 export default defineComponent({
   name: $prefix + 'Popconfim',
-  props: popconfirmProps,
+  props: popConfirmProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

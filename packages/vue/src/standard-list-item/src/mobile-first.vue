@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div
     data-tag="tiny-standard-list-item"
@@ -7,7 +8,8 @@
         type === 'card'
           ? 'p-3 border-0.5 hover:shadow sm:border rounded border-color-border-separator mb-2 [&:last-child]:mb-0'
           : 'px-0 py-3 border-b-0.5 sm:border-b-px border-b-color-border-separator [&:last-child]:border-none',
-        type === 'card' && selected ? 'border border-color-brand' : ''
+        type === 'card' && selected ? 'border border-color-brand' : '',
+        customClass
       )
     "
     @click="$emit('click', $event)"
@@ -78,7 +80,7 @@
           @click.stop="handelIconClick(item, index, $event)"
         >
           <component :is="item.icon" class="w-4 h-4" :class="[item.disabled ? 'fill-color-icon-disabled' : '']" />
-          <span v-if="item.text" class="ml-1 align-middle sm:align-bottom">{{ item.text }}</span>
+          <span v-if="item.text" class="ml-1 align-middle">{{ item.text }}</span>
         </div>
         <div
           class="cursor-pointer hidden sm:block"
@@ -91,7 +93,7 @@
             class="w-4 h-4"
             :class="[state.effectOptions[state.sliceNum].disabled ? 'fill-color-icon-disabled' : '']"
           />
-          <span v-if="state.effectOptions[state.sliceNum].text" class="ml-1 align-middle sm:align-bottom">{{
+          <span v-if="state.effectOptions[state.sliceNum].text" class="ml-1 align-middle">{{
             state.effectOptions[state.sliceNum].text
           }}</span>
         </div>
@@ -165,7 +167,7 @@ import { iconEllipsis } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'StandardListItem',
-  emits: ['icon-click'],
+  emits: ['icon-click', 'click'],
   components: {
     TinyTooltip: Tooltip,
     TinyUserHead: UserHead,
@@ -230,6 +232,10 @@ export default defineComponent({
       default: () => {
         return {}
       }
+    },
+    customClass: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {

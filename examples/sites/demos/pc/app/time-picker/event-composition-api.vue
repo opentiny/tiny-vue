@@ -23,15 +23,15 @@ function handleFocus() {
 }
 
 function blur() {
-  Modal.message('blur事件')
+  Modal.message({ message: 'blur事件', status: 'info' })
 }
 
 function change() {
-  Modal.message('change事件')
+  Modal.message({ message: 'change事件', status: 'info' })
 }
 
 function focus() {
-  Modal.message('focus事件')
+  Modal.message({ message: 'focus事件', status: 'info' })
 }
 </script>
 

@@ -80,7 +80,7 @@
       @apply absolute;
       @apply ~'left-1/2';
       @apply box-border;
-      @apply ~"-translate-x-2/4";
+      @apply ~'-translate-x-2/4';
       @apply rounded;
     }
 
@@ -152,7 +152,7 @@
 
     &.disabled {
       div {
-        @apply bg-color-bg-2;
+        @apply bg-color-bg-3;
         @apply opacity-100;
         @apply cursor-not-allowed;
         @apply text-color-text-disabled;
@@ -176,7 +176,7 @@
     &.selected {
       div {
         @apply ~'ml-1.5';
-        @apply ~"mr-1.5";
+        @apply ~'mr-1.5';
         @apply bg-color-brand-hover-subtle;
         @apply rounded;
 
@@ -207,5 +207,6 @@
     padding: 16px 5px;
     @apply text-color-text-primary;
     @apply font-normal;
+    @apply whitespace-nowrap;
   }
 }

@@ -216,6 +216,5 @@ export default {
       },
       codeFiles: ['validate-debounce.vue']
     }
-  ],
-  apis: []
+  ]
 }

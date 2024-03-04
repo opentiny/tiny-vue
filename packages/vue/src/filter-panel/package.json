@@ -14,7 +14,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-filter-box": "workspace:~",
-    "@opentiny/vue-popover": "workspace:~"
+    "@opentiny/vue-popover": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

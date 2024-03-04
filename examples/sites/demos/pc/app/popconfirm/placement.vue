@@ -1,11 +1,11 @@
 <template>
   <div>
-    <tiny-popconfirm :title="title" :content="content" placement="bottom">
+    <tiny-popconfirm :title="title" :message="message" placement="bottom">
       <template #reference>
         <tiny-button>显示在下方</tiny-button>
       </template>
     </tiny-popconfirm>
-    <tiny-popconfirm :title="title" :content="content" placement="right" class="ml-8">
+    <tiny-popconfirm :title="title" :message="message" placement="right" class="ml-8">
       <template #reference>
         <tiny-button>显示在右边</tiny-button>
       </template>
@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       title: '这是气泡标题',
-      content: '这是气泡提示框内容。'
+      message: '这是气泡提示框内容。'
     }
   }
 }

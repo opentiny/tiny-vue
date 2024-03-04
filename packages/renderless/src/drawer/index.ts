@@ -2,11 +2,25 @@ import debounce from '../common/deps/debounce'
 import { addClass, removeClass } from '../common/deps/dom'
 import type { IDrawerState, IDrawerProps, IDrawerApi, IDrawerCT, ISharedRenderlessParamUtils } from '@/types'
 
+export const computedWidth =
+  ({
+    state,
+    designConfig,
+    props,
+    constants
+  }: Pick<ISharedRenderlessParamUtils, 'state' | 'designConfig' | 'props' | 'constants'>) =>
+  (): string => {
+    if (state.width) {
+      return state.width + 'px'
+    }
+
+    return props.width || designConfig?.constants?.DEFAULT_WIDTH || constants.DEFAULT_WIDTH
+  }
+
 export const close =
-  ({ emit, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState }) =>
-  () => {
-    state.toggle = false
-    emit('close', state)
+  ({ api }) =>
+  (force = false) => {
+    api.handleClose('close', force)
   }
 
 export const watchVisible =
@@ -26,10 +40,22 @@ export const watchToggle =
   }
 
 export const confirm =
-  ({ emit, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState }) =>
+  ({ api }) =>
   () => {
+    api.handleClose('confirm')
+  }
+
+export const handleClose =
+  ({ emit, props, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState }) =>
+  (type, force) => {
+    const isMaskNotClosable = type === 'mask' && !props.maskClosable
+    const isBlockClose = !force && typeof props.beforeClose === 'function' && props.beforeClose(type) === false
+    if (isMaskNotClosable || isBlockClose) {
+      return
+    }
+
     state.toggle = false
-    emit('confirm', state)
+    emit(['close', 'confirm'].includes(type) ? type : 'close', state)
   }
 
 export const mousedown =

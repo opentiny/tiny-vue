@@ -11,7 +11,7 @@ export const tinyCollapseitemAuroraTheme = {
   'ti-collapse-item-disabled-border-color-top': 'transparent',
   'ti-collapse-item-disabled-border-color-left': 'transparent',
   'ti-collapse-item-disabled-border-color-right': 'transparent',
-  'ti-collapse-item-header-padding-horizontal': 'var(--ti-common-space-6x)',
+  'ti-collapse-item-header-padding-horizontal': 'var(--ti-common-space-0)',
   'ti-collapse-item-header-font-size': 'var(--ti-common-font-size-1)',
   'ti-collapse-item-icon-font-size': 'var(--ti-common-font-size-1)',
   'ti-collapse-item-margin-top': 'var(--ti-common-space-0)',

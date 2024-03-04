@@ -1,11 +1,14 @@
 import { $prefix } from '../common/util'
 import { isObject } from '../common/type'
 import setExtend from '../common/extend'
+import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS } from '../common/constants'
 import IntegrateChart from '../base'
+import BaiduMapChart from '../base/components/BaiduMapChart'
+import AutonaviMapChart from '../base/components/AutonaviMapChart'
 
 export default {
   name: $prefix + 'ChartCore',
-  emits: ['ready', 'readyOnce'],
+  emits: ['ready', 'readyOnce', 'handle-color'],
   props: {
     data: {
       type: Object,
@@ -21,7 +24,7 @@ export default {
     },
     width: { type: String, default: 'auto' },
     height: { type: String, default: '400px' },
-    events: { type: Object, default: () => { } },
+    events: { type: Object, default() {} },
     initOptions: {
       type: Object,
       default() {
@@ -49,25 +52,26 @@ export default {
     dataEmpty: Boolean,
 
     beforeConfig: {
-      type: Function,
+      type: Function
     },
     afterConfig: {
-      type: Function,
+      type: Function
     },
     afterSetOption: {
-      type: Function,
+      type: Function
     },
     afterSetOptionOnce: {
       type: Function
     },
 
-
-
     loading: {
       type: Boolean,
       default: false
     },
-    extend: Object,
+    extend: {
+      type: Object,
+      default() {}
+    },
     tooltipFormatter: { type: Function },
 
     markArea: {
@@ -82,10 +86,7 @@ export default {
 
     grid: { type: [Object, Array] },
     colors: {
-      type: Array,
-      default() {
-        return ['#114411']
-      }
+      type: Array
     },
     visualMap: [Object, Array],
     dataZoom: [Object, Array],
@@ -105,6 +106,22 @@ export default {
     backgroundColor: [Object, String],
     textStyle: Object,
     animation: Object,
+    options: {
+      type: Object,
+      default() {}
+    },
+    cancelResizeCheck: {
+      type: Boolean,
+      default: false
+    },
+    setOptionOpts: {
+      type: Object,
+      default() {}
+    },
+    colorMode: {
+      type: String,
+      default: 'default'
+    }
   },
   data() {
     return {
@@ -112,30 +129,44 @@ export default {
       renderOption: {},
       initOpts: {},
       watchToPropsEchartOptions: [],
-      selfChart: [
-        // 'FlowChart',
-        // 'WaveChart',
-        // 'RiverChart',
-        // 'GanttChart',
-        // 'HoneycombChart',
-        // 'OrganizationChart',
-        // 'AutonaviMapChart',
-      ],
+      selfChart: ['BaiduMapChart', 'AutonaviMapChart'],
       isSelfChart: false,
-      chartList: []
+      chartList: [],
+      once: {},
+      store: {}
     }
   },
   computed: {
+    // 图表延时的集合
     delay() {
       return {
         widthChangeDelay: this.widthChangeDelay,
         resizeDelay: this.resizeDelay
       }
+    },
+
+    size() {
+      return {
+        width: this.width,
+        height: this.height
+      }
+    },
+
+    // 图表参数的集合
+    setting() {
+      return {
+        data: this.data,
+        settings: this.settings,
+        extend: this.extend,
+        tooltipVisible: this.tooltipVisible,
+        legendVisible: this.legendVisible,
+        options: this.options
+      }
     }
   },
   watch: {
-    data: {
-      handler(val) {
+    setting: {
+      handler() {
         this.refreshChart()
       },
       deep: true
@@ -145,27 +176,17 @@ export default {
         this.addEvents(val)
         this.removeEvents(oldVal)
       },
-      deep: true,
+      deep: true
     },
     initOptions: {
       handler(val) {
         this.initOpts = {
-          ...initOpts,
+          ...this.initOpts,
           ...val
         }
         this.renderChart(this.option)
       },
-      deep: true,
-    },
-    tooltipVisible: {
-      handler() {
-        this.refreshChart()
-      }
-    },
-    legendVisible: {
-      handler() {
-        this.refreshChart()
-      },
+      deep: true
     },
     judgeWidth: {
       handler(val) {
@@ -184,12 +205,11 @@ export default {
       handler(val) {
         this.initOpts.windowResize = val
         this.renderChart(this.option)
-      },
+      }
     },
     setOptionOpts: {
       handler(val) {
         this.renderOption = val
-        this.renderChart(this.option)
       },
       deep: true
     },
@@ -211,13 +231,36 @@ export default {
         }
       })
     },
+
+    size: {
+      handler(val) {
+        this.$nextTick(() => {
+          this.integrateChart && this.integrateChart.echartsIns && this.integrateChart.echartsIns.resize()
+        })
+      }
+    }
   },
   methods: {
     selfSetting(options) {
       const echartsSettings = [
-        'grid', 'dataZoom', 'visualMap', 'toolbox', 'title', 'legend', 'xAxis',
-        'yAxis', 'radar', 'tooltip', 'axisPointer', 'brush', 'geo',
-        'timeline', 'graphic', 'series', 'backgroundColor', 'textStyle'
+        'grid',
+        'dataZoom',
+        'visualMap',
+        'toolbox',
+        'title',
+        'legend',
+        'xAxis',
+        'yAxis',
+        'radar',
+        'tooltip',
+        'axisPointer',
+        'brush',
+        'geo',
+        'timeline',
+        'graphic',
+        'series',
+        'backgroundColor',
+        'textStyle'
       ]
       echartsSettings.forEach((setting, index) => {
         const unwatch = this.watchToPropsEchartOptions[index]
@@ -225,12 +268,18 @@ export default {
           if (!options.extend) {
             options.extend = {}
           }
+
           options.extend[setting] = this[setting]
-          !unwatch && this.$watch(setting, () => {
-            this.refreshChart()
-          }, {
-            deep: true
-          })
+          !unwatch &&
+            this.$watch(
+              setting,
+              () => {
+                this.refreshChart()
+              },
+              {
+                deep: true
+              }
+            )
         } else {
           unwatch && unwatch()
         }
@@ -244,13 +293,14 @@ export default {
       }
     },
     applyMarks(options) {
+      // MarkArea、markLine、markPoint 判断
       if (this.markArea || this.markLine || this.markPoint) {
         const marks = {
           markArea: this.markArea,
           markLine: this.markLine,
           markPoint: this.markPoint
         }
-        const series = options.series
+        const { series } = options
         const setMark = (seriesItem, marks) => {
           Object.keys(marks).forEach((key) => {
             if (marks[key]) {
@@ -277,39 +327,60 @@ export default {
       }
     },
     refreshChart() {
-      let data = this.data
+      const { data } = this
       this.updateChart(data)
-      let option = this.option
-      setTimeout(() => {
+      let { option } = this
+      clearTimeout(this.timer)
+      this.timer = null
+      this.timer = setTimeout(() => {
         if (this.afterConfig) {
           option = this.afterConfig(option)
         }
+
         this.selfSetting(option)
         this.setAnimation(option)
         this.applyMarks(this.integrateChart.eChartOption)
         this.integrateChart.refresh(option)
         this.applyExtend(this.integrateChart.eChartOption)
         option.extend = this.integrateChart.eChartOption
+        if (this.colorMode !== 'default') {
+          option.color = this.computedChartColor()
+        }
         this.integrateChart.refresh(option)
+        this.$emit('handle-color', option.color)
         if (this.afterSetOption) {
           this.afterSetOption(this.integrateChart.echartsIns)
         }
-        this.$emit('ready', this.integrateChart.echartsIns)
+        this.$emit('ready', this.integrateChart.echartsIns, option)
       }, this.changeDelay)
     },
     renderChart(option) {
-      if (!this.isSelfChart) {
+      const plugins = this.plugins || {}
+      if (this.isSelfChart) {
+        this.integrateChart.init(this.$refs.chartRef)
+        if (this.colorMode !== 'default') {
+          option.color = this.computedChartColor()
+        }
+        this.integrateChart.setSimpleOption(this.chartList[this.iChartName], option, plugins)
+        this.$emit('handle-color', option.color)
+        this.integrateChart.render()
+      } else {
         this.selfSetting(option)
         this.setAnimation(option)
         this.integrateChart.init(this.$refs.chartRef, this.initOpts)
-        this.integrateChart.setSimpleOption(this.iChartName, option)
+        if (this.colorMode !== 'default') {
+          option.color = this.computedChartColor()
+        }
+        this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
+        this.$emit('handle-color', option.color)
         this.applyMarks(this.integrateChart.eChartOption)
         this.applyExtend(this.integrateChart.eChartOption)
         this.integrateChart.render(this.renderOption)
-      } else {
-        this.integrateChart.init(this.$refs.chartRef);
-        this.integrateChart.setSimpleOption(this.chartList[this.iChartName], option, {});
-        this.integrateChart.render();
+      }
+      this.$emit('ready', this.integrateChart.echartsIns)
+      if (!this.once['ready-once']) {
+        this.once['ready-once'] = true
+        this.$emit('ready', this.integrateChart.echartsIns)
       }
     },
     addEvents(val) {
@@ -331,56 +402,121 @@ export default {
           })
         })
       }
+    },
+    resize() {
+      if (!this.cancelResizeCheck) {
+        this.integrateChart.echartsIns.resize()
+      }
+    },
+    afterConfigFn(option) {
+      if (this.afterConfig) {
+        option = this.afterConfig(option)
+        this.option = option
+      }
+      return option
+    },
+    beforeConfigFn(data) {
+      if (this.beforeConfig) {
+        data = this.beforeConfig(data)
+      }
+      return data
+    },
+    isStack() {
+      let {
+        settings: { stack },
+        data: { columns }
+      } = this
+      let flag = false
+
+      if (typeof stack !== 'object' || !Array.isArray(columns)) return flag
+
+      Object.keys(stack).forEach((key) => {
+        stack[key].forEach((stackItem) => {
+          const isExist = columns.includes(stackItem)
+          if (isExist) {
+            flag = true
+          }
+        })
+      })
+
+      return flag
+    },
+    calcColors({ len, type, isStack }) {
+      let SAAS_COLOR = SAAS_DEFAULT_COLORS
+      let lastColor = '#1B3F86'
+      if (isStack && type === '') {
+        return len && len > 6 ? [lastColor].concat(SAAS_COLOR.slice(0, len - 1)) : SAAS_COLOR.slice(0, [len || 8])
+      }
+      if (!isStack && type === '') {
+        type = 'default'
+      }
+      if (type === 'blue' || type === 'green') {
+        SAAS_COLOR = SAAS_DEFAULT_SAME_COLORS[type]
+          .slice(0, len)
+          .sort((a, b) => a.idx - b.idx)
+          .map((item) => item.color)
+      }
+      return len && len > 6 ? SAAS_COLOR.slice(0, len - 1).concat([lastColor]) : SAAS_COLOR.slice(0, [len || 8])
+    },
+    computedChartColor() {
+      let defaultColors = DEFAULT_COLORS
+
+      let flag = this.isStack()
+
+      if (this.data && (Array.isArray(this.data.rows) || Array.isArray(this.data.columns))) {
+        const { columns, rows } = this.data
+        const len = Math.max(columns ? columns.length : 0, rows ? rows.length : 0)
+        defaultColors = this.calcColors({ len, type: this.colorMode, isStack: flag })
+      } else if (Array.isArray(this.data)) {
+        defaultColors = this.calcColors({ len: this.data.length, type: this.colorMode, isStack: flag })
+      } else if (this.extend && this.extend.series && Array.isArray(this.extend.series.data)) {
+        defaultColors = this.calcColors({ len: this.extend.series.data.length, type: this.colorMode, isStack: flag })
+      } else if (this.extend && Array.isArray(this.extend.series)) {
+        defaultColors = this.calcColors({ len: this.extend.series.length, type: this.colorMode, isStack: flag })
+      }
+      return this.colors || (this.theme && this.theme.color) || defaultColors
     }
   },
   created() {
     this.option = {}
-    if (this.selfChart.indexOf(this.iChartName) === -1) {
+    if (!this.selfChart.includes(this.iChartName)) {
       this.isSelfChart = false
       this.integrateChart = new IntegrateChart()
     } else {
       this.isSelfChart = true
-      this.chartList = {}
+      this.chartList = {
+        BaiduMapChart,
+        AutonaviMapChart
+      }
       this.integrateChart = new this.chartList[this.iChartName]()
     }
   },
   mounted() {
     this.$nextTick(() => {
       this.addEvents(this.events)
-      if (this.loading) {
-        this.integrateChart.showLoading()
-      }
-      if (this.dataEmpty) {
-        this.integrateChart.showEmpty()
-      }
+      this.loading && this.integrateChart.showLoading()
+
+      this.dataEmpty && this.integrateChart.showEmpty()
     })
     this.initOpts = {
       ...this.initOptions,
       domResize: this.judgeWidth,
-      resizeThrottle: this.widthChangeDelay,
-
+      resizeThrottle: this.widthChangeDelay
     }
-    let data = this.data
-    if (this.beforeConfig) {
-      data = this.beforeConfig(data)
-    }
+    let { data } = this
+    data = this.beforeConfigFn(data)
     this.updateChart(data)
-    let option = this.option
-    if (this.afterConfig) {
-      option = this.afterConfig(option)
-      this.option = option
-    }
+    let { option } = this
+    option = this.afterConfigFn(option)
+
     this.renderChart(option)
-    if (this.afterSetOption) {
-      this.afterSetOption(this.integrateChart.echartsIns)
-    }
-    if (this.afterSetOptionOnce) {
-      this.afterSetOptionOnce(this.integrateChart.echartsIns)
-    }
-    this.$emit('ready', this.integrateChart.echartsIns)
+
+    this.afterSetOption && this.afterSetOption(this.integrateChart.echartsIns)
+
+    this.afterSetOptionOnce && this.afterSetOptionOnce(this.integrateChart.echartsIns)
   },
   beforeUnmount() {
-    this.watchToPropsEchartOptions.forEach(unwatch => {
+    this.watchToPropsEchartOptions.forEach((unwatch) => {
       unwatch && unwatch()
     })
   }

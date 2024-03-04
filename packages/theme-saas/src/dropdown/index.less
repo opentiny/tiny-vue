@@ -27,19 +27,19 @@
   }
 
   .@{dropdown-prefix-cls}__caret-button {
-    padding-left: 5px;
-    padding-right: 5px;
+    @apply px-0;
     @apply relative;
     border-left: none;
-    min-width: 24px;
+    @apply ~"min-w-[theme(spacing.6)]";
+    @apply w-6;
 
     &:before {
       @apply content-[''];
       @apply absolute;
       @apply block;
       @apply w-px;
-      top: 5px;
-      bottom: 5px;
+      @apply top-1;
+      @apply bottom-1;
       @apply left-0;
       @apply bg-color-bg-1;
     }
@@ -59,7 +59,6 @@
 
     svg {
       @apply pl-0;
-      margin: 0 3px;
     }
 
     &:not(.is-disabled) {
@@ -91,11 +90,12 @@
 
   & .is-text:not(.is-disabled) {
     @apply text-color-brand;
+    @apply outline-0;
 
     svg {
       @apply text-base;
       @apply fill-color-brand;
-      margin-top: -3px;
+      @apply ~"-mt-0.5";
     }
 
     &:hover {
@@ -129,13 +129,20 @@
     }
   }
 
+  & .is-hide {
+    .@{dropdown-prefix-cls}__suffix-inner svg {
+      @apply transition-transform duration-300;
+      @apply rotate-0;
+    }
+  }
+
   & .is-disabled {
     @apply text-color-text-disabled;
     @apply cursor-not-allowed;
 
     svg {
       @apply fill-color-text-disabled;
-      margin-top: -3px;
+      @apply ~"-mt-0.5";
     }
   }
 

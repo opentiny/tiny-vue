@@ -6,5 +6,5 @@ test('自动撑宽', async ({ page }) => {
 
   const { width } = await page.getByRole('tab', { name: '表单组件，测试标签页宽度根据标题长度自动撑开' }).boundingBox()
 
-  await expect(width).toBeGreaterThanOrEqual(364)
+  await expect(width).toBeGreaterThanOrEqual(360)
 })

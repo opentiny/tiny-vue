@@ -31,6 +31,7 @@
             v-for="(shortcut, key) in state.shortcuts"
             :key="key"
             @click="handleShortcutClick(shortcut)"
+            :title="shortcut.text"
           >
             {{ shortcut.text }}
           </button>
@@ -284,7 +285,6 @@ export default defineComponent({
       context,
       renderless,
       api,
-      mono: true,
       extendOptions: { language }
     })
   }

@@ -2,7 +2,7 @@ import LineChart from '../LineChart'
 import init from '../../option/init'
 import { event } from '../../util/event'
 import cloneDeep from '../../util/cloneDeep'
-import BaseOption from '../../util/baseOption'
+import BaseOption from '../../option/base'
 import { mergeVisualMap, mergeSeries } from '../../util/merge'
 import RectCoordSys from '../../option/RectSys'
 import { setStack, setDirection, setDoubleSides } from './handleOptipn'
@@ -22,7 +22,6 @@ class BarChart {
   }
 
   updateOption() {
-    const theme = this.iChartOption.theme
     const iChartOption = this.iChartOption
     // 装载除series之外的其他配置
     RectCoordSys(this.baseOption, this.iChartOption, 'BarChart')
@@ -53,7 +52,7 @@ class BarChart {
     // 设置柱状图的方向
     setDirection(this.baseOption, iChartOption.direction)
     // 对 tooltip.formatter 进行二次封装
-    setLimitFormatter(this.baseOption, iChartOption)
+    setLimitFormatter(this.baseOption, iChartOption, seriesData)
     // 配置图表事件
     if (iChartOption.event) {
       event(this.chartInstance, iChartOption.event)
@@ -66,7 +65,6 @@ class BarChart {
     mergeSeries(iChartOption, this.baseOption)
     // 合并用户自定义visualMap
     mergeVisualMap(iChartOption, this.baseOption)
-    console.log({ ...this.baseOption }, '==-====')
   }
 
   // 根据渲染出的结果，二次计算option

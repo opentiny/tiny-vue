@@ -14,7 +14,6 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'mini-mode',
       name: {
@@ -55,7 +54,7 @@ export default {
     {
       demoId: 'loading-mode',
       name: {
-        'zh-CN': '加载态开关',
+        'zh-CN': '加载状态开关',
         'en-US': 'events'
       },
       desc: {
@@ -101,6 +100,5 @@ export default {
       },
       codeFiles: ['custom-true-false-value.vue']
     }
-  ],
-  apis: []
+  ]
 }

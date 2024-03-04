@@ -66,7 +66,6 @@ export default {
       },
       codeFiles: ['advanced-no-arrow.vue']
     },
-
     {
       demoId: 'slot-item',
       name: {
@@ -104,7 +103,6 @@ export default {
       },
       codeFiles: ['slot-bottom.vue']
     },
-
     {
       demoId: 'duration',
       name: {
@@ -119,7 +117,6 @@ export default {
       },
       codeFiles: ['duration.vue']
     },
-
     {
       demoId: 'complicated',
       name: {
@@ -131,94 +128,6 @@ export default {
         'en-US': '<p>Comprehensive example</p>'
       },
       codeFiles: ['complicated.vue']
-    }
-  ],
-  apis: [
-    {
-      'name': 'Steps',
-      'type': 'component',
-      'props': [
-        {
-          'name': 'advanced',
-          'type': 'Boolean',
-          'defaultValue': 'false',
-          'desc': { 'zh-CN': '是否开启高级向导模式', 'en-US': 'Enable Advanced Wizard Mode' },
-          'demoId': 'advanced-steps'
-        },
-        {
-          'name': 'description-field',
-          'type': 'String',
-          'defaultValue': 'description',
-          'desc': { 'zh-CN': '描述字段', 'en-US': 'Description field' }
-        },
-        {
-          'name': 'duration',
-          'type': 'Number',
-          'defaultValue': '300',
-          'desc': {
-            'zh-CN':
-              '设置节点左右滚动的持续时间，默认值为 300（单位 ms），设置 0 则无滚动动画，仅开启 advanced 高级向导模式有效',
-            'en-US':
-              'Duration for scrolling left and right of a node. The default value is 300 (unit: ms). If this parameter is set to 0, there is no scrolling animation. This parameter is valid only when the advanced wizard mode is enabled.'
-          },
-          'demoId': 'duration'
-        },
-        {
-          'name': 'no-arrow ',
-          'type': 'Boolean',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN':
-              '添加属性 no-arrow 隐藏左右箭头，在 PC 端按住 shift+鼠标滚轮 进行节点左右滚动，移动端触屏左右滑动即可，仅开启 advanced 高级向导模式有效。',
-            'en-US':
-              'Add the no-arrow attribute to hide the left and right arrows. On the PC, press Shift and scroll the mouse wheel to scroll the node left and right. Swipe left and right on the touch screen of the mobile end. This function is valid only when the advanced wizard mode is enabled.'
-          },
-          'demoId': 'advanced-no-arrow'
-        },
-        {
-          'name': 'vertical',
-          'type': 'Boolean',
-          'defaultValue': 'false',
-          'desc': {
-            'zh-CN': '是否开启垂直单链型',
-            'en-US': 'Indicates whether to enable the vertical single chain mode.'
-          },
-          'demoId': 'vertical'
-        },
-        {
-          'name': 'visible-num',
-          'type': 'Number',
-          'defaultValue': '5',
-          'desc': {
-            'zh-CN': '显示模块数量，超出隐藏',
-            'en-US': 'Display the number of modules. The number of modules exceeds the hidden value'
-          },
-          'demoId': 'vertical'
-        }
-      ],
-      'slots': [
-        {
-          'name': 'block-bottom ',
-          'type': '',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '滚动块底部插槽，仅开启 advanced 高级向导模式有效。',
-            'en-US':
-              'Slot at the bottom of the scroll block. This parameter is valid only when the advanced wizard mode is enabled.'
-          },
-          'demoId': 'slot-bottom'
-        },
-        {
-          'name': 'prefix ',
-          'type': '',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '前置插槽，仅开启 advanced 高级向导模式有效。',
-            'en-US': 'Front slot, valid only when the advanced wizard mode is enabled.'
-          },
-          'demoId': 'slot'
-        }
-      ]
     }
   ]
 }

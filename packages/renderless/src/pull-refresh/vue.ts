@@ -17,6 +17,7 @@ import {
   onTouchstart,
   onTouchmove,
   onTouchend,
+  onScroll,
   initPullRefresh,
   clearPullRefresh
 } from './index'
@@ -45,7 +46,8 @@ export const renderless = (props, { watch, onMounted, reactive, onBeforeUnmount 
     animationDuration: props.animationDuration,
     disabledPullDown: props.disabledPullDown,
     disabledPullUp: props.disabledPullUp,
-    pullUpDistance: typeof props.pullUpDistance === 'string' ? Number(props.pullUpDistance) : props.pullUpDistance
+    pullUpDistance: typeof props.pullUpDistance === 'string' ? Number(props.pullUpDistance) : props.pullUpDistance,
+    timer: null
   })
 
   Object.assign(api, {
@@ -53,6 +55,7 @@ export const renderless = (props, { watch, onMounted, reactive, onBeforeUnmount 
     onTouchstart: onTouchstart(state),
     onTouchmove: onTouchmove({ state, refs }),
     onTouchend: onTouchend({ api, props, state, emit, refs }),
+    onScroll: onScroll({ state, emit, refs }),
     mountedHandler: mountedHandler({ api, refs }),
     beforeUnmountHandler: beforeUnmountHandler({ api, refs }),
     handlerModelValue: handlerModelValue({ api, state }),

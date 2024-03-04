@@ -9,7 +9,7 @@
           'bg-color-bg-7': state.toggle
         })
       "
-      @click="maskClosable && close()"
+      @click="handleClose('mask')"
     ></div>
     <!-- main -->
     <div
@@ -21,11 +21,11 @@
           { 'transition-all ease-linear duration-200': !state.dragEvent.isDrag },
           { 'h-full': ['left', 'right'].includes(placement) },
           { 'max-h-full': ['top', 'bottom'].includes(placement) },
-          { 'left-0 bottom-0 translate-y-full border-t-0.5': placement === 'bottom' },
-          { 'left-0 top-0 -translate-y-full border-b-0.5': placement === 'top' },
+          { 'left-0 bottom-0 translate-y-full border-t-0.5 rounded-t-lg': placement === 'bottom' },
+          { 'left-0 top-0 -translate-y-full border-b-0.5 rounded-b-lg': placement === 'top' },
           { 'translate-y-0': ['top', 'bottom'].includes(placement) && state.toggle },
-          { 'left-0 top-0 -translate-x-full border-r-0.5': placement === 'left' },
-          { 'right-0 top-0 translate-x-full border-l-0.5': placement === 'right' },
+          { 'left-0 top-0 -translate-x-full border-r-0.5 rounded-r-lg': placement === 'left' },
+          { 'right-0 top-0 translate-x-full border-l-0.5 rounded-l-lg': placement === 'right' },
           { 'translate-x-0': ['left', 'right'].includes(placement) && state.toggle },
           customClass
         )
@@ -50,7 +50,7 @@
             <div v-if="title" class="max-w-[80%] pr-4 text-left truncate">{{ title }}</div>
             <div class="flex-1 flex items-center justify-end">
               <slot name="header-right">
-                <IconClose custom-class="h-5 w-5 cursor-pointer" @click="close"></IconClose>
+                <IconClose custom-class="h-5 w-5 cursor-pointer" @click="handleClose('close')"></IconClose>
               </slot>
             </div>
           </slot>
@@ -63,8 +63,10 @@
         <div data-tag="drawer-footer" ref="footer" v-if="showFooter" class="px-4 py-3">
           <div class="flex-1 text-right">
             <slot name="footer">
-              <tiny-button tiny_mode="mobile-first" @click="close">{{ t('ui.button.cancel') }}</tiny-button>
-              <tiny-button tiny_mode="mobile-first" class="ml-2" type="primary" @click="confirm">{{
+              <tiny-button tiny_mode="mobile-first" @click="handleClose('cancel')">{{
+                t('ui.button.cancel')
+              }}</tiny-button>
+              <tiny-button tiny_mode="mobile-first" class="ml-2" type="primary" @click="handleClose('confirm')">{{
                 t('ui.button.confirm')
               }}</tiny-button>
             </slot>
@@ -99,7 +101,8 @@ export default {
     'dragable',
     'maskClosable',
     'lockScroll',
-    'flex'
+    'flex',
+    'beforeClose'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

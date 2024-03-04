@@ -12,15 +12,17 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?mobile-first'
 
+export const asyncFlowchartProps = {
+  ...$props,
+  fetch: {
+    type: Function,
+    required: true
+  }
+}
+
 export default defineComponent({
   name: $prefix + 'AsyncFlowchart',
-  props: {
-    ...$props,
-    fetch: {
-      type: Function,
-      required: true
-    }
-  },
+  props: asyncFlowchartProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

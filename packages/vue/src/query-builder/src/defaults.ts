@@ -181,7 +181,8 @@ export const standardClassnames = {
   valueSource: 'rule-valueSource',
   valueListItem: 'rule-value-list-item',
   branches: 'queryBuilder-branches',
-  displayOnlyField: 'display-only-field'
+  displayOnlyField: 'display-only-field',
+  bindProps: 'bind-props'
 } as const
 
 export const defaultControlClassnames: Classnames = {

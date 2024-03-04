@@ -1,8 +1,8 @@
 {
   "name": "opentiny-vue",
-  "version": "3.7.12",
+  "version": "3.14.0",
   "private": true,
-  "packageManager": "pnpm@7.11.0",
+  "packageManager": "pnpm@8.3.1",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "keywords": [
@@ -28,7 +28,7 @@
   "main": "packages/index.js",
   "engines": {
     "node": ">=16",
-    "pnpm": ">=7"
+    "pnpm": ">=6.35"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -59,12 +59,16 @@
     "build:runtime": "pnpm -C internals/cli build:runtime",
     "// ---------- 构建相关脚本 ----------": "",
     "build:ui": "pnpm create:icon-saas && pnpm create:mapping && pnpm build:entry && gulp themeConcat && pnpm -C internals/cli build:ui",
+    "build:chartTheme": "pnpm -C internals/cli build:chartTheme",
     "build:renderless": "pnpm -C packages/renderless build:fast",
     "build:theme": "gulp themeConcat && pnpm -C packages/theme build:fast",
     "build:themeSaas": "pnpm -C packages/theme-saas build:fast",
     "build:themeMobile": "pnpm -C packages/theme-mobile build:fast",
     "build:themejson": "gulp themeJson",
     "build:internals": "pnpm \"--filter=./internals/*\" build",
+    "build:vite-import": "pnpm --filter @opentiny/vue-vite-import build",
+    "build:virtual-template": "pnpm --filter @opentiny-internal/unplugin-virtual-template build",
+    "build:site": "gulp themeConcat && pnpm i -g pnpm && pnpm build:vite-import && pnpm build:virtual-template && pnpm -C examples/sites build",
     "release:aurora": "pnpm -C internals/cli release:aurora",
     "// ---------- 使用pnpm批量发布npm包 ----------": "",
     "pub2": "pnpm --filter=\"./packages/dist2/**\" publish --tag v2-latest --no-git-checks --access=public",
@@ -79,10 +83,14 @@
     "test:e2e2": "pnpm -C examples/vue2 test:e2e --project=chromium",
     "test:e2e2.7": "pnpm -C examples/vue2.7 test:e2e --project=chromium",
     "test:e2e3": "pnpm -C examples/vue3 test:e2e --project=chromium",
+    "test:e2e2:mobile": "pnpm -C examples/vue2 test:e2e --project=android",
+    "test:e2e2.7:mobile": "pnpm -C examples/vue2.7 test:e2e --project=android",
+    "test:e2e3:mobile": "pnpm -C examples/vue3 test:e2e --project=android",
     "// ---------- playwright下载chromium、firefox等浏览器内核 ----------": "",
     "install:browser": "pnpm -C examples/vue3 install:browser",
     "// ---------- e2e测试代码生成器 ----------": "",
     "codegen": "pnpm -C examples/vue3 codegen",
+    "codegen:mobile": "pnpm -C examples/vue3 codegen --device=\"Pixel 5\" ",
     "format": "prettier --write --cache packages/**/{*.vue,*.js,*.ts,*.jsx,*.tsx,*.less} examples/**/{*.vue,*.js,*.ts,*.jsx,*.tsx} internals/**/{*.js,*.ts}",
     "lint": "eslint \"packages/**/{*.vue,*.js,*.ts}\" --quiet --fix",
     "lint:doc": "eslint \"examples/**/{*.vue,*.js,*.ts}\" --quiet --fix",
@@ -129,7 +137,7 @@
     "dev:solid": "pnpm -C examples/solid-docs run dev"
   },
   "dependencies": {
-    "@vue/composition-api": "1.2.2",
+    "@vue/composition-api": "1.7.2",
     "color": "^4.2.3",
     "cropperjs": "1.5.12",
     "crypto-js": "4.2.0",

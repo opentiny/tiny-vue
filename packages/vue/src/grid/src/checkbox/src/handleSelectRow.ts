@@ -33,17 +33,18 @@ function onHalfSelectionProperty({ checkStrictly, property, row, treeConfig, tre
 
 function onFullSelectionProperty({ checkMethod, checkStrictly, property, row, treeConfig, treeIndeterminates, value }) {
   if (property && treeConfig && !checkStrictly && value !== -1) {
-    // 更新子节点状态
+    // 更新自身和子节点状态
     eachTree(
       [row],
       (item, $rowIndex) => {
         if (row === item || !checkMethod || checkMethod({ row: item, $rowIndex })) {
           set(item, property, value)
+          // 自身选中或未选中时，自身和子节点都应该选中或未选中
+          remove(treeIndeterminates, (r) => r === item)
         }
       },
       treeConfig
     )
-    remove(treeIndeterminates, (item) => item === row)
   }
 }
 
@@ -93,6 +94,9 @@ function getVItemsOnParentSelection({ checkMethod, matchObj }) {
   return vItems
 }
 
+// 保证不重复添加
+const addSelection = (selection, item) => !selection.includes(item) && selection.push(item)
+
 function onFullSelection({
   checkMethod,
   checkStrictly,
@@ -104,22 +108,23 @@ function onFullSelection({
   value
 }) {
   if (!property && treeConfig && !checkStrictly && value !== -1) {
-    // 更新子节点状态
+    // 更新自身和子节点状态
     eachTree(
       [row],
       (item, $rowIndex) => {
         if (row === item || !checkMethod || checkMethod({ row: item, $rowIndex })) {
           if (value) {
-            selection.push(item)
+            // 保证不重复添加
+            addSelection(selection, item)
           } else {
             remove(selection, (select) => select === item)
           }
+          // 自身选中或未选中时，自身和子节点都应该选中或未选中
+          remove(treeIndeterminates, (r) => r === item)
         }
       },
       treeConfig
     )
-
-    remove(treeIndeterminates, (item) => item === row)
   }
 }
 
@@ -236,9 +241,7 @@ function onSelectOther({ row }, value, _vm) {
 
   if (!property && !(treeConfig && !checkStrictly)) {
     if (value) {
-      if (!selection.includes(row)) {
-        selection.push(row)
-      }
+      addSelection(selection, row)
     } else {
       remove(selection, (item) => item === row)
     }

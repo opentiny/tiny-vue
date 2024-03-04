@@ -85,7 +85,7 @@ const initState = ({ reactive, treeRoot, props, emitter, $parentEmitter, vm, api
   return state
 }
 
-const initApi = ({ api, state, dispatch, broadcast, vm, props, parent, treeRoot, nextTick, emit, designConfig }) => {
+const initApi = ({ api, state, dispatch, broadcast, vm, props, treeRoot, nextTick, emit, designConfig }) => {
   Object.assign(api, {
     state,
     dispatch,
@@ -132,20 +132,21 @@ const initWatcher = ({ watch, state, api, props }) => {
 export const renderless = (
   props,
   { reactive, watch, inject, provide, computed },
-  { parent: parentVm, vm, nextTick, emit, broadcast, dispatch, emitter, designConfig },
+  { vm, nextTick, emit, broadcast, dispatch, emitter, designConfig },
   { isVue2 }
 ) => {
   const api = {}
-  const parent = inject('parentTree') || parentVm
   const treeRoot = inject('TreeRoot')
   const $parentEmitter = inject('parentEmitter')
   const state = initState({ reactive, treeRoot, props, emitter, $parentEmitter, vm, api, computed })
 
-  state.parentEmitter.on('sibling-node-toggle-expand', (event) => api.onSiblingToggleExpand(event))
+  if (state.tree.accordion) {
+    state.parentEmitter.on('sibling-node-toggle-expand', (event) => api.onSiblingToggleExpand(event))
+  }
 
   provide('parentEmitter', state.emitter)
 
-  initApi({ api, state, dispatch, broadcast, vm, props, parent, treeRoot, nextTick, emit, designConfig })
+  initApi({ api, state, dispatch, broadcast, vm, props, treeRoot, nextTick, emit, designConfig })
   initWatcher({ watch, state, api, props })
 
   api.created((childrenKey) => {

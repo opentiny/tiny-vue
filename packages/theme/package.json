@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-theme",
-  "version": "3.13.1",
+  "version": "3.14.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "main": "index.css",
   "homepage": "https://opentiny.design/tiny-vue",
@@ -28,7 +28,7 @@
     "./*": "./src/*"
   },
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist src/aurora-theme src/smb-theme",
     "build:theme": "gulp build --gulpfile build/gulp-dist.js",
     "build": "npm run clean && npm run build:theme && node build/replace-img.js",
     "build:fast": "npm run build && npm run release",
@@ -47,6 +47,9 @@
     "gulp-clean-css": "^4.2.0",
     "gulp-less": "^5.0.0",
     "gulp-svg-inline": "^1.0.1",
+    "gulp-transform": "3.0.5",
+    "gulp-concat": "2.6.1",
+    "svgo": "3.2.0",
     "rimraf": "^2.6.2",
     "fast-glob": "^3.2.12",
     "stylelint": "^14.14.0",

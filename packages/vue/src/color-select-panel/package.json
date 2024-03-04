@@ -14,7 +14,8 @@
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-collapse": "workspace:~",
-    "@opentiny/vue-collapse-item": "workspace:~"
+    "@opentiny/vue-collapse-item": "workspace:~",
+    "@opentiny/vue-button-group": "workspace:~"
   },
   "license": "MIT"
 }

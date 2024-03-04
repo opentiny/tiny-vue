@@ -11,7 +11,7 @@
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import { constants } from './service'
-import template from 'virtual-template?pc|mobile=pc|mobile-first'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 export const loadingProps = {
   ...$props,
@@ -26,6 +26,13 @@ export const loadingProps = {
   _constants: {
     type: Object,
     default: () => constants
+  },
+  loadingImg: {
+    type: String
+  },
+  size: {
+    type: String,
+    default: 'small'
   }
 }
 

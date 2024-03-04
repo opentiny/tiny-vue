@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { Alert, Modal, Switch } from '@opentiny/vue'
+import { Alert, Notify, Switch } from '@opentiny/vue'
 import { iconCloseCircle } from '@opentiny/vue-icon'
 
 export default {
@@ -29,7 +29,12 @@ export default {
   },
   methods: {
     close() {
-      Modal.message('关闭了')
+      Notify({
+        type: 'success',
+        message: '触发关闭事件',
+        position: 'top-right',
+        duration: 10000
+      })
     }
   }
 }

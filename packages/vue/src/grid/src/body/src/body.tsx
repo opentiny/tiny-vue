@@ -90,8 +90,10 @@ const renderBorder = (h, type) => {
 }
 
 function buildColumnProps(args) {
-  let { attrs, cellAlign, cellClassName, className, column, columnActived, columnIndex, columnKey, editor } = args
-  let { fixedHiddenColumn, hasEllipsis, isDirty, params, tdOns, validError, validated } = args
+  const { attrs, cellAlign, cellClassName, className, column, columnActived, columnIndex, columnKey, editor } = args
+  const { fixedHiddenColumn, hasEllipsis, isDirty, params, tdOns, validError, validated, columnStore } = args
+
+  const { leftList, rightList } = columnStore
 
   return {
     class: [
@@ -110,11 +112,17 @@ function buildColumnProps(args) {
         [classMap.colActived]: columnActived,
         'col__valid-error': validError && validated,
         'col__valid-success': columnActived ? !validError && !validated : isDirty && !validated,
-        'col__treenode': column.treeNode
+        'col__treenode': column.treeNode,
+        'fixed-left-last__column': column.fixed === 'left' && leftList[leftList.length - 1] === column,
+        'fixed-right-first__column': column.fixed === 'right' && rightList[0] === column
       },
       getClass(className, params),
       getClass(cellClassName, params)
     ],
+    style: {
+      left: `${column.style?.left}px`,
+      right: `${column.style?.right}px`
+    },
     key: columnKey ? column.id : columnIndex,
     attrs,
     on: tdOns
@@ -122,7 +130,7 @@ function buildColumnProps(args) {
 }
 
 function buildColumnChildren(args) {
-  let { h, hasDefaultTip, params, row, validError, column } = args
+  let { h, hasDefaultTip, params, row, validError, column, $table } = args
   let { showEllipsis, showTip, showTitle, showTooltip, validStore } = args
   let cellNode: any[] = []
   let validNode: any = null
@@ -154,7 +162,8 @@ function buildColumnChildren(args) {
         attrs: { title: showTitle ? getCellLabel(row, column, params) : null }
       },
       // 调用column组件的renderCell渲染单元格内部的内容
-      column.renderCell(h, params)
+      // 如果不是表格形态，就只保留表格结构（到aui-grid-cell），不渲染具体的内容
+      $table.isShapeTable ? column.renderCell(h, params) : null
     ),
     validNode
   ]
@@ -307,7 +316,12 @@ function doSpan({ attrs, params, rowSpan, spanMethod }) {
 }
 
 function isCellDirty({ $table, column, editConfig, isDirty, row }) {
-  if (editConfig && editConfig.showStatus) {
+  const { showStatus = false, relationFields = true } = editConfig || {}
+  // 关联字段配置为true，或者配置包含当前字段时，支持脏数据检查
+  const canChange =
+    relationFields === true || (Array.isArray(relationFields) && relationFields.includes(column.property))
+
+  if (editConfig && showStatus && column.property && (column.editor || (relationFields && canChange))) {
     isDirty = $table.hasRowChange(row, column.property)
   }
 
@@ -371,7 +385,7 @@ function renderColumn(args1) {
   let { h, row } = args1
   let { align: allAlign, cellClassName, columnKey, editConfig } = $table
   let { editRules, editStore, rowId, rowSpan, height } = $table
-  let { tableData, validOpts, validStore, validatedMap, spanMethod } = $table
+  let { tableData, validOpts, validStore, validatedMap, spanMethod, columnStore } = $table
   let { isDirty, attrs = { 'data-colid': column.id } } = {}
   let { message } = validOpts
   let { actived } = editStore
@@ -403,12 +417,23 @@ function renderColumn(args1) {
   }
   // 编辑后的显示状态（是否该单元格数据被更改）此处如果是树表大数据虚拟滚动+表格编辑器，会造成卡顿，这里需要递归树表数据
   isDirty = isCellDirty({ $table, column, editConfig, isDirty, row })
-  args = { attrs, cellAlign, cellClassName, className, column, columnActived, columnIndex, columnKey, editor }
+  args = {
+    attrs,
+    cellAlign,
+    cellClassName,
+    className,
+    column,
+    columnActived,
+    columnIndex,
+    columnKey,
+    editor,
+    columnStore
+  }
   Object.assign(args, { fixedHiddenColumn, hasEllipsis, isDirty, params, tdOns, validError, validated })
 
   // 组装渲染单元格td所需要的props属性
   const colProps = buildColumnProps(args)
-  args = { column, h, hasDefaultTip, params, row }
+  args = { column, h, hasDefaultTip, params, row, $table }
   Object.assign(args, { showEllipsis, showTip, showTitle, showTooltip, validError, validStore })
 
   // 渲染td单元格中的div元素（自定义渲染和编辑器）
@@ -616,16 +641,18 @@ function renderRowTree(args, renderRows) {
     return
   }
 
-  let args1 = { h, _vm, $table, $seq: $seq ? `${$seq}.${seq}` : `${seq}` }
-
-  Object.assign(args1, {
+  const args1 = {
+    h,
+    _vm,
+    $table,
+    $seq: $seq ? `${$seq}.${seq}` : `${seq}`,
     rowLevel: rowLevel + 1,
     tableData: rowChildren,
     tableColumn,
     seqCount
-  })
+  }
 
-  rows.push.apply(rows, renderRows(args1))
+  rows.push(...renderRows(args1))
 }
 
 function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, seqCount }) {
@@ -635,6 +662,7 @@ function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, se
   let rows = []
   let expandMethod = expandConfig.activeMethod
   let startIndex = scrollYStore.startIndex
+  // 子级索引是否按数字递增显示：true(子级索引按数字递增显示，父级1，子级2)；false(子级索引在父级索引基础上增加，父级1，子级1.1)
   let isOrdered = treeConfig ? Boolean(treeConfig.ordered) : false
   seqCount = seqCount || { value: 0 }
 
@@ -708,11 +736,13 @@ const syncHeaderAndFooterScroll = ({ bodyElem, footerElem, headerElem, isX }) =>
 function doScrollLoad({ $table, _vm, bodyElem, event, headerElem, isX, isY, scrollLeft, scrollXLoad, scrollYLoad }) {
   let isScrollX = scrollXLoad && isX
 
+  // 如果是水平虚拟滚动，并且正在进行水平滚动，就触发水平虚滚事件
   if (isScrollX) {
     // 处理x轴方法虚拟滚动加载数据逻辑
     $table.triggerScrollXEvent(event)
   }
 
+  // 同上，并且主表头存在时，修复极端场景（拖动滚动条到最右侧）表头表体水平滚动位置不同步问题
   if (isScrollX && headerElem && scrollLeft + bodyElem.clientWidth >= bodyElem.scrollWidth) {
     // 修复拖动滚动条时可能存在不同步问题
     _vm.$nextTick(() => {
@@ -722,6 +752,7 @@ function doScrollLoad({ $table, _vm, bodyElem, event, headerElem, isX, isY, scro
     })
   }
 
+  // 如果是垂直虚拟滚动，并且正在进行垂直滚动，就触发垂直虚滚事件
   if (scrollYLoad && isY) {
     // 处理y轴方法虚拟滚动加载数据逻辑
     $table.triggerScrollYEvent(event)
@@ -859,9 +890,13 @@ export default {
       let { $refs, lastScrollLeft, lastScrollTop, scrollXLoad, scrollYLoad, columnStore } = $table
       let { leftList, rightList } = columnStore
       let { tableBody, tableFooter, tableHeader } = $refs
+
+      // 获取主表头，主表体，主表尾，左表体，右表体
       let headerElem = tableHeader ? tableHeader.$el : null
       let bodyElem = tableBody.$el
       let footerElem = tableFooter ? tableFooter.$el : null
+
+      // 获取主表体元素的滚动位置
       let scrollLeft = bodyElem.scrollLeft
       let scrollTop = bodyElem.scrollTop
 
@@ -869,6 +904,7 @@ export default {
       let isY = scrollTop !== lastScrollTop
       let isX = scrollLeft !== lastScrollLeft
 
+      // 记录新的滚动位置和时间
       $table.lastScrollTime = Date.now()
       $table.lastScrollLeft = scrollLeft
       $table.lastScrollTop = scrollTop

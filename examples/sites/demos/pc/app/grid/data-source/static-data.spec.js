@@ -13,6 +13,6 @@ test('绑定静态数据', async ({ page }) => {
   await expect(page.getByRole('cell', { name: 'ZZZ科技YX公司' })).toHaveCount(0)
 
   // 改变data数据引用地址
-  await page.getByRole('button', { name: '改变tableData引用地址' }).click()
+  await page.getByRole('button', { name: '改变 tableData 引用地址' }).click()
   await expect(page.locator('.tiny-grid-body__row')).toHaveCount(2)
 })

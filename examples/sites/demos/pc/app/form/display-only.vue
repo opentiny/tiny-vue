@@ -1,7 +1,7 @@
 <template>
   <div class="demo-form">
     <div class="title">表单是否仅展示：<tiny-switch v-model="displayOnly"></tiny-switch></div>
-    <tiny-form :inline="inline" label-position="right" :display-only="displayOnly">
+    <tiny-form :inline="inline" label-position="top" :display-only="displayOnly">
       <tiny-form-item label="超长文字">
         <tiny-input v-model="formData.input"></tiny-input>
       </tiny-form-item>
@@ -62,13 +62,10 @@ import {
   Radio,
   DatePicker,
   Input,
-  Button,
   Checkbox,
   CheckboxGroup,
   Switch,
-  Rate,
   Autocomplete,
-  Cascader,
   Select,
   Option,
   Modal
@@ -82,14 +79,12 @@ export default {
     TinyRadio: Radio,
     TinyDatePicker: DatePicker,
     TinyInput: Input,
-    TinyButton: Button,
     TinySelect: Select,
     TinyOption: Option,
     TinyCheckbox: Checkbox,
     TinyCheckboxGroup: CheckboxGroup,
     TinySwitch: Switch,
-    TinyAutocomplete: Autocomplete,
-    TinyCascader: Cascader
+    TinyAutocomplete: Autocomplete
   },
   data() {
     return {
@@ -213,9 +208,6 @@ export default {
     },
     createFilter(queryString) {
       return (restaurant) => restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
-    },
-    loadAll() {
-      return
     }
   }
 }

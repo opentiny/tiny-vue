@@ -118,7 +118,10 @@
   }
 
   &__valid {
+    .component-css-vars-form();
     &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
+      padding: var(--ti-form-valid-padding-vertical) var(--ti-form-valid-padding-horizontal);
+
       .tooltip-validate-icon {
         fill: var(--ti-tooltip-validate-icon-color);
         margin-right: 8px;

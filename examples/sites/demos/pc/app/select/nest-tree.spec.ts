@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('下拉树单选', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#nest-tree')
 
   const wrap = page.locator('#nest-tree')
@@ -24,6 +25,7 @@ test('下拉树单选', async ({ page }) => {
 })
 
 test('下拉树多选', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#nest-tree')
 
   const wrap = page.locator('#nest-tree')
@@ -51,6 +53,7 @@ test('下拉树多选', async ({ page }) => {
 })
 
 test('下拉树可搜索', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#nest-tree')
 
   const wrap = page.locator('#nest-tree')

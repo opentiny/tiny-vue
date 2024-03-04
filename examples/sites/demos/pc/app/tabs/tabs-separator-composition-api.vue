@@ -11,7 +11,7 @@
       <tiny-tab-item title="业务组件" name="fourth"> 业务组件,与业务紧密相关实现某种业务功能的组件集。 </tiny-tab-item>
     </tiny-tabs>
     <br /><br /><br /><br />
-    <tiny-tabs v-model="activeName2" separator>
+    <tiny-tabs v-model="activeName2" separator size="large">
       <tiny-tab-item title="表单组件" name="first">
         表单组件,具有与用户交互，并可完成数据采集功能的控件。
       </tiny-tab-item>

@@ -1,5 +1,5 @@
 <template>
-  <tiny-tabs :active-name="activeName" tab-style="card" size="small">
+  <tiny-tabs :active-name="activeName" tab-style="card">
     <tiny-tab-item v-for="item in tabs3" :key="item.name" :title="item.title" :name="item.name">
       {{ item.content }}
     </tiny-tab-item>

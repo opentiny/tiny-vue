@@ -11,7 +11,13 @@
  -->
 <template>
   <transition :name="state.animationName" @after-enter="afterEnter" @after-leave="afterLeave">
-    <div v-show="visible" :class="['tiny-dialog-box__wrapper', dialogClass]" @click.self="handleWrapperClick">
+    <div
+      v-show="visible"
+      :class="['tiny-dialog-box__wrapper', dialogClass]"
+      @click.self="handleWrapperClick"
+      @mouseup="useMouseEventUp"
+      @mousedown="useMouseEventDown"
+    >
       <div
         ref="dialog"
         v-if="destroyOnClose ? visible : true"
@@ -62,7 +68,7 @@
           <slot></slot>
         </div>
         <div v-if="slots.footer" class="tiny-dialog-box__footer">
-          <slot name="footer" :beforeClose="beforeClose"></slot>
+          <slot name="footer" :before-close="beforeClose"></slot>
         </div>
       </div>
     </div>
@@ -114,6 +120,7 @@ export default defineComponent({
     'top',
     'center',
     'draggable',
+    'dragOutsideWindow',
     'showHeader',
     'rightSlide',
     'destroyOnClose',

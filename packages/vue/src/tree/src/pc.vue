@@ -48,6 +48,7 @@
         @node-expand="handleNodeExpand"
         :check-easily="state.checkEasily"
         :show-line="showLine"
+        :show-checked-mark="showCheckedMark"
       >
         <template #prefix="slotScoped"><slot name="prefix" :node="slotScoped.node"></slot></template>
         <template #suffix="slotScoped"><slot name="suffix" :node="slotScoped.node"></slot></template>
@@ -64,11 +65,20 @@
       >
         <div class="tiny-tree__plain-node-title">
           <tiny-checkbox
-            :modelValue="plainNode.node.checked"
+            v-if="showCheckbox"
+            :model-value="plainNode.node.checked"
             :indeterminate="plainNode.node.indeterminate"
             :disabled="!!plainNode.node.disabled"
             @change="handleCheckPlainNode($event, plainNode)"
           ></tiny-checkbox>
+          <tiny-radio
+            v-if="showRadio"
+            v-model="state.currentRadio.value"
+            :validate-event="false"
+            :label="plainNode.node.id"
+            :disabled="!!plainNode.node.disabled"
+            @change="handleCheckPlainNode($event === plainNode.node.id, plainNode)"
+          ></tiny-radio>
           <slot name="prefix" :node="plainNode.node"></slot>
           <slot name="default" :node="plainNode.node">
             <span class="tiny-tree__plain-node-title-txt">{{ plainNode.title }}</span>
@@ -87,7 +97,7 @@
 
     <div class="tiny-tree__empty-block" v-if="state.isEmpty">
       <slot name="empty">
-        <span class="tiny-tree__empty-text">{{ state.showEmptyText }}</span>
+        <span class="tiny-tree__empty-text">{{ state.loaded ? state.showEmptyText : t('ui.tree.loading') }}</span>
       </slot>
     </div>
     <div v-show="state.dragState.showDropIndicator" class="tiny-tree__drop-indicator" ref="dropIndicator"></div>
@@ -104,6 +114,8 @@
 
     <tiny-popover
       ref="deletePopover"
+      v-if="state.action.show"
+      v-show="state.action.popoverVisible"
       v-model="state.action.popoverVisible"
       popper-class="tiny-tree__del-popover"
       placement="top"
@@ -117,13 +129,13 @@
         </div>
         <div class="tiny-tree__del-content">
           <template v-if="state.action.isLeaf">
-            <div>{{ t('ui.tree.deleteTip') }}</div>
+            <div>{{ t('ui.tree.deleteTip1') }}</div>
           </template>
           <template v-else>
-            <div>{{ t('ui.tree.preserveSubnodeTip') }}</div>
+            <div>{{ t('ui.tree.deleteTip2') }}</div>
             <div class="tiny-tree__del-checkbox">
               <tiny-checkbox v-model="state.action.isSaveChildNode" ref="deleteCheckbox">{{
-                t('ui.tree.preserveSubnodeData')
+                t('ui.tree.deleteTip3')
               }}</tiny-checkbox>
             </div>
           </template>
@@ -139,7 +151,7 @@
 
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/tree/vue'
-import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
+import { props, setup, defineComponent, directive, isVue2 } from '@opentiny/vue-common'
 import { iconWarning, iconMarkOn } from '@opentiny/vue-icon'
 import Switch from '@opentiny/vue-switch'
 import Popover from '@opentiny/vue-popover'
@@ -147,6 +159,7 @@ import Button from '@opentiny/vue-button'
 import Checkbox from '@opentiny/vue-checkbox'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import TreeNode from './tree-node.vue'
+import Radio from '@opentiny/vue-radio'
 
 export default defineComponent({
   directives: directive({ Clickoutside }),
@@ -204,7 +217,11 @@ export default defineComponent({
     'afterLoad',
     'lazyCurrent',
     'baseIndent',
-    'showLine'
+    'showLine',
+    'onlyCheckChildren',
+    'deleteNodeMethod',
+    'showCheckedMark',
+    'willChangeView'
   ],
   components: {
     TreeNode,
@@ -213,15 +230,16 @@ export default defineComponent({
     TinyPopover: Popover,
     TinyCheckbox: Checkbox,
     TinyButton: Button,
-    TinySwitch: Switch
+    TinySwitch: Switch,
+    TinyRadio: Radio
   },
   emits: [
     'node-expand',
-    'node-drag-leave',
     'check-change',
     'check',
     'node-drag-over',
     'node-drag-enter',
+    'node-drag-leave',
     'node-drag-start',
     'node-drag-end',
     'node-drop',
@@ -229,7 +247,14 @@ export default defineComponent({
     'node-click',
     'leave-plain-view',
     'check-plain',
-    'load-data'
+    'load-data',
+    'open-edit',
+    'close-edit',
+    'save-edit',
+    'add-node',
+    'edit-node',
+    'delete-node',
+    'closeMenu'
   ],
   provide() {
     return {
@@ -238,7 +263,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, extendOptions: { isVue2 } })
   }
 })
 </script>

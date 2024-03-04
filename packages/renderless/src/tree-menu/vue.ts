@@ -33,7 +33,9 @@ import {
   setCurrentKey,
   getCurrentKey,
   setCurrentNode,
-  getCurrentNode
+  getCurrentNode,
+  handleToggleMenu,
+  computedTreeStyle
 } from './index'
 import type {
   ISharedRenderlessParamUtils,
@@ -67,12 +69,13 @@ export const api = [
   'setCurrentKey',
   'getCurrentKey',
   'setCurrentNode',
-  'getCurrentNode'
+  'getCurrentNode',
+  'handleToggleMenu'
 ]
 
 export const renderless = (
   props: ITreeMenuProps,
-  { watch, reactive, onMounted }: ISharedRenderlessFunctionParams,
+  { computed, watch, reactive, onMounted }: ISharedRenderlessFunctionParams,
   { t, service, emit, vm }: ISharedRenderlessParamUtils
 ) => {
   service = service || { base: {} }
@@ -81,7 +84,14 @@ export const renderless = (
   const state = reactive<ITreeMenuState>({
     data: [],
     filterText: '',
-    isCollapsed: false
+    isExpand: false,
+    isCollapsed: false,
+    nodeKey: null,
+    currentKey: [],
+    treeStyle: computed(() => api.computedTreeStyle()),
+    defaultExpandedKeys: computed(() =>
+      props.defaultExpandedKeys && props.defaultExpandedKeys.length ? props.defaultExpandedKeys : state.currentKey
+    )
   })
 
   Object.assign(api, {
@@ -90,7 +100,7 @@ export const renderless = (
     check: check(emit),
     filterNode: filterNode(),
     nodeDrop: nodeDrop(emit),
-    nodeClick: nodeClick(emit),
+    nodeClick: nodeClick({ emit, props, state }),
     nodeExpand: nodeExpand(emit),
     nodeDragEnd: nodeDragEnd(emit),
     checkChange: checkChange(emit),
@@ -109,7 +119,9 @@ export const renderless = (
     setCurrentKey: setCurrentKey({ vm }),
     getCurrentKey: getCurrentKey({ vm }),
     setCurrentNode: setCurrentNode({ vm }),
-    getCurrentNode: getCurrentNode({ vm })
+    getCurrentNode: getCurrentNode({ vm }),
+    handleToggleMenu: handleToggleMenu({ state, vm }),
+    computedTreeStyle: computedTreeStyle({ props })
   })
 
   watch(

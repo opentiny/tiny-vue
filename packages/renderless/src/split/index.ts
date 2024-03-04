@@ -95,7 +95,7 @@ export const handleUp =
 export const handleMousedown =
   ({ api, emit, on, props, state, vm }) =>
   (event) => {
-    if (state.dragable) {
+    if (!props.disabled) {
       state.initOffset = state.isHorizontal ? event.pageX : event.pageY
       if (state.offset === 0) {
         state.oldOffset = 0
@@ -162,8 +162,11 @@ export const computeOffset =
   ({ api, nextTick, props, vm, state }) =>
   () => {
     setTimeout(() => {
-      state.totalPane = vm.$refs.outerWrapper[state.offsetSize]
-      state.leftTopPane = state.totalPane * (state.offset / 100)
+      // 防止当split组件销毁时，state为undefined导致的报错
+      if (state) {
+        state.totalPane = vm.$refs.outerWrapper[state.offsetSize]
+        state.leftTopPane = state.totalPane * (state.offset / 100)
+      }
     })
 
     if (state.valueIsPx) {

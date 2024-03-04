@@ -1,8 +1,11 @@
 <template>
-  <tiny-link>默认链接</tiny-link>
+  <div>
+    <tiny-link>默认链接</tiny-link>
+    <tiny-link value="默认链接2"></tiny-link>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Link } from '@opentiny/vue'
 
 export default {
@@ -11,3 +14,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tiny-link {
+  margin-right: 8px;
+}
+</style>

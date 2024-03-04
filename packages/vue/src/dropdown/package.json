@@ -20,7 +20,8 @@
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-button-group": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-dropdown-menu": "workspace:~"
   },
   "license": "MIT"
 }

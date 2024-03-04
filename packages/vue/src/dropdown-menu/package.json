@@ -17,7 +17,11 @@
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-dropdown-item": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

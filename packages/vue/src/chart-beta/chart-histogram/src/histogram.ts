@@ -102,6 +102,9 @@ const getValueData = (seriesTemp, dims) => {
 
 const getBarSeries = (args) => {
   const { axisSite, barGap, dimAxisType, dims, innerRows, isHistogram, itemStyle } = args
+  if (!itemStyle.barWidth) {
+    itemStyle.barWidth = 'auto'
+  }
   const { label, labelMap, metrics, opacity, showLine = [], stack } = args
   let { secondAxis, secondDimAxisIndex, series = [], seriesTemp = {}, stackMap, stackNum = 0 } = {}
   secondAxis = (isHistogram ? axisSite?.right : axisSite?.top) || []
@@ -241,7 +244,17 @@ export const histogram = (columns, rows, settings, extra, isHistogram = true) =>
     }
     Object.assign(itemStyle, itemStyleBase)
   }
-  let data = getRows({ columns, metrics, labelMap, rows: innerRows, dimension })
+  const tempRows = innerRows.map((row) => {
+    let temp = { ...row }
+    for (const [key, value] of Object.entries(labelMap)) {
+      if (Object.prototype.hasOwnProperty.call(row, key)) {
+        temp[value] = temp[key]
+      }
+    }
+    return temp
+  })
+  let data = getRows({ columns, metrics, labelMap, rows: tempRows, dimension })
+
   if (dimAxisType === 'value') {
     data = getDataValue(data, dimension, metrics, innerRows, dims)
   }

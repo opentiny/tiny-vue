@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import type { popconfirmProps, $constants } from '@/popconfirm/src'
+import type { popConfirmProps, $constants } from '@/popconfirm/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type { show, hide, confirm, handleEmit } from '../src/popconfirm'
 
@@ -9,7 +9,7 @@ export interface IPopconfirmState {
   getIcon: string
 }
 
-export type IPopconfirmProps = ExtractPropTypes<typeof popconfirmProps>
+export type IPopconfirmProps = ExtractPropTypes<typeof popConfirmProps>
 
 export type IPopconfirmConstants = typeof $constants
 

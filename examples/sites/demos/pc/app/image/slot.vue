@@ -1,6 +1,6 @@
 <template>
-  <div style="display: flex; flex-wrap: wrap">
-    <div style="padding: 0 20px">
+  <div class="demo-image__slot">
+    <div>
       <p>加载中</p>
       <tiny-image :src="url">
         <template #placeholder>
@@ -8,17 +8,17 @@
         </template>
       </tiny-image>
     </div>
-    <div style="padding: 0 20px">
+    <div>
       <p>默认加载失败</p>
       <tiny-image :src="errorUrl"> </tiny-image>
     </div>
-    <div style="padding: 0 20px">
+    <div>
       <p>自定义加载失败</p>
       <tiny-image :src="errorUrl">
         <template #error>
-          <div style="font-size: 18px; text-align: center; line-height: 1.5">
+          <div class="err-pic">
             图片已丢失<br />
-            <span style="color: red">404 IMAGE</span>
+            <span>404 IMAGE</span>
           </div>
         </template>
       </tiny-image>
@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Image } from '@opentiny/vue'
 
 export default {
@@ -43,8 +43,23 @@ export default {
 </script>
 
 <style scoped>
+.demo-image__slot {
+  display: flex;
+  flex-wrap: wrap;
+}
+.demo-image__slot > div {
+  padding: 0 20px;
+}
 .tiny-image {
   width: 150px;
   height: 100px;
+}
+.err-pic {
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.5;
+}
+.err-pic span {
+  color: red;
 }
 </style>

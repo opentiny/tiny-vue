@@ -1,15 +1,22 @@
 {
   "name": "@opentiny/vue-[[NAME]]",
-  "version": "5.[[MINOR]].0",
+  "version": "3.[[MINOR]].0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
   "type": "module",
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
   "dependencies": {
-    "@opentiny/vue-renderless": "~5.[[MINOR]].0",
-    "@opentiny/vue-theme": "~5.[[MINOR]].0",
-    "@opentiny/vue-common": "~5.[[MINOR]].0"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-common": "workspace:~"
   },
   "license": "MIT"
 }

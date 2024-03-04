@@ -31,12 +31,14 @@ import {
   getValidCurrentPage,
   emitChange,
   setTotal,
+  clickSizes,
   watchInternalCurrentPage,
   watchPageSizes,
   watchCurrentPage,
   watchInternalPageCount,
   watchPageSize,
-  watchTotal
+  watchTotal,
+  watchShowSizes
 } from './index'
 
 export const api = [
@@ -61,13 +63,14 @@ export const api = [
   'buildBeforePageChangeParam',
   'getValidCurrentPage',
   'emitChange',
-  'setTotal'
+  'setTotal',
+  'clickSizes'
 ]
 
 export const renderless = (
   props: IPagerProps,
   { reactive, computed, watch }: ISharedRenderlessParamHooks,
-  { emit, vm, nextTick, t }: IPagerRenderlessParamUtils
+  { emit, vm, nextTick, t, designConfig }: IPagerRenderlessParamUtils
 ): IPagerApi => {
   const api = {} as IPagerApi
 
@@ -83,7 +86,11 @@ export const renderless = (
     showPager: computed(() => api.computedShowPager()),
     internalLayout: computed(() => api.computedInternalLayout()),
     totalText: computed(() => api.computedTotalText()),
-    internalPageCount: computed(() => api.computedInternalPageCount())
+    internalPageCount: computed(() => api.computedInternalPageCount()),
+    showJumperSufix: designConfig?.state?.showJumperSufix ?? true,
+    align: props.align || designConfig?.state?.align || 'left',
+    totalI18n: designConfig?.state?.totalI18n || 'totals',
+    totalFixedLeft: props.totalFixedLeft ?? designConfig?.state?.totalFixedLeft ?? false
   })
 
   Object.assign(api, {
@@ -113,13 +120,15 @@ export const renderless = (
     buildBeforePageChangeParam: buildBeforePageChangeParam({ state }),
     emitChange: emitChange({ state, nextTick, emit }),
     setTotal: setTotal({ state }),
+    clickSizes: clickSizes(),
     // watch
     watchInternalCurrentPage: watchInternalCurrentPage({ state, emit }),
     watchPageSizes: watchPageSizes({ state, props }),
     watchCurrentPage: watchCurrentPage({ state, api }),
     watchInternalPageCount: watchInternalPageCount({ state, api }),
     watchPageSize: watchPageSize({ state }),
-    watchTotal: watchTotal({ state })
+    watchTotal: watchTotal({ state }),
+    watchShowSizes: watchShowSizes({ nextTick, vm })
   })
 
   state.internalCurrentPage = api.getValidCurrentPage(props.currentPage)
@@ -130,6 +139,7 @@ export const renderless = (
   watch(() => state.internalPageCount, api.watchInternalPageCount)
   watch(() => props.pageSize, api.watchPageSize, { immediate: true })
   watch(() => props.total, api.watchTotal)
+  watch(() => state.showSizes, api.watchShowSizes)
 
   return api
 }

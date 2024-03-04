@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     hanleFocus() {
-      this.$refs.timeSelect.handleFocus()
+      this.$refs.timeSelect.focus()
     }
   }
 }

@@ -2,6 +2,7 @@
   <div>
     <tiny-grid
       :fetch-data="fetchData"
+      seq-serial
       :start-index="200"
       :pager="{
         component: Pager,

@@ -17,18 +17,40 @@
         >
           <div class="px-4 flex">
             <div v-for="(option, index) in state.computedNavList" :key="index" class="flex-none flex">
-              <span v-if="index !== 0" class="px-2 text-color-text-placeholder">/</span>
-              <span
-                :class="[
-                  'flex-none max-w-[theme(spacing.24)] truncate',
-                  { 'text-color-brand': index === state.level },
-                  disabledNavOption(index, option) ? 'text-color-text-disabled' : 'cursor-pointer'
-                ]"
-                @click="setLevel(index, option)"
-                >{{ option.data[textField] }}</span
-              >
+              <template v-if="index <= state.level">
+                <span v-if="index !== 0" class="px-2 text-color-text-placeholder">/</span>
+                <span
+                  :class="[
+                    'flex-none max-w-[theme(spacing.24)] truncate',
+                    { 'text-color-brand': index === state.level },
+                    disabledNavOption(index, option) ? 'text-color-text-disabled' : 'cursor-pointer'
+                  ]"
+                  @click="setLevel(index, option)"
+                  >{{ option.data[textField] }}</span
+                >
+              </template>
             </div>
             <div class="flex-auto"></div>
+          </div>
+        </div>
+
+        <!-- search header -->
+        <div
+          data-tag="search-header"
+          v-show="state.search.show"
+          class="flex leading-6 pt-4 pb-4 px-4 text-base items-center"
+        >
+          <div class="flex-auto flex items-center h-8 py-1 px-3 bg-color-bg-4 rounded-full">
+            <IconSearch custom-class="h-4 w-4" class="mr-1 fill-color-icon-disabled"></IconSearch>
+            <input
+              v-model="state.search.input"
+              class="h-5 flex-auto text-xs bg-transparent outline-0"
+              :placeholder="t('ui.select.pleaseSearch')"
+              @input="searchMethod"
+            />
+          </div>
+          <div class="flex items-center pl-3 cursor-pointer">
+            <div @click="searchBoxToggle(false)">{{ t('ui.base.cancel') }}</div>
           </div>
         </div>
       </template>
@@ -42,7 +64,7 @@
           class="flex flex-col px-4 overflow-auto pt-2"
         >
           <tiny-option
-            v-for="(item, index) in currentList"
+            v-for="(item, itemIndex) in currentList"
             :key="item.data[valueField]"
             :multiple="multiple"
             :ellipsis="ellipsis"
@@ -53,28 +75,14 @@
             :option="item"
             :selected="isSelected(item)"
             @click="selectOption(item, $event)"
-            ><slot :item="item" :index="index"></slot
-          ></tiny-option>
+          >
+            <slot :item="item" :index="itemIndex"></slot>
+          </tiny-option>
         </div>
       </div>
 
       <!-- search box -->
-      <div data-tag="search-box" :class="[state.search.show ? 'flex flex-col flex-auto' : 'hidden']">
-        <!-- search header -->
-        <div data-tag="search-header" class="flex leading-6 pt-4 pb-4 px-4 text-base items-center">
-          <div class="flex-auto flex items-center h-8 py-1 px-3 bg-color-bg-4 rounded">
-            <IconSearch custom-class="h-4 w-4" class="mr-1 fill-color-icon-disabled"></IconSearch>
-            <input
-              v-model="state.search.input"
-              class="h-5 flex-auto text-xs bg-transparent outline-0"
-              :placeholder="t('ui.select.pleaseSearch')"
-              @input="searchMethod"
-            />
-          </div>
-          <div class="flex items-center pl-3 cursor-pointer">
-            <div @click="searchBoxToggle(false)">{{ t('ui.base.cancel') }}</div>
-          </div>
-        </div>
+      <div data-tag="search-box" v-show="state.search.show" class="flex flex-col flex-auto">
         <!-- search body -->
         <div data-tag="search-body" class="flex-auto overflow-auto flex flex-col">
           <div v-show="state.search.filterOptions.length" :class="['flex flex-col px-4']">
@@ -93,10 +101,10 @@
               <slot v-if="searchConfig.openSearchSlot" name="search-item" :item="item" :index="index"></slot>
               <slot v-else :item="item" :index="index">
                 <div :class="['flex-auto', { 'truncate': ellipsis }]">
-                  <span v-for="(text, index) in renderSearchOption(item[textField])" :key="index"
-                    ><span v-if="index" class="text-color-brand">{{ state.search.input }}</span
-                    >{{ text }}</span
-                  >
+                  <span v-for="(text, textIndex) in renderSearchOption(item[textField])" :key="text">
+                    <span v-if="textIndex" class="text-color-brand">{{ state.search.input }}</span
+                    >{{ text }}
+                  </span>
                 </div>
               </slot>
             </tiny-option>
@@ -111,13 +119,18 @@
       </div>
 
       <template #header-left>
-        <IconSearch custom-class="h-5 w-5" class="cursor-pointer" @click="searchBoxToggle(true)"></IconSearch>
+        <IconSearch
+          v-if="!state.search.show"
+          custom-class="h-5 w-5"
+          class="cursor-pointer"
+          @click="searchBoxToggle(true)"
+        ></IconSearch>
       </template>
       <template #footer>
         <tiny-button
           v-show="state.showButton"
           tiny_mode="mobile-first"
-          class="flex-1"
+          class="flex-1 mx-4 sm:mx-0"
           type="primary"
           :reset-time="0"
           @click="confirm"
@@ -131,7 +144,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/cascader-mobile/vue'
 import { $prefix, setup, $props, defineComponent } from '@opentiny/vue-common'
-import { IconSearch, IconClose, IconHalfselect, IconCheckedSur, IconCheck } from '@opentiny/vue-icon'
+import { IconSearch } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
 import ActionSheet from '@opentiny/vue-action-sheet'
 import Exception from '@opentiny/vue-exception'
@@ -157,17 +170,22 @@ const $constants = {
 
 export default defineComponent({
   name: $prefix + 'CascaderMobile',
-  emits: ['click', 'search-click', 'update:visible', 'update:text'],
+  emits: [
+    'click',
+    'search-click',
+    'node-expand',
+    'close',
+    'update:modelValue',
+    'confirm',
+    'update:visible',
+    'update:text'
+  ],
   components: {
     TinyActionSheet: ActionSheet,
     TinyOption: Option,
     TinyButton: Button,
     TinyException: Exception,
-    IconCheck: IconCheck(),
-    IconCheckedSur: IconCheckedSur(),
-    IconHalfselect: IconHalfselect(),
-    IconSearch: IconSearch(),
-    IconClose: IconClose()
+    IconSearch: IconSearch()
   },
   props: {
     ...$props,
@@ -220,10 +238,6 @@ export default defineComponent({
     showHeader: {
       type: Boolean,
       default: true
-    },
-    showFooter: {
-      type: Boolean,
-      default: false
     },
     multiple: Boolean,
     searchConfig: {

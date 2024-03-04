@@ -18,7 +18,9 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
-    "@opentiny/vue-month-table": "workspace:~"
+    "@opentiny/vue-month-table": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT"
 }

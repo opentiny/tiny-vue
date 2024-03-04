@@ -54,6 +54,7 @@ function setBasicProperty(column, context) {
   column.renderer = context.renderer
   column.editor = context.editor
   column.operationConfig = context.operationConfig
+  column.equals = context.equals
 }
 
 function ColumnConfig(context, { renderHeader, renderCell, renderData } = {}, config = {}) {

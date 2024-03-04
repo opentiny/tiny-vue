@@ -28,7 +28,27 @@
     "@opentiny/vue-chart-line-beta": "workspace:~",
     "@opentiny/vue-chart-pie-beta": "workspace:~",
     "@opentiny/vue-chart-radar-beta": "workspace:~",
-    "@opentiny/vue-chart-ring-beta": "workspace:~"
+    "@opentiny/vue-chart-ring-beta": "workspace:~",
+    "@opentiny/vue-chart-waterfall-beta": "workspace:~",
+    "@opentiny/vue-chart-funnel-beta": "workspace:~",
+    "@opentiny/vue-chart-gauge-beta": "workspace:~",
+    "@opentiny/vue-chart-scatter-beta": "workspace:~",
+    "@opentiny/vue-chart-tree-beta": "workspace:~",
+    "@opentiny/vue-chart-sankey-beta": "workspace:~",
+    "@opentiny/vue-chart-candle-beta": "workspace:~",
+    "@opentiny/vue-chart-heatmap-beta": "workspace:~",
+    "@opentiny/vue-chart-liquidfill-beta": "workspace:~",
+    "@opentiny/vue-chart-wordcloud-beta": "workspace:~",
+    "@opentiny/vue-chart-map-beta": "workspace:~",
+    "@opentiny/vue-chart-boxplot-beta": "workspace:~",
+    "@opentiny/vue-autonavi-map-beta": "workspace:~",
+    "@opentiny/vue-baidu-map-beta": "workspace:~",
+    "@opentiny/vue-chart-graph-beta": "workspace:~",
+    "@opentiny/vue-chart-sunburst-beta": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~"
   },
   "license": "MIT"
 }

@@ -35,6 +35,7 @@ export type IDropdownItemProps = ExtractPropTypes<typeof dropdownItemProps>
 export type IDropdownItemConstants = typeof $constants
 
 export interface IDropdownItemState {
+  checkedStatus: boolean
   sort: 'asc' | 'desc'
   transition: boolean
   getTitle: boolean
@@ -48,6 +49,8 @@ export interface IDropdownItemState {
   itemStyle: ComputedRef<string>
   activeColor: ComputedRef<string>
   closeOnClickOverlay: ComputedRef<boolean>
+  dropdownMenuVm: IDropdownMenuVm
+  currentIndex: number
   textField: string
   popperClass: string
   getIcon: ComputedRef<object>

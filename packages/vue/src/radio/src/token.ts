@@ -1,7 +1,7 @@
 export const classes = {
   'radio-default':
-    'radio inline-flex items-center align-middle leading-4 cursor-pointer sm:flex-row py-px sm:py-0 sm:h-fit h-11',
-  'radio-label-common': 'relative text-center w-11 h-11',
+    'radio inline-flex items-center align-middle leading-4 cursor-pointer sm:flex-row py-px sm:py-0 h-fit',
+  'radio-label-common': 'relative text-center w-7 h-7 mr-2 sm:mr-0',
   'radio-label-size-common': 'sm:w-4 sm:h-4',
   'radio-label-size-medium': 'sm:w-6 sm:h-6',
   'radio-label-circle': 'inline-flex p-3 sm:p-0',
@@ -40,9 +40,9 @@ export const classes = {
   'mobile-show': 'block sm:hidden',
   'readonly-is-checked': 'sm:m-0',
   'readonly-is-not-checked': 'sm:hidden',
-  'not-readonly-common': 'sm:mr-5 sm:[&:last-child]:mr-0',
+  'not-readonly-common': 'mr-5 sm:[&:last-child]:mr-0',
   'hidden-radio': 'sm:hidden',
   'not-readly-common-label': 'sm:py-0 sm:pl-2 -ml-0.5 sm:ml-0',
-  'readonly-checked-label': 'sm:pl-0',
+  'readonly-checked-label': 'sm:pl-0 text-color-text-primary',
   'verticalStyle': 'sm:mb-2 sm:[&:last-child]:mb-0 sm:mr-0'
 }

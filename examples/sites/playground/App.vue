@@ -21,15 +21,33 @@ const VERSION = 'tiny-vue-version-3.13'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
 
-const versions = ['3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
-const latestVersion = localStorage.getItem(VERSION) || versions[0]
-const cdnHost = localStorage.getItem('setting-cdn')
-const getRuntime = (version) => `${cdnHost}/@opentiny/vue@${version}/runtime/`
-
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')
-const tinyTheme = tinyMode === 'saas' ? 'aurora' : searchObj.get('theme')
+const tinyTheme = searchObj.get('theme')
 const isMobileFirst = tinyMode === 'mobile-first'
+const isSaas = tinyTheme === 'saas'
+const isPreview = searchObj.get('openMode') === 'preview' // 是否多端弹窗预览
+
+const versions = ['3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
+const latestVersion = isPreview ? versions[0] : localStorage.getItem(VERSION) || versions[0]
+const cdnHost = localStorage.getItem('setting-cdn')
+const getRuntime = (version) => {
+  const useVersion = import.meta.env.VITE_PLAYGROUND_VERIOSN || version
+  return `${cdnHost}/@opentiny/vue@${useVersion}/runtime/`
+}
+
+const changeImportSuffix = (imports, verison) => {
+  const newImports = {}
+  Object.keys(imports).forEach((key) => {
+    const url = imports[key]
+    if (url.startsWith(getRuntime(verison))) {
+      newImports[key] = url.replace('.mjs', '.js')
+    } else {
+      newImports[key] = url
+    }
+  })
+  return newImports
+}
 
 const createImportMap = (version) => {
   const imports = {
@@ -42,14 +60,14 @@ const createImportMap = (version) => {
     '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless@${version}/`,
     'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
   }
-  if (['aurora', 'smb'].includes(tinyTheme)) {
+  if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
     imports[`@opentiny/vue-design-${tinyTheme}`] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}@${version}/index.js`
   }
-  if (isMobileFirst) {
+  if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
   }
   return {
-    imports
+    imports: changeImportSuffix(imports, version)
   }
 }
 
@@ -57,7 +75,10 @@ const getTinyTheme = (version) => {
   if (isMobileFirst) {
     return `${getRuntime(version)}tailwind.css`
   }
-  let theme = tinyMode === 'saas' ? 'saas' : tinyTheme
+  if (isSaas) {
+    return `${getRuntime(version)}index.css`
+  }
+  let theme = tinyTheme
   if (!['smb', 'default', 'aurora', 'saas'].includes(theme)) {
     theme = 'default'
   }
@@ -113,8 +134,8 @@ function setTinyDesign() {
   if (isMobileFirst) {
     useCode += 'app.provide("TinyMode", "mobile-first");\n'
   }
-  // 目前只有aurora和smb有design包
-  if (['aurora', 'smb'].includes(tinyTheme)) {
+
+  if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
     importCode += `import designConfig from '@opentiny/vue-design-${tinyTheme}';
       import { design } from '@opentiny/vue-common';\n`
     useCode += 'app.provide(design.configKey, designConfig);\n'
@@ -263,7 +284,7 @@ function share() {
       </span>
       <span class="ml20">
         OpenTiny Vue 版本:
-        <tiny-select v-model="state.selectVersion" @change="selectVersion" style="width: 150px">
+        <tiny-select v-model="state.selectVersion" @change="selectVersion" style="width: 150px" :disabled="isPreview">
           <tiny-option v-for="item in state.versions" :key="item.value" :label="item.value" :value="item.value">
           </tiny-option>
         </tiny-select>

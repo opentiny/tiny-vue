@@ -64,5 +64,6 @@ export default {
       },
       'codeFiles': ['jump.vue']
     }
+
   ]
 }

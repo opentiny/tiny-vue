@@ -11,7 +11,7 @@
  -->
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/cascader-node/vue'
-import { $prefix, setup, h, defineComponent } from '@opentiny/vue-common'
+import { $prefix, setup, h, $props, defineComponent } from '@opentiny/vue-common'
 import Checkbox from '@opentiny/vue-checkbox'
 import Radio from '@opentiny/vue-radio'
 import { isEqual } from '@opentiny/vue-renderless/common/object'
@@ -19,6 +19,7 @@ import { iconLoading, iconChevronRight, iconYes } from '@opentiny/vue-icon'
 import type { PropType } from '@opentiny/vue-common'
 import type { ICascaderNodeApi, ICascaderNodeRenderlessParams } from '@opentiny/vue-renderless/types/cascader-node.type'
 import type { ICascaderPanelNode } from '@opentiny/vue-renderless/types/cascader-panel.type'
+import '@opentiny/vue-theme/cascader-node/index.less'
 
 export default defineComponent({
   name: $prefix + 'CascaderNode',
@@ -33,6 +34,7 @@ export default defineComponent({
   emits: ['expand', 'update:modelValue', 'expand-change', 'active-item-change', 'change'],
   inject: ['panel'],
   props: {
+    ...$props,
     node: {
       type: Object as PropType<ICascaderPanelNode>,
       required: true
@@ -40,7 +42,7 @@ export default defineComponent({
     nodeId: String
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true }) as unknown as ICascaderNodeApi &
+    return setup({ props, context, renderless, api }) as unknown as ICascaderNodeApi &
       Pick<ICascaderNodeRenderlessParams, 'panel'>
   },
   render() {
@@ -79,10 +81,10 @@ export default defineComponent({
       return (
         <tiny-checkbox
           modelValue={node.checked}
-          indeterminate={node.indeterminate}
+          indeterminate={!node.checked && node.indeterminate}
           disabled={state.isDisabled}
           onChange={this.handleMultiCheckChange}
-          nativeOnClick={stopPropagation}></tiny-checkbox>
+          onClick={stopPropagation}></tiny-checkbox>
       )
     }
 
@@ -98,7 +100,7 @@ export default defineComponent({
           v-model={checkedValue}
           disabled={isDisabled}
           label={value}
-          nativeOnClick={stopPropagation}
+          onClick={stopPropagation}
           onChange={this.handleCheckChange}>
           <span></span>
         </tiny-radio>

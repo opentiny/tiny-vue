@@ -26,10 +26,25 @@
 import { isBoolean } from '@opentiny/vue-renderless/grid/static/'
 import { getListeners, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { extend } from '@opentiny/vue-renderless/common/object'
-import { h, emitter, $prefix, $props, setup, defineComponent, resolveMode } from '@opentiny/vue-common'
+import {
+  h,
+  emitter,
+  $prefix,
+  $props,
+  setup,
+  defineComponent,
+  resolveMode,
+  resolveTheme,
+  hooks,
+  useBreakpoint
+} from '@opentiny/vue-common'
 import TinyGridTable from '../table'
 import GlobalConfig from '../config'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+
+const { themes, viewConfig } = GlobalConfig
+const { SAAS: T_SAAS } = themes
+const { GANTT: V_GANTT, MF: V_MF, CARD: V_CARD } = viewConfig
 
 const propKeys = Object.keys(TinyGridTable.props)
 
@@ -50,18 +65,19 @@ function createRender(opt) {
     tableLoading,
     viewType,
     columnAnchorParams,
-    columnAnchor
+    columnAnchor,
+    fullScreenClass
   } = opt
   return h(
     'div',
     {
-      class: [
-        `tiny-grid__wrapper tiny-grid view_${viewType}`,
-        {
-          [`size__${vSize}`]: vSize,
-          'tiny-grid__animat': props.optimization.animat
-        }
-      ]
+      class: {
+        [`tiny-grid__wrapper tiny-grid view_${viewType}`]: true,
+        '!bg-transparent sm:!bg-color-bg-1': viewType === V_MF || viewType === V_CARD,
+        [`size__${vSize}`]: vSize,
+        'tiny-grid__animat': props.optimization.animat,
+        [fullScreenClass]: true
+      }
     },
     [
       selectToolbar ? null : renderedToolbar,
@@ -123,7 +139,6 @@ export default defineComponent({
       pagerConfig: null,
       // 存放标记为删除的行数据
       pendingRecords: [],
-      seqIndex: this.startIndex,
       sortData: {},
       tableCustoms: [],
       tableData: [],
@@ -133,10 +148,10 @@ export default defineComponent({
         pageSize: 10,
         currentPage: 1
       },
-      toolBarVm: null,
       columnAnchorParams: {},
       columnAnchorKey: '',
-      tasks: {}
+      tasks: {},
+      fullScreenClass: ''
     }
   },
   computed: {
@@ -156,6 +171,25 @@ export default defineComponent({
     },
     vSize() {
       return this.size || (this.$parent && this.$parent.size) || (this.$parent && this.$parent.vSize)
+    },
+    seqIndex() {
+      let { seqSerial, scrollLoad, pagerConfig, startIndex } = this
+      let seqIndexValue = startIndex
+
+      if ((seqSerial || scrollLoad) && pagerConfig) {
+        seqIndexValue = (pagerConfig.currentPage - 1) * pagerConfig.pageSize + startIndex
+      }
+
+      return seqIndexValue
+    },
+    isThemeSaas() {
+      return this.tinyTheme === T_SAAS
+    },
+    isModeMobileFirst() {
+      return this.tinyMode === 'mobile-first'
+    },
+    isViewGantt() {
+      return this.viewType === V_GANTT
     }
   },
   watch: {
@@ -163,14 +197,22 @@ export default defineComponent({
     columns(cols) {
       this.loadColumn(cols)
     },
-    startIndex(value) {
-      this.seqIndex = value
-    },
     tableCustoms() {
       this.toolbar && this.$refs.toolbar && this.$refs.toolbar.loadStorage()
+    },
+    columnAnchorParams() {
+      setTimeout(() => this.emitter.emit('active-anchor'), this.columnAnchorParams.activeAnchor.delay)
+    },
+    viewType(value) {
+      // 在全屏状态下切换到表格视图时额外刷新一次表格布局，解决此场景下列宽未自动撑开问题
+      if (value === V_MF && this.fullScreenClass) {
+        this.$nextTick(() => this.recalculate(true))
+      }
     }
   },
   created() {
+    // 实例缓存，解决grid/toolbar/table等相互关联问题
+    this.vmStore = Object.create(null)
     // 初始化fetchApi选项
     this.fetchOption = this.initFetchOption()
     this.pagerConfig = this.initPagerConfig()
@@ -201,6 +243,7 @@ export default defineComponent({
       this.listeners = listeners
     }
 
+    // 在created生命周期阶段执行fetch-data
     if (prefetch && fetchOption && autoLoad !== false) {
       if (Array.isArray(prefetch)) {
         this.commitProxy('prefetch', prefetch)
@@ -232,8 +275,15 @@ export default defineComponent({
       this.loadColumn(this.columns)
     }
 
+    // 默认在mounted阶段执行fetch-data
     if (!prefetch && fetchOption && autoLoad !== false) {
-      this.commitProxy('query', this.toolBarVm && this.toolBarVm.orderSetting())
+      if (this._pageSizeChangeCallback) {
+        this._pageSizeChangeCallback()
+        this._pageSizeChangeCallback = null
+      } else {
+        const toolbarVm = this.getVm('toolbar')
+        this.commitProxy('query', toolbarVm && toolbarVm.orderSetting())
+      }
     }
 
     if (this.isMultipleHistory) {
@@ -242,19 +292,32 @@ export default defineComponent({
 
     this.addIntersectionObserver()
   },
-  beforeUnmount() {
-    this.removeIntersectionObserver()
-  },
   setup(props, context) {
     const { listeners, attrs } = context
     // 处理表格用户传递过来的事件监听
     const tableListeners = getListeners(attrs, listeners)
-    resolveMode(props, context)
+    const tinyTheme = hooks.ref(resolveTheme(props, context))
+    const tinyMode = hooks.ref(resolveMode(props, context))
+    const breakpoint = useBreakpoint()
+
     const renderless = (props, hooks, { designConfig = null }) => {
-      return { tableListeners, designConfig }
+      return { tableListeners, designConfig, tinyTheme, tinyMode, currentBreakpoint: breakpoint.current }
     }
 
-    return setup({ props, context, renderless, api: ['designConfig', 'tableListeners'] })
+    hooks.onBeforeUnmount(() => {
+      const gridVm = hooks.getCurrentInstance().proxy
+
+      gridVm.removeIntersectionObserver()
+      // 清空被缓存实例
+      gridVm.vmStore = null
+    })
+
+    return setup({
+      props,
+      context,
+      renderless,
+      api: ['designConfig', 'tableListeners', 'tinyTheme', 'tinyMode', 'currentBreakpoint']
+    })
   },
   render() {
     const {
@@ -282,7 +345,7 @@ export default defineComponent({
       designConfig,
       viewType
     } = this as any
-    const { columnAnchor, columnAnchorParams } = this
+    const { columnAnchor, columnAnchorParams, fullScreenClass } = this
 
     // grid全局替换smb图标
     if (designConfig?.icons) {
@@ -312,6 +375,8 @@ export default defineComponent({
     // 处理表格工具栏和个性化数据
     toolbar && !(toolbar.setting && toolbar.setting.storage) && (props.customs = tableCustoms)
     toolbar && (tableOns['update:customs'] = (value) => (this.tableCustoms = value))
+    // 列就绪事件处理
+    tableOns['column-init-ready'] = this.handleColumnInitReady
 
     // 这里handleActiveMethod处理一些编辑器的声明周期的拦截，用户传递过来的activeMethod优先级最高
     if (editConfig) {
@@ -343,7 +408,8 @@ export default defineComponent({
       tableLoading,
       viewType,
       columnAnchorParams,
-      columnAnchor
+      columnAnchor,
+      fullScreenClass
     })
   },
   methods: {
@@ -352,17 +418,45 @@ export default defineComponent({
         this.tasks.updateParentHeight = debounce(10, () => {
           const { $el, $refs } = this
           const { tinyTable } = $refs
+          const toolbarVm = this.getVm('toolbar')
 
           if (tinyTable) {
             tinyTable.parentHeight =
               $el.parentNode.clientHeight -
-              ($refs.toolbar ? $refs.toolbar.$el.clientHeight : 0) -
+              (toolbarVm ? toolbarVm.$el.clientHeight : 0) -
               ($refs.pager ? $refs.pager.$el.clientHeight : 0)
           }
         })
       }
 
       this.tasks.updateParentHeight()
+    },
+    // 向缓存添加实例
+    connect({ name, vm }) {
+      if (name && typeof name === 'string' && vm) {
+        this.vmStore[name] = vm
+      }
+    },
+    createJob(type, callback) {
+      if (type === 'pageSizeChangeCallback') {
+        this._pageSizeChangeCallback = callback
+      } else if (type === 'updateCustomsCallback') {
+        this._updateCustomsCallback = callback
+      }
+    },
+    // 从缓存获取实例
+    getVm(name) {
+      if (name && typeof name === 'string' && this.vmStore) {
+        return this.vmStore[name]
+      }
+    },
+    // 列就绪时的处理
+    handleColumnInitReady() {
+      // 如果存在更新工具栏动态列回调，就执行
+      if (this._updateCustomsCallback) {
+        this._updateCustomsCallback()
+        this._updateCustomsCallback = null
+      }
     },
     handleRowClassName(params) {
       let rowClassName = this.rowClassName

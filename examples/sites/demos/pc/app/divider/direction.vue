@@ -1,9 +1,11 @@
 <template>
-  <span>分隔线</span>
-  <tiny-divider direction="vertical"></tiny-divider>
-  <span>分隔线</span>
-  <tiny-divider direction="vertical"></tiny-divider>
-  <span>分隔线</span>
+  <div>
+    <span>分隔线</span>
+    <tiny-divider direction="vertical"></tiny-divider>
+    <span>分隔线</span>
+    <tiny-divider direction="vertical"></tiny-divider>
+    <span>分隔线</span>
+  </div>
 </template>
 
 <script>

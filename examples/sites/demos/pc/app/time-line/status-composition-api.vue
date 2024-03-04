@@ -1,12 +1,22 @@
 <template>
-  <tiny-time-line vertical :data="data" shape="dot"></tiny-time-line>
+  <div class="demo-timeline">
+    <tiny-time-line :data="data1"></tiny-time-line>
+    <br />
+
+    <p>
+      竖式时间线可以通过 <code>type</code> 属性指定节点类型，可选值有 <code>primary</code>|<code>success</code>
+      |<code>warning</code>|<code>danger</code>|<code>info</code>
+    </p>
+    <tiny-time-line :data="data2" vertical shape="dot"></tiny-time-line>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { TimeLine as TinyTimeLine } from '@opentiny/vue'
 
-const data = reactive([
+const data1 = reactive([{ name: '默认状态' }, { name: '异常状态', error: true }, { name: '禁用状态', disabled: true }])
+const data2 = reactive([
   { name: '基本 / primary', time: '2019-11-10 00:00:00', type: 'primary' },
   { name: '成功 / success', time: '2019-11-11 00:01:30', type: 'success' },
   { name: '警告 / warning', time: '2019-11-12 14:20:15', type: 'warning' },

@@ -10,11 +10,16 @@
  *
  */
 import type { IButtonRenderlessParams, IButtonState } from '@/types'
+import { xss } from '../common'
 
 export const handleClick =
   ({ emit, props, state }: Pick<IButtonRenderlessParams, 'emit' | 'props' | 'state'>) =>
   (event: MouseEvent): void => {
-    if (props.nativeType === 'button' && props.resetTime > 0) {
+    const urlHref = xss.filterUrl(props.href)
+
+    if (urlHref) {
+      location.href = urlHref
+    } else if (props.nativeType === 'button' && props.resetTime > 0) {
       state.disabled = true
 
       state.timer = window.setTimeout(() => {

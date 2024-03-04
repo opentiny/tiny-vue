@@ -22,7 +22,7 @@
       @apply overflow-hidden;
 
       .@{time-spinner-prefix-cls}__list {
-        @apply ~"-translate-y-8";
+        @apply ~'-translate-y-8';
 
         &::after,
         &::before {
@@ -37,7 +37,12 @@
     }
 
     .@{time-spinner-prefix-cls}__list {
-      @apply ~"-translate-y-1.5";
+      @apply ~'-translate-y-1.5';
+    }
+
+    .@{time-spinner-prefix-cls}__item {
+      @apply py-1;
+      @apply ml-4;
     }
   }
 
@@ -97,29 +102,36 @@
   &__item {
     @apply text-sm;
     @apply text-color-text-primary;
-    @apply h-12;
-    line-height: 48px;
+    @apply h-14;
+    @apply w-12;
+    @apply cursor-pointer;
 
     span {
-      @apply inline-block;
-      @apply leading-6;
-      @apply h-6;
-      @apply py-0 px-1;
-      @apply my-3 mx-0;
       @apply rounded;
+      @apply my-0;
+      @apply block;
+      @apply h-full;
+      @apply ~'leading-[theme(spacing.12)]';
     }
 
     &:hover:not(.disabled):not(.active) {
-      @apply cursor-pointer;
+      @apply py-1;
 
-      span {
-        @apply bg-color-brand-hover-subtle;
+      > span {
+        @apply text-color-text-primary;
+        @apply bg-color-bg-2;
+        @apply ~'leading-[theme(spacing.12)]';
       }
     }
 
     &.active:not(.disabled) {
-      @apply text-color-text-primary;
-      @apply font-bold;
+      @apply py-1;
+
+      span {
+        @apply bg-color-fill-6;
+        @apply text-color-brand;
+        @apply ~'leading-[theme(spacing.12)]';
+      }
     }
 
     &.disabled {
@@ -129,6 +141,6 @@
   }
 
   &.has-seconds .@{time-spinner-prefix-cls}__wrapper {
-    @apply ~"w-1/3";
+    @apply ~'w-1/3';
   }
 }

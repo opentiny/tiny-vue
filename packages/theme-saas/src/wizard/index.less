@@ -51,7 +51,7 @@
     }
 
     .@{wizard-prefix-cls}__chart-line {
-      height: 88px;
+      @apply h-20;
       @apply w-1;
       @apply top-0;
       @apply relative;
@@ -60,10 +60,10 @@
 
     .@{wizard-prefix-cls}__chart-name {
       @apply text-sm;
-      margin-left: 23px;
+      @apply ml-7;
       @apply inline-flex;
       @apply flex-col;
-      @apply ~"-translate-y-2/4";
+      @apply ~'-translate-y-2/4';
 
       .children-name {
         @apply text-xs;
@@ -77,15 +77,15 @@
     .@{wizard-prefix-cls}__chart-icon {
       @apply relative;
       @apply ~'left-1/2';
-      @apply ~"-top-3";
-      @apply ~"-translate-x-2/4";
+      @apply ~'-top-3';
+      @apply ~'-translate-x-2/4';
     }
 
     .@{wizard-prefix-cls}__time-wrapper {
       @apply relative;
       @apply ~'left-1/2';
-      @apply ~"-top-[3.5]";
-      @apply ~"-translate-x-2/4";
+      @apply ~'-top-[3.5]';
+      @apply ~'-translate-x-2/4';
       @apply fill-color-brand;
       @apply text-xl;
       @apply box-border;
@@ -99,7 +99,7 @@
 
       svg {
         @apply w-4;
-        height: 22px;
+        @apply h-6;
         @apply align-top;
       }
     }
@@ -115,16 +115,16 @@
   }
 
   & &__date {
-    min-width: 100px;
+    @apply ~"min-w-[theme('spacing.24')]";
     @apply w-auto;
     @apply text-color-text-primary;
     @apply text-xs;
-    line-height: 1.2em;
+    @apply leading-5;
     @apply inline-block;
     @apply text-right;
     @apply relative;
-    top: -15px;
-    right: 15px;
+    @apply -top-1;
+    @apply right-4;
 
     .date-icon {
       @apply ml-1;
@@ -135,10 +135,14 @@
     }
   }
 
+  & &__date.time-line-text {
+    @apply ~'-top-3.5';
+  }
+
   & &__steps-item {
     &.is-ready {
       .name {
-        @apply text-color-brand;
+        @apply text-color-brand; 
       }
 
       .@{wizard-prefix-cls}__chart-icon {
@@ -190,12 +194,12 @@
   & &__chart-detail {
     @apply py-1 px-2;
     @apply rounded-sm;
-    min-height: 26px;
+    @apply ~"min-h-[theme('spacing.6')]";
     @apply h-auto;
     @apply ml-3;
     @apply inline-block;
     @apply absolute;
-    @apply ~"-top-5";
+    @apply ~'-top-5';
 
     &:hover {
       @apply bg-color-warning-hover;
@@ -204,12 +208,12 @@
         @apply content-[''];
         @apply w-0;
         @apply h-0;
-        @apply ~"-mt-1";
+        @apply ~'-mt-1';
         @apply border-solid;
         @apply border-y-4 border-r-4 border-l-0;
         @apply border-y-transparent border-x-color-warning-hover;
         @apply absolute;
-        @apply ~"-left-1";
+        @apply ~'-left-1';
         @apply ~'top-2.5';
       }
 
@@ -255,7 +259,7 @@
   & &__chart-line {
     @apply h-1;
     @apply bg-color-bg-5;
-    width: 50px;
+    @apply w-12;
   }
 
   & &__chart-line &__chart-icon-time {
@@ -285,7 +289,7 @@
       .@{wizard-prefix-cls}__chart-icon {
         @apply w-6;
         @apply h-6;
-        line-height: 22px;
+        @apply ~'leading-5.5';
         @apply text-sm;
         @apply border border-solid border-color-border-disabled;
         @apply bg-color-bg-1;
@@ -304,7 +308,7 @@
 
         .name {
           @apply text-sm;
-          line-height: 14px;
+          @apply ~'leading-5.5';
           @apply text-color-text-disabled;
         }
       }
@@ -336,7 +340,7 @@
           @apply text-base;
 
           & > .tiny-svg {
-            @apply ~"-translate-y-0.5";
+            @apply ~'-translate-y-0.5';
           }
         }
       }
@@ -506,8 +510,8 @@
       & > .@{wizard-prefix-cls}__node-wrapper > .@{wizard-prefix-cls}__chart-line .@{wizard-prefix-cls}__time-wrapper {
         @apply relative;
         @apply ~'left-1/2';
-        @apply ~"top-[3.5]";
-        @apply ~"-translate-x-2/4";
+        @apply ~'top-[3.5]';
+        @apply ~'-translate-x-2/4';
         @apply text-base;
         @apply fill-color-text-disabled;
         @apply box-border;

@@ -18,6 +18,6 @@ export default function (rule, checkValue, source, errors, options) {
   rule[ENUM] = Array.isArray(rule[ENUM]) ? rule[ENUM] : []
 
   if (!rule[ENUM].includes(checkValue)) {
-    errors.push(util.format(options.messages[ENUM], rule.fullField, rule[ENUM].join(', ')))
+    errors.push(util.format(options.messages[ENUM], '', rule[ENUM].join(', ')))
   }
 }

@@ -1,7 +1,9 @@
 <template>
-  <tiny-button @click="add">增加</tiny-button>
-  <tiny-progress type="circle" :percentage="percentage" status="exception" :width="150"></tiny-progress>
-  <tiny-progress type="dashboard" :percentage="percentage" :color="customColors" :width="300"> </tiny-progress>
+  <div>
+    <tiny-button @click="add">增加</tiny-button>
+    <tiny-progress type="circle" :percentage="percentage" status="exception" :width="150"></tiny-progress>
+    <tiny-progress type="dashboard" :percentage="percentage" :color="customColors" :width="300"> </tiny-progress>
+  </div>
 </template>
 
 <script lang="jsx">

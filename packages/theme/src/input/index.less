@@ -68,6 +68,11 @@
     color: var(--ti-input-disabled-text-color);
     background: var(--ti-input-disabled-bg-color);
     .placeholder(@color: var(--ti-input-placeholder-color));
+
+    &.@{input-prefix-cls}__mask {
+      font-family: serif;
+      color: #999;
+    }
   }
 
   &.is-disabled &__icon {
@@ -116,6 +121,7 @@
     font-size: var(--ti-input-count-font-size);
 
     .@{input-prefix-cls}__count-inner {
+      white-space: nowrap;
       background: var(--ti-input-bg-color);
       line-height: initial;
       display: inline-block;
@@ -288,6 +294,30 @@
         overflow: hidden;
         white-space: nowrap;
       }
+
+      &__mask {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      &__mask-text {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        flex: 1;
+        margin-right: 16px;
+      }
+
     }
   }
 }

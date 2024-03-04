@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Alert as TinyAlert, Switch as TinySwitch, Modal } from '@opentiny/vue'
+import { Alert as TinyAlert, Switch as TinySwitch, Notify } from '@opentiny/vue'
 import { iconCloseCircle } from '@opentiny/vue-icon'
 
 const show = ref(true)
@@ -22,6 +22,11 @@ const show = ref(true)
 const TinyIconCloseCircle = iconCloseCircle()
 
 const close = () => {
-  Modal.message('关闭了')
+  Notify({
+    type: 'success',
+    message: '触发关闭事件',
+    position: 'top-right',
+    duration: 1000
+  })
 }
 </script>

@@ -18,9 +18,15 @@ export default {
   yes: 'Yes',
   no: 'No',
   ui: {
-    buttonMessage: {
-      cancel: 'Cancel',
-      confirm: 'Confirm'
+    numeric: {
+      equalTo: 'Equal to',
+      notEqualTo: 'Not equal to',
+      moreThan: 'More than',
+      moreThanOrEqualTo: 'More than or equal to',
+      lessThan: 'Less than',
+      lessThanOrEqualTo: 'Less than or equal to',
+      empty: 'Empty',
+      nonEmpty: 'Non-empty'
     },
     wizard: {
       previousStep: 'LastStep',
@@ -48,7 +54,15 @@ export default {
     amount: {
       currency: 'Currency',
       amount: 'Amount',
-      date: 'Date'
+      date: 'Date',
+      equalTo: 'Equal to',
+      notEqualTo: 'Not equal to',
+      moreThan: 'More than',
+      moreThanOrEqualTo: 'More than or equal to',
+      lessThan: 'Less than',
+      lessThanOrEqualTo: 'Less than or equal to',
+      empty: 'Empty',
+      nonEmpty: 'Non-empty'
     },
     base: {
       all: 'All',
@@ -58,11 +72,16 @@ export default {
       edit: 'Edit',
       more: 'More',
       reset: 'Reset',
+      clear: 'Clear',
       comma: ','
     },
     button: {
       cancel: 'Cancel',
-      confirm: 'OK'
+      confirm: 'Confirm'
+    },
+    buttonMessage: {
+      cancel: 'Cancel',
+      confirm: 'Confirm'
     },
     cell: {
       placeholder: 'Select'
@@ -279,9 +298,10 @@ export default {
       encryptDialogTitle: 'Watermark and encryption settings',
       addWatermark: 'Add Watermark',
       encrypted: 'Encrypted',
+      docPreview: 'Document Preview',
       networkError: 'Network Error',
       pictureNetworkError: 'Network error, upload failed',
-      ReUploadTip: '{number} files failed to upload!'
+      reUploadTip: '{number} files failed to upload!'
     },
     uploadList: {
       pictureUploading: 'Picture uploading',
@@ -337,7 +357,10 @@ export default {
           '"remoteSelectedMethod" needs to be set for remote storage for personalized template management.',
         chainCallError: 'There is a syntax error in the default slot for the column, please check.',
         renderParamError: 'Expect to configure a rendering method for generating a VNode.',
-        classComponentError: 'Class component rendering error.'
+        classComponentError: 'Class component rendering error.',
+        groupColumnFixedError: 'Different fixed types cannot be set in the same group.',
+        missingValueFormat:
+          'The renderer cannot format the date string. You should provide the "valueFormat" source date format configuration.'
       },
       filter: {
         allFilter: 'All',
@@ -514,10 +537,19 @@ export default {
       search: 'Search',
       selected: 'Selected',
       selectedNum: '{num} selected',
-      noSearchData: 'No search results. Please try again'
+      noSearchData: 'No search results. Please try again',
+      add: 'Add'
     },
     search: {
       placeholder: 'search'
+    },
+    signature: {
+      confirm: 'Confirm',
+      rewrite: 'Rewrite',
+      cancel: 'Cancel',
+      tips: 'Please sign by hand',
+      resign: 'Resign',
+      placeholder: 'Please sign here (required)'
     },
     tabs: {
       moreItem: 'more'
@@ -546,10 +578,10 @@ export default {
       edit: 'Edit',
       delete: 'Delete',
       addChild: 'Add Child',
-      deleteTip: 'Data will be permanently deleted, are you sure you want to proceed with the deletion?',
-      preserveSubnodeTip: 'This node have child nodes, Would you like to preserve the data of the child nodes?',
-      preserveSubnodeData: "To preserve child nodes' data.",
-      newNodeTitle: 'Add Child Nodes'
+      newNodeTitle: 'Add Child Nodes',
+      deleteTip1: 'The deleted data cannot be restored. Are you sure you want to delete it?',
+      deleteTip2: 'This node has lower-level nodes. Do you want to retain the lower-level node data?',
+      deleteTip3: 'Retain the lower-level node data'
     },
     usercard: {
       address: 'Address',

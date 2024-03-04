@@ -8,7 +8,6 @@
       :data="tableData"
       ref="grid"
       highlight-current-row
-      border
       :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }"
     >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>

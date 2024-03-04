@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-96">
     <tiny-button @click="fn" type="primary"> 显示多级标题 </tiny-button>
     <p>值：{{ value }}</p>
     <tiny-cascader-mobile

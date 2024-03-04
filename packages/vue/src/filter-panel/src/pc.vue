@@ -26,6 +26,7 @@
             :tip="tip"
             :value="value"
             :drop-down-visible="state.visible"
+            :blank="blank"
           ></tiny-filter-box>
         </div>
       </template>
@@ -49,7 +50,7 @@ export default defineComponent({
   props: {
     ...$props,
     label: String,
-    value: String,
+    value: [String, Number],
     tip: String,
     popperClass: {
       type: String,
@@ -70,6 +71,10 @@ export default defineComponent({
     popperAppendToBody: {
       type: Boolean,
       default: true
+    },
+    blank: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

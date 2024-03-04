@@ -95,7 +95,7 @@
       }
 
       &[x-placement^='top'] {
-        @apply ~"mb-1.5";
+        @apply ~'mb-1.5';
       }
 
       &[x-placement^='bottom'] {
@@ -104,21 +104,12 @@
     }
   }
 
-  &.asterisk-form {
-    @apply overflow-visible;
-
-    .@{form-item-prefix-cls} {
-      .@{form-item-prefix-cls}__label {
-        @apply overflow-hidden;
-        @apply relative;
-      }
-    }
-  }
   &.asterisk-form.is-display-only {
     .@{form-item-prefix-cls} {
       @apply pl-0;
     }
   }
+
   &.is-display-only {
     .tiny-form-item__label {
       @apply leading-normal;
@@ -138,10 +129,12 @@
       .tiny-checkbox {
         @apply leading-normal;
       }
+
       .tiny-radio {
         @apply leading-none;
         @apply p-0;
       }
+
       .@{switch-prefix-cls} {
         @apply mt-0;
       }
@@ -171,10 +164,6 @@
       }
       .@{form-item-prefix-cls}__content .@{css-prefix}tooltip {
         @apply text-sm;
-      }
-
-      .@{form-item-prefix-cls}__label {
-        @apply pb-3;
       }
     }
   }

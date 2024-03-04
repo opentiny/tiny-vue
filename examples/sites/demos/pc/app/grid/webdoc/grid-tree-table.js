@@ -49,6 +49,17 @@ export default {
       'codeFiles': ['tree-table/tree-grid-operation-column.vue']
     },
     {
+      'demoId': 'tree-table-tree-grid-index-checkfield',
+      'name': { 'zh-CN': '选中关联字段', 'en-US': 'Operation Column' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>selectConfig</code> 属性中配置 <code>checkField</code> 为行字段名称，可以将行的选中与该字段关联。被关联字段应该为布尔取值，并且在父子关联时父行初始设置为选中，应保证其所有子行也设置为选中。</p>',
+        'en-US':
+          'In the <p> column, you can set type=&quot;radio&quot; to enable single selection and type=&quot;selection&quot; to enable multiple selection</p>\n'
+      },
+      'codeFiles': ['tree-table/tree-grid-index-checkfield.vue']
+    },
+    {
       'demoId': 'tree-table-set-tree-expansion',
       'name': { 'zh-CN': '树节点展开操作', 'en-US': 'Manually expand a specified tree node' },
       'desc': {

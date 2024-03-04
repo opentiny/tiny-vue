@@ -17,5 +17,8 @@ export const tinyDropdownItemSmbTheme = {
   'ti-dropdown-item-before-bg-color': 'transparent',
   'ti-dropdown-item-divided-border-color': 'transparent',
   'ti-dropdown-item-content-bg-hover': 'transparent',
-  'ti-dropdown-item-before-height': '0'
+  'ti-dropdown-item-before-height': '0',
+  'ti-dropdown-item-bg-color-selected': 'var(--ti-common-color-bg-white-normal)',
+  'ti-dropdown-item-text-color-selected': '#1476FF',
+  'ti-dropdown-item-font-weight-selected': 'var(--ti-common-font-weight-6)'
 }

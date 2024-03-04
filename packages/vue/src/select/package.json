@@ -30,7 +30,9 @@
     "@opentiny/vue-tree": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-filter-box": "workspace:~",
-    "@opentiny/vue-checkbox": "workspace:~"
+    "@opentiny/vue-checkbox": "workspace:~",
+    "@opentiny/vue-popover": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

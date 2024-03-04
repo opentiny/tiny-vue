@@ -29,8 +29,8 @@ export default defineComponent({
             'after:block after:absolute after:top-0 after:right-0 after:w-0 after:h-11 sm:after:h-10',
             'before:shadow-[1px_-10px_4px_4px_rgba(0,0,0,0.08)] after:shadow-[-1px_-10_4px_4px_rgba(0,0,0,0.08)]',
             !state.moreLeft && !state.moreRight ? 'before:hidden after:hidden' : '',
-            !state.moreLeft ? 'sm:before:hidden' : '',
-            !state.moreRight ? 'sm:after:hidden' : ''
+            !state.moreLeft ? 'before:hidden' : '',
+            !state.moreRight ? 'after:hidden' : ''
           ]
         },
         [
@@ -90,7 +90,7 @@ export default defineComponent({
                 },
                 [
                   h('span', { class: 'inline-flex w-full h-full flex-col justify-center items-center' }, [
-                    h(IconPlus(), { class: 'fill-color-icon-focus' })
+                    h(IconPlus(), { class: 'fill-color-icon-primary hover:fill-color-icon-focus' })
                   ])
                 ]
               )

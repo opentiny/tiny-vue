@@ -9,9 +9,8 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': `<p>通过 <code>data</code> 设置树形菜单的数据。<br>
-        注意：由于树形菜单是通过节点 id 来查找子节点和关联父节点的，所以必须保证 id 的必填性和唯一性。<br>
-        树形菜单移动端最多只能展示两层数据结构<p>`,
+        'zh-CN':
+          '<p>通过 <code>data</code> 设置树形菜单的数据。<br>\n        注意：由于树形菜单是通过节点 id 来查找子节点和关联父节点的，所以必须保证 id 的必填性和唯一性。<br>\n        树形菜单移动端最多只能展示两层数据结构<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['basic-usage.vue']
@@ -124,6 +123,5 @@ export default {
       },
       codeFiles: ['with-icon.vue']
     }
-  ],
-  apis: []
+  ]
 }

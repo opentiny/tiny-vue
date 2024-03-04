@@ -1,47 +1,54 @@
 <template>
-  <div class="border-b-0.5 sm:border-b border-solid border-color-border-disabled last:border-0">
+  <div
+    data-tag="tiny-collapse-item"
+    class="border-b-0.5 sm:border-b border-solid border-color-border-disabled last:border-0"
+  >
     <div
       role="tab"
+      data-tag="tiny-collapse-item-tab"
       :aria-expanded="state.isActive"
       :aria-controls="`tiny-collapse-content-${state.id}`"
       :aria-describedby="`tiny-collapse-content-${state.id}`"
     >
       <div
-        class="flex relative items-center h-12 sm:h-14 py-0 sm:pr-0 pl-4 sm:pl-4 pr-14 text-sm font-bold justify-between whitespace-nowrap"
+        data-tag="tiny-collapse-item-body"
+        class="flex relative items-center h-12 sm:h-10 py-0 sm:pr-0 pl-4 pr-10 text-sm font-bold justify-between whitespace-nowrap"
         :id="`tiny-collapse-head-${state.id}`"
         :tabindex="disabled ? undefined : 0"
         @keyup.space.enter.stop="handleEnterClick"
         :class="
           disabled
             ? 'text-color-text-disabled'
-            : 'text-color-text-primary [&:has(.peer:hover)_[role=title]]:text-color-brand'
+            : 'text-color-text-primary sm:[&:has(.peer:hover)_[role=title]]:text-color-brand'
         "
         @focus="handleFocus"
         @blur="state.focusing = false"
       >
         <div
+          data-tag="tiny-collapse-item-title"
           class="whitespace-nowrap overflow-hidden overflow-ellipsis inline-block peer"
-          :class="[disabled ? 'cursor-not-allowed' : 'cursor-pointer hover:text-color-brand']"
+          :class="[disabled ? 'cursor-not-allowed' : 'cursor-pointer sm:hover:text-color-brand']"
           role="title"
           @click="handleHeaderClick"
         >
           <slot name="title"> {{ title }}</slot>
         </div>
-        <div class="text-xs font-normal">
+        <div data-tag="tiny-collapse-item-titleright" class="text-xs font-normal">
           <slot name="title-right">{{ titleRight }}</slot>
         </div>
         <div
-          class="absolute sm:left-0 right-2 text-xs mr-1 w-3 peer"
+          data-tag="tiny-collapse-item-icon"
+          class="absolute sm:left-0 right-3.5 text-xs mr-1 w-3 peer"
           :class="[
             disabled
               ? 'fill-color-text-disabled  cursor-not-allowed'
-              : 'fill-color-icon-secondary cursor-pointer peer-hover:fill-color-brand hover:fill-color-brand'
+              : 'fill-color-icon-secondary cursor-pointer sm:peer-hover:fill-color-brand sm:hover:fill-color-brand'
           ]"
           @click="handleHeaderClick"
         >
           <slot name="icon" :active="state.isActive" :disabled="disabled">
             <icon-arrow-bottom
-              class="w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform duration-300"
+              custom-class="w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform duration-300"
               :class="[state.isActive ? 'sm:rotate-0 rotate-180' : 'sm:-rotate-90 rotate-0']"
             />
           </slot>
@@ -50,6 +57,7 @@
     </div>
     <collapse-transition>
       <div
+        data-tag="tiny-collapse-item-active"
         v-show="state.isActive"
         class="will-change-[height] bg-color-bg-1 overflow-hidden box-border"
         role="tabpanel"

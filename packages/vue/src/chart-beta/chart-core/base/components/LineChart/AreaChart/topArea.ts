@@ -55,7 +55,7 @@ function markLineArea(baseOption, iChartOption, YAxiMin) {
   ) {
     const colors = baseOption.color
     const markLine = iChartOption.markLine
-    const topColor = codeToRGB(markLine.topColor, 0.15) || chartToken.errorColor
+    const topColor = codeToRGB(markLine.topColor, 0.15) || chartToken.colorError
     baseOption.series.forEach((item, index) => {
       const maxValue = max(item.data)
       const color = getColor(colors, index)

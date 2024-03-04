@@ -21,6 +21,10 @@
   @apply mb-5;
   .clearfix();
 
+  .@{form-item-prefix-cls}__content-muti-children {
+    @apply w-full;
+  }
+
   & & {
     @apply mb-0;
   }
@@ -65,10 +69,8 @@
   }
 
   &--medium &__label {
-    @apply ~"leading-5.5";
-    @apply mb-1;
+    @apply ~'leading-5.5';
     @apply text-sm;
-    @apply box-content;
   }
 
   &--small &__label {
@@ -289,22 +291,5 @@
 
   .@{input-prefix-cls}__validateIcon {
     @apply hidden;
-  }
-}
-
-.@{css-prefix} {
-  &zoom-in-top-enter-active,
-  &zoom-in-top-leave-active {
-    @apply opacity-100;
-    @apply scale-y-100;
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    @apply origin-top;
-  }
-
-  &zoom-in-top-enter,
-  &zoom-in-top-enter-from,
-  &zoom-in-top-leave-active {
-    @apply opacity-0;
-    @apply scale-y-0;
   }
 }

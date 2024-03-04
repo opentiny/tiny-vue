@@ -165,6 +165,7 @@ export const onItersectionObserver =
   ({ state, props, api, vm, emit }: Pick<IAnchorRenderlessParams, 'state' | 'props' | 'api' | 'vm' | 'emit'>) =>
   () => {
     const { expandLink, scrollContainer } = state
+    state.currentLink && updateSkidPosition({ vm, state, emit })
     state.intersectionObserver = new IntersectionObserver(
       (entries) => {
         const { top } = scrollContainer.getBoundingClientRect()

@@ -30,55 +30,7 @@ export default {
       'name': { 'zh-CN': '树表虚拟滚动', 'en-US': 'Virtual scrolling of the tree table' },
       'desc': {
         'zh-CN': `
-        <p> <code>optimization</code> 虚拟滚动具体配置如下：</p>
-        <table class="api-table">
-          <thead>
-            <tr>
-              <th>名称</th> 
-              <th>类型</th> 
-              <th>描述</th> 
-              <th>默认值</th>
-            </tr>
-          </thead> 
-          <tbody>
-            <tr>
-              <td>optimization.scrollX.gt</td> <td>number</td> 
-              <td>指定大于多少列时自动启动 X 虚拟滚动</td> 
-              <td>100</td></tr> <tr><td>optimization.scrollX.rSize</td> 
-              <td>number</td> 
-              <td>每次渲染列数</td> 
-              <td></td>
-            </tr> 
-            <tr>
-              <td>optimization.scrollX.vSize</td> 
-              <td>number</td> 
-              <td>指定可视区域列数</td> 
-              <td></td>
-            </tr> 
-            <tr>
-              <td>optimization.scrollX.adaptive</td> <td>boolean</td> 
-              <td>自动适配最优的渲染方式（设置为 false 列数组只会在滚动完成后截取一次，便于大数据场景提升性能，但是会短暂白屏，渲染完成后即恢复）</td> 
-              <td>true</td>
-            </tr> 
-            <tr>
-              <td>optimization.scrollY.gt</td> 
-              <td>number</td> 
-              <td>指定大于多少行时自动启动 Y 虚拟滚动</td> 
-              <td>500</td>
-            </tr> 
-            <tr>
-              <td>optimization.scrollY.rSize</td> 
-              <td>number</td> <td>每次渲染行数</td> 
-              <td></td>
-            </tr> 
-            <tr>
-              <td>optimization.scrollY.adaptive</td> 
-              <td>boolean</td> 
-              <td>自动适配最优的渲染方式（设置为 false 行数组只会在滚动完成后截取一次，便于大数据场景提升性能，但是会短暂白屏，渲染完成后即恢复）</td> 
-              <td>true</td>
-            </tr>
-          </tbody>
-        </table>
+        <p>通过 <code>optimization</code> 属性配置树表虚拟滚动执行方式，具体参考类型：<code>IOptimizationConfig</code> 。</p> 
         `,
         'en-US': ''
       },

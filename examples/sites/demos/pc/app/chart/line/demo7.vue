@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { ChartLine } from '@opentiny/vue'
 
 export default {
@@ -29,9 +29,7 @@ export default {
       extend: {
         series: {
           label: {
-            normal: {
-              show: true
-            }
+            show: true
           }
         }
       }

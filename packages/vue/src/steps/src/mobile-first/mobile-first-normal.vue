@@ -84,23 +84,22 @@
             m(
               gcls('steps-icon'),
               gcls(`icon-${size}`),
-              { 'bg-gray-300 border-gray-300 text-color-text-inverse': index === active },
+              { 'bg-color-icon-tertiary border-color-icon-tertiary text-color-text-inverse': index === active },
               gcls(`icon-${node[statusField]}`),
               index === active && gcls(`icon-${node[statusField]}-active`),
-              { 'bg-red-500 border-red-500': index === active && size === 'mini' && node[statusField] === 'error' }
+              {
+                'bg-color-error border-color-error':
+                  index === active && size === 'mini' && node[statusField] === 'error'
+              }
             )
           "
         >
           <template v-if="size !== 'mini'">
             <template v-if="node[statusField] === 'done'">
               <icon-finish
+                :class="index === active ? 'fill-color-icon-inverse' : 'fill-color-brand'"
                 :custom-class="
-                  m(
-                    'w-3.5 h-3.5 fill-color-brand',
-                    { 'fill-color-icon-inverse': index === active },
-                    { 'w-2.5 h-2.5': size === 'small' },
-                    { 'w-4.5 h-4.5': size === 'large' }
-                  )
+                  m('w-3.5 h-3.5', { 'w-2.5 h-2.5': size === 'small' }, { 'w-4.5 h-4.5': size === 'large' })
                 "
               ></icon-finish>
             </template>
@@ -164,16 +163,9 @@
           :class="
             m(
               'text-xs text-color-text-secondary mt-2 line-clamp-2 mx-5 break-all',
-              {
-                'text-color-brand': index === active
-              },
-              {
-                'group-hover:text-color-brand-hover group-active:text-color-brand-active':
-                  node[statusField] !== 'disabled' && node[statusField] !== 'error'
-              },
               { 'text-color-none-hover': node[statusField] === 'disabled' },
               { 'text-color-brand': index === active },
-              { 'text-color-error': node[statusField] === 'error' },
+              { 'text-color-error': node[statusField] === 'error' && index === active },
               !vertical ? 'sm:ml-8' : ''
             )
           "

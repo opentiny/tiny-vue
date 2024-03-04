@@ -36,6 +36,7 @@
                 state.singleSelect && shortcut.type === state.shortcutType && shortcut.text === state.shortcutText
             }"
             @click="handleShortcutClick(shortcut)"
+            :title="shortcut.text"
           >
             {{ shortcut.text }}
           </button>
@@ -217,8 +218,9 @@
           {{ t('ui.datepicker.clear') }}
         </tiny-button>
         <tiny-button
-          plain
+          :plain="state.confirmButtonProps.plain"
           size="mini"
+          :type="state.confirmButtonProps.type"
           class="tiny-picker-panel__link-btn"
           :disabled="state.btnDisabled"
           @click="handleConfirm(false)"
@@ -232,7 +234,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/date-range/vue'
-import { $prefix, setup, directive, defineComponent } from '@opentiny/vue-common'
+import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import TimePicker from '@opentiny/vue-time'
 import DateTable from '@opentiny/vue-date-table'
@@ -240,12 +242,7 @@ import Input from '@opentiny/vue-input'
 import Button from '@opentiny/vue-button'
 import { iconDoubleRight, iconDoubleLeft, iconChevronLeft, iconChevronRight } from '@opentiny/vue-icon'
 
-const $constants = {
-  startDate: new Date('1970-01-01'),
-  endDate: new Date('2099-12-31')
-}
 export default defineComponent({
-  name: $prefix + 'DateRange',
   directives: directive({ Clickoutside }),
   components: {
     TimePicker,
@@ -257,31 +254,10 @@ export default defineComponent({
     IconChevronLeft: iconChevronLeft(),
     IconChevronRight: iconChevronRight()
   },
-  props: {
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    emitter: Object,
-    step: {
-      type: Object,
-      default() {
-        return { hour: 1, minute: 1, second: 1 }
-      }
-    },
-    showWeekNumber: {
-      type: Boolean,
-      default: false
-    },
-    formatWeeks: Function,
-    timeEditable: {
-      type: Boolean,
-      default: true
-    }
-  },
+  props: [...props, 'emitter', 'step', 'showWeekNumber', 'formatWeeks', 'timeEditable'],
   emits: ['dodestroy', 'pick'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

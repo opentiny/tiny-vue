@@ -9,7 +9,7 @@
     @apply w-full;
     @apply h-full;
     @apply overflow-hidden;
-    box-shadow: 0 0 0 #d9d9d9;
+    box-shadow: 0 0 0 theme('borderWidth.DEFAULT') theme('colors.color.border.separator.DEFAULT');
   }
 
   &-pane {
@@ -20,6 +20,15 @@
       @apply top-0;
       @apply bottom-0;
       @apply overflow-hidden;
+    }
+
+    &.@{split-prefix-cls}-scroll {
+      &.left-pane,
+      &.right-pane {
+        @apply top-0;
+        @apply bottom-0;
+        @apply overflow-auto;
+      }
     }
 
     &.left-pane {
@@ -49,7 +58,7 @@
   &-trigger {
     &-con {
       @apply absolute;
-      @apply ~"-translate-x-2/4" ~"-translate-y-2/4";
+      @apply ~'-translate-x-2/4' ~'-translate-y-2/4';
       @apply z-10;
     }
 
@@ -58,15 +67,15 @@
       @apply bg-color-bg-1;
 
       &.vertical {
-        @apply ~"top-1/2";
+        @apply ~'top-1/2';
         @apply h-7;
-        @apply translate-x-0 ~"-translate-y-1/2";
+        @apply translate-x-0 ~'-translate-y-1/2';
       }
 
       &.horizontal {
         @apply ~'left-1/2';
         @apply w-7;
-        @apply ~"-translate-x-1/2" translate-y-0;
+        @apply ~'-translate-x-1/2' translate-y-0;
       }
     }
 
@@ -105,7 +114,7 @@
 
   &-horizontal {
     .@{split-prefix-cls}-trigger-con {
-      @apply ~"top-1/2";
+      @apply ~'top-1/2';
       @apply h-full;
       @apply w-0;
 
@@ -113,7 +122,7 @@
         @apply w-3;
         @apply h-12;
         @apply absolute;
-        @apply ~"top-1/2";
+        @apply ~'top-1/2';
 
         &-active {
           @apply w-4;
@@ -121,9 +130,9 @@
       }
 
       .@{split-prefix-cls}-trigger-left-button {
-        @apply translate-x-0 ~"-translate-y-1/2";
+        @apply translate-x-0 ~'-translate-y-1/2';
         @apply -left-1;
-        @apply rounded-l-lg rounded-r-none;
+        @apply rounded-l rounded-r-none;
         @apply border-r-0;
 
         &.@{split-prefix-cls}-trigger-button-active {
@@ -132,8 +141,8 @@
       }
 
       .@{split-prefix-cls}-trigger-right-button {
-        @apply translate-x-px ~"-translate-y-1/2";
-        @apply rounded-l-none rounded-r-lg;
+        @apply translate-x-px ~'-translate-y-1/2';
+        @apply rounded-l-none rounded-r;
         @apply border-l-0;
       }
     }
@@ -186,8 +195,8 @@
       }
 
       .@{split-prefix-cls}-trigger-top-button {
-        @apply ~"-translate-x-1/2" translate-y-0;
-        @apply rounded-t-lg rounded-b-none;
+        @apply ~'-translate-x-1/2' translate-y-0;
+        @apply rounded-t rounded-b-none;
         @apply -top-1;
         @apply border-b-0;
 
@@ -201,8 +210,8 @@
       }
 
       .@{split-prefix-cls}-trigger-bottom-button {
-        @apply ~"-translate-x-1/2" translate-y-0;
-        @apply rounded-t-none rounded-b-lg;
+        @apply ~'-translate-x-1/2' translate-y-0;
+        @apply rounded-t-none rounded-b;
         @apply border-t-0;
 
         .@{css-prefix}svg {
@@ -227,7 +236,7 @@
     }
 
     .@{split-prefix-cls}-horizontal .@{split-prefix-cls}-trigger-con {
-      @apply ~"top-1/2";
+      @apply ~'top-1/2';
       @apply h-full;
       @apply w-0;
     }
@@ -255,7 +264,9 @@
     @apply invisible;
 
     .@{css-prefix}svg {
-      @apply fill-color-none-hover;
+      @apply fill-color-none-active;
+      @apply w-3;
+      @apply h-4;
     }
 
     &:hover {

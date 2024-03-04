@@ -36,6 +36,25 @@ export default {
   // 表格内置分页渲染器
   renderPager({ $slots, _vm, loading, pager, pagerConfig, tableLoading, vSize }) {
     let res = null
+
+    const { isThemeSaas, isModeMobileFirst, isViewGantt, currentBreakpoint } = _vm
+    const style = { display: 'none' }
+
+    // 使用saas主题和多端模式时，内置Pager使用多端模板。在非gantt视图或gantt视图大屏下显示多端Pager
+    if (isThemeSaas && isModeMobileFirst) {
+      if (!isViewGantt || (isViewGantt && currentBreakpoint !== 'default')) {
+        style.display = 'flex'
+        style.justifyContent = 'flex-end'
+      }
+      // 在小屏下居中显示，大屏下居右显示
+      if (currentBreakpoint === 'default') {
+        style.justifyContent = 'center'
+      }
+    } else {
+      // 在其它场景，内置Pager使用PC模板。显示为block（因为Pager的PC模板外层是div）
+      style.display = 'block'
+    }
+
     if ($slots.pager) {
       res = $slots.pager()
     } else if (pager) {
@@ -54,7 +73,7 @@ export default {
           'before-page-change': _vm.beforePageChangeHandler
         },
         ref: 'pager',
-        class: _vm.viewCls('pager')
+        style
       })
     }
 
@@ -65,7 +84,7 @@ export default {
     if (!this.tasks.updatePage) {
       this.tasks.updatePage = debounce(200, () => {
         const eventParams = { $grid: this, ...params }
-
+        const toolbarVm = this.getVm('toolbar')
         // 处理标签式监听事件的：@page-change
         emitEvent(this, 'page-change', eventParams)
 
@@ -75,8 +94,8 @@ export default {
         // 触发fetchData
         this.commitProxy('query')
 
-        if (this.toolBarVm) {
-          this.toolBarVm.orderSetting()
+        if (toolbarVm) {
+          toolbarVm.orderSetting()
         }
       })
     }
@@ -89,8 +108,11 @@ export default {
     load || this.pageChangeEvent(this.tablePage)
   },
   pageCurrentChange(current) {
-    this.tablePage.currentPage = current
-    this.pageChangeEvent(this.tablePage)
+    // 只有在当前页改变时，才修改状态和触发新的查询
+    if (this.tablePage.currentPage !== current) {
+      this.tablePage.currentPage = current
+      this.pageChangeEvent(this.tablePage)
+    }
   },
   beforePageChangeHandler(params) {
     if (!this.showSaveMsg) {

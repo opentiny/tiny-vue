@@ -65,8 +65,8 @@
 
   .@{dialog-box-prefix-cls} {
     &__header {
-      height: 72px;
-      @apply pt-8 pr-8 pb-6 pl-8;
+      @apply h-12;
+      @apply pt-4 pr-6 pb-4 pl-6;
     }
     &__body {
       @apply pt-0 pr-8 pb-3 pl-8;
@@ -77,8 +77,6 @@
   }
 
   .@{input-prefix-cls} {
-    width: 30%;
-    min-width: 216px;
     @apply mb-4;
 
     .@{input-prefix-cls}__inner {
@@ -93,7 +91,7 @@
       @apply block;
       @apply whitespace-nowrap;
       @apply select-auto;
-      @apply ~"transition-[border]" duration-300;
+      @apply ~'transition-[border]' duration-300;
       @apply outline-0;
       @apply box-border;
     }
@@ -200,7 +198,7 @@
 
     &.@{link-menu-prefix-cls}__overflow {
       .tree-node {
-        width: calc(100% - 48px);
+        width: calc(100% - theme('spacing.12'));
       }
 
       .tree-node-name {
@@ -212,7 +210,7 @@
 
     &.@{link-menu-prefix-cls}__wrap {
       .@{tree-node-prefix-cls}__content {
-        min-height: 48px;
+        @apply ~'min-h-[theme(spacing.12)]';
         @apply ~'py-0.5 px-0';
         @apply flex;
         @apply justify-start;
