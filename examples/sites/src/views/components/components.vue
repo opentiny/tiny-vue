@@ -128,6 +128,7 @@
           :key="anchorRefreshKey"
           mask-class="custom-active-anchor"
           @link-click="handleAnchorClick"
+          class="anchor"
         >
         </tiny-anchor>
       </div>
@@ -440,7 +441,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 table.api-table {
   width: 100%;
   table-layout: fixed;
@@ -524,6 +525,7 @@ table.api-table {
 }
 .cmp-page-anchor {
   :deep(.tiny-anchor__affix) {
+    top: unset !important;
     overflow-y: auto;
     max-height: 80vh;
   }
