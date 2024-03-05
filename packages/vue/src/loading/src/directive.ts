@@ -98,7 +98,7 @@ const toggleLoading = (el, binding) => {
     afterLeave(
       el.instance,
       () => {
-        if (!el.instance.hiding) {
+        if (!el.instance?.hiding) {
           return
         }
 

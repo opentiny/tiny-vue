@@ -351,7 +351,7 @@ export default {
   /**
    * 处理激活编辑
    */
-  handleActived(params, event) {
+  async handleActived(params, event) {
     let { editConfig, editStore, tableColumn } = this
     let { cell, column, row } = params
     let { editor } = column
@@ -361,7 +361,7 @@ export default {
     if (editor && cell && isActiveCell) {
       // 判断是否禁用编辑
       let type = 'edit-disabled'
-      let canActive = handleActivedCanActive({ editConfig, params })
+      let canActive = await handleActivedCanActive({ editConfig, params })
       let args = { _vm: this, actived, canActive, cell, column, editConfig }
 
       Object.assign(args, { event, params, row, tableColumn, type })

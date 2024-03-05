@@ -4,7 +4,7 @@ test('序号显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
   await page.goto('milestone#show-number')
 
-  const button = page.getByRole('button').filter({ hasText: '设置 show-number 值为false' })
+  const button = page.getByRole('button').filter({ hasText: '设置 show-number 值为 false' })
   const nodes = page.locator('.tiny-milestone__node')
   const nodeIcons = page.locator('.tiny-milestone__icon')
   const nodeLines = page.locator('.tiny-milestone__line')

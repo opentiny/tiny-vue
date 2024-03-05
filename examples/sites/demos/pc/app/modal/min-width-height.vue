@@ -1,5 +1,5 @@
 <template>
-  <tiny-button @click="btnClick" :reset-time="0">提示框最小高度为300</tiny-button>
+  <tiny-button @click="btnClick" :reset-time="0">最小宽高度</tiny-button>
 </template>
 
 <script>
@@ -12,9 +12,11 @@ export default {
   methods: {
     btnClick() {
       Modal.alert({
-        message: '提示框拖动最小高度为300',
+        message: '提示框拖动最小宽度为700',
         resize: true,
-        height: 500,
+        width: 800,
+        height: 400,
+        minWidth: 700,
         minHeight: 300
       })
     }
