@@ -48,6 +48,9 @@ export const decrease =
 export const modifyDateField =
   ({ emit, props, state }) =>
   (type, value) => {
+    if (state[type] === value) {
+      return
+    }
     switch (type) {
       case 'hours':
         emit('change', modifyTime(props.date, value, state.minutes, state.seconds))
