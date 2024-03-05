@@ -98,7 +98,7 @@ export const renderless = (
     t,
     state,
     check: check(emit),
-    filterNode: filterNode(),
+    filterNode: filterNode(props),
     nodeDrop: nodeDrop(emit),
     nodeClick: nodeClick({ emit, props, state }),
     nodeExpand: nodeExpand(emit),
