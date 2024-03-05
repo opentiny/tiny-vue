@@ -56,7 +56,7 @@ export default {
           type: 'string | number',
           defaultValue: '',
           desc: {
-            'zh-CN': "连接线长度，仅当 text-position 取值为 'right' 时生效，设置后 space 属性失效。",
+            'zh-CN': "连接线长度，仅当 text-position 取值为 'right' 时生效，设置后 space 属性失效",
             'en-US':
               "The length of the connection line and it is valid only when text-position is set to 'right'. After setting, the space property is invalid"
           },
