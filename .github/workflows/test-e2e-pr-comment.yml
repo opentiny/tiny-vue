@@ -8,6 +8,8 @@ on:
 
 jobs:
   comment:
+    permissions:
+      pull-requests: write
     name: Comment User Tip
     runs-on: ubuntu-latest
     steps:
@@ -20,7 +22,7 @@ jobs:
       - name: Save PR Id
         id: pr
         run: |
-          if [ -f user-tip.txt ]; then
+          if [ -f pr-id.txt ]; then
             echo "id=$(cat pr-id.txt)" >> $GITHUB_OUTPUT
           fi
 
@@ -39,7 +41,6 @@ jobs:
             echo 'EOF' >> $GITHUB_OUTPUT
           fi
       - uses: thollander/actions-comment-pull-request@v2
-        if: ${{ steps.txtToOutput.outputs.text && steps.pr.outputs.id }}
         with:
           message: |
             ${{ steps.txtToOutput.outputs.text }}
