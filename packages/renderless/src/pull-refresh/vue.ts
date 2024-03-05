@@ -65,10 +65,8 @@ export const renderless = (props, { watch, onMounted, reactive, onBeforeUnmount 
 
   watch(
     () => props.hasMore,
-    (value) => {
-      if (!value) {
-        state.hasMore = false
-      }
+    (value: boolean) => {
+      state.hasMore = value
     },
     { immediate: true }
   )

@@ -21,6 +21,6 @@ const data = reactive([
 
 const handleClick = (index, node) => {
   active.value = index
-  Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
+  Modal.message({ message: `节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`, status: 'info' })
 }
 </script>

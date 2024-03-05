@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Steps as TinySteps } from '@opentiny/vue'
+import { Steps as TinySteps, Modal } from '@opentiny/vue'
 
 const stepsData = ref([
   {
