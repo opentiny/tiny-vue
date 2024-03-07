@@ -1,10 +1,10 @@
 export const classes = {
   'card': 'overflow-hidden bg-color-bg-1 border hover:shadow',
 
-  'size-large': 'rounded-lg min-w-[theme(spacing.54)]',
-  'size-medium': 'rounded-lg min-w-[theme(spacing.54)]',
+  'size-large': 'rounded-lg min-w-[theme(spacing.112)]',
+  'size-medium': 'rounded-lg min-w-[theme(spacing.72)]',
   'size-small': 'rounded-lg min-w-[theme(spacing.54)]',
-  'size-mini': 'rounded min-w-[theme(spacing.54)]',
+  'size-mini': 'rounded min-w-[theme(spacing.32)]',
 
   'size-large-padding': 'p-4',
   'size-medium-padding': 'p-3',

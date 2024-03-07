@@ -61,7 +61,7 @@
       @apply inline-block;
       @apply text-left;
       @apply leading-5;
-      @apply pt-0 pr-0 pb-1 pl-0;
+      @apply pt-0 pr-0 ~'pb-0.5' pl-0;
       @apply h-5;
       @apply box-content;
       @apply w-full;
@@ -100,6 +100,17 @@
 
       &[x-placement^='bottom'] {
         @apply ~'mt-1.5';
+      }
+    }
+  }
+
+  &.asterisk-form {
+    @apply overflow-visible;
+
+    .@{form-item-prefix-cls} {
+      .@{form-item-prefix-cls}__label {
+        @apply overflow-hidden;
+        @apply relative;
       }
     }
   }

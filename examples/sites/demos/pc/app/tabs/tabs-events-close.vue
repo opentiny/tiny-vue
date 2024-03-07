@@ -1,5 +1,5 @@
 <template>
-  <tiny-tabs v-model="activeName" tab-style="card" :with-close="true" @close="close">
+  <tiny-tabs v-model="activeName" tab-style="card" :with-close="true" :before-close="beforeClose" @close="close">
     <tiny-tab-item
       :key="item.name"
       v-for="item in Tabs"
@@ -54,6 +54,10 @@ export default {
     }
   },
   methods: {
+    beforeClose(name) {
+      // 只能关闭标签页“其他组件”
+      return name === 'fifth'
+    },
     close(name) {
       this.$message({
         title: 'close 事件',

@@ -7,6 +7,11 @@
   @apply relative;
   @apply leading-none;
 
+  &--line {
+    @apply flex;
+    @apply items-center;
+  }
+
   &.is-success {
     .progress-status(theme('colors.color.success.DEFAULT'));
   }

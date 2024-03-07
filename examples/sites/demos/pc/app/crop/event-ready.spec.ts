@@ -8,7 +8,6 @@ test('ready 事件', async ({ page }) => {
   await page.locator('.tiny-crop__dialog-content__handle__button > div:nth-child(9)').click()
   await page.getByRole('button', { name: '销毁 cropper' }).click()
   await page.getByRole('button', { name: '图片裁剪' }).click()
-  await page.locator('.icon').first().click()
   await page.locator('.tiny-crop__dialog-content__handle__button > div:nth-child(3)').click()
   await page.locator('div:nth-child(4) > .tiny-svg').click()
 })

@@ -1,5 +1,5 @@
 <template>
-  <tiny-tabs v-model="activeName" tab-style="card" :with-close="true" @close="close">
+  <tiny-tabs v-model="activeName" tab-style="card" :with-close="true" :before-close="beforeClose" @close="close">
     <tiny-tab-item
       :key="item.name"
       v-for="item in Tabs"
@@ -48,6 +48,10 @@ const Tabs = ref([
 const instance = getCurrentInstance()
 const { $message } = instance.appContext.config.globalProperties
 
+function beforeClose(name) {
+  // 只能关闭标签页“其他组件”
+  return name === 'fifth'
+}
 function close(name) {
   $message({
     title: 'close 事件',

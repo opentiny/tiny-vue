@@ -282,6 +282,45 @@ export default {
           pcDemo: 'tabs-events-close',
           mobileDemo: 'add-delete-tab',
           mfDemo: ''
+        },
+        {
+          name: 'beforeClose',
+          type: 'Function',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '关闭页签前的回调函数，入参为页签名。如果函数返回false 或 拒绝的Promise，则不关闭页签',
+            'en-US':
+              'Callback function before closing a tab. The input parameter is the tab name. If the function returns false or a rejected Promise, the tab is not closed.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'tabs-events-close',
+          mfDemo: ''
+        },
+        {
+          name: 'overflow-title',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '页签是否在超过 title-width 省略显示',
+            'en-US':
+              'Callback function before closing a tab. The input parameter is the tab name. If the function returns false or a rejected Promise, the tab is not closed.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'overflow-title',
+          mfDemo: ''
+        },
+        {
+          name: 'title-width',
+          type: 'String',
+          defaultValue: '256px',
+          desc: {
+            'zh-CN': '当 overflow-title 为 true 时，指定页签标题的最大宽度',
+            'en-US':
+              'Callback function before closing a tab. The input parameter is the tab name. If the function returns false or a rejected Promise, the tab is not closed.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'overflow-title',
+          mfDemo: ''
         }
       ],
       events: [

@@ -179,7 +179,6 @@ import ActionSheet from '@opentiny/vue-action-sheet'
 import '@opentiny/vue-theme-mobile/input/index.less'
 
 export default defineComponent({
-  inheritAttrs: false,
   emits: [
     'update:modelValue',
     'change',
@@ -190,7 +189,8 @@ export default defineComponent({
     'keydown',
     'paste',
     'mouseenter',
-    'mouseleave'
+    'mouseleave',
+    'input'
   ],
   components: {
     IconClose: iconClose(),

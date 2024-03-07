@@ -443,7 +443,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 table.api-table {
   width: 100%;
   table-layout: fixed;

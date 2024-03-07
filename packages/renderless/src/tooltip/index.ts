@@ -131,7 +131,7 @@ export const setExpectedState =
 
 /* istanbul ignore next */
 export const destroyed =
-  ({ state, api }: Pick<ITooltipRenderlessParams, 'state' | 'api'>) =>
+  ({ state, api, vm }: Pick<ITooltipRenderlessParams, 'state' | 'api' | 'vm'>) =>
   () => {
     const reference = state.referenceElm
 
@@ -144,6 +144,11 @@ export const destroyed =
       off(reference, 'focus', api.focusHandler)
       off(reference, 'blur', api.handleBlur)
       off(reference, 'click', api.removeFocusing)
+    }
+
+    if (vm.popperVM) {
+      typeof vm.popperVM.$destroy === 'function' && vm.popperVM.$destroy()
+      vm.popperVM = null
     }
   }
 

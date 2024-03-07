@@ -1,5 +1,5 @@
 <template>
-  <tiny-card title="这是卡片标题" type="image" :src="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`">
+  <tiny-card title="这是卡片标题" type="image" :src="imageUrl">
     <p>
       这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，
       这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，这是一段长文本内容，
@@ -15,7 +15,9 @@ export default {
     TinyCard: Card
   },
   data() {
-    return {}
+    return {
+      imageUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`
+    }
   }
 }
 </script>

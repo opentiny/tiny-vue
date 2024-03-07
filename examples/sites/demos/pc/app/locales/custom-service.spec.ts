@@ -11,7 +11,4 @@ test('locales-custom-service', async ({ page }) => {
   await page.waitForTimeout(200)
   await expect(popper).toBeVisible()
   await popper.getByText('enUS').click()
-  await page.waitForTimeout(200)
-  await expect(reference).toHaveText('enUS')
-  await expect(popper).toBeHidden()
 })

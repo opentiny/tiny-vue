@@ -235,13 +235,13 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .demo-desc {
   font-size: 16px;
   line-height: 1.7em;
   margin: 12px 0;
 
-  code {
+  :deep(code) {
     color: #476582;
     padding: 4px 8px;
     margin: 0 4px;

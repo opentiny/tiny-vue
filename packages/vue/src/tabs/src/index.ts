@@ -62,7 +62,10 @@ export const tabsProps = {
   optimized: {
     type: Boolean,
     default: true
-  }
+  },
+  beforeClose: Function,
+  overflowTitle: Boolean,
+  titleWidth: String
 }
 
 export default defineComponent({

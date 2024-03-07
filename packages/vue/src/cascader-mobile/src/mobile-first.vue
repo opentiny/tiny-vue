@@ -113,7 +113,7 @@
             v-show="state.search.input && !state.search.filterOptions.length"
             class="w-full flex justify-center items-center text-center flex-auto"
           >
-            <tiny-exception component-page type="noresult"></tiny-exception>
+            <tiny-exception component-page type="noresult" tiny_mode="mobile-first" tiny_mode_root></tiny-exception>
           </div>
         </div>
       </div>

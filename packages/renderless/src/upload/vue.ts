@@ -52,13 +52,15 @@ export const api = [
 export const renderless = (
   props: IUploadProps,
   { computed, inject, reactive, onMounted, onBeforeUnmount }: ISharedRenderlessParamHooks,
-  { refs, service, t }: IUploadRenderlessParamUtils,
+  { refs, service, t, useBreakpoint }: IUploadRenderlessParamUtils,
   { Modal }: IFileUploadModalVm & { CryptoJS: object; Streamsaver: object }
 ): IUploadApi => {
   const api = {} as IUploadApi
   const uploader = inject('uploader') as IFileUploadVm
   const constants = uploader.$constants
+  const { current } = useBreakpoint()
   const state: IUploadState = reactive({
+    currentBreakpoint: current,
     mouseover: false,
     reqs: {},
     uploader,

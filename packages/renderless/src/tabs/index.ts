@@ -122,16 +122,32 @@ export const handleTabClick =
     }
   }
 
-export const handleTabRemove = (emit: ITabsRenderlessParams['emit']) => (pane: ITabsPane, event: Event) => {
-  if (pane.disabled) {
-    return
+export const handleTabRemove =
+  ({ emit, props }: Pick<ITabsRenderlessParams, 'emit' | 'props'>) =>
+  (pane: ITabsPane, event: Event) => {
+    if (pane.disabled) {
+      return
+    }
+
+    event.stopPropagation()
+
+    const emitEvent = () => {
+      emit('edit', pane.name, 'remove')
+      emit('close', pane.name)
+    }
+
+    if (typeof props.beforeClose === 'function') {
+      const beforeCloseResult = props.beforeClose(pane.name)
+
+      if (beforeCloseResult && beforeCloseResult.then) {
+        beforeCloseResult.then((res) => res && emitEvent())
+      } else {
+        beforeCloseResult && emitEvent()
+      }
+    } else {
+      emitEvent()
+    }
   }
-
-  event.stopPropagation()
-
-  emit('edit', pane.name, 'remove')
-  emit('close', pane.name)
-}
 
 export const handleTabAdd = (emit: ITabsRenderlessParams['emit']) => () => {
   emit('edit', null, 'add')

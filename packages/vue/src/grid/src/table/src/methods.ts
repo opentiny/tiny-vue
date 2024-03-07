@@ -593,6 +593,9 @@ const Methods = {
   // 获取表格所有数据
   getData(rowIndex) {
     let tableSynchData = this.data || this.tableSynchData
+    if (!tableSynchData) {
+      return tableSynchData
+    }
     if (!arguments.length) {
       return tableSynchData.slice(0)
     }

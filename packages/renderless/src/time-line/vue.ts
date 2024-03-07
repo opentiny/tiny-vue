@@ -63,7 +63,7 @@ export const renderless = (
     getStatus: getStatus({ state, t }),
     handleClick: handleClick({ emit, state }),
     getStatusCls: getStatusCls({ constants, state }),
-    computedStackNodes: computedStackNodes({ state, constants }),
+    computedStackNodes: computedStackNodes({ state, props }),
     changeStatus: changeStatus({ state }),
     computedWrapperClass: computedWrapperClass({ props }),
     toggleFold: toggleFold({ props })

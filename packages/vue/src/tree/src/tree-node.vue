@@ -102,6 +102,7 @@
             :disabled="!!node.disabled"
             :validate-event="false"
             @change="handleCheckChange"
+            @click.stop="handleClick($event, 'checkbox')"
           >
           </tiny-checkbox>
           <tiny-radio

@@ -17,6 +17,7 @@
 
   &--base {
     @apply text-xs;
+    @apply leading-5;
   }
 
   &--medium {
@@ -24,8 +25,8 @@
     @apply ~'h-4.5';
     @apply ~'py-0.5';
     @apply box-border;
-
-    .@{link-prefix-cls}__inner {
+    @apply ~'leading-5.5';
+    .@{link-prefix-cls}__inner{
       @apply ~'h-4.5';
       @apply flex;
       @apply items-center;
@@ -34,6 +35,11 @@
 
   &,
   &__inner {
+    @apply max-w-full;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+    @apply whitespace-nowrap;
+
     svg {
       @apply text-base;
     }

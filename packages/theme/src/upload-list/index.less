@@ -334,6 +334,13 @@
     }
   }
 
+  &__download-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
   &--picture-card {
     margin: 0;
     display: inline;
@@ -630,6 +637,10 @@
 
       &.selected {
         border-color: #0067d1;
+      }
+
+      &.compact {
+        min-width: 448px;
       }
 
       &:not(:last-child) {

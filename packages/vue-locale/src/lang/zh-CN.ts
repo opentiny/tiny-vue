@@ -28,6 +28,11 @@ export default {
       empty: '为空',
       nonEmpty: '不为空'
     },
+    queryBuilder: {
+      addItem: '新增条件',
+      addGroup: '新增子条件组',
+      removeGroup: '移除条件组'
+    },
     wizard: {
       previousStep: '上一步',
       nextStep: '下一步',

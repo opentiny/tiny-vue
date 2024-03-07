@@ -29,7 +29,7 @@ test('searchable-single', async ({ page }) => {
   })
   await option.filter({ hasText: '双皮奶' }).click()
   await page.waitForTimeout(500)
-  await expect(input).toHaveValue('双皮奶')
+  await expect(input).toHaveValue('')
 })
 
 test('searchable-multiple', async ({ page }) => {

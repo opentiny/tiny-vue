@@ -122,18 +122,14 @@
     }
 
     .tip-wrap {
-      display: inline-block;
-      width: 100%;
+      display: flex;
+      align-items: center;
       padding-left: 16px;
       color: #aeaeae;
 
       .tip-content {
         font-size: 12px;
-        line-height: 28px;
         text-align: left;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
     }
   }
@@ -291,6 +287,7 @@
     z-index: 1;
   }
 
+  // tiny 新增
   &.is-hidden {
     display: none;
   }

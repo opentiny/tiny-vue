@@ -85,7 +85,7 @@ export const handleSelectChange =
 
 export const handleClick =
   ({ api, vm, props, state }) =>
-  (e) => {
+  (e, trigger) => {
     const store = state.tree.state.store
 
     state.tree.clearCurrentStore(props.node)
@@ -100,10 +100,9 @@ export const handleClick =
 
     state.tree.currentNode = vm
 
-    if (state.tree.checkOnClickNode && !props.node.disabled) {
+    if (state.tree.checkOnClickNode && !props.node.disabled && trigger !== 'checkbox') {
       e.target.checked = !props.node.checked
       // 当点击节点文字时，需要通知checkbox
-
       api.handleCheckChange(null, e)
     }
 
@@ -114,20 +113,18 @@ export const handleClick =
         state.tree.$emit('node-click', props.node.data, props.node, vm)
         return
       }
+
+      api.handleExpandClick(false)
     } else {
       if (!state.tree.collapsible || !state.tree.expandOnClickNode) {
         !props.node.disabled && state.tree.$emit('node-click', props.node.data, props.node, vm)
 
         return
       }
-    }
 
-    if (!state.tree.onlyCheckChildren) {
       if (state.tree.expandOnClickNode && isCheck) {
         api.handleExpandClick(isCheck)
       }
-    } else {
-      api.handleExpandClick(false)
     }
   }
 

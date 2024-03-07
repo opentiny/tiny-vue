@@ -28,6 +28,11 @@ export default {
       empty: 'Empty',
       nonEmpty: 'Non-empty'
     },
+    queryBuilder: {
+      addItem: 'Add Rule',
+      addGroup: 'Add Rule Group',
+      removeGroup: 'Del Rule Group'
+    },
     wizard: {
       previousStep: 'LastStep',
       nextStep: 'NextStep',

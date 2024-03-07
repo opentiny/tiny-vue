@@ -344,7 +344,7 @@ function getTableAttrs(args) {
 
   return {
     class: {
-      'tiny-grid': 1,
+      'tiny-grid h-full sm:h-auto !bg-transparent sm:!bg-color-bg-1 after:border-none sm:after:border-solid': 1,
       [`size__${vSize}`]: vSize,
       'tiny-grid-editable': editConfig,
       [map.showHeader]: showHeader,

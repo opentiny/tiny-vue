@@ -84,6 +84,7 @@
             v-if="!state.isDouble"
             type="text"
             :value="state.slotValue"
+            @change="inputOnChange"
             @focus="handleSlotInputFocus"
             @blur="handleSlotInputBlur"
             @input="handleSlotInput($event)"
@@ -136,7 +137,8 @@ export default defineComponent({
     'unit',
     'height',
     'range',
-    'formatTooltip'
+    'formatTooltip',
+    'changeCompat'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ISliderApi

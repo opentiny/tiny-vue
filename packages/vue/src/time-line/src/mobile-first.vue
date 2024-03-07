@@ -134,7 +134,7 @@ import { IconChevronDown, IconChevronUp } from '@opentiny/vue-icon'
 
 export default defineComponent({
   emits: ['click'],
-  props: [...props, 'vertical', 'nameField', 'timeField', 'tipsField', 'autoColorField', 'data', 'space', 'subField'],
+  props: [...props, 'vertical', 'nameField', 'timeField', 'tipsField', 'autoColorField', 'data', 'space', 'subField', 'foldDisabled', 'nodeMax', 'limitedNodes'],
   components: { IconChevronDown: IconChevronDown(), IconChevronUp: IconChevronUp() },
   setup(props, context): any {
     return setup({ props, context, renderless, api })

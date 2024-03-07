@@ -393,6 +393,7 @@ export const sortableEvent =
       return
     }
 
+    // eslint-disable-next-line new-cap
     const navSortableObj = new props.dropConfig.plugin(vm.$refs.nav, {
       sort: true,
       draggable: '.tiny-tabs__item',
@@ -405,7 +406,7 @@ export const sortableEvent =
       onStart(event) {
         api.handleTabDragStart(event)
       },
-      onEnd(event) {
+      onEnd() {
         api.handleTabDragEnd()
       }
     })
@@ -423,4 +424,31 @@ export const watchCurrentName =
         tabBarVnode.state.barStyle = tabBarVnode.computedBarStyle(tabBarVnode, state)
       }
     })
+  }
+
+export const handleTitleMouseenter =
+  ({ state, vm }) =>
+  (e, title) => {
+    const dom = e.target
+
+    if (dom && dom.scrollWidth > dom.offsetWidth) {
+      const tooltip = vm.$refs.tooltip
+      tooltip.state.referenceElm = dom
+      tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
+      tooltip.doDestroy()
+
+      state.tooltipContent = title
+      state.tooltipVisible = true
+
+      setTimeout(tooltip.updatePopper, 20)
+    }
+  }
+
+export const handleTitleMouseleave =
+  ({ state }) =>
+  () => {
+    state.tooltipVisible = false
+    setTimeout(() => {
+      state.tooltipContent = ''
+    }, 20)
   }
