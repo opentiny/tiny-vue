@@ -139,7 +139,7 @@
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } from 'vue'
 import { marked } from 'marked'
-import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
+import { Anchor, ButtonGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
@@ -159,9 +159,6 @@ export default defineComponent({
     TinyCollapseItem: CollapseItem,
     AsyncHighlight,
     VersionTip
-  },
-  directives: {
-    loading: Loading.directive
   },
   setup() {
     const anchorRefreshKey = ref(0)
@@ -558,13 +555,6 @@ table.api-table {
   }
 }
 
-.markdown-top-body,
-.all-demos-container {
-  & > :deep(.tiny-loading) svg {
-    height: 36px;
-    width: 36px;
-  }
-}
 .all-demos-container {
   margin-top: 24px;
 }
