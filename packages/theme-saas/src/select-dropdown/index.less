@@ -5,6 +5,8 @@
 @tree-prefix-cls: ~'@{css-prefix}tree';
 @popper-prefix-cls: ~'@{css-prefix}popper';
 @scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
+@recycle-scroller-prefix-cls: ~'@{css-prefix}recycle-scroller';
+@select-dropdown__item-prefix-cls:~'@{css-prefix}select-dropdown__item';
 
 .@{select-dropdown-prefix-cls} {
   @apply absolute;
@@ -34,23 +36,37 @@
     }
   }
 
-  &__empty-wrap {
+  & .@{recycle-scroller-prefix-cls}{
+    list-style: none;
+
+    .@{select-dropdown__item-prefix-cls}{
+      margin-right: 0
+    }
+
+    &__slot{
+      .aui-select-dropdown__item{
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__empty {
     @apply ~'py-2.5 px-0';
     @apply m-0;
     @apply text-center;
     @apply text-color-text-secondary;
     @apply text-xs;
-
-    .@{select-dropdown-prefix-cls}__empty-images {
-      background-image: url('../images/select-nodata.png');
-      @apply w-16;
-      @apply h-16;
-      @apply mb-2;
-      @apply bg-cover;
-      @apply bg-no-repeat;
-      @apply inline-block;
-      @apply align-bottom;
-    }
+  }
+  // tiny 新增
+  .@{select-dropdown-prefix-cls}__empty-images {
+    background-image: url('../images/select-nodata.png');
+    @apply w-16;
+    @apply h-16;
+    @apply mb-2;
+    @apply bg-cover;
+    @apply bg-no-repeat;
+    @apply inline-block;
+    @apply align-bottom;
   }
 
   & &__wrap {

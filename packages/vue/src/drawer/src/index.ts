@@ -4,7 +4,8 @@ import template from 'virtual-template?pc|mobile-first'
 const $constants = {
   SCROLL_LOCK_CLASS(mode: string) {
     const scrollLockClasses = {
-      'mobile-first': 'overflow-hidden'
+      'mobile-first': 'overflow-hidden',
+      'pc': 'tiny-popup-parent--hidden tiny-dialog-box__scroll-lock'
     }
     return (scrollLockClasses[mode] || '') as string
   },
@@ -62,7 +63,8 @@ export const drawerProps = {
     type: Number,
     default: 2000
   },
-  beforeClose: Function
+  beforeClose: Function,
+  tipsProps: Object
 }
 
 export default {

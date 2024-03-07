@@ -31,7 +31,6 @@ import Checkbox from '@opentiny/vue-checkbox'
 import '@opentiny/vue-theme-mobile/checkbox-group/index.less'
 
 export default defineComponent({
-  inheritAttrs: false,
   components: {
     Checkbox
   },

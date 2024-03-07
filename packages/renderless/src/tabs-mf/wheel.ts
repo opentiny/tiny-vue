@@ -84,5 +84,6 @@ const getWheelListener = ({ addApiName, removeApiName, prefix, support, window }
     const cb = elemCbMap.get(elem)
 
     elem[removeApiName](prefix + eventName, cb, useCapture || false)
+    elemCbMap.delete(elem)
   }
 })

@@ -16,6 +16,7 @@
     :tabindex="tabindex"
     @click="toggle"
     @keydown.space="toggle"
+    @keydown.enter="toggle"
   >
     <span :class="state.innerClasses">
       <div v-if="!mini && state.showText">

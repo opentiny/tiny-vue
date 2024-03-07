@@ -81,12 +81,11 @@
                           >
                           </version-tip>
                         </td>
-                        <td v-if="!key.includes('slots')">
+                        <td v-if="!key.includes('slots')" @click="handleTypeClick">
                           <a
                             v-if="row.typeAnchorName"
                             :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
                             v-html="row.type"
-                            @click="handleTypeClick"
                           ></a>
                           <span v-else v-html="row.type"></span>
                         </td>
@@ -370,7 +369,10 @@ export default defineComponent({
       },
       // 点击api 区域的type列
       handleTypeClick: (ev) => {
-        changeActiveNames(ev.target.hash, true)
+        const hash = ev.target.hash
+        if (hash) {
+          changeActiveNames(hash, true)
+        }
       },
       // 目录列表上的点击
       handleAnchorClick: (e, data) => {
@@ -441,7 +443,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 table.api-table {
   width: 100%;
   table-layout: fixed;

@@ -1,7 +1,7 @@
 export const tinyDrawerAuroraTheme = {
   'ti-drawer-min-width': '30%',
   'ti-drawer-close-icon-size': 'var(--ti-common-font-size-3)',
-  'ti-drawer-footer-text-align': 'center',
+  'ti-drawer-footer-justify-content': 'center',
   'ti-drawer-padding-left': '0px',
   'ti-drawer-padding-right': '0px',
   'ti-drawer-head-title-font-weight': 'var(--ti-common-font-weight-4)',

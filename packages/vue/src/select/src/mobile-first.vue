@@ -179,9 +179,7 @@
 
         <span v-else :class="[gcls('tags-text'), 'flex']">
           <tiny-tooltip effect="light" placement="top" :disabled="!showTips || state.device === 'mb'">
-            <span
-              class="inline-block w-full whitespace-nowrap text-ellipsis overflow-hidden text-color-text-disabled text-xs"
-            >
+            <span class="inline-block w-full whitespace-nowrap text-ellipsis overflow-hidden text-color-text-disabled">
               <span v-for="item in state.selected" :key="item.value">
                 <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
                 >;
@@ -286,7 +284,7 @@
           ></icon-close>
           <component
             v-show="!(remote && filterable && !remoteConfig.showIcon)"
-            :is="state.getIcon.icon"
+            :is="dropdownIcon"
             :class="
               m(
                 gcls('caret'),
@@ -361,34 +359,71 @@
             :show-checked-mark="state.device === 'mb'"
             v-bind="treeOp"
           ></tiny-tree>
-
+          <template v-if="optimization && renderType !== 'tree'">
+            <div :style="{ height: `${state.optimizeStore.recycleScrollerHeight}px` }">
+              <tiny-recycle-scroller
+                ref="scrollbar"
+                style="height: 100%"
+                :key-field="valueField"
+                :key="state.magicKey"
+                :list-class="[
+                  'tiny-select-dropdown__wrap sm:max-h-56 pb-1 sm:pb-0',
+                  state.device === 'mb' ? 'scrollbar-size-0' : ''
+                ]"
+                :items="state.datas"
+                :item-size="state.optimizeOpts.optionHeight"
+                v-show="!state.emptyFlag && !loading"
+              >
+                <template #before>
+                  <tiny-option
+                    v-if="state.showNewOption"
+                    highlightClass="sm:mb-0"
+                    created
+                    :value="state.device === 'mb' ? state.queryValue : state.query"
+                  >
+                  </tiny-option>
+                </template>
+                <template #default="{ item }">
+                  <tiny-option
+                    :class="['absolute w-full']"
+                    :key="`${item[valueField]}`"
+                    :label="item[textField]"
+                    :value="item[valueField]"
+                    :disabled="item.disabled"
+                    :required="item.required"
+                    :highlight-class="item._highlightClass"
+                    :events="item.events"
+                    @mousedown.stop
+                  >
+                  </tiny-option>
+                </template>
+              </tiny-recycle-scroller>
+            </div>
+          </template>
           <tiny-scrollbar
-            v-if="renderType !== 'tree'"
+            v-if="!optimization && renderType !== 'tree'"
             ref="scrollbar"
-            :tag="state.optimizeStore.flag ? 'div' : 'ul'"
-            :native="state.optimizeStore.flag"
-            :view-style="state.optimizeStore.flag ? state.optimizeStore.viewStyle : ''"
+            tag="ul"
             :wrap-class="[
               'tiny-select-dropdown__wrap sm:max-h-56 pb-1 sm:pb-0',
-              state.optimizeStore.flag ? 'virtual' : '',
               state.device === 'mb' ? 'scrollbar-size-0' : ''
             ]"
-            :view-class="['tiny-select-dropdown__list', state.optimizeStore.flag ? 'virtual' : '']"
+            :view-class="['tiny-select-dropdown__list']"
             @mousedown.stop
             v-show="state.options.length > 0 && !loading"
           >
-            <tiny-option
-              :value="state.device === 'mb' ? state.queryValue : state.query"
-              created
-              v-if="state.showNewOption && !state.optimizeStore.flag"
-            >
-            </tiny-option>
+            <slot name="dropdown"></slot>
             <div
-              v-if="multiple && showCheck && showAlloption && !filterable && !state.multipleLimit"
+              v-if="multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote"
               class="whitespace-nowrap box-border py-0 h-10 leading-10 sm:h-8 sm:leading-8 text-sm sm:text-xs pl-0 pr-3 sm:px-3 my-1 sm:m-1 rounded cursor-pointer"
-              :class="{ hover: state.hoverIndex === -9, virtual: state.optimizeStore.flag }"
-              data-tag="tiny-option"
-              @click.stop="toggleCheckAll"
+              :class="[
+                {
+                  hover: state.hoverIndex === -9 && state.selectCls !== 'checked-sur'
+                },
+                { 'text-color-brand sm:bg-color-fill-6 bg-color-bg-1': state.selectCls === 'checked-sur' }
+              ]"
+              data-tag="tiny-select-dropdown-item"
+              @click.stop="toggleCheckAll(false)"
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
             >
@@ -402,16 +437,53 @@
                 t('ui.base.all')
               }}</span>
             </div>
+
+            <div
+              v-if="
+                multiple &&
+                showCheck &&
+                showAlloption &&
+                !state.multipleLimit &&
+                state.query &&
+                !state.emptyText &&
+                !remote
+              "
+              class="whitespace-nowrap box-border py-0 h-10 leading-10 sm:h-8 sm:leading-8 text-sm sm:text-xs pl-0 pr-3 sm:px-3 my-1 sm:m-1 rounded cursor-pointer"
+              :class="[
+                {
+                  hover: state.hoverIndex === -9 && state.filteredSelectCls !== 'checked-sur'
+                },
+                { 'text-color-brand sm:bg-color-fill-6 bg-color-bg-1': state.filteredSelectCls === 'checked-sur' }
+              ]"
+              data-tag="tiny-select-dropdown-item"
+              @click.stop="toggleCheckAll(true)"
+              @mousedown.stop
+              @mouseenter="state.hoverIndex = -9"
+            >
+              <component
+                :is="`icon-${state.filteredSelectCls}`"
+                :class="
+                  m([
+                    '-mt-0.5 mr-2 fill-color-icon-secondary',
+                    state.filteredSelectCls !== 'check' && 'fill-color-brand'
+                  ])
+                "
+              />
+              <span
+                :class="[state.filteredSelectCls === 'checked-sur' ? 'text-color-brand' : 'text-color-text-primary']"
+                >{{ t('ui.base.all') }}</span
+              >
+            </div>
+            <tiny-option
+              :value="state.device === 'mb' ? state.queryValue : state.query"
+              created
+              v-if="state.showNewOption"
+            >
+            </tiny-option>
             <slot>
               <tiny-option
-                v-for="item in state.optimizeStore.flag ? state.optimizeStore.datas : state.datas"
-                :class="[
-                  state.optimizeStore.flag ? 'absolute w-full virtual' : 'relative',
-                  {
-                    'hidden virtual-hidden':
-                      state.optimizeStore.flag && ~state.optimizeStore.hiddenOptions.indexOf(item)
-                  }
-                ]"
+                v-for="item in state.datas"
+                :class="['relative']"
                 :key="`${item[valueField]}`"
                 :label="item[textField]"
                 :value="item[valueField]"
@@ -424,11 +496,10 @@
               </tiny-option>
             </slot>
           </tiny-scrollbar>
+
           <template
             v-if="
-              renderType !== 'tree' &&
-              state.emptyText &&
-              (!allowCreate || loading || (allowCreate && state.options.length === 0))
+              renderType !== 'tree' && state.emptyText && (!allowCreate || loading || (allowCreate && state.emptyFlag))
             "
           >
             <div v-if="loadingText || slots.empty">
@@ -453,7 +524,7 @@
         m(
           'h-7 invisible',
           { 'h-6': state.selectSize === 'mini' },
-          { 'h-9': state.selectSize === 'small' },
+          { 'h-7': state.selectSize === 'small' },
           { 'h-8': state.selectSize === 'medium' }
         )
       "
@@ -484,6 +555,7 @@ import {
 import TinyTree from '@opentiny/vue-tree'
 import TinyTooltip from '@opentiny/vue-tooltip'
 import TinyFilterBox from '@opentiny/vue-filter-box'
+import RecycleScroller from '@opentiny/vue-recycle-scroller'
 import { classes } from './token'
 
 const getReference = (el, binding, vnode) => {
@@ -539,7 +611,8 @@ export default {
     IconCheck: iconCheck(),
     IconCheckedSur: iconCheckedSur(),
     IconLoading: iconLoading(),
-    IconChevronRight: iconChevronRight()
+    IconChevronRight: iconChevronRight(),
+    TinyRecycleScroller: RecycleScroller
   },
   props: [
     ...props,

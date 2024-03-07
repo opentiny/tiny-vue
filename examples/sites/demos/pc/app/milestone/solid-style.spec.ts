@@ -4,7 +4,7 @@ test('实心显示', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
   await page.goto('milestone#solid-style')
 
-  const button = page.getByRole('button').filter({ hasText: '设置 solid 值为true' })
+  const button = page.getByRole('button').filter({ hasText: '设置 solid 值为 true' })
   const nodes = page.locator('.tiny-milestone__node')
   const nodeIcons = page.locator('.tiny-milestone__icon')
   const nodeLines = page.locator('.tiny-milestone__line')

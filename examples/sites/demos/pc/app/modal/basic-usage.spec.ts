@@ -38,7 +38,7 @@ test('基本用法', async ({ page }) => {
   await page.getByRole('button', { name: /确认提示框/ }).click()
   await page.getByRole('button', { name: /取消/ }).click()
   await expect(confirm).not.toBeVisible()
-  await page.getByRole('button', { name: /确认提示框/ }).click()
+  await page.getByRole('button', { name: /支持传入 jsx 提示框/ }).click()
   await page.locator('.tiny-modal__close-btn').click()
   await expect(confirm).not.toBeVisible()
 })

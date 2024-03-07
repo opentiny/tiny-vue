@@ -16,7 +16,6 @@ test('弹窗表单', async ({ page }) => {
 
   // 验证下拉选择校验提示不会异常
   await page.locator('#form-in-dialog').locator('.tiny-select__tags-group').click()
-  await page.locator('#form-in-dialog').locator('.tiny-svg.tiny-dialog-box__close').first().click()
   await page.waitForTimeout(200)
   await expect(page.locator('.tiny-form__valid.tiny-tooltip')).not.toBeVisible()
 })

@@ -20,7 +20,8 @@
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
-    "@opentiny/vue-transfer-panel": "workspace:~"
+    "@opentiny/vue-transfer-panel": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

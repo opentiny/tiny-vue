@@ -78,7 +78,8 @@ export const cmpMenus = [
       { 'nameCn': '弹窗选择 ', 'name': 'DialogSelect ', 'key': 'dialog-select' },
       { 'nameCn': '抽屉', 'name': 'Drawer', 'key': 'drawer' },
       { 'nameCn': '过滤器面板', 'name': 'FilterPanel', 'key': 'filter-panel' },
-      { 'nameCn': '面板分割', 'name': 'Split', 'key': 'split' }
+      { 'nameCn': '面板分割', 'name': 'Split', 'key': 'split' },
+      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card' }
     ]
   },
   {
@@ -225,7 +226,8 @@ export const cmpMenus = [
       { 'nameCn': '弹出框', 'name': 'Popover', 'key': 'popover' },
       { 'nameCn': '气泡确认框组件', 'name': 'Popconfirm', 'key': 'popconfirm' },
       { 'nameCn': '模态框', 'name': 'Modal', 'key': 'modal' },
-      { 'nameCn': '通知', 'name': 'Notify', 'key': 'notify' }
+      { 'nameCn': '通知', 'name': 'Notify', 'key': 'notify' },
+      { 'name': 'FloatButton', 'nameCn': '悬浮按钮', 'key': 'float-button' }
     ]
   },
   {

@@ -77,6 +77,9 @@
     font-size: var(--ti-notify-title-font-size);
     color: var(--ti-notify-title-text-color);
     line-height: 1.5;
+    white-space: var(--ti-notify-title-white-space);
+    overflow-x: hidden;
+    text-overflow: ellipsis;
   }
 
   & &__icon {
@@ -89,7 +92,7 @@
     margin: 0;
     padding: 0;
     font-size: var(--ti-common-font-size-1);
-    word-break: break-all;
+    overflow-wrap: break-word;
     white-space: pre-wrap;
   }
 

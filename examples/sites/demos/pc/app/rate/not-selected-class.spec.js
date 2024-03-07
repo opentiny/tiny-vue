@@ -6,7 +6,7 @@ test.describe('Rate 自定义未选中图标类名', () => {
     await page.goto('rate#not-selected-class')
 
     const icon = page.locator('.tiny-rate__star > .tiny-svg')
-    const svg = page.locator('span:nth-child(5) > .tiny-svg > .st0')
+    const svg = page.locator('span:nth-child(5) > .tiny-svg > path')
 
     await icon.nth(4).hover()
     await expect(svg).toHaveAttribute(

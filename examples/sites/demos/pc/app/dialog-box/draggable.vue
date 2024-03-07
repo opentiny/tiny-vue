@@ -1,11 +1,14 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility = true"> 可拖拽弹窗 </tiny-button>
+    <tiny-button @click="dragDialog"> 可拖拽弹窗 </tiny-button>
+    <tiny-button @click="dragDialogOutSide"> 可拖拽出窗口弹窗 </tiny-button>
     <tiny-dialog-box
+      v-if="boxVisibility"
       draggable
       v-model:visible="boxVisibility"
       title="鼠标移入标题区域单击拖拽"
       width="30%"
+      :drag-outside-window="isDragOutSideFlag"
       @drag-start="dragStart"
       @drag-end="dragEnd"
       @drag-move="dragMove"
@@ -17,7 +20,7 @@
           <tiny-input v-model="input" clearable></tiny-input>
         </div>
       </template>
-      <span>dialog-box内容</span>
+      <span>dialog-box 内容</span>
       <template #footer>
         <tiny-button type="primary" @click="boxVisibility = false"> 确 定 </tiny-button>
       </template>
@@ -38,7 +41,8 @@ export default {
     return {
       input: '鼠标移入标题区域单击拖拽',
       boxVisibility: false,
-      isNotifyMoving: false
+      isNotifyMoving: false,
+      isDragOutSideFlag: false
     }
   },
   methods: {
@@ -65,6 +69,14 @@ export default {
     },
     beforeClose() {
       Modal.message({ message: 'before-close', status: 'info' })
+    },
+    dragDialog() {
+      this.boxVisibility = true
+      this.isDragOutSideFlag = false
+    },
+    dragDialogOutSide() {
+      this.boxVisibility = true
+      this.isDragOutSideFlag = true
     }
   }
 }

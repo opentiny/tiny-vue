@@ -60,11 +60,12 @@ export const setMenuKey =
     return newData
   }
 
-export const filterNode = () => (value, data) => {
+export const filterNode = (props) => (value, data) => {
   if (!value) {
     return true
   }
-  return data.label.includes(value)
+  const propsLabel = props.props?.label || 'label'
+  return data[propsLabel].includes(value)
 }
 
 export const watchFilterText =

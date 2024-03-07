@@ -53,5 +53,6 @@ export const removeResizeListener = (el, fn) => {
 
   if (!el[cacheKey].length) {
     el.__ro__.disconnect()
+    delete el.__ro__
   }
 }

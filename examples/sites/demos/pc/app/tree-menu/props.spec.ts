@@ -19,7 +19,8 @@ test('字段映射', async ({ page }) => {
 
   // 过滤功能
   await treeMenu.locator('.tiny-input__inner').fill('添加标签页')
-  await expect(page.getByTitle('添加标签页')).toBeVisible()
+  await page.waitForTimeout(500)
+  await expect(treeNodeContent.filter({ hasText: /^添加标签页$/ })).toBeVisible()
   await expect(treeNodeContent.filter({ hasText: /^指南$/ })).toBeHidden()
   await treeMenu.locator('.tiny-input__inner').clear()
   await expect(treeNodeContent.filter({ hasText: /^指南$/ })).toBeVisible()

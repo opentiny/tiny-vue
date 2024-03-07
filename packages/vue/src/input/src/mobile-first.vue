@@ -4,7 +4,7 @@
       m(
         'relative text-xs',
         type !== 'textarea' || slots.prepend || slots.append ? 'inline-table' : '',
-        type !== 'textarea' ? 'w-full' : 'w-max align-bottom',
+        type !== 'textarea' ? 'w-full' : 'align-bottom',
         slots.prepend || slots.append ? 'leading-normal border-separate border-spacing-0' : '',
         $attrs.class
       )

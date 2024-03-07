@@ -87,7 +87,7 @@
   "--ti-button-group-item-button-font-size": "--ti-button-group-item-btn-font-size",
   "--ti-button-group-item-button-disabled-background": "--ti-button-group-item-btn-disabled-bg-color",
   "--ti-button-group-item-button-disabled-border-color": "--ti-button-group-item-btn-disabled-border-color",
-  "--ti-button-group-item-button-disabled-color": "--ti-button-group-item-btn-disabled-text-color",
+  "--ti-button-group-item-button-disabled-color": "--ti-button-group-item-disabled-text-color",
   "--ti-button-group-item-button-hover-background": "--ti-button-group-item-btn-hover-bg-color",
   "--ti-button-group-item-button-hover-color": "--ti-button-group-item-btn-hover-text-color",
   "--ti-button-group-item-button-plain-color": "--ti-button-group-item-btn-plain-text-color",

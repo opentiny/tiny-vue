@@ -6,11 +6,13 @@
           <tiny-skeleton-item variant="circle" class="tiny-skeleton__avatar" v-if="avatar"> </tiny-skeleton-item>
           <div class="tiny-skeleton__section">
             <tiny-skeleton-item class="tiny-skeleton-item__title"></tiny-skeleton-item>
-            <tiny-skeleton-item
-              v-for="(item, index) in rows"
-              :key="item"
-              :style="{ width: toPxStyle(rowsWidth[index]) }"
-            ></tiny-skeleton-item>
+            <div class="tiny-skeleton-item__rows">
+              <tiny-skeleton-item
+                v-for="(item, index) in rows"
+                :key="item"
+                :style="{ width: toPxStyle(rowsWidth[index]) }"
+              ></tiny-skeleton-item>
+            </div>
           </div>
         </div>
       </slot>

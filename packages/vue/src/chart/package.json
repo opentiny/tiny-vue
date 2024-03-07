@@ -30,7 +30,9 @@
     "@opentiny/vue-chart-pie": "workspace:~",
     "@opentiny/vue-chart-funnel": "workspace:~",
     "@opentiny/vue-chart-radar": "workspace:~",
-    "@opentiny/vue-chart-waterfall": "workspace:~"
+    "@opentiny/vue-chart-waterfall": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~"
   },
   "license": "MIT"
 }

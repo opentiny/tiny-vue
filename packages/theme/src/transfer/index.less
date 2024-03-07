@@ -80,6 +80,8 @@
     padding-right: var(--ti-transfer-button-padding-right);
     padding-top: var(--ti-transfer-button-padding-top);
     padding-bottom: var(--ti-transfer-button-padding-bottom);
+    // 避免 button中的svg字体变大后，产生的省略号
+    text-overflow: clip;
 
     &.is-with-texts {
       border-radius: var(--ti-transfer-button-border-radius);

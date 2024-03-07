@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('user-link-custom-service', async ({ page }) => {
   await page.goto('user-link#custom-service')
   const card = page.locator('.tiny-popper.tiny-user-card')
-  const reference = page.locator('#preview .tiny-userlink .tiny-popover__reference')
+  const reference = page.locator('.reference-wrapper')
   const img = card.locator('.card-top-img img')
 
   await expect(reference).toHaveText('test3')
@@ -11,7 +11,7 @@ test('user-link-custom-service', async ({ page }) => {
   await reference.click()
   await page.waitForTimeout(1000)
   await expect(card).toBeVisible()
-  await expect(img).toHaveAttribute('src', '/static/images/dog1.png')
+  await expect(img).toHaveAttribute('src', /\/images\/dog1.png/)
 
   const text = card.locator('.card-top-text')
   await expect(text).toContainText(['公共技术测试数据部门(测试数据部)'])

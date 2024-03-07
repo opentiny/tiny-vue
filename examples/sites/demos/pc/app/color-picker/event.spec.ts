@@ -5,6 +5,6 @@ test('事件触发', async ({ page }) => {
   await page.goto('color-picker#event')
   await page.locator('#event').getByRole('img').click()
   await page.getByRole('button', { name: '选择' }).click()
-  await page.locator('#event').getByRole('img').click()
+  await page.locator('#event').getByRole('img').first().click()
   await page.getByRole('button', { name: '取消' }).click()
 })

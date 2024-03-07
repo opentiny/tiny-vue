@@ -23,7 +23,9 @@
     "@opentiny/vue-row": "workspace:~",
     "@opentiny/vue-col": "workspace:~",
     "@opentiny/vue-modal": "workspace:~",
-    "@opentiny/vue-input": "workspace:~"
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-dialog-box": "workspace:~"
   },
   "license": "MIT"
 }

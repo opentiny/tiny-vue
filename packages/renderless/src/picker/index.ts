@@ -449,7 +449,7 @@ export const secondInputId =
 export const focus =
   ({ api, props, vm }) =>
   () =>
-    !props.isRange ? vm.$refs.reference.focus() : api.handleFocus()
+    !props.isRange ? vm.$refs.reference.querySelector('input').focus() : api.handleFocus()
 
 export const blur = (state) => () => state.refInput.forEach((input) => input.blur())
 
@@ -1020,7 +1020,9 @@ export const watchModelValue =
       ]
     }
 
-    api.emitChange(props.modelValue)
+    if (props.changeCompat) {
+      api.emitChange(props.modelValue)
+    }
 
     if (!valueEquals(value, oldValue) && !state.pickerVisible && props.validateEvent) {
       dispatch('FormItem', 'form.change', value)
@@ -1257,7 +1259,9 @@ const moveStart = (inputElem, moveStartIndex) => {
 // 这个是 input 组件的 input 事件，应该只有一个 event 参数，input 组件的具体值从 event.target.value 中获取。
 export const handleInput =
   ({ state, props, api }) =>
-  (event) => {
+  (val, event) => {
+    // 兼容tiny-input传参不同导致的报错问题
+    event = val.target ? val : event
     if (props.autoFormat) {
       const value = api.formatInputValue({ event, prevValue: state.displayValue })
       state.userInput = value

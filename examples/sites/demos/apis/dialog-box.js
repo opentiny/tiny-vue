@@ -62,6 +62,14 @@ export default {
           pcDemo: 'destroy-on-close'
         },
         {
+          name: 'drag-outside-window',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: { 'zh-CN': '可将弹窗拖出窗口', 'en-US': 'Pop ups can be dragged out of the window' },
+          mode: ['pc'],
+          pcDemo: 'draggable'
+        },
+        {
           name: 'dialog-class',
           type: 'string',
           defaultValue: '',
@@ -208,7 +216,7 @@ export default {
         {
           name: 'top',
           type: 'string',
-          defaultValue: '15vh',
+          defaultValue: `'15vh'`,
           desc: {
             'zh-CN': '设置弹出框距离窗口顶部的高度',
             'en-US': 'Set the height of the popup from the top of the window'
@@ -230,7 +238,7 @@ export default {
         {
           name: 'width',
           type: 'string',
-          defaultValue: '500px',
+          defaultValue: `'500px'`,
           desc: {
             'zh-CN': '弹出框的宽度',
             'en-US': 'Wideness of the dialog box that is displayed'

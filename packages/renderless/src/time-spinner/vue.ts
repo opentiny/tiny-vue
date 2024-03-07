@@ -78,7 +78,7 @@ const initState = ({ reactive, computed, props, api }) => {
   return state
 }
 
-export const renderless = (props, { computed, onMounted, reactive, watch }, { emit, vm, constants }) => {
+export const renderless = (props, { computed, onMounted, reactive, watch, nextTick }, { emit, vm, constants }) => {
   const api = {}
   const state = initState({ reactive, computed, props, api })
 
@@ -108,13 +108,14 @@ export const renderless = (props, { computed, onMounted, reactive, watch }, { em
   })
 
   watch(
-    () => props.date.getTime(),
+    () => props.date,
     () => {
       const timeType = ['hours', 'minutes', 'seconds']
 
       timeType.forEach((type) => {
         api.modifyDateField(type, Math.round(state[type] / state.step[type]) * state.step[type])
       })
+      nextTick(api.adjustSpinners)
     },
     { immediate: true }
   )

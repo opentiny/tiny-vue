@@ -41,6 +41,17 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'fold-disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '禁用折叠',
+            'en-US': 'to disable folding feature'
+          },
+          mode: ['mobile-first'],
+          mfDemo: ''
+        },
+        {
           name: 'horizontal',
           type: 'boolean',
           defaultValue: 'true',
@@ -52,11 +63,22 @@ export default {
           pcDemo: ''
         },
         {
+          name: 'limited-nodes',
+          type: 'number | string',
+          defaultValue: '3',
+          desc: {
+            'zh-CN': '折叠后展示的节点个数',
+            'en-US': 'number of nodes displayed after folding'
+          },
+          mode: ['mobile-first'],
+          mfDemo: 'limited-nodes'
+        },
+        {
           name: 'line-width',
           type: 'string | number',
           defaultValue: '',
           desc: {
-            'zh-CN': "连接线长度，仅当 text-position 取值为 'right' 时生效，设置后 space 属性失效。",
+            'zh-CN': "连接线长度，仅当 text-position 取值为 'right' 时生效，设置后 space 属性失效",
             'en-US':
               "The length of the connection line and it is valid only when text-position is set to 'right'. After setting, the space property is invalid"
           },
@@ -74,6 +96,17 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-field',
           mfDemo: ''
+        },
+        {
+          name: 'node-max',
+          type: 'number | string',
+          defaultValue: '7',
+          desc: {
+            'zh-CN': '最大显示节点数',
+            'en-US': 'maximum nodes to display'
+          },
+          mode: ['mobile-first'],
+          mfDemo: 'node-max'
         },
         {
           name: 'only-number',

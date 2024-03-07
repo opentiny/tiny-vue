@@ -83,7 +83,7 @@
             :rule-or-group="rg.ruleGroup"
             :schema="rg.schema"
           >
-            <IconPlus class="primary-svg"></IconPlus> 新增条件
+            <IconPlus class="primary-svg"></IconPlus> {{ $t('ui.queryBuilder.addItem') }}
           </component>
 
           <component
@@ -101,7 +101,7 @@
             :validation="rg.validationResult"
             :rule-or-group="rg.ruleGroup"
             :schema="rg.schema"
-            ><IconPlus class="primary-svg"></IconPlus> 新增子条件组</component
+            ><IconPlus class="primary-svg"></IconPlus> {{ $t('ui.queryBuilder.addGroup') }}</component
           >
 
           <component
@@ -120,7 +120,7 @@
             :validation="rg.validationResult"
             :rule-or-group="rg.ruleGroup"
             :schema="rg.schema"
-            ><IconDel class="primary-svg"></IconDel> 移除条件组</component
+            ><IconDel class="primary-svg"></IconDel> {{ $t('ui.queryBuilder.removeGroup') }}</component
           >
 
           <component

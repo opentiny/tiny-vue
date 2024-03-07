@@ -32,10 +32,9 @@ export const close =
       () => {
         const target = state.fullscreen || state.body ? document.body : state.target
 
-        removeClass(target, constants.PARENT_RELATIVE_CLS)
-        removeClass(target, constants.PARENT_HIDDEN_CLS)
-
         if (vm.$el && vm.$el.parentNode) {
+          removeClass(target, constants.PARENT_RELATIVE_CLS)
+          removeClass(target, constants.PARENT_HIDDEN_CLS)
           vm.$el.parentNode.removeChild(vm.$el)
         }
 

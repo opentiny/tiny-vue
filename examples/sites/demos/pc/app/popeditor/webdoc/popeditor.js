@@ -31,7 +31,7 @@ export default {
     {
       demoId: 'condition-layout',
       name: {
-        'zh-CN': '布局与配置',
+        'zh-CN': '布局',
         'en-US': 'Layout and Configuration'
       },
       desc: {
@@ -115,7 +115,7 @@ export default {
         'zh-CN':
           '<p>grid-op 当 popseletor 为 grid 时生效，目前支持配置 columns 表格列 和 data 数据源，详细配置项参考 Grid 表格组件，需同时配置 textField、valueField 字段。</p>',
         'en-US':
-          '<p>gridOp: This parameter is valid only when popseletor is set to grid. Currently, columns and data data sources can be configured. For details about the configuration items, see the Grid table component. The textField and valueField fields must be configured at the same time. </p>'
+          '<p>grid-op: This parameter is valid only when popseletor is set to grid. Currently, columns and data data sources can be configured. For details about the configuration items, see the Grid table component. The textField and valueField fields must be configured at the same time. </p>'
       },
       codeFiles: ['grid.vue']
     },
@@ -206,7 +206,7 @@ export default {
         'en-US': 'Reset'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>readonly</code> 属性设置为是否只读。</p>',
+        'zh-CN': '<p>通过 <code>readonly</code> 属性设置为是否禁用。</p>',
         'en-US': '<p>Use the <code>before-reset</code> attribute to set the hook function before reset. </p>'
       },
       codeFiles: ['readonly.vue']
@@ -309,7 +309,7 @@ export default {
       desc: {
         'zh-CN': '<p>通过 <code>value-field</code> 属性设置组件提交给后台的字段。</p>',
         'en-US':
-          'The <p><code>showPager</code> attribute is valid only when <code>popseletor</code> is set to <code>grid</code>. The default value is <code>false</code>. Pagination is not enabled. If this parameter is set to <code>true</code>, you need to configure the <code>pagerOp</code> attribute. In addition, you need to listen to the <code>page-change</code> event to change the <code>data</code> data source</p>\n of the <code>gridOp</code>'
+          'The <p><code>showPager</code> attribute is valid only when <code>popseletor</code> is set to <code>grid</code>. The default value is <code>false</code>. Pagination is not enabled. If this parameter is set to <code>true</code>, you need to configure the <code>pager-op</code> attribute. In addition, you need to listen to the <code>page-change</code> event to change the <code>data</code> data source</p>\n of the <code>grid-op</code>'
       },
       codeFiles: ['title.vue']
     },
@@ -348,7 +348,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p><code>showPager</code> 属性只有当 <code>popseletor</code> 为 <code>grid</code> 时才能生效，默认值为 <code>false</code> 不启用分页，配置为 <code>true</code> 后还需配置 <code>pagerOp</code> 属性；并且需要监听 <code>page-change</code> 事件改变 <code>gridOp</code> 的 <code>data</code> 数据源。</p>',
+          '<p><code>showPager</code> 属性只有当 <code>popseletor</code> 为 <code>grid</code> 时才能生效，默认值为 <code>false</code> 不启用分页，配置为 <code>true</code> 后还需配置 <code>pager-op</code> 属性；并且需要监听 <code>page-change</code> 事件改变 <code>grid-op</code> 的 <code>data</code> 数据源。</p>',
         'en-US':
           '<p>Enable the tree mode through the <code>popseletor</code> attribute. Then the <code>tree-op</code> attribute is the <code>op configuration mode</code> of the <code>Tree</code> component. </p>'
       },
@@ -376,7 +376,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>popseletor</code> 属性开启树模式，然后 <code>tree-op</code> 属性是 <code>Tree</code> 组件的 <code>op 配置方式</code>。</p>',
+          '<p>通过 <code>popseletor</code> 属性开启树模式，然后 <code>tree-op</code> 属性是 <code>Tree</code> 组件的 <code>op</code>配置方式。</p>',
         'en-US':
           '<p>Configure the <code>showOverflow</code> attribute on the data column to set the display and hiding of the data when the data exceeds the column width. Values can be of type boolean or string, with three values to choose from, as shown below. By default, all content is displayed in a new line. </p>\n<div class="tip custom-block"><p class="custom-block-title"> optional value description</p>\n<p>tooltip: The extra part is displayed...., and all information is displayed on the left or right. \ntitle: The value is the same as the title attribute of the native tag. \nellipsis: \'...\' is displayed, and no message is displayed. \ntrue: If the value is true, the effect is the same as that of the tooltip. </p>\n</div>'
       },
@@ -390,7 +390,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>popseletor</code> 属性开启树模式，然后 <code>tree-op</code> 属性是 <code>Tree</code> 组件的 <code>op 配置方式</code>。</p>',
+          '<p>通过 <code>popseletor</code> 属性开启树模式，然后 <code>tree-op</code> 属性是 <code>Tree</code> 组件的 <code>op</code>配置方式。</p>',
         'en-US':
           '<p>When a single option is selected, you can only click the option button to select it by default. You can also set <code>trigger</code> to <code>row</code> to select any position in the row. Alternatively, set <code>trigger</code> to <code>cell</code> and click any position in the Operation column to select it. </p>'
       },
@@ -418,7 +418,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          "\n          <p>在数据的列上配置 <code>showOverflow</code> 属性用于设置数据超出列宽时的显示和隐藏。值的类型可以为 boolean 和 string，有三个值可以选择，如下所示。默认为换行显示全部内容。</p>\n          <div class=\"tip custom-block\">\n            <p class=\"custom-block-title\">可选值说明</p>\n            <p>'tooltip'：内容超出部分显示 ...，左侧/右侧弹出提示层显示全部信息。\n            <p>'title'：和原生标签的 title 属性一致。</p>\n            <p>'ellipsis'：内容超出部分显示 ...，没有提示。</p>\n            <p>boolean：为 true 时，效果和 'tooltip' 一致。</p>\n          </div>\n        ",
+          "<p>在数据列上配置 <code>showOverflow</code> 属性用于设置数据超出列宽时的显示和隐藏。值的类型可以为 boolean 和 string，有三个值可以选择，如下所示。默认为换行显示全部内容。</p>\n          <div class=\"tip custom-block\">\n            <p class=\"custom-block-title\">可选值说明</p>\n            <p>'tooltip'：内容超出部分显示 ...，左侧/右侧弹出提示层显示全部信息。\n            <p>'title'：和原生标签的 title 属性一致。</p>\n            <p>'ellipsis'：内容超出部分显示 ...，没有提示。</p>\n            <p>boolean：为 true 时，效果和 'tooltip' 一致。</p>\n          </div>\n        ",
         'en-US':
           '<p>Configure the <code>auto-lookup</code> to false, set initialization to not request data, or call this $ref.popuptor.handleSearch() Proactively calls the request method</p>'
       },
@@ -441,7 +441,7 @@ export default {
     {
       demoId: 'show-history',
       name: {
-        'zh-CN': '设置历史记录标签页',
+        'zh-CN': '历史记录标签页',
         'en-US': ''
       },
       desc: {

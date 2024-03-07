@@ -210,7 +210,11 @@ export const datePickerProps = {
     type: Boolean,
     default: false
   },
-  formatWeeks: Function
+  formatWeeks: Function,
+  changeCompat: {
+    type: Boolean,
+    default: false
+  }
 }
 
 export default defineComponent({

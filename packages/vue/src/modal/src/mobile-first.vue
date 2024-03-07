@@ -41,6 +41,10 @@ const MOBILE_STATUS_MAPPING_COMPINENT = {
 export default defineComponent({
   props: {
     ...$props,
+    _constants: {
+      type: Object,
+      default: () => ({})
+    },
     beforeClose: Function,
     duration: { type: [Number, String], default: () => 3000 },
     escClosable: Boolean,

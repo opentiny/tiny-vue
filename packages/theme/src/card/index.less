@@ -9,3 +9,244 @@
 * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
 *
 */
+
+@import '../custom.less';
+@import './vars.less';
+
+@card-prefix-cls: ~'@{css-prefix}card';
+
+.@{card-prefix-cls} {
+  .component-css-vars-amount();
+
+  background-color: var(--ti-card-bg-color);
+  border: 1px solid;
+  line-height: 1.5;
+  overflow: hidden;
+  min-width: var(--ti-card-min-width);
+
+  &:hover {
+    box-shadow: var(--ti-card-box-shadow);
+  }
+
+  // size尺寸管理
+  &.@{card-prefix-cls}--large {
+    border-radius: var(--ti-card-large-border-radius);
+  }
+
+  &.@{card-prefix-cls}--medium {
+    border-radius: var(--ti-card-medium-border-radius);
+  }
+
+  &.@{card-prefix-cls}--small {
+    border-radius: var(--ti-card-small-border-radius);
+  }
+
+  &.@{card-prefix-cls}--mini {
+    border-radius: var(--ti-card-mini-border-radius);
+  }
+
+  &.@{card-prefix-cls}--large-width {
+    width: var(--ti-card-large-width);
+  }
+
+  &.@{card-prefix-cls}--medium-width {
+    width: var(--ti-card-medium-width);
+  }
+
+  &.@{card-prefix-cls}--small-width {
+    width: var(--ti-card-small-width);
+  }
+
+  &.@{card-prefix-cls}--mini-width {
+    width: var(--ti-card-mini-width);
+  }
+
+  // status状态管理
+  &.@{card-prefix-cls}--success {
+    border-color: var(--ti-card-success-border-color);
+  }
+
+  &.@{card-prefix-cls}--warning {
+    border-color: var(--ti-card-warning-border-color);
+  }
+
+  &.@{card-prefix-cls}--alerting {
+    border-color: var(--ti-card-alerting-border-color);
+  }
+
+  &.@{card-prefix-cls}--danger {
+    border-color: var(--ti-card-danger-border-color);
+  }
+
+  &.@{card-prefix-cls}--default {
+    border-color: var(--ti-card-default-border-color);
+  }
+
+  // 选中 禁用
+  &.@{card-prefix-cls}--item-checked {
+    border-color: var(--ti-card-checked-border-color);
+  }
+
+  &.@{card-prefix-cls}--disabled {
+    background-color: var(--ti-card-disabled-bg-color);
+  }
+
+  // body 样式
+  .@{card-prefix-cls}__body {
+    .@{card-prefix-cls}--checkbox {
+      position: relative;
+      left: 4px;
+      padding-left: 8px;
+    }
+
+    .@{card-prefix-cls}--radio {
+      position: relative;
+      left: 12px;
+      padding-top: 12px;
+    }
+
+    .@{card-prefix-cls}--image {
+      img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background-size: cover;
+      }
+    }
+
+    .@{card-prefix-cls}--video {
+      video {
+        width: 100%;
+        aspect-ratio: 16/9;
+      }
+    }
+
+    .@{card-prefix-cls}--logo {
+      flex: 1 1 0%;
+
+      &.@{card-prefix-cls}--large-padding {
+        padding: var(--ti-card-large-body-padding);
+      }
+
+      &.@{card-prefix-cls}--medium-padding {
+        padding: var(--ti-card-medium-body-padding);
+      }
+
+      &.@{card-prefix-cls}--small-padding {
+        padding: var(--ti-card-small-body-padding);
+      }
+
+      &.@{card-prefix-cls}--mini-padding {
+        padding: var(--ti-card-mini-body-padding);
+      }
+
+      & .@{card-prefix-cls}--logo__head {
+        display: flex;
+        margin-bottom: 12px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 5/2;
+        overflow: hidden;
+
+        img {
+          background-size: contain;
+        }
+      }
+
+      & .@{card-prefix-cls}--logo__title {
+        display: flex;
+        align-items: flex-start;
+      }
+
+      & .@{card-prefix-cls}--logo__title--type-logo {
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 4px;
+      }
+
+      & .@{card-prefix-cls}--logo__title--p {
+        font-size: var(--ti-card-title-font-size);
+        font-weight: var(--ti-card-title-font-weight);
+        margin-right: 8px;
+        margin-bottom: 12px;
+        line-height: 22px;
+        color: var(--ti-card-title-text-color);
+      }
+
+      & .@{card-prefix-cls}--logo__main {
+        font-size: var(--ti-card-main-font-size);
+        color: var(--ti-card-main-text-color);
+      }
+
+      & .@{card-prefix-cls}--logo__main-type-logo {
+        text-align: center;
+        padding-bottom: 8px;
+      }
+    }
+  }
+
+  // footer 样式
+  .@{card-prefix-cls}__footer {
+    width: 100%;
+
+    .@{card-prefix-cls}__footer-footer {
+      padding: 12px;
+      border-top: 1px solid #dfdfdf;
+    }
+
+    .@{card-prefix-cls}__footer-options {
+      width: 100%;
+      padding-left: 12px;
+      padding-right: 12px;
+      height: 44px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 1px solid var(--ti-card-option-top-border-color);
+      color: var(--ti-card-option-text-color);
+      font-size: var(--ti-card-option-font-size);
+
+      .@{card-prefix-cls}__footer-options-disabled {
+        color: var(--ti-card-option-disabled-text-color);
+        cursor: not-allowed;
+      }
+
+      .@{card-prefix-cls}__footer-options-div {
+        cursor: pointer;
+      }
+
+      .@{card-prefix-cls}__footer-options-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .@{card-prefix-cls}__footer-options-icon-disabled {
+        fill: var(--ti-card-option-disabled-text-color);
+      }
+
+      .@{card-prefix-cls}__footer-options-span {
+        margin-left: 4px;
+        vertical-align: middle;
+      }
+
+      .@{card-prefix-cls}__footer-options-dropdown {
+        .@{card-prefix-cls}__footer-more {
+          margin-left: 4px;
+          color: var(--ti-card-title-text-color);
+        }
+
+        .@{card-prefix-cls}__footer-dropdown-item {
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+
+        .@{card-prefix-cls}__footer-dropdown-item-disabled {
+          color: var(--ti-card-option-disabled-text-color);
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}

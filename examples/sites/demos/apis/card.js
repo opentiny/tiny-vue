@@ -1,5 +1,5 @@
 export default {
-  mode: ['mobile-first'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'Card',
@@ -14,7 +14,8 @@ export default {
             'en-US':
               'Indicates whether the card width is automatically expanded. After the setting, the card width is not fixed.'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: '',
           mfDemo: 'card-auto-width'
         },
         {
@@ -26,7 +27,8 @@ export default {
             'en-US':
               'Set single-choice, multiple-choice, single-choice, and radio. Multi-choice/checkbox. You need to set the label at the same time.'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'check-type-checkbox',
           mfDemo: 'check-type-checkbox'
         },
         {
@@ -37,7 +39,8 @@ export default {
             'zh-CN': '卡片的class',
             'en-US': 'Class of the card'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'custom-class',
           mfDemo: 'card-custom-class'
         },
         {
@@ -48,7 +51,8 @@ export default {
             'zh-CN': '卡片禁用',
             'en-US': 'Card disabled'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'card-disabled',
           mfDemo: 'card-disabled'
         },
         {
@@ -59,8 +63,9 @@ export default {
             'zh-CN': '卡片内容区域的高度',
             'en-US': 'Height of the card content area'
           },
-          mode: ['mobile-first'],
-          mfDemo: 'card-height'
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'card-height',
+          pcDemo: 'custom-class'
         },
         {
           name: 'icon-more',
@@ -70,7 +75,8 @@ export default {
             'zh-CN': '更多按钮图标，可传入一个svg图标对象进行替换',
             'en-US': 'More button icons can be replaced by a svg icon object.'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: '',
           mfDemo: 'card-icon-more'
         },
         {
@@ -81,7 +87,8 @@ export default {
             'zh-CN': 'checkbox或radio的label',
             'en-US': 'Checkbox or radio label.'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'check-type-checkbox',
           mfDemo: 'card-label'
         },
         {
@@ -92,7 +99,8 @@ export default {
             'zh-CN': '操作按钮配置',
             'en-US': ''
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'operate-bar',
           mfDemo: ''
         },
         {
@@ -103,7 +111,8 @@ export default {
             'zh-CN': '尺寸，支持large、medium、small、mini 4个尺寸，默认值为medium',
             'en-US': 'Size. The options are large, medium, small, and mini. The default value is medium.'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'card-size',
           mfDemo: 'card-size'
         },
         {
@@ -114,7 +123,8 @@ export default {
             'zh-CN': '图片或者视频的地址',
             'en-US': 'Address of a picture or video.'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'card-type',
           mfDemo: 'card-src'
         },
         {
@@ -125,7 +135,8 @@ export default {
             'zh-CN': '卡片状态，支持 success、warning、alerting、danger 4 种状态',
             'en-US': 'Card status. The value can be success, warning, alerting, or dangerous.'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'card-status',
           mfDemo: 'card-status'
         },
         {
@@ -136,7 +147,8 @@ export default {
             'zh-CN': '卡片的标题',
             'en-US': 'The title of the card.'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'card-status',
           mfDemo: 'card-title'
         },
         {
@@ -147,7 +159,8 @@ export default {
             'zh-CN': '设置卡片类型，支持 text、image、video、logo 4 种类型。',
             'en-US': 'Set the card type. The options are text, image, video, and logo.'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'card-type',
           mfDemo: 'card-type'
         },
         {
@@ -158,7 +171,8 @@ export default {
             'zh-CN': '绑定值，默认为空',
             'en-US': ''
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'check-type-checkbox',
           mfDemo: ''
         }
       ],
@@ -171,7 +185,8 @@ export default {
             'zh-CN': '组件选中/取消选中事件',
             'en-US': 'Component check/uncheck event'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'card-events',
           mfDemo: 'card-events'
         },
         {
@@ -182,8 +197,21 @@ export default {
             'zh-CN': '操作栏按钮点击事件',
             'en-US': 'Operation bar button click event'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'card-events',
           mfDemo: 'card-events'
+        },
+        {
+          name: 'click',
+          type: 'Function()',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '点击卡片事件',
+            'en-US': 'Click card event'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: '',
+          mfDemo: ''
         }
       ],
       methods: [],
@@ -196,7 +224,8 @@ export default {
             'zh-CN': '组件默认插槽',
             'en-US': 'Component Default Slot'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot',
           mfDemo: 'slot'
         },
         {
@@ -207,7 +236,8 @@ export default {
             'zh-CN': '组件默认插槽',
             'en-US': 'Component Default Slot'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot',
           mfDemo: 'slot'
         },
         {
@@ -218,7 +248,8 @@ export default {
             'zh-CN': '标题插槽',
             'en-US': 'Header Slot'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot',
           mfDemo: 'slot'
         },
         {
@@ -229,7 +260,8 @@ export default {
             'zh-CN': '标题左侧插槽',
             'en-US': 'Header Left Slot'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot',
           mfDemo: 'slot'
         },
         {
@@ -240,7 +272,8 @@ export default {
             'zh-CN': '标题右侧插槽',
             'en-US': 'Header right slot'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot',
           mfDemo: 'slot'
         }
       ]

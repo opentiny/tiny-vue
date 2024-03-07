@@ -15,7 +15,8 @@ export default defineComponent({
     'withAdd',
     'beforeLeave',
     'separator',
-    'optimized'
+    'optimized',
+    'beforeClose'
   ],
   emits: ['update:activeName', 'update:modelValue', 'click', 'edit', 'close', 'add'],
   components: { TabBar, TabPanel },

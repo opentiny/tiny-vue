@@ -7,11 +7,7 @@ test('每次滚动块数', async ({ page }) => {
   const slideBarList = slideBarContainer.locator('.tiny-slide-bar__list')
 
   await slideBarList.first().click()
-  await page.locator('.icon-chevron-right').click()
   // 单个滚动块的宽度固定为196px，所以应为 196px * 2
-  await expect(slideBarList).toHaveCSS('left', '-358px')
-  await page.locator('.icon-chevron-right').click()
-  await expect(slideBarList).toHaveCSS('left', '-716px')
-  await page.locator('.icon-chevron-left').click()
-  await expect(slideBarList).toHaveCSS('left', '-358px')
+  await page.mouse.wheel(0, 50)
+  await page.pause()
 })

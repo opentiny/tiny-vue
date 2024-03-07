@@ -298,13 +298,19 @@ export const mounted =
   ({ api, vm }: Pick<IUploadListRenderlessParams, 'api' | 'vm'>) =>
   () => {
     const el = vm.$refs.uploadList
-    el && addResizeListener(el, api.calcUploadListLiWidth)
+    if (el) {
+      addResizeListener(el, api.calcUploadListLiWidth)
+      vm._removeResizeListener = () => removeResizeListener(el, api.calcUploadListLiWidth)
+    }
   }
 
 export const destroyed =
-  ({ api, props, vm }: Pick<IUploadListRenderlessParams, 'api' | 'props' | 'vm'>) =>
+  ({ props, vm }: Pick<IUploadListRenderlessParams, 'props' | 'vm'>) =>
   () => {
-    removeResizeListener(vm.$refs.uploadList, api.calcUploadListLiWidth)
+    if (vm._removeResizeListener) {
+      vm._removeResizeListener()
+      vm._removeResizeListener = null
+    }
 
     props.files.forEach((file) => {
       removePlayEventListener({ type: 'ended', el: file.el }, file.playEvent)

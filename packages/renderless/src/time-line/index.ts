@@ -91,11 +91,11 @@ export const computedCurrent =
 export const computedIsReverse = (props: ITimelineProps) => (): boolean => props.reverse && props.vertical
 
 export const computedStackNodes =
-  ({ state, constants }: Pick<ITimelineRenderlessParams, 'state' | 'constants'>) =>
+  ({ state, props }: Pick<ITimelineRenderlessParams, 'state' | 'props'>) =>
   (): ITimelineItem[] => {
-    if (state.nodes.length >= constants.STACK_NODES_MAX) {
+    if (state.nodes.length >= props.nodeMax && !props.foldDisabled) {
       state.showData = true
-      return state.nodes.slice(0, constants.LIMITED_STACK_NODES)
+      return state.nodes.slice(0, props.limitedNodes)
     }
     return state.nodes
   }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-search v-model="value" placeholder="请输入关键词"></tiny-search>
+    <tiny-search v-model="value" placeholder="请输入关键词" :maxlength="10"></tiny-search>
     <div class="mt10">当前搜索值为：{{ value }}</div>
   </div>
 </template>

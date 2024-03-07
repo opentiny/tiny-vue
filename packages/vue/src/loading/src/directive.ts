@@ -72,7 +72,7 @@ const appendLoadingToBody = (el, binding) => {
   insertDom(document.body, el, binding)
 }
 
-const toggleLoading = (el, binding) => {
+const toggleLoading = (el, binding, maskInstance) => {
   if (binding.value) {
     hooks.nextTick(() => {
       if (binding.modifiers.fullscreen) {
@@ -96,9 +96,9 @@ const toggleLoading = (el, binding) => {
     })
   } else {
     afterLeave(
-      el.instance,
+      maskInstance,
       () => {
-        if (!el.instance.hiding) {
+        if (!maskInstance.hiding) {
           return
         }
 
@@ -109,14 +109,14 @@ const toggleLoading = (el, binding) => {
         removeClass(target, constants.PARENT_RELATIVE_CLS)
         removeClass(target, constants.PARENT_HIDDEN_CLS)
 
-        el.instance.hiding = false
+        maskInstance.hiding = false
       },
       300,
       true
     )
 
-    el.instance.state.visible = false
-    el.instance.hiding = true
+    maskInstance.state.visible = false
+    maskInstance.hiding = true
   }
 }
 
@@ -156,19 +156,19 @@ const vLoading = {
     el.mask = mask.$el
     el.maskStyle = {}
 
-    binding.value && toggleLoading(el, binding)
+    binding.value && toggleLoading(el, binding, mask)
   },
   update(el, binding) {
     el.instance.setText(el.getAttribute(constants.TEXT_ATTR))
 
     if (binding.oldValue !== binding.value) {
-      toggleLoading(el, binding)
+      toggleLoading(el, binding, el.instance)
     }
   },
   unbind(el, binding) {
     if (el.domInserted) {
       el.mask && el.mask.parentNode && el.mask.parentNode.removeChild(el.mask)
-      toggleLoading(el, { value: false, modifiers: binding.modifiers })
+      toggleLoading(el, { value: false, modifiers: binding.modifiers }, el.instance)
     }
 
     // 手动释放独立组件实例

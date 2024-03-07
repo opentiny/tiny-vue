@@ -10,6 +10,7 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import type { PropType } from 'vue'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
 export const $constants = {
@@ -20,6 +21,7 @@ export const $constants = {
   PC_SLIDER_CLS: 'tiny-slider',
   PC_RANGE_CLS: 'tiny-slider__range',
   PC_BUTTON_CLS: 'tiny-slider__handle',
+  PC_LABEL_CLS: 'tiny-slider__mark-label',
   PC_LEFT_SVG_CLS: 'tiny-slider-left-svg',
   PC_RIGHT_SVG_CLS: 'tiny-slider-right-svg',
   MOBILE_TIP_CLS: 'tiny-mobile-slider__tips',
@@ -123,6 +125,14 @@ export const sliderProps = {
   showLabel: {
     type: Boolean,
     default: false
+  },
+  changeCompat: {
+    type: Boolean,
+    default: false
+  },
+  // tiny 新增属性
+  marks: {
+    type: Object as PropType<Record<number, string>>
   }
 }
 

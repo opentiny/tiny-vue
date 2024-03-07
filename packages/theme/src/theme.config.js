@@ -37,6 +37,7 @@ export default {
   'date-picker': 'date-picker',
   'data-range': 'data-range',
   'date-table': 'date-table',
+  'date-editor': 'date-editor',
   'fall-menu': 'fall-menu',
   'form-valid': 'form__valid',
   'form-item': 'form-item',
@@ -45,7 +46,7 @@ export default {
   'ip-address': 'ip-address',
   'link-menu': 'link-menu',
   'month-range': 'month-range',
-  'month-table': 'month-table',
+  'month-table': 'month-table,year-table',
   'nav-menu': 'nav-menu',
   'option-group': 'option-group',
   'popup-horiz-menu': 'popup-horiz-menu',
@@ -59,6 +60,7 @@ export default {
   'time-range': 'time-range',
   'time-select': 'time-select',
   'scroll-text': 'scroll-text',
+  'slider-input': 'slider__input',
   'slide-bar': 'slide-bar',
   'slide-img': 'slide-img',
   'select-dropdown': 'select-dropdown',
@@ -77,5 +79,7 @@ export default {
   'user-contact': 'user-contact',
   'user-head': 'user-head',
   'user-link': 'user-link',
-  'year-table': 'year-table'
+  'year-table': 'year-table',
+  'skeleton': 'skeleton',
+  'skeleton-item': 'skeleton-item'
 }

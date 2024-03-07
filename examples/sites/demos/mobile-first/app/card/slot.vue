@@ -34,11 +34,7 @@
       </p>
       <template #footer>
         <div class="flex">
-          <img
-            :src="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/user-head.png`"
-            class="h-9 w-9"
-            alt="user-head"
-          />
+          <img :src="imageUrl" class="h-9 w-9" alt="user-head" />
           <div class="pl-4">
             <p class="text-sm">刘小华</p>
             <p class="text-xs text-color-text-secondary">2023-03-20 10:10:10</p>
@@ -60,6 +56,7 @@ export default {
   },
   data() {
     return {
+      imageUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/user-head.png`,
       options: [
         {
           text: '删除列表',

@@ -303,7 +303,8 @@ export default {
         },
         {
           name: 'http-request',
-          type: '() => Promise',
+          type: '(file: IFile) => Promise<any>',
+          typeAnchorName: 'IFile',
           defaultValue: '',
           desc: {
             'zh-CN': '覆盖默认的上传行为，可以自定义上传的实现; 由于 TinyVue 官网为 Mock 上传不能执行上传',

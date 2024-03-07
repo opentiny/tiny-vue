@@ -27,7 +27,8 @@
     "@opentiny/vue-filter-box": "workspace:~",
     "@opentiny/vue-radio": "workspace:~",
     "@opentiny/vue-radio-group": "workspace:~",
-    "@opentiny/vue-action-sheet": "workspace:~"
+    "@opentiny/vue-action-sheet": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

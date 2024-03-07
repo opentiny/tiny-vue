@@ -101,9 +101,19 @@ export default {
       scrollNext,
       scrollPrev,
       changeTab,
+      setFocus,
+      removeFocus,
+      showMoreTabs,
+      popperClass,
+      overflowTitle,
+      titleWidth,
+      handleTitleMouseenter,
+      handleTitleMouseleave,
+      // tiny 新增
+      moreIcon,
       tooltipConfig
     } = this
-    let { panes, setFocus, removeFocus, showMoreTabs, popperClass, moreIcon } = this
+    let { panes } = this
 
     const spans = [
       <span class={['tiny-tabs__nav-prev', state.scrollable.prev ? '' : 'is-disabled']} onClick={scrollPrev}>
@@ -170,19 +180,17 @@ export default {
             })
           : null
 
-      // 防止没有内容也显示下拉框
-      const moreContent = isShowDropDown
-        ? h(Dropdown, {
-            attrs: {
-              trigger: 'hover'
-            },
-            scopedSlots: { default: reference, dropdown: dropdownSlot }
-          })
-        : reference()
-
+      // tiny 新增：防止没有内容也显示下拉框。  aui 此处为Popover组件实现
       moreTabs = (
         <div class="tiny-tabs__more-container" ref="more">
-          {moreContent}
+          {isShowDropDown
+            ? h(Dropdown, {
+                attrs: {
+                  trigger: 'hover'
+                },
+                scopedSlots: { default: reference, dropdown: dropdownSlot }
+              })
+            : reference()}
         </div>
       )
     }
@@ -203,6 +211,27 @@ export default {
         </span>
       ) : null
 
+      const getTabTitle = (title) => {
+        return h(
+          'span',
+          {
+            class: { 'tiny-tabs__item-title': true },
+            style: {
+              'max-width': titleWidth
+            },
+            on: {
+              mouseenter(e) {
+                handleTitleMouseenter(e, title)
+              },
+              mouseleave(e) {
+                handleTitleMouseleave(e)
+              }
+            }
+          },
+          [title]
+        )
+      }
+
       const tipComp = () =>
         tooltipConfig === 'title'
           ? h('span', { class: 'tiny-tabs__item__title', attrs: { title: pane.title } }, [pane.title])
@@ -221,7 +250,7 @@ export default {
         tooltipConfig ? tipComp() : h('span', { class: 'tiny-tabs__item__title' }, [pane.title])
       const itemsSeparator = <span class="tiny-tabs__item-separator"></span>
 
-      const tabLabelContent = () => (pane.$slots.title ? pane.$slots.title() : toolTipComp())
+      const tabLabelContent = pane.$slots.title ? pane.$slots.title() : toolTipComp()
       const tabindex = pane.state.active ? 0 : -1
 
       return h(
@@ -265,7 +294,7 @@ export default {
             }
           }
         },
-        [tabLabelContent(), btnClose, state.separator && itemsSeparator]
+        [overflowTitle ? getTabTitle(tabLabelContent) : tabLabelContent, btnClose, state.separator && itemsSeparator]
       )
     })
 
@@ -299,6 +328,16 @@ export default {
             {tabs}
           </div>
         </div>
+
+        {overflowTitle ? (
+          <Tooltip
+            ref="tooltip"
+            v-model={state.tooltipVisible}
+            manual={true}
+            effect="light"
+            content={state.tooltipContent}
+            placement="top"></Tooltip>
+        ) : null}
       </div>
     )
   }

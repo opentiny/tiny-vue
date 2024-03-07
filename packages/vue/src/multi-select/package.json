@@ -23,7 +23,8 @@
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-mask": "workspace:~",
     "@opentiny/vue-multi-select-item": "workspace:~",
-    "@opentiny/vue-wheel": "workspace:~"
+    "@opentiny/vue-wheel": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   },
   "license": "MIT"
 }

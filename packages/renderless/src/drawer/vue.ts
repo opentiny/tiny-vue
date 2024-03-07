@@ -38,7 +38,7 @@ export const renderless = (
     width: 0,
     dragEvent: { x: 0, isDrag: false, offsetWidth: 0 },
     computedWidth: computed(() => api.computedWidth()),
-    isSaasTheme: vm.theme === 'saas'
+    btnOrderReversed: vm.theme === 'saas' || designConfig?.state?.btnOrderReversed
   })
 
   Object.assign(api, {

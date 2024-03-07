@@ -199,6 +199,12 @@
     @apply px-6;
   }
 
+  &__item-title {
+    @apply inline-block;
+    @apply truncate;
+    @apply align-bottom;
+  }
+
   &__item {
     @apply py-0;
     @apply h-10;
@@ -341,7 +347,7 @@
             }
           }
         }
-      } 
+      }
     }
   }
 
@@ -1375,13 +1381,13 @@
     @apply inline-block;
     @apply relative;
     @apply -top-px;
-    @apply ml-3;
+    @apply ml-2;
 
     svg {
       @apply text-base;
       @apply relative;
       @apply -top-px;
-      @apply fill-color-text-primary;
+      @apply fill-color-icon-secondary;
     }
 
     &:hover {
@@ -1432,7 +1438,7 @@
   &&--top:not(&--small)&--border-card > &__header &__nav-next,
   &&--top:not(&--small)&--border-card > &__header &__new-tab {
     svg {
-      @apply fill-color-text-primary;
+      @apply fill-color-icon-primary;
     }
 
     &:hover svg {
