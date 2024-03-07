@@ -526,11 +526,11 @@ table.api-table {
   }
 }
 .cmp-page-anchor {
-  .tiny-anchor__affix {
+  :deep(.tiny-anchor__affix) {
     overflow-y: auto;
     max-height: 80vh;
   }
-  .tiny-anchor-link {
+  :deep(.tiny-anchor-link) {
     margin-bottom: 10px;
     max-width: 150px;
     font-size: 12px;
@@ -560,7 +560,7 @@ table.api-table {
 
 .markdown-top-body,
 .all-demos-container {
-  & > .tiny-loading svg {
+  & > :deep(.tiny-loading) svg {
     height: 36px;
     width: 36px;
   }
