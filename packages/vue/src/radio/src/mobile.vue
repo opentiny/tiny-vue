@@ -53,7 +53,6 @@ import '@opentiny/vue-theme-mobile/radio/index.less'
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
   props: [...props, 'modelValue', 'events', 'label', 'text', 'disabled', 'name'],
-  inheritAttrs: false,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

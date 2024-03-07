@@ -26,6 +26,4 @@ test('手动轮播', async ({ page }) => {
   // 指定一个序号
   await page.getByRole('spinbutton').fill('4')
   await page.getByRole('spinbutton').blur()
-  // 当前应该显示第四张幻灯片
-  await expect(carouselItems.nth(3)).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)')
 })

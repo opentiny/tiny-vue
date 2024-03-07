@@ -93,7 +93,7 @@ export const renderless = (
     updatePopper,
     show: show({ api, state, props }),
     hide: hide(api),
-    destroyed: destroyed({ state, api }),
+    destroyed: destroyed({ state, api, vm }),
     bindPopper: bindPopper({ vm, nextTick, popperVmRef }),
     watchFocusing: watchFocusing(state),
     removeFocusing: removeFocusing({ api, state }),

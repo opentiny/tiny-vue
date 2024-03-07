@@ -97,7 +97,7 @@ export default (options: IPopperInputParams) => {
     }
   }
 
-  const createPopper = () => {
+  const createPopper = (dom) => {
     if (isServer) {
       return
     }
@@ -109,7 +109,7 @@ export default (options: IPopperInputParams) => {
     }
 
     const options = props.popperOptions || { gpuAcceleration: false }
-    state.popperElm = state.popperElm || props.popper || vm.$refs.popper || popperVmRef.popper
+    state.popperElm = state.popperElm || props.popper || vm.$refs.popper || popperVmRef.popper || dom
     const popper = state.popperElm
     let reference = getReference({ state, props, vm, slots })
 
@@ -134,6 +134,7 @@ export default (options: IPopperInputParams) => {
     options.offset = props.offset || 0
     options.arrowOffset = props.arrowOffset || 0
     options.adjustArrow = props.adjustArrow || false
+    options.appendToBody = props.appendToBody || props.popperAppendToBody
 
     // 创建一个popperJS, 内部会立即调用一次update() 并 applyStyle等操作
     state.popperJS = new PopperJS(reference, popper, options)
@@ -149,10 +150,12 @@ export default (options: IPopperInputParams) => {
     on(state.popperElm, 'click', stop)
   }
 
-  /** 第一次 updatePopper 的时候，才真正执行创建 */
-  const updatePopper = (popperElm?: HTMLElement) => {
-    if (popperElm) {
-      state.popperElm = popperElm
+  /** 第一次 updatePopper 的时候，才真正执行创建
+   * popperElmOrTrue===true的场景仅在select组件动态更新面版时，不更新zIndex
+   */
+  const updatePopper = (popperElmOrTrue?: HTMLElement) => {
+    if (popperElmOrTrue && popperElmOrTrue !== true) {
+      state.popperElm = popperElmOrTrue
     }
 
     const popperJS = state.popperJS
@@ -160,12 +163,12 @@ export default (options: IPopperInputParams) => {
       popperJS.update()
 
       // 每次递增 z-index
-      if (popperJS._popper) {
+      if (popperJS._popper && popperElmOrTrue !== true) {
         popperJS._popper.style.zIndex = PopupManager.nextZIndex().toString()
         followHide(state.popperJS)
       }
     } else {
-      createPopper()
+      createPopper(popperElmOrTrue && popperElmOrTrue !== true ? popperElmOrTrue : undefined)
     }
   }
 

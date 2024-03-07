@@ -4,6 +4,7 @@
     @mouseenter="hoverItem"
     @click.stop="selectOptionClick"
     @mousedown.stop=""
+    :data-index="state.index"
     v-show="visible && state.visible"
     :class="
       m(
@@ -19,7 +20,7 @@
         highlightClass
       )
     "
-    data-tag="tiny-option"
+    data-tag="tiny-select-dropdown-item"
   >
     <span v-if="state.select.multiple" class="w-4 mr-2">
       <component

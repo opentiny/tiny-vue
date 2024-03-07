@@ -3,7 +3,7 @@ import template from 'virtual-template?pc'
 
 const $constants = {
   COMPONENT_NAME: { FormItem: 'FormItem' },
-  EVENT_NAME: { FormBlur: 'form.blur' }
+  EVENT_NAME: { FormBlur: 'form.blur', FormChange: 'form.change' }
 }
 
 export default defineComponent({
@@ -133,6 +133,14 @@ export default defineComponent({
     keepFocus: {
       type: Boolean,
       default: true
+    },
+    changeCompat: {
+      type: Boolean,
+      default: false
+    },
+    multiLineDrag: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

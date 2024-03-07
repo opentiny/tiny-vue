@@ -794,6 +794,37 @@
         background-color: var(--ti-grid-error-bg-color);
       }
     }
+
+    &.col__treenode {
+      .@{grid-prefix-cls}-cell {
+        display: flex;
+        align-items: center;
+
+        .@{grid-prefix-cls}-tree__indent {
+          flex-shrink: 0;
+        }
+
+        .@{grid-prefix-cls}-tree-wrapper {
+          width: 20px;
+          height: 20px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          transform: translateX(-4px);
+          flex-shrink: 0;
+        }
+      }
+
+      &.col__ellipsis {
+        .@{grid-prefix-cls}-cell {
+          &__tooltip:has(.tiny-grid-tree__indent:nth-last-child(2):first-child),
+          &__title:has(.tiny-grid-tree__indent:nth-last-child(2):first-child),
+          &__ellipsis:has(.tiny-grid-tree__indent:nth-last-child(2):first-child) {
+            display: inline-block;
+          }
+        }
+      }
+    }
   }
 
   & &-body__row {
@@ -817,6 +848,10 @@
     right: 0;
     width: 12px;
     overflow-y: scroll;
+
+    .@{grid-prefix-cls}-body__y-scrollbar {
+      width: 1px;
+    }
   }
 
   // 可编辑表格

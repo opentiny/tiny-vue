@@ -137,6 +137,7 @@
           <input
             type="text"
             v-model="state.activeValue"
+            @change="inputOnChange"
             class="h-8 w-12 outline-0 px-2 py-0 text-center border border-color-bg-3 hover:border-color-border-hover focus:border-color-brand-focus disabled:border-color-border rounded"
             :disabled="state.disabled"
           /><span class="ml-2">{{ unit }}</span>
@@ -170,7 +171,8 @@ export default defineComponent({
     'showLabel',
     'formatLabel',
     'vertical',
-    'unit'
+    'unit',
+    'changeCompat'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ISliderApi

@@ -347,16 +347,20 @@ export default defineComponent({
     GlobalEvent.on(this, 'mousedown', this.handleGlobalMousedownEvent)
     GlobalEvent.on(this, 'blur', this.handleGlobalBlurEvent)
 
+    this.removeHandler = () => {
+      GlobalEvent.off(this, 'mousedown')
+      GlobalEvent.off(this, 'blur')
+    }
+
     // 设置工具栏实例
     this.$grid.connect({ name: 'toolbar', vm: this })
   },
   setup(props, { slots, attrs, listeners }) {
-    hooks.onBeforeUnmount(() => {
-      GlobalEvent.off(this, 'mousedown')
-      GlobalEvent.off(this, 'blur')
-    })
+    const instance = hooks.getCurrentInstance().proxy
 
     const tableListeners = getListeners(attrs, listeners)
+
+    hooks.onBeforeUnmount(() => typeof instance.removeHandler === 'function' && instance.removeHandler())
 
     return { slots, tableListeners }
   },

@@ -1,4 +1,4 @@
-import CardGroup from './src/mobile-first.vue'
+import CardGroup from './src/index'
 import { version } from './package.json'
 
 CardGroup.model = {

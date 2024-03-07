@@ -126,6 +126,11 @@ export const sliderProps = {
     type: Boolean,
     default: false
   },
+  changeCompat: {
+    type: Boolean,
+    default: false
+  },
+  // tiny 新增属性
   marks: {
     type: Object as PropType<Record<number, string>>
   }

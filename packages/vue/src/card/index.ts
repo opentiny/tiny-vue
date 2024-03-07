@@ -1,4 +1,4 @@
-import Card from './src/mobile-first.vue'
+import Card from './src/index'
 import { version } from './package.json'
 
 Card.model = {

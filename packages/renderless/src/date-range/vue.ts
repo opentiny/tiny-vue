@@ -76,7 +76,8 @@ export const api = [
   'handleTimeInput',
   'handleMinTimeClose',
   'handleDateChange',
-  'handleMaxTimeClose'
+  'handleMaxTimeClose',
+  'isValidValue'
 ]
 
 const initState = ({ reactive, computed, api, constants, designConfig }) => {
@@ -194,7 +195,11 @@ const initApi = ({ api, state, t, vm, nextTick, emit, constants }) => {
   })
 }
 
-export const renderless = (props, { computed, reactive, watch, nextTick }, { t, emit: $emit, vm, constants, designConfig }) => {
+export const renderless = (
+  props,
+  { computed, reactive, watch, nextTick },
+  { t, emit: $emit, vm, constants, designConfig }
+) => {
   const api = {}
   const emit = props.emitter ? props.emitter.emit : $emit
   const state = initState({ reactive, computed, api, constants, designConfig })

@@ -1,12 +1,13 @@
 <template>
   <div class="alert-wrap">
     <tiny-alert>
-      <span style="color: red">根据 default slot 自定义内容</span>
+      <span>配置详细信息请点击</span>
+      <a href="#" class="link">默认配置说明</a>
     </tiny-alert>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Alert } from '@opentiny/vue'
 
 export default {
@@ -19,5 +20,10 @@ export default {
 <style>
 .alert-wrap .tiny-mobile-alert {
   margin-bottom: 8px;
+}
+
+.link {
+  color: #1476ff;
+  margin-left: 8px;
 }
 </style>

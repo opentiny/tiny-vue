@@ -2,7 +2,7 @@
   <div>
     <div>场景1：分组 + 多选 + 面板可搜索</div>
     <br />
-    <tiny-select v-model="value1" multiple filterable :searchable="true">
+    <tiny-select v-model="value2" multiple filterable :searchable="true">
       <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">
         <tiny-option
           v-for="item in group.options"
@@ -16,7 +16,7 @@
     <br />
     <div>场景2：单选分组</div>
     <br />
-    <tiny-select v-model="value2" filterable>
+    <tiny-select v-model="value1" filterable>
       <tiny-option-group v-for="group in options3" :key="group.label" :label="group.label" :disabled="!!group.disabled">
         <tiny-option
           v-for="item in group.options"

@@ -90,6 +90,11 @@ export default (configs = {}) => {
   }
 
   let parent = configs.body ? document.body : configs.target
+
+  const loadingEl = parent.querySelector(':scope > [data-tag="tiny-loading"]')
+
+  loadingEl && parent.removeChild(loadingEl)
+
   let instance = createComponent({
     component: Loading,
     propsData: {

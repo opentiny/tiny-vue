@@ -47,9 +47,6 @@
 
 .@{option-prefix-cls} {
   position: relative;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   color: var(--ti-option-text-color);
   font-size: var(--ti-option-font-size);
   height: var(--ti-option-height);
@@ -97,6 +94,33 @@
         border-color: var(--ti-option-checkbox-all-select-border-color-hover);
       }
     }
+  }
+
+  & &-checkbox {
+    vertical-align: top;
+  }
+
+  & &-wrapper {
+    // aui 为display:inline-block  height: 100%;
+    // 100%会让元素不能对齐， 该div比前面的check-box高，所以去掉它。
+    // inline-block 会让业务的插槽传入的flex-basis不生效。 aui要求业务整改了。 回头改为 inline-block
+    display: flex;
+
+    &.calc-width {
+      width: calc(100% - 24px);
+    }
+
+    &.full-width {
+      width: 100%;
+    }
+  }
+
+  & &-label {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &.selected {

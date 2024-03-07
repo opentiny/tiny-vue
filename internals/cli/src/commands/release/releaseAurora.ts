@@ -2,7 +2,7 @@ import { pathFromPackages } from '../build/build-ui'
 import path from 'node:path'
 import fs from 'fs-extra'
 
-const onlyMobileFirstTemplateLists = ['popconfirm']
+const onlyMobileFirstTemplateLists = ['popconfirm', 'card', 'card-group']
 
 // 递归遍历所有的组件，然后依次修改文件内容
 const findAllpage = (packagesPath) => {
@@ -39,7 +39,12 @@ const findAllpage = (packagesPath) => {
       .replace(/"(.*?\/popup-manager)"/g, '"@aurora/renderless/common/deps/popup-manager"')
 
     // 解决当AUI只有一个mobile-first模板而TinyVue有多个模板，导致Linkjs加载不到多端模板的问题
-    if (packagesPath.endsWith('index.js') && onlyMobileFirstTemplateLists.some((item) => packagesPath.includes(item))) {
+    if (
+      packagesPath.endsWith('index.js') &&
+      onlyMobileFirstTemplateLists.some(
+        (item) => packagesPath.includes(`${item}\\`) || packagesPath.includes(`${item}/`)
+      )
+    ) {
       result = result.replace(/pc.js/g, 'mobile-first.js')
     }
 

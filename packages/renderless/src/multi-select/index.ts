@@ -240,7 +240,11 @@ export const confirm =
 export const reset =
   ({ api, props, state, emit }) =>
   () => {
-    state.headerInfo[state.headerIndex] = { isSelected: false, title: '', isUP: false }
+    state.headerInfo[state.headerIndex] = {
+      isSelected: false,
+      title: props.dataSource[state.headerIndex].title || '',
+      isUP: false
+    }
     state.defaultSelectedIndexs = props.defaultSelectedArray[state.headerIndex] ?? api.loadDefault(state.headerIndex)
     state.defaultSelectedArray[state.headerIndex] = state.defaultSelectedIndexs
     emit('reset', [], state.headerIndex, state.defaultSelectedIndexs)

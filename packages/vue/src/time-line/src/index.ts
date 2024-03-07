@@ -88,6 +88,18 @@ export const timelineProps = {
     type: Boolean,
     default: false
   },
+  foldDisabled: {
+    type: Boolean,
+    default: false
+  },
+  nodeMax: {
+    type: [Number, String],
+    default: $constants.STACK_NODES_MAX
+  },
+  limitedNodes: {
+    type: [Number, String],
+    default: $constants.LIMITED_STACK_NODES
+  },
   onlyNumber: {
     type: Boolean,
     default: false

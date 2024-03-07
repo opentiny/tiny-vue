@@ -68,7 +68,6 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme-mobile/checkbox/index.less'
 
 export default defineComponent({
-  inheritAttrs: false,
   props: [
     ...props,
     'modelValue',
@@ -82,8 +81,9 @@ export default defineComponent({
     'trueLabel',
     'falseLabel',
     'id',
-    'iconPosition',
+    'iconPosition'
   ],
+  emits: ['update:modelValue', 'change', 'complete', 'click'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
