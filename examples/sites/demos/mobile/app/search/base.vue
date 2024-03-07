@@ -5,7 +5,7 @@
       <div>搜索栏</div>
     </div>
     <div class="title">primary</div>
-    <tiny-search v-model="value" @search="handleSearch"></tiny-search>
+    <tiny-search v-model="value" placeholder="搜索placeholder" @search="handleSearch"></tiny-search>
     <div :class="[{ 'is-show': value }, 'searchbar-result']">
       {{ value }}
     </div>
@@ -59,7 +59,7 @@ export default {
 <style scoped>
 .mobile-search-demo {
   height: 100%;
-  background: #f4f4f4;
+  background: #fff;
 }
 .mobile-search-demo .title-demo {
   padding: 40px;

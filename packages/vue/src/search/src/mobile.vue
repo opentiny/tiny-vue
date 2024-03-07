@@ -47,7 +47,7 @@
           @select.stop
         />
         <span class="tiny-mobile-search__close-icon" v-show="state.currentValue">
-          <icon-operationfaild @click="clear" />
+          <icon-close @click="clear" />
         </span>
       </div>
       <label class="tiny-mobile-search__label">
@@ -67,7 +67,7 @@
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/search/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
-import { iconSearch, iconOperationfaild } from '@opentiny/vue-icon'
+import { iconSearch, iconClose } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme-mobile/search/index.less'
 import type { ISearchApi } from '@opentiny/vue-renderless/types/search.type'
 
@@ -84,7 +84,7 @@ export default defineComponent({
   ],
   components: {
     IconSearch: iconSearch(),
-    IconOperationfaild: iconOperationfaild()
+    IconClose: iconClose()
   },
   emits: ['change', 'search', 'update:modelValue', 'clear', 'select', 'input'],
   setup(props, context) {
