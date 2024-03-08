@@ -2,9 +2,47 @@
 
 ## Introduction Components
 
-`TinyVue`Multiple component introduction, single component introduction, and complete introduction are supported.
+`TinyVue` supports automatic import, multiple component import, single component import, and complete import.
 
-### Multi-component introduction (recommended)
+### Auto import (recommended)
+
+First, you need to install the plugin `@opentiny/unplugin-tiny-vue`.
+
+```bash
+npm i @opentiny/unplugin-tiny-vue -D
+```
+
+Then, insert the following code into your project's `Vite` or `Webpack` configuration file.
+
+Vite
+
+```ts
+// vite.config.ts
+
+import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
+
+export default {
+  plugins: [autoImportPlugin()]
+}
+```
+
+Webpack
+
+```js
+// webpack.config.js
+
+const autoImportPlugin = require('@opentiny/unplugin-tiny-vue')
+
+module.exports = {
+  plugins: [autoImportPlugin()]
+}
+```
+
+This way, you can directly use TinyVue components in your project. These components are automatically imported on demand, without the need for manual import, and you don't have to worry about the project size becoming too large.
+
+For more information about automatic on-demand imports, please refer to [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) and [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import).
+
+### Multi-component introduction
 
 Multi-component reference is from the dependency package.`@opentiny/vue`Multiple components are referenced in. The following is an example (in the following figure)`Button`and`Alert`Component as an example):
 

@@ -2,9 +2,47 @@
 
 ## 引入组件
 
-`TinyVue` 支持多组件引入、单组件引入以及完整引入三种方式。
+`TinyVue` 支持自动导入、多组件引入、单组件引入以及完整引入四种方式。
 
-### 多组件引入（推荐）
+### 自动导入（推荐）
+
+首先你需要安装 `@opentiny/unplugin-tiny-vue` 这款插件。
+
+```bash
+npm i @opentiny/unplugin-tiny-vue -D
+```
+
+然后把以下代码插入到你项目的 `Vite` 或 `Webpack` 配置文件中。
+
+Vite
+
+```ts
+// vite.config.ts
+
+import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
+
+export default {
+  plugins: [autoImportPlugin()]
+}
+```
+
+Webpack
+
+```js
+// webpack.config.js
+
+const autoImportPlugin = require('@opentiny/unplugin-tiny-vue')
+
+module.exports = {
+  plugins: [autoImportPlugin()]
+}
+```
+
+这样你就能直接在项目中使用 TinyVue 的组件，这些组件都是自动按需导入的，无需手动导入，且不用担心项目体积变得太大。
+
+想了解更多自动按需导入的信息，请参考：[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) 和 [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)。
+
+### 多组件引入
 
 多组件引用即从依赖包 `@opentiny/vue` 中引用多个组件，参考示例如下（以 `Button` 和 `Alert` 组件为例）：
 
