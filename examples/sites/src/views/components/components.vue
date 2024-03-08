@@ -128,7 +128,6 @@
           :key="anchorRefreshKey"
           mask-class="custom-active-anchor"
           @link-click="handleAnchorClick"
-          class="anchor"
         >
         </tiny-anchor>
       </div>
