@@ -19,7 +19,7 @@
             v-for="(item, index) in themeData"
             :key="index"
             @click="themeItemClick(item)"
-            :class="{ 'is-actived': item.value === currThemeLabel }"
+            :class="{ 'is-actived': item.value === currentThemeKey }"
           >
             {{ item.label }}
           </tiny-dropdown-item>
@@ -128,7 +128,7 @@ export default defineComponent({
   },
   props: [],
   setup() {
-    const { getThemeData, changeTheme, currThemeLabel } = useTheme()
+    const { getThemeData, changeTheme, currentThemeKey, defaultTheme } = useTheme()
     const { apiModeState, apiModeFn } = useApiMode()
     const { templateModeState } = useTemplateMode()
     let state = reactive({
@@ -142,9 +142,9 @@ export default defineComponent({
     })
 
     const lang = getWord('zh-CN', 'en-US')
-    const allPathParam = useRoute().params.all
+    const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''
-    const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/os-theme/${route}${key}`
+    const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/${route}${key}`
 
     const changeLanguage = () => {
       appFn.toggleLang()
@@ -211,7 +211,7 @@ export default defineComponent({
       collapseChange,
       themeData: getThemeData(),
       themeItemClick,
-      currThemeLabel,
+      currentThemeKey,
       themeSvg,
       changeLanguage,
       apiModeState,

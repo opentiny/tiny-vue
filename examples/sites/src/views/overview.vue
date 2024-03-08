@@ -68,6 +68,7 @@ import TinyInput from '@opentiny/vue-input'
 import noDataSvg from '@/assets/images/no-data.svg?url'
 import searchSvg from '@/assets/images/search.svg?url'
 import { getWord, i18nByKey, isZhCn, pubUrl } from '@/tools'
+import useTheme from '@/tools/useTheme'
 
 export default defineComponent({
   name: 'Overview',
@@ -94,7 +95,7 @@ export default defineComponent({
       }
     }
     function searchResultFn(event) {
-      const value = event.target.value
+      const value = event
       const trimValue = value.replaceAll(' ', '').toLowerCase()
       const currentValue = trimValue
       const reg = new RegExp(currentValue, 'ig')
@@ -116,11 +117,13 @@ export default defineComponent({
       state.searchMenus = searchMenus
     }
     const lang = getWord('zh-CN', 'en-US')
-    const allPathParam = useRoute().params.all
+    const { defaultThemeKey } = useTheme()
+    const { all: allPathParam, theme = defaultThemeKey } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''
+
     let fn = {
       searchHandler: debounce(searchResultFn, 300),
-      getTo: (key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/os-theme/components/${key}`,
+      getTo: (key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/components/${key}`,
       getSvg: (key) => {
         // 表格示例单独另起了许多路由，统一使用表格组件图标
         if (key.startsWith('grid-')) {
