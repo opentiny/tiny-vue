@@ -524,6 +524,7 @@ table.api-table {
 }
 .cmp-page-anchor {
   :deep(.tiny-anchor__affix) {
+    top: unset !important;
     overflow-y: auto;
     max-height: 80vh;
   }
