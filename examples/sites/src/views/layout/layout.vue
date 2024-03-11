@@ -159,7 +159,7 @@ export default defineComponent({
 
     const clickMenu = (menu) => {
       if (menu.type === 'overview') {
-        router.push(`${import.meta.env.VITE_CONTEXT}${allPath}${lang}/overview`)
+        router.push(`${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/overview`)
       } else if (menu.type === 'docs') {
         router.push(getTo('docs/', menu.key))
       } else if (menu.type === 'components') {
