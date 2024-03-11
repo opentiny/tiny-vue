@@ -145,7 +145,7 @@ import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
 import { Collapse, CollapseItem } from '@opentiny/vue'
-import { faqMdConfig, staticDemoPath, getWebdocPath } from './cmpConfig'
+import { faqMdConfig, getWebdocPath } from './cmpConfig'
 import AsyncHighlight from './async-highlight.vue'
 import VersionTip from './VersionTip.vue'
 
@@ -311,21 +311,6 @@ export default defineComponent({
             return item
           })
           state.currJson.types = apiJson.types
-        }
-
-        if (state.cmpId?.startsWith('grid-')) {
-          fetchDemosFile(`${staticDemoPath}/grid/webdoc/grid.js`).then((data) => {
-            // eslint-disable-next-line no-eval
-            const gridJson = eval('(' + data.slice(15) + ')')
-            state.currJson.apis = gridJson.apis
-            state.currJson.types = gridJson.types
-          })
-        } else if (state.cmpId?.startsWith('chart-')) {
-          fetchDemosFile(`${staticDemoPath}/chart/webdoc/chart.js`).then((data) => {
-            // eslint-disable-next-line no-eval
-            const chartJson = eval('(' + data.slice(15) + ')')
-            state.currJson.apis = chartJson.apis
-          })
         }
 
         let hash = router.currentRoute.value.hash?.slice(1)

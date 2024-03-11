@@ -1,6 +1,6 @@
 <template>
   <div class="hp100 of-hidden">
-    <tiny-config-provider :design="designConfig">
+    <tiny-config-provider :design="designConfig" :key="currentThemeKey">
       <router-view />
       <tiny-modal :show-header="false" :show-footer="false" v-model="modalSHow" width="1400px" height="900px" resize>
         <tiny-icon-close class="close-icon" @click="modalSHow = false"></tiny-icon-close>
@@ -41,7 +41,7 @@ export default defineComponent({
       })
       common.renderHeader()
     })
-    const { designConfig } = useTheme()
+    const { designConfig, currentThemeKey } = useTheme()
 
     provide('showPreview', (url) => {
       previewUrl.value = url
@@ -50,6 +50,7 @@ export default defineComponent({
     return {
       appData,
       designConfig,
+      currentThemeKey,
       previewUrl,
       modalSHow
     }
