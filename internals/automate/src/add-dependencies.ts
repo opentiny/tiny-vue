@@ -24,7 +24,7 @@ async function writeJson(jsonPath, dependencies) {
 
 // 解析文件内容中的opentiny依赖
 function parseDepencies(content) {
-  const reg = /import.+(\@opentiny\/.+)/g
+  const reg = /import(.|\n)+?(\@opentiny\/.+)/g
   return content.match(reg)?.map((importStr) => {
     const depReg = /('|")(\@opentiny\/.+)('|")/
     const dep = importStr.match(depReg)[2]
