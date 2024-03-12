@@ -37,7 +37,10 @@ export function Modal(options) {
           if ($modal.beforeUnmouted) {
             $modal.beforeUnmouted()
           }
-          resolve(params.type)
+          // 不关闭弹窗，直接切换路由，导致错误触发close事件
+          if (params.type !== 'close') {
+            resolve(params.type)
+          }
         },
         confirm(params) {
           events.confirm && events.confirm.call(this, params)

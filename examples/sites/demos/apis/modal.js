@@ -529,7 +529,7 @@ export default {
             'en-US': 'This event is triggered when the window is closed'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'hide-event',
+          pcDemo: 'event',
           mobileDemo: 'hide-event',
           mfDemo: ''
         },
