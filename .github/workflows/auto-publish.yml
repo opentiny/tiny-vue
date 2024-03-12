@@ -12,19 +12,34 @@ jobs:
       - name: CheckOut Code
         uses: actions/checkout@master
         with:
-          ref: release
+          ref: auto-publish-0312
+    
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
 
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
+      
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+            echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+  
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+              ${{ runner.os }}-pnpm-store-
+      - name: Install dependencies
+        run: pnpm i --no-frozen-lockfile
 
       - name: Run Build Scripts
-        run: |
-          npm i --legacy-peer-deps
-          npm run build:vue3
-          npm run release3
+        run: pnpm build:ui alert -t 14.0-alpha.0 -v 3
 
       - name: Publish
         run: npm publish opentiny-vue-${{ github.ref_name }}.tgz

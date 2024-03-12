@@ -82,5 +82,8 @@
       "italic": false
     }
   ],
-  "vue.codeActions.enabled": false
+  "vue.codeActions.enabled": false,
+  "github-actions.workflows.pinned.workflows": [
+    ".github/workflows/auto-publish.yml"
+  ]
 }
