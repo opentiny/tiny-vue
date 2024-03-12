@@ -1,9 +1,10 @@
 name: Auto publish
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: true
 
 jobs:
   build:
