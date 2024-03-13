@@ -41,8 +41,8 @@ export default {
         },
         {
           name: 'data',
-          typeAnchorName: 'IStepsItem[]',
-          type: 'IStepsItem',
+          typeAnchorName: 'IStepsItem',
+          type: 'IStepsItem[]',
           defaultValue: '[]',
           desc: {
             'zh-CN': '步骤条的数据',
@@ -227,11 +227,11 @@ export default {
       type: 'interface',
       code: `
 interface IStepsItem {
-  // 条形步骤条数据项
+  // 节点数据
   name: string, // 节点名称
-  description: string, // 描述，仅用于单链型步骤条
-  status: IStepsStatus, // 节点状态，取值见下面IStepsStatus类型说明
-  count: number // 节点右上角徽标计数，仅用于默认条形步骤条
+  status?: IStepsStatus, // 节点状态，取值见下面IStepsStatus类型说明
+  description?: string, // 描述，仅用于单链型步骤条
+  count?: number // 节点右上角徽标计数，仅用于默认条形步骤条
 }
       `
     },

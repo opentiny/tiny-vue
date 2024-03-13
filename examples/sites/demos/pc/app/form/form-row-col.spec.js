@@ -8,6 +8,8 @@ test('测试表单复杂布局', async ({ page }) => {
   const form = demo.locator('.tiny-form')
   const formItem = form.locator('.tiny-form-item')
 
+  await page.waitForTimeout(2000)
+
   const item1Box = await formItem.first().boundingBox()
   const item2Box = await formItem.nth(1).boundingBox()
   const item3Box = await formItem.nth(2).boundingBox()

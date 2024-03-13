@@ -141,7 +141,7 @@ export default {
           name: 'placement',
           typeAnchorName: 'IPopperPlacement',
           type: 'IPopperPlacement',
-          defaultValue: ' "bottom"',
+          defaultValue: "'bottom'",
           desc: {
             'zh-CN': 'Tooltip 的出现位置',
             'en-US': 'Location where the tooltip appears'

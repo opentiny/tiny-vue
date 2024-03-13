@@ -29,6 +29,7 @@ export const $constants = {
     LARGE: 160
   },
   PROGRESS_STATUS: {
+    DEFAULT: 'default',
     SUCCESS: 'success',
     EXCEPTION: 'exception',
     WARNING: 'warning'

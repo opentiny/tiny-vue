@@ -9,5 +9,5 @@ test('标签类型', async ({ page }) => {
   const tag = select.locator('.tiny-tag')
 
   // 验证是否有对应类型的类名
-  await expect(tag.nth(0)).toHaveClass(/tiny-tag--info tiny-tag--light/)
+  await expect(tag.nth(0)).toHaveClass(/tiny-tag--warning/)
 })

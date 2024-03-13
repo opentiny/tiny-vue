@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { MultiSelect } from '@opentiny/vue'
+import { MultiSelect, Toast } from '@opentiny/vue'
 
 export default {
   components: {
@@ -29,38 +29,33 @@ export default {
               label: '2020年',
               children: [
                 {
-                  label: '2020全年',
+                  label: '全年'
+                },
+                {
+                  label: 'Q1',
                   children: [
                     {
-                      label: '年'
+                      label: '一月'
+                    },
+                    {
+                      label: '二月'
+                    },
+                    {
+                      label: '三月'
                     }
                   ]
                 },
                 {
-                  label: '2020年Q1',
+                  label: 'Q2',
                   children: [
                     {
-                      label: '2020年Q1一月'
+                      label: '四月'
                     },
                     {
-                      label: '2020年Q1二月'
+                      label: '五月'
                     },
                     {
-                      label: '2020年Q1三月'
-                    }
-                  ]
-                },
-                {
-                  label: '2020年Q2',
-                  children: [
-                    {
-                      label: '2020年Q2四月'
-                    },
-                    {
-                      label: '2020年Q2五月'
-                    },
-                    {
-                      label: '2020年Q2六月'
+                      label: '六月'
                     }
                   ]
                 }
@@ -70,38 +65,33 @@ export default {
               label: '2021年',
               children: [
                 {
-                  label: '2021全年',
+                  label: '全年'
+                },
+                {
+                  label: 'Q1',
                   children: [
                     {
-                      label: '年'
+                      label: '一月'
+                    },
+                    {
+                      label: '二月'
+                    },
+                    {
+                      label: '三月'
                     }
                   ]
                 },
                 {
-                  label: '2021年Q1',
+                  label: 'Q2',
                   children: [
                     {
-                      label: '2021年Q1一月'
+                      label: '四月'
                     },
                     {
-                      label: '2021年Q1二月'
+                      label: '五月'
                     },
                     {
-                      label: '2021年Q1三月'
-                    }
-                  ]
-                },
-                {
-                  label: '2021年Q2',
-                  children: [
-                    {
-                      label: '2021年Q2四月'
-                    },
-                    {
-                      label: '2021年Q2五月'
-                    },
-                    {
-                      label: '2021年Q2六月'
+                      label: '六月'
                     }
                   ]
                 }
@@ -111,38 +101,33 @@ export default {
               label: '2022年',
               children: [
                 {
-                  label: '2022全年',
+                  label: '全年'
+                },
+                {
+                  label: 'Q1',
                   children: [
                     {
-                      label: '年'
+                      label: '一月'
+                    },
+                    {
+                      label: '二月'
+                    },
+                    {
+                      label: '三月'
                     }
                   ]
                 },
                 {
-                  label: '2022年Q1',
+                  label: 'Q2',
                   children: [
                     {
-                      label: '2022年Q1一月'
+                      label: '四月'
                     },
                     {
-                      label: '2022年Q1二月'
+                      label: '五月'
                     },
                     {
-                      label: '2022年Q1三月'
-                    }
-                  ]
-                },
-                {
-                  label: '2022年Q2',
-                  children: [
-                    {
-                      label: '2022年Q2四月'
-                    },
-                    {
-                      label: '2022年Q2五月'
-                    },
-                    {
-                      label: '2022年Q2六月'
+                      label: '六月'
                     }
                   ]
                 }
@@ -153,7 +138,7 @@ export default {
         {
           title: '区域',
           hasFooter: true,
-          children: [
+          options: [
             {
               label: '海外',
               children: [
@@ -187,7 +172,7 @@ export default {
         {
           title: '云类型',
           hasFooter: false,
-          children: [
+          options: [
             {
               label: '公有云'
             },
@@ -210,11 +195,16 @@ export default {
     }
   },
   methods: {
-    confirm(...arg) {
-      console.log(...arg)
+    confirm(selectedOptions, headerIndex, columnIndices) {
+      const selectVal = selectedOptions.reduce((prev, current) => `${prev} - ${current.label}`, '')
+      Toast.service({
+        text: `选中值: ${selectVal}`
+      })
     },
-    reset(...arg) {
-      console.log(...arg)
+    reset(currentValue, headerIndex, columnIndices) {
+      Toast.service({
+        text: '已重置为初始值'
+      })
     }
   }
 }

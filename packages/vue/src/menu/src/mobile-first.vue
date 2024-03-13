@@ -11,7 +11,7 @@
     >
       <tiny-input
         v-model="state.filterText"
-        @input="filterInput($event)"
+        @update:modelValue="filterInput($event)"
         :suffix-icon="searchIcon"
         :placeholder="t('ui.treeMenu.placeholder')"
       ></tiny-input>

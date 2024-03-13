@@ -79,8 +79,9 @@ export const bindMouseDown =
     constants,
     mode,
     emit,
-    state
-  }: Pick<ISliderRenderlessParams, 'api' | 'state' | 'constants' | 'mode' | 'emit'>) =>
+    state,
+    props
+  }: Pick<ISliderRenderlessParams, 'api' | 'state' | 'constants' | 'mode' | 'emit' | 'props'>) =>
   (event) => {
     if (event.button !== 0 && event.detail !== 0) {
       state.activeIndex = -1
@@ -138,6 +139,10 @@ export const bindMouseDown =
       api.setBarStyle()
 
       emit('stop', api.getActiveButtonValue())
+
+      if (!props.changeCompat) {
+        emit('change', api.getActiveButtonValue())
+      }
     }
   }
 
@@ -158,7 +163,7 @@ export const bindMouseMove =
   }
 
 export const bindMouseUp =
-  ({ api, emit, state }: Pick<ISliderRenderlessParams, 'api' | 'emit' | 'state'>) =>
+  ({ api, emit, state, props }: Pick<ISliderRenderlessParams, 'api' | 'emit' | 'state' | 'props'>) =>
   () => {
     if (state.disabled || !state.isDrag) {
       return
@@ -175,6 +180,10 @@ export const bindMouseUp =
     off(window, 'touchmove', api.bindMouseMove)
 
     emit('stop', api.getActiveButtonValue())
+
+    if (!props.changeCompat) {
+      emit('change', api.getActiveButtonValue())
+    }
   }
 
 export const displayTip =
@@ -587,7 +596,7 @@ export const getMarkList =
   }
 
 export const inputValueChange =
-  ({ props, state, api }: Pick<ISliderRenderlessParams, 'api' | 'props' | 'state'>) =>
+  ({ props, state, api, emit }: Pick<ISliderRenderlessParams, 'api' | 'props' | 'state' | 'emit'>) =>
   ($event, pos) => {
     if (props.disabled || !state.isDouble) return
 
@@ -600,6 +609,10 @@ export const inputValueChange =
       return
     }
     api.initSlider([Math.min(...state.inputValue), Math.max(...state.inputValue)])
+
+    if (!props.changeCompat) {
+      emit('change', api.getActiveButtonValue())
+    }
   }
 
 export const handleSlotInputFocus = (state: ISliderRenderlessParams['state']) => () => {
@@ -632,4 +645,18 @@ export const handleSlotInput =
     api.changeActiveValue(state.isDouble ? isLeftInput : true)
     state.activeValue = Number(inputValue)
     api.updateSlotValue()
+  }
+
+export const inputOnChange =
+  ({ api, emit, props, state }: Pick<ISliderRenderlessParams, 'api' | 'state' | 'props' | 'emit'>) =>
+  (event: Event) => {
+    if (!props.changeCompat) {
+      if (!/^\d+$/.test(event.target.value)) {
+        state.activeValue = state.leftBtnValue
+        return
+      }
+      const value = toNumber(state.activeValue) || 0
+      api.autoSlider(value)
+      emit('change', api.getActiveButtonValue())
+    }
   }

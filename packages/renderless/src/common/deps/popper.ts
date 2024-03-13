@@ -768,10 +768,22 @@ class Popper {
 
     if (this._options.boundariesElement !== 'window') {
       let target: HTMLElement = getScrollParent(this._reference)
+      const customTargets = []
+
+      // 如果下拉框组件存在于多端表单中，需要同时监听上一层scroll元素的滚动
+      if (target?.dataset?.tag?.includes('-form')) {
+        customTargets.push(target)
+        let realTarget = getScrollParent(target)
+        if (realTarget === window.document.body || realTarget === window.document.documentElement) {
+          realTarget = window as any
+        }
+        customTargets.push(realTarget)
+      }
 
       if (target === window.document.body || target === window.document.documentElement) {
         target = window as any
       }
+
       this.state.scrollTarget = target
 
       // 只有bubbling时，才启用所有祖先监听，根源在此。 getAll..Parents函数只有这一处调用
@@ -783,7 +795,14 @@ class Popper {
           on(target, 'scroll', this.state.scrollUpdate)
         })
       } else {
-        on(target, 'scroll', this.state.scrollUpdate)
+        if (customTargets.length) {
+          this.state.scrollTargets = customTargets
+          customTargets.forEach((target) => {
+            on(target, 'scroll', this.state.scrollUpdate)
+          })
+        } else {
+          on(target, 'scroll', this.state.scrollUpdate)
+        }
       }
     }
   }
@@ -825,8 +844,9 @@ class Popper {
       let scrollParent = getScrollParent(this._popper)
       let offsetParentRect = getOffsetRect(offsetParent)
       let isFixed = data.offsets.popper.position === 'fixed'
-      let scrollTop = isFixed ? 0 : getScrollTopValue(scrollParent)
-      let scrollLeft = isFixed ? 0 : getScrollLeftValue(scrollParent)
+      const noScroll = isFixed || (!this._options.appendToBody && ['right', 'left'].includes(this._options.placement))
+      let scrollTop = noScroll ? 0 : getScrollTopValue(scrollParent)
+      let scrollLeft = noScroll ? 0 : getScrollLeftValue(scrollParent)
 
       // PopupManager.viewportWindow是为了兼容之前已经采用此方法兼容微前端的用户，后续需要采用globalConfig.viewportWindow
       const viewportWindow = globalConfig.viewportWindow || PopupManager.viewportWindow || window

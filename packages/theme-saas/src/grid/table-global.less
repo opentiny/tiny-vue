@@ -246,6 +246,10 @@
       background-position: 100% 0, 100% 99%;
     }
 
+    &.is__row-span .@{grid-prefix-cls}-body__column {
+      background-position: 100% 0, 100% 100%;
+    }
+
     .@{grid-prefix-cls}-body__row:last-child {
       .@{grid-prefix-cls}-body__column {
         background-position: 100% 0, 100% 100%;
@@ -887,6 +891,10 @@
         // 解决树表的省略隐藏样式和AUI不兼容的问题，勿同步
         @apply w-full;
 
+        .@{grid-prefix-cls}-tree__indent {
+          @apply shrink-0;
+        }
+
         .@{grid-prefix-cls}-tree-wrapper {
           @apply w-5;
           @apply h-5;
@@ -894,6 +902,7 @@
           @apply justify-center;
           @apply items-center;
           @apply -translate-x-1;
+          @apply shrink-0;
         }
       }
 
@@ -1073,7 +1082,7 @@
   // 表格与分页上下间距
   .@{pager-prefix-cls},
   & + .@{pager-prefix-cls} {
-    @apply pt-6;
+    @apply pt-4;
   }
 
   & &__header {
@@ -1112,7 +1121,6 @@
 
   & &__column-anchor {
     @apply flex-nowrap;
-    @apply my-2;
     @apply h-8;
     @apply items-center;
   }
@@ -1163,6 +1171,11 @@
     @apply text-sm;
     @apply cursor-pointer;
     @apply mr-2;
+
+    > svg {
+      @apply w-4;
+      @apply h-4;
+    }
 
     &--disabled {
       @apply cursor-not-allowed;

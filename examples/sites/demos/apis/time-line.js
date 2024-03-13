@@ -41,6 +41,17 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'fold-disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '禁用折叠',
+            'en-US': 'to disable folding feature'
+          },
+          mode: ['mobile-first'],
+          mfDemo: ''
+        },
+        {
           name: 'horizontal',
           type: 'boolean',
           defaultValue: 'true',
@@ -50,6 +61,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: ''
+        },
+        {
+          name: 'limited-nodes',
+          type: 'number | string',
+          defaultValue: '3',
+          desc: {
+            'zh-CN': '折叠后展示的节点个数',
+            'en-US': 'number of nodes displayed after folding'
+          },
+          mode: ['mobile-first'],
+          mfDemo: 'limited-nodes'
         },
         {
           name: 'line-width',
@@ -74,6 +96,17 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-field',
           mfDemo: ''
+        },
+        {
+          name: 'node-max',
+          type: 'number | string',
+          defaultValue: '7',
+          desc: {
+            'zh-CN': '最大显示节点数',
+            'en-US': 'maximum nodes to display'
+          },
+          mode: ['mobile-first'],
+          mfDemo: 'node-max'
         },
         {
           name: 'only-number',

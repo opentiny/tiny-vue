@@ -32,8 +32,6 @@
       }
 
       tbody {
-        border-bottom: 1px solid var(--ti-table-border-color);
-
         tr {
           color: var(--ti-table-text-color);
           background: var(--ti-table-bg-color);
@@ -53,16 +51,17 @@
         }
 
         .noData {
-          width: 582px;
-          height: 360px;
-          text-align: center;
-          color: var(--ti-table-nodata-text-color);
-          margin-bottom: -1px;
-          border-bottom: 1px solid var(--ti-table-border-color);
-          padding-top: 10px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          &:hover {
+            background: transparent;
+          }
+
+          td {
+            height: 160px;
+            text-align: center;
+            vertical-align: middle;
+            color: var(--ti-table-nodata-text-color);
+            background-color: transparent;
+          }
         }
       }
 

@@ -130,6 +130,7 @@
               state.formItemSize === 'mini' ? 'pt-px' : ''
             )
           "
+          :title="state.validateMessage"
         >
           {{ state.validateMessage }}
         </div>

@@ -47,7 +47,7 @@
     <template v-if="showInput && !state.isDouble">
       <div class="tiny-mobile-slider__input">
         <slot :slot-scope="state.activeValue">
-          <input type="text" v-model="state.activeValue" :disabled="disabled" />
+          <input type="text" v-model="state.activeValue" :disabled="disabled" @change="inputOnChange" />
           <span class="tiny-mobile-slider__per">%</span>
         </slot>
       </div>
@@ -76,7 +76,8 @@ export default defineComponent({
     'showInput',
     'height',
     'range',
-    'formatTooltip'
+    'formatTooltip',
+    'changeCompat'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ISliderApi

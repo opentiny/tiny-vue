@@ -206,16 +206,16 @@ export const abort =
     const { reqs } = state
     const cancel = function (uid) {
       if (reqs[uid]?.abort) {
-        reqs[uid].abort()
+        reqs[uid].abort('')
       } else if (state.cancelToken[uid]) {
-        state.cancelToken[uid]()
+        state.cancelToken[uid]('')
       }
       delete reqs[uid]
       delete state.cancelToken[uid]
     }
 
     if (file && file.isLargeFile && file.cancelToken) {
-      file.cancelToken && file.cancelToken.forEach((cancel) => cancel())
+      file.cancelToken && file.cancelToken.forEach((cancel) => cancel(''))
 
       delete file.cancelToken
     } else if (file) {
@@ -228,10 +228,10 @@ export const abort =
       cancel(uid)
     } else {
       const { READY, UPLOADING, FAIL } = constants.FILE_STATUS
-      Object.keys(reqs).forEach((uid) => cancel(uid))
+      Object.keys(reqs).forEach((uid) => cancel(uid || ''))
 
       props.fileList.forEach((file: any) => {
-        file.cancelToken && file.cancelToken.forEach((cancel) => cancel())
+        file.cancelToken && file.cancelToken.forEach((cancel) => cancel(''))
         if ([READY, UPLOADING].includes(file.status)) {
           file.status = FAIL
         }

@@ -38,7 +38,10 @@ import {
   open,
   resetDragStyle,
   computedBoxStyle,
-  handleHashChange
+  handleHashChange,
+  showScrollbar,
+  hideScrollbar,
+  watchVisible
 } from './index'
 import type { IModalApi, IModalProps, IModalRenderlessParamUtils, ISharedRenderlessParamHooks } from '@/types'
 
@@ -67,10 +70,11 @@ export const api = [
 export const renderless = (
   props: IModalProps,
   { computed, onMounted, onBeforeUnmount, reactive, watch }: ISharedRenderlessParamHooks,
-  { vm, emit, emitter, nextTick, broadcast, vm: parent }: IModalRenderlessParamUtils,
+  { vm, emit, emitter, nextTick, broadcast, vm: parent, constants, mode }: IModalRenderlessParamUtils,
   { isMobileFirstMode }
 ) => {
   const api = {} as IModalApi
+  const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
   const state = reactive({
     emitter: emitter(),
     visible: false,
@@ -94,7 +98,7 @@ export const renderless = (
     getBox: getBox({ vm }),
     watchValue: watchValue(api),
     created: created({ api, props, state }),
-    mounted: mounted({ api, parent, props, isMobileFirstMode }),
+    mounted: mounted({ api, parent, props, isMobileFirstMode, state }),
     beforeUnmouted: beforeUnmouted({ api, parent, isMobileFirstMode }),
     selfClickEvent: selfClickEvent({ api, parent, props }),
     mouseEnterEvent: mouseEnterEvent(),
@@ -116,10 +120,15 @@ export const renderless = (
     mousedownEvent: mousedownEvent({ api, nextTick, props, state, emit, isMobileFirstMode }),
     dragEvent: dragEvent({ api, emit, parent, props, state }),
     resetDragStyle: resetDragStyle(api),
-    computedBoxStyle: computedBoxStyle({ props, isMobileFirstMode })
+    computedBoxStyle: computedBoxStyle({ props, isMobileFirstMode }),
+    watchVisible: watchVisible({ api, props }),
+    hideScrollbar: hideScrollbar(lockScrollClass),
+    showScrollbar: showScrollbar(lockScrollClass)
   })
 
   watch(() => props.modelValue, api.watchValue)
+
+  watch(() => state.visible, api.watchVisible)
 
   api.created()
 

@@ -26,7 +26,7 @@ test('单选事件', async ({ page }) => {
 
   await page.waitForTimeout(200)
   await input.hover()
-  await select.locator('.tiny-select__close').click()
+  await select.locator('.tiny-select__caret').click()
   await page.waitForTimeout(500)
   await expect(input).toHaveValue('')
   await expect(model.filter({ hasText: '触发 clear 事件' })).toHaveCount(1)
@@ -66,7 +66,7 @@ test('多选事件', async ({ page }) => {
 
   await page.waitForTimeout(200)
   await select.hover()
-  await select.locator('.tiny-select__close').click()
+  await select.locator('.tiny-select__caret').click()
 
   await expect(tag).toHaveCount(0)
   await expect(model.filter({ hasText: '触发 change 事件' })).toHaveCount(1)

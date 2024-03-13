@@ -26,9 +26,7 @@
         <template #reference>
           <button>自定义</button>
         </template>
-        <slot>
-          <img :src="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog3.png`" /> 这是自定义插槽使用
-        </slot>
+        <slot> <img :src="imageUrl" /> 这是自定义插槽使用 </slot>
       </tiny-popover>
     </div>
   </div>
@@ -40,6 +38,7 @@ import { Popover } from '@opentiny/vue'
 export default {
   data() {
     return {
+      imageUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dog3.png`,
       data1: [
         {
           id: '0',

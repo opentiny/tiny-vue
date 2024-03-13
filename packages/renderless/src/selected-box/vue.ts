@@ -18,7 +18,8 @@ import {
   arrayMinus,
   batchSubmit,
   getParams,
-  coverSubmit
+  coverSubmit,
+  computedShowClear
 } from './index'
 
 export const api = [
@@ -55,7 +56,8 @@ export const renderless = (
     popoverVisible: false,
     popoverContent: '',
     dragInstance: null,
-    slotParams: computed(() => ({ inverse: state.inverse, total: state.total, select: state.select }))
+    slotParams: computed(() => ({ inverse: state.inverse, total: state.total, select: state.select })),
+    showClear: computed(() => api.computedShowClear())
   })
 
   const api = {
@@ -69,7 +71,8 @@ export const renderless = (
     handleMouseleave: handleMouseleave(state),
     keyType: keyType(props),
     unmount: unmount(state),
-    getParams: getParams(state)
+    getParams: getParams(state),
+    computedShowClear: computedShowClear(state)
   }
 
   Object.assign(api, {

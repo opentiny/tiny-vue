@@ -15,6 +15,5 @@ test('事件', async ({ page }) => {
   await confirmBtn.click()
   await expect(modal.filter({ hasText: 'blur事件' })).toBeVisible()
   await focusBtn.click()
-  // TINY-TODO: focus 方法不生效，picker 组件 renderless 中的 focus 方法存在问题
-  // await expect(timeSelect).toBeVisible()
+  await expect(timeSelect).toBeVisible()
 })

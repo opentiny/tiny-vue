@@ -78,7 +78,8 @@ export const cmpMenus = [
       { 'nameCn': '弹窗选择 ', 'name': 'DialogSelect ', 'key': 'dialog-select' },
       { 'nameCn': '抽屉', 'name': 'Drawer', 'key': 'drawer' },
       { 'nameCn': '过滤器面板', 'name': 'FilterPanel', 'key': 'filter-panel' },
-      { 'nameCn': '面板分割', 'name': 'Split', 'key': 'split' }
+      { 'nameCn': '面板分割', 'name': 'Split', 'key': 'split' },
+      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card' }
     ]
   },
   {

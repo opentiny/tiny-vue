@@ -84,7 +84,7 @@ export default defineComponent({
   },
   setup(props) {
     const { templateModeState } = useTemplateMode()
-    const { currThemeLabel } = useTheme()
+    const { currentThemeKey } = useTheme()
     const isMobileFirst = computed(() => {
       return templateModeState.mode === 'mobile-first'
     })
@@ -179,7 +179,7 @@ export default defineComponent({
       },
       openPlayground(demo, open = true) {
         const cmpId = router.currentRoute.value.params.cmpId
-        const tinyTheme = templateModeState.isSaas ? 'saas' : currThemeLabel.value.split('-')[1]
+        const tinyTheme = templateModeState.isSaas ? 'saas' : currentThemeKey.value.split('-')[1]
         const openModeQuery = open ? '' : '&openMode=preview'
         // TODO: 目前mf只有Options写法，后续再放开compositon
         const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${
@@ -235,13 +235,13 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .demo-desc {
   font-size: 16px;
   line-height: 1.7em;
   margin: 12px 0;
 
-  code {
+  :deep(code) {
     color: #476582;
     padding: 4px 8px;
     margin: 0 4px;

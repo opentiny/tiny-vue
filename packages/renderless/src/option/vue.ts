@@ -29,15 +29,16 @@ const initState = ({ reactive, computed, props, api, markRaw, select, parent }) 
     created: computed(() => props.created),
     index: -1,
     select: markRaw(select),
-    hover: computed(() => (!state.select.optimization && state.select.state.hoverIndex === state.index) || false),
+    hover: computed(() => !state.select.optimization && state.select.state.hoverValue === state.index),
     visible: true,
     hitState: false,
     groupDisabled: false,
-    disabled: computed(() => props.disabled),
+    disabled: computed(() => props.disabled || state.groupDisabled),
     isObject: computed(() => Object.prototype.toString.call(props.value).toLowerCase() === '[object object]'),
     currentLabel: computed(() => props.label || (state.isObject ? '' : props.value)),
-    currentValue: computed(() => props.value || props.label || ''),
     showTitle: false,
+    currentValue: computed(() => props.value || props.label || ''),
+
     itemSelected: computed(() => {
       if (!select.multiple) {
         return api.isEqual(props.value, select.state.modelValue)
@@ -55,7 +56,9 @@ const initState = ({ reactive, computed, props, api, markRaw, select, parent }) 
       }
     }),
 
-    selectCls: computed(() => (state.itemSelected ? 'checked-sur' : 'check'))
+    selectCls: computed(() => {
+      return state.itemSelected ? 'checked-sur' : 'check'
+    })
   })
 
   return state
@@ -66,8 +69,8 @@ const initApi = ({ api, props, state, select, constants, vm }) => {
     state,
     isEqual: isEqual({ select, state }),
     contains: contains({ select, state }),
-    hoverItem: hoverItem({ select, vm, props, state }),
-    queryChange: queryChange({ props, state }),
+    hoverItem: hoverItem({ select, props, state }),
+    queryChange: queryChange({ select, props, state }),
     selectOptionClick: selectOptionClick({ constants, vm, props, state, select }),
     handleGroupDisabled: handleGroupDisabled({ state, vm }),
     initValue: initValue({ select, props, constants, vm })
@@ -117,23 +120,38 @@ const initOnMounted = ({ onMounted, props, api, vm, state, constants, select }) 
     state.el = vm.$el
 
     toggleEvent({ props, vm, type: 'add' })
-    select.state.selectEmitter.on(constants.EVENT_NAME.queryChange, api.queryChange)
+
+    if (!select.optimization) {
+      select.state.selectEmitter.on(constants.EVENT_NAME.queryChange, api.queryChange)
+    }
     api.initValue()
   })
 }
 
-const initOnBeforeUnmount = ({ onBeforeUnmount, props, select, vm }) => {
+const initOnBeforeUnmount = ({ onBeforeUnmount, props, select, vm, state }) => {
   onBeforeUnmount(() => {
-    const index = select.state.cachedOptions.indexOf(vm)
+    let selectedOptions = select.multiple ? select.state.selected : [select.state.selected]
+    const index = select.state.cachedOptions.findIndex((opt) => opt.state === state)
+    const selectedIndex = selectedOptions.findIndex((opt) => opt.state === state)
 
     toggleEvent({ props, vm, type: 'remove' })
 
-    if (index !== -1) {
+    if (index > -1 && selectedIndex < 0) {
       select.state.cachedOptions.splice(index, 1)
     }
 
-    select.onOptionDestroy(select.state.options.indexOf(vm))
+    select.onOptionDestroy(select.state.options.findIndex((opt) => opt.state === state))
   })
+}
+
+const initSelectState = ({ state, select, markRaw, props }) => {
+  let vm = { ...props, state }
+  select.state.options.push(markRaw(vm))
+  select.state.cachedOptions.push(markRaw(vm))
+  select.state.optionsIndex++
+  state.index = select.state.optionsIndex
+  select.state.optionsCount++
+  select.state.filteredOptionsCount++
 }
 
 export const renderless = (
@@ -149,13 +167,9 @@ export const renderless = (
   initApi({ api, props, state, select, constants, vm })
   initWatch({ watch, props, state, select, constants })
   initOnMounted({ onMounted, props, api, vm, state, constants, select })
-  initOnBeforeUnmount({ onBeforeUnmount, props, select, vm })
+  initOnBeforeUnmount({ onBeforeUnmount, props, select, vm, state })
+  initSelectState({ state, select, markRaw, props })
 
-  select.state.options.push(markRaw(vm))
-  select.state.cachedOptions.push(markRaw(vm))
-  state.index = select.state.optionsCount
-  select.state.optionsCount++
-  select.state.filteredOptionsCount++
   parent.$on(constants.EVENT_NAME.handleGroupDisabled, api.handleGroupDisabled)
 
   return api

@@ -15,7 +15,7 @@
       <div data-tag="tiny-selected-box-clear" class="flex space-x-2 select-none text-color-brand">
         <slot name="button" :params="state.slotParams"></slot>
         <slot name="clear" :params="state.slotParams" :clear="handleClear">
-          <div class="cursor-pointer" @click="handleClear">{{ t('ui.selectedBox.clear') }}</div>
+          <div v-if="state.showClear" class="cursor-pointer" @click="handleClear">{{ t('ui.selectedBox.clear') }}</div>
         </slot>
       </div>
     </div>

@@ -8,8 +8,11 @@
       <div class="ti-fi-1 ti-w0 ti-rel cmp-container">
         <!-- 一个组件的文档:  描述md + demos + apis -->
         <div class="markdown-body markdown-top-body" size="medium" v-html="cmpTopMd"></div>
-        <version-tip v-if="currJson.metaData || currJson.versionTipOption" :meta-data="currJson.metaData"
-          v-bind="currJson.versionTipOption">
+        <version-tip
+          v-if="currJson.metaData || currJson.versionTipOption"
+          :meta-data="currJson.metaData"
+          v-bind="currJson.versionTipOption"
+        >
         </version-tip>
         <template v-if="currJson?.demos?.length > 0">
           <div class="all-demos-container">
@@ -69,19 +72,27 @@
                         <td>
                           <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
-                          <version-tip v-if="row.metaData || row.versionTipOption" :meta-data="row.metaData"
-                            v-bind="row.versionTipOption" render-type="tag" tip-subject="api">
+                          <version-tip
+                            v-if="row.metaData || row.versionTipOption"
+                            :meta-data="row.metaData"
+                            v-bind="row.versionTipOption"
+                            render-type="tag"
+                            tip-subject="api"
+                          >
                           </version-tip>
                         </td>
                         <td v-if="!key.includes('slots')" @click="handleTypeClick">
-                          <a v-if="row.typeAnchorName"
+                          <a
+                            v-if="row.typeAnchorName"
                             :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
-                            v-html="row.type"></a>
+                            v-html="row.type"
+                          ></a>
                           <span v-else v-html="row.type"></span>
                         </td>
                         <td v-if="!key.includes('slots') && !key.includes('events') && !key.includes('methods')">
                           <span
-                            v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"></span>
+                            v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"
+                          ></span>
                         </td>
                         <td><span v-html="row.desc[langKey]"></span></td>
                       </tr>
@@ -97,7 +108,8 @@
           <tiny-collapse v-model="activeNames">
             <div v-for="typeItem in currJson.types" :id="typeItem.name" :key="typeItem.name">
               <tiny-collapse-item :title="typeItem.name" :name="typeItem.name">
-                <async-highlight :code="typeItem.code.trim()" types="ts"></async-highlight></tiny-collapse-item>
+                <async-highlight :code="typeItem.code.trim()" types="ts"></async-highlight
+              ></tiny-collapse-item>
             </div>
           </tiny-collapse>
         </template>
@@ -110,8 +122,13 @@
 
       <!-- 目录列表 -->
       <div class="cmp-page-anchor catalog ti-w128 ti-sticky ti-top32" v-if="anchorLinks.length > 0">
-        <tiny-anchor :is-affix="true" :links="anchorLinks" :key="anchorRefreshKey" mask-class="custom-active-anchor"
-          @link-click="handleAnchorClick">
+        <tiny-anchor
+          :is-affix="true"
+          :links="anchorLinks"
+          :key="anchorRefreshKey"
+          mask-class="custom-active-anchor"
+          @link-click="handleAnchorClick"
+        >
         </tiny-anchor>
       </div>
     </div>
@@ -122,13 +139,13 @@
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } from 'vue'
 import { marked } from 'marked'
-import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
+import { Anchor, ButtonGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
 import { Collapse, CollapseItem } from '@opentiny/vue'
-import { faqMdConfig, staticDemoPath, getWebdocPath } from './cmpConfig'
+import { faqMdConfig, getWebdocPath } from './cmpConfig'
 import AsyncHighlight from './async-highlight.vue'
 import VersionTip from './VersionTip.vue'
 
@@ -142,9 +159,6 @@ export default defineComponent({
     TinyCollapseItem: CollapseItem,
     AsyncHighlight,
     VersionTip
-  },
-  directives: {
-    loading: Loading.directive
   },
   setup() {
     const anchorRefreshKey = ref(0)
@@ -200,7 +214,6 @@ export default defineComponent({
           try {
             //  用户打开官网有时候会带一些特殊字符的hash，try catch一下防止js报错
             scrollTarget = document.querySelector(`#${hash}`)
-            console.log('scrollTarget')
           } catch (err) {
             // eslint-disable-next-line no-console
             console.log('querySelector has special character:', err)
@@ -298,21 +311,6 @@ export default defineComponent({
             return item
           })
           state.currJson.types = apiJson.types
-        }
-
-        if (state.cmpId?.startsWith('grid-')) {
-          fetchDemosFile(`${staticDemoPath}/grid/webdoc/grid.js`).then((data) => {
-            // eslint-disable-next-line no-eval
-            const gridJson = eval('(' + data.slice(15) + ')')
-            state.currJson.apis = gridJson.apis
-            state.currJson.types = gridJson.types
-          })
-        } else if (state.cmpId?.startsWith('chart-')) {
-          fetchDemosFile(`${staticDemoPath}/chart/webdoc/chart.js`).then((data) => {
-            // eslint-disable-next-line no-eval
-            const chartJson = eval('(' + data.slice(15) + ')')
-            state.currJson.apis = chartJson.apis
-          })
         }
 
         let hash = router.currentRoute.value.hash?.slice(1)
@@ -427,7 +425,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 table.api-table {
   width: 100%;
   table-layout: fixed;
@@ -444,7 +442,6 @@ table.api-table {
   tbody tr:hover {
     background-color: rgb(250, 250, 252);
   }
-
   th {
     background-color: rgb(250, 250, 252);
     border-bottom: 1px solid rgb(239, 239, 245);
@@ -454,13 +451,11 @@ table.api-table {
     line-height: 1.5;
     word-break: break-word;
   }
-
   td {
     font-size: 14px;
     border-bottom: 1px solid rgb(239, 239, 245);
     padding: 12px;
     line-height: 1.5;
-
     .version-tip {
       margin-left: 6px;
     }
@@ -472,7 +467,6 @@ table.api-table {
   vertical-align: middle;
   font-weight: 600;
 }
-
 .catalog {
   height: calc(100vh - 150px);
   overflow: hidden;
@@ -498,7 +492,7 @@ table.api-table {
   grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
   align-items: flex-start;
 
-  >div {
+  > div {
     display: grid;
     gap: 16px;
     grid-template-columns: 100%;
@@ -507,25 +501,22 @@ table.api-table {
 
 .cmp-container {
   padding-right: 24px;
-
   p {
     font-size: 16px;
     line-height: 1.7em;
     margin: 12px 0;
   }
 }
-
 .cmp-page-anchor {
-  .tiny-anchor__affix {
+  :deep(.tiny-anchor__affix) {
+    top: unset !important;
     overflow-y: auto;
     max-height: 80vh;
   }
-
-  .tiny-anchor-link {
+  :deep(.tiny-anchor-link) {
     margin-bottom: 10px;
     max-width: 150px;
     font-size: 12px;
-
     a {
       overflow: hidden;
       white-space: nowrap;
@@ -547,14 +538,6 @@ table.api-table {
 @media (max-width: 767px) {
   .one-demo-col2 {
     grid-template-columns: 100%;
-  }
-}
-
-.markdown-top-body,
-.all-demos-container {
-  &>.tiny-loading svg {
-    height: 36px;
-    width: 36px;
   }
 }
 
@@ -583,7 +566,6 @@ table.api-table {
     margin: 0;
     font-size: 14px;
   }
-
   ul {
     li {
       padding: 5px 0;

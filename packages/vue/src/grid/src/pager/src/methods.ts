@@ -54,11 +54,10 @@ export default {
       // 在其它场景，内置Pager使用PC模板。显示为block（因为Pager的PC模板外层是div）
       style.display = 'block'
     }
-
     if ($slots.pager) {
       res = $slots.pager()
     } else if (pager) {
-      pager.component = pager.component || Pager
+      pager.component = pager.component || (_vm.fetchData ? Pager : null)
       res = h(hooks.toRaw(pager.component), {
         props: {
           size: vSize,

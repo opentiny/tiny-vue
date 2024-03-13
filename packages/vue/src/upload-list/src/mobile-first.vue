@@ -143,6 +143,14 @@
               ></div>
             </div>
           </slot>
+          <tiny-progress
+            v-if="file.showDownloadBar"
+            class="absolute left-0 bottom-0 w-full"
+            :show-text="false"
+            :stroke-width="4"
+            :percentage="file.downloadPercentage || 0"
+            :status="file.downloadStatus || 'default'"
+          ></tiny-progress>
         </div>
       </div>
       <div
