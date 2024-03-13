@@ -88,7 +88,7 @@ export default {
         'zh-CN': `
         <p>设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>
         <ul>
-          <li>设置表格属性 <code>loading</code> 开启/关闭加载中。\n自定义实现刷新时直接调用<code>handleFetch('reload')</code></li>
+          <li>设置表格属性 <code>loading</code> 开启/关闭加载中。自定义实现刷新时直接调用<code>handleFetch('reload')</code>。</li>
         </ul>`,
         'en-US':
           "<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>refresh</code> to enable the table refresh function. </p>\n<ul>\n<li> Setting Toolbar Properties <code>loading</code>Enable/Disable Loading. \n <code>handleFetch('reload') </code></li>\n</ul>\n is invoked when the customized implementation is refreshed"
