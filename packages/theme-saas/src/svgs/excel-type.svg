@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="页面-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="文件类型方案" transform="translate(-628.000000, -112.000000)">
+            <g id="IconExcelType" transform="translate(628.000000, 112.000000)">
+                <g id="Rectangle-Copy">
+                    <rect x="0" y="0" width="24" height="24" rx="4"></rect>
+                </g>
+                <path d="M17,13 L17,15 L9,15 L9,13 L17,13 Z M17,17 L9,17 L9,11 L17,11 L17,17 Z M9,7 L17,7 L17,9 L9,9 L9,7 Z" id="形状结合" fill="#FFFFFF"></path>
+                <path d="M8,13 L8,15 L7,15 L7,13 L8,13 Z M8,17 L7,17 L7,11 L8,11 L8,17 Z M7,7 L8,7 L8,9 L7,9 L7,7 Z" id="形状结合备份" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

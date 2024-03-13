@@ -1,0 +1,21 @@
+export const tinyDrawerAuroraTheme = {
+  'ti-drawer-min-width': '30%',
+  'ti-drawer-close-icon-size': 'var(--ti-common-font-size-3)',
+  'ti-drawer-footer-justify-content': 'center',
+  'ti-drawer-padding-left': '0px',
+  'ti-drawer-padding-right': '0px',
+  'ti-drawer-head-title-font-weight': 'var(--ti-common-font-weight-4)',
+  'ti-drawer-header-padding-top': 'var(--ti-common-space-4x)',
+  'ti-drawer-header-padding-bottom': 'var(--ti-common-space-4x)',
+  'ti-drawer-header-padding-left': 'var(--ti-common-space-4x)',
+  'ti-drawer-footer-padding-top': 'var(--ti-common-space-3x)',
+  'ti-drawer-footer-padding-bottom': 'var(--ti-common-space-3x)',
+  'ti-drawer-footer-padding-left': 'var(--ti-common-space-4x)',
+  'ti-drawer-footer-padding-right': 'var(--ti-common-space-4x)',
+  'ti-drawer-btn-position-top': 'calc(var(--ti-common-space-4x) + 2px)',
+  'ti-drawer-body-padding-right': 'var(--ti-common-space-6x)',
+  'ti-drawer-radius': 'var(--ti-common-border-radius-2)',
+  'ti-drawer-divider-border-color': 'transparent',
+  'ti-drawer-mask-bg-color': 'rgba(25, 25, 25, 0.3)',
+  'ti-drawer-shadow': '0 1px 6px rgba(0,0,0,.08)'
+}

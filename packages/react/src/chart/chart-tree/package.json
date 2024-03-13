@@ -1,0 +1,22 @@
+{
+  "name": "@opentiny/react-chart-tree",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {
+    "vitest": "^0.31.0"
+  },
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-chart-core": "workspace:~"
+  },
+  "license": "MIT"
+}

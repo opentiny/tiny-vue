@@ -1,0 +1,80 @@
+@import '../custom.less';
+@selected-box-prefix-cls: ~'@{css-prefix}selected-box';
+
+.@{selected-box-prefix-cls} {
+  @apply h-full mx-2 grid grid-cols-1 bg-white;
+  grid-template-rows: 36px auto;
+
+  .@{selected-box-prefix-cls}__header {
+    @apply flex justify-between items-center text-xs text-color-text-primary px-2;
+
+    .@{selected-box-prefix-cls}__header-select {
+      @apply ~"max-w-[theme(spacing.32)]";
+
+      .@{selected-box-prefix-cls}__header-select-label {
+        @apply cursor-pointer;
+      }
+    }
+
+    .@{selected-box-prefix-cls}__header-right {
+      @apply flex space-x-2 select-none text-color-brand;
+
+      .@{selected-box-prefix-cls}__header-right-label {
+        @apply cursor-pointer;
+      }
+    }
+  }
+
+  .@{selected-box-prefix-cls}__list {
+    @apply overflow-x-hidden overflow-y-auto text-xs text-color-text-primary;
+
+    .@{selected-box-prefix-cls}__item {
+      @apply cursor-pointer px-2 rounded-sm;
+
+      &:hover {
+        @apply bg-color-bg-2;
+      }
+
+      .@{selected-box-prefix-cls}__item-grid {
+        @apply grid;
+        grid-template-columns: auto theme('spacing.6');
+
+        .@{selected-box-prefix-cls}__item-grid-left {
+          @apply truncate;
+
+          .@{selected-box-prefix-cls}__item-grid-left-label {
+            @apply h-7 truncate translate-y-1;
+
+            .@{selected-box-prefix-cls}__item-grid-left-label-pri {
+              @apply truncate relative top-1/2 -translate-y-1/2;
+            }
+          }
+
+          .@{selected-box-prefix-cls}__item-grid-left-text {
+            @apply h-7 truncate -translate-y-1;
+
+            .@{selected-box-prefix-cls}__item-grid-left-text-aux {
+              @apply truncate text-color-text-placeholder relative top-1/2 -translate-y-1/2;
+            }
+          }
+        }
+
+        .@{selected-box-prefix-cls}__item-grid-right {
+          @apply h-7 translate-y-1 flex items-center justify-end fill-color-icon-primary;
+
+          &:hover {
+            @apply fill-color-icon-hover;
+          }
+        }
+      }
+    }
+  }
+
+  .@{selected-box-prefix-cls}__list--inverse {
+    @apply line-through decoration-solid decoration-color-text-primary;
+  }
+
+  .@{selected-box-prefix-cls}__popover {
+    @apply hidden;
+  }
+}

@@ -1,0 +1,320 @@
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@cascader-prefix-cls: ~'@{css-prefix}cascader';
+@input-prefix-cls: ~'@{css-prefix}input';
+@tag-prefix-cls: ~'@{css-prefix}tag';
+
+.@{cascader-prefix-cls} {
+  @apply inline-block;
+  @apply relative;
+  @apply text-xs;
+
+  .@{input-prefix-cls} {
+    @apply cursor-pointer;
+
+    .@{input-prefix-cls}__inner {
+      @apply text-ellipsis;
+
+      &:hover {
+        @apply border-color-border-hover;
+      }
+
+      &:focus {
+        @apply border-color-border-focus;
+      }
+    }
+
+    &.is-focus .@{input-prefix-cls}__inner {
+      @apply border-color-border-focus;
+    }
+
+    .@{css-prefix}icon-arrow-down {
+      @apply transition-transform duration-300;
+      @apply text-sm;
+
+      &.is-reverse {
+        transform: rotateZ(180deg);
+      }
+    }
+
+    .@{css-prefix}icon-circle-close:hover {
+      @apply text-color-bg-4;
+    }
+
+    &.is-disabled {
+      .@{input-prefix-cls}__inner {
+        &:hover {
+          @apply border-color-border;
+        }
+
+        &:focus {
+          @apply border-transparent;
+        }
+      }
+
+      + .tiny-cascader__tags > .@{css-prefix}tag {
+          @apply text-color-text-disabled;
+          @apply bg-color-bg-3;
+          @apply cursor-not-allowed;
+        }
+    }
+  }
+
+  .@{input-prefix-cls}-suffix > .@{input-prefix-cls}__suffix {
+    @apply ~'top-1.5';
+    @apply transform-none;
+
+    svg:hover {
+      @apply fill-color-text-placeholder;
+    }
+
+    svg.is-reverse {
+      @apply fill-color-brand-hover;
+    }
+  }
+
+  &--medium {
+    @apply text-sm;
+    @apply leading-9;
+
+    .@{input-prefix-cls}-suffix > .@{input-prefix-cls}__suffix {
+      @apply ~'top-2.5';
+      @apply transform-none;
+    }
+  }
+
+  &--small {
+    @apply text-xs;
+    @apply leading-8;
+
+    .@{input-prefix-cls}-suffix > .@{input-prefix-cls}__suffix {
+      @apply top-2;
+      @apply transform-none;
+    }
+  }
+
+  &--mini {
+    @apply text-xs;
+    @apply leading-7;
+  }
+
+  &.is-disabled {
+    .@{cascader-prefix-cls}__label {
+      @apply ~'z-[2]';
+      @apply text-color-text-disabled;
+    }
+  }
+
+  &.show-auto-width {
+    @apply w-full;
+  }
+
+  &__dropdown {
+    @apply my-1 mx-0;
+    @apply text-sm;
+    @apply bg-color-bg-1;
+    @apply rounded;
+    @apply shadow-md;
+    &.is-auto-size {
+      @apply bg-transparent;
+      @apply border-none;
+      @apply shadow-none;
+      .@{cascader-prefix-cls}-panel {
+        @apply justify-start;
+        @apply items-start;
+      }
+      .@{cascader-prefix-cls}-menu {
+        @apply border border-solid border-color-border-separator;
+        @apply bg-color-bg-1;
+        &:not(:first-child) {
+          @apply -ml-px;
+        }
+        .@{cascader-prefix-cls}-menu__wrap {
+          @apply h-auto;
+          @apply ~'pb-1.5';
+          @apply ~'max-h-[theme(spacing.72)]';
+        }
+      }
+
+      .@{cascader-prefix-cls}-menu__empty-text{
+        @apply relative;
+        @apply top-0;
+        @apply left-0;
+        @apply translate-x-0 translate-y-0;
+        @apply ~'pt-1.5';
+      }
+
+      .@{cascader-prefix-cls}__suggestion-panel {
+        @apply bg-color-bg-1;
+        @apply border border-solid border-color-border-separator;
+      }
+    }
+  }
+
+  &__tags {
+    @apply absolute;
+    @apply left-0;
+    @apply right-10;
+    @apply ~'top-1/2';
+    @apply ~'-translate-y-2/4';
+    @apply flex;
+    @apply flex-wrap;
+    @apply leading-normal;
+    @apply text-left;
+    @apply box-border;
+    @apply pl-3;
+
+    .@{tag-prefix-cls} {
+      @apply inline-flex;
+      @apply items-center;
+      @apply ~'max-w-[100%]';
+      @apply ~'my-0.5' mx-0;
+      @apply text-ellipsis;
+      @apply bg-color-bg-2;
+
+      &:not(.is-hit) {
+        @apply border-transparent;
+      }
+
+      & > span {
+        @apply flex-1;
+        @apply overflow-hidden;
+        @apply text-ellipsis;
+
+        // 兼容ie10-ie11
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          @apply basis-auto;
+        }
+      }
+
+      .@{tag-prefix-cls}__close {
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          @apply shrink-0;
+        }
+      }
+
+      .@{css-prefix}icon-close {
+        @apply flex-none;
+        @apply bg-color-bg-5;
+        @apply text-color-text-inverse;
+
+        &:hover {
+          @apply text-color-text-disabled;
+          @apply bg-color-bg-3;
+        }
+      }
+    }
+  }
+
+  &.is-hover-expand {
+    @apply h-7;
+    @apply align-top;
+
+    &:hover {
+      @apply z-10;
+    }
+
+    .@{cascader-prefix-cls}-content {
+      @apply relative;
+    }
+
+    .@{cascader-prefix-cls}__tags {
+      @apply h-6;
+      @apply overflow-hidden;
+
+      .@{tag-prefix-cls} {
+        @apply ~'max-w-[theme(spacing.44)]';
+      }
+
+      &-collapse {
+        @apply visible;
+        @apply static;
+
+        &.is-hidden {
+          @apply invisible;
+          @apply absolute;
+        }
+      }
+    }
+
+    &.@{cascader-prefix-cls}--small,
+    &.@{cascader-prefix-cls}--mini {
+      height: inherit;
+
+      .@{cascader-prefix-cls}__tags {
+        @apply h-5;
+      }
+    }
+
+    & .@{cascader-prefix-cls}__tags.is-expand-content {
+      @apply h-auto;
+      @apply ~'max-h-[theme(spacing.28)]';
+      @apply overflow-auto;
+    }
+  }
+
+  &__suggestion-panel {
+    @apply rounded;
+  }
+
+  &__suggestion-panel &__suggestion-list {
+    @apply m-0;
+    @apply ~'py-1.5' px-0;
+    @apply text-sm;
+    @apply text-color-text-primary;
+    @apply text-center;
+    @apply max-h-60;
+  }
+
+  &__suggestion-panel &__suggestion-item {
+    @apply flex;
+    @apply justify-between;
+    @apply items-center;
+    @apply h-8;
+    @apply py-0 px-2;
+    @apply text-xs;
+    @apply text-color-text-primary;
+    @apply text-left;
+    @apply outline-0;
+    @apply cursor-pointer;
+
+    &:focus,
+    &:hover {
+      @apply bg-color-bg-2;
+    }
+
+    &.is-checked {
+      @apply text-color-brand-hover;
+      @apply font-bold;
+
+      .icon-check {
+        @apply fill-color-icon-hover;
+      }
+    }
+
+    & > span {
+      @apply ~'mr-2.5';
+    }
+  }
+
+  &__suggestion-panel &__empty-text {
+    @apply ~'my-2.5' mx-0;
+    @apply text-color-text-placeholder;
+  }
+
+  &__search-input {
+    @apply flex-1;
+    @apply h-6;
+    @apply ~"min-w-[theme('spacing.16')]";
+    @apply text-color-text-primary;
+    @apply text-xs;
+    @apply border-none;
+    @apply outline-0;
+    @apply box-border;
+  }
+
+  &__search-input {
+    .placeholder(@color: theme('colors.color.text.placeholder'));
+  }
+}

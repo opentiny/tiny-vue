@@ -1,0 +1,20 @@
+{
+  "name": "@opentiny/docs-solid",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "solid-js": "^1.7.8",
+    "@opentiny/solid": "workspace:~"
+  },
+  "devDependencies": {
+    "vite": "^4.4.5",
+    "vite-plugin-solid": "^2.7.0",
+    "vite-plugin-svgr": "^3.2.0"
+  }
+}

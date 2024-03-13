@@ -1,0 +1,60 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@toast-prefix-cls: ~'@{css-prefix}mobile-toast';
+
+.@{toast-prefix-cls} {
+  .component-css-vars-toast();
+
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: var(--ti-mobile-toast-padding-size-horizontal);
+    background-color: var(--ti-mobile-toast-bg-color-primary);
+    border-radius: var(--ti-mobile-toast-border-radius);
+    box-shadow: var(--ti-mobile-toast-shadow, 0 0 20px 0 rgb(0 0 0 / 8%));
+    backdrop-filter: blur(5px);
+    max-width: var(--ti-mobile-toast-width-max);
+    min-width: 106px;
+
+    &-text {
+      padding: var(--ti-mobile-toast-padding-size-veritical) var(--ti-mobile-toast-padding-size-horizontal);
+    }
+  }
+
+  &-text {
+    word-wrap: break-word;
+    word-break: break-all;
+    font-size: var(--ti-mobile-toast-text-font-size);
+    color: var(--ti-mobile-toast-text-color-primary, #fff);
+  }
+
+  &-icon {
+    padding-bottom: var(--ti-mobile-toast-padding-bottom);
+    font-size: var(--ti-mobile-toast-icon-size);
+  }
+}

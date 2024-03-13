@@ -1,0 +1,53 @@
+/**
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ *
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+ *
+ */
+import type {
+  ICollapseProps,
+  ICollapseState,
+  ICollapseApi,
+  ISharedRenderlessParamHooks,
+  ICollapseRenderlessParamUtils
+} from '@/types'
+
+import { setActiveNames, handleItemClick } from './index'
+
+export const api = ['state']
+
+export const renderless = (
+  props: ICollapseProps,
+  { reactive, watch }: ISharedRenderlessParamHooks,
+  { parent, emit, constants, vm }: ICollapseRenderlessParamUtils
+) => {
+  const eventName = constants.EVENT_NAME.CollapseItemClick
+
+  const state: ICollapseState = reactive({
+    activeNames: []
+  })
+
+  const api: Partial<ICollapseApi> = {
+    state,
+    setActiveNames: setActiveNames({ emit, props, state })
+  }
+
+  api.handleItemClick = handleItemClick({ api: api as ICollapseApi, props, state })
+
+  watch(
+    () => props.modelValue,
+    (value) => {
+      state.activeNames = value || value === 0 ? ([] as Array<string>).concat(value as Array<string> | string) : []
+    },
+    { immediate: true, deep: true }
+  )
+  console.log(parent, 'parent renderless')
+  if (parent.$on) parent.$on(eventName, api.handleItemClick)
+  else vm.$on(eventName, api.handleItemClick)
+  return api
+}

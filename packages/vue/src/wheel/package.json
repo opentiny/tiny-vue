@@ -1,0 +1,27 @@
+{
+  "name": "@opentiny/vue-wheel",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@better-scroll/core": "2.5.0",
+    "@better-scroll/wheel": "2.5.0",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  },
+  "license": "MIT"
+}

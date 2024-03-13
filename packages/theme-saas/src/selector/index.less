@@ -1,0 +1,143 @@
+@import '../custom.less';
+
+@selector-prefix-cls: ~'@{css-prefix}selector';
+
+.@{selector-prefix-cls} {
+  @apply border border-solid border-color-border;
+  @apply rounded-sm;
+  @apply text-xs;
+  @apply shadow-sm;
+  @apply bg-color-bg-1;
+  @apply text-color-text-primary;
+  @apply ~'mt-0.5';
+
+  .@{css-prefix}poplist {
+    li {
+      min-height: 30px;
+      @apply py-0 px-2;
+      line-height: 30px;
+      @apply ~'max-w-[100%]';
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+      @apply whitespace-nowrap;
+
+      &:hover {
+        @apply cursor-pointer;
+      }
+
+      span {
+        @apply text-xs;
+      }
+
+      .icon-check {
+        @apply text-base;
+
+        &:hover {
+          @apply text-color-brand-hover;
+        }
+      }
+    }
+
+    .@{css-prefix}divider {
+      @apply p-0;
+    }
+
+    &.poplist-language li {
+      a,
+      span {
+        @apply inline-block;
+        @apply w-full;
+      }
+    }
+  }
+
+  .@{css-prefix-iconfont} {
+    @apply text-color-text-placeholder;
+    @apply mr-4;
+
+    &.icon-checked {
+      @apply text-color-brand;
+    }
+  }
+
+  .select-pre {
+    @apply bg-color-bg-5;
+    @apply text-color-text-primary;
+
+    &.@{css-prefix}selected {
+      @apply bg-color-bg-2;
+    }
+  }
+
+  .selector-loading {
+    min-height: 100px;
+
+    .mini-loading {
+      @apply absolute;
+      left: 45%;
+      top: 35%;
+      @apply w-5;
+      @apply h-5;
+      background: url(../images/loading-64.gif) center no-repeat;
+    }
+  }
+
+  .@{css-prefix}selected {
+    @apply bg-color-bg-2;
+    @apply text-color-text-primary;
+
+    &:hover {
+      @apply bg-color-bg-2;
+    }
+
+    .icon-check {
+      &:hover {
+        @apply text-color-brand-hover;
+      }
+
+      &:before {
+        content: '\e61f';
+      }
+
+      @apply text-color-brand;
+    }
+  }
+
+  .selector-body {
+    max-height: 300px;
+    @apply overflow-y-auto;
+    @apply overflow-x-hidden;
+
+    .@{css-prefix-iconfont}:first-child {
+      @apply mr-4;
+    }
+  }
+
+  .@{css-prefix}tree {
+    &.radio {
+      & > .tree-menus {
+        .tree-node {
+          &.node-selected {
+            > .tree-menus-link,
+            > .tree-menus-link:hover,
+            > .tree-menus-link .tree-node-name,
+            > .tree-menus-link .tree-node-name:hover,
+            > .tree-menus-link .tree-node-body:hover .tree-node-name {
+              @apply bg-color-bg-2;
+            }
+          }
+
+          .tree-menus-link {
+            &:hover {
+              @apply bg-color-bg-5;
+            }
+          }
+
+          .tree-menus .tree-node {
+            @apply pl-7;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@import '../custom.less';
+
+.tag-variant(@color, @border-color, @background-color, @hover-color, @active-color, @iconColor) {
+  color: @color;
+  border-color: @border-color;
+  background-color: @background-color;
+
+  &.is-hit {
+    border-color: @color;
+    @apply bg-color-bg-1;
+  }
+
+  .@{css-prefix}tag__close {
+    fill: @iconColor;
+
+    &:hover {
+      fill: @hover-color;
+    }
+
+    &:active {
+      fill: @active-color;
+    }
+  }
+}
+
+.tag-dark-variant(@color, @bgcolor, @iconColor, @iconHoverColor) {
+  color: @color;
+  border-color: @bgcolor;
+  background-color: @bgcolor;
+
+  &.is-hit {
+    border-color: @bgcolor;
+  }
+
+  .@{css-prefix}tag__close {
+    fill: @iconColor;
+
+    &:hover,
+    &:active {
+      fill: @iconHoverColor;
+    }
+  }
+}

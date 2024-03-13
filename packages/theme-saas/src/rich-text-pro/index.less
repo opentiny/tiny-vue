@@ -1,0 +1,260 @@
+@import '../custom.less';
+@import '../rich-text/index.less';
+
+@rte-prefix-cls: ~'@{css-prefix}rte';
+
+.@{rte-prefix-cls} {
+  & &__better-table-wrapper {
+    @apply overflow-x-auto;
+    display: table-row\9;
+
+    //兼容ie10-ie11
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      @apply table-row;
+    }
+  }
+
+  & &__better-table {
+    @apply table-fixed;
+    @apply border-collapse;
+    td {
+      border: 1px solid #000;
+      padding: 2px 5px;
+    }
+  }
+
+  &__selection-line {
+    &-left::before {
+      @apply absolute;
+      @apply ~'-left-0.5';
+      @apply ~'-top-0.5';
+      @apply content-[''];
+      width: 5px;
+      height: 5px;
+      background-color: #0589f3;
+      border-radius: 5px;
+    }
+
+    &-right::before {
+      @apply absolute;
+      @apply ~'-right-0.5';
+      bottom: -3px;
+      @apply content-[''];
+      width: 5px;
+      height: 5px;
+      background-color: #0589f3;
+      border-radius: 5px;
+    }
+  }
+
+  &__op-menu {
+    @apply bg-color-bg-1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    @apply text-sm;
+    @apply ~'z-[100]';
+    @apply overflow-hidden;
+    & &-dividing {
+      @apply h-px;
+      background-color: #efefef;
+    }
+
+    & &-subtitle {
+      color: #999;
+      @apply text-sm;
+      padding: 5px 16px;
+    }
+
+    & &-color-picker {
+      @apply flex;
+      @apply items-center;
+      @apply flex-wrap;
+      @apply pt-0 px-4 ~'pb-2.5';
+      @apply bg-color-bg-1;
+      @apply overflow-hidden;
+    }
+
+    & &-color-picker &-color-picker-item {
+      @apply w-5;
+      @apply h-5;
+      border: 1px solid #595959;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      @apply cursor-pointer;
+    }
+
+    & &-item {
+      @apply flex;
+      @apply items-center;
+      @apply ~'py-2.5' px-4;
+      @apply bg-color-bg-1;
+      @apply cursor-pointer;
+      color: #595959;
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+      &:hover {
+        background-color: #efefef;
+      }
+    }
+
+    & &-item &-icon {
+      @apply mr-2;
+      @apply h-5;
+      @apply w-5;
+      font-size: 0;
+    }
+  }
+
+  &__col-tool {
+    @apply absolute;
+    @apply flex;
+    @apply items-end;
+    @apply overflow-hidden;
+    @apply ~'z-[99]';
+    @apply h-4;
+    & &-cell {
+      @apply relative;
+      @apply bg-color-bg-1;
+      border-top: 1px solid #000;
+      border-right: 1px solid #000;
+      border-bottom: 1px solid #000;
+      &:first-child {
+        border-left: 1px solid #000;
+      }
+    }
+
+    & &-cell-holder {
+      @apply absolute;
+      @apply -right-px;
+      @apply top-0;
+      @apply bottom-0;
+      @apply ~'z-[3]';
+      @apply w-px;
+      @apply bg-transparent;
+      @apply cursor-ew-resize;
+      &:hover {
+        background-color: #0589f3;
+      }
+
+      &::before {
+        @apply content-[''];
+        @apply absolute;
+        @apply top-0;
+        @apply ~'-left-1.5';
+        @apply block;
+        @apply w-2;
+        @apply h-full;
+      }
+
+      &::after {
+        @apply content-[''];
+        @apply absolute;
+        @apply top-0;
+        @apply ~'-right-1.5';
+        @apply block;
+        @apply w-2;
+        @apply h-full;
+      }
+    }
+  }
+
+  &__row-tool {
+    @apply absolute;
+    @apply flex;
+    @apply flex-col;
+    & &-cell {
+      @apply relative;
+      border-right: 1px solid #000;
+      border-bottom: 1px solid #000;
+      border-left: 1px solid #000;
+      &:first-child {
+        border-top: 1px solid #000;
+      }
+    }
+
+    & &-cell-holder {
+      @apply absolute;
+      @apply -bottom-px;
+      @apply -left-px;
+      @apply ~'z-[3]';
+      width: inherit;
+      @apply h-px;
+      @apply bg-transparent;
+      @apply cursor-ns-resize;
+      &:hover {
+        background-color: #0589f3;
+      }
+      &::before {
+        @apply content-[''];
+        @apply absolute;
+        @apply -top-2;
+        @apply left-0;
+        @apply block;
+        @apply w-full;
+        @apply h-2;
+      }
+      &::after {
+        @apply content-[''];
+        @apply absolute;
+        @apply top-0;
+        @apply left-0;
+        @apply block;
+        @apply w-full;
+        @apply h-2;
+      }
+    }
+  }
+
+  .ql-toolbar {
+    @apply text-left;
+    .ql-better-table {
+      background: url('../images/icon_operation.svg') no-repeat center center !important;
+      background-size: 16px 16px !important;
+    }
+  }
+
+  .ql-bubble .ql-toolbar {
+    .ql-better-table {
+      background: url('../images/icon_operation_bubble.svg') no-repeat center center !important;
+      background-size: 16px 16px !important;
+    }
+  }
+
+  &__op-menu {
+    &-icon&-icon-prefix1 {
+      background: url('../images/icon_operation_1.svg') no-repeat center center !important;
+      background-size: 20px 20px !important;
+    }
+    &-icon&-icon-prefix2 {
+      background: url('../images/icon_operation_2.svg') no-repeat center center !important;
+      background-size: 20px 20px !important;
+    }
+    &-icon&-icon-prefix3 {
+      background: url('../images/icon_operation_3.svg') no-repeat center center !important;
+      background-size: 20px 20px !important;
+    }
+    &-icon&-icon-prefix4 {
+      background: url('../images/icon_operation_4.svg') no-repeat center center !important;
+      background-size: 20px 20px !important;
+    }
+    &-icon&-icon-prefix5 {
+      background: url('../images/icon_operation_5.svg') no-repeat center center !important;
+      background-size: 20px 20px !important;
+    }
+    &-icon&-icon-prefix6 {
+      background: url('../images/icon_operation_6.svg') no-repeat center center !important;
+      background-size: 20px 20px !important;
+    }
+    &-icon&-icon-prefix7 {
+      background: url('../images/icon_operation_7.svg') no-repeat center center !important;
+      background-size: 20px 20px !important;
+    }
+    &-icon&-icon-prefix8 {
+      background: url('../images/icon_operation_8.svg') no-repeat center center !important;
+      background-size: 20px 20px !important;
+    }
+    &-icon&-icon-prefix9 {
+      background: url('../images/icon_operation_9.svg') no-repeat center center !important;
+      background-size: 20px 20px !important;
+    }
+  }
+}

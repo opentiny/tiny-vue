@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="S12组件" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="CheckBox复选框_半选@1x">
+            <rect id="矩形" opacity="0" x="0" y="0"></rect>
+            <rect id="矩形" fill="#FFFFFF" fill-rule="nonzero" x="8" y="8" width="8" height="8" rx="1"></rect>
+            <path d="M19,2 C20.7208136,2 22,3.27918643 22,5 L22,19 C22,20.7208136 20.7208136,22 19,22 L5,22 C3.27918643,22 2,20.7208136 2,19 L2,5 C2,3.27918643 3.27918643,2 5,2 L19,2 Z M15,8 L9,8 C8.4381722,8 8.07239495,8.32561109 8,9 L8,9 L8,15 C8,15.5618278 8.32561109,15.9276051 9,16 L9,16 L15,16 C15.5618278,16 15.9276051,15.6743889 16,15 L16,15 L16,9 C16,8.4381722 15.6743889,8.07239495 15,8 L15,8 Z" id="形状" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

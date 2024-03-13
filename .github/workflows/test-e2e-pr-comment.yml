@@ -1,0 +1,48 @@
+name: test-e2e-pr-comment
+
+on:
+  workflow_run:
+    workflows: ['E2E Test PR']
+    types:
+      - completed
+
+jobs:
+  comment:
+    permissions:
+      pull-requests: write
+    name: Comment User Tip
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Pr Artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          name: pr
+          if_no_artifact_found: success
+      - name: Save PR Id
+        id: pr
+        run: |
+          if [ -f pr-id.txt ]; then
+            echo "id=$(cat pr-id.txt)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Download user-tip.txt
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          name: user-tip
+          if_no_artifact_found: success
+
+      - id: txtToOutput
+        run: |
+          if [ -f user-tip.txt ]; then
+            echo 'text<<EOF' >> $GITHUB_OUTPUT
+            cat user-tip.txt >> $GITHUB_OUTPUT
+            echo 'EOF' >> $GITHUB_OUTPUT
+          fi
+      - uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.txtToOutput.outputs.text }}
+          comment_tag: e2e-tip
+          pr_number: ${{ steps.pr.outputs.id }}

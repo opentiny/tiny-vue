@@ -1,0 +1,25 @@
+@import '../custom.less';
+
+@espace-prefix-cls: ~'@{css-prefix}espace';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{espace-prefix-cls} {
+  .item-talk,
+  .item-call,
+  .item-email {
+    @apply mt-0 mr-2 mb-0 ml-0;
+    @apply leading-none;
+
+    .@{svg-prefix-cls} {
+      @apply fill-color-text-primary;
+      @apply text-2xl;
+
+      &:hover {
+        @apply fill-color-brand-hover;
+      }
+      &:active {
+        @apply fill-color-icon-active;
+      }
+    }
+  }
+}

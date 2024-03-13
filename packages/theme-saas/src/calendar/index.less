@@ -1,0 +1,424 @@
+@import '../mixins/common.less';
+@import '../mixins/input.less';
+@import '../custom.less';
+
+@calendar-prefix-cls: ~'@{css-prefix}calendar';
+@popover-prefix-cls: ~'@{css-prefix}popover';
+@popper-prefix-cls: ~'@{css-prefix}popper';
+@tooltip-prefix-cls: ~'@{css-prefix}tooltip';
+
+.@{calendar-prefix-cls} {
+  @apply bg-color-bg-1;
+  @apply overflow-hidden;
+  @apply border border-solid border-color-border-separator;
+  @apply rounded;
+
+  &.is-popover.@{popover-prefix-cls}.@{popper-prefix-cls} {
+    @apply p-0;
+    @apply ~'mt-0.5' mr-0 mb-0 ml-0;
+  }
+
+  & &__header {
+    @apply overflow-hidden;
+    @apply p-8;
+  }
+
+  & &__selected {
+    @apply border border-solid border-color-brand;
+    @apply bg-color-brand-hover-subtle;
+    @apply p-2;
+    @apply text-color-text-primary;
+    @apply rounded;
+    @apply mb-2;
+  }
+
+  & &__tool {
+    @apply list-none;
+    @apply overflow-hidden;
+
+    > li {
+      @apply float-left;
+      @apply mr-2;
+
+      > span {
+        @apply inline-block;
+      }
+
+      &:last-child {
+        float: right;
+        @apply ml-4;
+        @apply mr-0;
+      }
+    }
+  }
+
+  & &__input {
+    @apply w-24;
+    @apply relative;
+    @apply outline-0;
+
+    > input {
+      @apply w-full;
+      @apply h-7;
+      @apply leading-7;
+      @apply border border-solid border-color-border;
+      @apply text-color-text-primary;
+      @apply rounded;
+      @apply bg-color-bg-1;
+      @apply text-sm;
+      @apply pt-0 pr-10 pb-0 pl-4;
+      @apply block;
+      @apply whitespace-nowrap;
+      @apply ~'transition-[border]' duration-300;
+      @apply outline-0;
+      @apply box-border;
+
+      &:hover {
+        @apply border border-solid border-color-border-hover;
+      }
+
+      &:focus,
+      &:active,
+      &.active,
+      &[active] {
+        @apply border border-solid border-color-border-focus;
+      }
+
+      &[readonly] {
+        @apply cursor-pointer;
+      }
+    }
+  }
+
+  & &__input-btn {
+    @apply bottom-0;
+    @apply right-4;
+    @apply absolute;
+    @apply top-0;
+    @apply outline-0;
+    @apply box-border;
+    @apply text-center;
+    @apply overflow-hidden;
+    @apply flex;
+    @apply items-center;
+    @apply cursor-pointer;
+
+    svg {
+      @apply text-base;
+      @apply fill-color-text-primary;
+    }
+  }
+
+  & &__tabs {
+    @apply list-none;
+    @apply overflow-hidden;
+
+    > li {
+      @apply relative;
+      @apply float-left;
+      @apply ~'min-w-[theme(spacing.12)]';
+      @apply px-3;
+      @apply h-7;
+      @apply leading-7;
+      @apply border border-solid border-color-border;
+      @apply text-center;
+      @apply text-sm;
+      @apply font-medium;
+      @apply text-color-text-primary;
+      @apply cursor-pointer;
+      @apply bg-color-bg-4;
+      @apply box-border;
+
+      &:first-child {
+        @apply rounded-l-sm;
+        @apply rounded-r-none;
+      }
+
+      &:last-child {
+        @apply -ml-px;
+        @apply rounded-r-sm;
+        @apply rounded-l-none;
+      }
+
+      &:hover {
+        @apply text-color-brand;
+      }
+    }
+
+    > .active {
+      @apply text-color-brand;
+      @apply border border-solid border-color-border-focus;
+      @apply ~'z-[1]';
+      @apply bg-color-bg-1;
+    }
+  }
+
+  & &__main {
+    @apply w-full;
+    @apply overflow-hidden;
+    @apply pt-0 pr-6 pb-8 pl-6;
+
+    table {
+      @apply w-full;
+
+      > tr {
+        > th {
+          @apply h-5;
+          @apply leading-5;
+          @apply text-sm;
+          @apply text-right;
+          width: 100% / 7;
+          @apply pr-4;
+          @apply pb-2;
+        }
+
+        > td {
+          @apply text-right;
+          @apply py-0 px-2;
+
+          &:last-of-type {
+            .@{calendar-prefix-cls}__day {
+              @apply mr-0;
+            }
+          }
+        }
+      }
+    }
+
+    &.year {
+      @apply pb-6;
+
+      table > tr {
+        & > td {
+          @apply ~'w-1/4';
+
+          .@{calendar-prefix-cls}__day {
+            @apply h-20;
+            @apply pr-2;
+          }
+        }
+      }
+    }
+  }
+
+  & &__day {
+    @apply border-t border-t-color-bg-3;
+    @apply h-20;
+    @apply pt-2 pr-2 pb-0 pl-0;
+    @apply text-color-text-primary;
+
+    .label {
+      @apply h-5;
+      @apply leading-5;
+      @apply text-sm;
+    }
+
+    &:hover {
+      @apply bg-color-bg-3;
+    }
+
+    &.selected {
+      @apply bg-color-brand-hover-subtle;
+
+      .label {
+        @apply text-color-brand;
+      }
+    }
+
+    &.disable {
+      @apply text-color-text-disabled;
+
+      .info:before {
+        @apply bg-color-info-secondary-disabled;
+      }
+
+      .success:before {
+        @apply bg-color-success-disabled;
+      }
+
+      .warning:before {
+        @apply bg-color-warning-disabled;
+      }
+
+      .error:before {
+        @apply bg-color-error-disabled;
+      }
+    }
+
+    &.this-month,
+    &.today {
+      @apply border-color-border-focus;
+    }
+  }
+
+  & &__events {
+    @apply text-left;
+    height: calc(~'100% - theme(spacing.6)');
+    @apply overflow-y-auto;
+    @apply py-1 px-0;
+    @apply text-sm;
+
+    .event {
+      @apply cursor-pointer;
+
+      &:before {
+        @apply content-[''];
+        @apply ~'w-2.5';
+        @apply ~'h-2.5';
+        @apply rounded-full;
+        @apply inline-block;
+        @apply my-0 mx-2;
+      }
+    }
+
+    .@{calendar-prefix-cls}__tip {
+      @apply py-1 px-0;
+
+      &.error {
+        border-left: none;
+        @apply bg-transparent;
+      }
+    }
+
+    .info:before {
+      @apply bg-color-brand;
+    }
+
+    .success:before {
+      @apply bg-color-success;
+    }
+
+    .warning:before {
+      @apply bg-color-alert;
+    }
+
+    .error:before {
+      @apply bg-color-error;
+    }
+
+    > li > p {
+      @apply text-sm;
+      @apply text-color-text-secondary;
+    }
+  }
+
+  &__tip {
+    @apply block;
+    .text-overflow();
+
+    &.@{tooltip-prefix-cls} {
+      @apply p-4;
+      @apply rounded;
+
+      &.is-error,
+      &.is-warning,
+      &.is-success,
+      &.is-info {
+        @apply bg-color-bg-1;
+        @apply shadow-lg;
+        overflow: unset;
+
+        &[x-placement^='right'] {
+          > .popper__arrow {
+            @apply border-r-color-bg-1;
+
+            &::after {
+              @apply border-r-color-bg-1;
+            }
+          }
+        }
+
+        &[x-placement^='left'] {
+          > .popper__arrow {
+            @apply border-l-color-bg-1;
+
+            &::after {
+              @apply border-l-color-bg-1;
+            }
+          }
+        }
+      }
+    }
+
+    &-header {
+      @apply overflow-hidden;
+      @apply border-b border-b-color-bg-3;
+      @apply pb-2;
+      @apply text-sm;
+      @apply text-color-text-primary;
+    }
+
+    &-year {
+      @apply float-left;
+    }
+
+    &-hours {
+      float: right;
+    }
+
+    &-title {
+      @apply mt-1;
+      @apply font-bold;
+      @apply text-sm;
+      @apply text-color-text-primary;
+
+      &:before {
+        @apply content-[''];
+        @apply ~'w-2.5';
+        @apply ~'h-2.5';
+        @apply rounded-full;
+        @apply inline-block;
+        @apply mr-2;
+      }
+
+      &.info:before {
+        @apply bg-color-brand;
+      }
+
+      &.success:before {
+        @apply bg-color-success;
+      }
+
+      &.warning:before {
+        @apply bg-color-alert;
+      }
+
+      &.error:before {
+        @apply bg-color-error;
+      }
+    }
+
+    &-content {
+      @apply mt-1;
+      @apply text-sm;
+      @apply text-color-text-secondary;
+    }
+  }
+
+  & &__selector {
+    @apply w-24;
+    @apply ~'max-h-[theme(spacing.72)]';
+    @apply overflow-y-auto;
+    @apply overflow-x-hidden;
+  }
+
+  & &__list-item {
+    @apply ~'min-h-[theme(spacing.8)]';
+    @apply leading-8;
+    @apply ~'max-w-[100%]';
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+    @apply whitespace-nowrap;
+    @apply py-0 px-4;
+    @apply text-color-text-primary;
+
+    &:hover {
+      @apply cursor-pointer;
+      @apply bg-color-bg-4;
+    }
+
+    &.is-selected {
+      @apply bg-color-bg-1;
+    }
+  }
+}

@@ -1,0 +1,393 @@
+@import './mixins/common.less';
+@import '../custom.less';
+
+@grid-pager-prefix-cls: ~'@{css-prefix}grid-pager';
+@grid-icon-prefix-cls: ~'@{css-prefix}grid-icon';
+@grid-pager-size-prefix-cls: ~'@{css-prefix}grid-pager-size';
+
+// pager
+.@{grid-pager-prefix-cls} {
+  @apply ~'py-2.5 px-0';
+  @apply text-xs;
+  @apply text-color-text-primary;
+  @apply text-right;
+  @apply select-none;
+
+  &.align__left {
+    @apply text-left;
+  }
+
+  &.align__center {
+    @apply text-center;
+  }
+
+  &.is__loading {
+    @apply relative;
+
+    &:before {
+      @apply content-[''];
+      @apply absolute;
+      @apply top-0;
+      @apply left-0;
+      @apply w-full;
+      @apply h-full;
+      @apply ~'z-[1]';
+      @apply bg-black bg-opacity-20;
+    }
+  }
+
+  &.p__background {
+    .@{grid-pager-prefix-cls}__prev-btn,
+    .@{grid-pager-prefix-cls}__next-btn {
+      @apply bg-color-bg-2;
+      @apply rounded;
+    }
+
+    .@{grid-pager-prefix-cls}__jump-prev,
+    .@{grid-pager-prefix-cls}__num-btn,
+    .@{grid-pager-prefix-cls}__jump-next {
+      @apply bg-color-bg-2;
+      @apply rounded;
+
+      &:hover {
+        @apply text-color-brand;
+      }
+
+      &.is__active {
+        @apply text-color-text-inverse;
+        @apply bg-color-brand;
+      }
+    }
+  }
+
+  &.size__medium {
+    @apply py-2 px-0;
+
+    .@{grid-pager-prefix-cls}__total,
+    .@{grid-pager-prefix-cls}__prev-btn,
+    .@{grid-pager-prefix-cls}__btn-wrapper,
+    .@{grid-pager-prefix-cls}__next-btn,
+    .@{grid-pager-prefix-cls}__sizes,
+    .@{grid-pager-prefix-cls}__jump {
+      @apply my-0 mx-1;
+    }
+
+    .@{grid-pager-prefix-cls}__count,
+    .size__content,
+    .@{grid-pager-prefix-cls}__prev-btn,
+    .@{grid-pager-prefix-cls}__next-btn,
+    .@{grid-pager-prefix-cls}__jump-prev,
+    .@{grid-pager-prefix-cls}__num-btn,
+    .@{grid-pager-prefix-cls}__jump-next {
+      @apply h-7;
+      @apply leading-7;
+    }
+
+    .@{grid-pager-prefix-cls}__sizes {
+      .@{grid-pager-prefix-cls}__sizes-arrow {
+        @apply top-2;
+      }
+    }
+
+    .@{grid-pager-prefix-cls}__jump .@{grid-pager-prefix-cls}__goto {
+      @apply h-7;
+    }
+
+    .@{grid-pager-prefix-cls}__jump-prev,
+    .@{grid-pager-prefix-cls}__prev-btn,
+    .@{grid-pager-prefix-cls}__next-btn,
+    .@{grid-pager-prefix-cls}__jump-next {
+      @apply text-xl;
+    }
+  }
+
+  &.size__small {
+    @apply text-xs;
+    @apply py-2 px-0;
+
+    .@{grid-pager-prefix-cls}__total,
+    .@{grid-pager-prefix-cls}__prev-btn,
+    .@{grid-pager-prefix-cls}__btn-wrapper,
+    .@{grid-pager-prefix-cls}__next-btn,
+    .@{grid-pager-prefix-cls}__sizes,
+    .@{grid-pager-prefix-cls}__jump {
+      @apply my-0 mx-1;
+    }
+
+    .@{grid-pager-prefix-cls}__count,
+    .size__content,
+    .@{grid-pager-prefix-cls}__prev-btn,
+    .@{grid-pager-prefix-cls}__next-btn,
+    .@{grid-pager-prefix-cls}__jump-prev,
+    .@{grid-pager-prefix-cls}__num-btn,
+    .@{grid-pager-prefix-cls}__jump-next {
+      @apply h-7;
+      @apply leading-7;
+    }
+
+    .@{grid-pager-prefix-cls}__sizes {
+      .@{grid-pager-prefix-cls}__sizes-arrow {
+        top: 7px;
+      }
+    }
+
+    .@{grid-pager-prefix-cls}__jump .@{grid-pager-prefix-cls}__goto {
+      @apply h-7;
+    }
+
+    .@{grid-pager-prefix-cls}__jump-prev,
+    .@{grid-pager-prefix-cls}__prev-btn,
+    .@{grid-pager-prefix-cls}__next-btn,
+    .@{grid-pager-prefix-cls}__jump-next {
+      @apply text-base;
+    }
+  }
+
+  &.size__mini {
+    @apply text-xs;
+    @apply py-2 px-0;
+
+    .@{grid-pager-prefix-cls}__total,
+    .@{grid-pager-prefix-cls}__prev-btn,
+    .@{grid-pager-prefix-cls}__btn-wrapper,
+    .@{grid-pager-prefix-cls}__next-btn,
+    .@{grid-pager-prefix-cls}__sizes,
+    .@{grid-pager-prefix-cls}__jump {
+      @apply my-0 mx-1;
+    }
+
+    .@{grid-pager-prefix-cls}__count,
+    .size__content,
+    .@{grid-pager-prefix-cls}__prev-btn,
+    .@{grid-pager-prefix-cls}__next-btn,
+    .@{grid-pager-prefix-cls}__jump-prev,
+    .@{grid-pager-prefix-cls}__num-btn,
+    .@{grid-pager-prefix-cls}__jump-next {
+      @apply h-6;
+      @apply leading-6;
+    }
+
+    .@{grid-pager-prefix-cls}__sizes {
+      .@{grid-pager-prefix-cls}__sizes-arrow {
+        @apply ~'top-1.5';
+      }
+    }
+
+    .@{grid-pager-prefix-cls}__jump .@{grid-pager-prefix-cls}__goto {
+      @apply h-6;
+    }
+
+    .@{grid-pager-prefix-cls}__jump-prev,
+    .@{grid-pager-prefix-cls}__prev-btn,
+    .@{grid-pager-prefix-cls}__next-btn,
+    .@{grid-pager-prefix-cls}__jump-next {
+      @apply text-sm;
+    }
+  }
+
+  & &__total,
+  & &__prev-btn,
+  & &__btn-wrapper,
+  & &__next-btn,
+  & &__sizes,
+  & &__jump,
+  & &__jump-prev,
+  & &__jump-next,
+  & &__count {
+    @apply my-0 ~'mx-1.5';
+    @apply align-middle;
+    @apply inline-block;
+  }
+
+  & &__prev-btn,
+  & &__jump-prev,
+  & &__num-btn,
+  & &__jump-next,
+  & &__next-btn,
+  & &__sizes {
+    @apply cursor-pointer;
+  }
+
+  & &__count,
+  .size__content,
+  & &__prev-btn,
+  & &__next-btn,
+  & &__jump-prev,
+  & &__num-btn,
+  & &__jump-next {
+    @apply h-8;
+    @apply leading-8;
+    @apply inline-block;
+  }
+
+  & &__btn-wrapper {
+    @apply list-none;
+    @apply p-0;
+    @apply inline-block;
+    @apply text-center;
+
+    .@{grid-pager-prefix-cls}__jump-prev,
+    .@{grid-pager-prefix-cls}__jump-next {
+      &:hover {
+        .@{grid-pager-prefix-cls}__jump-more {
+          @apply hidden;
+        }
+
+        .@{grid-pager-prefix-cls}__jump-icon {
+          @apply inline-block;
+        }
+      }
+    }
+
+    .@{grid-pager-prefix-cls}__jump-icon {
+      @apply hidden;
+    }
+  }
+
+  & &__jump-prev,
+  & &__prev-btn,
+  & &__num-btn,
+  & &__next-btn,
+  & &__jump-next {
+    @apply my-0 ~'mx-0.5';
+
+    &:hover,
+    &.is__active {
+      @apply text-color-brand;
+    }
+
+    &.is__disabled {
+      @apply cursor-no-drop;
+      @apply text-color-text-disabled;
+
+      &:hover {
+        @apply text-color-text-disabled;
+      }
+    }
+  }
+
+  & &__jump-prev,
+  & &__prev-btn,
+  & &__next-btn,
+  & &__jump-next {
+    @apply text-xl;
+  }
+
+  & &__num-btn {
+    @apply ~'min-w-[theme(spacing.8)]';
+    @apply font-bold;
+    @apply align-middle;
+  }
+
+  .@{grid-icon-prefix-cls}__page-icon,
+  & &__jump-icon {
+    @apply ~'-mt-0.5';
+  }
+
+  & &__sizes {
+    @apply relative;
+    @apply rounded;
+    @apply p-0;
+    @apply border border-solid border-color-border;
+    @apply text-color-text-primary;
+    @apply text-center;
+    @apply inline-block;
+    .animatTransition(border);
+
+    &.is__active {
+      @apply border border-solid border-color-border-focus;
+
+      .@{grid-pager-prefix-cls}__sizes-arrow {
+        transform: rotate(360deg);
+      }
+
+      .@{grid-pager-prefix-cls}-size__select-wrapper {
+        @apply block;
+      }
+    }
+
+    .@{grid-pager-prefix-cls}__sizes-arrow {
+      @apply absolute;
+      right: 5px;
+      top: 9px;
+      @apply text-xs;
+      .animatTransition(transform, 0.2s);
+    }
+
+    .size__content {
+      padding: 0 22px 0 10px;
+      @apply block;
+    }
+  }
+
+  & &__count &__separator {
+    @apply ~'mr-1.5';
+  }
+
+  & &__jump &__goto {
+    @apply rounded;
+    @apply border border-solid border-color-border;
+    @apply text-color-text-primary;
+    height: 30px;
+    transition: border 0.2s ease-in-out;
+
+    &:focus {
+      @apply border border-solid border-color-border-focus;
+      @apply outline-0;
+    }
+  }
+
+  & &__jump {
+    .@{grid-pager-prefix-cls}__goto-text {
+      @apply mr-1;
+    }
+
+    .@{grid-pager-prefix-cls}__classifier-text {
+      @apply ml-1;
+    }
+
+    .@{grid-pager-prefix-cls}__goto {
+      width: 42px;
+      @apply text-center;
+    }
+  }
+}
+
+.@{grid-pager-size-prefix-cls}__select-wrapper {
+  @apply hidden;
+  @apply absolute;
+  @apply bottom-0;
+  @apply left-0;
+  width: 200px;
+  @apply text-center;
+  @apply ~'z-[4000]';
+  @apply pointer-events-none;
+
+  .@{grid-pager-size-prefix-cls}__select {
+    @apply m-0;
+    @apply py-1 px-0;
+    min-width: 50px;
+    @apply list-none;
+    @apply inline-block;
+    @apply rounded;
+    @apply bg-color-bg-1;
+    @apply border border-solid border-color-border-focus;
+    @apply pointer-events-auto;
+    @apply shadow-sm;
+
+    .size__option {
+      padding: 0 15px;
+      @apply whitespace-nowrap;
+      @apply cursor-pointer;
+
+      &:hover {
+        @apply text-color-brand;
+      }
+
+      &.is__active {
+        @apply font-bold;
+        @apply text-color-brand;
+      }
+    }
+  }
+}

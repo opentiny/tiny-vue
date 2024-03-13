@@ -1,0 +1,114 @@
+@import '../custom.less';
+
+@table-prefix-cls: ~'@{css-prefix}table';
+@table-header-prefix-cls: ~'@{css-prefix}table-header';
+@table-cell-prefix-cls: ~'@{css-prefix}table-cell';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{table-prefix-cls} {
+  &.simple {
+    table {
+      @apply table-fixed;
+
+      tr {
+        @apply table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+      }
+
+      tbody {
+        @apply border-b border-b-color-border;
+
+        tr {
+          @apply text-color-text-primary;
+          @apply bg-color-bg-2;
+
+          &:nth-child(odd) {
+            @apply bg-color-bg-1;
+          }
+
+          &:hover {
+            @apply bg-color-bg-5;
+          }
+
+          &.is-disabled {
+            @apply bg-color-bg-2;
+            @apply text-color-text-disabled;
+            @apply cursor-not-allowed;
+          }
+        }
+
+        .noData {
+          width: 582px;
+          height: 360px;
+          @apply text-center;
+          @apply text-color-text-placeholder;
+          @apply ~'pt-2.5';
+          @apply flex;
+          @apply -mb-px;
+          @apply border-b border-b-color-border;
+          @apply justify-center;
+          @apply items-center;
+        }
+      }
+
+      th {
+        @apply ~'pt-0.5 pr-0 pb-0.5 pl-2';
+        @apply h-9;
+        border-left: none;
+      }
+
+      td {
+        @apply ~'pt-0.5 pr-0 pb-0.5 pl-2';
+        @apply h-9;
+        @apply text-xs;
+
+        .overflow {
+          @apply whitespace-nowrap;
+          @apply overflow-hidden;
+          @apply text-ellipsis;
+        }
+      }
+
+      thead {
+        @apply border-b border-b-color-border;
+        @apply text-left;
+        @apply bg-color-bg-2;
+        @apply text-color-text-primary;
+
+        th {
+          @apply overflow-hidden;
+          @apply text-ellipsis;
+          @apply whitespace-nowrap;
+          @apply text-xs;
+          @apply text-color-text-primary;
+          @apply text-left;
+          line-height: 1.7em;
+
+          .overflow {
+            @apply whitespace-nowrap;
+            @apply overflow-hidden;
+            @apply text-ellipsis;
+          }
+        }
+      }
+    }
+
+    .@{table-header-prefix-cls}__line {
+      float: right;
+      @apply border-l border-l-color-border;
+      @apply h-5;
+    }
+
+    .@{table-cell-prefix-cls} {
+      .@{svg-prefix-cls} {
+        @apply text-base;
+        @apply fill-color-border;
+
+        &.is-check {
+          @apply fill-color-brand;
+        }
+      }
+    }
+  }
+}

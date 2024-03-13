@@ -1,0 +1,232 @@
+@import '../mixins/tag.less';
+@import '../mixins/common.less';
+@import '../custom.less';
+
+@tag-prefix-cls: ~'@{css-prefix}tag';
+
+.@{tag-prefix-cls} {
+  @apply h-6;
+  @apply py-0 px-2;
+  @apply text-xs;
+  @apply border;
+  @apply rounded;
+  @apply border-solid;
+  @apply box-border;
+  @apply whitespace-nowrap;
+  @apply inline-flex;
+  @apply items-center;
+  .tag-variant(
+    theme('colors.color.info.primary.DEFAULT'),
+    theme('colors.transparent'),
+    theme('colors.color.info.primary.subtler'),
+    theme('colors.color.info.primary.DEFAULT'),
+    theme('colors.color.info.primary.DEFAULT'),
+    theme('colors.color.info.primary.subtle')
+  );
+
+  & &__close {
+    @apply text-xs;
+    @apply ml-1;
+
+    &:hover {
+      @apply cursor-pointer;
+    }
+  }
+
+  &&--info {
+    .tag-variant(
+      theme('colors.color.text.primary'),
+      theme('colors.transparent'),
+      theme('colors.color.bg.2'),
+      theme('colors.color.icon.primary'),
+      theme('colors.color.icon.primary'),
+      theme('colors.color.none.DEFAULT')
+    );
+  }
+
+  &&--default {
+    .tag-variant(
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.transparent'),
+      theme('colors.color.info.primary.subtler'),
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.info.primary.subtle')
+    );
+  }
+
+  &&--success {
+    .tag-variant(
+      theme('colors.color.success.DEFAULT'),
+      
+      theme('colors.transparent'),
+      theme('colors.color.success.subtler'),
+      theme('colors.color.success.DEFAULT'),
+      theme('colors.color.success.DEFAULT'),
+      theme('colors.color.success.subtle')
+    );
+  }
+
+  &&--warning {
+    .tag-variant(
+      theme('colors.color.warning.DEFAULT'),
+      theme('colors.transparent'),
+      theme('colors.color.warning.subtler'),
+      theme('colors.color.warning.DEFAULT'),
+      theme('colors.color.warning.DEFAULT'),
+      theme('colors.color.warning.subtle')
+    );
+  }
+
+  &&--danger {
+    .tag-variant(
+      theme('colors.color.error.DEFAULT'),
+      theme('colors.transparent'),
+      theme('colors.color.error.subtler'),
+      theme('colors.color.error.DEFAULT'),
+      theme('colors.color.error.DEFAULT'),
+      theme('colors.color.error.subtle')
+    );
+  }
+
+  &--dark {
+    .tag-dark-variant(
+      theme('colors.color.text.inverse'),
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.bg.6'),
+      theme('colors.color.icon.inverse')
+    );
+  }
+
+  &--dark&--info {
+    .tag-dark-variant(
+      theme('colors.color.text.inverse'),
+      theme('colors.color.none.DEFAULT'),
+      theme('colors.color.bg.6'),
+      theme('colors.color.icon.inverse')
+    );
+  }
+
+  &--dark&--default {
+    .tag-dark-variant(
+      theme('colors.color.text.inverse'),
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.bg.6'),
+      theme('colors.color.icon.inverse')
+    );
+  }
+
+  &--dark&--success {
+    .tag-dark-variant(
+      theme('colors.color.text.inverse'),
+      theme('colors.color.success.DEFAULT'),
+      theme('colors.color.bg.6'),
+      theme('colors.color.icon.inverse')
+    );
+  }
+
+  &--dark&--warning {
+    .tag-dark-variant(
+      theme('colors.color.text.inverse'),
+      theme('colors.color.warning.DEFAULT'),
+      theme('colors.color.bg.6'),
+      theme('colors.color.icon.inverse')
+    );
+  }
+
+  &--dark&--danger {
+    .tag-dark-variant(
+      theme('colors.color.text.inverse'),
+      theme('colors.color.error.DEFAULT'),
+      theme('colors.color.bg.6'),
+      theme('colors.color.icon.inverse')
+    );
+  }
+
+  &--plain {
+    .tag-variant(
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.info.primary.subtle'),
+      theme('colors.color.bg.1'),
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.info.primary.subtle')
+    );
+  }
+
+  &--plain&--info {
+    .tag-variant(
+      theme('colors.color.text.primary'),
+      theme('colors.color.none.DEFAULT'),
+      theme('colors.color.bg.1'),
+      theme('colors.color.text.primary'),
+      theme('colors.color.text.primary'),
+      theme('colors.color.none.DEFAULT')
+    );
+  }
+
+  &--plain&--default {
+    .tag-variant(
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.bg.1'),
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.info.primary.DEFAULT'),
+      theme('colors.color.info.primary.DEFAULT')
+    );
+  }
+
+  &--plain&--success {
+    .tag-variant(
+      theme('colors.color.success.DEFAULT'),
+      theme('colors.color.success.subtle'),
+      theme('colors.color.bg.1'),
+      theme('colors.color.success.DEFAULT'),
+      theme('colors.color.success.DEFAULT'),
+      theme('colors.color.success.subtle')
+    );
+  }
+
+  &--plain&--warning {
+    .tag-variant(
+      theme('colors.color.warning.DEFAULT'),
+      theme('colors.color.warning.subtle'),
+      theme('colors.color.bg.1'),
+      theme('colors.color.warning.DEFAULT'),
+      theme('colors.color.warning.DEFAULT'),
+      theme('colors.color.warning.subtle')
+    );
+  }
+
+  &--plain&--danger {
+    .tag-variant(
+      theme('colors.color.error.DEFAULT'),
+      theme('colors.color.error.subtle'),
+      theme('colors.color.bg.1'),
+      theme('colors.color.error.DEFAULT'),
+      theme('colors.color.error.DEFAULT'),
+      theme('colors.color.error.subtle')
+    );
+  }
+
+  &--medium {
+    @apply h-8;
+    @apply py-0 px-3;
+    @apply text-sm;
+
+    .@{tag-prefix-cls}__close {
+      @apply ml-2;
+      @apply text-base;
+    }
+  }
+
+  &--small {
+    @apply h-5;
+    @apply py-0 px-1;
+  }
+
+  &--mini {
+    @apply h-4;
+    @apply py-0 px-1;
+  }
+}

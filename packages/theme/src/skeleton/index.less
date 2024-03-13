@@ -1,0 +1,47 @@
+@import '../custom.less';
+@import './vars.less';
+
+@skeleton-item-prefix-cls: ~'@{css-prefix}skeleton';
+
+.@{skeleton-item-prefix-cls} {
+  .component-css-vars-skeleton();
+
+  width: 100%;
+
+  &__article {
+    display: flex;
+    width: 100%;
+  }
+
+  &__avatar {
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    width: var(--ti-skeleton-avatar-size);
+    height: var(--ti-skeleton-avatar-size);
+    margin-right: var(--ti-skeleton-avatar-margin-right);
+  }
+
+  &__section {
+    width: 100%;
+  }
+
+  &-item__title {
+    width: var(--ti-skeleton-title-width);
+    height: var(--ti-skeleton-title-height);
+  }
+
+  &-item__rows {
+    margin-top: var(--ti-skeleton-rows-margin-top);
+    margin-bottom: var(--ti-skeleton-rows-margin-bottom);
+  }
+
+  &-item--square {
+    margin-bottom: var(--ti-skeleton-row-margin-bottom);
+
+    &:last-child {
+      width: var(--ti-skeleton-last-row-width);
+      margin-bottom: 0;
+    }
+  }
+}

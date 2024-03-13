@@ -1,0 +1,236 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+/* 基础变量定义 */
+:root {
+  /* 主题色 */
+  --ti-mobile-color-brand-1: #1f1b1b; // 主题色
+  --ti-mobile-color-brand-2: #1476ff; // 辅助色
+
+  /* 背景色 */
+  --ti-mobile-color-bg-default: #f5f5f5; // 页面、表头背景色
+  --ti-mobile-color-bg-active: #f5f5f5; // 选中背景色
+  --ti-mobile-color-bg-disabled: #f0f0f0; //禁用背景色
+  --ti-mobile-color-bg-control-active: #1476ff; // 开关背景色
+  --ti-mobile-color-bg-control-default: #c2c2c2; // 开关背景色
+  --ti-mobile-color-bg-control-disabled-1: #dbdbdb; // 开关禁用背景色
+  --ti-mobile-color-bg-control-disabled-2: #b3d6ff; // 选块选中，开关禁用
+  --ti-mobile-color-bg-container-1: #fff; // 容器背景色1
+  --ti-mobile-color-bg-container-2: #fafafa; // 容器背景色2
+  --ti-mobile-color-bg-topnavigation: #fff; // 顶部导航背景色
+  --ti-mobile-color-bg-topnavigation-active: #595959; // 顶部导航选中背景色
+  --ti-mobile-color-bg-primary-default: #191919; // 主按钮背景色
+  --ti-mobile-color-bg-primary-active: #595959; // 主按钮选中背景色
+  --ti-mobile-color-bg-mask: #0000004b; // 遮罩层背景色 30%透明度
+  --ti-mobile-color-bg-cell-active: #f0f7ff; // 表格选中背景色
+
+  /* 文本色 */
+  --ti-mobile-color-text-primary: #191919; // 主要文本色、灰色标签文本色
+  --ti-mobile-color-text-secondary: #595959; // 次要文本色
+  --ti-mobile-color-text-placeholder: #808080; // 占位符、辅助文本色
+  --ti-mobile-color-text-disabled: #c2c2c2; // 禁用文本色
+  --ti-mobile-color-text-inverse: #fff; // 文本反色
+  --ti-mobile-color-text-brand: #191919; // 主题色
+  --ti-mobile-color-text-link: #1476ff; // 文本链接、文本按钮色
+
+  /* 图标色 */
+  --ti-mobile-color-icon-control: #191919; // 页面默认图标色
+  --ti-mobile-color-icon-default: #808080; // 默认图标色
+  --ti-mobile-color-icon-active: #191919; // 聚焦图标色
+  --ti-mobile-color-icon-disabled: #c2c2c2; // 禁用图标色
+  --ti-mobile-color-icon-link: #1476ff; // 链接图标色
+  --ti-mobile-color-icon-inverse: #fff; // 图标反色
+
+  /* 边框色 */
+  --ti-mobile-color-border-default: #c2c2c2; // 默认边框色
+  --ti-mobile-color-border-default-2: #595959; // 次要按钮边框色
+  --ti-mobile-color-border-active: #191919; // 点击态边框色
+  --ti-mobile-color-border-disabled: #dbdbdb; // 禁用边框色
+  --ti-mobile-color-border-divider: #f0f0f0; // 分割线
+  --ti-mobile-color-border-dash: #191919; // 下滑虚线
+
+  /* 功能色 */
+  --ti-mobile-color-success: #5cb300; // 成功色
+  --ti-mobile-color-success-subtle: #e6f2d5; // 成功背景色
+  --ti-mobile-color-error: #f23030; // 校验、错误色
+  --ti-mobile-color-error-subtle: #fce3e1; // 错误背景色
+  --ti-mobile-color-warning: #ff8800; // 告警色
+  --ti-mobile-color-warning-subtle: #ffebd1; // 告警背景色
+  --ti-mobile-color-info: #1476ff; // 提示色
+  --ti-mobile-color-info-subtle: #deecff; // 提示背景色
+  --ti-mobile-color-none: #c2c2c2; // 失效色
+  --ti-mobile-color-alert-fatal: #b50e65; // 致命告警色
+  --ti-mobile-color-alert-error: #f23030; // 紧急告警色
+  --ti-mobile-color-alert-warning: #ff8800; // 重要告警色
+  --ti-mobile-color-alert-secondary: #ffb700; // 次要告警色
+  --ti-mobile-color-alert-ordinary: #f2e70c; //普通告警色
+
+  /* 图表色 */
+  --ti-mobile-color-chart-1: #1476ff; // 图表用色1
+  --ti-mobile-color-chart-2: #0bb8b2; // 图表用色2
+  --ti-mobile-color-chart-3: #6e51e0; // 图表用色3
+  --ti-mobile-color-chart-4: #5cb300; // 图表用色4
+  --ti-mobile-color-chart-5: #fcb1e1; // 图表用色5
+  --ti-mobile-color-chart-6: #33bcf2; // 图表用色6
+  --ti-mobile-color-chart-7: #ba53e6; // 图表用色7
+  --ti-mobile-color-chart-8: #eb4696; // 图表用色8
+  --ti-mobile-color-chart-9: #c2c2c2; // 图表用色9
+
+  /* 字号 */
+  --ti-mobile-font-size-xs: 10px; // 辅助文字、图标刻度
+  --ti-mobile-font-size-s: 12px; // 按钮文字、正文
+  --ti-mobile-font-size-m: 14px; // 次标题、按钮文本、正文、眉题
+  --ti-mobile-font-size-l: 16px; // 次标题、按钮文本、正文
+  --ti-mobile-font-size-xl: 18px; // 标题
+  --ti-mobile-font-size-2xl: 20px; // 标题、弹窗标题
+  --ti-mobile-font-size-3xl: 24px; // 标题
+  --ti-mobile-font-size-4xl: 30px; // 标题
+  --ti-mobile-font-size-5xl: 38px; // 标题
+  --ti-mobile-font-size-6xl: 48px; // 标题
+
+  /* 字重 */
+  --ti-mobile-font-weight-regular: 400; // 标准
+  --ti-mobile-font-weight-medium: 500; // 中粗
+
+  /* 字族 */
+  --ti-mobile-font-family: 'HarmonySans', '鸿蒙黑体', 'NotoSans', 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑',
+  'Microsoft JhengHei';
+
+  /* 间距 */
+  --ti-mobile-space-1x: 4px; // 1倍间距
+  --ti-mobile-space-2x: 8px; // 2倍间距
+  --ti-mobile-space-3x: 12px; // 3倍间距
+  --ti-mobile-space-4x: 16px; // 4倍间距
+  --ti-mobile-space-5x: 20px; // 5倍间距
+  --ti-mobile-space-6x: 24px; // 6倍间距
+  --ti-mobile-space-8x: 32px; // 8倍间距
+  --ti-mobile-space-12x: 48px; // 12倍间距
+  --ti-mobile-space-16x: 64px; // 16倍间距
+
+  /* 圆角 */
+  --ti-mobile-border-radius-xs: 2px; // 适用于小标签
+  --ti-mobile-border-radius-s: 4px; // 适用于中标签
+  --ti-mobile-border-radius-m: 8px; // 管理侧卡片、全局/信息提示、弹窗
+  --ti-mobile-border-radius-l: 12px; // 中圆角
+  --ti-mobile-border-radius-xl: 16px; // 大圆角(卡片、弹窗)
+  --ti-mobile-border-radius-xxl: 24px; // 中圆角
+  --ti-mobile-border-radius-full: 9999px; // 全圆角(按钮、开关)
+
+  /* 边框宽度 */
+  --ti-mobile-border-width-1: 1px;
+
+  /* 边框类型 */
+  --ti-mobile-border-style-solid: solid; // 实线
+  --ti-mobile-border-style-dash: dash; // 虚线
+
+  /* 阴影 */
+  --ti-mobile-shadow-xs: 0 0 4px 0 rgba(0, 0, 0, 0, 0.08); // 输入框、下拉框、日期选择框
+  --ti-mobile-shadow-s: 0 0 20px 0 rgba(0, 0, 0, 0.08); // 卡片选中、聚焦；悬浮面板、全局提示
+  --ti-mobile-shadow-m: 0 10px 20px 0 rgba(0, 0, 0, 0, 0.15);
+  --ti-mobile-shadow-l: 0 10px 50px 0 rgba(0, 0, 0, 0, 0.3);
+
+  /* ------------------ deprecated ------------------ */
+  /* 品牌色*/
+  --ti-mobile-base-color-brand-1: #4a79fe; /* 蓝_品牌色*/
+  --ti-mobile-base-color-brand-2: #3168f1;
+  --ti-mobile-base-color-brand-3: #6e94fe;
+  --ti-mobile-base-color-brand-4: #92affe;
+  --ti-mobile-base-color-brand-5: #b7c9ff;
+  --ti-mobile-base-color-brand-6: #95a2f8;
+  --ti-mobile-base-color-brand-6: #ffffff;
+
+  /* 1.2背景色*/
+  --ti-mobile-base-color-bg-1: #f5f5f5; /* 深灰_背景色*/
+  --ti-mobile-base-color-bg-2: #fafafa; /* 浅灰_背景色*/
+  --ti-mobile-base-color-bg-3: #ffffff; /* 白色_背景色*/
+
+  /* 文本、线、面等常用灰色可用颜色参考：*/
+  --ti-mobile-base-color-common-1: #000000;
+  --ti-mobile-base-color-common-2: #191919;
+  --ti-mobile-base-color-common-3: #262626;
+  --ti-mobile-base-color-common-4: #333333;
+  --ti-mobile-base-color-common-5: #595959;
+  --ti-mobile-base-color-common-6: #999999;
+  --ti-mobile-base-color-common-7: #c2c2c2;
+  --ti-mobile-base-color-common-8: #dbdbdb;
+  --ti-mobile-base-color-common-9: #ededed;
+  --ti-mobile-base-color-common-10: #f5f5f5;
+  --ti-mobile-base-color-common-11: #fafafa;
+  --ti-mobile-base-color-common-12: #ffffff;
+  --ti-mobile-base-color-common-13: #627199;
+
+  /* 功能色*/
+  --ti-mobile-common-color-warning-figure-1: #eb4096; /* 致命警告图形色*/
+  --ti-mobile-common-color-warning-text-1: #e61c81; /* 致命警告文字色*/
+  --ti-mobile-common-color-warning-figure-2: #ff9c32; /* 一般告警/中性1图形色*/
+  --ti-mobile-common-color-warning-text-2: #ff8800; /* 一般告警/中性1文字色*/
+  --ti-mobile-common-color-warning-figure-3: #1ebe40; /* 一般告警/中性1图形色*/
+  --ti-mobile-common-color-warning-text-3: #00b336; /* 一般告警/中性1文字色*/
+
+  --ti-mobile-common-color-error-figure-1: #eb5454; /* 异常/下降/告警/驳回/退订/失败图形色*/
+  --ti-mobile-common-color-error-text-1: #e62222; /* 异常/下降/告警/驳回/退订/失败文字色*/
+  --ti-mobile-common-color-error-figure-2: #fccd32; /* 异常/下降/告警/驳回/退订/失败图形色*/
+  --ti-mobile-common-color-error-text-2: #fcbe1e; /* 异常/下降/告警/驳回/退订/失败文字色*/
+  --ti-mobile-common-color-error-figure-3: #1e8aff; /* 异常/下降/告警/驳回/退订/失败图形色*/
+  --ti-mobile-common-color-error-text-3: #1476ff; /* 异常/下降/告警/驳回/退订/失败文字色*/
+  --ti-mobile-common-color-error-figure-4: #c2c2c2; /* 异常/下降/告警/驳回/退订/失败图形色*/
+  --ti-mobile-common-color-error-text-4: #999999; /* 异常/下降/告警/驳回/退订/失败文字色*/
+
+  /* 图表推荐配色*/
+  --ti-mobile-common-color-chart-1: #1476ff;
+  --ti-mobile-common-color-chart-2: #10c7c1;
+  --ti-mobile-common-color-chart-3: #b878f0;
+  --ti-mobile-common-color-chart-4: #d6a981;
+  --ti-mobile-common-color-chart-5: #c1cc7a;
+
+  /* 文本色*/
+  --ti-mobile-common-color-text-primary: var(
+    --ti-mobile-base-color-common-2
+  ); /* 一级文本色-重要信息/标题颜色/输入类文本颜色*/
+  --ti-mobile-common-color-text-secondary: var(--ti-mobile-base-color-common-5); /* 二级文本色-次要信息*/
+  --ti-mobile-common-color-text-weaken-dark: var(--ti-mobile-base-color-common-6); /* 三级文本色-弱化信息/说明文字*/
+  --ti-mobile-common-color-text-weaken-ligtht: var(--ti-mobile-base-color-common-7); /* 文本_弱化色_浅色/提示*/
+  --ti-mobile-common-color-text-weaken-disabled: var(--ti-mobile-base-color-common-8); /* 文本_弱化色_浅色/禁用*/
+  --ti-mobile-common-color-text-white: var(--ti-mobile-base-color-common-12); /* 文本_白色*/
+  --ti-mobile-common-color-text-placeholder-primary: #dbe5fc; /* placeholder_主要*/
+  --ti-mobile-common-color-text-placeholder-gray: #acacac; /* placeholder_灰*/
+  --ti-mobile-common-color-text-high-light: var(--ti-mobile-base-color-brand-1); /* 文本_高亮*/
+
+  /* 文本链接色*/
+  --ti-mobile-common-color-link-dark: var(--ti-mobile-base-color-common-2); /* 文本_链接__深色*/
+  --ti-mobile-common-color-link-highlight: var(--ti-mobile-base-color-brand-1); /* 文本_链接_高亮色*/
+  --ti-mobile-common-color-link-gray: var(--ti-mobile-base-color-common-13); /* 文本_链接_灰色加强*/
+  --ti-mobile-common-color-link-white: var(--ti-mobile-base-color-common-12); /* 文本_链接_白色*/
+
+  /* 线颜色*/
+  --ti-mobile-common-color-line-hightlight: var(--ti-mobile-base-color-brand-1); /* 高亮_描边色*/
+  --ti-mobile-common-color-line-dark: var(--ti-mobile-base-color-common-9); /* 深_描边色*/
+  --ti-mobile-common-color-line-light: var(--ti-mobile-base-color-common-10); /* 浅_描边色*/
+  --ti-mobile-common-color-line-white: var(--ti-mobile-base-color-common-12); /* 白色*/
+
+  /* 蒙层色*/
+  --ti-mobile-common-color-mask-light: rgba(0, 0, 0, 0.5); /* 蒙层_相对浅*/
+  --ti-mobile-common-color-mask-dark: rgba(0, 0, 0, 0.75); /* 蒙层_相对深*/
+
+  /* 背景色*/
+  --ti-mobile-common-bg-color-white: var(--ti-mobile-base-color-bg-3); /* 背景_白*/
+  --ti-mobile-common-bg-color-main: var(--ti-mobile-base-color-brand-1); /* 背景_蓝*/
+  --ti-mobile-common-bg-color-light: var(--ti-mobile-base-color-bg-2); /* 背景_浅灰*/
+  --ti-mobile-common-bg-color-blue-1: var(--ti-mobile-base-color-brand-2); /* 背景_蓝*/
+  --ti-mobile-common-bg-color-disabled: #e8e8e8; /* 背景_禁用*/
+  --ti-mobile-common-bg-color-dark-gray: var(--ti-mobile-base-color-bg-1); /* 背景_深灰*/
+  --ti-mobile-common-bg-color-weaken: var(--ti-mobile-base-color-common-8); /* 背景_弱化色*/
+  --ti-mobile-common-status-bg-color-success: #5bd475; /* 背景_成功/通过*/
+  --ti-mobile-common-status-bg-color-error: #eb5454; /* 背景_失败/驳回*/
+  --ti-mobile-common-status-bg-color-normal: #fff; /* 背景_默认*/
+  --ti-mobile-common-status-bg-color-handing: var(--ti-mobile-base-color-brand-1); /* 背景_进行中*/
+}

@@ -1,0 +1,124 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@user-head-prefix-cls: ~'@{css-prefix}mobile-user-head';
+
+.@{user-head-prefix-cls} {
+  .component-css-vars-user-head();
+
+  display: inline-block;
+  position: relative;
+
+  &__portrait {
+    overflow: hidden;
+    text-align: center;
+    border-radius: var(--ti-mobile-userhead-head-border-radius);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--ti-mobile-userhead-head-bg-color);
+
+    &.round {
+      border-radius: 50%;
+    }
+
+    &.min {
+      width: var(--ti-mobile-userhead-head-size-small);
+      height: var(--ti-mobile-userhead-head-size-small);
+      line-height: var(--ti-mobile-userhead-head-size-small);
+    }
+
+    &.icon {
+      font-size: var(--ti-mobile-userhead-head-icon-size-normal);
+
+      &.min {
+        font-size: var(--ti-mobile-userhead-head-icon-size-small);
+      }
+
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &.label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      > span {
+        overflow: hidden;
+        width: calc(~'100% - 6px');
+        display: block;
+        margin: 0 3px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  &__message {
+    position: absolute;
+    top: -9px;
+    height: 18px;
+    line-height: 16px;
+    min-width: 18px;
+    width: auto;
+    border-radius: 9px;
+    background: red;
+    color: #fff;
+    text-align: center;
+    padding: 0 2px;
+    border: 2px solid #fff;
+    font-size: 12px;
+    word-break: initial;
+
+    &.round {
+      top: 0;
+      left: 54px;
+    }
+
+    &.min {
+      top: -9px;
+      left: 21px;
+    }
+
+    &.basic {
+      top: -4px;
+      left: 68px;
+      height: 8px;
+      width: 8px;
+      min-width: 8px;
+      line-height: 0;
+      border-radius: 4px;
+
+      &.round {
+        top: 10px;
+        left: 64px;
+      }
+
+      &.min {
+        top: -4px;
+        left: 26px;
+
+        &.round {
+          top: 0;
+        }
+      }
+    }
+  }
+}

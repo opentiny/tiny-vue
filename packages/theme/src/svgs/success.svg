@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg class="tiny-icon-success" version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	viewBox="0 0 14 14" style="enable-background:new 0 0 14 14;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;}
+	.st1{fill:#FFFFFF;}
+</style>
+<path class="st0" d="M14,7c0,3.87-3.13,7-7,7c-3.87,0-7-3.13-7-7c0-3.87,3.13-7,7-7C10.87,0,14,3.13,14,7z"/>
+<path class="st1" d="M10.02,5.61L6.74,8.89C6.57,9.06,6.34,9.16,6.1,9.16S5.63,9.06,5.46,8.89L3.98,7.41
+	C3.9,7.33,3.85,7.21,3.85,7.09c0-0.12,0.05-0.23,0.13-0.32c0.18-0.18,0.46-0.18,0.64,0L6.1,8.26l3.28-3.28
+	c0.17-0.17,0.47-0.17,0.64,0C10.19,5.15,10.19,5.44,10.02,5.61z"/>
+</svg>

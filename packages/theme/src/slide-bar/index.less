@@ -1,0 +1,146 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@slide-bar-prefix-cls: ~'@{css-prefix}slide-bar';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{slide-bar-prefix-cls} {
+  .component-css-vars-slide-bar();
+
+  padding: 0 32px;
+  position: relative;
+
+  > .@{svg-prefix-cls} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2em;
+    cursor: pointer;
+    fill: var(--ti-slider-progress-box-arrow-normal-text-color);
+
+    &:hover {
+      fill: var(--ti-slider-progress-box-arrow-hover-text-color);
+    }
+
+    &.@{css-prefix}disabled,
+    &.@{css-prefix}disabled:hover {
+      background: transparent;
+      fill: #fff;
+      cursor: default;
+    }
+  }
+
+  > .icon-chevron-left {
+    left: 0;
+  }
+
+  > .icon-chevron-right {
+    right: 0;
+  }
+
+  li li div {
+    margin: 15px 0;
+    font-size: var(--ti-common-font-size-base);
+    color: #4e5e67;
+
+    &:nth-child(2) {
+      border-bottom: 1px solid var(--ti-slider-progress-box-middleline-border-color);
+    }
+
+    svg {
+      float: right;
+      margin: -6px 0 0 0;
+      background: #fff;
+      fill: var(--ti-slider-progress-box-middleline-icon-color);
+    }
+  }
+
+  & &__content {
+    width: 100%;
+    min-height: 170px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  & &__list {
+    position: absolute;
+    min-height: 170px;
+    display: flex;
+
+    > li {
+      width: 23%;
+      padding: 20px;
+      float: left;
+      margin-left: 2%;
+      position: relative;
+
+      border: 5px solid var(--ti-slider-progress-box-border-color);
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:hover {
+        border-color: var(--ti-slider-progress-box-hover-border-color);
+      }
+
+      > .icon-chevron-down {
+        position: absolute;
+        top: 98.8%;
+        left: 50%;
+        margin-left: -10px;
+        font-size: 2em;
+        width: 22px;
+        display: none !important;
+
+        &:before {
+          content: '';
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          border-right: 5px solid var(--ti-slider-progress-box-hover-border-color);
+          border-bottom: 5px solid var(--ti-slider-progress-box-hover-border-color);
+          transform: rotate(45deg);
+          background: #fff;
+          top: -5px;
+        }
+      }
+
+      > ul {
+        width: 100%;
+        list-style: none;
+      }
+    }
+
+    > li.@{slide-bar-prefix-cls}__select {
+      border-color: var(--ti-slider-progress-box-hover-border-color);
+
+      > .icon-chevron-down {
+        display: block !important;
+      }
+
+      li .@{css-prefix-iconfont} {
+        color: var(--ti-slider-progress-box-hover-border-color);
+      }
+
+      li:nth-child(2) {
+        border-bottom: 1px solid var(--ti-slider-progress-box-hover-border-color);
+      }
+    }
+  }
+}

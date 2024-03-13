@@ -1,0 +1,188 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@picker-panel-prefix-cls: ~'@{css-prefix}picker-panel';
+
+.@{picker-panel-prefix-cls} {
+  .component-css-vars-picker-panel();
+
+  color: var(--ti-picker-panel-text-color);
+  font-size: var(--ti-picker-panel-font-size);
+  border: 1px solid var(--ti-picker-panel-border-color);
+  box-shadow: var(--ti-picker-panel-box-shadow);
+  background: var(--ti-picker-panel-bg-color);
+  border-radius: var(--ti-common-border-radius-normal);
+  line-height: var(--ti-picker-panel-line-height);
+  margin: var(--ti-common-dropdown-gap) 0;
+
+  &__body-wrapper::after,
+  &__body::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  &__body {
+    padding-bottom: 8px;
+  }
+
+  &__content {
+    position: relative;
+    border-top: solid 1px var(--ti-picker-panel-content-border-color);
+    padding-top: var(--ti-picker-panel-content-padding-top);
+    padding-left: var(--ti-picker-panel-content-padding-left);
+    padding-right: var(--ti-picker-panel-content-padding-right);
+  }
+
+  &__footer {
+    border-top: 1px solid var(--ti-picker-panel-border-color);
+    padding: 6px 16px;
+    background-color: var(--ti-picker-panel-bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .@{button-prefix-cls} {
+      min-width: 60px;
+
+      &:only-child {
+        float: right;
+      }
+    }
+
+    .@{button-prefix-cls}--text {
+      text-align: left;
+    }
+  }
+
+  &__shortcut {
+    display: block;
+    width: 100%;
+    border: 0;
+    background-color: transparent;
+    line-height: 28px;
+    font-size: var(--ti-picker-panel-shortcut-font-size);
+    color: var(--ti-picker-panel-text-color);
+    padding-left: 12px;
+    text-align: left;
+    outline: 0;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--ti-picker-panel-hover-bg-color);
+    }
+
+    &.active {
+      background-color: var(--ti-picker-panel-selected-bg-color);
+    }
+  }
+
+  &__shortcut-selected[type='button'] {
+    color: var(--ti-picker-panel-shortcut-selected-text-color);
+    background-color: var(--ti-picker-panel-shortcut-selected-bg-color);
+  }
+
+  &__btn {
+    color: var(--ti-picker-panel-text-color);
+    border: 1px solid var(--ti-picker-panel-border-color);
+    font-size: var(--ti-picker-panel-font-size);
+    line-height: 24px;
+    border-radius: var(--ti-picker-panel-border-radius);
+    padding: 0 20px;
+    cursor: pointer;
+    outline: 0;
+    background-color: transparent;
+
+    [disabled] {
+      color: var(--ti-picker-panel-disabled-text-color);
+      cursor: not-allowed;
+    }
+  }
+
+  &__icon-btn {
+    font-size: var(--ti-picker-panel-font-size);
+    line-height: var(--ti-picker-panel-icon-btn-line-height);
+    fill: var(--ti-picker-panel-icon-color-btn);
+    border: 0;
+    background: 0 0;
+    cursor: pointer;
+    outline: 0;
+
+    &:hover {
+      fill: var(--ti-picker-panel-icon-color-btn-hover);
+    }
+
+    &.is-disabled {
+      color: var(--ti-picker-panel-icon-color-btn-disabled);
+
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__link-btn {
+    vertical-align: middle;
+  }
+
+  [slot='sidebar'],
+  &__sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 110px;
+    border-right: 1px solid var(--ti-picker-panel-border-color);
+    box-sizing: border-box;
+    padding-top: 6px;
+    background-color: var(--ti-picker-panel-bg-color);
+    overflow: auto;
+
+    & + .@{picker-panel-prefix-cls}__body {
+      margin-left: 110px;
+    }
+  }
+
+  &__timezone {
+    margin-bottom: 10px;
+
+    .@{picker-panel-prefix-cls}__tzlist {
+      z-index: 10;
+      overflow-y: hidden;
+
+      &-li {
+        height: 30px;
+        line-height: 30px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 10px;
+        border: 1px solid #f4f0f0;
+        cursor: pointer;
+      }
+
+      .@{css-prefix}popup {
+        position: absolute;
+        width: 238px;
+        bottom: 77px;
+        max-height: 260px;
+        box-shadow: 0 -1px 2px 0 rgba(53, 29, 29, 0.5);
+      }
+    }
+
+    .@{input-prefix-cls} {
+      position: relative;
+    }
+  }
+}

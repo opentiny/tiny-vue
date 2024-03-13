@@ -1,0 +1,20 @@
+{
+  "name": "@opentiny/vue-skeleton",
+  "version": "3.13.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "dependencies": {
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-skeleton-item": "workspace:~"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "0.31.0"
+  }
+}

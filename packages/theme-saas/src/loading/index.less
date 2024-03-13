@@ -1,0 +1,104 @@
+@import '../custom.less';
+
+@loading-prefix-cls: ~'@{css-prefix}loading';
+
+.@{loading-prefix-cls} {
+  &__mask {
+    @apply absolute;
+    @apply ~'z-[2000]';
+    @apply bg-color-bg-1 opacity-90;
+    @apply m-0;
+    @apply top-0;
+    @apply right-0;
+    @apply bottom-0;
+    @apply left-0;
+    @apply transition-opacity duration-300;
+
+    &.is-fullscreen {
+      @apply fixed;
+
+      .@{loading-prefix-cls}__spinner {
+        margin-top: -25px;
+
+        .circular {
+          @apply h-10;
+          @apply w-10;
+        }
+      }
+    }
+  }
+
+  &__spinner {
+    @apply ~'top-1/2';
+    @apply ~'-translate-y-2/4';
+    @apply w-full;
+    @apply text-center;
+    @apply absolute;
+
+    .@{loading-prefix-cls}__text {
+      @apply text-color-text-primary;
+      @apply mt-4 mr-0 mb-0 ml-0;
+      @apply text-xs;
+      @apply leading-5;
+    }
+
+    .circular {
+      @apply h-10;
+      @apply w-10;
+      @apply inline-block;
+    }
+  }
+
+  &__parent-relative {
+    @apply !relative;
+  }
+
+  &__parent-hidden {
+    @apply !overflow-hidden;
+  }
+
+  &-fade-enter,
+  &-fade-leave-active {
+    @apply opacity-0;
+  }
+}
+
+@keyframes loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -40px;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -120px;
+  }
+}
+
+.@{css-prefix-iconfont}-loading {
+  @apply text-sm;
+  @apply leading-none;
+  @apply align-text-top;
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

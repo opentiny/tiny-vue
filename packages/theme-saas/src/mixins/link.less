@@ -1,0 +1,25 @@
+.link-type(@color, @border-color, @hover-color, @disabled-color, @active-color) {
+  color: @color;
+  fill: @color;
+
+  &.is-underline:hover:after,
+  &:after {
+    border-color: @border-color;
+  }
+
+  &:hover {
+    color: @hover-color;
+    fill: @hover-color;
+    @apply no-underline;
+  }
+
+  &:active {
+    color: @active-color;
+    fill: @active-color;
+  }
+
+  &.is-disabled {
+    color: @disabled-color;
+    fill: @disabled-color;
+  }
+}

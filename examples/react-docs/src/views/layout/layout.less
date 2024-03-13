@@ -1,0 +1,248 @@
+.content-layout {
+  display: flex;
+  --layout-tree-menu-input-height: 40px;
+  --layout-api-mode-height: 106px;
+}
+
+.theme-change-button {
+  position: fixed;
+  top: 135px;
+  right: 30px;
+  z-index: 1999;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background-color: transparent;
+
+  img {
+    display: block;
+    width: 26px;
+    height: 26px;
+  }
+
+  .tiny-svg {
+    display: none;
+  }
+
+  &:hover {
+    background-color: #fff;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+  }
+}
+
+.lang-box {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  z-index: 1999;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background-color: transparent;
+
+  &:hover {
+    background-color: #fff;
+    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 12%);
+    cursor: pointer;
+  }
+
+  .lang-btn {
+    font-weight: 600;
+    font-size: 26px;
+  }
+}
+
+.tiny-dropdown-item.is-actived {
+  background-color: var(--ti-dropdown-item-hover-bg-color);
+  color: var(--ti-dropdown-item-hover-text-color);
+  border-radius: var(--ti-dropdown-item-border-radius);
+}
+
+.is-collapsed+.main-menu.tiny-tree-menu {
+  height: 100%;
+}
+
+.main-menu.tiny-tree-menu {
+  .tiny-tree-node__content-box {
+    min-width: 0;
+  }
+
+  .tiny-tree-node__content {
+    position: relative;
+  }
+
+  .absolute-tag {
+    position: absolute;
+    right: 4px;
+    top: 12px;
+  }
+
+  height: calc(100% - var(--layout-api-mode-height));
+
+  .tiny-tree {
+    height: calc(100% - var(--layout-tree-menu-input-height));
+    overflow-y: auto;
+  }
+
+  .tree-node-name {
+    line-height: 1.5;
+
+    .node-name-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 6px;
+
+      .node-name-label {
+        flex-grow: 0;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  &>.tiny-input .tiny-input__inner {
+    height: var(--layout-tree-menu-input-height);
+    font-size: 14px;
+  }
+
+  .tiny-tree-node__content {
+    margin-top: 8px;
+  }
+}
+
+#doc-layout {
+  overflow-y: auto;
+  height: calc(100vh - 74px);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.api-type-box {
+  overflow: hidden;
+  border-bottom: 1px solid var(--ti-common-color-line-dividing);
+  border-right: 1px solid var(--ti-common-color-line-dividing);
+  transition: width 0.5s;
+  width: 100%;
+  position: relative;
+  font-size: 14px;
+
+  .api-type {
+    min-width: 220px;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    padding-left: 30px;
+    background: #fff;
+    overflow: hidden;
+
+    .api-mode {
+      color: rgba(60, 60, 60, 0.33);
+
+      &.active {
+        color: #213547;
+      }
+    }
+
+    .api-switch {
+      margin: 0 5px;
+    }
+
+    &>.tiny-svg {
+      font-size: 18px;
+      margin-left: 8px;
+      fill: var(--ti-common-color-bg-emphasize);
+    }
+  }
+}
+
+#layoutSider {
+  background: #fff;
+  height: calc(100vh - 127px);
+  margin-top: 10px;
+  margin-left: 10px;
+
+  &.saas-border {
+    border-right: 1px solid #ddd;
+  }
+}
+
+.layout-sider {
+  width: 220px;
+
+  .layout-menu {
+    width: 220px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    margin-top: 10px;
+    border-right: 1px solid #e5e5e5;
+  }
+
+
+  .tiny-tree-node__expand-icon.expand {
+    transform: rotate(90deg);
+  }
+
+
+
+  .layout-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+    width: calc(100% - 3vh);
+  }
+
+  a.layout-item-child {
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin-left: 20px;
+    overflow: hidden;
+    padding: 10px;
+  }
+
+  .select-menu {
+    background-color: #e9edfa;
+    color: #526ecc !important;
+  }
+
+  input.layout-input {
+    padding: 10px;
+    border: 1px solid #ececec;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .layout-sider {
+    display: none;
+    position: fixed;
+    height: 100%;
+
+    .tiny-tree-menu__toggle-button {
+      display: none;
+    }
+  }
+
+  #layoutSider.showMenu {
+    display: block !important;
+    z-index: 9;
+  }
+}

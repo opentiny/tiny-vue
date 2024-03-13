@@ -1,0 +1,50 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+@import './vars.less';
+
+@time-range-picker-prefix-cls: ~'@{css-prefix}time-range-picker';
+
+.@{time-range-picker-prefix-cls} {
+  .component-css-vars-time-range-picker();
+
+  width: 354px;
+  overflow: visible;
+
+  &__content {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  &__cell {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px 7px 7px;
+    width: 50%;
+  }
+
+  &__header {
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: var(--ti-time-range-picker-header-font-size);
+  }
+
+  &__body {
+    border-radius: var(--ti-date-picker-border-radius);
+    border: 1px solid var(--ti-date-picker-border-color);
+  }
+}

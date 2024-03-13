@@ -1,0 +1,325 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../mixins/common.less';
+@import '../custom.less';
+@import './vars.less';
+
+@split-prefix-cls: ~'@{css-prefix}split';
+
+.@{split-prefix-cls} {
+  .component-css-vars-split();
+
+  &-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 0px 1px #d9d9d9;
+  }
+
+  &-pane {
+    position: absolute;
+    font-size: var(--ti-split-pane-font-size);
+
+    &.left-pane,
+    &.right-pane {
+      top: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
+
+    &.left-pane {
+      left: 0;
+    }
+
+    &.right-pane {
+      right: 0;
+    }
+
+    &.top-pane,
+    &.bottom-pane {
+      left: 0;
+      right: 0;
+      overflow: hidden;
+    }
+
+    &.top-pane {
+      top: 0;
+    }
+
+    &.bottom-pane {
+      bottom: 0;
+    }
+
+  }
+
+  &-trigger {
+    &-con {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+    }
+
+    &-bar-con {
+      position: absolute;
+      background: #fff;
+
+      &.vertical {
+        top: 50%;
+        height: 28px;
+        transform: translate(0, -50%);
+      }
+
+      &.horizontal {
+        left: 50%;
+        width: 28px;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    &-vertical {
+      width: 4px;
+      height: 100%;
+      background: #EAECF1;
+      cursor: e-resize;
+
+      .@{split-prefix-cls}-trigger-bar {
+        width: 4px;
+        height: 4px;
+        background: #4e4e4e;
+        float: left;
+        margin-top: 4px;
+        border-radius: 50%;
+      }
+    }
+
+
+    &-horizontal {
+      height: 4px;
+      width: 100%;
+      background: #EAECF1;
+      cursor: n-resize;
+
+      .@{split-prefix-cls}-trigger-bar {
+        height: 4px;
+        width: 4px;
+        background: #4e4e4e;
+        float: left;
+        margin-left: 4px;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &-horizontal {
+    .@{split-prefix-cls}-trigger-con {
+      top: 50%;
+      height: 100%;
+      width: 0;
+
+      .@{split-prefix-cls}-trigger-button {
+        width: 14px;
+        height: 26px;
+        position: absolute;
+        top: 50%;
+
+        &:hover {
+          width: 18px;
+        }
+      }
+
+      .@{split-prefix-cls}-trigger-left-button {
+        transform: translate(0, -50%);
+        left: -6px;
+        border-radius: 4px 0 0 4px;
+        border-right: 0;
+      }
+
+      .@{split-prefix-cls}-trigger-left-button:hover {
+        left: -10px;
+      }
+
+      .@{split-prefix-cls}-trigger-right-button {
+        transform: translate(0, -50%);
+        border-radius: 0 4px 4px 0;
+        left: 9px;
+        border-left: 0;
+      }
+    }
+
+    .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-disabled {
+      .@{split-prefix-cls}-trigger-vertical,.@{split-prefix-cls}-trigger-horizontal {
+        cursor: auto;
+
+        &:hover {
+          background: #eaecf1;
+        }
+      }
+    }
+
+    .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-left-active {
+      margin-left: -1px;
+    }
+
+    .@{split-prefix-cls}-vertical .@{split-prefix-cls}-trigger-con {
+      left: 50%;
+      height: 0;
+      width: 100%;
+    }
+
+    .@{split-prefix-cls}-trigger-con-drag {
+      cursor: e-resize;
+    }
+
+    .@{split-prefix-cls}-pane-moving {
+      cursor: e-resize;
+    }
+  }
+
+  &-vertical {
+    .@{split-prefix-cls}-trigger-con {
+      left: 50%;
+      height: 0;
+      width: 100%;
+
+      .@{split-prefix-cls}-trigger-button {
+        width: 26px;
+        height: 14px;
+        position: absolute;
+        left: 50%;
+
+        &:hover {
+          height: 18px;
+        }
+      }
+
+      .@{split-prefix-cls}-trigger-top-button {
+        transform: translate(-50%, 0);
+        border-radius: 4px 4px 0 0;
+        top: -6px;
+        border-bottom: 0;
+
+        .@{css-prefix}svg {
+          transform: rotate(90deg);
+        }
+      }
+
+      .@{split-prefix-cls}-trigger-top-button:hover {
+        top: -10px;
+      }
+
+      .@{split-prefix-cls}-trigger-bottom-button {
+        transform: translate(-50%, 0);
+        border-radius: 0 0 4px 4px;
+        border-top: 0;
+        top: 9px;
+
+        .@{css-prefix}svg {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-disabled {
+      .@{split-prefix-cls}-trigger-vertical,.@{split-prefix-cls}-trigger-horizontal {
+        cursor: auto;
+
+        &:hover {
+          background: #eaecf1;
+        }
+      }
+    }
+
+    .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-top-active {
+      margin-top: -1px;
+    }
+
+    .@{split-prefix-cls}-horizontal .@{split-prefix-cls}-trigger-con {
+      top: 50%;
+      height: 100%;
+      width: 0;
+    }
+
+    .@{split-prefix-cls}-trigger-con-drag {
+      cursor: n-resize;
+    }
+
+    .@{split-prefix-cls}-pane-moving {
+      cursor: n-resize;
+    }
+  }
+
+  .no-select {
+    .user-select(none);
+  }
+
+  &-trigger-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(25, 25, 25, 0.1);
+    background: #fff;
+    transition: all 0.1s;
+    visibility: hidden;
+
+    .@{css-prefix}svg {
+      fill: #939393;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .@{css-prefix}svg {
+        fill: #282c43;
+      }
+    }
+  }
+
+  &-trigger-button-show {
+    visibility: visible;
+  }
+
+  &-trigger-con {
+    transition: all 0.1s;
+  }
+
+  &-trigger-con-drag {
+    transition: none;
+  }
+
+  &-trigger-con-vertical.@{split-prefix-cls}-trigger-con-simple {
+    padding: 0 8px;
+    cursor: e-resize;
+  }
+
+  &-trigger-con-horizontal.@{split-prefix-cls}-trigger-con-simple {
+    padding: 8px 0;
+    cursor: n-resize;
+  }
+
+  &-trigger-con-simple {
+    .@{split-prefix-cls}-trigger-vertical {
+      width: 1px;
+    }
+
+    .@{split-prefix-cls}-trigger-horizontal {
+      height: 1px;
+    }
+
+    &:hover {
+      .@{split-prefix-cls}-trigger {
+        background: #0072e8;
+      }
+    }
+  }
+}

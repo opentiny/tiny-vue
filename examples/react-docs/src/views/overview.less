@@ -1,0 +1,87 @@
+.overview-layout {
+  padding-left: 4%;
+  padding-right: 10%;
+  min-height: 100%;
+
+  h1::first-child {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  h1::last-child {
+    line-height: 21px;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.cell-title {
+  position: absolute;
+  display: inline-block;
+  top: 0px;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 12px;
+  color: #000000d9;
+  background: #fafafa;
+  text-align: center;
+  border-radius: 2px;
+  border: 1px solid #d9d9d9;
+}
+
+.component-card {
+  box-shadow: 1px 1px 4px 1px rgba(31, 52, 121, 0.1);
+  transition:
+    color 0.3s,
+    background-color 0.3s,
+    box-shadow 0.3s,
+    border-color 0.3s;
+  padding: 24px;
+  font-size: 14px;
+  color: rgb(51, 54, 57);
+  line-height: 1.6;
+
+  &:hover {
+    box-shadow: 1px 1px 6px 6px rgba(31, 52, 121, 0.08);
+  }
+}
+
+.overview-card {
+  justify-content: flex-start;
+  gap: 1%;
+}
+
+.overview-card-container {
+  width: 24.25%;
+}
+
+.overview-card-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-input {
+  .tiny-input__inner {
+    height: 46px;
+    font-size: 14px;
+    padding-left: 18px;
+  }
+
+  .tiny-input__suffix {
+    right: 20px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .overview-card {
+    gap: 2%;
+  }
+
+  .overview-card-container {
+    width: 49%;
+  }
+}
