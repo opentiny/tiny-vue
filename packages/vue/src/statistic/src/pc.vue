@@ -1,20 +1,20 @@
 <template>
-  <div class="">
-    <div v-if="$slots.title || title" class="">
+  <div class="tiny-statistic">
+    <div v-if="$slots.title || title" class="tiny-statistic__title">
       <slot name="title">
         {{ title }}
       </slot>
     </div>
-    <div class="">
-      <div v-if="$slots.prefix || prefix" class="">
+    <div class="tiny-statistic__slots">
+      <div v-if="$slots.prefix || prefix" class="tiny-statistic__prefix">
         <slot name="prefix">
           <span>{{ prefix }}</span>
         </slot>
       </div>
-      <span class="" :style="valueStyle">
+      <span class="tiny-statistic__description" :style="valueStyle">
         {{ state.value }}
       </span>
-      <div v-if="$slots.suffix || suffix" class="">
+      <div v-if="$slots.suffix || suffix" class="tiny-statistic__suffix">
         <slot name="suffix">
           <span>{{ suffix }}</span>
         </slot>
