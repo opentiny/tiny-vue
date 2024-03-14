@@ -48,12 +48,11 @@ export const setScrollContainer =
 const updateSkidPosition = ({ vm, state, emit }: Pick<IAnchorRenderlessParams, 'vm' | 'state' | 'emit'>) => {
   const { currentLink } = state
 
-  const activeEl = vm.$refs?.[currentLink]
+  const activeEl = vm.$refs[currentLink]
+  const { skidRef, maskRef, anchorRef } = vm.$refs
   if (!activeEl) {
     return
   }
-  const { skidRef, maskRef, anchorRef } = vm.$refs
-
   emit('change', currentLink)
   emit('onChange', currentLink) // deprecated 原事件onChange v3.12.0废弃，v3.17.0移除；移除原因：命名规范
   if (!anchorRef || !skidRef || !maskRef) {
@@ -220,7 +219,6 @@ export const linkClick =
         const linkEl = scrollContainer.querySelector(item.link) as HTMLElement
         const top = linkEl?.offsetTop - scrollContainer.offsetTop // 修复横向锚点无法滚动到顶部
         const param = { top, left: 0, behavior: 'smooth' } as ScrollToOptions
-        console.log(param, 'param')
         scrollContainer?.scrollTo(param)
         scrollContainer?.addEventListener('scroll', api.handleScroll())
       }

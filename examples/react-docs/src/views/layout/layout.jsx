@@ -13,29 +13,29 @@ export default function Layout() {
   const location = useLocation()
   const navigate = useNavigate()
   let selectMenu = { id: 'overview' }
-  let [menus, setMenus] = useState(
-    genMenus()
-      .slice(1)
-      .map((menu) => {
-        if ((location.pathname === '/' || location.pathname === '/overview') && menu.id === 'overview') {
-          menu.trigger = true
-          selectMenu = menu
-        } else {
-          let path = location.pathname.split('/')
-          if (path[1] === menu.key) {
-            menu.children.map((menuChild) => {
-              if (path[2] === menuChild.id) {
-                menu.trigger = true
-                menuChild.trigger = true
-                selectMenu = menuChild
-              }
-              return menuChild
-            })
-          }
+
+  const allMenu = genMenus()
+    .slice(1)
+    .map((menu) => {
+      if ((location.pathname === '/' || location.pathname === '/overview') && menu.id === 'overview') {
+        menu.trigger = true
+        selectMenu = menu
+      } else {
+        let path = location.pathname.split('/')
+        if (path[1] === menu.key) {
+          menu.children.map((menuChild) => {
+            if (path[2] === menuChild.id) {
+              menu.trigger = true
+              menuChild.trigger = true
+              selectMenu = menuChild
+            }
+            return menuChild
+          })
         }
-        return menu
-      })
-  )
+      }
+      return menu
+    })
+  const [menus, setMenus] = useState([...allMenu])
   const tongleMenu = (menu) => {
     setMenus((data) => {
       return data.map((menuIt) => {
@@ -54,6 +54,21 @@ export default function Layout() {
       selectMenu = {}
     }
   }
+  const searchFn = (e) => {
+    const value = e.target.value
+
+    setMenus(() => {
+      const data = []
+      allMenu.forEach((menu) => {
+        if (menu.children)
+          menu.children = menu.children.filter((child) => child.label.toLocaleLowerCase().includes(value))
+        if (menu.label.includes(value) || menu.children?.length > 0) {
+          data.push(menu)
+        }
+      })
+      return data
+    })
+  }
   const tongleMenuChildren = (menu) => {
     selectMenu = menu
   }
@@ -66,7 +81,7 @@ export default function Layout() {
       <div className="main-layout ti-hp100 ti-f-c ti-f-box-stretch">
         <div className="content-layout ti-fi-1">
           <div id="layoutSider" className="layout-sider">
-            <input placeholder="请输入内容进行筛选" className="layout-input"></input>
+            <input placeholder="请输入内容进行筛选" className="layout-input" onChange={(e) => searchFn(e)}></input>
             <div className="layout-menu scroll-container">
               {menus.map((menu, index) => {
                 return (
