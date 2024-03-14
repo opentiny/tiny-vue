@@ -26,6 +26,7 @@ import ChartTree from '@opentiny/react-chart-tree/src/mobile-first'
 import ChartWaterfall from '@opentiny/react-chart-waterfall/src/mobile-first'
 import ChartWordcloud from '@opentiny/react-chart-wordcloud/src/mobile-first'
 import Icon from '@opentiny/react-icon/src/mobile-first'
+import Tag from '@opentiny/react-tag/src/mobile-first'
 import { $prefix } from '@opentiny/react-common'
 
 const components = [
@@ -56,7 +57,8 @@ const components = [
   ChartTree,
   ChartWaterfall,
   ChartWordcloud,
-  Icon
+  Icon,
+  Tag
 ]
 
 export const version = '1.0.0'
@@ -89,7 +91,8 @@ export {
   ChartTree,
   ChartWaterfall,
   ChartWordcloud,
-  Icon
+  Icon,
+  Tag
 }
 
 export default {
@@ -120,5 +123,6 @@ export default {
   ChartTree,
   ChartWaterfall,
   ChartWordcloud,
-  Icon
+  Icon,
+  Tag
 } as any

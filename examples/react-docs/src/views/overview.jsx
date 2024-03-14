@@ -12,7 +12,13 @@ export default function overview() {
     value: '',
     palceMenus: new Array(14)
   })
-  const img = useRef()
+  const images = []
+  cmpMenus.forEach((menu, index1) =>
+    menu.children.forEach(() => {
+      images[index1] = images[index1] || []
+      images[index1].push(useRef())
+    })
+  )
   function debounce(fn, delay) {
     let timeout = 0
     return (value) => {
@@ -110,10 +116,10 @@ export default function overview() {
                         <div className="ti-br-4 component-card">
                           <img
                             className="ti-h125 ti-w125 inline-block"
-                            ref={img}
+                            ref={images[index][cellIndex]}
                             src={`../../demos/overviewimage/${fn.getSvg(cell.key)}.svg`}
                             onError={() => {
-                              img.current.src = '../../demos/overviewimage/dev.svg'
+                              images[index][cellIndex].current.src = '../../demos/overviewimage/dev.svg'
                             }}
                           />
                           <h2 className="ti-f16 overview-card-label">

@@ -237,6 +237,32 @@
     "type": "module",
     "exclude": false
   },
+  "Divider": {
+    "path": "react/src/divider/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "DividerPc": {
+    "path": "react/src/divider/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "FloatButton": {
+    "path": "react/src/float-button/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "FloatButtonPc": {
+    "path": "react/src/float-button/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
   "Guide": {
     "path": "react/src/guide/index.ts",
     "type": "component",

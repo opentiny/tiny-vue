@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@opentiny/react": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
     "@opentiny/react-locale": "workspace:~",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

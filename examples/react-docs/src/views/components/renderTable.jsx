@@ -1,14 +1,16 @@
 // 渲染表格的函数
 export function renderTable(api, table) {
-  function changeHash(data) {
-    manageHash(data.pcDemo)
-  }
-  function manageHash(desiredHash) {
-    window.location.hash = `#${desiredHash}`
+  function changePage(data) {
+    const container = document.getElementById('doc-layout')
+    const target = document.querySelector(`#${data.pcDemo}`)
+    if (container && target) {
+      const top = target?.offsetTop - container.offsetTop
+      const param = { top, left: 0, behavior: 'smooth' }
+      container?.scrollTo(param)
+    }
   }
   const items = api[table.title] || []
   const filteredItems = items.filter((item) => item.mode && item.mode.includes('pc'))
-
   if (filteredItems.length > 0) {
     return (
       <div key={table.title}>
@@ -25,7 +27,7 @@ export function renderTable(api, table) {
           </thead>
           <tbody>
             {filteredItems.map((item, index2) => (
-              <tr key={index2} onClick={() => changeHash(item)}>
+              <tr key={index2} onClick={() => changePage(item)}>
                 {table.head.map((head, index3) => (
                   <td key={`${index2}-${index3}`}>
                     {head === '名称' && <a>{item.name}</a>}

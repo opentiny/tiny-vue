@@ -7,6 +7,7 @@ export function getFileName(path = '', type = 0, demo) {
     '../../../demos/pc/app/' + path + '/webdoc/' + path2 + '.cn.md',
     `../../../demos/pc/app/${path}/webdoc/${path2}.js`,
     `../../../demos/apis/${path}.js`,
-    `../../../demos/pc/app/${path}/${demo?.codeFiles[0]}`
+    `../../../demos/pc/app/${path}/${demo?.codeFiles[0]}`,
+    `${path}/${demo?.codeFiles[0]}`
   ][type]
 }

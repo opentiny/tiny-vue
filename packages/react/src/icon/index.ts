@@ -14,8 +14,12 @@ import IconRadioselected from './src/radioselected'
 import IconExpand from './src/expand'
 import IconChevronRight from './src/chevon-right'
 import IconArrowBottom from './src/arrow-bottom'
+import IconCode from './src/code'
+import IconCopy from './src/copy'
 
 export {
+  IconCode,
+  IconCopy,
   IconLoading,
   IconAdd,
   IconCheck,
@@ -35,6 +39,8 @@ export {
 }
 
 export default {
+  IconCode,
+  IconCopy,
   IconLoading,
   IconAdd,
   IconCheck,

@@ -98,6 +98,7 @@ export function generateVueHooks({ $bus }) {
     // 依赖注入
     inject,
     provide,
+    nextTick,
     // 生命周期函数
     onBeforeUnmount(fn) {
       $bus.on('hook:onBeforeUnmount', fn)

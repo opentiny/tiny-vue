@@ -24,6 +24,7 @@ export default function Components() {
       e.preventDefault()
     }
   }
+
   useEffect(() => {
     // const hash = location.hash
     fetchDemosFile(getFileName(path, 0)).then((mod) => {

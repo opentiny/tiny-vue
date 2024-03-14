@@ -74,8 +74,17 @@ export const cmpMenus = [
     'key': 'cmp_tips_components',
     'children': [
       { 'nameCn': '警告', 'name': 'Alert', 'key': 'alert' },
-      { 'nameCn': '标记', 'name': 'Badge', 'key': 'badge' }
-      // { 'name': 'FloatButton', 'nameCn': '悬浮按钮', 'key': 'float-button' }
+      { 'nameCn': '标记', 'name': 'Badge', 'key': 'badge' },
+      { 'nameCn': '悬浮按钮', 'name': 'FloatButton', 'key': 'float-button' }
+    ]
+  },
+  {
+    'label': '其他组件',
+    'labelEn': 'Another Components',
+    'key': 'cmp_another_components',
+    'children': [
+      { 'nameCn': '标签', 'name': 'Tag', 'key': 'tag' },
+      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' }
     ]
   }
 ]

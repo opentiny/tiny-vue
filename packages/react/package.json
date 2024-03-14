@@ -42,6 +42,8 @@
     "@opentiny/react-chart-tree": "workspace:~",
     "@opentiny/react-chart-waterfall": "workspace:~",
     "@opentiny/react-chart-wordcloud": "workspace:~",
+    "@opentiny/react-divider": "workspace:~",
+    "@opentiny/react-float-button": "workspace:~",
     "@opentiny/react-guide": "workspace:~",
     "@opentiny/react-icon": "workspace:~",
     "@opentiny/react-switch": "workspace:~",

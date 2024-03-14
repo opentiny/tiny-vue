@@ -197,8 +197,7 @@ export const useSetup = ({
         extendOptions,
         classes,
         vm,
-        $bus,
-        parent
+        $bus
       })
     })
     return result
