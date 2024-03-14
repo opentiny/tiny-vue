@@ -141,7 +141,7 @@ const setTotalRows = (_vm) => {
 }
 
 const getTotalRows = (_vm) => {
-  const { afterFullData, scrollYLoad, treeConfig } = _vm
+  const { afterFullData, scrollYLoad, scrollLoad, treeConfig } = _vm
   let totalRows = afterFullData.length
 
   if (scrollYLoad && treeConfig) {
@@ -150,6 +150,11 @@ const getTotalRows = (_vm) => {
     }
 
     totalRows = TOTALROWS_MAP.get(_vm)
+  }
+
+  // 滚动分页场景总行数由（afterFullData.length）调整为（scrollLoad.pageSize），解决最后一页数据不足时滚动条位置改变问题
+  if (scrollLoad) {
+    totalRows = scrollLoad.pageSize || 10
   }
 
   return totalRows

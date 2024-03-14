@@ -349,6 +349,7 @@ export const addNode =
     state.tree.state.emitter.emit('tree-node-add', event, node)
   }
 
+// tiny 新增
 export const computedExpandIcon =
   ({ designConfig }) =>
   (treeRoot, state) => {
@@ -356,6 +357,7 @@ export const computedExpandIcon =
       return state.tree.icon
     }
 
+    // tiny 新增的判断。 显示线时强制切换图标，仅smb定制了
     if (treeRoot.showLine) {
       const expandIcon = designConfig?.icons?.expanded || 'icon-minus-square'
       const collapseIcon = designConfig?.icons?.collapse || 'icon-plus-square'
@@ -364,7 +366,7 @@ export const computedExpandIcon =
 
     return 'icon-chevron-right'
   }
-
+// tiny 新增
 export const computedIndent =
   () =>
   ({ node, showLine }, { tree }) => {

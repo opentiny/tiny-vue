@@ -91,11 +91,13 @@ export const prevDate = (date, amount = 1) => new Date(date.getFullYear(), date.
 
 export const nextDate = (date, amount = 1) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + amount)
 
-export const getStartDateOfMonth = (year, month) => {
+export const getStartDateOfMonth = (year, month, offsetDay = 0) => {
   const res = new Date(year, month, 1)
   const day = res.getDay()
+  const _day = day === 0 ? 7 : day
 
-  return day === 0 ? prevDate(res, 7) : prevDate(res, day)
+  const offset = _day + offsetDay <= 0 ? 7 + _day : _day
+  return prevDate(res, offset)
 }
 
 export const getWeekNumber = (src) => {
@@ -143,6 +145,7 @@ const setRangeData = (arr, start, end, value) => {
   }
 }
 
+// eslint-disable-next-line prefer-spread
 export const range = (length) => Array.apply(null, { length }).map((_, n) => n)
 
 export const getMonthDays = (date) => {

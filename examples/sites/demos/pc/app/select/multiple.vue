@@ -3,7 +3,7 @@
     <br />
     <div>场景1：多选</div>
     <br />
-    <tiny-select v-model="value1" multiple>
+    <tiny-select v-model="value1" multiple searchable>
       <tiny-option v-for="item in options1" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
     <br />

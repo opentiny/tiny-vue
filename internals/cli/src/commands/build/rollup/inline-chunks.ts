@@ -1,13 +1,22 @@
-import type { Plugin, NormalizedOutputOptions, OutputBundle, OutputChunk } from 'rollup'
+import type { Plugin, NormalizedOutputOptions, OutputBundle } from 'rollup'
+import path from 'node:path'
+import fs from 'node:fs'
+import { rollup } from 'rollup'
 import chalk from 'chalk'
+import commonjs from '@rollup/plugin-commonjs'
+import { external } from '../../../shared/config'
+
+const bundlesToMerge = new Set<string>()
+const commonChunk = new Set<string>()
+let buildFormat
+let isDelete
 
 export default function ({ deleteInlinedFiles = true }): Plugin {
   return {
     name: 'opentiny-vue:inline-chunks',
-    generateBundle: ({ format }: NormalizedOutputOptions, bundle: OutputBundle) => {
-      const bundlesToDelete = new Set<string>()
-      const cache = {}
-
+    generateBundle: async ({ format, dir }: NormalizedOutputOptions, bundle: OutputBundle) => {
+      buildFormat = format
+      isDelete = deleteInlinedFiles
       const jsAssets = Object.keys(bundle).filter((i) => /\.[mc]?js$/.test(i))
       for (const jsName of jsAssets) {
         const jsChunk = bundle[jsName]
@@ -16,51 +25,66 @@ export default function ({ deleteInlinedFiles = true }): Plugin {
         if (!jsChunk.code) continue
 
         if (format === 'es') {
-          jsChunk.code = jsChunk.code.replace(
-            // import { _ as _export_sfc } from "../../../../_plugin-vue_export-helper-1faf6727.mjs"
-            /^import\s*.+\s*from\s+"[./]+(.+-[a-f0-9]{8}.+)".*$/gim,
-            (_, chunkName) => {
-              if (!cache[chunkName]) {
-                cache[chunkName] = (bundle[chunkName] as OutputChunk).code
-                  .replace(/export {[\s\S]+$/, '')
-                  .replace(/_extends/g, '_extends_tiny')
-                  .replace(/_createForOfIteratorHelperLoose/g, '_createForOfIteratorHelperLoose_tiny')
-                  .replace(/_unsupportedIterableToArray/g, '_unsupportedIterableToArray_tiny')
-                  .replace(/_arrayLikeToArray/g, '_arrayLikeToArray_tiny')
-                bundlesToDelete.add(chunkName)
-              }
-
-              return cache[chunkName]
-            }
-          )
+          const reg = /^import(\s*.+\s*from)?\s+"[./]+(.+-[a-f0-9]{8}.+)".*$/gim
+          const matchArr = jsChunk.code.match(reg)
+          if (matchArr) {
+            const filePath = path.join(dir, jsName)
+            bundlesToMerge.add(filePath)
+            matchArr.forEach((matchImport) => {
+              const sourceName = matchImport.match(/"(.+)"/)[1]
+              commonChunk.add(path.join(filePath, '../', sourceName))
+            })
+          }
         }
 
         if (format === 'cjs') {
-          jsChunk.code = jsChunk.code.replace(
-            // var _pluginVue_exportHelper = require("../../../../_plugin-vue_export-helper-65c7de93.js");
-            /^var\s+(.+)\s+=\s+require\("[./]+(.+-[a-f0-9]{8}.+)".*$/gim,
-            (_, localVarName, chunkName) => {
-              if (!cache[chunkName]) {
-                cache[chunkName] =
-                  'var _pluginVue_exportHelper = {};\n' +
-                  (bundle[chunkName] as OutputChunk).code.replace(/exports\./g, `${localVarName}.`)
-                bundlesToDelete.add(chunkName)
-              }
-
-              return cache[chunkName]
-            }
-          )
+          const reg = /require\("[./]+(.+-[a-f0-9]{8}.+)".*$/gim
+          const matchArr = jsChunk.code.match(reg)
+          if (matchArr) {
+            const filePath = path.join(dir, jsName)
+            bundlesToMerge.add(filePath)
+            matchArr.forEach((matchRequire) => {
+              const sourceName = matchRequire.match(/"(.+)"/)[1]
+              commonChunk.add(path.join(filePath, '../', sourceName))
+            })
+          }
         }
       }
-
-      if (deleteInlinedFiles) {
-        // 删除 chunks
-        bundlesToDelete.forEach((name) => {
-          delete bundle[name]
-          // eslint-disable-next-line no-console
-          console.log(`\n${chalk.red(name)} 已经被内联并删除`)
-        })
-      }
-    }
+    },
+    closeBundle: async () =>
+      new Promise((resolve) => {
+        // eslint-disable-next-line no-console
+        console.log(`\n${chalk.green('开始内联公共依赖')}`)
+        let i = 0
+        if (bundlesToMerge.size > 0) {
+          bundlesToMerge.forEach(async (filePath) => {
+            if (commonChunk.has(filePath)) {
+              ++i
+            } else {
+              const bundle = await rollup({
+                input: filePath,
+                external: (source) => external(source),
+                plugins: buildFormat === 'cjs' ? [commonjs()] : []
+              })
+              await bundle.write({ dir: path.join(filePath, '../'), format: buildFormat })
+              await bundle.close()
+              ++i
+            }
+            if (i === bundlesToMerge.size) {
+              resolve()
+            }
+          })
+        } else {
+          resolve()
+        }
+      }).then(async () => {
+        if (isDelete) {
+          commonChunk.forEach((filePath) => {
+            fs.unlinkSync(filePath)
+            // eslint-disable-next-line no-console
+            console.log(`\n${chalk.red(filePath)} 已经被内联并删除`)
+          })
+        }
+      })
   }
 }

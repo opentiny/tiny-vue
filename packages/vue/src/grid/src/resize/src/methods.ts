@@ -33,7 +33,9 @@ export default {
       this.recalculate()
     }, GlobalConfig.resizeInterval)
 
-    resizeObserver.observe(this.getParentElem())
+    const parentElem = this.getParentElem()
+
+    parentElem && resizeObserver.observe(parentElem)
     this.$resize = resizeObserver
   },
   unbindResize() {
