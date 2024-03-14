@@ -176,6 +176,7 @@ export default {
   name: `${$prefix}GridFooter`,
   props: {
     fixedColumn: Array,
+    fixedType: String,
     footerData: Array,
     size: String,
     tableColumn: Array,
@@ -193,7 +194,7 @@ export default {
     elemStore[`${keyPrefix}x-space`] = $refs.xSpace
   },
   render() {
-    let { $parent: $table, buildParamFunc, footerData, tableColumn } = this
+    let { $parent: $table, buildParamFunc, fixedColumn, fixedType, footerData, tableColumn } = this
     let {
       align: allAlign,
       columnKey,
@@ -203,7 +204,7 @@ export default {
       footerSpanMethod,
       columnStore
     } = $table
-    let { overflowX, showOverflow: allColumnOverflow, tableLayout, tableListeners } = $table
+    let { overflowX, showOverflow: allColumnOverflow, tableLayout, tableListeners, renderFooter } = $table
 
     let tableAttrs = { cellspacing: 0, cellpadding: 0, border: 0 }
     let colgroupVNode = renderColgroup(tableColumn)
@@ -219,6 +220,8 @@ export default {
     }
     let tfootVNode = renderTfoot(Object.assign(arg1, arg2))
 
+    const renderParams = { $table, columns: tableColumn, footerData, fixedColumns: fixedColumn, fixedType }
+
     return h(
       'div',
       {
@@ -227,21 +230,23 @@ export default {
       },
       [
         h('div', { class: 'tiny-grid-body__x-space', ref: 'xSpace' }),
-        h(
-          'table',
-          {
-            class: 'tiny-grid__footer',
-            style: { tableLayout },
-            attrs: tableAttrs,
-            ref: 'table'
-          },
-          [
-            //  列宽
-            colgroupVNode,
-            // 底部
-            tfootVNode
-          ]
-        )
+        typeof renderFooter === 'function'
+          ? renderFooter(renderParams, h)
+          : h(
+              'table',
+              {
+                class: 'tiny-grid__footer',
+                style: { tableLayout },
+                attrs: tableAttrs,
+                ref: 'table'
+              },
+              [
+                //  列宽
+                colgroupVNode,
+                // 底部
+                tfootVNode
+              ]
+            )
       ]
     )
   },

@@ -82,12 +82,12 @@ const options2 = ref([
   { value: '选项1', label: '黄金糕' },
   { value: '选项2', label: '双皮奶', disabled: true },
   { value: '选项3', label: '蚵仔煎' },
-  { value: '选项4', label: '龙须面' },
+  { value: '选项4', label: '龙须面', disabled: true },
   { value: '选项5', label: '北京烤鸭' }
 ])
 
 const value1 = ref('')
-const value2 = ref([])
+const value2 = ref(['选项2'])
 const value3 = ref('')
 const value4 = ref(['选项2', '选项3'])
 const value5 = ref(['选项1', '选项2', '选项3', '选项4', '选项5'])

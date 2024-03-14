@@ -19,15 +19,15 @@ test('多选某项禁用', async ({ page }) => {
   const tag = select.locator('.tiny-tag')
   const option = dropdown.locator('.tiny-option')
 
-  await expect(tag).toHaveCount(0)
+  await expect(tag).toHaveCount(1)
   await select.click()
   await expect(option.filter({ hasText: '双皮奶' })).toHaveClass(/is-disabled/)
 
   await option.filter({ hasText: '双皮奶' }).click()
-  await expect(tag).toHaveCount(0)
+  await expect(tag).toHaveCount(1)
 
   await option.filter({ hasText: '黄金糕' }).click()
-  await expect(tag).toHaveCount(1)
+  await expect(tag).toHaveCount(2)
   await expect(tag.filter({ hasText: '黄金糕' })).toHaveCount(1)
 })
 

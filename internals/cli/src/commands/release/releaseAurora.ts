@@ -35,15 +35,14 @@ const findAllpage = (packagesPath) => {
       // 解决TinyVue和AUI国际化键名不兼容问题
       .replace(/zhCN/g, 'zh_CN')
       .replace(/enUS/g, 'en_US')
+      .replace(/-openaui/g, '-opentiny')
       // 解决在linkjs环境z-index无法统一导致下拉框被遮挡问题
       .replace(/"(.*?\/popup-manager)"/g, '"@aurora/renderless/common/deps/popup-manager"')
 
     // 解决当AUI只有一个mobile-first模板而TinyVue有多个模板，导致Linkjs加载不到多端模板的问题
     if (
       packagesPath.endsWith('index.js') &&
-      onlyMobileFirstTemplateLists.some(
-        (item) => packagesPath.includes(`${item}\\`) || packagesPath.includes(`${item}/`)
-      )
+      onlyMobileFirstTemplateLists.some((item) => packagesPath.includes(`${path.sep}${item}${path.sep}`))
     ) {
       result = result.replace(/pc.js/g, 'mobile-first.js')
     }
