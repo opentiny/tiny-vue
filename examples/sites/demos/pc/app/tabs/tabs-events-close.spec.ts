@@ -5,7 +5,7 @@ test('删除事件', async ({ page }) => {
   await page.goto('tabs#tabs-events-close')
 
   const tabs = page.locator('.tiny-tabs')
-  const tabItem = tabs.getByRole('tab', { name: '表单组件' })
+  const tabItem = tabs.getByRole('tab', { name: '其他组件' })
   const close = tabItem.locator('.tiny-tabs__icon-close')
   const modal = page.locator('.tiny-modal').first()
 

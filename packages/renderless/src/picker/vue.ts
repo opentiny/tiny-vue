@@ -16,6 +16,7 @@ import {
   watchIsRange,
   parseAsFormatAndType,
   watchPickerVisible,
+  watchMobileVisible,
   getValueEmpty,
   getMode,
   displayValue,
@@ -177,7 +178,7 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent, breakpoi
 const initApi = ({ api, props, hooks, state, vnode, others, utils, parent }) => {
   const { t, emit, dispatch, nextTick, vm } = vnode
   const { TimePanel, TimeRangePanel } = others
-  const { destroyPopper, popperElm, updatePopper, doDestroy } = initPopper({ props, hooks, vnode })
+  const { destroyPopper, popperElm, updatePopper } = initPopper({ props, hooks, vnode })
 
   state.popperElm = popperElm
   state.picker = null
@@ -185,7 +186,7 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils, parent }) => 
   Object.assign(api, {
     destroyPopper,
     emitDbTime: emitDbTime({ emit, state, t }),
-    hidePicker: hidePicker({ state, doDestroy }),
+    hidePicker: hidePicker({ destroyPopper, state }),
     handleSelectChange: ({ tz, date }) => !state.ranged && emit('select-change', { tz, date }),
     getPanel: getPanel(others),
     handleFocus: handleFocus({ emit, vm, state, api }),
@@ -211,7 +212,8 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils, parent }) => 
     handleClose: handleClose({ api, props, state }),
     displayValue: displayValue({ api, props, state }),
     handlePick: handlePick({ api, state }),
-    watchPickerVisible: watchPickerVisible({ api, vm, dispatch, emit, props, state }),
+    watchPickerVisible: watchPickerVisible({ api, vm, dispatch, emit, props, state, nextTick }),
+    watchMobileVisible: watchMobileVisible({ api, props, state }),
     formatToString: formatToString({ api, state }),
     watchIsRange: watchIsRange({ api, state, TimePanel, TimeRangePanel }),
     mountPicker: mountPicker({ api, vm, props, state, updatePopper }),
@@ -226,6 +228,7 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils, parent }) => 
   initApi2({ api, props, state, t, parent })
   initMobileApi({ api, props, state, t, parent })
 }
+
 const initApi2 = ({ api, props, state, t, parent }) => {
   Object.assign(api, {
     t,
@@ -267,6 +270,8 @@ const initWatch = ({ api, state, props, watch, markRaw }) => {
     (type) => (state.panel = markRaw(api.getPanel(type))),
     { immediate: true }
   )
+
+  watch(() => [state.dateMobileOption.visible, state.timeMobileOption.visible], api.watchMobileVisible)
 
   watch(() => state.pickerVisible, api.watchPickerVisible)
 

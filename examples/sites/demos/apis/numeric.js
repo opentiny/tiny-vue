@@ -394,6 +394,18 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'string-mode',
+          type: 'Boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '使用字符串模式，精度超过JS限制时使用',
+            'en-US': ''
+          },
+          mode: ['pc', 'mobile', 'mobile-first'],
+          pcDemo: 'string-mode',
+          mfDemo: ''
+        },
+        {
           name: 'value',
           type: 'Number',
           defaultValue: '0',

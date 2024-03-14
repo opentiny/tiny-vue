@@ -14,7 +14,9 @@ export default {
       medium: 32
     },
     spacingHeight: 4,
-    initialInputHeight: 30
+    initialInputHeight: 30,
+    // 显示清除等图标时，不隐藏下拉箭头时
+    autoHideDownIcon: false
   },
   props: {
     tagType: 'info'

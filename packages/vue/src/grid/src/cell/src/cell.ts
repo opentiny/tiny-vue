@@ -773,7 +773,7 @@ export const Cell = {
   renderEditHeader(h, params) {
     let { $table, column } = params
     let { editConfig, editRules, validOpts } = $table
-    let { filter, remoteSort, sortable, type } = column
+    let { filter, remoteSort, sortable, type, own } = column
     let icon = GLOBAL_CONFIG.icon
     let isRequired
 
@@ -799,7 +799,7 @@ export const Cell = {
 
     let vNodes = [
       isRequired && showAsterisk ? h('i', { class: `tiny-icon ${icon.required}` }) : null,
-      !editConfig || !column.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
+      !editConfig || !own.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
     ]
 
     vNodes = vNodes.concat(Cell.renderHeader(h, params))

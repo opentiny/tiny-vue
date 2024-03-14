@@ -17,6 +17,7 @@
       :placeholder="placeholder"
       :collapse-tags="collapseTags"
       :multiple="multiple"
+      :multipleLimit="multipleLimit"
       @change="userChange"
       :loading="state.loading"
       filterable
@@ -123,7 +124,8 @@ export default defineComponent({
     'maxWidth',
     'keepFocus',
     'changeCompat',
-    'multiLineDrag'
+    'multiLineDrag',
+    'multipleLimit'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

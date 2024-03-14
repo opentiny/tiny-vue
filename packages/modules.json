@@ -2360,6 +2360,14 @@
     "type": "template",
     "exclude": false
   },
+  "RichText": {
+    "path": "vue/src/rich-text/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
   "RichTextEditor": {
     "path": "vue/src/rich-text-editor/index.ts",
     "type": "component",
