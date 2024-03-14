@@ -30,6 +30,20 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
+  &-round {
+    background-color: white !important;
+
+    &-cycle {
+      display: inline-block;
+      line-height: 100%;
+      background-color: var(--ti-mobile-tag-color-default);
+      border-radius: 4px;
+      width: 8px;
+      height: 8px;
+      margin-right: 4px;
+    }
+  }
+
   &-mini {
     line-height: var(--ti-mobile-tag-height-mini);
     padding: 0 var(--ti-mobile-tag-padding-mini);

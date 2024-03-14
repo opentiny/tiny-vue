@@ -49,6 +49,18 @@ export default {
         'en-US': 'Mini'
       },
       codeFiles: ['mini.vue']
+    },
+    {
+      demoId: 'style',
+      name: {
+        'zh-CN': '样式',
+        'en-US': 'style'
+      },
+      desc: {
+        'zh-CN': '样式',
+        'en-US': 'style'
+      },
+      codeFiles: ['style.vue']
     }
   ]
 }

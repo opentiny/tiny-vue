@@ -10,6 +10,7 @@ export interface ITagState {
   color: string
   mini: boolean
   maxWidth: string | number
+  cycleColor: string
 }
 
 export interface ITagApi {

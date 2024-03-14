@@ -12,9 +12,19 @@
 
 <template>
   <div
-    :class="['tiny-mobile-tag', 'tiny-mobile-tag-' + state.color, state.mini ? 'tiny-mobile-tag-mini' : null]"
+    :class="[
+      'tiny-mobile-tag',
+      'tiny-mobile-tag-' + state.color,
+      state.mini ? 'tiny-mobile-tag-mini' : null,
+      state.type === 'round' ? `tiny-mobile-tag-round` : null
+    ]"
     :style="{ maxWidth: state.maxWidth ? `${state.maxWidth}px` : null }"
   >
+    <div
+      v-if="state.type === 'round'"
+      class="tiny-mobile-tag-round-cycle"
+      :style="{ backgroundColor: state.cycleColor }"
+    ></div>
     <slot>{{ state.text }}</slot>
   </div>
 </template>
@@ -27,7 +37,7 @@ import '@opentiny/vue-theme-mobile/tag/index.less'
 
 export default defineComponent({
   emits: ['click', 'close'],
-  props: [...props, 'text', 'color', 'width', 'mini', 'maxWidth'],
+  props: [...props, 'text', 'color', 'width', 'mini', 'maxWidth', 'type', 'cycleColor'],
   setup(props, context) {
     return setup({ props, context, renderless, api, h }) as unknown as ITagApi
   }

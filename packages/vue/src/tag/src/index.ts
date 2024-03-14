@@ -44,7 +44,8 @@ export const tagProps = {
   maxWidth: {
     type: [String, Number],
     default: null
-  }
+  },
+  cycleColor: String
 }
 
 export default defineComponent({
