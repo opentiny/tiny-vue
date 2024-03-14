@@ -116,7 +116,10 @@ export const increase =
       return
     }
 
-    const value = (props.mouseWheel ? state.displayValue : Number(state.userInput)) || 0
+    // 处理高精度情况
+    const userInput = props.stringMode ? state.userInput : Number(state.userInput)
+
+    const value = (props.mouseWheel ? state.displayValue : userInput) || 0
 
     if (value.toString().includes('e')) {
       return
@@ -142,7 +145,11 @@ export const decrease =
     if (state.inputDisabled || state.minDisabled) {
       return
     }
-    const value = (props.mouseWheel ? state.displayValue : Number(state.userInput)) || 0
+
+    // 处理高精度情况
+    const userInput = props.stringMode ? state.userInput : Number(state.userInput)
+
+    const value = (props.mouseWheel ? state.displayValue : userInput) || 0
 
     if (value.toString().includes('e')) {
       return

@@ -172,6 +172,19 @@ export default {
       codeFiles: ['blur-event.vue']
     },
     {
+      demoId: 'string-mode',
+      name: {
+        'zh-CN': '高精度',
+        'en-US': 'Out of Focus Event'
+      },
+      desc: {
+        'zh-CN':
+          '<p>可通过 <code>string-mode</code> 设置高精度模式，当 JS 默认的 Number 不满足数字的长度与精度需求时。</p>\n',
+        'en-US': '<p>The<code>@blur</code>event is triggered when the text box loses focus. </p>\n'
+      },
+      codeFiles: ['string-mode.vue']
+    },
+    {
       demoId: 'filter-mode',
       name: {
         'zh-CN': '过滤器模式',

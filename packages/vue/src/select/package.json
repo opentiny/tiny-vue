@@ -32,7 +32,8 @@
     "@opentiny/vue-filter-box": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
     "@opentiny/vue-popover": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-recycle-scroller": "workspace:~"
   },
   "license": "MIT"
 }

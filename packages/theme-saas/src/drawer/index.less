@@ -138,11 +138,15 @@
           @apply text-base;
           @apply items-center;
 
-          .@{drawer-prefix-cls}__title {
+          .@{drawer-prefix-cls}__header-left {
             @apply ~'max-w-[80%]';
-            @apply pr-4;
-            @apply text-left;
-            @apply truncate;
+
+            // 标题增加帮助提示, 勿覆盖
+            .@{drawer-prefix-cls}__title {
+              @apply pr-4;
+              @apply text-left;
+              @apply truncate;
+            }
           }
 
           .@{drawer-prefix-cls}__header-right {

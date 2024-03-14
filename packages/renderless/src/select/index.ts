@@ -494,38 +494,14 @@ export const getPluginOption =
     return items
   }
 
-// tiny 修改：  aui的 toggleCheckAll 在designConfig, 同步时要更新
 export const toggleCheckAll =
   ({ api, state, props }) =>
   (filtered) => {
-    // tiny 移入内部
-    const getEnabledValues = (options) => {
-      let values = []
-
-      // tiny 新增 避免全不选时，将disabled的项目勾掉
-      for (let i = 0; i < options.length; i++) {
-        const isEnabled = !options[i].state.disabled && !options[i].state.groupDisabled
-        const isRequired = options[i].required
-        const isDisabledAndChecked = !isEnabled && options[i].state.selectCls === 'checked-sur'
-
-        if (state.isSelectAll) {
-          // 取消选中全部，必填和禁用且选中项不可取消
-          if (isRequired || isDisabledAndChecked) {
-            values.push(options[i].value)
-          }
-        } else {
-          // 选中全部，非禁用项 和 必填项和 禁用且选中项 需选中
-          if (isEnabled || isRequired || isDisabledAndChecked) {
-            values.push(options[i].value)
-          }
-        }
-      }
-
-      return values
-    }
-
-    let value
-    const enabledValues = getEnabledValues(state.options)
+    let value = []
+    // 1. 需要控制勾选或去勾选的项
+    const enabledValues = state.options
+      .filter((op) => !op.state.disabled && !op.state.groupDisabled && !op.required && op.state.visible)
+      .map((op) => op.value)
 
     if (filtered) {
       if (state.filteredSelectCls === 'check' || state.filteredSelectCls === 'halfselect') {
@@ -541,10 +517,18 @@ export const toggleCheckAll =
 
         unchecked.length ? (value = enabledValues) : (value = [])
       } else if (state.selectCls === 'checked-sur') {
-        // tiny 新增
-        value = getEnabledValues(state.options)
+        value = []
       }
     }
+    // 2. 必选项
+    const requiredValue = state.options.filter((op) => op.required).map((op) => op.value)
+
+    // 3. 禁用且已设置为勾选的项
+    const disabledSelectedValues = state.options
+      .filter((op) => (op.state.disabled || op.state.groupDisabled) && op.state.selectCls === 'checked-sur')
+      .map((op) => op.value)
+
+    value = [...value, ...requiredValue, ...disabledSelectedValues]
 
     api.setSoftFocus()
 
@@ -1278,10 +1262,9 @@ export const watchValue =
       }
 
       if (props.filterable && !props.reserveKeyword) {
-        const isChange = false
-        const isInput = true
-        props.renderType !== constants.TYPE.Grid && (state.query = '')
-        api.handleQueryChange(state.query, isChange, isInput)
+        // tiny 优化： 多选且props.reserveKeyword为false时， aui此处会多请求一次
+        // searchable时，不清空query, 这样才能保持搜索结果
+        props.renderType !== constants.TYPE.Grid && !props.searchable && (state.query = '')
       }
     }
 
@@ -1549,7 +1532,7 @@ export const queryVisibleOptions =
     if (props.optimization) {
       return optmzApis.queryVisibleOptions(vm, isMobileFirstMode)
     } else {
-      return Array.from(vm.$refs.scrollbar.$el.querySelectorAll('[data-index]:not([style*="display: none"])'))
+      return Array.from(vm.$refs.scrollbar?.$el.querySelectorAll('[data-index]:not([style*="display: none"])') || [])
     }
   }
 
@@ -1839,11 +1822,16 @@ export const watchHoverIndex =
   }
 
 export const handleDropdownClick =
-  ({ emit }) =>
+  ({ vm, state, props, emit }) =>
   ($event) => {
+    if (props.allowCopy && vm.$refs.reference) {
+      vm.$refs.reference.$el.querySelector('input').selectionEnd = 0
+    }
+
+    state.softFocus = false
+
     emit('dropdown-click', $event)
   }
-
 export const handleEnterTag =
   ({ state }) =>
   ($event, key) => {

@@ -57,7 +57,7 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
     if (insertRecords.length) {
       return false
     }
-    const options = { children: 'children' }
+    const options = { children: (_vm.treeConfig || {}).children || 'children' }
     const targetTrElem = event.item
     const { parentNode: wrapperElem, previousElementSibling: prevTrElem } = targetTrElem
     // 这里优先使用用户通过props传递过来的表格数据，所以拖拽后会改变原始数据

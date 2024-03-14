@@ -250,7 +250,7 @@ export const updateOptions =
 export const autoSelect =
   ({ props, state, nextTick }) =>
   (usersList) => {
-    if (!usersList.length) {
+    if (!usersList.length || (props.multiple && props.multipleLimit && state.user.length >= props.multipleLimit)) {
       return nextTick()
     }
 

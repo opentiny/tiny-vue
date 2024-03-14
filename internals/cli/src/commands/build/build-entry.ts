@@ -10,7 +10,7 @@ import {
   prettierFormat,
   logGreen
 } from '../../shared/utils'
-import { getComponents } from '../../shared/module-utils'
+import { getComponents, excludeComponents } from '../../shared/module-utils'
 import handlebarsRender from './handlebars.render'
 
 const version = getopentinyVersion({ key: 'version' })
@@ -79,7 +79,7 @@ const createEntry = (mode) => {
   const PKGDeps = {}
 
   components.forEach((item) => {
-    if (item.inEntry !== false) {
+    if (item.inEntry !== false && !excludeComponents.includes(item.name)) {
       const component = capitalizeKebabCase(item.name)
       PKGDeps[item.importName] = 'workspace:~'
       componentsTemplate.push(`  ${component}`)

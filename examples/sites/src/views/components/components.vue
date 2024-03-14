@@ -139,13 +139,13 @@
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref } from 'vue'
 import { marked } from 'marked'
-import { Loading, Anchor, ButtonGroup } from '@opentiny/vue'
+import { Anchor, ButtonGroup } from '@opentiny/vue'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { i18nByKey, getWord, $clone, fetchDemosFile, useApiMode, useTemplateMode } from '@/tools'
 import demo from '@/views/components/demo'
 import { router } from '@/router.js'
 import { Collapse, CollapseItem } from '@opentiny/vue'
-import { faqMdConfig, staticDemoPath, getWebdocPath } from './cmpConfig'
+import { faqMdConfig, getWebdocPath } from './cmpConfig'
 import AsyncHighlight from './async-highlight.vue'
 import VersionTip from './VersionTip.vue'
 
@@ -159,9 +159,6 @@ export default defineComponent({
     TinyCollapseItem: CollapseItem,
     AsyncHighlight,
     VersionTip
-  },
-  directives: {
-    loading: Loading.directive
   },
   setup() {
     const anchorRefreshKey = ref(0)
@@ -314,21 +311,6 @@ export default defineComponent({
             return item
           })
           state.currJson.types = apiJson.types
-        }
-
-        if (state.cmpId?.startsWith('grid-')) {
-          fetchDemosFile(`${staticDemoPath}/grid/webdoc/grid.js`).then((data) => {
-            // eslint-disable-next-line no-eval
-            const gridJson = eval('(' + data.slice(15) + ')')
-            state.currJson.apis = gridJson.apis
-            state.currJson.types = gridJson.types
-          })
-        } else if (state.cmpId?.startsWith('chart-')) {
-          fetchDemosFile(`${staticDemoPath}/chart/webdoc/chart.js`).then((data) => {
-            // eslint-disable-next-line no-eval
-            const chartJson = eval('(' + data.slice(15) + ')')
-            state.currJson.apis = chartJson.apis
-          })
         }
 
         let hash = router.currentRoute.value.hash?.slice(1)
@@ -526,11 +508,12 @@ table.api-table {
   }
 }
 .cmp-page-anchor {
-  .tiny-anchor__affix {
+  :deep(.tiny-anchor__affix) {
+    top: unset !important;
     overflow-y: auto;
     max-height: 80vh;
   }
-  .tiny-anchor-link {
+  :deep(.tiny-anchor-link) {
     margin-bottom: 10px;
     max-width: 150px;
     font-size: 12px;
@@ -558,13 +541,6 @@ table.api-table {
   }
 }
 
-.markdown-top-body,
-.all-demos-container {
-  & > .tiny-loading svg {
-    height: 36px;
-    width: 36px;
-  }
-}
 .all-demos-container {
   margin-top: 24px;
 }
