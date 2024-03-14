@@ -169,7 +169,7 @@ export const api = [
   'clearSearchText'
 ]
 
-const initState = ({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm }) => {
+const initState = ({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm, designConfig }) => {
   const stateAdd = initStateAdd({ computed, props, api, parent })
   const state = reactive({
     ...stateAdd,
@@ -226,7 +226,13 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     // tiny 新增
     getIcon: computed(() => api.computedGetIcon()),
     getTagType: computed(() => api.computedGetTagType()),
-    isSelectAll: computed(() => state.selectCls === 'checked-sur')
+    isSelectAll: computed(() => state.selectCls === 'checked-sur'),
+    autoHideDownIcon: (() => {
+      if (designConfig?.state && 'autoHideDownIcon' in designConfig.state) {
+        return designConfig.state.autoHideDownIcon
+      }
+      return true // tiny 默认为true
+    })()
   })
 
   return state
@@ -431,7 +437,7 @@ const addApi = ({
     mounted: mounted({ api, parent, state, props, vm, designConfig }),
     unMount: unMount({ api, parent, vm, state }),
     watchOptimizeOpts: watchOptimizeOpts({ props, state }),
-    handleDropdownClick: handleDropdownClick({ emit }),
+    handleDropdownClick: handleDropdownClick({ props, vm, state, emit }),
     handleEnterTag: handleEnterTag({ state }),
     calcCollapseTags: calcCollapseTags({ state, vm }),
     initValue: initValue({ state }),
@@ -555,8 +561,19 @@ export const renderless = (
   { computed, onBeforeUnmount, onMounted, reactive, watch, provide, inject },
   { vm, parent, emit, constants, nextTick, dispatch, t, emitter, isMobileFirstMode, useBreakpoint, designConfig }
 ) => {
-  const api = {}
-  const state = initState({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm })
+  const api: any = {}
+  const state = initState({
+    reactive,
+    computed,
+    props,
+    api,
+    emitter,
+    parent,
+    constants,
+    useBreakpoint,
+    vm,
+    designConfig
+  })
   const dialog = inject('dialog', null)
 
   provide('selectEmitter', state.selectEmitter)
@@ -579,9 +596,7 @@ export const renderless = (
     isMobileFirstMode,
     designConfig
   })
-  initWatch({ watch, props, api, state, nextTick })
-  onMounted(api.mounted)
-  onBeforeUnmount(api.unMount)
+
   parent.$on('handle-clear', (event) => {
     api.handleClearClick(event)
   })
@@ -598,6 +613,15 @@ export const renderless = (
   state.selectEmitter.on(constants.EVENT_NAME.handleOptionClick, api.handleOptionSelect)
   state.selectEmitter.on(constants.EVENT_NAME.setSelected, api.setSelected)
   state.selectEmitter.on(constants.EVENT_NAME.initValue, api.initValue)
+
+  initWatch({ watch, props, api, state, nextTick })
+
+  onMounted(api.mounted)
+
+  onBeforeUnmount(() => {
+    api.unMount()
+    dialog && dialog.state.emitter.off('handleSelectClose', api.handleClose)
+  })
 
   return api
 }

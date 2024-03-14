@@ -190,10 +190,10 @@
               </template>
             </tiny-tooltip>
           </span>
-
+          <!-- tiny 新增：searchable时, 这里不显示 state.query -->
           <input
             ref="input"
-            v-if="filterable && !state.selectDisabled"
+            v-show="filterable && !searchable && !state.selectDisabled"
             v-model="state.query"
             type="text"
             class="tiny-select__input"
@@ -272,10 +272,15 @@
               @click="handleClearClick"
               @mouseenter="state.inputHovering = true"
             ></icon-close>
-            <!-- tiny 新增 自定义getIcon . tiny 显示 close时， 不显示向下的箭头。 aui是同时显示2个， 待使用designConfig解决这个  -->
+            <!-- tiny 新增 自定义getIcon .
+              tiny 的 autoHideDownIcon=true, 显示 close时， 不显示向下的箭头。
+              aui是同时显示2个。 -->
             <component
-              v-else
-              v-show="!(remote && filterable && !remoteConfig.showIcon)"
+              v-show="
+                state.autoHideDownIcon
+                  ? !state.showClose && !(remote && filterable && !remoteConfig.showIcon)
+                  : !(remote && filterable && !remoteConfig.showIcon)
+              "
               :is="state.getIcon.icon"
               :class="[
                 'tiny-svg-size',
@@ -424,11 +429,8 @@
             v-show="state.options.length > 0 && !loading"
           >
             <slot name="dropdown"></slot>
-            <!-- tiny 新增 ： !filterable 的判断 有过滤时，不显示全部。 aui没有该判断 -->
             <li
-              v-if="
-                multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote && !filterable
-              "
+              v-if="multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote"
               class="tiny-option tiny-select-dropdown__item"
               data-tag="tiny-select-dropdown-item"
               :class="[
@@ -443,9 +445,9 @@
             >
               <!-- <component :is="`icon-${state.selectCls}`" :class="['tiny-svg-size', state.selectCls]" />
               <span>{{ t('ui.base.all') }}</span> -->
-              <!-- tiny 新增： 使用checkbox 代替 svg -->
+              <!-- tiny 新增： 使用checkbox 代替 svg , 列表模式 -->
               <tiny-checkbox
-                :model-value="state.isSelectAll"
+                :model-value="state.selectCls === 'checked-sur'"
                 :indeterminate="state.selectCls === 'halfselect'"
                 :class="state.selectCls"
               >
@@ -460,8 +462,7 @@
                 !state.multipleLimit &&
                 state.query &&
                 !state.emptyText &&
-                !remote &&
-                !filterable
+                !remote
               "
               class="tiny-option tiny-select-dropdown__item"
               data-tag="tiny-select-dropdown-item"
@@ -477,9 +478,9 @@
             >
               <!-- <component :is="`icon-${state.filteredSelectCls}`" :class="['tiny-svg-size', state.filteredSelectCls]" />
               <span>{{ t('ui.base.all') }}</span> -->
-              <!-- tiny 新增： 使用checkbox 代替 svg -->
+              <!-- tiny 新增： 使用checkbox 代替 svg，过滤模式 -->
               <tiny-checkbox
-                :model-value="state.isSelectAll"
+                :model-value="state.filteredSelectCls === 'checked-sur'"
                 :indeterminate="state.filteredSelectCls === 'halfselect'"
                 :class="state.selectCls"
               >

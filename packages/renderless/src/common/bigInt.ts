@@ -180,7 +180,7 @@ export class BigIntDecimal {
     const convertBigInt = (str) => {
       // 将以多个零开头的整数前置零清空 '0000000000000003e+21' --> '3e+21' ,解决BigInt(0000000000000003e+21)报错问题
       const validStr = str.replace(/^0+/, '') || '0'
-      return f(`return BigInt(${validStr})`)()
+      return f(`return BigInt('${validStr}')`)()
     }
     if (validateNumber(mergedValue)) {
       const trimRet = trimNumber(mergedValue)
@@ -188,7 +188,9 @@ export class BigIntDecimal {
       const numbers = trimRet.trimStr.split('.')
       this.integer = !numbers[0].includes('e') ? BigInt(numbers[0]) : numbers[0]
       const decimalStr = numbers[1] || '0'
-      this.decimal = convertBigInt(decimalStr)
+
+      // 如果小数点后有科学计数法，需要特殊处理，如果是正常数字则保留之前逻辑
+      this.decimal = decimalStr.includes('e') ? convertBigInt(decimalStr) : BigInt(decimalStr)
       this.decimalLen = decimalStr.length
     } else {
       this.nan = true

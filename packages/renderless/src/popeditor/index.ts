@@ -813,7 +813,7 @@ export const doSuggesst =
           api.sourceGridSelectChange({ checked: false, row, confirm: false })
         })
 
-        if (addtions.length) {
+        if (!state.suggestList.length || addtions.length) {
           doQuery(query)
         }
       } else {
@@ -829,7 +829,7 @@ export const closeSuggestPanel =
     const popper = vm.$refs.popper
     let keep = !event
 
-    if (event.target) {
+    if (event.target && reference) {
       keep = reference.$el.contains(event.target) || popper.contains(event.target)
     }
 

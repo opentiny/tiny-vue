@@ -36,6 +36,7 @@ import {
   deleteNode,
   onSiblingToggleExpand,
   watchExpandedChange,
+  // tiny 新增
   computedExpandIcon,
   computedIndent
 } from './index'
