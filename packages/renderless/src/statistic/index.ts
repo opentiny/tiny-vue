@@ -1,4 +1,4 @@
-import { isFunction } from '@vue/shared'
+import { isFunction } from '../common/type'
 
 export const isNumber =
   ({ props }) =>
@@ -18,5 +18,5 @@ export const getIntegerAndDecimal =
     let displayValue = props.value ? String(props.value).split('.') : ''
     let integer = displayValue[0]?.replace(/\B(?=(\d{3})+(?!\d))/g, props.groupSeparator)
     let decimal = displayValue[1]?.padEnd(props.precision, '0').slice(0, props.precision > 0 ? props.precision : 0)
-    return [integer, decimal].join(props.groupSeparator)
+    return [integer, decimal].join(decimal ? '.' : '')
   }

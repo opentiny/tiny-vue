@@ -7,6 +7,7 @@
   .component-css-vars-statistic();
 
   width: 100%;
+  text-align: center;
 
   &__title {
     font-size: var(--ti-statistic-font-size);
@@ -14,6 +15,10 @@
     font-weight: var(--ti-statistic-title-font-weight);
     line-height: var(--ti-statistic-title-line-height);
     margin-bottom: var(--ti-statistic-title-margin-bottom);
+  }
+
+  &__footer-title {
+    margin-top: var(--ti-statistic-title-margin-bottom);
   }
 
   &__slots {
@@ -30,6 +35,7 @@
   }
 
   &__description {
+    font-size: var(--ti-statistic-description-font-size);
     display: inline-block;
   }
 

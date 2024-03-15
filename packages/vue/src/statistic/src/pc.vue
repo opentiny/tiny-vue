@@ -1,9 +1,14 @@
 <template>
   <div class="tiny-statistic">
-    <div v-if="$slots.title || title" class="tiny-statistic__title">
-      <slot name="title">
+    <div class="tiny-statistic__title">
+      <div v-if="title && typeof title === 'string'">
         {{ title }}
-      </slot>
+      </div>
+      <div v-else-if="$slots.title">
+        <slot name="title" :data="title">
+          {{ title }}
+        </slot>
+      </div>
     </div>
     <div class="tiny-statistic__slots">
       <div v-if="$slots.prefix || prefix" class="tiny-statistic__prefix">
@@ -18,6 +23,14 @@
         <slot name="suffix">
           <span>{{ suffix }}</span>
         </slot>
+      </div>
+    </div>
+    <div v-if="title && title instanceof Object" :class="['tiny-statistic__footer-title', 'tiny-statistic__title']">
+      <div v-if="$slots.title">
+        <slot name="title" :data="title"> </slot>
+      </div>
+      <div v-else>
+        <span>{{ title.value }}</span>
       </div>
     </div>
   </div>
