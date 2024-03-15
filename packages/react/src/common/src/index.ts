@@ -48,9 +48,6 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
   vm.$parent = vm.$parent?.$emit ? vm.$parent : parent
   const { dispatch, broadcast } = emitEvent(vm)
 
-  const defineInstanceProperties = (props) => {
-    Object.defineProperties(vm, props)
-  }
   const utils = {
     vm,
     parent,
@@ -65,8 +62,8 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
     emitter,
     refs: {},
     router: vm.$router,
-    d: defineInstanceProperties,
-    $bus
+    $bus,
+    slots: { default: props.children }
   }
   props.modelValue = props['v-model'] || props.modelValue
   // 实现v-model双向数据绑定
@@ -102,12 +99,13 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
   const attrs = {
     a: filterAttrs,
     m: mergeClass,
-    d: utils.d,
     vm: utils.vm,
     gcls: (key) => getElementCssClass(classes, key),
     provide: vueHooks.provide,
     inject: vueHooks.inject,
-    children: props.children
+    children: props.children,
+    $bus,
+    nextTick
   }
   if (Array.isArray(api)) {
     api.forEach((name) => {
@@ -120,7 +118,7 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
   }
   return attrs
 }
-const hanldeChildren = (props, children, sdk, vm, $bus) => {
+const hanldeChildren = (props, children, sdk = {}, vm = {}, $bus = {}) => {
   if (Array.isArray(children)) {
     let newChildren = children.map((child) => {
       return hanldeChildren(props, child, sdk, vm, $bus)
@@ -155,8 +153,7 @@ export const useSetup = ({
   doms,
   chartLib,
   ref,
-  prepareBoxplotData,
-  parent
+  prepareBoxplotData
 }) => {
   const $bus = useOnceResult(() => eventBus())
   // 刷新逻辑
@@ -219,7 +216,7 @@ export const useSetup = ({
   }
 }
 
-export { Svg, If, Component, Slot, For, Transition, vc, emitEvent, useVm, useFiber, useReactive }
+export { Svg, If, Component, Slot, For, Transition, vc, emitEvent, useVm, useFiber, useReactive, useCreateVueInstance }
 export const parseVnode = (vnode) => vnode
 
 export * from './vue-hooks.js'

@@ -105,7 +105,6 @@ export const eventBus = () => {
   }
 
   const emit = (eventName, ...args) => {
-    if (eventName === 'collapse-item.click') console.log(eventName, $bus[eventName], '$bus[eventName]')
     if (!$bus[eventName]) {
       return
     }

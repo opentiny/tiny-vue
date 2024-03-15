@@ -1,19 +1,11 @@
-import { Tooltip, Button } from '@opentiny/react'
-import { useState } from 'react'
+import { Tooltip } from '@opentiny/react'
+import './base.css'
 
 function App() {
-  const [showStep1, setShowStep1] = useState(false)
-
-  const listeners1 = {
-    click() {
-      setShowStep1((step) => !step)
-    }
-  }
-
   return (
     <div className="root">
-      <Tooltip>
-        <Button listeners={listeners1}>开始引导 默认位置</Button>
+      <Tooltip content="1">
+        <div className="tooltip">提示框</div>
       </Tooltip>
     </div>
   )

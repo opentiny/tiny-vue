@@ -1,7 +1,8 @@
 import { renderless, api } from '@opentiny/vue-renderless/tooltip/vue'
-import { useSetup, useVm, $props, parseVnode } from '@opentiny/react-common'
+import { useSetup, useVm, $props, parseVnode, useCreateVueInstance } from '@opentiny/react-common'
 import '@opentiny/vue-theme/tooltip/index.less'
 import ToolTipParent from './tooltip.jsx'
+import { useRef } from 'react'
 
 export default function Tooltip(props) {
   const {
@@ -37,7 +38,6 @@ export default function Tooltip(props) {
   const defaultProps = {
     ...$props,
     visible,
-
     adjustArrow,
     appendToBody,
     arrowOffset,
@@ -67,18 +67,29 @@ export default function Tooltip(props) {
   }
   const { ref, parent, current: vm } = useVm()
 
-  const { state, d } = useSetup({
+  const {
+    state,
+    vm: vmThis,
+    $bus,
+    nextTick,
+    setExpectedState,
+    debounceClose,
+    updatePopper
+  } = useSetup({
     props: defaultProps,
     renderless,
     api,
     vm,
-    parent
+    parent,
+    ref
   })
-
-  let popperVM = <ToolTipParent {...defaultProps} state={state} ref={ref} v-ref="ref"></ToolTipParent>
-
-  d({ popperVM: { get: () => popperVM, set: (v) => (popperVM = v) } })
-
+  const refTooltip = useRef()
+  vmThis.popperVM = useCreateVueInstance({
+    ref: refTooltip,
+    $bus,
+    props: { ...defaultProps, state },
+    doms: [refTooltip]
+  }).vm
   const stringifyClassObj = (classObj) =>
     Object.keys(classObj)
       .filter((key) => classObj[key])
@@ -110,28 +121,38 @@ export default function Tooltip(props) {
   const getFirstElement = () => {
     const slots = props.children
 
-    if (!Array.isArray(slots)) return null
-
     let element = null
+    if (!Array.isArray(slots)) {
+      element = slots
+    } else {
+      for (let index = 0; index < slots.length; index++) {
+        const vnode = parseVnode(slots[index])
 
-    for (let index = 0; index < slots.length; index++) {
-      const vnode = parseVnode(slots[index])
-
-      if (vnode && vnode.type) {
-        element = vnode
+        if (vnode && vnode.type) {
+          element = vnode
+        }
       }
     }
-    console.log(element, 'element')
+
     return element
   }
 
   const firstElement = getFirstElement()
 
-  if (!firstElement) return null
-
-  const data = firstElement.data || firstElement.props || (firstElement.props = {})
-
-  data.class = addTooltipClass(data.class)
-
-  return firstElement
+  return (
+    <>
+      <ToolTipParent
+        {...defaultProps}
+        state={state}
+        ref={refTooltip}
+        v-ref="ref"
+        nextTick={nextTick}
+        setExpectedState={setExpectedState}
+        debounceClose={debounceClose}
+        updatePopper={updatePopper}></ToolTipParent>
+      <div className={addTooltipClass(firstElement.props.className)} ref={ref}>
+        {props.children}
+      </div>
+    </>
+  )
 }

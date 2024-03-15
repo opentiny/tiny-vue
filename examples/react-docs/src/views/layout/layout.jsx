@@ -109,9 +109,7 @@ export default function Layout() {
                           className={vc(['layout-item-child', { 'select-menu': selectMenu.id === menusChild.id }])}
                           key={index2 + 'children'}
                           href={`/${menu.id || menu.key}/${menusChild.id}`}
-                          onClick={() => {
-                            tongleMenuChildren
-                          }}>
+                          onClick={() => tongleMenuChildren}>
                           {menusChild.nameCn || menusChild.title} {menusChild.name || menusChild.titleEn}
                         </a>
                       ))}

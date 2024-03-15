@@ -75,7 +75,8 @@ export const cmpMenus = [
     'children': [
       { 'nameCn': '警告', 'name': 'Alert', 'key': 'alert' },
       { 'nameCn': '标记', 'name': 'Badge', 'key': 'badge' },
-      { 'nameCn': '悬浮按钮', 'name': 'FloatButton', 'key': 'float-button' }
+      { 'nameCn': '悬浮按钮', 'name': 'FloatButton', 'key': 'float-button' },
+      { 'nameCn': '文字提示', 'name': 'Tooltip', 'key': 'tooltip' }
     ]
   },
   {
