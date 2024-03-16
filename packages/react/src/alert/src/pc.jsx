@@ -1,7 +1,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
 import { IconClose, IconSuccess, IconError, IconHelp, IconWarning } from '@opentiny/react-icon'
 import '@opentiny/vue-theme/alert/index.less'
-import { vc, If, Component, Slot, useSetup, useVm } from '@opentiny/react-common'
+import { vc, If, Component, Slot, useSetup, useVm, $props } from '@opentiny/react-common'
 
 const $constants = {
   ICON_MAP: {
@@ -34,6 +34,8 @@ export default function Alert(props) {
   } = props
 
   const defaultProps = {
+    ...$props,
+    ...props,
     type,
     size,
     center,
@@ -93,7 +95,7 @@ export default function Alert(props) {
           </If>
           <If v-if={!closeText && !closable}>
             <span className="is-custom" onClick={handleClose}>
-              <Slot name="close" slots={props.slots} parent_child={props.children} />
+              <Slot name="close" slots={props.slots} parent_children={props.children} />
             </span>
           </If>
           <If v-if={closeText && closable}>

@@ -1,4 +1,23 @@
 {
+  "ActionSheet": {
+    "path": "react/src/action-sheet/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile"
+    ]
+  },
+  "ActionSheetMobile": {
+    "path": "react/src/action-sheet/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ActionSheetMobileFirst": {
+    "path": "react/src/action-sheet/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
   "Alert": {
     "path": "react/src/alert/index.ts",
     "type": "component",
@@ -250,6 +269,25 @@
     "type": "template",
     "exclude": false
   },
+  "Drawer": {
+    "path": "react/src/drawer/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "pc"
+    ]
+  },
+  "DrawerMobileFirst": {
+    "path": "react/src/drawer/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "DrawerPc": {
+    "path": "react/src/drawer/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
   "FloatButton": {
     "path": "react/src/float-button/index.ts",
     "type": "component",
@@ -279,6 +317,29 @@
   "Icon": {
     "path": "react/src/icon/index.ts",
     "type": "component",
+    "exclude": false
+  },
+  "Input": {
+    "path": "react/src/input/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "InputMobile": {
+    "path": "react/src/input/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "InputMobileFirst": {
+    "path": "react/src/input/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "InputPc": {
+    "path": "react/src/input/src/pc.jsx",
+    "type": "template",
     "exclude": false
   },
   "Switch": {

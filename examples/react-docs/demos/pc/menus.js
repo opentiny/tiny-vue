@@ -80,6 +80,12 @@ export const cmpMenus = [
     ]
   },
   {
+    'label': '容器组件',
+    'labelEn': 'Container Components',
+    'key': 'cmp_container_components',
+    'children': [{ 'nameCn': '抽屉', 'name': 'Drawer', 'key': 'drawer' }]
+  },
+  {
     'label': '其他组件',
     'labelEn': 'Another Components',
     'key': 'cmp_another_components',

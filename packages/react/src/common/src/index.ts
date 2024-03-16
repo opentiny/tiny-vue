@@ -27,11 +27,12 @@ export const $props = {
   'tiny_renderless': null,
   'tiny_theme': '',
   'tiny_chart_theme': '',
-  'listeners': {}
+  'listeners': {},
+  'slots': {}
 }
-export function handlePrevent(event, fun) {
+export function handlePrevent(event, fun, ...args) {
   event.stopPropagation()
-  fun()
+  fun(...args)
 }
 const onBeforeMount = (instance, refs) => {
   for (let name in instance.$refs) {
@@ -47,7 +48,7 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
   const parent = props.parentProps || {}
   vm.$parent = vm.$parent?.$emit ? vm.$parent : parent
   const { dispatch, broadcast } = emitEvent(vm)
-
+  console.log(parent, 'parent comm', props)
   const utils = {
     vm,
     parent,
@@ -105,7 +106,9 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
     inject: vueHooks.inject,
     children: props.children,
     $bus,
-    nextTick
+    t,
+    nextTick,
+    emit: vm.$emit
   }
   if (Array.isArray(api)) {
     api.forEach((name) => {

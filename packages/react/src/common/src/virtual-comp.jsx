@@ -20,7 +20,7 @@ export function Component(props) {
   const Is = props.is || (() => '')
   return (
     <If v-if={defaultVIfAsTrue(props)}>
-      <Is className={props.className} />
+      <Is className={props.className} {...props} />
     </If>
   )
 }

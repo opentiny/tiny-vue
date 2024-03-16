@@ -1,0 +1,21 @@
+{
+  "name": "@opentiny/react-input",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-action-sheet": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-tooltip": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  },
+  "license": "MIT"
+}

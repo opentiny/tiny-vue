@@ -1,3 +1,4 @@
+import ActionSheet from '@opentiny/react-action-sheet/src/mobile-first'
 import Alert from '@opentiny/react-alert/src/mobile-first'
 import AutonaviMap from '@opentiny/react-autonavi-map/src/mobile-first'
 import BaiduMap from '@opentiny/react-baidu-map/src/mobile-first'
@@ -25,11 +26,13 @@ import ChartSunburst from '@opentiny/react-chart-sunburst/src/mobile-first'
 import ChartTree from '@opentiny/react-chart-tree/src/mobile-first'
 import ChartWaterfall from '@opentiny/react-chart-waterfall/src/mobile-first'
 import ChartWordcloud from '@opentiny/react-chart-wordcloud/src/mobile-first'
+import Drawer from '@opentiny/react-drawer/src/mobile-first'
 import Icon from '@opentiny/react-icon/src/mobile-first'
 import Tag from '@opentiny/react-tag/src/mobile-first'
 import { $prefix } from '@opentiny/react-common'
 
 const components = [
+  ActionSheet,
   Alert,
   AutonaviMap,
   BaiduMap,
@@ -57,6 +60,7 @@ const components = [
   ChartTree,
   ChartWaterfall,
   ChartWordcloud,
+  Drawer,
   Icon,
   Tag
 ]
@@ -64,6 +68,7 @@ const components = [
 export const version = '1.0.0'
 
 export {
+  ActionSheet,
   Alert,
   AutonaviMap,
   BaiduMap,
@@ -91,11 +96,13 @@ export {
   ChartTree,
   ChartWaterfall,
   ChartWordcloud,
+  Drawer,
   Icon,
   Tag
 }
 
 export default {
+  ActionSheet,
   Alert,
   AutonaviMap,
   BaiduMap,
@@ -123,6 +130,7 @@ export default {
   ChartTree,
   ChartWaterfall,
   ChartWordcloud,
+  Drawer,
   Icon,
   Tag
 } as any

@@ -16,8 +16,10 @@ import IconChevronRight from './src/chevon-right'
 import IconArrowBottom from './src/arrow-bottom'
 import IconCode from './src/code'
 import IconCopy from './src/copy'
+import IconHelpCircle from './src/help-circle'
 
 export {
+  IconHelpCircle,
   IconCode,
   IconCopy,
   IconLoading,
@@ -39,6 +41,7 @@ export {
 }
 
 export default {
+  IconHelpCircle,
   IconCode,
   IconCopy,
   IconLoading,
