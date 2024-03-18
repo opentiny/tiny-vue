@@ -79,7 +79,7 @@ export const cmpMenus = [
       { 'nameCn': '抽屉', 'name': 'Drawer', 'key': 'drawer' },
       { 'nameCn': '过滤器面板', 'name': 'FilterPanel', 'key': 'filter-panel' },
       { 'nameCn': '面板分割', 'name': 'Split', 'key': 'split' },
-      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card' }
+      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card', 'mark': { 'text': 'New' } }
     ]
   },
   {
@@ -211,7 +211,7 @@ export const cmpMenus = [
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
       { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' },
       { 'nameCn': '无限滚动', 'name': 'InfiniteScroll', 'key': 'infinite-scroll' },
-      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' }
+      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton', 'mark': { 'text': 'New' } }
     ]
   },
   {
@@ -276,26 +276,13 @@ export const cmpMenus = [
       { 'nameCn': '全屏显示', 'name': 'Fullscreen', 'key': 'fullscreen' },
       { 'nameCn': '全局设置', 'name': 'ConfigProvider', 'key': 'config-provider' },
       { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },
-      {
-        'nameCn': '二维码',
-        'name': 'QrCode',
-        'key': 'qr-code',
-        'mark': {
-          'text': 'New'
-        }
-      },
-      {
-        'nameCn': '水印',
-        'name': 'Watermark',
-        'key': 'watermark',
-        'mark': {
-          'text': 'New'
-        }
-      },
+      { 'nameCn': '二维码', 'name': 'QrCode', 'key': 'qr-code' },
+      { 'nameCn': '水印', 'name': 'Watermark', 'key': 'watermark' },
       {
         'nameCn': '脑图',
-        'name': 'mind-map',
-        'key': 'mind-map'
+        'name': 'MindMap',
+        'key': 'mind-map',
+        'mark': { 'text': 'New' }
       }
     ]
   }
