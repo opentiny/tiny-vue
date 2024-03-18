@@ -390,7 +390,7 @@ export const handleGlobalKeydownEvent =
   }
 
 export const handleHashChange = (api: IModalApi) => (): void => {
-  api.close('close')
+  api.close('hide')
 }
 
 export const getBox =
