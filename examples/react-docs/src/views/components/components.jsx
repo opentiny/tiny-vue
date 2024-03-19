@@ -46,6 +46,7 @@ export default function Components() {
     fetchDemosFile(getFileName(path, 2)).then((res) => {
       const json = eval('(' + res.slice(15) + ')')
       setApis(() => json)
+      console.log(json, 'json')
     })
   }, [location])
 

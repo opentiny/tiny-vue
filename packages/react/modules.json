@@ -386,6 +386,32 @@
     "type": "template",
     "exclude": false
   },
+  "TimeLine": {
+    "path": "react/src/time-line/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "TimeLinePc": {
+    "path": "react/src/time-line/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "TimelineItem": {
+    "path": "react/src/timeline-item/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "TimelineItemPc": {
+    "path": "react/src/timeline-item/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
   "Tooltip": {
     "path": "react/src/tooltip/index.ts",
     "type": "component",

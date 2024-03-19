@@ -21,7 +21,9 @@ export const cmpMenus = [
     'children': [
       { 'nameCn': '锚点', 'name': 'Anchor', 'key': 'anchor' },
       { 'nameCn': '引导', 'name': 'Guide', 'key': 'guide' },
-      { 'nameCn': '面包屑', 'name': 'Breadcrumb', 'key': 'breadcrumb' }
+      { 'nameCn': '面包屑', 'name': 'Breadcrumb', 'key': 'breadcrumb' },
+      { 'nameCn': '时间线', 'name': 'TimeLine', 'key': 'time-line' }
+
     ]
   },
 

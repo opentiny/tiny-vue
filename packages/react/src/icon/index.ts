@@ -17,6 +17,7 @@ import IconArrowBottom from './src/arrow-bottom'
 import IconCode from './src/code'
 import IconCopy from './src/copy'
 import IconHelpCircle from './src/help-circle'
+import IconYes from './src/yes'
 
 export {
   IconHelpCircle,
@@ -37,7 +38,8 @@ export {
   IconRadioselected,
   IconExpand,
   IconChevronRight,
-  IconArrowBottom
+  IconArrowBottom,
+  IconYes
 }
 
 export default {
@@ -59,5 +61,6 @@ export default {
   IconRadioselected,
   IconExpand,
   IconChevronRight,
-  IconArrowBottom
+  IconArrowBottom,
+  IconYes
 }

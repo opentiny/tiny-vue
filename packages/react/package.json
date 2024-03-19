@@ -51,6 +51,8 @@
     "@opentiny/react-input": "workspace:~",
     "@opentiny/react-switch": "workspace:~",
     "@opentiny/react-tag": "workspace:~",
+    "@opentiny/react-time-line": "workspace:~",
+    "@opentiny/react-timeline-item": "workspace:~",
     "@opentiny/react-tooltip": "workspace:~"
   }
 }

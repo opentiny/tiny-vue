@@ -48,7 +48,6 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
   const parent = props.parentProps || {}
   vm.$parent = vm.$parent?.$emit ? vm.$parent : parent
   const { dispatch, broadcast } = emitEvent(vm)
-  console.log(parent, 'parent comm', props)
   const utils = {
     vm,
     parent,
