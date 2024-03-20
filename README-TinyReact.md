@@ -186,16 +186,20 @@ virtual-comp.jsx
 ```jsx
 export function Slot(props) {
   const { name = 'default', slots = {}, parent_children } = props
-
-  const EmptySlot = () => ''
+// 定义一个空插槽组件，用于当指定插槽不存在时渲染
+  const EmptySlot = () => null
+  // 获取当前插槽对应的组件，如果不存在则使用EmptySlot
   const S = slots[name] || EmptySlot
   return (
     <If v-if={defaultVIfAsTrue(props)}>
+        {/* 如果插槽名称是'default'，则渲染父组件的子元素（props.children）或传入的children */}  
       <If v-if={name === 'default'}>{parent_children || props.children}</If>
       <If v-if={name !== 'default'}>
+        {/* 如果插槽对应的组件存在，则渲染该组件 */} 
         <If v-if={S !== EmptySlot}>
           <S {...props} />
         </If>
+        {/* 如果插槽对应的组件不存在，则渲染父组件的子元素（props.children） */}
         <If v-if={S === EmptySlot}>{props.children}</If>
       </If>
     </If>
@@ -226,7 +230,7 @@ export function If(props) {
   if (props['v-if']) {
     return props.children
   } else {
-    return ''
+    return null
   }
 }
 ```
@@ -246,11 +250,17 @@ common代码
 ```js
 import { reactive, watch } from '@vue/runtime-core'
 
+// 定义一个reload函数，它触发一个自定义事件来通知需要刷新。 
 const reload = () => $bus.emit('event:reload')
+// 这个函数返回一个新的函数，该函数包装了原始的响应式钩子，并添加了对数据变更的监听。
  function toPageLoad(reactiveHook, reload) {
+    // 返回一个新的函数，这个函数接受与reactiveHook相同的参数。
     return function (...args) {
       const result = reactiveHook(...args)
+      // 使用Vue的nextTick来确保在DOM更新后执行接下来的逻辑。
       nextTick(() => {
+        // 使用Vue的watch函数来监听result对象的变化。  
+      // 当result中的任何响应式属性发生变化时，都会触发回调函数。
         watch(
           result,
           () => {
@@ -355,10 +365,10 @@ export function useVueLifeHooks($bus) {
   useExcuteOnce(() => {
     $bus.emit('hook:onBeforeMount')
   })
-
+// 使用React的useEffect来模拟Vue的挂载和卸载过程 
   useEffect(() => {
     $bus.emit('hook:onMounted')
-
+// 返回一个清理函数，当组件卸载时执行
     return () => {
       // 卸载
       $bus.emit('hook:onBeforeUnmount')
@@ -430,12 +440,13 @@ export default function App(){
         const refs = {}
         if (!doms?.length) return refs
         let domsFiber = []
-
+        // 遍历doms数组，获取每个ref对应的Fiber节点  
         if (doms?.length) {
             doms.forEach((dom, index) => {
-            dom && dom.current && (domsFiber[index] = getFiberByDom(dom.current))
+            dom && dom.current && (domsFiber[index] = getFiberByDom(dom.current))// 获取DOM元素对应的Fiber节点
             })
         }
+        // 遍历Fiber节点，收集具有v-ref或id属性的DOM元素的引用 
         domsFiber.forEach((domFiber) => {
             if (domFiber) {
             // 这个travereseFiber就是遍历兄弟以及子节点执行第二个参数对应的函数，过滤掉类似于If，Slot之类的组件
@@ -452,17 +463,19 @@ export default function App(){
         })
         return refs
     }
-    
+    // getFiberByDom函数定义（根据DOM元素获取对应的Fiber节点） 
     function getFiberByDom(dom) {
+        // 查找DOM元素对象上的特定键，这些键通常用于存储Fiber节点的引用
         const key = Object.keys(dom).find((key) => {
             return (
             key.startsWith('__reactFiber$') || // react 17+
             key.startsWith('__reactInternalInstance$')
             ) // react <17
         })
-
+        // 返回找到的Fiber节点
         return dom[key]
     }
-   return <div ref={description} v-ref="description"></div>
+    // 渲染一个div元素，并为其设置ref属性，同时添加自定义的v-ref属性用于collectRefs函数收集引用  
+    return <div ref={description} v-ref="description"></div>
 }
 ```

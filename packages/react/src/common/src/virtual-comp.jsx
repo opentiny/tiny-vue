@@ -4,7 +4,7 @@ export function If(props) {
   if (props['v-if']) {
     return props.children
   } else {
-    return ''
+    return null
   }
 }
 
@@ -28,7 +28,7 @@ export function Component(props) {
 export function Slot(props) {
   const { name = 'default', slots = {}, parent_children } = props
 
-  const EmptySlot = () => ''
+  const EmptySlot = () => null
   const S = slots[name] || EmptySlot
   return (
     <If v-if={defaultVIfAsTrue(props)}>
