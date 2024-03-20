@@ -23,7 +23,6 @@ export const cmpMenus = [
       { 'nameCn': '引导', 'name': 'Guide', 'key': 'guide' },
       { 'nameCn': '面包屑', 'name': 'Breadcrumb', 'key': 'breadcrumb' },
       { 'nameCn': '时间线', 'name': 'TimeLine', 'key': 'time-line' }
-
     ]
   },
 
@@ -93,7 +92,8 @@ export const cmpMenus = [
     'key': 'cmp_another_components',
     'children': [
       { 'nameCn': '标签', 'name': 'Tag', 'key': 'tag' },
-      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' }
+      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },
+      { 'nameCn': '二维码', 'name': 'QrCode', 'key': 'qrcode' }
     ]
   }
 ]

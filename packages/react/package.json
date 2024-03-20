@@ -49,6 +49,7 @@
     "@opentiny/react-guide": "workspace:~",
     "@opentiny/react-icon": "workspace:~",
     "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-qr-code": "workspace:~",
     "@opentiny/react-switch": "workspace:~",
     "@opentiny/react-tag": "workspace:~",
     "@opentiny/react-time-line": "workspace:~",

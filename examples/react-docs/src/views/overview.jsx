@@ -92,7 +92,8 @@ export default function overview() {
         </h1>
 
         <h1 className="ti-f14 ti-my20 ti-lh21">
-          TinyVue 为 Web 应用提供了丰富的基础 UI 组件，我们还将持续探索企业级应用的最佳 UI 实践，欢迎尝试使用 TinyVue。
+          TinyReact 为 Web 应用提供了丰富的基础 UI 组件，我们还将持续探索企业级应用的最佳 UI 实践，欢迎尝试使用
+          TinyReact
         </h1>
         <If v-if={state.searchMenus?.length === 0}>
           <div className="text-center py20">

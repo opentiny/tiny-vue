@@ -342,6 +342,14 @@
     "type": "template",
     "exclude": false
   },
+  "QrCode": {
+    "path": "react/src/qr-code/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
   "Switch": {
     "path": "react/src/switch/index.ts",
     "type": "component",
