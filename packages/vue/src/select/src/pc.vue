@@ -267,7 +267,7 @@
               <icon-copy class="tiny-svg-size tiny-select__caret"></icon-copy>
             </span>
             <span v-if="showProportion && state.selected.length > 0 && state.options.length > 1">
-              <tiny-tag>{{ state.selected.length + '/' + state.options.length }}</tiny-tag>
+              {{ state.selected.length + '/' + state.options.length }}
             </span>
             <icon-close
               v-if="state.showClose"
