@@ -38,9 +38,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。多选时通过设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签, hover 时展示所有标签。标签内容超长时超出省略，hover 标签时展示 tooltip。</p>\n',
+          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置<code>show-proportion</code>可展示当前选中条数和总条数占比，默认值为<code>false</code>。设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签, <code>hover</code> 时展示所有标签。标签内容超长时超出省略，<code>hover</code> 标签时展示 <code>tooltip</code>。</p>\n',
         'en-US':
-          '<p>When multiple options are selected through the <code>collapse-tags</code> attribute settings, multiple tags will be abbreviated and displayed.</p>\n'
+          '<p>When multiple options are selected through the<code>collapse-tags</code>attribute settings, multiple tags are displayed in a thumbnail. Set<code>show-proportion</code>to display the current number of selected items and the proportion of total items, with a default value of <code>false</code>. By setting<code>hover-expand</code>to<code>true</code>, the tags are collapsed by default, and all tags are displayed when hovering. If the content of the tag is too long, it should be omitted. When hovering the tag, a <code>tooltip</code> should be displayed</p>'
       },
       codeFiles: ['collapse-tags.vue']
     },
