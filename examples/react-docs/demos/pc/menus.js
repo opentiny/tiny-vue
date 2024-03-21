@@ -72,7 +72,10 @@ export const cmpMenus = [
     'label': '数据组件',
     'labelEn': 'Data Components',
     'key': 'cmp_data_components',
-    'children': [{ 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' }]
+    'children': [
+      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' },
+      { 'nameCn': '进度条', 'name': 'Progress', 'key': 'progress' }
+    ]
   },
   {
     'label': '提示组件',
