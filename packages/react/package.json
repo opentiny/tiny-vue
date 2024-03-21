@@ -54,6 +54,8 @@
     "@opentiny/react-tag": "workspace:~",
     "@opentiny/react-time-line": "workspace:~",
     "@opentiny/react-timeline-item": "workspace:~",
-    "@opentiny/react-tooltip": "workspace:~"
+    "@opentiny/react-tooltip": "workspace:~",
+    "@opentiny/react-skeleton": "workspace:~",
+    "@opentiny/react-skeleton-item": "workspace:~"
   }
 }

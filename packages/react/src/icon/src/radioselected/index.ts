@@ -12,4 +12,4 @@
 import { Svg } from '@opentiny/react-common'
 import { ReactComponent as IconRadioselected } from '@opentiny/vue-theme/svgs/radioselected.svg'
 
-export default () => Svg({ name: 'IconRadioselected', component: IconRadioselected })()
+export default () => Svg({ name: 'IconRadioselected', component: IconRadioselected })

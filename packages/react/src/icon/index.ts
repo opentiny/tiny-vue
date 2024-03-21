@@ -18,8 +18,10 @@ import IconCode from './src/code'
 import IconCopy from './src/copy'
 import IconHelpCircle from './src/help-circle'
 import IconYes from './src/yes'
+import IconRichTextImage from './src/rich-text-image'
 
 export {
+  IconRichTextImage,
   IconHelpCircle,
   IconCode,
   IconCopy,
@@ -43,6 +45,7 @@ export {
 }
 
 export default {
+  IconRichTextImage,
   IconHelpCircle,
   IconCode,
   IconCopy,

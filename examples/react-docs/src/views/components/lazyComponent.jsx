@@ -24,7 +24,7 @@ class ErrorBoundary extends Component {
 // 使用React.lazy()函数动态导入组件
 
 function LazyComponent({ fileName }) {
-  const MyComponent = lazy(() => import(fileName))
+  const MyComponent = lazy(() => /* @vite-ignore */ import(fileName))
 
   return (
     <div>

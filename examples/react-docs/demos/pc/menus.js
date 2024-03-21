@@ -42,7 +42,7 @@ export const cmpMenus = [
     'children': [
       { 'nameCn': '基本用法', 'name': 'Basic Usage', 'key': 'chart' },
       { 'nameCn': '属性配置示例', 'name': 'Attribute Configuration Example', 'key': 'chart-attributes-demo' },
-      { 'nameCn': '常见问题示例', 'name': 'Examples of FAQs', 'key': 'chart-question' },
+      // { 'nameCn': '常见问题示例', 'name': 'Examples of FAQs', 'key': 'chart-question' },
       { 'nameCn': '折线图', 'name': 'Line Chart', 'key': 'chart-line' },
       { 'nameCn': '柱状图', 'name': 'Bar Chart', 'key': 'chart-histogram' },
       { 'nameCn': '条形图', 'name': 'Rank chart', 'key': 'chart-bar' },
@@ -68,7 +68,12 @@ export const cmpMenus = [
       { 'nameCn': '山峰图', 'name': 'Mount Chart', 'key': 'chart-mount' }
     ]
   },
-
+  {
+    'label': '数据组件',
+    'labelEn': 'Data Components',
+    'key': 'cmp_data_components',
+    'children': [{ 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' }]
+  },
   {
     'label': '提示组件',
     'labelEn': 'Tips Components',

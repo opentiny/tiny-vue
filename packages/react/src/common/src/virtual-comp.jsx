@@ -1,4 +1,5 @@
 import { CSSTransition } from 'react-transition-group'
+import PropTypes from 'prop-types'
 
 export function If(props) {
   if (props['v-if']) {
@@ -16,15 +17,18 @@ function defaultVIfAsTrue(props) {
   }
 }
 
-export function Component(props) {
-  const Is = props.is || (() => '')
+function Component(props) {
+  const Is = props.is || (() => null)
   return (
     <If v-if={defaultVIfAsTrue(props)}>
       <Is className={props.className} {...props} />
     </If>
   )
 }
-
+Component.propTypes = {
+  is: PropTypes.oneOfType([PropTypes.any])
+}
+export { Component }
 export function Slot(props) {
   const { name = 'default', slots = {}, parent_children } = props
 
