@@ -39,7 +39,6 @@ export default function Progress(props) {
     vm,
     parent
   })
-  console.log(status, 'status')
   const getIcon = (className) => {
     return {
       'icon-yes': IconYes,
