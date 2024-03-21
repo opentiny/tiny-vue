@@ -35,7 +35,7 @@ TinyReact 组件库适用于所有基于 React 的 Web 开发项目，能够助�
 1. 跨技术栈适配：通过开发 react-common 适配层，抹平 React 技术栈和 Vue 技术栈之间的差异，实现跨技术栈的组件复用。
 2. 模板转换：将 TinyVue 的模板转换成 React 对应的函数组件文件，以便在 React 项目中直接使用。
 ### 功能特点
-* 丰富的组件库：包含 alert、anchor、badge、breadcrubm、button、chart、divider、drawer、float-button、guide、switch、tag、tooltip 等多种常用组件。
+* 丰富的组件库：包含 alert、anchor、badge、breadcrubm、button、chart、divider、drawer、float-button、guide、switch、tag、tooltip 等四十多种常用组件。
 * 高性能：复用 TinyVue 的无渲染逻辑，提高组件的渲染性能。
 * 易用性：提供清晰的文档和示例，方便开发者快速上手和使用。
 ### 体系架构
@@ -159,6 +159,9 @@ examplec/react-docs/demos
     /menus.js 目录文件
 ```
 ## 一些关键代码解释
+
+> **Tip:** 本文档的代码只是提取了一小部分的代码，要看完整代码需要查看源码
+
 1. 实现vue的$emit功能，使用的是props.listeners
 
 common中代码
