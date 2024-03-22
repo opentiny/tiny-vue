@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Statistic from './src/index.js'
+import Statistic from './src/index'
 import '@opentiny/vue-theme/statistic/index.less'
 import { version } from './package.json'
 

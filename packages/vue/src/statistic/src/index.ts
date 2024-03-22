@@ -1,5 +1,4 @@
 import type { PropType } from '@opentiny/vue-common'
-import type { StyleValue } from 'vue'
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
@@ -28,7 +27,7 @@ export const statisticProps = {
   suffix: String,
   title: [String, Object],
   valueStyle: {
-    type: definePropType<StyleValue>([String, Object, Array])
+    type: [String, Object, Array]
   },
   groupSeparator: {
     type: String,
