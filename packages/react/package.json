@@ -48,15 +48,14 @@
     "@opentiny/react-float-button": "workspace:~",
     "@opentiny/react-guide": "workspace:~",
     "@opentiny/react-icon": "workspace:~",
-    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-progress": "workspace:~",
     "@opentiny/react-qr-code": "workspace:~",
+    "@opentiny/react-skeleton": "workspace:~",
+    "@opentiny/react-skeleton-item": "workspace:~",
     "@opentiny/react-switch": "workspace:~",
     "@opentiny/react-tag": "workspace:~",
     "@opentiny/react-time-line": "workspace:~",
     "@opentiny/react-timeline-item": "workspace:~",
-    "@opentiny/react-tooltip": "workspace:~",
-    "@opentiny/react-skeleton": "workspace:~",
-    "@opentiny/react-skeleton-item": "workspace:~",
-    "@opentiny/react-progress": "workspace:~"
+    "@opentiny/react-tooltip": "workspace:~"
   }
 }

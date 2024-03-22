@@ -319,26 +319,22 @@
     "type": "component",
     "exclude": false
   },
-  "Input": {
-    "path": "react/src/input/index.ts",
+  "Progress": {
+    "path": "react/src/progress/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile",
       "pc"
     ]
   },
-  "InputMobile": {
-    "path": "react/src/input/src/mobile.vue",
+  "ProgressMobile": {
+    "path": "react/src/progress/src/mobile.jsx",
     "type": "template",
     "exclude": false
   },
-  "InputMobileFirst": {
-    "path": "react/src/input/src/mobile-first.vue",
-    "type": "template",
-    "exclude": false
-  },
-  "InputPc": {
-    "path": "react/src/input/src/pc.jsx",
+  "ProgressPc": {
+    "path": "react/src/progress/src/pc.jsx",
     "type": "template",
     "exclude": false
   },
@@ -349,6 +345,32 @@
     "mode": [
       "pc"
     ]
+  },
+  "Skeleton": {
+    "path": "react/src/skeleton/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "SkeletonItem": {
+    "path": "react/src/skeleton-item/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "SkeletonItemPc": {
+    "path": "react/src/skeleton-item/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "SkeletonPc": {
+    "path": "react/src/skeleton/src/pc.jsx",
+    "type": "template",
+    "exclude": false
   },
   "Switch": {
     "path": "react/src/switch/index.ts",
@@ -427,11 +449,6 @@
     "mode": [
       "pc"
     ]
-  },
-  "TooltipMobileFirst": {
-    "path": "react/src/tooltip/src/mobile-first.vue",
-    "type": "template",
-    "exclude": false
   },
   "TooltipPc": {
     "path": "react/src/tooltip/src/pc.jsx",

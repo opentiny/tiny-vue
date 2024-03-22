@@ -1,5 +1,5 @@
 import { renderless, api } from '@opentiny/vue-renderless/progress/vue'
-import { vc, If, Component, useSetup, useVm, $props } from '@opentiny/react-common'
+import { vc, If, Component, useSetup, useVm } from '@opentiny/react-common'
 import '@opentiny/vue-theme-mobile/progress/index.less'
 import { $constants } from './index'
 import { IconYes, IconSuccess, IconError, IconClose, IconWarning } from '@opentiny/react-icon'
