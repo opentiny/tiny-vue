@@ -64,7 +64,8 @@ const changeTheme = (themeKey) => {
   router.push({
     params: {
       theme: THEME_ROUTE_MAP[themeKey]
-    }
+    },
+    hash: router?.currentRoute.value.hash
   })
 }
 
