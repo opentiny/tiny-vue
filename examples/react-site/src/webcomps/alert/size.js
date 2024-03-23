@@ -63,8 +63,8 @@ function _getPrototypeOf(o) {
   };
   return _getPrototypeOf(o);
 }
-import { A as Alert } from "../index-5f6a33ee.mjs";
-import "../index-9774bad5.mjs";
+import { A as Alert } from "../index-b7fdd612.mjs";
+import "../index-28717adb.mjs";
 import "@vue/runtime-core";
 import "react";
 import "@opentiny/vue-theme/base/index.less";
@@ -532,6 +532,8 @@ import ReactDOM from "react-dom/client";
 import "@opentiny/vue-renderless/alert/vue";
 import "@opentiny/vue-theme/alert/index.less";
 import "@opentiny/vue-theme-mobile/alert/index.less";
+import "@opentiny/vue-renderless/modal/vue";
+import "@opentiny/vue-theme/modal/index.less";
 function App(props) {
   return /* @__PURE__ */ React.createElement("div", null, props.children);
 }

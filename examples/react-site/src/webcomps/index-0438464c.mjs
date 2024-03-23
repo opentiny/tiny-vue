@@ -29,7 +29,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   return target;
 }
 import { renderless, api } from "@opentiny/vue-renderless/layout/vue";
-import { u as useVm, a as useSetup, C as Component, b as Slot, v as vc } from "./index-9774bad5.mjs";
+import { u as useVm, a as useSetup, C as Component, b as Slot, v as vc } from "./index-28717adb.mjs";
 import { renderless as renderless$1, api as api$1 } from "@opentiny/vue-renderless/row/vue";
 function Layout$1(props) {
   var _props$tag = props.tag, tag = _props$tag === void 0 ? "div" : _props$tag, _props$slots = props.slots, slots = _props$slots === void 0 ? {} : _props$slots, restProps = _objectWithoutPropertiesLoose(props, _excluded);

@@ -37,6 +37,12 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
     vm,
     parent,
     emit: vm.$emit,
+    // FIXME: fix the modal renderless types
+    emitter: () => {
+      return {
+        emit: vm.$emit
+      }
+    },
     constants,
     nextTick,
     dispatch,

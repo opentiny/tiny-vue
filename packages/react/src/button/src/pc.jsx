@@ -40,7 +40,10 @@ export default function Button(props) {
     {
       type,
       nativeType,
-      resetTime
+      resetTime,
+      $listeners: {
+        click: props.onClick
+      }
     },
     props
   )

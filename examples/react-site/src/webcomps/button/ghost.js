@@ -64,7 +64,7 @@ function _getPrototypeOf(o) {
   return _getPrototypeOf(o);
 }
 import "@opentiny/vue-renderless/alert/vue";
-import "../index-9774bad5.mjs";
+import { B as Button } from "../index-28717adb.mjs";
 import "@vue/runtime-core";
 import "react";
 import "@opentiny/vue-theme/base/index.less";
@@ -523,7 +523,6 @@ import "@opentiny/vue-theme-mobile/alert/index.less";
 import "@opentiny/vue-renderless/badge/vue";
 import "@opentiny/vue-theme/badge/index.less";
 import "@opentiny/vue-theme-mobile/badge/index.less";
-import { B as Button } from "../index-c89aaced.mjs";
 import "@opentiny/vue-renderless/layout/vue";
 import "@opentiny/vue-renderless/row/vue";
 import "@opentiny/vue-renderless/switch/vue";
@@ -532,6 +531,8 @@ import ReactDOM from "react-dom/client";
 import "@opentiny/vue-renderless/button/vue";
 import "@opentiny/vue-theme/button/index.less";
 import "@opentiny/vue-theme-mobile/button/index.less";
+import "@opentiny/vue-renderless/modal/vue";
+import "@opentiny/vue-theme/modal/index.less";
 var scopeId = "scope-" + Math.random().toString(36).substr(2, 9);
 function App(props) {
   return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("style", null, '\n          [data-v="' + scopeId + '"] .gray-bg {\n            background: #ccc;\n            padding: 20px 10px 10px;\n          }\n          [data-v="' + scopeId + '"] .tiny-button {\n            margin-bottom: 10px;\n            margin-left: 0;\n            margin-right: 8px;\n          }\n        '), /* @__PURE__ */ React.createElement("div", {

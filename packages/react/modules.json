@@ -91,6 +91,19 @@
     "type": "template",
     "exclude": false
   },
+  "Modal": {
+    "path": "react/src/modal/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "ModalPc": {
+    "path": "react/src/modal/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
   "Row": {
     "path": "react/src/row/index.ts",
     "type": "component",

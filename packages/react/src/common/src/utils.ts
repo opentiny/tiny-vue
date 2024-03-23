@@ -30,6 +30,10 @@ export const eventBus = () => {
   const $bus = {}
 
   const on = (eventName, callback) => {
+    if (!callback) {
+      return
+    }
+
     if (!$bus[eventName]) {
       $bus[eventName] = []
     }
