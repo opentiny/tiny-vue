@@ -8,6 +8,7 @@ import AutoComponents from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import Markdown from 'vite-plugin-md';
+import svgr from 'vite-plugin-svgr';
 import { MdExt, mdInstall } from './md.extend.config';
 
 export default defineConfig({
@@ -41,6 +42,7 @@ export default defineConfig({
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
     }),
+    svgr()
   ],
   define: {
     'process.env': { ...process.env },

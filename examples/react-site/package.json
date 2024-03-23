@@ -11,6 +11,11 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.22.20",
+    "@opentiny/react": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@vue/runtime-core": "^3.3.7",
     "@opentiny/vue": "^3.10.1",
     "@pe-3/react": "^1.0.15",
     "@rollup/plugin-babel": "^6.0.3",
@@ -62,6 +67,7 @@
     "vite": "^4.3.8",
     "vite-plugin-html": "^2.0.0",
     "vite-plugin-inspect": "^0.5.0",
-    "vite-plugin-md": "0.13.1"
+    "vite-plugin-md": "0.13.1",
+    "vite-plugin-svgr": "^3.2.0"
   }
 }

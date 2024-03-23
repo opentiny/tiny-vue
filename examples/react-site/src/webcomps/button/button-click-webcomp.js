@@ -25,39 +25,30 @@ function _wrapNativeSuper(Class) {
   };
   return _wrapNativeSuper(Class);
 }
-function _construct(Parent, args, Class) {
-  if (_isNativeReflectConstruct()) {
-    _construct = Reflect.construct.bind();
-  } else {
-    _construct = function _construct2(Parent2, args2, Class2) {
-      var a = [null];
-      a.push.apply(a, args2);
-      var Constructor = Function.bind.apply(Parent2, a);
-      var instance = new Constructor();
-      if (Class2)
-        _setPrototypeOf(instance, Class2.prototype);
-      return instance;
-    };
-  }
-  return _construct.apply(null, arguments);
+function _construct(t, e, r) {
+  if (_isNativeReflectConstruct())
+    return Reflect.construct.apply(null, arguments);
+  var o = [null];
+  o.push.apply(o, e);
+  var p = new (t.bind.apply(t, o))();
+  return r && _setPrototypeOf(p, r.prototype), p;
 }
 function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct)
-    return false;
-  if (Reflect.construct.sham)
-    return false;
-  if (typeof Proxy === "function")
-    return true;
   try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
+    var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
     }));
-    return true;
-  } catch (e) {
-    return false;
+  } catch (t2) {
   }
+  return (_isNativeReflectConstruct = function _isNativeReflectConstruct2() {
+    return !!t;
+  })();
 }
 function _isNativeFunction(fn) {
-  return Function.toString.call(fn).indexOf("[native code]") !== -1;
+  try {
+    return Function.toString.call(fn).indexOf("[native code]") !== -1;
+  } catch (e) {
+    return typeof fn === "function";
+  }
 }
 function _setPrototypeOf(o, p) {
   _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf2(o2, p2) {
@@ -78,10 +69,10 @@ function App(props) {
   return /* @__PURE__ */ React.createElement("div", null, props.children);
 }
 var buttonClickWebcomp = /* @__PURE__ */ function(_HTMLElement) {
-  _inheritsLoose(buttonClickWebcomp2, _HTMLElement);
   function buttonClickWebcomp2() {
     return _HTMLElement.apply(this, arguments) || this;
   }
+  _inheritsLoose(buttonClickWebcomp2, _HTMLElement);
   var _proto = buttonClickWebcomp2.prototype;
   _proto.connectedCallback = function connectedCallback() {
     ReactDOM.createRoot(this).render(/* @__PURE__ */ React.createElement(App, null, /* @__PURE__ */ React.createElement(Button, null, "默认按钮")));
