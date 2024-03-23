@@ -12,4 +12,4 @@
 import { Svg } from '@opentiny/react-common'
 import { ReactComponent as CheckedSur } from '@opentiny/vue-theme/svgs/checked-sur.svg'
 
-export default Svg({ name: 'CheckedSur', component: CheckedSur })
+export default Svg({ name: 'IconCheckedSur', component: CheckedSur })

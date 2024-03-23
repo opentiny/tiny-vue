@@ -10,6 +10,6 @@
  *
  */
 import { Svg } from '@opentiny/react-common'
-import { ReactComponent as AddLoading } from '@opentiny/vue-theme/svgs/add.svg'
+import { ReactComponent as Add } from '@opentiny/vue-theme/svgs/add.svg'
 
-export default Svg({ name: 'AddLoading', component: AddLoading })
+export default Svg({ name: 'IconAdd', component: Add })

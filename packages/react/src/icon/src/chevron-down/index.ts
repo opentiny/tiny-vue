@@ -12,4 +12,4 @@
 import { Svg } from '@opentiny/react-common'
 import { ReactComponent as ChevronDown } from '@opentiny/vue-theme/svgs/chevron-down.svg'
 
-export default Svg({ name: 'ChevronDown', component: ChevronDown })
+export default Svg({ name: 'IconChevronDown', component: ChevronDown })

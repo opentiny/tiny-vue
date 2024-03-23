@@ -12,4 +12,4 @@
 import { Svg } from '@opentiny/react-common'
 import { ReactComponent as Close } from '@opentiny/vue-theme/svgs/close.svg'
 
-export default Svg({ name: 'Close', component: Close })
+export default Svg({ name: 'IconClose', component: Close })
