@@ -100,7 +100,7 @@ export function useVm() {
   }
   return {
     ref,
-    current: current.fiber && createVmProxy(current),
-    parent: parent.fiber && createVmProxy(parent)
+    current: current?.fiber && createVmProxy(current),
+    parent: parent?.fiber && createVmProxy(parent)
   }
 }

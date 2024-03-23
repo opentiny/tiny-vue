@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import Unocss from 'unocss/vite';
 import createHtmlPlugin from 'vite-plugin-html';
-import path from 'path';
+import path from 'node:path';
 import UnoCssConfig from './uno.config';
 import AutoComponents from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
@@ -42,7 +42,11 @@ export default defineConfig({
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
     }),
-    svgr()
+    svgr({
+      svgrOptions: {
+        plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+      },
+    }),
   ],
   define: {
     'process.env': { ...process.env },
@@ -51,7 +55,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve('src'),
       '@demos': path.resolve('demos'),
-      '@demo': path.resolve('src/views/components/demo.vue')
+      '@demo': path.resolve('src/views/components/demo.vue'),
     },
   },
   server: {

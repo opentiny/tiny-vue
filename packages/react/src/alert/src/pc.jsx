@@ -30,7 +30,9 @@ export default function Alert(props) {
     _constants = $constants,
     closable = true,
     closeText,
-    title
+    title,
+    customClass,
+    icon
   } = props
 
   const defaultProps = {
@@ -43,7 +45,9 @@ export default function Alert(props) {
     _constants,
     closable,
     closeText,
-    title
+    title,
+    customClass,
+    icon
   }
 
   const { ref, current: vm, parent } = useVm()
@@ -60,7 +64,14 @@ export default function Alert(props) {
   return (
     <div className="tiny-transition-alert-fade" ref={ref}>
       <If v-if={state.show}>
-        <div className={vc(['tiny-alert', 'tiny-alert--' + type, 'tiny-alert--' + size, center && 'is-center'])}>
+        <div
+          className={vc([
+            'tiny-alert',
+            'tiny-alert--' + type,
+            'tiny-alert--' + size,
+            center && 'is-center',
+            customClass
+          ])}>
           <Component v-if={showIcon} is={state.getIcon} className="tiny-svg-size tiny-alert__icon" />
           <div className="tiny-alert__content">
             <If v-if={size === 'large'}>

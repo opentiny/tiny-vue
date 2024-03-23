@@ -13,6 +13,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.22.20",
     "@opentiny/react": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
@@ -37,6 +38,8 @@
   },
   "devDependencies": {
     "@opentiny-internal/playwright-config": "workspace:^1.0.1-beta.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^17.0.45",
     "@playwright/test": "^1.40.1",
