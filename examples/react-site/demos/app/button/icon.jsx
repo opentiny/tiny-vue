@@ -1,3 +1,5 @@
+import { Button as TinyButton, Layout as TinyLayout, Row as TinyRow } from '@opentiny/react';
+import { IconSearch, IconDel, IconEdit, IconMail, IconStarO, IconYes } from '@opentiny/react-icon';
 import ReactDOM from 'react-dom/client';
 
 const scopeId = 'scope-' + Math.random().toString(36).substr(2, 9);
@@ -18,8 +20,7 @@ function App() {
         `}
       </style>
       <div data-v={scopeId}>
-        {/* TODO: add TinyLayout, TinyRow first */}
-        {/* <TinyLayout>
+        <TinyLayout>
           <TinyRow>
             <TinyButton icon={IconSearch}> 图标按钮 </TinyButton>
             <TinyButton type="primary" icon={IconEdit}>
@@ -46,7 +47,7 @@ function App() {
             <TinyButton type="warning" icon={IconStarO}></TinyButton>
             <TinyButton type="danger" icon={IconDel}></TinyButton>
           </TinyRow>
-        </TinyLayout> */}
+        </TinyLayout>
       </div>
     </div>
   );

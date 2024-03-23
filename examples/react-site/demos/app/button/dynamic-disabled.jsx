@@ -1,3 +1,5 @@
+import { Button as TinyButton, Layout as TinyLayout, Row as TinyRow, Switch as TinySwitch } from '@opentiny/react';
+import { IconSearch } from '@opentiny/react-icon';
 import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
@@ -21,10 +23,9 @@ function App() {
         `}
       </style>
       <div data-v={scopeId}>
-        {/* TODO: add TinyLayout, TinyRow first */}
-        {/* <TinyLayout>
+        <TinyLayout>
           <TinyRow>
-            是否禁用：<TinySwitch checked={disabled} onChange={e => setDisabled(e.target.checked)}></TinySwitch>
+            是否禁用：<TinySwitch checked={disabled} onChange={setDisabled}></TinySwitch>
           </TinyRow>
           <TinyRow>
             <TinyButton disabled={disabled}>默认按钮</TinyButton>
@@ -68,13 +69,13 @@ function App() {
             <TinyButton disabled={disabled} ghost>
               幽灵按钮
             </TinyButton>
-            <TinyButton icon={TinyIconSearch} disabled={disabled}>
+            <TinyButton icon={IconSearch} disabled={disabled}>
               图标按钮
             </TinyButton>
-            <TinyButton icon={TinyIconSearch} disabled={disabled}></TinyButton>
-            <TinyButton icon={TinyIconSearch} disabled={disabled} circle></TinyButton>
+            <TinyButton icon={IconSearch} disabled={disabled}></TinyButton>
+            <TinyButton icon={IconSearch} disabled={disabled} circle></TinyButton>
           </TinyRow>
-        </TinyLayout> */}
+        </TinyLayout>
       </div>
     </div>
   );

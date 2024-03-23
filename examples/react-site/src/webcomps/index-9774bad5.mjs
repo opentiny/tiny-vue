@@ -102,7 +102,7 @@ function Component(props) {
     "v-if": defaultVIfAsTrue(props)
   }, /* @__PURE__ */ React.createElement(Is, {
     className: props.className
-  }));
+  }, props.children));
 }
 function Slot(props) {
   var _props$name = props.name, name = _props$name === void 0 ? "default" : _props$name, _props$slots = props.slots, slots = _props$slots === void 0 ? {} : _props$slots, parent_children = props.parent_children;

@@ -13,8 +13,8 @@ function _extends() {
   };
   return _extends.apply(this, arguments);
 }
-import { renderless, api } from "@opentiny/vue-renderless/button/vue";
-import { S as Svg, u as useVm, a as useSetup, v as vc, I as If, C as Component, b as Slot } from "./index-c9097800.mjs";
+import { renderless, api } from "@opentiny/vue-renderless/alert/vue";
+import { S as Svg, u as useVm, a as useSetup, I as If, v as vc, C as Component, b as Slot } from "./index-9774bad5.mjs";
 import "@opentiny/vue-theme/svgs/activation.svg";
 import "@opentiny/vue-theme/svgs/add.svg";
 import "@opentiny/vue-theme/svgs/add-circle.svg";
@@ -59,13 +59,16 @@ import "@opentiny/vue-theme/svgs/check-out.svg";
 import "@opentiny/vue-theme/svgs/checked-linear.svg";
 import "@opentiny/vue-theme/svgs/checked-sur.svg";
 import "@opentiny/vue-theme/svgs/checked-true.svg";
-import "@opentiny/vue-theme/svgs/chevron-down.svg";
+import { ReactComponent } from "@opentiny/vue-theme/svgs/chevron-down.svg";
 import "@opentiny/vue-theme/svgs/chevron-left.svg";
 import "@opentiny/vue-theme/svgs/chevron-right.svg";
 import "@opentiny/vue-theme/svgs/chevron-up.svg";
 import "@opentiny/vue-theme/svgs/clear-filter.svg";
 import "@opentiny/vue-theme/svgs/clock-work.svg";
-import "@opentiny/vue-theme/svgs/close.svg";
+import "@vue/runtime-core";
+import "react";
+import "@opentiny/vue-theme/base/index.less";
+import { ReactComponent as ReactComponent$1 } from "@opentiny/vue-theme/svgs/close.svg";
 import "@opentiny/vue-theme/svgs/close-circle.svg";
 import "@opentiny/vue-theme/svgs/close-square.svg";
 import "@opentiny/vue-theme/svgs/cloud-download.svg";
@@ -154,7 +157,7 @@ import "@opentiny/vue-theme/svgs/ellipsis.svg";
 import "@opentiny/vue-theme/svgs/email-add.svg";
 import "@opentiny/vue-theme/svgs/email-circle.svg";
 import "@opentiny/vue-theme/svgs/end.svg";
-import "@opentiny/vue-theme/svgs/error.svg";
+import { ReactComponent as ReactComponent$2 } from "@opentiny/vue-theme/svgs/error.svg";
 import "@opentiny/vue-theme/svgs/espace.svg";
 import "@opentiny/vue-theme/svgs/espace-auto.svg";
 import "@opentiny/vue-theme/svgs/excel.svg";
@@ -202,7 +205,7 @@ import "@opentiny/vue-theme/svgs/group-transfer.svg";
 import "@opentiny/vue-theme/svgs/halfchecked.svg";
 import "@opentiny/vue-theme/svgs/halfselect.svg";
 import "@opentiny/vue-theme/svgs/heartempty.svg";
-import "@opentiny/vue-theme/svgs/help.svg";
+import { ReactComponent as ReactComponent$3 } from "@opentiny/vue-theme/svgs/help.svg";
 import "@opentiny/vue-theme/svgs/help-circle.svg";
 import "@opentiny/vue-theme/svgs/help-query.svg";
 import "@opentiny/vue-theme/svgs/help-solid.svg";
@@ -235,10 +238,7 @@ import "@opentiny/vue-theme/svgs/line-height.svg";
 import "@opentiny/vue-theme/svgs/line-throught.svg";
 import "@opentiny/vue-theme/svgs/link.svg";
 import "@opentiny/vue-theme/svgs/list-mode.svg";
-import "@vue/runtime-core";
-import "react";
-import "@opentiny/vue-theme/base/index.less";
-import { ReactComponent } from "@opentiny/vue-theme/svgs/loading.svg";
+import "@opentiny/vue-theme/svgs/loading.svg";
 import "@opentiny/vue-theme/svgs/loading-shadow.svg";
 import "@opentiny/vue-theme/svgs/lock.svg";
 import "@opentiny/vue-theme/svgs/mail.svg";
@@ -418,7 +418,7 @@ import "@opentiny/vue-theme/svgs/stop.svg";
 import "@opentiny/vue-theme/svgs/stream-solid.svg";
 import "@opentiny/vue-theme/svgs/stretch.svg";
 import "@opentiny/vue-theme/svgs/subscript.svg";
-import "@opentiny/vue-theme/svgs/success.svg";
+import { ReactComponent as ReactComponent$4 } from "@opentiny/vue-theme/svgs/success.svg";
 import "@opentiny/vue-theme/svgs/successful.svg";
 import "@opentiny/vue-theme/svgs/table-mode.svg";
 import "@opentiny/vue-theme/svgs/tablet-view.svg";
@@ -456,7 +456,7 @@ import "@opentiny/vue-theme/svgs/video-type.svg";
 import "@opentiny/vue-theme/svgs/view.svg";
 import "@opentiny/vue-theme/svgs/vuejs.svg";
 import "@opentiny/vue-theme/svgs/warn.svg";
-import "@opentiny/vue-theme/svgs/warning.svg";
+import { ReactComponent as ReactComponent$5 } from "@opentiny/vue-theme/svgs/warning.svg";
 import "@opentiny/vue-theme/svgs/warning-o.svg";
 import "@opentiny/vue-theme/svgs/warning-triangle.svg";
 import "@opentiny/vue-theme/svgs/weaknet.svg";
@@ -468,199 +468,334 @@ import "@opentiny/vue-theme/svgs/yes.svg";
 import "@opentiny/vue-theme/svgs/zip-type.svg";
 import "@opentiny/vue-theme/svgs/zoom-in.svg";
 import "@opentiny/vue-theme/svgs/zoom-out.svg";
-import "@opentiny/vue-theme/button/index.less";
-import "@opentiny/vue-theme-mobile/button/index.less";
-var IconLoading = Svg({
-  name: "IconLoading",
+import "@opentiny/vue-theme/alert/index.less";
+import "@opentiny/vue-theme-mobile/alert/index.less";
+var IconChevronDown = Svg({
+  name: "IconChevronDown",
   component: ReactComponent
 });
-var define_props$2 = ["children", "text", "loading", "autofocus", "plain", "round", "circle", "icon", "size", "type", "nativeType", "resetTime", /^on/];
-function Button$3(props) {
-  var _props$children, _props$children2;
-  var children = props.children, text = props.text, loading = props.loading, autofocus = props.autofocus, round = props.round, circle = props.circle, icon = props.icon, size = props.size, tabindex = props.tabindex, _props$type = props.type, type = _props$type === void 0 ? "default" : _props$type, _props$nativeType = props.nativeType, nativeType = _props$nativeType === void 0 ? "button" : _props$nativeType, _props$resetTime = props.resetTime, resetTime = _props$resetTime === void 0 ? 1e3 : _props$resetTime, ghost = props.ghost;
-  var defaultProps = Object.assign({
+var IconClose = Svg({
+  name: "IconClose",
+  component: ReactComponent$1
+});
+var IconError = Svg({
+  name: "IconError",
+  component: ReactComponent$2
+});
+var IconHelp = Svg({
+  name: "IconHelp",
+  component: ReactComponent$3
+});
+var IconSuccess = Svg({
+  name: "IconSuccess",
+  component: ReactComponent$4
+});
+var IconWarning = Svg({
+  name: "IconWarning",
+  component: ReactComponent$5
+});
+var $constants$2 = {
+  ICON_MAP: {
+    success: IconSuccess,
+    error: IconError,
+    info: IconHelp,
+    warning: IconWarning
+  },
+  TITLE_MAP: {
+    success: "ui.alert.success",
+    error: "ui.alert.error",
+    info: "ui.alert.info",
+    warning: "ui.alert.warning"
+  },
+  CONTENT_MAXHEUGHT: 252
+};
+function Alert$3(props) {
+  var _props$type = props.type, type = _props$type === void 0 ? "info" : _props$type, _props$size = props.size, size = _props$size === void 0 ? "normal" : _props$size, _props$center = props.center, center = _props$center === void 0 ? false : _props$center, _props$showIcon = props.showIcon, showIcon = _props$showIcon === void 0 ? true : _props$showIcon, _props$description = props.description, description = _props$description === void 0 ? "" : _props$description, _props$slots = props.slots, slots = _props$slots === void 0 ? {} : _props$slots, _props$_constants = props._constants, _constants = _props$_constants === void 0 ? $constants$2 : _props$_constants, _props$closable = props.closable, closable = _props$closable === void 0 ? true : _props$closable, closeText = props.closeText, title = props.title, customClass = props.customClass, icon = props.icon;
+  var defaultProps = {
     type,
-    nativeType,
-    resetTime
-  }, props);
-  var _useVm = useVm(), ref = _useVm.ref, parent = _useVm.parent, vm = _useVm.current;
+    size,
+    center,
+    showIcon,
+    description,
+    slots,
+    _constants,
+    closable,
+    closeText,
+    title,
+    customClass,
+    icon
+  };
+  var _useVm = useVm(), ref = _useVm.ref, vm = _useVm.current, parent = _useVm.parent;
   var _useSetup = useSetup({
     props: defaultProps,
     renderless,
     api,
+    constants: _constants,
     vm,
     parent
-  }), handleClick = _useSetup.handleClick, state = _useSetup.state, a = _useSetup.a;
-  var $attrs = a(props, define_props$2, false);
-  return /* @__PURE__ */ React.createElement("button", _extends({
-    ref,
-    className: vc(["tiny-button", type ? "tiny-button--" + type : "", size ? "tiny-button--" + size : "", {
-      "is-disabled": state.buttonDisabled,
-      "is-loading": loading,
-      "is-plain": state.plain,
-      "is-ghost": ghost,
-      "is-round": round,
-      "is-circle": circle,
-      "is-icon": icon && !loading && (text || ((_props$children = props.children) == null ? void 0 : _props$children.length)),
-      "is-only-icon": icon && !loading && !(text || (_props$children2 = props.children) != null && _props$children2.length)
-    }]),
-    onClick: handleClick,
-    disabled: state.buttonDisabled || loading,
-    autoFocus: autofocus,
-    type: nativeType,
-    tabIndex: tabindex
-  }, a($attrs, ["class", "style"], true)), /* @__PURE__ */ React.createElement(If, {
-    "v-if": loading
-  }, /* @__PURE__ */ React.createElement(IconLoading, {
-    className: "tiny-icon-loading tiny-svg-size"
-  })), /* @__PURE__ */ React.createElement(Component, {
-    "v-if": icon && !loading,
-    is: icon,
-    className: text || children ? "is-text" : ""
-  }), /* @__PURE__ */ React.createElement("span", null, children || text));
+  }), state = _useSetup.state, handleClose = _useSetup.handleClose;
+  return /* @__PURE__ */ React.createElement("div", {
+    className: "tiny-transition-alert-fade",
+    ref
+  }, /* @__PURE__ */ React.createElement(If, {
+    "v-if": state.show
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: vc(["tiny-alert", "tiny-alert--" + type, "tiny-alert--" + size, center && "is-center", customClass])
+  }, /* @__PURE__ */ React.createElement(Component, {
+    "v-if": showIcon,
+    is: state.getIcon,
+    className: "tiny-svg-size tiny-alert__icon"
+  }), /* @__PURE__ */ React.createElement("div", {
+    className: "tiny-alert__content"
+  }, /* @__PURE__ */ React.createElement(If, {
+    "v-if": size === "large"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "tiny-alert__title"
+  }, /* @__PURE__ */ React.createElement(Slot, {
+    name: "title",
+    slots: props.slots
+  }, state.getTitle))), /* @__PURE__ */ React.createElement("div", {
+    className: vc(["tiny-alert__description", size === "large" && !description && !slots.description && "is-hide"])
+  }, /* @__PURE__ */ React.createElement(Slot, {
+    name: "description",
+    slots: props.slots
+  }, description)), /* @__PURE__ */ React.createElement(If, {
+    "v-if": size === "large"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "tiny-alert__opration"
+  }, /* @__PURE__ */ React.createElement(Slot, {
+    slots: props.slots,
+    parent_children: props.children
+  })))), /* @__PURE__ */ React.createElement(If, {
+    "v-if": !closeText && closable
+  }, /* @__PURE__ */ React.createElement(IconClose, {
+    className: vc(["tiny-svg-size", "tiny-alert__icon", "tiny-alert__close"]),
+    onClick: handleClose
+  })), /* @__PURE__ */ React.createElement(If, {
+    "v-if": closeText && closable
+  }, /* @__PURE__ */ React.createElement("span", {
+    className: "is-custom",
+    onClick: handleClose
+  }, closeText)))));
 }
-var define_props$1 = ["children", "text", "loading", "autofocus", "plain", "round", "circle", "icon", "size", "type", "nativeType", "resetTime", /^on/];
-function Button$2(props) {
-  var text = props.text, loading = props.loading, round = props.round, icon = props.icon, size = props.size, _props$type2 = props.type, type = _props$type2 === void 0 ? "default" : _props$type2, _props$nativeType2 = props.nativeType, nativeType = _props$nativeType2 === void 0 ? "button" : _props$nativeType2, _props$resetTime2 = props.resetTime, resetTime = _props$resetTime2 === void 0 ? 1e3 : _props$resetTime2;
+var $constants$1 = {
+  ICON_MAP: {
+    success: IconSuccess,
+    error: IconError,
+    info: IconHelp,
+    warning: IconWarning
+  },
+  TITLE_MAP: {
+    success: "ui.alert.success",
+    error: "ui.alert.error",
+    info: "ui.alert.info",
+    warning: "ui.alert.warning"
+  },
+  CONTENT_MAXHEUGHT: 252
+};
+function Alert$2(props) {
+  var _props$type2 = props.type, type = _props$type2 === void 0 ? "success" : _props$type2, _props$size2 = props.size, size = _props$size2 === void 0 ? "normal" : _props$size2, _props$showIcon2 = props.showIcon, showIcon = _props$showIcon2 === void 0 ? true : _props$showIcon2, _props$closable2 = props.closable, closable = _props$closable2 === void 0 ? true : _props$closable2, closeText = props.closeText, _props$_constants2 = props._constants, _constants = _props$_constants2 === void 0 ? $constants$1 : _props$_constants2, _props$description2 = props.description, description = _props$description2 === void 0 ? "" : _props$description2;
   var defaultProps = Object.assign({
     type,
-    nativeType,
-    resetTime
+    size,
+    showIcon,
+    closable,
+    _constants
   }, props);
-  var _useVm2 = useVm(), ref = _useVm2.ref, parent = _useVm2.parent, vm = _useVm2.current;
+  var _useVm2 = useVm(), ref = _useVm2.ref, vm = _useVm2.current, parent = _useVm2.parent;
   var _useSetup2 = useSetup({
     props: defaultProps,
     renderless,
     api,
+    vm,
     parent,
-    vm
-  }), handleClick = _useSetup2.handleClick, state = _useSetup2.state, a = _useSetup2.a;
-  var $attrs = a(props, define_props$1, false);
-  return /* @__PURE__ */ React.createElement("button", _extends({
-    ref,
-    onClick: handleClick,
-    disabled: state.buttonDisabled || loading,
-    type: nativeType,
-    className: vc(["tiny-mobile-button", type ? "tiny-mobile-button--" + type : "", size ? "tiny-mobile-button--" + size : "", {
-      "is-disabled": state.buttonDisabled,
-      "is-loading": loading,
-      "is-plain": state.plain,
-      "is-round": round
-    }])
-  }, a($attrs, ["class", "style"], true)), /* @__PURE__ */ React.createElement(If, {
-    "v-if": loading
-  }, /* @__PURE__ */ React.createElement(IconLoading, {
-    class: "tiny-icon-loading"
-  })), /* @__PURE__ */ React.createElement(Component, {
-    "v-if": icon && !loading,
-    is: icon,
-    class: "tiny-icon is-icon"
-  }), /* @__PURE__ */ React.createElement(Slot, {
-    slots: props.slots,
-    parent_children: props.children
+    constants: _constants
+  }), state = _useSetup2.state, handleClose = _useSetup2.handleClose;
+  return /* @__PURE__ */ React.createElement("div", {
+    ref
+  }, /* @__PURE__ */ React.createElement(If, {
+    "v-if": state.show
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: vc(["tiny-mobile-alert", "tiny-mobile-alert--" + type, "tiny-mobile-alert--" + size, "is-center"])
+  }, /* @__PURE__ */ React.createElement(Component, {
+    "v-if": showIcon,
+    is: state.getIcon,
+    className: "tiny-mobile-alert__icon"
+  }), /* @__PURE__ */ React.createElement("div", {
+    className: vc([["tiny-mobile-alert__content", {
+      "is-hideicon": !showIcon
+    }]])
+  }, /* @__PURE__ */ React.createElement(Slot, _extends({}, props), description)), /* @__PURE__ */ React.createElement(If, {
+    "v-if": !closeText && closable
+  }, /* @__PURE__ */ React.createElement(IconClose, {
+    onClick: handleClose,
+    className: "tiny-mobile-alert__icon tiny-mobile-alert__close"
+  })), /* @__PURE__ */ React.createElement(If, {
+    "v-if": closeText && closable
   }, /* @__PURE__ */ React.createElement("span", {
-    style: {
-      marginLeft: text && (icon || loading) ? "4px" : 0
-    }
-  }, text)));
+    onClick: handleClose,
+    className: "is-custom"
+  }, closeText)))));
 }
-var classes = {
-  "button": "inline-block sm:max-w-[9rem] text-center overflow-hidden overflow-ellipsis whitespace-nowrap transition-button duration-300 delay-[0ms]",
-  "size-default": "h-10 text-sm sm:h-7 sm:text-xs",
-  "size-medium": "h-10 text-sm sm:h-8 sm:text-xs",
-  "size-small": "h-8 text-sm sm:h-7 sm:text-xs",
-  "size-mini": "h-7 sm:h-6 sm:text-xs",
-  "type-default": "text-black border-color-border hover:border-color-border-hover active:border-color-border-active sm:cursor-pointer",
-  "type-primary": "text-white border-color-brand bg-color-brand hover:border-color-brand-hover hover:bg-color-brand-hover active:border-color-brand-active active:bg-color-brand-active sm:cursor-pointer",
-  "type-success": "text-white border-color-success bg-color-success hover:border-color-success-hover hover:bg-color-success-hover active:border-color-success-active active:bg-color-success-active sm:cursor-pointer",
-  "type-info": "text-white border-color-info-secondary bg-color-info-secondary hover:border-color-info-secondary-hover hover:bg-color-info-secondary-hover active:border-color-info-secondary-active active:bg-color-info-secondary-active sm:cursor-pointer",
-  "type-warning": "text-white border-color-warning bg-color-warning hover:border-color-warning-hover hover:bg-color-warning-hover active:border-color-warning-active active:bg-color-warning-active sm:cursor-pointer",
-  "type-danger": "text-white border-color-error bg-color-error hover:border-color-error-hover hover:bg-color-error-hover active:border-color-error-active active:bg-color-error-active sm:cursor-pointer",
-  "type-text": "border-none bg-transparent cursor-pointer text-color-text-placeholder active:text-color-text-primary sm:hover:text-color-text-primary sm:active:!text-color-brand-active",
-  "type-default-disabled": "text-color-text-disabled bg-color-bg-3 border-transparent hover:cursor-not-allowed",
-  "type-primary-disabled": "text-white bg-color-brand-disabled border-transparent hover:cursor-not-allowed",
-  "type-success-disabled": "text-white bg-color-success-disabled border-transparent hover:cursor-not-allowed",
-  "type-info-disabled": "text-white bg-color-info-secondary-disabled border-transparent hover:cursor-not-allowed",
-  "type-warning-disabled": "text-white bg-color-alert-disabled border-transparent hover:cursor-not-allowed",
-  "type-danger-disabled": "text-white bg-color-error-disabled border-transparent hover:cursor-not-allowed",
-  "type-text-disabled": "text-color-text-disabled hover:cursor-not-allowed",
-  "type-default-plain": "text-black border-color-border hover:border-color-border-hover active:border-color-border-active sm:cursor-pointer",
-  "type-primary-plain": "text-color-brand border-color-brand hover:text-color-brand-hover hover:border-color-brand-hover active:text-color-brand-active active:border-color-brand-active bg-white sm:cursor-pointer",
-  "type-success-plain": "text-color-success border-color-success hover:text-color-success-hover hover:border-color-success-hover active:text-color-success-active active:border-color-success-active bg-white sm:cursor-pointer",
-  "type-info-plain": "text-color-info-secondary border-color-info-secondary hover:text-color-info-secondary-hover hover:border-color-info-secondary-hover active:text-color-info-secondary-active active:border-color-info-secondary-active bg-white sm:cursor-pointer",
-  "type-warning-plain": "text-color-warning border-color-warning hover:text-color-warning-hover hover:border-color-warning-hover active:text-color-warning-active active:border-color-warning-active bg-white sm:cursor-pointer",
-  "type-danger-plain": "text-color-error border-color-error hover:text-color-error-hover hover:border-color-error-hover active:text-color-error-active active:border-color-error-active bg-white sm:cursor-pointer",
-  "type-text-plain": "text-color-brand hover:text-color-brand-hover active:text-color-brand-active",
-  "type-default-plain-disabled": "text-color-text-disabled bg-white border-color-text-disabled hover:cursor-not-allowed",
-  "type-primary-plain-disabled": "text-color-brand-disabled bg-white border-color-brand-disabled hover:cursor-not-allowed",
-  "type-success-plain-disabled": "text-color-success-disabled bg-white border-color-success-disabled hover:cursor-not-allowed",
-  "type-info-plain-disabled": "text-color-info-secondary-disabled bg-white border-color-info-secondary-disabled hover:cursor-not-allowed",
-  "type-warning-plain-disabled": "text-color-alert-disabled bg-white border-color-alert-disabled hover:cursor-not-allowed",
-  "type-danger-plain-disabled": "text-color-error-disabled bg-white border-color-error-disabled hover:cursor-not-allowed",
-  "type-text-plain-disabled": "text-color-text-disabled hover:cursor-not-allowed",
-  "no-round": "rounded-sm",
-  "is-round": "rounded-full",
-  "is-border": "border-0.5 sm:border",
-  "no-circle": "sm:min-w-[4.5rem] pl-3 pr-3",
-  "is-circle": "sm:min-w-[0.4375rem] sm:rounded-full sm:pl-2 sm:pr-2",
-  "button-icon": "-mt-0.5 sm:text-base fill-current",
-  "button-icon-default": "text-color-icon-primary hover:text-color-icon-hover active:text-color-icon-active",
-  "button-icon-disabled": "text-color-icon-disabled hover:cursor-not-allowed",
-  "loading-svg": "animate-spin-2 mr-1 fill-current -inset-0.5",
-  "button-link": "text-color-link hover:text-color-link-hover active:color-link-hover active:hover:text-color-link-hover sm:hover:text-color-link-hover"
+var $constants = {
+  ICON_MAP: {
+    success: IconSuccess,
+    error: IconError,
+    info: IconHelp,
+    warning: IconWarning
+  },
+  TITLE_MAP: {
+    success: "ui.alert.success",
+    error: "ui.alert.error",
+    info: "ui.alert.info",
+    warning: "ui.alert.warning"
+  },
+  CONTENT_MAXHEUGHT: 252
 };
-var define_props = ["children", "text", "loading", "autofocus", "plain", "round", "circle", "icon", "size", "type", "nativeType", "resetTime", /^on/];
-function Button$1(props) {
-  var loading = props.loading, autofocus = props.autofocus, size = props.size, icon = props.icon, round = props.round, circle = props.circle, href = props.href, buttonClass = props.buttonClass, tabindex = props.tabindex, text = props.text, type = props.type, _props$nativeType3 = props.nativeType, nativeType = _props$nativeType3 === void 0 ? "button" : _props$nativeType3, _props$resetTime3 = props.resetTime, resetTime = _props$resetTime3 === void 0 ? 1e3 : _props$resetTime3;
-  var defaultProps = Object.assign({
-    nativeType,
-    resetTime
-  }, props);
-  var _useVm3 = useVm(), ref = _useVm3.ref, parent = _useVm3.parent, vm = _useVm3.current;
+function Alert$1(props) {
+  var _props$type3 = props.type, type = _props$type3 === void 0 ? "success" : _props$type3, _props$size3 = props.size, size = _props$size3 === void 0 ? "normal" : _props$size3, _props$center2 = props.center, center = _props$center2 === void 0 ? false : _props$center2, _props$showIcon3 = props.showIcon, showIcon = _props$showIcon3 === void 0 ? true : _props$showIcon3, _props$description3 = props.description, description = _props$description3 === void 0 ? "" : _props$description3, _props$slots2 = props.slots, slots = _props$slots2 === void 0 ? {} : _props$slots2, _props$_constants3 = props._constants, _constants = _props$_constants3 === void 0 ? $constants : _props$_constants3, _props$closable3 = props.closable, closable = _props$closable3 === void 0 ? true : _props$closable3, closeText = props.closeText, title = props.title, _props$showFoldable = props.showFoldable, showFoldable = _props$showFoldable === void 0 ? true : _props$showFoldable, singleLine = props.singleLine, scrolling = props.scrolling;
+  var defaultProps = {
+    type,
+    size,
+    center,
+    showIcon,
+    description,
+    slots,
+    _constants,
+    closable,
+    closeText,
+    title,
+    showFoldable
+  };
+  var _useVm3 = useVm(), ref = _useVm3.ref, vm = _useVm3.current, parent = _useVm3.parent;
   var _useSetup3 = useSetup({
-    api,
-    renderless,
     props: defaultProps,
-    classes,
-    ref,
-    parent,
-    vm
-  }), handleClick = _useSetup3.handleClick, state = _useSetup3.state, a = _useSetup3.a, m = _useSetup3.m, gcls = _useSetup3.gcls;
-  var $attrs = a(props, define_props, false);
-  return /* @__PURE__ */ React.createElement("button", _extends({
-    "data-tag": "tiny-button",
-    onClick: handleClick,
-    disabled: state.buttonDisabled || loading,
-    autoFocus: autofocus,
-    type: nativeType,
-    className: m(gcls("button"), gcls("size-" + (size || "default")), gcls("type-" + (type || "default") + (icon ? "-icon" : state.plain ? "-plain" : "") + "\n          " + (state.buttonDisabled ? "-disabled" : "")), gcls(round ? "is-round" : "no-round"), gcls(circle ? "is-circle" : "no-circle"), gcls({
-      "is-border": circle || !(type === "text" || icon)
-    }), gcls({
-      "button-link": href
-    }), buttonClass),
-    tabIndex: tabindex
-  }, a($attrs, ["class", "style"], true)), /* @__PURE__ */ React.createElement(If, {
-    "v-if": loading
-  }, /* @__PURE__ */ React.createElement(IconLoading, {
-    className: gcls("loading-svg")
-  })), /* @__PURE__ */ React.createElement(Component, {
-    "v-if": icon && !loading,
-    is: icon,
-    className: vc([gcls("button-icon"), gcls("button-icon-" + (state.buttonDisabled ? "disabled" : "default"))])
-  }), /* @__PURE__ */ React.createElement(Slot, {
-    slots: props.slots,
-    parent_children: props.children
-  }, /* @__PURE__ */ React.createElement("span", null, text)));
+    renderless,
+    api,
+    constants: _constants,
+    vm,
+    parent
+  }), state = _useSetup3.state, handleHeaderClick = _useSetup3.handleHeaderClick;
+  return /* @__PURE__ */ React.createElement("div", {
+    ref
+  }, /* @__PURE__ */ React.createElement(If, {
+    "v-if": state.show
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: vc(["min-h-min flex py-2 sm:py-3 px-4 my-2 rounded box-border font-light sm:font-normal", {
+      "bg-color-info-secondary-subtle": type === "info" || !type
+    }, {
+      "bg-color-error-subtler": type === "error"
+    }, {
+      "bg-color-warning-subtler": type === "warning"
+    }, {
+      "bg-color-success-subtler": type === "success"
+    }, {
+      "text-center": center
+    }])
+  }, /* @__PURE__ */ React.createElement(Component, {
+    "v-if": showIcon,
+    is: state.getIcon,
+    className: vc(["h-4.5 w-4.5 mt-1 sm:mt-0.5 sm:h-6 sm:w-5 sm:h-5 fill-current", {
+      "text-color-info-secondary": type === "info" || !type
+    }, {
+      "text-color-error": type === "error"
+    }, {
+      "text-color-warning": type === "warning"
+    }, {
+      "text-color-success": type === "success"
+    }])
+  }), /* @__PURE__ */ React.createElement(If, {
+    "v-if": showFoldable
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: vc(["flex-1 leading-6 text-sm overflow-hidden cursor-pointer", showIcon ? "mx-2" : "mr-2"])
+  }, /* @__PURE__ */ React.createElement(If, {
+    "v-if": size === "large"
+  }, /* @__PURE__ */ React.createElement("div", {
+    onClick: handleHeaderClick,
+    className: "inline-flex cursor-pointer font-medium"
+  }, /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement(Slot, {
+    name: "title",
+    slots: props.slots
+  }, state.getTitle)), /* @__PURE__ */ React.createElement("span", {
+    className: "ml-2.5"
+  }, /* @__PURE__ */ React.createElement(IconChevronDown, {
+    className: vc(["transition-transform duration-300 align-top my-1 fill-color-icon-placeholder", state.contentVisible ? "rotate-180" : "rotate-0"])
+  })))), /* @__PURE__ */ React.createElement("div", {
+    v_ref: "ContentDescribe",
+    className: vc(["transition-all duration-900 ease-linear", {
+      "hidden": size === "large" && !description && !slots.description
+    }, {
+      "overflow-y-auto": state.scrollStatus
+    }, state.contentVisible ? "max-h-[theme(spacing.72)]" : "max-h-0"])
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: vc([{
+      "truncate": singleLine
+    }, {
+      "hover:animate-[leftMove_10s_linear_infinite] hover:overflow-visible cursor-pointer": singleLine && scrolling
+    }])
+  }, /* @__PURE__ */ React.createElement(Slot, {
+    name: "description",
+    slots: props.slots
+  }, description))), /* @__PURE__ */ React.createElement(If, {
+    "v-if": size === "large" && (slots.default || props.children)
+  }, /* @__PURE__ */ React.createElement("div", {
+    v_ref: "ContentDefault",
+    className: vc(["transition-all duration-900 ease-linear", {
+      "pt-2": description && state.contentVisible
+    }, {
+      "overflow-y-auto": state.scrollStatus
+    }, state.contentVisible ? "max-h-[theme(spacing.72)]" : "max-h-0"])
+  }, /* @__PURE__ */ React.createElement(Slot, _extends({}, props)))))), /* @__PURE__ */ React.createElement(If, {
+    "v-if": !showFoldable
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: vc(["flex-1 leading-6 text-sm overflow-hidden cursor-pointer", showIcon ? "mx-2" : "mr-2"])
+  }, /* @__PURE__ */ React.createElement(If, {
+    "v-if": size === "large"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "font-medium"
+  }, /* @__PURE__ */ React.createElement(Slot, {
+    name: "title",
+    slots: props.slots
+  }, state.getTitle))), /* @__PURE__ */ React.createElement("div", {
+    className: vc([{
+      "hidden": size === "large" && !description && !slots.description
+    }])
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: vc([{
+      "truncate": singleLine
+    }, {
+      "hover:animate-[leftMove_10s_linear_infinite] hover:overflow-visible cursor-pointer": singleLine && scrolling
+    }])
+  }, /* @__PURE__ */ React.createElement(Slot, {
+    name: "description",
+    slots: props.slots
+  }, description))), /* @__PURE__ */ React.createElement(If, {
+    "v-if": size === "large" && slots.default
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "pt-2"
+  }, /* @__PURE__ */ React.createElement(Slot, {
+    slots: props.slots
+  }))))), /* @__PURE__ */ React.createElement(If, {
+    "v-if": !closeText && closable
+  }, /* @__PURE__ */ React.createElement(IconClose, {
+    className: "h-4 w-4 mt-1 cursor-pointer fill-color-text-primary opacity-70",
+    onClick: close
+  })), /* @__PURE__ */ React.createElement(If, {
+    "v-if": closeText && closable
+  }, /* @__PURE__ */ React.createElement("span", {
+    onClick: close,
+    className: "leading-6 text-sm cursor-pointer"
+  }, closeText)))));
 }
-function Button(props) {
+function Alert(props) {
   var _props$tiny_mode = props.tiny_mode, tiny_mode = _props$tiny_mode === void 0 ? "pc" : _props$tiny_mode;
   var S = {
-    pc: Button$3,
-    mobile: Button$2,
-    "mobile-first": Button$1
+    pc: Alert$3,
+    mobile: Alert$2,
+    "mobile-first": Alert$1
   }[tiny_mode];
   return S(props);
 }
 export {
-  Button as B
+  Alert as A
 };

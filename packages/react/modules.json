@@ -78,6 +78,32 @@
     "type": "component",
     "exclude": false
   },
+  "Layout": {
+    "path": "react/src/layout/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "LayoutPc": {
+    "path": "react/src/layout/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Row": {
+    "path": "react/src/row/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "RowPc": {
+    "path": "react/src/row/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
   "Switch": {
     "path": "react/src/switch/index.ts",
     "type": "component",

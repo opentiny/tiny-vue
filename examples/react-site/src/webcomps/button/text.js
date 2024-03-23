@@ -64,7 +64,7 @@ function _getPrototypeOf(o) {
   return _getPrototypeOf(o);
 }
 import "@opentiny/vue-renderless/alert/vue";
-import { S as Svg } from "../index-c9097800.mjs";
+import "../index-9774bad5.mjs";
 import "@vue/runtime-core";
 import "react";
 import "@opentiny/vue-theme/base/index.less";
@@ -291,7 +291,7 @@ import "@opentiny/vue-theme/svgs/list-mode.svg";
 import "@opentiny/vue-theme/svgs/loading.svg";
 import "@opentiny/vue-theme/svgs/loading-shadow.svg";
 import "@opentiny/vue-theme/svgs/lock.svg";
-import { ReactComponent } from "@opentiny/vue-theme/svgs/mail.svg";
+import { T as TinyIconMail } from "../index-13ffbbc2.mjs";
 import "@opentiny/vue-theme/svgs/mail-content.svg";
 import "@opentiny/vue-theme/svgs/male.svg";
 import "@opentiny/vue-theme/svgs/mark-on.svg";
@@ -523,17 +523,16 @@ import "@opentiny/vue-theme-mobile/alert/index.less";
 import "@opentiny/vue-renderless/badge/vue";
 import "@opentiny/vue-theme/badge/index.less";
 import "@opentiny/vue-theme-mobile/badge/index.less";
-import { B as Button } from "../index-bca416ee.mjs";
+import { B as Button } from "../index-c89aaced.mjs";
+import "@opentiny/vue-renderless/layout/vue";
+import "@opentiny/vue-renderless/row/vue";
 import "@opentiny/vue-renderless/switch/vue";
 import "@opentiny/vue-theme/switch/index.less";
 import ReactDOM from "react-dom/client";
+import "@opentiny/vue-theme/svgs/mail.svg";
 import "@opentiny/vue-renderless/button/vue";
 import "@opentiny/vue-theme/button/index.less";
 import "@opentiny/vue-theme-mobile/button/index.less";
-var TinyIconMail = Svg({
-  name: "IconMail",
-  component: ReactComponent
-});
 var scopeId = "scope-" + Math.random().toString(36).substr(2, 9);
 function App() {
   return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("style", null, '\n          [data-v="' + scopeId + '"] .title {\n            margin-top: 16px;\n            padding: 10px 0 6px 0;\n            font-size: 16px;\n            font-weight: bold;\n          }\n        '), /* @__PURE__ */ React.createElement("div", {
