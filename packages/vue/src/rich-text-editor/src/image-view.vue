@@ -1,17 +1,16 @@
 <template>
-  <NodeViewWrapper class="node-view" :node="node">
+  <NodeViewWrapper class="tiny-image__node__view" :node="node">
     <div class="tiny-image__view">
       <img
         class="image-view-content"
-        :src="node.attrs.src"
-        :alt="node.attrs.alt"
-        :title="node.attrs.title"
-        :width="node.attrs.width"
-        :height="node.attrs.height"
+        :src="src"
+        :alt="alt"
+        :title="title"
+        :width="width"
+        :height="height"
         @click="handleSelectImg"
         ref="imgRef"
       />
-
       <div
         class="tiny-image__resize"
         v-show="selectedVal"
@@ -42,7 +41,9 @@ import { defineComponent, hooks } from '@opentiny/vue-common'
 export default defineComponent({
   name: 'ImageView',
   props: nodeViewProps,
-  components: { NodeViewWrapper },
+  components: {
+    NodeViewWrapper
+  },
   setup(props) {
     const enum ResizeDirection {
       TOP_LEFT = 'tl',
@@ -58,7 +59,7 @@ export default defineComponent({
       maxHeight: number
     }
 
-    const { node, editor, getPos } = props
+    const { node, editor, getPos, updateAttributes } = props
 
     const resizeDirection = [
       ResizeDirection.TOP_LEFT,
@@ -76,25 +77,34 @@ export default defineComponent({
     })
 
     const imageSize = hooks.ref<ImageSize>({
-      minWidth: 100,
-      minHeight: 100,
+      minWidth: 50,
+      minHeight: 50,
       maxWidth: 1000,
-      maxHeight: 1000
+      maxHeight: 10000
     })
 
-    const handleSelectImg = (e: Event) => {
+    const width = hooks.computed<number>(() => props.node.attrs.width)
+
+    const height = hooks.computed<number>(() => props.node.attrs.height)
+
+    const src = hooks.computed<string>(() => props.node.attrs.src)
+
+    const title = hooks.computed<string>(() => props.node.attrs.title)
+
+    const alt = hooks.computed<string>(() => props.node.attrs.alt)
+
+    const handleSelectImg = () => {
       editor.commands.setNodeSelection(getPos())
-      const { offsetWidth, offsetHeight } = e.target as HTMLImageElement
-      resizerState.w = offsetWidth
-      resizerState.h = offsetHeight
     }
 
-    const selectedVal = hooks.computed(() => props.selected)
+    const selectedVal = hooks.computed(() => props.selected || isResizing.value)
 
     const initResizerState = () => {
       const { width, height } = node.attrs
+      const maxWidth = editor.view.dom.getBoundingClientRect().width
       resizerState.w = width
       resizerState.h = height
+      imageSize.value.maxWidth = Math.floor(maxWidth)
     }
 
     let isResizing = hooks.ref(false)
@@ -132,17 +142,41 @@ export default defineComponent({
 
       lastX.value = x
       lastY.value = y
-      imgRef.value.style.width = resizerState.w + 'px'
-      imgRef.value.style.height = resizerState.h + 'px'
+      updateAttributes({
+        width: newWidth,
+        height: newHeight
+      })
     }
 
     const handleMouseUp = () => {
       isResizing.value = false
+      handleSelectImg()
       window.removeEventListener('mousemove', handleMouseMove, true)
       window.removeEventListener('mouseup', handleMouseUp, true)
     }
+
+    const resizeObserver = new ResizeObserver((target) => {
+      const { width } = target[0].contentRect
+      imageSize.value.maxWidth = Math.floor(width - 20)
+      changeSize()
+    })
+
+    const changeSize = () => {
+      if (imageSize.value.maxWidth <= width.value) {
+        updateAttributes({
+          width: imageSize.value.maxWidth
+        })
+        resizerState.w = imageSize.value.maxWidth
+      }
+    }
+
     hooks.onMounted(() => {
       initResizerState()
+      resizeObserver.observe(editor.view.dom)
+    })
+
+    hooks.onBeforeUnmount(() => {
+      resizeObserver.disconnect()
     })
     return {
       imgRef,
@@ -155,7 +189,12 @@ export default defineComponent({
       editor,
       resizeDirection,
       handleSelectImg,
-      selectedVal
+      selectedVal,
+      width,
+      height,
+      src,
+      title,
+      alt
     }
   }
 })
