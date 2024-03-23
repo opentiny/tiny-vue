@@ -92,7 +92,7 @@ export default function Alert(props) {
             </div>
             <If v-if={size === 'large'}>
               <div className="tiny-alert__opration">
-                <Slot slots={props.slots} parent_child={props.children} />
+                <Slot slots={props.slots} parent_children={props.children} />
               </div>
             </If>
           </div>
