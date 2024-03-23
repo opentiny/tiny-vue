@@ -77,6 +77,7 @@ function _extends() {
   };
   return _extends.apply(this, arguments);
 }
+import ReactDOM from "react-dom/client";
 import { renderless, api } from "@opentiny/vue-renderless/alert/vue";
 import { nextTick, readonly, watchEffect, watchPostEffect, watchSyncEffect, watch, isRef, unref, toValue as toValue$1, toRefs, isProxy, isReactive, isReadonly, triggerRef, shallowReadonly, toRaw, markRaw, effectScope, getCurrentScope, onScopeDispose, ref, computed, reactive, toRef, shallowRef, customRef, shallowReactive } from "@vue/runtime-core";
 import { useRef, useState, useEffect } from "react";
@@ -101,7 +102,6 @@ import "@opentiny/vue-theme/button/index.less";
 import "@opentiny/vue-theme-mobile/button/index.less";
 import "@opentiny/vue-renderless/switch/vue";
 import "@opentiny/vue-theme/switch/index.less";
-import ReactDOM from "react-dom/client";
 function getDefaultExportFromCjs(x) {
   return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
 }
@@ -3586,7 +3586,7 @@ var $constants$2 = {
   CONTENT_MAXHEUGHT: 252
 };
 function Alert$3(props) {
-  var _props$type = props.type, type = _props$type === void 0 ? "success" : _props$type, _props$size = props.size, size = _props$size === void 0 ? "normal" : _props$size, _props$center = props.center, center = _props$center === void 0 ? false : _props$center, _props$showIcon = props.showIcon, showIcon = _props$showIcon === void 0 ? true : _props$showIcon, _props$description = props.description, description = _props$description === void 0 ? "" : _props$description, _props$slots2 = props.slots, slots = _props$slots2 === void 0 ? {} : _props$slots2, _props$_constants = props._constants, _constants = _props$_constants === void 0 ? $constants$2 : _props$_constants, _props$closable = props.closable, closable = _props$closable === void 0 ? true : _props$closable, closeText = props.closeText, title = props.title;
+  var _props$type = props.type, type = _props$type === void 0 ? "info" : _props$type, _props$size = props.size, size = _props$size === void 0 ? "normal" : _props$size, _props$center = props.center, center = _props$center === void 0 ? false : _props$center, _props$showIcon = props.showIcon, showIcon = _props$showIcon === void 0 ? true : _props$showIcon, _props$description = props.description, description = _props$description === void 0 ? "" : _props$description, _props$slots2 = props.slots, slots = _props$slots2 === void 0 ? {} : _props$slots2, _props$_constants = props._constants, _constants = _props$_constants === void 0 ? $constants$2 : _props$_constants, _props$closable = props.closable, closable = _props$closable === void 0 ? true : _props$closable, closeText = props.closeText, title = props.title;
   var defaultProps = {
     type,
     size,
@@ -3870,31 +3870,34 @@ function Alert(props) {
   }[tiny_mode];
   return S(props);
 }
-function App(props) {
-  return /* @__PURE__ */ React.createElement("div", null, props.children);
-}
-var base = /* @__PURE__ */ function(_HTMLElement) {
-  function base2() {
+var CustomElement = /* @__PURE__ */ function(_HTMLElement) {
+  function CustomElement2() {
     return _HTMLElement.apply(this, arguments) || this;
   }
-  _inheritsLoose(base2, _HTMLElement);
-  var _proto = base2.prototype;
+  _inheritsLoose(CustomElement2, _HTMLElement);
+  var _proto = CustomElement2.prototype;
   _proto.connectedCallback = function connectedCallback() {
     ReactDOM.createRoot(this).render(/* @__PURE__ */ React.createElement(App, null, /* @__PURE__ */ React.createElement(Alert, {
-      description: "type 为默认值 success"
+      description: "type 为默认值 info"
     }), /* @__PURE__ */ React.createElement(Alert, {
       type: "error",
       description: "type 为 error"
     }), /* @__PURE__ */ React.createElement(Alert, {
-      type: "info",
-      description: "type 为 info"
+      type: "success",
+      description: "type 为 success"
     }), /* @__PURE__ */ React.createElement(Alert, {
       type: "warning",
       description: "type 为 warning"
+    }), /* @__PURE__ */ React.createElement(Alert, {
+      type: "simple",
+      description: "type 为 simple"
     })));
   };
-  return base2;
+  return CustomElement2;
 }(/* @__PURE__ */ _wrapNativeSuper(HTMLElement));
+function App(props) {
+  return /* @__PURE__ */ React.createElement("div", null, props.children);
+}
 export {
-  base as default
+  CustomElement as default
 };

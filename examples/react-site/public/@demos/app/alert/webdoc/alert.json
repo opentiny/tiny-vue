@@ -3,7 +3,7 @@
   "owner": "",
   "demos": [
     {
-      "demoId": "base",
+      "demoId": "basic-usage",
       "name": {
         "zh-CN": "基本用法",
         "en-US": "Basic Usage"
@@ -13,7 +13,7 @@
         "en-US": "For details, see the following example."
       },
       "codeFiles": [
-        "base.vue"
+        "basic-usage.vue"
       ]
     },
     {

@@ -1,14 +1,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
 import { IconClose, IconSuccess, IconError, IconHelp, IconWarning } from '@opentiny/react-icon'
 import '@opentiny/vue-theme/alert/index.less'
-import {
-  vc,
-  If,
-  Component,
-  Slot,
-  useSetup,
-  useVm
-} from '@opentiny/react-common'
+import { vc, If, Component, Slot, useSetup, useVm } from '@opentiny/react-common'
 
 const $constants = {
   ICON_MAP: {
@@ -28,7 +21,7 @@ const $constants = {
 
 export default function Alert(props) {
   const {
-    type = 'success',
+    type = 'info',
     size = 'normal',
     center = false,
     showIcon = true,
@@ -55,10 +48,7 @@ export default function Alert(props) {
 
   const { ref, current: vm, parent } = useVm()
 
-  const {
-    state,
-    handleClose
-  } = useSetup({
+  const { state, handleClose } = useSetup({
     props: defaultProps,
     renderless,
     api,
@@ -68,61 +58,46 @@ export default function Alert(props) {
   })
 
   return (
-    <div className='tiny-transition-alert-fade' ref={ref}>
+    <div className="tiny-transition-alert-fade" ref={ref}>
       <If v-if={state.show}>
-        <div className={vc([
-          'tiny-alert',
-          'tiny-alert--' + type,
-          'tiny-alert--' + size,
-          center && 'is-center'
-        ])}>
-          <Component
-            v-if={showIcon}
-            is={state.getIcon}
-            className="tiny-svg-size tiny-alert__icon"
-          />
-          <div className='tiny-alert__content'>
+        <div className={vc(['tiny-alert', 'tiny-alert--' + type, 'tiny-alert--' + size, center && 'is-center'])}>
+          <Component v-if={showIcon} is={state.getIcon} className="tiny-svg-size tiny-alert__icon" />
+          <div className="tiny-alert__content">
             <If v-if={size === 'large'}>
-              <div className='tiny-alert__title'>
-                <Slot name='title' slots={props.slots}>
+              <div className="tiny-alert__title">
+                <Slot name="title" slots={props.slots}>
                   {state.getTitle}
                 </Slot>
               </div>
             </If>
-            <div className={vc([
-              'tiny-alert__description',
-              size === 'large'
-              && !description
-              && !slots.description
-              && 'is-hide'
-            ])}>
-              <Slot name='description' slots={props.slots}>
+            <div
+              className={vc([
+                'tiny-alert__description',
+                size === 'large' && !description && !slots.description && 'is-hide'
+              ])}>
+              <Slot name="description" slots={props.slots}>
                 {description}
               </Slot>
             </div>
             <If v-if={size === 'large'}>
-              <div className='tiny-alert__opration'>
+              <div className="tiny-alert__opration">
                 <Slot slots={props.slots} parent_child={props.children} />
               </div>
             </If>
           </div>
           <If v-if={!closeText && closable}>
             <IconClose
-              className={vc([
-                'tiny-svg-size',
-                'tiny-alert__icon',
-                'tiny-alert__close'
-              ])}
+              className={vc(['tiny-svg-size', 'tiny-alert__icon', 'tiny-alert__close'])}
               onClick={handleClose}
             />
           </If>
           <If v-if={closeText && closable}>
-            <span
-              className='is-custom'
-              onClick={handleClose}
-            >{closeText}</span>
+            <span className="is-custom" onClick={handleClose}>
+              {closeText}
+            </span>
           </If>
         </div>
       </If>
-    </div>)
+    </div>
+  )
 }
