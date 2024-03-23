@@ -63,25 +63,22 @@ function _getPrototypeOf(o) {
   };
   return _getPrototypeOf(o);
 }
-import { Button } from "@pe-3/react";
 import ReactDOM from "react-dom/client";
-function App(props) {
-  return /* @__PURE__ */ React.createElement("div", null, props.children);
+var scopeId = "scope-" + Math.random().toString(36).substr(2, 9);
+function App() {
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("style", null, '\n          [data-v="' + scopeId + '"] .title {\n            font-size: 16px;\n            margin-top: 10px;\n            margin-bottom: 14px;\n            font-weight: bold;\n          }\n          [data-v="' + scopeId + '"] .tiny-row {\n            margin-bottom: 20px;\n          }\n          [data-v="' + scopeId + '"] .tiny-button {\n            margin-bottom: 10px;\n            margin-left: 0;\n            margin-right: 8px;\n          }\n        '));
 }
-var buttonRoundWebcomp = /* @__PURE__ */ function(_HTMLElement) {
-  function buttonRoundWebcomp2() {
+var CustomElement = /* @__PURE__ */ function(_HTMLElement) {
+  function CustomElement2() {
     return _HTMLElement.apply(this, arguments) || this;
   }
-  _inheritsLoose(buttonRoundWebcomp2, _HTMLElement);
-  var _proto = buttonRoundWebcomp2.prototype;
+  _inheritsLoose(CustomElement2, _HTMLElement);
+  var _proto = CustomElement2.prototype;
   _proto.connectedCallback = function connectedCallback() {
-    ReactDOM.createRoot(this).render(/* @__PURE__ */ React.createElement(App, null, /* @__PURE__ */ React.createElement(Button, {
-      round: true,
-      type: "primary"
-    }, "主要按钮")));
+    ReactDOM.createRoot(this).render(/* @__PURE__ */ React.createElement(App, null));
   };
-  return buttonRoundWebcomp2;
+  return CustomElement2;
 }(/* @__PURE__ */ _wrapNativeSuper(HTMLElement));
 export {
-  buttonRoundWebcomp as default
+  CustomElement as default
 };

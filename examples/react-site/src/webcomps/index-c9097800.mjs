@@ -13,24 +13,9 @@ function _extends() {
   };
   return _extends.apply(this, arguments);
 }
-import { renderless, api } from "@opentiny/vue-renderless/alert/vue";
-import { nextTick, readonly, watchEffect, watchPostEffect, watchSyncEffect, watch, isRef, unref, toValue as toValue$1, toRefs, isProxy, isReactive, isReadonly, triggerRef, shallowReadonly, toRaw, markRaw, effectScope, getCurrentScope, onScopeDispose, ref, computed, reactive, toRef, shallowRef, customRef, shallowReactive } from "@vue/runtime-core";
 import { useRef, useState, useEffect } from "react";
+import { nextTick, readonly, watchEffect, watchPostEffect, watchSyncEffect, watch, isRef, unref, toValue as toValue$1, toRefs, isProxy, isReactive, isReadonly, triggerRef, shallowReadonly, toRaw, markRaw, effectScope, getCurrentScope, onScopeDispose, ref, computed, reactive, toRef, shallowRef, customRef, shallowReactive } from "@vue/runtime-core";
 import "@opentiny/vue-theme/base/index.less";
-import "@opentiny/vue-theme/svgs/loading.svg";
-import "@opentiny/vue-theme/svgs/add.svg";
-import "@opentiny/vue-theme/svgs/check.svg";
-import { ReactComponent } from "@opentiny/vue-theme/svgs/chevron-down.svg";
-import { ReactComponent as ReactComponent$1 } from "@opentiny/vue-theme/svgs/close.svg";
-import { ReactComponent as ReactComponent$2 } from "@opentiny/vue-theme/svgs/error.svg";
-import "@opentiny/vue-theme/svgs/halfselect.svg";
-import { ReactComponent as ReactComponent$3 } from "@opentiny/vue-theme/svgs/help.svg";
-import { ReactComponent as ReactComponent$4 } from "@opentiny/vue-theme/svgs/success.svg";
-import { ReactComponent as ReactComponent$5 } from "@opentiny/vue-theme/svgs/warning.svg";
-import "@opentiny/vue-theme/svgs/boat.svg";
-import "@opentiny/vue-theme/svgs/warning-triangle.svg";
-import "@opentiny/vue-theme/alert/index.less";
-import "@opentiny/vue-theme-mobile/alert/index.less";
 function getDefaultExportFromCjs(x) {
   return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
 }
@@ -3385,8 +3370,8 @@ var mergeClass = function mergeClass2() {
   return twMerge(stringifyCssClass(cssClasses));
 };
 var setup = function setup2(_ref29) {
-  var props = _ref29.props, renderless2 = _ref29.renderless, api2 = _ref29.api, _ref29$extendOptions = _ref29.extendOptions, extendOptions = _ref29$extendOptions === void 0 ? {} : _ref29$extendOptions, _ref29$classes = _ref29.classes, classes = _ref29$classes === void 0 ? {} : _ref29$classes, constants = _ref29.constants, vm = _ref29.vm, parent2 = _ref29.parent, $bus = _ref29.$bus;
-  var render = typeof props.tiny_renderless === "function" ? props.tiny_renderless : renderless2;
+  var props = _ref29.props, renderless = _ref29.renderless, api = _ref29.api, _ref29$extendOptions = _ref29.extendOptions, extendOptions = _ref29$extendOptions === void 0 ? {} : _ref29$extendOptions, _ref29$classes = _ref29.classes, classes = _ref29$classes === void 0 ? {} : _ref29$classes, constants = _ref29.constants, vm = _ref29.vm, parent2 = _ref29.parent, $bus = _ref29.$bus;
+  var render = typeof props.tiny_renderless === "function" ? props.tiny_renderless : renderless;
   var _emitEvent = emitEvent(vm), dispatch = _emitEvent.dispatch, broadcast = _emitEvent.broadcast;
   var utils = {
     vm,
@@ -3412,8 +3397,8 @@ var setup = function setup2(_ref29) {
       return getElementCssClass(classes, key);
     }
   };
-  if (Array.isArray(api2)) {
-    api2.forEach(function(name) {
+  if (Array.isArray(api)) {
+    api.forEach(function(name) {
       var value = sdk[name];
       if (typeof value !== "undefined") {
         attrs[name] = value;
@@ -3423,7 +3408,7 @@ var setup = function setup2(_ref29) {
   return attrs;
 };
 var useSetup = function useSetup2(_ref30) {
-  var props = _ref30.props, renderless2 = _ref30.renderless, api2 = _ref30.api, _ref30$extendOptions = _ref30.extendOptions, extendOptions = _ref30$extendOptions === void 0 ? {} : _ref30$extendOptions, _ref30$classes = _ref30.classes, classes = _ref30$classes === void 0 ? {} : _ref30$classes, constants = _ref30.constants;
+  var props = _ref30.props, renderless = _ref30.renderless, api = _ref30.api, _ref30$extendOptions = _ref30.extendOptions, extendOptions = _ref30$extendOptions === void 0 ? {} : _ref30$extendOptions, _ref30$classes = _ref30.classes, classes = _ref30$classes === void 0 ? {} : _ref30$classes, constants = _ref30.constants;
   var $bus = useOnceResult(function() {
     return eventBus();
   });
@@ -3452,8 +3437,8 @@ var useSetup = function useSetup2(_ref30) {
     scope.run(function() {
       result = setup({
         props: reactiveProps,
-        renderless: renderless2,
-        api: api2,
+        renderless,
+        api,
         constants,
         extendOptions,
         classes,
@@ -3475,333 +3460,12 @@ var useSetup = function useSetup2(_ref30) {
     }
   });
 };
-var IconChevronDown = Svg({
-  name: "ChevronDown",
-  component: ReactComponent
-});
-var IconClose = Svg({
-  name: "Close",
-  component: ReactComponent$1
-});
-var IconError = Svg({
-  name: "Error",
-  component: ReactComponent$2
-});
-var IconHelp = Svg({
-  name: "Help",
-  component: ReactComponent$3
-});
-var IconSuccess = Svg({
-  name: "Success",
-  component: ReactComponent$4
-});
-var IconWarning = Svg({
-  name: "Warning",
-  component: ReactComponent$5
-});
-var $constants$2 = {
-  ICON_MAP: {
-    success: IconSuccess,
-    error: IconError,
-    info: IconHelp,
-    warning: IconWarning
-  },
-  TITLE_MAP: {
-    success: "ui.alert.success",
-    error: "ui.alert.error",
-    info: "ui.alert.info",
-    warning: "ui.alert.warning"
-  },
-  CONTENT_MAXHEUGHT: 252
-};
-function Alert$3(props) {
-  var _props$type = props.type, type = _props$type === void 0 ? "info" : _props$type, _props$size = props.size, size = _props$size === void 0 ? "normal" : _props$size, _props$center = props.center, center = _props$center === void 0 ? false : _props$center, _props$showIcon = props.showIcon, showIcon = _props$showIcon === void 0 ? true : _props$showIcon, _props$description = props.description, description = _props$description === void 0 ? "" : _props$description, _props$slots2 = props.slots, slots = _props$slots2 === void 0 ? {} : _props$slots2, _props$_constants = props._constants, _constants = _props$_constants === void 0 ? $constants$2 : _props$_constants, _props$closable = props.closable, closable = _props$closable === void 0 ? true : _props$closable, closeText = props.closeText, title = props.title, customClass = props.customClass, icon = props.icon;
-  var defaultProps = {
-    type,
-    size,
-    center,
-    showIcon,
-    description,
-    slots,
-    _constants,
-    closable,
-    closeText,
-    title,
-    customClass,
-    icon
-  };
-  var _useVm = useVm(), ref2 = _useVm.ref, vm = _useVm.current, parent2 = _useVm.parent;
-  var _useSetup = useSetup({
-    props: defaultProps,
-    renderless,
-    api,
-    constants: _constants,
-    vm,
-    parent: parent2
-  }), state2 = _useSetup.state, handleClose = _useSetup.handleClose;
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "tiny-transition-alert-fade",
-    ref: ref2
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": state2.show
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc(["tiny-alert", "tiny-alert--" + type, "tiny-alert--" + size, center && "is-center", customClass])
-  }, /* @__PURE__ */ React.createElement(Component, {
-    "v-if": showIcon,
-    is: state2.getIcon,
-    className: "tiny-svg-size tiny-alert__icon"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "tiny-alert__content"
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "tiny-alert__title"
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    name: "title",
-    slots: props.slots
-  }, state2.getTitle))), /* @__PURE__ */ React.createElement("div", {
-    className: vc(["tiny-alert__description", size === "large" && !description && !slots.description && "is-hide"])
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    name: "description",
-    slots: props.slots
-  }, description)), /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "tiny-alert__opration"
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    slots: props.slots,
-    parent_child: props.children
-  })))), /* @__PURE__ */ React.createElement(If, {
-    "v-if": !closeText && closable
-  }, /* @__PURE__ */ React.createElement(IconClose, {
-    className: vc(["tiny-svg-size", "tiny-alert__icon", "tiny-alert__close"]),
-    onClick: handleClose
-  })), /* @__PURE__ */ React.createElement(If, {
-    "v-if": closeText && closable
-  }, /* @__PURE__ */ React.createElement("span", {
-    className: "is-custom",
-    onClick: handleClose
-  }, closeText)))));
-}
-var $constants$1 = {
-  ICON_MAP: {
-    success: IconSuccess,
-    error: IconError,
-    info: IconHelp,
-    warning: IconWarning
-  },
-  TITLE_MAP: {
-    success: "ui.alert.success",
-    error: "ui.alert.error",
-    info: "ui.alert.info",
-    warning: "ui.alert.warning"
-  },
-  CONTENT_MAXHEUGHT: 252
-};
-function Alert$2(props) {
-  var _props$type2 = props.type, type = _props$type2 === void 0 ? "success" : _props$type2, _props$size2 = props.size, size = _props$size2 === void 0 ? "normal" : _props$size2, _props$showIcon2 = props.showIcon, showIcon = _props$showIcon2 === void 0 ? true : _props$showIcon2, _props$closable2 = props.closable, closable = _props$closable2 === void 0 ? true : _props$closable2, closeText = props.closeText, _props$_constants2 = props._constants, _constants = _props$_constants2 === void 0 ? $constants$1 : _props$_constants2, _props$description2 = props.description, description = _props$description2 === void 0 ? "" : _props$description2;
-  var defaultProps = Object.assign({
-    type,
-    size,
-    showIcon,
-    closable,
-    _constants
-  }, props);
-  var _useVm2 = useVm(), ref2 = _useVm2.ref, vm = _useVm2.current, parent2 = _useVm2.parent;
-  var _useSetup2 = useSetup({
-    props: defaultProps,
-    renderless,
-    api,
-    vm,
-    parent: parent2,
-    constants: _constants
-  }), state2 = _useSetup2.state, handleClose = _useSetup2.handleClose;
-  return /* @__PURE__ */ React.createElement("div", {
-    ref: ref2
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": state2.show
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc(["tiny-mobile-alert", "tiny-mobile-alert--" + type, "tiny-mobile-alert--" + size, "is-center"])
-  }, /* @__PURE__ */ React.createElement(Component, {
-    "v-if": showIcon,
-    is: state2.getIcon,
-    className: "tiny-mobile-alert__icon"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: vc([["tiny-mobile-alert__content", {
-      "is-hideicon": !showIcon
-    }]])
-  }, /* @__PURE__ */ React.createElement(Slot, _extends({}, props), description)), /* @__PURE__ */ React.createElement(If, {
-    "v-if": !closeText && closable
-  }, /* @__PURE__ */ React.createElement(IconClose, {
-    onClick: handleClose,
-    className: "tiny-mobile-alert__icon tiny-mobile-alert__close"
-  })), /* @__PURE__ */ React.createElement(If, {
-    "v-if": closeText && closable
-  }, /* @__PURE__ */ React.createElement("span", {
-    onClick: handleClose,
-    className: "is-custom"
-  }, closeText)))));
-}
-var $constants2 = {
-  ICON_MAP: {
-    success: IconSuccess,
-    error: IconError,
-    info: IconHelp,
-    warning: IconWarning
-  },
-  TITLE_MAP: {
-    success: "ui.alert.success",
-    error: "ui.alert.error",
-    info: "ui.alert.info",
-    warning: "ui.alert.warning"
-  },
-  CONTENT_MAXHEUGHT: 252
-};
-function Alert$1(props) {
-  var _props$type3 = props.type, type = _props$type3 === void 0 ? "success" : _props$type3, _props$size3 = props.size, size = _props$size3 === void 0 ? "normal" : _props$size3, _props$center2 = props.center, center = _props$center2 === void 0 ? false : _props$center2, _props$showIcon3 = props.showIcon, showIcon = _props$showIcon3 === void 0 ? true : _props$showIcon3, _props$description3 = props.description, description = _props$description3 === void 0 ? "" : _props$description3, _props$slots3 = props.slots, slots = _props$slots3 === void 0 ? {} : _props$slots3, _props$_constants3 = props._constants, _constants = _props$_constants3 === void 0 ? $constants2 : _props$_constants3, _props$closable3 = props.closable, closable = _props$closable3 === void 0 ? true : _props$closable3, closeText = props.closeText, title = props.title, _props$showFoldable = props.showFoldable, showFoldable = _props$showFoldable === void 0 ? true : _props$showFoldable, singleLine = props.singleLine, scrolling = props.scrolling;
-  var defaultProps = {
-    type,
-    size,
-    center,
-    showIcon,
-    description,
-    slots,
-    _constants,
-    closable,
-    closeText,
-    title,
-    showFoldable
-  };
-  var _useVm3 = useVm(), ref2 = _useVm3.ref, vm = _useVm3.current, parent2 = _useVm3.parent;
-  var _useSetup3 = useSetup({
-    props: defaultProps,
-    renderless,
-    api,
-    constants: _constants,
-    vm,
-    parent: parent2
-  }), state2 = _useSetup3.state, handleHeaderClick = _useSetup3.handleHeaderClick;
-  return /* @__PURE__ */ React.createElement("div", {
-    ref: ref2
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": state2.show
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc(["min-h-min flex py-2 sm:py-3 px-4 my-2 rounded box-border font-light sm:font-normal", {
-      "bg-color-info-secondary-subtle": type === "info" || !type
-    }, {
-      "bg-color-error-subtler": type === "error"
-    }, {
-      "bg-color-warning-subtler": type === "warning"
-    }, {
-      "bg-color-success-subtler": type === "success"
-    }, {
-      "text-center": center
-    }])
-  }, /* @__PURE__ */ React.createElement(Component, {
-    "v-if": showIcon,
-    is: state2.getIcon,
-    className: vc(["h-4.5 w-4.5 mt-1 sm:mt-0.5 sm:h-6 sm:w-5 sm:h-5 fill-current", {
-      "text-color-info-secondary": type === "info" || !type
-    }, {
-      "text-color-error": type === "error"
-    }, {
-      "text-color-warning": type === "warning"
-    }, {
-      "text-color-success": type === "success"
-    }])
-  }), /* @__PURE__ */ React.createElement(If, {
-    "v-if": showFoldable
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc(["flex-1 leading-6 text-sm overflow-hidden cursor-pointer", showIcon ? "mx-2" : "mr-2"])
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large"
-  }, /* @__PURE__ */ React.createElement("div", {
-    onClick: handleHeaderClick,
-    className: "inline-flex cursor-pointer font-medium"
-  }, /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement(Slot, {
-    name: "title",
-    slots: props.slots
-  }, state2.getTitle)), /* @__PURE__ */ React.createElement("span", {
-    className: "ml-2.5"
-  }, /* @__PURE__ */ React.createElement(IconChevronDown, {
-    className: vc(["transition-transform duration-300 align-top my-1 fill-color-icon-placeholder", state2.contentVisible ? "rotate-180" : "rotate-0"])
-  })))), /* @__PURE__ */ React.createElement("div", {
-    v_ref: "ContentDescribe",
-    className: vc(["transition-all duration-900 ease-linear", {
-      "hidden": size === "large" && !description && !slots.description
-    }, {
-      "overflow-y-auto": state2.scrollStatus
-    }, state2.contentVisible ? "max-h-[theme(spacing.72)]" : "max-h-0"])
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc([{
-      "truncate": singleLine
-    }, {
-      "hover:animate-[leftMove_10s_linear_infinite] hover:overflow-visible cursor-pointer": singleLine && scrolling
-    }])
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    name: "description",
-    slots: props.slots
-  }, description))), /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large" && (slots.default || props.children)
-  }, /* @__PURE__ */ React.createElement("div", {
-    v_ref: "ContentDefault",
-    className: vc(["transition-all duration-900 ease-linear", {
-      "pt-2": description && state2.contentVisible
-    }, {
-      "overflow-y-auto": state2.scrollStatus
-    }, state2.contentVisible ? "max-h-[theme(spacing.72)]" : "max-h-0"])
-  }, /* @__PURE__ */ React.createElement(Slot, _extends({}, props)))))), /* @__PURE__ */ React.createElement(If, {
-    "v-if": !showFoldable
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc(["flex-1 leading-6 text-sm overflow-hidden cursor-pointer", showIcon ? "mx-2" : "mr-2"])
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "font-medium"
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    name: "title",
-    slots: props.slots
-  }, state2.getTitle))), /* @__PURE__ */ React.createElement("div", {
-    className: vc([{
-      "hidden": size === "large" && !description && !slots.description
-    }])
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc([{
-      "truncate": singleLine
-    }, {
-      "hover:animate-[leftMove_10s_linear_infinite] hover:overflow-visible cursor-pointer": singleLine && scrolling
-    }])
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    name: "description",
-    slots: props.slots
-  }, description))), /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large" && slots.default
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "pt-2"
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    slots: props.slots
-  }))))), /* @__PURE__ */ React.createElement(If, {
-    "v-if": !closeText && closable
-  }, /* @__PURE__ */ React.createElement(IconClose, {
-    className: "h-4 w-4 mt-1 cursor-pointer fill-color-text-primary opacity-70",
-    onClick: close
-  })), /* @__PURE__ */ React.createElement(If, {
-    "v-if": closeText && closable
-  }, /* @__PURE__ */ React.createElement("span", {
-    onClick: close,
-    className: "leading-6 text-sm cursor-pointer"
-  }, closeText)))));
-}
-function Alert(props) {
-  var _props$tiny_mode = props.tiny_mode, tiny_mode = _props$tiny_mode === void 0 ? "pc" : _props$tiny_mode;
-  var S = {
-    pc: Alert$3,
-    mobile: Alert$2,
-    "mobile-first": Alert$1
-  }[tiny_mode];
-  return S(props);
-}
 export {
-  Alert as A,
-  Svg as S
+  Component as C,
+  If as I,
+  Svg as S,
+  useSetup as a,
+  Slot as b,
+  useVm as u,
+  vc as v
 };

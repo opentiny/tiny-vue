@@ -32,26 +32,22 @@ export default function Button(props) {
     tabindex,
     type = 'default',
     nativeType = 'button',
-    resetTime = 1000
+    resetTime = 1000,
+    ghost
   } = props
 
-  const defaultProps = Object.assign({
-    type,
-    nativeType,
-    resetTime
-  }, props)
+  const defaultProps = Object.assign(
+    {
+      type,
+      nativeType,
+      resetTime
+    },
+    props
+  )
 
-  const {
-    ref,
-    parent,
-    current: vm
-  } = useVm()
+  const { ref, parent, current: vm } = useVm()
 
-  const {
-    handleClick,
-    state,
-    a
-  } = useSetup({
+  const { handleClick, state, a } = useSetup({
     props: defaultProps,
     renderless,
     api,
@@ -72,10 +68,11 @@ export default function Button(props) {
           'is-disabled': state.buttonDisabled,
           'is-loading': loading,
           'is-plain': state.plain,
+          'is-ghost': ghost,
           'is-round': round,
           'is-circle': circle,
-          'is-icon': icon && !loading && (text || $slots.default),
-          'is-only-icon': icon && !loading && !(text || $slots.default)
+          'is-icon': icon && !loading && (text || children?.length),
+          'is-only-icon': icon && !loading && !(text || children?.length)
         }
       ])}
       onClick={handleClick}
@@ -83,16 +80,11 @@ export default function Button(props) {
       autoFocus={autofocus}
       type={nativeType}
       tabIndex={tabindex}
-      {...a($attrs, ['class', 'style'], true)}
-    >
+      {...a($attrs, ['class', 'style'], true)}>
       <If v-if={loading}>
         <IconLoading className="tiny-icon-loading tiny-svg-size" />
       </If>
-      <Component
-        v-if={icon && !loading}
-        is={icon}
-        className={(text || children) ? 'is-text' : ''}
-      />
+      <Component v-if={icon && !loading} is={icon} className={text || children ? 'is-text' : ''} />
       <span>{children || text}</span>
     </button>
   )
