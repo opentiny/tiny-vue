@@ -63,7 +63,6 @@ function _getPrototypeOf(o) {
   };
   return _getPrototypeOf(o);
 }
-import ReactDOM from "react-dom/client";
 import { A as Alert } from "../index-8dd18d54.mjs";
 import "@vue/runtime-core";
 import "react";
@@ -88,9 +87,13 @@ import "@opentiny/vue-theme/button/index.less";
 import "@opentiny/vue-theme-mobile/button/index.less";
 import "@opentiny/vue-renderless/switch/vue";
 import "@opentiny/vue-theme/switch/index.less";
+import ReactDOM from "react-dom/client";
 import "@opentiny/vue-renderless/alert/vue";
 import "@opentiny/vue-theme/alert/index.less";
 import "@opentiny/vue-theme-mobile/alert/index.less";
+function App(props) {
+  return /* @__PURE__ */ React.createElement("div", null, props.children);
+}
 var CustomElement = /* @__PURE__ */ function(_HTMLElement) {
   function CustomElement2() {
     return _HTMLElement.apply(this, arguments) || this;
@@ -99,26 +102,14 @@ var CustomElement = /* @__PURE__ */ function(_HTMLElement) {
   var _proto = CustomElement2.prototype;
   _proto.connectedCallback = function connectedCallback() {
     ReactDOM.createRoot(this).render(/* @__PURE__ */ React.createElement(App, null, /* @__PURE__ */ React.createElement(Alert, {
-      description: "type 为默认值 info"
+      description: "show-icon 默认值为 true，显示图标"
     }), /* @__PURE__ */ React.createElement(Alert, {
-      type: "error",
-      description: "type 为 error"
-    }), /* @__PURE__ */ React.createElement(Alert, {
-      type: "success",
-      description: "type 为 success"
-    }), /* @__PURE__ */ React.createElement(Alert, {
-      type: "warning",
-      description: "type 为 warning"
-    }), /* @__PURE__ */ React.createElement(Alert, {
-      type: "simple",
-      description: "type 为 simple"
+      showIcon: false,
+      description: "show-icon 设置为 false，不显示图标"
     })));
   };
   return CustomElement2;
 }(/* @__PURE__ */ _wrapNativeSuper(HTMLElement));
-function App(props) {
-  return /* @__PURE__ */ React.createElement("div", null, props.children);
-}
 export {
   CustomElement as default
 };

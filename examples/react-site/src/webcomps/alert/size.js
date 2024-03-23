@@ -63,8 +63,34 @@ function _getPrototypeOf(o) {
   };
   return _getPrototypeOf(o);
 }
-import { Alert } from "@pe-3/react";
+import { A as Alert } from "../index-8dd18d54.mjs";
+import "@vue/runtime-core";
+import "react";
+import "@opentiny/vue-theme/base/index.less";
+import "@opentiny/vue-renderless/badge/vue";
+import "@opentiny/vue-theme/badge/index.less";
+import "@opentiny/vue-theme-mobile/badge/index.less";
+import "@opentiny/vue-renderless/button/vue";
+import "@opentiny/vue-theme/svgs/loading.svg";
+import "@opentiny/vue-theme/svgs/add.svg";
+import "@opentiny/vue-theme/svgs/check.svg";
+import "@opentiny/vue-theme/svgs/chevron-down.svg";
+import "@opentiny/vue-theme/svgs/close.svg";
+import "@opentiny/vue-theme/svgs/error.svg";
+import "@opentiny/vue-theme/svgs/halfselect.svg";
+import "@opentiny/vue-theme/svgs/help.svg";
+import "@opentiny/vue-theme/svgs/success.svg";
+import "@opentiny/vue-theme/svgs/warning.svg";
+import "@opentiny/vue-theme/svgs/boat.svg";
+import "@opentiny/vue-theme/svgs/warning-triangle.svg";
+import "@opentiny/vue-theme/button/index.less";
+import "@opentiny/vue-theme-mobile/button/index.less";
+import "@opentiny/vue-renderless/switch/vue";
+import "@opentiny/vue-theme/switch/index.less";
 import ReactDOM from "react-dom/client";
+import "@opentiny/vue-renderless/alert/vue";
+import "@opentiny/vue-theme/alert/index.less";
+import "@opentiny/vue-theme-mobile/alert/index.less";
 function App(props) {
   return /* @__PURE__ */ React.createElement("div", null, props.children);
 }
@@ -80,7 +106,8 @@ var size = /* @__PURE__ */ function(_HTMLElement) {
       description: "size 为 normal"
     }), /* @__PURE__ */ React.createElement(Alert, {
       size: "large",
-      title: "size 为 large"
+      title: "size 为 large",
+      description: "size 为 large"
     })));
   };
   return size2;

@@ -9,6 +9,8 @@ import IconHalfSelect from './src/half-select'
 import IconHelp from './src/help'
 import IconSuccess from './src/success'
 import IconWarning from './src/warning'
+import IconBoat from './src/boat'
+import IconWarningTriangle from './src/warning-triangle'
 
 export {
   IconLoading,
@@ -21,7 +23,9 @@ export {
   IconHalfSelect,
   IconHelp,
   IconSuccess,
-  IconWarning
+  IconWarning,
+  IconBoat,
+  IconWarningTriangle
 }
 
 export default {
@@ -35,5 +39,7 @@ export default {
   IconHalfSelect,
   IconHelp,
   IconSuccess,
-  IconWarning
+  IconWarning,
+  IconBoat,
+  IconWarningTriangle
 }

@@ -19,9 +19,7 @@ function prependPlugin(options) {
     generateBundle(_, bundle) {
       for (const fileName in bundle) {
         const chunk = bundle[fileName];
-        if (chunk.isEntry) {
-          chunk.code = `${options.code}\n${chunk.code}`;
-        }
+        chunk.code = `${options.code}\n${chunk.code}`;
       }
     },
   };

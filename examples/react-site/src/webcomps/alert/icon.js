@@ -63,8 +63,7 @@ function _getPrototypeOf(o) {
   };
   return _getPrototypeOf(o);
 }
-import ReactDOM from "react-dom/client";
-import { A as Alert } from "../index-8dd18d54.mjs";
+import { S as Svg, A as Alert } from "../index-8dd18d54.mjs";
 import "@vue/runtime-core";
 import "react";
 import "@opentiny/vue-theme/base/index.less";
@@ -82,15 +81,24 @@ import "@opentiny/vue-theme/svgs/halfselect.svg";
 import "@opentiny/vue-theme/svgs/help.svg";
 import "@opentiny/vue-theme/svgs/success.svg";
 import "@opentiny/vue-theme/svgs/warning.svg";
-import "@opentiny/vue-theme/svgs/boat.svg";
-import "@opentiny/vue-theme/svgs/warning-triangle.svg";
+import { ReactComponent } from "@opentiny/vue-theme/svgs/boat.svg";
+import { ReactComponent as ReactComponent$1 } from "@opentiny/vue-theme/svgs/warning-triangle.svg";
 import "@opentiny/vue-theme/button/index.less";
 import "@opentiny/vue-theme-mobile/button/index.less";
 import "@opentiny/vue-renderless/switch/vue";
 import "@opentiny/vue-theme/switch/index.less";
+import ReactDOM from "react-dom/client";
 import "@opentiny/vue-renderless/alert/vue";
 import "@opentiny/vue-theme/alert/index.less";
 import "@opentiny/vue-theme-mobile/alert/index.less";
+var TinyIconBoat = Svg({
+  name: "IconBoat",
+  component: ReactComponent
+});
+var TinyIconWarningTriangle = Svg({
+  name: "IconWarningTriangle",
+  component: ReactComponent$1
+});
 var CustomElement = /* @__PURE__ */ function(_HTMLElement) {
   function CustomElement2() {
     return _HTMLElement.apply(this, arguments) || this;
@@ -98,27 +106,25 @@ var CustomElement = /* @__PURE__ */ function(_HTMLElement) {
   _inheritsLoose(CustomElement2, _HTMLElement);
   var _proto = CustomElement2.prototype;
   _proto.connectedCallback = function connectedCallback() {
-    ReactDOM.createRoot(this).render(/* @__PURE__ */ React.createElement(App, null, /* @__PURE__ */ React.createElement(Alert, {
-      description: "type 为默认值 info"
+    ReactDOM.createRoot(this).render(/* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement(Alert, {
+      icon: TinyIconBoat,
+      description: "自定义图标"
     }), /* @__PURE__ */ React.createElement(Alert, {
-      type: "error",
-      description: "type 为 error"
+      description: "默认图标"
     }), /* @__PURE__ */ React.createElement(Alert, {
       type: "success",
-      description: "type 为 success"
+      description: "type 为 success 的默认图标"
     }), /* @__PURE__ */ React.createElement(Alert, {
+      icon: TinyIconWarningTriangle,
       type: "warning",
-      description: "type 为 warning"
+      description: "type 为 warning 的默认图标"
     }), /* @__PURE__ */ React.createElement(Alert, {
-      type: "simple",
-      description: "type 为 simple"
+      type: "error",
+      description: "type 为 error 的默认图标"
     })));
   };
   return CustomElement2;
 }(/* @__PURE__ */ _wrapNativeSuper(HTMLElement));
-function App(props) {
-  return /* @__PURE__ */ React.createElement("div", null, props.children);
-}
 export {
   CustomElement as default
 };

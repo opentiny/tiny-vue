@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <alert-base-demo></alert-base-demo>
-  </div>
+  <alert-basic-usage-demo />
 </template>
 
-<script>
-import AlertBase from '@/webcomps/alert/basic-usage.js';
+<script lang="jsx">
+import Component from '@/webcomps/alert/basic-usage.js';
 
-customElements.define('alert-base-demo', AlertBase);
+customElements.define('alert-basic-usage-demo', Component);
 export default {};
 </script>
