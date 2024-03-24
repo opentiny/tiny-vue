@@ -26,6 +26,7 @@ function Col$1(props) {
   return /* @__PURE__ */ React.createElement(Component, {
     is: tag,
     className: vc([state.className, "tiny-col"]),
+    style: state.style,
     ref: function ref(ins) {
       _ref.current = ins;
       _.ref.current = ins;

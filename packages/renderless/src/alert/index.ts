@@ -106,7 +106,7 @@ export const handlerTargetNode =
     const { target } = props
     const { $parent } = parent
     nextTick(() => {
-      const alertParentNode = $parent?.$refs[target]
+      const alertParentNode = $parent?.$refs?.[target]
       if (!target || !alertParentNode) {
         return
       }

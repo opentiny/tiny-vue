@@ -526,7 +526,7 @@ import "@opentiny/vue-theme-mobile/badge/index.less";
 import "@opentiny/vue-renderless/button/vue";
 import "@opentiny/vue-theme/button/index.less";
 import "@opentiny/vue-theme-mobile/button/index.less";
-import { C as Col } from "../index-86da73c6.mjs";
+import { C as Col } from "../index-5a74a147.mjs";
 import "@opentiny/vue-theme/col/index.less";
 import { L as Layout, R as Row } from "../index-b815163f.mjs";
 import "@opentiny/vue-theme/layout/index.less";
