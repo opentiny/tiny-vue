@@ -1,9 +1,8 @@
-import { Alert as TinyAlert } from '@pe-3/react'
-import ReactDOM from 'react-dom/client'
+import { Alert as TinyAlert } from '@opentiny/react';
+import ReactDOM from 'react-dom/client';
+
 function App(props) {
-  return (<div>
-    {props.children}
-  </div>)
+  return <div>{props.children}</div>;
 }
 
 export default class extends HTMLElement {
@@ -12,6 +11,6 @@ export default class extends HTMLElement {
       <App>
         <TinyAlert center description="文字居中"></TinyAlert>
       </App>
-    )
+    );
   }
 }

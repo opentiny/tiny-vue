@@ -64,7 +64,7 @@ function _getPrototypeOf(o) {
   return _getPrototypeOf(o);
 }
 import ReactDOM from "react-dom/client";
-import { A as Alert } from "../index-d1e3c3cc.mjs";
+import { A as Alert } from "../index-5b8570f5.mjs";
 import "../index-3d3bc6e4.mjs";
 import "@vue/runtime-core";
 import "react";

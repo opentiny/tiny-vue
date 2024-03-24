@@ -545,7 +545,7 @@ function Alert$3(props) {
     className: "tiny-alert__opration"
   }, /* @__PURE__ */ React.createElement(Slot, {
     slots: props.slots,
-    parent_child: props.children
+    parent_children: props.children
   })))), /* @__PURE__ */ React.createElement(If, {
     "v-if": !closeText && closable
   }, /* @__PURE__ */ React.createElement(IconClose, {
