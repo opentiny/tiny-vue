@@ -2,7 +2,7 @@ import { renderless, api } from '@opentiny/vue-renderless/row/vue'
 import { Component, Slot, useSetup, useVm, vc } from '@opentiny/react-common'
 
 export default function Row(props) {
-  const { flex, gutter, justify, align, order, tag = 'div', noSpace } = props
+  const { flex, gutter = 0, justify = 'start', align = 'top', order, tag = 'div', noSpace = false } = props
 
   const defaultProps = {
     flex,
@@ -16,7 +16,7 @@ export default function Row(props) {
 
   const { ref, current: vm, parent } = useVm()
 
-  const { state } = useSetup({
+  const { _, state } = useSetup({
     props: defaultProps,
     renderless,
     api,
@@ -25,7 +25,14 @@ export default function Row(props) {
   })
 
   return (
-    <Component is={tag} className={vc(['tiny-row', state.className])} style={state.style}>
+    <Component
+      is={tag}
+      className={vc(['tiny-row', state.className, props.className])}
+      style={state.style}
+      ref={(ins) => {
+        ref.current = ins
+        _.ref.current = ins
+      }}>
       <Slot slots={props.slots} parent_children={props.children} />
     </Component>
   )

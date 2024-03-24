@@ -96,7 +96,8 @@ export const row = (pcontext) => () => {
   const ROW_NAME = 'Row'
   const COL_NAME = 'Col'
 
-  let parent = pcontext.$parent.$parent
+  // FIXME: find better solution
+  let parent = pcontext.$parent?.$parent?.$parent
   /* istanbul ignore next  */
   let parentName = parent ? parent.$options.componentName : null
   let depth = 10

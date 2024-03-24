@@ -1,4 +1,40 @@
 import React from 'react'
+function _createForOfIteratorHelperLoose(o, allowArrayLike) {
+  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+  if (it)
+    return (it = it.call(o)).next.bind(it);
+  if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+    if (it)
+      o = it;
+    var i = 0;
+    return function() {
+      if (i >= o.length)
+        return { done: true };
+      return { done: false, value: o[i++] };
+    };
+  }
+  throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o)
+    return;
+  if (typeof o === "string")
+    return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor)
+    n = o.constructor.name;
+  if (n === "Map" || n === "Set")
+    return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+    return _arrayLikeToArray(o, minLen);
+}
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length)
+    len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++)
+    arr2[i] = arr[i];
+  return arr2;
+}
 function _extends() {
   _extends = Object.assign ? Object.assign.bind() : function(target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -14,9 +50,9 @@ function _extends() {
   return _extends.apply(this, arguments);
 }
 import ReactDOM from "react-dom/client";
-import React$1, { useRef, useState, useEffect, forwardRef, useImperativeHandle } from "react";
+import React$1, { forwardRef, useRef, useState, useEffect, useImperativeHandle } from "react";
 import { renderless, api } from "@opentiny/vue-renderless/button/vue";
-import { nextTick, readonly, watchEffect, watchPostEffect, watchSyncEffect, watch, isRef, unref, toValue as toValue$1, toRefs, isProxy, isReactive, isReadonly, triggerRef, shallowReadonly, toRaw, markRaw, effectScope, getCurrentScope, onScopeDispose, ref, computed, reactive, toRef, shallowRef, customRef, shallowReactive } from "@vue/runtime-core";
+import { nextTick, readonly, watchEffect, watchPostEffect, watchSyncEffect, watch, isRef, unref, toValue as toValue$1, toRefs, isProxy, isReactive, isReadonly, triggerRef, shallowReadonly, toRaw, markRaw, effectScope, getCurrentScope, onScopeDispose, reactive, ref, computed, toRef, shallowRef, customRef, shallowReactive } from "@vue/runtime-core";
 import "@opentiny/vue-theme/base/index.less";
 import "@opentiny/vue-theme/svgs/activation.svg";
 import "@opentiny/vue-theme/svgs/add.svg";
@@ -550,16 +586,34 @@ function defaultVIfAsTrue(props) {
     return true;
   }
 }
-function Component(props) {
+function cssStringToObject(cssString) {
+  var reactStyle = {};
+  var cssProperties = cssString.split(";").filter(Boolean);
+  cssProperties.forEach(function(property) {
+    var _property$split$map = property.split(":").map(function(item) {
+      return item.trim();
+    }), key = _property$split$map[0], value = _property$split$map[1];
+    if (key && value) {
+      var camelCaseKey = key.replace(/-([a-z])/g, function(g) {
+        return g[1].toUpperCase();
+      });
+      reactStyle[camelCaseKey] = value;
+    }
+  });
+  return reactStyle;
+}
+var Component = forwardRef(function Component2(props, ref2) {
   var Is = props.is || function() {
     return "";
   };
   return /* @__PURE__ */ React.createElement(If, {
     "v-if": defaultVIfAsTrue(props)
   }, /* @__PURE__ */ React.createElement(Is, {
-    className: props.className
+    ref: ref2,
+    className: props.className,
+    style: typeof props.style === "string" ? cssStringToObject(props.style) : props.style
   }, props.children));
-}
+});
 function Slot(props) {
   var _props$name = props.name, name = _props$name === void 0 ? "default" : _props$name, _props$slots = props.slots, slots = _props$slots === void 0 ? {} : _props$slots, parent_children = props.parent_children;
   var EmptySlot = function EmptySlot2() {
@@ -625,12 +679,45 @@ function useOnceResult(func) {
   }
   return result.current;
 }
-var inject = function inject2() {
+var vmContext = /* @__PURE__ */ new Map();
+var useProvide = function useProvide2(vm, key, value) {
+  useEffect(function() {
+    for (var _iterator = _createForOfIteratorHelperLoose(vmContext.keys()), _step; !(_step = _iterator()).done; ) {
+      var _vm$$el;
+      var candidateVm = _step.value;
+      if ((_vm$$el = vm.$el) != null && _vm$$el.contains(candidateVm.$el)) {
+        var context = vmContext.get(candidateVm);
+        if (!context) {
+          return;
+        }
+        for (var subKey in value) {
+          context[key][subKey] = value[subKey];
+        }
+      }
+    }
+  }, [key, value]);
+};
+var getInject = function getInject2(_ref7) {
+  var vm = _ref7.vm;
+  return function(key, defaultValue) {
+    if (defaultValue === void 0) {
+      defaultValue = {};
+    }
+    if (!vmContext.get(vm)) {
+      vmContext.set(vm, reactive({}));
+    }
+    var context = vmContext.get(vm);
+    if (!context[key]) {
+      var _Object$assign;
+      Object.assign(context, (_Object$assign = {}, _Object$assign[key] = defaultValue, _Object$assign));
+    }
+    return context[key];
+  };
 };
 var provide = function provide2() {
 };
-function generateVueHooks(_ref7) {
-  var $bus = _ref7.$bus;
+function generateVueHooks(_ref8) {
+  var $bus = _ref8.$bus, vm = _ref8.vm;
   var reload = function reload2() {
     return $bus.emit("event:reload");
   };
@@ -678,7 +765,9 @@ function generateVueHooks(_ref7) {
     getCurrentScope,
     onScopeDispose,
     // 依赖注入
-    inject,
+    inject: getInject({
+      vm
+    }),
     provide,
     // 生命周期函数
     onBeforeUnmount: function onBeforeUnmount() {
@@ -924,21 +1013,21 @@ var emitEvent = function emitEvent2(vm) {
   };
   return {
     dispatch: function dispatch(componentName, eventName) {
-      var parent2 = vm.$parent;
-      if (parent2.type === null)
+      var parent = vm.$parent;
+      if (parent.type === null)
         return;
-      var name = parent2.$options && parent2.$options.componentName;
-      while (parent2 && parent2.type && (!name || name !== componentName)) {
-        parent2 = parent2.$parent;
-        if (parent2)
-          name = parent2.$options && parent2.$options.componentName;
+      var name = parent.$options && parent.$options.componentName;
+      while (parent && parent.type && (!name || name !== componentName)) {
+        parent = parent.$parent;
+        if (parent)
+          name = parent.$options && parent.$options.componentName;
       }
-      if (parent2) {
+      if (parent) {
         var _parent;
         for (var _len7 = arguments.length, args = new Array(_len7 > 2 ? _len7 - 2 : 0), _key7 = 2; _key7 < _len7; _key7++) {
           args[_key7 - 2] = arguments[_key7];
         }
-        (_parent = parent2).emit.apply(_parent, [eventName].concat(args));
+        (_parent = parent).emit.apply(_parent, [eventName].concat(args));
       }
     },
     broadcast: function broadcast(componentName, eventName) {
@@ -956,8 +1045,8 @@ function getFiberByDom(dom) {
   });
   return dom[key];
 }
-function defaultBreaker(_ref8) {
-  var type = _ref8.type;
+function defaultBreaker(_ref9) {
+  var type = _ref9.type;
   if (type && typeof type !== "string") {
     return !compWhiteList.includes(type.name);
   }
@@ -993,9 +1082,13 @@ function getParentFiber(fiber, isFirst, child) {
   }
   return getParentFiber(fiber.return, false, fiber);
 }
+var fiberMap = /* @__PURE__ */ new WeakMap();
 function creatFiberCombine(fiber) {
   if (!fiber)
     return;
+  if (fiberMap.has(fiber)) {
+    return fiberMap.get(fiber);
+  }
   var refs = {};
   var children = [];
   traverseFiber(fiber.child, [function(fiber2) {
@@ -1009,15 +1102,17 @@ function creatFiberCombine(fiber) {
       children.push(fiber2);
     }
   }]);
-  return {
+  var fiberCombine = {
     fiber,
     refs,
     children
   };
+  fiberMap.set(fiber, fiberCombine);
+  return fiberCombine;
 }
 function useFiber() {
   var ref2 = useRef();
-  var _useState2 = useState(), parent2 = _useState2[0], setParent = _useState2[1];
+  var _useState2 = useState(), parent = _useState2[0], setParent = _useState2[1];
   var _useState3 = useState(), current = _useState3[0], setCurrent = _useState3[1];
   useEffect(function() {
     if (ref2.current) {
@@ -1028,7 +1123,7 @@ function useFiber() {
   }, []);
   return {
     ref: ref2,
-    parent: creatFiberCombine(parent2),
+    parent: creatFiberCombine(parent),
     current: creatFiberCombine(current)
   };
 }
@@ -1042,10 +1137,10 @@ function getEventByReactProps(props) {
       reactEvName,
       vueEvName: reactEvName.substr(2).toLowerCase()
     };
-  }).forEach(function(_ref9) {
-    var _Object$assign;
-    var reactEvName = _ref9.reactEvName, vueEvName = _ref9.vueEvName;
-    Object.assign($listeners2, (_Object$assign = {}, _Object$assign[vueEvName] = props[reactEvName], _Object$assign));
+  }).forEach(function(_ref10) {
+    var _Object$assign2;
+    var reactEvName = _ref10.reactEvName, vueEvName = _ref10.vueEvName;
+    Object.assign($listeners2, (_Object$assign2 = {}, _Object$assign2[vueEvName] = props[reactEvName], _Object$assign2));
   });
   return $listeners2;
 }
@@ -1065,91 +1160,91 @@ function Reactive(obj) {
   });
 }
 var vmProxy = {
-  $parent: function $parent(_ref10) {
-    var fiber = _ref10.fiber;
+  $parent: function $parent(_ref11) {
+    var fiber = _ref11.fiber;
     var parentFiber = getParentFiber(fiber);
     if (!parentFiber)
       return null;
     return createVmProxy(creatFiberCombine(parentFiber));
   },
-  $el: function $el(_ref11) {
+  $el: function $el(_ref12) {
     var _fiber$child;
-    var fiber = _ref11.fiber;
+    var fiber = _ref12.fiber;
     return (_fiber$child = fiber.child) == null ? void 0 : _fiber$child.stateNode;
   },
-  $refs: function $refs(_ref12) {
-    var refs = _ref12.refs, fiber = _ref12.fiber;
+  $refs: function $refs(_ref13) {
+    var refs = _ref13.refs, fiber = _ref13.fiber;
     return createRefsProxy(refs, fiber.constructor);
   },
-  $children: function $children(_ref13) {
-    var children = _ref13.children;
+  $children: function $children(_ref14) {
+    var children = _ref14.children;
     return children.map(function(fiber) {
       return createVmProxy(creatFiberCombine(getParentFiber(fiber)));
     });
   },
-  $listeners: function $listeners(_ref14) {
-    var fiber = _ref14.fiber;
+  $listeners: function $listeners(_ref15) {
+    var fiber = _ref15.fiber;
     return getEventByReactProps(fiber.memoizedProps);
   },
-  $attrs: function $attrs(_ref15) {
-    var fiber = _ref15.fiber;
+  $attrs: function $attrs(_ref16) {
+    var fiber = _ref16.fiber;
     return getAttrsByReactProps(fiber.memoizedProps);
   },
-  $slots: function $slots(_ref16) {
-    var fiber = _ref16.fiber;
-    return fiber.memoizedProps.slots;
-  },
-  $scopedSlots: function $scopedSlots(_ref17) {
+  $slots: function $slots(_ref17) {
     var fiber = _ref17.fiber;
     return fiber.memoizedProps.slots;
   },
-  $options: function $options(_ref18) {
+  $scopedSlots: function $scopedSlots(_ref18) {
     var fiber = _ref18.fiber;
+    return fiber.memoizedProps.slots;
+  },
+  $options: function $options(_ref19) {
+    var fiber = _ref19.fiber;
     return {
       componentName: fiber.type.name
     };
   },
-  $constants: function $constants(_ref19) {
-    var fiber = _ref19.fiber;
+  $constants: function $constants(_ref20) {
+    var fiber = _ref20.fiber;
     return fiber.memoizedProps._constants;
   },
-  $template: function $template(_ref20) {
-    var fiber = _ref20.fiber;
+  $template: function $template(_ref21) {
+    var fiber = _ref21.fiber;
     return fiber.memoizedProps.tiny_template;
   },
-  $renderless: function $renderless(_ref21) {
-    var fiber = _ref21.fiber;
+  $renderless: function $renderless(_ref22) {
+    var fiber = _ref22.fiber;
     return fiber.memoizedProps.tiny_renderless;
   },
   $mode: function $mode() {
     return "pc";
   },
-  state: function state(_ref22) {
-    var fiber = _ref22.fiber;
+  state: function state(_ref23) {
+    var fiber = _ref23.fiber;
     return findStateInHooks(fiber.memoizedState);
   },
-  $type: function $type(_ref23) {
-    var fiber = _ref23.fiber;
+  $type: function $type(_ref24) {
+    var fiber = _ref24.fiber;
     return fiber.type;
   },
   $service: function $service(_, vm) {
     var _vm$state;
     return (_vm$state = vm.state) == null ? void 0 : _vm$state.$service;
   },
-  $emit: function $emit(_ref24) {
-    var fiber = _ref24.fiber;
+  $emit: function $emit(_ref25) {
+    var fiber = _ref25.fiber;
     return emit(fiber.memoizedProps);
   },
-  $on: function $on(_ref25) {
-    var fiber = _ref25.fiber;
+  $on: function $on(_ref26) {
+    var fiber = _ref26.fiber;
     return on(fiber.memoizedProps);
   },
-  $once: function $once(_ref26) {
-    var fiber = _ref26.fiber;
+  $once: function $once(_ref27) {
+    var fiber = _ref27.fiber;
     return once(fiber.memoizedProps);
   },
-  $off: function $off(_ref27) {
-    var fiber = _ref27.fiber;
+  $off: function $off(_ref28) {
+    var fiber = _ref28.fiber;
     return off(fiber.memoizedProps);
   },
   $set: function $set() {
@@ -1207,7 +1302,7 @@ function findStateInHooks(hookStart) {
   return curHook && curHook.memoizedState && curHook.memoizedState.current;
 }
 function useVm() {
-  var _useFiber = useFiber(), ref2 = _useFiber.ref, current = _useFiber.current, parent2 = _useFiber.parent;
+  var _useFiber = useFiber(), ref2 = _useFiber.ref, current = _useFiber.current, parent = _useFiber.parent;
   if (!ref2.current) {
     return {
       ref: ref2,
@@ -1218,7 +1313,7 @@ function useVm() {
   return {
     ref: ref2,
     current: (current == null ? void 0 : current.fiber) && createVmProxy(current),
-    parent: (parent2 == null ? void 0 : parent2.fiber) && createVmProxy(parent2)
+    parent: (parent == null ? void 0 : parent.fiber) && createVmProxy(parent)
   };
 }
 function twJoin() {
@@ -3742,8 +3837,8 @@ var collectRefs = function collectRefs2(rootEl, $children2) {
   });
   return refs;
 };
-function useCreateVueInstance(_ref28) {
-  var $bus = _ref28.$bus, props = _ref28.props;
+function useCreateVueInstance(_ref29) {
+  var $bus = _ref29.$bus, props = _ref29.props;
   var ref2 = useRef();
   var vm = useOnceResult(function() {
     return reactive({
@@ -3809,9 +3904,9 @@ function useCreateVueInstance(_ref28) {
         $bus.on(eventName, $listeners2[eventName]);
       });
     }
-    var parent2 = vm.$parent;
-    if (Array.isArray(parent2.$children)) {
-      parent2.$children.push(vm);
+    var parent = vm.$parent;
+    if (Array.isArray(parent.$children)) {
+      parent.$children.push(vm);
     }
     nextTick(function() {
       vm.$el = ref2.current;
@@ -3828,13 +3923,13 @@ var mergeClass = function mergeClass2() {
   }
   return twMerge(stringifyCssClass(cssClasses));
 };
-var setup = function setup2(_ref29) {
-  var props = _ref29.props, renderless2 = _ref29.renderless, api2 = _ref29.api, _ref29$extendOptions = _ref29.extendOptions, extendOptions = _ref29$extendOptions === void 0 ? {} : _ref29$extendOptions, _ref29$classes = _ref29.classes, classes2 = _ref29$classes === void 0 ? {} : _ref29$classes, constants = _ref29.constants, vm = _ref29.vm, parent2 = _ref29.parent, $bus = _ref29.$bus;
+var setup = function setup2(_ref30) {
+  var props = _ref30.props, renderless2 = _ref30.renderless, api2 = _ref30.api, _ref30$extendOptions = _ref30.extendOptions, extendOptions = _ref30$extendOptions === void 0 ? {} : _ref30$extendOptions, _ref30$classes = _ref30.classes, classes2 = _ref30$classes === void 0 ? {} : _ref30$classes, constants = _ref30.constants, vm = _ref30.vm, parent = _ref30.parent, $bus = _ref30.$bus;
   var render = typeof props.tiny_renderless === "function" ? props.tiny_renderless : renderless2;
   var _emitEvent = emitEvent(vm), dispatch = _emitEvent.dispatch, broadcast = _emitEvent.broadcast;
   var utils = {
     vm,
-    parent: parent2,
+    parent,
     emit: vm.$emit,
     // FIXME: fix the modal renderless types
     emitter: function emitter() {
@@ -3852,7 +3947,8 @@ var setup = function setup2(_ref29) {
     mode: props.tiny_mode
   };
   var sdk = render(props, _extends({}, generateVueHooks({
-    $bus
+    $bus,
+    vm
   })), utils, extendOptions);
   var attrs = {
     a: filterAttrs,
@@ -3872,8 +3968,8 @@ var setup = function setup2(_ref29) {
   }
   return attrs;
 };
-var useSetup = function useSetup2(_ref30) {
-  var props = _ref30.props, renderless2 = _ref30.renderless, api2 = _ref30.api, _ref30$extendOptions = _ref30.extendOptions, extendOptions = _ref30$extendOptions === void 0 ? {} : _ref30$extendOptions, _ref30$classes = _ref30.classes, classes2 = _ref30$classes === void 0 ? {} : _ref30$classes, constants = _ref30.constants;
+var useSetup = function useSetup2(_ref31) {
+  var props = _ref31.props, renderless2 = _ref31.renderless, api2 = _ref31.api, _ref31$extendOptions = _ref31.extendOptions, extendOptions = _ref31$extendOptions === void 0 ? {} : _ref31$extendOptions, _ref31$classes = _ref31.classes, classes2 = _ref31$classes === void 0 ? {} : _ref31$classes, constants = _ref31.constants, parent = _ref31.parent;
   var $bus = useOnceResult(function() {
     return eventBus();
   });
@@ -3893,6 +3989,14 @@ var useSetup = function useSetup2(_ref30) {
     return reactive(props);
   });
   Object.assign(reactiveProps, props);
+  var reactiveParent = useOnceResult(function() {
+    return reactive({
+      $parent: parent
+    });
+  });
+  Object.assign(reactiveParent, {
+    $parent: parent
+  });
   var _useCreateVueInstance = useCreateVueInstance({
     $bus,
     props
@@ -3908,7 +4012,7 @@ var useSetup = function useSetup2(_ref30) {
         extendOptions,
         classes: classes2,
         vm,
-        parent,
+        parent: reactiveParent,
         $bus
       });
     });
@@ -3972,13 +4076,13 @@ function Button$3(props) {
       click: props.onClick
     }
   }, props);
-  var _useVm = useVm(), ref2 = _useVm.ref, parent2 = _useVm.parent, vm = _useVm.current;
+  var _useVm = useVm(), ref2 = _useVm.ref, parent = _useVm.parent, vm = _useVm.current;
   var _useSetup = useSetup({
     props: defaultProps,
     renderless,
     api,
     vm,
-    parent: parent2
+    parent
   }), handleClick = _useSetup.handleClick, state2 = _useSetup.state, a = _useSetup.a;
   var $attrs2 = a(props, define_props$2, false);
   return /* @__PURE__ */ React.createElement("button", _extends({
@@ -4016,12 +4120,12 @@ function Button$2(props) {
     nativeType,
     resetTime
   }, props);
-  var _useVm2 = useVm(), ref2 = _useVm2.ref, parent2 = _useVm2.parent, vm = _useVm2.current;
+  var _useVm2 = useVm(), ref2 = _useVm2.ref, parent = _useVm2.parent, vm = _useVm2.current;
   var _useSetup2 = useSetup({
     props: defaultProps,
     renderless,
     api,
-    parent: parent2,
+    parent,
     vm
   }), handleClick = _useSetup2.handleClick, state2 = _useSetup2.state, a = _useSetup2.a;
   var $attrs2 = a(props, define_props$1, false);
@@ -4105,14 +4209,14 @@ function Button$1(props) {
     nativeType,
     resetTime
   }, props);
-  var _useVm3 = useVm(), ref2 = _useVm3.ref, parent2 = _useVm3.parent, vm = _useVm3.current;
+  var _useVm3 = useVm(), ref2 = _useVm3.ref, parent = _useVm3.parent, vm = _useVm3.current;
   var _useSetup3 = useSetup({
     api,
     renderless,
     props: defaultProps,
     classes,
     ref: ref2,
-    parent: parent2,
+    parent,
     vm
   }), handleClick = _useSetup3.handleClick, state2 = _useSetup3.state, a = _useSetup3.a, m = _useSetup3.m, gcls = _useSetup3.gcls;
   var $attrs2 = a(props, define_props, false);
@@ -4178,7 +4282,7 @@ var $constants2 = {
   }
 };
 var pc = forwardRef(function Modal(props, fRef) {
-  var _ref31;
+  var _ref32;
   var _props$animat = props.animat, animat = _props$animat === void 0 ? true : _props$animat, beforeClose = props.beforeClose, _props$duration = props.duration, duration = _props$duration === void 0 ? 3e3 : _props$duration, escClosable = props.escClosable, events = props.events, fullscreen = props.fullscreen, height = props.height, id = props.id, _props$isFormReset = props.isFormReset, isFormReset = _props$isFormReset === void 0 ? true : _props$isFormReset, lockScroll = props.lockScroll, _props$lockView = props.lockView, lockView = _props$lockView === void 0 ? true : _props$lockView, _props$marginSize = props.marginSize, marginSize = _props$marginSize === void 0 ? 10 : _props$marginSize, _props$mask = props.mask, mask = _props$mask === void 0 ? true : _props$mask, maskClosable = props.maskClosable, message = props.message, minHeight = props.minHeight, minWidth = props.minWidth, modelValue = props.modelValue, resize = props.resize, showFooter = props.showFooter, showHeader = props.showHeader, _props$status = props.status, status = _props$status === void 0 ? "" : _props$status, title = props.title, _props$top = props.top, top = _props$top === void 0 ? 80 : _props$top, _props$type3 = props.type, type = _props$type3 === void 0 ? "alert" : _props$type3, vSize = props.vSize, width = props.width, zIndex = props.zIndex, showClose = props.showClose, messageClosable = props.messageClosable, confirmContent = props.confirmContent, cancelContent = props.cancelContent, confirmBtnProps = props.confirmBtnProps, cancelBtnProps = props.cancelBtnProps, footerDragable = props.footerDragable, tiny_theme = props.tiny_theme, _props$slots2 = props.slots, slots = _props$slots2 === void 0 ? {} : _props$slots2, _props$_constants = props._constants, _constants = _props$_constants === void 0 ? $constants2 : _props$_constants;
   var defaultProps = Object.assign({
     _constants,
@@ -4195,14 +4299,14 @@ var pc = forwardRef(function Modal(props, fRef) {
       hide: events.hide
     }
   }, props);
-  var _useVm4 = useVm(), vm = _useVm4.current, parent2 = _useVm4.parent;
+  var _useVm4 = useVm(), vm = _useVm4.current, parent = _useVm4.parent;
   var _useSetup4 = useSetup({
     props: defaultProps,
     renderless: renderless$1,
     api: api$1,
     constants: _constants,
     vm,
-    parent: parent2
+    parent
   }), state2 = _useSetup4.state, scopedSlots = _useSetup4.scopedSlots, confirmEvent = _useSetup4.confirmEvent, cancelEvent = _useSetup4.cancelEvent, closeEvent = _useSetup4.closeEvent, toggleZoomEvent = _useSetup4.toggleZoomEvent, mouseEnterEvent = _useSetup4.mouseEnterEvent, mouseLeaveEvent = _useSetup4.mouseLeaveEvent, selfClickEvent = _useSetup4.selfClickEvent, mousedownEvent = _useSetup4.mousedownEvent, dragEvent = _useSetup4.dragEvent, open = _useSetup4.open, ref2 = _useSetup4._.ref;
   useImperativeHandle(fRef, function() {
     return {
@@ -4221,7 +4325,7 @@ var pc = forwardRef(function Modal(props, fRef) {
   confirmContent || (confirmBtnProps == null ? void 0 : confirmBtnProps.text) || "Confirm";
   cancelContent || (cancelBtnProps == null ? void 0 : cancelBtnProps.text) || "Cancel";
   return /* @__PURE__ */ React.createElement("div", {
-    className: vc(["tiny-modal", "tiny-modal__wrapper", "type__" + type, (_ref31 = {}, _ref31["size__" + vSize] = vSize, _ref31["status__" + status] = typeof status === "string", _ref31["is__animat"] = animat, _ref31["lock__scroll"] = lockScroll, _ref31["lock__view"] = lockView, _ref31["is__mask"] = mask, _ref31["is__maximize"] = state2.zoomLocat, _ref31["is__visible"] = state2.contentVisible, _ref31["active"] = state2.visible, _ref31)]),
+    className: vc(["tiny-modal", "tiny-modal__wrapper", "type__" + type, (_ref32 = {}, _ref32["size__" + vSize] = vSize, _ref32["status__" + status] = typeof status === "string", _ref32["is__animat"] = animat, _ref32["lock__scroll"] = lockScroll, _ref32["lock__view"] = lockView, _ref32["is__mask"] = mask, _ref32["is__maximize"] = state2.zoomLocat, _ref32["is__visible"] = state2.contentVisible, _ref32["active"] = state2.visible, _ref32)]),
     style: {
       zIndex: state2.modalZindex,
       top: state2.modalTop ? state2.modalTop + "px" : null
@@ -4330,12 +4434,12 @@ types.forEach(function(type) {
     var instance = React$1.createElement(pc, _extends({
       message: message.toString()
     }, defOpts[type], opts, options, {
-      ref: function ref2(_ref32) {
-        _ref32.open();
+      ref: function ref2(_ref33) {
+        _ref33.open();
       },
       events: {
-        hide: function hide(_ref33) {
-          var $modal = _ref33.$modal;
+        hide: function hide(_ref34) {
+          var $modal = _ref34.$modal;
           if ($modal.beforeUnmouted) {
             $modal.beforeUnmouted();
           }
@@ -4357,6 +4461,7 @@ export {
   IconSuccess as d,
   IconError as e,
   IconWarning as f,
+  useProvide as g,
   pc as p,
   useVm as u,
   vc as v

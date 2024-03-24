@@ -68,6 +68,19 @@
     "type": "template",
     "exclude": false
   },
+  "Col": {
+    "path": "react/src/col/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "ColPc": {
+    "path": "react/src/col/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
   "Common": {
     "path": "react/src/common/src/index.ts",
     "type": "module",

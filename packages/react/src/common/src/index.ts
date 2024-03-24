@@ -56,7 +56,8 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
     props,
     {
       ...generateVueHooks({
-        $bus
+        $bus,
+        vm
       })
     },
     utils,
@@ -83,7 +84,7 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
   return attrs
 }
 
-export const useSetup = ({ props, renderless, api, extendOptions = {}, classes = {}, constants }) => {
+export const useSetup = ({ props, renderless, api, extendOptions = {}, classes = {}, constants, parent }) => {
   const $bus = useOnceResult(() => eventBus())
 
   // 刷新逻辑
@@ -104,6 +105,11 @@ export const useSetup = ({ props, renderless, api, extendOptions = {}, classes =
   const reactiveProps = useOnceResult(() => reactive(props))
   Object.assign(reactiveProps, props)
 
+  const reactiveParent = useOnceResult(() => reactive({ $parent: parent }))
+  Object.assign(reactiveParent, {
+    $parent: parent
+  })
+
   const { ref, vm } = useCreateVueInstance({
     $bus,
     props
@@ -123,7 +129,7 @@ export const useSetup = ({ props, renderless, api, extendOptions = {}, classes =
         extendOptions,
         classes,
         vm,
-        parent,
+        parent: reactiveParent,
         $bus
       })
     })

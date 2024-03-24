@@ -1,20 +1,73 @@
 import React from 'react'
-function _extends() {
-  _extends = Object.assign ? Object.assign.bind() : function(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-    return target;
-  };
-  return _extends.apply(this, arguments);
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  _setPrototypeOf(subClass, superClass);
 }
-import { renderless, api } from "@opentiny/vue-renderless/alert/vue";
-import { S as Svg, u as useVm, a as useSetup, I as If, v as vc, C as Component, b as Slot, c as IconClose, d as IconSuccess, e as IconError, f as IconWarning } from "./index-28717adb.mjs";
+function _wrapNativeSuper(Class) {
+  var _cache = typeof Map === "function" ? /* @__PURE__ */ new Map() : void 0;
+  _wrapNativeSuper = function _wrapNativeSuper2(Class2) {
+    if (Class2 === null || !_isNativeFunction(Class2))
+      return Class2;
+    if (typeof Class2 !== "function") {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+    if (typeof _cache !== "undefined") {
+      if (_cache.has(Class2))
+        return _cache.get(Class2);
+      _cache.set(Class2, Wrapper);
+    }
+    function Wrapper() {
+      return _construct(Class2, arguments, _getPrototypeOf(this).constructor);
+    }
+    Wrapper.prototype = Object.create(Class2.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } });
+    return _setPrototypeOf(Wrapper, Class2);
+  };
+  return _wrapNativeSuper(Class);
+}
+function _construct(t, e, r) {
+  if (_isNativeReflectConstruct())
+    return Reflect.construct.apply(null, arguments);
+  var o = [null];
+  o.push.apply(o, e);
+  var p = new (t.bind.apply(t, o))();
+  return r && _setPrototypeOf(p, r.prototype), p;
+}
+function _isNativeReflectConstruct() {
+  try {
+    var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
+    }));
+  } catch (t2) {
+  }
+  return (_isNativeReflectConstruct = function _isNativeReflectConstruct2() {
+    return !!t;
+  })();
+}
+function _isNativeFunction(fn) {
+  try {
+    return Function.toString.call(fn).indexOf("[native code]") !== -1;
+  } catch (e) {
+    return typeof fn === "function";
+  }
+}
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf2(o2, p2) {
+    o2.__proto__ = p2;
+    return o2;
+  };
+  return _setPrototypeOf(o, p);
+}
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf2(o2) {
+    return o2.__proto__ || Object.getPrototypeOf(o2);
+  };
+  return _getPrototypeOf(o);
+}
+import "@opentiny/vue-renderless/alert/vue";
+import "../index-3d3bc6e4.mjs";
+import "@vue/runtime-core";
+import "react";
+import "@opentiny/vue-theme/base/index.less";
 import "@opentiny/vue-theme/svgs/activation.svg";
 import "@opentiny/vue-theme/svgs/add.svg";
 import "@opentiny/vue-theme/svgs/add-circle.svg";
@@ -59,12 +112,13 @@ import "@opentiny/vue-theme/svgs/check-out.svg";
 import "@opentiny/vue-theme/svgs/checked-linear.svg";
 import "@opentiny/vue-theme/svgs/checked-sur.svg";
 import "@opentiny/vue-theme/svgs/checked-true.svg";
-import { ReactComponent } from "@opentiny/vue-theme/svgs/chevron-down.svg";
+import "@opentiny/vue-theme/svgs/chevron-down.svg";
 import "@opentiny/vue-theme/svgs/chevron-left.svg";
 import "@opentiny/vue-theme/svgs/chevron-right.svg";
 import "@opentiny/vue-theme/svgs/chevron-up.svg";
 import "@opentiny/vue-theme/svgs/clear-filter.svg";
 import "@opentiny/vue-theme/svgs/clock-work.svg";
+import "@opentiny/vue-theme/svgs/close.svg";
 import "@opentiny/vue-theme/svgs/close-circle.svg";
 import "@opentiny/vue-theme/svgs/close-square.svg";
 import "@opentiny/vue-theme/svgs/cloud-download.svg";
@@ -153,6 +207,7 @@ import "@opentiny/vue-theme/svgs/ellipsis.svg";
 import "@opentiny/vue-theme/svgs/email-add.svg";
 import "@opentiny/vue-theme/svgs/email-circle.svg";
 import "@opentiny/vue-theme/svgs/end.svg";
+import "@opentiny/vue-theme/svgs/error.svg";
 import "@opentiny/vue-theme/svgs/espace.svg";
 import "@opentiny/vue-theme/svgs/espace-auto.svg";
 import "@opentiny/vue-theme/svgs/excel.svg";
@@ -200,10 +255,7 @@ import "@opentiny/vue-theme/svgs/group-transfer.svg";
 import "@opentiny/vue-theme/svgs/halfchecked.svg";
 import "@opentiny/vue-theme/svgs/halfselect.svg";
 import "@opentiny/vue-theme/svgs/heartempty.svg";
-import "@vue/runtime-core";
-import "react";
-import "@opentiny/vue-theme/base/index.less";
-import { ReactComponent as ReactComponent$1 } from "@opentiny/vue-theme/svgs/help.svg";
+import "@opentiny/vue-theme/svgs/help.svg";
 import "@opentiny/vue-theme/svgs/help-circle.svg";
 import "@opentiny/vue-theme/svgs/help-query.svg";
 import "@opentiny/vue-theme/svgs/help-solid.svg";
@@ -416,6 +468,7 @@ import "@opentiny/vue-theme/svgs/stop.svg";
 import "@opentiny/vue-theme/svgs/stream-solid.svg";
 import "@opentiny/vue-theme/svgs/stretch.svg";
 import "@opentiny/vue-theme/svgs/subscript.svg";
+import "@opentiny/vue-theme/svgs/success.svg";
 import "@opentiny/vue-theme/svgs/successful.svg";
 import "@opentiny/vue-theme/svgs/table-mode.svg";
 import "@opentiny/vue-theme/svgs/tablet-view.svg";
@@ -453,6 +506,7 @@ import "@opentiny/vue-theme/svgs/video-type.svg";
 import "@opentiny/vue-theme/svgs/view.svg";
 import "@opentiny/vue-theme/svgs/vuejs.svg";
 import "@opentiny/vue-theme/svgs/warn.svg";
+import "@opentiny/vue-theme/svgs/warning.svg";
 import "@opentiny/vue-theme/svgs/warning-o.svg";
 import "@opentiny/vue-theme/svgs/warning-triangle.svg";
 import "@opentiny/vue-theme/svgs/weaknet.svg";
@@ -466,316 +520,80 @@ import "@opentiny/vue-theme/svgs/zoom-in.svg";
 import "@opentiny/vue-theme/svgs/zoom-out.svg";
 import "@opentiny/vue-theme/alert/index.less";
 import "@opentiny/vue-theme-mobile/alert/index.less";
-var IconChevronDown = Svg({
-  name: "IconChevronDown",
-  component: ReactComponent
-});
-var IconHelp = Svg({
-  name: "IconHelp",
-  component: ReactComponent$1
-});
-var $constants$2 = {
-  ICON_MAP: {
-    success: IconSuccess,
-    error: IconError,
-    info: IconHelp,
-    warning: IconWarning
-  },
-  TITLE_MAP: {
-    success: "ui.alert.success",
-    error: "ui.alert.error",
-    info: "ui.alert.info",
-    warning: "ui.alert.warning"
-  },
-  CONTENT_MAXHEUGHT: 252
-};
-function Alert$3(props) {
-  var _props$type = props.type, type = _props$type === void 0 ? "info" : _props$type, _props$size = props.size, size = _props$size === void 0 ? "normal" : _props$size, _props$center = props.center, center = _props$center === void 0 ? false : _props$center, _props$showIcon = props.showIcon, showIcon = _props$showIcon === void 0 ? true : _props$showIcon, _props$description = props.description, description = _props$description === void 0 ? "" : _props$description, _props$slots = props.slots, slots = _props$slots === void 0 ? {} : _props$slots, _props$_constants = props._constants, _constants = _props$_constants === void 0 ? $constants$2 : _props$_constants, _props$closable = props.closable, closable = _props$closable === void 0 ? true : _props$closable, closeText = props.closeText, title = props.title, customClass = props.customClass, icon = props.icon;
-  var defaultProps = {
-    type,
-    size,
-    center,
-    showIcon,
-    description,
-    slots,
-    _constants,
-    closable,
-    closeText,
-    title,
-    customClass,
-    icon
+import "@opentiny/vue-renderless/badge/vue";
+import "@opentiny/vue-theme/badge/index.less";
+import "@opentiny/vue-theme-mobile/badge/index.less";
+import "@opentiny/vue-renderless/button/vue";
+import "@opentiny/vue-theme/button/index.less";
+import "@opentiny/vue-theme-mobile/button/index.less";
+import { C as Col } from "../index-86da73c6.mjs";
+import "@opentiny/vue-theme/col/index.less";
+import { L as Layout, R as Row } from "../index-b815163f.mjs";
+import "@opentiny/vue-theme/layout/index.less";
+import "@opentiny/vue-theme/row/index.less";
+import "@opentiny/vue-renderless/switch/vue";
+import "@opentiny/vue-theme/switch/index.less";
+import ReactDOM from "react-dom/client";
+import "@opentiny/vue-renderless/modal/vue";
+import "@opentiny/vue-theme/modal/index.less";
+import "@opentiny/vue-renderless/col/vue";
+import "@opentiny/vue-renderless/layout/vue";
+import "@opentiny/vue-renderless/row/vue";
+var scopeId = "scope-" + Math.random().toString(36).substr(2, 9);
+function App() {
+  return /* @__PURE__ */ React.createElement("div", {
+    className: "content"
+  }, /* @__PURE__ */ React.createElement("style", null, '\n          [data-v="' + scopeId + '"] .tiny-row {\n            margin-bottom: 20px;\n          }\n          \n          [data-v="' + scopeId + '"] .tiny-row .last-child {\n            margin-bottom: 0;\n          }\n          \n          [data-v="' + scopeId + '"] .tiny-col .col {\n            line-height: 30px;\n            text-align: center;\n            color: #fff;\n            background: #1f9ed8;\n            border-radius: 15px;\n          }\n          \n          [data-v="' + scopeId + '"] .tiny-col:nth-child(even) .col {\n            background: #73d0fc;\n          }\n          \n          [data-v="' + scopeId + '"] .lg {\n            height: 80px;\n          }\n          \n          [data-v="' + scopeId + '"] .md {\n            height: 60px;\n          }\n          \n          [data-v="' + scopeId + '"] .sm {\n            height: 40px;\n          }\n        '), /* @__PURE__ */ React.createElement("div", {
+    "data-v": scopeId
+  }, /* @__PURE__ */ React.createElement(Layout, {
+    className: "tiny-layout-responsive-layout"
+  }, /* @__PURE__ */ React.createElement(Row, {
+    gutter: 10
+  }, /* @__PURE__ */ React.createElement(Col, {
+    xs: 4,
+    sm: 3,
+    md: 2,
+    lg: 4,
+    xl: 1
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "col"
+  }, "1")), /* @__PURE__ */ React.createElement(Col, {
+    xs: 2,
+    sm: 3,
+    md: 4,
+    lg: 2,
+    xl: 5
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "col"
+  }, "2")), /* @__PURE__ */ React.createElement(Col, {
+    xs: 2,
+    sm: 3,
+    md: 4,
+    lg: 4,
+    xl: 5
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "col"
+  }, "3")), /* @__PURE__ */ React.createElement(Col, {
+    xs: 4,
+    sm: 3,
+    md: 2,
+    lg: 2,
+    xl: 1
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "col"
+  }, "4"))))));
+}
+var CustomElement = /* @__PURE__ */ function(_HTMLElement) {
+  function CustomElement2() {
+    return _HTMLElement.apply(this, arguments) || this;
+  }
+  _inheritsLoose(CustomElement2, _HTMLElement);
+  var _proto = CustomElement2.prototype;
+  _proto.connectedCallback = function connectedCallback() {
+    ReactDOM.createRoot(this).render(/* @__PURE__ */ React.createElement(App, null));
   };
-  var _useVm = useVm(), ref = _useVm.ref, vm = _useVm.current, parent = _useVm.parent;
-  var _useSetup = useSetup({
-    props: defaultProps,
-    renderless,
-    api,
-    constants: _constants,
-    vm,
-    parent
-  }), state = _useSetup.state, handleClose = _useSetup.handleClose;
-  return /* @__PURE__ */ React.createElement("div", {
-    className: "tiny-transition-alert-fade",
-    ref
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": state.show
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc(["tiny-alert", "tiny-alert--" + type, "tiny-alert--" + size, center && "is-center", customClass])
-  }, /* @__PURE__ */ React.createElement(Component, {
-    "v-if": showIcon,
-    is: state.getIcon,
-    className: "tiny-svg-size tiny-alert__icon"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: "tiny-alert__content"
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "tiny-alert__title"
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    name: "title",
-    slots: props.slots
-  }, state.getTitle))), /* @__PURE__ */ React.createElement("div", {
-    className: vc(["tiny-alert__description", size === "large" && !description && !slots.description && "is-hide"])
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    name: "description",
-    slots: props.slots
-  }, description)), /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "tiny-alert__opration"
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    slots: props.slots,
-    parent_children: props.children
-  })))), /* @__PURE__ */ React.createElement(If, {
-    "v-if": !closeText && closable
-  }, /* @__PURE__ */ React.createElement(IconClose, {
-    className: vc(["tiny-svg-size", "tiny-alert__icon", "tiny-alert__close"]),
-    onClick: handleClose
-  })), /* @__PURE__ */ React.createElement(If, {
-    "v-if": closeText && closable
-  }, /* @__PURE__ */ React.createElement("span", {
-    className: "is-custom",
-    onClick: handleClose
-  }, closeText)))));
-}
-var $constants$1 = {
-  ICON_MAP: {
-    success: IconSuccess,
-    error: IconError,
-    info: IconHelp,
-    warning: IconWarning
-  },
-  TITLE_MAP: {
-    success: "ui.alert.success",
-    error: "ui.alert.error",
-    info: "ui.alert.info",
-    warning: "ui.alert.warning"
-  },
-  CONTENT_MAXHEUGHT: 252
-};
-function Alert$2(props) {
-  var _props$type2 = props.type, type = _props$type2 === void 0 ? "success" : _props$type2, _props$size2 = props.size, size = _props$size2 === void 0 ? "normal" : _props$size2, _props$showIcon2 = props.showIcon, showIcon = _props$showIcon2 === void 0 ? true : _props$showIcon2, _props$closable2 = props.closable, closable = _props$closable2 === void 0 ? true : _props$closable2, closeText = props.closeText, _props$_constants2 = props._constants, _constants = _props$_constants2 === void 0 ? $constants$1 : _props$_constants2, _props$description2 = props.description, description = _props$description2 === void 0 ? "" : _props$description2;
-  var defaultProps = Object.assign({
-    type,
-    size,
-    showIcon,
-    closable,
-    _constants
-  }, props);
-  var _useVm2 = useVm(), ref = _useVm2.ref, vm = _useVm2.current, parent = _useVm2.parent;
-  var _useSetup2 = useSetup({
-    props: defaultProps,
-    renderless,
-    api,
-    vm,
-    parent,
-    constants: _constants
-  }), state = _useSetup2.state, handleClose = _useSetup2.handleClose;
-  return /* @__PURE__ */ React.createElement("div", {
-    ref
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": state.show
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc(["tiny-mobile-alert", "tiny-mobile-alert--" + type, "tiny-mobile-alert--" + size, "is-center"])
-  }, /* @__PURE__ */ React.createElement(Component, {
-    "v-if": showIcon,
-    is: state.getIcon,
-    className: "tiny-mobile-alert__icon"
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: vc([["tiny-mobile-alert__content", {
-      "is-hideicon": !showIcon
-    }]])
-  }, /* @__PURE__ */ React.createElement(Slot, _extends({}, props), description)), /* @__PURE__ */ React.createElement(If, {
-    "v-if": !closeText && closable
-  }, /* @__PURE__ */ React.createElement(IconClose, {
-    onClick: handleClose,
-    className: "tiny-mobile-alert__icon tiny-mobile-alert__close"
-  })), /* @__PURE__ */ React.createElement(If, {
-    "v-if": closeText && closable
-  }, /* @__PURE__ */ React.createElement("span", {
-    onClick: handleClose,
-    className: "is-custom"
-  }, closeText)))));
-}
-var $constants = {
-  ICON_MAP: {
-    success: IconSuccess,
-    error: IconError,
-    info: IconHelp,
-    warning: IconWarning
-  },
-  TITLE_MAP: {
-    success: "ui.alert.success",
-    error: "ui.alert.error",
-    info: "ui.alert.info",
-    warning: "ui.alert.warning"
-  },
-  CONTENT_MAXHEUGHT: 252
-};
-function Alert$1(props) {
-  var _props$type3 = props.type, type = _props$type3 === void 0 ? "success" : _props$type3, _props$size3 = props.size, size = _props$size3 === void 0 ? "normal" : _props$size3, _props$center2 = props.center, center = _props$center2 === void 0 ? false : _props$center2, _props$showIcon3 = props.showIcon, showIcon = _props$showIcon3 === void 0 ? true : _props$showIcon3, _props$description3 = props.description, description = _props$description3 === void 0 ? "" : _props$description3, _props$slots2 = props.slots, slots = _props$slots2 === void 0 ? {} : _props$slots2, _props$_constants3 = props._constants, _constants = _props$_constants3 === void 0 ? $constants : _props$_constants3, _props$closable3 = props.closable, closable = _props$closable3 === void 0 ? true : _props$closable3, closeText = props.closeText, title = props.title, _props$showFoldable = props.showFoldable, showFoldable = _props$showFoldable === void 0 ? true : _props$showFoldable, singleLine = props.singleLine, scrolling = props.scrolling;
-  var defaultProps = {
-    type,
-    size,
-    center,
-    showIcon,
-    description,
-    slots,
-    _constants,
-    closable,
-    closeText,
-    title,
-    showFoldable
-  };
-  var _useVm3 = useVm(), ref = _useVm3.ref, vm = _useVm3.current, parent = _useVm3.parent;
-  var _useSetup3 = useSetup({
-    props: defaultProps,
-    renderless,
-    api,
-    constants: _constants,
-    vm,
-    parent
-  }), state = _useSetup3.state, handleHeaderClick = _useSetup3.handleHeaderClick;
-  return /* @__PURE__ */ React.createElement("div", {
-    ref
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": state.show
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc(["min-h-min flex py-2 sm:py-3 px-4 my-2 rounded box-border font-light sm:font-normal", {
-      "bg-color-info-secondary-subtle": type === "info" || !type
-    }, {
-      "bg-color-error-subtler": type === "error"
-    }, {
-      "bg-color-warning-subtler": type === "warning"
-    }, {
-      "bg-color-success-subtler": type === "success"
-    }, {
-      "text-center": center
-    }])
-  }, /* @__PURE__ */ React.createElement(Component, {
-    "v-if": showIcon,
-    is: state.getIcon,
-    className: vc(["h-4.5 w-4.5 mt-1 sm:mt-0.5 sm:h-6 sm:w-5 sm:h-5 fill-current", {
-      "text-color-info-secondary": type === "info" || !type
-    }, {
-      "text-color-error": type === "error"
-    }, {
-      "text-color-warning": type === "warning"
-    }, {
-      "text-color-success": type === "success"
-    }])
-  }), /* @__PURE__ */ React.createElement(If, {
-    "v-if": showFoldable
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc(["flex-1 leading-6 text-sm overflow-hidden cursor-pointer", showIcon ? "mx-2" : "mr-2"])
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large"
-  }, /* @__PURE__ */ React.createElement("div", {
-    onClick: handleHeaderClick,
-    className: "inline-flex cursor-pointer font-medium"
-  }, /* @__PURE__ */ React.createElement("span", null, /* @__PURE__ */ React.createElement(Slot, {
-    name: "title",
-    slots: props.slots
-  }, state.getTitle)), /* @__PURE__ */ React.createElement("span", {
-    className: "ml-2.5"
-  }, /* @__PURE__ */ React.createElement(IconChevronDown, {
-    className: vc(["transition-transform duration-300 align-top my-1 fill-color-icon-placeholder", state.contentVisible ? "rotate-180" : "rotate-0"])
-  })))), /* @__PURE__ */ React.createElement("div", {
-    v_ref: "ContentDescribe",
-    className: vc(["transition-all duration-900 ease-linear", {
-      "hidden": size === "large" && !description && !slots.description
-    }, {
-      "overflow-y-auto": state.scrollStatus
-    }, state.contentVisible ? "max-h-[theme(spacing.72)]" : "max-h-0"])
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc([{
-      "truncate": singleLine
-    }, {
-      "hover:animate-[leftMove_10s_linear_infinite] hover:overflow-visible cursor-pointer": singleLine && scrolling
-    }])
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    name: "description",
-    slots: props.slots
-  }, description))), /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large" && (slots.default || props.children)
-  }, /* @__PURE__ */ React.createElement("div", {
-    v_ref: "ContentDefault",
-    className: vc(["transition-all duration-900 ease-linear", {
-      "pt-2": description && state.contentVisible
-    }, {
-      "overflow-y-auto": state.scrollStatus
-    }, state.contentVisible ? "max-h-[theme(spacing.72)]" : "max-h-0"])
-  }, /* @__PURE__ */ React.createElement(Slot, _extends({}, props)))))), /* @__PURE__ */ React.createElement(If, {
-    "v-if": !showFoldable
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc(["flex-1 leading-6 text-sm overflow-hidden cursor-pointer", showIcon ? "mx-2" : "mr-2"])
-  }, /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large"
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "font-medium"
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    name: "title",
-    slots: props.slots
-  }, state.getTitle))), /* @__PURE__ */ React.createElement("div", {
-    className: vc([{
-      "hidden": size === "large" && !description && !slots.description
-    }])
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: vc([{
-      "truncate": singleLine
-    }, {
-      "hover:animate-[leftMove_10s_linear_infinite] hover:overflow-visible cursor-pointer": singleLine && scrolling
-    }])
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    name: "description",
-    slots: props.slots
-  }, description))), /* @__PURE__ */ React.createElement(If, {
-    "v-if": size === "large" && slots.default
-  }, /* @__PURE__ */ React.createElement("div", {
-    className: "pt-2"
-  }, /* @__PURE__ */ React.createElement(Slot, {
-    slots: props.slots
-  }))))), /* @__PURE__ */ React.createElement(If, {
-    "v-if": !closeText && closable
-  }, /* @__PURE__ */ React.createElement(IconClose, {
-    className: "h-4 w-4 mt-1 cursor-pointer fill-color-text-primary opacity-70",
-    onClick: close
-  })), /* @__PURE__ */ React.createElement(If, {
-    "v-if": closeText && closable
-  }, /* @__PURE__ */ React.createElement("span", {
-    onClick: close,
-    className: "leading-6 text-sm cursor-pointer"
-  }, closeText)))));
-}
-function Alert(props) {
-  var _props$tiny_mode = props.tiny_mode, tiny_mode = _props$tiny_mode === void 0 ? "pc" : _props$tiny_mode;
-  var S = {
-    pc: Alert$3,
-    mobile: Alert$2,
-    "mobile-first": Alert$1
-  }[tiny_mode];
-  return S(props);
-}
+  return CustomElement2;
+}(/* @__PURE__ */ _wrapNativeSuper(HTMLElement));
 export {
-  Alert as A
+  CustomElement as default
 };

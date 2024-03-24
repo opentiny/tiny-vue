@@ -29,12 +29,12 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   return target;
 }
 import { renderless, api } from "@opentiny/vue-renderless/layout/vue";
-import { u as useVm, a as useSetup, C as Component, b as Slot, v as vc } from "./index-28717adb.mjs";
+import { u as useVm, a as useSetup, g as useProvide, C as Component, b as Slot, v as vc } from "./index-3d3bc6e4.mjs";
 import { renderless as renderless$1, api as api$1 } from "@opentiny/vue-renderless/row/vue";
 function Layout$1(props) {
   var _props$tag = props.tag, tag = _props$tag === void 0 ? "div" : _props$tag, _props$slots = props.slots, slots = _props$slots === void 0 ? {} : _props$slots, restProps = _objectWithoutPropertiesLoose(props, _excluded);
-  var _useVm = useVm(), ref = _useVm.ref, vm = _useVm.current, parent = _useVm.parent;
-  useSetup({
+  var _useVm = useVm(), _ref = _useVm.ref, vm = _useVm.current, parent = _useVm.parent;
+  var _useSetup = useSetup({
     props: _extends({
       tag
     }, restProps),
@@ -42,10 +42,17 @@ function Layout$1(props) {
     api,
     vm,
     parent
+  }), _ = _useSetup._;
+  useProvide(_.vm, "layout", {
+    cols: props.cols
   });
   return /* @__PURE__ */ React.createElement(Component, {
     is: tag,
-    className: "tiny-layout"
+    className: "tiny-layout",
+    ref: function ref(ins) {
+      _ref.current = ins;
+      _.ref.current = ins;
+    }
   }, /* @__PURE__ */ React.createElement(Slot, {
     slots,
     parent_children: props.children
@@ -61,7 +68,7 @@ function Layout(props) {
   return S(props);
 }
 function Row$1(props) {
-  var flex = props.flex, gutter = props.gutter, justify = props.justify, align = props.align, order = props.order, _props$tag2 = props.tag, tag = _props$tag2 === void 0 ? "div" : _props$tag2, noSpace = props.noSpace;
+  var flex = props.flex, _props$gutter = props.gutter, gutter = _props$gutter === void 0 ? 0 : _props$gutter, _props$justify = props.justify, justify = _props$justify === void 0 ? "start" : _props$justify, _props$align = props.align, align = _props$align === void 0 ? "top" : _props$align, order = props.order, _props$tag2 = props.tag, tag = _props$tag2 === void 0 ? "div" : _props$tag2, _props$noSpace = props.noSpace, noSpace = _props$noSpace === void 0 ? false : _props$noSpace;
   var defaultProps = {
     flex,
     gutter,
@@ -71,18 +78,22 @@ function Row$1(props) {
     tag,
     noSpace
   };
-  var _useVm2 = useVm(), ref = _useVm2.ref, vm = _useVm2.current, parent = _useVm2.parent;
-  var _useSetup = useSetup({
+  var _useVm2 = useVm(), _ref2 = _useVm2.ref, vm = _useVm2.current, parent = _useVm2.parent;
+  var _useSetup2 = useSetup({
     props: defaultProps,
     renderless: renderless$1,
     api: api$1,
     vm,
     parent
-  }), state = _useSetup.state;
+  }), _ = _useSetup2._, state = _useSetup2.state;
   return /* @__PURE__ */ React.createElement(Component, {
     is: tag,
-    className: vc(["tiny-row", state.className]),
-    style: state.style
+    className: vc(["tiny-row", state.className, props.className]),
+    style: state.style,
+    ref: function ref(ins) {
+      _ref2.current = ins;
+      _.ref.current = ins;
+    }
   }, /* @__PURE__ */ React.createElement(Slot, {
     slots: props.slots,
     parent_children: props.children

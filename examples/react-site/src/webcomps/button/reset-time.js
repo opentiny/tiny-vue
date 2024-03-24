@@ -64,7 +64,7 @@ function _getPrototypeOf(o) {
   return _getPrototypeOf(o);
 }
 import "@opentiny/vue-renderless/alert/vue";
-import { B as Button } from "../index-28717adb.mjs";
+import { B as Button } from "../index-3d3bc6e4.mjs";
 import "@vue/runtime-core";
 import "react";
 import "@opentiny/vue-theme/base/index.less";
@@ -523,8 +523,12 @@ import "@opentiny/vue-theme-mobile/alert/index.less";
 import "@opentiny/vue-renderless/badge/vue";
 import "@opentiny/vue-theme/badge/index.less";
 import "@opentiny/vue-theme-mobile/badge/index.less";
+import "@opentiny/vue-renderless/col/vue";
+import "@opentiny/vue-theme/col/index.less";
 import "@opentiny/vue-renderless/layout/vue";
+import "@opentiny/vue-theme/layout/index.less";
 import "@opentiny/vue-renderless/row/vue";
+import "@opentiny/vue-theme/row/index.less";
 import "@opentiny/vue-renderless/switch/vue";
 import "@opentiny/vue-theme/switch/index.less";
 import ReactDOM from "react-dom/client";

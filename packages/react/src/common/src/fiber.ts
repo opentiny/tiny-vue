@@ -40,8 +40,14 @@ export function getParentFiber(fiber, isFirst = true, child = fiber) {
   return getParentFiber(fiber.return, false, fiber)
 }
 
+const fiberMap = new WeakMap()
 export function creatFiberCombine(fiber) {
   if (!fiber) return
+
+  if (fiberMap.has(fiber)) {
+    return fiberMap.get(fiber)
+  }
+
   const refs = {}
   const children = []
 
@@ -60,11 +66,15 @@ export function creatFiberCombine(fiber) {
     }
   ])
 
-  return {
+  const fiberCombine = {
     fiber,
     refs,
     children
   }
+
+  fiberMap.set(fiber, fiberCombine)
+
+  return fiberCombine
 }
 
 export function useFiber() {

@@ -63,8 +63,8 @@ function _getPrototypeOf(o) {
   };
   return _getPrototypeOf(o);
 }
-import { A as Alert } from "../index-b7fdd612.mjs";
-import { S as Svg } from "../index-28717adb.mjs";
+import { A as Alert } from "../index-5b8570f5.mjs";
+import { S as Svg } from "../index-3d3bc6e4.mjs";
 import "@vue/runtime-core";
 import "react";
 import "@opentiny/vue-theme/base/index.less";
@@ -524,8 +524,12 @@ import "@opentiny/vue-theme/svgs/zoom-in.svg";
 import "@opentiny/vue-theme/svgs/zoom-out.svg";
 import "@opentiny/vue-theme/button/index.less";
 import "@opentiny/vue-theme-mobile/button/index.less";
+import "@opentiny/vue-renderless/col/vue";
+import "@opentiny/vue-theme/col/index.less";
 import "@opentiny/vue-renderless/layout/vue";
+import "@opentiny/vue-theme/layout/index.less";
 import "@opentiny/vue-renderless/row/vue";
+import "@opentiny/vue-theme/row/index.less";
 import "@opentiny/vue-renderless/switch/vue";
 import "@opentiny/vue-theme/switch/index.less";
 import ReactDOM from "react-dom/client";
