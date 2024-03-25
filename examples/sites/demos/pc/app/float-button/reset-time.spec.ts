@@ -10,7 +10,9 @@ test('测试按钮禁用事件', async ({ page }) => {
 
   // 默认禁用1S
   await defalutDisabled.click()
-  await expect(defalutDisabled).toBeDisabled()
+  await expect(page.locator('.tiny-float-button')).toHaveClass(
+    /tiny-float-button tiny-float-button--success is-disabled is-circle/
+  )
   await page.waitForTimeout(1000)
-  await expect(defalutDisabled).not.toBeDisabled()
+  await expect(page.locator('.tiny-float-button')).toHaveClass(/tiny-float-button tiny-float-button--success is-circle/)
 })

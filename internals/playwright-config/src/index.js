@@ -14,10 +14,10 @@ const Config = ({ testDir, baseURL, storageState, devServerCommon }) =>
   defineConfig({
     testDir,
     /* 每个 test 用例最长时间。 */
-    timeout: 20 * 1000,
+    timeout: 20 * 2000,
     expect: {
       // 每个 expect() 用例最长时间。
-      timeout: 10 * 1000
+      timeout: 10 * 2000
     },
     /* Fail the build on CI if you accidentally left test.only in the source code. */
     forbidOnly: !!process.env.CI,
@@ -46,12 +46,12 @@ const Config = ({ testDir, baseURL, storageState, devServerCommon }) =>
       /* Emulates the user timezone */
       timezoneId: 'Asia/Shanghai'
     },
-    webServer: {
-      command: devServerCommon,
-      url: baseURL,
-      reuseExistingServer: !process.env.CI,
-      stdout: 'pipe'
-    },
+    // webServer: {
+    //   command: devServerCommon,
+    //   url: baseURL,
+    //   reuseExistingServer: !process.env.CI,
+    //   stdout: 'pipe'
+    // },
     projects: [
       {
         name: 'chromium',

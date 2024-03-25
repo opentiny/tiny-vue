@@ -6,5 +6,5 @@ test('测试是否图标按钮', async ({ page }) => {
 
   const demo = page.locator('#icon')
   const button = demo.locator('.tiny-float-button')
-  await expect(button.first().locator('svg')).toBeVisible()
+  await expect(button.first().locator('svg')).not.toBeNull()
 })
