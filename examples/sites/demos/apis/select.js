@@ -581,7 +581,7 @@ export default {
             'en-US':
               'Display the proportion of the number of selected items and the total number of items in the multiple-choice box'
           },
-          mode: ['pc'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'collapse-tags',
           mfDemo: 'collapse-tags'
         }
