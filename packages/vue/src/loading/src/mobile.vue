@@ -22,7 +22,6 @@ import loadingImg from '@opentiny/vue-theme-mobile/images/loading.png'
 import '@opentiny/vue-theme-mobile/loading/index.less'
 
 export default defineComponent({
-  inheritAttrs: false,
   name: $prefix + 'Loading',
   emits: ['after-leave'],
   props: {

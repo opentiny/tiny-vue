@@ -13,7 +13,5 @@ test('裁剪框方法', async ({ page }) => {
   await page.locator('div:nth-child(5) > .tiny-svg').click()
   await page.locator('div:nth-child(5) > .tiny-svg').click()
   await page.locator('.tiny-crop__dialog-content__handle__button > div:nth-child(2)').click()
-  await page.locator('.icon').first().click()
   await page.locator('div:nth-child(8) > .tiny-svg').click()
-  await page.locator('div:nth-child(9) > .tiny-svg > .st0').click()
 })

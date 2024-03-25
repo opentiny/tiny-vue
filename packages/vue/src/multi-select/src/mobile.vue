@@ -175,7 +175,7 @@ export default defineComponent({
     },
     mask: {
       type: Boolean,
-      default: true
+      default: false
     },
     maskOptions: {
       type: Object,

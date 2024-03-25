@@ -6,7 +6,7 @@ test('ipAddress 属性设置分隔符', async ({ page }) => {
 
   const demo = page.locator('#delimiter')
   const defaultDelimiter = demo.locator('svg circle')
-  const customDelimiter = demo.locator('svg > .st0')
+  const customDelimiter = demo.locator('svg > path')
   const slotDelimiter = demo.locator('li > i').getByText('-')
 
   // 设置分隔符取代默认分隔符

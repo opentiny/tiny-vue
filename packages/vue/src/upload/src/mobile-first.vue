@@ -65,7 +65,8 @@ export default defineComponent({
       customClass,
       sourceType,
       mode,
-      showTitle
+      showTitle,
+      state
     } = this as any
 
     const defaultSlot = (this as any).slots.default && (this as any).slots.default()
@@ -85,7 +86,9 @@ export default defineComponent({
               }`
             : 'h-full'
         }>
-        {tipSlot && <div class="flex items-center sm:hidden inline-block text-sm">{tipSlot}</div>}
+        {state.currentBreakpoint === 'default' && tipSlot && (
+          <div class="flex items-center sm:hidden inline-block text-sm">{tipSlot}</div>
+        )}
         <div
           data-tag="tiny-upload-drag-single"
           class="h-full"
@@ -101,7 +104,9 @@ export default defineComponent({
           )}
         </div>
         {operateSlot}
-        {tipSlot && <div class="hidden sm:inline-flex flex-1 w-0 items-center">{tipSlot}</div>}
+        {state.currentBreakpoint !== 'default' && tipSlot && (
+          <div class="hidden sm:inline-flex flex-1 w-0 items-center">{tipSlot}</div>
+        )}
         <input
           class="hidden"
           type="file"

@@ -55,7 +55,7 @@
                     <tiny-search
                       v-if="search"
                       v-model="searchValue"
-                      @change="searchChange"
+                      @input="searchChange"
                       :placeholder="t('ui.grid.individuation.toolbar.search')"
                     ></tiny-search>
                     <div v-if="searchValue">
@@ -715,7 +715,8 @@ export default {
     selectFocus(event, index) {
       this.lastSelectIndex = index
     },
-    searchChange(key, val) {
+    // 莫同步AUI， search组件的input事件的第一个参数就是value.
+    searchChange(val) {
       const getRenderedTitle = (col) => {
         let result = ''
 

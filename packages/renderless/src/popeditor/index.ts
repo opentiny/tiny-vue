@@ -625,11 +625,21 @@ export const computedTreeOp =
     treeOp.defaultCheckedKeys =
       state.cacheStore.treeSelectList && state.cacheStore.treeSelectList.map((item) => item.id)
 
-    treeOp.props = {
-      label: props.textField || constants.LABEL,
-      id: props.valueField || constants.ID,
-      children: 'children',
-      ...treeOp.props
+    const defaultLabel = props.textField || constants.LABEL
+    const defaultId = props.valueField || constants.ID
+    const defaultChildren = 'children'
+    if (!treeOp.props) {
+      treeOp.props = {
+        label: defaultLabel,
+        id: defaultId,
+        children: defaultChildren
+      }
+    } else {
+      // 不能依赖treeOp.props的同时修改treeOp.props的值，否则线上官网会死循环
+      const { label, id, children } = treeOp.props
+      treeOp.props.label = label || defaultLabel
+      treeOp.props.id = id || defaultId
+      treeOp.props.children = children || defaultChildren
     }
 
     return treeOp
@@ -803,7 +813,7 @@ export const doSuggesst =
           api.sourceGridSelectChange({ checked: false, row, confirm: false })
         })
 
-        if (addtions.length) {
+        if (!state.suggestList.length || addtions.length) {
           doQuery(query)
         }
       } else {
@@ -819,7 +829,7 @@ export const closeSuggestPanel =
     const popper = vm.$refs.popper
     let keep = !event
 
-    if (event.target) {
+    if (event.target && reference) {
       keep = reference.$el.contains(event.target) || popper.contains(event.target)
     }
 

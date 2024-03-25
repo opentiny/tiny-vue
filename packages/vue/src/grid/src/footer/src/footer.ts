@@ -32,7 +32,9 @@ const classMap = {
   fixedHidden: 'fixed__column',
   colEllipsis: 'col__ellipsis',
   filterActive: 'filter__active',
-  cellSummary: 'cell__summary'
+  cellSummary: 'cell__summary',
+  fixedLeftLast: 'fixed-left-last__column',
+  fixedRightFirst: 'fixed-right-first__column'
 }
 
 function doFooterSpan({ attrs, footerData, footerSpanMethod, params }) {
@@ -95,7 +97,7 @@ function renderColgroup(tableColumn) {
 }
 
 const renderfoots = (opt) => {
-  const { $table, allAlign, allColumnOverflow, allFooterAlign, buildParamFunc, columnKey } = opt
+  const { $table, allAlign, allColumnOverflow, allFooterAlign, buildParamFunc, columnKey, columnStore } = opt
   const {
     footerCellClassName,
     footerData,
@@ -124,6 +126,7 @@ const renderfoots = (opt) => {
           const arg2 = { column, footerData, footerSpanMethod, overflowX, tableListeners }
           const { attrs, columnIndex, fixedHiddenColumn, footAlign, footerClassName, hasEllipsis, params, tfOns } =
             buildParamFunc(Object.assign(arg1, arg2))
+          const { leftList, rightList } = columnStore
           return h(
             'td',
             {
@@ -134,11 +137,17 @@ const renderfoots = (opt) => {
                   [`col__${footAlign}`]: footAlign,
                   [classMap.fixedHidden]: fixedHiddenColumn,
                   [classMap.colEllipsis]: hasEllipsis,
-                  [classMap.filterActive]: column.filter && column.filter.hasFilter
+                  [classMap.filterActive]: column.filter && column.filter.hasFilter,
+                  [classMap.fixedLeftLast]: column.fixed === 'left' && leftList[leftList.length - 1] === column,
+                  [classMap.fixedRightFirst]: column.fixed === 'right' && rightList[0] === column
                 },
                 getClass(footerClassName, params),
                 getClass(footerCellClassName, params)
               ],
+              style: {
+                left: `${column.style?.left}px`,
+                right: `${column.style?.right}px`
+              },
               attrs,
               on: tfOns,
               key: columnKey ? column.id : columnIndex
@@ -167,6 +176,7 @@ export default {
   name: `${$prefix}GridFooter`,
   props: {
     fixedColumn: Array,
+    fixedType: String,
     footerData: Array,
     size: String,
     tableColumn: Array,
@@ -184,20 +194,21 @@ export default {
     elemStore[`${keyPrefix}x-space`] = $refs.xSpace
   },
   render() {
-    let { $parent: $table, buildParamFunc, footerData, tableColumn } = this
+    let { $parent: $table, buildParamFunc, fixedColumn, fixedType, footerData, tableColumn } = this
     let {
       align: allAlign,
       columnKey,
       footerAlign: allFooterAlign,
       footerCellClassName,
       footerRowClassName,
-      footerSpanMethod
+      footerSpanMethod,
+      columnStore
     } = $table
-    let { overflowX, showOverflow: allColumnOverflow, tableLayout, tableListeners } = $table
+    let { overflowX, showOverflow: allColumnOverflow, tableLayout, tableListeners, renderFooter } = $table
 
     let tableAttrs = { cellspacing: 0, cellpadding: 0, border: 0 }
     let colgroupVNode = renderColgroup(tableColumn)
-    let arg1 = { $table, allAlign, allColumnOverflow, allFooterAlign, buildParamFunc, columnKey }
+    let arg1 = { $table, allAlign, allColumnOverflow, allFooterAlign, buildParamFunc, columnKey, columnStore }
     let arg2 = {
       footerCellClassName,
       footerData,
@@ -209,6 +220,8 @@ export default {
     }
     let tfootVNode = renderTfoot(Object.assign(arg1, arg2))
 
+    const renderParams = { $table, columns: tableColumn, footerData, fixedColumns: fixedColumn, fixedType }
+
     return h(
       'div',
       {
@@ -217,21 +230,23 @@ export default {
       },
       [
         h('div', { class: 'tiny-grid-body__x-space', ref: 'xSpace' }),
-        h(
-          'table',
-          {
-            class: 'tiny-grid__footer',
-            style: { tableLayout },
-            attrs: tableAttrs,
-            ref: 'table'
-          },
-          [
-            //  列宽
-            colgroupVNode,
-            // 底部
-            tfootVNode
-          ]
-        )
+        typeof renderFooter === 'function'
+          ? renderFooter(renderParams, h)
+          : h(
+              'table',
+              {
+                class: 'tiny-grid__footer',
+                style: { tableLayout },
+                attrs: tableAttrs,
+                ref: 'table'
+              },
+              [
+                //  列宽
+                colgroupVNode,
+                // 底部
+                tfootVNode
+              ]
+            )
       ]
     )
   },

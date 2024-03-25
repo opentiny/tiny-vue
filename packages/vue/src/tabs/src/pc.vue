@@ -36,7 +36,10 @@ export default defineComponent({
     'popperAppendToBody',
     'dropConfig',
     'tooltipConfig',
-    'separator'
+    'separator',
+    'beforeClose',
+    'overflowTitle',
+    'titleWidth'
   ],
   components: {
     TabNav,
@@ -69,7 +72,9 @@ export default defineComponent({
       popperClass,
       popperAppendToBody,
       dropConfig,
-      tooltipConfig
+      tooltipConfig,
+      overflowTitle,
+      titleWidth
     } = this
 
     const newButton =
@@ -103,6 +108,8 @@ export default defineComponent({
         popperAppendToBody,
         dropConfig,
         tooltipConfig,
+        overflowTitle,
+        titleWidth,
         separator: state.separator
       },
       on: {

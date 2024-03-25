@@ -3,6 +3,7 @@
     data-tag="tiny-form"
     class="w-full overflow-hidden"
     :class="{
+      'overflow-x-visible': labelPosition === 'top' && !hideRequiredAsterisk,
       'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4': inline
     }"
     @submit.prevent

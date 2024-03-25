@@ -165,7 +165,7 @@ const initApi = ({
     handleFocus: handleFocus(emit),
     handleClear: handleClear(state),
     getCheckedNodes: getCheckedNodes(state),
-    deleteTag: deleteTag({ emit, state }),
+    deleteTag: deleteTag({ emit, state, api }),
     handleDropdownLeave: handleDropdownLeave(state),
     focusFirstNode: focusFirstNode({ vm, state }),
     computClearVisible: computClearVisible({ props, state }),
@@ -257,7 +257,18 @@ const initWatch = ({
 
 export const renderless = (
   props: ICascaderProps,
-  { computed, onMounted, onBeforeUnmount, onDeactivated, onUpdated, onBeforeUpdate, reactive, toRefs, watch, inject }: ISharedRenderlessFunctionParams<null>,
+  {
+    computed,
+    onMounted,
+    onBeforeUnmount,
+    onDeactivated,
+    onUpdated,
+    onBeforeUpdate,
+    reactive,
+    toRefs,
+    watch,
+    inject
+  }: ISharedRenderlessFunctionParams<null>,
   { t, emit, nextTick, constants, parent, slots, dispatch, vm }: ICascadeRenderlessParamUtils
 ) => {
   parent.tinyForm = parent.tinyForm || inject('form', null)

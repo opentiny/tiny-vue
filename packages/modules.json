@@ -307,7 +307,8 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
   },
   "CardGroup": {
@@ -315,8 +316,29 @@
     "type": "component",
     "exclude": false,
     "mode": [
-      "mobile-first"
+      "mobile-first",
+      "pc"
     ]
+  },
+  "CardGroupMobileFirst": {
+    "path": "vue/src/card-group/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CardGroupPc": {
+    "path": "vue/src/card-group/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CardMobileFirst": {
+    "path": "vue/src/card/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "CardPc": {
+    "path": "vue/src/card/src/pc.vue",
+    "type": "template",
+    "exclude": false
   },
   "CardTemplate": {
     "path": "vue/src/card-template/index.ts",
@@ -1405,16 +1427,21 @@
       "pc"
     ]
   },
-  "Floatbar": {
-    "path": "vue/src/floatbar/index.ts",
+  "FloatButton": {
+    "path": "vue/src/float-button/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
       "pc"
     ]
   },
-  "FloatButton": {
-    "path": "vue/src/float-button/index.ts",
+  "FloatButtonPc": {
+    "path": "vue/src/float-button/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Floatbar": {
+    "path": "vue/src/floatbar/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
@@ -2332,6 +2359,14 @@
     "path": "vue/src/recycle-scroller/src/pc.vue",
     "type": "template",
     "exclude": false
+  },
+  "RichText": {
+    "path": "vue/src/rich-text/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
   },
   "RichTextEditor": {
     "path": "vue/src/rich-text-editor/index.ts",

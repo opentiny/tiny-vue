@@ -20,6 +20,7 @@
 @scrollbar-prefix-cls: ~'@{css-prefix}scrollbar';
 @input-prefix-cls: ~'@{css-prefix}input';
 @option-prefix-cls: ~'@{css-prefix}option';
+@recycle-scroller-prefix-cls: ~'@{css-prefix}recycle-scroller';
 
 .@{select-dropdown-prefix-cls} {
   .component-css-vars-select-dropdown();
@@ -50,6 +51,16 @@
 
     &__list {
       padding: 0;
+    }
+  }
+
+  & .@{recycle-scroller-prefix-cls} {
+    list-style: none;
+
+    &__slot {
+      .tiny-select-dropdown__item {
+        margin-bottom: 4px;
+      }
     }
   }
 
@@ -146,30 +157,24 @@
     }
   }
 
-  &__empty-wrap {
+  &__empty {
     padding: var(--ti-select-dropdown-empty-padding-vertical) var(--ti-select-dropdown-empty-padding-horizontal);
     margin: 0;
     text-align: center;
     color: var(--ti-select-dropdown-empty-text-color);
     font-size: var(--ti-select-dropdown-empty-font-size);
     line-height: var(--ti-select-dropdown-empty-line-height);
-
-    .@{select-dropdown-prefix-cls}__empty-images {
-      background-image: url('../images/select-nodata.png');
-      width: var(--ti-select-dropdown-empty-image-width);
-      height: var(--ti-select-dropdown-empty-image-height);
-      margin-bottom: var(--ti-select-dropdown-empty-image-margin-bottom);
-      background-size: cover;
-      background-repeat: no-repeat;
-      display: inline-block;
-      vertical-align: bottom;
-    }
   }
-
-  &__empty {
-    text-align: center;
-    color: #999;
-    font-size: 14px;
+  // tiny 新增
+  &__empty-images {
+    background-image: url('../images/select-nodata.png');
+    width: var(--ti-select-dropdown-empty-image-width);
+    height: var(--ti-select-dropdown-empty-image-height);
+    margin-bottom: var(--ti-select-dropdown-empty-image-margin-bottom);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: bottom;
   }
 
   & &__wrap {

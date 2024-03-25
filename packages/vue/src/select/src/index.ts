@@ -13,6 +13,7 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import template from 'virtual-template?pc|mobile-first'
+import { IconChevronDown } from '@opentiny/vue-icon'
 
 const $constants = {
   CLASS: {
@@ -50,15 +51,12 @@ const $constants = {
     Tree: 'tree'
   },
   MAX_WIDTH: 132,
-  // tiny 新增
-  InputBoxType: {
-    Input: 'input',
-    Underline: 'underline'
-  },
-  ICON_MAP: {
-    dropdownIcon: 'icon-delta-down'
-  },
-  SPACING_HEIGHT: 2
+  RECYCLE: {
+    SAAS_HEIGHT: 220,
+    AURORA_HEIGHT: 180,
+    ITEM_HEIGHT: 34,
+    SAFE_MARGIN: 4
+  }
 }
 
 export default defineComponent({
@@ -236,7 +234,11 @@ export default defineComponent({
     },
     dropdownIcon: {
       type: [Object, String],
-      default: ''
+      default: () => {
+        const defaultDropdownIcon = IconChevronDown()
+        defaultDropdownIcon.isDefault = true
+        return defaultDropdownIcon
+      }
     },
     disabledTooltipContent: String,
     hoverExpand: {
@@ -300,7 +302,8 @@ export default defineComponent({
     },
     InputBoxType: {
       type: String,
-      default: 'input'
+      default: 'input',
+      validator: (value: string) => ['input', 'underline'].includes(value)
     },
     tagType: {
       type: String,

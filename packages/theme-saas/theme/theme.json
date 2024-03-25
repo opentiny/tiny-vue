@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "themeName": "华为SaaS设计系统主题",
+  "themeName": "SaaS设计系统主题",
   "themeColor": [
     {
       "mode": "light",
@@ -949,6 +949,7 @@
       "--tiny-spacing-16": "4.000rem",
       "--tiny-spacing-18": "4.500rem",
       "--tiny-spacing-20": "5.000rem",
+      "--tiny-spacing-22": "5.500rem",
       "--tiny-spacing-24": "6.000rem",
       "--tiny-spacing-28": "7.000rem",
       "--tiny-spacing-32": "8.000rem",

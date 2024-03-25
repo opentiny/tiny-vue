@@ -1,14 +1,15 @@
 <template>
   <div class="demo-multi-select">
-    <p>1. 整体禁用:</p>
-    <div class="page__content">
-      <tiny-multi-select :data-source="data1" disabled> </tiny-multi-select>
-    </div>
+    <h4 class="title">1. 组件禁用:</h4>
+    <tiny-multi-select :data-source="data1" disabled> </tiny-multi-select>
+    <br />
 
-    <p>2. 单项菜单禁用:</p>
-    <div class="page__content">
-      <tiny-multi-select :data-source="data2"> </tiny-multi-select>
-    </div>
+    <h4 class="title">2. 菜单项禁用:</h4>
+    <tiny-multi-select :data-source="data2" v-model="value1"> </tiny-multi-select>
+    <br />
+
+    <h4 class="title">3. 选项禁用:</h4>
+    <tiny-multi-select :data-source="data3" v-model="value2"> </tiny-multi-select>
   </div>
 </template>
 
@@ -21,6 +22,9 @@ export default {
   },
   data() {
     return {
+      value1: ['', '', ''],
+      value2: [''],
+
       data1: [
         {
           title: '时间',
@@ -30,97 +34,90 @@ export default {
               value: '2020年',
               children: [
                 {
-                  label: '2020全年',
+                  label: '全年',
                   children: [],
-                  value: '2020全年'
+                  value: '全年'
                 },
                 {
-                  label: '2020年Q1',
+                  label: 'Q1',
                   children: [
                     {
-                      label: '2020年Q1一月',
-                      value: '2020年Q1一月'
+                      label: '一月',
+                      value: '一月'
                     },
                     {
-                      label: '2020年Q1二月',
-                      value: '2020年Q1二月'
+                      label: '二月',
+                      value: '二月'
                     },
                     {
-                      label: '2020年Q1三月',
-                      value: '2020年Q1三月'
+                      label: '三月',
+                      value: '三月'
                     }
                   ],
-                  value: '2020年Q1'
+                  value: 'Q1'
                 },
                 {
-                  label: '2020年Q2',
+                  label: 'Q2',
                   children: [
                     {
-                      label: '2020年Q2四月',
-                      value: '2020年Q2四月'
+                      label: '四月',
+                      value: '四月'
                     },
                     {
-                      label: '2020年Q2五月',
-                      value: '2020年Q2五月'
+                      label: '五月',
+                      value: '五月'
                     },
                     {
-                      label: '2020年Q2六月',
-                      value: '2020年Q2六月'
+                      label: '六月',
+                      value: '六月'
                     }
                   ],
-                  value: '2020年Q2'
+                  value: 'Q2'
                 }
-              ],
-              value: '2020年'
+              ]
             },
             {
               label: '2021年',
               children: [
                 {
-                  label: '2021全年',
-                  children: [
-                    {
-                      label: '年',
-                      value: '年'
-                    }
-                  ],
-                  value: '2021全年'
+                  label: '全年',
+                  value: '全年'
                 },
                 {
-                  label: '2021年Q1',
+                  label: 'Q1',
                   children: [
                     {
-                      label: '2021年Q1一月',
-                      value: '2021年Q1一月'
+                      label: '一月',
+                      value: '一月'
                     },
                     {
-                      label: '2021年Q1二月',
-                      value: '2021年Q1二月'
+                      label: '二月',
+                      value: '二月'
                     },
                     {
-                      label: '2021年Q1三月',
-                      value: '2021年Q1三月'
+                      label: '三月',
+                      value: '三月'
                     }
                   ],
-                  value: '2021年Q1'
+                  value: 'Q1'
                 },
                 {
-                  label: '2021年Q2',
+                  label: 'Q2',
                   children: [
                     {
-                      label: '2021年Q2四月',
-                      value: '2021年Q2四月'
+                      label: '四月',
+                      value: '四月'
                     },
                     {
-                      label: '2021年Q2五月',
-                      value: '2021年Q2五月'
+                      label: '五月',
+                      value: '五月'
                     },
                     {
-                      label: '2021年Q2六月',
-                      value: '2021年Q2六月'
+                      label: '六月',
+                      value: '六月'
                     }
                   ],
-                  value: '2021年Q2'
+                  value: 'Q2'
                 }
               ],
               value: '2021年'
@@ -129,95 +126,47 @@ export default {
               label: '2022年',
               children: [
                 {
-                  label: '2022全年',
-                  children: [
-                    {
-                      label: '年',
-                      value: '年'
-                    }
-                  ],
-                  value: '2022全年'
+                  label: '全年',
+                  value: '全年'
                 },
                 {
-                  label: '2022年Q1',
+                  label: 'Q1',
                   children: [
                     {
-                      label: '2022年Q1一月',
-                      value: '2022年Q1一月'
+                      label: '一月',
+                      value: '一月'
                     },
                     {
-                      label: '2022年Q1二月',
-                      value: '2022年Q1二月'
+                      label: '二月',
+                      value: '二月'
                     },
                     {
-                      label: '2022年Q1三月',
-                      value: '2022年Q1三月'
+                      label: '三月',
+                      value: '三月'
                     }
                   ],
-                  value: '2022年Q1'
+                  value: 'Q1'
                 },
                 {
-                  label: '2022年Q2',
+                  label: 'Q2',
                   children: [
                     {
-                      label: '2022年Q2四月',
-                      value: '2022年Q2四月'
+                      label: '四月',
+                      value: '四月'
                     },
                     {
-                      label: '2022年Q2五月',
-                      value: '2022年Q2五月'
+                      label: '五月',
+                      value: '五月'
                     },
                     {
-                      label: '2022年Q2六月',
-                      value: '2022年Q2六月'
+                      label: '六月',
+                      value: '六月'
                     }
                   ],
-                  value: '2022年Q2'
+                  value: 'Q2'
                 }
               ],
               value: '2022年'
-            }
-          ]
-        },
-        {
-          title: '区域',
-          multiple: true,
-          options: [
-            {
-              label: '海外',
-              children: [
-                {
-                  label: '欧洲巴黎',
-                  value: '欧洲巴黎'
-                },
-                {
-                  label: '巴基斯坦',
-                  value: '巴基斯坦'
-                },
-                {
-                  label: '土耳其',
-                  value: '土耳其'
-                }
-              ],
-              value: '海外'
-            },
-            {
-              label: '中国',
-              children: [
-                {
-                  label: '北京',
-                  value: '北京'
-                },
-                {
-                  label: '上海',
-                  value: '上海'
-                },
-                {
-                  label: '南京',
-                  value: '南京'
-                }
-              ],
-              value: '中国'
             }
           ]
         },
@@ -256,97 +205,90 @@ export default {
               value: '2020年',
               children: [
                 {
-                  label: '2020全年',
+                  label: '全年',
                   children: [],
-                  value: '2020全年'
+                  value: '全年'
                 },
                 {
-                  label: '2020年Q1',
+                  label: 'Q1',
                   children: [
                     {
-                      label: '2020年Q1一月',
-                      value: '2020年Q1一月'
+                      label: '一月',
+                      value: '一月'
                     },
                     {
-                      label: '2020年Q1二月',
-                      value: '2020年Q1二月'
+                      label: '二月',
+                      value: '二月'
                     },
                     {
-                      label: '2020年Q1三月',
-                      value: '2020年Q1三月'
+                      label: '三月',
+                      value: '三月'
                     }
                   ],
-                  value: '2020年Q1'
+                  value: 'Q1'
                 },
                 {
-                  label: '2020年Q2',
+                  label: 'Q2',
                   children: [
                     {
-                      label: '2020年Q2四月',
-                      value: '2020年Q2四月'
+                      label: '四月',
+                      value: '四月'
                     },
                     {
-                      label: '2020年Q2五月',
-                      value: '2020年Q2五月'
+                      label: '五月',
+                      value: '五月'
                     },
                     {
-                      label: '2020年Q2六月',
-                      value: '2020年Q2六月'
+                      label: '六月',
+                      value: '六月'
                     }
                   ],
-                  value: '2020年Q2'
+                  value: 'Q2'
                 }
-              ],
-              value: '2020年'
+              ]
             },
             {
               label: '2021年',
               children: [
                 {
-                  label: '2021全年',
-                  children: [
-                    {
-                      label: '年',
-                      value: '年'
-                    }
-                  ],
-                  value: '2021全年'
+                  label: '全年',
+                  value: '全年'
                 },
                 {
-                  label: '2021年Q1',
+                  label: 'Q1',
                   children: [
                     {
-                      label: '2021年Q1一月',
-                      value: '2021年Q1一月'
+                      label: '一月',
+                      value: '一月'
                     },
                     {
-                      label: '2021年Q1二月',
-                      value: '2021年Q1二月'
+                      label: '二月',
+                      value: '二月'
                     },
                     {
-                      label: '2021年Q1三月',
-                      value: '2021年Q1三月'
+                      label: '三月',
+                      value: '三月'
                     }
                   ],
-                  value: '2021年Q1'
+                  value: 'Q1'
                 },
                 {
-                  label: '2021年Q2',
+                  label: 'Q2',
                   children: [
                     {
-                      label: '2021年Q2四月',
-                      value: '2021年Q2四月'
+                      label: '四月',
+                      value: '四月'
                     },
                     {
-                      label: '2021年Q2五月',
-                      value: '2021年Q2五月'
+                      label: '五月',
+                      value: '五月'
                     },
                     {
-                      label: '2021年Q2六月',
-                      value: '2021年Q2六月'
+                      label: '六月',
+                      value: '六月'
                     }
                   ],
-                  value: '2021年Q2'
+                  value: 'Q2'
                 }
               ],
               value: '2021年'
@@ -355,50 +297,44 @@ export default {
               label: '2022年',
               children: [
                 {
-                  label: '2022全年',
-                  children: [
-                    {
-                      label: '年',
-                      value: '年'
-                    }
-                  ],
-                  value: '2022全年'
+                  label: '全年',
+                  value: '全年'
                 },
                 {
-                  label: '2022年Q1',
+                  label: 'Q1',
                   children: [
                     {
-                      label: '2022年Q1一月',
-                      value: '2022年Q1一月'
+                      label: '一月',
+                      value: '一月'
                     },
                     {
-                      label: '2022年Q1二月',
-                      value: '2022年Q1二月'
+                      label: '二月',
+                      value: '二月'
                     },
                     {
-                      label: '2022年Q1三月',
-                      value: '2022年Q1三月'
+                      label: '三月',
+                      value: '三月'
                     }
                   ],
-                  value: '2022年Q1'
+                  value: 'Q1'
                 },
                 {
-                  label: '2022年Q2',
+                  label: 'Q2',
                   children: [
                     {
-                      label: '2022年Q2四月',
-                      value: '2022年Q2四月'
+                      label: '四月',
+                      value: '四月'
                     },
                     {
-                      label: '2022年Q2五月',
-                      value: '2022年Q2五月'
+                      label: '五月',
+                      value: '五月'
                     },
                     {
-                      label: '2022年Q2六月',
-                      value: '2022年Q2六月'
+                      label: '六月',
+                      value: '六月'
                     }
                   ],
-                  value: '2022年Q2'
+                  value: 'Q2'
                 }
               ],
               value: '2022年'
@@ -472,6 +408,51 @@ export default {
             }
           ]
         }
+      ],
+      data3: [
+        {
+          title: '区域',
+          options: [
+            {
+              label: '中国',
+              children: [
+                {
+                  label: '北京',
+                  value: '北京'
+                },
+                {
+                  label: '上海',
+                  value: '上海',
+                  disabled: true
+                },
+                {
+                  label: '南京',
+                  value: '南京'
+                }
+              ],
+              value: '中国'
+            },
+            {
+              label: '海外',
+              disabled: true,
+              children: [
+                {
+                  label: '欧洲巴黎',
+                  value: '欧洲巴黎'
+                },
+                {
+                  label: '巴基斯坦',
+                  value: '巴基斯坦'
+                },
+                {
+                  label: '土耳其',
+                  value: '土耳其'
+                }
+              ],
+              value: '海外'
+            }
+          ]
+        }
       ]
     }
   }
@@ -481,27 +462,14 @@ export default {
 <style scoped>
 .demo-multi-select {
   height: 100%;
+  padding: 12px 0;
+  background-color: #f5f5f5;
 }
 
-.page__hd {
-  padding: 40px;
-}
-
-.page__title {
-  font-weight: 400;
-  font-size: 21px;
-  text-align: left;
-}
-
-.page__desc {
-  margin-top: 5px;
-  color: #888;
-  font-size: 14px;
-  text-align: left;
-}
-
-.page__content {
-  width: 100%;
-  background-color: #fff;
+.title {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>

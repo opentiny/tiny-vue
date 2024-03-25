@@ -1,5 +1,5 @@
 <template>
-  <div class="tiny-user" @mouseover="useSortable">
+  <div class="tiny-user" @mouseover="useSortable" :class="multiLineDrag ? 'draggableClass' : ''">
     <tiny-select
       ref="select"
       :popper-class="'tiny-user' + (popperClass ? ' ' + popperClass : '')"
@@ -17,6 +17,7 @@
       :placeholder="placeholder"
       :collapse-tags="collapseTags"
       :multiple="multiple"
+      :multipleLimit="multipleLimit"
       @change="userChange"
       :loading="state.loading"
       filterable
@@ -52,9 +53,9 @@
         :title="option.userCN + (option.dept ? ' ' + option.dept : '')"
         v-for="option in filter()"
         :visible="option._show"
-        :key="option[valueField]"
-        :label="option[textField]"
-        :value="option[valueField]"
+        :key="option[state.valueField]"
+        :label="option[state.textField]"
+        :value="option[state.valueField]"
       >
         <slot name="options" :slot-scope="option">
           <span class="tiny-user_select left">{{ option.userCN }}</span>
@@ -121,7 +122,10 @@ export default defineComponent({
     'ignoreEnter',
     'showTips',
     'maxWidth',
-    'keepFocus'
+    'keepFocus',
+    'changeCompat',
+    'multiLineDrag',
+    'multipleLimit'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

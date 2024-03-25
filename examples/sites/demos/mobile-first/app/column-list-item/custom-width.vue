@@ -1,11 +1,6 @@
 <template>
   <div>
-    <tiny-column-list-item
-      :image="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`"
-      :flex-grow="[0, 0]"
-      :flex-basis="['25%', '25%']"
-      class="mb-3"
-    >
+    <tiny-column-list-item :image="imageUrl" :flex-grow="[0, 0]" :flex-basis="['25%', '25%']" class="mb-3">
       <template #column1>
         <ul>
           <li class="text-sm mb-1 sm:mb-1.5">智能手机智能手机</li>
@@ -61,7 +56,9 @@ export default {
     TinyColumnListItem: ColumnListItem
   },
   data() {
-    return {}
+    return {
+      imageUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`
+    }
   }
 }
 </script>

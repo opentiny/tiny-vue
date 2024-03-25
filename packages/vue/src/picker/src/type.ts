@@ -135,5 +135,9 @@ export const pickerProps = {
   blank: {
     type: Boolean,
     default: false
+  },
+  changeCompat: {
+    type: Boolean,
+    default: false
   }
 }

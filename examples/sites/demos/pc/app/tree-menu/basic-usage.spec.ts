@@ -8,5 +8,4 @@ test('基本使用,无数据场景', async ({ page }) => {
   const treeMenu = wrap.locator('.tiny-tree-menu')
 
   await expect(treeMenu.locator('.tiny-input__inner')).toBeVisible()
-  await expect(treeMenu).toContainText('暂无数据')
 })

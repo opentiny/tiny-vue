@@ -1,5 +1,10 @@
 <template>
-  <tiny-numeric v-model="value" :disabled="disabled"></tiny-numeric>
+  <div class="f-r f-box-center">
+    <span>全部禁用：</span>
+    <tiny-numeric v-model="value1" :disabled="disabled" class="mr20"></tiny-numeric>
+    <span>部分禁用：</span>
+    <tiny-numeric v-model="value2" :min="min" :max="max"></tiny-numeric>
+  </div>
 </template>
 
 <script lang="ts">
@@ -11,8 +16,11 @@ export default {
   },
   data() {
     return {
-      value: 1,
-      disabled: true
+      value1: 1,
+      value2: 0,
+      disabled: true,
+      min: 0,
+      max: 10
     }
   }
 }

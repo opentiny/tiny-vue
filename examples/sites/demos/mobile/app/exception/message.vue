@@ -1,11 +1,6 @@
 <template>
   <div class="tiny-mobile-exception-demo">
-    <tiny-exception
-      type="nodata"
-      message="自定义文本内容"
-      :imageUrl="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`"
-      @btn-click="test"
-    ></tiny-exception>
+    <tiny-exception type="nodata" message="自定义文本内容" :imageUrl="imageUrl" @btn-click="test"></tiny-exception>
   </div>
 </template>
 
@@ -17,7 +12,9 @@ export default {
     TinyException: Exception
   },
   data() {
-    return {}
+    return {
+      imageUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`
+    }
   },
   methods: {
     test() {

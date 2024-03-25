@@ -69,9 +69,12 @@
     }
   }
 
-  &__select-dropdown {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  &.draggableClass {
+    .@{select-prefix-cls} {
+      &__tags > span:not(.is-disabled),
+      &__tags > span:not(.is-disabled) > span {
+        display: inline-block;
+      }
+    }
   }
 }

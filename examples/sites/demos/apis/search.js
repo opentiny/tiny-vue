@@ -75,6 +75,17 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'maxlength',
+          type: 'number',
+          defaultValue: '',
+          desc: {
+            'zh-CN': 'input 框的原生属性，限制最大输入字符数【3.14.0新增】',
+            'en-US': 'The native properties of the input box limit the maximum number of input characters[New 3.14.0]'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
           name: 'mini',
           type: 'boolean',
           defaultValue: 'false',

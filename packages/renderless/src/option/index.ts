@@ -13,7 +13,7 @@
 import { getObj } from '../common/object'
 import { omitText } from '../common/string'
 
-const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+export const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
 
 export const isEqual =
   ({ select, state }) =>
@@ -34,7 +34,12 @@ export const contains =
     } else {
       const valueKey = select.valueKey
 
-      return arr && arr.some((item) => getObj(item, valueKey) === getObj(target, valueKey))
+      return (
+        arr &&
+        arr.some((item) => {
+          return getObj(item, valueKey) === getObj(target, valueKey)
+        })
+      )
     }
   }
 
@@ -46,18 +51,21 @@ export const handleGroupDisabled =
   }
 
 export const hoverItem =
-  ({ select, props, state, vm }) =>
+  ({ select, props, state }) =>
   (e) => {
     // 选项超出省略时新增title提示
     const dom = e.target
     const text = dom.textContent
-    const font = window.getComputedStyle(dom).font
+    const style = window.getComputedStyle(dom)
+    const font = style.font
     const rect = dom.getBoundingClientRect()
-    const res = omitText(text, font, rect.width)
+
+    const textWidth = rect.width - parseInt(style.paddingLeft || 0) - parseInt(style.paddingRight || 0)
+    const res = omitText(text, font, textWidth)
     state.showTitle = res.o
 
-    if (!props.disabled && !state.groupDisabled) {
-      select.state.hoverIndex = select.state.options.indexOf(vm)
+    if (!props.disabled && !state.groupDisabled && !select.state.disabledOptionHover) {
+      select.state.hoverIndex = select.state.optionIndexArr.indexOf(state.index)
     }
   }
 
@@ -71,17 +79,23 @@ export const selectOptionClick =
   }
 
 export const queryChange =
-  ({ props, state }) =>
+  ({ select, props, state }) =>
   (query) => {
-    state.visible = new RegExp(escapeRegexpString(query), 'i').test(state.currentLabel) || !!props.created
+    const oldVisible = state.visible
+    const newVisible = new RegExp(escapeRegexpString(query), 'i').test(state.currentLabel) || !!props.created
+
+    if (oldVisible !== newVisible) {
+      state.visible = newVisible
+      select.state.filteredOptionsCount += newVisible ? 1 : -1
+    }
   }
 
 export const toggleEvent = ({ props, vm, type }) => {
   const optionEl = vm.$refs.option
 
-  Object.keys(props.events).forEach((ev) => {
+  for (let ev in props.events) {
     optionEl[type + 'EventListener'](ev, props.events[ev])
-  })
+  }
 }
 
 export const initValue =

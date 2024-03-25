@@ -33,7 +33,7 @@ export default {
     advancedClick(index, node) {
       this.active = index
 
-      Modal.message(`节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`)
+      Modal.message({ message: `节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`, status: 'info' })
     }
   }
 }

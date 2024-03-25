@@ -98,6 +98,10 @@ const notify = (options) => {
   instance.state.verticalOffset = verticalOffset
   instance.state.visible = true
 
+  if (verticalOffset + instance.$el.offsetHeight > window.innerHeight) {
+    instances[0] && instances[0].close(instances[0].id)
+  }
+
   return instance
 }
 
@@ -139,6 +143,14 @@ Notify.close = function (id, userOnClose) {
 
   let removedPosition = instance.position
   let copys = instances.slice(index)
+  let verticalOffset = 16
+
+  instances
+    .filter((item) => item.state.position === removedPosition)
+    .forEach((item) => {
+      item.state.verticalOffset = verticalOffset
+      verticalOffset += item.$el.offsetHeight + 16
+    })
 
   copys.forEach((copy) => {
     if (copy.position === removedPosition) {

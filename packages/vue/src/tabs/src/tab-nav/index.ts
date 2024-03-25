@@ -8,6 +8,7 @@ export const tabNavPcProps = {
   },
   currentName: String,
   editable: Boolean,
+  overflowTitle: Boolean,
   onTabClick: {
     type: Function,
     default: () => {}
@@ -21,10 +22,19 @@ export const tabNavPcProps = {
   showMoreTabs: Boolean,
   showPanesCount: Number,
   popperClass: String,
+  popperAppendToBody: {
+    type: Boolean,
+    default: true
+  },
   dropConfig: {
     type: Object,
     default: () => null
   },
+  titleWidth: {
+    type: String,
+    default: '256px'
+  },
+  // tiny 新增
   tooltipConfig: [String, Object]
 }
 

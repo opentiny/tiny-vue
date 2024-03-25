@@ -62,11 +62,15 @@ export const tabsProps = {
   optimized: {
     type: Boolean,
     default: true
-  }
+  },
+  beforeClose: Function,
+  overflowTitle: Boolean,
+  titleWidth: String
 }
 
 export default defineComponent({
   name: $prefix + 'Tabs',
+  emits: ['tab-nav-update'],
   props: tabsProps,
   setup(props, context) {
     return $setup({ props, context, template })

@@ -4,7 +4,7 @@ test('自定义服务', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
   await page.goto('drop-roles#custom-service')
 
-  const input = page.getByPlaceholder('选择角色')
+  const input = page.locator('.tiny-select input')
   const listItems = page.getByRole('listitem')
   const url = await page.evaluate(() => window.location.href)
   const notify1 = page.locator('.tiny-notify').filter({

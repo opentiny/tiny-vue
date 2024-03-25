@@ -17,6 +17,7 @@
       { 'tiny-form--inline': inline },
       { 'label-align': labelAlign },
       { 'has-required': state.hasRequired },
+      { 'asterisk-form': labelPosition === 'top' && !state.hideRequiredAsterisk },
       { 'is-display-only': state.isDisplayOnly }
     ]"
     @submit.prevent

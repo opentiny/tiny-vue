@@ -3,8 +3,11 @@
 @collapse-item-prefix-cls: ~'@{css-prefix}collapse-item';
 
 .@{collapse-item-prefix-cls} {
-  + .@{collapse-item-prefix-cls} {
-    @apply mt-2;
+  @apply border-b;
+  @apply border-b-color-border-disabled;
+
+  &:last-child {
+    @apply border-b-0;
   }
 
   &.is-disabled &__header {
@@ -52,7 +55,7 @@
 
     > svg {
       @apply ~'-mt-px';
-      @apply text-sm;
+      @apply text-xs;
       @apply fill-color-icon-secondary;
     }
 
@@ -90,7 +93,7 @@
 
   &__arrow {
     @apply text-xs;
-    @apply ~'mr-1.5';
+    @apply ~'mr-1';
     @apply -order-1;
     @apply ~'-rotate-90';
     @apply transition-transform duration-300;
@@ -116,7 +119,7 @@
   }
 
   &__content {
-    @apply pb-2 pl-5;
+    @apply pb-4 pl-4;
     @apply text-xs;
     @apply text-color-text-primary;
     @apply leading-5;

@@ -158,7 +158,7 @@ function getColumnRuleTypeOperation({ _vm, renMaps, type }) {
 
 function getColumnRuleTypeOther({ $table, _vm, colProps, editor, filter, isTreeNode, renMaps, type }) {
   return {
-    match: () => !~['index', 'radio', 'selection', 'expand'].indexOf(type),
+    match: () => !~['index', 'radio', 'selection', 'expand', 'operation'].indexOf(type),
     action: () => {
       let { sortable, remoteSort } = colProps
       const isSortable = $table.sortable && (type ? false : sortable)
@@ -167,6 +167,10 @@ function getColumnRuleTypeOther({ $table, _vm, colProps, editor, filter, isTreeN
       if (editor) {
         renMaps.renderHeader = _vm.renderEditHeader
         renMaps.renderCell = getCellRender(isTreeNode, 'renderTreeRadioCell', 'renderRowEdit', _vm)
+
+        if ($table.editConfig && $table.editConfig.mode === 'row') {
+          renMaps.renderCell = getCellRender(isTreeNode, 'renderTreeRowEdit', 'renderRowEdit', _vm)
+        }
 
         if ($table.editConfig && $table.editConfig.mode === 'cell') {
           renMaps.renderCell = getCellRender(isTreeNode, 'renderTreeCellEdit', 'renderCellEdit', _vm)
@@ -220,7 +224,6 @@ export const Cell = {
     }
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     let _vm = this
-
     let ruleChains = [
       getColumnRuleTypeIndex({ _vm, isTreeNode, renMaps, type }),
       getColumnRuleTypeRadio({ _vm, isTreeNode, renMaps, type }),
@@ -316,7 +319,10 @@ export const Cell = {
     let isActive = ~treeExpandeds.indexOf(row)
     let rowChildren = row[children]
     let listeners = {
-      click: (event) => $table.triggerTreeExpandEvent(event, params)
+      click: (event) => {
+        event.stopPropagation()
+        $table.triggerTreeExpandEvent(event, params)
+      }
     }
     let icon = GLOBAL_CONFIG.icon
 
@@ -767,7 +773,7 @@ export const Cell = {
   renderEditHeader(h, params) {
     let { $table, column } = params
     let { editConfig, editRules, validOpts } = $table
-    let { filter, remoteSort, sortable, type } = column
+    let { filter, remoteSort, sortable, type, own } = column
     let icon = GLOBAL_CONFIG.icon
     let isRequired
 
@@ -793,7 +799,7 @@ export const Cell = {
 
     let vNodes = [
       isRequired && showAsterisk ? h('i', { class: `tiny-icon ${icon.required}` }) : null,
-      !editConfig || !column.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
+      !editConfig || !own.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
     ]
 
     vNodes = vNodes.concat(Cell.renderHeader(h, params))

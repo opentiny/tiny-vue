@@ -9,9 +9,10 @@ export default {
         'en-US': 'Basic Usage'
       },
       desc: {
-        'zh-CN': '通过 <code>v-model</code> 设置双向绑定搜索值， <code>placeholder</code> 设置默认占位符文本。',
+        'zh-CN':
+          '通过 <code>v-model</code> 设置双向绑定搜索值， <code>placeholder</code> 设置默认占位符文本， <code>input</code>元素的原生属性<code>maxlength</code> 设置输入框最大输入字符长度。',
         'en-US':
-          'Set bidirectional binding search values through <code>v-model</code> , and set default placeholder text through <code>placeholder</code> .'
+          'Set bidirectional binding search values through <code>v-model</code> , and set default placeholder text through <code>placeholder</code> The native attribute of the <code>input</code> element<code>maxlength</code>sets the maximum input character length of the input box.'
       },
       codeFiles: ['basic-usage.vue']
     },
