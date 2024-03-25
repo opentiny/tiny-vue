@@ -92,36 +92,36 @@ const tableData = ref([
 ])
 const theGridRef = ref('theGridRef')
 
-function editRowEvent(row) {
+const getActiveRow = () => {
+  const activedRowIndex = theGridRef.value.getActiveRow()
+
+  activedRow.value = activedRowIndex ? activedRowIndex.rowIndex : ''
+}
+
+const editRowEvent = (row) => {
   if (row.name === 'RFV有限责任公司') {
     // 只激活区域单元格编辑
     theGridRef.value.setActiveCell(row, 'area').then(() => {
-      this.getActiveRow()
+      getActiveRow()
     })
   } else {
     // mode: 'cell' 时默认激活第一个单元格
     theGridRef.value.setActiveRow(row).then(() => {
-      this.getActiveRow()
+      getActiveRow()
     })
   }
 }
 
-function saveRowEvent() {
+const saveRowEvent = () => {
   theGridRef.value.clearActived().then(() => {
     getActiveRow()
   })
 }
 
-function cancelRowEvent() {
+const cancelRowEvent = () => {
   theGridRef.value.clearActived().then(() => {
     getActiveRow()
   })
-}
-
-function getActiveRow() {
-  const activedRowIndex = theGridRef.value.getActiveRow()
-
-  activedRow.value = activedRowIndex ? activedRowIndex.rowIndex : ''
 }
 </script>
 

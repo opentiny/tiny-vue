@@ -60,6 +60,9 @@ module.exports = {
           'stroke-dasharray': '90, 150',
           'stroke-dashoffset': 0,
           'stroke-linecap': 'round'
+        },
+        '.tiny-modal-lockscroll': {
+          'overflow': 'hidden'
         }
       })
       matchUtilities(

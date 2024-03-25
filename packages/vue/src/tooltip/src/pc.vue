@@ -21,7 +21,8 @@ import {
   h,
   defineComponent,
   $props,
-  isEmptyVnode
+  isEmptyVnode,
+  hooks
 } from '@opentiny/vue-common'
 import type { ITinyVm } from '@opentiny/vue-renderless/types/shared.type'
 import '@opentiny/vue-theme/tooltip/index.less'
@@ -120,7 +121,7 @@ export default defineComponent({
     const getContent = (vm: ITinyVm<never>) => {
       let slotContent = vm.slots.content && vm.slots.content()
 
-      if (slotContent) {
+      if (slotContent && (!hooks.Comment || slotContent[0].type !== hooks.Comment)) {
         return slotContent
       }
 
@@ -237,7 +238,11 @@ export default defineComponent({
       return element
     }
 
-    const firstElement = getFirstElement()
+    let firstElement = getFirstElement()
+
+    if (firstElement && hooks.Fragment && firstElement.type === hooks.Fragment) {
+      firstElement = firstElement.children[0]
+    }
 
     if (!firstElement) return null
 

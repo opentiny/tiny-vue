@@ -135,7 +135,7 @@ export default {
           name: 'default',
           defaultValue: '',
           desc: {
-            'zh-CN': '默认插槽，自定义IP段之间的分隔符',
+            'zh-CN': '默认插槽，自定义 ip 段之间的分隔符',
             'en-US': 'Separator between IP address segments'
           },
           mode: ['pc'],

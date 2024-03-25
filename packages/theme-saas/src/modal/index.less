@@ -351,6 +351,12 @@
     @apply flex;
     @apply flex-grow;
     @apply p-6;
+
+    &.is-message {
+      @apply px-4;
+      @apply py-2;
+      @apply ~'leading-5.5';
+    }
   }
 
   &__header {
@@ -363,6 +369,11 @@
     @apply select-none;
     @apply text-color-text-primary;
     @apply flex;
+
+    .@{modal-prefix-cls}__title {
+      @apply mr-4;
+      @apply break-all;
+    }
   }
 
   &__header-icon + .@{modal-prefix-cls}__body {

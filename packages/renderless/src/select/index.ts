@@ -1,15 +1,3 @@
-/**
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- */
-
 import { find } from '../common/array'
 import { getObj, isEqual } from '../common/object'
 import { isKorean } from '../common/string'
@@ -18,13 +6,15 @@ import PopupManager from '../common/deps/popup-manager'
 import debounce from '../common/deps/debounce'
 import { getDataset } from '../common/dataset'
 import Memorize from '../common/deps/memorize'
-import { isEmptyObject, isNull, isObject } from '../common/type'
+import { isEmptyObject } from '../common/type'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 import { extend } from '../common/object'
 import { BROWSER_NAME } from '../common'
 import browserInfo from '../common/browser'
+import { isNull } from '../common/type'
 import { fastdom } from '../common/deps/fastdom'
 import { deepClone } from '../picker-column'
+import { escapeRegexpString } from '../option'
 
 export const handleComposition =
   ({ api, nextTick, state }) =>
@@ -33,8 +23,10 @@ export const handleComposition =
 
     if (event.type === 'compositionend') {
       state.isOnComposition = false
+      const isChange = false
+      const isInput = true
 
-      nextTick(() => api.handleQueryChange(text))
+      nextTick(() => api.handleQueryChange(text, isChange, isInput))
     } else {
       const lastCharacter = text[text.length - 1] || ''
 
@@ -115,8 +107,8 @@ export const gridOnQueryChange =
   }
 
 export const defaultOnQueryChange =
-  ({ props, state, constants, api }) =>
-  (value) => {
+  ({ props, state, constants, api, nextTick }) =>
+  (value, isInput) => {
     if (props.remote && (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')) {
       state.hoverIndex = -1
       props.remoteMethod && props.remoteMethod(value, props.extraQueryParams)
@@ -124,17 +116,46 @@ export const defaultOnQueryChange =
       props.filterMethod(value)
       state.selectEmitter.emit(constants.COMPONENT_NAME.OptionGroup, constants.EVENT_NAME.queryChange)
     } else {
-      state.selectEmitter.emit(constants.EVENT_NAME.queryChange, value)
+      api.queryChange(value, isInput)
     }
+    setFilteredSelectCls(nextTick, state, props)
+    api.getOptionIndexArr()
 
-    if (props.defaultFirstOption && (props.filterable || props.remote) && state.filteredOptionsCount) {
-      api.checkDefaultFirstOption()
+    state.magicKey = state.magicKey > 0 ? -1 : 1
+  }
+
+export const queryChange =
+  ({ props, state, constants }) =>
+  (value, isInput) => {
+    if (props.optimization && isInput) {
+      const filterDatas = state.initDatas.filter((item) => new RegExp(escapeRegexpString(value), 'i').test(item.label))
+      state.datas = filterDatas
+    } else {
+      state.selectEmitter.emit(constants.EVENT_NAME.queryChange, value)
     }
   }
 
+const setFilteredSelectCls = (nextTick, state, props) => {
+  nextTick(() => {
+    if (props.multiple && props.showAlloption && props.filterable && state.query && !props.remote) {
+      const filterSelectedVal = state.options
+        .filter((item) => item.state.visible && item.state.itemSelected)
+        .map((opt) => opt.value)
+      const visibleOptions = state.options.filter((item) => item.state.visible)
+      if (filterSelectedVal.length === visibleOptions.length) {
+        state.filteredSelectCls = 'checked-sur'
+      } else if (filterSelectedVal.length === 0) {
+        state.filteredSelectCls = 'check'
+      } else {
+        state.filteredSelectCls = 'halfselect'
+      }
+    }
+  })
+}
+
 export const handleQueryChange =
   ({ api, constants, nextTick, props, vm, state }) =>
-  (value, isChange = false) => {
+  (value, isChange = false, isInput = false) => {
     if ((state.previousQuery === value && !isChange) || state.isOnComposition) {
       return
     }
@@ -158,7 +179,7 @@ export const handleQueryChange =
     if (props.renderType === constants.TYPE.Tree) {
       state.previousQuery = value
 
-      if (state.filterOrSearch && typeof props.filterMethod === 'function') {
+      if (props.filterable && typeof props.filterMethod === 'function') {
         vm.$refs.selectTree && vm.$refs.selectTree.filter(value)
       }
     }
@@ -172,16 +193,15 @@ export const handleQueryChange =
         state.showWarper = true
       }
     })
+
     state.hoverIndex = -1
 
     if (props.multiple && props.filterable && !props.shape) {
       nextTick(() => {
-        if (vm.$refs.input) {
-          const length = vm.$refs.input.value.length * 15 + 20
-          state.inputLength = state.collapseTags ? Math.min(50, length) : length
-          api.managePlaceholder()
-          api.resetInputHeight()
-        }
+        const length = vm.$refs.input.value.length * 15 + 20
+        state.inputLength = state.collapseTags ? Math.min(50, length) : length
+        api.managePlaceholder()
+        api.resetInputHeight()
       })
     }
 
@@ -190,15 +210,8 @@ export const handleQueryChange =
     }
 
     state.triggerSearch = true
-    api.defaultOnQueryChange(value)
-  }
 
-export const resetFilter =
-  ({ state, api }) =>
-  () => {
-    state.query = ''
-    state.previousQuery = undefined
-    api.handleQueryChange(state.query)
+    api.defaultOnQueryChange(value, isInput)
   }
 
 export const scrollToOption =
@@ -206,10 +219,8 @@ export const scrollToOption =
   (option) => {
     const target =
       Array.isArray(option) && option[0] && option[0].state ? option[0].state.el : option.state ? option.state.el : ''
-
     if (vm.$refs.popper && target) {
       const menu = vm.$refs.popper.$el.querySelector(constants.CLASS.SelectDropdownWrap)
-
       setTimeout(() => scrollIntoView(menu, target))
     }
 
@@ -217,9 +228,11 @@ export const scrollToOption =
   }
 
 export const handleMenuEnter =
-  ({ api, nextTick, state }) =>
+  ({ api, nextTick, state, props }) =>
   () => {
-    nextTick(() => api.scrollToOption(state.selected))
+    if (!props.optimization) {
+      nextTick(() => api.scrollToOption(state.selected))
+    }
   }
 
 export const emitChange =
@@ -282,30 +295,17 @@ export const directEmitChange =
     emit('change', value, key)
   }
 
-export const clearNoMatchValue =
-  ({ props, emit }) =>
-  (newModelValue) => {
-    if (!props.clearNoMatchValue) {
-      return
-    }
-
-    if (
-      (props.multiple && props.modelValue.length !== newModelValue.length) ||
-      (!props.multiple && props.modelValue !== newModelValue)
-    ) {
-      emit('update:modelValue', newModelValue)
-    }
-  }
-
 export const getOption =
-  ({ props, state }) =>
+  ({ props, state, api }) =>
   (value) => {
     let option
-    const optionsList = props.optimization ? props.options : state.cachedOptions
+    const isObject = Object.prototype.toString.call(value).toLowerCase() === '[object object]'
+    const isNull = Object.prototype.toString.call(value).toLowerCase() === '[object null]'
+    const isUndefined = Object.prototype.toString.call(value).toLowerCase() === '[object undefined]'
 
-    for (let i = optionsList.length - 1; i >= 0; i--) {
-      const cachedOption = optionsList[i]
-      const isEqual = isObject(value)
+    for (let i = state.cachedOptions.length - 1; i >= 0; i--) {
+      const cachedOption = state.cachedOptions[i]
+      const isEqual = isObject
         ? getObj(cachedOption.value, props.valueKey) === getObj(value, props.valueKey)
         : cachedOption.value === value
 
@@ -316,25 +316,22 @@ export const getOption =
     }
 
     if (option) {
-      if (props.optimization) {
-        // 此处克隆避免引起 state.datas 发生变化触发 computeOptimizeOpts
-        const cloneOption = extend(true, {}, option)
-        cloneOption.currentLabel = cloneOption[props.textField]
+      return option
+    }
 
-        return cloneOption
-      } else {
-        if (!option.currentLabel) {
-          option.currentLabel = option[props.textField]
-        }
-        return option
+    if (props.optimization) {
+      option = api.getSelectedOption(value)
+      if (option) {
+        return { value: option.value, currentLabel: option.label || option.currentLabel }
+      }
+
+      option = state.datas.find((v) => getObj(v, props.valueKey) === value)
+      if (option) {
+        return { value: option.value, currentLabel: option.label || option.currentLabel }
       }
     }
-
-    let label = ''
-    if (!isObject(value) && !isNull(value) && !props.clearNoMatchValue) {
-      label = value
-    }
-
+    // tiny 新增 clearNoMatchValue的条件
+    const label = !isObject && !isNull && !isUndefined && !props.clearNoMatchValue ? value : ''
     let newOption = { value, currentLabel: label }
 
     if (props.multiple) {
@@ -342,6 +339,21 @@ export const getOption =
     }
 
     return newOption
+  }
+
+export const getSelectedOption =
+  ({ props, state }) =>
+  (value) => {
+    let option
+    if (props.multiple) {
+      option = state.selected.find((v) => getObj(v, props.valueKey) === value)
+    } else {
+      if (!isEmptyObject(state.selected) && getObj(state.selected, props.valueKey) === value) {
+        option = state.selected
+      }
+    }
+
+    return option
   }
 
 // 单选，获取匹配的option
@@ -359,6 +371,7 @@ const getOptionOfSetSelected = ({ api, props }) => {
     option.createdSelected = false
   }
 
+  // tiny 新增
   if (!option.currentLabel) {
     api.clearNoMatchValue('')
   }
@@ -367,29 +380,31 @@ const getOptionOfSetSelected = ({ api, props }) => {
 }
 
 // 多选，获取匹配的option
-const getResultOfSetSelected = ({ state, props, isGrid, isTree, api }) => {
+const getResultOfSetSelected = ({ state, isGrid, isTree, api, props }) => {
   let result = []
-  const newModelValue = []
+  const newModelValue = [] // tiny 新增，用于 clearNoMatchValue
 
   if (Array.isArray(state.modelValue)) {
     state.modelValue.forEach((value) => {
       if (isGrid || isTree) {
         const option = api.getPluginOption(value, isTree)
-        result = result.concat(option)
 
+        result = result.concat(option)
+        // tiny 新增
         if (props.clearNoMatchValue && option.length) {
           newModelValue.push(value)
         }
       } else {
+        // tiny 新增
         const option = api.getOption(value)
-        if (!props.clearNoMatchValue || (props.clearNoMatchValue && option.currentLabel)) {
+        if (!props.clearNoMatchValue || (props.clearNoMatchValue && option.label)) {
           result.push(option)
           newModelValue.push(value)
         }
       }
     })
   }
-
+  // tiny 新增
   api.clearNoMatchValue(newModelValue)
 
   return result
@@ -407,7 +422,7 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
   }
 
   const isRemote =
-    state.filterOrSearch &&
+    props.filterable &&
     props.remote &&
     (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
   const nestdata = isRemote ? state.remoteData : isTree ? api.getTreeData(state.treeData) : state.gridData
@@ -415,11 +430,10 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
 
   if (isEmptyObject(data)) {
     api.clearNoMatchValue('')
-
     return
   }
 
-  const obj = { ...data }
+  const obj = Object.assign({}, data)
   const label = data[props.textField]
 
   obj.currentLabel = label
@@ -439,27 +453,24 @@ export const setSelected =
         setGridOrTreeSelected({ props, state, vm, isTree, api })
       } else {
         const option = getOptionOfSetSelected({ api, props })
-        nextTick(() => {
-          state.selected = option
-          state.selectedLabel = option.state.currentLabel || option.currentLabel
-
-          if (state.filterOrSearch && !props.shape && !props.allowCreate) {
-            state.query = state.selectedLabel
-          }
-        })
+        state.selected = option
+        state.selectedLabel = option.state.currentLabel || option.currentLabel
+        props.filterable && !props.shape && (state.query = state.selectedLabel)
       }
+    } else {
+      const result = getResultOfSetSelected({ state, props, isGrid, isTree, api })
+      state.selectCls = result.length
+        ? result.length === state.options.length
+          ? 'checked-sur'
+          : 'halfselect'
+        : 'check'
+      state.selected = result
+      vm.$refs.selectTree && vm.$refs.selectTree.setCheckedNodes && vm.$refs.selectTree.setCheckedNodes(state.selected)
+      state.tips = state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(',')
 
-      return
+      setFilteredSelectCls(nextTick, state, props)
+      nextTick(api.resetInputHeight)
     }
-
-    const result = getResultOfSetSelected({ state, props, isGrid, isTree, api })
-
-    state.selectCls = result.length ? (result.length === state.options.length ? 'checked-sur' : 'halfselect') : 'check'
-    state.selected = result
-    vm.$refs.selectTree && vm.$refs.selectTree.setCheckedNodes && vm.$refs.selectTree.setCheckedNodes(state.selected)
-    state.tips = state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(',')
-
-    nextTick(api.resetInputHeight)
   }
 
 // 多选,树/表格，获取匹配option
@@ -467,7 +478,7 @@ export const getPluginOption =
   ({ api, props, state }) =>
   (value, isTree) => {
     const isRemote =
-      state.filterOrSearch &&
+      props.filterable &&
       props.remote &&
       (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
     const { textField, valueField } = props
@@ -484,45 +495,43 @@ export const getPluginOption =
   }
 
 export const toggleCheckAll =
-  ({ api, state }) =>
-  () => {
-    const getEnabledValues = (options) => {
-      let values = []
+  ({ api, state, props }) =>
+  (filtered) => {
+    let value = []
+    // 1. 需要控制勾选或去勾选的项
+    const enabledValues = state.options
+      .filter((op) => !op.state.disabled && !op.state.groupDisabled && !op.required && op.state.visible)
+      .map((op) => op.value)
 
-      for (let i = 0; i < options.length; i++) {
-        const isEnabled = !options[i].state.disabled && !options[i].state.groupDisabled
-        const isRequired = options[i].required
-        const isDisabledAndChecked = !isEnabled && options[i].state.selectCls === 'checked-sur'
-
-        if (state.isSelectAll) {
-          // 取消选中全部，必填和禁用且选中项不可取消
-          if (isRequired || isDisabledAndChecked) {
-            values.push(options[i].value)
-          }
-        } else {
-          // 选中全部，非禁用项 和 必填项和 禁用且选中项 需选中
-          if (isEnabled || isRequired || isDisabledAndChecked) {
-            values.push(options[i].value)
-          }
-        }
+    if (filtered) {
+      if (state.filteredSelectCls === 'check' || state.filteredSelectCls === 'halfselect') {
+        value = [...new Set([...state.modelValue, ...enabledValues])]
+      } else {
+        value = state.modelValue.filter((val) => !enabledValues.includes(val))
       }
+    } else {
+      if (state.selectCls === 'check') {
+        value = enabledValues
+      } else if (state.selectCls === 'halfselect') {
+        const unchecked = state.options.filter((item) => !item.state.disabled && item.state.selectCls === 'check')
 
-      return values
+        unchecked.length ? (value = enabledValues) : (value = [])
+      } else if (state.selectCls === 'checked-sur') {
+        value = []
+      }
     }
+    // 2. 必选项
+    const requiredValue = state.options.filter((op) => op.required).map((op) => op.value)
 
-    let value
+    // 3. 禁用且已设置为勾选的项
+    const disabledSelectedValues = state.options
+      .filter((op) => (op.state.disabled || op.state.groupDisabled) && op.state.selectCls === 'checked-sur')
+      .map((op) => op.value)
 
-    if (state.selectCls === 'check') {
-      value = getEnabledValues(state.options)
-    } else if (state.selectCls === 'halfselect') {
-      const unchecked = state.options.filter((item) => !item.disabled && item.state.selectCls === 'check')
-
-      unchecked.length ? (value = getEnabledValues(state.options)) : (value = [])
-    } else if (state.selectCls === 'checked-sur') {
-      value = getEnabledValues(state.options)
-    }
+    value = [...value, ...requiredValue, ...disabledSelectedValues]
 
     api.setSoftFocus()
+
     state.isSilentBlur = true
     api.updateModelValue(value)
     api.directEmitChange(value)
@@ -542,6 +551,7 @@ export const handleFocus =
       if (state.searchSingleCopy && state.selectedLabel) {
         emit('focus', event)
       }
+
       state.softFocus = false
     }
   }
@@ -550,7 +560,7 @@ export const focus =
   ({ vm, state }) =>
   () => {
     if (!state.softFocus) {
-      vm.$refs.reference?.focus()
+      vm.$refs.reference.focus()
     }
   }
 
@@ -558,7 +568,7 @@ export const blur =
   ({ vm, state }) =>
   () => {
     state.visible = false
-    vm.$refs.reference?.blur()
+    vm.$refs.reference.blur()
   }
 
 export const handleBlur =
@@ -572,10 +582,9 @@ export const handleBlur =
         emit('blur', event)
       }
     }, 200)
-    // 表单校验不能异步，否则弹窗中嵌套表单会出现弹窗关闭后再出现校验提示的bug
-    dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.formBlur, event?.target?.value)
+    // tiny 新增： 表单校验不能异步，否则弹窗中嵌套表单会出现弹窗关闭后再出现校验提示的bug
+    dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.formBlur, event.target.value)
 
-    state.triggerSearch = false
     state.softFocus = false
   }
 
@@ -686,10 +695,10 @@ export const resetInputHeight =
         api.calcCollapseTags()
       }
 
-      const sizeInMap = state.initialInputHeight
-
+      const sizeInMap = state.initialInputHeight || (state.isSaaSTheme ? 28 : 30)
       const noSelected = state.selected.length === 0
-      const spacingHeight = designConfig ? designConfig.state?.spacingHeight : constants.SPACING_HEIGHT
+      // tiny 新增的spacing (design中配置：aui为4，smb为0，tiny 默认为2)
+      const spacingHeight = designConfig ? designConfig.state?.spacingHeight : 2
 
       if (!state.isDisplayOnly) {
         if (!noSelected && tags) {
@@ -701,14 +710,14 @@ export const resetInputHeight =
             })
           })
         } else {
-          input.style.height = sizeInMap + 'px'
+          input.style.height = noSelected ? sizeInMap + 'px' : Math.max(0, sizeInMap) + 'px'
         }
       } else {
         input.style.height = 'auto'
       }
 
       if (state.visible && state.emptyText !== false) {
-        state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
+        state.selectEmitter.emit(constants.EVENT_NAME.updatePopper, true)
       }
     })
   }
@@ -732,6 +741,14 @@ export const resetHoverIndex =
     }
   }
 
+export const resetDatas =
+  ({ props, state }) =>
+  () => {
+    if (props.optimization && !props.remote && !props.filterMethod) {
+      state.datas = state.initDatas
+    }
+  }
+
 export const handleOptionSelect =
   ({ api, nextTick, props, vm, state }) =>
   (option, byClick) => {
@@ -750,19 +767,23 @@ export const handleOptionSelect =
       state.compareValue = deepClone(value)
 
       api.updateModelValue(value)
+
       api.emitChange(value)
 
       if (option.created) {
+        const isChange = false
+        const isInput = true
+
         state.query = ''
-        api.handleQueryChange('')
+        api.handleQueryChange('', isChange, isInput)
+
         state.inputLength = 20
       }
+
       if (props.filterable) {
-        vm.$refs.input?.focus()
+        vm.$refs.input.focus()
       }
-      if (props.searchable) {
-        vm.$refs.reference?.focus()
-      }
+
       if (props.autoClose) {
         state.visible = false
       }
@@ -770,9 +791,10 @@ export const handleOptionSelect =
       state.compareValue = deepClone(option.value)
 
       api.updateModelValue(option.value)
+
       api.emitChange(option.value)
 
-      // 修复select组件，创建条目选中再创建选中，还是上一次的数据
+      // tiny 新增 修复select组件，创建条目选中再创建选中，还是上一次的数据
       if (option.created) {
         state.createdSelected = true
         state.createdLabel = option.value
@@ -782,7 +804,9 @@ export const handleOptionSelect =
     }
 
     state.isSilentBlur = byClick
+
     api.setSoftFocus()
+
     if (state.visible) {
       return
     }
@@ -806,7 +830,9 @@ export const setSoftFocus =
 
     const input = vm.$refs.input || vm.$refs.reference
 
-    input?.focus()
+    if (input) {
+      input.focus()
+    }
   }
 
 export const getValueIndex =
@@ -850,13 +876,12 @@ export const toggleMenu =
 
     if (!state.selectDisabled) {
       toggleVisible && !state.softFocus && (state.visible = !state.visible)
-
       state.softFocus = false
 
       if (state.visible) {
         if (!(props.filterable && props.shape)) {
           const dom = vm.$refs.input || vm.$refs.reference
-          dom?.focus()
+          dom?.focus && dom.focus()
           api.setOptionHighlight()
         }
       }
@@ -869,16 +894,20 @@ export const selectOption =
     if (!state.visible || props.hideDrop) {
       api.toggleMenu(e)
     } else {
-      if (state.options[state.hoverIndex]) {
-        api.handleOptionSelect(state.options[state.hoverIndex])
+      let option = ''
+      if (state.query || props.remote) {
+        option = state.options.find((item) => item.state.index === state.hoverValue)
+      } else {
+        option = state.options[state.hoverIndex]
       }
+      option && api.handleOptionSelect(option)
     }
   }
 
 export const deleteSelected =
   ({ api, constants, emit, props, vm, state }) =>
   (event) => {
-    event?.stopPropagation()
+    event && event.stopPropagation()
 
     let selectedValue = []
     if (props.multiple) {
@@ -887,22 +916,23 @@ export const deleteSelected =
     }
 
     const value = props.multiple ? selectedValue : ''
-    const refs = vm.$refs
 
     if (props.renderType === constants.TYPE.Tree) {
       state.selected = {}
       state.selectedLabel = ''
-      refs.selectTree.setCurrentKey(null)
+      vm.$refs.selectTree.state.currentRadio.value = null
+      vm.$refs.selectTree.setCurrentKey(null)
     } else if (props.renderType === constants.TYPE.Grid) {
       state.selected = {}
       state.selectedLabel = ''
-      refs.selectGrid.clearRadioRow()
+      vm.$refs.selectGrid.clearRadioRow()
     }
 
     state.showTip = false
     state.compareValue = deepClone(value)
 
     api.updateModelValue(value, true)
+
     api.emitChange(value, true)
 
     state.visible = false
@@ -915,14 +945,13 @@ export const deleteTag =
   (event, tag) => {
     if (tag.required) return
 
-    const refs = vm.$refs
     const isTree = props.renderType === constants.TYPE.Tree
     const index = state.selected.indexOf(tag)
     const treeValue = []
     const treeIds = [tag[props.valueField]]
 
     if (isTree && !props.treeOp.checkStrictly) {
-      let node = refs.selectTree.getNode(tag[props.valueField])
+      let node = vm.$refs.selectTree.getNode(tag[props.valueField])
 
       if (!node.isLeaf) {
         treeIds.push(...api.getChildValue(node.childNodes, props.valueField))
@@ -944,24 +973,25 @@ export const deleteTag =
 
       if (props.renderType === constants.TYPE.Tree) {
         props.treeOp.checkStrictly && treeValue.push(...value)
-        refs.selectTree.setCheckedKeys(treeValue)
+        vm.$refs.selectTree.setCheckedKeys(treeValue)
       } else if (props.renderType === constants.TYPE.Grid) {
         const rows = state.selected.slice().filter((item) => value.includes(item[props.valueField]))
 
-        refs.selectGrid.clearSelection()
-        refs.selectGrid.setSelection(rows, true)
+        vm.$refs.selectGrid.clearSelection()
+        vm.$refs.selectGrid.setSelection(rows, true)
       }
 
       state.compareValue = deepClone(value)
 
       api.updateModelValue(isTree ? treeValue : value)
+
       api.emitChange(value)
 
       emit(constants.EVENT_NAME.removeTag, tag[props.valueField])
       nextTick(() => state.key++)
     }
 
-    event.stopPropagation()
+    event && event.stopPropagation()
   }
 
 export const onInputChange =
@@ -969,9 +999,11 @@ export const onInputChange =
   () => {
     if (!props.delay) {
       if (props.filterable && state.query !== state.selectedLabel) {
-        state.query = state.selectedLabel
+        const isChange = false
+        const isInput = true
 
-        api.handleQueryChange(state.query)
+        state.query = state.selectedLabel
+        api.handleQueryChange(state.query, isChange, isInput)
 
         nextTick(() => {
           state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
@@ -997,7 +1029,10 @@ export const onOptionDestroy = (state) => (index) => {
 export const resetInputWidth =
   ({ vm, state }) =>
   () => {
-    state.inputWidth = vm.$refs.reference?.$el?.getBoundingClientRect()?.width || 0
+    // tiny 新增：由于当有reference 插槽时， 就没有 vm.$refs.reference 对象了。
+    if (vm.$refs.reference && vm.$refs.reference.$el) {
+      state.inputWidth = vm.$refs.reference.$el.getBoundingClientRect().width
+    }
   }
 
 export const handleResize =
@@ -1014,7 +1049,13 @@ export const setOptionHighlight = (state) => () => {
   for (let i = 0; i < state.options.length; ++i) {
     const option = state.options[i]
 
-    if (!option.disabled && !option.groupDisabled && option.state.visible && option.state.itemSelected) {
+    if (
+      !option.disabled &&
+      !option.groupDisabled &&
+      !option.state.created &&
+      option.state.visible &&
+      option.state.itemSelected
+    ) {
       state.hoverIndex = i
       break
     }
@@ -1026,10 +1067,14 @@ export const checkDefaultFirstOption = (state) => () => {
 
   let hasCreated = false
 
-  for (let i = state.options.length - 1; i >= 0; i--) {
-    if (state.options[i].created) {
+  const visibleOptions = state.options.filter((item) => item.visible && item.state.visible)
+
+  for (let i = visibleOptions.length - 1; i >= 0; i--) {
+    if (visibleOptions[i].created) {
       hasCreated = true
       state.hoverIndex = i
+      state.hoverValue = state.optionIndexArr[i]
+
       break
     }
   }
@@ -1038,17 +1083,21 @@ export const checkDefaultFirstOption = (state) => () => {
     return
   }
 
-  for (let i = 0; i !== state.options.length; ++i) {
-    const option = state.options[i]
+  for (let i = 0; i < visibleOptions.length; i++) {
+    const option = visibleOptions[i]
 
     if (state.query) {
-      if (!option.disabled && !option.groupDisabled && option.state.visible) {
+      if (!option.disabled && !option.groupDisabled && option.state.visible && option.visible) {
         state.hoverIndex = i
+        state.hoverValue = state.optionIndexArr[i]
+
         break
       }
     } else {
       if (option.itemSelected) {
         state.hoverIndex = i
+        state.hoverValue = state.optionIndexArr[i]
+
         break
       }
     }
@@ -1057,7 +1106,6 @@ export const checkDefaultFirstOption = (state) => () => {
 
 export const getValueKey = (props) => (item) => {
   if (!item) return
-
   if (Object.prototype.toString.call(item.value).toLowerCase() !== '[object object]') {
     return item.value || item[props.valueField]
   }
@@ -1066,15 +1114,14 @@ export const getValueKey = (props) => (item) => {
 }
 
 export const navigateOptions =
-  ({ api, nextTick, state, props }) =>
+  ({ api, state, props, nextTick }) =>
   (direction) => {
     const { optimization } = props
 
     if (optimization) {
       return
     }
-
-    const len = state.options.length
+    const len = state.options.filter((item) => item.visible && item.state.visible).length
 
     if (!state.visible) {
       state.visible = true
@@ -1083,6 +1130,15 @@ export const navigateOptions =
 
     if (len === 0 || state.filteredOptionsCount === 0) {
       return
+    }
+
+    state.disabledOptionHover = true
+    setTimeout(() => {
+      state.disabledOptionHover = false
+    }, 100)
+
+    if (state.hoverIndex < -1 || state.hoverIndex >= len) {
+      state.hoverIndex = 0
     }
 
     if (!state.optionsAllDisabled) {
@@ -1100,13 +1156,58 @@ export const navigateOptions =
         }
       }
 
-      const option = state.options[state.hoverIndex]
+      let option = {}
 
-      if (option.disabled === true || option.groupDisabled === true || !option.visible || option.state.limitReached) {
+      state.hoverValue = state.optionIndexArr[state.hoverIndex]
+
+      if (state.query || props.remote) {
+        option = state.options.find((item) => item.state.index === state.hoverValue)
+      } else {
+        option = state.options[state.hoverIndex]
+      }
+
+      if (
+        option.disabled === true ||
+        option.groupDisabled === true ||
+        !option.state.visible ||
+        option.state.limitReached
+      ) {
         api.navigateOptions(direction)
       }
 
-      nextTick(() => api.scrollToOption(state.hoverOption))
+      nextTick(() => api.scrollToOption(state.hoverIndex === -9 ? {} : option || {}))
+    }
+  }
+
+export const emptyFlag =
+  ({ props, state }) =>
+  () => {
+    if (props.optimization) {
+      if (props.allowCreate) {
+        return state.query === '' && state.datas.length === 0
+      } else {
+        return state.datas.length === 0
+      }
+    } else {
+      return state.options.length === 0
+    }
+  }
+
+export const recycleScrollerHeight =
+  ({ state, props, recycle }) =>
+  () => {
+    const { ITEM_HEIGHT, SAFE_MARGIN, SAAS_HEIGHT, AURORA_HEIGHT } = recycle
+    let length = state.datas.length
+    if (state.showNewOption) {
+      length += 1
+    }
+
+    if (length === 0 || props.loading) {
+      return 0
+    } else if (length < 6) {
+      return length * ITEM_HEIGHT + (state.isSaaSTheme ? SAFE_MARGIN * 2 : 0)
+    } else {
+      return state.isSaaSTheme ? SAAS_HEIGHT : AURORA_HEIGHT
     }
   }
 
@@ -1115,22 +1216,26 @@ export const emptyText =
   () => {
     if (props.loading) {
       return props.loadingText || t(I18N.loading)
-    } else {
-      if (props.remote && state.query === '' && props.renderType) {
-        return remoteEmptyText(props, state)
-      }
+    }
 
-      if (props.remote && state.query === '' && state.options.length === 0 && !state.triggerSearch) {
-        return props.shape === 'filter' || isMobileFirstMode ? '' : false
-      }
+    if (props.remote && state.query === '' && props.renderType) {
+      return remoteEmptyText(props, state)
+    }
 
-      if (state.filterOrSearch && state.query && state.options.length >= 0 && state.filteredOptionsCount === 0) {
-        return props.noMatchText || t(I18N.noMatch)
-      }
+    if (props.remote && state.query === '' && state.emptyFlag && !state.triggerSearch) {
+      return props.shape === 'filter' || isMobileFirstMode ? '' : false
+    }
 
-      if (!state.options.some((option) => option.visible && option.state.visible)) {
-        return props.noDataText || t(I18N.noData)
-      }
+    if (
+      props.filterable &&
+      state.query &&
+      ((props.remote && state.emptyFlag) || !state.options.some((option) => option.visible && option.state.visible))
+    ) {
+      return props.noMatchText || t(I18N.noMatch)
+    }
+
+    if (state.emptyFlag) {
+      return props.noDataText || t(I18N.noData)
     }
 
     return null
@@ -1156,9 +1261,10 @@ export const watchValue =
         state.currentPlaceholder = state.cachedPlaceHolder
       }
 
-      if (state.filterOrSearch && !props.reserveKeyword) {
-        props.renderType !== constants.TYPE.Grid && (state.query = '')
-        api.handleQueryChange(state.query)
+      if (props.filterable && !props.reserveKeyword) {
+        // tiny 优化： 多选且props.reserveKeyword为false时， aui此处会多请求一次
+        // searchable时，不清空query, 这样才能保持搜索结果
+        props.renderType !== constants.TYPE.Grid && !props.searchable && (state.query = '')
       }
     }
 
@@ -1175,7 +1281,7 @@ export const watchValue =
       dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.formChange, value)
     }
 
-    state.optimizeStore.flag && optmzApis.setValueIndex({ props, state })
+    props.optimization && optmzApis.setValueIndex({ props, state })
   }
 
 export const calcOverFlow =
@@ -1234,7 +1340,7 @@ const postOperOfToVisible = ({ props, state, constants }) => {
       if (props.filterable && props.allowCreate && state.createdSelected && state.createdLabel) {
         state.selectedLabel = state.createdLabel
       } else {
-        state.selectedLabel = state.selected.state?.currentLabel || state.selected.currentLabel
+        state.selectedLabel = state.selected.state.currentLabel || state.selected.currentLabel
       }
 
       if (props.filterable) {
@@ -1242,7 +1348,7 @@ const postOperOfToVisible = ({ props, state, constants }) => {
       }
     }
 
-    if (state.filterOrSearch) {
+    if (props.filterable) {
       state.currentPlaceholder = state.cachedPlaceHolder
     }
   }
@@ -1254,11 +1360,13 @@ export const toVisible =
     state.selectEmitter.emit(constants.EVENT_NAME.destroyPopper)
     props.remote && props.dropOnlySearch && (state.showWarper = false)
 
-    vm.$refs.input?.blur()
+    if (vm.$refs.input) {
+      vm.$refs.input.blur()
+    }
+
     state.query = ''
     state.selectedLabel = ''
     state.inputLength = 20
-
     state.previousQuery !== state.query && api.initQuery().then(() => api.setSelected())
 
     if (props.renderType !== constants.TYPE.Tree) {
@@ -1266,6 +1374,7 @@ export const toVisible =
     }
 
     api.resetHoverIndex()
+    api.resetDatas()
 
     nextTick(() => {
       if (vm.$refs.input && vm.$refs.input.value === '' && state.selected.length === 0) {
@@ -1281,29 +1390,25 @@ export const toVisible =
   }
 
 export const toHide =
-  ({ constants, state, props, vm, api, nextTick }) =>
+  ({ constants, state, props, vm, api }) =>
   () => {
-    const { remote, remoteConfig, shape, renderType, multiple, valueField } = props
+    const { filterable, remote, remoteConfig, shape, renderType, multiple, valueField } = props
 
-    state.selectEmitter.emit(constants.COMPONENT_NAME.SelectDropdown)
-    nextTick(() => {
-      state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
-    })
+    state.selectEmitter.emit(constants.COMPONENT_NAME.SelectDropdown, constants.EVENT_NAME.updatePopper)
 
-    if (state.filterOrSearch) {
+    if (filterable) {
       state.query = remote || shape ? '' : renderType !== constants.TYPE.Tree ? state.selectedLabel : ''
-
       const isChange = remote && remoteConfig.autoSearch && (state.firstAutoSearch || remoteConfig.clearData)
       state.firstAutoSearch = false
       api.handleQueryChange(state.query, isChange)
 
       if (multiple) {
-        // Select组件，下拉面板顶部增加搜索框时修改
-        props.filterable ? vm.$refs.input?.focus() : vm.$refs.reference?.focus()
+        vm.$refs.input.focus()
       } else {
         if (!remote) {
-          state.selectEmitter.emit(constants.EVENT_NAME.queryChange)
-          state.selectEmitter.emit(constants.COMPONENT_NAME.OptionGroup)
+          state.selectEmitter.emit(constants.EVENT_NAME.queryChange, '')
+
+          state.selectEmitter.emit(constants.COMPONENT_NAME.OptionGroup, constants.EVENT_NAME.queryChange)
         }
 
         if (state.selectedLabel && !shape) {
@@ -1324,13 +1429,13 @@ export const toHide =
         )
       } else {
         vm.$refs.selectGrid.clearRadioRow()
-        vm.$refs.selectGrid.setRadioRow(find(fullData, (item) => props.modelValue === item[props.valueField]))
+        vm.$refs.selectGrid.setRadioRow(find(fullData, (item) => props.modelValue === item[valueField]))
       }
 
-      if (state.filterOrSearch && typeof props.filterMethod === 'function') {
+      if (filterable && typeof props.filterMethod === 'function') {
         vm.$refs.selectGrid.handleTableData(true)
       } else if (
-        state.filterOrSearch &&
+        filterable &&
         remote &&
         (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
       ) {
@@ -1340,10 +1445,10 @@ export const toHide =
   }
 
 export const watchVisible =
-  ({ api, constants, emit, state, vm, props, isMobileFirstMode }) =>
+  ({ api, constants, emit, state, vm, props }) =>
   (value) => {
-    if ((state.filterOrSearch || props.remote) && !value) {
-      vm.$refs.reference?.blur()
+    if ((props.filterable || props.remote) && !value) {
+      vm.$refs.reference.blur()
     }
 
     if (api.onCopying()) {
@@ -1369,23 +1474,16 @@ export const watchVisible =
     setTimeout(() => {
       state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
       if (value && vm.$refs.scrollbar) {
-        vm.$refs.scrollbar.handleScroll()
+        if (props.optimization) {
+          optmzApis.setScrollTop({ refs: vm.$refs, state })
+        } else {
+          vm.$refs.scrollbar.handleScroll()
+        }
       }
     }, props.updateDelay)
 
     if (!value && props.shape === 'filter') {
       state.softFocus = false
-    }
-
-    if (value && state.optimizeStore.flag) {
-      if (isMobileFirstMode) {
-        optmzApis.queryWrap(vm.$refs).addEventListener('scroll', api.getScrollListener)
-      }
-
-      optmzApis.createMacro(() => {
-        optmzApis.setScrollTop({ refs: vm.$refs, state })
-        api.getScrollListener()
-      })
     }
   }
 
@@ -1410,12 +1508,31 @@ export const watchOptions =
       }
     })
 
-    if (
-      props.defaultFirstOption &&
-      (props.filterable || props.searchable || props.remote) &&
-      state.filteredOptionsCount
-    ) {
-      api.checkDefaultFirstOption()
+    api.getOptionIndexArr()
+  }
+
+export const getOptionIndexArr =
+  ({ props, state, api }) =>
+  () => {
+    setTimeout(() => {
+      state.optionIndexArr = api.queryVisibleOptions().map((item) => Number(item.getAttribute('data-index')))
+      if (props.defaultFirstOption && (props.filterable || props.remote) && state.filteredOptionsCount) {
+        if (props.optimization) {
+          optmzApis.checkDefaultFirstOption({ state })
+        } else {
+          api.checkDefaultFirstOption()
+        }
+      }
+    })
+  }
+
+export const queryVisibleOptions =
+  ({ props, vm, isMobileFirstMode }) =>
+  () => {
+    if (props.optimization) {
+      return optmzApis.queryVisibleOptions(vm, isMobileFirstMode)
+    } else {
+      return Array.from(vm.$refs.scrollbar?.$el.querySelectorAll('[data-index]:not([style*="display: none"])') || [])
     }
   }
 
@@ -1462,6 +1579,7 @@ export const selectChange =
     const keys = state.selected.map((item) => item[valueField])
 
     api.updateModelValue(keys)
+
     api.directEmitChange(keys, state.selected)
   }
 
@@ -1483,10 +1601,13 @@ export const getcheckedData =
   }
 
 export const radioChange =
-  ({ props, state, api }) =>
+  ({ props, state, api, vm }) =>
   ({ row }) => {
     row.value = row[props.valueField]
     row.currentLabel = row[props.textField]
+
+    !state.hasClearSelection && vm.$refs.selectGrid.clearSelection()
+    state.hasClearSelection = true
     state.selected = row
     state.visible = false
     state.currentKey = row[props.valueField]
@@ -1541,11 +1662,11 @@ export const nodeCheckClick =
       return
     }
 
+    // 这行是aui的写法，不正确； tiny是 return checkedNodes, 逻辑也不正确。
+    // eslint-disable-next-line array-callback-return
     state.selected = checkedNodes.filter((node) => {
       node.currentLabel = node[props.textField]
       node.value = node[props.valueField]
-
-      return checkedNodes
     })
 
     api.updateModelValue(checkedKeys)
@@ -1570,9 +1691,12 @@ export const nodeExpand =
 
 export const debouncRquest = ({ api, state, props }) =>
   debounce(props.delay, () => {
-    if (state.filterOrSearch && state.query !== state.selectedLabel) {
+    if (props.filterable && state.query !== state.selectedLabel) {
+      const isChange = false
+      const isInput = true
+
       state.query = state.selectedLabel
-      api.handleQueryChange(state.query)
+      api.handleQueryChange(state.query, isChange, isInput)
     }
   })
 
@@ -1599,13 +1723,11 @@ export const watchPropsOption =
   () => {
     const renderType = props.renderType
     const { key, parentKey } = props.treeOp
-
     const dataset = {
       dataset: props.options || props.dataset,
       service: parent.$service,
       tree: { key, parentKey }
     }
-
     getDataset(dataset).then((data) => {
       if (renderType === constants.TYPE.Tree) {
         state.treeData = data
@@ -1626,12 +1748,12 @@ export const watchPropsOption =
 
           sortData = requiredData.concat(sortData)
         }
-
         if (props.cacheOp && props.cacheOp.key) {
           state.memorize = new Memorize(props.cacheOp)
           state.datas = state.memorize.assemble(sortData.slice())
         } else {
           state.datas = sortData
+          state.initDatas = sortData
         }
       }
     })
@@ -1643,7 +1765,7 @@ export const buildSelectConfig =
     const checkRowKeys = state.gridCheckedData
     const selectConfig = props.selectConfig
 
-    return { ...selectConfig, checkRowKeys }
+    return Object.assign({}, selectConfig, { checkRowKeys })
   }
 
 export const buildRadioConfig =
@@ -1653,7 +1775,7 @@ export const buildRadioConfig =
     const highlight = true
     const radioConfig = props.radioConfig
 
-    return { ...radioConfig, ...{ checkRowKey, highlight } }
+    return Object.assign({}, radioConfig, { checkRowKey, highlight })
   }
 
 export const onMouseenterNative =
@@ -1679,33 +1801,37 @@ export const onMouseleaveNative =
 
 export const onCopying =
   ({ state, vm }) =>
-  () =>
-    state.searchSingleCopy &&
-    state.selectedLabel &&
-    vm.$refs.reference &&
-    vm.$refs.reference.hasSelection &&
-    vm.$refs.reference.hasSelection()
+  () => {
+    return (
+      state.searchSingleCopy &&
+      state.selectedLabel &&
+      vm.$refs.reference &&
+      vm.$refs.reference.hasSelection &&
+      vm.$refs.reference.hasSelection()
+    )
+  }
 
 export const watchHoverIndex =
   ({ state }) =>
   (value) => {
-    if (typeof value === 'number' && value > -1) {
-      state.hoverOption = state.options[value] || {}
-    } else if (value === -9) {
-      state.hoverOption = {}
+    if (value === -1 || value === -9) {
+      state.hoverValue = -1
+    } else {
+      state.hoverValue = state.optionIndexArr[value]
     }
-
-    state.options.forEach((option) => {
-      option.hover = state.hoverOption === option
-    })
   }
 
 export const handleDropdownClick =
-  ({ emit }) =>
+  ({ vm, state, props, emit }) =>
   ($event) => {
+    if (props.allowCopy && vm.$refs.reference) {
+      vm.$refs.reference.$el.querySelector('input').selectionEnd = 0
+    }
+
+    state.softFocus = false
+
     emit('dropdown-click', $event)
   }
-
 export const handleEnterTag =
   ({ state }) =>
   ($event, key) => {
@@ -1810,16 +1936,17 @@ export const mounted =
   () => {
     state.defaultCheckedKeys = state.gridCheckedData
     const parentEl = parent.$el
-    const inputEl =
-      parentEl.querySelector('input.tiny-input__inner') || parentEl.querySelector('input.tiny-mobile-input__inner')
-    const inputClientRect = inputEl?.getBoundingClientRect() || {}
+    const inputEl = parentEl.querySelector('input[data-tag="tiny-input-inner"]')
+
+    const inputClientRect = (inputEl && inputEl.getBoundingClientRect()) || {}
 
     if (inputEl === document.activeElement) {
-      document.activeElement?.blur()
+      document.activeElement.blur()
     }
 
     state.completed = true
 
+    // tiny 新增：  sizeMap适配不同主题
     const defaultSizeMap = { default: 28, mini: 24, small: 32, medium: 40 }
     const sizeMap = designConfig?.state?.sizeMap || defaultSizeMap
 
@@ -1827,7 +1954,9 @@ export const mounted =
       state.currentPlaceholder = ''
     }
 
-    state.initialInputHeight = sizeMap[state.selectSize || 'default']
+    state.initialInputHeight = state.isDisplayOnly
+      ? sizeMap[state.selectSize || 'default'] // tiny 新增 : default, aui只处理了另3种情况，不传入时，要固定为default
+      : inputClientRect.height || sizeMap[state.selectSize]
 
     addResizeListener(parentEl, api.handleResize)
 
@@ -1860,8 +1989,6 @@ export const unMount =
     }
 
     state.popperElm = null
-
-    state.optimizeStore.flag && optmzApis.removeScrollListener({ api, refs: vm.$refs, state })
   }
 
 const optmzApis = {
@@ -1872,119 +1999,47 @@ const optmzApis = {
     const equal = (val, opt) => (multiple ? contain(opt[valueField], [val]) : opt[valueField] === val)
     let start = 0
 
-    if (optmzApis.exist(modelValue, multiple)) {
+    if (optmzApis.exist(modelValue, multiple) && options) {
       const lastVal = multiple ? modelValue[modelValue.length - 1] : modelValue
-
       for (let i = 0; i < options.length; i++) {
-        if (!equal(lastVal, options[i])) {
-          continue
-        }
-
+        if (!equal(lastVal, options[i])) continue
         return i
       }
     }
 
     return start
   },
-  getStartIndex: ({ props, state }) => {
-    const { options } = props
-    const { optimizeOpts, optimizeStore } = state
-    const { rSize } = optimizeOpts
-    const { valueIndex } = optimizeStore
-
-    return valueIndex + rSize > options.length ? options.length - rSize : valueIndex
+  queryVisibleOptions: (vm, isMobileFirstMode) => {
+    const querySelectKey = isMobileFirstMode ? '.cursor-not-allowed' : '.is-disabled'
+    return Array.from(
+      vm.$refs.scrollbar.$el.querySelectorAll(
+        '.tiny-recycle-scroller__slot, .tiny-recycle-scroller__item-view:not([style*="transform: translateY(-9999px) translateX(0px)"])'
+      )
+    )
+      .map((item) => item.querySelector(`[data-tag="tiny-select-dropdown-item"]:not(${querySelectKey})`))
+      .filter((v) => v)
   },
-  getViewStyle: ({ props, state }) => {
-    const { options } = props
-    const { optimizeOpts } = state
-    const { optionHeight } = optimizeOpts
-
-    return `height:${optionHeight * options.length}px` // 计算总高度
-  },
-  getStoreDatas: ({ props, state }) => {
-    const { options, valueField, modelValue, multiple } = props
-    const { datas, optimizeOpts, optimizeStore } = state
-    const { startIndex } = optimizeStore
-    const { rSize } = optimizeOpts
-    const sliced = datas.slice(startIndex, startIndex + rSize)
-    const hiddenOptions = (optimizeStore.hiddenOptions = [])
-    const findPush = (val) => {
-      const opt = options.find((option) => option[valueField] === val)
-
-      if (opt && !~sliced.indexOf(opt)) {
-        sliced.push(opt)
-        hiddenOptions.push(opt)
-      }
-    }
-
-    if (optmzApis.exist(modelValue, multiple)) {
-      if (multiple) {
-        modelValue.forEach(findPush)
-      } else {
-        findPush(modelValue)
-      }
-    }
-
-    return sliced
-  },
-  queryWrap: (refs) => refs.scrollbar.$el.querySelector('.tiny-scrollbar__wrap.virtual'),
-  queryItems: (refs) => refs.scrollbar.$el.querySelectorAll('[data-tag="tiny-option"].virtual'),
-  createMacro: (cb) => setTimeout(cb),
   setScrollTop: ({ refs, state }) => {
-    const { optimizeOpts, optimizeStore } = state
-    const { optionHeight } = optimizeOpts
-    const wrap = optmzApis.queryWrap(refs)
-
-    wrap.scrollTop = optionHeight * optimizeStore.valueIndex
-  },
-  setValueIndex: ({ props, state }) => (state.optimizeStore.valueIndex = optmzApis.getValueIndex(props)),
-  addScrollListener: ({ api, refs, state }) => {
     const { optimizeStore } = state
-    const wrap = optmzApis.queryWrap(refs)
 
-    !optimizeStore.bind && wrap.addEventListener('scroll', api.getScrollListener) && (optimizeStore.bind = true)
+    refs.scrollbar.scrollToItem(optimizeStore.valueIndex)
   },
-  removeScrollListener: ({ api, refs, state }) => {
-    const { optimizeStore } = state
-    const wrap = optmzApis.queryWrap(refs)
-
-    optimizeStore.bind && wrap.removeEventListener('scroll', api.getScrollListener) && (optimizeStore.bind = false)
-  },
-  isFirstPage: ({ props, state }) => {
-    const { optimizeStore } = state
-    const { datas } = optimizeStore
-    const { options } = props
-
-    return Array.isArray(datas) && Array.isArray(options) && datas[0] === options[0]
+  setValueIndex: ({ props, state }) => {
+    state.optimizeStore.valueIndex = optmzApis.getValueIndex(props)
   },
   natural: (val) => (val < 0 ? 0 : val),
-  updateItems: ({ refs, state, itemFn }) => {
-    const { optimizeOpts } = state
-    const { optionHeight } = optimizeOpts
-    const items = optmzApis.queryItems(refs)
-
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i]
-      const flag = item.classList.contains('virtual-hidden')
-
-      item.style.top = flag ? `-${optionHeight}px` : `${itemFn(i)}px`
-    }
-  },
-  process: ({ props, start, state }) => {
-    const { optimizeStore } = state
-
-    optimizeStore.startIndex = typeof start !== 'undefined' ? start : optmzApis.getStartIndex({ props, state })
-    optimizeStore.datas = optmzApis.getStoreDatas({ props, state })
-    optimizeStore.firstPage = optmzApis.isFirstPage({ props, state })
+  checkDefaultFirstOption: ({ state }) => {
+    state.hoverIndex = 0
+    state.hoverValue = state.optionIndexArr[0]
   }
 }
 
 export const computeOptimizeOpts =
-  ({ props, state }) =>
+  ({ props, designConfig }) =>
   () => {
     const { optimization } = props
-    // TINY-TODO 和 aui 不同
-    const baseOpts = { gt: 20, rSize: 10, optionHeight: 30, limit: 20 }
+    // tiny 新增：  aui 的默认值为 { optionHeight: 34, limit: 20 }
+    const baseOpts = designConfig?.baseOpts ? designConfig.baseOpts : { gt: 20, rSize: 10, optionHeight: 30, limit: 20 }
 
     let optOpts
 
@@ -1995,73 +2050,30 @@ export const computeOptimizeOpts =
         optOpts = extend(true, {}, baseOpts, optimization)
       }
 
-      optOpts.virtualScroll = optOpts.gt > 0 && optOpts.gt <= state.datas.length
-
       return optOpts
     }
   }
 
 export const watchOptimizeOpts =
-  ({ api, props, vm, state }) =>
+  ({ props, state }) =>
   () => {
     const { optimizeOpts, optimizeStore } = state
-
     if (optimizeOpts) {
-      const { virtualScroll, optionHeight } = optimizeOpts
-
-      optimizeStore.flag = virtualScroll
-
-      if (virtualScroll) {
-        optimizeStore.viewStyle = optmzApis.getViewStyle({ props, state })
+      if (props.optimization) {
         optimizeStore.valueIndex = optmzApis.getValueIndex(props)
-        optmzApis.process({ props, state })
-
-        optmzApis.createMacro(() => {
-          const itemFn = (i) => optionHeight * (optimizeStore.startIndex + i)
-
-          optmzApis.addScrollListener({ api, refs: vm.$refs, state })
-          optmzApis.updateItems({ refs: vm.$refs, state, itemFn })
-        })
       }
     }
   }
-
-export const getScrollListener = ({ props, vm, state }) => {
-  const listener = () => {
-    const { options } = props
-    const { optimizeOpts } = state
-    const { optionHeight } = optimizeOpts
-    const viewHeight = optionHeight * options.length
-    const { clientHeight, scrollTop } = optmzApis.queryWrap(vm.$refs)
-    const maxScrollTop = viewHeight - clientHeight
-    const start = Math.floor(scrollTop / optionHeight)
-
-    if (scrollTop <= maxScrollTop) {
-      optmzApis.process({ props, start, state })
-
-      optmzApis.createMacro(() => {
-        const itemFn = (i) => scrollTop + optionHeight * i - (scrollTop % optionHeight)
-
-        optmzApis.updateItems({ refs: vm.$refs, state, itemFn })
-      })
-    }
-  }
-
-  const { optimization } = props
-  const delay = optmzApis.natural((optimization && typeof optimization === 'object' ? optimization.delay : null) || 10)
-
-  return debounce(delay, listener)
-}
 
 export const computeCollapseTags = (props) => () => props.collapseTags
 
 export const computeMultipleLimit =
   ({ props, state }) =>
   () => {
-    const { multipleLimit, multiple } = props
-    const { optimizeOpts, optimizeStore } = state
+    const { multipleLimit, multiple, optimization } = props
+    const { optimizeOpts } = state
 
-    return optmzApis.natural(multiple && optimizeStore.flag ? multipleLimit || optimizeOpts.limit : multipleLimit)
+    return optmzApis.natural(multiple && optimization ? multipleLimit || optimizeOpts.limit : multipleLimit)
   }
 
 export const updateModelValue =
@@ -2079,7 +2091,7 @@ export const updateModelValue =
 export const getLabelSlotValue =
   ({ props, state }) =>
   (item) => {
-    const datas = state.optimizeStore.flag ? state.optimizeStore.datas : state.datas
+    const datas = state.datas
     const value = item.state ? item.state.currentValue : item.value
     const data = datas.find((data) => data.value === value)
 
@@ -2096,7 +2108,6 @@ export const computedTagsStyle =
   () => {
     const isReadonly = props.disabled || (parent.form || {}).disabled || props.displayOnly
 
-    // 原来是 { 'max-width': state.inputWidth - 32 + 'px', width: '100%' }
     return {
       'max-width': isReadonly ? '' : state.inputWidth - state.inputPaddingRight + 'px',
       width: '100%'
@@ -2117,22 +2128,22 @@ export const computedShowClose =
   () =>
     props.clearable &&
     !state.selectDisabled &&
-    (state.inputHovering || (props.multiple && state.visible)) && //  新增 || (props.multiple && state.visible)
+    (state.inputHovering || (props.multiple && state.visible)) &&
     (props.multiple
       ? Array.isArray(props.modelValue) && props.modelValue.length > 0
       : !isNull(props.modelValue) && props.modelValue !== '')
 
+// tiny 新增：  aui有自己的逻辑，移至defineConfig中去了
 export const computedCollapseTagSize = (state) => () => state.selectSize
 
 export const computedShowNewOption =
   ({ props, state }) =>
   () => {
     const query = state.device === 'mb' ? state.queryValue : state.query
-
     return (
       props.filterable &&
       props.allowCreate &&
-      query !== '' &&
+      query &&
       !state.options.filter((option) => !option.created).some((option) => option.state.currentLabel === state.query)
     )
   }
@@ -2218,18 +2229,16 @@ export const watchShowClose =
     })
   }
 
+// 以下为tiny 新增功能
 export const computedGetIcon =
-  ({ constants, designConfig, props }) =>
-  (iconKey = 'dropdownIcon') => {
-    const defaultDropdownIcon = {
-      icon: designConfig?.icons[iconKey] || constants?.ICON_MAP[iconKey],
-      isDefault: true
-    }
-    if (props.dropdownIcon) {
-      return { icon: props.dropdownIcon }
-    }
-
-    return defaultDropdownIcon
+  ({ designConfig, props }) =>
+  () => {
+    return props.dropdownIcon
+      ? { icon: props.dropdownIcon }
+      : {
+          icon: designConfig?.icons.dropdownIcon || 'icon-delta-down',
+          isDefault: true
+        }
   }
 
 export const computedGetTagType =
@@ -2240,9 +2249,24 @@ export const computedGetTagType =
     }
     return props.tagType
   }
-
-export const computedShowDropdownIcon =
-  ({ props, state }) =>
+export const clearSearchText =
+  ({ state, api }) =>
   () => {
-    return !state.showClose && !(props.remote && props.filterable && !props.remoteConfig.showIcon)
+    state.query = ''
+    state.previousQuery = undefined
+    api.handleQueryChange(state.query)
+  }
+export const clearNoMatchValue =
+  ({ props, emit }) =>
+  (newModelValue) => {
+    if (!props.clearNoMatchValue) {
+      return
+    }
+
+    if (
+      (props.multiple && props.modelValue.length !== newModelValue.length) ||
+      (!props.multiple && props.modelValue !== newModelValue)
+    ) {
+      emit('update:modelValue', newModelValue)
+    }
   }

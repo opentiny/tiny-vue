@@ -110,7 +110,7 @@ export const renderless = (
   Object.assign(api, {
     state,
     handleTabAdd: handleTabAdd(emit),
-    handleTabRemove: handleTabRemove(emit),
+    handleTabRemove: handleTabRemove({ emit, props }),
     changeDirection: changeDirection({ props, state }),
     changeCurrentName: changeCurrentName({ emit, state }),
     calcMorePanes: calcMorePanes({ parent, props, state, refs }),

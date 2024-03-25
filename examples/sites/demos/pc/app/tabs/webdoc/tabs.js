@@ -90,10 +90,10 @@ export default {
         'en-US': 'Delete'
       },
       desc: {
-        'zh-CN':
-          '通过 <code>with-close</code> 打开关闭按钮，并监听 <code>close</code> 事件自定义实现删除页签项的逻辑。',
-        'en-US':
-          'Open the close button through <code>with-close</code> and listen to the <code>close</code> event to customize the logic of deleting tag items.'
+        'zh-CN': `通过 <code>with-close</code> 打开关闭按钮，并监听 <code>close</code> 事件自定义实现删除页签项的逻辑。
+          通过 <code>beforeClose</code> 函数属性，在关闭前回调该函数，其类型声明为：<code>(name: string)=> boolean | Promise&lt;boolean&gt;</code>`,
+        'en-US': `Use <code>with-close</code> to enable the close button and listen to the <code>close</code> event to customize the logic for deleting tab items.
+          The <code>beforeClose</code> function attribute is used to call back the function before the function is closed. The type of the function is declared as <code>(name: string)=> boolean | Promise<boolean></code>.`
       },
       codeFiles: ['tabs-events-close.vue']
     },
@@ -240,6 +240,20 @@ export default {
           'By setting <code>edit</code> to display both <code>delete</code> and <code>add</code> buttons, <code>edit</code> listens for click events of these two types of buttons.'
       },
       codeFiles: ['tabs-events-edit.vue']
+    },
+    {
+      demoId: 'overflow-title',
+      name: {
+        'zh-CN': '标题超出显示 tooltip',
+        'en-US': 'The title exceeds the displayed tooltip.'
+      },
+      desc: {
+        'zh-CN':
+          '设置<code>overflow-title</code>属性可让标题超出一定长度（默认 256px）时隐藏并显示...，鼠标移到标题上可显示 tooltip，<code>title-width</code>属性可设置标题超出的长度。',
+        'en-US':
+          'Set the <code>overflow-title</code> attribute to hide and display the title when the title exceeds a certain length (256px by default). Move the cursor to the title to display the tooltip. Set the <code>title-width</code> attribute to set the length of the title.'
+      },
+      codeFiles: ['overflow-title.vue']
     }
   ]
 }

@@ -466,6 +466,7 @@ export const format = function (string, data, type = 'text') {
     return fieldFormat(string, data, type)
   }
 
+  // eslint-disable-next-line prefer-rest-params
   const ret = checkParam({ data, args, type, _arguments: arguments })
 
   args = ret.args
@@ -514,6 +515,7 @@ export const truncate = (string, length, ellipsis = '{0}...') => {
  * @returns {Number|String}
  */
 export const tryToConvert = (convert, defaultValue, ...args) => {
+  // eslint-disable-next-line prefer-spread
   const result = convert.apply(null, args)
   return isNaN(result) ? defaultValue : result
 }
@@ -806,14 +808,14 @@ export const isKorean = (text) => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(
  * @param {*} w 字符串显示最大长度
  * @returns obj obj.t为处理后字符串，obj.o为是否已省略标志
  */
-export const omitText = (text, font, w) => {
+export const omitText = (text: string, font: string, w: number) => {
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
 
   ctx.font = font
 
   let metric = ctx.measureText(text)
-  let t
+  let t: string
 
   if (metric.width < w) {
     return { t: text, o: false }

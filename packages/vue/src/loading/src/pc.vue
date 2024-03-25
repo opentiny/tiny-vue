@@ -2,6 +2,7 @@
   <transition name="tiny-loading-fade" @after-leave="handleAfterLeave">
     <div
       v-show="state.visible"
+      data-tag="tiny-loading"
       class="tiny-loading tiny-loading__mask"
       :style="{ backgroundColor: state.background || '' }"
       :class="[state.customClass, { 'is-fullscreen': state.fullscreen }]"

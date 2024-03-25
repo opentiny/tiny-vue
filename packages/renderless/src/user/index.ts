@@ -103,6 +103,32 @@ const request = {
     const me = this
     const reqParamsSeq = me.getParams()
     let reqLen = reqParamsSeq.length
+    let final = true
+
+    const onFinally = () => {
+      if (final) {
+        final = false
+        reqLen--
+
+        const errors = []
+
+        if (!reqLen) {
+          // 所有批次查询完成后触发未完成的回调并检查失败项
+          this.requests.forEach(({ cb, result, param }) => {
+            const { queryIds, valueField } = param
+
+            cb(result)
+            queryIds.forEach((id) => {
+              if (!this.cache[valueField] || !this.cache[valueField][id]) {
+                errors.push(id)
+              }
+            })
+          })
+          errors.length && log.logger.warn(`user [${errors.join(',')}] not found`)
+          this.clearRequest()
+        }
+      }
+    }
 
     reqParamsSeq.forEach((params) => {
       api
@@ -125,27 +151,8 @@ const request = {
             }
           })
         })
-        .finally(() => {
-          reqLen--
-
-          const errors = []
-
-          if (!reqLen) {
-            // 所有批次查询完成后触发未完成的回调并检查失败项
-            this.requests.forEach(({ cb, result, param }) => {
-              const { queryIds, valueField } = param
-
-              cb(result)
-              queryIds.forEach((id) => {
-                if (!this.cache[valueField] || !this.cache[valueField][id]) {
-                  errors.push(id)
-                }
-              })
-            })
-            errors.length && log.logger.warn(`user [${errors.join(',')}] not found`)
-            this.clearRequest()
-          }
-        })
+        .then(onFinally)
+        .catch(onFinally)
     })
   },
   setBatch(batch) {
@@ -243,7 +250,7 @@ export const updateOptions =
 export const autoSelect =
   ({ props, state, nextTick }) =>
   (usersList) => {
-    if (!usersList.length) {
+    if (!usersList.length || (props.multiple && props.multipleLimit && state.user.length >= props.multipleLimit)) {
       return nextTick()
     }
 
@@ -276,7 +283,7 @@ export const autoSelect =
 
 export const searchMethod = ({ api, props, state, emit }) =>
   debounce(props.delay, (query) => {
-    if (query && query.length >= props.suggestLength) {
+    if (query && query.trim().length >= props.suggestLength) {
       state.loading = true
       state.visible = true
 
@@ -331,8 +338,8 @@ export const setSelected =
   }
 
 export const userChange =
-  ({ api, emit, props, state }) =>
-  (value) => {
+  ({ api, emit, props, state, dispatch, constants }) =>
+  (value, emitChangeFlag = true) => {
     const { multiple } = props
 
     let newVal = multiple && Array.isArray(value) ? value.join(props.valueSplit) : (value || '') + ''
@@ -344,8 +351,14 @@ export const userChange =
       state.lastValue !== null &&
       state.lastValue.toLocaleLowerCase() !== newVal.toLocaleLowerCase()
     ) {
+      // user组件依赖select组件，当输入完整工号时，select会自动选择并触发change事件。
+      // 此时还未触发update:modelValue，表单数据还未更新，数据为空导致校验错误，此处需再触发一次表单change校验
       emit('update:modelValue', newVal)
-      emit('change', newVal, state.selected)
+      if (emitChangeFlag) {
+        emit('change', newVal, state.selected)
+        // tiny 新增
+        dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.FormChange, newVal)
+      }
     }
 
     state.lastValue = newVal
@@ -560,7 +573,7 @@ export const initUser =
     if (!value) {
       state.options = []
       state.selected = []
-      api.userChange(value)
+      api.userChange(value, props.changeCompat)
       return
     }
 
@@ -578,8 +591,7 @@ export const initUser =
 
         state.options = info
         state.user = props.multiple ? list : list[0]
-
-        api.userChange(value)
+        api.userChange(value, props.changeCompat)
       })
   }
 export const handleBlur =

@@ -76,7 +76,8 @@ export const api = [
   'handleTimeInput',
   'handleMinTimeClose',
   'handleDateChange',
-  'handleMaxTimeClose'
+  'handleMaxTimeClose',
+  'isValidValue'
 ]
 
 const initState = ({ reactive, computed, api, constants, designConfig }) => {
@@ -126,6 +127,7 @@ const initState = ({ reactive, computed, api, constants, designConfig }) => {
     dateFormat: computed(() => (state.format ? extractDateFormat(state.format) : 'yyyy-MM-dd')),
     enableMonthArrow: computed(() => api.getEnableMonthArrow()),
     enableYearArrow: computed(() => api.computerEnableYearArrow()),
+    // tiny 新增
     confirmButtonProps: {
       plain: true,
       type: 'default',
@@ -194,7 +196,11 @@ const initApi = ({ api, state, t, vm, nextTick, emit, constants }) => {
   })
 }
 
-export const renderless = (props, { computed, reactive, watch, nextTick }, { t, emit: $emit, vm, constants, designConfig }) => {
+export const renderless = (
+  props,
+  { computed, reactive, watch, nextTick },
+  { t, emit: $emit, vm, constants, designConfig }
+) => {
   const api = {}
   const emit = props.emitter ? props.emitter.emit : $emit
   const state = initState({ reactive, computed, api, constants, designConfig })

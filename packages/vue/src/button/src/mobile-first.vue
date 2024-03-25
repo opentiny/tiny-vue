@@ -23,7 +23,7 @@
       )
     "
     :tabindex="tabindex"
-    v-bind="a($attrs, ['class', 'style'], true)"
+    v-bind="a($attrs, ['class', 'style', 'id'], true)"
   >
     <icon-loading v-if="loading" :class="gcls('loading-svg')" />
     <component

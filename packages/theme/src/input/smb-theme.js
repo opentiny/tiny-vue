@@ -16,6 +16,6 @@ export const tinyInputSmbTheme = {
   'ti-input-suffix-icon-height': 'var(--ti-common-font-size-2)',
   'ti-input-icon-close-text-color': 'var(--ti-base-color-common-2)',
   'ti-input-icon-font-size': 'var(--ti-common-font-size-2)',
-  'ti-input-font-size': 'var(--ti-common-font-size-2)',
+  'ti-input-font-size': 'var(--ti-common-font-size-1)',
   'ti-input-placeholder-color': 'var(--ti-base-color-common-2)'
 }

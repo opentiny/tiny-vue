@@ -3,7 +3,7 @@
     <tiny-column-list-item
       v-model="checked"
       :show-checkbox="true"
-      :image="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`"
+      :image="imageUrl"
       :size="size"
       :options="options"
       :flex-grow="[1, 3]"
@@ -23,11 +23,7 @@
         </ul>
       </template>
     </tiny-column-list-item>
-    <tiny-column-list-item
-      :image="`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`"
-      :size="size"
-      :options="options"
-    >
+    <tiny-column-list-item :image="imageUrl" :size="size" :options="options">
       <template #column1>
         <ul>
           <li class="text-sm mb-1 sm:mb-1.5">智能手机智能手机</li>
@@ -66,6 +62,7 @@ export default {
   },
   data() {
     return {
+      imageUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
       checked: true,
       size: 'small',
       options: [

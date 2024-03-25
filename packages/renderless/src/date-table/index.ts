@@ -21,10 +21,9 @@ import {
   clearTime
 } from '../common/deps/date-util'
 import { DATEPICKER } from '../common'
-import type { IDateTableRow } from '@/types'
 
 const formatJudg = ({ day, offset, j, i, cell, count, dateCountOfLastMonth }) => {
-  const nodfpm = day + offset < 0 ? 7 + day + offset : day + offset
+  const nodfpm = day + offset <= 0 ? 7 + day + offset : day + offset
 
   if (j + i * 7 >= nodfpm) {
     cell.text = count++
@@ -58,22 +57,8 @@ export const getDateTimestamp = (time) => {
   return NaN
 }
 
-export const arrayFindIndex = (arr, pred) => {
-  for (let i = 0, len = arr.length; i !== len; ++i) {
-    if (pred(arr[i])) {
-      return i
-    }
-  }
-
-  return -1
-}
-
-export const arrayFind = (arr, pred) => {
-  const idx = arrayFindIndex(arr, pred)
-  return ~idx ? arr[idx] : undefined
-}
-
-const getSelected = ({ props, cell, format, t, cellDate, selectedDate }) => {
+// tiny 新增： api参数多余，优化掉
+const getSelected = (props, cell, format, t, cellDate, selectedDate) => {
   let selected = cell.selected
 
   if (props.selectionMode === 'dates') {
@@ -92,14 +77,7 @@ export const getCell =
     let cell = row[props.showWeekNumber ? j + 1 : j]
 
     if (!cell) {
-      cell = {
-        row: i,
-        column: j,
-        inRange: false,
-        start: false,
-        end: false,
-        type: DATEPICKER.Normal
-      }
+      cell = { row: i, column: j, inRange: false, start: false, end: false, type: DATEPICKER.Normal }
     }
 
     cell.type = DATEPICKER.Normal
@@ -119,15 +97,7 @@ export const getCell =
 
 const doCount = ({ i, day, offset, j, cell, count, dateCountOfLastMonth, dateCountOfMonth }) => {
   if (i >= 0 && i <= 1) {
-    const ret = formatJudg({
-      day,
-      offset,
-      j,
-      i,
-      cell,
-      count,
-      dateCountOfLastMonth
-    })
+    const ret = formatJudg({ day, offset, j, i, cell, count, dateCountOfLastMonth })
     count = ret.count
   } else {
     if (count <= dateCountOfMonth) {
@@ -140,8 +110,6 @@ const doCount = ({ i, day, offset, j, cell, count, dateCountOfLastMonth, dateCou
 
   return count
 }
-
-export const coerceTruthyValueToArray = (val) => (Array.isArray(val) ? val : val ? [val] : [])
 
 /**
  * 获取日期表格二维数组，用于渲染日期表格。
@@ -160,7 +128,7 @@ export const coerceTruthyValueToArray = (val) => (Array.isArray(val) ? val : val
  */
 export const getRows =
   ({ api, props, state, t, vm }) =>
-  (): IDateTableRow[][] => {
+  () => {
     const date = new Date(state.year, state.month, 1)
     let day = getFirstDayOfMonth(date)
     const dateCountOfMonth = getDayCountOfMonth(date.getFullYear(), date.getMonth())
@@ -172,7 +140,7 @@ export const getRows =
     day = day === 0 ? 7 : day
 
     const offset = state.offsetDay
-    const rows: IDateTableRow[][] = state.tableRows
+    const rows = state.tableRows
     const startDate = state.startDate
     const disabledDate = props.disabledDate
     const cellClassName = props.cellClassName
@@ -181,7 +149,7 @@ export const getRows =
 
     const isFunction = props.formatWeeks instanceof Function
 
-    const arr: Date[][] = []
+    const arr = []
 
     // 日期表格行，从0开始，共6行，[0, 5]
     for (let i = 0; i < 6; i++) {
@@ -207,15 +175,7 @@ export const getRows =
         count = doCount({ i, day, offset, j, cell, count, dateCountOfLastMonth, dateCountOfMonth })
 
         cell.disabled = typeof disabledDate === 'function' && disabledDate(cellDate)
-        cell.selected = getSelected({
-          props,
-          cell,
-          api,
-          format: DATEPICKER.DateFormats.date,
-          t,
-          cellDate,
-          selectedDate
-        })
+        cell.selected = getSelected(props, cell, DATEPICKER.DateFormats.date, t, cellDate, selectedDate)
         cell.customClass = typeof cellClassName === 'function' && cellClassName(cellDate)
 
         // 更新日期表格的行数据，执行了这行代码，rows 中才会有数据
@@ -249,6 +209,23 @@ export const getRows =
     }
     return rows
   }
+
+export const arrayFindIndex = (arr, pred) => {
+  for (let i = 0, len = arr.length; i !== len; ++i) {
+    if (pred(arr[i])) {
+      return i
+    }
+  }
+
+  return -1
+}
+
+export const arrayFind = (arr, pred) => {
+  const idx = arrayFindIndex(arr, pred)
+  return ~idx ? arr[idx] : undefined
+}
+
+export const coerceTruthyValueToArray = (val) => (Array.isArray(val) ? val : val ? [val] : [])
 
 export const watchMinDate =
   ({ api, props }) =>
@@ -398,15 +375,15 @@ export const markRange =
       const row = rows[i]
 
       for (let j = 0, l = row.length; j < l; j++) {
-        if (!props.showWeekNumber || j !== 0) {
-          const cell = row[j]
-          const index = i * 7 + j + (props.showWeekNumber ? -1 : 0)
-          const time = nextDate(startDate, index - state.offsetDay).getTime()
+        if (props.showWeekNumber && j === 0) continue
 
-          cell.inRange = minDate && time >= minDate && time <= maxDate
-          cell.start = minDate && time === minDate
-          cell.end = maxDate && time === maxDate
-        }
+        const cell = row[j]
+        const index = i * 7 + j + (props.showWeekNumber ? -1 : 0)
+        const time = nextDate(startDate, index - state.offsetDay).getTime()
+
+        cell.inRange = minDate && time >= minDate && time <= maxDate
+        cell.start = minDate && time === minDate
+        cell.end = maxDate && time === maxDate
       }
     }
   }
@@ -468,12 +445,6 @@ const getTarget = (event) => {
   return target
 }
 
-export const removeFromArray = (arr, pred) => {
-  const idx = typeof pred === 'function' ? arrayFindIndex(arr, pred) : arr.indexOf(pred)
-
-  return idx >= 0 ? [...arr.slice(0, idx), ...arr.slice(idx + 1)] : arr
-}
-
 export const handleClick =
   ({ api, emit, props, state }) =>
   (event) => {
@@ -529,8 +500,16 @@ export const handleClick =
     }
   }
 
-export const getCssToken = ({ api }) => (cell, prexfix = '') => {
-  const cssStr = api.getCellClasses(cell) || ''
+export const removeFromArray = (arr, pred) => {
+  const idx = typeof pred === 'function' ? arrayFindIndex(arr, pred) : arr.indexOf(pred)
 
-  return cssStr.split(' ').map((className) => prexfix + className)
+  return idx >= 0 ? [...arr.slice(0, idx), ...arr.slice(idx + 1)] : arr
 }
+
+export const getCssToken =
+  ({ api }) =>
+  (cell, prexfix = '') => {
+    const cssStr = api.getCellClasses(cell) || ''
+
+    return cssStr.split(' ').map((className) => prexfix + className)
+  }

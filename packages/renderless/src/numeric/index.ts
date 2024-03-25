@@ -116,7 +116,10 @@ export const increase =
       return
     }
 
-    const value = (props.mouseWheel ? state.displayValue : props.modelValue) || 0
+    // 处理高精度情况
+    const userInput = props.stringMode ? state.userInput : Number(state.userInput)
+
+    const value = (props.mouseWheel ? state.displayValue : userInput) || 0
 
     if (value.toString().includes('e')) {
       return
@@ -142,7 +145,11 @@ export const decrease =
     if (state.inputDisabled || state.minDisabled) {
       return
     }
-    const value = (props.mouseWheel ? state.displayValue : props.modelValue) || 0
+
+    // 处理高精度情况
+    const userInput = props.stringMode ? state.userInput : Number(state.userInput)
+
+    const value = (props.mouseWheel ? state.displayValue : userInput) || 0
 
     if (value.toString().includes('e')) {
       return
@@ -360,12 +367,12 @@ export const mounted =
       state.controls = false
     }
 
-    if (state.currentValue < (props.min as number)) {
+    if (isNumber(state.currentValue) && state.currentValue < (props.min as number)) {
       state.currentValue = props.min as number
       state.lastInput = props.min as number
       state.userInput = props.min as number
     }
-    if (state.currentValue > (props.max as number)) {
+    if (isNumber(state.currentValue) && state.currentValue > (props.max as number)) {
       state.currentValue = props.max as number
       state.lastInput = props.max as number
       state.userInput = props.max as number

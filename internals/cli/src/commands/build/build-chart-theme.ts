@@ -24,14 +24,17 @@ const changeTheme = () => {
   // 你想要替换的文件
   const filePath = path.join(
     __dirname,
-    '../../../../../packages/vue/scr/chart-beta/chart-core/base/feature/token/constants.ts'
+    '../../../../../packages/vue/src/chart-beta/chart-core/base/feature/token/constants.ts'
   )
 
   // 读取文件内容
   let content = fs.readFileSync(filePath, 'utf-8')
 
   // 替换 process.env.VAR_NAME 为对应主题的值
-  content = content.replace(/const\sDEFAULT_THEME\s=\sTHEMES\.[a-zA-Z_]+/g, `const DEFAULT_THEME = THEMES.${theme}`)
+  content = content.replace(
+    /const\sDEFAULT_THEME_NAME\s=\sTHEMES\.[a-zA-Z_]+/g,
+    `const DEFAULT_THEME_NAME = THEMES.${theme}`
+  )
 
   // 写入新内容到文件
   fs.writeFileSync(filePath, content, 'utf-8')

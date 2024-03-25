@@ -15,7 +15,8 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~"
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "devDependencies": {
     "@tiptap/core": "~2.1.16",

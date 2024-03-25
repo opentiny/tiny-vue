@@ -4,8 +4,7 @@ test('测试自定义服务', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('area#custom-service')
 
-  const preview = page.locator('#preview')
-  const areaInput = preview.locator('.tiny-area input')
+  const areaInput = page.locator('.tiny-area input')
   const areaJCR = page.locator('.tiny-area-jcr')
   const areaRegion = page.locator('.tiny-area-region')
   const areaRep = page.locator('.tiny-area-rep')

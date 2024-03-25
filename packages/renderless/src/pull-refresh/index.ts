@@ -50,7 +50,7 @@ export const pullDownTouchMove = (state, refs, event) => {
     return
   }
 
-  if (refs.content.scrollTop <= 0) {
+  if (refs.content.scrollTop <= 0 && window.scrollY <= 0 && event.cancelable) {
     event.preventDefault()
 
     state.translate3d = (event.touches[0].clientY - state.draggposition) / 2

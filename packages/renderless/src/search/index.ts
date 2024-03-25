@@ -30,16 +30,17 @@ export const handleChange =
   }
 
 export const handleInput =
-  ({ api, state }: Pick<ISearchRenderlessParams, 'api' | 'state'>) =>
+  ({ api, props, state }: Pick<ISearchRenderlessParams, 'api' | 'state' | 'props'>) =>
   (event: Event) => {
-    const value = event.target.value
+    const value = event.target ? event.target.value : event
+
     api.emitInput(value, state.searchValue)
   }
 
 export const showSelector =
-  ({ refs, state }: Pick<ISearchRenderlessParams, 'refs' | 'state'>) =>
+  ({ vm, state }: Pick<ISearchRenderlessParams, 'vm' | 'state'>) =>
   () => {
-    refs.selector.style.zIndex = PopupManager.nextZIndex()
+    vm.$refs.selector.style.zIndex = PopupManager.nextZIndex()
     state.show = true
   }
 
@@ -64,11 +65,11 @@ export const searchClick =
   }
 
 export const searchEnterKey =
-  ({ api, props, refs, nextTick }: Pick<ISearchRenderlessParams, 'api' | 'props' | 'refs' | 'nextTick'>) =>
+  ({ api, props, vm, nextTick }: Pick<ISearchRenderlessParams, 'api' | 'props' | 'vm' | 'nextTick'>) =>
   (event: Event) => {
     if (props.isEnterSearch) {
       api.searchClick(event)
-      nextTick(() => refs.input.blur())
+      nextTick(() => vm.$refs.input.blur())
     }
   }
 
@@ -133,11 +134,11 @@ export const beforeDestroy =
   }
 
 export const clear =
-  ({ api, emit, refs, state }: Pick<ISearchRenderlessParams, 'api' | 'emit' | 'refs' | 'state'>) =>
+  ({ api, emit, vm, state }: Pick<ISearchRenderlessParams, 'api' | 'emit' | 'vm' | 'state'>) =>
   (event: Event) => {
     event.preventDefault()
     state.currentValue = ''
-    refs.input.focus()
+    vm.$refs.input.focus()
     state.focus = true
 
     // 应先更新modelValue的值，才能触发change事件。所以不同步aui

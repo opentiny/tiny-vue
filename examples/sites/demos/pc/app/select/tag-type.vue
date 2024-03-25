@@ -1,5 +1,5 @@
 <template>
-  <tiny-select v-model="value" multiple tag-type="info">
+  <tiny-select v-model="value" multiple tag-type="warning">
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>

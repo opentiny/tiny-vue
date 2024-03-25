@@ -69,6 +69,73 @@
   input[type='file'] {
     @apply hidden;
   }
+
+  &.@{upload-prefix-cls}--saas {
+    @apply flex;
+    @apply mb-3;
+
+    .trigger-btn {
+      @apply inline-block;
+
+      button {
+        > span {
+          @apply ml-2;
+        }
+      }
+    }
+
+    .operate-content {
+      @apply inline-block;
+      @apply align-middle;
+
+      > button {
+        @apply ml-2;
+      }
+
+      .button-wrap {
+        @apply flex;
+        @apply items-center;
+
+        > span {
+          @apply ml-2;
+        }
+      }
+    }
+
+    .tip-wrap {
+      @apply flex;
+      @apply items-center;
+      @apply pl-4;
+      @apply text-color-none;
+
+      .tip-content {
+        @apply text-xs;
+        @apply text-left;
+      }
+    }
+  }
+
+  &-title {
+    > span {
+      @apply mr-1;
+      @apply text-sm;
+      @apply text-color-text-primary;
+      @apply font-bold;
+      @apply mb-3;
+    }
+
+    .title-show {
+      @apply inline-block;
+
+      &.display-only {
+        @apply mb-0;
+      }
+    }
+
+    .title-hide {
+      @apply hidden;
+    }
+  }
 }
 
 .@{upload-cover-prefix-cls} {
@@ -109,7 +176,7 @@
       @apply text-color-text-inverse;
       @apply text-xs;
       margin-top: 11px;
-      @apply ~'-rotate-45';
+      @apply ~"-rotate-45";
     }
   }
 
@@ -147,9 +214,7 @@
       @apply text-sm;
       @apply cursor-pointer;
       @apply align-middle;
-      transition:
-        transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-        opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
       margin-top: 60px;
 
       span {

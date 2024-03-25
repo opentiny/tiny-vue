@@ -3,17 +3,17 @@
 @select-dropdown-prefix-cls: ~'@{css-prefix}select-dropdown';
 @select-dropdown-item-prefix-cls: ~'@{css-prefix}option';
 @svg-prefix-cls: ~'@{css-prefix}svg';
+@checkbox-prefix-cls: ~'@{css-prefix}checkbox';
 
 .@{select-dropdown-item-prefix-cls} {
   @apply relative;
-  @apply overflow-hidden;
-  @apply text-ellipsis;
-  @apply whitespace-nowrap;
   @apply text-color-text-primary;
   @apply text-xs;
   @apply h-8;
   @apply leading-8;
   @apply cursor-pointer;
+  @apply flex;
+  align-items: center;
 
   &.is-disabled,
   &.is-required {
@@ -64,6 +64,33 @@
         @apply text-color-text-disabled;
       }
     }
+  }
+
+  & &-checkbox {
+    @apply align-top;
+  }
+
+  & &-wrapper {
+    // @apply inline-block;
+    // @apply h-full;
+    @apply flex;
+    align-items: center;
+
+    &.calc-width {
+      width: calc(100% - theme('spacing.6'));
+    }
+
+    &.full-width {
+      @apply w-full;
+    }
+  }
+
+  & &-label {
+    @apply inline-block;
+    @apply w-full;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+    @apply whitespace-nowrap;
   }
 
   .@{svg-prefix-cls} {

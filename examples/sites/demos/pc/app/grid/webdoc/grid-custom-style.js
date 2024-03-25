@@ -28,7 +28,7 @@ export default {
       'name': { 'zh-CN': '自定义表尾样式', 'en-US': 'Table tail style (customized table tail row style)' },
       'desc': {
         'zh-CN':
-          '<p>通过 <code>footer-cell-class-name</code> 和 <code>footer-row-class-name</code> 设置表尾的单元格和行样式。或者使用表格列的属性 <code>footer-class-name</code> 设置表尾单元格样式</p>\n',
+          '<p>通过 <code>footer-cell-class-name</code> 和 <code>footer-row-class-name</code> 设置表尾的单元格和行样式。或者使用表格列的属性 <code>footer-class-name</code> 设置表尾单元格样式。</p>\n',
         'en-US':
           '<p>Use <code>footer-cell-class-name</code> and <code>footer-row-class-name</code> to set the cell and row styles at the end of the table</p>\n'
       },

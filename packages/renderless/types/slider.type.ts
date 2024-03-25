@@ -78,6 +78,7 @@ export interface ISliderApi {
   getPoints: () => void
   getLabels: () => void
   inputValueChange: () => void
+  inputOnChange: () => void
   handleSlotInputFocus: ReturnType<typeof handleSlotInputFocus>
   handleSlotInputBlur: ReturnType<typeof handleSlotInputBlur>
   handleSlotInput: ReturnType<typeof handleSlotInput>

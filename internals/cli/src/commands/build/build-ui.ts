@@ -160,6 +160,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
             }
           },
           include: [...dtsInclude, 'packages/vue/*.d.ts'],
+          exclude: ['**/__tests__'],
           beforeWriteFile: (filePath, content) => {
             return {
               // "vue/src/alert/index.d.ts" ==> "alert/index.d.ts"

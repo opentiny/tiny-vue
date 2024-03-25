@@ -9,7 +9,7 @@ export default {
         'zh-CN': `
         <p>通过在 <code>grid</code> 标签上配置 <code>edit-config</code>。在 <code>grid-column</code> 列配置 <code>editor</code> 对象， <code>component</code> 渲染内置编辑组件， <code>events</code> 配置组件事件。</p>
         <div class="tip custom-block">
-          <p class="custom-block-title">说明</p>
+          <p class="custom-block-title">特别说明：</p>
           <p>内置编辑器只支持 <code>Input</code> 和 <code>Select</code> 组件，需要使用其他组件可参考自定义编辑器。</p>
         </div>
         `,

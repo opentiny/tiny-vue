@@ -1040,11 +1040,14 @@ const getTranslateFile =
     } else {
       const content = data.headers['content-disposition']
       const name = content ? content.match(/fileName.?=(.*)/)[1] || content.match(/fileName=(.*)/)[1] : ''
-      const type = !name.includes('.')
-        ? data.headers['content-type']
-        : type !== 'zip'
-          ? 'application / x - xls'
-          : 'application/zip'
+      let type = 'application/zip'
+
+      if (!name.includes('.')) {
+        type = data.headers['content-type']
+      } else if (type !== 'zip') {
+        type = 'application / x - xls'
+      }
+
       const blob = new Blob([data.data], { type })
       aLinkDownload({ blob, name })
     }
@@ -1251,18 +1254,22 @@ export const downloadFileSingle =
       url: fileUrl
     } = args
 
-    const promise = fileUrl
-      ? Promise.resolve(fileUrl)
-      : service.getSingleDownloadUrl().then((url) => {
-          let serviceUrl =
-            url.replace(/{docId}/, file.docId || file) +
-            `${~url.indexOf('?') ? '&' : '?'}x-download-sign=true&docVersion=${file.docVersion || ''}${
-              file.decryptKey ? '&decryptKey=' + file.decryptKey : ''
-            }`
+    let promise
 
-          serviceUrl = api.modifyServiceUrlSingle({ file, serviceUrl, range })
-          return serviceUrl
-        })
+    if (fileUrl) {
+      promise = Promise.resolve(fileUrl)
+    } else {
+      promise = service.getSingleDownloadUrl().then((url) => {
+        let serviceUrl =
+          url.replace(/{docId}/, file.docId || file) +
+          `${~url.indexOf('?') ? '&' : '?'}x-download-sign=true&docVersion=${file.docVersion || ''}${
+            file.decryptKey ? '&decryptKey=' + file.decryptKey : ''
+          }`
+
+        serviceUrl = api.modifyServiceUrlSingle({ file, serviceUrl, range })
+        return serviceUrl
+      })
+    }
 
     promise.then((url) => {
       url = xss.filterUrl(url)
@@ -2659,6 +2666,8 @@ export const handleTriggerClick =
   }
 
 export const onBeforeDestroy = (state: IFileUploadRenderlessParams['state']) => () => {
+  if (!Array.isArray(state.uploadFiles)) return
+
   state.uploadFiles.forEach((file) => {
     if (file.url && file.url.indexOf('blob:') === 0) {
       URL.revokeObjectURL(file.url)
@@ -2703,14 +2712,16 @@ export const closeRecordPanel =
 export const getTipMessage =
   ({ t, api, constants }: Pick<IFileUploadRenderlessParams, 't' | 'api' | 'constants'>) =>
   ({ accept, fileSize, limit }: { accept: string; fileSize: string; limit: number }) => {
-    let acceptTip = accept
-      ? t(constants.ONLY_SUPPORT, {
-          type: accept
-            .split(',')
-            .map((item) => item.trim().replace(/^\./, ''))
-            .join(t(constants.COMMA))
-        })
-      : ''
+    let acceptTip = ''
+
+    if (accept) {
+      acceptTip = t(constants.ONLY_SUPPORT, {
+        type: accept
+          .split(',')
+          .map((item) => item.trim().replace(/^\./, ''))
+          .join(t(constants.COMMA))
+      })
+    }
 
     if (fileSize && acceptTip.length !== 0) {
       acceptTip += `${t(constants.COMMA)} `

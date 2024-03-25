@@ -108,7 +108,9 @@ export const watchCheckedValue =
 
     const { checkStrictly, multiple } = state.config
 
-    api.computePresentContent()
+    nextTick(() => {
+      api.computePresentContent()
+    })
 
     if (!multiple && !checkStrictly && state.dropDownVisible) {
       api.toggleDropDownVisible(false)
@@ -611,11 +613,19 @@ export const handleSuggestionClick =
   }
 
 export const deleteTag =
-  ({ emit, state }: { emit: ICascadeRenderlessParamUtils['emit']; state: ICascaderState }) =>
+  ({
+    emit,
+    state,
+    api
+  }: {
+    emit: ICascadeRenderlessParamUtils['emit']
+    state: ICascaderState
+    api: ICascadeRenderlessParamUtils['api']
+  }) =>
   (index) => {
     const val = state.checkedValue[index]
     state.checkedValue = (state.checkedValue as Array<any>).filter((n, i) => i !== index)
-
+    api.handleMouseleave()
     emit('remove-tag', val)
   }
 

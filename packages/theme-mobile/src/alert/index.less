@@ -28,7 +28,8 @@
   .@{alert-prefix-cls}__content {
     flex: 1;
     color: var(--ti-mobile-alert-content-text-color);
-    padding: 0 var(--ti-mobile-alert-content-padding-horizotal);
+    font-weight: var(--ti-mobile-alert-font-weight);
+    padding: 0 var(--ti-mobile-alert-content-padding-horizontal);
     white-space: pre-wrap;
     word-break: break-all;
   }
@@ -102,6 +103,10 @@
   &__icon {
     margin-top: 2px;
     font-size: var(--ti-mobile-alert-icon-size);
+
+    &.@{alert-prefix-cls}__close {
+      fill: var(--ti-mobile-alert-close-icon-color);
+    }
   }
 
   &.is-center {

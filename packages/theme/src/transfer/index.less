@@ -61,12 +61,6 @@
       margin-right: var(--ti-transfer-buttons-margin-right);
       margin-top: var(--ti-transfer-buttons-margin-top);
       margin-bottom: var(--ti-transfer-buttons-margin-bottom);
-      background: var(--ti-transfer-svg-background);
-      border-color: var(--ti-transfer-btn-border-color);
-
-      &:hover {
-        background: var(--ti-transfer-panel-btn-hover-bg-color);
-      }
     }
   }
 
@@ -86,6 +80,8 @@
     padding-right: var(--ti-transfer-button-padding-right);
     padding-top: var(--ti-transfer-button-padding-top);
     padding-bottom: var(--ti-transfer-button-padding-bottom);
+    // 避免 button中的svg字体变大后，产生的省略号
+    text-overflow: clip;
 
     &.is-with-texts {
       border-radius: var(--ti-transfer-button-border-radius);

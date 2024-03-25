@@ -1,15 +1,3 @@
-<!--
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- -->
-
 <template>
   <!-- TINY-TODO: tiny-select-group的类名命名不规范，应定在后续的某个版本去掉 -->
   <ul class="tiny-option-group tiny-select-group__wrap" v-show="state.visible">
@@ -32,14 +20,7 @@ import '@opentiny/vue-theme/option-group/index.less'
 export default defineComponent({
   name: $prefix + 'OptionGroup',
   componentName: 'OptionGroup',
-  props: {
-    ...props,
-    label: String,
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props: [...props, 'label', 'disabled'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

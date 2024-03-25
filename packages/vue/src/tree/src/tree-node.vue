@@ -67,7 +67,6 @@
           </template>
           <template v-else>
             <span
-              v-if="!node.isLeaf"
               :class="['tree-node-icon', { 'is-disabled': node.disabled }]"
               @click="handleExpandIconClick($event, node)"
             >
@@ -102,6 +101,7 @@
             :disabled="!!node.disabled"
             :validate-event="false"
             @change="handleCheckChange"
+            @click.stop="handleClick($event, 'checkbox')"
           >
           </tiny-checkbox>
           <tiny-radio
