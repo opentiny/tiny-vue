@@ -1,21 +1,21 @@
 export default {
   mode: ['pc'],
+
   apis: [
     {
-      'name': 'button',
+      'name': 'float-button',
       'type': 'component',
       'props': [
         {
           'name': 'type',
-          'type': 'IButtonType',
-          'typeAnchorName': 'IButtonType',
+          'type': 'IFloatButtonType',
           'defaultValue': '--',
           'desc': {
             'zh-CN': '展示按钮不同的状态，设置为text则展示为文本按钮',
             'en-US': 'Display different states of buttons, set to text to display as text buttons'
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          'pcDemo': 'basic-usage'
         },
         {
           'name': 'description',
@@ -26,7 +26,7 @@ export default {
             'en-US': 'Set the text displayed by the button'
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          'pcDemo': 'basic-usage'
         },
         {
           'name': 'icon',
@@ -37,7 +37,7 @@ export default {
             'en-US': 'The icon displayed by the button is received as an Icon component'
           },
           mode: ['pc'],
-          pcDemo: 'icon'
+          'pcDemo': 'icon'
         },
         {
           'name': 'reset-time',
@@ -48,7 +48,7 @@ export default {
             'en-US': 'Set the button disable time, in milliseconds, to prevent repeated submission'
           },
           mode: ['pc'],
-          pcDemo: 'reset-time'
+          'pcDemo': 'reset-time'
         },
         {
           'name': 'trigger',
@@ -59,7 +59,7 @@ export default {
             'en-US': 'Set the menu trigger mode.'
           },
           mode: ['pc'],
-          pcDemo: 'trigger'
+          'pcDemo': 'trigger'
         },
         {
           'name': 'open',
@@ -70,7 +70,7 @@ export default {
             'en-US': 'Whether the settings menu opens.'
           },
           mode: ['pc'],
-          pcDemo: 'trigger'
+          'pcDemo': 'trigger'
         },
         {
           'name': 'shape',
@@ -81,7 +81,7 @@ export default {
             'en-US': 'Set Button shape.'
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          'pcDemo': 'basic-usage'
         },
         {
           'name': 'backTop',
@@ -92,7 +92,7 @@ export default {
             'en-US': 'Set whether it is a back-to-top button.'
           },
           mode: ['pc'],
-          pcDemo: 'backTop'
+          'pcDemo': 'backTop'
         },
 
         {
@@ -104,7 +104,7 @@ export default {
             'en-US': 'When backTop is set to true, this property sets the scrolling element.'
           },
           mode: ['pc'],
-          pcDemo: 'backTop'
+          'pcDemo': 'backTop'
         },
         {
           'name': 'top',
@@ -115,7 +115,7 @@ export default {
             'en-US': 'The distance of the button from the top.'
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          'pcDemo': 'basic-usage'
         },
         {
           'name': 'bottom',
@@ -126,7 +126,7 @@ export default {
             'en-US': 'The distance of the button from the bottom.'
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          'pcDemo': 'basic-usage'
         },
         {
           'name': 'left',
@@ -137,7 +137,7 @@ export default {
             'en-US': 'The distance of the button from the left.'
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          'pcDemo': 'basic-usage'
         },
         {
           'name': 'right',
@@ -148,7 +148,7 @@ export default {
             'en-US': 'The distance of the button from the right.'
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          'pcDemo': 'basic-usage'
         },
         {
           'name': 'href',
@@ -159,7 +159,7 @@ export default {
             'en-US': 'button to jump to the page.'
           },
           mode: ['pc'],
-          pcDemo: 'jump'
+          'pcDemo': 'jump'
         },
         {
           'name': 'target',
@@ -170,7 +170,7 @@ export default {
             'en-US': 'The target attribute equivalent to the A tag, which takes effect when the href exists.'
           },
           mode: ['pc'],
-          pcDemo: 'jump'
+          'pcDemo': 'jump'
         }
       ],
       'events': [
@@ -183,7 +183,7 @@ export default {
             'en-US': 'Sets the callback function triggered when a button is clicked'
           },
           mode: ['pc'],
-          pcDemo: 'click'
+          'pcDemo': 'click'
         }
       ],
       'slots': [
@@ -196,16 +196,16 @@ export default {
             'en-US': 'Default slot, customize what the button is when expanded'
           },
           mode: ['pc'],
-          pcDemo: 'open'
+          'pcDemo': 'open'
         }
       ]
     }
   ],
   types: [
     {
-      name: 'IButtonType',
+      name: 'IFloatButtonType',
       type: 'interface',
-      code: `type IButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'`
+      code: `type IFloatButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'`
     }
   ]
 }

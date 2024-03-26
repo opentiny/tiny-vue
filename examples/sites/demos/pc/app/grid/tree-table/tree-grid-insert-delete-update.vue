@@ -18,9 +18,9 @@
           </template>
         </tiny-grid-toolbar>
       </template>
-      <tiny-grid-column type="selection" width="100" tree-node></tiny-grid-column>
+      <tiny-grid-column type="selection" width="100"></tiny-grid-column>
       <tiny-grid-column type="index" width="80"></tiny-grid-column>
-      <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称" tree-node></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
       <tiny-grid-column
         field="employees"
@@ -95,6 +95,7 @@ export default {
   },
   data() {
     return {
+      increaseId: 30,
       tableData: [
         {
           id: '1',
@@ -209,8 +210,10 @@ export default {
       const row = {
         name: '新数据',
         isNew: true,
+        id: String(this.increaseId++),
         children: [
           {
+            id: String(this.increaseId++),
             name: '新数据-child'
           }
         ]

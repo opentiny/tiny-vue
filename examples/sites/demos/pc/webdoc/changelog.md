@@ -9,6 +9,10 @@
 ### Exciting New Features 🎉
 
 - feat(vue): [mind-map] mindmap by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/1207
+- feat(skeleton): skeleton component by @mengqiuleo in https://github.com/opentiny/tiny-vue/pull/1345
+- feat(float-button): [float-button] add float-button by @fanbingbing16 in https://github.com/opentiny/tiny-vue/pull/1394
+- feat(card): add card component by @shenjunjian
+- feat auto import plugin by @mengqiuleo in https://github.com/opentiny/tiny-vue/pull/1397
 - feat(time-line): refresh ui by @MNZhu in https://github.com/opentiny/tiny-vue/pull/1281
 - feat(numeric): refresh ui by @MNZhu in https://github.com/opentiny/tiny-vue/pull/1258
 - styles(action-sheet): [action-sheet] add action-sheet type by @jxhhdx in https://github.com/opentiny/tiny-vue/pull/1307
@@ -26,18 +30,15 @@
 - styles(async-flowchart): [async-flowchart] add async-flowchart types by @jxhhdx in https://github.com/opentiny/tiny-vue/pull/1312
 - styles(area): [area] add area types by @jxhhdx in https://github.com/opentiny/tiny-vue/pull/1311
 - feat(dialog-box): [dialog-box] make the dialogBox drag outside the window by @wNing50 in https://github.com/opentiny/tiny-vue/pull/1268
-- feat(skeleton): skeleton component by @mengqiuleo in https://github.com/opentiny/tiny-vue/pull/1345
 - style(user-head): [user-head] improve typescript declaration of compo… by @Floyd-bit in https://github.com/opentiny/tiny-vue/pull/1380
 - fix(carousel ): [carousel] update carousel xdesign by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1422
 - fix(badge): [badge] update badge xdesign by @You-Hw-Y in https://github.com/opentiny/tiny-vue/pull/1420
 - feat(date-picker): [date-picker] support xdesign by @kagol in https://github.com/opentiny/tiny-vue/pull/1417
 - feat(slider): [slider] marks supported, input range supported by @yoyo201626 in https://github.com/opentiny/tiny-vue/pull/1429
-- feat auto import plugin by @mengqiuleo in https://github.com/opentiny/tiny-vue/pull/1397
 - [drawer] fix smb theme by @Huangyilin19 in https://github.com/opentiny/tiny-vue/pull/1411
 - feat(vue): add vue sub packages dependencies by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1424
 - fix(transfer ): [transfer] update transfer xdesign by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1419
 - fix(skeleton): [skeleton]add skeleton of smb theme by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1410
-- feat(float-button): [float-button] add float-button by @fanbingbing16 in https://github.com/opentiny/tiny-vue/pull/1394
 - feat(loading): [loading] smb theme by @yoyo201626 in https://github.com/opentiny/tiny-vue/pull/1431
 - fix(Switch): [Switch] add keydown support and improth the accessibility by @AcWrong02 in https://github.com/opentiny/tiny-vue/pull/1428
 - feat(vue): [popconfirm] add popper-options props by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1439
