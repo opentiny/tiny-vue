@@ -386,6 +386,17 @@ export default {
           pcDemo: ''
         },
         {
+          name: 'extra',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '表单项额外提示',
+            'en-US': 'Form item extra tip'
+          },
+          mode: ['pc'],
+          pcDemo: 'extra-tip'
+        },
+        {
           name: 'inline-message',
           type: 'boolean',
           defaultValue: '',
@@ -581,6 +592,16 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'slot-label'
+        },
+        {
+          name: 'error',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '错误提示内容',
+            'en-US': 'Error content'
+          },
+          mode: ['pc'],
+          pcDemo: 'error-label'
         }
       ]
     }

@@ -58,7 +58,8 @@ export const formItemProps = {
   vertical: {
     type: Boolean,
     default: false
-  }
+  },
+  extra: String
 }
 
 export default defineComponent({

@@ -79,7 +79,8 @@ export default defineComponent({
     vertical: {
       type: Boolean,
       default: false
-    }
+    },
+    extra: String
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IFormItemApi
@@ -181,8 +182,8 @@ export default defineComponent({
         typeof this.appendToBody === 'boolean'
           ? this.appendToBody
           : typeof formAppendToBody === 'boolean'
-            ? formAppendToBody
-            : true
+          ? formAppendToBody
+          : true
       const validatePosition =
         this.validatePosition || (state.formInstance && state.formInstance.validatePosition) || 'top-end'
 
@@ -221,10 +222,17 @@ export default defineComponent({
             modelValue: isShowError ? state.canShowTip : false,
             zIndex: 'relative',
             renderContent() {
-              return [
-                validateIconNode,
-                <span class={`${classPrefix}form-item__validate-message`}>{state.validateMessage}</span>
-              ]
+              let tooltipContent
+              if (errorSlot) {
+                tooltipContent = [errorSlot]
+              } else {
+                tooltipContent = [
+                  validateIconNode,
+                  <span class={`${classPrefix}form-item__validate-message`}>{state.validateMessage}</span>
+                ]
+              }
+
+              return tooltipContent
             }
           },
           on: {
@@ -298,6 +306,19 @@ export default defineComponent({
           : null
       ]
     )
+
+    const ExtraTip = this.extra
+      ? h(
+          'div',
+          {
+            class: {
+              [`${classPrefix}form-item__extra-tip`]: true
+            }
+          },
+          this.extra
+        )
+      : null
+
     return h(
       'div',
       {
@@ -336,7 +357,8 @@ export default defineComponent({
                 }
               },
               [ErrorContent]
-            )
+            ),
+            isMobile ? null : ExtraTip
           ]
         )
       ]
