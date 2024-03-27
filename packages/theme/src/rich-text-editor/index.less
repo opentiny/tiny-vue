@@ -205,8 +205,8 @@
         }
 
         .isActive {
-          background-color: rgba(32, 122, 183, 0.5);
-          border-color: rgba(32, 122, 183, 0.5);
+          background-color: rgb(32 122 183 / 50%);
+          border-color: rgb(32 122 183 / 50%);
         }
       }
     }
@@ -274,9 +274,8 @@
 
     input {
       position: absolute;
-      width: 100%;
       height: 100%;
-      left: 0px;
+      left: 0;
       opacity: 0;
       width: 0;
     }
@@ -286,15 +285,15 @@
     .line-height-button {
       position: relative;
 
-    .line-height-options {
-      position: absolute;
-      padding: 0.15rem;
-      background-color: var(--ti-rich-text-editor-options-bg-color);
-      left: 0;
-      display: none;
-      border-radius: var(--ti-rich-text-editor-options-border-radius);
-      box-shadow: var(--ti-rich-text-editor-options-box-shadow);
-      z-index: 999;
+      .line-height-options {
+        position: absolute;
+        padding: 0.15rem;
+        background-color: var(--ti-rich-text-editor-options-bg-color);
+        left: 0;
+        display: none;
+        border-radius: var(--ti-rich-text-editor-options-border-radius);
+        box-shadow: var(--ti-rich-text-editor-options-box-shadow);
+        z-index: 999;
 
         button {
           color: black;
@@ -419,7 +418,6 @@
 
     img {
       max-width: 100%;
-      height: auto;
     }
 
     blockquote {
@@ -634,6 +632,61 @@
     &::-webkit-scrollbar-thumb {
       background-color: #000;
       border-radius: 8px;
+    }
+  }
+
+  .tiny-image {
+    &__node__view {
+      display: inline-block;
+      margin: 0 5px;
+    }
+
+    &__view {
+      position: relative;
+      box-sizing: border-box;
+      border: 1px solid transparent;
+      display: inline-block;
+      max-width: 100%;
+    }
+
+    &__handle {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: var(--ti-base-color-brand-7);
+      position: absolute;
+    }
+
+    &__resize {
+      border: 2px solid var(--ti-base-color-brand-7);
+      left: 0;
+      position: absolute;
+      top: 0;
+      z-index: 1;
+
+      &__tl {
+        left: -5px;
+        top: -5px;
+        cursor: nwse-resize;
+      }
+
+      &__tr {
+        right: -5px;
+        top: -5px;
+        cursor: nesw-resize;
+      }
+
+      &__bl {
+        left: -5px;
+        bottom: -5px;
+        cursor: nesw-resize;
+      }
+
+      &__br {
+        right: -5px;
+        bottom: -5px;
+        cursor: nwse-resize;
+      }
     }
   }
 }
