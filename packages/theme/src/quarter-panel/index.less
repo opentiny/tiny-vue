@@ -1,0 +1,35 @@
+@import '../custom.less';
+@import './vars.less';
+@import '../month-table/index.less';
+@import '../month-table/vars.less';
+@import '../date-table/vars.less';
+
+@quarter-panel-prefix-cls: ~'@{css-prefix}quarter-panel';
+
+.@{quarter-panel-prefix-cls} {
+  .component-css-vars-quarter-panel();
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  &__header {
+    margin: 12px 12px 0 12px;
+    text-align: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ti-date-picker-border-color);
+    line-height: var(--ti-date-picker-header-line-height);
+  }
+
+  &__content {
+
+  }
+
+  &__table {
+    .component-css-vars-month-table();
+    .component-css-vars-date-table();
+
+    .month-table();
+  }
+}

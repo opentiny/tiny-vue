@@ -128,7 +128,7 @@ export const DATE = {
 }
 
 const TriggerTypes =
-  'date,datetime,time,time-select,week,month,year,years,yearrange,daterange,monthrange,timerange,datetimerange,dates'
+  'date,datetime,time,time-select,week,month,year,years,yearrange,daterange,monthrange,timerange,datetimerange,dates,quarter'
 
 export const DATEPICKER = {
   Day: 'day',
@@ -167,6 +167,18 @@ export const DATEPICKER = {
     center: 'bottom',
     right: 'bottom-end'
   },
+  QuarterMap: {
+    0: 0,
+    1: 3,
+    2: 6,
+    3: 9
+  },
+  MonthQuarterMap: {
+    0: 1,
+    3: 2,
+    6: 3,
+    9: 4
+  },
   TriggerTypes: TriggerTypes.split(','),
   DateFormats: {
     year: 'yyyy',
@@ -184,6 +196,7 @@ export const DATEPICKER = {
   },
   Time: 'time',
   TimeRange: 'timerange',
+  Quarter: 'quarter',
   IconTime: 'icon-time',
   IconDate: 'icon-Calendar',
   DateRange: 'daterange',

@@ -24,6 +24,8 @@
     >
       <div class="tiny-picker-panel__body-wrapper">
         <slot name="sidebar" class="tiny-picker-panel__sidebar"></slot>
+
+        <!-- 快捷选项 -->
         <div class="tiny-picker-panel__sidebar" v-if="state.shortcuts">
           <button
             type="button"
@@ -36,7 +38,9 @@
             {{ shortcut.text }}
           </button>
         </div>
+
         <div class="tiny-picker-panel__body">
+          <!-- 时间选择输入框 -->
           <div class="tiny-date-picker__time-header" v-if="state.showTime">
             <span class="tiny-date-picker__editor-wrap">
               <tiny-input
@@ -70,6 +74,8 @@
               </time-picker>
             </span>
           </div>
+
+          <!-- 上一年/上一月/下一月/下一年 -->
           <div
             class="tiny-date-picker__header"
             :class="{
@@ -124,6 +130,7 @@
             </button>
           </div>
 
+          <!-- 日期表格 -->
           <div class="tiny-picker-panel__content">
             <date-table
               ref="dateTable"
@@ -166,6 +173,7 @@
         </div>
       </div>
 
+      <!-- 时区选择 -->
       <div
         class="tiny-picker-panel__timezone"
         v-if="state.isShowTz || state.timezone.isServiceTimezone"
@@ -201,6 +209,7 @@
         </div>
       </div>
 
+      <!-- 此刻/确认 -->
       <div class="tiny-picker-panel__footer" v-show="state.isShowFooter">
         <tiny-button
           size="mini"

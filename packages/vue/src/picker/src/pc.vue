@@ -162,6 +162,7 @@ import MonthRangePanel from '@opentiny/vue-month-range'
 import YearRangePanel from '@opentiny/vue-year-range'
 import TimePanel from '@opentiny/vue-time'
 import TimeRangePanel from '@opentiny/vue-time-range'
+import QuarterPanel from '@opentiny/vue-quarter-panel'
 import TimeSelect from '@opentiny/vue-time-panel'
 import TinyTooltip from '@opentiny/vue-tooltip'
 import FilterBox from '@opentiny/vue-filter-box'
@@ -193,6 +194,7 @@ export default defineComponent({
         YearRangePanel,
         TimePanel,
         TimeRangePanel,
+        QuarterPanel,
         TimeSelect
       }
     })
