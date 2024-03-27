@@ -312,6 +312,10 @@ export default defineComponent({
     clearNoMatchValue: {
       type: Boolean,
       default: false
+    },
+    showProportion: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

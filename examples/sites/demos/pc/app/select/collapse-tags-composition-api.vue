@@ -3,7 +3,7 @@
     <br />
     <div>场景1： collapse-tags折叠</div>
     <br />
-    <tiny-select v-model="value1" multiple collapse-tags>
+    <tiny-select v-model="value1" :show-proportion="true" multiple collapse-tags>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
     <br />

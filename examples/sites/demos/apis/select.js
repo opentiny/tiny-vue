@@ -571,6 +571,19 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'binding-obj',
           mfDemo: 'binding-obj'
+        },
+        {
+          name: 'show-proportion',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否展示多选框选中条数和总条数的占比',
+            'en-US':
+              'Display the proportion of the number of selected items and the total number of items in the multiple-choice box'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'collapse-tags',
+          mfDemo: 'collapse-tags'
         }
       ],
       events: [
