@@ -26,7 +26,8 @@ const noSaasComponents = [
   'TopBox',
   'Watermark',
   'Wheel',
-  'Skeleton'
+  'Skeleton',
+  'Statistic'
 ]
 
 // mobile-first上所有分类，pc上都有，因此可以用pc端menu分类进行合并
