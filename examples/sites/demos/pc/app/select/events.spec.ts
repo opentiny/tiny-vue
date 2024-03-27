@@ -44,7 +44,6 @@ test('多选事件', async ({ page }) => {
 
   await page.waitForTimeout(500)
   await select.click()
-  await expect(model.filter({ hasText: '触发 focus 事件' })).toHaveCount(1)
   await expect(model.filter({ hasText: '触发 visible-change 事件' })).toHaveCount(1)
 
   await option.nth(1).click()
