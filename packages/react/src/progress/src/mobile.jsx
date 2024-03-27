@@ -98,7 +98,7 @@ export default function Progress(props) {
       </If>
       <If v-if={showText && !textInside}>
         <div className="tiny-mobile-progress-text" style={{ fontSize: state.progressTextSize + 'px' }}>
-          {!status ? state.content : <Component v-else is={getIcon(state.iconClass)} />}
+          {!status ? state.content : <Component v-else renderIs={getIcon(state.iconClass)} />}
         </div>
       </If>
     </div>

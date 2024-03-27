@@ -1,185 +1,527 @@
-<p align="center">
-  <a href="https://opentiny.design/tiny-vue" target="_blank" rel="noopener noreferrer">
-    <img alt="OpenTiny Logo" src="logo.svg" height="100" style="max-width:100%;">
-  </a>
-</p>
+# TinyReact 组件库说明文档
+## 目录
+1. <a href="#软件基本信息">软件基本信息</a>
+2. <a href="#作品概述">作品概述</a>
+3. <a href="#运行命令">运行命令</a>
+4. <a href="#项目目录">项目目录</a>
+5. <a href="#一些关键代码解释">一些关键代码解释</a>
 
-<p align="center">An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.</p>
 
-English | [简体中文](README.zh-CN.md)
+## 软件基本信息
+### 标题
+* TinyReact 组件库
 
-🌈 Features:
+### 摘要
+TinyReact 组件库是一个基于 React 的企业级 UI 组件库，旨在通过复用 TinyVue 的跨技术栈架构和无渲染逻辑，为 React 社区提供一套功能丰富、性能优越的组件集。
 
-- 📦 104 clean, easy-to-use and powerful components.
-- 🖖 One code, Support both Vue.js 2 and Vue.js 3.
-- 🖥️ One code, Support both PC and Mobile.
-- 🌍 Support internationalization.
-- 🎨 Support theme customization.
-- 📊 Components support configuration development, can support low-code platform.
-- 💡 Use a cross-end and cross-framework architecture, flexible and portable.
+### 软件分类
+UI 组件库 / React 组件库
 
-## 🛠️ Usage
+### 应用领域
+适用于所有基于 React 的 Web 开发项目，包括企业级应用、个人项目以及复杂界面的构建。
 
-### 1. Installation
+### 开放源码许可证类型
+[MIT](LICENSE)
+## 作品概述
+### 项目背景
+随着前端技术的不断发展，跨技术栈开发成为了一种趋势。TinyVue 作为 OpenTiny 社区的企业级 UI 组件库，已经在 Vue 社区中得到了广泛应用。为了满足 React 社区对类似组件库的需求，本项目旨在通过复用 TinyVue 的跨技术栈架构和无渲染逻辑，开发出 TinyReact 组件库。
 
-Execute the following command to install the TinyVue component library for Vue.js 3.
+### 应用领域
+TinyReact 组件库适用于所有基于 React 的 Web 开发项目，能够助力开发者快速构建出美观且功能丰富的界面。
+
+### 设计思路
+本项目的设计思路主要包括以下两个方面：
+
+1. 跨技术栈适配：通过开发 react-common 适配层，抹平 React 技术栈和 Vue 技术栈之间的差异，实现跨技术栈的组件复用。
+2. 模板转换：将 TinyVue 的模板转换成 React 对应的函数组件文件，以便在 React 项目中直接使用。
+### 功能特点
+* 丰富的组件库：包含 alert、anchor、badge、breadcrubm、button、chart、divider、drawer、float-button、guide、switch、tag、tooltip 等四十多种常用组件。
+* 高性能：复用 TinyVue 的无渲染逻辑，提高组件的渲染性能。
+* 易用性：提供清晰的文档和示例，方便开发者快速上手和使用。
+### 体系架构
+TinyReact 组件库采用模块化设计，每个组件都是一个独立的模块，方便扩展和维护。同时，采用了现代化的前端构建工具和技术，确保组件的稳定性和性能。
+
+### 关键技术
+* React：TinyReact 组件库基于 React 构建，充分利用了 React 的声明式编程和组件化思想。
+* TinyVue 跨技术栈架构：通过复用 TinyVue 的跨技术栈架构，实现 React 和 Vue 组件的共享。
+* Renderless 无渲染逻辑：复用 TinyVue 的无渲染逻辑，提高组件的复用性和可维护性。
+##  运行命令
+### 本地运行
+开发者可以通过执行 pnpm run dev:react 命令来启动 TinyReact 组件库的开发环境，并实时预览和调试组件库的效果。同时，也提供了详细的文档和示例，方便开发者快速上手和使用。
+- Clone 个人仓库到本地
+- 在根目录下运行 `pnpm i`, 安装 node 依赖
+- 运行 ` pnpm run dev:react`，启动组件库网站。并实时预览和调试组件库的效果。同时，也提供了详细的文档和示例，方便开发者快速上手和使用
+- 打开浏览器访问：[http://127.0.0.1:5173/](http://127.0.0.1:5173/)
 
 ```shell
-npm i @opentiny/vue@3
-```
+# 克隆代码
+git clone https://atomgit.com/opentiny/000009.git
+cd 000009
 
-Execute the following command to install the TinyVue component library for Vue.js 2.
-
-```shell
-npm i @opentiny/vue@2
-```
-
-### 2. Import component
-
-Then you can use the TinyVue component(such as `<tiny-button>`) in the `App.vue` file.
-
-```html
-<script lang="ts" setup>
-  import { Button as TinyButton } from '@opentiny/vue'
-</script>
-
-<template>
-  <tiny-button>Tiny Vue</tiny-button>
-</template>
-```
-
-## 🖥️ Development
-
-```shell
-git clone git@github.com:opentiny/tiny-vue.git
-cd tiny-vue
+# 安装依赖
 pnpm i
 
-# Vue.js 3
-pnpm dev
+# 启动 react 项目
+pnpm run dev:react
+或
+pnpm dev:react
+```
+看到如下页面代表运行成功
+![image](image-1.png)
+### 打包 react 组件
 
-# Vue.js 2
-pnpm dev2
+```bash
+pnpm build:ui-react 
 ```
 
-Open your browser and visit: [http://127.0.0.1:7130/](http://127.0.0.1:7130/)
+运行此命令后，会在 pacakges-react 产生打包产物
+一般是
+```-b
+  packages/dist-react/@opentiny/button
+    ... 单个组件产物
+  packages/dist-react/@opentiny/react-common
+  packages/dist-react/@opentiny/react
+  packages/dist-react/@opentiny/react-icon
+```
+命令参数：传入字符串参数列表可以指定只打包单个组件或多个特定组件，比如
 
-## 🤝 Contributing
+```bash
+pnpm build:ui-react button
+```
 
-Welcome to join our OpenTiny community!🎉
+默认不传的话，会打包所有组件，以及公共任务，比如 react-common、react-icon
 
-If you don't know how to start, please read our [contributing guide](CONTRIBUTING.md).
+可以通过 -f 指定目标格式，默认 es，可选 es、cjs
+可以通过 -t 指定目标版本，默认 18，现在 react 只支持 18
+可以通过 -s 指定发布 npm scope，默认是 opentiny
+可以通过 -c 指定是否清空构建目录
+可以通过 --no-dts 指定不生成类型定义文件
 
-- Add the official assistant WeChat `opentiny-official` and join the technical exchange group.
-- Add to the mailing list `opentiny@googlegroups.com`
+### 发包 react 组件
 
-## ✨ Contributors
+```bash
+pnpm pub:react
+```
+## 项目目录
 
-Contributors are community members who have 1 or more PR merged in OpenTiny.
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+### 打包 react 相关
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/kagol"><img src="https://avatars.githubusercontent.com/u/9566362?v=4?s=100" width="100px;" alt="Kagol"/><br /><sub><b>Kagol</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=kagol" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/zzcr"><img src="https://avatars.githubusercontent.com/u/18521562?v=4?s=100" width="100px;" alt="ajaxzheng"/><br /><sub><b>ajaxzheng</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=zzcr" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/TC-twwang"><img src="https://avatars.githubusercontent.com/u/42400776?v=4?s=100" width="100px;" alt="TC-twwang"/><br /><sub><b>TC-twwang</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=TC-twwang" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/MNZhu"><img src="https://avatars.githubusercontent.com/u/17588953?v=4?s=100" width="100px;" alt="jacknan"/><br /><sub><b>jacknan</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=MNZhu" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/awspi"><img src="https://avatars.githubusercontent.com/u/66438036?v=4?s=100" width="100px;" alt="Pithy"/><br /><sub><b>Pithy</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=awspi" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/heygsc"><img src="https://avatars.githubusercontent.com/u/103993866?v=4?s=100" width="100px;" alt="heygsc"/><br /><sub><b>heygsc</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=heygsc" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/wwttff"><img src="https://avatars.githubusercontent.com/u/32888622?v=4?s=100" width="100px;" alt="MangoWu"/><br /><sub><b>MangoWu</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=wwttff" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/ErKeLost"><img src="https://avatars.githubusercontent.com/u/66500121?v=4?s=100" width="100px;" alt="ADNY"/><br /><sub><b>ADNY</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ErKeLost" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/chenxi-20"><img src="https://avatars.githubusercontent.com/u/76168465?v=4?s=100" width="100px;" alt="chenxi-20"/><br /><sub><b>chenxi-20</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=chenxi-20" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/rayhaoqin"><img src="https://avatars.githubusercontent.com/u/46983981?v=4?s=100" width="100px;" alt="Alaray"/><br /><sub><b>Alaray</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=rayhaoqin" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/yuanningning"><img src="https://avatars.githubusercontent.com/u/104059491?v=4?s=100" width="100px;" alt="ing"/><br /><sub><b>ing</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=yuanningning" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/shenjunjian"><img src="https://avatars.githubusercontent.com/u/6848520?v=4?s=100" width="100px;" alt="申君健"/><br /><sub><b>申君健</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=shenjunjian" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/MomoPoppy"><img src="https://avatars.githubusercontent.com/u/125256456?v=4?s=100" width="100px;" alt="MomoPoppy"/><br /><sub><b>MomoPoppy</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=MomoPoppy" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/WXC-Spring"><img src="https://avatars.githubusercontent.com/u/131581326?v=4?s=100" width="100px;" alt="WXC-Spring"/><br /><sub><b>WXC-Spring</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=WXC-Spring" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/GaoNeng-wWw"><img src="https://avatars.githubusercontent.com/u/31283122?v=4?s=100" width="100px;" alt="GaoNeng"/><br /><sub><b>GaoNeng</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=GaoNeng-wWw" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://acyza.github.io"><img src="https://avatars.githubusercontent.com/u/101238421?v=4?s=100" width="100px;" alt="acyza"/><br /><sub><b>acyza</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=acyza" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/ygj6"><img src="https://avatars.githubusercontent.com/u/7699524?v=4?s=100" width="100px;" alt="ygj6"/><br /><sub><b>ygj6</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ygj6" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/MrWang2016"><img src="https://avatars.githubusercontent.com/u/24307164?v=4?s=100" width="100px;" alt="MrWang2016"/><br /><sub><b>MrWang2016</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=MrWang2016" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/qinwencheng"><img src="https://avatars.githubusercontent.com/u/24841685?v=4?s=100" width="100px;" alt="qinwencheng"/><br /><sub><b>qinwencheng</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=qinwencheng" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Huangyilin19"><img src="https://avatars.githubusercontent.com/u/48042709?v=4?s=100" width="100px;" alt="黄怡林"/><br /><sub><b>黄怡林</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Huangyilin19" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/zuixinwang"><img src="https://avatars.githubusercontent.com/u/59717852?v=4?s=100" width="100px;" alt="zuixinwang"/><br /><sub><b>zuixinwang</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=zuixinwang" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/LadyChatterleyLover"><img src="https://avatars.githubusercontent.com/u/35223515?v=4?s=100" width="100px;" alt="luopei"/><br /><sub><b>luopei</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=LadyChatterleyLover" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://juejin.cn/user/1996368846785128"><img src="https://avatars.githubusercontent.com/u/31237954?v=4?s=100" width="100px;" alt="前端爆冲"/><br /><sub><b>前端爆冲</b></sub></a><br /><a href="#infra-brenner8023" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/xiejay97"><img src="https://avatars.githubusercontent.com/u/64340763?v=4?s=100" width="100px;" alt="Xie Jay"/><br /><sub><b>Xie Jay</b></sub></a><br /><a href="#infra-xiejay97" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/linxiang07"><img src="https://avatars.githubusercontent.com/u/40119767?v=4?s=100" width="100px;" alt="linxiang"/><br /><sub><b>linxiang</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=linxiang07" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://bollome.netlify.app/"><img src="https://avatars.githubusercontent.com/u/103836393?v=4?s=100" width="100px;" alt="程序员包子"/><br /><sub><b>程序员包子</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=coderbaozi" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/pe-3"><img src="https://avatars.githubusercontent.com/u/103579791?v=4?s=100" width="100px;" alt="peter G"/><br /><sub><b>peter G</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=pe-3" title="Code">💻</a> <a href="https://github.com/opentiny/tiny-vue/commits?author=pe-3" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/gimmyhehe"><img src="https://avatars.githubusercontent.com/u/26026184?v=4?s=100" width="100px;" alt="gimmyhehe"/><br /><sub><b>gimmyhehe</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=gimmyhehe" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/KevinAndrewDong"><img src="https://avatars.githubusercontent.com/u/20911103?v=4?s=100" width="100px;" alt="dong"/><br /><sub><b>dong</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=KevinAndrewDong" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="http://www.linglan01.cn"><img src="https://avatars.githubusercontent.com/u/58327088?v=4?s=100" width="100px;" alt="凌览"/><br /><sub><b>凌览</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=CatsAndMice" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Caesar-ch"><img src="https://avatars.githubusercontent.com/u/74941512?v=4?s=100" width="100px;" alt="Caesar-ch"/><br /><sub><b>Caesar-ch</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Caesar-ch" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/chenqifeng66"><img src="https://avatars.githubusercontent.com/u/97503755?v=4?s=100" width="100px;" alt="chenqifeng66"/><br /><sub><b>chenqifeng66</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=chenqifeng66" title="Tests">⚠️</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="12.5%"><a href="https://zz-zzzz.github.io/"><img src="https://avatars.githubusercontent.com/u/48228016?v=4?s=100" width="100px;" alt="Zz-ZzzZ"/><br /><sub><b>Zz-ZzzZ</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Zz-ZzzZ" title="Tests">⚠️</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/lyx-jay"><img src="https://avatars.githubusercontent.com/u/39766860?v=4?s=100" width="100px;" alt="Lyx"/><br /><sub><b>Lyx</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=lyx-jay" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/chenguang1994"><img src="https://avatars.githubusercontent.com/u/31501915?v=4?s=100" width="100px;" alt="Spark Bill"/><br /><sub><b>Spark Bill</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=chenguang1994" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Zuowendong"><img src="https://avatars.githubusercontent.com/u/45628596?v=4?s=100" width="100px;" alt="wendZzoo"/><br /><sub><b>wendZzoo</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Zuowendong" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/gweesin"><img src="https://avatars.githubusercontent.com/u/42909374?v=4?s=100" width="100px;" alt="Gweesin Chan"/><br /><sub><b>Gweesin Chan</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=gweesin" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Binks123"><img src="https://avatars.githubusercontent.com/u/103343025?v=4?s=100" width="100px;" alt="Binks_"/><br /><sub><b>Binks_</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Binks123" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/yoyo201626"><img src="https://avatars.githubusercontent.com/u/104079404?v=4?s=100" width="100px;" alt="yoyo"/><br /><sub><b>yoyo</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=yoyo201626" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://hexo.kifroom.icu/"><img src="https://avatars.githubusercontent.com/u/62132584?v=4?s=100" width="100px;" alt="Kif"/><br /><sub><b>Kif</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=wkif" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/jack-zishan"><img src="https://avatars.githubusercontent.com/u/67041206?v=4?s=100" width="100px;" alt="jack-zishan"/><br /><sub><b>jack-zishan</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=jack-zishan" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="http://gradii.com"><img src="https://avatars.githubusercontent.com/u/5467712?v=4?s=100" width="100px;" alt="LinboLen"/><br /><sub><b>LinboLen</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=LinboLen" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/vaebe"><img src="https://avatars.githubusercontent.com/u/52314078?v=4?s=100" width="100px;" alt="vaebe"/><br /><sub><b>vaebe</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=vaebe" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://allenli178.top"><img src="https://avatars.githubusercontent.com/u/53218750?v=4?s=100" width="100px;" alt="YuYan Li"/><br /><sub><b>YuYan Li</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=allenli178" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/shonen7"><img src="https://avatars.githubusercontent.com/u/145949377?v=4?s=100" width="100px;" alt="shonen7"/><br /><sub><b>shonen7</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=shonen7" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/xlearns"><img src="https://avatars.githubusercontent.com/u/62782792?v=4?s=100" width="100px;" alt="xlearns"/><br /><sub><b>xlearns</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=xlearns" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/ianxinnew"><img src="https://avatars.githubusercontent.com/u/146069396?v=4?s=100" width="100px;" alt="tianxin"/><br /><sub><b>tianxin</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ianxinnew" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Xppp0217"><img src="https://avatars.githubusercontent.com/u/82315158?v=4?s=100" width="100px;" alt="Xppp0217"/><br /><sub><b>Xppp0217</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Xppp0217" title="Code">💻</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/AcWrong02"><img src="https://avatars.githubusercontent.com/u/147061401?v=4?s=100" width="100px;" alt="AcWrong02"/><br /><sub><b>AcWrong02</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/issues?q=author%3AAcWrong02" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/betavs"><img src="https://avatars.githubusercontent.com/u/34408516?v=4?s=100" width="100px;" alt="betavs"/><br /><sub><b>betavs</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=betavs" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/fanbingbing16"><img src="https://avatars.githubusercontent.com/u/84823288?v=4?s=100" width="100px;" alt="fanbingbing16"/><br /><sub><b>fanbingbing16</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=fanbingbing16" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/dyh333"><img src="https://avatars.githubusercontent.com/u/1221313?v=4?s=100" width="100px;" alt="dyh333"/><br /><sub><b>dyh333</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=dyh333" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/betterdancing"><img src="https://avatars.githubusercontent.com/u/25901461?v=4?s=100" width="100px;" alt="betterdancing"/><br /><sub><b>betterdancing</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=betterdancing" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/David-TechNomad"><img src="https://avatars.githubusercontent.com/u/23149356?v=4?s=100" width="100px;" alt="David"/><br /><sub><b>David</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=David-TechNomad" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/falcon-jin"><img src="https://avatars.githubusercontent.com/u/48880836?v=4?s=100" width="100px;" alt="falcon-jin"/><br /><sub><b>falcon-jin</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=falcon-jin" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/wuyiping0628"><img src="https://avatars.githubusercontent.com/u/42107997?v=4?s=100" width="100px;" alt="wuyiping0628"/><br /><sub><b>wuyiping0628</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=wuyiping0628" title="Tests">⚠️</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/James-9696"><img src="https://avatars.githubusercontent.com/u/72028410?v=4?s=100" width="100px;" alt="James"/><br /><sub><b>James</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=James-9696" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://gitee.com/ichynul"><img src="https://avatars.githubusercontent.com/u/10061650?v=4?s=100" width="100px;" alt="ichynul"/><br /><sub><b>ichynul</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=ichynul" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Davont"><img src="https://avatars.githubusercontent.com/u/28757633?v=4?s=100" width="100px;" alt="Davont"/><br /><sub><b>Davont</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Davont" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/wNing50"><img src="https://avatars.githubusercontent.com/u/38874640?v=4?s=100" width="100px;" alt="Nick Wu"/><br /><sub><b>Nick Wu</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=wNing50" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Floyd-bit"><img src="https://avatars.githubusercontent.com/u/59243597?v=4?s=100" width="100px;" alt="Floyd"/><br /><sub><b>Floyd</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Floyd-bit" title="Code">💻</a></td>
-      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Jevin0"><img src="https://avatars.githubusercontent.com/u/69580637?v=4?s=100" width="100px;" alt="Jevin"/><br /><sub><b>Jevin</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Jevin0" title="Code">💻</a></td>
-    </tr>
-  </tbody>
-</table>
+```b
+internals/cli
+    /build
+        /build-entry-react.ts (packages/react 目录下生成入口)
+        /build-ui-react.ts   (packages/dist-react 下生成打包产物)
+    /create
+        /create-mapping-react.ts (packages 下生成构建任务列表 modules.json)
+        /common-mapping-react.json (定义一些公共的打包任务，如 react-common)
+```
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
+### 开发 react 模版文件相关
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+packages/react/src/[compName] 目录
 
-## ❤️ Credits
+一个组件模版的目录结构如下
 
-Thanks to:
+```b
+alert
+    /node_modules
+    /src
+        /index.ts
+        /pc.tsx
+        /mobile.tsx
+        /mobile-first.ts
+    /index.ts
+    /package.json
+```
+alert/index 是组件入口
+pc、mobile、mobile-first 是三套模版
 
-- The [element](https://github.com/ElemeFE/element) project which is an old component library based on Vue.js. TinyVue draws on Element at the beginning of its design, and is compatible with Element's component API.
-- The [floating-ui](https://github.com/floating-ui/floating-ui) project which is a small library that helps you create "floating" elements such as tooltips, popovers, dropdowns, and more. Many components of TinyVue are based on the capabilities provided by Floating UI.
-- The [vxe-table](https://github.com/x-extends/vxe-table) project which is a Vue-based table component, supports rich features, TinyVue's Grid component is based on vxe-table.
-- The [sortablejs](https://github.com/SortableJS/Sortable) project which is a powerful drag-and-drop library. The drag-and-drop sorting function of TinyVue's Grid / Transfer / Tabs and other components is based on Sortable.
-- [@adamwathan](https://github.com/adamwathan)'s article [Renderless Components in Vue.js](https://adamwathan.me/renderless-components-in-vuejs/), which inspired TinyVue's renderless component design architecture and ultimately enabled cross-end and cross-framework capabilities in the TinyVue project.
+### 开发 react-icon 相关
 
-## License
+packages/react-icon/src/[svgName] 目录
 
-[MIT](LICENSE)
+一个 svg 直接用一个 index.ts 创建
+
+如：packages/react-icon/src/add/index.ts
+
+```ts
+import { Svg } from '@opentiny/react-common'
+import { ReactComponent as AddLoading } from '@opentiny/vue-theme/svgs/add.svg'
+
+export default Svg({ name: 'AddLoading', component: AddLoading })
+```
+
+### 开发 react-common react 适配层相关
+
+react-common 的目录如下，主要是适配层的文件
+
+```b
+packages/react-common
+    /src
+        /csscls.ts 操作样式类名的一些方法
+        /event.ts 模拟 vue 事件系统
+        /fiber.ts 对 fiber 的一些读取操作
+        /reactive.ts 实现数据响应式
+        /resolveProps.js 从 react 的 props 上解析事件或属性
+        /svg-render.jsx 渲染 svg 组件的公共函数
+        /utils.ts 工具函数
+        /virtual-comp.jsx 虚拟组件，用于实现 vue 的指令系统
+        /vm.js 用户模拟 vue 的 vm 对象
+        /vue-hooks.js 用户模拟 vue 的钩子函数
+```
+
+### 示例文档相关
+1.   
+```b
+examples/react-docs/src/view
+    /overiview.jsx 组件总览
+    /layout/layout.jsx 总菜单页
+    /docs/docs.jsx 使用指南
+    /examples/react-docs/src/view/components/
+        components.jsx 组件
+        readMarkdown.tsx 转化markdown文档
+        lazyComponent.jsx 动态读取每个组件示例代码（一般是jsx或者tsx文件）
+        renderTable.jsx 渲染Api为表格
+```
+2. 
+```b
+examplec/react-docs/demos
+    /apis/[compName] 各个组件的api
+    /overviewimage 各个组件的图片
+    /pc/app/[comName]/webdoc  写各个组件的demo，记录了示例代码所在的文件夹，在上一层目录
+    /webdosc 记录了使用指南对应的markdown文档
+    /menus.js 目录文件
+```
+## 一些关键代码解释
+
+> **Tip:** 本文档的代码只是提取了一小部分的代码，要看完整代码需要查看源码
+
+1. 实现vue的$emit功能，使用的是props.listeners
+
+common中代码
+```javascript
+const vm = {
+    $emit:(type,...args)=>{
+        if (props.listeners) {
+            const callback = type in props.listeners ? props.listeners[type] : () => { }
+            callback.apply(null, args)
+        }
+    }
+}
+```
+某个组件例如Button代码
+```jsx
+import { Button } from '@opentiny/react'
+
+export default function App(){
+    const listeners = {
+        click(){
+            console.log('Button按钮被点击了！')
+        }
+    }
+    return <Button listeners={listeners}>按钮</Button>
+}
+
+```
+2. 实现vue的插槽功能
+
+如果是default，直接使用props.children；如果name是其他的，就类似于如下写法
+
+virtual-comp.jsx
+```jsx
+export function Slot(props) {
+  const { name = 'default', slots = {}, parent_children } = props
+// 定义一个空插槽组件，用于当指定插槽不存在时渲染
+  const EmptySlot = () => null
+  // 获取当前插槽对应的组件，如果不存在则使用EmptySlot
+  const S = slots[name] || EmptySlot
+  return (
+    <If v-if={defaultVIfAsTrue(props)}>
+        {/* 如果插槽名称是'default'，则渲染父组件的子元素（props.children）或传入的children */}  
+      <If v-if={name === 'default'}>{parent_children || props.children}</If>
+      <If v-if={name !== 'default'}>
+        {/* 如果插槽对应的组件存在，则渲染该组件 */} 
+        <If v-if={S !== EmptySlot}>
+          <S {...props} />
+        </If>
+        {/* 如果插槽对应的组件不存在，则渲染父组件的子元素（props.children） */}
+        <If v-if={S === EmptySlot}>{props.children}</If>
+      </If>
+    </If>
+  )
+}
+```
+使用Slot
+```jsx
+<Slot name="top" slots={props.slots}>
+    <div>如果props.slots里面没有top，将显示这个内容</div>
+</Slot>
+```
+
+3. 实现vue的v-if功能
+
+在react中，如果某一个dom需要在特定条件下才渲染，一般是下面的写法
+```jsx
+export default function App(props){
+    return props.visible && <div>props.visible的时候才显示这段文字</div> 
+}
+
+```
+如果要和vue一样使用v-if，可以使用如下方法
+
+virtual-comp.jsx
+```jsx
+export function If(props) {
+  if (props['v-if']) {
+    return props.children
+  } else {
+    return null
+  }
+}
+```
+使用If
+```jsx
+export default function App(props){
+    return <If v-if={props.visible}><div>props.visible的时候才显示这段文字</div> </If> 
+}
+
+```
+
+4. 实现响应式数据
+
+利用的是react一个特性，就是一个数据若是改变，整个组件会重新渲染
+
+common代码
+```js
+import { reactive, watch } from '@vue/runtime-core'
+
+// 定义一个reload函数，它触发一个自定义事件来通知需要刷新。 
+const reload = () => $bus.emit('event:reload')
+// 这个函数返回一个新的函数，该函数包装了原始的响应式钩子，并添加了对数据变更的监听。
+ function toPageLoad(reactiveHook, reload) {
+    // 返回一个新的函数，这个函数接受与reactiveHook相同的参数。
+    return function (...args) {
+      const result = reactiveHook(...args)
+      // 使用Vue的nextTick来确保在DOM更新后执行接下来的逻辑。
+      nextTick(() => {
+        // 使用Vue的watch函数来监听result对象的变化。  
+      // 当result中的任何响应式属性发生变化时，都会触发回调函数。
+        watch(
+          result,
+          () => {
+            typeof reload === 'function' && reload()
+          },
+          {
+            flush: 'sync'
+          }
+        )
+      })
+      return result
+    }
+  }
+export const reactiveWithReload = toPageLoad(reactive, reload) 
+```
+使用<code>reactiveWithReload</code>e创建响应式数据
+```js
+const data = reactiveWithReload({name:'default'})
+```
+这样data发生改变的时候会触发react重新渲染
+
+5. 实现vue的生命周期
+
+``` js
+import {nextTick} from '@vue/runtime-core'
+
+const $bus = useOnceResult(() => eventBus())// useOnceResult,就是保证只执行一次的函数
+ // 刷新逻辑
+const reload = useReload()
+function useReload() {
+  const [_, reload] = useState(0)
+  return () => reload((pre) => pre + 1)
+}
+const eventBus = () => {
+  const $bus = {}
+// 挂载eventName对应的函数
+  const on = (eventName, callback) => {
+    if (!$bus[eventName]) {
+      $bus[eventName] = []
+    }
+
+    $bus[eventName].push(callback)
+  }
+// 将eventName里面对应的函数给移除
+  const off = (eventName, callback) => {
+    if (!$bus[eventName]) {
+      return
+    }
+
+    $bus[eventName] = $bus[eventName].filter((subscriber) => subscriber !== callback)
+  }
+// 执行eventName对应的函数
+  const emit = (eventName, ...args) => {
+    if (!$bus[eventName]) {
+      return
+    }
+
+    $bus[eventName].forEach((subscriber) => subscriber && subscriber(...args))
+  }
+// 执行一次后移除
+  const once = (eventName, callback) => {
+    const onceCallBack = (...args) => {
+      callback(...args)
+      off(eventName, onceCallBack)
+    }
+    on(eventName, onceCallBack)
+  }
+
+  return {
+    on,
+    emit,
+    off,
+    once
+  }
+}
+ // 挂载生命周期函数
+function  onBeforeUnmount(fn) {
+  $bus.on('hook:onBeforeUnmount', fn)
+}
+function  onUpdated(fn) {
+  $bus.on('hook:onUpdated', fn)
+}
+function  onBeforeMount(fn) {
+  $bus.on('hook:onBeforeMount', fn)
+}
+function  onMounted(fn) {
+  $bus.on('hook:onMounted', fn)
+}
+function  onUnmounted(fn) {
+  $bus.on('hook:onUnmounted', fn)
+}
+function  onBeforeUpdate(fn) {
+  $bus.on('hook:onBeforeUpdate', fn)
+}
+// 在这里触发生命周期钩子
+export function useVueLifeHooks($bus) {
+  $bus.emit('hook:onBeforeUpdate')
+  nextTick(() => {
+    $bus.emit('hook:onUpdated')
+  })
+
+  useExcuteOnce(() => {
+    $bus.emit('hook:onBeforeMount')
+  })
+// 使用React的useEffect来模拟Vue的挂载和卸载过程 
+  useEffect(() => {
+    $bus.emit('hook:onMounted')
+// 返回一个清理函数，当组件卸载时执行
+    return () => {
+      // 卸载
+      $bus.emit('hook:onBeforeUnmount')
+      nextTick(() => {
+        $bus.emit('hook:onUnmounted')
+      })
+    }
+  }, [])// 使用[]，就只会执行一次
+}
+```
+6. 实现vue的provide，inject
+
+原理很简单，就是一个公共的对象上面赋值取值
+```js
+const commonData = {}
+const inject = (key, defaultValue) => {
+  return commonData[key] || defaultValue
+}
+const provide = (key, value) => {
+  commonData[key] = value
+}
+```
+7. 访问parent
+
+parent组件
+```js
+ if (props.children) {
+    const children = hanldeChildren(props, props.children, sdk, vm, $bus)
+    // 整个handleChildren就是让props.chidren里面有props有sdk、vm以及$bus，全放在parentProps中
+    props.children = null
+    props.children = children
+  }
+```
+children组件
+```js
+const parent = props.parentProps || {}
+```
+
+8. 实现vue的$refs
+
+```jsx
+export default function App(){
+    const description = useRef()
+    // 在useSetup中执行renderless
+    const { state } = useSetup({
+        props: defaultProps,
+        renderless,
+        api,
+        vm,
+        parent,
+        doms: [description],
+   })
+    //    在useSetup中执行useCreateVueInstance函数
+    function useSetup({doms}){
+        // 忽略大量代码
+        const vm = useCreateVueInstance({doms})
+    }
+    function useCreateVueInstance({doms}){
+        const vm = reactiveWithReload({
+            $refs:null
+        })
+        // doms变化的$refs变化，因为doms可能是有特定条件下创建和销毁，所以不能使用空数组
+        useEffect(() => {
+            vm.$refs = collectRefs(null, doms, vm.$children)// 可以得到vm.$refs= {description:dom元素}
+       }, [doms])
+        return vm
+    }
+    const collectRefs = (rootEl, doms, $children) => {
+        const refs = {}
+        if (!doms?.length) return refs
+        let domsFiber = []
+        // 遍历doms数组，获取每个ref对应的Fiber节点  
+        if (doms?.length) {
+            doms.forEach((dom, index) => {
+            dom && dom.current && (domsFiber[index] = getFiberByDom(dom.current))// 获取DOM元素对应的Fiber节点
+            })
+        }
+        // 遍历Fiber节点，收集具有v-ref或id属性的DOM元素的引用 
+        domsFiber.forEach((domFiber) => {
+            if (domFiber) {
+            // 这个travereseFiber就是遍历兄弟以及子节点执行第二个参数对应的函数，过滤掉类似于If，Slot之类的组件
+            traverseFiber(domFiber, (fiber) => {
+                if (
+                typeof fiber.type === 'string' &&
+                (fiber.stateNode.getAttribute('v-ref') || fiber.stateNode.getAttribute('id'))
+                ) {
+                // 整个dom如果存在v-ref或者id属性，就为其键名
+                refs[fiber.stateNode.getAttribute('v-ref') || fiber.stateNode.getAttribute('id')] = fiber.stateNode
+                }
+            })
+            }
+        })
+        return refs
+    }
+    // getFiberByDom函数定义（根据DOM元素获取对应的Fiber节点） 
+    function getFiberByDom(dom) {
+        // 查找DOM元素对象上的特定键，这些键通常用于存储Fiber节点的引用
+        const key = Object.keys(dom).find((key) => {
+            return (
+            key.startsWith('__reactFiber$') || // react 17+
+            key.startsWith('__reactInternalInstance$')
+            ) // react <17
+        })
+        // 返回找到的Fiber节点
+        return dom[key]
+    }
+    // 渲染一个div元素，并为其设置ref属性，同时添加自定义的v-ref属性用于collectRefs函数收集引用  
+    return <div ref={description} v-ref="description"></div>
+}
+```

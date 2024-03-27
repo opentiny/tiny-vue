@@ -18,7 +18,7 @@ function defaultVIfAsTrue(props) {
 }
 
 function Component(props) {
-  const Is = props.is || (() => null)
+  const Is = props.renderIs || (() => '')
   return (
     <If v-if={defaultVIfAsTrue(props)}>
       <Is className={props.className} {...props} />
