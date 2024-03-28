@@ -1,33 +1,33 @@
 .map-container {
-    .map-canvas {
-        span {
-            word-break: break-all;
-        }
-
-        me-root {
-            me-tpc {
-                #input-box {
-                    border-radius: var(--root-radius);
-                }
-            }
-
-            .selected {
-                #input-box {
-                    box-shadow: 0 0 0 4px var(--selected);
-                    border: unset;
-                }
-            }
-        }
+  .map-canvas {
+    span {
+      word-break: break-all;
     }
 
-    me-main>me-wrapper>me-parent>me-tpc {
-        border: unset;
-        box-shadow: unset;
-
+    me-root {
+      me-tpc {
         #input-box {
-            border-radius: var(--main-radius);
-            box-shadow: 0 0 0 4px var(--selected);
-            border: unset;
+          border-radius: var(--root-radius);
         }
+      }
+
+      .selected {
+        #input-box {
+          box-shadow: 0 0 0 4px var(--selected);
+          border: unset;
+        }
+      }
     }
+  }
+
+  me-main>me-wrapper>me-parent>me-tpc {
+    border: unset;
+    box-shadow: unset;
+
+    #input-box {
+      border-radius: var(--main-radius);
+      box-shadow: 0 0 0 4px var(--selected);
+      border: unset;
+    }
+  }
 }
