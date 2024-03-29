@@ -1083,6 +1083,11 @@
     "type": "template",
     "exclude": false
   },
+  "QuarterPanel": {
+    "path": "vue/src/quarter-panel/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Dept": {
     "path": "vue/src/dept/index.ts",
     "type": "component",
