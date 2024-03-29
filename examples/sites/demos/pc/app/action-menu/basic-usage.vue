@@ -1,6 +1,5 @@
 <template>
   <tiny-action-menu :options="options"> </tiny-action-menu>
-  <tiny-action-menu :options="options" mode="card"> </tiny-action-menu>
 </template>
 
 <script>
