@@ -17,27 +17,45 @@ import type {
   ISharedRenderlessParamHooks,
   IActionMenuRenderlessParamUtils
 } from '@/types'
-import { handleMoreClick, handleItemClick, visibleChange } from './index'
+import {
+  handleMoreClick,
+  handleItemClick,
+  visibleChange,
+  computedMaxShowNum,
+  computedSpacing,
+  computedMoreText,
+  computedSuffixIcon
+} from './index'
 
 export const api = ['state', 'handleMoreClick', 'handleItemClick', 'visibleChange']
 
 export const renderless = (
   props: IActionMenuProps,
   { computed, reactive }: ISharedRenderlessParamHooks,
-  { emit }: IActionMenuRenderlessParamUtils
+  { emit, t }: IActionMenuRenderlessParamUtils
 ): IActionMenuApi => {
+  const api = {} as IActionMenuApi
+
   const state: IActionMenuState = reactive({
-    visibleOptions: computed(() => props.options.slice(0, props.maxShowNum)),
-    moreOptions: computed(() => props.options.slice(props.maxShowNum)),
-    spacing: computed(() => (String(props.spacing).includes('px') ? props.spacing : props.spacing + 'px'))
+    visibleOptions: computed(() => props.options.slice(0, state.maxShowNum)),
+    isCardMode: computed(() => props.mode === 'card'),
+    moreOptions: computed(() => props.options.slice(state.maxShowNum)),
+    spacing: computed(() => api.computedSpacing()),
+    maxShowNum: computed(() => api.computedMaxShowNum()),
+    moreText: computed(() => api.computedMoreText()),
+    suffixIcon: computed(() => api.computedSuffixIcon())
   })
 
-  const api: IActionMenuApi = {
+  Object.assign(api, {
+    state,
     handleMoreClick: handleMoreClick(emit),
     handleItemClick: handleItemClick(emit),
     visibleChange: visibleChange(emit),
-    state
-  }
+    computedMaxShowNum: computedMaxShowNum({ props, state }),
+    computedSpacing: computedSpacing({ props, state }),
+    computedMoreText: computedMoreText({ props, state, t }),
+    computedSuffixIcon: computedSuffixIcon({ props, state })
+  })
 
   return api
 }

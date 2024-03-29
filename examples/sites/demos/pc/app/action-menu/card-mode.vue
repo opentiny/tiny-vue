@@ -1,10 +1,10 @@
 <template>
-  <tiny-action-menu :options="options"> </tiny-action-menu>
   <tiny-action-menu :options="options" mode="card"> </tiny-action-menu>
 </template>
 
 <script>
 import { ActionMenu } from '@opentiny/vue'
+import { iconWebPlus, iconSuccessful, iconCloseSquare } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -14,13 +14,16 @@ export default {
     return {
       options: [
         {
-          label: '远程登陆'
+          label: '远程登陆',
+          icon: iconWebPlus()
         },
         {
-          label: '开机'
+          label: '开机',
+          icon: iconSuccessful()
         },
         {
-          label: '关机'
+          label: '关机',
+          icon: iconCloseSquare()
         },
         {
           label: '重启'

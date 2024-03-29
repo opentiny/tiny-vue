@@ -10,14 +10,27 @@
  *
  */
 
-import type { ComputedRef, ExtractPropTypes, ComponentPublicInstance } from 'vue'
+import type { ExtractPropTypes, ComponentPublicInstance } from 'vue'
 import type { actionMenuProps } from '@/action-menu/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
+import type {
+  handleMoreClick,
+  handleItemClick,
+  visibleChange,
+  computedMaxShowNum,
+  computedSpacing,
+  computedMoreText,
+  computedSuffixIcon
+} from '../src/action-menu'
 
 export interface IActionMenuState {
-  visibleOptions: ComputedRef<object>
-  moreOptions: ComputedRef<object>
-  spacing: ComputedRef<string | number>
+  visibleOptions: object
+  moreOptions: object
+  isCardMode: boolean
+  spacing: string | number
+  maxShowNum: number
+  moreText: string
+  suffixIcon: string | Object
 }
 
 export type IActionMenuProps = ExtractPropTypes<typeof actionMenuProps>
@@ -34,9 +47,13 @@ export interface IActionMenuItemData {
 }
 
 export interface IActionMenuApi {
-  handleMoreClick: () => void
-  handleItemClick: (data: IActionMenuItemData) => void
-  visibleChange: (status: boolean) => void
+  handleMoreClick: ReturnType<typeof handleMoreClick>
+  handleItemClick: ReturnType<typeof handleItemClick>
+  visibleChange: ReturnType<typeof visibleChange>
+  computedMaxShowNum: ReturnType<typeof computedMaxShowNum>
+  computedSpacing: ReturnType<typeof computedSpacing>
+  computedMoreText: ReturnType<typeof computedMoreText>
+  computedSuffixIcon: ReturnType<typeof computedSuffixIcon>
   state: IActionMenuState
 }
 

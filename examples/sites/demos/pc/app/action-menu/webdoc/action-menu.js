@@ -81,6 +81,20 @@ export default {
       codeFiles: ['spacing.vue']
     },
     {
+      demoId: 'card-mode',
+      name: {
+        'zh-CN': '菜单模式',
+        'en-US': 'Mode'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>mode</code> 属性设置菜单模式以适配在不同场景中能够使用，例如：菜单按钮在卡片中使用，可以配置为 <code>card</code>，卡片模式字体为黑色，间距为10px。  <code>mode</code> 默认为值<code>default</code>。</p>',
+        'en-US':
+          '<p>Use the <code>mode</code> attribute to set the menu mode so that the vehicle can be used in different scenarios. For example, if the menu button is used in configuration, it can be configured as <code>card</code>, and the auxiliary mode font is Black with 10px spacing. <code>mode</code> defaults to <code>default</code>. </p>'
+      },
+      codeFiles: ['card-mode.vue']
+    },
+    {
       demoId: 'popper-class',
       name: {
         'zh-CN': '弹框样式',
