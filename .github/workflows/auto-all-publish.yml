@@ -10,12 +10,8 @@ jobs:
     runs-on: windows-latest
     outputs:
       publishVersion: ${{ steps.parseTag.outputs.publishVersion }}
+      branchVersion: ${{ steps.parseTag.outputs.branchVersion }}
     steps:
-      - name: CheckOut Code
-        uses: actions/checkout@master
-        with:
-          ref: dev
-      
       - name: Parse Tag
         id: parseTag
         uses: actions/github-script@v6
@@ -23,8 +19,15 @@ jobs:
           script: |
             const tag = `${{ github.ref_name }}`
             const publishVersion = tag.slice(3)
+            const branchVersion = tag.slice(1)
             core.setOutput('publishVersion', publishVersion)
-    
+            core.setOutput('branchVersion', branchVersion)
+
+      - name: CheckOut Code
+        uses: actions/checkout@master
+        with:
+          ref: release-${{ steps.parseTag.outputs.branchVersion }}
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
 
