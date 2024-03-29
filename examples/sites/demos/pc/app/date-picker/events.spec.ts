@@ -19,7 +19,7 @@ test('[DatePicker] 测试事件', async ({ page }) => {
     .filter({ hasText: /^blur:$/ })
     .getByRole('textbox')
     .click()
-  await page.getByRole('cell', { name: '15' }).getByText('15').click()
+  await page.getByRole('cell', { name: '15' }).getByText('15').last().click()
   const blurEventMessageDom = page.locator('div').filter({ hasText: '触发 blur 事件' }).nth(1)
   await expect(blurEventMessageDom).toBeVisible()
 
@@ -33,13 +33,13 @@ test('[DatePicker] 测试事件', async ({ page }) => {
     .filter({ hasText: /^change:$/ })
     .getByRole('textbox')
     .click()
-  await page.getByRole('cell', { name: '15' }).getByText('15').click()
+  await page.getByRole('cell', { name: '15' }).getByText('15').last().click()
   const changeEventMessageDom = page.locator('div').filter({ hasText: '触发 change 事件，组件绑定值为：' }).nth(1)
   await expect(changeEventMessageDom).toBeVisible()
 
   // onPick 事件
   await page.locator('div').filter({ hasText: /^-$/ }).click()
-  await page.getByRole('cell', { name: '10' }).getByText('10').first().click()
+  await page.getByRole('cell', { name: '10' }).getByText('10').last().click()
   const onPickEventMessageDom = page.locator('div').filter({ hasText: '触发 onPick 事件，开始日期为：' }).nth(1)
   await expect(onPickEventMessageDom).toBeVisible()
 })
