@@ -19,14 +19,10 @@ export const actionMenuProps = {
     type: Array,
     default: () => []
   },
-  maxShowNum: {
-    type: Number,
-    default: 2
-  },
+  maxShowNum: Number,
   moreText: String,
   spacing: {
-    type: [String, Number],
-    default: '5px'
+    type: [String, Number]
   },
   textField: {
     type: String,
@@ -48,6 +44,10 @@ export const actionMenuProps = {
   showIcon: {
     type: Boolean,
     default: true
+  },
+  mode: {
+    type: String,
+    default: 'default'
   }
 }
 

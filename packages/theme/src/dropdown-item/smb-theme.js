@@ -3,7 +3,7 @@ export const tinyDropdownItemSmbTheme = {
   'ti-dropdown-item-padding-vertical': 'var(--ti-common-space-0)',
   'ti-dropdown-item-padding-horizontal': 'var(--ti-common-space-4x)',
   'ti-dropdown-item-hover-text-color': 'var(--ti-common-color-text-primary)',
-  'ti-dropdown-item-icon-color-hover': 'var(--ti-common-color-icon-graybg-hover)',
+  'ti-dropdown-item-icon-color-hover': 'var(--ti-common-color-text-link-hover)',
   'ti-dropdown-item-expand-svg-margin-left': 'var(--ti-common-space-0)',
   'ti-dropdown-item-expand-svg-margin-right': 'var(--ti-common-space-2x)',
   'ti-dropdown-item-content-margin-left': 'calc(var(--ti-dropdown-item-expand-icon-size) + var(--ti-common-space-2x))',
