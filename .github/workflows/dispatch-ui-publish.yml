@@ -26,7 +26,7 @@ jobs:
             const branchName = `${{ github.ref_name }}`
 
             if (!branchName.includes('release-3.')) {
-              throw new Error('请使用release-3.xx.xx发布正式包')
+              throw new Error('请使用release-3.xx.xx分支发布正式包')
             }
 
       - name: CheckOut Code

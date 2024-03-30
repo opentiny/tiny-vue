@@ -31,14 +31,14 @@ jobs:
             }
 
             if (!branchName.includes('release-3.')) {
-              throw new Error('请使用release-3.xx.xx发布正式包')
+              throw new Error('请使用release-3.xx.xx分支发布正式包')
             }
 
       - name: CheckOut Code
         uses: actions/checkout@master
         with:
           ref: ${{ github.ref_name }}
-    
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
 
@@ -47,23 +47,23 @@ jobs:
         with:
           node-version: 20.10.0
           registry-url: 'https://registry.npmjs.org'
-      
+
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
-            echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-  
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
           path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-              ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm i --no-frozen-lockfile
-      
+
       - name: Run Build Theme
         if: contains(inputs.components, 'theme') == true
         run: pnpm build:theme
@@ -71,11 +71,11 @@ jobs:
       - name: Run Build Renderless
         if: contains(inputs.components, 'renderless') == true
         run: pnpm build:renderless
-      
+
       - name: Run Build ThemeSaas
         if: contains(inputs.components, 'theme-saas') == true
         run: pnpm build:themeSaas
-      
+
       - name: Run Build ThemeMobile
         if: contains(inputs.components, 'theme-mobile') == true
         run: pnpm build:themeMobile
