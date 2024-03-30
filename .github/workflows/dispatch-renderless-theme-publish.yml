@@ -1,0 +1,87 @@
+name: Dispatch Renderless Theme
+run-name: Dispatch Renderless Theme--${{ inputs.components }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      components:
+        description: |
+          输入需要打包的模块名称，多个以英文逗号分隔,
+          例如： `theme,renderless`
+        required: true
+        type: string
+concurrency:
+  group: ${{ github.workflow }}-${{ github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Parse Components
+        id: parseComponents
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const branchName = `${{ github.ref_name }}`
+            const moduleName = `${{ inputs.components }}`
+
+            if (!moduleName.includes('theme') && !moduleName.includes('renderless')) {
+              throw new Error('请输入正确的包名称')
+            }
+
+            if (!branchName.includes('release-3.')) {
+              throw new Error('请使用release-3.xx.xx发布正式包')
+            }
+
+      - name: CheckOut Code
+        uses: actions/checkout@master
+        with:
+          ref: ${{ github.ref_name }}
+    
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.10.0
+          registry-url: 'https://registry.npmjs.org'
+      
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+            echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+  
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+              ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm i --no-frozen-lockfile
+      
+      - name: Run Build Theme
+        if: contains(inputs.components, 'theme') == true
+        run: pnpm build:theme
+
+      - name: Run Build Renderless
+        if: contains(inputs.components, 'renderless') == true
+        run: pnpm build:renderless
+      
+      - name: Run Build ThemeSaas
+        if: contains(inputs.components, 'theme-saas') == true
+        run: pnpm build:themeSaas
+      
+      - name: Run Build ThemeMobile
+        if: contains(inputs.components, 'theme-mobile') == true
+        run: pnpm build:themeMobile
+
+      - name: Publish
+        run: |
+          pnpm pub:all
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
