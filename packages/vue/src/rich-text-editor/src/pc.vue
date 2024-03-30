@@ -311,7 +311,8 @@ import Paragraph from '@tiptap/extension-paragraph'
 import { mergeAttributes } from '@tiptap/core'
 
 // image 包
-import Image from '@tiptap/extension-image'
+// import Image from '@tiptap/extension-image'
+import Image from './extensions/image'
 
 // -- HeighLight
 import Highlight from '@tiptap/extension-highlight'
