@@ -460,32 +460,18 @@ export default {
       codeFiles: ['nest-grid-disable.vue']
     },
     {
-      demoId: 'nest-grid-remote-single',
+      demoId: 'nest-grid-remote',
       name: {
-        'zh-CN': '下拉表格远程搜索(单选)',
-        'en-US': 'Select table Remote Search (Single)'
+        'zh-CN': '下拉表格远程搜索',
+        'en-US': 'Select table Remote Search'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮 。</p>\n',
-        'en-US':
-          '<p>Enable remote search through <code>remote</code>,<code>remote-method</code>, and <code>filterable</code>. Set up automatic search and display expansion buttons through <code>remote-config</code>.</p>'
+        'zh-CN': `<p>同时使用 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 3个属性开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮。</p>
+          <p>在多选模式下，可通过 <code>reserve-keyword</code>设置选中一个选项后依然保留搜索关键字。</p>`,
+        'en-US': `<p>Enable remote search through <code>remote</code>,<code>remote-method</code>, and <code>filterable</code>. Set up automatic search and display expansion buttons through <code>remote-config</code>.</p>
+          <p>In multiple selection mode, <code>reserve-keyword</code> set to retain search keywords after selecting multiple options.</p>`
       },
-      codeFiles: ['nest-grid-remote-single.vue']
-    },
-    {
-      demoId: 'nest-grid-remote-multi',
-      name: {
-        'zh-CN': '下拉表格远程搜索(多选）',
-        'en-US': 'Select table Remote Search (Multiple)'
-      },
-      desc: {
-        'zh-CN':
-          '<p>通过 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮。<code>reserve-keyword</code>设置多选选中一个选项后依然保留搜索关键字。</p>\n',
-        'en-US':
-          '<p>Enable remote search through <code>remote</code>,<code>remote-method</code>, and <code>filterable</code>. Set up automatic search and display expansion buttons through <code>remote-config</code> <code>reserve-keyword</code> set to retain search keywords after selecting multiple options.</p>'
-      },
-      codeFiles: ['nest-grid-remote-multi.vue']
+      codeFiles: ['nest-grid-remote.vue']
     },
     {
       demoId: 'nest-grid-init-query',

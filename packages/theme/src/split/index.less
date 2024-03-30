@@ -17,14 +17,14 @@
 @split-prefix-cls: ~'@{css-prefix}split';
 
 .@{split-prefix-cls} {
-  .component-css-vars-split();
-
   &-wrapper {
+    .component-css-vars-split();
+
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    box-shadow: 0 0 0px 1px #d9d9d9;
+    box-shadow: 0 0 0 1px #d9d9d9;
   }
 
   &-pane {
@@ -60,7 +60,6 @@
     &.bottom-pane {
       bottom: 0;
     }
-
   }
 
   &-trigger {
@@ -90,7 +89,7 @@
     &-vertical {
       width: 4px;
       height: 100%;
-      background: #EAECF1;
+      background: #eaecf1;
       cursor: e-resize;
 
       .@{split-prefix-cls}-trigger-bar {
@@ -103,11 +102,10 @@
       }
     }
 
-
     &-horizontal {
       height: 4px;
       width: 100%;
-      background: #EAECF1;
+      background: #eaecf1;
       cursor: n-resize;
 
       .@{split-prefix-cls}-trigger-bar {
@@ -158,7 +156,8 @@
     }
 
     .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-disabled {
-      .@{split-prefix-cls}-trigger-vertical,.@{split-prefix-cls}-trigger-horizontal {
+      .@{split-prefix-cls}-trigger-vertical,
+      .@{split-prefix-cls}-trigger-horizontal {
         cursor: auto;
 
         &:hover {
@@ -231,7 +230,8 @@
     }
 
     .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-disabled {
-      .@{split-prefix-cls}-trigger-vertical,.@{split-prefix-cls}-trigger-horizontal {
+      .@{split-prefix-cls}-trigger-vertical,
+      .@{split-prefix-cls}-trigger-horizontal {
         cursor: auto;
 
         &:hover {
