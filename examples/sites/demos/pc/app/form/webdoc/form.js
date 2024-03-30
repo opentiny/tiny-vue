@@ -78,10 +78,16 @@ export default {
         'en-US': 'Form Validation/Clear Validation'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>rules</code> 设置校验规则，\n        调用 <code>clearValidate</code> 方法移除表单项的校验结果。传入待移除的表单项的 <code>prop</code> 属性或者 <code>prop</code> 组成的数组，如不传则移除整个表单的校验结果，\n        调用 <code>resetFields</code> 方法重置表单并移除校验结果。\n        </p>',
-        'en-US':
-          '<p>Includes common verification rules such as mandatory fields, date, time, URL, and email. Use <code>trigger</code> to configure the mode of triggering the validation rule. If <code>change</code> is used, the validation is triggered when the value in the text box changes. If <code>blur</code> is used, the validation is triggered after the focus is lost. \n          <br />\n          Use <code>clearValidate</code> method to clear the validation result. \n          </p>\n          '
+        'zh-CN': `<p>通过 <code>rules</code> 设置校验规则，
+          调用 <code>clearValidate</code> 方法移除表单项的校验结果。传入待移除的表单项的 <code>prop</code> 属性或者 <code>prop</code> 组成的数组，如不传则移除整个表单的校验结果，
+          调用 <code>resetFields</code> 方法重置表单并移除校验结果
+          </p>`,
+        'en-US': `<p>Includes common verification rules such as mandatory fields, date, time, URL, and email.
+        Use <code>trigger</code> to configure the mode of triggering the validation rule.
+        If <code>change</code> is used, the validation is triggered when the value in the text box changes.
+        If <code>blur</code> is used, the validation is triggered after the focus is lost. 
+        <br />
+        Use <code>clearValidate</code> method to clear the validation result.</p>`
       },
       codeFiles: ['form-validation.vue']
     },
@@ -283,6 +289,30 @@ export default {
           'Set the <code>tip</code> type error prompt through <code>popper-options</code>. For example, when the parent element of the form is a scrolling element and the page scrolls, the prompt will be misaligned. Change the <code>bubbling</code> attribute Set to <code>true</code> to resolve this issue.'
       },
       codeFiles: ['popper-options.vue']
+    },
+    {
+      demoId: 'error-slot',
+      name: {
+        'zh-CN': '错误提示插槽',
+        'en-US': 'Error content'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>error</code> 插槽，自定义标签文本的内容。</p>',
+        'en-US': '<p>Use the <code>error</code> slot to customize the content of the label text. </p>'
+      },
+      codeFiles: ['error-slot.vue']
+    },
+    {
+      demoId: 'extra-tip',
+      name: {
+        'zh-CN': '额外提示信息',
+        'en-US': 'Extra tip'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>extra</code> 配置额外提示信息。</p>',
+        'en-US': '<p>Configure additional prompt information through <code>extra</code>. </p>'
+      },
+      codeFiles: ['extra-tip.vue']
     },
     {
       demoId: 'events',

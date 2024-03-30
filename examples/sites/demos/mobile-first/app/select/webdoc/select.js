@@ -36,9 +36,10 @@ export default {
         'en-US': 'Collapse tags'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。</p>\n',
+        'zh-CN':
+          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置 <code>show-proportion</code> 可展示当前选中条数和总条数占比，默认值为 <code>false</code> 。</p>\n',
         'en-US':
-          '<p>When multiple options are selected through the <code>collapse-tags</code> attribute settings, multiple tags will be abbreviated and displayed.</p>\n'
+          '<p>When multiple options are selected through the <code>collapse-tags</code> attribute settings, multiple tags will be abbreviated and displayed. Set <code>show promotion</code> to display the current number of selected items and the proportion of total items. The default value is <code>false</code> .</p>\n'
       },
       codeFiles: ['collapse-tags.vue']
     },

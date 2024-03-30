@@ -1083,6 +1083,11 @@
     "type": "template",
     "exclude": false
   },
+  "QuarterPanel": {
+    "path": "vue/src/quarter-panel/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Dept": {
     "path": "vue/src/dept/index.ts",
     "type": "component",
@@ -2575,6 +2580,19 @@
   },
   "SkeletonPc": {
     "path": "vue/src/skeleton/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "Statistic": {
+    "path": "vue/src/statistic/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "StatisticPc": {
+    "path": "vue/src/statistic/src/pc.vue",
     "type": "template",
     "exclude": false
   },

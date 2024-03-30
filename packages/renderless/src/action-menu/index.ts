@@ -12,6 +12,58 @@
 
 import type { IActionMenuRenderlessParams, IActionMenuItemData } from '@/types'
 
+export const computedMaxShowNum =
+  ({ props, state }: Pick<IActionMenuRenderlessParams, 'props' | 'state'>) =>
+  (): number => {
+    if (props.maxShowNum !== undefined) {
+      return props.maxShowNum
+    }
+    if (state.isCardMode) {
+      return 3
+    } else {
+      return 2
+    }
+  }
+
+export const computedSpacing =
+  ({ props, state }: Pick<IActionMenuRenderlessParams, 'props' | 'state'>) =>
+  (): string => {
+    if (props.spacing !== undefined) {
+      return String(props.spacing).includes('px') ? props.spacing : props.spacing + 'px'
+    }
+    if (state.isCardMode) {
+      return '10px'
+    } else {
+      return '5px'
+    }
+  }
+
+export const computedMoreText =
+  ({ props, state, t }: Pick<IActionMenuRenderlessParams, 'props' | 'state', 't'>) =>
+  (): string => {
+    if (props.moreText !== undefined) {
+      return props.moreText
+    }
+    if (state.isCardMode) {
+      return ''
+    } else {
+      return t('ui.actionMenu.moreText')
+    }
+  }
+
+export const computedSuffixIcon =
+  ({ props, state }: Pick<IActionMenuRenderlessParams, 'props' | 'state'>) =>
+  (): string | Object => {
+    if (props.suffixIcon) {
+      return props.suffixIcon
+    }
+    if (state.isCardMode) {
+      return 'tiny-icon-ellipsis'
+    } else {
+      return ''
+    }
+  }
+
 export const handleMoreClick = (emit: IActionMenuRenderlessParams['emit']) => () => {
   emit('more-click')
 }

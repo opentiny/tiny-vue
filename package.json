@@ -31,7 +31,7 @@
     "pnpm": ">=6.35"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
+    "preinstall": "node -v && pnpm -v && npx only-allow pnpm",
     "postinstall": "pnpm build:internals",
     "prepare": "husky install",
     "bootstrap": "pnpm --filter=\"!./packages/dist/**\" install",
@@ -75,6 +75,11 @@
     "pub3": "pnpm --filter=\"./packages/dist3/**\" publish --no-git-checks --access=public",
     "pub2.7": "pnpm --filter=\"./packages/dist2.7/**\" publish --tag v2.7-latest --no-git-checks --access=public",
     "pub:aurora": "pnpm --filter=\"./packages/dist2/@aurora/**\" publish --no-git-checks --access=public",
+    "pub:theme": "pnpm --filter=\"./packages/theme/dist\" publish --no-git-checks --access=public",
+    "pub:themeMobile": "pnpm --filter=\"./packages/theme-mobile/dist/\" publish --no-git-checks --access=public",
+    "pub:themeSaas": "pnpm --filter=\"./packages/theme-saas/dist\" publish --no-git-checks --access=public",
+    "pub:renderless": "pnpm --filter=\"./packages/renderless/dist\" publish --no-git-checks --access=public",
+    "pub:all": "pnpm pub2 && pnpm pub3 && pnpm pub:theme && pnpm pub:themeMobile && pnpm pub:themeSaas && pnpm pub:renderless",
     "// ---------- unit单元测试 ----------": "",
     "test:unit2": "pnpm -C examples/vue2 test:unit",
     "test:unit2.7": "pnpm -C examples/vue2.7 test:unit",

@@ -22,6 +22,7 @@
     "@opentiny/vue-date-panel": "workspace:~",
     "@opentiny/vue-date-range": "workspace:~",
     "@opentiny/vue-month-range": "workspace:~",
+    "@opentiny/vue-quarter-panel": "workspace:~",
     "@opentiny/vue-time": "workspace:~",
     "@opentiny/vue-time-range": "workspace:~",
     "@opentiny/vue-time-panel": "workspace:~",

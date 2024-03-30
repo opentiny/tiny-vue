@@ -271,6 +271,9 @@
           <span v-if="state.showCopy" class="h-4 cursor-pointer relative z-[1]" @click.stop="handleCopyClick">
             <icon-copy :class="[gcls('caret'), 'align-top group-hover:fill-color-brand']"></icon-copy>
           </span>
+          <span v-if="showProportion && state.selected.length > 0 && state.options.length > 1">
+            {{ state.selected.length + '/' + state.options.length }}
+          </span>
           <icon-close
             v-if="state.showClose"
             :class="[
@@ -630,6 +633,7 @@ export default {
     'options',
     'showCheck',
     'showAlloption',
+    'showProportion',
     'hideDrop',
     'modelValue',
     'showOverflowTooltip',
