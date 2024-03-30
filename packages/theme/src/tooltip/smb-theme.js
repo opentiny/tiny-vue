@@ -7,7 +7,6 @@ export const tinyTooltipSmbTheme = {
   'ti-tooltip-popper-border-radius': '8px',
   'ti-tooltip-popper-info-bg-color': '#1476FF',
   'ti-tooltip-popper-info-border-color': '#1476FF',
-  'ti-tooltip-popper-error-text-color': 'var(--ti-common-color-text-primary)',
   'ti-tooltip-popper-dark-bg-color': '#191919',
   'ti-tooltip-popper-dark-text-color': '#fff',
   'ti-tooltip-popper-border-color': '#191919',
