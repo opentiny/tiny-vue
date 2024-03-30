@@ -31,7 +31,7 @@
     "pnpm": ">=6.35"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
+    "preinstall": "node -v && pnpm -v && npx only-allow pnpm",
     "postinstall": "pnpm build:internals",
     "prepare": "husky install",
     "bootstrap": "pnpm --filter=\"!./packages/dist/**\" install",
