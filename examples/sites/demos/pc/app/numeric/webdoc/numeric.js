@@ -142,8 +142,10 @@ export default {
         'en-US': 'Value change event'
       },
       desc: {
-        'zh-CN': '<p> 可通过<code>@change</code>设置监听数值改变事件。</p>\n',
-        'en-US': 'The <code>@change</code> event is triggered when the value of the text box is changed. </p>\n'
+        'zh-CN':
+          '<p> 可通过<code>@change</code>设置监听数值改变事件。当<code>change-compat</code>为false时，仅当加减按钮及直接输入数值时会触发<code>change</code>事件。 </p>\n',
+        'en-US':
+          'The <code>@change</code> event is triggered when the value of the text box is changed. When the<code>change compat</code>is false, the <code>change</code> event will be triggered when only the add and subtract buttons and directly entering numerical values are used.</p>\n'
       },
       codeFiles: ['change-event.vue']
     },
