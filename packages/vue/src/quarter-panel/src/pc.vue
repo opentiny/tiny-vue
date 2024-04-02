@@ -68,7 +68,7 @@ export default defineComponent({
     IconDoubleLeft: iconDoubleLeft()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, mono: true })
   }
 })
 </script>
