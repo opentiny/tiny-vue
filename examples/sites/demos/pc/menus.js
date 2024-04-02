@@ -1,8 +1,60 @@
-const isOpen = import.meta.env.VITE_BUILD_TARGET === 'open'
+const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
+const envTheme = import.meta.env.VITE_TINY_THEME || 'default'
 export const standaloneMenus = [
   {
     label: '组件总览',
     key: 'overview'
+  }
+]
+
+const docMenusChildren = [
+  { 'title': '更新日志', 'titleEn': 'Changelog', 'key': 'changelog' },
+  { 'title': '环境准备', 'titleEn': 'envpreparation', 'key': 'envpreparation' },
+  { 'title': '安装', 'titleEn': 'installation', 'key': 'installation' },
+  { 'title': '引入组件', 'titleEn': 'importComponents', 'key': 'import-components' },
+  {
+    'title': '后端适配器',
+    'titleEn': 'adapter',
+    'key': 'adapter',
+    showScene: {
+      target: ['inner']
+    }
+  },
+  {
+    'title': '开发示例',
+    'titleEn': 'developDemo',
+    'key': 'develop-demo',
+    showScene: {
+      target: ['inner']
+    }
+  },
+  { 'title': '创建项目', 'titleEn': 'tinyStage', 'key': 'tiny-stage' },
+  { 'title': '国际化', 'titleEn': 'i18n', 'key': 'i18n' },
+  {
+    'title': '主题配置',
+    'titleEn': 'theme',
+    'key': 'theme',
+    showScene: {
+      theme: ['default']
+    }
+  },
+  { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
+  { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' },
+  {
+    'title': '社区求助',
+    'titleEn': 'help',
+    'key': 'help',
+    showScene: {
+      target: ['inner']
+    }
+  },
+  {
+    'title': '适配AUI',
+    'titleEn': 'Adapter AUI',
+    'key': 'aui-adapter',
+    showScene: {
+      theme: ['saas']
+    }
   }
 ]
 export const docMenus = [
@@ -10,26 +62,17 @@ export const docMenus = [
     'label': '使用指南',
     'labelEn': 'Usage Guidelines',
     'key': 'docs_usage_guidelines',
-    // 为了保持新旧官网对应文档路由的一致，文档对内和对外的差异判断逻辑放到了docs组件中。
-    'children': [
-      { 'title': '更新日志', 'titleEn': 'Changelog', 'key': 'changelog' },
-      { 'title': '环境准备', 'titleEn': 'envpreparation', 'key': 'envpreparation' },
-      { 'title': '安装', 'titleEn': 'installation', 'key': 'installation' },
-      { 'title': '引入组件', 'titleEn': 'importComponents', 'key': 'import-components' },
-      { 'title': '开发示例', 'titleEn': 'developDemo', 'key': 'develop-demo' },
-      { 'title': '国际化', 'titleEn': 'i18n', 'key': 'i18n' },
-      { 'title': '主题配置', 'titleEn': 'theme', 'key': 'theme' },
-      { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
-      { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' }
-    ]
+    'children': docMenusChildren.filter((item) => {
+      if (!item.showScene) {
+        return true
+      }
+      // 根据envTarget和envTheme判断是否展示文档
+      const { target, theme } = item.showScene
+      return (target?.includes(envTarget) ?? true) && (theme?.includes(envTheme) ?? true)
+    })
   }
 ]
-// 内网比外网多出三文档，为了保存文档顺序，使用splice插入到对应位置
-if (!isOpen) {
-  docMenus[0].children.splice(4, 0, { 'title': '后端适配器', 'titleEn': 'adapter', 'key': 'adapter' })
-  docMenus[0].children.splice(6, 0, { 'title': '创建项目', 'titleEn': 'tinyStage', 'key': 'tiny-stage' })
-  docMenus[0].children.splice(10, 0, { 'title': '社区求助', 'titleEn': 'help', 'key': 'help' })
-}
+
 export const cmpMenus = [
   {
     'label': '框架风格',
@@ -292,7 +335,7 @@ export const cmpMenus = [
 const showBusiness = location.pathname.split('/')?.[2] === 'all'
 
 // 对内文档开放业务组件
-if (!isOpen || showBusiness) {
+if (envTarget === 'inner' || showBusiness) {
   cmpMenus.splice(8, 0, {
     'label': '业务组件',
     'labelEn': 'Business Components',
