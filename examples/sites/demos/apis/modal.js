@@ -93,8 +93,9 @@ export default {
           type: 'number | string',
           defaultValue: '3000',
           desc: {
-            'zh-CN': "自动关闭的延时，仅当 type 为 'message' 有效",
-            'en-US': "Delay for automatic shutdown, only valid when type is 'message'"
+            'zh-CN': "自动关闭的延时，单位毫秒，仅当 type 为 'message' 有效，设为 0 则不会自动关闭",
+            'en-US':
+              "Delay for automatic shutdown, millisecond, only valid when type is 'message', If set to 0, it will not turn off automatically"
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'duration',

@@ -157,7 +157,9 @@ export const selfClickEvent =
   }
 
 export const mouseEnterEvent = () => (): void => {
-  clearTimeout(timer)
+  if (timer) {
+    clearTimeout(timer)
+  }
 }
 
 export const mouseLeaveEvent =
@@ -165,12 +167,14 @@ export const mouseLeaveEvent =
   (): void => {
     api.addMsgQueue()
 
-    timer = window.setTimeout(
-      () => {
-        api.close('close')
-      },
-      parseFloat(props.duration as string)
-    )
+    if (props.duration !== '0') {
+      timer = window.setTimeout(
+        () => {
+          api.close(params.type)
+        },
+        parseFloat(props.duration as string)
+      )
+    }
   }
 
 export const updateZindex =
@@ -269,12 +273,14 @@ export const open =
       if (state.isMsg) {
         api.addMsgQueue()
 
-        timer = window.setTimeout(
-          () => {
-            api.close(params.type)
-          },
-          parseFloat(props.duration as string)
-        )
+        if (props.duration !== '0') {
+          timer = window.setTimeout(
+            () => {
+              api.close(params.type)
+            },
+            parseFloat(props.duration as string)
+          )
+        }
       } else {
         nextTick(() => {
           if (!isMobileFirstMode) {

@@ -48,9 +48,10 @@ export default {
         'en-US': 'Automatic Shutdown Delay'
       },
       desc: {
-        'zh-CN': "<p>可通过<code>duration</code>属性设置自动关闭的延迟时间，仅当<code>type='message'</code>有效。</p>",
+        'zh-CN':
+          "<p>可通过<code>duration</code>属性设置自动关闭的延迟时间，仅当<code>type='message'</code>有效。设为 0 则不会自动关闭。</p>",
         'en-US':
-          '<p>You can use the <code>duration</code> attribute to set the delay time for automatic closing. This parameter is valid only for type=message. </p>'
+          '<p>You can use the <code>duration</code> attribute to set the delay time for automatic closing. This parameter is valid only for type=message. If set to 0, it will not turn off automatically.</p>'
       },
       codeFiles: ['duration.vue']
     },

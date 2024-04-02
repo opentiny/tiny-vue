@@ -3,6 +3,7 @@
     <tiny-button @click="baseClick" :reset-time="0">默认3000ms 后自动关闭提示框</tiny-button>
     <tiny-button @click="successClick" :reset-time="0">500ms 后自动关闭提示框</tiny-button>
     <tiny-button @click="errorClick" :reset-time="0">5000ms 后自动关闭提示框</tiny-button>
+    <tiny-button @click="warnClick" :reset-time="0">不自动关闭</tiny-button>
   </div>
 </template>
 
@@ -29,6 +30,14 @@ export default {
         status: 'error',
         message: `5000ms 后自动关闭提示框`,
         duration: '5000'
+      })
+    },
+    warnClick() {
+      Modal.message({
+        status: 'warning',
+        message: `不自动关闭提示框`,
+        duration: '0',
+        messageClosable: true
       })
     }
   }
