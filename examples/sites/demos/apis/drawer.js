@@ -181,6 +181,18 @@ export default {
       ],
       events: [
         {
+          name: 'open',
+          type: '()=> void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '打开抽屉事件',
+            'en-US': ''
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'open-event',
+          mfDemo: ''
+        },
+        {
           name: 'close',
           type: '()=> void',
           defaultValue: '',
