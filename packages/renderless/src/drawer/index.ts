@@ -36,6 +36,7 @@ export const watchToggle =
   (bool: boolean) => {
     setTimeout(() => {
       emit('update:visible', bool)
+      bool && emit('open')
     }, 0)
   }
 
