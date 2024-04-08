@@ -1,4 +1,4 @@
-import { $props, $prefix, $setup } from '@opentiny/vue-common'
+import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?mobile-first'
 
 export const floatingButtonProps = {
@@ -45,10 +45,10 @@ export const floatingButtonProps = {
   }
 }
 
-export default {
+export default defineComponent({
   name: $prefix + 'FloatingButton',
   props: floatingButtonProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

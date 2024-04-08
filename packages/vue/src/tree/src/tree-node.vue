@@ -93,6 +93,7 @@
             </span>
           </template>
 
+          <!-- tiny: 去掉 @click.stop的绑定 -->
           <tiny-checkbox
             v-if="showCheckbox"
             :model-value="node.checked"
@@ -101,7 +102,6 @@
             :disabled="!!node.disabled"
             :validate-event="false"
             @change="handleCheckChange"
-            @click.stop="handleClick($event, 'checkbox')"
           >
           </tiny-checkbox>
           <tiny-radio
@@ -233,7 +233,7 @@
 </template>
 
 <script lang="ts">
-import { setup, directive, h, isVue2 } from '@opentiny/vue-common'
+import { setup, directive, h, isVue2, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tree-node/vue'
 import CollapseTransition from '@opentiny/vue-collapse-transition'
 import {
@@ -250,7 +250,7 @@ import Radio from '@opentiny/vue-radio'
 import Input from '@opentiny/vue-input'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 
-export default {
+export default defineComponent({
   name: 'TreeNode',
   componentName: 'TreeNode',
   directives: directive({ Clickoutside }),
@@ -366,5 +366,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true, extendOptions: { isVue2 } })
   }
-}
+})
 </script>

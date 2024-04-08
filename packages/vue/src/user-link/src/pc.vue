@@ -20,6 +20,7 @@
         :visible-arrow="false"
         placement="bottom-start"
         popper-class="tiny-user-card"
+        :append-to-body="popperAppendToBody"
       >
         <template #reference>
           <a @click="showCard($event, user)"
@@ -122,7 +123,8 @@ export default defineComponent({
     'cache',
     'cacheKey',
     'cacheFields',
-    'batch'
+    'batch',
+    'popperAppendToBody'
   ],
   components: {
     TinyPopover,

@@ -40,6 +40,14 @@ export default defineComponent({
           value || value === 0 ? Math.floor(value) === value && value > 0 && value <= range : true
         )
       }
+    },
+    startDate: {
+      type: Object,
+      default: () => ({})
+    },
+    endDate: {
+      type: Object,
+      default: () => ({})
     }
   },
   setup(props, context) {

@@ -64,6 +64,10 @@ export const dropdownItemProps = {
     type: Number,
     default: () => -1
   },
+  tooltipContent: {
+    type: String,
+    default: ''
+  },
   // 以下为 tiny 新增
   appendToBody: {
     type: Boolean,

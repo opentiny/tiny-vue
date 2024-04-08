@@ -46,6 +46,10 @@ export default defineComponent({
     batch: {
       type: [Boolean, Number],
       default: 0
+    },
+    popperAppendToBody: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {

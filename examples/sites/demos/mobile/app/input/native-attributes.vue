@@ -19,10 +19,6 @@
       <tiny-input type="number" v-model="inputStep" :step="2" placeholder="step 为 2"></tiny-input>
     </div>
     <div class="demo-input-item">
-      <span>min=2; max=11</span>
-      <tiny-input type="number" v-model="inputMaxMin" :min="2" :max="11"></tiny-input>
-    </div>
-    <div class="demo-input-item">
       <span>name</span>
       <tiny-input v-model="username" name="username"></tiny-input>
     </div>
@@ -41,7 +37,6 @@ export default {
       autofocusVal: '',
       input: 'readonly',
       inputStep: 2,
-      inputMaxMin: 1,
       inputAutocomplete: '',
       username: ''
     }

@@ -1,21 +1,8 @@
-import Radar from './src/index.js'
-import { radar } from '@opentiny/vue-renderless/chart-radar/index'
-import { version } from './package.json'
+import ChartRadar from './src/chart-radar.vue'
 
-/* istanbul ignore next */
-Radar.install = function (Vue) {
-  Vue.component(Radar.name, Radar)
+ChartRadar.install = function (Vue: any) {
+  Vue.component(ChartRadar.name, ChartRadar)
 }
 
-Radar.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Radar.install(window.Vue)
-  }
-}
-
-export { radar }
-
-export default Radar
+export { ChartRadar }
+export default ChartRadar

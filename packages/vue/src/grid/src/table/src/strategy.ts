@@ -1,4 +1,5 @@
 import { getRowkey } from '@opentiny/vue-renderless/grid/utils'
+import { warn } from '../../tools'
 
 const TEMPORARY_CHILDREN = '_$children_'
 const TEMPORARY_SHOW = '_$show_'
@@ -249,6 +250,7 @@ const sliceColumnTree = (_vm) => {
   const { collectColumn } = _vm
   const columnChart = []
   const stack = []
+  const fixedMap = new WeakMap()
   let maxLevel = 1
 
   const buildColumnChart = (columns, columnChart, stack) => {
@@ -259,12 +261,33 @@ const sliceColumnTree = (_vm) => {
       column.rowSpan = 1
       column.colSpan = 1
 
+      if (stack.length === 0) {
+        fixedMap.set(column, column.fixed || '')
+      }
+
       if (Array.isArray(column.children) && column.children.length) {
         stack.push(column)
         buildColumnChart(column.children, columnChart, stack)
         stack.pop()
       } else {
-        columnChart.push([...stack, column])
+        const chartItem = [...stack, column]
+
+        columnChart.push(chartItem)
+
+        if (chartItem.length > 1) {
+          chartItem.slice(1).forEach(({ fixed }) => {
+            const rootColumn = chartItem[0]
+            const cachedFixed = fixedMap.get(rootColumn)
+
+            if (fixed) {
+              if (cachedFixed && cachedFixed !== fixed) {
+                warn('ui.grid.error.groupColumnFixedError')
+              } else if (!cachedFixed) {
+                fixedMap.set(rootColumn, fixed)
+              }
+            }
+          })
+        }
       }
     }
   }
@@ -294,9 +317,21 @@ const sliceColumnTree = (_vm) => {
     }
   }
 
+  // 如果多表头子树上存在一个冻结列，那么所有列都应该是此种冻结
+  const tryRepairFixedType = (chart) => {
+    chart.forEach((item) => {
+      const rootColumn = item[0]
+      item.forEach((col) => {
+        col.fixed = fixedMap.get(rootColumn)
+      })
+    })
+  }
+
   buildColumnChart(collectColumn, columnChart, stack)
   setColumnRowSpan(columnChart)
+  tryRepairFixedType(columnChart)
 
+  _vm.columnChart = columnChart
   return () => {
     const { tableColumn } = _vm
     const levelColumns = []

@@ -23,9 +23,9 @@
  *
  */
 import { getFuncText, getDomNode } from '@opentiny/vue-renderless/grid/utils'
-import { h, $prefix } from '@opentiny/vue-common'
+import { h, $prefix, defineComponent } from '@opentiny/vue-common'
 
-export default {
+export default defineComponent({
   name: $prefix + 'GridContextMenuChild',
   props: {
     item: Object,
@@ -108,4 +108,4 @@ export default {
       }
     }
   }
-}
+})

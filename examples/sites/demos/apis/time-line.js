@@ -24,7 +24,7 @@ export default {
             'zh-CN': '显示组件二级标题内容，默认值为 autoColor',
             'en-US': 'Displays the level-2 title of the component. The default value is autoColor.'
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
           mfDemo: ''
         },
         {
@@ -351,6 +351,7 @@ export default {
       code: `
 interface ITimelineItem {
   name: string // 节点名称
+  activeColor: 'success' | 'warning' | 'error' | Component
   time?: string // 节点时间
   error?: boolean // 是否异常状态
   disabled?: boolean // 是否禁用

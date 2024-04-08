@@ -19,7 +19,10 @@ export const tagProps = {
   type: String,
   theme: String,
   size: String,
-  color: String,
+  color: {
+    type: [String, Array],
+    default: ''
+  },
   closable: Boolean,
   operable: Boolean,
   disabled: Boolean,

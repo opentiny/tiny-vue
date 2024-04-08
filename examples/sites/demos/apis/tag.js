@@ -30,16 +30,19 @@ export default {
         },
         {
           name: 'color',
-          type: 'string',
+          type: 'IColor | string[]',
+          typeAnchorName: 'IColor',
           defaultValue: '',
           desc: {
-            'zh-CN': '背景色：rgb,rgba,hex 三种格式',
-            'en-US': 'Background color: The value can be in rgb, rgba, or hex format'
+            'zh-CN':
+              '控制标签文本色和背景色，可使用 IColor 类型中的预设值，也可自定义值，若自定义值为字符串则只能设置标签的背景色；若为数组则第一个值设置背景色，第二个设置文本色；【注：3.15.0新增支持数组类型】',
+            'en-US':
+              'Control the text color and background color of the label. You can use the preset value in the IColor type or customize the value. If the customized value is a character string, you can only set the background color of the label. If it is an array, the first value sets the background color and the second sets the text color. [Note: The array type is supported in 3.15.0]'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'color3',
           mobileDemo: 'different-color',
-          mfDemo: ''
+          mfDemo: 'color3'
         },
         {
           name: 'custom-class',
@@ -164,8 +167,8 @@ export default {
             'zh-CN': '彩色标签，该属性的可选值为 pink、purple、cyan',
             'en-US': 'Color label. The value can be pink, purple, or cyan.'
           },
-          mode: ['mobile-first'],
-          mfDemo: 'colorful-tag'
+          mode: ['mobile'],
+          mfDemo: 'different-color'
         },
         {
           name: 'type',
@@ -239,6 +242,13 @@ export default {
   ],
   types: [
     {
+      name: 'IColor',
+      type: 'type',
+      code: `
+type IColor = 'red' | 'orange' | 'green' | 'blue' | 'purple' | 'brown' | 'grey' | string // 除了预设值，也可以是其他任意自定义颜色值
+`
+    },
+    {
       name: 'IEffect',
       type: 'type',
       code: `
@@ -256,7 +266,7 @@ type ISize = 'medium' | 'small' | 'mini' | ''
       name: 'IType',
       type: 'type',
       code: `
-type IType = 'success' | 'info' | 'mini' | 'warning' | 'danger'
+type IType = 'success' | 'info' | 'warning' | 'danger'
 `
     }
   ]

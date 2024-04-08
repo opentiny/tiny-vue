@@ -1,0 +1,88 @@
+name: Auto All Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    outputs:
+      publishVersion: ${{ steps.parseTag.outputs.publishVersion }}
+      branchVersion: ${{ steps.parseTag.outputs.branchVersion }}
+    steps:
+      - name: Parse Tag
+        id: parseTag
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const tag = `${{ github.ref_name }}`
+            const publishVersion = tag.slice(3)
+            const branchVersion = tag.slice(1)
+            core.setOutput('publishVersion', publishVersion)
+            core.setOutput('branchVersion', branchVersion)
+
+      - name: CheckOut Code
+        uses: actions/checkout@master
+        with:
+          ref: release-${{ steps.parseTag.outputs.branchVersion }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.10.0
+          registry-url: 'https://registry.npmjs.org'
+      
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+            echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+  
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+              ${{ runner.os }}-pnpm-store-
+      - name: Install dependencies
+        run: pnpm i --no-frozen-lockfile
+
+      - name: Run Build Components
+        run: pnpm build:ui -t ${{ steps.parseTag.outputs.publishVersion }}
+      
+      - name: Run Build Sass Common
+        run: pnpm build:ui saas-common -t ${{ steps.parseTag.outputs.publishVersion }} -d saas
+      
+      - name: Run Build Runtime
+        run: pnpm build:runtime
+
+      - name: Run Build Theme
+        run: pnpm build:theme
+
+      - name: Run Build Renderless
+        run: pnpm build:renderless
+      
+      - name: Run Build ThemeSaas
+        run: pnpm build:themeSaas
+      
+      - name: Run Build ThemeMobile
+        run: pnpm build:themeMobile
+
+      - name: Publish Vue3 And Vue2 components
+        run: pnpm pub:all
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Release
+        if: contains(github.ref_name, 'alpha') == false
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}

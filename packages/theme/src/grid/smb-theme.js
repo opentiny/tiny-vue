@@ -20,8 +20,14 @@ export const tinyGridSmbTheme = {
   'ti-grid-checkbox-icon-size': 'var(--ti-common-font-size-2)',
   'ti-grid-checkbox-bg-color-checked': '#1476FF',
   'ti-grid-radio-bg-color-checked': '#1476FF',
-  'ti-grid-toolbar-btn-height': 'var(--ti-common-size-8x, 32px)',
-  'ti-grid-toolbar-btn-width': 'var(--ti-common-size-8x, 32px)',
-  'ti-grid-toolbar-btn-border-color': 'var(--ti-common-color-line-normal, #c2c2c2)',
-  'ti-grid-toolbar-btn-border-radius': 'calc(var(--ti-common-size-base, 4px) + 2px)'
+  'ti-grid-toolbar-icon-btn-height': 'var(--ti-common-size-8x)',
+  'ti-grid-toolbar-icon-btn-width': 'var(--ti-common-size-8x)',
+  'ti-grid-toolbar-icon-btn-border-color': 'var(--ti-common-color-line-normal)',
+  'ti-grid-toolbar-icon-btn-border-radius': 'calc(var(--ti-common-size-base) + 2px)',
+  'ti-grid-toolbar-btn-min-width': 'calc(var(--ti-common-size-base) * 24)',
+  'ti-grid-toolbar-btn-padding-horizontal': 'var(--ti-common-space-6x)',
+  'ti-grid-toolbar-btn-line-height': '30px',
+  'ti-grid-toolbar-btn-border-color': '#595959', // 缺少#595959的边框公共变量
+  'ti-grid-toolbar-btn-hover-border-color': 'var(--ti-common-color-line-normal)', // 缺少#595959的边框公共变量
+  'ti-grid-toolbar-btn-border-radius': 'var(--ti-common-size-4x)'
 }

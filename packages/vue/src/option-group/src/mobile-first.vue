@@ -16,12 +16,12 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/option-group/vue'
-import { setup, props } from '@opentiny/vue-common'
+import { setup, props, defineComponent } from '@opentiny/vue-common'
 
-export default {
+export default defineComponent({
   props: [...props, 'label', 'disabled'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
-}
+})
 </script>

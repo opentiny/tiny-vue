@@ -43,8 +43,6 @@ import {
   getDecimal,
   unmounted,
   initService,
-  dispatchDisplayedValue,
-  getDisplayedValue,
   getDisplayOnlyText,
   filterValue,
   handleClear,
@@ -144,10 +142,8 @@ const initApi = ({
     handleInputChange: handleInputChange({ api, state, props }),
     mouseEvent: mouseEvent({ api, props, state }),
     handleBlur: handleBlur({ constants, dispatch, emit, props, state, api }),
-    watchValue: watchValue({ api, props, state, nextTick }),
+    watchValue: watchValue({ api, props, state }),
     setCurrentValue: setCurrentValue({ api, constants, dispatch, emit, props, state }),
-    dispatchDisplayedValue: dispatchDisplayedValue({ api, state, dispatch }),
-    getDisplayedValue: getDisplayedValue({ state, props }),
     getDisplayOnlyText: getDisplayOnlyText({ parent, props, state }),
     filterValue: filterValue({ state }),
     handleClear: handleClear({ state, emit }),
@@ -158,7 +154,6 @@ const initApi = ({
 }
 
 const initWatch = ({
-  state,
   watch,
   props,
   api
@@ -174,8 +169,6 @@ const initWatch = ({
   )
 
   watch(() => props.modelValue, api.watchValue, { immediate: true })
-
-  watch(() => state.isDisplayOnly, api.dispatchDisplayedValue)
 }
 
 export const renderless = (
@@ -190,12 +183,9 @@ export const renderless = (
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
   initApi({ api, props, state, parent, vm, emit, dispatch, constants, nextTick })
-  initWatch({ state, watch, props, api })
+  initWatch({ watch, props, api })
 
-  onMounted(() => {
-    api.dispatchDisplayedValue()
-    api.mounted()
-  })
+  onMounted(api.mounted)
   onUpdated(api.updated)
   onUnmounted(api.unmounted)
 

@@ -1,6 +1,6 @@
 <template>
   <div class="demo-image__preview">
-    <tiny-image :src="url" :preview-src-list="srcList" :z-index="3000"></tiny-image>
+    <tiny-image :src="url" :preview-src-list="srcList" :z-index="3000" show-index></tiny-image>
   </div>
 </template>
 

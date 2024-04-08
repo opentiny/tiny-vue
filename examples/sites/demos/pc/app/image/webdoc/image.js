@@ -10,9 +10,23 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n          通过 <code>src</code> 设置图片路径。<br>\n          通过 <code>fit</code> 属性确定图片如何适应到容器框，同原生 css 的 object-fit 属性。<br>\n          <div class="tip custom-block">\n            <p class="custom-block-title">object-fit 说明</p>\n            <p>fill：被替换的内容将被缩放，以在填充元素的内容框时保持其宽高比<br>\n               contain：被替换的内容大小可以填充元素的内容框<br>\n               cover：被替换的内容大小保持其宽高比，同时填充元素的整个内容框<br>\n               none：被替换的内容尺寸不会被改变<br>\n               scale-down：内容的尺寸就像是指定了none 或 contain，取决于哪一个将导致更小的对象尺寸。\n            </p>\n          </div>\n        ',
+          '通过 <code>src</code> 设置图片路径。<br>' +
+          ' 通过 <code>fit</code> 属性确定图片如何适应到容器框，同原生 css 的 object-fit 属性。<br>' +
+          '<p class="custom-block-title">object-fit 说明</p>' +
+          '<p>fill：被替换的内容将被缩放，以在填充元素的内容框时保持其宽高比<br>' +
+          'contain：被替换的内容大小可以填充元素的内容框<br>' +
+          'cover：被替换的内容大小保持其宽高比，同时填充元素的整个内容框<br>' +
+          'none：被替换的内容尺寸不会被改变<br>' +
+          'scale-down：内容的尺寸就像是指定了none 或 contain，取决于哪一个将导致更小的对象尺寸。',
         'en-US':
-          '\n          Set the image path using <code>src</code>. <br>\n          The <code>fit</code> attribute determines how the image will fit into the container frame, the same as the object-fit attribute of native css. <br>\n          <div class="tip custom-block">\n          <p class="custom-block-title">object-fit Description </p>\n          <p>fill: The content being replaced will be scaled to maintain its aspect ratio as it fills the element\'s content box <br>\n          contain: The size of the content to fill the element\'s content box <br>\n          cover: The size of the content being replaced maintains its aspect ratio while filling the element\'s entire content box <br>\n          none: The size of the content to be replaced will not be changed <br>\n          scale-down: The size of the content is specified as either none or contain, depending on which will result in a smaller object size.\n          </p>\n          </div>\n        '
+          'Use <code>src</code> to set the image path.<br>' +
+          'The <code>fit</code> attribute determines how the image fits into the container box, which is the same as the object-fit attribute of the native CSS.<br>' +
+          '<p class="custom-block-title">object-fit description</p>' +
+          "<p>fill:The replaced content is scaled to maintain its aspect ratio when filling the element's content box.<br>" +
+          'contain:The size of the replaced content fills the content box of the element.<br>' +
+          'cover:The size of the replaced content maintains its aspect ratio and fills the entire content box of the element.<br>' +
+          'none:The size of the replaced content is not changed.<br>' +
+          'scale-down:The size of the content is like specifying none or contain, depending on which would result in a smaller object size.'
       },
       codeFiles: ['basic-usage.vue']
     },
@@ -36,9 +50,13 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n        通过 <code>lazy</code> 开启懒加载功能，当图片滚动到可视范围内才会加载。<br>\n        通过 <code>scroll-container</code> 来设置滚动容器，若未定义，则为最近一个 <code>overflow</code> 值为 <code>auto</code> 或 <code>scroll</code> 的父元素。</p>\n\n          <div class="tip custom-block">\n            <p>lazy 懒加载的图片必须是远程的图片，不支持静态图片懒加载。</p>\n          </div>\n        ',
+          '通过 <code>lazy</code> 开启懒加载功能，当图片滚动到可视范围内才会加载。<br>' +
+          '通过 <code>scroll-container</code> 来设置滚动容器，若未定义，则为最近一个 <code>overflow</code> 值为 <code>auto</code> 或 <code>scroll</code> 的父元素。' +
+          '<p>lazy 懒加载的图片必须是远程的图片，不支持静态图片懒加载。</p>',
         'en-US':
-          '\n          Enable lazy loading with <code>lazy</code>, and the image will only load when it is in visual range. <br>\n          Set the scroll container by <code>scroll-container</code>. If not defined, Is the parent element of the last <code>overflow</code> value <code>auto</code> or <code>scroll</code>. </p>\n\n          <div class="tip custom-block">\n          <p>lazy Lazy loading images must be remote images. Lazy loading of static images is not supported. </p>\n          </div>\n        '
+          'Enable lazy loading with <code>lazy</code>, and the image will only load when it is in visual range. <br>' +
+          'Set the scroll container by <code>scroll-container</code>.If not defined, Is the parent element of the last <code>overflow</code> value <code>auto</code> or <code>scroll</code>.<br>' +
+          '<p>lazy Lazy loading images must be remote images. Lazy loading of static images is not supported. </p>'
       },
       codeFiles: ['lazy.vue']
     },
@@ -50,11 +68,53 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n          通过 <code>preview-src-list</code> 属性 ，传入一组图片url的数组，点击图片后，会进入预览大图的模式。<br>\n          通过 <code>z-index</code> 设置预览图片的元素的z-index。\n        ',
+          '通过 <code>preview-src-list</code> 属性 ，传入一组图片 url 的数组，点击图片后，会进入预览大图的模式。<br>' +
+          '通过 <code>z-index</code> 设置预览图片的元素的 z-index。<br>' +
+          '通过添加 <code>show-index</code> 开启图片序号展示。<br>',
         'en-US':
-          '\n          Pass in an array of image urls via the <code>preview-src-list</code> property, and click on the image to enter the mode of previewing a large image. <br>\n          Set the z-index of the element of the preview image by <code>z-index</code>.\n        '
+          'Pass an array of image URLs through the <code>preview-src-list</code> attribute. After you click an image, the system enters the large image preview mode.<br>' +
+          'Use <code>z-index</code> to set the z-index of the element of the preview image.<br>' +
+          'Add <code>show-index</code> to enable the image sequence number display.<br>'
       },
       codeFiles: ['preview.vue']
+    },
+    {
+      demoId: 'keep-style',
+      name: {
+        'zh-CN': '保持图片样式属性',
+        'en-US': 'Preserve Picture Style Properties'
+      },
+      desc: {
+        'zh-CN': '通过 <code>keep-style</code> 属性可以让图片切换时样式保持一致，图片的缩放、旋转、边距等状态不重置。',
+        'en-US':
+          'The <code>keep-style</code> attribute can be used to keep the style of an image consistent when the image is switched. The zoom, rotation, and margin status of the image is not reset.'
+      },
+      codeFiles: ['keep-style.vue']
+    },
+    {
+      demoId: 'index-change',
+      name: {
+        'zh-CN': '图片切换事件',
+        'en-US': 'Image switchover event'
+      },
+      desc: {
+        'zh-CN': '图片切换时触发 <code>change-index</code> 事件，参数返回当前图片的 index。',
+        'en-US':
+          'The <code>change-index</code> event is triggered when the image is switched. The index of the current image is returned.'
+      },
+      codeFiles: ['index-change.vue']
+    },
+    {
+      demoId: 'count-slot',
+      name: {
+        'zh-CN': '图片计数插槽',
+        'en-US': 'Picture Count Slot'
+      },
+      desc: {
+        'zh-CN': '通过 <code>count</code> 设置图片计数插槽。',
+        'en-US': 'Set the image count slot via <code>count</code>.'
+      },
+      codeFiles: ['count-slot.vue']
     },
     {
       demoId: 'preview-in-dialog',
@@ -76,9 +136,11 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n          通过 <code> placeholder</code> 插槽，定义图片在加载中时的占位内容。通常由于图片加载快，会看不到这个插槽的出现,只有大图片时，会看到加载中的插槽。 <br>\n          通过 <code> error </code> 插槽，定义图片在加载失败后的占位内容。 \n        ',
+          '通过 <code> placeholder</code> 插槽，定义图片在加载中时的占位内容。通常由于图片加载快，会看不到这个插槽的出现,只有大图片时，会看到加载中的插槽。 <br>' +
+          ' 通过 <code> error </code> 插槽，定义图片在加载失败后的占位内容。',
         'en-US':
-          '\n          The <code> placeholder</code> slot defines the placeholder content for images when loaded. Usually, because the image loads quickly, you will not see the appearance of this slot, only a large image, you will see the loading slot. <br>\n          Using the <code> error </code> slot, define the placeholder content of the image after loading failure.\n        '
+          'The <code> placeholder</code> slot defines the placeholder content for images when loaded. Usually, because the image loads quickly, you will not see the appearance of this slot, only a large image, you will see the loading slot. <br>' +
+          'Using the <code> error </code> slot, define the placeholder content of the image after loading failure.'
       },
       codeFiles: ['slot.vue']
     },
@@ -89,10 +151,10 @@ export default {
         'en-US': 'Events'
       },
       desc: {
-        'zh-CN':
-          '\n          <code>load</code> 事件: 图片加载成功触发 。<br>\n          <code>error</code> 事件: 图片加载失败触发 。<br>\n        ',
+        'zh-CN': '<code>load</code> 事件: 图片加载成功触发 。<br><code>error</code> 事件: 图片加载失败触发 。',
         'en-US':
-          '\n          <code>load</code> event: The image is successfully loaded. <br>\n          <code>error</code> event: The image failed to be loaded. <br>\n        '
+          '<code>load</code> event: The image is successfully loaded. <br>' +
+          '<code>error</code> event: The image failed to be loaded. '
       },
       codeFiles: ['events.vue']
     }

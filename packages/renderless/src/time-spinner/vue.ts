@@ -27,7 +27,8 @@ import {
   decrease,
   modifyDateField,
   handleClick,
-  emitSelectRange
+  emitSelectRange,
+  selectDateScroll
 } from './index'
 import { getRangeHours, getRangeMinutes } from '../common/deps/date-util'
 
@@ -104,7 +105,8 @@ export const renderless = (props, { computed, onMounted, reactive, watch, nextTi
     handleClick: handleClick(api),
     scrollDown: scrollDown({ api, state }),
     handleScroll: handleScroll({ api, vm, state }),
-    adjustCurrentSpinner: adjustCurrentSpinner({ api, state })
+    adjustCurrentSpinner: adjustCurrentSpinner({ api, state }),
+    selectDateScroll: selectDateScroll({ state, props })
   })
 
   watch(

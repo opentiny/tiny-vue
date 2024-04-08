@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-cascader-select",
   "private": true,
-  "version": "3.7.0",
+  "version": "3.15.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -11,7 +11,6 @@
     "@opentiny/vue-action-sheet": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~"
   },
   "license": "MIT",

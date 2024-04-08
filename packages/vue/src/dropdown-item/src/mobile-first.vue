@@ -41,7 +41,7 @@ import { renderless, api } from '@opentiny/vue-renderless/dropdown-item/mf'
 
 export default defineComponent({
   emits: ['update:modelValue', 'change', 'closed', 'open', 'opened', 'close', 'confirm', 'reset'],
-  props: [...props, 'disabled', 'icon', 'itemData', 'selected', 'label', 'level', 'currentIndex'],
+  props: [...props, 'disabled', 'icon', 'itemData', 'selected', 'label', 'level', 'currentIndex', 'tooltipContent'],
   setup(props, context): any {
     return setup({ props, context, renderless, api })
   }

@@ -179,7 +179,7 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
   return state
 }
 
-const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit }) => ({
+const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, api }) => ({
   state,
   dispatch,
   broadcast,
@@ -199,7 +199,7 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit }) 
   getCheckedKeys: getCheckedKeys(state),
   getCurrentNode: getCurrentNode(state),
   setCheckedNodes: setCheckedNodes({ props, state }),
-  setCheckedKeys: setCheckedKeys({ props, state }),
+  setCheckedKeys: setCheckedKeys({ props, state, api }),
   setChecked: setChecked(state),
   getHalfCheckedNodes: getHalfCheckedNodes(state),
   getHalfCheckedKeys: getHalfCheckedKeys(state),
@@ -271,7 +271,7 @@ export const renderless = (
 
   provide('parentEmitter', state.emitter)
 
-  Object.assign(api, initApi({ state, dispatch, broadcast, props, vm, constants, t, emit }), {
+  Object.assign(api, initApi({ state, dispatch, broadcast, props, vm, constants, t, emit, api }), {
     closeMenu: closeMenu(state),
     mounted: mounted({ api, vm }),
     created: created({ api, props, state }),

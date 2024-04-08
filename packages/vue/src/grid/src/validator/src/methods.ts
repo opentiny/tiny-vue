@@ -79,14 +79,17 @@ const onRejected = (opt, _this) => {
       const posAndFinish = funcPosAndFinish(params, finish)
 
       const locatRow = getLocatRow(params)
+
       // 是否触发校验时自动定位到当前校验的单元格
       const isAutoPosFalse = _this.validOpts.autoPos === false
 
       isAutoPosFalse && finish()
+
       // 自动滚动到校验不通过的树表单元格
       !isAutoPosFalse && treeConfig && _this.scrollToTreeRow(locatRow).then(posAndFinish)
-      // 自动滚动到校验不通过的表格单元格
-      !isAutoPosFalse && !treeConfig && _this.scrollToRow(locatRow, true).then(posAndFinish)
+
+      // 自动滚动到校验不通过的表格单元格。调用方式优化：this.scrollToRow(locatRow, true) 第二个 true 参数会导致后续 colToVisible 不会被调用
+      !isAutoPosFalse && !treeConfig && _this.scrollToRow(locatRow, params.column, true).then(posAndFinish)
     })
   }
 }

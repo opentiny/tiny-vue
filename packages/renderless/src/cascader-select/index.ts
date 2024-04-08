@@ -41,6 +41,13 @@ export const confirm =
     api.close()
   }
 
+export const clear =
+  ({ api, emit }) =>
+  (value) => {
+    emit('update:modelValue', value)
+    api.close()
+  }
+
 export const columnStyle = ({ props, computed }) =>
   computed(() => {
     return {

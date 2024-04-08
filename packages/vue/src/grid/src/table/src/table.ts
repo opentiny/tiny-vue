@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { h, hooks, $prefix, resolveTheme } from '@opentiny/vue-common'
+import { h, hooks, $prefix, resolveTheme, defineComponent } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
@@ -556,7 +556,25 @@ const getTableData = () => {
   return tableData
 }
 
-export default {
+const bindEvent = (ctx) => {
+  GlobalEvent.on(ctx, 'mousedown', ctx.handleGlobalMousedownEvent)
+  GlobalEvent.on(ctx, 'blur', ctx.handleGlobalBlurEvent)
+  GlobalEvent.on(ctx, 'mousewheel', ctx.handleGlobalMousewheelEvent)
+  GlobalEvent.on(ctx, 'keydown', ctx.handleGlobalKeydownEvent)
+  GlobalEvent.on(ctx, 'resize', ctx.handleGlobalResizeEvent)
+  GlobalEvent.on(ctx, 'contextmenu', ctx.handleGlobalContextmenuEvent)
+}
+
+const unbindEvent = (table) => {
+  GlobalEvent.off(table, 'mousedown')
+  GlobalEvent.off(table, 'blur')
+  GlobalEvent.off(table, 'mousewheel')
+  GlobalEvent.off(table, 'keydown')
+  GlobalEvent.off(table, 'resize')
+  GlobalEvent.off(table, 'contextmenu')
+}
+
+export default defineComponent({
   name: `${$prefix}GridTable`,
   props: {
     // 所有的列对齐方式
@@ -892,12 +910,7 @@ export default {
     // 处理拖拽的逻辑
     initDrop(this)
 
-    GlobalEvent.on(this, 'mousedown', this.handleGlobalMousedownEvent)
-    GlobalEvent.on(this, 'blur', this.handleGlobalBlurEvent)
-    GlobalEvent.on(this, 'mousewheel', this.handleGlobalMousewheelEvent)
-    GlobalEvent.on(this, 'keydown', this.handleGlobalKeydownEvent)
-    GlobalEvent.on(this, 'resize', this.handleGlobalResizeEvent)
-    GlobalEvent.on(this, 'contextmenu', this.handleGlobalContextmenuEvent)
+    bindEvent(this)
 
     // vue3下额外监控数组长度改变，解决push无响应等问题
     this.watchDataForVue3()
@@ -906,18 +919,18 @@ export default {
     this.$grid.connect({ name: 'table', vm: this })
   },
   mounted() {
+    // 复杂场景下，当表格刚开始挂载就被用户使用v-if销毁，会导致$refs全部被清空
+    if (this.$refs.tableWrapper) {
+      // 在body上挂载弹出框类的表格内部组件：右键菜单、筛选框、提示
+      document.body.appendChild(this.$refs.tableWrapper)
+    }
+
     this.$nextTick().then(() => {
       this.afterMounted = true
 
       if (this.autoResize && TINYGrid._resize) {
         // 使用ResizeObserver监听表格父元素尺寸，然后动态计算表格各种尺寸
         this.bindResize()
-      }
-
-      // 复杂场景下，当表格刚开始挂载就被用户使用v-if销毁，会导致$refs全部被清空
-      if (this.$refs.tableWrapper) {
-        // 在body上挂载弹出框类的表格内部组件：右键菜单、筛选框、提示
-        document.body.appendChild(this.$refs.tableWrapper)
       }
     })
 
@@ -928,13 +941,15 @@ export default {
     })
   },
   activated() {
-    let { lastScrollLeft, lastScrollTop } = this
+    let { lastScrollLeft, lastScrollTop, scrollXLoad, scrollYLoad } = this
 
     if (lastScrollLeft || lastScrollTop) {
-      this.clearScroll()
-        .then(this.recalculate)
-        .then(() => this.scrollTo(lastScrollLeft, lastScrollTop))
+      this.scrollTo(lastScrollLeft, lastScrollTop)
+      scrollXLoad && this.triggerScrollXEvent()
+      scrollYLoad && this.triggerScrollYEvent({ target: { scrollTop: lastScrollTop } })
     }
+
+    bindEvent(this)
   },
   setup(props, context) {
     const { slots, attrs, listeners } = context
@@ -971,13 +986,12 @@ export default {
         }
       })
 
-      GlobalEvent.off(table, 'mousedown')
-      GlobalEvent.off(table, 'blur')
-      GlobalEvent.off(table, 'mousewheel')
-      GlobalEvent.off(table, 'keydown')
-      GlobalEvent.off(table, 'resize')
-      GlobalEvent.off(table, 'contextmenu')
+      unbindEvent(table)
       clearOnTableUnmount(table)
+    })
+
+    hooks.onDeactivated(() => {
+      unbindEvent(table)
     })
 
     const tableListeners = getListeners(attrs, listeners)
@@ -1055,4 +1069,4 @@ export default {
       return (this as any).$grid.viewCls(module)
     }
   }
-}
+})

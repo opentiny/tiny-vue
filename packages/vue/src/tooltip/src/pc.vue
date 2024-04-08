@@ -238,11 +238,7 @@ export default defineComponent({
       return element
     }
 
-    let firstElement = getFirstElement()
-
-    if (firstElement && hooks.Fragment && firstElement.type === hooks.Fragment) {
-      firstElement = firstElement.children[0]
-    }
+    const firstElement = getFirstElement()
 
     if (!firstElement) return null
 

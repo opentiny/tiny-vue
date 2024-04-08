@@ -1,7 +1,7 @@
-import { $props, $prefix, $setup } from '@opentiny/vue-common'
+import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?mobile|mobile-first'
 
-export default {
+export default defineComponent({
   name: $prefix + 'Tabbar',
   componentName: 'Tabbar',
   props: {
@@ -36,4 +36,4 @@ export default {
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

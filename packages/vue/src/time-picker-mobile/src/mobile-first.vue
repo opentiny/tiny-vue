@@ -1,6 +1,7 @@
 <template>
   <div data-tag="tiny-time-picker-mobile" v-show="visible">
     <tiny-cascader-select
+      ref="cascaderSelect"
       v-model="state.dateArr"
       :cycle-roll="cycleRoll"
       :options="state.options"
@@ -19,6 +20,11 @@
           :
         </div>
       </template>
+      <template #header-left>
+        <span v-if="clearable" class="cursor-pointer text-color-brand" @click="clear">
+          {{ t('ui.datepicker.clear') }}
+        </span>
+      </template>
     </tiny-cascader-select>
   </div>
 </template>
@@ -33,7 +39,7 @@ export default defineComponent({
   components: {
     TinyCascaderSelect: CascaderSelect
   },
-  emits: ['update:modelValue', 'confirm', 'update:visible'],
+  emits: ['update:modelValue', 'confirm', 'update:visible', 'clear'],
   props: {
     ...$props,
     modelValue: Array,
@@ -57,6 +63,10 @@ export default defineComponent({
       }
     },
     showSeconds: {
+      type: Boolean,
+      default: true
+    },
+    clearable: {
       type: Boolean,
       default: true
     }

@@ -56,7 +56,19 @@ const $constants = {
     AURORA_HEIGHT: 180,
     ITEM_HEIGHT: 34,
     SAFE_MARGIN: 4
-  }
+  },
+  SAAS_SIZE: {
+    mini: 24,
+    small: 28,
+    medium: 32
+  },
+  AURORA_SIZE: {
+    mini: 24,
+    small: 36,
+    medium: 42
+  },
+  SPACING_HEIGHT: 0,
+  MAX_VISIBLE_ROWS: 1 // 多选默认最大显示行数，超出后自动隐藏
 }
 
 export default defineComponent({
@@ -312,6 +324,18 @@ export default defineComponent({
     clearNoMatchValue: {
       type: Boolean,
       default: false
+    },
+    showProportion: {
+      type: Boolean,
+      default: false
+    },
+    clickExpand: {
+      type: Boolean,
+      default: false
+    },
+    maxVisibleRows: {
+      type: Number,
+      default: $constants.MAX_VISIBLE_ROWS
     }
   },
   setup(props, context) {

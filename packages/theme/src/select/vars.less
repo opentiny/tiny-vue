@@ -37,6 +37,8 @@
   --ti-select-input-disabled-caret-text-color: var(--ti-common-color-text-disabled, #adb0b8);
   // 输入框禁用且悬浮时的边框色
   --ti-select-input-disabled-hover-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
+  // 选择器输入框高度（hide）
+  --ti-select-input-height: var(--ti-common-size-6x, 24px);
   // 迷你型选择器输入框高度（hide）
   --ti-select-input-mini-height: var(--ti-common-size-6x, 24px);
   // 小型选择器输入框高度（hide）
@@ -44,11 +46,11 @@
   // 中型选择器输入框高度（hide）
   --ti-select-input-medium-height: var(--ti-common-size-42);
   // 选择器多选标签容器的左侧内边距
-  --ti-select-tags-wrap-padding-left: var(--ti-common-space-1, 1px);
+  --ti-select-tags-wrap-padding-left: calc(var(--ti-common-space-1, 1px) * 2);
   // 选择器多选标签容器的顶部内边距
-  --ti-select-tags-wrap-padding-top: var(--ti-common-space-1, 1px);
+  --ti-select-tags-wrap-padding-top: calc(var(--ti-common-space-1, 1px) * 2);
   // 选择器多选标签容器的底部内边距
-  --ti-select-tags-wrap-padding-bottom: var(--ti-common-space-1, 1px);
+  --ti-select-tags-wrap-padding-bottom: calc(var(--ti-common-space-1, 1px) * 2);
   // 选择器多选标签容器的右侧内边距
   --ti-select-tags-wrap-padding-right: var(--ti-common-space-0, 0px);
   // 选择器多选标签顶部外边距
@@ -60,7 +62,19 @@
   // 选择器多选标签左侧外边距
   --ti-select-tags-margin-left: var(--ti-common-space-1, 1px);
   // 选择器多选标签单行的高度
-  --ti-select-tags-height: 26px;
+  --ti-select-tags-height: calc(var(--ti-common-size-base) * 7);
+  // 选择器多选标签最大高度
+  --ti-select-tags-max-height: var(--ti-common-size-24x, 96px);
   // 选择器后缀图标显示状态
   --ti-select-suffix-display: 'inline-block';
+  // 选择器右侧图标间距
+  --ti-select-suffix-icon-margin-right: var(--ti-common-space-base, 4px);
+  // 选择器suffix字号
+  --ti-select-suffix-font-size: var(--ti-common-font-size-base, 12px);
+  // 收起按钮文本与图标色(hide)
+  --ti-select-collapse-button-text-icon-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  // 收起按钮图标左边距(hide)
+  --ti-select-collapse-button-icon-margin-left: var(--ti-common-space-2, 2px);
+  // 收起按钮字号(hide)
+  --ti-select-collapse-button-font-size: var(--ti-common-font-size-base, 12px);
 }

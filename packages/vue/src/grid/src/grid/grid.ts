@@ -151,7 +151,8 @@ export default defineComponent({
       columnAnchorParams: {},
       columnAnchorKey: '',
       tasks: {},
-      fullScreenClass: ''
+      fullScreenClass: '',
+      isInitialLoading: true // 是否首次加载数据
     }
   },
   computed: {

@@ -236,7 +236,7 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/picker/vue'
-import { setup, directive } from '@opentiny/vue-common'
+import { setup, directive, defineComponent } from '@opentiny/vue-common'
 import Input from '@opentiny/vue-input'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import DatePanel from '@opentiny/vue-date-panel'
@@ -254,7 +254,7 @@ import TimePickerMobile from '@opentiny/vue-time-picker-mobile'
 import { classes } from './token'
 import { pickerProps } from './type'
 
-export default {
+export default defineComponent({
   components: {
     TinyInput: Input,
     TinyFilterBox: FilterBox,
@@ -286,5 +286,5 @@ export default {
       }
     })
   }
-}
+})
 </script>

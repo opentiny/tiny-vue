@@ -38,9 +38,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。多选时通过设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签, hover 时展示所有标签。标签内容超长时超出省略，hover 标签时展示 tooltip。</p>\n',
+          '<p>通过 <code>collapse-tags</code> 属性设置选中多个选项时，多个标签缩略展示。设置 <code>show-proportion</code> 可展示当前选中条数和总条数占比，默认值为 <code>false</code> 。设置 <code>hover-expand</code> 为 <code>true</code> ，默认折叠标签, <code>hover</code> 时展示所有标签。标签内容超长时超出省略，<code>hover</code> 标签时展示 <code>tooltip</code> 。</p>\n',
         'en-US':
-          '<p>When multiple options are selected through the <code>collapse-tags</code> attribute settings, multiple tags will be abbreviated and displayed.</p>\n'
+          '<p>When multiple options are selected through the <code>collapse-tags</code> attribute settings, multiple tags are displayed in a thumbnail. Set <code>show-proportion</code> to display the current number of selected items and the proportion of total items, with a default value of <code>false</code> . By setting <code>hover-expand</code> to <code>true</code> , the tags are collapsed by default, and all tags are displayed when hovering. If the content of the tag is too long, it should be omitted. When hovering the tag, a <code>tooltip</code> should be displayed</p>'
       },
       codeFiles: ['collapse-tags.vue']
     },
@@ -460,32 +460,18 @@ export default {
       codeFiles: ['nest-grid-disable.vue']
     },
     {
-      demoId: 'nest-grid-remote-single',
+      demoId: 'nest-grid-remote',
       name: {
-        'zh-CN': '下拉表格远程搜索(单选)',
-        'en-US': 'Select table Remote Search (Single)'
+        'zh-CN': '下拉表格远程搜索',
+        'en-US': 'Select table Remote Search'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮 。</p>\n',
-        'en-US':
-          '<p>Enable remote search through <code>remote</code>,<code>remote-method</code>, and <code>filterable</code>. Set up automatic search and display expansion buttons through <code>remote-config</code>.</p>'
+        'zh-CN': `<p>同时使用 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 3个属性开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮。</p>
+          <p>在多选模式下，可通过 <code>reserve-keyword</code>设置选中一个选项后依然保留搜索关键字。</p>`,
+        'en-US': `<p>Enable remote search through <code>remote</code>,<code>remote-method</code>, and <code>filterable</code>. Set up automatic search and display expansion buttons through <code>remote-config</code>.</p>
+          <p>In multiple selection mode, <code>reserve-keyword</code> set to retain search keywords after selecting multiple options.</p>`
       },
-      codeFiles: ['nest-grid-remote-single.vue']
-    },
-    {
-      demoId: 'nest-grid-remote-multi',
-      name: {
-        'zh-CN': '下拉表格远程搜索(多选）',
-        'en-US': 'Select table Remote Search (Multiple)'
-      },
-      desc: {
-        'zh-CN':
-          '<p>通过 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮。<code>reserve-keyword</code>设置多选选中一个选项后依然保留搜索关键字。</p>\n',
-        'en-US':
-          '<p>Enable remote search through <code>remote</code>,<code>remote-method</code>, and <code>filterable</code>. Set up automatic search and display expansion buttons through <code>remote-config</code> <code>reserve-keyword</code> set to retain search keywords after selecting multiple options.</p>'
-      },
-      codeFiles: ['nest-grid-remote-multi.vue']
+      codeFiles: ['nest-grid-remote.vue']
     },
     {
       demoId: 'nest-grid-init-query',

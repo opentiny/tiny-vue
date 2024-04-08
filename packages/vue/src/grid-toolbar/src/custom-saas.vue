@@ -286,7 +286,7 @@ import CustomSwitch from './custom-switch.vue'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isNull } from '@opentiny/vue-renderless/grid/static'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
-import { $props, isVue2, directive, useDefer, h } from '@opentiny/vue-common'
+import { $props, isVue2, directive, useDefer, h, defineComponent } from '@opentiny/vue-common'
 import { GridConfig } from '@opentiny/vue-grid'
 import { mergeArray } from './multiple-history'
 import '@opentiny/vue-theme/grid-toolbar/index.less'
@@ -306,7 +306,7 @@ const TitleRender = {
   }
 }
 
-export default {
+export default defineComponent({
   components: {
     TinyModal: Modal,
     TinyButton: Button,
@@ -1031,5 +1031,5 @@ export default {
       this.columns.forEach((col) => (col.numberSortVisible = false))
     }
   }
-}
+})
 </script>

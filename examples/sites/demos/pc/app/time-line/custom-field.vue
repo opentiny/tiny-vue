@@ -5,12 +5,14 @@
     @click="click"
     name-field="content"
     time-field="timestamp"
+    auto-color-field="icon"
     vertical
   ></tiny-time-line>
 </template>
 
 <script>
 import { TimeLine } from '@opentiny/vue'
+import { iconLoading } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -26,7 +28,8 @@ export default {
         },
         {
           content: '通过审核',
-          timestamp: '2018-04-13'
+          timestamp: '2018-04-13',
+          icon: iconLoading()
         },
         {
           content: '创建成功',

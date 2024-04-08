@@ -4,9 +4,7 @@
     <tiny-radio disabled v-model="radio" label="不选中禁用">不选中禁用</tiny-radio>
     <div class="mt-20">
       <tiny-radio-group disabled v-model="radio1">
-        <tiny-radio :label="3">备选项1</tiny-radio>
-        <tiny-radio :label="6">备选项2</tiny-radio>
-        <tiny-radio :label="9">备选项3</tiny-radio>
+        <tiny-radio v-for="item in dataArr" :key="item.value" :label="item.lable">{{ item.value }}</tiny-radio>
       </tiny-radio-group>
     </div>
 
@@ -25,8 +23,13 @@ import { ref } from 'vue'
 import { Radio as TinyRadio, RadioButton as TinyRadioButton, RadioGroup as TinyRadioGroup } from '@opentiny/vue'
 
 const radio = ref('禁用')
-const radio1 = ref('3')
+const radio1 = ref('6')
 const radio2 = ref('1')
+const dataArr = ref([
+  { lable: '3', value: '备选项1' },
+  { lable: '6', value: '备选项2' },
+  { lable: '9', value: '备选项3' }
+])
 </script>
 
 <style scoped>

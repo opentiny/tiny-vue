@@ -10,6 +10,7 @@
         :title="title"
         :popper-class="m('tiny-popconfirm-popover', customClass)"
         :popper-options="popperOptions"
+        :append-to-body="popperAppendToBody"
         :reference="reference"
         @show="handleEmit('show')"
         @hide="handleEmit('hide')"
@@ -85,6 +86,10 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
+    closeOnClickOutside: {
+      type: Boolean,
+      default: true
+    },
     title: String,
     placement: {
       type: String,
@@ -96,7 +101,11 @@ export default defineComponent({
     },
     type: [String, Object],
     reference: {},
-    events: Object
+    events: Object,
+    popperAppendToBody: {
+      type: Boolean,
+      default: true
+    }
   },
   emits: ['hide', 'show', 'confirm'],
   setup(props, context): any {

@@ -46,15 +46,12 @@ export const getDecimal =
     getMiniDecimal(value, props.plugin)
 
 export const watchValue =
-  ({ api, props, state, nextTick }: Pick<INumericRenderlessParams, 'api' | 'state' | 'nextTick' | 'props'>) =>
+  ({ api, props, state }: Pick<INumericRenderlessParams, 'api' | 'state' | 'props'>) =>
   (value: number): void => {
     if (value === state.currentValue) {
       return
     }
     api.setCurrentValue(value, props.changeCompat)
-    nextTick(() => {
-      api.dispatchDisplayedValue()
-    })
   }
 
 export const toPrecision =
@@ -221,10 +218,10 @@ export const focus = (vm: INumericRenderlessParams['vm']) => (): void => {
 const getEmitValue = (
   args: INumericGetEmitValueParams
 ): { newVal: number | string | undefined; emitValue: number | string | undefined } => {
-  let { newVal, emitValue, allowEmpty, defaultVal, bigNew, oldVal } = args
+  let { newVal, emitValue, allowEmpty, defaultVal, bigNew, oldVal, emptyValue } = args
   let { max, min, api, props, format, plugin, stringMode } = args
   if (!newVal && newVal !== 0) {
-    emitValue = allowEmpty ? undefined : defaultVal
+    emitValue = allowEmpty ? emptyValue : defaultVal
   } else if (bigNew.isNaN()) {
     emitValue = oldVal
   } else {
@@ -264,7 +261,7 @@ export const setCurrentValue =
     state
   }: Pick<INumericRenderlessParams, 'api' | 'constants' | 'dispatch' | 'emit' | 'props' | 'state'>) =>
   (newVal: number, emitChangeFlag: boolean = true): void => {
-    const { max, min, allowEmpty, validateEvent, stringMode, plugin } = props
+    const { max, min, allowEmpty, validateEvent, stringMode, plugin, emptyValue } = props
     const { format } = state
     const oldVal = state.currentValue
     const bigNew = api.getDecimal(newVal)
@@ -277,7 +274,7 @@ export const setCurrentValue =
       return
     }
 
-    let args = { newVal, emitValue, allowEmpty, defaultVal, bigNew, oldVal }
+    let args = { newVal, emitValue, allowEmpty, defaultVal, bigNew, oldVal, emptyValue }
 
     Object.assign(args, { max, min, api, props, format, plugin, stringMode })
 
@@ -479,20 +476,6 @@ export const getUnitPrecision = ({
 
   return { ...defaultFmt, fraction, rounding, ...serFmt, ...format }
 }
-
-export const dispatchDisplayedValue =
-  ({ state, api, dispatch }: Pick<INumericRenderlessParams, 'state' | 'api' | 'dispatch'>) =>
-  (): void => {
-    if (state.isDisplayOnly) {
-      dispatch('FormItem', 'displayed-value-changed', { type: 'numeric', val: api.getDisplayedValue() })
-    }
-  }
-
-export const getDisplayedValue =
-  ({ state, props }: Pick<INumericRenderlessParams, 'state' | 'props'>) =>
-  (): string => {
-    return state.displayValue || state.displayValue === 0 ? state.displayValue + ' ' + (props.unit || '') : '-'
-  }
 
 export const getDisplayOnlyText =
   ({ parent, state, props }: Pick<INumericRenderlessParams, 'parent' | 'state' | 'props'>) =>

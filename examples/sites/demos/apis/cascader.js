@@ -376,6 +376,16 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'filterable'
+        },
+        {
+          name: 'no-data',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '通过 <code>no-data</code> 插槽设置没有数据时显示的内容',
+            'en-US': 'Set what is displayed when there is no data via the <code>no-data</code> slot'
+          },
+          mode: ['pc'],
+          pcDemo: 'slot-nodata'
         }
       ]
     },

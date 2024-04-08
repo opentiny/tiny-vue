@@ -113,9 +113,6 @@ export default {
       history: 'History',
       empty: 'Empty'
     },
-    creditCardForm: {
-      submit: 'Submit'
-    },
     crop: {
       cropImage: 'crop image',
       croppedImage: 'Post-Crop Image'
@@ -231,15 +228,6 @@ export default {
       name: 'Name',
       search: 'Quick Search',
       selected: 'Selected'
-    },
-    detailpage: {
-      saveButtonText: 'Confirm',
-      cancelButtonText: 'Cancel',
-      localTips: 'Cannot hide all',
-      localTitle: 'Data',
-      valueTitle: 'Click to hide',
-      labelTitle: 'Title',
-      dialogTitle: 'Personalized title'
     },
     dialogBox: {
       confirm: 'confirm',
@@ -543,7 +531,8 @@ export default {
       selected: 'Selected',
       selectedNum: '{num} selected',
       noSearchData: 'No search results. Please try again',
-      add: 'Add'
+      add: 'Add',
+      collapse: 'Collapse'
     },
     search: {
       placeholder: 'search'

@@ -132,11 +132,6 @@
     "type": "component",
     "exclude": false
   },
-  "AutonaviMapBeta": {
-    "path": "vue/src/chart-beta/autonavi-map/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "Avatar": {
     "path": "vue/src/avatar/index.ts",
     "type": "component",
@@ -172,11 +167,6 @@
   },
   "BaiduMap": {
     "path": "vue/src/chart/baidu-map/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "BaiduMapBeta": {
-    "path": "vue/src/chart-beta/baidu-map/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -514,23 +504,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartBarBeta": {
-    "path": "vue/src/chart-beta/chart-bar/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartBeta": {
-    "path": "vue/src/chart-beta/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "ChartBoxplot": {
     "path": "vue/src/chart/chart-boxplot/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartBoxplotBeta": {
-    "path": "vue/src/chart-beta/chart-boxplot/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -539,18 +514,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartCandleBeta": {
-    "path": "vue/src/chart-beta/chart-candle/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "ChartCore": {
     "path": "vue/src/chart/chart-core/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartCoreBeta": {
-    "path": "vue/src/chart-beta/chart-core/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -559,18 +524,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartFunnelBeta": {
-    "path": "vue/src/chart-beta/chart-funnel/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "ChartGauge": {
     "path": "vue/src/chart/chart-gauge/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartGaugeBeta": {
-    "path": "vue/src/chart-beta/chart-gauge/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -579,18 +534,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartGraphBeta": {
-    "path": "vue/src/chart-beta/chart-graph/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "ChartHeatmap": {
     "path": "vue/src/chart/chart-heatmap/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartHeatmapBeta": {
-    "path": "vue/src/chart-beta/chart-heatmap/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -599,18 +544,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartHistogramBeta": {
-    "path": "vue/src/chart-beta/chart-histogram/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "ChartLine": {
     "path": "vue/src/chart/chart-line/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartLineBeta": {
-    "path": "vue/src/chart-beta/chart-line/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -619,18 +554,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartLiquidfillBeta": {
-    "path": "vue/src/chart-beta/chart-liquidfill/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "ChartMap": {
     "path": "vue/src/chart/chart-map/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartMapBeta": {
-    "path": "vue/src/chart-beta/chart-map/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -639,8 +564,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartPieBeta": {
-    "path": "vue/src/chart-beta/chart-pie/index.ts",
+  "ChartProcess": {
+    "path": "vue/src/chart/chart-process/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -649,18 +574,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartRadarBeta": {
-    "path": "vue/src/chart-beta/chart-radar/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "ChartRing": {
     "path": "vue/src/chart/chart-ring/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartRingBeta": {
-    "path": "vue/src/chart-beta/chart-ring/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -669,18 +584,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartSankeyBeta": {
-    "path": "vue/src/chart-beta/chart-sankey/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "ChartScatter": {
     "path": "vue/src/chart/chart-scatter/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartScatterBeta": {
-    "path": "vue/src/chart-beta/chart-scatter/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -689,18 +594,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartSunburstBeta": {
-    "path": "vue/src/chart-beta/chart-sunburst/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "ChartTree": {
     "path": "vue/src/chart/chart-tree/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartTreeBeta": {
-    "path": "vue/src/chart-beta/chart-tree/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -709,18 +604,8 @@
     "type": "component",
     "exclude": false
   },
-  "ChartWaterfallBeta": {
-    "path": "vue/src/chart-beta/chart-waterfall/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "ChartWordcloud": {
     "path": "vue/src/chart/chart-wordcloud/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartWordcloudBeta": {
-    "path": "vue/src/chart-beta/chart-wordcloud/index.ts",
     "type": "component",
     "exclude": false
   },
@@ -949,32 +834,6 @@
     "type": "template",
     "exclude": false
   },
-  "CreditCard": {
-    "path": "vue/src/credit-card/index.ts",
-    "type": "component",
-    "exclude": false,
-    "mode": [
-      "pc"
-    ]
-  },
-  "CreditCardForm": {
-    "path": "vue/src/credit-card-form/index.ts",
-    "type": "component",
-    "exclude": false,
-    "mode": [
-      "pc"
-    ]
-  },
-  "CreditCardFormPc": {
-    "path": "vue/src/credit-card-form/src/pc.vue",
-    "type": "template",
-    "exclude": false
-  },
-  "CreditCardPc": {
-    "path": "vue/src/credit-card/src/pc.vue",
-    "type": "template",
-    "exclude": false
-  },
   "Crop": {
     "path": "vue/src/crop/index.ts",
     "type": "component",
@@ -1109,19 +968,6 @@
   "DesignSmb": {
     "path": "design/smb/index.ts",
     "type": "module",
-    "exclude": false
-  },
-  "DetailPage": {
-    "path": "vue/src/detail-page/index.ts",
-    "type": "component",
-    "exclude": false,
-    "mode": [
-      "pc"
-    ]
-  },
-  "DetailPagePc": {
-    "path": "vue/src/detail-page/src/pc.vue",
-    "type": "template",
     "exclude": false
   },
   "DialogBox": {
@@ -2244,6 +2090,14 @@
       "pc"
     ]
   },
+  "QuarterPanel": {
+    "path": "vue/src/quarter-panel/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
   "QueryBuilder": {
     "path": "vue/src/query-builder/index.ts",
     "type": "component",
@@ -2578,19 +2432,6 @@
     "type": "template",
     "exclude": false
   },
-  "SlideBar": {
-    "path": "vue/src/slide-bar/index.ts",
-    "type": "component",
-    "exclude": false,
-    "mode": [
-      "pc"
-    ]
-  },
-  "SlideBarPc": {
-    "path": "vue/src/slide-bar/src/pc.vue",
-    "type": "template",
-    "exclude": false
-  },
   "Slider": {
     "path": "vue/src/slider/index.ts",
     "type": "component",
@@ -2662,6 +2503,19 @@
     "mode": [
       "mobile-first"
     ]
+  },
+  "Statistic": {
+    "path": "vue/src/statistic/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "StatisticPc": {
+    "path": "vue/src/statistic/src/pc.vue",
+    "type": "template",
+    "exclude": false
   },
   "Steps": {
     "path": "vue/src/steps/index.ts",

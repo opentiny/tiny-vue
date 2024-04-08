@@ -21,7 +21,8 @@ import type {
   computedWidth,
   getStatus,
   handleClick,
-  getStatusCls
+  getStatusCls,
+  computedIconClass
 } from '../src/timeline-item'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 import type { ITimelineCustomCls, ITimelineProps } from './time-line.type'
@@ -42,6 +43,7 @@ export interface ITimelineItemState {
   computedItemCls: ITimelineCustomCls
   computedItemStyle: { [key: string]: string | number } | null
   computedLineWidth: string
+  iconClass: ITimelineCustomCls
 }
 
 export interface ITimelineItemApi {
@@ -56,6 +58,7 @@ export interface ITimelineItemApi {
   getStatus: ReturnType<typeof getStatus>
   handleClick: ReturnType<typeof handleClick>
   getStatusCls: ReturnType<typeof getStatusCls>
+  computedIconClass: ReturnType<typeof computedIconClass>
 }
 
 export type ITimelineItemRenderlessParams = ISharedRenderlessFunctionParams<ITimelineItemConstants> & {
