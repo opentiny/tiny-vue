@@ -1,9 +1,9 @@
 <template>
   <div class="numeric-controls-demo">
-    <p>1. 隐藏加减按钮</p>
-    <tiny-numeric v-model="value1" :controls="controls" show-left></tiny-numeric>
-    <p>2. 加减按钮全置于右侧</p>
-    <tiny-numeric v-model="value2" controls-position="right"></tiny-numeric>
+    <p>隐藏加减按钮:</p>
+    <tiny-numeric v-model="value1" :controls="controls" show-left class="numeric-class"></tiny-numeric>
+    <p>加减按钮全置于右侧:</p>
+    <tiny-numeric v-model="value2" controls-position="right" class="numeric-class"></tiny-numeric>
   </div>
 </template>
 
@@ -15,3 +15,9 @@ const controls = ref(false)
 const value1 = ref(1)
 const value2 = ref(2)
 </script>
+
+<style scoped>
+.numeric-class {
+  margin: 4px 0px;
+}
+</style>
