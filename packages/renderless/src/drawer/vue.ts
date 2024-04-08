@@ -23,7 +23,7 @@ import type {
   IDrawerCT
 } from '@/types'
 
-export const api = ['state', 'close', 'confirm', 'handleClose']
+export const api = ['state', 'open', 'close', 'confirm', 'handleClose']
 
 export const renderless = (
   props: IDrawerProps,
