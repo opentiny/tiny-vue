@@ -44,6 +44,20 @@ export default {
       codeFiles: ['vertical-timeline.vue']
     },
     {
+      demoId: 'status',
+      name: {
+        'zh-CN': '节点状态',
+        'en-US': 'Status of Node'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过指定时间线节点的 <code>autoColor</code> 或 <code>type</code> 属性指定其状态；同时 <code>disabled</code> 属性可设置是否禁用。</p>',
+        'en-US':
+          '<p>Specify the state of timeline nodes by setting the <code>autoColor</code> or <code>type</code> attribute, and use the <code>disabled</code> attribute to enable or disable them.</p>'
+      },
+      codeFiles: ['status.vue']
+    },
+    {
       demoId: 'text-position',
       name: {
         'zh-CN': '节点名称位置',
@@ -69,19 +83,6 @@ export default {
       codeFiles: ['shape.vue']
     },
     {
-      demoId: 'status',
-      name: {
-        'zh-CN': '节点状态',
-        'en-US': 'Status of Node'
-      },
-      desc: {
-        'zh-CN': '<p>横向时间线可以使用 <code>error</code>|<code>disabled</code> 指定单节点的状态。</p>',
-        'en-US':
-          '<p>Use the <code>error</code> or <code>disabled</code> attribute to set the appearance of a horizontal timeline node. </p>'
-      },
-      codeFiles: ['status.vue']
-    },
-    {
       demoId: 'set-node-width',
       name: {
         'zh-CN': '宽度',
@@ -92,6 +93,44 @@ export default {
         'en-US': '<p>Use the <code>space</code> attribute to set the width of timeline node. </p>\n'
       },
       codeFiles: ['set-node-width.vue']
+    },
+    {
+      demoId: 'custom-icon',
+      name: {
+        'zh-CN': '自定义图标',
+        'en-US': 'Custom Icon'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>auto-color</code> 属性可自定义节点图标。</p>',
+        'en-US': '<p>Customize icon by using the <code>auto-color</code> attribute.</p>'
+      },
+      codeFiles: ['custom-icon.vue']
+    },
+    {
+      demoId: 'custom-field',
+      name: {
+        'zh-CN': '自定义字段',
+        'en-US': 'Custom Field'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>name-field</code> 属性设置节点信息中名称对应的字段名；<code>time-field</code> 属性设置节点时间信息对应的字段名；<code>auto-color-field</code> 属性设置节点图标对应的字段名。</p>',
+        'en-US':
+          '<p>The <code>name-field</code> attribute is used to set the field name corresponding to the node name in the node information, the <code>time-field</code> attribute is used to set the field name corresponding to the node time information and the <code>auto-color-field</code> attribute is used to set the field name corresponding to the icon. </p>'
+      },
+      codeFiles: ['custom-field.vue']
+    },
+    {
+      demoId: 'set-start-value',
+      name: {
+        'zh-CN': '序号起始值',
+        'en-US': 'Start value of the sequence number'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>start</code> 属性设置时间线序号起始值。</p>\n',
+        'en-US': '<p>Set the start sequence number through the <code>start</code> attribute. </p>\n'
+      },
+      codeFiles: ['set-start-value.vue']
     },
     {
       demoId: 'show-divider',
@@ -106,18 +145,6 @@ export default {
           '<p><code>show-divider</code> attribute is used to set whether to display the bottom dividing line of the timeline. It only takes effect when the node text content is located to the right of the number. </p>'
       },
       codeFiles: ['show-divider.vue']
-    },
-    {
-      demoId: 'slot-description',
-      name: {
-        'zh-CN': '节点描述插槽',
-        'en-US': 'Node Description'
-      },
-      desc: {
-        'zh-CN': '<p>通过 <code>description</code> 插槽添加单个节点的描述信息。</p>',
-        'en-US': '<p>Add description information for a single node through the <code>description</code> slot.</p>'
-      },
-      codeFiles: ['slot-description.vue']
     },
     {
       demoId: 'custom-horizontal-timeline',
@@ -148,30 +175,16 @@ export default {
       codeFiles: ['custom-vertical-timeline.vue']
     },
     {
-      demoId: 'custom-field',
+      demoId: 'slot-description',
       name: {
-        'zh-CN': '自定义字段',
-        'en-US': 'Custom Field'
+        'zh-CN': '节点描述插槽',
+        'en-US': 'Node Description'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>name-field</code> 属性设置节点信息中名称对应的字段名，<code>time-field</code> 属性设置节点时间信息对应的字段名。</p>\n',
-        'en-US':
-          '<p>The <code>name-field</code> attribute is used to set the field name corresponding to the node name in the node information, and the <code>time-field</code> attribute is used to set the field name corresponding to the node time information. </p>\n'
+        'zh-CN': '<p>通过 <code>description</code> 插槽添加单个节点的描述信息。</p>',
+        'en-US': '<p>Add description information for a single node through the <code>description</code> slot.</p>'
       },
-      codeFiles: ['custom-field.vue']
-    },
-    {
-      demoId: 'set-start-value',
-      name: {
-        'zh-CN': '序号起始值',
-        'en-US': 'Start value of the sequence number'
-      },
-      desc: {
-        'zh-CN': '<p>通过 <code>start</code> 属性设置时间线序号起始值。</p>\n',
-        'en-US': '<p>Set the start sequence number through the <code>start</code> attribute. </p>\n'
-      },
-      codeFiles: ['set-start-value.vue']
+      codeFiles: ['slot-description.vue']
     }
   ]
 }

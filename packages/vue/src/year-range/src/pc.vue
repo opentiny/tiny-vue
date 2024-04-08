@@ -16,8 +16,8 @@
           <button
             type="button"
             class="tiny-picker-panel__shortcut"
-            v-for="(shortcut, key) in state.shortcuts"
-            :key="key"
+            v-for="(shortcut, idx) in state.shortcuts"
+            :key="idx"
             @click="handleShortcutClick(shortcut)"
             :title="shortcut.text"
           >
@@ -77,11 +77,10 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/year-range/vue'
-import { $prefix, setup, directive, $props } from '@opentiny/vue-common'
+import { $prefix, setup, directive, $props, defineComponent } from '@opentiny/vue-common'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import YearTable from '@opentiny/vue-year-table'
 import { IconDoubleRight, IconDoubleLeft } from '@opentiny/vue-icon'
-import { defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   name: $prefix + 'YearRange',

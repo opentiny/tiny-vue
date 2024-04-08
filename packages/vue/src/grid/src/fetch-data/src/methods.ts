@@ -18,6 +18,12 @@ export default {
   handleFetch(code, sortArg) {
     let { pager, sortData, filterData, pagerConfig, fetchOption, fetchData, dataset } = this as any
 
+    if (this.isInitialLoading) {
+      this.isInitialLoading = false
+    } else {
+      this.columnAnchor && this.clearActiveAnchor()
+    }
+
     if (code !== 'prefetch') {
       this.clearRadioRow()
       this.resetScrollTop()
@@ -70,6 +76,14 @@ export default {
       this.tableLoading = false
       throw error
     })
+  },
+  clearActiveAnchor() {
+    const { columnAnchor, columnAnchorParams = {} } = this
+    const { anchors = [] } = columnAnchorParams
+
+    if (!columnAnchor || anchors.length <= 0) return
+
+    anchors.forEach((anchor) => (anchor.active = false))
   },
   loadFetchData(rest) {
     if (!rest) {

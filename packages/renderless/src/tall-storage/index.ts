@@ -118,7 +118,8 @@ const setLocalStorageage = (name, value, memorySpace = 5) => {
       oldArray = sortDeduplication(oldArray, memorySpace)
       newValue = JSON.stringify(oldArray)
     } else if (oldValue === null || oldValue === value) {
-      newValue = value
+      // tiny 新增：防止第一次时，存入字符串
+      newValue = JSON.stringify([value])
     } else {
       newValue = JSON.stringify([value, oldValue])
     }

@@ -16,6 +16,10 @@ export default defineComponent({
       type: Object,
       default: () => $constants
     },
+    popperAppendToBody: {
+      type: Boolean,
+      default: true
+    },
     fetchRole: Function,
     getEnvInfoSync: Function,
     getChangeRoleUrl: Function,

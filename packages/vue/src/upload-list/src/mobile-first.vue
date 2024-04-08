@@ -66,7 +66,7 @@
             >
               <div class="flex h-4" data-tag="tiny-upload-list-name">
                 <div
-                  class="flex-1 sm:mr-6 text-sm sm:text-xs leading-3 sm:leading-3 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
+                  class="flex-1 sm:mr-6 text-sm sm:text-xs leading-4 sm:leading-4 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
                 >
                   <span :title="file.name">{{
                     file.name

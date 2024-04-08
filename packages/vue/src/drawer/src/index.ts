@@ -1,4 +1,4 @@
-import { $props, $prefix, $setup } from '@opentiny/vue-common'
+import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
 const $constants = {
@@ -67,10 +67,10 @@ export const drawerProps = {
   tipsProps: Object
 }
 
-export default {
+export default defineComponent({
   name: $prefix + 'Drawer',
   props: drawerProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

@@ -229,7 +229,7 @@ export default {
             'en-US': ''
           },
           mode: ['pc'],
-          pcDemo: 'selected-box-op'
+          pcDemo: 'selected-box'
         },
         {
           name: 'show-clear-btn',

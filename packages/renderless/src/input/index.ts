@@ -101,8 +101,12 @@ export const calcTextareaHeight =
     api,
     hiddenTextarea,
     props,
-    state
-  }: Pick<IInputRenderlessParams, 'api' | 'props' | 'state'> & { hiddenTextarea: HTMLTextAreaElement | null }) =>
+    state,
+    mode,
+    constants
+  }: Pick<IInputRenderlessParams, 'api' | 'props' | 'state' | 'mode' | 'constants'> & {
+    hiddenTextarea: HTMLTextAreaElement | null
+  }) =>
   (
     targetElement: HTMLTextAreaElement,
     minRows = 1,
@@ -133,6 +137,10 @@ export const calcTextareaHeight =
       minHeight?: string
       height?: string
     } = {}
+
+    if (mode === 'mobile') {
+      height = Math.max(hiddenTextarea.scrollHeight, constants.TEXTAREA_HEIGHT_MOBILE)
+    }
 
     if (boxSizing === STYLE.ContentBox) {
       height = height - paddingSize

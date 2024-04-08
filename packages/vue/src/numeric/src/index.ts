@@ -46,6 +46,9 @@ export const numericProps = {
     type: Boolean,
     default: false
   },
+  emptyValue: {
+    default: undefined
+  },
   circulate: Boolean,
   controls: {
     type: Boolean,

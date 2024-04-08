@@ -408,7 +408,8 @@ export default defineComponent({
     'isMenuView',
     'modalView',
     'modalHeight',
-    'bgColor'
+    'bgColor',
+    'keepStyle'
   ],
   components: {
     TinyActionSheet: ActionSheet,

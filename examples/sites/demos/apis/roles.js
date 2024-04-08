@@ -16,6 +16,19 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'fetch-role'
+        },
+        {
+          name: 'popper-append-to-body',
+          type: 'boolean',
+          defaultValue: 'true',
+          desc: {
+            'zh-CN':
+              '是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false (可参考 select 组件)',
+            'en-US':
+              'Indicates whether to insert the pop-up box to the body element. If a fault occurs in locating the fault in the dialog box that is displayed, you can set this attribute to false (for details, see the select component).'
+          },
+          mode: ['pc'],
+          pcDemo: 'base'
         }
       ],
       events: [

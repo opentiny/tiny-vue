@@ -1,12 +1,12 @@
 <template>
-  <tiny-mind-map class="mindmap" ref="mindmap" @create="onCreate" v-model="exampleData" />
   <tiny-button @click="exportData">导出数据</tiny-button>
   <tiny-button @click="importData" :loading="loading">导入示例数据</tiny-button>
   <tiny-button @click="clearData" :loading="loading">清空数据</tiny-button>
+  <tiny-mind-map class="demo-mind-map-export-date" ref="mindmap" @create="onCreate" v-model="exampleData" />
 </template>
 
 <script setup>
-import { MindMap as TinyMindMap, Button as TinyButton, Notify } from '@opentiny/vue'
+import { MindMap as TinyMindMap, Button as TinyButton, Modal } from '@opentiny/vue'
 import { ref } from 'vue'
 
 const render = ref(null)
@@ -57,11 +57,8 @@ const onCreate = (instance) => {
 }
 const exportData = () => {
   if (render.value) {
-    Notify({
-      type: 'info',
-      message: '数据已经输出于控制台, 请打开控制台查看'
-    })
-    // eslint-disable-next-line no-console
+    Modal.message({ message: '数据已经输出于控制台, 请打开控制台查看', status: 'info' })
+
     console.log(render.value.getData())
   }
 }
@@ -101,8 +98,9 @@ const clearData = () => {
 </script>
 
 <style scoped>
-.mindmap {
+.demo-mind-map-export-date {
   width: 100%;
-  height: 300px;
+  height: 400px;
+  margin-top: 10px;
 }
 </style>

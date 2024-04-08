@@ -59,7 +59,6 @@ export default {
     change() {
       Modal.message({
         message: '触发 change 事件',
-        duration: 500,
         status: 'info'
       })
     },

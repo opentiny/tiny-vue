@@ -326,8 +326,8 @@ export const handleExpandChange =
       dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.FormBlur, [
         state.multiple ? state.presentText : state.inputValue
       ])
-
-      updatePopper(state.panel.$parent.$el)
+      // 同步时需注意，popper初始化时会保存dom的引用，因此无需传参，否则vue2下会有bug
+      updatePopper()
     })
 
     emit('expand-change', value)

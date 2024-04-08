@@ -25,6 +25,7 @@
           :space="space"
           :line-width="lineWidth"
           :shape="shape"
+          :autoColorField="autoColorField"
           @click="handleClick({ index, node })"
         >
           <template #active-node-desc="slotScoped">
@@ -76,7 +77,8 @@ export default defineComponent({
     'showDivider',
     'onlyNumber',
     'lineWidth',
-    'shape'
+    'shape',
+    'autoColorField'
   ],
   components: {
     TinyTimelineItem: TimelineItem

@@ -1,4 +1,4 @@
-import { $props, $prefix, $setup } from '@opentiny/vue-common'
+import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
 export const optionsProps = {
@@ -29,11 +29,11 @@ export const optionsProps = {
   icon: Object
 }
 
-export default {
+export default defineComponent({
   name: $prefix + 'Option',
   componentName: 'Option',
   props: optionsProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

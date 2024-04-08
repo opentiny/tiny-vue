@@ -244,7 +244,9 @@ export const emitChange =
       if (constants.TYPE.Tree === flag) {
         const recurNode = (node) => {
           val === node[props.valueField] && items.push(node)
-          val !== node[props.valueField] && Array.isArray(node.children) && node.children.forEach(recurNode)
+          val !== node[props.valueField] &&
+            Array.isArray(node[state.childrenName]) &&
+            node[state.childrenName].forEach(recurNode)
         }
 
         arr.forEach(recurNode)
@@ -572,7 +574,7 @@ export const blur =
   }
 
 export const handleBlur =
-  ({ constants, dispatch, emit, state }) =>
+  ({ constants, dispatch, emit, state, designConfig }) =>
   (event) => {
     clearTimeout(state.timer)
     state.timer = setTimeout(() => {
@@ -581,9 +583,14 @@ export const handleBlur =
       } else {
         emit('blur', event)
       }
+      if (designConfig?.state?.delayBlur) {
+        dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.formBlur, event.target.value)
+      }
     }, 200)
     // tiny 新增： 表单校验不能异步，否则弹窗中嵌套表单会出现弹窗关闭后再出现校验提示的bug
-    dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.formBlur, event.target.value)
+    if (!designConfig?.state?.delayBlur) {
+      dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.formBlur, event.target.value)
+    }
 
     state.softFocus = false
   }
@@ -593,7 +600,10 @@ export const handleClearClick = (api) => (event) => {
 }
 
 export const doDestroy = (vm) => () => {
-  vm.$refs.popper && vm.$refs.popper.doDestroy()
+  // 解决在特殊场景（表格使用select编辑器），选中下拉数据的一瞬间select组件被销毁时控制台报错的问题
+  if (vm?.$refs?.popper) {
+    vm.$refs.popper.doDestroy()
+  }
 }
 
 export const handleClose = (state) => () => {
@@ -686,19 +696,21 @@ export const resetInputHeight =
 
       let input = vm.$refs.reference.type === 'text' && vm.$refs.reference.$el.querySelector('input')
       const tags = vm.$refs.tags
+      const limitText = vm.$refs.reference.$el.querySelector('span.tiny-select__limit-txt')
 
       if (!input) {
         return
       }
 
-      if (!state.isDisplayOnly && props.hoverExpand && !props.disabled) {
+      if (!state.isDisplayOnly && (props.hoverExpand || props.clickExpand) && !props.disabled) {
         api.calcCollapseTags()
       }
 
-      const sizeInMap = state.initialInputHeight || (state.isSaaSTheme ? 28 : 30)
+      const sizeInMap =
+        designConfig?.state.initialInputHeight || state.initialInputHeight || (state.isSaaSTheme ? 28 : 30)
       const noSelected = state.selected.length === 0
-      // tiny 新增的spacing (design中配置：aui为4，smb为0，tiny 默认为2)
-      const spacingHeight = designConfig ? designConfig.state?.spacingHeight : 2
+      // tiny 新增的spacing (design中配置：aui为4，smb为0，tiny 默认为0)
+      const spacingHeight = designConfig ? designConfig.state?.spacingHeight : constants.SPACING_HEIGHT
 
       if (!state.isDisplayOnly) {
         if (!noSelected && tags) {
@@ -714,6 +726,14 @@ export const resetInputHeight =
         }
       } else {
         input.style.height = 'auto'
+      }
+
+      // tags给字数限制
+      if (limitText && props.multipleLimit) {
+        const { width, marginLeft, marginRight } = getComputedStyle(limitText)
+        vm.$refs.tags.style.paddingRight = `${Math.ceil(
+          parseFloat(width) + parseFloat(marginLeft) + parseFloat(marginRight)
+        )}px`
       }
 
       if (state.visible && state.emptyText !== false) {
@@ -1532,7 +1552,9 @@ export const queryVisibleOptions =
     if (props.optimization) {
       return optmzApis.queryVisibleOptions(vm, isMobileFirstMode)
     } else {
-      return Array.from(vm.$refs.scrollbar?.$el.querySelectorAll('[data-index]:not([style*="display: none"])') || [])
+      return vm.$refs.scrollbar
+        ? Array.from(vm.$refs.scrollbar.$el.querySelectorAll('[data-index]:not([style*="display: none"])'))
+        : []
     }
   }
 
@@ -1616,15 +1638,15 @@ export const radioChange =
     api.directEmitChange(row)
   }
 
-export const getTreeData = (props) => (data) => {
+export const getTreeData = (props, state) => (data) => {
   const nodes = []
   const getChild = (data, pId) => {
     data.forEach((node) => {
       node.pId = pId
       nodes.push(node)
 
-      if (node.children && node.children.length > 0) {
-        getChild(node.children, node[props.valueField])
+      if (node[state.childrenName] && node[state.childrenName].length > 0) {
+        getChild(node[state.childrenName], node[props.valueField])
       }
     })
   }
@@ -1842,16 +1864,16 @@ export const handleEnterTag =
   }
 
 export const calcCollapseTags =
-  ({ state, vm }) =>
+  ({ state, vm, props }) =>
   () => {
-    if (state.inputHovering) {
+    if (state.inputHovering && !props.clickExpand) {
       return (state.isHidden = true)
     }
 
     const tags = vm.$refs.tags
     const collapseTag = tags && tags.querySelector('[data-tag="tags-collapse"]')
 
-    if (!tags || !collapseTag) {
+    if (!collapseTag || !tags) {
       return
     }
 
@@ -1863,21 +1885,45 @@ export const calcCollapseTags =
 
     const tagList = Array.from(tags.querySelectorAll('[data-tag="tiny-tag"]'))
 
-    let { total, dom, idx } = { total: collapseTagWidth, dom: null, idx: 0 }
-    tagList.forEach((tag, index) => {
-      if (tag !== collapseTag) {
-        const { width: tagContentWidth, marginRight } = tag && window.getComputedStyle(tag)
-        total += parseFloat(tagContentWidth) + parseFloat(marginRight)
-      }
-      if (tag !== collapseTag && total > tagsWidth && !dom) {
-        dom = tag
-        idx = index
-      }
-    })
+    let [dom, idx, currentRowWidth, currentTagIndex] = [null, 0, 0, 0]
 
-    let isOneLine = total - collapseTagWidth <= tagsWidth // 单行不展示计数
+    for (let rowNum = 0; rowNum < props.maxVisibleRows; rowNum++) {
+      currentRowWidth = 0
+      let currentTagWidth = 0
+      for (currentTagIndex; currentTagIndex < tagList.length; currentTagIndex++) {
+        const tag = tagList[currentTagIndex]
+        if (tag !== collapseTag) {
+          const { width: tagContentWidth, marginRight, marginLeft } = tag && window.getComputedStyle(tag)
+          currentTagWidth = parseFloat(tagContentWidth) + parseFloat(marginRight) + parseFloat(marginLeft)
+          currentRowWidth += currentTagWidth
+        }
 
-    if (isOneLine) {
+        // 找到第一个超出隐藏的tag
+        if (tag !== collapseTag && currentRowWidth > tagsWidth) {
+          if (!dom && rowNum === props.maxVisibleRows - 1) {
+            // 判断当前行能否显示折叠tag
+            if (currentRowWidth - currentTagWidth + collapseTagWidth < tagsWidth) {
+              dom = tag
+              idx = currentTagIndex
+            } else {
+              dom = tagList[currentTagIndex - 1]
+              idx = currentTagIndex - 1
+            }
+          }
+
+          break
+        }
+      }
+
+      if (currentTagIndex === tagList.length - 1) {
+        break
+      }
+    }
+
+    // 未超出最大显示行数
+    if (idx === 0) {
+      state.exceedMaxVisibleRow = false
+      state.showCollapseTag = false
       return (state.isHidden = true)
     }
 
@@ -1887,8 +1933,9 @@ export const calcCollapseTags =
     } else {
       state.isHidden = true
     }
-
     state.collapseTagsLength = tagList.length - idx
+    state.exceedMaxVisibleRow = true
+    state.toHideIndex = idx
   }
 
 export const watchInputHover =
@@ -2104,14 +2151,33 @@ export const getLabelSlotValue =
   }
 
 export const computedTagsStyle =
-  ({ props, parent, state }) =>
+  ({ props, parent, state, vm }) =>
   () => {
     const isReadonly = props.disabled || (parent.form || {}).disabled || props.displayOnly
-
-    return {
+    let tagsStyle = {
       'max-width': isReadonly ? '' : state.inputWidth - state.inputPaddingRight + 'px',
       width: '100%'
     }
+
+    // 当前全部所选项显示
+    if ((props.clickExpand && !state.exceedMaxVisibleRow) || state.visible) {
+      Object.assign(tagsStyle, { height: 'auto' })
+    }
+
+    if (props.clickExpand && state.exceedMaxVisibleRow && !state.showCollapseTag) {
+      const tags = vm.$refs.tags
+      const { paddingTop: tagsPaddingTop, paddingBottom: tagsPaddingBottom } = window.getComputedStyle(tags)
+      const tagsPaddingVertical = parseFloat(tagsPaddingTop) + parseFloat(tagsPaddingBottom)
+      const tag = tags?.querySelector('[data-tag="tiny-tag"]')
+      if (tag) {
+        const { height: tagHeight, marginTop, marginBottom } = window.getComputedStyle(tag)
+        const rowHeight =
+          (parseFloat(tagHeight) + parseFloat(marginTop) + parseFloat(marginBottom)) * props.maxVisibleRows
+        Object.assign(tagsStyle, { 'height': `${rowHeight + tagsPaddingVertical}px` })
+      }
+    }
+
+    return tagsStyle
   }
 
 export const computedReadonly =
@@ -2164,6 +2230,14 @@ export const computedSelectDisabled =
   () =>
     props.disabled || (parent.form || {}).disabled || props.displayOnly || (parent.form || {}).displayOnly
 
+export const computedIsExpand =
+  ({ props, state }) =>
+  () => {
+    const hoverExpanded = (state.selectHover || state.visible) && props.hoverExpand && !props.disabled
+    const clickExpanded = props.clickExpand && state.exceedMaxVisibleRow && state.showCollapseTag
+    return hoverExpanded || clickExpanded
+  }
+
 export const computedIsExpandAll = (props) => () => {
   const { defaultExpandAll, lazy } = props.treeOp
   return !lazy && defaultExpandAll !== false
@@ -2174,10 +2248,10 @@ export const loadTreeData =
   ({ data = [], init = false }) => {
     const getTreeDatas = (datas, newDatas = []) => {
       datas.forEach(({ data, childNodes }) => {
-        let temData = { ...data, children: [] }
+        let temData = { ...data, [state.childrenName]: [] }
 
         if (childNodes && childNodes.length) {
-          getTreeDatas(childNodes, temData.children)
+          getTreeDatas(childNodes, temData[state.childrenName])
         }
 
         newDatas.push(temData)
@@ -2268,5 +2342,22 @@ export const clearNoMatchValue =
       (!props.multiple && props.modelValue !== newModelValue)
     ) {
       emit('update:modelValue', newModelValue)
+    }
+  }
+
+// 解决无界时，event.target 会变为 wujie_iframe的元素的bug
+export const handleDebouncedQueryChange = ({ state, api }) =>
+  debounce(state.debounce, (value) => {
+    api.handleQueryChange(value)
+  })
+
+export const onClickCollapseTag =
+  ({ state, props, nextTick, api }) =>
+  (event: MouseEvent) => {
+    event.stopPropagation()
+    if (props.clickExpand && !props.disabled && !state.isDisplayOnly) {
+      state.showCollapseTag = !state.showCollapseTag
+
+      nextTick(api.resetInputHeight)
     }
   }

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-river",
-  "version": "3.7.0",
+  "version": "3.15.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -9,8 +9,6 @@
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~",
     "echarts": "5.4.1"
   },
   "license": "MIT",

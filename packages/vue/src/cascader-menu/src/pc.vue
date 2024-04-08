@@ -51,14 +51,30 @@ const CascaderMenu = defineComponent({
     },
     index: Number
   },
-  inject: ['panel'],
+  inject: {
+    panel: {
+      value: 'panel',
+      default: null
+    },
+    cascaderRoot: {
+      value: 'cascaderRoot',
+      default: null
+    }
+  },
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true }) as unknown as ICascaderMenuApi &
       Pick<ICascaderMenuRenderlessParams, 'panel'>
   },
   render() {
-    const renderEmptyText = () => <div class="tiny-cascader-menu__empty-text">{t('ui.cascader.noData')}</div>
-
+    const parentVm = this.cascaderRoot || this.panel || this
+    const noDataSlot = parentVm.slots['no-data'] && parentVm.slots['no-data']()
+    const renderEmptyText = () => {
+      return noDataSlot ? (
+        <div class="tiny-cascader-menu__no-data">{noDataSlot}</div>
+      ) : (
+        <div class="tiny-cascader-menu__empty-text">{t('ui.cascader.noData')}</div>
+      )
+    }
     const renderNodeList = renderNodeListFunc(this)
 
     const { state } = this

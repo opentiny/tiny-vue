@@ -15,11 +15,19 @@ const root = path.join(__dirname, '../../../packages/vue/src')
 async function writeJson(jsonPath, dependencies) {
   const jsonStr: any = await safeReadFile(jsonPath)
   const json = parseString(jsonStr)
-  const newDep = difference(dependencies, Object.keys(json.dependencies))
+  const oldDeps = json.dependencies
+  const toDelDeps = difference(
+    Object.keys(oldDeps).filter((name) => name.startsWith('@opentiny/')),
+    dependencies
+  )
+  const newDep = difference(dependencies, Object.keys(oldDeps))
   newDep.forEach((dep) => {
     json.dependencies[dep] = 'workspace:~'
   })
-  writeFile(jsonPath, JSON.stringify(json, null, 2) + '\n')
+  toDelDeps.forEach((dep) => {
+    delete json.dependencies[dep]
+  })
+  writeFile(jsonPath, JSON.stringify(json, null, 2))
 }
 
 // 解析文件内容中的opentiny依赖
@@ -28,14 +36,15 @@ function parseDepencies(content) {
   return content.match(reg)?.map((importStr) => {
     const depReg = /('|")(\@opentiny\/.+)('|")/
     const dep = importStr.match(depReg)[2]
+
     const needDep = dep.split('/').slice(0, 2).join('/')
     return needDep
   })
 }
 
-async function addComponentDepencies(component) {
+async function addComponentDepencies(component, dir) {
   let dependencies = []
-  const componentPath = path.join(root, component)
+  const componentPath = path.join(dir, component)
   // 如果没有package.json 则跳过
   const jsonPath = path.join(componentPath, 'package.json')
   const packageJson = await safeReadFile(jsonPath)
@@ -46,7 +55,7 @@ async function addComponentDepencies(component) {
   const allFiles = await fg(['**/*.ts', '**/*.vue'], {
     dot: true,
     cwd: componentPath,
-    ignore: ['node_modules', '__test__']
+    ignore: ['**/node_modules', '__test__']
   })
   for (let i = 0; i < allFiles.length; i++) {
     const file = allFiles[i]
@@ -61,5 +70,9 @@ async function addComponentDepencies(component) {
 }
 
 scanDir(root, 'dir').then((dirs) => {
-  dirs.forEach(addComponentDepencies)
+  dirs.forEach((dir) => addComponentDepencies(dir, root))
+})
+
+scanDir(path.join(root, 'chart'), 'dir').then((dirs) => {
+  dirs.forEach((dir) => addComponentDepencies(dir, path.join(root, 'chart')))
 })

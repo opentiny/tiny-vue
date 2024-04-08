@@ -465,6 +465,43 @@ import IconStartO from './src/start-o'
 import IconTeams from './src/teams'
 import IconTurnOn from './src/turn-on'
 import IconWarningO from './src/warning-o'
+import IconAutomaticAssessment from './src/automatic-assessment'
+import IconAverageShippingPeriod from './src/average-shipping-period'
+import IconCustomsClearanceForm from './src/customs-clearance-form'
+import IconCustomsDeclaration from './src/customs-declaration'
+import IconDisallowance from './src/disallowance'
+import IconDrawFlowchart from './src/draw-flowchart'
+import IconEngineWorkflow from './src/engine-workflow'
+import IconFinishO from './src/finish-o'
+import IconLocationNumber from './src/location-number'
+import IconMainFreightSettled from './src/main-freight-settled'
+import IconMainFreightToBeSettled from './src/main-freight-to-be-settled'
+import IconMaintainInspectionRecords from './src/maintain-inspection-records'
+import IconItemPlanningProperties from './src/item-planning-properties'
+import IconMsg from './src/msg'
+import IconOfd from './src/ofd'
+import IconPendingReview from './src/pending-review'
+import IconProcessPlanRequirements from './src/process-plan-requirements'
+import IconPurchasePlannedOrder from './src/purchase-planned-order'
+import IconRequirementsPlanning from './src/requirements-planning'
+import IconShipped from './src/shipped'
+import IconSubstituteMaterial from './src/substitute-material'
+import IconSurchargeSettled from './src/surcharge-settled'
+import IconSurchargeToBeSettled from './src/surcharge-to-be-settled'
+import IconToBeUploaded from './src/to-be-uploaded'
+import IconTotalNolume from './src/total-nolume'
+import IconTotalNumber from './src/total-number'
+import IconTotalWeight from './src/total-weight'
+import IconUnderReview from './src/under-review'
+import IconUnsubmitted from './src/unsubmitted'
+import IconViewFlowchart from './src/view-flowchart'
+import IconWaitForDeliveryO from './src/wait-for-delivery-o'
+import IconWaitForDelivery from './src/wait-for-delivery'
+import IconWaitingForReceipt from './src/waiting-for-receipt'
+import IconWaitingForSubmission from './src/waiting-for-submission'
+import IconWaitingToPick from './src/waiting-to-pick'
+import IconWriteProductioPlan from './src/write-production-plan'
+import IconXml from './src/xml'
 
 export {
   IconActivation,
@@ -483,6 +520,80 @@ export {
   IconTurnOn as iconTurnOn,
   IconWarningO,
   IconWarningO as iconWarningO,
+  IconAutomaticAssessment,
+  IconAutomaticAssessment as iconAutomaticAssessment,
+  IconAverageShippingPeriod,
+  IconAverageShippingPeriod as iconAverageShippingPeriod,
+  IconCustomsClearanceForm,
+  IconCustomsClearanceForm as iconCustomsClearanceForm,
+  IconCustomsDeclaration,
+  IconCustomsDeclaration as iconCustomsDeclaration,
+  IconDisallowance,
+  IconDisallowance as iconDisallowance,
+  IconDrawFlowchart,
+  IconDrawFlowchart as iconDrawFlowchart,
+  IconEngineWorkflow,
+  IconEngineWorkflow as iconEngineWorkflow,
+  IconFinishO,
+  IconFinishO as iconFinishO,
+  IconLocationNumber,
+  IconLocationNumber as iconLocationNumber,
+  IconMainFreightSettled,
+  IconMainFreightSettled as iconMainFreightSettled,
+  IconMainFreightToBeSettled,
+  IconMainFreightToBeSettled as iconMainFreightToBeSettled,
+  IconMaintainInspectionRecords,
+  IconMaintainInspectionRecords as iconMaintainInspectionRecords,
+  IconItemPlanningProperties,
+  IconItemPlanningProperties as iconItemPlanningProperties,
+  IconMsg,
+  IconMsg as iconMsg,
+  IconOfd,
+  IconOfd as iconOfd,
+  IconPendingReview,
+  IconPendingReview as iconPendingReview,
+  IconProcessPlanRequirements,
+  IconProcessPlanRequirements as iconProcessPlanRequirements,
+  IconPurchasePlannedOrder,
+  IconPurchasePlannedOrder as iconPurchasePlannedOrder,
+  IconRequirementsPlanning,
+  IconRequirementsPlanning as iconRequirementsPlanning,
+  IconShipped,
+  IconShipped as iconShipped,
+  IconSubstituteMaterial,
+  IconSubstituteMaterial as iconSubstituteMaterial,
+  IconSurchargeSettled,
+  IconSurchargeSettled as iconSurchargeSettled,
+  IconSurchargeToBeSettled,
+  IconSurchargeToBeSettled as iconSurchargeToBeSettled,
+  IconToBeUploaded,
+  IconToBeUploaded as iconToBeUploaded,
+  IconTotalNolume,
+  IconTotalNolume as iconTotalNolume,
+  IconTotalNumber,
+  IconTotalNumber as iconTotalNumber,
+  IconTotalWeight,
+  IconTotalWeight as iconTotalWeight,
+  IconUnderReview,
+  IconUnderReview as iconUnderReview,
+  IconUnsubmitted,
+  IconUnsubmitted as iconUnsubmitted,
+  IconViewFlowchart,
+  IconViewFlowchart as iconViewFlowchart,
+  IconWaitForDeliveryO,
+  IconWaitForDeliveryO as iconWaitForDeliveryO,
+  IconWaitForDelivery,
+  IconWaitForDelivery as iconWaitForDelivery,
+  IconWaitingForReceipt,
+  IconWaitingForReceipt as iconWaitingForReceipt,
+  IconWaitingForSubmission,
+  IconWaitingForSubmission as iconWaitingForSubmission,
+  IconWaitingToPick,
+  IconWaitingToPick as iconWaitingToPick,
+  IconWriteProductioPlan,
+  IconWriteProductioPlan as iconWriteProductioPlan,
+  IconXml,
+  IconXml as iconXml,
   IconSubScript,
   IconSubScript as iconSubScript,
   IconSortTriangle,
@@ -1380,6 +1491,43 @@ export default {
   IconTeams,
   IconTurnOn,
   IconWarningO,
+  IconAutomaticAssessment,
+  IconAverageShippingPeriod,
+  IconCustomsClearanceForm,
+  IconCustomsDeclaration,
+  IconDisallowance,
+  IconDrawFlowchart,
+  IconEngineWorkflow,
+  IconFinishO,
+  IconLocationNumber,
+  IconMainFreightSettled,
+  IconMainFreightToBeSettled,
+  IconMaintainInspectionRecords,
+  IconItemPlanningProperties,
+  IconMsg,
+  IconOfd,
+  IconPendingReview,
+  IconProcessPlanRequirements,
+  IconPurchasePlannedOrder,
+  IconRequirementsPlanning,
+  IconShipped,
+  IconSubstituteMaterial,
+  IconSurchargeSettled,
+  IconSurchargeToBeSettled,
+  IconToBeUploaded,
+  IconTotalNolume,
+  IconTotalNumber,
+  IconTotalWeight,
+  IconUnderReview,
+  IconUnsubmitted,
+  IconViewFlowchart,
+  IconWaitForDeliveryO,
+  IconWaitForDelivery,
+  IconWaitingForReceipt,
+  IconWaitingForSubmission,
+  IconWaitingToPick,
+  IconWriteProductioPlan,
+  IconXml,
   IconScan,
   IconSubScript,
   IconSortTriangle,

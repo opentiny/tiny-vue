@@ -13,3 +13,19 @@ export const queryChange =
       }
     }
   }
+
+export const observeCallback =
+  ({ state, api }) =>
+  (mutationsList) => {
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        if (state.timer) {
+          clearTimeout(state.timer)
+        }
+
+        state.timer = setTimeout(() => {
+          api.queryChange()
+        }, 100)
+      }
+    }
+  }

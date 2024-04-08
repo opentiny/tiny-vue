@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-transfer-panel",
-  "version": "3.7.0",
+  "version": "3.15.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -17,7 +17,6 @@
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-pager": "workspace:~",

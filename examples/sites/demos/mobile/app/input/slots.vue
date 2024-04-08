@@ -8,23 +8,23 @@
     </tiny-input>
     <tiny-input placeholder="prefix" v-model="input">
       <template #prefix>
-        <tiny-icon-search/>
+        <tiny-icon-search />
       </template>
     </tiny-input>
     <tiny-input placeholder="suffix" v-model="input">
       <template #suffix>
-        <tiny-icon-calendar/>
+        <tiny-icon-calendar />
       </template>
     </tiny-input>
     <br />
-    
+
     <tiny-input placeholder="suffix" v-model="input">
       <template #title>
-        <span>标题插槽内容</span>
+        <span>自定义标题</span>
       </template>
 
       <template #tips>
-        <span class="tips">提示插槽内容</span>
+        <span class="tips">自定义提示</span>
       </template>
     </tiny-input>
   </div>
@@ -38,7 +38,7 @@ export default {
   components: {
     TinyInput: Input,
     TinyIconSearch: IconSearch(),
-    TinyIconCalendar: IconCalendar(),
+    TinyIconCalendar: IconCalendar()
   },
   data() {
     return {
@@ -55,7 +55,7 @@ export default {
   background: #f5f5f5;
 }
 
-.demo-input [class^=tiny-mobile] {
+.demo-input [class^='tiny-mobile'] {
   margin-bottom: 8px;
 }
 

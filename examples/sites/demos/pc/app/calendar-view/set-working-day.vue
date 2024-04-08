@@ -1,6 +1,7 @@
 <template>
   <tiny-calendar-view
     ref="calendar"
+    v-model="selectedDates"
     :multi-select="true"
     :year="2023"
     :month="5"
@@ -26,6 +27,7 @@ export default {
   },
   data() {
     return {
+      selectedDates: [],
       workingDays: [],
       offDays: [],
       holidays: [],
@@ -39,6 +41,7 @@ export default {
         return
       }
       this[type].push(...this.selectedDate)
+      this.selectedDates = []
       this.selectedDate = []
     },
     setDayBgColor(date) {

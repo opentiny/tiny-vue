@@ -19,7 +19,8 @@ import {
   computedCurrent,
   computedIsReverse,
   computedWidth,
-  computedItemStyle
+  computedItemStyle,
+  computedIconClass
 } from './index'
 import type {
   ITimelineItemApi,
@@ -35,7 +36,7 @@ export const api = ['state', 'handleClick', 'getStatusCls', 'getStatus', 'getDat
 export const renderless = (
   props: ITimelineItemProps,
   { computed, reactive, inject }: ISharedRenderlessParamHooks,
-  { t, emit, constants, designConfig }: ITimelineItemRenderlessParamUtils
+  { t, emit, constants }: ITimelineItemRenderlessParamUtils
 ): ITimelineItemApi => {
   const api = {} as ITimelineItemApi
 
@@ -49,7 +50,8 @@ export const renderless = (
     computedSpace: computed(() => api.computedWidth(props.space || api.rootProps.space)),
     computedItemCls: computed(() => api.computedItemCls()),
     computedItemStyle: computed(() => api.computedItemStyle()),
-    computedLineWidth: computed(() => api.computedWidth(props.lineWidth || api.rootProps.lineWidth))
+    computedLineWidth: computed(() => api.computedWidth(props.lineWidth || api.rootProps.lineWidth)),
+    iconClass: computed(() => api.computedIconClass())
   })
 
   Object.assign(api, {
@@ -63,7 +65,8 @@ export const renderless = (
     computedWidth: computedWidth(),
     getStatus: getStatus({ state, t }),
     handleClick: handleClick({ emit, state }),
-    getStatusCls: getStatusCls({ constants, state })
+    getStatusCls: getStatusCls({ constants, state }),
+    computedIconClass: computedIconClass({ props, api })
   })
 
   return api

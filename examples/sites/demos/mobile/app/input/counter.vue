@@ -1,6 +1,6 @@
 <template>
   <div class="demo-input">
-    <tiny-input v-model="input1" counter :maxlength="20"></tiny-input>
+    <tiny-input v-model="input1" counter :maxlength="10"></tiny-input>
 
     <tiny-input v-model="input2" type="textarea" show-word-limit :maxlength="20"></tiny-input>
   </div>

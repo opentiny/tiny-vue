@@ -213,7 +213,7 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils, parent }) => 
     displayValue: displayValue({ api, props, state }),
     handlePick: handlePick({ api, state }),
     watchPickerVisible: watchPickerVisible({ api, vm, dispatch, emit, props, state, nextTick }),
-    watchMobileVisible: watchMobileVisible({ api, props, state }),
+    watchMobileVisible: watchMobileVisible({ api, props, state, nextTick }),
     formatToString: formatToString({ api, state }),
     watchIsRange: watchIsRange({ api, state, TimePanel, TimeRangePanel }),
     mountPicker: mountPicker({ api, vm, props, state, updatePopper }),
@@ -222,7 +222,7 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils, parent }) => 
     computedTriggerClass: computedTriggerClass({ props, state }),
     computedHaveTrigger: computedHaveTrigger({ props }),
     setInputPaddingLeft: setInputPaddingLeft({ props, state, vm, nextTick }),
-    formatInputValue: formatInputValue({ props, state, api })
+    formatInputValue: formatInputValue({ props, state })
   })
 
   initApi2({ api, props, state, t, parent })

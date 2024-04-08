@@ -5,12 +5,13 @@ import {
   confirm,
   updateVisible,
   getTimePeriod,
-  computedOptions
+  computedOptions,
+  clear
 } from './index'
 
-export const api = ['state', 'confirm', 'updateVisible']
+export const api = ['state', 'confirm', 'updateVisible', 'clear']
 
-export const renderless = (props, { reactive, watch, computed }, { emit }) => {
+export const renderless = (props, { reactive, watch, computed }, { emit, vm, dispatch }) => {
   const api = {}
   const state = reactive({
     visible: false,
@@ -27,6 +28,7 @@ export const renderless = (props, { reactive, watch, computed }, { emit }) => {
     watchModelValue: watchModelValue({ props, state }),
     watchVisible: watchVisible({ api, state }),
     confirm: confirm({ emit, state }),
+    clear: clear({ state, emit, api, vm, dispatch }),
     updateVisible: updateVisible({ emit, state }),
     getTimePeriod: getTimePeriod({ state, props }),
     computedOptions: computedOptions({ state, api, props }),

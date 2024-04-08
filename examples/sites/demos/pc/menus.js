@@ -241,7 +241,8 @@ export const cmpMenus = [
       { 'nameCn': '拓扑图', 'name': 'Topology Diagram', 'key': 'chart-graph' },
       { 'nameCn': '百度地图', 'name': 'Baidu Map', 'key': 'chart-baidu-map' },
       { 'nameCn': '高德地图', 'name': 'Gaud Map', 'key': 'chart-autonavi-map' },
-      { 'nameCn': '箱形图', 'name': 'Box diagram', 'key': 'chart-boxplot' }
+      { 'nameCn': '箱形图', 'name': 'Box diagram', 'key': 'chart-boxplot' },
+      { 'nameCn': '进度图', 'name': 'Process Chart', 'key': 'chart-process' }
     ]
   },
   {
@@ -281,37 +282,10 @@ export const cmpMenus = [
       { 'nameCn': '公告牌', 'name': 'BulletinBoard', 'key': 'bulletin-board' },
       { 'nameCn': '日历', 'name': 'Calendar', 'key': 'calendar' },
       { 'nameCn': '日历视图', 'name': 'CalendarView', 'key': 'calendar-view' },
-      {
-        'nameCn': '信用卡表单',
-        'name': 'CreditCardForm',
-        'key': 'credit-card-form',
-        'mark': {
-          'type': 'danger',
-          'text': 'Del'
-        }
-      },
       { 'nameCn': '图片裁剪', 'name': 'Crop', 'key': 'crop' },
-      {
-        'nameCn': '表头详情栏',
-        'name': 'DetailPage',
-        'key': 'detail-page',
-        'mark': {
-          'type': 'danger',
-          'text': 'Del'
-        }
-      },
       { 'nameCn': '图片预览', 'name': 'Image', 'key': 'image' },
       { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
       { 'nameCn': '文字滚动', 'name': 'ScrollText', 'key': 'scroll-text' },
-      {
-        'nameCn': '滚动块',
-        'name': 'SlideBar',
-        'key': 'slide-bar',
-        'mark': {
-          'type': 'danger',
-          'text': 'Del'
-        }
-      },
       { 'nameCn': '标签', 'name': 'Tag', 'key': 'tag' },
       { 'nameCn': '标签组', 'name': 'TagGroup', 'key': 'tag-group' },
       { 'nameCn': '输入框', 'name': 'TextPopup', 'key': 'text-popup' },

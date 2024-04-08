@@ -33,6 +33,7 @@ test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
   const input = select.locator('.tiny-input__inner')
   const valueInput = wrap.locator('.custom .tiny-input__inner')
 
+  await expect(input).toHaveValue('黄金糕')
   await page.waitForTimeout(200)
   const inputBox = await input.boundingBox()
 

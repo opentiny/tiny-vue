@@ -1,5 +1,5 @@
 <template>
-  <tiny-tree-menu lazy :load="loadNode"></tiny-tree-menu>
+  <tiny-tree-menu :data="[]" lazy :load="loadNode"></tiny-tree-menu>
 </template>
 
 <script setup>

@@ -196,7 +196,10 @@ export const handleDocumentClick =
       !popperElm ||
       popperElm.contains(target)
     ) {
-      return
+      return false
+    } else {
+      state.showPopper = false
+      return true
     }
 
     state.showPopper = false

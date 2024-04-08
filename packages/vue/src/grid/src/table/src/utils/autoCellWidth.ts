@@ -145,9 +145,61 @@ const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl, scrol
   }, 0)
 }
 
-export const calcFixedStickyPosition = ({ headerEl, bodyEl, columnStore, scrollbarWidth }) => {
+// 设置分组父表头冻结列sticky布局的left和right值
+const setGroupHeaderPosition = ({ columnChart, direction }) => {
+  // 这里需要浅拷贝一份，避免改变原始数据的顺序
+  const colChart = columnChart.slice()
+
+  // 如果是右测冻结则需要反转数组后再进行循环
+  if (direction === 'right') {
+    colChart.reverse()
+  }
+
+  colChart.forEach((columns) => {
+    const len = columns.length
+    if (len === 1) {
+      return
+    }
+
+    const leafColumn = columns[len - 1]
+    const leafDirectionPos = leafColumn?.style?.[direction] ?? null
+
+    if (leafDirectionPos !== null) {
+      columns.forEach((column) => {
+        column.style = column.style || {}
+        const pos = column.style[direction] ?? null
+        if (pos === null) {
+          column.style[direction] = leafDirectionPos
+        }
+      })
+    }
+  })
+}
+
+// 设置分组父表头冻结列是否左侧最后一项，或者是否右侧第一项
+const setGroupHeaderLastOrFirst = ({ columnChart, leftList, rightList }) => {
+  columnChart.forEach((columns) => {
+    const len = columns.length
+    const leafColumn = columns[len - 1]
+
+    const isFixedLeftLast = leftList[leftList.length - 1] === leafColumn
+    const isFixedRightFirst = rightList[0] === leafColumn
+
+    columns.forEach((column) => {
+      column.isFixedLeftLast = column.isFixedLeftLast || isFixedLeftLast
+      column.isFixedRightFirst = column.isFixedRightFirst || isFixedRightFirst
+    })
+  })
+}
+
+export const calcFixedStickyPosition = ({ headerEl, bodyEl, columnStore, scrollbarWidth, columnChart, isGroup }) => {
   // 获取左侧和右侧冻结列
   const { leftList, rightList } = columnStore
   setLeftOrRightPosition({ columnList: leftList, direction: 'left', headerEl, bodyEl, scrollbarWidth })
   setLeftOrRightPosition({ columnList: rightList, direction: 'right', headerEl, bodyEl, scrollbarWidth })
+  if (isGroup) {
+    setGroupHeaderPosition({ columnChart, direction: 'left' })
+    setGroupHeaderPosition({ columnChart, direction: 'right' })
+    setGroupHeaderLastOrFirst({ columnChart, leftList, rightList })
+  }
 }

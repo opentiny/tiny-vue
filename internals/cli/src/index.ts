@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command, Option } from 'commander'
 import { createIconSaas } from './commands/create/index.js'
-import { buildUi, buildEntry, buildRuntime, buildReact, buildEntryReact, chartBetaTheme } from './commands/build'
+import { buildUi, buildEntry, buildRuntime, buildReact, buildEntryReact, chartTheme } from './commands/build'
 import { releaseAurora } from './commands/release/releaseAurora'
 
 const program = new Command()
@@ -14,7 +14,7 @@ program.command('build:entry-react').description('生成 react 组件库入口')
 
 program.command('build:entry').description('生成组件库入口').action(buildEntry)
 
-program.command('build:chartTheme').description('切换chart-beta主题').action(chartBetaTheme)
+program.command('build:chartTheme').description('切换chart主题').action(chartTheme)
 
 program
   .command('build:ui')

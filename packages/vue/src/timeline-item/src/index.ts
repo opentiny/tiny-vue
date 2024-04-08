@@ -39,6 +39,10 @@ export const timelineItemProps = {
   lineWidth: {
     type: [String, Number],
     default: ''
+  },
+  autoColorField: {
+    type: String,
+    default: 'autoColor'
   }
 }
 

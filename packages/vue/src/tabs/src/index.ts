@@ -70,7 +70,6 @@ export const tabsProps = {
 
 export default defineComponent({
   name: $prefix + 'Tabs',
-  emits: ['tab-nav-update'],
   props: tabsProps,
   setup(props, context) {
     return $setup({ props, context, template })

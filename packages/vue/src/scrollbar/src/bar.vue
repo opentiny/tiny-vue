@@ -12,11 +12,11 @@
 
 <script lang="tsx">
 import { renderless, api } from '@opentiny/vue-renderless/scrollbar/vue-bar'
-import { setup, $prefix, h } from '@opentiny/vue-common'
+import { setup, $prefix, h, defineComponent } from '@opentiny/vue-common'
 
 // 此处引入 h 是为了防止打包后 h 被重命名导致组件报错的问题
 
-export default {
+export default defineComponent({
   name: $prefix + 'Bar',
   props: {
     vertical: Boolean,
@@ -51,5 +51,5 @@ export default {
       </div>
     )
   }
-}
+})
 </script>

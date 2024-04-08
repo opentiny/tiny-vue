@@ -193,7 +193,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n          <p>通过 <code>before-close</code> 属性可以配置一个拦截弹窗关闭的方法。如果方法返回 <code>false</code> 值，则拦截弹窗关闭；否则不拦截。</p>\n          <p>可以通过该拦截方法传入的参数获取关闭的操作类型 <code>confirm</code> 弹窗有以下关闭类型：</p>\n          <ul>\n            <li>confirm：点击确认时关闭</li>\n            <li>cancel：点击取消时关闭</li>\n            <li>close：点击关闭按钮时关闭</li>\n          </ul>\n        ',
+          '<p>通过 <code>before-close</code> 属性可以配置一个拦截弹窗关闭的方法。如果方法返回 <code>false</code> 值，则拦截弹窗关闭；否则不拦截。</p>\n          <p>可以通过该拦截方法传入的参数获取关闭的操作类型 <code>confirm</code> 弹窗有以下关闭类型：</p>\n          <ul>\n            <li>confirm：点击确认时关闭</li>\n            <li>cancel：点击取消时关闭</li>\n            <li>close：点击关闭按钮时关闭</li>\n          </ul>\n        ',
         'en-US':
           '<p>The <code>tabindex</code> attribute is used to determine whether the focus can be obtained by pressing Tab and the focus sequence. This parameter is valid only when the <code>readonly</code> attribute is set to false. </p>'
       },
@@ -206,8 +206,8 @@ export default {
         'en-US': 'Reset'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>readonly</code> 属性设置为是否禁用。</p>',
-        'en-US': '<p>Use the <code>before-reset</code> attribute to set the hook function before reset. </p>'
+        'zh-CN': '<p>通过 <code>readonly</code> 属性设置为是否只读。</p>',
+        'en-US': '<p>Set the <code>readonly</code> attribute to read-only.</p>'
       },
       codeFiles: ['readonly.vue']
     },
@@ -215,12 +215,13 @@ export default {
       demoId: 'tabindex',
       name: {
         'zh-CN': '输入框的 tabindex',
-        'en-US': 'Component Query Condition Slot'
+        'en-US': 'tabindex in the text box'
       },
       desc: {
         'zh-CN':
           '<p>通过 <code>tabindex</code> 属性设置通过 Tab 键获焦及获焦顺序（<code>readonly</code> 属性设置为 false 时有效）。</p>',
-        'en-US': '<p>Customize the pop-up panel query structure by slot <code>search</code>. </p>'
+        'en-US':
+          '<p>Set the focus obtaining and focus obtaining sequence by pressing Tab through the <code>tabindex</code> attribute. This parameter is valid only when the <code>readonly</code> attribute is set to false.</p>'
       },
       codeFiles: ['tabindex.vue']
     },
@@ -232,7 +233,7 @@ export default {
       },
       desc: {
         'zh-CN': '<p>通过 <code>before-reset</code> 属性设置重置前的钩子函数。</p>',
-        'en-US': '<p> is set to read-only through the <code>disabled</code> attribute. </p>'
+        'en-US': '<p>Use the <code>before-reset</code> attribute to set the hook function before reset. </p>'
       },
       codeFiles: ['before-reset.vue']
     },
@@ -240,12 +241,11 @@ export default {
       demoId: 'slot',
       name: {
         'zh-CN': '组件查询条件插槽',
-        'en-US': 'The filter criteria in the pop-up window can be cleared.'
+        'en-US': 'Component Query Condition Slot'
       },
       desc: {
         'zh-CN': '<p>通过插槽 <code>search</code> 自定义弹出面板查询结构。</p>',
-        'en-US':
-          'The <p><code>clearable</code> Popeditor component supports the configuration of the Clear button in the search form. </p>'
+        'en-US': 'Customize the pop-up panel query structure through slot <code>search</code>.'
       },
       codeFiles: ['slot.vue']
     },
@@ -268,9 +268,8 @@ export default {
         'en-US': 'Submit Field Mapping'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>disabled</code> 属性设置为是否只读。</p>',
-        'en-US':
-          '<p>The <code>value-field</code> attribute is used to set the fields submitted by the component to the background. </p>'
+        'zh-CN': '<p>通过 <code>disabled</code> 属性设置为是否禁用。</p>',
+        'en-US': '<p>Use the <code>disabled</code> attribute to set whether to disable the function.</p>'
       },
       codeFiles: ['disabled.vue']
     },

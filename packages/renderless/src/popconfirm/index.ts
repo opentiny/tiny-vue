@@ -39,3 +39,11 @@ export const handleEmit =
       emit(type, state)
     }
   }
+
+export const handleDocumentClick =
+  ({ vm, api }: Pick<IPopconfirmRenderlessParams, 'api' | 'vm'>) =>
+  (event) => {
+    if (vm.$refs.popover.handleDocumentClick(event)) {
+      api.hide()
+    }
+  }

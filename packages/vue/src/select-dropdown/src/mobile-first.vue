@@ -119,12 +119,12 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/select-dropdown/vue'
-import { props, setup } from '@opentiny/vue-common'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 import TinySearch from '@opentiny/vue-search'
 import TinyButton from '@opentiny/vue-button'
 import { iconClose, iconChevronUp, iconError } from '@opentiny/vue-icon'
 
-export default {
+export default defineComponent({
   components: {
     TinySearch,
     TinyButton,
@@ -153,5 +153,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
-}
+})
 </script>

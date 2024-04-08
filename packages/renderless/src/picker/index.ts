@@ -52,12 +52,14 @@ export const getPanel =
   }
 
 export const watchMobileVisible =
-  ({ api, props, state }) =>
+  ({ api, props, state, nextTick }) =>
   ([dateMobileVisible, timeMobileVisible]) => {
     if (dateMobileVisible || timeMobileVisible) {
       state.valueOnOpen = Array.isArray(props.modelValue) ? [...props.modelValue] : props.modelValue
     } else {
-      api.emitChange(props.modelValue)
+      nextTick(() => {
+        api.emitChange(props.modelValue)
+      })
     }
   }
 
@@ -72,8 +74,9 @@ export const watchPickerVisible =
       state.valueOnOpen = Array.isArray(props.modelValue) ? [...props.modelValue] : props.modelValue
     } else {
       api.hidePicker()
-      // tiny 新增： 解决vue3下，modelValue的值仍是旧值，误认为值不变，不触发change事件了。
-      nextTick(() => api.emitChange(props.modelValue))
+      nextTick(() => {
+        api.emitChange(props.modelValue)
+      })
       state.userInput = null
 
       if (props.validateEvent) {
@@ -197,7 +200,9 @@ export const parsedValue =
             return isDate(item) ? formatDate(item, state.valueFormat, t) : item
           })
         } else {
-          date = formatDate(date, state.valueFormat, t)
+          if (state.valueFormat !== DATEPICKER.TimesTamp) {
+            date = formatDate(date, state.valueFormat, t)
+          }
         }
       }
       const result = api.parseAsFormatAndType(date, state.valueFormat, state.type, props.rangeSeparator)

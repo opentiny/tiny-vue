@@ -180,7 +180,10 @@ const initWatch = ({ watch, state, api, props, nextTick, vm }) => {
   watch(
     () => state.index,
     (value) => {
-      api.reset()
+      if (!props.keepStyle) {
+        api.reset()
+      }
+
       props.onSwitch(value)
     },
     { immediate: true }

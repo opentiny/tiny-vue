@@ -43,7 +43,7 @@
         class="h-max flex relative right-full will-change-transform"
         @touchstart="touchstart"
         @touchend="touchend"
-        @touchmove.prevent="touchmove"
+        @touchmove="touchmove"
         :style="{
           'width': ' 300%',
           'transform': `translateX(${state.delta}px)`,

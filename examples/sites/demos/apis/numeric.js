@@ -18,6 +18,18 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'empty-value',
+          type: 'any',
+          defaultValue: 'undefined',
+          desc: {
+            'zh-CN': '设置计数器在可清空下，清空后组件的绑定值',
+            'en-US': 'Sets the bound value of the cleared component when the counter can be cleared.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'empty-value',
+          mfDemo: 'empty-value'
+        },
+        {
           name: 'blank',
           type: 'string',
           defaultValue: 'true',

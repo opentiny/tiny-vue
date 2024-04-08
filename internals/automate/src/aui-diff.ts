@@ -19,7 +19,6 @@ const ignoreList = [
   'locale',
   'grid',
   'chart',
-  'chart-beta',
   'grid-column',
   'grid-manager',
   'grid-toolbar',

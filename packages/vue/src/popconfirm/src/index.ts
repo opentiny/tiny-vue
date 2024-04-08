@@ -45,6 +45,10 @@ export const popConfirmProps = {
     type: Boolean,
     default: true
   },
+  closeOnClickOutside: {
+    type: Boolean,
+    default: true
+  },
   title: String,
   placement: {
     type: String,
@@ -53,7 +57,11 @@ export const popConfirmProps = {
   width: [String, Number],
   type: [String, Object],
   reference: {},
-  events: Object
+  events: Object,
+  popperAppendToBody: {
+    type: Boolean,
+    default: true
+  }
 }
 
 export default defineComponent({

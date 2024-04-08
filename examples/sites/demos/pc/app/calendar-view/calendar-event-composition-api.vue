@@ -8,6 +8,7 @@
     @week-change="weekChange"
     @year-change="yearChange"
     @month-change="monthChange"
+    @mode-change="modeChange"
   >
   </tiny-calendar-view>
 </template>
@@ -36,5 +37,9 @@ const yearChange = (newVal, oldVal) => {
 
 const monthChange = (newVal, oldVal) => {
   Modal.message({ message: `月改变事件: ${newVal}月, ${oldVal}月`, status: 'info' })
+}
+
+const modeChange = (val) => {
+  Modal.message({ message: `模式切换事件: ${val}`, status: 'info' })
 }
 </script>
