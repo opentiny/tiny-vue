@@ -11,7 +11,7 @@ export const watchModelValue =
     if (!showSeconds && modelValue.length === 3) {
       state.seconds = modelValue[2]
     }
-    state.dateArr = modelValue ? modelValue.slice(0, num) : []
+    state.dateArr = modelValue && state.dateArr.toString() !== 'NaN,NaN,NaN' ? modelValue.slice(0, num) : []
   }
 
 export const watchVisible =
@@ -37,6 +37,18 @@ export const confirm =
 
     emit('update:modelValue', state.value)
     emit('confirm', state.value)
+  }
+
+export const clear =
+  ({ state, emit, api, vm, dispatch }) =>
+  ($event) => {
+    state.dateArr = []
+
+    vm.$refs.cascaderSelect.clear(state.dateArr)
+    emit('update:modelValue', state.dateArr)
+    emit('clear', state.dateArr)
+    dispatch('Picker', 'handle-clear', $event)
+    api.updateVisible(false)
   }
 
 export const getTimePeriod =

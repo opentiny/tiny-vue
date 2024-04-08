@@ -8,6 +8,7 @@ test('多选复制单个标签', async ({ page }) => {
   const select = wrap.locator('.tiny-select').nth(0)
   const tag = select.locator('.tiny-tag').nth(0)
 
+  await expect(tag).toContainText('黄金糕')
   await page.waitForTimeout(200)
   const tagBox = await tag.locator('span').boundingBox()
   const x = tagBox.x + tagBox.width

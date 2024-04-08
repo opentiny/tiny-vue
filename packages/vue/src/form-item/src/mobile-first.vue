@@ -8,7 +8,7 @@
         state.formInline ? 'align-sub' : '',
         state.labelPosition === 'top' ? 'block mb-4' : '',
         state.validateState === 'error'
-          ? '[&_input]:border-color-error [&_textarea]:border-color-error [&_input:focus]:border-color-error [&_input:hover]:border-color-error [&_textarea:focus]:border-color-error [&_textarea:hover]:border-color-error'
+          ? '[&_.tiny-range-editor]:border-color-error [&_[data-tag~=tiny-range-editor]]:border-color-error [&_[data-tag=tiny-numeric-main]]:border-color-error [&_input]:border-color-error [&_textarea]:border-color-error [&_input:focus]:border-color-error [&_input:hover]:border-color-error [&_textarea:focus]:border-color-error [&_textarea:hover]:border-color-error'
           : '',
         state.labelPosition === 'top' && !state.hideRequiredAsterisk ? 'pl-0' : '',
         !slots.label && !label ? 'border-none' : '',
@@ -27,11 +27,12 @@
         :class="
           m(
             'py-3 sm:py-1.5 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border leading-5',
-            'overflow-hidden text-ellipsis text-left sm:text-right',
+            'overflow-hidden text-ellipsis',
             state.labelPosition === 'top'
               ? 'float-none inline-block text-left sm:text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0 sm:py-0 sm:pb-0.5 sm:min-h-[theme(spacing.0)]'
               : 'min-h-[theme(spacing.9)]',
-            state.labelPosition === 'left' ? 'text-left' : '',
+            state.labelPosition === 'right' ? 'text-right sm:text-right' : '',
+            state.labelPosition === 'left' ? 'text-left sm:text-left' : '',
             state.formInline && state.labelPosition === 'top' ? 'block' : '',
             state.isDisplayOnly ? 'leading-none h-auto align-[inherit] pr-4' : '',
             tipContent ? 'pr-5 sm:pr-7' : '',

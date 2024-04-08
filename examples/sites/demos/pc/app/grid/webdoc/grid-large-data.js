@@ -68,6 +68,30 @@ export default {
           '<div class="tip custom-block"><p class="custom-block-title"> Method Description </p>\n<p> <code>scrollTo(scrollLeft, scrollTop)</code>: Scroll to the corresponding position \n<code>scrollToRow(row)</code>: Scroll to the corresponding row \n<code>scrollToColumn(column)</code>: Scroll to the corresponding column </p>\n</div>\n'
       },
       'codeFiles': ['large-data/scroll-to.vue']
+    },
+    {
+      'demoId': 'large-data-column-anchor',
+      'name': { 'zh-CN': '表格列锚点', 'en-US': 'table column anchor' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>column-anchor</code> 设置表格列锚点，点击可快速滚动至对应列，表格初始化时，默认滚动到锚点第一项。</p>',
+        'en-US':
+          '<p>Set the table column anchor point through <code>column-anchor</code>. Click to quickly scroll to the corresponding column. When the table is initialized, it will scroll to the first item of the anchor point by default. </p>'
+      },
+      'codeFiles': ['large-data/column-anchor.vue']
+    },
+    {
+      'demoId': 'column-anchor-clear-active',
+      'name': {
+        'zh-CN': '再次加载数据时清除活跃列锚点',
+        'en-US': 'Clear active column anchors when loading data again'
+      },
+      'desc': {
+        'zh-CN': '<p>当使用 <code>fetch-data</code> 加载数据时，再次加载数据时会清除活跃列锚点。</p>',
+        'en-US':
+          '<p>When loading data using <code>fetch-data</code>, active column anchors are cleared when the data is loaded again.</p>'
+      },
+      'codeFiles': ['large-data/column-anchor-clear-active.vue']
     }
   ],
   apis: [{ 'name': 'grid-large-data', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

@@ -1,11 +1,11 @@
-import { $props, $setup, $prefix } from '@opentiny/vue-common'
+import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import PCTemplate from './pc.vue'
 
 const template = () => {
   return PCTemplate
 }
 
-export default {
+export default defineComponent({
   name: $prefix + 'DialogSelect',
   props: {
     ...$props,
@@ -78,4 +78,4 @@ export default {
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

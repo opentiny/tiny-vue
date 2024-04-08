@@ -27,7 +27,7 @@ import { isObject, isNull } from '@opentiny/vue-renderless/common/type'
 import { removeClass, addClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { isBoolean, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { updateCellTitle, getOffsetPos, emitEvent, getClass } from '@opentiny/vue-renderless/grid/utils'
-import { h, $prefix } from '@opentiny/vue-common'
+import { h, $prefix, defineComponent } from '@opentiny/vue-common'
 import { random } from '@opentiny/vue-renderless/common/string'
 
 function addListenerMousedown({ $table, mouseConfig, params, thOns }) {
@@ -163,8 +163,9 @@ function getThPropsArg(args) {
         [classMap.isEditable]: column.editor,
         [classMap.isFilter]: isObject(column.filter),
         [classMap.filterActive]: column.filter && column.filter.hasFilter,
-        'fixed-left-last__column': column.fixed === 'left' && leftList[leftList.length - 1] === column,
-        'fixed-right-first__column': column.fixed === 'right' && rightList[0] === column
+        'fixed-left-last__column':
+          column.fixed === 'left' && (leftList[leftList.length - 1] === column || column.isFixedLeftLast),
+        'fixed-right-first__column': column.fixed === 'right' && (rightList[0] === column || column.isFixedRightFirst)
       },
       getClass(headerClassName, params),
       getClass(headerCellClassName, params)
@@ -408,7 +409,7 @@ const documentOnmouseup = function ({
   emitEvent($table, 'resizable-change', [params])
 }
 
-export default {
+export default defineComponent({
   name: `${$prefix}GridHeader`,
   props: {
     collectColumn: Array,
@@ -516,4 +517,4 @@ export default {
       handleMousemoveEvent(event)
     }
   }
-}
+})

@@ -61,6 +61,12 @@
   --ti-steps-description-min-width: calc(var(--ti-common-space-10, 10px) * 10);
   // 垂直单链型描述上边距
   --ti-steps-vertical-description-margin-top: var(--ti-common-space-2x);
+  // 图标边框宽度
+  --ti-steps-icon-border-width: var(--ti-common-space-1, 1px);
+  // 自定义图标背景色
+  --ti-steps-custom-icon-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+  // 自定义图标大小(hide)
+  --ti-steps-custom-icon-width-height: var(--ti-common-space-3x, 12px);
 
   // 活跃节点背景色
   --ti-steps-advanced-active-bg-color: var(--ti-common-color-bg-emphasize, #5e7ce0);
@@ -98,6 +104,8 @@
   --ti-steps-unselected-icon-color: var(--ti-common-color-icon-normal, #575d6c);
   // 未完成节点序号悬浮图标色
   --ti-steps-unselected-hover-icon-color: var(--ti-common-color-icon-hover, #5e7ce0);
+  // 未完成节点序号悬浮名称字体色
+  --ti-steps-unselected-hover-name-text-color: var(--ti-common-color-icon-hover, #5e7ce0);
   // 未完成节点边框色
   --ti-steps-unselected-border-color: var(--ti-steps-unselected-icon-color);
   // 未完成节点悬浮边框色
@@ -114,6 +122,11 @@
   // 处理中节点序号背景色
   --ti-steps-doing-icon-bg-color: var(--ti-common-color-bg-white-normal, #fff);
 
+  // 警告节点图标色
+  --ti-steps-warning-icon-color: var(--ti-common-color-bg-white-normal, #fff);
+  // 警告节点背景色(hide)
+  --ti-steps-warning-icon-bg-color: var(--ti-common-color-warn, #fa9841);
+
   // 错误节点的背景色
   --ti-steps-error-icon-bg-color: var(--ti-common-color-bg-white-normal, #fff);
   // 错误节点悬浮背景色
@@ -128,7 +141,7 @@
   --ti-steps-error-text-color: var(--ti-common-color-error-text, #de504e);
 
   // 禁用节点的背景色
-  --ti-steps-disabled-icon-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+  --ti-steps-disabled-icon-bg-color: var(--ti-common-color-bg-disabled, #f5f5f6);
   // 禁用节点序号文本色
   --ti-steps-disabled-icon-color: var(--ti-common-color-text-disabled, #adb0b8);
   // 禁用节点边框色

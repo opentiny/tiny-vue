@@ -145,6 +145,8 @@ export const selectChange =
     api.resetDeptState(deptState.slice(level + 1, 9))
     api.setSelectData()
 
+    state.selectChanged = true
+
     const current = formatJudgCofim(deptState)
     const { hrapprover } = state
 
@@ -214,7 +216,16 @@ export const confirm =
     }
   }
 
-export const closeDialog = (emit) => () => emit('close')
+export const closeDialog =
+  ({ emit, state, deptState }) =>
+  (type) => {
+    if (state.selectChanged) {
+      state.labels = state.lastLabels
+      deptState.forEach((item, i) => Object.assign(item, state.lastDeptState[i]))
+    }
+
+    emit('close', type)
+  }
 
 export const cancel =
   ({ emit, state, deptState }) =>

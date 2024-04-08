@@ -109,8 +109,8 @@ export default {
   },
   methods: {
     handleClick(next) {
-      // doSomething() // do something you want
-      next() // next
+      // do something you want
+      next()
     }
   }
 }

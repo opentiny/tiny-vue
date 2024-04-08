@@ -1,18 +1,9 @@
-import ChartTree from './src/index.js'
-import { version } from './package.json'
+import ChartTree from './src/chart-tree.vue'
 
-/* istanbul ignore next */
-ChartTree.install = function (Vue) {
+ChartTree.install = function (Vue: any) {
   Vue.component(ChartTree.name, ChartTree)
 }
 
-ChartTree.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    ChartTree.install(window.Vue)
-  }
-}
+export { ChartTree }
 
 export default ChartTree

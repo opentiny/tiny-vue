@@ -130,14 +130,14 @@ import Currency from '@opentiny/vue-currency'
 import Button from '@opentiny/vue-button'
 import DatePicker from '@opentiny/vue-date-picker'
 import { IconCoin } from '@opentiny/vue-icon'
-import { setup, props } from '@opentiny/vue-common'
+import { setup, props, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/amount/vue'
 import FilterBox from '@opentiny/vue-filter-box'
 import Radio from '@opentiny/vue-radio'
 import RadioGroup from '@opentiny/vue-radio-group'
 import '@opentiny/vue-theme/amount/index.less'
 
-export default {
+export default defineComponent({
   inheritAttrs: false,
   components: {
     TinyPopover: Popover,
@@ -191,5 +191,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
-}
+})
 </script>

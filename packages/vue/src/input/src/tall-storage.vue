@@ -28,11 +28,11 @@
 </template>
 
 <script lang="ts">
-import { $prefix, setup } from '@opentiny/vue-common'
+import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tall-storage/vue'
 import '@opentiny/vue-theme/tall-storage/index.less'
 
-export default {
+export default defineComponent({
   name: $prefix + 'TallStorage',
   inheritAttrs: false,
   props: {
@@ -42,5 +42,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
-}
+})
 </script>

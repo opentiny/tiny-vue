@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-statistic",
-  "version": "3.7.0",
+  "version": "3.15.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -17,9 +17,6 @@
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-layout": "workspace:~",
-    "@opentiny/vue-row": "workspace:~",
-    "@opentiny/vue-col": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"

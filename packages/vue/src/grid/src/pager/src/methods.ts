@@ -37,7 +37,7 @@ export default {
   renderPager({ $slots, _vm, loading, pager, pagerConfig, tableLoading, vSize }) {
     let res = null
 
-    const { isThemeSaas, isModeMobileFirst, isViewGantt, currentBreakpoint } = _vm
+    const { isThemeSaas, isModeMobileFirst, isViewGantt, currentBreakpoint, fetchData } = _vm
     const style = { display: 'none' }
 
     // 使用saas主题和多端模式时，内置Pager使用多端模板。在非gantt视图或gantt视图大屏下显示多端Pager
@@ -57,7 +57,7 @@ export default {
     if ($slots.pager) {
       res = $slots.pager()
     } else if (pager) {
-      pager.component = pager.component || (_vm.fetchData ? Pager : null)
+      pager.component = pager.component || (fetchData && fetchData.api ? Pager : null)
       res = h(hooks.toRaw(pager.component), {
         props: {
           size: vSize,

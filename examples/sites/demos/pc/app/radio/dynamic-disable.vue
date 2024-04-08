@@ -4,9 +4,7 @@
     <tiny-radio disabled v-model="radio" label="不选中禁用">不选中禁用</tiny-radio>
     <div class="mt-20">
       <tiny-radio-group disabled v-model="radio1">
-        <tiny-radio :label="3">备选项1</tiny-radio>
-        <tiny-radio :label="6">备选项2</tiny-radio>
-        <tiny-radio :label="9">备选项3</tiny-radio>
+        <tiny-radio v-for="item in dataArr" :key="item.value" :label="item.lable">{{ item.value }}</tiny-radio>
       </tiny-radio-group>
     </div>
 
@@ -32,8 +30,13 @@ export default {
   data() {
     return {
       radio: '禁用',
-      radio1: '3',
-      radio2: '1'
+      radio1: '6',
+      radio2: '1',
+      dataArr: [
+        { lable: '3', value: '备选项1' },
+        { lable: '6', value: '备选项2' },
+        { lable: '9', value: '备选项3' }
+      ]
     }
   }
 }

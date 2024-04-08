@@ -86,19 +86,44 @@ function getFixedLeft($table, from, column, body, offset) {
   return scrollLeft
 }
 
+// 计算水平滚动位置（考虑存在冻结表的情况）
+function computeScrollLeft($table, td) {
+  const { tableBody } = $table.$refs
+  const { visibleColumn } = $table
+  const { scrollLeft: bodyLeft, clientWidth: bodyWidth } = tableBody.$el
+  // Tiny表格冻结列采用sticky，需遍历计算整体宽度
+  let leftWidth = 0
+  let rightWidth = 0
+  visibleColumn.forEach((column) => {
+    if (column.fixed === 'left') {
+      leftWidth += column.renderWidth
+    } else if (column.fixed === 'right') {
+      rightWidth += column.renderWidth
+    }
+  })
+  const tdLeft = td._accumulateRenderWidth || td.offsetLeft + (td.offsetParent ? td.offsetParent.offsetLeft : 0)
+  const tdWidth = td._renderWidth || td.clientWidth
+
+  let scrollLeft
+
+  // 列元素在主表体可视区左侧（包括被左冻结表部分遮挡的情况）
+  if (tdLeft < bodyLeft + leftWidth) {
+    scrollLeft = tdLeft - leftWidth
+  } else if (tdLeft + tdWidth > bodyLeft + bodyWidth - rightWidth) {
+    // 列元素在主表体可视区右侧（包括被右冻结表部分遮挡的情况）
+    scrollLeft = tdLeft + tdWidth - bodyWidth + rightWidth
+  } else {
+    // 列元素在主表体可视区内
+    scrollLeft = bodyLeft
+  }
+
+  return scrollLeft
+}
+
 function setBodyLeft(body, td, $table, column, move) {
   const { isLeftArrow, isRightArrow, from } = move || {}
-  const bodyWidth = body.clientWidth
-  const bodySrcollLeft = body.scrollLeft
-  const tdOffsetLeft = td.offsetLeft + (td.offsetParent ? td.offsetParent.offsetLeft : 0)
-  const tdWidth = td.clientWidth
 
-  if (tdOffsetLeft < bodySrcollLeft || tdOffsetLeft > bodySrcollLeft + bodyWidth) {
-    // 如果跨列滚动
-    from !== column && (body.scrollLeft = tdOffsetLeft)
-  } else if (tdOffsetLeft + tdWidth >= bodyWidth + bodySrcollLeft) {
-    body.scrollLeft = bodySrcollLeft + tdWidth
-  }
+  body.scrollLeft = computeScrollLeft($table, td)
 
   if (from) {
     const direction = isLeftArrow ? 'left' : isRightArrow ? 'right' : null
@@ -145,7 +170,10 @@ export const colToVisible = ($table, column, move) => {
         scrollLeft += visibleColumn[index].renderWidth
       }
 
-      gridbodyEl.scrollLeft = scrollLeft
+      gridbodyEl.scrollLeft = computeScrollLeft($table, {
+        _accumulateRenderWidth: scrollLeft,
+        _renderWidth: column.renderWidth
+      })
     }
   })
 }

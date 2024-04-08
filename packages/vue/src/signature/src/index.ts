@@ -1,8 +1,8 @@
-import { $props, $setup, $prefix } from '@opentiny/vue-common'
+import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import template from 'virtual-template?mobile-first'
 
-export default {
+export default defineComponent({
   name: $prefix + 'Signature',
   props: {
     ...$props,
@@ -40,4 +40,4 @@ export default {
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

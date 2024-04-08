@@ -6,6 +6,9 @@
       :visible="state.actionSheetVisible"
       @update:visible="state.actionSheetVisible = $event"
     >
+      <template #header-left>
+        <slot name="header-left"></slot>
+      </template>
       <div
         data-tag="tiny-mobile-cascader-select-body"
         class="w-full h-max rounded-t-lg bg-color-bg-1 select-none overflow-hidden"
@@ -69,6 +72,7 @@
     </tiny-action-sheet>
   </div>
 </template>
+
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/cascader-select/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
@@ -106,7 +110,7 @@ export default defineComponent({
     'type'
   ],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true, classes })
+    return setup({ props, context, renderless, api, classes })
   }
 })
 </script>

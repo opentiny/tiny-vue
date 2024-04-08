@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test('自定义段落宽度', async ({ page }) => {
+test('段落宽度', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('skeleton#custom-paragraph-width')
 

@@ -43,7 +43,7 @@
   }
 
   &.@{popper-prefix-cls} {
-    margin-top: 2px;
+    margin: var(--ti-select-dropdown-margin-top) 0;
   }
 
   & .@{scrollbar-prefix-cls}.is-empty {
@@ -74,6 +74,7 @@
       box-sizing: border-box;
       border-width: var(--ti-select-dropdown-search-border-width);
       background-color: var(--ti-select-dropdown-search-bg-color);
+      height: var(--ti-select-dropdown-search-height);
       padding-right: var(--ti-select-dropdown-search-input-padding-right);
       padding-left: var(--ti-select-dropdown-search-input-padding-left);
       border-radius: var(--ti-select-dropdown-search-border-radius);
@@ -98,6 +99,8 @@
 
     .@{input-prefix-cls}__prefix {
       display: var(--ti-select-dropdown-search-prefix-display);
+      left: 0;
+      font-size: 0;
 
       .tiny-svg {
         font-size: var(--ti-select-dropdown-icon-size);
@@ -208,7 +211,7 @@
   & &__item {
     white-space: nowrap;
     box-sizing: border-box;
-    padding: 0 8px;
+    padding: 0 var(--ti-select-dropdown-item-padding-horizontal);
 
     &.is-disabled {
       svg path:first-of-type {
@@ -218,7 +221,7 @@
   }
 
   .@{select-prefix-cls}__top-create {
-    margin: 0 8px 4px 8px;
+    margin: 0 8px 4px;
     border-bottom: var(--ti-select-dropdown-top-create-border-weight-bottom)
       var(--ti-select-dropdown-top-create-border-style-bottom) var(--ti-select-dropdown-top-create-border-color-bottom);
 

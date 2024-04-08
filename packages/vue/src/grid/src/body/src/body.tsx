@@ -36,7 +36,7 @@ import {
 import { getCellLabel } from '../../tools'
 import GlobalConfig from '../../config'
 import { iconChevronRight, iconChevronDown } from '@opentiny/vue-icon'
-import { h, hooks, $prefix } from '@opentiny/vue-common'
+import { h, hooks, $prefix, defineComponent } from '@opentiny/vue-common'
 import { getTreeChildrenKey, getTreeShowKey } from '../../table/src/strategy'
 import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
 
@@ -520,12 +520,9 @@ function renderRow(args) {
   let { $rowIndex, $seq, $table, _vm, editStore } = args
   let { groupFolds, h, row, rowActived } = args
   let { rowClassName, rowIndex, rowKey, rowLevel, rowid, rows } = args
-  let { selection, seq, tableColumn, trOn, treeConfig } = args
-  let { scrollYLoad } = $table
-  let treeShowKey = getTreeShowKey({ scrollYLoad, treeConfig })
-  let { hideMethod } = treeConfig || {}
+  let { selection, seq, tableColumn, trOn, treeConfig, isNotRenderRow } = args
 
-  if ((treeShowKey && !row[treeShowKey]) || (hideMethod && hideMethod(row, rowLevel))) {
+  if (isNotRenderRow) {
     return
   }
 
@@ -645,6 +642,7 @@ function renderRowTree(args, renderRows) {
     h,
     _vm,
     $table,
+    // $seq 树表特有序号：1 --> 1.1
     $seq: $seq ? `${$seq}.${seq}` : `${seq}`,
     rowLevel: rowLevel + 1,
     tableData: rowChildren,
@@ -665,6 +663,8 @@ function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, se
   // 子级索引是否按数字递增显示：true(子级索引按数字递增显示，父级1，子级2)；false(子级索引在父级索引基础上增加，父级1，子级1.1)
   let isOrdered = treeConfig ? Boolean(treeConfig.ordered) : false
   seqCount = seqCount || { value: 0 }
+  let treeShowKey = getTreeShowKey({ scrollYLoad, treeConfig })
+  let { hideMethod } = treeConfig || {}
 
   // 循环表格数据，生成表格主体内容VNode，此处也是性能优化的整改点
   tableData.forEach((row, $rowIndex) => {
@@ -672,8 +672,13 @@ function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, se
     let rowIndex = $rowIndex
     let { actived } = editStore
     let rowActived = editConfig && actived.row === row
+    const isNotRenderRow = (treeShowKey && !row[treeShowKey]) || (hideMethod && hideMethod(row, rowLevel))
 
-    seqCount.value = seqCount.value + 1
+    // 树表虚拟滚动，如果当前行被剪切不需要渲染，则无需自增序号
+    if (!isNotRenderRow) {
+      seqCount.value = seqCount.value + 1
+    }
+
     let seq = isOrdered ? seqCount.value : rowIndex + 1
     if (scrollYLoad) {
       seq += startIndex
@@ -687,7 +692,8 @@ function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, se
     renderRowGroupData({ groupData, groupFolds, row, rowGroup, rowid, rows, tableColumn })
     let args = { $rowIndex, $seq, $table, _vm, editStore, groupFolds, h, row, rowActived }
     Object.assign(args, { rowClassName, rowIndex, rowKey, rowLevel, rowid, rows, selection, seq })
-    Object.assign(args, { tableColumn, trOn, treeConfig })
+
+    Object.assign(args, { tableColumn, trOn, treeConfig, isNotRenderRow })
 
     // 输出表格行列的vnode节点列表
     renderRow(args)
@@ -813,7 +819,7 @@ function renderYSpace({ scrollLoad }) {
   ])
 }
 
-export default {
+export default defineComponent({
   name: `${$prefix}GridBody`,
   props: {
     collectColumn: Array,
@@ -847,6 +853,10 @@ export default {
     // 表体第一层div监听滚动事件
     $el.onscroll = this.scrollEvent
     $el._onscroll = this.scrollEvent
+  },
+  updated() {
+    const { $parent: $table, fixedType } = this
+    !fixedType && $table.updateTableBodyHeight()
   },
   setup(props, { slots }) {
     hooks.onBeforeUnmount(() => {
@@ -925,4 +935,4 @@ export default {
       emitEvent($table, 'scroll', [{ type: 'body', scrollTop, scrollLeft, isX, isY, $table }, event])
     }
   }
-}
+})

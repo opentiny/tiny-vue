@@ -24,7 +24,7 @@ const changeTheme = () => {
   // 你想要替换的文件
   const filePath = path.join(
     __dirname,
-    '../../../../../packages/vue/src/chart-beta/chart-core/base/feature/token/constants.ts'
+    '../../../../../packages/vue/src/chart/chart-core/base/feature/token/constants.ts'
   )
 
   // 读取文件内容
@@ -40,6 +40,6 @@ const changeTheme = () => {
   fs.writeFileSync(filePath, content, 'utf-8')
 }
 
-export const chartBetaTheme = () => {
+export const chartTheme = () => {
   changeTheme()
 }

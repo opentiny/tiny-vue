@@ -27,7 +27,7 @@ export const skeletonProps = {
     type: Array as PropType<(string | number)[]>,
     default: () => []
   },
-  active: {
+  animated: {
     type: Boolean,
     default: true
   }

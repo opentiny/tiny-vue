@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-test('自定义段落行数', async ({ page }) => {
+test('段落行数', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('skeleton#custom-rows')
 

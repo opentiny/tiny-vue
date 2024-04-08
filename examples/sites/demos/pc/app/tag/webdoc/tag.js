@@ -29,12 +29,12 @@ export default {
     {
       demoId: 'color3',
       name: {
-        'zh-CN': '背景色与边框',
-        'en-US': 'Background color and border'
+        'zh-CN': '颜色与边框',
+        'en-US': 'Color and border'
       },
       desc: {
-        'zh-CN': '通过 <code>color</code> 设置背景色， <code>hit</code> 设置边框。',
-        'en-US': 'Set the size through <code>size</code> , with optional values: <code>(medium/small/mini)</code> .'
+        'zh-CN': `通过 <code>hit</code> 设置边框；<code>color</code> 设置颜色，可使用预设值，也可自定义颜色值；当自定义颜色值为字符串则只能设置背景色；若为数组则第一个值为背景色，第二个为文本色。`,
+        'en-US': `Use <code>hit</code> to set the border. <code>color</code> Set the color. You can use the preset value or customize the color value. If the value of Custom Color is a character string, only the background color can be set. If it is an array, the first value is the background color and the second is the text color.`
       },
       codeFiles: ['color3.vue']
     },

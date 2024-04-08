@@ -134,8 +134,8 @@ export interface BaseConfig {
 export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRuntime, design }: BaseConfig) => {
   // 处理tsconfig中配置，主要是处理paths映射，确保dts可以找到正确的包
   const compilerOptions = require(pathFromWorkspaceRoot(`tsconfig.vue${vueVersion}.json`)).compilerOptions
-  const versionTarget = isValidVersion(buildTarget) ? buildTarget : `${ns(vueVersion)}.${buildTarget}`
-  const themeAndRenderlessVersion = isValidVersion(buildTarget) ? buildTarget : `3.${buildTarget}`
+  let versionTarget = isValidVersion(buildTarget) ? buildTarget : `${ns(vueVersion)}.${buildTarget}`
+  let themeAndRenderlessVersion = isValidVersion(buildTarget) ? buildTarget : `3.${buildTarget}`
   const isThemeOrRenderless = (key) => key.includes('@opentiny/vue-theme') || key.includes('@opentiny/vue-renderless')
 
   return defineConfig({
@@ -160,7 +160,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
             }
           },
           include: [...dtsInclude, 'packages/vue/*.d.ts'],
-          exclude: ['**/__tests__'],
+          exclude: ['**/__tests__', '**/__test__'],
           beforeWriteFile: (filePath, content) => {
             return {
               // "vue/src/alert/index.d.ts" ==> "alert/index.d.ts"
@@ -177,6 +177,13 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
         generatePackageJsonPlugin({
           beforeWriteFile: (filePath, content) => {
             const dependencies = {}
+            const packageVersion = content.version
+
+            // 如果没有指定版本号，则按源码版本发布
+            if (!buildTarget) {
+              themeAndRenderlessVersion = packageVersion
+              versionTarget = `${vueVersion}${packageVersion.slice(1)}`
+            }
 
             Object.entries(content.dependencies).forEach(([key, value]) => {
               // dependencies里的@opentiny,统一使用：~x.x.0
@@ -359,7 +366,7 @@ async function batchBuildAll({ vueVersion, tasks, formats, message, emptyOutDir,
 
 export interface BuildUiOption {
   vueVersions: string[] // vue的版本
-  buildTarget: string // 目标版本，必填, 不需要major位，因为需要同时打出vue2和vue3的包
+  buildTarget?: string // 目标版本，非必填（1、不写major位，可以同时打出vue2和vue3包的版本。2、写完整版本号，可以打出指定版本号的包。3、不写版本号，按照源码里面的版本号构建）
   formats: string[] // 打包的格式
   clean: boolean // 是否清空build产物
   dts: boolean // 是否生成TS类型声明文件
@@ -408,7 +415,7 @@ export async function buildUi(
   names: string[] = [],
   {
     vueVersions = ['2', '3'],
-    buildTarget = '8.0',
+    buildTarget,
     formats = ['es'],
     clean = false,
     dts = true,

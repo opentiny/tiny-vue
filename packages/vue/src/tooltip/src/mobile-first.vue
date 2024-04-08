@@ -9,8 +9,7 @@ import {
   mergeClass,
   defineComponent,
   $props,
-  isEmptyVnode,
-  hooks
+  isEmptyVnode
 } from '@opentiny/vue-common'
 import { classes } from './token'
 
@@ -248,11 +247,7 @@ export default defineComponent({
       return element
     }
 
-    let firstElement = getFirstElement()
-
-    if (firstElement && hooks.Fragment && firstElement.type === hooks.Fragment) {
-      firstElement = firstElement.children[0]
-    }
+    const firstElement = getFirstElement()
 
     if (!firstElement) return null
     const data = firstElement.data || firstElement.props || (firstElement.props = {})

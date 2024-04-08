@@ -73,8 +73,8 @@ export default {
     {
       demoId: 'show-password',
       name: {
-        'zh-CN': '密码框',
-        'en-US': 'Password Input'
+        'zh-CN': '密码框明文展示',
+        'en-US': 'Password Input Plaintext'
       },
       desc: {
         'zh-CN':
@@ -113,13 +113,13 @@ export default {
     {
       demoId: 'prefix-suffix-icon',
       name: {
-        'zh-CN': '图标',
-        'en-US': 'Icon'
+        'zh-CN': '前置与后置图标',
+        'en-US': 'Prefix and Suffix Icon'
       },
       desc: {
-        'zh-CN': '<p>可通过 <code>prefix-icon, suffix-icon</code> 属性设置输入框头部、尾部图标</p>',
+        'zh-CN': '<p>可通过 <code>prefix-icon, suffix-icon</code> 属性分别设置输入框头部、尾部图标</p>',
         'en-US':
-          '<p>You can set the header icon or the end icon of the text box through the <code>prefix-icon, suffix-icon</code> attribute </p>'
+          '<p>You can set the header icon or the end icon of the text box through the <code>prefix-icon, suffix-icon</code> attribute respectively.</p>'
       },
       codeFiles: ['prefix-suffix-icon.vue']
     },
@@ -134,44 +134,6 @@ export default {
         'en-US': '<p>Set native attributes such as autofocus, readonly, name, etc.</p>'
       },
       codeFiles: ['native-attributes.vue']
-    },
-    {
-      demoId: 'methods',
-      name: {
-        'zh-CN': '实例方法',
-        'en-US': 'Methods'
-      },
-      desc: {
-        'zh-CN': '<p>可使用组件的实例方法：<code>focus | blur | select</code></p>',
-        'en-US': '<p>Those instance methods available: <code>focus | blur | select</code></p>'
-      },
-      codeFiles: ['methods.vue']
-    },
-    {
-      demoId: 'events',
-      name: {
-        'zh-CN': '事件',
-        'en-US': 'Events'
-      },
-      desc: {
-        'zh-CN':
-          '\n          <p>输入框的事件，包括\n            <code>input</code>(输入值时触发), \n            <code>blur</code>(失去焦点时触发), \n            <code>focus</code>(获取焦点时触发), \n            <code>change</code>(值改变时触发), \n            <code>clear</code>(清除按钮时触发)\n          </p>\n        ',
-        'en-US':
-          '\n          <p>Event of the text box, including:\n            <code>input</code> (triggered when a value is entered)\n            <code>blur</code> (triggered when the focus is lost)\n            <code>focus</code> (triggered when the focus is obtained)\n            <code>change</code> (triggered when the value changes)\n            <code>clear</code> (triggered when the button is cleared)\n          </p>\n        '
-      },
-      codeFiles: ['events.vue']
-    },
-    {
-      demoId: 'slots',
-      name: {
-        'zh-CN': '插槽',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p>Input 组件提供了丰富的插槽。</p>',
-        'en-US': '<p>Input component provides a rich set of slots.</p>'
-      },
-      codeFiles: ['slots.vue']
     },
     {
       demoId: 'type-select',
@@ -199,6 +161,44 @@ export default {
           '<p>You can set the <code>validate-event</code> attribute to trigger form validation upon input. Use <code>trigger</code> to configure the mode of triggering the validation rule. If <code>change</code> is used, the validation is triggered when the value in the text box changes. If <code>blur</code> is used, the validation is triggered after the focus is lost</p>'
       },
       codeFiles: ['validate-event.vue']
+    },
+    {
+      demoId: 'methods',
+      name: {
+        'zh-CN': '实例方法',
+        'en-US': 'Methods'
+      },
+      desc: {
+        'zh-CN': '<p>可使用组件的实例方法：<code>focus | blur | select</code></p>',
+        'en-US': '<p>Those instance methods available: <code>focus | blur | select</code></p>'
+      },
+      codeFiles: ['methods.vue']
+    },
+    {
+      demoId: 'slots',
+      name: {
+        'zh-CN': '插槽',
+        'en-US': 'events'
+      },
+      desc: {
+        'zh-CN': '<p>Input 组件提供了丰富的插槽。</p>',
+        'en-US': '<p>Input component provides a rich set of slots.</p>'
+      },
+      codeFiles: ['slots.vue']
+    },
+    {
+      demoId: 'events',
+      name: {
+        'zh-CN': '事件',
+        'en-US': 'Events'
+      },
+      desc: {
+        'zh-CN':
+          '<p>输入框的事件，包括 <code>input</code>(输入值时触发), <code>blur</code>(失去焦点时触发), <code>focus</code>(获取焦点时触发), <code>change</code>(值改变时触发), <code>clear</code>(清除按钮时触发)。</p>',
+        'en-US':
+          '<p>Event of the text box, including: <code>input</code> (triggered when a value is entered) <code>blur</code> (triggered when the focus is lost)<code>focus</code> (triggered when the focus is obtained) <code>change</code> (triggered when the value changes) <code>clear</code> (triggered when the button is cleared).</p>'
+      },
+      codeFiles: ['events.vue']
     }
   ]
 }

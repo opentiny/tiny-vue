@@ -10,6 +10,7 @@ test('配置式：使用 menu-options', async ({ page }) => {
   const dropDownMenu = page.locator('body > .tiny-dropdown-menu')
   const dropDownMenuItem = dropDownMenu.locator('.tiny-dropdown-item')
 
+  await expect(dropDown).toContainText('下拉菜单') // 增加这一行，可以保证hover()是成功的。
   await page.waitForTimeout(200)
   await dropDown.hover()
   await expect(dropDownMenu.first()).toBeVisible()
@@ -71,6 +72,7 @@ test('配置式：使用 options', async ({ page }) => {
   const dropDownMenu = page.locator('body > .tiny-dropdown-menu')
   const dropDownMenuItem = dropDownMenu.locator('.tiny-dropdown-item')
 
+  await expect(dropDown).toContainText('下拉菜单')
   await page.waitForTimeout(300)
   await dropDown.hover()
   await expect(dropDownMenu.first()).toBeVisible()
@@ -91,6 +93,7 @@ test('配置式：使用 options 和 text-field ', async ({ page }) => {
   const dropDownMenu = page.locator('body > .tiny-dropdown-menu')
   const dropDownMenuItem = dropDownMenu.locator('.tiny-dropdown-item')
 
+  await expect(dropDown).toContainText('下拉菜单')
   await page.waitForTimeout(300)
   await dropDown.hover()
   await expect(dropDownMenu.first()).toBeVisible()

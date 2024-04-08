@@ -26,7 +26,7 @@ import { objectMap } from '@opentiny/vue-renderless/grid/static/'
 import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { emitEvent, getEventTargetNode, getListeners } from '@opentiny/vue-renderless/grid/utils'
 import GlobalConfig from '../../config'
-import { h, $prefix } from '@opentiny/vue-common'
+import { h, $prefix, defineComponent } from '@opentiny/vue-common'
 
 function renderNoSlotDropdowns({ $slots, _vm, buttonBase, loading, tableListeners }) {
   let loadingVNode = []
@@ -113,7 +113,7 @@ function getButtonBase({ disabled, isText, loading, name, type, vSize }) {
   }
 }
 
-export default {
+export default defineComponent({
   name: `${$prefix}GridButton`,
   inheritAttrs: false,
   props: {
@@ -192,4 +192,4 @@ export default {
 
     return { slots, tableListeners }
   }
-}
+})

@@ -19,8 +19,9 @@
         </tiny-grid-toolbar>
       </template>
       <tiny-grid-column type="selection" width="100"></tiny-grid-column>
-      <tiny-grid-column type="index" width="80"></tiny-grid-column>
-      <tiny-grid-column field="name" title="公司名称" tree-node></tiny-grid-column>
+      <tiny-grid-column type="index" width="80" tree-node></tiny-grid-column>
+      <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
+
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
       <tiny-grid-column
         field="employees"
@@ -92,7 +93,9 @@ function copy(nodes1, nodes2) {
 
   return res
 }
+
 const increaseId = ref(30)
+
 const tableData = ref([
   {
     id: '1',
@@ -209,8 +212,8 @@ function insertEvent() {
     id: String(increaseId.value++),
     children: [
       {
-        name: '新数据-child',
-        id: String(increaseId.value++)
+        id: String(increaseId.value++),
+        name: '新数据-child'
       }
     ]
   }

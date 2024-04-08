@@ -19,10 +19,10 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/currency/vue'
-import { props, setup } from '@opentiny/vue-common'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 import SelectMobile from '@opentiny/vue-select-mobile'
 
-export default {
+export default defineComponent({
   inheritAttrs: false,
   components: {
     TinySelectMobile: SelectMobile
@@ -44,5 +44,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
-}
+})
 </script>

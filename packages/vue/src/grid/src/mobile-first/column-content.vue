@@ -14,7 +14,8 @@ export default defineComponent({
     const { cardConfig = {} } = config
     const props = {
       attrs: { 'data-tag': 'tiny-table-column-content' },
-      class: 'my-0.5 truncate space-y-2 sm:space-y-1 [&_[data-tag=tiny-input]]:leading-7'
+      class:
+        'my-0.5 truncate space-y-2 sm:space-y-1 [&_[data-tag=tiny-input]]:leading-7 [&_[data-tag=tiny-input-textarea]>span]:pt-0'
     }
     const ons = () => ({ mouseenter: this.handleMouseenter, mouseleave: this.handleMouseleave })
 

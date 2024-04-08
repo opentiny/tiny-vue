@@ -235,9 +235,7 @@ import { t } from '@opentiny/vue-locale'
 import { GridTools } from '@opentiny/vue-grid'
 import { find } from '@opentiny/vue-renderless/grid/static'
 import { createCustom, getStorage, setStorage, mergeArray } from './multiple-history'
-import { $props } from '@opentiny/vue-common'
-
-import { defineComponent } from '@opentiny/vue-common'
+import { $props, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   name: 'TinyGridCustomSwitch',
@@ -258,6 +256,7 @@ export default defineComponent({
       default: null
     }
   },
+  emits: ['init-storage'],
   props: {
     ...$props,
     customMode: String,

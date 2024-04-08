@@ -21,7 +21,7 @@ export default {
           type: "'ltr' | 'rtl'",
           defaultValue: 'ltr',
           desc: {
-            'zh-CN': '文字排版方向',
+            'zh-CN': '文字样式方向',
             'en-US': 'Text layout direction'
           },
           mode: ['pc'],
