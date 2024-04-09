@@ -19,7 +19,7 @@
 - feat(rich-text-editor): [rich-text-editor] add image drag adjustment by @HAOUEHF in https://github.com/opentiny/tiny-vue/pull/1504
 - feat(grid): [grid] add XDesign theme by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1518
 - feat: Adapting to the X-design theme by @zzcr in https://github.com/opentiny/tiny-vue/pull/1534
-- feat(charts): refactor chart components and replace chart-core whith hui-charts by @Davont
+- feat(charts): refactor chart components and replace chart-core with hui-charts by @Davont
   - refactored the underlying chart-core library which is used by all chart components
   - chart-core uses hui-charts instead of echarts as the underlying logic of the chart
   - chart components add a unified entry `option` based on the original API to facilitate unified calls
