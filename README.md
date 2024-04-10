@@ -102,6 +102,11 @@ pnpm build:ui-react button
 ```bash
 pnpm pub:react
 ```
+
+### vue转换成react
+```bash
+node convert-vue-to-jsx.js [componentName]
+```
 ## 项目目录
 
 
