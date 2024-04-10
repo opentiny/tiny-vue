@@ -1,5 +1,5 @@
 <template>
-  <tiny-tabs style="width: 400px" show-more-tabs popper-class="custom-class">
+  <tiny-tabs style="width: 400px" show-more-tabs more-show-all panel-max-height="300px" panel-width="150px">
     <template #moreIcon>
       <tiny-icon-popup />
     </template>
@@ -18,7 +18,7 @@ const Tabs = reactive([])
 const TinyIconPopup = iconPopup()
 
 // 创建tabs
-for (let i = 1; i < 9; i++) {
+for (let i = 1; i < 101; i++) {
   const title = `Tab ${i}`
   Tabs.push({
     title,

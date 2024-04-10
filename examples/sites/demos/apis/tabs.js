@@ -7,7 +7,7 @@ export default {
       props: [
         {
           name: 'active-color',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '当前页签的字体颜色',
@@ -237,7 +237,7 @@ export default {
         },
         {
           name: 'v-model',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '绑定值，选中选项卡的 name',
@@ -248,7 +248,7 @@ export default {
         },
         {
           name: 'v-model / modelValue',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '选中选项卡的 name',
@@ -284,8 +284,8 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'beforeClose',
-          type: 'Function',
+          name: 'before-close',
+          type: '(name: string)=> boolean | Promise<boolean>',
           defaultValue: '',
           desc: {
             'zh-CN': '关闭页签前的回调函数，入参为页签名。如果函数返回false 或 拒绝的Promise，则不关闭页签',
@@ -295,6 +295,18 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'tabs-events-close',
           mfDemo: ''
+        },
+        {
+          name: 'more-show-all',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': `'更多'按钮触发的下拉面板是否展示全部页签项，适用于超大数据量的情况`,
+            'en-US':
+              'Indicates whether to display all tab items in the drop-down panel triggered by the More button. This parameter applies to the scenario where the data volume is large.'
+          },
+          mode: ['pc'],
+          pcDemo: 'more-show-all'
         },
         {
           name: 'overflow-title',
@@ -310,8 +322,31 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'panel-max-height',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': `'更多'按钮触发的下拉面板最大高度，超出则显示滚动条，适用于超大数据量的情况`,
+            'en-US':
+              'Maximum height of the drop-down panel triggered by the More button. If the height is exceeded, a scroll bar is displayed. This applies to the scenario where the data volume is large'
+          },
+          mode: ['pc'],
+          pcDemo: 'more-show-all'
+        },
+        {
+          name: 'panel-width',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': `'更多'按钮触发的下拉面板的宽度`,
+            'en-US': 'Width of the drop-down panel triggered by the More button'
+          },
+          mode: ['pc'],
+          pcDemo: 'more-show-all'
+        },
+        {
           name: 'title-width',
-          type: 'String',
+          type: 'string',
           defaultValue: '256px',
           desc: {
             'zh-CN': '当 overflow-title 为 true 时，指定页签标题的最大宽度',
