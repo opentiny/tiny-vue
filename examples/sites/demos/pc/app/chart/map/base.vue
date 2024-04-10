@@ -11,6 +11,7 @@
 
 <script lang="jsx">
 import { ChartMap } from '@opentiny/vue'
+import chinaData from './china.js'
 
 export default {
   components: {
@@ -43,8 +44,8 @@ export default {
       this.$service.network.get('services/mapChina').then(({ data }) => {
         this.chartSettings.mapOrigin = data
       })
-    } else {
-      // 没有this.$service.network则空操作，防止js报错
+    } else if (chinaData) {
+      this.chartSettings.mapOrigin = chinaData
     }
   }
 }

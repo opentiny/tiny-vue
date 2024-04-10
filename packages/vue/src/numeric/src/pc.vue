@@ -238,6 +238,7 @@ export default defineComponent({
     'mouseWheel',
     'validateEvent',
     'allowEmpty',
+    'emptyValue',
     'format',
     'unit',
     'stringMode',

@@ -10,7 +10,7 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, h } from '@opentiny/vue-common'
+import { $prefix, setup, h, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import { renderless, api } from '@opentiny/vue-renderless/tab-nav/vue'
 import Dropdown from '@opentiny/vue-dropdown'
@@ -72,7 +72,7 @@ const getOrderedPanes = (state, panes) => {
   return panes
 }
 
-export default {
+export default defineComponent({
   name: $prefix + 'TabNav',
   components: {
     TabBar,
@@ -341,5 +341,5 @@ export default {
       </div>
     )
   }
-}
+})
 </script>

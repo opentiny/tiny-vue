@@ -16,6 +16,11 @@
     <br />
     <br />
     <br />
+    <div>场景3： click-expand 折叠</div>
+    <br />
+    <tiny-select v-model="value3" :max-visible-rows="2" multiple click-expand>
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
   </div>
 </template>
 
@@ -33,6 +38,7 @@ const options = ref([
 
 const value1 = ref(['选项1', '选项2'])
 const value2 = ref(['选项1', '选项2', '选项3', '选项4'])
+const value3 = ref(['选项1', '选项2', '选项3', '选项4', '选项5'])
 </script>
 
 <style lang="less" scoped>

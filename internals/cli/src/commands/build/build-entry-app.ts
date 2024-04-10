@@ -61,12 +61,7 @@ const buildFullRuntime = () => {
   })
 
   components.forEach((item) => {
-    if (
-      item.inEntry !== false &&
-      !item.path.includes('river') &&
-      !item.path.includes('chart-beta') &&
-      !excludeComponents.includes(item.name)
-    ) {
+    if (item.inEntry !== false && !item.path.includes('river') && !excludeComponents.includes(item.name)) {
       const component = capitalizeKebabCase(item.name)
 
       componentsTemplate.push(`  ${component}`)

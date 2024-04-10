@@ -180,6 +180,13 @@ export default {
     return (h) =>
       h('div', { class: 'data-ellipsis' }, [h('span', { domProps: { title: value } }, truncate(value, format.len))])
   },
+  /**
+   * rate 渲染器的计算规则：
+   * 如果配置了 max，就按照 value / max 计算样式百分比，按照 value / 1 计算显示百分比；
+   * 如果未配置 max，就按照 value / total 计算样式百分比和显示百分比；
+   * @param {Number} value
+   * @returns Function
+   */
   rate(value) {
     const format = {
       fraction: 2,
@@ -190,17 +197,34 @@ export default {
     const { rateMethod } = format
     let rate
 
-    if (typeof rateMethod === 'function') {
-      rate = rateMethod.call(this, value, format)
-    } else {
-      rate = toRate(value, format.total, format.fraction)
+    let formatTotal = format.total
+
+    const getLengthRate = (value, config) => {
+      let lengthRate
+
+      if (config.max && typeof config.max === 'number' && typeof value === 'number') {
+        // 如果配置了 max 那么 formatTotal 就必须是 1
+        formatTotal = 1
+        lengthRate = toRate(value / config.max, formatTotal, format.fraction)
+      }
+
+      return lengthRate
     }
+
+    let lengthRate = getLengthRate(value, format)
+
+    if (typeof rateMethod === 'function') {
+      rate = rateMethod.call(this, value, Object.assign({ formatTotal }, format))
+    } else {
+      rate = toRate(value, formatTotal, format.fraction)
+    }
+    lengthRate = lengthRate || rate
 
     let section = format.section
     let css = ''
 
     if (section) {
-      let rateValue = parseInt(rate, 10)
+      let rateValue = parseInt(lengthRate, 10)
 
       if (!isNumber(rateValue)) {
         return rate
@@ -228,7 +252,7 @@ export default {
       h('div', { class: 'tiny-grid__data-rate' }, [
         h('div', {
           class: `tiny-grid__rate-chart${css}`,
-          style: { width: rate }
+          style: { width: lengthRate }
         }),
         h('span', { class: 'tiny-grid__rate-text' }, rate)
       ])
@@ -241,7 +265,7 @@ export default {
       noFork: false
     }
     const format = Object.assign(defaultFormat, this.own.formatConfig)
-    const cellValue = !isNull(format.trueValue) ? value == format.trueValue : toBoolValue(value)
+    const cellValue = !isNull(format.trueValue) ? value === format.trueValue : toBoolValue(value)
 
     if (!format.htmlView) {
       return cellValue

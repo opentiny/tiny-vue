@@ -98,13 +98,13 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/drawer/vue'
-import { setup, props } from '@opentiny/vue-common'
+import { setup, props, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/drawer/index.less'
 import { iconClose, iconHelpCircle } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
 import Tooltip from '@opentiny/vue-tooltip'
 
-export default {
+export default defineComponent({
   components: {
     TinyButton: Button,
     TinyTooltip: Tooltip,
@@ -133,5 +133,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
-}
+})
 </script>

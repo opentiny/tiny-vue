@@ -8,8 +8,6 @@ const noSaasComponents = [
   'ColorPicker',
   'ColorSelectPanel',
   'ConfigProvider',
-  'CreditCard',
-  'CreditCardForm',
   'DatePickerMobileFirst',
   'Divider',
   'IndexBar',

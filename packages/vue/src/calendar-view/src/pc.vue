@@ -261,7 +261,8 @@ export default defineComponent({
     'week-change',
     'year-change',
     'month-change',
-    'date-click'
+    'date-click',
+    'mode-change'
   ],
   components: {
     TinyButton: Button,

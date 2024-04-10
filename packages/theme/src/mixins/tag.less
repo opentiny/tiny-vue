@@ -17,6 +17,11 @@
   border-color: @border-color;
   background-color: @background-color;
 
+  // smb新增 图标色默认同步文本色
+  &:not(.@{css-prefix}__close) {
+    fill: @color;
+  }
+
   &.is-hit {
     border-color: @color;
   }

@@ -33,7 +33,8 @@ export const $constants = {
   COMPONENT_NAME: {
     FormItem: 'FormItem'
   },
-  MASKSYMBOL: '******'
+  MASKSYMBOL: '******',
+  TEXTAREA_HEIGHT_MOBILE: 108
 }
 
 export const inputProps = {

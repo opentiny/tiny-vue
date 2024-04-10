@@ -115,5 +115,3 @@ export default class AMapCoordSys {
     return echarts.matrix.create()
   }
 }
-
-AMapCoordSys.dimensions = AMapCoordSys.prototype.dimensions

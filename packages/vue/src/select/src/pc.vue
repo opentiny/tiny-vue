@@ -20,9 +20,11 @@
       state.collapseTags ? 'tiny-select__collapse-tags' : '',
       filterable ? 'tiny-select__filterable' : '',
       multiple ? 'tiny-select__multiple' : '',
-      state.inputHovering || state.visible ? 'is-hover' : '',
+      (state.inputHovering || state.visible) && !clickExpand ? 'is-hover' : '',
       state.isDisplayOnly ? 'is-display-only' : '',
       hoverExpand ? 'is-hover-expand' : '',
+      clickExpand ? 'is-click-expand' : '',
+      state.showCollapseTag ? 'collapse-tag-clicked' : '',
       state.selectDisabled ? 'is-disabled' : '',
       $parent.$attrs.class,
       inputBoxType === 'underline' ? 'tiny-select__underline' : ''
@@ -69,7 +71,7 @@
         </tiny-filter-box>
         <div
           ref="tags"
-          :class="['tiny-select__tags', { 'is-showicon': slots.prefix }, { 'not-selected': !state.selected.length }]"
+          :class="['tiny-select__tags', { 'is-showicon': slots.prefix, 'not-selected': !state.selected.length }]"
           v-if="multiple && !state.isDisplayOnly && !shape"
           :style="state.tagsStyle"
         >
@@ -120,20 +122,22 @@
             </span>
             <span ref="tags-content" v-if="!collapseTags">
               <tiny-tag
-                v-if="hoverExpand"
+                v-if="hoverExpand || clickExpand"
                 :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden }]"
-                type="info"
+                :type="state.getTagType"
                 key="tags-collapse"
                 data-tag="tags-collapse"
                 :closable="false"
                 :size="state.collapseTagSize"
+                @click="onClickCollapseTag($event)"
               >
-                + {{ state.collapseTagsLength }}
+                <template v-if="hoverExpand"> + {{ state.collapseTagsLength }} </template>
+                <icon-ellipsis v-else></icon-ellipsis>
               </tiny-tag>
-              <!-- tiny 新增: item没有selectDisabled。 改为item.disabled即可 -->
               <tiny-tag
                 v-for="(item, index) in state.selected"
                 :key="getValueKey(item)"
+                :class="{ 'not-visible': state.toHideIndex <= index && !state.isExpand }"
                 :closable="!item.disabled && !item.required"
                 :size="state.collapseTagSize"
                 :hit="item.state ? item.state.hitState : item.hitState"
@@ -166,6 +170,16 @@
                   </template>
                 </tiny-tooltip>
               </tiny-tag>
+
+              <!-- 收起按钮 -->
+              <span
+                v-if="clickExpand && state.showCollapseTag"
+                class="tiny-select__collapse-text"
+                @click="onClickCollapseTag($event)"
+              >
+                {{ t('ui.select.collapse') }}
+                <icon-chevron-up></icon-chevron-up>
+              </span>
             </span>
           </span>
 
@@ -217,8 +231,7 @@
             :style="{
               'flex-grow': '1',
               width: state.inputLength / (state.inputWidth - 32) + '%',
-              'max-width': state.inputWidth - 42 + 'px',
-              height: 'auto'
+              'max-width': state.inputWidth - 42 + 'px'
             }"
           />
         </div>
@@ -263,12 +276,19 @@
           </template>
           <template #suffix>
             <slot name="suffix"></slot>
+            <span v-if="multiple && multipleLimit" class="tiny-select__limit-txt"
+              >{{ state.selected.length }}/{{ multipleLimit }}</span
+            >
+            <span
+              v-else-if="showProportion && state.selected.length > 0 && state.options.length > 1"
+              class="tiny-select__proportion-txt"
+            >
+              {{ state.selected.length + '/' + state.options.length }}
+            </span>
             <span v-if="state.showCopy" class="tiny-select__copy" @click.stop="handleCopyClick">
               <icon-copy class="tiny-svg-size tiny-select__caret"></icon-copy>
             </span>
-            <span v-if="showProportion && state.selected.length > 0 && state.options.length > 1">
-              {{ state.selected.length + '/' + state.options.length }}
-            </span>
+
             <icon-close
               v-if="state.showClose"
               class="tiny-svg-size tiny-select__caret icon-close"
@@ -402,18 +422,20 @@
                   <tiny-option :value="state.query" created v-if="state.showNewOption"> </tiny-option>
                 </template>
                 <template #default="{ item }">
-                  <tiny-option
-                    :key="`${item[valueField]}`"
-                    :label="item[textField]"
-                    :value="item[valueField]"
-                    :disabled="item.disabled"
-                    :required="item.required"
-                    :highlight-class="item._highlightClass"
-                    :events="item.events"
-                    :icon="item.icon"
-                    @mousedown.stop
-                  >
-                  </tiny-option>
+                  <slot :item="item">
+                    <tiny-option
+                      :key="`${item[valueField]}`"
+                      :label="item[textField]"
+                      :value="item[valueField]"
+                      :disabled="item.disabled"
+                      :required="item.required"
+                      :highlight-class="item._highlightClass"
+                      :events="item.events"
+                      :icon="item.icon"
+                      @mousedown.stop
+                    >
+                    </tiny-option>
+                  </slot>
                 </template>
               </tiny-recycle-scroller>
             </div>
@@ -552,6 +574,7 @@ import TinyInput from '@opentiny/vue-input'
 import TinyOption from '@opentiny/vue-option'
 import TinyScrollbar from '@opentiny/vue-scrollbar'
 import TinySelectDropdown from '@opentiny/vue-select-dropdown'
+import TinyButton from '@opentiny/vue-button'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import {
   IconClose,
@@ -561,7 +584,9 @@ import {
   IconCopy,
   IconPlus,
   IconDeltaDown,
-  IconSearch
+  IconSearch,
+  IconEllipsis,
+  IconChevronUp
 } from '@opentiny/vue-icon'
 import Grid from '@opentiny/vue-grid'
 import Tree from '@opentiny/vue-tree'
@@ -618,6 +643,7 @@ export default defineComponent({
     TinyOption,
     TinyGrid: Grid,
     TinyTree: Tree,
+    TinyButton,
     IconClose: IconClose(),
     TinyScrollbar,
     IconCopy: IconCopy(),
@@ -632,7 +658,9 @@ export default defineComponent({
     // tiny 新增，
     IconSearch: IconSearch(),
     IconDeltaDown: IconDeltaDown(), // 默认下拉图标
-    TinyCheckbox
+    TinyCheckbox,
+    IconEllipsis: IconEllipsis(),
+    IconChevronUp: IconChevronUp()
   },
   props: [
     ...props,
@@ -716,7 +744,9 @@ export default defineComponent({
     'inputBoxType',
     'tagType',
     'clearNoMatchValue',
-    'showProportion'
+    'showProportion',
+    'clickExpand',
+    'maxVisibleRows'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

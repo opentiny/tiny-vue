@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
+import { NodeViewWrapper, nodeViewProps } from '@tiptap/vue'
 import { defineComponent, hooks } from '@opentiny/vue-common'
 
 export default defineComponent({

@@ -9,6 +9,7 @@
       :width="width"
       :title="title"
       :popper-class="m('min-w-[theme(spacing.44)] max-w-[theme(spacing.96)]', customClass)"
+      :append-to-body="popperAppendToBody"
       :reference="reference"
       @show="handleEmit('show')"
       @hide="handleEmit('hide')"
@@ -122,6 +123,10 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
+    closeOnClickOutside: {
+      type: Boolean,
+      default: true
+    },
     title: String,
     placement: {
       type: String,
@@ -133,7 +138,11 @@ export default defineComponent({
     },
     type: [String, Object],
     reference: {},
-    events: Object
+    events: Object,
+    popperAppendToBody: {
+      type: Boolean,
+      default: true
+    }
   },
   emits: ['hide', 'show', 'confirm', 'handleEmit'],
   setup(props, context) {

@@ -79,12 +79,12 @@ export default {
     {
       demoId: 'slot-default',
       name: {
-        'zh-CN': '自定义提示内容',
-        'en-US': 'slot-default'
+        'zh-CN': '内容插槽',
+        'en-US': 'Content slot'
       },
       desc: {
-        'zh-CN': '<p>自定义提示内容</p>',
-        'en-US': '<p>button click</p>'
+        'zh-CN': '<p>通过默认插槽自定义提示内容。</p>',
+        'en-US': '<p>Customize prompt messages through default slot.</p>'
       },
       codeFiles: ['slot-default.vue']
     }

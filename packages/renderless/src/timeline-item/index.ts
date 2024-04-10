@@ -90,13 +90,30 @@ export const computedItemCls =
       itemClass.push('normal')
     }
 
-    itemClass.push(api.getStatusCls(props.node))
+    if (!props.node.type) {
+      itemClass.push(api.getStatusCls(props.node))
+    }
 
     if (state.computedLineWidth) {
       itemClass.push('no-flex')
     }
 
     return itemClass
+  }
+
+export const computedIconClass =
+  ({ props, api }: Pick<ITimelineItemRenderlessParams, 'props' | 'api'>) =>
+  (): Array<string | Object> => {
+    let iconClass = ['icon', { 'step-icon': api.rootProps.textPosition === 'right' }]
+    const defaultIcons = ['success', 'warning', 'error']
+
+    if (defaultIcons.includes(props.node[props.autoColorField])) {
+      iconClass.push(`icon-${props.node[props.autoColorField]}`)
+    } else if (props.node[props.autoColorField]) {
+      iconClass.push('icon-custom')
+    }
+
+    return iconClass
   }
 
 export const computedItemStyle =

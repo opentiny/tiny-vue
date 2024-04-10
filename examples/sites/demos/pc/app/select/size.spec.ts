@@ -35,10 +35,11 @@ test('small 尺寸', async ({ page }) => {
   const select = wrap.locator('.tiny-select').nth(2)
   const input = select.locator('.tiny-input')
   const tag = select.locator('.tiny-tag')
+  const { height } = await input.locator('.tiny-input__inner').boundingBox()
 
   await expect(input).toHaveClass(/tiny-input-small/)
-  await expect(input.locator('.tiny-input__inner')).toHaveCSS('height', '32px')
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--small tiny-tag--light/)
+  expect(height).toBeCloseTo(32, 1)
 })
 
 test('mini 尺寸', async ({ page }) => {
@@ -49,8 +50,9 @@ test('mini 尺寸', async ({ page }) => {
   const select = wrap.locator('.tiny-select').nth(3)
   const input = select.locator('.tiny-input')
   const tag = select.locator('.tiny-tag')
+  const { height } = await input.locator('.tiny-input__inner').boundingBox()
 
   await expect(input).toHaveClass(/tiny-input-mini/)
-  await expect(input.locator('.tiny-input__inner')).toHaveCSS('height', '24px')
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--mini tiny-tag--light/)
+  expect(height).toBeCloseTo(24, 1)
 })

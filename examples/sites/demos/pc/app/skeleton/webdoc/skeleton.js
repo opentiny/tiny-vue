@@ -15,22 +15,34 @@ export default {
       codeFiles: ['base.vue']
     },
     {
-      demoId: 'complex-demo',
+      demoId: 'size',
       name: {
-        'zh-CN': '复杂的组合',
-        'en-US': 'Complex Demo'
+        'zh-CN': '尺寸',
+        'en-US': 'size'
       },
       desc: {
-        'zh-CN': '<p>更复杂的组合，通过 <code>avatar</code> 属性控制骨架段落左侧出现头像占位。</p>\n',
+        'zh-CN': '<p>通过 <code>size</code>  属性可以控制骨架屏的尺寸。</p>\n',
+        'en-US': '<p>The <code>size</code> property allows you to control the size of the skeleton screen.</p>\n'
+      },
+      codeFiles: ['size.vue']
+    },
+    {
+      demoId: 'complex-demo',
+      name: {
+        'zh-CN': '头像模式',
+        'en-US': 'Portrait Mode'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>avatar</code> 属性控制骨架段落左侧出现头像占位。</p>\n',
         'en-US':
-          '<p>More complex combinations, use the <code>avatar</code> attribute to control the appearance of the avatar placeholder on the left side of the skeleton paragraph.</p>\n'
+          '<p> Use the <code>avatar</code> attribute to control the display of the avatar on the left of the skeleton paragraph.</p>\n'
       },
       codeFiles: ['complex-demo.vue']
     },
     {
       demoId: 'custom-rows',
       name: {
-        'zh-CN': '自定义段落行数',
+        'zh-CN': '段落行数',
         'en-US': 'Custom rows'
       },
       desc: {
@@ -42,14 +54,26 @@ export default {
       codeFiles: ['custom-rows.vue']
     },
     {
+      demoId: 'custom-paragraph-width',
+      name: {
+        'zh-CN': '段落宽度',
+        'en-US': 'Custom paragraph width'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>rows-width</code> 属性可以段落宽度。</p>\n',
+        'en-US':
+          '<p>The <code>rows-width</code> attribute can customize the paragraph width. Each item in the array can be <code>number</code> or <code>string</code>. When it is <code>number< /code>, the component will automatically increase the <code>px</code> unit</p>\n'
+      },
+      codeFiles: ['custom-paragraph-width.vue']
+    },
+    {
       demoId: 'custom-layout',
       name: {
-        'zh-CN': '自定义排版',
+        'zh-CN': '样式',
         'en-US': 'Custom layout'
       },
       desc: {
-        'zh-CN':
-          '<p>当默认排版不满足需求时，可自定义排版结构，通过 <code>class</code> 和 <code>style</code> 可自定义宽高等样式。</p>\n',
+        'zh-CN': '<p>通过 <code>class</code> 和 <code>style</code> 可自定义样式结构。</p>\n',
         'en-US':
           '<p>When the default layout does not meet the needs, the layout structure can be customized, and styles such as width and height can be customized through <code>class</code> and <code>style</code>.</p>\n'
       },
@@ -70,30 +94,27 @@ export default {
       codeFiles: ['loading-completed.vue']
     },
     {
-      demoId: 'custom-paragraph-width',
+      demoId: 'animation',
       name: {
-        'zh-CN': '自定义段落宽度',
-        'en-US': 'Custom paragraph width'
+        'zh-CN': '动画效果',
+        'en-US': 'Animation Effect'
       },
       desc: {
-        'zh-CN':
-          '<p><code>rows-width</code> 属性可以自定义段落宽度，数组中的每一项可以为 <code>number</code> 或 <code>string</code>，当为 <code>number</code> 时，组件会自动增加 <code>px</code> 单位。</p>\n',
-        'en-US':
-          '<p>The <code>rows-width</code> attribute can customize the paragraph width. Each item in the array can be <code>number</code> or <code>string</code>. When it is <code>number< /code>, the component will automatically increase the <code>px</code> unit</p>\n'
+        'zh-CN': '<p>通过 <code>animated</code> 属性设置是否开启动画。</p>\n',
+        'en-US': '<p>Use the <code>animated</code> attribute to set whether to enable animation.</p>\n'
       },
-      codeFiles: ['custom-paragraph-width.vue']
+      codeFiles: ['animation.vue']
     },
     {
       demoId: 'fine-grained-mode',
       name: {
-        'zh-CN': '细粒度模式',
-        'en-US': 'Fine-grained mode'
+        'zh-CN': '形态',
+        'en-US': 'formative'
       },
       desc: {
-        'zh-CN':
-          '<p>细粒度模式，<code>variant</code> 属性可以控制 <code>skeleton-item</code> 的形态，可选值：image / circle / square。<code>size</code> 属性可以控制 <code>skeleton-item</code> 的大小，可选值：medium / small / large。</p>\n',
+        'zh-CN': '<p>通过 <code>variant</code> 属性可以控制 <code>skeleton-item</code> 的形态。</p>\n',
         'en-US':
-          '<p>Fine-grained mode, the <code>variant</code> attribute can control the shape of <code>skeleton-item</code>, optional values: image / circle / square. The <code>size</code> attribute can control the size of <code>skeleton-item</code>. Optional values: medium / small / large.</p>\n'
+          '<p>The <code>variant</code> attribute can be used to control the shape of the <code>skeleton-item</code>.</p>\n'
       },
       codeFiles: ['fine-grained-mode.vue']
     }

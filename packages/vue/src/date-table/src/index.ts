@@ -1,8 +1,8 @@
-import { $prefix, $props, $setup } from '@opentiny/vue-common'
+import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 import { isDate } from '@opentiny/vue-renderless/common/deps/date-util'
 
-export default {
+export default defineComponent({
   name: $prefix + 'DateTable',
   componentName: 'DateTable',
   props: {
@@ -38,4 +38,4 @@ export default {
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

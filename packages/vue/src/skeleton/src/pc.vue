@@ -30,7 +30,7 @@ import SkeletonItem from '@opentiny/vue-skeleton-item'
 
 export default defineComponent({
   emits: ['update:modelValue'],
-  props: [...props, 'modelValue', 'loading', 'rows', 'avatar', 'rowsWidth', 'active'],
+  props: [...props, 'modelValue', 'loading', 'rows', 'avatar', 'rowsWidth', 'animated'],
   components: {
     TinySkeletonItem: SkeletonItem
   },

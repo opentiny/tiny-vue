@@ -117,8 +117,8 @@ const initState = ({
     checkedLabel: '',
     enteredTextarea: false,
     sheetvalue: props.modelValue,
-    inputSize: computed(() => props.size || state.formItemSize),
-    inputSizeMf: computed(() => props.size || (parent.tinyForm || {}).size),
+    inputSize: computed(() => props.size || state.formItemSize || (parent.tinyForm || {}).size),
+    inputSizeMf: computed(() => props.size || state.formItemSize || (parent.tinyForm || {}).size),
     showClear: computed(
       () =>
         props.clearable &&
@@ -224,8 +224,13 @@ const mergeApi = ({
   nextTick,
   parent,
   state,
-  vm
-}: Pick<IInputRenderlessParams, 'api' | 'emit' | 'props' | 'state' | 'nextTick' | 'parent' | 'vm'> & {
+  vm,
+  mode,
+  constants
+}: Pick<
+  IInputRenderlessParams,
+  'api' | 'emit' | 'props' | 'state' | 'nextTick' | 'parent' | 'vm' | 'mode' | 'constants'
+> & {
   storages: ReturnType<typeof useStorageBox>
   componentName: string
   eventName: IInputEventNameConstants
@@ -258,7 +263,9 @@ const mergeApi = ({
       api,
       hiddenTextarea: null,
       props,
-      state
+      state,
+      mode,
+      constants
     }),
     setNativeInputValue: setNativeInputValue({ api, state }),
     handleCompositionEnd: handleCompositionEnd({ api, state }),
@@ -374,7 +381,7 @@ export const renderless = (
 
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  mergeApi({ api, storages, componentName, emit, eventName, props, state, nextTick, parent, vm })
+  mergeApi({ api, storages, componentName, emit, eventName, props, state, nextTick, parent, vm, mode, constants })
 
   initWatch({ watch, state, api, props, nextTick, emit, componentName, eventName })
 

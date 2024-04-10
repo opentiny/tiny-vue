@@ -1,8 +1,8 @@
 <template>
-  <tiny-roles @change="change"></tiny-roles>
+  <tiny-roles @change="change" :popper-append-to-body="false"></tiny-roles>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { Roles as TinyRoles, Modal } from '@opentiny/vue'
 
 function change(userId) {

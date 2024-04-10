@@ -82,6 +82,15 @@ export default {
           mfDemo: 'clearable'
         },
         {
+          name: 'click-expend',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '点击可展开或收起显示不全的选项。仅用于多选',
+            'en-US': 'Click to expand or collapse options. Only applicable to multiple selections'
+          }
+        },
+        {
           name: 'collapse-tags',
           type: 'boolean',
           defaultValue: 'false',
@@ -239,6 +248,18 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'remote-method',
           mfDemo: 'remote-method'
+        },
+        {
+          name: 'max-visible-rows',
+          type: 'number',
+          defaultValue: '1',
+          desc: {
+            'zh-CN': '多行默认最大显示行数，超出后选项自动隐藏',
+            'en-US':
+              'Default maximum display lines for multiple lines, with automatic hiding option for exceeding lines'
+          },
+          mode: ['pc'],
+          pcDemo: 'collapse-tags'
         },
         {
           name: 'modelValue / v-model',

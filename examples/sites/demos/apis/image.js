@@ -19,7 +19,7 @@ export default {
         },
         {
           name: 'image-size',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '设置预览的图片的大小',
@@ -54,7 +54,7 @@ export default {
         },
         {
           name: 'preview-visible',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '开启移动端预览大图的功能',
@@ -65,7 +65,7 @@ export default {
         },
         {
           name: 'round',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '通过 round 设置是否展示圆形',
@@ -90,7 +90,7 @@ export default {
         },
         {
           name: 'show-hover',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '设置预览的图片的悬浮效果',
@@ -101,14 +101,15 @@ export default {
         },
         {
           name: 'show-index',
-          type: 'String',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '开启图片序列号展示',
             'en-US': 'Enable the display of image serial numbers.'
           },
-          mode: ['mobile-first'],
-          mfDemo: 'preview-src-list'
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'preview-src-list',
+          pcDemo: 'preview'
         },
         {
           name: 'src',
@@ -132,6 +133,18 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: '',
+          mfDemo: ''
+        },
+        {
+          name: 'keep-style',
+          type: 'boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '保持图片样式属性',
+            'en-US': 'Preserve Picture Style Properties'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'keep-style',
           mfDemo: ''
         }
       ],
@@ -196,6 +209,18 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'slot',
+          mfDemo: ''
+        },
+        {
+          name: 'count',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置图片计数插槽',
+            'en-US': 'Set Picture Count Slot'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'count-slot',
           mfDemo: ''
         }
       ]

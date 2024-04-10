@@ -6,8 +6,8 @@ import chalk from 'chalk'
 import commonjs from '@rollup/plugin-commonjs'
 import { external } from '../../../shared/config'
 
-const bundlesToMerge = new Set<string>()
-const commonChunk = new Set<string>()
+let bundlesToMerge
+let commonChunk
 let buildFormat
 let isDelete
 
@@ -17,6 +17,8 @@ export default function ({ deleteInlinedFiles = true }): Plugin {
     generateBundle: async ({ format, dir }: NormalizedOutputOptions, bundle: OutputBundle) => {
       buildFormat = format
       isDelete = deleteInlinedFiles
+      bundlesToMerge = new Set<string>()
+      commonChunk = new Set<string>()
       const jsAssets = Object.keys(bundle).filter((i) => /\.[mc]?js$/.test(i))
       for (const jsName of jsAssets) {
         const jsChunk = bundle[jsName]
@@ -56,7 +58,7 @@ export default function ({ deleteInlinedFiles = true }): Plugin {
         // eslint-disable-next-line no-console
         console.log(`\n${chalk.green('开始内联公共依赖')}`)
         let i = 0
-        if (bundlesToMerge.size > 0) {
+        if (bundlesToMerge?.size > 0) {
           bundlesToMerge.forEach(async (filePath) => {
             if (commonChunk.has(filePath)) {
               ++i
@@ -78,7 +80,7 @@ export default function ({ deleteInlinedFiles = true }): Plugin {
           resolve()
         }
       }).then(async () => {
-        if (isDelete) {
+        if (isDelete && commonChunk?.size > 0) {
           commonChunk.forEach((filePath) => {
             fs.unlinkSync(filePath)
             // eslint-disable-next-line no-console

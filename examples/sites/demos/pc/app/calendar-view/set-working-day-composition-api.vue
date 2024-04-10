@@ -1,6 +1,7 @@
 <template>
   <tiny-calendar-view
     ref="calendar"
+    v-model="selectedDates"
     :multi-select="true"
     :year="2023"
     :month="5"
@@ -24,6 +25,7 @@ const workingDays = ref([])
 const offDays = ref([])
 const holidays = ref([])
 const selectedDate = ref([])
+const selectedDates = ref([])
 
 const map = {
   workingDays,
@@ -37,6 +39,7 @@ const setDays = (type) => {
     return
   }
   map[type].value.push(...selectedDate.value)
+  selectedDates.value = []
   selectedDate.value = []
 }
 

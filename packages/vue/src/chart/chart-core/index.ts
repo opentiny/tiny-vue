@@ -1,12 +1,34 @@
-import Core from './src/index.vue'
-import '@opentiny/vue-theme/chart-core/index.less'
-import { version } from './package.json'
+import Core from './src/chart-core'
+import { getFormatted, cloneDeep, getStackMap, get, set, merge, getMapJSON, htmlHandler } from './common/util'
+import { isNull, isObject } from './common/type'
+import { deepCopy } from './utils/deep-clone'
+import { getRows, getYAxis, getTooltip } from './utils/options'
+import { itemPoint, itemLabel, itemContent, HEAT_MAP_COLOR } from './common/constants'
+import { isDefined } from './utils/type'
 
-/* istanbul ignore next */
-Core.install = function (Vue) {
+Core.install = function (Vue: any) {
   Vue.component(Core.name, Core)
 }
 
-Core.version = version
-
 export default Core
+export {
+  getFormatted,
+  cloneDeep,
+  getStackMap,
+  get,
+  set,
+  merge,
+  getMapJSON,
+  getRows,
+  getYAxis,
+  getTooltip,
+  isNull,
+  isObject,
+  deepCopy,
+  itemPoint,
+  itemLabel,
+  itemContent,
+  isDefined,
+  htmlHandler,
+  HEAT_MAP_COLOR
+}

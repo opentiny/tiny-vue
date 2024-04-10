@@ -59,7 +59,7 @@ export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
     }
 
   const mouseEnter =
-    ({ vm, dataStore }) =>
+    ({ vm, dataStore, props }) =>
     (e) => {
       const dom = e.target
       const text = dom.textContent
@@ -73,7 +73,7 @@ export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
         tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
         tooltip.doDestroy()
 
-        dataStore.itemLabel = text
+        dataStore.itemLabel = props.tooltipContent || text
         if (vm.$refs.level.scrollWidth > vm.$refs.level.offsetWidth) {
           dataStore.showContent = true
         }

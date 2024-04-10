@@ -101,7 +101,7 @@ const gridOp = ref({
 })
 
 function handleClick(next) {
-  // doSomething() // do something you want
-  next() // next
+  // do something you want
+  next()
 }
 </script>

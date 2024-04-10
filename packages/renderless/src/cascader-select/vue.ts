@@ -1,11 +1,11 @@
-import { watchActionSheetVisible, close, confirm, columnStyle } from './index'
+import { watchActionSheetVisible, close, confirm, columnStyle, clear } from './index'
 import { usePicker } from './usePicker'
 
 export const api = [
   'state',
   'close',
   'confirm',
-
+  'clear',
   'columnsType',
   'columnsList',
   'columnFieldNames',
@@ -38,6 +38,7 @@ export const renderless = (props, { reactive, computed, watch, ref, toRefs }, { 
 
   Object.assign(api, {
     close: close(state),
+    clear: clear({ api, emit }),
     confirm: confirm({ api, emit, props, state, defaultValues, selectedOptions, isDisabled, vm }),
     watchActionSheetVisible: watchActionSheetVisible({ emit, api, props }),
 

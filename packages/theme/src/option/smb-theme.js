@@ -8,7 +8,7 @@ export const tinyOptionSmbTheme = {
   'ti-option-icon-color-selected': 'var(--ti-common-color-icon-graybg-active)',
   'ti-option-checkbox-border-color-hover': '#191919',
   'ti-option-disabled-text-color': 'var(--ti-common-color-text-disabled)',
-  'ti-option-hover-bg-color': 'var(--ti-common-color-bg-white-emphasize)',
+  'ti-option-hover-bg-color': 'var(--ti-common-color-bg-normal)',
   'ti-option-selected-bg-color': 'var(--ti-common-color-bg-white-normal)',
   'ti-option-selected-bg-color-hover': 'var(--ti-common-color-bg-white-emphasize)',
   'ti-option-highlight-selected-text-color': 'var(--ti-common-color-text-highlight)',

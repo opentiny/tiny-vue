@@ -387,18 +387,20 @@
                   </tiny-option>
                 </template>
                 <template #default="{ item }">
-                  <tiny-option
-                    :class="['absolute w-full']"
-                    :key="`${item[valueField]}`"
-                    :label="item[textField]"
-                    :value="item[valueField]"
-                    :disabled="item.disabled"
-                    :required="item.required"
-                    :highlight-class="item._highlightClass"
-                    :events="item.events"
-                    @mousedown.stop
-                  >
-                  </tiny-option>
+                  <slot :item="item">
+                    <tiny-option
+                      :class="['absolute w-full']"
+                      :key="`${item[valueField]}`"
+                      :label="item[textField]"
+                      :value="item[valueField]"
+                      :disabled="item.disabled"
+                      :required="item.required"
+                      :highlight-class="item._highlightClass"
+                      :events="item.events"
+                      @mousedown.stop
+                    >
+                    </tiny-option>
+                  </slot>
                 </template>
               </tiny-recycle-scroller>
             </div>
@@ -539,7 +541,7 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/select/vue'
-import { props, setup, directive } from '@opentiny/vue-common'
+import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import TinyTag from '@opentiny/vue-tag'
 import TinyInput from '@opentiny/vue-input'
 import TinyOption from '@opentiny/vue-option'
@@ -574,7 +576,7 @@ const getReference = (el, binding, vnode) => {
   }
 }
 
-export default {
+export default defineComponent({
   inheritAttrs: false,
   emits: [
     'update:modelValue',
@@ -697,5 +699,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api, classes })
   }
-}
+})
 </script>

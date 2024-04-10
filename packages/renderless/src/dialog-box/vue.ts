@@ -148,7 +148,7 @@ const initApi = ({
     afterLeave: afterLeave(emit),
     hideScrollbar: hideScrollbar(lockScrollClass),
     showScrollbar: showScrollbar(lockScrollClass),
-    handleDrag: handleDrag({ parent, props, state, emit })
+    handleDrag: handleDrag({ parent, props, state, emit, vm })
   })
 }
 

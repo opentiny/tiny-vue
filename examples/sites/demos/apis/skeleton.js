@@ -6,7 +6,7 @@ export default {
       type: 'component',
       props: [
         {
-          name: 'active',
+          name: 'animated',
           type: 'boolean',
           defaultValue: 'true',
           desc: {
@@ -46,9 +46,8 @@ export default {
           type: 'number',
           defaultValue: '3',
           desc: {
-            'zh-CN': '默认排版，可配置段落显示行数',
-            'en-US':
-              'Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.'
+            'zh-CN': '默认样式，可配置段落显示行数',
+            'en-US': 'Default style. The number of lines displayed in a paragraph can be configured'
           },
           mode: ['pc'],
           pcDemo: 'custom-rows'
@@ -58,9 +57,10 @@ export default {
           type: 'number[] | string[]',
           defaultValue: '[]',
           desc: {
-            'zh-CN': '自定义段落每一行的宽度',
+            'zh-CN':
+              '自定义段落每一行的宽度，数组中的每一项可以为 number 或 string ，当为 number 时，组件会自动增加 px 单位',
             'en-US':
-              'Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.'
+              'Width of each line in a custom paragraph. Each item in the array can be a number or a string. If the value is a number, the component automatically increases the value by px'
           },
           mode: ['pc'],
           pcDemo: 'custom-paragraph-width'
@@ -74,7 +74,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '加载完成后显示的内容',
-            'en-US': 'Option default slot'
+            'en-US': 'Content displayed after the loading is complete'
           },
           mode: ['pc'],
           pcDemo: 'custom-layout'
@@ -84,7 +84,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '自定义骨架屏结构',
-            'en-US': 'Option default slot'
+            'en-US': 'Custom Skeleton Screen Structure'
           },
           mode: ['pc'],
           pcDemo: 'custom-layout'
@@ -99,7 +99,7 @@ export default {
           name: 'size',
           typeAnchorName: 'ISize',
           type: 'ISize',
-          defaultValue: 'medium',
+          defaultValue: "'medium'",
           desc: {
             'zh-CN': '针对 image 和 circle 形态，内置三种大小',
             'en-US':
@@ -112,7 +112,7 @@ export default {
           name: 'variant',
           typeAnchorName: 'IVariant',
           type: 'IVariant',
-          defaultValue: 'square',
+          defaultValue: "'square'",
           desc: {
             'zh-CN': '骨架屏形态',
             'en-US':

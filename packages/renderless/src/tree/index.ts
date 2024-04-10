@@ -502,13 +502,17 @@ export const setCheckedNodes =
   }
 
 export const setCheckedKeys =
-  ({ props, state }) =>
+  ({ props, state, api }) =>
   (keys, leafOnly) => {
     if (!props.nodeKey) {
       throw new Error('[Tree] nodeKey is required in setCheckedKeys')
     }
 
-    state.store.setCheckedKeys(keys, leafOnly)
+    if (props.showRadio) {
+      api.setCurrentRadio(keys)
+    } else {
+      state.store.setCheckedKeys(keys, leafOnly)
+    }
   }
 
 export const setChecked = (state) => (data, checked, deep) => {
@@ -672,7 +676,7 @@ const init = ({ state, nodeKey, checkedKey }) => {
 
 export const setCurrentRadio =
   ({ props, state }) =>
-  () => {
+  (paramCheckedKey?: any) => {
     if (!props.showRadio) {
       return
     }
@@ -682,7 +686,7 @@ export const setCurrentRadio =
     }
 
     const nodeKey = props.nodeKey
-    const defaultCheckedKeys = props.defaultCheckedKeys || []
+    const defaultCheckedKeys = props.defaultCheckedKeys || paramCheckedKey || []
     const checkedKey = defaultCheckedKeys.length ? defaultCheckedKeys[0] : null
 
     if (!checkedKey) {

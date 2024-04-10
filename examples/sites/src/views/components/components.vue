@@ -207,6 +207,7 @@ export default defineComponent({
 
     const { apiModeState } = useApiMode()
     const { templateModeState, staticPath, optionsList } = useTemplateMode()
+    const huiNewChart = ['chart-process']
 
     // 页面加载/点击api中的链接，根据hash滚动。
     const scrollByHash = (hash) => {
@@ -274,7 +275,7 @@ export default defineComponent({
       const promiseArr = [
         fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.${lang}.md`),
         fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`),
-        fetchDemosFile(`@demos/apis/${getWebdocPath(state.cmpId)}.js`)
+        fetchDemosFile(`@demos/apis/${huiNewChart.includes(state.cmpId) ? 'hui' : getWebdocPath(state.cmpId)}.js`)
       ]
       if (faqMdConfig[state.cmpId]) {
         promiseArr.push(

@@ -3,12 +3,7 @@
     <div
       v-show="state.visible"
       data-tag="tiny-picker-panel tiny-date-range-picker tiny-popper"
-      :class="
-        m(
-          gcls(['picker-panel', 'date-range-picker']),
-          state.popperClass
-        )
-      "
+      :class="m(gcls(['picker-panel', 'date-range-picker']), state.popperClass)"
       ref="refDateRange"
     >
       <div data-tag="tiny-picker-panel__body-wrapper" class="relative">
@@ -249,7 +244,13 @@
         </div>
       </div>
       <div data-tag="tiny-picker-panel__footer" v-if="state.showTime" :class="gcls('footer')">
-        <tiny-button size="mini" type="text" data-tag="tiny-picker-panel__link-btn" @click="handleClear" custom-class="text-left pl-0">
+        <tiny-button
+          size="mini"
+          type="text"
+          data-tag="tiny-picker-panel__link-btn"
+          @click="handleClear"
+          custom-class="text-left pl-0"
+        >
           {{ t('ui.datepicker.clear') }}
         </tiny-button>
         <tiny-button
@@ -269,7 +270,7 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/date-range/vue'
-import { props, setup, directive } from '@opentiny/vue-common'
+import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import TimePicker from '@opentiny/vue-time'
 import DateTable from '@opentiny/vue-date-table'
@@ -278,7 +279,7 @@ import Button from '@opentiny/vue-button'
 import { IconDoubleRight, IconDoubleLeft, IconChevronLeft, IconChevronRight } from '@opentiny/vue-icon'
 import { classes } from './token'
 
-export default {
+export default defineComponent({
   directives: directive({ Clickoutside }),
   components: {
     TimePicker,
@@ -295,5 +296,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api, classes })
   }
-}
+})
 </script>

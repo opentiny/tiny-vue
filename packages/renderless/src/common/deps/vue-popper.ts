@@ -49,6 +49,28 @@ const getReference = ({ state, props, vm, slots }: Pick<IPopperInputParams, 'sta
   return reference
 }
 
+const getReferMaxZIndex = (reference) => {
+  if (!reference || !reference.nodeType) return
+
+  let getZIndex = (dom) => parseInt(window.getComputedStyle(dom).zIndex, 10) || 0
+  let max = getZIndex(reference)
+  let z
+
+  do {
+    reference = reference.parentNode
+
+    if (reference) {
+      z = getZIndex(reference)
+    } else {
+      break
+    }
+
+    max = z > max ? z : max
+  } while (reference !== document.body)
+
+  return max + 1 + ''
+}
+
 export default (options: IPopperInputParams) => {
   const {
     parent,
@@ -95,6 +117,10 @@ export default (options: IPopperInputParams) => {
     if (followReferenceHide && isDisplayNone(reference)) {
       popper.style.display = 'none'
     }
+  }
+
+  const nextZIndex = (reference) => {
+    return props.zIndex === 'relative' ? getReferMaxZIndex(reference) : PopupManager.nextZIndex()
   }
 
   const createPopper = (dom) => {
@@ -145,7 +171,7 @@ export default (options: IPopperInputParams) => {
       state.popperJS.onUpdate(options.onUpdate)
     }
 
-    state.popperJS._popper.style.zIndex = PopupManager.nextZIndex().toString()
+    state.popperJS._popper.style.zIndex = nextZIndex(state.popperJS._reference)
     followHide(state.popperJS)
     on(state.popperElm, 'click', stop)
   }
@@ -164,7 +190,7 @@ export default (options: IPopperInputParams) => {
 
       // 每次递增 z-index
       if (popperJS._popper && popperElmOrTrue !== true) {
-        popperJS._popper.style.zIndex = PopupManager.nextZIndex().toString()
+        popperJS._popper.style.zIndex = nextZIndex(popperJS._reference)
         followHide(state.popperJS)
       }
     } else {
