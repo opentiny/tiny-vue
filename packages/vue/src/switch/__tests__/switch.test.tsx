@@ -1,9 +1,12 @@
 import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import Switch from '@opentiny/vue-switch'
+import { IconArrowLeft, IconArrowRight } from '@opentiny/vue-icon'
 import { nextTick, ref } from 'vue'
 
 let value = false
+const TinyIconArrowLeft = IconArrowLeft()
+const TinyIconArrowRight = IconArrowRight()
 
 describe('PC Mode', () => {
   const mount = mountPcMode
@@ -13,7 +16,7 @@ describe('PC Mode', () => {
     expect(wrapper.find('.mini').exists()).toBe(true)
   })
 
-  test('slot', async () => {
+  test('open & close slot', async () => {
     const wrapper = mount(() => (
       <Switch
         v-model={value}
@@ -24,6 +27,17 @@ describe('PC Mode', () => {
         }}></Switch>
     ))
     expect(wrapper.find('.no').exists()).toBe(true)
+  })
+
+  test('active-icon & inactive-icon slot', async () => {
+    const wrapper = mount(Switch, {
+      modelValue: value,
+      slots: {
+        'active-icon': () => <TinyIconArrowLeft />,
+        'inactive-icon': () => <TinyIconArrowRight />
+      }
+    })
+    expect(wrapper.find('.tiny-svg').exists()).toBe(true)
   })
 
   test('events', async () => {
