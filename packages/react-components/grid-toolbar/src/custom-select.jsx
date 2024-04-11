@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function gridToolbar(props) {
-      const {} = props
+      const {data,setting} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        data,setting
       }
       const { ref, current: vm, parent } = useVm()
       

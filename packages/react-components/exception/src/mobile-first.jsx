@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function exception(props) {
-      const {} = props
+      const {_constants,type,subMessage,exceptionClass,pageEmpty,componentPage} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        _constants,type,subMessage,exceptionClass,pageEmpty,componentPage
       }
       const { ref, current: vm, parent } = useVm()
       

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function uploadDragger(props) {
-      const {} = props
+      const {disabled} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        disabled
       }
       const { ref, current: vm, parent } = useVm()
       

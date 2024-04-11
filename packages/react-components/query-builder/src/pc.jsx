@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function queryBuilder(props) {
-      const {} = props
+      const {config,query,onQueryChange,maxHeight} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        config,query,onQueryChange,maxHeight
       }
       const { ref, current: vm, parent } = useVm()
       

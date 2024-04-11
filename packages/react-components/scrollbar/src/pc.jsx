@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function scrollbar(props) {
-      const {} = props
+      const {marginBottomAdjust,native,noresize,show,tag} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        marginBottomAdjust,native,noresize,show,tag
       }
       const { ref, current: vm, parent } = useVm()
       

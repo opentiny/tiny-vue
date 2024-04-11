@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function sliderButton(props) {
-      const {} = props
+      const {noArrow,flex,size,sliderSpace,sliderWidth,delay,sliderHeight,data,duration,sliderCount,currentIndex} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        noArrow,flex,size,sliderSpace,sliderWidth,delay,sliderHeight,data,duration,sliderCount,currentIndex
       }
       const { ref, current: vm, parent } = useVm()
       const slideMain=useRef()

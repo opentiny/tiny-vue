@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function cascaderSelect(props) {
-      const {} = props
+      const {value,columnsType,column,threeDimensional,swipeDuration,visibleOptionNum,optionHeight,fieldNames} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        value,columnsType,column,threeDimensional,swipeDuration,visibleOptionNum,optionHeight,fieldNames
       }
       const { ref, current: vm, parent } = useVm()
       const roller=useRef()

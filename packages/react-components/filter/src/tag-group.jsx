@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function filter(props) {
-      const {} = props
+      const {modelValue,data,type,multiple,columnNum,label} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        modelValue,data,type,multiple,columnNum,label
       }
       const { ref, current: vm, parent } = useVm()
       

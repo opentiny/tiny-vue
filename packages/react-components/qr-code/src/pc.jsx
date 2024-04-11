@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function qrCode(props) {
-      const {} = props
+      const {value,level,size,color,bordered,icon,iconSize} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        value,level,size,color,bordered,icon,iconSize
       }
       const { ref, current: vm, parent } = useVm()
       const wrapperRef=useRef()

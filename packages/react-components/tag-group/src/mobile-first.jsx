@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function tagGroup(props) {
-      const {} = props
+      const {size,data,effect} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        size,data,effect
       }
       const { ref, current: vm, parent } = useVm()
       const tagGroup=useRef()

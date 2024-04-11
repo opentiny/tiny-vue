@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function crop(props) {
-      const {} = props
+      const {_constants,alt,aspectRatio,autoCrop,autoCropArea,background,center,cropType,cropvisible,dragMode,guides,maxSize,minContainerHeight,minContainerWidth,minCropBoxHeight,minCropBoxWidth,modal,movable,plugin,preview,previewShow,quality,rotatable,src,viewMode,wheelZoomRatio,zoomOnWheel,zoomable} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        _constants,alt,aspectRatio,autoCrop,autoCropArea,background,center,cropType,cropvisible,dragMode,guides,maxSize,minContainerHeight,minContainerWidth,minCropBoxHeight,minCropBoxWidth,modal,movable,plugin,preview,previewShow,quality,rotatable,src,viewMode,wheelZoomRatio,zoomOnWheel,zoomable
       }
       const { ref, current: vm, parent } = useVm()
       const cropInput=useRef()

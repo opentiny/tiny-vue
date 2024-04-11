@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function cascaderNode(props) {
-      const {} = props
+      const {node,nodeId} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        node,nodeId
       }
       const { ref, current: vm, parent } = useVm()
       

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function svgIcon(props) {
-      const {} = props
+      const {src,width,height,fill} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        src,width,height,fill
       }
       const { ref, current: vm, parent } = useVm()
       

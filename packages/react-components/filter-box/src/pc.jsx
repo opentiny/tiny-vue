@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function filterBox(props) {
-      const {} = props
+      const {label,value,tip,placeholder,showClose,disabled,dropDownVisible,blank} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        label,value,tip,placeholder,showClose,disabled,dropDownVisible,blank
       }
       const { ref, current: vm, parent } = useVm()
       

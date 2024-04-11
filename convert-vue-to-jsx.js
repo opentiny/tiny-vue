@@ -42,22 +42,22 @@ function extractPropNames(str) {
         const exec = /([a-z_][a-zA-Z0-9]*)[/:]/.exec(trimmedLine)
         props.push(exec[1])
       } else {
-        if (trimmedLine.includes('{')) {
+        if (trimmedLine.includes('{') && !trimmedLine.includes('}')) {
           symbolTable.push('{')
           if (returnObj) {
             continue
           }
+          if (trimmedLine.includes('return')) {
+            returnObj = { index: symbolTable.length }
+          }
           if (trimmedLine.includes('validator(') || !trimmedLine.includes(':')) {
-            if (trimmedLine.includes('return')) {
-              returnObj = { index: symbolTable.length }
-            }
             continue
           }
-          // console.log(trimmedLine, symbolTable, str, 'str')
+          console.log(trimmedLine, symbolTable, str, 'str')
           const exec = /([a-z_][a-zA-Z0-9]*)[/:]/.exec(trimmedLine)
           props.push(exec[1])
         }
-        if (trimmedLine.includes('}')) {
+        if (trimmedLine.includes('}') && !trimmedLine.includes('{')) {
           if (symbolTable.length > 0 && symbolTable.slice(-1)[0] === '{') {
             symbolTable.pop()
             if (returnObj && symbolTable.length === returnObj.index) {
@@ -104,7 +104,7 @@ function convertVueToJSX(vueFilePath, reactFilePath, componentName) {
       .filter((item) => item && item !== '...props')
   }
   if (script) {
-    if (typeof props === 'string') {
+    if (props.length === 0) {
       if (!script?.content.includes('props')) {
         props = []
       } else {

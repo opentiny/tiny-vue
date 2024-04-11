@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function notify(props) {
-      const {} = props
+      const {beforeClose,closeIcon,customClass,duration,message,onClose,position,showClose,showIcon,statusIcon,title,type} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        beforeClose,closeIcon,customClass,duration,message,onClose,position,showClose,showIcon,statusIcon,title,type
       }
       const { ref, current: vm, parent } = useVm()
       

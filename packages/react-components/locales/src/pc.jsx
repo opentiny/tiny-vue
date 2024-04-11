@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function locales(props) {
-      const {} = props
+      const {local,changeLang,getLocale,getDomain,getCurrentLocale,getChangeLocaleUrl,fetchSsoUpdate,popperClass,popperAppendToBody} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        local,changeLang,getLocale,getDomain,getCurrentLocale,getChangeLocaleUrl,fetchSsoUpdate,popperClass,popperAppendToBody
       }
       const { ref, current: vm, parent } = useVm()
       

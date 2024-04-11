@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function selectView(props) {
-      const {} = props
+      const {selected,multiple,readonly} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        selected,multiple,readonly
       }
       const { ref, current: vm, parent } = useVm()
       

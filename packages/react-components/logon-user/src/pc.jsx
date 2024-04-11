@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function logonUser(props) {
-      const {} = props
+      const {getUserInfo} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        getUserInfo
       }
       const { ref, current: vm, parent } = useVm()
       

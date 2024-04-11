@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function pullRefresh(props) {
-      const {} = props
+      const {modelValue,loosingText,animationDuration,hasMore,disabledPullDown,disabledPullUp,pullUpDistance,pullUpLoadingText,pullDownLoadingText} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        modelValue,loosingText,animationDuration,hasMore,disabledPullDown,disabledPullUp,pullUpDistance,pullUpLoadingText,pullDownLoadingText
       }
       const { ref, current: vm, parent } = useVm()
       const track=useRef()

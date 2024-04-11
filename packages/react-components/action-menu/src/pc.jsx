@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function actionMenu(props) {
-      const {} = props
+      const {options,maxShowNum,moreText,spacing,textField,popperClass,popperAppendToBody,trigger,suffixIcon,showIcon} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        options,maxShowNum,moreText,spacing,textField,popperClass,popperAppendToBody,trigger,suffixIcon,showIcon
       }
       const { ref, current: vm, parent } = useVm()
       

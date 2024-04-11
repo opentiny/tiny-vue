@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function calendarBar(props) {
-      const {} = props
+      const {text,day,config} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        text,day,config
       }
       const { ref, current: vm, parent } = useVm()
       

@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-wizard",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-user-contact": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

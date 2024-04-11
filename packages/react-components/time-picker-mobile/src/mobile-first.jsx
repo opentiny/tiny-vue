@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function timePicker(props) {
-      const {} = props
+      const {modelValue,visible,cycleRoll,disabled,lockScroll,step} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        modelValue,visible,cycleRoll,disabled,lockScroll,step
       }
       const { ref, current: vm, parent } = useVm()
       

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function area(props) {
-      const {} = props
+      const {modelValue,placeholder,size,disabled,default,fetchJcr,fetchRegion,fetchRep,fetchOffice,popperClass,popperAppendToBody} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        modelValue,placeholder,size,disabled,default,fetchJcr,fetchRegion,fetchRep,fetchOffice,popperClass,popperAppendToBody
       }
       const { ref, current: vm, parent } = useVm()
       const refInstance=useRef()

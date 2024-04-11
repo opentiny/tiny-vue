@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function popup(props) {
-      const {} = props
+      const {_constants,closeIcon,closeIconPosition,closeOnClickOverlay,closeable,duration,lazyRender,lockScroll,modelValue,overlay,overlayClass,overlayStyle,popupClass,popupStyle,position,round,safeAreaInsetBottom,transition,zIndex} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        _constants,closeIcon,closeIconPosition,closeOnClickOverlay,closeable,duration,lazyRender,lockScroll,modelValue,overlay,overlayClass,overlayStyle,popupClass,popupStyle,position,round,safeAreaInsetBottom,transition,zIndex
       }
       const { ref, current: vm, parent } = useVm()
       const popup=useRef()

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function tabItem(props) {
-      const {} = props
+      const {title,name,selected,renderTitle,renderSetting,lazy} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        title,name,selected,renderTitle,renderSetting,lazy
       }
       const { ref, current: vm, parent } = useVm()
       

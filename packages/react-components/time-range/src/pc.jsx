@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function timeRange(props) {
-      const {} = props
+      const {emitter} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        emitter
       }
       const { ref, current: vm, parent } = useVm()
       const minSpinner=useRef()

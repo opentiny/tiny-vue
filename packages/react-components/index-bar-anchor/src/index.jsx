@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function indexBar(props) {
-      const {} = props
+      const {index} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        index
       }
       const { ref, current: vm, parent } = useVm()
       const indexBarAnchor=useRef()

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function fullscreen(props) {
-      const {} = props
+      const {fullscreen,exitOnClickWrapper,fullscreenClass,pageOnly,teleport,zIndex,beforeChange} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        fullscreen,exitOnClickWrapper,fullscreenClass,pageOnly,teleport,zIndex,beforeChange
       }
       const { ref, current: vm, parent } = useVm()
       const wrapper=useRef()

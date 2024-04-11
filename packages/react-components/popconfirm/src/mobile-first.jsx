@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function popconfirm(props) {
-      const {} = props
+      const {_constants,message,customClass,trigger,cancelButton,title,placement,width,type} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        _constants,message,customClass,trigger,cancelButton,title,placement,width,type
       }
       const { ref, current: vm, parent } = useVm()
       const popover=useRef()

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function menu(props) {
-      const {} = props
+      const {showFilter,searchIcon,emptyText,expandedKeys,default,activedKeys,onlyCheckChildren,expandAll,data,default,widthAdapt} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        showFilter,searchIcon,emptyText,expandedKeys,default,activedKeys,onlyCheckChildren,expandAll,data,default,widthAdapt
       }
       const { ref, current: vm, parent } = useVm()
       

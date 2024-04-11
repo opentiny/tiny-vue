@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function selectMobile(props) {
-      const {} = props
+      const {menus,modelValue,visible,ellipsis,valueField,textField,textField2,textField3,title,textSplit,showHeader,showFooter,multiple,searchConfig,default,lockScroll,mode,placeholder} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        menus,modelValue,visible,ellipsis,valueField,textField,textField2,textField3,title,textSplit,showHeader,showFooter,multiple,searchConfig,default,lockScroll,mode,placeholder
       }
       const { ref, current: vm, parent } = useVm()
       

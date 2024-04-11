@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function transferPanel(props) {
-      const {} = props
+      const {option} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        option
       }
       const { ref, current: vm, parent } = useVm()
       const reference=useRef()

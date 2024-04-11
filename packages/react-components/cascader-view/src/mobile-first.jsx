@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function cascaderView(props) {
-      const {} = props
+      const {_constants,data,modelValue,visible,valueField,textField,textField2,textField3,title,textSplit,showHeader,customClass,mask,ellipsis,searchConfig,default,childrenField,nodeConfig,lockScroll,emitPath} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        _constants,data,modelValue,visible,valueField,textField,textField2,textField3,title,textSplit,showHeader,customClass,mask,ellipsis,searchConfig,default,childrenField,nodeConfig,lockScroll,emitPath
       }
       const { ref, current: vm, parent } = useVm()
       const actionSheet=useRef()

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function multiSelect(props) {
-      const {} = props
+      const {dataSource,modelValue,searchValue,defaultSelectedArray,filterable,searchPlaceholder,type,disabled,mask,maskOptions} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        dataSource,modelValue,searchValue,defaultSelectedArray,filterable,searchPlaceholder,type,disabled,mask,maskOptions
       }
       const { ref, current: vm, parent } = useVm()
       const headerBox=useRef()

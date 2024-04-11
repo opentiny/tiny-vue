@@ -1,0 +1,10 @@
+{
+  "name": "@opentiny/react-year-table",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

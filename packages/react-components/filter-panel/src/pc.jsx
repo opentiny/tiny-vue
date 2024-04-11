@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function filterPanel(props) {
-      const {} = props
+      const {label,value,tip,popperClass,clearable,disabled,placement,popperAppendToBody,blank} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        label,value,tip,popperClass,clearable,disabled,placement,popperAppendToBody,blank
       }
       const { ref, current: vm, parent } = useVm()
       const popover=useRef()

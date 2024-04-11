@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function miniPicker(props) {
-      const {} = props
+      const {_constants,columns,visible,title,confirmButtonText,cancelButtonText,defaultIndex,valueKey,itemHeight,visibleItemCount,swipeDuration} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        _constants,columns,visible,title,confirmButtonText,cancelButtonText,defaultIndex,valueKey,itemHeight,visibleItemCount,swipeDuration
       }
       const { ref, current: vm, parent } = useVm()
       

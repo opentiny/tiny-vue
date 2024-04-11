@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function configProvider(props) {
-      const {} = props
+      const {design,default} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        design,default
       }
       const { ref, current: vm, parent } = useVm()
       

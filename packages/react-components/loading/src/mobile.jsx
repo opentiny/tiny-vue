@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function loading(props) {
-      const {} = props
+      const {_constants,loadingImg,size} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        _constants,loadingImg,size
       }
       const { ref, current: vm, parent } = useVm()
       

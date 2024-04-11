@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function avatar(props) {
-      const {} = props
+      const {_constants,alt,error,fit,icon,shape,size,src,srcSet} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        _constants,alt,error,fit,icon,shape,size,src,srcSet
       }
       const { ref, current: vm, parent } = useVm()
       

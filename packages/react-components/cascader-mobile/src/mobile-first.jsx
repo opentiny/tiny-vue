@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function cascaderMobile(props) {
-      const {} = props
+      const {_constants,data,modelValue,visible,ellipsis,valueField,placeholder,childrenField,textField,textField2,textField3,title,textSplit,showHeader,multiple,searchConfig,default,nodeConfig} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        _constants,data,modelValue,visible,ellipsis,valueField,placeholder,childrenField,textField,textField2,textField3,title,textSplit,showHeader,multiple,searchConfig,default,nodeConfig
       }
       const { ref, current: vm, parent } = useVm()
       

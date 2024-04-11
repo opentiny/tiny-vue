@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function mask(props) {
-      const {} = props
+      const {visible,zIndex,cancelTouch} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        visible,zIndex,cancelTouch
       }
       const { ref, current: vm, parent } = useVm()
       

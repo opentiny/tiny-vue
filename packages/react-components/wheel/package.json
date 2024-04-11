@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/react-wheel",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@better-scroll/core": "2.5.0",
+    "@better-scroll/wheel": "2.5.0",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  }
+}

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function navBar(props) {
-      const {} = props
+      const {_renderless,title,subTitle,fixed,zIndex,leftText,rightText,leftArrow,rightArrow} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        _renderless,title,subTitle,fixed,zIndex,leftText,rightText,leftArrow,rightArrow
       }
       const { ref, current: vm, parent } = useVm()
       

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function pagerItem(props) {
-      const {} = props
+      const {disabled,currentPage,pageCount,pagerCount,popupIcon,doubleLeftIcon,doubleRightIcon,isBeforePageChange} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        disabled,currentPage,pageCount,pagerCount,popupIcon,doubleLeftIcon,doubleRightIcon,isBeforePageChange
       }
       const { ref, current: vm, parent } = useVm()
       
