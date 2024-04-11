@@ -53,7 +53,7 @@ function extractPropNames(str) {
           if (trimmedLine.includes('validator(') || !trimmedLine.includes(':')) {
             continue
           }
-          console.log(trimmedLine, symbolTable, str, 'str')
+          // console.log(trimmedLine, symbolTable, str, 'str')
           const exec = /([a-z_][a-zA-Z0-9]*)[/:]/.exec(trimmedLine)
           props.push(exec[1])
         }
