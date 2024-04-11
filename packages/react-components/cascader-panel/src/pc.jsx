@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function cascaderPanel(props) {
-      const {} = props
+      const {modelValue,options,border,renderLabel} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        modelValue,options,border,renderLabel
       }
       const { ref, current: vm, parent } = useVm()
       

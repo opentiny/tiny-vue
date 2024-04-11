@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function modal(props) {
-      const {_constants} = props
+      const {_constants,default,beforeClose,escClosable,events,fullscreen,height,id,isFormReset,lockScroll,maskClosable,message,modelValue,resize,showFooter,status,title,width,zIndex,description,options,confirmContent,cancelContent,position,customClass,slots} = props
       const defaultProps = {
         ...$props,
         ...props,
-        _constants
+        _constants,default,beforeClose,escClosable,events,fullscreen,height,id,isFormReset,lockScroll,maskClosable,message,modelValue,resize,showFooter,status,title,width,zIndex,description,options,confirmContent,cancelContent,position,customClass,slots
       }
       const { ref, current: vm, parent } = useVm()
       

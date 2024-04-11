@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function tree(props) {
-      const {node} = props
+      const {node,expandIcon,shrinkIcon,expandIconColor,shrinkIconColor,renderContent,showNumber,collapsible,nodeHeight,checkEasily,action,nodeKey,theme,showCheckedMark,showLine} = props
       const defaultProps = {
         ...$props,
         ...props,
-        node
+        node,expandIcon,shrinkIcon,expandIconColor,shrinkIconColor,renderContent,showNumber,collapsible,nodeHeight,checkEasily,action,nodeKey,theme,showCheckedMark,showLine
       }
       const { ref, current: vm, parent } = useVm()
       const node=useRef()

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function columnList(props) {
-      const {_constants} = props
+      const {_constants,modelValue,label,data,default} = props
       const defaultProps = {
         ...$props,
         ...props,
-        _constants
+        _constants,modelValue,label,data,default
       }
       const { ref, current: vm, parent } = useVm()
       

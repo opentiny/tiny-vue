@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function tooltip(props) {
-      const {adjustArrow,appendToBody,arrowOffset,boundariesPadding,closeDelay} = props
+      const {adjustArrow,appendToBody,arrowOffset,boundariesPadding,closeDelay,effect,enterable,hideAfter,offset,openDelay,placement,popper,popperOptions,reference,tabindex,transformOrigin,type,visibleArrow,genArrowByHtml,zIndex} = props
       const defaultProps = {
         ...$props,
         ...props,
-        adjustArrow,appendToBody,arrowOffset,boundariesPadding,closeDelay
+        adjustArrow,appendToBody,arrowOffset,boundariesPadding,closeDelay,effect,enterable,hideAfter,offset,openDelay,placement,popper,popperOptions,reference,tabindex,transformOrigin,type,visibleArrow,genArrowByHtml,zIndex
       }
       const { ref, current: vm, parent } = useVm()
       

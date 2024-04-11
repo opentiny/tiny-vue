@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function popover(props) {
-      const {appendToBody,arrowOffset,boundariesPadding,closeDelay,content,disabled,modelValue,offset,openDelay,placement} = props
+      const {appendToBody,arrowOffset,boundariesPadding,closeDelay,content,disabled,modelValue,offset,openDelay,placement,popper,popperClass,popperOptions,reference,tabindex,title,transformOrigin,transition,trigger,visibleArrow,genArrowByHtml,width} = props
       const defaultProps = {
         ...$props,
         ...props,
-        appendToBody,arrowOffset,boundariesPadding,closeDelay,content,disabled,modelValue,offset,openDelay,placement
+        appendToBody,arrowOffset,boundariesPadding,closeDelay,content,disabled,modelValue,offset,openDelay,placement,popper,popperClass,popperOptions,reference,tabindex,title,transformOrigin,transition,trigger,visibleArrow,genArrowByHtml,width
       }
       const { ref, current: vm, parent } = useVm()
       const root=useRef()

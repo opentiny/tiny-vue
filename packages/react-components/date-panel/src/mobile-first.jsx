@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function datePanel(props) {
-      const {emitter,step} = props
+      const {emitter,step,showWeekNumber,formatWeeks} = props
       const defaultProps = {
         ...$props,
         ...props,
-        emitter,step
+        emitter,step,showWeekNumber,formatWeeks
       }
       const { ref, current: vm, parent } = useVm()
       const input=useRef()

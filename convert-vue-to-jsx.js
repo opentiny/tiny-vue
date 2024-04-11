@@ -27,6 +27,7 @@ function extractPropNames(str) {
   const symbolTable = []
   const props = []
   let returnObj = null
+
   for (const line of lines) {
     const trimmedLine = line.trim()
     if (!trimmedLine) continue
@@ -35,15 +36,23 @@ function extractPropNames(str) {
       inProps = true
     } else if (inProps) {
       if (!trimmedLine.includes('{') && !trimmedLine.includes('}') && symbolTable.length === 1) {
-        if (trimmedLine.includes('...props') || trimmedLine.includes('...$props') || trimmedLine.includes('//')) {
+        if (
+          trimmedLine.includes('...props') ||
+          trimmedLine.includes('...$props') ||
+          trimmedLine.includes('//') ||
+          trimmedLine.includes('props')
+        ) {
           continue
         }
         // console.log(trimmedLine, symbolTable, str, 'str')
         const exec = /([a-z_][a-zA-Z0-9]*)[/:]/.exec(trimmedLine)
         props.push(exec[1])
       } else {
-        if (trimmedLine.includes('{') && !trimmedLine.includes('}')) {
+        if (trimmedLine.includes('{') && (!trimmedLine.includes('}') || trimmedLine.includes('{}'))) {
           symbolTable.push('{')
+          if (trimmedLine.includes('{}')) {
+            symbolTable.pop()
+          }
           if (returnObj) {
             continue
           }

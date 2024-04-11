@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function pickerColumn(props) {
-      const {columnsItem} = props
+      const {columnsItem,default,defaultIndex,itemHeight,visibleItemCount,swipeDuration,valueKey} = props
       const defaultProps = {
         ...$props,
         ...props,
-        columnsItem
+        columnsItem,default,defaultIndex,itemHeight,visibleItemCount,swipeDuration,valueKey
       }
       const { ref, current: vm, parent } = useVm()
       const track=useRef()

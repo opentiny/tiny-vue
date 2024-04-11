@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function datePicker(props) {
-      const {_constants} = props
+      const {_constants,default} = props
       const defaultProps = {
         ...$props,
         ...props,
-        _constants
+        _constants,default
       }
       const { ref, current: vm, parent } = useVm()
       

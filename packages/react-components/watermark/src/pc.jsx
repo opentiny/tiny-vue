@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function watermark(props) {
-      const {_constants} = props
+      const {_constants,font} = props
       const defaultProps = {
         ...$props,
         ...props,
-        _constants
+        _constants,font
       }
       const { ref, current: vm, parent } = useVm()
       const parentRef=useRef()

@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function yearTable(props) {
-      const {} = props
+      const {disabledDate,value,defaultValue,date,selectionMode,startYear,maxDate,minDate,rangeState} = props
       const defaultProps = {
         ...$props,
         ...props,
-        
+        disabledDate,value,defaultValue,date,selectionMode,startYear,maxDate,minDate,rangeState
       }
       const { ref, current: vm, parent } = useVm()
       

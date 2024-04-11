@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function treeMenu(props) {
-      const {placeholder,data,nodeKey,defaultExpandAll,suffixIcon,prefixIcon,searchIcon,props,draggable,emptyText,checkStrictly,lazy,load,showCheckbox,filterNodeMethod,defaultCheckedKeys,defaultExpandedKeys,defaultExpandedKeysHighlight,indent,allowDrag,allowDrop,expandOnClickNode,ellipsis,wrap,getMenuDataSync,accordion,showTitle,showFilter,showExpand,collapsible,showNumber,nodeHeight,onlyCheckChildren,menuCollapsible} = props
+      const {placeholder,data,nodeKey,defaultExpandAll,suffixIcon,prefixIcon,searchIcon,draggable,emptyText,checkStrictly,lazy,load,showCheckbox,filterNodeMethod,defaultCheckedKeys,defaultExpandedKeys,defaultExpandedKeysHighlight,indent,allowDrag,allowDrop,expandOnClickNode,ellipsis,wrap,getMenuDataSync,accordion,showTitle,showFilter,showExpand,collapsible,showNumber,nodeHeight,onlyCheckChildren,menuCollapsible} = props
       const defaultProps = {
         ...$props,
         ...props,
-        placeholder,data,nodeKey,defaultExpandAll,suffixIcon,prefixIcon,searchIcon,props,draggable,emptyText,checkStrictly,lazy,load,showCheckbox,filterNodeMethod,defaultCheckedKeys,defaultExpandedKeys,defaultExpandedKeysHighlight,indent,allowDrag,allowDrop,expandOnClickNode,ellipsis,wrap,getMenuDataSync,accordion,showTitle,showFilter,showExpand,collapsible,showNumber,nodeHeight,onlyCheckChildren,menuCollapsible
+        placeholder,data,nodeKey,defaultExpandAll,suffixIcon,prefixIcon,searchIcon,draggable,emptyText,checkStrictly,lazy,load,showCheckbox,filterNodeMethod,defaultCheckedKeys,defaultExpandedKeys,defaultExpandedKeysHighlight,indent,allowDrag,allowDrop,expandOnClickNode,ellipsis,wrap,getMenuDataSync,accordion,showTitle,showFilter,showExpand,collapsible,showNumber,nodeHeight,onlyCheckChildren,menuCollapsible
       }
       const { ref, current: vm, parent } = useVm()
       const tree=useRef()

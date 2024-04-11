@@ -4,11 +4,11 @@
     import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
     import {useRef} from 'react'
     export default function formItem(props) {
-      const {_constants,appendToBody,error,for,inlineMessage,label,labelWidth,manual,popperOptions} = props
+      const {_constants,appendToBody,error,for,inlineMessage,label,labelWidth,manual,popperOptions,default,prop,required,rules,showMessage,size,tipContent,validateDisabled,validateDebounce,validatePosition,validateStatus,validateType} = props
       const defaultProps = {
         ...$props,
         ...props,
-        _constants,appendToBody,error,for,inlineMessage,label,labelWidth,manual,popperOptions
+        _constants,appendToBody,error,for,inlineMessage,label,labelWidth,manual,popperOptions,default,prop,required,rules,showMessage,size,tipContent,validateDisabled,validateDebounce,validatePosition,validateStatus,validateType
       }
       const { ref, current: vm, parent } = useVm()
       
