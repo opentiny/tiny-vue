@@ -1,0 +1,21 @@
+{
+  "name": "@opentiny/react-amount",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-date-picker": "workspace:~",
+    "@opentiny/react-date-picker-mobile-first": "workspace:~",
+    "@opentiny/react-currency": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-popover": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-filter-box": "workspace:~",
+    "@opentiny/react-radio": "workspace:~",
+    "@opentiny/react-radio-group": "workspace:~",
+    "@opentiny/react-action-sheet": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

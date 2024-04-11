@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-record",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-action-sheet": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

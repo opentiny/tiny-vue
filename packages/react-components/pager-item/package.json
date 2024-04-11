@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-pager-item",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-common": "workspace:~"
+  }
+}

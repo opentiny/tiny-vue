@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-country",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-select": "workspace:~",
+    "@opentiny/react-option": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

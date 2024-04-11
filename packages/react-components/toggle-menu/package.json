@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-toggle-menu",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-tree": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

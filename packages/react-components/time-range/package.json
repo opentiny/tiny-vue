@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-time-range",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-time-spinner": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

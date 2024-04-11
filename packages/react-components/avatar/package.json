@@ -1,0 +1,10 @@
+{
+  "name": "@opentiny/react-avatar",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  }
+}

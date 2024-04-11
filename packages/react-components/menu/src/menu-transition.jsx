@@ -1,0 +1,34 @@
+
+    import { renderless, api } from '@opentiny/vue-renderless/menu/vue'
+    import '@opentiny/vue-theme/menu/index.less'
+    import { vc, If, Component, Slot, useSetup, useVm, $props, m } from '@opentiny/react-common'
+    import {useRef} from 'react'
+    export default function menu(props) {
+      const {} = props
+      const defaultProps = {
+        ...$props,
+        ...props,
+        
+      }
+      const { ref, current: vm, parent } = useVm()
+      
+      const { state,on } = useSetup({
+        props: defaultProps,
+        renderless,
+        api,
+        constants: _constants,
+        vm,
+        parent,
+        doms:[]
+      })
+      return (
+          
+<transition {...on}>    
+<Slot  parent_children={props.children} slots={props.slots}></Slot>
+
+  </transition>
+
+
+      );
+    }
+    

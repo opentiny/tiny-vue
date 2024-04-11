@@ -1,0 +1,10 @@
+{
+  "name": "@opentiny/react-dynamic-scroller",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-recycle-scroller": "workspace:~"
+  }
+}

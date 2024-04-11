@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-time-panel",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-scrollbar": "workspace:~",
+    "@opentiny/react-numeric": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

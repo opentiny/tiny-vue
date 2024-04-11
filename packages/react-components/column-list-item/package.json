@@ -1,0 +1,15 @@
+{
+  "name": "@opentiny/react-column-list-item",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-checkbox": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-dropdown": "workspace:~",
+    "@opentiny/react-dropdown-item": "workspace:~",
+    "@opentiny/react-dropdown-menu": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-radio": "workspace:~"
+  }
+}

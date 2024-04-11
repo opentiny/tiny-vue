@@ -1,0 +1,18 @@
+{
+  "name": "@opentiny/react-tabs",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-dropdown": "workspace:~",
+    "@opentiny/react-dropdown-menu": "workspace:~",
+    "@opentiny/react-dropdown-item": "workspace:~",
+    "@opentiny/react-tooltip": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-popover": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  }
+}

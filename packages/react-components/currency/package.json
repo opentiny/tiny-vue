@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/react-currency",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-select": "workspace:~",
+    "@opentiny/react-option": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-select-mobile": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

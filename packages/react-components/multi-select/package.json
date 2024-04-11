@@ -1,0 +1,17 @@
+{
+  "name": "@opentiny/react-multi-select",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-mask": "workspace:~",
+    "@opentiny/react-multi-select-item": "workspace:~",
+    "@opentiny/react-wheel": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  }
+}

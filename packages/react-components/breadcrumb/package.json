@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-breadcrumb",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-breadcrumb-item": "workspace:~"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-credit-card-form",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-credit-card": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-signature",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-modal": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

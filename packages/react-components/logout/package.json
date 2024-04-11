@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-logout",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-common": "workspace:~"
+  }
+}

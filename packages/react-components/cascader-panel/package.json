@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-cascader-panel",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-cascader-menu": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

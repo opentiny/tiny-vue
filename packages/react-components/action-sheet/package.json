@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/react-action-sheet",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-drawer": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@better-scroll/core": "2.5.0",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  }
+}

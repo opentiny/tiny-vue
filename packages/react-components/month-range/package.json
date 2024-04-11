@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-month-range",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-month-table": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

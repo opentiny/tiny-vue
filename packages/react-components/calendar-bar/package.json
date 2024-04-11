@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-calendar-bar",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-cascader-select": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@opentiny/react-modal",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-checkbox": "workspace:~",
+    "@opentiny/react-checkbox-group": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-popconfirm": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@opentiny/react-color-picker",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-option": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-color-select-panel": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-color-picker": "workspace:~"
+  }
+}

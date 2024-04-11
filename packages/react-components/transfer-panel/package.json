@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/react-transfer-panel",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-checkbox": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-pager": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

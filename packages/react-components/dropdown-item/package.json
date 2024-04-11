@@ -1,0 +1,15 @@
+{
+  "name": "@opentiny/react-dropdown-item",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-popup": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-tooltip": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

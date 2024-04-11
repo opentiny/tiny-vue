@@ -1,0 +1,16 @@
+{
+  "name": "@opentiny/react-date-range",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-time": "workspace:~",
+    "@opentiny/react-date-table": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

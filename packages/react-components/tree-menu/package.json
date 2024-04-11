@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/react-tree-menu",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-tree": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

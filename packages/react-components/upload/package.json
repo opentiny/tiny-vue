@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-upload",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-upload-dragger": "workspace:~",
+    "@opentiny/react-modal": "workspace:~"
+  }
+}

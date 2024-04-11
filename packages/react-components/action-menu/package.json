@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/react-action-menu",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-dropdown": "workspace:~",
+    "@opentiny/react-dropdown-menu": "workspace:~",
+    "@opentiny/react-dropdown-item": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-locale": "workspace:~"
+  }
+}

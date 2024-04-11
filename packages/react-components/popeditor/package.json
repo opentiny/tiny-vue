@@ -1,0 +1,17 @@
+{
+  "name": "@opentiny/react-popeditor",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-grid": "workspace:~",
+    "@opentiny/react-pager": "workspace:~",
+    "@opentiny/react-dialog-box": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-tree": "workspace:~",
+    "@opentiny/react-selected-box": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

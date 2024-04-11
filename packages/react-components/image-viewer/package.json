@@ -1,0 +1,16 @@
+{
+  "name": "@opentiny/react-image-viewer",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-dropdown": "workspace:~",
+    "@opentiny/react-dropdown-menu": "workspace:~",
+    "@opentiny/react-dropdown-item": "workspace:~",
+    "@opentiny/react-action-sheet": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

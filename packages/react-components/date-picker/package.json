@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/react-date-picker",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-picker": "workspace:~",
+    "@opentiny/react-mini-picker": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}
