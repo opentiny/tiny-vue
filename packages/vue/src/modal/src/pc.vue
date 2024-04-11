@@ -137,7 +137,7 @@ export default defineComponent({
           }
         ],
         style: {
-          zIndex: this.state.modalZindex,
+          zIndex: state.modalZindex,
           top: modalTop ? `${modalTop}px` : null
         },
         on: {
@@ -273,58 +273,58 @@ export default defineComponent({
                   footerSlot
                     ? footerSlot.call(this, footerSlotParams, h)
                     : state.theme === 'saas'
-                    ? [
-                        type === 'confirm'
-                          ? h(
-                              Button,
-                              {
-                                on: {
-                                  click: this.cancelEvent
-                                }
-                              },
-                              cancelContent || t('ui.button.cancel')
-                            )
-                          : null,
-                        h(
-                          Button,
-                          {
-                            props: {
-                              type: 'primary'
-                            },
-                            on: {
-                              click: this.confirmEvent
-                            }
-                          },
-                          confirmContent || t('ui.button.confirm')
-                        )
-                      ]
-                    : [
-                        h(
-                          Button,
-                          {
-                            props: {
-                              type: 'primary',
-                              ...confirmButtonProps
-                            },
-                            on: {
-                              click: this.confirmEvent
-                            }
-                          },
-                          confirmButtonText
-                        ),
-                        type === 'confirm'
-                          ? h(
-                              Button,
-                              {
-                                on: {
-                                  click: this.cancelEvent
+                      ? [
+                          type === 'confirm'
+                            ? h(
+                                Button,
+                                {
+                                  on: {
+                                    click: this.cancelEvent
+                                  }
                                 },
-                                props: { ...cancelButtonProps }
+                                cancelContent || t('ui.button.cancel')
+                              )
+                            : null,
+                          h(
+                            Button,
+                            {
+                              props: {
+                                type: 'primary'
                               },
-                              cancelButtonText
-                            )
-                          : null
-                      ]
+                              on: {
+                                click: this.confirmEvent
+                              }
+                            },
+                            confirmContent || t('ui.button.confirm')
+                          )
+                        ]
+                      : [
+                          h(
+                            Button,
+                            {
+                              props: {
+                                type: 'primary',
+                                ...confirmButtonProps
+                              },
+                              on: {
+                                click: this.confirmEvent
+                              }
+                            },
+                            confirmButtonText
+                          ),
+                          type === 'confirm'
+                            ? h(
+                                Button,
+                                {
+                                  on: {
+                                    click: this.cancelEvent
+                                  },
+                                  props: { ...cancelButtonProps }
+                                },
+                                cancelButtonText
+                              )
+                            : null
+                        ]
                 )
               : null,
             !isMsg && resize
