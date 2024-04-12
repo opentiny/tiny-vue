@@ -59,7 +59,7 @@ const initApi = ({ api, state, constants, props, designConfig, t, emit, vm, pare
   })
 }
 
-const initWatcher = ({ watch, props, api, state }) => {
+const initWatcher = ({ watch, props, api }) => {
   watch(() => props.autoHide, api.watchAutoHide, { immediate: true })
   watch(() => props.target, api.handlerTargetNode, { immediate: true })
 }
@@ -72,6 +72,6 @@ export const renderless = (
   const api = {} as IAlertApi
   const state: IAlertState = initState({ api, computed, constants, reactive })
   initApi({ api, state, constants, props, designConfig, t, emit, vm, parent, nextTick, mode })
-  initWatcher({ watch, props, api, state })
+  initWatcher({ watch, props, api })
   return api
 }

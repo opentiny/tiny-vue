@@ -15,24 +15,19 @@ import { isNull } from '../common/type'
 import { itemPoint, itemLabel, itemContent, SAAS_DEFAULT_COLORS } from '../chart-core/deps/constants'
 
 const getLineXAxis = (args) => {
-  const { xAxisType, dimension, rows, xAxisName, axisVisible, xAxisSettings = [] } = args
+  const { xAxisType, dimension, rows, xAxisName, axisVisible } = args
 
-  return dimension.map((item, idx) =>
-    Object.assign(
-      {
-        nameLocation: 'middle',
-        type: xAxisType,
-        name: xAxisName[idx] || '',
-        nameGap: 22,
-        show: axisVisible,
-        data: rows.map((row) => row[item]),
-        axisTick: { show: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 }, alignWithLabel: true },
-        axisLine: { show: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 } },
-        axisPointer: { show: true, type: 'line', lineStyle: { color: '#191919', opacity: 0.3, type: 'solid' } }
-      },
-      xAxisSettings[idx] || {}
-    )
-  )
+  return dimension.map((item, idx) => ({
+    nameLocation: 'middle',
+    type: xAxisType,
+    name: xAxisName[idx] || '',
+    nameGap: 22,
+    show: axisVisible,
+    data: rows.map((row) => row[item]),
+    axisTick: { show: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 }, alignWithLabel: true },
+    axisLine: { show: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 } },
+    axisPointer: { show: true, type: 'line', lineStyle: { color: '#191919', opacity: 0.3, type: 'solid' } }
+  }))
 }
 
 const getAreaSeries = ({ color, seriesItem }) => {
@@ -119,16 +114,15 @@ const getLineYAxis = (args) => {
 
   for (let k = 0; k < 2; k++) {
     if (yAxisType[k]) {
-      yAxis[k] = {
-        ...yAxisBase,
+      yAxis[k] = Object.assign({}, yAxisBase, {
         axisLabel: {
           formatter(val) {
             return getFormated(val, yAxisType[k], digit)
           }
         }
-      }
+      })
     } else {
-      yAxis[k] = { ...yAxisBase }
+      yAxis[k] = Object.assign({}, yAxisBase)
     }
 
     yAxis[k].name = yAxisName[k] || ''
@@ -151,6 +145,7 @@ const getLineTooltip = (args) => {
   return {
     formatter(items) {
       if (tooltipFormatter) {
+        // eslint-disable-next-line prefer-spread, prefer-rest-params
         return tooltipFormatter.apply(null, arguments)
       }
 
@@ -190,7 +185,6 @@ export const line = (columns, rows, settings, extra) => {
   const { dimension = [columns[0]], xAxisName = [], axisVisible = true, area, stack } = settings
   const { scale = [false, false], min = [null, null], max = [null, null], nullAddZero = false, digit = 2 } = settings
   const { legendName = {}, labelMap = {}, label, itemStyle, lineStyle, areaStyle, smooth } = settings
-  const xAxisSettings = settings.xAxis || []
 
   const { tooltipVisible, legendVisible, tooltipFormatter, color } = extra
   let metrics = columns.slice()
@@ -215,7 +209,7 @@ export const line = (columns, rows, settings, extra) => {
   const tooltip =
     tooltipVisible && getLineTooltip({ axisSite, digit, labelMap, tooltipFormatter, xAxisType, yAxisType })
 
-  const xAxis = getLineXAxis({ axisVisible, dimension, xAxisName, xAxisType, rows, xAxisSettings })
+  const xAxis = getLineXAxis({ axisVisible, dimension, xAxisName, xAxisType, rows })
 
   const yAxis = getLineYAxis({ axisVisible, digit, max, min, scale, yAxisType, yAxisName })
   const seriesParam = { areaStyle, area, axisSite, dimension, itemStyle, lineStyle }
@@ -226,5 +220,5 @@ export const line = (columns, rows, settings, extra) => {
 
   let options = { legend, xAxis, series, yAxis, tooltip }
 
-  return { ...options, ...settings }
+  return options
 }

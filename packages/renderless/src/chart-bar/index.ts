@@ -30,38 +30,32 @@ const getValueAxisData = (dims) => {
 }
 
 const getBarDimAxis = (args) => {
-  const { innerRows, dimAxisName, dimension, axisVisible, dimAxisType, dims, xAxisSettings = [] } = args
+  const { innerRows, dimAxisName, dimension, axisVisible, dimAxisType, dims } = args
 
-  return dimension.map((item, index) =>
-    Object.assign(
-      {
-        type: 'category',
-        name: dimAxisName,
-        nameLocation: 'middle',
-        nameGap: 22,
-        data: dimAxisType === 'value' ? getValueAxisData(dims) : innerRows.map((row) => row[item]),
-        axisLabel: {
-          formatter(value) {
-            return String(value)
-          }
-        },
-        show: axisVisible,
-        axisTick: { show: true, alignWithLabel: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 } },
-        axisLine: { show: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 } },
-        axisPointer: { type: 'shadow', z: 1, shadowStyle: { color: '#f5f5f5' } }
-      },
-      xAxisSettings[index] || {}
-    )
-  )
+  return dimension.map((item) => ({
+    type: 'category',
+    name: dimAxisName,
+    nameLocation: 'middle',
+    nameGap: 22,
+    data: dimAxisType === 'value' ? getValueAxisData(dims) : innerRows.map((row) => row[item]),
+    axisLabel: {
+      formatter(value) {
+        return String(value)
+      }
+    },
+    show: axisVisible,
+    axisTick: { show: true, alignWithLabel: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 } },
+    axisLine: { show: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 } }
+  }))
 }
 
 const factoryFmt =
   ({ meaAxisType, i, digit }) =>
-    (val) =>
-      getFormated(val, meaAxisType[i], digit)
+  (val) =>
+    getFormated(val, meaAxisType[i], digit)
 
 const getBarMeaAxis = (args) => {
-  const { axisVisible, digit, max, meaAxisName, meaAxisType, min, scale, xAxisSettings = [] } = args
+  const { axisVisible, digit, max, meaAxisName, meaAxisType, min, scale } = args
   const meaAxisBase = { type: 'value', axisTick: { show: false }, show: axisVisible }
   let { meaAxis = [], i = 0, formatter } = {}
 
@@ -73,9 +67,7 @@ const getBarMeaAxis = (args) => {
     } else {
       meaAxis[i] = { ...meaAxisBase }
     }
-    if (xAxisSettings[i]) {
-      Object.assign(meaAxis[i], xAxisSettings[i])
-    }
+
     Object.assign(meaAxis[i], {
       max: max[i] || null,
       min: min[i] || null,
@@ -83,6 +75,7 @@ const getBarMeaAxis = (args) => {
       scale: scale[i] || false
     })
   }
+
   return meaAxis
 }
 
@@ -112,7 +105,7 @@ const getBarTooltip = (args) => {
     return tplt.join('')
   }
 
-  return { trigger: 'axis', formatter }
+  return { trigger: 'axis', formatter, axisPointer: { type: 'shadow', z: 1, shadowStyle: { color: '#f5f5f5' } } }
 }
 
 const getValueData = (seriesTemp, dims) => {
@@ -218,7 +211,6 @@ export const bar = (columns, rows, settings, extra) => {
   const { legendName = {}, labelMap = {}, label, itemStyle, showLine, barGap = '-100%', opacity } = settings
   const { tooltipVisible, legendVisible } = extra
   let { metrics = columns.slice(), meaAxisType, dimAxisType, meaAxisName, dimAxisName, isHistogram = false } = {}
-  const xAxisSettings = settings.xAxis || []
 
   if (axisSite.bottom && axisSite.top) {
     metrics = axisSite.top.concat(axisSite.bottom)
@@ -245,7 +237,7 @@ export const bar = (columns, rows, settings, extra) => {
 
   let dims = getDims(innerRows, dimension)
   let legend = legendVisible && getLegend({ metrics, labelMap, legendName })
-  let yAxis = getBarDimAxis({ innerRows, dimAxisName, dimension, axisVisible, dimAxisType, dims, xAxisSettings })
+  let yAxis = getBarDimAxis({ innerRows, dimAxisName, dimension, axisVisible, dimAxisType, dims })
   let xAxis = getBarMeaAxis({ axisVisible, meaAxisType, meaAxisName, scale, digit, max, min })
   let args = { axisSite, isHistogram, metrics, stack, itemStyle, label, labelMap, showLine }
 
@@ -263,7 +255,6 @@ export const histogram = (columns, rows, settings, extra) => {
   const { digit = 2, dataOrder = false, scale = [false, false], min = [null, null], max = [null, null] } = settings
   const { labelMap = {}, legendName = {}, label, itemStyle, showLine, barGap = '-100%', opacity } = settings
   const { tooltipVisible, legendVisible } = extra
-  const xAxisSettings = settings.xAxis || []
 
   if (dataOrder) {
     let { label, order } = dataOrder
@@ -294,7 +285,7 @@ export const histogram = (columns, rows, settings, extra) => {
   dims = getDims(innerRows, dimension)
   legend = legendVisible && getLegend({ metrics, labelMap, legendName })
 
-  let xAxis = getBarDimAxis({ innerRows, dimAxisName, dimension, axisVisible, dimAxisType, dims, xAxisSettings })
+  let xAxis = getBarDimAxis({ innerRows, dimAxisName, dimension, axisVisible, dimAxisType, dims })
   let yAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit, scale, min, max })
   let args = { innerRows, metrics, stack, axisSite, isHistogram, labelMap, itemStyle, label }
 

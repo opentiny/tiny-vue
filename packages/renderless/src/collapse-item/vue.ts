@@ -30,7 +30,6 @@ export const renderless = (
   const _constants = parent.collapse?._constants || parent._constants
   const componentName = _constants.COMPONENT_NAME.Collapse
   const eventName = _constants.EVENT_NAME.CollapseItemClick
-  console.log(parent, 'parent', parent?.state?.activeNames)
   const state: ICollapseItemState = reactive({
     id: guid(),
     isClick: false,

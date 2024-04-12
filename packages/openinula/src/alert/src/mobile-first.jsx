@@ -74,7 +74,7 @@ export default function Alert(props) {
           ])}>
           <Component
             v-if={showIcon}
-            renderIs={state.getIcon}
+            is={state.getIcon}
             className={vc([
               'h-4.5 w-4.5 mt-1 sm:mt-0.5 sm:h-6 sm:w-5 sm:h-5 fill-current',
               { 'text-color-info-secondary': type === 'info' || !type },

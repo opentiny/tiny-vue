@@ -14,13 +14,13 @@ import { addClass, removeClass } from '../common/deps/dom'
 
 export const setFixAnchor =
   ({ vm, props }: Pick<IAnchorRenderlessParams, 'vm' | 'props'>) =>
-    () => {
-      const { anchorWrapRef } = vm.$refs
-      if (anchorWrapRef && props.isAffix) {
-        const { top } = anchorWrapRef.getBoundingClientRect()
-        anchorWrapRef.style.top = `${top}px`
-      }
+  () => {
+    const { anchorWrapRef } = vm.$refs
+    if (anchorWrapRef && props.isAffix) {
+      const { top } = anchorWrapRef.getBoundingClientRect()
+      anchorWrapRef.style.top = `${top}px`
     }
+  }
 
 const setMarkClass = ({ state, props }: Pick<IAnchorRenderlessParams, 'state' | 'props'>) => {
   const { scrollContainer } = state
@@ -36,31 +36,35 @@ const setMarkClass = ({ state, props }: Pick<IAnchorRenderlessParams, 'state' | 
 
 export const setScrollContainer =
   ({ state, api }: Pick<IAnchorRenderlessParams, 'state' | 'api'>) =>
-    (cb: Function | null = null) => {
-      const currentContainer = api.getContainer()
-      const { scrollContainer } = state
-      if (scrollContainer !== currentContainer) {
-        state.scrollContainer = currentContainer
-        cb && cb()
-      }
+  (cb: Function | null = null) => {
+    const currentContainer = api.getContainer()
+    const { scrollContainer } = state
+    if (scrollContainer !== currentContainer) {
+      state.scrollContainer = currentContainer
+      cb && cb()
     }
+  }
 
 const updateSkidPosition = ({ vm, state, emit }: Pick<IAnchorRenderlessParams, 'vm' | 'state' | 'emit'>) => {
   const { currentLink } = state
-
   const activeEl = vm.$refs[currentLink]
   const { skidRef, maskRef, anchorRef } = vm.$refs
+
   if (!activeEl) {
     return
   }
+
   emit('change', currentLink)
   emit('onChange', currentLink) // deprecated 原事件onChange v3.12.0废弃，v3.17.0移除；移除原因：命名规范
+
   if (!anchorRef || !skidRef || !maskRef) {
     return
   }
+
   const { offsetHeight, offsetWidth } = activeEl
   const { top: linkTitleClientTop, left: linkTitleClientLeft } = activeEl.getBoundingClientRect()
   const { top: anchorClientTop, left: anchorClientLeft } = anchorRef.getBoundingClientRect()
+
   const offsetTop = linkTitleClientTop - anchorClientTop
   const offsetLeft = linkTitleClientLeft - anchorClientLeft
   addClass(skidRef, 'tiny-anchor-orbit-skid--active')
@@ -75,14 +79,14 @@ const updateSkidPosition = ({ vm, state, emit }: Pick<IAnchorRenderlessParams, '
 
 export const getCurrentAnchor =
   ({ vm, state, emit }: Pick<IAnchorRenderlessParams, 'vm' | 'state' | 'emit'>) =>
-    (link: string) => {
-      if (state.currentLink === link || state.isScroll) {
-        return
-      }
-
-      state.currentLink = link
-      updateSkidPosition({ vm, state, emit })
+  (link: string) => {
+    if (state.currentLink === link || state.isScroll) {
+      return
     }
+
+    state.currentLink = link
+    updateSkidPosition({ vm, state, emit })
+  }
 
 const addObserver = ({ props, state }: Pick<IAnchorRenderlessParams, 'props' | 'state'>) => {
   const { links } = props
@@ -120,106 +124,109 @@ export const handleScroll = (state: IAnchorRenderlessParams['state']) => () => {
 
 // 设置滚动偏移量
 const setChildOffsetTop = ({ state, props }: Pick<IAnchorRenderlessParams, 'state' | 'props'>) => {
-  state.offsetTop = document.querySelector(props.links[0]?.link)?.offsetTop || 0
+  state.offsetTop = document.querySelector(props.links[0].link)?.offsetTop || 0
 }
 
 export const getContainer =
   ({ props }: Pick<IAnchorRenderlessParams, 'props'>) =>
-    (): Element =>
-      (props.containerId && document.querySelector(props.containerId)) || document.body
+  (): Element =>
+    (props.containerId && document.querySelector(props.containerId)) || document.body
 
 export const mounted =
   ({ state, api, props, nextTick }: Pick<IAnchorRenderlessParams, 'state' | 'api' | 'props' | 'nextTick'>) =>
-    () => {
-      nextTick(() => {
-        api.setScrollContainer()
-        api.setFixAnchor()
-        api.onItersectionObserver()
-        setCurrentHash({ state })
-        setChildOffsetTop({ state, props })
-      })
-    }
+  () => {
+    nextTick(() => {
+      api.setScrollContainer()
+      api.setFixAnchor()
+      api.onItersectionObserver()
+      setCurrentHash({ state })
+      setChildOffsetTop({ state, props })
+    })
+  }
 
 export const updated =
   ({ api }: Pick<IAnchorRenderlessParams, 'api'>) =>
-    () => {
-      const cb = api.onItersectionObserver
-      api.setScrollContainer(cb)
-    }
+  () => {
+    const cb = api.onItersectionObserver
+    api.setScrollContainer(cb)
+  }
 
 export const unmounted =
   ({ state, api }: Pick<IAnchorRenderlessParams, 'state' | 'api'>) =>
-    () => {
-      const { intersectionObserver } = state
-      intersectionObserver.disconnect()
-      if (state.scrollContainer) {
-        state.scrollContainer.removeEventListener('scroll', api.handleScroll())
-      }
+  () => {
+    const { intersectionObserver } = state
+    intersectionObserver.disconnect()
+    if (state.scrollContainer) {
+      state.scrollContainer.removeEventListener('scroll', api.handleScroll())
     }
+  }
 
 export const onItersectionObserver =
   ({ state, props, api, vm, emit }: Pick<IAnchorRenderlessParams, 'state' | 'props' | 'api' | 'vm' | 'emit'>) =>
-    () => {
-      const { expandLink, scrollContainer } = state
-      state.currentLink && updateSkidPosition({ vm, state, emit })
-      state.intersectionObserver = new IntersectionObserver(
-        (entries) => {
-          const { top } = scrollContainer.getBoundingClientRect()
-          const scrollStartTop = top + state.offsetTop
-          entries.forEach((item) => {
-            const key = item.target.id
-            state.observerLinks[key] = item
-          })
-          // 判断hash值变化
-          if (state.currentHash !== location.hash) {
-            state.currentHash = location.hash
-            state.currentLink = state.currentHash
-            updateSkidPosition({ vm, state, emit })
-            return
-          }
+  () => {
+    const { expandLink, scrollContainer } = state
+    state.currentLink && updateSkidPosition({ vm, state, emit })
+    state.intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        const { top } = scrollContainer.getBoundingClientRect()
+        const scrollStartTop = top + state.offsetTop
+        entries.forEach((item) => {
+          const key = item.target.id
+          state.observerLinks[key] = item
+        })
 
-          for (let key in state.observerLinks) {
-            if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
-              const item = state.observerLinks[key]
-              if (
-                item.isIntersecting &&
-                item.intersectionRatio >= 0 &&
-                item.target.getBoundingClientRect().top < scrollStartTop
-              ) {
-                const link = `#${item.target.id}`
-                if (!expandLink[link].children) {
-                  api.getCurrentAnchor(link)
-                  break
-                } else {
-                  api.getCurrentAnchor(link)
-                }
+        // 判断hash值变化
+        if (state.currentHash !== location.hash) {
+          state.currentHash = location.hash
+          state.currentLink = state.currentHash
+          updateSkidPosition({ vm, state, emit })
+          return
+        }
+
+        for (let key in state.observerLinks) {
+          if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
+            const item = state.observerLinks[key]
+            if (
+              item.isIntersecting &&
+              item.intersectionRatio >= 0 &&
+              item.target.getBoundingClientRect().top < scrollStartTop
+            ) {
+              const link = `#${item.target.id}`
+              if (!expandLink[link].children) {
+                api.getCurrentAnchor(link)
+                break
+              } else {
+                api.getCurrentAnchor(link)
               }
             }
           }
-        },
-        { root: scrollContainer, threshold: [0] }
-      )
+        }
+      },
+      { root: scrollContainer, threshold: [0] }
+    )
 
-      addObserver({ props, state })
-    }
+    addObserver({ props, state })
+  }
 
 export const linkClick =
   ({ state, vm, emit, props, api }: Pick<IAnchorRenderlessParams, 'state' | 'vm' | 'emit' | 'props' | 'api'>) =>
-    (e: Event, item: IAnchorLinkItem) => {
-      state.isScroll = true
-      const { link, title } = item
-      const emitLink = { link, title }
-      emit('linkClick', e, emitLink)
-      const isChangeHash = setCurrentHash({ state })
-      const { scrollContainer } = state
-      state.currentLink = link
-      updateSkidPosition({ vm, state, emit })
-      setMarkClass({ state, props })
-      if (scrollContainer && scrollContainer !== document.body && !isChangeHash) {
-        const linkEl = scrollContainer.querySelector(item.link) as HTMLElement
-        const top = linkEl?.offsetTop - scrollContainer.offsetTop // 修复横向锚点无法滚动到顶部
-        const param = { top, left: 0, behavior: 'smooth' } as ScrollToOptions
-        scrollContainer?.scrollTo(param)
-        scrollContainer?.addEventListener('scroll', api.handleScroll())
-      }
+  (e: Event, item: IAnchorLinkItem) => {
+    state.isScroll = true
+    const { link, title } = item
+    const emitLink = { link, title }
+    emit('linkClick', e, emitLink)
+
+    const isChangeHash = setCurrentHash({ state })
+    const { scrollContainer } = state
+    state.currentLink = link
+    updateSkidPosition({ vm, state, emit })
+    setMarkClass({ state, props })
+
+    if (scrollContainer && scrollContainer !== document.body && !isChangeHash) {
+      const linkEl = scrollContainer.querySelector(item.link) as HTMLElement
+      const top = linkEl?.offsetTop - scrollContainer.offsetTop // 修复横向锚点无法滚动到顶部
+      const param = { top, left: 0, behavior: 'smooth' } as ScrollToOptions
+      scrollContainer?.scrollTo(param)
+      scrollContainer?.addEventListener('scroll', api.handleScroll())
     }
+  }

@@ -46,8 +46,6 @@ export const renderless = (
     },
     { immediate: true, deep: true }
   )
-  console.log(parent, 'parent renderless')
-  if (parent.$on) parent.$on(eventName, api.handleItemClick)
-  else vm.$on(eventName, api.handleItemClick)
+  parent.$on(eventName, api.handleItemClick)
   return api
 }
