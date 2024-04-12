@@ -86,7 +86,14 @@ export default function vueTemplate2Jsx() {
         const svgName = code.match(/([a-z1-9-]+)\.svg/)
 
         if (svgName && svgName[0]) {
-          const svgPath = require.resolve(`@opentiny/vue-theme/svgs/${svgName[0]}`)
+          let svgPath
+
+          try {
+            svgPath = require.resolve(`@opentiny/vue-theme/svgs/${svgName[0]}`)
+          } catch (e) {
+            svgPath = path.resolve(__dirname, `../../packages/theme/src/svgs/${svgName[0]}`)
+          }
+
           if (existsSync(svgPath)) {
             let svgContent = readFileSync(svgPath, { encoding: 'utf-8' })
 
