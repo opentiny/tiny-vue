@@ -1,7 +1,7 @@
-import { $props, $setup, $prefix } from '@opentiny/vue-common'
+import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
-export default {
+export default defineComponent({
   name: $prefix + 'SelectedBox',
   props: {
     ...$props,
@@ -13,4 +13,4 @@ export default {
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

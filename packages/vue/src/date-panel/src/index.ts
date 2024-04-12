@@ -1,7 +1,7 @@
-import { $prefix, $props, $setup } from '@opentiny/vue-common'
+import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
-export default {
+export default defineComponent({
   name: $prefix + 'DatePanel',
   componentName: 'DatePanel',
   props: {
@@ -22,4 +22,4 @@ export default {
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

@@ -168,7 +168,7 @@ export default defineComponent({
   directives: directive({
     repeatClick: { bind }
   }),
-  props: [...props, 'date', 'defaultValue', 'showSeconds', 'arrowControl', 'amPmMode', 'step'],
+  props: [...props, 'date', 'defaultValue', 'showSeconds', 'arrowControl', 'amPmMode', 'step', 'startDate', 'endDate'],
 
   setup(props, context) {
     return setup({ props, context, renderless, api })

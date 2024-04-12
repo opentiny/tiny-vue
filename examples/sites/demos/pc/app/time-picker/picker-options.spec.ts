@@ -1,20 +1,22 @@
 import { test, expect } from '@playwright/test'
 
-test('选择时间范围', async ({ page }) => {
+test('固定时间范围', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('time-picker#is-range')
+  await page.goto('time-picker#picker-options')
 
-  const startTime = page.getByRole('textbox').nth(1)
-  const endTime = page.getByRole('textbox').nth(2)
-  await page.getByRole('textbox').nth(1).click()
-  await page.getByText('42').first().click()
-  await page
-    .locator(
-      'div:nth-child(2) > div:nth-child(2) > .tiny-time-spinner > div > .tiny-scrollbar__wrap > .tiny-scrollbar__view > li:nth-child(21) > span'
-    )
-    .first()
-    .click()
+  const selectTime = page.getByRole('textbox', { name: '18:40:00' })
+  // 点击17点，点击确定，关闭选择框后，查看input 时间是否仍是18：40：00
+  await selectTime.click()
+  await page.waitForTimeout(100)
+  await page.getByRole('listitem').filter({ hasText: '17' }).first().click()
   await page.getByRole('button', { name: '确定' }).click()
-  await expect(startTime).toHaveValue('18:42:00')
-  await expect(endTime).toHaveValue('20:50:00')
+  await page.waitForTimeout(100)
+  await expect(selectTime).toBeVisible()
+  // 点击21点，点击确定，关闭选择框后，查看input 时间是否仍是18：40：00
+  await selectTime.click()
+  await page.waitForTimeout(100)
+  await page.getByRole('listitem').filter({ hasText: '21' }).first().click()
+  await page.getByRole('button', { name: '确定' }).click()
+  await page.waitForTimeout(100)
+  await expect(selectTime).toBeVisible()
 })

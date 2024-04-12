@@ -111,6 +111,10 @@ export default defineComponent({
     bgColor: {
       type: String,
       default: 'bg-color-icon-primary'
+    },
+    keepStyle: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

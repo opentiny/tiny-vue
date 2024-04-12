@@ -42,7 +42,7 @@ const initState = ({ reactive, computed, api, props }) => {
     month: computed(() => !Array.isArray(props.date) && props.date.getMonth()),
     offsetDay: computed(() => api.getOffsetDay()),
     year: computed(() => !Array.isArray(props.date) && props.date.getFullYear()),
-    startDate: computed(() => getStartDateOfMonth(state.year, state.month)),
+    startDate: computed(() => getStartDateOfMonth(state.year, state.month, state.offsetDay)),
     date: props.value
   })
 

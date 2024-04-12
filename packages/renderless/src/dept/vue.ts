@@ -51,6 +51,7 @@ const initState = ({ reactive, computed, parent, props, inject, lastDeptState })
     display: '',
     open: false,
     loading: false,
+    selectChanged: false,
     searchValue: '',
     searchOptions: [],
     current: '',
@@ -67,7 +68,7 @@ const initApi = ({ api, state, deptState, emit, $service, props }) => {
   Object.assign(api, {
     state,
     deptState,
-    closeDialog: closeDialog(emit),
+    closeDialog: closeDialog({ emit, state, deptState }),
     resetDeptState: resetDeptState(deptState),
     fetchDept: $service.fetchDept,
     fetchDeptList: $service.fetchDeptList,
@@ -105,6 +106,14 @@ export const renderless = (
   initApi({ api, state, deptState, emit, $service, props })
 
   watch(() => props.modelValue, api.getDisplay, { immediate: true })
+  watch(
+    () => state.open,
+    (val) => {
+      if (!val) {
+        state.selectChanged = false
+      }
+    }
+  )
 
   onBeforeUnmount(() => {
     state.open = false

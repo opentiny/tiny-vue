@@ -139,7 +139,7 @@ export const watchFileList =
       fileList.map((file) => {
         file.uid = file.uid || Date.now() + state.tempIndex++
         file.status = file.status || constants.FILE_STATUS.SUCESS
-        file.type = api.getFileSourceType({ file })
+        // 此处不建议同步AUI的getFileSourceType去更改用户数据的type类型，原生的type不能变更；
 
         return file
       })

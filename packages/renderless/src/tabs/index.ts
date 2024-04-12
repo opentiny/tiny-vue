@@ -23,10 +23,26 @@ export const calcPaneInstances =
 
     /* istanbul ignore if */
     if (tabItemVNodes) {
+      // 差异性需要特别处理：用来确定tab-item的顺序，防止vue3的currentPanes中vm顺序报错
+      const orderPanes = []
+      tabItemVNodes().forEach((vnode) => {
+        if (Array.isArray(vnode.children)) {
+          vnode.children.forEach((child) => {
+            const name = child.props?.name
+            name && orderPanes.push(name)
+          })
+        } else {
+          const name = vnode.props?.name
+          name && orderPanes.push(name)
+        }
+      })
       const currentPanes = [] as ITabsPaneVm[]
 
       childrenHandler(({ vm, isLevel1 }) => {
-        isLevel1 && vm.$options.componentName === constants.TAB_ITEM && currentPanes.push(vm)
+        if (isLevel1 && vm.$options.componentName === constants.TAB_ITEM) {
+          const index = orderPanes.findIndex((name) => name === vm.name)
+          index > -1 ? (currentPanes[index] = vm) : currentPanes.push(vm)
+        }
       })
 
       const currentPaneStates = currentPanes.map((pane) => pane.state)

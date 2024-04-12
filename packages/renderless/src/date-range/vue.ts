@@ -127,6 +127,7 @@ const initState = ({ reactive, computed, api, constants, designConfig }) => {
     dateFormat: computed(() => (state.format ? extractDateFormat(state.format) : 'yyyy-MM-dd')),
     enableMonthArrow: computed(() => api.getEnableMonthArrow()),
     enableYearArrow: computed(() => api.computerEnableYearArrow()),
+    // tiny 新增
     confirmButtonProps: {
       plain: true,
       type: 'default',

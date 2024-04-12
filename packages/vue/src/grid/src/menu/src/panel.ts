@@ -23,7 +23,7 @@
  *
  */
 import { getFuncText } from '@opentiny/vue-renderless/grid/utils'
-import { h, $prefix } from '@opentiny/vue-common'
+import { h, $prefix, defineComponent } from '@opentiny/vue-common'
 import Children from './children'
 
 const onMenuItem = ({ tableInstance, item, getEventTargetNode, toKebab }) => ({
@@ -103,7 +103,7 @@ function getMenuItemCreator({ ctxMenuStore, getEventTargetNode, tableInstance, t
     )
 }
 
-export default {
+export default defineComponent({
   name: `${$prefix}GridContextMenu`,
   props: {
     ctxMenuStore: Object
@@ -134,4 +134,4 @@ export default {
       )
     )
   }
-}
+})

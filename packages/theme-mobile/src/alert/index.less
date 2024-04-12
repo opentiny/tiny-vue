@@ -19,7 +19,7 @@
 
 .@{alert-prefix-cls} {
   display: flex;
-  align-items: top;
+  align-items: flex-start;
   clear: both;
   position: relative;
   width: 100%;
@@ -105,12 +105,20 @@
     font-size: var(--ti-mobile-alert-icon-size);
 
     &.@{alert-prefix-cls}__close {
+      position: absolute;
+      top: var(--ti-mobile-alert-padding-top);
+      right: var(--ti-mobile-alert-padding-right);
+      margin-top: 0;
       fill: var(--ti-mobile-alert-close-icon-color);
     }
   }
 
   &.is-center {
-    text-align: center;
+    justify-content: center;
+
+    .@{alert-prefix-cls}__content {
+      flex: 0 0 auto;
+    }
   }
 
   .is-custom {

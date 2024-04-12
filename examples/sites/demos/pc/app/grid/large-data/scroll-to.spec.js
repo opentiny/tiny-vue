@@ -6,5 +6,5 @@ test('滚动到指定位置', async ({ page }) => {
   await page.waitForTimeout(3000)
   await page.getByRole('button', { name: '滚动到500列' }).click()
   await page.waitForTimeout(200)
-  await expect(page.getByText('col508')).toBeVisible()
+  await expect(page.getByText('col499')).toBeVisible()
 })

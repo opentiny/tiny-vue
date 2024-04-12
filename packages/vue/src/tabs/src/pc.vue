@@ -18,7 +18,17 @@ import '@opentiny/vue-theme/tabs/index.less'
 import type { ITabsApi } from '@opentiny/vue-renderless/types/tabs.type'
 
 export default defineComponent({
-  emits: ['add', 'click', 'close', 'edit', 'update:modelValue', 'tab-drag-start', 'tab-drag-over', 'tab-drag-end'],
+  emits: [
+    'add',
+    'click',
+    'close',
+    'edit',
+    'update:modelValue',
+    'tab-nav-update',
+    'tab-drag-start',
+    'tab-drag-over',
+    'tab-drag-end'
+  ],
   props: [
     ...props,
     'tabStyle',

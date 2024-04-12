@@ -13,6 +13,7 @@
 
 <script>
 import { Popeditor, Select, Numeric } from '@opentiny/vue'
+import { hooks } from '@opentiny/vue-common'
 
 export default {
   components: {
@@ -59,7 +60,7 @@ export default {
         {
           label: '城市',
           field: 'city',
-          component: Select,
+          component: hooks.markRaw(Select),
           attrs: {
             options: [
               { label: '福州', value: 'fz' },
@@ -68,7 +69,7 @@ export default {
           },
           span: 6
         },
-        { label: '员工', field: 'employees', component: Numeric }
+        { label: '员工', field: 'employees', component: hooks.markRaw(Numeric) }
       ]
     }
   },

@@ -1,8 +1,60 @@
-const isOpen = import.meta.env.VITE_BUILD_TARGET === 'open'
+const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
+const envTheme = import.meta.env.VITE_TINY_THEME || 'default'
 export const standaloneMenus = [
   {
     label: '组件总览',
     key: 'overview'
+  }
+]
+
+const docMenusChildren = [
+  { 'title': '更新日志', 'titleEn': 'Changelog', 'key': 'changelog' },
+  { 'title': '环境准备', 'titleEn': 'envpreparation', 'key': 'envpreparation' },
+  { 'title': '安装', 'titleEn': 'installation', 'key': 'installation' },
+  { 'title': '引入组件', 'titleEn': 'importComponents', 'key': 'import-components' },
+  {
+    'title': '后端适配器',
+    'titleEn': 'adapter',
+    'key': 'adapter',
+    showScene: {
+      target: ['inner']
+    }
+  },
+  {
+    'title': '开发示例',
+    'titleEn': 'developDemo',
+    'key': 'develop-demo',
+    showScene: {
+      target: ['inner']
+    }
+  },
+  { 'title': '创建项目', 'titleEn': 'tinyStage', 'key': 'tiny-stage' },
+  { 'title': '国际化', 'titleEn': 'i18n', 'key': 'i18n' },
+  {
+    'title': '主题配置',
+    'titleEn': 'theme',
+    'key': 'theme',
+    showScene: {
+      theme: ['default']
+    }
+  },
+  { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
+  { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' },
+  {
+    'title': '社区求助',
+    'titleEn': 'help',
+    'key': 'help',
+    showScene: {
+      target: ['inner']
+    }
+  },
+  {
+    'title': '适配AUI',
+    'titleEn': 'Adapter AUI',
+    'key': 'aui-adapter',
+    showScene: {
+      theme: ['saas']
+    }
   }
 ]
 export const docMenus = [
@@ -10,26 +62,17 @@ export const docMenus = [
     'label': '使用指南',
     'labelEn': 'Usage Guidelines',
     'key': 'docs_usage_guidelines',
-    // 为了保持新旧官网对应文档路由的一致，文档对内和对外的差异判断逻辑放到了docs组件中。
-    'children': [
-      { 'title': '更新日志', 'titleEn': 'Changelog', 'key': 'changelog' },
-      { 'title': '环境准备', 'titleEn': 'envpreparation', 'key': 'envpreparation' },
-      { 'title': '安装', 'titleEn': 'installation', 'key': 'installation' },
-      { 'title': '引入组件', 'titleEn': 'importComponents', 'key': 'import-components' },
-      { 'title': '开发示例', 'titleEn': 'developDemo', 'key': 'develop-demo' },
-      { 'title': '国际化', 'titleEn': 'i18n', 'key': 'i18n' },
-      { 'title': '主题配置', 'titleEn': 'theme', 'key': 'theme' },
-      { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
-      { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' }
-    ]
+    'children': docMenusChildren.filter((item) => {
+      if (!item.showScene) {
+        return true
+      }
+      // 根据envTarget和envTheme判断是否展示文档
+      const { target, theme } = item.showScene
+      return (target?.includes(envTarget) ?? true) && (theme?.includes(envTheme) ?? true)
+    })
   }
 ]
-// 内网比外网多出三文档，为了保存文档顺序，使用splice插入到对应位置
-if (!isOpen) {
-  docMenus[0].children.splice(4, 0, { 'title': '后端适配器', 'titleEn': 'adapter', 'key': 'adapter' })
-  docMenus[0].children.splice(6, 0, { 'title': '创建项目', 'titleEn': 'tinyStage', 'key': 'tiny-stage' })
-  docMenus[0].children.splice(10, 0, { 'title': '社区求助', 'titleEn': 'help', 'key': 'help' })
-}
+
 export const cmpMenus = [
   {
     'label': '框架风格',
@@ -79,7 +122,7 @@ export const cmpMenus = [
       { 'nameCn': '抽屉', 'name': 'Drawer', 'key': 'drawer' },
       { 'nameCn': '过滤器面板', 'name': 'FilterPanel', 'key': 'filter-panel' },
       { 'nameCn': '面板分割', 'name': 'Split', 'key': 'split' },
-      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card' }
+      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card', 'mark': { 'text': 'New' } }
     ]
   },
   {
@@ -198,7 +241,8 @@ export const cmpMenus = [
       { 'nameCn': '拓扑图', 'name': 'Topology Diagram', 'key': 'chart-graph' },
       { 'nameCn': '百度地图', 'name': 'Baidu Map', 'key': 'chart-baidu-map' },
       { 'nameCn': '高德地图', 'name': 'Gaud Map', 'key': 'chart-autonavi-map' },
-      { 'nameCn': '箱形图', 'name': 'Box diagram', 'key': 'chart-boxplot' }
+      { 'nameCn': '箱形图', 'name': 'Box diagram', 'key': 'chart-boxplot' },
+      { 'nameCn': '进度图', 'name': 'Process Chart', 'key': 'chart-process' }
     ]
   },
   {
@@ -211,7 +255,8 @@ export const cmpMenus = [
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
       { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' },
       { 'nameCn': '无限滚动', 'name': 'InfiniteScroll', 'key': 'infinite-scroll' },
-      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' }
+      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton', 'mark': { 'text': 'New' } },
+      { 'nameCn': '统计', 'name': 'Statistic', 'key': 'statistic' }
     ]
   },
   {
@@ -238,37 +283,10 @@ export const cmpMenus = [
       { 'nameCn': '公告牌', 'name': 'BulletinBoard', 'key': 'bulletin-board' },
       { 'nameCn': '日历', 'name': 'Calendar', 'key': 'calendar' },
       { 'nameCn': '日历视图', 'name': 'CalendarView', 'key': 'calendar-view' },
-      {
-        'nameCn': '信用卡表单',
-        'name': 'CreditCardForm',
-        'key': 'credit-card-form',
-        'mark': {
-          'type': 'danger',
-          'text': 'Del'
-        }
-      },
       { 'nameCn': '图片裁剪', 'name': 'Crop', 'key': 'crop' },
-      {
-        'nameCn': '表头详情栏',
-        'name': 'DetailPage',
-        'key': 'detail-page',
-        'mark': {
-          'type': 'danger',
-          'text': 'Del'
-        }
-      },
       { 'nameCn': '图片预览', 'name': 'Image', 'key': 'image' },
       { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
       { 'nameCn': '文字滚动', 'name': 'ScrollText', 'key': 'scroll-text' },
-      {
-        'nameCn': '滚动块',
-        'name': 'SlideBar',
-        'key': 'slide-bar',
-        'mark': {
-          'type': 'danger',
-          'text': 'Del'
-        }
-      },
       { 'nameCn': '标签', 'name': 'Tag', 'key': 'tag' },
       { 'nameCn': '标签组', 'name': 'TagGroup', 'key': 'tag-group' },
       { 'nameCn': '输入框', 'name': 'TextPopup', 'key': 'text-popup' },
@@ -277,26 +295,13 @@ export const cmpMenus = [
       { 'nameCn': '全屏显示', 'name': 'Fullscreen', 'key': 'fullscreen' },
       { 'nameCn': '全局设置', 'name': 'ConfigProvider', 'key': 'config-provider' },
       { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },
-      {
-        'nameCn': '二维码',
-        'name': 'QrCode',
-        'key': 'qr-code',
-        'mark': {
-          'text': 'New'
-        }
-      },
-      {
-        'nameCn': '水印',
-        'name': 'Watermark',
-        'key': 'watermark',
-        'mark': {
-          'text': 'New'
-        }
-      },
+      { 'nameCn': '二维码', 'name': 'QrCode', 'key': 'qr-code' },
+      { 'nameCn': '水印', 'name': 'Watermark', 'key': 'watermark' },
       {
         'nameCn': '脑图',
-        'name': 'mind-map',
-        'key': 'mind-map'
+        'name': 'MindMap',
+        'key': 'mind-map',
+        'mark': { 'text': 'New' }
       }
     ]
   }
@@ -305,7 +310,7 @@ export const cmpMenus = [
 const showBusiness = location.pathname.split('/')?.[2] === 'all'
 
 // 对内文档开放业务组件
-if (!isOpen || showBusiness) {
+if (envTarget === 'inner' || showBusiness) {
   cmpMenus.splice(8, 0, {
     'label': '业务组件',
     'labelEn': 'Business Components',

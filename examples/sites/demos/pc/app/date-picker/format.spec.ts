@@ -6,7 +6,7 @@ test('[DatePicker] 测试日期格式化', async ({ page }) => {
 
   // format: 日期输入框中显示的格式
   await page.getByRole('textbox', { name: '2023 年 05 月 24 日' }).first().click()
-  await page.getByRole('cell', { name: '20' }).getByText('20').click()
+  await page.getByRole('cell', { name: '20' }).getByText('20').last().click()
   await expect(page.getByRole('textbox', { name: '2023 年 05 月 20 日' }).first()).toBeVisible()
 
   // time-format: 时间输入框中显示的格式
@@ -17,6 +17,6 @@ test('[DatePicker] 测试日期格式化', async ({ page }) => {
 
   // value-format: 选中值的格式
   await page.locator('.tiny-date-editor input').nth(2).click()
-  await page.getByRole('cell', { name: '20' }).getByText('20').click()
+  await page.getByRole('cell', { name: '20' }).getByText('20').last().click()
   await expect(page.locator('.select-date')).toHaveText(`当前选中时间：${1589904000000}`)
 })

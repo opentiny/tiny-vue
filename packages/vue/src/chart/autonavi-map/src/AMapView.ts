@@ -13,8 +13,10 @@ const setLaterFunc = (ctx) => {
 const setWrapperFunc = (ctx) => {
   ctx.wrapperFn = function () {
     if (ctx.lock) {
+      // eslint-disable-next-line prefer-rest-params
       ctx.args = arguments
     } else {
+      // eslint-disable-next-line prefer-rest-params
       ctx.fn.apply(ctx.context, arguments)
       setTimeout(ctx.later, ctx.time)
       ctx.lock = true

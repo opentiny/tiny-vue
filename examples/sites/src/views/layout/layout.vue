@@ -7,11 +7,9 @@
       </tiny-tooltip>
     </div>
     <!-- 切換主题样式 -->
-    <tiny-dropdown v-if="!templateModeState.isSaas" class="theme-change-button" trigger="click">
+    <tiny-dropdown v-if="!templateModeState.isSaas" class="theme-change-button" trigger="click" :show-icon="false">
       <tiny-tooltip :content="i18nByKey('changeTheme')" placement="left">
-        <span>
-          <img :src="themeSvg" :alt="i18nByKey('changeTheme')" />
-        </span>
+        <img :src="themeSvg" :alt="i18nByKey('changeTheme')" />
       </tiny-tooltip>
       <template #dropdown>
         <tiny-dropdown-menu :options="themeData">
@@ -244,6 +242,7 @@ export default defineComponent({
   border-radius: 100%;
   background-color: transparent;
   img {
+    margin-right: calc(-1 * var(--ti-dropdown-trigger-title-margin-right));
     display: block;
     width: 26px;
     height: 26px;

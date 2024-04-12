@@ -83,6 +83,12 @@ export const handleError =
     emit('error', event)
   }
 
+export const handleSwitch =
+  ({ emit }: Pick<IImageRenderlessParams, 'emit'>) =>
+  (index) => {
+    emit('change-index', index)
+  }
+
 export const handleLazyLoad =
   ({ state, api, vm, nextTick }: Pick<IImageRenderlessParams, 'api' | 'state' | 'nextTick' | 'vm'>) =>
   () => {

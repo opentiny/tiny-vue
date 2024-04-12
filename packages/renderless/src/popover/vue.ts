@@ -43,7 +43,8 @@ export const api = [
   'doShow',
   'doClose',
   'doDestroy',
-  'handleItemClick'
+  'handleItemClick',
+  'handleDocumentClick'
 ]
 
 const initState = ({

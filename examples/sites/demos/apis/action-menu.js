@@ -18,6 +18,17 @@ export default {
           pcDemo: 'max-show-num'
         },
         {
+          name: 'mode',
+          type: '"default" | "card"',
+          defaultValue: '"default"',
+          desc: {
+            'zh-CN': '菜单按钮模式',
+            'en-US': 'Card mode'
+          },
+          mode: ['pc'],
+          pcDemo: 'card-mode'
+        },
+        {
           name: 'more-text',
           type: 'string',
           defaultValue: "'更多'",

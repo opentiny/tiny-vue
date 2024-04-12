@@ -1,5 +1,5 @@
 <template>
-  <tiny-select v-model="value" placeholder="请选择" multiple collapse-tags title="标题">
+  <tiny-select v-model="value" placeholder="请选择" multiple :show-proportion="true" collapse-tags title="标题">
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
 </template>

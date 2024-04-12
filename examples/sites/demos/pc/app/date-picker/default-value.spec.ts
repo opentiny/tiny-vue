@@ -15,11 +15,11 @@ test('[DatePicker] 测试选择器打开时默认时间设置', async ({ page })
   await dateInputDefaultTime.press('Enter')
 
   await page.getByRole('textbox', { name: '2023-05-20 09:00:00' }).click()
-  await page.getByRole('cell', { name: '15' }).getByText('15').click()
+  await page.getByRole('cell', { name: '15' }).getByText('15').last().click()
   await expect(page.getByRole('textbox', { name: '选择时间' })).toHaveValue('09:00:00')
 
   await page.getByRole('textbox').nth(3).click()
-  await page.getByRole('cell', { name: '10' }).getByText('10').first().click()
+  await page.getByRole('cell', { name: '10' }).getByText('10').last().click()
   await page.getByRole('cell', { name: '10' }).getByText('10').nth(1).click()
   await expect(page.getByRole('textbox', { name: '开始时间' })).toHaveValue('09:00:00')
   await expect(page.getByRole('textbox', { name: '结束时间' })).toHaveValue('18:00:00')

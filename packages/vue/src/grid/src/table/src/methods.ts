@@ -26,6 +26,7 @@ import { getColumnList } from '@opentiny/vue-renderless/grid/utils'
 import { toDecimal } from '@opentiny/vue-renderless/common/string'
 import { addClass, removeClass, isDisplayNone } from '@opentiny/vue-renderless/common/deps/dom'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
+import { fastdom } from '@opentiny/vue-renderless/common/deps/fastdom'
 import {
   isNumber,
   filterTree,
@@ -979,7 +980,7 @@ const Methods = {
   autoCellWidth(headerEl, bodyEl, footerEl) {
     // 列宽最少限制 40px
     let minCellWidth = 40
-    let { fit, columnStore } = this
+    let { fit, columnStore, columnChart, isGroup } = this
     let tableHeight = bodyEl.offsetHeight
     let overflowY = bodyEl.scrollHeight > bodyEl.clientHeight
     let bodyW = bodyEl.clientWidth
@@ -992,7 +993,7 @@ const Methods = {
     let parentHeight = this.parentHeight
 
     // 经过calcTableWidth计算出了所有列的宽度，下一步设置所有冻结列sticky布局的left和right值
-    calcFixedStickyPosition({ headerEl, bodyEl, columnStore, scrollbarWidth })
+    calcFixedStickyPosition({ headerEl, bodyEl, columnStore, scrollbarWidth, columnChart, isGroup })
 
     Object.assign(this, { overflowY, parentHeight, scrollbarWidth, tableHeight, tableWidth })
     if (headerEl) {
@@ -1364,18 +1365,28 @@ const Methods = {
   setRowExpansion(rows, expanded) {
     let { expandeds } = this
     let { accordion } = this.expandConfig || {}
+
     // 是否是切换模式
     let isToggle = arguments.length === 1
+
+    // 手风琴模式是否关闭了所有展开行
+    let isAccordionCloseAll = false
+
     if (!rows) {
       return this.$nextTick().then(this.recalculate)
     }
     if (!isArray(rows)) {
       rows = [rows]
     }
-    // 只能同时展开一个
+    // 手风琴模式只能同时展开一个
     if (accordion) {
-      expandeds.length = 0
       rows = rows.slice(rows.length - 1, rows.length)
+
+      // 如果是手风琴模式，则需要判断是当前切换时关闭还是展开，解决手风琴模式无法关闭当前行的问题
+      if (rows.length && isToggle) {
+        isAccordionCloseAll = expandeds.includes(rows[0])
+      }
+      expandeds.length = 0
     }
 
     rows.forEach((row) => {
@@ -1387,7 +1398,7 @@ const Methods = {
         return
       }
       // 切换模式下此行未展开，或者非切换模式下展开已合起的行，就展开此行
-      if ((isToggle && !~index) || (!isToggle && expanded && !~index)) {
+      if ((isToggle && !isAccordionCloseAll && !~index) || (!isToggle && expanded && !~index)) {
         expandeds.push(row)
       }
     })
@@ -1707,21 +1718,17 @@ const Methods = {
     }
   },
   scrollTo(scrollLeft, scrollTop) {
-    let { $refs } = this
-    let { tableBody, tableFooter, rightBody } = $refs
-    let bodyElem = tableBody.$el
-    let footerElem = tableFooter ? tableFooter.$el : null
-    let rightBodyElem = rightBody ? rightBody.$el : null
+    const { elemStore } = this
+    const tableBodyElem = elemStore['main-body-wrapper']
+    const tableHeaderElem = elemStore['main-header-wrapper']
+    const tableFooterElem = elemStore['main-footer-wrapper']
     if (isNumber(scrollLeft)) {
-      if (footerElem) {
-        footerElem.scrollLeft = scrollLeft
-      } else {
-        bodyElem.scrollLeft = scrollLeft
-      }
+      tableBodyElem && (tableBodyElem.scrollLeft = scrollLeft)
+      tableFooterElem && (tableFooterElem.scrollLeft = scrollLeft)
+      tableHeaderElem && (tableHeaderElem.scrollLeft = scrollLeft)
     }
     if (isNumber(scrollTop)) {
-      rightBodyElem && (rightBodyElem.scrollTop = scrollTop)
-      bodyElem.scrollTop = scrollTop
+      tableBodyElem && (tableBodyElem.scrollTop = scrollTop)
     }
     return this.$nextTick()
   },
@@ -1752,7 +1759,9 @@ const Methods = {
   scrollToColumn(column, isDelay, move) {
     let hasColCache = this.fullColumnMap.has(column)
     column && hasColCache && colToVisible(this, column, move)
-    return isDelay && this.scrollYLoad
+
+    // 虚滚场景 DOM 元素会延时渲染，DOM 元素不存在时校验会显示异常
+    return isDelay && (this.scrollXLoad || this.scrollYLoad)
       ? new Promise((resolve) => setTimeout(() => resolve(this.$nextTick()), 50))
       : this.$nextTick()
   },
@@ -1760,16 +1769,16 @@ const Methods = {
     this.lastScrollTop = 0
   },
   clearScroll() {
-    let { $refs, scrollXStore, scrollYStore } = this
+    let { scrollXStore, scrollYStore, elemStore } = this
     Object.assign(this, { lastScrollLeft: 0 })
     Object.assign(scrollXStore, { startIndex: 0, visibleIndex: 0 })
     Object.assign(scrollYStore, { startIndex: 0, visibleIndex: 0 })
     this.$nextTick(() => {
-      let { tableBody, tableHeader, tableFooter } = $refs
-      let { tableBodyElem, tableHeaderElem, tableFooterElem } = {}
-      tableBodyElem = tableBody ? tableBody.$el : null
-      tableHeaderElem = tableHeader ? tableHeader.$el : null
-      tableFooterElem = tableFooter ? tableFooter.$el : null
+      // 从缓存中拿 DOM 元素
+      const tableBodyElem = elemStore['main-body-wrapper']
+      const tableHeaderElem = elemStore['main-header-wrapper']
+      const tableFooterElem = elemStore['main-footer-wrapper']
+
       if (this.afterMounted) {
         tableBodyElem && Object.assign(tableBodyElem, { scrollLeft: 0, scrollTop: 0 })
         tableFooterElem && Object.assign(tableFooterElem, { scrollLeft: 0 })
@@ -1950,10 +1959,12 @@ const Methods = {
   // 更新表体高度
   updateTableBodyHeight() {
     if (!this.tasks.updateTableBodyHeight) {
-      this.tasks.updateTableBodyHeight = debounce(10, () => {
-        const tableBody = this.$refs.tableBody
-        this.tableBodyHeight = tableBody ? tableBody.$el.clientHeight : 0
-      })
+      this.tasks.updateTableBodyHeight = () => {
+        fastdom.measure(() => {
+          const tableBodyElem = this.elemStore['main-body-wrapper']
+          this.tableBodyHeight = tableBodyElem ? tableBodyElem.clientHeight : 0
+        })
+      }
     }
 
     this.tasks.updateTableBodyHeight()

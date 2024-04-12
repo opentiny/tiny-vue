@@ -12,24 +12,24 @@
         <th v-if="showWeekNumber">
           <div :class="gcls('th')">{{ t('ui.datepicker.week') }}</div>
         </th>
-        <th v-for="(week, key) in state.weeks" :key="key">
+        <th v-for="(week, weekIdx) in state.weeks" :key="weekIdx">
           <div :class="gcls('th')">{{ t('ui.datepicker.weeks.' + week) }}</div>
         </th>
       </tr>
       <tr
         data-tag="tiny-date-table__row"
-        v-for="(row, key) in state.rows"
-        :key="key"
+        v-for="(row, trIdx) in state.rows"
+        :key="trIdx"
         :class="{ current: isWeekActive(row[1]) }"
       >
-        <td v-for="(cell, key) in row" :key="key" :data-tag="getCellClasses(cell)" :class="gcls('td')">
+        <td v-for="(cell, tdIdx) in row" :key="tdIdx" :data-tag="getCellClasses(cell)" :class="gcls('td')">
           <div
             :class="
               m(
                 gcls('cell'),
                 gcls(getCssToken(cell, 'cell-')),
-                { 'rounded-l': key === 0 },
-                { 'rounded-r': key === 6 }
+                { 'rounded-l': tdIdx === 0 },
+                { 'rounded-r': tdIdx === 6 }
               )
             "
           >
@@ -43,10 +43,10 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/date-table/vue'
-import { props, setup } from '@opentiny/vue-common'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { classes } from './token'
 
-export default {
+export default defineComponent({
   props: [
     ...props,
     'cellClassName',
@@ -65,5 +65,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api, classes })
   }
-}
+})
 </script>

@@ -268,6 +268,24 @@ export default {
           '<p>\n            Cascader cascade selector events include: <code>change</code>, <code>expand-change</code>, <code>blur</code>, <code>focus</code>, < code>visible-change</code>. \n            Use <code>props.emitPath</code> to set the return type of the node.\n          </p>'
       },
       codeFiles: ['events.vue']
+    },
+    {
+      demoId: 'slot',
+      name: {
+        'zh-CN': '插槽',
+        'en-US': 'Empty Data Slot'
+      },
+      desc: {
+        'zh-CN': `
+          通过 <code>default</code> 插槽，自定义级联节点。<br>
+          通过 <code>no-data</code> 插槽设置没有数据时显示的内容。
+        `,
+        'en-US': `
+          Use the <code>default</code> slot to customize the cascaded node.<br>
+          The <code>no-data</code> slot sets what is displayed when there is no data.
+        `
+      },
+      codeFiles: ['slot.vue']
     }
   ]
 }

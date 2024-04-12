@@ -85,6 +85,10 @@ export const uploadListProps = {
   lockScroll: {
     type: Boolean,
     default: true
+  },
+  compact: {
+    type: Boolean,
+    default: false
   }
 }
 

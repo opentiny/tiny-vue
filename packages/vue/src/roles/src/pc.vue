@@ -2,6 +2,7 @@
   <div class="tiny-roles">
     <tiny-popover
       popper-class="tiny-roles__selector"
+      :append-to-body="popperAppendToBody"
       :disabled="state.roleList.length === 1"
       v-model="state.showPopover"
       placement="bottom-start"
@@ -44,7 +45,15 @@ import Popover from '@opentiny/vue-popover'
 import { IconChevronDown, IconChevronUp } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  props: [...props, 'fetchRole', 'getEnvInfoSync', 'getChangeRoleUrl', 'getCustomized', 'pushCustomized'],
+  props: [
+    ...props,
+    'fetchRole',
+    'getEnvInfoSync',
+    'getChangeRoleUrl',
+    'getCustomized',
+    'pushCustomized',
+    'popperAppendToBody'
+  ],
   components: {
     TinyPopover: Popover,
     IconChevronDown: IconChevronDown(),

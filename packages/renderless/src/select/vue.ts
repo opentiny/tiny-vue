@@ -103,7 +103,10 @@ import {
   computedGetIcon,
   computedGetTagType,
   clearSearchText,
-  clearNoMatchValue
+  clearNoMatchValue,
+  handleDebouncedQueryChange,
+  onClickCollapseTag,
+  computedIsExpand
 } from './index'
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
@@ -166,10 +169,11 @@ export const api = [
   'getLabelSlotValue',
   'loadTreeData',
   'updateModelValue',
-  'clearSearchText'
+  'clearSearchText',
+  'onClickCollapseTag'
 ]
 
-const initState = ({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm }) => {
+const initState = ({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm, designConfig }) => {
   const stateAdd = initStateAdd({ computed, props, api, parent })
   const state = reactive({
     ...stateAdd,
@@ -201,7 +205,7 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     collapseTags: computed(() => api.computeCollapseTags()),
     multipleLimit: computed(() => api.computeMultipleLimit()),
     disabledTooltipContent: computed(() => api.computedDisabledTooltipContent()),
-    isExpand: computed(() => (state.selectHover || state.visible) && props.hoverExpand && !props.disabled),
+    isExpand: computed(() => api.computedIsExpand()),
     collapseTagsLength: 0,
     initValue: [],
     key: 0,
@@ -226,7 +230,13 @@ const initState = ({ reactive, computed, props, api, emitter, parent, constants,
     // tiny 新增
     getIcon: computed(() => api.computedGetIcon()),
     getTagType: computed(() => api.computedGetTagType()),
-    isSelectAll: computed(() => state.selectCls === 'checked-sur')
+    isSelectAll: computed(() => state.selectCls === 'checked-sur'),
+    autoHideDownIcon: (() => {
+      if (designConfig?.state && 'autoHideDownIcon' in designConfig.state) {
+        return designConfig.state.autoHideDownIcon
+      }
+      return true // tiny 默认为true
+    })()
   })
 
   return state
@@ -280,10 +290,14 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     gridCheckedData: computed(() => api.getcheckedData()),
     isExpandAll: computed(() => api.computedIsExpandAll()),
     searchSingleCopy: computed(() => props.allowCopy && !props.multiple && props.filterable),
+    childrenName: computed(() => (props.treeOp.props && props.treeOp.props.children) || 'children'),
     tooltipContent: {},
     isHidden: false,
     defaultCheckedKeys: [],
-    optionIndexArr: []
+    optionIndexArr: [],
+    showCollapseTag: false,
+    exceedMaxVisibleRow: false, // 是否超出默认最大显示行数
+    toHideIndex: Infinity // 第一个超出被隐藏的索引
   }
 }
 
@@ -306,7 +320,7 @@ const initApi = ({
     state,
     maskState,
     doDestroy: doDestroy(vm),
-    getTreeData: getTreeData(props),
+    getTreeData: getTreeData(props, state),
     blur: blur({ vm, state }),
     focus: focus({ vm, state }),
     getValueKey: getValueKey(props),
@@ -337,7 +351,7 @@ const initApi = ({
     setOptionHighlight: setOptionHighlight(state),
     nodeExpand: nodeExpand({ state, constants, nextTick }),
     nodeCollapse: nodeCollapse({ state, constants, nextTick }),
-    handleBlur: handleBlur({ constants, dispatch, emit, state }),
+    handleBlur: handleBlur({ constants, dispatch, emit, state, designConfig }),
     toggleLastOptionHitState: toggleLastOptionHitState({ state }),
     emptyText: emptyText({ I18N: constants.I18N, props, state, t, isMobileFirstMode }),
     emptyFlag: emptyFlag({ props, state }),
@@ -358,7 +372,7 @@ const initApi = ({
     watchInputHover: watchInputHover({ vm }),
     initQuery: initQuery({ props, state, constants, vm }),
     updateModelValue: updateModelValue({ props, emit, state }),
-    computedTagsStyle: computedTagsStyle({ props, parent, state }),
+    computedTagsStyle: computedTagsStyle({ props, parent, state, vm }),
     computedReadonly: computedReadonly({ props, state }),
     computedShowClose: computedShowClose({ props, state }),
     computedCollapseTagSize: computedCollapseTagSize(state),
@@ -368,6 +382,7 @@ const initApi = ({
     computedDisabledTooltipContent: computedDisabledTooltipContent(state),
 
     computedSelectDisabled: computedSelectDisabled({ props, parent }),
+    computedIsExpand: computedIsExpand({ props, state }),
     computedIsExpandAll: computedIsExpandAll(props),
     watchInitValue: watchInitValue({ props, emit }),
     watchShowClose: watchShowClose({ nextTick, state, parent }),
@@ -419,9 +434,12 @@ const addApi = ({
     handleOptionSelect: handleOptionSelect({ api, nextTick, props, vm, state }),
     getPluginOption: getPluginOption({ api, props, state }),
     toggleCheckAll: toggleCheckAll({ api, emit, state, props }),
-    debouncedQueryChange: debounce(state.debounce, (event) => {
-      api.handleQueryChange(props.shape ? event : event.target.value, false, true)
-    }),
+    handleDebouncedQueryChange: handleDebouncedQueryChange({ state, api }),
+    debouncedQueryChange: (event) => {
+      // 解决无界下的异常
+      const value = props.shape ? event : event.target.value
+      api.handleDebouncedQueryChange(value)
+    },
     debouncedOnInputChange: debounce(state.debounce, () => {
       api.onInputChange()
     }),
@@ -431,12 +449,13 @@ const addApi = ({
     mounted: mounted({ api, parent, state, props, vm, designConfig }),
     unMount: unMount({ api, parent, vm, state }),
     watchOptimizeOpts: watchOptimizeOpts({ props, state }),
-    handleDropdownClick: handleDropdownClick({ emit }),
+    handleDropdownClick: handleDropdownClick({ props, vm, state, emit }),
     handleEnterTag: handleEnterTag({ state }),
-    calcCollapseTags: calcCollapseTags({ state, vm }),
+    calcCollapseTags: calcCollapseTags({ state, vm, props }),
     initValue: initValue({ state }),
     getLabelSlotValue: getLabelSlotValue({ props, state }),
-    loadTreeData: loadTreeData({ state, vm, props, api })
+    loadTreeData: loadTreeData({ state, vm, props, api }),
+    onClickCollapseTag: onClickCollapseTag({ state, props, nextTick, api })
   })
 }
 
@@ -555,8 +574,19 @@ export const renderless = (
   { computed, onBeforeUnmount, onMounted, reactive, watch, provide, inject },
   { vm, parent, emit, constants, nextTick, dispatch, t, emitter, isMobileFirstMode, useBreakpoint, designConfig }
 ) => {
-  const api = {}
-  const state = initState({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm })
+  const api: any = {}
+  const state = initState({
+    reactive,
+    computed,
+    props,
+    api,
+    emitter,
+    parent,
+    constants,
+    useBreakpoint,
+    vm,
+    designConfig
+  })
   const dialog = inject('dialog', null)
 
   provide('selectEmitter', state.selectEmitter)
@@ -579,9 +609,7 @@ export const renderless = (
     isMobileFirstMode,
     designConfig
   })
-  initWatch({ watch, props, api, state, nextTick })
-  onMounted(api.mounted)
-  onBeforeUnmount(api.unMount)
+
   parent.$on('handle-clear', (event) => {
     api.handleClearClick(event)
   })
@@ -598,6 +626,15 @@ export const renderless = (
   state.selectEmitter.on(constants.EVENT_NAME.handleOptionClick, api.handleOptionSelect)
   state.selectEmitter.on(constants.EVENT_NAME.setSelected, api.setSelected)
   state.selectEmitter.on(constants.EVENT_NAME.initValue, api.initValue)
+
+  initWatch({ watch, props, api, state, nextTick })
+
+  onMounted(api.mounted)
+
+  onBeforeUnmount(() => {
+    api.unMount()
+    dialog && dialog.state.emitter.off('handleSelectClose', api.handleClose)
+  })
 
   return api
 }

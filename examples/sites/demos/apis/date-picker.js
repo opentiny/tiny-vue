@@ -624,7 +624,7 @@ interface IPickerOptions {
       name: 'IType',
       type: 'type',
       code: `
-type IType = 'date' | 'dates' | 'daterange' | 'datetime' | 'datetimerange' | 'week' | 'month' | 'monthrange' | 'year' | 'years' | 'yearrange'
+type IType = 'date' | 'dates' | 'daterange' | 'datetime' | 'datetimerange' | 'week' | 'month' | 'monthrange' | 'quarter' | 'year' | 'years' | 'yearrange'
       `
     }
   ]

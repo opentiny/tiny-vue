@@ -1,21 +1,8 @@
-import Line from './src/index.js'
-import { line } from '@opentiny/vue-renderless/chart-line/index'
-import { version } from './package.json'
+import ChartLine from './src/chart-line.vue'
 
-/* istanbul ignore next */
-Line.install = function (Vue) {
-  Vue.component(Line.name, Line)
+ChartLine.install = function (Vue: any) {
+  Vue.component(ChartLine.name, ChartLine)
 }
 
-Line.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Line.install(window.Vue)
-  }
-}
-
-export { line }
-
-export default Line
+export { ChartLine }
+export default ChartLine

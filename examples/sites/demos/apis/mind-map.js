@@ -7,24 +7,26 @@ export default {
       props: [
         {
           name: 'modelValue',
-          type: 'NodeObj',
+          type: 'Object',
           defaultValue: '{}',
           desc: {
             'zh-CN': '默认节点数据',
             'en-US': 'Default node data'
           },
           mode: ['pc'],
-          pcDemo: 'basic-usage'
+          pcDemo: 'export-data'
         },
         {
           name: 'options',
-          type: 'Options',
+          typeAnchorName: 'IMindMaoOptions',
+          type: 'IMindMaoOptions',
           defaultValue: '{contextMenu: false,toolBar: false,nodeMenu: false}',
           desc: {
             'zh-CN': '配置项',
             'en-US': 'options'
           },
-          mode: ['pc']
+          mode: ['pc'],
+          pcDemo: 'export-data'
         }
       ],
       events: [
@@ -57,7 +59,8 @@ export default {
         },
         {
           name: 'expandNode',
-          type: 'onExpandNode',
+          typeAnchorName: 'IMindExpandNode',
+          type: 'IMindnExpandNode',
           desc: {
             'zh-CN': '展开节点时会触发该事件',
             'en-US': 'This event will be triggered when expanding a node'
@@ -66,7 +69,8 @@ export default {
         },
         {
           name: 'operation',
-          type: 'onOperation',
+          typeAnchorName: 'IMindMapOperation',
+          type: 'IMindMapOperation',
           desc: {
             'zh-CN': '节点重新计算时, 例如将节点A拖拽到节点B, 使得节点A是节点B的子节点',
             'en-US':
@@ -76,7 +80,8 @@ export default {
         },
         {
           name: 'selectNewNode',
-          type: 'onSelectNewNode',
+          typeAnchorName: 'IMindMapSelectNewNode',
+          type: 'IMindMapSelectNewNode',
           desc: {
             'zh-CN': '创建新节点时',
             'en-US': 'when create new node'
@@ -85,7 +90,8 @@ export default {
         },
         {
           name: 'selectNode',
-          type: 'onSelectNode',
+          typeAnchorName: 'IMindMapSelectNode',
+          type: 'IMindMapSelectNode',
           desc: {
             'zh-CN': '选择任意一个节点时, 会触发该事件',
             'en-US': 'When selecting any node, this event will be triggered'
@@ -94,7 +100,8 @@ export default {
         },
         {
           name: 'selectNodes',
-          type: 'onSelectNodes',
+          typeAnchorName: 'IMindMapSelectNodes',
+          type: 'IMindMapSelectNodes',
           desc: {
             'zh-CN': '选择多个节点的时候会触发该事件',
             'en-US': 'When selecting multiple nodes, this event will be triggered'
@@ -103,7 +110,8 @@ export default {
         },
         {
           name: 'unselectNode',
-          type: 'onUnselectNode',
+          typeAnchorName: 'IMindMapUnselectNode',
+          type: 'IMindMapUnselectNode',
           desc: {
             'zh-CN': '取消选择的时候会触发该事件',
             'en-US': 'When deselecting, this event will be triggered'
@@ -112,7 +120,8 @@ export default {
         },
         {
           name: 'unselectNodes',
-          type: 'onUnselectNode',
+          typeAnchorName: 'IMindMapUnselectNodes',
+          type: 'IMindMapUnselectNodes',
           desc: {
             'zh-CN': '取消选择多个节点时会触发该事件',
             'en-US': 'This event will be triggered when multiple nodes are unselected'
@@ -126,10 +135,10 @@ export default {
   ],
   types: [
     {
-      name: 'Options',
+      name: 'IMindMaoOptions',
       type: 'interface',
       code: `
-interface Options {
+interface options {
   direction?: number
   locale?: string
   draggable?: boolean
@@ -152,53 +161,39 @@ interface Options {
 `
     },
     {
-      name: 'onOperation',
+      name: 'IMindMapOperation',
       type: 'type',
-      code: `
-type onOperation = ({render, info}: {render:MindElixirInstance, info: Operation}) => void
-`
+      code: `type onOperation = ({render, info}: {render:MindElixirInstance, info: Operation}) => void`
     },
     {
-      name: 'onSelectNode',
+      name: 'IMindMapSelectNode',
       type: 'type',
-      code: `
-type onSelectNode = ({render,nodeObj}: {render:MindElixirInstance,nodeObj:NodeObj}, e?: MouseEvent) => void
-`
+      code: `type onSelectNode = ({render,nodeObj}: {render:MindElixirInstance,nodeObj:NodeObj}, e?: MouseEvent) => void`
     },
     {
-      name: 'onSelectNewNode',
+      name: 'IMindMapSelectNewNode',
       type: 'type',
-      code: `
-type selectNewNode: ({render,nodeObj}: {render:MindElixirInstance,nodeObj:NodeObj}) => void
-`
+      code: `type selectNewNode: ({render,nodeObj}: {render:MindElixirInstance,nodeObj:NodeObj}) => void`
     },
     {
-      name: 'onSelectNodes',
+      name: 'IMindMapSelectNodes',
       type: 'type',
-      code: `
-type selectNodes: ({render,nodeObj}: {render:MindElixirInstance,nodeObj:NodeObj[]}) => void
-`
+      code: `type selectNodes: ({render,nodeObj}: {render:MindElixirInstance,nodeObj:NodeObj[]}) => void`
     },
     {
-      name: 'onUnselectNode',
+      name: 'IMindMapUnselectNode',
       type: 'type',
-      code: `
-type unselectNodes: ({render}: {render: MindElixirInstance}) => void
-`
+      code: `type unselectNodes: ({render}: {render: MindElixirInstance}) => void`
     },
     {
-      name: 'onUnselectNodes',
+      name: 'IMindMapUnselectNodes',
       type: 'type',
-      code: `
-type unselectNodes: ({render}: {render: MindElixirInstance}) => void
-`
+      code: `type unselectNodes: ({render}: {render: MindElixirInstance}) => void`
     },
     {
-      name: 'onExpandNode',
+      name: 'IMindExpandNode',
       type: 'type',
-      code: `
-type expandNode: ({render,nodeObj}: {render:MindElixirInstance,nodeObj:NodeObj}) => void
-`
+      code: `type expandNode: ({render,nodeObj}: {render:MindElixirInstance,nodeObj:NodeObj}) => void`
     },
     {
       name: 'NodeObj',

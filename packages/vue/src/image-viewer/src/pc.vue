@@ -11,7 +11,12 @@
  -->
 <template>
   <transition name="viewer-fade">
-    <div class="tiny-image-viewer tiny-image-viewer__wrapper" :style="{ 'z-index': state.zIndex }" @mousewheel.prevent>
+    <div
+      v-if="true"
+      class="tiny-image-viewer tiny-image-viewer__wrapper"
+      :style="{ 'z-index': state.zIndex }"
+      @mousewheel.prevent
+    >
       <div class="tiny-image-viewer__mask"></div>
       <!-- CLOSE -->
       <span class="tiny-image-viewer__btn tiny-image-viewer__close" @click="hide">
@@ -44,6 +49,11 @@
           <i class="tiny-image-viewer__actions-divider"></i>
           <icon-repeat class="tiny-svg-size" @click="handleActions('anticlocelise')" />
           <icon-refres class="tiny-svg-size" @click="handleActions('clocelise')" />
+          <slot name="count" :index="state.index">
+            <span v-if="showIndex" class="tiny-image-viewer__actions-count"
+              >{{ state.index + 1 }}/{{ urlList.length }}</span
+            >
+          </slot>
         </div>
       </div>
       <!-- CANVAS -->
@@ -84,7 +94,7 @@ import '@opentiny/vue-theme/image-viewer/index.less'
 
 export default defineComponent({
   emits: ['close', 'update:preview-visible', 'delete', 'change', 'newImageList'],
-  props: [...props, 'urlList', 'zIndex', 'onSwitch', 'onClose'],
+  props: [...props, 'urlList', 'zIndex', 'onSwitch', 'onClose', 'keepStyle', 'showIndex'],
   components: {
     IconClose: iconClose(),
     IconChevronLeft: iconChevronLeft(),

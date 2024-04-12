@@ -288,7 +288,12 @@ export const open =
             let clientVisibleHeight =
               viewportWindow.document.documentElement.clientHeight || viewportWindow.document.body.clientHeight
 
-            modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
+            let width = isNaN(props.width) ? props.width : `${props.width}px`
+            if (width) {
+              modalBoxElem.style.left = 'calc((100vw - ' + width + ') / 2)'
+            } else {
+              modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
+            }
 
             if (
               modalBoxElem.offsetHeight + modalBoxElem.offsetTop + (props.marginSize as number) >
@@ -390,7 +395,7 @@ export const handleGlobalKeydownEvent =
   }
 
 export const handleHashChange = (api: IModalApi) => (): void => {
-  api.close('close')
+  api.close('hide')
 }
 
 export const getBox =

@@ -10,7 +10,7 @@ import {
   prettierFormat,
   logGreen
 } from '../../shared/utils'
-import { getComponents } from '../../shared/module-utils'
+import { getComponents, excludeComponents } from '../../shared/module-utils'
 import handlebarsRender from './handlebars.render'
 
 const version = getopentinyVersion({ key: 'version' })
@@ -61,7 +61,7 @@ const buildFullRuntime = () => {
   })
 
   components.forEach((item) => {
-    if (item.inEntry !== false && !item.path.includes('river') && !item.path.includes('chart-beta')) {
+    if (item.inEntry !== false && !item.path.includes('river') && !excludeComponents.includes(item.name)) {
       const component = capitalizeKebabCase(item.name)
 
       componentsTemplate.push(`  ${component}`)

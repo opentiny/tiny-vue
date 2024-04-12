@@ -1,18 +1,9 @@
-import Sunburst from './src/index.js'
-import { version } from './package.json'
+import ChartSunburst from './src/chart-sunburst.vue'
 
-/* istanbul ignore next */
-Sunburst.install = function (Vue) {
-  Vue.component(Sunburst.name, Sunburst)
+ChartSunburst.install = function (Vue: any) {
+  Vue.component(ChartSunburst.name, ChartSunburst)
 }
 
-Sunburst.version = version
+export { ChartSunburst }
 
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Sunburst.install(window.Vue)
-  }
-}
-
-export default Sunburst
+export default ChartSunburst

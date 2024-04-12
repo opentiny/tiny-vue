@@ -38,6 +38,7 @@
             remote
             :remote-method="searchMethod"
             @change="searchChange"
+            @clear="searchMethod('')"
           >
             <li
               class="tiny-option tiny-select-dropdown__item"
@@ -134,7 +135,7 @@ export default defineComponent({
     TinyCol: Col,
     IconPopup: IconPopup()
   },
-  emits: ['open', 'selected', 'cancel', 'change', 'update:modelValue', 'confirm'],
+  emits: ['open', 'selected', 'cancel', 'change', 'update:modelValue', 'confirm', 'close'],
   props: [
     ...props,
     'size',

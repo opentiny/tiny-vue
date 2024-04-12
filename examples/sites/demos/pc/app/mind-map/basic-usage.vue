@@ -1,8 +1,8 @@
 <template>
-  <tiny-mind-map class="mindmap" />
+  <tiny-mind-map class="demo-mind-map-basic" />
 </template>
 
-<script lang="ts">
+<script>
 import { MindMap } from '@opentiny/vue'
 
 export default {
@@ -13,8 +13,8 @@ export default {
 </script>
 
 <style scoped>
-.mindmap {
+.demo-mind-map-basic {
   width: 100%;
-  height: 300px;
+  height: 400px;
 }
 </style>

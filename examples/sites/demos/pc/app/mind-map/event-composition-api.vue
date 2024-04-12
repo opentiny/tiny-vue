@@ -1,7 +1,7 @@
 <template>
   <tiny-mind-map
     ref="mindmap"
-    class="mindmap"
+    class="demo-mind-map-event"
     @create="onCreate"
     @operation="onOperation"
     @select-node="onSelectNode"
@@ -15,10 +15,10 @@
 </template>
 
 <script setup>
-import { Notify, MindMap as TinyMindMap } from '@opentiny/vue'
+import { Modal, MindMap as TinyMindMap } from '@opentiny/vue'
 import { ref } from 'vue'
 
-const exmpleData = ref({
+const exampleData = ref({
   'nodeData': {
     'id': 'c9ee6647385c42de',
     'topic': '前端修仙指南',
@@ -60,66 +60,34 @@ const exmpleData = ref({
   }
 })
 const onCreate = () => {
-  Notify({
-    type: 'info',
-    message: '触发事件create',
-    duration: 1000
-  })
+  Modal.message({ message: 'create 事件触发了', status: 'info' })
 }
 const onOperation = () => {
-  Notify({
-    type: 'info',
-    message: '触发事件operation',
-    duration: 1000
-  })
+  Modal.message({ message: 'operation 事件触发了', status: 'info' })
 }
 const onSelectNode = () => {
-  Notify({
-    type: 'info',
-    message: '触发事件selectNode',
-    duration: 1000
-  })
+  Modal.message({ message: 'selectNode 事件触发了', status: 'info' })
 }
 const onSelectNewNode = () => {
-  Notify({
-    type: 'info',
-    message: '触发事件selectNewNode',
-    duration: 1000
-  })
+  Modal.message({ message: 'selectNewNode 事件触发了', status: 'info' })
 }
 const onSelectNodes = () => {
-  Notify({
-    type: 'info',
-    message: '触发事件selectNodes',
-    duration: 1000
-  })
+  Modal.message({ message: 'selectNodes 事件触发了', status: 'info' })
 }
 const onUnselectNode = () => {
-  Notify({
-    type: 'info',
-    message: '触发事件unselectNode',
-    duration: 1000
-  })
+  Modal.message({ message: 'unselectNode 事件触发了', status: 'info' })
 }
 const onUnselectNodes = () => {
-  Notify({
-    type: 'info',
-    message: '触发事件unselectNodes',
-    duration: 1000
-  })
+  Modal.message({ message: 'unselectNodes 事件触发了', status: 'info' })
 }
 const onExpandNode = () => {
-  Notify({
-    type: 'info',
-    message: '触发事件expandNode',
-    duration: 1000
-  })
+  Modal.message({ message: 'expandNode 事件触发了', status: 'info' })
 }
 </script>
 
 <style scoped>
-.mindmap {
+.demo-mind-map-event {
   width: 100%;
-  height: 300px;
+  height: 400px;
 }
 </style>

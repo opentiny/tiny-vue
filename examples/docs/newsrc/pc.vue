@@ -194,6 +194,8 @@ export default {
       currMd: hooks.computed(() => mds[`${modeState.pathName}.cn.md`]),
       demoLoading: false
     })
+    // hui chart 新增图表类型，新增图表的 api 和原有图表的api 区分开。 
+    const huiNewChart = ['chart-process']
     const fn = {
       // 菜单搜索：忽略大小写
       searchMenu: (value, data) => {
@@ -234,7 +236,12 @@ export default {
       const demosConfig = await getDemosConfig(demosModule)
       state.demos = demosConfig.demos
       state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
-      state.currApi = (await getApisConfig(componentName, 'pc')).apis
+
+      if (huiNewChart.includes(modeState.pathName)) {
+        state.currApi = (await getApisConfig('hui', 'pc')).apis
+      } else {
+        state.currApi = (await getApisConfig(componentName, 'pc')).apis
+      }
       await _switchDemo()
     }
     async function _switchDemo() {

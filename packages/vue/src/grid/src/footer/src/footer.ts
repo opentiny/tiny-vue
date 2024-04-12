@@ -26,7 +26,7 @@
 import { isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { getClass, emitEvent, formatText, updateCellTitle } from '@opentiny/vue-renderless/grid/utils'
 import { isNull } from '@opentiny/vue-renderless/common/type'
-import { h, $prefix } from '@opentiny/vue-common'
+import { h, $prefix, defineComponent } from '@opentiny/vue-common'
 
 const classMap = {
   fixedHidden: 'fixed__column',
@@ -124,8 +124,19 @@ const renderfoots = (opt) => {
         .map((column, $columnIndex) => {
           const arg1 = { $columnIndex, $rowIndex, $table, allAlign, allColumnOverflow, allFooterAlign }
           const arg2 = { column, footerData, footerSpanMethod, overflowX, tableListeners }
-          const { attrs, columnIndex, fixedHiddenColumn, footAlign, footerClassName, hasEllipsis, params, tfOns } =
-            buildParamFunc(Object.assign(arg1, arg2))
+          const {
+            attrs,
+            columnIndex,
+            fixedHiddenColumn,
+            footAlign,
+            footerClassName,
+            hasEllipsis,
+            params,
+            tfOns,
+            isShowEllipsis,
+            isShowTitle,
+            showTooltip
+          } = buildParamFunc(Object.assign(arg1, arg2))
           const { leftList, rightList } = columnStore
           return h(
             'td',
@@ -156,7 +167,15 @@ const renderfoots = (opt) => {
               h(
                 'div',
                 {
-                  class: ['tiny-grid-cell', { [classMap.cellSummary]: $table.summaryConfig }]
+                  class: [
+                    'tiny-grid-cell',
+                    {
+                      [classMap.cellSummary]: $table.summaryConfig,
+                      'tiny-grid-cell__title': isShowTitle,
+                      'tiny-grid-cell__tooltip': showTooltip || column.showTip,
+                      'tiny-grid-cell__ellipsis': isShowEllipsis
+                    }
+                  ]
                 },
                 // 如果不是表格形态，就只保留表格结构（到tiny-grid-cell），不渲染具体的内容
                 $table.isShapeTable ? formatText(list[$table.tableColumn.indexOf(column)], 1) : null
@@ -172,10 +191,11 @@ function renderTfoot(opt) {
   return h('tfoot', { ref: 'tfoot' }, opt.footerData.map(renderfoots(opt)))
 }
 
-export default {
+export default defineComponent({
   name: `${$prefix}GridFooter`,
   props: {
     fixedColumn: Array,
+    fixedType: String,
     footerData: Array,
     size: String,
     tableColumn: Array,
@@ -193,7 +213,7 @@ export default {
     elemStore[`${keyPrefix}x-space`] = $refs.xSpace
   },
   render() {
-    let { $parent: $table, buildParamFunc, footerData, tableColumn } = this
+    let { $parent: $table, buildParamFunc, fixedColumn, fixedType, footerData, tableColumn } = this
     let {
       align: allAlign,
       columnKey,
@@ -203,7 +223,7 @@ export default {
       footerSpanMethod,
       columnStore
     } = $table
-    let { overflowX, showOverflow: allColumnOverflow, tableLayout, tableListeners } = $table
+    let { overflowX, showOverflow: allColumnOverflow, tableLayout, tableListeners, renderFooter } = $table
 
     let tableAttrs = { cellspacing: 0, cellpadding: 0, border: 0 }
     let colgroupVNode = renderColgroup(tableColumn)
@@ -219,6 +239,8 @@ export default {
     }
     let tfootVNode = renderTfoot(Object.assign(arg1, arg2))
 
+    const renderParams = { $table, columns: tableColumn, footerData, fixedColumns: fixedColumn, fixedType }
+
     return h(
       'div',
       {
@@ -227,21 +249,23 @@ export default {
       },
       [
         h('div', { class: 'tiny-grid-body__x-space', ref: 'xSpace' }),
-        h(
-          'table',
-          {
-            class: 'tiny-grid__footer',
-            style: { tableLayout },
-            attrs: tableAttrs,
-            ref: 'table'
-          },
-          [
-            //  列宽
-            colgroupVNode,
-            // 底部
-            tfootVNode
-          ]
-        )
+        typeof renderFooter === 'function'
+          ? renderFooter(renderParams, h)
+          : h(
+              'table',
+              {
+                class: 'tiny-grid__footer',
+                style: { tableLayout },
+                attrs: tableAttrs,
+                ref: 'table'
+              },
+              [
+                //  列宽
+                colgroupVNode,
+                // 底部
+                tfootVNode
+              ]
+            )
       ]
     )
   },
@@ -307,7 +331,19 @@ export default {
       // 处理行或者列的合并
       doFooterSpan({ attrs, footerData, footerSpanMethod, params })
 
-      return { attrs, columnIndex, fixedHiddenColumn, footAlign, footerClassName, hasEllipsis, params, tfOns }
+      return {
+        attrs,
+        columnIndex,
+        fixedHiddenColumn,
+        footAlign,
+        footerClassName,
+        hasEllipsis,
+        isShowEllipsis,
+        isShowTitle,
+        showTooltip,
+        params,
+        tfOns
+      }
     }
   }
-}
+})

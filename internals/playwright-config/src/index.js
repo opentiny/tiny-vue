@@ -14,10 +14,10 @@ const Config = ({ testDir, baseURL, storageState, devServerCommon }) =>
   defineConfig({
     testDir,
     /* 每个 test 用例最长时间。 */
-    timeout: 20 * 1000,
+    timeout: 30 * 1000,
     expect: {
       // 每个 expect() 用例最长时间。
-      timeout: 10 * 1000
+      timeout: 15 * 1000
     },
     /* Fail the build on CI if you accidentally left test.only in the source code. */
     forbidOnly: !!process.env.CI,

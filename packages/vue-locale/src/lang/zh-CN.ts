@@ -116,9 +116,6 @@ export default {
       history: '历史记录',
       empty: '暂无'
     },
-    creditCardForm: {
-      submit: '提交'
-    },
     crop: {
       cropImage: '图片裁剪',
       croppedImage: '裁剪后图像'
@@ -234,15 +231,6 @@ export default {
       name: '名称',
       search: '辅助查询',
       selected: '已选'
-    },
-    detailpage: {
-      saveButtonText: '确定',
-      cancelButtonText: '取消',
-      localTips: '不能全部隐藏',
-      localTitle: '数据',
-      valueTitle: '勾选隐藏',
-      labelTitle: '文本字段',
-      dialogTitle: '个性化标题'
     },
     dialogBox: {
       confirm: '确定',
@@ -542,7 +530,8 @@ export default {
       selected: '已选',
       selectedNum: '已选 {num} 个',
       noSearchData: '无相关搜索结果，请重新输入',
-      add: '新增'
+      add: '新增',
+      collapse: '收起'
     },
     search: {
       placeholder: '搜索'

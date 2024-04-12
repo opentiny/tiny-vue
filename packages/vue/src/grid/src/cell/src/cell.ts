@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { get } from '@opentiny/vue-renderless/grid/static/'
+import { get, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { random } from '@opentiny/vue-renderless/common/string'
 import { getColumnConfig, getFuncText, formatText } from '@opentiny/vue-renderless/grid/utils'
 import { Renderer } from '../../adapter'
@@ -264,7 +264,7 @@ export const Cell = {
     let { slots, own, title } = column
 
     if (slots && slots.header) {
-      return slots.header(params, h)
+      return [h('div', { class: 'tiny-grid-cell-text' }, [slots.header(params, h)])]
     }
 
     if (typeof title === 'function') {
@@ -379,11 +379,12 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderIndexCell(h, params))
   },
   renderIndexCell(h, params) {
-    let { $seq, level, seq } = params
-    let { startIndex, treeConfig = {} } = params.$table
-    let { indexMethod, slots } = params.column
-    let isOrdered = !!treeConfig.ordered
-    let indexValue = level && !isOrdered ? `${$seq}.${seq}` : startIndex + seq
+    const { $seq, level, seq } = params
+    // startIndex：序号列的起始值
+    const { startIndex, treeConfig = {} } = params.$table
+    const { indexMethod, slots } = params.column
+    const isOrdered = !!treeConfig.ordered
+    const indexValue = level && !isOrdered ? `${$seq}.${seq}` : startIndex + seq
 
     if (slots && slots.default) {
       return slots.default(params, h)
@@ -773,7 +774,7 @@ export const Cell = {
   renderEditHeader(h, params) {
     let { $table, column } = params
     let { editConfig, editRules, validOpts } = $table
-    let { filter, remoteSort, sortable, type } = column
+    let { filter, remoteSort, sortable, type, own } = column
     let icon = GLOBAL_CONFIG.icon
     let isRequired
 
@@ -799,7 +800,7 @@ export const Cell = {
 
     let vNodes = [
       isRequired && showAsterisk ? h('i', { class: `tiny-icon ${icon.required}` }) : null,
-      !editConfig || !column.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
+      !editConfig || !own.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
     ]
 
     vNodes = vNodes.concat(Cell.renderHeader(h, params))
@@ -893,17 +894,22 @@ export const Cell = {
 
     const renderBase = (buttonConfig, flag, classes, attrs) => {
       const mergeParams = { buttonConfig, ...params }
-      const on = isDisabled(buttonConfig) ? {} : { click: (e) => buttonConfig.click(e, mergeParams) }
+      const on = {
+        click: (e) => {
+          if (!isDisabled(buttonConfig) && isFunction(buttonConfig.click)) {
+            buttonConfig.click(e, mergeParams)
+          }
+        }
+      }
 
       classes = classes.join('\u{20}')
 
       const clazz = isDisabled(buttonConfig)
         ? [classes, 'tiny-grid__oper-col-button--disabled', disabledClass]
         : classes
-      const childNodes =
-        typeof buttonConfig.icon === 'function'
-          ? [runRender(buttonConfig.icon, h, mergeParams)]
-          : [h(buttonConfig.icon)]
+      const childNodes = isFunction(buttonConfig.icon)
+        ? [runRender(buttonConfig.icon, h, mergeParams)]
+        : [h(buttonConfig.icon)]
 
       return flag ? h('span', { class: clazz, attrs, on }, childNodes) : null
     }

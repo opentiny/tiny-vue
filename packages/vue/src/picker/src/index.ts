@@ -1,8 +1,8 @@
-import { $prefix, $props, $setup } from '@opentiny/vue-common'
+import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 import { pickerProps } from './type'
 
-export default {
+export default defineComponent({
   name: $prefix + 'Picker',
   componentName: 'Picker',
   props: {
@@ -12,4 +12,4 @@ export default {
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

@@ -213,7 +213,7 @@ export const handleClose =
       return
     }
 
-    api.hide()
+    api.hide(type)
   }
 
 export const hide =
@@ -224,7 +224,7 @@ export const hide =
 
       emit('update:visible', false)
       emit('change', false)
-      emit('close')
+      emit('close', cancel)
 
       state.closed = true
       api.hideScrollbar()
@@ -235,14 +235,14 @@ export const handleConfirm =
   ({ api, emit }: Pick<IDialogBoxRenderlessParams, 'api' | 'emit'>) =>
   (): void => {
     emit('confirm')
-    api.handleClose()
+    api.handleClose('confirm')
   }
 
 export const handleCancel =
   ({ api, emit }: Pick<IDialogBoxRenderlessParams, 'api' | 'emit'>) =>
   (): void => {
     emit('cancel')
-    api.handleClose()
+    api.handleClose('cancel')
   }
 
 export const updatePopper =
@@ -293,13 +293,20 @@ const closeAllPopover = (parent: IDialogBoxRenderlessParams['parent']) => {
 }
 
 export const handleDrag =
-  ({ parent, props, state, emit }: Pick<IDialogBoxRenderlessParams, 'parent' | 'props' | 'state' | 'emit'>) =>
+  ({
+    parent,
+    props,
+    state,
+    emit,
+    vm
+  }: Pick<IDialogBoxRenderlessParams, 'parent' | 'props' | 'state' | 'emit' | 'vm'>) =>
   (event: MouseEvent): void => {
     if (!props.draggable) {
       return
     }
 
-    let modalBoxElem = parent.$el.querySelector('.tiny-dialog-box') as HTMLDivElement
+    // tiny 修改： 根据ref访问元素
+    let modalBoxElem = vm.$refs.dialog as HTMLDivElement
     event.preventDefault()
 
     let demMousemove = document.onmousemove

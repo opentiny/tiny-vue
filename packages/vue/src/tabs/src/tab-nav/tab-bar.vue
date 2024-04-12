@@ -17,16 +17,16 @@
 </template>
 
 <script lang="tsx">
-import { $prefix, setup } from '@opentiny/vue-common'
+import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/tab-bar/vue'
 import type { ITabBarPcApi } from '@opentiny/vue-renderless/types/tab-bar.type'
 import { tabBarProps } from './index'
 
-export default {
+export default defineComponent({
   name: $prefix + 'TabBar',
   props: tabBarProps,
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true }) as unknown as ITabBarPcApi
   }
-}
+})
 </script>

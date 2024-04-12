@@ -75,10 +75,7 @@ const makeModules = () => {
         const modulePath = subPath.slice(subPath.lastIndexOf(`vue${path.sep}src`)).replaceAll(path.sep, '/')
         const matchArr = modulePath.match(/.+\/(.+?)\/(index\.ts|src\/pc\.|src\/mobile\.|src\/mobile-first\.)/)
         if (matchArr?.[1]) {
-          // TINY-TODO 此处先兼容一下Hui-chart图表组件beta版本，后续融合后这部分代码可移除
-          const compName =
-            getTemplateName(matchArr[1], entryObj) +
-            (modulePath.includes('chart-beta') && matchArr?.[1] !== 'chart-beta' ? 'Beta' : '')
+          const compName = getTemplateName(matchArr[1], entryObj)
           templates[compName] = {
             path: modulePath,
             type: entryObj.isMainEntry ? 'component' : 'template',

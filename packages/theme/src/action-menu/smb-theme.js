@@ -9,5 +9,7 @@ export const tinyActionMenuSmbTheme = {
   'ti-action-menu-hover-text-decoratio': 'underline',
   'ti-dropdown-line-height': 'calc(var(--ti-common-line-height-4) + 2px)',
   'ti-action-menu-more-icon-width': 'var(--ti-common-size-5x)',
-  'ti-action-menu-more-icon-height': 'var(--ti-common-size-5x)'
+  'ti-action-menu-more-icon-height': 'var(--ti-common-size-5x)',
+  'ti-action-menu-item-card-text-color': 'var(--ti-common-color-text-primary)',
+  'ti-action-menu-item-card-hover-text-color': 'var(--ti-common-color-text-primary)'
 }

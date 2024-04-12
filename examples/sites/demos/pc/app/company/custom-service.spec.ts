@@ -9,6 +9,7 @@ test('自定义服务', async ({ page }) => {
   const count = 2
   const companys = ['一', '二']
   const modal = page.locator('.tiny-modal')
+  await page.waitForTimeout(200)
 
   // 展开
   await page.locator('.tiny-select .tiny-input__suffix .tiny-svg').click()
@@ -24,6 +25,6 @@ test('自定义服务', async ({ page }) => {
   await input.hover()
 
   // 清空
-  await page.locator('.tiny-select .tiny-input__suffix .tiny-svg').click()
+  await page.locator('.tiny-select .tiny-input__suffix .tiny-svg.icon-close').click()
   await expect(input).toHaveValue('')
 })

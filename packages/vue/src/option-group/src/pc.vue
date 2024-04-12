@@ -5,7 +5,7 @@
       {{ label }}
     </li>
     <li>
-      <ul class="tiny-option-group__list tiny-select-group">
+      <ul class="tiny-option-group__list tiny-select-group" ref="selectGroup">
         <slot></slot>
       </ul>
     </li>

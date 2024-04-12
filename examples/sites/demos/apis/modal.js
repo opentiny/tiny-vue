@@ -443,8 +443,9 @@ export default {
           type: 'number | string',
           defaultValue: '',
           desc: {
-            'zh-CN': '窗口的宽度',
-            'en-US': 'window width'
+            'zh-CN': '窗口的宽度（设置宽度像素或者百分比，浏览器窗口大小改变可居中显示)',
+            'en-US':
+              'The width of the window(Set the width in pixels or percentages, and the browser window size can be changed to display in the center)'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: 'resize',

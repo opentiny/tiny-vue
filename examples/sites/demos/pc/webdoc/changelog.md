@@ -1,5 +1,68 @@
 # 更新日志
 
+## v2.15.0/v3.15.0
+
+`2024/04/08`
+
+## What's Changed
+
+### Exciting New Features 🎉
+
+- feat(sites): add theme route by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1478
+- Cgm/add theme route by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1479
+- fix(transfer ): update transfer xdesign by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1496
+- feat(form): [form] add xDesign theme by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1507
+- feat(action-menu): [action-menu] add XDesign theme by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1514
+- feat(date-picker): [date-picker] date picker add quarter type by @kagol in https://github.com/opentiny/tiny-vue/pull/1513
+- feat(statistic): statistic component by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1491
+- feat(select): add show-proportion props of select component by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1503
+- feat(rich-text-editor): [rich-text-editor] add image drag adjustment by @HAOUEHF in https://github.com/opentiny/tiny-vue/pull/1504
+- feat(grid): [grid] add XDesign theme by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1518
+- feat: Adapting to the X-design theme by @zzcr in https://github.com/opentiny/tiny-vue/pull/1534
+- feat(charts): refactor chart components and replace chart-core with hui-charts by @Davont
+  - refactored the underlying chart-core library which is used by all chart components
+  - chart-core uses hui-charts instead of echarts as the underlying logic of the chart
+  - chart components add a unified entry `option` based on the original API to facilitate unified calls
+  - improved documentation and demos for all chart components
+  - add theme switching function to adapt to different business needs
+  - add chart status function `chartInstance`, providing 5 states: `loading`, `error`, `empty`, `stateEmpty`, `customize`
+
+### Bug Fixes 🐛
+
+- fix(site): anchor offset by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/1477
+- fix(select): fix select/picker bugs by @zzcr in https://github.com/opentiny/tiny-vue/pull/1487
+- fix(vue-component): [mind-map] border-radius & border by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/1510
+- fix(quarter-panel): [date-picker] add mono: true by @kagol in https://github.com/opentiny/tiny-vue/pull/1519
+- fix: Custom header height of dialog-box by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1530
+- fix(search): [search] fixed the maxlength attribute bug in search by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1528
+- fix(rich-text-editor): fix right package name by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/1535
+- fix(docs): fix the issue of the theme switch button not being centered by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1533
+- fix(AMap): fix the problem of failure to display the AMap case in the document by @Davont
+- fix(chart-heatMap): fix tooltip display error in bar-chart by @Davont
+- fix(chart-bar): fix the problem of abnormal gap display when the histogram width is too low by @Davont
+- fix(chart-histogram): fix the problem of histogram chart displaying blank in special scenarios by @Davont
+
+### Other Changes
+
+- docs(sites): add deep style in scoped by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1473
+- fix(ip-address): [ip-address] add spaces by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1475
+- docs(steps): optimization of steps docs by @Huangyilin19 in https://github.com/opentiny/tiny-vue/pull/1474
+- docs: add project name to issue template by @kagol in https://github.com/opentiny/tiny-vue/pull/1486
+- docs(grid): [grid] fix tree-grid-insert-delete-update demo by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1495
+- docs(sites): fix site overview input error by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1499
+- docs: update changelog by @kagol in https://github.com/opentiny/tiny-vue/pull/1501
+- [select] Optimized remote search demo by @Huangyilin19 in https://github.com/opentiny/tiny-vue/pull/1488
+- ci(publish): add github action auto publish by @zzcr in https://github.com/opentiny/tiny-vue/pull/1512
+- docs(date-picker): [date-picker] fix format docs by @kagol in https://github.com/opentiny/tiny-vue/pull/1522
+- docs(Numeric): [examples] add the description of change-compat for ch… by @AcWrong02 in https://github.com/opentiny/tiny-vue/pull/1521
+- docs(sites): add aui adapter document by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1516
+- ci(publish): add dispatch publish action by @zzcr in https://github.com/opentiny/tiny-vue/pull/1517
+- fix: update numeric demo style by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1526
+
+## New Contributors
+
+- @HAOUEHF made their first contribution in https://github.com/opentiny/tiny-vue/pull/1504
+
 ## v2.14.0/v3.14.0
 
 `2024/03/07`
@@ -9,6 +72,10 @@
 ### Exciting New Features 🎉
 
 - feat(vue): [mind-map] mindmap by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/1207
+- feat(skeleton): skeleton component by @mengqiuleo in https://github.com/opentiny/tiny-vue/pull/1345
+- feat(float-button): [float-button] add float-button by @fanbingbing16 in https://github.com/opentiny/tiny-vue/pull/1394
+- feat(card): add card component by @shenjunjian
+- feat auto import plugin by @mengqiuleo in https://github.com/opentiny/tiny-vue/pull/1397
 - feat(time-line): refresh ui by @MNZhu in https://github.com/opentiny/tiny-vue/pull/1281
 - feat(numeric): refresh ui by @MNZhu in https://github.com/opentiny/tiny-vue/pull/1258
 - styles(action-sheet): [action-sheet] add action-sheet type by @jxhhdx in https://github.com/opentiny/tiny-vue/pull/1307
@@ -26,18 +93,15 @@
 - styles(async-flowchart): [async-flowchart] add async-flowchart types by @jxhhdx in https://github.com/opentiny/tiny-vue/pull/1312
 - styles(area): [area] add area types by @jxhhdx in https://github.com/opentiny/tiny-vue/pull/1311
 - feat(dialog-box): [dialog-box] make the dialogBox drag outside the window by @wNing50 in https://github.com/opentiny/tiny-vue/pull/1268
-- feat(skeleton): skeleton component by @mengqiuleo in https://github.com/opentiny/tiny-vue/pull/1345
 - style(user-head): [user-head] improve typescript declaration of compo… by @Floyd-bit in https://github.com/opentiny/tiny-vue/pull/1380
 - fix(carousel ): [carousel] update carousel xdesign by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1422
 - fix(badge): [badge] update badge xdesign by @You-Hw-Y in https://github.com/opentiny/tiny-vue/pull/1420
 - feat(date-picker): [date-picker] support xdesign by @kagol in https://github.com/opentiny/tiny-vue/pull/1417
 - feat(slider): [slider] marks supported, input range supported by @yoyo201626 in https://github.com/opentiny/tiny-vue/pull/1429
-- feat auto import plugin by @mengqiuleo in https://github.com/opentiny/tiny-vue/pull/1397
 - [drawer] fix smb theme by @Huangyilin19 in https://github.com/opentiny/tiny-vue/pull/1411
 - feat(vue): add vue sub packages dependencies by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1424
 - fix(transfer ): [transfer] update transfer xdesign by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1419
 - fix(skeleton): [skeleton]add skeleton of smb theme by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1410
-- feat(float-button): [float-button] add float-button by @fanbingbing16 in https://github.com/opentiny/tiny-vue/pull/1394
 - feat(loading): [loading] smb theme by @yoyo201626 in https://github.com/opentiny/tiny-vue/pull/1431
 - fix(Switch): [Switch] add keydown support and improth the accessibility by @AcWrong02 in https://github.com/opentiny/tiny-vue/pull/1428
 - feat(vue): [popconfirm] add popper-options props by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1439

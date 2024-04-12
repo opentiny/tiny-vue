@@ -23,6 +23,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    multipleLimit: {
+      type: Number,
+      default: 0
+    },
     disabled: {
       type: Boolean,
       default: false

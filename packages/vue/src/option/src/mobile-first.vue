@@ -51,10 +51,10 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/option/vue'
-import { props, setup } from '@opentiny/vue-common'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 import { iconCheck, iconCheckedSur, iconFinish } from '@opentiny/vue-icon'
 
-export default {
+export default defineComponent({
   components: {
     IconCheck: iconCheck(),
     IconCheckedSur: iconCheckedSur(),
@@ -64,5 +64,5 @@ export default {
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
-}
+})
 </script>

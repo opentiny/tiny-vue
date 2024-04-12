@@ -23,8 +23,6 @@ import type {
   handleBlur,
   watchValue,
   setCurrentValue,
-  dispatchDisplayedValue,
-  getDisplayedValue,
   initService,
   getDisplayOnlyText,
   filterValue,
@@ -80,8 +78,6 @@ export interface INumericApi {
   handleBlur: ReturnType<typeof handleBlur>
   watchValue: ReturnType<typeof watchValue>
   setCurrentValue: ReturnType<typeof setCurrentValue>
-  dispatchDisplayedValue: ReturnType<typeof dispatchDisplayedValue>
-  getDisplayedValue: ReturnType<typeof getDisplayedValue>
   getDisplayOnlyText: ReturnType<typeof getDisplayOnlyText>
   filterValue: ReturnType<typeof filterValue>
   handleClear: ReturnType<typeof handleClear>

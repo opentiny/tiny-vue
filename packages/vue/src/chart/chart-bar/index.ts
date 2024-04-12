@@ -1,21 +1,9 @@
-import Bar from './src/index.js'
-import { histogram, bar } from '@opentiny/vue-renderless/chart-bar/index'
-import { version } from './package.json'
+import ChartBar from './src/chart-bar.vue'
 
-/* istanbul ignore next */
-Bar.install = function (Vue) {
-  Vue.component(Bar.name, Bar)
+ChartBar.install = function (Vue: any) {
+  Vue.component(ChartBar.name, ChartBar)
 }
 
-Bar.version = version
+export { ChartBar }
 
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Bar.install(window.Vue)
-  }
-}
-
-export { histogram, bar }
-
-export default Bar
+export default ChartBar

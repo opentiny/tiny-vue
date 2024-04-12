@@ -16,13 +16,21 @@ import userPopper from '../common/deps/vue-popper'
 import { DATEPICKER } from '../common'
 import { formatDate, parseDate, isDateObject, getWeekNumber, prevDate, nextDate } from '../common/deps/date-util'
 import { extend } from '../common/object'
-import { isFunction } from '../common/type'
 import globalTimezone from './timezone'
 
 const iso8601Reg = /^\d{4}-\d{2}-\d{2}(.)\d{2}:\d{2}:\d{2}(.+)$/
 
 export const getPanel =
-  ({ DatePanel, DateRangePanel, MonthRangePanel, YearRangePanel, TimePanel, TimeRangePanel, TimeSelect }) =>
+  ({
+    DatePanel,
+    DateRangePanel,
+    MonthRangePanel,
+    YearRangePanel,
+    TimePanel,
+    TimeRangePanel,
+    QuarterPanel,
+    TimeSelect
+  }) =>
   (type) => {
     if (type === DATEPICKER.DateRange || type === DATEPICKER.DateTimeRange) {
       return DateRangePanel
@@ -36,13 +44,27 @@ export const getPanel =
       return TimePanel
     } else if (type === DATEPICKER.TimeSelect) {
       return TimeSelect
+    } else if (type === DATEPICKER.Quarter) {
+      return QuarterPanel
     }
 
     return DatePanel
   }
 
+export const watchMobileVisible =
+  ({ api, props, state, nextTick }) =>
+  ([dateMobileVisible, timeMobileVisible]) => {
+    if (dateMobileVisible || timeMobileVisible) {
+      state.valueOnOpen = Array.isArray(props.modelValue) ? [...props.modelValue] : props.modelValue
+    } else {
+      nextTick(() => {
+        api.emitChange(props.modelValue)
+      })
+    }
+  }
+
 export const watchPickerVisible =
-  ({ api, vm, dispatch, emit, props, state }) =>
+  ({ api, vm, dispatch, emit, props, state, nextTick }) =>
   (value) => {
     if (props.readonly || state.pickerDisabled || state.isMobileScreen) return
 
@@ -52,15 +74,19 @@ export const watchPickerVisible =
       state.valueOnOpen = Array.isArray(props.modelValue) ? [...props.modelValue] : props.modelValue
     } else {
       api.hidePicker()
-      api.emitChange(props.modelValue)
+      nextTick(() => {
+        api.emitChange(props.modelValue)
+      })
       state.userInput = null
 
       if (props.validateEvent) {
         dispatch('FormItem', 'form.blur')
       }
+
       if (props.changeOnConfirm && !valueEquals(props.modelValue, state.oldValue)) {
         emit('update:modelValue', state.oldValue)
       }
+
       emit('blur', vm)
       api.blur()
     }
@@ -117,14 +143,8 @@ export const displayValue =
     const formatObj = {
       rangeSeparator: props.rangeSeparator
     }
-    const formattedValue = api.formatAsFormatAndType(
-      state.parsedValue,
-      state.format,
-      state.type,
-      props.rangeSeparator,
-      formatObj
-    )
 
+    const formattedValue = api.formatAsFormatAndType(state.parsedValue, state.format, state.type, formatObj)
     if (Array.isArray(state.userInput)) {
       return [
         state.userInput[0] || (formattedValue && formattedValue[0]) || '',
@@ -176,12 +196,15 @@ export const parsedValue =
 
       if (isServiceTimezone) {
         if (Array.isArray(date)) {
-          date = [].concat(date).map((item) => (isDate(item) ? formatDate(item, state.valueFormat, t) : item))
+          date = [].concat(date).map((item) => {
+            return isDate(item) ? formatDate(item, state.valueFormat, t) : item
+          })
         } else {
-          date = formatDate(date, state.valueFormat, t)
+          if (state.valueFormat !== DATEPICKER.TimesTamp) {
+            date = formatDate(date, state.valueFormat, t)
+          }
         }
       }
-
       const result = api.parseAsFormatAndType(date, state.valueFormat, state.type, props.rangeSeparator)
       if (Array.isArray(result)) {
         return result.map((date) => getDateWithNewTimezone(date, from, to, timezoneOffset))
@@ -194,7 +217,6 @@ export const parsedValue =
     const values = []
       .concat(props.modelValue)
       .map((val) => getDateWithNewTimezone(trans(val), from, to, timezoneOffset))
-
     return values.length > 1 ? values : values[0]
   }
 
@@ -337,7 +359,6 @@ const getWeekOfTypeValueResolveMap = ({ t, props, api }) => ({
       trueDate.setHours(0, 0, 0, 0)
       trueDate.setDate(trueDate.getDate() + 3 - ((trueDate.getDay() + 6) % 7))
     }
-
     let date
     if (type === 'format' && !/W/.test(format)) {
       const { start, end } = getWeekRange(value, format, t, props.pickerOptions)
@@ -346,6 +367,7 @@ const getWeekOfTypeValueResolveMap = ({ t, props, api }) => ({
       date = formatDate(trueDate, format, t)
       date = /WW/.test(date) ? date.replace(/WW/, week < 10 ? '0' + week : week) : date.replace(/W/, week)
     }
+
     return date
   },
   parser(text, format) {
@@ -407,7 +429,11 @@ export const typeValueResolveMap =
     years: getDatesOfTypeValueResolveMap(api),
     yearrange: getDatesOfTypeValueResolveMap(api),
     number: getNumberOfTypeValueResolveMap(),
-    dates: getDatesOfTypeValueResolveMap(api)
+    dates: getDatesOfTypeValueResolveMap(api),
+    quarter: {
+      formatter: (value) => `${value.getFullYear()}-Q${DATEPICKER.MonthQuarterMap[value.getMonth()]}`,
+      parser: api.dateParser
+    }
   })
 
 export const firstInputId =
@@ -505,12 +531,211 @@ export const handleMouseEnter =
     }
   }
 
+// 这个是 input 组件的 input 事件，应该只有一个 event 参数，input 组件的具体值从 event.target.value 中获取。
+export const handleInput =
+  ({ state, props, api }) =>
+  (val, event) => {
+    // 兼容tiny-input传参不同导致的报错问题
+    event = val.target ? val : event
+    if (props.autoFormat) {
+      const value = api.formatInputValue({ event, prevValue: state.displayValue })
+      state.userInput = value
+    } else {
+      const val = event.target.value
+      state.userInput = val
+    }
+  }
+
+export const formatInputValue =
+  ({ props, state }) =>
+  ({ event, prevValue = '' }) => {
+    const val = event.target.value
+    const inputData = event.data
+    const format = state.type === 'time-select' ? 'HH:mm' : props.format || DATEPICKER.DateFormats[state.type]
+    if (inputData && inputData.charCodeAt() >= 48 && inputData.charCodeAt() <= 57) {
+      return formatText({ event, format, text: prevValue, needSelectionStart: true })
+    } else {
+      return val
+    }
+  }
+
+const getSelectionStart = ({ value, format, regx, event }) => {
+  const formatMatchArr = format.match(regx)
+  let selectionStart = getSelectionStartIndex(event)
+  let I = 0
+
+  if (value !== '') {
+    const match = value.match(/[0-9]/g)
+    I = match === null ? 0 : match.length
+
+    for (let i = 0; i < formatMatchArr.length; i++) {
+      I -= Math.max(formatMatchArr[i].length, 2)
+    }
+
+    I = I >= 0 ? 1 : 0
+    I === 1 && selectionStart >= value.length && (selectionStart = value.length - 1)
+  }
+
+  return { selectionStart, I }
+}
+
+const getNum = (value, format, regx) => {
+  let len = value.length
+  if (format && regx) {
+    const formatMatchArr = format.match(regx)
+    len = Math.max(len, formatMatchArr.join('').length)
+  }
+  let num = { str: '', arr: [] }
+  for (let i = 0; i < len; i++) {
+    let char = value.charAt(i) ? value.charAt(i) : '00'
+
+    if (/[0-9]/.test(char)) {
+      num.str += char
+    } else {
+      num.arr[i] = 1
+    }
+  }
+  return num
+}
+
+const getSelectionStartIndex = (event) => {
+  const inputElem = event.target
+  return inputElem.selectionStart - (event.data ? event.data.length : 0)
+}
+
+const moveStart = (inputElem, moveStartIndex) => {
+  if (inputElem.setSelectionRange) {
+    inputElem.focus()
+    setTimeout(() => {
+      inputElem.setSelectionRange(moveStartIndex, moveStartIndex)
+    }, 0)
+  }
+}
+
+export const formatText = ({ event, text, format, needSelectionStart = false }) => {
+  if (!format) return text
+  let cursorOffset = 0
+  let value = ''
+  let regx = /yyyy|yyy|yy|y|MM|M|dd|d|HH|hh|H|h|mm|m|ss|s|WW|W|w/g
+  let startIndex = 0
+  let { numStr, selectionStart } = getNumAndSelectionStart({
+    value: text,
+    format,
+    regx,
+    event,
+    needSelectionStart
+  })
+
+  let matchResult = regx.exec(format)
+  while (numStr.str !== '' && matchResult !== null) {
+    let subStr
+    let newNum
+    let subLen
+    const endIndex = matchResult.index
+    if (startIndex >= 0) {
+      value += format.substring(startIndex, endIndex)
+    }
+
+    selectionStart >= startIndex + cursorOffset &&
+      selectionStart <= endIndex + cursorOffset &&
+      (selectionStart = selectionStart + endIndex - startIndex)
+
+    startIndex = regx.lastIndex
+    subLen = startIndex - endIndex
+
+    subStr = numStr.str.substring(0, subLen)
+
+    const firstMatchChar = matchResult[0].charAt(0)
+    const firstChar = parseInt(subStr.charAt(0), 10)
+
+    if (numStr.str.length > 1) {
+      const secondChar = numStr.str.charAt(1)
+      newNum = 10 * firstChar + parseInt(secondChar, 10)
+    } else {
+      newNum = firstChar
+    }
+    if (
+      numStr.arr[endIndex + 1] ||
+      (firstMatchChar === 'M' && newNum > 12) ||
+      (firstMatchChar === 'd' && newNum > 31) ||
+      (['H', 'h'].includes(firstMatchChar) && newNum > 23) ||
+      ('ms'.includes(firstMatchChar) && newNum > 59)
+    ) {
+      subStr = matchResult[0].length === 2 ? '0' + firstChar : firstChar
+      selectionStart++
+    } else {
+      if (subLen === 1) {
+        subStr = String(newNum)
+        subLen++
+        cursorOffset++
+      }
+    }
+
+    value += subStr
+    numStr.str = numStr.str.substring(subLen)
+    matchResult = regx.exec(format)
+  }
+
+  const { value: val, selectionStart: cursorPos } = checkFormat({
+    value,
+    format,
+    startIndex,
+    selectionStart,
+    regx,
+    needSelectionStart
+  })
+  value = val
+  selectionStart = cursorPos
+
+  needSelectionStart && moveStart(event.target, selectionStart)
+
+  return value
+}
+
+const getNumAndSelectionStart = ({ value, format, regx, event, needSelectionStart }) => {
+  if (needSelectionStart) {
+    let { selectionStart, I } = getSelectionStart({ value, format, regx, event })
+    let valueStr
+
+    if (event.data) {
+      valueStr = value.substring(0, selectionStart) + event.data + value.substring(selectionStart + I)
+      selectionStart++
+    } else {
+      valueStr = value
+    }
+
+    const numStr = getNum(valueStr)
+
+    return { numStr, selectionStart }
+  } else {
+    const numStr = getNum(value, format, regx)
+    return { numStr }
+  }
+}
+
+const checkFormat = ({ value, format, startIndex, selectionStart, regx, needSelectionStart }) => {
+  if (
+    (!needSelectionStart && regx.lastIndex === 0) ||
+    (needSelectionStart && regx.lastIndex === 0 && selectionStart >= startIndex)
+  ) {
+    const subFormat = `(?<=${format.substring(0, startIndex)})(\\s*\\S*\\s*)+`
+    const pattern = new RegExp(subFormat, 'g')
+
+    const res = format.match(pattern)
+
+    if (res) {
+      value += res[0]
+      selectionStart = value.length
+    }
+  }
+  return { value, selectionStart }
+}
+
 export const handleChange =
   ({ api, state }) =>
   () => {
     if (state.userInput) {
       const value = api.parseString(state.displayValue)
-
       if (value) {
         state.picker.state.value = value
 
@@ -534,6 +759,7 @@ export const handleStartInput =
     const value = props.autoFormat
       ? api.formatInputValue({ event, prevValue: state.displayValue[0] })
       : event.target.value
+
     if (state.userInput) {
       state.userInput = [value, state.userInput[1]]
     } else {
@@ -754,15 +980,12 @@ export const handleKeydown =
   }
 
 export const hidePicker =
-  ({ state, doDestroy }) =>
+  ({ destroyPopper, state }) =>
   () => {
     if (state.picker) {
       state.picker.resetView && state.picker.resetView()
       state.pickerVisible = state.picker.visible = state.picker.state.visible = false
-
-      if (isFunction(doDestroy)) {
-        doDestroy()
-      }
+      destroyPopper()
     }
   }
 
@@ -780,7 +1003,7 @@ export const showPicker =
     state.pickerVisible = state.picker.state.visible = true
     state.picker.state.value = state.parsedValue
     state.picker.resetView && state.picker.resetView()
-    // 使用nextTick方法解决time-picker组件的demo"下拉框类名"点击input，时间选择框弹出位置错误的问题，
+
     nextTick(() => {
       updatePopper(state.picker.$el)
       state.picker.adjustSpinners && state.picker.adjustSpinners()
@@ -791,6 +1014,7 @@ export const handlePick =
   ({ state, api }) =>
   (date = '', visible = false) => {
     if (!state.picker) return
+
     state.userInput = null
     state.pickerVisible = state.picker.state.visible = visible
 
@@ -806,25 +1030,24 @@ export const handleSelectRange = (state) => (start, end, pos) => {
   }
 
   const adjust = (value, start, end) => {
-    if (!value) {
-      return { start, end }
-    }
-    const valueReg = /(\d+):(\d+):(\d+)(\s+.+)?/
+    if (value) {
+      const valueReg = /(\d+):(\d+):(\d+)(\s+.+)?/
 
-    if (valueReg.test(value)) {
-      const matched = valueReg.exec(value)
-      const hourLength = matched[1].length
-      const minuteLength = matched[2].length
-      const secondLength = matched[3].length
+      if (valueReg.test(value)) {
+        const matched = valueReg.exec(value)
+        const hourLength = matched[1].length
+        const minuteLength = matched[2].length
+        const secondLength = matched[3].length
 
-      if (start === 0) {
-        end = hourLength
-      } else if (start === 3) {
-        start = hourLength + 1
-        end = hourLength + minuteLength + 1
-      } else {
-        start = hourLength + minuteLength + 2
-        end = hourLength + minuteLength + secondLength + 2
+        if (start === 0) {
+          end = hourLength
+        } else if (start === 3) {
+          start = hourLength + 1
+          end = hourLength + minuteLength + 1
+        } else {
+          start = hourLength + minuteLength + 2
+          end = hourLength + minuteLength + secondLength + 2
+        }
       }
     }
 
@@ -965,7 +1188,6 @@ export const emitInput =
     }
 
     const formatted = api.formatToValue(value) || val
-
     if (!valueEquals(props.modelValue, formatted)) {
       emit('update:modelValue', formatted)
     }
@@ -1051,19 +1273,23 @@ export const computedFormat =
 
 export const computedTriggerClass =
   ({ props, state }) =>
-  () =>
-    props.suffixIcon ||
-    props.prefixIcon ||
-    (state.type.includes(DATEPICKER.Time) ? DATEPICKER.IconTime : DATEPICKER.IconDate)
+  () => {
+    return (
+      props.suffixIcon ||
+      props.prefixIcon ||
+      (state.type.includes(DATEPICKER.Time) ? DATEPICKER.IconTime : DATEPICKER.IconDate)
+    )
+  }
 
 export const computedHaveTrigger =
   ({ props }) =>
-  () =>
-    typeof props.showTrigger !== 'undefined' ? props.showTrigger : DATEPICKER.TriggerTypes.includes(props.type)
+  () => {
+    return typeof props.showTrigger !== 'undefined' ? props.showTrigger : DATEPICKER.TriggerTypes.includes(props.type)
+  }
 
 export const initPopper = ({ props, hooks, vnode }) => {
   const { reactive, watch, toRefs, onBeforeUnmount, onDeactivated } = hooks
-  // vnode就是第3参，名字有误导性
+  // tiny提示： vnode就是第3参，名字有误导性
   const { emit, vm, slots, nextTick } = vnode
   const placementMap = DATEPICKER.PlacementMap
 
@@ -1073,7 +1299,7 @@ export const initPopper = ({ props, hooks, vnode }) => {
     emit,
     props: {
       ...props,
-      popperOptions: { boundariesPadding: 0, gpuAcceleration: false },
+      popperOptions: Object.assign({ boundariesPadding: 0, gpuAcceleration: false }, props.popperOptions),
       visibleArrow: true,
       offset: 0,
       boundariesPadding: 5,
@@ -1163,203 +1389,3 @@ export const setInputPaddingLeft =
       })
     }
   }
-
-const getSelectionStart = ({ value, format, regx, event }) => {
-  const formatMatchArr = format.match(regx)
-  let selectionStart = getSelectionStartIndex(event)
-  let I = 0
-
-  if (value !== '') {
-    const match = value.match(/[0-9]/g)
-    I = match === null ? 0 : match.length
-
-    for (let i = 0; i < formatMatchArr.length; i++) {
-      I -= Math.max(formatMatchArr[i].length, 2)
-    }
-
-    I = I >= 0 ? 1 : 0
-    I === 1 && selectionStart >= value.length && (selectionStart = value.length - 1)
-  }
-
-  return { selectionStart, I }
-}
-
-const getNum = (value, format, regx) => {
-  let len = value.length
-  if (format && regx) {
-    const formatMatchArr = format.match(regx)
-    len = Math.max(len, formatMatchArr.join('').length)
-  }
-  let num = { str: '', arr: [] }
-  for (let i = 0; i < len; i++) {
-    let char = value.charAt(i) ? value.charAt(i) : '00'
-
-    if (/[0-9]/.test(char)) {
-      num.str += char
-    } else {
-      num.arr[i] = 1
-    }
-  }
-  return num
-}
-
-const getSelectionStartIndex = (event) => {
-  const inputElem = event.target
-  return inputElem.selectionStart - (event.data ? event.data.length : 0)
-}
-
-const getNumAndSelectionStart = ({ value, format, regx, event, needSelectionStart }) => {
-  if (needSelectionStart) {
-    let { selectionStart, I } = getSelectionStart({ value, format, regx, event })
-    let valueStr
-
-    if (event.data) {
-      valueStr = value.substring(0, selectionStart) + event.data + value.substring(selectionStart + I)
-      selectionStart++
-    } else {
-      valueStr = value
-    }
-
-    const numStr = getNum(valueStr)
-
-    return { numStr, selectionStart }
-  } else {
-    const numStr = getNum(value, format, regx)
-    return { numStr }
-  }
-}
-
-const checkFormat = ({ value, format, startIndex, selectionStart, regx, needSelectionStart }) => {
-  if (
-    (!needSelectionStart && regx.lastIndex === 0) ||
-    (needSelectionStart && regx.lastIndex === 0 && selectionStart >= startIndex)
-  ) {
-    const subFormat = `(?<=${format.substring(0, startIndex)})(\\s*\\S*\\s*)+`
-    const pattern = new RegExp(subFormat, 'g')
-
-    const res = format.match(pattern)
-
-    if (res) {
-      value += res[0]
-      selectionStart = value.length
-    }
-  }
-  return { value, selectionStart }
-}
-
-const moveStart = (inputElem, moveStartIndex) => {
-  if (inputElem.setSelectionRange) {
-    inputElem.focus()
-    setTimeout(() => {
-      inputElem.setSelectionRange(moveStartIndex, moveStartIndex)
-    }, 0)
-  }
-}
-
-// 这个是 input 组件的 input 事件，应该只有一个 event 参数，input 组件的具体值从 event.target.value 中获取。
-export const handleInput =
-  ({ state, props, api }) =>
-  (val, event) => {
-    // 兼容tiny-input传参不同导致的报错问题
-    event = val.target ? val : event
-    if (props.autoFormat) {
-      const value = api.formatInputValue({ event, prevValue: state.displayValue })
-      state.userInput = value
-    } else {
-      const val = event.target.value
-      state.userInput = val
-    }
-  }
-
-export const formatInputValue =
-  ({ props, state }) =>
-  ({ event, prevValue = '' }) => {
-    const val = event.target.value
-    const inputData = event.data
-    const format = state.type === 'time-select' ? 'HH:mm' : props.format || DATEPICKER.DateFormats[state.type]
-    if (inputData && inputData.charCodeAt() >= 48 && inputData.charCodeAt() <= 57) {
-      return formatText({ event, format, text: prevValue, needSelectionStart: true })
-    } else {
-      return val
-    }
-  }
-
-export const formatText = ({ event, text, format, needSelectionStart = false }) => {
-  if (!format) return text
-  let cursorOffset = 0
-  let value = ''
-  let regx = /yyyy|yyy|yy|y|MM|M|dd|d|HH|hh|H|h|mm|m|ss|s|WW|W|w/g
-  let startIndex = 0
-  let { numStr, selectionStart } = getNumAndSelectionStart({
-    value: text,
-    format,
-    regx,
-    event,
-    needSelectionStart
-  })
-
-  let matchResult = regx.exec(format)
-  while (numStr.str !== '' && matchResult !== null) {
-    let subStr
-    let newNum
-    let subLen
-    const endIndex = matchResult.index
-    if (startIndex >= 0) {
-      value += format.substring(startIndex, endIndex)
-    }
-
-    selectionStart >= startIndex + cursorOffset &&
-      selectionStart <= endIndex + cursorOffset &&
-      (selectionStart = selectionStart + endIndex - startIndex)
-
-    startIndex = regx.lastIndex
-    subLen = startIndex - endIndex
-
-    subStr = numStr.str.substring(0, subLen)
-
-    const firstMatchChar = matchResult[0].charAt(0)
-    const firstChar = parseInt(subStr.charAt(0), 10)
-
-    if (numStr.str.length > 1) {
-      const secondChar = numStr.str.charAt(1)
-      newNum = 10 * firstChar + parseInt(secondChar, 10)
-    } else {
-      newNum = firstChar
-    }
-    if (
-      numStr.arr[endIndex + 1] ||
-      (firstMatchChar === 'M' && newNum > 12) ||
-      (firstMatchChar === 'd' && newNum > 31) ||
-      (['H', 'h'].includes(firstMatchChar) && newNum > 23) ||
-      ('ms'.includes(firstMatchChar) && newNum > 59)
-    ) {
-      subStr = matchResult[0].length === 2 ? '0' + firstChar : firstChar
-      selectionStart++
-    } else {
-      if (subLen === 1) {
-        subStr = String(newNum)
-        subLen++
-        cursorOffset++
-      }
-    }
-
-    value += subStr
-    numStr.str = numStr.str.substring(subLen)
-    matchResult = regx.exec(format)
-  }
-
-  const { value: val, selectionStart: cursorPos } = checkFormat({
-    value,
-    format,
-    startIndex,
-    selectionStart,
-    regx,
-    needSelectionStart
-  })
-  value = val
-  selectionStart = cursorPos
-
-  needSelectionStart && moveStart(event.target, selectionStart)
-
-  return value
-}

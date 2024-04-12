@@ -62,8 +62,8 @@
                       </tr>
                       <tr v-else>
                         <th width="15%">{{ i18nByKey('name') }}</th>
-                        <th width="20%">{{ i18nByKey('propType') }}</th>
-                        <th width="20%">{{ i18nByKey('defValue') }}</th>
+                        <th width="20%" v-if="hasKey(oneApiArr, 'type')">{{ i18nByKey('propType') }}</th>
+                        <th width="20%" v-if="hasKey(oneApiArr, 'defaultValue')">{{ i18nByKey('defValue') }}</th>
                         <th width="45%">{{ i18nByKey('desc') }}</th>
                       </tr>
                     </thead>
@@ -81,7 +81,7 @@
                           >
                           </version-tip>
                         </td>
-                        <td v-if="!key.includes('slots')" @click="handleTypeClick">
+                        <td v-if="!key.includes('slots') && hasKey(oneApiArr, 'type')" @click="handleTypeClick">
                           <a
                             v-if="row.typeAnchorName"
                             :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
@@ -89,7 +89,14 @@
                           ></a>
                           <span v-else v-html="row.type"></span>
                         </td>
-                        <td v-if="!key.includes('slots') && !key.includes('events') && !key.includes('methods')">
+                        <td
+                          v-if="
+                            !key.includes('slots') &&
+                            !key.includes('events') &&
+                            !key.includes('methods') &&
+                            hasKey(oneApiArr, 'defaultValue')
+                          "
+                        >
                           <span
                             v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"
                           ></span>
@@ -200,6 +207,7 @@ export default defineComponent({
 
     const { apiModeState } = useApiMode()
     const { templateModeState, staticPath, optionsList } = useTemplateMode()
+    const huiNewChart = ['chart-process']
 
     // 页面加载/点击api中的链接，根据hash滚动。
     const scrollByHash = (hash) => {
@@ -267,7 +275,7 @@ export default defineComponent({
       const promiseArr = [
         fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.${lang}.md`),
         fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`),
-        fetchDemosFile(`@demos/apis/${getWebdocPath(state.cmpId)}.js`)
+        fetchDemosFile(`@demos/apis/${huiNewChart.includes(state.cmpId) ? 'hui' : getWebdocPath(state.cmpId)}.js`)
       ]
       if (faqMdConfig[state.cmpId]) {
         promiseArr.push(
@@ -412,6 +420,8 @@ export default defineComponent({
       common.renderFooter()
     })
 
+    const hasKey = (apiArr, key) => !apiArr.every((item) => item[key] === undefined)
+
     return {
       ...toRefs(state),
       ...fn,
@@ -419,7 +429,8 @@ export default defineComponent({
       anchorRefreshKey,
       apiModeState,
       templateModeState,
-      optionsList
+      optionsList,
+      hasKey
     }
   }
 })

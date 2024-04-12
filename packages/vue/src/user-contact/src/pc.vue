@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
   <div class="tiny-user-contact">
     <Popover
@@ -55,13 +56,12 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/user-contact/vue'
-import { props, setup } from '@opentiny/vue-common'
+import { props, setup, defineComponent } from '@opentiny/vue-common'
 import UserHead from '@opentiny/vue-user-head'
 import CardTemplate from '@opentiny/vue-card-template'
 import Espace from '@opentiny/vue-espace'
 import Popover from '@opentiny/vue-popover'
 import { IconChevronUp, IconChevronDown } from '@opentiny/vue-icon'
-import { defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   props: [

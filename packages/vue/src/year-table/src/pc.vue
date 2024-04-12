@@ -27,9 +27,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/year-table/vue'
 import { isDate } from '@opentiny/vue-renderless/common/deps/date-util'
-import { $prefix, setup } from '@opentiny/vue-common'
-
-import { defineComponent } from '@opentiny/vue-common'
+import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   name: $prefix + 'YearTable',

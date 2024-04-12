@@ -14,8 +14,5 @@ export const tinyTransferSmbTheme = {
   'ti-transfer-button-padding-top': '2px',
   'ti-transfer-button-padding-bottom': '2px',
   'ti-transfer-button-border-radius': 'var(--ti-common-size-base)',
-  'ti-transfer-svg-font-size': '10px',
-  'ti-transfer-svg-background': '#1476ff',
-  'ti-transfer-btn-border-color': '#1476ff',
-  'ti-transfer-panel-btn-hover-bg-color': '#409eff'
+  'ti-transfer-svg-font-size': '10px'
 }

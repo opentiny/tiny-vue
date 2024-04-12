@@ -100,6 +100,7 @@ const columnfilters = (visibleColumn) => {
         filters[property] = { type, value }
       }
 
+      // 修改了filter状态，不能放在服务端筛选分支内，否则本地筛选会缺失此状态
       filter.hasFilter =
         value.length || input || dateList?.some(Boolean) || input === 0 || empty !== null || type === 'custom'
     }
@@ -261,11 +262,15 @@ export default {
     // 服务端请求参数
     const filters = columnfilters(visibleColumn)
 
-    if (this.$grid.pagerConfig) {
-      this.$grid.pagerConfig.currentPage = 1
+    if (remoteFilter) {
+      // 2、修改currentPage为1 (在服务端筛选时把当前页设置为1，本地筛选不需要)
+      if (this.$grid.pagerConfig) {
+        this.$grid.pagerConfig.currentPage = 1
+      }
+      // 3、抛出filter-change事件（在服务端筛选时grid才会注册filter-change事件处理）
+      emitEvent(this, 'filter-change', [{ filters, $table: this }])
     }
 
-    emitEvent(this, 'filter-change', [{ filters, $table: this }])
     this.updateFooter()
 
     // 表头过滤动作应保持水平滚动条位置不变

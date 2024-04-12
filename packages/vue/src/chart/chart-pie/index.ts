@@ -1,21 +1,8 @@
-import Pie from './src/index.js'
-import { ring, pie } from '@opentiny/vue-renderless/chart-pie/index'
-import { version } from './package.json'
+import ChartPie from './src/chart-pie.vue'
 
-/* istanbul ignore next */
-Pie.install = function (Vue) {
-  Vue.component(Pie.name, Pie)
+ChartPie.install = function (Vue: any) {
+  Vue.component(ChartPie.name, ChartPie)
 }
 
-Pie.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Pie.install(window.Vue)
-  }
-}
-
-export { ring, pie }
-
-export default Pie
+export { ChartPie }
+export default ChartPie

@@ -3,7 +3,7 @@
     <br />
     <div>场景1： collapse-tags折叠</div>
     <br />
-    <tiny-select v-model="value1" multiple collapse-tags>
+    <tiny-select v-model="value1" :show-proportion="true" multiple collapse-tags>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
     <br />
@@ -16,6 +16,11 @@
     <br />
     <br />
     <br />
+    <div>场景3： click-expand 折叠</div>
+    <br />
+    <tiny-select v-model="value3" :max-visible-rows="2" multiple click-expand>
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
   </div>
 </template>
 
@@ -34,10 +39,12 @@ export default {
         { value: '选项2', label: '双皮奶' },
         { value: '选项3', label: '蚵仔煎' },
         { value: '选项4', label: '龙须面超长超长超长超长超长超长超长超长超长' },
-        { value: '选项5', label: '北京烤鸭' }
+        { value: '选项5', label: '北京烤鸭' },
+        { value: '选项6', label: '肠粉' }
       ],
       value1: ['选项1', '选项2'],
-      value2: ['选项1', '选项2', '选项3', '选项4']
+      value2: ['选项1', '选项2', '选项3', '选项4'],
+      value3: ['选项1', '选项2', '选项3', '选项4', '选项5']
     }
   }
 }

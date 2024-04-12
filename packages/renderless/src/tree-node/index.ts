@@ -85,7 +85,8 @@ export const handleSelectChange =
 
 export const handleClick =
   ({ api, vm, props, state }) =>
-  (e, trigger) => {
+  (e) => {
+    // tiny 新增： 去掉trigger参数，不影响点击的逻辑
     const store = state.tree.state.store
 
     state.tree.clearCurrentStore(props.node)
@@ -100,7 +101,7 @@ export const handleClick =
 
     state.tree.currentNode = vm
 
-    if (state.tree.checkOnClickNode && !props.node.disabled && trigger !== 'checkbox') {
+    if (state.tree.checkOnClickNode && !props.node.disabled) {
       e.target.checked = !props.node.checked
       // 当点击节点文字时，需要通知checkbox
       api.handleCheckChange(null, e)
@@ -349,6 +350,7 @@ export const addNode =
     state.tree.state.emitter.emit('tree-node-add', event, node)
   }
 
+// tiny 新增
 export const computedExpandIcon =
   ({ designConfig }) =>
   (treeRoot, state) => {
@@ -356,6 +358,7 @@ export const computedExpandIcon =
       return state.tree.icon
     }
 
+    // tiny 新增的判断。 显示线时强制切换图标，仅smb定制了
     if (treeRoot.showLine) {
       const expandIcon = designConfig?.icons?.expanded || 'icon-minus-square'
       const collapseIcon = designConfig?.icons?.collapse || 'icon-plus-square'
@@ -364,7 +367,7 @@ export const computedExpandIcon =
 
     return 'icon-chevron-right'
   }
-
+// tiny 新增
 export const computedIndent =
   () =>
   ({ node, showLine }, { tree }) => {

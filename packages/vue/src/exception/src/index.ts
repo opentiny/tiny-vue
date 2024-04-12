@@ -1,7 +1,7 @@
-import { $setup, $prefix, $props } from '@opentiny/vue-common'
+import { $setup, $prefix, $props, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?mobile|mobile-first'
 
-export default {
+export default defineComponent({
   name: $prefix + 'Exception',
 
   props: {
@@ -26,4 +26,4 @@ export default {
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})
