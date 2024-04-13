@@ -99,10 +99,10 @@ export const vc = VueClassName
 
 export const getElementCssClass = (classes = {}, key) => {
   if (typeof key === 'object') {
-    const keys = Array.isArray(key) ? key : Object.keys(key).filter((k) => key[k])
+    const keys = Object.keys(key)
     let cls = ''
     keys.forEach((k) => {
-      if (classes[k]) cls += `${classes[k]} `
+      if (key[k] && classes[k]) cls += `${classes[k]} `
     })
     return cls
   } else {

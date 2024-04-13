@@ -1,0 +1,25 @@
+{
+  "name": "@opentiny/openinula-[[NAME]]",
+  "version": "3.[[MINOR]].0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -w build:ui-openinula $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/openinula-common": "workspace:~",
+    "@opentiny/openinula-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  },
+  "license": "MIT"
+}

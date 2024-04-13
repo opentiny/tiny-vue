@@ -3,10 +3,7 @@ import { compWhiteList } from './virtual-comp'
 
 export function getFiberByDom(dom) {
   const key = Object.keys(dom).find((key) => {
-    return (
-      key.startsWith('__openinulaFiber$') || // openinula 17+
-      key.startsWith('__openinulaInternalInstance$')
-    ) // openinula <17
+    return key.startsWith('_inula_VNode_')
   })
 
   return dom[key]
@@ -46,13 +43,13 @@ export function creatFiberCombine(fiber) {
   const children = []
 
   traverseFiber(fiber.child, [
-    (fiber) => {
-      if (typeof fiber.type === 'string' && fiber.stateNode.getAttribute('v_ref')) {
-        refs[fiber.stateNode.getAttribute('v_ref')] = fiber.stateNode
-      } else if (fiber.memoizedProps.v_ref) {
-        refs[fiber.memoizedProps.v_ref] = fiber
-      }
-    },
+    // (fiber) => {
+    // if (typeof fiber.type === 'string' && fiber.stateNode.getAttribute('v_ref')) {
+    //   refs[fiber.stateNode.getAttribute('v_ref')] = fiber.stateNode
+    // } else if (fiber.memoizedProps.v_ref) {
+    //   refs[fiber.memoizedProps.v_ref] = fiber
+    // }
+    // },
     (fiber) => {
       if (fiber.type && typeof fiber.type !== 'string') {
         children.push(fiber)
@@ -74,8 +71,9 @@ export function useFiber() {
   useEffect(() => {
     if (ref.current) {
       const current_fiber = getFiberByDom(ref.current)
-      setParent(getParentFiber(current_fiber.return))
-      setCurrent(current_fiber.return)
+
+      setParent(getParentFiber(current_fiber))
+      setCurrent(current_fiber)
     }
   }, [])
 

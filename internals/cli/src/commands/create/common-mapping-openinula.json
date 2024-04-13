@@ -1,0 +1,12 @@
+{
+    "Icon": {
+        "path": "openinula/icon/index.ts",
+        "type": "module",
+        "exclude": true
+    },
+    "Common": {
+        "path": "openinula/common/src/index.ts",
+        "type": "module",
+        "exclude": false
+    }
+}

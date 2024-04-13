@@ -11,9 +11,9 @@ const collectRefs = (rootEl, $children) => {
   const rootFiber = getFiberByDom(rootEl)
   // 收集普通元素 ref
   traverseFiber(rootFiber, (fiber) => {
-    if (typeof fiber.type === 'string' && fiber.stateNode.getAttribute('v-ref')) {
-      refs[fiber.stateNode.getAttribute('v-ref')] = fiber.stateNode
-    }
+    // if (typeof fiber.type === 'string' && fiber.stateNode.getAttribute('v-ref')) {
+    //   refs[fiber.stateNode.getAttribute('v-ref')] = fiber.stateNode
+    // }
   })
   // 收集组件元素 ref
   $children.forEach((child) => {
