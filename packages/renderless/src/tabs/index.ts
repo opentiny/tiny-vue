@@ -28,10 +28,12 @@ export const calcPaneInstances =
       tabItemVNodes().forEach((vnode) => {
         if (Array.isArray(vnode.children)) {
           vnode.children.forEach((child) => {
-            orderPanes.push(child.props?.name)
+            const name = child.props?.name
+            name && orderPanes.push(name)
           })
         } else {
-          orderPanes.push(vnode.props?.name)
+          const name = vnode.props?.name
+          name && orderPanes.push(name)
         }
       })
       const currentPanes = [] as ITabsPaneVm[]

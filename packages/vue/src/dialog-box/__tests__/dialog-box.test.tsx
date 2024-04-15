@@ -89,4 +89,6 @@ describe('PC Mode', () => {
   test.todo('drag-move 拖拽移动事件')
 
   test.todo('drag-end 拖拽结束事件')
+
+  test.todo('可拖拽的弹窗关闭时只触发关闭事件(close)，不应触发拖拽结束事件(drag-end)')
 })
