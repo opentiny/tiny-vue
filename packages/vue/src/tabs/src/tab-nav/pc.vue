@@ -57,7 +57,8 @@ const getOrderedPanes = (state, panes) => {
     })
   }
 
-  if (orders) {
+  // 此处不同步aui，vue3情况下插槽使用v-if生成的slotDefault有差异
+  if (orders.length > 0) {
     let tmpPanes = []
 
     orders.forEach((paneName) => {
