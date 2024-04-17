@@ -550,7 +550,7 @@ export const focus =
   ({ vm, state }) =>
   () => {
     if (!state.softFocus) {
-      vm.$refs.reference?.focus()
+      vm.$refs.reference.$el?.querySelector('input').click()
     }
   }
 
