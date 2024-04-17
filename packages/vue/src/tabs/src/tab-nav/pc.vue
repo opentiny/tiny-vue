@@ -22,56 +22,6 @@ import type { ITabNavApi } from '@opentiny/vue-renderless/types/tab-nav.type'
 import TabBar from './tab-bar.vue'
 import { tabNavPcProps } from './index'
 
-const getOrderedPanes = (state, panes) => {
-  const slotDefault = state.rootTabs.$slots.default
-  let orders
-
-  if (typeof slotDefault === 'function') {
-    orders = []
-
-    const tabVnodes = slotDefault()
-    const handler = ({ type, componentOptions, props }) => {
-      let componentName = type && type.componentName
-
-      if (!componentName) componentName = componentOptions && componentOptions.Ctor.extendOptions.componentName
-
-      if (componentName === 'TabItem') {
-        const paneName = (props && props.name) || (componentOptions && componentOptions.propsData.name)
-
-        orders.push(paneName)
-      }
-    }
-
-    tabVnodes.forEach(({ type, componentOptions, props, children }) => {
-      if (
-        type &&
-        (type.toString() === 'Symbol(Fragment)' || // vue@3.3之前的开发模式
-          type.toString() === 'Symbol(v-fgt)' || //   vue@3.3.1 的变更
-          type.toString() === 'Symbol()') //          构建后
-      ) {
-        Array.isArray(children) &&
-          children.forEach(({ type, componentOptions, props }) => handler({ type, componentOptions, props }))
-      } else {
-        handler({ type, componentOptions, props })
-      }
-    })
-  }
-
-  if (orders) {
-    let tmpPanes = []
-
-    orders.forEach((paneName) => {
-      let pane = panes.find((pane) => pane.name === paneName)
-
-      if (pane) tmpPanes.push(pane)
-    })
-
-    panes = tmpPanes
-  }
-
-  return panes
-}
-
 export default defineComponent({
   name: $prefix + 'TabNav',
   components: {
@@ -195,7 +145,7 @@ export default defineComponent({
       )
     }
 
-    const tabs = getOrderedPanes(state, panes).map((pane, index) => {
+    const tabs = panes.map((pane, index) => {
       let tabName = pane.name || pane.state.index || index
       const withClose = pane.state.isClosable || editable
 
