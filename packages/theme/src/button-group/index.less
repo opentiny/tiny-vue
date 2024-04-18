@@ -60,10 +60,16 @@
         padding: 0 var(--ti-button-group-btn-padding-horizontal);
         text-decoration: none;
         font-size: var(--ti-button-group-item-btn-font-size);
-        outline: none;
+
         cursor: pointer;
-        transition: all 0.3s;
+        transition:
+          background ease-in 0.3s,
+          border ease-in 0.3s;
         border-radius: var(--ti-button-group-middle-border-radius);
+
+        &:focus-visible {
+          outline: 2px solid var(--ti-button-group-item-active-bg-color);
+        }
 
         &.disabled,
         &[disabled] {
@@ -71,6 +77,7 @@
           border-color: var(--ti-button-group-item-btn-disabled-border-color);
           cursor: not-allowed;
           color: var(--ti-button-group-item-disabled-text-color);
+          outline: none;
         }
 
         &.plain,
@@ -86,7 +93,6 @@
           background: var(--ti-button-group-item-btn-hover-bg-color);
           color: var(--ti-button-group-item-btn-hover-text-color);
           border-color: var(--ti-button-group-item-btn-hover-border-color);
-          outline: none;
 
           &.plain,
           &[plain] {
@@ -120,7 +126,6 @@
             background: var(--ti-button-group-item-active-bg-color);
             color: var(--ti-button-group-item-active-text-color);
             border-color: var(--ti-button-group-item-active-border-color);
-            outline: none;
 
             &.plain,
             &[plain] {
