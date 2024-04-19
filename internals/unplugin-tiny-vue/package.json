@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/unplugin-tiny-vue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A vite auto import plugin for TinyVue",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
