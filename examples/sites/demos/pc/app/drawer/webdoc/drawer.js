@@ -192,7 +192,7 @@ export default {
         'en-US': ''
       },
       desc: {
-        'zh-CN': '<p>关闭抽屉事件。</p>',
+        'zh-CN': '<p>关闭抽屉事件，抽屉关闭时触发。</p>',
         'en-US': ''
       },
       codeFiles: ['close-event.vue']
@@ -204,7 +204,8 @@ export default {
         'en-US': ''
       },
       desc: {
-        'zh-CN': '<p>确认事件，设置 <code>:show-footer="true"</code> 时有效。</p>',
+        'zh-CN':
+          '<p>确认事件，点击确认按钮时触发，设置 <code>:show-footer="true"</code> 且不使用底部插槽 <code>footer</code> 时有效。</p>',
         'en-US': ''
       },
       codeFiles: ['confirm-event.vue']

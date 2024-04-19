@@ -11,7 +11,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '弹窗关闭前的回调，返回 false 会阻止弹窗关闭',
-            'en-US': 'hook before close the drawer, and block close when return false'
+            'en-US': 'Hook before close the drawer, and block close when return false'
           },
           mode: ['pc'],
           pcDemo: 'before-close'
@@ -22,7 +22,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '自定义 class 样式',
-            'en-US': ''
+            'en-US': 'Custom class style'
           },
           mode: ['mobile-first'],
           mfDemo: ''
@@ -32,8 +32,8 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '控制抽屉开启或关闭宽度拖拽功能',
-            'en-US': ''
+            'zh-CN': '是否开启抽屉的宽度拖拽功能',
+            'en-US': 'Whether to enable the drawer width drag function'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'dragable',
@@ -45,7 +45,8 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '是否开启 flex 盒子布局，开启后内容区域元素自适应撑开高度，默认值为 false',
-            'en-US': ''
+            'en-US':
+              'Whether to enable the flex box layout. The content area element adaptively expands its height when enabled. The default value is false'
           },
           mode: ['mobile-first'],
           mfDemo: ''
@@ -56,7 +57,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '弹出面板是否锁定浏览器滚动条，默认值为 true',
-            'en-US': ''
+            'en-US': 'Whether the pop-up panel locks the browser scroll bar. The default value is true'
           },
           mode: ['mobile-first'],
           mfDemo: ''
@@ -66,8 +67,8 @@ export default {
           type: 'boolean',
           defaultValue: 'true',
           desc: {
-            'zh-CN': '控制遮罩层显示隐藏 ',
-            'en-US': ''
+            'zh-CN': '是否显示遮罩层',
+            'en-US': 'Whether the mask layer is displayed'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'mask',
@@ -78,8 +79,9 @@ export default {
           type: 'boolean',
           defaultValue: 'true',
           desc: {
-            'zh-CN': '默认弹窗打开后，可以单击遮罩层关闭弹窗，设置 mask-closable 为 false 后将禁用该功能',
-            'en-US': ''
+            'zh-CN': '默认情况下，弹窗打开后，可以单击遮罩层关闭弹窗，设置 mask-closable 为 false 后将禁用该功能',
+            'en-US':
+              'By default, when the popup is open, you can close the popup by clicking the mask layer. Setting mask-closable to false disables this feature'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'mask-closable',
@@ -90,8 +92,8 @@ export default {
           type: "'left' | 'right' | 'top' | 'bottom' ",
           defaultValue: "'right'",
           desc: {
-            'zh-CN': '添加 placement 属性设置抽屉的方向',
-            'en-US': ''
+            'zh-CN': '设置抽屉的方向',
+            'en-US': 'Set the drawer orientation'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'placement',
@@ -102,8 +104,8 @@ export default {
           type: 'boolean',
           defaultValue: 'true',
           desc: {
-            'zh-CN': '控制关闭图标显示',
-            'en-US': ''
+            'zh-CN': '是否显示关闭图标',
+            'en-US': 'Whether to display the close icon'
           },
           mode: ['pc'],
           pcDemo: 'show-close'
@@ -113,11 +115,11 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '控制底部显示',
+            'zh-CN': '是否显示底部',
             'en-US': ''
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'show-footer',
+          pcDemo: 'Show bottom or not',
           mfDemo: ''
         },
         {
@@ -125,8 +127,8 @@ export default {
           type: 'boolean',
           defaultValue: 'true',
           desc: {
-            'zh-CN': '控制头部显示',
-            'en-US': ''
+            'zh-CN': '是否显示头部',
+            'en-US': 'Show headers or not'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'show-header',
@@ -138,7 +140,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '面板标题',
-            'en-US': ''
+            'en-US': 'Panel title'
           },
           mode: ['mobile-first'],
           mfDemo: ''
@@ -148,8 +150,8 @@ export default {
           type: 'boolean',
           defaultValue: '',
           desc: {
-            'zh-CN': '控制抽屉显示与关闭',
-            'en-US': ''
+            'zh-CN': '控制抽屉的显示与关闭',
+            'en-US': 'Control drawer display and close'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage',
@@ -161,7 +163,7 @@ export default {
           defaultValue: "'500px'",
           desc: {
             'zh-CN': '设置抽屉的宽度',
-            'en-US': ''
+            'en-US': 'Set the width of the drawer'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'width',
@@ -173,7 +175,7 @@ export default {
           defaultValue: '2000',
           desc: {
             'zh-CN': '自定义堆叠顺序（对于某些特殊场景，比如被遮挡时可能会用到）',
-            'en-US': ''
+            'en-US': 'Custom stacking order (may be used in special scenarios, such as when occluded)'
           },
           mode: ['pc'],
           pcDemo: 'z-index'
@@ -186,7 +188,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '关闭抽屉事件',
-            'en-US': ''
+            'en-US': 'Close drawer event'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'close-event',
@@ -198,7 +200,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN': '确认事件，设置 :show-footer="true" 时有效',
-            'en-US': ''
+            'en-US': 'Confirm event. This event is emit only when show-footer="true" is set'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'confirm-event',
@@ -209,8 +211,8 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '面板显隐时触发',
-            'en-US': ''
+            'zh-CN': '抽屉显隐时触发',
+            'en-US': 'Triggered when the drawer is displayed and hidden'
           },
           mode: ['mobile-first'],
           mfDemo: ''
@@ -222,8 +224,8 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '关闭面板',
-            'en-US': ''
+            'zh-CN': '关闭抽屉',
+            'en-US': 'Close Drawer'
           },
           mode: ['mobile-first'],
           mfDemo: ''
@@ -233,8 +235,8 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '确认并关闭面板',
-            'en-US': ''
+            'zh-CN': '确认并关闭抽屉',
+            'en-US': 'Confirm and close the drawer'
           },
           mode: ['mobile-first'],
           mfDemo: ''
@@ -243,11 +245,9 @@ export default {
       slots: [
         {
           name: 'default',
-          type: '--',
-          defaultValue: '',
           desc: {
             'zh-CN': '默认插槽',
-            'en-US': ''
+            'en-US': 'Default slot'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'default-slot',
@@ -255,11 +255,9 @@ export default {
         },
         {
           name: 'footer',
-          type: '--',
-          defaultValue: '',
           desc: {
             'zh-CN': '底部插槽',
-            'en-US': ''
+            'en-US': 'Footer slot'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'footer-slot',
@@ -267,11 +265,9 @@ export default {
         },
         {
           name: 'header',
-          type: '--',
-          defaultValue: '',
           desc: {
             'zh-CN': '头部插槽',
-            'en-US': ''
+            'en-US': 'header Slot'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'header-slot',
@@ -279,11 +275,9 @@ export default {
         },
         {
           name: 'header-right',
-          type: '--',
-          defaultValue: '',
           desc: {
             'zh-CN': '头部右侧插槽',
-            'en-US': ''
+            'en-US': 'header-right slot'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'header-right-slot',
