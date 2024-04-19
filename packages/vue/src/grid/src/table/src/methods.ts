@@ -420,15 +420,15 @@ const Methods = {
     if (!cell) {
       return null
     }
-    let { isGroup, fullColumnIdData, tableFullColumn } = this
-    let dataColid = cell.getAttribute('data-colid')
+    const { isGroup, fullColumnIdData, tableFullColumn } = this
+    const dataColid = cell.getAttribute('data-colid')
+    const colCache = fullColumnIdData?.[dataColid]
     if (isGroup) {
       let matches = findTree(tableFullColumn, (column) => column.id === dataColid, headerProps)
       if (matches) {
         return matches
       }
-    } else {
-      let colCache = fullColumnIdData[dataColid]
+    } else if (colCache) {
       return {
         index: colCache.index,
         item: colCache.column,
