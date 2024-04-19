@@ -56,7 +56,9 @@ export const handleClose =
       return
     }
 
-    state.toggle = false
+    if (type !== 'confirm') {
+      state.toggle = false
+    }
 
     emit(['close', 'confirm'].includes(type) ? type : 'close')
   }
