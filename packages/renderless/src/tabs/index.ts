@@ -88,6 +88,12 @@ export const calcMorePanes =
     const tabs = el.querySelectorAll('.tiny-tabs__item')
     const tabNavRefs = refs.nav.$refs
 
+    // 此处不同步aui。新规范适配
+    if (props.moreShowAll) {
+      state.showPanesCount = 0
+      return
+    }
+
     if (tabs && tabs.length) {
       let tabsAllWidth = 0
       for (let i = 0; i < tabs.length; i++) {

@@ -49,7 +49,10 @@ export default defineComponent({
     'separator',
     'beforeClose',
     'overflowTitle',
-    'titleWidth'
+    'titleWidth',
+    'moreShowAll',
+    'panelMaxHeight',
+    'panelWidth'
   ],
   components: {
     TabNav,
@@ -84,7 +87,9 @@ export default defineComponent({
       dropConfig,
       tooltipConfig,
       overflowTitle,
-      titleWidth
+      titleWidth,
+      panelMaxHeight,
+      panelWidth
     } = this
 
     const newButton =
@@ -120,7 +125,9 @@ export default defineComponent({
         tooltipConfig,
         overflowTitle,
         titleWidth,
-        separator: state.separator
+        separator: state.separator,
+        panelMaxHeight,
+        panelWidth
       },
       on: {
         'tab-drag-start': handleTabDragStart,
