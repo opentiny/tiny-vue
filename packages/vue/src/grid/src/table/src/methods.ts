@@ -802,7 +802,7 @@ const Methods = {
     let second = () => {
       this.handleTableData(true)
     }
-    let third = () => this.refreshColumn().then(() => this.tableFullColumn)
+    let third = () => this.refreshColumn().then(() => this.tableFullColumn.slice(0))
     return this.$nextTick().then(first).then(second).then(third)
   },
   watchColumn(value) {
