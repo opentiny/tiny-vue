@@ -333,5 +333,8 @@ export default {
     this.clearSelection()
 
     return this.updateData()
+  },
+  getAllFilter() {
+    return columnfilters(this.visibleColumn)
   }
 }

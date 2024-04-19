@@ -825,6 +825,11 @@ const Methods = {
     // 经过动态列个性化合并后，部分列可能被操作隐藏等，此步骤计算可见列
     this.refreshColumn()
 
+    // 可见列刷新后，更新一下表格服务端过滤参数
+    if (this.remoteFilter) {
+      this.$grid.filterData = this.getAllFilter()
+    }
+
     // 可见列确定之后触发一次列就绪事件
     if (!this.isColumnReady) {
       this.isColumnReady = true
