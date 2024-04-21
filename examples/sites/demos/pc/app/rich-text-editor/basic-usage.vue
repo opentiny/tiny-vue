@@ -22,10 +22,12 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .result {
   margin-top: 16px;
   font-size: 14px;
   line-height: 1.3;
+  word-break: break-all;
 }
 </style>
