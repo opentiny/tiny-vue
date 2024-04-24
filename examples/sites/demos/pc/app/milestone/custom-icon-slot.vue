@@ -74,7 +74,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .custom {
   width: 16px;
   height: 16px;
