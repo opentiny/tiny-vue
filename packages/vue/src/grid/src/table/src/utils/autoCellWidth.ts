@@ -110,7 +110,19 @@ export const calcTableWidth = ({ bodyWidth, columnStore, fit, minCellWidth, rema
   }
 
   // 自适应修补一些列的宽度
-  return adaptive({ autoArr, meanWidth, minCellWidth, tableWidth, fit, bodyWidth })
+  tableWidth = adaptive({ autoArr, meanWidth, minCellWidth, tableWidth, fit, bodyWidth })
+  const remainingSpace = bodyWidth - tableWidth
+  // 如果还有空间剩余
+  if (fit && remainingSpace > 0) {
+    scaleMinArr
+      .concat(pxMinArr)
+      .slice(0, remainingSpace)
+      .forEach((column) => {
+        tableWidth += 1
+        column.renderWidth += 1
+      })
+  }
+  return tableWidth
 }
 
 const setLeftOrRightPosition = ({ columnList, direction, headerEl, bodyEl, scrollbarWidth }) => {
