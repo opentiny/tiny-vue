@@ -6,6 +6,12 @@
 
 ## What's Changed
 
+### Breaking Changes 🛠
+
+- remove CreditCardForm component
+- remove DetailPage component
+- remove SlideBar component
+
 ### Exciting New Features 🎉
 
 - feat(sites): add theme route by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1478
