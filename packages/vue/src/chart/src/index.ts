@@ -13,7 +13,6 @@ import { ChartFunnel } from '@opentiny/vue-chart-funnel'
 import { ChartGauge } from '@opentiny/vue-chart-gauge'
 import { ChartGraph } from '@opentiny/vue-chart-graph'
 import { ChartHeatmap } from '@opentiny/vue-chart-heatmap'
-
 import { ChartLiquidfill } from '@opentiny/vue-chart-liquidfill'
 import { ChartMap } from '@opentiny/vue-chart-map'
 
