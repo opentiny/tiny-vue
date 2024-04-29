@@ -1,12 +1,8 @@
 <template>
-  <div
-    class="hui-chart chart-box"
-    ref="chartRef"
-    :style="{
-      position: 'relative',
-      height
-    }"
-  ></div>
+  <div class="hui-chart chart-box">
+    <div ref="chartRef" :style="{width, height}"></div>
+    <slot></slot>
+  </div>
 </template>
 
 <script>

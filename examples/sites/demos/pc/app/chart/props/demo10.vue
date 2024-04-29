@@ -1,14 +1,8 @@
 <template>
   <div class="demo10">
     <tiny-button @click="addDataZoomImg">点击添加dataZoom自定义图片</tiny-button>
-    <tiny-line
-      ref="chartRef"
-      :data="chartData"
-      :data-zoom="dataZoom"
-      :init-options="initOptions"
-      :resize-delay="1000"
-      :extend="extend"
-    ></tiny-line>
+    <tiny-line ref="chartRef" :data="chartData" :data-zoom="dataZoom" :init-options="initOptions" :resize-delay="1000"
+      :extend="extend"></tiny-line>
   </div>
 </template>
 
@@ -30,7 +24,6 @@ export default {
         }
       },
       initOptions: {
-        width: '800px',
         height: '400px'
       },
       chartData: {

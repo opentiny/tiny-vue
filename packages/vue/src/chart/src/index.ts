@@ -30,7 +30,10 @@ import { $prefix, defineComponent, h } from '@opentiny/vue-common'
 export default defineComponent({
   name: $prefix + 'Chart',
   props: {
-    ...Core.props
+    ...Core.props,
+    type: {
+      type: String
+    }
   },
   data() {
     this.chartLib = {
@@ -82,7 +85,7 @@ export default defineComponent({
         }
       },
       [
-        h(this.chartLib[this.settings.type], {
+        h(this.chartLib[this.settings.type || this.type], {
           props: {
             ...this.$props
           },
