@@ -1,10 +1,11 @@
 import { $prefix } from '../common/util'
 import { isObject } from '../common/type'
 import setExtend from '../common/extend'
-import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS } from '../common/constants'
+import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS, DEFAULT_THEME } from '../common/constants'
 import IntegrateChart from '../base'
 import BaiduMapChart from '../base/components/BaiduMapChart'
 import AutonaviMapChart from '../base/components/AutonaviMapChart'
+import '@opentiny/vue-theme/chart-core/index.less'
 
 export default {
   name: $prefix + 'ChartCore',
@@ -24,7 +25,7 @@ export default {
     },
     width: { type: String, default: 'auto' },
     height: { type: String, default: '400px' },
-    events: { type: Object, default() {} },
+    events: { type: Object, default() { } },
     initOptions: {
       type: Object,
       default() {
@@ -70,7 +71,7 @@ export default {
     },
     extend: {
       type: Object,
-      default() {}
+      default() { }
     },
     tooltipFormatter: { type: Function },
 
@@ -108,7 +109,9 @@ export default {
     animation: Object,
     options: {
       type: Object,
-      default() {}
+      default: () => {
+        return {}
+      }
     },
     cancelResizeCheck: {
       type: Boolean,
@@ -116,7 +119,7 @@ export default {
     },
     setOptionOpts: {
       type: Object,
-      default() {}
+      default() { }
     },
     colorMode: {
       type: String,
@@ -160,11 +163,16 @@ export default {
         extend: this.extend,
         tooltipVisible: this.tooltipVisible,
         legendVisible: this.legendVisible,
-        options: this.options
       }
     }
   },
   watch: {
+    options: {
+      handler() {
+        this.refreshChart()
+      },
+      deep: true
+    },
     setting: {
       handler() {
         this.refreshChart()
@@ -328,6 +336,11 @@ export default {
     },
     refreshChart() {
       const { data } = this
+      if (Object.keys(this.options).length === 0) {
+        this.updateChart(data)
+      } else {
+        this.option = JSON.parse(JSON.stringify(this.options))
+      }
       this.updateChart(data)
       let { option } = this
       clearTimeout(this.timer)
@@ -367,14 +380,15 @@ export default {
       } else {
         this.selfSetting(option)
         this.setAnimation(option)
-        this.integrateChart.init(this.$refs.chartRef, this.initOpts)
+        const themeName = this.themeName || this.theme || DEFAULT_THEME
+        this.integrateChart.init(this.$refs.chartRef, themeName, this.initOpts)
         if (this.colorMode !== 'default') {
           option.color = this.computedChartColor()
         }
         this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
         this.$emit('handle-color', option.color)
         this.applyMarks(this.integrateChart.eChartOption)
-        this.applyExtend(this.integrateChart.eChartOption)
+        option = this.applyExtend(this.integrateChart.eChartOption)
         this.integrateChart.render(this.renderOption)
       }
       this.$emit('ready', this.integrateChart.echartsIns)
@@ -505,6 +519,11 @@ export default {
     }
     let { data } = this
     data = this.beforeConfigFn(data)
+    if (Object.keys(this.options).length === 0) {
+      this.updateChart(data)
+    } else {
+      this.option = { ...this.options }
+    }
     this.updateChart(data)
     let { option } = this
     option = this.afterConfigFn(option)

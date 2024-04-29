@@ -89,7 +89,7 @@ export default class CoreChart extends BaseChart {
   }
 
   // 初始化echarts，并同时监听容器和窗口的大小变化
-  init(chartDom, initOpts) {
+  init(chartDom, theme = {}, initOpts) {
     const defaultInit = {
       domResize: true,
       windowResize: true,
@@ -97,7 +97,7 @@ export default class CoreChart extends BaseChart {
     }
     initOpts = merge(defaultInit, initOpts)
     this.dom = chartDom
-    this.echartsIns = echarts.init(chartDom, {}, initOpts)
+    this.echartsIns = echarts.init(chartDom, theme, initOpts)
     // resize节流函数
     this.throttleResize =
       initOpts.resizeThrottle === 0
