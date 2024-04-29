@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/solid",
+  "name": "@opentiny/solid-<%=NAME%>",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/solid-common": "workspace:~",
-    "@opentiny/vue-button": "workspace:~",
-    "@opentiny/vue-alert": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~"
   }
 }
