@@ -1,0 +1,106 @@
+{
+  "Alert": {
+    "path": "openinula/src/alert/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "AlertMobile": {
+    "path": "openinula/src/alert/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "AlertMobileFirst": {
+    "path": "openinula/src/alert/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "AlertPc": {
+    "path": "openinula/src/alert/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Badge": {
+    "path": "openinula/src/badge/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile",
+      "pc"
+    ]
+  },
+  "BadgeMobile": {
+    "path": "openinula/src/badge/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "BadgePc": {
+    "path": "openinula/src/badge/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Button": {
+    "path": "openinula/src/button/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "ButtonMobile": {
+    "path": "openinula/src/button/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ButtonMobileFirst": {
+    "path": "openinula/src/button/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ButtonPc": {
+    "path": "openinula/src/button/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Common": {
+    "path": "openinula/common/src/index.ts",
+    "type": "module",
+    "exclude": false
+  },
+  "Icon": {
+    "path": "openinula/src/icon/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "Switch": {
+    "path": "openinula/src/switch/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "SwitchMobile": {
+    "path": "openinula/src/switch/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "SwitchMobileFirst": {
+    "path": "openinula/src/switch/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "SwitchPc": {
+    "path": "openinula/src/switch/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  }
+}

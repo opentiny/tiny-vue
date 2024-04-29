@@ -51,7 +51,11 @@
     "build:entry-react": "esno src/index.ts build:entry-react",
     "create:mapping-react": "esno src/commands/create/create-mapping-react.ts",
     "build:react": "esno src/index.ts build:react",
-    "build:chartTheme": "esno src/index.ts build:chartTheme"
+    "// ----------------------OpenInula脚本---------------------- ": "",
+    "build:entry-openinula": "esno src/index.ts build:entry-openinula",
+    "create:mapping-openinula": "esno src/commands/create/create-mapping-openinula.ts",
+    "build:openinula": "esno src/index.ts build:openinula",
+    "create:ui-openinula": "esno src/index.ts create:ui-openinula"
   },
   "dependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",

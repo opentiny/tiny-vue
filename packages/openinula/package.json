@@ -11,6 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "@opentiny/openinula-common": "workspace:~",
-    "@opentiny/openinula-alert": "workspace:~"
+    "@opentiny/openinula-alert": "workspace:~",
+    "@opentiny/openinula-badge": "workspace:~",
+    "@opentiny/openinula-button": "workspace:~",
+    "@opentiny/openinula-icon": "workspace:~",
+    "@opentiny/openinula-switch": "workspace:~"
   }
 }
