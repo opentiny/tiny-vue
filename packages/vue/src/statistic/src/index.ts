@@ -22,7 +22,7 @@ export const statisticProps = {
   },
   prefix: String,
   suffix: String,
-  title: Object,
+  title: [String, Object],
   valueStyle: {
     type: [Object, Array]
   },

@@ -31,7 +31,7 @@ export default {
         },
         {
           name: 'title',
-          type: 'ITitleType',
+          type: 'string | ITitleType',
           typeAnchorName: 'ITitleType',
           defaultValue: '',
           desc: {
@@ -128,7 +128,7 @@ export default {
       code: `
 interface ITitleType {
   value?: string       // 标题文本
-  position: string    // 标题位置，取值：top | bottom,必填
+  position?: string    // 标题位置，取值：top | bottom,必填
 }
 `
     }

@@ -17,7 +17,7 @@ export default {
     {
       demoId: 'prefix-suffix-slot',
       name: {
-        'zh-CN': '前后缀用法',
+        'zh-CN': '前后缀',
         'en-US': 'Usage of Prefix and Suffix'
       },
       desc: {
@@ -29,7 +29,7 @@ export default {
     {
       demoId: 'statistic-slot',
       name: {
-        'zh-CN': '标题用法',
+        'zh-CN': '标题',
         'en-US': 'Title Usage'
       },
       desc: {
@@ -41,7 +41,7 @@ export default {
     {
       demoId: 'statistic-style',
       name: {
-        'zh-CN': '样式用法',
+        'zh-CN': '样式',
         'en-US': 'Style Usage'
       },
       desc: {

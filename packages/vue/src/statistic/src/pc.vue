@@ -1,10 +1,16 @@
 <template>
   <div class="tiny-statistic">
-    <div class="tiny-statistic__title" v-if="title && title instanceof Object && title.position === 'top'">
+    <div
+      class="tiny-statistic__title"
+      v-if="!(title instanceof Object) || (title instanceof Object && title.position !== 'bottom')"
+    >
       <div v-if="$slots.title">
         <slot name="title"> </slot>
       </div>
-      <div>{{ title.value }}</div>
+      <div v-else-if="typeof title === 'string'">{{ title }}</div>
+      <div v-else-if="title instanceof Object">
+        {{ title.value }}
+      </div>
     </div>
     <div class="tiny-statistic__slots">
       <div v-if="$slots.prefix || prefix" class="tiny-statistic__prefix">
