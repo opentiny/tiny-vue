@@ -6,7 +6,7 @@
   </tiny-carousel>
 </template>
 
-<script lang="jsx">
+<script>
 import { Carousel, CarouselItem } from '@opentiny/vue'
 
 export default {
