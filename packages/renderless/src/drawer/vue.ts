@@ -33,11 +33,11 @@ export const renderless = (
   const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
 
   const api: Partial<IDrawerApi> = {}
-  const state = reactive<IDrawerState>({
+  const state: IDrawerState = reactive({
     toggle: false,
     width: 0,
     dragEvent: { x: 0, isDrag: false, offsetWidth: 0 },
-    computedWidth: computed(() => api.computedWidth()),
+    computedWidth: computed(() => api.computedWidth!()),
     btnOrderReversed: vm.theme === 'saas' || designConfig?.state?.btnOrderReversed
   })
 
