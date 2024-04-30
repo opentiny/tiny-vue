@@ -127,7 +127,9 @@
     text-align: center;
     box-sizing: border-box;
     margin: 0 var(--ti-checkbox-button-margin-horizontal);
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition:
+      border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+      background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     padding: 12px 20px;
     font-size: var(--ti-checkbox-button-font-size);
     border-radius: var(--ti-checkbox-button-border-radius);
@@ -213,5 +215,10 @@
         top: 1px;
       }
     }
+  }
+
+  input:focus-visible + .@{checkbox-button-prefix-cls}__inner {
+    outline: 2px solid var(--ti-checkbox-button-checked-bg-color);
+    outline-offset: 1px;
   }
 }
