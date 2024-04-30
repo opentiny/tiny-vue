@@ -7,23 +7,20 @@
   .component-css-vars-statistic();
 
   width: 100%;
-  text-align: center;
 
   &__title {
     font-size: var(--ti-statistic-font-size);
     color: var(--ti-statistic-font-color);
     font-weight: var(--ti-statistic-title-font-weight);
     line-height: var(--ti-statistic-title-line-height);
+    margin-top: var(--ti-statistic-title-margin-top);
     margin-bottom: var(--ti-statistic-title-margin-bottom);
-  }
-
-  &__footer-title {
-    margin-top: var(--ti-statistic-title-margin-bottom);
+    margin-left: var(--ti-statistic-description-margin-left);
   }
 
   &__slots {
     font-weight: var(--ti-statistic-font-weight);
-    font-size: var(--ti-statistic-font-size);
+    font-size: var(--ti-statistic-title-font-size);
     color: var(--ti-statistic-font-color);
   }
 
@@ -31,18 +28,24 @@
     margin-right: var(--ti-statistic-prefix-margin-right);
     font-weight: var(--ti-statistic-prefix-font-weight);
     display: inline-block;
-    font-size: var(--ti-statistic-prefix-font-size);
+    font-size: var(--ti-statistic-font-size);
+    vertical-align: middle;
   }
 
   &__description {
     font-size: var(--ti-statistic-description-font-size);
     display: inline-block;
+    margin-left: var(--ti-statistic-description-margin-left);
   }
 
   &__suffix {
-    font-size: var(--ti-statistic-suffix-font-size);
+    font-size: var(--ti-statistic-font-size);
     margin-left: var(--ti-statistic-suffix-margin-left);
     font-weight: var(--ti-statistic-suffix-font-weight);
     display: inline-block;
+  }
+
+  &__description-margin {
+    margin-top: var(--ti-statistic-title-margin-top);
   }
 }

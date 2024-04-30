@@ -1,12 +1,9 @@
-import type { PropType } from '@opentiny/vue-common'
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
 export const $constants = {
   PREFIX: 'tiny-statistic'
 }
-
-export const definePropType = <T>(val: any): PropType<T> => val
 
 export const statisticProps = {
   ...$props,
@@ -20,14 +17,14 @@ export const statisticProps = {
   },
   formatter: Function,
   value: {
-    type: definePropType<number | object>([Number, Object]),
+    type: Number,
     default: 0
   },
   prefix: String,
   suffix: String,
-  title: [String, Object],
+  title: Object,
   valueStyle: {
-    type: [String, Object, Array]
+    type: [Object, Array]
   },
   groupSeparator: {
     type: String,

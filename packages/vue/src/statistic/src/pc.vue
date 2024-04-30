@@ -1,14 +1,10 @@
 <template>
   <div class="tiny-statistic">
-    <div class="tiny-statistic__title">
-      <div v-if="title && typeof title === 'string'">
-        {{ title }}
+    <div class="tiny-statistic__title" v-if="title && title instanceof Object && title.position === 'top'">
+      <div v-if="$slots.title">
+        <slot name="title"> </slot>
       </div>
-      <div v-else-if="$slots.title">
-        <slot name="title" :data="title">
-          {{ title }}
-        </slot>
-      </div>
+      <div>{{ title.value }}</div>
     </div>
     <div class="tiny-statistic__slots">
       <div v-if="$slots.prefix || prefix" class="tiny-statistic__prefix">
@@ -16,7 +12,13 @@
           <span>{{ prefix }}</span>
         </slot>
       </div>
-      <span class="tiny-statistic__description" :style="valueStyle">
+      <span
+        :class="[
+          'tiny-statistic__description',
+          title && title.position === 'bottom' ? 'tiny-statistic__description-margin' : ''
+        ]"
+        :style="valueStyle"
+      >
         {{ state.value }}
       </span>
       <div v-if="$slots.suffix || suffix" class="tiny-statistic__suffix">
@@ -25,9 +27,9 @@
         </slot>
       </div>
     </div>
-    <div v-if="title && title instanceof Object" :class="['tiny-statistic__footer-title', 'tiny-statistic__title']">
+    <div v-if="title && title instanceof Object && title.position === 'bottom'" :class="['tiny-statistic__title']">
       <div v-if="$slots.title">
-        <slot name="title" :data="title"> </slot>
+        <slot name="title"> </slot>
       </div>
       <div v-else>
         <span>{{ title.value }}</span>
