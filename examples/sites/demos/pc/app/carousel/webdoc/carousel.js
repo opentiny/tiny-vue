@@ -171,6 +171,30 @@ export default {
         'en-US': ''
       },
       codeFiles: ['carousel-events.vue']
+    },
+    {
+      demoId: 'card-show',
+      name: {
+        'zh-CN': '卡片轮播',
+        'en-US': 'Card Carousel'
+      },
+      desc: {
+        'zh-CN': '<p>通过设置<code>default</code>插槽，自定义卡片轮播场景。</p>',
+        'en-US': '<p>Customize the card carousel scene by setting<code>default</code>slots.</p>'
+      },
+      codeFiles: ['card-show.vue']
+    },
+    {
+      demoId: 'dialog-show',
+      name: {
+        'zh-CN': '弹窗展示',
+        'en-US': 'Dialog Show'
+      },
+      desc: {
+        'zh-CN': '<p>在弹窗中嵌入轮播场景。</p>',
+        'en-US': '<p>Embed a carousel scene in the pop-up window.</p>'
+      },
+      codeFiles: ['dialog-show.vue']
     }
   ]
 }
