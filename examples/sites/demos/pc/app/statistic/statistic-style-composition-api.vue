@@ -13,7 +13,7 @@
         <tiny-col :span="6">
           <tiny-statistic
             :value="306526.23"
-            :value-style="[{ 'color': '#ddd', 'text-align': 'center', 'width': '200px' }]"
+            :value-style="[{ 'color': '#eb1212', 'text-align': 'center', 'width': '200px' }]"
             :title="{ position: 'bottom' }"
           >
             <template #title>
@@ -34,6 +34,6 @@ import { Statistic as TinyStatistic, Layout as TinyLayout, Row as TinyRow, Col a
 .title-content {
   width: 200px;
   text-align: center;
-  color: #eb1212;
+  color: #a9a9a9;
 }
 </style>

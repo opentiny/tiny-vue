@@ -12,21 +12,20 @@
         {{ title.value }}
       </div>
     </div>
-    <div class="tiny-statistic__slots">
+    <div
+      :class="[
+        'tiny-statistic__slots',
+        title && title.position === 'bottom' ? 'tiny-statistic__description-margin' : ''
+      ]"
+    >
       <div v-if="$slots.prefix || prefix" class="tiny-statistic__prefix">
         <slot name="prefix">
           <span>{{ prefix }}</span>
         </slot>
       </div>
-      <span
-        :class="[
-          'tiny-statistic__description',
-          title && title.position === 'bottom' ? 'tiny-statistic__description-margin' : ''
-        ]"
-        :style="valueStyle"
-      >
+      <div :class="['tiny-statistic__description']" :style="valueStyle">
         {{ state.value }}
-      </span>
+      </div>
       <div v-if="$slots.suffix || suffix" class="tiny-statistic__suffix">
         <slot name="suffix">
           <span>{{ suffix }}</span>

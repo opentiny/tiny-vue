@@ -13,7 +13,7 @@
         <tiny-col :span="6">
           <tiny-statistic
             :value="306526.23"
-            :value-style="[{ 'color': '#e37d29', 'text-align': 'center', 'width': '200px' }]"
+            :value-style="[{ 'color': '#eb1212', 'text-align': 'center', 'width': '200px' }]"
             :title="{ position: 'bottom' }"
           >
             <template #title>
@@ -43,6 +43,6 @@ export default {
 .title-content {
   width: 200px;
   text-align: center;
-  color: #ddd;
+  color: #a9a9a9;
 }
 </style>
