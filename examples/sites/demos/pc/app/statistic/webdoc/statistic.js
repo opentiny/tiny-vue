@@ -33,7 +33,7 @@ export default {
         'en-US': 'Title Usage'
       },
       desc: {
-        'zh-CN': '通过<code>title</code>设置数字标题。',
+        'zh-CN': '通过<code>title</code>设置标题。',
         'en-US': 'Set the title through<code>title</code>.'
       },
       codeFiles: ['statistic-slot.vue']
