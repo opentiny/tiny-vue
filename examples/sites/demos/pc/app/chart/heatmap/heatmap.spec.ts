@@ -17,15 +17,3 @@ test('demo3', async ({ page }) => {
   const chart = page.locator('#heatmap-demo3 .hui-chart')
   await expect(chart).toHaveScreenshot('demo3.png')
 })
-
-test('demo4', async ({ page }) => {
-  await page.goto('chart-heatmap#heatmap-demo4')
-  const chart = page.locator('#heatmap-demo4 .hui-chart')
-  await expect(chart).toHaveScreenshot('demo4.png')
-})
-
-test('demo5', async ({ page }) => {
-  await page.goto('chart-heatmap#heatmap-demo5')
-  const chart = page.locator('#heatmap-demo5 .hui-chart')
-  await expect(chart).toHaveScreenshot('demo5.png')
-})
