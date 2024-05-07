@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-funnel :data="chartData" :settings="chartSettings"></tiny-funnel>
+    <tiny-funnel :options="options"></tiny-funnel>
   </div>
 </template>
 
@@ -13,18 +13,30 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['状态', '数值'],
-        rows: [
-          { 状态: '展示', 数值: 900 },
-          { 状态: '访问', 数值: 600 },
-          { 状态: '点击', 数值: 300 },
-          { 状态: '订单', 数值: 100 }
+      options: {
+        gap: 10,
+        size: {
+          width: '80%',
+          height: '80%',
+          min: 0,
+          max: 100,
+          minSize: '0%',
+          maxSize: '100%'
+        },
+        position: {
+          left: 'center',
+          right: '80%',
+          top: 60,
+          bottom: 60,
+          funnelAlign: 'center',
+          orient: 'horizontal'
+        },
+        data: [
+          { value: 100, name: 'Show' },
+          { value: 75, name: 'Click' },
+          { value: 50, name: 'Visit' },
+          { value: 25, name: 'Order' },
         ]
-      },
-      // 定制顺序漏斗图
-      chartSettings: {
-        sequence: ['订单', '点击', '访问', '展示']
       }
     }
   }

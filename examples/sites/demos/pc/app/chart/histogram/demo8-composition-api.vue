@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-chart-histogram :data="chartData" :settings="chartSettings" :extend="extend"></tiny-chart-histogram>
+    <tiny-chart-histogram :options="options"></tiny-chart-histogram>
   </div>
 </template>
 
@@ -8,20 +8,29 @@
 import { ref } from 'vue'
 import { ChartHistogram as TinyChartHistogram } from '@opentiny/vue'
 
-const chartData = ref({
-  columns: ['日期', '访问用户', '下单用户', '下单率'],
-  rows: [
-    { 日期: 1, 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
-    { 日期: 2, 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
-    { 日期: 5, 访问用户: 2923, 下单用户: 2623, 下单率: 0.76 },
-    { 日期: 10, 访问用户: 1723, 下单用户: 1423, 下单率: 0.49 },
-    { 日期: 20, 访问用户: 3792, 下单用户: 3492, 下单率: 0.323 },
-    { 日期: 22, 访问用户: 4593, 下单用户: 4293, 下单率: 0.78 }
-  ]
+const options = ref({
+  data: [
+    { 'Month': 'Jan', 'Domestic': 33, 'Abroad': 1 },
+    { 'Month': 'Feb', 'Domestic': 27, 'Abroad': 39 },
+    { 'Month': 'Mar', 'Domestic': 31, 'Abroad': 20 },
+    { 'Month': 'Apr', 'Domestic': 30, 'Abroad': 15 },
+    { 'Month': 'May', 'Domestic': 37, 'Abroad': 1 },
+    { 'Month': 'Jun', 'Domestic': 36, 'Abroad': 17 },
+    { 'Month': 'Jul', 'Domestic': 42, 'Abroad': 22 },
+    { 'Month': 'Aug', 'Domestic': 22, 'Abroad': 12 },
+    { 'Month': 'Sep', 'Domestic': 17, 'Abroad': 30 },
+    { 'Month': 'Oct', 'Domestic': 40, 'Abroad': 33 },
+    { 'Month': 'Nov', 'Domestic': 42, 'Abroad': 22 },
+    { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 1 },
+
+  ],
+  xAxis: {
+    data: 'Month',
+    labelRotate: 45
+  },
+  yAxis: {
+    name: 'Percent(%)'
+  }
 })
-// 设置横轴为连续的数值轴
-const chartSettings = ref({
-  xAxisType: 'value'
-})
-const extend = ref({})
+const chartSettings = ref({})
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="demo10">
     <tiny-button @click="addDataZoomImg">点击添加dataZoom自定义图片</tiny-button>
-    <tiny-line ref="chartRef" :data="chartData" :data-zoom="dataZoom" :init-options="initOptions" :resize-delay="1000"
+    <tiny-line ref="chartRef" :options="options" :data-zoom="dataZoom" :init-options="initOptions" :resize-delay="1000"
       :extend="extend"></tiny-line>
   </div>
 </template>
@@ -20,16 +20,32 @@ const extend = ref({
 const initOptions = ref({
   height: '400px'
 })
-const chartData = ref({
-  columns: ['日期', '成本', '利润'],
-  rows: [
-    { 日期: '1月1日', 成本: 15, 利润: 12 },
-    { 日期: '1月2日', 成本: 12, 利润: 25 },
-    { 日期: '1月3日', 成本: 21, 利润: 10 },
-    { 日期: '1月4日', 成本: 41, 利润: 32 },
-    { 日期: '1月5日', 成本: 31, 利润: 30 },
-    { 日期: '1月6日', 成本: 71, 利润: 55 }
-  ]
+const options = ref({
+  padding: [50, 30, 50, 20],
+  legend: {
+    show: true,
+    icon: 'line'
+  },
+  data: [
+    { 'Month': 'Jan', 'Domestics': 33, 'Abroad': 37 },
+    { 'Month': 'Feb', 'Domestics': 27, 'Abroad': 39 },
+    { 'Month': 'Mar', 'Domestics': 31, 'Abroad': 20 },
+    { 'Month': 'Apr', 'Domestics': 30, 'Abroad': 15 },
+    { 'Month': 'May', 'Domestics': 37, 'Abroad': 13 },
+    { 'Month': 'Jun', 'Domestics': 36, 'Abroad': 17 },
+    { 'Month': 'Jul', 'Domestics': 42, 'Abroad': 22 },
+    { 'Month': 'Aug', 'Domestics': 22, 'Abroad': 12 },
+    { 'Month': 'Sep', 'Domestics': 17, 'Abroad': 30 },
+    { 'Month': 'Oct', 'Domestics': 40, 'Abroad': 33 },
+    { 'Month': 'Nov', 'Domestics': 42, 'Abroad': 22 },
+    { 'Month': 'Dec', 'Domestics': 32, 'Abroad': 11 }
+  ],
+  xAxis: {
+    data: 'Month'
+  },
+  yAxis: {
+    name: 'precentage(%)'
+  }
 })
 const dataZoom = ref([
   {

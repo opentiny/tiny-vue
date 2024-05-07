@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-chart-waterfall :data="chartData" :settings="chartSettings"></tiny-chart-waterfall>
+    <tiny-chart-waterfall :options="options"></tiny-chart-waterfall>
   </div>
 </template>
 
@@ -8,18 +8,34 @@
 import { ref } from 'vue'
 import { ChartWaterfall as TinyChartWaterfall } from '@opentiny/vue'
 
-const chartData = ref({
-  columns: ['活动', '时间'],
-  rows: [
-    { 活动: '吃饭', 时间: 0.1 },
-    { 活动: '睡觉', 时间: 0.2 },
-    { 活动: '打豆豆', 时间: 0.3 }
-  ]
-})
-// 修改指标名称
-const chartSettings = ref({
-  labelMap: {
-    时间: 'time'
+const options = ref({
+  padding: [50, 30, 20, 20],
+  legend: {
+    show: true
+  },
+  label: {
+    // 此处也可以使用Array对每个柱状图进行单独配置
+    show: true,
+    position: 'top',
+    offfset: [0, -6]
+  },
+
+  // water-fall表示为瀑布形态，此时图中会自动添加一个Total(总和)数据
+  type: 'water-fall',
+  data: [
+    { Name: 'NLE', Man: 5, Female: 5, Unkown: 19 },
+    { Name: 'HIN', Man: 10, Female: 8, Unkown: 5 },
+    { Name: 'FBP', Man: 8, Female: 2, Unkown: 19 },
+    { Name: 'VEDIO', Man: 20, Female: 15, Unkown: 10 },
+    { Name: 'SASS', Man: 6, Female: 10, Unkown: 2 },
+    { Name: 'RDS', Man: 12, Female: 15, Unkown: 10 },
+    { Name: 'E-SYS', Man: 19, Female: 12, Unkown: 8 }
+  ],
+  xAxis: {
+    data: 'Name'
+  },
+  yAxis: {
+    name: 'Number'
   }
 })
 </script>

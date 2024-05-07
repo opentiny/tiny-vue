@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-funnel :data="chartData" :settings="chartSettings"></tiny-funnel>
+    <tiny-funnel :options="options"></tiny-funnel>
   </div>
 </template>
 
@@ -13,20 +13,15 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['状态', '数值'],
-        rows: [
-          { 状态: '展示', 数值: 900 },
-          { 状态: '访问', 数值: 100 },
-          { 状态: '零', 数值: 0 },
-          { 状态: '点击', 数值: 300 },
-          { 状态: '订单', 数值: 200 }
+      options: {
+        maxSize: '80%',
+        minSize: '10%',
+        data: [
+          { value: 100, name: 'Show' },
+          { value: 75, name: 'Click' },
+          { value: 50, name: 'Visit' },
+          { value: 25, name: 'Order' },
         ]
-      },
-      // 自动按照数值排序并过滤0值
-      chartSettings: {
-        useDefaultOrder: true,
-        filterZero: true
       }
     }
   }

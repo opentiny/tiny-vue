@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-chart-funnel :data="chartData" :settings="chartSettings"></tiny-chart-funnel>
+    <tiny-chart-funnel :options="options"></tiny-chart-funnel>
   </div>
 </template>
 
@@ -8,17 +8,30 @@
 import { ref } from 'vue'
 import { ChartFunnel as TinyChartFunnel } from '@opentiny/vue'
 
-const chartData = ref({
-  columns: ['状态', '数值'],
-  rows: [
-    { 状态: '展示', 数值: 900 },
-    { 状态: '访问', 数值: 600 },
-    { 状态: '点击', 数值: 300 },
-    { 状态: '订单', 数值: 100 }
+const options = ref({
+  gap: 10,
+  size: {
+    width: '80%',
+    height: '80%',
+    min: 0,
+    max: 100,
+    minSize: '0%',
+    maxSize: '100%'
+  },
+  position: {
+    left: 'center',
+    right: '80%',
+    top: 60,
+    bottom: 60,
+    funnelAlign: 'center',
+    orient: 'horizontal'
+  },
+
+  data: [
+    { value: 100, name: 'Show' },
+    { value: 75, name: 'Click' },
+    { value: 50, name: 'Visit' },
+    { value: 25, name: 'Order' },
   ]
-})
-// 定制顺序漏斗图
-const chartSettings = ref({
-  sequence: ['订单', '点击', '访问', '展示']
 })
 </script>

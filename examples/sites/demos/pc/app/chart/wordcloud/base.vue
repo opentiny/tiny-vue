@@ -1,154 +1,11 @@
 <template>
   <div>
-    <tiny-wordcloud :data="chartData" :settings="chartSettings"></tiny-wordcloud>
+    <tiny-wordcloud :options="options"></tiny-wordcloud>
   </div>
 </template>
 
 <script lang="jsx">
 import { ChartWordcloud } from '@opentiny/vue'
-
-const rowsList = [
-  {
-    word: 'visualMap',
-    count: 22199
-  },
-  {
-    word: 'continuous',
-    count: 10288
-  },
-  {
-    word: 'contoller',
-    count: 620
-  },
-  {
-    word: 'series',
-    count: 274470
-  },
-  {
-    word: 'gauge',
-    count: 12311
-  },
-  {
-    word: 'detail',
-    count: 1206
-  },
-  {
-    word: 'piecewise',
-    count: 4885
-  },
-  {
-    word: 'textStyle',
-    count: 32294
-  },
-  {
-    word: 'markPoint',
-    count: 18574
-  },
-  {
-    word: 'pie',
-    count: 38929
-  },
-  {
-    word: 'roseType',
-    count: 969
-  },
-  {
-    word: 'label',
-    count: 37517
-  },
-  {
-    word: 'emphasis',
-    count: 12053
-  },
-  {
-    word: 'yAxis',
-    count: 57299
-  },
-  {
-    word: 'name',
-    count: 15418
-  },
-  {
-    word: 'type',
-    count: 22905
-  },
-  {
-    word: 'gridIndex',
-    count: 5146
-  },
-  {
-    word: 'normal',
-    count: 49487
-  },
-  {
-    word: 'itemStyle',
-    count: 33837
-  },
-  {
-    word: 'min',
-    count: 4500
-  },
-  {
-    word: 'silent',
-    count: 5744
-  },
-  {
-    word: 'animation',
-    count: 4840
-  },
-  {
-    word: 'offsetCenter',
-    count: 232
-  },
-  {
-    word: 'inverse',
-    count: 3706
-  },
-  {
-    word: 'borderColor',
-    count: 4812
-  },
-  {
-    word: 'markLine',
-    count: 16578
-  },
-  {
-    word: 'line',
-    count: 76970
-  },
-  {
-    word: 'radiusAxis',
-    count: 6704
-  },
-  {
-    word: 'radar',
-    count: 15964
-  },
-  {
-    word: 'data',
-    count: 60679
-  },
-  {
-    word: 'dataZoom',
-    count: 24347
-  },
-  {
-    word: 'tooltip',
-    count: 43420
-  },
-  {
-    word: 'toolbox',
-    count: 25222
-  },
-  {
-    word: 'geo',
-    count: 16904
-  },
-  {
-    word: 'parallelAxis',
-    count: 4029
-  }
-]
 
 export default {
   components: {
@@ -156,11 +13,150 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['word', 'count'],
-        rows: rowsList
-      },
-      chartSettings: {}
+      options: {
+        data: [
+          {
+            name: 'visualMap',
+            value: 22199
+          },
+          {
+            name: 'continuous',
+            value: 10288
+          },
+          {
+            name: 'contoller',
+            value: 620
+          },
+          {
+            name: 'series',
+            value: 274470
+          },
+          {
+            name: 'gauge',
+            value: 12311
+          },
+          {
+            name: 'detail',
+            value: 1206
+          },
+          {
+            name: 'piecewise',
+            value: 4885
+          },
+          {
+            name: 'textStyle',
+            value: 32294
+          },
+          {
+            name: 'markPoint',
+            value: 18574
+          },
+          {
+            name: 'pie',
+            value: 38929
+          },
+          {
+            name: 'roseType',
+            value: 969
+          },
+          {
+            name: 'label',
+            value: 37517
+          },
+          {
+            name: 'emphasis',
+            value: 12053
+          },
+          {
+            name: 'yAxis',
+            value: 57299
+          },
+          {
+            name: 'name',
+            value: 15418
+          },
+          {
+            name: 'type',
+            value: 22905
+          },
+          {
+            name: 'gridIndex',
+            value: 5146
+          },
+          {
+            name: 'normal',
+            value: 49487
+          },
+          {
+            name: 'itemStyle',
+            value: 33837
+          },
+          {
+            name: 'min',
+            value: 4500
+          },
+          {
+            name: 'silent',
+            value: 5744
+          },
+          {
+            name: 'animation',
+            value: 4840
+          },
+          {
+            name: 'offsetCenter',
+            value: 232
+          },
+          {
+            name: 'inverse',
+            value: 3706
+          },
+          {
+            name: 'borderColor',
+            value: 4812
+          },
+          {
+            name: 'markLine',
+            value: 16578
+          },
+          {
+            name: 'line',
+            value: 76970
+          },
+          {
+            name: 'radiusAxis',
+            value: 6704
+          },
+          {
+            name: 'radar',
+            value: 15964
+          },
+          {
+            name: 'data',
+            value: 60679
+          },
+          {
+            name: 'dataZoom',
+            value: 24347
+          },
+          {
+            name: 'tooltip',
+            value: 43420
+          },
+          {
+            name: 'toolbox',
+            value: 25222
+          },
+          {
+            name: 'geo',
+            value: 16904
+          },
+          {
+            name: 'parallelAxis',
+            value: 4029
+          }
+        ]
+      }
     }
   }
 }

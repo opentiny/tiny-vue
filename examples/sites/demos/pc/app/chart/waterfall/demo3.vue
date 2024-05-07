@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-waterfall :data="chartData" :settings="chartSettings"></tiny-waterfall>
+    <tiny-waterfall :options="options"></tiny-waterfall>
   </div>
 </template>
 
@@ -13,17 +13,26 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['活动', '时间'],
-        rows: [
-          { 活动: '吃饭', 时间: 0.1 },
-          { 活动: '睡觉', 时间: 0.2 },
-          { 活动: '打豆豆', 时间: 0.3 }
-        ]
-      },
-      // 设置指标维度
-      chartSettings: {
-        dataType: 'percent'
+      options: {
+        padding: [50, 30, 20, 20],
+
+        // water-fall表示为瀑布形态，此时图中会自动添加一个Total(总和)数据
+        type: 'water-fall',
+        data: [
+          { Name: 'NLE', Man: 5, Female: 5, Unkown: 19 },
+          { Name: 'HIN', Man: 10, Female: 8, Unkown: 5 },
+          { Name: 'FBP', Man: 8, Female: 2, Unkown: 19 },
+          { Name: 'VEDIO', Man: 20, Female: 15, Unkown: 10 },
+          { Name: 'SASS', Man: 6, Female: 10, Unkown: 2 },
+          { Name: 'RDS', Man: 12, Female: 15, Unkown: 10 },
+          { Name: 'E-SYS', Man: 19, Female: 12, Unkown: 8 }
+        ],
+        xAxis: {
+          data: 'Name'
+        },
+        yAxis: {
+          name: 'Number'
+        }
       }
     }
   }

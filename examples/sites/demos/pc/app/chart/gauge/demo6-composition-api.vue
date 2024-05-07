@@ -1,72 +1,26 @@
 <template>
   <div>
-    <tiny-gauge :data="chartData" :settings="chartSettings" :extend="echartsOption" theme-type="ict"></tiny-gauge>
+    <tiny-chart-gauge :options="options"></tiny-chart-gauge>
   </div>
 </template>
 
-<script setup>
-import { reactive } from 'vue'
-import { ChartGauge as TinyGauge } from '@opentiny/vue'
+<script setup lang="jsx">
+import { ref } from 'vue'
+import { ChartGauge as TinyChartGauge } from '@opentiny/vue'
 
-const chartData = reactive({
-  columns: ['type', 'value'],
-  rows: [{ type: '占比', value: 40 }]
-})
-const echartsOption = reactive({
-  series: [
-    { type: 'gauge' },
+const options = ref({
+  min: 0,
+  max: 1000,
+  splitNumber: 4,
+
+  // 阈值线，超出阈值线时，进度条会变红色
+  markLine: 888,
+  pointer: true,
+  data: [
     {
-      type: 'gauge',
-      splitLine: { show: false },
-      axisTick: { show: false },
-      axisLabel: { show: false },
-      radius: '80%',
-      axisLine: {
-        lineStyle: {
-          color: [[1, '#f2efde']],
-          width: 1
-        }
-      }
+      value: 900,
+      name: 'Rgistered Persons'
     }
   ]
-})
-const chartSettings = reactive({
-  dataName: {
-    占比: 'Average'
-  },
-  seriesMap: {
-    占比: {
-      progress: {
-        show: false
-      },
-      splitLine: {
-        distance: -30,
-        length: 30,
-        lineStyle: {
-          color: '#fff',
-          width: 2
-        }
-      },
-      pointer: { show: true, offsetCenter: [0, '-106%'] },
-      detail: {
-        formatter: '{value}{unit|%}',
-        rich: {
-          value: { fontSize: 60, color: '#191919' },
-          unit: { fontSize: 12, color: '#4E4E4E', padding: [0, 0, -20, 0] }
-        }
-      },
-      splitNumber: 4,
-      axisLine: {
-        lineStyle: {
-          color: [
-            [0.25, '#2da769'],
-            [0.5, '#eeba18'],
-            [0.75, '#ec6f1a'],
-            [1, '#f43146']
-          ]
-        }
-      }
-    }
-  }
 })
 </script>

@@ -162,7 +162,7 @@ export default {
         settings: this.settings,
         extend: this.extend,
         tooltipVisible: this.tooltipVisible,
-        legendVisible: this.legendVisible,
+        legendVisible: this.legendVisible
       }
     }
   },
@@ -341,7 +341,6 @@ export default {
       } else {
         this.option = JSON.parse(JSON.stringify(this.options))
       }
-      this.updateChart(data)
       let { option } = this
       clearTimeout(this.timer)
       this.timer = null
@@ -389,6 +388,7 @@ export default {
         this.$emit('handle-color', option.color)
         this.applyMarks(this.integrateChart.eChartOption)
         option = this.applyExtend(this.integrateChart.eChartOption)
+
         this.integrateChart.render(this.renderOption)
       }
       this.$emit('ready', this.integrateChart.echartsIns)
@@ -524,7 +524,6 @@ export default {
     } else {
       this.option = { ...this.options }
     }
-    this.updateChart(data)
     let { option } = this
     option = this.afterConfigFn(option)
 
