@@ -1,15 +1,15 @@
 <template>
   <div>
-    <tiny-button @click="boxVisibility = true">弹出表单</tiny-button>
+    <tiny-button @click="boxVisibility = true">弹出轮播</tiny-button>
     <tiny-dialog-box
       :visible="boxVisibility"
       @update:visible="boxVisibility = $event"
       max-height="500"
-      title="消息"
+      title="弹窗事例"
       width="30%"
       :is-form-reset="false"
     >
-      <tiny-carousel height="150px" arrow="always">
+      <tiny-carousel height="150px" arrow="always" autoplay>
         <tiny-carousel-item class="carousel-item-demo" v-for="item in 4" :key="item">
           <h3>{{ item }}</h3>
         </tiny-carousel-item>

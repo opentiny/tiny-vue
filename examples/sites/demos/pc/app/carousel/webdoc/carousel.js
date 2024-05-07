@@ -175,8 +175,8 @@ export default {
     {
       demoId: 'card-show',
       name: {
-        'zh-CN': '卡片轮播',
-        'en-US': 'Card Carousel'
+        'zh-CN': '轮播卡片',
+        'en-US': 'Carousel Card'
       },
       desc: {
         'zh-CN': '<p>通过设置<code>default</code>插槽，自定义卡片轮播场景。</p>',
