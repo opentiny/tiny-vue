@@ -8,13 +8,15 @@ export const computedWidth =
     designConfig,
     props,
     constants
-  }: Pick<ISharedRenderlessParamUtils, 'state' | 'designConfig' | 'props' | 'constants'>) =>
+  }: Pick<ISharedRenderlessParamUtils<IDrawerCT>, 'designConfig' | 'constants'> & { state: IDrawerState } & {
+    props: IDrawerProps
+  }) =>
   (): string => {
     if (state.width) {
       return state.width + 'px'
     }
 
-    return props.width || designConfig?.constants?.DEFAULT_WIDTH || constants.DEFAULT_WIDTH
+    return props.width || designConfig?.constants?.DEFAULT_WIDTH || (constants as IDrawerCT).DEFAULT_WIDTH
   }
 
 export const close =
@@ -46,7 +48,7 @@ export const confirm =
   }
 
 export const handleClose =
-  ({ emit, props, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState }) =>
+  ({ emit, props, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState; props: IDrawerProps }) =>
   (type, force) => {
     const isMaskNotClosable = type === 'mask' && !props.maskClosable
     const isBlockClose = !force && typeof props.beforeClose === 'function' && props.beforeClose(type) === false
@@ -54,8 +56,11 @@ export const handleClose =
       return
     }
 
-    state.toggle = false
-    emit(['close', 'confirm'].includes(type) ? type : 'close', state)
+    if (type !== 'confirm') {
+      state.toggle = false
+    }
+
+    emit(['close', 'confirm'].includes(type) ? type : 'close')
   }
 
 export const mousedown =

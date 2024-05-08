@@ -35,6 +35,10 @@ export default defineComponent({
     events: {
       type: Object,
       default: () => ({})
+    },
+    tabindex: {
+      type: String,
+      default: '0'
     }
   },
   setup(props, context) {

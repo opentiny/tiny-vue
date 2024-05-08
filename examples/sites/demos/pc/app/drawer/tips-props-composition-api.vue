@@ -1,8 +1,8 @@
 <template>
   <div class="demo-drawer">
-    <tiny-button @click="fn" type="primary"> 展开抽屉 </tiny-button>
+    <tiny-button @click="openDrawer" type="primary"> 展开抽屉 </tiny-button>
     <tiny-drawer title="标题" :tipsProps="tipsProps" :visible="visible" @update:visible="visible = $event">
-      <div>内容区域</div>
+      <div style="padding: 32px">内容区域</div>
     </tiny-drawer>
   </div>
 </template>
@@ -17,7 +17,7 @@ const tipsProps = reactive({
   placement: 'right'
 })
 
-function fn() {
+function openDrawer() {
   visible.value = true
 }
 </script>

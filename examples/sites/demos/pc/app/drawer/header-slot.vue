@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-button @click="fn" type="primary"> 头部插槽示例 </tiny-button>
+    <tiny-button @click="openDrawer" type="primary"> 头部插槽示例 </tiny-button>
     <tiny-drawer title="标题" :visible="visible" @update:visible="visible = $event">
       <template #header>
         <div class="my-header">
@@ -8,11 +8,7 @@
           <p>自定义副标题xxxxxx</p>
         </div>
       </template>
-      <div>
-        <br />
-        <br />
-        <span>内容区域</span>
-      </div>
+      <span>内容区域</span>
     </tiny-drawer>
   </div>
 </template>
@@ -31,7 +27,7 @@ export default {
     }
   },
   methods: {
-    fn() {
+    openDrawer() {
       this.visible = true
     }
   }

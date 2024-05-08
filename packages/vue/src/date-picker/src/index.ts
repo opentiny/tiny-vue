@@ -66,7 +66,7 @@ export const datePickerProps = {
 
   tabindex: {
     type: String,
-    default: '1'
+    default: '0'
   },
   timeFormat: String,
   suffixIcon: Object,

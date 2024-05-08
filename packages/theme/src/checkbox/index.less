@@ -247,6 +247,11 @@
     }
   }
 
+  input:focus-visible + .@{checkbox-prefix-cls}__inner {
+    outline: 2px solid var(--ti-checkbox-bg-color-checked);
+    outline-offset: 1px;
+  }
+
   &__original {
     opacity: 0;
     outline: 0;

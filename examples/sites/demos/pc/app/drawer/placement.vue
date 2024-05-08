@@ -1,16 +1,12 @@
 <template>
   <div>
-    <tiny-button @click="fn('left')"> left </tiny-button>
-    <tiny-button @click="fn('right')"> right </tiny-button>
-    <tiny-button @click="fn('top')"> top </tiny-button>
-    <tiny-button @click="fn('bottom')"> bottom </tiny-button>
+    <tiny-button @click="openDrawer('left')"> left </tiny-button>
+    <tiny-button @click="openDrawer('right')"> right </tiny-button>
+    <tiny-button @click="openDrawer('top')"> top </tiny-button>
+    <tiny-button @click="openDrawer('bottom')"> bottom </tiny-button>
 
     <tiny-drawer title="标题" :placement="placement" :visible="visible" @update:visible="visible = $event">
-      <div style="height: 200px; text-align: center">
-        <br />
-        <br />
-        <span>内容区域</span>
-      </div>
+      <div style="padding: 32px">内容区域</div>
     </tiny-drawer>
   </div>
 </template>
@@ -30,7 +26,7 @@ export default {
     }
   },
   methods: {
-    fn(side) {
+    openDrawer(side) {
       this.placement = side
       this.visible = true
     }
