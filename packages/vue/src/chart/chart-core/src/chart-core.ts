@@ -115,9 +115,6 @@ export default {
       default: () => {
         return {}
       }
-      default: () => {
-        return {}
-      }
     },
     cancelResizeCheck: {
       type: Boolean,
