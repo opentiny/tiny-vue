@@ -75,7 +75,6 @@ export default {
     extend: {
       type: Object,
       default() { }
-      default() { }
     },
     tooltipFormatter: { type: Function },
 
