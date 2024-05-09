@@ -3,10 +3,13 @@
     <tiny-layout>
       <tiny-row :flex="true">
         <tiny-col :span="8">
-          <tiny-statistic :value="num" :precision="0"></tiny-statistic>
+          <tiny-statistic :value="300" prefix="存储平均值" suffix="GB"></tiny-statistic>
         </tiny-col>
         <tiny-col :span="8">
-          <tiny-statistic :value="num" :precision="2"></tiny-statistic>
+          <tiny-statistic :value="306">
+            <template #prefix>已使用容量(GB)</template>
+            <template #suffix><span style="font-size: 32px">GB</span></template>
+          </tiny-statistic>
         </tiny-col>
       </tiny-row>
     </tiny-layout>
@@ -22,11 +25,6 @@ export default {
     TinyLayout: Layout,
     TinyRow: Row,
     TinyCol: Col
-  },
-  data() {
-    return {
-      num: 306526.23
-    }
   }
 }
 </script>
