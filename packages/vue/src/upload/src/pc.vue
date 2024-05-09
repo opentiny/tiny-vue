@@ -87,11 +87,10 @@ export default defineComponent({
     const operateSlot = this.slots.operate && this.slots.operate()
     const tipSlot = this.slots.tip && this.slots.tip()
 
-    const hidden = isHidden && fileList.length >= limit
+    const uploadStyle = isHidden && fileList.length >= limit ? { display: 'none' } : null
 
     return (
-      <div
-        class={['tiny-upload', `tiny-upload--${listType}`, disabled ? 'is-disabled' : '', hidden ? 'is-hidden' : '']}>
+      <div class={['tiny-upload', `tiny-upload--${listType}`, disabled ? 'is-disabled' : '']} style={uploadStyle}>
         <div
           class="tiny-upload-btn"
           onClick={($event) => handleClick($event, type)}
