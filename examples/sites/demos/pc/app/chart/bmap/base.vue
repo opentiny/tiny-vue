@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-baidu-map :settings="chartSettings" :series="chartSeries" :tooltip="chartTooltip"></tiny-baidu-map>
+    <tiny-baidu-map :options="options"></tiny-baidu-map>
   </div>
 </template>
 
@@ -12,28 +12,29 @@ export default {
     TinyBaiduMap: BaiduMap
   },
   data() {
-    this.chartSettings = {
-      key: 'oBvDtR6nzWtVchkY4cLHtnah1VVZQKRK',
-      url: 'https://api.map.baidu.com/api', // 百度地图的接口地址
-      bmap: {
-        center: [120, 30],
-        zoom: 14,
-        roam: true,
-        mapStyle: {}
-      }
-    }
-    this.chartTooltip = { show: true }
-
     return {
-      chartSeries: [
-        {
-          type: 'scatter',
-          coordinateSystem: 'bmap',
-          data: [
-            [120, 30, 1] // 经度，维度，value，...
-          ]
-        }
-      ]
+      options: {
+        key: '4b5f2cf2cba25200cc6b68c398468899',
+        url: 'https://webapi.amap.com/maps', // 谷歌地图接口的url地址
+        v: '1.4.3',
+        bmap: {
+          resizeEnable: true,
+          center: [120.14322240845, 30.236064370321],
+          zoom: 10
+        },
+        tooltip: {
+          show: true
+        },
+        series: [
+          {
+            type: 'scatter',
+            coordinateSystem: 'bmap',
+            data: [
+              [120, 30, 1] // 经度，纬度，value...
+            ]
+          }
+        ]
+      }
     }
   }
 }

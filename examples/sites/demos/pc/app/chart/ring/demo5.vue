@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-ring :data="chartData" :settings="chartSettings"></tiny-ring>
+    <tiny-ring :options="options"></tiny-ring>
   </div>
 </template>
 
@@ -13,20 +13,26 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['日期', '访问用户'],
-        rows: [
-          { 日期: '1/1', 访问用户: 1393 },
-          { 日期: '1/2', 访问用户: 3530 },
-          { 日期: '1/3', 访问用户: 2923 },
-          { 日期: '1/4', 访问用户: 1723 },
-          { 日期: '1/5', 访问用户: 3792 },
-          { 日期: '1/6', 访问用户: 4593 }
+      options: {
+        color: ['#10c7c1', '#ff88800'],
+        position: {
+          radius: ['12%', '15%'],
+          center: ['50%', '50%']
+        },
+        silent: true,
+        itemStyle: {
+          borderWidth: 1
+        },
+        label: {
+          show: false
+        },
+        legend: {
+          show: false
+        },
+        data: [
+          { value: 37, name: 'VPC' },
+          { value: 3, name: 'IM' }
         ]
-      },
-      // 限制显示条数环图
-      chartSettings: {
-        dataType: 'KMB'
       }
     }
   }

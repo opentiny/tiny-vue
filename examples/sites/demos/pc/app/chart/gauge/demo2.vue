@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-gauge :data="chartData" :settings="chartSettings"></tiny-gauge>
+    <tiny-gauge :options="options"></tiny-gauge>
   </div>
 </template>
 
@@ -13,14 +13,19 @@ export default {
   },
   data() {
     return {
-      // 指标维度配置
-      chartData: {
-        columns: ['a', 'b', 'type', 'value'],
-        rows: [{ type: '速度', value: 80, a: 1, b: 2 }]
-      },
-      chartSettings: {
-        dimension: 'type',
-        metrics: 'value'
+      options: {
+        // 仪表盘的最小值
+        min: 0,
+
+        // 仪表盘的最大值
+        max: 1000,
+        pointer: true,
+        data: [
+          {
+            value: 666,
+            name: 'Utilization rate'
+          }
+        ]
       }
     }
   }

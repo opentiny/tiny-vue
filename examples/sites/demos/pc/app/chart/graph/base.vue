@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-graph :extend="extend"></tiny-graph>
+    <tiny-graph :options="options"></tiny-graph>
   </div>
 </template>
 
@@ -13,18 +13,14 @@ export default {
   },
   data() {
     return {
-      extend: {
-        title: {
-          text: 'Graph 简单示例'
-        },
-        tooltip: {},
-        animationDurationUpdate: 1500,
+      options: {
+        animationDurationUpdate: 1600,
         animationEasingUpdate: 'quinticInOut',
         series: [
           {
             type: 'graph',
             layout: 'none',
-            symbolSize: 50,
+            symbolSize: 48,
             color: '#42A5F5',
             roam: true,
             label: {
@@ -33,11 +29,11 @@ export default {
               }
             },
             edgeSymbol: ['circle', 'arrow'],
-            edgeSymbolSize: [4, 10],
+            edgeSymbolSize: [3, 10],
             edgeLabel: {
               normal: {
                 textStyle: {
-                  fontSize: 20
+                  fontSize: 18
                 }
               }
             },

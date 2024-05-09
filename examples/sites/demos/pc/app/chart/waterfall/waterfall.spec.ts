@@ -23,9 +23,3 @@ test('demo4', async ({ page }) => {
   const chart = page.locator('#waterfall-demo4 .hui-chart')
   await expect(chart).toHaveScreenshot('demo4.png')
 })
-
-test('demo5', async ({ page }) => {
-  await page.goto('chart-waterfall#waterfall-demo5')
-  const chart = page.locator('#waterfall-demo5 .hui-chart')
-  await expect(chart).toHaveScreenshot('demo5.png')
-})

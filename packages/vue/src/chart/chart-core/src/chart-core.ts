@@ -2,9 +2,11 @@ import { $prefix } from '../common/util'
 import { isObject } from '../common/type'
 import setExtend from '../common/extend'
 import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS, DEFAULT_THEME } from '../common/constants'
+import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS, DEFAULT_THEME } from '../common/constants'
 import IntegrateChart from '../base'
 import BaiduMapChart from '../base/components/BaiduMapChart'
 import AutonaviMapChart from '../base/components/AutonaviMapChart'
+import '@opentiny/vue-theme/chart-core/index.less'
 import '@opentiny/vue-theme/chart-core/index.less'
 
 export default {
@@ -25,6 +27,7 @@ export default {
     },
     width: { type: String, default: 'auto' },
     height: { type: String, default: '400px' },
+    events: { type: Object, default() { } },
     events: { type: Object, default() { } },
     initOptions: {
       type: Object,
@@ -162,11 +165,17 @@ export default {
         settings: this.settings,
         extend: this.extend,
         tooltipVisible: this.tooltipVisible,
-        legendVisible: this.legendVisible,
+        legendVisible: this.legendVisible
       }
     }
   },
   watch: {
+    options: {
+      handler() {
+        this.refreshChart()
+      },
+      deep: true
+    },
     options: {
       handler() {
         this.refreshChart()
@@ -341,7 +350,6 @@ export default {
       } else {
         this.option = JSON.parse(JSON.stringify(this.options))
       }
-      this.updateChart(data)
       let { option } = this
       clearTimeout(this.timer)
       this.timer = null
@@ -389,6 +397,7 @@ export default {
         this.$emit('handle-color', option.color)
         this.applyMarks(this.integrateChart.eChartOption)
         option = this.applyExtend(this.integrateChart.eChartOption)
+
         this.integrateChart.render(this.renderOption)
       }
       this.$emit('ready', this.integrateChart.echartsIns)
@@ -524,7 +533,6 @@ export default {
     } else {
       this.option = { ...this.options }
     }
-    this.updateChart(data)
     let { option } = this
     option = this.afterConfigFn(option)
 

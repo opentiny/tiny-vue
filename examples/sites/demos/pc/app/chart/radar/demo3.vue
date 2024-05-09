@@ -1,10 +1,10 @@
 <template>
   <div>
-    <tiny-radar :data="chartData" :settings="chartSettings"></tiny-radar>
+    <tiny-radar :options="options"></tiny-radar>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { ChartRadar } from '@opentiny/vue'
 
 export default {
@@ -13,24 +13,32 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['日期', '访问用户', '下单用户', '下单率'],
-        rows: [
-          { 日期: '1/1', 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
-          { 日期: '1/2', 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
-          { 日期: '1/3', 访问用户: 2923, 下单用户: 2623, 下单率: 0.76 },
-          { 日期: '1/4', 访问用户: 1723, 下单用户: 1423, 下单率: 0.49 },
-          { 日期: '1/5', 访问用户: 3792, 下单用户: 3492, 下单率: 0.323 },
-          { 日期: '1/6', 访问用户: 4593, 下单用户: 4293, 下单率: 0.78 }
-        ]
-      },
-      // 修改指标名称
-      chartSettings: {
-        labelMap: {
-          日期: 'date',
-          访问用户: 'PV',
-          下单用户: 'Order',
-          下单率: 'orderRate'
+      options: {
+        color: ['#fa2a2d', '#ff7500', '#ffbf00', '#41ba41', '#00aaee'], // 自定义颜色组，会循环使用该颜色组
+        legend: {
+          show: true,
+          position: {
+            left: 'center',
+            bottom: 20
+          },
+          orient: 'horizontal'
+        },
+        radarMax: 100,
+        data: {
+          'Domestic': {
+            'Equipment': 41,
+            'VM': 91,
+            'CSP': 81,
+            'RD': 51,
+            'Markets': 71
+          },
+          'Abroad': {
+            'Equipment': 77,
+            'VM': 55,
+            'CSP': 93,
+            'RD': 90,
+            'Markets': 87
+          }
         }
       }
     }

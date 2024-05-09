@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-ring :data="chartData" :settings="chartSettings" :extend="extend1"></tiny-ring>
+    <tiny-ring :options="options"></tiny-ring>
   </div>
 </template>
 
@@ -13,29 +13,51 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['日期', '访问用户'],
-        rows: [
-          { 日期: '1/1', 访问用户: 1393 },
-          { 日期: '1/2', 访问用户: 3530 },
-          { 日期: '1/3', 访问用户: 2923 },
-          { 日期: '1/4', 访问用户: 1723 },
-          { 日期: '1/5', 访问用户: 3792 },
-          { 日期: '1/6', 访问用户: 4593 }
-        ]
-      },
-      // 限制显示条数环图
-      chartSettings: {
-        dataType: 'KMB'
-      },
-      extend1: {
+      options: {
         title: {
-          subtext: '999911111111111\n6666\n333',
-          top: '42%', // 4.7.0 echarts的top:middle失效，可设置百分比控制居中
-          left: 'center',
-          show: true,
-          text: '6666'
-        }
+          text: '{a|数量监测}\n{e|平台监测站}{d|}\n{b|373}{c|个}',
+          top: '40%',
+          textStyle: {
+            rich: {
+              a: {
+                color: '#999',
+                fonrSize: 20,
+                padding: [0, 0, 10, 0]
+              },
+              e: {
+                color: '#999',
+                fontSize: 16,
+                padding: [0, 10, 0, 0]
+              },
+              b: {
+                fontSize: 36,
+                fontWeight: 'bold',
+                padding: [10, 0, 0, 20]
+              },
+              c: {
+                fontSize: 24,
+                color: '#bbbbbb',
+                padding: [10, 10, 0, 0]
+              },
+              d: {
+                width: 12,
+                height: 12,
+                backgroundColor: {
+                  image: './image/charts/pie/ic_jiantou_hong.svg'
+                }
+              }
+            }
+          }
+        },
+        label: {
+          show: false
+        },
+        data: [
+          { value: 100, name: 'VPC' },
+          { value: 90, name: 'IM' },
+          { value: 49, name: 'EIP' },
+          { value: 14, name: 'SG' }
+        ]
       }
     }
   }

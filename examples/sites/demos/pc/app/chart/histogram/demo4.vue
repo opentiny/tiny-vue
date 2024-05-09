@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-histogram :data="chartData" :settings="chartSettings"></tiny-histogram>
+    <tiny-histogram :options="options"></tiny-histogram>
   </div>
 </template>
 
@@ -13,20 +13,47 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['日期', '访问用户', '下单用户', '下单率'],
-        rows: [
-          { 日期: '1/1', 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
-          { 日期: '1/2', 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
-          { 日期: '1/3', 访问用户: 2923, 下单用户: 2623, 下单率: 0.76 },
-          { 日期: '1/4', 访问用户: 1723, 下单用户: 1423, 下单率: 0.49 },
-          { 日期: '1/5', 访问用户: 3792, 下单用户: 3492, 下单率: 0.323 },
-          { 日期: '1/6', 访问用户: 4593, 下单用户: 4293, 下单率: 0.78 }
-        ]
-      },
-      // 柱状图+折线图
-      chartSettings: {
-        showLine: ['下单用户']
+      options: {
+        legend: {
+          show: true
+        },
+        tipHtml: (params, ticket, callback) => {
+          let htmlString = ''
+          params.forEach((itemSeventeen, index) => {
+            if (index === 0) {
+              htmlString += itemSeventeen.name + '<br/>'
+            }
+            htmlString += `<div>
+        <span style="display:inline-block;width:10px;height:10px;border-radius:5px;background-color:${itemSeventeen.color
+              };"></span>
+        <span style="margin-left:5px;">
+          <span style="display:inline-block;width:110px;">${itemSeventeen.seriesName} User</span>
+          <span style="font-weight:bold>${itemSeventeen.value}%</span>"
+        <span style="color:gray"> out </span>
+        <span style="color:red">${100 - itemSeventeen.value}%</span>
+        </span>
+      </div>`
+          })
+          return htmlString
+        },
+        data: [
+          { 'Month': 'Jan', 'Domestic': 33, 'Abroad': 17 },
+          { 'Month': 'Feb', 'Domestic': 27, 'Abroad': 39 },
+          { 'Month': 'Mar', 'Domestic': 31, 'Abroad': 27 },
+          { 'Month': 'Apr', 'Domestic': 30, 'Abroad': 15 },
+          { 'Month': 'May', 'Domestic': 37, 'Abroad': 17 },
+          { 'Month': 'Jun', 'Domestic': 36, 'Abroad': 17 },
+          { 'Month': 'Jul', 'Domestic': 42, 'Abroad': 22 },
+          { 'Month': 'Aug', 'Domestic': 22, 'Abroad': 17 },
+          { 'Month': 'Sep', 'Domestic': 17, 'Abroad': 37 },
+          { 'Month': 'Oct', 'Domestic': 40, 'Abroad': 33 },
+          { 'Month': 'Nov', 'Domestic': 42, 'Abroad': 22 },
+          { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 17 }
+        ],
+        xAxis: 'Month',
+        yAxis: {
+          name: 'Percent(%)'
+        }
       }
     }
   }
