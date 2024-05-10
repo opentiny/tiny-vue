@@ -87,37 +87,39 @@ export default defineComponent({
     const operateSlot = this.slots.operate && this.slots.operate()
     const tipSlot = this.slots.tip && this.slots.tip()
 
-    const uploadStyle = isHidden && fileList.length >= limit ? { display: 'none' } : null
+    const hidden = isHidden && fileList.length >= limit
 
     return (
-      <div class={['tiny-upload', `tiny-upload--${listType}`, disabled ? 'is-disabled' : '']} style={uploadStyle}>
-        <div
-          class="tiny-upload-btn"
-          onClick={($event) => handleClick($event, type)}
-          onPaste={handlePaste}
-          onKeydown={handleKeydown}
-          tabindex="0">
-          {drag ? (
-            <UploadDragger disabled={disabled} onFile={uploadFiles}>
-              {defaultSlot}
-            </UploadDragger>
-          ) : (
-            defaultSlot
-          )}
+      !hidden && (
+        <div class={['tiny-upload', `tiny-upload--${listType}`, disabled ? 'is-disabled' : '']}>
+          <div
+            class="tiny-upload-btn"
+            onClick={($event) => handleClick($event, type)}
+            onPaste={handlePaste}
+            onKeydown={handleKeydown}
+            tabindex="0">
+            {drag ? (
+              <UploadDragger disabled={disabled} onFile={uploadFiles}>
+                {defaultSlot}
+              </UploadDragger>
+            ) : (
+              defaultSlot
+            )}
+          </div>
+          {operateSlot}
+          {tipSlot}
+          <input
+            class="tiny-upload__input"
+            type="file"
+            webkitdirectory={isFolder}
+            ref="input"
+            name={name}
+            onChange={handleChange}
+            multiple={isFolder ? true : multiple}
+            accept={accept}
+          />
         </div>
-        {operateSlot}
-        {tipSlot}
-        <input
-          class="tiny-upload__input"
-          type="file"
-          webkitdirectory={isFolder}
-          ref="input"
-          name={name}
-          onChange={handleChange}
-          multiple={isFolder ? true : multiple}
-          accept={accept}
-        />
-      </div>
+      )
     )
   }
 })
