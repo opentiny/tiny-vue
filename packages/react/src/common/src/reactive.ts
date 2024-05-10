@@ -92,3 +92,19 @@ export const useReactive = (initalObject) => {
   }
   return proxy.current
 }
+export const useProxy = ({
+  initalObject,
+  setFun = () => {
+    return Reflect.set(...arguments)
+  },
+  getFun = () => {
+    return Reflext.get(...arguments)
+  }
+}) => {
+  if (!isObject(initalObject)) {
+    return initalObject
+  }
+  const target = new Reactive(initalObject)
+  const proxy = new Proxy(target, { set: setFun, get, getFun })
+  return proxy
+}

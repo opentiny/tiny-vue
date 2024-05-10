@@ -10,37 +10,23 @@
  *
  */
 import type { IBadgeRenderlessParams, IBadgeContent } from '@/types'
-import type { StyleValue } from 'vue'
 
 export const computedContent =
   ({ props, state }: Pick<IBadgeRenderlessParams, 'props' | 'state'>) =>
-  (): IBadgeContent =>
-    typeof state.valueRef === 'number' && typeof props.max === 'number'
-      ? props.max < state.valueRef
-        ? `${props.max}+`
+    (): IBadgeContent => {
+      return typeof state.valueRef === 'number' && typeof props.max === 'number'
+        ? props.max < state.valueRef
+          ? `${props.max}+`
+          : state.valueRef
         : state.valueRef
-      : state.valueRef
+    }
 
 export const computedValueRef =
   ({ props }: Pick<IBadgeRenderlessParams, 'props'>) =>
-  (): number | undefined => {
-    if (typeof props.value === 'number') {
-      return props.value
-    }
+    (): number | undefined => {
+      if (typeof props.value === 'number') {
+        return props.value
+      }
 
-    return typeof props.modelValue === 'number' ? props.modelValue : undefined
-  }
-
-export const computedTransform =
-  ({ designConfig, props }: Pick<IBadgeRenderlessParams, 'designConfig' | 'props'>) =>
-  (): StyleValue => {
-    if (designConfig?.transform === 'unset') {
-      return null
+      return typeof props.modelValue === 'number' ? props.modelValue : undefined
     }
-    return {
-      transform: `translate(
-        ${props.offset[0]}${typeof props.offset[0] === 'number' ? 'px' : ''},
-        ${props.offset[1]}${typeof props.offset[1] === 'number' ? 'px' : ''}
-      )`
-    }
-  }

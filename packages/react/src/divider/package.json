@@ -1,0 +1,16 @@
+{
+  "name": "@opentiny/react-divider",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  },
+  "license": "MIT"
+}

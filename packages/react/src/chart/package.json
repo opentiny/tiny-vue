@@ -1,0 +1,34 @@
+{
+  "name": "@opentiny/react-chart",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "files": [
+    "index.js",
+    "lib",
+    "index.d.ts",
+    "src"
+  ],
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {
+    "vitest": "^0.31.0"
+  },
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
+  "dependencies": {
+    "echarts": "5.4.1",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-chart-core": "workspace:~",
+    "@opentiny/react-chart-bar": "workspace:~",
+    "@opentiny/react-chart-line": "workspace:~",
+    "@opentiny/react-chart-pie": "workspace:~",
+    "@opentiny/react-chart-funnel": "workspace:~",
+    "@opentiny/react-chart-radar": "workspace:~"
+  },
+  "license": "MIT"
+}

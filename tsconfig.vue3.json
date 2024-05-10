@@ -25,6 +25,6 @@
     "packages/**/*.vue",
     "examples/vue3/shims-app.d.ts",
     "examples/vue3/shims-vue.d.ts"
-  ],
+, "packages/react/src/skeleton-item/src/pc.jsx", "packages/react/src/skeleton/src/pc.jsx"  ],
   "exclude": ["**/node_modules", "**/dist*", "**/*.md"]
 }

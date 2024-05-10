@@ -5,7 +5,7 @@
     "exclude": true
   },
   "Common": {
-    "path": "react/common/src/index.ts",
+    "path": "react/src/common/src/index.ts",
     "type": "module",
     "exclude": false
   }

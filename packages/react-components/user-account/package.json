@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-user-account",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-user-contact": "workspace:~",
+    "@opentiny/react-logout": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

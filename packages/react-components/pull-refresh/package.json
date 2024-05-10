@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-pull-refresh",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-loading": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  }
+}

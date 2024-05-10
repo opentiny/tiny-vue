@@ -1,20 +1,41 @@
-import { useRef } from 'react'
 import { useExcuteOnce, useOnceResult } from './hooks'
-import { reactive, nextTick, watch, computed } from '@vue/runtime-core'
+import { nextTick, watch, reactive } from '@vue/runtime-core'
 import { getPropByPath } from './utils'
-import { getParent, getRoot } from './render-stack'
+import { EnterStack, getParent, getRoot } from './render-stack'
 import { getFiberByDom, traverseFiber } from './fiber'
+import { useEffect } from 'react'
 
-const collectRefs = (rootEl, $children) => {
+const collectRefs = (rootEl, doms, $children) => {
   const refs = {}
-  if (!rootEl) return refs
-  const rootFiber = getFiberByDom(rootEl)
+  if (!rootEl && !doms?.length) return refs
+  let rootFiber
+  let domsFiber = []
+
+  rootEl && (rootFiber = getFiberByDom(rootEl))
+  if (doms?.length) {
+    doms.forEach((dom, index) => {
+      dom && dom.current && (domsFiber[index] = getFiberByDom(dom.current))
+    })
+  }
   // 收集普通元素 ref
   traverseFiber(rootFiber, (fiber) => {
     if (typeof fiber.type === 'string' && fiber.stateNode.getAttribute('v-ref')) {
       refs[fiber.stateNode.getAttribute('v-ref')] = fiber.stateNode
     }
   })
+  domsFiber.forEach((domFiber) => {
+    if (domFiber) {
+      traverseFiber(domFiber, (fiber) => {
+        if (
+          typeof fiber.type === 'string' &&
+          (fiber.stateNode.getAttribute('v-ref') || fiber.stateNode.getAttribute('id'))
+        ) {
+          refs[fiber.stateNode.getAttribute('v-ref') || fiber.stateNode.getAttribute('id')] = fiber.stateNode
+        }
+      })
+    }
+  })
+
   // 收集组件元素 ref
   $children.forEach((child) => {
     if (child.$props['v-ref']) {
@@ -23,9 +44,56 @@ const collectRefs = (rootEl, $children) => {
   })
   return refs
 }
-
-export function useCreateVueInstance({ $bus, props }) {
-  const ref = useRef()
+// 模拟vue-router
+const createRouter = () => {
+  const jumpFunc = (url, replace = false) => {
+    replace ? window.location.replace(url) : window.location.assign(url)
+  }
+  const push = (data) => {
+    if (typeof data === 'string') {
+      window.location.assign(data)
+    } else {
+      const { path = '', name = '', params, query, replace = false } = data
+      if (!path && name) {
+        let url = name
+        if (params && typeof params === 'object') {
+          for (const key in params) {
+            if (typeof params[key] !== 'string') return
+            params[key] = params[key][0] === '/' ? params[key].slice(1) : params[key]
+            url += `/${params[key]}`
+          }
+        }
+        jumpFunc(url, replace)
+      } else if (path) {
+        let url = path
+        if (query && typeof query === 'object') {
+          url += '?'
+          for (const key in query) {
+            if (url.slice(-1)[0] !== '?') url += '&'
+            url += `${key}=${query[key]}`
+          }
+        }
+        jumpFunc(url, replace)
+      }
+    }
+  }
+  const go = (num) => {
+    window.history.go(num)
+  }
+  const replace = (data) => {
+    if (typeof data === 'string') {
+      push({ path: data, replace: true })
+    } else {
+      push(Object.assign(data, { replace: true }))
+    }
+  }
+  return {
+    push,
+    go,
+    replace
+  }
+}
+export function useCreateVueInstance({ $bus, props, doms, ref }) {
   const vm = useOnceResult(() =>
     reactive({
       $el: undefined,
@@ -39,7 +107,11 @@ export function useCreateVueInstance({ $bus, props }) {
       $attrs: props.$attrs,
       // 通过 fiber 计算
       $children: [],
-      $refs: computed(() => collectRefs(vm.$el, vm.$children)),
+      // doms是数组，使用computed无法监测到条件渲染后的组件
+      // $refs: computed(() => {
+      //   return collectRefs(vm.$el, doms, vm.$children)
+      // }),
+      $refs: null,
       // 方法
       $set: (target, property, value) => (target[property] = value),
       $delete: (target, property) => delete target[property],
@@ -50,14 +122,23 @@ export function useCreateVueInstance({ $bus, props }) {
           watch(expression, callback, options)
         }
       },
-      $on: (event, callback) => $bus.on(event, callback),
+      $on: (event, callback) => {
+        $bus.on(event, callback)
+      },
       $once: (event, callback) => $bus.once(event, callback),
       $off: (event, callback) => $bus.off(event, callback),
-      $emit: (event, ...args) => $bus.emit(event, ...args),
+      emit: (event, ...args) => $bus.emit(event, ...args),
+      $emit: (type, ...args) => {
+        if (props.listeners) {
+          const callback = type in props.listeners ? props.listeners[type] : () => { }
+          callback.apply(null, args)
+        }
+      },
       $forceUpdate: () => $bus.emit('event:reload'),
       $nextTick: nextTick,
-      $destroy: () => {},
-      $mount: () => {}
+      $destroy: () => { },
+      $mount: () => { },
+      $router: createRouter()
     })
   )
 
@@ -69,17 +150,17 @@ export function useCreateVueInstance({ $bus, props }) {
         $bus.on(eventName, $listeners[eventName])
       })
     }
-
     // 给父的 $children 里 push 当前的 vm
     const parent = vm.$parent
     if (Array.isArray(parent.$children)) {
       parent.$children.push(vm)
     }
-
-    nextTick(() => {
-      vm.$el = ref.current
-    })
   })
+  useEffect(() => {
+    vm.$el = ref?.current
+    vm.$refs = collectRefs(vm.$el, doms, vm.$children)
+    EnterStack(vm.$el)
+  }, [ref, doms])
 
   return {
     ref,

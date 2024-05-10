@@ -10,31 +10,24 @@
  *
  */
 
-import { computedContent, computedValueRef, computedTransform } from './index'
+import { computedContent, computedValueRef } from './index'
 import { xss } from '../common/xss'
 import type { IBadgeState, IBadgeProps, IBadgeApi, IBadgeRenderlessParams } from '@/types'
 
 export const api = ['state']
 
-export const renderless = (
-  props: IBadgeProps,
-  { computed, reactive }: IBadgeRenderlessParams,
-  { designConfig }
-): IBadgeApi => {
+export const renderless = (props: IBadgeProps, { computed, reactive }: IBadgeRenderlessParams): IBadgeApi => {
   const state: IBadgeState = reactive({
     isOverstep: false,
     valueRef: computed(() => api.computedValueRef()),
     content: computed(() => api.computedContent()),
-    href: computed(() => xss.filterUrl(props.href)),
-    transform: computed(() => api.computedTransform())
+    href: computed(() => xss.filterUrl(props.href))
   })
 
   const api: IBadgeApi = {
     state,
     computedValueRef: computedValueRef({ props }),
-    computedContent: computedContent({ props, state }),
-    computedTransform: computedTransform({ props, designConfig })
+    computedContent: computedContent({ props, state })
   }
-
   return api
 }

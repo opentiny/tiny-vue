@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-fall-menu",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-row": "workspace:~",
+    "@opentiny/react-col": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-message",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-modal": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  }
+}

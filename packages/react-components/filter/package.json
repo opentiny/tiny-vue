@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-filter",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-filter-bar": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

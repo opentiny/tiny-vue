@@ -1,0 +1,16 @@
+{
+  "name": "@opentiny/react-numeric",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-filter-panel": "workspace:~",
+    "@opentiny/react-radio": "workspace:~",
+    "@opentiny/react-radio-group": "workspace:~",
+    "@opentiny/react-tag": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

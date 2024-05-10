@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { If } from './virtual-comp'
+import { If } from './virtual-comp.jsx'
 
 export const Svg = ({ name = 'Icon', component: Icon }) => {
   const funcObj = {

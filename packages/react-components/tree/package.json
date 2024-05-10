@@ -1,0 +1,18 @@
+{
+  "name": "@opentiny/react-tree",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-collapse-transition": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-checkbox": "workspace:~",
+    "@opentiny/react-radio": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-switch": "workspace:~",
+    "@opentiny/react-popover": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

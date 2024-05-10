@@ -1,0 +1,21 @@
+{
+  "name": "@opentiny/react-action-sheet",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-drawer": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@better-scroll/core": "2.5.0",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-cascader-menu",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-scrollbar": "workspace:~",
+    "@opentiny/react-cascader-node": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

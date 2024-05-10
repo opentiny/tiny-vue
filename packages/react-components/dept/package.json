@@ -1,0 +1,18 @@
+{
+  "name": "@opentiny/react-dept",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-select": "workspace:~",
+    "@opentiny/react-option": "workspace:~",
+    "@opentiny/react-row": "workspace:~",
+    "@opentiny/react-col": "workspace:~",
+    "@opentiny/react-modal": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-dialog-box": "workspace:~"
+  }
+}

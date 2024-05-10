@@ -1,8 +1,11 @@
+import { CSSTransition } from 'react-transition-group'
+import PropTypes from 'prop-types'
+
 export function If(props) {
   if (props['v-if']) {
     return props.children
   } else {
-    return ''
+    return null
   }
 }
 
@@ -14,22 +17,23 @@ function defaultVIfAsTrue(props) {
   }
 }
 
-export function Component(props) {
-  const Is = props.is || (() => '')
+function Component(props) {
+  const Is = props.renderIs || (() => '')
   return (
     <If v-if={defaultVIfAsTrue(props)}>
-      <Is className={props.className} />
+      <Is className={props.className} {...props} />
     </If>
   )
 }
-
+Component.propTypes = {
+  is: PropTypes.oneOfType([PropTypes.any])
+}
+export { Component }
 export function Slot(props) {
   const { name = 'default', slots = {}, parent_children } = props
 
-  const EmptySlot = () => ''
-
+  const EmptySlot = () => null
   const S = slots[name] || EmptySlot
-
   return (
     <If v-if={defaultVIfAsTrue(props)}>
       <If v-if={name === 'default'}>{parent_children || props.children}</If>
@@ -55,7 +59,21 @@ export function For(props) {
 
 export function Transition(props) {
   // todo: improve tarnsiton comp
-  return <If v-if={defaultVIfAsTrue(props)}>{props.children}</If>
+  return (
+    <If v-if={defaultVIfAsTrue(props)}>
+      <CSSTransition
+        timeout={props.timeout || 2000}
+        className={props.className}
+        onEnter={(node) => props.beforeEnter && props.beforeEnter(node)}
+        onEntering={(node) => props.enter && props.enter(node)}
+        onEntered={(node) => props.afterEnter && props.afterEnter(node)}
+        onExit={(node) => props.beforeLeave && props.beforeLeave(node)}
+        onExiting={(node) => props.leave && props.leave(node)}
+        onExited={(node) => props.afterLeave && props.afterLeave(node)}>
+        {props.children}
+      </CSSTransition>
+    </If>
+  )
 }
 
 export const compWhiteList = ['If', 'Component', 'Slot', 'For', 'Transition']

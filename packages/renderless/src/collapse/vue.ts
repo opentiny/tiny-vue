@@ -24,7 +24,7 @@ export const api = ['state']
 export const renderless = (
   props: ICollapseProps,
   { reactive, watch }: ISharedRenderlessParamHooks,
-  { parent, emit, constants }: ICollapseRenderlessParamUtils
+  { parent, emit, constants, vm }: ICollapseRenderlessParamUtils
 ) => {
   const eventName = constants.EVENT_NAME.CollapseItemClick
 
@@ -46,8 +46,6 @@ export const renderless = (
     },
     { immediate: true, deep: true }
   )
-
   parent.$on(eventName, api.handleItemClick)
-
   return api
 }

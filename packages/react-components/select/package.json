@@ -1,0 +1,26 @@
+{
+  "name": "@opentiny/react-select",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-tag": "workspace:~",
+    "@opentiny/react-loading": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-option": "workspace:~",
+    "@opentiny/react-scrollbar": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-select-dropdown": "workspace:~",
+    "@opentiny/react-search": "workspace:~",
+    "@opentiny/react-grid": "workspace:~",
+    "@opentiny/react-tree": "workspace:~",
+    "@opentiny/react-tooltip": "workspace:~",
+    "@opentiny/react-filter-box": "workspace:~",
+    "@opentiny/react-checkbox": "workspace:~",
+    "@opentiny/react-popover": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-recycle-scroller": "workspace:~"
+  }
+}

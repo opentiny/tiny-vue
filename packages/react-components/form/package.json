@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-form",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-tooltip": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

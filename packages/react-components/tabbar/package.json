@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-tabbar",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-tabbar-item": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  }
+}

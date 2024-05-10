@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-bulletin-board",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-tabs": "workspace:~",
+    "@opentiny/react-tab-item": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

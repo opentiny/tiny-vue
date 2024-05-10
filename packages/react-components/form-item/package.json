@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-form-item",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-tooltip": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-nav-bar",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

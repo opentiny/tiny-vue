@@ -1,0 +1,24 @@
+{
+  "name": "@opentiny/react-picker",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-date-panel": "workspace:~",
+    "@opentiny/react-date-range": "workspace:~",
+    "@opentiny/react-month-range": "workspace:~",
+    "@opentiny/react-time": "workspace:~",
+    "@opentiny/react-time-range": "workspace:~",
+    "@opentiny/react-time-panel": "workspace:~",
+    "@opentiny/react-year-range": "workspace:~",
+    "@opentiny/react-tooltip": "workspace:~",
+    "@opentiny/react-filter-box": "workspace:~",
+    "@opentiny/react-date-picker-mobile-first": "workspace:~",
+    "@opentiny/react-time-picker-mobile": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

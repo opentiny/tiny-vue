@@ -1,0 +1,17 @@
+{
+  "name": "@opentiny/react-skeleton-item",
+  "version": "3.13.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  },
+  "devDependencies": {},
+  "license": "MIT"
+}

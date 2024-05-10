@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
-import { compWhiteList } from './virtual-comp'
+import { compWhiteList } from './virtual-comp.jsx'
 
 export function getFiberByDom(dom) {
   const key = Object.keys(dom).find((key) => {
@@ -78,7 +78,6 @@ export function useFiber() {
       setCurrent(current_fiber.return)
     }
   }, [])
-
   return {
     ref,
     parent: creatFiberCombine(parent),

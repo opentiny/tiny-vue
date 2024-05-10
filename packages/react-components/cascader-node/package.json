@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-cascader-node",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-checkbox": "workspace:~",
+    "@opentiny/react-radio": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

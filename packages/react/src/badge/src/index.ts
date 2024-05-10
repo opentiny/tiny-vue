@@ -1,5 +1,5 @@
-import pc from './pc'
-import mobile from './mobile'
+import pc from './pc.jsx'
+import mobile from './mobile.jsx'
 
 export default function (props) {
   const { tiny_mode = 'pc' } = props

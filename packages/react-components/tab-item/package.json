@@ -1,0 +1,9 @@
+{
+  "name": "@opentiny/react-tab-item",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~"
+  }
+}

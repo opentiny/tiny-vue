@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-dialog-box",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-action-sheet": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

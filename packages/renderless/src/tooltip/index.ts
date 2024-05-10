@@ -191,9 +191,9 @@ export const bindEvent =
   (reference: HTMLElement) => {
     let referenceElm: HTMLElement = null as any
 
-    if (vm.$el.nodeType === 8) {
+    if (vm.$el?.nodeType === 8) {
       referenceElm = reference
-    } else if (vm.$el.nodeType === 1) {
+    } else if (vm.$el?.nodeType === 1) {
       referenceElm = vm.$el
     }
 
@@ -226,10 +226,17 @@ export const observeCallback =
 export const bindPopper =
   ({ vm, nextTick, popperVmRef }: Pick<ITooltipRenderlessParams, 'vm' | 'nextTick' | 'popperVmRef'>) =>
   (el?: Element) => {
-    nextTick(() => vm.bindEvent(el))
+    let popperVM = vm.popperVM
+    nextTick(() => {
+      if (!vm.$refs.popper) {
+        popperVmRef.popper = popperVM.$el
+      } else {
+        popperVmRef.popper = vm.$refs.popper
+      }
+      return vm.bindEvent(el)
+    })
 
     // vm.popperVM 是一个get 方法，所以必须缓存下来，不能频繁访问
-    let popperVM = vm.popperVM
     if (!vm.$refs.popper) {
       popperVmRef.popper = popperVM.$el
     } else {
@@ -239,9 +246,9 @@ export const bindPopper =
     // vm.$refs是只读的，不允许添加popper。 原来是refs.popper， 为什么要保存这个refs.popper
     // vm.$refs.popper || (vm.$refs.popper = popperVM.$el)
 
-    nextTick(() => {
-      if (vm.modelValue) {
-        vm.updatePopper()
-      }
-    })
+    // nextTick(() => {
+    //   if (vm.modelValue) {
+    //     vm.updatePopper()
+    //   }
+    // })
   }

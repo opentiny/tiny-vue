@@ -9,8 +9,22 @@ import IconHalfSelect from './src/half-select'
 import IconHelp from './src/help'
 import IconSuccess from './src/success'
 import IconWarning from './src/warning'
+import IconRadio from './src/radio'
+import IconRadioselected from './src/radioselected'
+import IconExpand from './src/expand'
+import IconChevronRight from './src/chevon-right'
+import IconArrowBottom from './src/arrow-bottom'
+import IconCode from './src/code'
+import IconCopy from './src/copy'
+import IconHelpCircle from './src/help-circle'
+import IconYes from './src/yes'
+import IconRichTextImage from './src/rich-text-image'
 
 export {
+  IconRichTextImage,
+  IconHelpCircle,
+  IconCode,
+  IconCopy,
   IconLoading,
   IconAdd,
   IconCheck,
@@ -21,10 +35,20 @@ export {
   IconHalfSelect,
   IconHelp,
   IconSuccess,
-  IconWarning
+  IconWarning,
+  IconRadio,
+  IconRadioselected,
+  IconExpand,
+  IconChevronRight,
+  IconArrowBottom,
+  IconYes
 }
 
 export default {
+  IconRichTextImage,
+  IconHelpCircle,
+  IconCode,
+  IconCopy,
   IconLoading,
   IconAdd,
   IconCheck,
@@ -35,5 +59,11 @@ export default {
   IconHalfSelect,
   IconHelp,
   IconSuccess,
-  IconWarning
+  IconWarning,
+  IconRadio,
+  IconRadioselected,
+  IconExpand,
+  IconChevronRight,
+  IconArrowBottom,
+  IconYes
 }

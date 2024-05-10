@@ -1,0 +1,10 @@
+{
+  "name": "@opentiny/react-fullscreen",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

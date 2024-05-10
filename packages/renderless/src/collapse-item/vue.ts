@@ -27,17 +27,18 @@ export const renderless = (
   { computed, reactive }: ISharedRenderlessParamHooks,
   { parent, constants, dispatch }: ICollapseItemRenderlessParamUtils
 ) => {
-  const _constants = parent.collapse._constants
+  const _constants = parent.collapse?._constants || parent._constants
   const componentName = _constants.COMPONENT_NAME.Collapse
   const eventName = _constants.EVENT_NAME.CollapseItemClick
-
   const state: ICollapseItemState = reactive({
     id: guid(),
     isClick: false,
     focusing: false,
     contentHeight: 0,
     contentWrapStyle: { height: 'auto', display: 'block' },
-    isActive: computed(() => parent.collapse.state.activeNames.includes(props.name))
+    isActive: computed(
+      () => parent.collapse?.state.activeNames.includes(props.name) || parent?.state?.activeNames?.includes(props.name)
+    )
   })
 
   const api: ICollapseItemApi = {

@@ -1,0 +1,332 @@
+.app {
+  margin: 10px;
+  /* width: 500px; */
+}
+
+
+.chart {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.loop2(@i) when (@i <=500) {
+  .ti-w@{i} {
+    width: (1px*@i);
+  }
+
+  .ti-h@{i} {
+    height: (1px*@i);
+  }
+
+  .loop2(@i + 1);
+
+}
+
+.loop2(0);
+
+.loop1(@i) when (@i <=200) {
+  .ti-fi-@{i} {
+    flex: @i;
+  }
+
+  .ti-top@{i} {
+    top: (1px*@i);
+  }
+
+  .hp@{i},
+  .ti-hp@{i} {
+    height: (1%*@i);
+  }
+
+  .mb,
+  .ti-mb@{i} {
+    margin-bottom: (1px*@i);
+  }
+
+  .ti-ml@{i} {
+    margin-left: (1px*@i);
+  }
+
+  .ti-pl@{i} {
+    padding-left: (1px*@i);
+  }
+
+  .ti-pr@{i} {
+    padding-right: (1px*@i);
+  }
+
+  .f@{i},
+  .ti-f@{i} {
+    font-size: (1px*@i);
+  }
+
+  .ti-lh@{i} {
+    line-height: (1px*@i);
+  }
+
+  .ti-my@{i} {
+    margin-top: (1px*@i);
+    margin-bottom: (1px*@i);
+  }
+
+  .ti-br-@{i} {
+    border-radius: (1px*@i)
+  }
+
+  .ti-mr@{i} {
+    margin-right: (1px*@i);
+  }
+
+  .mt@{i},
+  .ti-mt@{i} {
+    margin-top: (1px*@i);
+  }
+
+  .pt@{i},
+  .ti-pt@{i} {
+    padding-top: (1px*@i);
+  }
+
+  .wp@{i},
+  .ti-wp@{i} {
+    width: (1%*@i);
+  }
+
+  .ti-px@{i} {
+    padding-left: (1px*@i);
+    padding-right: (1px*@i);
+  }
+
+  .py@{i},
+  .ti-py@{i} {
+    padding-top: (1px*@i);
+    padding-bottom: (1px*@i);
+  }
+
+  .ti-pb@{i} {
+    padding-bottom: (1px*@i);
+  }
+
+  .loop1(@i + 1);
+
+}
+
+.loop1(0);
+
+.ti-f-wrap {
+  flex-wrap: wrap
+}
+
+.ti-f-pos-between {
+  justify-content: space-between;
+}
+
+.ti-cur-hand {
+  cursor: pointer;
+}
+
+.ti-fw-bold {
+  font-weight: bolder;
+}
+
+.ti-f-box-end {
+  align-items: flex-end;
+}
+
+.sticky,
+.ti-sticky {
+  position: sticky;
+}
+
+.ti-c-primary {
+  color: #2f5bea;
+}
+
+.ti-br-sm {
+  border-radius: 5px;
+}
+
+.b-a,
+.ti-b-a {
+  border: 1px solid #ddd;
+}
+
+.ti-b-a-primary {
+  border: 1px solid #2f5bea;
+}
+
+.ti-rel {
+  position: relative;
+}
+
+.ti-fw-normal {
+  font-weight: normal;
+}
+
+.ti-f-r {
+  display: flex;
+  flex-direction: row;
+}
+
+.ti-text-center {
+  text-align: center;
+}
+
+.ti-d-ib {
+  display: inline-block;
+}
+
+.ti-f-box-stretch {
+  align-items: stretch;
+}
+
+.h\:c-success:hover {
+  color: #5073e5;
+  transition: all 0.4s;
+}
+
+
+
+.ti-f-c {
+  display: flex;
+  flex-direction: column;
+}
+
+.of-hidden {
+  overflow: hidden;
+}
+
+.loop(@i) when (@i <=900) {
+  .ti-fw-@{i} {
+    font-weight: @i;
+  }
+
+  .loop(@i + 100);
+}
+
+.loop(100);
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+
+  border: 0;
+
+  vertical-align: baseline;
+}
+
+a {
+  cursor: pointer;
+  background-image: none;
+  text-decoration: none;
+  outline: 0;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 10px;
+  /* 修改滚动条宽度 */
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  /* 圆角边框 */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  /* 元素阴影 */
+  background: #666666;
+  /* 背景颜色 */
+}
+
+/* 鼠标移入样式 */
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  /* 元素阴影 */
+  border-radius: 20px;
+  /* 圆角边框 */
+  background: #ededed;
+  /* 背景颜色 */
+}

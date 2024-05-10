@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-user-head-group",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-user-head": "workspace:~"
+  }
+}

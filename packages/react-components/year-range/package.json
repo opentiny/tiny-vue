@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-year-range",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-year-table": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@opentiny/react-color-select-panel",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-collapse": "workspace:~",
+    "@opentiny/react-collapse-item": "workspace:~",
+    "@opentiny/react-button-group": "workspace:~"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-river",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "echarts": "5.4.1"
+  }
+}

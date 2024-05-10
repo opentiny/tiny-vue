@@ -1,0 +1,10 @@
+{
+  "name": "@opentiny/react-floating-button",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-autocomplete",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-scrollbar": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

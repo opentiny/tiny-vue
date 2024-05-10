@@ -1,0 +1,19 @@
+{
+  "name": "@opentiny/react-time-line",
+  "version": "3.7.0",
+  "description": "",
+  "main": "lib/index.js",
+  "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-timeline-item": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-time-select",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-picker": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

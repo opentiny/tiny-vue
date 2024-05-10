@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-option",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-checkbox": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

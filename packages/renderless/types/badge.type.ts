@@ -1,7 +1,7 @@
 import type { ExtractPropTypes } from 'vue'
 import type { badgeProps } from '@/badge/src'
 import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
-import type { computedValueRef, computedContent, computedTransform } from '../src/badge'
+import type { computedValueRef, computedContent } from '../src/badge'
 
 export type IBadgeContent = string | number | undefined
 export interface IBadgeState {
@@ -22,7 +22,6 @@ export interface IBadgeApi {
   state: IBadgeState
   computedValueRef: ReturnType<typeof computedValueRef>
   computedContent: ReturnType<typeof computedContent>
-  computedTransform: ReturnType<typeof computedTransform>
 }
 
 export type IBadgeRenderlessParamUtils = ISharedRenderlessParamUtils<never>

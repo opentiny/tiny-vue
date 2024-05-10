@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/react-date-picker-mobile-first",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-action-sheet": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-time-picker-mobile": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-recycle-scroller": "workspace:~"
+  }
+}

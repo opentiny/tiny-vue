@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-user-link",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-popover": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-loading": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

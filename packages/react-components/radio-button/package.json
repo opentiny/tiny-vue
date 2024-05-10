@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-radio-button",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-tooltip": "workspace:~"
+  }
+}

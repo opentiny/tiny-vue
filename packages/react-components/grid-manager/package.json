@@ -1,0 +1,8 @@
+{
+  "name": "@opentiny/react-grid-manager",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-grid": "workspace:~"
+  }
+}

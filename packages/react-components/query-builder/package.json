@@ -1,0 +1,23 @@
+{
+  "name": "@opentiny/react-query-builder",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-date-picker": "workspace:~",
+    "@opentiny/react-currency": "workspace:~",
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-popover": "workspace:~",
+    "@opentiny/react-select": "workspace:~",
+    "@opentiny/react-option": "workspace:~",
+    "@opentiny/react-option-group": "workspace:~",
+    "@opentiny/react-numeric": "workspace:~",
+    "@opentiny/react-time-picker": "workspace:~",
+    "@opentiny/react-radio": "workspace:~",
+    "@opentiny/react-checkbox": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

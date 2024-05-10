@@ -1,0 +1,23 @@
+{
+  "name": "@opentiny/react-guide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "shepherd.js": "11.0.1"
+  },
+  "peerDependencies": {
+    "@floating-ui/dom": "^1.0.10"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@opentiny/react-hrapprover",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-dept": "workspace:~",
+    "@opentiny/react-radio": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-loading": "workspace:~",
+    "@opentiny/react-modal": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

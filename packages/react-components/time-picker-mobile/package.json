@@ -1,0 +1,10 @@
+{
+  "name": "@opentiny/react-time-picker-mobile",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-cascader-select": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~"
+  }
+}

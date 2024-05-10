@@ -1,4 +1,23 @@
 {
+  "ActionSheet": {
+    "path": "react/src/action-sheet/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile"
+    ]
+  },
+  "ActionSheetMobile": {
+    "path": "react/src/action-sheet/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ActionSheetMobileFirst": {
+    "path": "react/src/action-sheet/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
   "Alert": {
     "path": "react/src/alert/index.ts",
     "type": "component",
@@ -24,6 +43,24 @@
     "type": "template",
     "exclude": false
   },
+  "Anchor": {
+    "path": "react/src/anchor/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "AnchorPc": {
+    "path": "react/src/anchor/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "AutonaviMap": {
+    "path": "react/src/chart/autonavi-map/index.ts",
+    "type": "component",
+    "exclude": false
+  },
   "Badge": {
     "path": "react/src/badge/index.ts",
     "type": "component",
@@ -40,6 +77,37 @@
   },
   "BadgePc": {
     "path": "react/src/badge/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "BaiduMap": {
+    "path": "react/src/chart/baidu-map/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "Breadcrumb": {
+    "path": "react/src/breadcrumb/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "BreadcrumbItem": {
+    "path": "react/src/breadcrumb-item/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "BreadcrumbItemPc": {
+    "path": "react/src/breadcrumb-item/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "BreadcrumbPc": {
+    "path": "react/src/breadcrumb/src/pc.jsx",
     "type": "template",
     "exclude": false
   },
@@ -68,14 +136,240 @@
     "type": "template",
     "exclude": false
   },
+  "Chart": {
+    "path": "react/src/chart/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartBar": {
+    "path": "react/src/chart/chart-bar/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartBoxplot": {
+    "path": "react/src/chart/chart-boxplot/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartCandle": {
+    "path": "react/src/chart/chart-candle/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartCore": {
+    "path": "react/src/chart/chart-core/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartFunnel": {
+    "path": "react/src/chart/chart-funnel/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartGauge": {
+    "path": "react/src/chart/chart-gauge/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartGraph": {
+    "path": "react/src/chart/chart-graph/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartHeatmap": {
+    "path": "react/src/chart/chart-heatmap/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartHistogram": {
+    "path": "react/src/chart/chart-histogram/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartLine": {
+    "path": "react/src/chart/chart-line/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartLiquidfill": {
+    "path": "react/src/chart/chart-liquidfill/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartMap": {
+    "path": "react/src/chart/chart-map/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartMount": {
+    "path": "react/src/chart/chart-mount/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartPie": {
+    "path": "react/src/chart/chart-pie/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartRadar": {
+    "path": "react/src/chart/chart-radar/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartRing": {
+    "path": "react/src/chart/chart-ring/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartSankey": {
+    "path": "react/src/chart/chart-sankey/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartScatter": {
+    "path": "react/src/chart/chart-scatter/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartSunburst": {
+    "path": "react/src/chart/chart-sunburst/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartTree": {
+    "path": "react/src/chart/chart-tree/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartWaterfall": {
+    "path": "react/src/chart/chart-waterfall/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "ChartWordcloud": {
+    "path": "react/src/chart/chart-wordcloud/index.ts",
+    "type": "component",
+    "exclude": false
+  },
   "Common": {
-    "path": "react/common/src/index.ts",
+    "path": "react/src/common/src/index.ts",
     "type": "module",
+    "exclude": false
+  },
+  "Divider": {
+    "path": "react/src/divider/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "DividerPc": {
+    "path": "react/src/divider/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Drawer": {
+    "path": "react/src/drawer/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "pc"
+    ]
+  },
+  "DrawerMobileFirst": {
+    "path": "react/src/drawer/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "DrawerPc": {
+    "path": "react/src/drawer/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "FloatButton": {
+    "path": "react/src/float-button/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "FloatButtonPc": {
+    "path": "react/src/float-button/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Guide": {
+    "path": "react/src/guide/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "GuidePc": {
+    "path": "react/src/guide/src/pc.jsx",
+    "type": "template",
     "exclude": false
   },
   "Icon": {
     "path": "react/src/icon/index.ts",
     "type": "component",
+    "exclude": false
+  },
+  "Progress": {
+    "path": "react/src/progress/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile",
+      "pc"
+    ]
+  },
+  "ProgressMobile": {
+    "path": "react/src/progress/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "ProgressPc": {
+    "path": "react/src/progress/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "QrCode": {
+    "path": "react/src/qr-code/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "Skeleton": {
+    "path": "react/src/skeleton/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "SkeletonItem": {
+    "path": "react/src/skeleton-item/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "SkeletonItemPc": {
+    "path": "react/src/skeleton-item/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "SkeletonPc": {
+    "path": "react/src/skeleton/src/pc.jsx",
+    "type": "template",
     "exclude": false
   },
   "Switch": {
@@ -94,6 +388,70 @@
   },
   "SwitchPc": {
     "path": "react/src/switch/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Tag": {
+    "path": "react/src/tag/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "TagMobile": {
+    "path": "react/src/tag/src/mobile.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "TagMobileFirst": {
+    "path": "react/src/tag/src/mobile-first.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "TagPc": {
+    "path": "react/src/tag/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "TimeLine": {
+    "path": "react/src/time-line/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "TimeLinePc": {
+    "path": "react/src/time-line/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "TimelineItem": {
+    "path": "react/src/timeline-item/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "TimelineItemPc": {
+    "path": "react/src/timeline-item/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Tooltip": {
+    "path": "react/src/tooltip/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "TooltipPc": {
+    "path": "react/src/tooltip/src/pc.jsx",
     "type": "template",
     "exclude": false
   }

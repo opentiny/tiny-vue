@@ -73,6 +73,5 @@ export const renderless = (
   const state: IAlertState = initState({ api, computed, constants, reactive })
   initApi({ api, state, constants, props, designConfig, t, emit, vm, parent, nextTick, mode })
   initWatcher({ watch, props, api })
-
   return api
 }

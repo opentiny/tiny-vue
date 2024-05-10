@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-image",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-image-viewer": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

@@ -1,0 +1,43 @@
+.docs-page-anchor {
+  .tiny-anchor__affix {
+    overflow-y: auto;
+    max-height: 80vh;
+  }
+
+  .tiny-anchor-link {
+    margin-bottom: 10px;
+    max-width: 150px;
+    font-size: 12px;
+
+    a {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.catalog {
+  height: calc(100vh - 150px);
+  overflow: hidden;
+}
+
+.catalog:hover {
+  overflow-y: auto;
+}
+
+.catalog::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+.catalog::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #c1c1c1;
+}
+
+@media (max-width: 1279px) {
+  .catalog {
+    display: none;
+  }
+}

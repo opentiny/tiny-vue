@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-qr-code",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "qrcode": "1.5.1",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@opentiny/react-locale",
+  "private": true,
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "sideEffects": false,
+  "type": "module",
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  },
+  "scripts": {}
+}

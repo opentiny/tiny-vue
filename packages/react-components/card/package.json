@@ -1,0 +1,16 @@
+{
+  "name": "@opentiny/react-card",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-dropdown": "workspace:~",
+    "@opentiny/react-dropdown-menu": "workspace:~",
+    "@opentiny/react-dropdown-item": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-radio": "workspace:~",
+    "@opentiny/react-checkbox": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

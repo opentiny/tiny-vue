@@ -1,0 +1,14 @@
+{
+  "name": "@opentiny/react-cascader-mobile",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-action-sheet": "workspace:~",
+    "@opentiny/react-exception": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-locale": "workspace:~"
+  }
+}

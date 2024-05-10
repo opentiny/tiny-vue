@@ -1,0 +1,11 @@
+{
+  "name": "@opentiny/react-split",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/react-icon": "workspace:~"
+  }
+}

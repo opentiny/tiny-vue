@@ -4,18 +4,18 @@ const $busMap = new Map()
 
 export const emit =
   (props) =>
-  (evName, ...args) => {
-    const reactEvName = 'on' + evName.substr(0, 1).toUpperCase() + evName.substr(1)
+    (evName, ...args) => {
+      const reactEvName = 'on' + evName.substr(0, 1).toUpperCase() + evName.substr(1)
 
-    if (props[reactEvName] && typeof props[reactEvName] === 'function') {
-      props[reactEvName](...args)
-    } else {
-      const $bus = $busMap.get(props)
-      if ($bus) {
-        $bus.emit(evName, ...args)
+      if (props[reactEvName] && typeof props[reactEvName] === 'function') {
+        props[reactEvName](...args)
+      } else {
+        const $bus = $busMap.get(props)
+        if ($bus) {
+          $bus.emit(evName, ...args)
+        }
       }
     }
-  }
 export const on = (props) => (evName, callback) => {
   if ($busMap.get(props)) {
     const $bus = $busMap.get(props)
@@ -78,6 +78,7 @@ export const emitEvent = (vm) => {
       }
 
       if (parent) {
+        console.log(parent, 'paren dispatcht', eventName)
         parent.emit(eventName, ...args)
         // fix: VUE3下事件参数为数组，VUE2下事件参数不是数组，这里修改为和VUE2兼容
         // parent.$emitter && parent.$emitter.emit(...[eventName].concat(params))

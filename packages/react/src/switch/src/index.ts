@@ -1,4 +1,4 @@
-import pc from './pc'
+import pc from './pc.jsx'
 
 const $constants = {
   PC_PREFIXCLS: 'tiny-switch',

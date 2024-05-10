@@ -1,0 +1,12 @@
+{
+  "name": "@opentiny/react-mini-picker",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/react-picker-column": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
+  }
+}

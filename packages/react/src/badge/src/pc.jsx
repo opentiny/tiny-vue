@@ -19,23 +19,20 @@ export default function (props) {
     data
   } = props
 
-  const defaultProps = Object.assign({
-    isDot,
-    isFixed,
-    isMini,
-    hidden,
-    offset
-  }, props)
+  const defaultProps = Object.assign(
+    {
+      isDot,
+      isFixed,
+      isMini,
+      hidden,
+      offset
+    },
+    props
+  )
 
-  const {
-    ref,
-    parent,
-    current: vm
-  } = useVm()
+  const { ref, parent, current: vm } = useVm()
 
-  const {
-    state
-  } = useSetup({
+  const { state } = useSetup({
     props: defaultProps,
     api,
     renderless,
@@ -44,8 +41,10 @@ export default function (props) {
   })
 
   return (
-    <div ref={ref} className='tiny-badge__wrapper'>
-      <If v-if={data}><span>{data}</span></If>
+    <div ref={ref} className="tiny-badge__wrapper">
+      <If v-if={data}>
+        <span>{data}</span>
+      </If>
       <Slot v-if={!data} parent_children={props.children}></Slot>
       <If v-if={!hidden && (state.content || state.content === 0 || isDot)}>
         <div
@@ -61,14 +60,15 @@ export default function (props) {
               ${offset[0]}${typeof offset[0] === 'number' ? 'px' : ''},
               ${offset[1]}${typeof offset[1] === 'number' ? 'px' : ''}
             )`
-          }}
-        >
-          <Slot name='content' slots={props.slots}>
+          }}>
+          <Slot name="content" slots={props.slots}>
             <If v-if={state.href}>
-              <a href={state.href} target={target} rel='noopener noreferrer'>{state.content}</a>
+              <a href={state.href} target={target} rel="noopener noreferrer">
+                {state.content}
+              </a>
             </If>
             <If v-if={!state.href}>
-              <span className='tiny-badge__content-text'>{state.content}</span>
+              <span className="tiny-badge__content-text">{state.content}</span>
             </If>
           </Slot>
         </div>

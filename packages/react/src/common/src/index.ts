@@ -1,16 +1,18 @@
-import { Svg } from './svg-render'
+import { Svg } from './svg-render.jsx'
 import { generateVueHooks, useVueLifeHooks } from './vue-hooks.js'
 import { emitEvent } from './event.js'
-import { If, Component, Slot, For, Transition } from './virtual-comp'
-import { filterAttrs, vc, getElementCssClass, eventBus } from './utils.js'
+import { If, Component, Slot, For, Transition } from './virtual-comp.jsx'
+import { filterAttrs, vc, getElementCssClass, eventBus, emitter } from './utils.js'
 import { useFiber } from './fiber.js'
 import { useVm } from './vm.js'
 import { twMerge } from 'tailwind-merge'
 import { stringifyCssClass } from './csscls.js'
 import { useExcuteOnce, useReload, useOnceResult } from './hooks.js'
+import { t } from '@opentiny/react-locale'
+import { useReactive } from './reactive.js'
 
 // 导入 vue 响应式系统
-import { effectScope, nextTick, reactive } from '@vue/runtime-core'
+import { effectScope, nextTick, reactive, watch } from '@vue/runtime-core'
 import { useCreateVueInstance } from './vue-instance'
 
 import '@opentiny/vue-theme/base/index.less'
@@ -19,20 +21,33 @@ import '@opentiny/vue-theme/base/index.less'
 export const $prefix = 'Tiny'
 
 export const $props = {
-  'tiny_mode': String,
-  'tiny_mode_root': Boolean,
-  'tiny_template': [Function, Object],
-  'tiny_renderless': Function,
-  'tiny_theme': String,
-  'tiny_chart_theme': Object
+  'tiny_mode': '',
+  'tiny_mode_root': false,
+  'tiny_template': {},
+  'tiny_renderless': null,
+  'tiny_theme': '',
+  'tiny_chart_theme': '',
+  'listeners': {},
+  'slots': {}
+}
+export function handlePrevent(event, fun, ...args) {
+  event.stopPropagation()
+  fun(...args)
+}
+const onBeforeMount = (instance, refs) => {
+  for (let name in instance.$refs) {
+    if (Object.prototype.hasOwnProperty.call(instance.$refs, name)) {
+      refs[name] = instance.$refs[name]
+    }
+  }
 }
 
 export const mergeClass = (...cssClasses) => twMerge(stringifyCssClass(cssClasses))
-
-const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, constants, vm, parent, $bus }) => {
+const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, constants, vm, $bus }) => {
   const render = typeof props.tiny_renderless === 'function' ? props.tiny_renderless : renderless
+  const parent = props.parentProps || {}
+  vm.$parent = vm.$parent?.$emit ? vm.$parent : parent
   const { dispatch, broadcast } = emitEvent(vm)
-
   const utils = {
     vm,
     parent,
@@ -41,29 +56,59 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
     nextTick,
     dispatch,
     broadcast,
-    t() {},
+    t,
     mergeClass,
-    mode: props.tiny_mode
+    mode: props.tiny_mode,
+    emitter,
+    refs: {},
+    router: vm.$router,
+    $bus,
+    slots: { default: props.children }
   }
+  props.modelValue = props['v-model'] || props.modelValue
+  // 实现v-model双向数据绑定
+  watch(
+    () => props['v-model'],
+    (val) => (props.modelValue = val)
+  )
+  watch(
+    () => props.modelValue,
+    (val) => {
+      if (props['v-model'] !== val) props['v-model'] = val
+      vm.$emit('onChange', val)
+    }
+  )
 
+  const vueHooks = generateVueHooks({ $bus })
+  vueHooks.onMounted(() => {
+    onBeforeMount(vm, utils.refs)
+  })
   const sdk = render(
     props,
     {
-      ...generateVueHooks({
-        $bus
-      })
+      ...vueHooks
     },
     utils,
     extendOptions
   )
-
+  if (props.children) {
+    const children = hanldeChildren(props, props.children, sdk, vm, $bus)
+    props.children = null
+    props.children = children
+  }
   const attrs = {
     a: filterAttrs,
     m: mergeClass,
     vm: utils.vm,
-    gcls: (key) => getElementCssClass(classes, key)
+    gcls: (key) => getElementCssClass(classes, key),
+    provide: vueHooks.provide,
+    inject: vueHooks.inject,
+    children: props.children,
+    $bus,
+    t,
+    nextTick,
+    emit: vm.$emit
   }
-
   if (Array.isArray(api)) {
     api.forEach((name) => {
       const value = sdk[name]
@@ -73,13 +118,46 @@ const setup = ({ props, renderless, api, extendOptions = {}, classes = {}, const
       }
     })
   }
-
   return attrs
 }
-
-export const useSetup = ({ props, renderless, api, extendOptions = {}, classes = {}, constants }) => {
+const hanldeChildren = (props, children, sdk = {}, vm = {}, $bus = {}) => {
+  if (Array.isArray(children)) {
+    let newChildren = children.map((child) => {
+      return hanldeChildren(props, child, sdk, vm, $bus)
+    })
+    return newChildren
+  }
+  let newChildren: any = {}
+  for (const key in children) {
+    if (typeof children[key] === 'object') newChildren[key] = { ...children[key] }
+    else {
+      newChildren[key] = children[key]
+    }
+    if (key === 'props') {
+      newChildren[key] = { parentProps: { ...props, children: null }, ...newChildren[key] }
+    }
+  }
+  if (!newChildren.props) newChildren.props = { parentProps: {} }
+  for (const key in sdk) {
+    newChildren.props.parentProps[key] = sdk[key]
+  }
+  Object.assign(newChildren.props.parentProps, vm, $bus)
+  return newChildren
+}
+export const useSetup = ({
+  props,
+  renderless,
+  api,
+  extendOptions = {},
+  classes = {},
+  constants,
+  chartHandler,
+  doms,
+  chartLib,
+  ref,
+  prepareBoxplotData
+}) => {
   const $bus = useOnceResult(() => eventBus())
-
   // 刷新逻辑
   const reload = useReload()
   useExcuteOnce(() => {
@@ -97,10 +175,11 @@ export const useSetup = ({ props, renderless, api, extendOptions = {}, classes =
   // 创建响应式 props，每次刷新更新响应式 props
   const reactiveProps = useOnceResult(() => reactive(props))
   Object.assign(reactiveProps, props)
-
-  const { ref, vm } = useCreateVueInstance({
+  const { vm } = useCreateVueInstance({
     $bus,
-    props
+    props,
+    doms,
+    ref
   })
 
   // 执行一次 renderless
@@ -117,20 +196,19 @@ export const useSetup = ({ props, renderless, api, extendOptions = {}, classes =
         extendOptions,
         classes,
         vm,
-        parent,
         $bus
       })
     })
     return result
   })
-
   // 触发生命周期
   useVueLifeHooks($bus)
-
+  vm.chartHandler = chartHandler
+  chartLib && (vm.chartLib = chartLib)
+  prepareBoxplotData && (vm.prepareBoxplotData = prepareBoxplotData)
   Object.keys(setupResult).forEach((key) => {
     vm[key] = setupResult[key]
   })
-
   return {
     ...setupResult,
     _: {
@@ -140,7 +218,8 @@ export const useSetup = ({ props, renderless, api, extendOptions = {}, classes =
   }
 }
 
-export { Svg, If, Component, Slot, For, Transition, vc, emitEvent, useVm, useFiber }
+export { Svg, If, Component, Slot, For, Transition, vc, emitEvent, useVm, useFiber, useReactive, useCreateVueInstance }
+export const parseVnode = (vnode) => vnode
 
 export * from './vue-hooks.js'
 export * from './vue-props.js'

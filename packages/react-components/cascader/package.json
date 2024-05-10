@@ -1,0 +1,19 @@
+{
+  "name": "@opentiny/react-cascader",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-input": "workspace:~",
+    "@opentiny/react-tag": "workspace:~",
+    "@opentiny/react-tooltip": "workspace:~",
+    "@opentiny/react-scrollbar": "workspace:~",
+    "@opentiny/react-cascader-panel": "workspace:~",
+    "@opentiny/react-filter-box": "workspace:~",
+    "@opentiny/react-locale": "workspace:~",
+    "@opentiny/react-cascader-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}

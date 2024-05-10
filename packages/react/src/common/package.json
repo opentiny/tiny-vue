@@ -10,11 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@opentiny/react-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
+    "@vue/runtime-core": "^3.3.7",
     "classnames": "^2.3.2",
-    "react": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-transition-group": "4.4.4",
     "tailwind-merge": "^1.8.0",
-    "@vue/runtime-core": "^3.3.7"
+    "prop-types": "^15.8.0"
   }
 }

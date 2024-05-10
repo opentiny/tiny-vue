@@ -242,7 +242,6 @@ export const candle = (columns, rows, settings, extra) => {
 
   params = { values, volumes, upColor, downColor, showMA }
   Object.assign(params, { MA, showVol, labelMap, digit, itemStyle })
-
   const series = getCandleSeries(params)
 
   const axisPointer = { link: { xAxisIndex: 'all' } }

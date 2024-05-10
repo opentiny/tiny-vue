@@ -1,0 +1,13 @@
+{
+  "name": "@opentiny/react-checkbox-group",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "@opentiny/react-common": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/react-checkbox": "workspace:~",
+    "@opentiny/react-checkbox-button": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
+  }
+}
