@@ -44,7 +44,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 code {
   color: #476582;
   padding: 2px 8px;
