@@ -38,7 +38,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .tiny-button {
   margin-bottom: 24px;
 }
