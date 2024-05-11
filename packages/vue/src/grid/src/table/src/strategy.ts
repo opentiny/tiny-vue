@@ -91,7 +91,7 @@ const sliceTreeData = (_vm) => {
   const subChart = chart.slice(startIndex, startIndex + renderSize)
   const subTree = []
   const { temporaryChildren = TEMPORARY_CHILDREN, temporaryShow = TEMPORARY_SHOW } = treeConfig
-  const pushIfNot = (arr, item) => !~arr.indexOf(item) && arr.push(item)
+  const pushIfNot = (arr, item) => !arr.includes(item) && arr.push(item)
 
   subChart.forEach((chartItem) => {
     const lastIndex = chartItem.length - 1
@@ -100,6 +100,9 @@ const sliceTreeData = (_vm) => {
       if (i === lastIndex) {
         chartItem[i][temporaryShow] = true
       } else {
+        if (!chartItem[i][temporaryChildren]) {
+          chartItem[i][temporaryChildren] = []
+        }
         pushIfNot(chartItem[i][temporaryChildren], chartItem[i + 1])
       }
     }

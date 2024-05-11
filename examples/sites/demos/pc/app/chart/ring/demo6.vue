@@ -42,7 +42,7 @@ export default {
           { value: 100, name: '架构设计' },
           { value: 90, name: '开发' },
           { value: 49, name: '性能' },
-          { value: 14, name: '测试' },
+          { value: 14, name: '测试' }
         ]
       }
     }

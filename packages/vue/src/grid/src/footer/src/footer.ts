@@ -107,6 +107,7 @@ const renderfoots = (opt) => {
     tableColumn,
     tableListeners
   } = opt
+  const { scrollbarWidth } = $table
   return (list, $rowIndex) =>
     h(
       'tr',
@@ -138,6 +139,9 @@ const renderfoots = (opt) => {
             showTooltip
           } = buildParamFunc(Object.assign(arg1, arg2))
           const { leftList, rightList } = columnStore
+          const { left: leftPosition, right } = column.style || {}
+          // 表尾右侧冻结列，当有表体有滚动条时，需要加上滚动条的偏移量
+          const rightPosition = right >= 0 ? right + scrollbarWidth : ''
           return h(
             'td',
             {
@@ -155,10 +159,12 @@ const renderfoots = (opt) => {
                 getClass(footerClassName, params),
                 getClass(footerCellClassName, params)
               ],
-              style: {
-                left: `${column.style?.left}px`,
-                right: `${column.style?.right}px`
-              },
+              style: fixedHiddenColumn
+                ? {
+                    left: `${leftPosition}px`,
+                    right: `${rightPosition}px`
+                  }
+                : null,
               attrs,
               on: tfOns,
               key: columnKey ? column.id : columnIndex

@@ -1,9 +1,10 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, config } from '../fixtures'
 
+config.waitTime = 5000
 test('base', async ({ page }) => {
   await page.goto('chart-ring#ring-base')
-  const chart = page.locator('#ring-base .hui-chart')
-  await expect(chart).toHaveScreenshot('base.png')
+  await expect(page.locator('#ring-base .hui-chart')).toBeInViewport()
+  await expect(page).toHaveScreenshot('base.png')
 })
 
 test('demo2', async ({ page }) => {
@@ -21,10 +22,12 @@ test('demo3', async ({ page }) => {
 test('demo4', async ({ page }) => {
   await page.goto('chart-ring#ring-demo4')
   const chart = page.locator('#ring-demo4 .hui-chart')
+  await expect(chart).toBeVisible()
   await expect(chart).toHaveScreenshot('demo4.png')
 })
 
 test('demo5', async ({ page }) => {
+  config.waitTime = 5000
   await page.goto('chart-ring#ring-demo5')
   const chart = page.locator('#ring-demo5 .hui-chart')
   await expect(chart).toHaveScreenshot('demo5.png')
@@ -39,5 +42,6 @@ test('demo6', async ({ page }) => {
 test('ring-title', async ({ page }) => {
   await page.goto('chart-ring#ring-ring-title')
   const chart = page.locator('#ring-ring-title .hui-chart')
+  await expect(chart).toBeVisible()
   await expect(chart).toHaveScreenshot('ring-title.png')
 })

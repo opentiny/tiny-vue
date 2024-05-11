@@ -52,11 +52,12 @@ export default {
     {
       demoId: 'dragable',
       name: {
-        'zh-CN': '宽度拖拽功能',
+        'zh-CN': '宽高可拖拽',
         'en-US': ''
       },
       desc: {
-        'zh-CN': '<p>添加 <code>dragable</code> 属性开启抽屉宽度拖拽功能，默认值为 <code>false</code>。</p>',
+        'zh-CN':
+          '<p>添加 <code>dragable</code> 属性开启抽屉宽度/高度拖拽功能。当抽屉位于左右两侧时可拖拽宽度，上下两侧可拖拽高度。默认值为 <code>false</code>。</p>',
         'en-US': ''
       },
       codeFiles: ['dragable.vue']

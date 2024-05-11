@@ -853,6 +853,9 @@ export const setSoftFocus =
     if (input) {
       input.focus()
     }
+
+    // tiny 新增： 解决 reference 插槽时，选择数据后，需要点2次才能打开下拉面板
+    state.softFocus = false
   }
 
 export const getValueIndex =
@@ -1496,6 +1499,7 @@ export const watchVisible =
       if (value && vm.$refs.scrollbar) {
         if (props.optimization) {
           optmzApis.setScrollTop({ refs: vm.$refs, state })
+          vm.$refs.scrollbar.updateVisibleItems(true, true)
         } else {
           vm.$refs.scrollbar.handleScroll()
         }

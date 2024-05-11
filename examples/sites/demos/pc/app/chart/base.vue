@@ -14,8 +14,13 @@
     <h3 class="title">饼图</h3>
     <tiny-button style="margin-bottom: 20px" @click="switchColorMode">color-mode切换</tiny-button>
     <div class="content">
-      <tiny-chart type="ring" @handle-color="handleColor" :options="options3" :color-mode="colorMode"
-        :key="key"></tiny-chart>
+      <tiny-chart
+        type="ring"
+        @handle-color="handleColor"
+        :options="options3"
+        :color-mode="colorMode"
+        :key="key"
+      ></tiny-chart>
     </div>
   </div>
 </template>

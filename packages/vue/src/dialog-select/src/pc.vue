@@ -17,6 +17,7 @@
     @drag-start="$emit('drag-start', $event)"
     @drag-end="$emit('drag-end', $event)"
     @drag-move="$emit('drag-move', $event)"
+    @resize="$emit('resize', $event)"
   >
     <!-- title -->
     <template v-if="slots.title" #title="params">
@@ -169,7 +170,9 @@ export default defineComponent({
     'prev-click',
     'next-click',
     'before-page-change',
-    'change'
+    'change',
+    // tiny 新增
+    'resize'
   ],
   props: [
     ...props,

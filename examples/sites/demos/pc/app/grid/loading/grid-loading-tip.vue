@@ -13,6 +13,34 @@
 <script lang="jsx">
 import { Grid, GridColumn, Button } from '@opentiny/vue'
 
+const tableData = [
+  {
+    id: '1',
+    name: 'GFD科技YX公司',
+    city: '福州'
+  },
+  {
+    id: '2',
+    name: 'WWW科技YX公司',
+    city: '深圳'
+  },
+  {
+    id: '3',
+    name: 'RFV有限责任公司',
+    city: '中山'
+  },
+  {
+    id: '4',
+    name: 'TGB科技YX公司',
+    city: '龙岩'
+  },
+  {
+    id: '5',
+    name: 'YHN科技YX公司',
+    city: '韶关'
+  }
+]
+
 export default {
   components: {
     TinyGrid: Grid,
@@ -21,7 +49,7 @@ export default {
   },
   data() {
     return {
-      tableData: [],
+      tableData,
       loading: true
     }
   },
@@ -30,36 +58,9 @@ export default {
   },
   methods: {
     init() {
-      this.tableData = []
       this.loading = true
       setTimeout(() => {
-        this.tableData = [
-          {
-            id: '1',
-            name: 'GFD科技YX公司',
-            city: '福州'
-          },
-          {
-            id: '2',
-            name: 'WWW科技YX公司',
-            city: '深圳'
-          },
-          {
-            id: '3',
-            name: 'RFV有限责任公司',
-            city: '中山'
-          },
-          {
-            id: '4',
-            name: 'TGB科技YX公司',
-            city: '龙岩'
-          },
-          {
-            id: '5',
-            name: 'YHN科技YX公司',
-            city: '韶关'
-          }
-        ]
+        this.tableData = tableData.slice()
         this.loading = false
       }, 2000)
     }

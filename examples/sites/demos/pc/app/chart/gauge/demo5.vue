@@ -14,7 +14,6 @@ export default {
   data() {
     return {
       options: {
-
         // gradientColor表示从仪表盘左到右的渐变色
         // gradientColor.length == 1 时也可以表示单色
         // 注意： splitColor 的优先级高于 gradientColor

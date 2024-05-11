@@ -24,8 +24,9 @@ export default {
               htmlString += itemSeventeen.name + '<br/>'
             }
             htmlString += `<div>
-        <span style="display:inline-block;width:10px;height:10px;border-radius:5px;background-color:${itemSeventeen.color
-              };"></span>
+        <span style="display:inline-block;width:10px;height:10px;border-radius:5px;background-color:${
+          itemSeventeen.color
+        };"></span>
         <span style="margin-left:5px;">
           <span style="display:inline-block;width:110px;">${itemSeventeen.seriesName} User</span>
           <span style="font-weight:bold>${itemSeventeen.value}%</span>"

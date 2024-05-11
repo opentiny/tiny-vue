@@ -313,9 +313,9 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '页签是否在超过 title-width 省略显示',
+            'zh-CN': '页签是否在超过 title-width 省略显示，优先级低于 tooltip-config',
             'en-US':
-              'Callback function before closing a tab. The input parameter is the tab name. If the function returns false or a rejected Promise, the tab is not closed.'
+              'Indicates whether to display the tab when the title width is exceeded. The priority is lower than tooltip-config.'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'overflow-title',

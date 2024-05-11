@@ -22,6 +22,5 @@ const options = ref({
   legend: {
     show: false
   }
-
 })
 </script>

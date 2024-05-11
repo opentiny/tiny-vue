@@ -9,9 +9,10 @@
 import Core from '@opentiny/vue-chart-core'
 import { waterfall } from './waterfall'
 import { t } from '@opentiny/vue-locale'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartWaterfall',
+  name: $prefix + 'ChartWaterfall',
   mixins: [Core],
   data() {
     return {

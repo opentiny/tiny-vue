@@ -29,8 +29,5 @@ const options = ref({
       ]
     }
   ]
-
 })
-
-
 </script>

@@ -31,24 +31,24 @@ export default {
           { 'Month': 'Sep', 'Domestic': 17, 'Abroad': 30 },
           { 'Month': 'Oct', 'Domestic': 40, 'Abroad': 33 },
           { 'Month': 'Nov', 'Domestic': 42, 'Abroad': 22 },
-          { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 1 },
-
+          { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 1 }
         ],
         xAxis: 'Month',
 
         // 自定义y轴
-        yAxis: [{
-          name: 'Percent(%)', // 名称
-          max: 65, // 最大值
-          min: 0, // 最小值
-          interval: 5, // 数值间距
-          nameTextStyle: {
-            // 名称样式
-            padding: [20, 0, 0, 20]
-          },
-          unit: '%' // 单位
-
-        }]
+        yAxis: [
+          {
+            name: 'Percent(%)', // 名称
+            max: 65, // 最大值
+            min: 0, // 最小值
+            interval: 5, // 数值间距
+            nameTextStyle: {
+              // 名称样式
+              padding: [20, 0, 0, 20]
+            },
+            unit: '%' // 单位
+          }
+        ]
       }
     }
   }

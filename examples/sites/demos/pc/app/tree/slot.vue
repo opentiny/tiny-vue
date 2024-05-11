@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-unused-vars -->
 <template>
   <div class="slot-demo">
     <div>
@@ -48,8 +49,7 @@ export default {
   components: {
     TinyTree: Tree,
     TinyLink: Link,
-    TinyButton: Button,
-    TinyIconPlusSquare: iconPlusSquare()
+    TinyButton: Button
   },
   data() {
     return {
@@ -62,7 +62,10 @@ export default {
         {
           id: '1',
           label: '数据 1',
-          children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+          children: [
+            { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+            { id: '1-2', label: '数据 1-2' }
+          ]
         },
         {
           id: '2',

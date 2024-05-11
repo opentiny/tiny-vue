@@ -8,9 +8,10 @@
 <script>
 import Core from '@opentiny/vue-chart-core'
 import { radar } from './radar'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartRadar',
+  name: $prefix + 'ChartRadar',
   mixins: [Core],
   props: {
     settings: {

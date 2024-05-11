@@ -64,7 +64,7 @@
           v-if="type !== 'textarea'"
           ref="input"
           :name="name"
-          v-bind="a($attrs, ['size', 'class', 'style', '^on\w+'])"
+          v-bind="a($attrs, ['size', 'class', 'style', '^on[A-Z]'])"
           class="tiny-mobile-input__inner"
           :style="state.inputStyle"
           :tabindex="tabindex"

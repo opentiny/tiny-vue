@@ -16,7 +16,7 @@
           class="h-11 flex-none flex items-center border-b-0.5 border-color-border-separator overflow-auto whitespace-nowrap scrollbar-size-0"
         >
           <div class="px-4 flex">
-            <div v-for="(option, index) in state.computedNavList" :key="index" class="flex-none flex">
+            <div v-for="(option, index) in state.computedNavList" :key="index" class="flex-none flex leading-5.5">
               <template v-if="index <= state.level">
                 <span v-if="index !== 0" class="px-2 text-color-text-placeholder">/</span>
                 <span

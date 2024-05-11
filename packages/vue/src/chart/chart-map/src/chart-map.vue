@@ -10,9 +10,10 @@ import Core from '@opentiny/vue-chart-core'
 
 import { map } from './map'
 import * as echarts from 'echarts'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartMap',
+  name: $prefix + 'ChartMap',
   mixins: [Core],
 
   data() {

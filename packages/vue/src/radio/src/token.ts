@@ -35,7 +35,7 @@ export const classes = {
   'radio-hover-selected': 'sm:[&_path:nth-of-type(1)]:hover:fill-color-brand-hover',
   'radio-active': 'sm:[&_path:nth-of-type(1)]:active:fill-color-brand-active',
   'radio-active-selected': 'sm:[&_path:nth-of-type(1)]:active:fill-color-brand-active',
-  'label-disabled': 'text-color-text-disabled cursor-not-allowed',
+  'label-disabled': 'text-color-text-secondary cursor-not-allowed',
   'pc-show': 'hidden sm:block',
   'mobile-show': 'block sm:hidden',
   'readonly-is-checked': 'sm:m-0',

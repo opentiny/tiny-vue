@@ -229,6 +229,20 @@ export default {
       codeFiles: ['upload-file-list-saas.vue']
     },
     {
+      demoId: 'show-download-bar',
+      name: {
+        'zh-CN': '下载进度条',
+        'en-US': 'Download progress bar'
+      },
+      desc: {
+        'zh-CN':
+          '通过给 file 对象设置 <code>showDownloadBar=true</code> 可以显示下载进度条， <code>downloadPercentage</code> 属性传入下载进度， <code>downloadStatus</code> 设置下载状态。',
+        'en-US':
+          'You can set the <code>showDownloadBar=true</code> attribute of the file object to display the download progress bar, set the <code>downloadPercentage</code> attribute to transfer the download progress, and set the <code>downloadStatus</code> to set the download status.'
+      },
+      codeFiles: ['show-download-bar.vue']
+    },
+    {
       demoId: 'picture-card',
       name: {
         'zh-CN': '照片墙',

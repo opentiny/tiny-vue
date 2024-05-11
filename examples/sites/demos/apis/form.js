@@ -602,6 +602,16 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'error-label'
+        },
+        {
+          name: 'prompt',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '强提示插槽',
+            'en-US': 'Prompt slot'
+          },
+          mode: ['mobile-first'],
+          mfDemo: 'prompt-slot'
         }
       ]
     }

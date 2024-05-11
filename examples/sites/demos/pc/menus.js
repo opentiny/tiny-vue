@@ -163,8 +163,7 @@ export const cmpMenus = [
       { 'nameCn': '时间选择器', 'name': 'TimePicker', 'key': 'time-picker' },
       { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' },
       { 'nameCn': '颜色选择器', 'name': 'ColorPicker', 'key': 'color-picker' },
-      { 'nameCn': '颜色选择面板', 'name': 'ColorSelectPanel', 'key': 'color-select-panel' },
-      { 'nameCn': '查询生成器', 'name': 'QueryBuilder ', 'key': 'query-builder' }
+      { 'nameCn': '颜色选择面板', 'name': 'ColorSelectPanel', 'key': 'color-select-panel' }
     ]
   },
   {

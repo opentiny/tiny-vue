@@ -82,7 +82,8 @@ export const queryChange =
   ({ select, props, state }) =>
   (query) => {
     const oldVisible = state.visible
-    const newVisible = new RegExp(escapeRegexpString(query), 'i').test(state.currentLabel) || !!props.created
+    // tiny 新增： 优化判断query是否匹配。 使用正则性能差！
+    const newVisible = state.currentLabel.toLowerCase().includes(query.toLowerCase()) || !!props.created
 
     if (oldVisible !== newVisible) {
       state.visible = newVisible

@@ -21,7 +21,7 @@ test('单选无需配置可复制', async ({ page }) => {
   await valueInput.focus()
   await page.keyboard.press('Control+V')
   await page.waitForTimeout(200)
-  await expect(valueInput).toHaveValue('黄金糕')
+  await expect(valueInput).toHaveValue('北京')
 })
 
 test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
@@ -33,7 +33,7 @@ test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
   const input = select.locator('.tiny-input__inner')
   const valueInput = wrap.locator('.custom .tiny-input__inner')
 
-  await expect(input).toHaveValue('黄金糕')
+  await expect(input).toHaveValue('北京')
   await page.waitForTimeout(200)
   const inputBox = await input.boundingBox()
 
@@ -48,7 +48,7 @@ test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
   await valueInput.click()
   await page.keyboard.press('Control+V')
   await page.waitForTimeout(200)
-  await expect(valueInput).toHaveValue('黄金糕')
+  await expect(valueInput).toHaveValue('北京')
 })
 
 test('单选远程搜索配置 allow-copy 可复制', async ({ page }) => {

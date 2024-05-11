@@ -73,7 +73,9 @@ export const mousedown =
 
     state.dragEvent.isDrag = true
     state.dragEvent.x = touch.clientX
+    state.dragEvent.y = touch.clientY
     state.dragEvent.offsetWidth = drawerBox.offsetWidth
+    state.dragEvent.offsetHeight = drawerBox.offsetHeight
   }
 
 export const mousemove = ({ state, props }: { state: IDrawerState; props: IDrawerProps }) =>
@@ -86,18 +88,25 @@ export const mousemove = ({ state, props }: { state: IDrawerState; props: IDrawe
 
     const { placement } = props
     const {
-      dragEvent: { x, offsetWidth }
+      dragEvent: { x, y, offsetWidth, offsetHeight }
     } = state
     const { touches, targetTouches, changedTouches } = event
     const touch =
       (touches && touches[0]) || (targetTouches && targetTouches[0]) || (changedTouches && changedTouches[0])
-    const { clientX } = touch || event
+    const { clientX, clientY } = touch || event
     const offsetX = clientX - x
+    const offsetY = clientY - y
 
     if (placement === 'left') {
       state.width = offsetWidth + offsetX
     } else if (placement === 'right') {
       state.width = offsetWidth - offsetX
+    } else if (placement === 'top') {
+      const height = offsetHeight + offsetY
+      state.height = height > 10 ? height : 10
+    } else if (placement === 'bottom') {
+      const height = offsetHeight - offsetY
+      state.height = height > 10 ? height : 10
     }
   }) as Parameters<Document['removeEventListener']>['1']
 

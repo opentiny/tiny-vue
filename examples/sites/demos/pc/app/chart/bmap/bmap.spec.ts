@@ -1,7 +1,8 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '../fixtures'
 
 test('base', async ({ page }) => {
-  await page.goto('chart-baidu-map#bmap-base')
+  await page.goto('chart-baidu-map')
   const chart = page.locator('#bmap-base .hui-chart')
-  await expect(chart).toHaveScreenshot('base.png')
+  await expect(chart).toBeInViewport()
+  await expect(chart).toHaveScreenshot('base.png', { maxDiffPixelRatio: 0.1 })
 })

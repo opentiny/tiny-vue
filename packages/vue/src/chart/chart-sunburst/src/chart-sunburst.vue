@@ -8,9 +8,10 @@
 <script>
 import { sunburst } from './sunburst'
 import Core from '@opentiny/vue-chart-core'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartSunburst',
+  name: $prefix + 'ChartSunburst',
   mixins: [Core],
   data() {
     return {

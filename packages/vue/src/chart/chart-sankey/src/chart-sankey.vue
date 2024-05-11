@@ -8,9 +8,10 @@
 <script>
 import Core from '@opentiny/vue-chart-core'
 import { sankey } from './sankey'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartSankey',
+  name: $prefix + 'ChartSankey',
   mixins: [Core],
 
   data() {

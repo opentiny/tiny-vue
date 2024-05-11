@@ -178,8 +178,18 @@ export const selectDateScroll =
   }
 
 export const adjustSpinners =
-  ({ api, state }) =>
-  () => {
+  ({ api, state, vm }) =>
+  (type) => {
+    if (type) {
+      const year = vm.date.getFullYear()
+      const month = vm.date.getUTCMonth() + 1
+      const day = vm.date.getDate()
+      if (type === 'min' && vm.endDate instanceof Date) {
+        state.selectableRange = [[new Date(`${year}-${month}-${day} 00:00:00`), vm.endDate]]
+      } else if (type === 'max' && vm.startDate instanceof Date) {
+        state.selectableRange = [[vm.startDate, new Date(`${year}-${month}-${day} 23:59:59`)]]
+      }
+    }
     api.adjustSpinner('hours', state.hours)
     api.adjustSpinner('minutes', state.minutes)
     api.adjustSpinner('seconds', state.seconds)

@@ -26,10 +26,10 @@ export const api = ['state', 'visible', 'hoverItem', 'selectOptionClick']
 const initState = ({ reactive, computed, props, api, markRaw, select, parent }) => {
   const state = reactive({
     parent: markRaw(parent),
+    selectMultiple: computed(() => select.multiple),
     created: computed(() => props.created),
     index: -1,
-    select: markRaw(select),
-    hover: computed(() => !state.select.optimization && state.select.state.hoverValue === state.index),
+    hover: computed(() => !select.optimization && select.state.hoverValue === state.index),
     visible: true,
     hitState: false,
     groupDisabled: false,
@@ -104,13 +104,6 @@ const initWatch = ({ watch, props, state, select, constants }) => {
 
         select.state.selectEmitter.emit(constants.EVENT_NAME.setSelected)
       }
-    }
-  )
-
-  watch(
-    () => state.visible,
-    () => {
-      select.state.filteredOptionsCount += state.visible ? 1 : -1
     }
   )
 }

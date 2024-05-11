@@ -30,7 +30,6 @@ const eachTreeItem = ({ parent, obj, iterate, context, path, node, parseChildren
   each(obj, (item, index) => {
     const paths = path.concat([`${index}`])
     const nodes = node.concat([item])
-
     iterate.call(context, item, index, obj, paths, parent, nodes)
 
     if (item && parseChildren) {

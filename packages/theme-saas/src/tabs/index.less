@@ -1181,17 +1181,17 @@
   &&--top:not(&--small)&--card > &__header &__item,
   &&--top:not(&--small)&--border-card > &__header &__item {
     @apply text-sm;
-    @apply text-color-text-secondary;
+    @apply text-color-text-primary;
+    @apply ~'leading-5.5';
   }
 
   &&--top:not(&--small):not(&--card):not(&--border-card) > &__header &__item,
   &&--top:not(&--small):not(&--card):not(&--border-card) > &__header &__nav-prev,
   &&--top:not(&--small):not(&--card):not(&--border-card) > &__header &__nav-next,
   &&--top:not(&--small):not(&--card):not(&--border-card) > &__header &__more-container {
-    @apply h-auto;
-    line-height: initial;
-    @apply ~"pt-2.5";
-    @apply ~"pb-2.5";
+    @apply h-10;
+    @apply ~'pt-2';
+    @apply ~'pb-2';
   }
 
   &&--top:not(&--small):not(&--card):not(&--border-card) > &__header &__active-bar {

@@ -27,7 +27,7 @@ const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
   }
   hex = hex.replace(/\s*#/g, '')
 
-  if (hex.length == 3) {
+  if (hex.length === 3) {
     hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]
   }
 
@@ -74,8 +74,8 @@ export const getMileIcon =
     const { r, g, b } = hexToRgb(status)
 
     return {
-      background: switchColor ? constants.DEFAULT_BACK_COLOR : status,
-      color: switchColor ? status : constants.DEFAULT_BACK_COLOR,
+      background: (switchColor ? constants.DEFAULT_BACK_COLOR : status) + '!important',
+      color: (switchColor ? status : constants.DEFAULT_BACK_COLOR) + '!important',
       boxShadow: `rgba(${r},${g},${b},.4) ${constants.BOX_SHADOW_PX}`
     }
   }
@@ -102,6 +102,8 @@ export const getLineColor =
       } else if (props.lineStyle === 1) {
         background = status === props.completedField ? props.milestonesStatus[status] : ''
       }
+
+      background += ' !important'
     }
 
     return { background }

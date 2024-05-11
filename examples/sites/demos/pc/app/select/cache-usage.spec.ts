@@ -10,10 +10,10 @@ test('cache-op', async ({ page }) => {
   const cacheValue = wrap.locator('.cache-value')
 
   await input.click()
-  await dropdown.getByRole('listitem').filter({ hasText: '黄金糕' }).click()
+  await dropdown.getByRole('listitem').filter({ hasText: '北京' }).click()
   await expect(cacheValue).toContainText(['选项1'])
 
   await input.click()
-  await dropdown.getByRole('listitem').filter({ hasText: '双皮奶' }).click()
+  await dropdown.getByRole('listitem').filter({ hasText: '上海' }).click()
   await expect(cacheValue).toContainText(['选项2'])
 })

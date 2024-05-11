@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-start leading-6 py-3 cursor-pointer select-none" @click="$emit('click', $event)">
+  <div class="flex items-start leading-5.5 py-3 cursor-pointer select-none" @click="$emit('click', $event)">
     <component
       v-if="multiple"
       :is="selected ? 'icon-checked-sur' : 'icon-check'"

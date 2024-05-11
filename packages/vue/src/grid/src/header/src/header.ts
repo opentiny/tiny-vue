@@ -175,10 +175,12 @@ function getThPropsArg(args) {
       colspan: column.colSpan,
       rowspan: column.rowSpan
     },
-    style: {
-      left: `${column.style?.left}px`,
-      right: `${column.style?.right + scrollbarWidth}px`
-    },
+    style: fixedHiddenColumn
+      ? {
+          left: `${column.style?.left}px`,
+          right: `${column.style?.right + scrollbarWidth}px`
+        }
+      : null,
     on: thOns,
     key: isDragHeaderSorting ? random() : columnKey || isColGroup ? column.id : columnIndex
   }
@@ -221,7 +223,7 @@ function renderThCell(args) {
     $table.isShapeTable ? column.renderHeader(h, { isHidden: fixedHiddenColumn, ...params }) : null
   )
 }
-function renderThResize({ _vm, border, column, fixedHiddenColumn, isColGroup, params, resizable }) {
+function renderThResize({ _vm, border, column, fixedHiddenColumn, isColGroup, params, resizable, isColResize }) {
   let res = null
 
   const classMap = {
@@ -229,11 +231,7 @@ function renderThResize({ _vm, border, column, fixedHiddenColumn, isColGroup, pa
   }
 
   // 删除fixedHiddenColumn，冻结表头放开可以拖拽调节宽度。
-  if (
-    !isColGroup &&
-    !~['index', 'radio', 'selection'].indexOf(column.type) &&
-    (isBoolean(column.resizable) ? column.resizable : resizable)
-  ) {
+  if (!isColGroup && isColResize && (isBoolean(column.resizable) ? column.resizable : resizable)) {
     res = h('div', {
       class: ['tiny-grid-resizable', { [classMap.isLine]: !border }],
       on: {
@@ -267,6 +265,8 @@ function getThHandler(args) {
     tableListeners
   } = args
 
+  let { operationColumnResizable } = $table
+
   return (column, $columnIndex) => {
     let { showHeaderOverflow, showHeaderTip, headerAlign, align, headerClassName } = column
     let isColGroup = column.children && column.children.length
@@ -279,6 +279,9 @@ function getThHandler(args) {
     let thOns = {}
     let hasEllipsis = showTitle || showTooltip || showEllipsis
     const { columnStore, scrollbarWidth } = $table
+
+    // type为index或radio或selection的列使用operationColumnResizable控制是否可拖动列宽，其它列默认是true
+    let isColResize = ['index', 'radio', 'selection'].includes(column.type) ? operationColumnResizable : true
 
     // 索引列、选择列如果不配置对齐方式则默认为居中对齐
     headAlign = modifyHeadAlign({ column, headAlign })
@@ -305,7 +308,7 @@ function getThHandler(args) {
       renderThPartition({ border, column, isColGroup, resizable }),
       renderThCell(args2),
       // 列宽拖动
-      renderThResize({ _vm, border, column, fixedHiddenColumn, isColGroup, params, resizable })
+      renderThResize({ _vm, border, column, fixedHiddenColumn, isColGroup, params, resizable, isColResize })
     ])
   }
 }

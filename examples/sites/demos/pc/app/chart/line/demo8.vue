@@ -92,7 +92,7 @@ export default {
           { 'Time': '01:57', 'Domestic': 17, 'Abroad': 30 },
           { 'Time': '01:58', 'Domestic': 40, 'Abroad': 33 },
           { 'Time': '01:59', 'Domestic': 42, 'Abroad': 22 },
-          { 'Time': '02:00', 'Domestic': 41, 'Abroad': 11 },
+          { 'Time': '02:00', 'Domestic': 41, 'Abroad': 11 }
         ],
         xAxis: 'Time',
         yAxis: {

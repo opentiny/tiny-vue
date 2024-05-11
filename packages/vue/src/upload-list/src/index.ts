@@ -1,5 +1,5 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile-first'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 export const uploadListProps = {
   ...$props,
@@ -89,7 +89,8 @@ export const uploadListProps = {
   compact: {
     type: Boolean,
     default: false
-  }
+  },
+  imageBgColor: String
 }
 
 export default defineComponent({

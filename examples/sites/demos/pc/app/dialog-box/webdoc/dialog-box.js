@@ -220,9 +220,16 @@ export default {
         'en-US': 'Full-screen pop-up window'
       },
       desc: {
-        'zh-CN': '<p>可通过<code>fullscreen</code>属性设置<code>true</code>显示全屏弹窗。</p>\n',
-        'en-US':
-          '<p>Display full screen pop ups by setting the<code>fullscreen</code>attribute to<code>true</code>.</p>\n'
+        'zh-CN': `
+          可通过<code>fullscreen</code>属性设置弹窗是否为全屏状态, 默认值 为 <code>false</code>。<br>
+          可通过<code>resize</code>属性设置弹窗是否有切换全屏的功能, 默认值 为 <code>false</code>。<br>
+          可通过<code>resize</code>事件，监听弹窗切换全屏的事件。<br>
+          `,
+        'en-US': `
+          You can use the <code>fullscreen</code> property to set <code>true</code> to display the full-screen pop-up window.<br>
+          You can use the <code>resize</code> attribute to set whether the pop-up window has the full-screen switch function. The default value is <code>false</code>.<br>
+          The <code>resize</code> event can be used to listen to the event of switching the full screen in the pop-up window.<br>
+          `
       },
       codeFiles: ['fullscreen.vue']
     },
@@ -267,6 +274,20 @@ export default {
           '<p>By setting the event<code>@open</code>: triggered when the dialog box is opened<code>@opened</code>: triggered when the animation ends when the dialog box is opened<code>@close</code>: triggered when the dialog box is closed<code>@closed</code>: triggered when the animation ends when the dialog box is closed.</p>\n'
       },
       codeFiles: ['open-close-events.vue']
+    },
+    {
+      demoId: 'transition-effect',
+      name: {
+        'zh-CN': '启用弹出动效',
+        'en-US': 'Enable Pop-Up Effects'
+      },
+      desc: {
+        'zh-CN':
+          '<p>可通过配置 <code>dialog-transition</code> 属性为 <code>enlarge</code>，可启用 <code>DialogBox</code> 打开时逐渐放大的动效。</p>',
+        'en-US':
+          'You can set the <code>dialog-transition</code> attribute to <code>enlarge</code> to enable the zoom-in effect when the <code>DialogBox</code> is opened.'
+      },
+      codeFiles: ['transition-effect.vue']
     }
   ]
 }

@@ -65,7 +65,7 @@
             custom-class="h-5 w-5 sm:h-4 sm:w-4"
             :class="
               !state.isDisplayOnly && state.pickerDisabled
-                ? 'fill-color-icon-placeholder sm:fill-color-icon-secondary'
+                ? 'fill-color-icon-placeholder sm:fill-color-icon-disabled'
                 : 'fill-color-icon-secondary sm:fill-color-text-placeholder'
             "
           />

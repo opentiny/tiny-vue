@@ -64,7 +64,7 @@
       </template>
       <template #body-bottom>
         <div data-tag="view-footer" class="flex items-center py-4 px-3 border-t border-color-bg-4 shadow-sm">
-          <div class="cursor-pointer pr-2" @click.stop="toggleCheckList(true)">
+          <div class="cursor-pointer pr-2 leading-5.5" @click.stop="toggleCheckList(true)">
             <span>{{ t('ui.select.selectedNum', { num: state.computedCheckList.length }) }}</span>
             <IconChevronUp
               v-show="state.computedCheckList.length"

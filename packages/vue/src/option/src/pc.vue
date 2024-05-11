@@ -18,7 +18,7 @@
       highlightClass
     ]"
   >
-    <span v-if="state.select.multiple" class="tiny-option__checkbox-wrap tiny-select-dropdown__item-checkbox">
+    <span v-if="state.selectMultiple" class="tiny-option__checkbox-wrap tiny-select-dropdown__item-checkbox">
       <!-- tiny 新增 tiny-checkbox -->
       <!-- <component :is="`icon-${state.selectCls}`" class="tiny-svg-size" /> -->
       <tiny-checkbox
@@ -28,7 +28,7 @@
       </tiny-checkbox>
     </span>
     <component v-if="icon" :is="icon" class="tiny-option__icon"></component>
-    <div class="tiny-option-wrapper" :class="state.select.multiple ? 'calc-width' : 'full-width'">
+    <div class="tiny-option-wrapper" :class="state.selectMultiple ? 'calc-width' : 'full-width'">
       <slot>
         <span class="tiny-option-label" :title="state.showTitle ? state.currentLabel : ''">{{
           state.currentLabel

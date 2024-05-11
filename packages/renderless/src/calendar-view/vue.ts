@@ -156,7 +156,7 @@ const initWatch = ({ watch, props, state, emit, api, nextTick }) => {
     () => state.mode,
     (val) => {
       emit('mode-change', val)
-      if (val === 'timeline') {
+      if (val === 'schedule') {
         api.getCurWeekEvent()
       }
     }

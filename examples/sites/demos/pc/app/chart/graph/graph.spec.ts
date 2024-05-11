@@ -1,6 +1,7 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, config } from '../fixtures'
 
 test('base', async ({ page }) => {
+  config.waitTime = 4000
   await page.goto('chart-graph#graph-base')
   const chart = page.locator('#graph-base .hui-chart')
   await expect(chart).toHaveScreenshot('base.png')

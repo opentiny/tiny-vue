@@ -192,8 +192,8 @@ export const textChange =
       return
     }
 
-    const text = quill.getText()
-    const currentLength = text.length
+    const text = state.quill.getText()
+    const currentLength = text.length - 1
     const maxLength = state.maxLength
 
     if (currentLength > maxLength) {

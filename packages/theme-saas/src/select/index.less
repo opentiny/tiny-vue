@@ -306,7 +306,6 @@
         @apply text-ellipsis;
         @apply overflow-hidden;
         @apply text-color-text-disabled;
-        @apply text-xs;
       }
     }
   }
@@ -336,7 +335,7 @@
         @apply pr-12;
       }
 
-      .@{select-prefix-cls}__close {
+      .icon-close {
         @apply mr-2;
         @apply fill-color-text-placeholder;
 
@@ -408,6 +407,15 @@
     @apply border-color-border-focus;
   }
 
+  & .@{input-prefix-cls}.show-copy .@{input-prefix-cls}__inner,
+  & .@{input-prefix-cls}.show-clear .@{input-prefix-cls}__inner {
+    @apply pr-12;
+  }
+
+  & .@{input-prefix-cls}.show-copy.show-clear .@{input-prefix-cls}__inner {
+    @apply pr-16;
+  }
+
   & > .@{input-prefix-cls} {
     @apply block;
   }
@@ -420,6 +428,7 @@
     @apply box-border;
     @apply border-transparent;
     @apply ~"my-0.5" mr-1 ml-0;
+    @apply text-sm;
 
     &:last-child {
       @apply mr-0;

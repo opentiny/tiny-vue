@@ -296,7 +296,8 @@ export const fileUploadProps = {
     default: false
   },
   reUploadable: Boolean,
-  reUploadTip: Function
+  reUploadTip: Function,
+  imageBgColor: String // mobile-first新增
 }
 
 export default defineComponent({
