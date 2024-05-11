@@ -154,9 +154,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过<code>width</code>属性设置窗口宽度，<code>height</code>属性设置高度，<code>resize</code>属性设置是否允许拖动调整窗口大小。</p>',
+          '<p>可通过<code>width</code>属性设置宽度，<code>height</code>属性设置高度，<code>resize</code>属性设置是否允许拖动调整窗口大小。</p>',
         'en-US':
-          '<p>Use <code>width</code> to set the window width, <code>height</code> to set the height, and <code>resize</code> to set whether to allow dragging to resize the window. </p>'
+          '<p>Use <code>width</code> to set the width, <code>height</code> to set the height, and <code>resize</code> to set whether to allow dragging to resize the window. </p>'
       },
       codeFiles: ['resize.vue']
     },

@@ -108,7 +108,7 @@
       :class="
         m(
           gcls('radio-text-common'),
-          gcls(state.size === 'medium' ? 'radio-text-size-medium' : 'radio-text-size-common'),
+          gcls(state.size !== 'mini' ? 'radio-text-size-medium' : 'radio-text-size-common'),
           gcls({ 'label-disabled': state.isDisabled }),
           gcls(
             state.isDisplayOnly ? (state.model === label ? 'readonly-checked-label' : '') : 'not-readly-common-label'

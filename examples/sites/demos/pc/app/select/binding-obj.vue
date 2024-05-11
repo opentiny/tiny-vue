@@ -20,11 +20,11 @@ export default {
   data() {
     return {
       options: [
-        { obj: { val: '选项1', id: 1 }, text: '黄金糕' },
-        { obj: { val: '选项2', id: 2 }, text: '双皮奶' },
-        { obj: { val: '选项3', id: 3 }, text: '蚵仔煎' },
-        { obj: { val: '选项4', id: 4 }, text: '龙须面' },
-        { obj: { val: '选项5', id: 5 }, text: '北京烤鸭' }
+        { obj: { val: '选项1', id: 1 }, text: '北京' },
+        { obj: { val: '选项2', id: 2 }, text: '上海' },
+        { obj: { val: '选项3', id: 3 }, text: '天津' },
+        { obj: { val: '选项4', id: 4 }, text: '重庆' },
+        { obj: { val: '选项5', id: 5 }, text: '深圳' }
       ],
       value: { val: '选项3', id: 3 }
     }

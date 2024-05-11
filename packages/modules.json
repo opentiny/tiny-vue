@@ -2993,8 +2993,14 @@
     "exclude": false,
     "mode": [
       "mobile-first",
+      "mobile",
       "pc"
     ]
+  },
+  "UploadListMobile": {
+    "path": "vue/src/upload-list/src/mobile.vue",
+    "type": "template",
+    "exclude": false
   },
   "UploadListMobileFirst": {
     "path": "vue/src/upload-list/src/mobile-first.vue",

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-radar :data="chartData" :settings="chartSettings"></tiny-radar>
+    <tiny-radar :options="options"></tiny-radar>
   </div>
 </template>
 
@@ -13,15 +13,28 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['日期', '访问用户', '下单用户', '下单率', 'aa', 'bb'],
-        rows: [
-          { 日期: '1/1', 访问用户: 1393, 下单用户: 1093, 下单率: 2023, aa: 1444, bb: 2100 },
-          { 日期: '1/2', 访问用户: 1530, 下单用户: 1230, 下单率: 1300, aa: 1144, bb: 1552 }
-        ]
-      },
-      chartSettings: {
-        // label: {show: true, position: 'top'}
+      options: {
+        legend: {
+          show: true,
+          position: {
+            left: 'center',
+            bottom: 20.1
+          },
+          orient: 'horizontal'
+        },
+
+        // radarMax 用来设置雷达图最外圈的数值
+        // 当不设置 radarMax 时， 雷达图坐标系为数据中的最大值
+        radarMax: 100,
+        data: {
+          'Domestic': {
+            'Equipment': 41,
+            'VM': 91,
+            'CSP': 81,
+            'RD': 51,
+            'Markets': 71
+          }
+        }
       }
     }
   }

@@ -5,6 +5,7 @@
       title="抽屉关闭将会被拦截"
       :visible="visible"
       @update:visible="visible = $event"
+      @confirm="confirm"
       show-footer
       :before-close="onBeforeClose"
     >
@@ -33,6 +34,9 @@ export default {
     onBeforeClose(type) {
       Modal.message({ message: `beforeClose 回调参数 type =  ${type}`, status: 'info', duration: 5000 })
       return false
+    },
+    confirm() {
+      this.visible = false
     }
   }
 }

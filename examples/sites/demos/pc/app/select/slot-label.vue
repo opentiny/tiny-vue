@@ -31,27 +31,27 @@ export default {
       options: [
         {
           value: '选项1',
-          label: '黄金糕超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长',
+          label: '北京超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长超长',
           src: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/user-head.png`
         },
         {
           value: '选项2',
-          label: '双皮奶',
+          label: '上海',
           src: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`
         },
         {
           value: '选项3',
-          label: '蚵仔煎',
+          label: '天津',
           src: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/2.jpg`
         },
         {
           value: '选项4',
-          label: '龙须面',
+          label: '重庆',
           src: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/3.jpg`
         },
         {
           value: '选项5',
-          label: '北京烤鸭',
+          label: '深圳',
           src: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/4.jpg`
         }
       ],

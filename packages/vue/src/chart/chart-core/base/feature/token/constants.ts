@@ -42,7 +42,7 @@ const TOKENCHARTNAMES = [
 ]
 
 // 默认主题
-const DEFAULT_THEME_NAME = THEMES.BPIT_LIGHT
+const DEFAULT_THEME_NAME = THEMES.CLOUD_LIGHT
 
 const THEME_ERROR_TIP_MESSAGE = `Theme must be one of ${Object.values(THEMES).join(
   ','

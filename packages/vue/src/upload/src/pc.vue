@@ -90,35 +90,36 @@ export default defineComponent({
     const hidden = isHidden && fileList.length >= limit
 
     return (
-      <div
-        class={['tiny-upload', `tiny-upload--${listType}`, disabled ? 'is-disabled' : '', hidden ? 'is-hidden' : '']}>
-        <div
-          class="tiny-upload-btn"
-          onClick={($event) => handleClick($event, type)}
-          onPaste={handlePaste}
-          onKeydown={handleKeydown}
-          tabindex="0">
-          {drag ? (
-            <UploadDragger disabled={disabled} onFile={uploadFiles}>
-              {defaultSlot}
-            </UploadDragger>
-          ) : (
-            defaultSlot
-          )}
+      !hidden && (
+        <div class={['tiny-upload', `tiny-upload--${listType}`, disabled ? 'is-disabled' : '']}>
+          <div
+            class="tiny-upload-btn"
+            onClick={($event) => handleClick($event, type)}
+            onPaste={handlePaste}
+            onKeydown={handleKeydown}
+            tabindex="0">
+            {drag ? (
+              <UploadDragger disabled={disabled} onFile={uploadFiles}>
+                {defaultSlot}
+              </UploadDragger>
+            ) : (
+              defaultSlot
+            )}
+          </div>
+          {operateSlot}
+          {tipSlot}
+          <input
+            class="tiny-upload__input"
+            type="file"
+            webkitdirectory={isFolder}
+            ref="input"
+            name={name}
+            onChange={handleChange}
+            multiple={isFolder ? true : multiple}
+            accept={accept}
+          />
         </div>
-        {operateSlot}
-        {tipSlot}
-        <input
-          class="tiny-upload__input"
-          type="file"
-          webkitdirectory={isFolder}
-          ref="input"
-          name={name}
-          onChange={handleChange}
-          multiple={isFolder ? true : multiple}
-          accept={accept}
-        />
-      </div>
+      )
     )
   }
 })

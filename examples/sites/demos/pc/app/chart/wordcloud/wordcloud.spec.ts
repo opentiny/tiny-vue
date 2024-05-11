@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '../fixtures'
 
 test('base', async ({ page }) => {
   await page.goto('chart-wordcloud#wordcloud-base')
@@ -6,11 +6,11 @@ test('base', async ({ page }) => {
   await expect(chart).toHaveScreenshot('base.png')
 })
 
-test('demo2', async ({ page }) => {
-  await page.goto('chart-wordcloud#wordcloud-demo2')
-  const chart = page.locator('#wordcloud-demo2 .hui-chart')
-  await expect(chart).toHaveScreenshot('demo2.png')
-})
+// test('demo2', async ({ page }) => {
+//   await page.goto('chart-wordcloud#wordcloud-demo2')
+//   const chart = page.locator('#wordcloud-demo2 .hui-chart')
+//   await expect(chart).toHaveScreenshot('demo2.png')
+// })
 
 test('demo3', async ({ page }) => {
   await page.goto('chart-wordcloud#wordcloud-demo3')

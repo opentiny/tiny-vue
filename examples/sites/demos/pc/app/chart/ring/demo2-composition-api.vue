@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-chart-ring :data="chartData" :settings="chartSettings"></tiny-chart-ring>
+    <tiny-chart-ring :options="options"></tiny-chart-ring>
   </div>
 </template>
 
@@ -8,20 +8,53 @@
 import { ref } from 'vue'
 import { ChartRing as TinyChartRing } from '@opentiny/vue'
 
-const chartData = ref({
-  columns: ['日期', '访问用户'],
-  rows: [
-    { 日期: '1/1', 访问用户: 1393 },
-    { 日期: '1/2', 访问用户: 3530 },
-    { 日期: '1/3', 访问用户: 2923 },
-    { 日期: '1/4', 访问用户: 1723 },
-    { 日期: '1/5', 访问用户: 3792 },
-    { 日期: '1/6', 访问用户: 4593 }
+const options = ref({
+  type: 'multi-circle',
+  position: {
+    center: ['50%', '45%']
+  },
+  title: {
+    text: '345',
+    subtext: '总数量\n(用户数)',
+    top: '40%',
+    itemGap: 12,
+    textStyle: {
+      fontSize: 42
+    }
+  },
+  legend: {
+    show: true,
+    offset: 30,
+    position: {
+      left: 'center',
+      bottom: 70
+    }
+  },
+  data: [
+    {
+      name: 'VPC',
+      value: 100,
+      children: [
+        { name: 'VPC_1', value: 20 },
+        { name: 'VPC_2', value: 80 }
+      ]
+    },
+    {
+      name: 'IM',
+      value: 100,
+      children: [
+        { name: 'IM_1', value: 30 },
+        { name: 'IM_2', value: 50 }
+      ]
+    },
+    {
+      name: 'EIP',
+      value: 100,
+      children: [
+        { name: 'EIP_1', value: 10 },
+        { name: 'EIP_2', value: 40 }
+      ]
+    }
   ]
-})
-// 设置指标维度
-const chartSettings = ref({
-  dimension: '日期',
-  metrics: '访问用户'
 })
 </script>

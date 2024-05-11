@@ -78,7 +78,7 @@ export default {
       codeFiles: ['size.vue']
     },
     {
-      demoId: 'global-registry.',
+      demoId: 'global-registry',
       name: {
         'zh-CN': '全局加载',
         'en-US': 'Global Registry'

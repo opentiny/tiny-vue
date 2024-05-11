@@ -28,10 +28,12 @@ export const calcPaneInstances =
       tabItemVNodes().forEach((vnode) => {
         if (Array.isArray(vnode.children)) {
           vnode.children.forEach((child) => {
-            orderPanes.push(child.props?.name)
+            const name = child.props?.name
+            name && orderPanes.push(name)
           })
         } else {
-          orderPanes.push(vnode.props?.name)
+          const name = vnode.props?.name
+          name && orderPanes.push(name)
         }
       })
       const currentPanes = [] as ITabsPaneVm[]
@@ -85,6 +87,12 @@ export const calcMorePanes =
     const el = parent.$el
     const tabs = el.querySelectorAll('.tiny-tabs__item')
     const tabNavRefs = refs.nav.$refs
+
+    // 此处不同步aui。新规范适配
+    if (props.moreShowAll) {
+      state.showPanesCount = 0
+      return
+    }
 
     if (tabs && tabs.length) {
       let tabsAllWidth = 0

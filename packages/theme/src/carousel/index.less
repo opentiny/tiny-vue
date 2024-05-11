@@ -71,6 +71,19 @@
         color: var(--ti-carousel-arrow-text-color);
       }
 
+      &.@{carousel-prefix-cls}__arrow-top {
+        @apply top-0;
+        @apply ~'left-1/2';
+        @apply ~'-translate-x-2/4';
+      }
+
+      &.@{carousel-prefix-cls}__arrow-bottom {
+        @apply bottom-0;
+        @apply ~'left-1/2';
+        top: unset;
+        @apply ~'-translate-x-2/4';
+      }
+
       &:hover {
         background-color: var(--ti-carousel-arrow-hover-bg-color);
         color: var(--ti-carousel-arrow-hover-text-color);

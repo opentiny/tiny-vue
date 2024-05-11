@@ -1,9 +1,11 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, config } from '../fixtures'
+
+config.waitTime = 4000
 
 test('base', async ({ page }) => {
   await page.goto('chart-funnel#funnel-base')
-  const chart = page.locator('#funnel-base .hui-chart')
-  await expect(chart).toHaveScreenshot('base.png')
+  await expect(page.locator('#funnel-base .hui-chart')).toBeInViewport()
+  await expect(page).toHaveScreenshot('base.png')
 })
 
 test('demo2', async ({ page }) => {

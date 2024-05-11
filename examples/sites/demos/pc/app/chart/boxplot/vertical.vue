@@ -1,5 +1,5 @@
 <template>
-  <tiny-boxplot ref="chart" :extend="option" @ready-once="init"></tiny-boxplot>
+  <tiny-boxplot ref="chart" :options="options"></tiny-boxplot>
 </template>
 
 <script lang="jsx">
@@ -11,94 +11,107 @@ export default {
   },
   data() {
     return {
-      option: {}
+      sourceData0: makeData(),
+      sourceData1: makeData(),
+      sourceData2: makeData(),
+      options: {
+        padding: [50, 30, 55, 20],
+        xAxis: {
+          axisLabel: {
+            formatter: 'expr {value}'
+          }
+        },
+        yAxis: {
+          min: -400,
+          max: 600
+        },
+        legend: {
+          shwo: true,
+          position: {
+            top: 15,
+            right: 'center'
+          }
+        },
+        dataZoom: {
+          show: true,
+          start: 0,
+          end: 20,
+          position: {
+            left: 40,
+            bottom: 18
+          }
+        },
+        dataset: [
+          {
+            source: sourceData0
+          },
+          {
+            source: sourceData1
+          },
+          {
+            source: sourceData2
+          },
+          {
+            fromDatasetIndex: 0,
+            transform: { 'type': 'boxplot' }
+          },
+          {
+            fromDatasetIndex: 1,
+            transform: { 'type': 'boxplot' }
+          },
+          {
+            fromDatasetIndex: 2,
+            transform: { 'type': 'boxplot' }
+          }
+        ],
+        series: [
+          {
+            name: 'category_0',
+            type: 'boxplot',
+            datasetIndex: 3
+          },
+          {
+            name: 'category_1',
+            type: 'boxplot',
+            datasetIndex: 4
+          },
+          {
+            name: 'category_2',
+            type: 'boxplot',
+            datasetIndex: 5
+          }
+        ],
+        tipHtml: (params) => {
+          const { data, color, seriesName } = params
+          const labels = ['lower', 'Q3', 'median', 'Q1', 'upper']
+          let htmlString = `<div style="font-weight:bold">${seriesName}</div>`
+          let arr = []
+          labels.forEach((item, index) => {
+            let string = `<div>
+        <span style="display:inline;width:10px;height:10px;
+        margin-right:4px; border-radius:5px;border-style:solid;border-width: 1px
+        border-color:${color};background-color:${color};></span>
+        <span style="display:inline-block;width:90px">${item}:</span><span>${data[index + 1]}</span>
+        </div>`
+            arr.push(string)
+          })
+          htmlString += arr.join('')
+          return htmlString
+        }
+      }
     }
   },
   methods: {
-    init() {
-      let data = this.$refs.chart.prepareBoxplotData([
-        [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960],
-        [960, 940, 960, 940, 880, 800, 850, 880, 900, 840, 830, 790, 810, 880, 880, 830, 800, 790, 760, 800],
-        [880, 880, 880, 860, 720, 720, 620, 860, 970, 950, 880, 910, 850, 870, 840, 840, 850, 840, 840, 840],
-        [890, 810, 810, 820, 800, 770, 760, 740, 750, 760, 910, 920, 890, 860, 880, 720, 840, 850, 850, 780],
-        [890, 840, 780, 810, 760, 810, 790, 810, 820, 850, 870, 870, 810, 740, 810, 940, 950, 800, 810, 870]
-      ])
-
-      this.option = {
-        title: [
-          {
-            text: 'Michelson-Morley Experiment',
-            left: 'center'
-          },
-          {
-            text: 'upper: Q3 + 1.5 * IRQ \nlower: Q1 - 1.5 * IRQ',
-            borderColor: '#999',
-            borderWidth: 1,
-            textStyle: {
-              fontSize: 14
-            },
-            left: '10%',
-            top: '90%'
-          }
-        ],
-        tooltip: {
-          trigger: 'item',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
-        grid: {
-          left: '10%',
-          right: '10%',
-          bottom: '15%'
-        },
-        yAxis: {
-          type: 'category',
-          data: data.axisData,
-          boundaryGap: true,
-          nameGap: 30,
-          splitArea: {
-            show: false
-          },
-          axisLabel: {
-            formatter: 'expr {value}'
-          },
-          splitLine: {
-            show: false
-          }
-        },
-        xAxis: {
-          type: 'value',
-          name: 'km/s minus 299,000',
-          splitArea: {
-            show: true
-          }
-        },
-        series: [
-          {
-            name: 'boxplot',
-            type: 'boxplot',
-            data: data.boxData,
-            tooltip: {
-              formatter(param) {
-                return [
-                  'Experiment ' + param.name + ': ',
-                  'upper: ' + param.data[5],
-                  'Q3: ' + param.data[4],
-                  'median: ' + param.data[3],
-                  'Q1: ' + param.data[2],
-                  'lower: ' + param.data[1]
-                ].join('<br/>')
-              }
-            }
-          },
-          {
-            name: 'outlier',
-            type: 'scatter',
-            data: data.outliers
-          }
-        ]
+    makeData() {
+      let data = []
+      for (let i = 0; i < 18; i++) {
+        let cate = []
+        for (let j = 0; j < 100; j++) {
+          cate.push(parseFloat('0.' + window.crypto.getRandomValues(new Uint32Array(1))[0]) * 200)
+        }
+        data.push(cate)
       }
+      return data
     }
   }
 }

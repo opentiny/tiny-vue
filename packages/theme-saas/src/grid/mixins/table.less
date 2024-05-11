@@ -17,6 +17,7 @@
 
 .MediumColumnHeight() {
   @apply h-10;
+  @apply text-sm;
 }
 
 .SmallColumnHeight() {
@@ -32,7 +33,7 @@
     .@{grid-cell-prefix-cls} {
       .TextEllipsis();
       @apply leading-normal;
-      
+
       & > .@{grid-checkbox-prefix-cls} {
         .TextEllipsis();
         @apply pl-0;

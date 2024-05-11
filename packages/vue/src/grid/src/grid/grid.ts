@@ -277,11 +277,16 @@ export default defineComponent({
     }
 
     // 默认在mounted阶段执行fetch-data
-    if (!prefetch && fetchOption && autoLoad !== false) {
+    if (!prefetch && fetchOption) {
+      /*
+       *_pageSizeChangeCallback：先更新本地缓存的pageSize到表格内部，再判断autoLoad，再发起数据请求（如果autoLoad为true）
+       * 功能优化：额外增加autoLoad为false时也执行，保证本地缓存的pageSize更新到表格内部与autoLoad取值无关
+       */
       if (this._pageSizeChangeCallback) {
         this._pageSizeChangeCallback()
         this._pageSizeChangeCallback = null
-      } else {
+      } else if (autoLoad) {
+        // 如果_pageSizeChangeCallback不存在且autoLoad为true就发起数据请求
         const toolbarVm = this.getVm('toolbar')
         this.commitProxy('query', toolbarVm && toolbarVm.orderSetting())
       }

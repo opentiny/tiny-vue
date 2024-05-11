@@ -29,7 +29,7 @@
 
   &__inner {
     @apply text-color-text-primary;
-    @apply text-xs;
+    @apply text-sm;
     @apply bg-color-bg-1;
     @apply border border-solid border-color-border;
     @apply py-3 px-5;
@@ -81,7 +81,7 @@
 
     &:disabled {
       & + .@{radio-button-prefix-cls}__inner {
-        @apply text-color-text-disabled;
+        @apply text-color-text-secondary;
         @apply border-color-border-disabled;
         @apply bg-color-bg-2;
         @apply bg-none;
@@ -104,7 +104,7 @@
   }
 
   &--medium &__inner {
-    @apply text-xs;
+    @apply text-sm;
     @apply ~'py-2.5' px-5;
     @apply rounded-none;
 
@@ -114,7 +114,7 @@
   }
 
   &--small &__inner {
-    @apply text-xs;
+    @apply text-sm;
     padding: 9px 15px;
     @apply rounded-none;
 
@@ -124,7 +124,7 @@
   }
 
   &--mini &__inner {
-    @apply text-xs;
+    @apply text-sm;
     padding: 7px 15px;
     @apply rounded-none;
 

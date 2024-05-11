@@ -6,6 +6,7 @@ import type {
   getFormData,
   abort,
   handleClick,
+  handleFileClick,
   getFile,
   clearFiles,
   watchFileList,
@@ -139,6 +140,7 @@ export interface IFileUploadApi {
   getFormData: ReturnType<typeof getFormData>
   abort: ReturnType<typeof abort>
   handleClick: ReturnType<typeof handleClick>
+  handleFileClick: ReturnType<typeof handleFileClick>
   getFile: ReturnType<typeof getFile>
   clearFiles: ReturnType<typeof clearFiles>
   watchFileList: ReturnType<typeof watchFileList>

@@ -326,6 +326,24 @@ body:not(.popup-parent--hidden) {
   }
 }
 
+.enlarge-enter-active {
+  animation: enlarge-in 350ms linear;
+}
+ 
+@keyframes enlarge-in {
+  0% {
+    transform: scale(0);
+  }
+ 
+  50% {
+    transform: scale(0.5);
+  }
+ 
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (max-width: 480px) {
   .@{dialog-box-prefix-cls} {
     width: 100% !important;

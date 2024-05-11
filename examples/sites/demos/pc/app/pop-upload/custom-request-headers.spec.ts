@@ -9,6 +9,7 @@ test('PopUpload 自定义请求头', async ({ page }) => {
   const uploadModal = page.locator('.tiny-popupload__modal')
   const selectFilesBtn = uploadModal.getByRole('button', { name: '选择文件' })
   const uploadsBtn = uploadModal.getByRole('button', { name: '开始上传' })
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
   const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
@@ -21,5 +22,5 @@ test('PopUpload 自定义请求头', async ({ page }) => {
   const { authorization } = await request.headers()
 
   await expect(request.headers()).not.toBeNull()
-  await expect(authorization).toBeUndefined()
+  await expect(authorization).toBe('Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==')
 })

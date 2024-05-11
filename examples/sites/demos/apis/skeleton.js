@@ -15,7 +15,7 @@ export default {
               'Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.'
           },
           mode: ['pc'],
-          pcDemo: 'fine-grained-mode'
+          pcDemo: 'animation'
         },
         {
           name: 'avatar',
@@ -39,7 +39,7 @@ export default {
               'Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.'
           },
           mode: ['pc'],
-          pcDemo: 'custom-layout'
+          pcDemo: 'loading-completed'
         },
         {
           name: 'rows',
@@ -77,7 +77,7 @@ export default {
             'en-US': 'Content displayed after the loading is complete'
           },
           mode: ['pc'],
-          pcDemo: 'custom-layout'
+          pcDemo: 'loading-completed'
         },
         {
           name: 'placeholder',
@@ -106,7 +106,7 @@ export default {
               'Customized interface. A Promise object is returned. This parameter is mandatory when the framework service is not used.'
           },
           mode: ['pc'],
-          pcDemo: 'fine-grained-mode'
+          pcDemo: 'size'
         },
         {
           name: 'variant',

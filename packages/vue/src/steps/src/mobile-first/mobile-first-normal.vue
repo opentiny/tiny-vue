@@ -57,7 +57,7 @@
             ' hover:text-color-brand-hover active:text-color-brand-active':
               node[statusField] !== 'disabled' && node[statusField] !== 'error'
           },
-          { 'text-color-none-hover': node[statusField] === 'disabled' },
+          { 'text-color-text-disabled': node[statusField] === 'disabled' },
           { 'text-color-error': node[statusField] === 'error' }
         )
       "
@@ -162,8 +162,8 @@
           data-tag="tiny-steps-description"
           :class="
             m(
-              'text-xs text-color-text-secondary mt-2 line-clamp-2 mx-5 break-all',
-              { 'text-color-none-hover': node[statusField] === 'disabled' },
+              'text-xs text-color-text-secondary mt-0.5 line-clamp-2 mx-5 break-all leading-5',
+              { 'text-color-text-disabled': node[statusField] === 'disabled' },
               { 'text-color-brand': index === active },
               { 'text-color-error': node[statusField] === 'error' && index === active },
               !vertical ? 'sm:ml-8' : ''

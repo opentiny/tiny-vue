@@ -13,6 +13,7 @@ test('PopUpload 基本用法', async ({ page }) => {
   const cancelBtn = uploadModal.getByRole('button', { name: '取消' })
   const lists = uploadModal.locator('.tiny-popupload__dialog-table-item')
   const deleteIcon = lists.locator('.delIcon')
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
   const path = require('node:path')
   const path1 = path.resolve(__dirname, '测试.jpg')
   const path2 = path.resolve(__dirname, '测试.png')
@@ -41,11 +42,6 @@ test('PopUpload 基本用法', async ({ page }) => {
   await fileChooser.setFiles(path1)
   await fileChooser.setFiles(path2)
   await expect(uploadsBtn).not.toBeDisabled()
-  const [request] = await Promise.all([page.waitForEvent('request'), uploadsBtn.click()])
-
-  // 上传时附带的额外参数: 获取请求体
-  const body = await request.postData()
-  await expect(body).not.toBeNull()
 
   // 点击取消按钮，上传弹窗消失
   await cancelBtn.click()

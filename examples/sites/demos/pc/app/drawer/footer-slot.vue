@@ -1,17 +1,13 @@
 <template>
   <div>
-    <tiny-button @click="fn" type="primary"> 底部插槽示例 </tiny-button>
+    <tiny-button @click="openDrawer" type="primary"> 底部插槽示例 </tiny-button>
     <tiny-drawer title="标题" :visible="visible" @update:visible="visible = $event" :show-footer="true">
-      <div>
-        <br />
-        <br />
-        <span>内容区域</span>
-      </div>
+      <div style="padding: 32px">内容区域</div>
 
       <template #footer>
         <div class="my-footer">
           <span>自定义底部文本</span>
-          <tiny-button type="primary" native-type="submit">确认提交</tiny-button>
+          <tiny-button type="primary" native-type="submit" @click="visible = false">确认提交</tiny-button>
         </div>
       </template>
     </tiny-drawer>
@@ -32,7 +28,7 @@ export default {
     }
   },
   methods: {
-    fn() {
+    openDrawer() {
       this.visible = true
     }
   }

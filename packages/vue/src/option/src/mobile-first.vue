@@ -22,7 +22,7 @@
     "
     data-tag="tiny-select-dropdown-item"
   >
-    <span v-if="state.select.multiple" class="w-4 mr-2">
+    <span v-if="state.selectMultiple" class="w-4 mr-2">
       <component
         :is="`icon-${state.selectCls}`"
         :class="
@@ -41,7 +41,7 @@
       >
     </slot>
     <span
-      v-if="!state.select.multiple && state.itemSelected && !disabled && !state.groupDisabled"
+      v-if="!state.selectMultiple && state.itemSelected && !disabled && !state.groupDisabled"
       class="inline-block sm:hidden w-4 ml-4 shrink-0"
     >
       <icon-finish custom-class="w-4 h-4 fill-color-brand"> </icon-finish

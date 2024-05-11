@@ -103,7 +103,7 @@
       data-tag="numeric-display-only"
       v-if="state.isDisplayOnly"
       class="sm:leading-normal text-color-text-primary"
-      :class="state.inputSize === 'medium' ? 'text-sm' : 'text-xs'"
+      :class="state.inputSize !== 'mini' ? 'text-sm' : 'text-xs'"
     >
       <span>{{ state.displayValue }}</span
       ><span v-if="unit && !hideUnit" class="ml-2">{{ unit }}</span>
@@ -111,7 +111,7 @@
     <div
       v-if="unit && !hideUnit && !state.isDisplayOnly"
       data-tag="numeric-unit"
-      :class="['h-0 right-0 flex text-xs items-center shrink-0', unit ? 'ml-2' : '']"
+      :class="['h-0 right-0 flex text-xs sm:text-sm items-center shrink-0', unit ? 'ml-2' : '']"
     >
       {{ unit }}
     </div>

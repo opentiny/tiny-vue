@@ -8,13 +8,15 @@ export const computedWidth =
     designConfig,
     props,
     constants
-  }: Pick<ISharedRenderlessParamUtils, 'state' | 'designConfig' | 'props' | 'constants'>) =>
+  }: Pick<ISharedRenderlessParamUtils<IDrawerCT>, 'designConfig' | 'constants'> & { state: IDrawerState } & {
+    props: IDrawerProps
+  }) =>
   (): string => {
     if (state.width) {
       return state.width + 'px'
     }
 
-    return props.width || designConfig?.constants?.DEFAULT_WIDTH || constants.DEFAULT_WIDTH
+    return props.width || designConfig?.constants?.DEFAULT_WIDTH || (constants as IDrawerCT).DEFAULT_WIDTH
   }
 
 export const close =
@@ -46,7 +48,7 @@ export const confirm =
   }
 
 export const handleClose =
-  ({ emit, props, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState }) =>
+  ({ emit, props, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState; props: IDrawerProps }) =>
   (type, force) => {
     const isMaskNotClosable = type === 'mask' && !props.maskClosable
     const isBlockClose = !force && typeof props.beforeClose === 'function' && props.beforeClose(type) === false
@@ -54,8 +56,11 @@ export const handleClose =
       return
     }
 
-    state.toggle = false
-    emit(['close', 'confirm'].includes(type) ? type : 'close', state)
+    if (type !== 'confirm') {
+      state.toggle = false
+    }
+
+    emit(['close', 'confirm'].includes(type) ? type : 'close')
   }
 
 export const mousedown =
@@ -68,7 +73,9 @@ export const mousedown =
 
     state.dragEvent.isDrag = true
     state.dragEvent.x = touch.clientX
+    state.dragEvent.y = touch.clientY
     state.dragEvent.offsetWidth = drawerBox.offsetWidth
+    state.dragEvent.offsetHeight = drawerBox.offsetHeight
   }
 
 export const mousemove = ({ state, props }: { state: IDrawerState; props: IDrawerProps }) =>
@@ -81,18 +88,25 @@ export const mousemove = ({ state, props }: { state: IDrawerState; props: IDrawe
 
     const { placement } = props
     const {
-      dragEvent: { x, offsetWidth }
+      dragEvent: { x, y, offsetWidth, offsetHeight }
     } = state
     const { touches, targetTouches, changedTouches } = event
     const touch =
       (touches && touches[0]) || (targetTouches && targetTouches[0]) || (changedTouches && changedTouches[0])
-    const { clientX } = touch || event
+    const { clientX, clientY } = touch || event
     const offsetX = clientX - x
+    const offsetY = clientY - y
 
     if (placement === 'left') {
       state.width = offsetWidth + offsetX
     } else if (placement === 'right') {
       state.width = offsetWidth - offsetX
+    } else if (placement === 'top') {
+      const height = offsetHeight + offsetY
+      state.height = height > 10 ? height : 10
+    } else if (placement === 'bottom') {
+      const height = offsetHeight - offsetY
+      state.height = height > 10 ? height : 10
     }
   }) as Parameters<Document['removeEventListener']>['1']
 

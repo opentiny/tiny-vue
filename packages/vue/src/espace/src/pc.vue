@@ -5,7 +5,7 @@
       :key="index"
       :title="getUserTitle(item)"
       :href="getUserHref(item)"
-      @click="doUserAction(item)"
+      @click="doUserAction(item, $event)"
       :class="[
         { 'item-talk': item.type === 'im' },
         { 'item-call': item.type === 'sip' },

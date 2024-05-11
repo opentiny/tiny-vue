@@ -1,7 +1,7 @@
 <template>
   <div
     data-tag="tiny-collapse-item"
-    class="border-b-0.5 sm:border-b border-solid border-color-border-disabled last:border-0"
+    class="border-b-0.5 sm:border-b border-solid border-color-border-separator last:border-0"
   >
     <div
       role="tab"

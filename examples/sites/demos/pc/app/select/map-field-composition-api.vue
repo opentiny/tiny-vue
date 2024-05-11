@@ -37,13 +37,13 @@ const gridOp = ref({
 })
 
 const options = ref([
-  { val: '选项1', text: '黄金糕' },
-  { val: '选项2', text: '双皮奶' },
-  { val: '选项3', text: '蚵仔煎' },
-  { val: '选项4', text: '龙须面' },
-  { val: '选项5', text: '北京烤鸭' },
-  { val: '选项6', text: '螺蛳粉' },
-  { val: '选项7', text: '小龙虾' }
+  { val: '选项1', text: '北京' },
+  { val: '选项2', text: '上海' },
+  { val: '选项3', text: '天津' },
+  { val: '选项4', text: '重庆' },
+  { val: '选项5', text: '深圳' },
+  { val: '选项6', text: '南京' },
+  { val: '选项7', text: '成都' }
 ])
 </script>
 

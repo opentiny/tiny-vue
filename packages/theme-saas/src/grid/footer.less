@@ -10,6 +10,12 @@
     @apply bg-color-bg-1;
   }
 
+  .@{grid-prefix-cls}__footer {
+    .fixed-right-first__column + .col__gutter {
+      @apply bg-color-bg-1;
+    }
+  }
+
   &.body__wrapper {
     @apply overflow-x-auto;
   }

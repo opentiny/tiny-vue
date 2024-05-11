@@ -139,7 +139,9 @@ export default defineComponent({
     const fn = {
       getDescMd(demo) {
         // desc字段是一段html
+
         const desc = demo.desc[state.langKey].trim()
+
         return <div class="demo-desc" v-html={desc}></div>
       },
       async toggleDemoCode(demo) {
@@ -295,10 +297,12 @@ export default defineComponent({
 .pc-demo-container {
   display: flex;
   flex-direction: column;
+
   .pc-demo {
     flex: 1;
   }
 }
+
 .phone-container {
   margin: auto;
   width: 395px;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-chart-graph :extend="extend"></tiny-chart-graph>
+    <tiny-chart-graph :options="options"></tiny-chart-graph>
   </div>
 </template>
 
@@ -8,18 +8,14 @@
 import { ref } from 'vue'
 import { ChartGraph as TinyChartGraph } from '@opentiny/vue'
 
-const extend = ref({
-  title: {
-    text: 'Graph 简单示例'
-  },
-  tooltip: {},
-  animationDurationUpdate: 1500,
+const options = ref({
+  animationDurationUpdate: 1600,
   animationEasingUpdate: 'quinticInOut',
   series: [
     {
       type: 'graph',
       layout: 'none',
-      symbolSize: 50,
+      symbolSize: 48,
       color: '#42A5F5',
       roam: true,
       label: {
@@ -28,11 +24,11 @@ const extend = ref({
         }
       },
       edgeSymbol: ['circle', 'arrow'],
-      edgeSymbolSize: [4, 10],
+      edgeSymbolSize: [3, 10],
       edgeLabel: {
         normal: {
           textStyle: {
-            fontSize: 20
+            fontSize: 18
           }
         }
       },

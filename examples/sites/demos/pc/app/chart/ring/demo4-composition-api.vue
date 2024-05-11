@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-chart-ring :data="chartData" :settings="chartSettings"></tiny-chart-ring>
+    <tiny-chart-ring :options="options"></tiny-chart-ring>
   </div>
 </template>
 
@@ -8,19 +8,36 @@
 import { ref } from 'vue'
 import { ChartRing as TinyChartRing } from '@opentiny/vue'
 
-const chartData = ref({
-  columns: ['日期', '访问用户'],
-  rows: [
-    { 日期: '1/1', 访问用户: 1393 },
-    { 日期: '1/2', 访问用户: 3530 },
-    { 日期: '1/3', 访问用户: 2923 },
-    { 日期: '1/4', 访问用户: 1723 },
-    { 日期: '1/5', 访问用户: 3792 },
-    { 日期: '1/6', 访问用户: 4593 }
+const options = ref({
+  type: 'circle',
+  silent: true,
+  minAngle: 0,
+  stillShowZeroSum: false,
+  title: {
+    text: '{a|0}\n{b|链路总数}',
+    top: '40%',
+    textStyle: {
+      rich: {
+        a: {
+          fontSize: 53
+        },
+        b: {
+          fontSize: 19,
+          color: '#999',
+          padding: [45, 0, 0, 0]
+        }
+      }
+    }
+  },
+  label: {
+    show: false
+  },
+  legend: {
+    show: false
+  },
+  data: [
+    { value: 0, name: 'VPC' },
+    { value: 0, name: 'EIP' }
   ]
-})
-// 限制显示条数环图
-const chartSettings = ref({
-  limitShowNum: 3
 })
 </script>

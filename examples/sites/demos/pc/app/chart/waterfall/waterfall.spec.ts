@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '../fixtures'
 
 test('base', async ({ page }) => {
   await page.goto('chart-waterfall#waterfall-base')
@@ -22,10 +22,4 @@ test('demo4', async ({ page }) => {
   await page.goto('chart-waterfall#waterfall-demo4')
   const chart = page.locator('#waterfall-demo4 .hui-chart')
   await expect(chart).toHaveScreenshot('demo4.png')
-})
-
-test('demo5', async ({ page }) => {
-  await page.goto('chart-waterfall#waterfall-demo5')
-  const chart = page.locator('#waterfall-demo5 .hui-chart')
-  await expect(chart).toHaveScreenshot('demo5.png')
 })

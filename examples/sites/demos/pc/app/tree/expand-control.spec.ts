@@ -12,7 +12,7 @@ test('测试节点的展开', async ({ page }) => {
   const closeBtn = preview.getByText('收起高亮')
 
   // 测试全部收起
-  await expect(tree1.locator('.is-expanded')).toHaveCount(8) //  叶子节点也有这个类
+  await expect(tree1.locator('.is-expanded')).toHaveCount(9) //  叶子节点也有这个类
   await allBtn.click()
   await expect(tree1.locator('.is-expanded')).toHaveCount(0)
 

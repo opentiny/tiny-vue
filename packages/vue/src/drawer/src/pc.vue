@@ -31,11 +31,25 @@
         ]"
         :style="{
           width: ['left', 'right'].includes(placement) ? state.computedWidth : null,
+          height: ['top', 'bottom'].includes(placement) && dragable && state.height ? state.height + 'px' : null,
           zIndex
         }"
         v-show="visible"
       >
-        <div data-tag="drawer-drag-bar" ref="dragBar" v-if="dragable" :class="['tiny-drawer__drag-bar']"></div>
+        <div
+          v-if="dragable"
+          data-tag="drawer-drag-bar"
+          ref="dragBar"
+          :class="[
+            'tiny-drawer__drag-bar',
+            ['left', 'right'].includes(placement) && 'p-left-Right',
+            ['top', 'bottom'].includes(placement) && 'p-top-Bottom',
+            placement === 'left' && 'p-left',
+            placement === 'right' && 'p-right',
+            placement === 'top' && 'p-top',
+            placement === 'bottom' && 'p-bottom'
+          ]"
+        ></div>
 
         <div class="tiny-drawer__box">
           <!-- header -->

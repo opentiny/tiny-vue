@@ -325,6 +325,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    showLimitText: {
+      type: Boolean,
+      default: false
+    },
     showProportion: {
       type: Boolean,
       default: false
@@ -336,6 +340,10 @@ export default defineComponent({
     maxVisibleRows: {
       type: Number,
       default: $constants.MAX_VISIBLE_ROWS
+    },
+    allText: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {

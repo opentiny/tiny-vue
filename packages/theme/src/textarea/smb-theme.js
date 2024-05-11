@@ -19,5 +19,6 @@ export const tinyTextareaSmbTheme = {
   'ti-textarea-scrollbar-hover-bg-color': 'var(--ti-common-color-bg-dark-disabled)',
   'ti-textarea-count-padding-right': 'var(--ti-common-space-base)',
   'ti-textarea-padding-bottom': 'var(--ti-common-space-4x)',
-  'ti-textarea-disabled-bg-color': '#f2f2f2'
+  'ti-textarea-disabled-bg-color': '#f2f2f2',
+  'ti-textarea-exceed-text-color': '#c7000b'
 }

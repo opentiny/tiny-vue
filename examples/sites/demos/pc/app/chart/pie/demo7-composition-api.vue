@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-chart-pie :data="chartData" :settings="chartSettings"></tiny-chart-pie>
+    <tiny-chart-pie :options="options"></tiny-chart-pie>
   </div>
 </template>
 
@@ -8,20 +8,35 @@
 import { ref } from 'vue'
 import { ChartPie as TinyChartPie } from '@opentiny/vue'
 
-const chartData = ref({
-  columns: ['日期', '访问用户'],
-  rows: [
-    { 日期: '1/1', 访问用户: 1393 },
-    { 日期: '1/2', 访问用户: 3530 },
-    { 日期: '1/3', 访问用户: 2923 },
-    { 日期: '1/4', 访问用户: 1723 },
-    { 日期: '1/5', 访问用户: 3792 },
-    { 日期: '1/6', 访问用户: 4593 }
+const options = ref({
+  type: 'pie',
+  legend: {
+    show: true,
+    position: {
+      left: 'center',
+      bottom: '10%'
+    },
+    orient: 'horizontal',
+
+    // 同意对图例图标设置类型，默认circle, 可选值: rect, roundRect, triangle, diamond; 若定义了legend.data, 则此属性失效。
+    icon: 'circle',
+
+    // 控制图例图标的高度
+    itemHeight: 20,
+
+    // 控制图例图标的宽度
+    itemWidth: 20
+  },
+  label: {
+    show: true,
+    type: 'percent',
+    line: true
+  },
+  data: [
+    { value: 100, name: 'VPC' },
+    { value: 90, name: 'IM' },
+    { value: 49, name: 'EIP' },
+    { value: 14, name: 'SG' }
   ]
-})
-// 设置饼图半径边距
-const chartSettings = ref({
-  radius: 10,
-  offsetY: 300
 })
 </script>

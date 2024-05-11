@@ -307,12 +307,7 @@ export default {
       return this.$nextTick()
     }
 
-    editStore.checked = extend(true, {}, checked, {
-      columns: [],
-      rows: [],
-      tColumns: [],
-      tRows: []
-    })
+    Object.assign(checked, { columns: [], rows: [], tColumns: [], tRows: [], rowNodes: [] })
 
     let tableBody = $refs.tableBody
 
@@ -349,13 +344,21 @@ export default {
   },
   // 处理所有选中
   handleChecked(rowNodes) {
+    let { $refs, mouseConfig } = this
+
+    if (!mouseConfig || !mouseConfig.checked) {
+      return
+    }
+
     let { cHeight, cWidth, offsetLeft, offsetTop } = {}
 
     cWidth = cHeight = -2
     offsetTop = offsetLeft = 0
 
+    // 隐藏鼠标选中边框，清除标识类名
     this.clearChecked()
 
+    // 计算鼠标选中区域的宽高和位置，并给TD增加标识类名
     arrayEach(rowNodes, (rowNode, rowIndex) => {
       arrayEach(rowNode, (colNode, colIndex) => {
         let firstRow = rowIndex === 0
@@ -378,12 +381,18 @@ export default {
       })
     })
 
+    // 由鼠标选中区域的宽高和位置，创建帮助方法
     let modify = getModify({ offsetTop, offsetLeft, cWidth, cHeight })
-    let { tableBody } = this.$refs
+    let { tableBody } = $refs
     let { checkBorders, checkTop, checkRight, checkBottom, checkLeft } = tableBody.$refs
 
+    // 隐藏鼠标选中边框
+    checkBorders.style.display = 'none'
+
+    // 修改鼠标选中边框
     modify(checkTop, checkRight, checkBottom, checkLeft)
 
+    // 显示鼠标选中边框
     checkBorders.style.display = 'block'
 
     this.editStore.checked.rowNodes = rowNodes
@@ -451,6 +460,8 @@ export default {
     let eachHandler = (colNode) => removeClass(colNode, 'col__index-checked')
 
     arrayEach(indexCheckeds, eachHandler)
+
+    Object.assign(this.editStore.indexs, { rowNodes: [] })
 
     return this.$nextTick()
   },
@@ -594,5 +605,21 @@ export default {
     let rowNodes = getRowNodes(bodyList, cellNode, targetCellNode)
 
     this.handleChecked(rowNodes)
+  },
+  handleClearMouseChecked(event) {
+    const { $grid, $refs, autoClearMouseChecked } = this
+    const { tableWrapper, tooltip, validTip } = $refs
+    const equalOrContain = (elm, target) => elm && (elm === target || elm.contains(target))
+
+    if (
+      autoClearMouseChecked &&
+      !equalOrContain($grid.$el, event.target) &&
+      !equalOrContain(tableWrapper, event.target) &&
+      !equalOrContain(tooltip && tooltip.state.popperElm, event.target) &&
+      !equalOrContain(validTip && validTip.state.popperElm, event.target)
+    ) {
+      this.clearChecked()
+      this.clearSelected()
+    }
   }
 }

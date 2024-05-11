@@ -21,6 +21,8 @@
 @input-group-prefix-cls: ~'@{css-prefix}mobile-input-group';
 
 .@{textarea-prefix-cls} {
+  .component-css-vars-input();
+
   position: relative;
   display: inline-block;
 
@@ -93,6 +95,8 @@
 }
 
 .@{input-prefix-cls} {
+  .component-css-vars-input();
+
   position: relative;
   width: 100%;
   line-height: var(--ti-mobile-input-line-height);

@@ -91,9 +91,9 @@ export default {
       },
       desc: {
         'zh-CN': `通过 <code>with-close</code> 打开关闭按钮，并监听 <code>close</code> 事件自定义实现删除页签项的逻辑。
-          通过 <code>beforeClose</code> 函数属性，在关闭前回调该函数，其类型声明为：<code>(name: string)=> boolean | Promise&lt;boolean&gt;</code>`,
-        'en-US': `Use <code>with-close</code> to enable the close button and listen to the <code>close</code> event to customize the logic for deleting tab items.
-          The <code>beforeClose</code> function attribute is used to call back the function before the function is closed. The type of the function is declared as <code>(name: string)=> boolean | Promise<boolean></code>.`
+          <code>beforeClose</code> 设置删除前的操作，返回为false则取消删除，反之则执行删除。`,
+        'en-US': `Use <code>with-close</code> to open the close button and listen to the <code>close</code> event to customize the logic for deleting tab items.
+          <code>beforeClose</code> sets the operation before the deletion. If the return value is false, the deletion is canceled. Otherwise, the deletion is performed.`
       },
       codeFiles: ['tabs-events-close.vue']
     },
@@ -149,6 +149,20 @@ export default {
           'Set whether the width of the label item is self expanding by <code>stretch</code> , and the default is false.'
       },
       codeFiles: ['stretch-wh.vue']
+    },
+    {
+      demoId: 'more-show-all',
+      name: {
+        'zh-CN': '超长数据下拉展示',
+        'en-US': 'Drop-down display of ultra-long data'
+      },
+      desc: {
+        'zh-CN':
+          '通过 <code>more-show-all</code> 设置下拉面板展示全部页签项，<code>panel-max-height</code> 设置面板最大高度； <code>panel-width</code> 设置面板宽度。',
+        'en-US':
+          'Use <code>more-show-all</code> to set the drop-down panel to display all tab items and <code>panel-max-height</code> to set the maximum height of the panel. <code>panel-width</code> sets the width of the panel.'
+      },
+      codeFiles: ['more-show-all.vue']
     },
     {
       demoId: 'custom-tab-title',
@@ -244,14 +258,14 @@ export default {
     {
       demoId: 'overflow-title',
       name: {
-        'zh-CN': '标题超出显示 tooltip',
-        'en-US': 'The title exceeds the displayed tooltip.'
+        'zh-CN': '超出显示 tooltip',
+        'en-US': 'Out of Display tooltip'
       },
       desc: {
         'zh-CN':
-          '设置<code>overflow-title</code>属性可让标题超出一定长度（默认 256px）时隐藏并显示...，鼠标移到标题上可显示 tooltip，<code>title-width</code>属性可设置标题超出的长度。',
+          '通过 <code>overflow-title</code> 设置标题超出一定长度（默认 256px）时隐藏并显示...，鼠标移到标题上可显示 tooltip，<code>title-width</code>设置标题超出的长度。',
         'en-US':
-          'Set the <code>overflow-title</code> attribute to hide and display the title when the title exceeds a certain length (256px by default). Move the cursor to the title to display the tooltip. Set the <code>title-width</code> attribute to set the length of the title.'
+          'Use <code>overflow-title</code> to set the title to hide and show when it exceeds a certain length (default 256px)... , move the cursor to the title to display the tooltip, and set <code>title-width</code> to the excess length of the title.'
       },
       codeFiles: ['overflow-title.vue']
     }

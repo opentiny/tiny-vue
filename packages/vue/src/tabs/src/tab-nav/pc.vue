@@ -111,7 +111,9 @@ export default defineComponent({
       handleTitleMouseleave,
       // tiny 新增
       moreIcon,
-      tooltipConfig
+      tooltipConfig,
+      panelMaxHeight,
+      panelWidth
     } = this
     let { panes } = this
 
@@ -174,7 +176,8 @@ export default defineComponent({
           ? h(DropdownMenu, {
               attrs: {
                 popperClass: 'tiny-tabs-dropdown tiny-tabs__more-dropdown' + (popperClass ? ' ' + popperClass : ''),
-                placement: 'bottom-start'
+                placement: 'bottom-start',
+                style: { maxHeight: panelMaxHeight, width: panelWidth }
               },
               scopedSlots: { default: menuSlot }
             })

@@ -1,4 +1,4 @@
-import { VueNodeViewRenderer } from '@tiptap/vue-3'
+import { VueNodeViewRenderer } from '@tiptap/vue'
 import TiptapImage from '@tiptap/extension-image'
 import ImageView from '../image-view.vue'
 

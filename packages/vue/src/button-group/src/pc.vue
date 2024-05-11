@@ -25,6 +25,7 @@
                 'line-height': size === 'medium' ? '40px' : size === 'small' ? '30px' : size === 'mini' ? '22px' : ''
               }"
               type="button"
+              :tabindex="getItemClass(node).disabled ? '-1' : '0'"
               @click="handleClick(node)"
             >
               {{ node[textField] }}

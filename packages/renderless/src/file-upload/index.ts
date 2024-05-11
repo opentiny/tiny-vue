@@ -370,25 +370,25 @@ export const properFileSize =
     let maxSize = 0
 
     if (Array.isArray(props.fileSize) && props.fileSize[1]) {
-      maxSize = Math.min(state.singleMaxSize, props.fileSize[1] / 1024).toFixed(2)
+      maxSize = state.isEdm
+        ? Math.min(state.singleMaxSize, props.fileSize[1] / 1024)
+        : Math.max(props.fileSize[0] / 1024, props.fileSize[1] / 1024)
     } else {
-      maxSize = Math.min(state.singleMaxSize)
+      maxSize = state.isEdm ? Math.min(state.singleMaxSize) : props.fileSize / 1024
     }
 
-    if (state.isEdm || (!state.isEdm && Array.isArray(props.fileSize) && props.fileSize[1])) {
-      if (file.size > maxSize * 1024 * 1024) {
-        Modal.message({
-          message: t(constants.EDM.EXCEED, { maxSize: api.formatFileSize(Number(maxSize), 'M') }),
-          status: 'warning'
-        })
+    if (!isNaN(Number(maxSize)) && file.size > maxSize * 1024 * 1024) {
+      Modal.message({
+        message: t(constants.EDM.EXCEED, { maxSize: api.formatFileSize(Number(maxSize * 1024 * 1024)) }),
+        status: 'warning'
+      })
 
-        return false
-      }
+      return false
     }
 
     if (file.size <= 0) {
       Modal.message({
-        message: `${file.name} ${t(constants.EDM.FILEEMPTY)}`,
+        message: t(constants.EDM.FILEEMPTY),
         status: 'warning'
       })
 
@@ -1020,6 +1020,13 @@ export const updateUrl =
     }
   }
 
+export const handleFileClick =
+  ({ props, emit }: Pick<IFileUploadRenderlessParams, 'props' | 'emit'>) =>
+  (file: IFileUploadFile) => {
+    emit('preview', file)
+    props.preview && props.preview(file)
+  }
+
 const getTranslateFile =
   ({
     api,
@@ -1332,7 +1339,7 @@ export const downloadFileBatch =
     emit
   }: Pick<IFileUploadRenderlessParams, 'api' | 'service' | 'props' | 'state' | 'emit'>) =>
   (args: IFileUploadDownloadFileSingle) => {
-    let { downloadOps, file, calcProgress, handleSuccess, range = {} } = args
+    let { downloadOps, file, calcProgress, handleSuccess, range = {}, isLessThan17G } = args
     let tokenParams = { token: downloadOps.packageToken, file, type: 'download' }
     const { asyncPackages } = downloadOps || {}
     api.getToken(tokenParams).then((data) => {
@@ -1376,6 +1383,7 @@ export const downloadFileBatch =
           )
           .then((data) => {
             if (api.getKiaScanTip({ data })) return
+            if (api.validateDownloadStatus({ downloadOps: props.edm.download || {}, file, isLessThan17G, data })) return
             const { 'content-size': fileSize, checkcode } = data.headers
             emit('download', 100, '', { fileSize, checkcode })
             handleSuccess(data, 'zip')
@@ -1670,7 +1678,7 @@ export const downloadFileInner =
       return
     }
 
-    const params = { downloadOps, file, calcProgress, handleSuccess, range }
+    const params = { downloadOps, file, calcProgress, handleSuccess, range, isLessThan17G }
     isBatch && api.downloadFileBatch(params)
   }
 
@@ -1846,7 +1854,7 @@ export const largeDocumentUpload =
     api
       .segmentUploadInit(file)
       .then((data) => {
-        if (data) {
+        if (data && data.docId) {
           file.records = data.chunks
           file.docId = data.docId
           state.largeFileInfo[data.docId] = file
@@ -2226,10 +2234,12 @@ export const getToken =
           const whitelist = (result.config && result.config.fileWhiteList) || ''
 
           state.isSuccess = true
-          state.accept =
-            type === 'download' || type === 'preview'
-              ? props.accept
-              : `${whitelist}${props.accept ? `,${props.accept}` : ''}`
+
+          if (['preview', 'download'].includes(type) && props.accept) {
+            state.accept = props.accept
+          } else if (whitelist) {
+            state.accept = `${whitelist}${props.accept ? `,${props.accept}` : ''}`
+          }
 
           state.headers[constants.EDM.EDMTOKEN] = result.edmToken || ''
           state.headers[constants.EDM.TRACEID] = result.traceId || ''
@@ -2732,9 +2742,12 @@ export const getTipMessage =
     if (typeof fileSize === 'number') {
       fileSizeTip = `${t(constants.FILE_NOT_LESS_THAN)}${api.formatFileSize(fileSize * kibibyte)}`
     } else if (Array.isArray(fileSize)) {
-      fileSizeTip += !isNaN(fileSize[0])
-        ? `${t(constants.FILE_NOT_LESS_THAN)}${api.formatFileSize(Number(fileSize[0]) * kibibyte)}${t(constants.COMMA)}`
-        : ''
+      fileSizeTip +=
+        !isNaN(fileSize[0]) && fileSize[0] !== 0
+          ? `${t(constants.FILE_NOT_LESS_THAN)}${api.formatFileSize(Number(fileSize[0]) * kibibyte)}${t(
+              constants.COMMA
+            )}`
+          : ''
       fileSizeTip += !isNaN(fileSize[1])
         ? `${t(constants.FILE_NOT_MORE_THAN)}${api.formatFileSize(Number(fileSize[1]) * kibibyte)}`
         : ''

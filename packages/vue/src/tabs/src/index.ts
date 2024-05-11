@@ -65,7 +65,11 @@ export const tabsProps = {
   },
   beforeClose: Function,
   overflowTitle: Boolean,
-  titleWidth: String
+  titleWidth: String,
+  // tiny 新增
+  moreShowAll: Boolean,
+  panelMaxHeight: String,
+  panelWidth: String
 }
 
 export default defineComponent({

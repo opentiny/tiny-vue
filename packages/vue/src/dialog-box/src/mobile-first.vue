@@ -35,25 +35,12 @@
                 }}</span>
               </slot>
               <button
-                v-if="showClose"
-                type="button"
-                data-tag="tiny-dialog-box__headerbtn"
-                class="border-none p-0 leading-none cursor-pointer focus:outline-0"
-                aria-label="Close"
-                @click="handleClose('close', $event)"
-              >
-                <icon-close
-                  data-tag="tiny-svg-size tiny-dialog-box__close"
-                  class="fill-color-text-primary text-base hover:fill-color-brand"
-                />
-              </button>
-              <button
                 v-if="resize && !state.isFull"
                 type="button"
                 data-tag="tiny-dialog-box__headerbtn"
                 class="border-none p-0 leading-none cursor-pointer focus:outline-0"
                 aria-label="Resize"
-                @click="state.isFull = true"
+                @click="toggleFullScreen(true)"
               >
                 <icon-fullscreen
                   data-tag="tiny-svg-size tiny-dialog-box__close"
@@ -66,9 +53,22 @@
                 data-tag="tiny-dialog-box__headerbtn"
                 class="border-none p-0 leading-none cursor-pointer focus:outline-0"
                 aria-label="Resize"
-                @click="state.isFull = false"
+                @click="toggleFullScreen(false)"
               >
                 <icon-minscreen
+                  data-tag="tiny-svg-size tiny-dialog-box__close"
+                  class="fill-color-text-primary text-base hover:fill-color-brand"
+                />
+              </button>
+              <button
+                v-if="showClose"
+                type="button"
+                data-tag="tiny-dialog-box__headerbtn"
+                class="border-none p-0 leading-none cursor-pointer focus:outline-0"
+                aria-label="Close"
+                @click="handleClose('close', $event)"
+              >
+                <icon-close
                   data-tag="tiny-svg-size tiny-dialog-box__close"
                   class="fill-color-text-primary text-base hover:fill-color-brand"
                 />
@@ -76,7 +76,7 @@
             </div>
             <div
               data-tag="tiny-dialog-box__body"
-              class="text-left pt-0 pr-6 pb-0 pl-6 mb-6 mt-6 text-color-text-primary leading-5 text-sm overflow-auto"
+              class="text-left pt-0 pr-6 pb-0 pl-6 mb-3 mt-3 text-color-text-primary leading-5.5 text-sm overflow-auto"
               :class="[
                 state.isFull ? 'max-h-[calc(100vh-theme(spacing.28))]' : 'max-h-[65vh]',
                 rightSlide ? 'max-h-[none] flex-auto' : ''
@@ -108,14 +108,13 @@
         :before-close="beforeClose"
         @update:visible="$emit('update:visible', $event)"
       >
-        <template v-for="(value, name) in slots" #[name]="scopeData">
+        <template v-for="(value, name) in slots" #[name]="scopeData" :key="name">
           <div
             :class="{
               'flex w-full justify-between px-4 [&_[data-tag=tiny-button]]:flex-grow [&_[data-tag=tiny-button]:nth-child(2)]:ml-2':
                 name === 'footer',
               'px-4 min-h-[250px]': name === 'default'
             }"
-            :key="name"
           >
             <slot :name="name" v-bind="scopeData"></slot>
           </div>

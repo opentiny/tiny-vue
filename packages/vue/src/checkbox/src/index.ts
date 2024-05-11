@@ -71,6 +71,10 @@ export const checkboxProps = {
   shape: {
     type: String,
     default: ''
+  },
+  tabindex: {
+    type: String,
+    default: '0'
   }
 }
 

@@ -30,13 +30,24 @@
           customClass
         )
       "
-      :style="{ width: ['left', 'right'].includes(placement) ? state.computedWidth : null }"
+      :style="{
+        width: ['left', 'right'].includes(placement) ? state.computedWidth : null,
+        height: ['top', 'bottom'].includes(placement) && dragable && state.height ? state.height + 'px' : null
+      }"
     >
       <div
         data-tag="drawer-drag-bar"
         ref="dragBar"
         v-if="dragable"
-        :class="['h-full absolute top-0 w-2 cursor-e-resize', placement === 'left' ? '-right-1' : '-left-1']"
+        :class="[
+          'absolute',
+          ['left', 'right'].includes(placement) && 'cursor-e-resize h-full top-0 w-2',
+          ['top', 'bottom'].includes(placement) && 'cursor-n-resize w-full h-2 left-0',
+          placement === 'left' && '-right-1',
+          placement === 'right' && '-left-1',
+          placement === 'top' && '-bottom-1',
+          placement === 'bottom' && '-top-1'
+        ]"
       ></div>
       <div :class="['flex-auto flex-col flex max-h-full overflow-hidden']">
         <!-- header -->
@@ -47,10 +58,14 @@
           class="flex-none flex leading-6 p-4 text-base items-center"
         >
           <slot name="header">
-            <div v-if="title" class="max-w-[80%] pr-4 text-left truncate">{{ title }}</div>
+            <div v-if="title" class="max-w-[80%] pr-4 text-left truncate text-color-text-primary">{{ title }}</div>
             <div class="flex-1 flex items-center justify-end">
               <slot name="header-right">
-                <IconClose custom-class="h-5 w-5 cursor-pointer" @click="handleClose('close')"></IconClose>
+                <IconClose
+                  custom-class="h-5 w-5 cursor-pointer"
+                  class="fill-color-icon-primary"
+                  @click="handleClose('close')"
+                ></IconClose>
               </slot>
             </div>
           </slot>

@@ -70,8 +70,8 @@ export const adjustSpinners =
   ({ vm }) =>
   () => {
     if (vm.$refs.minSpinner) {
-      vm.$refs.minSpinner.adjustSpinners()
-      vm.$refs.maxSpinner.adjustSpinners()
+      vm.$refs.minSpinner.adjustSpinners('min')
+      vm.$refs.maxSpinner.adjustSpinners('max')
     }
   }
 

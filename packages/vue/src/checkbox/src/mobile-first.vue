@@ -4,7 +4,7 @@
     :class="
       m(
         'inline-flex sm:items-center text-sm leading-5 cursor-pointer',
-        state.size === 'medium' ? 'sm:text-sm' : 'sm:text-xs',
+        state.size !== 'mini' ? 'sm:text-sm' : 'sm:text-xs',
         { 'sm:py-2': state.vertical },
         state.isDisplayOnly || state.isGroupDisplayOnly
           ? state.isChecked
@@ -104,7 +104,7 @@
       :class="
         m(
           'py-0 pl-0 sm:pl-2 mr-5 flex-auto leading-7 sm:leading-none',
-          state.isDisabled ? 'cursor-not-allowed text-color-text-disabled' : 'text-color-text-primary',
+          state.isDisabled ? 'cursor-not-allowed text-color-text-secondary' : 'text-color-text-primary',
           state.isDisplayOnly || state.isGroupDisplayOnly ? 'p-0 sm:p-0 m-0 text-color-text-primary cursor-default' : ''
         )
       "

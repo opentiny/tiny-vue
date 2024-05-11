@@ -262,6 +262,7 @@
         @paste="debouncedOnInputChange"
         @mouseenter="onMouseenterNative"
         @mouseleave="onMouseleaveNative"
+        @compositionend.native="handleComposition"
       >
         <template #prefix v-if="slots.prefix">
           <slot name="prefix"></slot>
@@ -438,9 +439,9 @@
                   m(['-mt-0.5 mr-2 fill-color-icon-secondary', state.selectCls !== 'check' && 'fill-color-brand'])
                 "
               />
-              <span :class="[state.selectCls === 'checked-sur' ? 'text-color-brand' : 'text-color-text-primary']">{{
-                t('ui.base.all')
-              }}</span>
+              <span :class="[state.selectCls === 'checked-sur' ? 'text-color-brand' : 'text-color-text-primary']">
+                {{ allText || t('ui.base.all') }}</span
+              >
             </div>
 
             <div
@@ -476,7 +477,7 @@
               />
               <span
                 :class="[state.filteredSelectCls === 'checked-sur' ? 'text-color-brand' : 'text-color-text-primary']"
-                >{{ t('ui.base.all') }}</span
+                >{{ allText || t('ui.base.all') }}</span
               >
             </div>
             <tiny-option
@@ -694,7 +695,8 @@ export default defineComponent({
     'title',
     'closeByMask',
     'searchPlaceholder',
-    'blank'
+    'blank',
+    'allText'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, classes })

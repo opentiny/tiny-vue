@@ -83,7 +83,8 @@ export default defineComponent({
     'cacheToken',
     'lockScroll',
     'compact',
-    'encryptConfig'
+    'encryptConfig',
+    'imageBgColor'
   ],
   setup(props, context) {
     return setup({
@@ -180,7 +181,8 @@ export default defineComponent({
       lockScroll,
       compact,
       encryptConfig,
-      encryptDialogConfirm
+      encryptDialogConfirm,
+      imageBgColor
     } = this
 
     const listType = this.listType === 'saas' ? 'text' : this.listType
@@ -214,7 +216,7 @@ export default defineComponent({
           </span>
         )
       } else {
-        let cls = 'text-sm text-color-text-primary font-bold '
+        let cls = 'text-sm text-color-text-primary font-bold leading-5.5 '
 
         if (listType !== 'text') {
           cls += 'hidden'
@@ -349,8 +351,10 @@ export default defineComponent({
         defaultContent = (
           <div class="inline-block">
             <tiny-button disabled={disabled} class="hidden sm:block">
-              <icon-plus class="align-top" />
-              <span class="ml-2">{t('ui.fileUpload.uploadFile')}</span>
+              <div class="flex items-center">
+                <icon-plus />
+                <span class="ml-2">{t('ui.fileUpload.uploadFile')}</span>
+              </div>
             </tiny-button>
             <icon-plus-circle custom-class="sm:hidden w-5 h-5" />
           </div>
@@ -511,7 +515,8 @@ export default defineComponent({
         triggerPlay: play,
         mode,
         lockScroll,
-        compact
+        compact,
+        imageBgColor
       },
       scopedSlots: {
         default: (props: any) => {

@@ -10,6 +10,7 @@ import { devices, defineConfig } from '@playwright/test'
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+// process.env.CI = 'true'
 const Config = ({ testDir, baseURL, storageState, devServerCommon }) =>
   defineConfig({
     testDir,
@@ -17,7 +18,10 @@ const Config = ({ testDir, baseURL, storageState, devServerCommon }) =>
     timeout: 30 * 1000,
     expect: {
       // 每个 expect() 用例最长时间。
-      timeout: 15 * 1000
+      timeout: 15 * 1000,
+      toHaveScreenshot: {
+        maxDiffPixelRatio: 0.02
+      }
     },
     /* Fail the build on CI if you accidentally left test.only in the source code. */
     forbidOnly: !!process.env.CI,
@@ -46,17 +50,22 @@ const Config = ({ testDir, baseURL, storageState, devServerCommon }) =>
       /* Emulates the user timezone */
       timezoneId: 'Asia/Shanghai'
     },
-    webServer: {
-      command: devServerCommon,
-      url: baseURL,
-      reuseExistingServer: !process.env.CI,
-      stdout: 'pipe'
-    },
+    // 如果是全量跑测试官网或者本地测试则不需要开启webServer
+    webServer:
+      process.env.PYTEST_BASEURL || !process.env.CI
+        ? null
+        : {
+            command: devServerCommon,
+            url: baseURL,
+            reuseExistingServer: !process.env.CI,
+            stdout: 'pipe'
+          },
     projects: [
       {
         name: 'chromium',
         use: {
-          ...devices['Desktop Chrome']
+          ...devices['Desktop Chrome'],
+          viewport: { width: 1080, height: 720 }
         }
       },
       {

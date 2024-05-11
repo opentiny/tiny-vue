@@ -325,6 +325,7 @@ export const Cell = {
       }
     }
     let icon = GLOBAL_CONFIG.icon
+    const customExpandIcon = renderIcon || $table.$grid?.designConfig?.treeConfig?.renderIcon
 
     if (trigger && trigger !== 'default') {
       listeners = {}
@@ -334,8 +335,8 @@ export const Cell = {
 
     if (rowChildren && rowChildren.length) {
       iconVNode = [
-        renderIcon
-          ? renderIcon(h, { active: isActive, ...params })
+        customExpandIcon
+          ? customExpandIcon(h, { active: isActive, ...params })
           : h(iconArrowBottom(), {
               class: ['tiny-grid-tree__node-btn', icon.tree, { 'is__active': isActive }]
             })
@@ -379,12 +380,13 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderIndexCell(h, params))
   },
   renderIndexCell(h, params) {
-    const { $seq, level, seq } = params
+    const { $table, column, row, seq } = params
     // startIndex：序号列的起始值
-    const { startIndex, treeConfig = {} } = params.$table
-    const { indexMethod, slots } = params.column
-    const isOrdered = !!treeConfig.ordered
-    const indexValue = level && !isOrdered ? `${$seq}.${seq}` : startIndex + seq
+    const { startIndex, treeConfig } = $table
+    const { indexMethod, slots } = column
+    const { ordered, temporaryIndex = '_$index_' } = treeConfig || {}
+    const isTreeOrderedFalse = treeConfig && !ordered
+    const indexValue = isTreeOrderedFalse ? row[temporaryIndex] : startIndex + seq
 
     if (slots && slots.default) {
       return slots.default(params, h)

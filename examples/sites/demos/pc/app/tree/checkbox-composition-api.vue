@@ -37,7 +37,10 @@ const data = ref([
     id: '1',
     label: '数据 1',
     disabled: true,
-    children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+    children: [
+      { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+      { id: '1-2', label: '数据 1-2' }
+    ]
   },
   {
     id: '2',
@@ -62,6 +65,7 @@ const data = ref([
 }
 .checkbox-demo .tiny-tree {
   flex: 1;
+  min-width: 300px;
 }
 .checkbox-demo div {
   margin-bottom: 8px;

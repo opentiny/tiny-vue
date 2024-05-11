@@ -14,7 +14,7 @@
         <div
           data-tag="tiny-upload-list-item"
           ref="uploadListLi"
-          class="group relative sm:inline-block min-w-full p-3 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
+          class="group relative sm:inline-block min-w-full py-1.5 px-3 mr-2 border-0.5 sm:border border-color-border-separator rounded hover:bg-color-bg-2"
           :class="{
             'sm:border-color-brand border-color-border-separator': file.uid === (selected && selected.uid),
             'mb-2': index !== state.files.length - 1,
@@ -28,7 +28,7 @@
           <slot :file="file">
             <div
               data-tag="tiny-upload-list-status"
-              class="relative inline-block w-8 h-8 mr-2 align-top"
+              class="relative inline-block w-8 h-8 mr-2 align-top mt-1 pt-px"
               :class="{ 'bg-color-error rounded-sm': ~['fail'].indexOf(file.status) }"
             >
               <template v-if="~['uploading'].indexOf(file.status)">
@@ -64,9 +64,9 @@
               data-tag="tiny-upload-list-content"
               class="relative inline-block w-[calc(100%-theme(spacing.10))] text-xs pr-10 sm:pr-0"
             >
-              <div class="flex h-4" data-tag="tiny-upload-list-name">
+              <div class="flex" data-tag="tiny-upload-list-name">
                 <div
-                  class="flex-1 sm:mr-6 text-sm sm:text-xs leading-4 sm:leading-4 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
+                  class="flex-1 sm:mr-6 text-sm sm:text-xs leading-5.5 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap"
                 >
                   <span :title="file.name">{{
                     file.name
@@ -105,8 +105,8 @@
                   </slot>
                 </div>
               </div>
-              <div class="flex h-4 leading-5" data-tag="tiny-upload-list-content">
-                <span class="overflow-hidden text-ellipsis whitespace-nowrap font-light sm:font-normal">
+              <div class="flex h-5 leading-5" data-tag="tiny-upload-list-content">
+                <span class="overflow-hidden text-ellipsis whitespace-nowrap sm:font-normal">
                   <span v-if="~['fail'].indexOf(file.status)">
                     <span class="hidden sm:inline text-color-error-hover">{{ t('ui.uploadList.uploadFailed') }}</span>
                     <span class="inline sm:hidden text-color-error-hover">{{
@@ -274,6 +274,7 @@
               @click.stop="remove({ file })"
             ></icon-error>
             <div
+              :style="{ background: imageBgColor }"
               class="relative w-full h-full after:absolute after:w-full after:h-full after:left-0 after:top-0 after:rounded after:bg-color-bg-7"
               :class="[
                 !~['uploading', 'fail'].indexOf(file.status) ? 'after:hidden sm:after:group-hover:block' : '',
@@ -592,7 +593,8 @@ export default defineComponent({
     'triggerPlay',
     'mode',
     'lockScroll',
-    'compact'
+    'compact',
+    'imageBgColor'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, extendOptions: { Modal } }) as unknown as IUploadListApi
