@@ -29,7 +29,8 @@ import {
   handleDrag,
   showScrollbar,
   hideScrollbar,
-  computedBodyStyle
+  computedBodyStyle,
+  toggleFullScreen
 } from './index'
 import usePopup from '../common/deps/vue-popup'
 import type {
@@ -54,6 +55,7 @@ export const api = [
   'handleCancel',
   'handleConfirm',
   'handleDrag',
+  'toggleFullScreen',
   'state'
 ]
 
@@ -140,7 +142,7 @@ const initApi = ({
       state
     }),
     computedStyle: computedStyle({ state, props, designConfig }),
-    computedBodyStyle: computedBodyStyle({ props }),
+    computedBodyStyle: computedBodyStyle({ vm, props, state }),
     mounted: mounted({ api, parent, props }),
     unMounted: unMounted({ api, parent, props }),
     computedAnimationName: computedAnimationName({ constants, props }),
@@ -148,7 +150,9 @@ const initApi = ({
     afterLeave: afterLeave(emit),
     hideScrollbar: hideScrollbar(lockScrollClass),
     showScrollbar: showScrollbar(lockScrollClass),
-    handleDrag: handleDrag({ parent, props, state, emit, vm })
+    handleDrag: handleDrag({ parent, props, state, emit, vm }),
+    // tiny 新增
+    toggleFullScreen: toggleFullScreen({ state, emit, nextTick, vm })
   })
 }
 

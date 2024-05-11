@@ -19,7 +19,8 @@ const options = ref({
         htmlString += itemSeventeen.name + '<br/>'
       }
       htmlString += `<div>
-        <span style="display:inline-block;width:10px;height:10px;border-radius:5px;background-color:${itemSeventeen.color
+        <span style="display:inline-block;width:10px;height:10px;border-radius:5px;background-color:${
+          itemSeventeen.color
         };"></span>
         <span style="margin-left:5px;">
           <span style="display:inline-block;width:110px;">${itemSeventeen.seriesName} User</span>
@@ -43,8 +44,7 @@ const options = ref({
     { 'Month': 'Sep', 'Domestic': 17, 'Abroad': 37 },
     { 'Month': 'Oct', 'Domestic': 40, 'Abroad': 33 },
     { 'Month': 'Nov', 'Domestic': 42, 'Abroad': 22 },
-    { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 17 },
-
+    { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 17 }
   ],
   xAxis: 'Month',
   yAxis: {

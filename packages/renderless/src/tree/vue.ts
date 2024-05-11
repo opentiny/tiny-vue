@@ -192,7 +192,7 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, ap
   watchCheckboxItems: watchCheckboxItems(),
   watchCheckStrictly: watchCheckStrictly(state),
   updated: updated({ vm, state }),
-  filter: filter({ props, state }),
+  filter: filter({ props, state, api }),
   getNodeKey: getNodeKey(props),
   getNodePath: getNodePath({ props, state }),
   getCheckedNodes: getCheckedNodes(state),
@@ -254,10 +254,6 @@ const initWatcher = ({ watch, props, api, state, isVue2 }) => {
     (value) => (state.action.addDisabled = value || []),
     { immediate: true }
   )
-
-  if (props.willChangeView) {
-    watch(() => state.root, api.initPlainNodeStore, { deep: true })
-  }
 }
 
 export const renderless = (

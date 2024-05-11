@@ -102,13 +102,13 @@ export default defineComponent({
                 type="button"
                 class={[
                   'h-8 p-0 border border-solid rounded flex items-center justify-center group',
-                  'cursor-pointer border-color-border bg-color-bg-1',
+                  'cursor-pointer border-color-border bg-color-bg-1 sm:bg-transparent sm:border-0',
                   prevText ? 'w-fit' : 'w-8',
                   {
-                    'disabled:cursor-not-allowed disabled:border-color-border disabled:bg-color-bg-3': prevDisabled,
-                    'hover:border-color-brand sm:hover:border-color-border-hover sm:active:border-color-brand':
-                      !prevDisabled,
-                    'hover:bg-color-fill-6 sm:hover:bg-color-bg-1 sm:active:bg-color-fill-6': !prevDisabled
+                    'disabled:cursor-not-allowed disabled:border-color-border disabled:bg-color-bg-3 disabled:sm:bg-transparent':
+                      prevDisabled,
+                    'hover:border-color-brand sm:hover:border-0 sm:active:border-color-brand': !prevDisabled,
+                    'hover:bg-color-fill-6 sm:hover:bg-transparent sm:active:bg-transparent': !prevDisabled
                   }
                 ]}
                 disabled={prevDisabled}
@@ -116,10 +116,10 @@ export default defineComponent({
                 {prevText ? (
                   <span
                     class={[
-                      'inline-block w-fit mx-1 text-color-text-placeholder',
+                      'inline-block w-fit mx-1 text-color-text-placeholder sm:text-color-primary',
                       {
-                        'disabled:text-color-text-primary': prevDisabled,
-                        'group-hover:text-color-link sm:group-hover:text-color-text-primary sm:group-active:text-color-link':
+                        'disabled:text-color-text-primary sm:text-color-border': prevDisabled,
+                        'group-hover:text-color-link sm:group-hover:text-color-icon-hover sm:group-active:text-color-active':
                           !prevDisabled
                       }
                     ]}>
@@ -128,10 +128,10 @@ export default defineComponent({
                 ) : (
                   <ChevronLeft
                     class={[
-                      'fill-color-fill-7',
+                      'fill-color-fill-7 sm:fill-color-text-primary',
                       {
-                        'disabled:fill-color-fill-primary': prevDisabled,
-                        'group-hover:fill-color-brand sm:group-hover:fill-color-fill-primary sm:group-active:fill-color-brand':
+                        'disabled:fill-color-fill-primary sm:fill-color-border': prevDisabled,
+                        'group-hover:fill-color-brand sm:group-hover:fill-color-icon-hover sm:group-active:fill-color-icon-active':
                           !prevDisabled
                       }
                     ]}
@@ -153,13 +153,14 @@ export default defineComponent({
                 type="button"
                 class={[
                   'h-8 p-0 border border-solid rounded flex items-center justify-center group',
-                  'cursor-pointer border-color-border bg-color-bg-1',
+                  'cursor-pointer border-color-border bg-color-bg-1 sm:bg-transparent sm:border-0',
                   nextText ? 'w-fit' : 'w-8',
                   {
-                    'disabled:cursor-not-allowed disabled:border-color-border disabled:bg-color-bg-3': nextDisabled,
+                    'disabled:cursor-not-allowed disabled:border-color-border disabled:bg-color-bg-3 disabled:sm:bg-transparent':
+                      nextDisabled,
                     'hover:border-color-brand sm:hover:border-color-border-hover sm:active:border-color-brand':
                       !nextDisabled,
-                    'hover:bg-color-fill-6 sm:hover:bg-color-bg-1 sm:active:bg-color-fill-6': !nextDisabled
+                    'hover:bg-color-fill-6 sm:hover:bg-transparent sm:active:bg-transparent': !nextDisabled
                   }
                 ]}
                 disabled={nextDisabled}
@@ -167,10 +168,10 @@ export default defineComponent({
                 {nextText ? (
                   <span
                     class={[
-                      'inline-block w-fit mx-1 text-color-text-placeholder',
+                      'inline-block w-fit mx-1 text-color-text-placeholder sm:text-color-primary',
                       {
-                        'disabled:text-color-text-primary': nextDisabled,
-                        'group-hover:text-color-link sm:group-hover:text-color-text-primary sm:group-active:text-color-link':
+                        'disabled:text-color-text-primary disabled:sm:text-color-border': nextDisabled,
+                        'group-hover:fill-color-brand sm:group-hover:fill-color-icon-hover sm:group-active:fill-color-icon-active':
                           !nextDisabled
                       }
                     ]}>
@@ -179,10 +180,10 @@ export default defineComponent({
                 ) : (
                   <ChevronRight
                     class={[
-                      'fill-color-fill-7',
+                      'fill-color-fill-7 sm:fill-color-text-primary',
                       {
-                        'disabled:fill-color-fill-primary': nextDisabled,
-                        'group-hover:fill-color-brand sm:group-hover:fill-color-fill-primary sm:group-active:fill-color-brand':
+                        'disabled:fill-color-fill-primary sm:fill-color-border': nextDisabled,
+                        'group-hover:fill-color-brand sm:group-hover:fill-color-icon-hover sm:group-active:fill-color-icon-active':
                           !nextDisabled
                       }
                     ]}

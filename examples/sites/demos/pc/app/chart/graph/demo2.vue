@@ -16,7 +16,6 @@ let links = data.map((item, i) => {
 })
 links.pop()
 
-
 let option = {
   xAxis: {
     type: 'category',

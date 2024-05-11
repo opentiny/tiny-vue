@@ -118,6 +118,10 @@ export const dialogBoxProps = {
   maxHeight: {
     type: String,
     default: () => ''
+  },
+  dialogTransition: {
+    type: String,
+    default: ''
   }
 }
 

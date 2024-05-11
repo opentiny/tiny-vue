@@ -26,7 +26,7 @@ export const classes = {
   'right-line-small': 'ml-2',
   'right-line-medium': 'ml-2',
   'right-line-large': 'ml-3',
-  'steps-title': 'hidden sm:block text-sm ml-2 font-medium truncate',
+  'steps-title': 'hidden sm:block text-sm ml-2 font-medium truncate leading-5.5',
   'title-font-mini': 'text-xs',
   'title-font-small': 'text-xs',
   'title-font-medium': 'text-sm',

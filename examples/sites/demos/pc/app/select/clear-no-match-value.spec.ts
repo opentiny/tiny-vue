@@ -19,6 +19,6 @@ test('多选找不到匹配值', async ({ page }) => {
 
   // 验证是否清空不匹配的值
   await expect(tag).toHaveCount(1)
-  await expect(tag).toHaveText('双皮奶')
+  await expect(tag).toHaveText('上海')
   await expect(wrap.locator('.multi-val')).toHaveText('[ "选项2" ]')
 })

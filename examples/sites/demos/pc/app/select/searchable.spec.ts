@@ -14,20 +14,20 @@ test('searchable-single', async ({ page }) => {
   await select.click()
   await page.waitForTimeout(500)
   await expect(input).toBeVisible()
-  await input.fill('双皮奶')
+  await input.fill('上海')
   await input.press('Enter')
   await page.waitForTimeout(500)
   const list = await option.all()
   list.forEach(async (item) => {
     const text = await item.innerText()
-    const isVisibleItem = text === '双皮奶' || text === '全部'
+    const isVisibleItem = text === '上海' || text === '全部'
     if (isVisibleItem) {
       await expect(item).toHaveCSS('display', 'flex')
     } else {
       await expect(item).toHaveCSS('display', 'none')
     }
   })
-  await option.filter({ hasText: '双皮奶' }).click()
+  await option.filter({ hasText: '上海' }).click()
   await page.waitForTimeout(500)
   await expect(input).toHaveValue('')
 })
@@ -47,20 +47,20 @@ test('searchable-multiple', async ({ page }) => {
   await select.click()
   await page.waitForTimeout(500)
   await expect(input).toBeVisible()
-  await input.fill('双皮奶')
+  await input.fill('上海')
   await input.press('Enter')
   await page.waitForTimeout(500)
   const list = await option.all()
   list.forEach(async (item) => {
     const text = await item.innerText()
-    const isVisibleItem = text === '双皮奶' || text === '全部'
+    const isVisibleItem = text === '上海' || text === '全部'
     if (isVisibleItem) {
       await expect(item).toHaveCSS('display', 'flex')
     } else {
       await expect(item).toHaveCSS('display', 'none')
     }
   })
-  await option.filter({ hasText: '双皮奶' }).click()
+  await option.filter({ hasText: '上海' }).click()
   await page.waitForTimeout(500)
   await expect((await tags.all()).length).toEqual(1)
 })

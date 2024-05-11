@@ -71,7 +71,7 @@
           ref="input"
           :name="name"
           data-tag="tiny-input-inner"
-          v-bind="a($attrs, ['type', 'class', 'style', '^on\w+', 'id'])"
+          v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]', 'id'])"
           :class="['tiny-input__inner', mask && state.inputDisabled && !state.maskValueVisible && 'tiny-input__mask']"
           :tabindex="tabindex"
           :type="showPassword ? (state.passwordVisible ? 'text' : 'password') : type"

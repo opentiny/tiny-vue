@@ -44,7 +44,7 @@
       :options="r.operators"
       :value="r.rule.operator"
       :class-name="r.classNames.operators"
-      :handle-on-change="r.generateOnChangeHandler('operator')"
+      :handle-on-change="operatorChange"
       :level="r.path.length"
       :path="r.path"
       :disabled="r.disabled"
@@ -279,6 +279,39 @@ export default defineComponent({
         clearDataAction
       }
     }
+  },
+  data() {
+    const zero = 'zeroOperator'
+    const two = 'twoOperator'
+    return {
+      lastOperator: '',
+      operatorMap: {
+        'null': zero,
+        'notNull': zero,
+        'between': two,
+        'notBetween': two
+      }
+    }
+  },
+
+  methods: {
+    sameTypeOperator(val) {
+      return this.operatorMap[this.lastOperator] === this.operatorMap[val]
+    },
+    operatorChangeHandler() {
+      return this.r.generateOnChangeHandler('operator')
+    },
+    operatorChange(val) {
+      this.r.generateOnChangeHandler('operator')(val)
+      // 如果是切换操作符类型所需要的操作数不一致，则清空缓存值
+      if (!this.sameTypeOperator(val)) {
+        this.r.generateOnChangeHandler('value')('')
+      }
+      this.lastOperator = val
+    }
+  },
+  mounted() {
+    this.lastOperator = this.r.rule.operator
   }
 })
 </script>

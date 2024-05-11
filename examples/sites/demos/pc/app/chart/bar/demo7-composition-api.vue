@@ -9,7 +9,6 @@ import { ref } from 'vue'
 import { ChartBar as TinyChartBar } from '@opentiny/vue'
 
 const options = ref({
-
   // 双向柱状图形态
   type: 'double-sides',
   direction: 'horizontal',
@@ -25,7 +24,7 @@ const options = ref({
     { 'Month': 'Sep', '上行': 17, '下行': 12 },
     { 'Month': 'Oct', '上行': 41, '下行': 33 },
     { 'Month': 'Nov', '上行': 42, '下行': 22 },
-    { 'Month': 'Dec', '上行': 37, '下行': 17 },
+    { 'Month': 'Dec', '上行': 37, '下行': 17 }
   ]
 })
 </script>

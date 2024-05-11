@@ -51,6 +51,8 @@ const GlobalConfig = {
   // 鼠标移入表格行是否高亮显示
   highlightHoverRow: true,
   resizable: true,
+  // 操作列（type为index或radio或selection的列）默认不可拖动列宽
+  operationColumnResizable: false,
   fit: true,
   showHeader: true,
   defaultTreeIndent: 16,

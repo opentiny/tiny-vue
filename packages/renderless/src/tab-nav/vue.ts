@@ -114,7 +114,7 @@ export const renderless = (
     handleTabDragStart: handleTabDragStart({ state, vm, emit }),
     handleTabDragEnd: handleTabDragEnd({ state, vm, nextTick }),
     sortableEvent: sortableEvent({ api, props, state, vm, emit, markRaw }),
-    handleTitleMouseenter: handleTitleMouseenter({ state, vm }),
+    handleTitleMouseenter: handleTitleMouseenter({ state, vm, props }),
     handleTitleMouseleave: handleTitleMouseleave({ state })
   })
 

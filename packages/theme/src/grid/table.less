@@ -29,6 +29,11 @@
   font-family: var(--ti-grid-font-family);
   background-color: var(--ti-grid-light-color);
 
+  // 展开行背景颜色
+  .@{grid-prefix-cls}-body__expanded-row {
+    background-color: var(--ti-grid-expand-background-color);
+  }
+
   // 显示表尾
   &.show__foot {
     &.scroll__x {
@@ -411,6 +416,10 @@
   & &-body__row {
     background-color: var(--ti-grid-row-background-color);
 
+    // 勾选某一行时的背景颜色
+    &.row__selected {
+      background-color: var(--ti-grid-row-selected-background-color);
+    }
     // 选中某一行时的背景颜色
     &.row__current {
       background-color: var(--ti-grid-row-hover-background-color);
@@ -812,6 +821,9 @@
           align-items: center;
           transform: translateX(-4px);
           flex-shrink: 0;
+          svg {
+            font-size: var(--ti-grid-tree-expand-icon-font-size);
+          }
         }
       }
 
@@ -1094,6 +1106,43 @@
       cursor: not-allowed;
       fill: rgba(51, 61, 72, 0.3);
       color: rgba(22, 30, 38, 0.3);
+    }
+  }
+
+  &.row__valid-inline {
+    .@{grid-prefix-cls}__body-wrapper .@{grid-prefix-cls}-body__row.row__actived {
+      height: 72px;
+
+      .@{grid-prefix-cls}-cell__valid {
+        --td-padding-x: 8px;
+        position: absolute;
+        top: auto;
+        right: auto;
+        bottom: 1px;
+        left: var(--td-padding-x);
+        width: calc(100% - 2 * var(--td-padding-x));
+        height: 16px;
+        line-height: 1;
+        transform: translate(0, 0);
+        background-color: transparent;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #f5222d;
+
+        .@{grid-prefix-cls}-cell__valid-icon {
+          margin-right: 8px;
+        }
+
+        .@{grid-prefix-cls}-cell__valid-msg {
+          padding: 0;
+          background-color: transparent;
+          display: inline;
+          color: inherit;
+          font-size: 12px;
+        }
+      }
     }
   }
 }

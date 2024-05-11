@@ -24,7 +24,7 @@ const options = ref({
     { 'Month': 'Sep', 'Value': 0.01 },
     { 'Month': 'Oct', 'Value': 0.01 },
     { 'Month': 'Nov', 'Value': 0.01 },
-    { 'Month': 'Dec', 'Value': 0.01 },
+    { 'Month': 'Dec', 'Value': 0.01 }
   ],
   xAxis: {
     data: 'Month'

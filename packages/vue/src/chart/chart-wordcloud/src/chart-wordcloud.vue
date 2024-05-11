@@ -7,11 +7,12 @@
 
 <script>
 import Core from '@opentiny/vue-chart-core'
+import { $prefix } from '@opentiny/vue-common'
 import { wordcloud } from './wordcloud'
 import 'echarts-wordcloud'
 
 export default {
-  name: 'ChartWordcloud',
+  name: $prefix + 'ChartWordcloud',
   mixins: [Core],
 
   data() {

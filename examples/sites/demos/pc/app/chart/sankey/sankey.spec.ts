@@ -1,13 +1,15 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, config } from '../fixtures'
 
 test('base', async ({ page }) => {
+  config.waitTime = 5000
   await page.goto('chart-sankey#sankey-base')
-  const chart = page.locator('#sankey-base .hui-chart')
-  await expect(chart).toHaveScreenshot('base.png')
+  await expect(page.locator('#sankey-base .hui-chart')).toBeInViewport()
+  await expect(page).toHaveScreenshot('base.png')
 })
 
 test('demo2', async ({ page }) => {
+  config.waitTime = 3000
   await page.goto('chart-sankey#sankey-demo2')
-  const chart = page.locator('#sankey-demo2 .hui-chart')
-  await expect(chart).toHaveScreenshot('demo2.png')
+  await expect(page.locator('#sankey-demo2 .hui-chart')).toBeInViewport()
+  await expect(page).toHaveScreenshot('demo2.png')
 })

@@ -258,14 +258,14 @@ export default {
     {
       demoId: 'overflow-title',
       name: {
-        'zh-CN': '标题超出显示 tooltip',
-        'en-US': 'The title exceeds the displayed tooltip.'
+        'zh-CN': '超出显示 tooltip',
+        'en-US': 'Out of Display tooltip'
       },
       desc: {
         'zh-CN':
-          '设置<code>overflow-title</code>属性可让标题超出一定长度（默认 256px）时隐藏并显示...，鼠标移到标题上可显示 tooltip，<code>title-width</code>属性可设置标题超出的长度。',
+          '通过 <code>overflow-title</code> 设置标题超出一定长度（默认 256px）时隐藏并显示...，鼠标移到标题上可显示 tooltip，<code>title-width</code>设置标题超出的长度。',
         'en-US':
-          'Set the <code>overflow-title</code> attribute to hide and display the title when the title exceeds a certain length (256px by default). Move the cursor to the title to display the tooltip. Set the <code>title-width</code> attribute to set the length of the title.'
+          'Use <code>overflow-title</code> to set the title to hide and show when it exceeds a certain length (default 256px)... , move the cursor to the title to display the tooltip, and set <code>title-width</code> to the excess length of the title.'
       },
       codeFiles: ['overflow-title.vue']
     }

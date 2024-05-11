@@ -26,8 +26,7 @@ export default {
           { 'Month': 'Sep', 'Domestic': 17, 'Abroad': 30 },
           { 'Month': 'Oct', 'Domestic': 40, 'Abroad': 33 },
           { 'Month': 'Nov', 'Domestic': 42, 'Abroad': 22 },
-          { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 1 },
-
+          { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 1 }
         ],
         xAxis: {
           data: 'Month',

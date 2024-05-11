@@ -35,7 +35,10 @@ export default {
         {
           id: '1',
           label: '数据 1',
-          children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+          children: [
+            { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+            { id: '1-2', label: '数据 1-2' }
+          ]
         },
         {
           id: '2',
@@ -71,6 +74,7 @@ export default {
       const checkedHalfNodes = this.$refs.treeRef.getHalfCheckedNodes()
 
       console.log('当前组件的勾选状态为： ', this.$refs.treeRef, {
+        currentKey,
         checkedKeys,
         checkedKeysOnlyLeaf,
         checkedNodes,
@@ -100,10 +104,10 @@ export default {
       this.$refs.treeRef.setCheckedNodes([{ id: '1-1' }, { id: '2-1' }, { id: '3-1' }], true)
     },
     check(data, currentChecked) {
-      console.log('check事件：', arguments)
+      console.log('check事件：', data, currentChecked)
     },
     checkChange(data, checked, indeterminate) {
-      console.log('checkChange事件：', arguments)
+      console.log('checkChange事件：', data, checked, indeterminate)
     }
   }
 }

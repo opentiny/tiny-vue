@@ -9,7 +9,6 @@ import { ref } from 'vue'
 import { ChartSankey as TinyChartSankey } from '@opentiny/vue'
 
 const options = ref({
-
   // 页面节点是否可被拖动,布尔值,默认值为true
   draggable: false,
 
@@ -52,6 +51,4 @@ const options = ref({
     ]
   }
 })
-
-
 </script>

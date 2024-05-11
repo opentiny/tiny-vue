@@ -27,7 +27,7 @@
     "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-vite-import": "workspace:~",
     "@opentiny/vue-design-smb": "workspace:~",
-    "@playwright/test": "^1.40.1",
+    "@playwright/test": "~1.42.0",
     "@vitest/ui": "^0.31.0",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
     "@vue/composition-api": "1.7.2",

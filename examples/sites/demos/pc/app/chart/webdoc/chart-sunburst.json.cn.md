@@ -1,5 +1,5 @@
 ---
-title:  Chart 图表
+title: Chart 图表
 ---
 
 # Chart 图表

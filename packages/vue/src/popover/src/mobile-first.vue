@@ -11,7 +11,7 @@
         :id="state.tooltipId"
         :aria-hidden="disabled || !state.showPopper ? 'true' : 'false'"
       >
-        <div class="hidden sm:block" data-tag="tiny-popover-arrow">
+        <div class="hidden sm:block leading-5.5" data-tag="tiny-popover-arrow">
           <slot v-if="slots.header" name="header"></slot>
           <div v-else-if="title" :class="[gcls('title')]" v-text="title"></div>
           <slot>{{ content }}</slot>

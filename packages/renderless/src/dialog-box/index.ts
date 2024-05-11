@@ -51,22 +51,38 @@ export const computedStyle =
 
     if (state.dragStyle) {
       style = { ...style, ...state.dragStyle }
+      if (state.isFull) {
+        style = { left: '0px', top: '0px' }
+      }
     }
 
     return style
   }
 
 export const computedBodyStyle =
-  ({ props }: Pick<IDialogBoxRenderlessParams, 'props'>) =>
+  ({ vm, props, state }: Pick<IDialogBoxRenderlessParams, 'vm' | 'props' | 'state'>) =>
   (): { maxHeight?: string } => {
     const style = {
       maxHeight: ''
     }
+    const headerHeight = (vm.$refs.header && vm.$refs.header.offsetHeight) || 0
+    const footerHeight = (vm.$refs.footer && vm.$refs.footer.offsetHeight) || 0
     let { maxHeight } = props
 
-    if (maxHeight) {
+    if (state.isFull || props.rightSlide) {
+      if (vm.$slots.footer) {
+        style.maxHeight = `calc(100vh - ${headerHeight + footerHeight}px)`
+      } else {
+        style.maxHeight = `calc(100vh - ${headerHeight}px)`
+      }
+    } else {
+      style.maxHeight = '65vh'
+    }
+
+    if (maxHeight && !state.isFull) {
       style.maxHeight = 'none'
     }
+
     return style
   }
 
@@ -345,8 +361,9 @@ export const handleDrag =
         left = event.clientX < 0 ? -disX : left > maxX ? maxX : left
         top = event.clientY < 0 ? -disY : top > maxY ? maxY : top
       }
-
-      state.dragStyle = { left: `${left}px`, top: `${top}px` }
+      if (!state.isFull) {
+        state.dragStyle = { left: `${left}px`, top: `${top}px` }
+      }
 
       state.left = `${left}px`
       state.top = `${top}px`
@@ -370,3 +387,13 @@ export const showScrollbar = (lockScrollClass: string) => (): void => {
 export const hideScrollbar = (lockScrollClass: string) => (): void => {
   removeClass(document.body, lockScrollClass)
 }
+
+// tiny 新增
+export const toggleFullScreen =
+  ({ state, emit, nextTick, vm }) =>
+  (isFull: boolean): void => {
+    state.isFull = isFull
+    nextTick(() => {
+      emit('resize', { fullscreen: isFull, dialog: vm.$refs.dialog })
+    })
+  }

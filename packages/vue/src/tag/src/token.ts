@@ -13,7 +13,7 @@ export const classes = {
 
   'light-success': 'text-color-success bg-color-success-subtler',
   'light-alerting': 'text-color-alert bg-color-alert-subtler',
-  'light-warning': 'text-color-warning-hover bg-color-warning-subtler',
+  'light-warning': 'text-color-warning bg-color-warning-subtler',
   'light-error': 'text-color-error bg-color-error-subtler',
   'light-default': 'text-color-info-primary bg-color-info-primary-subtler',
   'light-info': 'text-color-text-primary bg-color-bg-2',
@@ -23,7 +23,7 @@ export const classes = {
 
   'plain-success': 'text-color-success bg-color-bg-1',
   'plain-alerting': 'text-color-alert bg-color-bg-1',
-  'plain-warning': 'text-color-warning-hover bg-color-bg-1',
+  'plain-warning': 'text-color-warning bg-color-bg-1',
   'plain-error': 'text-color-error bg-color-bg-1',
   'plain-default': 'text-color-info-primary bg-color-bg-1',
   'plain-info': 'text-color-text-primary bg-color-bg-1',

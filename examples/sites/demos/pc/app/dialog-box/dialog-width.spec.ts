@@ -9,5 +9,4 @@ test('dialogBox 弹窗的宽度', async ({ page }) => {
   await page.getByRole('button', { name: 'Close' }).click()
   await page.getByRole('button', { name: /60%/ }).click()
   await expect(dialogBox.nth(1)).toBeVisible()
-  await page.getByRole('button', { name: '确 定' }).nth(1).click()
 })

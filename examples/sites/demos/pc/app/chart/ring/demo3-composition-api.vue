@@ -12,7 +12,7 @@ const options = ref({
   type: 'nulti-circle',
   position: {
     radius: ['44%', '50%'],
-    center: ['35%', '50%'],
+    center: ['35%', '50%']
   },
   color: ['#fa2a2d', '#ff7500', '#ffbf00', '#41ba41', '#00aaee'],
   title: {

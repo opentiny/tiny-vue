@@ -122,7 +122,7 @@ export default defineComponent({
     title: [String, Function],
     // 指定为树节点
     treeNode: Boolean,
-    // 渲染类型 index,radio,selection,expand
+    // 渲染类型: index,radio,selection,expand,operation,默认值空串
     type: String,
     // 列宽度
     width: [Number, String],
@@ -135,12 +135,13 @@ export default defineComponent({
     return { $column: this }
   },
   setup(props, { slots }) {
-    const { reactive, onBeforeUnmount, inject, getCurrentInstance, watch, nextTick, markRaw } = hooks
+    const { reactive, onBeforeUnmount, inject, getCurrentInstance, onUpdated, watch, nextTick, markRaw } = hooks
     const currentInstance = getCurrentInstance()
     const instance = currentInstance.proxy
     const $grid = inject('$grid')
     const $table = inject('$table')
     const $column = inject('$column', null)
+    let slotsCache = {}
 
     const state = reactive({
       // 穿件表格列实例化对象
@@ -158,7 +159,15 @@ export default defineComponent({
       }
     )
 
-    nextTick(() => assemColumn($table, $column, instance))
+    onUpdated(() => {
+      const slotsChange = Object.keys(instance.slots || {}).some((key) => !(slotsCache?.[key] === instance.slots[key]))
+      if (slotsChange) {
+        slotsCache = { ...instance.slots }
+        state.columnConfig.slots = slotsCache
+      }
+    })
+
+    nextTick(() => assemColumn($table, $column, instance, reactive))
 
     onBeforeUnmount(() => destroyColumn($table, instance))
 

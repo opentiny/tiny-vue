@@ -36,7 +36,7 @@
       </transition>
       <input
         ref="input"
-        v-bind="a($attrs, ['type', 'class', 'style', '^on\w+', 'id', 'disabled', 'clearable'])"
+        v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]', 'id', 'disabled', 'clearable'])"
         v-model="state.currentValue"
         :style="
           transparent

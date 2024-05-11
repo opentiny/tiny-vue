@@ -8,9 +8,10 @@
 <script>
 import 'echarts/extension/bmap/bmap'
 import Core from '@opentiny/vue-chart-core'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartBaiduMap',
+  name: $prefix + 'ChartBaiduMap',
   mixins: [Core],
   data() {
     return {

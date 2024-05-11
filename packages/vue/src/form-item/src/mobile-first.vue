@@ -29,7 +29,7 @@
             'py-3 sm:py-1.5 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border leading-5',
             'overflow-hidden text-ellipsis',
             state.labelPosition === 'top'
-              ? 'float-none inline-block text-left sm:text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0 sm:py-0 sm:pb-0.5 sm:min-h-[theme(spacing.0)]'
+              ? 'float-none inline-block text-left sm:text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0 sm:py-0 sm:pb-1 sm:min-h-[theme(spacing.0)]'
               : 'min-h-[theme(spacing.9)]',
             state.labelPosition === 'right' ? 'text-right sm:text-right' : '',
             state.labelPosition === 'left' ? 'text-left sm:text-left' : '',
@@ -40,7 +40,7 @@
               ? 'overflow-visible relative before:absolute before:-left-2.5'
               : '',
             state.disabled ? 'text-color-icon-placeholder sm:text-color-text-secondary' : 'text-color-text-secondary',
-            state.formItemSize === 'medium' ? 'sm:text-sm' : 'sm:text-xs'
+            state.formItemSize !== 'mini' ? 'sm:text-sm' : 'sm:text-xs'
           )
         "
         :style="state.labelStyle"
@@ -82,7 +82,7 @@
               ? 'pl-0'
               : 'pl-2 sm:pl-0'
             : 'pt-2',
-          state.formItemSize === 'medium' ? 'sm:text-sm' : 'sm:text-xs'
+          state.formItemSize !== 'mini' ? 'sm:text-sm' : 'sm:text-xs'
         )
       "
     >
@@ -123,7 +123,7 @@
         <div
           :class="
             m(
-              ' relative sm:absolute left-0 bottom-1 sm:-bottom-5 text-color-error text-xs leading-normal line-clamp-3 sm:line-clamp-1',
+              'relative sm:absolute left-0 bottom-1 sm:-bottom-5 text-color-error text-xs leading-normal line-clamp-3 sm:line-clamp-1',
               (typeof inlineMessage === 'boolean' && inlineMessage) || state.inlineMessage
                 ? 'relative top-auto left-auto inline-block'
                 : '',
@@ -136,6 +136,7 @@
           {{ state.validateMessage }}
         </div>
       </slot>
+      <slot v-if="state.validateState !== 'error' && showMessage && state.showMessage" name="prompt"> </slot>
     </div>
   </div>
 </template>

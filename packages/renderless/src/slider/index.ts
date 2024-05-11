@@ -117,6 +117,8 @@ export const bindMouseDown =
       return
     }
 
+    api.bindResize()
+
     on(window, 'mouseup', api.bindMouseUp)
     on(window, 'mousemove', api.bindMouseMove)
     on(window, 'touchend', api.bindMouseUp)

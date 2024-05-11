@@ -21,7 +21,6 @@ const options = ref({
     data: '日期'
   },
   markLine: {
-
     // markLine.top 表示顶部阈值线, markLine.bottom 表示底部阈值线
     top: 32
   },

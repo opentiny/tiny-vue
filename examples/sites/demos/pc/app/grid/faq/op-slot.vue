@@ -24,8 +24,8 @@ export default {
           field: 'employees',
           title: '员工数',
           slots: {
-            default: ({ row }, h) => <span style="color: #5e7ce0;cursor: pointer;">{row.employees}</span>,
-            header: ({ column }, h) => <span style="color: #5e7ce0;cursor: pointer;">{column.title + 2}</span>
+            default: ({ row }, h) => <span style="color: #1476FF;cursor: pointer;">{row.employees}</span>,
+            header: ({ column }, h) => <span style="color: #1476FF;cursor: pointer;">{column.title + 2}</span>
           }
         },
         {

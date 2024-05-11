@@ -1,11 +1,10 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ComputedRef, ExtractPropTypes } from 'vue'
 import type { drawerProps } from '@/drawer/src'
 import type {
   close,
   watchVisible,
   watchToggle,
   confirm,
-  computedWidth,
   mousedown,
   mouseup,
   mousemove,
@@ -13,14 +12,16 @@ import type {
   removeDragEvent,
   showScrollbar,
   hideScrollbar,
-  watchVisibleNotImmediate
+  watchVisibleNotImmediate,
+  computedWidth
 } from '../src/drawer'
 
 export interface IDrawerState {
   toggle: boolean
   width: number
-  dragEvent: { x: number; isDrag: boolean; offsetWidth: number }
-  computedWidth: string
+  height: number
+  dragEvent: { x: number; y: number; isDrag: boolean; offsetWidth: number; offsetHeight: number }
+  computedWidth: ComputedRef<string>
   btnOrderReversed: boolean
 }
 
@@ -29,7 +30,6 @@ export type IDrawerProps = ExtractPropTypes<typeof drawerProps>
 export interface IDrawerApi {
   state: IDrawerState
   confirm: ReturnType<typeof confirm>
-  computedWidth: ReturnType<typeof computedWidth>
   close: ReturnType<typeof close>
   mousemove: ReturnType<typeof mousemove>
   mouseup: ReturnType<typeof mouseup>
@@ -41,6 +41,7 @@ export interface IDrawerApi {
   showScrollbar: ReturnType<typeof showScrollbar>
   hideScrollbar: ReturnType<typeof hideScrollbar>
   watchVisibleNotImmediate: ReturnType<typeof watchVisibleNotImmediate>
+  computedWidth: ReturnType<typeof computedWidth>
 }
 
 export type IDrawerCT = ReturnType<typeof drawerProps._constants.default>

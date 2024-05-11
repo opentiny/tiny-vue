@@ -43,11 +43,11 @@ export default {
   data() {
     return {
       options1: [
-        { value: '选项1', label: '黄金糕', tag: 'New', tip: '自定义提示' },
-        { value: '选项2', label: '双皮奶' },
-        { value: '选项3', label: '蚵仔煎' },
-        { value: '选项4', label: '龙须面' },
-        { value: '选项5', label: '北京烤鸭' }
+        { value: '选项1', label: '北京', tag: 'New', tip: '自定义提示' },
+        { value: '选项2', label: '上海' },
+        { value: '选项3', label: '天津' },
+        { value: '选项4', label: '重庆' },
+        { value: '选项5', label: '深圳' }
       ],
       options2: [
         { value: '选项1', label: '子网1 （192.168.0.1/24）', desc: '可用 IP 数 250' },

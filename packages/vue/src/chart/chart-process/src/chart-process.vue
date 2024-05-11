@@ -7,9 +7,10 @@
 
 <script>
 import Core from '@opentiny/vue-chart-core'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartProcess',
+  name: $prefix + 'ChartProcess',
   mixins: [Core],
 
   data() {
