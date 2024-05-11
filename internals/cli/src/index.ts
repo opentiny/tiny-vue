@@ -2,6 +2,7 @@
 import { Command, Option } from 'commander'
 import { createIconSaas } from './commands/create/index.js'
 import { buildUi, buildEntry, buildRuntime, buildReact, buildEntryReact, chartTheme } from './commands/build'
+import { buildDoc } from './commands/build/build-renderless-doc.js'
 import { releaseAurora } from './commands/release/releaseAurora'
 
 const program = new Command()
@@ -47,5 +48,7 @@ program
   .option('-c, --clean', '清空构建目录')
   .option('--no-dts', '不生成 dts')
   .action(buildReact)
+
+program.command('build:renderless-doc').description('构建renderless文档').action(buildDoc)
 
 program.parse()

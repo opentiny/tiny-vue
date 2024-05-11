@@ -19,6 +19,10 @@ export type IButtonRenderlessParams = ISharedRenderlessFunctionParams<never> & {
 export type IButtonProps = ExtractPropTypes<typeof buttonProps>
 
 export interface IButtonApi {
+  /**
+   * @zh 状态 aaa bbb
+   * @en status of button
+   */
   state: IButtonState
   clearTimer: ReturnType<typeof clearTimer>
   handleClick: ReturnType<typeof handleClick>
