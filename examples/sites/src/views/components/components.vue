@@ -8,8 +8,11 @@
       <div class="ti-fi-1 ti-w0 ti-rel cmp-container">
         <!-- 一个组件的文档:  描述md + demos + apis -->
         <div class="markdown-body markdown-top-body" size="medium" v-html="cmpTopMd"></div>
-        <version-tip v-if="currJson.metaData || currJson.versionTipOption" :meta-data="currJson.metaData"
-          v-bind="currJson.versionTipOption">
+        <version-tip
+          v-if="currJson.metaData || currJson.versionTipOption"
+          :meta-data="currJson.metaData"
+          v-bind="currJson.versionTipOption"
+        >
         </version-tip>
         <template v-if="currJson?.demos?.length > 0">
           <div class="all-demos-container">
@@ -69,24 +72,34 @@
                         <td>
                           <a v-if="row.demoId" @click="jumpToDemo(row.demoId)">{{ row.name }}</a>
                           <span v-else>{{ row.name }}</span>
-                          <version-tip v-if="row.metaData || row.versionTipOption" :meta-data="row.metaData"
-                            v-bind="row.versionTipOption" render-type="tag" tip-subject="api">
+                          <version-tip
+                            v-if="row.metaData || row.versionTipOption"
+                            :meta-data="row.metaData"
+                            v-bind="row.versionTipOption"
+                            render-type="tag"
+                            tip-subject="api"
+                          >
                           </version-tip>
                         </td>
                         <td v-if="!key.includes('slots') && hasKey(oneApiArr, 'type')" @click="handleTypeClick">
-                          <a v-if="row.typeAnchorName"
+                          <a
+                            v-if="row.typeAnchorName"
                             :href="`${row.typeAnchorName.indexOf('#') === -1 ? '#' : ''}${row.typeAnchorName}`"
-                            v-html="row.type"></a>
+                            v-html="row.type"
+                          ></a>
                           <span v-else v-html="row.type"></span>
                         </td>
-                        <td v-if="
-                          !key.includes('slots') &&
-                          !key.includes('events') &&
-                          !key.includes('methods') &&
-                          hasKey(oneApiArr, 'defaultValue')
-                        ">
+                        <td
+                          v-if="
+                            !key.includes('slots') &&
+                            !key.includes('events') &&
+                            !key.includes('methods') &&
+                            hasKey(oneApiArr, 'defaultValue')
+                          "
+                        >
                           <span
-                            v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"></span>
+                            v-html="typeof row.defaultValue === 'string' ? row.defaultValue || '--' : row.defaultValue"
+                          ></span>
                         </td>
                         <td><span v-html="row.desc[langKey]"></span></td>
                       </tr>
@@ -97,12 +110,14 @@
             </div>
           </div>
         </template>
+        <renderless-table :cmp-id="cmpId" />
         <template v-if="currJson.types && currJson.types.length">
           <div class="ti-f18 ti-py28" id="types">types</div>
           <tiny-collapse v-model="activeNames">
             <div v-for="typeItem in currJson.types" :id="typeItem.name" :key="typeItem.name">
               <tiny-collapse-item :title="typeItem.name" :name="typeItem.name">
-                <async-highlight :code="typeItem.code.trim()" types="ts"></async-highlight></tiny-collapse-item>
+                <async-highlight :code="typeItem.code.trim()" types="ts"></async-highlight
+              ></tiny-collapse-item>
             </div>
           </tiny-collapse>
         </template>
@@ -112,11 +127,15 @@
           {{ i18nByKey('doc-owner') }} : {{ currJson.owner }}
         </div>
       </div>
-
       <!-- 目录列表 -->
       <div class="cmp-page-anchor catalog ti-w128 ti-sticky ti-top32" v-if="anchorLinks.length > 0">
-        <tiny-anchor :is-affix="true" :links="anchorLinks" :key="anchorRefreshKey" mask-class="custom-active-anchor"
-          @link-click="handleAnchorClick">
+        <tiny-anchor
+          :is-affix="true"
+          :links="anchorLinks"
+          :key="anchorRefreshKey"
+          mask-class="custom-active-anchor"
+          @link-click="handleAnchorClick"
+        >
         </tiny-anchor>
       </div>
     </div>
@@ -136,6 +155,7 @@ import { Collapse, CollapseItem } from '@opentiny/vue'
 import { faqMdConfig, getWebdocPath } from './cmpConfig'
 import AsyncHighlight from './async-highlight.vue'
 import VersionTip from './VersionTip.vue'
+import RenderlessTable from './renderless-table.vue'
 
 export default defineComponent({
   name: 'CmpPageVue',
@@ -146,7 +166,8 @@ export default defineComponent({
     TinyCollapse: Collapse,
     TinyCollapseItem: CollapseItem,
     AsyncHighlight,
-    VersionTip
+    VersionTip,
+    RenderlessTable
   },
   setup() {
     const anchorRefreshKey = ref(0)
@@ -169,6 +190,11 @@ export default defineComponent({
         if (state.currJson?.apis?.length) {
           links.push({ key: 'API', title: 'API', link: '#API' })
         }
+        links.push({
+          key: 'Renderless',
+          title: 'Renderless',
+          link: '#Renderless'
+        })
         if (state.currJson?.types?.length) {
           links.push({ key: 'types', title: 'types', link: '#types' })
         }
@@ -185,10 +211,8 @@ export default defineComponent({
       singleDemo: null,
       activeNames: ''
     })
-
     const { apiModeState } = useApiMode()
     const { templateModeState, staticPath, optionsList } = useTemplateMode()
-    const huiNewChart = ['chart-process']
 
     // 页面加载/点击api中的链接，根据hash滚动。
     const scrollByHash = (hash) => {
@@ -256,7 +280,9 @@ export default defineComponent({
       const promiseArr = [
         fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.${lang}.md`),
         fetchDemosFile(`${staticPath.value}/${getWebdocPath(state.cmpId)}/webdoc/${state.cmpId}.js`),
-        fetchDemosFile(`@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`)
+        fetchDemosFile(
+          `@demos/apis/${getWebdocPath(state.cmpId) === 'chart' ? state.cmpId : getWebdocPath(state.cmpId)}.js`
+        )
       ]
       if (faqMdConfig[state.cmpId]) {
         promiseArr.push(
@@ -488,7 +514,7 @@ table.api-table {
   grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr);
   align-items: flex-start;
 
-  >div {
+  > div {
     display: grid;
     gap: 16px;
     grid-template-columns: 100%;
