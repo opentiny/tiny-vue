@@ -67,3 +67,4 @@ examples/sites/public/tiny-vue*.js
 examples/sites/public/tiny-vue*.mjs
 examples/sites/public/tailwind.css
 examples/sites/public/index.css
+exmaples/sites/public/renderless-table-data.json

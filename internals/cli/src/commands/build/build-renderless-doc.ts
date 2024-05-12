@@ -11,8 +11,8 @@ import type {
 } from 'ts-morph'
 import type { SourceFile } from 'ts-morph'
 import { Project, SyntaxKind } from 'ts-morph'
-import { existsSync, readdirSync } from 'node:fs'
-import { logRed, logYellow } from '../../shared/utils'
+import { existsSync, readdirSync, writeFileSync } from 'node:fs'
+import { logRed, logYellow, resolveCwd } from '../../shared/utils'
 
 let ident = 0
 
@@ -236,6 +236,8 @@ const collectDocData = (compName: string, typeName: string, exposedApi: string[]
 export const buildDoc = () => {
   const project = new Project()
   tc = project.getTypeChecker()
+  const SITE_PUBLIC = resolveCwd('../../examples/sites/public')
+  const RENDERLESS_TABLE_DATA_FILE_PATH = join(SITE_PUBLIC, 'renderless-table-data.json')
   const RENDERLESS_ROOT = join(__dirname, '../../../../../packages/renderless/src')
   const RENDERLESS_TYPE_ROOT = join(__dirname, '../../../../../packages/renderless/types')
   const components = readdirSync(RENDERLESS_ROOT)
@@ -274,9 +276,9 @@ export const buildDoc = () => {
   }
   const renderlessDocsData: RenderlessDocsData = {}
   for (const compName of components) {
-    if (compName !== 'button') {
-      continue
-    }
+    // if (compName !== 'button') {
+    //   continue
+    // }
     if (!(compName in sourcefiles)) {
       warn(compName, '未找到renderless文件')
       continue
@@ -315,4 +317,6 @@ export const buildDoc = () => {
     }
     renderlessDocsData[compName] = tableData
   }
+
+  writeFileSync(RENDERLESS_TABLE_DATA_FILE_PATH, JSON.stringify(renderlessDocsData, null, 2))
 }
