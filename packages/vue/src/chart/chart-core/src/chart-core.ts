@@ -26,7 +26,6 @@ export default {
     width: { type: String, default: 'auto' },
     height: { type: String, default: '400px' },
     events: { type: Object, default() {} },
-    events: { type: Object, default() {} },
     initOptions: {
       type: Object,
       default() {
@@ -168,12 +167,6 @@ export default {
     }
   },
   watch: {
-    options: {
-      handler() {
-        this.refreshChart()
-      },
-      deep: true
-    },
     options: {
       handler() {
         this.refreshChart()
