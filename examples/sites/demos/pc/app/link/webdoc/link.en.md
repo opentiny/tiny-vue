@@ -1,7 +1,7 @@
 ---
-title: Link Text Link
+title: Link
 ---
 
-# Link Text Link
+# Link
 
 <div>Text hyperlink.</div>
