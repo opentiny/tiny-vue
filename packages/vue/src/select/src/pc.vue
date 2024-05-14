@@ -121,65 +121,80 @@
               </tiny-tag>
             </span>
             <span ref="tags-content" v-if="!collapseTags">
+              <!-- 当 showAllTextTag 时， 用all-text属性做为tag。 xdesign规范 -->
               <tiny-tag
-                v-if="hoverExpand || clickExpand"
-                :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden }]"
+                v-if="showAllTextTag && state.selectCls === 'checked-sur'"
                 :type="state.getTagType"
-                key="tags-collapse"
-                data-tag="tags-collapse"
-                :closable="false"
+                key="tags-all-text-tag"
+                data-tag="tags-all-text-tag"
+                :closable="true"
                 :size="state.collapseTagSize"
-                @click="onClickCollapseTag($event)"
+                @close="toggleCheckAll(false)"
               >
-                <template v-if="hoverExpand"> + {{ state.collapseTagsLength }} </template>
-                <icon-ellipsis v-else></icon-ellipsis>
+                {{ allText || t('ui.base.all') }}
               </tiny-tag>
-              <tiny-tag
-                v-for="(item, index) in state.selected"
-                :key="getValueKey(item)"
-                :class="{ 'not-visible': state.toHideIndex <= index && !state.isExpand }"
-                :closable="!item.disabled && !item.required"
-                :size="state.collapseTagSize"
-                :hit="item.state ? item.state.hitState : item.hitState"
-                :type="state.getTagType"
-                @close="deleteTag($event, item)"
-                disable-transitions
-              >
-                <tiny-tooltip
-                  effect="light"
-                  placement="top"
-                  @mouseenter.native="handleEnterTag($event, getValueKey(item))"
+              <!-- 当非 showAllTextTag 时，原来的模式渲染 -->
+              <template v-else>
+                <tiny-tag
+                  v-if="hoverExpand || clickExpand"
+                  :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden }]"
+                  :type="state.getTagType"
+                  key="tags-collapse"
+                  data-tag="tags-collapse"
+                  :closable="false"
+                  :size="state.collapseTagSize"
+                  @click="onClickCollapseTag($event)"
                 >
-                  <span v-if="!state.visible && state.overflow === index" class="tiny-select__tags-text">
-                    {{ item.state ? item.state.currentLabel + '... ' : item.currentLabel + '... ' }}
-                  </span>
-                  <span v-else class="tiny-select__tags-text">
-                    <slot name="label" :item="getLabelSlotValue(item)">
-                      {{ item.state ? item.state.currentLabel : item.currentLabel }}
-                    </slot>
-                  </span>
-                  <template v-if="state.tooltipContent[getValueKey(item)]" #content>
-                    <span v-if="!state.visible && state.overflow === index">
+                  <template v-if="hoverExpand"> + {{ state.collapseTagsLength }} </template>
+                  <icon-ellipsis v-else></icon-ellipsis>
+                </tiny-tag>
+                <tiny-tag
+                  v-for="(item, index) in state.selected"
+                  :key="getValueKey(item)"
+                  :class="{ 'not-visible': state.toHideIndex <= index && !state.isExpand }"
+                  :closable="!item.disabled && !item.required"
+                  :size="state.collapseTagSize"
+                  :hit="item.state ? item.state.hitState : item.hitState"
+                  :type="state.getTagType"
+                  @close="deleteTag($event, item)"
+                  disable-transitions
+                >
+                  <tiny-tooltip
+                    effect="light"
+                    placement="top"
+                    @mouseenter.native="handleEnterTag($event, getValueKey(item))"
+                  >
+                    <span v-if="!state.visible && state.overflow === index" class="tiny-select__tags-text">
                       {{ item.state ? item.state.currentLabel + '... ' : item.currentLabel + '... ' }}
                     </span>
-                    <span v-else>
+                    <span v-else class="tiny-select__tags-text">
                       <slot name="label" :item="getLabelSlotValue(item)">
                         {{ item.state ? item.state.currentLabel : item.currentLabel }}
                       </slot>
                     </span>
-                  </template>
-                </tiny-tooltip>
-              </tiny-tag>
+                    <template v-if="state.tooltipContent[getValueKey(item)]" #content>
+                      <span v-if="!state.visible && state.overflow === index">
+                        {{ item.state ? item.state.currentLabel + '... ' : item.currentLabel + '... ' }}
+                      </span>
+                      <span v-else>
+                        <slot name="label" :item="getLabelSlotValue(item)">
+                          {{ item.state ? item.state.currentLabel : item.currentLabel }}
+                        </slot>
+                      </span>
+                    </template>
+                  </tiny-tooltip>
+                </tiny-tag>
 
-              <!-- 收起按钮 -->
-              <span
-                v-if="clickExpand && state.showCollapseTag"
-                class="tiny-select__collapse-text"
-                @click="onClickCollapseTag($event)"
-              >
-                {{ t('ui.select.collapse') }}
-                <icon-chevron-up></icon-chevron-up>
-              </span>
+                <!-- 收起按钮 -->
+                <span
+                  v-if="clickExpand && state.showCollapseTag"
+                  class="tiny-select__collapse-text"
+                  @click="onClickCollapseTag($event)"
+                >
+                  {{ t('ui.select.collapse') }}
+                  <icon-chevron-up></icon-chevron-up>
+                </span>
+              </template>
             </span>
           </span>
 
@@ -751,6 +766,7 @@ export default defineComponent({
     'showProportion',
     'clickExpand',
     'maxVisibleRows',
+    'showAllTextTag',
     'allText'
   ],
   setup(props, context) {
