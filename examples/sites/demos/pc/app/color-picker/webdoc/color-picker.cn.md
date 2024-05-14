@@ -1,7 +1,7 @@
 ---
-title: ColorPicker 色彩选择器
+title: ColorPicker 颜色选择器
 ---
 
-# ColorPicker 色彩选择器
+# ColorPicker 颜色选择器
 
-<div>ColorPicker 色彩选择器</div>
+<div>ColorPicker 颜色选择器</div>

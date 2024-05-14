@@ -1,7 +1,7 @@
 ---
-title: Fullscreen 全屏显示
+title: Fullscreen 全屏
 ---
 
-# Fullscreen 全屏显示
+# Fullscreen 全屏
 
-<div>Fullscreen 全屏显示</div>
+<div>Fullscreen 全屏</div>
