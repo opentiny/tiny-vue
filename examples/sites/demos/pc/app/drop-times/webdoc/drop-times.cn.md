@@ -1,7 +1,7 @@
 ---
-title: dropTimes 下拉时间
+title: DropTimes 下拉时间
 ---
 
-# dropTimes 下拉时间
+# DropTimes 下拉时间
 
 <div>时间选值框是下拉框的特例，按时分格式（不支持自定义格式）展示下拉列表以供用户选择，并能扩展下拉框部分参数。</div>

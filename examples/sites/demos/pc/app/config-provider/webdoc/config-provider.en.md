@@ -1,7 +1,7 @@
 ---
-title: ConfigProvide Assembly
+title: ConfigProvider
 ---
 
-# ConfigProvide Assembly
+# ConfigProvider
 
 <div></div>
