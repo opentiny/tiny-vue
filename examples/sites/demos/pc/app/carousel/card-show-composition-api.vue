@@ -28,8 +28,8 @@ import { ref, reactive } from 'vue'
 import { Carousel as TinyCarousel, CarouselItem as TinyCarouselItem, Card as TinyCard } from '@opentiny/vue'
 
 let curIndex = ref(0)
-const dsj = ref(`/static/images/dsj.png`)
-const userHead = ref(`/static/images/user-head.png`)
+const dsj = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`)
+const userHead = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/user-head.png`)
 const state = reactive({
   cardData: [
     {

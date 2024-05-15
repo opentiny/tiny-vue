@@ -47,13 +47,13 @@ export default {
             {
               cardTitle: '1-2',
               cardType: 'image',
-              cardSrc: `/static/images/dsj.png`,
+              cardSrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`,
               content: '1-2-content'
             },
             {
               cardTitle: '1-3',
               cardType: 'logo',
-              cardSrc: `/static/images/user-head.png`,
+              cardSrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/user-head.png`,
               content: '1-3-content'
             }
           ]

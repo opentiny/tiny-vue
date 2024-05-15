@@ -255,7 +255,7 @@ export default {
             'en-US': 'Default slot'
           },
           mode: ['pc'],
-          pcDemo: 'manual-play'
+          pcDemo: 'card-show'
         }
       ]
     }

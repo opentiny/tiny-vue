@@ -179,8 +179,8 @@ export default {
         'en-US': 'Carousel Card'
       },
       desc: {
-        'zh-CN': '<p>通过设置<code>default</code>插槽，自定义卡片轮播场景。</p>',
-        'en-US': '<p>Customize the card carousel scene by setting<code>default</code>slots.</p>'
+        'zh-CN': '<p>通过设置 <code>default</code> 插槽，自定义卡片轮播场景。</p>',
+        'en-US': '<p>Customize the card carousel scene by setting <code>default</code> slots.</p>'
       },
       codeFiles: ['card-show.vue']
     },
