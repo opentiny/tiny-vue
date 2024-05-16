@@ -12,15 +12,17 @@
         @click="$emit('click', index, node)"
       >
         <slot name="item" :slot-scope="node" :index="index">
-          <div class="label" :title="node[nameField]">
-            <span>{{ node[nameField] }}</span>
+          <div class="label">
+            <tiny-tooltip :content="node[nameField]" visible="auto">
+              <span>{{ node[nameField] }}</span>
+            </tiny-tooltip>
+            <div v-if="['doing', 'done'].includes(node[statusField])" :class="['dot', node[statusField]]">
+              <icon-refres v-if="node[statusField] === 'doing'"></icon-refres>
+              <icon-yes v-else-if="node[statusField] === 'done'"></icon-yes>
+            </div>
           </div>
           <div v-if="node[countField]" class="count">
             {{ node[countField] }}
-          </div>
-          <div v-if="node[statusField]" :class="['dot', node[statusField]]">
-            <icon-refres v-if="node[statusField] === 'doing'"></icon-refres>
-            <icon-yes v-else-if="node[statusField] === 'done'"></icon-yes>
           </div>
         </slot>
       </li>
@@ -31,11 +33,13 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/steps/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import ToolTip from '@opentiny/vue-tooltip'
 import { iconRefres, iconYes } from '@opentiny/vue-icon'
 
 export default defineComponent({
   emits: ['click'],
   components: {
+    TinyTooltip: ToolTip,
     IconRefres: iconRefres(),
     IconYes: iconYes()
   },

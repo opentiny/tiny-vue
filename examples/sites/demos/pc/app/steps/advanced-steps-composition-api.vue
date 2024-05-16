@@ -14,7 +14,7 @@ import { Steps as TinySteps, Modal } from '@opentiny/vue'
 const advancedActive = ref(1)
 const data = ref([
   { name: 'Basic Info', count: 3, status: 'doing' },
-  { name: 'BOQ Info', count: 0, status: 'done' },
+  { name: 'BOQ Info. So long that overflow', count: 0, status: 'done' },
   { name: 'Involved Parties', count: 10, status: 'doing' },
   { name: 'Billing', count: 0, status: 'done' },
   { name: 'Appraise', count: 0 }

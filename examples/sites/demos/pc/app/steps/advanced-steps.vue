@@ -19,8 +19,8 @@ export default {
       advancedActive: 1,
       data: [
         { name: 'Basic Info', count: 3, status: 'done' },
-        { name: 'BOQ Info', count: 0, status: 'doing' },
-        { name: 'Involved Parties', count: 10, status: 'error' },
+        { name: 'BOQ Info. So long that overflow', count: 0, status: 'doing' },
+        { name: 'Involved Parties ', count: 10, status: 'error' },
         { name: 'Billing', count: 0, status: 'disabled' },
         { name: 'Appraise', count: 3 }
       ]
