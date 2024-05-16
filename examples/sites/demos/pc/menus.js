@@ -141,6 +141,7 @@ export const cmpMenus = [
         }
       },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
+      { 'nameCn': '选择器', 'name': 'BaseSelect', 'key': 'base-select' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
       { 'nameCn': '开关', 'name': 'Switch', 'key': 'switch' },
