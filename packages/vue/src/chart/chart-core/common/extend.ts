@@ -1,6 +1,7 @@
 import { merge, get } from './util'
 import { isObject } from './type'
 import { setObj as set } from './object'
+import cloneDeep from '../base/util/cloneDeep'
 
 const isArr = Array.isArray
 
@@ -22,7 +23,8 @@ function removeNullKeys(obj) {
 }
 
 export default ({ option, extend }) => {
-  const options = removeNullKeys(option)
+  const obj = cloneDeep(option)
+  const options = removeNullKeys(obj)
   if (!extend) {
     return
   }
