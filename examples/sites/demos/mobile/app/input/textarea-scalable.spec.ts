@@ -19,7 +19,7 @@ test.describe('文本域可缩放', () => {
 
     const textarea = page.locator('.demo-input .tiny-mobile-textarea textarea')
 
+    await expect(textarea.nth(4)).toHaveClass(/is-autosize/)
     await expect(textarea.nth(5)).toHaveClass(/is-autosize/)
-    await expect(textarea.nth(6)).toHaveClass(/is-autosize/)
   })
 })

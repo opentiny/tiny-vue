@@ -362,6 +362,18 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'nest-grid-multi'
+        },
+        {
+          name: 'resize',
+          typeAnchorName: 'IResizeEvent',
+          type: '(ev: IResizeEvent) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '弹窗大小变化时的事件，比如切换全屏状态时',
+            'en-US': 'Event when the pop-up window size changes, for example, when the full-screen mode is switched.'
+          },
+          mode: ['pc'],
+          pcDemo: ''
         }
       ],
       methods: [
@@ -637,6 +649,18 @@ newPageSize: number // 变更后分页大小
 currentPage: number // 当前所在页
 currentPageSize: number // 当前分页大小
 }`
+    },
+    {
+      name: 'IResizeEvent',
+      type: 'interface',
+      code: `
+interface IResizeEvent {
+  // 当前的全屏状态
+  fullscreen: boolean
+  // 弹窗的元素
+  dialog: HTMLElement
+}
+      `
     }
   ]
 }

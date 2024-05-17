@@ -24,11 +24,11 @@ import Memorize from '@opentiny/vue-renderless/common/deps/memorize'
 const MemorizeInstance = new Memorize({ key: 'test456' })
 
 const options = MemorizeInstance.assemble([
-  { value: '选项1', label: '黄金糕' },
-  { value: '选项2', label: '双皮奶' },
-  { value: '选项3', label: '蚵仔煎' },
-  { value: '选项4', label: '龙须面' },
-  { value: '选项5', label: '北京烤鸭' }
+  { value: '选项1', label: '北京' },
+  { value: '选项2', label: '上海' },
+  { value: '选项3', label: '天津' },
+  { value: '选项4', label: '重庆' },
+  { value: '选项5', label: '深圳' }
 ])
 
 const value = ref('选项3')

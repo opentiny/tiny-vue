@@ -23,9 +23,9 @@ test('可搜索时，获取焦点自动下拉', async ({ page }) => {
 
   await wrap.getByRole('button').nth(1).click()
   // 聚焦下拉
-  await dropdown.getByRole('listitem').filter({ hasText: '双皮奶' }).click()
-  await expect(input).toHaveValue('双皮奶')
+  await dropdown.getByRole('listitem').filter({ hasText: '上海' }).click()
+  await expect(input).toHaveValue('上海')
   // 验证选中
   await input.click()
-  await expect(page.getByRole('listitem').filter({ hasText: '双皮奶' })).toHaveClass(/selected/)
+  await expect(page.getByRole('listitem').filter({ hasText: '上海' })).toHaveClass(/selected/)
 })

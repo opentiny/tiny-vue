@@ -28,11 +28,11 @@ export default {
   data() {
     return {
       options: [
-        { value: '选项1', label: '黄金糕', icon: iconFile() },
-        { value: '选项2', label: '双皮奶', icon: iconFile() },
-        { value: '选项3', label: '蚵仔煎', icon: iconFile() },
-        { value: '选项4', label: '龙须面', icon: iconFile() },
-        { value: '选项5', label: '北京烤鸭', icon: iconFile() }
+        { value: '选项1', label: '北京', icon: iconFile() },
+        { value: '选项2', label: '上海', icon: iconFile() },
+        { value: '选项3', label: '天津', icon: iconFile() },
+        { value: '选项4', label: '重庆', icon: iconFile() },
+        { value: '选项5', label: '深圳', icon: iconFile() }
       ],
       value: ''
     }

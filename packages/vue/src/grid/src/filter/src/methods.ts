@@ -267,9 +267,10 @@ export default {
       if (this.$grid.pagerConfig) {
         this.$grid.pagerConfig.currentPage = 1
       }
-      // 3、抛出filter-change事件（在服务端筛选时grid才会注册filter-change事件处理）
-      emitEvent(this, 'filter-change', [{ filters, $table: this }])
     }
+    // 3、抛出filter-change事件（在服务端筛选时grid会注册filter-change事件处理，然后grid会再次抛出filter-change）
+    // （在本地筛选时table会直接对业务抛出filter-change）
+    emitEvent(this, 'filter-change', [{ filters, $table: this }])
 
     this.updateFooter()
 
@@ -327,7 +328,8 @@ export default {
 
     // 如果清除所有列筛选或者参数传递的清除列存在才发送事件，从reload执行过来的不发送事件
     if (field === true || column) {
-      emitEvent(this, 'filter-change', [{ filters: {}, $table: this }])
+      const filters = columnfilters(this.visibleColumn)
+      emitEvent(this, 'filter-change', [{ filters, $table: this }])
     }
 
     this.clearSelection()

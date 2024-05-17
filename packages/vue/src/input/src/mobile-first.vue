@@ -2,7 +2,7 @@
   <div
     :class="
       m(
-        'relative text-xs',
+        'relative text-xs sm:text-sm',
         type !== 'textarea' || slots.prepend || slots.append ? 'inline-table' : '',
         type !== 'textarea' ? 'w-full' : 'align-bottom',
         slots.prepend || slots.append ? 'leading-normal border-separate border-spacing-0' : '',
@@ -37,7 +37,7 @@
       </div>
       <span
         class="relative text-sm"
-        :class="[state.inputSizeMf === 'medium' ? 'sm:text-sm' : 'sm:text-xs']"
+        :class="[state.inputSizeMf !== 'mini' ? 'sm:text-sm' : 'sm:text-xs']"
         data-tag="tiny-input-display-only"
       >
         <tiny-tooltip
@@ -78,35 +78,35 @@
           ref="input"
           data-tag="tiny-input-inner"
           :name="name"
-          v-bind="a($attrs, ['type', 'class', 'style', '^on\w+'])"
+          v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
           :class="
             m(
               'w-full border-0 sm:border px-0 sm:px-3 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover ' +
-                'sm:focus:border-color-brand-focus sm:disabled:border-color-border ' +
-                'placeholder:text-color-text-placeholder placeholder:text-sm text-sm sm:placeholder:text-xs sm:text-xs text-color-text-primary ' +
-                'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled ' +
-                'sm:disabled:bg-color-bg-4 py-0 outline-0 transition-colors duration-200 ease-in-out ',
+                'sm:focus:border-color-brand-focus sm:disabled:border-color-border-separator ' +
+                'placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary ' +
+                'bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-secondary ' +
+                'sm:disabled:bg-color-bg-6 py-0 outline-0 transition-colors duration-200 ease-in-out ',
               state.inputSizeMf === 'medium'
                 ? `h-8 leading-8 ${m('sm:text-sm')} placeholder:text-sm`
                 : state.inputSizeMf === 'mini'
-                ? 'h-6 leading-6 text-xs placeholder:text-xs'
-                : 'h-7 leading-7',
+                  ? 'h-6 leading-6 text-xs placeholder:text-xs'
+                  : 'h-7 leading-7',
               slots.prepend || slots.append ? 'align-middle table-cell' : 'inline-block',
               slots.prepend && slots.append
                 ? 'rounded-none'
                 : slots.prepend
-                ? 'rounded-tl-none rounded-bl-none rounded-tr rounded-br'
-                : slots.append
-                ? 'rounded-tl rounded-bl rounded-tr-none rounded-br-none'
-                : 'rounded',
+                  ? 'rounded-tl-none rounded-bl-none rounded-tr rounded-br'
+                  : slots.append
+                    ? 'rounded-tl rounded-bl rounded-tr-none rounded-br-none'
+                    : 'rounded',
               readonly ? ' text-ellipsis overflow-hidden whitespace-nowrap' : 'sm:border',
               (slots.prefix || prefixIcon) && (slots.suffix || suffixIcon || clearable || showPassword)
                 ? 'px-6 sm:px-6'
                 : slots.prefix || prefixIcon
-                ? 'pl-6 sm:pl-6 pr-0 sm:pr-3'
-                : slots.suffix || suffixIcon || clearable || showPassword
-                ? 'pl-0 sm:pl-3 pr-6 sm:pr-6'
-                : '',
+                  ? 'pl-6 sm:pl-6 pr-0 sm:pr-3'
+                  : slots.suffix || suffixIcon || clearable || showPassword
+                    ? 'pl-0 sm:pl-3 pr-6 sm:pr-6'
+                    : '',
               mask && state.inputDisabled
                 ? !state.maskValueVisible
                   ? 'font-[serif] pr-6 sm:pr-6'
@@ -148,7 +148,7 @@
       <span
         data-tag="tiny-input-prefix"
         ref="prefix"
-        class="left-2 transition-all duration-300 ease-in-out text-xs absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center"
+        class="left-2 transition-all duration-300 ease-in-out text-xs sm:text-sm absolute top-1/2 -translate-y-1/2 text-center text-color-text-placeholder flex items-center"
         v-if="(slots.prefix || prefixIcon) && !state.isDisplayOnly"
       >
         <slot name="prefix"></slot>
@@ -157,7 +157,7 @@
           :is="prefixIcon"
           :class="
             m(
-              'text-center transition-all duration-300 ease-in-out text-xs',
+              'text-center transition-all duration-300 ease-in-out text-xs sm:text-sm',
               state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
             )
           "
@@ -182,8 +182,8 @@
                   state.inputSizeMf === 'medium'
                     ? 'leading-8'
                     : state.inputSizeMf === 'mini'
-                    ? 'leading-6'
-                    : 'leading-7'
+                      ? 'leading-6'
+                      : 'leading-7'
                 )
               "
             />
@@ -234,7 +234,7 @@
           ></component>
           <span
             v-if="state.isWordLimitVisible"
-            class="h-full inline-flex items-center text-xs text-color-text-placeholder"
+            class="h-full inline-flex items-center text-xs sm:text-sm text-color-text-placeholder"
           >
             <span class="bg-color-bg-1 leading-none inline-block">{{
               state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength
@@ -277,7 +277,7 @@
       >
         <span
           class="max-w-full text-ellipsis break-words line-clamp-5 text-sm pt-1.5 text-color-text-primary"
-          :class="[state.inputSizeMf === 'medium' ? 'sm:text-sm' : 'sm:text-xs']"
+          :class="[state.inputSizeMf !== 'mini' ? 'sm:text-sm' : 'sm:text-xs']"
           >{{ state.displayOnlyText }}</span
         >
       </tiny-tooltip>
@@ -285,11 +285,11 @@
         ref="textarea"
         v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
         :tabindex="tabindex"
-        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-sm text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:bg-color-bg-4 leading-normal"
+        class="block w-full border-0 sm:border-solid sm:border-color-border sm:hover:border-color-border-hover sm:focus:border-color-brand-focus sm:disabled:border-color-border-separator outline-0 rounded placeholder:text-color-text-placeholder placeholder:text-sm sm:disabled:placeholder:text-color-text-disabled text-sm text-color-text-primary bg-color-bg-1 disabled:cursor-not-allowed disabled:text-color-text-disabled sm:disabled:text-color-text-secondary sm:disabled:bg-color-bg-6 leading-normal"
         :class="[
           readonly ? 'sm:border-0 px-0 py-0' : 'sm:border px-3 py-2',
           state.isDisplayOnly ? 'hidden' : '',
-          state.inputSizeMf === 'medium' ? 'sm:placeholder:text-sm sm:text-sm' : 'sm:placeholder:text-xs sm:text-xs'
+          state.inputSizeMf !== 'mini' ? 'sm:placeholder:text-sm sm:text-sm' : 'sm:placeholder:text-xs sm:text-xs'
         ]"
         @compositionstart="handleCompositionStart"
         @compositionupdate="handleCompositionUpdate"
@@ -310,7 +310,7 @@
     <span
       data-tag="tiny-input-limit"
       v-if="state.isWordLimitVisible && type === 'textarea'"
-      class="bg-color-bg-1 text-color-text-placeholder text-xs absolute bottom-1 right-3"
+      class="bg-color-bg-1 text-color-text-placeholder text-xs sm:text-sm absolute bottom-1 right-3"
       >{{ state.showWordLimit ? `${state.textLength}/${state.upperLimit}` : state.textLength }}</span
     >
     <slot></slot>

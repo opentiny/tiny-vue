@@ -6,6 +6,19 @@ export default {
       type: 'component',
       props: [
         {
+          name: 'all-text',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '当下拉中显示全部时，自定义全部的显示文本。不指定时，则默认显示"全部"',
+            'en-US':
+              'When all is displayed in the drop-down list, you can customize the display text of all. If this parameter is not specified, All is displayed by default.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'all-text',
+          mfDemo: 'all-text'
+        },
+        {
           name: 'allow-copy',
           type: 'boolean',
           defaultValue: 'false',
@@ -598,13 +611,26 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '是否展示多选框选中条数和总条数的占比',
+            'zh-CN': '是否展示多选框选中条数和总条数的占比的文字提示',
             'en-US':
               'Display the proportion of the number of selected items and the total number of items in the multiple-choice box'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'collapse-tags',
           mfDemo: 'collapse-tags'
+        },
+        {
+          name: 'show-limit-text',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN':
+              '是否展示多选框开启多选限制选择数量时，选中条数和限制总条数的占比的文字提示。 该属性的优先级大于<code>show-proportion</code> 属性，同时设置只',
+            'en-US':
+              'Display the proportion of the number of selected items and the total number of items in the multiple-choice box'
+          },
+          mode: ['pc'],
+          pcDemo: 'multiple'
         }
       ],
       events: [

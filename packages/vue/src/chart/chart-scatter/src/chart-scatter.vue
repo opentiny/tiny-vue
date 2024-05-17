@@ -8,9 +8,10 @@
 <script>
 import Core from '@opentiny/vue-chart-core'
 import { scatter } from './scatter'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartScatter',
+  name: $prefix + 'ChartScatter',
   mixins: [Core],
 
   data() {

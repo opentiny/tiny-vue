@@ -42,14 +42,14 @@
     }
 
     &.is-disabled {
-      @apply border border-solid border-color-text-disabled;
-      @apply bg-color-bg-3;
+      @apply border border-solid border-color-border-separator;
+      @apply bg-color-bg-6;
 
       .@{numeric-prefix-cls}__input-inner {
         @apply cursor-not-allowed;
         @apply pointer-events-none;
         @apply border border-solid border-transparent;
-        @apply text-color-text-disabled;
+        @apply text-color-text-secondary;
         @apply bg-transparent;
         .placeholder(@color: theme('colors.color.text.placeholder'));
       }
@@ -85,6 +85,7 @@
     @apply box-border;
     @apply appearance-none;
     @apply text-center;
+    @apply text-sm;
     transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     @apply p-0;
     .placeholder(@color: theme('colors.color.text.placeholder'));
@@ -106,7 +107,7 @@
       @apply h-0;
     }
 
-    &.@{numeric-prefix-cls}__show-left {
+    &.@{numeric-prefix-cls}__show-left{
       @apply text-left;
     }
   }
@@ -126,8 +127,8 @@
     @apply cursor-pointer;
 
     svg {
-      @apply w-3;
-      @apply h-3;
+      @apply w-4;
+      @apply h-4;
       @apply fill-color-icon-primary;
     }
 
@@ -192,7 +193,7 @@
     @apply w-12;
     @apply ~'h-[calc(100%-theme(spacing[0.5]))]';
     @apply text-color-text-disabled;
-    @apply text-xs;
+    @apply text-sm;
     @apply flex;
     @apply justify-center;
     @apply items-center;
@@ -203,7 +204,7 @@
   }
 
   &.is-disabled {
-    @apply bg-color-bg-3;
+    @apply bg-color-bg-6;
 
     .@{numeric-prefix-cls}__decrease,
     .@{numeric-prefix-cls}__increase {
@@ -222,10 +223,12 @@
       }
     }
   }
+
   &.is-disabled.is-display-only {
     @apply flex;
     background: none;
   }
+
   &.is-display-only {
     .@{numeric-prefix-cls}-display-only {
       .@{numeric-prefix-cls}-display-only__content {
@@ -291,7 +294,7 @@
     .@{numeric-prefix-cls}__decrease,
     .@{numeric-prefix-cls}__increase {
       @apply w-7;
-      @apply text-xs;
+      @apply text-sm;
     }
 
     .@{numeric-prefix-cls}__input {
@@ -330,6 +333,7 @@
 
     .@{numeric-prefix-cls}__input-inner {
       @apply h-full;
+      @apply text-xs;
     }
   }
 
@@ -346,8 +350,8 @@
           @apply text-left;
         }
       }
-      &.@{numeric-prefix-cls}__read-only {
-        @apply p-0;
+      &.@{numeric-prefix-cls}__read-only{
+        @apply p-0; 
       }
     }
   }
@@ -356,6 +360,7 @@
     .@{numeric-prefix-cls}__input-inner {
       @apply pl-2;
       @apply pr-9;
+      @apply rounded;
     }
 
     .@{numeric-prefix-cls}__decrease,
@@ -364,6 +369,10 @@
 
       svg {
         @apply scale-75;
+      }
+
+      &::after {
+        @apply content-none;
       }
     }
 

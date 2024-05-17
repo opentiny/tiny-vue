@@ -249,7 +249,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* HandlerList */
 .tiny-handler-list {
   width: calc(100% - 2px);

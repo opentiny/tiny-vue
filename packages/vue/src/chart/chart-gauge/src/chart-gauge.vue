@@ -8,9 +8,10 @@
 <script>
 import Core from '@opentiny/vue-chart-core'
 import { getIChartOption } from './gauge'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartGauge',
+  name: $prefix + 'ChartGauge',
   mixins: [Core],
 
   data() {

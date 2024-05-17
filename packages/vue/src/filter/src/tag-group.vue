@@ -18,7 +18,7 @@
             'h-full block p-2 text-center rounded-sm truncate cursor-pointer border-0.5 mr-3',
             state.selected.length === 0
               ? 'border-current text-color-brand bg-color-info-primary-subtler'
-              : 'border-transparent bg-color-bg-2'
+              : 'border-transparent bg-color-bg-3'
           ]"
           @click.stop="selectOptionAll"
           >{{ t('ui.base.all') }}</span
@@ -39,7 +39,7 @@
             'h-full block p-2 text-center rounded-sm truncate cursor-pointer border-0.5 mr-3',
             state.selected.indexOf(item.value) !== -1
               ? 'border-current text-color-brand bg-color-info-primary-subtler'
-              : 'border-transparent bg-color-bg-2'
+              : 'border-transparent bg-color-bg-3'
           ]"
           :title="item.label"
           @click.stop="selectOption(item.value)"

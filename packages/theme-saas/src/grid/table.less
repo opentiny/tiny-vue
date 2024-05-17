@@ -195,7 +195,7 @@
     &.fixed-right-first__column + .col__gutter {
       position: sticky;
       right: 0;
-      @apply bg-color-bg-5;
+      background-color: #f4f6fb;
     }
   }
 
@@ -246,11 +246,11 @@
 
       &.row__selected {
         &:nth-child(2n) {
-          background-color: #e8eef7;
+          @apply bg-color-fill-6;
         }
 
         &:nth-child(2n + 1) {
-          background-color: #f4f6fb;
+          @apply bg-color-fill-6;
         }
       }
     }
@@ -528,20 +528,20 @@
     }
 
     &.row__selected {
-      background-color: #f4f6fb;
+      @apply bg-color-fill-6;
 
       // 目前saas的单元格背景色都是带透明度的颜色，会造成冻结列产生透视效果，此处将颜色改为不带透明度的颜色
       .fixed__column {
-        background-color: #f4f6fb;
+        @apply bg-color-fill-6;
       }
 
       &.row__hover {
-        background-color: #f4f6fb;
+        @apply bg-color-fill-6;
       }
     }
 
     &.row__current {
-      background-color: #f4f6fb;
+      @apply bg-color-fill-6;
     }
   }
 
@@ -1181,13 +1181,16 @@
   // 表格与分页上下间距
   .@{pager-prefix-cls},
   & + .@{pager-prefix-cls} {
-    @apply pt-4;
+    @apply pt-2;
   }
 
   & &__header {
     // 部分场景下浏览器缩放比例导致表头和表体错位问题
     th.col__gutter {
       @apply w-0;
+      position: sticky;
+      right: 0;
+      @apply bg-color-bg-5;
     }
 
     // 配置表头排序且文本超出省略号显示，排序图标遮挡文字问题
@@ -1280,6 +1283,38 @@
       @apply cursor-not-allowed;
       @apply fill-color-icon-disabled;
       @apply text-color-text-disabled;
+    }
+  }
+
+  &.row__valid-inline {
+    .@{grid-prefix-cls}__body-wrapper .@{grid-prefix-cls}-body__row.row__actived {
+      @apply h-18;
+
+      .@{grid-prefix-cls}-cell__valid {
+        --td-padding-x: 8px;
+        @apply absolute;
+        @apply top-auto;
+        @apply right-auto;
+        @apply ~'bottom-[1px]';
+        @apply ~'left-[var(--td-padding-x)]';
+        @apply ~'w-[calc(100%-2*var(--td-padding-x))]';
+        @apply h-4;
+        @apply leading-none;
+        @apply translate-x-0;
+        @apply translate-y-0;
+        @apply bg-transparent;
+        @apply text-left;
+        @apply truncate;
+        @apply text-color-error;
+
+        .@{grid-prefix-cls}-cell__valid-msg {
+          @apply p-0;
+          @apply bg-transparent;
+          @apply inline;
+          @apply text-inherit;
+          @apply text-xs;
+        }
+      }
     }
   }
 }

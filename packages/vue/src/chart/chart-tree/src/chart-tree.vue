@@ -8,9 +8,10 @@
 <script>
 import { tree } from './tree'
 import Core from '@opentiny/vue-chart-core'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartTree',
+  name: $prefix + 'ChartTree',
   mixins: [Core],
   data() {
     return {

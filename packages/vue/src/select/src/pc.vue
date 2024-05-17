@@ -231,7 +231,8 @@
             :style="{
               'flex-grow': '1',
               width: state.inputLength / (state.inputWidth - 32) + '%',
-              'max-width': state.inputWidth - 42 + 'px'
+              'max-width': state.inputWidth - 42 + 'px',
+              height: 'auto'
             }"
           />
         </div>
@@ -276,9 +277,11 @@
           </template>
           <template #suffix>
             <slot name="suffix"></slot>
-            <span v-if="multiple && multipleLimit" class="tiny-select__limit-txt"
-              >{{ state.selected.length }}/{{ multipleLimit }}</span
-            >
+            <!-- tiny 新增：xdesign 规范 ：多选限制数量时，在后缀显示 "选中/最大限制项" 计数的提示文字  -->
+            <span v-if="showLimitText && multiple && multipleLimit" class="tiny-select__limit-txt">
+              {{ state.selected.length }}/{{ multipleLimit }}
+            </span>
+            <!-- tiny 新增：xdesign 规范 ： 显示比例时，在后缀显示 "选中/全部项" 计数的提示文字  -->
             <span
               v-else-if="showProportion && state.selected.length > 0 && state.options.length > 1"
               class="tiny-select__proportion-txt"
@@ -476,7 +479,7 @@
                 :indeterminate="state.selectCls === 'halfselect'"
                 :class="state.selectCls"
               >
-                {{ t('ui.base.all') }}
+                {{ allText || t('ui.base.all') }}
               </tiny-checkbox>
             </li>
             <li
@@ -509,7 +512,7 @@
                 :indeterminate="state.filteredSelectCls === 'halfselect'"
                 :class="state.selectCls"
               >
-                {{ t('ui.base.all') }}
+                {{ allText || t('ui.base.all') }}
               </tiny-checkbox>
             </li>
             <tiny-option :value="state.query" created v-if="state.showNewOption"> </tiny-option>
@@ -744,9 +747,11 @@ export default defineComponent({
     'inputBoxType',
     'tagType',
     'clearNoMatchValue',
+    'showLimitText',
     'showProportion',
     'clickExpand',
-    'maxVisibleRows'
+    'maxVisibleRows',
+    'allText'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

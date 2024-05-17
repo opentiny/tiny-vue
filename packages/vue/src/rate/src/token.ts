@@ -8,8 +8,8 @@ export const classes = {
   'cursor-undisabled': 'cursor-pointer',
   'svg-hover': 'scale-[1.15]',
 
-  'text-Bottom': 'text-sm sm:text-xs mt-2',
-  'text-left': 'text-color-text-primary text-sm  ml-6 leading-6 sm:text-xs sm:ml-3 sm:leading-4',
+  'text-Bottom': 'text-sm mt-2',
+  'text-left': 'text-color-text-primary text-sm  ml-6 leading-6 sm:ml-3 sm:leading-4',
 
   'allowhalf-item': 'relative inline-block leading-none',
   'allowhalf-active': 'inline-block  absolute top-0 left-1/2 -translate-x-1/2 w-6 h-6 sm:w-4 sm:h-4',

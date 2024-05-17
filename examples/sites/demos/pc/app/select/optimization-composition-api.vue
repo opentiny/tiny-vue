@@ -20,7 +20,7 @@ import { ref } from 'vue'
 import { Select as TinySelect, Modal } from '@opentiny/vue'
 
 const buildOptions = () =>
-  Array.from({ length: 100000 }).map((item, i) => JSON.parse(`{"value":"选项${i}","label":"黄金糕${i}"}`))
+  Array.from({ length: 100000 }).map((item, i) => JSON.parse(`{"value":"选项${i}","label":"北京${i}"}`))
 
 const value1 = ref('')
 const value2 = ref([])

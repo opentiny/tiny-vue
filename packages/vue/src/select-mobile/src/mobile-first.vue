@@ -22,7 +22,7 @@
         <div
           data-tag="tiny-select-mobile-multiple"
           v-if="multiple"
-          :class="['flex items-start leading-6 py-3 cursor-pointer select-none']"
+          :class="['flex items-start leading-5.5 py-3 cursor-pointer select-none']"
           @click="allCheckHandler"
         >
           <component

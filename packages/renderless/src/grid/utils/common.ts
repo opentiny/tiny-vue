@@ -149,10 +149,10 @@ export const emitEvent = (vm, type, args) => {
 }
 
 export const assemColumn = ($table, $column, instance) => {
-  const { columnConfig, $el: elm, $scopedSlots, $slots, $parent } = instance
+  const { columnConfig, $el: elm, slots, $parent } = instance
   const { collectColumn } = $table
 
-  columnConfig.slots = $scopedSlots || $slots
+  columnConfig.slots = slots
 
   const parentNode = elm.parentNode
   const insertIndex = [].indexOf.call(parentNode.children, elm)
@@ -172,7 +172,11 @@ export const assemColumn = ($table, $column, instance) => {
   $table.collectColumn = collectColumn.slice(0)
 }
 
-export const getCellValue = (row, column) => get(row, column.property)
+export const getCellValue = (row, column) => {
+  const { field, prop } = column.own
+  const property = field || prop
+  return get(row, property)
+}
 
 export const getListeners = ($attrs, $listeners) => {
   const regHyphenate = /\B([A-Z])/g

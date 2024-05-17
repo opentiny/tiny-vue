@@ -52,6 +52,7 @@ import {
   watchListType,
   watchFileList,
   handleClick,
+  handleFileClick,
   getFileUploadUrl,
   updateUrl,
   previewImage,
@@ -116,6 +117,7 @@ export const api = [
   'handleReUploadTotal',
   'submit',
   'handleClick',
+  'handleFileClick',
   'getFileUploadUrl',
   'updateUrl',
   'previewImage',
@@ -208,13 +210,14 @@ const initState = ({
   return state
 }
 
-const initApi = ({ api, state, props, constants, vm, $service, t, Modal }) => {
+const initApi = ({ api, state, props, constants, vm, $service, t, Modal, emit }) => {
   Object.assign(api, {
     state,
     sliceChunk: sliceChunk({ state }),
     getFormData: getFormData({ constants, props, state }),
     abort: abort({ constants, vm, state }),
     handleClick: handleClick({ constants, vm }),
+    handleFileClick: handleFileClick({ props, emit }),
     getFile: getFile(state),
     clearFiles: clearFiles(state),
     watchFileList: watchFileList({ constants, state, props, api }),
@@ -294,7 +297,7 @@ const mergeApi = ({ api, props, $service, state, constants, emit, mode, Modal, t
 
 const initWatch = ({ watch, state, api, props, $service }) => {
   watch(
-    () => props.edm.upload,
+    () => props.edm?.upload,
     (value) => value && api.getToken({ token: value.token, isinit: true }),
     { immediate: true, deep: true }
   )
@@ -351,7 +354,7 @@ export const renderless = (
     useBreakpoint
   })
 
-  initApi({ api, state, props, constants, vm, $service, t, Modal })
+  initApi({ api, state, props, constants, vm, $service, t, Modal, emit })
   mergeApi({ api, props, $service, state, constants, emit, mode, Modal, t, vm, CryptoJS, Streamsaver })
   getApi = () => api
 

@@ -5,9 +5,10 @@
 <script>
 import Core from '@opentiny/vue-chart-core'
 import { getIChartOption } from './funnel'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartFunnel',
+  name: $prefix + 'ChartFunnel',
   mixins: [Core],
 
   data() {

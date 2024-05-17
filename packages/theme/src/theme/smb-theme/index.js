@@ -159,6 +159,11 @@ export const tinyBaseSmbTheme = {
   'ti-common-color-bg-dark-deep': 'var(--ti-base-color-white)',
   'ti-common-color-bg-dark-select': 'var(--ti-base-color-white)',
 
+  // 补全默认主题变量名，因cfui组件使用到了此变量名，因为需要映射一下
+  'ti-common-bg-primary': 'var(--ti-common-color-bg-primary)',
+  'ti-common-bg-primary-hover': 'var(--ti-common-color-bg-primary-hover)',
+  'ti-common-bg-primary-active': 'var(--ti-common-color-bg-primary-active)',
+
   // 图表色
   'ti-common-color-data-1': 'var(--ti-base-color-icon-info)',
   'ti-common-color-data-2': 'var(--ti-base-color-data-2)',

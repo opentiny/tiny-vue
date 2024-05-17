@@ -1,7 +1,7 @@
 export const classes = {
   'numeric': 'relative flex items-center w-24 h-7 text-sm bg-color-bg-1 leading-none',
   'numeric_display_none': 'hidden',
-  'numeric_size': 'sm:w-full sm:h-7 sm:text-xs',
+  'numeric_size': 'sm:w-full sm:h-7 sm:text-sm',
   'numeric_medium': 'sm:w-full sm:h-8 sm:text-sm',
   'numeric_decrease':
     'absolute z-10 text-center cursor-pointer left-0 flex items-center justify-center bg-color-bg-3 active:bg-color-border-separator focus:bg-border-separator sm:bg-inherit sm:active:bg-inherit sm:focus:bg-inherit w-7 h-full leading-7 border-r-0.5 border-color-border-separator rounded-l sm:border-0',
@@ -21,14 +21,14 @@ export const classes = {
   'numeric_input-default-num': 'px-8 sm:px-9 sm:w-full',
 
   'numeric_input-active':
-    'border-0.5 sm:border border-solid rounded border-color-border-separator sm:border-color-border ',
+    'border-0.5 sm:border border-solid rounded border-color-border-separator sm:border-color-border text-color-text-primary',
   'numeric_input-disabled':
-    'bg-inherit sm:bg-color-bg-3 cursor-not-allowed sm:border border-0.5 border-solid rounded border-color-text-disabled text-color-text-disabled',
+    'bg-inherit sm:bg-color-bg-6 sm:[&_input]:bg-transparent cursor-not-allowed sm:border border-0.5 border-solid rounded border-color-border-separator text-color-text-disabled sm:text-color-text-secondary',
 
-  'numeric_input_inner': 'w-full z-10 leading-7 sm:text-xs inline-block overflow-hidden outline-0',
+  'numeric_input_inner': 'w-full z-10 leading-7 sm:text-sm inline-block overflow-hidden outline-0',
   'numeric-text-center': 'text-center',
   'numeric-text-left': 'text-left',
   'numeric_input_inner_size': 'leading-7 text-sm',
   'numeric_input_inner_medium': 'sm:leading-8 text-sm sm:text-sm',
-  'numeric_input_inner_disabled': 'bg-color-bg-1 sm:bg-color-bg-3'
+  'numeric_input_inner_disabled': 'bg-color-bg-1 sm:bg-color-bg-6'
 }

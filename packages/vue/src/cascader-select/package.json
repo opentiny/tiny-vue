@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-cascader-select",
   "private": true,
-  "version": "3.15.0",
+  "version": "3.16.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",

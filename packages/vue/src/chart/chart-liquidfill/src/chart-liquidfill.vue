@@ -9,9 +9,10 @@
 import Core from '@opentiny/vue-chart-core'
 import { getIChartOption } from './liquidfill'
 import 'echarts-liquidfill'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartLiquidfill',
+  name: $prefix + 'ChartLiquidfill',
   mixins: [Core],
 
   data() {

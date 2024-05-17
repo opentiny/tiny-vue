@@ -115,6 +115,15 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['validation/asterisk-method.vue']
+    },
+    {
+      'demoId': 'valid-config',
+      'name': { 'zh-CN': '行内校验', 'en-US': '' },
+      'desc': {
+        'zh-CN': `<p>配置 <code>validConfig.message</code> 为 <code>'inline'</code> 开启行内校验。</p>\n`,
+        'en-US': ''
+      },
+      'codeFiles': ['validation/valid-config.vue']
     }
   ],
   apis: [{ 'name': 'grid-validation', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

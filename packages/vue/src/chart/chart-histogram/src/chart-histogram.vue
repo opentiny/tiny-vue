@@ -8,9 +8,10 @@
 <script>
 import Core from '@opentiny/vue-chart-core'
 import { histogram } from './histogram'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartHistogram',
+  name: $prefix + 'ChartHistogram',
   mixins: [Core],
   data() {
     return {

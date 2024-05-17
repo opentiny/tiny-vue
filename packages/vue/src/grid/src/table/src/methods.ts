@@ -103,7 +103,8 @@ import {
   handleSpaceKeyDown,
   handleTabKeyDown,
   handleGlobalKeydownEvent,
-  handleGlobalResizeEvent
+  handleGlobalResizeEvent,
+  handleGlobalMousedownCaptureEvent
 } from './events'
 
 import {
@@ -159,13 +160,18 @@ const sortMultiple = (rows, columns, _vm) => {
 // 创建快速缓存
 const buildCache = (tableData, treeConfig = {}) => {
   const backupMap = new WeakMap()
-  const { children } = treeConfig
+  const { children, ordered, temporaryIndex = '_$index_' } = treeConfig || {}
+  const isTreeOrderedFalse = treeConfig && !ordered
 
-  const traverse = (arr) => {
+  const traverse = (arr, rowLevel, parentIndex) => {
     const backup = []
 
     if (Array.isArray(arr) && arr.length > 0) {
-      arr.forEach((row) => {
+      arr.forEach((row, rowIndex) => {
+        if (isTreeOrderedFalse) {
+          row[temporaryIndex] = `${parentIndex ? `${parentIndex}.` : ''}${rowIndex + 1}`
+        }
+
         // 深拷贝
         const backupRow = clone({ ...row, [children]: null }, true)
 
@@ -173,7 +179,7 @@ const buildCache = (tableData, treeConfig = {}) => {
         backupMap.set(row, backupRow)
 
         if (row[children]) {
-          backupRow[children] = traverse(row[children])
+          backupRow[children] = traverse(row[children], rowLevel + 1, isTreeOrderedFalse ? row[temporaryIndex] : '')
         }
       })
     }
@@ -181,7 +187,7 @@ const buildCache = (tableData, treeConfig = {}) => {
     return backup
   }
 
-  const backupData = traverse(tableData)
+  const backupData = traverse(tableData, 0, '')
 
   return { backupData, backupMap }
 }
@@ -983,8 +989,8 @@ const Methods = {
   },
   // 列宽计算
   autoCellWidth(headerEl, bodyEl, footerEl) {
-    // 列宽最少限制 40px
-    let minCellWidth = 40
+    // 列宽最少限制 40px, x-design为72px
+    let minCellWidth = this.$grid?.designConfig?.minWidth || 40
     let { fit, columnStore, columnChart, isGroup } = this
     let tableHeight = bodyEl.offsetHeight
     let overflowY = bodyEl.scrollHeight > bodyEl.clientHeight
@@ -1118,6 +1124,7 @@ const Methods = {
   handleOtherKeyDown,
   handleGlobalKeydownEvent,
   handleGlobalResizeEvent,
+  handleGlobalMousedownCaptureEvent,
   // 处理单选框默认勾选
   handleRadioDefChecked() {
     let { fullDataRowIdData } = this

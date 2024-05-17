@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-start leading-6 cursor-pointer select-none" @click="$emit('click', $event)">
+  <div class="flex items-start leading-5.5 cursor-pointer select-none" @click="$emit('click', $event)">
     <span
       v-if="option"
       class="w-11 h-11 flex-none flex items-center justify-center relative"

@@ -119,10 +119,12 @@ function buildColumnProps(args) {
       getClass(className, params),
       getClass(cellClassName, params)
     ],
-    style: {
-      left: `${column.style?.left}px`,
-      right: `${column.style?.right}px`
-    },
+    style: fixedHiddenColumn
+      ? {
+          left: `${column.style?.left}px`,
+          right: `${column.style?.right}px`
+        }
+      : null,
     key: columnKey ? column.id : columnIndex,
     attrs,
     on: tdOns
@@ -132,6 +134,7 @@ function buildColumnProps(args) {
 function buildColumnChildren(args) {
   let { h, hasDefaultTip, params, row, validError, column, $table } = args
   let { showEllipsis, showTip, showTitle, showTooltip, validStore } = args
+  const { validOpts } = $table
   let cellNode: any[] = []
   let validNode: any = null
   if (hasDefaultTip) {
@@ -143,7 +146,10 @@ function buildColumnChildren(args) {
           class: 'tiny-grid-cell__valid',
           style: validStore.rule && validStore.rule.width ? { width: `${validStore.rule.width}px` } : null
         },
-        [h('span', { class: 'tiny-grid-cell__valid-msg' }, validStore.content)]
+        [
+          validOpts?.icon ? h(validOpts.icon, { class: 'tiny-grid-cell__valid-icon' }) : null,
+          h('span', { class: 'tiny-grid-cell__valid-msg', attrs: { title: validStore.content } }, validStore.content)
+        ]
       )
     }
   }
@@ -387,11 +393,11 @@ function renderColumn(args1) {
   let { editRules, editStore, rowId, rowSpan, height } = $table
   let { tableData, validOpts, validStore, validatedMap, spanMethod, columnStore } = $table
   let { isDirty, attrs = { 'data-colid': column.id } } = {}
-  let { message } = validOpts
+  let { isMessageDefault, isMessageInline } = validOpts
   let { actived } = editStore
   let validated = validatedMap[`${column.id}-${row[rowId]}`]
   let validError = validStore.row === row && validStore.column === column
-  let hasDefaultTip = editRules && (message === 'default' ? height || tableData.length > 1 : message === 'inline')
+  let hasDefaultTip = editRules && (isMessageDefault ? height || tableData.length > 1 : isMessageInline)
   let { align, className, editor, showTip } = column
   let cellAlign = align || allAlign
   let columnActived =

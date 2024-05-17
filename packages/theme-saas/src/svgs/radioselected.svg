@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="Radiobutton单选框/中尺寸/无文本/选中/正常" stroke="none" stroke-width="1">
-        <g id="radiobutton/on">
-            <path d="M3.05025253,12.9497475 C0.316582489,10.2160774 0.316582489,5.78392257 3.05025253,3.05025253 C5.78392257,0.316582489 10.2160774,0.316582489 12.9497475,3.05025253 C15.6834175,5.78392257 15.6834175,10.2160774 12.9497475,12.9497475 C10.2160774,15.6834175 5.78392257,15.6834175 3.05025253,12.9497475 Z" id="Shape"></path>
-            <circle id="Oval" fill="#FFFFFF" cx="8" cy="8" r="3"></circle>
-        </g>
-    </g>
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs />
+	<path id="矢量 22"
+		d="M1.25 12C1.25 6.06 6.06 1.25 12 1.25C17.93 1.25 22.75 6.06 22.75 12C22.75 17.93 17.93 22.75 12 22.75C6.06 22.75 1.25 17.93 1.25 12Z"
+		fill-opacity="1.000000" fill-rule="evenodd" />
+	<path id="矢量 22"
+		d="M12 16C14.2 16 16 14.2 16 12C16 9.79 14.2 8 12 8C9.79 8 8 9.79 8 12C8 14.2 9.79 16 12 16Z"
+		fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd" />
 </svg>

@@ -28,18 +28,25 @@
       <tiny-grid-column
         field="name"
         title="名称"
-        show-icon
+        :show-icon="false"
         :editor="{ component: 'input', autoselect: true }"
       ></tiny-grid-column>
-      <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
+      <tiny-grid-column
+        field="area"
+        title="区域"
+        :show-icon="false"
+        :editor="{ component: 'select', options }"
+      ></tiny-grid-column>
       <tiny-grid-column
         field="address"
         title="地址"
+        :show-icon="false"
         :editor="{ component: 'input', autoselect: true }"
       ></tiny-grid-column>
       <tiny-grid-column
         field="introduction"
         title="公司简介"
+        :show-icon="false"
         :editor="{ component: 'input', autoselect: true }"
         show-overflow="ellipsis"
       ></tiny-grid-column>

@@ -27,13 +27,13 @@ import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
 
 const options = ref([
-  { value: '选项1', label: '黄金糕' },
-  { value: '选项2', label: '双皮奶' },
-  { value: '选项3', label: '蚵仔煎' },
-  { value: '选项4', label: '龙须面' },
-  { value: '选项5', label: '北京烤鸭' },
-  { value: '选项6', label: '北京豆汁' },
-  { value: '选项7', label: '北京炸酱面' }
+  { value: '选项1', label: '北京' },
+  { value: '选项2', label: '上海' },
+  { value: '选项3', label: '天津' },
+  { value: '选项4', label: '重庆' },
+  { value: '选项5', label: '深圳' },
+  { value: '选项6', label: '南京' },
+  { value: '选项7', label: '成都' }
 ])
 const value = ref('')
 const multivalue = ref([])

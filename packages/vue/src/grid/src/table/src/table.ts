@@ -200,6 +200,7 @@ const renderPluginWrapperFn = (opt) => {
     let tooltipVnode = [null]
     // 校验错误提示
     let errorTooltipVnode = [null]
+    let { isMessageDefault, isMessageTooltip } = validOpts
 
     if (hasFilter) {
       filterVnode = h(GridFilter, {
@@ -215,10 +216,10 @@ const renderPluginWrapperFn = (opt) => {
       tooltipVnode = h(Tooltip, { ref: 'tooltip', props: tooltipContentOpts })
     }
 
-    if (hasTip && editRules && (validOpts.message === 'default' ? !height : validOpts.message === 'tooltip')) {
+    if (hasTip && editRules && (isMessageDefault ? !height : isMessageTooltip)) {
       errorTooltipVnode = h(Tooltip, {
         class: 'tiny-grid__valid-error',
-        props: validOpts.message === 'tooltip' || tableData.length === 1 ? vaildTipOpts : null,
+        props: isMessageTooltip || tableData.length === 1 ? vaildTipOpts : null,
         ref: 'validTip'
       })
     }
@@ -329,7 +330,7 @@ const renderFooterBorder = (_vm) => {
 function getTableAttrs(args) {
   const { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = args
   const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig } = args
-  const { loading, highlightHoverRow, highlightHoverColumn } = args
+  const { loading, highlightHoverRow, highlightHoverColumn, validOpts } = args
   const { stripeSaas, borderSaas, borderVertical, isThemeSaas } = args
 
   const map = {
@@ -344,7 +345,8 @@ function getTableAttrs(args) {
 
   return {
     class: {
-      'tiny-grid h-full sm:h-auto !bg-transparent sm:!bg-color-bg-1 after:border-none sm:after:border-solid': 1,
+      'tiny-grid h-full sm:h-auto !bg-transparent sm:!bg-color-bg-1 after:border-none sm:after:border-solid': true,
+      [`row__valid-${validOpts.message}`]: true,
       [`size__${vSize}`]: vSize,
       'tiny-grid-editable': editConfig,
       [map.showHeader]: showHeader,
@@ -558,6 +560,8 @@ const getTableData = () => {
 
 const bindEvent = (ctx) => {
   GlobalEvent.on(ctx, 'mousedown', ctx.handleGlobalMousedownEvent)
+  // 因为冒泡事件部分情况下被阻止继续传播，导致处理异常，因此注册 mousedown 捕获事件
+  GlobalEvent.on(ctx, 'mousedown', ctx.handleGlobalMousedownCaptureEvent, true)
   GlobalEvent.on(ctx, 'blur', ctx.handleGlobalBlurEvent)
   GlobalEvent.on(ctx, 'mousewheel', ctx.handleGlobalMousewheelEvent)
   GlobalEvent.on(ctx, 'keydown', ctx.handleGlobalKeydownEvent)
@@ -567,6 +571,7 @@ const bindEvent = (ctx) => {
 
 const unbindEvent = (table) => {
   GlobalEvent.off(table, 'mousedown')
+  GlobalEvent.off(table, 'mousedown', true)
   GlobalEvent.off(table, 'blur')
   GlobalEvent.off(table, 'mousewheel')
   GlobalEvent.off(table, 'keydown')
@@ -757,7 +762,11 @@ export default defineComponent({
     // 相交配置
     intersectionOption: Object,
     // 值比较方法
-    equals: Function
+    equals: Function,
+    // 操作列（type为index或radio或selection的列）是否可拖动列宽
+    operationColumnResizable: { type: Boolean, default: () => GlobalConfig.operationColumnResizable },
+    // 自动清空鼠标选中
+    autoClearMouseChecked: { type: Boolean, default: true }
   },
   provide() {
     return {
@@ -840,7 +849,18 @@ export default defineComponent({
       )
     },
     validOpts() {
-      return extend(true, { message: 'tooltip' }, GlobalConfig.validConfig, this.validConfig)
+      const config = Object.assign(
+        { message: 'tooltip' },
+        GlobalConfig.validConfig,
+        this.$grid?.designConfig?.validConfig,
+        this.validConfig
+      )
+
+      config.isMessageTooltip = config.message === 'tooltip'
+      config.isMessageDefault = config.message === 'default'
+      config.isMessageInline = config.message === 'inline'
+
+      return config
     },
     computerTableBodyHeight() {
       return this.tableBodyHeight === 0 ? 'calc(100% - 36px)' : `${this.tableBodyHeight}px`
@@ -1002,8 +1022,19 @@ export default defineComponent({
     let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn } = this as any
     let { highlightHoverRow, isGroup, loading, loadingComponent, mouseConfig = {}, optimizeOpts } = this as any
     let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow, isThemeSaas } = this as any
-    let { stripe, tableColumn, tableData, vSize, visibleColumn, slots, $slots, stripeSaas, borderSaas, isShapeTable } =
-      this as any
+    let {
+      stripe,
+      tableColumn,
+      tableData,
+      validOpts,
+      vSize,
+      visibleColumn,
+      slots,
+      $slots,
+      stripeSaas,
+      borderSaas,
+      isShapeTable
+    } = this as any
     let { borderVertical, cardConfig, listConfig, ganttConfig } = this
     let { leftList, rightList } = columnStore
     const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup }
@@ -1018,7 +1049,7 @@ export default defineComponent({
 
     args = { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow }
     Object.assign(args, { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig })
-    Object.assign(args, { loading, highlightHoverRow, highlightHoverColumn })
+    Object.assign(args, { loading, highlightHoverRow, highlightHoverColumn, validOpts })
     Object.assign(args, { stripeSaas, borderSaas, borderVertical, isThemeSaas })
 
     return h('div', getTableAttrs(args), [

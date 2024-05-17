@@ -9,9 +9,10 @@
 import Core from '@opentiny/vue-chart-core'
 import { t } from '@opentiny/vue-locale'
 import { pie } from './ring'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartRing',
+  name: $prefix + 'ChartRing',
   mixins: [Core],
   data() {
     return {

@@ -433,13 +433,17 @@ export const updated =
   }
 
 export const filter =
-  ({ props, state }) =>
+  ({ props, state, api }) =>
   (value) => {
     if (!props.filterNodeMethod) {
       throw new Error('[Tree] filterNodeMethod is required when filter')
     }
 
     state.store.filter(value)
+    // tiny 新增： 移除了watch,所以要手动调用一下该方法
+    if (props.willChangeView) {
+      api.initPlainNodeStore()
+    }
   }
 
 export const getNodeKey = (props) => (node) => innerGetNodekey(props.nodekey, node.data)

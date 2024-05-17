@@ -16,5 +16,7 @@ export const tinyLinkSmbTheme = {
   'ti-link-danger-disabled-text-color': 'var(--ti-common-color-danger-disabled-text)',
   'ti-link-success-disabled-text-color': 'var(--ti-common-color-success-disabled-text)',
   'ti-link-warning-disabled-text-color': 'var(--ti-common-color-warning-disabled-text)',
-  'ti-link-info-disabled-text-color': 'var(--ti-common-color-info-disabled-text)'
+  'ti-link-info-disabled-text-color': 'var(--ti-common-color-info-disabled-text)',
+  'ti-link-danger-text-color': '#c7000b',
+  'ti-link-danger-border-color': '#c7000b'
 }

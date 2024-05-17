@@ -328,6 +328,18 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'image-bg-color',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '配置 `list-type` 等于 `picture-single` 或 `picture-card` 模式下图片的背景色。',
+            'en-US':
+              'Configure the background color of the image when `list-type` is set to `picture-single` or `picture-card`.'
+          },
+          mode: ['mobile-first'],
+          mfDemo: ''
+        },
+        {
           name: 'is-folder-title',
           type: 'Boolean',
           defaultValue: '',
@@ -1067,7 +1079,7 @@ interface IHeaders {
       name: 'IListType',
       type: 'type',
       code: `
-type IListType = 'text' | 'picture' | 'picture-card' | 'thumb' | 'saas'
+type IListType = 'text' | 'picture' | 'picture-card' | 'thumb' | 'saas' // saas为3.14.0版本新增
       `
     },
     {

@@ -15,7 +15,7 @@ export default {
     return {
       options: {
         padding: [50, 30, 50, 20],
-        step: true, //true属性配置阶梯线
+        step: true, // true属性配置阶梯线
         legend: {
           show: true,
           icon: 'line'
@@ -32,8 +32,7 @@ export default {
           { 'Month': 'Sep', 'Domestic': 17, 'Abroad': 30 },
           { 'Month': 'Oct', 'Domestic': 40, 'Abroad': 33 },
           { 'Month': 'Nov', 'Domestic': 42, 'Abroad': 22 },
-          { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 1 },
-
+          { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 1 }
         ],
         xAxis: 'Month',
         yAxis: {

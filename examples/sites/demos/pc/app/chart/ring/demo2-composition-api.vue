@@ -54,7 +54,7 @@ const options = ref({
         { name: 'EIP_1', value: 10 },
         { name: 'EIP_2', value: 40 }
       ]
-    },
+    }
   ]
 })
 </script>
