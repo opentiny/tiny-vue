@@ -351,43 +351,6 @@
               <span>{{ topCreateText }}</span>
             </div>
           </div>
-          <!-- <tiny-grid
-            v-if="renderType === 'grid'"
-            auto-resize
-            :row-id="valueField"
-            :select-config="buildSelectConfig()"
-            :radio-config="buildRadioConfig()"
-            ref="selectGrid"
-            :highlight-current-row="true"
-            :columns="gridOp.columns"
-            :data="state.gridData"
-            @select-all="selectChange"
-            @select-change="selectChange"
-            @radio-change="radioChange"
-            @mousedown.stop
-            v-bind="gridOp"
-          ></tiny-grid> -->
-
-          <!-- <tiny-tree
-            v-if="renderType === 'tree'"
-            :filter-node-method="filterMethod"
-            :props="{ label: textField, isLeaf: 'isLeaf', ...treeOp.props }"
-            :expand-on-click-node="false"
-            :icon-trigger-click-node="false"
-            :node-key="valueField"
-            :default-expand-all="state.isExpandAll"
-            :check-strictly="treeOp.checkStrictly"
-            :default-checked-keys="multiple ? state.defaultCheckedKeys : []"
-            ref="selectTree"
-            :current-node-key="!multiple ? state.currentKey : ''"
-            :show-checkbox="multiple"
-            @load-data="loadTreeData"
-            @node-collapse="nodeCollapse"
-            @node-expand="nodeExpand"
-            @check="nodeCheckClick"
-            @node-click="treeNodeClick"
-            v-bind="treeOp"
-          ></tiny-tree> -->
           <!-- tiny 新增 可搜索的输入框 -->
           <tiny-input
             v-if="searchable"
@@ -408,7 +371,7 @@
             </template>
           </tiny-input>
 
-          <template v-if="optimization && !~['grid', 'tree'].indexOf(renderType)">
+          <template v-if="optimization">
             <div :style="{ height: `${state.optimizeStore.recycleScrollerHeight}px` }">
               <tiny-recycle-scroller
                 ref="scrollbar"
@@ -444,7 +407,7 @@
             </div>
           </template>
           <tiny-scrollbar
-            v-if="!optimization && !~['grid', 'tree'].indexOf(renderType)"
+            v-if="!optimization"
             ref="scrollbar"
             show
             tag="ul"
@@ -532,14 +495,7 @@
               </tiny-option>
             </slot>
           </tiny-scrollbar>
-          <template
-            v-if="
-              renderType !== 'grid' &&
-              renderType !== 'tree' &&
-              state.emptyText &&
-              (!allowCreate || loading || (allowCreate && state.emptyFlag))
-            "
-          >
+          <template v-if="state.emptyText && (!allowCreate || loading || (allowCreate && state.emptyFlag))">
             <!-- tiny 新增 showEmptyImage功能 -->
             <div v-if="loadingText || slots.empty">
               <slot name="empty" v-if="slots.empty"></slot>
@@ -709,9 +665,6 @@ export default defineComponent({
     'popperAppendToBody',
     'showDropdown',
     'expandTags',
-    'renderType',
-    'gridOp',
-    'treeOp',
     'delay',
     'cacheOp',
     'isDropInheritWidth',
