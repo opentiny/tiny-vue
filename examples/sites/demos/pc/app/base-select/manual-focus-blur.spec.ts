@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('可搜索+手动聚焦失焦', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#manual-focus-blur')
+  await page.goto('base-select#manual-focus-blur')
   const wrap = page.locator('#manual-focus-blur')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const button = wrap.locator('.demo2 .tiny-button')

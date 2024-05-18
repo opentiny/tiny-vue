@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('单选事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#events')
+  await page.goto('base-select#events')
   const wrap = page.locator('#events')
-  const select = wrap.locator('.tiny-select').first()
+  const select = wrap.locator('.tiny-base-select').first()
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
@@ -26,7 +26,7 @@ test('单选事件', async ({ page }) => {
 
   await page.waitForTimeout(200)
   await input.hover()
-  await select.locator('.tiny-select__caret.icon-close').click()
+  await select.locator('.tiny-base-select__caret.icon-close').click()
   await page.waitForTimeout(500)
   await expect(input).toHaveValue('')
   await expect(model.filter({ hasText: '触发 clear 事件' })).toHaveCount(1)
@@ -34,9 +34,9 @@ test('单选事件', async ({ page }) => {
 
 test('多选事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#events')
+  await page.goto('base-select#events')
   const wrap = page.locator('#events')
-  const select = wrap.locator('.tiny-select').nth(1)
+  const select = wrap.locator('.tiny-base-select').nth(1)
   const tag = wrap.locator('.tiny-tag')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
@@ -65,7 +65,7 @@ test('多选事件', async ({ page }) => {
 
   await page.waitForTimeout(200)
   await select.hover()
-  await select.locator('.tiny-select__caret.icon-close').click()
+  await select.locator('.tiny-base-select__caret.icon-close').click()
 
   await expect(tag).toHaveCount(0)
   await expect(model.filter({ hasText: '触发 change 事件' })).toHaveCount(1)

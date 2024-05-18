@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test('clearable', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#clearable')
+  await page.goto('base-select#clearable')
   const wrap = page.locator('#clearable')
   const dropdown = page.locator('.tiny-select-dropdown')
   const input = wrap.locator('.tiny-input__inner')

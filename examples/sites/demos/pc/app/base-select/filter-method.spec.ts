@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test'
 
 test('默认搜索', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#filter-method')
+  await page.goto('base-select#filter-method')
   const wrap = page.locator('#filter-method')
-  const select = wrap.locator('.tiny-select').first()
+  const select = wrap.locator('.tiny-base-select').first()
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
@@ -46,9 +46,9 @@ test('默认搜索', async ({ page }) => {
 
 test('自定义过滤', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#filter-method')
+  await page.goto('base-select#filter-method')
   const wrap = page.locator('#filter-method')
-  const select = wrap.locator('.tiny-select').nth(1)
+  const select = wrap.locator('.tiny-base-select').nth(1)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')

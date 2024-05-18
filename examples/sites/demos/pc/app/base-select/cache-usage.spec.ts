@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('cache-op', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#cache-usage')
+  await page.goto('base-select#cache-usage')
 
   const wrap = page.locator('#cache-usage')
   const dropdown = page.locator('.tiny-select-dropdown')

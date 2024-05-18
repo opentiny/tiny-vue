@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('单选虚拟滚动', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#optimization')
+  await page.goto('base-select#optimization')
 
   const wrap = page.locator('#optimization')
-  const select = wrap.locator('.tiny-select').nth(0)
+  const select = wrap.locator('.tiny-base-select').nth(0)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
@@ -20,9 +20,9 @@ test('单选虚拟滚动', async ({ page }) => {
 
 test('多选虚拟滚动', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#optimization')
+  await page.goto('base-select#optimization')
   const wrap = page.locator('#optimization')
-  const select = wrap.locator('.tiny-select').nth(1)
+  const select = wrap.locator('.tiny-base-select').nth(1)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
   const tag = select.locator('.tiny-tag')

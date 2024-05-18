@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test'
 
 test('多选时取远端数据与当前已选数据的并集', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#multiple')
+  await page.goto('base-select#multiple')
   const wrap = page.locator('#multiple')
-  const select = wrap.locator('.tiny-select').nth(0)
+  const select = wrap.locator('.tiny-base-select').nth(0)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
   const tag = select.locator('.tiny-tag')
@@ -25,9 +25,9 @@ test('多选时取远端数据与当前已选数据的并集', async ({ page }) 
 
 test('multiple-limit', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#multiple')
+  await page.goto('base-select#multiple')
   const wrap = page.locator('#multiple')
-  const select = wrap.locator('.tiny-select').nth(3)
+  const select = wrap.locator('.tiny-base-select').nth(3)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
   const tag = select.locator('.tiny-tag')

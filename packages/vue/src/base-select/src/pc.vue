@@ -351,7 +351,7 @@
               <span>{{ topCreateText }}</span>
             </div>
           </div>
-          <tiny-grid
+          <!-- <tiny-grid
             v-if="renderType === 'grid'"
             auto-resize
             :row-id="valueField"
@@ -366,9 +366,9 @@
             @radio-change="radioChange"
             @mousedown.stop
             v-bind="gridOp"
-          ></tiny-grid>
+          ></tiny-grid> -->
 
-          <tiny-tree
+          <!-- <tiny-tree
             v-if="renderType === 'tree'"
             :filter-node-method="filterMethod"
             :props="{ label: textField, isLeaf: 'isLeaf', ...treeOp.props }"
@@ -387,7 +387,7 @@
             @check="nodeCheckClick"
             @node-click="treeNodeClick"
             v-bind="treeOp"
-          ></tiny-tree>
+          ></tiny-tree> -->
           <!-- tiny 新增 可搜索的输入框 -->
           <tiny-input
             v-if="searchable"

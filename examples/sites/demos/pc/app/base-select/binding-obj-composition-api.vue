@@ -24,7 +24,7 @@ const value = ref({ val: '选项3', id: 3 })
 </script>
 
 <style lang="less" scoped>
-.tiny-select {
+.tiny-base-select {
   width: 280px;
 }
 p {

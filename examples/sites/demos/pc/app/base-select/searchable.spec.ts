@@ -2,10 +2,10 @@ import { expect, test } from '@playwright/test'
 
 test('searchable-single', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#searchable')
+  await page.goto('base-select#searchable')
 
   const wrap = page.locator('#searchable')
-  const select = wrap.locator('.tiny-select').nth(0)
+  const select = wrap.locator('.tiny-base-select').nth(0)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const input = dropdown.locator('.tiny-input__inner')
   const option = dropdown.locator('.tiny-option')
@@ -34,10 +34,10 @@ test('searchable-single', async ({ page }) => {
 
 test('searchable-multiple', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#searchable')
+  await page.goto('base-select#searchable')
 
   const wrap = page.locator('#searchable')
-  const select = wrap.locator('.tiny-select').nth(1)
+  const select = wrap.locator('.tiny-base-select').nth(1)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const input = dropdown.locator('.tiny-input__inner')
   const option = dropdown.locator('.tiny-option')

@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test'
 
 test('手动缓存', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#memoize-usage')
+  await page.goto('base-select#memoize-usage')
   const wrap = page.locator('#memoize-usage')
-  const select = wrap.locator('.tiny-select')
+  const select = wrap.locator('.tiny-base-select')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
   const cacheValue = wrap.locator('.cache-value')

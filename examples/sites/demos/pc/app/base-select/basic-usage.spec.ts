@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('基础用法标签式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#basic-usage')
+  await page.goto('base-select#basic-usage')
   const wrap = page.locator('#basic-usage')
-  const select = wrap.locator('.tiny-select').nth(0)
+  const select = wrap.locator('.tiny-base-select').nth(0)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
@@ -25,9 +25,9 @@ test('基础用法标签式', async ({ page }) => {
 
 test('基础用法配置式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#basic-usage')
+  await page.goto('base-select#basic-usage')
   const wrap = page.locator('#basic-usage')
-  const select = wrap.locator('.tiny-select').nth(1)
+  const select = wrap.locator('.tiny-base-select').nth(1)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')

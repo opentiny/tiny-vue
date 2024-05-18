@@ -2,10 +2,10 @@ import { expect, test } from '@playwright/test'
 
 test('默认下拉弹框宽度由内容撑开', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#is-drop-inherit-width')
+  await page.goto('base-select#is-drop-inherit-width')
 
   const wrap = page.locator('#is-drop-inherit-width')
-  const select = wrap.locator('.tiny-select').nth(0)
+  const select = wrap.locator('.tiny-base-select').nth(0)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const input = select.locator('.tiny-input__inner')
   const option = dropdown.locator('.tiny-option')
@@ -20,9 +20,9 @@ test('默认下拉弹框宽度由内容撑开', async ({ page }) => {
 
 test('下拉弹框宽度与输入框一致', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#is-drop-inherit-width')
+  await page.goto('base-select#is-drop-inherit-width')
   const wrap = page.locator('#is-drop-inherit-width')
-  const select = wrap.locator('.tiny-select').nth(1)
+  const select = wrap.locator('.tiny-base-select').nth(1)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const input = select.locator('.tiny-input__inner')
 

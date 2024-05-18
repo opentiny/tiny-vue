@@ -2,10 +2,10 @@ import { expect, test } from '@playwright/test'
 
 test('远程搜索单选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#remote-method')
+  await page.goto('base-select#remote-method')
 
   const wrap = page.locator('#remote-method')
-  const select = wrap.locator('.tiny-select').nth(0)
+  const select = wrap.locator('.tiny-base-select').nth(0)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
@@ -24,11 +24,11 @@ test('远程搜索单选', async ({ page }) => {
 
 test('远程搜索多选 + 保留搜索关键字', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#remote-method')
+  await page.goto('base-select#remote-method')
 
   const wrap = page.locator('#remote-method')
-  const select = wrap.locator('.tiny-select').nth(1)
-  const input = select.locator('.tiny-select__input')
+  const select = wrap.locator('.tiny-base-select').nth(1)
+  const input = select.locator('.tiny-base-select__input')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
   const tag = select.locator('.tiny-tag')
@@ -53,10 +53,10 @@ test('远程搜索多选 + 保留搜索关键字', async ({ page }) => {
 
 test('获焦时触发远程搜索', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#remote-method')
+  await page.goto('base-select#remote-method')
 
   const wrap = page.locator('#remote-method')
-  const select = wrap.locator('.tiny-select').nth(2)
+  const select = wrap.locator('.tiny-base-select').nth(2)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')

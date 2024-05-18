@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test'
 
 test('单选无需配置可复制', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#copy-single')
+  await page.goto('base-select#copy-single')
 
   const wrap = page.locator('#copy-single')
-  const select = wrap.locator('.tiny-select').nth(0)
+  const select = wrap.locator('.tiny-base-select').nth(0)
   const input = select.locator('.tiny-input__inner')
   const valueInput = wrap.locator('.custom  .tiny-input__inner')
 
@@ -26,10 +26,10 @@ test('单选无需配置可复制', async ({ page }) => {
 
 test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#copy-single')
+  await page.goto('base-select#copy-single')
 
   const wrap = page.locator('#copy-single')
-  const select = wrap.locator('.tiny-select').nth(1)
+  const select = wrap.locator('.tiny-base-select').nth(1)
   const input = select.locator('.tiny-input__inner')
   const valueInput = wrap.locator('.custom .tiny-input__inner')
 
@@ -53,10 +53,10 @@ test('单选可搜索配置 allow-copy 可复制', async ({ page }) => {
 
 test('单选远程搜索配置 allow-copy 可复制', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#copy-single')
+  await page.goto('base-select#copy-single')
 
   const wrap = page.locator('#copy-single')
-  const select = wrap.locator('.tiny-select').nth(2)
+  const select = wrap.locator('.tiny-base-select').nth(2)
   const input = select.locator('.tiny-input__inner')
   const valueInput = wrap.locator('.custom  .tiny-input__inner')
 

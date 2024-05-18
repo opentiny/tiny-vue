@@ -21,7 +21,7 @@ const value = ref(['选项1', '选项2'])
 </script>
 
 <style lang="less" scoped>
-.tiny-select {
+.tiny-base-select {
   width: 280px;
 }
 </style>

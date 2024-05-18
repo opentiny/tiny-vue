@@ -3,10 +3,10 @@ import { test, expect } from '@playwright/test'
 test('点击选中', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.waitForTimeout(300)
-  await page.goto('select#allow-create')
+  await page.goto('base-select#allow-create')
 
   const wrap = page.locator('#allow-create')
-  const select = wrap.locator('.tiny-select').nth(0)
+  const select = wrap.locator('.tiny-base-select').nth(0)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const input = select.locator('.tiny-input__inner')
 
@@ -27,10 +27,10 @@ test('点击选中', async ({ page }) => {
 test('enter 选中', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.waitForTimeout(300)
-  await page.goto('select#allow-create')
+  await page.goto('base-select#allow-create')
 
   const wrap = page.locator('#allow-create')
-  const select = wrap.locator('.tiny-select').nth(1)
+  const select = wrap.locator('.tiny-base-select').nth(1)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const input = select.locator('.tiny-input__inner')
 

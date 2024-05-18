@@ -2,10 +2,10 @@ import { expect, test } from '@playwright/test'
 
 test('空数据插槽', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#slot-empty')
+  await page.goto('base-select#slot-empty')
 
   const wrap = page.locator('#slot-empty')
-  const select = wrap.locator('.tiny-select')
+  const select = wrap.locator('.tiny-base-select')
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')

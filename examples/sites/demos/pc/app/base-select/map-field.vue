@@ -1,26 +1,25 @@
 <template>
   <div>
     <p>场景1：配置式配置映射字段</p>
-    <tiny-base-select v-model="value1" multiple :options="options" value-field="val" text-field="text">
-    </tiny-base-select>
+    <tiny-select v-model="value1" multiple :options="options" value-field="val" text-field="text"> </tiny-select>
     <p>场景2：嵌套表格配置映射字段</p>
-    <tiny-base-select
+    <tiny-select
       v-model="value2"
       multiple
       value-field="id"
       text-field="city"
       render-type="grid"
       :grid-op="gridOp"
-    ></tiny-base-select>
+    ></tiny-select>
   </div>
 </template>
 
 <script>
-import { BaseSelect } from '@opentiny/vue'
+import { Select } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBaseSelect: BaseSelect
+    TinySelect: Select
   },
   data() {
     return {

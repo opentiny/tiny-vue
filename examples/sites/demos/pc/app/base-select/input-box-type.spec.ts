@@ -2,14 +2,14 @@ import { test, expect } from '@playwright/test'
 
 test('下划线默认', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#input-box-type')
+  await page.goto('base-select#input-box-type')
   const wrap = page.locator('#input-box-type')
-  const select = wrap.locator('.tiny-select').nth(0)
+  const select = wrap.locator('.tiny-base-select').nth(0)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
 
-  await expect(select).toHaveClass(/tiny-select__underline/)
+  await expect(select).toHaveClass(/tiny-base-select__underline/)
   await expect(input).toHaveCSS('border-top-width', '0px')
   await expect(input).toHaveCSS('border-left-width', '0px')
   await expect(input).toHaveCSS('border-right-width', '0px')
@@ -24,13 +24,13 @@ test('下划线默认', async ({ page }) => {
 
 test('下划线禁用', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#input-box-type')
+  await page.goto('base-select#input-box-type')
   const wrap = page.locator('#input-box-type')
-  const select = wrap.locator('.tiny-select').nth(1)
+  const select = wrap.locator('.tiny-base-select').nth(1)
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
 
-  await expect(select).toHaveClass(/tiny-select__underline/)
+  await expect(select).toHaveClass(/tiny-base-select__underline/)
   await expect(input).toHaveCSS('border-top-width', '0px')
   await expect(input).toHaveCSS('border-left-width', '0px')
   await expect(input).toHaveCSS('border-right-width', '0px')
@@ -47,26 +47,26 @@ test('下划线禁用', async ({ page }) => {
 
 test('下划线多选', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#input-box-type')
+  await page.goto('base-select#input-box-type')
   const wrap = page.locator('#input-box-type')
-  const select = wrap.locator('.tiny-select').nth(2)
+  const select = wrap.locator('.tiny-base-select').nth(2)
   const input = select.locator('.tiny-input__inner')
   const tag = wrap.locator('.tiny-tag')
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
 
-  await expect(select).toHaveClass(/tiny-select__underline/)
+  await expect(select).toHaveClass(/tiny-base-select__underline/)
   await expect(input).toHaveCSS('border-top-width', '0px')
   await expect(input).toHaveCSS('border-left-width', '0px')
   await expect(input).toHaveCSS('border-right-width', '0px')
   await expect(input).toHaveCSS('border-color', 'rgb(173, 176, 184)')
-  await expect(select.locator('.tiny-select__caret')).toHaveCSS('fill', 'rgb(87, 93, 108)')
+  await expect(select.locator('.tiny-base-select__caret')).toHaveCSS('fill', 'rgb(87, 93, 108)')
 
   await select.click()
   await expect(dropdown).toBeVisible()
   await option.first().click()
   await expect(tag).toHaveCount(5)
 
-  await expect(select).toHaveClass(/tiny-select__underline/)
-  await expect(select).toHaveClass(/tiny-select__multiple/)
+  await expect(select).toHaveClass(/tiny-base-select__underline/)
+  await expect(select).toHaveClass(/tiny-base-select__multiple/)
 })

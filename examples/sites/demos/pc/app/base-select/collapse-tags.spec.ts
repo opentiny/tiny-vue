@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('collapse-tags', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
-  await page.goto('select#collapse-tags')
+  await page.goto('base-select#collapse-tags')
   const wrap = page.locator('#collapse-tags')
-  const select = wrap.locator('.tiny-select').nth(0)
+  const select = wrap.locator('.tiny-base-select').nth(0)
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const tag = select.locator('.tiny-tag')
   const option = dropdown.locator('.tiny-option')

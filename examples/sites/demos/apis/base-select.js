@@ -200,20 +200,6 @@ export default {
           mfDemo: 'filter-method'
         },
         {
-          name: 'grid-op',
-          typeAnchorName: 'IGridOption',
-          type: 'IGridOption',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '下拉表格时，内置表格的配置，用法同 Grid 组件。需结合 render-type 属性使用',
-            'en-US':
-              'When pulling down a table, the configuration of the built-in table is the same as that of the Grid component. To be used in conjunction with the render type attribute'
-          },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'nest-grid',
-          mfDemo: 'nest-grid'
-        },
-        {
           name: 'input-box-type',
           type: "'input' | 'underline'",
           defaultValue: "'input'",
@@ -434,18 +420,6 @@ export default {
           mfDemo: 'remote-method'
         },
         {
-          name: 'render-type',
-          type: "'tree' | 'grid'",
-          defaultValue: '',
-          desc: {
-            'zh-CN': '渲染为下拉表格或下拉树，需结合 grid-op / tree-op 使用',
-            'en-US': 'Rendered as a dropdown table or tree, to be used in conjunction with grid op/tree op'
-          },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'nest-grid',
-          mfDemo: 'nest-grid'
-        },
-        {
           name: 'reserve-keyword',
           type: 'boolean',
           defaultValue: 'false',
@@ -566,20 +540,6 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'allow-create'
-        },
-        {
-          name: 'tree-op',
-          typeAnchorName: 'ITreeOption',
-          type: 'ITreeOption',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '下拉树时，内置树组件的配置，用法同 Tree 组件。需结合 render-type 属性使用',
-            'en-US':
-              'When pulling down a tree, the configuration of the built-in tree component is the same as that of the Tree component. To be used in conjunction with the render type attribute'
-          },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'nest-tree',
-          mfDemo: 'nest-tree'
         },
         {
           name: 'value-field',
@@ -913,31 +873,6 @@ interface ICacheOp {
   serialize?: ()=> string  // 本地存储序列化方法,默认：JSON.stringify
   deserialize?: ()=> ICacheItem[] // 本地存储序反列化方法，默认：JSON.parse
 }        
-`
-    },
-    {
-      name: 'IGridOption',
-      type: 'interface',
-      code: `
-interface IGridOption {
-  data: any[]    // 表格数据，用法同 Grid
-  columns: any[] // 列配置，用法同 Grid
-}
-`
-    },
-    {
-      name: 'ITreeOption',
-      type: 'interface',
-      code: `
-interface ITreeNode {
-  label: string         // 默认树节点的文本字段
-  id: number|string     // 树节点唯一标识
-  children: ITreeNode[] // 子节点
-}
-
-interface ITreeOption {
-  data: ITreeNode[] // 树数据，用法同 Tree
-}
 `
     },
     {

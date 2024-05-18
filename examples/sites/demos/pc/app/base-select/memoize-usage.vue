@@ -55,7 +55,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.tiny-select {
+.tiny-base-select {
   width: 280px;
 }
 p {

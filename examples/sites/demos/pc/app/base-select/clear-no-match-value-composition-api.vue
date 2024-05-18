@@ -33,7 +33,7 @@ const multiVal = ref(['选项2', '11'])
 </script>
 
 <style lang="less" scoped>
-.tiny-select {
+.tiny-base-select {
   width: 280px;
 }
 p {
