@@ -2,7 +2,7 @@ export default {
   mode: ['pc', 'mobile-first'],
   apis: [
     {
-      name: 'select',
+      name: 'base-select',
       type: 'component',
       props: [
         {
