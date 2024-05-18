@@ -1,14 +1,7 @@
 import {
   debouncRquest,
-  nodeCollapse,
-  nodeExpand,
   getChildValue,
-  nodeCheckClick,
-  treeNodeClick,
-  getTreeData,
-  radioChange,
   getcheckedData,
-  selectChange,
   calcOverFlow,
   toggleCheckAll,
   handleCopyClick,
@@ -59,8 +52,6 @@ import {
   navigateOptions,
   getPluginOption,
   watchPropsOption,
-  buildSelectConfig,
-  buildRadioConfig,
   onMouseenterNative,
   onMouseleaveNative,
   onCopying,
@@ -93,10 +84,8 @@ import {
   computedOptionsAllDisabled,
   computedDisabledTooltipContent,
   computedSelectDisabled,
-  computedIsExpandAll,
   watchInitValue,
   watchShowClose,
-  loadTreeData,
   getOptionIndexArr,
   queryVisibleOptions,
   // tiny 新增
@@ -113,8 +102,6 @@ import { isNumber } from '../common/type'
 
 export const api = [
   'state',
-  'nodeCollapse',
-  'nodeExpand',
   'toggleCheckAll',
   'handleCopyClick',
   'focus',
@@ -155,19 +142,12 @@ export const api = [
   'debouncedOnInputChange',
   'debouncedQueryChange',
   'navigateOptions',
-  'selectChange',
-  'radioChange',
-  'treeNodeClick',
-  'nodeCheckClick',
-  'buildSelectConfig',
-  'buildRadioConfig',
   'onMouseenterNative',
   'onMouseleaveNative',
   'onCopying',
   'handleDropdownClick',
   'handleEnterTag',
   'getLabelSlotValue',
-  'loadTreeData',
   'updateModelValue',
   'clearSearchText',
   'onClickCollapseTag'
@@ -288,9 +268,8 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     selectDisabled: computed(() => api.computedSelectDisabled()),
     isDisplayOnly: computed(() => props.displayOnly || (parent.form || {}).displayOnly),
     gridCheckedData: computed(() => api.getcheckedData()),
-    isExpandAll: computed(() => api.computedIsExpandAll()),
     searchSingleCopy: computed(() => props.allowCopy && !props.multiple && props.filterable),
-    childrenName: computed(() => (props.treeOp.props && props.treeOp.props.children) || 'children'),
+    childrenName: computed(() => 'children'),
     tooltipContent: {},
     isHidden: false,
     defaultCheckedKeys: [],
@@ -320,7 +299,6 @@ const initApi = ({
     state,
     maskState,
     doDestroy: doDestroy(vm),
-    getTreeData: getTreeData(props, state),
     blur: blur({ vm, state }),
     focus: focus({ vm, state }),
     getValueKey: getValueKey(props),
@@ -340,17 +318,11 @@ const initApi = ({
     resetHoverIndex: resetHoverIndex({ props, state }),
     resetDatas: resetDatas({ props, state }),
     scrollToOption: scrollToOption({ vm, constants }),
-    selectChange: selectChange({ emit, props, vm, state, api }),
-    radioChange: radioChange({ emit, props, state, api, vm }),
     handleCopyClick: handleCopyClick({ parent, props, state }),
-    treeNodeClick: treeNodeClick({ emit, props, state, api, vm }),
     managePlaceholder: managePlaceholder({ vm, state }),
-    nodeCheckClick: nodeCheckClick({ emit, props, state, api }),
     checkDefaultFirstOption: checkDefaultFirstOption(state),
 
     setOptionHighlight: setOptionHighlight(state),
-    nodeExpand: nodeExpand({ state, constants, nextTick }),
-    nodeCollapse: nodeCollapse({ state, constants, nextTick }),
     handleBlur: handleBlur({ constants, dispatch, emit, state, designConfig }),
     toggleLastOptionHitState: toggleLastOptionHitState({ state }),
     emptyText: emptyText({ I18N: constants.I18N, props, state, t, isMobileFirstMode }),
@@ -359,8 +331,6 @@ const initApi = ({
     queryVisibleOptions: queryVisibleOptions({ props, vm, isMobileFirstMode }),
     recycleScrollerHeight: recycleScrollerHeight({ state, props, recycle: constants.RECYCLE }),
     watchPropsOption: watchPropsOption({ constants, parent, props, state }),
-    buildSelectConfig: buildSelectConfig({ props, state }),
-    buildRadioConfig: buildRadioConfig({ props, state }),
     onMouseenterNative: onMouseenterNative({ state }),
     onMouseleaveNative: onMouseleaveNative({ state }),
     onCopying: onCopying({ state, vm }),
@@ -383,7 +353,6 @@ const initApi = ({
 
     computedSelectDisabled: computedSelectDisabled({ props, parent }),
     computedIsExpand: computedIsExpand({ props, state }),
-    computedIsExpandAll: computedIsExpandAll(props),
     watchInitValue: watchInitValue({ props, emit }),
     watchShowClose: watchShowClose({ nextTick, state, parent }),
     // tiny 新增
@@ -454,24 +423,11 @@ const addApi = ({
     calcCollapseTags: calcCollapseTags({ state, vm, props }),
     initValue: initValue({ state }),
     getLabelSlotValue: getLabelSlotValue({ props, state }),
-    loadTreeData: loadTreeData({ state, vm, props, api }),
     onClickCollapseTag: onClickCollapseTag({ state, props, nextTick, api })
   })
 }
 
 const initWatch = ({ watch, props, api, state, nextTick }) => {
-  watch(
-    () => props.treeOp.data,
-    (data) => data && (state.treeData = data),
-    { immediate: true, deep: true }
-  )
-
-  watch(
-    () => props.gridOp.data,
-    (data) => data && (state.gridData = data),
-    { immediate: true, deep: true }
-  )
-
   watch(
     () => state.selectDisabled,
     () => nextTick(api.resetInputHeight)
@@ -543,15 +499,6 @@ const initWatch = ({ watch, props, api, state, nextTick }) => {
 
 const addWatch = ({ watch, props, api, state, nextTick }) => {
   watch(() => [...state.options], api.watchOptions)
-
-  // tiny 新增renderType的2个判断
-  if (props.renderType === 'grid' && !props.optimization) {
-    watch(() => state.gridData, api.setSelected, { immediate: true })
-  }
-
-  if (props.renderType === 'tree' && !props.optimization) {
-    watch(() => state.treeData, api.setSelected, { immediate: true })
-  }
 
   watch(() => state.hoverIndex, api.watchHoverIndex)
 

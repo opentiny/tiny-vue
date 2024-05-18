@@ -430,6 +430,101 @@ export default {
       codeFiles: ['memoize-usage.vue']
     },
     {
+      demoId: 'nest-tree',
+      name: {
+        'zh-CN': '下拉树',
+        'en-US': 'Select Tree'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>render-type</code> 设置渲染为树类型，<code>tree-op</code> 设置树组件配置。</p>',
+        'en-US':
+          '<p>Set the rendering to tree type through <code>render-type</code>, and set the tree component configuration through <code>tree-op</code>. </p>\n'
+      },
+      codeFiles: ['nest-tree.vue']
+    },
+    {
+      demoId: 'nest-grid',
+      name: {
+        'zh-CN': '下拉表格',
+        'en-US': 'Select Table'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>render-type</code> 设置渲染为表格类型，<code>grid-op</code>设置表格配置。</p>',
+        'en-US':
+          '<p>Set the rendering to a table type through <code>render-type</code>, and set the table configuration through <code>grid-op</code></p>\n'
+      },
+      codeFiles: ['nest-grid.vue']
+    },
+    {
+      demoId: 'nest-grid-disable',
+      name: {
+        'zh-CN': '下拉表格禁用选项',
+        'en-US': 'Select Table Disable Options'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>select-config</code> （多选）或 <code>radio-config</code> （单选）属性的 <code>checkMethod</code> 自定义禁用逻辑，返回 true (启用) / false (禁用)。配置 {trigger: "row"} 可以设置点击行选中数据。</p>\n',
+        'en-US':
+          "<p>By customizing the disable logic through the <code>select-config</code> (multiple selection) or <code>radio-config</code> (single selection) attribute's <code>checkMethod</code>, return true (Enable) / false (disable).Configure {trigger: 'row'} to set the selected data in the click row.</p>"
+      },
+      codeFiles: ['nest-grid-disable.vue']
+    },
+    {
+      demoId: 'nest-grid-remote',
+      name: {
+        'zh-CN': '下拉表格远程搜索',
+        'en-US': 'Select table Remote Search'
+      },
+      desc: {
+        'zh-CN': `<p>同时使用 <code>remote</code> 和 <code>remote-method</code> 和 <code>filterable</code> 3个属性开启远程搜索。通过 <code>remote-config</code> 设置自动搜索和显示展开按钮。</p>
+          <p>在多选模式下，可通过 <code>reserve-keyword</code>设置选中一个选项后依然保留搜索关键字。</p>`,
+        'en-US': `<p>Enable remote search through <code>remote</code>,<code>remote-method</code>, and <code>filterable</code>. Set up automatic search and display expansion buttons through <code>remote-config</code>.</p>
+          <p>In multiple selection mode, <code>reserve-keyword</code> set to retain search keywords after selecting multiple options.</p>`
+      },
+      codeFiles: ['nest-grid-remote.vue']
+    },
+    {
+      demoId: 'nest-grid-init-query',
+      name: {
+        'zh-CN': '下拉表格初始化查询',
+        'en-US': 'Init query'
+      },
+      desc: {
+        'zh-CN':
+          '<p><code>remote</code> 为 <code>true</code> 时，可设置 <code>init-query</code> 用于初始化列表数据，并可使用 <code>v-model</code> 绑定数据回显同时，可配置 <code>remote-method</code> 方法进行搜索。</p>\n',
+        'en-US':
+          '<p>When <code>remote</code> is set to <code>true</code>, you can set <code>init-query</code> to initialize list data and use <code>v-model</code> to bind data echoes. You can configure the <code>remote-method</code> method for search.</p>'
+      },
+      codeFiles: ['nest-grid-init-query.vue']
+    },
+    {
+      demoId: 'extra-query-params',
+      name: {
+        'zh-CN': '下拉表格初始化查询传参',
+        'en-US': 'Extra Parameters'
+      },
+      desc: {
+        'zh-CN':
+          '<p><code>remote</code> 为 <code>true</code> 时，可设置 <code>extra-query-params</code> 传递额外的参数，用于 <code>init-query</code> 和 <code>remote-method</code> 方法的查询。</p>\n',
+        'en-US':
+          '<p>When <code>remote</code> is set to <code>true</code>, you can set <code>extra-query-params</code> to transfer extra parameters for querying the <code>init-query</code> and <code>remote-method</code> methods.</p>'
+      },
+      codeFiles: ['extra-query-params.vue']
+    },
+    {
+      demoId: 'nest-radio-grid-much-data',
+      name: {
+        'zh-CN': '下拉表格大数据',
+        'en-US': 'Select Table Big Data'
+      },
+      desc: {
+        'zh-CN': '表格数据量很大时，会自动启用虚拟滚动，同 Grid 组件。',
+        'en-US':
+          '<p>When the table data volume is large, virtual scrolling will be automatically enabled, similar to the Grid component. </p>\n'
+      },
+      codeFiles: ['nest-radio-grid-much-data.vue']
+    },
+    {
       demoId: 'slot-default',
       name: {
         'zh-CN': '选项插槽',

@@ -171,19 +171,6 @@ export const handleQueryChange =
       return
     }
 
-    if (props.renderType === constants.TYPE.Grid) {
-      api.gridOnQueryChange(value)
-      return
-    }
-
-    if (props.renderType === constants.TYPE.Tree) {
-      state.previousQuery = value
-
-      if (props.filterable && typeof props.filterMethod === 'function') {
-        vm.$refs.selectTree && vm.$refs.selectTree.filter(value)
-      }
-    }
-
     state.query = value
     state.previousQuery = value
 
@@ -203,10 +190,6 @@ export const handleQueryChange =
         api.managePlaceholder()
         api.resetInputHeight()
       })
-    }
-
-    if (props.renderType === constants.TYPE.Tree) {
-      return
     }
 
     state.triggerSearch = true
@@ -240,52 +223,8 @@ export const emitChange =
   (value, changed) => {
     if (state.device === 'mb' && props.multiple && !changed) return
 
-    const seekItem = (val, arr, items, flag) => {
-      if (constants.TYPE.Tree === flag) {
-        const recurNode = (node) => {
-          val === node[props.valueField] && items.push(node)
-          val !== node[props.valueField] &&
-            Array.isArray(node[state.childrenName]) &&
-            node[state.childrenName].forEach(recurNode)
-        }
-
-        arr.forEach(recurNode)
-      } else if (constants.TYPE.Grid === flag) {
-        for (let i = 0; i < arr.length; i++) {
-          if (val === arr[i][props.valueField]) {
-            items.push(arr[i])
-            break
-          }
-        }
-      }
-    }
-
     if (!isEqual(props.modelValue, state.compareValue)) {
-      if (props.renderType === constants.TYPE.Grid && props.multiple) {
-        value = value || []
-
-        const gridData = state.gridData || []
-        const items = []
-
-        value.forEach((valueItem) => {
-          seekItem(valueItem, gridData, items, constants.TYPE.Grid)
-        })
-
-        emit('change', value, items)
-      } else if (props.renderType === constants.TYPE.Tree && props.multiple) {
-        value = value || []
-
-        const treeData = state.treeData || []
-        const items = []
-
-        value.forEach((valueItem) => {
-          seekItem(valueItem, treeData, items, constants.TYPE.Tree)
-        })
-
-        emit('change', value, items)
-      } else {
-        emit('change', value)
-      }
+      emit('change', value)
     }
   }
 
@@ -382,27 +321,17 @@ const getOptionOfSetSelected = ({ api, props }) => {
 }
 
 // 多选，获取匹配的option
-const getResultOfSetSelected = ({ state, isGrid, isTree, api, props }) => {
+const getResultOfSetSelected = ({ state, api, props }) => {
   let result = []
   const newModelValue = [] // tiny 新增，用于 clearNoMatchValue
 
   if (Array.isArray(state.modelValue)) {
     state.modelValue.forEach((value) => {
-      if (isGrid || isTree) {
-        const option = api.getPluginOption(value, isTree)
-
-        result = result.concat(option)
-        // tiny 新增
-        if (props.clearNoMatchValue && option.length) {
-          newModelValue.push(value)
-        }
-      } else {
-        // tiny 新增
-        const option = api.getOption(value)
-        if (!props.clearNoMatchValue || (props.clearNoMatchValue && option.label)) {
-          result.push(option)
-          newModelValue.push(value)
-        }
+      // tiny 新增
+      const option = api.getOption(value)
+      if (!props.clearNoMatchValue || (props.clearNoMatchValue && option.label)) {
+        result.push(option)
+        newModelValue.push(value)
       }
     })
   }
@@ -412,55 +341,16 @@ const getResultOfSetSelected = ({ state, isGrid, isTree, api, props }) => {
   return result
 }
 
-// 单选,树/表格，获取匹配的option
-const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
-  if (!props.modelValue) {
-    state.selectedLabel = ''
-    state.selected = {}
-    state.currentKey = ''
-    vm.$refs.selectGrid && vm.$refs.selectGrid.clearRadioRow()
-    vm.$refs.selectTree && vm.$refs.selectTree.setCurrentKey && vm.$refs.selectTree.setCurrentKey(null)
-    return
-  }
-
-  const isRemote =
-    props.filterable &&
-    props.remote &&
-    (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
-  const nestdata = isRemote ? state.remoteData : isTree ? api.getTreeData(state.treeData) : state.gridData
-  const data = find(nestdata, (item) => props.modelValue === item[props.valueField])
-
-  if (isEmptyObject(data)) {
-    api.clearNoMatchValue('')
-    return
-  }
-
-  const obj = Object.assign({}, data)
-  const label = data[props.textField]
-
-  obj.currentLabel = label
-  state.selectedLabel = label
-  state.selected = obj
-  state.currentKey = data[props.valueField]
-}
-
 export const setSelected =
-  ({ api, constants, nextTick, props, vm, state }) =>
+  ({ api, nextTick, props, vm, state }) =>
   () => {
-    const isTree = props.renderType === constants.TYPE.Tree
-    const isGrid = props.renderType === constants.TYPE.Grid
-
     if (!props.multiple) {
-      if (isGrid || isTree) {
-        setGridOrTreeSelected({ props, state, vm, isTree, api })
-      } else {
-        const option = getOptionOfSetSelected({ api, props })
-        state.selected = option
-        state.selectedLabel = option.state.currentLabel || option.currentLabel
-        props.filterable && !props.shape && (state.query = state.selectedLabel)
-      }
+      const option = getOptionOfSetSelected({ api, props })
+      state.selected = option
+      state.selectedLabel = option.state.currentLabel || option.currentLabel
+      props.filterable && !props.shape && (state.query = state.selectedLabel)
     } else {
-      const result = getResultOfSetSelected({ state, props, isGrid, isTree, api })
+      const result = getResultOfSetSelected({ state, props, api })
       state.selectCls = result.length
         ? result.length === state.options.length
           ? 'checked-sur'
@@ -477,14 +367,14 @@ export const setSelected =
 
 // 多选,树/表格，获取匹配option
 export const getPluginOption =
-  ({ api, props, state }) =>
-  (value, isTree) => {
+  ({ props, state }) =>
+  (value) => {
     const isRemote =
       props.filterable &&
       props.remote &&
       (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
     const { textField, valueField } = props
-    const sourceData = isRemote ? state.remoteData : isTree ? api.getTreeData(state.treeData) : state.gridData
+    const sourceData = isRemote ? state.remoteData : state.gridData
     const selNode = find(sourceData, (item) => item[valueField] === value)
     const items = []
 
@@ -497,7 +387,7 @@ export const getPluginOption =
   }
 
 export const toggleCheckAll =
-  ({ api, state, props }) =>
+  ({ api, state }) =>
   (filtered) => {
     let value = []
     // 1. 需要控制勾选或去勾选的项
@@ -641,7 +531,7 @@ export const toggleLastOptionHitState =
   }
 
 export const deletePrevTag =
-  ({ api, constants, props, state, vm }) =>
+  ({ api, state }) =>
   (event) => {
     if (event.target.value.length <= 0 && !api.toggleLastOptionHitState()) {
       const value = state.modelValue.slice()
@@ -653,13 +543,6 @@ export const deletePrevTag =
       api.updateModelValue(value)
 
       api.emitChange(value)
-
-      if (props.renderType === constants.TYPE.Grid) {
-        const rows = state.selected.slice().filter((item) => value.includes(item[props.valueField]))
-
-        vm.$refs.selectGrid.clearSelection()
-        vm.$refs.selectGrid.setSelection(rows, true)
-      }
     }
   }
 
@@ -928,7 +811,7 @@ export const selectOption =
   }
 
 export const deleteSelected =
-  ({ api, constants, emit, props, vm, state }) =>
+  ({ api, emit, props, state }) =>
   (event) => {
     event && event.stopPropagation()
 
@@ -939,17 +822,6 @@ export const deleteSelected =
     }
 
     const value = props.multiple ? selectedValue : ''
-
-    if (props.renderType === constants.TYPE.Tree) {
-      state.selected = {}
-      state.selectedLabel = ''
-      vm.$refs.selectTree.state.currentRadio.value = null
-      vm.$refs.selectTree.setCurrentKey(null)
-    } else if (props.renderType === constants.TYPE.Grid) {
-      state.selected = {}
-      state.selectedLabel = ''
-      vm.$refs.selectGrid.clearRadioRow()
-    }
 
     state.showTip = false
     state.compareValue = deepClone(value)
@@ -968,45 +840,15 @@ export const deleteTag =
   (event, tag) => {
     if (tag.required) return
 
-    const isTree = props.renderType === constants.TYPE.Tree
     const index = state.selected.indexOf(tag)
-    const treeValue = []
-    const treeIds = [tag[props.valueField]]
-
-    if (isTree && !props.treeOp.checkStrictly) {
-      let node = vm.$refs.selectTree.getNode(tag[props.valueField])
-
-      if (!node.isLeaf) {
-        treeIds.push(...api.getChildValue(node.childNodes, props.valueField))
-      }
-
-      while (node.parent && !Array.isArray(node.parent.data)) {
-        node.parent.data && treeIds.push(node.parent.data[props.valueField])
-        node = node.parent
-      }
-
-      state.selected
-        .slice()
-        .map((node) => !treeIds.includes(node[props.valueField]) && treeValue.push(node[props.valueField]))
-    }
 
     if (index > -1 && !state.selectDisabled) {
       const value = state.modelValue.slice()
       value.splice(index, 1)
 
-      if (props.renderType === constants.TYPE.Tree) {
-        props.treeOp.checkStrictly && treeValue.push(...value)
-        vm.$refs.selectTree.setCheckedKeys(treeValue)
-      } else if (props.renderType === constants.TYPE.Grid) {
-        const rows = state.selected.slice().filter((item) => value.includes(item[props.valueField]))
-
-        vm.$refs.selectGrid.clearSelection()
-        vm.$refs.selectGrid.setSelection(rows, true)
-      }
-
       state.compareValue = deepClone(value)
 
-      api.updateModelValue(isTree ? treeValue : value)
+      api.updateModelValue(value)
 
       api.emitChange(value)
 
@@ -1241,7 +1083,7 @@ export const emptyText =
       return props.loadingText || t(I18N.loading)
     }
 
-    if (props.remote && state.query === '' && props.renderType) {
+    if (props.remote && state.query === '') {
       return remoteEmptyText(props, state)
     }
 
@@ -1287,7 +1129,7 @@ export const watchValue =
       if (props.filterable && !props.reserveKeyword) {
         // tiny 优化： 多选且props.reserveKeyword为false时， aui此处会多请求一次
         // searchable时，不清空query, 这样才能保持搜索结果
-        props.renderType !== constants.TYPE.Grid && !props.searchable && (state.query = '')
+        !props.searchable && (state.query = '')
       }
     }
 
@@ -1357,18 +1199,14 @@ const postOperOfToVisible = ({ props, state, constants }) => {
   }
 
   if (state.selected) {
-    if (props.renderType === constants.TYPE.Grid || props.renderType === constants.TYPE.Tree) {
-      state.selectedLabel = state.selected.currentLabel
+    if (props.filterable && props.allowCreate && state.createdSelected && state.createdLabel) {
+      state.selectedLabel = state.createdLabel
     } else {
-      if (props.filterable && props.allowCreate && state.createdSelected && state.createdLabel) {
-        state.selectedLabel = state.createdLabel
-      } else {
-        state.selectedLabel = state.selected.state.currentLabel || state.selected.currentLabel
-      }
+      state.selectedLabel = state.selected.state.currentLabel || state.selected.currentLabel
+    }
 
-      if (props.filterable) {
-        state.query = state.selectedLabel
-      }
+    if (props.filterable) {
+      state.query = state.selectedLabel
     }
 
     if (props.filterable) {
@@ -1392,9 +1230,7 @@ export const toVisible =
     state.inputLength = 20
     state.previousQuery !== state.query && api.initQuery().then(() => api.setSelected())
 
-    if (props.renderType !== constants.TYPE.Tree) {
-      state.previousQuery = null
-    }
+    state.previousQuery = null
 
     api.resetHoverIndex()
     api.resetDatas()
@@ -1415,12 +1251,12 @@ export const toVisible =
 export const toHide =
   ({ constants, state, props, vm, api }) =>
   () => {
-    const { filterable, remote, remoteConfig, shape, renderType, multiple, valueField } = props
+    const { filterable, remote, remoteConfig, shape, multiple, valueField } = props
 
     state.selectEmitter.emit(constants.COMPONENT_NAME.SelectDropdown, constants.EVENT_NAME.updatePopper)
 
     if (filterable) {
-      state.query = remote || shape ? '' : renderType !== constants.TYPE.Tree ? state.selectedLabel : ''
+      state.query = remote || shape ? '' : state.selectedLabel
       const isChange = remote && remoteConfig.autoSearch && (state.firstAutoSearch || remoteConfig.clearData)
       state.firstAutoSearch = false
       api.handleQueryChange(state.query, isChange)
@@ -1582,33 +1418,6 @@ export const handleCopyClick =
     parent.$el.removeChild(input)
   }
 
-export const selectChange =
-  ({ props, state, api }) =>
-  ({ $table, selection, checked, row }) => {
-    const { textField, valueField } = props
-    const remoteItem = (row) => {
-      const removeItem = find(state.selected, (item) => item[valueField] === row[valueField])
-
-      removeItem && state.selected.splice(state.selected.indexOf(removeItem), 1)
-    }
-
-    if (row) {
-      checked ? state.selected.push({ ...row, value: row[valueField], currentLabel: row[textField] }) : remoteItem(row)
-    } else {
-      checked
-        ? (state.selected = state.selected.concat(
-            selection.filter((row) => !~state.modelValue.indexOf(row[valueField]))
-          ))
-        : $table.tableFullData.forEach((row) => remoteItem(row))
-    }
-
-    const keys = state.selected.map((item) => item[valueField])
-
-    api.updateModelValue(keys)
-
-    api.directEmitChange(keys, state.selected)
-  }
-
 export const getcheckedData =
   ({ props, state }) =>
   () => {
@@ -1624,95 +1433,6 @@ export const getcheckedData =
 
       return checkedKey
     }
-  }
-
-export const radioChange =
-  ({ props, state, api, vm }) =>
-  ({ row }) => {
-    row.value = row[props.valueField]
-    row.currentLabel = row[props.textField]
-
-    !state.hasClearSelection && vm.$refs.selectGrid.clearSelection()
-    state.hasClearSelection = true
-    state.selected = row
-    state.visible = false
-    state.currentKey = row[props.valueField]
-
-    api.updateModelValue(row.value)
-    api.directEmitChange(row)
-  }
-
-export const getTreeData = (props, state) => (data) => {
-  const nodes = []
-  const getChild = (data, pId) => {
-    data.forEach((node) => {
-      node.pId = pId
-      nodes.push(node)
-
-      if (node[state.childrenName] && node[state.childrenName].length > 0) {
-        getChild(node[state.childrenName], node[props.valueField])
-      }
-    })
-  }
-
-  getChild(data, null)
-
-  return nodes
-}
-
-export const treeNodeClick =
-  ({ props, state, api, vm }) =>
-  (data) => {
-    if (!props.multiple) {
-      data.currentLabel = data[props.textField]
-      data.value = data[props.valueField]
-      state.selected = data
-      state.visible = false
-
-      api.updateModelValue(data.value)
-      api.directEmitChange(data)
-    } else {
-      if (props.treeOp.checkOnClickNode) {
-        const checkedNodes = vm.$refs.selectTree.getCheckedNodes()
-        const checkedKeys = vm.$refs.selectTree.getCheckedKeys()
-        api.nodeCheckClick(data, { checkedNodes, checkedKeys })
-      }
-    }
-  }
-
-export const nodeCheckClick =
-  ({ props, state, api }) =>
-  (data, { checkedKeys, checkedNodes }) => {
-    const selected = state.selected.map((item) => api.getValueKey(item))
-    if (isEqual(selected, checkedKeys)) {
-      return
-    }
-
-    // 这行是aui的写法，不正确； tiny是 return checkedNodes, 逻辑也不正确。
-    // eslint-disable-next-line array-callback-return
-    state.selected = checkedNodes.filter((node) => {
-      node.currentLabel = node[props.textField]
-      node.value = node[props.valueField]
-    })
-
-    api.updateModelValue(checkedKeys)
-    api.directEmitChange(checkedKeys, checkedNodes)
-  }
-
-export const nodeCollapse =
-  ({ state, constants }) =>
-  () => {
-    setTimeout(() => {
-      state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
-    }, 310)
-  }
-
-export const nodeExpand =
-  ({ state, constants }) =>
-  () => {
-    setTimeout(() => {
-      state.selectEmitter.emit(constants.EVENT_NAME.updatePopper)
-    }, 310)
   }
 
 export const debouncRquest = ({ api, state, props }) =>
@@ -1747,61 +1467,33 @@ export const getChildValue = () => (data, key) => {
 export const watchPropsOption =
   ({ constants, parent, props, state }) =>
   () => {
-    const renderType = props.renderType
-    const { key, parentKey } = props.treeOp
     const dataset = {
       dataset: props.options || props.dataset,
-      service: parent.$service,
-      tree: { key, parentKey }
+      service: parent.$service
     }
     getDataset(dataset).then((data) => {
-      if (renderType === constants.TYPE.Tree) {
-        state.treeData = data
-      } else if (renderType === constants.TYPE.Grid) {
-        state.gridData = data
+      let sortData = data.slice()
+      if (props.multiple) {
+        const requiredData = []
+
+        sortData = sortData.filter((item) => {
+          if (item.required) {
+            requiredData.push(item)
+            return false
+          }
+          return true
+        })
+
+        sortData = requiredData.concat(sortData)
+      }
+      if (props.cacheOp && props.cacheOp.key) {
+        state.memorize = new Memorize(props.cacheOp)
+        state.datas = state.memorize.assemble(sortData.slice())
       } else {
-        let sortData = data.slice()
-        if (props.multiple) {
-          const requiredData = []
-
-          sortData = sortData.filter((item) => {
-            if (item.required) {
-              requiredData.push(item)
-              return false
-            }
-            return true
-          })
-
-          sortData = requiredData.concat(sortData)
-        }
-        if (props.cacheOp && props.cacheOp.key) {
-          state.memorize = new Memorize(props.cacheOp)
-          state.datas = state.memorize.assemble(sortData.slice())
-        } else {
-          state.datas = sortData
-          state.initDatas = sortData
-        }
+        state.datas = sortData
+        state.initDatas = sortData
       }
     })
-  }
-
-export const buildSelectConfig =
-  ({ props, state }) =>
-  () => {
-    const checkRowKeys = state.gridCheckedData
-    const selectConfig = props.selectConfig
-
-    return Object.assign({}, selectConfig, { checkRowKeys })
-  }
-
-export const buildRadioConfig =
-  ({ props, state }) =>
-  () => {
-    const checkRowKey = state.currentKey
-    const highlight = true
-    const radioConfig = props.radioConfig
-
-    return Object.assign({}, radioConfig, { checkRowKey, highlight })
   }
 
 export const onMouseenterNative =
@@ -1960,10 +1652,9 @@ export const initQuery =
       props.filterable &&
       props.remote &&
       (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
-    const isGrid = props.renderType === constants.TYPE.Grid
 
     let selected
-    if (isRemote && isGrid && props.initQuery) {
+    if (isRemote && props.initQuery) {
       let initData = props.initQuery(props.modelValue, props.extraQueryParams, !!init)
       if (initData.then) {
         return new Promise((resolve) => {
@@ -2151,7 +1842,7 @@ export const getLabelSlotValue =
       label: item.state ? item.state.currentLabel : item.currentLabel,
       value
     }
-    return ['grid', 'tree'].includes(props.renderType) ? item : obj
+    return obj
   }
 
 export const computedTagsStyle =
@@ -2240,42 +1931,6 @@ export const computedIsExpand =
     const hoverExpanded = (state.selectHover || state.visible) && props.hoverExpand && !props.disabled
     const clickExpanded = props.clickExpand && state.exceedMaxVisibleRow && state.showCollapseTag
     return hoverExpanded || clickExpanded
-  }
-
-export const computedIsExpandAll = (props) => () => {
-  const { defaultExpandAll, lazy } = props.treeOp
-  return !lazy && defaultExpandAll !== false
-}
-
-export const loadTreeData =
-  ({ state, vm, props, api }) =>
-  ({ data = [], init = false }) => {
-    const getTreeDatas = (datas, newDatas = []) => {
-      datas.forEach(({ data, childNodes }) => {
-        let temData = { ...data, [state.childrenName]: [] }
-
-        if (childNodes && childNodes.length) {
-          getTreeDatas(childNodes, temData[state.childrenName])
-        }
-
-        newDatas.push(temData)
-      })
-    }
-
-    if (init) {
-      state.treeData = data
-    } else if (vm.$refs.selectTree) {
-      const treeData = []
-      getTreeDatas(vm.$refs.selectTree.state.root.childNodes, treeData)
-      state.treeData = treeData
-
-      const { multiple, treeOp } = props
-      if (multiple && treeOp.lazy) {
-        const checkedNodes = vm.$refs.selectTree.getCheckedNodes()
-        const checkedKeys = vm.$refs.selectTree.getCheckedKeys()
-        api.nodeCheckClick(null, { checkedNodes, checkedKeys })
-      }
-    }
   }
 
 export const watchInitValue =
