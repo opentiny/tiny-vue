@@ -1,4 +1,5 @@
 <template>
+  <p>场景1：下拉树单选</p>
   <tiny-base-select v-model="value">
     <template #panel="{ props: { state }, methods: { updateModelValue } }">
       <tiny-tree
@@ -10,8 +11,33 @@
           (data) => {
             state.visible = false
             updateModelValue(data.id)
-            $nextTick(() => {
+            nextTick(() => {
               state.selectedLabel = data.label
+            })
+          }
+        "
+      ></tiny-tree>
+    </template>
+  </tiny-base-select>
+  <p>场景2：下拉树多选</p>
+  <tiny-base-select v-model="value2" :multiple="true">
+    <template #panel="{ props: { state }, methods: { updateModelValue } }">
+      <tiny-tree
+        :data="treeData"
+        :expand-on-click-node="false"
+        :icon-trigger-click-node="false"
+        :default-expand-all="true"
+        :show-checkbox="true"
+        @check="
+          (data, { checkedKeys, checkedNodes }) => {
+            updateModelValue(checkedNodes.map((node) => node.id))
+            nextTick(() => {
+              state.selected = state.selected.map((item) => {
+                return {
+                  ...item,
+                  currentLabel: checkedNodes.find((node) => node.id === item.value).label
+                }
+              })
             })
           }
         "
@@ -31,6 +57,7 @@ export default {
   data() {
     return {
       value: '',
+      value2: [],
       treeData: [
         {
           id: 1,
