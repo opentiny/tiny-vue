@@ -765,6 +765,16 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-reference',
           mfDemo: 'slot-reference'
+        },
+        {
+          name: 'panel',
+          desc: {
+            'zh-CN': '下拉面板插槽',
+            'en-US': 'Panel slot'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'slot-panel',
+          mfDemo: 'slot-panel'
         }
       ]
     },
