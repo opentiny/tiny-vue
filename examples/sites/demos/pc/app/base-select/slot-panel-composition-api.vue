@@ -1,4 +1,5 @@
 <template>
+  <p>场景1：下拉树单选</p>
   <tiny-base-select v-model="value">
     <template #panel="{ props: { state }, methods: { updateModelValue } }">
       <tiny-tree
@@ -18,13 +19,39 @@
       ></tiny-tree>
     </template>
   </tiny-base-select>
+  <p>场景2：下拉树多选</p>
+  <tiny-base-select v-model="value2" :multiple="true">
+    <template #panel="{ props: { state }, methods: { updateModelValue } }">
+      <tiny-tree
+        :data="treeData"
+        :expand-on-click-node="false"
+        :icon-trigger-click-node="false"
+        :default-expand-all="true"
+        :show-checkbox="true"
+        @check="
+          (data, { checkedKeys, checkedNodes }) => {
+            updateModelValue(checkedNodes.map((node) => node.id))
+            nextTick(() => {
+              state.selected = state.selected.map((item) => {
+                return {
+                  ...item,
+                  currentLabel: checkedNodes.find((node) => node.id === item.value).label
+                }
+              })
+            })
+          }
+        "
+      ></tiny-tree>
+    </template>
+  </tiny-base-select>
 </template>
 
 <script setup>
 import { ref, nextTick } from 'vue'
 import { BaseSelect as TinyBaseSelect, Tree as TinyTree } from '@opentiny/vue'
 
-const value = ref('')
+const value = ref()
+const value2 = ref([])
 
 const treeData = ref([
   {
