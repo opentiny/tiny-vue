@@ -1,5 +1,5 @@
 <template>
-  <p>场景1：下拉树单选</p>
+  <div>场景1：下拉树单选</div>
   <tiny-base-select v-model="value">
     <template #panel="{ props: { state }, methods: { updateModelValue } }">
       <tiny-tree
@@ -19,8 +19,8 @@
       ></tiny-tree>
     </template>
   </tiny-base-select>
-  <p>场景2：下拉树多选</p>
-  <tiny-base-select v-model="value2" :multiple="true">
+  <div>场景2：下拉树多选</div>
+  <tiny-base-select v-model="value2" multiple>
     <template #panel="{ props: { state }, methods: { updateModelValue } }">
       <tiny-tree
         :data="treeData"
@@ -38,6 +38,28 @@
                   currentLabel: checkedNodes.find((node) => node.id === item.value).label
                 }
               })
+            })
+          }
+        "
+      ></tiny-tree>
+    </template>
+  </tiny-base-select>
+  <div>场景3：下拉树可搜索</div>
+  <tiny-base-select v-model="value3" filterable clearable :filter-method="filterMethod">
+    <template #panel="{ props: { state }, methods: { updateModelValue } }">
+      <tiny-tree
+        ref="treeRef"
+        :data="treeData"
+        :expand-on-click-node="false"
+        :icon-trigger-click-node="false"
+        :default-expand-all="true"
+        :filter-node-method="filter"
+        @node-click="
+          (data) => {
+            state.visible = false
+            updateModelValue(data.id)
+            nextTick(() => {
+              state.selectedLabel = data.label
             })
           }
         "
@@ -94,6 +116,16 @@ export default {
           ]
         }
       ]
+    }
+  },
+  methods: {
+    filterMethod(value) {
+      this.$refs.treeRef.filter(value)
+    },
+    filter(value, data) {
+      if (!value) return true
+
+      return data.label.includes(value)
     }
   }
 }
