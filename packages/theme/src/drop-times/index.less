@@ -12,11 +12,13 @@
 
 @import '../custom.less';
 
-@select-dropdown-prefix-cls: ~'@{css-prefix}select-dropdown';
+@drop-times-prefix-cls: ~'@{css-prefix}drop-times';
+@select-dropdown-prefix-cls: ~'@{css-prefix}select-dropdown__item';
 
-.@{select-dropdown-prefix-cls} {
 
-  & &__item {
+.@{drop-times-prefix-cls} {
+
+  .@{select-dropdown-prefix-cls} {
     font-size: var(--ti-drop-times-item-font-size);
     padding: var(--ti-drop-times-item-padding);
 
