@@ -2329,6 +2329,14 @@
       "pc"
     ]
   },
+  "BaseSelect": {
+    "path": "vue/src/base-select/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
   "SelectDropdown": {
     "path": "vue/src/select-dropdown/index.ts",
     "type": "component",

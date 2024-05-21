@@ -40,6 +40,7 @@
     "@opentiny/vue-avatar": "workspace:~",
     "@opentiny/vue-badge": "workspace:~",
     "@opentiny/vue-baidu-map": "workspace:~",
+    "@opentiny/vue-base-select": "workspace:~",
     "@opentiny/vue-breadcrumb": "workspace:~",
     "@opentiny/vue-breadcrumb-item": "workspace:~",
     "@opentiny/vue-bulletin-board": "workspace:~",

@@ -1,0 +1,66 @@
+import { expect, test } from '@playwright/test'
+
+test('searchable-single', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('base-select#searchable')
+
+  const wrap = page.locator('#searchable')
+  const select = wrap.locator('.tiny-base-select').nth(0)
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const input = dropdown.locator('.tiny-input__inner')
+  const option = dropdown.locator('.tiny-option')
+
+  await expect(input).toBeHidden()
+  await select.click()
+  await page.waitForTimeout(500)
+  await expect(input).toBeVisible()
+  await input.fill('上海')
+  await input.press('Enter')
+  await page.waitForTimeout(500)
+  const list = await option.all()
+  list.forEach(async (item) => {
+    const text = await item.innerText()
+    const isVisibleItem = text === '上海' || text === '全部'
+    if (isVisibleItem) {
+      await expect(item).toHaveCSS('display', 'flex')
+    } else {
+      await expect(item).toHaveCSS('display', 'none')
+    }
+  })
+  await option.filter({ hasText: '上海' }).click()
+  await page.waitForTimeout(500)
+  await expect(input).toHaveValue('')
+})
+
+test('searchable-multiple', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
+  await page.goto('base-select#searchable')
+
+  const wrap = page.locator('#searchable')
+  const select = wrap.locator('.tiny-base-select').nth(1)
+  const dropdown = page.locator('body > .tiny-select-dropdown')
+  const input = dropdown.locator('.tiny-input__inner')
+  const option = dropdown.locator('.tiny-option')
+  const tags = select.locator('.tiny-tag')
+
+  await expect(input).toBeHidden()
+  await select.click()
+  await page.waitForTimeout(500)
+  await expect(input).toBeVisible()
+  await input.fill('上海')
+  await input.press('Enter')
+  await page.waitForTimeout(500)
+  const list = await option.all()
+  list.forEach(async (item) => {
+    const text = await item.innerText()
+    const isVisibleItem = text === '上海' || text === '全部'
+    if (isVisibleItem) {
+      await expect(item).toHaveCSS('display', 'flex')
+    } else {
+      await expect(item).toHaveCSS('display', 'none')
+    }
+  })
+  await option.filter({ hasText: '上海' }).click()
+  await page.waitForTimeout(500)
+  await expect((await tags.all()).length).toEqual(1)
+})
