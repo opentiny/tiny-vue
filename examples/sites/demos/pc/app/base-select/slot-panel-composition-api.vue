@@ -66,6 +66,51 @@
       ></tiny-tree>
     </template>
   </tiny-base-select>
+  <div>场景4：下拉树懒加载（单选）</div>
+  <tiny-base-select v-model="value4">
+    <template #panel="{ props: { state }, methods: { updateModelValue } }">
+      <tiny-tree
+        lazy
+        :load="load"
+        :expand-on-click-node="false"
+        :icon-trigger-click-node="false"
+        @node-click="
+          (data) => {
+            state.visible = false
+            updateModelValue(data.id)
+            nextTick(() => {
+              state.selectedLabel = data.label
+            })
+          }
+        "
+      ></tiny-tree>
+    </template>
+  </tiny-base-select>
+  <div>场景5：下拉树懒加载（多选）</div>
+  <tiny-base-select v-model="value5" multiple>
+    <template #panel="{ props: { state }, methods: { updateModelValue } }">
+      <tiny-tree
+        lazy
+        :load="load"
+        :expand-on-click-node="false"
+        :icon-trigger-click-node="false"
+        :show-checkbox="true"
+        @check="
+          (data, { checkedKeys, checkedNodes }) => {
+            updateModelValue(checkedNodes.map((node) => node.id))
+            nextTick(() => {
+              state.selected = state.selected.map((item) => {
+                return {
+                  ...item,
+                  currentLabel: checkedNodes.find((node) => node.id === item.value).label
+                }
+              })
+            })
+          }
+        "
+      ></tiny-tree>
+    </template>
+  </tiny-base-select>
 </template>
 
 <script setup>
@@ -75,6 +120,8 @@ import { BaseSelect as TinyBaseSelect, Tree as TinyTree } from '@opentiny/vue'
 const value = ref()
 const value2 = ref([])
 const value3 = ref()
+const value4 = ref()
+const value5 = ref([])
 
 const treeRef = ref()
 
@@ -123,6 +170,34 @@ const filter = (value, data) => {
   if (!value) return true
 
   return data.label.includes(value)
+}
+
+const load = (node, resolve) => {
+  if (node.level === 0) {
+    return resolve([
+      {
+        id: 3,
+        label: '一级 3'
+      }
+    ])
+  }
+  if (node.level > 1) return resolve([])
+
+  setTimeout(() => {
+    const data = [
+      {
+        id: 1,
+        label: '一级 1'
+      },
+      {
+        id: 2,
+        label: '一级 2',
+        isLeaf: true
+      }
+    ]
+
+    resolve(data)
+  }, 500)
 }
 </script>
 
