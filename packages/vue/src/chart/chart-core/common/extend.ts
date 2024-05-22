@@ -85,7 +85,7 @@ export default ({ option, extend }) => {
         return item
       })
     } else {
-      mergeOption.series.label = { show: false, ...cloneOption.series.label }
+      mergeOption.series.label = { show: false, ...mergeOption.series.label }
     }
   }
   return mergeOption
