@@ -24,7 +24,7 @@ function removeNullKeys(obj) {
 
 export default ({ option, extend }) => {
   const cloneOption = cloneDeep(option)
-  const mergeOption = removeNullKeys(option)
+  const mergeOption = removeNullKeys(cloneOption)
   if (!extend) {
     return
   }
@@ -85,7 +85,7 @@ export default ({ option, extend }) => {
         return item
       })
     } else {
-      mergeOption.series.label = { show: false, ...option.series.label }
+      mergeOption.series.label = { show: false, ...mergeOption.series.label }
     }
   }
   return mergeOption
