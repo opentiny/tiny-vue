@@ -360,8 +360,7 @@ export default {
         this.setAnimation(option)
         this.applyMarks(this.integrateChart.eChartOption)
         this.integrateChart.refresh(option)
-        this.applyExtend(this.integrateChart.eChartOption)
-        option.extend = this.integrateChart.eChartOption
+        option.extend = this.applyExtend(this.integrateChart.eChartOption)
         if (this.colorMode !== 'default') {
           option.color = this.computedChartColor()
         }
@@ -394,7 +393,7 @@ export default {
         this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
         this.$emit('handle-color', option.color)
         this.applyMarks(this.integrateChart.eChartOption)
-        option = this.applyExtend(this.integrateChart.eChartOption)
+        option.extend = this.applyExtend(this.integrateChart.eChartOption)
 
         this.integrateChart.render(this.renderOption)
       }
