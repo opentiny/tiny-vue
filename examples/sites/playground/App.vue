@@ -28,27 +28,35 @@ const isMobileFirst = tinyMode === 'mobile-first'
 const isSaas = tinyTheme === 'saas'
 const isPreview = searchObj.get('openMode') === 'preview' // 是否多端弹窗预览
 
-const versions = ['3.14', '3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
+const versions = ['3.15', '3.14', '3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
 const latestVersion = isPreview ? versions[0] : localStorage.getItem(VERSION) || versions[0]
 const cdnHost = localStorage.getItem('setting-cdn')
+
+const versionDelimiter = cdnHost.includes('npmmirror') ? '/' : '@'
+const fileDelimiter = cdnHost.includes('npmmirror') ? 'files/' : ''
+
 const getRuntime = (version) => {
   const useVersion = import.meta.env.VITE_PLAYGROUND_VERIOSN || version
-  return `${cdnHost}/@opentiny/vue@${useVersion}/runtime/`
+  return `${cdnHost}/@opentiny/vue${versionDelimiter}${useVersion}/${fileDelimiter}runtime/`
 }
 
 const createImportMap = (version) => {
   const imports = {
+    'vue': `${cdnHost}/vue${versionDelimiter}3.4.27/${fileDelimiter}dist/vue.runtime.esm-browser.js`,
+    '@vue/compiler-sfc': `${cdnHost}/@vue/compiler-sfc${versionDelimiter}3.4.27/${fileDelimiter}dist/compiler-sfc.esm-browser.js`,
     '@opentiny/vue': `${getRuntime(version)}tiny-vue.mjs`,
     '@opentiny/vue-icon': `${getRuntime(version)}tiny-vue-icon.mjs`,
     '@opentiny/vue-locale': `${getRuntime(version)}tiny-vue-locale.mjs`,
     '@opentiny/vue-common': `${getRuntime(version)}tiny-vue-common.mjs`,
-    '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme@${version}/`,
-    '@opentiny/vue-theme-mobile/': `${cdnHost}/@opentiny/vue-theme-mobile@${version}/`,
-    '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless@${version}/`,
-    'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
+    '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}`,
+    '@opentiny/vue-theme-mobile/': `${cdnHost}/@opentiny/vue-theme-mobile${versionDelimiter}${version}/${fileDelimiter}`,
+    '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless${versionDelimiter}${version}/${fileDelimiter}`,
+    'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
   if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
-    imports[`@opentiny/vue-design-${tinyTheme}`] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}@${version}/index.js`
+    imports[
+      `@opentiny/vue-design-${tinyTheme}`
+    ] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
@@ -67,10 +75,10 @@ const getTinyTheme = (version) => {
     theme = 'default'
   }
   const tinyThemeMap = {
-    default: `${cdnHost}/@opentiny/vue-theme@${version}/index.css`,
-    smb: `${cdnHost}/@opentiny/vue-theme@${version}/index.css`,
-    aurora: `${cdnHost}/@opentiny/vue-theme@${version}/index.css`,
-    saas: `${cdnHost}/@opentiny/vue-theme-saas@${version}/index.css`
+    default: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
+    smb: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
+    aurora: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
+    saas: `${cdnHost}/@opentiny/vue-theme-saas${versionDelimiter}${version}/${fileDelimiter}index.css`
   }
   return tinyThemeMap[theme]
 }
@@ -163,7 +171,7 @@ function insertStyleDom(version) {
 
       // 增加mobile支持，增加mobile的样式表
       const mobileLink = link.cloneNode(true)
-      mobileLink.href = `${cdnHost}/@opentiny/vue-theme-mobile@${version}/index.css`
+      mobileLink.href = `${cdnHost}/@opentiny/vue-theme-mobile${versionDelimiter}${version}/${fileDelimiter}index.css`
       iframeWin.document.head.append(mobileLink)
     })
   })
