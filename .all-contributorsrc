@@ -591,6 +591,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "trueLoving",
+      "name": "Aoi Kaze",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44056372?v=4",
+      "profile": "https://github.com/trueLoving",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 8,
