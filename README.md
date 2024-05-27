@@ -166,6 +166,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Zcating"><img src="https://avatars.githubusercontent.com/u/13329558?v=4?s=100" width="100px;" alt="Zcating"/><br /><sub><b>Zcating</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Zcating" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/trueLoving"><img src="https://avatars.githubusercontent.com/u/44056372?v=4?s=100" width="100px;" alt="Aoi Kaze"/><br /><sub><b>Aoi Kaze</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=trueLoving" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>
