@@ -165,11 +165,11 @@ export default {
       type: 'interface',
       code: `
 interface IItemData {
-  label: string           // 菜单项文本
-  disabled: boolean       // 是否禁用
-  divided: boolean        // 是否显示分割线
-  children: IItemData[]   // 菜单项子集
-  icon: Component      // 菜单项图标
+  label?: string           // 菜单项文本
+  disabled?: boolean       // 是否禁用
+  divided?: boolean        // 是否显示分割线
+  children?: IItemData[]   // 菜单项子集
+  icon?: Component      // 菜单项图标
 }
 `
     },

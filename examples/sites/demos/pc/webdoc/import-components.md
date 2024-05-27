@@ -22,7 +22,7 @@ Vite
 import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
 
 export default {
-  plugins: [autoImportPlugin()]
+  plugins: [autoImportPlugin('vite')]
 }
 ```
 
@@ -33,12 +33,52 @@ Webpack
 
 const autoImportPlugin = require('@opentiny/unplugin-tiny-vue')
 
-module.exports = {
-  plugins: [autoImportPlugin()]
-}
+module.exports = defineConfig({
+  configureWebpack: {
+    plugins: [autoImportPlugin('webpack')]
+  }
+})
 ```
 
 这样你就能直接在项目中使用 TinyVue 的组件，这些组件都是自动按需导入的，无需手动导入，且不用担心项目体积变得太大。
+
+你也可以只使用 TinyVueResolver，这样就可以和其他组件库一起使用。
+
+Vite
+
+```ts
+// vite.config.ts
+
+import Components from 'unplugin-vue-components/vite'
+import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
+
+export default {
+  plugins: [
+    Components({
+      resolvers: [TinyVueResolver]
+    })
+  ]
+}
+```
+
+Webpack
+
+```js
+// webpack.config.js
+
+const Components = require('unplugin-vue-components/webpack').default
+const TinyVueResolver = require('@opentiny/unplugin-tiny-vue').TinyVueResolver
+
+module.exports = defineConfig({
+  configureWebpack: {
+    plugins: [
+      Components({
+        resolvers: [TinyVueResolver]
+      })
+    ]
+  }
+})
+```
 
 想了解更多自动按需导入的信息，请参考：[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) 和 [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import)。
 
