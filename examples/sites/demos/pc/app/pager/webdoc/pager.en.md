@@ -1,7 +1,7 @@
 ---
-title: Pager Pagination
+title: Pagination
 ---
 
-# Pager Pagination
+# Pagination
 
-<div>When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.</div>
+<div>When there is a large amount of data, data is split by page. This function is usually used in Grid components.</div>
