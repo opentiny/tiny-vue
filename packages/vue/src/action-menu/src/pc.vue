@@ -42,6 +42,7 @@
               <tiny-dropdown-item
                 v-for="(item, index) in state.moreOptions"
                 :key="index"
+                :divided="item.divided"
                 :item-data="item"
                 :label="item[textField]"
                 :disabled="item.disabled"

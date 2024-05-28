@@ -11,6 +11,58 @@
  */
 import type { ITabsRenderlessParams, ITabsPane, ITabsCustomEvent, ITabsPaneVm } from '@/types'
 
+// 此处与aui区别开，将tabNav的方法抽离出来，从源头解决pane的排序问题
+const getOrderedPanes = (parent, panes) => {
+  const slotDefault = parent.$slots.default
+  let orders
+
+  if (typeof slotDefault === 'function') {
+    orders = []
+
+    const tabVnodes = slotDefault()
+    const handler = ({ type, componentOptions, props }) => {
+      let componentName = type && type.componentName
+
+      if (!componentName) componentName = componentOptions && componentOptions.Ctor.extendOptions.componentName
+
+      if (componentName === 'TabItem') {
+        const paneName = (props && props.name) || (componentOptions && componentOptions.propsData.name)
+
+        orders.push(paneName)
+      }
+    }
+
+    tabVnodes.forEach(({ type, componentOptions, props, children }) => {
+      if (
+        type &&
+        (type.toString() === 'Symbol(Fragment)' || // vue@3.3之前的开发模式
+          type.toString() === 'Symbol(v-fgt)' || //   vue@3.3.1 的变更
+          type.toString() === 'Symbol()') //          构建后
+      ) {
+        Array.isArray(children) &&
+          children.forEach(({ type, componentOptions, props }) => handler({ type, componentOptions, props }))
+      } else {
+        handler({ type, componentOptions, props })
+      }
+    })
+  }
+
+  // 此处不同步aui，vue3情况下插槽使用v-if生成的slotDefault有差异
+  if (orders.length > 0) {
+    let tmpPanes = []
+
+    orders.forEach((paneName) => {
+      let pane = panes.find((pane) => pane.name === paneName)
+
+      if (pane) tmpPanes.push(pane)
+    })
+
+    panes = tmpPanes
+  }
+
+  return panes
+}
+
 export const calcPaneInstances =
   ({
     constants,
@@ -44,24 +96,7 @@ export const calcPaneInstances =
           index > -1 ? (currentPanes[index] = vm) : currentPanes.push(vm)
         }
       })
-
-      const currentPaneStates = currentPanes.map((pane) => pane.state)
-      const paneStates = state.panes.map((pane) => pane.state)
-
-      let newPanes = [] as ITabsPaneVm[]
-      for (let i = 0; i < paneStates.length; i++) {
-        const paneState = paneStates[i]
-        const index = currentPaneStates.indexOf(paneState)
-
-        if (index > -1) {
-          newPanes.push(state.panes[i])
-          currentPanes.splice(index, 1)
-
-          currentPaneStates.splice(index, 1)
-        }
-      }
-
-      newPanes = newPanes.concat(currentPanes)
+      const newPanes = getOrderedPanes(parent, currentPanes) as ITabsPaneVm[]
 
       const panesChanged = !(
         newPanes.length === state.panes.length &&
