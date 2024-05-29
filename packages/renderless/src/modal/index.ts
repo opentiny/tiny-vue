@@ -167,7 +167,7 @@ export const mouseLeaveEvent =
   (): void => {
     api.addMsgQueue()
 
-    if (props.duration !== '0') {
+    if (props.duration !== '0' || (typeof props.duration === 'number' && props.duration !== 0)) {
       timer = window.setTimeout(
         () => {
           api.close(params.type)
@@ -273,7 +273,7 @@ export const open =
       if (state.isMsg) {
         api.addMsgQueue()
 
-        if (props.duration !== '0') {
+        if (props.duration !== '0' || (typeof props.duration === 'number' && props.duration !== 0)) {
           timer = window.setTimeout(
             () => {
               api.close(params.type)
