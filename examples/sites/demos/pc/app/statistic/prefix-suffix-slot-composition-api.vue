@@ -2,14 +2,20 @@
   <div>
     <tiny-layout>
       <tiny-row :flex="true">
-        <tiny-col :span="8">
-          <tiny-statistic :value="300" prefix="存储平均值" suffix="GB"></tiny-statistic>
-        </tiny-col>
-        <tiny-col :span="8">
+        <tiny-col :span="4">
           <tiny-statistic :value="306">
-            <template #prefix>已使用容量(GB)</template>
-            <template #suffix><span style="font-size: 32px">GB</span></template>
+            <template #prefix><div style="margin-right: 15px">已使用容量(GB)</div></template>
+            <template #suffix><div style="font-size: 24px">GB</div></template>
           </tiny-statistic>
+        </tiny-col>
+        <tiny-col :span="4">
+          <tiny-statistic :value="1280" :precision="2">
+            <template #prefix><div style="font-size: 24px; font-weight: 600">￥</div></template>
+            <template #suffix><div>/年</div></template>
+          </tiny-statistic>
+        </tiny-col>
+        <tiny-col :span="4">
+          <tiny-statistic :value="300" suffix="GB"></tiny-statistic>
         </tiny-col>
       </tiny-row>
     </tiny-layout>
