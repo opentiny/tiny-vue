@@ -447,7 +447,11 @@ export default defineComponent({
       if (type === 'pageSizeChangeCallback') {
         this._pageSizeChangeCallback = callback
       } else if (type === 'updateCustomsCallback') {
-        this._updateCustomsCallback = callback
+        // 表格可能有多个工具栏，因此工具栏个性化配置的回调应该是个数组
+        if (!this._updateCustomsCallback) {
+          this._updateCustomsCallback = []
+        }
+        this._updateCustomsCallback.push(callback)
       }
     },
     // 从缓存获取实例
@@ -460,8 +464,10 @@ export default defineComponent({
     handleColumnInitReady() {
       // 如果存在更新工具栏动态列回调，就执行
       if (this._updateCustomsCallback) {
-        this._updateCustomsCallback()
-        this._updateCustomsCallback = null
+        this._updateCustomsCallback.forEach((fn) => {
+          fn()
+        })
+        this._updateCustomsCallback = []
       }
     },
     handleRowClassName(params) {
