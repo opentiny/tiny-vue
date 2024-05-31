@@ -448,9 +448,7 @@ export default defineComponent({
         this._pageSizeChangeCallback = callback
       } else if (type === 'updateCustomsCallback') {
         // 表格可能有多个工具栏，因此工具栏个性化配置的回调应该是个数组
-        if (!this._updateCustomsCallback) {
-          this._updateCustomsCallback = []
-        }
+        this._updateCustomsCallback = this._updateCustomsCallback || []
         this._updateCustomsCallback.push(callback)
       }
     },
