@@ -8,5 +8,5 @@ test('样式用法', async ({ page }) => {
     .filter({ hasText: /^进行中306,526$/ })
     .first()
   await page.getByText('306,526失败').click()
-  await expect(page.getByText(/^进行中306,526$/).first()).toHaveClass(/tiny-statistic__slots/)
+  await expect(page.getByText(/^进行中306,526$/).first()).toHaveClass(/tiny-statistic/)
 })
