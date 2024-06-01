@@ -492,6 +492,18 @@ export default {
       codeFiles: ['slot-reference.vue']
     },
     {
+      demoId: 'slot-panel',
+      name: {
+        'zh-CN': '下拉面板插槽',
+        'en-US': 'Panel slot'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>panel</code> 插槽自定义下拉面板的内容。</p>\n',
+        'en-US': '<p>Customize content of the panel through the <code>panel</code> slot.</p>'
+      },
+      codeFiles: ['slot-panel.vue']
+    },
+    {
       demoId: 'slot-label',
       name: {
         'zh-CN': '标签插槽',

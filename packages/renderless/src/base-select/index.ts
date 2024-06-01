@@ -346,8 +346,15 @@ export const setSelected =
   () => {
     if (!props.multiple) {
       const option = getOptionOfSetSelected({ api, props })
-      state.selected = option
-      state.selectedLabel = option.state.currentLabel || option.currentLabel
+
+      if (!state.selected || isEmptyObject(state.selected)) {
+        state.selected = option
+      }
+
+      if (!state.selectedLabel) {
+        state.selectedLabel = option.state.currentLabel || option.currentLabel
+      }
+
       props.filterable && !props.shape && (state.query = state.selectedLabel)
     } else {
       const result = getResultOfSetSelected({ state, props, api })
@@ -2019,4 +2026,16 @@ export const onClickCollapseTag =
 
       nextTick(api.resetInputHeight)
     }
+  }
+
+export const updateSelectedData =
+  ({ state }) =>
+  (data) => {
+    state.selected = data
+  }
+
+export const hidePanel =
+  ({ state }) =>
+  () => {
+    state.visible = false
   }
