@@ -26,7 +26,6 @@
       clickExpand ? 'is-click-expand' : '',
       state.showCollapseTag ? 'collapse-tag-clicked' : '',
       state.selectDisabled ? 'is-disabled' : '',
-      $parent.$attrs.class,
       inputBoxType === 'underline' ? 'tiny-select__underline' : ''
     ]"
     @mouseleave.self="
@@ -43,7 +42,6 @@
     "
     @click="toggleMenu"
     v-clickoutside="handleClose"
-    v-bind="a($attrs, ['class', 'style'], true)"
   >
     <div
       ref="tagsGroup"
@@ -631,7 +629,6 @@ const getReference = (el, binding, vnode) => {
 }
 
 export default defineComponent({
-  inheritAttrs: false,
   emits: [
     'update:modelValue',
     'change',
