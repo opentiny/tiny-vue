@@ -1,17 +1,17 @@
 import path from 'node:path'
 import type { UserConfig } from 'vite'
 import { build } from 'vite'
-import minimist from 'minimist'
 import commonjs from '@rollup/plugin-commonjs'
 import babel from '@rollup/plugin-babel'
 import { logGreen } from '../../shared/utils'
 import type { BuildUiOption, BaseConfig } from './build-ui'
 import { pathFromPackages, getBaseConfig, requireModules } from './build-ui'
 import { createProcessor } from 'tailwindcss/src/cli/build/plugin'
+import { visualizer } from 'rollup-plugin-visualizer'
 
-async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope, min }) {
+async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope, min, isVisualizer }) {
   const rootDir = pathFromPackages('')
-  const runtimeDir = `dist${vueVersion}/@opentiny/vue/runtime`
+  const runtimeDir = `vue-runtime/dist${vueVersion}`
   const outDir = path.resolve(rootDir, runtimeDir)
 
   await batchBuild({
@@ -20,7 +20,8 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     message,
     emptyOutDir,
     npmScope,
-    min
+    min,
+    isVisualizer
   })
 
   function toEntry(libs) {
@@ -36,11 +37,12 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
       '@vue/composition-api': 'VueCompositionAPI',
       '@opentiny/vue-locale': 'TinyVueLocale',
       '@opentiny/vue-common': 'TinyVueCommon',
-      '@opentiny/vue-icon': 'TinyVueIcon'
+      '@opentiny/vue-icon': 'TinyVueIcon',
+      'echarts': 'Echarts'
     }
   }
 
-  async function batchBuild({ vueVersion, tasks, message, emptyOutDir, npmScope, min }) {
+  async function batchBuild({ vueVersion, tasks, message, emptyOutDir, npmScope, min, isVisualizer }) {
     if (tasks.length === 0) return
     logGreen(`====== 开始构建 ${message} ======`)
 
@@ -72,7 +74,27 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
         babel({
           extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
           presets: ['@babel/preset-env']
-        })
+        }),
+        isVisualizer
+          ? visualizer({
+              filename: `${tasks[0].libPath}.html`,
+              open: true
+            })
+          : null,
+        {
+          name: 'vite-plugin-transfer-mode',
+          enforce: 'pre',
+          transform(code, id) {
+            if (tasks[0].path.includes('simple') && id.includes('src/index.ts') && code.includes('pc.vue')) {
+              // 简易模式，手动排除移动端和多端模版
+              const newCode = code.replace('mobile.vue', 'pc.vue').replace('mobile-first.vue', 'pc.vue')
+              return {
+                code: newCode,
+                map: null
+              }
+            }
+          }
+        }
       ] as any[])
     )
 
@@ -81,7 +103,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
       ...baseConfig,
       build: {
         emptyOutDir,
-        minify: min,
+        minify: true,
         sourcemap: min,
         rollupOptions: {
           external: (source, importer, isResolved) => {
@@ -130,8 +152,24 @@ function getEntryTasks() {
       libPath: 'tiny-vue-common'
     },
     {
-      path: 'vue/app.ts',
-      libPath: 'tiny-vue'
+      path: 'vue-runtime/all.ts',
+      libPath: 'tiny-vue-all'
+    },
+    {
+      path: 'vue-runtime/simple.ts',
+      libPath: 'tiny-vue-simple'
+    },
+    {
+      path: 'vue-runtime/pc.ts',
+      libPath: 'tiny-vue-pc'
+    },
+    {
+      path: 'vue-runtime/mobile.ts',
+      libPath: 'tiny-vue-mobile'
+    },
+    {
+      path: 'vue-runtime/mobile-first.ts',
+      libPath: 'tiny-vue-mobile-first'
     },
     {
       path: 'vue-icon-saas/index.ts',
@@ -149,7 +187,8 @@ export async function buildRuntime({
   vueVersions = ['2', '3'],
   clean = false,
   scope = 'opentiny',
-  min = false
+  min = false,
+  isVisualizer = false
 }: BuildUiOption) {
   // 是否清空构建目录
   let emptyOutDir = clean
@@ -163,10 +202,10 @@ export async function buildRuntime({
 
     // 这里注意不能使用多入口打包，rollup多入口打包会抽取公共依赖（再由inlineChunksPlugin插件处理），导致组件库运行时加载失败
     for (let i = 0; i < tasks.length; i++) {
-      await batchBuildAll({ vueVersion, tasks: [tasks[i]], message, emptyOutDir, npmScope: scope, min })
+      await batchBuildAll({ vueVersion, tasks: [tasks[i]], message, emptyOutDir, npmScope: scope, min, isVisualizer })
     }
     const rootDir = pathFromPackages('')
-    const runtimeDir = `dist${vueVersion}/@opentiny/vue/runtime`
+    const runtimeDir = `vue-runtime/dist${vueVersion}`
     const outDir = path.resolve(rootDir, runtimeDir)
     const processor = await createProcessor(
       {
