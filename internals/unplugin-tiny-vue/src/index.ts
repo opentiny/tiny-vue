@@ -1,62 +1,37 @@
-import MagicString from 'magic-string'
-import type { Plugin } from 'vite'
+import AutoVite from 'unplugin-vue-components/vite'
+import AutoWebpack from 'unplugin-vue-components/webpack'
+import AutoRollup from 'unplugin-vue-components/rollup'
+import AutoEsbuild from 'unplugin-vue-components/esbuild'
+import AutoRspack from 'unplugin-vue-components/rspack'
 
-function pascalCase(str: string) {
-  const camelCaseStr = str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''))
-  return camelCaseStr.charAt(0).toUpperCase() + camelCaseStr.slice(1)
+const supportMap = {
+  'vite': AutoVite,
+  'webpack': AutoWebpack,
+  'rollup': AutoRollup,
+  'esbuild': AutoEsbuild,
+  'rspack': AutoRspack
 }
 
-const resolveVue = (code: string, s: MagicString) => {
-  const results: any = []
-
-  for (const match of code.matchAll(/_resolveComponent[0-9]*\("(.+?)"\)/g)) {
-    const matchedName = match[1]
-    if (match.index != null && matchedName && !matchedName.startsWith('_')) {
-      const start = match.index
-      const end = start + match[0].length
-      results.push({
-        rawName: matchedName,
-        replace: (resolved: string) => s.overwrite(start, end, resolved)
-      })
+export const TinyVueResolver = (componentName) => {
+  if (componentName.startsWith('Tiny') && !componentName.startsWith('TinyIcon')) {
+    return {
+      name: componentName.slice(4),
+      from: '@opentiny/vue'
     }
   }
-
-  return results
 }
 
-const findComponent = (rawName: string, name: string, s: MagicString) => {
-  if (!name.match(/^Tiny[a-zA-Z]/)) {
-    return
-  }
-  s.prepend(`import ${name} from '@opentiny/vue-${rawName.slice(5)}';\n`)
-}
+/** TinyVue 自动导入组件的插件，支持Vite,Webpack,Rollup 等常见的构建工具。
+ * 目前不支持Tiny Icon的自动导入
+ * @example
+ * import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
+ * plugins: [autoImportPlugin('vite')]
+ */
+export default (name) => {
+  // 兼容webpack/vite的差异
+  const autoPlugin = supportMap[name].default || supportMap[name]
 
-const transformCode = (code) => {
-  const s = new MagicString(code)
-  const results = resolveVue(code, s)
-
-  for (const { rawName, replace } of results) {
-    const name = pascalCase(rawName)
-    findComponent(rawName, name, s)
-    replace(name)
-  }
-
-  const result = s.toString()
-  return result
-}
-
-export default function vitePluginAutoImport(): Plugin {
-  return {
-    name: '@opentiny/auto-import',
-
-    transform(code, id) {
-      // 不处理node_modules内的依赖
-      if (/\.(?:vue)$/.test(id) && !/(node_modules)/.test(id)) {
-        return {
-          code: transformCode(code),
-          map: null
-        }
-      }
-    }
-  }
+  return autoPlugin({
+    resolvers: [TinyVueResolver]
+  })
 }

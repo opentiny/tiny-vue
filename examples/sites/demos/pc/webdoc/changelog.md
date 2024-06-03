@@ -1,5 +1,58 @@
 # 更新日志
 
+## v2.16.0/v3.16.0
+
+`2024/05/11`
+
+## What's Changed
+
+### Exciting New Features 🎉
+
+- feat(tabs): [tabs] Add panel configuration function to adapt to the n… by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1547
+- fix(cascader): [cascader] add smb theme by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1584
+- fix(checkbox): [checkbox,check-button] Improve Checkbox and CheckButton accessibility. by @AcWrong02 in https://github.com/opentiny/tiny-vue/pull/1581
+- fix(button & button-grounp): [button, button-group]improve the accessibility by @AcWrong02 in https://github.com/opentiny/tiny-vue/pull/1586
+- feat(drawer): [drawer]support custom whether confirm event close the drawer and improve the type declaration by @AcWrong02 in https://github.com/opentiny/tiny-vue/pull/1588
+
+### Bug Fixes 🐛
+
+- fix(sites): change tinyui-design-common script link by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1539
+- fix(tabs): [tabs] Fix the bug where the name is empty caused by using… by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1549
+- fix(modal): the width of the modal box can be displayed in the center as the browser window size changes by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1554
+- fix(dialog-box): [dialog-box] fix issue #1242 by @RanierYu in https://github.com/opentiny/tiny-vue/pull/1550
+- fix(carousel): [carousel] fix issue #1543 by @Zcating in https://github.com/opentiny/tiny-vue/pull/1548
+- fix(grid): [grid] fix nested grid context menu error by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1578
+- fix(grid): [grid] fix simple custom setting selected value not match … by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1580
+- fix(grid): [grid] fix remote filter default value by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1574
+- fix(rich-text-editor): code overflow by @GaoNeng-wWw in https://github.com/opentiny/tiny-vue/pull/1590
+- fix(grid): [grid] fix tableWidth error when all column has min-width by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1595
+- fix(grid): [grid] fix shadow-root does not have getAttribute function by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1593
+- fix(date-picker): [date-picker]fix the tabindex's default value to 0 by @AcWrong02 in https://github.com/opentiny/tiny-vue/pull/1589
+- fix(modal): the modal prompt box is compatible with the position of titles and content icons by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1570
+- fix(file-upload): [file-upload] Fix the hidden feature bug in props.isHidden by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1614
+- fix(file-upload): [file-upload] Fix the hidden feature bug in props.isHidden by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1617
+
+### Other Changes
+
+- docs: optimize component category by @kagol in https://github.com/opentiny/tiny-vue/pull/1641
+- docs: add v3.15.0 changelog by @kagol in https://github.com/opentiny/tiny-vue/pull/1537
+- docs: update vue-docs version by @kagol in https://github.com/opentiny/tiny-vue/pull/1541
+- fix(skeleton): [skeleton] update document by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1577
+- perf(theme-mobile): remove css vars from :root to root class of compo… by @Huangyilin19 in https://github.com/opentiny/tiny-vue/pull/1579
+- fix(anchor): [anchor] Correcting Ambiguity in Anchor Document Descrip… by @chenxi-20 in https://github.com/opentiny/tiny-vue/pull/1569
+- docs: add description and keywords for seo by @kagol in https://github.com/opentiny/tiny-vue/pull/1592
+- doc: [charts] 更新图表的 API 文档，增加 options 使用方法 by @Davont in https://github.com/opentiny/tiny-vue/pull/1600
+- test(button-group): [button-group] Supplement button-group component test case by @trueLoving in https://github.com/opentiny/tiny-vue/pull/1596
+- docs(Carousel): [carousel] improve the document of Carousel Component by @AcWrong02 in https://github.com/opentiny/tiny-vue/pull/1571
+- fix: optimization statistic component by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1608
+- feat: update chart docs by @zzcr in https://github.com/opentiny/tiny-vue/pull/1623
+
+## New Contributors
+
+- @RanierYu made their first contribution in https://github.com/opentiny/tiny-vue/pull/1550
+- @Zcating made their first contribution in https://github.com/opentiny/tiny-vue/pull/1548
+- @trueLoving made their first contribution in https://github.com/opentiny/tiny-vue/pull/1596
+
 ## v2.15.0/v3.15.0
 
 `2024/04/08`
@@ -8,9 +61,10 @@
 
 ### Exciting New Features 🎉
 
+- feat(chart-process): add Process Chart component by @Davont
 - feat(sites): add theme route by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1478
-- Cgm/add theme route by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1479
-- fix(transfer ): update transfer xdesign by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1496
+- feat: add theme route by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1479
+- fix(transfer): update transfer xdesign by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1496
 - feat(form): [form] add xDesign theme by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1507
 - feat(action-menu): [action-menu] add XDesign theme by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1514
 - feat(date-picker): [date-picker] date picker add quarter type by @kagol in https://github.com/opentiny/tiny-vue/pull/1513

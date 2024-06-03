@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/unplugin-tiny-vue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A vite auto import plugin for TinyVue",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
@@ -35,7 +35,7 @@
     "vite": ">=4"
   },
   "dependencies": {
-    "magic-string": "^0.27.0"
+    "unplugin-vue-components": "^0.26.0"
   },
   "devDependencies": {
     "rimraf": "^5.0.5",

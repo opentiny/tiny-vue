@@ -74,7 +74,7 @@ export default ({ option, extend }) => {
       }
     }
   })
-  const { series } = option
+  const { series } = mergeOption
   if (series) {
     if (Array.isArray(series)) {
       mergeOption.series = series.map((item) => {
