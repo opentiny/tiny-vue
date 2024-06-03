@@ -1,4 +1,5 @@
 <template>
+  <div>场景1：下拉树单选</div>
   <tiny-base-select v-model="value">
     <template #panel="{ methods: { updateSelectedData, hidePanel } }">
       <tiny-tree
@@ -23,6 +24,31 @@
       ></tiny-tree>
     </template>
   </tiny-base-select>
+  <div>场景2：下拉树多选</div>
+  <tiny-base-select v-model="value2" multiple>
+    <template #panel="{ methods: { updateSelectedData } }">
+      <tiny-tree
+        :data="treeData"
+        :expand-on-click-node="false"
+        :icon-trigger-click-node="false"
+        :default-expand-all="true"
+        :show-checkbox="true"
+        @check="
+          (data, { checkedNodes }) => {
+            updateSelectedData(
+              checkedNodes.map((node) => {
+                return {
+                  ...node,
+                  currentLabel: node.label,
+                  value: node.id
+                }
+              })
+            )
+          }
+        "
+      ></tiny-tree>
+    </template>
+  </tiny-base-select>
 </template>
 
 <script>
@@ -36,6 +62,7 @@ export default {
   data() {
     return {
       value: '',
+      value2: '',
       treeData: [
         {
           id: 1,

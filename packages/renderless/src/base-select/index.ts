@@ -347,11 +347,11 @@ export const setSelected =
     if (!props.multiple) {
       const option = getOptionOfSetSelected({ api, props })
 
-      if (!state.selected || isEmptyObject(state.selected)) {
+      if (!state.selected.currentLabel) {
         state.selected = option
       }
 
-      if (!state.selectedLabel) {
+      if (!state.selected.currentLabel) {
         state.selectedLabel = option.state.currentLabel || option.currentLabel
       }
 
@@ -363,7 +363,11 @@ export const setSelected =
           ? 'checked-sur'
           : 'halfselect'
         : 'check'
-      state.selected = result
+
+      if (state.selected.length === 0 || !state.selected[0].currentLabel) {
+        state.selected = result
+      }
+
       vm.$refs.selectTree && vm.$refs.selectTree.setCheckedNodes && vm.$refs.selectTree.setCheckedNodes(state.selected)
       state.tips = state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(',')
 
