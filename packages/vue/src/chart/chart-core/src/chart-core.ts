@@ -388,7 +388,6 @@ export default {
         this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
         this.$emit('handle-color', option.color)
         this.applyMarks(this.integrateChart.eChartOption)
-        // option.extend = this.applyExtend(this.integrateChart.eChartOption)
       }
       if (this.extend && Object.keys(this.extend).length !== 0) {
         option.extend = this.applyExtend(this.integrateChart.eChartOption)
