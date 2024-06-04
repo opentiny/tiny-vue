@@ -373,6 +373,7 @@ export interface BuildUiOption {
   scope?: string // npm的组织名称
   min?: boolean // 是否压缩产物
   design?: string // 构建目标的设计规范
+  isVisualizer?: boolean // 是否开启打包产物分析
 }
 
 function getEntryTasks(): Module[] {

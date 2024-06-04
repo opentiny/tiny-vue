@@ -55,6 +55,7 @@
     "// ---------- 创建组件和模板打包入口 ----------": "",
     "create:mapping": "pnpm -C internals/cli create:mapping",
     "sync-icons": "pnpm -C internals/cli sync-icons",
+    "build:entry-app": "pnpm -C internals/cli build:entry-app",
     "// ---------- 打包运行时组件库 ----------": "",
     "build:runtime": "pnpm -C internals/cli build:runtime",
     "// ---------- 构建相关脚本 ----------": "",
