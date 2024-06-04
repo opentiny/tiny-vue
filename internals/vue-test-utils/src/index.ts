@@ -5,7 +5,7 @@ const mount = (inputComponent: any, options: MountingOptions<any> = {}) => {
   let mount$ = _mount
 
   if (isVue2) {
-    ;(options as any).localVue = createLocalVue()
+    ; (options as any).localVue = createLocalVue()
 
     if (options.props) {
       options.propsData = options.props
@@ -25,7 +25,7 @@ const mount = (inputComponent: any, options: MountingOptions<any> = {}) => {
   const wrapper = mount$(inputComponent, options)
 
   if (isVue2) {
-    wrapper.unmount = (wrapper as any).destory
+    wrapper.unmount = (wrapper as any).destroy
   }
 
   return wrapper
