@@ -15,7 +15,7 @@
           </tiny-statistic>
         </tiny-col>
         <tiny-col :span="4">
-          <tiny-statistic :value="300" suffix="GB"></tiny-statistic>
+          <tiny-statistic suffix="GB"></tiny-statistic>
         </tiny-col>
       </tiny-row>
     </tiny-layout>
