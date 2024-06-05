@@ -129,6 +129,7 @@ export default {
   data() {
     return {
       option: {},
+      eChartOption: {},
       renderOption: {},
       initOpts: {},
       watchToPropsEchartOptions: [],
@@ -366,6 +367,7 @@ export default {
         }
         this.$emit('ready', this.integrateChart.echartsIns, option)
       }, this.changeDelay)
+      this.eChartOption = this.integrateChart.eChartOption
     },
     renderChart(option) {
       const plugins = this.plugins || {}
@@ -399,6 +401,7 @@ export default {
         this.once['ready-once'] = true
         this.$emit('ready', this.integrateChart.echartsIns)
       }
+      this.eChartOption = this.integrateChart.eChartOption
     },
     addEvents(val) {
       if (typeof val === 'object' && val !== null && Object.keys(val).length > 0) {
