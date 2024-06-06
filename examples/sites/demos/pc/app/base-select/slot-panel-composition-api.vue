@@ -49,14 +49,44 @@
       ></tiny-tree>
     </template>
   </tiny-base-select>
+  <div>场景3：下拉树可搜索</div>
+  <tiny-base-select v-model="value3" filterable clearable :filter-method="filterMethod">
+    <template #panel="{ methods: { updateSelectedData, hidePanel } }">
+      <tiny-tree
+        ref="treeRef"
+        :data="treeData"
+        :expand-on-click-node="false"
+        :icon-trigger-click-node="false"
+        :default-expand-all="true"
+        :filter-node-method="filter"
+        @node-click="
+          (data) => {
+            updateSelectedData({
+              ...data,
+              currentLabel: data.label,
+              value: data.id,
+              state: {
+                currentLabel: data.label
+              }
+            })
+
+            hidePanel()
+          }
+        "
+      ></tiny-tree>
+    </template>
+  </tiny-base-select>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { BaseSelect as TinyBaseSelect, Tree as TinyTree } from '@opentiny/vue'
 
+const treeRef = ref()
+
 const value = ref('')
 const value2 = ref([])
+const value3 = ref('')
 
 const treeData = ref([
   {
@@ -94,6 +124,16 @@ const treeData = ref([
     ]
   }
 ])
+
+const filterMethod = (value) => {
+  treeRef.value.filter(value)
+}
+
+const filter = (value, data) => {
+  if (!value) return true
+
+  return data.label.includes(value)
+}
 </script>
 
 <style scoped>

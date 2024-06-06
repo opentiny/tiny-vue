@@ -244,20 +244,24 @@ export const getOption =
     const isNull = Object.prototype.toString.call(value).toLowerCase() === '[object null]'
     const isUndefined = Object.prototype.toString.call(value).toLowerCase() === '[object undefined]'
 
-    for (let i = state.cachedOptions.length - 1; i >= 0; i--) {
-      const cachedOption = state.cachedOptions[i]
-      const isEqual = isObject
-        ? getObj(cachedOption.value, props.valueKey) === getObj(value, props.valueKey)
-        : cachedOption.value === value
+    if (state.cachedOptions.length !== 0) {
+      for (let i = state.cachedOptions.length - 1; i >= 0; i--) {
+        const cachedOption = state.cachedOptions[i]
+        const isEqual = isObject
+          ? getObj(cachedOption.value, props.valueKey) === getObj(value, props.valueKey)
+          : cachedOption.value === value
 
-      if (isEqual) {
-        option = cachedOption
-        break
+        if (isEqual) {
+          option = cachedOption
+          break
+        }
       }
-    }
 
-    if (option) {
-      return option
+      if (option) {
+        return option
+      }
+    } else if (!isEmptyObject(state.selected)) {
+      return state.selected
     }
 
     if (props.optimization) {
@@ -346,15 +350,8 @@ export const setSelected =
   () => {
     if (!props.multiple) {
       const option = getOptionOfSetSelected({ api, props })
-
-      if (!state.selected.currentLabel) {
-        state.selected = option
-      }
-
-      if (!state.selected.currentLabel) {
-        state.selectedLabel = option.state.currentLabel || option.currentLabel
-      }
-
+      state.selected = option
+      state.selectedLabel = option.state.currentLabel || option.currentLabel
       props.filterable && !props.shape && (state.query = state.selectedLabel)
     } else {
       const result = getResultOfSetSelected({ state, props, api })
@@ -1094,7 +1091,7 @@ export const emptyText =
       return props.loadingText || t(I18N.loading)
     }
 
-    if (props.remote && state.query === '') {
+    if (props.remote && state.query === '' && props.renderType) {
       return remoteEmptyText(props, state)
     }
 

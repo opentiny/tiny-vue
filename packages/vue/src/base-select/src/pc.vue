@@ -503,11 +503,7 @@
             </slot>
           </tiny-scrollbar>
           <template
-            v-if="
-              (options || slots.default) &&
-              state.emptyText &&
-              (!allowCreate || loading || (allowCreate && state.emptyFlag))
-            "
+            v-if="!slots.panel && state.emptyText && (!allowCreate || loading || (allowCreate && state.emptyFlag))"
           >
             <!-- tiny 新增 showEmptyImage功能 -->
             <div v-if="loadingText || slots.empty">
