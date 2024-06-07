@@ -37,14 +37,15 @@ const fileDelimiter = cdnHost.includes('npmmirror') ? 'files/' : ''
 
 const getRuntime = (version) => {
   const useVersion = import.meta.env.VITE_PLAYGROUND_VERIOSN || version
-  return `${cdnHost}/@opentiny/vue${versionDelimiter}${useVersion}/${fileDelimiter}runtime/`
+  return `${cdnHost}/@opentiny/vue-runtime${versionDelimiter}${useVersion}/${fileDelimiter}dist3/`
 }
 
 const createImportMap = (version) => {
   const imports = {
     'vue': `${cdnHost}/vue${versionDelimiter}3.4.27/${fileDelimiter}dist/vue.runtime.esm-browser.js`,
+    'echarts': `${cdnHost}/echarts${versionDelimiter}5.4.1/${fileDelimiter}dist/echarts.esm.js`,
     '@vue/compiler-sfc': `${cdnHost}/@vue/compiler-sfc${versionDelimiter}3.4.27/${fileDelimiter}dist/compiler-sfc.esm-browser.js`,
-    '@opentiny/vue': `${getRuntime(version)}tiny-vue.mjs`,
+    '@opentiny/vue': `${getRuntime(version)}tiny-vue-pc.mjs`,
     '@opentiny/vue-icon': `${getRuntime(version)}tiny-vue-icon.mjs`,
     '@opentiny/vue-locale': `${getRuntime(version)}tiny-vue-locale.mjs`,
     '@opentiny/vue-common': `${getRuntime(version)}tiny-vue-common.mjs`,

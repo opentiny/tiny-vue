@@ -46,6 +46,10 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
     if (tasks.length === 0) return
     logGreen(`====== 开始构建 ${message} ======`)
 
+    const { mode } = tasks[0]
+
+    const modeList = ['pc', 'mobile', 'mobile-first']
+
     const entry = toEntry(tasks)
     const baseConfig = getBaseConfig({
       vueVersion,
@@ -69,7 +73,7 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
           requireReturnsDefault: true,
           defaultIsModuleExports: true,
           // echarts模块本身是esmodules格式不需要经过commonjs转换
-          exclude: ['node_modules/echarts/**', 'node_modules/echarts']
+          exclude: ['node_modules/echarts/**', 'node_modules/echarts', 'node_modules/crypto-js/**']
         }),
         babel({
           extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
@@ -85,9 +89,14 @@ async function batchBuildAll({ vueVersion, tasks, message, emptyOutDir, npmScope
           name: 'vite-plugin-transfer-mode',
           enforce: 'pre',
           transform(code, id) {
-            if (tasks[0].path.includes('simple') && id.includes('src/index.ts') && code.includes('pc.vue')) {
-              // 简易模式，手动排除移动端和多端模版
-              const newCode = code.replace('mobile.vue', 'pc.vue').replace('mobile-first.vue', 'pc.vue')
+            if (mode && id.includes('src/index.ts') && code.includes(`${mode}.vue`)) {
+              let newCode = code
+              modeList
+                .filter((value) => value !== mode)
+                .forEach((item) => {
+                  newCode = newCode.replace(`./${item}.vue`, `./${mode}.vue`)
+                })
+
               return {
                 code: newCode,
                 map: null
@@ -157,19 +166,23 @@ function getEntryTasks() {
     },
     {
       path: 'vue-runtime/simple.ts',
-      libPath: 'tiny-vue-simple'
+      libPath: 'tiny-vue-simple',
+      mode: 'pc'
     },
     {
       path: 'vue-runtime/pc.ts',
-      libPath: 'tiny-vue-pc'
+      libPath: 'tiny-vue-pc',
+      mode: 'pc'
     },
     {
       path: 'vue-runtime/mobile.ts',
-      libPath: 'tiny-vue-mobile'
+      libPath: 'tiny-vue-mobile',
+      mode: 'mobile'
     },
     {
       path: 'vue-runtime/mobile-first.ts',
-      libPath: 'tiny-vue-mobile-first'
+      libPath: 'tiny-vue-mobile-first',
+      mode: 'mobile-first'
     },
     {
       path: 'vue-icon-saas/index.ts',
