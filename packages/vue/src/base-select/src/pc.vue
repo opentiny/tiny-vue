@@ -351,6 +351,13 @@
               <span>{{ topCreateText }}</span>
             </div>
           </div>
+          <slot
+            name="panel"
+            :methods="{
+              updateSelectedData,
+              hidePanel
+            }"
+          ></slot>
           <!-- tiny 新增 可搜索的输入框 -->
           <tiny-input
             v-if="searchable"
@@ -495,7 +502,9 @@
               </tiny-option>
             </slot>
           </tiny-scrollbar>
-          <template v-if="state.emptyText && (!allowCreate || loading || (allowCreate && state.emptyFlag))">
+          <template
+            v-if="!slots.panel && state.emptyText && (!allowCreate || loading || (allowCreate && state.emptyFlag))"
+          >
             <!-- tiny 新增 showEmptyImage功能 -->
             <div v-if="loadingText || slots.empty">
               <slot name="empty" v-if="slots.empty"></slot>
