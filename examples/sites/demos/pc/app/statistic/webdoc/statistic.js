@@ -1,5 +1,5 @@
 export default {
-  column: '2',
+  column: '1',
   owner: '',
   demos: [
     {
