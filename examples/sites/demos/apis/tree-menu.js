@@ -397,6 +397,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'text-wrap'
+        },
+        {
+          name: 'clearable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '搜索框是否可清空',
+            'en-US': 'Can the search box be cleared'
+          },
+          mode: ['pc'],
+          pcDemo: 'clearable'
         }
       ],
       events: [
