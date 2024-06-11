@@ -170,6 +170,25 @@
     "type": "component",
     "exclude": false
   },
+  "BaseSelect": {
+    "path": "vue/src/base-select/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "pc"
+    ]
+  },
+  "BaseSelectMobileFirst": {
+    "path": "vue/src/base-select/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "BaseSelectPc": {
+    "path": "vue/src/base-select/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Breadcrumb": {
     "path": "vue/src/breadcrumb/index.ts",
     "type": "component",

@@ -187,6 +187,18 @@ export default {
       codeFiles: ['footer-slot.vue']
     },
     {
+      demoId: 'open-event',
+      name: {
+        'zh-CN': '打开事件',
+        'en-US': ''
+      },
+      desc: {
+        'zh-CN': '<p>打开抽屉事件。</p>',
+        'en-US': ''
+      },
+      codeFiles: ['open-event.vue']
+    },
+    {
       demoId: 'close-event',
       name: {
         'zh-CN': '关闭事件',

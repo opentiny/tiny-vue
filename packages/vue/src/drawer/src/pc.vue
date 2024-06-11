@@ -144,6 +144,7 @@ export default defineComponent({
     'beforeClose',
     'tipsProps'
   ],
+  emits: ['update:visible', 'open', 'close', 'confirm'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
