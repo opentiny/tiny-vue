@@ -143,7 +143,7 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent, breakpoi
     labelTooltip: '',
     displayOnlyTooltip: '',
     isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly),
-    isMobileScreen: computed(() => breakpoint.current.value === 'default'),
+    isMobileMode: computed(() => vm.$mode.includes('mobile')),
     dateMobileOption: {
       visible: false,
       type: props.type,
