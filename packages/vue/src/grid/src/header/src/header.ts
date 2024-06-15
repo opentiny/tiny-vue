@@ -488,8 +488,9 @@ export default defineComponent({
       let { resizeBar: resizeBarElem, tableBody } = $table.$refs
       let { cell = dragBtnElem.parentNode, dragBtnWidth = dragBtnElem.clientWidth } = {}
       let { pos = getOffsetPos(dragBtnElem, $el), tableBodyElem = tableBody.$el } = {}
+      let dragBtnOffsetWidth = Math.floor(dragBtnWidth / 2)
       let dragMinLeft = pos.left - cell.clientWidth + dragBtnWidth + minInterval
-      let dragPosLeft = pos.left + Math.floor(dragBtnWidth / 2)
+      let dragPosLeft = pos.left + dragBtnOffsetWidth
       let { oldMousemove = document.onmousemove, oldMouseup = document.onmouseup } = {}
 
       // 处理拖动事件
@@ -503,10 +504,12 @@ export default defineComponent({
         Object.assign(args, { left, minInterval, tableBodyElem })
 
         let ret = computeDragLeft(args)
-        left = ret.left
         dragMinLeft = ret.dragMinLeft
         dragLeft = ret.dragLeft
-        resizeBarElem.style.left = `${dragLeft - scrollLeft}px`
+
+        let currentLeft = ret.dragLeft - scrollLeft + dragBtnOffsetWidth
+
+        resizeBarElem.style.left = `${currentLeft}px`
       }
 
       resizeBarElem.style.display = 'block'
