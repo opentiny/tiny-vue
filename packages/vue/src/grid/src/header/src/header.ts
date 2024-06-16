@@ -99,14 +99,13 @@ function modifyHeadAlign({ column, headAlign }) {
 }
 
 function computeDragLeft(args) {
-  let { dragMinLeft, resizableConfig, scrollLeft, column, startColumnLeft } = args
-  let { left } = args
+  let { dragMinLeft, resizableConfig, scrollLeft, column, startColumnLeft, left } = args
 
   let dragLeft = Math.max(left, dragMinLeft)
 
   if (resizableConfig?.limit instanceof Function) {
     let currentMouseLeft = dragLeft - scrollLeft
-    let width = resizableConfig.limit(column.id, currentMouseLeft - startColumnLeft)
+    let width = resizableConfig.limit({ field: column.own.field, width: currentMouseLeft - startColumnLeft })
     dragLeft = startColumnLeft + width
   }
 
