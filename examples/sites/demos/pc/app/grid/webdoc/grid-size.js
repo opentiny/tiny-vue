@@ -93,6 +93,17 @@ export default {
       'codeFiles': ['size/resize-operation-column-width.vue']
     },
     {
+      'demoId': 'size-resizable-config',
+      'name': { 'zh-CN': '列宽拖拽配置', 'en-US': 'Column width dragging configuration' },
+      'desc': {
+        'zh-CN':
+          '<p>通过 <code>resizable-config</code> 的 <code>limit</code>, 对拖拽中的列宽加以限制，可控制每列最大最小可拖拽宽度。</p>\n',
+        'en-US':
+          '<p>By <code>resizable-config</code> of <code>limit</code>, the width of the column being dragged is limited, and the maximum and minimum drag width of each column can be controlled. </p>\n'
+      },
+      'codeFiles': ['size/grid-resizable-config.vue']
+    },
+    {
       'demoId': 'size-adaptive-column-width',
       'name': { 'zh-CN': '列宽自适应撑开', 'en-US': 'Adaptive expansion of column width' },
       'desc': {

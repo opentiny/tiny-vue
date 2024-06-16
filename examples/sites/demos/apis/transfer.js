@@ -30,6 +30,18 @@ export default {
           pcDemo: 'nested-table'
         },
         {
+          name: 'resizable-config',
+          typeAnchorName: 'grid#IResizableConfig',
+          type: 'IResizableConfig',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置穿梭框的列宽可调整参数',
+            'en-US': 'Set the column width adjustment parameters for the transfer box'
+          },
+          mode: ['pc'],
+          pcDemo: 'resizable-config'
+        },
+        {
           name: 'data',
           type: 'ITransferData[]',
           defaultValue: '[]',
