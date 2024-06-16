@@ -59,7 +59,7 @@ export default {
           defaultValue: '300',
           desc: {
             'zh-CN': '搜索关键词输入的去抖延迟，单位毫秒',
-            'en-US': 'Dejitter delay of the search keyword, in milliseconds.'
+            'en-US': 'Debounce delay of the search keyword, in milliseconds.'
           },
           mode: ['pc'],
           pcDemo: 'filterable'

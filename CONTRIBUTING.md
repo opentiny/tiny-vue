@@ -66,8 +66,8 @@ The commit message should be in the form of a `type(scope): description of the m
 3. Example title:
 
 - Supplement alert component document: `docs(alert): [alert] xxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
-- Supplement alet component test case: `test(alert): [alert] xxxxxxxxxxxxxx`
-- Fixed bug in alet component @opentiny/vue-renderless: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
+- Supplement alert component test case: `test(alert): [alert] xxxxxxxxxxxxxx`
+- Fixed bug in alert component @opentiny/vue-renderless: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
 
 #### Pull Request Description
 

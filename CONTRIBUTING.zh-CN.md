@@ -66,8 +66,8 @@ commit 信息要以 `type(scope): 描述信息` 的形式填写，例如 `fix(vu
 3. 标题示例:
 
 - 补充 alert 组件文档： `docs(alert): [alert] xxxxxxxxxxxxxxx`, `docs(site): [alert] xxxxxxxxxxxxxxx`
-- 补充 alet 组件测试用例: `test(alert): [alert] xxxxxxxxxxxxxx`
-- 修复 alet 组件 @opentiny/vue-renderless 下的缺陷: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
+- 补充 alert 组件测试用例: `test(alert): [alert] xxxxxxxxxxxxxx`
+- 修复 alert 组件 @opentiny/vue-renderless 下的缺陷: `fix(vue-renderless/alert): [alert] xxxxxxxxxxxxxx`
 
 #### Pull Request 的描述
 
