@@ -17,6 +17,7 @@ export const onConfirm = (triggerBg: Ref<string>, pre: Ref<string>, hex: Ref<str
     hex.value = color
     isShow.value = false
     emit('confirm', color)
+    emit('update:modelValue', color)
   }
 }
 

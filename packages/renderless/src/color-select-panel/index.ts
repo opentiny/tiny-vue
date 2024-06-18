@@ -26,6 +26,7 @@ export const onConfirm = (
     }
     color.value.setPrevH(color.value.get('h'))
     emit('confirm', res.value)
+    emit('update:modelValue', res.value)
   }
 }
 
