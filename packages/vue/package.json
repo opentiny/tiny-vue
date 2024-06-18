@@ -242,6 +242,7 @@
     "@opentiny/vue-transfer-panel": "workspace:~",
     "@opentiny/vue-tree": "workspace:~",
     "@opentiny/vue-tree-menu": "workspace:~",
+    "@opentiny/vue-tree-select": "workspace:~",
     "@opentiny/vue-upload": "workspace:~",
     "@opentiny/vue-upload-dragger": "workspace:~",
     "@opentiny/vue-upload-list": "workspace:~",

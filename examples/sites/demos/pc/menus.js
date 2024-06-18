@@ -147,7 +147,13 @@ export const cmpMenus = [
       { 'nameCn': '开关', 'name': 'Switch', 'key': 'switch' },
       { 'nameCn': '时间选择器', 'name': 'TimePicker', 'key': 'time-picker' },
       { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' },
-      { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' }
+      { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' },
+      {
+        'nameCn': '树形选择器',
+        'name': 'TreeSelect',
+        'key': 'tree-select',
+        'mark': { 'type': 'warning', 'text': 'Beta' }
+      }
     ]
   },
   {
