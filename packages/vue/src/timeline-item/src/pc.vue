@@ -148,6 +148,9 @@
       <slot name="right" :slot-scope="node">
         <div class="tiny-timeline-item__content" @click="handleClick(node)">
           <div class="name">{{ node[rootProps.nameField] }}</div>
+          <slot name="description" :slot-scope="node">
+            {{ node.description }}
+          </slot>
           <div v-if="shape === 'dot'" class="time">{{ node[rootProps.timeField] }}</div>
         </div>
       </slot>
