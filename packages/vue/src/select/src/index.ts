@@ -344,6 +344,10 @@ export default defineComponent({
     allText: {
       type: String,
       default: ''
+    },
+    showAllTextTag: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

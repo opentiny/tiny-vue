@@ -162,6 +162,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Floyd-bit"><img src="https://avatars.githubusercontent.com/u/59243597?v=4?s=100" width="100px;" alt="Floyd"/><br /><sub><b>Floyd</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Floyd-bit" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/Jevin0"><img src="https://avatars.githubusercontent.com/u/69580637?v=4?s=100" width="100px;" alt="Jevin"/><br /><sub><b>Jevin</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Jevin0" title="Code">💻</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/HAOUEHF"><img src="https://avatars.githubusercontent.com/u/107133502?v=4?s=100" width="100px;" alt="星河"/><br /><sub><b>星河</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=HAOUEHF" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/RanierYu"><img src="https://avatars.githubusercontent.com/u/62528887?v=4?s=100" width="100px;" alt="Ranier Yu"/><br /><sub><b>Ranier Yu</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=RanierYu" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/Zcating"><img src="https://avatars.githubusercontent.com/u/13329558?v=4?s=100" width="100px;" alt="Zcating"/><br /><sub><b>Zcating</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=Zcating" title="Code">💻</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="https://github.com/trueLoving"><img src="https://avatars.githubusercontent.com/u/44056372?v=4?s=100" width="100px;" alt="Aoi Kaze"/><br /><sub><b>Aoi Kaze</b></sub></a><br /><a href="https://github.com/opentiny/tiny-vue/commits?author=trueLoving" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>

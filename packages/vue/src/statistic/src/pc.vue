@@ -2,7 +2,7 @@
   <div class="tiny-statistic">
     <div
       class="tiny-statistic__title"
-      v-if="!(title instanceof Object) || (title instanceof Object && title.position !== 'bottom')"
+      v-if="title && (!(title instanceof Object) || (title instanceof Object && title.position !== 'bottom'))"
     >
       <div v-if="$slots.title">
         <slot name="title"> </slot>

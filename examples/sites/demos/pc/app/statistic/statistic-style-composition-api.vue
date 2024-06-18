@@ -2,7 +2,7 @@
   <div>
     <tiny-layout>
       <tiny-row :flex="true">
-        <tiny-col :span="6">
+        <tiny-col :span="8">
           <tiny-statistic
             :value="306526"
             :value-style="{ 'color': '#3ac295' }"
@@ -10,10 +10,10 @@
           >
           </tiny-statistic>
         </tiny-col>
-        <tiny-col :span="6">
+        <tiny-col :span="8">
           <tiny-statistic
             :value="306526.23"
-            :value-style="[{ 'color': '#eb1212', 'text-align': 'center', 'width': '200px' }]"
+            :value-style="[{ 'color': '#eb1212', 'text-align': 'center' }]"
             :title="{ position: 'bottom' }"
           >
             <template #title>
@@ -32,8 +32,9 @@ import { Statistic as TinyStatistic, Layout as TinyLayout, Row as TinyRow, Col a
 
 <style scoped>
 .title-content {
-  width: 200px;
+  width: 90px;
   text-align: center;
   color: #a9a9a9;
+  font-weight: 600;
 }
 </style>

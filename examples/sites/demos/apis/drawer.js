@@ -183,8 +183,20 @@ export default {
       ],
       events: [
         {
+          name: 'open',
+          type: '() => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '打开抽屉事件',
+            'en-US': ''
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'open-event',
+          mfDemo: ''
+        },
+        {
           name: 'close',
-          type: '()=> void',
+          type: '() => void',
           defaultValue: '',
           desc: {
             'zh-CN': '关闭抽屉事件',
@@ -196,7 +208,7 @@ export default {
         },
         {
           name: 'confirm',
-          type: '()=> void',
+          type: '() => void',
           defaultValue: '',
           desc: {
             'zh-CN': '确认事件，设置 :show-footer="true" 时有效',

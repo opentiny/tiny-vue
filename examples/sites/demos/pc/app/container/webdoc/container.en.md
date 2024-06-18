@@ -1,7 +1,7 @@
 ---
-title: Container dimension
+title: Container
 ---
 
-# Container dimension
+# Container
 
 <div>Container component for layout, which facilitates page layout creation.</div>

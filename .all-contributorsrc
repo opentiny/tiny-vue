@@ -573,6 +573,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "RanierYu",
+      "name": "Ranier Yu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62528887?v=4",
+      "profile": "https://github.com/RanierYu",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Zcating",
+      "name": "Zcating",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13329558?v=4",
+      "profile": "https://github.com/Zcating",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "trueLoving",
+      "name": "Aoi Kaze",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44056372?v=4",
+      "profile": "https://github.com/trueLoving",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 8,

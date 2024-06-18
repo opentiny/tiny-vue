@@ -25,7 +25,7 @@ const mount = (inputComponent: any, options: MountingOptions<any> = {}) => {
   const wrapper = mount$(inputComponent, options)
 
   if (isVue2) {
-    wrapper.unmount = (wrapper as any).destory
+    wrapper.unmount = (wrapper as any).destroy
   }
 
   return wrapper

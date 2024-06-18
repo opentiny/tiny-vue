@@ -833,6 +833,7 @@
           &__title:has(.tiny-grid-tree__indent:nth-last-child(2):first-child),
           &__ellipsis:has(.tiny-grid-tree__indent:nth-last-child(2):first-child) {
             display: inline-block;
+            max-width: 100%;
           }
         }
       }
@@ -1015,6 +1016,9 @@
     // 部分场景下浏览器缩放比例导致表头和表体错位问题
     th.col__gutter {
       width: 0;
+      position: sticky;
+      right: 0;
+      background-color: var(--ti-grid-header-background-color);
     }
   }
 
