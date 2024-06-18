@@ -1,5 +1,6 @@
 <template>
   <tiny-base-select
+    ref="baseSelectRef"
     class="tiny-tree-select"
     v-model="state.value"
     :multiple="multiple"
@@ -7,7 +8,7 @@
     :clearable="clearable"
     :filter-method="filter"
   >
-    <template #panel="{ methods: { updateSelectedData, hidePanel } }">
+    <template #panel>
       <tiny-tree
         ref="treeRef"
         :data="state.treeData"
@@ -18,16 +19,8 @@
         :node-key="valueField"
         :show-checkbox="multiple"
         :filter-node-method="filterMethod"
-        @node-click="
-          (data) => {
-            nodeClick(data, { updateSelectedData, hidePanel })
-          }
-        "
-        @check="
-          (data, { checkedNodes }) => {
-            check(checkedNodes, { updateSelectedData })
-          }
-        "
+        @node-click="nodeClick"
+        @check="check"
       ></tiny-tree>
     </template>
   </tiny-base-select>

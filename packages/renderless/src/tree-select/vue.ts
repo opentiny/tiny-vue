@@ -13,7 +13,7 @@ export const renderless = (props, { reactive }, { vm }) => {
   Object.assign(api, {
     state,
     filter: filter({ vm }),
-    nodeClick: nodeClick({ props }),
+    nodeClick: nodeClick({ props, vm }),
     check: check({ props })
   })
 

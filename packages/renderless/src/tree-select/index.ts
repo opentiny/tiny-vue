@@ -5,10 +5,10 @@ export const filter =
   }
 
 export const nodeClick =
-  ({ props }) =>
-  (data, { updateSelectedData, hidePanel }) => {
+  ({ props, vm }) =>
+  (data) => {
     if (!props.multiple) {
-      updateSelectedData({
+      vm.$refs.baseSelectRef.updateSelectedData({
         ...data,
         currentLabel: data[props.textField],
         value: data[props.valueField],
@@ -17,15 +17,15 @@ export const nodeClick =
         }
       })
 
-      hidePanel()
+      vm.$refs.baseSelectRef.hidePanel()
     }
   }
 
 export const check =
   ({ props }) =>
-  (checkedNodes, { updateSelectedData }) => {
+  (data, { checkedNodes }) => {
     if (props.multiple) {
-      updateSelectedData(
+      vm.$refs.baseSelectRef.updateSelectedData(
         checkedNodes.map((node) => {
           return {
             ...node,
