@@ -13,6 +13,7 @@ import Picker from './src/index'
 import '@opentiny/vue-theme/picker/index.less'
 import '@opentiny/vue-theme/input/index.less'
 import { version } from './package.json'
+import PickerPc from './src/pc.vue'
 
 Picker.model = {
   prop: 'modelValue',
@@ -25,5 +26,8 @@ Picker.install = function (Vue) {
 }
 
 Picker.version = version
+
+// 区别aui，pc层应为单层组件，需要导出pc.vue给date-picker使用
+export { PickerPc }
 
 export default Picker

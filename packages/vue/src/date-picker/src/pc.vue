@@ -10,7 +10,8 @@
  *
  -->
 <script lang="ts">
-import Picker from '@opentiny/vue-picker'
+// 区别aui，date-picker里面一层的元素应该为picker的pc.vue，避免setParentAttribute方法无法将renderless层的属性api挂载到date-picker元素
+import { PickerPc } from '@opentiny/vue-picker'
 import { $props } from '@opentiny/vue-common'
 import { extend } from '@opentiny/vue-renderless/common/object'
 
@@ -26,7 +27,7 @@ const DatePicker = extend(
       componentName: { type: String, default: 'DatePicker' }
     }
   },
-  Picker
+  PickerPc
 )
 
 export default DatePicker
