@@ -340,7 +340,7 @@ export default {
       if (Object.keys(this.options).length === 0) {
         this.updateChart(data)
       } else {
-        this.option = JSON.parse(JSON.stringify(this.options))
+        this.option = cloneDeep(this.options)
       }
       let { option } = this
       clearTimeout(this.timer)
@@ -528,7 +528,7 @@ export default {
     if (Object.keys(this.options).length === 0) {
       this.updateChart(data)
     } else {
-      this.option = { ...this.options }
+      this.option = cloneDeep(this.options)
     }
     let { option } = this
     option = this.afterConfigFn(option)
