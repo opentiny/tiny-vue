@@ -87,6 +87,9 @@ export default {
       cancel: '取消',
       confirm: '确定'
     },
+    buttonGroup: {
+      noData: '暂无数据'
+    },
     buttonMessage: {
       cancel: '取消',
       confirm: '确定'
