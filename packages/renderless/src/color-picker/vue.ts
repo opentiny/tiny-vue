@@ -41,8 +41,8 @@ export const renderless = (props, context, { emit }) => {
     changeVisible,
     onCancel: onCancel(tmpColor, triggerBg, isShow, pre, emit),
     onConfirm: onConfirm(triggerBg, pre, hex, isShow, emit),
-    onHueUpdate: onHueUpdate(tmpColor, triggerBg),
-    onSVUpdate: onSVUpdate(tmpColor, triggerBg),
+    onHueUpdate: onHueUpdate(tmpColor, triggerBg, emit),
+    onSVUpdate: onSVUpdate(tmpColor, triggerBg, emit),
     onColorUpdate: onColorUpdate(triggerBg)
   }
   context.watch(
@@ -60,7 +60,6 @@ export const renderless = (props, context, { emit }) => {
     { deep: true }
   )
   context.watch(modelValue, (newValue) => {
-    pre.value = newValue
     hex.value = newValue
     state.hex = newValue
     state.triggerBg = newValue

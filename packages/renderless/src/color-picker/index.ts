@@ -7,6 +7,7 @@ export const onCancel = (tmpColor: Color, triggerBg: Ref<string>, isShow: Ref<bo
     triggerBg.value = pre.value
     isShow.value = false
     emit('cancel')
+    emit('update:modelValue', pre.value)
   }
 }
 
@@ -21,17 +22,19 @@ export const onConfirm = (triggerBg: Ref<string>, pre: Ref<string>, hex: Ref<str
   }
 }
 
-export const onHueUpdate = (tmpColor: Color, triggerBg: Ref<string>) => {
+export const onHueUpdate = (tmpColor: Color, triggerBg: Ref<string>, emit) => {
   return (h: number) => {
     triggerBg.value = tmpColor.getHex()
     tmpColor.set({ h })
+    emit('update:modelValue', triggerBg.value)
   }
 }
 
-export const onSVUpdate = (tmpColor: Color, triggerBg: Ref<string>) => {
+export const onSVUpdate = (tmpColor: Color, triggerBg: Ref<string>, emit) => {
   return ({ s, v }) => {
     triggerBg.value = tmpColor.getHex()
     tmpColor.set({ s, v })
+    emit('update:modelValue', triggerBg.value)
   }
 }
 
