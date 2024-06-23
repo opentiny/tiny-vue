@@ -1,45 +1,29 @@
-import type { IColorPickerRef as Ref } from '@/types'
-import type Color from './utils/color'
+import type { IColorSelectPanelRef } from '@/types'
 
-export const onCancel = (tmpColor: Color, triggerBg: Ref<string>, isShow: Ref<boolean>, pre: Ref<string>, emit) => {
-  return (color: Ref<Color>) => {
-    tmpColor.reset(color.value.getHex())
-    triggerBg.value = pre.value
-    isShow.value = false
+const updateModelValue = (val, emit) => {
+  emit('update:modelValue', val)
+}
+
+export const toggleVisible = (isShow: IColorSelectPanelRef<boolean>) => {
+  return (val) => {
+    isShow.value = val
+  }
+}
+
+export const useEvent = (hex, emit, changeVisible) => {
+  const onConfirm = (val) => {
+    hex.value = val
+    updateModelValue(val, emit)
+    emit('confirm', val)
+    changeVisible(false)
+  }
+  const onCancel = (color: IColorSelectPanelRef<string>) => {
+    hex.value = color.value.hex
+    changeVisible(false)
     emit('cancel')
-    emit('update:modelValue', pre.value)
   }
-}
-
-export const onConfirm = (triggerBg: Ref<string>, pre: Ref<string>, hex: Ref<string>, isShow: Ref<boolean>, emit) => {
-  return (color: string) => {
-    pre.value = triggerBg.value
-    triggerBg.value = color
-    hex.value = color
-    isShow.value = false
-    emit('confirm', color)
-    emit('update:modelValue', color)
-  }
-}
-
-export const onHueUpdate = (tmpColor: Color, triggerBg: Ref<string>, emit) => {
-  return (h: number) => {
-    triggerBg.value = tmpColor.getHex()
-    tmpColor.set({ h })
-    emit('update:modelValue', triggerBg.value)
-  }
-}
-
-export const onSVUpdate = (tmpColor: Color, triggerBg: Ref<string>, emit) => {
-  return ({ s, v }) => {
-    triggerBg.value = tmpColor.getHex()
-    tmpColor.set({ s, v })
-    emit('update:modelValue', triggerBg.value)
-  }
-}
-
-export const onColorUpdate = (triggerBg: Ref<string>) => {
-  return (color: Ref<Color>) => {
-    triggerBg.value = color.value.getHex()
+  return {
+    onConfirm,
+    onCancel
   }
 }

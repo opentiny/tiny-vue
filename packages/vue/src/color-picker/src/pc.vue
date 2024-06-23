@@ -11,7 +11,7 @@
     <div
       class="tiny-color-picker__inner"
       :style="{
-        background: state.triggerBg ?? ''
+        background: state.hex ?? ''
       }"
     >
       <IconChevronDown />
@@ -20,9 +20,6 @@
       <color-select
         @confirm="onConfirm"
         @cancel="onCancel"
-        @hue-update="onHueUpdate"
-        @sv-update="onSVUpdate"
-        @color-update="onColorUpdate"
         v-model="state.hex"
         :visible="state.isShow"
         :alpha="alpha"
