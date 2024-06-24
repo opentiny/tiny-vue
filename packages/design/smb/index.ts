@@ -10,6 +10,7 @@ import Pager from './src/pager'
 import Select from './src/select'
 import TreeNode from './src/tree-node'
 import UploadList from './src/upload-list'
+import BreadcrumbItem from './src/breadcrumb-item'
 import { version } from './package.json'
 
 export default {
@@ -27,6 +28,7 @@ export default {
     Pager,
     Select,
     TreeNode,
+    BreadcrumbItem,
     UploadList
   }
 }

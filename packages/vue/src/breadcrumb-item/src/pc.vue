@@ -21,7 +21,7 @@
       :is="breadcrumb.separatorIcon"
       class="tiny-svg-size tiny-breadcrumb__separator-cls"
     />
-    <span v-else class="tiny-breadcrumb__separator">{{ breadcrumb.separator }}</span>
+    <span v-else class="tiny-breadcrumb__separator">{{ state.separator }}</span>
   </span>
 </template>
 
