@@ -15,7 +15,7 @@ export default {
     return {
       options: {
         key: 'oBvDtR6nzWtVchkY4cLHtnah1VVZQKRK',
-        url: 'https://api.map.baidu.com/api', // 谷歌地图接口的url地址
+        url: 'https://api.map.baidu.com/api', // 百度地图接口的url地址
         v: '1.4.3',
         bmap: {
           resizeEnable: true,
