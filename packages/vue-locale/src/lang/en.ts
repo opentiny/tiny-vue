@@ -89,6 +89,9 @@ export default {
       cancel: 'Cancel',
       confirm: 'Confirm'
     },
+    buttonGroup: {
+      noData: 'No data'
+    },
     buttonMessage: {
       cancel: 'Cancel',
       confirm: 'Confirm'
