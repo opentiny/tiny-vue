@@ -115,6 +115,12 @@ export const cmpMenus = [
     'key': 'cmp_form_components',
     'children': [
       { 'nameCn': '自动完成', 'name': 'AutoComplete', 'key': 'autocomplete' },
+      {
+        'nameCn': '基础选择器',
+        'name': 'BaseSelect',
+        'key': 'base-select',
+        'mark': { 'type': 'warning', 'text': 'Beta' }
+      },
       { 'nameCn': '级联选择器', 'name': 'Cascader', 'key': 'cascader' },
       { 'nameCn': '级联面板', 'name': 'CascaderPanel', 'key': 'cascader-panel' },
       { 'nameCn': '多选框', 'name': 'Checkbox', 'key': 'checkbox' },
@@ -141,7 +147,6 @@ export const cmpMenus = [
         }
       },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
-      { 'nameCn': '选择器', 'name': 'BaseSelect', 'key': 'base-select' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
       { 'nameCn': '开关', 'name': 'Switch', 'key': 'switch' },
