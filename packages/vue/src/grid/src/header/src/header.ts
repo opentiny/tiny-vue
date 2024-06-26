@@ -434,9 +434,9 @@ export default defineComponent({
     }
   },
   mounted() {
-    let { $el, $parent: $table, $refs } = this
-    let elemStore = $table.elemStore
-    let keyPrefix = 'main-header-'
+    const { $el, $parent: $table, $refs } = this
+    const { elemStore, dropConfig } = $table
+    const keyPrefix = 'main-header-'
 
     elemStore[`${keyPrefix}wrapper`] = $el
     elemStore[`${keyPrefix}table`] = $refs.table
@@ -444,6 +444,17 @@ export default defineComponent({
     elemStore[`${keyPrefix}list`] = $refs.thead
     elemStore[`${keyPrefix}x-space`] = $refs.xSpace
     elemStore[`${keyPrefix}repair`] = $refs.repair
+
+    if (dropConfig) {
+      const { plugin, column = true, scheme } = dropConfig
+
+      if (scheme !== 'v2') {
+        plugin && column && (this.columnSortable = $table.columnDrop(this.$el))
+      }
+    }
+  },
+  beforeUnmount() {
+    this.columnSortable && this.columnSortable.destroy()
   },
   created() {
     this.uploadColumn()

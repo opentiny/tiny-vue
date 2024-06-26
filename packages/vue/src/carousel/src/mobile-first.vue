@@ -15,7 +15,7 @@
       :style="state.style"
     >
       <button
-        v-if="arrow !== 'never' && state.items.length > 1"
+        v-if="state.hasButtons"
         v-show="(arrow === 'always' || state.hover) && (loop || state.activeIndex > 0)"
         type="button"
         class="absolute group border-none outline-0 p-0 m-0 h-8 w-8 cursor-pointer z-[3] rounded-full bg-color-bg-3 active:bg-color-bg-7 text-color-text-inverse text-center text-xs flex items-center justify-center hover:bg-color-bg-7"
@@ -30,7 +30,7 @@
         />
       </button>
       <button
-        v-if="arrow !== 'never' && state.items.length > 1"
+        v-if="state.hasButtons"
         v-show="(arrow === 'always' || state.hover) && (loop || state.activeIndex < state.items.length - 1)"
         type="button"
         class="absolute group border-none outline-0 p-0 m-0 h-8 w-8 cursor-pointer z-[3] rounded-full bg-color-bg-3 active:bg-color-bg-7 text-color-text-inverse text-center text-xs flex items-center justify-center hover:bg-color-bg-7"
@@ -48,7 +48,7 @@
     </div>
     <ul
       data-tag="tiny-carousel-body"
-      v-if="indicatorPosition !== 'none' && state.items.length > 1"
+      v-if="state.hasIndicators"
       :class="[
         'list-none m-0 py-0 px-1 z-[2] flex justify-center items-center',
         type === 'vertical' && indicatorPosition !== 'outside'
@@ -119,7 +119,10 @@ export default defineComponent({
     'type',
     'showTitle',
     'loop',
-    'aspectRatio'
+    'aspectRatio',
+    'swipeable',
+    'lite',
+    'beforeSwipe'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

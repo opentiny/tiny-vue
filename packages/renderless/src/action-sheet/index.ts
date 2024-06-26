@@ -19,7 +19,6 @@ export const setSheetStyle =
         'position': 'absolute'
       }
       state.sheetContentStyle = {
-        'position': 'absolute',
         'max-height': props.height
       }
     } else {

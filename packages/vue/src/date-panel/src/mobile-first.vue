@@ -1,16 +1,17 @@
 <template>
-  <transition name="tiny-zoom-in-top" @after-enter="handleEnter" @after-leave="handleLeave">
+  <transition @after-enter="handleEnter" @after-leave="handleLeave">
     <div
       v-show="state.visible"
       data-tag="tiny-picker-panel tiny-date-picker tiny-popper"
-      :class="[gcls('picker-panel'), state.popperClass]"
+      :class="m([gcls('picker-panel'), { 'w-80': state.currentView === 'year' }, state.popperClass])"
     >
       <div data-tag="tiny-picker-panel__body-wrapper" :class="gcls('picker-panel-body')">
-        <slot name="sidebar" data-tag="tiny-picker-panel__sidebar"></slot>
-        <div data-tag="tiny-picker-panel__sidebar" v-if="state.shortcuts">
+        <slot name="sidebar" data-tag="tiny-picker-panel__sidebar" :class="gcls('sidebar')"></slot>
+        <div data-tag="tiny-picker-panel__sidebar" v-if="state.shortcuts" :class="gcls('sidebar')">
           <button
             type="button"
             data-tag="tiny-picker-panel__shortcut"
+            :class="gcls('sidebar-btn')"
             v-for="(shortcut, key) in state.shortcuts"
             :key="key"
             @click="handleShortcutClick(shortcut)"
@@ -18,12 +19,15 @@
             {{ shortcut.text }}
           </button>
         </div>
-        <div data-tag="tiny-picker-panel__body" :class="gcls('picker-panel-body')">
+        <div
+          data-tag="tiny-picker-panel__body"
+          :class="[gcls('picker-panel-body'), { 'ml-28': slots.sidebar || state.shortcuts }]"
+        >
           <div v-if="state.showTime" data-tag="tiny-date-picker__time-header" :class="gcls('time-header')">
             <span data-tag="tiny-date-picker__editor-wrap" :class="gcls('editor-wrap')">
               <tiny-input
                 :placeholder="t('ui.datepicker.selectDate')"
-                :model-value="state.visibleDate"
+                :modelValue="state.visibleDate"
                 size="small"
                 @update:modelValue="(val) => (state.userInputDate = val)"
                 @change="handleVisibleDateChange"
@@ -38,7 +42,7 @@
                 ref="input"
                 @focus="state.timePickerVisible = true"
                 :placeholder="t('ui.datepicker.selectTime')"
-                :model-value="state.visibleTime"
+                :modelValue="state.visibleTime"
                 size="small"
                 @update:modelValue="(val) => (state.userInputTime = val)"
                 @change="handleVisibleTimeChange"
@@ -48,7 +52,6 @@
                 :step="step"
                 :time-arrow-control="state.arrowControl"
                 :show="state.timePickerVisible"
-                v-if="state.timePickerVisible"
                 :value="state.date"
                 @pick="handleTimePick"
               >
@@ -63,6 +66,16 @@
             ]"
             v-show="state.currentView !== 'time'"
           >
+            <button
+              type="button"
+              @click="cusPrevYear"
+              v-show="state.currentView === 'year'"
+              :aria-label="t(`ui.datepicker.prevYear`)"
+              data-tag="tiny-picker-panel__icon-btn tiny-date-picker__prev-btn tiny-icon-arrow-left"
+              :class="[gcls('icon-btn'), 'float-left']"
+            >
+              <icon-double-left></icon-double-left>
+            </button>
             <button
               type="button"
               @click="cusPrevMonth"
@@ -85,6 +98,16 @@
               :class="[gcls('header-label'), { 'text-color-brand': state.currentView === 'month' }]"
               >{{ t(`ui.datepicker.month${state.month + 1}`) }}</span
             >
+            <button
+              type="button"
+              @click="cusNextYear"
+              v-show="state.currentView === 'year'"
+              :aria-label="t(`ui.datepicker.nextYear`)"
+              data-tag="tiny-picker-panel__icon-btn tiny-date-picker__next-btn tiny-icon-arrow-right"
+              :class="[gcls('icon-btn'), 'float-right']"
+            >
+              <icon-double-right></icon-double-right>
+            </button>
             <button
               type="button"
               @click="cusNextMonth"
@@ -155,7 +178,14 @@
           </template>
         </tiny-input>
         <div data-tag="tiny-picker-panel__tzlist">
-          <tiny-popup v-model="state.showpopup" :overlay="false" position="up" :duration="0.2" :closeable="false">
+          <tiny-popup
+            v-model="state.showpopup"
+            :overlay="false"
+            aui_mode="mobile"
+            position="bottom"
+            :duration="0.2"
+            :closeable="false"
+          >
             <div data-tag="tzlist">
               <ul>
                 <li
@@ -201,7 +231,7 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/date-panel/vue'
-import { setup, directive, props, defineComponent } from '@opentiny/vue-common'
+import { setup, directive, props } from '@opentiny/vue-common'
 import { language } from '@opentiny/vue-locale'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import TimePicker from '@opentiny/vue-time'
@@ -221,7 +251,7 @@ import {
 import Popup from '@opentiny/vue-popup'
 import { classes } from './token'
 
-export default defineComponent({
+export default {
   directives: directive({ Clickoutside }),
   components: {
     TimePicker,
@@ -264,5 +294,5 @@ export default defineComponent({
       extendOptions: { language }
     })
   }
-})
+}
 </script>

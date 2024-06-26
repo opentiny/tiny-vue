@@ -337,6 +337,7 @@ export const tinyBaseSmbTheme = {
 
   /*  滚动条 */
   'ti-common-scrollbar-width': '8px',
+  'ti-common-scrollbar-height': '8px',
   'ti-common-scrollbar-track-piece-bg-color': 'var(--ti-base-color-bg-5)',
   'ti-common-scrollbar-thumb-bg-color': 'var(--ti-base-color-common-4)',
   'ti-common-scrollbar-thumb-border-radius': '4px',

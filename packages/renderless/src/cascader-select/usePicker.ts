@@ -171,7 +171,7 @@ const change =
 // 当前类型
 const columnsTypeComputed = ({ state, computed, columnFieldNames }) =>
   computed(() => {
-    const firstColumn = state.formattedColumns[0]
+    const firstColumn = state.formattedColumns && state.formattedColumns[0]
     const fields = columnFieldNames.value
     if (firstColumn) {
       if (Array.isArray(firstColumn)) {
@@ -229,7 +229,8 @@ const validProps =
   ({ props }) =>
   () => {
     const { modelValue, options } = props
-    return validArr(modelValue) && validArr(options) && modelValue.length === options.length
+    const isSameLen = modelValue && modelValue.length ? modelValue.length === options.length : true
+    return Array.isArray(modelValue) && Array.isArray(options) && isSameLen
   }
 
 const parseType =

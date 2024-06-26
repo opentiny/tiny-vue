@@ -95,7 +95,9 @@ import {
   clearNoMatchValue,
   handleDebouncedQueryChange,
   onClickCollapseTag,
-  computedIsExpand
+  computedIsExpand,
+  updateSelectedData,
+  hidePanel
 } from './index'
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
@@ -150,7 +152,9 @@ export const api = [
   'getLabelSlotValue',
   'updateModelValue',
   'clearSearchText',
-  'onClickCollapseTag'
+  'onClickCollapseTag',
+  'updateSelectedData',
+  'hidePanel'
 ]
 
 const initState = ({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm, designConfig }) => {
@@ -359,7 +363,9 @@ const initApi = ({
     computedGetIcon: computedGetIcon({ designConfig, props }),
     computedGetTagType: computedGetTagType({ designConfig, props }),
     clearSearchText: clearSearchText({ state, api }),
-    clearNoMatchValue: clearNoMatchValue({ props, emit })
+    clearNoMatchValue: clearNoMatchValue({ props, emit }),
+    updateSelectedData: updateSelectedData({ state }),
+    hidePanel: hidePanel({ state })
   })
 
   addApi({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, isMobileFirstMode, designConfig })

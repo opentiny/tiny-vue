@@ -29,6 +29,9 @@ export const collapseItemProps = {
       return this._uid
     }
   },
+  expandIcon: {
+    type: [Object, String]
+  },
   disabled: Boolean
 }
 export default defineComponent({

@@ -233,7 +233,13 @@ export const handleCheckChange =
   }
 
 export const lazyLoad =
-  ({ api, $parent, state, Store }: Pick<ICascaderPanelRenderlessParams, 'api' | '$parent' | 'state' | 'Store'>) =>
+  ({
+    api,
+    $parent,
+    state,
+    Store,
+    emit
+  }: Pick<ICascaderPanelRenderlessParams, 'api' | '$parent' | 'state' | 'Store' | 'emit'>) =>
   (currentNode?: ICascaderPanelNode, onFullfiled?: (dataList: ICascaderPanelData[]) => void) => {
     let node = currentNode as ICascaderPanelLazyLoadNode | ICascaderPanelNode
 
@@ -251,6 +257,8 @@ export const lazyLoad =
 
       node.loading = false
       node.loaded = true
+
+      emit('load-data', dataList)
 
       if (Array.isArray(state.checkedValue)) {
         const nodeValue = state.checkedValue[state.loadCount++]

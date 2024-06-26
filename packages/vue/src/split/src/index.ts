@@ -75,6 +75,14 @@ export default defineComponent({
     scrollable: {
       type: Boolean,
       default: false
+    },
+    border: {
+      type: Boolean,
+      default: true
+    },
+    rightBottomValue: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

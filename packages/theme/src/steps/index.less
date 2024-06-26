@@ -215,6 +215,7 @@
       border-right-width: 0;
       border-color: #fff;
       border-style: solid;
+      box-sizing: border-box;
     }
 
     .left-arrow {
@@ -334,7 +335,7 @@
       .arrow {
         border-top-width: 24px;
         border-bottom-width: 24px;
-        border-left-width: 9px;
+        box-sizing: border-box;
       }
 
       .@{steps-prefix-cls}-content {
@@ -1097,6 +1098,7 @@
     cursor: pointer;
     background-color: var(--ti-steps-icon-bg-color);
     z-index: 15;
+    padding: 2px;
 
     &[class*=~'icon-'] {
       background-color: var(--ti-steps-custom-icon-bg-color);
@@ -1132,6 +1134,7 @@
       width: var(--ti-steps-custom-icon-width-height);
       height: var(--ti-steps-custom-icon-width-height);
       background-color: transparent;
+      padding: 2px;
     }
 
     &.fixicons {

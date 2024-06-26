@@ -166,11 +166,11 @@ export default defineComponent({
                     }
                   },
                   [
-                    status && state.theme === 'saas'
+                    status
                       ? h(
                           'div',
                           {
-                            class: 'tiny-modal__status-wrapper'
+                            class: ['tiny-modal__status-wrapper']
                           },
                           [
                             typeof status === 'string'
@@ -188,18 +188,7 @@ export default defineComponent({
                       {
                         class: 'tiny-modal__title'
                       },
-                      [
-                        typeof status === 'string'
-                          ? h(STATUS_MAPPING_COMPINENT[status.toUpperCase()], {
-                              class: [constants.STATUS_MAPPING_CLASSS[status.toUpperCase()]],
-                              style: 'display: inline-block; margin-right: 5px;'
-                            })
-                          : h(status, {
-                              class: ['tiny-modal__status-icon'],
-                              style: 'display: inline-block; margin-right: 5px;'
-                            }),
-                        h('span', title || t('ui.alert.title'))
-                      ]
+                      title || t('ui.alert.title')
                     ),
                     resize
                       ? h(zoomLocat ? iconMinscreenLeft() : iconFullscreenLeft(), {
@@ -224,14 +213,14 @@ export default defineComponent({
                 class: ['tiny-modal__body', type === 'message' ? 'is-message' : '']
               },
               [
-                status && state.theme !== 'saas'
+                type === 'message'
                   ? h(
                       'div',
                       {
                         class: 'tiny-modal__status-wrapper'
                       },
                       [
-                        typeof status === 'string' && type === 'message'
+                        typeof status === 'string'
                           ? h(STATUS_MAPPING_COMPINENT[status.toUpperCase()], {
                               class: [constants.STATUS_MAPPING_CLASSS[status.toUpperCase()]]
                             })
@@ -283,59 +272,33 @@ export default defineComponent({
                   },
                   footerSlot
                     ? footerSlot.call(this, footerSlotParams, h)
-                    : state.theme === 'saas'
-                      ? [
-                          type === 'confirm'
-                            ? h(
-                                Button,
-                                {
-                                  on: {
-                                    click: this.cancelEvent
-                                  }
+                    : [
+                        type === 'confirm'
+                          ? h(
+                              Button,
+                              {
+                                on: {
+                                  click: this.cancelEvent
                                 },
-                                cancelContent || t('ui.button.cancel')
-                              )
-                            : null,
-                          h(
-                            Button,
-                            {
-                              props: {
-                                type: 'primary'
+                                props: { ...cancelButtonProps }
                               },
-                              on: {
-                                click: this.confirmEvent
-                              }
+                              cancelButtonText
+                            )
+                          : null,
+                        h(
+                          Button,
+                          {
+                            props: {
+                              type: 'primary',
+                              ...confirmButtonProps
                             },
-                            confirmContent || t('ui.button.confirm')
-                          )
-                        ]
-                      : [
-                          h(
-                            Button,
-                            {
-                              props: {
-                                type: 'primary',
-                                ...confirmButtonProps
-                              },
-                              on: {
-                                click: this.confirmEvent
-                              }
-                            },
-                            confirmButtonText
-                          ),
-                          type === 'confirm'
-                            ? h(
-                                Button,
-                                {
-                                  on: {
-                                    click: this.cancelEvent
-                                  },
-                                  props: { ...cancelButtonProps }
-                                },
-                                cancelButtonText
-                              )
-                            : null
-                        ]
+                            on: {
+                              click: this.confirmEvent
+                            }
+                          },
+                          confirmButtonText
+                        )
+                      ]
                 )
               : null,
             !isMsg && resize

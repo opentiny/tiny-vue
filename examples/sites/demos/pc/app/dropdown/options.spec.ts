@@ -32,8 +32,8 @@ test('配置式：使用 menu-options 和 title', async ({ page }) => {
   const dropDownMenuItem = dropDownMenu.locator('.tiny-dropdown-item')
 
   await expect(dropDown).toContainText('点击下拉')
-  await page.waitForTimeout(200)
   await dropDown.hover()
+  await page.waitForTimeout(300)
   await expect(dropDownMenu.first()).toBeVisible()
   await expect(dropDownMenuItem.first()).toContainText('老友粉')
   await expect(dropDownMenuItem.first()).toHaveClass(/is-disabled/)

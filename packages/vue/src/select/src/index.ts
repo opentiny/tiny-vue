@@ -299,9 +299,19 @@ export default defineComponent({
       type: String,
       default: () => t('ui.select.add')
     },
+    initLabel: {
+      type: String,
+      default: ''
+    },
     blank: {
       type: Boolean,
       default: false
+    },
+    tooltipConfig: {
+      type: Object,
+      default() {
+        return {}
+      }
     },
     // 以下为 tiny 新增
     searchable: {

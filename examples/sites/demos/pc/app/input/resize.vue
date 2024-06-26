@@ -1,5 +1,6 @@
 <template>
   <div class="demo-input">
+    <p>resize</p>
     <tiny-input type="textarea" v-model="input" placeholder="default"></tiny-input>
     <tiny-input type="textarea" v-model="input" resize="none" placeholder="resize = none"></tiny-input>
     <tiny-input type="textarea" v-model="input" resize="both" placeholder="resize = both"></tiny-input>
@@ -30,6 +31,14 @@
       autosize
       hover-expand
     ></tiny-input>
+    <tiny-input
+      type="textarea"
+      v-model="displayOnlyText"
+      placeholder="autosize  hover-expand display-only"
+      autosize
+      hover-expand
+      display-only
+    ></tiny-input>
   </div>
 </template>
 
@@ -44,19 +53,21 @@ export default {
     return {
       input: '',
       textarea: '',
-      hoverText: ''
+      hoverText: '',
+      displayOnlyText: 'value 的内容'
     }
   }
 }
 </script>
 
-<style scoped>
-.demo-input .tiny-textarea {
-  width: auto;
-  margin: 5px;
-}
-
-.demo-input .expand {
-  width: 200px;
+<style lang="less" scoped>
+.demo-input {
+  .tiny-textarea {
+    width: 400px;
+    margin: 5px;
+  }
+  .expand {
+    width: 200px;
+  }
 }
 </style>

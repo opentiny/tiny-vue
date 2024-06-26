@@ -130,9 +130,13 @@ export default {
       },
       desc: {
         'zh-CN':
-          '\n          <p>可通过 <code>resize</code> 属性设置文本域的缩放。可选值：<code>none / both / horizontal / vertical</code>。注意：只在 <code>type="textarea"</code> 时有效。</p>\n          <p>可通过 <code>autosize</code> 属性设置文本域自适应内容高度。可传入对象，如<code>{ minRows: 2, maxRows: 6 }</code>。注意：只对 <code>type="textarea"</code> 有效。</p>\n        ',
+          '<p>可通过 <code>resize</code> 属性设置文本域的缩放。可选值：<code>none / both / horizontal / vertical</code>。注意：只在 <code>type="textarea"</code> 时有效。</p>\n ' +
+          '<p>可通过 <code>autosize</code> 属性设置文本域自适应内容高度。可传入对象，如<code>{ minRows: 2, maxRows: 6 }</code>。注意：只对 <code>type="textarea"</code> 有效。</p>\n' +
+          '<p>可通过 <code>hover-expand</code> 属性设置文本域鼠标悬浮展开/收起，只对 <code>type=textarea</code> 有效，最好搭配 <code>autosize</code> 一起使用<p>',
         'en-US':
-          '\n          <p>You can use the <code>resize</code> property to set the zoom of the text field. The value can be <code>none / both / horizontal / vertical</code> . Note: This parameter is valid only when <code>type="textarea"</code> is used. </p>\n          <p>You can use the <code>autosize</code> attribute to set the text field to adapt to the content height. You can transfer an object, for example, <code>{minRows: 2, maxRows: 6}</code> . Note: This parameter is valid only for <code>type="textarea"</code> . </p>\n        '
+          '<p>You can use the <code>resize</code> property to set the scaling of the text field. The value can be <code>none / both / horizontal / vertical</code>. Note: This parameter is valid only when <code>type="textarea"</code>.</p>' +
+          '<p>The <code>autosize</code> property allows you to set the text field to adapt to the content height. You can transfer an object, for example, <code>{minRows: 2, maxRows: 6}</code>.</p>' +
+          '<p>You can use the <code>hover-expand</code> attribute to set the text field to be expanded or collapsed by hovering the mouse. This parameter is valid only for <code>type=textarea</code>. It is recommended that you use it together with <code>autosize</code></p>'
       },
       codeFiles: ['resize.vue']
     },
@@ -230,16 +234,41 @@ export default {
       codeFiles: ['native.vue']
     },
     {
+      demoId: 'display-only-popup-more',
+      name: {
+        'zh-CN': '文本域只读超出显示更多按钮',
+        'en-US': 'Text field read-only beyond Show more button'
+      },
+      desc: {
+        'zh-CN':
+          '在只读的基础上增加<code>popup-more</code>属性，可使文本域超出显示更多按钮，点击更多按钮可以查看详细信息。',
+        'en-US':
+          'The <code>popup-more</code> attribute is added to enable the text field to exceed the display of more buttons. You can click more buttons to view details.'
+      },
+      codeFiles: ['display-only-popup-more.vue']
+    },
+    {
       demoId: 'event',
       name: {
         'zh-CN': '事件',
         'en-US': 'Event'
       },
       desc: {
-        'zh-CN':
-          '\n          <p>输入框的事件，包括\n            <code>input</code>(输入值时触发), \n            <code>blur</code>(失去焦点时触发), \n            <code>focus</code>(获取焦点时触发), \n            <code>change</code>(值改变时触发), \n            <code>clear</code>(清除按钮时触发)。\n          </p>\n        ',
-        'en-US':
-          '\n          <p>Event of the text box, including:\n            <code>input</code> (triggered when a value is entered)\n            <code>blur</code> (triggered when the focus is lost)\n            <code>focus</code> (triggered when the focus is obtained)\n            <code>change</code> (triggered when the value changes)\n            <code>clear</code> (triggered when the button is cleared)\n          </p>\n        '
+        'zh-CN': `
+          输入框的事件，包括:<br>
+            <code>input</code>(输入值时触发), <br>
+            <code>blur</code>(失去焦点时触发), <br>
+            <code>focus</code>(获取焦点时触发), <br>
+            <code>change</code>(值改变时触发), <br>
+            <code>clear</code>(清除按钮时触发)。`,
+        'en-US': `
+          Event of the text box, including: <br>
+            <code>input</code> (triggered when a value is entered), <br>
+            <code>blur</code> (triggered when the focus is lost), <br>
+            <code>focus</code> (triggered when the focus is obtained), <br>
+            <code>change</code> (triggered when the value changes), <br>
+            <code>clear</code> (triggered when the button is cleared)
+            `
       },
       codeFiles: ['event.vue']
     }

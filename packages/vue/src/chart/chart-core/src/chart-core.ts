@@ -378,7 +378,6 @@ export default {
         }
         this.integrateChart.setSimpleOption(this.chartList[this.iChartName], option, plugins)
         this.$emit('handle-color', option.color)
-        this.integrateChart.render()
       } else {
         this.selfSetting(option)
         this.setAnimation(option)
@@ -396,10 +395,10 @@ export default {
         this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
       }
       this.integrateChart.render(this.renderOption)
-      this.$emit('ready', this.integrateChart.echartsIns)
+      this.$emit('ready', this.integrateChart.echartsIns, option)
       if (!this.once['ready-once']) {
         this.once['ready-once'] = true
-        this.$emit('ready', this.integrateChart.echartsIns)
+        this.$emit('ready-once', this.integrateChart.echartsIns, option)
       }
       this.eChartOption = this.integrateChart.eChartOption
     },

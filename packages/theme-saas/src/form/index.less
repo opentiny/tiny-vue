@@ -61,11 +61,15 @@
       @apply inline-block;
       @apply text-left;
       @apply leading-5;
-      @apply pt-0 pr-0 ~'pb-0.5' pl-0;
+      @apply pt-0 pr-0 pb-1 pl-0;
       @apply h-5;
       @apply box-content;
       @apply w-full;
       @apply truncate;
+    }
+
+    @{form-item-prefix-cls} {
+      @apply mb-4;
     }
   }
 
@@ -123,7 +127,7 @@
 
   &.is-display-only {
     .tiny-form-item__label {
-      @apply leading-normal;
+      @apply ~"leading-5.5";
       @apply h-auto;
       vertical-align: inherit;
     }
@@ -158,6 +162,14 @@
         @apply h-0;
         @apply p-0;
         @apply border-none;
+      }
+      .@{input-prefix-cls}-display-only {
+        @apply inline-block;
+        @apply ~"leading-5.5";
+      }
+      .@{textarea-prefix-cls}-display-only {
+        @apply inline-block;
+        @apply ~"leading-5.5";
       }
     }
     .@{form-item-prefix-cls}--medium .@{form-item-prefix-cls}__content,

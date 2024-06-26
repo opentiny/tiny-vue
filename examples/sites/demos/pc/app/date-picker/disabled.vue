@@ -4,7 +4,7 @@
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="disabledValue" disabled placeholder="请选择日期"></tiny-date-picker>
     </div>
-
+    <br />
     <p>部分禁用：</p>
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="value" :picker-options="pickerOptions" placeholder="请选择日期"></tiny-date-picker>
@@ -18,12 +18,12 @@
         end-placeholder="结束日期"
       ></tiny-date-picker>
     </div>
-
+    <br />
     <p>只读模式：</p>
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="readonlyValue" readonly placeholder="请选择日期"></tiny-date-picker>
     </div>
-
+    <br />
     <p>文本框不可输入：</p>
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="editableValue" :editable="false"></tiny-date-picker>

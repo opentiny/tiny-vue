@@ -74,13 +74,13 @@ export const getStatusCls =
 export const computedData =
   ({ props, state }: Pick<ITimelineRenderlessParams, 'props' | 'state'>) =>
   (): ITimelineItem[] => {
-    if (props.data) {
+    if (props.data && props.data.length > 0) {
       return state.isReverse
         ? props.data.map((item, i) => ({ ...props.data[props.data.length - 1 - i], index: i }))
         : props.data.map((item, i) => ({ ...item, index: i }))
     }
 
-    return state.timelineItems
+    return state.itemsArray
   }
 
 export const computedCurrent =
@@ -126,6 +126,7 @@ export const computedWrapperClass =
     return wrapperClass
   }
 
+// 仅mobile 使用
 export const toggleFold =
   ({ props }) =>
   (node: ITimelineItem): boolean => {

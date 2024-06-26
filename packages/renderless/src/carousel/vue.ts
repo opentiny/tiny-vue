@@ -1,15 +1,3 @@
-/**
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- */
-
 import {
   onComplete,
   handleMouseEnter,
@@ -35,7 +23,11 @@ import {
   touchstart,
   touchmove,
   touchend,
-  computedStyle
+  computedStyle,
+  simulateTouch,
+  computedHasButtons,
+  computedHasIndicators,
+  canActive
 } from './index'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 
@@ -99,28 +91,30 @@ const initState = ({ reactive, computed, api }) => {
     moveDisable: false,
     noTouchNode: ['svg', 'BUTTON', 'path', 'g'],
     style: computed(() => api.computedStyle()),
-    hasLabel: computed(() => api.computedHasLabel(state.items))
+    hasLabel: computed(() => api.computedHasLabel(state.items)),
+    hasButtons: computed(() => api.computedHasButtons()),
+    hasIndicators: computed(() => api.computedHasIndicators())
   })
 
   return state
 }
 
-const initApi = ({ vm, api, state, props, emit }) => {
+const initApi = ({ vm, api, state, props, emit, mode }) => {
   Object.assign(api, {
     state,
     computedHasLabel,
-    touchend: touchend({ state, api }),
-    touchstart: touchstart({ state, api }),
+    touchend: touchend({ props, state, api }),
+    touchstart: touchstart({ props, state, api }),
     touchmove: touchmove({ props, state, vm }),
-    playSlides: playSlides({ props, state }),
-    onComplete: onComplete({ count: 0, emit, props, state }),
+    playSlides: playSlides({ api, props, state }),
+    onComplete: onComplete({ api, count: 0, emit, props, state }),
     pauseTimer: pauseTimer(state),
     itemInStage: itemInStage(state),
     resetItemPosition: resetItemPosition(state),
     watchItems: watchItems({ api, props }),
     handleButtonLeave: handleButtonLeave(state),
-    handleIndicatorClick: handleIndicatorClick(state),
-    handleIndicatorHover: handleIndicatorHover({ props, state }),
+    handleIndicatorClick: handleIndicatorClick({ api, state }),
+    handleIndicatorHover: handleIndicatorHover({ api, props, state }),
     watchActiveIndex: watchActiveIndex({ api, emit }),
     watchAutoplay: watchAutoplay(api),
     startTimer: startTimer({ api, props, state }),
@@ -132,7 +126,11 @@ const initApi = ({ vm, api, state, props, emit }) => {
     handleMouseLeave: handleMouseLeave({ api, state }),
     throttledIndicatorHover: throttledIndicatorHover(api),
     handleButtonEnter: handleButtonEnter({ api, state }),
-    computedStyle: computedStyle({ props })
+    computedStyle: computedStyle({ props }),
+    simulateTouch: simulateTouch({ props, vm }),
+    computedHasButtons: computedHasButtons({ props, state, mode }),
+    computedHasIndicators: computedHasIndicators({ props, state, mode }),
+    canActive: canActive(props)
   })
 }
 
@@ -147,26 +145,28 @@ const initWatch = ({ watch, props, api, state }) => {
 
 export const renderless = (
   props,
-  { computed, onMounted, onBeforeUnmount, reactive, watch },
-  { vm, parent, emit, constants, childrenHandler }
+  { computed, onMounted, onBeforeUnmount, reactive, watch, provide },
+  { vm, parent, emit, mode }
 ) => {
   const api = {}
   const state = initState({ reactive, computed, api })
 
-  initApi({ vm, api, state, props, emit })
+  initApi({ vm, api, state, props, emit, mode })
 
-  const { updateItems } = useItems({ api, vm, onMounted, state, watch, constants, childrenHandler, parent })
+  const { updateItems } = useItems({ api, vm, onMounted, state, watch })
 
   api.updateItems = updateItems
 
   useActiveIndex({ api, parent, props, state, watch })
   useResizeListener({ api, onBeforeUnmount, onMounted, parent })
 
+  provide('CarouselVm', vm)
   initWatch({ watch, props, api, state })
 
   onMounted(() => {
     api.startTimer()
     api.onComplete(state.items.length)
+    api.simulateTouch()
   })
 
   // 监听子组件 CarouselItem 提交的 complete 事件
@@ -179,21 +179,11 @@ export const renderless = (
   return api
 }
 
-export const useItems = ({ api, onMounted, state, watch, constants, childrenHandler, parent }) => {
-  const updateItems = () => {
-    let $children = []
-
-    $children =
-      parent.$children &&
-      parent.$children[0].$children.filter((child) => {
-        return child.$el.classList && Array.from(child.$el.classList).includes('tiny-carousel__item')
-      })
-    if (!$children.length) {
-      childrenHandler(({ options, vm }) => {
-        options.name === constants.CHILD_NAME && $children.push(vm)
-      })
+export const useItems = ({ api, onMounted, state, watch }) => {
+  const updateItems = (carouselItemVm) => {
+    if (carouselItemVm && !state.items.includes(carouselItemVm)) {
+      state.items.push(carouselItemVm)
     }
-    state.items = $children
   }
 
   watch(

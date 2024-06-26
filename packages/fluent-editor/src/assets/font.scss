@@ -1,0 +1,60 @@
+// 字体
+@import './common';
+.ql-formats {
+  .ql-font.ql-picker {
+    width: 85px;
+    span[data-value='arial']::before {
+      content: 'arial';
+      font-family: arial, helvetica, sans-serif;
+    }
+    span[data-value='songti']::before {
+      content: '宋体';
+      font-family: '宋体', 'SimSun';
+    }
+    span[data-value='yahei']::before {
+      content: '微软雅黑';
+      font-family: '微软雅黑', 'Microsoft YaHei';
+    }
+    span[data-value='kaiti']::before {
+      content: '楷体';
+      font-family: '楷体', '楷体_GB2312', 'SimKai';
+    }
+    span[data-value='heiti']::before {
+      content: '黑体';
+      font-family: '黑体', 'SimHei';
+    }
+    span[data-value='lishu']::before {
+      content: '隶书';
+      font-family: '隶书', 'SimLi';
+    }
+    span[data-value='mono']::before {
+      content: 'andale mono';
+      font-family: 'andale mono';
+    }
+    span[data-value='arialblack']::before {
+      content: 'arial black';
+      font-family: 'arial black', 'avant garde';
+    }
+    span[data-value='comic']::before {
+      content: 'comic sans ms';
+      font-family: 'comic sans ms';
+    }
+    span[data-value='impact']::before {
+      content: 'impact';
+      font-family: 'impact', 'chicago';
+    }
+    span[data-value='times']::before {
+      content: 'times new roman';
+      font-family: 'times new roman';
+    }
+    span[data-value='mono'].ql-picker-label::before,
+    span[data-value='comic'].ql-picker-label::before,
+    span[data-value='times'].ql-picker-label::before,
+    span[data-value='arialblack'].ql-picker-label::before {
+      width: 60px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

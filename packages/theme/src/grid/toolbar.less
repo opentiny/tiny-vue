@@ -24,6 +24,11 @@
 .@{grid-toolbar-prefix-cls} {
   padding: 12px 0;
 
+  // Tiny 新增，工具栏容器为空则不需要占位
+  &:empty {
+    display: none;
+  }
+
   &:after {
     content: '';
     display: block;

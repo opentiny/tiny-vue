@@ -1,11 +1,16 @@
+import { hooks } from '@opentiny/vue-common'
 import { getRowkey } from '@opentiny/vue-renderless/grid/utils'
+import { arrayEach, isEqual } from '@opentiny/vue-renderless/grid/static'
 import { warn } from '../../tools'
+
+const { toRaw } = hooks
 
 const TEMPORARY_CHILDREN = '_$children_'
 const TEMPORARY_SHOW = '_$show_'
 const ROWKEY_MAP = new WeakMap()
 const TOTALROWS_MAP = new WeakMap()
 const CHART_MAP = new WeakMap()
+const VIRTUAL_ROW_KEY = '_$virtual_'
 
 let rowUniqueId = 0
 
@@ -116,18 +121,21 @@ const sliceTreeData = (_vm) => {
 }
 
 const sliceFullData = (_vm) => {
-  let { afterFullData, scrollYLoad, scrollYStore, treeConfig } = _vm
+  let { afterFullData, scrollYLoad, scrollYStore, treeConfig, hasVirtualRow, groupFullData } = _vm
   let { renderSize, startIndex } = scrollYStore
   let result
+  let fullData
+  // 分组表场景使用groupFullData
+  fullData = hasVirtualRow ? groupFullData : afterFullData
 
   if (scrollYLoad) {
     if (treeConfig) {
       result = sliceTreeData(_vm)
     } else {
-      result = afterFullData.slice(startIndex, startIndex + renderSize)
+      result = fullData.slice(startIndex, startIndex + renderSize)
     }
   } else {
-    result = afterFullData.slice(0)
+    result = fullData.slice(0)
   }
 
   return result
@@ -145,7 +153,7 @@ const setTotalRows = (_vm) => {
 }
 
 const getTotalRows = (_vm) => {
-  const { afterFullData, scrollYLoad, scrollLoad, treeConfig } = _vm
+  const { afterFullData, scrollYLoad, scrollLoad, treeConfig, hasVirtualRow, groupFullData } = _vm
   let totalRows = afterFullData.length
 
   if (scrollYLoad && treeConfig) {
@@ -159,6 +167,9 @@ const getTotalRows = (_vm) => {
   // 滚动分页场景总行数由（afterFullData.length）调整为（scrollLoad.pageSize），解决最后一页数据不足时滚动条位置改变问题
   if (scrollLoad) {
     totalRows = scrollLoad.pageSize || 10
+  } // 分组表场景使用groupFullData.length
+  if (hasVirtualRow) {
+    totalRows = groupFullData.length
   }
 
   return totalRows
@@ -244,7 +255,12 @@ const clearOnTableUnmount = ($table) => {
   removeSliceColumnTree($table)
 }
 
-const setCacheChartMap = (_vm) => CHART_MAP.set(_vm, buildChart(_vm))
+const setCacheChartMap = (_vm) => {
+  // 重建树表虚滚数据之前，清除_subTree保证新数据能正常重建，滚动不会报错
+  if (_vm._subTree) _vm._subTree = null
+
+  CHART_MAP.set(_vm, buildChart(_vm))
+}
 
 const getCacheChartMap = (_vm) => CHART_MAP.get(_vm)
 
@@ -367,6 +383,111 @@ const sliceColumnTree = (_vm) => {
 
 const setSliceColumnTree = (_vm) => _vm.isGroup && (_vm._sliceColumnTree = sliceColumnTree(_vm))
 
+/** 判断是否是虚拟行 */
+const isVirtualRow = (row) => row && row[VIRTUAL_ROW_KEY]
+
+/** 普通表分组场景，按数据顺序对数据进行分组 */
+const orderingGroupBy = (arr, key, equals, active, rowKey) => {
+  const result = []
+  const virtualItems = []
+  // 虚拟行id计数
+  let virtualRowId = 0
+  const createVirtualItem = (vItem) => {
+    vItem = {
+      [VIRTUAL_ROW_KEY]: true,
+      [rowKey]: `row_g_${++virtualRowId}`,
+      value: null,
+      children: [],
+      fold: false,
+      hover: false
+    }
+    result.push(vItem)
+    virtualItems.push(vItem)
+    return vItem
+  }
+
+  let virtualItem = createVirtualItem()
+  let prevSibling, equalsParam
+
+  arrayEach(arr, (item, i) => {
+    if (i > 0) {
+      prevSibling = arr[i - 1]
+      equalsParam = { prevRow: prevSibling, row: item }
+    }
+    // 如果当前行和前一行分组字段不相同，就创建一个新的虚拟行
+    if (i > 0 && !equals(prevSibling[key], item[key], equalsParam)) {
+      virtualItem = createVirtualItem()
+    }
+
+    virtualItem.children.push(item)
+    result.push(item)
+  })
+
+  arrayEach(virtualItems, (vItem) => {
+    vItem.value = vItem.children[0][key]
+    // 设置虚拟行的展开状态
+    if (typeof active === 'function') {
+      const expand = active(vItem)
+      vItem.fold = typeof expand === 'boolean' ? !expand : false
+    }
+  })
+
+  const rawResult = result.map(toRaw)
+
+  arrayEach(virtualItems.slice().reverse(), (vItem) => {
+    if (!vItem.fold) return
+
+    // 如果合起，对分组数据进行移除
+    const index = rawResult.indexOf(toRaw(vItem.children[0]))
+
+    if (index > -1) {
+      result.splice(index, vItem.children.length)
+    }
+  })
+
+  return result
+}
+
+/** 普通表分组场景，在全量数据筛选排序之后，进行分组处理生成虚拟行 */
+const buildRowGroupFullData = (fullData, _vm) => {
+  const { treeConfig, rowGroup } = _vm
+  const { field, equals, activeMethod } = rowGroup || {}
+
+  // 是否具有虚拟行：非树表（普通表），分组表，存在数据
+  _vm.hasVirtualRow = !treeConfig && rowGroup && field && fullData.length > 0
+
+  if (_vm.hasVirtualRow) {
+    // 在配置满足条件时，进行分组构建
+    _vm.groupFullData = orderingGroupBy(fullData, field, equals || isEqual, activeMethod, getTableRowKey(_vm))
+  }
+}
+
+/** 普通表分组场景，分组行点击处理 */
+const handleRowGroupFold = (row, _vm) => {
+  const { hasVirtualRow, groupFullData, rowGroup = {} } = _vm
+  const { closeable = true } = rowGroup
+
+  if (!hasVirtualRow || !closeable || !isVirtualRow(row)) return
+
+  row.fold = !row.fold
+
+  const copy = groupFullData.slice(0).map(toRaw)
+  const index = copy.indexOf(toRaw(row.children[0]))
+
+  if (row.fold) {
+    if (index > -1) {
+      // 如果被合起且子列在 groupFullData 内就进行移除
+      copy.splice(index, row.children.length)
+    }
+  } else if (index === -1) {
+    // 如果被展开且子列不在 groupFullData 内就进行添加
+    copy.splice(copy.indexOf(toRaw(row)) + 1, 0, ...row.children)
+  }
+
+  _vm.groupFullData = copy
+  _vm.handleTableData().then(_vm.recalculate)
+}
+
 export {
   clearOnTableUnmount,
   getRowUniqueId,
@@ -379,5 +500,8 @@ export {
   setTableRowKey,
   sliceFullData,
   sliceVisibleColumn,
-  setSliceColumnTree
+  setSliceColumnTree,
+  buildRowGroupFullData,
+  handleRowGroupFold,
+  isVirtualRow
 }

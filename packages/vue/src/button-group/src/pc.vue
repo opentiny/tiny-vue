@@ -25,6 +25,7 @@
                 'line-height': size === 'medium' ? '40px' : size === 'small' ? '30px' : size === 'mini' ? '22px' : ''
               }"
               type="button"
+              v-auto-tip="Boolean(node.tip) ? { always: true, content: node.tip } : false"
               :tabindex="getItemClass(node).disabled ? '-1' : '0'"
               @click="handleClick(node)"
             >
@@ -105,7 +106,7 @@
           </li>
         </ul>
       </template>
-      <span v-else class="tiny-button-group--empty"> 暂无数据 </span>
+      <span v-else class="tiny-button-group--empty"> {{ t('ui.buttonGroup.noData') }} </span>
     </slot>
   </div>
 </template>
@@ -116,10 +117,12 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import Popover from '@opentiny/vue-popover'
 import Button from '@opentiny/vue-button'
 import { iconPopup, iconWriting } from '@opentiny/vue-icon'
+import { AutoTip } from '@opentiny/vue-directive'
 import type { IButtonGroupApi } from '@opentiny/vue-renderless/types/button-group.type'
 
 export default defineComponent({
   emits: ['change', 'edit', 'update:modelValue'],
+  directives: { AutoTip },
   props: [
     ...props,
     'size',

@@ -24,18 +24,18 @@
       :value="item.value"
       :class="{ 'set-default': setDefault, 'is-active': item.value === state.defaultCurrency }"
     >
-      <span class="tiny-currency-option-label">{{ item.label }}</span>
-      <span
-        v-if="setDefault"
-        class="tiny-currency-option-set"
-        @click="toogleDefaultCurrency(item.value, item.value === state.defaultCurrency)"
-      >
-        <component :is="item.value === state.defaultCurrency ? 'icon-star-active' : 'icon-star-disable'" />
-        <span>
-          {{
-            item.value === state.defaultCurrency ? t('ui.currency.defaultCurrency') : t('ui.currency.setDefault')
-          }}</span
+      <span style="display: flex">
+        <span class="tiny-currency-option-label">{{ item.label }}</span>
+        <span
+          v-if="setDefault"
+          class="tiny-currency-option-set"
+          @click="toogleDefaultCurrency(item.value, item.value === state.defaultCurrency)"
         >
+          <component :is="item.value === state.defaultCurrency ? 'icon-star-active' : 'icon-star-disable'" />
+          <span>
+            {{ item.value === state.defaultCurrency ? t('ui.currency.defaultCurrency') : t('ui.currency.setDefault') }}
+          </span>
+        </span>
       </span>
     </tiny-option>
   </tiny-select>
