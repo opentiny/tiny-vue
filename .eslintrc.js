@@ -25,6 +25,7 @@ module.exports = {
     'vue/no-unused-refs': 'off',
     'vue/require-component-is': 'off',
     'vue/singleline-html-element-content-newline': 'off',
+    'vue/no-v-for-template-key-on-child': 'off',
     'curly': 'off',
     'sort-imports': 'off',
     'prefer-template': 'off',
@@ -48,6 +49,7 @@ module.exports = {
     '@typescript-eslint/restrict-plus-operands': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
-    '@typescript-eslint/no-invalid-this': 'off'
+    '@typescript-eslint/no-invalid-this': 'off',
+    'vue/no-deprecated-dollar-scopedslots-api': 'off'
   }
 }

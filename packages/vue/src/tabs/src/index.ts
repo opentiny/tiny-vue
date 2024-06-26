@@ -42,7 +42,7 @@ export const tabsProps = {
   showMoreTabs: Boolean,
   swipeable: {
     type: Boolean,
-    default: true
+    default: false
   },
   popperClass: String,
   popperAppendToBody: {

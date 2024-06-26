@@ -35,5 +35,6 @@ export const tinyGridSmbTheme = {
   'ti-grid-row-selected-background-color': '#f0f7ff',
   'ti-grid-expand-background-color': '#fafafa',
   'ti-grid-loading-background-color': 'rgba(255, 255, 255, 0.67)',
-  'ti-grid-tree-expand-icon-font-size': 'var(--ti-common-font-size-2)'
+  'ti-grid-tree-expand-icon-font-size': 'var(--ti-common-font-size-2)',
+  'ti-grid-tree-expand-icon-translate-x': '-2px'
 }

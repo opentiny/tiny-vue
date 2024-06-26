@@ -2,7 +2,7 @@
   <div ref="reference" data-tag="tiny-date-container" :class="state.isDisplayOnly ? 'inline' : ''">
     <tiny-filter-box
       v-if="shape === 'filter'"
-      v-clickoutside="handleClose"
+      v-clickoutside.mousedown="handleClose"
       @click="handleFocus"
       :show-close="clearable"
       :placeholder="placeholder"
@@ -22,7 +22,7 @@
       :size="state.pickerSize"
       :name="name"
       v-bind="state.firstInputId"
-      v-clickoutside="handleClose"
+      v-clickoutside.mousedown="handleClose"
       :placeholder="placeholder"
       @focus="handleFocus"
       @keydown="handleKeydown"
@@ -87,7 +87,7 @@
       @mouseenter="handleMouseEnter"
       @mouseleave="state.showClose = false"
       @keydown="handleKeydown"
-      v-clickoutside="handleClose"
+      v-clickoutside.mousedown="handleClose"
       v-else
     >
       <tiny-tooltip
@@ -190,7 +190,6 @@
       :format-weeks="formatWeeks"
       ref="picker"
       :visible="state.pickerVisible"
-      class="tiny-tw"
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
@@ -220,6 +219,7 @@
       v-if="state.isMobileScreen && state.isTimeMobileComponent"
       ref="datePickerMobile"
       v-model="state.timeMobileOption.value"
+      :default-value="state.timeMobileOption.defaultValue"
       :title="title"
       :clearable="clearable"
       :step="step"

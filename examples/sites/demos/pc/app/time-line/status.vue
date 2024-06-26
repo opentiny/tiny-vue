@@ -18,6 +18,7 @@
 
 <script lang="ts">
 import { TimeLine } from '@opentiny/vue'
+import { IconTime } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -30,6 +31,7 @@ export default {
         { name: '成功状态', autoColor: 'success' },
         { name: '警告状态', autoColor: 'warning' },
         { name: '异常状态', error: true }, // 也可以使用 autoColor: 'error'
+        { name: '定义图标', autoColor: IconTime() }, // 自定义图标
         { name: '禁用状态', disabled: true }
       ],
       data2: [

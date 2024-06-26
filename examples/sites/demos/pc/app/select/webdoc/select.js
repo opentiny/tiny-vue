@@ -525,6 +525,19 @@ export default {
       codeFiles: ['nest-radio-grid-much-data.vue']
     },
     {
+      demoId: 'init-label',
+      name: {
+        'zh-CN': '远程搜索设置初始化 label 值',
+        'en-US': 'Initialize the label value for remote search settings.'
+      },
+      desc: {
+        'zh-CN': `通过<code>init-label</code>属性设置远程搜索或者嵌套树懒加载数据未获取到时显示的初始化 label 值。`,
+        'en-US':
+          'Use the <code>init-label</code> attribute to set the initial label value displayed when remote search or nested sloth loading data is not obtained.'
+      },
+      codeFiles: ['init-label.vue']
+    },
+    {
       demoId: 'slot-default',
       name: {
         'zh-CN': '选项插槽',
@@ -606,9 +619,14 @@ export default {
         'en-US': 'Custom All Text'
       },
       desc: {
-        'zh-CN': '当下拉中显示全部时，通过<code>all-text</code> 属性自定义全部的显示文本',
-        'en-US':
-          'Use the <code>all-text</code> attribute to customize all displayed text when all is displayed in the drop-down list box.'
+        'zh-CN': `
+          通过<code>all-text</code> 属性自定义下拉面板中，全部选中的自定义文字。<br>
+          通过<code>show-all-text-tag</code> 属性设置为 <code> true </code> 时，勾选全部后，输入框只显示 <code>all-text</code> 属性的指定的 Tag。该属性默认为 <code>false</code>。
+        `,
+        'en-US': `
+          Use the <code>all-text</code> attribute to customize all the selected customized text in the drop-down panel.<br>
+          If <code>show-all-text-tag</code> is set to <code>true</code> and all is selected, only the tag specified by <code>all-text</code> is displayed in the text box. The default value is <code>false</code>.
+        `
       },
       codeFiles: ['all-text.vue']
     },

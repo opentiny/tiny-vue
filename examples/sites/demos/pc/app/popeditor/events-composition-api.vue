@@ -124,10 +124,12 @@ function handlePageChange(val) {
 }
 
 function handlePopup() {
-  Modal.message({
-    message: 'popup 弹窗打开事件',
-    status: 'info'
-  })
+  setTimeout(() => {
+    Modal.message({
+      message: 'popup 弹窗打开事件',
+      status: 'info'
+    })
+  }, 0)
 }
 
 function handleClose() {

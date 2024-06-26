@@ -42,6 +42,7 @@ export const renderless = (props, { reactive, computed, watch, ref, onMounted },
     },
 
     currIndex: 1,
+    defaultIndex: 1,
     transformY: 0,
     scrollDistance: 0,
     rotation: 20,
@@ -79,7 +80,7 @@ export const renderless = (props, { reactive, computed, watch, ref, onMounted },
   Object.assign(api, {
     state,
     touch,
-    OptionStyle: OptionStyle({ state }),
+    OptionStyle: OptionStyle({ props, state }),
     setRollerStyle: setRollerStyle({ state }),
     isHidden: isHidden({ state }),
     onTouchStart: onTouchStart({ state, props, touch, vm }),
@@ -108,10 +109,12 @@ export const renderless = (props, { reactive, computed, watch, ref, onMounted },
   )
 
   watch(
-    () => props.value,
-    () => {
-      state.transformY = 0
-      api.modifyStatus(false)
+    () => [props.value, props.defaultValue],
+    (val) => {
+      if ((val || val === 0) && props.visible) {
+        state.transformY = 0
+        api.modifyStatus(false)
+      }
     },
     {
       deep: true

@@ -162,3 +162,5 @@ export const isSame = (x: any, y: any) =>
 
 /** 判断是否是正则表达式 */
 export const isRegExp = (value: any) => typeOf(value) === 'regExp'
+
+export const isPromise = (val) => isObject(val) && isFunction(val.then) && isFunction(val.catch)

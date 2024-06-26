@@ -376,7 +376,5 @@ export const infinityConcat = {
   'ti-option-selected-bg-color': 'var(--ti-base-color-brand-1)',
   // form-item
   'ti-form-item-error-text-color': 'var(--ti-base-color-error-3)',
-  'ti-form-item-error-bg-color': '#ffd5d4',
-  // search
-  'ti-search-input-btn-width': 'var(--ti-common-size-height-minor)'
+  'ti-form-item-error-bg-color': '#ffd5d4'
 }

@@ -1,15 +1,3 @@
-/**
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- */
-
 export const processIndex = ({ activeIndex, index, length }) => {
   if (activeIndex === 0 && index === length - 1) {
     return -1
@@ -37,11 +25,11 @@ export const calculateTranslate =
   }
 
 export const translateItem =
-  ({ api, CARD_SCALE, parent, state }) =>
+  ({ api, CARD_SCALE, parent, state, carouselParent }) =>
   ({ activeIndex, index, oldIndex }) => {
-    const parentHeight = parent.$parent.$el.offsetHeight
-    const parentWidth = parent.$parent.$el.offsetWidth
-    const vnode = parent.$parent
+    const parentHeight = carouselParent.$el.offsetHeight
+    const parentWidth = carouselParent.$el.offsetWidth
+    const vnode = carouselParent
     const length = vnode.state.items.length
     const { TYPE_CARD, TYPE_VERTICAL } = parent.$constants
 
@@ -69,17 +57,21 @@ export const translateItem =
     } else {
       state.active = index === activeIndex
 
-      state.translate =
-        vnode.type === TYPE_VERTICAL ? parentHeight * (index - activeIndex) : parentWidth * (index - activeIndex)
+      if (length === 2 && !state.active) {
+        state.translate = vnode.type === TYPE_VERTICAL ? -parentHeight : -parentWidth
+      } else {
+        state.translate =
+          vnode.type === TYPE_VERTICAL ? parentHeight * (index - activeIndex) : parentWidth * (index - activeIndex)
+      }
     }
 
     state.ready = true
   }
 
 export const handleItemClick =
-  ({ state, parent }) =>
+  ({ state, parent, carouselParent }) =>
   () => {
-    const vnode = parent.$parent
+    const vnode = carouselParent
 
     if (vnode && vnode.type === parent.$constants.TYPE_CARD) {
       const index = vnode.state.items.findIndex((item) => item.state.translate === state.translate)
@@ -88,13 +80,15 @@ export const handleItemClick =
   }
 
 export const computedTransform =
-  ({ parent, TYPE_VERTICAL, mode, state }) =>
+  ({ carouselParent, TYPE_VERTICAL, mode, state }) =>
   () => {
     const TRANSLATE =
-      parent.$parent.type === TYPE_VERTICAL
+      carouselParent.type === TYPE_VERTICAL
         ? `translateY(${state.translate + state.delta}px) scale(${state.scale})`
         : `translateX(${state.translate + state.delta}px) scale(${state.scale})`
     const style = mode === 'mobile-first' ? { width: '100%', height: '100%' } : {}
+
+    moveItemBack(carouselParent, state, TYPE_VERTICAL)
 
     return {
       msTransform: TRANSLATE,
@@ -103,7 +97,18 @@ export const computedTransform =
       ...style
     }
   }
+// 幻灯片切换完后将第一张的位置移动到当前显示的幻灯片的后面，修复幻灯片数量为2时滚动方向不一致的问题
+const moveItemBack = (parent, state, TYPE_VERTICAL) => {
+  if (!parent || !parent.$el) return
 
+  const length = parent.state.items.length
+
+  setTimeout(() => {
+    if (length === 2 && !state.active) {
+      state.translate = parent.type === TYPE_VERTICAL ? parent.$el.offsetHeight : parent.$el.offsetWidth
+    }
+  }, 300) // 300是幻灯片动画时间
+}
 export const resetAnimatingMf = (state) => () => {
   state.animatingMf = false
 }

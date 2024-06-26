@@ -40,10 +40,16 @@ export const api = [
   'setDelta'
 ]
 
-export const renderless = (props, { computed, onMounted, onUnmounted, reactive }, { parent, dispatch, mode }) => {
+export const renderless = (
+  props,
+  { computed, onMounted, onUnmounted, reactive, inject },
+  { parent, dispatch, mode, vm }
+) => {
   const api = {}
   const CARD_SCALE = parent.$constants.CARD_SCALE
   const TYPE_VERTICAL = parent.$constants.TYPE_VERTICAL
+
+  const carouselParent = inject('CarouselVm')
 
   const state = reactive({
     scale: 1,
@@ -55,10 +61,10 @@ export const renderless = (props, { computed, onMounted, onUnmounted, reactive }
     animating: false,
     animatingMf: false,
     isOblique: false,
-    carouselParent: parent.$parent,
+    carouselParent,
     hasTitle: computed(() => !!props.title),
-    moving: computed(() => parent.$parent.state.moving),
-    animate: computed(() => (Math.abs(parent.$parent.state.delta) > 0 ? !state.animatingMf : state.animating)),
+    moving: computed(() => carouselParent.state.moving),
+    animate: computed(() => (Math.abs(carouselParent.state.delta) > 0 ? !state.animatingMf : state.animating)),
     getTransform: computed(() => api.computedTransform()),
     delta: 0
   })
@@ -66,23 +72,23 @@ export const renderless = (props, { computed, onMounted, onUnmounted, reactive }
   Object.assign(api, {
     state,
     processIndex,
-    handleItemClick: handleItemClick({ state, parent }),
-    computedTransform: computedTransform({ parent, TYPE_VERTICAL, mode, state }),
+    handleItemClick: handleItemClick({ state, parent, carouselParent }),
+    computedTransform: computedTransform({ carouselParent, TYPE_VERTICAL, mode, state }),
     calculateTranslate: calculateTranslate({ CARD_SCALE, state }),
-    translateItem: translateItem({ api, CARD_SCALE, parent, state }),
+    translateItem: translateItem({ api, CARD_SCALE, parent, state, carouselParent }),
     setDelta: setDelta({ state }),
     resetAnimatingMf: resetAnimatingMf(state)
   })
 
   onMounted(() => {
     // 向父组件提交 updateItems 事件
-    dispatch('Carousel', 'updateItems', [])
+    dispatch('Carousel', 'updateItems', [vm])
     // 向父组件提交 complete 事件
     dispatch('Carousel', 'complete', [])
   })
 
   onUnmounted(() => {
-    parent.$parent && parent.$parent.updateItems()
+    carouselParent && carouselParent.updateItems()
   })
 
   return api

@@ -142,7 +142,9 @@ export const calcTextareaHeight =
       height = Math.max(hiddenTextarea.scrollHeight, constants.TEXTAREA_HEIGHT_MOBILE)
     }
 
-    if (boxSizing === STYLE.ContentBox) {
+    if (boxSizing === STYLE.BorderBox) {
+      height = height + borderSize * 2 + paddingSize
+    } else if (boxSizing === STYLE.ContentBox) {
       height = height - paddingSize
     }
 
@@ -438,7 +440,9 @@ export const hasSelection = (api: IInputApi) => (): boolean => {
 export const handleEnterDisplayOnlyContent =
   ({ state, props }: Pick<IInputRenderlessParams, 'state' | 'props'>) =>
   ($event: MouseEvent, type?: 'textarea'): void => {
-    const target = $event.target as HTMLElement
+    if (type === 'textarea' && props.popupMore) return
+
+    const target = type === 'textarea' ? $event.target.querySelector('.text-box') : $event.target
     state.displayOnlyTooltip = ''
 
     if (!target) {
@@ -533,4 +537,35 @@ export const getDisplayOnlyText =
       typeof props.showEmptyValue === 'boolean' ? props.showEmptyValue : (parent.tinyForm || {}).showEmptyValue
 
     return showEmptyValue ? text : text || '-'
+  }
+
+export const setShowMoreBtn =
+  ({ state, vm }) =>
+  (init) => {
+    if (state.timer) clearTimeout(state.timer)
+
+    state.timer = setTimeout(() => {
+      const textBox = vm.$refs && vm.$refs.textBox
+      if (!textBox) return
+
+      // 兼容元素使用v-show及在弹框中使用的场景，只在初始化时执行一次
+      if (init && textBox.offsetHeight === 0) {
+        let textBoxClone = textBox.cloneNode(true)
+        textBoxClone.style.visibility = 'hidden'
+        textBoxClone.style.position = 'absolute'
+        textBoxClone.style.left = '-9999px'
+        document.body.appendChild(textBoxClone)
+
+        if (textBoxClone.scrollHeight > textBoxClone.offsetHeight) {
+          state.showMoreBtn = true
+        }
+
+        document.body.removeChild(textBoxClone)
+        textBoxClone = null
+      } else if (textBox.scrollHeight > textBox.offsetHeight) {
+        state.showMoreBtn = true
+      } else {
+        state.showMoreBtn = false
+      }
+    }, 100)
   }

@@ -43,7 +43,7 @@ export default defineComponent({
       panel: this
     }
   },
-  emits: ['update:modelValue', 'change', 'close', 'active-item-change', 'expand-change'],
+  emits: ['update:modelValue', 'change', 'close', 'expand-change', 'active-item-change', 'load-data'],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ICascaderPanelApi
   }

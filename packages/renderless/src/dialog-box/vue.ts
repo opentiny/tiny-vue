@@ -29,7 +29,6 @@ import {
   handleDrag,
   showScrollbar,
   hideScrollbar,
-  computedBodyStyle,
   toggleFullScreen
 } from './index'
 import usePopup from '../common/deps/vue-popup'
@@ -81,7 +80,6 @@ const initState = ({
     dragable: false,
     isFull: props.fullscreen,
     style: computed(() => api.computedStyle()),
-    bodyStyle: computed(() => api.computedBodyStyle()),
     animationName: computed(() => api.computedAnimationName()),
     current,
     dragStyle: null
@@ -142,7 +140,6 @@ const initApi = ({
       state
     }),
     computedStyle: computedStyle({ state, props, designConfig }),
-    computedBodyStyle: computedBodyStyle({ vm, props, state }),
     mounted: mounted({ api, parent, props }),
     unMounted: unMounted({ api, parent, props }),
     computedAnimationName: computedAnimationName({ constants, props }),
@@ -184,7 +181,7 @@ export const renderless = (
   }: IDialogBoxRenderlessParamUtils
 ): IDialogBoxApi => {
   const api = {} as IDialogBoxApi
-  const lockScrollClass = constants.scrollLockClass(mode)
+  const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
   let state = initState({ reactive, computed, api, emitter, props, useBreakpoint })
   const usePopups = usePopup({
     api,

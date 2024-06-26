@@ -76,19 +76,9 @@
     <span
       v-if="(slots.default && slots.default()) || state.isShowText"
       class="tiny-checkbox__label tiny-checkbox-display-only"
-      @mouseenter="handleLabelMouseenter"
-      @mouseleave="handleMouseleave"
+      v-auto-tip
     >
       <slot>{{ state.showText }}</slot>
-      <tiny-tooltip
-        ref="tooltip"
-        v-model="state.tooltipVisible"
-        :manual="true"
-        effect="light"
-        :content="state.displayedValue"
-        placement="top"
-      >
-      </tiny-tooltip>
     </span>
   </label>
 </template>
@@ -99,11 +89,11 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/checkbox/index.less'
 import { iconHalfselect, iconCheckedSur, iconCheck } from '@opentiny/vue-icon'
 import type { ICheckboxApi } from '@opentiny/vue-renderless/types/checkbox.type'
-import Tooltip from '@opentiny/vue-tooltip'
-
+import { AutoTip } from '@opentiny/vue-directive'
 export default defineComponent({
   // tiny 新增。 renderless中，没有emit('click')的地方。 此处勿声明，否则会造成丢失click事件。
   emits: ['update:modelValue', 'change', 'complete'],
+  directives: { AutoTip },
   props: [
     ...props,
     'modelValue',
@@ -128,8 +118,7 @@ export default defineComponent({
   components: {
     IconHalfselect: iconHalfselect(),
     IconCheckedSur: iconCheckedSur(),
-    IconCheck: iconCheck(),
-    TinyTooltip: Tooltip
+    IconCheck: iconCheck()
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ICheckboxApi

@@ -221,7 +221,8 @@ export default defineComponent({
     'onlyCheckChildren',
     'deleteNodeMethod',
     'showCheckedMark',
-    'willChangeView'
+    'willChangeView',
+    'editConfig'
   ],
   components: {
     TreeNode,

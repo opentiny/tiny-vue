@@ -94,6 +94,7 @@
           @keydown.down.prevent="decrease"
           @blur="handleBlur"
           @focus="handleFocus"
+          @compositionend="handleInput"
           @input="handleInput"
           @change="handleInputChange"
         />

@@ -200,7 +200,15 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
               dependencies['@vue/composition-api'] = '1.7.2'
             }
 
-            const matchList = ['vue-icon', 'vue-icon-saas', 'vue', 'design/smb', 'design/aurora', 'design/saas']
+            const matchList = [
+              'vue-icon',
+              'vue-icon-saas',
+              'vue',
+              'design/smb',
+              'design/aurora',
+              'design/saas',
+              'vue-directive'
+            ]
 
             // 如果是主入口、svg图标或者主题规范包则直接指向相同路径
             if (matchList.includes(filePath)) {

@@ -99,6 +99,10 @@
   }
   &.is-display-only {
     .@{textarea-prefix-cls}-display-only {
+      .@{textarea-prefix-cls}-display-only__wrap {
+        @apply flex;
+      }
+
       .@{textarea-prefix-cls}-display-only__content {
         @apply left-0;
         @apply max-w-full;
@@ -110,6 +114,22 @@
         @apply overflow-hidden;
         @apply break-words;
         @apply whitespace-pre-wrap;
+
+        &::before {
+          @apply content-[''];
+          @apply float-right;
+          @apply h-full;
+          @apply ~'-mb-3.5';
+        }
+
+        .more-btn {
+          @apply float-right;
+          @apply clear-both;
+          @apply text-color-brand;
+          @apply text-xs;
+          @apply leading-3;
+          @apply cursor-pointer;
+        }
       }
     }
     .@{textarea-prefix-cls}-autosize-display-only {

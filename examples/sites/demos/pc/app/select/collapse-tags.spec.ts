@@ -20,13 +20,13 @@ test('collapse-tags', async ({ page }) => {
   await expect(option.filter({ hasText: '上海' })).toHaveClass(/selected/)
 
   // 取消选中一个
-  await option.filter({ hasText: '北京' }).locator('span').nth(2).click()
+  await option.filter({ hasText: '北京' }).locator('span').nth(1).click()
   await expect(tag.filter({ hasText: '+ 1' })).toBeHidden()
   await expect(tag).toHaveCount(1)
 
   // 再选中2个
-  await option.filter({ hasText: '天津' }).locator('span').nth(2).click()
-  await option.filter({ hasText: '深圳' }).locator('span').nth(2).click()
+  await option.filter({ hasText: '天津' }).locator('span').nth(1).click()
+  await option.filter({ hasText: '深圳' }).locator('span').nth(1).click()
   await expect(tag.filter({ hasText: '+ 2' })).toBeVisible()
   await expect(tag).toHaveCount(2)
 })

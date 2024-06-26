@@ -9,8 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import YearTable from './src/pc.vue'
-import '@opentiny/vue-theme/year-table/index.less'
+import YearTable from './src/index'
 import { version } from './package.json'
 
 /* istanbul ignore next */

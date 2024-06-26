@@ -82,18 +82,6 @@ function onHalfSelection({ checkStrictly, property, row, selection, treeConfig, 
   }
 }
 
-function getVItemsOnParentSelection({ checkMethod, matchObj }) {
-  let vItems
-
-  if (checkMethod) {
-    vItems = matchObj.items.filter((item, $rowIndex) => checkMethod({ row: item, $rowIndex }))
-  } else {
-    vItems = matchObj.items
-  }
-
-  return vItems
-}
-
 // 保证不重复添加
 const addSelection = (selection, item) => !selection.includes(item) && selection.push(item)
 
@@ -135,7 +123,7 @@ function getParentStatusOnParentSelection({ indeterminatesItem, matchObj, select
     parentStatus = -1
   } else {
     let selectItems = matchObj.items.filter((item) => selection.includes(item))
-    let isEqualItem = selectItems.filter((item) => vItems.includes(item)).length === vItems.length
+    let isEqualItem = selectItems.length === vItems.length
 
     parentStatus = isEqualItem ? true : selectItems.length || value === -1 ? -1 : false
   }
@@ -220,7 +208,7 @@ function onSelectTreeCheckStrictly({ row }, value, _vm) {
     let matchObj = findTree(tableFullData, (item) => item === row, treeConfig)
 
     if (matchObj && matchObj.parent) {
-      let vItems = getVItemsOnParentSelection({ checkMethod, matchObj })
+      let vItems = matchObj.items
       let indeterminatesItem = find(matchObj.items, (item) => treeIndeterminates.includes(item))
       let parentStatus = getParentStatusOnParentSelection({
         indeterminatesItem,

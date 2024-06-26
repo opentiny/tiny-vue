@@ -1,6 +1,12 @@
 <template>
   <div>
+    <div style="margin: 16px 0">全选后，显示多个tag</div>
     <tiny-select v-model="value" multiple all-text="全部小吃">
+      <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
+    </tiny-select>
+
+    <div style="margin: 16px 0">全选后，显示自定义的全部Tag</div>
+    <tiny-select v-model="value1" multiple all-text="全部小吃" show-all-text-tag>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
   </div>
@@ -17,6 +23,7 @@ export default {
   data() {
     return {
       value: [],
+      value1: [],
       options: [
         { value: '选项1', label: '黄金糕' },
         { value: '选项2', label: '双皮奶' },

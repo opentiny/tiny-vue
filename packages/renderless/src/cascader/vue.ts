@@ -73,7 +73,8 @@ export const api = [
   'toggleDropDownVisible',
   'handleKeyDown',
   'handleMouseenter',
-  'handleMouseleave'
+  'handleMouseleave',
+  'computePresentContent'
 ]
 
 const initState = ({

@@ -111,6 +111,7 @@ export default defineComponent({
   render() {
     let { ctxMenuStore, $parent: tableInstance } = this
     let { toKebab, getEventTargetNode } = tableInstance
+    const hasChild = Array.isArray(ctxMenuStore.list) && ctxMenuStore.list.flat().some((item) => item.visible !== false)
 
     return h(
       'div',
@@ -119,7 +120,7 @@ export default defineComponent({
           'tiny-grid__wrapper',
           'tiny-grid-menu__wrapper',
           {
-            show: ctxMenuStore.visible
+            show: ctxMenuStore.visible && hasChild
           }
         ],
         style: ctxMenuStore.style

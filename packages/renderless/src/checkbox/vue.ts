@@ -37,12 +37,10 @@ import {
   mounted,
   toggleEvent,
   computedIsShowText,
-  computedShowText,
-  handleLabelMouseenter,
-  handleMouseleave
+  computedShowText
 } from './index'
 
-export const api = ['state', 'handleChange', 'computedStore', 'handleLabelMouseenter', 'handleMouseleave']
+export const api = ['state', 'handleChange', 'computedStore']
 
 const initState = ({ reactive, computed, parent, api, inject, props }) => {
   const state: ICheckboxState = reactive({
@@ -72,9 +70,7 @@ const initState = ({ reactive, computed, parent, api, inject, props }) => {
     }),
     showText: computed(() => api.computedShowText()),
     isShowText: computed(() => api.computedIsShowText()),
-    shape: inject('shape', null) || props.shape,
-    tooltipVisible: false,
-    displayedValue: ''
+    shape: inject('shape', null) || props.shape
   })
 
   return state
@@ -115,9 +111,7 @@ const initApi = ({
     handleChange: handleChange({ state, props, emit, nextTick, dispatch, constants }),
     computedDisplayLabel: computedDisplayLabel({ state, props, t }),
     computedIsShowText: computedIsShowText({ props }),
-    computedShowText: computedShowText({ props }),
-    handleLabelMouseenter: handleLabelMouseenter({ state, vm }),
-    handleMouseleave: handleMouseleave(state)
+    computedShowText: computedShowText({ props })
   } as Partial<ICheckboxApi>)
 }
 

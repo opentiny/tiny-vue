@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-input",
-  "version": "3.16.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -19,6 +19,8 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-dialog-box": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"

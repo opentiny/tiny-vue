@@ -153,6 +153,11 @@ export default defineComponent({
       default: true
     },
     onlyCheckChildren: Boolean,
+    editConfig: {
+      type: Object,
+      default: () => ({})
+    },
+    // tiny 新增
     showLine: Boolean
   },
   setup(props, context) {
