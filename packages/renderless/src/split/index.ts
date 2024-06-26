@@ -38,8 +38,13 @@ export const getrightBottomMin =
 
 export const getAnotherOffset =
   ({ vm, state }) =>
-  (value) =>
-    state.valueIsPx ? `${vm.$refs.outerWrapper[state.offsetSize] - parseFloat(value)}px` : 1 - value
+  (value, isPercent) => {
+    return isPercent
+      ? 100 - value
+      : state.valueIsPx
+        ? `${vm.$refs.outerWrapper[state.offsetSize] - parseFloat(value)}px`
+        : 1 - value
+  }
 
 export const handleMove =
   ({ api, emit, props, vm, state }) =>
@@ -52,7 +57,11 @@ export const handleMove =
       ? `${parseFloat(state.oldOffset) + offset}px`
       : api.px2percent({ numerator: outerWidth * state.oldOffset + offset, denominator: outerWidth })
 
-    const anotherValue = api.getAnotherOffset(value)
+    const anotherValue = props.rightBottomValue ? value : api.getAnotherOffset(value)
+
+    if (props.rightBottomValue) {
+      value = api.getAnotherOffset(value)
+    }
 
     if (parseFloat(value) <= parseFloat(state.computedleftTopMin)) {
       value = api.getrightBottomMin({
@@ -108,7 +117,7 @@ export const handleMousedown =
           state.oldOffset = val
           emit('update:modelValue', val)
         } else {
-          state.oldOffset = props.modelValue
+          state.oldOffset = props.rightBottomValue ? api.getAnotherOffset(props.modelValue) : props.modelValue
         }
       }
       state.isMoving = true
@@ -133,10 +142,10 @@ export const buttonLeftTopClick =
       emit('update:modelValue', state.lastmodelValue)
     } else if (state.offset !== 0) {
       state.lastClickOffset = state.offset
-      state.offset = 0
+      state.offset = props.rightBottomValue ? 100 : 0
       state.lastmodelValue = props.modelValue
 
-      emit('update:modelValue', 0)
+      emit('update:modelValue', props.rightBottomValue ? 1 : 0)
     }
     emit('left-top-click')
   }
@@ -150,10 +159,10 @@ export const buttonRightBottomClick =
       emit('update:modelValue', state.lastmodelValue)
     } else if (state.offset !== 100) {
       state.lastClickOffset = state.offset
-      state.offset = 100
+      state.offset = props.rightBottomValue ? 0 : 100
       state.lastmodelValue = props.modelValue
 
-      emit('update:modelValue', 1)
+      emit('update:modelValue', props.rightBottomValue ? 0 : 1)
     }
     emit('right-bottom-click')
   }
@@ -171,15 +180,19 @@ export const computeOffset =
 
     if (state.valueIsPx) {
       nextTick(() => {
-        state.offset =
+        const offset =
           (api.px2percent({
             numerator: props.modelValue,
             denominator: vm.$refs.outerWrapper && vm.$refs.outerWrapper[state.offsetSize]
           }) *
             10000) /
           100
+
+        state.offset = props.rightBottomValue ? api.getAnotherOffset(offset, true) : offset
       })
     } else {
-      state.offset = (props.modelValue * 10000) / 100
+      const offset = (props.modelValue * 10000) / 100
+
+      state.offset = props.rightBottomValue ? api.getAnotherOffset(offset, true) : offset
     }
   }

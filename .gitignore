@@ -18,6 +18,12 @@ test-results
 /packages/vue-icon-saas/src
 /packages/vue-icon-saas/index.ts
 
+/packages/vue-runtime/pc.ts
+/packages/vue-runtime/mobile.ts
+/packages/vue-runtime/mobile-first.ts
+/packages/vue-runtime/all.ts
+/packages/vue-runtime/simple.ts
+
 /packages/react/index.ts
 /packages/react/pc.ts
 /packages/react/mobile.ts

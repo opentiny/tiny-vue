@@ -59,11 +59,26 @@ export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scro
 
 export function computeScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, tableBodyElem, visibleColumn }) {
   if (scrollXLoad) {
-    let firstColumn = visibleColumn[0]
-    // 获取x轴虚拟滚动每列宽度
-    let cWidth = firstColumn ? firstColumn.renderWidth : 40
-    // 获取每次需要渲染的列数
-    let visibleXSize = toNumber(scrollX.vSize || Math.ceil(tableBodyElem.clientWidth / cWidth))
+    /**
+     * 使用 “列渲染宽度累加方式” 优化默认 visibleSize 的计算，
+     * 旧的使用总宽度除以第一列宽度方式，会出现 visibleSize 很大出现渲染空白问题。
+     */
+    const clientWidth = tableBodyElem.clientWidth
+    let width = 0
+    let visibleXSize = 0
+
+    for (let i = 0; i < visibleColumn.length; i++) {
+      const column = visibleColumn[i]
+
+      width += column.renderWidth
+
+      if (width > clientWidth) {
+        visibleXSize = i + 1
+        break
+      }
+    }
+
+    visibleXSize = toNumber(scrollX.vSize || visibleXSize)
 
     scrollXStore.visibleSize = visibleXSize
     // 自动优化

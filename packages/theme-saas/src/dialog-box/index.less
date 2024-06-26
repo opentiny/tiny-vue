@@ -29,10 +29,12 @@
     @apply top-0;
     @apply w-screen;
     @apply h-screen;
-    .@{dialog-box-prefix-cls}__footer {
-      @apply w-screen;
-      @apply fixed;
-      @apply bottom-0;
+    @apply flex;
+    @apply flex-col;
+
+    .@{dialog-box-prefix-cls}__body {
+      @apply ~"max-h-[none]";
+      @apply flex-auto;
     }
   }
 
@@ -42,6 +44,7 @@
       @apply text-center;
     }
   }
+
   &.is-right-slide {
     @apply flex;
     @apply flex-col;
@@ -122,10 +125,6 @@
     }
   }
 
-  &.is-fullscreen &__body {
-    max-height: calc(100vh - theme('spacing.28'));
-  }
-
   & &__footer {
     text-align: inherit;
     @apply pt-4 pr-6 pb-4 pl-6;
@@ -145,21 +144,8 @@
   @apply overflow-hidden;
 }
 
-&.popup-parent--hidden {
-  @apply overflow-hidden;
-}
-
-body:not(.popup-parent--hidden) {
-  .v-modal {
-    @apply pointer-events-none;
-  }
-  .@{dialog-box-prefix-cls}__wrapper {
-    @apply pointer-events-none;
-
-    .@{dialog-box-prefix-cls} {
-      @apply pointer-events-auto;
-    }
-  }
+.dialog-box__scroll-lock {
+  overflow: hidden;
 }
 
 .v-modal {

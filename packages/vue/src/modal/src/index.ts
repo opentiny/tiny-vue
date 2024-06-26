@@ -32,7 +32,7 @@ export const $constants = {
     ERROR: 'tiny-modal-svg__error',
     LOADING: 'tiny-modal-svg__refresh roll'
   },
-  PC_SCROLL_LOCK_CLASS: 'tiny-dialog-box__scroll-lock',
+  PC_SCROLL_LOCK_CLASS: 'dialog-box__scroll-lock',
   MOBILE_FIRST_SCROLL_LOCK_CLASS: 'tiny-modal-lockscroll',
   Mode: 'pc',
   SCROLL_LOCK_CLASS(mode) {

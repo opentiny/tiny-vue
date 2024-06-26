@@ -117,6 +117,15 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['filter/default-relation.vue']
+    },
+    {
+      'demoId': 'filter-request-service-reload-filter',
+      'name': { 'zh-CN': '重载数据时不清除过滤', 'en-US': '' },
+      'desc': {
+        'zh-CN': `<p>在调用 <code>handleFetch('reload')</code> 重载表格数据时，默认会清除表格筛选。配置 <code>fetchData.reloadConfig.filter</code> 为 <code>true</code> 可以在重载时保持表格筛选。</p>`,
+        'en-US': ''
+      },
+      'codeFiles': ['filter/request-service-reload-filter.vue']
     }
   ],
   apis: [{ 'name': 'grid-filter', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

@@ -122,7 +122,7 @@ const initApi = ({
     syncMenuState: syncMenuState({ api, nextTick, state }),
     syncMultiCheckState: syncMultiCheckState({ api, state }),
     calculateCheckedNodePaths: calculateCheckedNodePaths({ api, state }),
-    lazyLoad: lazyLoad({ api, $parent: parent, state, Store }),
+    lazyLoad: lazyLoad({ api, $parent: parent, state, Store, emit }),
     syncCheckedValue: syncCheckedValue({ api, props, state }),
     focusNode: focusNode(api),
     checkNode: checkNode(api),

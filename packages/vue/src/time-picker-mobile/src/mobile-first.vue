@@ -3,6 +3,7 @@
     <tiny-cascader-select
       ref="cascaderSelect"
       v-model="state.dateArr"
+      :default-value="defaultValue"
       :cycle-roll="cycleRoll"
       :options="state.options"
       :disabled="disabled"
@@ -43,6 +44,7 @@ export default defineComponent({
   props: {
     ...$props,
     modelValue: Array,
+    defaultValue: Array,
     visible: {
       type: Boolean,
       default: false

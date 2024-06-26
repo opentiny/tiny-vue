@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import DatePicker from './src/index.js'
+import DatePicker from './src/index'
 import '@opentiny/vue-theme/date-picker/index.less'
 import { version } from './package.json'
 

@@ -13,6 +13,11 @@
 .@{grid-toolbar-prefix-cls} {
   @apply pt-3 pb-2 px-0;
 
+  // Tiny 新增，工具栏容器为空则不需要占位
+  &:empty {
+    @apply hidden;
+  }
+
   &:after {
     @apply content-[''];
     @apply block;

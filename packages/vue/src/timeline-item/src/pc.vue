@@ -15,9 +15,9 @@
       <template v-if="rootProps.textPosition === 'right'">
         <div :class="state.iconClass" @click="handleClick(node)">
           <span
-            v-if="(node.index >= state.current || rootProps.onlyNumber) && !node[autoColorField] && !node.error"
+            v-if="(nodeIndex >= state.current || rootProps.onlyNumber) && !node[autoColorField] && !node.error"
             class="number"
-            >{{ rootProps.showNumber ? node.index + rootProps.start : '' }}
+            >{{ rootProps.showNumber ? nodeIndex + rootProps.start : '' }}
           </span>
           <template v-else>
             <icon-close
@@ -26,7 +26,7 @@
             ></icon-close>
             <icon-warn v-else-if="node[autoColorField] === 'warning'" class="tiny-svg-size fixicon icon-warning" />
             <icon-yes
-              v-else-if="node[autoColorField] === 'success' || (node.index < state.current && !node[autoColorField])"
+              v-else-if="node[autoColorField] === 'success' || (nodeIndex < state.current && !node[autoColorField])"
               class="tiny-svg-size fixicon icon-yes"
             />
             <component v-else :is="node[autoColorField]" class="fixicons"></component>
@@ -41,10 +41,11 @@
             :class="[
               'line',
               {
-                'line-done': node.index < state.current,
-                'line-end': node.index === state.nodesLength - 1
+                'line-done': nodeIndex < state.current,
+                'line-end': nodeIndex === state.nodesLength - 1
               }
             ]"
+            v-if="nodeIndex !== state.nodesLength - 1"
             :style="{ width: state.computedLineWidth }"
           ></div>
 
@@ -52,7 +53,7 @@
             <slot name="description" :slot-scope="node">
               {{ node.description }}
             </slot>
-            <div v-show="node.index === rootProps.active">
+            <div v-show="nodeIndex === rootProps.active">
               <slot name="active-node-desc" :slot-scope="node"></slot>
             </div>
           </div>
@@ -69,9 +70,9 @@
         <div class="tiny-steps__node">
           <div :class="state.iconClass" @click="handleClick(node)">
             <span
-              v-if="(node.index >= state.current || rootProps.onlyNumber) && !node[autoColorField] && !node.error"
+              v-if="(nodeIndex >= state.current || rootProps.onlyNumber) && !node[autoColorField] && !node.error"
               class="number"
-              >{{ rootProps.showNumber ? node.index + rootProps.start : '' }}
+              >{{ rootProps.showNumber ? nodeIndex + rootProps.start : '' }}
             </span>
             <template v-else>
               <icon-close
@@ -80,7 +81,7 @@
               ></icon-close>
               <icon-warn v-else-if="node[autoColorField] === 'warning'" class="tiny-svg-size fixicon icon-warning" />
               <icon-yes
-                v-else-if="node[autoColorField] === 'success' || (node.index < state.current && !node[autoColorField])"
+                v-else-if="node[autoColorField] === 'success' || (nodeIndex < state.current && !node[autoColorField])"
                 class="tiny-svg-size fixicon icon-yes"
               />
               <component v-else :is="node[autoColorField]" class="fixicons"></component>
@@ -92,8 +93,8 @@
             :class="[
               'line',
               {
-                'line-done': node.index < state.current,
-                'line-end': node.index === state.nodesLength - 1
+                'line-done': nodeIndex < state.current,
+                'line-end': nodeIndex === state.nodesLength - 1
               }
             ]"
           ></div>
@@ -102,7 +103,7 @@
           <slot name="bottom" :slot-scope="node">
             <div class="name" v-text="node[rootProps.nameField]" @click="handleClick(node)"></div>
             <div class="status" v-if="rootProps.showStatus">
-              {{ getStatus(node.index) }}
+              {{ getStatus(nodeIndex) }}
             </div>
           </slot>
         </div>
@@ -118,7 +119,7 @@
       <div class="tiny-timeline-item__pillar">
         <div v-if="shape === 'circle'" :class="state.iconClass" @click="handleClick(node)">
           <template
-            v-if="(state.isReverse ? node.index > state.current : node.index < state.current) || node[autoColorField]"
+            v-if="(state.isReverse ? nodeIndex > state.current : nodeIndex < state.current) || node[autoColorField]"
           >
             <icon-close
               v-if="node[autoColorField] === 'error' || node.error"
@@ -134,8 +135,8 @@
           <span v-else class="number">{{
             rootProps.showNumber
               ? state.isReverse
-                ? state.nodesLength - 1 - node.index + rootProps.start
-                : node.index + rootProps.start
+                ? state.nodesLength - 1 - nodeIndex + rootProps.start
+                : nodeIndex + rootProps.start
               : ''
           }}</span>
         </div>
@@ -164,7 +165,7 @@ import type { ITimelineItemApi } from '@opentiny/vue-renderless/types/timeline-i
 
 export default defineComponent({
   emits: ['click'],
-  props: [...props, 'node', 'space', 'lineWidth', 'shape', 'autoColorField'],
+  props: [...props, 'node', 'space', 'lineWidth', 'shape', 'autoColorField', 'nodeIndex'],
   components: {
     IconWarn: iconWarn(),
     IconClose: iconClose(),

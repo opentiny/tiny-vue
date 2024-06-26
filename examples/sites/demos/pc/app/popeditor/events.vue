@@ -130,10 +130,12 @@ export default {
       this.gridOp.data = dataset.slice(offset, offset + this.pagerOp.pageSize)
     },
     handlePopup() {
-      Modal.message({
-        message: 'popup 弹窗打开事件',
-        status: 'info'
-      })
+      setTimeout(() => {
+        Modal.message({
+          message: 'popup 弹窗打开事件',
+          status: 'info'
+        })
+      }, 0)
     },
     handleClose() {
       Modal.message({

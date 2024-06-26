@@ -77,26 +77,22 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/year-range/vue'
-import { $prefix, setup, directive, $props, defineComponent } from '@opentiny/vue-common'
+import { setup, directive, props, defineComponent } from '@opentiny/vue-common'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import YearTable from '@opentiny/vue-year-table'
 import { IconDoubleRight, IconDoubleLeft } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  name: $prefix + 'YearRange',
   directives: directive({ Clickoutside }),
   components: {
     YearTable,
     IconDoubleRight: IconDoubleRight(),
     IconDoubleLeft: IconDoubleLeft()
   },
-  props: {
-    ...$props,
-    emitter: Object
-  },
+  props: [...props, 'emitter'],
   emits: ['dodestroy', 'pick'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

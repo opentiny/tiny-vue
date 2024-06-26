@@ -1,0 +1,20 @@
+/* 图片预览 */
+
+@mixin imagePreview {
+  .image-preview__overlay {
+    position: absolute;
+    z-index: 10;
+
+    .icon-maxmize {
+      font-size: 18px;
+      padding: 8px 4px 3px;
+      background-color: #8a8e99;
+      color: #ffffff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .icon-maxmize:before {
+      content: url('data:image/svg+xml;utf8,<svg t="1642681601748" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2834" width="20" height="20"><path d="M460.8 940.8h-320l262.4-262.4c12.8-12.8 12.8-38.4 0-51.2-12.8-19.2-38.4-19.2-57.6 0l-262.4 262.4v-345.6c0-19.2-19.2-38.4-38.4-38.4s-38.4 19.2-38.4 38.4v364.8c0 51.2 38.4 115.2 96 115.2h358.4c19.2 0 38.4-19.2 38.4-38.4 0-25.6-19.2-44.8-38.4-44.8zM940.8 6.4h-377.6c-19.2 0-38.4 19.2-38.4 38.4s19.2 38.4 38.4 38.4h320l-268.8 262.4c-12.8 12.8-12.8 38.4 0 57.6 19.2 12.8 44.8 12.8 57.6 0l262.4-262.4v320c0 19.2 19.2 38.4 38.4 38.4s38.4-19.2 38.4-38.4v-352c6.4-64-25.6-102.4-70.4-102.4z" p-id="2835"></path></svg>');
+    }
+  }
+}

@@ -82,7 +82,8 @@ export default {
         res = h(hooks.toRaw(toolbar.component), {
           ref: 'toolbar',
           props: { loading: loading || tableLoading, ...toolbar },
-          class: _vm.viewCls('toolbar')
+          class: _vm.viewCls('toolbar'),
+          scopedSlots: toolbar.slots || {}
         })
       }
 

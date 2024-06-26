@@ -6,10 +6,9 @@ export default {
       'demoId': 'drag-row-drag',
       'name': { 'zh-CN': '行拖拽', 'en-US': 'Drag Row' },
       'desc': {
-        'zh-CN':
-          '<p>通过设置 <code>drop-config</code> 的 <code>row</code> 属性控制行拖拽，默认为开启行拖拽，行拖拽事件有 <code>@row-drop-start</code>、<code>row-drop-move</code>、<code>row-drop-end</code>。</p>\n',
+        'zh-CN': `<p>通过设置 <code>drop-config</code> 的 <code>row</code> 属性控制行拖拽，默认为开启行拖拽，行拖拽事件有 <code>@row-drop-start</code>、<code>row-drop-move</code>、<code>row-drop-end</code>。可以通过设置 <code>dropConfig.rowHandle</code> 为 <code>'index'</code> 开启序号列作为拖拽区域，不影响行字段的复制。</p>`,
         'en-US':
-          '<p>You can set the <code>row</code> attribute of <code>drop-config</code> to control row dragging. By default, row dragging is enabled. Row drag events include <code>@row-drop-start</code>, <code>row-drop-move</code>, and <code>row-drop-end</code>. </p>\n'
+          '<p>You can set the <code>row</code> attribute of <code>drop-config</code> to control row dragging. By default, row dragging is enabled. Row drag events include <code>@row-drop-start</code>, <code>row-drop-move</code>, and <code>row-drop-end</code>. </p>'
       },
       'codeFiles': ['drag/row-drag.vue']
     },
@@ -34,6 +33,16 @@ export default {
           '<p>You can set the <code>column</code> attribute of <code>drop-config</code> to control column dragging. Column dragging is enabled by default. Column drag events include <code>@column-drop-start</code>, <code>column-drop-move</code>, and <code>column-drop-end</code>. </p>\n'
       },
       'codeFiles': ['drag/column-drag.vue']
+    },
+    {
+      'demoId': 'multi-header-drag',
+      'name': { 'zh-CN': '多级表头拖拽', 'en-US': 'Multiple header drag' },
+      'desc': {
+        'zh-CN': `<p>设置表格属性 <code>columnKey</code> 和 <code>dropConfig</code>。在设置 <code>dropConfig.scheme</code> 为 v2 且设置 <code>dropConfig.column</code> 为 <code>true</code> 时，开启多表头列拖拽。
+          其它属性 <code>dropConfig.columnGroup</code>，<code>dropConfig.columnBeforeDrop</code> 和 <code>dropConfig.columnDropClass</code>，参考示例配置：</p>\n`,
+        'en-US': ''
+      },
+      'codeFiles': ['drag/multi-header-drag.vue']
     }
   ],
   apis: [{ 'name': 'grid-drag', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

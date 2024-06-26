@@ -24,7 +24,6 @@ import Resize from './src/resize'
 import Filter from './src/filter'
 import GridConfig from './src/config'
 import GridRadio from './src/radio'
-import GridButton from './src/button'
 import FetchData from './src/fetch-data'
 import Pager from './src/pager'
 import Toolbar from './src/toolbar'
@@ -113,4 +112,4 @@ if (process.env.BUILD_TARGET === 'runtime') {
 
 export default Grid
 // 按需引入插件
-export { GridColumn, GridConfig, GridAdapter, GridRadio, GridButton, GridTools }
+export { GridColumn, GridConfig, GridAdapter, GridRadio, GridTools }

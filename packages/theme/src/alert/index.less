@@ -79,7 +79,7 @@
   }
 
   &&--success {
-    .alert-variant(var(--ti-alert-title-text-color);
+    .alert-variant(var(--ti-alert-success-title-text-color);
       var(--ti-alert-success-border-color);
       var(--ti-alert-success-icon-color);
       var(--ti-alert-success-link-text-color);
@@ -92,7 +92,7 @@
   }
 
   &&--info {
-    .alert-variant(var(--ti-alert-title-text-color);
+    .alert-variant(var(--ti-alert-info-title-text-color);
       var(--ti-alert-info-border-color);
       var(--ti-alert-info-icon-color);
       var(--ti-alert-info-link-text-color);
@@ -105,7 +105,7 @@
   }
 
   &&--warning {
-    .alert-variant(var(--ti-alert-title-text-color);
+    .alert-variant(var(--ti-alert-warning-title-text-color);
       var(--ti-alert-warning-border-color);
       var(--ti-alert-warning-icon-color);
       var(--ti-alert-warning-link-text-color);
@@ -118,7 +118,7 @@
   }
 
   &&--error {
-    .alert-variant(var(--ti-alert-title-text-color);
+    .alert-variant(var(--ti-alert-error-title-text-color);
       var(--ti-alert-error-border-color);
       var(--ti-alert-error-icon-color);
       var(--ti-alert-error-link-text-color);
@@ -131,7 +131,7 @@
   }
 
   &&--simple {
-    .alert-variant(var(--ti-alert-title-text-color);
+    .alert-variant(var(--ti-alert-simple-title-text-color);
       var(--ti-alert-simple-border-color);
       var(--ti-alert-simple-icon-color);
       var(--ti-alert-simple-link-text-color);
@@ -192,6 +192,7 @@
     font-size: var(--ti-alert-title-font-size);
     color: var(--ti-alert-title-text-color);
     font-weight: bold;
+    margin-top: var(--ti-alert-title-margin-top);
   }
 
   & &__description {

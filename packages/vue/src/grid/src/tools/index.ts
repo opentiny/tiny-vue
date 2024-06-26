@@ -27,6 +27,8 @@ import { getCellValue } from '@opentiny/vue-renderless/grid/utils'
 import Formatter from './formatter'
 import GlobalConfig from '../config'
 
+export { Formatter }
+
 export { warn, error } from './logger'
 
 function getRenderType({ editor, formatConfig, formatText }) {

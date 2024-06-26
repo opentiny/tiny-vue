@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`~/src/components/Button.vue can mount 1`] = `"<button class=\\"Button Button-primary\\"></button>"`;

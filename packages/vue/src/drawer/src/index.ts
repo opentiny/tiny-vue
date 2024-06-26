@@ -1,16 +1,17 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
-const $constants = {
+export const $constants = {
   SCROLL_LOCK_CLASS(mode: string) {
     const scrollLockClasses = {
       'mobile-first': 'overflow-hidden',
-      'pc': 'tiny-popup-parent--hidden tiny-dialog-box__scroll-lock'
+      'pc': 'popup-parent--hidden dialog-box__scroll-lock'
     }
     return (scrollLockClasses[mode] || '') as string
   },
   DEFAULT_WIDTH: '500px'
 }
+
 export const drawerProps = {
   ...$props,
   _constants: {
@@ -64,7 +65,10 @@ export const drawerProps = {
     default: 2000
   },
   beforeClose: Function,
-  tipsProps: Object
+  tipsProps: Object,
+
+  // tiny 新增：用于方法调用组件
+  customSlots: Object
 }
 
 export default defineComponent({

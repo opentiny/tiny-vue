@@ -36,9 +36,8 @@ export const watchVisible =
   ({ nextTick, vm, state, api }) =>
   (value) => {
     if (value) {
-      state.oldValue = state.value
-
       nextTick(() => {
+        state.oldValue = state.value
         vm.$refs.spinner.emitSelectRange('hours')
         api.adjustSpinners()
       })

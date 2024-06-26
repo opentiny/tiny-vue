@@ -30,12 +30,6 @@
     }
   }
 
-  &.is__editable {
-    .@{grid-cell-prefix-cls} {
-      @apply pl-5;
-    }
-  }
-
   // 在表格个性化场景，动态的设置冻结列，这里需要在非冻结列情况下消除之前设置的left和right样式，并提升权重覆盖style属性
   &:not(.fixed__column) {
     left: unset !important;
@@ -62,15 +56,6 @@
       @apply translate-y-0;
       @apply shrink-0;
     }
-    &.is__editable {
-      .@{grid-prefix-cls}-required-icon {
-        @apply ml-5;
-        & + .@{grid-prefix-cls}-edit-icon {
-          @apply absolute;
-          @apply ~'-translate-y-2/4';
-        }
-      }
-    }
   }
 
   .@{grid-prefix-cls}-required-icon {
@@ -88,17 +73,11 @@
   }
 
   .@{grid-prefix-cls}-edit-icon {
-    @apply absolute;
-    @apply left-2;
-    @apply ~'top-1/2';
-    @apply ~'-translate-y-2/4';
-    @apply text-center;
-    @apply text-sm;
     @apply mr-1;
+    order: -1;
+    @apply text-sm;
     @apply fill-color-icon-disabled;
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      @apply ~'top-4.5';
-    }
+    @apply shrink-0;
   }
 
   .@{grid-prefix-cls}-thead-partition,

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-select",
-  "version": "3.16.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -28,7 +28,6 @@
     "@opentiny/vue-tree": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-filter-box": "workspace:~",
-    "@opentiny/vue-checkbox": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
     "@opentiny/vue-recycle-scroller": "workspace:~",
     "@opentiny/vue-button": "workspace:~"

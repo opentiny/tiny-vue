@@ -1,0 +1,20 @@
+@import './common';
+
+// 模块：字数统计 counter
+
+@mixin counter {
+  .ql-counter {
+    // position: absolute;
+    width: 100%;
+    bottom: 0;
+    white-space: nowrap;
+    border-top: 1px solid #adb0b8;
+    line-height: 20px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif;
+    background: #ffffff;
+    text-align: right;
+    padding-right: 5px;
+    color: #8a8e99;
+  }
+}

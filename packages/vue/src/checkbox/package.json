@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-checkbox",
-  "version": "3.16.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-theme-mobile": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"

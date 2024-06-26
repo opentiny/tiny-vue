@@ -152,7 +152,8 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent, breakpoi
     timeMobileOption: {
       visible: false,
       type: props.type,
-      value: [0, 0, 0]
+      value: [0, 0, 0],
+      defaultValue: [0, 0, 0]
     },
     isDateMobileComponent: computed(() =>
       [

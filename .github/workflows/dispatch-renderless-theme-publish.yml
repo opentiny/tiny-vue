@@ -7,7 +7,7 @@ on:
       components:
         description: |
           输入需要打包的模块名称，多个以英文逗号分隔,
-          例如： `theme,renderless`
+          例如： `theme,renderless,runtime`
         required: true
         type: string
 concurrency:
@@ -79,6 +79,10 @@ jobs:
       - name: Run Build ThemeMobile
         if: contains(inputs.components, 'theme-mobile') == true
         run: pnpm build:themeMobile
+
+      - name: Run Build Runtime
+        if: contains(inputs.components, 'runtime') == true
+        run: pnpm build:runtime
 
       - name: Publish
         run: |

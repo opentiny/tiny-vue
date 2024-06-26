@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
+test('主色彩', async ({ page }) => {
   await page.goto('color#main-color')
-  await page.getByText('辅助色').click()
-  await page.getByText('bg-success-normal').click()
-  await expect(page.getByText('bg-success-normal')).toHaveClass(/bg-success-normal/)
-  await page.getByText('bg-warning-normal').click()
-  await expect(page.getByText('bg-warning-normal')).toHaveClass(/bg-warning-normal/)
-  await page.getByText('bg-error-normal').click()
-  await expect(page.getByText('bg-error-normal')).toHaveClass(/bg-error-normal/)
+  await expect(page.getByText('bg-primary-normal')).toHaveClass(/bg-primary-normal/)
+  await expect(page.getByText('bg-primary-hover')).toHaveClass(/bg-primary-hover/)
+  await expect(page.getByText('bg-primary-active')).toHaveClass(/bg-primary-active/)
+  await expect(page.getByText('bg-btn-active')).toHaveClass(/bg-btn-active/)
 })
