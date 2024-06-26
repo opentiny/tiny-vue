@@ -67,7 +67,15 @@ export default defineComponent({
       default: false
     }
   },
-  emits: ['visible-change', 'item-click', 'button-click', 'selectedIndex', 'current-item-click', 'is-disabled'],
+  emits: [
+    'visible-change',
+    'item-click',
+    'button-click',
+    'current-item-click',
+    'menu-item-click',
+    'is-disabled',
+    'selected-index'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true, h })
   },

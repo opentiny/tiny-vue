@@ -155,7 +155,7 @@ export default {
       desc: {
         'zh-CN': '<p>通过配置 <code>type</code> 属性为<code>card</code>后，走马灯将以卡片形式进行展示。</p>\n',
         'en-US':
-          '<p>After the <code>type</code> attribute is set to <code>card</code>, the lantern is displayed as a card. </p>\n'
+          '<p>After the <code>type</code> attribute is set to <code>card</code>, the carousel is displayed as a card. </p>\n'
       },
       codeFiles: ['card-mode.vue']
     },
@@ -163,7 +163,7 @@ export default {
       demoId: 'carousel-events',
       name: {
         'zh-CN': '走马灯事件',
-        'en-US': 'The Ma Deng incident'
+        'en-US': 'Carousel Events'
       },
       desc: {
         'zh-CN':
@@ -171,6 +171,24 @@ export default {
         'en-US': ''
       },
       codeFiles: ['carousel-events.vue']
+    },
+    {
+      demoId: 'swipeable',
+      name: {
+        'zh-CN': '触屏轮播',
+        'en-US': 'Touchscreen Carousel'
+      },
+      desc: {
+        'zh-CN': ` 
+          通过<code>swipeable</code> 属性,让多端模板支持触屏轮播。<br>
+          通过 <code>lite</code> 属性打开精简模式，不显示切换按钮和指示器。
+        `,
+        'en-US': `
+          The <code>swipeable</code> attribute is used to support touchscreen carousel.<br>
+          Enable the compact mode with the <code>lite</code> attribute. The toggle button and indicator are not displayed.
+        `
+      },
+      codeFiles: ['swipeable.vue']
     },
     {
       demoId: 'card-show',

@@ -63,6 +63,10 @@ export const cardProps = {
   disabled: {
     type: Boolean,
     default: false
+  },
+  checkMode: {
+    type: String,
+    default: 'normal'
   }
 }
 

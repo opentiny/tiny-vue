@@ -186,6 +186,8 @@ export default (options: IPopperInputParams) => {
 
     const popperJS = state.popperJS
     if (popperJS) {
+      // Tiny 新增，在动态切换renference时，需要实时获取最新的触发源
+      popperJS._reference = getReference({ state, props, vm, slots })
       popperJS.update()
 
       // 每次递增 z-index

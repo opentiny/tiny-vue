@@ -5,10 +5,11 @@ test('[Input]validate-event', async ({ page }) => {
   await page.goto('input#validate-event')
   await page.locator('.demo-form .tiny-input').getByRole('textbox').click()
   await page
-    .locator('div')
+    .locator('label')
     .filter({ hasText: /^活动名称$/ })
     .first()
     .click()
+
   const tip = page.getByRole('tooltip', { name: '请输入活动名称' })
   await expect(tip).toBeVisible()
 })

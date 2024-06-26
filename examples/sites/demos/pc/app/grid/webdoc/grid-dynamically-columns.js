@@ -30,6 +30,24 @@ export default {
           "<p>You need to configure <code>:columns=&quot;tableColumn&quot;</code> <code>:show-header=&quot;false&quot;</code> on the <code>grid</code> tag. Click the 'Reverse Table' button to view the effect. Currently, the operation can only be performed once. If the operation is performed multiple times, problems may occur. For details, see the following example. </p>\n"
       },
       'codeFiles': ['dynamically-columns/reverse-row.vue']
+    },
+    {
+      'demoId': 'dynamically-columns-reverse-columns',
+      'name': { 'zh-CN': '表格列顺序转换', 'en-US': '' },
+      'desc': {
+        'zh-CN': '<p></p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['dynamically-columns/reverse-columns.vue']
+    },
+    {
+      'demoId': 'dynamic-slot',
+      'name': { 'zh-CN': '动态修改列插槽', 'en-US': '' },
+      'desc': {
+        'zh-CN': '<p></p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['dynamically-columns/dynamic-slot.vue']
     }
   ],
   apis: [{ 'name': 'grid-dynamically-columns', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

@@ -106,6 +106,10 @@ export const formProps = {
   overflowTitle: {
     type: Boolean,
     default: false
+  },
+  tooltipConfig: {
+    type: Object,
+    default: () => ({})
   }
 }
 

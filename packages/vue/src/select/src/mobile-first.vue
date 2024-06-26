@@ -87,8 +87,9 @@
               disable-transitions
             >
               <tiny-tooltip
-                effect="light"
-                placement="top"
+                :effect="tooltipConfig.effect || 'light'"
+                :placement="tooltipConfig.placement || 'top'"
+                :popper-class="tooltipConfig.popperClass || ''"
                 @mouseenter.native="handleEnterTag($event, getValueKey(state.selectedVal[0]))"
               >
                 <span :class="gcls('tags-text')">
@@ -150,8 +151,9 @@
               disable-transitions
             >
               <tiny-tooltip
-                effect="light"
-                placement="top"
+                :effect="tooltipConfig.effect || 'light'"
+                :placement="tooltipConfig.placement || 'top'"
+                :popper-class="tooltipConfig.popperClass || ''"
                 @mouseenter.native="handleEnterTag($event, getValueKey(item))"
               >
                 <span v-if="!state.visible && state.overflow === index" :class="gcls('tags-text')">{{
@@ -178,7 +180,12 @@
         </span>
 
         <span v-else :class="[gcls('tags-text'), 'flex']">
-          <tiny-tooltip effect="light" placement="top" :disabled="!showTips || state.device === 'mb'">
+          <tiny-tooltip
+            :effect="tooltipConfig.effect || 'light'"
+            :placement="tooltipConfig.placement || 'top'"
+            :disabled="!showTips || state.device === 'mb'"
+            :popper-class="tooltipConfig.popperClass || ''"
+          >
             <span class="inline-block w-full whitespace-nowrap text-ellipsis overflow-hidden text-color-text-disabled">
               <span v-for="item in state.selected" :key="item.value">
                 <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
@@ -343,7 +350,7 @@
 
           <tiny-tree
             v-if="renderType === 'tree'"
-            class="[&_[data-tag=tiny-checkbox]_>span_>span]:p-1.5 sm:[&_[data-tag=tiny-checkbox]_>span_>span]:p-0"
+            class="[&_[data-tag=tiny-checkbox]_>span_>span]:p-1.5 sm:[&_[data-tag=tiny-checkbox]_>span_>span]:p-0 sm:max-h-56 overflow-auto"
             :filter-node-method="filterMethod"
             :props="{ label: textField, isLeaf: 'isLeaf', ...treeOp.props }"
             :expand-on-click-node="false"
@@ -351,7 +358,7 @@
             :node-key="valueField"
             :default-expand-all="state.isExpandAll"
             :check-strictly="treeOp.checkStrictly"
-            :default-checked-keys="multiple ? state.defaultCheckedKeys : []"
+            :default-checked-keys="multiple ? state.defaultCheckedKeys : treeOp.defaultCheckedKeys || []"
             ref="selectTree"
             :current-node-key="!multiple ? state.currentKey : ''"
             :show-checkbox="multiple"
@@ -695,7 +702,9 @@ export default defineComponent({
     'title',
     'closeByMask',
     'searchPlaceholder',
+    'initLabel',
     'blank',
+    'tooltipConfig',
     'allText'
   ],
   setup(props, context) {

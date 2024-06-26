@@ -11,7 +11,6 @@
  */
 
 import { toDate } from '../common/date'
-import { hasClass } from '../common/deps/dom'
 import { range, nextDate, getDayCountOfYear } from '../common/deps/date-util'
 import { arrayFindIndex, coerceTruthyValueToArray, arrayFind } from '../date-table'
 import { DATEPICKER } from '../common'
@@ -24,7 +23,7 @@ const datesInYear = (year) => {
 }
 
 export const getCellStyle =
-  ({ props }) =>
+  ({ props, state }) =>
   (cell) => {
     const { defaultValue } = props
     const year = cell.text
@@ -51,6 +50,10 @@ export const getCellStyle =
 
     if (cell.end) {
       style[DATEPICKER.EndDate] = true
+    }
+
+    for (const key in style) {
+      state[key] = style[key]
     }
 
     return style
@@ -162,7 +165,7 @@ export const handleYearTableClick =
     const { selectionMode } = props
 
     if (target.tagName === 'A') {
-      if (hasClass(target.parentNode.parentNode, 'disabled')) {
+      if (target.hasAttribute('aria-disabled')) {
         return
       }
 

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-design-saas",
-  "version": "3.16.0",
+  "version": "3.17.0",
   "main": "index.ts",
   "sideEffects": false,
   "type": "module",

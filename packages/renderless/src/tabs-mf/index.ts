@@ -4,26 +4,47 @@ import { fastdom } from '../common/deps/fastdom'
 
 // --- tabs ---
 export const setActive =
-  ({ state, props, api }) =>
+  ({ state, api }) =>
   (name) => {
     const current = state.currentItem ? state.currentItem.name : ''
 
-    if (current && current !== name && props.beforeLeave) {
-      const before = props.beforeLeave(name, current)
-
-      if (before && before.then) {
-        before
-          .then(() => {
-            api.changeCurrentName(name)
-          })
-          .catch(() => null)
-      } else if (before !== false) {
-        api.changeCurrentName(name)
-      }
+    if (current && current !== name) {
+      api.canLeave(name, current).then((result) => {
+        if (result) {
+          api.changeCurrentName(name)
+        }
+      })
     } else {
       api.changeCurrentName(name)
     }
   }
+
+export const canLeave = (props) => (newTab, oldTab) => {
+  if (typeof props.beforeLeave === 'function') {
+    const before = props.beforeLeave(newTab, oldTab)
+
+    if (before && before.then) {
+      return {
+        then: (cb) => {
+          // Promise.resolve(false) 或 Promise.reject() 都支持， 都是禁用切换标签
+          before.then(cb).catch(() => cb(false))
+        }
+      }
+    } else {
+      return {
+        then: (cb) => {
+          cb(before)
+        }
+      }
+    }
+  } else {
+    return {
+      then: (cb) => {
+        cb(true)
+      }
+    }
+  }
+}
 
 export const changeCurrentName =
   ({ emit, state }) =>
@@ -74,12 +95,15 @@ export const clickMore = (api) => (name) => {
 }
 
 export const removeItem =
-  ({ state, emit }) =>
+  ({ props, state, emit }) =>
   (name, silent = false) => {
     const itemIndex = state.items.findIndex((item) => item.name === name)
     const navIndex = state.navs.findIndex((item) => item.name === name)
 
-    if (~itemIndex) {
+    if (!~itemIndex) return
+
+    const emitEvent = () => {
+      // Clean up internal state
       state.items.splice(itemIndex, 1)
       state.items = [...state.items]
 
@@ -87,12 +111,104 @@ export const removeItem =
       state.navs = [...state.navs]
 
       if (!silent) {
+        // Emits the close event
         emit('edit', name, 'remove')
         emit('close', name)
       }
     }
+
+    // Check before close
+    if (typeof props.beforeClose === 'function') {
+      const beforeCloseResult = props.beforeClose(name)
+
+      if (beforeCloseResult && beforeCloseResult.then) {
+        beforeCloseResult.then((res) => res && emitEvent())
+      } else {
+        beforeCloseResult && emitEvent()
+      }
+    } else {
+      emitEvent()
+    }
   }
 
+export const beforeCarouselSwipe =
+  ({ api, state, vm }) =>
+  (newIndex, oldIndex) => {
+    const [newTab, oldTab] = [newIndex, oldIndex].map((index) => (state.items[index] ? state.items[index].name : ''))
+
+    return api.canLeave(newTab, oldTab).then((result) => {
+      if (result) {
+        vm.setActive(newTab)
+      }
+
+      return result
+    })
+  }
+
+export const clearOtherTabSwipeScroll =
+  ({ state, vm }) =>
+  (name) => {
+    if (!state.swipeable) return
+
+    state.items.forEach((tab, i) => {
+      const tabName = tab ? tab.name : ''
+
+      if (tabName !== name) {
+        const tabSwipeVm = vm.$refs[`tabSwipe${i}`]
+        tabSwipeVm && tabSwipeVm.clearScroll()
+      }
+    })
+  }
+
+export const computedSwipeable =
+  ({ props, state }) =>
+  () =>
+    state.items.every((item) => !item.lazy) && props.swipeable
+
+export const observeTabSwipeSize =
+  ({ state, vm }) =>
+  () => {
+    if (!state.swipeable) return
+
+    state._resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        let sizeEntry, blockSize
+
+        if (entry.borderBoxSize && entry.borderBoxSize.length > 0) {
+          sizeEntry = entry.borderBoxSize[0]
+          blockSize = sizeEntry.blockSize
+        } else {
+          sizeEntry = entry.contentRect
+          blockSize = sizeEntry.height
+        }
+
+        if (blockSize > state.maxTabSwipeHeight) {
+          state.maxTabSwipeHeight = blockSize
+        }
+      }
+    })
+
+    state.items.forEach((_, i) => {
+      const tabSwipeVm = vm.$refs[`tabSwipe${i}`]
+      tabSwipeVm && state._resizeObserver.observe(tabSwipeVm.$el)
+    })
+  }
+
+export const unobserveTabSwipeSize =
+  ({ state, vm }) =>
+  () => {
+    if (!state.swipeable) return
+
+    if (state._resizeObserver) {
+      state.items.forEach((_, i) => {
+        const tabSwipeVm = vm.$refs[`tabSwipe${i}`]
+        tabSwipeVm && state._resizeObserver.unobserve(tabSwipeVm.$el)
+      })
+
+      state._resizeObserver.disconnect()
+      state._resizeObserver = null
+    }
+  }
 // --- tab-bar ---
 export const wheelListener = ({ vm, api, tabs, state }) =>
   debounce(10, (e) => {
@@ -144,9 +260,21 @@ export const emitAdd = (tabs) => () => {
 
 // --- tab-nav-item ---
 export const handleNavItemClick =
-  ({ tabs, props }) =>
+  ({ tabs, props, vm }) =>
   () => {
-    tabs.setActive(props.navItem.name)
+    const index = tabs.state.navs.indexOf(vm)
+    const newTab = props.navItem.name
+    const oldTab = tabs.state.currentItem ? tabs.state.currentItem.name : ''
+
+    tabs.setActive(newTab)
+
+    props.swipeable &&
+      tabs.canLeave(newTab, oldTab).then((result) => {
+        if (result) {
+          tabs.$refs.swipe && tabs.$refs.swipe.setActiveItem(index)
+        }
+      })
+
     tabs.$emit('click', props.navItem)
   }
 

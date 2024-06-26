@@ -747,7 +747,7 @@ export const handleSuccess =
       const status = res?.data?.status
       const { STATUS_SPECIAL_CHARACTERS, NOT_SUPPORT_SPECIAL_CHARACTERS } = constants.EDM
 
-      delete file.cancelToken
+      file && delete file.cancelToken
 
       if (props.edm.upload && file && res.data && status !== 200) {
         if (status === STATUS_SPECIAL_CHARACTERS) {

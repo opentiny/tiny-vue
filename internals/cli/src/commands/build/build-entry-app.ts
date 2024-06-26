@@ -39,10 +39,10 @@ export const install = (app, opts = {}) => {
  export const version = '${version}'
  
  export {
-   {{{components}}}
+   {{{exportComponents}}}
  }
  export default {
-  {{{components}}},
+  {{{defaultComponents}}},
   install
  }
  `
@@ -100,6 +100,7 @@ const notSimpleComponents = [
   'DropRoles',
   'Espace',
   'Flowchart',
+  'FluentEditor',
   'GridManager',
   'Guide',
   'Hrapprover',
@@ -141,11 +142,18 @@ const buildFullRuntime = (mode: RunTimeModeType) => {
     }
   })
 
+  const joinStr = ',' + endOfLine
   const template = handlebarsRender({
     template: MAIN_TEMPLATE,
     data: {
       include: includeTemplate.join(endOfLine),
-      components: componentsTemplate.join(',' + endOfLine)
+      components: componentsTemplate.join(',' + endOfLine),
+      exportComponents: componentsTemplate
+        .map((component) => `${component}${joinStr}${component} as Tiny${component.trim()}`)
+        .join(joinStr),
+      defaultComponents: componentsTemplate
+        .map((component) => `${component}${joinStr}Tiny${component.trim()}: ${component}`)
+        .join(joinStr)
     }
   })
 

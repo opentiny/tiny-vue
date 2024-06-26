@@ -56,6 +56,7 @@ function createRender(opt) {
     vSize,
     props,
     selectToolbar,
+    slots,
     $slots,
     tableOns,
     renderedToolbar,
@@ -83,7 +84,7 @@ function createRender(opt) {
       selectToolbar ? null : renderedToolbar,
       columnAnchor ? _vm.renderColumnAnchor(columnAnchorParams, _vm) : null,
       // 这里会渲染tiny-grid-column插槽内容，从而获取列配置
-      h(TinyGridTable, { props, on: tableOns, ref: 'tinyTable' }, $slots.default && $slots.default()),
+      h(TinyGridTable, { props, on: tableOns, ref: 'tinyTable' }, slots.default && slots.default()),
       _vm.renderPager({
         $slots,
         _vm,
@@ -407,6 +408,7 @@ export default defineComponent({
       selectToolbar,
       renderedToolbar,
       tableOns,
+      slots: this.slots,
       $slots,
       loading,
       pager,

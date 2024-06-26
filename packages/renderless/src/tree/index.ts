@@ -18,6 +18,8 @@ import { on, off } from '../common/deps/dom'
 import { getDataset } from '../common/dataset'
 import { copyArray } from '../common/object'
 
+import { log } from '../common'
+
 export const setChildren = (props) => (data) => (props.data = data)
 
 export const getChildren = () => (props) => props.data
@@ -794,9 +796,25 @@ export const saveNode =
   }
 
 export const addNode =
-  ({ api }) =>
+  ({ api, props, state }) =>
   (node) => {
-    const newNode = { label: '' }
+    let nodeId = 0
+
+    if (typeof props.editConfig.initNodeIdMethod === 'function') {
+      nodeId = props.editConfig.initNodeIdMethod(node)
+    } else {
+      nodeId = state.newNodeId
+
+      state.newNodeId++
+    }
+
+    if (state.allNodeKeys.includes(nodeId) && !props.editConfig.noWarning) {
+      log.logger.warn(`the ${props.nodeKey || 'id'} ${nodeId} is already exists. Please check.`)
+    }
+
+    state.allNodeKeys.push(nodeId)
+
+    const newNode = { label: '', [props.nodeKey || 'id']: nodeId }
     const isLeafField = node.store && node.store.props.isLeaf
 
     if (isLeafField) {
@@ -890,9 +908,26 @@ export const openEdit =
     state.action.show = true
     state.action.data = copyArray(props.data)
 
+    if (!state.allNodeKeys.length) {
+      getAllNodeKeys(state.action.data, state.allNodeKeys, props.nodeKey || 'id', props.props.children || 'children')
+    }
+
     api.watchData(state.action.data)
     emit('open-edit')
   }
+
+const getAllNodeKeys = (node, nodeKeys, nodeKey, children) => {
+  if (Array.isArray(node)) {
+    node.forEach((item) => {
+      if (item[nodeKey] || item[nodeKey] !== 0) {
+        nodeKeys.push(item[nodeKey])
+      }
+      if (item[children]) {
+        getAllNodeKeys(item[children], nodeKeys, nodeKey, children)
+      }
+    })
+  }
+}
 
 export const closeEdit =
   ({ props, state, api, emit }) =>

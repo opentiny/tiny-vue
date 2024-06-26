@@ -25,7 +25,7 @@ export const api = ['state', 'isActive', 'handleFocus', 'handleEnterClick', 'han
 export const renderless = (
   props: ICollapseItemProps,
   { computed, reactive }: ISharedRenderlessParamHooks,
-  { parent, constants, dispatch }: ICollapseItemRenderlessParamUtils
+  { parent, constants, dispatch, designConfig }: ICollapseItemRenderlessParamUtils
 ) => {
   const _constants = parent.collapse._constants
   const componentName = _constants.COMPONENT_NAME.Collapse
@@ -37,7 +37,8 @@ export const renderless = (
     focusing: false,
     contentHeight: 0,
     contentWrapStyle: { height: 'auto', display: 'block' },
-    isActive: computed(() => parent.collapse.state.activeNames.includes(props.name))
+    isActive: computed(() => parent.collapse.state.activeNames.includes(props.name)),
+    arrowIcon: props.expandIcon || designConfig?.icons?.arrowIcon || 'IconChevronRight'
   })
 
   const api: ICollapseItemApi = {

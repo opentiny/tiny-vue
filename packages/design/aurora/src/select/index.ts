@@ -31,7 +31,7 @@ export default {
         let size = 'small'
 
         if (~['small', 'mini'].indexOf(state.selectSize)) {
-          size = 'mini'
+          size = state.selectSize
         } else if (~['medium', 'default'].indexOf(state.selectSize)) {
           size = 'default'
         }
@@ -62,7 +62,7 @@ export default {
 
         if (filtered) {
           if (state.filteredSelectCls === 'check' || state.filteredSelectCls === 'halfselect') {
-            value = [...new Set([...state.modelValue, ...enabledValues])]
+            value = Array.from(new Set([...state.modelValue, ...enabledValues]))
           } else {
             value = state.modelValue.filter((val) => !enabledValues.includes(val))
           }

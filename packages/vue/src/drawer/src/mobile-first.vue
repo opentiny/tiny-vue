@@ -5,8 +5,8 @@
       ref="mask"
       v-if="mask"
       :class="
-        m('fixed z-50 left-0 right-0 top-0 bottom-0 w-full h-full transition-opacity ease-linear duration-200', {
-          'bg-color-bg-7': state.toggle
+        m('fixed z-50 left-0 right-0 top-0 bottom-0 w-full h-full transition ease-linear duration-200', {
+          'bg-color-bg-7': state.visible
         })
       "
       @click="handleClose('mask')"
@@ -23,10 +23,10 @@
           { 'max-h-full': ['top', 'bottom'].includes(placement) },
           { 'left-0 bottom-0 translate-y-full border-t-0.5 rounded-t-lg': placement === 'bottom' },
           { 'left-0 top-0 -translate-y-full border-b-0.5 rounded-b-lg': placement === 'top' },
-          { 'translate-y-0': ['top', 'bottom'].includes(placement) && state.toggle },
+          { 'translate-y-0': ['top', 'bottom'].includes(placement) && state.visible },
           { 'left-0 top-0 -translate-x-full border-r-0.5 rounded-r-lg': placement === 'left' },
           { 'right-0 top-0 translate-x-full border-l-0.5 rounded-l-lg': placement === 'right' },
-          { 'translate-x-0': ['left', 'right'].includes(placement) && state.toggle },
+          { 'translate-x-0': ['left', 'right'].includes(placement) && state.visible },
           customClass
         )
       "
@@ -119,6 +119,7 @@ export default defineComponent({
     'flex',
     'beforeClose'
   ],
+  emits: ['update:visible', 'open', 'close', 'confirm'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

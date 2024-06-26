@@ -41,9 +41,29 @@ export default {
         return
       }
       this[type].push(...this.selectedDate)
+
+      this.selectedDate.forEach((date) => {
+        if (type === 'workingDays') {
+          this.removeFromArray(this.offDays, date)
+          this.removeFromArray(this.holidays, date)
+        } else if (type === 'offDays') {
+          this.removeFromArray(this.holidays, date)
+          this.removeFromArray(this.workingDays, date)
+        } else {
+          this.removeFromArray(this.offDays, date)
+          this.removeFromArray(this.workingDays, date)
+        }
+      })
       this.selectedDates = []
       this.selectedDate = []
     },
+    removeFromArray(array, item) {
+      const index = array.indexOf(item)
+      if (index !== -1) {
+        array.splice(index, 1)
+      }
+    },
+
     setDayBgColor(date) {
       if (this.workingDays.includes(date)) {
         return 'blue'

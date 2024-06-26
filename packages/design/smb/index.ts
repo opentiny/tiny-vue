@@ -6,6 +6,7 @@ import Dropdown from './src/dropdown'
 import DropdownItem from './src/dropdown-item'
 import Form from './src/form'
 import Grid from './src/grid'
+import Guide from './src/guide'
 import Pager from './src/pager'
 import Select from './src/select'
 import TreeNode from './src/tree-node'
@@ -24,6 +25,7 @@ export default {
     DropdownItem,
     Form,
     Grid,
+    Guide,
     Pager,
     Select,
     TreeNode,

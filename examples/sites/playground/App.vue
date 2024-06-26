@@ -55,9 +55,8 @@ const createImportMap = (version) => {
     'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
   if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
-    imports[
-      `@opentiny/vue-design-${tinyTheme}`
-    ] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
+    imports[`@opentiny/vue-design-${tinyTheme}`] =
+      `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`

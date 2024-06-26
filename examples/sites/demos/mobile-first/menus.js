@@ -49,6 +49,7 @@ export const cmpMenus = [
     key: 'cmp_form_components',
     children: [
       { name: 'DatePickerMobile', nameCn: '日期选择器', key: 'date-picker-mobile' },
+      { name: 'DatePicker', nameCn: '日期选择器多端', key: 'date-picker' },
       { name: 'TimePickerMobile', nameCn: '时间选择器', key: 'time-picker-mobile' },
       { name: 'Button', nameCn: '按钮', key: 'button' },
       { name: 'Checkbox', nameCn: '复选框', key: 'checkbox' },

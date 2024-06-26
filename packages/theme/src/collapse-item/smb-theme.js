@@ -15,5 +15,7 @@ export const tinyCollapseItemSmbTheme = {
   'ti-collapse-item-header-border-color': 'var(--ti-base-color-common-5)',
   'ti-collapse-item-title-right-color': '#1476ff',
   'ti-collapse-item-title-right-fill': '#1476ff',
+  'ti-collapse-item-header-bg-color': 'var(--ti-common-color-bg-white-normal)',
+  'ti-collapse-item-wrap-bg-color': 'var(--ti-common-bg-minor)',
   'ti-collapse-item-arrow-margin-right': 'var(--ti-common-space-3x)'
 }

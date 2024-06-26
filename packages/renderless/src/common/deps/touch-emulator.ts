@@ -3,7 +3,7 @@ let initiated = false
 let eventTarget = null
 let mouseTarget = null
 
-const matches = Element.prototype.matches || Element.prototype.webkitMatchesSelector
+const matches = Element.prototype.matches
 
 const closest = (el, s) => {
   do {

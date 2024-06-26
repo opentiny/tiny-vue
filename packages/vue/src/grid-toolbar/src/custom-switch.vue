@@ -359,6 +359,7 @@ export default defineComponent({
 
       const toolbarVm = this.$grid.getVm('toolbar')
       const customVm = toolbarVm.$refs.custom
+      customVm.updatedSorting = true
       const item = createCustom(customVm.buildSettings(), this.userKey)
       const { id: toolbarId } = toolbarVm
 

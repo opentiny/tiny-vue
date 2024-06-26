@@ -45,8 +45,11 @@ export default {
       'demoId': 'mouse-keyboard-mouse-config',
       'name': { 'zh-CN': '鼠标配置项', 'en-US': 'Setting Mouse Configuration Items' },
       'desc': {
-        'zh-CN': '<p>表格属性 <code>mouse-config</code> 设置鼠标配置项。\n</p>\n',
-        'en-US': '<p>Table property<code>mouse-config</code>Set the mouse configuration item. \n</p>\n'
+        'zh-CN': `<p>表格属性 <code>mouse-config</code> 设置鼠标配置项。打开配置项 <code>mouseConfig.checked</code> 使表格可鼠标选中，打开 <code>keyboardConfig.isCut</code> 使鼠标选中内容可剪切。
+        表格中被剪切内容默认放入页面剪切板，可设置 <code>keyboardConfig.clipboard</code> 为 <code>false</code> 关闭此特性。
+        使用 <code>keyboardConfig.clipboard.writeMethod</code> 定制写入剪切板的内容。
+        使用 <code>keyboardConfig.clipboard.cellSplit</code> 和 <code>keyboardConfig.clipboard.rowSplit</code> 控制单元格之间和行之间的连接字符串，默认值是逗号 <code>,</code> 和分号 <code>;</code>。</p>`,
+        'en-US': '<p>Table property<code>mouse-config</code>Set the mouse configuration item. </p>'
       },
       'codeFiles': ['mouse-keyboard/mouse-config.vue']
     }

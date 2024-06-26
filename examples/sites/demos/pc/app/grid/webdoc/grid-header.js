@@ -41,6 +41,15 @@ export default {
           '<p>Add the class name to the cell of the table header through the column attribute <code>header-class-name</code>, or the function Function({$rowIndex, column, columnIndex, $columnIndex}) . \n</p>\n'
       },
       'codeFiles': ['header/slot-header.vue']
+    },
+    {
+      'demoId': 'many-header-switching',
+      'name': { 'zh-CN': '多级表头列动态切换', 'en-US': '' },
+      'desc': {
+        'zh-CN': '<p>动态的切换多级表头中子表头的显示与隐藏。</p>\n',
+        'en-US': '<p></p>\n'
+      },
+      'codeFiles': ['header/many-header-switching.vue']
     }
   ],
   apis: [{ 'name': 'grid-header', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

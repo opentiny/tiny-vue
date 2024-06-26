@@ -22,7 +22,7 @@ export const $constants = {
   PC_SCROLL_LOCK_CLASS: 'dialog-box__scroll-lock',
   MOBILE_SCROLL_LOCK_CLASS: 'mobile-dialog-box__scroll-lock',
   Mode: 'pc',
-  scrollLockClass(mode) {
+  SCROLL_LOCK_CLASS(mode) {
     return mode === this.Mode ? this.PC_SCROLL_LOCK_CLASS : this.MOBILE_SCROLL_LOCK_CLASS
   }
 }
