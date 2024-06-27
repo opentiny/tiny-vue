@@ -8,6 +8,7 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "7.16.7",
     "@opentiny-internal/unplugin-virtual-template": "workspace:*",
+    "@opentiny/vue-vite-template2jsx": "workspace:*",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^24.0.1",
     "@types/fs-extra": "^11.0.1",
