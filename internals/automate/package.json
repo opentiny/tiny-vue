@@ -12,7 +12,7 @@
     "auto-build-pub": "esno ./src/publish/index.ts"
   },
   "dependencies": {
-    "esno": "^4.0.0",
+    "esno": "^4.7.0",
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.2.0"
   },
