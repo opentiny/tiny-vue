@@ -15,12 +15,14 @@ import { capitalize } from '../common/string'
 import { addResizeListener, removeResizeListener } from '../common/deps/resize-event'
 import { on, off } from '../common/deps/dom'
 
-export const computedNavStyle = (state: ITabNavRenderlessParams['state']): { transform: string } => {
+export const computedNavStyle = (state: ITabNavRenderlessParams['state']): { transform: string; width?: string } => {
   const dir = ~[POSITION.Top, POSITION.Bottom].indexOf(state.rootTabs.position) ? 'X' : 'Y'
 
   if (state.mode === 'mobile') {
+    const { offset, width } = state.lineStyle
     return {
-      transform: `translate${dir}(${state.lineOffset}px) translate${dir}(-50%)`
+      width: `${width}px`,
+      transform: `translate${dir}(${offset}px) translate${dir}(-50%)`
     }
   } else {
     return {
@@ -48,7 +50,9 @@ export const scrollIntoView =
 
     if (state.mode === 'mobile') {
       nav.scrollLeft += to - from
-      state.lineOffset = activeTab.offsetLeft + activeTab.offsetWidth / 2
+      const nameHtml = activeTab.querySelector('.tiny-mobile-tabs__name') as HTMLElement
+      state.lineStyle.width = nameHtml.offsetWidth
+      state.lineStyle.offset = activeTab.offsetLeft + activeTab.offsetWidth / 2
     }
   }
 
@@ -72,10 +76,11 @@ export const updated =
         }
 
         if (item.classList && item.classList.contains('is-active')) {
-          const line = item.querySelector('.tiny-mobile-tabs__name')
+          const nameHtml = item.querySelector('.tiny-mobile-tabs__name') as HTMLElement
 
           state.isActive = true
-          state.lineOffset = item.offsetLeft + item.offsetWidth / 2
+          state.lineStyle.width = nameHtml.offsetWidth
+          state.lineStyle.offset = item.offsetLeft + item.offsetWidth / 2
         }
       })
     }
@@ -388,6 +393,7 @@ export const sortableEvent =
       return
     }
 
+    // eslint-disable-next-line new-cap
     const navSortableObj = new props.dropConfig.plugin(vm.$refs.nav, {
       sort: true,
       draggable: '.tiny-tabs__item',
@@ -400,7 +406,7 @@ export const sortableEvent =
       onStart(event) {
         api.handleTabDragStart(event)
       },
-      onEnd(event) {
+      onEnd() {
         api.handleTabDragEnd()
       }
     })
@@ -418,4 +424,35 @@ export const watchCurrentName =
         tabBarVnode.state.barStyle = tabBarVnode.computedBarStyle(tabBarVnode, state)
       }
     })
+  }
+
+export const handleTitleMouseenter =
+  ({ state, vm, props }) =>
+  (e, title) => {
+    const dom = e.target
+    // 以下逻辑与aui不同，tiny不能通过dom宽度判断是否超出隐藏
+    const el = title?.el
+
+    // 如果用户配置了tooltipConfig属性，优先级最高
+    if (props.tooltipConfig) {
+      return
+    }
+
+    if (dom && el && el.scrollWidth > el.offsetWidth) {
+      const tooltip = vm.$refs.tooltip
+      tooltip.state.referenceElm = dom
+      tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
+      tooltip.doDestroy()
+
+      state.tooltipContent = title
+      state.tooltipVisible = true
+
+      setTimeout(tooltip.updatePopper, 20)
+    }
+  }
+
+export const handleTitleMouseleave =
+  ({ state }) =>
+  () => {
+    state.tooltipVisible = false
   }

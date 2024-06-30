@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('下划线默认', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#input-box-type')
   const wrap = page.locator('#input-box-type')
   const select = wrap.locator('.tiny-select').nth(0)
@@ -18,10 +19,11 @@ test('下划线默认', async ({ page }) => {
   await select.click()
   await option.first().click()
   await expect(dropdown).toBeHidden()
-  await expect(input).toHaveValue('黄金糕')
+  await expect(input).toHaveValue('北京')
 })
 
 test('下划线禁用', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#input-box-type')
   const wrap = page.locator('#input-box-type')
   const select = wrap.locator('.tiny-select').nth(1)
@@ -44,6 +46,7 @@ test('下划线禁用', async ({ page }) => {
 })
 
 test('下划线多选', async ({ page }) => {
+  page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('select#input-box-type')
   const wrap = page.locator('#input-box-type')
   const select = wrap.locator('.tiny-select').nth(2)

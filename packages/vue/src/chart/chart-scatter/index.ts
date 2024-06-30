@@ -1,18 +1,8 @@
-import Scatter from './src/index.js'
-import { version } from './package.json'
+import ChartScatter from './src/chart-scatter.vue'
 
-/* istanbul ignore next */
-Scatter.install = function (Vue) {
-  Vue.component(Scatter.name, Scatter)
+ChartScatter.install = function (Vue: any) {
+  Vue.component(ChartScatter.name, ChartScatter)
 }
 
-Scatter.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Scatter.install(window.Vue)
-  }
-}
-
-export default Scatter
+export { ChartScatter }
+export default ChartScatter

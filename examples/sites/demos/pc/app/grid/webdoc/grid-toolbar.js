@@ -88,7 +88,7 @@ export default {
         'zh-CN': `
         <p>设置工具栏组件属性 <code>refresh</code> 开启表格刷新功能。</p>
         <ul>
-          <li>设置表格属性 <code>loading</code> 开启/关闭加载中。\n自定义实现刷新时直接调用<code>handleFetch('reload')</code></li>
+          <li>设置表格属性 <code>loading</code> 开启/关闭加载中。自定义实现刷新时直接调用<code>handleFetch('reload')</code>。</li>
         </ul>`,
         'en-US':
           "<p>Toolbar configuration procedure:\n1. Import the table toolbar component <code>GridToolbar</code> in slot mode and set the toolbar component attribute <code>slot=&quot;toolbar&quot;</code> . \n2. Set the toolbar component attribute <code>refresh</code> to enable the table refresh function. </p>\n<ul>\n<li> Setting Toolbar Properties <code>loading</code>Enable/Disable Loading. \n <code>handleFetch('reload') </code></li>\n</ul>\n is invoked when the customized implementation is refreshed"
@@ -109,10 +109,19 @@ export default {
       'demoId': 'toolbar-grid-full-screen-height',
       'name': { 'zh-CN': '全屏时改变表格高度', 'en-US': 'Change the table height in full screen mode' },
       'desc': {
-        'zh-CN': '<p>通过表格属性<code>height</code> 在全屏是动态改变表格高度。</p>',
+        'zh-CN': '<p>通过表格属性 <code>height</code> 在全屏是动态改变表格高度。</p>',
         'en-US': 'For details, see the following example.'
       },
       'codeFiles': ['toolbar/grid-full-screen-height.vue']
+    },
+    {
+      'demoId': 'toolbar-grid-full-screen-teleport',
+      'name': { 'zh-CN': '推荐基于 Teleport 的全屏方案', 'en-US': 'Change the table height in full screen mode' },
+      'desc': {
+        'zh-CN': '<p>通过 <code>teleport</code> 实现表格全屏。</p>',
+        'en-US': 'For details, see the following example.'
+      },
+      'codeFiles': ['toolbar/grid-full-screen-teleport.vue']
     },
     {
       'demoId': 'toolbar-custom-toolbar',
@@ -134,6 +143,17 @@ export default {
           '<p>The <code>v-bind</code> is bound to an object to implement the profile. In the bound object, the <code>toolbar</code> field is used to configure the toolbar. The <code>events</code> field can be used to configure the <code>toolbarButtonClick</code> event for buttons on the toolbar. In addition, the <code>pager</code> field is used for pagination configuration, and the <code>fetchData</code> field is used for service request. </p>\n'
       },
       'codeFiles': ['toolbar/toolbar-op-config.vue']
+    },
+    {
+      'demoId': 'toolbar-toolbar-op-config-slots',
+      'name': { 'zh-CN': '配置式工具栏插槽', 'en-US': 'Profile' },
+      'desc': {
+        'zh-CN':
+          '<p>通过表格属性 <code>toolbar.slots</code> 配置工具栏插槽 <code>buttons</code> 和 <code>tools</code>。</p>',
+        'en-US':
+          '<p>Configure the toolbar slots <code>buttons</code> and <code>tools</code> through the table property <code>toolbar.slots</code>. </p>'
+      },
+      'codeFiles': ['toolbar/toolbar-op-config-slots.vue']
     }
   ],
   apis: [{ 'name': 'grid-toolbar', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

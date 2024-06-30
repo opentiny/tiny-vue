@@ -12,8 +12,79 @@
 
 import { cloneDeep } from '../chart-core/deps/utils'
 
+export const initValue =
+  ({ props, emit }) =>
+  () => {
+    const { modelValue, dataSource = [], disabled } = props
+
+    if (disabled) {
+      return
+    }
+
+    let value = []
+    dataSource?.forEach((data, index) => {
+      const isArrayVal = Array.isArray(modelValue[index])
+      if (data.multiple) {
+        value.push(isArrayVal ? modelValue[index] : [])
+      } else {
+        value.push(isArrayVal ? '' : modelValue[index] || '')
+      }
+    })
+
+    emit('update:modelValue', value)
+  }
+
+export const updateValue =
+  ({ state, props, emit }) =>
+  (value: string) => {
+    const activeIndex = state.headerIndex
+    const values = cloneDeep(props.modelValue)
+    if (!values) {
+      return
+    }
+
+    if (Array.isArray(values[state.headerIndex])) {
+      const currentVal = values[activeIndex]
+      values[activeIndex] = currentVal.includes(value) ? currentVal.filter((i) => i !== value) : [...currentVal, value]
+    } else {
+      values[activeIndex] = value
+    }
+
+    emit('update:modelValue', values)
+  }
+
+export const getOption = (options, target) => {
+  for (const option of options) {
+    if (option.value === target) {
+      return option
+    }
+
+    if (option.children?.length) {
+      const result = getOption(option.children, target)
+      if (result) {
+        return result
+      }
+    }
+  }
+
+  return null
+}
+
+export const updateTitle =
+  ({ props, state }) =>
+  () => {
+    const { modelValue = [], dataSource = [] } = props
+    const { headerInfo } = state
+
+    modelValue.forEach((value, index) => {
+      if (!dataSource[index].multiple) {
+        headerInfo[index].title = getOption(dataSource[index].options, value)?.label || headerInfo[index].title
+      }
+    })
+  }
+
 export const created =
-  ({ props, state, refs, nextTick }) =>
+  ({ api, emit, props, state, refs, nextTick }) =>
   () => {
     nextTick(() => {
       state.dataSource = cloneDeep(props.dataSource)
@@ -23,31 +94,135 @@ export const created =
       state.headerInfo = state.dataSource.map((item) => {
         return { isSelected: false, title: item.title, isUP: false }
       })
+      api.initValue({ props, emit })
+
+      if (props.type === 'list') {
+        state.dataSource.forEach((item, index) => {
+          const { flattenData, dataMap } = getFlatOptions(item.options)
+          item.options = flattenData
+          state.optionMap[index] = dataMap
+        })
+      }
     })
   }
+
+export const computedCurrentOptions =
+  ({ state, props }) =>
+  () => {
+    const { options = [], multiple } = state.dataSource[state.headerIndex] || {}
+    const selectedValue = props.modelValue[state.headerIndex]
+
+    options.forEach((item) => {
+      item.show = state.isSearching
+        ? item.label.includes(state.searchValue)
+        : (item.show ?? parent?.expanded) || item.level === 0
+
+      item.active = multiple ? selectedValue.includes(item.value) : item.value === selectedValue
+    })
+
+    return options.filter((i) => i.show)
+  }
+
+const getFlatOptions = (options) => {
+  const flattenData = []
+  const dataMap = {}
+  const getChild = (data, level = 0, parent?) => {
+    data.forEach((item, index) => {
+      const id = parent ? parent.id + index : String(index)
+      const parentId = parent?.id || ''
+      const expanded = (parent?.expanded && item.children?.length && item.expanded) || false
+      const currentData = { ...item, id, level, expanded, parentId }
+      flattenData.push(currentData)
+
+      if (item.children?.length) {
+        getChild(item.children, level + 1, currentData)
+      }
+      dataMap[currentData.id] = item
+    })
+  }
+
+  getChild(options)
+
+  flattenData.forEach((item) => {
+    if (item.children) {
+      item.hasChild = item.children.length > 0
+      delete item.children
+    }
+  })
+
+  return { flattenData, dataMap }
+}
 
 export const handleClick =
   ({ api, props, state }) =>
   (value) => {
-    state.wheelData = props.dataSource[value]?.children
+    if (props.disabled || props.dataSource[value].disabled) {
+      return
+    }
+
+    if (props.type === 'wheel') {
+      state.wheelData = props.dataSource[value]?.options
+    }
+
     if (state.headerIndex === -1) {
       // 首次点击
-      state.showWheel = true
+      state.showOptions = true
       state.headerIndex = value
       state.headerInfo[value] = getNewHeaderInfo(state.headerInfo, value, true)
       state.defaultSelectedIndexs = state.defaultSelectedArray[value] ?? api.loadDefault(value)
     } else if (state.headerIndex !== value) {
       // 切换
-      state.showWheel = true
+      state.showOptions = true
       state.headerInfo[state.headerIndex] = getNewHeaderInfo(state.headerInfo, state.headerIndex, false) // 上一个
       state.headerIndex = value
       state.headerInfo[value] = getNewHeaderInfo(state.headerInfo, value, true)
       state.defaultSelectedIndexs = state.defaultSelectedArray[value] ?? api.loadDefault(value) // 下一个
     } else {
       // 收起与展开
-      state.showWheel = !state.showWheel
+      state.showOptions = !state.showOptions
       const { isUP } = state.headerInfo[value]
       state.headerInfo[value] = getNewHeaderInfo(state.headerInfo, value, !isUP)
+    }
+  }
+
+export const handleOptionSelect =
+  ({ api, state, emit }) =>
+  (option) => {
+    api.updateValue(option.value)
+    emit('item-click', state.optionMap[state.headerIndex][option.id], state.headerIndex)
+
+    if (!state.dataSource[state.headerIndex].multiple) {
+      api.handleClose()
+    }
+  }
+
+export const handleSearchInput =
+  ({ state, emit }) =>
+  () => {
+    const { searchValue } = state
+    emit('update:searchValue', searchValue)
+  }
+
+const toggleChildExpand = (state, parentId, index) => {
+  const { options } = state.dataSource[state.headerIndex]
+  for (let i = index + 1; i < options.length; i++) {
+    if (options[i].parentId === parentId) {
+      options[i].show = !options[i].show
+    } else {
+      break
+    }
+  }
+}
+
+export const toggleItemExpand =
+  ({ state }) =>
+  (option) => {
+    const index = state.dataSource[state.headerIndex].options.findIndex((i) => i.id === option.id)
+
+    if (index !== -1) {
+      const target = state.dataSource[state.headerIndex].options[index]
+      target.expanded = !target.expanded
+      toggleChildExpand(state, target.id, index)
     }
   }
 
@@ -59,18 +234,29 @@ export const confirm =
     state.headerInfo[state.headerIndex] = { isSelected: true, title: selectedLabels, isUP: false }
     state.defaultSelectedArray[state.headerIndex] = state.defaultSelectedIndexs
     emit('confirm', selectedItems, state.headerIndex, state.defaultSelectedIndexs)
-    state.showWheel = false
+    state.showOptions = false
   }
 
 export const reset =
   ({ api, props, state, emit }) =>
   () => {
-    state.headerInfo[state.headerIndex] = { isSelected: false, title: '', isUP: false }
+    state.headerInfo[state.headerIndex] = {
+      isSelected: false,
+      title: props.dataSource[state.headerIndex].title || '',
+      isUP: false
+    }
     state.defaultSelectedIndexs = props.defaultSelectedArray[state.headerIndex] ?? api.loadDefault(state.headerIndex)
     state.defaultSelectedArray[state.headerIndex] = state.defaultSelectedIndexs
     emit('reset', [], state.headerIndex, state.defaultSelectedIndexs)
-    state.showWheel = false
+    state.showOptions = false
   }
+
+export const handleClose = (state) => () => {
+  state.showOptions = false
+  if (state.headerIndex !== -1) {
+    state.headerInfo[state.headerIndex].isUP = false
+  }
+}
 
 export const wheelChange = (state) => (indexs) => {
   state.defaultSelectedIndexs = indexs
@@ -89,7 +275,7 @@ export const clickWheelItem =
     }
     state.defaultSelectedArray[state.headerIndex] = state.defaultSelectedIndexs
     emit('confirm', item, state.headerIndex, indexs)
-    state.showWheel = false
+    state.showOptions = false
   }
 
 export const getWheelLevelItems = (wheelData, newIndexs) => {
@@ -200,11 +386,20 @@ export const getEl = (node) => {
 }
 
 export const getLabelsStyle = (state) => {
+  const len = state.dataSource.length
+  if (len === 1) {
+    return [
+      {
+        flex: 1,
+        justifyContent: 'space-between'
+      }
+    ]
+  }
+
   const over25Labels = state.labelLevelsInfo.filter((i) => i && !i.isOver25)
 
   // 不超过总宽度25%的头部下拉项
   let widthInfo = over25Labels
-  const len = state.dataSource.length
   if (len >= 4) {
     return getStyleConfig(state.labelLevelsInfo, { width: `${((1 / len) * 100).toFixed(2)}%` })
   }
@@ -249,3 +444,18 @@ export const getFillArray = (state, widthInfo, maxWidth) => {
       }
     })
 }
+
+export const handleSearchBtnClick =
+  ({ props, state, nextTick, vm }) =>
+  () => {
+    if (props.disabled) {
+      return
+    }
+
+    state.isSearching = !state.isSearching
+    nextTick(() => {
+      if (state.isSearching) {
+        vm.$refs.searchInput.focus()
+      }
+    })
+  }

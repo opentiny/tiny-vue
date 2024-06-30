@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-cascader-node",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -18,7 +18,9 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
-    "@opentiny/vue-radio": "workspace:~"
+    "@opentiny/vue-radio": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

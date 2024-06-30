@@ -30,6 +30,7 @@ export interface ITabsState {
   offsetY: number
   direction: string
   expandPanesWidth: string | number
+  activeIndex: number
   morePanes?: ITabsPaneVm[]
   separator?: boolean
 }

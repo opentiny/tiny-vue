@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /**
  * Copyright (c) 2022 - present TinyVue Authors.
  * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -50,7 +51,6 @@ export const modifyDateField =
     if (state[type] === value) {
       return
     }
-
     switch (type) {
       case 'hours':
         emit('change', modifyTime(props.date, value, state.minutes, state.seconds))
@@ -116,14 +116,80 @@ export const handleScroll =
     const limitVal = { hours: 23, minutes: 59, seconds: 59 }
     Object.keys(limitVal).forEach((key) => (limitVal[key] = Math.floor(limitVal[key] / step) * step))
 
-    value = Math.min(value * step, limitVal[type])
+    value = api.selectDateScroll(type, Math.min(value * step, limitVal[type]))
 
     api.modifyDateField(type, value)
   }
+export const selectDateScroll =
+  ({ state, props }) =>
+  (type, value) => {
+    if (Object.keys(props.endDate).length !== 0) {
+      // 选择时间范围开始时间滚动逻辑
+      const endHours = props.endDate.getHours()
+      const endMinutes = props.endDate.getMinutes()
+      const endSeconds = props.endDate.getSeconds()
+      if (type === 'hours') {
+        value = value > endHours ? state.hours : value
+      } else if (type === 'minutes') {
+        value = state.hours === endHours && value > endMinutes ? state.minutes : value
+      } else {
+        value = state.hours === endHours && state.minutes === endMinutes && value > endSeconds ? state.seconds : value
+      }
+    } else if (Object.keys(props.startDate).length !== 0) {
+      // 选择时间范围结束时间滚动逻辑
+      const startHours = props.startDate.getHours()
+      const startMinutes = props.startDate.getMinutes()
+      const startSeconds = props.startDate.getSeconds()
+      if (type === 'hours') {
+        value = value < startHours ? state.hours : value
+      } else if (type === 'minutes') {
+        value = state.hours === startHours && value < startMinutes ? state.minutes : value
+      } else {
+        value =
+          state.hours === startHours && state.minutes === startMinutes && value < startSeconds ? state.seconds : value
+      }
+    } else if (state.selectableRange.length > 0) {
+      // 固定时间范围滚动逻辑
+      const [startRange, endRange] = state.selectableRange[0]
+      const startRangeHours = startRange.getHours()
+      const endRangeHours = endRange.getHours()
+      const startRangeMinutes = startRange.getMinutes()
+      const endRangeMinutes = endRange.getMinutes()
+      const startRangeSeconds = startRange.getSeconds()
+      const endRangeSeconds = endRange.getSeconds()
+      if (type === 'hours') {
+        value = value < startRangeHours || value > endRangeHours ? state.hours : value
+      } else if (type === 'minutes') {
+        if (state.hours === startRangeHours) {
+          value = value < startRangeMinutes ? startRangeMinutes : value
+        } else if (state.hours === endRangeHours) {
+          value = value > endRangeMinutes ? endRangeMinutes : value
+        }
+      } else {
+        if (state.hours === startRangeHours && state.minutes === startRangeMinutes) {
+          value = value < startRangeSeconds ? startRangeSeconds : value
+        } else if (state.hours === endRangeHours && state.minutes === endRangeMinutes) {
+          value = value > endRangeSeconds ? endRangeSeconds : value
+        }
+        value = startRangeSeconds === 0 && value < 1 ? 0 : value
+      }
+    }
+    return value
+  }
 
 export const adjustSpinners =
-  ({ api, state }) =>
-  () => {
+  ({ api, state, vm }) =>
+  (type) => {
+    if (type) {
+      const year = vm.date.getFullYear()
+      const month = vm.date.getUTCMonth() + 1
+      const day = vm.date.getDate()
+      if (type === 'min' && vm.endDate instanceof Date) {
+        state.selectableRange = [[new Date(`${year}-${month}-${day} 00:00:00`), vm.endDate]]
+      } else if (type === 'max' && vm.startDate instanceof Date) {
+        state.selectableRange = [[vm.startDate, new Date(`${year}-${month}-${day} 23:59:59`)]]
+      }
+    }
     api.adjustSpinner('hours', state.hours)
     api.adjustSpinner('minutes', state.minutes)
     api.adjustSpinner('seconds', state.seconds)

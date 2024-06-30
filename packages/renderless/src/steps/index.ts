@@ -1,3 +1,4 @@
+import { omitText } from '../common/string'
 import type { IStepsRenderlessParams, IStepsVisibleConfig, IStepsNodePosConfig } from '@/types'
 
 export const updateStartIndex =
@@ -35,9 +36,36 @@ export const computedRightNodePos =
     }))
   }
 
+export const handleMouseenter =
+  ({ state, vm }: Pick<IStepsRenderlessParams, 'state' | 'vm'>) =>
+  (e: MouseEvent, placement: string) => {
+    const ele = e.target as HTMLElement
+    const text = ele.textContent
+    const font = window.getComputedStyle(ele).font
+    const rect = ele.getBoundingClientRect()
+    const res = omitText(text, font, rect.width)
+    const popover = vm.$refs.popover
+
+    if (res.o) {
+      popover.state.referenceElm = ele
+      popover.state.popperElm && (popover.state.popperElm.style.display = 'none')
+      popover.doDestroy()
+
+      state.popoverContent = text
+      state.popoverVisible = true
+      state.popoverPlacement = placement
+
+      setTimeout(popover.updatePopper, 20)
+    }
+  }
+
+export const handleMouseleave = (state: IStepsRenderlessParams['state']) => (): void => {
+  state.popoverVisible = false
+}
+
 export const computedSpace = ({ props }: Pick<IStepsRenderlessParams, 'props'>): number | string => {
-  const { space } = props
-  if (/^\d+$/.test(space)) {
+  const { space = '' } = props
+  if (/^\d+$/.test(String(space))) {
     return `${space}px`
   }
 

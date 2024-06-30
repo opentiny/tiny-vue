@@ -4,10 +4,10 @@
     <transition name="drawer-fade">
       <div
         ref="mask"
-        v-if="mask && visible"
-        :class="['tiny-drawer__mask', { 'show-bg-color': state.toggle }]"
+        v-if="mask && state.visible"
+        class="tiny-drawer__mask show-bg-color"
         :style="{ zIndex }"
-        @click="maskClosable && close()"
+        @click="handleClose('mask')"
       ></div>
     </transition>
 
@@ -24,44 +24,93 @@
             'is-top': placement === 'top',
             'is-bottom': placement === 'bottom',
             'drag-effects': !state.dragEvent.isDrag,
-            'toggle': state.toggle
+            'toggle': state.visible
           },
+          'tiny-drawer-main',
           customClass
         ]"
         :style="{
           width: ['left', 'right'].includes(placement) ? state.computedWidth : null,
+          height: ['top', 'bottom'].includes(placement) && dragable && state.height ? state.height + 'px' : null,
           zIndex
         }"
-        v-show="visible"
+        v-show="state.visible"
       >
-        <div data-tag="drawer-drag-bar" ref="dragBar" v-if="dragable" :class="['tiny-drawer__drag-bar']"></div>
+        <div
+          v-if="dragable"
+          data-tag="drawer-drag-bar"
+          ref="dragBar"
+          :class="[
+            'tiny-drawer__drag-bar',
+            ['left', 'right'].includes(placement) && 'p-left-Right',
+            ['top', 'bottom'].includes(placement) && 'p-top-Bottom',
+            placement === 'left' && 'p-left',
+            placement === 'right' && 'p-right',
+            placement === 'top' && 'p-top',
+            placement === 'bottom' && 'p-bottom'
+          ]"
+        ></div>
 
         <div class="tiny-drawer__box">
           <!-- header -->
           <div data-tag="drawer-header" ref="header" v-if="showHeader" class="tiny-drawer__header-wrapper">
             <slot name="header">
-              <div class="tiny-drawer__header">
-                <div v-if="title" class="tiny-drawer__title">{{ title }}</div>
+              <slot-wrapper v-if="customSlots?.header" :node="customSlots.header"></slot-wrapper>
+              <div v-else class="tiny-drawer__header">
+                <div class="tiny-drawer__header-left">
+                  <div v-if="title" class="tiny-drawer__title">{{ title }}</div>
+                  <tiny-tooltip v-if="tipsProps" v-bind="tipsProps">
+                    <icon-help-circle class="tiny-drawer__help-icon"></icon-help-circle>
+                  </tiny-tooltip>
+                </div>
                 <div class="tiny-drawer__header-right">
-                  <slot name="header-right"></slot>
+                  <slot name="header-right">
+                    <slot-wrapper v-if="customSlots?.headerRight" :node="customSlots.headerRight"></slot-wrapper>
+                  </slot>
                 </div>
               </div>
             </slot>
-            <button v-if="showClose" type="button" class="tiny-drawer__headerbtn" aria-label="Close" @click="close">
+            <button
+              v-if="showClose"
+              type="button"
+              class="tiny-drawer__headerbtn"
+              aria-label="Close"
+              @click="handleClose('close')"
+            >
               <icon-close class="tiny-svg-size tiny-drawer__close" />
             </button>
           </div>
 
           <!-- body -->
-          <div data-tag="drawer-body" ref="body" :class="['tiny-drawer__body', { 'flex flex-col': flex }]">
-            <slot></slot>
+          <div
+            data-tag="drawer-body"
+            ref="body"
+            :class="['tiny-drawer__body', { 'flex flex-col': flex }, 'drawer-body']"
+          >
+            <slot>
+              <slot-wrapper :node="customSlots.default"></slot-wrapper>
+            </slot>
           </div>
 
           <!-- footer -->
           <div data-tag="drawer-footer" ref="footer" v-if="showFooter" class="tiny-drawer__footer">
             <slot name="footer">
-              <tiny-button type="primary" @click="confirm">{{ t('ui.button.confirm') }}</tiny-button>
-              <tiny-button plain @click="close">{{ t('ui.button.cancel') }}</tiny-button>
+              <slot-wrapper v-if="customSlots?.footer" :node="customSlots.footer"></slot-wrapper>
+
+              <template v-else>
+                <tiny-button
+                  type="primary"
+                  :class="['tiny-drawer__confirm-btn', { reverse: state.btnOrderReversed }]"
+                  @click="handleClose('confirm')"
+                  >{{ t('ui.button.confirm') }}</tiny-button
+                >
+                <tiny-button
+                  plain
+                  :class="['tiny-drawer__cancel-btn', { reverse: state.btnOrderReversed }]"
+                  @click="handleClose('cancel')"
+                  >{{ t('ui.button.cancel') }}</tiny-button
+                >
+              </template>
             </slot>
           </div>
         </div>
@@ -72,15 +121,31 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/drawer/vue'
-import { setup, props } from '@opentiny/vue-common'
+import { setup, props, defineComponent, h } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/drawer/index.less'
-import { IconClose } from '@opentiny/vue-icon'
+import { iconClose, iconHelpCircle } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
+import Tooltip from '@opentiny/vue-tooltip'
 
-export default {
+export default defineComponent({
   components: {
     TinyButton: Button,
-    IconClose: IconClose()
+    TinyTooltip: Tooltip,
+    IconClose: iconClose(),
+    IconHelpCircle: iconHelpCircle(),
+
+    // tiny新增: 适配Vue2下, 在模板中渲染VNode
+    SlotWrapper: {
+      props: ['node'],
+      render() {
+        const { node } = this
+        if (typeof node === 'function') {
+          return node(h)
+        } else {
+          return node
+        }
+      }
+    }
   },
   props: [
     ...props,
@@ -97,10 +162,14 @@ export default {
     'lockScroll',
     'flex',
     'showClose',
-    'zIndex'
+    'zIndex',
+    'beforeClose',
+    'tipsProps',
+    'customSlots'
   ],
+  emits: ['update:visible', 'open', 'close', 'confirm'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
-}
+})
 </script>

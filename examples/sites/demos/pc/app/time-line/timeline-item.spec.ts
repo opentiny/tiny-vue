@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('步骤条节点组件', async ({ page }) => {
+test('时间线节点组件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('time-line#basic-usage')
 

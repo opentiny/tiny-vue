@@ -12,6 +12,9 @@
 
 import { on, off } from '../common/deps/dom'
 
+// 上拉触发事件超时时间
+const PULL_UP_TIME_OUT = 300
+
 export const initPullRefresh =
   ({ t, props, state }) =>
   () => {
@@ -37,25 +40,17 @@ export const onTouchstart = (state) => (event) => {
 export const onTouchmove =
   ({ state, refs }) =>
   (event) => {
-    if (event.touches[0].clientY < state.draggposition) {
-      pullUpTouchMove(state)
-    } else {
+    if (event.touches[0].clientY > state.draggposition) {
       pullDownTouchMove(state, refs, event)
     }
   }
-
-export const pullUpTouchMove = (state) => {
-  if (state.disabledPullUp || state.pullUpLoading || !state.hasMore) {
-    return
-  }
-}
 
 export const pullDownTouchMove = (state, refs, event) => {
   if (state.disabledPullDown || state.pullDownLoading) {
     return
   }
 
-  if (refs.content.scrollTop <= 0) {
+  if (refs.content.scrollTop <= 0 && window.scrollY <= 0 && event.cancelable) {
     event.preventDefault()
 
     state.translate3d = (event.touches[0].clientY - state.draggposition) / 2
@@ -92,7 +87,9 @@ export const pullDownTouchEnd = (api, state, emit) => {
 }
 
 export const pullUpTouchEnd = (state, emit, refs) => {
-  setTimeout(() => {
+  clearTimeout(state.timer)
+
+  state.timer = setTimeout(() => {
     const footNode = refs.foot
 
     if (!state.hasMore || !footNode) {
@@ -106,8 +103,14 @@ export const pullUpTouchEnd = (state, emit, refs) => {
       emit('update:modelValue', true)
       emit('pullUp')
     }
-  }, 300)
+  }, PULL_UP_TIME_OUT)
 }
+
+export const onScroll =
+  ({ state, emit, refs }) =>
+  () => {
+    pullUpTouchEnd(state, emit, refs)
+  }
 
 export const mountedHandler =
   ({ api, refs }) =>
@@ -117,6 +120,7 @@ export const mountedHandler =
     on(track, 'touchstart', api.onTouchstart)
     on(track, 'touchmove', api.onTouchmove)
     on(track, 'touchend', api.onTouchend)
+    on(track, 'scroll', api.onScroll)
   }
 
 export const beforeUnmountHandler =
@@ -127,6 +131,7 @@ export const beforeUnmountHandler =
     off(track, 'touchstart', api.onTouchstart)
     off(track, 'touchmove', api.onTouchmove)
     off(track, 'touchend', api.onTouchend)
+    off(track, 'scroll', api.onScroll)
   }
 
 export const handlerModelValue =

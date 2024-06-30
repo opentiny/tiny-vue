@@ -1,7 +1,7 @@
-import { $props, $setup, $prefix } from '@opentiny/vue-common'
+import { $props, $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc'
 
-export default {
+export default defineComponent({
   name: $prefix + 'RecycleScroller',
   props: {
     ...$props,
@@ -33,4 +33,4 @@ export default {
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

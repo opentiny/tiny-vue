@@ -7,7 +7,8 @@ export const tinyTagSMBTheme = {
   'ti-tag-medium-padding-horizontal': 'var(--ti-common-space-3x)',
   'ti-tag-small-padding-horizontal': 'var(--ti-common-space-base)',
   'ti-tag-small-border-radius': 'var(--ti-common-border-radius-1)',
-  'ti-tag-primary-background-color': 'var(--ti-base-color-bg-6)',
+  'ti-tag-primary-background-color': 'var(--ti-common-color-bg-light-normal)',
+  'ti-tag-info-background-color': 'var(--ti-common-color-bg-light-normal)',
   'ti-tag-border-weight': '0',
   'ti-tag-border-radius': 'var(--ti-common-border-radius-2)',
   'ti-tag-close-font-size': 'var(--ti-common-font-size-2)',
@@ -18,5 +19,6 @@ export const tinyTagSMBTheme = {
   'ti-tag-close-small-margin-left': 'var(--ti-common-space-2)',
   'ti-tag-close-small-margin-right': 'calc(var(--ti-common-space-2) * -1)',
   'ti-tag-primary-close-opacity': '1',
+  'ti-tag-mini-height': 'var(--ti-common-size-3x)',
   'ti-tag-primary-close-hover-icon-color': 'var(--ti-common-color-icon-graybg-hover)'
 }

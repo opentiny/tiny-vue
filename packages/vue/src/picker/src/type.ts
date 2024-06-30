@@ -51,6 +51,10 @@ export const pickerProps = {
     type: Boolean,
     default: true
   },
+  changeOnConfirm: {
+    type: Boolean,
+    default: false
+  },
   disabled: Boolean,
   id: {
     default: '',
@@ -106,6 +110,7 @@ export const pickerProps = {
   },
   dbTimezone: Number,
   timezone: Number,
+  timezoneOffset: Number,
   iso8601: Boolean,
   displayOnly: {
     type: Boolean,
@@ -121,5 +126,18 @@ export const pickerProps = {
     type: Boolean,
     default: false
   },
-  formatWeeks: Function
+  formatWeeks: Function,
+  autoFormat: {
+    type: Boolean,
+    default: false
+  },
+  title: String,
+  blank: {
+    type: Boolean,
+    default: false
+  },
+  changeCompat: {
+    type: Boolean,
+    default: false
+  }
 }

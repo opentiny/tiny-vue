@@ -3,7 +3,7 @@
     <tiny-exception
       type="nodata"
       button-text="重试"
-      imageUrl="/static/images/planet1.jpg"
+      :imageUrl="imageUrl"
       message="网络异常，请稍后再试，或者联系管理员给您处理"
     ></tiny-exception>
   </div>
@@ -17,7 +17,9 @@ export default {
     TinyException: Exception
   },
   data() {
-    return {}
+    return {
+      imageUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/planet1.jpg`
+    }
   },
   methods: {
     test() {

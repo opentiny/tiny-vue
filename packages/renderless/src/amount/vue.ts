@@ -10,6 +10,15 @@
  *
  */
 
+import type {
+  IAmountProps,
+  IAmountState,
+  IAmountRenderlessParamUtils,
+  ISharedRenderlessParamHooks,
+  IAmountApi,
+  IAmountEditorState
+} from '@/types'
+
 import {
   closePopper,
   popInput,
@@ -31,7 +40,13 @@ import {
   watchModelValue,
   watchCurrency,
   onInputPreprocess,
-  initAmount
+  initAmount,
+  handleClearClick,
+  handleChange,
+  closeDetailEidtor,
+  openDetailEditor,
+  getAmountTextWithoutCurrncy,
+  watchUiMode
 } from './index'
 
 export const api = [
@@ -47,10 +62,33 @@ export const api = [
   'inputFocus',
   'closePopper',
   'onInput',
-  'getAmountText'
+  'getAmountText',
+  'handleClearClick',
+  'handleChange',
+  'openDetailEditor',
+  'closeDetailEidtor',
+  'uiMode',
+  'getAmountTextWithoutCurrncy',
+  'watchUiMode'
 ]
 
-const initState = ({ reactive, computed, props, $service, editorState }) => {
+const initState = ({
+  reactive,
+  computed,
+  props,
+  $service,
+  editorState,
+  vm,
+  api,
+  constants,
+  parent
+}: {
+  reactive: ISharedRenderlessParamHooks['reactive']
+  computed: ISharedRenderlessParamHooks['computed']
+  props: IAmountProps
+  $service: any
+  editorState: IAmountApi['editorState']
+}) => {
   const state = reactive({
     visible: false,
     amount: props.modelValue || '',
@@ -63,51 +101,108 @@ const initState = ({ reactive, computed, props, $service, editorState }) => {
     lastInput: props.modelValue,
     lastCurrency: props.currency,
     lastDate: props.date,
-    format: computed(() => ({
-      ...getPrecision({ service: $service, props, currency: editorState.currency }),
-      prefix: state.currency
-    }))
+    format: computed(() => {
+      return {
+        ...getPrecision({ service: $service, props, currency: editorState.currency }),
+        prefix: state.currency
+      }
+    }),
+    disabled: computed(() => props.disabled || (parent.tinyForm || {}).disabled),
+    displayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly),
+    theme: vm.theme,
+    radioVal: '',
+    clearValues: false,
+    amountValue: computed(() => api.getAmountText()),
+    amountNumberValue: computed(() => api.getAmountTextWithoutCurrncy()),
+    filterMenu: constants.FILTER_OPTION,
+    editorPhase: 'close' // 'close' | 'selection' | 'currency' | 'date',
   })
 
   return state
 }
 
-const initEditorState = ({ reactive, props }) =>
-  reactive({
+const initEditorState = ({
+  reactive,
+  props
+}: {
+  reactive: ISharedRenderlessParamHooks['reactive']
+  props: IAmountProps
+}) => {
+  return reactive<IAmountEditorState>({
     amount: '',
     date: '',
     currency: props.currency,
     lastInput: props.modelValue
   })
+}
 
-const initApi = ({ api, t, editorState, props, state, emit, refs }) => {
+const initUiMode = ({ useBreakpoint }) => {
+  return useBreakpoint().current
+}
+
+const initApi = ({
+  api,
+  t,
+  editorState,
+  props,
+  state,
+  emit,
+  vm,
+  uiMode,
+  isMobileFirstMode
+}: {
+  api: Partial<IAmountApi>
+  t: IAmountApi['t']
+  editorState: IAmountEditorState
+  props: IAmountProps
+  state: IAmountState
+  emit: IAmountRenderlessParamUtils['emit']
+}) => {
   Object.assign(api, {
     state,
     t,
     editorState,
+    uiMode,
     getDecimal: getDecimal(props),
     innerFormat: innerFormat({ state, props }),
     getAmountText: getAmountText({ state, props }),
-    initAmount: initAmount(props),
+    getAmountTextWithoutCurrncy: getAmountTextWithoutCurrncy({ state }),
+    initAmount: initAmount({ props, api }),
     onInputPreprocess: onInputPreprocess(props),
     onInput: onInput({ state, props, api }),
     initText: initText({ state }),
     inputFocus: inputFocus({ state, props }),
     inputBlur: inputBlur({ api, props, state }),
     closePopper: closePopper(state),
-    emitChange: emitChange({ emit, state }),
+    emitChange: emitChange({ emit, state, props, api }),
     popInput: popInput({ editorState, api, state, props }),
-    save: save({ api, state, editorState, props }),
-    reset: reset({ api, state, editorState }),
-    handelClick: handelClick({ api, refs }),
+    save: save({ api, state, editorState }),
+    reset: reset({ state, editorState }),
+    handelClick: handelClick({ api, vm }),
     addOutSideEvent: addOutSideEvent(api),
     watchModelValue: watchModelValue({ api, state }),
     watchCurrency: watchCurrency({ api, state, editorState }),
-    toggleVisible: toggleVisible({ api, props, state, editorState })
+    watchUiMode: watchUiMode({ api, isMobileFirstMode }),
+    toggleVisible: toggleVisible({ api, props, state, editorState, uiMode, isMobileFirstMode }),
+    handleClearClick: handleClearClick({ state, emit, editorState }),
+    handleChange: handleChange({ state, emit }),
+    openDetailEditor: openDetailEditor({ state }),
+    closeDetailEidtor: closeDetailEidtor({ state, props, api })
   })
 }
 
-const initWatch = ({ watch, props, state, api }) => {
+const initWatch = ({
+  watch,
+  props,
+  state,
+  api,
+  uiMode
+}: {
+  watch: ISharedRenderlessParamHooks['watch']
+  props: IAmountProps
+  state: IAmountState
+  api: IAmountApi
+}) => {
   watch(() => props.modelValue, api.watchModelValue, { immediate: true })
 
   watch(() => props.currency, api.watchCurrency, { immediate: true })
@@ -124,6 +219,7 @@ const initWatch = ({ watch, props, state, api }) => {
   watch(
     () => props.rounding,
     (value) => {
+      // todo format 在 initState 初始化中是一个 ComputedRef<object>，写法是否有误？
       state.format.rounding = value
     }
   )
@@ -131,24 +227,37 @@ const initWatch = ({ watch, props, state, api }) => {
   watch(
     () => props.digits,
     (value) => {
+      // todo format 在 initState 初始化中是一个 ComputedRef<object>，写法是否有误？
       state.format.fraction = value
     }
   )
+  watch(uiMode, api.watchUiMode)
 }
 
-export const renderless = (props, { onUnmounted, computed, reactive, watch }, { t, emit, refs, service }) => {
-  const api = {}
+export const renderless = (
+  props: IAmountProps,
+  { onUnmounted, computed, reactive, watch, inject }: ISharedRenderlessParamHooks,
+  { t, emit, vm, service, parent, constants, isMobileFirstMode, useBreakpoint }: IAmountRenderlessParamUtils
+) => {
+  const api: Partial<IAmountApi> = {}
   const $service = initService(service)
   const editorState = initEditorState({ reactive, props })
-  const state = initState({ reactive, computed, props, $service, editorState })
+  const state: IAmountState = initState({ reactive, computed, props, $service, editorState, vm, api, constants, parent })
+  const uiMode = initUiMode({ useBreakpoint })
 
-  initApi({ api, t, editorState, props, state, emit, refs })
+  initApi({ api, t, editorState, props, state, emit, vm, uiMode, isMobileFirstMode })
 
-  api.getDecimal(0) // 初始化Decimal
+  parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  initWatch({ watch, props, state, api })
+  api?.getDecimal?.(0) // 初始化Decimal
 
-  onUnmounted(() => api.addOutSideEvent(false))
+  initWatch({ watch, props, state, api: api as IAmountApi, uiMode })
 
-  return api
+  onUnmounted(() => api?.addOutSideEvent?.(false))
+
+  parent.$on('handle-clear', (event) => {
+    api.handleClearClick(event)
+  })
+
+  return api as IAmountApi
 }

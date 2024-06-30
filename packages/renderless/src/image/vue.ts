@@ -24,7 +24,9 @@ import {
   clickHandler,
   closeViewer,
   mounted,
-  deleteHander
+  deleteHander,
+  filterImageUrl,
+  handleSwitch
 } from './index'
 import type { ISharedRenderlessParamHooks } from 'types/shared.type'
 import type {
@@ -45,7 +47,8 @@ export const api = [
   'closeViewer',
   'handleLoad',
   'handleError',
-  'deleteHander'
+  'deleteHander',
+  'handleSwitch'
 ]
 
 const initState = ({
@@ -67,7 +70,8 @@ const initState = ({
     showViewer: false,
     getPreview: computed(() => api.computedGetPreview()),
     getImageStyle: computed(() => api.computedGetImageStyle()),
-    getAlignCenter: computed(() => api.computedGetAlignCenter())
+    getAlignCenter: computed(() => api.computedGetAlignCenter()),
+    src: computed(() => api.filterImageUrl())
   })
 
   return state
@@ -98,7 +102,9 @@ const initApi = ({
     loadImage: loadImage({ api, state, props, attrs }),
     computedGetImageStyle: computedGetImageStyle({ api, props }),
     addLazyLoadListener: addLazyLoadListener({ api, props, state, vm }),
-    deleteHander: deleteHander(emit)
+    deleteHander: deleteHander(emit),
+    filterImageUrl: filterImageUrl(props),
+    handleSwitch: handleSwitch({ emit })
   })
 }
 

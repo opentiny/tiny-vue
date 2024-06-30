@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-multi-select",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -18,7 +18,13 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-mask": "workspace:~",
+    "@opentiny/vue-multi-select-item": "workspace:~",
+    "@opentiny/vue-wheel": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   },
   "license": "MIT"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-grid",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -26,10 +26,9 @@
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-button": "workspace:~",
-    "@opentiny/vue-popover": "workspace:~",
     "@opentiny/vue-tag": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
+    "@opentiny/vue-loading": "workspace:~",
+    "@opentiny/vue-common": "workspace:~"
   },
   "license": "MIT"
 }

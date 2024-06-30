@@ -38,8 +38,8 @@
             'text-color-bg-1 bg-color-brand-disabled border-y-0 cursor-not-allowed border-transparent shadow-none',
           state.radioGroup.disabled &&
             state.value !== label &&
-            'bg-color-bg-4 cursor-not-allowed border-color-border-disabled text-color-text-disabled',
-          disabled && !state.radioGroup.disabled && 'text-color-text-disabled bg-none cursor-not-allowed',
+            'bg-color-bg-4 cursor-not-allowed border-color-border-disabled text-color-text-secondary',
+          disabled && !state.radioGroup.disabled && 'text-color-text-secondary bg-none cursor-not-allowed',
           state.value === label &&
             !disabled &&
             !state.radioGroup.disabled &&
@@ -52,6 +52,7 @@
           state.showTips && 'sm:pr-7'
         )
       "
+      :style="state.value === label ? state.activeStyle : null"
       @keydown.stop
     >
       <slot></slot>

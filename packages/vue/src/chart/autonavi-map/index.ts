@@ -1,18 +1,9 @@
-import AMap from './src/index.js'
-import { version } from './package.json'
+import AutonaviMap from './src/autonavi-map.vue'
 
-/* istanbul ignore next */
-AMap.install = function (Vue) {
-  Vue.component(AMap.name, AMap)
+AutonaviMap.install = function (Vue: any) {
+  Vue.component(AutonaviMap.name, AutonaviMap)
 }
 
-AMap.version = version
+export { AutonaviMap }
 
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    AMap.install(window.Vue)
-  }
-}
-
-export default AMap
+export default AutonaviMap

@@ -19,6 +19,8 @@
 @search-prefix-cls: ~'@{css-prefix}mobile-search';
 
 .@{search-prefix-cls} {
+  .component-css-vars-search();
+
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -30,12 +32,12 @@
     flex: auto;
     height: var(--ti-mobile-search-input-height);
     margin-left: 16px;
-    border-radius: var(--ti-mobile-search-input-border-radius);
+    border-radius: var(--ti-mobile-search-input-height);
     overflow: hidden;
     box-sizing: border-box;
     background: transparent;
 
-    &::after {
+    &:after {
       content: '';
       width: 200%;
       height: 200%;
@@ -83,6 +85,7 @@
       color: var(--ti-mobile-search-text-color-primary);
       caret-color: var(--ti-mobile-search-caret-color-primary);
       .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-primary));
+
       &:focus {
         .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-primary));
       }
@@ -92,6 +95,7 @@
       color: var(--ti-mobile-search-text-color-gray);
       caret-color: var(--ti-mobile-search-caret-color-gray);
       .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-gray));
+
       &:focus {
         .placeholder(@color: var(--ti-mobile-search-placeholder-text-color-gray));
       }
@@ -100,10 +104,17 @@
 
   &-primary {
     background-color: var(--ti-mobile-search-bg-color-primary);
+    .@{css-prefix}svg {
+      fill: var(--ti-mobile-search-icon-fill-color-primary);
+    }
   }
 
   &-gray {
+    color: var(--ti-mobile-search-text-color-gray);
     background-color: var(--ti-mobile-search-bg-color-gray);
+    .@{css-prefix}svg {
+      fill: var(--ti-mobile-search-icon-fill-color-gray);
+    }
   }
 
   & &__icon {
@@ -111,36 +122,24 @@
     display: flex;
 
     .@{css-prefix}svg {
-      fill: var(--ti-mobile-search-placeholder-text-color-primary);
+      fill: var(--ti-mobile-search-icon-fill-color-primary);
     }
   }
 
   &-gray &__icon {
     .@{css-prefix}svg {
-      fill: var(--ti-mobile-search-placeholder-text-color-gray);
+      fill: var(--ti-mobile-search-icon-fill-color-gray);
     }
   }
 
   & &__close-icon {
     position: absolute;
-    right: 0;
+    right: 5px;
     padding: 0 8px;
     cursor: pointer;
     display: inline-flex;
     top: 50%;
     transform: translateY(-50%);
-  }
-
-  &-primary {
-    .@{css-prefix}svg {
-      fill: var(--ti-mobile-search-icon-fill-color-primary);
-    }
-  }
-
-  &-gray {
-    .@{css-prefix}svg {
-      fill: var(--ti-mobile-search-icon-fill-color-gray);
-    }
   }
 
   &__right {
@@ -150,10 +149,6 @@
     width: 46px;
     height: 100%;
     color: var(--ti-mobile-search-text-color-primary);
-  }
-
-  &-gray {
-    color: var(--ti-mobile-search-text-color-gray);
   }
 
   & &__present {

@@ -33,8 +33,17 @@ import {
   setCurrentKey,
   getCurrentKey,
   setCurrentNode,
-  getCurrentNode
+  getCurrentNode,
+  handleToggleMenu,
+  computedTreeStyle
 } from './index'
+import type {
+  ISharedRenderlessParamUtils,
+  ISharedRenderlessFunctionParams,
+  ITreeMenuProps,
+  ITreeMenuState,
+  ITreeMenuApi
+} from '@/types'
 
 export const api = [
   'state',
@@ -60,26 +69,39 @@ export const api = [
   'setCurrentKey',
   'getCurrentKey',
   'setCurrentNode',
-  'getCurrentNode'
+  'getCurrentNode',
+  'handleToggleMenu'
 ]
 
-export const renderless = (props, { watch, reactive, onMounted }, { t, service, emit, vm }) => {
+export const renderless = (
+  props: ITreeMenuProps,
+  { computed, watch, reactive, onMounted }: ISharedRenderlessFunctionParams,
+  { t, service, emit, vm }: ISharedRenderlessParamUtils
+) => {
   service = service || { base: {} }
   service = { getMenuDataSync: props.getMenuDataSync || service.base.getMenuDataSync }
-
-  const state = reactive({
+  const api: Partial<ITreeMenuApi> = {}
+  const state = reactive<ITreeMenuState>({
     data: [],
     filterText: '',
-    isCollapsed: false
+    isExpand: false,
+    isCollapsed: false,
+    nodeKey: null,
+    currentKey: [],
+    treeStyle: computed(() => api.computedTreeStyle()),
+    defaultExpandedKeys: computed(() =>
+      props.defaultExpandedKeys && props.defaultExpandedKeys.length ? props.defaultExpandedKeys : state.currentKey
+    ),
+    clearable: computed(() => props.clearable)
   })
 
   Object.assign(api, {
     t,
     state,
     check: check(emit),
-    filterNode: filterNode(),
+    filterNode: filterNode(props),
     nodeDrop: nodeDrop(emit),
-    nodeClick: nodeClick(emit),
+    nodeClick: nodeClick({ emit, props, state }),
     nodeExpand: nodeExpand(emit),
     nodeDragEnd: nodeDragEnd(emit),
     checkChange: checkChange(emit),
@@ -90,15 +112,17 @@ export const renderless = (props, { watch, reactive, onMounted }, { t, service, 
     currentChange: currentChange(emit),
     watchFilterText: watchFilterText({ vm }),
     getTitle: getTitle(props),
-    setMenuKey: setMenuKey(api),
-    initData: initData({ state, props, service, api }),
+    setMenuKey: setMenuKey(api as ITreeMenuApi),
+    initData: initData({ state, props, service, api: api as ITreeMenuApi }),
     collapseChange: collapseChange({ state, props, emit }),
     collapseMenu: collapseMenu({ state, props, api }),
-    expandMenu: expandMenu({ state, props, api }),
+    expandMenu: expandMenu({ state, props, api: api as ITreeMenuApi }),
     setCurrentKey: setCurrentKey({ vm }),
     getCurrentKey: getCurrentKey({ vm }),
     setCurrentNode: setCurrentNode({ vm }),
-    getCurrentNode: getCurrentNode({ vm })
+    getCurrentNode: getCurrentNode({ vm }),
+    handleToggleMenu: handleToggleMenu({ state, vm }),
+    computedTreeStyle: computedTreeStyle({ props })
   })
 
   watch(
@@ -107,9 +131,9 @@ export const renderless = (props, { watch, reactive, onMounted }, { t, service, 
     { immediate: true }
   )
 
-  watch(() => state.filterText, api.watchFilterText, { deep: true })
+  watch(() => state.filterText, (api as ITreeMenuApi).watchFilterText, { deep: true })
 
-  onMounted(api.initData)
+  onMounted((api as ITreeMenuApi).initData)
 
-  return api
+  return api as ITreeMenuApi
 }

@@ -4,7 +4,7 @@
 @cascader-node-prefix-cls: ~'@{css-prefix}cascader-node';
 
 .@{cascader-menu-prefix-cls} {
-  min-width: 220px;
+  @apply ~'min-w-[theme(spacing.54)]';
   @apply box-border;
   @apply text-color-text-primary;
   @apply pt-1;
@@ -13,7 +13,7 @@
     @apply border-r-0;
 
     .@{cascader-node-prefix-cls} {
-      @apply pr-5;
+      @apply pr-7;
     }
   }
 
@@ -41,10 +41,17 @@
 
   &__empty-text {
     @apply absolute;
-    @apply ~"top-1/2";
+    @apply ~'top-1/2';
     @apply ~'left-1/2';
-    @apply ~"-translate-x-2/4" ~"-translate-y-2/4";
+    @apply ~'-translate-x-2/4' ~'-translate-y-2/4';
     @apply text-center;
     @apply text-color-text-placeholder;
+  }
+
+  &__no-data {
+    @apply text-center;
+    @apply text-color-text-placeholder;
+    @apply text-sm;
+    @apply pt-20;
   }
 }

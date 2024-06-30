@@ -7,7 +7,13 @@
         :placement="placement"
         trigger="manual"
         :width="width"
+        :title="title"
         :popper-class="m('tiny-popconfirm-popover', customClass)"
+        :popper-options="popperOptions"
+        :append-to-body="popperAppendToBody"
+        :reference="reference"
+        @show="handleEmit('show')"
+        @hide="handleEmit('hide')"
       >
         <div class="tiny-popconfirm-popover__container">
           <div class="tiny-popconfirm-popover__header">
@@ -27,10 +33,10 @@
           <div class="tiny-popconfirm-popover__footer">
             <slot name="footer">
               <tiny-button v-if="cancelButton" class="tiny-popconfirm-popover__cancel-button" size="mini" @click="hide">
-                {{ t('ui.buttonMessage.cancel') }}
+                {{ t('ui.button.cancel') }}
               </tiny-button>
               <tiny-button class="tiny-popconfirm-popover__confirm-button" size="mini" type="primary" @click="confirm">
-                {{ t('ui.buttonMessage.confirm') }}
+                {{ t('ui.button.confirm') }}
               </tiny-button>
             </slot>
           </div>
@@ -68,6 +74,7 @@ export default defineComponent({
       type: Object,
       default: () => ({})
     },
+    popperOptions: Object,
     message: String,
     customClass: String,
     trigger: {
@@ -76,6 +83,10 @@ export default defineComponent({
       validator: (value: string) => ['click', 'hover'].includes(value)
     },
     cancelButton: {
+      type: Boolean,
+      default: true
+    },
+    closeOnClickOutside: {
       type: Boolean,
       default: true
     },
@@ -88,7 +99,13 @@ export default defineComponent({
       type: [String, Number],
       default: '350'
     },
-    type: [String, Object]
+    type: [String, Object],
+    reference: {},
+    events: Object,
+    popperAppendToBody: {
+      type: Boolean,
+      default: true
+    }
   },
   emits: ['hide', 'show', 'confirm'],
   setup(props, context): any {

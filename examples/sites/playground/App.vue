@@ -17,35 +17,48 @@ import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
 import Share from './icons/Share.vue'
 
-const VERSION = 'tiny-vue-version-3.12'
+const VERSION = 'tiny-vue-version-3.16'
 const LAYOUT = 'playground-layout'
 const LAYOUT_REVERSE = 'playground-layout-reverse'
 
-const versions = ['3.12', '3.11', '3.10', '3.9', '3.8']
-const latestVersion = localStorage.getItem(VERSION) || versions[0]
-const cdnHost = localStorage.getItem('setting-cdn')
-const getRuntime = (version) => `${cdnHost}/@opentiny/vue@${version}/runtime/`
-
 const searchObj = new URLSearchParams(location.search)
 const tinyMode = searchObj.get('mode')
-const tinyTheme = tinyMode === 'saas' ? 'aurora' : searchObj.get('theme')
+const tinyTheme = searchObj.get('theme')
 const isMobileFirst = tinyMode === 'mobile-first'
+const isSaas = tinyTheme === 'saas'
+const isPreview = searchObj.get('openMode') === 'preview' // 是否多端弹窗预览
+
+const versions = ['3.16', '3.15', '3.14', '3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
+const latestVersion = isPreview ? versions[0] : localStorage.getItem(VERSION) || versions[0]
+const cdnHost = localStorage.getItem('setting-cdn')
+
+const versionDelimiter = cdnHost.includes('npmmirror') ? '/' : '@'
+const fileDelimiter = cdnHost.includes('npmmirror') ? 'files/' : ''
+
+const getRuntime = (version) => {
+  const useVersion = import.meta.env.VITE_PLAYGROUND_VERIOSN || version
+  return `${cdnHost}/@opentiny/vue-runtime${versionDelimiter}${useVersion}/${fileDelimiter}dist3/`
+}
 
 const createImportMap = (version) => {
   const imports = {
-    '@opentiny/vue': `${getRuntime(version)}tiny-vue.mjs`,
+    'vue': `${cdnHost}/vue${versionDelimiter}3.4.27/${fileDelimiter}dist/vue.runtime.esm-browser.js`,
+    'echarts': `${cdnHost}/echarts${versionDelimiter}5.4.1/${fileDelimiter}dist/echarts.esm.js`,
+    '@vue/compiler-sfc': `${cdnHost}/@vue/compiler-sfc${versionDelimiter}3.4.27/${fileDelimiter}dist/compiler-sfc.esm-browser.js`,
+    '@opentiny/vue': `${getRuntime(version)}tiny-vue-pc.mjs`,
     '@opentiny/vue-icon': `${getRuntime(version)}tiny-vue-icon.mjs`,
     '@opentiny/vue-locale': `${getRuntime(version)}tiny-vue-locale.mjs`,
     '@opentiny/vue-common': `${getRuntime(version)}tiny-vue-common.mjs`,
-    '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme@${version}/`,
-    '@opentiny/vue-theme-mobile/': `${cdnHost}/@opentiny/vue-theme-mobile@${version}/`,
-    '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless@${version}/`,
-    'sortablejs': `${cdnHost}/sortablejs@1.15.0/modular/sortable.esm.js`
+    '@opentiny/vue-theme/': `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}`,
+    '@opentiny/vue-theme-mobile/': `${cdnHost}/@opentiny/vue-theme-mobile${versionDelimiter}${version}/${fileDelimiter}`,
+    '@opentiny/vue-renderless/': `${cdnHost}/@opentiny/vue-renderless${versionDelimiter}${version}/${fileDelimiter}`,
+    'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
-  if (['aurora', 'smb'].includes(tinyTheme)) {
-    imports[`@opentiny/vue-design-${tinyTheme}`] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}@${version}/index.js`
+  if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
+    imports[`@opentiny/vue-design-${tinyTheme}`] =
+      `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
-  if (isMobileFirst) {
+  if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
   }
   return {
@@ -57,15 +70,15 @@ const getTinyTheme = (version) => {
   if (isMobileFirst) {
     return `${getRuntime(version)}tailwind.css`
   }
-  let theme = tinyMode === 'saas' ? 'saas' : tinyTheme
+  let theme = tinyTheme
   if (!['smb', 'default', 'aurora', 'saas'].includes(theme)) {
     theme = 'default'
   }
   const tinyThemeMap = {
-    default: `${cdnHost}/@opentiny/vue-theme@${version}/index.css`,
-    smb: `${cdnHost}/@opentiny/vue-theme@${version}/index.css`,
-    aurora: `${cdnHost}/@opentiny/vue-theme@${version}/index.css`,
-    saas: `${cdnHost}/@opentiny/vue-theme-saas@${version}/index.css`
+    default: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
+    smb: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
+    aurora: `${cdnHost}/@opentiny/vue-theme${versionDelimiter}${version}/${fileDelimiter}index.css`,
+    saas: `${cdnHost}/@opentiny/vue-theme-saas${versionDelimiter}${version}/${fileDelimiter}index.css`
   }
   return tinyThemeMap[theme]
 }
@@ -89,8 +102,7 @@ const store = new useStore({
 // repl 属性
 const state = reactive({
   layout: localStorage.getItem(LAYOUT) || 'horizon',
-  // 默认为反转，所以需要判断是否为'false'后取反
-  layoutReverse: !(localStorage.getItem(LAYOUT_REVERSE) === 'false'),
+  layoutReverse: localStorage.getItem(LAYOUT_REVERSE) === 'true',
   layoutOptions: [
     { value: 'horizon', text: '水平' },
     { value: 'vertical', text: '垂直' }
@@ -114,8 +126,8 @@ function setTinyDesign() {
   if (isMobileFirst) {
     useCode += 'app.provide("TinyMode", "mobile-first");\n'
   }
-  // 目前只有aurora和smb有design包
-  if (['aurora', 'smb'].includes(tinyTheme)) {
+
+  if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
     importCode += `import designConfig from '@opentiny/vue-design-${tinyTheme}';
       import { design } from '@opentiny/vue-common';\n`
     useCode += 'app.provide(design.configKey, designConfig);\n'
@@ -159,7 +171,7 @@ function insertStyleDom(version) {
 
       // 增加mobile支持，增加mobile的样式表
       const mobileLink = link.cloneNode(true)
-      mobileLink.href = `${cdnHost}/@opentiny/vue-theme-mobile@${version}/index.css`
+      mobileLink.href = `${cdnHost}/@opentiny/vue-theme-mobile${versionDelimiter}${version}/${fileDelimiter}index.css`
       iframeWin.document.head.append(mobileLink)
     })
   })
@@ -264,7 +276,7 @@ function share() {
       </span>
       <span class="ml20">
         OpenTiny Vue 版本:
-        <tiny-select v-model="state.selectVersion" @change="selectVersion" style="width: 150px">
+        <tiny-select v-model="state.selectVersion" @change="selectVersion" style="width: 150px" :disabled="isPreview">
           <tiny-option v-for="item in state.versions" :key="item.value" :label="item.value" :value="item.value">
           </tiny-option>
         </tiny-select>

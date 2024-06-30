@@ -18,6 +18,11 @@ export const $constants = {
   UPLOAD_INNER_TEMPLATE: 'upload-inner-template',
   UPLOAD_LIST_INNER: 'upload-list-inner',
   UPLOAD_LIST_INNER_TEMPLATE: 'upload-list-inner-template',
+  ONLY_SUPPORT: 'ui.fileUpload.onlySupport',
+  COMMA: 'ui.base.comma',
+  FILE_NOT_LESS_THAN: 'ui.fileUpload.fileNotLessThan',
+  FILE_NOT_MORE_THAN: 'ui.fileUpload.fileNotMoreThan',
+  NUMBER_LIMIT: 'ui.fileUpload.numberLimit',
   FILE_STATUS: {
     READY: 'ready',
     SUCESS: 'success',
@@ -31,7 +36,8 @@ export const $constants = {
     PICTURE: 'picture',
     THUMB: 'thumb',
     PICTURE_SINGLE: 'picture-single',
-    DRAG_SINGLE: 'drag-single'
+    DRAG_SINGLE: 'drag-single',
+    SAAS: 'saas'
   },
   EDM: {
     CHUNKINIT: 'chunkInit',
@@ -78,7 +84,8 @@ export const $constants = {
     notSupport: 'ui.fileUpload.notSupport',
     NOT_SUPPORT_NO_SUFFIX: 'ui.fileUpload.notSupportNoSuffix',
     STATUS_SPECIAL_CHARACTERS: 11005,
-    NOT_SUPPORT_SPECIAL_CHARACTERS: 'ui.fileUpload.notSupportSpecialCharacters'
+    NOT_SUPPORT_SPECIAL_CHARACTERS: 'ui.fileUpload.notSupportSpecialCharacters',
+    DOC_PREVIEW: 'ui.fileUpload.docPreview'
   },
   IMAGE_TYPE: 'image/*',
   FILE_TYPE: {
@@ -267,6 +274,10 @@ export const fileUploadProps = {
     type: Boolean,
     default: true
   },
+  compact: {
+    type: Boolean,
+    default: false
+  },
   beforeAddFile: Function,
   encryptConfig: {
     type: Object,
@@ -285,7 +296,8 @@ export const fileUploadProps = {
     default: false
   },
   reUploadable: Boolean,
-  reUploadTip: Function
+  reUploadTip: Function,
+  imageBgColor: String // mobile-first新增
 }
 
 export default defineComponent({

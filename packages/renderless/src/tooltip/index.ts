@@ -131,7 +131,7 @@ export const setExpectedState =
 
 /* istanbul ignore next */
 export const destroyed =
-  ({ state, api }: Pick<ITooltipRenderlessParams, 'state' | 'api'>) =>
+  ({ state, api, vm }: Pick<ITooltipRenderlessParams, 'state' | 'api' | 'vm'>) =>
   () => {
     const reference = state.referenceElm
 
@@ -144,6 +144,11 @@ export const destroyed =
       off(reference, 'focus', api.focusHandler)
       off(reference, 'blur', api.handleBlur)
       off(reference, 'click', api.removeFocusing)
+    }
+
+    if (vm.popperVM) {
+      typeof vm.popperVM.$destroy === 'function' && vm.popperVM.$destroy()
+      vm.popperVM = null
     }
   }
 
@@ -219,7 +224,7 @@ export const observeCallback =
   }
 
 export const bindPopper =
-  ({ vm, refs, nextTick, popperVmRef }: Pick<ITooltipRenderlessParams, 'vm' | 'refs' | 'nextTick' | 'popperVmRef'>) =>
+  ({ vm, nextTick, popperVmRef }: Pick<ITooltipRenderlessParams, 'vm' | 'nextTick' | 'popperVmRef'>) =>
   (el?: Element) => {
     nextTick(() => vm.bindEvent(el))
 
@@ -230,7 +235,9 @@ export const bindPopper =
     } else {
       popperVmRef.popper = vm.$refs.popper
     }
-    refs.popper || (refs.popper = popperVM.$el)
+
+    // vm.$refs是只读的，不允许添加popper。 原来是refs.popper， 为什么要保存这个refs.popper
+    // vm.$refs.popper || (vm.$refs.popper = popperVM.$el)
 
     nextTick(() => {
       if (vm.modelValue) {

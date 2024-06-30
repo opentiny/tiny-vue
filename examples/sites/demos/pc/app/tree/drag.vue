@@ -44,7 +44,10 @@ export default {
         {
           id: '1',
           label: '数据 1',
-          children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+          children: [
+            { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+            { id: '1-2', label: '数据 1-2' }
+          ]
         },
         {
           id: '2',
@@ -71,22 +74,23 @@ export default {
       return !targetNode.data.id.startsWith('3')
     },
     nodeDrop(srcNode, targetNode, dropType, event) {
-      this.listenEvent == 'node-drop' && console.log('nodeDrop 事件参数：', { srcNode, targetNode, dropType, event })
+      this.listenEvent === 'node-drop' && console.log('nodeDrop 事件参数：', { srcNode, targetNode, dropType, event })
     },
     dragStart(node, event) {
-      this.listenEvent == 'node-drag-start' && console.log('dragStart 事件参数：', { node, event })
+      this.listenEvent === 'node-drag-start' && console.log('dragStart 事件参数：', { node, event })
     },
     dragEnter(srcNode, targetNode, event) {
-      this.listenEvent == 'node-drag-enter' && console.log('dragEnter 事件参数：', { srcNode, targetNode, event })
+      this.listenEvent === 'node-drag-enter' && console.log('dragEnter 事件参数：', { srcNode, targetNode, event })
     },
     dragOver(srcNode, targetNode, event) {
-      this.listenEvent == 'node-drag-over' && console.log('dragOver 事件参数：', { srcNode, targetNode, event })
+      this.listenEvent === 'node-drag-over' && console.log('dragOver 事件参数：', { srcNode, targetNode, event })
     },
     dragLeave(srcNode, targetNode, event) {
-      this.listenEvent == 'node-drag-leave' && console.log('dragLeave 事件参数：', { srcNode, targetNode, event })
+      this.listenEvent === 'node-drag-leave' && console.log('dragLeave 事件参数：', { srcNode, targetNode, event })
     },
     dragEnd(srcNode, targetNode, dropType, event) {
-      this.listenEvent == 'node-drag-end' && console.log('dragEnd 事件参数：', { srcNode, targetNode, dropType, event })
+      this.listenEvent === 'node-drag-end' &&
+        console.log('dragEnd 事件参数：', { srcNode, targetNode, dropType, event })
     }
   }
 }

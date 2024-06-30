@@ -1,6 +1,7 @@
 <template>
   <tiny-calendar-view
     ref="calendar"
+    v-model="selectedDates"
     :multi-select="true"
     :year="2023"
     :month="5"
@@ -24,6 +25,7 @@ const workingDays = ref([])
 const offDays = ref([])
 const holidays = ref([])
 const selectedDate = ref([])
+const selectedDates = ref([])
 
 const map = {
   workingDays,
@@ -37,7 +39,28 @@ const setDays = (type) => {
     return
   }
   map[type].value.push(...selectedDate.value)
+
+  selectedDate.value.forEach((date) => {
+    if (type === 'workingDays') {
+      removeFromArray(offDays.value, date)
+      removeFromArray(holidays.value, date)
+    } else if (type === 'offDays') {
+      removeFromArray(holidays.value, date)
+      removeFromArray(workingDays.value, date)
+    } else {
+      removeFromArray(offDays.value, date)
+      removeFromArray(workingDays.value, date)
+    }
+  })
+  selectedDates.value = []
   selectedDate.value = []
+}
+
+const removeFromArray = (array, item) => {
+  const index = array.indexOf(item)
+  if (index !== -1) {
+    array.splice(index, 1)
+  }
 }
 
 const setDayBgColor = (date) => {

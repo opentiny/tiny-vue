@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { Alert, Switch } from '@opentiny/vue'
+import { Alert, Switch, Toast } from '@opentiny/vue'
 
 export default {
   components: {
@@ -29,12 +29,15 @@ export default {
   data() {
     return {
       autoHide: false,
-      closeText: '自定义关闭',
+      closeText: '自定义关闭'
     }
   },
   methods: {
     close() {
-      console.log('已关闭！')
+      Toast.service({
+        text: 'close事件!',
+        time: 100000
+      })
     }
   }
 }

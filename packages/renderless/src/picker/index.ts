@@ -14,15 +14,23 @@ import { toDate, getDateWithNewTimezone, getStrTimezone, getLocalTimezone } from
 import { isNumber, isDate } from '../common/type'
 import userPopper from '../common/deps/vue-popper'
 import { DATEPICKER } from '../common'
-import { formatDate, parseDate, isDateObject, getWeekNumber } from '../common/deps/date-util'
+import { formatDate, parseDate, isDateObject, getWeekNumber, prevDate, nextDate } from '../common/deps/date-util'
 import { extend } from '../common/object'
-import { isFunction } from '../common/type'
 import globalTimezone from './timezone'
 
 const iso8601Reg = /^\d{4}-\d{2}-\d{2}(.)\d{2}:\d{2}:\d{2}(.+)$/
 
 export const getPanel =
-  ({ DatePanel, DateRangePanel, MonthRangePanel, YearRangePanel, TimePanel, TimeRangePanel, TimeSelect }) =>
+  ({
+    DatePanel,
+    DateRangePanel,
+    MonthRangePanel,
+    YearRangePanel,
+    TimePanel,
+    TimeRangePanel,
+    QuarterPanel,
+    TimeSelect
+  }) =>
   (type) => {
     if (type === DATEPICKER.DateRange || type === DATEPICKER.DateTimeRange) {
       return DateRangePanel
@@ -36,17 +44,29 @@ export const getPanel =
       return TimePanel
     } else if (type === DATEPICKER.TimeSelect) {
       return TimeSelect
+    } else if (type === DATEPICKER.Quarter) {
+      return QuarterPanel
     }
 
     return DatePanel
   }
 
-export const watchPickerVisible =
-  ({ api, vm, dispatch, emit, props, state }) =>
-  (value) => {
-    if (props.readonly || state.pickerDisabled) {
-      return
+export const watchMobileVisible =
+  ({ api, props, state, nextTick }) =>
+  ([dateMobileVisible, timeMobileVisible]) => {
+    if (dateMobileVisible || timeMobileVisible) {
+      state.valueOnOpen = Array.isArray(props.modelValue) ? [...props.modelValue] : props.modelValue
+    } else {
+      nextTick(() => {
+        api.emitChange(props.modelValue)
+      })
     }
+  }
+
+export const watchPickerVisible =
+  ({ api, vm, dispatch, emit, props, state, nextTick }) =>
+  (value) => {
+    if (props.readonly || state.pickerDisabled || state.isMobileScreen) return
 
     if (value) {
       api.showPicker()
@@ -54,11 +74,17 @@ export const watchPickerVisible =
       state.valueOnOpen = Array.isArray(props.modelValue) ? [...props.modelValue] : props.modelValue
     } else {
       api.hidePicker()
-      api.emitChange(props.modelValue)
+      nextTick(() => {
+        api.emitChange(props.modelValue)
+      })
       state.userInput = null
 
       if (props.validateEvent) {
         dispatch('FormItem', 'form.blur')
+      }
+
+      if (props.changeOnConfirm && !valueEquals(props.modelValue, state.oldValue)) {
+        emit('update:modelValue', state.oldValue)
       }
 
       emit('blur', vm)
@@ -102,22 +128,23 @@ export const getMode =
 
 export const formatAsFormatAndType =
   ({ api }) =>
-  (value, customFormat, type) => {
-    if (!value) {
-      return null
-    }
+  (value, customFormat, type, formatObj) => {
+    if (!value) return null
 
     const formatter = (api.typeValueResolveMap()[type] || api.typeValueResolveMap().default).formatter
     const format = customFormat || DATEPICKER.DateFormats[type]
 
-    return formatter(value, format)
+    return formatter(value, format, formatObj)
   }
 
 export const displayValue =
   ({ api, props, state }) =>
   () => {
-    const formattedValue = api.formatAsFormatAndType(state.parsedValue, state.format, state.type, props.rangeSeparator)
+    const formatObj = {
+      rangeSeparator: props.rangeSeparator
+    }
 
+    const formattedValue = api.formatAsFormatAndType(state.parsedValue, state.format, state.type, formatObj)
     if (Array.isArray(state.userInput)) {
       return [
         state.userInput[0] || (formattedValue && formattedValue[0]) || '',
@@ -158,7 +185,7 @@ export const parsedValue =
     const valueIsDateObject =
       isDateObject(props.modelValue) || (Array.isArray(props.modelValue) && props.modelValue.every(isDateObject))
 
-    const { from, to, isServiceTimezone } = state.timezone
+    const { from, to, isServiceTimezone, timezoneOffset } = state.timezone
 
     if (valueIsDateObject && !isServiceTimezone) {
       return props.modelValue
@@ -169,33 +196,36 @@ export const parsedValue =
 
       if (isServiceTimezone) {
         if (Array.isArray(date)) {
-          date = [].concat(date).map((item) => (isDate(item) ? formatDate(item, state.valueFormat, t) : item))
+          date = [].concat(date).map((item) => {
+            return isDate(item) ? formatDate(item, state.valueFormat, t) : item
+          })
         } else {
-          date = formatDate(date, state.valueFormat, t)
+          if (state.valueFormat !== DATEPICKER.TimesTamp) {
+            date = formatDate(date, state.valueFormat, t)
+          }
         }
       }
-
       const result = api.parseAsFormatAndType(date, state.valueFormat, state.type, props.rangeSeparator)
-
       if (Array.isArray(result)) {
-        return result.map((date) => getDateWithNewTimezone(date, from, to))
+        return result.map((date) => getDateWithNewTimezone(date, from, to, timezoneOffset))
       }
 
-      return getDateWithNewTimezone(result || props.modelValue, from, to)
+      return getDateWithNewTimezone(result || props.modelValue, from, to, timezoneOffset)
     }
 
     const trans = (value) => (typeof value === 'string' || isNumber(value) ? toDate(value) : value)
-    const values = [].concat(props.modelValue).map((val) => getDateWithNewTimezone(trans(val), from, to))
-
+    const values = []
+      .concat(props.modelValue)
+      .map((val) => getDateWithNewTimezone(trans(val), from, to, timezoneOffset))
     return values.length > 1 ? values : values[0]
   }
 
 export const getTimezone =
   ({ props, utils }) =>
   () => {
-    const { dbTimezone, timezone, isutc8, type = 'date', iso8601 } = props
+    const { dbTimezone, timezone, isutc8, type = 'date', iso8601, timezoneOffset } = props
     const setting = utils.getDateFormat && utils.getDateFormat()
-    const { DbTimezone, Timezone } = setting || {}
+    const { DbTimezone, Timezone, TimezoneOffset } = setting || {}
     const cur = getLocalTimezone()
     const isTzNumber = (z) => typeof z === 'number' && z >= -12 && z <= 12
 
@@ -205,6 +235,7 @@ export const getTimezone =
 
     let serveTimezone = isTzNumber(dbTimezone) ? dbTimezone : isTzNumber(DbTimezone) ? DbTimezone : cur
     let clientTimezone = isTzNumber(timezone) ? timezone : isTzNumber(Timezone) ? Timezone : cur
+    let clientTimezoneOffset = isNumber(timezoneOffset) ? timezoneOffset : isNumber(TimezoneOffset) ? TimezoneOffset : 0
     const value = props.modelValue
     const str = (Array.isArray(value) ? value[0] : value) || ''
     const match = typeof str === 'string' && str.match(/(-|\+)(\d{2}):?(\d{2})$/)
@@ -216,7 +247,8 @@ export const getTimezone =
     return {
       from: serveTimezone,
       to: isutc8 ? 8 : clientTimezone,
-      isServiceTimezone: !!setting
+      isServiceTimezone: !!setting,
+      timezoneOffset: clientTimezoneOffset
     }
   }
 
@@ -256,12 +288,13 @@ export const dateFormatter =
   }
 
 export const dateParser =
-  ({ t }) =>
+  ({ t, props }) =>
   (text, format) => {
     if (format === DATEPICKER.TimesTamp) {
       return new Date(Number(text))
     }
-    return parseDate(text, format, t)
+    const value = props.autoFormat ? formatText({ text, format }) : text
+    return parseDate(value, format, t)
   }
 
 export const rangeFormatter = (api) => (value, format) => {
@@ -314,21 +347,26 @@ const getDefaultOfTypeValueResolveMap = () => ({
   }
 })
 
-const getWeekOfTypeValueResolveMap = ({ t, api }) => ({
-  formatter(value, format) {
+const getWeekOfTypeValueResolveMap = ({ t, props, api }) => ({
+  formatter(value, format, formatObj) {
     const weekDate = getWeekData(value)
     let week = getWeekNumber(weekDate)
     let month = weekDate.getMonth()
     const trueDate = new Date(weekDate)
+    const { rangeSeparator = '-', type = 'format' } = formatObj
 
     if (week === 1 && month === 11) {
       trueDate.setHours(0, 0, 0, 0)
       trueDate.setDate(trueDate.getDate() + 3 - ((trueDate.getDay() + 6) % 7))
     }
-
-    let date = formatDate(trueDate, format, t)
-
-    date = /WW/.test(date) ? date.replace(/WW/, week < 10 ? '0' + week : week) : date.replace(/W/, week)
+    let date
+    if (type === 'format' && !/W/.test(format)) {
+      const { start, end } = getWeekRange(value, format, t, props.pickerOptions)
+      date = `${start} ${rangeSeparator} ${end}`
+    } else {
+      date = formatDate(trueDate, format, t)
+      date = /WW/.test(date) ? date.replace(/WW/, week < 10 ? '0' + week : week) : date.replace(/W/, week)
+    }
 
     return date
   },
@@ -336,6 +374,21 @@ const getWeekOfTypeValueResolveMap = ({ t, api }) => ({
     return api.typeValueResolveMap().date.parser(text, format)
   }
 })
+
+const getWeekRange = (value, format, t, pickerOptions) => {
+  const firstDayOfWeek = pickerOptions && pickerOptions.firstDayOfWeek ? pickerOptions.firstDayOfWeek : 7
+  const dayOffset = (value.getDay() - firstDayOfWeek + 7) % 7
+
+  const startDate = prevDate(value, dayOffset)
+  const endDate = nextDate(startDate, 6)
+  const start = formatDate(startDate, format, t)
+  const end = formatDate(endDate, format, t)
+
+  return {
+    start,
+    end
+  }
+}
 
 const getNumberOfTypeValueResolveMap = () => ({
   formatter(value) {
@@ -360,10 +413,10 @@ const getDatesOfTypeValueResolveMap = (api) => ({
 })
 
 export const typeValueResolveMap =
-  ({ api, t }) =>
+  ({ api, props, t }) =>
   () => ({
     default: getDefaultOfTypeValueResolveMap(),
-    week: getWeekOfTypeValueResolveMap({ t, api }),
+    week: getWeekOfTypeValueResolveMap({ t, props, api }),
     date: { formatter: api.dateFormatter, parser: api.dateParser },
     datetime: { formatter: api.dateFormatter, parser: api.dateParser },
     daterange: { formatter: api.rangeFormatter, parser: api.rangeParser },
@@ -376,7 +429,11 @@ export const typeValueResolveMap =
     years: getDatesOfTypeValueResolveMap(api),
     yearrange: getDatesOfTypeValueResolveMap(api),
     number: getNumberOfTypeValueResolveMap(),
-    dates: getDatesOfTypeValueResolveMap(api)
+    dates: getDatesOfTypeValueResolveMap(api),
+    quarter: {
+      formatter: (value) => `${value.getFullYear()}-Q${DATEPICKER.MonthQuarterMap[value.getMonth()]}`,
+      parser: api.dateParser
+    }
   })
 
 export const firstInputId =
@@ -418,7 +475,7 @@ export const secondInputId =
 export const focus =
   ({ api, props, vm }) =>
   () =>
-    !props.isRange ? vm.$refs.reference.focus() : api.handleFocus()
+    !props.isRange ? vm.$refs.reference.querySelector('input').focus() : api.handleFocus()
 
 export const blur = (state) => () => state.refInput.forEach((input) => input.blur())
 
@@ -435,12 +492,14 @@ export const parseValue =
   }
 
 export const formatToValue =
-  ({ api, props, state }) =>
+  ({ api, state }) =>
   (date) => {
     const isFormattable = isDateObject(date) || (Array.isArray(date) && date.every(isDateObject))
 
     if (state.valueFormat && isFormattable) {
-      return api.formatAsFormatAndType(date, state.valueFormat, state.type, props.rangeSeparator)
+      return api.formatAsFormatAndType(date, state.valueFormat, state.type, {
+        type: 'value-format'
+      })
     }
 
     return date
@@ -472,12 +531,211 @@ export const handleMouseEnter =
     }
   }
 
+// 这个是 input 组件的 input 事件，应该只有一个 event 参数，input 组件的具体值从 event.target.value 中获取。
+export const handleInput =
+  ({ state, props, api }) =>
+  (val, event) => {
+    // 兼容tiny-input传参不同导致的报错问题
+    event = val.target ? val : event
+    if (props.autoFormat) {
+      const value = api.formatInputValue({ event, prevValue: state.displayValue })
+      state.userInput = value
+    } else {
+      const val = event.target.value
+      state.userInput = val
+    }
+  }
+
+export const formatInputValue =
+  ({ props, state }) =>
+  ({ event, prevValue = '' }) => {
+    const val = event.target.value
+    const inputData = event.data
+    const format = state.type === 'time-select' ? 'HH:mm' : props.format || DATEPICKER.DateFormats[state.type]
+    if (inputData && inputData.charCodeAt() >= 48 && inputData.charCodeAt() <= 57) {
+      return formatText({ event, format, text: prevValue, needSelectionStart: true })
+    } else {
+      return val
+    }
+  }
+
+const getSelectionStart = ({ value, format, regx, event }) => {
+  const formatMatchArr = format.match(regx)
+  let selectionStart = getSelectionStartIndex(event)
+  let I = 0
+
+  if (value !== '') {
+    const match = value.match(/[0-9]/g)
+    I = match === null ? 0 : match.length
+
+    for (let i = 0; i < formatMatchArr.length; i++) {
+      I -= Math.max(formatMatchArr[i].length, 2)
+    }
+
+    I = I >= 0 ? 1 : 0
+    I === 1 && selectionStart >= value.length && (selectionStart = value.length - 1)
+  }
+
+  return { selectionStart, I }
+}
+
+const getNum = (value, format, regx) => {
+  let len = value.length
+  if (format && regx) {
+    const formatMatchArr = format.match(regx)
+    len = Math.max(len, formatMatchArr.join('').length)
+  }
+  let num = { str: '', arr: [] }
+  for (let i = 0; i < len; i++) {
+    let char = value.charAt(i) ? value.charAt(i) : '00'
+
+    if (/[0-9]/.test(char)) {
+      num.str += char
+    } else {
+      num.arr[i] = 1
+    }
+  }
+  return num
+}
+
+const getSelectionStartIndex = (event) => {
+  const inputElem = event.target
+  return inputElem.selectionStart - (event.data ? event.data.length : 0)
+}
+
+const moveStart = (inputElem, moveStartIndex) => {
+  if (inputElem.setSelectionRange) {
+    inputElem.focus()
+    setTimeout(() => {
+      inputElem.setSelectionRange(moveStartIndex, moveStartIndex)
+    }, 0)
+  }
+}
+
+export const formatText = ({ event, text, format, needSelectionStart = false }) => {
+  if (!format) return text
+  let cursorOffset = 0
+  let value = ''
+  let regx = /yyyy|yyy|yy|y|MM|M|dd|d|HH|hh|H|h|mm|m|ss|s|WW|W|w/g
+  let startIndex = 0
+  let { numStr, selectionStart } = getNumAndSelectionStart({
+    value: text,
+    format,
+    regx,
+    event,
+    needSelectionStart
+  })
+
+  let matchResult = regx.exec(format)
+  while (numStr.str !== '' && matchResult !== null) {
+    let subStr
+    let newNum
+    let subLen
+    const endIndex = matchResult.index
+    if (startIndex >= 0) {
+      value += format.substring(startIndex, endIndex)
+    }
+
+    selectionStart >= startIndex + cursorOffset &&
+      selectionStart <= endIndex + cursorOffset &&
+      (selectionStart = selectionStart + endIndex - startIndex)
+
+    startIndex = regx.lastIndex
+    subLen = startIndex - endIndex
+
+    subStr = numStr.str.substring(0, subLen)
+
+    const firstMatchChar = matchResult[0].charAt(0)
+    const firstChar = parseInt(subStr.charAt(0), 10)
+
+    if (numStr.str.length > 1) {
+      const secondChar = numStr.str.charAt(1)
+      newNum = 10 * firstChar + parseInt(secondChar, 10)
+    } else {
+      newNum = firstChar
+    }
+    if (
+      numStr.arr[endIndex + 1] ||
+      (firstMatchChar === 'M' && newNum > 12) ||
+      (firstMatchChar === 'd' && newNum > 31) ||
+      (['H', 'h'].includes(firstMatchChar) && newNum > 23) ||
+      ('ms'.includes(firstMatchChar) && newNum > 59)
+    ) {
+      subStr = matchResult[0].length === 2 ? '0' + firstChar : firstChar
+      selectionStart++
+    } else {
+      if (subLen === 1) {
+        subStr = String(newNum)
+        subLen++
+        cursorOffset++
+      }
+    }
+
+    value += subStr
+    numStr.str = numStr.str.substring(subLen)
+    matchResult = regx.exec(format)
+  }
+
+  const { value: val, selectionStart: cursorPos } = checkFormat({
+    value,
+    format,
+    startIndex,
+    selectionStart,
+    regx,
+    needSelectionStart
+  })
+  value = val
+  selectionStart = cursorPos
+
+  needSelectionStart && moveStart(event.target, selectionStart)
+
+  return value
+}
+
+const getNumAndSelectionStart = ({ value, format, regx, event, needSelectionStart }) => {
+  if (needSelectionStart) {
+    let { selectionStart, I } = getSelectionStart({ value, format, regx, event })
+    let valueStr
+
+    if (event.data) {
+      valueStr = value.substring(0, selectionStart) + event.data + value.substring(selectionStart + I)
+      selectionStart++
+    } else {
+      valueStr = value
+    }
+
+    const numStr = getNum(valueStr)
+
+    return { numStr, selectionStart }
+  } else {
+    const numStr = getNum(value, format, regx)
+    return { numStr }
+  }
+}
+
+const checkFormat = ({ value, format, startIndex, selectionStart, regx, needSelectionStart }) => {
+  if (
+    (!needSelectionStart && regx.lastIndex === 0) ||
+    (needSelectionStart && regx.lastIndex === 0 && selectionStart >= startIndex)
+  ) {
+    const subFormat = `(?<=${format.substring(0, startIndex)})(\\s*\\S*\\s*)+`
+    const pattern = new RegExp(subFormat, 'g')
+
+    const res = format.match(pattern)
+
+    if (res) {
+      value += res[0]
+      selectionStart = value.length
+    }
+  }
+  return { value, selectionStart }
+}
+
 export const handleChange =
   ({ api, state }) =>
   () => {
     if (state.userInput) {
       const value = api.parseString(state.displayValue)
-
       if (value) {
         state.picker.state.value = value
 
@@ -495,27 +753,38 @@ export const handleChange =
     }
   }
 
-export const handleStartInput = (state) => (event) => {
-  if (state.userInput) {
-    state.userInput = [event.target.value, state.userInput[1]]
-  } else {
-    state.userInput = [event.target.value, null]
-  }
-}
+export const handleStartInput =
+  ({ state, props, api }) =>
+  (event) => {
+    const value = props.autoFormat
+      ? api.formatInputValue({ event, prevValue: state.displayValue[0] })
+      : event.target.value
 
-export const handleEndInput = (state) => (event) => {
-  if (state.userInput) {
-    state.userInput = [state.userInput[0], event.target.value]
-  } else {
-    state.userInput = [null, event.target.value]
+    if (state.userInput) {
+      state.userInput = [value, state.userInput[1]]
+    } else {
+      state.userInput = [value, null]
+    }
   }
-}
+
+export const handleEndInput =
+  ({ state, props, api }) =>
+  (event) => {
+    const value = props.autoFormat
+      ? api.formatInputValue({ event, prevValue: state.displayValue[1] })
+      : event.target.value
+
+    if (state.userInput) {
+      state.userInput = [state.userInput[0], value]
+    } else {
+      state.userInput = [null, value]
+    }
+  }
 
 export const handleStartChange =
   ({ api, state }) =>
   () => {
     const value = api.parseString(state.userInput && state.userInput[0])
-
     if (value) {
       let newValue
 
@@ -633,17 +902,23 @@ export const handleClose =
         api.parseAsFormatAndType(state.valueOnOpen, state.valueFormat, state.type, props.rangeSeparator) ||
         state.valueOnOpen
 
-      api.emitInput(oldValue)
+      api.emitInput(oldValue, true)
     }
   }
 
 export const handleFocus =
-  ({ emit, vm, state }) =>
+  ({ emit, vm, state, api }) =>
   () => {
     const type = state.type
 
-    if (DATEPICKER.TriggerTypes.includes(type) && !state.pickerVisible) {
-      state.pickerVisible = true
+    if (DATEPICKER.TriggerTypes.includes(type)) {
+      if (state.isMobileScreen && state.isDateMobileComponent) {
+        api.dateMobileToggle(true)
+      } else if (state.isMobileScreen && state.isTimeMobileComponent) {
+        api.timeMobileToggle(true)
+      } else {
+        state.pickerVisible = true
+      }
     }
 
     emit('focus', vm.$refs.reference)
@@ -705,15 +980,12 @@ export const handleKeydown =
   }
 
 export const hidePicker =
-  ({ state, doDestroy }) =>
+  ({ destroyPopper, state }) =>
   () => {
     if (state.picker) {
       state.picker.resetView && state.picker.resetView()
       state.pickerVisible = state.picker.visible = state.picker.state.visible = false
-
-      if (isFunction(doDestroy)) {
-        doDestroy()
-      }
+      destroyPopper()
     }
   }
 
@@ -732,17 +1004,21 @@ export const showPicker =
     state.picker.state.value = state.parsedValue
     state.picker.resetView && state.picker.resetView()
 
-    updatePopper(state.picker.$el)
-    state.picker.adjustSpinners && state.picker.adjustSpinners()
+    nextTick(() => {
+      updatePopper(state.picker.$el)
+      state.picker.adjustSpinners && state.picker.adjustSpinners()
+    })
   }
 
 export const handlePick =
   ({ state, api }) =>
   (date = '', visible = false) => {
+    if (!state.picker) return
+
     state.userInput = null
     state.pickerVisible = state.picker.state.visible = visible
 
-    api.emitInput(date)
+    api.emitInput(date, visible)
 
     state.date = date
     state.picker.resetView && state.picker.resetView()
@@ -754,25 +1030,24 @@ export const handleSelectRange = (state) => (start, end, pos) => {
   }
 
   const adjust = (value, start, end) => {
-    if (!value) {
-      return { start, end }
-    }
-    const valueReg = /(\d+):(\d+):(\d+)(\s+.+)?/
+    if (value) {
+      const valueReg = /(\d+):(\d+):(\d+)(\s+.+)?/
 
-    if (valueReg.test(value)) {
-      const matched = valueReg.exec(value)
-      const hourLength = matched[1].length
-      const minuteLength = matched[2].length
-      const secondLength = matched[3].length
+      if (valueReg.test(value)) {
+        const matched = valueReg.exec(value)
+        const hourLength = matched[1].length
+        const minuteLength = matched[2].length
+        const secondLength = matched[3].length
 
-      if (start === 0) {
-        end = hourLength
-      } else if (start === 3) {
-        start = hourLength + 1
-        end = hourLength + minuteLength + 1
-      } else {
-        start = hourLength + minuteLength + 2
-        end = hourLength + minuteLength + secondLength + 2
+        if (start === 0) {
+          end = hourLength
+        } else if (start === 3) {
+          start = hourLength + 1
+          end = hourLength + minuteLength + 1
+        } else {
+          start = hourLength + minuteLength + 2
+          end = hourLength + minuteLength + secondLength + 2
+        }
       }
     }
 
@@ -902,20 +1177,23 @@ export const emitChange =
 
 export const emitInput =
   ({ api, emit, props, state }) =>
-  (val) => {
+  (val, visible = false) => {
     let value = val
-    const { from, to } = state.timezone
+    const { from, to, timezoneOffset } = state.timezone
 
     if (props.type === 'datetime') {
-      value = getDateWithNewTimezone(value, to, from)
+      value = getDateWithNewTimezone(value, to, from, -timezoneOffset)
     } else if (props.type === 'datetimerange' && Array.isArray(value)) {
-      value = value.map((val) => getDateWithNewTimezone(val, to, from))
+      value = value.map((val) => getDateWithNewTimezone(val, to, from, -timezoneOffset))
     }
 
     const formatted = api.formatToValue(value) || val
-
     if (!valueEquals(props.modelValue, formatted)) {
       emit('update:modelValue', formatted)
+    }
+
+    if (!visible && !valueEquals(state.oldValue, formatted)) {
+      state.oldValue = formatted
     }
   }
 
@@ -942,11 +1220,11 @@ export const watchIsRange =
   }
 
 export const getType =
-  ({ props }) =>
+  ({ parent, props }) =>
   () => {
-    if (props.componentName === DATEPICKER.DatePicker) {
+    if (parent.componentName === DATEPICKER.DatePicker) {
       return props.type
-    } else if (props.componentName === DATEPICKER.TimePicker) {
+    } else if (parent.componentName === DATEPICKER.TimePicker) {
       return props.isRange ? DATEPICKER.TimeRange : DATEPICKER.Time
     }
 
@@ -964,7 +1242,9 @@ export const watchModelValue =
       ]
     }
 
-    api.emitChange(props.modelValue)
+    if (props.changeCompat) {
+      api.emitChange(props.modelValue)
+    }
 
     if (!valueEquals(value, oldValue) && !state.pickerVisible && props.validateEvent) {
       dispatch('FormItem', 'form.change', value)
@@ -993,19 +1273,24 @@ export const computedFormat =
 
 export const computedTriggerClass =
   ({ props, state }) =>
-  () =>
-    props.suffixIcon ||
-    props.prefixIcon ||
-    (state.type.includes(DATEPICKER.Time) ? DATEPICKER.IconTime : DATEPICKER.IconDate)
+  () => {
+    return (
+      props.suffixIcon ||
+      props.prefixIcon ||
+      (state.type.includes(DATEPICKER.Time) ? DATEPICKER.IconTime : DATEPICKER.IconDate)
+    )
+  }
 
 export const computedHaveTrigger =
   ({ props }) =>
-  () =>
-    typeof props.showTrigger !== 'undefined' ? props.showTrigger : DATEPICKER.TriggerTypes.includes(props.type)
+  () => {
+    return typeof props.showTrigger !== 'undefined' ? props.showTrigger : DATEPICKER.TriggerTypes.includes(props.type)
+  }
 
 export const initPopper = ({ props, hooks, vnode }) => {
   const { reactive, watch, toRefs, onBeforeUnmount, onDeactivated } = hooks
-  const { emit, refs, slots, nextTick } = vnode
+  // tiny提示： vnode就是第3参，名字有误导性
+  const { emit, vm, slots, nextTick } = vnode
   const placementMap = DATEPICKER.PlacementMap
 
   return userPopper({
@@ -1014,7 +1299,7 @@ export const initPopper = ({ props, hooks, vnode }) => {
     emit,
     props: {
       ...props,
-      popperOptions: { boundariesPadding: 0, gpuAcceleration: false },
+      popperOptions: Object.assign({ boundariesPadding: 0, gpuAcceleration: false }, props.popperOptions),
       visibleArrow: true,
       offset: 0,
       boundariesPadding: 5,
@@ -1022,7 +1307,7 @@ export const initPopper = ({ props, hooks, vnode }) => {
       placement: placementMap[props.align] || placementMap.left
     },
     toRefs,
-    refs,
+    vm,
     slots,
     nextTick,
     onBeforeUnmount,

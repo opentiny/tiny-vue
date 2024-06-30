@@ -10,7 +10,7 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, h } from '@opentiny/vue-common'
+import { $prefix, setup, h, defineComponent } from '@opentiny/vue-common'
 
 // 此处引入 h 是为了防止打包后 h 被重命名导致组件报错的问题
 import { renderless, api } from '@opentiny/vue-renderless/tab-nav/vue'
@@ -18,7 +18,7 @@ import { iconClose, iconChevronDown } from '@opentiny/vue-icon'
 import type { ITabNavApi } from '@opentiny/vue-renderless/types/tab-nav.type'
 import { tabNavMobileProps } from './index'
 
-export default {
+export default defineComponent({
   name: $prefix + 'TabNav',
   components: {
     IconClose: iconClose(),
@@ -40,7 +40,8 @@ export default {
       expandPanesWidth,
       currentName,
       expandTabsTitle,
-      expandTabsMode
+      expandTabsMode,
+      stretch
     } = this
     const tabsExpandIcon = showExpandTabs ? (
       <div class="tiny-mobile-tabs__expand-icon">
@@ -100,6 +101,7 @@ export default {
       </div>
     )
 
+    const navStyle = {}
     const tabs = panes.map((pane, index) => {
       let tabName = pane.name || pane.state.index || index
       const withClose = pane.state.isClosable
@@ -118,6 +120,16 @@ export default {
         ) : null
 
       const tabTitle = pane.$slots.title || pane.title
+      const tabItemStyle = {}
+
+      if (!stretch) {
+        tabItemStyle.flex = 0
+        navStyle.justifyContent = 'center'
+      }
+
+      if (index === panes.length - 1) {
+        tabItemStyle.marginRight = 0
+      }
 
       return (
         <div
@@ -128,6 +140,7 @@ export default {
             'is-disabled': pane.disabled,
             'is-closable': withClose
           }}
+          style={tabItemStyle}
           role="tab"
           ref="tabs"
           id={`tab-${tabName}`}
@@ -156,7 +169,11 @@ export default {
           `is-${state.rootTabs.position}`
         ]}>
         <div class={['tiny-mobile-tabs__nav-scroll']} ref="navScroll">
-          <div class={['tiny-mobile-tabs__nav', `is-${state.rootTabs.position}`]} ref="nav" role="tablist">
+          <div
+            class={['tiny-mobile-tabs__nav', `is-${state.rootTabs.position}`]}
+            style={navStyle}
+            ref="nav"
+            role="tablist">
             {tabs}
             <div
               class="tiny-mobile-tabs__line"
@@ -167,5 +184,5 @@ export default {
       </div>
     )
   }
-}
+})
 </script>

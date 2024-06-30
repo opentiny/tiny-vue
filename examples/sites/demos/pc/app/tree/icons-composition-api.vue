@@ -23,7 +23,10 @@ const data = ref([
   {
     id: '1',
     label: '数据 1',
-    children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+    children: [
+      { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+      { id: '1-2', label: '数据 1-2' }
+    ]
   },
   {
     id: '2',

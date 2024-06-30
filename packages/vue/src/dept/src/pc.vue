@@ -1,6 +1,13 @@
 <template>
   <div class="tiny-dept">
-    <tiny-input :size="size" v-model="state.display" :disabled="disabled" readonly :display-only="displayOnly">
+    <tiny-input
+      tiny_mode="pc"
+      :size="size"
+      v-model="state.display"
+      :disabled="disabled"
+      readonly
+      :display-only="displayOnly"
+    >
       <template #suffix>
         <icon-popup class="tiny-input__icon tiny-svg-icon" @click="openDialog" />
       </template>
@@ -31,6 +38,7 @@
             remote
             :remote-method="searchMethod"
             @change="searchChange"
+            @clear="searchMethod('')"
           >
             <li
               class="tiny-option tiny-select-dropdown__item"
@@ -127,6 +135,7 @@ export default defineComponent({
     TinyCol: Col,
     IconPopup: IconPopup()
   },
+  emits: ['open', 'selected', 'cancel', 'change', 'update:modelValue', 'confirm', 'close'],
   props: [
     ...props,
     'size',

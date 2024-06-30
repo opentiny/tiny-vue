@@ -1,15 +1,13 @@
 export const tinyTextareaSmbTheme = {
   'ti-textarea-border-color': 'var(--ti-common-color-line-normal)',
   'ti-textarea-count-font-size': 'var(--ti-common-font-size-0)',
-  'ti-textarea-hover-border-color': 'var(--ti-common-color-line-normal)',
   'ti-textarea-padding-horizontal': 'var(--ti-common-space-3x)',
   'ti-textarea-padding-right': 'var(--ti-common-space-base)',
-  'ti-textarea-hover-border-color': 'var(--ti-common-color-line-hover)',
   'ti-textarea-active-border-color': 'var(--ti-common-color-line-active)',
-  'ti-textarea-count-width': 'calc(100% - 16px)',
-  'ti-textarea-count-bottom': '0',
-  'ti-textarea-inner-width': 'calc(100% - 4px)',
-  'ti-textarea-count-right': '12px',
+  'ti-textarea-count-width': 'calc(100% - 17px)',
+  'ti-textarea-count-bottom': '1px',
+  'ti-textarea-inner-width': '100%',
+  'ti-textarea-count-right': 'var(--ti-common-font-size-2)',
   'ti-textarea-padding-vertical': 'var(--ti-common-space-2x)',
   'ti-textarea-count-border-radius': 'var(--ti-common-border-radius-3)',
   'ti-textarea-count-text-length-color': 'var(--ti-common-color-text-primary)',
@@ -21,5 +19,6 @@ export const tinyTextareaSmbTheme = {
   'ti-textarea-scrollbar-hover-bg-color': 'var(--ti-common-color-bg-dark-disabled)',
   'ti-textarea-count-padding-right': 'var(--ti-common-space-base)',
   'ti-textarea-padding-bottom': 'var(--ti-common-space-4x)',
-  'ti-textarea-disabled-bg-color': '#f2f2f2'
+  'ti-textarea-disabled-bg-color': '#f2f2f2',
+  'ti-textarea-exceed-text-color': '#c7000b'
 }

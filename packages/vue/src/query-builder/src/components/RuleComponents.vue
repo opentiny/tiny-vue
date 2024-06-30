@@ -4,12 +4,12 @@
       :is="controls.dragHandle"
       v-if="r.schema.enableDragAndDrop"
       :ref="r.dragRef"
-      :testID="TestID.dragHandle"
+      :test-i-d="TestID.dragHandle"
       :level="r.path.length"
       :path="r.path"
       :title="r.translations.dragHandle.title"
       :label="r.translations.dragHandle.label"
-      :className="r.classNames.dragHandle"
+      :class-name="r.classNames.dragHandle"
       :disabled="r.disabled"
       :context="r.context"
       :validation="r.validationResult"
@@ -18,32 +18,33 @@
 
     <component
       :is="controls.fieldSelector"
-      :testID="TestID.fields"
+      :test-i-d="TestID.fields"
       :options="r.schema.fields"
       :title="r.translations.fields.title"
       :value="r.rule.field"
       :operator="r.rule.operator"
-      :className="r.classNames.fields"
-      :handleOnChange="r.generateOnChangeHandler('field')"
+      :class-name="r.classNames.fields"
+      :handle-on-change="r.generateOnChangeHandler('field')"
       :level="r.path.length"
       :path="r.path"
       :disabled="r.disabled"
       :context="r.context"
       :validation="r.validationResult"
       :schema="r.schema"
+      :bind-props="(r.schema.bindProps && r.schema.bindProps.leftSelect) || {}"
     ></component>
 
     <component
       :is="controls.operatorSelector"
       v-if="r.schema.autoSelectField || r.rule.field !== r.translations.fields.placeholderName"
-      :testID="TestID.operators"
+      :test-i-d="TestID.operators"
       :field="r.rule.field"
-      :fieldData="r.fieldData"
+      :field-data="r.fieldData"
       :title="r.translations.operators.title"
       :options="r.operators"
       :value="r.rule.operator"
-      :className="r.classNames.operators"
-      :handleOnChange="r.generateOnChangeHandler('operator')"
+      :class-name="r.classNames.operators"
+      :handle-on-change="operatorChange"
       :level="r.path.length"
       :path="r.path"
       :disabled="r.disabled"
@@ -61,39 +62,40 @@
       <component
         v-if="!['null', 'notNull'].includes(r.rule.operator) && r.valueSources.length > 1"
         :is="controls.valueSourceSelector"
-        :testID="TestID.valueSourceSelector"
+        :test-i-d="TestID.valueSourceSelector"
         :field="r.rule.field"
-        :fieldData="r.fieldData"
+        :field-data="r.fieldData"
         :title="r.translations.valueSourceSelector.title"
         :options="r.valueSourceOptions"
-        :value="r.rule.valueSource == undefined || null ? 'value' : r.rule.valueSource"
-        :className="r.classNames.valueSource"
-        :handleOnChange="r.generateOnChangeHandler('valueSource')"
+        :value="r.rule.valueSource === undefined || null ? 'value' : r.rule.valueSource"
+        :class-name="r.classNames.valueSource"
+        :handle-on-change="r.generateOnChangeHandler('valueSource')"
         :level="r.path.length"
         :path="r.path"
         :disabled="r.disabled"
         :context="r.context"
         :validation="r.validationResult"
         :schema="r.schema"
+        :bind-props="(r.schema.bindProps && r.schema.bindProps.select) || {}"
       ></component>
 
       <component
         :is="controls.valueEditor"
-        :testID="TestID.valueEditor"
+        :test-i-d="TestID.valueEditor"
         :field="r.rule.field"
-        :fieldData="r.fieldData"
+        :field-data="r.fieldData"
         :title="r.translations.title"
         :operator="r.rule.operator"
         :value="r.rule.value"
-        :valueSource="r.rule.valueSource == undefined || null ? 'value' : r.rule.valueSource"
+        :value-source="r.rule.valueSource === undefined || null ? 'value' : r.rule.valueSource"
         :type="r.valueEditorType"
-        :inputType="r.inputType"
+        :input-type="r.inputType"
         :values="r.values"
-        :listsAsArrays="r.schema.listsAsArrays"
-        :parseNumbers="r.schema.parseNumbers"
+        :lists-as-arrays="r.schema.listsAsArrays"
+        :parse-numbers="r.schema.parseNumbers"
         :separator="r.valueEditorSeparator"
-        :className="r.classNames.value"
-        :handleOnChange="r.generateOnChangeHandler('value')"
+        :class-name="r.classNames.value"
+        :handle-on-change="r.generateOnChangeHandler('value')"
         :level="r.path.length"
         :path="r.path"
         :disabled="r.disabled"
@@ -106,17 +108,17 @@
     <component
       :is="controls.cloneRuleAction"
       v-if="r.schema.showCloneButtons"
-      :testID="TestID.cloneRule"
+      :test-i-d="TestID.cloneRule"
       :label="r.translations.cloneRule.label"
       :title="r.translations.cloneRule.title"
-      :className="r.classNames.cloneRule"
-      :handleOnClick="r.cloneRule"
+      :class-name="r.classNames.cloneRule"
+      :handle-on-click="r.cloneRule"
       :level="r.path.length"
       :path="r.path"
       :disabled="r.disabled"
       :context="r.context"
       :validation="r.validationResult"
-      :ruleOrGroup="r.rule"
+      :rule-or-group="r.rule"
       :schema="r.schema"
     >
       <span class="btn-font">⧉</span>
@@ -125,18 +127,18 @@
     <component
       :is="controls.lockRuleAction"
       v-if="r.schema.showLockButtons"
-      :testID="TestID.lockRule"
+      :test-i-d="TestID.lockRule"
       :label="r.translations.lockRule.label"
       :title="r.translations.lockRule.title"
-      :className="r.classNames.lockRule"
-      :handleOnClick="r.toggleLockRule"
+      :class-name="r.classNames.lockRule"
+      :handle-on-click="r.toggleLockRule"
       :level="r.path.length"
       :path="r.path"
       :disabled="r.disabled"
-      :disabledTranslation="r.parentDisabled ? undefined : r.translations.lockRuleDisabled"
+      :disabled-translation="r.parentDisabled ? undefined : r.translations.lockRuleDisabled"
       :context="r.context"
       :validation="r.validationResult"
-      :ruleOrGroup="r.rule"
+      :rule-or-group="r.rule"
       :schema="r.schema"
     >
       <span class="btn-font">🔓</span>
@@ -145,17 +147,17 @@
     <component
       :is="controls.clearDataAction"
       v-if="queryBuilderRoot.showClearBtn"
-      :testID="TestID.clearData"
+      :test-i-d="TestID.clearData"
       :label="r.translations.clearData.label"
       :title="r.translations.clearData.title"
-      :className="r.classNames.clearData"
-      :handleOnClick="r.clearData"
+      :class-name="r.classNames.clearData"
+      :handle-on-click="r.clearData"
       :level="r.path.length"
       :path="r.path"
       :disabled="r.disabled"
       :context="r.context"
       :validation="r.validationResult"
-      :ruleOrGroup="r.rule"
+      :rule-or-group="r.rule"
       :schema="r.schema"
       ><IconEditorEraser class="btn-icon"></IconEditorEraser
     ></component>
@@ -163,17 +165,17 @@
     <component
       :is="controls.removeRuleAction"
       v-else
-      :testID="TestID.removeRule"
+      :test-i-d="TestID.removeRule"
       :label="r.translations.removeRule.label"
       :title="r.translations.removeRule.title"
-      :className="r.classNames.removeRule"
-      :handleOnClick="r.removeRule"
+      :class-name="r.classNames.removeRule"
+      :handle-on-click="r.removeRule"
       :level="r.path.length"
       :path="r.path"
       :disabled="r.disabled"
       :context="r.context"
       :validation="r.validationResult"
-      :ruleOrGroup="r.rule"
+      :rule-or-group="r.rule"
       :schema="r.schema"
       ><IconNodeOpen class="btn-icon"></IconNodeOpen
     ></component>
@@ -277,6 +279,39 @@ export default defineComponent({
         clearDataAction
       }
     }
+  },
+  data() {
+    const zero = 'zeroOperator'
+    const two = 'twoOperator'
+    return {
+      lastOperator: '',
+      operatorMap: {
+        'null': zero,
+        'notNull': zero,
+        'between': two,
+        'notBetween': two
+      }
+    }
+  },
+
+  methods: {
+    sameTypeOperator(val) {
+      return this.operatorMap[this.lastOperator] === this.operatorMap[val]
+    },
+    operatorChangeHandler() {
+      return this.r.generateOnChangeHandler('operator')
+    },
+    operatorChange(val) {
+      this.r.generateOnChangeHandler('operator')(val)
+      // 如果是切换操作符类型所需要的操作数不一致，则清空缓存值
+      if (!this.sameTypeOperator(val)) {
+        this.r.generateOnChangeHandler('value')('')
+      }
+      this.lastOperator = val
+    }
+  },
+  mounted() {
+    this.lastOperator = this.r.rule.operator
   }
 })
 </script>

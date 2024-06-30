@@ -68,6 +68,11 @@
     color: var(--ti-input-disabled-text-color);
     background: var(--ti-input-disabled-bg-color);
     .placeholder(@color: var(--ti-input-placeholder-color));
+
+    &.@{input-prefix-cls}__mask {
+      font-family: serif;
+      color: #999;
+    }
   }
 
   &.is-disabled &__icon {
@@ -116,6 +121,7 @@
     font-size: var(--ti-input-count-font-size);
 
     .@{input-prefix-cls}__count-inner {
+      white-space: nowrap;
       background: var(--ti-input-bg-color);
       line-height: initial;
       display: inline-block;
@@ -255,6 +261,16 @@
     padding-right: var(--ti-input-prefix-padding-right);
   }
 
+  &-word-limit &__inner {
+    padding-right: 56px;
+    padding-left: 8px;
+  }
+
+  &-word-limit.@{input-prefix-cls}-suffix &__inner {
+    padding-right: 72px;
+    padding-left: 8px;
+  }
+
   &-medium {
     .input-size(var(--ti-input-medium-height));
   }
@@ -287,6 +303,29 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+      }
+
+      &__mask {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      &__mask-text {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        flex: 1;
+        margin-right: 16px;
       }
     }
   }
@@ -355,7 +394,7 @@
     border-bottom-left-radius: 0;
   }
 
-  &-append > div:has(>.@{input-prefix-cls}__suffix) {
+  &-append > div:has(> .@{input-prefix-cls}__suffix) {
     display: inline-block;
     position: relative;
     .@{input-prefix-cls}__suffix {

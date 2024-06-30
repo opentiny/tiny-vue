@@ -10,13 +10,19 @@ export default {
     const { fetchData = {}, dataset = {} } = this as any
 
     if (fetchData.api || dataset.source || dataset.value || dataset.api) {
-      let { loading, fields, api } = fetchData || dataset.source || dataset.api || {}
-
-      return { api, dataset, fields, loading }
+      const { loading, fields, api, reloadConfig } = fetchData || dataset.source || dataset.api || {}
+      const isReloadFilter = reloadConfig && reloadConfig.filter
+      return { api, dataset, fields, loading, isReloadFilter }
     }
   },
   handleFetch(code, sortArg) {
     let { pager, sortData, filterData, pagerConfig, fetchOption, fetchData, dataset } = this as any
+
+    if (this.isInitialLoading) {
+      this.isInitialLoading = false
+    } else {
+      this.columnAnchor && this.clearActiveAnchor()
+    }
 
     if (code !== 'prefetch') {
       this.clearRadioRow()
@@ -39,6 +45,8 @@ export default {
       ...args
     }
     let search
+    const { isReloadFilter = false } = fetchOption
+
     this.tableLoading = loading
 
     if (pagerConfig) {
@@ -46,21 +54,19 @@ export default {
     }
 
     if (code === 'reload') {
-      let currentPage = 1
-
       if (pager || args.page) {
-        currentPage = pagerConfig.currentPage
         pagerConfig.currentPage = 1
       }
 
       this.sortData = params.sort = {}
-      this.filterData = params.filters = []
+
+      if (!isReloadFilter) {
+        params.filters = []
+        this.filterData = params.filters
+      }
+
       this.pendingRecords = []
       this.clearAll()
-
-      if (currentPage !== 1) {
-        return this.$nextTick()
-      }
     }
 
     if (sortArg && sortArg.length > 0) {
@@ -77,6 +83,14 @@ export default {
       this.tableLoading = false
       throw error
     })
+  },
+  clearActiveAnchor() {
+    const { columnAnchor, columnAnchorParams = {} } = this
+    const { anchors = [] } = columnAnchorParams
+
+    if (!columnAnchor || anchors.length <= 0) return
+
+    anchors.forEach((anchor) => (anchor.active = false))
   },
   loadFetchData(rest) {
     if (!rest) {
@@ -97,16 +111,13 @@ export default {
 
       this.tableData = data
       pagerConfig.total = total
+
       // 内置pager
       let setTotal = pagerSlot && pagerSlot.componentInstance.setTotal
 
       setTotal && setTotal(total)
     } else {
       this.tableData = (fields.list ? getObj(rest, fields.list) : rest) || []
-    }
-
-    if ((this.seqSerial || this.scrollLoad) && pagerConfig) {
-      this.seqIndex = (pagerConfig.currentPage - 1) * pagerConfig.pageSize
     }
 
     this.tableLoading = false

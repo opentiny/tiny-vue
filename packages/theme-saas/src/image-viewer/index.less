@@ -51,13 +51,13 @@
 
   &__actions {
     @apply ~'left-1/2';
-    bottom: 30px;
-    @apply ~"-translate-x-2/4";
-    width: 282px;
+    @apply bottom-6;
+    @apply ~'-translate-x-2/4';
+    @apply w-72;
     @apply h-11;
-    padding: 0 23px;
+    @apply py-0 px-6;
     @apply bg-color-bg-6;
-    border-radius: 22px;
+    @apply rounded-full;
   }
 
   &__actions-inner {
@@ -65,7 +65,7 @@
     @apply h-full;
     @apply text-justify;
     @apply cursor-default;
-    font-size: 23px;
+    @apply text-2xl;
     @apply flex;
     @apply items-center;
     @apply justify-around;
@@ -81,7 +81,7 @@
 
   &__next,
   &__prev {
-    @apply ~"top-1/2";
+    @apply ~'top-1/2';
     @apply w-11;
     @apply h-11;
     @apply bg-color-bg-6;
@@ -92,12 +92,12 @@
   }
 
   &__prev {
-    @apply ~"-translate-y-2/4";
+    @apply ~'-translate-y-2/4';
     @apply left-10;
   }
 
   &__next {
-    @apply ~"-translate-y-2/4";
+    @apply ~'-translate-y-2/4';
     @apply right-10;
     @apply ~'indent-0.5';
   }

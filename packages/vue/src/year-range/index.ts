@@ -1,4 +1,4 @@
-import YearRange from './src/pc.vue'
+import YearRange from './src/index'
 import { version } from './package.json'
 
 /* istanbul ignore next */

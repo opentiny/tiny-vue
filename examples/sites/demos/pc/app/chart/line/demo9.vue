@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-line :data="chartData" :settings="chartSettings" :extend="extend"></tiny-line>
+    <tiny-line :options="options"></tiny-line>
   </div>
 </template>
 
@@ -13,22 +13,30 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['日期', '访问用户', '下单用户', '下单率'],
-        rows: [
-          { 日期: '2018-01-01', 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
-          { 日期: '2018-01-02', 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
-          { 日期: '2018-01-03', 访问用户: 2923, 下单用户: 2623, 下单率: 0.76 },
-          { 日期: '2018-01-05', 访问用户: 1723, 下单用户: 1423, 下单率: 0.49 },
-          { 日期: '2018-01-10', 访问用户: 3792, 下单用户: 3492, 下单率: 0.323 },
-          { 日期: '2018-01-20', 访问用户: 4593, 下单用户: 4293, 下单率: 0.78 }
-        ]
-      },
-      // 设置横轴为连续的时间轴
-      chartSettings: {
-        xAxisType: 'time'
-      },
-      extend: {}
+      options: {
+        area: true,
+        data: [
+          { 'Month': 'Jan', 'Domestic': 33, 'Abroad': 1 },
+          { 'Month': 'Feb', 'Domestic': 27, 'Abroad': 39 },
+          { 'Month': 'Mar', 'Domestic': 31, 'Abroad': 20 },
+          { 'Month': 'Apr', 'Domestic': 30, 'Abroad': 15 },
+          { 'Month': 'May', 'Domestic': 37, 'Abroad': 1 },
+          { 'Month': 'Jun', 'Domestic': 36, 'Abroad': 17 },
+          { 'Month': 'Jul', 'Domestic': 42, 'Abroad': 22 },
+          { 'Month': 'Aug', 'Domestic': 22, 'Abroad': 12 },
+          { 'Month': 'Sep', 'Domestic': 17, 'Abroad': 30 },
+          { 'Month': 'Oct', 'Domestic': 40, 'Abroad': 33 },
+          { 'Month': 'Nov', 'Domestic': 42, 'Abroad': 22 },
+          { 'Month': 'Dec', 'Domestic': 32, 'Abroad': 1 }
+        ],
+        xAxis: {
+          data: 'Month',
+          fullGrid: true
+        },
+        yAxis: {
+          name: 'Percent(%)'
+        }
+      }
     }
   }
 }

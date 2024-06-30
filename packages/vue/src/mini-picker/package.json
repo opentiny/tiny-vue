@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-mini-picker",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -18,7 +18,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-picker-column": "workspace:~"
+    "@opentiny/vue-picker-column": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   },
   "license": "MIT"
 }

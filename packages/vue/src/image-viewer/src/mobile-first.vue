@@ -2,6 +2,7 @@
   <div data-tag="tiny-image-viewer" v-if="state.showImageViewer">
     <transition name="viewer-fade">
       <div
+        v-if="state.showImageViewer"
         data-tag="tiny-image-body"
         :class="['left-0 right-0 top-0 bottom-0 hidden sm:flex z-10', modalView ? '' : 'fixed']"
         :style="{ 'z-index': state.zIndex, 'height': modalView && modalHeight + 'px' }"
@@ -64,7 +65,7 @@
             >
               <icon-picture
                 :class="[
-                  'max-h-full max-w-full w-[9%] h-auto my-2.5 mx-1.5',
+                  'max-h-full max-w-full w-[9%] h-auto my-2.5 mx-1.5 object-none',
                   bgColor === 'white'
                     ? state.menuItemIndex !== i
                       ? 'fill-color-text-primary'
@@ -118,6 +119,7 @@
               <a
                 :href="`${state.currentImg}`"
                 target="_blank"
+                rel="noopener noreferrer"
                 download
                 class="cursor-pointer inline-flex fill-color-bg-1"
                 ><icon-download
@@ -241,42 +243,38 @@
                 transform: 'translateX(' + state.imageTransformSize + 'px)'
               }"
             >
-              <template>
+              <div
+                data-tag="tiny-image-mobile-viewer-item"
+                class="relative shrink h-full"
+                ref="viewerItem"
+                v-for="(url, i) in urlList"
+                :key="i"
+                :style="Object.assign({ width: `${state.imageItemWidth}px` }, i === state.index ? state.imgStyle : '')"
+              >
                 <div
-                  data-tag="tiny-image-mobile-viewer-item"
-                  class="relative shrink h-full"
-                  ref="viewerItem"
-                  v-for="(url, i) in urlList"
-                  :key="i"
-                  :style="
-                    Object.assign({ width: `${state.imageItemWidth}px` }, i === state.index ? state.imgStyle : '')
-                  "
+                  class="absolute top-0 left-0 right-0 bottom-0 text-center transition-transform inline-block duration-300"
                 >
-                  <div
-                    class="absolute top-0 left-0 right-0 bottom-0 text-center transition-transform inline-block duration-300"
-                  >
-                    <img
-                      v-if="i === state.index"
-                      :key="i"
-                      :class="[
-                        'block w-full h-full object-contain',
-                        {
-                          'object-fill': state.fullScreen
-                        }
-                      ]"
-                      :ref="`img_${i}`"
-                      :src="state.currentImg"
-                      :style="state.imgStyle"
-                      @mousedown="handleMouseDown"
-                      @error="handleImgError"
-                      @load="handleImgLoad"
-                      @touchstart="touchstart"
-                      @touchmove="touchmove"
-                      @touchend="touchend"
-                    />
-                  </div>
+                  <img
+                    v-if="i === state.index"
+                    :key="i"
+                    :class="[
+                      'block w-full h-full object-contain',
+                      {
+                        'object-fill': state.fullScreen
+                      }
+                    ]"
+                    :ref="`img_${i}`"
+                    :src="state.currentImg"
+                    :style="state.imgStyle"
+                    @mousedown="handleMouseDown"
+                    @error="handleImgError"
+                    @load="handleImgLoad"
+                    @touchstart="touchstart"
+                    @touchmove="touchmove"
+                    @touchend="touchend"
+                  />
                 </div>
-              </template>
+              </div>
             </div>
           </div>
         </div>
@@ -312,41 +310,37 @@
                 transform: 'translateX(' + state.imageTransformSize + 'px)'
               }"
             >
-              <template>
+              <div
+                data-tag="tiny-image-isthumbnail-viewer-item"
+                class="relative shrink h-full"
+                ref="viewerItem"
+                v-for="(url, i) in state.urlList"
+                :key="i"
+                :style="Object.assign({ width: `${state.imageItemWidth}px` }, i === state.index ? state.imgStyle : '')"
+              >
                 <div
-                  data-tag="tiny-image-isthumbnail-viewer-item"
-                  class="relative shrink h-full"
-                  ref="viewerItem"
-                  v-for="(url, i) in state.urlList"
-                  :key="i"
-                  :style="
-                    Object.assign({ width: `${state.imageItemWidth}px` }, i === state.index ? state.imgStyle : '')
-                  "
+                  class="absolute top-0 left-0 right-0 bottom-0 text-center transition-transform inline-block duration-300"
                 >
-                  <div
-                    class="absolute top-0 left-0 right-0 bottom-0 text-center transition-transform inline-block duration-300"
-                  >
-                    <img
-                      :key="i"
-                      :class="[
-                        'block w-full h-full object-contain',
-                        {
-                          'object-fill': state.fullScreen
-                        }
-                      ]"
-                      :ref="`img_${i}`"
-                      :src="state.currentImg"
-                      :style="state.imgStyle"
-                      @mousedown="handleMouseDown"
-                      @error="handleImgError"
-                      @load="handleImgLoad"
-                      @touchstart="touchstart"
-                      @touchmove="touchmove"
-                      @touchend="touchend"
-                    />
-                  </div>
+                  <img
+                    :key="i"
+                    :class="[
+                      'block w-full h-full object-contain',
+                      {
+                        'object-fill': state.fullScreen
+                      }
+                    ]"
+                    :ref="`img_${i}`"
+                    :src="state.currentImg"
+                    :style="state.imgStyle"
+                    @mousedown="handleMouseDown"
+                    @error="handleImgError"
+                    @load="handleImgLoad"
+                    @touchstart="touchstart"
+                    @touchmove="touchmove"
+                    @touchend="touchend"
+                  />
                 </div>
-              </template>
+              </div>
             </div>
           </div>
         </div>
@@ -410,7 +404,8 @@ export default defineComponent({
     'isMenuView',
     'modalView',
     'modalHeight',
-    'bgColor'
+    'bgColor',
+    'keepStyle'
   ],
   components: {
     TinyActionSheet: ActionSheet,

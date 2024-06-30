@@ -1,8 +1,10 @@
 <template>
-  <tiny-image style="width: 100px; height: 100px" :src="url" :preview-src-list="srcList"></tiny-image>
+  <div class="demo-image__preview">
+    <tiny-image :src="url" :preview-src-list="srcList" :z-index="3000" show-index></tiny-image>
+  </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Image } from '@opentiny/vue'
 
 export default {
@@ -21,3 +23,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-image__preview {
+  width: 200px;
+  height: 200px;
+}
+</style>

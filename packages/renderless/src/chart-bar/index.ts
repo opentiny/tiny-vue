@@ -45,8 +45,7 @@ const getBarDimAxis = (args) => {
     },
     show: axisVisible,
     axisTick: { show: true, alignWithLabel: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 } },
-    axisLine: { show: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 } },
-    axisPointer: { type: 'shadow', z: 1, shadowStyle: { color: '#f5f5f5' } }
+    axisLine: { show: true, lineStyle: { color: '#191919', opacity: 0.1, width: 2 } }
   }))
 }
 
@@ -106,7 +105,7 @@ const getBarTooltip = (args) => {
     return tplt.join('')
   }
 
-  return { trigger: 'axis', formatter }
+  return { trigger: 'axis', formatter, axisPointer: { type: 'shadow', z: 1, shadowStyle: { color: '#f5f5f5' } } }
 }
 
 const getValueData = (seriesTemp, dims) => {

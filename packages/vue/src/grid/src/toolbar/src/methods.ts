@@ -4,7 +4,6 @@ import Modal from '@opentiny/vue-modal'
 import GlobalConfig from '../../config'
 import { emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { h, hooks } from '@opentiny/vue-common'
-import { addClass, removeClass } from '@opentiny/vue-renderless/common/deps/dom'
 import { extend } from '@opentiny/vue-renderless/common/object'
 
 export function setBodyRecords({ body, insertRecords, pendingRecords }) {
@@ -83,7 +82,8 @@ export default {
         res = h(hooks.toRaw(toolbar.component), {
           ref: 'toolbar',
           props: { loading: loading || tableLoading, ...toolbar },
-          class: _vm.viewCls('toolbar')
+          class: _vm.viewCls('toolbar'),
+          scopedSlots: toolbar.slots || {}
         })
       }
 
@@ -169,14 +169,12 @@ export default {
     this.remove(selecteds).then(afterRemove)
   },
   handleFullScreen([show]) {
-    const cls = 'tiny-fullscreen-full'
-
-    show ? addClass(this.$el, cls) : removeClass(this.$el, cls)
-
-    this.recalculate()
-
-    emitEvent(this, 'fullscreen', show)
-    this.emitter.emit('fullscreen', show)
+    this.fullScreenClass = show ? 'tiny-fullscreen-full' : ''
+    this.$nextTick(() => {
+      this.recalculate(true)
+      emitEvent(this, 'fullscreen', show)
+      this.emitter.emit('fullscreen', show)
+    })
   },
   commitProxy(code, ...args) {
     let btnMethod = Buttons.get(code)

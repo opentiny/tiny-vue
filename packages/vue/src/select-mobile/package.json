@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-select-mobile",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -12,8 +12,9 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-theme-mobile": "workspace:~"
+    "@opentiny/vue-exception": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-cell": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {

@@ -1,5 +1,5 @@
 <template>
-  <tiny-slider v-model="value5" :show-input="true">
+  <tiny-slider v-model="value" :show-input="true">
     <template #default="slotScope">
       <b>{{ slotScope.slotScope }}%</b>
     </template>
@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      value5: 40
+      value: 40
     }
   }
 }

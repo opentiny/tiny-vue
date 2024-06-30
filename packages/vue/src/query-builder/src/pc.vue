@@ -1,5 +1,5 @@
 <template>
-  <div class="tiny-query-builder">
+  <div class="tiny-query-builder" :style="style">
     <query-builder
       key="queryIC"
       v-bind="config"
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { $prefix, setup } from '@opentiny/vue-common'
+import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/query-builder/vue'
 import QueryBuilder from './components/QueryBuilder.vue'
 import { defaultValidator } from './utils'
@@ -20,7 +20,7 @@ import '@opentiny/vue-theme/query-builder/index.less'
 
 import { getFormatQueryString } from './preFormat'
 
-export default {
+export default defineComponent({
   inheritAttrs: false,
   name: $prefix + 'QueryBuilder',
   components: {
@@ -34,12 +34,12 @@ export default {
   props: {
     config: Object,
     query: Object,
-    onQueryChange: Function
+    onQueryChange: Function,
+    maxHeight: String
   },
   data() {
     return {
       getFormatQuery: getFormatQueryString,
-      // onQueryChange: () => {},
       validator: null
     }
   },
@@ -48,6 +48,14 @@ export default {
       const rules = this.query?.rules || []
 
       return this.getRuleTotal(rules) <= 1
+    },
+    style() {
+      return !this.maxHeight
+        ? {}
+        : {
+            maxHeight: isNaN(Number(this.maxHeight)) ? this.maxHeight : this.maxHeight + 'px',
+            overflow: 'auto'
+          }
     }
   },
   watch: {
@@ -69,5 +77,5 @@ export default {
       return len
     }
   }
-}
+})
 </script>

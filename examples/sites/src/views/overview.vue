@@ -12,10 +12,10 @@
       <!-- 搜索 -->
       <tiny-input
         :placeholder="i18nByKey('searchComponents')"
-        v-model="value"
+        :modelValue="value"
         class="ti-mb10 search-input"
         :style="{ width: '100%', padding: '6px' }"
-        @input="searchHandler"
+        @update:modelValue="searchHandler"
       >
         <template #suffix>
           <img class="ti-h24 ti-w24 cur-def" :src="searchSvg" />
@@ -40,7 +40,7 @@
             <router-link :to="getTo(cell.key)" class="decoration-none">
               <div class="ti-br-4 component-card">
                 <img
-                  class="ti-h125 ti-w125"
+                  class="ti-h125 ti-w125 inline-block"
                   :src="pubUrl(`@demos/overviewimage/${getSvg(cell.key)}.svg`)"
                   :onerror="`this.src='${pubUrl(`@demos/overviewimage/dev.svg`)}'`"
                 />
@@ -62,11 +62,13 @@
 
 <script lang="js">
 import { defineComponent, reactive, toRefs, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { cmpMenus } from '@menu/menus.js'
 import TinyInput from '@opentiny/vue-input'
 import noDataSvg from '@/assets/images/no-data.svg?url'
 import searchSvg from '@/assets/images/search.svg?url'
 import { getWord, i18nByKey, isZhCn, pubUrl } from '@/tools'
+import useTheme from '@/tools/useTheme'
 
 export default defineComponent({
   name: 'Overview',
@@ -92,8 +94,8 @@ export default defineComponent({
         }, delay)
       }
     }
-    function searchResultFn(event) {
-      const value = event.target.value
+    function searchResultFn(val) {
+      const value = val
       const trimValue = value.replaceAll(' ', '').toLowerCase()
       const currentValue = trimValue
       const reg = new RegExp(currentValue, 'ig')
@@ -115,9 +117,17 @@ export default defineComponent({
       state.searchMenus = searchMenus
     }
     const lang = getWord('zh-CN', 'en-US')
+    const { defaultThemeKey } = useTheme()
+    const { all: allPathParam, theme = defaultThemeKey } = useRoute().params
+    const allPath = allPathParam ? allPathParam + '/' : ''
+    const debounceSearch = debounce(searchResultFn, 300)
+
     let fn = {
-      searchHandler: debounce(searchResultFn, 300),
-      getTo: (key) => `${import.meta.env.VITE_CONTEXT}${lang}/os-theme/components/${key}`,
+      searchHandler: (val) => {
+        state.value = val
+        debounceSearch(val)
+      },
+      getTo: (key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/components/${key}`,
       getSvg: (key) => {
         // 表格示例单独另起了许多路由，统一使用表格组件图标
         if (key.startsWith('grid-')) {

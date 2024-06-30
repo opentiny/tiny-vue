@@ -1,12 +1,14 @@
 <template>
   <div>
-    <tiny-button-group :data="groupData" disabled v-model="value"></tiny-button-group>
-  </div>
-  <div class="mt-12">
-    <tiny-button-group :data="groupData" :border="false" v-model="value" disabled></tiny-button-group>
-  </div>
-  <div class="mt-12">
-    <tiny-button-group :data="disabledGroup" v-model="value"></tiny-button-group>
+    <div>
+      <tiny-button-group :data="groupData" disabled v-model="value"></tiny-button-group>
+    </div>
+    <div class="mt-12">
+      <tiny-button-group :data="groupData" :border="false" v-model="value" disabled></tiny-button-group>
+    </div>
+    <div class="mt-12">
+      <tiny-button-group :data="disabledGroup" v-model="value"></tiny-button-group>
+    </div>
   </div>
 </template>
 
@@ -23,7 +25,7 @@ const groupData = ref([
 
 const disabledGroup = ref([
   { text: 'Button1', value: 1 },
-  { text: 'Button2', value: 2, disabled: true },
+  { text: 'Button2', value: 2, disabled: true, tip: '因为xxx原因被禁用' },
   { text: 'Button3', value: 3 }
 ])
 </script>

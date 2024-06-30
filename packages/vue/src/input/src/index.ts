@@ -33,7 +33,8 @@ export const $constants = {
   COMPONENT_NAME: {
     FormItem: 'FormItem'
   },
-  MASKSYMBOL: '******'
+  MASKSYMBOL: '******',
+  TEXTAREA_HEIGHT_MOBILE: 108
 }
 
 export const inputProps = {
@@ -116,6 +117,10 @@ export const inputProps = {
   validateEvent: {
     type: Boolean,
     default: true
+  },
+  popupMore: {
+    type: Boolean,
+    default: false
   },
   // mobile特有属性
   textareaTitle: {

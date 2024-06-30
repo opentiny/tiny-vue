@@ -1,6 +1,6 @@
 <template>
   <div class="wp100 hp100 f-r of-hidden">
-    <div class="w230 pt20 of-auto">
+    <div class="w230 pt20 of-auto sm-hidden b-r bg-white" :class="{ 'fixed-menu': showFixedMenu }">
       <tiny-tree-menu
         class="!w213"
         :data="menuData"
@@ -24,7 +24,7 @@
           <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
         <!-- 预览  -->
-        <div class="rel px20 py60 b-a bs-dotted">
+        <div class="rel px20 py60 b-a bs-dotted" :id="state.currDemo?.demoId">
           <div class="abs top10 right10">
             <span title="点击在vscode中打开">
               <IconOpeninVscode @click="fn.openInVscode(state.currDemo)" class="ml12 cur-hand" />
@@ -97,7 +97,7 @@
       </div>
     </tiny-floatbar>
     <!-- 切换主题 -->
-    <tiny-dropdown class="!fixed bottom20 right140" :show-icon="false" @item-click="changeTheme">
+    <tiny-dropdown class="!fixed bottom20 right140" :show-icon="false" @item-click="changeTheme" :disabled="isSaasMode">
       <span title="切换主题">
         <SvgTheme></SvgTheme>
       </span>
@@ -153,20 +153,18 @@ import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
 import Loading from '@opentiny/vue-loading'
 import designSmbConfig from '@opentiny/vue-design-smb'
 import designAuroraConfig from '@opentiny/vue-design-aurora'
-import { menuData, apis, demoStr, demoVue, mds } from './resourcePc.js'
+import designSaasConfig from '@opentiny/vue-design-saas'
+import { menuData, demoStr, demoVue, mds, demos } from './resourcePc.js'
 import { useTheme, useModeCtx } from './uses'
+import { getDemosConfig, getPath, getApisConfig } from './utils/componentsDoc'
 import SvgTheme from './assets/theme.svg'
 
-const getPath = (path) => {
-  if (path.startsWith('grid-')) {
-    return 'grid'
-  } else if (path.startsWith('chart-')) {
-    return 'chart'
-  }
-  return path
-}
+const isSaasMode = process.env.VITE_TINY_THEME === 'saas'
 
 export default {
+  props: {
+    showFixedMenu: Boolean
+  },
   components: {
     TinyFloatbar: Floatbar,
     TinyTreeMenu: TreeMenu,
@@ -185,7 +183,7 @@ export default {
   },
   setup() {
     const { state: modeState, fn: modeFn } = useModeCtx()
-    const { changeTheme, currThemeLabel } = useTheme()
+    const { changeTheme, currThemeLabel } = useTheme({ readCacheImmediate: !isSaasMode })
     const rightRef = hooks.ref('')
     const state = hooks.reactive({
       demos: [], // 组件的所有示例  {component,content,demoId,findIntroStr,link,title}[]
@@ -196,6 +194,8 @@ export default {
       currMd: hooks.computed(() => mds[`${modeState.pathName}.cn.md`]),
       demoLoading: false
     })
+    // hui chart 新增图表类型，新增图表的 api 和原有图表的api 区分开。 
+    const huiNewChart = ['chart-process']
     const fn = {
       // 菜单搜索：忽略大小写
       searchMenu: (value, data) => {
@@ -229,20 +229,19 @@ export default {
     // 以下私有方法，无须传递给vue模板的。
     async function _switchPath() {
       state.demoLoading = true
-      // 查找API
-      const apiModule = apis[`../../sites/demos/pc/app/${getPath(modeState.pathName)}/webdoc/${modeState.pathName}.js`]
+      const componentName = getPath(modeState.pathName)
+      // 查找demos配置
+      const demosModule = demos[`../../sites/demos/pc/app/${componentName}/webdoc/${modeState.pathName}.js`]
 
-      if (apiModule) {
-        const module = await apiModule()
-        const apiRoot = module.default
-        state.currApi = apiRoot.apis
-        state.demos = apiRoot.demos || []
-        state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
+      const demosConfig = await getDemosConfig(demosModule)
+      state.demos = demosConfig.demos
+      state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
+
+      if (huiNewChart.includes(modeState.pathName)) {
+        state.currApi = (await getApisConfig('hui', 'pc')).apis
       } else {
-        state.currApi = null
-        state.currDemos = []
+        state.currApi = (await getApisConfig(componentName, 'pc')).apis
       }
-
       await _switchDemo()
     }
     async function _switchDemo() {
@@ -266,6 +265,9 @@ export default {
 
     const lastThemeKey = localStorage.getItem('tinyThemeToolkey')
 
+    // saas 模式下，只使用designSaasConfig，并且禁用主题切换
+    const design = isSaasMode ? designSaasConfig : designConfigMap[lastThemeKey] || {}
+
     return {
       menuData,
       state,
@@ -275,7 +277,8 @@ export default {
       modeState,
       modeFn,
       rightRef,
-      design: designConfigMap[lastThemeKey] || {}
+      design,
+      isSaasMode
     }
   }
 }

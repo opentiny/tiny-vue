@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-dropdown",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -20,7 +20,8 @@
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-button-group": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-dropdown-menu": "workspace:~"
   },
   "license": "MIT"
 }

@@ -33,12 +33,14 @@ export const watchValue =
   }
 
 export const watchVisible =
-  ({ nextTick, vm, state }) =>
+  ({ nextTick, vm, state, api }) =>
   (value) => {
     if (value) {
-      state.oldValue = state.value
-
-      nextTick(() => vm.$refs.spinner.emitSelectRange('hours'))
+      nextTick(() => {
+        state.oldValue = state.value
+        vm.$refs.spinner.emitSelectRange('hours')
+        api.adjustSpinners()
+      })
     } else {
       state.needInitAdjust = true
     }

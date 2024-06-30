@@ -44,11 +44,11 @@ export const computedTotalText =
     const HUNDRED_THOUSAND = 100000
     const MILLION = 1000000
     const TEN_MILLION = 10000000
-    if (totals <= HUNDRED_THOUSAND) {
+    if (totals < HUNDRED_THOUSAND) {
       return String(totals)
-    } else if (totals <= MILLION) {
+    } else if (totals < MILLION) {
       return t('ui.page.hundredThousand')
-    } else if (totals <= TEN_MILLION) {
+    } else if (totals < TEN_MILLION) {
       return t('ui.page.million')
     } else {
       return t('ui.page.tenMillion')
@@ -81,7 +81,7 @@ export const watchInternalCurrentPage =
     if (state.jumperValue !== value) {
       state.jumperValue = value
     }
-    emit('update:currentPage', currentPage)
+    emit('update:current-page', currentPage)
     emit('current-change', currentPage)
     state.lastEmittedPage = -1
   }
@@ -125,6 +125,20 @@ export const watchTotal =
   ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
   (total: number | undefined): void => {
     state.internalTotal = total
+  }
+
+export const watchShowSizes =
+  ({ nextTick, vm }: Pick<IPagerRenderlessParams, 'nextTick' | 'vm'>) =>
+  (newVal: boolean) => {
+    if (newVal) {
+      nextTick(() => {
+        const width = vm.$refs.pageSize[0].getBoundingClientRect().width
+        const popover = document.querySelectorAll('.tiny-pager__selector') as unknown as HTMLElement[]
+        Array.from(popover).forEach((ele) => {
+          ele.style.width = width + 'px'
+        })
+      })
+    }
   }
 
 export const handleSizeChange =
@@ -324,7 +338,7 @@ export const copyEmit =
 
 export const beforeChangeHandler =
   ({ state, api }: Pick<IPagerRenderlessParams, 'api' | 'state'>) =>
-  (val: number = -1) => {
+  (val = -1) => {
     return emitEvent(api.copyEmit, 'before-change', state.internalCurrentPage, this, val)
   }
 export const handleCurrentChange =
@@ -451,3 +465,5 @@ export const setTotal =
   (val: number): void => {
     state.internalTotal = val
   }
+
+export const clickSizes = () => (e: Event) => e.stopPropagation()

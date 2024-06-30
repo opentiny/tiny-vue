@@ -1,7 +1,7 @@
-import { $props, $prefix, $setup } from '@opentiny/vue-common'
+import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?mobile|mobile-first'
 
-export default {
+export default defineComponent({
   name: $prefix + 'TabbarItem',
   componentName: 'TabbarItem',
   props: {
@@ -14,9 +14,13 @@ export default {
     name: [Number, String],
     text: String,
     info: [Number, String],
-    badge: [Number, String]
+    badge: [Number, String],
+    customIcon: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

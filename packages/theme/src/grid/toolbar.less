@@ -24,6 +24,11 @@
 .@{grid-toolbar-prefix-cls} {
   padding: 12px 0;
 
+  // Tiny 新增，工具栏容器为空则不需要占位
+  &:empty {
+    display: none;
+  }
+
   &:after {
     content: '';
     display: block;
@@ -84,11 +89,11 @@
   .@{grid-refresh-prefix-cls}__wrapper,
   .@{grid-custom-prefix-cls}__wrapper {
     float: right;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border: solid 1px var(--ti-grid-border-color);
-    border-radius: 3px;
+    width: var(--ti-grid-toolbar-icon-btn-width);
+    height: var(--ti-grid-toolbar-icon-btn-height);
+    line-height: var(--ti-grid-toolbar-icon-btn-height);
+    border: solid 1px var(--ti-grid-toolbar-icon-btn-border-color);
+    border-radius: var(--ti-grid-toolbar-icon-btn-border-radius);
     text-align: center;
     margin: 0 4px;
     display: flex;

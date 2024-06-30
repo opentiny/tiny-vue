@@ -12,11 +12,11 @@
 
 import PopupManager from './popup-manager'
 import PopperJS from './popper'
-import { on } from './dom'
+import { on, off, isDisplayNone } from './dom'
 import type { ISharedRenderlessFunctionParams } from 'types/shared.type'
 import type Popper from './popper'
 
-interface IPopperState {
+export interface IPopperState {
   popperJS: Popper
   appended: boolean
   popperElm: HTMLElement
@@ -37,13 +37,9 @@ const stop = (e: Event) => e.stopPropagation()
 const isServer = typeof window === 'undefined'
 
 // 由于多个组件传入reference元素的方式不同，所以这里从多处查找。
-const getReference = ({
-  state,
-  props,
-  refs,
-  slots
-}: Pick<IPopperInputParams, 'state' | 'props' | 'refs' | 'slots'>) => {
-  let reference = state.referenceElm || props.reference || (refs.reference && refs.reference.$el) || refs.reference
+const getReference = ({ state, props, vm, slots }: Pick<IPopperInputParams, 'state' | 'props' | 'vm' | 'slots'>) => {
+  let reference =
+    state.referenceElm || props.reference || (vm.$refs.reference && vm.$refs.reference.$el) || vm.$refs.reference
 
   if (!reference && slots.reference && slots.reference()[0]) {
     state.referenceElm = slots.reference()[0].elm || slots.reference()[0].el
@@ -53,9 +49,43 @@ const getReference = ({
   return reference
 }
 
+const getReferMaxZIndex = (reference) => {
+  if (!reference || !reference.nodeType) return
+
+  let getZIndex = (dom) => parseInt(window.getComputedStyle(dom).zIndex, 10) || 0
+  let max = getZIndex(reference)
+  let z
+
+  do {
+    reference = reference.parentNode
+
+    if (reference) {
+      z = getZIndex(reference)
+    } else {
+      break
+    }
+
+    max = z > max ? z : max
+  } while (reference !== document.body)
+
+  return max + 1 + ''
+}
+
 export default (options: IPopperInputParams) => {
-  const { parent, emit, nextTick, onBeforeUnmount, onDeactivated, props, watch, reactive, refs, slots, toRefs } =
-    options
+  const {
+    parent,
+    emit,
+    nextTick,
+    onBeforeUnmount,
+    onDeactivated,
+    props,
+    watch,
+    reactive,
+    vm,
+    slots,
+    toRefs,
+    popperVmRef
+  } = options
   const state = reactive<IPopperState>({
     popperJS: null as any,
     appended: false, // arrow 是否添加
@@ -84,12 +114,16 @@ export default (options: IPopperInputParams) => {
     const { followReferenceHide = true } = props?.popperOptions || {}
     const { _popper: popper, _reference: reference } = popperInstance
 
-    if (followReferenceHide && getComputedStyle(reference).position !== 'fixed' && reference.offsetParent === null) {
+    if (followReferenceHide && isDisplayNone(reference)) {
       popper.style.display = 'none'
     }
   }
 
-  const createPopper = () => {
+  const nextZIndex = (reference) => {
+    return props.zIndex === 'relative' ? getReferMaxZIndex(reference) : PopupManager.nextZIndex()
+  }
+
+  const createPopper = (dom) => {
     if (isServer) {
       return
     }
@@ -100,10 +134,10 @@ export default (options: IPopperInputParams) => {
       return
     }
 
-    const options = props.popperOptions || {}
-    state.popperElm = state.popperElm || props.popper || refs.popper
+    const options = props.popperOptions || { gpuAcceleration: false }
+    state.popperElm = state.popperElm || props.popper || vm.$refs.popper || popperVmRef.popper || dom
     const popper = state.popperElm
-    let reference = getReference({ state, props, refs, slots })
+    let reference = getReference({ state, props, vm, slots })
 
     if (!popper || !reference || reference.nodeType !== Node.ELEMENT_NODE) {
       return
@@ -126,6 +160,7 @@ export default (options: IPopperInputParams) => {
     options.offset = props.offset || 0
     options.arrowOffset = props.arrowOffset || 0
     options.adjustArrow = props.adjustArrow || false
+    options.appendToBody = props.appendToBody || props.popperAppendToBody
 
     // 创建一个popperJS, 内部会立即调用一次update() 并 applyStyle等操作
     state.popperJS = new PopperJS(reference, popper, options)
@@ -136,24 +171,32 @@ export default (options: IPopperInputParams) => {
       state.popperJS.onUpdate(options.onUpdate)
     }
 
-    state.popperJS._popper.style.zIndex = PopupManager.nextZIndex().toString()
+    state.popperJS._popper.style.zIndex = nextZIndex(state.popperJS._reference)
     followHide(state.popperJS)
     on(state.popperElm, 'click', stop)
   }
 
-  /** 第一次 updatePopper 的时候，才真正执行创建 */
-  const updatePopper = (popperElm?: HTMLElement) => {
-    if (popperElm) {
-      state.popperElm = popperElm
+  /** 第一次 updatePopper 的时候，才真正执行创建
+   * popperElmOrTrue===true的场景仅在select组件动态更新面版时，不更新zIndex
+   */
+  const updatePopper = (popperElmOrTrue?: HTMLElement) => {
+    if (popperElmOrTrue && popperElmOrTrue !== true) {
+      state.popperElm = popperElmOrTrue
     }
 
     const popperJS = state.popperJS
     if (popperJS) {
-      // popperJS._reference = state.referenceElm
-      // popperJS._popper = state.popperElm
+      // Tiny 新增，在动态切换renference时，需要实时获取最新的触发源
+      popperJS._reference = getReference({ state, props, vm, slots })
       popperJS.update()
+
+      // 每次递增 z-index
+      if (popperJS._popper && popperElmOrTrue !== true) {
+        popperJS._popper.style.zIndex = nextZIndex(popperJS._reference)
+        followHide(state.popperJS)
+      }
     } else {
-      createPopper()
+      createPopper(popperElmOrTrue && popperElmOrTrue !== true ? popperElmOrTrue : undefined)
     }
   }
 
@@ -173,6 +216,7 @@ export default (options: IPopperInputParams) => {
   const destroyPopper = (remove: 'remove' | boolean) => {
     if (remove) {
       if (state.popperElm) {
+        off(state.popperElm, 'click', stop)
         state.popperElm.remove()
       }
     }
@@ -195,13 +239,17 @@ export default (options: IPopperInputParams) => {
   onBeforeUnmount(() => {
     nextTick(() => {
       doDestroy(true)
-      destroyPopper('remove')
+      if (props.appendToBody || props.popperAppendToBody) {
+        destroyPopper('remove')
+      }
     })
   })
 
   onDeactivated(() => {
     doDestroy(true)
-    destroyPopper('remove')
+    if (props.appendToBody || props.popperAppendToBody) {
+      destroyPopper('remove')
+    }
   })
 
   return { updatePopper, destroyPopper, doDestroy, ...toRefs(state) }

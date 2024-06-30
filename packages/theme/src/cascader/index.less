@@ -44,7 +44,7 @@
     }
 
     .@{input-prefix-cls}__icon {
-      font-size: calc(var(--ti-cascader-font-size) - 4px);
+      font-size: var(--ti-cascader-input-icon-font-size);
     }
 
     &.is-focus .@{input-prefix-cls}__inner {
@@ -104,6 +104,7 @@
     margin-bottom: var(--ti-cascader-dropdown-margin-bottom);
     font-size: var(--ti-cascader-font-size);
     background: var(--ti-cascader-dropdown-bg-color);
+    border: 1px solid #e4e7ed;
     border-radius: var(--ti-cascader-border-radius);
     box-shadow: var(--ti-cascader-dropdown-box-shadow);
     &.is-auto-size {

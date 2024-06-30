@@ -26,8 +26,8 @@
         v-model="state.hex"
         :visible="state.isShow"
         :alpha="alpha"
-        :predefine="state.predefineStack.length > 0 ? state.predefineStack : undefined"
-        :history="state.stack.length > 0 ? state.stack : undefined"
+        :predefine="state.predefineStack"
+        :history="state.stack"
       />
     </Transition>
   </div>

@@ -45,6 +45,28 @@ export default {
       'codeFiles': ['renderer/custom-renderer.vue']
     },
     {
+      'demoId': 'renderer-inner-renderer-date',
+      'name': { 'zh-CN': '日期渲染器', 'en-US': 'Custom Renderer' },
+      'desc': {
+        'zh-CN':
+          '<p>在日期字段为字符串值时，需要给日期渲染器提供 <code>valueFormat</code> 配置才能正常解析日期字符串。</p>\n',
+        'en-US':
+          '<p>The custom renderer can customize the rendering of cells or a <code>vue component</code>. Configure <code>renderer</code> in the <code>grid-column</code> column to support method and object configuration. For details, see the following example. </p>\n'
+      },
+      'codeFiles': ['renderer/inner-renderer-date.vue']
+    },
+    {
+      'demoId': 'renderer-inner-renderer-rate',
+      'name': { 'zh-CN': '比率渲染器', 'en-US': 'Custom Renderer' },
+      'desc': {
+        'zh-CN': `<p>通过 <code>formatConfig.max</code> 配置，按照 <code>value / max</code> 计算样式百分比（进度条宽度占单元格宽度的百分比），按照 <code>value</code> 计算显示百分比（进度条上显示的比率），参考示例字段内置列渲染 <code>rate1</code>。
+          如果未配置 <code>formatConfig.max</code>，就按照 <code>value / total</code> 计算样式百分比和显示百分比，<code>formatConfig.total</code> 默认值是 <code>1</code>，参考示例字段内置列渲染 <code>rate2</code>。</p>`,
+        'en-US':
+          '<p>The custom renderer can customize the rendering of cells or a <code>vue component</code>. Configure <code>renderer</code> in the <code>grid-column</code> column to support method and object configuration. For details, see the following example. </p>\n'
+      },
+      'codeFiles': ['renderer/inner-renderer-rate.vue']
+    },
+    {
       'demoId': 'render-async-colunm-render',
       'name': { 'zh-CN': '列异步数据渲染', 'en-US': 'Column Asynchronous Data Rendering' },
       'desc': {

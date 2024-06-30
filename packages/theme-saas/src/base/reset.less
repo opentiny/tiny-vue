@@ -1,9 +1,9 @@
 ﻿@import '../custom.less';
 
 [class*=~'@{css-prefix}'] {
-  font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial',
-    'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', 'Heiti SC', 'sans-serif', 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: 'HarmonyOSHans', 'Segoe UI', Arial, 'Microsoft YaHei', -apple-system, BlinkMacSystemFont,
+    'Helvetica Neue', 'Helvetica', 'PingFang SC', 'Roboto', 'Noto Sans', sans-serif, 'HMOSColorEmojiCompat',
+    'HMOSColorEmojiFlags', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   @apply box-border;
 
   *:after,
@@ -130,8 +130,8 @@
   @media (min-width: 768px) {
     ::-webkit-scrollbar,
     &::-webkit-scrollbar {
-      @apply w-1;
-      @apply h-1;
+      @apply ~'w-1.5';
+      @apply ~'h-1.5';
     }
 
     ::-webkit-scrollbar-track-piece,
@@ -141,18 +141,18 @@
 
     ::-webkit-scrollbar-thumb,
     &::-webkit-scrollbar-thumb {
-      @apply bg-color-bg-3;
-      @apply rounded-sm;
+      @apply bg-color-fill-1;
+      @apply rounded-full;
     }
 
     ::-webkit-scrollbar-thumb:hover,
     &::-webkit-scrollbar-thumb:hover {
-      @apply bg-color-text-disabled;
+      @apply bg-color-fill-7;
     }
 
     ::-webkit-scrollbar-thumb:active,
     &::-webkit-scrollbar-thumb:active {
-      @apply bg-color-text-disabled;
+      @apply bg-color-fill-7;
     }
 
     .@{css-prefix}scrollbar::-webkit-scrollbar {

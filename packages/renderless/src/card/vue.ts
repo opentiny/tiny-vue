@@ -9,10 +9,11 @@ import {
   getModel,
   setModel,
   computedStore,
-  getItemChecked
+  getItemChecked,
+  cardClick
 } from './index'
 
-export const api = ['state', 'handelIconClick', 'handleChange']
+export const api = ['state', 'handelIconClick', 'handleChange', 'cardClick']
 
 export const renderless = (
   props,
@@ -42,7 +43,8 @@ export const renderless = (
     model: computed({
       get: () => api.getModel(),
       set: (val) => api.setModel(val)
-    })
+    }),
+    checkMode: computed(() => props.checkMode)
   })
 
   Object.assign(api, {
@@ -53,6 +55,7 @@ export const renderless = (
     isDisabled: isDisabled({ props, state }),
     setModel: setModel({ constants, dispatch, emit, props, vm, state }),
     handleChange: handleChange({ constants, dispatch, emit, state, nextTick }),
+    cardClick: cardClick({ emit, state, props }),
     getSliceNum: getSliceNum({ state, props }),
     getIconNum: getIconNum({ state, props }),
     computedStore: computedStore({ state, props }),

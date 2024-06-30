@@ -1,0 +1,24 @@
+{
+  "name": "@opentiny/docs-solid",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "solid-js": "^1.7.8",
+    "@opensolidtiny/solid": "~3.14.0",
+    "@opensolidtiny/solid-icon": "~3.14.0",
+    "@opensolidtiny/solid-common": "~3.14.0",
+    "@opentiny/vue-theme": "~3.14.0",
+    "@opentiny/vue-renderless": "~3.14.0"
+  },
+  "devDependencies": {
+    "vite": "^4.4.5",
+    "vite-plugin-solid": "^2.7.0",
+    "vite-plugin-inspect": "^0.7.10"
+  }
+}

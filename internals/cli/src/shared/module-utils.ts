@@ -13,6 +13,9 @@ const moduleMap = require(pathFromWorkspaceRoot('packages/modules.json'))
 
 type mode = 'pc' | 'mobile' | 'mobile-first'
 
+// 需要在入口文件中排除的组件，比如：富文本
+export const excludeComponents = ['RichText', 'FluentEditor']
+
 export interface Module {
   /** 源码路径，如 vue/src/button/index.ts */
   path: string
@@ -452,8 +455,7 @@ const createModuleMapping = (componentName, isMobile = false) => {
         parser: 'json',
         printWidth: 10
       }
-    }),
-
+    })
   )
 }
 

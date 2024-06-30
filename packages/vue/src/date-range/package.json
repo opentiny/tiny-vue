@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-date-range",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -19,9 +19,10 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-time": "workspace:~",
-    "@opentiny/vue-date-table": "workspace:~"
+    "@opentiny/vue-date-table": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT"
 }

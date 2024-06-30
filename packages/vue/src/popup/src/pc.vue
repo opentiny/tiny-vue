@@ -9,6 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
+
 <template>
   <div>
     <transition :name="state.transitionName" @after-enter="opened" @after-leave="closed">
@@ -45,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { setup, $prefix, defineComponent } from '@opentiny/vue-common'
+import { setup, $prefix, $props, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/popup/vue'
 import { iconClose } from '@opentiny/vue-icon'
 
@@ -60,6 +61,7 @@ export default defineComponent({
     IconClose: iconClose()
   },
   props: {
+    ...$props,
     _constants: {
       type: Object,
       default: () => $constants

@@ -1,23 +1,19 @@
 {
   "name": "@opentiny/vue-chart-line",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
   "type": "module",
-  "devDependencies": {
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "^0.31.0"
-  },
+  "devDependencies": {},
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-chart-core": "workspace:~"
+    "@opentiny/vue-chart-core": "workspace:~",
+    "@opentiny/vue-common": "workspace:~"
   },
   "license": "MIT"
 }

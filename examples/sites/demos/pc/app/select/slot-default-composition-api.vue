@@ -2,13 +2,17 @@
   <div>
     <p>场景1：带标签和提示信息</p>
     <tiny-select v-model="value1" popper-class="slot-default">
-      <template v-for="item in options1" :key="item.value">
-        <tiny-tooltip :content="item.tip" placement="right" effect="light">
+      <template v-for="item in options1">
+        <tiny-tooltip v-if="item.tip" :content="item.tip" placement="right" effect="light" :key="item.value">
           <tiny-option :label="item.label" :value="item.value">
             <span class="left">{{ item.label }}</span>
             <tiny-tag v-if="item.tag" type="danger" effect="light" size="small">{{ item.tag }}</tiny-tag>
           </tiny-option>
         </tiny-tooltip>
+        <tiny-option v-if="!item.tip" :key="item.value" :label="item.label" :value="item.value">
+          <span class="left">{{ item.label }}</span>
+          <tiny-tag v-if="item.tag" type="danger" effect="light" size="small">{{ item.tag }}</tiny-tag>
+        </tiny-option>
       </template>
     </tiny-select>
 
@@ -31,11 +35,11 @@ import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption, Tag as TinyTag, Tooltip as TinyTooltip } from '@opentiny/vue'
 
 const options1 = ref([
-  { value: '选项1', label: '黄金糕', tag: 'New', tip: '自定义提示' },
-  { value: '选项2', label: '双皮奶' },
-  { value: '选项3', label: '蚵仔煎' },
-  { value: '选项4', label: '龙须面' },
-  { value: '选项5', label: '北京烤鸭' }
+  { value: '选项1', label: '北京', tag: 'New', tip: '自定义提示' },
+  { value: '选项2', label: '上海' },
+  { value: '选项3', label: '天津' },
+  { value: '选项4', label: '重庆' },
+  { value: '选项5', label: '深圳' }
 ])
 
 const options2 = ref([
@@ -57,6 +61,12 @@ const value2 = ref('选项1')
 .tiny-option {
   .left {
     margin-right: 8px;
+  }
+
+  p {
+    height: 18px;
+    line-height: 18px;
+    margin: 6px;
   }
 }
 </style>

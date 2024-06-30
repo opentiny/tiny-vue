@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-filter",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -10,7 +10,8 @@
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-filter-bar": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {

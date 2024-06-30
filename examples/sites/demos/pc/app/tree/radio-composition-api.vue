@@ -28,7 +28,10 @@ const data = ref([
   {
     id: '1',
     label: '数据 1',
-    children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+    children: [
+      { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+      { id: '1-2', label: '数据 1-2' }
+    ]
   },
   {
     id: '2',
@@ -59,7 +62,6 @@ function getChecks() {
   // 查询半选的节点数据
   const checkedHalfNodes = treeRef.value.getHalfCheckedNodes()
 
-  // eslint-disable-next-line no-console
   console.log('当前组件的勾选状态为： ', treeRef.value, {
     checkedKeys,
     checkedKeysOnlyLeaf,
@@ -75,7 +77,6 @@ function setCurrentRadio() {
 }
 
 function checkChange(data, checked, indeterminate) {
-  // eslint-disable-next-line no-console
   console.log('checkChange事件：', { data, checked, indeterminate })
 }
 </script>

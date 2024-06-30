@@ -13,7 +13,7 @@ import { $prefix, $props, $setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
-export const ISearchProps = {
+export const searchProps = {
   ...$props,
   mini: {
     type: Boolean,
@@ -87,12 +87,17 @@ export const ISearchProps = {
     type: Boolean,
     default: false
   },
-  typeValue: Object
+  size: {
+    type: String,
+    default: 'small'
+  },
+  typeValue: Object,
+  suffixIcon: [Object, String]
 }
 
 export default defineComponent({
   name: $prefix + 'Search',
-  props: ISearchProps,
+  props: searchProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

@@ -1,85 +1,54 @@
-<!--
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- -->
-
 <template>
   <li
     ref="option"
     @mouseenter="hoverItem"
     @click.stop="selectOptionClick"
     @mousedown.stop=""
+    data-tag="tiny-option"
+    :data-index="state.index"
     class="tiny-option tiny-select-dropdown__item"
     v-show="visible && state.visible"
     :class="[
       {
         selected: state.itemSelected,
         'is-disabled': disabled || state.groupDisabled || state.limitReached,
-        hover: state.hover,
+        hover: state.hover && !state.limitReached,
         'is-required': required
       },
       highlightClass
     ]"
   >
-    <span v-if="state.select.multiple" class="tiny-option__checkbox-wrap">
-      <tiny-checkbox
-        :model-value="state.itemSelected"
-        :disabled="disabled || state.groupDisabled || state.limitReached"
-      >
-      </tiny-checkbox>
+    <span v-if="state.selectMultiple" class="tiny-option__checkbox-wrap tiny-select-dropdown__item-checkbox">
+      <component :is="`icon-${state.selectCls}`" class="tiny-svg-size" />
     </span>
     <component v-if="icon" :is="icon" class="tiny-option__icon"></component>
-    <slot>
-      <span class="tiny-option__label">{{ state.currentLabel }}</span>
-    </slot>
+    <div class="tiny-option-wrapper" :class="state.selectMultiple ? 'calc-width' : 'full-width'">
+      <slot>
+        <span class="tiny-option-label" :title="state.showTitle ? state.currentLabel : ''">{{
+          state.currentLabel
+        }}</span>
+      </slot>
+    </div>
   </li>
 </template>
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/option/vue'
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
-import Checkbox from '@opentiny/vue-checkbox'
+import { $prefix, props, setup, defineComponent } from '@opentiny/vue-common'
+import '@opentiny/vue-theme/option/index.less'
+import { IconCheck, IconCheckedSur, IconFinish } from '@opentiny/vue-icon'
 
 export default defineComponent({
   name: $prefix + 'Option',
   componentName: 'Option',
   components: {
-    TinyCheckbox: Checkbox
+    IconCheck: IconCheck(),
+    IconCheckedSur: IconCheckedSur(),
+    IconFinish: IconFinish()
   },
-  props: {
-    value: {
-      required: true
-    },
-    label: [String, Number],
-    created: Boolean,
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    events: {
-      type: Object,
-      default: () => ({})
-    },
-    visible: {
-      type: Boolean,
-      default: true
-    },
-    highlightClass: String,
-    required: {
-      type: Boolean,
-      default: false
-    },
-    icon: Object
-  },
+  props: [...props, 'value', 'label', 'created', 'disabled', 'events', 'visible', 'highlightClass', 'required', 'icon'],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

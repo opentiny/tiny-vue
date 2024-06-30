@@ -43,7 +43,7 @@
         class="h-max flex relative right-full will-change-transform"
         @touchstart="touchstart"
         @touchend="touchend"
-        @touchmove.prevent="touchmove"
+        @touchmove="touchmove"
         :style="{
           'width': ' 300%',
           'transform': `translateX(${state.delta}px)`,
@@ -118,7 +118,7 @@ import CascaderSelect from '@opentiny/vue-cascader-select'
 import CalendarItem from './calendar-item.vue'
 
 export default defineComponent({
-  emits: ['update:modelValue', 'expand'],
+  emits: ['update:modelValue', 'expand', 'week-change'],
   props: [...props, 'modelValue', 'config', 'cascaderPosition'],
   components: {
     TinyCascaderSelect: CascaderSelect,

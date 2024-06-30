@@ -87,6 +87,7 @@ const emitEvent = (vm) => {
       }
 
       if (parent) {
+        // eslint-disable-next-line prefer-spread
         parent.$emit.apply(parent, [eventName].concat(params))
       }
     },
@@ -185,19 +186,6 @@ const defineProperties = (vm, instance, filter) => {
 
 const filter = (name) => name.indexOf('$') === 0 || name.indexOf('_') === 0 || name === 'constructor'
 
-const customEmit = (context, emit) => {
-  return function () {
-    const args = Array.prototype.slice.apply(arguments)
-
-    emit.apply(context, args)
-
-    // vue3 下 emit('update:modelValue') 会同时触发 input 事件，vue2 不会
-    if (args[0] === 'update:modelValue') {
-      emit.apply(context, ['input'].concat(args.slice(1)))
-    }
-  }
-}
-
 const createVm = (vm, instance, context = undefined) => {
   context || defineProperties(vm, instance, filter)
 
@@ -205,7 +193,7 @@ const createVm = (vm, instance, context = undefined) => {
     $attrs: { get: () => instance.$attrs },
     $children: { get: () => generateChildren(instance.$children) },
     $constants: { get: () => instance._constants },
-    $emit: { get: () => customEmit(instance, instance.$emit) },
+    $emit: { get: () => () => instance.$emit.bind(instance) },
     $el: { get: () => instance.$el },
     $listeners: { get: () => instance.$listeners },
     $mode: { get: () => instance._tiny_mode },
@@ -267,7 +255,7 @@ export const tools = (context, mode) => {
   return {
     framework: 'vue2.7',
     vm,
-    emit: customEmit(context, emit),
+    emit,
     emitter,
     route,
     router,
@@ -358,6 +346,10 @@ export default hooks
 export const isVue2 = true
 
 export const isVue3 = false
+
+export const isVnode = hooks.isVNode
+
+export const KeepAlive = Vue.component('KeepAlive')
 
 export type {
   PropType,

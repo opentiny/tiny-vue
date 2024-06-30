@@ -3,8 +3,11 @@
 @collapse-item-prefix-cls: ~'@{css-prefix}collapse-item';
 
 .@{collapse-item-prefix-cls} {
-  + .@{collapse-item-prefix-cls} {
-    @apply mt-2;
+  @apply border-b;
+  @apply border-b-color-border-separator;
+
+  &:last-child {
+    @apply border-b-0;
   }
 
   &.is-disabled &__header {
@@ -50,12 +53,6 @@
       @apply border-b-transparent;
     }
 
-    > svg {
-      @apply ~"-mt-px";
-      @apply text-sm;
-      @apply fill-color-icon-secondary;
-    }
-
     .@{collapse-item-prefix-cls}__word-overflow {
       @apply whitespace-nowrap;
       @apply overflow-hidden;
@@ -68,7 +65,7 @@
     }
 
     &:has(.@{collapse-item-prefix-cls}__word-overflow:hover) {
-      .@{collapse-item-prefix-cls}__arrow {
+      .@{collapse-item-prefix-cls}__arrow svg {
         @apply fill-color-brand;
       }
     }
@@ -90,14 +87,16 @@
 
   &__arrow {
     @apply text-xs;
-    @apply ~'mr-1.5';
+    @apply ~'mr-1';
     @apply -order-1;
-    @apply ~"-rotate-90";
+    @apply ~'-rotate-90';
     @apply transition-transform duration-300;
     @apply cursor-pointer;
 
     &:hover {
-      @apply fill-color-brand;
+      svg {
+        @apply fill-color-brand;
+      }
     }
 
     &.is-active {
@@ -110,15 +109,23 @@
   }
 
   &__wrap {
-    @apply ~"will-change-[height]";
+    @apply ~'will-change-[height]';
     @apply overflow-hidden;
     @apply box-border;
   }
 
   &__content {
-    @apply pb-2 pl-5;
+    @apply pb-4 pl-4;
     @apply text-xs;
     @apply text-color-text-primary;
     @apply leading-5;
+  }
+
+  // 相对aui,dom结构有所调整，将tiny-collapse-item__header > svg 样式移到此类名下
+  &__arrow-icon {
+    @apply ~'-mt-px';
+    @apply text-xs;
+    @apply fill-color-icon-secondary;
+    @apply align-baseline;
   }
 }

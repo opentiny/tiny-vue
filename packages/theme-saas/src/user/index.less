@@ -34,7 +34,7 @@
       }
 
       &.is-disabled .@{svg-prefix-cls} {
-        fill: #999;
+        @apply fill-color-icon-disabled;
       }
     }
 
@@ -65,7 +65,7 @@
   }
 
   &_select {
-    max-width: 50%;
+    max-width: ~'calc(50% - theme(spacing.1))';
     @apply w-auto;
     @apply whitespace-nowrap;
     @apply overflow-hidden;
@@ -90,7 +90,7 @@
 
   .@{select-prefix-cls} {
     .@{tag-prefix-cls} {
-      max-width: 220px;
+      @apply ~"max-w-[theme('spacing.36')]";
     }
 
     .@{input-prefix-cls}.is-show-close {
@@ -99,7 +99,16 @@
       }
 
       .@{input-prefix-cls}__inner {
-        padding-right: 36px;
+        @apply pr-9;
+      }
+    }
+  }
+
+  &.draggableClass {
+    .@{select-prefix-cls} {
+      &__tags > span:not(.is-disabled),
+      &__tags > span:not(.is-disabled) > span {
+        @apply inline-block;
       }
     }
   }

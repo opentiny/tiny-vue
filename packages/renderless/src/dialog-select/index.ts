@@ -64,7 +64,7 @@ export const multiGridSelectAll =
   ({ selection, checked }) => {
     if (checked) {
       arrayEach(selection, (item) => {
-        const index = findIndexOf(state.selectedValues, (val) => val == item[props.valueField])
+        const index = findIndexOf(state.selectedValues, (val) => val === item[props.valueField])
 
         if (!~index) {
           state.selectedValues = [...state.selectedValues, item[props.valueField]]
@@ -84,7 +84,7 @@ export const multiGridSelectAll =
 export const multiGridSelectChange =
   ({ api, props, state }) =>
   ({ row, checked }) => {
-    const index = findIndexOf(state.selectedValues, (val) => val == row[props.valueField])
+    const index = findIndexOf(state.selectedValues, (val) => val === row[props.valueField])
 
     if (checked) {
       if (!~index) {
@@ -149,7 +149,7 @@ export const selectedBoxDelete =
       vm.$refs.multiTree.setCheckedByNodeKey(row[props.valueField], false)
     }
 
-    const index = findIndexOf(state.selectedValues, (val) => val == row[props.valueField])
+    const index = findIndexOf(state.selectedValues, (val) => val === row[props.valueField])
 
     if (~index) {
       state.selectedValues = [...state.selectedValues.slice(0, index), ...state.selectedValues.slice(index + 1)]
@@ -188,6 +188,8 @@ export const doMultiTreeFilter =
 
             state.multiTreeStore.viewType = 'plain'
             state.multiTreeStore.expandedKeys = expandedKeys
+
+            vm.$refs.multiTree.filter(state.multiTreeStore.filterText)
           })
         }
       } else {
@@ -472,3 +474,5 @@ export const watchMulti =
 
     api.doAutoLookup()
   }
+
+export const clearStatus = (api) => () => api.watchMulti()

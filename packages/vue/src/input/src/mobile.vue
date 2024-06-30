@@ -64,7 +64,7 @@
           v-if="type !== 'textarea'"
           ref="input"
           :name="name"
-          v-bind="a($attrs, ['size', 'class', 'style', '^on\w+'])"
+          v-bind="a($attrs, ['size', 'class', 'style', '^on[A-Z]'])"
           class="tiny-mobile-input__inner"
           :style="state.inputStyle"
           :tabindex="tabindex"
@@ -126,28 +126,35 @@
         </div>
       </template>
     </div>
-
-    <textarea
-      v-else
-      ref="textarea"
-      :name="name"
-      v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
-      :class="['tiny-mobile-textarea__inner', { 'is-focus': state.focused }]"
-      :tabindex="tabindex"
-      @compositionstart="handleCompositionStart"
-      @compositionupdate="handleCompositionUpdate"
-      @compositionend="handleCompositionEnd"
-      @input="handleInput"
-      :disabled="state.inputDisabled"
-      :readonly="readonly"
-      :autocomplete="autocomplete"
-      :style="{ ...state.textareaStyle, width: $attrs.cols ? 'auto' : '100%' }"
-      @focus="handleFocus"
-      @blur="handleBlur"
-      @change="handleChange"
-      :aria-label="label"
-    >
-    </textarea>
+    <div v-else class="tiny-mobile-textarea__wrapper">
+      <textarea
+        ref="textarea"
+        :name="name"
+        v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]'])"
+        :class="['tiny-mobile-textarea__inner', { 'is-focus': state.focused, 'is-autosize': autosize }]"
+        :tabindex="tabindex"
+        :disabled="state.inputDisabled"
+        :readonly="readonly"
+        :autocomplete="autocomplete"
+        :style="{
+          ...state.textareaStyle,
+          width: $attrs.cols ? 'auto' : '100%',
+          height: $attrs.cols || autosize ? 'auto' : ''
+        }"
+        :aria-label="label"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        @change="handleChange"
+        @compositionstart="handleCompositionStart"
+        @compositionupdate="handleCompositionUpdate"
+        @compositionend="handleCompositionEnd"
+        @input="handleInput"
+        @keyup="$emit('keyup', $event)"
+        @keydown="$emit('keydown', $event)"
+        @paste="$emit('paste', $event)"
+      >
+      </textarea>
+    </div>
 
     <!-- 字数限制 -->
     <span v-if="state.isWordLimitVisible && type === 'textarea'" class="tiny-mobile-textarea__count">{{
@@ -179,7 +186,6 @@ import ActionSheet from '@opentiny/vue-action-sheet'
 import '@opentiny/vue-theme-mobile/input/index.less'
 
 export default defineComponent({
-  inheritAttrs: false,
   emits: [
     'update:modelValue',
     'change',
@@ -190,7 +196,8 @@ export default defineComponent({
     'keydown',
     'paste',
     'mouseenter',
-    'mouseleave'
+    'mouseleave',
+    'input'
   ],
   components: {
     IconClose: iconClose(),

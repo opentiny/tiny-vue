@@ -4,17 +4,17 @@ test('自定义服务', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('country#custom-service')
 
-  const select = page.getByPlaceholder('请选择')
+  const select = page.locator('.tiny-select')
   const item = page.getByText('France')
-  const clear = page.locator('#preview .tiny-svg-size').nth(1)
+  const clear = page.locator('.tiny-select .tiny-svg.icon-close')
   // 点击选中
   await select.click()
   await item.click()
-  await expect(select).toHaveValue(/France/)
+  await expect(select.locator('input')).toHaveValue(/France/)
   await page.waitForTimeout(100)
 
   // 清除
   await select.hover()
   await clear.click()
-  await expect(select).toHaveValue('')
+  await expect(select.locator('input')).toHaveValue('')
 })

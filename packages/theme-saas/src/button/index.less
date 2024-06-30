@@ -15,7 +15,7 @@
   @apply ~"leading-[calc(theme(spacing.7)-2*theme(borderWidth.DEFAULT))]";
   @apply text-color-text-primary;
   @apply fill-color-text-primary;
-  @apply text-xs;
+  @apply text-sm;
   @apply whitespace-nowrap;
   @apply text-ellipsis;
   @apply cursor-pointer;
@@ -35,7 +35,7 @@
   .@{svg-prefix-cls} {
     @apply align-middle;
     @apply text-base;
-    @apply -mt-px;
+    @apply ~'-mt-0.5';
   }
 
   & > img {
@@ -125,7 +125,7 @@
     @apply box-border;
     @apply ~"min-w-[auto]";
     max-width: initial;
-    @apply leading-none;
+    line-height: inherit;
     @apply h-4;
     @apply bg-transparent;
     @apply border-0;
@@ -256,7 +256,7 @@
   }
 
   &&--text {
-    .button-text(theme('colors.color.brand.DEFAULT'), theme('colors.color.brand.hover.DEFAULT'), theme('colors.color.brand.active'), theme('colors.color.brand.disabled'));
+    .button-text(theme('colors.color.brand.DEFAULT'), theme('colors.color.brand.hover.DEFAULT'), theme('colors.color.brand.active'), theme('colors.color.brand.disabled'), theme('colors.color.text.primary'), theme('colors.color.text.disabled'));
   }
 
   &&--large {
@@ -264,7 +264,7 @@
   }
 
   &&--medium {
-    .button-size(theme('fontSize.sm'), theme('spacing.8'), theme('spacing.24'), theme('spacing.44'), theme('spacing.4'));
+    .button-size(theme('fontSize.sm'), theme('spacing.8'), theme('spacing.22'), theme('spacing.44'), theme('spacing.4'));
   }
 
   &&--small {

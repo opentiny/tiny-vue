@@ -1,7 +1,22 @@
 import ResizeObserver from '../common/deps/ResizeObserver'
+import type {
+  IAsyncFlowchartState,
+  IAsyncFlowchartProps,
+  IAsyncFlowchartApi,
+  ISharedRenderlessParamHooks,
+  ISharedRenderlessParamUtils
+} from '@/types'
 
 export const observeContainerSize =
-  ({ nextTick, vm, state }) =>
+  ({
+    nextTick,
+    vm,
+    state
+  }: {
+    nextTick: ISharedRenderlessParamHooks['nextTick']
+    vm: ISharedRenderlessParamUtils['vm']
+    state: IAsyncFlowchartState
+  }) =>
   () => {
     nextTick(() => {
       const observedElement = vm.$el
@@ -12,7 +27,7 @@ export const observeContainerSize =
             if (vm.$refs.chart) {
               vm.$refs.chart.refresh({
                 graphWidth: observedElement.offsetWidth,
-                adjustX: -state.config.nodeWrapperSize / 2
+                adjustX: -(state?.config?.nodeWrapperSize || 0) / 2
               })
             }
           })
@@ -24,7 +39,7 @@ export const observeContainerSize =
     })
   }
 
-export const unobserveContainerSize = (state) => () => {
+export const unobserveContainerSize = (state: IAsyncFlowchartState) => () => {
   if (state.temporary.observer) {
     state.temporary.observer.unobserve(state.temporary.observed)
     state.temporary.observer.disconnect()
@@ -34,7 +49,23 @@ export const unobserveContainerSize = (state) => () => {
 }
 
 export const fetchData =
-  ({ Loading, props, state, vm, markRaw, api, nextTick }) =>
+  ({
+    Loading,
+    props,
+    state,
+    vm,
+    markRaw,
+    api,
+    nextTick
+  }: {
+    Loading: any
+    props: IAsyncFlowchartProps
+    state: IAsyncFlowchartState
+    vm: ISharedRenderlessParamUtils['vm']
+    markRaw: ISharedRenderlessParamHooks['markRaw']
+    api: IAsyncFlowchartApi
+    nextTick: ISharedRenderlessParamHooks['nextTick']
+  }) =>
   () => {
     if (typeof props.fetch === 'function') {
       api.unobserveContainerSize()
@@ -64,12 +95,16 @@ export const fetchData =
     }
   }
 
-export const handleClickNode = (emit) => (afterNode, e) => emit('click-node', afterNode, e)
+export const handleClickNode = (emit: ISharedRenderlessParamUtils['emit']) => (afterNode, e) =>
+  emit('click-node', afterNode, e)
 
-export const handleClickLink = (emit) => (afterLink, e) => emit('click-link', afterLink, e)
+export const handleClickLink = (emit: ISharedRenderlessParamUtils['emit']) => (afterLink, e) =>
+  emit('click-link', afterLink, e)
 
-export const handleClickBlank = (emit) => (param, e) => emit('click-blank', param, e)
+export const handleClickBlank = (emit: ISharedRenderlessParamUtils['emit']) => (param, e) =>
+  emit('click-blank', param, e)
 
-export const handleClickGroup = (emit) => (afterGroup, e) => emit('click-group', afterGroup, e)
+export const handleClickGroup = (emit: ISharedRenderlessParamUtils['emit']) => (afterGroup, e) =>
+  emit('click-group', afterGroup, e)
 
-export const refresh = (api) => () => api.fetchData()
+export const refresh = (api: IAsyncFlowchartApi) => () => api.fetchData()

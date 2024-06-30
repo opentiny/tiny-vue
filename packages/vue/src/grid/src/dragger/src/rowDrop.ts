@@ -57,7 +57,7 @@ export const createHandlerOnEnd = ({ _vm, refresh }) => {
     if (insertRecords.length) {
       return false
     }
-    const options = { children: 'children' }
+    const options = { children: (_vm.treeConfig || {}).children || 'children' }
     const targetTrElem = event.item
     const { parentNode: wrapperElem, previousElementSibling: prevTrElem } = targetTrElem
     // 这里优先使用用户通过props传递过来的表格数据，所以拖拽后会改变原始数据
@@ -163,5 +163,9 @@ export const onEndEvent = ({ event, _this }) => {
   _this.loadColumn(fullColumn)
   _this.$emit('column-drop-end', event, _this)
 
-  _this.isDragHeaderSorting && _this.$grid.toolBarVm && _this.$grid.toolBarVm.updateSetting()
+  const toolbarVm = _this.getVm('toolbar')
+
+  if (_this.isDragHeaderSorting && toolbarVm) {
+    toolbarVm.updateSetting()
+  }
 }

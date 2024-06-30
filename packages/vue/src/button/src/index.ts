@@ -18,7 +18,7 @@ export const buttonProps = {
     type: String,
     default: 'default'
   },
-  tabindex: { type: String, default: '1' },
+  tabindex: { type: String, default: '0' },
   icon: {
     type: [Object, String],
     default: ''
@@ -34,6 +34,10 @@ export const buttonProps = {
   nativeType: {
     type: String,
     default: 'button'
+  },
+  href: {
+    type: String,
+    default: ''
   },
   size: {
     type: String,

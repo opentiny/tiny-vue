@@ -35,6 +35,24 @@
   &__wrap {
     display: flex;
 
+    &.@{action-menu-prefix-cls}__card-mode {
+      .@{action-menu-prefix-cls}__item {
+        .tiny-svg {
+          fill: var(--ti-action-menu-item-card-text-color);
+        }
+
+        .@{dropdown-prefix-cls} {
+          .@{dropdown-prefix-cls}-trigger {
+            &:hover {
+              .tiny-svg {
+                fill: var(--ti-action-menu-item-card-text-color);
+              }
+            }
+          }
+        }
+      }
+    }
+
     .@{action-menu-prefix-cls}__item {
       display: flex;
       justify-content: space-between;
@@ -54,15 +72,9 @@
       }
 
       &:not(.is-disabled):hover {
-        color: var(--ti-action-menu-item-hover-text-color);
-
         &.@{action-menu-prefix-cls}__item-visable {
           .@{dropdown-item-prefix-cls} {
             background-color: var(--ti-action-menu-item-hover-bg-color);
-
-            &__wrap {
-              color: var(--ti-action-menu-item-hover-text-color);
-            }
           }
         }
 
@@ -80,6 +92,21 @@
           &:hover {
             background-color: var(--ti-action-menu-item-hover-bg-color);
             text-decoration: var(--ti-action-menu-hover-text-decoratio);
+            color: var(--ti-action-menu-item-hover-text-color);
+          }
+        }
+
+        &.@{action-menu-prefix-cls}__card-item {
+          .@{dropdown-item-prefix-cls}__wrap {
+            color: var(--ti-action-menu-item-card-text-color);
+
+            .tiny-svg {
+              fill: var(--ti-action-menu-item-card-text-color);
+            }
+
+            &:hover {
+              color: var(--ti-action-menu-item-card-hover-text-color);
+            }
           }
         }
 

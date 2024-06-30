@@ -81,14 +81,27 @@
     @media (min-width: 768px) {
       ::-webkit-scrollbar,
       &::-webkit-scrollbar {
-        @apply w-2;
-        @apply h-2;
+        @apply ~'w-2.5';
+        @apply ~'h-2.5';
       }
 
       ::-webkit-scrollbar-thumb {
         @apply rounded-lg;
+        @apply border-dashed;
+        @apply border-transparent;
+        @apply border-2;
+        @apply bg-clip-padding;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        @apply border-0;
       }
     }
+  }
+
+  .@{css-prefix}dropdown .is-text:not(.is-disabled) svg,
+  .@{css-prefix}dropdown .is-text:not(.is-disabled):hover svg {
+    @apply fill-color-text-primary;
   }
 }
 

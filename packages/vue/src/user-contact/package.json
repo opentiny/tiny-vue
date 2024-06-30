@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-user-contact",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -20,7 +20,9 @@
     "@opentiny/vue-user-head": "workspace:~",
     "@opentiny/vue-card-template": "workspace:~",
     "@opentiny/vue-popover": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-espace": "workspace:~"
   },
   "license": "MIT"
 }

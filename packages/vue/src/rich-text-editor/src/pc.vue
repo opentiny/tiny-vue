@@ -3,7 +3,12 @@
     <div class="tiny-rich-text-editor__toolbar">
       <!-- starter-kit功能区 -->
       <template v-for="item in state.toolbar">
-        <button v-if="item === 'font-size'" :title="t('ui.richTextEditor.fontSize')" class="font-size-box">
+        <button
+          :key="'fz' + item"
+          v-if="item === 'font-size'"
+          :title="t('ui.richTextEditor.fontSize')"
+          class="font-size-box"
+        >
           <TinyIconRichTextFontSize></TinyIconRichTextFontSize>
           <div class="font-size-options">
             <button @click="state.editor.chain().focus().setSize({ size: 12 }).run()">12px</button>
@@ -16,6 +21,7 @@
           </div>
         </button>
         <button
+          :key="'lh' + item"
           v-else-if="item === 'line-height'"
           class="line-height-button"
           :title="t('ui.richTextEditor.lineHeight')"
@@ -30,7 +36,7 @@
             <button class="line-2.5" @click.stop="state.editor.chain().focus().setP({ level: 2.5 }).run()">2.5</button>
           </div>
         </button>
-        <button v-else-if="item === 'h-box'" :title="t('ui.richTextEditor.hBox')" class="h-box">
+        <button :key="'h-box' + item" v-else-if="item === 'h-box'" :title="t('ui.richTextEditor.hBox')" class="h-box">
           <div class="h-ico">
             <TinyIconRichTextHeading></TinyIconRichTextHeading>
           </div>
@@ -58,7 +64,7 @@
             </button>
           </div>
         </button>
-        <button v-else-if="item === 'img'" :title="t('ui.richTextEditor.img')" class="image-button">
+        <button :key="'img' + item" v-else-if="item === 'img'" :title="t('ui.richTextEditor.img')" class="image-button">
           <TinyIconRichTextImage></TinyIconRichTextImage>
           <div class="img-option">
             <div class="img-item">
@@ -70,7 +76,12 @@
             </div>
           </div>
         </button>
-        <button v-else-if="item === 'color'" :title="t('ui.richTextEditor.color')" class="color-button">
+        <button
+          :key="'color' + item"
+          v-else-if="item === 'color'"
+          :title="t('ui.richTextEditor.color')"
+          class="color-button"
+        >
           <label for="tiny-color">
             <TinyIconRichTextColor></TinyIconRichTextColor>
           </label>
@@ -81,6 +92,7 @@
           />
         </button>
         <button
+          :key="'bg' + item"
           v-else-if="item === 'backgroundColor'"
           :title="t('ui.richTextEditor.backgroundColor')"
           class="color-button"
@@ -94,7 +106,12 @@
             @input="state.editor.chain().focus().setBackColor({ bgColor: $event.target.value }).run()"
           />
         </button>
-        <button v-else-if="item === 'table'" :title="t('ui.richTextEditor.table')" class="table-button">
+        <button
+          :key="'table' + item"
+          v-else-if="item === 'table'"
+          :title="t('ui.richTextEditor.table')"
+          class="table-button"
+        >
           <div class="table-box" v-clickoutside="closeTablePanel" @click="toggleTablePanel">
             <div class="table-icon">
               <TinyIconRichTextTable></TinyIconRichTextTable>
@@ -134,6 +151,7 @@
           </div>
         </button>
         <button
+          :key="'unlink' + item"
           v-else-if="item === 'unlink'"
           :title="t('ui.richTextEditor.unlink')"
           @click="eventClick(state.editor, item)"
@@ -143,6 +161,7 @@
           <component v-else :is="eventImg(item)"></component>
         </button>
         <button
+          :key="'editor' + item"
           v-else
           :title="t(`ui.richTextEditor.${item}`)"
           @click="eventClick(state.editor, item)"
@@ -233,7 +252,7 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/rich-text-edtior/vue'
+import { renderless, api } from '@opentiny/vue-renderless/rich-text-editor/vue'
 import codeHighlight from './code-highlight.vue'
 import {
   iconRichTextAddColumnAfter,
@@ -292,7 +311,8 @@ import Paragraph from '@tiptap/extension-paragraph'
 import { mergeAttributes } from '@tiptap/core'
 
 // image 包
-import Image from '@tiptap/extension-image'
+// import Image from '@tiptap/extension-image'
+import Image from './extensions/image'
 
 // -- HeighLight
 import Highlight from '@tiptap/extension-highlight'
@@ -361,11 +381,11 @@ export const richTextEditorProps = {
   },
   customToolBar: {
     type: Array,
-    default: []
+    default: () => []
   },
   options: {
     type: Object,
-    default: {}
+    default: () => ({})
   }
 }
 

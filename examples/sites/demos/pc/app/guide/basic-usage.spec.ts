@@ -10,6 +10,7 @@ test('基础用法', async ({ page }) => {
   const step2 = page.getByRole('heading', { name: '新手引导标题2' })
   const step3 = page.getByRole('dialog').locator('div').nth(2)
   const next = page.getByRole('button', { name: '下一步' })
+  const finished = page.getByRole('button', { name: '完成' })
   const showBtn = page.getByRole('button', { name: '带滚动条新手引导' })
   const closeBtn = page.getByRole('button', { name: 'Close Tour' })
 
@@ -22,8 +23,8 @@ test('基础用法', async ({ page }) => {
   // 点击下一步，引导
   await next.click()
   await expect(step2).toBeVisible()
-  await next.click()
-  await expect(next).toBeHidden()
+  await finished.click()
+  await expect(finished).toBeHidden()
   await expect(step3).toBeHidden()
 
   // 引导显示后，点击关闭按钮可关闭

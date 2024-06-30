@@ -10,7 +10,6 @@
  *
  */
 import CascaderMenu from './src/index'
-import '@opentiny/vue-theme/cascader-menu/index.less'
 import { version } from './package.json'
 
 /* istanbul ignore next */

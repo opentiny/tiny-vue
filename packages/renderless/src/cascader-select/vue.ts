@@ -1,72 +1,61 @@
-import {
-  init,
-  handleTouchstart,
-  handleTouchend,
-  handleTouchmove,
-  watchActionSheetVisible,
-  calcSelector,
-  close,
-  confirm,
-  styleOpt,
-  statusOpt,
-  computedConfirmDisabled,
-  parseType
-} from './index'
-import throttle from '../common/deps/throttle'
+import { watchActionSheetVisible, close, confirm, columnStyle, clear } from './index'
+import { usePicker } from './usePicker'
 
 export const api = [
   'state',
-  'handleTouchstart',
-  'handleTouchend',
-  'throttledHandleTouchmove',
   'close',
   'confirm',
-  'styleOpt',
-  'statusOpt'
+  'clear',
+  'columnsType',
+  'columnsList',
+  'columnFieldNames',
+  'changeHandler',
+  'defaultValues',
+  'isDisabled',
+  'selectedOptions',
+  'columnStyle'
 ]
 
-export const renderless = (props, { reactive, computed, onBeforeMount, watch }, { emit, vm }) => {
+export const renderless = (props, { reactive, computed, watch, ref, toRefs }, { emit, vm }) => {
   const state = reactive({
     actionSheetVisible: false,
-    visibleOptionCount: 5,
-    selectorCount: 1,
-    selector0: {},
-    selector1: {},
-    selector2: {},
-    confirmDisabled: computed(() => api.computedConfirmDisabled())
+    visibleOptionNum: 5
   })
+  const {
+    changeHandler,
+    defaultValues,
+    columnsList,
+    columnsType,
+    columnFieldNames,
+    selectedOptions,
+    setValue,
+    isDisabled
+  } = usePicker({ ref, reactive, watch, computed, toRefs, props, emit })
 
   const api = {
-    state,
-    styleOpt,
-    statusOpt,
-    handleTouchstart: handleTouchstart(state),
-    handleTouchend: handleTouchend(state),
-    watchActionSheetVisible: watchActionSheetVisible({ emit, state, vm }),
-    close: close(state),
-    computedConfirmDisabled: computedConfirmDisabled(state),
-    parseType: parseType(props)
+    state
   }
 
   Object.assign(api, {
-    init: init({ api, props, state }),
-    throttledHandleTouchmove: throttle(20, handleTouchmove({ api, props, state })),
-    calcSelector: calcSelector(api),
-    confirm: confirm({ api, emit, props, state, vm })
-  })
+    close: close(state),
+    clear: clear({ api, emit }),
+    confirm: confirm({ api, emit, props, state, defaultValues, selectedOptions, isDisabled, vm }),
+    watchActionSheetVisible: watchActionSheetVisible({ emit, api, props }),
 
-  onBeforeMount(() => {
-    api.init()
+    columnsType,
+    columnsList,
+    columnFieldNames,
+    changeHandler,
+    defaultValues,
+    selectedOptions,
+    setValue,
+    isDisabled,
+    columnStyle: columnStyle({ props, computed })
   })
 
   watch(
     () => props.visible,
     (value) => (state.actionSheetVisible = value)
-  )
-
-  watch(
-    () => props.modelValue,
-    (value) => api.init(value)
   )
 
   watch(

@@ -44,7 +44,7 @@ export const api = ['state', 'handleChange', 'computedStore']
 
 const initState = ({ reactive, computed, parent, api, inject, props }) => {
   const state: ICheckboxState = reactive({
-    size: props.size || inject('size', null),
+    size: computed(() => props.size || inject('size', null) || (parent.tinyForm || {}).size),
     vertical: inject('vertical', null),
     iconPosition: props.iconPosition || inject('iconPosition', 'center'),
     focus: false,
@@ -69,7 +69,8 @@ const initState = ({ reactive, computed, parent, api, inject, props }) => {
       set: (value) => api.computedGetModelSet(value)
     }),
     showText: computed(() => api.computedShowText()),
-    isShowText: computed(() => api.computedIsShowText())
+    isShowText: computed(() => api.computedIsShowText()),
+    shape: inject('shape', null) || props.shape
   })
 
   return state
@@ -85,10 +86,11 @@ const initApi = ({
   formItemSize,
   emit,
   nextTick,
-  t
+  t,
+  vm
 }: Pick<
   ICheckboxRenderlessParams & ICheckboxRenderlessParamUtils & ISharedRenderlessParamHooks,
-  'api' | 'state' | 'dispatch' | 'props' | 'parent' | 'constants' | 'formItemSize' | 'emit' | 'nextTick' | 't'
+  'api' | 'state' | 'dispatch' | 'props' | 'parent' | 'constants' | 'formItemSize' | 'emit' | 'nextTick' | 't' | 'vm'
 >) => {
   Object.assign(api, {
     state,
@@ -124,7 +126,7 @@ export const renderless = (
 
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  initApi({ api, state, dispatch, props, parent, constants, formItemSize, emit, nextTick, t })
+  initApi({ api, state, dispatch, props, parent, constants, formItemSize, emit, nextTick, t, vm })
 
   watch(
     () => props.modelValue,

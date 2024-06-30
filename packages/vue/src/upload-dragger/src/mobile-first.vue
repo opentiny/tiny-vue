@@ -1,8 +1,9 @@
 <template>
   <div
+    data-tag="tiny-upload-dragger"
     :class="
       m(
-        'min-w-[theme(spacing.72)] min-h-[theme(spacing.36)] border border-dashed rounded',
+        'min-w-[theme(spacing.72)] min-h-[theme(spacing.40)] border border-dashed rounded',
         state.dragover ? 'border-color-brand' : 'border-color-none-hover',
         customClass
       )
@@ -22,6 +23,7 @@ import type { IUploadDraggerApi } from '@opentiny/vue-renderless/types/upload-dr
 
 export default defineComponent({
   name: $prefix + 'UploadDragger',
+  emits: ['file'],
   props: [...props, 'disabled', 'customClass'],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IUploadDraggerApi

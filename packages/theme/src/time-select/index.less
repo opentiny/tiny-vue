@@ -25,13 +25,15 @@
     line-height: var(--ti-time-select-item-line-height);
     height: var(--ti-time-select-item-height);
 
+
+    &.selected:not(.disabled) {
+      color: var(--ti-time-select-item-selected-color);
+      background-color: var(--ti-time-select-item-select-hover-bg-color);
+    }
+
     &:not(.disabled):hover {
       background-color: var(--ti-time-select-item-hover-bg-color);
       cursor: pointer;
-    }
-
-    &.selected:not(.disabled) {
-      background-color: var(--ti-time-select-item-hover-bg-color);
     }
 
     &.disabled {

@@ -29,6 +29,13 @@
     @apply top-0;
     @apply w-screen;
     @apply h-screen;
+    @apply flex;
+    @apply flex-col;
+
+    .@{dialog-box-prefix-cls}__body {
+      @apply ~"max-h-[none]";
+      @apply flex-auto;
+    }
   }
 
   &.is-center {
@@ -37,6 +44,7 @@
       @apply text-center;
     }
   }
+
   &.is-right-slide {
     @apply flex;
     @apply flex-col;
@@ -64,6 +72,7 @@
       @apply mr-4;
       @apply flex-1;
       @apply font-bold;
+      @apply break-all;
     }
 
     .@{dialog-box-prefix-cls}__headerbtn {
@@ -94,11 +103,11 @@
 
   & &__body {
     @apply text-left;
-    @apply pt-0 pr-6 pb-0 pl-6;
-    @apply mb-6;
-    @apply mt-6;
+    @apply pr-6 pl-6;
+    @apply pb-3;
+    @apply pt-3;
     @apply text-color-text-primary;
-    @apply leading-5;
+    @apply ~'leading-5.5';
     @apply text-sm;
     @apply overflow-auto;
     max-height: 65vh;
@@ -108,17 +117,12 @@
     }
 
     > span {
-      max-height: 120px;
       @apply overflow-y-auto;
     }
 
     .@{css-prefix}dept__search {
-      line-height: 30px;
+      @apply leading-5;
     }
-  }
-
-  &.is-fullscreen &__body {
-    max-height: calc(100vh - 94px);
   }
 
   & &__footer {
@@ -136,8 +140,12 @@
   }
 }
 
-.dialog-box__scroll-lock {
+.@{dialog-box-prefix-cls}__scroll-lock {
   @apply overflow-hidden;
+}
+
+.dialog-box__scroll-lock {
+  overflow: hidden;
 }
 
 .v-modal {

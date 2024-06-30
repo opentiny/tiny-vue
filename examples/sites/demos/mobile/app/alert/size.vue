@@ -1,12 +1,11 @@
 <template>
   <div class="alert-wrap">
-    <tiny-alert>默认大小</tiny-alert>
-    <tiny-alert size="normal">size 为 normal</tiny-alert>
+    <tiny-alert size="normal">size 为 normal (默认)</tiny-alert>
     <tiny-alert size="large">size 为 large</tiny-alert>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { Alert } from '@opentiny/vue'
 
 export default {

@@ -8,11 +8,27 @@
     </tiny-radio-group>
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="value" :size="radioValue" placeholder="请选择日期"></tiny-date-picker>
-      <tiny-date-picker v-model="dateTimeValue" type="datetime" :size="radioValue" placeholder="请选择日期"></tiny-date-picker>
+      <tiny-date-picker
+        v-model="dateTimeValue"
+        type="datetime"
+        :size="radioValue"
+        placeholder="请选择日期"
+      ></tiny-date-picker>
       <tiny-date-picker v-model="weekValue" type="week" :size="radioValue" placeholder="请选择周"></tiny-date-picker>
-      <tiny-date-picker v-model="monthValue" type="month" :size="radioValue" placeholder="请选择月份"></tiny-date-picker>
+      <tiny-date-picker
+        v-model="monthValue"
+        type="month"
+        :size="radioValue"
+        placeholder="请选择月份"
+      ></tiny-date-picker>
       <tiny-date-picker v-model="yearValue" type="year" :size="radioValue" placeholder="请选择年份"></tiny-date-picker>
-      <tiny-date-picker v-model="rangeValue" type="daterange" :size="radioValue" start-placeholder="开始日期" end-placeholder="结束日期"></tiny-date-picker>
+      <tiny-date-picker
+        v-model="rangeValue"
+        type="daterange"
+        :size="radioValue"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期"
+      ></tiny-date-picker>
     </div>
   </div>
 </template>
@@ -37,6 +53,10 @@ const radioValue = ref('default')
 <style scoped lang="less">
 .demo-date-picker-wrap {
   width: 280px;
+
+  :deep(.tiny-date-editor--daterange.tiny-input__inner) {
+    width: 280px;
+  }
 
   & > * {
     margin-top: 12px;

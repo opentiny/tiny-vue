@@ -1,8 +1,60 @@
-const isOpen = import.meta.env.VITE_BUILD_TARGET === 'open'
+const envTarget = import.meta.env.VITE_BUILD_TARGET || 'open'
+const envTheme = import.meta.env.VITE_TINY_THEME || 'default'
 export const standaloneMenus = [
   {
     label: '组件总览',
     key: 'overview'
+  }
+]
+
+const docMenusChildren = [
+  { 'title': '更新日志', 'titleEn': 'Changelog', 'key': 'changelog' },
+  { 'title': '环境准备', 'titleEn': 'envpreparation', 'key': 'envpreparation' },
+  { 'title': '安装', 'titleEn': 'installation', 'key': 'installation' },
+  { 'title': '引入组件', 'titleEn': 'importComponents', 'key': 'import-components' },
+  {
+    'title': '后端适配器',
+    'titleEn': 'adapter',
+    'key': 'adapter',
+    showScene: {
+      target: ['inner']
+    }
+  },
+  {
+    'title': '开发示例',
+    'titleEn': 'developDemo',
+    'key': 'develop-demo',
+    showScene: {
+      target: ['inner']
+    }
+  },
+  { 'title': '创建项目', 'titleEn': 'tinyStage', 'key': 'tiny-stage' },
+  { 'title': '国际化', 'titleEn': 'i18n', 'key': 'i18n' },
+  {
+    'title': '主题配置',
+    'titleEn': 'theme',
+    'key': 'theme',
+    showScene: {
+      theme: ['default']
+    }
+  },
+  { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
+  { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' },
+  {
+    'title': '社区求助',
+    'titleEn': 'help',
+    'key': 'help',
+    showScene: {
+      target: ['inner']
+    }
+  },
+  {
+    'title': '适配AUI',
+    'titleEn': 'Adapter AUI',
+    'key': 'aui-adapter',
+    showScene: {
+      theme: ['saas']
+    }
   }
 ]
 export const docMenus = [
@@ -10,101 +62,83 @@ export const docMenus = [
     'label': '使用指南',
     'labelEn': 'Usage Guidelines',
     'key': 'docs_usage_guidelines',
-    // 为了保持新旧官网对应文档路由的一致，文档对内和对外的差异判断逻辑放到了docs组件中。
-    'children': [
-      { 'title': '更新日志', 'titleEn': 'Changelog', 'key': 'changelog' },
-      { 'title': '环境准备', 'titleEn': 'envpreparation', 'key': 'envpreparation' },
-      { 'title': '安装', 'titleEn': 'installation', 'key': 'installation' },
-      { 'title': '引入组件', 'titleEn': 'importComponents', 'key': 'import-components' },
-      { 'title': '开发示例', 'titleEn': 'developDemo', 'key': 'develop-demo' },
-      { 'title': '国际化', 'titleEn': 'i18n', 'key': 'i18n' },
-      { 'title': '主题配置', 'titleEn': 'theme', 'key': 'theme' },
-      { 'title': '表单校验配置', 'titleEn': 'formValid', 'key': 'form-valid' },
-      { 'title': '常见问题', 'titleEn': 'faq', 'key': 'faq' }
-    ]
+    'children': docMenusChildren.filter((item) => {
+      if (!item.showScene) {
+        return true
+      }
+      // 根据envTarget和envTheme判断是否展示文档
+      const { target, theme } = item.showScene
+      return (target?.includes(envTarget) ?? true) && (theme?.includes(envTheme) ?? true)
+    })
   }
 ]
-// 内网比外网多出三文档，为了保存文档顺序，使用splice插入到对应位置
-if (!isOpen) {
-  docMenus[0].children.splice(4, 0, { 'title': '后端适配器', 'titleEn': 'adapter', 'key': 'adapter' })
-  docMenus[0].children.splice(6, 0, { 'title': '创建项目', 'titleEn': 'tinyStage', 'key': 'tiny-stage' })
-  docMenus[0].children.splice(10, 0, { 'title': '社区求助', 'titleEn': 'help', 'key': 'help' })
-}
+
 export const cmpMenus = [
   {
-    'label': '框架风格',
-    'labelEn': 'Frame Style',
+    'label': '基础',
+    'labelEn': 'Basic',
     'key': 'cmp_frame_style',
     'children': [
-      { 'nameCn': '色彩', 'name': 'Color', 'key': 'color' },
-      { 'nameCn': '版型', 'name': 'Container', 'key': 'container' },
-      { 'nameCn': '字体', 'name': 'Font', 'key': 'font' },
-      { 'nameCn': '图标', 'name': 'Icon', 'key': 'icon' },
-      { 'nameCn': '布局', 'name': 'Layout', 'key': 'layout' }
-    ]
-  },
-  {
-    'label': '导航组件',
-    'labelEn': 'Navigation Components',
-    'key': 'cmp_navigation_components',
-    'children': [
-      { 'nameCn': '锚点', 'name': 'Anchor', 'key': 'anchor' },
-      { 'nameCn': '引导', 'name': 'Guide', 'key': 'guide' },
-      { 'nameCn': '面包屑', 'name': 'Breadcrumb', 'key': 'breadcrumb' },
-      { 'nameCn': '瀑布菜单', 'name': 'FallMenu', 'key': 'fall-menu' },
-      { 'nameCn': '浮动块', 'name': 'Floatbar', 'key': 'floatbar' },
-      { 'nameCn': '收缩菜单', 'name': 'ToggleMenu', 'key': 'toggle-menu' },
-      { 'nameCn': '收藏夹菜单', 'name': 'LinkMenu', 'key': 'link-menu' },
-      { 'nameCn': '里程碑', 'name': 'Milestone', 'key': 'milestone' },
-      { 'nameCn': '导航菜单', 'name': 'NavMenu', 'key': 'nav-menu' },
-      { 'nameCn': '步骤条', 'name': 'Steps', 'key': 'steps' },
-      { 'nameCn': '页签', 'name': 'Tabs', 'key': 'tabs' },
-      { 'nameCn': '时间线', 'name': 'TimeLine', 'key': 'time-line' },
-      { 'nameCn': '树型菜单', 'name': 'TreeMenu', 'key': 'tree-menu' },
-      { 'nameCn': '流程图', 'name': 'Wizard', 'key': 'wizard' },
-      { 'nameCn': '下拉菜单', 'name': 'Dropdown', 'key': 'dropdown' },
-      { 'nameCn': '菜单按钮', 'name': 'ActionMenu', 'key': 'action-menu' },
-      { 'nameCn': '流程图', 'name': 'Flowchart', 'key': 'flowchart' }
-    ]
-  },
-  {
-    'label': '容器组件',
-    'labelEn': 'Container Components',
-    'key': 'cmp_container_components',
-    'children': [
-      { 'nameCn': '走马灯', 'name': 'Carousel', 'key': 'carousel' },
-      { 'nameCn': '折叠面板', 'name': 'Collapse', 'key': 'collapse' },
-      { 'nameCn': '对话框', 'name': 'DialogBox', 'key': 'dialog-box' },
-      { 'nameCn': '弹窗选择 ', 'name': 'DialogSelect ', 'key': 'dialog-select' },
-      { 'nameCn': '抽屉', 'name': 'Drawer', 'key': 'drawer' },
-      { 'nameCn': '过滤器面板', 'name': 'FilterPanel', 'key': 'filter-panel' },
-      { 'nameCn': '面板分割', 'name': 'Split', 'key': 'split' }
-    ]
-  },
-  {
-    'label': '表单组件',
-    'labelEn': 'Form Components',
-    'key': 'cmp_form_components',
-    'children': [
-      { 'nameCn': '自动完成', 'name': 'Autocomplete', 'key': 'autocomplete' },
       { 'nameCn': '按钮', 'name': 'Button', 'key': 'button' },
       { 'nameCn': '按钮组', 'name': 'ButtonGroup', 'key': 'button-group' },
+      { 'nameCn': '色彩', 'name': 'Color', 'key': 'color' },
+      { 'nameCn': '容器布局', 'name': 'Container', 'key': 'container' },
+      { 'nameCn': '字体', 'name': 'Font', 'key': 'font' },
+      { 'nameCn': '图标', 'name': 'Icon', 'key': 'icon' },
+      { 'nameCn': '栅格布局', 'name': 'Layout', 'key': 'layout' },
+      { 'nameCn': '链接', 'name': 'Link', 'key': 'link' },
+      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' }
+    ]
+  },
+  {
+    'label': '导航',
+    'labelEn': 'Navigation',
+    'key': 'cmp_navigation_components',
+    'children': [
+      { 'nameCn': '动作菜单', 'name': 'ActionMenu', 'key': 'action-menu' },
+      { 'nameCn': '锚点', 'name': 'Anchor', 'key': 'anchor' },
+      { 'nameCn': '面包屑', 'name': 'Breadcrumb', 'key': 'breadcrumb' },
+      { 'nameCn': '下拉菜单', 'name': 'Dropdown', 'key': 'dropdown' },
+      { 'nameCn': '瀑布菜单', 'name': 'FallMenu', 'key': 'fall-menu' },
+      { 'nameCn': '收藏夹菜单', 'name': 'LinkMenu', 'key': 'link-menu' },
+      { 'nameCn': '导航菜单', 'name': 'NavMenu', 'key': 'nav-menu' },
+      { 'nameCn': '分页', 'name': 'Pager', 'key': 'pager' },
+      { 'nameCn': '步骤条', 'name': 'Steps', 'key': 'steps' },
+      { 'nameCn': '页签', 'name': 'Tabs', 'key': 'tabs' },
+      { 'nameCn': '收缩菜单', 'name': 'ToggleMenu', 'key': 'toggle-menu' },
+      { 'nameCn': '树型菜单', 'name': 'TreeMenu', 'key': 'tree-menu' }
+    ]
+  },
+  {
+    'label': '表单',
+    'labelEn': 'Form',
+    'key': 'cmp_form_components',
+    'children': [
+      { 'nameCn': '自动完成', 'name': 'AutoComplete', 'key': 'autocomplete' },
+      {
+        'nameCn': '基础选择器',
+        'name': 'BaseSelect',
+        'key': 'base-select',
+        'mark': { 'type': 'warning', 'text': 'Beta' }
+      },
       { 'nameCn': '级联选择器', 'name': 'Cascader', 'key': 'cascader' },
       { 'nameCn': '级联面板', 'name': 'CascaderPanel', 'key': 'cascader-panel' },
-      { 'nameCn': '复选框', 'name': 'Checkbox', 'key': 'checkbox' },
+      { 'nameCn': '多选框', 'name': 'Checkbox', 'key': 'checkbox' },
+      { 'nameCn': '颜色选择器', 'name': 'ColorPicker', 'key': 'color-picker' },
+      { 'nameCn': '颜色选择面板', 'name': 'ColorSelectPanel', 'key': 'color-select-panel' },
       { 'nameCn': '日期选择器', 'name': 'DatePicker', 'key': 'date-picker' },
       { 'nameCn': '下拉时间', 'name': 'DropTimes', 'key': 'drop-times' },
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
-      { 'nameCn': '文字链接', 'name': 'Link', 'key': 'link' },
-      { 'nameCn': '计数器', 'name': 'Numeric', 'key': 'numeric' },
+      { 'nameCn': '数字输入框', 'name': 'Numeric', 'key': 'numeric' },
       { 'nameCn': '弹出编辑', 'name': 'PopEditor', 'key': 'popeditor' },
-      { 'nameCn': '弹出框上传', 'name': 'PopUpload', 'key': 'pop-upload' },
+      { 'nameCn': '弹出上传', 'name': 'PopUpload', 'key': 'pop-upload' },
       { 'nameCn': '单选框', 'name': 'Radio', 'key': 'radio' },
+      { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
       {
-        'nameCn': '富文本',
+        'nameCn': '富文本编辑器',
         'name': 'RichTextEditor',
         'key': 'rich-text-editor',
         'mark': {
@@ -118,13 +152,18 @@ export const cmpMenus = [
       { 'nameCn': '开关', 'name': 'Switch', 'key': 'switch' },
       { 'nameCn': '时间选择器', 'name': 'TimePicker', 'key': 'time-picker' },
       { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' },
-      { 'nameCn': '颜色选择器', 'name': 'ColorPicker', 'key': 'color-picker' },
-      { 'nameCn': '颜色选择面板', 'name': 'ColorSelectPanel', 'key': 'color-select-panel' }
+      { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' },
+      {
+        'nameCn': '树形选择器',
+        'name': 'TreeSelect',
+        'key': 'tree-select',
+        'mark': { 'type': 'warning', 'text': 'Beta' }
+      }
     ]
   },
   {
-    'label': '表格组件',
-    'labelEn': 'Table Components',
+    'label': '表格',
+    'labelEn': 'Table',
     'key': 'cmp_table_components',
     'children': [
       { 'nameCn': '基本用法', 'name': '', 'key': 'grid' },
@@ -167,8 +206,58 @@ export const cmpMenus = [
     ]
   },
   {
-    'label': '图表组件',
-    'labelEn': 'Chart Components',
+    'label': '数据展示',
+    'labelEn': 'Data Display',
+    'key': 'cmp_data_components',
+    'children': [
+      { 'nameCn': '标记', 'name': 'Badge', 'key': 'badge' },
+      { 'nameCn': '日历', 'name': 'Calendar', 'key': 'calendar' },
+      { 'nameCn': '日历视图', 'name': 'CalendarView', 'key': 'calendar-view' },
+      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card', 'mark': { 'text': 'New' } },
+      { 'nameCn': '走马灯', 'name': 'Carousel', 'key': 'carousel' },
+      { 'nameCn': '折叠面板', 'name': 'Collapse', 'key': 'collapse' },
+      { 'nameCn': '流程图', 'name': 'FlowChart', 'key': 'flowchart' },
+      { 'nameCn': '引导', 'name': 'Guide', 'key': 'guide' },
+      { 'nameCn': '图片', 'name': 'Image', 'key': 'image' },
+      { 'nameCn': '无限滚动', 'name': 'InfiniteScroll', 'key': 'infinite-scroll' },
+      { 'nameCn': '里程碑', 'name': 'Milestone', 'key': 'milestone' },
+      {
+        'nameCn': '思维导图',
+        'name': 'MindMap',
+        'key': 'mind-map',
+        'mark': { 'text': 'New' }
+      },
+      { 'nameCn': '二维码', 'name': 'QrCode', 'key': 'qr-code' },
+      { 'nameCn': '统计数值', 'name': 'Statistic', 'key': 'statistic' },
+      { 'nameCn': '标签', 'name': 'Tag', 'key': 'tag' },
+      { 'nameCn': '标签组', 'name': 'TagGroup', 'key': 'tag-group' },
+      { 'nameCn': '时间线', 'name': 'Timeline', 'key': 'time-line' },
+      { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
+      { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
+      { 'nameCn': '流程图', 'name': 'Wizard', 'key': 'wizard' }
+    ]
+  },
+  {
+    'label': '反馈',
+    'labelEn': 'Feedback',
+    'key': 'cmp_tips_components',
+    'children': [
+      { 'nameCn': '警告', 'name': 'Alert', 'key': 'alert' },
+      { 'nameCn': '对话框', 'name': 'DialogBox', 'key': 'dialog-box' },
+      { 'nameCn': '抽屉', 'name': 'Drawer', 'key': 'drawer' },
+      { 'nameCn': '加载', 'name': 'Loading', 'key': 'loading' },
+      { 'nameCn': '模态框', 'name': 'Modal', 'key': 'modal' },
+      { 'nameCn': '通知', 'name': 'Notify', 'key': 'notify' },
+      { 'nameCn': '气泡确认框', 'name': 'PopConfirm', 'key': 'popconfirm' },
+      { 'nameCn': '进度条', 'name': 'Progress', 'key': 'progress' },
+      { 'nameCn': '气泡卡片', 'name': 'Popover', 'key': 'popover' },
+      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton', 'mark': { 'text': 'New' } },
+      { 'nameCn': '文字提示', 'name': 'Tooltip', 'key': 'tooltip' }
+    ]
+  },
+  {
+    'label': '图表',
+    'labelEn': 'Chart',
     'key': 'cmp_chart_components',
     'children': [
       { 'nameCn': '基本用法', 'name': 'Basic Usage', 'key': 'chart' },
@@ -176,129 +265,55 @@ export const cmpMenus = [
       { 'nameCn': '属性配置示例', 'name': 'Attribute Configuration Example', 'key': 'chart-attributes-demo' },
       { 'nameCn': '常见问题示例', 'name': 'Examples of FAQs', 'key': 'chart-question' },
       { 'nameCn': '折线图', 'name': 'Line Chart', 'key': 'chart-line' },
-      { 'nameCn': '柱状图', 'name': 'Bar Chart', 'key': 'chart-histogram' },
-      { 'nameCn': '条形图', 'name': 'Rank chart', 'key': 'chart-bar' },
+      { 'nameCn': '柱状图', 'name': 'Histogram Chart', 'key': 'chart-histogram' },
+      { 'nameCn': '条形图', 'name': 'Bar Chart', 'key': 'chart-bar' },
       { 'nameCn': '饼图', 'name': 'Pie Chart', 'key': 'chart-pie' },
-      { 'nameCn': '环图', 'name': 'Ring diagram', 'key': 'chart-ring' },
-      { 'nameCn': '瀑布图', 'name': 'Waterfall Map', 'key': 'chart-waterfall' },
-      { 'nameCn': '漏斗图', 'name': 'Funnel diagram', 'key': 'chart-funnel' },
+      { 'nameCn': '环图', 'name': 'Ring Chart', 'key': 'chart-ring' },
+      { 'nameCn': '瀑布图', 'name': 'Waterfall Chart', 'key': 'chart-waterfall' },
+      { 'nameCn': '漏斗图', 'name': 'Funnel Chart', 'key': 'chart-funnel' },
       { 'nameCn': '雷达图', 'name': 'Radar chart', 'key': 'chart-radar' },
-      { 'nameCn': '地图', 'name': 'Map', 'key': 'chart-map' },
-      { 'nameCn': '桑基图', 'name': 'Sankitu', 'key': 'chart-sankey' },
-      { 'nameCn': '热力图', 'name': 'Heat map', 'key': 'chart-heatmap' },
-      { 'nameCn': '散点图', 'name': 'Scatter chart', 'key': 'chart-scatter' },
-      { 'nameCn': 'K线图', 'name': 'K-line chart', 'key': 'chart-candle' },
-      { 'nameCn': '仪表盘', 'name': 'Dashboard', 'key': 'chart-gauge' },
-      { 'nameCn': '树图', 'name': 'Treemap', 'key': 'chart-tree' },
-      { 'nameCn': '水球图', 'name': 'Water balloon diagram', 'key': 'chart-liquidfill' },
-      { 'nameCn': '词云图', 'name': 'Word cloud map', 'key': 'chart-wordcloud' },
-      { 'nameCn': '旭日图', 'name': 'Rising Sun Map', 'key': 'chart-sunburst' },
-      { 'nameCn': '拓扑图', 'name': 'Topology Diagram', 'key': 'chart-graph' },
-      { 'nameCn': '百度地图', 'name': 'Baidu Map', 'key': 'chart-baidu-map' },
-      { 'nameCn': '高德地图', 'name': 'Gaud Map', 'key': 'chart-autonavi-map' },
-      { 'nameCn': '箱形图', 'name': 'Box diagram', 'key': 'chart-boxplot' }
+      { 'nameCn': '地图', 'name': 'Map Chart', 'key': 'chart-map' },
+      { 'nameCn': '桑基图', 'name': 'Sankey Chart', 'key': 'chart-sankey' },
+      { 'nameCn': '热力图', 'name': 'Heatmap Chart', 'key': 'chart-heatmap' },
+      { 'nameCn': '散点图', 'name': 'Scatter Chart', 'key': 'chart-scatter' },
+      { 'nameCn': 'K线图', 'name': 'Candle Chart', 'key': 'chart-candle' },
+      { 'nameCn': '仪表盘', 'name': 'Gauge Chart', 'key': 'chart-gauge' },
+      { 'nameCn': '树图', 'name': 'Tree Chart', 'key': 'chart-tree' },
+      { 'nameCn': '水球图', 'name': 'liquidfill Chart', 'key': 'chart-liquidfill' },
+      { 'nameCn': '词云图', 'name': 'Wordcloud Chart', 'key': 'chart-wordcloud' },
+      { 'nameCn': '旭日图', 'name': 'Sunburst Chart', 'key': 'chart-sunburst' },
+      { 'nameCn': '拓扑图', 'name': 'Graph Chart', 'key': 'chart-graph' },
+      { 'nameCn': '百度地图', 'name': 'BaiduMap Chart', 'key': 'chart-baidu-map' },
+      { 'nameCn': '高德地图', 'name': 'Autonavi Chart', 'key': 'chart-autonavi-map' },
+      { 'nameCn': '箱形图', 'name': 'Boxplot Chart', 'key': 'chart-boxplot' },
+      { 'nameCn': '进度图', 'name': 'Process Chart', 'key': 'chart-process' }
     ]
   },
   {
-    'label': '数据组件',
-    'labelEn': 'Data Components',
-    'key': 'cmp_data_components',
-    'children': [
-      { 'nameCn': '分页', 'name': 'Pager', 'key': 'pager' },
-      { 'nameCn': '进度条', 'name': 'Progress', 'key': 'progress' },
-      { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
-      { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' },
-      { 'nameCn': '无限滚动', 'name': 'InfiniteScroll', 'key': 'infinite-scroll' }
-    ]
-  },
-  {
-    'label': '提示组件',
-    'labelEn': 'Tips Components',
-    'key': 'cmp_tips_components',
-    'children': [
-      { 'nameCn': '警告', 'name': 'Alert', 'key': 'alert' },
-      { 'nameCn': '标记', 'name': 'Badge', 'key': 'badge' },
-      { 'nameCn': '加载', 'name': 'Loading', 'key': 'loading' },
-      { 'nameCn': '文字提示', 'name': 'Tooltip', 'key': 'tooltip' },
-      { 'nameCn': '弹出框', 'name': 'Popover', 'key': 'popover' },
-      { 'nameCn': '气泡确认框组件', 'name': 'Popconfirm', 'key': 'popconfirm' },
-      { 'nameCn': '模态框', 'name': 'Modal', 'key': 'modal' },
-      { 'nameCn': '通知', 'name': 'Notify', 'key': 'notify' }
-    ]
-  },
-  {
-    'label': '其他组件',
-    'labelEn': 'Other Components',
+    'label': '其他',
+    'labelEn': 'Other',
     'key': 'cmp_other_components',
     'children': [
       { 'nameCn': '公告牌', 'name': 'BulletinBoard', 'key': 'bulletin-board' },
-      { 'nameCn': '日历', 'name': 'Calendar', 'key': 'calendar' },
-      { 'nameCn': '日历视图', 'name': 'CalendarView', 'key': 'calendar-view' },
-      {
-        'nameCn': '信用卡表单',
-        'name': 'CreditCardForm',
-        'key': 'credit-card-form',
-        'mark': {
-          'type': 'danger',
-          'text': 'Del'
-        }
-      },
+      { 'nameCn': '全局配置', 'name': 'ConfigProvider', 'key': 'config-provider' },
       { 'nameCn': '图片裁剪', 'name': 'Crop', 'key': 'crop' },
-      {
-        'nameCn': '表头详情栏',
-        'name': 'DetailPage',
-        'key': 'detail-page',
-        'mark': {
-          'type': 'danger',
-          'text': 'Del'
-        }
-      },
-      { 'nameCn': '图片预览', 'name': 'Image', 'key': 'image' },
-      { 'nameCn': '评分', 'name': 'Rate', 'key': 'rate' },
+      { 'nameCn': '弹窗选择 ', 'name': 'DialogSelect ', 'key': 'dialog-select' },
+      { 'nameCn': '过滤器面板', 'name': 'FilterPanel', 'key': 'filter-panel' },
+      { 'nameCn': '浮动块', 'name': 'FloatBar', 'key': 'floatbar' },
+      { 'nameCn': '全屏', 'name': 'Fullscreen', 'key': 'fullscreen' },
       { 'nameCn': '文字滚动', 'name': 'ScrollText', 'key': 'scroll-text' },
-      {
-        'nameCn': '滚动块',
-        'name': 'SlideBar',
-        'key': 'slide-bar',
-        'mark': {
-          'type': 'danger',
-          'text': 'Del'
-        }
-      },
-      { 'nameCn': '标签', 'name': 'Tag', 'key': 'tag' },
-      { 'nameCn': '标签组', 'name': 'TagGroup', 'key': 'tag-group' },
+      { 'nameCn': '面板分割', 'name': 'Split', 'key': 'split' },
       { 'nameCn': '输入框', 'name': 'TextPopup', 'key': 'text-popup' },
       { 'nameCn': '联系人', 'name': 'UserContact', 'key': 'user-contact' },
-      { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
-      { 'nameCn': '全屏显示', 'name': 'Fullscreen', 'key': 'fullscreen' },
-      { 'nameCn': '全局设置', 'name': 'ConfigProvider', 'key': 'config-provider' },
-      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },
-      {
-        'nameCn': '二维码',
-        'name': 'QrCode',
-        'key': 'qr-code',
-        'mark': {
-          'text': 'New'
-        }
-      },
-      {
-        'nameCn': '水印',
-        'name': 'Watermark',
-        'key': 'watermark',
-        'mark': {
-          'text': 'New'
-        }
-      },
-      {
-        'nameCn': '脑图',
-        'name': 'mind-map',
-        'key': 'mind-map'
-      }
+      { 'nameCn': '水印', 'name': 'Watermark', 'key': 'watermark' }
     ]
   }
 ]
+
+const showBusiness = location.pathname.split('/')?.[2] === 'all'
+
 // 对内文档开放业务组件
-if (!isOpen) {
+if (envTarget === 'inner' || showBusiness) {
   cmpMenus.splice(8, 0, {
     'label': '业务组件',
     'labelEn': 'Business Components',
@@ -312,7 +327,7 @@ if (!isOpen) {
       { 'nameCn': '部门', 'name': 'Dept', 'key': 'dept' },
       { 'nameCn': '下拉角色', 'name': 'DropRoles', 'key': 'drop-roles' },
       { 'nameCn': '消息弹框', 'name': 'Espace', 'key': 'espace' },
-      { 'nameCn': '权签人', 'name': 'Hrapprover', 'key': 'hrapprover' },
+      { 'nameCn': '权签人', 'name': 'HrApprover', 'key': 'hrapprover' },
       { 'nameCn': '语言选择', 'name': 'Locales', 'key': 'locales' },
       { 'nameCn': '登录用户', 'name': 'LogonUser', 'key': 'logon-user' },
       { 'nameCn': '注销', 'name': 'Logout', 'key': 'logout' },

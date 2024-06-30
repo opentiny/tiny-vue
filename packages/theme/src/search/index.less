@@ -14,7 +14,6 @@
 @import '../mixins/common.less';
 @import '../custom.less';
 @import './vars.less';
-@import '../transition/zoom-in-top.less';
 @import '../transition/search-line.less';
 @import '../transition/icon.less';
 
@@ -76,8 +75,8 @@
       text-decoration: none;
       display: block;
       width: var(--ti-search-input-btn-width);
-      height: var(--ti-search-input-height);
-      line-height: var(--ti-search-input-height);
+      height: calc(var(--ti-search-input-height) - 2px);
+      line-height: calc(var(--ti-search-input-height) - 2px);
     }
 
     svg {
@@ -192,7 +191,7 @@
 
   &.mini.collapse &__input-btn {
     a {
-      width: var(--ti-search-mini-width);
+      width: calc(var(--ti-search-mini-width) - 2px);
 
       svg {
         fill: var(--ti-search-icon-color);

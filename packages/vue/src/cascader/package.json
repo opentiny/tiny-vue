@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-cascader",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -20,8 +20,13 @@
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-tag": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-scrollbar": "workspace:~",
-    "@opentiny/vue-cascader-panel": "workspace:~"
+    "@opentiny/vue-cascader-panel": "workspace:~",
+    "@opentiny/vue-filter-box": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-cascader-mobile": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

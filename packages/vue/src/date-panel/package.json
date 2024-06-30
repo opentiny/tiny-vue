@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-date-panel",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -23,7 +23,10 @@
     "@opentiny/vue-time": "workspace:~",
     "@opentiny/vue-date-table": "workspace:~",
     "@opentiny/vue-year-table": "workspace:~",
-    "@opentiny/vue-month-table": "workspace:~"
+    "@opentiny/vue-month-table": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-popup": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT"
 }

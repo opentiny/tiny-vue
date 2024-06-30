@@ -64,7 +64,7 @@
       </template>
       <template #body-bottom>
         <div data-tag="view-footer" class="flex items-center py-4 px-3 border-t border-color-bg-4 shadow-sm">
-          <div class="cursor-pointer pr-2" @click.stop="toggleCheckList(true)">
+          <div class="cursor-pointer pr-2 leading-5.5" @click.stop="toggleCheckList(true)">
             <span>{{ t('ui.select.selectedNum', { num: state.computedCheckList.length }) }}</span>
             <IconChevronUp
               v-show="state.computedCheckList.length"
@@ -94,17 +94,17 @@
           class="flex flex-col px-4 overflow-auto pt-2"
         >
           <tiny-option
-            v-for="(item, index) in currentList"
+            v-for="(item, OptIndex) in currentList"
             :key="item.data[valueField]"
             :ellipsis="ellipsis"
-            :textField="textField"
-            :textField2="textField2"
-            :textField3="textField3"
+            :text-field="textField"
+            :text-field2="textField2"
+            :text-field3="textField3"
             :loading="state.loading"
             :option="item"
             @check="selectOption(item)"
             @expand="nodeExpand"
-            ><slot :item="item" :index="index"></slot
+            ><slot :item="item" :index="OptIndex"></slot
           ></tiny-option>
         </div>
       </div>
@@ -118,17 +118,17 @@
               v-for="(item, index) in state.search.filterOptions"
               :key="index"
               :ellipsis="ellipsis"
-              :textField="textField"
-              :textField2="textField2"
-              :textField3="textField3"
+              :text-field="textField"
+              :text-field2="textField2"
+              :text-field3="textField3"
               :option="item.node"
               @check="searchSelectHandler(item.node, index)"
             >
               <slot v-if="searchConfig.openSearchSlot" name="search-item" :item="item" :index="index"></slot>
               <slot v-else :item="item" :index="index">
                 <div :class="['flex-auto', { 'truncate': ellipsis }]">
-                  <span v-for="(text, index) in renderSearchOption(item.data[textField])" :key="index"
-                    ><span v-if="index" class="text-color-brand">{{ state.search.input }}</span
+                  <span v-for="(text, spanIndex) in renderSearchOption(item.data[textField])" :key="spanIndex"
+                    ><span v-if="spanIndex" class="text-color-brand">{{ state.search.input }}</span
                     >{{ text }}</span
                   >
                 </div>
@@ -139,7 +139,7 @@
             v-show="state.search.loaded && !state.search.filterOptions.length"
             class="w-full flex justify-center items-center text-center flex-auto"
           >
-            <tiny-exception component-page type="noresult"></tiny-exception>
+            <tiny-exception component-page type="noresult" tiny_mode="mobile-first" tiny_mode_root></tiny-exception>
           </div>
         </div>
       </div>
@@ -194,14 +194,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/cascader-view/vue'
 import { $prefix, setup, $props, defineComponent } from '@opentiny/vue-common'
-import {
-  iconSearch,
-  iconChevronLeft,
-  iconChevronDown,
-  iconChevronUp,
-  iconOperationfaild,
-  iconChevronRight
-} from '@opentiny/vue-icon'
+import { IconSearch, IconChevronLeft, IconChevronUp, IconOperationfaild, IconChevronRight } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
 import ActionSheet from '@opentiny/vue-action-sheet'
 import Exception from '@opentiny/vue-exception'
@@ -232,12 +225,11 @@ export default defineComponent({
     TinyActionSheet: ActionSheet,
     TinyButton: Button,
     TinyException: Exception,
-    IconChevronRight: iconChevronRight(),
-    IconChevronUp: iconChevronUp(),
-    IconChevronDown: iconChevronDown(),
-    IconSearch: iconSearch(),
-    IconOperationfaild: iconOperationfaild(),
-    IconChevronLeft: iconChevronLeft()
+    IconChevronRight: IconChevronRight(),
+    IconChevronUp: IconChevronUp(),
+    IconSearch: IconSearch(),
+    IconOperationfaild: IconOperationfaild(),
+    IconChevronLeft: IconChevronLeft()
   },
   props: {
     ...$props,

@@ -6,7 +6,7 @@ test('事件', async ({ page }) => {
   await page.getByPlaceholder('选择时间范围').getByTitle('08:30').first().click()
   const focusDiv = page.locator('div').filter({ hasText: 'focus事件' }).nth(1)
   await expect(focusDiv).toBeVisible()
-  await page.getByText('10:00').nth(1).click()
+  await page.getByText('10:00').click()
   const change = page.locator('div:nth-child(9) > .tiny-modal__box')
   await expect(change).toBeVisible
   const blurDiv = page.locator('div').filter({ hasText: 'blur事件' }).nth(1)

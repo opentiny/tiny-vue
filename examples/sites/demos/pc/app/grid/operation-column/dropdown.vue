@@ -1,9 +1,9 @@
 <template>
   <tiny-grid ref="grid" :data="tableData">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="selection" width="60">
+    <tiny-grid-column type="selection" width="80">
       <template #dropdown>
-        <tiny-dropdown title="" @item-click="itemClick">
+        <tiny-dropdown class="ml-6" title="" @item-click="itemClick">
           <template #dropdown>
             <tiny-dropdown-menu placement="top">
               <tiny-dropdown-item :item-data="{ name: 'selectCurPage' }"> 选择本页数据 </tiny-dropdown-item>
@@ -93,3 +93,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.ml-6 {
+  left: 6px;
+}
+</style>

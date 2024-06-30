@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-chart-funnel :data="chartData" :settings="chartSettings"></tiny-chart-funnel>
+    <tiny-chart-funnel :options="options"></tiny-chart-funnel>
   </div>
 </template>
 
@@ -8,17 +8,29 @@
 import { ref } from 'vue'
 import { ChartFunnel as TinyChartFunnel } from '@opentiny/vue'
 
-const chartData = ref({
-  columns: ['状态', '数值'],
-  rows: [
-    { 状态: '展示', 数值: 900 },
-    { 状态: '访问', 数值: 600 },
-    { 状态: '点击', 数值: 300 },
-    { 状态: '订单', 数值: 100 }
+const options = ref({
+  tipHtml: (params, ticket, callback) => {
+    let htmlString =
+      'div' +
+      '<span style="display:inline-block;min-width:50px;">名称: </span>' +
+      '<span style="font-weight:bold">' +
+      params.name +
+      '</span>' +
+      '</div>'
+    htmlString +=
+      'div' +
+      '<span style="display:inline-block;min-width:50px;">百分比: </span>' +
+      '<span style="font-weight:bold">' +
+      params.value +
+      '</span>' +
+      '</div>'
+    return htmlString
+  },
+  data: [
+    { value: 100, name: 'Show' },
+    { value: 75, name: 'Click' },
+    { value: 50, name: 'Visit' },
+    { value: 25, name: 'Order' }
   ]
-})
-// 金字塔
-const chartSettings = ref({
-  ascending: true
 })
 </script>

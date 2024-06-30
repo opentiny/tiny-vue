@@ -38,6 +38,7 @@ import { find } from '@opentiny/vue-renderless/grid/static/'
 import { isNumber, isDate, isNull } from '@opentiny/vue-renderless/common/type'
 import { toDateStr, getDateWithNewTimezone, toDate, format } from '@opentiny/vue-renderless/common/date'
 import { iconClose, iconYes } from '@opentiny/vue-icon'
+import { warn } from './logger'
 
 const DateFormat = {
   FULLDATETIME: 'yyyy-MM-dd hh:mm:ss.SSS',
@@ -52,6 +53,26 @@ const DateFormat = {
 
 const dateFormat = function (value, formatString) {
   const userFormat = { dateFormat: formatString, ...this.own.formatConfig }
+
+  if (value) {
+    // 如果源值是日期字符串
+    if (typeof value === 'string') {
+      // 如果提供了源值日期格式，就转换为日期对象
+      if (userFormat.valueFormat) {
+        value = toDate(value, userFormat.valueFormat)
+      } else {
+        // 如果未提供了源值日期格式，就触发警告
+        warn('ui.grid.error.missingValueFormat')
+        // 如果源值字符串无法被正常解析，就返回源值字符串，不进行格式化转换
+        if (isNaN(Date.parse(value))) {
+          return value
+        }
+      }
+    } else if (typeof value === 'number') {
+      // 如果源值是数字
+      value = new Date(value)
+    }
+  }
 
   if (userFormat.isutc8) {
     if (!value) {
@@ -159,6 +180,13 @@ export default {
     return (h) =>
       h('div', { class: 'data-ellipsis' }, [h('span', { domProps: { title: value } }, truncate(value, format.len))])
   },
+  /**
+   * rate 渲染器的计算规则：
+   * 如果配置了 max，就按照 value / max 计算样式百分比，按照 value / 1 计算显示百分比；
+   * 如果未配置 max，就按照 value / total 计算样式百分比和显示百分比；
+   * @param {Number} value
+   * @returns Function
+   */
   rate(value) {
     const format = {
       fraction: 2,
@@ -169,17 +197,34 @@ export default {
     const { rateMethod } = format
     let rate
 
-    if (typeof rateMethod === 'function') {
-      rate = rateMethod.call(this, value, format)
-    } else {
-      rate = toRate(value, format.total, format.fraction)
+    let formatTotal = format.total
+
+    const getLengthRate = (value, config) => {
+      let lengthRate
+
+      if (config.max && typeof config.max === 'number' && typeof value === 'number') {
+        // 如果配置了 max 那么 formatTotal 就必须是 1
+        formatTotal = 1
+        lengthRate = toRate(value / config.max, formatTotal, format.fraction)
+      }
+
+      return lengthRate
     }
+
+    let lengthRate = getLengthRate(value, format)
+
+    if (typeof rateMethod === 'function') {
+      rate = rateMethod.call(this, value, Object.assign({ formatTotal }, format))
+    } else {
+      rate = toRate(value, formatTotal, format.fraction)
+    }
+    lengthRate = lengthRate || rate
 
     let section = format.section
     let css = ''
 
     if (section) {
-      let rateValue = parseInt(rate, 10)
+      let rateValue = parseInt(lengthRate, 10)
 
       if (!isNumber(rateValue)) {
         return rate
@@ -207,7 +252,7 @@ export default {
       h('div', { class: 'tiny-grid__data-rate' }, [
         h('div', {
           class: `tiny-grid__rate-chart${css}`,
-          style: { width: rate }
+          style: { width: lengthRate }
         }),
         h('span', { class: 'tiny-grid__rate-text' }, rate)
       ])
@@ -220,7 +265,7 @@ export default {
       noFork: false
     }
     const format = Object.assign(defaultFormat, this.own.formatConfig)
-    const cellValue = !isNull(format.trueValue) ? value == format.trueValue : toBoolValue(value)
+    const cellValue = !isNull(format.trueValue) ? value === format.trueValue : toBoolValue(value)
 
     if (!format.htmlView) {
       return cellValue

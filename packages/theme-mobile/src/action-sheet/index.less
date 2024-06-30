@@ -17,8 +17,12 @@
 @action-sheet-prefix-cls: ~'@{css-prefix}mobile-action-sheet';
 
 .@{action-sheet-prefix-cls} {
-  position: relative;
-  height: 100%;
+  .component-css-vars-action-sheet();
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
   &__mask {
     top: 0;
     right: 0;
@@ -99,7 +103,6 @@
 
   &__action {
     width: 100%;
-    position: absolute;
     background-color: var(--ti-mobile-action-sheet-action-bg-color, #fff);
   }
 }

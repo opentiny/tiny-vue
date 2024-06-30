@@ -1,6 +1,6 @@
 import MindMap from './src/index'
-import '@opentiny/vue-theme/mind-map/index.less'
 import { version } from './package.json'
+import '@opentiny/vue-theme/mind-map/index.less'
 
 MindMap.model = {
   prop: 'modelValue',

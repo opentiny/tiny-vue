@@ -7,6 +7,11 @@
   @apply relative;
   @apply leading-none;
 
+  &--line {
+    @apply flex;
+    @apply items-center;
+  }
+
   &.is-success {
     .progress-status(theme('colors.color.success.DEFAULT'));
   }
@@ -24,7 +29,7 @@
     @apply text-color-text-primary;
     @apply inline-block;
     @apply align-middle;
-    @apply ml-3;
+    @apply ml-2;
     @apply leading-none;
 
     i {
@@ -39,12 +44,12 @@
 
     .@{progress-prefix-cls}__text {
       @apply absolute;
-      @apply ~"top-1/2";
+      @apply ~'top-1/2';
       @apply left-0;
       @apply w-full;
       @apply text-center;
       @apply m-0;
-      @apply translate-x-0 ~"-translate-y-1/2";
+      @apply translate-x-0 ~'-translate-y-1/2';
 
       i {
         @apply align-middle;
@@ -69,14 +74,14 @@
   }
 
   &-bar {
-    padding-right: 50px;
+    @apply pr-12;
     @apply w-full;
     @apply -mr-12;
     @apply box-border;
 
     &__outer {
       @apply ~'h-1.5';
-      border-radius: 100px;
+      @apply rounded-full;
       @apply bg-color-bg-3;
       @apply overflow-hidden;
       @apply relative;
@@ -90,7 +95,7 @@
       @apply h-full;
       @apply bg-color-brand;
       @apply text-right;
-      border-radius: 100px;
+      @apply rounded-full;
       @apply leading-none;
       @apply whitespace-nowrap;
       transition: width 0.6s ease;
@@ -118,7 +123,7 @@
 
 @-webkit-keyframes progress {
   0% {
-    background-position: 0 0;
+    @apply bg-left-top;
   }
 
   100% {
@@ -128,7 +133,7 @@
 
 @keyframes progress {
   0% {
-    background-position: 0 0;
+    @apply bg-left-top;
   }
 
   100% {

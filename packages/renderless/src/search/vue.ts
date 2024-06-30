@@ -75,7 +75,7 @@ export const useFormatSearchTypes = ({ computed, props, reactive, toRefs, watch 
 export const renderless = (
   props: ISearchProps,
   { computed, onBeforeUnmount, onMounted, reactive, toRefs, watch }: ISharedRenderlessParamHooks,
-  { refs, parent, emit, nextTick }: ISearchRenderlessParamUtils
+  { vm, parent, emit, nextTick }: ISearchRenderlessParamUtils
 ): ISearchApi => {
   const formatSearchTypes = useFormatSearchTypes({
     computed,
@@ -92,14 +92,16 @@ export const renderless = (
     collapse: props.mini,
     currentValue: props.modelValue,
     ...formatSearchTypes.state,
-    showClear: computed(() => props.clearable && (state.focus || state.hovering) && state.currentValue)
+    showClear: computed(() => props.clearable && (state.focus || state.hovering) && state.currentValue),
+    formItemSize: computed(() => (parent.formItem || {}).formItemSize),
+    searchSize: computed(() => props.size || state.formItemSize)
   })
 
   const api = {
     state,
     changeKey: changeKey({ state, emit }),
     handleChange: handleChange({ emit, state }),
-    showSelector: showSelector({ refs, state }),
+    showSelector: showSelector({ vm, state }),
     searchClick: searchClick({ emit, props, state }),
     clickOutside: clickOutside({ parent, props, state }),
     emitInput: emitInput({ emit }),
@@ -107,9 +109,9 @@ export const renderless = (
   } as ISearchApi
 
   Object.assign(api, {
-    clear: clear({ api, emit, refs, state }),
-    handleInput: handleInput({ api, state }),
-    searchEnterKey: searchEnterKey({ api, props, refs, nextTick })
+    clear: clear({ api, emit, vm, state }),
+    handleInput: handleInput({ api, props, state }),
+    searchEnterKey: searchEnterKey({ api, props, vm, nextTick })
   })
 
   onMounted(mounted({ api }))

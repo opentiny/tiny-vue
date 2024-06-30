@@ -18,18 +18,25 @@ import type {
 } from '@/types'
 import { linkClick } from './index'
 
-export const api = ['linkClick']
+export const api = ['linkClick', 'state']
 
 export const renderless = (
   props: IBreadcrumbItemProps,
-  { inject }: ISharedRenderlessParamHooks,
+  { reactive, inject }: ISharedRenderlessParamHooks,
+  { designConfig },
   { refs, router, emit }: IBreadcrumbItemRenderlessParamUtils
 ) => {
   const breadcrumbEmitter = inject('breadcrumbEmitter')
   const breadcrumb = inject('breadcrumb')
   const constants = breadcrumb._constants
-
+  // separator
+  const separator = props.separator || designConfig?.separator || '>'
+  const state = reactive({
+    size: inject('size', null),
+    separator
+  })
   const api: IBreadcrumbItemApi = {
+    state,
     linkClick: linkClick({ props, refs, router, emit, breadcrumbEmitter, constants })
   }
 

@@ -33,17 +33,18 @@ function onHalfSelectionProperty({ checkStrictly, property, row, treeConfig, tre
 
 function onFullSelectionProperty({ checkMethod, checkStrictly, property, row, treeConfig, treeIndeterminates, value }) {
   if (property && treeConfig && !checkStrictly && value !== -1) {
-    // 更新子节点状态
+    // 更新自身和子节点状态
     eachTree(
       [row],
       (item, $rowIndex) => {
         if (row === item || !checkMethod || checkMethod({ row: item, $rowIndex })) {
           set(item, property, value)
+          // 自身选中或未选中时，自身和子节点都应该选中或未选中
+          remove(treeIndeterminates, (r) => r === item)
         }
       },
       treeConfig
     )
-    remove(treeIndeterminates, (item) => item === row)
   }
 }
 
@@ -81,17 +82,8 @@ function onHalfSelection({ checkStrictly, property, row, selection, treeConfig, 
   }
 }
 
-function getVItemsOnParentSelection({ checkMethod, matchObj }) {
-  let vItems
-
-  if (checkMethod) {
-    vItems = matchObj.items.filter((item, $rowIndex) => checkMethod({ row: item, $rowIndex }))
-  } else {
-    vItems = matchObj.items
-  }
-
-  return vItems
-}
+// 保证不重复添加
+const addSelection = (selection, item) => !selection.includes(item) && selection.push(item)
 
 function onFullSelection({
   checkMethod,
@@ -104,22 +96,23 @@ function onFullSelection({
   value
 }) {
   if (!property && treeConfig && !checkStrictly && value !== -1) {
-    // 更新子节点状态
+    // 更新自身和子节点状态
     eachTree(
       [row],
       (item, $rowIndex) => {
         if (row === item || !checkMethod || checkMethod({ row: item, $rowIndex })) {
           if (value) {
-            selection.push(item)
+            // 保证不重复添加
+            addSelection(selection, item)
           } else {
             remove(selection, (select) => select === item)
           }
+          // 自身选中或未选中时，自身和子节点都应该选中或未选中
+          remove(treeIndeterminates, (r) => r === item)
         }
       },
       treeConfig
     )
-
-    remove(treeIndeterminates, (item) => item === row)
   }
 }
 
@@ -130,7 +123,7 @@ function getParentStatusOnParentSelection({ indeterminatesItem, matchObj, select
     parentStatus = -1
   } else {
     let selectItems = matchObj.items.filter((item) => selection.includes(item))
-    let isEqualItem = selectItems.filter((item) => vItems.includes(item)).length === vItems.length
+    let isEqualItem = selectItems.length === vItems.length
 
     parentStatus = isEqualItem ? true : selectItems.length || value === -1 ? -1 : false
   }
@@ -215,7 +208,7 @@ function onSelectTreeCheckStrictly({ row }, value, _vm) {
     let matchObj = findTree(tableFullData, (item) => item === row, treeConfig)
 
     if (matchObj && matchObj.parent) {
-      let vItems = getVItemsOnParentSelection({ checkMethod, matchObj })
+      let vItems = matchObj.items
       let indeterminatesItem = find(matchObj.items, (item) => treeIndeterminates.includes(item))
       let parentStatus = getParentStatusOnParentSelection({
         indeterminatesItem,
@@ -236,9 +229,7 @@ function onSelectOther({ row }, value, _vm) {
 
   if (!property && !(treeConfig && !checkStrictly)) {
     if (value) {
-      if (!selection.includes(row)) {
-        selection.push(row)
-      }
+      addSelection(selection, row)
     } else {
       remove(selection, (item) => item === row)
     }

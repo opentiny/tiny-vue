@@ -62,6 +62,10 @@ export function handleGlobalMousedownEvent(event) {
   handleGlobalMousedownOnCtxMenu({ _vm: this, ctxMenuStore, event })
 }
 
+export function handleGlobalMousedownCaptureEvent(event) {
+  this.handleClearMouseChecked(event)
+}
+
 // 窗口失焦事件处理
 export function handleGlobalBlurEvent() {
   this.closeFilter()

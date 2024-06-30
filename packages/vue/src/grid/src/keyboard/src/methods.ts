@@ -35,24 +35,15 @@ import {
   handleCellMousedownEvent
 } from './utils/triggerCellMousedownEvent'
 import { handleHeaderCellMousedownEvent } from './utils/triggerHeaderCellMousedownEvent'
+import { warn, Formatter } from '../../tools'
 
 const removeCellClass = (bodyRef, clazz) =>
   arrayEach(bodyRef.$el.querySelectorAll('.' + clazz), (elem) => removeClass(elem, clazz))
 
-const getCellIndex = ({ cell, elemStore, bodyList }) => {
+const getCellIndex = ({ cell, bodyList }) => {
   let trElem = cell.parentNode
   let cIndex = arrayIndexOf(trElem.children, cell)
-  let leftBodyList = (elemStore['left-body-list'] || { children: [] }).children
-  let rightBodyList = (elemStore['right-body-list'] || { children: [] }).children
   let rIndex = arrayIndexOf(bodyList, trElem)
-
-  if (rIndex === undefined || rIndex === -1) {
-    rIndex = arrayIndexOf(leftBodyList, trElem)
-  }
-
-  if (rIndex === undefined || rIndex === -1) {
-    rIndex = arrayIndexOf(rightBodyList, trElem)
-  }
 
   return { rIndex, cIndex }
 }
@@ -65,6 +56,74 @@ const getModify = ({ offsetTop, offsetLeft, cWidth, cHeight }) => {
     modifyDomStyle(right, { top: `${offsetTop}px`, left: `${offsetLeft + cWidth}px`, height: `${cHeight}px` })
     modifyDomStyle(bottom, { top: `${offsetTop + cHeight}px`, left: `${offsetLeft}px`, width: `${cWidth}px` })
     modifyDomStyle(left, { top: `${offsetTop}px`, left: `${offsetLeft}px`, height: `${cHeight}px` })
+  }
+}
+
+const writeClipboardText = ({ $table, columns, rows }) => {
+  const { keyboardConfig = {}, isAsyncColumn } = $table
+  const { clipboard = {} } = keyboardConfig
+  const { writeMethod, cellSplit = ',', rowSplit = ';' } = clipboard
+
+  const getCellValue = (column, row) => {
+    let cellValue = ''
+
+    if (isAsyncColumn) {
+      const format = column.format || {}
+
+      if (format.async === true && format.type === 'enum') {
+        cellValue = Formatter.enum.call(column, row[column.property])
+      } else if (format.async && typeof format.async.fetch === 'function') {
+        cellValue = row[$table.getAsyncColumnName(column.property)]
+      } else {
+        cellValue = row[column.property]
+      }
+    } else {
+      cellValue = row[column.property]
+    }
+
+    return cellValue || ''
+  }
+
+  if (!clipboard) return
+
+  let value
+
+  if (typeof writeMethod === 'function') {
+    value = writeMethod({ $table, columns, rows })
+  } else {
+    const rowValues = []
+
+    rows.forEach((row) => {
+      const cellValues = []
+
+      columns.forEach((column) => {
+        const cellValue = getCellValue(column, row)
+        cellValues.push(cellValue)
+      })
+
+      rowValues.push(cellValues.join(cellSplit))
+    })
+
+    value = rowValues.join(rowSplit)
+  }
+
+  const writeFallback = () => {
+    const input = document.createElement('input')
+
+    input.value = value
+    document.body.appendChild(input)
+    input.select()
+    document.execCommand('Copy')
+    document.body.removeChild(input)
+  }
+
+  if (isSecureContext && navigator.clipboard) {
+    navigator.clipboard.writeText(value).catch((reason) => {
+      warn('ui.grid.error.clipboardWriteError', reason)
+      writeFallback()
+    })
+  } else {
+    writeFallback()
   }
 }
 
@@ -262,7 +321,7 @@ export default {
       let bodyList = elemStore['main-body-list'].children
       let cellFirstElementChild = cell.parentNode.firstElementChild
       let cellLastElementChild = cell.parentNode.lastElementChild
-      let colIndex = [...cell.parentNode.children].indexOf(cell)
+      let colIndex = Array.from(cell.parentNode.children).indexOf(cell)
       let headStart = headerList[0].children[colIndex]
       args = { $el, _vm: this, bodyList, cell, cellFirstElementChild }
 
@@ -317,12 +376,7 @@ export default {
       return this.$nextTick()
     }
 
-    editStore.checked = extend(true, {}, checked, {
-      columns: [],
-      rows: [],
-      tColumns: [],
-      tRows: []
-    })
+    Object.assign(checked, { columns: [], rows: [], tColumns: [], tRows: [], rowNodes: [] })
 
     let tableBody = $refs.tableBody
 
@@ -359,13 +413,21 @@ export default {
   },
   // 处理所有选中
   handleChecked(rowNodes) {
+    let { $refs, mouseConfig } = this
+
+    if (!mouseConfig || !mouseConfig.checked) {
+      return
+    }
+
     let { cHeight, cWidth, offsetLeft, offsetTop } = {}
 
     cWidth = cHeight = -2
     offsetTop = offsetLeft = 0
 
+    // 隐藏鼠标选中边框，清除标识类名
     this.clearChecked()
 
+    // 计算鼠标选中区域的宽高和位置，并给TD增加标识类名
     arrayEach(rowNodes, (rowNode, rowIndex) => {
       arrayEach(rowNode, (colNode, colIndex) => {
         let firstRow = rowIndex === 0
@@ -388,12 +450,18 @@ export default {
       })
     })
 
+    // 由鼠标选中区域的宽高和位置，创建帮助方法
     let modify = getModify({ offsetTop, offsetLeft, cWidth, cHeight })
-    let { tableBody } = this.$refs
+    let { tableBody } = $refs
     let { checkBorders, checkTop, checkRight, checkBottom, checkLeft } = tableBody.$refs
 
+    // 隐藏鼠标选中边框
+    checkBorders.style.display = 'none'
+
+    // 修改鼠标选中边框
     modify(checkTop, checkRight, checkBottom, checkLeft)
 
+    // 显示鼠标选中边框
     checkBorders.style.display = 'block'
 
     this.editStore.checked.rowNodes = rowNodes
@@ -462,6 +530,8 @@ export default {
 
     arrayEach(indexCheckeds, eachHandler)
 
+    Object.assign(this.editStore.indexs, { rowNodes: [] })
+
     return this.$nextTick()
   },
   handleHeaderChecked(rowNodes) {
@@ -526,6 +596,8 @@ export default {
 
       columns = tableColumn.slice(columnIndex, columnIndex + firstRowsLength)
       rows = tableData.slice(rowIndex, rowIndex + rowNodes.length)
+
+      writeClipboardText({ $table: this, columns, rows })
     }
 
     arrayEach(rowNodes, (rowNode, rowIndex) => {
@@ -604,5 +676,26 @@ export default {
     let rowNodes = getRowNodes(bodyList, cellNode, targetCellNode)
 
     this.handleChecked(rowNodes)
+  },
+  handleClearMouseChecked(event) {
+    const { $grid, $refs, autoClearMouseChecked, autoClearKeyboardCopy } = this
+    const { tableWrapper, tooltip, validTip } = $refs
+    const equalOrContain = (elm, target) => elm && (elm === target || elm.contains(target))
+
+    if (
+      !equalOrContain($grid.$el, event.target) &&
+      !equalOrContain(tableWrapper, event.target) &&
+      !equalOrContain(tooltip && tooltip.state.popperElm, event.target) &&
+      !equalOrContain(validTip && validTip.state.popperElm, event.target)
+    ) {
+      if (autoClearMouseChecked) {
+        this.clearChecked()
+        this.clearSelected()
+      }
+
+      if (autoClearKeyboardCopy) {
+        this.clearCopyed()
+      }
+    }
   }
 }

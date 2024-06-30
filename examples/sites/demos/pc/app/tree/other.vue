@@ -1,13 +1,15 @@
 <template>
   <div>
-    <tiny-tree
-      :data="data"
-      accordion
-      show-checkbox
-      check-strictly
-      show-check-easily
-      :icon-trigger-click-node="false"
-    ></tiny-tree>
+    <span class="red">手风琴模式，父子严格显示自动勾选</span>
+    <tiny-tree :data="data" accordion show-checkbox check-strictly show-check-easily :icon-trigger-click-node="false">
+    </tiny-tree>
+    <br />
+    <span class="red">非手风琴模式，自定义自动勾选的内容</span>
+    <tiny-tree :data="data" accordion show-checkbox check-strictly show-check-easily :icon-trigger-click-node="false">
+      <template #switchText>
+        <span>自定义开关的内容</span>
+      </template>
+    </tiny-tree>
   </div>
 </template>
 
@@ -24,7 +26,10 @@ export default {
         {
           id: '1',
           label: '数据 1',
-          children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+          children: [
+            { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+            { id: '1-2', label: '数据 1-2' }
+          ]
         },
         {
           id: '2',
@@ -44,3 +49,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.red {
+  color: red;
+}
+</style>

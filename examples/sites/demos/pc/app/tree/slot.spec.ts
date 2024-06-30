@@ -13,5 +13,5 @@ test('测试插槽', async ({ page }) => {
   // 测试有数据
   await button.click()
   await expect(tree.getByText('数据 1-1-1')).toHaveCount(2)
-  await expect(tree.getByText('新增')).toHaveCount(8)
+  await expect(tree.getByText('新增')).toHaveCount(9)
 })

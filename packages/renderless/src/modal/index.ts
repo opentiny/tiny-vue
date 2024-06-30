@@ -38,6 +38,8 @@ import type {
 
 const DragClass = 'is__drag'
 
+let timer: number
+
 const emitZoom = ({ params, parent, emit, event }: IModalEmitZoomParam): void => {
   let { $listeners, events = {} } = parent
   if ($listeners.zoom) {
@@ -80,6 +82,14 @@ export const watchValue =
   (visible: boolean): void =>
     visible ? api.open() : api.close('hide')
 
+export const watchVisible =
+  ({ api, props }) =>
+  (visible) => {
+    if (props.lockScroll) {
+      visible ? api.showScrollbar() : api.hideScrollbar()
+    }
+  }
+
 export const created =
   ({ api, props, state }: Pick<IModalRenderlessParams, 'api' | 'props' | 'state'>) =>
   (): void => {
@@ -95,10 +105,23 @@ export const mounted =
     api,
     parent,
     props,
-    isMobileFirstMode
-  }: Pick<IModalRenderlessParams, 'api' | 'parent' | 'props' | 'isMobileFirstMode'>) =>
+    isMobileFirstMode,
+    state
+  }: Pick<IModalRenderlessParams, 'api' | 'parent' | 'props' | 'isMobileFirstMode' | 'state'>) =>
   () => {
-    if (isMobileFirstMode) {
+    if (!isMobileFirstMode) {
+      let modalBoxElem = api.getBox()
+
+      Object.assign(modalBoxElem.style, {
+        width: props.width ? (isNaN(props.width) ? props.width : `${props.width}px`) : null,
+
+        height: props.height ? (isNaN(props.height) ? props.height : `${props.height}px`) : null
+      })
+
+      if (props.lockScroll && state.visible) {
+        api.showScrollbar()
+      }
+    } else {
       on(window, 'resize', api.resetDragStyle)
     }
 
@@ -118,6 +141,7 @@ export const beforeUnmouted =
     off(document, 'keydown', api.handleGlobalKeydownEvent)
     off(window, 'hashchange', api.handleHashChange)
     api.removeMsgQueue()
+    api.hideScrollbar()
 
     if (parent.$el.parentNode) {
       parent.$el.parentNode.removeChild(parent.$el)
@@ -130,6 +154,23 @@ export const selfClickEvent =
     if (props.maskClosable && event.target === parent.$el) {
       api.close('mask')
     }
+  }
+
+export const mouseEnterEvent = () => (): void => {
+  clearTimeout(timer)
+}
+
+export const mouseLeaveEvent =
+  ({ api, props }: Pick<IModalRenderlessParams, 'api' | 'props'>) =>
+  (): void => {
+    api.addMsgQueue()
+
+    timer = window.setTimeout(
+      () => {
+        api.close('close')
+      },
+      parseFloat(props.duration as string)
+    )
   }
 
 export const updateZindex =
@@ -228,7 +269,7 @@ export const open =
       if (state.isMsg) {
         api.addMsgQueue()
 
-        setTimeout(
+        timer = window.setTimeout(
           () => {
             api.close(params.type)
           },
@@ -247,7 +288,12 @@ export const open =
             let clientVisibleHeight =
               viewportWindow.document.documentElement.clientHeight || viewportWindow.document.body.clientHeight
 
-            modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
+            let width = isNaN(props.width) ? props.width : `${props.width}px`
+            if (width) {
+              modalBoxElem.style.left = 'calc((100vw - ' + width + ') / 2)'
+            } else {
+              modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
+            }
 
             if (
               modalBoxElem.offsetHeight + modalBoxElem.offsetTop + (props.marginSize as number) >
@@ -349,7 +395,7 @@ export const handleGlobalKeydownEvent =
   }
 
 export const handleHashChange = (api: IModalApi) => (): void => {
-  api.close('close')
+  api.close('hide')
 }
 
 export const getBox =
@@ -864,4 +910,12 @@ export const resetDragStyle = (api: IModalApi) => (): void => {
   const modalBoxElement = api.getBox()
   modalBoxElement.style.left = ''
   modalBoxElement.style.top = ''
+}
+
+export const showScrollbar = (lockScrollClass) => () => {
+  addClass(document.body, lockScrollClass)
+}
+
+export const hideScrollbar = (lockScrollClass) => () => {
+  removeClass(document.body, lockScrollClass)
 }

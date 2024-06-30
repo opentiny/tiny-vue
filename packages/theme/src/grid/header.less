@@ -63,11 +63,18 @@
     }
   }
 
+  &.col__ellipsis {
+    .@{grid-prefix-cls}-edit-icon {
+      flex-shrink: 0;
+    }
+  }
+
   .@{grid-prefix-cls}-required-icon {
     color: var(--ti-grid-error-color);
     line-height: 14px;
     font-size: var(--ti-common-font-size-1);
     align-self: baseline;
+    display: inline-block;
 
     &:before {
       content: '*';
@@ -95,7 +102,6 @@
     width: 14px;
     height: 100%;
     text-align: center;
-    z-index: 1;
     user-select: none;
 
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -151,6 +157,9 @@
 }
 
 .@{grid-prefix-cls}__header {
+  .@{grid-prefix-cls}-cell-text {
+    font-weight: var(--ti-grid-header-font-weight);
+  }
   .@{header-suffix} {
     position: relative;
     min-height: 16px;

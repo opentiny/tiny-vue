@@ -33,6 +33,7 @@ import {
   iconSortTriangleDescending,
   iconSortTriangle
 } from '@opentiny/vue-icon'
+import { $prefix } from '@opentiny/vue-common'
 
 const GlobalConfig = {
   validConfig: {
@@ -51,6 +52,8 @@ const GlobalConfig = {
   // 鼠标移入表格行是否高亮显示
   highlightHoverRow: true,
   resizable: true,
+  // 操作列（type为index或radio或selection的列）默认不可拖动列宽
+  operationColumnResizable: false,
   fit: true,
   showHeader: true,
   defaultTreeIndent: 16,
@@ -157,9 +160,11 @@ const GlobalConfig = {
     operButton: { default: 'inline-block', mf: 'hidden sm:inline-block', card: 'hidden' }
   },
   themes: {
-    AURORA: 'aurora',
+    TINY: 'tiny',
     SAAS: 'saas'
-  }
+  },
+  columnLevelKey: 'ColumnLevelProvideKey',
+  defaultColumnName: $prefix + 'GridColumn'
 }
 
 // list视图类型、gantt视图类型和card视图类型的配置一致

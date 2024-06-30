@@ -67,7 +67,10 @@ export const timelineProps = {
     type: Number,
     default: 1
   },
-  data: Array,
+  data: {
+    type: Array,
+    default: () => []
+  },
   space: {
     type: [String, Number],
     default: ''
@@ -87,6 +90,18 @@ export const timelineProps = {
   subField: {
     type: Boolean,
     default: false
+  },
+  foldDisabled: {
+    type: Boolean,
+    default: false
+  },
+  nodeMax: {
+    type: [Number, String],
+    default: $constants.STACK_NODES_MAX
+  },
+  limitedNodes: {
+    type: [Number, String],
+    default: $constants.LIMITED_STACK_NODES
   },
   onlyNumber: {
     type: Boolean,

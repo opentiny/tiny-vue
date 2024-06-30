@@ -1,9 +1,7 @@
 ---
-title: Filter 过滤器
+title: Pager Pagination
 ---
 
-# Filter 过滤器
+# Pager Pagination
 
-<div>
-
-</div>
+<div>When there is a large amount of data, data is split by page. This function is usually used in Grid and Repeater components.</div>

@@ -42,7 +42,7 @@ export const tabsProps = {
   showMoreTabs: Boolean,
   swipeable: {
     type: Boolean,
-    default: true
+    default: false
   },
   popperClass: String,
   popperAppendToBody: {
@@ -58,7 +58,18 @@ export const tabsProps = {
   showExpandTabs: Boolean,
   expandTabsTitle: String,
   expandTabsMode: String,
-  tooltipConfig: [String, Object]
+  tooltipConfig: [String, Object],
+  optimized: {
+    type: Boolean,
+    default: true
+  },
+  beforeClose: Function,
+  overflowTitle: Boolean,
+  titleWidth: String,
+  // tiny 新增
+  moreShowAll: Boolean,
+  panelMaxHeight: String,
+  panelWidth: String
 }
 
 export default defineComponent({

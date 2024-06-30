@@ -49,12 +49,7 @@
     <div v-if="demo.isOpen" class="ti-px24 ti-py20 ti-b-t-lightless">
       <div>
         <tiny-tabs v-model="tabValue" class="code-tabs">
-          <tiny-tab-item
-            v-for="(file, idx) in demo.files"
-            :key="file.fileName"
-            :name="'tab' + idx"
-            :title="file.fileName"
-          >
+          <tiny-tab-item v-for="(file, idx) in files" :key="file.fileName" :name="'tab' + idx" :title="file.fileName">
             <async-highlight :code="file.code"></async-highlight>
           </tiny-tab-item>
         </tiny-tabs>
@@ -64,7 +59,7 @@
 </template>
 
 <script lang="jsx">
-import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, watch, nextTick, inject } from 'vue'
+import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, watch, nextTick, inject, ref } from 'vue'
 import { i18nByKey, getWord } from '@/i18n'
 import { $split, appData, fetchDemosFile } from '@/tools'
 import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
@@ -89,7 +84,7 @@ export default defineComponent({
   },
   setup(props) {
     const { templateModeState } = useTemplateMode()
-    const { currThemeLabel } = useTheme()
+    const { currentThemeKey } = useTheme()
     const isMobileFirst = computed(() => {
       return templateModeState.mode === 'mobile-first'
     })
@@ -144,7 +139,9 @@ export default defineComponent({
     const fn = {
       getDescMd(demo) {
         // desc字段是一段html
+
         const desc = demo.desc[state.langKey].trim()
+
         return <div class="demo-desc" v-html={desc}></div>
       },
       async toggleDemoCode(demo) {
@@ -184,10 +181,12 @@ export default defineComponent({
       },
       openPlayground(demo, open = true) {
         const cmpId = router.currentRoute.value.params.cmpId
-        const tinyTheme = currThemeLabel.value.split('-')[1]
-        const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${demo.codeFiles[0]}&apiMode=${
-          apiModeState.apiMode
-        }&mode=${templateModeState.mode}&theme=${tinyTheme}`
+        const tinyTheme = templateModeState.isSaas ? 'saas' : currentThemeKey.value.split('-')[1]
+        const openModeQuery = open ? '' : '&openMode=preview'
+        // TODO: 目前mf只有Options写法，后续再放开compositon
+        const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${
+          demo.codeFiles[0]
+        }&apiMode=Options&mode=${templateModeState.mode}&theme=${tinyTheme}${openModeQuery}`
 
         if (open) {
           window.open(url)
@@ -208,28 +207,43 @@ export default defineComponent({
       }
     })
 
+    const demos = ref(props.demo)
+    const files = ref([])
+
+    watch(
+      () => props.demo,
+      () => {
+        demos.value = props.demo
+        if (props.demo.files) {
+          files.value = props.demo.files
+        }
+      },
+      { deep: true }
+    )
+
     watch(
       () => apiModeState.apiMode,
       () => {
         if (props.demo.files?.length > 0) {
-          // 强制刷新示例显示格式
-          getDemoCodeFn(props.demo, true)
+          getDemoCodeFn(props.demo, true).then((demoFiles) => {
+            files.value = demoFiles
+          })
         }
       }
     )
 
-    return { ...toRefs(state), ...fn, appData, vueComponents, demoConfig, cmp, isMobileFirst, i18nByKey }
+    return { ...toRefs(state), ...fn, appData, vueComponents, demoConfig, cmp, isMobileFirst, i18nByKey, files }
   }
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .demo-desc {
   font-size: 16px;
   line-height: 1.7em;
   margin: 12px 0;
 
-  code {
+  :deep(code) {
     color: #476582;
     padding: 4px 8px;
     margin: 0 4px;
@@ -283,10 +297,12 @@ export default defineComponent({
 .pc-demo-container {
   display: flex;
   flex-direction: column;
+
   .pc-demo {
     flex: 1;
   }
 }
+
 .phone-container {
   margin: auto;
   width: 395px;

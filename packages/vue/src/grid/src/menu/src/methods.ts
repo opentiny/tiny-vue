@@ -124,7 +124,10 @@ export default {
 
       if (eventTargetNode.flag) {
         let cell = eventTargetNode.targetElem
-        let column = this.getColumnNode(cell).item
+        let column = this.getColumnNode(cell)?.item
+        if (!column) {
+          return
+        }
         let typePrefix = `${layout}-`
         Object.assign(eventParams, { cell, column, columnIndex: this.getColumnIndex(column) })
 

@@ -47,7 +47,8 @@ export default {
       desc: {
         'zh-CN':
           '<p>通过在`data`里面的属性`autoColor`设置自定义状态。对应场景： `success` ：成功  `error` ：失败 `info` ：等待 </p>',
-        'en-US': '<p>Set the user-defined state through the `autoColor` attribute in `data`. Scenario: `success`: success; error`: failure; info`: waiting</p>'
+        'en-US':
+          '<p>Set the user-defined state through the `autoColor` attribute in `data`. Scenario: `success`: success; error`: failure; info`: waiting</p>'
       },
       codeFiles: ['many-status.vue']
     },
@@ -70,10 +71,36 @@ export default {
         'en-US': 'Collapse Timeline'
       },
       desc: {
-        'zh-CN': '<p>当节点超过七项时，自动折叠节点，仅展示最近三项，点击后展开</p>',
-        'en-US': '<p>When there are more than seven nodes, the system automatically collapses the nodes and displays only the latest three nodes.</p>'
+        'zh-CN': '<p>当节点个数达到七项时，自动折叠节点，仅展示最近三项，点击后展开。</p>',
+        'en-US':
+          '<p>When there are more than seven nodes, the system automatically collapses the nodes and displays only the latest three nodes.</p>'
       },
       codeFiles: ['fold-time.vue']
+    },
+    {
+      demoId: 'node-max',
+      name: {
+        'zh-CN': '触发折叠节点数',
+        'en-US': 'Number of Nodes Triggering Folding'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>node-max</code> 属性可以配置节点达到指定个数后自动折叠节点。</p>',
+        'en-US':
+          '<p>Use <code>node-max</code> to automatically collapse nodes after reaching a specified number of nodes.</p>'
+      },
+      codeFiles: ['node-max.vue']
+    },
+    {
+      demoId: 'limited-nodes',
+      name: {
+        'zh-CN': '折叠后节点数',
+        'en-US': 'Number of Nodes After Folding'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>limited-nodes</code> 属性可以设置折叠后展示的节点个数。</p>',
+        'en-US': '<p>Use <code>node-max</code> to set the number of nodes displayed after folding.</p>'
+      },
+      codeFiles: ['limited-nodes.vue']
     },
     {
       demoId: 'auto-slot',
@@ -84,47 +111,10 @@ export default {
       desc: {
         'zh-CN':
           '<p>通过 `slot` 为 `left` 可以自定义步骤条右侧内容。`data`中自定义属性名应避免`name`(正标题)、`tips`(副标题)、`time`(时间)属性</p>',
-        'en-US': '<p>You can set `slot` to `left` to customize the content on the right of the step bar. User-defined attribute names in `data` should avoid `name` (head title), `tips` (subtitle), and `time` (time) attributes.</p>'
+        'en-US':
+          '<p>You can set `slot` to `left` to customize the content on the right of the step bar. User-defined attribute names in `data` should avoid `name` (head title), `tips` (subtitle), and `time` (time) attributes.</p>'
       },
       codeFiles: ['auto-slot.vue']
-    }
-  ],
-  apis: [
-    {
-      'name': 'Timeline',
-      'type': 'component',
-      'props': [
-        {
-          'name': 'auto-color-field',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '显示组件二级标题内容，默认值为 autoColor',
-            'en-US': 'Displays the level-2 title of the component. The default value is autoColor.'
-          },
-          'demoId': ''
-        },
-        {
-          'name': 'sub-field',
-          'type': 'Boolean',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '设置时间线两侧展示',
-            'en-US': 'Set the display on both sides of the timeline.'
-          },
-          'demoId': 'sub-field'
-        },
-        {
-          'name': 'tips-field',
-          'type': 'String',
-          'defaultValue': '',
-          'desc': {
-            'zh-CN': '显示组件二级标题内容,默认值为 tips',
-            'en-US': 'Displays the level-2 title of the component. The default value is tips.'
-          },
-          'demoId': ''
-        },
-      ]
     }
   ]
 }

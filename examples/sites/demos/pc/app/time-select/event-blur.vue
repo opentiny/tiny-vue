@@ -24,13 +24,13 @@ export default {
   },
   methods: {
     bulr() {
-      Modal.message('blur事件')
+      Modal.message({ message: 'blur事件', status: 'info' })
     },
     change(value) {
-      Modal.message(value)
+      Modal.message({ message: value, status: 'info' })
     },
     focus() {
-      Modal.message('focus事件')
+      Modal.message({ message: 'focus事件', status: 'info' })
     }
   }
 }

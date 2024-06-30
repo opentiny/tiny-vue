@@ -11,7 +11,7 @@ export const tinySelectDropdownSmbTheme = {
   'ti-select-dropdown-max-height': 'calc(32px * 7 + 8px)',
   'ti-select-dropdown-search-margin-left': 'var(--ti-common-space-4x)',
   'ti-select-dropdown-search-margin-right': 'var(--ti-common-space-4x)',
-  'ti-select-dropdown-search-margin-top': 'calc(var(--ti-common-space-base) * -1)',
+  'ti-select-dropdown-search-margin-top': '0',
   'ti-select-dropdown-search-margin-bottom': 'var(--ti-common-space-2x)',
   'ti-select-dropdown-search-width': 'calc(100% - var(--ti-common-space-4x)*2)',
   'ti-select-dropdown-search-bg-color': 'var(--ti-common-color-bg-white-normal)',
@@ -19,10 +19,11 @@ export const tinySelectDropdownSmbTheme = {
   'ti-select-dropdown-search-suffix-display': 'none',
   'ti-select-dropdown-search-prefix-display': 'block',
   'ti-select-dropdown-search-input-padding-right': 'var(--ti-common-space-3x)',
-  'ti-select-dropdown-search-input-padding-left': '28px',
+  'ti-select-dropdown-search-input-padding-left': 'var(--ti-common-space-5x)',
   'ti-select-dropdown-search-empty-padding-top': 'var(--ti-common-space-3x)',
   'ti-select-dropdown-search-empty-padding-bottom': 'var(--ti-common-space-2x)',
   'ti-select-dropdown-wrap-padding-bottom': 'var(--ti-common-space-0)',
   'ti-select-dropdown-icon-size': 'var(--ti-common-font-size-2)',
-  'ti-select-dropdown-icon-color': 'var(--ti-common-color-icon-normal)'
+  'ti-select-dropdown-icon-color': 'var(--ti-common-color-icon-normal)',
+  'ti-select-dropdown-item-padding-horizontal': 'var(--ti-common-space-4x)'
 }

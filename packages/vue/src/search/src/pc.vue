@@ -11,7 +11,12 @@
  -->
 <template>
   <div
-    :class="['tiny-search', { mini }, { collapse: state.collapse }]"
+    :class="[
+      'tiny-search',
+      { mini },
+      { collapse: state.collapse },
+      state.searchSize ? 'tiny-search--' + state.searchSize : ''
+    ]"
     @mouseenter="state.hovering = true"
     @mouseleave="state.hovering = false"
   >
@@ -31,6 +36,7 @@
       </transition>
       <input
         ref="input"
+        v-bind="a($attrs, ['type', 'class', 'style', '^on[A-Z]', 'id', 'disabled', 'clearable'])"
         v-model="state.currentValue"
         :style="
           transparent
@@ -104,7 +110,8 @@ export default defineComponent({
     'tabindex',
     'clearable',
     'isEnterSearch',
-    'typeValue'
+    'typeValue',
+    'size'
   ],
   emits: ['change', 'search', 'update:modelValue', 'clear', 'select', 'input'],
   components: {

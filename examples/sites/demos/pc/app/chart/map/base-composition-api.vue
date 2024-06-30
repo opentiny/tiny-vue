@@ -12,6 +12,7 @@
 <script setup lang="jsx">
 import { ref, getCurrentInstance } from 'vue'
 import { ChartMap as TinyChartMap } from '@opentiny/vue'
+import chinaData from './china.js'
 
 const chartData = ref({
   columns: ['位置', 'GDP'],
@@ -30,11 +31,15 @@ const chartSettings = ref({
   }
 })
 
+const proxy = getCurrentInstance().appContext.config.globalProperties
+
 if (window._map_china) {
   chartSettings.value.mapOrigin = window._map_china
-} else {
-  getCurrentInstance().appContext.config.globalProperties.$service.network.get('services/mapChina').then(({ data }) => {
+} else if (proxy.$service?.network) {
+  proxy.$service.network.get('services/mapChina').then(({ data }) => {
     chartSettings.value.mapOrigin = data
   })
+} else if (chinaData) {
+  chartSettings.value.mapOrigin = chinaData
 }
 </script>

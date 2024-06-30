@@ -16,68 +16,69 @@ const $constants = {
   WARP_CLS: '.tiny-autocomplete-suggestion__wrap',
   ITEM_CLS: '.tiny-autocomplete-suggestion__list li'
 }
+export const autoCompleteProps = {
+  ...$props,
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  autofocus: Boolean,
+  clearable: {
+    type: Boolean,
+    default: () => false
+  },
+  customItem: String,
+  debounce: {
+    type: Number,
+    default: () => 300
+  },
+  disabled: Boolean,
+  fetchSuggestions: Function,
+  hideLoading: Boolean,
+  highlightFirstItem: {
+    type: Boolean,
+    default: () => false
+  },
+  label: String,
+  maxlength: Number,
+  minlength: Number,
+  modelValue: String,
+  name: String,
+  placeholder: String,
+  placement: {
+    type: String,
+    default: () => 'bottom-start'
+  },
+  popperAppendToBody: {
+    type: Boolean,
+    default: () => true
+  },
+  popperClass: String,
+  popperOptions: Object,
+  prefixIcon: [String, Object],
+  selectWhenUnmatched: {
+    type: Boolean,
+    default: () => false
+  },
+  size: String,
+  suffixIcon: [String, Object],
+  triggerOnFocus: {
+    type: Boolean,
+    default: () => true
+  },
+  valueKey: {
+    type: String,
+    default: () => 'value'
+  },
+  displayOnly: {
+    type: Boolean,
+    default: false
+  }
+}
 
 export default defineComponent({
   name: $prefix + 'Autocomplete',
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    autofocus: Boolean,
-    clearable: {
-      type: Boolean,
-      default: () => false
-    },
-    customItem: String,
-    debounce: {
-      type: Number,
-      default: () => 300
-    },
-    disabled: Boolean,
-    fetchSuggestions: Function,
-    hideLoading: Boolean,
-    highlightFirstItem: {
-      type: Boolean,
-      default: () => false
-    },
-    label: String,
-    maxlength: Number,
-    minlength: Number,
-    modelValue: String,
-    name: String,
-    placeholder: String,
-    placement: {
-      type: String,
-      default: () => 'bottom-start'
-    },
-    popperAppendToBody: {
-      type: Boolean,
-      default: () => true
-    },
-    popperClass: String,
-    popperOptions: Object,
-    prefixIcon: [String, Object],
-    selectWhenUnmatched: {
-      type: Boolean,
-      default: () => false
-    },
-    size: String,
-    suffixIcon: [String, Object],
-    triggerOnFocus: {
-      type: Boolean,
-      default: () => true
-    },
-    valueKey: {
-      type: String,
-      default: () => 'value'
-    },
-    displayOnly: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props: autoCompleteProps,
   setup(props, context) {
     return $setup({ props, context, template })
   }

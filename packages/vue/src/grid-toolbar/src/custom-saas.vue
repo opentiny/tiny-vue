@@ -55,42 +55,75 @@
                     <tiny-search
                       v-if="search"
                       v-model="searchValue"
-                      @change="searchChange"
+                      @input="searchChange"
                       :placeholder="t('ui.grid.individuation.toolbar.search')"
                     ></tiny-search>
-                    <div v-if="searchValue">
-                      <tiny-checkbox-group v-model="checkedColumns" vertical>
+                    <div v-if="isGroup">
+                      <div class="multi-check-all-btn" v-if="!searchValue">
                         <tiny-checkbox
-                          v-for="column in searchColumns"
-                          :label="column.property"
-                          :disabled="column.alwaysShow"
-                          :key="column.property"
+                          :indeterminate="isMultiIndeterminate"
+                          v-model="multiCheckAll"
+                          @change="checkAllChange"
                         >
-                          {{ column.title }}
-                        </tiny-checkbox>
-                      </tiny-checkbox-group>
-                    </div>
-                    <div v-else>
-                      <div class="check-all-btn">
-                        <tiny-checkbox :indeterminate="isIndeterminate" v-model="checkAll">
                           {{ t('ui.grid.individuation.toolbar.all') }}
                         </tiny-checkbox>
                       </div>
-                      <tiny-checkbox-group v-model="checkedColumns" vertical>
-                        <div v-for="(group, index) in groupedColumns" :key="index">
-                          <p v-if="group.label" class="group-label" :class="[index === 0 && 'group-label-first']">
-                            {{ group.label }}
-                          </p>
+                      <tiny-tree
+                        ref="tree"
+                        :data="columns"
+                        default-expand-all
+                        check-on-click-node
+                        show-checkbox
+                        node-key="id"
+                        :default-checked-keys="defaultcheckedkeys"
+                        @check="checkNode"
+                        :filter-node-method="filterTreeNode"
+                        :props="{ label: 'title' }"
+                      >
+                        <template #default="sourceData">
+                          <div class="tiny-tree-node__label">
+                            <title-render :column="sourceData.data"></title-render>
+                          </div>
+                        </template>
+                      </tiny-tree>
+                    </div>
+                    <div v-else>
+                      <div v-if="searchValue">
+                        <tiny-checkbox-group v-model="checkedColumns" vertical>
                           <tiny-checkbox
-                            v-for="column in group.data"
+                            v-for="column in searchColumns"
                             :label="column.property"
                             :disabled="column.alwaysShow"
                             :key="column.property"
                           >
-                            {{ column.title }}
+                            <title-render :column="column"></title-render>
+                          </tiny-checkbox>
+                        </tiny-checkbox-group>
+                      </div>
+                      <div v-else>
+                        <div class="check-all-btn">
+                          <tiny-checkbox :indeterminate="isIndeterminate" v-model="checkAll">
+                            {{ t('ui.grid.individuation.toolbar.all') }}
                           </tiny-checkbox>
                         </div>
-                      </tiny-checkbox-group>
+                        <tiny-checkbox-group v-model="checkedColumns" vertical>
+                          <template v-for="(group, index) in groupedColumns">
+                            <div v-if="defer(Math.floor(index / 5))" :key="index">
+                              <p v-if="group.label" class="group-label" :class="[index === 0 && 'group-label-first']">
+                                {{ group.label }}
+                              </p>
+                              <tiny-checkbox
+                                v-for="column in group.data"
+                                :label="column.property"
+                                :disabled="column.alwaysShow"
+                                :key="column.property"
+                              >
+                                <title-render :column="column"></title-render>
+                              </tiny-checkbox>
+                            </div>
+                          </template>
+                        </tiny-checkbox-group>
+                      </div>
                     </div>
                   </div>
                 </template>
@@ -102,99 +135,156 @@
                           columns.length
                         }})
                       </p>
-                      <span>{{ t('ui.grid.individuation.toolbar.freeze') }}</span>
-                      <span>{{ t('ui.grid.individuation.toolbar.sort') }}</span>
-                      <span class="clear-all" @click="handelClearAll">{{
+                      <span v-if="!hideFixedColumn">{{ t('ui.grid.individuation.toolbar.freeze') }}</span>
+                      <span v-if="!hideSortColumn">{{ t('ui.grid.individuation.toolbar.sort') }}</span>
+                      <span v-if="!isGroup" class="clear-all" @click="handelClearAll">{{
                         t('ui.grid.individuation.toolbar.clear')
                       }}</span>
                     </div>
-                    <ul ref="list">
+                    <ul ref="list" class="column-list-panel">
                       <li
                         v-for="(column, index) in visibleColumns"
-                        :key="column.property"
-                        :class="[column.fixed]"
+                        :key="column.property + index"
+                        :class="[
+                          column.fixed,
+                          getRowClassName(column),
+                          'column-list-item',
+                          !column.expand && 'item-collapse'
+                        ]"
                         data-tag="tiny-grid-toolbar-item"
+                        :data-row="column.property"
                       >
-                        <div v-if="dropConfig.plugin" class="drag-icon toolbar-drag-item">
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                        </div>
-                        <div class="sort-number">
-                          <tiny-select
-                            v-model="column.sortingIndex"
-                            @focus="selectFocus($event, column.sortingIndex)"
-                            @change="sortSelectChange"
+                        <div>
+                          <div
+                            v-if="defer(Math.floor(index / 3))"
+                            class="column-container"
+                            :class="[!isGroup && 'with-padding']"
                           >
-                            <tiny-option v-for="item in sortingOptions" :key="item" :label="item" :value="item">
-                            </tiny-option>
-                          </tiny-select>
-                        </div>
-                        <p
-                          class="name toolbar-drag-item"
-                          :class="[dropConfig.plugin && 'dragable']"
-                          @mouseenter="handleMouseenter"
-                          @mouseleave="handleMouseleave"
-                        >
-                          {{ column.title }}
-                        </p>
-                        <div class="dropdown-column">
-                          <tiny-dropdown :show-icon="false" @item-click="handleFixedItemClick" trigger="hover">
-                            <span :class="['left', 'right'].includes(column.fixed) && 'dropdown-btn'">
-                              <icon-left-frozen v-if="column.fixed === 'left'"></icon-left-frozen>
-                              <icon-right-frozen v-else-if="column.fixed === 'right'"></icon-right-frozen>
-                              <span v-else class="set-btn">{{ t('ui.grid.individuation.toolbar.set') }}</span>
-                            </span>
-                            <template #dropdown>
-                              <tiny-dropdown-menu
-                                @mouseenter="handleDropdownMouseenter($event, index)"
-                                @mouseleave="handleDropdownMouseleave($event, index)"
+                            <div v-if="dropConfig.plugin && !isGroup" class="drag-icon toolbar-drag-item">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                            </div>
+                            <div
+                              v-if="isGroup && column.children"
+                              class="toolbar-icon-expand"
+                              :class="[column.expand && 'toolbar-icon-collapse']"
+                            >
+                              <icon-chevron-right @click="column.expand = !column.expand"></icon-chevron-right>
+                            </div>
+                            <div class="sort-number" v-if="!isGroup">
+                              <div
+                                v-if="column.numberSortVisible && !isGroup"
+                                class="sort-number-editor"
+                                v-clickoutside="clickEditorOutside"
                               >
-                                <tiny-dropdown-item
-                                  v-for="item in column.fixedOption"
-                                  :key="item.value"
-                                  :label="item.label"
-                                  :item-data="{ value: item.value, property: column.property }"
-                                  >{{ item.label }}</tiny-dropdown-item
+                                <tiny-select
+                                  :ref="'select' + index"
+                                  v-model="column.sortingIndex"
+                                  automatic-dropdown
+                                  @focus="selectFocus($event, column.sortingIndex)"
+                                  @change="sortSelectChange"
                                 >
-                              </tiny-dropdown-menu>
-                            </template>
-                          </tiny-dropdown>
-                        </div>
-                        <div class="dropdown-column" :class="[!column.sortable && 'visibility-hidden']">
-                          <tiny-dropdown :show-icon="false" @item-click="handleSortItemClick" trigger="hover">
-                            <span :class="['asc', 'desc'].includes(column.order) && 'dropdown-btn'">
-                              <icon-ascending v-if="column.order === 'asc'"></icon-ascending>
-                              <icon-descending v-else-if="column.order === 'desc'"></icon-descending>
-                              <span v-else class="set-btn" :class="[!column.sortable && 'visibility-hidden']">{{
-                                t('ui.grid.individuation.toolbar.set')
-                              }}</span>
-                            </span>
-                            <template #dropdown>
-                              <tiny-dropdown-menu
-                                @mouseenter="handleDropdownMouseenter($event, index)"
-                                @mouseleave="handleDropdownMouseleave($event, index)"
-                              >
-                                <tiny-dropdown-item
-                                  v-for="item in column.sortOption"
-                                  :key="item.value"
-                                  :label="item.label"
-                                  :item-data="{ value: item.value, property: column.property }"
-                                  >{{ item.label }}</tiny-dropdown-item
+                                  <tiny-option v-for="item in sortingOptions" :key="item" :label="item" :value="item">
+                                  </tiny-option>
+                                </tiny-select>
+                              </div>
+                              <div v-else class="sort-number-display" @click="clickSortDisplay(column, index)">
+                                {{ column.sortingIndex }}
+                              </div>
+                            </div>
+                            <p
+                              class="name toolbar-drag-item"
+                              :class="[dropConfig.plugin && !isGroup && 'dragable']"
+                              @mouseenter="handleMouseenter"
+                              @mouseleave="handleMouseleave"
+                            >
+                              <title-render :column="column"></title-render>
+                            </p>
+                            <div v-if="!hideFixedColumn && (!isGroup || !column.children)" class="dropdown-column">
+                              <tiny-dropdown :show-icon="false" @item-click="handleFixedItemClick" trigger="hover">
+                                <span :class="['left', 'right'].includes(column.fixed) && 'dropdown-btn'">
+                                  <icon-left-frozen v-if="column.fixed === 'left'"></icon-left-frozen>
+                                  <icon-right-frozen v-else-if="column.fixed === 'right'"></icon-right-frozen>
+                                  <span v-else class="set-btn">{{ t('ui.grid.individuation.toolbar.set') }}</span>
+                                </span>
+                                <template #dropdown>
+                                  <tiny-dropdown-menu
+                                    @mouseenter="handleDropdownMouseenter($event, index)"
+                                    @mouseleave="handleDropdownMouseleave($event, index)"
+                                  >
+                                    <tiny-dropdown-item
+                                      v-for="item in column.fixedOption"
+                                      :key="item.value"
+                                      :label="item.label"
+                                      :item-data="{ value: item.value, property: column.property }"
+                                      >{{ item.label }}</tiny-dropdown-item
+                                    >
+                                  </tiny-dropdown-menu>
+                                </template>
+                              </tiny-dropdown>
+                            </div>
+                            <div
+                              v-if="!hideSortColumn"
+                              class="dropdown-column"
+                              :class="[!column.sortable && 'visibility-hidden']"
+                            >
+                              <tiny-dropdown :show-icon="false" @item-click="handleSortItemClick" trigger="hover">
+                                <span :class="['asc', 'desc'].includes(column.order) && 'dropdown-btn'">
+                                  <icon-ascending v-if="column.order === 'asc'"></icon-ascending>
+                                  <icon-descending v-else-if="column.order === 'desc'"></icon-descending>
+                                  <span v-else class="set-btn" :class="[!column.sortable && 'visibility-hidden']">{{
+                                    t('ui.grid.individuation.toolbar.set')
+                                  }}</span>
+                                </span>
+                                <template #dropdown>
+                                  <tiny-dropdown-menu
+                                    @mouseenter="handleDropdownMouseenter($event, index)"
+                                    @mouseleave="handleDropdownMouseleave($event, index)"
+                                  >
+                                    <tiny-dropdown-item
+                                      v-for="item in column.sortOption"
+                                      :key="item.value"
+                                      :label="item.label"
+                                      :item-data="{ value: item.value, property: column.property }"
+                                      >{{ item.label }}</tiny-dropdown-item
+                                    >
+                                  </tiny-dropdown-menu>
+                                </template>
+                              </tiny-dropdown>
+                            </div>
+                            <span
+                              v-if="!isGroup"
+                              class="close-icon"
+                              :class="[column.alwaysShow && 'visibility-hidden']"
+                              @click="hiddenColumn(column.property)"
+                              ><icon-close></icon-close
+                            ></span>
+                          </div>
+
+                          <ul v-if="column.children">
+                            <li
+                              v-for="(column, index) in column.children"
+                              :key="column.property + index"
+                              :class="[column.fixed, getRowClassName(column)]"
+                              :data-row="column.property"
+                              v-show="column.visible"
+                            >
+                              <div class="column-container">
+                                <p
+                                  class="name child-name"
+                                  @mouseenter="handleMouseenter"
+                                  @mouseleave="handleMouseleave"
                                 >
-                              </tiny-dropdown-menu>
-                            </template>
-                          </tiny-dropdown>
+                                  <title-render :column="column"></title-render>
+                                </p>
+                              </div>
+                            </li>
+                          </ul>
                         </div>
-                        <span
-                          class="close-icon"
-                          :class="[column.alwaysShow && 'visibility-hidden']"
-                          @click="hiddenColumn(column.property)"
-                          ><icon-close></icon-close
-                        ></span>
                       </li>
                     </ul>
                   </div>
@@ -222,7 +312,7 @@
             v-if="multipleHistory && activeName === 'base'"
             ref="switch"
             :custom-mode="customMode"
-            :selectedTemplateVal="selectedTemplateVal"
+            :selected-template-val="selectedTemplateVal"
             :history-config="historyConfig"
             @init-storage="initStorage"
           ></tiny-custom-switch>
@@ -247,9 +337,18 @@
 <script lang="tsx">
 import Button from '@opentiny/vue-button'
 import Modal from '@opentiny/vue-modal'
+import Tree from '@opentiny/vue-tree'
+
 import { t } from '@opentiny/vue-locale'
-import { find, mapTree } from '@opentiny/vue-renderless/grid/static'
-import { IconClose, IconLeftFrozen, IconRightFrozen, IconDescending, IconAscending } from '@opentiny/vue-icon'
+import { find, isArray, mapTree } from '@opentiny/vue-renderless/grid/static'
+import {
+  IconClose,
+  IconLeftFrozen,
+  IconRightFrozen,
+  IconDescending,
+  IconAscending,
+  IconChevronRight
+} from '@opentiny/vue-icon'
 import Select from '@opentiny/vue-select'
 import Option from '@opentiny/vue-option'
 import Split from '@opentiny/vue-split'
@@ -262,16 +361,31 @@ import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import DropdownItem from '@opentiny/vue-dropdown-item'
 import Tooltip from '@opentiny/vue-tooltip'
-import CustomSwitch from './custom-switch'
+import CustomSwitch from './custom-switch.vue'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isNull } from '@opentiny/vue-renderless/grid/static'
-import { appProperties } from '@opentiny/vue-common'
-import { $props } from '@opentiny/vue-common'
+import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { $props, isVue2, directive, useDefer, h, defineComponent } from '@opentiny/vue-common'
+import { GridConfig } from '@opentiny/vue-grid'
 import { mergeArray } from './multiple-history'
 import '@opentiny/vue-theme/grid-toolbar/index.less'
 
 const position = ['left', 'right']
-export default {
+
+const TitleRender = {
+  props: ['column'],
+  render() {
+    const { column, $parent } = this
+    const { title } = column
+    const { tinyTable } = $parent
+
+    return h('span', { class: ['custom-saas-title-render', column.id] }, [
+      typeof title === 'function' ? title(h, { $table: tinyTable, column }) : title
+    ])
+  }
+}
+
+export default defineComponent({
   components: {
     TinyModal: Modal,
     TinyButton: Button,
@@ -287,13 +401,17 @@ export default {
     IconRightFrozen: IconRightFrozen(),
     IconDescending: IconDescending(),
     IconAscending: IconAscending(),
+    IconChevronRight: IconChevronRight(),
     TinyCheckbox: Checkbox,
     TinyCheckboxGroup: CheckboxGroup,
     TinyRadioGroup: RadioGroup,
     TinyTooltip: Tooltip,
     TinyRadio: Radio,
-    TinySearch: Search
+    TinySearch: Search,
+    TinyTree: Tree,
+    TitleRender
   },
+  directives: directive({ Clickoutside }),
   name: 'TinyGridCustom',
   inject: {
     $grid: {
@@ -352,7 +470,9 @@ export default {
     },
     numberSorting: Boolean,
     multipleHistory: [Object, Boolean],
-    resetMethod: Function
+    resetMethod: Function,
+    hideSortColumn: Boolean,
+    hideFixedColumn: Boolean
   },
   data() {
     return {
@@ -375,14 +495,23 @@ export default {
         pageSize: this.initSettings.pageSize || this.pageSizes[0] || 10,
         columns: []
       },
+      originColumns: [],
       groupedColumns: [],
       checkedColumns: [],
       sortingOptions: [],
       templateOptions: [],
+      defaultcheckedkeys: [],
+      colIds: [],
       multipleHistoryId: null,
       saveDisabled: false,
-      opt: {}
+      updatedSorting: false,
+      opt: {},
+      allCheckedKeys: []
     }
+  },
+  setup() {
+    const { defer, reset } = useDefer(80)
+    return { defer, reset }
   },
   created() {
     this.initOpt()
@@ -395,19 +524,39 @@ export default {
         this.columns = this.getColumnConfigs(this.data)
         this.groupedColumns = this.getGroupedColumns()
         this.checkedColumns = this.columns.filter((col) => col.visible).map((col) => col.property)
+        this.defaultcheckedkeys = this.getDefaultcheckedkeys()
         setTimeout(() => {
           this.initDragEvent()
           this.initDrag = true
+          if (this.$refs.tree) {
+            this.allCheckedKeys = [...this.$refs.tree.getCheckedKeys(), ...this.$refs.tree.getHalfCheckedKeys()]
+          }
         }, 100)
+        this.reset()
       } else {
         this.selectedTemplate = ''
       }
     },
-    checkedColumns(val) {
-      this.columns.forEach((column) => {
-        column.visible = !!~val.indexOf(column.property)
-      })
-      this.columns = this.initSortingColumns(this.columns)
+    checkedColumns: {
+      handler(val) {
+        this.columns.forEach((column) => {
+          column.visible = !!~val.indexOf(column.property)
+        })
+
+        this.sortingOptions = []
+        let index = 1
+
+        this.columns.forEach((column) => {
+          if (column.visible) {
+            column.sortingIndex = index
+            this.sortingOptions.push(column.sortingIndex)
+            index++
+          } else {
+            column.sortingIndex = null
+          }
+        })
+      },
+      deep: !isVue2
     },
     data: {
       handler(val) {
@@ -446,12 +595,14 @@ export default {
       return extend(true, {}, this.initSettings.multipleHistory || {}, multipleHistory)
     },
     tinyTheme() {
-      const ctx = appProperties()
-
-      return (ctx.tiny_theme ? ctx.tiny_theme.value : '') || 'tiny'
+      return this.tinyTable.tinyTheme || GridConfig.themes.AURORA
     },
     visibleColumns() {
-      return this.columns.filter((column) => column.visible)
+      if (this.isGroup) {
+        return this.columns.filter((column) => this.allCheckedKeys.includes(column.id))
+      } else {
+        return this.columns.filter((column) => column.visible)
+      }
     },
     selectedTemplateVal() {
       return this.templateOptions.find((item) => item.id === this.selectedTemplate) || {}
@@ -459,6 +610,21 @@ export default {
     isIndeterminate: {
       get() {
         return !(this.checkedColumns.length === 0 || this.checkedColumns.length === this.columns.length)
+      }
+    },
+    isMultiIndeterminate() {
+      return this.allCheckedKeys.length !== 0 && this.allCheckedKeys.length !== this.colIds.length
+    },
+    multiCheckAll: {
+      get() {
+        return this.allCheckedKeys.length === this.colIds.length
+      },
+      set(val) {
+        if (val) {
+          this.allCheckedKeys = [...this.colIds]
+        } else {
+          this.allCheckedKeys = []
+        }
       }
     },
     checkAll: {
@@ -524,8 +690,50 @@ export default {
         }
       })
     },
+    checkAllChange(val) {
+      if (val) {
+        this.$refs.tree.setCheckedKeys(this.colIds)
+        this.hideOrShowColumns(true)
+      } else {
+        this.$refs.tree.setCheckedKeys([])
+        this.hideOrShowColumns(false)
+      }
+    },
+    checkNode(node, data, checked) {
+      node.visible = checked
+
+      if (node.children && Array.isArray(node.children)) {
+        node.children.forEach((item) => {
+          item.visible = node.visible
+        })
+      }
+
+      const checkedKeys = this.$refs.tree.getCheckedKeys()
+      const halfCheckedKeys = this.$refs.tree.getHalfCheckedKeys()
+
+      this.allCheckedKeys = checkedKeys.concat(halfCheckedKeys)
+    },
+    hideOrShowColumns(visible) {
+      setColumnsVisible(this.columns)
+      function setColumnsVisible(columns) {
+        columns.forEach((col) => {
+          if (col.children) {
+            setColumnsVisible(col.children)
+          }
+          col.visible = visible
+        })
+      }
+    },
+    getRowClassName(row) {
+      if (typeof this.rowClassName === 'function') {
+        return this.rowClassName({ row })
+      } else {
+        return this.rowClassName
+      }
+    },
     getColumnConfigs(configs) {
       const alwaysShowColumns = this.alwaysShowColumns
+      this.colIds = []
       const getColNodes = (columns) => {
         return columns
           .map(({ id, title, property, fixed, visible, order, sortable, level, children }) => {
@@ -540,19 +748,25 @@ export default {
                 order,
                 sortable,
                 level,
-                children
+                children,
+                numberSortVisible: false,
+                expand: true
               }
 
               children && (column.children = getColNodes(children))
+              this.colIds.push(id)
 
               return column
             }
+            // eslint规则检测，map必须有return
+            return null
           })
           .filter((i) => i)
       }
       if (configs.length && this.$grid) {
         const { collectColumn } = this.$grid.getTableColumn()
         const columns = getColNodes(collectColumn)
+        this.originColumns = [...columns]
         const sortColumns = this.initSortingColumns(columns)
         this.initSortAndFixedOption(columns)
         return sortColumns
@@ -561,25 +775,22 @@ export default {
       }
     },
     initSortAndFixedOption(columns) {
-      if (this.isGroup) return
-
       columns.forEach((column) => {
         column.sortOption =
           column.order === 'asc'
             ? [this.opt.desc, this.opt.cancelSort]
             : column.order === 'desc'
-            ? [this.opt.asc, this.opt.cancelSort]
-            : [this.opt.asc, this.opt.desc]
+              ? [this.opt.asc, this.opt.cancelSort]
+              : [this.opt.asc, this.opt.desc]
         column.fixedOption =
           column.fixed === 'left'
             ? [this.opt.right, this.opt.cancelFixed]
             : column.fixed === 'right'
-            ? [this.opt.left, this.opt.cancelFixed]
-            : [this.opt.left, this.opt.right]
+              ? [this.opt.left, this.opt.cancelFixed]
+              : [this.opt.left, this.opt.right]
       })
     },
     initSortingColumns(columns) {
-      if (this.isGroup) return
       const leftCols = []
       const rightCols = []
       const visibleCols = []
@@ -617,7 +828,7 @@ export default {
         this.columnsGroup.forEach((item) => {
           const data = []
           item.data.forEach((col) => {
-            const column = this.columns.find((c) => c.property === col)
+            const column = this.originColumns.find((c) => c.property === col)
             if (column) {
               data.push(column)
             }
@@ -630,11 +841,27 @@ export default {
       } else {
         result.push({
           label: '',
-          data: [...this.columns]
+          data: [...this.originColumns]
         })
       }
 
       return result
+    },
+    getDefaultcheckedkeys() {
+      const checkedkeys = []
+      getCheckedkeys(this.columns)
+
+      function getCheckedkeys(columns) {
+        columns.forEach((col) => {
+          if (col.children) {
+            getCheckedkeys(col.children)
+          } else {
+            col.visible && checkedkeys.push(col.id)
+          }
+        })
+      }
+
+      return checkedkeys
     },
     selectedTemplateChange() {
       let selected = this.templateOptions.find((opt) => opt.id === this.selectedTemplate)
@@ -644,9 +871,16 @@ export default {
         this.columns = this.initSortingColumns(this.columns)
         this.initSortAndFixedOption(this.columns)
         this.groupedColumns = this.getGroupedColumns()
+        this.isGroup && (this.defaultcheckedkeys = this.getDefaultcheckedkeys())
         this.checkedColumns = this.columns.filter((col) => col.visible).map((col) => col.property)
         this.settings.pageSize = selected.setting.custom.pageSize
         this.multipleHistoryId = selected.id
+        this.updatedSorting = true
+        if (this.$refs.tree) {
+          setTimeout(() => {
+            this.allCheckedKeys = [...this.$refs.tree.getCheckedKeys(), ...this.$refs.tree.getHalfCheckedKeys()]
+          }, 100)
+        }
       }
     },
     sortSelectChange(index) {
@@ -657,12 +891,40 @@ export default {
     selectFocus(event, index) {
       this.lastSelectIndex = index
     },
-    searchChange(key, val) {
-      this.searchColumns = this.columns.filter((col) => {
-        const title = col.title && col.title.toUpperCase()
-        const upperVal = val && val.toUpperCase()
-        return title.includes(upperVal)
-      })
+    // 莫同步AUI， search组件的input事件的第一个参数就是value.
+    searchChange(val) {
+      const getRenderedTitle = (col) => {
+        let result = ''
+
+        if (typeof col.title === 'function') {
+          const titleElm = this.$el.querySelector(`.custom-saas-title-render.${col.id}`)
+
+          result = (titleElm && titleElm.textContent) || ''
+          result = result.toUpperCase()
+        } else if (col.title) {
+          result = col.title && col.title.toUpperCase()
+        }
+
+        return result
+      }
+
+      if (this.isGroup) {
+        this.$refs.tree.filter(val)
+      } else {
+        this.searchColumns = this.columns.filter((col) => {
+          const title = getRenderedTitle(col)
+          const upperVal = val && val.toUpperCase()
+          return title.includes(upperVal)
+        })
+      }
+    },
+    filterTreeNode(value, data) {
+      if (!value) return true
+      let label = data.label || ''
+      if (typeof data.label !== 'string') {
+        label = data.label.toString()
+      }
+      return label.includes(value)
     },
     handelClearAll() {
       this.checkedColumns = [...this.alwaysShowColumns]
@@ -679,13 +941,22 @@ export default {
           column.order === 'asc'
             ? [this.opt.desc, this.opt.cancelSort]
             : column.order === 'desc'
-            ? [this.opt.asc, this.opt.cancelSort]
-            : [this.opt.asc, this.opt.desc]
+              ? [this.opt.asc, this.opt.cancelSort]
+              : [this.opt.asc, this.opt.desc]
       }
     },
-    handleFixedItemClick(item) {
+    // TODO: 待完善具体类型  vm dropdown组件示例
+    handleFixedItemClick(itemData: { itemData: object; vm: any } | object, vm: any) {
+      let item
+      // aui传参和tiny不一致, aui传参为(itemData, vm) tiny传参为({ itemData, vm })
+      if (vm) {
+        item = itemData
+      } else {
+        item = itemData?.itemData
+      }
       const index = this.columns.findIndex((col) => col.property === item.property)
       const column = this.columns[index]
+      item.fixed = column.fixed
 
       if (column) {
         if (position.includes(item.value) && !position.includes(column.fixed) && this.fixedNumberIsMax()) {
@@ -696,23 +967,28 @@ export default {
           })
           return
         }
+
+        this.columns.splice(index, 1)
+        const leftIdx = this.columns.reduce(
+          (result, col, index) => (col.fixed === 'left' && col.visible ? index : result),
+          -1
+        )
+        const rightIdx = this.columns.findIndex((col) => col.fixed === 'right' && col.visible)
         column.fixed = item.value === 'cancel' ? undefined : item.value
 
         if (item.value === 'left') {
-          this.columns.splice(index, 1)
-          this.columns.unshift(column)
+          this.columns.splice(leftIdx >= 0 ? leftIdx + 1 : 0, 0, column)
           column.fixedOption = [this.opt.right, this.opt.cancelFixed]
         } else if (item.value === 'right') {
-          this.columns.splice(index, 1)
-          this.columns.push(column)
+          this.columns.splice(rightIdx >= 0 ? rightIdx : this.visibleColumns.length, 0, column)
           column.fixedOption = [this.opt.left, this.opt.cancelFixed]
         } else {
-          this.columns.splice(index, 1)
-          const idx = this.columns.findLastIndex((col) => col.fixed === 'left')
-          if (idx < 0) {
-            this.columns.unshift(column)
+          if (item.fixed === 'left' && leftIdx >= 0) {
+            this.columns.splice(leftIdx + 1, 0, column)
+          } else if (item.fixed === 'right' && rightIdx >= 0) {
+            this.columns.splice(rightIdx, 0, column)
           } else {
-            this.columns.splice(idx + 1, 0, column)
+            this.columns.splice(index, 0, column)
           }
 
           column.fixedOption = [this.opt.left, this.opt.right]
@@ -729,10 +1005,12 @@ export default {
       })
     },
     handleDropdownMouseenter($event, index) {
-      this.$refs.list.childNodes[index].classList.add('show-dropdown')
+      const childNode = this.$refs.list.children[index]
+      childNode && childNode.classList.add('show-dropdown')
     },
     handleDropdownMouseleave($event, index) {
-      this.$refs.list.childNodes[index].classList.remove('show-dropdown')
+      const childNode = this.$refs.list.children[index]
+      childNode && childNode.classList.remove('show-dropdown')
     },
     handleMouseenter($event) {
       const dom = $event.target
@@ -757,6 +1035,8 @@ export default {
     },
     buildSettings() {
       const props = ['order', 'fixed', 'visible', 'sortable'].concat(this.keys)
+      !this.updatedSorting &&
+        (this.columns = [...this.groupedColumns[0].data].sort((a, b) => a?.sortingIndex - b?.sortingIndex))
 
       this.settings.columns = mapTree(this.columns, ({ property, ...rest }) => {
         const node = { property }
@@ -804,6 +1084,7 @@ export default {
       this.handleClose()
     },
     handleClose() {
+      this.updatedSorting = false
       this.$emit('showModal', false)
     },
     handleReset(event) {
@@ -819,8 +1100,8 @@ export default {
 
       if (typeof this.resetMethod === 'function') {
         this.resetMethod().then((sourceSettings) => {
+          this.updatedSorting = true
           this.buildSettings()
-
           let { columns, sortType, pageSize } = sourceSettings || {}
 
           if (columns && columns.length && this.settings.columns && this.settings.columns.length) {
@@ -838,7 +1119,7 @@ export default {
               let settingColumns = []
               let gridColumns = []
 
-              columns.map((source) => {
+              columns.forEach((source) => {
                 let settingCol = find(this.settings.columns, (item) => source.property === item.property)
                 let targetCol = find(this.columns, (item) => source.property === item.property)
 
@@ -853,6 +1134,8 @@ export default {
 
           sortType && (this.settings.sortType = sortType)
           pageSize && (this.settings.pageSize = pageSize)
+
+          this.checkedColumns = this.columns.filter((col) => col.visible).map((col) => col.property)
         })
       } else {
         this.resetSettings(event)
@@ -889,6 +1172,7 @@ export default {
         this.columns.splice(oldIndex, 1)
         this.columns.splice(newIndex, 0, oldCol)
         this.updateSortingIndex()
+        this.updatedSorting = true
       }
     },
     initDragEvent() {
@@ -917,10 +1201,33 @@ export default {
             })
             return false
           }
-          return true
+
+          const rowName = e.dragged && e.dragged.getAttribute('data-row')
+          const row = this.columns.find((row) => row.property === rowName) || {}
+          const cancel = typeof this.onBeforeMove === 'function' ? this.onBeforeMove('row', row, e) : true
+
+          return cancel === undefined || cancel
         }
       })
+    },
+    clickSortDisplay(column, index) {
+      column.numberSortVisible = true
+
+      this.columns.forEach((col) => col !== column && (col.numberSortVisible = false))
+
+      this.$nextTick(() => {
+        let selectVm = this.$refs['select' + index]
+
+        selectVm = isArray(selectVm) && selectVm[0] ? selectVm[0] : null
+
+        if (selectVm) {
+          selectVm.focus()
+        }
+      })
+    },
+    clickEditorOutside() {
+      this.columns.forEach((col) => (col.numberSortVisible = false))
     }
   }
-}
+})
 </script>

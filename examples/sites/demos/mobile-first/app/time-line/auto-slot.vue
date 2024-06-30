@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      imgUrl: '/static/images/1.jpg',
+      imgUrl: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/1.jpg`,
       data: [{ title: '节点标题1' }, { title: '节点标题2' }, { title: '节点标题3' }, { title: '节点标题4' }],
       data1: [
         { title: '节点标题1' },

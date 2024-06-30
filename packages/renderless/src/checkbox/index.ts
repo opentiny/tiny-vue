@@ -72,7 +72,7 @@ export const computedGetModelGet = ({ state, props }: Pick<ICheckboxRenderlessPa
       ? props.modelValue
       : state.selfModel
 
-  return isNull(model) ? [] : model
+  return isNull(model) ? state.isGroup ? [] : '' : model
 }
 
 export const computedGetModelSet =

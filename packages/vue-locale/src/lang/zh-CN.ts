@@ -18,9 +18,25 @@ export default {
   yes: '是',
   no: '否',
   ui: {
-    buttonMessage: {
-      cancel: '取消',
-      confirm: '确定'
+    input: {
+      close: '关闭',
+      more: '更多',
+      detail: '详细信息'
+    },
+    numeric: {
+      equalTo: '等于',
+      notEqualTo: '不等于',
+      moreThan: '大于',
+      moreThanOrEqualTo: '大于等于',
+      lessThan: '小于',
+      lessThanOrEqualTo: '小于等于',
+      empty: '为空',
+      nonEmpty: '不为空'
+    },
+    queryBuilder: {
+      addItem: '新增条件',
+      addGroup: '新增子条件组',
+      removeGroup: '移除条件组'
     },
     wizard: {
       previousStep: '上一步',
@@ -48,7 +64,15 @@ export default {
     amount: {
       currency: '币种',
       amount: '金额',
-      date: '日期'
+      date: '日期',
+      equalTo: '等于',
+      notEqualTo: '不等于',
+      moreThan: '大于',
+      moreThanOrEqualTo: '大于等于',
+      lessThan: '小于',
+      lessThanOrEqualTo: '小于等于',
+      empty: '为空',
+      nonEmpty: '不为空'
     },
     actionMenu: {
       moreText: '更多'
@@ -61,11 +85,19 @@ export default {
       edit: '编辑',
       more: '更多',
       reset: '重置',
+      clear: '清空',
       comma: '，'
     },
     button: {
       cancel: '取消',
-      confirm: '确认'
+      confirm: '确定'
+    },
+    buttonGroup: {
+      noData: '暂无数据'
+    },
+    buttonMessage: {
+      cancel: '取消',
+      confirm: '确定'
     },
     cell: {
       placeholder: '请选择'
@@ -91,9 +123,6 @@ export default {
       predefine: '预定义颜色',
       history: '历史记录',
       empty: '暂无'
-    },
-    creditCardForm: {
-      submit: '提交'
     },
     crop: {
       cropImage: '图片裁剪',
@@ -211,15 +240,6 @@ export default {
       search: '辅助查询',
       selected: '已选'
     },
-    detailpage: {
-      saveButtonText: '确认',
-      cancelButtonText: '取消',
-      localTips: '不能全部隐藏',
-      localTitle: '数据',
-      valueTitle: '勾选隐藏',
-      labelTitle: '文本字段',
-      dialogTitle: '个性化标题'
-    },
     dialogBox: {
       confirm: '确定',
       cancel: '取消'
@@ -281,6 +301,7 @@ export default {
       encryptDialogTitle: '水印及加密设置',
       addWatermark: '添加水印',
       encrypted: '加密',
+      docPreview: '文档预览',
       networkError: '网络出错',
       pictureNetworkError: '网络出错，上传失败',
       reUploadTip: '{number}个文件上传失败！'
@@ -338,7 +359,10 @@ export default {
         remoteSelectedMethod: '个性化模板管理远端存储需要设置 multipleHistory.remoteSelectedMethod',
         chainCallError: '列的默认插槽中存在语法错误，请检查。',
         renderParamError: '期望配置一个生成 VNode 的渲染方法。',
-        classComponentError: '类组件渲染出错。'
+        classComponentError: '类组件渲染出错。',
+        groupColumnFixedError: '同一个分组内不能设置不同的固定类型。',
+        missingValueFormat: '渲染器无法格式化日期字符串，需要提供 valueFormat 源日期格式配置。',
+        clipboardWriteError: '剪切板写入错误'
       },
       filter: {
         allFilter: '全部',
@@ -414,7 +438,7 @@ export default {
         switchapply: '使用',
         switchedit: '编辑',
         switchdel: '删除',
-        switchconfirm: '确认',
+        switchconfirm: '确定',
         switchonlytemp: '保存模板',
         switchtempapply: '保存并使用模板',
         switchtempoverwrite: '覆盖并使用模板',
@@ -458,8 +482,8 @@ export default {
       pageClassifier: '页',
       pagesize: '条/页',
       prev: '上一页',
-      total: '总条数',
-      totals: '总计：',
+      total: '共',
+      totals: '总条数：',
       jump: '跳至',
       hundredThousand: '10万+',
       million: '100万+',
@@ -514,10 +538,20 @@ export default {
       search: '搜索',
       selected: '已选',
       selectedNum: '已选 {num} 个',
-      noSearchData: '无相关搜索结果，请重新输入'
+      noSearchData: '无相关搜索结果，请重新输入',
+      add: '新增',
+      collapse: '收起'
     },
     search: {
       placeholder: '搜索'
+    },
+    signature: {
+      confirm: '确认',
+      rewrite: '重写',
+      cancel: '取消',
+      tips: '请手写签名',
+      resign: '重新签名',
+      placeholder: '请在此签名（必填）'
     },
     tabs: {
       moreItem: '更多'
@@ -546,10 +580,10 @@ export default {
       edit: '编辑',
       delete: '删除',
       addChild: '新增下级',
-      deleteTip: '删除后数据不可恢复，确定删除吗？',
-      preserveSubnodeTip: '该节点存在下级节点，是否保留下级节点数据？',
-      preserveSubnodeData: '保留下级节点数据',
-      newNodeTitle: '新增下级'
+      newNodeTitle: '新增下级',
+      deleteTip1: '删除后数据不可恢复，确定删除吗？',
+      deleteTip2: '该节点存在下级节点，是否保留下级节点数据？',
+      deleteTip3: '保留下级节点数据'
     },
     usercard: {
       address: '地址',
@@ -745,7 +779,7 @@ export default {
     string: {
       len: '%s 必须是 %s 个字符',
       min: '%s 必须至少为 %s 个字符',
-      max: '%s不 能大于 %s 个字符',
+      max: '%s 不能大于 %s 个字符',
       range: '%s 必须介于 %s 和 %s 个字符之间'
     },
     types: {

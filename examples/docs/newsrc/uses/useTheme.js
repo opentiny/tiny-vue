@@ -15,7 +15,7 @@ function showTip() {
   isShowTip = true
 }
 
-export function useTheme() {
+export function useTheme({ readCacheImmediate = true } = {}) {
   const theme = new TinyThemeTool()
   const currThemeLabel = hooks.ref('tiny-default-theme')
   const lastThemeKey = localStorage.getItem('tinyThemeToolkey')
@@ -37,7 +37,7 @@ export function useTheme() {
   }
 
   // 切换上次缓存的主题
-  if (THEME_MAP[lastThemeKey]) {
+  if (readCacheImmediate && THEME_MAP[lastThemeKey]) {
     theme.changeTheme(THEME_MAP[lastThemeKey])
     currThemeLabel.value = lastThemeKey
   }

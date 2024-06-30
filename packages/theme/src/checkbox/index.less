@@ -73,6 +73,21 @@
       transform: rotate(45deg) scaleY(0);
       transition: transform 0.15s ease-in 0.05s;
       transform-origin: center;
+      left: 0;
+    }
+  }
+
+  &.is-filter {
+    background-color: #f5f6f8;
+    padding: 0 10px;
+    border-radius: 2px;
+    max-width: 192px;
+
+    .@{checkbox-prefix-cls}__label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 28px;
     }
   }
 
@@ -231,6 +246,11 @@
         }
       }
     }
+  }
+
+  input:focus-visible + .@{checkbox-prefix-cls}__inner {
+    outline: 2px solid var(--ti-checkbox-bg-color-checked);
+    outline-offset: 1px;
   }
 
   &__original {

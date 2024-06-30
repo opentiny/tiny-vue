@@ -16,6 +16,22 @@ import { toJsonStr } from '../common/object'
 import { toJson } from '../common/string'
 import { log } from '../common/xss'
 
+const toLowerCase = (val) => {
+  return typeof val === 'string' ? val.toLowerCase() : val
+}
+
+const getUserById = (obj, id) => {
+  return obj && obj[toLowerCase(id)]
+}
+
+const getLowerCaseObj = (obj) => {
+  const newObj = {}
+  Object.keys(obj).forEach((key) => {
+    newObj[toLowerCase(key)] = obj[key]
+  })
+  return newObj
+}
+
 const request = {
   timmer: null,
   group: {},
@@ -31,7 +47,9 @@ const request = {
     }
 
     queryIds.forEach((id) => {
-      if (!~this.group[valueField].indexOf(id)) !this.group[valueField].push(id)
+      if (!~this.group[valueField].indexOf(id)) {
+        this.group[valueField].push(id)
+      }
     })
   },
   removeRequest(item) {
@@ -67,7 +85,9 @@ const request = {
 
     return args
   },
+
   setCache(data, valueField) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const me = this
 
     if (valueField && !this.group[valueField]) {
@@ -77,7 +97,7 @@ const request = {
     data.forEach((item) => {
       for (let key in this.group) {
         if (!me.cache[key]) me.cache[key] = {}
-        me.cache[key][item[key]] = item
+        me.cache[key][toLowerCase(item[key])] = item
       }
     })
   },
@@ -96,11 +116,38 @@ const request = {
       })
   },
   batchRequest(api) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const me = this
     const reqParamsSeq = me.getParams()
     let reqLen = reqParamsSeq.length
+    let final = true
 
-    reqParamsSeq.map((params) => {
+    const onFinally = () => {
+      if (final) {
+        final = false
+        reqLen--
+
+        const errors = []
+
+        if (!reqLen) {
+          // 所有批次查询完成后触发未完成的回调并检查失败项
+          this.requests.forEach(({ cb, result, param }) => {
+            const { queryIds, valueField } = param
+
+            cb(result)
+            queryIds.forEach((id) => {
+              if (!getUserById(this.cache[valueField], id)) {
+                errors.push(id)
+              }
+            })
+          })
+          errors.length && log.logger.warn(`user [${errors.join(',')}] not found`)
+          this.clearRequest()
+        }
+      }
+    }
+
+    reqParamsSeq.forEach((params) => {
       api
         .fetchW3Accounts(params)
         .then((data) => {
@@ -111,7 +158,7 @@ const request = {
             const { queryIds, valueField } = param
 
             queryIds.forEach((id) => {
-              const user = me.cache[valueField] && me.cache[valueField][id]
+              const user = getUserById(me.cache[valueField], id)
               user && !reqItem.result.includes(user) && reqItem.result.push(user)
             })
 
@@ -121,27 +168,8 @@ const request = {
             }
           })
         })
-        .finally(() => {
-          reqLen--
-
-          const errors = []
-
-          if (!reqLen) {
-            // 所有批次查询完成后触发未完成的回调并检查失败项
-            this.requests.forEach(({ cb, result, param }) => {
-              const { queryIds, valueField } = param
-
-              cb(result)
-              queryIds.forEach((id) => {
-                if (!this.cache[valueField] || !this.cache[valueField][id]) {
-                  errors.push(id)
-                }
-              })
-            })
-            errors.length && log.logger.warn(`user [${errors.join(',')}] not found`)
-            this.clearRequest()
-          }
-        })
+        .then(onFinally)
+        .catch(onFinally)
     })
   },
   setBatch(batch) {
@@ -239,7 +267,7 @@ export const updateOptions =
 export const autoSelect =
   ({ props, state, nextTick }) =>
   (usersList) => {
-    if (!usersList.length) {
+    if (!usersList.length || (props.multiple && props.multipleLimit && state.user.length >= props.multipleLimit)) {
       return nextTick()
     }
 
@@ -272,7 +300,7 @@ export const autoSelect =
 
 export const searchMethod = ({ api, props, state, emit }) =>
   debounce(props.delay, (query) => {
-    if (query && query.length >= props.suggestLength) {
+    if (query && query.trim().length >= props.suggestLength) {
       state.loading = true
       state.visible = true
 
@@ -327,8 +355,8 @@ export const setSelected =
   }
 
 export const userChange =
-  ({ api, emit, props, state }) =>
-  (value) => {
+  ({ api, emit, props, state, dispatch, constants }) =>
+  (value, emitChangeFlag = true) => {
     const { multiple } = props
 
     let newVal = multiple && Array.isArray(value) ? value.join(props.valueSplit) : (value || '') + ''
@@ -340,8 +368,14 @@ export const userChange =
       state.lastValue !== null &&
       state.lastValue.toLocaleLowerCase() !== newVal.toLocaleLowerCase()
     ) {
+      // user组件依赖select组件，当输入完整工号时，select会自动选择并触发change事件。
+      // 此时还未触发update:modelValue，表单数据还未更新，数据为空导致校验错误，此处需再触发一次表单change校验
       emit('update:modelValue', newVal)
-      emit('change', newVal, state.selected)
+      if (emitChangeFlag) {
+        emit('change', newVal, state.selected)
+        // tiny 新增
+        dispatch(constants.COMPONENT_NAME.FormItem, constants.EVENT_NAME.FormChange, newVal)
+      }
     }
 
     state.lastValue = newVal
@@ -353,11 +387,13 @@ export const syncCacheIds =
     const { cacheFields, cacheKey } = props
     const { valueField } = state
     const cacheUsers = toJson(window.localStorage.getItem(cacheKey)) || {}
+    const caseCacheUsers = getLowerCaseObj(cacheUsers)
+
     ids.forEach((id) => {
       // 如果存在cache 但是cache中不存在自定义cacheFields的字段需要优化 TODO
-      if (cacheUsers[id]) {
-        const cacheUser = cacheUsers[id]
-
+      const caseId = toLowerCase(id)
+      const cacheUser = caseCacheUsers[caseId]
+      if (cacheUser) {
         const textField =
           state.textField === 'userCN' || state.textField === 'userId' || state.textField === 'dept'
             ? ''
@@ -382,7 +418,7 @@ export const syncCacheIds =
 
         cacheData.push(
           Object.assign(user, {
-            [valueField]: cacheUsers[id].p || cacheUsers[id].i
+            [valueField]: cacheUser.p || cacheUser.i
           })
         )
       } else {
@@ -543,7 +579,7 @@ export const visibleChange =
 export const initUser =
   ({ api, props, state }) =>
   (value) => {
-    if (value === state.lastValue) {
+    if (value === state.lastValue && value !== null) {
       return
     }
 
@@ -556,7 +592,7 @@ export const initUser =
     if (!value) {
       state.options = []
       state.selected = []
-      api.userChange(value)
+      api.userChange(value, props.changeCompat)
       return
     }
 
@@ -574,8 +610,7 @@ export const initUser =
 
         state.options = info
         state.user = props.multiple ? list : list[0]
-
-        api.userChange(value)
+        api.userChange(value, props.changeCompat)
       })
   }
 export const handleBlur =
@@ -629,12 +664,17 @@ export const filter =
     if (props.multiple && props.hideSelected) {
       const selectedUsers = state.user.map((value) => (typeof value === 'string' ? value.toLocaleLowerCase() : value))
 
-      return state.options.filter((user) => {
-        return !~selectedUsers.indexOf(
+      return state.options.map((user) => {
+        const _show = !~selectedUsers.indexOf(
           typeof user[state.valueField] === 'string'
             ? user[state.valueField].toLocaleLowerCase()
-            : user[state.textField]
+            : user[state.valueField]
         )
+
+        return {
+          ...user,
+          _show
+        }
       })
     }
 

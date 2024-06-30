@@ -19,7 +19,8 @@ import {
   computedCurrent,
   computedIsReverse,
   computedWidth,
-  computedItemStyle
+  computedItemStyle,
+  computedIconClass
 } from './index'
 import type {
   ITimelineItemApi,
@@ -34,22 +35,33 @@ export const api = ['state', 'handleClick', 'getStatusCls', 'getStatus', 'getDat
 
 export const renderless = (
   props: ITimelineItemProps,
-  { computed, reactive, inject }: ISharedRenderlessParamHooks,
+  { computed, reactive, inject, onUnmounted }: ISharedRenderlessParamHooks,
   { t, emit, constants }: ITimelineItemRenderlessParamUtils
 ): ITimelineItemApi => {
   const api = {} as ITimelineItemApi
 
-  const { timelineItems, nodes, props: rootProps } = inject('nodesInject') as ITimelineInject
-  timelineItems.push(props.node)
+  const { state: rootState, props: rootProps } = inject('nodesInject') as ITimelineInject
+
+  // 标签式使用时， 需要把自身回传给rootProps
+  if (!rootState.itemsArray.includes(props.node)) {
+    rootState.itemsArray.push(props.node)
+  }
+
+  onUnmounted(() => {
+    if (rootState.itemsArray.includes(props.node)) {
+      rootState.itemsArray.splice(rootState.itemsArray.indexOf(props.node), 1)
+    }
+  })
 
   const state: ITimelineItemState = reactive({
-    nodesLength: computed(() => nodes.length),
+    nodesLength: computed(() => rootState.nodes.length),
     current: computed(() => api.computedCurrent()),
     isReverse: computed(() => api.computedIsReverse()),
     computedSpace: computed(() => api.computedWidth(props.space || api.rootProps.space)),
     computedItemCls: computed(() => api.computedItemCls()),
     computedItemStyle: computed(() => api.computedItemStyle()),
-    computedLineWidth: computed(() => api.computedWidth(props.lineWidth || api.rootProps.lineWidth))
+    computedLineWidth: computed(() => api.computedWidth(props.lineWidth || api.rootProps.lineWidth)),
+    iconClass: computed(() => api.computedIconClass())
   })
 
   Object.assign(api, {
@@ -62,8 +74,9 @@ export const renderless = (
     computedItemStyle: computedItemStyle({ props, state, api }),
     computedWidth: computedWidth(),
     getStatus: getStatus({ state, t }),
-    handleClick: handleClick({ emit, state }),
-    getStatusCls: getStatusCls({ constants, state })
+    handleClick: handleClick({ emit, state, props }),
+    getStatusCls: getStatusCls({ constants, state, props }),
+    computedIconClass: computedIconClass({ props, api })
   })
 
   return api

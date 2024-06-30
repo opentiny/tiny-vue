@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-pop-upload",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -21,7 +21,8 @@
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-modal": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-file-upload": "workspace:~"
+    "@opentiny/vue-file-upload": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

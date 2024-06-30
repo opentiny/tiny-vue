@@ -18,6 +18,8 @@ import { on, off } from '../common/deps/dom'
 import { getDataset } from '../common/dataset'
 import { copyArray } from '../common/object'
 
+import { log } from '../common'
+
 export const setChildren = (props) => (data) => (props.data = data)
 
 export const getChildren = () => (props) => props.data
@@ -292,7 +294,7 @@ const afterLoadHandler =
 export const initTreeStore =
   ({ api, props, state, emit }) =>
   () => {
-    const { nodeKey, data, lazy, load, afterLoad, currentNodeKey, checkStrictly, checkDescendants } = props
+    const { nodeKey, data, lazy, load, currentNodeKey, checkStrictly, checkDescendants } = props
     const { defaultCheckedKeys, defaultExpandedKeys, autoExpandParent, defaultExpandAll, filterNodeMethod } = props
 
     state.store = new TreeStore({
@@ -315,7 +317,10 @@ export const initTreeStore =
     state.root = state.store.root
 
     api.initIsCurrent()
-    api.initPlainNodeStore()
+
+    if (props.willChangeView) {
+      api.initPlainNodeStore()
+    }
   }
 
 export const created =
@@ -430,13 +435,17 @@ export const updated =
   }
 
 export const filter =
-  ({ props, state }) =>
+  ({ props, state, api }) =>
   (value) => {
     if (!props.filterNodeMethod) {
       throw new Error('[Tree] filterNodeMethod is required when filter')
     }
 
     state.store.filter(value)
+    // tiny 新增： 移除了watch,所以要手动调用一下该方法
+    if (props.willChangeView) {
+      api.initPlainNodeStore()
+    }
   }
 
 export const getNodeKey = (props) => (node) => innerGetNodekey(props.nodekey, node.data)
@@ -499,13 +508,17 @@ export const setCheckedNodes =
   }
 
 export const setCheckedKeys =
-  ({ props, state }) =>
+  ({ props, state, api }) =>
   (keys, leafOnly) => {
     if (!props.nodeKey) {
       throw new Error('[Tree] nodeKey is required in setCheckedKeys')
     }
 
-    state.store.setCheckedKeys(keys, leafOnly)
+    if (props.showRadio) {
+      api.setCurrentRadio(keys)
+    } else {
+      state.store.setCheckedKeys(keys, leafOnly)
+    }
   }
 
 export const setChecked = (state) => (data, checked, deep) => {
@@ -669,7 +682,7 @@ const init = ({ state, nodeKey, checkedKey }) => {
 
 export const setCurrentRadio =
   ({ props, state }) =>
-  () => {
+  (paramCheckedKey?: any) => {
     if (!props.showRadio) {
       return
     }
@@ -679,7 +692,7 @@ export const setCurrentRadio =
     }
 
     const nodeKey = props.nodeKey
-    const defaultCheckedKeys = props.defaultCheckedKeys || []
+    const defaultCheckedKeys = props.defaultCheckedKeys || paramCheckedKey || []
     const checkedKey = defaultCheckedKeys.length ? defaultCheckedKeys[0] : null
 
     if (!checkedKey) {
@@ -783,9 +796,30 @@ export const saveNode =
   }
 
 export const addNode =
-  ({ api }) =>
+  ({ api, props, state }) =>
   (node) => {
-    const newNode = { label: '' }
+    let nodeId = 0
+
+    if (typeof props.editConfig.initNodeIdMethod === 'function') {
+      nodeId = props.editConfig.initNodeIdMethod(node)
+    } else {
+      nodeId = state.newNodeId
+
+      state.newNodeId++
+    }
+
+    if (state.allNodeKeys.includes(nodeId) && !props.editConfig.noWarning) {
+      log.logger.warn(`the ${props.nodeKey || 'id'} ${nodeId} is already exists. Please check.`)
+    }
+
+    state.allNodeKeys.push(nodeId)
+
+    const newNode = { label: '', [props.nodeKey || 'id']: nodeId }
+    const isLeafField = node.store && node.store.props.isLeaf
+
+    if (isLeafField) {
+      newNode[isLeafField] = true
+    }
 
     Object.defineProperty(newNode, '_isNewNode', {
       value: true,
@@ -842,7 +876,7 @@ export const deleteAction =
   }
 
 export const deleteConfirm =
-  ({ state }) =>
+  ({ state, props, api }) =>
   (event, node) => {
     state.action.type = 'delete'
     state.action.node = node
@@ -850,6 +884,18 @@ export const deleteConfirm =
     state.action.referenceElm = event.currentTarget
     state.action.popoverVisible = false
     state.action.isSaveChildNode = false
+
+    if (typeof props.deleteNodeMethod === 'function') {
+      const promise = props.deleteNodeMethod({ event, node })
+
+      if (promise && typeof promise.then === 'function') {
+        promise.then((bool) => bool && api.deleteAction())
+      } else if (promise) {
+        api.deleteAction()
+      }
+
+      return
+    }
 
     setTimeout(() => {
       state.action.popoverVisible = true
@@ -862,9 +908,26 @@ export const openEdit =
     state.action.show = true
     state.action.data = copyArray(props.data)
 
+    if (!state.allNodeKeys.length) {
+      getAllNodeKeys(state.action.data, state.allNodeKeys, props.nodeKey || 'id', props.props.children || 'children')
+    }
+
     api.watchData(state.action.data)
     emit('open-edit')
   }
+
+const getAllNodeKeys = (node, nodeKeys, nodeKey, children) => {
+  if (Array.isArray(node)) {
+    node.forEach((item) => {
+      if (item[nodeKey] || item[nodeKey] !== 0) {
+        nodeKeys.push(item[nodeKey])
+      }
+      if (item[children]) {
+        getAllNodeKeys(item[children], nodeKeys, nodeKey, children)
+      }
+    })
+  }
+}
 
 export const closeEdit =
   ({ props, state, api, emit }) =>
@@ -959,7 +1022,9 @@ export const initPlainNodeStore =
 export const handleCheckPlainNode =
   ({ props, emit }) =>
   (e, plainNode) => {
-    plainNode.node.setChecked(e, !props.checkStrictly)
+    if (props.showCheckbox) {
+      plainNode.node.setChecked(e, !props.checkStrictly)
+    }
 
     emit('check-plain', plainNode, e)
   }

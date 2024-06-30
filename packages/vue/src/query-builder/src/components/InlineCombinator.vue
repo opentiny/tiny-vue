@@ -1,6 +1,6 @@
 <template>
   <div :class="standardClassnames.betweenRules" :data-testid="TestID.inlineCombinator">
-    <component :is="CombinatorSelectorComponent" v-bind="otherProps" :testID="TestID.combinators"></component>
+    <component :is="CombinatorSelectorComponent" v-bind="otherProps" :test-i-d="TestID.combinators"></component>
   </div>
 </template>
 

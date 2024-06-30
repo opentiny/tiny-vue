@@ -14,7 +14,7 @@ test('测试编辑节点', async ({ page }) => {
 
   await expect(tree.getByText('数据 1-1-1')).toHaveCount(1)
   await btn1.click()
-  await expect(editIcons).toHaveCount(8)
+  await expect(editIcons).toHaveCount(9)
   await page.waitForTimeout(20)
 
   await btn2.click()

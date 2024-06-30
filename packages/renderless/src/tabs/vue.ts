@@ -61,6 +61,7 @@ const initState = ({ reactive, props }: Pick<ITabsRenderlessParams, 'reactive' |
     offsetY: 0,
     direction: '',
     expandPanesWidth: '',
+    activeIndex: 1,
     separator: props.separator
   }) as ITabsState
 
@@ -109,7 +110,7 @@ export const renderless = (
   Object.assign(api, {
     state,
     handleTabAdd: handleTabAdd(emit),
-    handleTabRemove: handleTabRemove(emit),
+    handleTabRemove: handleTabRemove({ emit, props }),
     changeDirection: changeDirection({ props, state }),
     changeCurrentName: changeCurrentName({ emit, state }),
     calcMorePanes: calcMorePanes({ parent, props, state, refs }),

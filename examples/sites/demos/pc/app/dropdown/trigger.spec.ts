@@ -11,11 +11,11 @@ test('触发方式', async ({ page }) => {
   const clickTrigger = dropDown.nth(1)
 
   // hover
-  await page.waitForTimeout(1200)
+  await page.waitForTimeout(2000)
   await hoverTrigger.hover()
   await expect(dropDownMenu.first()).toBeVisible()
   // click
-  await page.waitForTimeout(1200)
+  await page.waitForTimeout(2000)
   await clickTrigger.hover()
   await expect(dropDownMenu.nth(1)).not.toBeVisible()
   await clickTrigger.click()

@@ -123,57 +123,73 @@ export default defineComponent({
     }
 
     if (!Object.hasOwnProperty.call(this, 'popperVM')) {
-      let popperVM = createComponent({
-        el: document.createElement('div'),
-        component: {
-          render: () => {
-            let content = getContent(this)
-            let propsData = { on: { 'after-leave': this.doDestroy } }
-            let mouseenter = () => this.setExpectedState(true)
-            let mouseleave = () => {
-              this.setExpectedState(false)
-              this.debounceClose()
+      const _cacheVm = { value: null }
+      this.d({
+        popperVM: {
+          get: () => {
+            if (!_cacheVm.value) {
+              _cacheVm.value = createComponent({
+                el: document.createElement('div'),
+                component: {
+                  render: () => {
+                    let content = getContent(this)
+                    let propsData = { on: { 'after-leave': this.doDestroy } }
+                    let mouseenter = () => this.setExpectedState(true)
+                    let mouseleave = () => {
+                      this.setExpectedState(false)
+                      this.debounceClose()
+                    }
+
+                    const xPlacement = this.state.xPlacement || ''
+                    return h('transition', propsData, [
+                      <div
+                        data-tag="tiny-tooltip"
+                        ref="popper"
+                        id={this.state.tooltipId}
+                        v-show={!this.disabled && this.state.showPopper && content}
+                        appendToBody={this.appendToBody}
+                        class={mergeClass([
+                          classes.tooltip,
+                          !this.effect && !this.type && classes['tooltip-sm'],
+                          this.effect && classes[`effect-${this.effect}`],
+                          this.type && classes[`is-${this.type}`],
+                          this.disabled || !this.state.showPopper ? 'hidden' : '',
+                          this.popperClass
+                        ])}
+                        role="tooltip"
+                        aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
+                        onMouseenter={() => mouseenter()}
+                        onMouseleave={() => mouseleave()}>
+                        {content}
+                        {this.visibleArrow ? (
+                          <div
+                            x-arrow
+                            class={mergeClass([
+                              classes.arrow,
+                              classes['placement-' + xPlacement.split('-')[0]],
+                              !this.effect && !this.type && classes['placement-' + xPlacement.split('-')[0] + '-sm'],
+                              this.effect === 'light'
+                                ? classes['placement-' + xPlacement.split('-')[0] + '-light']
+                                : '',
+                              this.effect === 'dark' ? classes['placement-' + xPlacement.split('-')[0] + '-dark'] : '',
+                              this.type ? classes[`arrow-${xPlacement.split('-')[0]}-${this.type}`] : ''
+                            ])}></div>
+                        ) : (
+                          ''
+                        )}
+                      </div>
+                    ])
+                  }
+                }
+              })
             }
 
-            const xPlacement = this.state.xPlacement || ''
-            return h('transition', propsData, [
-              <div
-                data-tag="tiny-tooltip"
-                ref="popper"
-                id={this.state.tooltipId}
-                v-show={!this.disabled && this.state.showPopper && content}
-                appendToBody={this.appendToBody}
-                class={mergeClass([
-                  classes.tooltip,
-                  this.effect === 'dark' ? 'bg-color-text-primary text-color-text-inverse shadow-none' : '',
-                  this.effect === 'light' ? 'bg-color-bg-1 text-color-text-primary shadow-md' : '',
-                  this.disabled || !this.state.showPopper ? 'hidden' : '',
-                  this.popperClass
-                ])}
-                role="tooltip"
-                aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
-                onMouseenter={() => mouseenter()}
-                onMouseleave={() => mouseleave()}>
-                {content}
-                {this.visibleArrow ? (
-                  <div
-                    x-arrow
-                    class={mergeClass([
-                      classes.arrow,
-                      classes['placement-' + xPlacement.split('-')[0]],
-                      this.effect === 'light' ? classes['placement-' + xPlacement.split('-')[0] + '-light'] : '',
-                      this.effect === 'dark' ? classes['placement-' + xPlacement.split('-')[0] + '-dark'] : ''
-                    ])}></div>
-                ) : (
-                  ''
-                )}
-              </div>
-            ])
-          }
+            return _cacheVm.value
+          },
+
+          set: (val) => (_cacheVm.value = val)
         }
       })
-
-      this.d({ popperVM: { get: () => popperVM, set: (v) => (popperVM = v) } })
     }
 
     const stringifyBindClass = (bindClass, removeClassRE) => {

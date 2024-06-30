@@ -90,7 +90,7 @@ export const getDayBgColor =
   (day) => {
     const date = day.year + '-' + day.month + '-' + day.value
     const isFunction = props.setDayBgColor instanceof Function
-    const bgColor = isFunction ? props.setDayBgColor(date) : ''
+    const bgColor = isFunction ? props.setDayBgColor(date) : 'white'
 
     return bgColor
   }
@@ -163,7 +163,7 @@ const getCalendarItem = function (item, props, isFunction, type, isNext, isLast)
 export const handleEvents =
   ({ props, state }) =>
   () => {
-    let result = []
+    let result = [] as any[]
     const dayMillisecond = 24 * 60 * 60 * 1000
     const lastYear = lastMonth(state.activeYear, state.activeMonth).year
     const lastMon = lastMonth(state.activeYear, state.activeMonth).month
@@ -172,30 +172,39 @@ export const handleEvents =
 
     if (props.events && props.events.length) {
       props.events.forEach((prop) => {
-        // 这里不能直接改props.events里的数据需要进行一次拷贝，不然会导致死循环
+        // tiny新增，这里不能直接改props.events里的数据需要进行一次拷贝，不然会导致死循环
         const item = { ...prop }
         const {
-          year,
-          month,
+          year: startYear,
+          month: startMonth,
           day: startDay,
           hours: startHours,
           minutes: startMinutes,
           seconds: startSeconds
         } = parseDate(item.start)
-        const { day: endDay, hours: endHours, minutes: endMinutes, seconds: endSeconds } = parseDate(item.end)
+        const {
+          year: endYear,
+          month: endMonth,
+          day: endDay,
+          hours: endHours,
+          minutes: endMinutes,
+          seconds: endSeconds
+        } = parseDate(item.end)
 
         if (
-          [lastYear, +state.activeYear, nextYear].includes(year) &&
-          [lastMon, +state.activeMonth, nextMon].includes(month)
+          ([lastYear, +state.activeYear, nextYear].includes(startYear) &&
+            [lastMon, +state.activeMonth, nextMon].includes(startMonth)) ||
+          ([lastYear, +state.activeYear, nextYear].includes(endYear) &&
+            [lastMon, +state.activeMonth, nextMon].includes(endMonth))
         ) {
           item.start = getTime(item.start)
           item.end = getTime(item.end)
           item.startTime = makeUpZero(startHours) + ':' + makeUpZero(startMinutes) + ':' + makeUpZero(startSeconds)
           item.endTime = makeUpZero(endHours) + ':' + makeUpZero(endMinutes) + ':' + makeUpZero(endSeconds)
-          item.startDay = year + '-' + month + '-' + startDay
-          item.endDay = year + '-' + month + '-' + endDay
-          const startTimestamp = getTime(year + '-' + month + '-' + startDay)
-          const endTimestamp = getTime(year + '-' + month + '-' + endDay)
+          item.startDay = startYear + '-' + startMonth + '-' + startDay
+          item.endDay = endYear + '-' + endMonth + '-' + endDay
+          const startTimestamp = getTime(startYear + '-' + startMonth + '-' + startDay)
+          const endTimestamp = getTime(endYear + '-' + endMonth + '-' + endDay)
           const days = Math.abs(endTimestamp - startTimestamp) / dayMillisecond
           item.dayNumber = days >= 1 ? days + 1 : 1
 
@@ -214,23 +223,24 @@ export const handleEvents =
   }
 
 function splitEvent(props, event) {
-  const result = []
+  const result = [] as any[]
   const startDay = new Date(event.startDay)
-  const day = startDay.getDate()
+  const dayMillisecond = 24 * 60 * 60 * 1000
 
   if (event.dayNumber > 1) {
     for (let i = 0; i < event.dayNumber; i++) {
       let copyObj = JSON.parse(JSON.stringify(event))
+      let dayStartTimeStamp = new Date(startDay.getTime() + i * dayMillisecond)
 
       if (i === 0) {
         copyObj.realStart = copyObj.start
-        copyObj.realEnd = new Date(startDay.setDate(day + i)).setHours(props.dayTimes[1])
+        copyObj.realEnd = new Date(dayStartTimeStamp).setHours(props.dayTimes[1])
       } else if (i === event.dayNumber - 1) {
-        copyObj.realStart = new Date(startDay.setDate(day + i)).setHours(props.dayTimes[0])
+        copyObj.realStart = new Date(dayStartTimeStamp).setHours(props.dayTimes[0])
         copyObj.realEnd = copyObj.end
       } else {
-        copyObj.realStart = new Date(startDay.setDate(day + i)).setHours(props.dayTimes[0])
-        copyObj.realEnd = new Date(startDay.setDate(day + i)).setHours(props.dayTimes[1])
+        copyObj.realStart = new Date(dayStartTimeStamp).setHours(props.dayTimes[0])
+        copyObj.realEnd = new Date(dayStartTimeStamp).setHours(props.dayTimes[1])
       }
       result.push(copyObj)
     }
@@ -259,7 +269,9 @@ export const selectDay =
         state.selectedDates.push(date)
       }
 
+      emit('update:modelValue', state.selectedDates)
       emit('selected-date-change', state.selectedDates)
+      emit('date-click', date)
     } else {
       if (day.isNext) {
         const { year, month } = nextMonth(state.activeYear, state.activeMonth)
@@ -276,6 +288,9 @@ export const selectDay =
       state.selectedDate =
         day.value.toString().length > 2 ? day.value : `${state.activeYear}-${state.activeMonth}-${day.value}`
       state.showSelectedDateEvents = true
+
+      emit('update:modelValue', state.selectedDate)
+      emit('date-click', state.selectedDate)
     }
   }
 

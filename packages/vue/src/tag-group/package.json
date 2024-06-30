@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-tag-group",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -11,7 +11,8 @@
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-popover": "workspace:~",
     "@opentiny/vue-tag": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT",
   "devDependencies": {

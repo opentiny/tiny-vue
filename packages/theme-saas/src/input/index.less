@@ -12,11 +12,12 @@
   @apply inline-block;
   @apply w-full;
   @apply align-bottom;
-  @apply text-xs;
+  @apply text-sm;
+
 
   &.is-disabled &__inner {
-    @apply bg-color-border-disabled;
-    @apply border-color-border;
+    @apply bg-color-bg-6;
+    @apply border-color-border-separator;
     @apply text-color-text-secondary;
     @apply cursor-not-allowed;
     .placeholder(@color: theme('colors.color.text.disabled'));
@@ -41,16 +42,16 @@
     @apply right-4;
   }
 
-  &__inner {
+ & &__inner {
     @apply block;
     @apply w-full;
-    @apply ~"min-h-[theme(spacing.16)]";
+    @apply ~'min-h-[theme(spacing.16)]';
     @apply text-color-text-primary;
     @apply border border-solid border-color-border;
     @apply rounded;
     @apply bg-color-bg-1;
-    @apply py-2 px-3;
-    @apply leading-normal;
+    @apply py-0 px-3;
+    @apply ~'leading-[1.625rem]';
     font-size: inherit;
     @apply resize-y;
     @apply box-border;
@@ -72,16 +73,16 @@
       @apply border-color-border-focus;
     }
 
-    &.@{textarea-prefix-cls}__fix-height{
+    &.@{textarea-prefix-cls}__fix-height {
       @apply h-7;
-      @apply ~"min-h-[theme(spacing.7)]";
+      @apply ~'min-h-[theme(spacing.7)]';
       @apply py-0 px-2;
       @apply leading-7;
-      @apply overflow-hidden;
-    }
+      @apply overflow-hidden;   
+    }   
   }
 
-  .@{textarea-prefix-cls}__inner{
+  .@{textarea-prefix-cls}__inner {
     &::-webkit-scrollbar {
       @apply w-3;
     }
@@ -96,19 +97,26 @@
     }
   }
 
-  .@{textarea-prefix-cls}__inner-con{
+  .@{textarea-prefix-cls}__inner-con {
     @apply relative;
     @apply block;
     @apply h-7;
     @apply w-full;
 
-    .@{textarea-prefix-cls}__inner{
-      @apply ~"min-w-[theme(spacing.40)]";
+    .@{textarea-prefix-cls}__inner {
+      @apply ~'min-w-[theme(spacing.40)]';
       @apply absolute;
       @apply h-7;
       @apply ~'z-[2000]';
       @apply top-0;
       @apply left-0;
+
+      // 此处是为了修改保持单行默认28px后,hover-expand计算出来的样式和原来一致
+      &:hover,
+      &:focus {
+        @apply py-2;
+        @apply leading-normal;
+      }
     }
   }
 
@@ -135,7 +143,7 @@
       @apply line-clamp-1;
     }
 
-    .@{textarea-prefix-cls}__inner-con{
+    .@{textarea-prefix-cls}__inner-con {
       @apply h-auto;
 
       .@{textarea-prefix-cls}__inner {
@@ -178,7 +186,7 @@
 
 .@{input-prefix-cls} {
   @apply relative;
-  @apply text-xs;
+  @apply text-sm;
   @apply inline-table;
   @apply w-full;
 
@@ -216,9 +224,9 @@
 
   &.is-disabled &__inner {
     @apply cursor-not-allowed;
-    @apply border border-solid border-color-border;
+    @apply border border-solid border-color-border-separator;
     @apply text-color-text-secondary;
-    @apply bg-color-border-disabled;
+    @apply bg-color-bg-6;
     .placeholder(@color:theme('colors.color.text.disabled'));
 
     &.@{input-prefix-cls}__mask {
@@ -277,7 +285,7 @@
     }
   }
 
-  &__inner {
+   &__inner {
     @apply w-full;
     @apply border border-solid border-color-border;
     @apply rounded;
@@ -295,6 +303,10 @@
     @apply text-ellipsis;
     @apply overflow-hidden;
     @apply whitespace-nowrap;
+
+    &:focus-visible {
+      outline: none;
+    }
 
     &:hover,
     &:focus {
@@ -330,8 +342,8 @@
   &__prefix,
   &__suffix {
     @apply absolute;
-    @apply ~"top-1/2";
-    @apply ~"-translate-y-2/4";
+    @apply ~'top-1/2';
+    @apply ~'-translate-y-2/4';
     @apply transition-all duration-300;
     @apply text-center;
     @apply text-color-text-secondary;
@@ -416,6 +428,11 @@
     @apply pl-3;
   }
 
+  &-word-limit &__inner {
+    @apply pr-14;
+    @apply pl-3;
+  }
+
   &-prefix &__inner {
     @apply pl-12;
     @apply pr-7;
@@ -423,6 +440,7 @@
 
   &-medium {
     .input-size(32px);
+    @apply text-sm;
   }
 
   &-small {
@@ -448,7 +466,7 @@
         @apply absolute;
         @apply top-2/4;
         @apply left-0;
-        @apply ~"-translate-y-2/4";
+        @apply ~'-translate-y-2/4';
         @apply max-w-full;
         @apply truncate;
         @apply text-color-text-primary;
@@ -458,7 +476,7 @@
         @apply absolute;
         @apply top-2/4;
         @apply left-0;
-        @apply ~"-translate-y-2/4";
+        @apply ~'-translate-y-2/4';
         @apply max-w-full;
         @apply flex;
         @apply items-center;
@@ -470,6 +488,8 @@
       }
 
       &__mask-text {
+        @apply inline-block;
+        @apply ~'min-w-[theme(spacing.4)]';
         @apply truncate;
         @apply flex-1;
         @apply mr-4;
@@ -492,8 +512,7 @@
 
   &__append,
   &__prepend {
-    @apply bg-color-bg-2;
-    @apply text-color-text-secondary;
+    @apply text-color-text-primary;
     @apply border border-solid border-color-border;
     @apply rounded;
     @apply py-0 px-5;

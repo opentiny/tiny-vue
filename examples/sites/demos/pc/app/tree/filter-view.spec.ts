@@ -13,7 +13,7 @@ test('测试过滤视图', async ({ page }) => {
   await expect(tree.getByText('数据 1-1-1')).toHaveCount(1)
 
   await btnPlain.click()
-  await expect(checkboxs).toHaveCount(8)
+  await expect(checkboxs).toHaveCount(9)
   await page.waitForTimeout(20)
 
   await input.fill('1-1')

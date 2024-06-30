@@ -5,11 +5,11 @@
       ref="mask"
       v-if="mask"
       :class="
-        m('fixed z-50 left-0 right-0 top-0 bottom-0 w-full h-full transition-opacity ease-linear duration-200', {
-          'bg-color-bg-7': state.toggle
+        m('fixed z-50 left-0 right-0 top-0 bottom-0 w-full h-full transition ease-linear duration-200', {
+          'bg-color-bg-7': state.visible
         })
       "
-      @click="maskClosable && close()"
+      @click="handleClose('mask')"
     ></div>
     <!-- main -->
     <div
@@ -21,22 +21,33 @@
           { 'transition-all ease-linear duration-200': !state.dragEvent.isDrag },
           { 'h-full': ['left', 'right'].includes(placement) },
           { 'max-h-full': ['top', 'bottom'].includes(placement) },
-          { 'left-0 bottom-0 translate-y-full border-t-0.5': placement === 'bottom' },
-          { 'left-0 top-0 -translate-y-full border-b-0.5': placement === 'top' },
-          { 'translate-y-0': ['top', 'bottom'].includes(placement) && state.toggle },
-          { 'left-0 top-0 -translate-x-full border-r-0.5': placement === 'left' },
-          { 'right-0 top-0 translate-x-full border-l-0.5': placement === 'right' },
-          { 'translate-x-0': ['left', 'right'].includes(placement) && state.toggle },
+          { 'left-0 bottom-0 translate-y-full border-t-0.5 rounded-t-lg': placement === 'bottom' },
+          { 'left-0 top-0 -translate-y-full border-b-0.5 rounded-b-lg': placement === 'top' },
+          { 'translate-y-0': ['top', 'bottom'].includes(placement) && state.visible },
+          { 'left-0 top-0 -translate-x-full border-r-0.5 rounded-r-lg': placement === 'left' },
+          { 'right-0 top-0 translate-x-full border-l-0.5 rounded-l-lg': placement === 'right' },
+          { 'translate-x-0': ['left', 'right'].includes(placement) && state.visible },
           customClass
         )
       "
-      :style="{ width: ['left', 'right'].includes(placement) ? state.computedWidth : null }"
+      :style="{
+        width: ['left', 'right'].includes(placement) ? state.computedWidth : null,
+        height: ['top', 'bottom'].includes(placement) && dragable && state.height ? state.height + 'px' : null
+      }"
     >
       <div
         data-tag="drawer-drag-bar"
         ref="dragBar"
         v-if="dragable"
-        :class="['h-full absolute top-0 w-2 cursor-e-resize', placement === 'left' ? '-right-1' : '-left-1']"
+        :class="[
+          'absolute',
+          ['left', 'right'].includes(placement) && 'cursor-e-resize h-full top-0 w-2',
+          ['top', 'bottom'].includes(placement) && 'cursor-n-resize w-full h-2 left-0',
+          placement === 'left' && '-right-1',
+          placement === 'right' && '-left-1',
+          placement === 'top' && '-bottom-1',
+          placement === 'bottom' && '-top-1'
+        ]"
       ></div>
       <div :class="['flex-auto flex-col flex max-h-full overflow-hidden']">
         <!-- header -->
@@ -47,10 +58,14 @@
           class="flex-none flex leading-6 p-4 text-base items-center"
         >
           <slot name="header">
-            <div v-if="title" class="max-w-[80%] pr-4 text-left truncate">{{ title }}</div>
+            <div v-if="title" class="max-w-[80%] pr-4 text-left truncate text-color-text-primary">{{ title }}</div>
             <div class="flex-1 flex items-center justify-end">
               <slot name="header-right">
-                <IconClose custom-class="h-5 w-5 cursor-pointer" @click="close"></IconClose>
+                <IconClose
+                  custom-class="h-5 w-5 cursor-pointer"
+                  class="fill-color-icon-primary"
+                  @click="handleClose('close')"
+                ></IconClose>
               </slot>
             </div>
           </slot>
@@ -63,8 +78,10 @@
         <div data-tag="drawer-footer" ref="footer" v-if="showFooter" class="px-4 py-3">
           <div class="flex-1 text-right">
             <slot name="footer">
-              <tiny-button tiny_mode="mobile-first" @click="close">{{ t('ui.button.cancel') }}</tiny-button>
-              <tiny-button tiny_mode="mobile-first" class="ml-2" type="primary" @click="confirm">{{
+              <tiny-button tiny_mode="mobile-first" @click="handleClose('cancel')">{{
+                t('ui.button.cancel')
+              }}</tiny-button>
+              <tiny-button tiny_mode="mobile-first" class="ml-2" type="primary" @click="handleClose('confirm')">{{
                 t('ui.button.confirm')
               }}</tiny-button>
             </slot>
@@ -77,11 +94,11 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/drawer/vue'
-import { setup, props } from '@opentiny/vue-common'
+import { setup, props, defineComponent } from '@opentiny/vue-common'
 import { IconClose } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
 
-export default {
+export default defineComponent({
   components: {
     TinyButton: Button,
     IconClose: IconClose()
@@ -99,10 +116,12 @@ export default {
     'dragable',
     'maskClosable',
     'lockScroll',
-    'flex'
+    'flex',
+    'beforeClose'
   ],
+  emits: ['update:visible', 'open', 'close', 'confirm'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
-}
+})
 </script>

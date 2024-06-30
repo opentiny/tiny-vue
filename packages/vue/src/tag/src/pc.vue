@@ -27,6 +27,8 @@ export default defineComponent({
   render() {
     const { type, size, hit, effect, slots, closable, color, handleClose, handleClick, disabled, state, value } = this
 
+    let styles = {}
+
     const classes = [
       'tiny-tag',
       type ? `tiny-tag--${type}` : '',
@@ -36,12 +38,25 @@ export default defineComponent({
       disabled ? 'is-disabled' : ''
     ]
 
-    const tagElement = (
-      <span class={classes} style={{ backgroundColor: color }} onClick={handleClick}>
-        {value ? <span>{value}</span> : slots.default && slots.default()}
-        {closable && <icon-close class="tiny-svg-size tiny-tag__close " onClick={handleClose}></icon-close>}
-      </span>
-    )
+    if (color) {
+      if (Array.isArray(color)) {
+        styles = { background: color[0], color: color[1] }
+      } else if (['red', 'orange', 'green', 'blue', 'purple', 'brown', 'grey', 'gold'].includes(color)) {
+        classes.push(`tiny-tag--${color}`)
+      } else {
+        styles = { background: color }
+      }
+    }
+
+    const tagElement =
+      value || (slots.default && slots.default()) ? (
+        <span data-tag="tiny-tag" class={classes} style={styles} onClick={handleClick}>
+          {value ? <span>{value}</span> : slots.default && slots.default()}
+          {closable && <icon-close class="tiny-svg-size tiny-tag__close " onClick={handleClose}></icon-close>}
+        </span>
+      ) : (
+        <span></span>
+      )
 
     return tagElement
   }

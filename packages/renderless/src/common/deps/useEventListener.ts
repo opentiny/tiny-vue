@@ -1,11 +1,14 @@
 import { on, off, isServer } from './dom'
 
-const onMountedOrActivated =
+export const onMountedOrActivated =
   ({ onMounted, onActivated, nextTick }) =>
   (hook) => {
     let mounted
 
-    onMounted(() => (hook(), nextTick(() => (mounted = true))))
+    onMounted(() => {
+      hook()
+      nextTick(() => (mounted = true))
+    })
     onActivated(() => mounted && hook())
   }
 
@@ -48,7 +51,10 @@ export const useEventListener =
     let stopWatch
 
     if (isRef(target)) {
-      stopWatch = watch(target, (val, oldVal) => (remove(oldVal), add(val)))
+      stopWatch = watch(target, (val, oldVal) => {
+        remove(oldVal)
+        add(val)
+      })
     }
 
     return () => {

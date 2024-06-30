@@ -7,7 +7,9 @@ import {
   handleChange,
   getIsGroup,
   getSize,
-  isDisabled
+  isDisabled,
+  computedOptions,
+  getType
 } from './index'
 
 export const api = ['state', 'handelIconClick', 'handleChange']
@@ -17,15 +19,16 @@ export const renderless = (props, { reactive, computed }, { vm, parent, emit, ne
 
   const state = reactive({
     columnGroup: {},
+    type: computed(() => api.getType()),
     size: computed(() => api.getSize()),
     disabled: computed(() => api.isDisabled()),
     itemChecked: computed(() => api.getItemChecked()),
     sliceNum: computed(() => (props.size === 'small' ? 1 : 2)),
     iconNum: computed(() => (props.size === 'small' ? 2 : 3)),
-    effectOptions: computed(() => props.options.filter((item) => !item.hidden)),
     showCheckbox: computed(() => props.showCheckbox || state.columnGroup.showCheckbox),
     showRadio: computed(() => props.showRadio || state.columnGroup.showRadio),
     store: computed(() => api.computedStore()),
+    effectOptions: computed(() => api.computedOptions()),
     isGroup: computed(() => api.getIsGroup()),
     model: computed({
       get: () => api.getModel(),
@@ -43,7 +46,9 @@ export const renderless = (props, { reactive, computed }, { vm, parent, emit, ne
     handleChange: handleChange({ constants, dispatch, emit, state, nextTick }),
     computedStore: computedStore({ state, props }),
     handelIconClick: handelIconClick({ emit }),
-    getItemChecked: getItemChecked({ state, props })
+    getItemChecked: getItemChecked({ state, props }),
+    computedOptions: computedOptions({ props }),
+    getType: getType({ props, state })
   })
 
   return api

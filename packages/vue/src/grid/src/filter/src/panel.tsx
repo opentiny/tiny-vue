@@ -1,3 +1,5 @@
+/* eslint-disable vue/no-mutating-props */
+/* eslint-disable vue/no-use-computed-property-like-method */
 /**
  * MIT License
  *
@@ -29,7 +31,7 @@ import PopperJS from '@opentiny/vue-renderless/common/deps/popper'
 import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { t } from '@opentiny/vue-locale'
-import { hooks, h, $prefix } from '@opentiny/vue-common'
+import { hooks, h, $prefix, defineComponent } from '@opentiny/vue-common'
 import { iconCheck, iconCheckedSur, iconHalfselect, iconSearch } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
@@ -172,7 +174,7 @@ const renderEnumableOptions = ({ iconRender, _vm, filterStore, selectAll, search
   }
 }
 
-export default {
+export default defineComponent({
   name: $prefix + 'GridFilter',
   props: {
     filterStore: Object,
@@ -204,6 +206,7 @@ export default {
     const {
       filterStore,
       $grid,
+      $parent: $table,
       optimizeOpts,
       renderInput,
       renderEnumable,
@@ -238,7 +241,8 @@ export default {
           {
             'tiny-grid__animat': optimizeOpts.animat,
             [map.filterActive]: filterStore.visible,
-            'tiny-grid__filter-simple': layout.includes('simple')
+            'tiny-grid__filter-simple': layout.includes('simple'),
+            'filter-wrapper-saas': $table.isThemeSaas
           }
         ]}
         style={filterStore.style}>
@@ -722,4 +726,4 @@ export default {
       instance.popperJS && instance.popperJS.destroy() && (instance.popperJS = null)
     })
   }
-}
+})

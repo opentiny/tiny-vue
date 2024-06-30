@@ -10,9 +10,9 @@
       <template #toolbar>
         <tiny-grid-toolbar>
           <template #buttons>
-            <div style="width: 400px">
-              <tiny-input style="width: 200px" v-model="text" placeholder="请输入公司名称"></tiny-input>
-              <tiny-button @click="search">搜索</tiny-button>
+            <div>
+              <tiny-input class="w-200" v-model="text" placeholder="请输入公司名称"></tiny-input>
+              <tiny-button class="ml-8" @click="search">搜索</tiny-button>
             </div>
           </template>
         </tiny-grid-toolbar>
@@ -162,3 +162,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.w-200 {
+  width: 200px;
+}
+.ml-8 {
+  margin-left: 8px;
+}
+</style>

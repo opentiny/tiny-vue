@@ -79,14 +79,17 @@ const onRejected = (opt, _this) => {
       const posAndFinish = funcPosAndFinish(params, finish)
 
       const locatRow = getLocatRow(params)
+
       // 是否触发校验时自动定位到当前校验的单元格
       const isAutoPosFalse = _this.validOpts.autoPos === false
 
       isAutoPosFalse && finish()
+
       // 自动滚动到校验不通过的树表单元格
       !isAutoPosFalse && treeConfig && _this.scrollToTreeRow(locatRow).then(posAndFinish)
-      // 自动滚动到校验不通过的表格单元格
-      !isAutoPosFalse && !treeConfig && _this.scrollToRow(locatRow, true).then(posAndFinish)
+
+      // 自动滚动到校验不通过的表格单元格。调用方式优化：this.scrollToRow(locatRow, true) 第二个 true 参数会导致后续 colToVisible 不会被调用
+      !isAutoPosFalse && !treeConfig && _this.scrollToRow(locatRow, params.column, true).then(posAndFinish)
     })
   }
 }
@@ -255,15 +258,7 @@ export default {
     return new Promise(executor).then(onFulfilled).catch(onRejected)
   },
   _clearValidate() {
-    let src = {
-      column: null,
-      content: '',
-      row: null,
-      rule: null,
-      visible: false
-    }
-
-    Object.assign(this.validStore, src)
+    Object.assign(this.validStore, { column: null, content: '', isArrow: false, row: null, rule: null, visible: false })
     this.clostValidTooltip(undefined)
 
     return this.$nextTick()
@@ -310,8 +305,8 @@ export default {
     let { cell, column, row, rule } = params
     let content = rule.message
     let validTip = $refs.validTip
-    let msgCfg = validOpts.message
-    let showMsg = msgCfg === 'tooltip' || (msgCfg === 'default' && !height && tableData.length < 2)
+    let { isMessageTooltip, isMessageDefault, isMessageInline } = validOpts
+    let showMsg = isMessageTooltip || (isMessageDefault && !height && tableData.length < 2)
 
     this.$nextTick(() => {
       // 这里不能进行深拷贝，会对表格校验的判断造成影响，也不需要进行深拷贝
@@ -333,6 +328,8 @@ export default {
         validTip.setExpectedState(true)
 
         this.activateTooltipValid(validTip)
+      } else if (isMessageInline) {
+        this.$nextTick(() => this.recalculate())
       }
 
       emitEvent(this, 'valid-error', [params])

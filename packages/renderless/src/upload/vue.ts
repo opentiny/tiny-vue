@@ -52,19 +52,22 @@ export const api = [
 export const renderless = (
   props: IUploadProps,
   { computed, inject, reactive, onMounted, onBeforeUnmount }: ISharedRenderlessParamHooks,
-  { refs, service, t }: IUploadRenderlessParamUtils,
+  { refs, service, t, useBreakpoint }: IUploadRenderlessParamUtils,
   { Modal }: IFileUploadModalVm & { CryptoJS: object; Streamsaver: object }
 ): IUploadApi => {
   const api = {} as IUploadApi
   const uploader = inject('uploader') as IFileUploadVm
   const constants = uploader.$constants
+  const { current } = useBreakpoint()
   const state: IUploadState = reactive({
+    currentBreakpoint: current,
     mouseover: false,
     reqs: {},
     uploader,
     accecpt: '',
-    isEdm: computed(() => state.uploader.$refs[constants.FILE_UPLOAD_INNER_TEMPLATE].state.isEdm),
-    openEdmDownload: computed(() => state.uploader.$refs[constants.FILE_UPLOAD_INNER_TEMPLATE].edm.download),
+    uploadInner: computed(() => state.uploader.$refs[constants.FILE_UPLOAD_INNER_TEMPLATE]),
+    isEdm: computed(() => state.uploadInner.state.isEdm),
+    openEdmDownload: computed(() => state.uploadInner.edm.download),
 
     headers: computed(() => {
       if (state.isEdm) {
@@ -78,7 +81,8 @@ export const renderless = (
     formData: {},
     cancelToken: {},
     updateId: '',
-    updateInput: null
+    updateInput: null,
+    isStopPropagation: false
   })
 
   Object.assign(api, {
@@ -86,7 +90,7 @@ export const renderless = (
     isImage,
     abort: abort({ state, props, constants }),
     getFormData: getFormData({ state, constants, props }),
-    handleClick: handleClick({ props, refs }),
+    handleClick: handleClick({ props, refs, state }),
     onBeforeDestroy: onBeforeDestroy(state),
     handleUpdate: handleUpdate({ state, props }),
     uploadFiles: uploadFiles({ constants, Modal, props, state, t }),

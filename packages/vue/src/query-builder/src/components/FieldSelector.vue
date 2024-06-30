@@ -10,6 +10,7 @@
     :title="title"
     :disabled="disabled"
     :multiple="!!multiple"
+    v-bind="bindProps"
     @change="selectElementChangeHandler"
     hover-expand
   ></tiny-select>
@@ -34,7 +35,9 @@ export default defineComponent({
     'multiple',
     'listsAsArrays',
     'disabled',
-    'testID'
+    'testID',
+    'schema',
+    'bindProps'
   ],
   setup() {
     return {
@@ -64,7 +67,7 @@ export default defineComponent({
   },
   methods: {
     formatField(options = []) {
-      options.map((option) => {
+      options.forEach((option: any) => {
         const children = option.children
         if (children && children.length) {
           option.disabled = true

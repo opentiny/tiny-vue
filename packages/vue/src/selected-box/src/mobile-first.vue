@@ -1,19 +1,26 @@
 <template>
-  <div data-tag="tiny-selected-box" class="h-full mx-2 grid grid-cols-1 grid-rows-[36px_auto] bg-white">
-    <div class="flex justify-between items-center text-xs text-color-text-primary px-2">
-      <div class="max-w-[8rem]">
+  <div
+    data-tag="tiny-selected-box"
+    class="h-full mx-2 grid grid-cols-1 grid-rows-[theme(spacing.9)_auto] bg-color-bg-1"
+  >
+    <div
+      data-tag="tiny-selected-box-content"
+      class="flex justify-between items-center text-xs text-color-text-primary px-2"
+    >
+      <div data-tag="tiny-selected-box-select" class="max-w-[theme(spacing.32)]">
         <slot name="select" :params="state.slotParams">
           <span class="cursor-pointer">{{ i18nSelected() }}</span>
         </slot>
       </div>
-      <div class="flex space-x-2 select-none text-color-brand">
+      <div data-tag="tiny-selected-box-clear" class="flex space-x-2 select-none text-color-brand">
         <slot name="button" :params="state.slotParams"></slot>
         <slot name="clear" :params="state.slotParams" :clear="handleClear">
-          <div class="cursor-pointer" @click="handleClear">{{ t('ui.selectedBox.clear') }}</div>
+          <div v-if="state.showClear" class="cursor-pointer" @click="handleClear">{{ t('ui.selectedBox.clear') }}</div>
         </slot>
       </div>
     </div>
     <div
+      data-tag="tiny-selected-box-list"
       ref="list"
       :class="[
         'overflow-x-hidden overflow-y-auto text-xs text-color-text-primary',
@@ -27,8 +34,8 @@
         data-tag="tiny-selected-box-item"
         class="cursor-pointer hover:bg-color-bg-2 px-2 rounded-sm"
       >
-        <div class="grid grid-cols-[auto_24px]">
-          <div class="truncate">
+        <div class="grid grid-cols-[auto_theme(spacing.6)]" data-tag="tiny-selected-box-option">
+          <div class="truncate" data-tag="tiny-selected-box-truncate">
             <slot
               name="option"
               :params="state.slotParams"
@@ -56,9 +63,10 @@
               </div>
             </slot>
           </div>
-          <div>
+          <div data-tag="tiny-selected-box-close">
             <slot name="close" :params="state.slotParams" :option="option" :close="handleDelete">
               <div
+                data-tag="tiny-selected-box-icon"
                 :class="[
                   'h-7 translate-y-1 flex items-center justify-end',
                   'fill-color-icon-primary hover:fill-color-icon-hover'

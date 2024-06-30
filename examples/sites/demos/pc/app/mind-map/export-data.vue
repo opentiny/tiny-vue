@@ -1,12 +1,14 @@
 <template>
-  <tiny-mind-map class="mindmap" ref="mindmap" @create="onCreate" v-model="exampleData" />
-  <tiny-button @click="exportData">导出数据</tiny-button>
-  <tiny-button @click="importData" :loading="loading">导入示例数据</tiny-button>
-  <tiny-button @click="clearData" :loading="loading">清空数据</tiny-button>
+  <div>
+    <tiny-button @click="exportData">导出数据</tiny-button>
+    <tiny-button @click="importData" :loading="loading">导入示例数据</tiny-button>
+    <tiny-button @click="clearData" :loading="loading">清空数据</tiny-button>
+    <tiny-mind-map class="demo-mind-map-date" ref="mindmap" @create="onCreate" v-model="exampleData" />
+  </div>
 </template>
 
-<script lang="jsx">
-import { MindMap, Button, Notify } from '@opentiny/vue'
+<script>
+import { MindMap, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -66,11 +68,8 @@ export default {
     },
     exportData() {
       if (this.render) {
-        Notify({
-          type: 'info',
-          message: '数据已经输出于控制台, 请打开控制台查看'
-        })
-        // eslint-disable-next-line no-console
+        Modal.message({ message: '数据已经输出于控制台, 请打开控制台查看', status: 'info' })
+
         console.log(this.render.getData())
       }
     },
@@ -112,8 +111,9 @@ export default {
 </script>
 
 <style scoped>
-.mindmap {
+.demo-mind-map-date {
   width: 100%;
-  height: 300px;
+  height: 400px;
+  margin-top: 10px;
 }
 </style>

@@ -9,7 +9,7 @@
       :data="data"
       node-key="id"
       highlight-current
-      :current-node-key="'1-1'"
+      current-node-key="1-1"
       @current-change="currentChange"
       default-expand-all
     ></tiny-tree>
@@ -30,7 +30,10 @@ export default {
         {
           id: '1',
           label: '数据 1',
-          children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+          children: [
+            { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+            { id: '1-2', label: '数据 1-2' }
+          ]
         },
         {
           id: '2',
@@ -64,7 +67,7 @@ export default {
       console.log('当前高亮节点的信息为：', { data, node, nodeKey, innerKey, nodePath })
     },
     // 事件
-    currentChange(data, currentNode) {
+    currentChange(data, _currentNode) {
       this.getResultById(data.id)
     },
     setHighlight() {

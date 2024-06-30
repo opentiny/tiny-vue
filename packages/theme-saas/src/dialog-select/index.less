@@ -7,12 +7,15 @@
   .@{dialog-box-prefix-cls}__body {
     @apply mt-4;
     @apply mb-0;
+    @apply py-0;
+  }
+
+  .@{dialog-box-prefix-cls}__footer {
+    @apply border-t-0;
   }
 
   .@{dialog-select-prefix-cls}__body {
-
-    &-search,
-    &-selector {
+    &-search {
       @apply mb-4;
     }
 
@@ -21,7 +24,7 @@
     }
 
     &-box {
-      @apply border border-solid border-color-border;
+      @apply border border-solid border-color-bg-3;
       @apply border-l-0;
     }
 
@@ -44,15 +47,25 @@
         }
       }
     }
+
+    &-buttons {
+      .@{css-prefix}button + .@{css-prefix}button {
+        @apply ml-4;
+      }
+    }
   }
 
   .tiny-grid__body-wrapper {
     @apply border-b-0;
   }
 
+  .tiny-grid.tiny-grid__border:after {
+    @apply border-color-bg-3;
+  }
+
   .tiny-split-trigger-con-vertical.tiny-split-trigger-con-simple {
-    padding-left: 2px;
-    padding-right: 2px;
+    @apply ~'pl-0.5';
+    @apply ~'pr-0.5';
   }
 
   .tiny-split-trigger-vertical {

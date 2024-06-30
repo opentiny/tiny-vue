@@ -1,7 +1,7 @@
 <template>
   <tiny-cascader placeholder="试试搜索：安装" :options="options" filterable :debounce="1000">
     <template #empty>
-      <div>没有选项</div>
+      <div class="no-data">暂无数据</div>
     </template>
   </tiny-cascader>
 </template>
@@ -205,3 +205,10 @@ const options = ref([
   }
 ])
 </script>
+
+<style scoped lang="less">
+.no-data {
+  text-align: center;
+  line-height: 240px;
+}
+</style>

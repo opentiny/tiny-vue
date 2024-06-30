@@ -385,7 +385,7 @@
     display: flex;
     align-items: center;
     font-weight: var(--ti-modal-header-font-weight);
-    border-bottom: none;
+    border-bottom: var(--ti-modal-header-border-bottom);
     padding: var(--ti-modal-header-padding-top) var(--ti-modal-header-padding-horizontal)
       var(--ti-modal-header-padding-bottom);
     user-select: none;
@@ -393,6 +393,7 @@
 
   &__zoom-btn,
   &__close-btn {
+    color: var(--ti-modal-btn-close-color);
     font-size: var(--ti-modal-close-btn-font-size);
     position: absolute;
     right: var(--ti-modal-close-btn-right);
@@ -416,7 +417,7 @@
 
   &__footer {
     flex-shrink: 0;
-    text-align: center;
+    text-align: var(--ti-modal-footer-align);
     padding: var(--ti-modal-footer-padding-top) var(--ti-modal-footer-padding-horizontal)
       var(--ti-modal-footer-padding-bottom);
 

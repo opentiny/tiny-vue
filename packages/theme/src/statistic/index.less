@@ -1,0 +1,47 @@
+@import '../custom.less';
+@import './vars.less';
+
+@statistic-item-prefix-cls: ~'@{css-prefix}statistic';
+
+.@{statistic-item-prefix-cls} {
+  .component-css-vars-statistic();
+
+  width: 100%;
+
+  &__title {
+    font-size: var(--ti-statistic-font-size);
+    color: var(--ti-statistic-font-color);
+    font-weight: var(--ti-statistic-title-font-weight);
+    line-height: var(--ti-statistic-title-line-height);
+    margin-bottom: var(--ti-statistic-title-margin-bottom);
+  }
+
+  &__slots {
+    font-weight: var(--ti-statistic-font-weight);
+    font-size: var(--ti-statistic-title-font-size);
+    color: var(--ti-statistic-font-color);
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__prefix {
+    font-weight: var(--ti-statistic-prefix-font-weight);
+    font-size: var(--ti-statistic-font-size);
+  }
+
+  &__description {
+    font-size: var(--ti-statistic-description-font-size);
+    font-weight: var(--ti-statistic-description-font-weight);
+  }
+
+  &__suffix {
+    margin-left: var(--ti-statistic-suffix-margin-left);
+    font-size: var(--ti-statistic-suffix-font-size);
+    font-weight: var(--ti-statistic-suffix-font-weight);
+  }
+
+  &__description-margin {
+    margin-bottom: var(--ti-statistic-description-margin-bottom);
+    margin-top: var(--ti-statistic-description-margin-top);
+  }
+}

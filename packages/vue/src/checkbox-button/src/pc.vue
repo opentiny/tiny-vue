@@ -27,6 +27,7 @@
       class="tiny-checkbox-button__original"
       type="checkbox"
       :name="name"
+      :tabindex="tabindex"
       :disabled="state.isDisabled"
       :true-value="trueLabel"
       :false-value="falseLabel"
@@ -40,6 +41,7 @@
       class="tiny-checkbox-button__original"
       type="checkbox"
       :name="name"
+      :tabindex="tabindex"
       :disabled="state.isDisabled"
       :value="label"
       v-model="state.model"
@@ -64,7 +66,19 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
-  props: [...props, 'modelValue', 'label', 'text', 'events', 'disabled', 'checked', 'name', 'trueLabel', 'falseLabel'],
+  props: [
+    ...props,
+    'modelValue',
+    'label',
+    'text',
+    'events',
+    'disabled',
+    'checked',
+    'name',
+    'trueLabel',
+    'falseLabel',
+    'tabindex'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

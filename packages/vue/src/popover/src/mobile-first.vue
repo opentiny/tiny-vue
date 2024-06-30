@@ -1,9 +1,9 @@
 <template>
-  <span data-tag="tiny-popover" ref="root" :class="$attrs.class">
+  <span ref="root" :class="$attrs.class">
     <transition :name="transition" @after-enter="handleAfterEnter" @after-leave="handleAfterLeave">
       <div
-        data-tag="tiny-popover-content"
-        :class="[gcls('popper'), popperClass]"
+        data-tag="tiny-popover tiny-popper"
+        :class="[m(gcls('popper'), popperClass)]"
         ref="popper"
         v-show="!disabled && state.showPopper"
         :style="{ width: width + 'px' }"
@@ -11,7 +11,7 @@
         :id="state.tooltipId"
         :aria-hidden="disabled || !state.showPopper ? 'true' : 'false'"
       >
-        <div class="hidden sm:block" data-tag="tiny-popover-body">
+        <div class="hidden sm:block leading-5.5" data-tag="tiny-popover-arrow">
           <slot v-if="slots.header" name="header"></slot>
           <div v-else-if="title" :class="[gcls('title')]" v-text="title"></div>
           <slot>{{ content }}</slot>
@@ -26,8 +26,8 @@
         <div
           data-tag="tiny-popover-body"
           :class="[
-            'sm:hidden block fixed inset-0 text-sm text-color-text-primary transition-top ease-out duration-300',
-            `before:content-[''] before:fixed before:inset-0 before:w-full before:h-full before:opacity-30 before:bg-black`
+            'sm:hidden block fixed left-0 right-0 top-0 bottom-0 text-sm text-color-text-primary transition-top ease-out duration-300',
+            `before:content-[''] before:fixed before:left-0 before:right-0 before:top-0 before:bottom-0 before:w-full before:h-full before:bg-color-bg-7`
           ]"
         >
           <div

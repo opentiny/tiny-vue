@@ -27,11 +27,6 @@
   width: 100%;
   vertical-align: bottom;
   font-size: var(--ti-textarea-font-size);
-  border: 1px solid var(--ti-textarea-border-color);
-  border-radius: var(--ti-textarea-border-radius);
-  &:hover {
-    border-color: var(--ti-textarea-hover-border-color);
-  }
 
   &.is-disabled &__inner {
     background-color: var(--ti-textarea-disabled-bg-color);
@@ -73,7 +68,7 @@
     border-bottom-left-radius: var(--ti-textarea-count-border-radius);
     padding-right: var(--ti-textarea-count-padding-right);
     line-height: var(--ti-textarea-count-line-height);
-    
+
     &-text-length {
       color: var(--ti-textarea-count-text-length-color);
     }
@@ -85,7 +80,7 @@
     min-height: 60px;
     min-height: calc(var(--ti-textarea-height, 30px) * 2);
     color: var(--ti-textarea-text-color);
-    border: none;
+    border: 1px solid var(--ti-textarea-border-color);
     border-radius: var(--ti-textarea-border-radius);
     background: var(--ti-textarea-bg-color);
     padding: var(--ti-textarea-padding-vertical) var(--ti-textarea-padding-horizontal);
@@ -114,10 +109,78 @@
     &:focus {
       outline: 0;
     }
+
+    &.@{textarea-prefix-cls}__fix-height {
+      min-height: 30px;
+      height: 30px;
+      padding: 0 8px;
+      line-height: 30px;
+      overflow: hidden;
+    }
+  }
+
+  .@{textarea-prefix-cls}__inner {
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-clip: content-box;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+      border-top: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+    }
+  }
+
+  .@{textarea-prefix-cls}__inner-con {
+    position: relative;
+    display: block;
+    height: 30px;
+    width: 100%;
+
+    .@{textarea-prefix-cls}__inner {
+      min-width: 160px;
+      position: absolute;
+      z-index: 2000;
+      top: 0;
+      left: 0;
+    }
   }
 
   &.is-display-only {
+    .@{textarea-prefix-cls}-display-only.@{textarea-prefix-cls}__inner-con
+      .@{textarea-prefix-cls}-display-only__content,
+    .@{textarea-prefix-cls}-autosize-display-only.@{textarea-prefix-cls}__inner-con
+      .@{textarea-prefix-cls}-display-only__content {
+      position: relative;
+      left: 0;
+      max-width: 100%;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      /* autoprefixer: ignore next */
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    .@{textarea-prefix-cls}__inner-con {
+      height: auto;
+
+      .@{textarea-prefix-cls}__inner {
+        display: none;
+      }
+    }
+
     .@{textarea-prefix-cls}-display-only {
+      .@{textarea-prefix-cls}-display-only__wrap {
+        display: flex;
+      }
+
       .@{textarea-prefix-cls}-display-only__content {
         left: 0;
         max-width: 100%;
@@ -129,22 +192,39 @@
         overflow: hidden;
         word-wrap: break-word;
         white-space: pre-wrap;
-      }
-      .@{textarea-prefix-cls}-autosize-display-only {
-        .@{textarea-prefix-cls}-display-only__content {
-          left: 0;
-          max-width: 100%;
-          position: absolute;
-          white-space: pre-line;
-          line-height: 1.5;
+
+        &::before {
+          content: '';
+          float: right;
+          height: 100%;
+          margin-bottom: -14px;
+        }
+
+        .more-btn {
+          float: right;
+          clear: both;
+          color: #1890ff;
+          font-size: 12px;
+          line-height: 12px;
+          cursor: pointer;
         }
       }
-      .@{textarea-prefix-cls}__inner {
-        height: 0;
-        padding: 0;
-        border-style: none;
-        visibility: hidden;
+    }
+
+    .@{textarea-prefix-cls}-autosize-display-only {
+      .@{textarea-prefix-cls}-display-only__content {
+        left: 0;
+        max-width: 100%;
+        position: absolute;
+        white-space: pre-line;
+        line-height: 1.5;
       }
+    }
+    .@{textarea-prefix-cls}__inner {
+      height: 0;
+      padding: 0;
+      border-style: none;
+      visibility: hidden;
     }
   }
 }

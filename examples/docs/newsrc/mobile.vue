@@ -1,8 +1,12 @@
 <template>
   <div class="wp100 hp100 f-r of-hidden">
-    <div class="w230 pt20 of-auto">
-      <tiny-tree-menu class="!w213" :data="menuData" :filter-node-method="fn.searchMenu"
-        @current-change="fn.clickMenu"></tiny-tree-menu>
+    <div class="w230 pt20 of-auto sm-hidden b-r bg-white" :class="{ 'fixed-menu': showFixedMenu }">
+      <tiny-tree-menu
+        class="!w213"
+        :data="menuData"
+        :filter-node-method="fn.searchMenu"
+        @current-change="fn.clickMenu"
+      ></tiny-tree-menu>
     </div>
     <div class="fi-1 f-c px20 pb30 f-c pr200 of-auto">
       <!-- 标题 -->
@@ -12,12 +16,13 @@
       <div id="preview" class="bg-white">
         <div class="mb20 py10 pl16 child<code>p4 child<code>bg-lightless">
           <div class="mr20 fw-bold">
-            {{ state.currDemo?.name['zh-CN'] }}( <span class="allselect">{{ state.currDemo?.codeFiles[0] }}</span>):
+            {{ state.currDemo?.name['zh-CN'] }}( <span class="allselect">{{ state.currDemo?.codeFiles[0] }}</span
+            >):
           </div>
           <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
         <!-- 预览 -->
-        <div class="rel px20">
+        <div class="rel px20" :id="state.currDemo?.demoId">
           <div class="phone-container" @dblclick="fn.openInVscode(state.currDemo)">
             <div class="mobile-view-container">
               <component :is="state.comp"></component>
@@ -26,8 +31,7 @@
         </div>
       </div>
       <!-- API表格 -->
-      <div v-if="state.currApi.length" class="mt20 f24 fw-bold">组件API</div>
-
+      <div v-if="state.currApi?.length" class="mt20 f24 fw-bold">组件API</div>
       <div v-for="(oneGroup, idx) in state.currApi" :key="idx">
         <div class="mt20 f-r f-pos-start fw-bold">
           <div :id="oneGroup.name" class="f18">
@@ -42,12 +46,11 @@
             <div class="f18 py28">
               {{ key }}
             </div>
-
             <table class="api-table">
               <thead>
                 <tr>
-                  <th width="15%">名称</th>
-                  <th width="20%">类型</th>
+                  <th width="20%">名称</th>
+                  <th width="15%">类型</th>
                   <th width="20%">默认值</th>
                   <th width="55%">说明</th>
                 </tr>
@@ -71,10 +74,15 @@
       </div>
     </div>
     <!-- 右边浮动所有的demos -->
-    <tiny-floatbar v-if="state.demos.length > 0" class="!top120 !z1 !right25">
+    <tiny-floatbar v-if="state.demos?.length > 0" class="!top120 !z1 !right25">
       <div class="f12 ofy-auto">
-        <div v-for="demo in state.demos" :key="demo.demoId" @click="fn.selectDemo(demo.demoId)"
-          class="w130 px10 py4 bg-light f-r f-pos-between" :class="{ 'c-error': state.currDemo === demo }">
+        <div
+          v-for="demo in state.demos"
+          :key="demo.demoId"
+          @click="fn.selectDemo(demo.demoId)"
+          class="w130 px10 py4 bg-light f-r f-pos-between"
+          :class="{ 'c-error': state.currDemo === demo }"
+        >
           <div class="link-primary h:c-error h:td-under ellipsis">
             {{ demo.name['zh-CN'] }}
             <Icon-star-icon v-if="state.currDemo === demo" style="fill: #ee343f" />
@@ -90,10 +98,14 @@
 import { hooks } from '@opentiny/vue-common'
 import { Floatbar, TreeMenu, Button, Tooltip } from '@opentiny/vue'
 import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
-import { menuData, apis, demoStr, demoVue, mds } from './resourceMobile.js'
+import { menuData, demos, demoStr, demoVue, mds } from './resourceMobile.js'
 import { useModeCtx } from './uses'
+import { getDemosConfig, getApisConfig } from './utils/componentsDoc'
 
 export default {
+  props: {
+    showFixedMenu: Boolean
+  },
   components: {
     TinyFloatbar: Floatbar,
     TinyTreeMenu: TreeMenu,
@@ -144,18 +156,11 @@ export default {
 
     // 以下私有方法，无须传递给vue模板的。
     async function _switchPath() {
-      // 查找API
-      const apiModule = apis[`../../sites/demos/mobile/app/${modeState.pathName}/webdoc/${modeState.pathName}.js`]
-      if (apiModule) {
-        const module = await apiModule()
-        const apiRoot = module.default
-        state.currApi = apiRoot.apis
-        state.demos = apiRoot.demos || []
-        state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
-      } else {
-        state.currApi = null
-        state.currDemos = []
-      }
+      const demosModule = demos[`../../sites/demos/mobile/app/${modeState.pathName}/webdoc/${modeState.pathName}.js`]
+      const demosConfig = await getDemosConfig(demosModule)
+      state.demos = demosConfig.demos
+      state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
+      state.currApi = (await getApisConfig(modeState.pathName, 'mobile')).apis
       await _switchDemo()
     }
     async function _switchDemo() {

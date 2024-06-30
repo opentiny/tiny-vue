@@ -29,8 +29,7 @@ import type {
   ITimelineProps,
   ITimelineRenderlessParamUtils,
   ITimelineState,
-  ISharedRenderlessParamHooks,
-  ITimelineItem
+  ISharedRenderlessParamHooks
 } from '@/types'
 
 export const api = ['state', 'handleClick', 'getStatusCls', 'getStatus', 'getDate', 'changeStatus', 'toggleFold']
@@ -42,8 +41,9 @@ export const renderless = (
 ): ITimelineApi => {
   const api = {} as ITimelineApi
   const state: ITimelineState = reactive({
+    // 当标签式使用时，记录有多少个 item 的标签
+    itemsArray: [],
     nodes: computed(() => api.computedData()),
-    timelineItems: [],
     current: computed(() => api.computedCurrent()),
     isReverse: computed(() => api.computedIsReverse()),
     stackNodes: computed(() => (state.showAll ? state.nodes : api.computedStackNodes())),
@@ -63,24 +63,13 @@ export const renderless = (
     getStatus: getStatus({ state, t }),
     handleClick: handleClick({ emit, state }),
     getStatusCls: getStatusCls({ constants, state }),
-    computedStackNodes: computedStackNodes({ state, constants }),
+    computedStackNodes: computedStackNodes({ state, props }),
     changeStatus: changeStatus({ state }),
     computedWrapperClass: computedWrapperClass({ props }),
     toggleFold: toggleFold({ props })
   })
 
-  provide('nodesInject', { timelineItems: state.timelineItems, nodes: state.nodes, props })
-
-  watch(
-    () => state.timelineItems,
-    (newVal: ITimelineItem[]) => {
-      newVal.forEach((item, i) => (item.index = i))
-    },
-    {
-      immediate: true,
-      deep: true
-    }
-  )
+  provide('nodesInject', { state, props })
 
   return api
 }

@@ -16,6 +16,7 @@ import {
   watchIsRange,
   parseAsFormatAndType,
   watchPickerVisible,
+  watchMobileVisible,
   getValueEmpty,
   getMode,
   displayValue,
@@ -35,6 +36,7 @@ import {
   parseString,
   formatToString,
   handleMouseEnter,
+  handleInput,
   handleChange,
   handleStartInput,
   handleEndInput,
@@ -64,13 +66,14 @@ import {
   emitDbTime,
   handleEnterDisplayOnlyContent,
   handleEnterPickerlabel,
-  setInputPaddingLeft
+  setInputPaddingLeft,
+  formatInputValue
 } from './index'
+import { dateMobileToggle, timeMobileToggle, dateToTimeArray, timeArrayToDate, timeMobileConfirm } from './mb'
 import { DATEPICKER } from '../common'
 import type {
   IPickerProps,
   IPickerApi,
-  IPickerState,
   ISharedRenderlessParamHooks,
   IPickerRenderlessParamUtils,
   IPickRenderlessParamExtendOptions
@@ -86,9 +89,9 @@ export const api = [
   'handleStartChange',
   'handleStartInput',
   'handleKeydown',
-  'handleMouseEnter',
   'handleClickIcon',
   'handleMouseEnter',
+  'handleInput',
   'handleChange',
   'handleClose',
   'handlePick',
@@ -96,10 +99,14 @@ export const api = [
   'handleSelectChange',
   'popperElm',
   'handleEnterDisplayOnlyContent',
-  'handleEnterPickerlabel'
+  'handleEnterPickerlabel',
+  'timeMobileToggle',
+  'timeMobileConfirm',
+  'emitInput',
+  'dateMobileToggle'
 ]
 
-const initState = ({ api, reactive, vm, computed, props, utils, parent }) => {
+const initState = ({ api, reactive, vm, computed, props, utils, parent, breakpoint }) => {
   const state = reactive({
     historyValue: [],
     historyInput: [],
@@ -124,6 +131,7 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent }) => {
     haveTrigger: computed(() => api.computedHaveTrigger()),
     displayValue: computed(() => api.displayValue()),
     parsedValue: computed(() => api.parsedValue()),
+    oldValue: props.modelValue,
     pickerSize: computed(() => props.size),
     pickerDisabled: computed(() => props.disabled || state.formDisabled || state.isDisplayOnly),
     firstInputId: computed(() => api.firstInputId()),
@@ -134,16 +142,44 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent }) => {
     format: computed(() => api.computedFormat()),
     labelTooltip: '',
     displayOnlyTooltip: '',
-    isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly)
+    isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly),
+    isMobileScreen: computed(() => breakpoint.current.value === 'default'),
+    dateMobileOption: {
+      visible: false,
+      type: props.type,
+      value: props.modelValue
+    },
+    timeMobileOption: {
+      visible: false,
+      type: props.type,
+      value: [0, 0, 0],
+      defaultValue: [0, 0, 0]
+    },
+    isDateMobileComponent: computed(() =>
+      [
+        DATEPICKER.DateRange,
+        DATEPICKER.DateTimeRange,
+        DATEPICKER.DateTime,
+        DATEPICKER.DatePicker,
+        DATEPICKER.Date,
+        DATEPICKER.Dates
+      ].includes(props.type)
+    ),
+    isTimeMobileComponent: computed(() =>
+      [DATEPICKER.Time, DATEPICKER.TimeRange, DATEPICKER.TimeSelect, DATEPICKER.TimePicker].includes(props.type)
+    ),
+    showSeconds: computed(() =>
+      (state.format || (props.pickerOptions && props.pickerOptions.format) || 'ss').includes('ss')
+    )
   })
 
   return state
 }
 
-const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
+const initApi = ({ api, props, hooks, state, vnode, others, utils, parent }) => {
   const { t, emit, dispatch, nextTick, vm } = vnode
   const { TimePanel, TimeRangePanel } = others
-  const { destroyPopper, popperElm, updatePopper, doDestroy } = initPopper({ props, hooks, vnode })
+  const { destroyPopper, popperElm, updatePopper } = initPopper({ props, hooks, vnode })
 
   state.popperElm = popperElm
   state.picker = null
@@ -151,17 +187,18 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
   Object.assign(api, {
     destroyPopper,
     emitDbTime: emitDbTime({ emit, state, t }),
-    hidePicker: hidePicker({ state, doDestroy }),
-    handleSelectChange: ({ tz, date }) => emit('select-change', { tz, date }),
+    hidePicker: hidePicker({ destroyPopper, state }),
+    handleSelectChange: ({ tz, date }) => !state.ranged && emit('select-change', { tz, date }),
     getPanel: getPanel(others),
-    handleFocus: handleFocus({ emit, vm, state }),
+    handleFocus: handleFocus({ emit, vm, state, api }),
     getTimezone: getTimezone({ props, utils }),
     emitChange: emitChange({ api, dispatch, emit, props, state }),
     parsedValue: parsedValue({ api, props, state, t }),
     parseAsFormatAndType: parseAsFormatAndType({ api }),
-    typeValueResolveMap: typeValueResolveMap({ api, t }),
+    typeValueResolveMap: typeValueResolveMap({ api, props, t }),
     updateOptions: updateOptions({ api, props, state }),
     focus: focus({ api, props, vm }),
+    handleInput: handleInput({ api, state, props }),
     handleChange: handleChange({ api, state }),
     isValidValue: isValidValue({ api, state }),
     emitInput: emitInput({ api, emit, props, state }),
@@ -176,7 +213,8 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
     handleClose: handleClose({ api, props, state }),
     displayValue: displayValue({ api, props, state }),
     handlePick: handlePick({ api, state }),
-    watchPickerVisible: watchPickerVisible({ api, vm, dispatch, emit, props, state }),
+    watchPickerVisible: watchPickerVisible({ api, vm, dispatch, emit, props, state, nextTick }),
+    watchMobileVisible: watchMobileVisible({ api, props, state, nextTick }),
     formatToString: formatToString({ api, state }),
     watchIsRange: watchIsRange({ api, state, TimePanel, TimeRangePanel }),
     mountPicker: mountPicker({ api, vm, props, state, updatePopper }),
@@ -185,19 +223,27 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
     computedTriggerClass: computedTriggerClass({ props, state }),
     computedHaveTrigger: computedHaveTrigger({ props }),
     setInputPaddingLeft: setInputPaddingLeft({ props, state, vm, nextTick }),
+    formatInputValue: formatInputValue({ props, state })
+  })
 
+  initApi2({ api, props, state, t, parent })
+  initMobileApi({ api, props, state, t, parent })
+}
+
+const initApi2 = ({ api, props, state, t, parent }) => {
+  Object.assign(api, {
     t,
     state,
     blur: blur(state),
     getMode: getMode({ state }),
-    getType: getType({ props }),
-    dateParser: dateParser({ t }),
+    getType: getType({ props, parent }),
+    dateParser: dateParser({ t, props }),
     rangeParser: rangeParser(api),
     rangeFormatter: rangeFormatter(api),
     dateFormatter: dateFormatter({ t }),
     getValueEmpty: getValueEmpty(props),
-    handleEndInput: handleEndInput(state),
-    handleStartInput: handleStartInput(state),
+    handleEndInput: handleEndInput({ state, props, api }),
+    handleStartInput: handleStartInput({ state, props, api }),
     firstInputId: firstInputId({ props, state }),
     secondInputId: secondInputId({ props, state }),
     handleMouseEnter: handleMouseEnter({ props, state }),
@@ -209,12 +255,24 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils }) => {
   })
 }
 
+const initMobileApi = ({ api, props, state }) => {
+  Object.assign(api, {
+    dateMobileToggle: dateMobileToggle({ state, props, api }),
+    timeMobileToggle: timeMobileToggle({ state, props, api }),
+    timeMobileConfirm: timeMobileConfirm({ state, props, api }),
+    dateToTimeArray,
+    timeArrayToDate: timeArrayToDate({ state, props, api })
+  })
+}
+
 const initWatch = ({ api, state, props, watch, markRaw }) => {
   watch(
     () => state.type,
     (type) => (state.panel = markRaw(api.getPanel(type))),
     { immediate: true }
   )
+
+  watch(() => [state.dateMobileOption.visible, state.timeMobileOption.visible], api.watchMobileVisible)
 
   watch(() => state.pickerVisible, api.watchPickerVisible)
 
@@ -246,13 +304,14 @@ export const renderless = (
 ): IPickerApi => {
   const api = {} as IPickerApi
   const { reactive, computed, watch, onBeforeUnmount, inject, markRaw, onMounted } = hooks
-  const { vm, service, parent } = vnode
+  const { vm, service, parent, useBreakpoint } = vnode
   const { utils = {} } = service || {}
-  const state: IPickerState = initState({ api, reactive, vm, computed, props, utils, parent })
+  const breakpoint = useBreakpoint()
+  const state = initState({ api, reactive, vm, computed, props, utils, parent, inject, breakpoint })
 
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  initApi({ api, props, hooks, state, vnode, others, utils })
+  initApi({ api, props, hooks, state, vnode, others, utils, parent })
   initWatch({ api, state, props, watch, markRaw })
 
   api.initGlobalTimezone()
@@ -261,7 +320,7 @@ export const renderless = (
     api.setInputPaddingLeft()
   })
 
-  vm.$on('handle-clear', (event) => {
+  parent.$on('handle-clear', (event) => {
     state.showClose = true
     api.handleClickIcon(event)
   })

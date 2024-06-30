@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-popeditor",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -21,7 +21,10 @@
     "@opentiny/vue-grid": "workspace:~",
     "@opentiny/vue-pager": "workspace:~",
     "@opentiny/vue-dialog-box": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-tree": "workspace:~",
+    "@opentiny/vue-selected-box": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

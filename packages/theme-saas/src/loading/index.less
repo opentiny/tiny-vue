@@ -6,7 +6,7 @@
   &__mask {
     @apply absolute;
     @apply ~'z-[2000]';
-    @apply bg-white bg-opacity-90;
+    @apply bg-color-bg-1 opacity-90;
     @apply m-0;
     @apply top-0;
     @apply right-0;
@@ -29,8 +29,8 @@
   }
 
   &__spinner {
-    @apply ~"top-1/2";
-    @apply ~"-translate-y-2/4";
+    @apply ~'top-1/2';
+    @apply ~'-translate-y-2/4';
     @apply w-full;
     @apply text-center;
     @apply absolute;
@@ -39,27 +39,13 @@
       @apply text-color-text-primary;
       @apply mt-4 mr-0 mb-0 ml-0;
       @apply text-xs;
-      line-height: 14px;
+      @apply leading-5;
     }
 
     .circular {
       @apply h-10;
       @apply w-10;
       @apply inline-block;
-      animation: loading-rotate 2s linear infinite;
-    }
-
-    .path {
-      animation: loading-dash 1.5s ease-in-out infinite;
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: 0;
-      @apply stroke-2;
-      @apply stroke-color-brand;
-      stroke-linecap: round;
-    }
-
-    svg {
-      @apply fill-color-brand;
     }
   }
 

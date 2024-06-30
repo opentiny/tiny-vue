@@ -235,9 +235,7 @@ import { t } from '@opentiny/vue-locale'
 import { GridTools } from '@opentiny/vue-grid'
 import { find } from '@opentiny/vue-renderless/grid/static'
 import { createCustom, getStorage, setStorage, mergeArray } from './multiple-history'
-import { $props } from '@opentiny/vue-common'
-
-import { defineComponent } from '@opentiny/vue-common'
+import { $props, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   name: 'TinyGridCustomSwitch',
@@ -258,6 +256,7 @@ export default defineComponent({
       default: null
     }
   },
+  emits: ['init-storage'],
   props: {
     ...$props,
     customMode: String,
@@ -299,10 +298,10 @@ export default defineComponent({
       return this.status === 'apply'
         ? this.t('ui.grid.individuation.switchapply')
         : this.status === 'edit'
-        ? this.t('ui.grid.individuation.switchedit')
-        : this.status === 'del'
-        ? this.t('ui.grid.individuation.switchdel')
-        : this.t('ui.grid.individuation.switchconfirm')
+          ? this.t('ui.grid.individuation.switchedit')
+          : this.status === 'del'
+            ? this.t('ui.grid.individuation.switchdel')
+            : this.t('ui.grid.individuation.switchconfirm')
     }
   },
   watch: {
@@ -322,7 +321,7 @@ export default defineComponent({
     let {
       settingOpts: { storage: storageType, storageKey },
       id: toolbarId
-    } = (this as any).$grid.toolBarVm
+    } = this.$grid.getVm('toolbar')
 
     if (!this.doCheck({ storageType })) return
 
@@ -358,10 +357,11 @@ export default defineComponent({
         }
       }
 
-      const toolBarVm = (this as any).$grid.toolBarVm
-      const customVm = toolBarVm.$refs.custom
+      const toolbarVm = this.$grid.getVm('toolbar')
+      const customVm = toolbarVm.$refs.custom
+      customVm.updatedSorting = true
       const item = createCustom(customVm.buildSettings(), this.userKey)
-      const { id: toolbarId } = toolBarVm
+      const { id: toolbarId } = toolbarVm
 
       const business = (storeObj) => {
         storeObj = storeObj || {}
@@ -436,9 +436,9 @@ export default defineComponent({
     },
     handleApplyConfirm(flag) {
       if (flag === 'yes') {
-        const toolBarVm = (this as any).$grid.toolBarVm
-        const { id: toolbarId } = toolBarVm
-        const customVm = toolBarVm.$refs.custom
+        const toolbarVm = this.$grid.getVm('toolbar')
+        const { id: toolbarId } = toolbarVm
+        const customVm = toolbarVm.$refs.custom
         let customId
         let noStore = true
 
@@ -488,7 +488,7 @@ export default defineComponent({
       if (flag === 'yes') {
         if (!this.editName) return
 
-        const { id: toolbarId } = (this as any).$grid.toolBarVm
+        const { id: toolbarId } = this.$grid.getVm('toolbar')
 
         const business = (storeObj) => {
           storeObj = storeObj || {}
@@ -529,7 +529,7 @@ export default defineComponent({
     },
     handleDelConfirm(flag) {
       if (flag === 'yes') {
-        const { id: toolbarId } = (this as any).$grid.toolBarVm
+        const { id: toolbarId } = this.$grid.getVm('toolbar')
 
         const business = (storeObj) => {
           storeObj = storeObj || {}
@@ -558,17 +558,17 @@ export default defineComponent({
       }
     },
     doStorage(business, postOperate, noStore = false) {
-      const toolBarVm = (this as any).$grid.toolBarVm
+      const toolbarVm = this.$grid.getVm('toolbar')
       const {
         settingOpts: { storage: storageType },
         id: toolbarId
-      } = toolBarVm
+      } = toolbarVm
 
       getStorage(this.historyConfig.storageKey, storageType, this.historyConfig.remoteMethod).then((storeObj) => {
         storeObj = business(storeObj)
 
         if (!noStore) {
-          setStorage(this.historyConfig.storageKey, storeObj, storageType, toolBarVm, 'multiple-history')
+          setStorage(this.historyConfig.storageKey, storeObj, storageType, toolbarVm, 'multiple-history')
 
           this.options = storeObj[toolbarId].filter((opt) => (this.userKey ? opt.userKey === this.userKey : true))
         }
@@ -634,7 +634,8 @@ export default defineComponent({
         this.applyDisabled = true
       }
 
-      const customVm = (this as any).$grid.toolBarVm.$refs.custom
+      const toolbarVm = this.$grid.getVm('toolbar')
+      const customVm = toolbarVm.$refs.custom
 
       customVm.saveDisabled = false
 

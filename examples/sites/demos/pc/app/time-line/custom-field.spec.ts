@@ -12,5 +12,6 @@ test('自定义字段', async ({ page }) => {
   await expect(nodes.first().locator('.date-time .time')).toHaveText('00:00')
   await expect(nodes.first().locator('.name')).toHaveText('提交审批')
   await expect(nodes.nth(1).locator('.date-time .date')).toHaveText('2018-04-13')
+  await expect(nodes.nth(1).locator('.icon-custom')).toBeVisible()
   await expect(nodes.nth(2).locator('.name')).toHaveText('创建成功')
 })

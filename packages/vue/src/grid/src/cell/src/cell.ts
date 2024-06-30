@@ -22,13 +22,13 @@
  * SOFTWARE.
  *
  */
-import { get } from '@opentiny/vue-renderless/grid/static/'
+import { get, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { random } from '@opentiny/vue-renderless/common/string'
 import { getColumnConfig, getFuncText, formatText } from '@opentiny/vue-renderless/grid/utils'
 import { Renderer } from '../../adapter'
-import { getCellLabel } from '../../tools'
+import { getCellLabel, warn } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
-import { hooks } from '@opentiny/vue-common'
+import { hooks, isVnode } from '@opentiny/vue-common'
 import {
   iconCheckedSur,
   iconHalfselect,
@@ -158,7 +158,7 @@ function getColumnRuleTypeOperation({ _vm, renMaps, type }) {
 
 function getColumnRuleTypeOther({ $table, _vm, colProps, editor, filter, isTreeNode, renMaps, type }) {
   return {
-    match: () => !~['index', 'radio', 'selection', 'expand'].indexOf(type),
+    match: () => !~['index', 'radio', 'selection', 'expand', 'operation'].indexOf(type),
     action: () => {
       let { sortable, remoteSort } = colProps
       const isSortable = $table.sortable && (type ? false : sortable)
@@ -167,6 +167,10 @@ function getColumnRuleTypeOther({ $table, _vm, colProps, editor, filter, isTreeN
       if (editor) {
         renMaps.renderHeader = _vm.renderEditHeader
         renMaps.renderCell = getCellRender(isTreeNode, 'renderTreeRadioCell', 'renderRowEdit', _vm)
+
+        if ($table.editConfig && $table.editConfig.mode === 'row') {
+          renMaps.renderCell = getCellRender(isTreeNode, 'renderTreeRowEdit', 'renderRowEdit', _vm)
+        }
 
         if ($table.editConfig && $table.editConfig.mode === 'cell') {
           renMaps.renderCell = getCellRender(isTreeNode, 'renderTreeCellEdit', 'renderCellEdit', _vm)
@@ -188,6 +192,27 @@ const isCheckStrictly = (selectConfig) =>
   (selectConfig && selectConfig.checkStrictly && !selectConfig.showHeader) ||
   (selectConfig && !selectConfig.checkStrictly && selectConfig.showHeader === false)
 
+export const runRender = (render, ...params) => {
+  let vnode
+
+  try {
+    vnode = render(...params)
+  } catch (e) {
+    warn('ui.grid.error.renderParamError')
+  } finally {
+    if (!vnode || !isVnode(vnode)) {
+      try {
+        vnode = hooks.h(render)
+      } catch (e) {
+        vnode = null
+        warn('ui.grid.error.classComponentError')
+      }
+    }
+  }
+
+  return vnode
+}
+
 export const Cell = {
   createColumn($table, colProps) {
     let { type, filter, editor, treeNode } = colProps
@@ -199,7 +224,6 @@ export const Cell = {
     }
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     let _vm = this
-
     let ruleChains = [
       getColumnRuleTypeIndex({ _vm, isTreeNode, renMaps, type }),
       getColumnRuleTypeRadio({ _vm, isTreeNode, renMaps, type }),
@@ -235,16 +259,25 @@ export const Cell = {
     return getColumnConfig(colProps, renMaps, GLOBAL_CONFIG)
   },
   // 单元格
-  renderHeader(h, params) {
+  renderHeader(h, params, type?: string) {
     let { column } = params
     let { slots, own, title } = column
 
     if (slots && slots.header) {
-      return slots.header(params, h)
+      // Tiny新增，修复多端表格表头插槽显示异常问题
+      if (type === 'card') {
+        return [slots.header(params, h)]
+      } else {
+        return [h('div', { class: 'tiny-grid-cell-text' }, [slots.header(params, h)])]
+      }
     }
 
     if (typeof title === 'function') {
       return [title(h, params)]
+    }
+
+    if (type === 'card') {
+      return [formatText(getFuncText(own.title), 1)]
     }
 
     return [h('div', { class: 'tiny-grid-cell-text' }, [formatText(getFuncText(own.title), 1)])]
@@ -291,9 +324,13 @@ export const Cell = {
     let isActive = ~treeExpandeds.indexOf(row)
     let rowChildren = row[children]
     let listeners = {
-      click: (event) => $table.triggerTreeExpandEvent(event, params)
+      click: (event) => {
+        event.stopPropagation()
+        $table.triggerTreeExpandEvent(event, params)
+      }
     }
     let icon = GLOBAL_CONFIG.icon
+    const customExpandIcon = renderIcon || $table.$grid?.designConfig?.treeConfig?.renderIcon
 
     if (trigger && trigger !== 'default') {
       listeners = {}
@@ -303,8 +340,8 @@ export const Cell = {
 
     if (rowChildren && rowChildren.length) {
       iconVNode = [
-        renderIcon
-          ? renderIcon(h, { active: isActive, ...params })
+        customExpandIcon
+          ? customExpandIcon(h, { active: isActive, ...params })
           : h(iconArrowBottom(), {
               class: ['tiny-grid-tree__node-btn', icon.tree, { 'is__active': isActive }]
             })
@@ -348,11 +385,17 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderIndexCell(h, params))
   },
   renderIndexCell(h, params) {
-    let { $seq, level, seq } = params
-    let { startIndex, treeConfig = {} } = params.$table
-    let { indexMethod, slots } = params.column
-    let isOrdered = !!treeConfig.ordered
-    let indexValue = level && !isOrdered ? `${$seq}.${seq}` : startIndex + seq
+    const { $table, column, row, seq, $seq, level } = params
+    // startIndex：序号列的起始值
+    const { startIndex, treeConfig, scrollYLoad } = $table
+    const { indexMethod, slots } = column
+    const { ordered, temporaryIndex = '_$index_' } = treeConfig || {}
+    const isTreeOrderedFalse = treeConfig && !ordered
+    let indexValue = startIndex + seq
+    // tree-config为false的情况下，序号为1.1这种形式
+    if (isTreeOrderedFalse && level) {
+      indexValue = scrollYLoad ? row[temporaryIndex] : `${$seq}.${seq}`
+    }
 
     if (slots && slots.default) {
       return slots.default(params, h)
@@ -400,9 +443,6 @@ export const Cell = {
       }
     }
 
-    const map = {
-      isDisabled: 'is__disabled'
-    }
     return [
       h('label', { class: ['tiny-grid-radio', { [`size__${vSize}`]: vSize, 'is__disabled': disabled }] }, [
         h('input', options),
@@ -745,7 +785,7 @@ export const Cell = {
   renderEditHeader(h, params) {
     let { $table, column } = params
     let { editConfig, editRules, validOpts } = $table
-    let { filter, remoteSort, sortable, type } = column
+    let { filter, remoteSort, sortable, type, own } = column
     let icon = GLOBAL_CONFIG.icon
     let isRequired
 
@@ -771,7 +811,7 @@ export const Cell = {
 
     let vNodes = [
       isRequired && showAsterisk ? h('i', { class: `tiny-icon ${icon.required}` }) : null,
-      !editConfig || !column.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
+      !editConfig || !own.showIcon ? null : h(icon.edit, { class: 'tiny-grid-edit-icon tiny-svg-size' })
     ]
 
     vNodes = vNodes.concat(Cell.renderHeader(h, params))
@@ -865,15 +905,22 @@ export const Cell = {
 
     const renderBase = (buttonConfig, flag, classes, attrs) => {
       const mergeParams = { buttonConfig, ...params }
-      const on = isDisabled(buttonConfig) ? {} : { click: (e) => buttonConfig.click(e, mergeParams) }
+      const on = {
+        click: (e) => {
+          if (!isDisabled(buttonConfig) && isFunction(buttonConfig.click)) {
+            buttonConfig.click(e, mergeParams)
+          }
+        }
+      }
 
       classes = classes.join('\u{20}')
 
       const clazz = isDisabled(buttonConfig)
         ? [classes, 'tiny-grid__oper-col-button--disabled', disabledClass]
         : classes
-      const childNodes =
-        typeof buttonConfig.icon === 'function' ? [buttonConfig.icon(h, mergeParams)] : [h(buttonConfig.icon)]
+      const childNodes = isFunction(buttonConfig.icon)
+        ? [runRender(buttonConfig.icon, h, mergeParams)]
+        : [h(buttonConfig.icon)]
 
       return flag ? h('span', { class: clazz, attrs, on }, childNodes) : null
     }
@@ -894,8 +941,10 @@ export const Cell = {
       return (typeof hidden === 'boolean' && hidden) || (typeof hidden === 'function' && hidden(row))
     }
 
-    const handleItemClick = (name) => {
-      const buttonConfig = visibleButtons.find(({ name: buttonName }) => buttonName === name)
+    const handleItemClick = (itemData) => {
+      // 兼容不同itemData数据类型
+      const realName = itemData?.name || itemData
+      const buttonConfig = visibleButtons.find(({ name: buttonName }) => buttonName === realName)
       buttonConfig.click(window.event || {}, { buttonConfig, ...params })
     }
 
@@ -907,11 +956,13 @@ export const Cell = {
 
     if (visibleButtons.length > max) {
       const end = max - 1
+      const dropdownProps = { trigger: 'hover', showIcon: false }
 
       groupBig = visibleButtons.slice(0, end).map((buttonConfig) => renderBig(buttonConfig, viewClass))
-      groupBig.push(
-        h(Dropdown, { on: { 'item-click': handleItemClick }, props: { trigger: 'hover', showIcon: false } }, [
-          h(iconEllipsis(), { class: 'tiny-grid__oper-col-elps' }),
+
+      const scopedSlots = {
+        default: () => h(iconEllipsis(), { class: 'tiny-grid__oper-col-elps' }),
+        dropdown: () =>
           h(
             DropdownMenu,
             { slot: 'dropdown' },
@@ -926,13 +977,16 @@ export const Cell = {
               )
             )
           )
-        ])
-      )
+      }
+
+      groupBig.push(h(Dropdown, { on: { 'item-click': handleItemClick }, props: dropdownProps, scopedSlots }))
     } else {
       groupBig = visibleButtons.map((buttonConfig) => renderBig(buttonConfig, viewClass))
     }
 
-    return [h('span', { class: 'inline-flex' }, groupBig)]
+    return [
+      h('span', { class: 'tiny-grid__oper-col-wrapper', attrs: { 'data-tag': 'operation-cell-buttons' } }, groupBig)
+    ]
   }
 }
 

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/views/layout/layout.vue'
-import { LANG_KEY, LANG_PATH_MAP, ZH_CN_LANG } from './const'
+import { LANG_KEY, LANG_PATH_MAP, ZH_CN_LANG, CURRENT_THEME_KEY, THEME_ROUTE_MAP, DEFAULT_THEME } from './const'
 import { $local } from './tools/storage'
 
 const Components = () => import('@/views/components/components.vue')
@@ -12,20 +12,23 @@ const context = import.meta.env.VITE_CONTEXT
 let routes = [
   // 组件总览
   {
-    path: `${context}:lang/overview`,
+    path: `${context}:all?/:lang/:theme/overview`,
     component: Layout,
+    name: 'overview',
     children: [{ name: 'Overview', path: '', component: Overview, meta: { title: '组件总览 | TinyVue' } }]
   },
   // 文档
   {
-    path: `${context}:lang/:theme/docs/:docId`,
+    path: `${context}:all?/:lang/:theme/docs/:docId`,
     component: Layout,
+    name: 'docs',
     children: [{ name: 'Docs', path: '', component: Docs }]
   },
   // 组件
   {
-    path: `${context}:lang/:theme/components/:cmpId`,
+    path: `${context}:all?/:lang/:theme/components/:cmpId`,
     component: Layout,
+    name: 'components',
     children: [{ name: 'Components', path: '', component: Components }]
   },
   // 未匹配到目标地址时，进行路由重定向
@@ -34,7 +37,9 @@ let routes = [
     redirect: () => {
       const lang = $local[LANG_KEY]
       const langPath = LANG_PATH_MAP[lang] || LANG_PATH_MAP[ZH_CN_LANG]
-      return { path: `${context}${langPath}/overview` }
+      const themeKey = localStorage.getItem(CURRENT_THEME_KEY)
+      const theme = THEME_ROUTE_MAP[themeKey] || THEME_ROUTE_MAP[DEFAULT_THEME]
+      return { path: `${context}${langPath}/${theme}/overview` }
     }
   }
 ]

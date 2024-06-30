@@ -187,7 +187,10 @@ export const load =
     const list = infiniteScroll.load({ input: search.input, options: search.options })
 
     if (!list) {
-    } else if (typeof list.then === 'function') {
+      return
+    }
+
+    if (typeof list.then === 'function') {
       state.search.loading = true
       list.then((data) => {
         state.search.loading = false

@@ -1,10 +1,10 @@
 export const classes = {
   'button':
-    'inline-block  text-center overflow-hidden overflow-ellipsis whitespace-nowrap transition-button duration-300 delay-[0ms]',
+    'inline-block text-center overflow-hidden overflow-ellipsis whitespace-nowrap transition-button duration-300 delay-[0ms] active:transition-all active:scale-[0.95] active:ease-[cubic-bezier(0.33,0,0.67,1)]',
   'button-base-width': 'sm:max-w-[theme(spacing.36)]',
-  'size-default': 'h-10 text-sm sm:h-7 sm:text-xs',
-  'size-medium': 'h-10 text-sm sm:h-8 sm:text-xs',
-  'size-small': 'h-8 text-sm sm:h-7 sm:text-xs',
+  'size-default': 'h-10 text-sm sm:h-7',
+  'size-medium': 'h-10 text-sm sm:h-8',
+  'size-small': 'h-8 text-sm sm:h-7',
   'size-mini': 'h-7 sm:h-6 sm:text-xs',
   'type-default': `text-color-text-primary border-color-border hover:border-color-border-hover active:border-color-border-hover sm:cursor-pointer`,
   'type-primary': `text-color-text-inverse border-color-brand bg-color-brand hover:border-color-brand-hover hover:bg-color-brand-hover active:border-color-brand-active active:bg-color-brand-active sm:cursor-pointer`,

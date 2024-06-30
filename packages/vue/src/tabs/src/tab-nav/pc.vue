@@ -10,7 +10,7 @@
  *
  -->
 <script lang="tsx">
-import { $prefix, setup, h } from '@opentiny/vue-common'
+import { $prefix, setup, h, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
 import { renderless, api } from '@opentiny/vue-renderless/tab-nav/vue'
 import Dropdown from '@opentiny/vue-dropdown'
@@ -22,57 +22,7 @@ import type { ITabNavApi } from '@opentiny/vue-renderless/types/tab-nav.type'
 import TabBar from './tab-bar.vue'
 import { tabNavPcProps } from './index'
 
-const getOrderedPanes = (state, panes) => {
-  const slotDefault = state.rootTabs.$slots.default
-  let orders
-
-  if (typeof slotDefault === 'function') {
-    orders = []
-
-    const tabVnodes = slotDefault()
-    const handler = ({ type, componentOptions, props }) => {
-      let componentName = type && type.componentName
-
-      if (!componentName) componentName = componentOptions && componentOptions.Ctor.extendOptions.componentName
-
-      if (componentName === 'TabItem') {
-        const paneName = (props && props.name) || (componentOptions && componentOptions.propsData.name)
-
-        orders.push(paneName)
-      }
-    }
-
-    tabVnodes.forEach(({ type, componentOptions, props, children }) => {
-      if (
-        type &&
-        (type.toString() === 'Symbol(Fragment)' || // vue@3.3之前的开发模式
-          type.toString() === 'Symbol(v-fgt)' || //   vue@3.3.1 的变更
-          type.toString() === 'Symbol()') //          构建后
-      ) {
-        Array.isArray(children) &&
-          children.forEach(({ type, componentOptions, props }) => handler({ type, componentOptions, props }))
-      } else {
-        handler({ type, componentOptions, props })
-      }
-    })
-  }
-
-  if (orders) {
-    let tmpPanes = []
-
-    orders.forEach((paneName) => {
-      let pane = panes.find((pane) => pane.name === paneName)
-
-      if (pane) tmpPanes.push(pane)
-    })
-
-    panes = tmpPanes
-  }
-
-  return panes
-}
-
-export default {
+export default defineComponent({
   name: $prefix + 'TabNav',
   components: {
     TabBar,
@@ -101,9 +51,21 @@ export default {
       scrollNext,
       scrollPrev,
       changeTab,
-      tooltipConfig
+      setFocus,
+      removeFocus,
+      showMoreTabs,
+      popperClass,
+      overflowTitle,
+      titleWidth,
+      handleTitleMouseenter,
+      handleTitleMouseleave,
+      // tiny 新增
+      moreIcon,
+      tooltipConfig,
+      panelMaxHeight,
+      panelWidth
     } = this
-    let { panes, setFocus, removeFocus, showMoreTabs, popperClass, moreIcon } = this
+    let { panes } = this
 
     const spans = [
       <span class={['tiny-tabs__nav-prev', state.scrollable.prev ? '' : 'is-disabled']} onClick={scrollPrev}>
@@ -164,30 +126,29 @@ export default {
           ? h(DropdownMenu, {
               attrs: {
                 popperClass: 'tiny-tabs-dropdown tiny-tabs__more-dropdown' + (popperClass ? ' ' + popperClass : ''),
-                placement: 'bottom-start'
+                placement: 'bottom-start',
+                style: { maxHeight: panelMaxHeight, width: panelWidth }
               },
               scopedSlots: { default: menuSlot }
             })
           : null
 
-      // 防止没有内容也显示下拉框
-      const moreContent = isShowDropDown
-        ? h(Dropdown, {
-            attrs: {
-              trigger: 'hover'
-            },
-            scopedSlots: { default: reference, dropdown: dropdownSlot }
-          })
-        : reference()
-
+      // tiny 新增：防止没有内容也显示下拉框。  aui 此处为Popover组件实现
       moreTabs = (
         <div class="tiny-tabs__more-container" ref="more">
-          {moreContent}
+          {isShowDropDown
+            ? h(Dropdown, {
+                attrs: {
+                  trigger: 'hover'
+                },
+                scopedSlots: { default: reference, dropdown: dropdownSlot }
+              })
+            : reference()}
         </div>
       )
     }
 
-    const tabs = getOrderedPanes(state, panes).map((pane, index) => {
+    const tabs = panes.map((pane, index) => {
       let tabName = pane.name || pane.state.index || index
       const withClose = pane.state.isClosable || editable
 
@@ -202,6 +163,27 @@ export default {
           />
         </span>
       ) : null
+
+      const getTabTitle = (title) => {
+        return h(
+          'span',
+          {
+            class: { 'tiny-tabs__item-title': true },
+            style: {
+              'max-width': titleWidth
+            },
+            on: {
+              mouseenter(e) {
+                handleTitleMouseenter(e, title)
+              },
+              mouseleave(e) {
+                handleTitleMouseleave(e)
+              }
+            }
+          },
+          [title]
+        )
+      }
 
       const tipComp = () =>
         tooltipConfig === 'title'
@@ -221,7 +203,7 @@ export default {
         tooltipConfig ? tipComp() : h('span', { class: 'tiny-tabs__item__title' }, [pane.title])
       const itemsSeparator = <span class="tiny-tabs__item-separator"></span>
 
-      const tabLabelContent = () => (pane.$slots.title ? pane.$slots.title() : toolTipComp())
+      const tabLabelContent = pane.$slots.title ? pane.$slots.title() : toolTipComp()
       const tabindex = pane.state.active ? 0 : -1
 
       return h(
@@ -241,6 +223,7 @@ export default {
           attrs: {
             id: `tab-${tabName}`,
             'aria-controls': `pane-${tabName}`,
+            'data-index': index + 1,
             role: 'tab',
             'aria-selected': pane.state.active,
             tabindex,
@@ -264,7 +247,7 @@ export default {
             }
           }
         },
-        [tabLabelContent(), btnClose, state.separator && itemsSeparator]
+        [overflowTitle ? getTabTitle(tabLabelContent) : tabLabelContent, btnClose, state.separator && itemsSeparator]
       )
     })
 
@@ -298,8 +281,18 @@ export default {
             {tabs}
           </div>
         </div>
+
+        {overflowTitle ? (
+          <Tooltip
+            ref="tooltip"
+            v-model={state.tooltipVisible}
+            manual={true}
+            effect="light"
+            content={state.tooltipContent}
+            placement="top"></Tooltip>
+        ) : null}
       </div>
     )
   }
-}
+})
 </script>

@@ -14,7 +14,6 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'file-type',
       name: {
@@ -97,7 +96,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>文件上传模式，配置 `download-all` 事件，会显示下载全部按钮，点击下载全部按钮会触发 `download-all` 事件<p>',
+          '<p>文件上传模式，配置 `download-all` 事件，会显示下载全部按钮，点击下载全部按钮会触发 `download-all` 事件。<p>',
         'en-US': '<p>button click</p>'
       },
       codeFiles: ['download-all.vue']
@@ -110,10 +109,24 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>文件上传模式，配置 `download-file` 事件，已上传的文件会显示下载按钮，点击下载按钮会触发 `download-file` 事件<p>',
+          '<p>文件上传模式，配置 `download-file` 事件，已上传的文件会显示下载按钮，点击下载按钮会触发 `download-file` 事件。<p>',
         'en-US': '<p>button click</p>'
       },
       codeFiles: ['download.vue']
+    },
+    {
+      demoId: 'show-download-bar',
+      name: {
+        'zh-CN': '下载进度条',
+        'en-US': 'Download progress bar'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过给 file 对象设置 `showDownloadBar:true` 可以显示下载进度条，`downloadPercentage` 属性传入下载进度，`downloadStatus` 设置下载状态。<p>',
+        'en-US':
+          '<p>You can set the `showDownloadBar:true` attribute of the file object to display the download progress bar, set the`downloadPercentage` attribute to transfer the download progress, and set the`downloadStatus` to set the download status.</p>'
+      },
+      codeFiles: ['show-download-bar.vue']
     },
     {
       demoId: 'download-picture',
@@ -123,7 +136,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>图片上传模式，配置 `download-file` 事件，已上传的文件会显示下载图标，点击下载按钮会触发 `download-file` 事件<p>',
+          '<p>图片上传模式，配置 `download-file` 事件，已上传的文件会显示下载图标，点击下载按钮会触发 `download-file` 事件。<p>',
         'en-US': '<p>button click</p>'
       },
       codeFiles: ['download-picture.vue']
@@ -136,7 +149,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>文件上传模式，配置 `re-upload` 事件，上传失败的文件会显示重新上传按钮，点击重新上传按钮会触发 `re-upload` 事件<p>',
+          '<p>文件上传模式，配置 `re-upload` 事件，上传失败的文件会显示重新上传按钮，点击重新上传按钮会触发 `re-upload` 事件。<p>',
         'en-US': '<p>button click</p>'
       },
       codeFiles: ['re-upload.vue']
@@ -149,7 +162,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>图片上传模式，配置 `re-upload` 事件，上传失败的文件会显示重新上传图标，点击重新上传按钮会触发 `re-upload` 事件<p>',
+          '<p>图片上传模式，配置 `re-upload` 事件，上传失败的文件会显示重新上传图标，点击重新上传按钮会触发 `re-upload` 事件。<p>',
         'en-US': '<p>button click</p>'
       },
       codeFiles: ['re-upload-picture.vue']
@@ -309,7 +322,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>可配置 `file-list` 属性展示对应的文件<p>',
+        'zh-CN': '<p>可配置 `file-list` 属性展示对应的文件。<p>',
         'en-US': '<p>button click</p>'
       },
       codeFiles: ['drag-file-list.vue']
@@ -322,7 +335,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>`trigger-click` 点击文件上传时触发的事件<br>`preview` 点击预览时触发的事件<br> `download-file` 点击下载时触发的事件<br>`download-all` 点击全部下载时触发的事件<br>`re-upload` 点击重新上传时触发的事件<br>`click-file-list` 点击上传的文件列表时触发的事件<p>',
+          '<p>`trigger-click` 点击文件上传时触发的事件<br>`preview` 点击预览时触发的事件<br> `download-file` 点击下载时触发的事件<br>`download-all` 点击全部下载时触发的事件<br>`re-upload` 点击重新上传时触发的事件<br>`click-file-list` 点击上传的文件列表时触发的事件。<p>',
         'en-US': '<p>button click</p>'
       },
       codeFiles: ['event-trigger-click.vue']
@@ -330,14 +343,38 @@ export default {
     {
       demoId: 'assist-content',
       name: {
-        'zh-CN': '插槽',
-        'en-US': 'events'
+        'zh-CN': '辅助内容插槽',
+        'en-US': 'Secondary Content Slot'
       },
       desc: {
-        'zh-CN': '<p>`assist-content` 辅助内容插槽<p>',
-        'en-US': '<p>button click</p>'
+        'zh-CN': '<p><code>assist-content</code> 辅助内容插槽。<p>',
+        'en-US': '<p><code>assist-content</code> secondary content slot.</p>'
       },
       codeFiles: ['assist-content.vue']
+    },
+    {
+      demoId: 'slot-operate',
+      name: {
+        'zh-CN': '操作区域插槽',
+        'en-US': 'Operating Area Slot'
+      },
+      desc: {
+        'zh-CN': '<p><code>operate</code> 定义操作区域插槽。<p>',
+        'en-US': '<p><code>operate</code>Define operation area slot.</p>'
+      },
+      codeFiles: ['slot-operate.vue']
+    },
+    {
+      demoId: 'notice',
+      name: {
+        'zh-CN': '公告通知插槽',
+        'en-US': 'Bulletin Notification Slot'
+      },
+      desc: {
+        'zh-CN': '<p><code>notice</code> 定义公告通知插槽。<p>',
+        'en-US': '<p><code>notice</code> Defines the bulletin notification slot.</p>'
+      },
+      codeFiles: ['notice.vue']
     },
     {
       demoId: 'encrypt-config',
@@ -346,11 +383,12 @@ export default {
         'en-US': 'Watermark and Encryption Configuration'
       },
       desc: {
-        'zh-CN': `<p>设置 <code>:encrypt-config: { enabled: true, ... }</code> 开启水印和加密弹窗配置，<code>encrypt-config</code> 默认值为 <code>{ enabled: false, encrypt: false, watermark: '' }</code><p>`,
-        'en-US': `<p>Set the <code>:encrypt-config: {enabled: true, ...}</code> to enable the watermark and encryption pop-up window configuration. <code>encrypt-config</code>The default value is <code>{enabled: false, encrypt: false, watermark: ''}</code><p>`
+        'zh-CN':
+          "<p>设置 <code>:encrypt-config: { enabled: true, ... }</code> 开启水印和加密弹窗配置，<code>encrypt-config</code> 默认值为 <code>{ enabled: false, encrypt: false, watermark: '' }</code><p>",
+        'en-US':
+          "<p>Set the <code>:encrypt-config: {enabled: true, ...}</code> to enable the watermark and encryption pop-up window configuration. <code>encrypt-config</code>The default value is <code>{enabled: false, encrypt: false, watermark: ''}</code><p>"
       },
       codeFiles: ['encrypt-config.vue']
     }
-  ],
-  apis: []
+  ]
 }

@@ -1,7 +1,6 @@
 import {
   close,
   watchVisible,
-  watchToggle,
   confirm,
   mousedown,
   mouseup,
@@ -10,40 +9,52 @@ import {
   removeDragEvent,
   showScrollbar,
   hideScrollbar,
-  watchVisibleNotImmediate
+  handleClose,
+  computedWidth,
+  open
 } from './index'
+import type {
+  IDrawerProps,
+  IDrawerState,
+  IDrawerApi,
+  IDrawerRenderlessParamUtils,
+  ISharedRenderlessParamHooks
+} from '@/types'
 
-export const api = ['state', 'close', 'confirm']
+export const api = ['state', 'close', 'confirm', 'handleClose', 'open']
 
 export const renderless = (
-  props,
-  { reactive, watch, onMounted, onBeforeUnmount, computed },
-  { emit, vm, mode, constants }
+  props: IDrawerProps,
+  { reactive, watch, onMounted, onBeforeUnmount, computed }: ISharedRenderlessParamHooks,
+  { emit, vm, mode, constants, designConfig }: IDrawerRenderlessParamUtils
 ) => {
   const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
 
-  const api = {}
-  const state = reactive({
-    toggle: false,
+  const api = {} as IDrawerApi
+  const state: IDrawerState = reactive({
+    visible: false,
     width: 0,
-    dragEvent: { x: 0, isDrag: false, offsetWidth: 0 },
-    computedWidth: computed(() => (state.width ? state.width + 'px' : props.width))
+    height: 0,
+    dragEvent: { x: 0, y: 0, isDrag: false, offsetWidth: 0, offsetHeight: 0 },
+    computedWidth: computed(() => api.computedWidth()),
+    btnOrderReversed: vm.theme === 'saas' || designConfig?.state?.btnOrderReversed
   })
 
   Object.assign(api, {
     state,
-    confirm: confirm({ state, emit }),
-    close: close({ emit, state }),
+    open: open({ state, emit, vm }),
+    confirm: confirm({ api }),
+    close: close({ api }),
+    handleClose: handleClose({ emit, props, state }),
     mousedown: mousedown({ state, vm }),
     mousemove: mousemove({ state, props }),
     mouseup: mouseup({ state }),
-    addDragEvent: addDragEvent({ api, vm }),
-    removeDragEvent: removeDragEvent({ api, vm }),
-    watchVisible: watchVisible({ state }),
-    watchToggle: watchToggle({ emit }),
+    addDragEvent: addDragEvent({ api: api as IDrawerApi, vm }),
+    removeDragEvent: removeDragEvent({ api: api as IDrawerApi, vm }),
+    watchVisible: watchVisible({ state, api }),
     showScrollbar: showScrollbar(lockScrollClass),
     hideScrollbar: hideScrollbar(lockScrollClass),
-    watchVisibleNotImmediate: watchVisibleNotImmediate({ api, props })
+    computedWidth: computedWidth({ state, designConfig, props, constants })
   })
 
   onMounted(() => {
@@ -59,7 +70,6 @@ export const renderless = (
   })
 
   watch(() => props.visible, api.watchVisible, { immediate: true })
-  watch(() => state.toggle, api.watchToggle)
   watch(
     () => props.width,
     () => (state.width = 0)

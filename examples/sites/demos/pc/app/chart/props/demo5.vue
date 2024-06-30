@@ -1,5 +1,5 @@
 <template>
-  <tiny-line :data="chartData">
+  <tiny-line :options="options">
     <div class="data-empty">没有数据😂</div>
   </tiny-line>
 </template>
@@ -13,9 +13,8 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['日期', '成本', '利润'],
-        rows: []
+      options: {
+        data: []
       }
     }
   }

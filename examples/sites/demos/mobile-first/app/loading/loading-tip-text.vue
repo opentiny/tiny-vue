@@ -9,6 +9,7 @@ export default {
   mounted() {
     Loading.service({
       text: '加载中',
+      tiny_mode: 'mobile-first',
       target: document.getElementById('boxone')
     })
   }

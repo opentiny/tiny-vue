@@ -2,7 +2,7 @@ import { createShepherd, mounted } from './index'
 
 export const api = ['state']
 
-export const renderless = (props, { reactive, onMounted, watch }, utils, { Shepherd, offset }) => {
+export const renderless = (props, { reactive, onMounted, watch }, { designConfig }, { Shepherd, offset }) => {
   const state = reactive({
     tour: null,
     tour1: null,
@@ -20,7 +20,7 @@ export const renderless = (props, { reactive, onMounted, watch }, utils, { Sheph
 
   let baseApi = {
     state,
-    createShepherd: createShepherd({ state, props, Shepherd, offset })
+    createShepherd: createShepherd({ state, props, Shepherd, offset, designConfig })
   }
 
   const api = {

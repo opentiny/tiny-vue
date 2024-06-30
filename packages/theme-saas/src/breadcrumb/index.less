@@ -5,7 +5,7 @@
 
 .@{breadcrumb-prefix-cls} {
   @apply text-xs;
-  @apply leading-4;
+  @apply leading-5;
   .clearfix();
 
   & &__item {
@@ -34,6 +34,11 @@
         @apply hidden;
       }
     }
+  }
+
+  & &__item--medium {
+    @apply text-sm;
+    @apply ~'leading-5.5';
   }
 
   & &__inner {

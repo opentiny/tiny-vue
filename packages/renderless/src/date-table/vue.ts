@@ -19,6 +19,7 @@ import {
   watchMaxDate,
   cellMatchesDate,
   getCellClasses,
+  getCssToken,
   getDateOfCell,
   isWeekActive,
   markRange,
@@ -28,7 +29,7 @@ import {
 } from './index'
 import { getStartDateOfMonth } from '../common/deps/date-util'
 
-export const api = ['state', 'getCellClasses', 'isWeekActive', 'handleMouseMove', 'handleClick']
+export const api = ['state', 'getCellClasses', 'getCssToken', 'isWeekActive', 'handleMouseMove', 'handleClick']
 
 const initState = ({ reactive, computed, api, props }) => {
   const state = reactive({
@@ -41,7 +42,7 @@ const initState = ({ reactive, computed, api, props }) => {
     month: computed(() => !Array.isArray(props.date) && props.date.getMonth()),
     offsetDay: computed(() => api.getOffsetDay()),
     year: computed(() => !Array.isArray(props.date) && props.date.getFullYear()),
-    startDate: computed(() => getStartDateOfMonth(state.year, state.month)),
+    startDate: computed(() => getStartDateOfMonth(state.year, state.month, state.offsetDay)),
     date: props.value
   })
 
@@ -65,6 +66,7 @@ const initApi = ({ api, state, props, emit, t, vm }) => {
     getRows: getRows({ api, props, state, t, vm }),
     handleClick: handleClick({ api, emit, props, state }),
     getCellClasses: getCellClasses({ api, props, state }),
+    getCssToken: getCssToken({ api }),
     getCellRangeClasses: getCellRangeClasses({ props })
   })
 }

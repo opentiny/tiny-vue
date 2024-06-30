@@ -84,7 +84,7 @@ export const getDisplay =
       const displayTxt = []
 
       state.selectedValues.forEach((val) => {
-        const item = find(state.selectedDatas, (data) => val == data[props.valueField])
+        const item = find(state.selectedDatas, (data) => String(val) === String(data[props.valueField]))
 
         if (item) {
           displayTxt.push(item[props.textField])
@@ -145,6 +145,7 @@ export const handleClear =
     state.treeSelectList = []
     state.selectedDatas = []
     state.selectedValues = []
+    state.cacheStore.treeSelectList = []
 
     if (!isEqual(state.commitValue, props.modelValue)) {
       emit('update:modelValue', state.commitValue)
@@ -183,6 +184,9 @@ export const handleConfirm =
 
     if (props.popseletor === constants.TYPE_TREE) {
       const commitValue = state.treeSelectList.map((item) => item.id).join(props.valueSplit)
+      state.cacheStore = {
+        treeSelectList: state.treeSelectList.slice(0)
+      }
 
       if (!isEqual(commitValue, props.modelValue)) {
         emit('update:modelValue', commitValue)
@@ -219,9 +223,9 @@ export const handleOpen =
   }
 
 export const handleSearch =
-  ({ api, refs, constants }) =>
+  ({ api, vm, constants }) =>
   () => {
-    const sourcetable = refs[constants.GRID_REF.source]
+    const sourcetable = vm.$refs[constants.GRID_REF.source]
 
     sourcetable && sourcetable.clearRadioRow()
 
@@ -285,7 +289,8 @@ const renderTextHandler = ({ state, props, datas, dataset, value }) => {
 
   arrValues.forEach((val) => {
     const item =
-      find(dataset, (data) => val == data[props.valueField]) || find(datas, (data) => val == data[props.valueField])
+      find(dataset, (data) => String(val) === String(data[props.valueField])) ||
+      find(datas, (data) => String(val) === String(data[props.valueField]))
     item && rows.push(item)
   })
 
@@ -316,7 +321,7 @@ const getTreeSelectList = ({ value, state, props }) => {
     eachTree(
       state.treeOp.data,
       (node) => {
-        if (values.some((val) => val == node[id])) {
+        if (values.includes(String(node[id]))) {
           selectdTreeNodeList.push({ id: node[id], value: node[label] })
         }
       },
@@ -350,7 +355,7 @@ export const initDisplay =
         })
       })
     } else {
-      const item = find(dataset, (data) => value == data[props.valueField])
+      const item = find(dataset, (data) => String(value) === String(data[props.valueField]))
 
       state.selectedDatas = item || value
 
@@ -492,7 +497,7 @@ export const selectedGridSelectChange =
       event && (event.target.checked = !checked)
 
       for (let i = 0; i < len; i++) {
-        if (state.selectedValues[i] == row[props.valueField]) {
+        if (String(state.selectedValues[i]) === String(row[props.valueField])) {
           state.selectedValues.splice(i, 1)
           state.selectedDatas.splice(i, 1)
 
@@ -501,13 +506,13 @@ export const selectedGridSelectChange =
 
           sourcetable &&
             sourcetable.setSelection(
-              sourcetable.data.filter((lrow) => lrow[props.valueField] == row[props.valueField]),
+              sourcetable.data.filter((lrow) => String(lrow[props.valueField]) === String(row[props.valueField])),
               false
             )
 
           historytable &&
             historytable.setSelection(
-              historytable.data.filter((lrow) => lrow[props.valueField] == row[props.valueField]),
+              historytable.data.filter((lrow) => String(lrow[props.valueField]) === String(row[props.valueField])),
               false
             )
           break
@@ -523,7 +528,7 @@ export const sourceGridSelectAll =
   ({ selection, checked }) => {
     if (checked) {
       selection.forEach((item) => {
-        if (!find(state.selectedValues, (val) => val == item[props.valueField])) {
+        if (!find(state.selectedValues, (val) => String(val) === String(item[props.valueField]))) {
           state.selectedValues.push(item[props.valueField])
           state.selectedDatas.push(item)
         }
@@ -534,7 +539,7 @@ export const sourceGridSelectAll =
       for (let i = 0; i < len; i++) {
         const sourceGridItem = state.sourceGridDataset[i][props.valueField]
 
-        const selectedItem = find(state.selectedValues, (val) => val == sourceGridItem)
+        const selectedItem = find(state.selectedValues, (val) => String(val) === String(sourceGridItem))
 
         const index = state.selectedValues.indexOf(selectedItem)
 
@@ -567,7 +572,7 @@ export const sourceGridSelectChange =
       state.selectedDatas.push(row)
     } else {
       state.selectedValues.forEach((item, index) => {
-        if (row[props.valueField] == item) {
+        if (String(row[props.valueField]) === String(item)) {
           state.selectedValues.splice(index, 1)
           state.selectedDatas.splice(index, 1)
         }
@@ -617,13 +622,24 @@ export const computedTreeOp =
     treeOp.checkStrictly = treeOp.checkStrictly !== false
     treeOp.expandOnClickNode = false
     treeOp.nodeKey = treeOp.nodeKey || constants.ID
-    treeOp.defaultCheckedKeys = state.treeSelectList.map((item) => item.id)
+    treeOp.defaultCheckedKeys =
+      state.cacheStore.treeSelectList && state.cacheStore.treeSelectList.map((item) => item.id)
 
-    treeOp.props = {
-      label: props.textField || constants.LABEL,
-      id: props.valueField || constants.ID,
-      children: 'children',
-      ...treeOp.props
+    const defaultLabel = props.textField || constants.LABEL
+    const defaultId = props.valueField || constants.ID
+    const defaultChildren = 'children'
+    if (!treeOp.props) {
+      treeOp.props = {
+        label: defaultLabel,
+        id: defaultId,
+        children: defaultChildren
+      }
+    } else {
+      // 不能依赖treeOp.props的同时修改treeOp.props的值，否则线上官网会死循环
+      const { label, id, children } = treeOp.props
+      treeOp.props.label = label || defaultLabel
+      treeOp.props.id = id || defaultId
+      treeOp.props.children = children || defaultChildren
     }
 
     return treeOp
@@ -640,15 +656,39 @@ export const treeCheckChange =
       state.treeSelectList = treeSelectList
     } else {
       if (checked) {
-        state.treeSelectList.push({
-          id: data[state.treeOp.props.id],
-          value: data[state.treeOp.props.label]
-        })
+        addTreeSelectNode(data, state)
       } else {
-        state.treeSelectList = state.treeSelectList.filter((item) => item.id !== data[state.treeOp.props.id])
+        state.removedNodeId = []
+        getRemovedNodeId(data, state)
+        state.treeSelectList = state.treeSelectList.filter((item) => !state.removedNodeId.includes(item.id))
       }
     }
   }
+
+const addTreeSelectNode = (node, state) => {
+  if (!state.treeSelectList.some((item) => item.id === node[state.treeOp.props.id])) {
+    state.treeSelectList.push({
+      id: node[state.treeOp.props.id],
+      value: node[state.treeOp.props.label]
+    })
+  }
+
+  if (!node.expanded && Array.isArray(node.children)) {
+    node.children.forEach((child) => {
+      addTreeSelectNode(child, state)
+    })
+  }
+}
+
+const getRemovedNodeId = (node, state) => {
+  state.removedNodeId.push(node[state.treeOp.props.id])
+
+  if (!node.expanded && Array.isArray(node.children)) {
+    node.children.forEach((child) => {
+      getRemovedNodeId(child, state)
+    })
+  }
+}
 
 export const handleNumberPageChange =
   ({ api, emit, state }) =>
@@ -718,10 +758,10 @@ export const getSuggestParam =
   }
 
 export const updateSuggestWidth =
-  ({ refs }) =>
+  ({ vm }) =>
   () => {
-    let $input = refs.reference.getInput()
-    refs.popper.style.width = $input.clientWidth + 'px'
+    const $input = vm.$refs.reference.getInput()
+    vm.$refs.popper.style.width = $input.clientWidth + 'px'
   }
 
 export const doSuggesst =
@@ -773,7 +813,7 @@ export const doSuggesst =
           api.sourceGridSelectChange({ checked: false, row, confirm: false })
         })
 
-        if (addtions.length) {
+        if (!state.suggestList.length || addtions.length) {
           doQuery(query)
         }
       } else {
@@ -783,12 +823,13 @@ export const doSuggesst =
   }
 
 export const closeSuggestPanel =
-  ({ state, api, refs }) =>
+  ({ state, api, vm }) =>
   (event = false) => {
-    const { reference, popper } = refs
+    const reference = vm.$refs.reference
+    const popper = vm.$refs.popper
     let keep = !event
 
-    if (event.target) {
+    if (event.target && reference) {
       keep = reference.$el.contains(event.target) || popper.contains(event.target)
     }
 
@@ -810,6 +851,14 @@ export const suggestRadioChange =
     state.showSuggestPanel = false
 
     api.handleConfirm()
+  }
+
+export const radioChangeFn =
+  ({ props, api }) =>
+  () => {
+    if (props.radioChangeClose) {
+      api.handleConfirm()
+    }
   }
 
 export const handlePager =
@@ -862,7 +911,7 @@ export const doDestroy =
     popper.doDestroy()
   }
 
-export const selectedBoxInit = (refs) => () => refs.selectedBox && refs.selectedBox.init()
+export const selectedBoxInit = (vm) => () => vm.$refs.selectedBox && vm.$refs.selectedBox.init()
 
 export const selectedBoxClear = (api) => () => api.selectedGridSelectAll({ checked: false })
 

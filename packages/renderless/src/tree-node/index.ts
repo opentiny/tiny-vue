@@ -86,6 +86,7 @@ export const handleSelectChange =
 export const handleClick =
   ({ api, vm, props, state }) =>
   (e) => {
+    // tiny 新增： 去掉trigger参数，不影响点击的逻辑
     const store = state.tree.state.store
 
     state.tree.clearCurrentStore(props.node)
@@ -102,7 +103,7 @@ export const handleClick =
 
     if (state.tree.checkOnClickNode && !props.node.disabled) {
       e.target.checked = !props.node.checked
-
+      // 当点击节点文字时，需要通知checkbox
       api.handleCheckChange(null, e)
     }
 
@@ -113,20 +114,18 @@ export const handleClick =
         state.tree.$emit('node-click', props.node.data, props.node, vm)
         return
       }
+
+      api.handleExpandClick(false)
     } else {
       if (!state.tree.collapsible || !state.tree.expandOnClickNode) {
         !props.node.disabled && state.tree.$emit('node-click', props.node.data, props.node, vm)
 
         return
       }
-    }
 
-    if (!state.tree.onlyCheckChildren) {
       if (state.tree.expandOnClickNode && isCheck) {
         api.handleExpandClick(isCheck)
       }
-    } else {
-      api.handleExpandClick(false)
     }
   }
 
@@ -201,9 +200,11 @@ export const handleExpandClick =
     }
   }
 
+// 点击节点 或 点击checkbox的，都会进入该函数
 export const handleCheckChange =
   ({ nextTick, props, state }) =>
   (value, event = {}) => {
+    // 下面不要同步
     if (event.type === 'click' || event.type === 'mousedown') {
       props.node.setChecked(event.target.checked, !state.tree.checkStrictly)
     }
@@ -302,10 +303,12 @@ export const onSiblingToggleExpand =
 export const watchExpandedChange =
   ({ state, props }) =>
   () => {
-    state.parentEmitter.emit('sibling-node-toggle-expand', {
-      isExpand: props.node.expanded,
-      sibling: props.node
-    })
+    if (state.tree.accordion) {
+      state.parentEmitter.emit('sibling-node-toggle-expand', {
+        isExpand: props.node.expanded,
+        sibling: props.node
+      })
+    }
   }
 
 export const openEdit =
@@ -347,22 +350,24 @@ export const addNode =
     state.tree.state.emitter.emit('tree-node-add', event, node)
   }
 
+// tiny 新增
 export const computedExpandIcon =
   ({ designConfig }) =>
-  ({ showLine }, { tree, expanded, isSaaSTheme }) => {
-    if (tree.icon) {
-      return tree.icon
+  (treeRoot, state) => {
+    if (state.tree.icon) {
+      return state.tree.icon
     }
 
-    if (showLine) {
-      const expandIcon = designConfig?.icons.expanded || 'icon-minus-square'
-      const collapseIcon = designConfig?.icons.collapse || 'icon-plus-square'
-      return expanded ? expandIcon : collapseIcon
+    // tiny 新增的判断。 显示线时强制切换图标，仅smb定制了
+    if (treeRoot.showLine) {
+      const expandIcon = designConfig?.icons?.expanded || 'icon-minus-square'
+      const collapseIcon = designConfig?.icons?.collapse || 'icon-plus-square'
+      return state.expanded ? expandIcon : collapseIcon
     }
 
-    return isSaaSTheme ? 'icon-arrow-bottom' : 'icon-chevron-right'
+    return 'icon-chevron-right'
   }
-
+// tiny 新增
 export const computedIndent =
   () =>
   ({ node, showLine }, { tree }) => {

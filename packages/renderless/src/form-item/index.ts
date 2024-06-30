@@ -84,7 +84,7 @@ export const computedLabelStyle =
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.labelWidth
+    const labelWidth = props.labelWidth || state.form.state.labelWidth
 
     if (labelWidth) {
       result.width = labelWidth
@@ -103,7 +103,7 @@ export const computedValueStyle =
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.labelWidth
+    const labelWidth = props.labelWidth || state.form.state.labelWidth
 
     if (labelWidth) {
       if (labelWidth === 'auto') {
@@ -130,12 +130,12 @@ export const computedContentStyle =
       return result
     }
 
-    const labelWidth = props.labelWidth || state.form.labelWidth
+    const labelWidth = props.labelWidth || state.form.state.labelWidth
 
     if (labelWidth === 'auto') {
       if (props.labelWidth === 'auto') {
         result.marginLeft = state.computedLabelWidth
-      } else if (state.form.labelWidth === 'auto') {
+      } else if (state.form.state.labelWidth === 'auto') {
         result.marginLeft = state.formInstance.state.autoLabelWidth
       }
     } else {
@@ -373,12 +373,12 @@ export const getRules =
   ({ props, state }: Pick<IFormItemRenderlessParams, 'props' | 'state'>) =>
   (): IFormItemRule[] => {
     let formRules = state.form.rules || {}
-    const selfRules = props.rules
-    const requiredRule = props.required !== undefined ? { required: !!props.required } : []
+    const selfRules = props.rules as IFormItemRule[]
+    const requiredRule = props.required !== undefined ? { required: Boolean(props.required) } : []
     const prop = getPropByPath(formRules, props.prop || '')
 
     formRules = formRules ? prop.o[props.prop || ''] || prop.v : []
-    // @ts-expect-error
+
     return ([] as IFormItemRule[]).concat(selfRules || formRules || []).concat(requiredRule)
   }
 

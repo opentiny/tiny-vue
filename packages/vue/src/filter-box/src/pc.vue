@@ -1,13 +1,13 @@
 <template>
-  <div :class="['tiny-filter-box', disabled && 'disabled']" @click="handeClick">
+  <div :class="['tiny-filter-box', disabled && 'disabled', blank && 'is-blank']" @click="handeClick">
     <p :class="['title', dropDownVisible && 'active']">
       <label>{{ label }}</label>
       <tiny-tooltip v-if="tip" effect="light" :content="tip" placement="top">
         <icon-help-circle></icon-help-circle>
       </tiny-tooltip>
     </p>
-    <p class="value">
-      {{ value }}
+    <p class="value" :class="['value', !value && value !== 0 && 'placeholder']">
+      {{ value || value === 0 ? value : placeholder }}
     </p>
     <icon-error v-if="value && showClose && !disabled" class="filter-icon-close" @click.stop="handleClear"></icon-error>
     <icon-arrow-bottom v-else :class="['filter-box-icon', dropDownVisible && 'is-reverse']"></icon-arrow-bottom>
@@ -34,6 +34,10 @@ export default defineComponent({
     label: String,
     value: [String, Number],
     tip: String,
+    placeholder: {
+      type: String,
+      default: ''
+    },
     showClose: {
       type: Boolean,
       default: true
@@ -43,6 +47,10 @@ export default defineComponent({
       default: false
     },
     dropDownVisible: {
+      type: Boolean,
+      default: false
+    },
+    blank: {
       type: Boolean,
       default: false
     }

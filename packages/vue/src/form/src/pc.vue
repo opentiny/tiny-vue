@@ -27,10 +27,11 @@
       v-if="overflowTitle"
       ref="tooltip"
       v-model="state.tooltipVisible"
+      v-bind="tooltipConfig"
       :manual="true"
-      effect="light"
+      :effect="tooltipConfig.effect || 'light'"
       :content="state.displayedValue"
-      placement="top"
+      :placement="tooltipConfig.placement || 'top'"
     >
     </tiny-tooltip>
   </form>
@@ -76,7 +77,8 @@ export default defineComponent({
     'showAutoWidth',
     'showEmptyValue',
     'validateTag',
-    'overflowTitle'
+    'overflowTitle',
+    'tooltipConfig'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IFormApi

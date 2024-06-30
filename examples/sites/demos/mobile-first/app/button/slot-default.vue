@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      image: '/static/images/hae-logo.png'
+      image: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/hae-logo.png`
     }
   }
 }

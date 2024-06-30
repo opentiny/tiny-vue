@@ -39,7 +39,9 @@ import {
   sortableEvent,
   handleTabDragStart,
   handleTabDragEnd,
-  watchCurrentName
+  watchCurrentName,
+  handleTitleMouseenter,
+  handleTitleMouseleave
 } from './index'
 
 export const api = [
@@ -55,7 +57,10 @@ export const api = [
   'expandTabShow',
   'expandTabHide',
   'computedHeaderStyle',
-  'swiperHandle'
+  'swiperHandle',
+  'updated',
+  'handleTitleMouseenter',
+  'handleTitleMouseleave'
 ]
 
 export const renderless = (
@@ -67,12 +72,17 @@ export const renderless = (
   const state = reactive({
     dragging: false,
     navOffset: 0,
-    lineOffset: 0,
+    lineStyle: {
+      width: 20,
+      offset: 0
+    },
     scrollable: false,
     isFocus: false,
     focusable: false,
     showMoreItem: false,
     isActive: false,
+    tooltipVisible: false,
+    tooltipContent: '',
     showMoreTabs: props.showMoreTabs,
     showExpandItem: false,
     showExpandTabs: props.showExpandTabs,
@@ -103,7 +113,9 @@ export const renderless = (
     watchCurrentName: watchCurrentName({ nextTick, vm, state }),
     handleTabDragStart: handleTabDragStart({ state, vm, emit }),
     handleTabDragEnd: handleTabDragEnd({ state, vm, nextTick }),
-    sortableEvent: sortableEvent({ api, props, state, vm, emit, markRaw })
+    sortableEvent: sortableEvent({ api, props, state, vm, emit, markRaw }),
+    handleTitleMouseenter: handleTitleMouseenter({ state, vm, props }),
+    handleTitleMouseleave: handleTitleMouseleave({ state })
   })
 
   Object.assign(api, { updated: updated({ api, vm, state }), changeTab: changeTab(api) })

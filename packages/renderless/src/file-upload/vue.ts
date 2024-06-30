@@ -52,6 +52,7 @@ import {
   watchListType,
   watchFileList,
   handleClick,
+  handleFileClick,
   getFileUploadUrl,
   updateUrl,
   previewImage,
@@ -93,7 +94,9 @@ import {
   computedSourcetype,
   getFileSourceType,
   encryptDialogConfirm,
-  handleTriggerClick
+  handleTriggerClick,
+  closeRecordPanel,
+  getTipMessage
 } from './index'
 import { isEmptyObject } from '../common/type'
 
@@ -114,6 +117,7 @@ export const api = [
   'handleReUploadTotal',
   'submit',
   'handleClick',
+  'handleFileClick',
   'getFileUploadUrl',
   'updateUrl',
   'previewImage',
@@ -122,11 +126,25 @@ export const api = [
   'abortDownload',
   'handleClickFileList',
   'handleTriggerClick',
+  'closeRecordPanel',
   'encryptDialogConfirm',
-  'formatFileSize'
+  'formatFileSize',
+  'getTipMessage'
 ]
 
-const initState = ({ api, reactive, computed, inject, ref, vm, props, httpRequest, service }): IFileUploadState => {
+const initState = ({
+  api,
+  reactive,
+  computed,
+  inject,
+  ref,
+  vm,
+  props,
+  httpRequest,
+  service,
+  useBreakpoint
+}): IFileUploadState => {
+  const { current } = useBreakpoint()
   const state = reactive({
     url: '',
     updateId: '',
@@ -185,19 +203,21 @@ const initState = ({ api, reactive, computed, inject, ref, vm, props, httpReques
     encryptDialogConfig: {
       show: false,
       selectFileMethod: null
-    }
+    },
+    current
   })
 
   return state
 }
 
-const initApi = ({ api, state, props, constants, vm, $service, t, Modal }) => {
+const initApi = ({ api, state, props, constants, vm, $service, t, Modal, emit }) => {
   Object.assign(api, {
     state,
     sliceChunk: sliceChunk({ state }),
     getFormData: getFormData({ constants, props, state }),
     abort: abort({ constants, vm, state }),
     handleClick: handleClick({ constants, vm }),
+    handleFileClick: handleFileClick({ props, emit }),
     getFile: getFile(state),
     clearFiles: clearFiles(state),
     watchFileList: watchFileList({ constants, state, props, api }),
@@ -207,7 +227,7 @@ const initApi = ({ api, state, props, constants, vm, $service, t, Modal }) => {
     computedUploadingSize: computedUploadingSize({ state, constants }),
     getFileUploadUrl: getFileUploadUrl($service),
     getToken: getToken({ constants, props, state, t, Modal }),
-    getDialogConfigObj: getDialogConfigObj({ props, state }),
+    getDialogConfigObj: getDialogConfigObj({ props, state, t, constants }),
     computeDocChunkSize: computeDocChunkSize({ props, state, constants }),
     updateFile: updateFile({ constants, vm }),
     getPreviewUrlSync: getPreviewUrlSync({ constants, props, state }),
@@ -225,6 +245,7 @@ const initApi = ({ api, state, props, constants, vm, $service, t, Modal }) => {
     computedSourcetype: computedSourcetype({ props, constants }),
     getFileSourceType: getFileSourceType({ state, props, constants }),
     encryptDialogConfirm: encryptDialogConfirm({ state }),
+    getTipMessage: getTipMessage({ t, api, constants }),
     formatFileSize
   })
 }
@@ -269,13 +290,14 @@ const mergeApi = ({ api, props, $service, state, constants, emit, mode, Modal, t
     validateDownloadStatus: validateDownloadStatus({ state, Modal }),
     handleChange: handleChange({ vm, constants }),
     handleClickFileList: handleClickFileList({ state, emit }),
-    handleTriggerClick: handleTriggerClick({ vm, state, constants, props, emit })
+    handleTriggerClick: handleTriggerClick({ vm, state, constants, props, emit }),
+    closeRecordPanel: closeRecordPanel({ vm, constants, state, props })
   })
 }
 
 const initWatch = ({ watch, state, api, props, $service }) => {
   watch(
-    () => props.edm.upload,
+    () => props.edm?.upload,
     (value) => value && api.getToken({ token: value.token, isinit: true }),
     { immediate: true, deep: true }
   )
@@ -307,20 +329,32 @@ const initWatch = ({ watch, state, api, props, $service }) => {
   watch(() => props.edm, api.computeDocChunkSize, { deep: true, immediate: true })
 }
 
+// eslint-disable-next-line import/no-mutable-exports
 export let getApi = () => ({}) as { downloadFile: Function }
 
 export const renderless = (
   props: IFileUploadProps,
   { computed, inject, onBeforeUnmount, provide, reactive, ref, watch, onMounted }: ISharedRenderlessParamHooks,
-  { t, vm, parent, emit, service, mode, constants }: IFileUploadRenderlessParamUtils,
+  { t, vm, parent, emit, service, mode, constants, useBreakpoint }: IFileUploadRenderlessParamUtils,
   { Modal, CryptoJS, Streamsaver }: IFileUploadModalVm & { CryptoJS: object; Streamsaver: IFileUploadStreamsaver }
 ): IFileUploadApi => {
   let api = {} as IFileUploadApi
   const $service: IFileUploadService = initService({ props, service })
   const httpRequest: Function = $service.httpRequest
-  const state: IFileUploadState = initState({ reactive, computed, api, inject, ref, vm, props, httpRequest, service })
+  const state: IFileUploadState = initState({
+    reactive,
+    computed,
+    api,
+    inject,
+    ref,
+    vm,
+    props,
+    httpRequest,
+    service,
+    useBreakpoint
+  })
 
-  initApi({ api, state, props, constants, vm, $service, t, Modal })
+  initApi({ api, state, props, constants, vm, $service, t, Modal, emit })
   mergeApi({ api, props, $service, state, constants, emit, mode, Modal, t, vm, CryptoJS, Streamsaver })
   getApi = () => api
 

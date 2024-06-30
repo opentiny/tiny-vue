@@ -12,6 +12,7 @@ test('引导框偏移量', async ({ page }) => {
   await guideBtn1.click()
   await expect(guide).toBeVisible()
 
+  await page.waitForTimeout(500)
   const guideBox1 = await guide.boundingBox()
 
   // 引导2  50px
@@ -19,7 +20,8 @@ test('引导框偏移量', async ({ page }) => {
   await guideBtn2.click()
   await expect(guide).toBeVisible()
 
+  await page.waitForTimeout(500)
   const guideBox2 = await guide.boundingBox()
 
-  expect(guideBox1.y).toBeLessThan(guideBox2.y)
+  await expect(guideBox1.y).toBeLessThan(guideBox2.y)
 })

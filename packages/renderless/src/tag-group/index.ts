@@ -1,11 +1,13 @@
+import type { ITagGroupDataItem, ITagGroupRenderlessParamUtils, ITagGroupRenderlessParams } from '@/types'
+
 export const handelItemClick =
-  ({ emit }) =>
-  (item, index, $event) => {
+  ({ emit }: Pick<ITagGroupRenderlessParamUtils, 'emit'>) =>
+  (item: ITagGroupDataItem, index: number, $event: MouseEvent) => {
     emit('item-click', item, index, $event)
   }
 
 export const getHiddenTags =
-  ({ props, vm, state }) =>
+  ({ props, vm, state }: Pick<ITagGroupRenderlessParams, 'props' | 'vm' | 'state'>) =>
   () => {
     if (!props.data.length) return
     const tagGroup = vm.$refs.tagGroup || {}
@@ -29,8 +31,9 @@ export const getHiddenTags =
     state.hiddenTags = []
 
     Array.from(tags).forEach((el, index) => {
-      const item = props.data[index]
-      if (el.offsetTop >= el.offsetHeight && item) {
+      const item = props.data[index] as ITagGroupDataItem
+      const element = el as HTMLElement
+      if (element.offsetTop >= element.offsetHeight && item) {
         state.hiddenTags.push({ ...item })
       }
     })

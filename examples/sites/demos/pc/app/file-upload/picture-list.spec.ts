@@ -12,16 +12,17 @@ test('图片列表缩略图', async ({ page }) => {
   const images = page.locator('.tiny-upload-list__item-thumbnail')
   const triangles = page.locator('.tiny-upload-list__item-status-label')
 
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
   const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
-  await expect(width).toBeGreaterThanOrEqual(708)
+  await expect(width).toBeGreaterThanOrEqual(height)
   await expect(height).toBeGreaterThanOrEqual(56)
   await expect(lists).toHaveCount(2)
   await fileChooser.setFiles(currentPath)
   await expect(images.nth(0)).toHaveCSS('width', '56px')
   await expect(images.nth(0)).toHaveCSS('height', '56px')
-  await expect(images.nth(0)).toHaveAttribute('src', '/static/images/fruit.jpg')
-  await expect(images.nth(1)).toHaveAttribute('src', '/static/images/book.jpg')
+  await expect(images.nth(0)).toHaveAttribute('src', /\/fruit.jpg/)
+  await expect(images.nth(1)).toHaveAttribute('src', /\/book.jpg/)
   await expect(triangles.nth(0)).toHaveCSS('transform', 'matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)')
 })

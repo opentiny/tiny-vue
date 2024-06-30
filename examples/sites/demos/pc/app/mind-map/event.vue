@@ -1,21 +1,23 @@
 <template>
-  <tiny-mind-map
-    ref="mindmap"
-    class="mindmap"
-    @create="onCreate"
-    @operation="onOperation"
-    @select-node="onSelectNode"
-    @select-new-node="onSelectNewNode"
-    @select-nodes="onSelectNodes"
-    @unselect-node="onUnselectNode"
-    @unselect-nodes="onUnselectNodes"
-    @expand-node="onExpandNode"
-    v-model="exampleData"
-  />
+  <div>
+    <tiny-mind-map
+      ref="mindmap"
+      class="demo-mind-map-event"
+      @create="onCreate"
+      @operation="onOperation"
+      @select-node="onSelectNode"
+      @select-new-node="onSelectNewNode"
+      @select-nodes="onSelectNodes"
+      @unselect-node="onUnselectNode"
+      @unselect-nodes="onUnselectNodes"
+      @expand-node="onExpandNode"
+      v-model="exampleData"
+    />
+  </div>
 </template>
 
-<script lang="jsx">
-import { MindMap, Notify } from '@opentiny/vue'
+<script>
+import { MindMap, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -69,68 +71,36 @@ export default {
   },
   methods: {
     onCreate() {
-      Notify({
-        type: 'info',
-        message: '触发事件create',
-        duration: 1000
-      })
+      Modal.message({ message: 'create 事件触发了', status: 'info' })
     },
     onOperation() {
-      Notify({
-        type: 'info',
-        message: '触发事件operation',
-        duration: 1000
-      })
+      Modal.message({ message: 'operation 事件触发了', status: 'info' })
     },
     onSelectNode() {
-      Notify({
-        type: 'info',
-        message: '触发事件selectNode',
-        duration: 1000
-      })
+      Modal.message({ message: 'selectNode 事件触发了', status: 'info' })
     },
     onSelectNewNode() {
-      Notify({
-        type: 'info',
-        message: '触发事件selectNewNode',
-        duration: 1000
-      })
+      Modal.message({ message: 'selectNewNode 事件触发了', status: 'info' })
     },
     onSelectNodes() {
-      Notify({
-        type: 'info',
-        message: '触发事件selectNodes',
-        duration: 1000
-      })
+      Modal.message({ message: 'selectNodes 事件触发了', status: 'info' })
     },
     onUnselectNode() {
-      Notify({
-        type: 'info',
-        message: '触发事件unselectNode',
-        duration: 1000
-      })
+      Modal.message({ message: 'unselectNode 事件触发了', status: 'info' })
     },
     onUnselectNodes() {
-      Notify({
-        type: 'info',
-        message: '触发事件unselectNodes',
-        duration: 1000
-      })
+      Modal.message({ message: 'unselectNodes 事件触发了', status: 'info' })
     },
     onExpandNode() {
-      Notify({
-        type: 'info',
-        message: '触发事件expandNode',
-        duration: 1000
-      })
+      Modal.message({ message: 'expandNode 事件触发了', status: 'info' })
     }
   }
 }
 </script>
 
 <style scoped>
-.mindmap {
+.demo-mind-map-event {
   width: 100%;
-  height: 300px;
+  height: 400px;
 }
 </style>

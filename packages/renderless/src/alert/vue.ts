@@ -10,7 +10,13 @@
  *
  */
 
-import type{ IAlertApi, IAlertProps, IAlertState, ISharedRenderlessParamHooks, IAlertRenderlessParamUtils } from '@/types'
+import type {
+  IAlertApi,
+  IAlertProps,
+  IAlertState,
+  ISharedRenderlessParamHooks,
+  IAlertRenderlessParamUtils
+} from '@/types'
 import {
   computedGetIcon,
   computedGetTitle,

@@ -70,8 +70,8 @@ export const adjustSpinners =
   ({ vm }) =>
   () => {
     if (vm.$refs.minSpinner) {
-      vm.$refs.minSpinner.adjustSpinners()
-      vm.$refs.maxSpinner.adjustSpinners()
+      vm.$refs.minSpinner.adjustSpinners('min')
+      vm.$refs.maxSpinner.adjustSpinners('max')
     }
   }
 
@@ -125,6 +125,7 @@ export const handleMaxChange =
 export const handleChange =
   ({ api, emit, vm, state }) =>
   () => {
+    if (!vm.$refs.minSpinner || !vm.$refs.maxSpinner || !state.visible) return
     if (api.isValidValue([state.minDate, state.maxDate])) {
       vm.$refs.minSpinner.state.selectableRange = [[api.minTimeOfDay(state.minDate), state.maxDate]]
       vm.$refs.maxSpinner.state.selectableRange = [[state.minDate, api.maxTimeOfDay(state.maxDate)]]

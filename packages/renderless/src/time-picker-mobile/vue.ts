@@ -1,17 +1,26 @@
-import { optionMethod, watchModelValue, watchVisible, confirm, updateVisible } from './index'
+import {
+  optionMethod,
+  watchModelValue,
+  watchVisible,
+  confirm,
+  updateVisible,
+  getTimePeriod,
+  computedOptions,
+  clear
+} from './index'
 
-export const api = ['state', 'confirm', 'updateVisible']
+export const api = ['state', 'confirm', 'updateVisible', 'clear']
 
-export const renderless = (props, { reactive, watch }, { emit }) => {
+export const renderless = (props, { reactive, watch, computed }, { emit, vm, dispatch }) => {
   const api = {}
   const state = reactive({
     visible: false,
     dateArr: [],
-    optionList: [
-      { range: [0, 23], optionMethod },
-      { range: [0, 59], optionMethod },
-      { range: [0, 59], optionMethod }
-    ]
+    seconds: null,
+    options: computed(() => api.computedOptions()),
+    value: computed(() =>
+      !props.showSeconds && state.seconds !== null ? [...state.dateArr, state.seconds] : state.dateArr
+    )
   })
 
   Object.assign(api, {
@@ -19,7 +28,10 @@ export const renderless = (props, { reactive, watch }, { emit }) => {
     watchModelValue: watchModelValue({ props, state }),
     watchVisible: watchVisible({ api, state }),
     confirm: confirm({ emit, state }),
+    clear: clear({ state, emit, api, vm, dispatch }),
     updateVisible: updateVisible({ emit, state }),
+    getTimePeriod: getTimePeriod({ state, props }),
+    computedOptions: computedOptions({ state, api, props }),
     optionMethod
   })
 

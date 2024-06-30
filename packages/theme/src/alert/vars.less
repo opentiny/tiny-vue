@@ -12,11 +12,22 @@
 
 .component-css-vars-alert() {
   // 默认字体
-  --ti-alert-font-family: var(--ti-common-font-family, 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei');
+  --ti-alert-font-family: var(
+    --ti-common-font-family,
+    'Helvetica',
+    'Arial',
+    'PingFangSC-Regular',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    '微软雅黑',
+    'Microsoft JhengHei'
+  );
+  // 边框厚度(new)
+  --ti-alert-border-weight: var(--ti-common-border-weight-normal, 1px);
   // 描述字号
   --ti-alert-description-font-size: var(--ti-common-font-size-base, 12px);
   // 默认关闭图标固定定位顶部距离(hide)
-  --ti-alert-close-position-top:var(--ti-common-space-4x, 16px);
+  --ti-alert-close-position-top: var(--ti-common-space-4x, 16px);
   // 默认关闭图标字号
   --ti-alert-close-font-size: var(--ti-common-font-size-base, 12px);
   // 自定义关闭文字字号
@@ -25,12 +36,22 @@
   --ti-alert-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 标题文本色
   --ti-alert-title-text-color: var(--ti-common-color-text-primary, #252b3a);
+  // success类型标题文本色
+  --ti-alert-success-title-text-color: var(--ti-common-color-text-primary, #252b3a);
+  // info类型标题文本色
+  --ti-alert-info-title-text-color: var(--ti-common-color-text-primary, #252b3a);
+  // warning类型标题文本色
+  --ti-alert-warning-title-text-color: var(--ti-common-color-text-primary, #252b3a);
+  // error类型标题文本色
+  --ti-alert-error-title-text-color: var(--ti-common-color-text-primary, #252b3a);
+  // simple类型标题文本色
+  --ti-alert-simple-title-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 标题字号
   --ti-alert-title-font-size: var(--ti-common-font-size-1, 14px);
   // 标题图标顶部外边距
   --ti-alert-icon-margin-top: var(--ti-common-space-1, 1px);
   // 标题图标字号
-  --ti-alert-icon-font-size: var(--ti-common-font-size-1, 14px);
+  --ti-alert-icon-font-size: var(--ti-common-font-size-2, 16px);
   // 描述内容行高
   --ti-alert-description-line-height: var(--ti-common-line-height-number, 1.5);
   // 描述内容顶部内边距
@@ -68,7 +89,7 @@
   // large尺寸操作字号
   --ti-alert-opration-font-size: var(--ti-common-font-size-base, 12px);
   // large尺寸图标字号
-  --ti-alert-large-icon-font-size: 21px;
+  --ti-alert-large-icon-font-size: var(--ti-common-font-size-5, 24px);
   // large尺寸图标顶部外边距
   --ti-alert-large-icon-margin-top: calc(var(--ti-common-space-base, 4px) - 2px);
   // large尺寸描述内容左内边距
@@ -125,7 +146,7 @@
   --ti-alert-info-close-icon-color: var(--ti-alert-info-icon-color);
   // info类型悬浮关闭图标色
   --ti-alert-info-close-hover-icon-color: var(--ti-alert-info-icon-color);
-  
+
   // simple类型边框色
   --ti-alert-simple-border-color: var(--ti-common-color-info-border, #d3d4d6);
   // simple类型图标色
@@ -138,4 +159,6 @@
   --ti-alert-simple-close-icon-color: var(--ti-alert-simple-icon-color);
   // simple类型悬浮关闭图标色
   --ti-alert-simple-close-hover-icon-color: var(--ti-alert-simple-icon-color);
+  // 标题的上边距
+  --ti-alert-title-margin-top: var(--ti-common-space-0);
 }

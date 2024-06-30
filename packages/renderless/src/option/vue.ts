@@ -26,35 +26,39 @@ export const api = ['state', 'visible', 'hoverItem', 'selectOptionClick']
 const initState = ({ reactive, computed, props, api, markRaw, select, parent }) => {
   const state = reactive({
     parent: markRaw(parent),
+    selectMultiple: computed(() => select.multiple),
     created: computed(() => props.created),
     index: -1,
-    select: markRaw(select),
-    hover: false,
+    hover: computed(() => !select.optimization && select.state.hoverValue === state.index),
     visible: true,
     hitState: false,
     groupDisabled: false,
-    disabled: computed(() => props.disabled),
+    disabled: computed(() => props.disabled || state.groupDisabled),
     isObject: computed(() => Object.prototype.toString.call(props.value).toLowerCase() === '[object object]'),
     currentLabel: computed(() => props.label || (state.isObject ? '' : props.value)),
+    showTitle: false,
     currentValue: computed(() => props.value || props.label || ''),
+
     itemSelected: computed(() => {
       if (!select.multiple) {
-        return api.isEqual(props.value, select.modelValue)
+        return api.isEqual(props.value, select.state.modelValue)
       } else {
-        return api.contains(select.modelValue, props.value)
+        return api.contains(select.state.modelValue, props.value)
       }
     }),
 
     limitReached: computed(() => {
       if (select.multiple) {
         const multipleLimit = select.state.multipleLimit
-        return !state.itemSelected && (select.modelValue || []).length >= multipleLimit && multipleLimit > 0
+        return !state.itemSelected && (select.state.modelValue || []).length >= multipleLimit && multipleLimit > 0
       } else {
         return false
       }
     }),
 
-    selectCls: computed(() => (state.itemSelected ? 'checked-sur' : 'check'))
+    selectCls: computed(() => {
+      return state.itemSelected ? 'checked-sur' : 'check'
+    })
   })
 
   return state
@@ -65,10 +69,10 @@ const initApi = ({ api, props, state, select, constants, vm }) => {
     state,
     isEqual: isEqual({ select, state }),
     contains: contains({ select, state }),
-    hoverItem: hoverItem({ select, vm, props, state }),
-    queryChange: queryChange({ props, state }),
+    hoverItem: hoverItem({ select, props, state }),
+    queryChange: queryChange({ select, props, state }),
     selectOptionClick: selectOptionClick({ constants, vm, props, state, select }),
-    handleGroupDisabled: handleGroupDisabled(state),
+    handleGroupDisabled: handleGroupDisabled({ state, vm }),
     initValue: initValue({ select, props, constants, vm })
   })
 }
@@ -102,13 +106,6 @@ const initWatch = ({ watch, props, state, select, constants }) => {
       }
     }
   )
-
-  watch(
-    () => state.visible,
-    () => {
-      select.state.filteredOptionsCount += state.visible ? 1 : -1
-    }
-  )
 }
 
 const initOnMounted = ({ onMounted, props, api, vm, state, constants, select }) => {
@@ -116,28 +113,46 @@ const initOnMounted = ({ onMounted, props, api, vm, state, constants, select }) 
     state.el = vm.$el
 
     toggleEvent({ props, vm, type: 'add' })
-    select.state.selectEmitter.on(constants.EVENT_NAME.queryChange, api.queryChange)
+
+    if (!select.optimization) {
+      select.state.selectEmitter.on(constants.EVENT_NAME.queryChange, api.queryChange)
+    }
     api.initValue()
   })
 }
 
-const initOnBeforeUnmount = ({ onBeforeUnmount, props, select, vm }) => {
+const initOnBeforeUnmount = ({ onBeforeUnmount, props, select, vm, state }) => {
   onBeforeUnmount(() => {
-    const index = select.state.cachedOptions.indexOf(vm)
+    let selectedOptions = select.multiple ? select.state.selected : [select.state.selected]
+    const index = select.state.cachedOptions.findIndex((opt) => opt.state === state)
+    const selectedIndex = selectedOptions.findIndex((opt) => opt.state === state)
 
     toggleEvent({ props, vm, type: 'remove' })
 
-    if (index === -1) {
+    if (index > -1 && selectedIndex < 0) {
       select.state.cachedOptions.splice(index, 1)
     }
 
-    select.onOptionDestroy(select.state.options.indexOf(vm))
+    select.onOptionDestroy(select.state.options.findIndex((opt) => opt.state === state))
   })
+}
+
+const initSelectState = ({ state, select, props, toRefs, reactive }) => {
+  // 当select下的option数量变化时，vue runtime会尽量复用存在的option, 这些option的props会更新。
+  // toRefs：保持vm下的属性与props的值能关联上。
+  // reactive： toRefs之后是一些ref值, 不包裹reactive，就需要使用.value访问值。
+  let vm = reactive({ ...toRefs(props), state })
+  select.state.options.push(vm)
+  select.state.cachedOptions.push(vm)
+  select.state.optionsIndex++
+  state.index = select.state.optionsIndex
+  select.state.optionsCount++
+  select.state.filteredOptionsCount++
 }
 
 export const renderless = (
   props,
-  { computed, onMounted, onBeforeUnmount, reactive, watch, inject, markRaw },
+  { computed, onMounted, onBeforeUnmount, reactive, watch, inject, markRaw, toRefs },
   { vm, parent }
 ) => {
   const api = {}
@@ -148,13 +163,10 @@ export const renderless = (
   initApi({ api, props, state, select, constants, vm })
   initWatch({ watch, props, state, select, constants })
   initOnMounted({ onMounted, props, api, vm, state, constants, select })
-  initOnBeforeUnmount({ onBeforeUnmount, props, select, vm })
+  initOnBeforeUnmount({ onBeforeUnmount, props, select, vm, state })
+  initSelectState({ state, select, props, toRefs, reactive })
 
-  select.state.options.push(markRaw(vm))
-  select.state.cachedOptions.push(markRaw(vm))
-  select.state.optionsCount++
-  select.state.filteredOptionsCount++
-  vm.$on(constants.EVENT_NAME.handleGroupDisabled, api.handleGroupDisabled)
+  parent.$on(constants.EVENT_NAME.handleGroupDisabled, api.handleGroupDisabled)
 
   return api
 }

@@ -39,18 +39,18 @@ export const computedWidth =
   }
 
 export const handleClick =
-  ({ emit, state }: Pick<ITimelineItemRenderlessParams, 'emit' | 'state'>) =>
+  ({ emit, state, props }: Pick<ITimelineItemRenderlessParams, 'emit' | 'state' | 'props'>) =>
   (node: ITimelineItem): void => {
-    const { index } = node || {}
+    const index = props.nodeIndex
     if (!node.disabled) {
       emit('click', state.isReverse ? state.nodesLength - index - 1 : index, node)
     }
   }
 
 export const getStatusCls =
-  ({ constants, state }: Pick<ITimelineItemRenderlessParams, 'constants' | 'state'>) =>
+  ({ constants, state, props }: Pick<ITimelineItemRenderlessParams, 'constants' | 'state' | 'props'>) =>
   (node: ITimelineItem): ITimelineStatusCls => {
-    const { index } = node
+    const index = props.nodeIndex
 
     const { PROCESS_DONE_CLS, PROCESS_CUR_CLS, PROCESS_WAIT_CLS, PROCESS_DISABLED_CLS, PROCESS_ERROR_CLS } = constants
     const cls = {}
@@ -90,7 +90,9 @@ export const computedItemCls =
       itemClass.push('normal')
     }
 
-    itemClass.push(api.getStatusCls(props.node))
+    if (!props.node.type) {
+      itemClass.push(api.getStatusCls(props.node))
+    }
 
     if (state.computedLineWidth) {
       itemClass.push('no-flex')
@@ -99,10 +101,25 @@ export const computedItemCls =
     return itemClass
   }
 
+export const computedIconClass =
+  ({ props, api }: Pick<ITimelineItemRenderlessParams, 'props' | 'api'>) =>
+  (): Array<string | Object> => {
+    let iconClass = ['icon', { 'step-icon': api.rootProps.textPosition === 'right' }]
+    const defaultIcons = ['success', 'warning', 'error']
+
+    if (defaultIcons.includes(props.node[props.autoColorField])) {
+      iconClass.push(`icon-${props.node[props.autoColorField]}`)
+    } else if (props.node[props.autoColorField]) {
+      iconClass.push('icon-custom')
+    }
+
+    return iconClass
+  }
+
 export const computedItemStyle =
   ({ props, state, api }: Pick<ITimelineItemRenderlessParams, 'props' | 'state' | 'api'>) =>
   (): { width?: string | number; height?: string | number; flex?: string } | null => {
-    const { index } = props.node
+    const index = props.nodeIndex
     const { computedSpace, nodesLength } = state
     const { textPosition, vertical } = api.rootProps
 

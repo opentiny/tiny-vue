@@ -157,6 +157,17 @@ export const updateWatermark = (watermarkBg, props) => {
   return watermarkDiv
 }
 
+async function setSlotDivStyle({ vm, props }) {
+  const parentRef = vm.$refs.parentRef
+  if (!parentRef) {
+    return
+  }
+  for (let child of parentRef.children) {
+    child.style.position = 'relative'
+    child.style.zIndex = `${props.zIndex + 1}`
+  }
+}
+
 async function createWatermark({ vm, state, props }) {
   const parentRef = vm.$refs.parentRef
   if (!parentRef) {
@@ -180,6 +191,7 @@ export const reRenderWatermark =
 export const mounted =
   ({ vm, state, props }) =>
   () => {
+    setSlotDivStyle({ vm, props })
     createWatermark({ vm, state, props })
     state.observerInstance = new MutationObserver((records: Array<MutationRecord>) => {
       for (const record of records) {

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-guide",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -13,10 +13,9 @@
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "shepherd.js": "11.0.1"
-  },
-  "peerDependencies": {
-    "@floating-ui/dom": "^1.0.10"
+    "shepherd.js": "11.1.1",
+    "@floating-ui/dom": "^1.0.10",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

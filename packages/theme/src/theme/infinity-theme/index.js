@@ -18,7 +18,7 @@ export const tinyBaseInfinityTheme = {
   'ti-base-color-brand-6': '#5e7ce0', // 主色蓝
   'ti-base-color-brand-2': '#e9edfa', // 品牌色-2
 
-  /* 1.4 功能色*/
+  /* 1.4 功能色 */
   'ti-base-color-error-3': '#f66f6a', // 错误-3
   'ti-base-color-error-1': '#ffd5d4', // 错误-1
 
@@ -115,7 +115,6 @@ export const tinyBaseInfinityTheme = {
   /**
    * 2.12 字号
    **/
-  'ti-common-font-size-base': '12px', // NewCssVar 正文-常规
   'ti-common-font-size-1': '14px', // NewCssVar 标题-小
   'ti-common-font-size-2': '16px', // NewCssVar 标题-中
   'ti-common-font-size-3': '18px', // NewCssVar 标题-大
@@ -132,7 +131,7 @@ export const tinyBaseInfinityTheme = {
    **/
   'ti-common-color-transparent': 'var(--ti-base-color-transparent)',
 
-  /* 浅底背景状态色*/
+  /* 浅底背景状态色 */
   'ti-common-color-bg-light-normal': 'var(--ti-base-color-brand-2)',
 
   /**

@@ -67,6 +67,10 @@
       @apply w-full;
       @apply truncate;
     }
+
+    @{form-item-prefix-cls} {
+      @apply mb-4;
+    }
   }
 
   &--label-top & {
@@ -95,7 +99,7 @@
       }
 
       &[x-placement^='top'] {
-        @apply ~"mb-1.5";
+        @apply ~'mb-1.5';
       }
 
       &[x-placement^='bottom'] {
@@ -114,14 +118,16 @@
       }
     }
   }
+
   &.asterisk-form.is-display-only {
     .@{form-item-prefix-cls} {
       @apply pl-0;
     }
   }
+
   &.is-display-only {
     .tiny-form-item__label {
-      @apply leading-normal;
+      @apply ~"leading-5.5";
       @apply h-auto;
       vertical-align: inherit;
     }
@@ -138,10 +144,12 @@
       .tiny-checkbox {
         @apply leading-normal;
       }
+
       .tiny-radio {
         @apply leading-none;
         @apply p-0;
       }
+
       .@{switch-prefix-cls} {
         @apply mt-0;
       }
@@ -154,6 +162,14 @@
         @apply h-0;
         @apply p-0;
         @apply border-none;
+      }
+      .@{input-prefix-cls}-display-only {
+        @apply inline-block;
+        @apply ~"leading-5.5";
+      }
+      .@{textarea-prefix-cls}-display-only {
+        @apply inline-block;
+        @apply ~"leading-5.5";
       }
     }
     .@{form-item-prefix-cls}--medium .@{form-item-prefix-cls}__content,
@@ -171,10 +187,6 @@
       }
       .@{form-item-prefix-cls}__content .@{css-prefix}tooltip {
         @apply text-sm;
-      }
-
-      .@{form-item-prefix-cls}__label {
-        @apply pb-3;
       }
     }
   }

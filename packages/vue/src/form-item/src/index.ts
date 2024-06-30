@@ -36,7 +36,7 @@ export const formItemProps = {
   prop: String,
   required: {
     type: Boolean,
-    default: false
+    default: undefined
   },
   rules: [Object, Array],
   showMessage: {
@@ -58,7 +58,8 @@ export const formItemProps = {
   vertical: {
     type: Boolean,
     default: false
-  }
+  },
+  extra: String
 }
 
 export default defineComponent({

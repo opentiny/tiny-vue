@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-year-range",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -13,8 +13,8 @@
   "dependencies": {
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~",
-    "@opentiny/vue-year-table": "workspace:~"
+    "@opentiny/vue-year-table": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~"
   },
   "license": "MIT"
 }

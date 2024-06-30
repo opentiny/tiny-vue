@@ -29,7 +29,7 @@ export const renderComponent = ({
   context: { attrs, slots },
   extend = {}
 }) => {
-  return () => hooks.h((view && view.value) || component, { ...props, ...attrs, ...extend }, slots)
+  return () => hooks.h((view && view.value) || component, { ref: 'modeTemplate', ...props, ...attrs, ...extend }, slots)
 }
 
 export const rootConfig = (context) => {
@@ -481,6 +481,10 @@ export default hooks
 export const isVue2 = false
 
 export const isVue3 = true
+
+export const isVnode = hooks.isVNode
+
+export const KeepAlive = hooks.KeepAlive
 
 export type {
   PropType,

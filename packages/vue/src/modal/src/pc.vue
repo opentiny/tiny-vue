@@ -10,9 +10,11 @@
  *
  -->
 <script lang="tsx">
+import Button from '@opentiny/vue-button'
 import { props, setup, h, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/modal/vue'
-import Button from '@opentiny/vue-button'
+import '@opentiny/vue-theme/modal/index.less'
+
 import {
   iconHelpSolid,
   iconSuccess,
@@ -64,7 +66,10 @@ export default defineComponent({
     'confirmContent',
     'cancelContent',
     'confirmBtnProps',
-    'cancelBtnProps'
+    'cancelBtnProps',
+    'footerDragable',
+    'tiny_theme',
+    'slots'
   ],
   emits: [
     'update:modelValue',
@@ -77,9 +82,6 @@ export default defineComponent({
     'custom-mouseup',
     'custom-mousemove'
   ],
-  components: {
-    Button
-  },
   provide() {
     return { dialog: this }
   },
@@ -87,13 +89,19 @@ export default defineComponent({
     return setup({ props, context, renderless, api }) as unknown as IModalApi
   },
   render() {
-    let { state, scopedSlots, vSize, type, resize, animat, status, showHeader, messageClosable } = this
+    let { $props = {}, state, scopedSlots, vSize, type, resize, animat, status, showHeader, messageClosable } = this
     let { showFooter, title, message, lockScroll, lockView, mask, _constants: constants, t } = this
     let { confirmContent, cancelContent, confirmBtnProps, cancelBtnProps } = this
     let { zoomLocat, visible, contentVisible, modalTop, isMsg } = state
-    let defaultSlot = scopedSlots.default
-    let footerSlot = scopedSlots.footer
-
+    let { slots: propSlots = {} } = $props
+    let defaultSlot = scopedSlots.default || propSlots.default
+    let footerSlot = scopedSlots.footer || propSlots.footer
+    let footerSlotParams = {
+      $modal: this,
+      beforeClose: this.beforeClose,
+      confirm: this.confirmEvent,
+      cancel: this.cancelEvent
+    }
     const confirmButtonProps =
       Object.prototype.toString.call(confirmBtnProps) === '[object Object]' ? confirmBtnProps : {}
     const cancelButtonProps = Object.prototype.toString.call(cancelBtnProps) === '[object Object]' ? cancelBtnProps : {}
@@ -129,7 +137,7 @@ export default defineComponent({
           }
         ],
         style: {
-          zIndex: this.state.modalZindex,
+          zIndex: state.modalZindex,
           top: modalTop ? `${modalTop}px` : null
         },
         on: {
@@ -142,14 +150,17 @@ export default defineComponent({
           {
             class: 'tiny-modal__box',
             style: state.boxStyle,
-            ref: 'modalBox'
+            ref: 'modalBox',
+            on: {
+              ...(type === 'message' ? { mouseenter: this.mouseEnterEvent, mouseleave: this.mouseLeaveEvent } : {})
+            }
           },
           [
             showHeader
               ? h(
                   'div',
                   {
-                    class: 'tiny-modal__header',
+                    class: ['tiny-modal__header', status && state.theme === 'saas' ? 'tiny-modal__header-icon' : ''],
                     on: {
                       mousedown: this.mousedownEvent
                     }
@@ -159,7 +170,7 @@ export default defineComponent({
                       ? h(
                           'div',
                           {
-                            class: 'tiny-modal__status-wrapper'
+                            class: ['tiny-modal__status-wrapper']
                           },
                           [
                             typeof status === 'string'
@@ -199,10 +210,10 @@ export default defineComponent({
             h(
               'div',
               {
-                class: 'tiny-modal__body'
+                class: ['tiny-modal__body', type === 'message' ? 'is-message' : '']
               },
               [
-                isMsg && status
+                type === 'message'
                   ? h(
                       'div',
                       {
@@ -230,7 +241,7 @@ export default defineComponent({
                         h(
                           'div',
                           { class: 'tiny-modal__text' },
-                          typeof message === 'function' ? message.call(this, h) : message
+                          typeof message === 'function' ? message.call(this, h) : [message]
                         )
                       ]
                 ),
@@ -254,11 +265,26 @@ export default defineComponent({
               ? h(
                   'div',
                   {
-                    class: 'tiny-modal__footer'
+                    class: ['tiny-modal__footer', this.footerDragable ? 'tiny-modal__footer-move' : ''],
+                    on: {
+                      mousedown: this.footerDragable ? this.mousedownEvent : () => {}
+                    }
                   },
                   footerSlot
-                    ? footerSlot.call(this, { $modal: this, beforeClose: this.beforeClose }, h)
+                    ? footerSlot.call(this, footerSlotParams, h)
                     : [
+                        type === 'confirm'
+                          ? h(
+                              Button,
+                              {
+                                on: {
+                                  click: this.cancelEvent
+                                },
+                                props: { ...cancelButtonProps }
+                              },
+                              cancelButtonText
+                            )
+                          : null,
                         h(
                           Button,
                           {
@@ -271,19 +297,7 @@ export default defineComponent({
                             }
                           },
                           confirmButtonText
-                        ),
-                        type === 'confirm'
-                          ? h(
-                              Button,
-                              {
-                                on: {
-                                  click: this.cancelEvent
-                                },
-                                props: { ...cancelButtonProps }
-                              },
-                              cancelButtonText
-                            )
-                          : null
+                        )
                       ]
                 )
               : null,

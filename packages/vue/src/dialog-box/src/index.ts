@@ -11,7 +11,7 @@
  */
 
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?pc|mobile'
+import template from 'virtual-template?pc|mobile|mobile-first'
 
 export const $constants = {
   DIALOG_SLIDER_RIGHT: 'dialog-slideRight',
@@ -22,7 +22,7 @@ export const $constants = {
   PC_SCROLL_LOCK_CLASS: 'dialog-box__scroll-lock',
   MOBILE_SCROLL_LOCK_CLASS: 'mobile-dialog-box__scroll-lock',
   Mode: 'pc',
-  scrollLockClass(mode) {
+  SCROLL_LOCK_CLASS(mode) {
     return mode === this.Mode ? this.PC_SCROLL_LOCK_CLASS : this.MOBILE_SCROLL_LOCK_CLASS
   }
 }
@@ -51,7 +51,7 @@ export const dialogBoxProps = {
     default: () => true
   },
   destroyOnClose: {
-    Boolean,
+    type: Boolean,
     default: () => false
   },
   dialogClass: {
@@ -59,6 +59,10 @@ export const dialogBoxProps = {
     default: () => ''
   },
   draggable: {
+    type: Boolean,
+    default: () => false
+  },
+  dragOutsideWindow: {
     type: Boolean,
     default: () => false
   },
@@ -114,6 +118,10 @@ export const dialogBoxProps = {
   maxHeight: {
     type: String,
     default: () => ''
+  },
+  dialogTransition: {
+    type: String,
+    default: ''
   }
 }
 

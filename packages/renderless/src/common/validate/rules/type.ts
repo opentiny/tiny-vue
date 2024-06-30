@@ -30,12 +30,12 @@ const pattern = {
   speczh: /^[0-9a-zA-Z_\u4E00-\u9FA5]+$/,
   specialch: /^[0-9a-zA-Z_\-.]+$/,
   specialch2: /^[0-9a-zA-Z_-]+$/,
-  url: /^([a-zA-Z]{3,}):\/\/([\w-]+\.)+[\w]+(\/[a-zA-Z- ./?%&=]*)?/i,
+  url: /^(([a-zA-Z]{3,}):)?\/\/([\w-]+\.)+[\w]+(\/[a-zA-Z- ./?%&=]*)?/i,
   version: /^\d+\.\d+(\.\d+)*$/
 }
 
 const types = {
-  integer: (value) => types.number(value) && parseInt(value, 10) === value,
+  integer: (value) => types.number(value) && /^[-]?[\d]+$/.test(value),
   float: (value) => types.number(value) && !types.integer(value),
   array: Array.isArray,
   regexp(value) {
@@ -49,7 +49,7 @@ const types = {
     }
   },
   date: isDate,
-  number: isNumber,
+  number: (value) => isNumber(Number(value)),
   object: (value) => isObject(value) && !types.array(value),
   method: (value) => typeOf(value) === 'function',
 
@@ -120,9 +120,10 @@ export default function (rule, value, source, errors, options) {
 
   if (custom.includes(ruleType)) {
     if (!types[ruleType](value)) {
-      errors.push(util.format(options.messages.types[ruleType], rule.fullField, rule.type))
+      errors.push(util.format(options.messages.types[ruleType], '', rule.type))
     }
+    // eslint-disable-next-line valid-typeof
   } else if (ruleType && typeof value !== rule.type) {
-    errors.push(util.format(options.messages.types[ruleType], rule.fullField, rule.type))
+    errors.push(util.format(options.messages.types[ruleType], '', rule.type))
   }
 }

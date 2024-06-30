@@ -1,18 +1,17 @@
 <template>
   <div>
-    <tiny-button @click="box1 = true" type="info">允许滚动背景</tiny-button>
-    <tiny-button @click="box2 = true">不允许滚动背景</tiny-button>
-    <tiny-dialog-box :lock-scroll="false" v-model:visible="box1" title="消息" width="30%">
-      <span>不锁定被遮罩内容的滚动</span>
+    <tiny-button @click="openDlg(true)" type="info">允许滚动背景</tiny-button>
+    <tiny-button @click="openDlg(false)">不允许滚动背景</tiny-button>
+    <tiny-dialog-box :lock-scroll="false" v-model:visible="visible1" title="消息" width="30%">
+      <span>允许被遮罩内容的滚动</span>
       <template #footer>
-        <tiny-button type="primary" @click="box1 = false">确 定</tiny-button>
+        <tiny-button type="primary" @click="closeDlg(true)">确 定</tiny-button>
       </template>
     </tiny-dialog-box>
-
-    <tiny-dialog-box :lock-scroll="true" v-model:visible="box2" title="消息" width="30%">
-      <span>锁定被遮罩内容的滚动</span>
+    <tiny-dialog-box :lock-scroll="true" v-model:visible="visible2" title="消息" width="30%">
+      <span>不允许被遮罩内容的滚动</span>
       <template #footer>
-        <tiny-button type="primary" @click="box2 = false">确 定</tiny-button>
+        <tiny-button type="primary" @click="closeDlg(false)">确 定</tiny-button>
       </template>
     </tiny-dialog-box>
   </div>
@@ -28,8 +27,30 @@ export default {
   },
   data() {
     return {
-      box1: false,
-      box2: false
+      visible1: false,
+      visible2: false
+    }
+  },
+  methods: {
+    openDlg(isScroll) {
+      if (isScroll) {
+        document.body.style.overflow = 'auto'
+        document.body.style.height = '200vh'
+        this.visible1 = true
+      } else {
+        document.body.style.height = '200vh'
+        this.visible2 = true
+      }
+    },
+    closeDlg(isScroll) {
+      if (isScroll) {
+        document.body.style.overflow = 'hidden'
+        document.body.style.height = '100vh'
+        this.visible1 = false
+      } else {
+        document.body.style.height = '100vh'
+        this.visible2 = false
+      }
     }
   }
 }

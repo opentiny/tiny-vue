@@ -31,6 +31,12 @@ export const $constants = {
     WARNING: 'tiny-modal-svg__warning',
     ERROR: 'tiny-modal-svg__error',
     LOADING: 'tiny-modal-svg__refresh roll'
+  },
+  PC_SCROLL_LOCK_CLASS: 'dialog-box__scroll-lock',
+  MOBILE_FIRST_SCROLL_LOCK_CLASS: 'tiny-modal-lockscroll',
+  Mode: 'pc',
+  SCROLL_LOCK_CLASS(mode) {
+    return mode === this.Mode ? this.PC_SCROLL_LOCK_CLASS : this.MOBILE_FIRST_SCROLL_LOCK_CLASS
   }
 }
 
@@ -57,7 +63,7 @@ export const modalProps = {
   marginSize: { type: [Number, String], default: 10 },
   mask: { type: Boolean, default: () => true },
   maskClosable: Boolean,
-  message: [String, Function],
+  message: [String, Function, Object],
   minHeight: { type: [Number, String], default: () => 200 },
   minWidth: { type: [Number, String], default: () => 340 },
   modelValue: Boolean,
@@ -88,7 +94,10 @@ export const modalProps = {
   },
   customClass: String,
   confirmBtnProps: { type: Object, default: () => ({}) },
-  cancelBtnProps: { type: Object, default: () => ({}) }
+  cancelBtnProps: { type: Object, default: () => ({}) },
+  footerDragable: Boolean,
+  tiny_theme: String,
+  slots: Object
 }
 
 export default defineComponent({

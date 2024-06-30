@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-heatmap :data="chartData" :settings="chartSettings"></tiny-heatmap>
+    <tiny-heatmap :options="options"></tiny-heatmap>
   </div>
 </template>
 
@@ -13,22 +13,29 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['时间', '地点', '人数'],
-        rows: [
-          { 时间: '星期一', 地点: '北京', 人数: 1000 },
-          { 时间: '星期二', 地点: '上海', 人数: 400 },
-          { 时间: '星期三', 地点: '杭州', 人数: 800 },
-          { 时间: '星期二', 地点: '深圳', 人数: 200 },
-          { 时间: '星期三', 地点: '长春', 人数: 100 },
-          { 时间: '星期五', 地点: '南京', 人数: 300 },
-          { 时间: '星期四', 地点: '江苏', 人数: 800 },
-          { 时间: '星期一', 地点: '北京', 人数: 700 },
-          { 时间: '星期三', 地点: '上海', 人数: 300 },
-          { 时间: '星期二', 地点: '杭州', 人数: 500 }
+      options: {
+        // 图表类型(矩形热力图)
+        type: 'RectangularHeatMapChart',
+
+        // 矩形的颜色，默认值#F43146
+        color: '#F43146',
+
+        // 矩形的大小，默认值8
+        rectangleSize: 8,
+        yAxisName: '手机市场占比%',
+        data: [
+          [11, 10, 10, 'Australia'],
+          [30, 20, 21, 'Canada'],
+          [40, 60, 29, 'China'],
+          [50, 5, 30, 'Cuba'],
+          [55, 10, 31, 'Finland'],
+          [11, 30, 35, 'France'],
+          [32, 50, 48, 'Germany'],
+          [12, 40, 55, 'Iceland'],
+          [12, 33, 60, 'India'],
+          [11, 58, 50, 'Japan']
         ]
-      },
-      chartSettings: {}
+      }
     }
   }
 }

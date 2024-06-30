@@ -54,7 +54,8 @@ import {
   selectedBoxInit,
   selectedBoxClear,
   selectedBoxDelete,
-  selectedBoxDrag
+  selectedBoxDrag,
+  radioChangeFn
 } from './index'
 
 export const api = [
@@ -84,7 +85,8 @@ export const api = [
   'doDestroy',
   'selectedBoxClear',
   'selectedBoxDelete',
-  'selectedBoxDrag'
+  'selectedBoxDrag',
+  'radioChangeFn'
 ]
 
 const initState = ({ reactive, computed, props, api, constants, t, parent, vm }) => {
@@ -100,6 +102,7 @@ const initState = ({ reactive, computed, props, api, constants, t, parent, vm })
     commitValue: Array.isArray(props.modelValue) ? props.modelValue.slice(0) : props.modelValue,
     currentPage: 1,
     baseColumns: computed(() => getColumns({ constants, props })),
+    removedNodeId: [],
     selectedDatas: [],
     selectedValues: [],
     sourceGridDataset: [],
@@ -133,7 +136,7 @@ const initState = ({ reactive, computed, props, api, constants, t, parent, vm })
   return state
 }
 
-const initApi = ({ api, props, state, parent, refs, emit, popper, constants, vm, nextTick }) => {
+const initApi = ({ api, props, state, parent, vm, emit, popper, constants, nextTick }) => {
   Object.assign(api, {
     state,
     popper,
@@ -154,7 +157,7 @@ const initApi = ({ api, props, state, parent, refs, emit, popper, constants, vm,
     handleReset: handleReset({ api, state, props }),
     openDialog: openDialog({ api, emit, props, state }),
     initDisplay: initDisplay({ api, constants, props, state, nextTick }),
-    handleSearch: handleSearch({ api, props, state, refs, constants }),
+    handleSearch: handleSearch({ api, props, state, vm, constants }),
     computedTreeOp: computedTreeOp({ api, constants }),
     handleSizeChange: handleSizeChange({ api, emit, state }),
     handleOpen: handleOpen({ api, constants, props, state }),
@@ -163,10 +166,10 @@ const initApi = ({ api, props, state, parent, refs, emit, popper, constants, vm,
     handleNumberPageChange: handleNumberPageChange({ api, emit, state }),
     doSearch: doSearch({ api, state, props }),
     doClear: doClear({ api, state, props }),
-    updateSuggestWidth: updateSuggestWidth({ refs }),
+    updateSuggestWidth: updateSuggestWidth({ vm }),
     doSuggesstNow: doSuggesst({ api, state, props, popper, nextTick }),
     doSuggesst: debounce(1000, doSuggesst({ api, state, props, popper, nextTick })),
-    closeSuggestPanel: closeSuggestPanel({ api, state, refs }),
+    closeSuggestPanel: closeSuggestPanel({ api, state, vm }),
     sourceGridSelectChange: sourceGridSelectChange({ props, state, api }),
     sourceGridSelectAll: sourceGridSelectAll({ props, state, api }),
     getSuggestParam: getSuggestParam({ props, state, api }),
@@ -175,10 +178,11 @@ const initApi = ({ api, props, state, parent, refs, emit, popper, constants, vm,
     initSearchOption: initSearchOption({ api, state }),
     mounted: mounted({ api, props }),
     doDestroy: doDestroy({ popper }),
-    selectedBoxInit: selectedBoxInit(refs),
+    selectedBoxInit: selectedBoxInit(vm),
     selectedBoxClear: selectedBoxClear(api),
     selectedBoxDelete: selectedBoxDelete(api),
-    selectedBoxDrag: selectedBoxDrag({ props, state })
+    selectedBoxDrag: selectedBoxDrag({ props, state }),
+    radioChangeFn: radioChangeFn({ props, api })
   })
 
   state.search = api.createSearchForm(false)
@@ -213,13 +217,13 @@ const initWatch = ({ watch, props, api, state, popper }) => {
 export const renderless = (
   props,
   { computed, onMounted, reactive, watch, inject, toRefs, onBeforeUnmount, onDeactivated },
-  { t, refs, parent, emit, constants, vm, nextTick, slots }
+  { t, parent, emit, constants, vm, nextTick, slots }
 ) => {
   const api = {}
   const state = initState({ reactive, computed, props, api, constants, t, parent, vm })
   const popper = userPopper({
     emit,
-    refs,
+    vm,
     watch,
     onBeforeUnmount,
     props,
@@ -232,7 +236,7 @@ export const renderless = (
 
   parent.tinyForm = parent.tinyForm || inject('form', null)
 
-  initApi({ api, props, state, parent, refs, emit, popper, constants, vm, nextTick })
+  initApi({ api, props, state, parent, vm, emit, popper, constants, nextTick })
   initWatch({ watch, props, api, state, popper })
 
   onMounted(api.mounted)

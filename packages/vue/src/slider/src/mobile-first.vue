@@ -16,7 +16,7 @@
       <div
         data-tag="tiny-slider-range"
         role="tiny-slider__range"
-        class="absolute rounded left-0 -bottom-px h-1"
+        class="absolute rounded left-0 h-1"
         :class="[state.disabled ? 'bg-color-none' : 'bg-color-brand']"
         :style="state.barStyle"
       ></div>
@@ -104,7 +104,7 @@
         {{ max }}
       </slot>
     </div>
-    <template data-tag="tiny-slider-showinput" v-if="showInput">
+    <template v-if="showInput">
       <div
         data-tag="tiny-slider-isdouble"
         v-if="state.isDouble"
@@ -137,6 +137,7 @@
           <input
             type="text"
             v-model="state.activeValue"
+            @change="inputOnChange"
             class="h-8 w-12 outline-0 px-2 py-0 text-center border border-color-bg-3 hover:border-color-border-hover focus:border-color-brand-focus disabled:border-color-border rounded"
             :disabled="state.disabled"
           /><span class="ml-2">{{ unit }}</span>
@@ -170,7 +171,8 @@ export default defineComponent({
     'showLabel',
     'formatLabel',
     'vertical',
-    'unit'
+    'unit',
+    'changeCompat'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ISliderApi

@@ -21,13 +21,15 @@ import {
   hide,
   handleClose,
   handleWrapperClick,
+  useMouseEventDown,
+  useMouseEventUp,
   mounted,
   unMounted,
   updatePopper,
   handleDrag,
   showScrollbar,
   hideScrollbar,
-  computedBodyStyle
+  toggleFullScreen
 } from './index'
 import usePopup from '../common/deps/vue-popup'
 import type {
@@ -47,9 +49,12 @@ export const api = [
   'afterLeave',
   'handleClose',
   'handleWrapperClick',
+  'useMouseEventDown',
+  'useMouseEventUp',
   'handleCancel',
   'handleConfirm',
   'handleDrag',
+  'toggleFullScreen',
   'state'
 ]
 
@@ -58,8 +63,10 @@ const initState = ({
   computed,
   api,
   emitter,
-  props
+  props,
+  useBreakpoint
 }: Pick<IDialogBoxRenderlessParams, 'reactive' | 'computed' | 'api' | 'emitter' | 'props'>): IDialogBoxState => {
+  const { current } = useBreakpoint()
   const state: IDialogBoxState = reactive({
     emitter: emitter(),
     key: 0,
@@ -73,8 +80,9 @@ const initState = ({
     dragable: false,
     isFull: props.fullscreen,
     style: computed(() => api.computedStyle()),
-    bodyStyle: computed(() => api.computedBodyStyle()),
-    animationName: computed(() => api.computedAnimationName())
+    animationName: computed(() => api.computedAnimationName()),
+    current,
+    dragStyle: null
   })
 
   return state
@@ -104,6 +112,7 @@ const initApi = ({
   usePopups,
   nextTick,
   broadcast,
+  designConfig,
   vm
 }: IDialogBoxInitApiParam): void => {
   const { open, close } = usePopups
@@ -115,7 +124,9 @@ const initApi = ({
     handleCancel: handleCancel({ api, emit }),
     handleConfirm: handleConfirm({ api, emit }),
     updatePopper: updatePopper({ api, constants }),
-    handleWrapperClick: handleWrapperClick({ api, props }),
+    handleWrapperClick: handleWrapperClick({ api, props, state }),
+    useMouseEventDown: useMouseEventDown({ state }),
+    useMouseEventUp: useMouseEventUp({ state }),
     hide: hide({ api, emit, state, props }),
     handleClose: handleClose({ api, constants, emit, parent, props }),
     watchVisible: watchVisible({
@@ -128,8 +139,7 @@ const initApi = ({
       vm,
       state
     }),
-    computedStyle: computedStyle({ state, props }),
-    computedBodyStyle: computedBodyStyle({ props }),
+    computedStyle: computedStyle({ state, props, designConfig }),
     mounted: mounted({ api, parent, props }),
     unMounted: unMounted({ api, parent, props }),
     computedAnimationName: computedAnimationName({ constants, props }),
@@ -137,7 +147,9 @@ const initApi = ({
     afterLeave: afterLeave(emit),
     hideScrollbar: hideScrollbar(lockScrollClass),
     showScrollbar: showScrollbar(lockScrollClass),
-    handleDrag: handleDrag({ parent, props, state, emit })
+    handleDrag: handleDrag({ parent, props, state, emit, vm }),
+    // tiny 新增
+    toggleFullScreen: toggleFullScreen({ state, emit, nextTick, vm })
   })
 }
 
@@ -155,11 +167,22 @@ const initWatch = ({ watch, state, api, props }: IDialogBoxInitWatchParam) => {
 export const renderless = (
   props: IDialogBoxProps,
   { computed, onBeforeUnmount, onMounted, toRefs, reactive, watch }: ISharedRenderlessParamHooks,
-  { vm, emitter, parent, emit, constants, nextTick, mode, broadcast }: IDialogBoxRenderlessParamUtils
+  {
+    vm,
+    emitter,
+    parent,
+    emit,
+    constants,
+    nextTick,
+    mode,
+    broadcast,
+    designConfig,
+    useBreakpoint
+  }: IDialogBoxRenderlessParamUtils
 ): IDialogBoxApi => {
   const api = {} as IDialogBoxApi
-  const lockScrollClass = constants.scrollLockClass(mode)
-  let state = initState({ reactive, computed, api, emitter, props })
+  const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
+  let state = initState({ reactive, computed, api, emitter, props, useBreakpoint })
   const usePopups = usePopup({
     api,
     nextTick,
@@ -183,7 +206,8 @@ export const renderless = (
     lockScrollClass,
     nextTick,
     vm,
-    broadcast
+    broadcast,
+    designConfig
   })
 
   state = mergeState({ reactive, state, toRefs, usePopups })

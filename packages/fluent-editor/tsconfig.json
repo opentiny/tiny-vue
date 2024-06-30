@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "types": ["vite/client", "@types/node", "@types/jest"],
+
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "importHelpers": true,
+    // "outDir": "./dist/out-tsc",
+    "declaration": false,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+
+    "noImplicitAny": false, // 不允许隐式的any类型
+    "noImplicitThis": false, // 不允许this有隐式的any类型
+    "strictNullChecks": false // 不允许把null、undefined赋值给其他类型的变量
+  }
+}

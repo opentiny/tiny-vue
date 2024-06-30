@@ -34,7 +34,21 @@ export default defineComponent({
     Checkbox,
     CheckboxButton
   },
-  props: [...props, 'modelValue', 'type', 'options', 'disabled', 'min', 'max', 'size', 'fill', 'textColor', 'vertical'],
+  props: [
+    ...props,
+    'modelValue',
+    'type',
+    'options',
+    'disabled',
+    'min',
+    'max',
+    'size',
+    'fill',
+    'textColor',
+    'vertical',
+    'displayOnly',
+    'shape'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

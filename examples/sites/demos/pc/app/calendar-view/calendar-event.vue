@@ -8,12 +8,13 @@
     @week-change="weekChange"
     @year-change="yearChange"
     @month-change="monthChange"
+    @mode-change="modeChange"
   >
   </tiny-calendar-view>
 </template>
 
 <script>
-import { CalendarView } from '@opentiny/vue'
+import { CalendarView, Modal } from '@opentiny/vue'
 
 export default {
   components: {
@@ -26,19 +27,22 @@ export default {
   },
   methods: {
     prevWeekClick(date) {
-      console.log(date)
+      Modal.message({ message: `上一周按钮点击事件： ${date[0].value}`, status: 'info' })
     },
     nextWeekClick(date) {
-      console.log(date)
+      Modal.message({ message: `下一周按钮点击事件： ${date[0].value}`, status: 'info' })
     },
-    weekChange(oldVal, newVal) {
-      console.log(oldVal, newVal)
+    weekChange(weekDate) {
+      Modal.message({ message: `周改变事件： ${weekDate[0].value}`, status: 'info' })
     },
-    yearChange(oldVal, newVal) {
-      console.log(oldVal, newVal)
+    yearChange(newVal, oldVal) {
+      Modal.message({ message: `年改变事件: ${newVal}年, ${oldVal}年`, status: 'info' })
     },
-    monthChange(oldVal, newVal) {
-      console.log(oldVal, newVal)
+    monthChange(newVal, oldVal) {
+      Modal.message({ message: `月改变事件: ${newVal}月, ${oldVal}月`, status: 'info' })
+    },
+    modeChange(val) {
+      Modal.message({ message: `模式切换事件: ${val}`, status: 'info' })
     }
   }
 }

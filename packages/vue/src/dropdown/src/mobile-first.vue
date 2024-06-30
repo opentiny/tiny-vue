@@ -20,10 +20,7 @@ export default defineComponent({
   props: {
     ...$props,
     type: String,
-    trigger: {
-      type: String,
-      default: 'click'
-    },
+    trigger: String,
     size: {
       type: String,
       default: ''
@@ -70,7 +67,15 @@ export default defineComponent({
       default: false
     }
   },
-  emits: ['visible-change', 'item-click', 'button-click', 'selectedIndex', 'current-item-click'],
+  emits: [
+    'visible-change',
+    'item-click',
+    'button-click',
+    'current-item-click',
+    'menu-item-click',
+    'is-disabled',
+    'selected-index'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api, mono: true, h })
   },
@@ -113,7 +118,7 @@ export default defineComponent({
       }
 
       const defaultIcon = (
-        <span class="block">
+        <span class="block text-[0]">
           <icon-chevron-down class="sm:block hidden will-change-transform" />
           <icon-arrow-bottom class="sm:hidden block will-change-transform" />
         </span>
@@ -151,9 +156,8 @@ export default defineComponent({
             type === 'primary'
               ? '[&_svg]:fill-color-bg-1'
               : state.visible
-              ? 'active:border-color-border-focus text-color-text-primary active:text-color-brand-focus focus:border-color-border-focus focus:text-color-brand-focus'
-              : '[&_svg]:fill-color-icon-placeholder',
-            type === 'primary' && '[&_svg]:fill-color-bg-1'
+                ? 'active:border-color-border-focus text-color-text-primary active:text-color-brand-focus focus:border-color-border-focus focus:text-color-brand-focus'
+                : '[&_svg]:fill-color-icon-placeholder'
           ]}
           reset-time={0}>
           {defaultSlot}

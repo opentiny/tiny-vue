@@ -1,12 +1,12 @@
 <template>
-  <div class="w-auto h-7 flex items-center" data-tag="tiny-numeric">
+  <div class="w-auto" data-tag="tiny-numeric" :class="state.isDisplayOnly ? '' : 'flex items-center'">
     <div
       data-tag="tiny-numeric-main"
       :class="
         m(
           gcls('numeric'),
           state.inputSize === 'medium' ? gcls('numeric_medium') : gcls('numeric_size'),
-          state.inputDisabled ? gcls('numeric_disabled') : '',
+          state.inputDisabled ? gcls('numeric_input-disabled') : gcls('numeric_input-active'),
           state.isDisplayOnly ? gcls('numeric_display_none') : ''
         )
       "
@@ -69,10 +69,7 @@
       ></div>
       <div
         :class="
-          m(
-            gcls(`numeric_input-${state.inputSize === 'medium' ? 'medium' : 'default'}-${controls ? 'num' : 'unit'}`),
-            state.inputDisabled ? gcls('numeric_input-disabled') : gcls('numeric_input-active')
-          )
+          m(gcls(`numeric_input-${state.inputSize === 'medium' ? 'medium' : 'default'}-${controls ? 'num' : 'unit'}`))
         "
       >
         <input
@@ -97,6 +94,7 @@
           @keydown.down.prevent="decrease"
           @blur="handleBlur"
           @focus="handleFocus"
+          @compositionend="handleInput"
           @input="handleInput"
           @change="handleInputChange"
         />
@@ -105,13 +103,16 @@
     <div
       data-tag="numeric-display-only"
       v-if="state.isDisplayOnly"
-      :class="state.inputSize === 'medium' ? 'text-sm' : 'text-xs'"
+      class="sm:leading-normal text-color-text-primary"
+      :class="state.inputSize !== 'mini' ? 'text-sm' : 'text-xs'"
     >
-      {{ state.displayValue }}
+      <span>{{ state.displayValue }}</span
+      ><span v-if="unit && !hideUnit" class="ml-2">{{ unit }}</span>
     </div>
     <div
+      v-if="unit && !hideUnit && !state.isDisplayOnly"
       data-tag="numeric-unit"
-      :class="['h-0 right-0 flex ml-2 text-xs items-center', state.isDisplayOnly ? 'sm:h-4 ' : 'sm:h-7']"
+      :class="['h-0 right-0 flex text-xs sm:text-sm items-center shrink-0', unit ? 'ml-2' : '']"
     >
       {{ unit }}
     </div>
@@ -155,6 +156,7 @@ export default defineComponent({
     'mouseWheel',
     'validateEvent',
     'allowEmpty',
+    'emptyValue',
     'format',
     'unit',
     'stringMode',
@@ -164,7 +166,8 @@ export default defineComponent({
     'strictInput',
     'hideUnit',
     'unitCenter',
-    'displayOnly'
+    'displayOnly',
+    'changeCompat'
   ],
   emits: ['update:modelValue', 'change', 'blur', 'focus'],
   setup(props, context): any {

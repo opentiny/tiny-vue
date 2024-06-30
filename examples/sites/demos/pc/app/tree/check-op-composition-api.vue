@@ -30,7 +30,10 @@ const data = ref([
   {
     id: '1',
     label: '数据 1',
-    children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+    children: [
+      { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+      { id: '1-2', label: '数据 1-2' }
+    ]
   },
   {
     id: '2',
@@ -64,6 +67,7 @@ function getChecks() {
   const checkedHalfNodes = treeRef.value.getHalfCheckedNodes()
 
   console.log('当前组件的勾选状态为： ', treeRef.value, {
+    currentKey,
     checkedKeys,
     checkedKeysOnlyLeaf,
     checkedNodes,
@@ -93,10 +97,10 @@ function setCheckedNodes() {
   treeRef.value.setCheckedNodes([{ id: '1-1' }, { id: '2-1' }, { id: '3-1' }], true)
 }
 function check(data, currentChecked) {
-  console.log('check事件：', arguments)
+  console.log('check事件：', data, currentChecked)
 }
 function checkChange(data, checked, indeterminate) {
-  console.log('checkChange事件：', arguments)
+  console.log('checkChange事件：', data, checked, indeterminate)
 }
 </script>
 

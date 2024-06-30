@@ -9,8 +9,9 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
+
 <template>
-  <div class="tiny-mobile-action-sheet" v-show="visible" @click="visibleHandle">
+  <div class="tiny-mobile-action-sheet" v-show="visible" @click="hide">
     <div class="tiny-mobile-action-sheet__mask" :style="state.sheetMaskStyle" v-if="!contentPosition"></div>
     <div
       :class="[
@@ -26,22 +27,22 @@
           :class="[
             'tiny-mobile-action-sheet__item',
             item.warn ? 'is-warn' : '',
-            item.id === modelValue || item.id === state.active ? 'is-active' : ''
+            item[valueField] === modelValue ? 'is-active' : ''
           ]"
           :style="state.contentStyle"
           v-for="(item, index) in menus"
           :key="index"
-          @click="menuHandle(item, index)"
+          @click="selectOption(item, index)"
         >
           <slot name="item" :item="item">
-            {{ item.label }}
+            {{ item[textField] }}
           </slot>
         </div>
       </div>
     </div>
     <div class="tiny-mobile-action-sheet__action" v-if="contentPosition">
       <slot name="action">
-        <div class="tiny-mobile-action-sheet__cancel" @click="visibleHandle">
+        <div class="tiny-mobile-action-sheet__cancel" @click="hide">
           {{ t('ui.actionSheet.cancel') }}
         </div>
       </slot>
@@ -57,7 +58,19 @@ import BScroll from '@better-scroll/core'
 
 export default defineComponent({
   name: $prefix + 'ActionSheet',
-  props: [...props, 'menus', 'modelValue', 'visible', 'ellipsis', 'height', 'contentPosition', 'contentStyle'],
+  props: [
+    ...props,
+    'menus',
+    'modelValue',
+    'visible',
+    'ellipsis',
+    'contentPosition',
+    'contentStyle',
+    'height',
+    'valueField',
+    'textField',
+    'contentClass'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api, extendOptions: { BScroll } })
   }

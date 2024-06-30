@@ -9,14 +9,12 @@ export default {
         'en-US': 'basic usage'
       },
       desc: {
-        'zh-CN': `<p>通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 <code>Button</code>，变量值对应 </code>label<code> 属性的值。<br>
-          通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致<br>
-          <code>label</code> 可以是 <code>String、Number 或 Boolean</code>。</p>`,
+        'zh-CN':
+          '<p>通过 <code>v-model</code> 绑定变量，设置的变量值为默认选中的 <code>Button</code>，变量值对应 <code>label</code> 属性的值。<br>\n          通过 <code>text</code> 也可以配置显示文本，与默认插槽配置纯文本的结果一致<br>\n          <code>label</code> 可以是 <code>String、Number 或 Boolean</code>。</p>',
         'en-US': '<p>button type</p>'
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'slider-button-type',
       name: {
@@ -24,11 +22,11 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': `<p>通过<code>type</code>属性设置按钮展示类型，可选值为<code>text(默认)、icon</code>。<br>
-          可在 SliderButton、SliderButtonGroup 组件上设置 <code>change</code> 事件，当绑定值变化时触发，回调函数为选中的 <code>SliderButton label</code> 值。<p>`,
+        'zh-CN':
+          '<p>通过<code>type</code>属性设置按钮展示类型，可选值为<code>text(默认)、icon</code>。<br>\n          可在 SliderButton、SliderButtonGroup 组件上设置 <code>change</code> 事件，当绑定值变化时触发，回调函数为选中的 <code>SliderButton label</code> 值。<p>',
         'en-US': '<p>bbutton click</p>'
       },
-      codeFiles: ['gslider-button-type.vue']
+      codeFiles: ['slider-button-type.vue']
     },
     {
       demoId: 'slider-button-size',
@@ -38,7 +36,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可对按钮形式的 <code>SliderButton</code> 或带有边框的<code>SliderButton</code> 设置 <code>size</code> 属性，以改变其尺寸，包括 <code>small(默认)、large</code> 两个尺寸选项。当插入的是图标类型时，还可配置`medium`尺寸。<p>',
+          '<p>可对按钮形式的 <code>SliderButton</code> 或带有边框的<code>SliderButton</code> 设置 <code>size</code> 属性，以改变其尺寸，包括 <code>small(默认)、large</code> 两个尺寸选项。当插入的是图标类型时，还可配置 <code>medium</code>尺寸。<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['slider-button-size.vue']
@@ -50,7 +48,7 @@ export default {
         'en-US': 'events'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>label</code>或者<code>text</code> 属性可以设置 Radio 的内容<p>',
+        'zh-CN': '<p>通过 <code>label</code>或者<code>text</code> 属性可以设置 <code>Button</code> 的内容<p>',
         'en-US': '<p>bbutton click</p>'
       },
       codeFiles: ['custom-content.vue']
@@ -92,6 +90,5 @@ export default {
       },
       codeFiles: ['slider-disabled.vue']
     }
-  ],
-  apis: []
+  ]
 }

@@ -14,7 +14,6 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'clearable',
       name: {
@@ -127,30 +126,6 @@ export default {
       codeFiles: ['suffix-icon.vue']
     },
     {
-      demoId: 'slot-prefix',
-      name: {
-        'zh-CN': '可通过 slot="prefix" 设置头部图标',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p><p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['slot-prefix.vue']
-    },
-    {
-      demoId: 'slot-suffix',
-      name: {
-        'zh-CN': '可通过 slot="suffix" 设置尾部图标',
-        'en-US': 'events'
-      },
-      desc: {
-        'zh-CN': '<p><p>',
-        'en-US': '<p>bbutton click</p>'
-      },
-      codeFiles: ['slot-suffix.vue']
-    },
-    {
       demoId: 'resize',
       name: {
         'zh-CN': '可缩放文本域',
@@ -158,8 +133,14 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过 `resize` 属性设置文本域的缩放。可选值：`none / both / horizontal / vertical`。注意：只在 `type="textarea"` 时有效。<p>',
-        'en-US': '<p>bbutton click</p>'
+          '<p>可通过 <code>resize</code> 属性设置文本域的缩放。可选值：<code>none / both / horizontal / vertical</code>。注意：只在 <code>type="textarea"</code> 时有效。</p>\n ' +
+          '<p>可通过 <code>autosize</code> 属性设置文本域自适应内容高度。可传入对象，如<code>{ minRows: 2, maxRows: 6 }</code>。</p> \n<p></p>' +
+          '<p>可通过 <code>hover-expand</code> 属性设置文本域鼠标悬浮展开/收起，只对 <code>type=textarea</code> 有效，最好搭配 <code>autosize</code> 一起使用<p>',
+
+        'en-US':
+          '<p>You can use the <code>resize</code> property to set the scaling of the text field. The value can be <code>none / both / horizontal / vertical</code>. Note: This parameter is valid only when <code>type="textarea"</code>.</p>' +
+          '<p>The <code>autosize</code> property allows you to set the text field to adapt to the content height. You can transfer an object, for example, <code>{minRows: 2, maxRows: 6}</code>.</p>' +
+          '<p>You can use the <code>hover-expand</code> attribute to set the text field to be expanded or collapsed by hovering the mouse. This parameter is valid only for <code>type=textarea</code>. It is recommended that you use it together with <code>autosize</code></p>'
       },
       codeFiles: ['resize.vue']
     },
@@ -491,6 +472,20 @@ export default {
       codeFiles: ['method-select.vue']
     },
     {
+      demoId: 'mask',
+      name: {
+        'zh-CN': '掩码',
+        'en-US': 'Mask'
+      },
+      desc: {
+        'zh-CN':
+          '<p>\n        <p>可通过 mask 属性启用掩码功能，只在 disabled 和 display-only 状态下生效。</p>\n        <p>注意：不要与 type="password" 和 show-password 一同使用</p>\n      </p>',
+        'en-US':
+          '<p>\n        <p> The mask attribute can be used to enable the mask function, which takes effect only in the disabled and display-only states. </p>\n        <p> Note: Do not use </p> with type="password" and show-password\n      </p>'
+      },
+      codeFiles: ['mask.vue']
+    },
+    {
       demoId: 'custom-class',
       name: {
         'zh-CN': '自定义样式',
@@ -514,6 +509,5 @@ export default {
       },
       codeFiles: ['display-only-content.vue']
     }
-  ],
-  apis: []
+  ]
 }

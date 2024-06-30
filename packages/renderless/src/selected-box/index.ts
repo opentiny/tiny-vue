@@ -289,3 +289,5 @@ export const unmount = (state) => () => {
     state.dragInstance = null
   }
 }
+
+export const computedShowClear = (state) => () => Array.isArray(state.select) && state.select.length

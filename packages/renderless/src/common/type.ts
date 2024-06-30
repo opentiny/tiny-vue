@@ -24,6 +24,7 @@ const class2type = {
   '[object Date]': 'date',
   '[object Array]': 'array',
   '[object Function]': 'function',
+  '[object AsyncFunction]': 'asyncFunction',
   '[object String]': 'string',
   '[object Number]': 'number',
   '[object Boolean]': 'boolean'
@@ -69,7 +70,7 @@ export const isObject = (obj: any) => typeOf(obj) === 'object'
  *     isObject(function (){) // true
 
  */
-export const isFunction = (fn: any) => typeOf(fn) === 'function'
+export const isFunction = (fn: any) => ['asyncFunction', 'function'].includes(typeOf(fn))
 
 /**
  * 判断对象是否为简单对象。
@@ -161,3 +162,5 @@ export const isSame = (x: any, y: any) =>
 
 /** 判断是否是正则表达式 */
 export const isRegExp = (value: any) => typeOf(value) === 'regExp'
+
+export const isPromise = (val) => isObject(val) && isFunction(val.then) && isFunction(val.catch)

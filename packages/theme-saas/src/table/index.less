@@ -17,8 +17,6 @@
       }
 
       tbody {
-        @apply border-b border-b-color-border;
-
         tr {
           @apply text-color-text-primary;
           @apply bg-color-bg-2;
@@ -39,16 +37,17 @@
         }
 
         .noData {
-          width: 582px;
-          height: 360px;
-          @apply text-center;
-          @apply text-color-text-placeholder;
-          @apply ~"pt-2.5";
-          @apply flex;
-          @apply -mb-px;
-          @apply border-b border-b-color-border;
-          @apply justify-center;
-          @apply items-center;
+          &:hover {
+            background: transparent;
+          }
+
+          td {
+            height: 160px;
+            @apply text-center;
+            vertical-align: middle;
+            @apply text-color-text-placeholder;
+            background-color: transparent;
+          }
         }
       }
 

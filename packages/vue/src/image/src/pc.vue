@@ -22,7 +22,7 @@
       class="tiny-image__inner"
       v-bind="$attrs"
       @click="clickHandler"
-      :src="src"
+      :src="state.src"
       :style="state.getImageStyle"
       :class="{
         'tiny-image__inner-center': state.getAlignCenter,
@@ -34,9 +34,16 @@
         ref="imageViewer"
         :z-index="zIndex"
         v-if="state.getPreview && state.showViewer"
+        :on-switch="handleSwitch"
         :on-close="closeViewer"
         :url-list="previewSrcList"
-      />
+        :keep-style="keepStyle"
+        :show-index="showIndex"
+      >
+        <template #count="slotScoped">
+          <slot name="count" :index="slotScoped.index"></slot>
+        </template>
+      </image-viewer>
     </teleport>
   </div>
 </template>
@@ -52,8 +59,8 @@ export default defineComponent({
     ImageViewer,
     Teleport
   },
-  emits: ['load', 'error', 'delete'],
-  props: [...props, 'src', 'fit', 'lazy', 'scrollContainer', 'previewSrcList', 'zIndex'],
+  emits: ['load', 'error', 'delete', 'change-index'],
+  props: [...props, 'src', 'fit', 'lazy', 'scrollContainer', 'previewSrcList', 'zIndex', 'keepStyle', 'showIndex'],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as IImageApi
   }

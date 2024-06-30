@@ -12,6 +12,7 @@
 
 import debounce from '../common/deps/debounce'
 import userPopper from '../common/deps/vue-popper'
+import type { Ref } from 'vue'
 import { guid } from '../common/string'
 import {
   computedVisible,
@@ -23,10 +24,18 @@ import {
   handleBlur,
   handleClear,
   close,
+  open,
   handleKeyEnter,
   select,
   highlight
 } from './index'
+import type {
+  IAutoCompleteProps,
+  IAutoCompleteState,
+  IAutoCompleteApi,
+  ISharedRenderlessFunctionParams,
+  IAutoCompleteRenderlessParamUtils
+} from '@/types'
 
 export const api = [
   'state',
@@ -35,6 +44,7 @@ export const api = [
   'getInput',
   'handleChange',
   'close',
+  'open',
   'handleFocus',
   'handleBlur',
   'handleClear',
@@ -44,8 +54,19 @@ export const api = [
   'doDestroy'
 ]
 
-const initState = ({ reactive, $prefix, computed }) => {
-  const state = reactive({
+const initState = ({
+  reactive,
+  $prefix,
+  computed,
+  inject
+}: {
+  reactive: ISharedRenderlessFunctionParams<null>['reactive']
+  $prefix: string
+  computed: ISharedRenderlessFunctionParams<null>['computed']
+}) => {
+  const state = reactive<IAutoCompleteState>({
+    showAutoWidth: inject('showAutoWidth', null),
+    popperElm: null,
     activated: false,
     suggestions: [],
     loading: false,
@@ -55,19 +76,32 @@ const initState = ({ reactive, $prefix, computed }) => {
     suggestionVisible: computed(() => computedVisible(state))
   })
 
-  return state
+  return state as IAutoCompleteState
 }
 
-const initSuggestionState = ({ reactive, parent, showPopper, popperElm, referenceElm }) =>
-  reactive({
+export const initSuggestionState = ({
+  reactive,
+  parent,
+  showPopper,
+  popperElm,
+  referenceElm
+}: {
+  reactive: ISharedRenderlessFunctionParams<null>['reactive']
+  parent: IAutoCompleteRenderlessParamUtils['parent']
+  showPopper: Ref<boolean>
+  popperElm: Ref<HTMLElement>
+  referenceElm: Ref<HTMLElement>
+}) => {
+  return reactive({
     parent,
     dropdownWidth: '',
     showPopper,
     popperElm,
     referenceElm
   })
+}
 
-const initApi = ({ api, state, doDestroy, suggestionState, emit, refs, props, updatePopper, nextTick, constants }) => {
+const initApi = ({ api, state, doDestroy, suggestionState, emit, vm, props, updatePopper, nextTick, constants }) => {
   api.getData = getData({ props, state, updatePopper, nextTick })
 
   Object.assign(api, {
@@ -75,12 +109,13 @@ const initApi = ({ api, state, doDestroy, suggestionState, emit, refs, props, up
     doDestroy,
     suggestionState,
     close: close(state),
+    open: open(api),
     handleBlur: handleBlur({ emit, state }),
-    mounted: mounted({ refs, state, suggestionState }),
-    highlight: highlight({ constants, refs, state }),
+    mounted: mounted({ vm, state, suggestionState }),
+    highlight: highlight({ constants, vm, state }),
     handleClear: handleClear({ emit, state }),
     select: select({ emit, nextTick, props, state }),
-    watchVisible: watchVisible({ suggestionState, refs }),
+    watchVisible: watchVisible({ suggestionState, vm }),
     handleChange: handleChange({ api, emit, state, props }),
     handleFocus: handleFocus({ api, emit, props, state }),
     handleKeyEnter: handleKeyEnter({ api, emit, nextTick, props, state }),
@@ -89,17 +124,26 @@ const initApi = ({ api, state, doDestroy, suggestionState, emit, refs, props, up
 }
 
 export const renderless = (
-  props,
-  { computed, onBeforeUnmount, onMounted, reactive, watch, toRefs, onDeactivated },
-  { $prefix, refs, parent, emit, constants, nextTick, slots }
+  props: IAutoCompleteProps,
+  {
+    computed,
+    onBeforeUnmount,
+    onMounted,
+    reactive,
+    watch,
+    toRefs,
+    onDeactivated,
+    inject
+  }: ISharedRenderlessFunctionParams<null>,
+  { $prefix, vm, parent, emit, constants, nextTick, slots }: IAutoCompleteRenderlessParamUtils
 ) => {
-  const api = {}
-  const state = initState({ reactive, $prefix, computed })
+  const api: Partial<IAutoCompleteApi> = {}
+  const state = initState({ reactive, $prefix, computed, inject })
 
   const { showPopper, popperElm, referenceElm, doDestroy, updatePopper } = userPopper({
     reactive,
     watch,
-    refs,
+    vm,
     emit,
     slots,
     nextTick,
@@ -107,15 +151,15 @@ export const renderless = (
     onBeforeUnmount,
     toRefs,
     onDeactivated
-  })
+  } as any)
 
   const suggestionState = initSuggestionState({ reactive, parent, showPopper, popperElm, referenceElm })
 
-  initApi({ api, state, doDestroy, suggestionState, emit, refs, props, updatePopper, nextTick, constants })
+  initApi({ api, state, doDestroy, suggestionState, emit, vm, props, updatePopper, nextTick, constants })
 
-  watch(() => state.suggestionVisible, api.watchVisible)
+  watch(() => state.suggestionVisible, (api as IAutoCompleteApi).watchVisible)
 
-  onMounted(api.mounted)
+  onMounted((api as IAutoCompleteApi).mounted)
 
   return api
 }

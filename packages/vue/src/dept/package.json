@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-dept",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -22,8 +22,9 @@
     "@opentiny/vue-option": "workspace:~",
     "@opentiny/vue-row": "workspace:~",
     "@opentiny/vue-col": "workspace:~",
-    "@opentiny/vue-modal": "workspace:~",
-    "@opentiny/vue-input": "workspace:~"
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-dialog-box": "workspace:~"
   },
   "license": "MIT"
 }

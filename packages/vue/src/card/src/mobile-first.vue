@@ -128,7 +128,7 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/card/vue'
-import { $props, $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { props, $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import { classes } from './token'
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
@@ -137,13 +137,9 @@ import Checkbox from '@opentiny/vue-checkbox'
 import Radio from '@opentiny/vue-radio'
 import { IconEllipsis } from '@opentiny/vue-icon'
 
-const $constants = {
-  CARD_GROUP: 'CardGroup'
-}
-
 export default defineComponent({
   name: $prefix + 'Card',
-  emits: ['icon-click', 'update:modelValue', 'change'],
+  emits: ['icon-click', 'update:modelValue', 'change', 'click'],
   components: {
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
@@ -152,63 +148,31 @@ export default defineComponent({
     TinyRadio: Radio,
     IconEllipsis: IconEllipsis()
   },
-  props: {
-    ...$props,
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
-    modelValue: {},
-    src: String,
-    title: String,
-    customClass: String,
-    height: String,
-    label: {},
-    autoWidth: {
-      type: Boolean,
-      default: false
-    },
-    options: {
-      type: Array,
-      default: () => {
-        return []
-      }
-    },
-    iconMore: {
-      type: [Object, String],
-      default: () => {
-        return IconEllipsis()
-      }
-    },
-    size: {
-      type: String,
-      default: 'medium'
-    },
-    status: {
-      type: String,
-      default: 'default'
-    },
-    checkType: {
-      type: String,
-      default: ''
-    },
-    type: {
-      type: String,
-      default: 'text'
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props: [
+    ...props,
+    '_constants',
+    'modelValue',
+    'src',
+    'title',
+    'customClass',
+    'height',
+    'label',
+    'autoWidth',
+    'options',
+    'iconMore',
+    'size',
+    'status',
+    'checkType',
+    'type',
+    'disabled'
+  ],
   setup(props, context) {
     return setup({
       props,
       context,
       renderless,
       api,
-      classes,
-      mono: true
+      classes
     })
   }
 })

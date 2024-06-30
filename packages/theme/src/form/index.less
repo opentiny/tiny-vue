@@ -92,17 +92,17 @@
       display: inline-block;
       text-align: left;
       padding: 0 0 8px;
-      height: var(--ti-form-item-label-top-label-height);
-      line-height: var(--ti-form-item-label-top-label-line-height);
+      height: var(--ti-form-label-top-label-height);
+      line-height: var(--ti-form-label-top-label-line-height);
     }
 
     .@{form-item-prefix-cls} {
-      margin-bottom: var(--ti-form-item-label-top-margin-bottom);
+      margin-bottom: var(--ti-form-label-top-margin-bottom);
     }
   }
 
   &--label-top & {
-    margin-bottom: var(--ti-form-item-label-top-margin-bottom);
+    margin-bottom: var(--ti-form-label-top-margin-bottom);
   }
 
   &--inline&--label-top {
@@ -118,7 +118,10 @@
   }
 
   &__valid {
+    .component-css-vars-form();
     &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
+      padding: var(--ti-form-valid-padding-vertical) var(--ti-form-valid-padding-horizontal);
+
       .tooltip-validate-icon {
         fill: var(--ti-tooltip-validate-icon-color);
         margin-right: 8px;

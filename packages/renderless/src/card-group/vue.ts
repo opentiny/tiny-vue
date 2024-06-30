@@ -1,9 +1,11 @@
 export const api = ['state']
 
-export const renderless = (props, { reactive }, { vm }) => {
+export const renderless = (props, { reactive, computed }, { vm }) => {
   const api = {}
 
-  const state = reactive({})
+  const state = reactive({
+    size: computed(() => props.size)
+  })
 
   Object.assign(api, {
     state

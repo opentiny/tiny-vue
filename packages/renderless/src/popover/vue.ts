@@ -43,7 +43,8 @@ export const api = [
   'doShow',
   'doClose',
   'doDestroy',
-  'handleItemClick'
+  'handleItemClick',
+  'handleDocumentClick'
 ]
 
 const initState = ({
@@ -68,7 +69,7 @@ const initState = ({
   return state
 }
 
-const initApi = ({ api, props, state, refs, emit, doDestroy, constants, nextTick, vm, mode }) => {
+const initApi = ({ api, props, state, emit, doDestroy, constants, nextTick, vm, mode }) => {
   Object.assign(api, {
     state,
     mounted: mounted({ api, state, constants, props, nextTick, mode }),
@@ -87,8 +88,8 @@ const initApi = ({ api, props, state, refs, emit, doDestroy, constants, nextTick
     handleMouseLeave: handleMouseLeave({ props, state }),
     handleAfterLeave: handleAfterLeave(emit),
     handleMouseEnter: handleMouseEnter({ props, state }),
-    handleDocumentClick: handleDocumentClick({ refs, state }),
-    wrapMounted: wrapMounted({ api, props, refs, state }),
+    handleDocumentClick: handleDocumentClick({ vm, state }),
+    wrapMounted: wrapMounted({ api, props, vm, state }),
     handleItemClick: handleItemClick({ emit, state }),
     observeCallback: observeCallback({ vm, state })
   })
@@ -159,15 +160,15 @@ export const renderless = (
     onActivated,
     onDeactivated
   }: ISharedRenderlessParamHooks,
-  { $prefix, emit, vm, refs, slots, nextTick, mode }: ISharedRenderlessParamUtils<never>
+  { $prefix, emit, vm, slots, nextTick, mode }: ISharedRenderlessParamUtils<never>
 ) => {
   const api = {} as IPopoverApi
   const constants = { IDPREFIX: `${$prefix.toLowerCase()}-popover` }
-  const options = { emit, onBeforeUnmount, nextTick, reactive, props, watch, onDeactivated, refs, slots, toRefs }
+  const options = { emit, onBeforeUnmount, nextTick, reactive, props, watch, onDeactivated, vm, slots, toRefs }
   const { showPopper, popperElm, referenceElm, doDestroy, updatePopper } = userPopper(options as any)
   const state: IPopoverState = initState({ reactive, computed, api, popperElm, showPopper, referenceElm })
 
-  initApi({ api, constants, props, state, refs, emit, doDestroy, nextTick, vm, mode })
+  initApi({ api, constants, props, state, emit, doDestroy, nextTick, vm, mode })
 
   onDeactivated(() => {
     api.destroyed()

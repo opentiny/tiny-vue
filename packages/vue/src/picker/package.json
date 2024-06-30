@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-picker",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -18,13 +18,20 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-date-panel": "workspace:~",
     "@opentiny/vue-date-range": "workspace:~",
     "@opentiny/vue-month-range": "workspace:~",
+    "@opentiny/vue-quarter-panel": "workspace:~",
     "@opentiny/vue-time": "workspace:~",
     "@opentiny/vue-time-range": "workspace:~",
-    "@opentiny/vue-time-panel": "workspace:~"
+    "@opentiny/vue-time-panel": "workspace:~",
+    "@opentiny/vue-year-range": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-filter-box": "workspace:~",
+    "@opentiny/vue-date-picker-mobile-first": "workspace:~",
+    "@opentiny/vue-time-picker-mobile": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

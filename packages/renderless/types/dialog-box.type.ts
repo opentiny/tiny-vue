@@ -17,11 +17,12 @@ import type {
   handleConfirm,
   updatePopper,
   handleWrapperClick,
+  useMouseEventDown,
+  useMouseEventUp,
   hide,
   handleClose,
   watchVisible,
   computedStyle,
-  computedBodyStyle,
   mounted,
   unMounted,
   computedAnimationName,
@@ -58,6 +59,8 @@ export interface IDialogBoxState {
   animationName: string
   opened?: boolean
   rendered?: boolean
+  mouseUpWrapperFlag: boolean
+  mouseDownWrapperFlag: boolean
 }
 
 export interface IDialogBoxApi {
@@ -69,11 +72,12 @@ export interface IDialogBoxApi {
   handleConfirm: ReturnType<typeof handleConfirm>
   updatePopper: ReturnType<typeof updatePopper>
   handleWrapperClick: ReturnType<typeof handleWrapperClick>
+  useMouseEventDown: ReturnType<typeof useMouseEventDown>
+  useMouseEventUp: ReturnType<typeof useMouseEventUp>
   hide: ReturnType<typeof hide>
   handleClose: ReturnType<typeof handleClose>
   watchVisible: ReturnType<typeof watchVisible>
   computedStyle: ReturnType<typeof computedStyle>
-  computedBodyStyle: ReturnType<typeof computedBodyStyle>
   mounted: ReturnType<typeof mounted>
   unMounted: ReturnType<typeof unMounted>
   computedAnimationName: ReturnType<typeof computedAnimationName>

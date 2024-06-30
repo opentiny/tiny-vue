@@ -13,8 +13,8 @@
 import type { IImageProps, IImageRenderlessParams, IImageState } from '@/types'
 import { on, off, getScrollContainer, isInContainer } from '../common/deps/dom'
 import { typeOf } from '../common/type'
-import '../common/deps/requestAnimationFrame'
 import { rafThrottle } from '../image-viewer'
+import { xss } from '../common/xss'
 
 const isSupportObjectFit = () => document.documentElement.style.objectFit !== undefined
 
@@ -81,6 +81,12 @@ export const handleError =
     state.error = true
 
     emit('error', event)
+  }
+
+export const handleSwitch =
+  ({ emit }: Pick<IImageRenderlessParams, 'emit'>) =>
+  (index) => {
+    emit('change-index', index)
   }
 
 export const handleLazyLoad =
@@ -177,3 +183,9 @@ export const mounted =
       api.loadImage()
     }
   }
+
+export const filterImageUrl = (props) => () => {
+  const isBase64 = /^data:image\/(png|jpg|jpeg|gif);base64,([a-zA-Z0-9+/]+={0,2})/
+
+  return isBase64.test(props.src) ? props.src : xss.filterUrl(props.src)
+}

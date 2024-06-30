@@ -14,7 +14,6 @@ export default {
       },
       codeFiles: ['basic-usage.vue']
     },
-
     {
       demoId: 'numeric-size',
       name: {
@@ -80,6 +79,20 @@ export default {
       codeFiles: ['allow-empty.vue']
     },
     {
+      demoId: 'empty-value',
+      name: {
+        'zh-CN': '设定清空输入后的绑定值',
+        'en-US': 'Sets the binding value after the input is cleared'
+      },
+      desc: {
+        'zh-CN':
+          '可通过 <code>empty-value</code> 属性设置计数器在可清空下，清空后组件的绑定值。默认为 <code>undefined</code>。示例中将清空后组件绑定值改为<code>null</code>',
+        'en-US':
+          'You can use the <code>empty-value</code> attribute to set the binding value of the cleared component when the counter can be cleared. The default value is <code>undefined</code>. In the example, the component binding value is changed to <code>null</code>.'
+      },
+      codeFiles: ['empty-value.vue']
+    },
+    {
       demoId: 'about-step',
       name: {
         'zh-CN': '步长',
@@ -118,7 +131,7 @@ export default {
     {
       demoId: 'blur-event',
       name: {
-        'zh-CN': 'blur event',
+        'zh-CN': '失焦事件',
         'en-US': 'events'
       },
       desc: {
@@ -139,6 +152,5 @@ export default {
       },
       codeFiles: ['change-event.vue']
     }
-  ],
-  apis: []
+  ]
 }

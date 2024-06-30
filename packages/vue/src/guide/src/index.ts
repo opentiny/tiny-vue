@@ -1,8 +1,8 @@
-import { $props, $prefix, $setup } from '@opentiny/vue-common'
+import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import browser from '@opentiny/vue-renderless/common/browser'
 import template from 'virtual-template?pc'
 
-export default {
+export default defineComponent({
   name: $prefix + 'Guide',
   props: {
     ...$props,
@@ -55,4 +55,4 @@ export default {
   setup(props, context) {
     return $setup({ props, context, template })
   }
-}
+})

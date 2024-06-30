@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-toggle-menu",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -19,7 +19,8 @@
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
-    "@opentiny/vue-tree": "workspace:~"
+    "@opentiny/vue-tree": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

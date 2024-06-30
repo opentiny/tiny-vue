@@ -65,7 +65,7 @@ export const renderless = (
     getUsers: getUsers({ api, props, state }),
     setSelected: setSelected({ api, props, state }),
     searchMethod: searchMethod({ api, props, state, emit }),
-    userChange: userChange({ api, emit, props, state }),
+    userChange: userChange({ api, emit, props, state, dispatch, constants }),
     useSortable: useSortable({ api, props, state, vm }),
     computedTextField: computedTextField({ service: $service, props }),
     computedValueField: computedValueField({ service: $service, props }),

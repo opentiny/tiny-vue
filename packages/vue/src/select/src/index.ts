@@ -12,7 +12,8 @@
 
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import { t } from '@opentiny/vue-locale'
-import template from 'virtual-template?pc'
+import template from 'virtual-template?pc|mobile-first'
+import { IconChevronDown } from '@opentiny/vue-icon'
 
 const $constants = {
   CLASS: {
@@ -50,15 +51,24 @@ const $constants = {
     Tree: 'tree'
   },
   MAX_WIDTH: 132,
-  InputBoxType: {
-    Input: 'input',
-    Underline: 'underline'
+  RECYCLE: {
+    SAAS_HEIGHT: 220,
+    AURORA_HEIGHT: 180,
+    ITEM_HEIGHT: 34,
+    SAFE_MARGIN: 4
   },
-  ICON_MAP: {
-    dropdownIcon: 'icon-delta-down'
+  SAAS_SIZE: {
+    mini: 24,
+    small: 28,
+    medium: 32
   },
-  BORDER_HEIGHT: 2, // 上下边框各1px,加起来是2
-  DEFAULT_HEIGHT: 28 // 默认主题的默认高度
+  AURORA_SIZE: {
+    mini: 24,
+    small: 36,
+    medium: 42
+  },
+  SPACING_HEIGHT: 0,
+  MAX_VISIBLE_ROWS: 1 // 多选默认最大显示行数，超出后自动隐藏
 }
 
 export default defineComponent({
@@ -97,6 +107,7 @@ export default defineComponent({
         }
       }
     },
+    title: String,
     shape: String,
     tip: String,
     label: String,
@@ -150,6 +161,10 @@ export default defineComponent({
     placeholder: {
       type: String,
       default: () => t('ui.select.placeholder')
+    },
+    searchPlaceholder: {
+      type: String,
+      default: () => t('ui.select.pleaseSearch')
     },
     autocomplete: {
       type: String,
@@ -231,7 +246,11 @@ export default defineComponent({
     },
     dropdownIcon: {
       type: [Object, String],
-      default: ''
+      default: () => {
+        const defaultDropdownIcon = IconChevronDown()
+        defaultDropdownIcon.isDefault = true
+        return defaultDropdownIcon
+      }
     },
     disabledTooltipContent: String,
     hoverExpand: {
@@ -248,10 +267,53 @@ export default defineComponent({
       type: [Object, String, Boolean, Array, Number],
       default: ''
     },
+    updateDelay: {
+      type: Number,
+      default: 0
+    },
     showTips: {
       type: Boolean,
       default: true
     },
+    closeByMask: {
+      type: Boolean,
+      default: true
+    },
+    keepFocus: {
+      type: Boolean,
+      default: false
+    },
+    popperOptions: {
+      type: Object,
+      default: () => ({ gpuAcceleration: false, boundariesPadding: 0 })
+    },
+    trim: {
+      type: Boolean,
+      default: false
+    },
+    topCreate: {
+      type: Boolean,
+      default: false
+    },
+    topCreateText: {
+      type: String,
+      default: () => t('ui.select.add')
+    },
+    initLabel: {
+      type: String,
+      default: ''
+    },
+    blank: {
+      type: Boolean,
+      default: false
+    },
+    tooltipConfig: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
+    // 以下为 tiny 新增
     searchable: {
       type: Boolean,
       default: false
@@ -262,13 +324,38 @@ export default defineComponent({
     },
     InputBoxType: {
       type: String,
-      default: 'input'
+      default: 'input',
+      validator: (value: string) => ['input', 'underline'].includes(value)
     },
     tagType: {
       type: String,
-      default: '' // aui 默认 info
+      default: ''
     },
     clearNoMatchValue: {
+      type: Boolean,
+      default: false
+    },
+    showLimitText: {
+      type: Boolean,
+      default: false
+    },
+    showProportion: {
+      type: Boolean,
+      default: false
+    },
+    clickExpand: {
+      type: Boolean,
+      default: false
+    },
+    maxVisibleRows: {
+      type: Number,
+      default: $constants.MAX_VISIBLE_ROWS
+    },
+    allText: {
+      type: String,
+      default: ''
+    },
+    showAllTextTag: {
       type: Boolean,
       default: false
     }

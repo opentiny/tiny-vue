@@ -24,6 +24,9 @@ export default {
   },
   methods: {
     beforeLeave() {
+      // 以下写法均为禁用切换
+      // return Promise.resolve(false)
+      // return Promise.reject()
       return false
     }
   }

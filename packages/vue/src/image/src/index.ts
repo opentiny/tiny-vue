@@ -62,6 +62,10 @@ export const imageProps = {
   imageSize: {
     type: Number,
     default: 100
+  },
+  keepStyle: {
+    type: Boolean,
+    default: false
   }
 }
 export default defineComponent({

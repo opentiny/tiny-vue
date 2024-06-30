@@ -18,7 +18,17 @@ import '@opentiny/vue-theme/tabs/index.less'
 import type { ITabsApi } from '@opentiny/vue-renderless/types/tabs.type'
 
 export default defineComponent({
-  emits: ['add', 'click', 'close', 'edit', 'update:modelValue', 'tab-drag-start', 'tab-drag-over', 'tab-drag-end'],
+  emits: [
+    'add',
+    'click',
+    'close',
+    'edit',
+    'update:modelValue',
+    'tab-nav-update',
+    'tab-drag-start',
+    'tab-drag-over',
+    'tab-drag-end'
+  ],
   props: [
     ...props,
     'tabStyle',
@@ -36,7 +46,13 @@ export default defineComponent({
     'popperAppendToBody',
     'dropConfig',
     'tooltipConfig',
-    'separator'
+    'separator',
+    'beforeClose',
+    'overflowTitle',
+    'titleWidth',
+    'moreShowAll',
+    'panelMaxHeight',
+    'panelWidth'
   ],
   components: {
     TabNav,
@@ -69,7 +85,11 @@ export default defineComponent({
       popperClass,
       popperAppendToBody,
       dropConfig,
-      tooltipConfig
+      tooltipConfig,
+      overflowTitle,
+      titleWidth,
+      panelMaxHeight,
+      panelWidth
     } = this
 
     const newButton =
@@ -103,7 +123,11 @@ export default defineComponent({
         popperAppendToBody,
         dropConfig,
         tooltipConfig,
-        separator: state.separator
+        overflowTitle,
+        titleWidth,
+        separator: state.separator,
+        panelMaxHeight,
+        panelWidth
       },
       on: {
         'tab-drag-start': handleTabDragStart,
@@ -136,7 +160,8 @@ export default defineComponent({
           [`tiny-tabs--${!state.separator ? position : 'top'}`]: true,
           'tiny-tabs--border-card': tabStyle === 'border-card',
           'tiny-tabs--button-card': tabStyle === 'button-card',
-          'tiny-tabs--small': size === 'small'
+          'tiny-tabs--small': size === 'small',
+          'tiny-tabs--large': size === 'large'
         }}>
         {position !== 'bottom' ? [header, panels] : [panels, header]}
       </div>

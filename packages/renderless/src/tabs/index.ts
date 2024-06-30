@@ -11,6 +11,58 @@
  */
 import type { ITabsRenderlessParams, ITabsPane, ITabsCustomEvent, ITabsPaneVm } from '@/types'
 
+// 此处与aui区别开，将tabNav的方法抽离出来，从源头解决pane的排序问题
+const getOrderedPanes = (parent, panes) => {
+  const slotDefault = parent.$slots.default
+  let orders
+
+  if (typeof slotDefault === 'function') {
+    orders = []
+
+    const tabVnodes = slotDefault()
+    const handler = ({ type, componentOptions, props }) => {
+      let componentName = type && type.componentName
+
+      if (!componentName) componentName = componentOptions && componentOptions.Ctor.extendOptions.componentName
+
+      if (componentName === 'TabItem') {
+        const paneName = (props && props.name) || (componentOptions && componentOptions.propsData.name)
+
+        orders.push(paneName)
+      }
+    }
+
+    tabVnodes.forEach(({ type, componentOptions, props, children }) => {
+      if (
+        type &&
+        (type.toString() === 'Symbol(Fragment)' || // vue@3.3之前的开发模式
+          type.toString() === 'Symbol(v-fgt)' || //   vue@3.3.1 的变更
+          type.toString() === 'Symbol()') //          构建后
+      ) {
+        Array.isArray(children) &&
+          children.forEach(({ type, componentOptions, props }) => handler({ type, componentOptions, props }))
+      } else {
+        handler({ type, componentOptions, props })
+      }
+    })
+  }
+
+  // 此处不同步aui，vue3情况下插槽使用v-if生成的slotDefault有差异
+  if (orders.length > 0) {
+    let tmpPanes = []
+
+    orders.forEach((paneName) => {
+      let pane = panes.find((pane) => pane.name === paneName)
+
+      if (pane) tmpPanes.push(pane)
+    })
+
+    panes = tmpPanes
+  }
+
+  return panes
+}
+
 export const calcPaneInstances =
   ({
     constants,
@@ -18,34 +70,33 @@ export const calcPaneInstances =
     state,
     childrenHandler
   }: Pick<ITabsRenderlessParams, 'constants' | 'parent' | 'state' | 'childrenHandler'>) =>
-  (isForceUpdate: boolean = false) => {
+  (isForceUpdate = false) => {
     const tabItemVNodes = parent.$slots.default
 
     /* istanbul ignore if */
     if (tabItemVNodes) {
+      // 差异性需要特别处理：用来确定tab-item的顺序，防止vue3的currentPanes中vm顺序报错
+      const orderPanes = []
+      tabItemVNodes().forEach((vnode) => {
+        if (Array.isArray(vnode.children)) {
+          vnode.children.forEach((child) => {
+            const name = child.props?.name
+            name && orderPanes.push(name)
+          })
+        } else {
+          const name = vnode.props?.name
+          name && orderPanes.push(name)
+        }
+      })
       const currentPanes = [] as ITabsPaneVm[]
 
       childrenHandler(({ vm, isLevel1 }) => {
-        isLevel1 && vm.$options.componentName === constants.TAB_ITEM && currentPanes.push(vm)
-      })
-
-      const currentPaneStates = currentPanes.map((pane) => pane.state)
-      const paneStates = state.panes.map((pane) => pane.state)
-
-      let newPanes = [] as ITabsPaneVm[]
-      for (let i = 0; i < paneStates.length; i++) {
-        const paneState = paneStates[i]
-        const index = currentPaneStates.indexOf(paneState)
-
-        if (index > -1) {
-          newPanes.push(state.panes[i])
-          currentPanes.splice(index, 1)
-
-          currentPaneStates.splice(index, 1)
+        if (isLevel1 && vm.$options.componentName === constants.TAB_ITEM) {
+          const index = orderPanes.findIndex((name) => name === vm.name)
+          index > -1 ? (currentPanes[index] = vm) : currentPanes.push(vm)
         }
-      }
-
-      newPanes = newPanes.concat(currentPanes)
+      })
+      const newPanes = getOrderedPanes(parent, currentPanes) as ITabsPaneVm[]
 
       const panesChanged = !(
         newPanes.length === state.panes.length &&
@@ -71,6 +122,12 @@ export const calcMorePanes =
     const el = parent.$el
     const tabs = el.querySelectorAll('.tiny-tabs__item')
     const tabNavRefs = refs.nav.$refs
+
+    // 此处不同步aui。新规范适配
+    if (props.moreShowAll) {
+      state.showPanesCount = 0
+      return
+    }
 
     if (tabs && tabs.length) {
       let tabsAllWidth = 0
@@ -122,16 +179,32 @@ export const handleTabClick =
     }
   }
 
-export const handleTabRemove = (emit: ITabsRenderlessParams['emit']) => (pane: ITabsPane, event: Event) => {
-  if (pane.disabled) {
-    return
+export const handleTabRemove =
+  ({ emit, props }: Pick<ITabsRenderlessParams, 'emit' | 'props'>) =>
+  (pane: ITabsPane, event: Event) => {
+    if (pane.disabled) {
+      return
+    }
+
+    event.stopPropagation()
+
+    const emitEvent = () => {
+      emit('edit', pane.name, 'remove')
+      emit('close', pane.name)
+    }
+
+    if (typeof props.beforeClose === 'function') {
+      const beforeCloseResult = props.beforeClose(pane.name)
+
+      if (beforeCloseResult && beforeCloseResult.then) {
+        beforeCloseResult.then((res) => res && emitEvent())
+      } else {
+        beforeCloseResult && emitEvent()
+      }
+    } else {
+      emitEvent()
+    }
   }
-
-  event.stopPropagation()
-
-  emit('edit', pane.name, 'remove')
-  emit('close', pane.name)
-}
 
 export const handleTabAdd = (emit: ITabsRenderlessParams['emit']) => () => {
   emit('edit', null, 'add')
@@ -147,10 +220,12 @@ export const setCurrentName =
       const before = props.beforeLeave(value, state.currentName)
 
       if (before && before.then) {
-        before.then(() => {
-          api.changeCurrentName(value)
-          refs.nav && refs.nav.removeFocus(value)
-        })
+        before
+          .then(() => {
+            api.changeCurrentName(value)
+            refs.nav && refs.nav.removeFocus(value)
+          })
+          .catch(() => null)
       } else if (before !== false) {
         api.changeCurrentName(value)
       }

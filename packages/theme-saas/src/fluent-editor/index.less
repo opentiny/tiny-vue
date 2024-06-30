@@ -43,11 +43,11 @@
           &::after {
             @apply content-[''];
             @apply absolute;
-            @apply ~"w-3.5";
+            @apply ~'w-3.5';
             @apply ~'h-3.5';
             @apply right-2;
-            top: calc(50% + 1px);
-            @apply ~"-translate-y-2/4";
+            @apply top-1/2;
+            @apply ~'-translate-y-2/4';
             background: url(../images/chevron-down.svg) no-repeat center/100%;
           }
         }
@@ -63,12 +63,12 @@
 
       span.ql-lineheight {
         > span {
-          width: 60px;
+          @apply w-16;
         }
       }
 
       span.ql-header {
-        width: 104px;
+        @apply w-28;
       }
 
       > span.ql-picker:not(:last-of-type) {
@@ -146,8 +146,6 @@
       }
 
       .ql-direction {
-        @apply pt-1;
-
         &:not(.ql-active) {
           > div:first-child {
             svg {
@@ -198,7 +196,7 @@
     }
 
     .ql-editor {
-      padding: 8px 0 86px 0;
+      @apply pt-2 px-0 pb-20;
       @apply my-0 mx-4;
       @apply border-t border-t-color-border;
     }
@@ -217,11 +215,11 @@
           &::after {
             @apply content-[''];
             @apply absolute;
-            @apply ~"w-3.5";
+            @apply ~'w-3.5';
             @apply ~'h-3.5';
             @apply right-0;
-            top: calc(50% + 1px);
-            @apply ~"-translate-y-2/4";
+            @apply top-1/2;
+            @apply ~'-translate-y-2/4';
           }
         }
 
@@ -242,7 +240,7 @@
 
   .toolbar-icon {
     @apply absolute;
-    @apply ~"-left-[9999px]";
+    @apply ~'-left-[9999px]';
     @apply opacity-0;
     @apply ~'-z-[1]';
     @apply w-0;
@@ -254,7 +252,7 @@
   .ql-tooltip {
     a.ql-preview,
     a.ql-remove {
-      min-width: 16px;
+      @apply ~'min-w-[theme(spacing.4)]';
       @apply mt-0 mr-2 mb-0 ml-0;
       @apply p-0;
 

@@ -1,0 +1,10 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs />
+	<path id="矩形"
+		d="M4 0L20 0C22.2092 0 24 1.79083 24 4L24 20C24 22.2092 22.2092 24 20 24L4 24C1.79083 24 0 22.2092 0 20L0 4C0 1.79083 1.79083 0 4 0Z"
+		fill-rule="evenodd" fill="#E7FBF2" />
+	<path id="矩形"
+		d="M5 8L19 8C20.1046 8 21 8.89545 21 10L21 14C21 15.1046 20.1046 16 19 16L5 16C3.89545 16 3 15.1046 3 14L3 10C3 8.89545 3.89545 8 5 8Z"
+		fill-rule="evenodd" fill="#09AA71" />
+</svg>

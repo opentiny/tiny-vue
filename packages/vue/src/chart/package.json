@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-chart",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -21,16 +21,32 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "echarts": "5.4.1",
-    "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-chart-core": "workspace:~",
     "@opentiny/vue-chart-bar": "workspace:~",
+    "@opentiny/vue-chart-core": "workspace:~",
+    "@opentiny/vue-chart-histogram": "workspace:~",
     "@opentiny/vue-chart-line": "workspace:~",
     "@opentiny/vue-chart-pie": "workspace:~",
-    "@opentiny/vue-chart-funnel": "workspace:~",
     "@opentiny/vue-chart-radar": "workspace:~",
-    "@opentiny/vue-chart-waterfall": "workspace:~"
+    "@opentiny/vue-chart-ring": "workspace:~",
+    "@opentiny/vue-chart-waterfall": "workspace:~",
+    "@opentiny/vue-chart-funnel": "workspace:~",
+    "@opentiny/vue-chart-gauge": "workspace:~",
+    "@opentiny/vue-chart-scatter": "workspace:~",
+    "@opentiny/vue-chart-tree": "workspace:~",
+    "@opentiny/vue-chart-sankey": "workspace:~",
+    "@opentiny/vue-chart-candle": "workspace:~",
+    "@opentiny/vue-chart-heatmap": "workspace:~",
+    "@opentiny/vue-chart-liquidfill": "workspace:~",
+    "@opentiny/vue-chart-wordcloud": "workspace:~",
+    "@opentiny/vue-chart-map": "workspace:~",
+    "@opentiny/vue-chart-boxplot": "workspace:~",
+    "@opentiny/vue-autonavi-map": "workspace:~",
+    "@opentiny/vue-baidu-map": "workspace:~",
+    "@opentiny/vue-chart-graph": "workspace:~",
+    "@opentiny/vue-chart-sunburst": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

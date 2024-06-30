@@ -9,27 +9,27 @@ export const classes = {
   'dark-info': 'text-color-text-inverse bg-color-text-placeholder',
   'dark-pink': 'text-color-text-inverse bg-color-chart-17',
   'dark-purple': 'text-color-text-inverse bg-color-chart-11',
-  'dark-cyan': 'text-color-text-inverse bg-color-chart-5',
+  'dark-cyan': 'text-color-text-inverse bg-color-chart-2',
 
   'light-success': 'text-color-success bg-color-success-subtler',
   'light-alerting': 'text-color-alert bg-color-alert-subtler',
-  'light-warning': 'text-color-warning-hover bg-color-warning-subtler',
+  'light-warning': 'text-color-warning bg-color-warning-subtler',
   'light-error': 'text-color-error bg-color-error-subtler',
   'light-default': 'text-color-info-primary bg-color-info-primary-subtler',
   'light-info': 'text-color-text-primary bg-color-bg-2',
   'light-pink': 'text-color-chart-17 bg-color-chart-17-subtler',
   'light-purple': 'text-color-chart-11 bg-color-chart-11-subtler',
-  'light-cyan': 'text-color-chart-5 bg-color-chart-5-subtler',
+  'light-cyan': 'text-color-chart-2 bg-color-chart-2-subtler',
 
   'plain-success': 'text-color-success bg-color-bg-1',
   'plain-alerting': 'text-color-alert bg-color-bg-1',
-  'plain-warning': 'text-color-warning-hover bg-color-bg-1',
+  'plain-warning': 'text-color-warning bg-color-bg-1',
   'plain-error': 'text-color-error bg-color-bg-1',
   'plain-default': 'text-color-info-primary bg-color-bg-1',
   'plain-info': 'text-color-text-primary bg-color-bg-1',
   'plain-pink': 'text-color-chart-17 bg-color-bg-1',
   'plain-purple': 'text-color-chart-11 bg-color-bg-1',
-  'plain-cyan': 'text-color-chart-5 bg-color-bg-1',
+  'plain-cyan': 'text-color-chart-2 bg-color-bg-1',
 
   'success-border': 'border-color-success-subtle',
   'alerting-border': 'border-color-alert-subtle',
@@ -39,7 +39,7 @@ export const classes = {
   'info-border': 'border-color-none',
   'pink-border': 'border-color-chart-17-subtle',
   'purple-border': 'border-color-chart-11-subtle',
-  'cyan-border': 'border-color-chart-5-subtle',
+  'cyan-border': 'border-color-chart-2-subtle',
 
   'fill-dark': 'fill-color-bg-6 hover:fill-color-icon-inverse',
 
@@ -51,11 +51,11 @@ export const classes = {
   'fill-light-info': 'fill-color-none hover:fill-color-none',
   'fill-light-pink': 'fill-color-chart-17-subtle hover:fill-color-chart-17',
   'fill-light-purple': 'fill-color-chart-11-subtle hover:fill-color-chart-11',
-  'fill-light-cyan': 'fill-color-chart-5-subtle hover:fill-color-chart-5',
+  'fill-light-cyan': 'fill-color-chart-2-subtle hover:fill-color-chart-2',
 
-  'selectable-unselect': 'h-9 sm:h-7 text-color-text-primary bg-color-bg-4 cursor-pointer hover:bg-color-bg-3',
+  'selectable-unselect': 'h-9 sm:h-7 text-color-text-primary bg-color-bg-4 cursor-pointer hover:bg-color-fill-1',
   'selectable-selected':
-    'h-9 sm:h-7 text-color-brand border-current bg-color-info-secondary-subtle cursor-pointer hover:text-color-brand-hover',
+    'h-9 sm:h-7 text-color-brand border-current bg-color-info-primary-subtler cursor-pointer hover:text-color-brand-hover',
   'tag-disabled':
     'h-9 sm:h-7 text-color-text-disabled bg-color-bg-4 border-transparent cursor-not-allowed hover:text-color-text-disabled hover:bg-color-bg-4',
   'tag-operable': 'h-7 sm:h-6 cursor-pointer',

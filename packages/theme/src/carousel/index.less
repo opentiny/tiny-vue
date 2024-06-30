@@ -68,10 +68,25 @@
 
       &.@{carousel-prefix-cls}__arrow-right {
         right: 16px;
+        color: var(--ti-carousel-arrow-text-color);
+      }
+
+      &.@{carousel-prefix-cls}__arrow-top {
+        @apply top-0;
+        @apply ~'left-1/2';
+        @apply ~'-translate-x-2/4';
+      }
+
+      &.@{carousel-prefix-cls}__arrow-bottom {
+        @apply bottom-0;
+        @apply ~'left-1/2';
+        top: unset;
+        @apply ~'-translate-x-2/4';
       }
 
       &:hover {
         background-color: var(--ti-carousel-arrow-hover-bg-color);
+        color: var(--ti-carousel-arrow-hover-text-color);
       }
 
       i {
@@ -193,7 +208,7 @@
       right: 0px;
       bottom: 50%;
       width: 16px;
-      height: 56px;
+      height: auto;
       transform: translateY(50%);
       padding: 2px 4px;
 

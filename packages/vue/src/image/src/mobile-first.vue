@@ -23,7 +23,7 @@
       v-else
       v-bind="$attrs"
       @click="clickHandler"
-      :src="src"
+      :src="state.src"
       :style="state.getImageStyle"
       :class="[
         'align-top w-full h-full rounded cursor-pointer',
@@ -41,11 +41,17 @@
       <image-viewer
         :z-index="zIndex"
         v-if="state.getPreview && state.showViewer"
+        :on-switch="handleSwitch"
         :on-close="closeViewer"
         :url-list="previewSrcList"
         :show-index="showIndex"
+        :keep-style="keepStyle"
         @delete="deleteHander"
-      />
+      >
+        <template #count="slotScoped">
+          <slot name="count" :index="slotScoped.index"></slot>
+        </template>
+      </image-viewer>
     </teleport>
   </div>
 </template>
@@ -61,7 +67,7 @@ export default defineComponent({
     ImageViewer,
     Teleport
   },
-  emits: ['load', 'error', 'delete'],
+  emits: ['load', 'error', 'delete', 'change-index'],
   props: [
     ...props,
     'src',
@@ -74,7 +80,8 @@ export default defineComponent({
     'showHover',
     'previewVisible',
     'round',
-    'imageSize'
+    'imageSize',
+    'keepStyle'
   ],
   setup(props, context): any {
     return setup({

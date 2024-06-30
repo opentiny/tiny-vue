@@ -24,9 +24,12 @@
  */
 import { isString } from '@opentiny/vue-renderless/grid/static/'
 import { getCellValue } from '@opentiny/vue-renderless/grid/utils'
-import { log } from '@opentiny/vue-renderless/common'
 import Formatter from './formatter'
 import GlobalConfig from '../config'
+
+export { Formatter }
+
+export { warn, error } from './logger'
 
 function getRenderType({ editor, formatConfig, formatText }) {
   let renderType = formatText || formatConfig.type
@@ -122,15 +125,3 @@ export const getCellLabel = (row, column, params) => {
 
   return cellLabel
 }
-
-const outLog = (type) => (message) => {
-  let msg = `[tiny-grid] ${GlobalConfig.i18n(message) || message}`
-
-  log(msg, type)
-
-  return msg
-}
-
-export const warn = outLog('warn')
-
-export const error = outLog('error')

@@ -30,26 +30,26 @@ const value3 = ref(false)
 const value4 = ref(false)
 
 function handleShow() {
-  TinyModal.message({ message: 'show 事件触发了' })
+  TinyModal.message({ status: 'info', message: 'show 事件触发了' })
 }
 
 function handleHide() {
-  TinyModal.message({ message: 'hide 事件触发了' })
+  TinyModal.message({ status: 'info', message: 'hide 事件触发了' })
 }
 
 function handleConfirm() {
-  TinyModal.message({ message: 'confirm 事件触发了' })
+  TinyModal.message({ status: 'info', message: 'confirm 事件触发了' })
 }
 
 function handleCancel() {
-  TinyModal.message({ message: 'cancel 事件触发了' })
+  TinyModal.message({ status: 'info', message: 'cancel 事件触发了' })
 }
 
 function handleClose() {
-  TinyModal.message({ message: 'close 事件触发了' })
+  TinyModal.message({ status: 'info', message: 'close 事件触发了' })
 }
 
 function handleZoom() {
-  TinyModal.message({ message: 'zoom 事件触发了' })
+  TinyModal.message({ status: 'info', message: 'zoom 事件触发了' })
 }
 </script>

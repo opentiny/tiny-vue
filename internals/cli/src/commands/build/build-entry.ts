@@ -10,7 +10,7 @@ import {
   prettierFormat,
   logGreen
 } from '../../shared/utils'
-import { getComponents } from '../../shared/module-utils'
+import { getComponents, excludeComponents } from '../../shared/module-utils'
 import handlebarsRender from './handlebars.render'
 
 const version = getopentinyVersion({ key: 'version' })
@@ -58,11 +58,11 @@ function getMainTemplate({ mode }) {
   export const version = '${version}'
   
   export {
-    {{{components}}}
+    {{{exportComponents}}}
   }
   
   export default {
-    {{{components}}},
+    {{{defaultComponents}}},
     install
   } as any
   `
@@ -79,7 +79,7 @@ const createEntry = (mode) => {
   const PKGDeps = {}
 
   components.forEach((item) => {
-    if (item.inEntry !== false) {
+    if (item.inEntry !== false && !excludeComponents.includes(item.name)) {
       const component = capitalizeKebabCase(item.name)
       PKGDeps[item.importName] = 'workspace:~'
       componentsTemplate.push(`  ${component}`)
@@ -93,11 +93,18 @@ const createEntry = (mode) => {
     fs.writeFileSync(PKG_PATH, JSON.stringify(PKGContent, null, 2))
   }
 
+  const joinStr = ',' + endOfLine
   const template = handlebarsRender({
     template: MAIN_TEMPLATE,
     data: {
       include: includeTemplate.join(endOfLine),
-      components: componentsTemplate.join(',' + endOfLine)
+      components: componentsTemplate.join(joinStr),
+      exportComponents: componentsTemplate
+        .map((component) => `${component}${joinStr}${component} as Tiny${component.trim()}`)
+        .join(joinStr),
+      defaultComponents: componentsTemplate
+        .map((component) => `${component}${joinStr}Tiny${component.trim()}: ${component}`)
+        .join(joinStr)
     }
   })
 

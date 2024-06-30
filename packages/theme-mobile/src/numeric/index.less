@@ -19,9 +19,11 @@
 @input-prefix-cls: ~'@{css-prefix}mobile-input';
 
 .@{numeric-prefix-cls} {
+  .component-css-vars-numeric();
+
   position: relative;
   display: inline-block;
-  width: 100px;
+  width: var(--ti-mobile-numeric-width);
   outline: none;
 
   &__input {
@@ -30,10 +32,8 @@
     &.is-disabled &-inner {
       cursor: not-allowed;
       pointer-events: none;
-      border: 1px solid var(--ti-mobile-numeric-input-normal-border-color, #ddd);
-      color: var(--ti-mobile-numeric-input-placeholder-color, #999);
-      background: var(--ti-mobile-numeric-input-disabled-bgcolor, #f5f5f5);
-      .placeholder(@color: #bfbfbf);
+      border: none;
+      color: var(--ti-mobile-numeric-text-color-disabled);
     }
 
     &.is-disabled .@{input-prefix-cls}__icon {
@@ -43,30 +43,21 @@
 
   &__input-inner {
     width: 100%;
-    height: var(--ti-mobile-numeric-input-normal-height, 24px);
-    line-height: var(--ti-mobile-numeric-input-normal-height, 24px);
-    font-size: var(--ti-mobile-numeric-input-font-size, 14px);
-    color: var(--ti-mobile-numeric-input-normal-color, #333);
-    caret-color: var(--ti-mobile-numeric-input-caret-color, #039be5);
-    background: var(--ti-mobile-numeric-input-normal-background, #fff);
-    border: 1px solid var(--ti-mobile-numeric-input-normal-border-color, #ddd);
-    border-radius: var(--ti-mobile-numeric-input-radius, 3px);
-    padding: 0 24px;
+    height: var(--ti-mobile-numeric-height);
+    line-height: var(--ti-mobile-numeric-height);
+    font-size: var(--ti-mobile-numeric-font-size);
+    font-weight: var(--ti-mobile-numeric-font-weight);
+    color: var(--ti-mobile-numeric-text-color);
+    border: none;
+    padding: 0 var(--ti-mobile-numeric-height);
     outline: 0;
     display: inline-block;
     box-sizing: border-box;
-    -webkit-appearance: none;
+    appearance: none;
     text-align: center;
-    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-    .placeholder(
-      @color: var(--ti-mobile-numeric-input-placeholder-color, #999999)
-    );
 
     &:focus {
       outline: 0;
-      .placeholder(
-        @color: var(--ti-mobile-numeric-input-placeholder-color, #999999)
-      );
     }
 
     &::-ms-clear {
@@ -80,203 +71,52 @@
   &__increase {
     position: absolute;
     z-index: 1;
-    top: 0px;
-    width: var(--ti-mobile-numeric-input-normal-height, 24px);
-    height: var(--ti-mobile-numeric-input-normal-height, 24px);
-    line-height: var(--ti-mobile-numeric-input-normal-height, 24px);
-    font-size: 14px;
-    text-align: center;
+    top: 0;
+    width: var(--ti-mobile-numeric-height);
+    height: var(--ti-mobile-numeric-height);
+    line-height: var(--ti-mobile-numeric-height);
+    background-color: var(--ti-mobile-numeric-button-background-color);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 
     svg {
-      fill: var(--ti-mobile-numeric-input-normal-color, #333);
+      fill: var(--ti-mobile-numeric-icon-color);
+      width: var(--ti-mobile-numeric-icon-height);
+      height: var(--ti-mobile-numeric-icon-height);
     }
 
     &.is-disabled {
       cursor: not-allowed;
 
       svg {
-        fill: var(--ti-mobile-numeric-input-icon-disabled-color, #ccc);
+        fill: var(--ti-mobile-numeric-icon-color-disabled);
       }
     }
   }
 
   &__increase {
-    right: 1px;
-    border-radius: 0 3px 3px 0;
-    border-left: 1px solid var(--ti-mobile-numeric-input-normal-border-color, #ddd);
+    right: 0;
   }
 
   &__decrease {
-    left: 0px;
-    border-radius: 3px 0 0 3px;
-    border-right: 1px solid var(--ti-mobile-numeric-input-normal-border-color, #ddd);
+    left: 0;
   }
 
   &.is-disabled &__decrease,
   &.is-disabled &__increase {
     svg {
-      fill: var(--ti-mobile-numeric-input-icon-disabled-color, #ccc);
+      fill: var(--ti-mobile-numeric-icon-color-disabled);
     }
 
     &:hover {
       cursor: not-allowed;
 
       svg {
-        fill: var(--ti-mobile-numeric-input-icon-disabled-color, #ccc);
+        fill: var(--ti-mobile-numeric-icon-color-disabled);
       }
     }
-  }
-
-  &--large {
-    width: 180px;
-    line-height: 30px;
-  }
-
-  &--large &__decrease,
-  &--large &__increase {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-  }
-
-  &--large &__input-inner {
-    height: 30px;
-    line-height: 30px;
-    padding: 0px 30px;
-  }
-
-  &--medium {
-    width: 270px;
-    line-height: 42px;
-  }
-
-  &--medium &__decrease,
-  &--medium &__increase {
-    width: 42px;
-    height: 42px;
-    line-height: 42px;
-    font-size: 16px;
-  }
-
-  &--medium &__input-inner {
-    height: 42px;
-    line-height: 42px;
-    padding-left: 43px;
-    padding-right: 43px;
-  }
-
-  &--small {
-    width: 200px;
-    line-height: 36px;
-  }
-
-  &--small &__decrease,
-  &--small &__increase {
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    font-size: 14px;
-  }
-
-  &--small &__input-inner {
-    height: 36px;
-    line-height: 36px;
-    padding-left: 37px;
-    padding-right: 37px;
-  }
-
-  &--mini {
-    width: 130px;
-    line-height: 24px;
-  }
-
-  &--mini &__decrease,
-  &--mini &__increase {
-    width: 24px;
-    font-size: 12px;
-  }
-
-  &--mini &__input-inner {
-    height: 24px;
-    line-height: 24px;
-    padding-left: 35px;
-    padding-right: 35px;
-  }
-
-  &.is-without-controls &__input-inner {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  &.is-controls-right {
-    .@{numeric-prefix-cls}__input {
-      display: flex;
-    }
-
-    .@{numeric-prefix-cls}__input-inner {
-      padding-left: 8px;
-      padding-right: 38px;
-    }
-
-    .@{numeric-prefix-cls}__decrease,
-    .@{numeric-prefix-cls}__increase {
-      height: 50%;
-      line-height: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      svg {
-        transform: scale(0.8);
-      }
-    }
-
-    .@{numeric-prefix-cls}__increase {
-      right: 0;
-      border-radius: 0 3px 0 0;
-      border-bottom: 1px solid var(--ti-mobile-numeric-input-normal-border-color, #ddd);
-    }
-
-    .@{numeric-prefix-cls}__decrease {
-      right: 0;
-      bottom: 0;
-      top: auto;
-      left: auto;
-      border-right: none;
-      border-left: 1px solid var(--ti-mobile-numeric-input-normal-border-color, #ddd);
-      border-radius: 0 0 3px;
-    }
-
-    &[class*='medium'] {
-      [class*='decrease'],
-      [class*='increase'] {
-        line-height: 20px;
-      }
-    }
-
-    &[class*='small'] {
-      [class*='decrease'],
-      [class*='increase'] {
-        line-height: 17px;
-      }
-    }
-
-    &[class*='mini'] {
-      [class*='decrease'],
-      [class*='increase'] {
-        line-height: 8px;
-      }
-    }
-  }
-
-  &.is-round &__input-inner {
-    border: none;
-  }
-
-  &.is-round &__decrease,
-  &.is-round &__increase {
-    border: 1px solid var(--ti-mobile-numeric-input-normal-border-color, #ddd);
-    border-radius: 24px;
   }
 }

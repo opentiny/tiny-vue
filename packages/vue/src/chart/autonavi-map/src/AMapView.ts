@@ -13,8 +13,10 @@ const setLaterFunc = (ctx) => {
 const setWrapperFunc = (ctx) => {
   ctx.wrapperFn = function () {
     if (ctx.lock) {
+      // eslint-disable-next-line prefer-rest-params
       ctx.args = arguments
     } else {
+      // eslint-disable-next-line prefer-rest-params
       ctx.fn.apply(ctx.context, arguments)
       setTimeout(ctx.later, ctx.time)
       ctx.lock = true
@@ -96,24 +98,25 @@ const getMoveHandler = ({ aMapModel, api, coordSys, rendering, viewportRoot }) =
     })
   }
 
-export default echarts.extendComponentView({
-  type: 'amap',
+export default function extendComponentView() {
+  echarts.extendComponentView({
+    type: 'amap',
+    render(aMapModel, ecModel, api) {
+      let rendering = true
+      let amap = aMapModel.getAMap()
+      let viewportRoot = api.getZr().painter.getViewportRoot()
+      let coordSys = aMapModel.coordinateSystem
 
-  render(aMapModel, ecModel, api) {
-    let rendering = true
-    let amap = aMapModel.getAMap()
-    let viewportRoot = api.getZr().painter.getViewportRoot()
-    let coordSys = aMapModel.coordinateSystem
+      let moveHandler = getMoveHandler({ aMapModel, api, coordSys, rendering, viewportRoot })
+      let zoomEndHandler = getZoomEndHandler({ api, rendering })
+      let resizeHandler = getResizeHandler({ _vm: this, api, moveHandler })
+      let throttledResizeHandler = throttle(resizeHandler, 300, amap)
 
-    let moveHandler = getMoveHandler({ aMapModel, api, coordSys, rendering, viewportRoot })
-    let zoomEndHandler = getZoomEndHandler({ api, rendering })
-    let resizeHandler = getResizeHandler({ _vm: this, api, moveHandler })
-    let throttledResizeHandler = throttle(resizeHandler, 300, amap)
+      removeListener({ _vm: this, aMapModel, amap })
+      addListener({ aMapModel, amap, throttledResizeHandler, zoomEndHandler })
+      backupListener({ _vm: this, throttledResizeHandler, zoomEndHandler })
 
-    removeListener({ _vm: this, aMapModel, amap })
-    addListener({ aMapModel, amap, throttledResizeHandler, zoomEndHandler })
-    backupListener({ _vm: this, throttledResizeHandler, zoomEndHandler })
-
-    rendering = false
-  }
-})
+      rendering = false
+    }
+  })
+}

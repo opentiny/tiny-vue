@@ -32,7 +32,10 @@ export default {
         {
           id: '1',
           label: '数据 1',
-          children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+          children: [
+            { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+            { id: '1-2', label: '数据 1-2' }
+          ]
         },
         {
           id: '2',
@@ -65,7 +68,6 @@ export default {
       // 查询半选的节点数据
       const checkedHalfNodes = this.$refs.treeRef.getHalfCheckedNodes()
 
-      // eslint-disable-next-line no-console
       console.log('当前组件的勾选状态为： ', this.$refs.treeRef, {
         checkedKeys,
         checkedKeysOnlyLeaf,
@@ -80,7 +82,6 @@ export default {
       this.$refs.treeRef.setCurrentRadio()
     },
     checkChange(data, checked, indeterminate) {
-      // eslint-disable-next-line no-console
       console.log('checkChange事件：', { data, checked, indeterminate })
     }
   }

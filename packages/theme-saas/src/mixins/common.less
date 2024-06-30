@@ -46,7 +46,7 @@
 }
 
 // Placeholder text
-.placeholder(@color: #999) {
+.placeholder(@color: theme('colors.color.text.placeholder')) {
   // Firefox 4-18
   &:-moz-placeholder {
     color: @color;
@@ -443,7 +443,7 @@
 
 .img-responsive(@display: block; ) {
   display: @display;
-  @apply ~"max-w-[100%]"; // Part 1: Set a maximum relative to the parent
+  @apply ~'max-w-[100%]'; // Part 1: Set a maximum relative to the parent
   @apply h-auto; // Part 2: Scale the height according to the width, otherwise you get stretching
 }
 

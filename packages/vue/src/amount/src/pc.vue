@@ -1,18 +1,37 @@
 <template>
-  <div ref="root" class="tiny-amount" v-bind="a($attrs, ['^on[A-Z]'])">
+  <div ref="root" class="tiny-amount" :class="{ 'hide-icon': hideIcon }" v-bind="a($attrs, ['^on[A-Z]'])">
     <tiny-popover
       v-model="state.visible"
       placement="bottom-start"
-      :popper-class="'tiny-amount-popper' + (popperClass ? ' ' + popperClass : '')"
+      :popper-class="
+        'tiny-amount-popper' +
+        (popperClass ? ' ' + popperClass : '') +
+        (shape === 'filter' ? ' tiny-amount-filter-box' : '')
+      "
       trigger="manual"
       :append-to-body="popperAppendToBody"
+      v-if="!(displayOnly || hideIcon)"
     >
       <template #reference>
+        <tiny-filter-box
+          v-if="shape === 'filter'"
+          ref="reference"
+          :label="label"
+          :value="state.amountValue"
+          :tip="tip"
+          :disabled="disabled"
+          @click="toggleVisible"
+          :show-close="clearable"
+          :blank="blank"
+        >
+        </tiny-filter-box>
         <tiny-input
+          v-else
           :tabindex="tabindex"
           :size="size"
-          :modelValue="getAmountText()"
+          :model-value="state.amountValue"
           :maxlength="maxLen"
+          :display-only="displayOnly"
           :placeholder="placeholder"
           :disabled="disabled"
           @focus="inputFocus"
@@ -20,16 +39,30 @@
           @update:modelValue="onInput"
         >
           <template #suffix>
-            <div @click="toggleVisible" class="tiny-amount-input-icon">
+            <div @click="toggleVisible" class="tiny-amount-input-icon" v-if="!hideIcon">
               <icon-coin class="tiny-svg-size" />
             </div>
           </template>
         </tiny-input>
       </template>
       <div class="popover-con" ref="popover">
+        <div class="popover-filter-content" v-if="shape === 'filter' && filter">
+          <tiny-radio-group v-model="state.radioVal" @change="handleChange">
+            <tiny-radio
+              v-for="(item, index) in state.filterMenu"
+              :key="index"
+              :label="t(item)"
+              class="popover-filter-botton"
+            >
+              {{ t(item) }}
+            </tiny-radio>
+          </tiny-radio-group>
+        </div>
         <div class="module" v-if="popUp">
           <div class="popover-left">{{ t('ui.amount.currency') }}</div>
           <tiny-currency
+            tiny_mode="pc"
+            :tiny_mode_root="true"
             class="popover-right"
             v-model="editorState.currency"
             :clearable="false"
@@ -58,12 +91,35 @@
             :maxlength="maxLen"
           ></tiny-input>
         </div>
-        <div class="module">
+        <div class="module" v-if="state.theme === 'saas'">
+          <tiny-button @click="reset">{{ t('ui.base.reset') }}</tiny-button>
+          <tiny-button type="primary" @click="save">{{ t('ui.base.confirm') }}</tiny-button>
+        </div>
+        <div class="module" v-else>
           <tiny-button type="primary" @click="save">{{ t('ui.base.confirm') }}</tiny-button>
           <tiny-button @click="reset">{{ t('ui.base.reset') }}</tiny-button>
         </div>
       </div>
     </tiny-popover>
+    <tiny-input
+      v-else
+      :tabindex="tabindex"
+      :size="size"
+      :model-value="state.amountValue"
+      :maxlength="maxLen"
+      :display-only="displayOnly"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      @focus="inputFocus"
+      @blur="inputBlur"
+      @update:modelValue="onInput"
+    >
+      <template #suffix>
+        <div @click="toggleVisible" class="tiny-amount-input-icon" v-if="!hideIcon">
+          <icon-coin class="tiny-svg-size" />
+        </div>
+      </template>
+    </tiny-input>
   </div>
 </template>
 
@@ -74,95 +130,66 @@ import Currency from '@opentiny/vue-currency'
 import Button from '@opentiny/vue-button'
 import DatePicker from '@opentiny/vue-date-picker'
 import { IconCoin } from '@opentiny/vue-icon'
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+import { setup, props, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/amount/vue'
+import FilterBox from '@opentiny/vue-filter-box'
+import Radio from '@opentiny/vue-radio'
+import RadioGroup from '@opentiny/vue-radio-group'
+import '@opentiny/vue-theme/amount/index.less'
 
 export default defineComponent({
   inheritAttrs: false,
-  name: $prefix + 'Amount',
   components: {
     TinyPopover: Popover,
     TinyInput: Input,
     TinyButton: Button,
     TinyCurrency: Currency,
     TinyDatePicker: DatePicker,
-    IconCoin: IconCoin()
+    IconCoin: IconCoin(),
+    TinyFilterBox: FilterBox,
+    TinyRadio: Radio,
+    TinyRadioGroup: RadioGroup
   },
-  props: {
-    modelValue: {
-      type: [Number, String]
-    },
-    tabindex: { type: String, default: '1' },
-    size: String,
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    currency: {
-      type: String,
-      default: 'CNY'
-    },
-    date: [String, Date],
-    dateAllowEmpty: {
-      type: Boolean,
-      default: false
-    },
-    digits: {
-      type: Number,
-      default: 2
-    },
-    rounding: {
-      type: Boolean,
-      default: true
-    },
-    maxLen: {
-      type: Number,
-      default: 15
-    },
-    negative: {
-      type: Boolean,
-      default: true
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    fetchCurrency: Function,
-    fields: Object,
-    popperClass: String,
-    popperAppendToBody: {
-      type: Boolean,
-      default: true
-    },
-    format: Object,
-    type: {
-      type: String,
-      default: 'amount'
-    },
-    holdZero: {
-      type: Boolean,
-      default: true
-    },
-    modelTruncation: {
-      type: Boolean,
-      default: true
-    },
-    strictInput: {
-      type: Boolean,
-      default: false
-    },
-    plugin: Function,
-    popUp: {
-      type: Boolean,
-      default: true
-    },
-    hideCurrency: {
-      type: Boolean,
-      default: false
-    }
-  },
+  emits: ['update:modelValue', 'update:currency', 'update:date', 'change', 'clear', 'filter-change'],
+  props: [
+    ...props,
+    'modelValue',
+    'tabindex',
+    'size',
+    'placeholder',
+    'currency',
+    'date',
+    'dateAllowEmpty',
+    'digits',
+    'stringMode',
+    'rounding',
+    'maxLen',
+    'negative',
+    'disabled',
+    'fetchCurrency',
+    'fields',
+    'popperClass',
+    'popperAppendToBody',
+    'format',
+    'type',
+    'holdZero',
+    'modelTruncation',
+    'strictInput',
+    'plugin',
+    'popUp',
+    'hideCurrency',
+    'displayOnly',
+    'hideIcon',
+    'numAllowEmpty',
+    'label',
+    'tip',
+    'shape',
+    'clearable',
+    'filter',
+    'blank'
+  ],
   setup(props, context) {
-    return setup({ props, context, renderless, api, mono: true })
+    return setup({ props, context, renderless, api })
   }
 })
 </script>

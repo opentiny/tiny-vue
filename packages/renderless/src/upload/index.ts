@@ -142,12 +142,8 @@ export const uploadFiles =
 
         return folderAry.length < 7
       })
-    }
-
-    if (!props.isFolder) {
-      if (!props.multiple) {
-        postFiles = postFiles.slice(0, 1)
-      }
+    } else if (!props.multiple) {
+      postFiles = postFiles.slice(0, 1)
     }
 
     if (postFiles.length === 0) {
@@ -209,17 +205,17 @@ export const abort =
   (file: IFileUploadFile) => {
     const { reqs } = state
     const cancel = function (uid) {
-      if (reqs[uid]) {
-        reqs[uid].abort()
+      if (reqs[uid]?.abort) {
+        reqs[uid].abort('')
       } else if (state.cancelToken[uid]) {
-        state.cancelToken[uid]()
+        state.cancelToken[uid]('')
       }
       delete reqs[uid]
       delete state.cancelToken[uid]
     }
 
     if (file && file.isLargeFile && file.cancelToken) {
-      file.cancelToken && file.cancelToken.forEach((cancel) => cancel())
+      file.cancelToken && file.cancelToken.forEach((cancel) => cancel(''))
 
       delete file.cancelToken
     } else if (file) {
@@ -232,10 +228,10 @@ export const abort =
       cancel(uid)
     } else {
       const { READY, UPLOADING, FAIL } = constants.FILE_STATUS
-      Object.keys(reqs).forEach((uid) => cancel(uid))
+      Object.keys(reqs).forEach((uid) => cancel(uid || ''))
 
       props.fileList.forEach((file: any) => {
-        file.cancelToken && file.cancelToken.forEach((cancel) => cancel())
+        file.cancelToken && file.cancelToken.forEach((cancel) => cancel(''))
         if ([READY, UPLOADING].includes(file.status)) {
           file.status = FAIL
         }
@@ -336,31 +332,33 @@ const getOptionsOfHwh5 = ({
   uploaderInner,
   uid
 }: Pick<IUploadRenderlessParams, 'props' | 'state'> & IUploadRenderlessOtherParams): IUploadOptionsOfHwh5 => {
-  return {
-    edmAuth: {
-      edmToken: props.edmToken.edmToken,
-      appId: uploaderInner.hwh5.appId
+  const edm = uploaderInner.edm
+  const params = (edm && edm.upload && edm.upload.params) || {}
+
+  return Object.assign(
+    {
+      edmAuth: {
+        edmToken: props.edmToken.edmToken,
+        appId: uploaderInner.hwh5.appId
+      },
+      filePath: rawFile.filePath,
+      progress: 1
     },
-    filePath: rawFile.filePath,
-    progress: 1,
-    onProgress: (data) => {
-      if (props.onProgress) {
+    params,
+    {
+      onProgress: (data) => {
         props.onProgress(data, rawFile)
-      }
-    },
-    onSuccess: (res) => {
-      if (props.onSuccess) {
+      },
+      onSuccess: (res) => {
         props.onSuccess(res, rawFile)
+        delete state.reqs[uid]
+      },
+      onError: (error) => {
+        props.onError(error, rawFile)
+        delete state.reqs[uid]
       }
-      delete state.reqs[uid]
-    },
-    onError: (error) => {
-      if (props.onProgress) {
-        props.onProgress(error, rawFile)
-      }
-      delete state.reqs[uid]
     }
-  }
+  )
 }
 
 export const post =
@@ -406,12 +404,50 @@ export const post =
   }
 
 export const handleClick =
-  ({ props, refs }: Pick<IUploadRenderlessParams, 'props' | 'refs'>) =>
+  ({ props, refs, state }: Pick<IUploadRenderlessParams, 'props' | 'refs' | 'state'>) =>
   ($event: Event, type: string) => {
-    if (!props.disabled && !props.displayOnly) {
-      props.handleTriggerClick($event, type)
+    if (props.disabled || props.displayOnly || state.isStopPropagation) {
+      return
+    }
+
+    const { uploader, uploadInner } = state
+    const { encryptConfig = {} } = uploader
+    const fileUploadVm = uploadInner.$parent
+    const inputHandler = () => {
+      typeof props.handleTriggerClick === 'function' && props.handleTriggerClick($event, type)
+
+      if (props.isHwh5) {
+        return
+      }
+
       refs.input.value = null
+      state.isStopPropagation = true
       refs.input.click()
+      state.isStopPropagation = false
+    }
+
+    if (typeof uploader.beforeAddFile === 'function') {
+      // beforeAddFile 添加文件前钩子函数
+      $event.preventDefault()
+      // 支持返回 false、返回 promise 异步和执行回调方法 3 种方式阻止添加文件流程
+      let isPromise
+      const promise = uploader.beforeAddFile(() => {
+        !isPromise && inputHandler()
+      })
+
+      isPromise = promise && typeof promise.then === 'function'
+      if (isPromise) {
+        promise.then(() => inputHandler()).catch(() => null)
+      } else if (promise) {
+        inputHandler()
+      }
+    } else if (encryptConfig && encryptConfig.enabled && fileUploadVm) {
+      fileUploadVm.state.encryptDialogConfig.show = true
+      fileUploadVm.state.encryptDialogConfig.selectFileMethod = () => {
+        inputHandler()
+      }
+    } else {
+      inputHandler()
     }
   }
 

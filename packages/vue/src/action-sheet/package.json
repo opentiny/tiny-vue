@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-action-sheet",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -19,7 +19,9 @@
     "@opentiny/vue-drawer": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@better-scroll/core": "2.5.0"
+    "@better-scroll/core": "2.5.0",
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~"
   },
   "license": "MIT"
 }

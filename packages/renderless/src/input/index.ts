@@ -10,6 +10,7 @@
  *
  */
 
+import { omitText } from '../common/string'
 import type {
   IInputApi,
   IInputClassPrefixConstants,
@@ -100,8 +101,12 @@ export const calcTextareaHeight =
     api,
     hiddenTextarea,
     props,
-    state
-  }: Pick<IInputRenderlessParams, 'api' | 'props' | 'state'> & { hiddenTextarea: HTMLTextAreaElement | null }) =>
+    state,
+    mode,
+    constants
+  }: Pick<IInputRenderlessParams, 'api' | 'props' | 'state' | 'mode' | 'constants'> & {
+    hiddenTextarea: HTMLTextAreaElement | null
+  }) =>
   (
     targetElement: HTMLTextAreaElement,
     minRows = 1,
@@ -110,6 +115,13 @@ export const calcTextareaHeight =
     minHeight?: string
     height?: string
   } => {
+    if (!targetElement) {
+      return {
+        minHeight: '',
+        height: ''
+      }
+    }
+
     if (!hiddenTextarea) {
       hiddenTextarea = document.createElement('textarea')
       document.body.appendChild(hiddenTextarea)
@@ -126,7 +138,13 @@ export const calcTextareaHeight =
       height?: string
     } = {}
 
-    if (boxSizing === STYLE.ContentBox) {
+    if (mode === 'mobile') {
+      height = Math.max(hiddenTextarea.scrollHeight, constants.TEXTAREA_HEIGHT_MOBILE)
+    }
+
+    if (boxSizing === STYLE.BorderBox) {
+      height = height + borderSize * 2 + paddingSize
+    } else if (boxSizing === STYLE.ContentBox) {
       height = height - paddingSize
     }
 
@@ -142,7 +160,7 @@ export const calcTextareaHeight =
       }
 
       if (props.size) {
-        minHeight = props.size == 'mini' ? minHeight * 0.67 : props.size == 'small' ? minHeight : minHeight * 1.17
+        minHeight = props.size === 'mini' ? minHeight * 0.67 : props.size === 'small' ? minHeight : minHeight * 1.17
       }
 
       if (props.height) {
@@ -192,8 +210,9 @@ export const handleBlur =
     eventName,
     emit,
     props,
-    state
-  }: Pick<IInputRenderlessParams, 'api' | 'emit' | 'props' | 'state'> & {
+    state,
+    vm
+  }: Pick<IInputRenderlessParams, 'api' | 'emit' | 'props' | 'state' | 'vm'> & {
     componentName: string
     eventName: string
   }) =>
@@ -206,6 +225,10 @@ export const handleBlur =
 
     if (props.validateEvent) {
       api.dispatch(componentName, eventName, [props.modelValue])
+    }
+
+    if (props.hoverExpand) {
+      vm.$refs.textarea.scrollTop = 0
     }
   }
 
@@ -245,7 +268,7 @@ export const handleChange =
     emit('change', (event.target as HTMLInputElement | HTMLTextAreaElement).value)
 
 export const resizeTextarea =
-  ({ api, parent, refs, state }: Pick<IInputRenderlessParams, 'api' | 'parent' | 'refs' | 'state'>) =>
+  ({ api, parent, vm, state, props }: Pick<IInputRenderlessParams, 'api' | 'parent' | 'vm' | 'state' | 'props'>) =>
   (): void => {
     if (isServer) {
       return
@@ -257,9 +280,18 @@ export const resizeTextarea =
       return
     }
 
+    if (props.hoverExpand && !state.enteredTextarea) {
+      state.textareaCalcStyle = {
+        minHeight: state.textareaHeight,
+        height: state.textareaHeight
+      }
+
+      return
+    }
+
     if (!autosize) {
       state.textareaCalcStyle = {
-        minHeight: api.calcTextareaHeight(refs.textarea).minHeight
+        minHeight: api.calcTextareaHeight(vm.$refs.textarea).minHeight
       }
 
       return
@@ -268,7 +300,7 @@ export const resizeTextarea =
     const minRows = autosize.minRows
     const maxRows = autosize.maxRows
 
-    state.textareaCalcStyle = api.calcTextareaHeight(refs.textarea, minRows, maxRows)
+    state.textareaCalcStyle = api.calcTextareaHeight(vm.$refs.textarea, minRows, maxRows)
   }
 
 export const setNativeInputValue =
@@ -376,7 +408,8 @@ export const getSuffixVisible =
     state.showClear ||
     props.showPassword ||
     state.isWordLimitVisible ||
-    (state.validateState && state.needStatusIcon)
+    (state.validateState && state.needStatusIcon) ||
+    (props.mask && state.inputDisabled)
 
 export const textLength = (value: number | string | undefined): number => {
   if (typeof value === 'number') {
@@ -407,14 +440,34 @@ export const hasSelection = (api: IInputApi) => (): boolean => {
 export const handleEnterDisplayOnlyContent =
   ({ state, props }: Pick<IInputRenderlessParams, 'state' | 'props'>) =>
   ($event: MouseEvent, type?: 'textarea'): void => {
-    const target = $event.target
+    if (type === 'textarea' && props.popupMore) return
 
-    if (
-      target &&
-      ((target as HTMLElement).scrollWidth > (target as HTMLElement).offsetWidth ||
-        (type === 'textarea' && (target as HTMLElement).scrollHeight > (target as HTMLElement).offsetHeight))
-    ) {
+    const target = type === 'textarea' ? $event.target.querySelector('.text-box') : $event.target
+    state.displayOnlyTooltip = ''
+
+    if (!target) {
+      return
+    }
+
+    const isOverText =
+      target.scrollWidth > target.offsetWidth || (type === 'textarea' && target.scrollHeight > target.offsetHeight)
+
+    if (isOverText) {
       state.displayOnlyTooltip = props.displayOnlyContent || state.nativeInputValue
+    } else {
+      let isOverTextWhenMask = false
+
+      if (props.mask && state.maskValueVisible) {
+        const text = target.textContent
+        const font = window.getComputedStyle(target).font
+        const rect = target.getBoundingClientRect()
+        const iconWidth = 16 + 15 // 减去图标的宽度加上右边距
+        isOverTextWhenMask = omitText(text, font, rect.width - iconWidth).o
+      }
+
+      if (isOverTextWhenMask) {
+        state.displayOnlyTooltip = props.displayOnlyContent || state.nativeInputValue
+      }
     }
   }
 
@@ -430,23 +483,89 @@ export const hiddenPassword =
     return str
   }
 
-export const dispatchDisplayedValue =
-  ({ state, props, dispatch, api }: Pick<IInputRenderlessParams, 'state' | 'props' | 'dispatch' | 'api'>) =>
-  (): void => {
-    if (state.isDisplayOnly) {
-      dispatch('FormItem', 'displayed-value-changed', {
-        type: props.type || 'text',
-        val: api.getDisplayedValue()
+export const getDisplayedMaskValue =
+  ({ state }: Pick<IInputRenderlessParams, 'state'>) =>
+  () => {
+    if (state.maskValueVisible) {
+      return state.nativeInputValue
+    } else {
+      return state.nativeInputValue && state.maskSymbol
+    }
+  }
+
+export const setInputDomValue =
+  ({ state, props, nextTick, vm }: Pick<IInputRenderlessParams, 'state' | 'props' | 'nextTick' | 'vm'>) =>
+  (type) => {
+    nextTick(() => {
+      const input = vm.$refs.input
+      if (props.mask && state.nativeInputValue && input) {
+        input.value = state.maskValueVisible || !state.inputDisabled ? state.nativeInputValue : state.maskSymbol
+      }
+
+      if (type === 'mask' && !props.mask && input) {
+        input.value = state.nativeInputValue
+      }
+    })
+  }
+
+export const handleEnterTextarea =
+  ({ api, state, props, nextTick }) =>
+  () => {
+    if (props.hoverExpand && !state.isDisplayOnly) {
+      state.enteredTextarea = true
+      nextTick(api.resizeTextarea)
+    }
+  }
+
+export const handleLeaveTextarea =
+  ({ api, state, props, nextTick, vm }) =>
+  () => {
+    if (props.hoverExpand && !state.isDisplayOnly) {
+      state.enteredTextarea = false
+      nextTick(() => {
+        api.resizeTextarea()
+        vm.$refs.textarea.scrollTop = 0
       })
     }
   }
 
-export const getDisplayedValue =
-  ({ state, props }: Pick<IInputRenderlessParams, 'state' | 'props'>) =>
-  (): string => {
-    if (props.type === 'password') {
-      return state.hiddenPassword || '-'
-    } else {
-      return props.displayOnlyContent || state.nativeInputValue || '-'
-    }
+export const getDisplayOnlyText =
+  ({ parent, state, props }) =>
+  () => {
+    const text = props.displayOnlyContent || state.nativeInputValue
+    const showEmptyValue =
+      typeof props.showEmptyValue === 'boolean' ? props.showEmptyValue : (parent.tinyForm || {}).showEmptyValue
+
+    return showEmptyValue ? text : text || '-'
+  }
+
+export const setShowMoreBtn =
+  ({ state, vm }) =>
+  (init) => {
+    if (state.timer) clearTimeout(state.timer)
+
+    state.timer = setTimeout(() => {
+      const textBox = vm.$refs && vm.$refs.textBox
+      if (!textBox) return
+
+      // 兼容元素使用v-show及在弹框中使用的场景，只在初始化时执行一次
+      if (init && textBox.offsetHeight === 0) {
+        let textBoxClone = textBox.cloneNode(true)
+        textBoxClone.style.visibility = 'hidden'
+        textBoxClone.style.position = 'absolute'
+        textBoxClone.style.left = '-9999px'
+        document.body.appendChild(textBoxClone)
+
+        if (textBoxClone.scrollHeight > textBoxClone.offsetHeight) {
+          state.showMoreBtn = true
+        }
+
+        document.body.removeChild(textBoxClone)
+        textBoxClone = null
+      } else if (textBox.scrollHeight > textBox.offsetHeight) {
+        state.showMoreBtn = true
+      } else {
+        state.showMoreBtn = false
+      }
+    }, 100)
   }

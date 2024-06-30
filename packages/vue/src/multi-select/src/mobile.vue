@@ -10,16 +10,22 @@
  *
  -->
 <template>
-  <div class="tiny-mobile-multi-select">
-    <div class="tiny-mobile-multi-select__header">
-      <div class="tiny-mobile-multi-select__header__flexCenter" ref="headerBox">
-        <!-- 用来计算头部每项宽度 -->
-        <div class="tiny-mobile-multi-select__header__calc">
+  <div class="tiny-mobile-multi-select" v-clickoutside="handleClose">
+    <div
+      :class="[
+        'tiny-mobile-multi-select__header',
+        { 'show-search': filterable, 'is-searching': state.isSearching, 'is-disabled': disabled }
+      ]"
+      ref="headerBox"
+    >
+      <template v-if="!state.isSearching">
+        <div class="tiny-mobile-multi-select__header-item-box">
           <div
             v-for="(item, index) of dataSource"
             :key="index"
-            class="tiny-mobile-multi-select__header__item"
-            ref="label"
+            :class="['tiny-mobile-multi-select__header-item', { 'item-disabled': item.disabled }]"
+            @click="handleClick(index)"
+            :style="state.labelsStyle[index]"
           >
             <div
               :class="[
@@ -27,9 +33,9 @@
                 state.headerInfo[index]?.isSelected ? 'tiny-mobile-multi-select__header__active' : ''
               ]"
             >
-              <span v-if="!state.headerInfo[index]?.isSelected">{{ item.title }}</span>
-              <span v-else>{{ state.headerInfo[index]?.title }}</span>
+              {{ state.headerInfo[index]?.title }}
             </div>
+
             <div
               :class="[
                 'tiny-mobile-multi-select__header__icon',
@@ -43,79 +49,140 @@
             </div>
           </div>
         </div>
+
         <div
-          v-for="(item, index) of dataSource"
-          :key="index"
-          class="tiny-mobile-multi-select__header__item"
-          @click="handleClick(index)"
-          :style="state.labelsStyle[index]"
+          v-show="filterable && state.showOptions"
+          class="tiny-mobile-multi-select__header-search-icon"
+          @click="handleSearchBtnClick"
         >
-          <div
-            :class="[
-              'tiny-mobile-multi-select__header__label',
-              state.headerInfo[index]?.isSelected ? 'tiny-mobile-multi-select__header__active' : ''
-            ]"
-          >
-            <span v-if="!state.headerInfo[index]?.isSelected">{{ item.title }}</span>
-            <span v-else>{{ state.headerInfo[index]?.title }}</span>
-          </div>
-          <div
-            :class="[
-              'tiny-mobile-multi-select__header__icon',
-              state.headerInfo[index]?.isSelected ? 'tiny-mobile-multi-select__header__active' : ''
-            ]"
-            :style="{
-              transform: state.headerInfo[index]?.isUP ? 'rotate(180deg)' : 'none'
-            }"
-          >
-            <IconChevronDown></IconChevronDown>
-          </div>
+          <IconSearch></IconSearch>
         </div>
-      </div>
+      </template>
+
+      <template v-else>
+        <div class="tiny-mobile-multi-select__header-search">
+          <tiny-input
+            ref="searchInput"
+            type="text"
+            v-model="state.searchValue"
+            :placeholder="searchPlaceholder"
+            @input="handleSearchInput"
+          >
+            <template #prefix>
+              <IconSearch class="tiny-mobile-multi-select__header-prefix-icon"></IconSearch>
+            </template>
+          </tiny-input>
+        </div>
+        <div class="tiny-mobile-multi-select__header-cancel-btn" @click="handleSearchBtnClick">
+          {{ t('ui.base.cancel') }}
+        </div>
+      </template>
     </div>
+
+    <tiny-mask :visible="state.showMask" @click="handleClose"></tiny-mask>
+
     <div
       :class="['tiny-mobile-multi-select__content', !dataSource[state.headerIndex]?.hasFooter ? 'noFooter' : '']"
-      v-if="state.showWheel"
+      v-show="state.showOptions"
     >
+      <div v-if="type === 'list'" class="tiny-mobile-multi-select__option-list">
+        <tiny-multi-select-item
+          v-for="(item, index) in state.currentOptions"
+          :option="item"
+          :key="index"
+        ></tiny-multi-select-item>
+      </div>
+
       <tiny-wheel
-        :dataSource="state.wheelData"
-        :defaultSelectedIndexs="state.defaultSelectedIndexs"
-        :hasFooter="dataSource[state.headerIndex]?.hasFooter"
+        v-else
+        :data-source="state.wheelData"
+        :default-selected-indexs="state.defaultSelectedIndexs"
+        :has-footer="dataSource[state.headerIndex]?.hasFooter"
         @change="wheelChange"
-        @clickWheelItem="clickWheelItem"
+        @click-wheel-item="clickWheelItem"
       ></tiny-wheel>
-    </div>
-    <div class="tiny-mobile-multi-select__footer" v-if="state.showWheel && dataSource[state.headerIndex]?.hasFooter">
-      <tiny-button round size="large" @click="reset">{{ t('ui.base.reset') }}</tiny-button>
-      <tiny-button round size="large" type="primary" @click="confirm">{{ t('ui.button.confirm') }}</tiny-button>
+
+      <slot name="footer">
+        <div
+          class="tiny-mobile-multi-select__footer"
+          v-show="state.showOptions && dataSource[state.headerIndex]?.hasFooter"
+        >
+          <tiny-button round size="large" type="secondary" @click="reset">{{ t('ui.base.reset') }}</tiny-button>
+          <tiny-button round size="large" type="primary" @click="confirm">{{ t('ui.button.confirm') }}</tiny-button>
+        </div>
+      </slot>
     </div>
   </div>
 </template>
 
-<script lang="tsx">
-import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
+<script lang="ts">
+import type { PropType } from '@opentiny/vue-common'
+import { $prefix, setup, defineComponent, directive } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/multi-select/vue'
-import { IconChevronDown } from '@opentiny/vue-icon'
+import { iconChevronDown, iconSearch } from '@opentiny/vue-icon'
 import Button from '@opentiny/vue-button'
+import Input from '@opentiny/vue-input'
+import Mask from '@opentiny/vue-mask'
+import MultiSelectItem from '@opentiny/vue-multi-select-item'
 import Wheel from '@opentiny/vue-wheel'
+import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { t } from '@opentiny/vue-locale'
 
 export default defineComponent({
   name: $prefix + 'MultiSelect',
   components: {
-    IconChevronDown: IconChevronDown(),
+    IconChevronDown: iconChevronDown(),
+    IconSearch: iconSearch(),
     TinyButton: Button,
-    TinyWheel: Wheel
+    TinyWheel: Wheel,
+    TinyMask: Mask,
+    TinyMultiSelectItem: MultiSelectItem,
+    TinyInput: Input
   },
+  directives: directive({ Clickoutside }),
   props: {
     dataSource: {
       type: Array,
       default: () => []
     },
+    modelValue: {
+      type: [String, Array],
+      default: ''
+    },
+    searchValue: {
+      type: String,
+      default: ''
+    },
     defaultSelectedArray: {
       type: Array,
       default: () => []
+    },
+    filterable: {
+      type: Boolean,
+      default: false
+    },
+    searchPlaceholder: {
+      type: String,
+      default: () => t('ui.search.placeholder')
+    },
+    type: {
+      type: String as PropType<'list' | 'wheel'>,
+      default: 'list'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    mask: {
+      type: Boolean,
+      default: false
+    },
+    maskOptions: {
+      type: Object,
+      default: () => ({})
     }
   },
+  emits: ['update:modelValue', 'update:searchValue', 'item-click'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

@@ -39,9 +39,12 @@ import {
   getPoints,
   getLabels,
   inputValueChange,
+  inputOnChange,
   handleSlotInputFocus,
   handleSlotInputBlur,
-  handleSlotInput
+  handleSlotInput,
+  getMarkList,
+  updateSlotValue
 } from './index'
 
 import type {
@@ -78,6 +81,7 @@ export const api = [
   'customAppearHook',
   'customAfterAppearHook',
   'inputValueChange',
+  'inputOnChange',
   'handleSlotInputFocus',
   'handleSlotInputBlur',
   'handleSlotInput'
@@ -91,7 +95,7 @@ const initState = ({ reactive, computed, props, api, parent, inject }) => {
     moveStyle: [],
     points: [],
     labels: [],
-    isInit: true,
+    markList: computed(() => api.getMarkList()),
     inputValue: [0, 0],
     isDrag: false,
     sliderSize: 0,
@@ -109,6 +113,7 @@ const initState = ({ reactive, computed, props, api, parent, inject }) => {
     rightBtnPercent: 0,
     rightBtnShow: false,
     innerTrigger: false,
+    changeCompat: computed(() => props.changeCompat),
     rangeDiff: computed(() => props.max - props.min),
     tipValue: computed(() => api.formatTipValue(state.activeValue)),
     formDisabled: computed(() => (parent.tinyForm || {}).disabled),
@@ -150,19 +155,22 @@ export const renderless = (
     unBindEvent: unBindEvent(api),
     displayTip: displayTip({ api, nextTick, state }),
     bindKeyDown: bindKeyDown({ api, props, state }),
-    bindMouseUp: bindMouseUp({ api, emit, state }),
+    bindMouseUp: bindMouseUp({ api, emit, state, props }),
     bindMouseMove: bindMouseMove({ api, nextTick, state }),
-    bindMouseDown: bindMouseDown({ api, constants, mode, emit, state }),
+    bindMouseDown: bindMouseDown({ api, constants, mode, emit, state, props }),
     setActiveButtonValue: setActiveButtonValue({ api, emit, props, state }),
     initSlider: initSlider({ api, props, state }),
     watchModelValue: watchModelValue({ api, state }),
     watchActiveValue: watchActiveValue({ api, emit, props, state }),
     getPoints: getPoints({ props, state }),
     getLabels: getLabels({ props, state }),
-    inputValueChange: inputValueChange({ props, api, state }),
+    inputValueChange: inputValueChange({ props, api, state, emit }),
     handleSlotInputFocus: handleSlotInputFocus(state),
-    handleSlotInputBlur: handleSlotInputBlur(state),
-    handleSlotInput: handleSlotInput(state)
+    handleSlotInputBlur: handleSlotInputBlur({ state, api }),
+    handleSlotInput: handleSlotInput({ state, api }),
+    getMarkList: getMarkList({ props }),
+    updateSlotValue: updateSlotValue({ state }),
+    inputOnChange: inputOnChange({ api, emit, props, state })
   })
 
   watch(
@@ -175,6 +183,9 @@ export const renderless = (
     },
     { immediate: true }
   )
+
+  props.changeCompat && watch(() => state.activeValue, api.watchActiveValue, { immediate: true })
+
   watch(() => state.activeValue, api.watchActiveValue, { immediate: true })
 
   watch(

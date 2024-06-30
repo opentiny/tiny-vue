@@ -1,10 +1,10 @@
 <template>
   <div>
-    <tiny-radar :data="chartData" :settings="chartSettings"></tiny-radar>
+    <tiny-radar :options="options"></tiny-radar>
   </div>
 </template>
 
-<script lang="jsx">
+<script>
 import { ChartRadar } from '@opentiny/vue'
 
 export default {
@@ -13,18 +13,29 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        columns: ['日期', '访问用户', '下单用户', '下单率'],
-        rows: [
-          { 日期: '1/1', 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
-          { 日期: '1/2', 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
-          { 日期: '1/3', 访问用户: 2923, 下单用户: 2623, 下单率: 0.76 },
-          { 日期: '1/4', 访问用户: 1723, 下单用户: 1423, 下单率: 0.49 },
-          { 日期: '1/5', 访问用户: 3792, 下单用户: 3492, 下单率: 0.323 },
-          { 日期: '1/6', 访问用户: 4593, 下单用户: 4293, 下单率: 0.78 }
-        ]
-      },
-      chartSettings: {}
+      options: {
+        legend: {
+          show: true,
+          position: {
+            left: 'center',
+            bottom: 20.1
+          },
+          orient: 'horizontal'
+        },
+
+        // radarMax 用来设置雷达图最外圈的数值
+        // 当不设置 radarMax 时， 雷达图坐标系为数据中的最大值
+        radarMax: 100,
+        data: {
+          'Domestic': {
+            'Equipment': 41,
+            'VM': 91,
+            'CSP': 81,
+            'RD': 51,
+            'Markets': 71
+          }
+        }
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p>场景1：嵌套表格禁用某项（单选）</p>
+    <div>场景1：嵌套表格禁用某项（单选）</div>
+    <br />
     <tiny-select
       v-model="value1"
       value-field="id"
@@ -9,7 +10,10 @@
       :grid-op="gridOpRadio"
       :radio-config="radioConfig"
     ></tiny-select>
-    <p>场景2：嵌套表格禁用某项（多选）</p>
+    <br />
+    <br />
+    <div>场景2：嵌套表格禁用某项（多选）</div>
+    <br />
     <tiny-select
       v-model="value2"
       value-field="id"
@@ -18,6 +22,33 @@
       render-type="grid"
       :grid-op="gridOp"
       :select-config="selectConfig"
+    ></tiny-select>
+    <br />
+    <br />
+    <div>场景3：嵌套表格行选中（单选）</div>
+    <br />
+    <tiny-select
+      v-model="value3"
+      value-field="id"
+      text-field="city"
+      render-type="grid"
+      :grid-op="gridOpRadio"
+      :radio-config="{ trigger: 'row' }"
+      placeholder="请选择"
+    ></tiny-select>
+    <br />
+    <br />
+    <div>场景4：嵌套表格行选中（多选）</div>
+    <br />
+    <tiny-select
+      v-model="value4"
+      value-field="id"
+      multiple
+      text-field="city"
+      render-type="grid"
+      :grid-op="gridOp"
+      :select-config="{ trigger: 'row' }"
+      placeholder="请选择"
     ></tiny-select>
   </div>
 </template>
@@ -43,6 +74,8 @@ export default {
       },
       value1: '',
       value2: [],
+      value3: '',
+      value4: [],
       gridOpRadio: {
         data: [
           { id: '001', area: '华南区', province: '广东省', city: '广州市' },

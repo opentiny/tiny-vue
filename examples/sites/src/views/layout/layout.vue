@@ -7,11 +7,9 @@
       </tiny-tooltip>
     </div>
     <!-- 切換主题样式 -->
-    <tiny-dropdown v-if="!templateModeState.isSaas" class="theme-change-button" trigger="click">
+    <tiny-dropdown v-if="!templateModeState.isSaas" class="theme-change-button" trigger="click" :show-icon="false">
       <tiny-tooltip :content="i18nByKey('changeTheme')" placement="left">
-        <span>
-          <img :src="themeSvg" :alt="i18nByKey('changeTheme')" />
-        </span>
+        <img :src="themeSvg" :alt="i18nByKey('changeTheme')" />
       </tiny-tooltip>
       <template #dropdown>
         <tiny-dropdown-menu :options="themeData">
@@ -19,7 +17,7 @@
             v-for="(item, index) in themeData"
             :key="index"
             @click="themeItemClick(item)"
-            :class="{ 'is-actived': item.value === currThemeLabel }"
+            :class="{ 'is-actived': item.value === currentThemeKey }"
           >
             {{ item.label }}
           </tiny-dropdown-item>
@@ -27,7 +25,7 @@
       </template>
     </tiny-dropdown>
     <div class="content-layout ti-fi-1" :has-sider="!isFrame">
-      <div id="layoutSider" class="layout-sider" v-if="!isFrame">
+      <div id="layoutSider" class="layout-sider" :class="{ 'saas-border': templateModeState.isSaas }" v-if="!isFrame">
         <div v-show="!isCollapsed" class="api-type-box" :class="{ 'is-collapsed': isCollapsed }">
           <div class="api-type">
             <div :class="{ 'api-mode': true, active: apiModeState.apiMode === 'Options' }">
@@ -81,7 +79,7 @@
         >
           <template #default="{ data }">
             <div class="node-name-container">
-              <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain">多端</tiny-tag>
+              <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain" class="absolute-tag">多端</tiny-tag>
               <span class="node-name-label">{{ data.label }}</span>
               <tiny-tag v-if="data.mark?.text" class="node-float-tip" effect="dark" :type="data.mark?.type">
                 {{ data.mark.text }}
@@ -104,6 +102,7 @@
 </template>
 
 <script>
+import { useRoute } from 'vue-router'
 import { defineComponent, reactive, computed, toRefs, onMounted, onUnmounted } from 'vue'
 import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip, Tag } from '@opentiny/vue'
 import { iconHelpCircle } from '@opentiny/vue-icon'
@@ -127,7 +126,7 @@ export default defineComponent({
   },
   props: [],
   setup() {
-    const { getThemeData, changeTheme, currThemeLabel } = useTheme()
+    const { getThemeData, changeTheme, currentThemeKey, defaultTheme } = useTheme()
     const { apiModeState, apiModeFn } = useApiMode()
     const { templateModeState } = useTemplateMode()
     let state = reactive({
@@ -141,7 +140,9 @@ export default defineComponent({
     })
 
     const lang = getWord('zh-CN', 'en-US')
-    const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${lang}/os-theme/${route}${key}`
+    const { all: allPathParam, theme = defaultTheme } = useRoute().params
+    const allPath = allPathParam ? allPathParam + '/' : ''
+    const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/${route}${key}`
 
     const changeLanguage = () => {
       appFn.toggleLang()
@@ -156,7 +157,7 @@ export default defineComponent({
 
     const clickMenu = (menu) => {
       if (menu.type === 'overview') {
-        router.push(`${import.meta.env.VITE_CONTEXT}${lang}/overview`)
+        router.push(`${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/overview`)
       } else if (menu.type === 'docs') {
         router.push(getTo('docs/', menu.key))
       } else if (menu.type === 'components') {
@@ -208,7 +209,7 @@ export default defineComponent({
       collapseChange,
       themeData: getThemeData(),
       themeItemClick,
-      currThemeLabel,
+      currentThemeKey,
       themeSvg,
       changeLanguage,
       apiModeState,
@@ -241,6 +242,7 @@ export default defineComponent({
   border-radius: 100%;
   background-color: transparent;
   img {
+    margin-right: calc(-1 * var(--ti-dropdown-trigger-title-margin-right));
     display: block;
     width: 26px;
     height: 26px;
@@ -293,6 +295,14 @@ export default defineComponent({
     min-width: 0;
   }
 
+  .tiny-tree-node__content {
+    position: relative;
+  }
+  .absolute-tag {
+    position: absolute;
+    right: 4px;
+    top: 12px;
+  }
   height: calc(100% - var(--layout-api-mode-height));
   .tiny-tree {
     height: calc(100% - var(--layout-tree-menu-input-height));
@@ -370,6 +380,9 @@ export default defineComponent({
 #layoutSider {
   background: #fff;
   height: calc(100vh - 60px);
+  &.saas-border {
+    border-right: 1px solid #ddd;
+  }
 }
 
 @media (max-width: 1023px) {

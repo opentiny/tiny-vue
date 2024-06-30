@@ -29,6 +29,11 @@
   font-family: var(--ti-grid-font-family);
   background-color: var(--ti-grid-light-color);
 
+  // 展开行背景颜色
+  .@{grid-prefix-cls}-body__expanded-row {
+    background-color: var(--ti-grid-expand-background-color);
+  }
+
   // 显示表尾
   &.show__foot {
     &.scroll__x {
@@ -171,7 +176,7 @@
   .fixed__column {
     position: sticky !important;
     z-index: 1;
-    background-color: var(--ti-grid-light-color);
+    background-color: inherit;
 
     &.fixed-left-last__column:after {
       position: absolute;
@@ -206,6 +211,9 @@
 
   th.fixed__column {
     background-color: var(--ti-grid-header-background-color);
+    &.tiny-grid-header__column .tiny-grid-resizable.is__line::before {
+      transform: translateX(-1px);
+    }
   }
 
   &-fixed__left {
@@ -408,6 +416,10 @@
   & &-body__row {
     background-color: var(--ti-grid-row-background-color);
 
+    // 勾选某一行时的背景颜色
+    &.row__selected {
+      background-color: var(--ti-grid-row-selected-background-color);
+    }
     // 选中某一行时的背景颜色
     &.row__current {
       background-color: var(--ti-grid-row-hover-background-color);
@@ -483,10 +495,6 @@
     white-space: normal;
     word-break: break-word;
 
-    .@{grid-cell-prefix-cls}-text {
-      width: 100%;
-    }
-
     .@{grid-prefix-cls}-checkbox {
       vertical-align: middle;
     }
@@ -546,6 +554,19 @@
     .@{grid-cell-prefix-cls} {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
+    }
+
+    &.col__center {
+      .@{grid-cell-prefix-cls} {
+        justify-content: center;
+      }
+    }
+
+    &.col__right {
+      .@{grid-cell-prefix-cls} {
+        justify-content: end;
+      }
     }
 
     &.col__ellipsis {
@@ -568,7 +589,9 @@
 
   // 排序
   & &-sort-wrapper {
-    padding-left: 4px;
+    margin-left: 4px;
+    position: var(--ti-grid-sort-icon-position);
+    right: var(--ti-grid-sort-icon-right);
 
     .@{grid-prefix-cls}-sort__btn {
       display: block;
@@ -780,6 +803,41 @@
         background-color: var(--ti-grid-error-bg-color);
       }
     }
+
+    &.col__treenode {
+      .@{grid-prefix-cls}-cell {
+        display: flex;
+        align-items: center;
+
+        .@{grid-prefix-cls}-tree__indent {
+          flex-shrink: 0;
+        }
+
+        .@{grid-prefix-cls}-tree-wrapper {
+          width: 20px;
+          height: 20px;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          transform: translateX(var(--ti-grid-tree-expand-icon-translate-x));
+          flex-shrink: 0;
+          svg {
+            font-size: var(--ti-grid-tree-expand-icon-font-size);
+          }
+        }
+      }
+
+      &.col__ellipsis {
+        .@{grid-prefix-cls}-cell {
+          &__tooltip:has(.tiny-grid-tree__indent:nth-last-child(2):first-child),
+          &__title:has(.tiny-grid-tree__indent:nth-last-child(2):first-child),
+          &__ellipsis:has(.tiny-grid-tree__indent:nth-last-child(2):first-child) {
+            display: inline-block;
+            max-width: 100%;
+          }
+        }
+      }
+    }
   }
 
   & &-body__row {
@@ -803,6 +861,10 @@
     right: 0;
     width: 12px;
     overflow-y: scroll;
+
+    .@{grid-prefix-cls}-body__y-scrollbar {
+      width: 1px;
+    }
   }
 
   // 可编辑表格
@@ -954,6 +1016,9 @@
     // 部分场景下浏览器缩放比例导致表头和表体错位问题
     th.col__gutter {
       width: 0;
+      position: sticky;
+      right: 0;
+      background-color: var(--ti-grid-header-background-color);
     }
   }
 
@@ -1045,6 +1110,96 @@
       cursor: not-allowed;
       fill: rgba(51, 61, 72, 0.3);
       color: rgba(22, 30, 38, 0.3);
+    }
+  }
+
+  &.row__valid-inline {
+    .@{grid-prefix-cls}__body-wrapper .@{grid-prefix-cls}-body__row.row__actived {
+      height: 72px;
+
+      .@{grid-prefix-cls}-cell__valid {
+        --td-padding-x: 8px;
+        position: absolute;
+        top: auto;
+        right: auto;
+        bottom: 1px;
+        left: var(--td-padding-x);
+        width: calc(100% - 2 * var(--td-padding-x));
+        height: 16px;
+        line-height: 1;
+        transform: translate(0, 0);
+        background-color: transparent;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #f5222d;
+
+        .@{grid-prefix-cls}-cell__valid-icon {
+          margin-right: 8px;
+        }
+
+        .@{grid-prefix-cls}-cell__valid-msg {
+          padding: 0;
+          background-color: transparent;
+          display: inline;
+          color: inherit;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  &.row__drop-handle--index {
+    .@{grid-prefix-cls}__body-wrapper td.col__index {
+      position: relative;
+
+      .row__drop-handle {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 8px;
+        height: 100%;
+        cursor: grab;
+
+        &::before {
+          --row-drop-handle-bgcolor: #8d959e;
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 8px;
+          height: 14px;
+          background-image: linear-gradient(
+              180deg,
+              var(--row-drop-handle-bgcolor) 0 2px,
+              transparent 2px 6px,
+              var(--row-drop-handle-bgcolor) 6px 8px,
+              transparent 8px 12px,
+              var(--row-drop-handle-bgcolor) 12px 14px
+            ),
+            linear-gradient(180deg, transparent, transparent),
+            linear-gradient(
+              180deg,
+              var(--row-drop-handle-bgcolor) 0 2px,
+              transparent 2px 6px,
+              var(--row-drop-handle-bgcolor) 6px 8px,
+              transparent 8px 12px,
+              var(--row-drop-handle-bgcolor) 12px 14px
+            );
+          background-position:
+            0 0,
+            2px 0,
+            6px 0;
+          background-size:
+            2px 14px,
+            4px 14px,
+            2px 14px;
+          background-repeat: no-repeat;
+        }
+      }
     }
   }
 }

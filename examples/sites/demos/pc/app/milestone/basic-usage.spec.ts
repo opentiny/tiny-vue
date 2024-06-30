@@ -4,6 +4,7 @@ test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
   await page.goto('milestone#basic-usage')
 
+  const milestone = page.locator('.tiny-milestone')
   const nodes = page.locator('.tiny-milestone__node')
   const nodeIcons = page.locator('.tiny-milestone__icon')
   const nodeLines = page.locator('.tiny-milestone__line')
@@ -62,10 +63,13 @@ test('基本用法', async ({ page }) => {
   await expect(nodeIcons).toHaveCount(nodeCount)
   await expect(nodeTitles).toHaveCount(nodeCount)
   await expect(nodeDates).toHaveCount(nodeCount)
+  const { width: totalWidth, height: totalHeight } = await milestone.boundingBox()
+  const nodeWidth = Math.floor(totalWidth / nodeCount)
+  const nodeHeight = totalHeight - 38
   for (let i = 0; i < nodeCount; i++) {
     const { width, height } = await nodes.nth(i).boundingBox()
-    await expect(width).toBeGreaterThanOrEqual(118)
-    await expect(height).toBeGreaterThanOrEqual(88)
+    await expect(width).toBeGreaterThanOrEqual(nodeWidth)
+    await expect(height).toEqual(nodeHeight)
     await expect(nodeLines.nth(i)).toHaveCSS('height', '4px')
     await expect(nodeIcons.nth(i)).toHaveClass(iconClasss[i])
     await expect(nodeTitles.nth(i)).toHaveText(titles[i])
@@ -73,7 +77,7 @@ test('基本用法', async ({ page }) => {
 
     if (i < 5) {
       const { width: lineWidth } = await nodeLines.nth(i).boundingBox()
-      await expect(lineWidth).toBeGreaterThanOrEqual(118)
+      await expect(lineWidth).toBeGreaterThanOrEqual(nodeWidth)
     } else {
       const { width: lineWidth } = await nodeLines.nth(i).boundingBox()
       await expect(lineWidth).toBeGreaterThanOrEqual(0)

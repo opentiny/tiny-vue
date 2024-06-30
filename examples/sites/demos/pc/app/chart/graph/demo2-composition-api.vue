@@ -1,15 +1,14 @@
 <template>
-  <tiny-chart-graph :extend="extend" height="600px"></tiny-chart-graph>
+  <tiny-chart-graph :options="options" height="600px"></tiny-chart-graph>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { ChartGraph as TinyChartGraph } from '@opentiny/vue'
 
 let axisData = ['周一', '周二', '周三', '很长很长的周四', '周五', '周六', '周日']
-let data = axisData.map((item, i) => {
-  return Math.round(Math.random() * 1000 * (i + 1))
-})
+
+const data = [800, 600, 900, 1500, 3200, 4800, 900]
 
 let links = data.map((item, i) => {
   return {
@@ -19,11 +18,7 @@ let links = data.map((item, i) => {
 })
 links.pop()
 
-let option = {
-  title: {
-    text: '笛卡尔坐标系上的 Graph'
-  },
-  tooltip: {},
+const options = ref({
   xAxis: {
     type: 'category',
     boundaryGap: false,
@@ -31,6 +26,10 @@ let option = {
   },
   yAxis: {
     type: 'value'
+  },
+  grid: {
+    right: 30,
+    left: 50
   },
   series: [
     {
@@ -40,23 +39,16 @@ let option = {
       coordinateSystem: 'cartesian2d',
       symbolSize: 40,
       label: {
-        normal: {
-          show: true
-        }
+        show: true
       },
       edgeSymbol: ['circle', 'arrow'],
       edgeSymbolSize: [4, 10],
       data,
       links,
       lineStyle: {
-        normal: {
-          color: '#2f4554'
-        }
+        color: '#2f4554'
       }
     }
   ]
-}
-
-// 笛卡尔坐标系上的Graph
-const extend = ref(option)
+})
 </script>

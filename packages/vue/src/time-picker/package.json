@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-time-picker",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -15,7 +15,10 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-picker": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-common": "workspace:~"
   },
   "license": "MIT"
 }

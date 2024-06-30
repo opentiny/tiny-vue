@@ -1,6 +1,6 @@
 <template>
   <div class="wp100 hp100 f-r of-hidden">
-    <div class="w230 pt20 of-auto">
+    <div class="w230 pt20 of-auto sm-hidden b-r bg-white" :class="{ 'fixed-menu': showFixedMenu }">
       <tiny-tree-menu
         class="!w213"
         :data="menuData"
@@ -23,13 +23,19 @@
           <div v-html="state.currDemo?.desc['zh-CN']"></div>
         </div>
         <!-- 预览 -->
-        <div class="rel px20 minh200" style="transform: translateX(0)">
-          <component :is="state.comp"></component>
+        <!-- modeState.demoId === 'preview-in-dialog' 修复preview-in-dialog demo弹窗内容被遮罩层遮挡 -->
+        <div
+          :id="state.currDemo?.demoId"
+          class="rel px20 minh200"
+          :style="{ transform: modeState.demoId === 'preview-in-dialog' ? '' : 'translateX(0)' }"
+        >
+          <config-provider :design="design">
+            <component :is="state.comp"></component>
+          </config-provider>
         </div>
       </div>
       <!-- API表格 -->
-      <div v-if="state.currApi.length" class="mt20 f24 fw-bold">组件API</div>
-
+      <div v-if="state.currApi?.length" class="mt20 f24 fw-bold">组件API</div>
       <div v-for="(oneGroup, idx) in state.currApi" :key="idx">
         <div class="mt20 f-r f-pos-start fw-bold">
           <div :id="oneGroup.name" class="f18">
@@ -47,8 +53,8 @@
             <table class="api-table">
               <thead>
                 <tr>
-                  <th width="15%">名称</th>
-                  <th width="20%">类型</th>
+                  <th width="20%">名称</th>
+                  <th width="15%">类型</th>
                   <th width="20%">默认值</th>
                   <th width="55%">说明</th>
                 </tr>
@@ -72,8 +78,8 @@
       </div>
     </div>
     <!-- 右边浮动所有的demos -->
-    <tiny-floatbar v-if="state.demos.length > 0" class="!top120 !z1 !right25">
-      <div class="f12 ofy-auto">
+    <tiny-floatbar v-if="state.demos.length > 0" class="!top120 !z1 !right25 sm-hidden">
+      <div class="f12 ofy-auto h700">
         <div
           v-for="demo in state.demos"
           :key="demo.demoId"
@@ -94,19 +100,28 @@
 
 <script>
 import { hooks } from '@opentiny/vue-common'
-import { Floatbar, TreeMenu, Button, Tooltip } from '@opentiny/vue'
+import { Floatbar, TreeMenu, Button, Tooltip, ConfigProvider } from '@opentiny/vue'
 import { iconStarActive, iconSelect } from '@opentiny/vue-icon'
-import { menuData, apis, demoStr, demoVue, mds } from './resourceMobileFirst.js'
+import designAuroraConfig from '@opentiny/vue-design-aurora'
+import designSaasConfig from '@opentiny/vue-design-saas'
+import { menuData, demos, demoStr, demoVue, mds } from './resourceMobileFirst.js'
 import { useModeCtx } from './uses'
+import { getDemosConfig, getApisConfig } from './utils/componentsDoc'
+
+const isSaasMode = process.env.VITE_TINY_THEME === 'saas'
 
 export default {
+  props: {
+    showFixedMenu: Boolean
+  },
   components: {
     TinyFloatbar: Floatbar,
     TinyTreeMenu: TreeMenu,
     TinyButton: Button,
     TinyTooltip: Tooltip,
     IconStarIcon: iconStarActive(),
-    IconOpeninVscode: iconSelect()
+    IconOpeninVscode: iconSelect(),
+    ConfigProvider
   },
   setup() {
     import('./tailwind.css')
@@ -151,18 +166,12 @@ export default {
 
     // 以下私有方法，无须传递给vue模板的。
     async function _switchPath() {
-      // 查找API
-      const apiModule = apis[`../../sites/demos/mobile-first/app/${modeState.pathName}/webdoc/${modeState.pathName}.js`]
-      if (apiModule) {
-        const module = await apiModule()
-        const apiRoot = module.default
-        state.currApi = apiRoot.apis
-        state.demos = apiRoot.demos || []
-        state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
-      } else {
-        state.currApi = null
-        state.currDemos = []
-      }
+      const demosModule =
+        demos[`../../sites/demos/mobile-first/app/${modeState.pathName}/webdoc/${modeState.pathName}.js`]
+      const demosConfig = await getDemosConfig(demosModule)
+      state.demos = demosConfig.demos
+      state.currDemo = state.demos.find((d) => d.demoId === modeState.demoId) || state.demos?.[0]
+      state.currApi = (await getApisConfig(modeState.pathName, 'mobile-first')).apis
       await _switchDemo()
     }
     async function _switchDemo() {
@@ -178,21 +187,37 @@ export default {
       modeFn.pushToUrl()
     }
 
+    // mobile-first都是aui组件，限定使用它的规范。saas 模式下，只使用designSaasConfig，否则 designAuroraConfig
+    const design = isSaasMode ? designSaasConfig : designAuroraConfig
+
     return {
       menuData,
       state,
       fn,
       modeState,
-      modeFn
+      modeFn,
+      design
     }
   }
 }
 </script>
 
-<style>
+<style lang="less">
 .component-md h1,
 .component-md h2 {
   font-size: 1.5em;
   font-weight: bold;
+}
+
+.demo-date-picker-mobile-container {
+  min-height: 500px;
+
+  .tiny-recycle-scroller {
+    height: 220px !important;
+  }
+
+  div[data-tag='tiny-drawer-main'] {
+    min-height: auto;
+  }
 }
 </style>

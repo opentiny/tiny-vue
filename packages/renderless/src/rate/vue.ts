@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+import type { IRateApi, IRateProps, IRateRenderlessParamUtils, IRateState, ISharedRenderlessParamHooks } from '@/types'
 import {
   getTextStyle,
   handelKey,
@@ -40,7 +40,6 @@ export const api = [
   'resetCurrentValue'
 ]
 export const useChangeValue = ({
-  computed,
   constants,
   emit,
   props,
@@ -61,7 +60,7 @@ export const useChangeValue = ({
   const api = {
     selectValue: selectValue({ emit, props, state }),
     resetCurrentValue: resetCurrentValue({ props, state })
-  }
+  } as Pick<IRateApi, 'selectValue' | 'resetCurrentValue' | 'setCurrentValue'>
 
   api.setCurrentValue = setCurrentValue({
     constants,
@@ -101,13 +100,12 @@ export const useChangeValue = ({
 }
 
 export const renderless = (
-  props,
-  { computed, reactive, toRefs, watch, onMounted, onUnmounted, inject },
-  { constants, emit, parent }
+  props: IRateProps,
+  { computed, reactive, toRefs, watch, onMounted, onUnmounted, inject }: ISharedRenderlessParamHooks,
+  { constants, emit, parent }: IRateRenderlessParamUtils
 ) => {
-  const api = {}
+  const api = {} as IRateApi
   const changeValue = useChangeValue({
-    computed,
     constants,
     emit,
     props,
@@ -119,7 +117,7 @@ export const renderless = (
     parent,
     inject
   })
-  const state = reactive({
+  const state = reactive<IRateState>({
     pointerAtLeftHalf: true,
     colorMap: computed(() => api.computedColorMap(props)),
     classMap: computed(() => api.computedClassMap(props)),

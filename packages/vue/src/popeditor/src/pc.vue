@@ -207,6 +207,7 @@
                     :row-id="valueField"
                     :radio-config="{ checkRowKey: state.commitValue, trigger }"
                     :tooltip-config="tooltipConfig"
+                    @radio-change="radioChangeFn"
                   ></tiny-grid>
                   <tiny-pager
                     v-if="showPager"
@@ -314,7 +315,7 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/popeditor/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
-import { iconClose, iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
+import { IconClose, IconChevronDown, IconChevronUp } from '@opentiny/vue-icon'
 import Input from '@opentiny/vue-input'
 import DialogBox from '@opentiny/vue-dialog-box'
 import Grid from '@opentiny/vue-grid'
@@ -325,9 +326,9 @@ import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 
 export default defineComponent({
   components: {
-    IconClose: iconClose(),
-    IconChevronDown: iconChevronDown(),
-    IconChevronUp: iconChevronUp(),
+    IconClose: IconClose(),
+    IconChevronDown: IconChevronDown(),
+    IconChevronUp: IconChevronUp(),
     TinyInput: Input,
     TinyGrid: Grid,
     TinyPager: Pager,
@@ -336,6 +337,7 @@ export default defineComponent({
     TinySelectedBox: SelectedBox
   },
   directives: directive({ Clickoutside }),
+  emits: ['update:modelValue', 'change', 'page-change', 'popup', 'size-change', 'created'],
   props: [
     ...props,
     'dataset',
@@ -379,9 +381,9 @@ export default defineComponent({
     'showSelectedBox',
     'selectedBoxOp',
     'tooltipConfig',
-    'autoReset'
+    'autoReset',
+    'radioChangeClose'
   ],
-  emits: ['change', 'close', 'page-change', 'popup'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

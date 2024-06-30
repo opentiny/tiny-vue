@@ -4,12 +4,12 @@ export const api = ['dataStore', 'handleClick', 'dataStore', 'mouseEnter', 'mous
 
 export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
   const api = {}
-  const dropdownMenuVm = inject('dropdownMenuVm')
-  const multiStage = inject('multiStage')
+  const dropdownMenuVm = inject('dropdownMenuVm', null)
+
   let dataStore = reactive({
-    checkedStatus: dropdownMenuVm.checkedStatus,
+    checkedStatus: dropdownMenuVm?.checkedStatus,
     multiStageMenu: '',
-    multiStage: '',
+    multiStage: inject('multiStage', null),
     itemData: '',
     itemLabel: '',
     showContent: false,
@@ -17,10 +17,6 @@ export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
     currentIndex: props.currentIndex,
     level: props.level
   })
-
-  if (multiStage) {
-    dataStore.multiStageMenu = true
-  }
 
   const handleClick =
     ({ dataStore, props, vm }) =>
@@ -40,7 +36,7 @@ export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
         dataStore.currentIndex = `${props.currentIndex}`
       }
 
-      dispatch('TinyDropdown', 'selectedIndex', [dataStore.currentIndex])
+      dispatch('TinyDropdown', 'selected-index', [dataStore.currentIndex])
 
       const data = {
         itemData: dataStore.itemData,
@@ -63,7 +59,7 @@ export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
     }
 
   const mouseEnter =
-    ({ vm, dataStore }) =>
+    ({ vm, dataStore, props }) =>
     (e) => {
       const dom = e.target
       const text = dom.textContent
@@ -71,12 +67,13 @@ export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
       const rect = dom.getBoundingClientRect()
       const res = omitText(text, font, rect.width)
       const tooltip = dataStore.dropdownMenuVm.$refs.tooltip
+      // 对字符省略截取，是否已省略，是则显示 tooltip
       if (res.o) {
         tooltip.state.referenceElm = dom
         tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
         tooltip.doDestroy()
 
-        dataStore.itemLabel = text
+        dataStore.itemLabel = props.tooltipContent || text
         if (vm.$refs.level.scrollWidth > vm.$refs.level.offsetWidth) {
           dataStore.showContent = true
         }
@@ -90,8 +87,8 @@ export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
   Object.assign(api, {
     dataStore,
     handleClick: handleClick({ dataStore, props, vm }),
-    mouseEnter: mouseEnter({ dataStore, vm, props }),
-    mouseLeave: mouseLeave({ dataStore, props })
+    mouseEnter: mouseEnter({ dataStore, vm }),
+    mouseLeave: mouseLeave({ dataStore })
   })
 
   return api

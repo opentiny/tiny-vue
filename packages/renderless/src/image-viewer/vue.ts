@@ -45,7 +45,9 @@ import {
   selectOption,
   langClick,
   getLastPrev,
-  getDefaultPrev
+  getDefaultPrev,
+  getCenterPosition,
+  filterImageUrl
 } from './index'
 
 export const api = [
@@ -85,7 +87,7 @@ const initState = ({ reactive, computed, api, mode, props, constants, inject }) 
     mfPreviewVisible: inject('mfPreviewVisible', null),
     scale: 1,
     time: null,
-    index: mode == 'pc' || mode == 'mobile-first' ? 0 : props.startPosition,
+    index: mode === 'pc' || mode === 'mobile-first' ? 0 : props.startPosition,
     imageName: '',
     isShow: false,
     infinite: true,
@@ -124,7 +126,8 @@ const initState = ({ reactive, computed, api, mode, props, constants, inject }) 
     fileName: '',
     scrollTop: 0,
     thumbnailTop: constants.THUMBNAILTOP,
-    menuTop: constants.MENUTOP
+    menuTop: constants.MENUTOP,
+    centerIndex: -1
   })
 
   return state
@@ -150,7 +153,7 @@ const initApi = ({ api, state, props, parent, nextTick, emit, t, constants, vm, 
     computedIsLast: computedIsLast({ state, props }),
     watchVisible: watchVisible(state),
     deviceSupportUninstall: deviceSupportUninstall({ state, mode }),
-    computedCurrentImg: computedCurrentImg(state),
+    computedCurrentImg: computedCurrentImg({ state, api }),
     computedImgStyle: computedImgStyle({ state, constants }),
     computeZIndex: computeZIndex({ constants, props }),
     hide: hide({ props, api, state }),
@@ -167,7 +170,9 @@ const initApi = ({ api, state, props, parent, nextTick, emit, t, constants, vm, 
     selectOption: selectOption({ state, api }),
     langClick: langClick(state),
     getLastPrev: getLastPrev({ state, vm }),
-    getDefaultPrev: getDefaultPrev({ state, vm })
+    getDefaultPrev: getDefaultPrev({ state, vm }),
+    getCenterPosition: getCenterPosition({ state, vm }),
+    filterImageUrl: filterImageUrl()
   })
 }
 
@@ -175,7 +180,10 @@ const initWatch = ({ watch, state, api, props, nextTick, vm }) => {
   watch(
     () => state.index,
     (value) => {
-      api.reset()
+      if (!props.keepStyle) {
+        api.reset()
+      }
+
       props.onSwitch(value)
     },
     { immediate: true }
@@ -221,6 +229,14 @@ const initWatch = ({ watch, state, api, props, nextTick, vm }) => {
       nextTick(() => {
         api.getImageWidth()
       })
+  )
+
+  watch(
+    () => props.urlList,
+    () => {
+      state.urlList = props.urlList
+    },
+    { deep: true }
   )
 }
 

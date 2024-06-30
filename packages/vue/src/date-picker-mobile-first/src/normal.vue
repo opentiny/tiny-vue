@@ -1,12 +1,16 @@
 <template>
   <div data-tag="tiny-date-picker-mobile">
     <tiny-action-sheet
+      ref="actionSheet"
       :title="title"
-      custom-class="h-full max-h-full rounded-none"
+      :custom-class="m('h-full max-h-full rounded-none min-h-[95vh]', customClass)"
       :lock-scroll="lockScroll"
       :visible="visible"
       @update:visible="$emit('update:visible', $event)"
     >
+      <template #header-left v-if="clearable">
+        <div class="cursor-pointer text-color-brand" @click="clear">{{ t('ui.datepicker.clear') }}</div>
+      </template>
       <!-- box -->
       <div data-tag="tiny-date-picker-inner" :class="['flex flex-col flex-auto h-full']">
         <!-- header -->
@@ -33,7 +37,7 @@
           >
             <template #default="scopeSlots">
               <div class="mt-4">
-                <div class="text-xl leading-7">
+                <div class="text-xl leading-7 text-color-text-primary">
                   {{
                     formatDate(scopeSlots.item.yearMonth, t('ui.datepicker.yearMonth', { year: 'yyyy', month: 'MM' }))
                   }}
@@ -49,7 +53,7 @@
                       :key="index"
                       :class="[
                         'flex-1 h-9 cursor-pointer',
-                        { 'text-color-text-placeholder': index === 0 || index === 6 }
+                        index === 0 || index === 6 ? 'text-color-text-placeholder' : 'text-color-text-primary'
                       ]"
                       @click.stop="selectOption({ value: scopeSlots.item.yearMonth, index: index + week * 7 })"
                     >
@@ -63,19 +67,20 @@
                                   !data.disabled &&
                                   state.date.length === 2 &&
                                   ['end', 'inner'].includes(getSelectedPosition(data.value))
-                              }
+                              },
+                              {'rounded-l': index === 0 }
                             ]"
                           ></div>
                           <div
                             :class="
                               m(
                                 'w-9 h-9',
-                                { 'text-color-brand border-0.5 border-current': data.isToday },
+                                { 'text-color-brand border-0.5 border-current rounded': data.isToday },
                                 {
                                   'bg-color-info-primary-subtler': ['inner'].includes(getSelectedPosition(data.value))
                                 },
                                 {
-                                  'bg-color-brand text-color-text-inverse': ['start', 'end'].includes(
+                                  'bg-color-brand text-color-text-inverse rounded': ['start', 'end'].includes(
                                     getSelectedPosition(data.value)
                                   )
                                 },
@@ -96,7 +101,8 @@
                                   state.date.length === 2 &&
                                   state.selected.length > 1 &&
                                   ['start', 'inner'].includes(getSelectedPosition(data.value))
-                              }
+                              },
+                              { 'rounded-r': index === 6 }
                             ]"
                           ></div>
                         </template>
@@ -129,11 +135,13 @@
                   v-if="['datetimerange'].includes(type)"
                   class="h-9 border-l-0.5 inline-block rotate-45 relative top-6 border-color-bg-2"
                 ></div>
+                <div v-else class="text-center">
+                  <template v-if="typeof rangeSeparator === 'string'">{{ rangeSeparator }}</template>
+                  <component v-else :is="rangeSeparator" />
+                </div>
               </div>
               <div class="min-w-[theme(spacing.32)]">
-                <span v-if="state.btnDisabled" class="text-color-icon-placeholder">{{
-                  t('ui.datepicker.endTime')
-                }}</span>
+                <span v-if="state.btnDisabled" class="text-color-icon-placeholder">{{ endPlaceholder }}</span>
                 <span v-else>{{
                   formatDate(state.date[1], t('ui.datepicker.yearMonthDay', { year: 'yyyy', month: 'MM', day: 'dd' }))
                 }}</span>
@@ -176,6 +184,8 @@
     <tiny-time-picker-mobile
       v-model="state.time"
       :title="t('ui.datepicker.selectTime')"
+      :step="step"
+      :show-seconds="showTimeSecond"
       :visible="state.timeVisible"
       @update:visible="state.timeVisible = $event"
       @confirm="timeConfirm"
@@ -202,7 +212,21 @@ export default defineComponent({
     TinyButton: Button
   },
   emits: ['click', 'confirm', 'update:visible', 'update:modelValue', 'time-confirm'],
-  props: [...props, 'modelValue', 'visible', 'title', 'type', 'lockScroll', 'pickerOptions'],
+  props: [
+    ...props,
+    'modelValue',
+    'visible',
+    'title',
+    'type',
+    'lockScroll',
+    'pickerOptions',
+    'customClass',
+    'clearable',
+    'step',
+    'rangeSeparator',
+    'endPlaceholder',
+    'showTimeSecond'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

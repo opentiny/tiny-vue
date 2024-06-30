@@ -28,11 +28,11 @@ export default defineComponent({
     },
     valueField: {
       type: String,
-      default: () => 'userId'
+      default: () => ''
     },
     textField: {
       type: String,
-      default: () => 'userCN'
+      default: () => ''
     },
     card: {
       type: Boolean,
@@ -46,6 +46,10 @@ export default defineComponent({
     batch: {
       type: [Boolean, Number],
       default: 0
+    },
+    popperAppendToBody: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {

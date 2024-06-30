@@ -11,7 +11,12 @@
 
 // toolbar
 .@{grid-toolbar-prefix-cls} {
-  @apply py-3 px-0;
+  @apply pt-3 pb-2 px-0;
+
+  // Tiny 新增，工具栏容器为空则不需要占位
+  &:empty {
+    @apply hidden;
+  }
 
   &:after {
     @apply content-[''];
@@ -158,6 +163,6 @@
   @apply bg-color-bg-1;
 
   .@{grid-toolbar-prefix-cls} {
-    @apply ~"py-0.5" pr-0 ~"pl-1.5";
+    @apply ~'py-0.5' pr-0 ~'pl-1.5';
   }
 }

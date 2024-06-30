@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-query-builder",
-  "version": "3.7.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -18,10 +18,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-date-picker": "workspace:~",
-    "@opentiny/vue-currency": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
-    "@opentiny/vue-popover": "workspace:~",
     "@opentiny/vue-select": "workspace:~",
     "@opentiny/vue-option": "workspace:~",
     "@opentiny/vue-option-group": "workspace:~",
@@ -29,7 +27,8 @@
     "@opentiny/vue-time-picker": "workspace:~",
     "@opentiny/vue-radio": "workspace:~",
     "@opentiny/vue-checkbox": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~"
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
 }

@@ -67,7 +67,15 @@ export const checkboxProps = {
     type: Boolean,
     default: false
   },
-  iconPosition: String as PropType<IconPosition>
+  iconPosition: String as PropType<IconPosition>,
+  shape: {
+    type: String,
+    default: ''
+  },
+  tabindex: {
+    type: String,
+    default: '0'
+  }
 }
 
 export default defineComponent({
