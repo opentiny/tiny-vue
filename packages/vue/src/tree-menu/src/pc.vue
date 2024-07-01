@@ -28,6 +28,7 @@
       v-model="state.filterText"
       :placeholder="placeholder || t('ui.treeMenu.placeholder')"
       :prefix-icon="searchIcon"
+      :clearable="state.clearable"
     />
     <tiny-tree
       ref="tree"
@@ -207,6 +208,10 @@ export default defineComponent({
       default: false
     },
     menuCollapsible: {
+      type: Boolean,
+      default: false
+    },
+    clearable: {
       type: Boolean,
       default: false
     }
