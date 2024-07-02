@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off, isDisplayNone } from './dom'
+import { on, off, isDisplayNone, isServer } from './dom'
 import PopupManager from './popup-manager'
 import globalConfig from '../global'
 import { typeOf } from '../type'
@@ -272,14 +272,18 @@ const stopFn = (ev: Event) => {
   ev.stopPropagation()
 }
 
-/** 全局的resize观察器， 监听popper的大小改变  */
-const resizeOb = new ResizeObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.target.popperVm && entry.contentRect.height > 50) {
-      entry.target.popperVm.update()
-    }
+let resizeOb
+
+if (!isServer) {
+  /** 全局的resize观察器， 监听popper的大小改变  */
+  resizeOb = new ResizeObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.target.popperVm && entry.contentRect.height > 50) {
+        entry.target.popperVm.update()
+      }
+    })
   })
-})
+}
 
 interface PopperOptions {
   arrowOffset: number
@@ -379,7 +383,7 @@ class Popper {
     setStyle(this._popper, { position: this.state.position, top: 0 })
     if (this._popper) {
       this._popper.popperVm = this
-      resizeOb.observe(this._popper)
+      resizeOb && resizeOb.observe(this._popper)
     }
     this.update()
     this._setupEventListeners()
