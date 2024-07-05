@@ -14,7 +14,7 @@ export const tinyOptionSmbTheme = {
   'ti-option-highlight-selected-text-color': 'var(--ti-common-color-text-highlight)',
   'ti-option-selected-text-color': '#1476FF',
   'ti-option-checkbox-all-select-border-color-hover': '#1476FF',
-  'ti-option-multi-svg-color': '#1476FF',
+  'ti-option-multi-svg-icon-color': '#1476FF',
   'ti-option-multi-svg-border-color': '#c2c2c2',
-  'ti-option-multi-svg-border-hover-color': '#191919'
+  'ti-option-multi-svg-hover-border-color': '#191919'
 }
