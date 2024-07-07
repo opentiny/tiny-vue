@@ -40,8 +40,8 @@
     "@opentiny/vue-dropdown-item": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-	"@opentiny/vue-tabs": "workspace:~",
-	"@opentiny/vue-tab-item": "workspace:~",
+    "@opentiny/vue-tabs": "workspace:~",
+    "@opentiny/vue-tab-item": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
     "@opentiny/vue-popover": "workspace:~",
     "@opentiny/vue-tree": "workspace:~"
