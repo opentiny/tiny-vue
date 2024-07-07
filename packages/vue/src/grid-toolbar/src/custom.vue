@@ -1,14 +1,14 @@
 <!--
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
- -->
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+-->
 <template>
   <tiny-modal
     width="600"
@@ -20,37 +20,14 @@
   >
     <template #default>
       <div class="tiny-grid-custom tiny-grid__wrapper" v-if="visible">
-        <div class="tiny-grid-custom__tabs">
-          <div class="tiny-grid-custom__tabs-head">
-            <ul>
-              <li
-                @click="activeName = 'base'"
-                :class="{
-                  'tiny-grid-custom__tabs-selected': activeName === 'base'
-                }"
-              >
-                <span>{{ t('ui.grid.individuation.tabs.base.title') }}</span>
-              </li>
-              <li
-                v-if="other"
-                @click="activeName = 'other'"
-                :class="{
-                  'tiny-grid-custom__tabs-selected': activeName === 'other'
-                }"
-              >
-                <span>{{ t('ui.grid.individuation.tabs.other.title') }}</span>
-              </li>
-            </ul>
-          </div>
+        <tiny-tabs v-model="activeName" class="tiny-grid-custom__tabs">
           <div class="tiny-grid-custom__tabs-body">
-            <div
-              v-show="activeName === 'base'"
-              :class="['tabs-body-item', animateShow === 'base' ? 'active-item' : '']"
-            >
-              <div class="tiny-grid-custom__alert">
-                <component class="tiny-svg-size" is="icon-help" />
-                <p>{{ t('ui.grid.individuation.tabs.base.tips') }}</p>
-              </div>
+            <tiny-tab-item class="tabs-body-item" :title="t('ui.grid.individuation.tabs.base.title')" name="base">
+              <tiny-alert
+                class="tiny-grid-custom__alert"
+                :description="t('ui.grid.individuation.tabs.base.tips')"
+                :closable="false"
+              ></tiny-alert>
               <tiny-grid
                 class="tiny-grid-custom__setting"
                 :auto-resize="true"
@@ -108,15 +85,13 @@
                   </template>
                 </tiny-grid-column>
               </tiny-grid>
-            </div>
-            <div
-              v-show="activeName === 'other'"
-              :class="['tabs-body-item', animateShow === 'other' ? 'active-item' : '']"
-            >
-              <div class="tiny-grid-custom__alert">
-                <component class="tiny-svg-size" is="icon-help" />
-                <p>{{ t('ui.grid.individuation.tabs.other.tips') }}</p>
-              </div>
+            </tiny-tab-item>
+            <tiny-tab-item class="tabs-body-item" :title="t('ui.grid.individuation.tabs.other.title')" name="other">
+              <tiny-alert
+                class="tiny-grid-custom__alert"
+                :description="t('ui.grid.individuation.tabs.other.tips')"
+                :closable="false"
+              ></tiny-alert>
               <ul class="tiny-grid-custom__setting other-setting">
                 <li class="setting-item">
                   <span class="label">{{ t('ui.grid.individuation.tabs.other.sortType') }}</span>
@@ -142,14 +117,15 @@
                   </span>
                 </li>
               </ul>
-            </div>
+            </tiny-tab-item>
             <tiny-custom-switch
               v-if="multipleHistory && activeName === 'base'"
               ref="switch"
               :history-config="historyConfig"
             ></tiny-custom-switch>
           </div>
-        </div>
+        </tiny-tabs>
+
         <div
           v-if="!multipleHistory || (multipleHistory && activeName === 'base')"
           class="tiny-grid-custom__footer"
@@ -187,11 +163,13 @@ import {
   IconMinus,
   IconDescending,
   IconAscending,
-  IconHelp,
   IconLeftFrozen,
   IconRightFrozen
 } from '@opentiny/vue-icon'
 import Select from '@opentiny/vue-select'
+import Alert from '@opentiny/vue-alert'
+import Tabs from '@opentiny/vue-tabs'
+import TabItem from '@opentiny/vue-tab-item'
 import Option from '@opentiny/vue-option'
 import CustomSwitch from './custom-switch.vue'
 import { extend } from '@opentiny/vue-renderless/common/object'
@@ -199,6 +177,9 @@ import { $props, defineComponent, appProperties } from '@opentiny/vue-common'
 
 export default defineComponent({
   components: {
+    TinyAlert: Alert,
+    TinyTabs: Tabs,
+    TinyTabItem: TabItem,
     TinyModal: Modal,
     TinyButton: Button,
     TinyRadio: GridRadio,
@@ -215,7 +196,6 @@ export default defineComponent({
     IconMinus: IconMinus(),
     IconDescending: IconDescending(),
     IconAscending: IconAscending(),
-    IconHelp: IconHelp(),
     TinyCustomSwitch: CustomSwitch
   },
   name: 'TinyGridCustom',
