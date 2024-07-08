@@ -1,5 +1,5 @@
 <template>
-  <tiny-tree-select v-model="value" :tree-op="treeOp"></tiny-tree-select>
+  <tiny-tree-select v-model="value" :tree-op="treeOp" value-field="val" text-field="text"></tiny-tree-select>
 </template>
 
 <script>
@@ -15,36 +15,36 @@ export default {
       treeOp: {
         data: [
           {
-            value: 1,
-            label: '一级 1',
+            val: 1,
+            text: '一级 1',
             children: [
               {
-                value: 4,
-                label: '二级 1-1',
+                val: 4,
+                text: '二级 1-1',
                 children: [
                   {
-                    value: 9,
-                    label: '三级 1-1-1'
+                    val: 9,
+                    text: '三级 1-1-1'
                   },
                   {
-                    value: 10,
-                    label: '三级 1-1-2'
+                    val: 10,
+                    text: '三级 1-1-2'
                   }
                 ]
               }
             ]
           },
           {
-            value: 2,
-            label: '一级 2',
+            val: 2,
+            text: '一级 2',
             children: [
               {
-                value: 5,
-                label: '二级 2-1'
+                val: 5,
+                text: '二级 2-1'
               },
               {
-                value: 6,
-                label: '二级 2-2'
+                val: 6,
+                text: '二级 2-2'
               }
             ]
           }

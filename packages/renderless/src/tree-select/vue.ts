@@ -14,7 +14,7 @@ export const renderless = (props, { reactive }, { vm }) => {
     state,
     filter: filter({ vm }),
     nodeClick: nodeClick({ props, vm }),
-    check: check({ props })
+    check: check({ props, vm })
   })
 
   return api
