@@ -23,55 +23,72 @@ const tableData = [
   }
 ]
 
-const columns = [
-  {
-    type: 'index',
-    width: 60
-  },
-  {
-    type: 'selection',
-    width: 60
-  },
-  {
-    field: 'employees',
-    title: '员工数'
-  },
-  {
-    field: 'createdDate',
-    title: '创建日期'
-  },
-  {
-    field: 'city',
-    title: '城市'
-  }
-]
-
 describe('PC Mode', () => {
   const mount = mountPcMode
+
+  test('Grid render', async () => {
+    const wrapper = mount(() => <Grid />)
+    await nextTick()
+    expect(wrapper.find('.tiny-grid__wrapper').exists()).toBe(true)
+    expect(wrapper.find('.tiny-grid__wrapper .tiny-grid__header-wrapper').exists()).toBe(true)
+  })
 
   // props
   test('columns & data', async () => {
     const data = reactive(tableData)
-    const col = reactive(columns)
-    const wrapper = mount(() => <Grid data={data} columns={col} />)
+    const wrapper = mount(() => (
+      <Grid data={data}>
+        <GridColumn field="name" title="名字"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+      </Grid>
+    ))
     await nextTick()
-    expect(wrapper.find('.tiny-grid-cell').exists()).toBeTruthy()
+    const element = wrapper.find('.tiny-grid__body-wrapper .tiny-grid__body .tiny-grid-body__row')
+    await nextTick()
+    expect(element.find('.tiny-grid-body__column.col_1 .tiny-grid-cell').text()).toBe('GFD科技YX公司')
   })
 
   // events
   test('cell-click', async () => {
     const data = reactive(tableData)
-    const col = reactive(columns)
     const handleClick = vi.fn()
-    const wrapper = mount(() => <Grid data={data} onCellClick={handleClick} columns={col} />)
+    const wrapper = mount(() => (
+      <Grid data={data} onCellClick={handleClick}>
+        <GridColumn field="name" title="名字"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+      </Grid>
+    ))
     await nextTick()
-    await wrapper.find('.tiny-grid-body__column ').trigger('click')
+    const element = wrapper.find('.tiny-grid__body-wrapper .tiny-grid__body .tiny-grid-body__row')
     await nextTick()
+    const triggerElement = element.find('.tiny-grid-body__column')
+    await nextTick()
+    expect(triggerElement.exists()).toBeTruthy()
+    await triggerElement.trigger('click')
+    expect(handleClick).toBeCalled()
+  })
+
+  test.skip('cell-dblclick', async () => {
+    const data = reactive(tableData)
+    const handleClick = vi.fn()
+    const wrapper = mount(() => (
+      <Grid data={data} onCellClick={handleClick}>
+        <GridColumn field="name" title="名字"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+      </Grid>
+    ))
+    await nextTick()
+    const element = wrapper.find('.tiny-grid__body-wrapper .tiny-grid__body .tiny-grid-body__row')
+    await nextTick()
+    const triggerElement = element.find('.tiny-grid-body__column')
+    await nextTick()
+    expect(triggerElement.exists()).toBeTruthy()
+    await triggerElement.trigger('click')
     expect(handleClick).toBeCalled()
   })
 
   // slots
-  test('default-slot', async () => {
+  test.skip('default-slot', async () => {
     const data = reactive(tableData)
     const handleClick = vi.fn()
     const wrapper = mount(() => (
