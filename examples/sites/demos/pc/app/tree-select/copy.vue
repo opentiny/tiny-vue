@@ -1,17 +1,27 @@
 <template>
-  <tiny-tree-select v-model="value" :tree-op="treeOp"></tiny-tree-select>
+  <div>
+    <p>场景1：一键复制所有标签</p>
+    <tiny-tree-select v-model="value2" :tree-op="treeOp" multiple copyable></tiny-tree-select>
+    <p>场景2：设置复制文本分隔符</p>
+    <tiny-tree-select v-model="value2" :tree-op="treeOp" multiple copyable text-split="/"></tiny-tree-select>
+    <p>粘贴至此处：</p>
+    <tiny-input v-model="inputVal" type="text"></tiny-input>
+  </div>
 </template>
 
 <script>
-import { TreeSelect } from '@opentiny/vue'
+import { TreeSelect, Input } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeSelect: TreeSelect
+    TinyTreeSelect: TreeSelect,
+    TinyInput: Input
   },
   data() {
     return {
-      value: '',
+      value1: '',
+      value2: [],
+      inputVal: '',
       treeOp: {
         data: [
           {
@@ -56,7 +66,13 @@ export default {
 </script>
 
 <style scoped>
-.tiny-tree-select {
+.tiny-tree-select,
+.tiny-input {
   width: 280px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 2.5;
 }
 </style>

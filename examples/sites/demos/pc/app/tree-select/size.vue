@@ -1,5 +1,14 @@
 <template>
-  <tiny-tree-select v-model="value" :tree-op="treeOp"></tiny-tree-select>
+  <div>
+    <p>medium</p>
+    <tiny-tree-select v-model="value" size="medium" multiple :tree-op="treeOp"></tiny-tree-select>
+    <p>small</p>
+    <tiny-tree-select v-model="value" size="small" multiple :tree-op="treeOp"> </tiny-tree-select>
+    <p>默认</p>
+    <tiny-tree-select v-model="value" multiple :tree-op="treeOp"></tiny-tree-select>
+    <p>mini</p>
+    <tiny-tree-select v-model="value" size="mini" multiple :tree-op="treeOp"> </tiny-tree-select>
+  </div>
 </template>
 
 <script>
@@ -11,7 +20,7 @@ export default {
   },
   data() {
     return {
-      value: '',
+      value: [],
       treeOp: {
         data: [
           {
@@ -58,5 +67,10 @@ export default {
 <style scoped>
 .tiny-tree-select {
   width: 280px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 2.5;
 }
 </style>

@@ -1,5 +1,12 @@
 <template>
-  <tiny-tree-select v-model="value" :tree-op="treeOp"></tiny-tree-select>
+  <div>
+    <p>场景1：不挂载在 body 元素上</p>
+    <tiny-tree-select v-model="value" :tree-op="treeOp" :popper-append-to-body="false"></tiny-tree-select>
+    <p>场景2：自定义类名，修改阴影样式</p>
+    <tiny-tree-select v-model="value" :tree-op="treeOp" popper-class="drop"></tiny-tree-select>
+    <p>场景3：从上方弹出面板</p>
+    <tiny-tree-select v-model="value" :tree-op="treeOp" placement="top"></tiny-tree-select>
+  </div>
 </template>
 
 <script>
@@ -58,5 +65,16 @@ export default {
 <style scoped>
 .tiny-tree-select {
   width: 280px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 2.5;
+}
+</style>
+
+<style>
+.drop {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 </style>
