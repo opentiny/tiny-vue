@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="option-row">
+    123
+    <TinyVirtualScroll />
+    <!-- <div class="option-row">
       <span> 连接线：</span>
       <tiny-radio-group v-model="showLine">
         <tiny-radio label="show">显示</tiny-radio>
@@ -30,18 +32,19 @@
       :show-line="showLine === 'show'"
       default-expand-all
       @node-click="nodeClick"
-    ></tiny-tree>
+    ></tiny-tree> -->
   </div>
 </template>
 
 <script lang="jsx">
-import { Tree, RadioGroup, Radio } from '@opentiny/vue'
+import { Tree, RadioGroup, Radio,VirtualScroll } from '@opentiny/vue'
 
 export default {
   components: {
     TinyTree: Tree,
     TinyRadio: Radio,
-    TinyRadioGroup: RadioGroup
+    TinyRadioGroup: RadioGroup,
+    TinyVirtualScroll:VirtualScroll
   },
   data() {
     return {
