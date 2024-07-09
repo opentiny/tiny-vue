@@ -118,9 +118,10 @@ export default defineComponent({
         cellIsVnode = isVnode(cellNode[0])
       }
 
+      // Tiny新增，修复多端表格卡片模式英文无法正常换行显示省略号问题
       const VnodeCls = cellIsVnode
         ? 'inline-block flex-grow [&_span]:leading-5 [&_div[data-tag=tiny-input]]:leading-5 ml-1'
-        : 'text-color-text-primary'
+        : 'text-color-text-primary break-all'
       const divCls = cellIsVnode ? 'flex' : 'line-clamp-2 sm:line-clamp-1'
 
       return h('div', { class: cls + divCls, on: ons() }, [

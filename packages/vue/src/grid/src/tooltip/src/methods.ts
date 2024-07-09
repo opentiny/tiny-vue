@@ -39,8 +39,8 @@ export default {
       ? event.currentTarget.querySelector('.tiny-grid-cell-text')
       : event.currentTarget.querySelector('.tiny-grid-cell')
 
-    // 当用户悬浮在排序或者筛选图标按钮时不应该显示tooltip
-    if (isHeader && event.target !== cell) {
+    // 当用户悬浮在排序或者筛选图标按钮时不应该显示tooltip，使用头部插槽且文本超长时也应该显示
+    if (isHeader && event.target !== cell && !cell?.contains(event.target)) {
       return
     }
     const tooltip = this.$refs.tooltip

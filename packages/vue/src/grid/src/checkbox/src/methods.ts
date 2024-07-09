@@ -88,7 +88,7 @@ export default {
       treeConfig,
       value
     })
-    setSelectionNoStrictly({ _vm: this, checkStrictly, reserve, selectRows, selection, value })
+    setSelectionNoStrictly({ _vm: this, checkStrictly, reserve, selectRows, selection, value, afterFullData })
     this.treeIndeterminates = []
     this.checkSelectionStatus()
   },

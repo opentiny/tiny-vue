@@ -12,5 +12,8 @@ export const classes = {
   'footer': 'border-t border-t-color-bg-3 py-3 px-4 bg-color-bg-1 overflow-hidden rounded-b',
   'link-btn': 'align-middle rounded',
   'time-header': 'relative text-xs h-10 leading-10 table w-full box-border border-b border-b-color-bg-3',
-  'editor-wrap': 'relative table-cell px-1'
+  'editor-wrap': 'relative table-cell px-1',
+  'sidebar': 'absolute top-0 bottom-0 w-28 border-r border-r-color-bg-3 box-border pt-5 bg-color-bg-1 overflow-auto',
+  'sidebar-btn':
+    'block w-24 my-0 mx-auto rounded border-0 bg-transparent leading-8 text-xs text-color-text-primary pl-4 text-left outline-0 cursor-pointer truncate hover:bg-color-bg-2'
 }

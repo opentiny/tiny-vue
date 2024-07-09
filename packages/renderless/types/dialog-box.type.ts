@@ -23,7 +23,6 @@ import type {
   handleClose,
   watchVisible,
   computedStyle,
-  computedBodyStyle,
   mounted,
   unMounted,
   computedAnimationName,
@@ -79,7 +78,6 @@ export interface IDialogBoxApi {
   handleClose: ReturnType<typeof handleClose>
   watchVisible: ReturnType<typeof watchVisible>
   computedStyle: ReturnType<typeof computedStyle>
-  computedBodyStyle: ReturnType<typeof computedBodyStyle>
   mounted: ReturnType<typeof mounted>
   unMounted: ReturnType<typeof unMounted>
   computedAnimationName: ReturnType<typeof computedAnimationName>

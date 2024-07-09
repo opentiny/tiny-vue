@@ -478,6 +478,19 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'filter-view'
+        },
+        {
+          name: 'edit-config',
+          typeAnchorName: 'ITreeEditConfig',
+          type: 'ITreeEditConfig',
+          defaultValue: '{}',
+          desc: {
+            'zh-CN': '用于编辑模式下参数配置,指示新增节点的 id ,是否显示 id 重复的警告等',
+            'en-US':
+              'Used for parameter configuration in editing mode, indicating the ID of a new node and whether to display a warning indicating duplicate IDs.'
+          },
+          mode: ['pc'],
+          pcDemo: 'edit'
         }
       ],
       events: [
@@ -1192,6 +1205,20 @@ export default {
           pcDemo: 'other'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'ITreeEditConfig',
+      type: 'type',
+      code: `
+interface ITreeEditConfig{
+  // 生成新节点的id
+  initNodeIdMethod: (node) => string;
+  // 新节点id与其它id重复时，是否在控制台显示告警。
+  noWarning: boolean;
+}
+      `
     }
   ]
 }

@@ -138,56 +138,68 @@ export default defineComponent({
       return attrContent
     }
     if (!Object.prototype.hasOwnProperty.call(this, 'popperVM')) {
-      let popperVM = createComponent({
-        el: document.createElement('div'),
-        propsData: null,
-        component: {
-          render: () => {
-            const content = getContent(this)
-            const propsData = {
-              attrs: { name: this.transition },
-              on: { 'after-leave': this.doDestroy }
-            }
-            const typeClass = 'is-' + (this.type || this.effect || 'dark')
-            const mouseenter = () => this.setExpectedState(true)
-            const mouseleave = () => {
-              this.setExpectedState(false)
-              this.debounceClose()
+      // tiny 新增： 如果在当前位置立即创建popperVm，会有加载问题，必须在访问 popperVM 时，再创建。
+      const _cacheVm = { value: null }
+      this.d({
+        popperVM: {
+          get: () => {
+            if (!_cacheVm.value) {
+              _cacheVm.value = createComponent({
+                el: document.createElement('div'),
+                propsData: null,
+                component: {
+                  render: () => {
+                    const content = getContent(this)
+                    const propsData = {
+                      attrs: { name: this.transition },
+                      on: { 'after-leave': this.doDestroy }
+                    }
+                    const typeClass = 'is-' + (this.type || this.effect || 'dark')
+                    const mouseenter = () => this.setExpectedState(true)
+                    const mouseleave = () => {
+                      this.setExpectedState(false)
+                      this.debounceClose()
+                    }
+
+                    // 直接 updatePopper 会造成scroll事件的绑定，即使tooltip不显示，也在滚动时带来性能影响
+                    this.$nextTick(() => {
+                      // 取 v-show的条件， v-show时，要更新一下位置
+                      if (!this.disabled && this.state.showPopper && content) {
+                        this.updatePopper()
+                      }
+                    })
+
+                    return h('transition', propsData, [
+                      <div
+                        ref="popper"
+                        id={this.state.tooltipId}
+                        v-show={!this.disabled && this.state.showPopper && content}
+                        class={[
+                          'tiny-tooltip',
+                          'tiny-tooltip__popper',
+                          typeClass,
+                          this.popperClass,
+                          { 'tiny-tooltip__show-tips': this.state.showContent }
+                        ]}
+                        style={`max-width:${this.state.tipsMaxWidth}px`}
+                        role="tooltip"
+                        aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
+                        onMouseenter={() => mouseenter()}
+                        onMouseleave={() => mouseleave()}>
+                        {content}
+                      </div>
+                    ])
+                  }
+                }
+              })
             }
 
-            // 直接 updatePopper 会造成scroll事件的绑定，即使tooltip不显示，也在滚动时带来性能影响
-            this.$nextTick(() => {
-              // 取 v-show的条件， v-show时，要更新一下位置
-              if (!this.disabled && this.state.showPopper && content) {
-                this.updatePopper()
-              }
-            })
+            return _cacheVm.value
+          },
 
-            return h('transition', propsData, [
-              <div
-                ref="popper"
-                id={this.state.tooltipId}
-                v-show={!this.disabled && this.state.showPopper && content}
-                class={[
-                  'tiny-tooltip',
-                  'tiny-tooltip__popper',
-                  typeClass,
-                  this.popperClass,
-                  { 'tiny-tooltip__show-tips': this.state.showContent }
-                ]}
-                style={`max-width:${this.state.tipsMaxWidth}px`}
-                role="tooltip"
-                aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
-                onMouseenter={() => mouseenter()}
-                onMouseleave={() => mouseleave()}>
-                {content}
-              </div>
-            ])
-          }
+          set: (val) => (_cacheVm.value = val)
         }
       })
-
-      this.d({ popperVM: { get: () => popperVM, set: (v) => (popperVM = v) } })
     }
     const stringifyClassObj = (classObj: Record<string, string>) =>
       Object.keys(classObj)

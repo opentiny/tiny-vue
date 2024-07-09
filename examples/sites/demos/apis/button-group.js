@@ -172,6 +172,17 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-default',
           mfDemo: ''
+        },
+        {
+          name: 'empty',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义数据为空时展示内容',
+            'en-US': 'customize content when data is empty'
+          },
+          mode: ['pc'],
+          pcDemo: 'slot-empty'
         }
       ]
     }
@@ -185,6 +196,7 @@ interface IButtonGroupData {
   text: string // 显示文本
   value: number | number // 选中的值
   disabled?: boolean // 是否禁用
+  tip?: string // 按钮悬浮提示 v3.17.0版本增加此功能
   // 配置选块角标
   sup?: {
     text: string // 角标文本

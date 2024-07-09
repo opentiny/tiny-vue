@@ -123,7 +123,10 @@ export default class TreeStore {
   append(data, parentData, index) {
     const parentNode = parentData ? this.getNode(parentData) : this.root
 
-    parentNode && parentNode.insertChild({ data }, index)
+    if (parentNode) {
+      const child = parentNode.insertChild({ data }, index)
+      data._isNewNode && this.registerNode(child)
+    }
   }
 
   setDefaultCheckedKey(newValue) {

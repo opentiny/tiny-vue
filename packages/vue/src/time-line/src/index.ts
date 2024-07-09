@@ -67,7 +67,10 @@ export const timelineProps = {
     type: Number,
     default: 1
   },
-  data: Array,
+  data: {
+    type: Array,
+    default: () => []
+  },
   space: {
     type: [String, Number],
     default: ''

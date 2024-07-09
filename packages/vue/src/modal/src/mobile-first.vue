@@ -132,8 +132,8 @@ export default defineComponent({
     } = this
     let { slots: propSlots = {} } = $props
     let { zoomLocat, visible, contentVisible, modalTop, isMsg } = state
-    let defaultSlot = slots.default || propSlots.default
-    let footerSlot = slots.footer || propSlots.footer
+    let defaultSlot = slots?.default || propSlots.default
+    let footerSlot = slots?.footer || propSlots.footer
     let footerSlotParams = {
       $modal: this,
       beforeClose: this.beforeClose,

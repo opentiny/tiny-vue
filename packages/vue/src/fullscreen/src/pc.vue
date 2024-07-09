@@ -17,7 +17,7 @@
     :style="state.wrapperStyle"
     :class="{ [fullscreenClass]: state.isFullscreen }"
     @click="shadeClick($event)"
-    @keyup="exit"
+    @keyup.esc="exit"
   >
     <slot />
   </div>
@@ -29,6 +29,7 @@ import { renderless, api } from '@opentiny/vue-renderless/fullscreen/vue'
 
 export default defineComponent({
   name: $prefix + 'Fullscreen',
+  emits: ['change', 'update:modelValue', 'update:fullscreen'],
   props: {
     fullscreen: {
       type: Boolean,

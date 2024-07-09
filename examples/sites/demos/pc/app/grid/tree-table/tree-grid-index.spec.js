@@ -14,7 +14,7 @@ test('展开行序号列配置', async ({ page }) => {
     .first()
     .click()
   await page.getByRole('row', { name: '3 TGBYX公司 华南区 360' }).locator('.tiny-grid-tree__node-btn').first().click()
-  await page.getByText('3.1').click()
+  await page.getByText('3.1').first().click()
   await page
     .getByRole('row', { name: '4 康康物业YX公司 华南区 400' })
     .locator('.tiny-grid-tree__node-btn')

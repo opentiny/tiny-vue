@@ -79,6 +79,7 @@ import {
   handleClickPlainNode,
   setCheckedByNodeKey
 } from './index'
+import { random } from '../common/string'
 
 export const api = [
   'state',
@@ -173,7 +174,9 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
       deleteData: [],
       editData: []
     },
-    plainNodeStore: {}
+    newNodeId: Math.floor(random() * 10000),
+    plainNodeStore: {},
+    allNodeKeys: []
   })
 
   return state
@@ -283,7 +286,7 @@ export const renderless = (
     cancelDelete: cancelDelete({ state }),
     openEdit: openEdit({ props, state, api, emit }),
     saveNode: saveNode({ state, emit, api }),
-    addNode: addNode({ api }),
+    addNode: addNode({ api, props, state }),
     editNode: editNode({ state }),
     closeEdit: closeEdit({ props, state, api, emit }),
     saveEdit: saveEdit({ props, state, emit }),

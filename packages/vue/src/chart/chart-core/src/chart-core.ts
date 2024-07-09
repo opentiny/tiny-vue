@@ -5,6 +5,7 @@ import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS, DEFAULT_
 import IntegrateChart from '../base'
 import BaiduMapChart from '../base/components/BaiduMapChart'
 import AutonaviMapChart from '../base/components/AutonaviMapChart'
+import cloneDeep from '../base/util/cloneDeep'
 import '@opentiny/vue-theme/chart-core/index.less'
 
 export default {
@@ -129,6 +130,7 @@ export default {
   data() {
     return {
       option: {},
+      eChartOption: {},
       renderOption: {},
       initOpts: {},
       watchToPropsEchartOptions: [],
@@ -339,7 +341,7 @@ export default {
       if (Object.keys(this.options).length === 0) {
         this.updateChart(data)
       } else {
-        this.option = JSON.parse(JSON.stringify(this.options))
+        this.option = cloneDeep(this.options)
       }
       let { option } = this
       clearTimeout(this.timer)
@@ -366,6 +368,7 @@ export default {
         }
         this.$emit('ready', this.integrateChart.echartsIns, option)
       }, this.changeDelay)
+      this.eChartOption = this.integrateChart.eChartOption
     },
     renderChart(option) {
       const plugins = this.plugins || {}
@@ -376,7 +379,6 @@ export default {
         }
         this.integrateChart.setSimpleOption(this.chartList[this.iChartName], option, plugins)
         this.$emit('handle-color', option.color)
-        this.integrateChart.render()
       } else {
         this.selfSetting(option)
         this.setAnimation(option)
@@ -394,11 +396,12 @@ export default {
         this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
       }
       this.integrateChart.render(this.renderOption)
-      this.$emit('ready', this.integrateChart.echartsIns)
+      this.$emit('ready', this.integrateChart.echartsIns, option)
       if (!this.once['ready-once']) {
         this.once['ready-once'] = true
-        this.$emit('ready', this.integrateChart.echartsIns)
+        this.$emit('ready-once', this.integrateChart.echartsIns, option)
       }
+      this.eChartOption = this.integrateChart.eChartOption
     },
     addEvents(val) {
       if (typeof val === 'object' && val !== null && Object.keys(val).length > 0) {
@@ -525,7 +528,7 @@ export default {
     if (Object.keys(this.options).length === 0) {
       this.updateChart(data)
     } else {
-      this.option = { ...this.options }
+      this.option = cloneDeep(this.options)
     }
     let { option } = this
     option = this.afterConfigFn(option)

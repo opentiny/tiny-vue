@@ -146,8 +146,9 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '是否显示底部分割线，适用于横向时间线',
-            'en-US': 'Whether to display the bottom separator line of horizontal timeline'
+            'zh-CN': '是否显示底部指标三角，适用于横向时间线',
+            'en-US':
+              'Indicates whether to display the bottom indicator triangle, which is applicable to the horizontal timeline.'
           },
           mode: ['pc'],
           pcDemo: 'show-divider'

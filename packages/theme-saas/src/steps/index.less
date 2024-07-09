@@ -4,6 +4,7 @@
 @steps-senior-prefix-cls: ~'@{css-prefix}steps-senior';
 @steps-line-prefix-cls: ~'@{css-prefix}steps-line';
 @timeline-prefix-cls: ~'@{css-prefix}timeline';
+@timeline-item-prefix-cls: ~'@{timeline-prefix-cls}-item';
 @default-color: theme('colors.color.text.primary');
 @active-color: theme('colors.color.brand.DEFAULT');
 @disabled-color: theme('colors.color.text.disabled');
@@ -930,7 +931,6 @@
 
         // background-color: blue;
 
-
         > span {
           @apply w-full;
           @apply h-full;
@@ -938,7 +938,6 @@
           @apply whitespace-nowrap;
           @apply overflow-hidden;
         }
-
       }
 
       &:not(:last-child) .label::after {
@@ -965,8 +964,7 @@
       }
 
       &.current:not(:last-child) .label::after,
-      &:hover .label::after
-       {
+      &:hover .label::after {
         border-left: 6px solid theme('colors.color.brand.DEFAULT');
       }
 
@@ -983,7 +981,6 @@
           @apply text-color-text-inverse;
           @apply font-bold;
         }
-
       }
 
       &:last-child .label {
@@ -1072,8 +1069,7 @@
 
   .line {
     @apply bg-color-border-separator;
-    @apply  ~'w-[calc(100%-40px)]';
-    @apply ~'translate-x-[20px]';
+    @apply ~'w-[calc(100%-40px)]';
   }
 
   .icon {
@@ -1105,23 +1101,14 @@
       .@{css-prefix}svg {
         fill: @active-color;
         @apply align-baseline;
-        @apply border;
-        @apply border-solid;
-        border-color: @active-color;
         @apply rounded-full;
-        @apply p-1;
       }
-    }
-
-    .line {
-      @apply bg-color-brand;
     }
   }
 
   .node-description {
     @apply relative;
     @apply mt-3;
-    @apply overflow-hidden;
     @apply text-center;
 
     .name {
@@ -1197,7 +1184,7 @@
       @apply h-24;
 
       .@{timeline-prefix-cls}-item__pillar {
-        @apply flex flex-col ;
+        @apply flex flex-col;
       }
 
       .line {
@@ -1238,7 +1225,6 @@
 
       .name {
         @apply float-left;
-        @apply ml-6;
         @apply text-sm;
         @apply font-bold;
         @apply ~'leading-6.5';
@@ -1253,11 +1239,6 @@
   .@{timeline-prefix-cls}-item {
     .line {
       @apply ~'w-[calc(100%-24px)]';
-      @apply transform ~'translate-x-[12px]';
-
-      &.line-done {
-        @apply bg-color-bg-7;
-      }
 
       &.line-end {
         @apply w-0;
@@ -1317,3 +1298,554 @@
   }
 }
 
+// tiny 新增： 由于重构了time-line-item ，所以下面样式为tiny自有的样式。 此处的样式与上面的样式会互相影响，共同施加于time-line组件上。
+.@{timeline-prefix-cls} {
+  position: relative;
+
+  .line {
+    background: #dbdbdb;
+  }
+
+  .line-done {
+    background: #191919;
+  }
+
+  .icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    left: calc(50% - 12px);
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #c9c9c9;
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: #aeaeae;
+    cursor: pointer;
+    background-color: #d9d9d9;
+    z-index: 15;
+    padding: 2px;
+
+    &[class*=~'icon-'] {
+      background-color: #fff;
+    }
+
+    &.icon-success {
+      border-color: #0067d1;
+
+      .fixicon {
+        fill: #0067d1;
+      }
+    }
+
+    &.icon-warning {
+      background-color: #d19f00 !important;
+      border-color: #d19f00;
+
+      .fixicon {
+        fill: #fff;
+      }
+    }
+
+    &.icon-error {
+      border-color: #e02128;
+
+      .fixicon {
+        fill: #e02128;
+      }
+    }
+
+    .fixicon,
+    .fixicons {
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+      padding: 2px;
+    }
+
+    &.fixicons {
+      padding: 0;
+      left: 0;
+      border: none;
+    }
+
+    .number {
+      display: inline-block;
+    }
+  }
+
+  .date-time {
+    text-align: center;
+    color: #8a8e99;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .@{steps-prefix-cls}__node {
+    position: relative;
+  }
+
+  .process-done {
+    .node-description {
+      color: #333;
+    }
+
+    .icon {
+      color: #0067d1;
+      fill: #0067d1;
+      border-color: #0067d1;
+      background-color: #fff;
+
+      .icon-yes {
+        fill: #0067d1;
+        font-size: 14px;
+        border-radius: 50%;
+      }
+    }
+
+    &.@{timeline-item-prefix-cls} .dot-container .dot {
+      border-color: #0067d1;
+      background-color: #fff;
+    }
+  }
+
+  .process-current {
+    .icon {
+      color: #fff;
+      font-size: 12px;
+      border-color: #0067d1;
+      background: #0067d1;
+
+      .fixicons {
+        fill: #fff;
+      }
+    }
+
+    &.@{timeline-item-prefix-cls} .dot-container .dot {
+      background-color: #0067d1;
+    }
+  }
+
+  .process-error {
+    cursor: not-allowed;
+
+    .icon {
+      flex-shrink: 0;
+      color: #e02128;
+      border-color: #e02128;
+      background-color: #e02128;
+
+      .icon-wrap {
+        font-size: 0;
+      }
+
+      svg {
+        fill: #fff;
+        font-size: 14px;
+      }
+    }
+
+    &.@{timeline-item-prefix-cls} .dot-container .dot {
+      background-color: #e02128;
+    }
+
+    &.normal .node-description {
+      .name,
+      & div.name {
+        color: #e02128;
+      }
+    }
+  }
+
+  .process-disabled {
+    cursor: not-allowed;
+
+    .icon {
+      background-color: #f5f5f5;
+      border-color: #c9c9c9;
+
+      .number {
+        color: #c9c9c9;
+      }
+    }
+
+    &.@{timeline-item-prefix-cls} .dot-container .dot {
+      background-color: #f5f5f5;
+    }
+
+    &.normal .node-description,
+    .@{timeline-item-prefix-cls}__content {
+      .name,
+      & div.name {
+        color: #777;
+      }
+    }
+  }
+
+  .reverse {
+    .process-current {
+      .line {
+        background: #0067d1;
+      }
+    }
+  }
+
+  & .process-wait {
+    .name {
+      color: #aeaeae !important;
+    }
+
+    .icon {
+      background-color: #fff;
+    }
+  }
+
+  & .@{steps-prefix-cls}-normal {
+    .normal {
+      display: block;
+      position: relative;
+      font-size: 12px;
+    }
+
+    .icon {
+      span {
+        display: inline-block;
+      }
+    }
+
+    .name {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #191919;
+    }
+
+    &.process-wait {
+      .name {
+        color: #aeaeae;
+      }
+    }
+
+    &.text-right {
+      display: inline-flex;
+      align-items: center;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+
+      .normal {
+        display: inline-flex;
+        align-items: center;
+        overflow: hidden;
+
+        .step-icon {
+          top: 0;
+          left: 0;
+          flex-shrink: 0;
+        }
+
+        .node-description {
+          display: flex;
+          position: relative;
+          margin-left: 4px;
+          flex: 1 0 auto;
+          align-items: center;
+
+          .name {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            margin-right: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-all;
+            white-space: normal;
+            text-align: left;
+            max-width: 250px;
+          }
+        }
+
+        .line {
+          flex: 1;
+          height: 1px;
+          margin-left: 0;
+
+          &.line-end {
+            flex: 0;
+          }
+        }
+
+        &:not(:first-child) {
+          padding-left: 0px;
+        }
+
+        &:not(:last-child) {
+          flex: 1;
+        }
+
+        &.no-flex {
+          flex: none;
+        }
+      }
+    }
+
+    &.text-bottom {
+      display: flex;
+
+      .node-description {
+        position: relative;
+        text-align: center;
+        margin-top: 12px;
+
+        .name {
+          font-size: 14px;
+          float: left;
+          width: 100%;
+        }
+
+        .status {
+          font-size: 12px;
+          float: left;
+          width: 100%;
+        }
+      }
+
+      .line {
+        width: calc(100% - 20px - 0px * 2);
+        height: 1px;
+        left: 50%;
+        top: 12px;
+        position: absolute;
+
+        &.line-end {
+          width: 0;
+        }
+      }
+    }
+
+    .@{timeline-item-prefix-cls}__description {
+      position: absolute;
+      bottom: 0;
+      transform: translateY(100%);
+      min-width: 100px;
+      text-align: left;
+    }
+
+    .process-current {
+      .node-description .name {
+        color: #0067d1;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .show-divider {
+    .@{timeline-item-prefix-cls} {
+      padding-bottom: 22px;
+
+      &.process-current {
+        &::after {
+          content: '';
+          display: inline-block;
+          position: absolute;
+          bottom: 0;
+          left: 3px;
+          border: 7px solid transparent;
+          border-top: none;
+          border-bottom-color: #0067d1;
+        }
+      }
+
+      &:first-child {
+        &.process-current::after {
+          content: '';
+          display: inline-block;
+          position: absolute;
+          bottom: 0;
+          left: 3px;
+          border: 7px solid transparent;
+          border-top: none;
+          border-bottom-color: #0067d1;
+        }
+      }
+    }
+
+    & + .@{steps-prefix-cls}__bottom-divider {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      margin-top: calc(16px - 4px);
+      background-color: #d9d9d9;
+    }
+  }
+
+  & .@{steps-prefix-cls}-timeline {
+    font-size: 14px;
+    color: #333;
+
+    &.@{timeline-prefix-cls}__shape-dot {
+      padding-top: 4px;
+
+      .timeline {
+        .@{timeline-item-prefix-cls}__pillar .line {
+          width: 1px;
+          margin-block: 4px;
+          background-color: #d9d9d9;
+        }
+
+        .@{timeline-item-prefix-cls}__content {
+          margin-left: 20px;
+        }
+
+        &.timeline-item--primary .dot {
+          border-color: #d9d9d9;
+          background-color: #d9d9d9;
+        }
+
+        &.timeline-item--success .dot {
+          border-color: #50d4ab;
+          background-color: #50d4ab;
+        }
+
+        &.timeline-item--warning .dot {
+          border-color: #d19f00;
+          background-color: #d19f00;
+        }
+
+        &.timeline-item--danger .dot {
+          border-color: #f66f6a;
+          background-color: #f66f6a;
+        }
+
+        &.timeline-item--info .dot {
+          border-color: #5e7ce0;
+          background-color: #5e7ce0;
+        }
+
+        .@{timeline-item-prefix-cls}__content {
+          margin-top: -5px;
+
+          .name {
+            margin-bottom: 4px;
+          }
+
+          .time {
+            color: #8a8e99;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .timeline {
+      display: flex;
+      align-items: flex-start;
+
+      &.process-done {
+        color: #333;
+      }
+
+      &.process-current {
+        color: #0067d1;
+      }
+
+      &:last-child {
+        .@{timeline-item-prefix-cls}__pillar .line {
+          flex: 0;
+        }
+      }
+
+      .@{timeline-item-prefix-cls}__pillar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
+        width: 8px;
+
+        .line {
+          width: 1px;
+          flex: 1;
+
+          .@{css-prefix}svg {
+            vertical-align: baseline;
+          }
+        }
+
+        .icon {
+          left: 0;
+        }
+      }
+
+      .date-time {
+        padding-right: 12px;
+        padding-bottom: 20px;
+        text-align: right;
+
+        .time {
+          display: block;
+          line-height: 1;
+        }
+
+        .date {
+          display: block;
+          line-height: 1;
+          margin-bottom: 4px;
+        }
+      }
+
+      .dot-container {
+        position: relative;
+
+        .fixicons {
+          transform: translateY(-50%);
+        }
+      }
+
+      .dot {
+        display: block;
+        width: 8px;
+        height: 8px;
+        border: 1px solid #d9d9d9;
+        border-radius: 50%;
+        box-sizing: border-box;
+        background-color: #d9d9d9;
+      }
+
+      .@{timeline-item-prefix-cls}__content {
+        padding-bottom: 20px;
+        margin-left: 20px;
+      }
+
+      .icon {
+        top: 0;
+      }
+    }
+  }
+
+  &--mini {
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .@{css-prefix}svg,
+    span,
+    .process-done .icon .@{css-prefix}svg,
+    .process-done .icon span,
+    .process-error .icon .@{css-prefix}svg {
+      font-size: 12px;
+    }
+
+    .node-description {
+      .name,
+      .status {
+        font-size: 12px;
+      }
+    }
+  }
+}

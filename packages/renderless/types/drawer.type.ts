@@ -1,9 +1,9 @@
-import type { ComputedRef, ExtractPropTypes } from 'vue'
-import type { drawerProps } from '@/drawer/src'
+import type { ExtractPropTypes } from 'vue'
+import type { drawerProps, $constants } from '@/drawer/src'
 import type {
+  open,
   close,
   watchVisible,
-  watchToggle,
   confirm,
   mousedown,
   mouseup,
@@ -12,16 +12,17 @@ import type {
   removeDragEvent,
   showScrollbar,
   hideScrollbar,
-  watchVisibleNotImmediate,
-  computedWidth
+  computedWidth,
+  handleClose
 } from '../src/drawer'
+import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from './shared.type'
 
 export interface IDrawerState {
-  toggle: boolean
+  visible: boolean
   width: number
   height: number
   dragEvent: { x: number; y: number; isDrag: boolean; offsetWidth: number; offsetHeight: number }
-  computedWidth: ComputedRef<string>
+  computedWidth: string
   btnOrderReversed: boolean
 }
 
@@ -29,6 +30,7 @@ export type IDrawerProps = ExtractPropTypes<typeof drawerProps>
 
 export interface IDrawerApi {
   state: IDrawerState
+  open: ReturnType<typeof open>
   confirm: ReturnType<typeof confirm>
   close: ReturnType<typeof close>
   mousemove: ReturnType<typeof mousemove>
@@ -37,11 +39,20 @@ export interface IDrawerApi {
   addDragEvent: ReturnType<typeof addDragEvent>
   removeDragEvent: ReturnType<typeof removeDragEvent>
   watchVisible: ReturnType<typeof watchVisible>
-  watchToggle: ReturnType<typeof watchToggle>
   showScrollbar: ReturnType<typeof showScrollbar>
   hideScrollbar: ReturnType<typeof hideScrollbar>
-  watchVisibleNotImmediate: ReturnType<typeof watchVisibleNotImmediate>
   computedWidth: ReturnType<typeof computedWidth>
+  handleClose: ReturnType<typeof handleClose>
 }
 
 export type IDrawerCT = ReturnType<typeof drawerProps._constants.default>
+
+export type IDrawerConstants = typeof $constants
+
+export type IDrawerRenderlessParams = ISharedRenderlessFunctionParams<IDrawerConstants> & {
+  api: IDrawerApi
+  state: IDrawerState
+  props: IDrawerProps
+}
+
+export type IDrawerRenderlessParamUtils = ISharedRenderlessParamUtils<IDrawerConstants>

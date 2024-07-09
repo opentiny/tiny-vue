@@ -305,9 +305,16 @@ export const setCurrentValue =
     }
   }
 
+/** 处理输入字符： input / compositionend 事件均进入该函数 */
 export const handleInput =
   ({ state, api, emit, props }: Pick<INumericRenderlessParams, 'state' | 'api' | 'emit' | 'props'>) =>
   (event: InputEvent): void => {
+    // 此时为'正在输入中文'，所以忽略
+    if (event.isComposing) {
+      return
+    }
+
+    // 此时为输入了1个有效的: 数字\英文\中文
     const { fraction } = state.format
     const emitError = () => {
       if (state.pasting) {
@@ -320,7 +327,7 @@ export const handleInput =
       emitError()
 
       if (!(value === '' && props.allowEmpty)) {
-        value = !value.includes('e') ? state.lastInput : value
+        value = state.lastInput
       }
     } else {
       value = value

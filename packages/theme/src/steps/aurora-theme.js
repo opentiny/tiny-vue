@@ -38,5 +38,6 @@ export const tinyStepsAuroraTheme = {
   'ti-steps-advanced-doing-bg-color-hover': '#2e8bde',
   'ti-steps-name-margin-right': 'var(--ti-common-space-2x)',
   'ti-steps-error-bg-color': 'var(--ti-common-bg-primary)',
-  'ti-steps-disabled-icon-bg-color': 'var(--ti-common-color-bg-disabled)'
+  'ti-steps-disabled-icon-bg-color': 'var(--ti-common-color-bg-disabled)',
+  'ti-steps-error-icon-color': '#fff'
 }

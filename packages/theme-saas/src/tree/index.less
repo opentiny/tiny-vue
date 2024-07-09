@@ -251,6 +251,11 @@
     & label.@{css-prefix}checkbox {
       @apply ml-2;
     }
+    .@{tree-node-prefix-cls}__content-box {
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+      @apply whitespace-nowrap;
+    }
 
     .@{tree-node-prefix-cls}__content-left {
       @apply flex;
@@ -285,8 +290,8 @@
 
   &__expand-icon {
     @apply cursor-pointer;
-    @apply fill-color-icon-secondary; 
-    @apply text-xs;
+    @apply fill-color-icon-secondary;
+    @apply text-md;
     @apply rotate-0;
     transition: transform 0.3s ease-in-out;
     @apply shrink-0;
@@ -330,7 +335,7 @@
     @apply bg-transparent;
 
     .@{tree-node-prefix-cls}__label {
-      @apply text-xs;
+      @apply text-sm;
     }
   }
 

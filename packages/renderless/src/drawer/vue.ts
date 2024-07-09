@@ -1,7 +1,6 @@
 import {
   close,
   watchVisible,
-  watchToggle,
   confirm,
   mousedown,
   mouseup,
@@ -10,31 +9,30 @@ import {
   removeDragEvent,
   showScrollbar,
   hideScrollbar,
-  watchVisibleNotImmediate,
   handleClose,
-  computedWidth
+  computedWidth,
+  open
 } from './index'
 import type {
   IDrawerProps,
   IDrawerState,
   IDrawerApi,
-  ISharedRenderlessParamUtils,
-  ISharedRenderlessFunctionParams,
-  IDrawerCT
+  IDrawerRenderlessParamUtils,
+  ISharedRenderlessParamHooks
 } from '@/types'
 
-export const api = ['state', 'close', 'confirm', 'handleClose']
+export const api = ['state', 'close', 'confirm', 'handleClose', 'open']
 
 export const renderless = (
   props: IDrawerProps,
-  { reactive, watch, onMounted, onBeforeUnmount, computed }: ISharedRenderlessFunctionParams<null>,
-  { emit, vm, mode, constants, designConfig }: ISharedRenderlessParamUtils<IDrawerCT>
+  { reactive, watch, onMounted, onBeforeUnmount, computed }: ISharedRenderlessParamHooks,
+  { emit, vm, mode, constants, designConfig }: IDrawerRenderlessParamUtils
 ) => {
   const lockScrollClass = constants.SCROLL_LOCK_CLASS(mode)
 
   const api = {} as IDrawerApi
-  const state = reactive<IDrawerState>({
-    toggle: false,
+  const state: IDrawerState = reactive({
+    visible: false,
     width: 0,
     height: 0,
     dragEvent: { x: 0, y: 0, isDrag: false, offsetWidth: 0, offsetHeight: 0 },
@@ -44,36 +42,34 @@ export const renderless = (
 
   Object.assign(api, {
     state,
+    open: open({ state, emit, vm }),
     confirm: confirm({ api }),
     close: close({ api }),
     handleClose: handleClose({ emit, props, state }),
     mousedown: mousedown({ state, vm }),
-    mousemove: mousemove({ state, props }),
+    mousemove: mousemove({ state, props, emit }),
     mouseup: mouseup({ state }),
     addDragEvent: addDragEvent({ api: api as IDrawerApi, vm }),
     removeDragEvent: removeDragEvent({ api: api as IDrawerApi, vm }),
-    watchVisible: watchVisible({ state }),
-    watchToggle: watchToggle({ emit }),
+    watchVisible: watchVisible({ state, api }),
     showScrollbar: showScrollbar(lockScrollClass),
     hideScrollbar: hideScrollbar(lockScrollClass),
-    watchVisibleNotImmediate: watchVisibleNotImmediate({ api: api as IDrawerApi, props }),
     computedWidth: computedWidth({ state, designConfig, props, constants })
   })
 
   onMounted(() => {
-    props.dragable && (api as IDrawerApi).addDragEvent()
+    props.dragable && api.addDragEvent()
     if (props.lockScroll && props.visible) {
-      ;(api as IDrawerApi).showScrollbar()
+      api.showScrollbar()
     }
   })
 
   onBeforeUnmount(() => {
-    props.dragable && (api as IDrawerApi).removeDragEvent()
-    props.lockScroll && (api as IDrawerApi).hideScrollbar()
+    props.dragable && api.removeDragEvent()
+    props.lockScroll && api.hideScrollbar()
   })
 
-  watch(() => props.visible, (api as IDrawerApi).watchVisible, { immediate: true })
-  watch(() => state.toggle, (api as IDrawerApi).watchToggle)
+  watch(() => props.visible, api.watchVisible, { immediate: true })
   watch(
     () => props.width,
     () => (state.width = 0)

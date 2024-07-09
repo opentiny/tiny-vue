@@ -1,0 +1,15 @@
+import { renderless } from '@opentiny/vue-renderless/<%=NAME%>/vue'
+import { <%=USECOMMONS%> } from '@opentiny/solid-common'
+import '@opentiny/vue-theme/<%=NAME%>/index.less'
+<%=IMPORTICONS%>
+const useIcons = <%=USEICONS%>
+const $constants = <%=CONSTANTS%>
+export default function (props) {
+  const { children, slots = {}, <%=USEPROPS%> } = props
+  const { state, <%=USEAPI%> } = useSetup({
+    props: mergeProps({<%=DEFAULTPROPS%>}, props),
+    renderless,
+    constants: $constants,
+  })
+  return (<><%=JSX%></>)
+}

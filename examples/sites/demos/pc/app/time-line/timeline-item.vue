@@ -1,6 +1,7 @@
 <template>
   <tiny-time-line :active="active" text-position="right" space="200px">
-    <tiny-timeline-item v-for="(item, i) in data" :node="item" :key="i" @click="onItemClick"> </tiny-timeline-item>
+    <tiny-timeline-item v-for="(item, i) in data" :node="item" :nodeIndex="i" :key="i" @click="onItemClick">
+    </tiny-timeline-item>
   </tiny-time-line>
 </template>
 

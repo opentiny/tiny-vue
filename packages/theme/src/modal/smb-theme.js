@@ -1,7 +1,7 @@
 export const tinyModalSmbTheme = {
   'ti-modal-box-shadow': 'var(--ti-common-shadow-4-down)',
   'ti-modal-header-font-size': 'var(--ti-common-font-size-4)',
-  'ti-modal-header-padding-bottom': 'var(--ti-common-space-6x)',
+  'ti-modal-header-padding-bottom': 'var(--ti-common-space-4x)',
   'ti-modal-box-border-radius': 'var(--ti-common-border-radius-4)',
   'ti-modal-close-btn-font-size': 'var(--ti-common-font-size-4)',
   'ti-modal-close-btn-icon-color': 'var(--ti-common-color-icon-normal)',
@@ -17,5 +17,8 @@ export const tinyModalSmbTheme = {
   'ti-modal-message-padding-vertical': 'calc(var(--ti-common-space-10) - 0.5px)',
   'ti-modal-message-body-padding-horizontal': 'var(--ti-common-space-0)',
   'ti-modal-message-icon-box-height': 'calc(var(--ti-common-space-5x) - 1px)',
-  'ti-modal-notification-header-padding-bottom': 'var(--ti-common-space-4x)'
+  'ti-modal-notification-header-padding-bottom': 'var(--ti-common-space-4x)',
+  'ti-modal-footer-align': 'right',
+  'ti-modal-body-text-color': 'var(--ti-common-color-text-secondary)',
+  'ti-modal-body-text-bottom': 'var(--ti-common-space-4x)'
 }

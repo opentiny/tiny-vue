@@ -1,10 +1,13 @@
 <script lang="ts">
-import { h, defineComponent, $props } from '@opentiny/vue-common'
+import { h, defineComponent, $props, hooks } from '@opentiny/vue-common'
 
 export default defineComponent({
   props: {
     ...$props,
-    item: Object
+    item: { type: Object, required: true }
+  },
+  provide() {
+    return { TabStatus: hooks.toRef(this.item, 'selected') }
   },
   setup(props) {
     if (props.item) {
@@ -13,7 +16,6 @@ export default defineComponent({
     }
   },
   render() {
-    // eslint-disable-next-line vue/no-deprecated-dollar-scopedslots-api
     const slots = '$scopedSlots' in this ? this.$scopedSlots : this.$slots
 
     return h('div', { attrs: { 'data-tag': 'tiny-tab-panel' } }, typeof slots.default === 'function' && slots.default())

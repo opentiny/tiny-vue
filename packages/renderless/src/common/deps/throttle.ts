@@ -75,5 +75,14 @@ export default function (delay, noTrailing, callback, debounceMode?: string): Fu
     }
   }
 
+  function cancel() {
+    if (timeoutID) {
+      clearTimeout(timeoutID)
+      timeoutID = null
+    }
+  }
+
+  wrapper._cancel = cancel
+
   return wrapper
 }

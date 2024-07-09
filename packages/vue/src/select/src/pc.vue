@@ -75,6 +75,7 @@
         >
           <span v-if="!state.selectDisabled">
             <span v-if="collapseTags && state.selected.length">
+              <!-- 显示第1个标签 + 数字 -->
               <tiny-tag
                 :closable="!state.selectDisabled"
                 :size="state.collapseTagSize"
@@ -85,8 +86,9 @@
                 disable-transitions
               >
                 <tiny-tooltip
-                  effect="light"
-                  placement="top"
+                  :effect="tooltipConfig.effect || 'light'"
+                  :placement="tooltipConfig.placement || 'top'"
+                  :popper-class="tooltipConfig.popperClass || ''"
                   @mouseenter.native="handleEnterTag($event, getValueKey(state.selected[0]))"
                 >
                   <span class="tiny-select__tags-text">
@@ -118,6 +120,7 @@
                 <span class="tiny-select__tags-text">+ {{ state.selected.length - 1 }}</span>
               </tiny-tag>
             </span>
+            <!-- 显示所有标签的循环 -->
             <span ref="tags-content" v-if="!collapseTags">
               <!-- 当 showAllTextTag 时， 用all-text属性做为tag。 xdesign规范 -->
               <tiny-tag
@@ -158,8 +161,9 @@
                   disable-transitions
                 >
                   <tiny-tooltip
-                    effect="light"
-                    placement="top"
+                    :effect="tooltipConfig.effect || 'light'"
+                    :placement="tooltipConfig.placement || 'top'"
+                    :popper-class="tooltipConfig.popperClass || ''"
                     @mouseenter.native="handleEnterTag($event, getValueKey(item))"
                   >
                     <span v-if="!state.visible && state.overflow === index" class="tiny-select__tags-text">
@@ -197,7 +201,12 @@
           </span>
 
           <span v-else class="tiny-select__tags-text is-disabled">
-            <tiny-tooltip effect="light" placement="top" :disabled="!showTips">
+            <tiny-tooltip
+              :effect="tooltipConfig.effect || 'light'"
+              :placement="tooltipConfig.placement || 'top'"
+              :popper-class="tooltipConfig.popperClass || ''"
+              :disabled="!showTips"
+            >
               <span>
                 <span v-for="item in state.selected" :key="item.value">
                   <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
@@ -390,7 +399,7 @@
             :node-key="valueField"
             :default-expand-all="state.isExpandAll"
             :check-strictly="treeOp.checkStrictly"
-            :default-checked-keys="multiple ? state.defaultCheckedKeys : []"
+            :default-checked-keys="multiple ? state.defaultCheckedKeys : treeOp.defaultCheckedKeys || []"
             ref="selectTree"
             :current-node-key="!multiple ? state.currentKey : ''"
             :show-checkbox="multiple"
@@ -484,16 +493,8 @@
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
             >
-              <!-- <component :is="`icon-${state.selectCls}`" :class="['tiny-svg-size', state.selectCls]" />
-              <span>{{ t('ui.base.all') }}</span> -->
-              <!-- tiny 新增： 使用checkbox 代替 svg , 列表模式 -->
-              <tiny-checkbox
-                :model-value="state.selectCls === 'checked-sur'"
-                :indeterminate="state.selectCls === 'halfselect'"
-                :class="state.selectCls"
-              >
-                {{ allText || t('ui.base.all') }}
-              </tiny-checkbox>
+              <component :is="`icon-${state.selectCls}`" :class="['tiny-svg-size', state.selectCls]" />
+              <span>{{ allText || t('ui.base.all') }}</span>
             </li>
             <li
               v-if="
@@ -517,16 +518,8 @@
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
             >
-              <!-- <component :is="`icon-${state.filteredSelectCls}`" :class="['tiny-svg-size', state.filteredSelectCls]" />
-              <span>{{ t('ui.base.all') }}</span> -->
-              <!-- tiny 新增： 使用checkbox 代替 svg，过滤模式 -->
-              <tiny-checkbox
-                :model-value="state.filteredSelectCls === 'checked-sur'"
-                :indeterminate="state.filteredSelectCls === 'halfselect'"
-                :class="state.selectCls"
-              >
-                {{ allText || t('ui.base.all') }}
-              </tiny-checkbox>
+              <component :is="`icon-${state.filteredSelectCls}`" :class="['tiny-svg-size', state.filteredSelectCls]" />
+              <span>{{ allText || t('ui.base.all') }}</span>
             </li>
             <tiny-option :value="state.query" created v-if="state.showNewOption"> </tiny-option>
             <slot>
@@ -609,10 +602,6 @@ import Tree from '@opentiny/vue-tree'
 import TinyTooltip from '@opentiny/vue-tooltip'
 import FilterBox from '@opentiny/vue-filter-box'
 import RecycleScroller from '@opentiny/vue-recycle-scroller'
-
-// tiny 新增
-import TinyCheckbox from '@opentiny/vue-checkbox'
-
 import '@opentiny/vue-theme/select/index.less'
 
 const getReference = (el, binding, vnode) => {
@@ -673,7 +662,6 @@ export default defineComponent({
     // tiny 新增，
     IconSearch: IconSearch(),
     IconDeltaDown: IconDeltaDown(), // 默认下拉图标
-    TinyCheckbox,
     IconEllipsis: IconEllipsis(),
     IconChevronUp: IconChevronUp()
   },
@@ -752,7 +740,9 @@ export default defineComponent({
     'topCreate',
     'topCreateText',
     'keepFocus',
+    'initLabel',
     'blank',
+    'tooltipConfig',
     // 以下为 tiny 新增
     'searchable',
     'showEmptyImage',

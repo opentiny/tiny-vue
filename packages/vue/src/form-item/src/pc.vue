@@ -122,7 +122,7 @@ export default defineComponent({
 
           Object.assign(item.props, {
             size: state.formItemSize,
-            mini: state.formItemSize === 'mini'
+            mini: state.formItemSize === 'mini' || Boolean(item.props.mini)
           })
 
           if (type && type.name && type.name.toLowerCase().endsWith('button')) {
@@ -182,8 +182,8 @@ export default defineComponent({
         typeof this.appendToBody === 'boolean'
           ? this.appendToBody
           : typeof formAppendToBody === 'boolean'
-          ? formAppendToBody
-          : true
+            ? formAppendToBody
+            : true
       const validatePosition =
         this.validatePosition || (state.formInstance && state.formInstance.validatePosition) || 'top-end'
 

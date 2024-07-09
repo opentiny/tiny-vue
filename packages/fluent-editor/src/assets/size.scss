@@ -1,0 +1,15 @@
+// 文字大小
+@import './common';
+.ql-formats {
+  .ql-size.ql-picker {
+    width: 70px;
+    span.ql-picker-label:before,
+    .ql-picker-options > span.ql-picker-item::before {
+      content: "Normal";
+    }
+    span.ql-picker-label[data-value]:before,
+    .ql-picker-options > span.ql-picker-item[data-value]::before {
+      content: attr(data-value);
+    }
+  }
+}
