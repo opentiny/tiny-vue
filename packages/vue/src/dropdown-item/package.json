@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-dropdown-item",
   "type": "module",
-  "version": "3.16.0-prod.0",
+  "version": "3.16.1-prod.0",
   "description": "",
   "license": "MIT",
   "sideEffects": false,
