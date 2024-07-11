@@ -279,7 +279,7 @@ export default {
             options.extend = {}
           }
 
-          options.extend[setting] = this[setting]
+          options.extend[setting] = cloneDeep(this[setting])
           !unwatch &&
             this.$watch(
               setting,
