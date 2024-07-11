@@ -14,9 +14,9 @@ function removeNullKeys(obj) {
       delete obj[key]
     } else {
       obj[key] = removeNullKeys(obj[key])
-      if (typeof obj[key] === 'object' && Object.keys(obj[key]).length === 0) {
-        obj[key] = undefined
-      }
+      // if (typeof obj[key] === 'object' && Object.keys(obj[key]).length === 0) {
+      //   obj[key] = undefined
+      // }
     }
   }
   return obj
