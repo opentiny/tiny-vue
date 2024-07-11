@@ -379,7 +379,7 @@ const initApi = ({
     computedShowNewOption: computedShowNewOption({ props, state }),
     computedShowCopy: computedShowCopy({ props, state }),
     computedOptionsAllDisabled: computedOptionsAllDisabled(state),
-    computedDisabledTooltipContent: computedDisabledTooltipContent(state),
+    computedDisabledTooltipContent: computedDisabledTooltipContent({ props, state }),
 
     computedSelectDisabled: computedSelectDisabled({ props, parent }),
     computedIsExpand: computedIsExpand({ props, state }),
