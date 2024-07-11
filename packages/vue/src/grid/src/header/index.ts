@@ -23,7 +23,7 @@
  *
  */
 
-import Header from './src/header'
+import Header from './src/index'
 
 Header.install = function (Vue) {
   Vue.component(Header.name, Header)
