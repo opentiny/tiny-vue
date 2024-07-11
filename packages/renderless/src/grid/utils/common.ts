@@ -193,3 +193,12 @@ export const getListeners = ($attrs, $listeners) => {
 
   return listeners
 }
+
+export const computeDragLeft = (args) => {
+  let { dragMinLeft } = args
+  let { left } = args
+
+  let dragLeft = Math.max(left, dragMinLeft)
+
+  return { left, dragMinLeft, dragLeft }
+}
