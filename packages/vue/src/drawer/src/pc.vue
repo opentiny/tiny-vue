@@ -167,7 +167,7 @@ export default defineComponent({
     'tipsProps',
     'customSlots'
   ],
-  emits: ['update:visible', 'open', 'close', 'confirm'],
+  emits: ['update:visible', 'open', 'close', 'confirm', 'drag'],
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }
