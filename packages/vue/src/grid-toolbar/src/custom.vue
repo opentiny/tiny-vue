@@ -86,7 +86,12 @@
                 </tiny-grid-column>
               </tiny-grid>
             </tiny-tab-item>
-            <tiny-tab-item class="tabs-body-item" :title="t('ui.grid.individuation.tabs.other.title')" name="other">
+            <tiny-tab-item
+              v-if="other"
+              class="tabs-body-item"
+              :title="t('ui.grid.individuation.tabs.other.title')"
+              name="other"
+            >
               <tiny-alert
                 class="tiny-grid-custom__alert"
                 :description="t('ui.grid.individuation.tabs.other.tips')"
@@ -299,11 +304,11 @@ export default defineComponent({
     showFixed() {
       return (this as any).$grid
     },
-    TinyTable() {
-      return ((this as any).$grid && (this as any).$grid.$refs.TinyTable) || {}
+    tinyTable() {
+      return ((this as any).$grid && (this as any).$grid.$refs.tinyTable) || {}
     },
     isGroup() {
-      return this.TinyTable.isGroup
+      return this.tinyTable.isGroup
     },
     historyConfig() {
       const multipleHistory =
