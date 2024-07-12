@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-grid-toolbar",
-  "version": "3.17.1",
+  "version": "3.17.2",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
