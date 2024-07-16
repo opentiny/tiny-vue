@@ -30,35 +30,7 @@ export const renderless = (
   props,
   { computed, onMounted, onBeforeUnmount, reactive },
   { vm, emit },
-  {
-    Editor,
-    StarterKit,
-    Table,
-    TableCell,
-    TableHeader,
-    TableRow,
-    Color,
-    TextStyle,
-    Image,
-    Highlight,
-    Link,
-    Underline,
-    Subscript,
-    Superscript,
-    TaskItem,
-    TaskList,
-    TextAlign,
-    Paragraph,
-    mergeAttributes,
-    CodeBlockLowlight,
-    lowlight,
-    VueRenderer,
-    VueNodeViewRenderer,
-    Placeholder,
-    codeHighlight,
-    viewMap,
-    slashView
-  }
+  { Editor, Image, Highlight, Paragraph, mergeAttributes, VueRenderer, VueNodeViewRenderer, viewMap, slashView }
 ) => {
   let defaultToolBar = [
     'bold',

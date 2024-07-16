@@ -1,5 +1,5 @@
 <template>
-  <div class="tiny-slash-menu__view">
+  <div ref="slashMenu" class="tiny-slash-menu__view">
     <template v-if="items?.length">
       <div
         v-for="(item, index) in items"
@@ -49,6 +49,49 @@ export default defineComponent({
         immediate: true
       }
     )
+
+    const instance = hooks.getCurrentInstance()
+
+    hooks.watch(
+      () => selectedIndex.value,
+      () => {
+        const selectedItem = document.getElementById(`slash-menu-${selectedIndex.value}`)
+        const menuContainer = instance?.refs?.slashMenu as HTMLDivElement
+        if (selectedItem && menuContainer) {
+          const containerTop = menuContainer.offsetTop
+          const itemTop = selectedItem.offsetTop
+          const scrollHeight = itemTop - containerTop
+          console.log(scrollHeight)
+
+          if (!isElementInViewport(selectedItem, menuContainer)) {
+            // 获取容器的 border 和 padding 滚动时减去
+            const containerStyleMap = window.getComputedStyle(menuContainer)
+            const { borderTopWidth, paddingTop } = containerStyleMap
+            const miscHeight = Math.trunc(parseFloat(borderTopWidth) + parseFloat(paddingTop))
+
+            menuContainer.scrollTo({
+              top: scrollHeight - miscHeight,
+              behavior: 'smooth'
+            })
+          }
+        }
+      }
+    )
+
+    /**
+     * 检测 el 的碰撞盒子是否在视口 viewport 的碰撞盒内
+     */
+    function isElementInViewport(el: HTMLElement, viewport: HTMLElement) {
+      const rect = el.getBoundingClientRect()
+      const viewportRect = viewport.getBoundingClientRect()
+
+      return (
+        rect.top >= viewportRect.top &&
+        rect.left >= viewportRect.left &&
+        rect.bottom <= viewportRect.bottom &&
+        rect.right <= viewportRect.right
+      )
+    }
 
     function onKeyDown({ event }: { event: KeyboardEvent }) {
       if (event.key === 'ArrowUp') {
@@ -109,6 +152,9 @@ export default defineComponent({
     border: 1px solid #e5e5e5;
     padding: 8px;
     width: 256px;
+    max-height: 384px;
+    overflow-y: auto;
+    overflow-x: auto;
   }
 
   &__item {
