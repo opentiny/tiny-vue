@@ -1,3 +1,4 @@
+import TiptapEditor from '@opentiny/tiny-tiptap'
 import {
   handleChange,
   setLink,
@@ -10,6 +11,7 @@ import {
   eventClick,
   Active
 } from './index'
+import { shallowRef } from 'vue'
 
 export const api = [
   'state',
@@ -26,7 +28,7 @@ export const api = [
 ]
 export const renderless = (
   props,
-  { computed, onBeforeUnmount, reactive },
+  { computed, onMounted, onBeforeUnmount, reactive },
   { vm, emit },
   {
     Editor,
@@ -50,9 +52,12 @@ export const renderless = (
     mergeAttributes,
     CodeBlockLowlight,
     lowlight,
+    VueRenderer,
     VueNodeViewRenderer,
     Placeholder,
-    codeHighlight
+    codeHighlight,
+    viewMap,
+    slashView
   }
 ) => {
   let defaultToolBar = [
@@ -188,42 +193,42 @@ export const renderless = (
   })
   const defaultOptions = {
     extensions: [
-      StarterKit?.configure({
-        // 开启多人协作功能要关闭默认的history模式
-        history: true
-      }),
-      Table.configure({
-        resizable: true
-      }),
-      TableCell,
-      TableHeader,
-      TableRow,
-      Color,
-      TextStyle,
-      CustomImage,
-      Highlight,
-      Link,
-      Underline,
-      Subscript,
-      Superscript,
-      TaskList,
-      TaskItem.configure({
-        nested: true
-      }),
-      TextAlign.configure({
-        types: ['heading', 'paragraph']
-      }),
-      CustomParagraph,
-      CustomSize,
-      CustomBackgroundColor,
-      CodeBlockLowlight.extend({
-        addNodeView() {
-          return VueNodeViewRenderer(codeHighlight)
-        }
-      }).configure({ lowlight }),
-      Placeholder.configure({
-        placeholder: props.placeholder
-      })
+      //   StarterKit?.configure({
+      //     // 开启多人协作功能要关闭默认的history模式
+      //     history: true
+      //   }),
+      //   Table.configure({
+      //     resizable: true
+      //   }),
+      //   TableCell,
+      //   TableHeader,
+      //   TableRow,
+      //   Color,
+      //   TextStyle,
+      //   CustomImage,
+      //   Highlight,
+      //   Link,
+      //   Underline,
+      //   Subscript,
+      //   Superscript,
+      //   TaskList,
+      //   TaskItem.configure({
+      //     nested: true
+      //   }),
+      //   TextAlign.configure({
+      //     types: ['heading', 'paragraph']
+      //   }),
+      //   CustomParagraph,
+      //   CustomSize,
+      //   CustomBackgroundColor,
+      //   CodeBlockLowlight.extend({
+      //     addNodeView() {
+      //       return VueNodeViewRenderer(codeHighlight)
+      //     }
+      //   }).configure({ lowlight }),
+      //   Placeholder.configure({
+      //     placeholder: props.placeholder
+      //   })
     ],
     content: props.modelValue,
     autofocus: true,
@@ -267,13 +272,15 @@ export const renderless = (
   let options = Object.assign(defaultOptions, props.options)
 
   const state = reactive({
-    editor: new Editor(options),
+    // editor: new Editor(options),
+    editor: null,
     toolbar: computed(() => (props.customToolBar.length ? props.customToolBar : defaultToolBar)),
     // table 变量
     isShowTable: false,
     flagX: 0,
     flagY: 0
   })
+
   const api = {
     state,
     setLink: setLink(state.editor),
@@ -289,6 +296,25 @@ export const renderless = (
     eventClick,
     Active
   }
+
+  onMounted(() => {
+    // const editorRef = vm.$refs.editor
+    // options.element = editorRef
+
+    for (const [key, val] of viewMap.entries()) {
+      viewMap.set(key, VueNodeViewRenderer(val))
+    }
+
+    const editorInstance = new TiptapEditor(Editor, options, viewMap, { renderer: VueRenderer, slashView })
+    // const editorInstance = new Editor(options)
+    // const editorInstance = new Editor(options)
+    // state.editor = editorInstance
+    // editor 只需要浅层
+    state.editor = shallowRef(editorInstance.editor)
+    // state.editor = shallowRef(editorInstance)
+    console.log('editor: ', editorInstance)
+  })
+
   onBeforeUnmount(() => {
     state.editor.destroy()
   })

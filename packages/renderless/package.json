@@ -33,7 +33,8 @@
   },
   "dependencies": {
     "xss": "1.0.11",
-    "color": "4.2.3"
+    "color": "4.2.3",
+    "@opentiny/tiny-tiptap": "workspace:~"
   },
   "exports": {
     "./package.json": "./package.json",

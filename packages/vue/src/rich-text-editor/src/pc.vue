@@ -1,6 +1,6 @@
 <template>
   <div class="tiny-rich-text-editor">
-    <div class="tiny-rich-text-editor__toolbar">
+    <div v-if="state.editor" class="tiny-rich-text-editor__toolbar">
       <!-- starter-kit功能区 -->
       <template v-for="item in state.toolbar">
         <button
@@ -247,6 +247,7 @@
     </div>
     <div class="tiny-rich-text-editor__container">
       <EditorContent :editor="state.editor"></EditorContent>
+      <!-- <div ref="editor"></div> -->
     </div>
   </div>
 </template>
@@ -303,7 +304,7 @@ import {
   iconRichTextUnderline,
   iconRichTextUndo
 } from '@opentiny/vue-icon'
-import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer } from '@tiptap/vue'
+import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } from '@tiptap/vue'
 import StarterKit from '@tiptap/starter-kit'
 
 // 段落包
@@ -349,6 +350,10 @@ import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 
 // Placeholder
 import Placeholder from '@tiptap/extension-placeholder'
+
+import SlashMenu from './components/slash-menu.vue'
+
+import { ExtensionViewMap } from './extensions'
 
 import css from 'highlight.js/lib/languages/css'
 import js from 'highlight.js/lib/languages/javascript'
@@ -484,9 +489,12 @@ export default defineComponent({
         mergeAttributes,
         CodeBlockLowlight,
         lowlight,
+        VueRenderer,
         VueNodeViewRenderer,
         Placeholder,
-        codeHighlight
+        codeHighlight,
+        viewMap: ExtensionViewMap,
+        slashView: SlashMenu
       }
     })
   }

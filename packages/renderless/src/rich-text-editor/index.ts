@@ -30,11 +30,7 @@ export const handleChange = (editor) => {
     }
     const reader = new FileReader()
     reader.onload = function (e) {
-      editor
-        .chain()
-        .focus()
-        .setImage({ src: e.target?.result, type })
-        .run()
+      editor.chain().focus().setImage({ src: e.target?.result, type }).run()
     }
     reader.readAsDataURL(file)
   }
