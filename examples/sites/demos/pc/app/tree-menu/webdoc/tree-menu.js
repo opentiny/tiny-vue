@@ -346,6 +346,19 @@ export default {
           '<div class="tip custom-block"><p class="custom-block-title">Event description</p>\n<p>node-click: Listen for events when a node is clicked.</p>\n<p>current-change: Listen for events where the currently selected node changes.</p>\n<p>node-expand: Listen for events that node expands.</p>\n<p>node-collapse: Listen for events when a node is folded up.</p>\n<p>check-change: When checked, listen for events related to changes in checked nodes.</p>\n</div>\n'
       },
       codeFiles: ['events.vue']
+    },
+    {
+      demoId: 'clearable',
+      name: {
+        'zh-CN': '搜索框是否可清空',
+        'en-US': 'Can the search box be cleared'
+      },
+      desc: {
+        'zh-CN': '通过设置<code>clearable</code>属性来标明是否允许显示搜索框清空按钮',
+        'en-US':
+          'Indicate whether to allow the search box clear button to be displayed by setting the<code>clearable</code>property'
+      },
+      codeFiles: ['clearable.vue']
     }
   ]
 }

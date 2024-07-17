@@ -143,8 +143,10 @@
     "prettier": "prettier --config .prettierrc --write .",
     "// ---------- openinula 相关脚本命令 ----------": "",
     "dev:openinula": "pnpm -C examples/openinula-docs run dev",
-    "// ---------- solid 相关脚本命令 ----------": "",
-    "dev:solid": "pnpm -C examples/solid-docs run dev"
+    "// ---------- 预览发布后的solid组件 ----------": "",
+    "preview:solid": "pnpm -C examples/solid-demo run dev",
+    "build:solid": "pnpm -C internals/cli build:solid",
+    "pub:solid": "pnpm --filter=\"./packages/dist-solid/**\" publish --no-git-checks --access=public --registry=https://registry.npmjs.org"
   },
   "dependencies": {
     "@vue/composition-api": "1.7.2",

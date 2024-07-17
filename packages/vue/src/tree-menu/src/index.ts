@@ -81,6 +81,10 @@ export const treeMenuProps = {
   menuCollapsible: {
     type: Boolean,
     default: false
+  },
+  clearable: {
+    type: Boolean,
+    default: false
   }
 }
 
