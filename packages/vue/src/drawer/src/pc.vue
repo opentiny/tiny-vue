@@ -88,7 +88,7 @@
             :class="['tiny-drawer__body', { 'flex flex-col': flex }, 'drawer-body']"
           >
             <slot>
-              <slot-wrapper :node="customSlots.default"></slot-wrapper>
+              <slot-wrapper :node="customSlots?.default"></slot-wrapper>
             </slot>
           </div>
 
