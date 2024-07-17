@@ -1055,8 +1055,6 @@ export default defineComponent({
       unbindEvent($table)
     })
 
-    useInstanceSlots()
-
     const tableListeners = getListeners(attrs, listeners)
 
     return { slots, tableListeners, tinyTheme, id, collectColumn, tableFullColumn, visibleColumn, tableColumn }

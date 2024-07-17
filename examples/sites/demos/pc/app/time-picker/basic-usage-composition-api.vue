@@ -23,4 +23,9 @@ const value1 = ref(new Date(2016, 9, 10, 18, 40))
 .demo-date-picker-wrap {
   width: 182px;
 }
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
+}
 </style>

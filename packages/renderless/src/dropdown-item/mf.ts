@@ -87,7 +87,7 @@ export const renderless = (props, { reactive, inject }, { dispatch, vm }) => {
   Object.assign(api, {
     dataStore,
     handleClick: handleClick({ dataStore, props, vm }),
-    mouseEnter: mouseEnter({ dataStore, vm }),
+    mouseEnter: mouseEnter({ dataStore, vm, props }),
     mouseLeave: mouseLeave({ dataStore })
   })
 

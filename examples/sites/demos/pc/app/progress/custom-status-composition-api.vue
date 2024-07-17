@@ -177,8 +177,9 @@ onMounted(() => {
     font-size: 12px;
   }
   .tiny-progress-demo-title {
+    width: 70px;
     display: flex;
-    margin-right: 40px;
+    margin-right: 10px;
     color: #aeaeae;
     align-items: center;
     font-size: 12px;
@@ -210,8 +211,9 @@ onMounted(() => {
     font-size: 12px;
   }
   .tiny-progress-demo-title {
+    width: 70px;
     display: flex;
-    margin-right: 40px;
+    margin-right: 10px;
     color: #aeaeae;
     align-items: center;
     font-size: 12px;
@@ -269,8 +271,9 @@ onMounted(() => {
     font-size: 12px;
   }
   .tiny-progress-demo-title {
+    width: 70px;
     display: flex;
-    margin-right: 40px;
+    margin-right: 10px;
     color: #aeaeae;
     align-items: center;
     font-size: 12px;
@@ -320,8 +323,9 @@ onMounted(() => {
     font-size: 12px;
   }
   .tiny-progress-demo-title {
+    width: 70px;
     display: flex;
-    margin-right: 40px;
+    margin-right: 10px;
     color: #aeaeae;
     align-items: center;
     font-size: 12px;

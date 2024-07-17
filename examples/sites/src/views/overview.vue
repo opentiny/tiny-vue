@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="overview-layout ti-pt48">
+    <div class="overview-layout">
       <h1 class="ti-mb20 ti-f24 ti-fw-600">
         {{ i18nByKey('overview') }}
         <span class="ti-f18">({{ getTotalComponentsNum() }})</span>
@@ -22,8 +22,9 @@
         </template>
       </tiny-input>
       <!-- 组件列表 -->
-      <div v-if="searchMenus?.length === 0" class="text-center py20">
-        <img class="ti-h150 ti-w200 ti-my-20" :src="noDataSvg" />
+      <div v-if="searchMenus?.length === 0" class="text-center py60">
+        <img class="ti-h150 ti-w200" :src="noDataSvg" />
+        <p class="no-data-text">{{ i18nByKey('noData') }}</p>
       </div>
       <div v-for="(menu, index) in searchMenus" :label="menu" :key="index">
         <div class="ti-rel ti-mt25">
@@ -42,7 +43,9 @@
                 <img
                   class="ti-h125 ti-w125 inline-block"
                   :src="pubUrl(`@demos/overviewimage/${getSvg(cell.key)}.svg`)"
-                  :onerror="`this.src='${pubUrl(`@demos/overviewimage/dev.svg`)}'`"
+                  :onerror="`this.src='${pubUrl(
+                    `@demos/overviewimage/${cell.key.includes('chart') ? 'dev-chart' : 'dev'}.svg`
+                  )}'`"
                 />
                 <h2 class="ti-f16 overview-card-label">
                   {{ cell.name }}
@@ -117,8 +120,8 @@ export default defineComponent({
       state.searchMenus = searchMenus
     }
     const lang = getWord('zh-CN', 'en-US')
-    const { defaultThemeKey } = useTheme()
-    const { all: allPathParam, theme = defaultThemeKey } = useRoute().params
+    const { defaultTheme } = useTheme()
+    const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''
     const debounceSearch = debounce(searchResultFn, 300)
 
@@ -150,6 +153,7 @@ export default defineComponent({
         return total
       }
     }
+
     onMounted(() => {
       const common = new window.TDCommon(['#footer'], {})
       common.renderFooter()
@@ -161,9 +165,7 @@ export default defineComponent({
 
 <style lang="less">
 .overview-layout {
-  padding-left: 10%;
-  padding-right: 10%;
-  min-height: 100%;
+  padding: 48px 10% 10%;
 }
 
 .cell-title {
@@ -221,6 +223,11 @@ export default defineComponent({
   .tiny-input__suffix {
     right: 20px;
   }
+}
+
+.no-data-text {
+  color: var(--ti-common-color-text-secondary);
+  margin-top: var(--ti-common-size-5x);
 }
 
 @media (max-width: 1279px) {

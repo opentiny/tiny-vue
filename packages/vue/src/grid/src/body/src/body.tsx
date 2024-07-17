@@ -399,7 +399,8 @@ function renderColumn(args1) {
   let validated = validatedMap[`${column.id}-${row[rowId]}`]
   let validError = validStore.row === row && validStore.column === column
   let hasDefaultTip = editRules && (isMessageDefault ? height || tableData.length > 1 : isMessageInline)
-  let { align, className, editor, showTip } = column
+  let { align, editor, showTip } = column
+  const className = column.own.className
   let cellAlign = align || allAlign
   let columnActived =
     editConfig && editor && actived.row === row && (actived.column === column || editConfig.mode === 'row')

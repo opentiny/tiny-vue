@@ -29,7 +29,9 @@ export const checkboxProps = {
     default: () => $constants
   },
   modelValue: {
-    type: [String, Number, Boolean]
+    type: [String, Number, Boolean],
+    // Tiny新增，因为类型有Boolean类型，所以默认值需要显示设置成 undefined 才可以保持逻辑正确
+    default: undefined
   },
   label: {
     type: [String, Number, Boolean],

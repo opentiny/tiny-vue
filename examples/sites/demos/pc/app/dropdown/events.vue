@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：按钮类型 + 循环 tiny-dropdown-item</p>
+    <p class="demo-dropdown">场景1：按钮类型 + 循环 tiny-dropdown-item</p>
     <tiny-dropdown split-button @item-click="itemClick" @button-click="buttonClick" @visible-change="visibleChange">
       <template #dropdown>
         <tiny-dropdown-menu>
@@ -16,8 +16,9 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
+    <br /><br />
 
-    <p>场景2：配置式</p>
+    <p class="demo-dropdown">场景2：配置式</p>
     <tiny-dropdown class="options-event" @item-click="itemClick" @visible-change="visibleChange">
       <template #dropdown>
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
@@ -90,5 +91,8 @@ export default {
 p {
   line-height: 1.5;
   font-size: 14px;
+}
+.demo-dropdown {
+  margin-bottom: 8px;
 }
 </style>

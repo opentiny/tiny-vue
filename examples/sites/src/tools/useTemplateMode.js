@@ -2,7 +2,7 @@ import { reactive, computed, watch } from 'vue'
 import { router } from '@/router.js'
 import { getAllComponents } from '@/menus.jsx'
 import demoConfig from '@demos/config.js'
-import { staticDemoPath } from '../views/components/cmpConfig'
+import { staticDemoPath } from '../views/components/cmp-config'
 
 const allMenus = getAllComponents()
 

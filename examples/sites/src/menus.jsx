@@ -1,6 +1,5 @@
 import { docMenus, cmpMenus } from '@menu/menus.js'
-
-import { appData } from './tools'
+import { appData, $split } from './tools'
 
 /**
  * 聚合doc  / cmp 两个页面的所有菜单.
@@ -22,7 +21,8 @@ function genMenus() {
     {
       id: 'overview',
       label: appData.lang === 'zhCN' ? '组件总览' : 'overview',
-      type: 'overview'
+      type: 'overview',
+      key: 'overview'
     }
   ]
 
@@ -49,8 +49,20 @@ function genMenus() {
   return [...standaloneOptions, ...docOptions, ...cmpOptions]
 }
 
+// 获取菜单的类别图标
+async function getMenuIcons() {
+  const modules = import.meta.glob('@/assets/images/leftMenu/*.svg', { eager: true })
+  const icons = {}
+  for (const path of Object.keys(modules)) {
+    const iconName = $split(path, '/', -1).replace('.svg', '')
+    icons[iconName] = modules[path]
+  }
+
+  return icons
+}
+
 const getAllComponents = () =>
   cmpMenus.reduce((acc, current) => {
     return acc.concat(current.children)
   }, [])
-export { genMenus, getAllComponents }
+export { genMenus, getAllComponents, getMenuIcons }

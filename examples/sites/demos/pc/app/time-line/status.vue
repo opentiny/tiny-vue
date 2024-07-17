@@ -5,13 +5,15 @@
       <code>autoColor</code>
       可选状态值：<code>success</code>：成功；<code>warning</code>：警告；<code>error</code>：失败。
     </p>
-    <tiny-time-line :data="data1"></tiny-time-line>
     <br />
+    <tiny-time-line :data="data1"></tiny-time-line>
+    <br /><br />
 
-    <p>
+    <p class="demo-line">
       (2) 当<code>shape</code> = 'dot' 时，可以通过 <code>type</code> 属性指定节点类型，可选值有
       <code>primary</code>|<code>success</code> |<code>warning</code>|<code>danger</code>|<code>info</code>
     </p>
+    <br />
     <tiny-time-line :data="data2" vertical shape="dot"></tiny-time-line>
   </div>
 </template>
@@ -53,5 +55,8 @@ code {
   margin: 0 4px;
   background-color: rgba(27, 31, 35, 0.05);
   border-radius: 3px;
+}
+.demo-line {
+  line-height: 24px;
 }
 </style>

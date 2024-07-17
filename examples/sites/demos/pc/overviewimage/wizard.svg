@@ -2,81 +2,41 @@
 <svg width="125px" height="125px" viewBox="0 0 125 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>流程图 wizard</title>
     <defs>
-        <linearGradient x1="50%" y1="45.9685271%" x2="50%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#ECF3FB" offset="0%"></stop>
-            <stop stop-color="#FFFFFF" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="50.3956523%" y1="35.9331967%" x2="50%" y2="64.0668033%" id="linearGradient-2">
-            <stop stop-color="#E3EFFD" stop-opacity="0.00575352382" offset="0%"></stop>
-            <stop stop-color="#E5F0FD" offset="34.0601199%"></stop>
-            <stop stop-color="#F0F6FE" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="33.3333333%" y1="34.495573%" x2="96.9740837%" y2="65.4421891%" id="linearGradient-3">
-            <stop stop-color="#D5E6F9" offset="0%"></stop>
-            <stop stop-color="#F7FBFF" stop-opacity="0" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="90.9912104%" y1="29.4309598%" x2="33.3333333%" y2="67.7472684%" id="linearGradient-4">
-            <stop stop-color="#D5E6F9" offset="0%"></stop>
-            <stop stop-color="#E7F0F9" stop-opacity="0" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-5">
-            <stop stop-color="#CEE6FE" offset="0%"></stop>
-            <stop stop-color="#8AB5F2" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="-5.8027489%" y1="27.0499439%" x2="103.630422%" y2="71.1332543%" id="linearGradient-6">
-            <stop stop-color="#BFD6F9" offset="0%"></stop>
-            <stop stop-color="#F3F6FE" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="89.8473889%" y1="61.7348066%" x2="0%" y2="61.7348066%" id="linearGradient-7">
-            <stop stop-color="#CAD9F3" offset="0%"></stop>
-            <stop stop-color="#D5E3F7" offset="100%"></stop>
-        </linearGradient>
-        <filter x="-18.5%" y="-60.0%" width="136.9%" height="220.0%" filterUnits="objectBoundingBox" id="filter-8">
-            <feGaussianBlur stdDeviation="4" in="SourceGraphic"></feGaussianBlur>
-        </filter>
-        <linearGradient x1="44.0988019%" y1="57.7617596%" x2="128.792906%" y2="30.231504%" id="linearGradient-9">
+        <linearGradient x1="44.0988019%" y1="57.7617596%" x2="128.792906%" y2="30.231504%" id="linearGradient-1">
             <stop stop-color="#5073E5" offset="0%"></stop>
             <stop stop-color="#5E7CE0" offset="100%"></stop>
         </linearGradient>
-        <linearGradient x1="44.0988019%" y1="50.9918624%" x2="128.792906%" y2="47.4738166%" id="linearGradient-10">
+        <linearGradient x1="44.0988019%" y1="50.9918624%" x2="128.792906%" y2="47.4738166%" id="linearGradient-2">
             <stop stop-color="#5073E5" offset="0%"></stop>
             <stop stop-color="#5E7CE0" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="页面一" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="-TinyUI-Vue-组件总览" transform="translate(-696.000000, -1159.000000)">
-            <g id="编组-25备份-13" transform="translate(598.000000, 1126.000000)">
-                <g id="流程图-wizard" transform="translate(98.000000, 33.000000)">
-                    <g id="编组">
-                        <g transform="translate(9.000000, 1.000000)" id="多边形">
-                            <polygon fill="url(#linearGradient-1)" opacity="0.54620216" points="53.2605623 0 106.521125 30.75 53.2605623 62 0 30.75"></polygon>
-                            <polygon fill="url(#linearGradient-2)" points="53.2605623 61.5 106.521125 86.75 53.2605623 118 0 86.75"></polygon>
-                            <polygon fill="url(#linearGradient-3)" opacity="0.600606283" points="53.2605623 62 53.2605623 123 7.39138783e-15 92.25 0 30.75"></polygon>
-                            <polygon fill="url(#linearGradient-4)" opacity="0.791265578" points="53.2605623 62 106.521125 30.75 106.521125 92.25 53.2605623 123"></polygon>
-                            <polygon fill="url(#linearGradient-5)" points="53.2605623 118.007802 53.2605623 123 7.39138783e-15 92.25 0 86.9161706"></polygon>
-                            <polygon fill="url(#linearGradient-6)" transform="translate(79.630281, 104.958085) scale(-1, 1) translate(-79.630281, -104.958085) " points="106.260562 118.007802 106.260562 123 53 92.25 53 86.9161706"></polygon>
+    <g id="Tiny-Vue" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-TinyUI-Vue-组件总览1" transform="translate(-696.000000, -1210.000000)">
+            <g id="组件" transform="translate(596.000000, 311.000000)">
+                <g id="编组-25备份-13" transform="translate(2.000000, 866.000000)">
+                    <g id="流程图-wizard" transform="translate(98.000000, 33.000000)">
+                        <g id="编组"></g>
+                        <g id="编组-6" transform="translate(20.000000, 37.000000)">
+                            <path d="M16,25 L69,25 C71.209139,25 73,26.790861 73,29 L73,49 C73,51.209139 71.209139,53 69,53 L16,53 C13.790861,53 12,51.209139 12,49 L12,29 C12,26.790861 13.790861,25 16,25 Z" id="矩形备份-8" fill="url(#linearGradient-1)" opacity="0.204287574"></path>
+                            <path d="M8,16 L60,16 L60,16 L60,40 C60,42.209139 58.209139,44 56,44 L8,44 C5.790861,44 4,42.209139 4,40 L4,20 C4,17.790861 5.790861,16 8,16 Z" id="矩形备份-7" fill="#AABDF0"></path>
+                            <path d="M16,27 L49,27 C50.1045695,27 51,27.8954305 51,29 C51,30.1045695 50.1045695,31 49,31 L16,31 C14.8954305,31 14,30.1045695 14,29 C14,27.8954305 14.8954305,27 16,27 Z" id="形状结合备份" fill="#5073E5"></path>
+                            <path d="M12,12 L39,12 C40.1045695,12 41,12.8954305 41,14 C41,15.1045695 40.1045695,16 39,16 L12,16 C10.8954305,16 10,15.1045695 10,14 C10,12.8954305 10.8954305,12 12,12 Z" id="形状结合备份-4" fill="#5073E5"></path>
+                            <path d="M47,12 L66,12 C67.1045695,12 68,12.8954305 68,14 C68,15.1045695 67.1045695,16 66,16 L47,16 C45.8954305,16 45,15.1045695 45,14 C45,12.8954305 45.8954305,12 47,12 Z" id="形状结合备份-5" fill="#5073E5"></path>
+                            <path d="M16,34 L36,34 C37.1045695,34 38,34.8954305 38,36 C38,37.1045695 37.1045695,38 36,38 L16,38 C14.8954305,38 14,37.1045695 14,36 C14,34.8954305 14.8954305,34 16,34 Z" id="形状结合备份-35" fill="url(#linearGradient-2)" opacity="0.604724702"></path>
+                            <circle id="椭圆形" stroke="#5073E5" stroke-width="5" fill="#5073E5" cx="9.5" cy="13.5" r="9.5"></circle>
+                            <text id="1" font-family="PingFangSC-Semibold, PingFang SC" font-size="20" font-weight="500" letter-spacing="0.952380952" fill="#FFFFFF">
+                                <tspan x="4.42380952" y="21">1</tspan>
+                            </text>
+                            <circle id="椭圆形备份" stroke="#5073E5" stroke-width="5.45454545" fill="#5073E5" cx="41" cy="14" r="6"></circle>
+                            <text id="2" font-family="PingFangSC-Semibold, PingFang SC" font-size="14" font-weight="500" letter-spacing="0.666666667" fill="#FFFFFF">
+                                <tspan x="36.4666667" y="19">2</tspan>
+                            </text>
+                            <circle id="椭圆形备份-2" stroke="#5073E5" stroke-width="5.45454545" fill="#5073E5" cx="72" cy="14" r="6"></circle>
+                            <text id="3" font-family="PingFangSC-Semibold, PingFang SC" font-size="14" font-weight="500" letter-spacing="0.666666667" fill="#FFFFFF">
+                                <tspan x="67.4666667" y="19">3</tspan>
+                            </text>
                         </g>
-                        <ellipse id="椭圆形" fill="url(#linearGradient-7)" filter="url(#filter-8)" cx="62.5" cy="90" rx="32.5" ry="10"></ellipse>
-                    </g>
-                    <g id="编组-6" transform="translate(20.000000, 37.000000)">
-                        <path d="M16,25 L69,25 C71.209139,25 73,26.790861 73,29 L73,49 C73,51.209139 71.209139,53 69,53 L16,53 C13.790861,53 12,51.209139 12,49 L12,29 C12,26.790861 13.790861,25 16,25 Z" id="矩形备份-8" fill="url(#linearGradient-9)" opacity="0.204287574"></path>
-                        <path d="M8,16 L60,16 L60,16 L60,40 C60,42.209139 58.209139,44 56,44 L8,44 C5.790861,44 4,42.209139 4,40 L4,20 C4,17.790861 5.790861,16 8,16 Z" id="矩形备份-7" fill="#AABDF0"></path>
-                        <path d="M16,27 L49,27 C50.1045695,27 51,27.8954305 51,29 C51,30.1045695 50.1045695,31 49,31 L16,31 C14.8954305,31 14,30.1045695 14,29 C14,27.8954305 14.8954305,27 16,27 Z" id="形状结合备份" fill="#5073E5"></path>
-                        <path d="M12,12 L39,12 C40.1045695,12 41,12.8954305 41,14 C41,15.1045695 40.1045695,16 39,16 L12,16 C10.8954305,16 10,15.1045695 10,14 C10,12.8954305 10.8954305,12 12,12 Z" id="形状结合备份-4" fill="#5073E5"></path>
-                        <path d="M47,12 L66,12 C67.1045695,12 68,12.8954305 68,14 C68,15.1045695 67.1045695,16 66,16 L47,16 C45.8954305,16 45,15.1045695 45,14 C45,12.8954305 45.8954305,12 47,12 Z" id="形状结合备份-5" fill="#5073E5"></path>
-                        <path d="M16,34 L36,34 C37.1045695,34 38,34.8954305 38,36 C38,37.1045695 37.1045695,38 36,38 L16,38 C14.8954305,38 14,37.1045695 14,36 C14,34.8954305 14.8954305,34 16,34 Z" id="形状结合备份-35" fill="url(#linearGradient-10)" opacity="0.604724702"></path>
-                        <circle id="椭圆形" stroke="#5073E5" stroke-width="5" fill="#5073E5" cx="9.5" cy="13.5" r="9.5"></circle>
-                        <text id="1" font-family="PingFangSC-Semibold, PingFang SC" font-size="20" font-weight="500" letter-spacing="0.952380952" fill="#FFFFFF">
-                            <tspan x="4.42380952" y="21">1</tspan>
-                        </text>
-                        <circle id="椭圆形备份" stroke="#5073E5" stroke-width="5.45454545" fill="#5073E5" cx="41" cy="14" r="6"></circle>
-                        <text id="2" font-family="PingFangSC-Semibold, PingFang SC" font-size="14" font-weight="500" letter-spacing="0.666666667" fill="#FFFFFF">
-                            <tspan x="36.4666667" y="19">2</tspan>
-                        </text>
-                        <circle id="椭圆形备份-2" stroke="#5073E5" stroke-width="5.45454545" fill="#5073E5" cx="72" cy="14" r="6"></circle>
-                        <text id="3" font-family="PingFangSC-Semibold, PingFang SC" font-size="14" font-weight="500" letter-spacing="0.666666667" fill="#FFFFFF">
-                            <tspan x="67.4666667" y="19">3</tspan>
-                        </text>
                     </g>
                 </g>
             </g>

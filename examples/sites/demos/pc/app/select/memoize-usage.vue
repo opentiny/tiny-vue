@@ -10,6 +10,7 @@
         :highlight-class="item._highlightClass"
       ></tiny-option>
     </tiny-select>
+    <br /><br />
     <p class="cache-value">
       {{ cacheValue }}
     </p>

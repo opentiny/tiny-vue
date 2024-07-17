@@ -17,10 +17,17 @@ import type {
   ISharedRenderlessParamHooks,
   ICollapseItemRenderlessParamUtils
 } from '@/types'
-import { handleFocus, handleEnterClick, handleHeaderClick } from './index'
+import { handleFocus, handleEnterClick, handleHeaderClick, handleHeaderContainerClick } from './index'
 import { guid } from '../common/string'
 
-export const api = ['state', 'isActive', 'handleFocus', 'handleEnterClick', 'handleHeaderClick']
+export const api = [
+  'state',
+  'isActive',
+  'handleFocus',
+  'handleEnterClick',
+  'handleHeaderClick',
+  'handleHeaderContainerClick'
+]
 
 export const renderless = (
   props: ICollapseItemProps,
@@ -47,6 +54,10 @@ export const renderless = (
     handleEnterClick: handleEnterClick({ componentName, dispatch, eventName, parent }),
     handleHeaderClick: handleHeaderClick({ componentName, dispatch, eventName, props, parent, state })
   }
+
+  Object.assign(api, {
+    handleHeaderContainerClick: handleHeaderContainerClick({ api })
+  })
 
   return api
 }

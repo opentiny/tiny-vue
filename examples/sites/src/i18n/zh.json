@@ -10,6 +10,8 @@
   "apiPreference": "框架选择",
   "apiTiny": "Vue",
   "yan-shi": "演示",
+  "demos": "示例",
+  "api": "应用程序编程接口",
   "name": "名称",
   "propType": "类型",
   "defValue": "默认值",
@@ -24,8 +26,17 @@
   "playground": "打开演练场",
   "changeLanguage": "切换语言",
   "changeTheme": "切换组件主题风格",
+  "changeApiType": "切换示例代码风格",
+  "backTop": "返回顶部",
   "overview": "组件总览",
   "overviewDesc": "TinyVue 为 Web 应用提供了丰富的基础 UI 组件，我们还将持续探索企业级应用的最佳 UI 实践，欢迎尝试使用 TinyVue。",
   "searchComponents": "搜索组件",
-  "apiType": "组件示例代码风格"
+  "apiType": "组件示例代码风格",
+  "apiStyleOptions": "选项式",
+  "apiStyleComposition": "组合式",
+  "demoMode": "示例浏览模式",
+  "demoModeSingle": "单示例",
+  "demoModeMultiple": "多示例",
+  "contributor": "贡献者",
+  "noData": "暂无数据"
 }

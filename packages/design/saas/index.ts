@@ -10,8 +10,6 @@ import Grid from './src/grid'
 import Switch from './src/switch'
 import Select from './src/select'
 import Popover from './src/popover'
-import TimeLine from './src/time-line'
-import TimelineItem from './src/timeline-item'
 import Loading from './src/loading'
 import Input from './src/input'
 import DateRange from './src/date-range'
@@ -36,8 +34,6 @@ export default {
     Select,
     Popover,
     Loading,
-    TimeLine,
-    TimelineItem,
     Input,
     DateRange,
     Pager,

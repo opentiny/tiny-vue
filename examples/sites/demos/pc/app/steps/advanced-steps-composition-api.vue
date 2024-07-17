@@ -1,8 +1,10 @@
 <template>
   <div class="demo-steps">
     <tiny-steps :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
+    <br /><br />
 
     <p>通过 <code>advanced</code> 属性启用高级向导功能:</p>
+    <br />
     <tiny-steps advanced :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
   </div>
 </template>

@@ -96,7 +96,7 @@ export default {
         },
         {
           name: 'grid-op',
-          typeAnchorName: 'grid#API',
+          linkTo: 'grid#API',
           type: `InstanceType&#60typeof TinyGrid&#62['$props']`,
           defaultValue: '',
           desc: {
@@ -141,8 +141,8 @@ export default {
         },
         {
           name: 'pager-op',
-          typeAnchorName: 'pager#API',
-          type: `InstanceType&#60typeof TinyPager&#62['$props']`,
+          linkTo: 'pager#API',
+          type: `InstanceType<typeof TinyPager>['$props']`,
           defaultValue: '',
           desc: {
             'zh-CN': '设置分页配置',
@@ -221,7 +221,7 @@ export default {
         },
         {
           name: 'selected-box-op',
-          typeAnchorName: 'dialog-select#ISelectedBoxOption',
+          linkTo: 'dialog-select#ISelectedBoxOption',
           type: 'ISelectedBoxOption',
           defaultValue: '',
           desc: {

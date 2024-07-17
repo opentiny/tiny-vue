@@ -65,7 +65,7 @@ export default {
       events: [
         {
           name: 'cancel',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '按下取消或点击外部的时触发该事件',

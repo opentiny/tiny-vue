@@ -1,5 +1,7 @@
 <template>
-  <tiny-milestone :data="milestoneData" :milestones-status="statusMap"></tiny-milestone>
+  <div class="demo-milestone">
+    <tiny-milestone :data="milestoneData" :milestones-status="statusMap"></tiny-milestone>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -83,3 +85,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>

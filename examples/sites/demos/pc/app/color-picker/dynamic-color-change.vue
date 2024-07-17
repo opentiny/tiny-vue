@@ -1,6 +1,7 @@
 <template>
   <div>
     <tiny-color-picker v-model="color" />
+    <br />
     <tiny-button @click="changeColor"> 切换 </tiny-button>
   </div>
 </template>

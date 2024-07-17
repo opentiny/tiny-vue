@@ -31,4 +31,9 @@ const format = reactive({
 .numeric-class {
   margin: 4px 0px;
 }
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
+}
 </style>
