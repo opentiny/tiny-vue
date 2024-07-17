@@ -101,9 +101,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '可通过<code>size</code> 属性设置计数器尺寸，可选值有<code>medium</code><code>small</code><code>mini</code>。',
+          '可通过 <code>size</code> 属性设置计数器尺寸，默认高度32px，可选值有 <code>medium</code><code>small</code><code>mini</code>。',
         'en-US':
-          'You can set the counter size through the<code>size</code>attribute.The value can be <code>medium</code><code>small</code><code>mini</code>. '
+          'You can set the counter size through the<code>size</code>attribute.Default height 32px.The value can be <code>medium</code><code>small</code><code>mini</code>. '
       },
       codeFiles: ['numeric-size.vue']
     },

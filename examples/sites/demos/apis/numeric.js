@@ -280,8 +280,8 @@ export default {
           type: 'string',
           defaultValue: '',
           desc: {
-            'zh-CN': '计数器尺寸，该属性的可选值为 medium | small | mini',
-            'en-US': 'Counter size.The optional values of this attribute are medium | small | mini'
+            'zh-CN': '计数器尺寸，默认高度32px，该属性的可选值为 medium | small | mini',
+            'en-US': 'Counter size,Default height 32px,The optional values of this attribute are medium | small | mini'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'numeric-size',
