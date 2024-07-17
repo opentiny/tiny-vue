@@ -27,6 +27,33 @@
   font-size: var(--ti-search-font-size);
   width: 100%;
 
+  &.is-disabled &__input {
+    cursor: not-allowed;
+
+    .placeholder(@color: var(--ti-search-disabled-text-color));
+  }
+
+  &.is-disabled > &__line {
+    cursor: not-allowed;
+    border: 1px solid var(--ti-search-disabled-border-color);
+    color: var(--ti-search-disabled-border-color);
+    background: var(--ti-search-disabled-bg-color);
+
+    &:hover {
+      border-color: var(--ti-search-disabled-border-color);
+    }
+  }
+
+  &.is-disabled &__prefix,
+  &.is-disabled &__suffix {
+    .@{css-prefix}svg {
+      &,
+      &:hover {
+        fill: var(--ti-search-disabled-text-color);
+      }
+    }
+  }
+
   & &__line {
     display: flex;
     align-items: center;
