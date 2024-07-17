@@ -4,8 +4,6 @@
 
 `2024/07/17`
 
-<!-- Release notes generated using configuration in .github/release.yml at v3.17.0 -->
-
 ## What's Changed
 
 ### Exciting New Features 🎉
@@ -40,8 +38,6 @@
 ## New Contributors
 
 - @zhangpaopao0609 made their first contribution in https://github.com/opentiny/tiny-vue/pull/1654
-
-**Full Changelog**: https://github.com/opentiny/tiny-vue/compare/v3.16.0...v3.17.0
 
 ## v2.16.0/v3.16.0
 
