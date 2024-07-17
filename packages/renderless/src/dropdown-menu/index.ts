@@ -132,12 +132,19 @@ export const useVuePopper = ({
 
   onMounted(() => {
     if (!dropdownVm) return
-    dropdownVm.popperElm = popper.popperElm.value = vm.$el
-    nextTick(() => (popper.referenceElm.value = dropdownVm.$el))
 
-    !props.multiStage && dropdownVm.initDomOperation()
+    if (popper.popperElm) {
+      dropdownVm.popperElm = popper.popperElm.value = vm.$el
+      nextTick(() => {
+        if (popper.referenceElm) {
+          popper.referenceElm.value = dropdownVm.$el
+        }
+      })
 
-    if (dropdownVm.inheritWidth) {
+      !props.multiStage && dropdownVm.initDomOperation()
+    }
+
+    if (dropdownVm.inheritWidth && popper.popperElm) {
       dropdownVm.popperElm.style.minWidth = dropdownVm.$el.clientWidth + 'px'
     }
   })

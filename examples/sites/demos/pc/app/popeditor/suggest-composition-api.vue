@@ -10,6 +10,7 @@
       suggest
       :conditions="conditions"
     ></tiny-popeditor>
+    <br />
     <p>value值：{{ value }}</p>
   </div>
 </template>

@@ -12,6 +12,7 @@
     </div>
 
     <h3 class="title">饼图</h3>
+    <br />
     <tiny-button style="margin-bottom: 20px" @click="switchColorMode">color-mode切换</tiny-button>
     <div class="content">
       <tiny-chart
@@ -129,3 +130,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.title {
+  font-size: 16px;
+  font-weight: 500;
+}
+</style>

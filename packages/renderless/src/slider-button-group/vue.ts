@@ -2,7 +2,7 @@ import { getChangePosition } from './index'
 
 export const api = ['state']
 
-export const renderless = (props, { reactive, provide, onMounted }, { parent }) => {
+export const renderless = (props, { reactive, provide, onMounted, watch }, { parent }) => {
   const state = reactive({
     tag: 'div',
     isActive: false,
@@ -52,6 +52,13 @@ export const renderless = (props, { reactive, provide, onMounted }, { parent }) 
   onMounted(() => {
     api.getChangePosition(props.modelValue)
   })
+
+  watch(
+    () => props.modelValue,
+    (value) => {
+      api.getChangePosition(value)
+    }
+  )
 
   return api
 }

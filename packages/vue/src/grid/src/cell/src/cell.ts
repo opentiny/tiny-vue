@@ -845,7 +845,8 @@ export const Cell = {
     let { formatText, own, slots } = column
     let editor = own.editor
     let compConf = Renderer.get(editor.component)
-    let showEdit = editor.type === 'visible' || isEdit
+    // 表格没有配置editConfig时，type === 'visible'不展示编辑态
+    let showEdit = ($table.editConfig && editor.type === 'visible') || isEdit
 
     if (showEdit && slots && slots.edit) {
       return slots.edit(params, h)

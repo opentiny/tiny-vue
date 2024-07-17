@@ -69,11 +69,6 @@ const dataArr = ref([
     title: 'TinyNG',
     content: '^16.0.01',
     imageSrc: ''
-  },
-  {
-    title: 'TinyEngine',
-    content: '^14.0.01',
-    imageSrc: ''
   }
 ])
 </script>
@@ -83,13 +78,17 @@ const dataArr = ref([
   width: 100%;
   background: #f5f5f5;
   padding: 16px;
+}
+.card-wrap :deep(.tiny-card-group) {
+  margin: 20px 10px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  height: 150px;
 }
 .my-card {
-  width: 80%;
   cursor: pointer;
   padding: 20px;
+  margin: 0 20px;
 }
 .content {
   display: flex;

@@ -89,6 +89,9 @@ export default {
       cancel: 'Cancel',
       confirm: 'Confirm'
     },
+    buttonGroup: {
+      noData: 'No data'
+    },
     buttonMessage: {
       cancel: 'Cancel',
       confirm: 'Confirm'
@@ -436,6 +439,7 @@ export default {
         switchapply: 'Apply',
         switchedit: 'Edit',
         switchdel: 'Delete',
+        switchdelconfirm: 'Deletion Confirmation',
         switchconfirm: 'Confirm',
         switchonlytemp: 'Save as template only',
         switchtempapply: 'Save as template and use',

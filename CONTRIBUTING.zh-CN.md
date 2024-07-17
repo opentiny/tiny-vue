@@ -135,3 +135,13 @@ pnpm dev:vue2
 ```
 
 详细规则可以参考：[https://allcontributors.org/docs/en/bot/usage](https://allcontributors.org/docs/en/bot/usage)
+
+## 贡献者
+
+我们诚挚感谢每位参与过TinyVue项目的贡献者们！
+为彰显贡献者们的付出，我们在每个组件文档底部增加“贡献者”模块，陈列各位贡献者的github信息，包括头像、昵称、github个人主页等。由于当前团队人力较为紧张，目前只录入TinyVue团队内部成员（或前组员）信息，欢迎各位开源贡献者自行补充信息。
+贡献者信息记录的文件路径为：
+
+```
+/examples/sites/src/data/contributorMap.js
+```

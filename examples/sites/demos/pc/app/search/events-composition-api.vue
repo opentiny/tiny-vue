@@ -1,12 +1,19 @@
 <template>
   <div>
     <p>搜索事件</p>
+    <br />
     <tiny-search @search="search" is-enter-search></tiny-search>
+    <br /><br />
     <p>值变化事件</p>
+    <br />
     <tiny-search @change="change" @input="input"></tiny-search>
+    <br /><br />
     <p>值清空事件</p>
+    <br />
     <tiny-search @clear="clear" clearable></tiny-search>
+    <br /><br />
     <p>类型选中事件</p>
+    <br />
     <tiny-search :search-types="searchTypes" @select="select"></tiny-search>
   </div>
 </template>

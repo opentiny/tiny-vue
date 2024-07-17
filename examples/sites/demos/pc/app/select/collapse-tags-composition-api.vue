@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-collapse">
     <br />
     <div>场景1： collapse-tags折叠</div>
     <br />
@@ -44,5 +44,8 @@ const value3 = ref(['选项1', '选项2', '选项3', '选项4', '选项5'])
 <style lang="less" scoped>
 .tiny-select {
   width: 280px;
+}
+.demo-collapse {
+  margin-bottom: 50px;
 }
 </style>

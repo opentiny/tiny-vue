@@ -10,6 +10,8 @@
   "apiPreference": "Framework",
   "apiTiny": "Vue",
   "yan-shi": "Demo",
+  "demos": "Demos",
+  "api": "API",
   "name": "Name",
   "propType": "Type",
   "defValue": "Default",
@@ -24,8 +26,17 @@
   "playground": "Open Playground",
   "changeLanguage": "Change Language",
   "changeTheme": "Change Components Theme",
+  "changeApiType": "Change Api Type",
+  "backTop": "Back To Top",
   "overview": "Components Overview",
   "overviewDesc": "TinyVue provides a wealth of basic UI components for web applications, and we will continue to explore the best UI practices for enterprise-level applications. Welcome to try TinyVue.",
   "searchComponents": "search components",
-  "apiType": "Components demos code style"
+  "apiType": "Components demos code style",
+  "apiStyleOptions": "Options",
+  "apiStyleComposition": "Composition",
+  "demoMode": "Demo display mode",
+  "demoModeSingle": "Single",
+  "demoModeMultiple": "Multiple",
+  "contributor": "Contributors",
+  "noData": "No Data"
 }

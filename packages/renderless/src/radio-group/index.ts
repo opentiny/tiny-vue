@@ -26,10 +26,10 @@ export const handleKeydown =
     switch (event.keyCode) {
       case KEY_CODE.ArrowDown:
       case KEY_CODE.ArrowRight:
+        event.stopPropagation()
+        event.preventDefault()
+        
         if (index === length - 1) {
-          event.stopPropagation()
-          event.preventDefault()
-
           roleRadiosNodes[0].click()
           roleRadiosNodes[0].focus()
         } else {

@@ -11,15 +11,15 @@
       </tiny-radio-group>
     </div>
     <tiny-container :pattern="pattern">
-      <div>Main</div>
+      <div class="demo-center">Main</div>
       <template #header>
-        <div>Header</div>
+        <div class="demo-center">Header</div>
       </template>
       <template #aside>
-        <div>Aside</div>
+        <div class="demo-center">Aside</div>
       </template>
       <template #footer>
-        <div>Footer</div>
+        <div class="demo-center">Footer</div>
       </template>
     </tiny-container>
   </div>
@@ -71,6 +71,7 @@ export default {
   background-color: #ecf8ff;
   border: 3px solid #ffffff;
   color: #5b90af;
+  line-height: 48px;
 }
 
 .demo-container .tiny-container :deep(.tiny-container__aside) {
@@ -89,5 +90,12 @@ export default {
   background-color: #e8ffed;
   border: 3px solid #ffffff;
   color: #84a18a;
+}
+.demo-center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

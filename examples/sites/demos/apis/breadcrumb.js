@@ -170,6 +170,7 @@ interface IOptionsItemTo {
     {
       name: 'IOptionsItem',
       type: 'interface',
+      depTypes: ['IOptionsItemTo'],
       code: `
 interface IOptionsItem {
   label?: string
@@ -181,6 +182,7 @@ interface IOptionsItem {
     {
       name: 'ISelectValue',
       type: 'interface',
+      depTypes: ['IOptionsItem', 'IOptionsItemTo'],
       code: `
 interface ISelectValue {
   event: Event

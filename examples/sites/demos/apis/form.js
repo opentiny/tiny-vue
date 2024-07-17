@@ -170,7 +170,7 @@ export default {
         },
         {
           name: 'popper-options',
-          typeAnchorName: 'popover#IPopperOption',
+          linkTo: 'popover#IPopperOption',
           type: 'Popover.IPopperOption',
           defaultValue: '',
           desc: {
@@ -679,6 +679,7 @@ interface IFormErrorField {
     {
       name: 'IFormValidateMethod',
       type: 'function',
+      depTypes: ['IFormError'],
       code: `
 function IFormValidateMethod(callback: (isValid: boolean, fields: IFormError) => void ): Promise<boolean>
 `
@@ -686,6 +687,7 @@ function IFormValidateMethod(callback: (isValid: boolean, fields: IFormError) =>
     {
       name: 'IFormValidateFieldMethod',
       type: 'function',
+      depTypes: ['IFormError'],
       code: `
 function IFormValidateFieldMethod(
   prop: string | string[],

@@ -6,12 +6,15 @@ export const tinyOptionSmbTheme = {
   'ti-option-padding-horizontal': 'var(--ti-common-space-4x)',
   'ti-option-padding-horizontal-group': 'var(--ti-common-space-4x)',
   'ti-option-icon-color-selected': 'var(--ti-common-color-icon-graybg-active)',
-  'ti-option-checkbox-border-color-hover': 'var(--ti-common-color-line-normal)',
+  'ti-option-checkbox-border-color-hover': '#191919',
   'ti-option-disabled-text-color': 'var(--ti-common-color-text-disabled)',
   'ti-option-hover-bg-color': 'var(--ti-common-color-bg-normal)',
-  'ti-option-selected-bg-color': 'var(--ti-common-color-text-highlight)',
-  'ti-option-selected-bg-color-hover': 'var(--ti-common-color-text-highlight)',
+  'ti-option-selected-bg-color': 'var(--ti-common-color-bg-white-normal)',
+  'ti-option-selected-bg-color-hover': 'var(--ti-common-color-bg-white-emphasize)',
   'ti-option-highlight-selected-text-color': 'var(--ti-common-color-text-highlight)',
-  'ti-option-selected-text-color': 'var(--ti-common-color-text-highlight)',
-  'ti-option-checkbox-all-select-border-color-hover': 'var(--ti-common-color-text-highlight)'
+  'ti-option-selected-text-color': '#1476FF',
+  'ti-option-checkbox-all-select-border-color-hover': '#1476FF',
+  'ti-option-multi-svg-icon-color': '#1476FF',
+  'ti-option-multi-svg-border-color': '#c2c2c2',
+  'ti-option-multi-svg-hover-border-color': '#191919'
 }

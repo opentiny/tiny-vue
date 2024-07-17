@@ -486,6 +486,7 @@ export default {
     {
       name: 'IMenuOption',
       type: 'interface',
+      depTypes: ['IItemData'],
       code: `
 interface IMenuOption {
   options: IItemData[]
@@ -498,6 +499,7 @@ interface IMenuOption {
     {
       name: 'IItemClickParam',
       type: 'interface',
+      depTypes: ['IItemData'],
       code: `        
 interface IItemClickParam {
   itemData: IItemData

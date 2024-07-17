@@ -2,6 +2,7 @@
   <div>
     <p>场景1：文字超长点点点</p>
     <tiny-tree-menu :data="treeData" ellipsis></tiny-tree-menu>
+    <br /><br />
     <p>场景2：文字超长换行</p>
     <tiny-tree-menu :data="treeData" wrap></tiny-tree-menu>
   </div>

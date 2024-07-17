@@ -113,7 +113,7 @@ export const renderless = (
     addAttributes() {
       return {
         level: {
-          default: 1
+          default: 1.5
         }
       }
     },
@@ -141,7 +141,7 @@ export const renderless = (
     addAttributes() {
       return {
         size: {
-          default: 16
+          default: 14
         }
       }
     },

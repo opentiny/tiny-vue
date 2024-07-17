@@ -1,3 +1,6 @@
+import Contributors from '@/data/contributors'
+import ContributorMap from '@/data/contributorMap'
+
 const baseUrl = import.meta.env.BASE_URL
 
 /**
@@ -17,13 +20,13 @@ const $split = (target, splitor = '/', pos = 0) => target.split(splitor).slice(p
 
 /**
  * 延时函数
- * @example $delay(300).then(()=>{   })
+ * @example $delay(300).then(() =>{   })
  */
 const $delay = (time) => new Promise((resolve) => setTimeout(resolve, time))
 
 /**
  * 空闲函数
- * @example $idle().then(()=>{   })
+ * @example $idle().then(() =>{   })
  */
 const $idle = () => new Promise((resolve) => (window.requestIdleCallback || window.requestAnimationFrame)(resolve))
 
@@ -80,4 +83,24 @@ const fetchDemosFile = (path) => {
   })
 }
 
-export { $clone, $split, $delay, $idle, pubUrl, fetchDemosFile }
+/**
+ * 获取组件的贡献者
+ * @param {string} cmpId 组件id
+ * @returns string[] 贡献者信息列表
+ */
+const getCmpContributors = (cmpId) => {
+  const contributorIds = ContributorMap[cmpId]
+  let contributorInfo = []
+  if (contributorIds?.length) {
+    contributorIds.forEach((id) => {
+      let developer = Contributors.find((i) => i.id === id)
+      if (developer) {
+        contributorInfo.push(developer)
+      }
+    })
+  }
+
+  return contributorInfo
+}
+
+export { $clone, $split, $delay, $idle, pubUrl, fetchDemosFile, getCmpContributors }

@@ -1,6 +1,7 @@
 <template>
   <div class="demo-box">
     <tiny-button @click="displayOnly = !displayOnly">display-only/{{ displayOnly }}</tiny-button>
+    <br /><br />
     <p>边框为表单范围</p>
     <tiny-form class="custom-form" :inline="inline" label-position="top" :display-only="displayOnly">
       <tiny-form-item label="label 垂直布局">
@@ -82,7 +83,7 @@
 </template>
 
 <script>
-import { Form, FormItem, Option, Button } from '@opentiny/vue'
+import { Form, FormItem, Option, Button, BaseSelect } from '@opentiny/vue'
 
 export default {
   components: {

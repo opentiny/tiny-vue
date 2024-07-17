@@ -135,3 +135,14 @@ If you have submitted Issue or PR to OpenTiny, you can comment on Issue or Pull 
 ```
 
 For detailed rules, please refer to [https://allcontributors.org/docs/en/bot/usage](https://allcontributors.org/docs/en/bot/usage)
+
+## Contributors
+
+We sincerely thank all the contributors who have participated in the TinyVue project!
+In recognition of the contributions of our contributors, we have added a 'Contributors' section at the bottom of each component documentation, displaying the GitHub information of each contributor, including their profile picture, username, and GitHub personal page.
+Due to the current manpower constraints, only information of internal members (or former members) of the TinyVue team is currently being recorded. Open source contributors are welcome to supplement their own information.
+The file that record contributors info is:
+
+```
+/examples/sites/src/data/contributorMap.js
+```

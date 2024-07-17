@@ -92,6 +92,9 @@ export default {
       cancel: '取消',
       confirm: '确定'
     },
+    buttonGroup: {
+      noData: '暂无数据'
+    },
     buttonMessage: {
       cancel: '取消',
       confirm: '确定'
@@ -436,6 +439,7 @@ export default {
         switchedit: '编辑',
         switchdel: '删除',
         switchconfirm: '确定',
+        switchdelconfirm: '删除确认',
         switchonlytemp: '保存模板',
         switchtempapply: '保存并使用模板',
         switchtempoverwrite: '覆盖并使用模板',

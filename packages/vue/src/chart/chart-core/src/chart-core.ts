@@ -5,6 +5,7 @@ import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS, DEFAULT_
 import IntegrateChart from '../base'
 import BaiduMapChart from '../base/components/BaiduMapChart'
 import AutonaviMapChart from '../base/components/AutonaviMapChart'
+import cloneDeep from '../base/util/cloneDeep'
 import '@opentiny/vue-theme/chart-core/index.less'
 
 export default {
@@ -278,7 +279,7 @@ export default {
             options.extend = {}
           }
 
-          options.extend[setting] = this[setting]
+          options.extend[setting] = cloneDeep(this[setting])
           !unwatch &&
             this.$watch(
               setting,
@@ -340,7 +341,7 @@ export default {
       if (Object.keys(this.options).length === 0) {
         this.updateChart(data)
       } else {
-        this.option = JSON.parse(JSON.stringify(this.options))
+        this.option = cloneDeep(this.options)
       }
       let { option } = this
       clearTimeout(this.timer)
@@ -527,7 +528,7 @@ export default {
     if (Object.keys(this.options).length === 0) {
       this.updateChart(data)
     } else {
-      this.option = { ...this.options }
+      this.option = cloneDeep(this.options)
     }
     let { option } = this
     option = this.afterConfigFn(option)

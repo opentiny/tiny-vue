@@ -10,7 +10,7 @@ import { AutonaviMap as TinyAutonaviMap } from '@opentiny/vue'
 
 const options = ref({
   key: '4b5f2cf2cba25200cc6b68c398468899',
-  url: 'https://webapi.amap.com/maps', // 谷歌地图接口的url地址
+  url: 'https://webapi.amap.com/maps', // 高德地图接口的url地址
   v: '1.4.3',
   amap: {
     resizeEnable: true,

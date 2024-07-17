@@ -5,7 +5,7 @@
       <tiny-tab-item name="first">
         <template #title>
           <div class="slot-content">
-            <icon-calendar style="vertical-align: top" class="tiny-svg-size"></icon-calendar>
+            <icon-calendar class="demp-tabs-icon"></icon-calendar>
             <span class="slot-message">表单组件</span>
           </div>
         </template>
@@ -14,7 +14,7 @@
       <tiny-tab-item name="second">
         <template #title>
           <div class="slot-content">
-            <icon-replies style="fill: red; vertical-align: top" class="tiny-svg-size"></icon-replies>
+            <icon-replies class="demp-tabs-icon icon-color"></icon-replies>
             <span class="slot-message">数据组件</span>
           </div>
         </template>
@@ -60,5 +60,12 @@ export default {
 }
 .slot-message {
   display: inline-block;
+}
+.demp-tabs-icon {
+  vertical-align: top;
+  margin-right: 4px;
+}
+.icon-color {
+  fill: red;
 }
 </style>

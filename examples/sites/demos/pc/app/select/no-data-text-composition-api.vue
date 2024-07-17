@@ -1,14 +1,19 @@
 <template>
   <div>
     <p>场景1：默认</p>
+    <br />
     <tiny-select v-model="value">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
+    <br /><br />
     <p>场景2：自定义空数据文本</p>
+    <br />
     <tiny-select v-model="value" no-data-text="暂无数据">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
+    <br /><br />
     <p>场景3：显示空数据图片</p>
+    <br />
     <tiny-select v-model="value" no-data-text="None" :show-empty-image="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>

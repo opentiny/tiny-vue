@@ -31,4 +31,9 @@ const url = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountai
 .placeholder-default {
   margin-right: 30px;
 }
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
+}
 </style>

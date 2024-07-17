@@ -101,18 +101,12 @@
 
       &.dot {
         .icon {
-          font-size: 14px;
+          font-size: var(--ti-pager-dot-is-popup-svg-font-size);
         }
 
         &.is-popup {
           svg {
             display: var(--ti-pager-dot-is-popup-display);
-          }
-
-          &::before {
-            content: '\00b7\00b7\00b7';
-            display: var(--ti-pager-dot-before-display);
-            letter-spacing: 1px;
           }
         }
       }

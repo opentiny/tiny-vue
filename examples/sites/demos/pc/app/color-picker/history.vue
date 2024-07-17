@@ -1,6 +1,7 @@
 <template>
   <div>
     <tiny-color-picker v-model="color" :history="history" />
+    <br />
     <tiny-button @click="addHistoryColor">Append history color</tiny-button>
     <tiny-button @click="popHistoryColor">Pop history color</tiny-button>
   </div>
