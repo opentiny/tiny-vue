@@ -3,6 +3,7 @@
     <tiny-select v-model="value" value-key="val">
       <tiny-option v-for="(item, index) in options" :key="index" :label="item.text" :value="item.obj"> </tiny-option>
     </tiny-select>
+    <br /><br />
     <p class="value">
       {{ value }}
     </p>

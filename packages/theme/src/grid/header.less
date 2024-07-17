@@ -82,6 +82,13 @@
       height: 10px;
       display: block;
     }
+    + .@{grid-prefix-cls}-cell-text {
+      width: auto;
+    }
+  }
+
+  .@{grid-prefix-cls}-cell-text {
+    width: 100%;
   }
 
   .@{grid-prefix-cls}-edit-icon {
@@ -89,6 +96,9 @@
     margin-right: 4px;
     order: -1;
     fill: var(--ti-grid-column-icon-text-color);
+    + .@{grid-prefix-cls}-cell-text {
+      width: auto;
+    }
   }
 
   .@{grid-prefix-cls}-thead-partition,

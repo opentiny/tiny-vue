@@ -1,9 +1,11 @@
 <template>
   <div class="tiny-steps-demo-space">
     <p>设置节点宽度为200像素：</p>
-    <tiny-steps space="200" :data="stepsData" :active="active" @click="onClick"></tiny-steps>
     <br />
+    <tiny-steps space="200" :data="stepsData" :active="active" @click="onClick"></tiny-steps>
+    <br /><br />
     <p>宽度自适应：</p>
+    <br />
     <tiny-steps advanced flex :data="stepsData" :active="active" @click="onClick"></tiny-steps>
   </div>
 </template>
@@ -36,3 +38,9 @@ const onClick = (index, node) => {
   node.status = 'doing'
 }
 </script>
+
+<style scoped>
+.tiny-steps-demo-space p {
+  margin: 16px 0;
+}
+</style>

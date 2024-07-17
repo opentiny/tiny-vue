@@ -134,5 +134,6 @@ const renderOp = ref({
   text-align: center;
   background-color: #f5222d;
   border-radius: 50%;
+  margin-left: 4px;
 }
 </style>

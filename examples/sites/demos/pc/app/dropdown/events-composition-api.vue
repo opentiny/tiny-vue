@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：按钮类型 + 循环 tiny-dropdown-item</p>
+    <p class="demo-dropdown">场景1：按钮类型 + 循环 tiny-dropdown-item</p>
 
     <tiny-dropdown split-button @item-click="itemClick" @button-click="buttonClick" @visible-change="visibleChange">
       <template #dropdown>
@@ -17,8 +17,8 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-
-    <p>场景2：配置式</p>
+    <br /><br />
+    <p class="demo-dropdown">场景2：配置式</p>
     <tiny-dropdown class="options-event" @item-click="itemClick" @visible-change="visibleChange">
       <template #dropdown>
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
@@ -64,7 +64,7 @@ const itemClick = (data, vm) => {
   Notify({
     type: 'info',
     title: 'itemClick 回调事件',
-    message: `使用 dropdown-item 的label属性：${data.vm.label},\n 使用 dropdown-item 的默认插槽：${data.vm.$el.innerText}`,
+    message: `使用 dropdown-item 的label属性：${label},\n 使用 dropdown-item 的默认插槽：${data.vm.$el.innerText}`,
     position: 'top-right',
     duration: 2000
   })
@@ -86,5 +86,8 @@ const visibleChange = (status) => {
 p {
   line-height: 1.5;
   font-size: 14px;
+}
+.demo-dropdown {
+  margin-bottom: 8px;
 }
 </style>

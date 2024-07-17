@@ -936,8 +936,8 @@ interface ICacheOp {
   highlightClass?: string // 个性化高亮 class 名称，默认：memorize-highlight
   highlightNum?: number // 高亮个性化的条数,默认：Infinity
   cacheNum?: number // 存储个性化的条数,默认：Infinity
-  serialize?: ()=> string  // 本地存储序列化方法,默认：JSON.stringify
-  deserialize?: ()=> ICacheItem[] // 本地存储序反列化方法，默认：JSON.parse
+  serialize?: () => string  // 本地存储序列化方法,默认：JSON.stringify
+  deserialize?: () => ICacheItem[] // 本地存储序反列化方法，默认：JSON.parse
 }        
 `
     },

@@ -60,7 +60,7 @@ export default {
         {
           name: 'expandNode',
           typeAnchorName: 'IMindExpandNode',
-          type: 'IMindnExpandNode',
+          type: 'IMindExpandNode',
           desc: {
             'zh-CN': '展开节点时会触发该事件',
             'en-US': 'This event will be triggered when expanding a node'

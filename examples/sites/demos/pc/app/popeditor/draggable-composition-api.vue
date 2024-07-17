@@ -1,8 +1,9 @@
 <template>
   <div>
-    <p>组件属性 draggable 默认为 true，不需设置就可以在标题栏按住鼠标拖动弹出窗口：</p>
+    <p class="demo-pop">组件属性 draggable 默认为 true，不需设置就可以在标题栏按住鼠标拖动弹出窗口：</p>
     <tiny-popeditor v-model="value" :grid-op="gridOp" text-field="name" value-field="id"></tiny-popeditor>
-    <p>如果设置属性 draggable 为 false，那么就不能拖动弹出窗口：</p>
+    <br /><br />
+    <p class="demo-pop">如果设置属性 draggable 为 false，那么就不能拖动弹出窗口：</p>
     <tiny-popeditor
       v-model="value"
       :grid-op="gridOp"
@@ -106,3 +107,10 @@ const gridOp = ref({
   data: dataset
 })
 </script>
+
+<style scoped>
+.demo-pop {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+</style>

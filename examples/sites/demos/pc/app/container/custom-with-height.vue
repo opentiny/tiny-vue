@@ -7,14 +7,14 @@
       :header-height="headerHeight"
     >
       <template #header>
-        <tiny-layout>header-height：80px</tiny-layout>
+        <tiny-layout class="demo-center">header-height：80px</tiny-layout>
       </template>
       <template #aside>
-        <tiny-layout>aside-width：200px</tiny-layout>
+        <tiny-layout class="demo-center">aside-width：200px</tiny-layout>
       </template>
-      <tiny-layout>Main 自动填充空间</tiny-layout>
+      <tiny-layout class="demo-center">Main 自动填充空间</tiny-layout>
       <template #footer>
-        <tiny-layout>footer-height：80px</tiny-layout>
+        <tiny-layout class="demo-center">footer-height：80px</tiny-layout>
       </template>
     </tiny-container>
   </div>
@@ -76,5 +76,12 @@ export default {
   color: #a3a355;
   font-size: 16px;
   margin: 0 7px;
+}
+.demo-center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

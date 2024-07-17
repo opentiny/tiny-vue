@@ -1,7 +1,9 @@
 <template>
   <div class="tiny-fullscreen-demo">
-    <label class="checkbox"> <input v-model="pageOnly" type="checkbox" name="button" /> pageOnly </label>
-    <label class="checkbox"> <input v-model="teleport" type="checkbox" name="button" /> teleport </label>
+    <div class="demo-fullscreen">
+      <label class="checkbox"> <input v-model="pageOnly" type="checkbox" name="button" /> pageOnly </label>
+      <label class="checkbox"> <input v-model="teleport" type="checkbox" name="button" /> teleport </label>
+    </div>
     <div
       class="tiny-fullscreen-wrapper"
       style="
@@ -51,5 +53,8 @@ async function toggle() {
 <style scoped>
 img {
   width: 100%;
+}
+.demo-fullscreen {
+  margin-bottom: 8px;
 }
 </style>

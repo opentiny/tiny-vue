@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      image: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/button-image.png`
+      image: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`
     }
   }
 }

@@ -3,13 +3,16 @@
     <p>
       场景1：单选，val 找不到匹配值，val为： ,<span class="val">{{ val }}</span>
     </p>
+    <br />
     <tiny-select v-model="val" :clear-no-match-value="true">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
+    <br /><br />
 
     <p>
       场景2：多选，multiVal 找不到匹配值，multiVal 为：<span class="multi-val">{{ multiVal }}</span>
     </p>
+    <br />
     <tiny-select v-model="multiVal" :clear-no-match-value="true" multiple>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>

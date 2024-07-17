@@ -11,7 +11,7 @@ import {
   Switch as TinySwitch,
   Notify
 } from '@opentiny/vue'
-import { staticDemoPath, getWebdocPath } from '@/views/components/cmpConfig'
+import { staticDemoPath, getWebdocPath } from '@/views/components/cmp-config'
 import { fetchDemosFile } from '@/tools/utils'
 import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'

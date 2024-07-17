@@ -1,8 +1,11 @@
 <template>
   <div>
     <p>单选：</p>
+    <br />
     <tiny-select v-model="value1" :options="options" optimization @change="onChange"></tiny-select>
+    <br /><br />
     <p>多选：</p>
+    <br />
     <tiny-select
       v-model="value2"
       optimization

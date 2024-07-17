@@ -52,8 +52,9 @@ export const createSearchForm = (props) => (isRest) =>
   }, {})
 
 export const getColumns = ({ constants, props }) => {
-  const { columns } = props.gridOp
-
+  const { columns: preColumns } = props.gridOp
+  // 同步勿删，后续逻辑会修改columns，因此需要浅拷贝一下，否则会因此死循环
+  const columns = preColumns.slice(0)
   const selectionCol = find(
     columns,
     (col) => col.type === constants.COLUMNS_TYPE.selection || col.type === constants.COLUMNS_TYPE.radio
@@ -65,7 +66,6 @@ export const getColumns = ({ constants, props }) => {
     const indexCol = find(columns, (col) => col.type === constants.COLUMNS_TYPE.index)
 
     const index = indexCol ? 1 : 0
-
     columns.splice(index, 0, {
       type: props.multi ? constants.COLUMNS_TYPE.selection : constants.COLUMNS_TYPE.radio,
       width: columns.length ? constants.COLUMNS_TYPE.width : ''

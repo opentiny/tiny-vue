@@ -1,6 +1,7 @@
 <template>
   <div>
     <p>单选</p>
+    <br />
     <tiny-select
       v-model="value1"
       clearable
@@ -13,8 +14,10 @@
     >
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
+    <br /><br />
 
     <p>多选</p>
+    <br />
     <tiny-select
       v-model="value2"
       multiple

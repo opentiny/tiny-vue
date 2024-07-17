@@ -13,7 +13,7 @@
 import { Card as TinyCard } from '@opentiny/vue'
 import { ref } from 'vue'
 
-const image = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/button-image.png`)
+const image = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/dsj.png`)
 </script>
 
 <style scoped>

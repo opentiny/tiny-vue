@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/views/layout/layout.vue'
-import { LANG_KEY, LANG_PATH_MAP, ZH_CN_LANG, CURRENT_THEME_KEY, THEME_ROUTE_MAP, DEFAULT_THEME } from './const'
+import { LANG_KEY, LANG_PATH_MAP, ZH_CN_LANG, CURRENT_THEME_KEY, THEME_ROUTE_MAP, SMB_THEME } from './const'
 import { $local } from './tools/storage'
 
 const Components = () => import('@/views/components/components.vue')
@@ -38,7 +38,7 @@ let routes = [
       const lang = $local[LANG_KEY]
       const langPath = LANG_PATH_MAP[lang] || LANG_PATH_MAP[ZH_CN_LANG]
       const themeKey = localStorage.getItem(CURRENT_THEME_KEY)
-      const theme = THEME_ROUTE_MAP[themeKey] || THEME_ROUTE_MAP[DEFAULT_THEME]
+      const theme = THEME_ROUTE_MAP[themeKey] || THEME_ROUTE_MAP[SMB_THEME]
       return { path: `${context}${langPath}/${theme}/overview` }
     }
   }

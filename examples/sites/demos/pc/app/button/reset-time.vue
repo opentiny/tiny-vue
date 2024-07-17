@@ -15,3 +15,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tiny-button {
+  margin-bottom: 10px;
+  margin-left: 0;
+  margin-right: 24px;
+}
+</style>

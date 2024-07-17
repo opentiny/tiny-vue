@@ -39,5 +39,6 @@ const multiVal = ref(['选项2', '11'])
 p {
   font-size: 14px;
   line-height: 1.5;
+  padding: 16px 0;
 }
 </style>

@@ -23,7 +23,7 @@
  *
  */
 
-import { isBoolean } from '@opentiny/vue-renderless/grid/static/'
+import { isBoolean, toNumber } from '@opentiny/vue-renderless/grid/static/'
 import { getListeners, emitEvent } from '@opentiny/vue-renderless/grid/utils'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import {
@@ -421,17 +421,24 @@ export default defineComponent({
     })
   },
   methods: {
+    // 配置高度减去（表格锚点+工具栏+分页）计算得出表格高度
     updateParentHeight() {
       if (!this.tasks.updateParentHeight) {
         this.tasks.updateParentHeight = debounce(10, () => {
           const { $el, $refs } = this
-          const { tinyTable } = $refs
+          const { tinyTable, tinyGridColumnAnchor } = $refs
           const toolbarVm = this.getVm('toolbar')
 
           if (tinyTable) {
+            let columnAnchorHeight = 0
+            if (tinyGridColumnAnchor) {
+              const { height, marginTop, marginBottom } = getComputedStyle(tinyGridColumnAnchor)
+              columnAnchorHeight = toNumber(height) + toNumber(marginTop) + toNumber(marginBottom)
+            }
             tinyTable.parentHeight =
               $el.parentNode.clientHeight -
               (toolbarVm ? toolbarVm.$el.clientHeight : 0) -
+              columnAnchorHeight -
               ($refs.pager ? $refs.pager.$el.clientHeight : 0)
           }
         })

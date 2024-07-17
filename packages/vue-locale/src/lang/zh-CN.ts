@@ -439,6 +439,7 @@ export default {
         switchedit: '编辑',
         switchdel: '删除',
         switchconfirm: '确定',
+        switchdelconfirm: '删除确认',
         switchonlytemp: '保存模板',
         switchtempapply: '保存并使用模板',
         switchtempoverwrite: '覆盖并使用模板',
