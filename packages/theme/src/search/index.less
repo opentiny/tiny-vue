@@ -45,8 +45,11 @@
   }
 
   &.is-disabled &__prefix,
-  &.is-disabled &__suffix {
+  &.is-disabled &__suffix,
+  &.is-disabled &__input-btn {
     .@{css-prefix}svg {
+      cursor: not-allowed;
+
       &,
       &:hover {
         fill: var(--ti-search-disabled-text-color);

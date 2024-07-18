@@ -3,9 +3,9 @@
     <tiny-button class="mb10" @click="changeDisabled"
       >点击切换为“{{ disabled ? '非禁用状态' : '禁用状态' }}”</tiny-button
     >
-    <tiny-search v-model="value" placeholder="请输入关键字搜索" :disabled="disabled" clearable>
+    <tiny-search class="mb10" v-model="value" placeholder="请输入关键字搜索" :disabled="disabled" clearable>
       <template #prefix>
-        <icon-search />
+        <tiny-icon-search />
       </template>
     </tiny-search>
     <tiny-search v-model="value" placeholder="请输入关键词" :disabled="disabled"></tiny-search>
@@ -21,7 +21,7 @@ export default {
   components: {
     TinySearch: Search,
     TinyButton: Button,
-    IconSearch: iconSearch()
+    TinyIconSearch: iconSearch()
   },
   data() {
     return {
