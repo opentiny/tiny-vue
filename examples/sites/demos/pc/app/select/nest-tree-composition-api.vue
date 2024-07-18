@@ -1,6 +1,7 @@
 <template>
   <div class="demo-select">
     <p>场景1：下拉树单选</p>
+    <br />
     <tiny-select
       v-model="treeValue1"
       value-field="id"
@@ -8,7 +9,9 @@
       render-type="tree"
       :tree-op="treeOp"
     ></tiny-select>
+    <br /><br />
     <p>场景2：下拉树多选</p>
+    <br />
     <tiny-select
       v-model="treeValue2"
       multiple
@@ -17,7 +20,9 @@
       render-type="tree"
       :tree-op="treeOp"
     ></tiny-select>
+    <br /><br />
     <p>场景3：下拉树可搜索</p>
+    <br />
     <tiny-select
       v-model="treeValue3"
       filterable

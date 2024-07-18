@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div v-for="cols in [12, 24]" :key="cols">
-      <div>每行 {{ cols }} 栅格布局示例：</div>
+      <div class="demo-layout">每行 {{ cols }} 栅格布局示例：</div>
       <tiny-layout :cols="cols">
         <tiny-row>
           <tiny-col :span="12">
@@ -72,5 +72,8 @@ export default {
 
 .content .tiny-col:nth-child(even) .col {
   background: #73d0fc;
+}
+.demo-layout {
+  font-size: 14px;
 }
 </style>

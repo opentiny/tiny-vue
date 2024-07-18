@@ -22,16 +22,13 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem, Modal } from '@opentiny/vue'
+import { Collapse as TinyCollapse, CollapseItem as TinyCollapseItem } from '@opentiny/vue'
 
 const activeName = ref('1')
-
 </script>
 
 <style scoped lang="less">
-.demo-collapse-wrap {
-  .tiny-collapse-item__content > * {
-    line-height: 1.8;
-  }
+.demo-collapse-wrap ::v-deep .tiny-collapse-item__content > * {
+  line-height: 1.6;
 }
 </style>

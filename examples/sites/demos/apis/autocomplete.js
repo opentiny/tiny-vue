@@ -319,6 +319,7 @@ export default {
     {
       name: 'IAutocompleteFetchSuggestions',
       type: 'type',
+      depTypes: ['IAutocompleteSuggestionItem'],
       code: `type IAutocompleteFetchSuggestions = (queryString: string, callback: (suggestions: IAutocompleteSuggestionItem[]) => void) => void`
     }
   ]

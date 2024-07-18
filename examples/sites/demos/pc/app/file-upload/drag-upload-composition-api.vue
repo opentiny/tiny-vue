@@ -1,7 +1,7 @@
 <template>
+  <div class="tiny-upload__text">将文件拖到此处，或<em>点击上传</em></div>
   <tiny-file-upload drag :action="action" multiple accept=".png,.jpeg,.jpg" @drop-error="dropErrorHandler">
     <tiny-icon-fileupload class="tiny-svg-size icon-fileupload"></tiny-icon-fileupload>
-    <div class="tiny-upload__text">将文件拖到此处，或<em>点击上传</em></div>
   </tiny-file-upload>
 </template>
 
@@ -18,3 +18,11 @@ function dropErrorHandler(files) {
   Modal.message(`有${files.length}个文件拖拽失败`)
 }
 </script>
+
+<style scoped>
+.tiny-upload__text {
+  color: #595959;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+</style>

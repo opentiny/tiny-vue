@@ -244,5 +244,7 @@ export function handleGlobalKeydownEvent(event) {
 
 // 监听全局的窗口尺寸改变事件，然后重新计算表格样式
 export function handleGlobalResizeEvent() {
+  // 窗口resize后，调用recalculate父容器高度还是初始值，需要update一下
+  this.updateParentHeight()
   this.recalculate()
 }

@@ -37,7 +37,7 @@ import { Col as TinyCol, Row as TinyRow, Layout as TinyLayout } from '@opentiny/
 
 <style scoped>
 .row-font-css {
-  margin: 5px 0;
+  margin: 16px 0;
   display: block;
 }
 

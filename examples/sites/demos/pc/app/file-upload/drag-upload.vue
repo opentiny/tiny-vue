@@ -1,7 +1,7 @@
 <template>
+  <div class="tiny-upload__text">将文件拖到此处，或<em>点击上传</em></div>
   <tiny-file-upload drag :action="action" multiple accept=".png,.jpeg,.jpg" @drop-error="dropErrorHandler">
     <tiny-icon-fileupload-pro class="tiny-svg-size icon-fileupload"></tiny-icon-fileupload-pro>
-    <div class="tiny-upload__text">将文件拖到此处，或<em>点击上传</em></div>
   </tiny-file-upload>
 </template>
 
@@ -26,3 +26,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tiny-upload__text {
+  color: #595959;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+</style>

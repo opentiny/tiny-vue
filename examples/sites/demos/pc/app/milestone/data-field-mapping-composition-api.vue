@@ -1,16 +1,18 @@
 <template>
-  <tiny-milestone
-    :data="milestoneData"
-    :milestones-status="statusMap"
-    time-field="date"
-    name-field="name"
-    status-field="progress"
-    flag-status-field="progress"
-    flag-name-field="title"
-    completed-field="completed"
-    flag-content-field="describe"
-    flag-field="flags"
-  ></tiny-milestone>
+  <div class="demo-milestone">
+    <tiny-milestone
+      :data="milestoneData"
+      :milestones-status="statusMap"
+      time-field="date"
+      name-field="name"
+      status-field="progress"
+      flag-status-field="progress"
+      flag-name-field="title"
+      completed-field="completed"
+      flag-content-field="describe"
+      flag-field="flags"
+    ></tiny-milestone>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -87,3 +89,9 @@ const milestoneData = ref([
   }
 ])
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>

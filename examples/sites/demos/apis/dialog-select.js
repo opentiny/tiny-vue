@@ -502,6 +502,7 @@ interface IDialogOption {
     {
       name: 'IGridOption',
       type: 'interface',
+      depTypes: ['IColumnConfig'],
       code: `
 interface IGridOption {
   // 表格列配置

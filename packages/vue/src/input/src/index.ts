@@ -145,7 +145,7 @@ export const inputProps = {
   },
   showEmptyValue: {
     type: Boolean,
-    default: false
+    default: undefined
   },
   textAlign: {
     type: String,

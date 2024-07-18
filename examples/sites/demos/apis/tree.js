@@ -546,7 +546,7 @@ export default {
         },
         {
           name: 'close-edit',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '关闭编辑的事件',
@@ -741,7 +741,7 @@ export default {
         },
         {
           name: 'open-edit',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '进入编辑的事件',

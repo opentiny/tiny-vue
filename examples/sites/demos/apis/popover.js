@@ -169,7 +169,8 @@ export default {
         },
         {
           name: 'popper-options',
-          type: 'object',
+          type: 'IPopperOption',
+          typeAnchorName: 'IPopperOption',
           defaultValue: '{}',
           desc: {
             'zh-CN': '弹出层参数',
@@ -283,7 +284,7 @@ export default {
       events: [
         {
           name: 'after-enter',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '进入的动画播放完毕后触发',
@@ -296,7 +297,7 @@ export default {
         },
         {
           name: 'after-leave',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '离开的动画播放完毕后触发',
@@ -309,7 +310,7 @@ export default {
         },
         {
           name: 'hide',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '隐藏时触发',
@@ -322,7 +323,7 @@ export default {
         },
         {
           name: 'show',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '显示时触发',

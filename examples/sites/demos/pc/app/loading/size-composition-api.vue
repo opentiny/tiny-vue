@@ -1,7 +1,7 @@
 <template>
   <div class="tiny-deom-size-loading">
     <div id="tiny-size-loading1"></div>
-    <div id="tiny-size-loading2"></div>
+    <div id="tiny-size-loading2" class="demo-loading"></div>
     <div id="tiny-size-loading3"></div>
   </div>
 </template>
@@ -27,8 +27,8 @@ onMounted(() => {
   })
 })
 </script>
-<style>
 
+<style>
 .tiny-deom-size-loading {
   display: flex;
 }
@@ -36,5 +36,8 @@ onMounted(() => {
 .tiny-deom-size-loading > * {
   width: 100px;
   height: 100px;
+}
+.demo-loading {
+  margin: 0 8px;
 }
 </style>

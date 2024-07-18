@@ -11,7 +11,7 @@ import {
   Switch as TinySwitch,
   Notify
 } from '@opentiny/vue'
-import { staticDemoPath, getWebdocPath } from '@/views/components/cmpConfig'
+import { staticDemoPath, getWebdocPath } from '@/views/components/cmp-config'
 import { fetchDemosFile } from '@/tools/utils'
 import logoUrl from './assets/opentiny-logo.svg?url'
 import GitHub from './icons/Github.vue'
@@ -28,7 +28,7 @@ const isMobileFirst = tinyMode === 'mobile-first'
 const isSaas = tinyTheme === 'saas'
 const isPreview = searchObj.get('openMode') === 'preview' // 是否多端弹窗预览
 
-const versions = ['3.16', '3.15', '3.14', '3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
+const versions = ['3.17', '3.16', '3.15', '3.14', '3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
 const latestVersion = isPreview ? versions[0] : localStorage.getItem(VERSION) || versions[0]
 const cdnHost = localStorage.getItem('setting-cdn')
 

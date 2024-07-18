@@ -1,0 +1,555 @@
+.tinyui-design-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px 0 rgba(2, 24, 42, 0.1);
+  z-index: 9999;
+  color: #151b24;
+  font-family: PingFangSC;
+  box-sizing: border-box;
+}
+.tinyui-design-header a {
+  text-decoration: none;
+  color: #151b24;
+  cursor: pointer;
+}
+.tinyui-design-header a.nav-logo {
+  display: flex;
+  align-items: center;
+}
+.tinyui-design-header ul,
+.tinyui-design-header li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tinyui-design-header .nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 25px 0 10px;
+  white-space: nowrap;
+  height: 60px;
+}
+.tinyui-design-header .nav .menu-collapse {
+  display: none;
+}
+.tinyui-design-header .nav .menu-collapse img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.tinyui-design-header .nav .nav-left {
+  display: flex;
+  align-items: center;
+}
+.tinyui-design-header .nav .nav-right {
+  display: flex;
+}
+.tinyui-design-header .nav .nav-right .github-icon {
+  display: flex;
+  align-items: center;
+  margin: 0 2.08vw 0 1.1vw;
+  cursor: pointer;
+}
+.tinyui-design-header .nav .nav-menus {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+}
+.tinyui-design-header .nav .nav-menus .menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 1.05vw;
+  height: 60px;
+  padding: 0 1.05vw;
+  cursor: pointer;
+}
+.tinyui-design-header .nav .nav-menus .menu span {
+  white-space: nowrap;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+  cursor: auto;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content {
+  display: flex;
+  margin: 0 auto;
+  padding-top: 30px;
+  justify-content: center;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .title {
+  margin-bottom: 14px;
+  padding-left: 29px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  letter-spacing: 0.4px;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 815px;
+  box-sizing: border-box;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .list .list-item {
+  display: flex;
+  width: 265px;
+  height: 70px;
+  line-height: 70px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .list .list-item:hover {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 5px rgba(31, 52, 121, 0.08);
+  transition: all 0.1s ease-in 0.1s;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .list .list-item a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .list .list-item a .right {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  overflow: hidden;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .list .list-item a .right .right-title {
+  margin-bottom: 6px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  font-size: 16px;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .list .list-item a .right .desc {
+  font-size: 12px;
+  color: #6a6a6a;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .list .list-item a > img {
+  width: 40px;
+  margin-right: 16px;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .content-left {
+  position: relative;
+  margin-right: 30px;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .content .content-left::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: -15px;
+  top: 50px;
+  height: 30px;
+  border-right: 1px solid #d8d8d8;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .menu-dropdown-content {
+  margin: 0 auto;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .menu-dropdown-content > img {
+  width: 1.77vw;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .menu-dropdown-content .list .list-item {
+  position: relative;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .menu-dropdown-content .list .list-item:first-child {
+  margin-right: 2.18vw;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown .menu-dropdown-content .list .list-item:first-child::after {
+  content: '';
+  position: absolute;
+  height: 34px;
+  border-left: 1px solid #ddd;
+  right: -1.09vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.tinyui-design-header .nav .nav-menus .menu .dropdown-production {
+  height: 166px;
+  padding: 22px 0;
+}
+.tinyui-design-header .nav .nav-menus .menu .menu-dropdown-show {
+  display: block;
+  animation: dropDown 0.2s ease-out 1 normal forwards;
+  transform-origin: top;
+}
+.tinyui-design-header .nav .nav-menus .menu:hover .menu-text {
+  background: rgba(217, 225, 238, 0.43);
+  border-radius: 16px;
+}
+.tinyui-design-header .nav .nav-menus .menu:hover .menu-text .title {
+  color: #2f5bea;
+}
+.tinyui-design-header .nav .nav-menus .menu:hover .menu-text .language-title {
+  color: #151b24;
+}
+.tinyui-design-header .nav .nav-menus .menu:hover .menu-text .menu-arrow {
+  transform: rotate(45deg);
+  border-color: #2f5bea;
+  top: 31.5px;
+}
+.tinyui-design-header .nav .nav-menus .menu:hover .menu-text .language-arrow {
+  border-color: #151b24;
+}
+.tinyui-design-header .nav .nav-menus .menu-right {
+  padding: 0;
+  margin: 0;
+}
+.header-logo {
+  width: 50px;
+  height: 32px;
+}
+.header-name {
+  line-height: 32px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #272727;
+  margin-left: 12px;
+  vertical-align: middle;
+  letter-spacing: 0.55px;
+}
+.header-detail-logo {
+  height: 18px;
+  width: 18px;
+  margin-top: 1px;
+  margin-right: 10px;
+}
+.header-sublogo {
+  height: 21px;
+  width: 36px;
+  margin-top: 3px;
+  margin-right: 14px;
+}
+.header-detail-name {
+  height: 18px;
+  line-height: 18px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-top: 1px;
+  opacity: 0.6;
+}
+.nav-menus-left {
+  margin-left: 3.65vw;
+}
+.title {
+  margin-right: 0.36vw;
+  letter-spacing: 0.35px;
+}
+.menu-text {
+  display: inline-block;
+  width: auto;
+  height: 32px;
+  box-sizing: border-box;
+  line-height: 32px;
+  padding: 0 1.67vw 0 1.04vw;
+  transition: all 0.1s ease-in 0.1s;
+  cursor: pointer;
+}
+.menu-text:hover {
+  background: rgba(217, 225, 238, 0.43);
+  border-radius: 16px;
+}
+.menu-text:hover .title {
+  color: #2f5bea;
+}
+.menu-text:hover .language-title {
+  color: #151b24;
+}
+.menu-text:hover .menu-arrow {
+  transform: rotate(45deg);
+  border-color: #2f5bea;
+  top: 31.5px;
+}
+.menu-text:hover .language-arrow {
+  border-color: #151b24;
+}
+.menu-arrow {
+  position: absolute;
+  top: 29px;
+  border: 2px solid #151b24;
+  border-width: 2px 0 0 2px;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  transform: rotate(-135deg);
+  transition: all 0.1s ease-in 0.1s;
+  transform-origin: center center;
+  box-sizing: border-box;
+}
+.divider {
+  width: 1px;
+  height: 18px;
+  background: #7b7e84;
+  opacity: 0.3;
+  margin: 0 20px;
+  margin-top: 1px;
+}
+.menu-right-divider {
+  margin: 0 1.56vw;
+}
+.menu-help-docs {
+  padding: 0 1.04vw;
+}
+.title-help-docs {
+  margin-right: 0;
+}
+.github-img {
+  height: 23px;
+  width: 24px;
+}
+.menu-language,
+.menu-2 {
+  position: relative;
+}
+.menu-language .menu-arrow,
+.menu-2 .menu-arrow {
+  top: 15px;
+}
+.menu-language .menu-dropdown,
+.menu-2 .menu-dropdown {
+  display: none;
+  width: 108px;
+  position: absolute;
+  text-align: center;
+  border: solid 1px #e5e6eb;
+  border-radius: 4px;
+  background: #fff;
+  left: 0px;
+}
+.menu-language .menu-dropdown .menu-dropdown-item,
+.menu-2 .menu-dropdown .menu-dropdown-item {
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+}
+.menu-language .menu-dropdown .menu-dropdown-item:hover,
+.menu-2 .menu-dropdown .menu-dropdown-item:hover {
+  background: rgba(217, 225, 238, 0.43);
+}
+.menu-language .menu-dropdown-show,
+.menu-2 .menu-dropdown-show {
+  display: block;
+  animation: dropDown 0.2s ease-out 1 normal forwards;
+  transform-origin: top;
+}
+.menu-language:hover,
+.menu-2:hover {
+  background-color: #fff;
+  color: #151b24;
+}
+.menu-language:hover .menu-arrow,
+.menu-2:hover .menu-arrow {
+  top: 18px;
+}
+.collapse-menu {
+  display: none;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.collapse-menu img {
+  width: 20px;
+  height: 20px;
+}
+.collapse-nav {
+  display: none;
+  overflow-y: auto;
+  max-height: calc(100% - 80px);
+  position: fixed;
+  right: 8px;
+  top: 48px;
+  z-index: 100;
+  padding: 20px 30px;
+  border-radius: 6px;
+  background-color: #ffff;
+  box-sizing: border-box;
+  box-shadow: 0 0px 8px 4px rgba(2, 24, 42, 0.15);
+}
+.collapse-nav .line {
+  width: 100%;
+  margin: 30px 0 20px;
+  border-bottom: 1px solid #d8d8d8;
+}
+.collapse-nav .title,
+.collapse-nav .sub-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #181818;
+  line-height: 20px;
+  margin-right: 0;
+  margin-bottom: 20px;
+}
+.collapse-nav .sub-title {
+  font-weight: normal;
+  margin: 20px 0 17px;
+}
+.collapse-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.collapse-nav ul li a {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  margin: 0;
+}
+.collapse-nav ul li a p {
+  margin: 0;
+}
+.collapse-nav ul li a .item-logo {
+  width: 32px;
+  height: 32px;
+}
+.collapse-nav ul li a .item-title {
+  font-size: 14px;
+  color: #151b24;
+  line-height: 17px;
+}
+.collapse-nav ul li a .item-sub-title {
+  font-size: 12px;
+  color: #6b6b6b;
+  line-height: 17px;
+}
+.collapse-nav ul li a:hover p {
+  color: #2f5bea;
+}
+.collapse-nav .nav-item.current {
+  height: auto;
+}
+.collapse-nav .nav-item.current ul {
+  transition: height 1s ease-in 1s;
+  height: auto;
+}
+.collapse-nav .nav-item.current .arrow {
+  color: #2f5bea;
+}
+.collapse-nav .nav-item.current .arrow:after {
+  transform: rotate(45deg);
+  border-color: #2f5bea;
+  top: -2px;
+}
+.collapse-nav .help-docs,
+.collapse-nav .github-icon {
+  display: block;
+  font-size: 14px;
+  color: #181818;
+  line-height: 20px;
+  margin-bottom: 15px;
+}
+.collapse-nav .help-docs:hover,
+.collapse-nav .github-icon:hover {
+  color: #5073e5;
+}
+.collapse-nav .user-menu {
+  display: block;
+}
+.collapse-nav .user-menu .login-user-text {
+  background: transparent;
+  font-size: 14px;
+  color: #181818;
+  line-height: 20px;
+  margin-bottom: 15px;
+  padding: 0;
+}
+.collapse-nav .user-menu .login-user-text:hover {
+  color: #5073e5;
+}
+@keyframes dropDown {
+  0% {
+    transform: scaleY(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+@media screen and (max-width: 1023px) {
+  .tinyui-design-header .nav .menu-collapse {
+    display: flex;
+  }
+  .hideMenu {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    overflow-y: auto;
+    max-height: 100%;
+  }
+  .hideMenu .n-layout-toggle-button {
+    display: none !important;
+  }
+  .showMenu {
+    display: block !important;
+  }
+  .collapse-menu {
+    display: inline-flex;
+  }
+  .tinyui-design-header .nav {
+    margin: 0 10px;
+  }
+  .tinyui-design-header .nav .nav-right {
+    display: none;
+  }
+  .tinyui-design-header .nav .collapse-nav.toggleNav {
+    display: block;
+  }
+}
+@media screen and (max-width: 815px) {
+  .tinyui-design-header .nav .nav-menus {
+    display: none;
+  }
+  .tinyui-design-header .nav .menu-collapse img {
+    width: 3.33333333vw;
+  }
+  .tinyui-design-header .nav .divider {
+    margin: 0 2vw;
+  }
+  .tinyui-design-header .nav .header-name {
+    font-size: 16px;
+    margin-left: 2vw;
+  }
+  .tinyui-design-header .nav .header-sublogo {
+    width: 5vw;
+    height: auto;
+    margin-right: 2vw;
+  }
+  .tinyui-design-header .nav .header-detail-name {
+    font-size: 14px;
+  }
+  .tinyui-design-header .nav .collapse-menu {
+    width: 8.33333333vw;
+  }
+  .tinyui-design-header .nav .collapse-menu img {
+    width: 3.33333333vw;
+    height: 3.33333333vw;
+  }
+}

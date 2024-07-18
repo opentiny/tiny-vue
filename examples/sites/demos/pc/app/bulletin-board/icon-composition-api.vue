@@ -1,5 +1,7 @@
 <template>
-  <tiny-bulletin-board :tab-title="tabTitle" :data="data" :icon="IconShare"></tiny-bulletin-board>
+  <div class="demo-bulletin-board">
+    <tiny-bulletin-board :tab-title="tabTitle" :data="data" :icon="IconShare"></tiny-bulletin-board>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -91,3 +93,9 @@ const data = ref([
   ]
 ])
 </script>
+
+<style scoped>
+.demo-bulletin-board ::v-deep .tiny-svg {
+  fill: white;
+}
+</style>
