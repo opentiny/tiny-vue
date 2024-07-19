@@ -22,7 +22,7 @@ export const nodeClick =
   }
 
 export const check =
-  ({ props }) =>
+  ({ props, vm }) =>
   (data, { checkedNodes }) => {
     if (props.multiple) {
       vm.$refs.baseSelectRef.updateSelectedData(

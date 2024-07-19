@@ -1,5 +1,5 @@
 <template>
-  <tiny-tree-select v-model="value" :tree-op="treeOp"></tiny-tree-select>
+  <tiny-tree-select v-model="value" :tree-op="treeOp" multiple></tiny-tree-select>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   },
   data() {
     return {
-      value: '',
+      value: [],
       treeOp: {
         data: [
           {
