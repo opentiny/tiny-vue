@@ -639,7 +639,7 @@ interface IFormRules {
   trigger?: IFormTrigger | IFormTrigger[] 
   // 同步检验函数，调用回调传递错误信息。
   validator?: (
-    rule: IFormInnerRule, // from内部处理后的rule
+    rule: IFormInnerRule, // form内部处理后的rule
     value: any, // 表单model对应的值，根据表单项prop获取
     callback: (e: Error) => void
     data: object, // prop和value构造的对象
