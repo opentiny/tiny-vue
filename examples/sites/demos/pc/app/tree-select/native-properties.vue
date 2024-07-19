@@ -1,5 +1,11 @@
 <template>
-  <tiny-tree-select v-model="value" :tree-op="treeOp"></tiny-tree-select>
+  <tiny-tree-select
+    v-model="value"
+    :tree-op="treeOp"
+    placeholder="请选择一个选项"
+    name="inputName"
+    autocomplete
+  ></tiny-tree-select>
 </template>
 
 <script>
