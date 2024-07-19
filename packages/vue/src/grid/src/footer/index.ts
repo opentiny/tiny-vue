@@ -23,7 +23,7 @@
  *
  */
 
-import Footer from './src/footer'
+import Footer from './src/pc.vue'
 
 Footer.install = function (Vue) {
   Vue.component(Footer.name, Footer)
