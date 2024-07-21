@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
+// 具体操作方法和工具函数
 export const initUser =
   ({ api, props, state }) =>
   (value) => {
