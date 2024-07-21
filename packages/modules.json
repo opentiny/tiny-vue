@@ -2999,6 +2999,11 @@
       "pc"
     ]
   },
+  "TreeSelectPc": {
+    "path": "vue/src/tree-select/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Upload": {
     "path": "vue/src/upload/index.ts",
     "type": "component",

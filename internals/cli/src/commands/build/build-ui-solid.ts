@@ -79,7 +79,7 @@ export const getBaseConfig = ({ buildTarget }: BaseConfig) => {
         }
       }),
       replaceModuleNamePlugin(versionTarget),
-      // vueTemplate2jsx(),
+      vueTemplate2jsx(),
       solid({ extensions: ['.js', '.ts', '.tsx', '.jsx', '.vue'] })
     ],
     resolve: {
