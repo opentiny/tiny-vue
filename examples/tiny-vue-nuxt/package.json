@@ -1,0 +1,46 @@
+{
+  "name": "@opentiny/nuxt",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "tiny-vue module for Nuxt",
+  "author": "",
+  "license": "MIT",
+  "keywords": [
+    "opentiny",
+    "nuxt",
+    "tiny-vue"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/module.d.ts",
+      "require": "./dist/module.cjs",
+      "import": "./dist/module.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/module.cjs",
+  "module": "./dist/module.mjs",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "pnpm run dev:prepare && nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.12.3",
+    "@opentiny/vue": "~3.17.0",
+    "@opentiny/vue-alert": "~3.17.0"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^1.2.0",
+    "@nuxt/module-builder": "^0.6.0",
+    "@nuxt/schema": "^3.12.3",
+    "less": "^4.2.0",
+    "nuxt": "^3.12.3"
+  }
+}
