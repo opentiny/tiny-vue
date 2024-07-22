@@ -637,7 +637,6 @@
         color: var(--ti-tabs-button-card-item-active-text-color);
         border: 1px solid var(--ti-tabs-button-card-item-active-border-color);
         border-radius: var(--ti-tabs-button-card-border-radius);
-        font-size: var(--ti-tabs-button-card-item-active-font-size);
         font-weight: var(--ti-tabs-button-card-font-weight);
       }
 
@@ -691,11 +690,33 @@
     .@{tabs-prefix-cls}__item {
       height: var(--ti-tabs-small-height);
       line-height: var(--ti-tabs-small-height);
+      font-size: var(--ti-tabs-small-item-font-size);
+
+      &.@{tabs-prefix-cls}__item-separator-space {
+        height: var(--ti-tabs-small-separator-height);
+        line-height: var(--ti-tabs-small-separator-height);
+      }
     }
+
     .@{tabs-prefix-cls}__nav-prev,
     .@{tabs-prefix-cls}__nav-next {
       line-height: var(--ti-tabs-small-height);
       font-size: var(--ti-tabs-prev-next-btn-icon-size);
+    }
+
+    .@{tabs-prefix-cls}__nav.is-show-active-bar
+      .@{tabs-prefix-cls}__item:not(.@{tabs-prefix-cls}__item-separator-space) {
+      margin-right: var(--ti-tabs-small-item-margin-right);
+    }
+
+    &.@{tabs-prefix-cls}--top .@{tabs-prefix-cls}__item-separator {
+      left: calc(var(--ti-tabs-small-separator-padding-horizontal) + 1px);
+    }
+
+    &.@{tabs-prefix-cls}--button-card .@{tabs-prefix-cls}__item {
+      height: var(--ti-tabs-small-button-card-height);
+      line-height: var(--ti-tabs-small-button-card-height);
+      font-size: var(--ti-tabs-small-button-card-font-size);
     }
   }
 
@@ -1284,10 +1305,21 @@
     }
 
     // 这里会涉及到tiny-tabs__item-base的样式，尽量不要同步
+    &.@{tabs-prefix-cls}--small:not(.@{tabs-prefix-cls}--card):not(.@{tabs-prefix-cls}--border-card)
+      .@{tabs-prefix-cls}__item {
+      &-separator-space {
+        padding-left: var(--ti-tabs-small-separator-padding-horizontal);
+        padding-right: var(--ti-tabs-small-separator-padding-horizontal);
+        margin-right: 1px;
+      }
+    }
+
+    // 这里会涉及到tiny-tabs__item-base的样式，尽量不要同步
     &:not(.@{tabs-prefix-cls}--card):not(.@{tabs-prefix-cls}--border-card) .@{tabs-prefix-cls}__item {
       &-separator-space {
-        padding-left: calc(var(--ti-tabs-header-separator-padding-horizontal) + 1px);
+        padding-left: var(--ti-tabs-header-separator-padding-horizontal);
         padding-right: var(--ti-tabs-header-separator-padding-horizontal);
+        margin-right: 1px;
 
         &:nth-child(2) {
           margin-left: 0px;

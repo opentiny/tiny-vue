@@ -178,13 +178,11 @@ export default {
           type: "'small' | 'large'",
           defaultValue: '',
           desc: {
-            'zh-CN':
-              '设置 tabs 页签尺寸,该属性可选值为 large 或 small，其中 small 在 tabStyle 为 card 或者 border-card 时生效',
-            'en-US':
-              'Sets the tab size. The value can be large or small. This parameter is valid only when tabStyle is set to card or border-card'
+            'zh-CN': '设置 tabs 页签尺寸,该属性可选值为 large 或 small',
+            'en-US': 'Sets the tab size. The value can be large or small'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'tab-style-card',
+          pcDemo: 'size',
           mfDemo: ''
         },
         {
