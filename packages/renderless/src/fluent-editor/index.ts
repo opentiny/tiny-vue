@@ -6,7 +6,7 @@ import { on, off } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
 
 export const init =
-  ({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm }) =>
+  ({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm, useBreakpoint, simpleToolbar }) =>
   () => {
     UploaderDfls.enableMultiUpload = { file: true, image: true }
     UploaderDfls.handler = api.uploaderDflsHandler
@@ -31,6 +31,11 @@ export const init =
     }
 
     api.setToolbarTips()
+
+    const { current } = useBreakpoint()
+    if (current.value === 'default') {
+      state.innerOptions.modules.toolbar = simpleToolbar
+    }
 
     const quill = new FluentEditor(vm.$refs.editor, state.innerOptions)
     quill.emitter.on('file-change', api.fileOperationToSev)

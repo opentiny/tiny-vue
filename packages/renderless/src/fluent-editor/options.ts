@@ -243,3 +243,15 @@ export const iconOption = {
   undo: 'IconEditorUndo',
   video: 'IconEditorVideo'
 }
+
+export const simpleToolbar = [
+  'bold',
+  'italic',
+  'underline',
+  'strike',
+  { list: 'bullet' },
+  { list: 'ordered' },
+  { align: '' },
+  { align: 'center' },
+  { align: 'right' }
+]
