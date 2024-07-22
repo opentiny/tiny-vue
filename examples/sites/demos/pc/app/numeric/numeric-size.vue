@@ -4,9 +4,9 @@
     <br /><br />
     <tiny-numeric v-model="value" size="small"></tiny-numeric>
     <br /><br />
-    <tiny-numeric v-model="value"></tiny-numeric>
-    <br /><br />
     <tiny-numeric v-model="value" size="mini"></tiny-numeric>
+    <br /><br />
+    <tiny-numeric v-model="value"></tiny-numeric>
   </div>
 </template>
 
