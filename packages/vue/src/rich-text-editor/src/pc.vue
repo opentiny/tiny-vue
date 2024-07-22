@@ -1,6 +1,6 @@
 <template>
   <div class="tiny-rich-text-editor">
-    <div class="tiny-rich-text-editor__toolbar">
+    <div v-if="state.editor" class="tiny-rich-text-editor__toolbar">
       <!-- starter-kit功能区 -->
       <template v-for="item in state.toolbar">
         <button
@@ -253,7 +253,6 @@
 
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/rich-text-editor/vue'
-import codeHighlight from './code-highlight.vue'
 import {
   iconRichTextAddColumnAfter,
   iconRichTextAddColumnBefore,
@@ -303,71 +302,17 @@ import {
   iconRichTextUnderline,
   iconRichTextUndo
 } from '@opentiny/vue-icon'
-import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer } from '@tiptap/vue'
-import StarterKit from '@tiptap/starter-kit'
+import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } from '@tiptap/vue'
 
-// 段落包
-import Paragraph from '@tiptap/extension-paragraph'
-import { mergeAttributes } from '@tiptap/core'
+import TinyTiptap from '@opentiny/tiny-tiptap'
 
-// image 包
-// import Image from '@tiptap/extension-image'
-import Image from './extensions/image'
+import SlashMenu from './components/slash-menu.vue'
 
-// -- HeighLight
-import Highlight from '@tiptap/extension-highlight'
-
-// color 包
-import { Color } from '@tiptap/extension-color'
-import TextStyle from '@tiptap/extension-text-style'
-
-// -- link
-import Link from '@tiptap/extension-link'
-
-// underline
-import Underline from '@tiptap/extension-underline'
-
-// subScript
-import Subscript from '@tiptap/extension-subscript'
-import Superscript from '@tiptap/extension-superscript'
-
-// table 包
-import Table from '@tiptap/extension-table'
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
-
-// task list
-import TaskItem from '@tiptap/extension-task-item'
-import TaskList from '@tiptap/extension-task-list'
-
-// textalign
-import TextAlign from '@tiptap/extension-text-align'
-
-// code high light
-import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
-
-// Placeholder
-import Placeholder from '@tiptap/extension-placeholder'
-
-import css from 'highlight.js/lib/languages/css'
-import js from 'highlight.js/lib/languages/javascript'
-import ts from 'highlight.js/lib/languages/typescript'
-import html from 'highlight.js/lib/languages/xml'
-import { lowlight } from 'lowlight'
+import { ExtensionViewMap } from './extensions'
 
 import { $props, setup, defineComponent, $prefix, directive } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
-
-function initLowLight() {
-  lowlight.registerLanguage('html', html)
-  lowlight.registerLanguage('css', css)
-  lowlight.registerLanguage('js', js)
-  lowlight.registerLanguage('ts', ts)
-}
-/* @__PURE__ */
-initLowLight()
 
 export const richTextEditorProps = {
   ...$props,
@@ -463,30 +408,12 @@ export default defineComponent({
       api,
       mono: true,
       extendOptions: {
+        TinyTiptap,
         Editor,
-        StarterKit,
-        Table,
-        TableCell,
-        TableHeader,
-        TableRow,
-        Color,
-        TextStyle,
-        Image,
-        Highlight,
-        Link,
-        Underline,
-        Subscript,
-        Superscript,
-        TaskItem,
-        TaskList,
-        TextAlign,
-        Paragraph,
-        mergeAttributes,
-        CodeBlockLowlight,
-        lowlight,
+        VueRenderer,
         VueNodeViewRenderer,
-        Placeholder,
-        codeHighlight
+        viewMap: ExtensionViewMap,
+        slashView: SlashMenu
       }
     })
   }

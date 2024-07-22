@@ -10,6 +10,7 @@ import {
   eventClick,
   Active
 } from './index'
+import { shallowRef } from 'vue'
 
 export const api = [
   'state',
@@ -26,34 +27,9 @@ export const api = [
 ]
 export const renderless = (
   props,
-  { computed, onBeforeUnmount, reactive },
+  { computed, onMounted, onBeforeUnmount, reactive },
   { vm, emit },
-  {
-    Editor,
-    StarterKit,
-    Table,
-    TableCell,
-    TableHeader,
-    TableRow,
-    Color,
-    TextStyle,
-    Image,
-    Highlight,
-    Link,
-    Underline,
-    Subscript,
-    Superscript,
-    TaskItem,
-    TaskList,
-    TextAlign,
-    Paragraph,
-    mergeAttributes,
-    CodeBlockLowlight,
-    lowlight,
-    VueNodeViewRenderer,
-    Placeholder,
-    codeHighlight
-  }
+  { TinyTiptap, Editor, VueRenderer, VueNodeViewRenderer, viewMap, slashView }
 ) => {
   let defaultToolBar = [
     'bold',
@@ -86,145 +62,7 @@ export const renderless = (
     'table' //
   ]
 
-  // 自定义图片
-  const CustomImage = Image.extend({
-    addAttributes() {
-      return {
-        ...this.parent?.(),
-        type: {
-          default: 'img'
-        }
-      }
-    },
-    renderHTML({ node, HTMLAttributes }) {
-      if (node.attrs.type === 'video') {
-        return ['div', { class: 'img-button' }, ['video', mergeAttributes({ controls: true }, HTMLAttributes)]]
-      } else {
-        return ['div', { class: 'img-button' }, ['img', HTMLAttributes]]
-      }
-    }
-  })
-  const CustomParagraph = Paragraph.extend({
-    addOptions() {
-      return {
-        levels: [1, 1.5, 2, 2.5, 3]
-      }
-    },
-    addAttributes() {
-      return {
-        level: {
-          default: 1
-        }
-      }
-    },
-    renderHTML({ node, HTMLAttributes }) {
-      const hasLevel = this.options.levels.includes(node.attrs.level)
-      const level = hasLevel ? node.attrs.level : this.options.levels[0]
-      return ['p', mergeAttributes({ style: `line-height: ${level}` }, HTMLAttributes), 0]
-    },
-    addCommands() {
-      return {
-        setP:
-          (attributes) =>
-          ({ commands }) => {
-            return commands.setNode(this.name, attributes)
-          }
-      }
-    }
-  })
-  const CustomSize = Paragraph.extend({
-    addOptions() {
-      return {
-        size: [12, 14, 16, 18, 20, 24, 30]
-      }
-    },
-    addAttributes() {
-      return {
-        size: {
-          default: 16
-        }
-      }
-    },
-    renderHTML({ node, HTMLAttributes }) {
-      const hasSize = this.options.size.includes(node.attrs.size)
-      const size = hasSize ? node.attrs.size : this.options.size[2]
-      return ['p', mergeAttributes({ style: `font-size: ${size}px` }, HTMLAttributes), 0]
-    },
-    addCommands() {
-      return {
-        setSize:
-          (attributes) =>
-          ({ commands }) => {
-            return commands.setNode(this.name, attributes)
-          }
-      }
-    }
-  })
-  const CustomBackgroundColor = Highlight.extend({
-    addAttributes() {
-      return {
-        bgColor: {
-          default: null,
-          renderHTML: (attributes) => {
-            if (!attributes.bgColor) {
-              return {}
-            }
-            return {
-              style: `background: ${attributes.bgColor}`
-            }
-          }
-        }
-      }
-    },
-    addCommands() {
-      return {
-        setBackColor:
-          (attributes) =>
-          ({ commands }) => {
-            return commands.setMark(this.name, attributes)
-          }
-      }
-    }
-  })
   const defaultOptions = {
-    extensions: [
-      StarterKit?.configure({
-        // 开启多人协作功能要关闭默认的history模式
-        history: true
-      }),
-      Table.configure({
-        resizable: true
-      }),
-      TableCell,
-      TableHeader,
-      TableRow,
-      Color,
-      TextStyle,
-      CustomImage,
-      Highlight,
-      Link,
-      Underline,
-      Subscript,
-      Superscript,
-      TaskList,
-      TaskItem.configure({
-        nested: true
-      }),
-      TextAlign.configure({
-        types: ['heading', 'paragraph']
-      }),
-      CustomParagraph,
-      CustomSize,
-      CustomBackgroundColor,
-      CodeBlockLowlight.extend({
-        addNodeView() {
-          return VueNodeViewRenderer(codeHighlight)
-        }
-      }).configure({ lowlight }),
-      Placeholder.configure({
-        placeholder: props.placeholder
-      })
-    ],
     content: props.modelValue,
     autofocus: true,
     editable: true,
@@ -260,20 +98,21 @@ export const renderless = (
     onDestroy() {
       // The editor is being destroyed.
       emit('destroy')
-    },
-    ...props.options
+    }
+    // ...props.options
   }
 
   let options = Object.assign(defaultOptions, props.options)
 
   const state = reactive({
-    editor: new Editor(options),
+    editor: null,
     toolbar: computed(() => (props.customToolBar.length ? props.customToolBar : defaultToolBar)),
     // table 变量
     isShowTable: false,
     flagX: 0,
     flagY: 0
   })
+
   const api = {
     state,
     setLink: setLink(state.editor),
@@ -289,6 +128,31 @@ export const renderless = (
     eventClick,
     Active
   }
+
+  onMounted(() => {
+    for (const [key, val] of viewMap.entries()) {
+      viewMap.set(key, VueNodeViewRenderer(val))
+    }
+
+    const menuMap = {
+      renderer: VueRenderer,
+      slashView
+    }
+
+    const viewOptions = {
+      viewMap,
+      menuMap
+    }
+
+    const otherOptions = {
+      placeholder: props.placeholder
+    }
+
+    const editorInstance = new TinyTiptap(Editor, options, viewOptions, otherOptions)
+    // editor 只需要浅层
+    state.editor = shallowRef(editorInstance.editor)
+  })
+
   onBeforeUnmount(() => {
     state.editor.destroy()
   })
