@@ -92,12 +92,13 @@ export default {
     {
       demoId: 'slot-prefix',
       name: {
-        'zh-CN': '左侧插槽',
-        'en-US': 'Left slot'
+        'zh-CN': '左侧插槽与禁用',
+        'en-US': 'Left slot and Disabled'
       },
       desc: {
-        'zh-CN': '通过 <code>prefix</code> 插槽自定义左侧内容。',
-        'en-US': 'Customize the left content through the <code>prefix</code> slot.'
+        'zh-CN': '通过 <code>prefix</code> 插槽自定义左侧内容, <code>disabled</code> 控制禁用状态。',
+        'en-US':
+          'Customize the left content through the <code>prefix</code> slot, <code>disabled</code>Control the disabled state.'
       },
       codeFiles: ['slot-prefix.vue']
     },
