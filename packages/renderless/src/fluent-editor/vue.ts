@@ -37,7 +37,7 @@ import {
   removeHandleComposition,
   checkTableISEndElement
 } from './index'
-import { defaultOption, iconOption } from './options'
+import { defaultOption, iconOption, simpleToolbar } from './options'
 
 export const api = ['state', 'init', 'initContent', 'selectionChange', 'textChange', 'doPreview', 'handleDblclick']
 
@@ -117,11 +117,11 @@ const initApi = ({ api, state, service, emit, props, nextTick, FluentEditor, Upl
 }
 
 const mergeApi = (args) => {
-  let { api, state, service, emit, props, vm, i18n, watch, nextTick } = args
+  let { api, state, service, emit, props, vm, i18n, watch, nextTick, useBreakpoint } = args
   let { constants, FluentEditor, UploaderDfls, Delta, defaultOptions } = args
 
   Object.assign(api, {
-    init: init({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm }),
+    init: init({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm, useBreakpoint, simpleToolbar }),
     initContent: initContent({ state, props, api, nextTick }),
     fileHandler: fileHandler({ api, state }),
     imageHandler: imageHandler({ api, state }),
@@ -179,7 +179,7 @@ const initWatch = ({ watch, state, api, props, vm }) => {
 export const renderless = (
   props,
   { reactive, watch, onMounted, onBeforeUnmount, computed },
-  { service, emit, i18n, constants, nextTick, vm, t },
+  { service, emit, i18n, constants, nextTick, vm, t, useBreakpoint },
   { FluentEditor }
 ) => {
   const api = {}
@@ -190,7 +190,7 @@ export const renderless = (
 
   initApi({ api, state, service, emit, props, nextTick, FluentEditor, UploaderDfls, Delta, vm, t })
 
-  const args = { api, state, service, emit, props, vm, i18n, watch, nextTick }
+  const args = { api, state, service, emit, props, vm, i18n, watch, nextTick, useBreakpoint }
 
   Object.assign(args, { constants, FluentEditor, UploaderDfls, Delta, defaultOptions })
 

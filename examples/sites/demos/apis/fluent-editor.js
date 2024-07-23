@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'fluent-editor',
@@ -13,7 +13,7 @@ export default {
             'zh-CN': '初始化的富文本数据格式是否为 Delta 格式，默认为 Delta 格式，设置成 false，则为 HTML 格式',
             'en-US': ''
           },
-          mode: ['pc'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'data-switch'
         },
         {
@@ -24,7 +24,7 @@ export default {
             'zh-CN': '富文本数据输出格式是否为 Delta 格式，默认为 Delta 格式，设置成 false，则为 HTML 格式',
             'en-US': ''
           },
-          mode: ['pc'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'data-switch'
         },
         {
@@ -35,7 +35,7 @@ export default {
             'zh-CN': '是否为不可编辑状态',
             'en-US': ''
           },
-          mode: ['pc'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'disabled'
         },
         {
@@ -46,7 +46,7 @@ export default {
             'zh-CN': '绑定值',
             'en-US': 'Bound Value'
           },
-          mode: ['pc'],
+          mode: ['pc', 'mobile-first'],
           pcDemo: 'basic-usage'
         }
       ],
