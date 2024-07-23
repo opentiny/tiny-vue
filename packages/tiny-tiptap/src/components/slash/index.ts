@@ -89,7 +89,8 @@ function getSlashMenuItemsFromExtensions(editor: Editor) {
 
       const menus = getSlashMenus()
 
-      return [...prev, ...menus]
+      prev.push(...menus)
+      return prev
     }, [])
     .sort((a, b) => a.priority - b.priority)
 }
