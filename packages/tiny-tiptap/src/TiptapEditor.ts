@@ -58,7 +58,6 @@ export default class TiptapEditor {
       const extensionIndex = this.extensions.findIndex((extension) => extension.name === key)
       const extension = this.extensions.at(extensionIndex)
       if (extension) {
-        // console.log(extension, key, view)
         const originOption = extension.options
         const newExtension = extension
           .extend({
