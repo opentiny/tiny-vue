@@ -1,12 +1,51 @@
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/grid/grid/vue'
-import { h, props, setup, defineComponent } from '@opentiny/vue-common'
+import { h, setup, defineComponent } from '@opentiny/vue-common'
 import TinyGridTable from '../../table'
 import GlobalConfig from '../../config'
 
 const { themes, viewConfig } = GlobalConfig
 const { SAAS: T_SAAS } = themes
 const { GANTT: V_GANTT, MF: V_MF, CARD: V_CARD } = viewConfig
+
+const TinyGridTablePropKeys = Object.keys(TinyGridTable.props)
+
+export const $constants = {
+  GLOBAL_CONFIG: GlobalConfig,
+  TinyGridTablePropKeys
+}
+
+export const gridProps = {
+  _constants: {
+    type: Object,
+    default: () => $constants
+  },
+  columns: Array,
+  proxyConfig: Object,
+  fetchData: Object,
+  saveData: Object,
+  deleteData: Object,
+  toolbar: Object,
+  pager: Object,
+  dataset: Object,
+  autoLoad: {
+    type: Boolean,
+    default: true
+  },
+  seqSerial: {
+    type: Boolean,
+    default: false
+  },
+  events: Object,
+  ...TinyGridTable.props,
+  isBeforePageChange: Boolean,
+  showSaveMsg: {
+    type: Boolean,
+    default: false
+  },
+  isMultipleHistory: Boolean,
+  selectToolbar: [Boolean, Object]
+}
 
 // 渲染主入口，创建表格最外层节点
 function createRender(opt) {
@@ -58,27 +97,9 @@ const Grid = defineComponent({
   components: {
     TinyGridTable
   },
-  props: [
-    ...props,
-    ...Object.keys(TinyGridTable.props),
-    'columns',
-    'proxyConfig',
-    'fetchData',
-    'saveData',
-    'deleteData',
-    'toolbar',
-    'paper',
-    'dataset',
-    'autoLoad',
-    'seqSerial',
-    'events',
-    'isBeforePageChange',
-    'showSaveMsg',
-    'isMultipleHistory',
-    'selectToolbar'
-  ],
+  props: gridProps,
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api, mono: true })
   },
   render() {
     const {

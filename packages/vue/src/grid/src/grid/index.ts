@@ -1,4 +1,4 @@
-import Grid from './src/index'
+import Grid from './src/pc.vue'
 import { version } from '../../package.json'
 
 Grid.version = version
