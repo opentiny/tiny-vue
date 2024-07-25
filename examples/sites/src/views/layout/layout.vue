@@ -386,7 +386,7 @@ export default defineComponent({
   }
   #layoutSider.showMenu {
     display: block !important;
-    z-index: 9;
+    z-index: var(--layout-sider-zindex);
   }
 }
 </style>
