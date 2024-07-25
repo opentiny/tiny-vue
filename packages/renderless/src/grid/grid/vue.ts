@@ -140,7 +140,7 @@ export const renderless = (
 
         listeners[evkey] = events[event]
 
-        if (!['pageChange', 'sortChange', 'filterChange', 'toolbarButtonClick'].indexOf(event)) {
+        if (!['pageChange', 'sortChange', 'filterChange', 'toolbarButtonClick'].includes(event)) {
           state.emitter.on(evkey, events[event])
         }
       }
