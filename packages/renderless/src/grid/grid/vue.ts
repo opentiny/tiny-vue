@@ -72,7 +72,9 @@ const initState = ({
       propKeys.forEach((key) => (rest[key] = props[key]))
       return rest
     }),
-    proxyOpts: computed(() => extend(true, {}, GlobalConfig.grid.proxyConfig, props.proxyConfig)),
+    proxyOpts: computed(() => {
+      return extend(true, {}, GlobalConfig.grid.proxyConfig, props.proxyConfig)
+    }),
     vSize: computed(() => props.size || (parent && parent.size) || (parent && parent.vSize)),
     seqIndex: computed(() => {
       let seqIndexValue = props.startIndex
@@ -138,7 +140,7 @@ export const renderless = (
 
         listeners[evkey] = events[event]
 
-        if (~['pageChange', 'sortChange', 'filterChange', 'toolbarButtonClick'].indexOf(event)) {
+        if (!['pageChange', 'sortChange', 'filterChange', 'toolbarButtonClick'].indexOf(event)) {
           state.emitter.on(evkey, events[event])
         }
       }
