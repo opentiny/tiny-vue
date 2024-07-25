@@ -1,32 +1,32 @@
 export default {
-  mode: ['pc'],
-  apis: [
-    {
-      name: 'chart',
-      type: 'component',
-      props: [
+    mode: ['pc'],
+    apis: [
         {
-          name: 'options',
-          type: 'object',
-          defaultValue: '--',
-          desc: {
-            'zh-CN': '图表参数',
-            'en-US': 'Whether to disable container detection during resize'
-          },
-          mode: ['pc'],
-          pcDemo: 'chart/question#question-base'
+            name: 'chart',
+            type: 'component',
+            props: [
+                {
+                    name: 'options',
+                    type: 'object',
+                    defaultValue: '--',
+                    desc: {
+                        'zh-CN': '图表参数',
+                        'en-US': 'Whether to disable container detection during resize'
+                    },
+                    mode: ['pc'],
+                    pcDemo: 'chart/question#question-base'
+                }
+            ],
+            events: [],
+            methods: [],
+            slots: []
         }
-      ],
-      events: [],
-      methods: [],
-      slots: []
-    }
-  ],
-  types: [
-    {
-      name: 'options',
-      type: 'interface',
-      code: `
+    ],
+    types: [
+        {
+            name: 'options',
+            type: 'interface',
+            code: `
   interface options {
     theme: string // 主题
     color: array | string // 颜色
@@ -44,6 +44,6 @@ export default {
     title: object // 进度图图表标题样式
     text: object // 进度图图表右侧文本样式
   }`
-    }
-  ]
+        }
+    ]
 }
