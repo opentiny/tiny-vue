@@ -10,6 +10,7 @@ import {
   eventClick,
   Active
 } from './index'
+import type { ISharedRenderlessParamHooks } from '@/types'
 
 export const api = [
   'state',
@@ -26,7 +27,7 @@ export const api = [
 ]
 export const renderless = (
   props,
-  { computed, onBeforeUnmount, reactive },
+  { computed, onBeforeUnmount, reactive, watch }: ISharedRenderlessParamHooks,
   { vm, emit },
   {
     Editor,
@@ -292,6 +293,13 @@ export const renderless = (
   onBeforeUnmount(() => {
     state.editor.destroy()
   })
+
+  watch(
+    () => props.modelValue,
+    (value) => {
+      state.editor.commands.setContent(value)
+    }
+  )
 
   return api
 }
