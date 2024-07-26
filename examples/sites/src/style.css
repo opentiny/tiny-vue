@@ -6,9 +6,9 @@ html {
 :root {
   --docs-markdown-top-body-zindex: 99;
   --docs-tabs-header-zindex: 100;
-  --float-settings-zindex: 999;
+  --docs-float-settings-zindex: 999;
   --docs-header-zindex: 200;
-  --layout-sider-zindex: 201;
+  --docs-layout-sider-zindex: 201;
 }
 
 .tinyui-design-header {

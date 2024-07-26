@@ -261,7 +261,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   column-gap: var(--ti-common-space-3x);
-  z-index: var(--float-settings-zindex);
+  z-index: var(--docs-float-settings-zindex);
   transition: all 0.3s linear;
 
   &.float-settings--aside {
