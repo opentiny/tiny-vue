@@ -33,6 +33,23 @@ const registerModules = function () {
     Icons[iconKey] = ICONS_CONFIG[iconKey]
   })
 
+  const SnowTheme = Quill.imports['themes/snow']
+  SnowTheme.DEFAULTS = {
+    modules: {
+      toolbar: {
+        handlers: {
+          ...SnowTheme.DEFAULTS.modules.toolbar.handlers,
+          undo() {
+            this.quill.history.undo()
+          },
+          redo() {
+            this.quill.history.redo()
+          },
+        }
+      }
+    }
+  }
+
   Quill.register(
     {
       'modules/toolbar': Toolbar,
