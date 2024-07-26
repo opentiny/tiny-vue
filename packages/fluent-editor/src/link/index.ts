@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import LinkBlot from './formats/link';
 import Tooltip from './modules/tooltip';
 const icons = Quill.imports['ui/icons'];

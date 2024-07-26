@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import Action from './actions/Action';
 import ImageBlot, { ImageContainerBlot } from './image';
 import DefaultOptions, { Options } from './Options';

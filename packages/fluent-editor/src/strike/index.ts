@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 const Inline = Quill.imports['blots/inline'];
 
 // @dynamic

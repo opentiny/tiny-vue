@@ -79,7 +79,10 @@
     border-color: var(--ti-switch-checked-disabled-border-color);
   }
 
-  &::after {
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     content: '';
     width: var(--ti-switch-dot-size);
     height: var(--ti-switch-dot-size);
@@ -104,9 +107,9 @@
       text-align: center;
       overflow: hidden;
     }
+  }
 
-    &:after {
-      left: calc(100% - var(--ti-switch-dot-offset));
-    }
+  &&-checked .@{switch-prefix-cls}__button {
+    left: calc(100% - var(--ti-switch-dot-offset));
   }
 }

@@ -1,4 +1,4 @@
-import * as Quill from 'quill'
+import Quill from 'quill'
 import {
   ERROR_IMAGE_PLACEHOLDER_CN,
   ERROR_IMAGE_PLACEHOLDER_EN,
