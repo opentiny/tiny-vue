@@ -3392,6 +3392,17 @@ export default {
           pcDemo: 'grid-editor#editor-custom-editor-select'
         },
         {
+          name: 'filed',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置表格列的单元格显示字段',
+            'en-US': 'Set the cell display field for table columns'
+          },
+          mode: ['pc'],
+          pcDemo: 'grid#base-basic-usage'
+        },
+        {
           name: 'filter',
           type: 'boolean | IFilterConfig',
           defaultValue: 'false',

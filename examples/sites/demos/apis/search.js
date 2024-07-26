@@ -63,6 +63,17 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '设置是否禁用【3.18.0新增】',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: 'slot-prefix'
+        },
+        {
           name: 'is-enter-search',
           type: 'boolean',
           defaultValue: 'true',

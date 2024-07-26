@@ -57,6 +57,18 @@ export default {
       codeFiles: ['tabs-separator.vue']
     },
     {
+      demoId: 'size',
+      name: {
+        'zh-CN': '尺寸',
+        'en-US': 'Size'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>size</code> 改变尺寸。</p>\n',
+        'en-US': '<p>Use <code>size</code> to set the size.</p>\n'
+      },
+      codeFiles: ['size.vue']
+    },
+    {
       demoId: 'custom-more-icon',
       name: {
         'zh-CN': "定义'更多'按钮",

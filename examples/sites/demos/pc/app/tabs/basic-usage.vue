@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .pc-demo .tiny-tabs__content {
   line-height: 2;
 }

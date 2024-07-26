@@ -791,7 +791,8 @@ export default defineComponent({
       }
     }
 
-    :deep(.tiny-tabs__content) {
+    & > :deep(.tiny-tabs__content) {
+      // 不能影响到tabs组件的样式
       margin: 0;
       overflow: visible;
     }

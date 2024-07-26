@@ -55,6 +55,7 @@ export const cmpMenus = [
       { name: 'TimePickerMobile', nameCn: '时间选择器', key: 'time-picker-mobile' },
       { name: 'Button', nameCn: '按钮', key: 'button' },
       { name: 'Checkbox', nameCn: '复选框', key: 'checkbox' },
+      { name: 'FluentEditor', nameCn: '富文本', key: 'fluent-editor' },
       { name: 'Form', nameCn: '表单', key: 'form' },
       { name: 'Input', nameCn: '输入框', key: 'input' },
       { name: 'Numeric', nameCn: '计数器', key: 'numeric' },

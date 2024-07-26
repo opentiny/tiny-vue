@@ -1,5 +1,5 @@
 export const tinyTabsSmbTheme = {
-  'ti-tabs-height': 'var(--ti-common-size-13x)',
+  'ti-tabs-height': 'var(--ti-common-size-12x)',
   'ti-tabs-dark-item-height': 'calc(var(--ti-common-size-base) * 11.75)',
   'ti-tabs-header-font-weight-active': 'var(--ti-common-font-weight-bold)',
   'ti-tabs-item-font-size': 'var(--ti-common-font-size-2)',

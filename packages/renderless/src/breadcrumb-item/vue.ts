@@ -30,7 +30,7 @@ export const renderless = (
   const breadcrumb = inject('breadcrumb')
   const constants = breadcrumb._constants
   // separator
-  const separator = props.separator || designConfig?.separator || '>'
+  const separator = breadcrumb.separator || designConfig?.separator || '>'
   const state = reactive({
     size: inject('size', null),
     separator
