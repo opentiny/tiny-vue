@@ -11,7 +11,6 @@ import {
   Active
 } from './index'
 import type { ISharedRenderlessParamHooks } from '@/types'
-import type { Editor as TipTapEditor } from '@tiptap/core'
 
 export const api = [
   'state',
@@ -55,7 +54,7 @@ export const renderless = (
     VueNodeViewRenderer,
     Placeholder,
     codeHighlight
-  }: { Editor: TipTapEditor } | any
+  }
 ) => {
   let defaultToolBar = [
     'bold',
@@ -269,7 +268,7 @@ export const renderless = (
   let options = Object.assign(defaultOptions, props.options)
 
   const state = reactive({
-    editor: new Editor(options) as TipTapEditor,
+    editor: new Editor(options),
     toolbar: computed(() => (props.customToolBar.length ? props.customToolBar : defaultToolBar)),
     // table 变量
     isShowTable: false,

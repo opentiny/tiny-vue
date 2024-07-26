@@ -40,7 +40,6 @@
     "xss": "1.0.11"
   },
   "devDependencies": {
-    "@tiptap/core": "~2.1.16",
     "esno": "^4.7.0",
     "tsup": "7.2.0"
   }
