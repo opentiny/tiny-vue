@@ -4,13 +4,4 @@ title: Button 按钮
 
 # Button 按钮
 
-<div>
-
-按钮组件一般用于触发一些操作。
-
-```typescript
-import { Button } from '@opentiny/vue';
-```
-
-</div>
-
+<div>常用的操作按钮。</div>

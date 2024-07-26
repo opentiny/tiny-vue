@@ -8,4 +8,5 @@ test('测试 Alert 自定义交互操作', async ({ page }) => {
   const alert = page.locator('.tiny-alert--large').first()
   const opration = alert.locator('.tiny-alert__opration')
   await expect(opration).toHaveCount(1)
+  await expect(opration).toHaveText('自定义内容')
 })

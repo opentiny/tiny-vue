@@ -414,7 +414,7 @@ async function batchBuild({ tasks, formats, message, emptyOutDir, dts, outDir })
             return true
           }
 
-          if (['react', 'react/jsx-runtime'].includes(source)) {
+          if (['react', 'react/jsx-runtime', 'react-dom/client'].includes(source)) {
             return true
           }
 

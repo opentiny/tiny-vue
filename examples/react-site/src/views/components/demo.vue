@@ -26,14 +26,14 @@
           <component :is="vueComponents[`${cmpId}/${demo.codeFiles[0]}`]" />
         </div>
       </div>
-      <component v-else :is="vueComponents[`${cmpId}/${demo.codeFiles[0]}`]" />
+      <component v-else :is="vueComponents[`${cmpId}/${demo.codeFiles[0]}`]" class="pc-demo-container" />
     </div>
     <!-- demo 打开后的示例代码  细滚动时，width:fit-content; -->
     <div v-if="demo.isOpen" class="px24 py20 b-t-lightless">
       <n-config-provider :theme-overrides="themeOverrides">
         <n-tabs v-model:value="tabValue" type="line" size="large" justify-content="space-evenly" @update:value="handleUpdateValue(demo)">
           <n-tab-pane v-for="(file, idx) in demo.files" :key="file.fileName" :name="'tab' + idx" :tab="file.fileName">
-            <n-layout :native-scrollbar="true" :content-style="`overflow-x:auto; padding: 20px 5px; background-color:#f5f6f8;`">
+            <n-layout :native-scrollbar="true" content-style="overflow-x:auto; padding: 20px 5px; background-color:#f5f6f8;">
               <n-code :code="file.code" :language="file.language" />
             </n-layout>
           </n-tab-pane>
@@ -42,6 +42,7 @@
     </div>
   </div>
 </template>
+
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, onMounted } from 'vue';
 import { $t, $t2 } from '@/i18n';
@@ -75,14 +76,14 @@ export default defineComponent({
         let hash = router.currentRoute.value.hash?.slice(1);
 
         // 兼容/#hashName这种模式
-        if (hash.indexOf('/') > -1) {
+        if (hash.includes('/')) {
           hash = hash.slice(1);
         }
         return hash;
       }),
       copyTip: $t('copyCode'),
       copyIcon: 'i-ti-copy',
-      themeOverrides: themeOverrides,
+      themeOverrides,
       descMd: null,
     });
     const fn = {
@@ -144,6 +145,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="less">
 .demo-desc {
   line-height: 1.5;

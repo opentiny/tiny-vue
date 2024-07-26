@@ -1,3 +1,5 @@
+import { forwardRef } from 'react'
+
 export function If(props) {
   if (props['v-if']) {
     return props.children
@@ -14,14 +16,34 @@ function defaultVIfAsTrue(props) {
   }
 }
 
-export function Component(props) {
+function cssStringToObject(cssString) {
+  const reactStyle = {}
+  const cssProperties = cssString.split(';').filter(Boolean)
+
+  cssProperties.forEach((property) => {
+    const [key, value] = property.split(':').map((item) => item.trim())
+    if (key && value) {
+      const camelCaseKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase())
+      reactStyle[camelCaseKey] = value
+    }
+  })
+
+  return reactStyle
+}
+
+export const Component = forwardRef(function Component(props, ref) {
   const Is = props.is || (() => '')
   return (
     <If v-if={defaultVIfAsTrue(props)}>
-      <Is className={props.className} />
+      <Is
+        ref={ref}
+        className={props.className}
+        style={typeof props.style === 'string' ? cssStringToObject(props.style) : props.style}>
+        {props.children}
+      </Is>
     </If>
   )
-}
+})
 
 export function Slot(props) {
   const { name = 'default', slots = {}, parent_children } = props

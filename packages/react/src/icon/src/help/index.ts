@@ -12,4 +12,4 @@
 import { Svg } from '@opentiny/react-common'
 import { ReactComponent as Help } from '@opentiny/vue-theme/svgs/help.svg'
 
-export default Svg({ name: 'Help', component: Help })
+export default Svg({ name: 'IconHelp', component: Help })

@@ -68,14 +68,66 @@
     "type": "template",
     "exclude": false
   },
+  "Col": {
+    "path": "react/src/col/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "ColPc": {
+    "path": "react/src/col/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
   "Common": {
-    "path": "react/common/src/index.ts",
+    "path": "react/src/common/src/index.ts",
     "type": "module",
     "exclude": false
   },
   "Icon": {
     "path": "react/src/icon/index.ts",
     "type": "component",
+    "exclude": false
+  },
+  "Layout": {
+    "path": "react/src/layout/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "LayoutPc": {
+    "path": "react/src/layout/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Modal": {
+    "path": "react/src/modal/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "ModalPc": {
+    "path": "react/src/modal/src/pc.jsx",
+    "type": "template",
+    "exclude": false
+  },
+  "Row": {
+    "path": "react/src/row/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "RowPc": {
+    "path": "react/src/row/src/pc.jsx",
+    "type": "template",
     "exclude": false
   },
   "Switch": {

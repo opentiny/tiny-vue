@@ -17,6 +17,7 @@ export default function (props) {
     trueValue = true,
     beforeChange,
     displayOnly = false,
+    onChange
   } = props
 
   const defaultProps = Object.assign(
@@ -27,21 +28,17 @@ export default function (props) {
       modelValue,
       tabindex,
       trueValue,
-      displayOnly
+      displayOnly,
+      $listeners: {
+        change: onChange
+      }
     },
     props
   )
 
-  const {
-    ref,
-    parent,
-    current: vm
-  } = useVm()
+  const { ref, parent, current: vm } = useVm()
 
-  const {
-    state,
-    toggle
-  } = useSetup({
+  const { state, toggle } = useSetup({
     props: defaultProps,
     api,
     renderless,
@@ -53,20 +50,20 @@ export default function (props) {
   return (
     <span
       ref={ref}
-      className={vc([
-        state.wrapClasses,
-        state.showText ? 'tiny-switch__text' : ''
-      ])}
+      className={vc([state.wrapClasses, state.showText ? 'tiny-switch__text' : ''])}
       tabIndex={tabindex}
       onClick={toggle}
       onKeyDown={(e) => {
         e.key === 'Enter' && toggle(e)
-      }}
-    >
+      }}>
       <span className={state.innerClasses}>
         <If v-if={!mini && state.showText}>
-          <Slot v-if={state.currentValue === trueValue} name='open' slots={props.slots}>ON</Slot>
-          <Slot v-if={state.currentValue === falseValue} name='close' slots={props.slots}>OFF</Slot>
+          <Slot v-if={state.currentValue === trueValue} name="open" slots={props.slots}>
+            ON
+          </Slot>
+          <Slot v-if={state.currentValue === falseValue} name="close" slots={props.slots}>
+            OFF
+          </Slot>
         </If>
       </span>
     </span>

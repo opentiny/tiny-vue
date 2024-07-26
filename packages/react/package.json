@@ -14,7 +14,11 @@
     "@opentiny/react-alert": "workspace:~",
     "@opentiny/react-badge": "workspace:~",
     "@opentiny/react-button": "workspace:~",
+    "@opentiny/react-col": "workspace:~",
     "@opentiny/react-icon": "workspace:~",
+    "@opentiny/react-layout": "workspace:~",
+    "@opentiny/react-modal": "workspace:~",
+    "@opentiny/react-row": "workspace:~",
     "@opentiny/react-switch": "workspace:~"
   }
 }

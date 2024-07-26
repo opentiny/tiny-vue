@@ -12,4 +12,4 @@
 import { Svg } from '@opentiny/react-common'
 import { ReactComponent as Error } from '@opentiny/vue-theme/svgs/error.svg'
 
-export default Svg({ name: 'Error', component: Error })
+export default Svg({ name: 'IconError', component: Error })

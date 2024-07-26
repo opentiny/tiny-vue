@@ -1,8 +1,7 @@
 ---
-title: Button 按钮
+title: Button
 ---
 
-# Button 按钮
+# Button
 
-<div> 按钮组件一般用于触发一些操作。</div>
-
+<div>Commonly used button.</div>

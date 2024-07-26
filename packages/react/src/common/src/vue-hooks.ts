@@ -34,11 +34,42 @@ import {
 import { useExcuteOnce } from './hooks'
 import { useEffect } from 'react'
 
+const vmContext = new Map()
+export const useProvide = (vm, key, value) => {
+  useEffect(() => {
+    for (const candidateVm of vmContext.keys()) {
+      if (vm.$el?.contains(candidateVm.$el)) {
+        const context = vmContext.get(candidateVm)
+        if (!context) {
+          return
+        }
+
+        for (const subKey in value) {
+          context[key][subKey] = value[subKey]
+        }
+      }
+    }
+  }, [key, value])
+}
+
 // 通用
-const inject = () => {}
+const getInject = ({ vm }) => {
+  return (key, defaultValue = {}) => {
+    if (!vmContext.get(vm)) {
+      vmContext.set(vm, reactive({}))
+    }
+    const context = vmContext.get(vm)
+
+    if (!context[key]) {
+      Object.assign(context, { [key]: defaultValue })
+    }
+
+    return context[key]
+  }
+}
 const provide = () => {}
 
-export function generateVueHooks({ $bus }) {
+export function generateVueHooks({ $bus, vm }) {
   const reload = () => $bus.emit('event:reload')
 
   function toPageLoad(reactiveHook, reload) {
@@ -90,7 +121,7 @@ export function generateVueHooks({ $bus }) {
     getCurrentScope,
     onScopeDispose,
     // 依赖注入
-    inject,
+    inject: getInject({ vm }),
     provide,
     // 生命周期函数
     onBeforeUnmount() {

@@ -12,4 +12,4 @@
 import { Svg } from '@opentiny/react-common'
 import { ReactComponent as Success } from '@opentiny/vue-theme/svgs/success.svg'
 
-export default Svg({ name: 'Success', component: Success })
+export default Svg({ name: 'IconSuccess', component: Success })

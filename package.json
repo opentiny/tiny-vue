@@ -92,6 +92,7 @@
     "test:e2e2:mobile": "pnpm -C examples/vue2 test:e2e --project=android",
     "test:e2e2.7:mobile": "pnpm -C examples/vue2.7 test:e2e --project=android",
     "test:e2e3:mobile": "pnpm -C examples/vue3 test:e2e --project=android",
+    "test:e2e:react": "pnpm -C examples/react-site test:e2e --project=chromium",
     "// ---------- playwright下载chromium、firefox等浏览器内核 ----------": "",
     "install:browser": "pnpm -C examples/vue3 install:browser",
     "// ---------- e2e测试代码生成器 ----------": "",
@@ -222,7 +223,8 @@
       "vue2": "npm:vue@2.6.14",
       "vue2.7": "npm:vue@2.7.10",
       "vue3": "npm:vue@3.3.9",
-      "vite": "^4.3.8"
+      "vite": "^4.3.8",
+      "svgo": "2.8.0"
     },
     "packageExtensions": {
       "vue-template-compiler@2.6.14": {
