@@ -22,18 +22,15 @@ export const api = ['linkClick', 'state']
 
 export const renderless = (
   props: IBreadcrumbItemProps,
-  { reactive, inject }: ISharedRenderlessParamHooks,
-  { designConfig },
-  { refs, router, emit }: IBreadcrumbItemRenderlessParamUtils
+  { reactive, inject, computed }: ISharedRenderlessParamHooks,
+  { refs, router, emit, designConfig }: IBreadcrumbItemRenderlessParamUtils
 ) => {
   const breadcrumbEmitter = inject('breadcrumbEmitter')
   const breadcrumb = inject('breadcrumb')
   const constants = breadcrumb._constants
-  // separator
-  const separator = breadcrumb.separator || designConfig?.separator || '>'
   const state = reactive({
     size: inject('size', null),
-    separator
+    separator: computed(() => breadcrumb.separator || designConfig?.separator || '>')
   })
   const api: IBreadcrumbItemApi = {
     state,
