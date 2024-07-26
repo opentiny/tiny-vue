@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { LANG_CONF } from '../../config/editor.config'
 import { elementRemove, arrayFrom, css, getRelativeRect } from '../utils';
 import {

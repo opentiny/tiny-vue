@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { EMOJI_SPRITE as emojiSprite } from '../../config/base64-image';
 import emojiList from '../emoji-list';
 

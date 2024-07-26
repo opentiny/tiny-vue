@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { LANG_CONF } from '../config';
 import { ICounterOption } from '../config/types';
 
