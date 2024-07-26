@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { sanitize } from '../../config/editor.utils';
 
 const Embed = Quill.imports['blots/embed'];

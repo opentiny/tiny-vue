@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { compare } from '../../utils/method'
 import { isNullOrUndefined } from '../../config/editor.utils';
 import {

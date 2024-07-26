@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { isNullOrUndefined } from '../config/editor.utils';
 const SnowTheme = Quill.imports['themes/snow'];
 

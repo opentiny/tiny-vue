@@ -1,4 +1,4 @@
-import * as Quill from 'quill'
+import Quill from 'quill'
 
 import {
   FILE_UPLOADER_MIME_TYPES,

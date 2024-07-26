@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import File from './formats/file';
 import FileBar from './modules/file-bar';
 
