@@ -115,8 +115,7 @@ export const renderless = (
 
   const api = {
     state,
-    setLink: setLink(state.editor),
-    handleChange: handleChange(state.editor),
+    handleChange: handleChange(state),
     // table处理函数
     tableMouseMove: tableMouseMove(state, vm),
     toggleTablePanel: toggleTablePanel(state),
