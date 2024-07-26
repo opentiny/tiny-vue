@@ -48,12 +48,13 @@ export const api = [
   'focusHandler'
 ]
 
-const initState = ({ reactive, showPopper, popperElm, referenceElm, props, inject, popperJS }) =>
+const initState = ({ reactive, showPopper, popperElm, referenceElm, props, inject, popperJS, currentPlacement }) =>
   reactive({
     popperJS,
     showPopper,
     popperElm,
     referenceElm,
+    currentPlacement,
     timeout: null,
     focusing: false,
     expectedState: undefined,
@@ -85,8 +86,19 @@ export const renderless = (
 
   Object.assign(popperParam, { slots, onBeforeUnmount, onDeactivated, watch })
 
-  const { showPopper, updatePopper, popperElm, referenceElm, doDestroy, popperJS } = userPopper(popperParam as any)
-  const state: ITooltipState = initState({ reactive, showPopper, popperElm, referenceElm, props, inject, popperJS })
+  const { showPopper, updatePopper, popperElm, referenceElm, doDestroy, popperJS, currentPlacement } = userPopper(
+    popperParam as any
+  )
+  const state: ITooltipState = initState({
+    reactive,
+    showPopper,
+    popperElm,
+    referenceElm,
+    props,
+    inject,
+    popperJS,
+    currentPlacement
+  })
 
   Object.assign(api, {
     state,
