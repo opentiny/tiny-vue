@@ -1,0 +1,32 @@
+.tiny-slash-menu {
+    &__view {
+      color: #000000;
+      // background: #e5e5e5;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #e5e5e5;
+      padding: 8px;
+      width: 256px;
+      max-height: 384px;
+      overflow-y: auto;
+      overflow-x: auto;
+    }
+  
+    &__item {
+      cursor: pointer;
+      color: #737373;
+      border-radius: 4px;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+  
+      &:hover {
+        background-color: #f5f5f5;
+      }
+  
+      &.is-active {
+        background-color: #e0ebfd;
+      }
+    }
+  }

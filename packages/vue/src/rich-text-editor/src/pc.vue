@@ -306,7 +306,7 @@ import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } f
 
 import TinyTiptap from '@opentiny/tiny-tiptap'
 
-import SlashMenu from './components/slash-menu.vue'
+import SlashMenu from './components/slash-menu.tsx'
 
 import { ExtensionViewMap } from './extensions'
 
