@@ -9,10 +9,6 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Grid from './grid/grid'
-
-Grid.install = function (Vue) {
-  Vue.component(Grid.name, Grid)
-}
+import Grid from './grid/index'
 
 export default Grid
