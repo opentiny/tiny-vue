@@ -26,10 +26,10 @@ export const api = ['state', 'visible', 'hoverItem', 'selectOptionClick']
 const initState = ({ reactive, computed, props, api, markRaw, select, parent }) => {
   const state = reactive({
     parent: markRaw(parent),
+    selectMultiple: computed(() => select.multiple),
     created: computed(() => props.created),
     index: -1,
-    select: markRaw(select),
-    hover: computed(() => !state.select.optimization && state.select.state.hoverValue === state.index),
+    hover: computed(() => !select.optimization && select.state.hoverValue === state.index),
     visible: true,
     hitState: false,
     groupDisabled: false,
@@ -106,13 +106,6 @@ const initWatch = ({ watch, props, state, select, constants }) => {
       }
     }
   )
-
-  watch(
-    () => state.visible,
-    () => {
-      select.state.filteredOptionsCount += state.visible ? 1 : -1
-    }
-  )
 }
 
 const initOnMounted = ({ onMounted, props, api, vm, state, constants, select }) => {
@@ -144,10 +137,13 @@ const initOnBeforeUnmount = ({ onBeforeUnmount, props, select, vm, state }) => {
   })
 }
 
-const initSelectState = ({ state, select, markRaw, props }) => {
-  let vm = { ...props, state }
-  select.state.options.push(markRaw(vm))
-  select.state.cachedOptions.push(markRaw(vm))
+const initSelectState = ({ state, select, props, toRefs, reactive }) => {
+  // 当select下的option数量变化时，vue runtime会尽量复用存在的option, 这些option的props会更新。
+  // toRefs：保持vm下的属性与props的值能关联上。
+  // reactive： toRefs之后是一些ref值, 不包裹reactive，就需要使用.value访问值。
+  let vm = reactive({ ...toRefs(props), state })
+  select.state.options.push(vm)
+  select.state.cachedOptions.push(vm)
   select.state.optionsIndex++
   state.index = select.state.optionsIndex
   select.state.optionsCount++
@@ -156,7 +152,7 @@ const initSelectState = ({ state, select, markRaw, props }) => {
 
 export const renderless = (
   props,
-  { computed, onMounted, onBeforeUnmount, reactive, watch, inject, markRaw },
+  { computed, onMounted, onBeforeUnmount, reactive, watch, inject, markRaw, toRefs },
   { vm, parent }
 ) => {
   const api = {}
@@ -168,7 +164,7 @@ export const renderless = (
   initWatch({ watch, props, state, select, constants })
   initOnMounted({ onMounted, props, api, vm, state, constants, select })
   initOnBeforeUnmount({ onBeforeUnmount, props, select, vm, state })
-  initSelectState({ state, select, markRaw, props })
+  initSelectState({ state, select, props, toRefs, reactive })
 
   parent.$on(constants.EVENT_NAME.handleGroupDisabled, api.handleGroupDisabled)
 

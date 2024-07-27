@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@opentiny/solid-common": "workspace:~",
-    "@opentiny/solid-button": "workspace:~"
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-alert": "workspace:~"
   }
 }

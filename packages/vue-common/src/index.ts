@@ -26,6 +26,12 @@ import { defineComponent, isVue2, isVue3 } from './adapter'
 import { useBreakpoint } from './breakpoint'
 import { useDefer } from './usedefer'
 
+import { useInstanceSlots as createUseInstanceSlots } from '@opentiny/vue-renderless/common/deps/useInstanceSlots'
+import { useRelation as createUseRelation } from '@opentiny/vue-renderless/common/deps/useRelation'
+
+export const useInstanceSlots = createUseInstanceSlots({ ...hooks, isVue2 })
+export const useRelation = createUseRelation({ ...hooks, isVue2 })
+
 export { useBreakpoint, useDefer }
 
 export { version } from '../package.json'
@@ -285,7 +291,23 @@ export function svg({ name = 'Icon', component }) {
       })
     )
 }
-
+/**
+ * 将用户传入的 $attrs中的属性， 与 filters 中传入的属性做对比。
+ * 如果include ,  且属性在filters中， 则返回。
+ * 如果 !include, 且属性不匹配filters， 则返回。
+ * 在模板中，都是通过 v-bind="a($attrs,[])" 来使用该函数 。
+ * @mark 由于现在组件都移除了 inheritAttrs。 加在外层的 v-bind="a()"" 都可以去掉了， 否则会出现双份效果。
+ *
+ * @param attrs : Object
+ * @param filters : string[]
+ * @param include : boolean
+ *
+ * @example Button-pc中： v-bind="a($attrs, ['class', 'style', 'title', 'id'], true)"
+ * @exampleResult 把用户使用<tiny-button ...id\class> 等属性，会传递给该位置的dom。
+ *
+ * @example Area-pc中： v-bind="a($attrs, ['^on[A-Z]'])"
+ * @exampleResult 把用户使用<tiny-area ...on> 等事件, 不会传递给内部的select上， 但是class,style等，会传递给select上。
+ */
 export const filterAttrs = (attrs, filters, include) => {
   const props = {}
 
@@ -296,7 +318,6 @@ export const filterAttrs = (attrs, filters, include) => {
       props[name] = attrs[name]
     }
   }
-
   return props
 }
 

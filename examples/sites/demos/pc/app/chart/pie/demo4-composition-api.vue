@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-chart-pie :data="chartData" :settings="chartSettings"></tiny-chart-pie>
+    <tiny-chart-pie :options="options"></tiny-chart-pie>
   </div>
 </template>
 
@@ -8,19 +8,30 @@
 import { ref } from 'vue'
 import { ChartPie as TinyChartPie } from '@opentiny/vue'
 
-const chartData = ref({
-  columns: ['日期', '访问用户'],
-  rows: [
-    { 日期: '1/1', 访问用户: 1393 },
-    { 日期: '1/2', 访问用户: 3530 },
-    { 日期: '1/3', 访问用户: 2923 },
-    { 日期: '1/4', 访问用户: 1723 },
-    { 日期: '1/5', 访问用户: 3792 },
-    { 日期: '1/6', 访问用户: 4593 }
+const options = ref({
+  type: 'pie',
+  position: {
+    center: ['50%', '50%']
+  },
+  legend: {
+    show: true,
+    position: {
+      right: '10%',
+      top: 'center'
+    },
+    orient: 'vertical'
+  },
+  label: {
+    show: true,
+    type: 'percent',
+    line: true
+  },
+  data: [
+    { value: 100, name: 'VPC' },
+    { value: 90, name: 'IM' },
+    { value: 49, name: 'EIP' },
+    { value: 14, name: 'SG' },
+    { value: 120, name: 'OTHER' }
   ]
-})
-// 限制显示条数饼图
-const chartSettings = ref({
-  limitShowNum: 5
 })
 </script>

@@ -1,79 +1,168 @@
 <template>
   <div>
-    <tiny-sunburst :extend="extend" theme-type="ict"></tiny-sunburst>
+    <tiny-sunburst :options="options"></tiny-sunburst>
   </div>
 </template>
 
-<script>
+<script lang="jsx">
 import { ChartSunburst } from '@opentiny/vue'
 
-const data = [
-  {
-    name: '展示平台',
-    children: [
-      {
-        name: '手机端',
-        children: [
+export default {
+  components: {
+    TinySunburst: ChartSunburst
+  },
+  data() {
+    return {
+      options: {
+        series: {
+          label: {
+            rotate: 'radial'
+          },
+          levels: [
+            {},
+            {
+              r0: '15%',
+              r: '35%',
+              itemStyle: {
+                borderWidth: 2
+              },
+              label: {
+                rotate: 'tangential'
+              }
+            },
+            {
+              r0: '35%',
+              r: '70%',
+              label: {
+                align: 'right'
+              }
+            },
+            {
+              r0: '70%',
+              r: '72%',
+              label: {
+                position: 'outside',
+                padding: 3,
+                silent: false
+              },
+              itemStyle: {
+                borderWidth: 3
+              }
+            }
+          ]
+        },
+        data: [
           {
-            name: '安卓',
+            name: '展示平台',
             children: [
               {
-                name: 'SVG ↑↑↑',
-                value: 1
+                name: '手机端',
+                children: [
+                  {
+                    name: '安卓',
+                    children: [
+                      {
+                        name: 'SVG ↑↑↑',
+                        value: 1
+                      }
+                    ]
+                  },
+                  {
+                    name: 'iOS',
+                    children: [
+                      {
+                        name: 'SVG ↑',
+                        value: 1
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                name: '电脑端',
+                children: [
+                  {
+                    name: 'Mac',
+                    children: [
+                      {
+                        name: 'Chrome',
+                        children: [
+                          {
+                            name: 'SVG ↑',
+                            value: 1
+                          }
+                        ]
+                      },
+                      {
+                        name: 'Safari',
+                        children: [
+                          {
+                            name: '-',
+                            value: 1
+                          }
+                        ]
+                      },
+                      {
+                        name: 'Firefox',
+                        children: [
+                          {
+                            name: '-',
+                            value: 1
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    name: 'Windows',
+                    children: [
+                      {
+                        name: 'IE',
+                        children: [
+                          {
+                            name: 'Canvas ↑↑',
+                            value: 1
+                          }
+                        ]
+                      },
+                      {
+                        name: 'Chrome',
+                        children: [
+                          {
+                            name: '-',
+                            value: 1
+                          }
+                        ]
+                      },
+                      {
+                        name: 'Firefox',
+                        children: [
+                          {
+                            name: 'SVG ↑',
+                            value: 1
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
           {
-            name: 'iOS',
+            name: '图表类型',
             children: [
               {
-                name: 'SVG ↑',
-                value: 1
-              }
-            ]
-          }
-        ]
-      },
-      {
-        name: '电脑端',
-        children: [
-          {
-            name: 'Mac',
-            children: [
-              {
-                name: 'Chrome',
+                name: '折线图',
                 children: [
                   {
-                    name: 'SVG ↑',
+                    name: 'SVG ↑↑',
                     value: 1
                   }
                 ]
               },
               {
-                name: 'Safari',
-                children: [
-                  {
-                    name: '-',
-                    value: 1
-                  }
-                ]
-              },
-              {
-                name: 'Firefox',
-                children: [
-                  {
-                    name: '-',
-                    value: 1
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            name: 'Windows',
-            children: [
-              {
-                name: 'IE',
+                name: '柱状图',
                 children: [
                   {
                     name: 'Canvas ↑↑',
@@ -82,7 +171,21 @@ const data = [
                 ]
               },
               {
-                name: 'Chrome',
+                name: '饼图',
+                children: [
+                  {
+                    name: '-',
+                    value: 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: '数据量',
+            children: [
+              {
+                name: '< 1000',
                 children: [
                   {
                     name: '-',
@@ -91,47 +194,49 @@ const data = [
                 ]
               },
               {
-                name: 'Firefox',
+                name: '>= 1000',
                 children: [
                   {
-                    name: 'SVG ↑',
+                    name: 'Canvas ↑',
                     value: 1
                   }
                 ]
               }
             ]
+          },
+          {
+            name: '图表个数',
+            children: [
+              {
+                name: '< 10',
+                children: [
+                  {
+                    name: '-',
+                    value: 1
+                  }
+                ]
+              },
+              {
+                name: '>= 10',
+                children: [
+                  {
+                    name: 'SVG ↑↑↑',
+                    value: 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: '特殊\n渲染\n需求',
+            children: [
+              {
+                name: '仅 Canvas\n支持',
+                value: 1
+              }
+            ]
           }
         ]
-      }
-    ]
-  },
-  {
-    name: '特殊\n渲染\n需求',
-    children: [
-      {
-        name: '仅 Canvas\n支持',
-        value: 1
-      }
-    ]
-  }
-]
-
-export default {
-  components: {
-    TinySunburst: ChartSunburst
-  },
-  data() {
-    return {
-      extend: {
-        series: {
-          center: ['50%', '50%'],
-          data,
-          label: {
-            show: true,
-            rotate: 0,
-            color: '#191919'
-          }
-        }
       }
     }
   }

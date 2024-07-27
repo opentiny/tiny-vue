@@ -41,7 +41,7 @@
             <span
               :class="
                 m(
-                  'mr-3 shrink-0',
+                  'mr-3 shrink-0 text-color-text-primary leading-5.5',
                   titleOption.role === 'a' && 'cursor-pointer text-color-brand',
                   titleOption.class || ''
                 )
@@ -62,7 +62,9 @@
           </slot>
         </div>
         <tiny-tooltip effect="light" :content="state.descTooltip" placement="top" @mouseenter.native="handleEnterDesc">
-          <p v-if="data.desc" class="mt-2 text-xs line-clamp-2 sm:line-clamp-1">{{ data.desc }}</p>
+          <p v-if="data.desc" class="mt-2 text-xs line-clamp-2 sm:line-clamp-1 text-color-text-primary">
+            {{ data.desc }}
+          </p>
         </tiny-tooltip>
       </slot>
     </div>

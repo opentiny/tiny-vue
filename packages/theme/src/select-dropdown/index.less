@@ -220,6 +220,27 @@
     }
   }
 
+  & &__loading {
+    text-align: center;
+    padding: 10px 0;
+
+    > .circular {
+      fill: var(--ti-common-color-line-hover);
+      height: 16px;
+      width: 16px;
+      animation: loading-rotate 2s linear infinite;
+
+      .path {
+        animation: loading-dash 1.5s ease-in-out infinite;
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: 0;
+        stroke-width: 2;
+        stroke: var(--ti-common-color-line-hover);
+        stroke-linecap: round;
+      }
+    }
+  }
+
   .@{select-prefix-cls}__top-create {
     margin: 0 8px 4px;
     border-bottom: var(--ti-select-dropdown-top-create-border-weight-bottom)

@@ -1,0 +1,1 @@
+export { peopleEmoji } from './people';

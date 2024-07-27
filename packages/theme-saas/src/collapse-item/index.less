@@ -4,7 +4,7 @@
 
 .@{collapse-item-prefix-cls} {
   @apply border-b;
-  @apply border-b-color-border-disabled;
+  @apply border-b-color-border-separator;
 
   &:last-child {
     @apply border-b-0;
@@ -53,12 +53,6 @@
       @apply border-b-transparent;
     }
 
-    > svg {
-      @apply ~'-mt-px';
-      @apply text-xs;
-      @apply fill-color-icon-secondary;
-    }
-
     .@{collapse-item-prefix-cls}__word-overflow {
       @apply whitespace-nowrap;
       @apply overflow-hidden;
@@ -71,7 +65,7 @@
     }
 
     &:has(.@{collapse-item-prefix-cls}__word-overflow:hover) {
-      .@{collapse-item-prefix-cls}__arrow {
+      .@{collapse-item-prefix-cls}__arrow svg {
         @apply fill-color-brand;
       }
     }
@@ -100,7 +94,9 @@
     @apply cursor-pointer;
 
     &:hover {
-      @apply fill-color-brand;
+      svg {
+        @apply fill-color-brand;
+      }
     }
 
     &.is-active {
@@ -123,5 +119,13 @@
     @apply text-xs;
     @apply text-color-text-primary;
     @apply leading-5;
+  }
+
+  // 相对aui,dom结构有所调整，将tiny-collapse-item__header > svg 样式移到此类名下
+  &__arrow-icon {
+    @apply ~'-mt-px';
+    @apply text-xs;
+    @apply fill-color-icon-secondary;
+    @apply align-baseline;
   }
 }

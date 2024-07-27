@@ -35,7 +35,9 @@ export const tabNavPcProps = {
     default: '256px'
   },
   // tiny 新增
-  tooltipConfig: [String, Object]
+  tooltipConfig: [String, Object],
+  panelMaxHeight: String,
+  panelWidth: String
 }
 
 export const tabNavMobileProps = {

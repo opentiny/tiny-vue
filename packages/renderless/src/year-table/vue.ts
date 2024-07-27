@@ -23,7 +23,7 @@ export const renderless = (props, { computed, reactive, watch }, { emit, vm }) =
 
   Object.assign(api, {
     state,
-    getCellStyle: getCellStyle({ props }),
+    getCellStyle: getCellStyle({ props, state }),
     handleYearTableClick: handleYearTableClick({ emit, props, state }),
     markRange: markRange({ props, state }),
     watchDate: watchDate({ api, props }),

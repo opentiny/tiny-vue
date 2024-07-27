@@ -1,27 +1,27 @@
 <template>
-  <div
-    class="hui-chart chart-box"
-    ref="chartRef"
-    :style="{
-      position: 'relative',
-      height
-    }"
-  ></div>
+  <div class="hui-chart chart-box">
+    <div ref="chartRef" :style="{width, height}"></div>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
 import Core from '@opentiny/vue-chart-core'
 
-import './amap'
+import registerAmap from './amap'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartAutonaviMap',
+  name: $prefix + 'ChartAutonaviMap',
   mixins: [Core],
   data() {
     return {
       iChartName: 'AutonaviMapChart',
       option: {}
     }
+  },
+  mounted() {
+    registerAmap()
   },
   methods: {
     updateChart() {
@@ -75,3 +75,10 @@ export default {
   }
 }
 </script>
+
+<!-- <style>
+.ec-extension-amap {
+  position: absolute !important;
+  top: 0;
+}
+</style> -->

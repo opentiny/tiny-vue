@@ -1,13 +1,17 @@
 <template>
-  <div class="hui-chart chart-box" ref="chartRef" :style="{ height }"></div>
+  <div class="hui-chart chart-box">
+    <div ref="chartRef" :style="{ width, height }"></div>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
 import { tree } from './tree'
 import Core from '@opentiny/vue-chart-core'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartTree',
+  name: $prefix + 'ChartTree',
   mixins: [Core],
   data() {
     return {

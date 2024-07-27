@@ -157,6 +157,24 @@ export default {
       codeFiles: ['popper-options.vue']
     },
     {
+      demoId: 'ignore-boundaries',
+      name: {
+        'zh-CN': '忽略边界判断',
+        'en-US': 'Ignore boundary judgment'
+      },
+      desc: {
+        'zh-CN': `
+          由于 Popper 会判断是否超出 offsetParent 从而调整弹框弹出的位置，有些时候并不能达到我们想要的效果。<br>
+          因此提供一个在<code>popper-options</code>上新增一个属性<code>ignoreBoundaries: true</code> ，可以让 Popper 忽略边界判断，弹出的位置始终是我们设置的 placement 值。
+        `,
+        'en-US': `
+          Because Popper determines whether the offsetParent is exceeded and adjusts the position of the pop-up dialog box, sometimes it doesn't achieve the desired effect.<br>
+          Therefore, the <code>ignoreBoundaries: true</code> attribute is added to <code>popper-options</code> so that the Popper ignores boundary judgment and the pop-up position is always the placement value.
+          `
+      },
+      codeFiles: ['ignore-boundaries.vue']
+    },
+    {
       demoId: 'events',
       name: {
         'zh-CN': '事件',

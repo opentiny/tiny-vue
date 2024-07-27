@@ -1,11 +1,11 @@
 <template>
-  <div class="flex items-start leading-6 cursor-pointer select-none" @click="$emit('click', $event)">
+  <div class="flex items-start leading-5.5 cursor-pointer select-none" @click="$emit('click', $event)">
     <span
       v-if="option"
       class="w-11 h-11 flex-none flex items-center justify-center relative"
       @click.stop="$emit('check', option)"
     >
-      <div class="absolute left-0 right-0 top-0 bottom-0 z-10"></div>
+      <div class="absolute left-0 right-0 top-0 bottom-0 z-20"></div>
       <tiny-checkbox
         custom-class="flex h-full w-full items-center justify-center"
         :model-value="!option.indeterminate && option.checked"

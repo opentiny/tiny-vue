@@ -1,6 +1,13 @@
 import debounce from '../common/deps/debounce'
 import { addClass, removeClass } from '../common/deps/dom'
-import type { IDrawerState, IDrawerProps, IDrawerApi, IDrawerCT, ISharedRenderlessParamUtils } from '@/types'
+import type {
+  IDrawerState,
+  IDrawerProps,
+  IDrawerApi,
+  IDrawerCT,
+  ISharedRenderlessParamUtils,
+  IDrawerRenderlessParams
+} from '@/types'
 
 export const computedWidth =
   ({
@@ -8,54 +15,62 @@ export const computedWidth =
     designConfig,
     props,
     constants
-  }: Pick<ISharedRenderlessParamUtils, 'state' | 'designConfig' | 'props' | 'constants'>) =>
+  }: Pick<IDrawerRenderlessParams, 'state' | 'designConfig' | 'props' | 'constants'>) =>
   (): string => {
     if (state.width) {
       return state.width + 'px'
     }
 
-    return props.width || designConfig?.constants?.DEFAULT_WIDTH || constants.DEFAULT_WIDTH
+    return props.width || designConfig?.constants?.DEFAULT_WIDTH || (constants as IDrawerCT).DEFAULT_WIDTH
   }
 
 export const close =
-  ({ api }) =>
+  ({ api }: { api: IDrawerApi }) =>
   (force = false) => {
-    api.handleClose('close', force)
+    api.handleClose('close', typeof force === 'boolean' ? force : false)
   }
 
 export const watchVisible =
-  ({ state }: { state: IDrawerState }) =>
-  (bool) => {
-    setTimeout(() => {
-      state.toggle = bool
-    }, 0)
+  ({ state, api }: Pick<IDrawerRenderlessParams, 'state' | 'api'>) =>
+  (value: boolean) => {
+    // tiny优化抽屉显隐逻辑
+    value ? api.open() : api.close()
   }
 
-export const watchToggle =
-  ({ emit }: { emit: ISharedRenderlessParamUtils['emit'] }) =>
-  (bool: boolean) => {
-    setTimeout(() => {
-      emit('update:visible', bool)
-    }, 0)
+export const open =
+  ({ state, emit, vm }: Pick<IDrawerRenderlessParams, 'state' | 'emit' | 'vm'>) =>
+  () => {
+    if (!state.visible) {
+      setTimeout(() => {
+        state.visible = true
+        emit('open', vm)
+        emit('update:visible', true)
+      }, 0)
+    }
   }
 
 export const confirm =
-  ({ api }) =>
+  ({ api }: { api: IDrawerApi }) =>
   () => {
     api.handleClose('confirm')
   }
 
 export const handleClose =
-  ({ emit, props, state }: { emit: ISharedRenderlessParamUtils['emit']; state: IDrawerState }) =>
-  (type, force) => {
+  ({ emit, props, state }: Pick<IDrawerRenderlessParams, 'emit' | 'props' | 'state'>) =>
+  (type: string, force?: boolean) => {
     const isMaskNotClosable = type === 'mask' && !props.maskClosable
     const isBlockClose = !force && typeof props.beforeClose === 'function' && props.beforeClose(type) === false
     if (isMaskNotClosable || isBlockClose) {
       return
     }
 
-    state.toggle = false
-    emit(['close', 'confirm'].includes(type) ? type : 'close', state)
+    if (state.visible) {
+      state.visible = false
+      setTimeout(() => {
+        emit('update:visible', false)
+        emit(['close', 'confirm'].includes(type) ? type : 'close')
+      }, 200)
+    }
   }
 
 export const mousedown =
@@ -68,7 +83,9 @@ export const mousedown =
 
     state.dragEvent.isDrag = true
     state.dragEvent.x = touch.clientX
+    state.dragEvent.y = touch.clientY
     state.dragEvent.offsetWidth = drawerBox.offsetWidth
+    state.dragEvent.offsetHeight = drawerBox.offsetHeight
   }
 
 export const mousemove = ({ state, props }: { state: IDrawerState; props: IDrawerProps }) =>
@@ -81,29 +98,36 @@ export const mousemove = ({ state, props }: { state: IDrawerState; props: IDrawe
 
     const { placement } = props
     const {
-      dragEvent: { x, offsetWidth }
+      dragEvent: { x, y, offsetWidth, offsetHeight }
     } = state
     const { touches, targetTouches, changedTouches } = event
     const touch =
       (touches && touches[0]) || (targetTouches && targetTouches[0]) || (changedTouches && changedTouches[0])
-    const { clientX } = touch || event
+    const { clientX, clientY } = touch || event
     const offsetX = clientX - x
+    const offsetY = clientY - y
 
     if (placement === 'left') {
       state.width = offsetWidth + offsetX
     } else if (placement === 'right') {
       state.width = offsetWidth - offsetX
+    } else if (placement === 'top') {
+      const height = offsetHeight + offsetY
+      state.height = height > 10 ? height : 10
+    } else if (placement === 'bottom') {
+      const height = offsetHeight - offsetY
+      state.height = height > 10 ? height : 10
     }
   }) as Parameters<Document['removeEventListener']>['1']
 
 export const mouseup =
   ({ state }: { state: IDrawerState }) =>
-  () => {
+  (event: MouseEvent) => {
     if (!state.dragEvent.isDrag) {
       return
     }
 
-    ;(event as any).preventDefault()
+    event.preventDefault()
     state.dragEvent.isDrag = false
   }
 
@@ -135,18 +159,10 @@ export const removeDragEvent =
     el.removeEventListener('touchend', api.mouseup)
   }
 
-export const showScrollbar = (lockScrollClass) => () => {
+export const showScrollbar = (lockScrollClass: string) => () => {
   addClass(document.body, lockScrollClass)
 }
 
-export const hideScrollbar = (lockScrollClass) => () => {
+export const hideScrollbar = (lockScrollClass: string) => () => {
   removeClass(document.body, lockScrollClass)
 }
-
-export const watchVisibleNotImmediate =
-  ({ api, props }: { api: IDrawerApi; props: IDrawerProps }) =>
-  (visible: boolean) => {
-    if (props.lockScroll) {
-      visible ? api.showScrollbar() : api.hideScrollbar()
-    }
-  }

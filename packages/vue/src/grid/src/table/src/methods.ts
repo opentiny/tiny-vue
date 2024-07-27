@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import { getColumnList } from '@opentiny/vue-renderless/grid/utils'
+import { getColumnList, assemColumn } from '@opentiny/vue-renderless/grid/utils'
 import { toDecimal } from '@opentiny/vue-renderless/common/string'
 import { addClass, removeClass, isDisplayNone } from '@opentiny/vue-renderless/common/deps/dom'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
@@ -103,7 +103,8 @@ import {
   handleSpaceKeyDown,
   handleTabKeyDown,
   handleGlobalKeydownEvent,
-  handleGlobalResizeEvent
+  handleGlobalResizeEvent,
+  handleGlobalMousedownCaptureEvent
 } from './events'
 
 import {
@@ -113,7 +114,8 @@ import {
   setTreeScrollYCache,
   sliceFullData,
   sliceVisibleColumn,
-  setSliceColumnTree
+  setSliceColumnTree,
+  buildRowGroupFullData
 } from './strategy'
 
 let run = (names, $table) => names.forEach((name) => $table[name].apply($table))
@@ -159,13 +161,18 @@ const sortMultiple = (rows, columns, _vm) => {
 // 创建快速缓存
 const buildCache = (tableData, treeConfig = {}) => {
   const backupMap = new WeakMap()
-  const { children } = treeConfig
+  const { children, ordered, temporaryIndex = '_$index_' } = treeConfig || {}
+  const isTreeOrderedFalse = treeConfig && !ordered
 
-  const traverse = (arr) => {
+  const traverse = (arr, rowLevel, parentIndex) => {
     const backup = []
 
     if (Array.isArray(arr) && arr.length > 0) {
-      arr.forEach((row) => {
+      arr.forEach((row, rowIndex) => {
+        if (isTreeOrderedFalse) {
+          row[temporaryIndex] = `${parentIndex ? `${parentIndex}.` : ''}${rowIndex + 1}`
+        }
+
         // 深拷贝
         const backupRow = clone({ ...row, [children]: null }, true)
 
@@ -173,7 +180,7 @@ const buildCache = (tableData, treeConfig = {}) => {
         backupMap.set(row, backupRow)
 
         if (row[children]) {
-          backupRow[children] = traverse(row[children])
+          backupRow[children] = traverse(row[children], rowLevel + 1, isTreeOrderedFalse ? row[temporaryIndex] : '')
         }
       })
     }
@@ -181,7 +188,7 @@ const buildCache = (tableData, treeConfig = {}) => {
     return backup
   }
 
-  const backupData = traverse(tableData)
+  const backupData = traverse(tableData, 0, '')
 
   return { backupData, backupMap }
 }
@@ -202,14 +209,20 @@ const Methods = {
     return this.parentHeight
   },
   clearAll(silent) {
+    const { fetchOption = {} } = this.$grid
+    const { isReloadFilter } = fetchOption
+
     run(['clearScroll', 'clearSort', 'clearCurrentRow', 'clearCurrentColumn'], this)
     run(['clearSelection', 'clearRowExpand', 'clearTreeExpand'], this)
-    if (TINYGrid._filter) {
+
+    if (typeof isReloadFilter === 'undefined' ? TINYGrid._filter : !isReloadFilter) {
       this.clearFilter(silent)
     }
+
     if (this.keyboardConfig || this.mouseConfig) {
       run(['clearIndexChecked', 'clearHeaderChecked', 'clearChecked', 'clearSelected', 'clearCopyed'], this)
     }
+
     return this.clearActived()
   },
   refreshData(data) {
@@ -246,8 +259,8 @@ const Methods = {
     // 判断是否有虚拟滚动，有即剪切数据
     this.tableData = sliceFullData(this)
 
-    // updateScrollStatus：处理异步渲染列相关逻辑，buildGroupData：处理表格分组相关逻辑
-    run(['updateScrollStatus', 'buildGroupData'], this)
+    // updateScrollStatus：处理异步渲染列相关逻辑
+    this.updateScrollStatus()
 
     return this.$nextTick()
   },
@@ -420,15 +433,15 @@ const Methods = {
     if (!cell) {
       return null
     }
-    let { isGroup, fullColumnIdData, tableFullColumn } = this
-    let dataColid = cell.getAttribute('data-colid')
+    const { isGroup, fullColumnIdData, tableFullColumn } = this
+    const dataColid = cell.getAttribute('data-colid')
+    const colCache = fullColumnIdData?.[dataColid]
     if (isGroup) {
       let matches = findTree(tableFullColumn, (column) => column.id === dataColid, headerProps)
       if (matches) {
         return matches
       }
-    } else {
-      let colCache = fullColumnIdData[dataColid]
+    } else if (colCache) {
       return {
         index: colCache.index,
         item: colCache.column,
@@ -532,17 +545,18 @@ const Methods = {
     return result
   },
   hasRowChange(row, field) {
-    let { tableSourceData, treeConfig, visibleColumn, backupMap } = this
-    let argsLength = arguments.length
-    let rowId = getRowid(this, row)
+    const { tableSourceData, treeConfig, visibleColumn, backupMap, editConfig = {} } = this
+    const { insertChanged = false } = editConfig
+    const argsLength = arguments.length
+    const rowId = getRowid(this, row)
     let originRow
     // 新增的数据不需要检测
     if (this.isTemporaryRow(row)) {
-      return false
+      return insertChanged
     }
     if (treeConfig) {
-      let children = treeConfig.children
-      let cacheRow = backupMap.get(row)
+      const children = treeConfig.children
+      const cacheRow = backupMap.get(row)
 
       row = { ...row, [children]: null }
 
@@ -674,30 +688,10 @@ const Methods = {
     this.afterFullData = tableData
 
     setTreeScrollYCache(this)
+    // 构建分组表场景全量数据
+    buildRowGroupFullData(tableData, this)
 
     return tableData
-  },
-  // 组装表格分组映射表
-  buildGroupData() {
-    const { rowGroup, tableData } = this
-    Object.assign(this, { groupData: {}, groupFolds: [] })
-    if (!rowGroup) {
-      return
-    }
-    let { groups = {}, current = '' } = {}
-    tableData.forEach((row, rowIndex) => {
-      const rowid = getRowid(this, row)
-      const { field } = rowGroup
-      let prevRow = tableData[rowIndex - 1]
-
-      if (!prevRow || prevRow[field] !== row[field]) {
-        current = rowid
-        groups[rowid] = { fold: false, children: [row] }
-      } else {
-        groups[current].children.push(row)
-      }
-    })
-    this.groupData = groups
   },
   getRowById(rowid) {
     let { fullDataRowIdData } = this
@@ -802,7 +796,7 @@ const Methods = {
     let second = () => {
       this.handleTableData(true)
     }
-    let third = () => this.refreshColumn().then(() => this.tableFullColumn)
+    let third = () => this.refreshColumn().then(() => this.tableFullColumn.slice(0))
     return this.$nextTick().then(first).then(second).then(third)
   },
   watchColumn(value) {
@@ -824,6 +818,11 @@ const Methods = {
 
     // 经过动态列个性化合并后，部分列可能被操作隐藏等，此步骤计算可见列
     this.refreshColumn()
+
+    // 可见列刷新后，更新一下表格服务端过滤参数
+    if (this.remoteFilter) {
+      this.$grid.filterData = this.getAllFilter()
+    }
 
     // 可见列确定之后触发一次列就绪事件
     if (!this.isColumnReady) {
@@ -978,8 +977,8 @@ const Methods = {
   },
   // 列宽计算
   autoCellWidth(headerEl, bodyEl, footerEl) {
-    // 列宽最少限制 40px
-    let minCellWidth = 40
+    // 列宽最少限制 40px, x-design为72px
+    let minCellWidth = this.$grid?.designConfig?.minWidth || 40
     let { fit, columnStore, columnChart, isGroup } = this
     let tableHeight = bodyEl.offsetHeight
     let overflowY = bodyEl.scrollHeight > bodyEl.clientHeight
@@ -1113,6 +1112,7 @@ const Methods = {
   handleOtherKeyDown,
   handleGlobalKeydownEvent,
   handleGlobalResizeEvent,
+  handleGlobalMousedownCaptureEvent,
   // 处理单选框默认勾选
   handleRadioDefChecked() {
     let { fullDataRowIdData } = this
@@ -1451,18 +1451,21 @@ const Methods = {
     let { offsetSize, renderSize, startIndex, visibleIndex, visibleSize } = scrollXStore
     let { scrollLeft } = this.$refs.tableBody.$el
     let { preload = false, toVisibleIndex = 0, width = 0 } = {}
+    // 根据滚动位置计算边界可见列
     for (let i = 0; i < visibleColumn.length; i++) {
       width += visibleColumn[i].renderWidth
       if (scrollLeft < width) {
-        toVisibleIndex = i
+        toVisibleIndex = i // 边界可见列索引
         break
       }
     }
+    // 边界可见列和上次记录的相同，滚动还没超过此列，就关闭Tooltip退出
     if (visibleIndex === toVisibleIndex) {
       this.clostTooltip()
       return
     }
     let marginSize = Math.min(Math.floor((renderSize - visibleSize) / 2), visibleSize)
+    marginSize = Math.max(0, marginSize)
     if (visibleIndex > toVisibleIndex) {
       // 向左
       preload = startIndex >= toVisibleIndex - offsetSize
@@ -1770,7 +1773,7 @@ const Methods = {
   },
   clearScroll() {
     let { scrollXStore, scrollYStore, elemStore } = this
-    Object.assign(this, { lastScrollLeft: 0 })
+    Object.assign(this, { lastScrollLeft: 0, lastScrollTop: 0 })
     Object.assign(scrollXStore, { startIndex: 0, visibleIndex: 0 })
     Object.assign(scrollYStore, { startIndex: 0, visibleIndex: 0 })
     this.$nextTick(() => {
@@ -1990,6 +1993,32 @@ const Methods = {
   },
   getVm(name) {
     return this.$grid.getVm(name)
+  },
+  assembleColumns() {
+    // 如果没有初始化任何列实例就不进行列组装
+    if (!this.isTagUsageSence) return
+
+    assemColumn(this)
+  },
+  isValidCustomColumn(columnName) {
+    return columnName && this.columnNames.includes(columnName)
+  },
+  computeCollectKey() {
+    const columnIds = []
+
+    const traverse = (columns) => {
+      if (Array.isArray(columns) && columns.length > 0) {
+        columns.forEach((column) => {
+          columnIds.push(column.columnConfig.id)
+
+          traverse(column.childColumns)
+        })
+      }
+    }
+
+    traverse(this.childColumns)
+
+    return columnIds.join(',')
   }
 }
 funcs.forEach((name) => {

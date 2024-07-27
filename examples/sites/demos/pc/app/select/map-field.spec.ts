@@ -11,13 +11,13 @@ test('配置式配置映射字段', async ({ page }) => {
   const tag = select.locator('.tiny-tag')
 
   await expect(tag).toHaveCount(2)
-  await expect(tag.first()).toHaveText('黄金糕')
-  await expect(tag.nth(1)).toHaveText('双皮奶')
+  await expect(tag.first()).toHaveText('北京')
+  await expect(tag.nth(1)).toHaveText('上海')
   await suffix.click()
   await page.waitForTimeout(500)
   await expect(dropdown).toBeVisible()
-  await expect(option.filter({ hasText: '黄金糕' })).toHaveClass(/selected/)
-  await expect(option.filter({ hasText: '双皮奶' })).toHaveClass(/selected/)
+  await expect(option.filter({ hasText: '北京' })).toHaveClass(/selected/)
+  await expect(option.filter({ hasText: '上海' })).toHaveClass(/selected/)
 })
 
 test('嵌套表格配置映射字段', async ({ page }) => {

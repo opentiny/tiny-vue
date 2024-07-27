@@ -13,6 +13,6 @@ test('输入框前缀插槽', async ({ page }) => {
 
   await expect(prefix).toBeVisible()
   await select.click()
-  await option.filter({ hasText: '黄金糕' }).click()
-  await expect(tag.filter({ hasText: '黄金糕' })).toBeVisible()
+  await option.filter({ hasText: '北京' }).click()
+  await expect(tag.filter({ hasText: '北京' })).toBeVisible()
 })

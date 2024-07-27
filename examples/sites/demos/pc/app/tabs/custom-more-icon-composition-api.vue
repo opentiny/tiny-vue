@@ -10,52 +10,20 @@
 </template>
 
 <script setup lang="jsx">
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import { Tabs as TinyTabs, TabItem as TinyTabItem } from '@opentiny/vue'
 import { iconPopup } from '@opentiny/vue-icon'
 
-const Tabs = ref([
-  {
-    title: 'Tab 1',
-    name: '1',
-    content: 'Tab 1 content '
-  },
-  {
-    title: 'Tab 2',
-    name: '2',
-    content: 'Tab 2 content'
-  },
-  {
-    title: 'Tab 3',
-    name: '3',
-    content: 'Tab 3 content'
-  },
-  {
-    title: 'Tab 4',
-    name: '4',
-    content: 'Tab 4 content'
-  },
-  {
-    title: 'Tab 5',
-    name: '5',
-    content: 'Tab 5 content'
-  },
-  {
-    title: 'Tab 6',
-    name: '6',
-    content: 'Tab 6 content'
-  },
-  {
-    title: 'Tab 7',
-    name: '7',
-    content: 'Tab 7 content'
-  },
-  {
-    title: 'Tab 8',
-    name: '8',
-    content: 'Tab 8 content'
-  }
-])
-
+const Tabs = reactive([])
 const TinyIconPopup = iconPopup()
+
+// 创建tabs
+for (let i = 1; i < 9; i++) {
+  const title = `Tab ${i}`
+  Tabs.push({
+    title,
+    name: i + '',
+    content: `${title} content `
+  })
+}
 </script>

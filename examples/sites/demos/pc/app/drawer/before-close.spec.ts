@@ -12,14 +12,14 @@ test('拦截弹窗关闭', async ({ page }) => {
 
   // 点击关闭按钮
   await page.getByRole('button', { name: 'Close' }).click()
-  await expect(message).toContainText('close')
+  await expect(message.nth(1)).toContainText('close')
   await expect(drawer).toBeVisible()
 
   // 点击遮罩层
   await page.locator('.tiny-drawer__mask').click()
   await expect(drawer).toBeVisible()
 
-  // 点击底部确认按钮
+  // 点击底部确定按钮
   await page.locator('#before-close').getByRole('button', { name: '确定' }).click()
   await expect(drawer).toBeVisible()
 

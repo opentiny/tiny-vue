@@ -4,12 +4,19 @@
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="value" format="yyyy 年 MM 月 dd 日"></tiny-date-picker>
     </div>
+    <br />
 
     <p>时间输入框中显示的格式：</p>
     <div class="demo-date-picker-wrap">
-      <tiny-date-picker v-model="value" type="datetime" format="yyyy 年 MM 月 dd 日 HH 时 mm 分 ss 秒" time-format="HH 时 mm 分 ss 秒"></tiny-date-picker>
+      <tiny-date-picker
+        v-model="value"
+        type="datetime"
+        format="yyyy 年 MM 月 dd 日 HH 时 mm 分 ss 秒"
+        time-format="HH 时 mm 分 ss 秒"
+      ></tiny-date-picker>
     </div>
-  
+    <br />
+
     <p>选中值的格式：</p>
     <div class="demo-date-picker-wrap">
       <tiny-date-picker v-model="selectedValue" value-format="timestamp"></tiny-date-picker>
@@ -28,7 +35,7 @@ export default {
   data() {
     return {
       value: new Date('2023-05-24'),
-      selectedValue: 1590076800000,
+      selectedValue: 1590076800000
     }
   }
 }

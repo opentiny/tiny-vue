@@ -143,6 +143,17 @@ export default {
           '<p>The <code>v-bind</code> is bound to an object to implement the profile. In the bound object, the <code>toolbar</code> field is used to configure the toolbar. The <code>events</code> field can be used to configure the <code>toolbarButtonClick</code> event for buttons on the toolbar. In addition, the <code>pager</code> field is used for pagination configuration, and the <code>fetchData</code> field is used for service request. </p>\n'
       },
       'codeFiles': ['toolbar/toolbar-op-config.vue']
+    },
+    {
+      'demoId': 'toolbar-toolbar-op-config-slots',
+      'name': { 'zh-CN': '配置式工具栏插槽', 'en-US': 'Profile' },
+      'desc': {
+        'zh-CN':
+          '<p>通过表格属性 <code>toolbar.slots</code> 配置工具栏插槽 <code>buttons</code> 和 <code>tools</code>。</p>',
+        'en-US':
+          '<p>Configure the toolbar slots <code>buttons</code> and <code>tools</code> through the table property <code>toolbar.slots</code>. </p>'
+      },
+      'codeFiles': ['toolbar/toolbar-op-config-slots.vue']
     }
   ],
   apis: [{ 'name': 'grid-toolbar', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

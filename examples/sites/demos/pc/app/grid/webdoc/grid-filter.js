@@ -98,6 +98,17 @@ export default {
       'codeFiles': ['filter/server-filter.vue']
     },
     {
+      'demoId': 'server-filter-default',
+      'name': { 'zh-CN': '服务端过滤默认选中值', 'en-US': 'Server-side filtering default selected value' },
+      'desc': {
+        'zh-CN':
+          '<p>配置 remote-filter 开启服务端过滤后，表格初始化时，如果设置了 <code>auto-load</code> 会在表格列初始化钱调用 <code>handleFetch</code>，因此此时无法获取到过滤参数，如果需要设置服务端过滤默认选中值，需将 <code>auto-load</code> 设置为false且手动调用一次 <code>handleFetch</code> 方法。</p>\n',
+        'en-US':
+          '<p>Set the default input filtering options through the <code>inputFilter.relation</code> attribute. \n Enter the built-in options for filtering: <code>equals</code>, <code>unequal</code>, <code>greaterThan</code>, <code>lessThan</code>, <code>equalToGreaterThan</code>, <code>equalToLessThan</code>, <code>contains</code>, <code>startwith</code>, <code>endwith</code>; Custom options can also be configured. \n When configuring custom options, you need to configure the filtering method through the <code>inputFilter.method</code> attribute. </p>\n'
+      },
+      'codeFiles': ['filter/server-filter-default.vue']
+    },
+    {
       'demoId': 'filter-default-relation',
       'name': { 'zh-CN': '输入过滤的默认选项', 'en-US': '' },
       'desc': {
@@ -106,6 +117,15 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['filter/default-relation.vue']
+    },
+    {
+      'demoId': 'filter-request-service-reload-filter',
+      'name': { 'zh-CN': '重载数据时不清除过滤', 'en-US': '' },
+      'desc': {
+        'zh-CN': `<p>在调用 <code>handleFetch('reload')</code> 重载表格数据时，默认会清除表格筛选。配置 <code>fetchData.reloadConfig.filter</code> 为 <code>true</code> 可以在重载时保持表格筛选。</p>`,
+        'en-US': ''
+      },
+      'codeFiles': ['filter/request-service-reload-filter.vue']
     }
   ],
   apis: [{ 'name': 'grid-filter', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

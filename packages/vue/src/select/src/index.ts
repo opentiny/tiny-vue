@@ -299,9 +299,19 @@ export default defineComponent({
       type: String,
       default: () => t('ui.select.add')
     },
+    initLabel: {
+      type: String,
+      default: ''
+    },
     blank: {
       type: Boolean,
       default: false
+    },
+    tooltipConfig: {
+      type: Object,
+      default() {
+        return {}
+      }
     },
     // 以下为 tiny 新增
     searchable: {
@@ -325,6 +335,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    showLimitText: {
+      type: Boolean,
+      default: false
+    },
     showProportion: {
       type: Boolean,
       default: false
@@ -336,6 +350,14 @@ export default defineComponent({
     maxVisibleRows: {
       type: Number,
       default: $constants.MAX_VISIBLE_ROWS
+    },
+    allText: {
+      type: String,
+      default: ''
+    },
+    showAllTextTag: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {

@@ -18,6 +18,12 @@ test-results
 /packages/vue-icon-saas/src
 /packages/vue-icon-saas/index.ts
 
+/packages/vue-runtime/pc.ts
+/packages/vue-runtime/mobile.ts
+/packages/vue-runtime/mobile-first.ts
+/packages/vue-runtime/all.ts
+/packages/vue-runtime/simple.ts
+
 /packages/react/index.ts
 /packages/react/pc.ts
 /packages/react/mobile.ts
@@ -61,6 +67,11 @@ packages/theme/src/theme/*-theme/component.js
 
 pnpm-lock.yaml
 gulp/bundle.json
+
+# 屏蔽测试用例报告相关文件
+allure-report
+allure-results
+test-results
 
 # 本地构建的saas相关资源文件
 examples/sites/public/tiny-vue*.js

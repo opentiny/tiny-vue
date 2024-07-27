@@ -1,5 +1,8 @@
 <template>
-  <div class="hui-chart chart-box" ref="chartRef" :style="{ width, height }"></div>
+  <div class="hui-chart chart-box">
+    <div ref="chartRef" :style="{ width, height }"></div>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -7,9 +10,10 @@ import Core from '@opentiny/vue-chart-core'
 
 import { map } from './map'
 import * as echarts from 'echarts'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartMap',
+  name: $prefix + 'ChartMap',
   mixins: [Core],
 
   data() {

@@ -19,5 +19,6 @@ export const tinyTagSMBTheme = {
   'ti-tag-close-small-margin-left': 'var(--ti-common-space-2)',
   'ti-tag-close-small-margin-right': 'calc(var(--ti-common-space-2) * -1)',
   'ti-tag-primary-close-opacity': '1',
+  'ti-tag-mini-height': 'var(--ti-common-size-3x)',
   'ti-tag-primary-close-hover-icon-color': 'var(--ti-common-color-icon-graybg-hover)'
 }

@@ -38,6 +38,19 @@ export default {
         'en-US': ''
       },
       'codeFiles': ['faq/many-poppover.vue']
+    },
+    {
+      'demoId': 'custom-column',
+      'name': { 'zh-CN': '自定义列组件', 'en-US': 'Custom column' },
+      'desc': {
+        'zh-CN': `<p>
+        自定义列组件只用来对表格列组件 <code>grid-column</code> 进行二次封装，不要包含额外的视图渲染逻辑，非列收集内容会被忽略。<br/>
+        自定义列组件必须具有 name 选项属性，可以通过表格属性 <code>custom-column-names</code> 把自定义的 name 配置给表格，在表格 <code>初始化列配置</code> 过程中会使用他们来判断是否继续向下渲染。<br/>
+        表格属性 <code>custom-column-names</code> 可以是字符串或字符串数组，默认值为 <code>TinyGridColumn</code>。<br/>
+          </p>\n`,
+        'en-US': ''
+      },
+      'codeFiles': ['faq/custom-column.vue']
     }
   ],
   apis: [{ 'name': 'grid-faq', 'type': 'component', 'props': [], 'events': [], 'slots': [] }]

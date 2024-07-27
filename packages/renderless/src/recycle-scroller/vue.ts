@@ -26,7 +26,8 @@ export const api = [
   'handleScroll',
   'scrollToItem',
   'computeViewStyle',
-  'computeViewEvent'
+  'computeViewEvent',
+  'updateVisibleItems'
 ]
 
 const addWatchers = ({ watch, props, api, state }) => {

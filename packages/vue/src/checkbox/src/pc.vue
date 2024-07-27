@@ -36,15 +36,11 @@
       :role="indeterminate ? 'checkbox' : undefined"
       :aria-checked="indeterminate ? 'mixed' : false"
     >
-      <span class="tiny-checkbox__inner" tabindex="1">
-        <icon-halfselect v-if="indeterminate && state.shape !== 'filter'" class="tiny-svg-size icon-halfselect" />
-        <icon-checked-sur v-else-if="state.isChecked" class="tiny-svg-size icon-checked-sur" />
-        <icon-check v-else class="tiny-svg-size icon-check" />
-      </span>
       <input
         v-if="trueLabel || falseLabel"
         class="tiny-checkbox__original"
         type="checkbox"
+        :tabindex="tabindex"
         :aria-hidden="indeterminate ? 'true' : 'false'"
         :name="name"
         :disabled="state.isDisabled || state.isDisplayOnly"
@@ -60,6 +56,7 @@
         v-else
         class="tiny-checkbox__original"
         type="checkbox"
+        :tabindex="tabindex"
         :aria-hidden="indeterminate ? 'true' : 'false'"
         :disabled="state.isDisabled || state.isDisplayOnly"
         :value="label"
@@ -70,23 +67,18 @@
         @blur="state.focus = false"
         @click.stop
       />
+      <span class="tiny-checkbox__inner">
+        <icon-halfselect v-if="indeterminate && state.shape !== 'filter'" class="tiny-svg-size icon-halfselect" />
+        <icon-checked-sur v-else-if="state.isChecked" class="tiny-svg-size icon-checked-sur" />
+        <icon-check v-else class="tiny-svg-size icon-check" />
+      </span>
     </span>
     <span
       v-if="(slots.default && slots.default()) || state.isShowText"
       class="tiny-checkbox__label tiny-checkbox-display-only"
-      @mouseenter="handleLabelMouseenter"
-      @mouseleave="handleMouseleave"
+      v-auto-tip
     >
       <slot>{{ state.showText }}</slot>
-      <tiny-tooltip
-        ref="tooltip"
-        v-model="state.tooltipVisible"
-        :manual="true"
-        effect="light"
-        :content="state.displayedValue"
-        placement="top"
-      >
-      </tiny-tooltip>
     </span>
   </label>
 </template>
@@ -97,11 +89,11 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/checkbox/index.less'
 import { iconHalfselect, iconCheckedSur, iconCheck } from '@opentiny/vue-icon'
 import type { ICheckboxApi } from '@opentiny/vue-renderless/types/checkbox.type'
-import Tooltip from '@opentiny/vue-tooltip'
-
+import { AutoTip } from '@opentiny/vue-directive'
 export default defineComponent({
   // tiny 新增。 renderless中，没有emit('click')的地方。 此处勿声明，否则会造成丢失click事件。
   emits: ['update:modelValue', 'change', 'complete'],
+  directives: { AutoTip },
   props: [
     ...props,
     'modelValue',
@@ -120,13 +112,13 @@ export default defineComponent({
     'border',
     'validateEvent',
     'displayOnly',
-    'shape'
+    'shape',
+    'tabindex'
   ],
   components: {
     IconHalfselect: iconHalfselect(),
     IconCheckedSur: iconCheckedSur(),
-    IconCheck: iconCheck(),
-    TinyTooltip: Tooltip
+    IconCheck: iconCheck()
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ICheckboxApi

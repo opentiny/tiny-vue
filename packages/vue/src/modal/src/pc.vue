@@ -137,7 +137,7 @@ export default defineComponent({
           }
         ],
         style: {
-          zIndex: this.state.modalZindex,
+          zIndex: state.modalZindex,
           top: modalTop ? `${modalTop}px` : null
         },
         on: {
@@ -166,11 +166,11 @@ export default defineComponent({
                     }
                   },
                   [
-                    status && state.theme === 'saas'
+                    status
                       ? h(
                           'div',
                           {
-                            class: 'tiny-modal__status-wrapper'
+                            class: ['tiny-modal__status-wrapper']
                           },
                           [
                             typeof status === 'string'
@@ -213,7 +213,7 @@ export default defineComponent({
                 class: ['tiny-modal__body', type === 'message' ? 'is-message' : '']
               },
               [
-                status && (state.theme !== 'saas' || type === 'message')
+                type === 'message'
                   ? h(
                       'div',
                       {
@@ -272,33 +272,19 @@ export default defineComponent({
                   },
                   footerSlot
                     ? footerSlot.call(this, footerSlotParams, h)
-                    : state.theme === 'saas'
-                    ? [
+                    : [
                         type === 'confirm'
                           ? h(
                               Button,
                               {
                                 on: {
                                   click: this.cancelEvent
-                                }
+                                },
+                                props: { ...cancelButtonProps }
                               },
-                              cancelContent || t('ui.button.cancel')
+                              cancelButtonText
                             )
                           : null,
-                        h(
-                          Button,
-                          {
-                            props: {
-                              type: 'primary'
-                            },
-                            on: {
-                              click: this.confirmEvent
-                            }
-                          },
-                          confirmContent || t('ui.button.confirm')
-                        )
-                      ]
-                    : [
                         h(
                           Button,
                           {
@@ -311,19 +297,7 @@ export default defineComponent({
                             }
                           },
                           confirmButtonText
-                        ),
-                        type === 'confirm'
-                          ? h(
-                              Button,
-                              {
-                                on: {
-                                  click: this.cancelEvent
-                                },
-                                props: { ...cancelButtonProps }
-                              },
-                              cancelButtonText
-                            )
-                          : null
+                        )
                       ]
                 )
               : null,

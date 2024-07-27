@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-chart-pie",
-  "version": "3.15.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "@opentiny/vue-chart-core": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~"
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-common": "workspace:~"
   },
   "license": "MIT"
 }

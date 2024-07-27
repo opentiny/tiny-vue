@@ -98,7 +98,7 @@ export const renderless = (props, { computed, onMounted, reactive, watch, nextTi
     emitSelectRange: emitSelectRange({ emit, state }),
     modifyDateField: modifyDateField({ emit, props, state }),
     bindScrollEvent: bindScrollEvent({ api, vm }),
-    adjustSpinners: adjustSpinners({ api, state }),
+    adjustSpinners: adjustSpinners({ api, state, vm }),
     adjustSpinner: adjustSpinner({ api, props, vm, state }),
     increase: increase({ api, state }),
     decrease: decrease({ api, state }),

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-upload-list",
-  "version": "3.15.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -23,7 +23,8 @@
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-modal": "workspace:~",
     "@opentiny/vue-action-sheet": "workspace:~",
-    "@opentiny/vue-record": "workspace:~"
+    "@opentiny/vue-record": "workspace:~",
+    "@opentiny/vue-image-viewer": "workspace:~"
   },
   "license": "MIT"
 }

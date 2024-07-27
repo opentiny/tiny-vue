@@ -20,7 +20,6 @@
 import { ref } from 'vue'
 import { Modal, Popover } from '@opentiny/vue'
 import Flowchart from '@opentiny/vue-flowchart'
-import { hooks } from '@opentiny/vue-common'
 import { iconYes, iconPanelMini, iconChevronDown, iconChevronUp } from '@opentiny/vue-icon'
 
 const { createNode, createLink, createItem, createConfig } = Flowchart
@@ -138,7 +137,7 @@ const HandlerList = {
       const imgStyle = `width:${headSize}px;height:${headSize}px`
       const res = []
 
-      items.map(({ key }, i) => {
+      items.forEach(({ key }, i) => {
         let left
 
         if (items.length > 1) {
@@ -229,20 +228,20 @@ function toggleStatus() {
   chartRef.value.refresh()
 }
 
-function onClickNode(afterNode, e) {
+function onClickNode(_afterNode, _e) {
   Modal.message('click-node')
 }
 
-function onClickLink(afterLink, e) {
+function onClickLink(_afterLink, _e) {
   Modal.message('click-link')
 }
 
-function onClickBlank(param, e) {
+function onClickBlank(_param, _e) {
   Modal.message('click-blank')
 }
 </script>
 
-<style>
+<style scoped>
 /* HandlerList */
 .tiny-handler-list {
   width: calc(100% - 2px);

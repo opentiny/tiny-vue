@@ -1,10 +1,11 @@
 import { $prefix } from '../common/util'
 import { isObject } from '../common/type'
 import setExtend from '../common/extend'
-import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS } from '../common/constants'
+import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS, DEFAULT_THEME } from '../common/constants'
 import IntegrateChart from '../base'
 import BaiduMapChart from '../base/components/BaiduMapChart'
 import AutonaviMapChart from '../base/components/AutonaviMapChart'
+import '@opentiny/vue-theme/chart-core/index.less'
 
 export default {
   name: $prefix + 'ChartCore',
@@ -108,7 +109,9 @@ export default {
     animation: Object,
     options: {
       type: Object,
-      default() {}
+      default: () => {
+        return {}
+      }
     },
     cancelResizeCheck: {
       type: Boolean,
@@ -126,6 +129,7 @@ export default {
   data() {
     return {
       option: {},
+      eChartOption: {},
       renderOption: {},
       initOpts: {},
       watchToPropsEchartOptions: [],
@@ -159,12 +163,17 @@ export default {
         settings: this.settings,
         extend: this.extend,
         tooltipVisible: this.tooltipVisible,
-        legendVisible: this.legendVisible,
-        options: this.options
+        legendVisible: this.legendVisible
       }
     }
   },
   watch: {
+    options: {
+      handler() {
+        this.refreshChart()
+      },
+      deep: true
+    },
     setting: {
       handler() {
         this.refreshChart()
@@ -328,7 +337,11 @@ export default {
     },
     refreshChart() {
       const { data } = this
-      this.updateChart(data)
+      if (Object.keys(this.options).length === 0) {
+        this.updateChart(data)
+      } else {
+        this.option = cloneDeep(this.options)
+      }
       let { option } = this
       clearTimeout(this.timer)
       this.timer = null
@@ -341,18 +354,20 @@ export default {
         this.setAnimation(option)
         this.applyMarks(this.integrateChart.eChartOption)
         this.integrateChart.refresh(option)
-        this.applyExtend(this.integrateChart.eChartOption)
-        option.extend = this.integrateChart.eChartOption
         if (this.colorMode !== 'default') {
           option.color = this.computedChartColor()
         }
-        this.integrateChart.refresh(option)
+        if (this.extend && Object.keys(this.extend).length !== 0) {
+          option.extend = this.applyExtend(this.integrateChart.eChartOption)
+          this.integrateChart.refresh(option)
+        }
         this.$emit('handle-color', option.color)
         if (this.afterSetOption) {
           this.afterSetOption(this.integrateChart.echartsIns)
         }
         this.$emit('ready', this.integrateChart.echartsIns, option)
       }, this.changeDelay)
+      this.eChartOption = this.integrateChart.eChartOption
     },
     renderChart(option) {
       const plugins = this.plugins || {}
@@ -363,25 +378,29 @@ export default {
         }
         this.integrateChart.setSimpleOption(this.chartList[this.iChartName], option, plugins)
         this.$emit('handle-color', option.color)
-        this.integrateChart.render()
       } else {
         this.selfSetting(option)
         this.setAnimation(option)
-        this.integrateChart.init(this.$refs.chartRef, this.initOpts)
+        const themeName = this.themeName || this.theme || DEFAULT_THEME
+        this.integrateChart.init(this.$refs.chartRef, themeName, this.initOpts)
         if (this.colorMode !== 'default') {
           option.color = this.computedChartColor()
         }
         this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
         this.$emit('handle-color', option.color)
         this.applyMarks(this.integrateChart.eChartOption)
-        this.applyExtend(this.integrateChart.eChartOption)
-        this.integrateChart.render(this.renderOption)
       }
-      this.$emit('ready', this.integrateChart.echartsIns)
+      if (this.extend && Object.keys(this.extend).length !== 0) {
+        option.extend = this.applyExtend(this.integrateChart.eChartOption)
+        this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
+      }
+      this.integrateChart.render(this.renderOption)
+      this.$emit('ready', this.integrateChart.echartsIns, option)
       if (!this.once['ready-once']) {
         this.once['ready-once'] = true
-        this.$emit('ready', this.integrateChart.echartsIns)
+        this.$emit('ready-once', this.integrateChart.echartsIns, option)
       }
+      this.eChartOption = this.integrateChart.eChartOption
     },
     addEvents(val) {
       if (typeof val === 'object' && val !== null && Object.keys(val).length > 0) {
@@ -505,7 +524,11 @@ export default {
     }
     let { data } = this
     data = this.beforeConfigFn(data)
-    this.updateChart(data)
+    if (Object.keys(this.options).length === 0) {
+      this.updateChart(data)
+    } else {
+      this.option = cloneDeep(this.options)
+    }
     let { option } = this
     option = this.afterConfigFn(option)
 

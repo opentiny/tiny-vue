@@ -53,6 +53,7 @@
     <div data-tag="tiny-cascader-picker-roller-mask" :class="gcls('col-roller-mask')" :style="state.maskStyles"></div>
   </div>
 </template>
+
 <script lang="ts">
 import { renderless, api } from '@opentiny/vue-renderless/cascader-select/column'
 import { $prefix, $props, setup, defineComponent } from '@opentiny/vue-common'
@@ -64,6 +65,7 @@ export default defineComponent({
     ...$props,
     // 当前选中项
     value: [String, Number],
+    defaultValue: [String, Number],
     columnsType: String,
     column: {
       type: Array,
@@ -91,6 +93,7 @@ export default defineComponent({
       default: () => ({})
     },
     disabled: Boolean,
+    visible: Boolean,
     textColor: { type: Object, default: () => ({}) }
   },
   emits: ['click', 'change'],

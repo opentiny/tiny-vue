@@ -25,12 +25,12 @@
         ref="hours"
       >
         <li
-          @click="handleClick('hours', { value: hour, disabled })"
           v-for="{ disabled, hour } in state.hoursList"
           class="tiny-time-spinner__item"
           data-tag="li"
           :key="hour"
           :class="{ active: hour === state.hours, disabled }"
+          @click="handleClick('hours', { value: hour, disabled })"
         >
           <span>{{ ('0' + (amPmMode ? hour % 12 || 12 : hour)).slice(-2) }}{{ amPm(hour) }}</span>
         </li>

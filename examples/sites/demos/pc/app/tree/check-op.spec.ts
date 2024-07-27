@@ -18,7 +18,7 @@ test('测试多选勾选 ', async ({ page }) => {
   await expect(treeChecked).toHaveCount(0)
 
   await btn3.click()
-  await expect(treeChecked).toHaveCount(4)
+  await expect(treeChecked).toHaveCount(3)
   await page.waitForTimeout(20)
 
   await btn4.click()
@@ -26,7 +26,7 @@ test('测试多选勾选 ', async ({ page }) => {
   await page.waitForTimeout(20)
 
   await btn5.click()
-  await expect(treeChecked).toHaveCount(6)
+  await expect(treeChecked).toHaveCount(5)
   await page.waitForTimeout(20)
 
   await btn6.click()

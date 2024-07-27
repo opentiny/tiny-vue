@@ -8,8 +8,9 @@ export const tinyCascaderNodeSmbTheme = {
   'ti-cascader-node-active-font-weight': 'bold',
   'ti-cascader-node-hover-text-color': '#191919',
   'ti-cascader-node-prefix-display': 'none',
-  'ti-cascader-node-icon-color': '#191919',
-  'ti-cascader-node-icon-font-size': '12px',
+  'ti-cascader-node-icon-color': '#808080',
   'ti-cascader-node-text-color': '#191919',
+  'ti-cascader-node-selectable-text-color': '#1476ff',
+  'ti-cascader-node-icon-font-size': 'var(--ti-common-font-size-2)',
   'ti-cascader-node-active-icon-color': '#191919'
 }

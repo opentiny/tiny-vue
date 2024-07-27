@@ -205,8 +205,6 @@
     @apply h-7;
     @apply text-xs;
     @apply text-color-text-primary;
-    @apply bg-color-bg-1;
-    @apply border border-solid border-color-border;
     @apply rounded;
     @apply outline-0;
     @apply p-0;
@@ -216,9 +214,10 @@
     @apply justify-center;
     @apply items-center;
     @apply cursor-pointer;
+    @apply bg-transparent;
 
     span {
-      @apply text-color-brand;
+      @apply text-color-text-primary;
     }
 
     svg {
@@ -229,21 +228,26 @@
     }
 
     &:not([disabled]):hover {
-      @apply bg-color-border-disabled;
-      @apply border-color-border;
+      span {
+        @apply text-color-icon-hover;
+      }
+
+      svg {
+        @apply fill-color-icon-hover;
+      }
     }
 
     &:not([disabled]):active {
-      @apply bg-color-fill-6;
-      @apply border-color-brand;
+      span {
+        @apply text-color-icon-active;
+      }
 
       svg {
-        @apply fill-color-brand;
+        @apply fill-color-icon-active;
       }
     }
 
     &[disabled] {
-      @apply bg-color-border-disabled;
       @apply cursor-not-allowed;
 
       span {

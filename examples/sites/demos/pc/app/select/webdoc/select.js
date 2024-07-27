@@ -23,10 +23,20 @@ export default {
         'en-US': 'Multiple'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>multiple</code> 属性启用多选功能，此时 <code>v-model</code> 的值为当前选中值所组成的数组。默认选中值会以标签（Tag 组件）展示。</p>\n<p>通过 <code>multiple-limit</code> 属性限制最多可选择的个数，默认为 0 不限制。</p>\n<p>多选时，通过给 option 标签配置 <code>required</code> 或者在 options 配置项中添加 <code>required</code> 属性，来设置必选选项。</p>\n<p>通过 <code>dropdown-icon</code> 属性可自定义下拉图标，<code>drop-style</code> 属性可自定义下拉选项样式。<p>',
-        'en-US':
-          '<p>Enable the multi-selection function through the <code>multiple</code> attribute, where the value of the <code>v-model</code> is an array composed of the currently selected values. The default selected value will be displayed as a tag component. </p>\n<p>Limit the maximum number of choices through the <code>multiple-limit</code> attribute, with a default value of 0 and no limit.</p>\n<p>If you select multiple options, you can configure the <code>required</code> attribute for the option tag or add the <code>required</code> attribute to the options configuration item to set the mandatory options. </p><p>You can use the <code>dropdown-icon</code> attribute to customize the drop-down icon, and the <code>drop-style</code> attribute to customize the drop-down option style.<p>'
+        'zh-CN': `
+            通过 <code>multiple</code> 属性启用多选功能，此时 <code>v-model</code> 的值为当前选中值所组成的数组。默认选中值会以标签（Tag 组件）展示。<br>
+            通过 <code>multiple-limit</code> 属性限制最多可选择的个数，默认为 0 不限制。<br>
+            通过 <code>show-limit-text</code> 属性限制最多可选择的个数，默认为 0 不限制。<br>
+            多选时，通过给 option 标签配置 <code>required</code> 或者在 options 配置项中添加 <code>required</code> 属性，来设置必选选项。<br>
+            通过 <code>dropdown-icon</code> 属性可自定义下拉图标，<code>drop-style</code> 属性可自定义下拉选项样式。<br>
+        `,
+        'en-US': `
+            Use the <code>multiple</code> attribute to enable the multi-selection function. In this case, the value of <code>v-model</code> is an array of selected values. By default, the selected value is displayed as a tag (Tag component).<br>
+            The <code>multiple-limit</code> attribute is used to limit the maximum number of users that can be selected. The default value is 0.
+            The <code>show-limit-text</code> attribute is used to limit the maximum number of users that can be selected. The default value is 0, which is not limited.<br>
+            When multiple options are selected, you can set <code>required</code> for the option tag or add the <code>required</code> attribute to the options configuration item to set mandatory options.<br>
+            You can use the <code>dropdown-icon</code> attribute to customize the drop-down icon, and the <code>drop-style</code> attribute to customize the style of the drop-down options.<br>
+        `
       },
       codeFiles: ['multiple.vue']
     },
@@ -515,6 +525,19 @@ export default {
       codeFiles: ['nest-radio-grid-much-data.vue']
     },
     {
+      demoId: 'init-label',
+      name: {
+        'zh-CN': '远程搜索设置初始化 label 值',
+        'en-US': 'Initialize the label value for remote search settings.'
+      },
+      desc: {
+        'zh-CN': `通过<code>init-label</code>属性设置远程搜索或者嵌套树懒加载数据未获取到时显示的初始化 label 值。`,
+        'en-US':
+          'Use the <code>init-label</code> attribute to set the initial label value displayed when remote search or nested sloth loading data is not obtained.'
+      },
+      codeFiles: ['init-label.vue']
+    },
+    {
       demoId: 'slot-default',
       name: {
         'zh-CN': '选项插槽',
@@ -588,6 +611,24 @@ export default {
           '<p>Customize the HTML template for multiple-choice selected labels through the <code>label</code> slot. </p>'
       },
       codeFiles: ['slot-label.vue']
+    },
+    {
+      demoId: 'all-text',
+      name: {
+        'zh-CN': '自定义全部文本',
+        'en-US': 'Custom All Text'
+      },
+      desc: {
+        'zh-CN': `
+          通过<code>all-text</code> 属性自定义下拉面板中，全部选中的自定义文字。<br>
+          通过<code>show-all-text-tag</code> 属性设置为 <code> true </code> 时，勾选全部后，输入框只显示 <code>all-text</code> 属性的指定的 Tag。该属性默认为 <code>false</code>。
+        `,
+        'en-US': `
+          Use the <code>all-text</code> attribute to customize all the selected customized text in the drop-down panel.<br>
+          If <code>show-all-text-tag</code> is set to <code>true</code> and all is selected, only the tag specified by <code>all-text</code> is displayed in the text box. The default value is <code>false</code>.
+        `
+      },
+      codeFiles: ['all-text.vue']
     },
     {
       demoId: 'events',

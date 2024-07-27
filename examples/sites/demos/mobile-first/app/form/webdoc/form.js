@@ -215,6 +215,18 @@ export default {
           '<p>Set the `validate-debounce` attribute of FormItem to `true` to enable the verification anti-jitter function. In the case of continuous input, the verification starts when the last input ends. The default value is `false`.</p>'
       },
       codeFiles: ['validate-debounce.vue']
+    },
+    {
+      demoId: 'prompt-slot',
+      name: {
+        'zh-CN': '强提示插槽',
+        'en-US': 'Prompt slot'
+      },
+      desc: {
+        'zh-CN': '<p>通过 `prompt` 插槽，自定义强提示插槽的内容。</p>',
+        'en-US': '<p>Customize the content of the strong prompt slot in the `prompt` slot. </p>'
+      },
+      codeFiles: ['prompt-slot.vue']
     }
   ]
 }

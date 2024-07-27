@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { Collapse, CollapseItem, Modal } from '@opentiny/vue'
+import { Collapse, CollapseItem } from '@opentiny/vue'
 
 export default {
   components: {
@@ -32,7 +32,7 @@ export default {
     return {
       activeName: '1'
     }
-  },
+  }
 }
 </script>
 

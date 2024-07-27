@@ -59,7 +59,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* 文本超出两行显示...，IE下不支持 */
 .multi-line {
   display: -webkit-box;

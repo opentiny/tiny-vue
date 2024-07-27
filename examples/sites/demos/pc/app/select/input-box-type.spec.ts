@@ -19,7 +19,7 @@ test('下划线默认', async ({ page }) => {
   await select.click()
   await option.first().click()
   await expect(dropdown).toBeHidden()
-  await expect(input).toHaveValue('黄金糕')
+  await expect(input).toHaveValue('北京')
 })
 
 test('下划线禁用', async ({ page }) => {

@@ -1,0 +1,279 @@
+// @import './style/theme/color';
+
+$defaultFontSize: 14px;
+
+@mixin ellipsis($width) {
+  width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin arrowIcon {
+  height: 0;
+  width: 0;
+  margin-top: -2.5px;
+  border: 2.5px solid transparent;
+  border-top: 3px solid #252b3a;
+}
+
+@mixin toolbarPicker($content, $width: 40px) {
+  width: $width;
+
+  .ql-picker-label::before {
+    @include ellipsis(40px);
+  }
+
+  &.ql-expanded .ql-picker-label {
+    color: inherit;
+  }
+
+  &:hover {
+    color: #5e7ce0;
+
+    svg {
+      border-top-color: #5e7ce0;
+    }
+  }
+
+  .ql-picker-label {
+    outline: none;
+    border: 0;
+
+    .ql-stroke {
+      display: none;
+    }
+
+    svg {
+      @include arrowIcon;
+    }
+
+    &.ql-active,
+    &:hover {
+      svg {
+        border-top-color: #5e7ce0;
+      }
+    }
+  }
+
+  .ql-picker-options {
+    color: #8a8e99;
+  }
+}
+
+@mixin fontSizeList {
+  /* Set Dropdown font-size */
+  .ql-size {
+    @include toolbarPicker('', 45px);
+  }
+
+  .ql-size span.ql-picker-options {
+    width: 70px;
+
+    span::before {
+      font-size: 14px;
+    }
+  }
+}
+
+@mixin lineHeightList {
+  .ql-lineheight {
+    @include toolbarPicker('', 45px);
+  }
+
+  .ql-lineheight span.ql-picker-options {
+    width: 70px;
+
+    span::before {
+      font-size: 14px;
+    }
+  }
+}
+
+@mixin fontFamilyList {
+  /* Set dropdown font-families */
+  .ql-font {
+    @include toolbarPicker('', 45px);
+
+    span[data-value='arial']::before {
+      font-family: arial, helvetica, sans-serif;
+    }
+
+    span[data-value='songti']::before {
+      font-family: '宋体', 'SimSun';
+    }
+
+    span[data-value='yahei']::before {
+      font-family: '微软雅黑', 'Microsoft YaHei';
+    }
+
+    span[data-value='gaiti']::before {
+      font-family: '楷体', '楷体_GB2312', 'SimKai';
+    }
+
+    span[data-value='heiti']::before {
+      font-family: '黑体', 'SimHei';
+    }
+
+    span[data-value='lishu']::before {
+      font-family: '隶书', 'SimLi';
+    }
+
+    span[data-value='mono']::before {
+      font-family: 'andale mono';
+    }
+
+    span[data-value='arialblack']::before {
+      font-family: 'arial black', 'avant garde';
+    }
+
+    span[data-value='comic']::before {
+      font-family: 'comic sans ms';
+    }
+
+    span[data-value='impact']::before {
+      font-family: 'impact', 'chicago';
+    }
+
+    span[data-value='times']::before {
+      font-family: 'times new roman';
+    }
+  }
+}
+
+@mixin fontFamilyContent {
+  /* Set content font-families */
+  .ql-font-songti {
+    font-family: '宋体', 'SimSun';
+  }
+
+  .ql-font-yahei {
+    font-family: '微软雅黑', 'Microsoft YaHei';
+  }
+
+  .ql-font-kaiti {
+    font-family: '楷体', '楷体_GB2312', 'SimKa';
+  }
+
+  .ql-font-heiti {
+    font-family: '黑体', 'SimHei';
+  }
+
+  .ql-font-lishu {
+    font-family: '隶书', 'SimLi';
+  }
+
+  .ql-font-mono {
+    font-family: 'andale mono';
+  }
+
+  .ql-font-arial {
+    font-family: arial, helvetica, sans-serif;
+  }
+
+  .ql-font-arialblack {
+    font-family: 'arial black', 'avant garde';
+  }
+
+  .ql-font-comic {
+    font-family: 'comic sans ms';
+  }
+
+  .ql-font-impact {
+    font-family: 'impact', 'chicago';
+  }
+
+  .ql-font-times {
+    font-family: 'times new roman';
+  }
+}
+
+// 解决工具栏下拉框高亮问题
+@mixin pickerLabel($group, $i) {
+  @if $i>0 {
+    $data-label-value: nth($group, $i);
+
+    .ql-picker-label[data-value='#{""+$data-label-value}'] {
+      & + .ql-picker-options {
+        .ql-picker-item[data-value='#{""+$data-label-value}'] {
+          &::after {
+            margin-top: -12px;
+            content: 'L';
+            font-size: initial;
+            font-family: arial;
+            -ms-transform: scaleX(-1) rotate(-45deg); /* IE 9 */
+            -webkit-transform: scaleX(-1) rotate(-45deg); /* Chrome, Safari, Opera */
+            transform: scaleX(-1) rotate(-45deg);
+          }
+        }
+      }
+    }
+    @include pickerLabel($group, $i - 1);
+  }
+}
+
+// 解决颜色面板高亮问题
+@mixin pickerValue($group, $i) {
+  @if $i>0 {
+    $data-label-value: nth($group, $i);
+
+    .ql-picker-label[data-value='#{""+$data-label-value}'] {
+      & + .ql-picker-options {
+        .ql-picker-item[data-value='#{""+$data-label-value}'] {
+          &::after {
+            margin-left: 5px;
+            margin-top: -3px;
+            content: 'L';
+            font-size: initial;
+            font-family: arial;
+            -ms-transform: scaleX(-1) rotate(-45deg); /* IE 9 */
+            -webkit-transform: scaleX(-1) rotate(-45deg); /* Chrome, Safari, Opera */
+            transform: scaleX(-1) rotate(-45deg);
+          }
+        }
+      }
+    }
+    @include pickerValue($group, $i - 1);
+  }
+}
+
+// 当前颜色下划线指示器
+@mixin currentColorIndicator($group, $i) {
+  @if $i>0 {
+    $data-label-value: nth($group, $i);
+
+    .ql-picker-label[data-value='#{""+$data-label-value}'] {
+      .ql-color-inner {
+        .current-color-line {
+          border-color: $data-label-value;
+        }
+      }
+    }
+    @include currentColorIndicator($group, $i - 1);
+  }
+}
+
+@mixin mentionLink {
+  .ql-mention-link {
+    cursor: pointer;
+    color: #5e7ce0;
+    margin: 0 0.3em;
+    text-decoration: underline;
+  }
+}
+
+// SVG图标
+@mixin toolbarSvgColor {
+  svg,
+  polygon,
+  path {
+    @content;
+  }
+}
+
+// 字体图标
+@mixin toolbarFontIconColor {
+  i {
+    @content;
+  }
+}

@@ -13,7 +13,6 @@ import { ChartFunnel } from '@opentiny/vue-chart-funnel'
 import { ChartGauge } from '@opentiny/vue-chart-gauge'
 import { ChartGraph } from '@opentiny/vue-chart-graph'
 import { ChartHeatmap } from '@opentiny/vue-chart-heatmap'
-
 import { ChartLiquidfill } from '@opentiny/vue-chart-liquidfill'
 import { ChartMap } from '@opentiny/vue-chart-map'
 
@@ -31,7 +30,10 @@ import { $prefix, defineComponent, h } from '@opentiny/vue-common'
 export default defineComponent({
   name: $prefix + 'Chart',
   props: {
-    ...Core.props
+    ...Core.props,
+    type: {
+      type: String
+    }
   },
   data() {
     this.chartLib = {
@@ -83,7 +85,7 @@ export default defineComponent({
         }
       },
       [
-        h(this.chartLib[this.settings.type], {
+        h(this.chartLib[this.settings.type || this.type], {
           props: {
             ...this.$props
           },

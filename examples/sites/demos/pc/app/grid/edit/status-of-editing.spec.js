@@ -13,4 +13,10 @@ test('开启编辑状态', async ({ page }) => {
   await page.getByRole('heading', { name: '开启编辑状态：' }).click()
   await expect(page.getByRole('cell', { name: 'sdfdf' }).nth(0)).toHaveClass(/col__valid-success/)
   await expect(page.getByRole('cell', { name: 'sdfdf' }).nth(1)).not.toHaveClass(/col__valid-success/)
+
+  // 新增行添加编辑状态
+  await page.getByRole('button', { name: '新增行' }).click()
+  await page.locator('.tiny-grid-default-input').fill('sssss')
+  await page.getByRole('heading', { name: '开启编辑状态：' }).click()
+  await expect(page.getByRole('cell', { name: 'sssss' })).toHaveClass(/col__valid-success/)
 })

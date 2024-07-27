@@ -8,7 +8,7 @@ export default {
         {
           name: 'arrow',
           type: 'string',
-          defaultValue: "该属性的默认值为 'hover'",
+          defaultValue: "'hover'",
           desc: {
             'zh-CN': '切换箭头的显示效果，该属性的可选值为 always / hover / never',
             'en-US': 'Switch the display effect of arrows,The optional values for this attribute are always/hover/never'
@@ -31,7 +31,7 @@ export default {
         {
           name: 'autoplay',
           type: 'boolean',
-          defaultValue: '该属性的默认值为 false',
+          defaultValue: 'false',
           desc: {
             'zh-CN': '是否自动切换',
             'en-US': 'Whether to automatically switch'
@@ -57,7 +57,7 @@ export default {
           type: 'string',
           defaultValue: '',
           desc: {
-            'zh-CN': '指示器的位置。该属性的可选值为 outside / none',
+            'zh-CN': '指示器的位置，该属性的可选值为 outside / none',
             'en-US': 'The position of the indicator. The optional values for this attribute are outside/none'
           },
           mode: ['pc', 'mobile-first'],
@@ -67,10 +67,10 @@ export default {
         {
           name: 'indicator-style',
           type: 'String',
-          defaultValue: '该属性的可选值为 light/dark ，默认为light。',
+          defaultValue: "'light'",
           desc: {
-            'zh-CN': '指示器的样式。',
-            'en-US': 'The style of the indicator.'
+            'zh-CN': '指示器的样式，该属性的可选值为 light/dark',
+            'en-US': 'The style of the indicator, The optional values for this attribute are light/mark.'
           },
           mode: ['mobile-first'],
           mfDemo: 'indicator-style'
@@ -78,7 +78,7 @@ export default {
         {
           name: 'initial-index',
           type: 'number',
-          defaultValue: '该属性的默认值为 0',
+          defaultValue: '0',
           desc: {
             'zh-CN': '初始状态激活的幻灯片的索引，从 0 开始',
             'en-US': 'Index of slides activated in initial state, starting from 0'
@@ -90,7 +90,7 @@ export default {
         {
           name: 'interval',
           type: 'number',
-          defaultValue: '该属性的默认值为 3000',
+          defaultValue: '3000',
           desc: {
             'zh-CN': '自动切换的时间间隔，单位为毫秒',
             'en-US': 'The time interval for automatic switching, in milliseconds'
@@ -102,7 +102,7 @@ export default {
         {
           name: 'loop',
           type: 'boolean',
-          defaultValue: '该属性的默认值为 true',
+          defaultValue: 'true',
           desc: {
             'zh-CN': '是否循环显示',
             'en-US': 'Whether to display in a loop'
@@ -114,7 +114,7 @@ export default {
         {
           name: 'show-title',
           type: 'boolean',
-          defaultValue: '该属性的默认值为 false',
+          defaultValue: 'false',
           desc: {
             'zh-CN': '是否显示标题',
             'en-US': 'Is the title displayed'
@@ -126,11 +126,10 @@ export default {
         {
           name: 'trigger',
           type: 'string',
-          defaultValue: "该属性的默认值为 'hover'",
+          defaultValue: "'hover'",
           desc: {
-            'zh-CN': '指示器的触发方式，默认为 hover。该属性的可选值为 click',
-            'en-US':
-              'The triggering method of the indicator is hover by default. The optional value for this attribute is click'
+            'zh-CN': '指示器的触发方式，该属性的可选值为 hover / click',
+            'en-US': 'The triggering method of the indicator. The optional value for this attribute is click'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'indicator-trigger',
@@ -139,7 +138,7 @@ export default {
         {
           name: 'type',
           type: 'string',
-          defaultValue: "该属性的默认值为 'horizontal'",
+          defaultValue: "'horizontal'",
           desc: {
             'zh-CN': '走马灯的类型，该属性的可选值为 horizontal / vertical / card',
             'en-US': 'The type of horse lantern,The optional values for this attribute are horizontal/vertical/card'
@@ -147,16 +146,55 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'card-mode',
           mfDemo: ''
+        },
+        {
+          name: 'swipeable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否支持触屏轮播',
+            'en-US': 'Support Touchscreen Carousel'
+          },
+          mode: ['mobile-first'],
+          pcDemo: '',
+          mfDemo: ''
+        },
+        {
+          name: 'lite',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否打开精简模式，不显示切换按钮和指示器',
+            'en-US':
+              'Indicates whether to enable the simplified mode. The switch button and indicator are not displayed.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'swipeable',
+          mfDemo: ''
+        },
+        {
+          name: 'beforeSwipe',
+          type: '(newIndex,oldIndex) => boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '触摸轮播前，通过返回值控制某个图是否可轮播显示',
+            'en-US':
+              'Controls whether a graph can be displayed in rotation based on the return value before the rotation is touched.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'swipeable',
+          mfDemo: ''
         }
       ],
       events: [
         {
           name: 'change',
-          type: '',
+          type: '(curIndex: number, preIndex: number) => void',
           defaultValue: '',
           desc: {
-            'zh-CN': '幻灯片切换时触发',
-            'en-US': 'Trigger during slide transition'
+            'zh-CN': '幻灯片切换时触发，第一个参数为当前幻灯片索引，第二个参数为上一张幻灯片索引',
+            'en-US':
+              'Trigger during slide transition, The first parameter is the current slide index, and the second parameter is the index of the previous slide'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'carousel-events',
@@ -193,8 +231,9 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '手动切换幻灯片',
-            'en-US': 'Manually switch slides'
+            'zh-CN': '手动切换幻灯片，参数为需要切换的幻灯片的索引，从 0 开始',
+            'en-US':
+              'Manually switch slides,the parameter is the index of the slides that need to be switched, starting from 0'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'manual-play',
@@ -254,7 +293,7 @@ export default {
             'en-US': 'Default slot'
           },
           mode: ['pc'],
-          pcDemo: 'manual-play'
+          pcDemo: 'card-show'
         }
       ]
     }

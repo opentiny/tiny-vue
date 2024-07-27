@@ -118,6 +118,10 @@ export const inputProps = {
     type: Boolean,
     default: true
   },
+  popupMore: {
+    type: Boolean,
+    default: false
+  },
   // mobile特有属性
   textareaTitle: {
     type: String,

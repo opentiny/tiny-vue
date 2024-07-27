@@ -1,28 +1,16 @@
 <template>
   <div>
     <tiny-layout>
-      <tiny-row :flex="true" class="row-bg">
-        <tiny-col :span="3">
-          <tiny-statistic :value="10010258" :precision="0">
-            <template #title> 活跃度 </template>
+      <tiny-row :flex="true">
+        <tiny-col :span="8">
+          <tiny-statistic :value="10010258" :title="{ value: '存储总量', position: 'top' }">
+            <template #prefix>已使用容量(GB)</template>
+            <template #suffix><span style="font-size: 24px">GB</span></template>
           </tiny-statistic>
         </tiny-col>
-        <tiny-col :span="3">
-          <tiny-statistic :value="num" :precision="2" :title="msg"> </tiny-statistic>
-        </tiny-col>
-        <tiny-col :span="3">
-          <tiny-statistic :value="num" :precision="2" :title="money">
-            <template #title:data="{ scoped }">{{ scoped }}</template>
-          </tiny-statistic>
-        </tiny-col>
-        <tiny-col :span="3">
-          <tiny-statistic :value="num" :precision="0" title="点赞数量">
-            <template #prefix> Like:</template>
-          </tiny-statistic>
-        </tiny-col>
-        <tiny-col :span="3">
-          <tiny-statistic :value="600" :precision="0" title="队伍比分">
-            <template #suffix>/220</template>
+        <tiny-col :span="8">
+          <tiny-statistic :value="306526.23" :title="{ position: 'bottom' }">
+            <template #title>存储平均值</template>
           </tiny-statistic>
         </tiny-col>
       </tiny-row>
@@ -39,13 +27,6 @@ export default {
     TinyLayout: Layout,
     TinyRow: Row,
     TinyCol: Col
-  },
-  data() {
-    return {
-      num: 306526.23,
-      msg: { value: '额度' },
-      money: { value: '存款' }
-    }
   }
 }
 </script>

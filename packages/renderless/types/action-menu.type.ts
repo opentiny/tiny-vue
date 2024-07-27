@@ -23,14 +23,23 @@ import type {
   computedSuffixIcon
 } from '../src/action-menu'
 
+export interface IActonMenuOptionsItem {
+  label?: string
+  disabled?: boolean
+  divided?: boolean
+  children?: IActonMenuOptionsItem[]
+  icon?: any
+  [key: string]: any
+}
+
 export interface IActionMenuState {
-  visibleOptions: object
-  moreOptions: object
+  visibleOptions: IActonMenuOptionsItem[]
+  moreOptions: IActonMenuOptionsItem[]
   isCardMode: boolean
   spacing: string | number
   maxShowNum: number
   moreText: string
-  suffixIcon: string | Object
+  suffixIcon: string | object
 }
 
 export type IActionMenuProps = ExtractPropTypes<typeof actionMenuProps>

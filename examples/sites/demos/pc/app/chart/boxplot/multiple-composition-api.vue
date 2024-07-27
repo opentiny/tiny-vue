@@ -1,126 +1,27 @@
 <template>
-  <tiny-chart-boxplot ref="chartRef" :extend="option" @ready-once="init"></tiny-chart-boxplot>
+  <tiny-chart-boxplot ref="chartRef" :options="options"></tiny-chart-boxplot>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
 import { ChartBoxplot as TinyChartBoxplot } from '@opentiny/vue'
 
-const option = ref({})
-const chartRef = ref()
-
-function init() {
-  let prepareBoxplotData = chartRef.value.prepareBoxplotData
-  let data = []
-
-  for (let seriesIndex = 0; seriesIndex < 5; seriesIndex++) {
-    let seriesData = []
-
-    for (let i = 0; i < 18; i++) {
-      let cate = []
-
-      for (let j = 0; j < 100; j++) {
-        cate.push(Math.random() * 200)
-      }
-
-      seriesData.push(cate)
+const options = ref({
+  direction: 'horizontal', // 横向
+  data: [
+    [850, 740, 900, 1070, 930, 850, 950, 980, 980, 880, 1000, 980, 930, 650, 760, 810, 1000, 1000, 960, 960],
+    [960, 940, 960, 940, 880, 800, 850, 880, 900, 840, 830, 790, 810, 880, 880, 830, 800, 790, 760, 800],
+    [880, 880, 880, 860, 720, 720, 620, 860, 970, 950, 880, 910, 850, 870, 840, 840, 850, 840, 840, 840],
+    [890, 810, 810, 820, 800, 770, 760, 740, 750, 760, 910, 920, 890, 860, 880, 720, 840, 850, 850, 780],
+    [890, 840, 780, 810, 760, 810, 790, 810, 820, 850, 870, 870, 810, 740, 810, 940, 950, 800, 810, 870]
+  ],
+  xAxis: {
+    axisLabel: {
+      formatter: 'expr {value}'
     }
-
-    data.push(prepareBoxplotData(seriesData))
+  },
+  legend: {
+    show: false
   }
-
-  option.value = {
-    title: {
-      text: 'Multiple Categories',
-      left: 'center'
-    },
-    legend: {
-      top: '10%',
-      data: ['category0', 'category1', 'category2', 'category3']
-    },
-    tooltip: {
-      trigger: 'item',
-      axisPointer: {
-        type: 'shadow'
-      }
-    },
-    grid: {
-      left: '10%',
-      top: '20%',
-      right: '10%',
-      bottom: '15%'
-    },
-    xAxis: {
-      type: 'category',
-      data: data[0].axisData,
-      boundaryGap: true,
-      nameGap: 30,
-      splitArea: {
-        show: true
-      },
-      axisLabel: {
-        formatter: 'expr {value}'
-      },
-      splitLine: {
-        show: false
-      }
-    },
-    yAxis: {
-      type: 'value',
-      name: 'Value',
-      min: -400,
-      max: 600,
-      splitArea: {
-        show: false
-      }
-    },
-    dataZoom: [
-      {
-        type: 'inside',
-        start: 0,
-        end: 20
-      },
-      {
-        show: true,
-        height: 20,
-        type: 'slider',
-        top: '90%',
-        xAxisIndex: [0],
-        start: 0,
-        end: 20
-      }
-    ],
-    series: [
-      {
-        name: 'category0',
-        type: 'boxplot',
-        data: data[0].boxData,
-        tooltip: { formatter }
-      },
-      {
-        name: 'category1',
-        type: 'boxplot',
-        data: data[1].boxData,
-        tooltip: { formatter }
-      },
-      {
-        name: 'category2',
-        type: 'boxplot',
-        data: data[2].boxData,
-        tooltip: { formatter }
-      }
-    ]
-  }
-
-  function formatter(param) {
-    return [
-      'Experiment ' + param.name + ': ',
-      'upper: ' + param.data[0],
-      'Q1: ' + param.data[1],
-      'median: ' + param.data[2],
-      'Q3: ' + param.data[3],
-      'lower: ' + param.data[4]
-    ].join('<br/>')
-  }
-}
+})
 </script>

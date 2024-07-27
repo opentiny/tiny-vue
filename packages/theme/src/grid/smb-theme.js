@@ -1,5 +1,6 @@
 export const tinyGridSmbTheme = {
   'ti-grid-header-background-color': '#F5F5F5',
+  'ti-grid-header-font-weight': 'bold',
   'ti-grid-medium-header-column-height': '46px',
   'ti-grid-default-header-column-height': 'var(--ti-common-size-height-medium)',
   'ti-grid-small-header-column-height': 'var(--ti-common-size-height-normal)',
@@ -29,5 +30,11 @@ export const tinyGridSmbTheme = {
   'ti-grid-toolbar-btn-line-height': '30px',
   'ti-grid-toolbar-btn-border-color': '#595959', // 缺少#595959的边框公共变量
   'ti-grid-toolbar-btn-hover-border-color': 'var(--ti-common-color-line-normal)', // 缺少#595959的边框公共变量
-  'ti-grid-toolbar-btn-border-radius': 'var(--ti-common-size-4x)'
+  'ti-grid-toolbar-btn-border-radius': 'var(--ti-common-size-4x)',
+  'ti-grid-select-icon-font-size': 'var(--ti-common-font-size-3)',
+  'ti-grid-row-selected-background-color': '#f0f7ff',
+  'ti-grid-expand-background-color': '#fafafa',
+  'ti-grid-loading-background-color': 'rgba(255, 255, 255, 0.67)',
+  'ti-grid-tree-expand-icon-font-size': 'var(--ti-common-font-size-2)',
+  'ti-grid-tree-expand-icon-translate-x': '-2px'
 }

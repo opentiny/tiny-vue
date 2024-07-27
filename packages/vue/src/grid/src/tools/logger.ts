@@ -1,8 +1,12 @@
 import { log } from '@opentiny/vue-renderless/common'
 import GlobalConfig from '../config'
 
-const outLog = (type) => (message) => {
+const outLog = (type) => (message, detail) => {
   let msg = `[tiny-grid] ${GlobalConfig.i18n(message) || message}`
+
+  if (detail) {
+    msg += `: ${detail}`
+  }
 
   log(msg, type)
 

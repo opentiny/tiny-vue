@@ -24,6 +24,8 @@
   );
   // 默认表头文本色
   --ti-grid-header-text-color: var(--ti-common-color-info-normal, #252b3a);
+  // 默认表头字体权重
+  --ti-grid-header-font-weight: var(--ti-common-font-weight-4, normal);
   // 默认表体文本色
   --ti-grid-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 默认按钮图标悬浮色
@@ -61,6 +63,8 @@
 
   // 表格内部多选按钮边框色
   --ti-grid-checkbox-border-color: var(--ti-common-color-line-normal, #adb0b8);
+  // 表格内部多选按钮大小
+  --ti-grid-select-icon-font-size: var(--ti-common-font-size-2, 16px);
   // 表格多选框选中背景色
   --ti-grid-checkbox-bg-color-checked: var(--ti-grid-primary-color);
   // 表格复选框字号
@@ -109,6 +113,8 @@
 
   // 行默认背景色
   --ti-grid-row-background-color: var(--ti-common-color-bg-white-normal, #fff);
+  // 行被勾选时背景色
+  --ti-grid-row-selected-background-color: var(--ti-common-color-bg-white-normal, #fff);
   // 斑马纹行背景色
   --ti-grid-row-striped-background-color: #fafafa;
   // 行悬浮默认背景色
@@ -187,4 +193,10 @@
   --ti-grid-sort-icon-position: static;
   // 排序按钮右侧定位
   --ti-grid-sort-icon-right: unset;
+  // 表格展开行背景颜色
+  --ti-grid-expand-background-color: '';
+  // 表格树表展开行图标大小
+  --ti-grid-tree-expand-icon-font-size: var(--ti-common-font-size-1, 14px);
+  // 表格树表展开行图标向左偏移量(hide)
+  --ti-grid-tree-expand-icon-translate-x: -4px;
 }

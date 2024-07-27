@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-chart-bar :data="chartData" :settings="chartSettings"></tiny-chart-bar>
+    <tiny-chart-bar :options="options"></tiny-chart-bar>
   </div>
 </template>
 
@@ -8,22 +8,24 @@
 import { ref } from 'vue'
 import { ChartBar as TinyChartBar } from '@opentiny/vue'
 
-const chartSettings = ref({
-  xAxisType: ['KMB', 'KMB'],
-  xAxisName: ['下单用户', '访问用户'],
-  axisSite: {
-    top: ['访问用户']
-  }
-})
-const chartData = ref({
-  columns: ['日期', '访问用户', '下单用户'],
-  rows: [
-    { 日期: '1/1', 访问用户: 1393, 下单用户: 1093 },
-    { 日期: '1/2', 访问用户: 3530, 下单用户: 3230 },
-    { 日期: '1/3', 访问用户: 2923, 下单用户: 2623 },
-    { 日期: '1/4', 访问用户: 1723, 下单用户: 1423 },
-    { 日期: '1/5', 访问用户: 3792, 下单用户: 3492 },
-    { 日期: '1/6', 访问用户: 4593, 下单用户: 4293 }
-  ]
+const options = ref({
+  data: [
+    { 日期: '1/1', 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
+    { 日期: '1/2', 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
+    { 日期: '1/3', 访问用户: 2923, 下单用户: 2623, 下单率: 0.76 },
+    { 日期: '1/4', 访问用户: 1723, 下单用户: 1423, 下单率: 0.49 },
+    { 日期: '1/5', 访问用户: 3792, 下单用户: 3492, 下单率: 0.323 },
+    { 日期: '1/6', 访问用户: 4593, 下单用户: 4293, 下单率: 0.78 }
+  ],
+  type: 'stack',
+  label: {
+    show: true,
+    position: 'inside',
+    offset: [0, -16]
+  },
+  xAxis: {
+    data: '日期'
+  },
+  direction: 'horizontal' // 横向柱状图
 })
 </script>

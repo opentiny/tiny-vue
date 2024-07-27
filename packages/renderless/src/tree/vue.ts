@@ -79,6 +79,7 @@ import {
   handleClickPlainNode,
   setCheckedByNodeKey
 } from './index'
+import { random } from '../common/string'
 
 export const api = [
   'state',
@@ -173,7 +174,9 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
       deleteData: [],
       editData: []
     },
-    plainNodeStore: {}
+    newNodeId: Math.floor(random() * 10000),
+    plainNodeStore: {},
+    allNodeKeys: []
   })
 
   return state
@@ -192,7 +195,7 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, ap
   watchCheckboxItems: watchCheckboxItems(),
   watchCheckStrictly: watchCheckStrictly(state),
   updated: updated({ vm, state }),
-  filter: filter({ props, state }),
+  filter: filter({ props, state, api }),
   getNodeKey: getNodeKey(props),
   getNodePath: getNodePath({ props, state }),
   getCheckedNodes: getCheckedNodes(state),
@@ -254,10 +257,6 @@ const initWatcher = ({ watch, props, api, state, isVue2 }) => {
     (value) => (state.action.addDisabled = value || []),
     { immediate: true }
   )
-
-  if (props.willChangeView) {
-    watch(() => state.root, api.initPlainNodeStore, { deep: true })
-  }
 }
 
 export const renderless = (
@@ -287,7 +286,7 @@ export const renderless = (
     cancelDelete: cancelDelete({ state }),
     openEdit: openEdit({ props, state, api, emit }),
     saveNode: saveNode({ state, emit, api }),
-    addNode: addNode({ api }),
+    addNode: addNode({ api, props, state }),
     editNode: editNode({ state }),
     closeEdit: closeEdit({ props, state, api, emit }),
     saveEdit: saveEdit({ props, state, emit }),

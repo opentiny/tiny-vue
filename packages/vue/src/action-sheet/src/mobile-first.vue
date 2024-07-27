@@ -64,7 +64,7 @@
                 @click.stop="actionSelectOption(item, index)"
               >
                 <slot :data="item" :index="index"
-                  ><span class="truncate px-4">{{ item }}</span></slot
+                  ><span class="truncate px-4 text-color-text-primary font-medium">{{ item }}</span></slot
                 >
               </div>
             </div>

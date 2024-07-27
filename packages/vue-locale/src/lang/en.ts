@@ -18,6 +18,11 @@ export default {
   yes: 'Yes',
   no: 'No',
   ui: {
+    input: {
+      close: 'Close',
+      more: 'More',
+      detail: 'Detailed Info'
+    },
     numeric: {
       equalTo: 'Equal to',
       notEqualTo: 'Not equal to',
@@ -83,6 +88,9 @@ export default {
     button: {
       cancel: 'Cancel',
       confirm: 'Confirm'
+    },
+    buttonGroup: {
+      noData: 'No data'
     },
     buttonMessage: {
       cancel: 'Cancel',
@@ -353,7 +361,8 @@ export default {
         classComponentError: 'Class component rendering error.',
         groupColumnFixedError: 'Different fixed types cannot be set in the same group.',
         missingValueFormat:
-          'The renderer cannot format the date string. You should provide the "valueFormat" source date format configuration.'
+          'The renderer cannot format the date string. You should provide the "valueFormat" source date format configuration.',
+        clipboardWriteError: 'clipboard write error'
       },
       filter: {
         allFilter: 'All',

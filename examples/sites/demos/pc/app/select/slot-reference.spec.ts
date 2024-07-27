@@ -12,5 +12,5 @@ test('custom-reference', async ({ page }) => {
 
   await expect(option).toHaveCount(0)
   await reference.click()
-  await option.filter({ hasText: '黄金糕' }).click()
+  await option.filter({ hasText: '北京' }).click()
 })

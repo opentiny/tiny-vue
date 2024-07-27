@@ -40,6 +40,13 @@ export const renderless = (props, { onMounted, onBeforeUnmount, reactive, watch,
     }
   )
 
+  watch(
+    () => tabs.state.navs,
+    () => {
+      api.wheelListener()
+    }
+  )
+
   onMounted(() => {
     addWheelListener(vm.$refs.scroll, api.wheelListener)
     addResizeListener(vm.$el, api.wheelListener)

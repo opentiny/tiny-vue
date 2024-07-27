@@ -1,4 +1,4 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ComputedRef, ExtractPropTypes } from 'vue'
 import type { treeMenuProps } from '@/tree-menu/src'
 import type {
   initData,
@@ -31,6 +31,7 @@ export interface ITreeMenuState {
   data?: unknown[]
   filterText: string
   isCollapsed: boolean
+  clearable: ComputedRef<boolean>
 }
 export type ITreeMenuProps = ExtractPropTypes<typeof treeMenuProps>
 export interface ITreeMenuApi {

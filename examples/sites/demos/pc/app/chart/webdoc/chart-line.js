@@ -5,59 +5,54 @@ export default {
     {
       'demoId': 'line-base',
       'name': { 'zh-CN': '基本用法', 'en-US': 'Basic Usage' },
-      'desc': {
-        'zh-CN':
-          '<p>可以流畅的运行在 PC 和移动设备上，兼容当前绝大部分浏览器（IE 9/10/11，Chrome，Firefox，Safari 等）底层依赖轻量级的 Canvas 类库 ZRender，提供直观，生动，可交互，可高度个性化定制的数据可视化图表。</p>\n',
-        'en-US':
-          '<p> can run smoothly on PCs and mobile devices and is compatible with most browsers. (Internet Explorer 9/10/11, Chrome, Firefox, Safari, etc.) The bottom layer relies on the lightweight Canvas class library ZRender to provide intuitive, vivid, interactive, and highly personalized data visualization charts. </p>\n'
-      },
+      'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['line/base.vue']
     },
     {
       'demoId': 'line-demo2',
-      'name': { 'zh-CN': '设置显示的指标维度', 'en-US': 'Set the KQI/KPI dimension to be displayed' },
+      'name': { 'zh-CN': '曲线图', 'en-US': 'Curve graph' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['line/demo2.vue']
     },
     {
       'demoId': 'line-demo3',
-      'name': { 'zh-CN': '设置双 y 轴', 'en-US': 'Set the two y axes' },
+      'name': { 'zh-CN': '阶梯线图', 'en-US': 'ladder diagram' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['line/demo3.vue']
     },
     {
       'demoId': 'line-demo4',
-      'name': { 'zh-CN': '横坐标的倾斜', 'en-US': 'Slant of the horizontal coordinate' },
+      'name': { 'zh-CN': '数据不连续', 'en-US': 'The data is not continuous.' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['line/demo4.vue']
     },
     {
       'demoId': 'line-demo5',
-      'name': { 'zh-CN': '堆叠面积图', 'en-US': 'Stack Area Chart' },
+      'name': { 'zh-CN': 'x轴文本旋转', 'en-US': 'X-axis text rotation' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['line/demo5.vue']
     },
     {
       'demoId': 'line-demo6',
-      'name': { 'zh-CN': '设置别名', 'en-US': 'Set Alias' },
+      'name': { 'zh-CN': 'y轴最大最小值和数值间距', 'en-US': 'Maximum, minumum, and interval of values on the y axis' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['line/demo6.vue']
     },
     {
       'demoId': 'line-demo7',
-      'name': { 'zh-CN': '显示指标数值', 'en-US': 'Display Indicator Value' },
+      'name': { 'zh-CN': '阈值线', 'en-US': 'Threshold Line' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['line/demo7.vue']
     },
     {
       'demoId': 'line-demo8',
-      'name': { 'zh-CN': '设置横轴为连续的数值轴', 'en-US': 'Set the horizontal axis to a continuous value axis' },
+      'name': { 'zh-CN': '区域缩放轴', 'en-US': 'Region Zoom Axis' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['line/demo8.vue']
     },
     {
       'demoId': 'line-demo9',
-      'name': { 'zh-CN': '设置横轴为连续的时间轴', 'en-US': 'Set the horizontal axis to a continuous time axis.' },
+      'name': { 'zh-CN': '折线面积图', 'en-US': 'Line area chart' },
       'desc': { 'zh-CN': '详细用法参考如下示例', 'en-US': 'For details, see the following example.' },
       'codeFiles': ['line/demo9.vue']
     }

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-unused-vars -->
 <template>
   <div class="slot-demo">
     <div>
@@ -41,13 +42,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import {
-  Tree as TinyTree,
-  RadioGroup as TinyRadioGroup,
-  Radio as TinyRadio,
-  Button as TinyButton,
-  Link as TinyLink
-} from '@opentiny/vue'
+import { Tree as TinyTree, Button as TinyButton, Link as TinyLink } from '@opentiny/vue'
 import { iconPlusSquare } from '@opentiny/vue-icon'
 
 const TinyIconPlusSquare = iconPlusSquare()
@@ -58,7 +53,10 @@ function loadData() {
     {
       id: '1',
       label: '数据 1',
-      children: [{ id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] }]
+      children: [
+        { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+        { id: '1-2', label: '数据 1-2' }
+      ]
     },
     {
       id: '2',

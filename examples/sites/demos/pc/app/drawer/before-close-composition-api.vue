@@ -1,8 +1,15 @@
 <template>
   <div class="demo-drawer">
-    <tiny-button @click="toggleDrawer(true)" type="primary"> 点击展开 Drawer </tiny-button>
-    <tiny-drawer title="抽屉关闭将会被拦截" v-model:visible="visible" :before-close="onBeforeClose" show-footer>
-      <tiny-button @click="toggleDrawer(false)" type="primary"> 关闭 Drawer </tiny-button>
+    <tiny-button type="primary" @click="showDrawer"> 点击展开 Drawer </tiny-button>
+    <tiny-drawer
+      ref="drawer"
+      title="抽屉关闭将会被拦截"
+      show-footer
+      :visible="visible"
+      :before-close="onBeforeClose"
+      @update:visible="visible = $event"
+    >
+      <tiny-button type="primary" @click="forceClose"> 强制关闭 Drawer </tiny-button>
     </tiny-drawer>
   </div>
 </template>
@@ -12,9 +19,13 @@ import { ref } from 'vue'
 import { Drawer as TinyDrawer, Button as TinyButton, Modal } from '@opentiny/vue'
 
 const visible = ref(false)
+const drawer = ref()
+const showDrawer = () => {
+  visible.value = true
+}
 
-const toggleDrawer = (value) => {
-  visible.value = value
+const forceClose = () => {
+  drawer.value.close(true)
 }
 
 const onBeforeClose = (type) => {

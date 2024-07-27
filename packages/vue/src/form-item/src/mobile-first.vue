@@ -29,7 +29,7 @@
             'py-3 sm:py-1.5 sm:min-h-[theme(spacing.7)] relative align-bottom float-left text-sm pr-3 sm:pr-4 box-border leading-5',
             'overflow-hidden text-ellipsis',
             state.labelPosition === 'top'
-              ? 'float-none inline-block text-left sm:text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0 sm:py-0 sm:pb-0.5 sm:min-h-[theme(spacing.0)]'
+              ? 'float-none inline-block text-left sm:text-left leading-none px-0 pt-0 pb-1.5 h-auto min-h-0 sm:py-0 sm:pb-1 sm:min-h-[theme(spacing.0)]'
               : 'min-h-[theme(spacing.9)]',
             state.labelPosition === 'right' ? 'text-right sm:text-right' : '',
             state.labelPosition === 'left' ? 'text-left sm:text-left' : '',
@@ -40,7 +40,7 @@
               ? 'overflow-visible relative before:absolute before:-left-2.5'
               : '',
             state.disabled ? 'text-color-icon-placeholder sm:text-color-text-secondary' : 'text-color-text-secondary',
-            state.formItemSize === 'medium' ? 'sm:text-sm' : 'sm:text-xs'
+            state.formItemSize !== 'mini' ? 'sm:text-sm' : 'sm:text-xs'
           )
         "
         :style="state.labelStyle"
@@ -49,9 +49,9 @@
         <span
           :class="
             m(
-              'max-h-[theme(spacing.10)] line-clamp-2 inline-block relative top-px pl-2 sm:pl-0 leading-normal',
+              'max-h-[theme(spacing.10)] line-clamp-2 inline-block relative top-px leading-normal',
               (state.isRequired || required) && !state.hideRequiredAsterisk
-                ? `before:content-['*'] before:text-color-error before:absolute before:left-0 before:sm:relative`
+                ? `before:content-['*'] before:text-color-error before:relative before:mr-1`
                 : '',
               state.isDisplayOnly ? 'pl-0 before:hidden' : ''
             )
@@ -82,7 +82,7 @@
               ? 'pl-0'
               : 'pl-2 sm:pl-0'
             : 'pt-2',
-          state.formItemSize === 'medium' ? 'sm:text-sm' : 'sm:text-xs'
+          state.formItemSize !== 'mini' ? 'sm:text-sm' : 'sm:text-xs'
         )
       "
     >
@@ -105,9 +105,8 @@
         :class="[
           '[&_[aria-label=checkbox-group]]:pl-0.5 sm:[&_[aria-label=checkbox-group]]:pl-0',
           '[&_>:first-child[data-tag=tiny-checkbox]]:pl-0.5 sm:[&_>:first-child[data-tag=tiny-checkbox]]:pl-0',
-          '[&_>:first-child[data-tag=tiny-cascader]]:w-full',
-          '[&_>:first-child[class=tiny-autocomplete]]:w-full',
-          '[&_>:first-child[class=tiny-cascader]]:w-full',
+          '[&_[class=tiny-autocomplete]]:w-full',
+          '[&_[class=tiny-cascader]]:w-full',
           state.isDisplayOnly
             ? '[&_>*:not([data-tag^=tiny-],[class^=tiny-])]:leading-8 [&_>*:not([data-tag^=tiny-],[class^=tiny-])]:sm:leading-normal'
             : ''
@@ -123,7 +122,7 @@
         <div
           :class="
             m(
-              ' relative sm:absolute left-0 bottom-1 sm:-bottom-5 text-color-error text-xs leading-normal line-clamp-3 sm:line-clamp-1',
+              'relative sm:absolute left-0 bottom-1 sm:-bottom-5 text-color-error text-xs leading-normal line-clamp-3 sm:line-clamp-1 break-all',
               (typeof inlineMessage === 'boolean' && inlineMessage) || state.inlineMessage
                 ? 'relative top-auto left-auto inline-block'
                 : '',
@@ -136,6 +135,7 @@
           {{ state.validateMessage }}
         </div>
       </slot>
+      <slot v-if="state.validateState !== 'error' && showMessage && state.showMessage" name="prompt"> </slot>
     </div>
   </div>
 </template>

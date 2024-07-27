@@ -8,17 +8,21 @@
     "start": "esno ./src/index.ts",
     "scan": "esno ./src/demos-scan.ts",
     "diff": "esno ./src/aui-diff.ts",
-    "add-dep": "esno ./src/add-dependencies.ts"
+    "add-dep": "esno ./src/add-dependencies.ts",
+    "auto-build-pub": "esno ./src/publish/index.ts"
   },
   "dependencies": {
-    "esno": "^4.0.0",
+    "esno": "^4.7.0",
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
     "lodash-es": "^4.17.21",
-    "sheetjs-style": "^0.15.8"
+    "sheetjs-style": "^0.15.8",
+    "commander": "^10.0.0",
+    "semver": "^7.3.8",
+    "chalk": "2.4.2"
   },
   "keywords": [],
   "author": "",

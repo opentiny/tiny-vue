@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-tabs",
-  "version": "3.15.0",
+  "version": "3.17.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -20,6 +20,8 @@
     "@opentiny/vue-dropdown": "workspace:~",
     "@opentiny/vue-dropdown-menu": "workspace:~",
     "@opentiny/vue-dropdown-item": "workspace:~",
+    "@opentiny/vue-carousel": "workspace:~",
+    "@opentiny/vue-carousel-item": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",

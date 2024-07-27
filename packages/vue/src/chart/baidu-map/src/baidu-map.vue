@@ -1,20 +1,17 @@
 <template>
-  <div
-    class="hui-chart chart-box"
-    ref="chartRef"
-    :style="{
-      position: 'relative',
-      height
-    }"
-  ></div>
+  <div class="hui-chart chart-box">
+    <div ref="chartRef" :style="{width, height}"></div>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
 import 'echarts/extension/bmap/bmap'
 import Core from '@opentiny/vue-chart-core'
+import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: 'ChartBaiduMap',
+  name: $prefix + 'ChartBaiduMap',
   mixins: [Core],
   data() {
     return {

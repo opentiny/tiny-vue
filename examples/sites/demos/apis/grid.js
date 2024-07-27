@@ -144,6 +144,30 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'custom-column-names',
+          type: 'string[]',
+          defaultValue: "['TinyGridColumn']",
+          metaData: {
+            experimental: {
+              version: '3.17.0'
+            }
+          },
+          versionTipOption: {
+            extendTip: {
+              'zh-CN': '该属性于3.17版本新增，封装 grid-column 时需要配置此字段，提供给表格收集配置',
+              'en-US':
+                'This field needs to be configured when encapsulating grid-column and is provided for table collection configuration'
+            }
+          },
+          desc: {
+            'zh-CN': '封装 grid-column 时需要配置此字段，提供给表格收集配置',
+            'en-US':
+              'This field needs to be configured when encapsulating grid-column and is provided for table collection configuration'
+          },
+          mode: ['pc'],
+          pcDemo: 'grid-faq#custom-column'
+        },
+        {
           name: 'data',
           typeAnchorName: 'IRow',
           type: 'Row[]',
@@ -1434,6 +1458,28 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'grid-event#event-toggle-expand-change-event',
+          mfDemo: ''
+        },
+        {
+          name: 'toggle-group-change',
+          typeAnchorName: 'IToggleGroupChangeArgs',
+          type: '(row: IRow)=> void',
+          defaultValue: '',
+          metaData: {
+            experimental: '3.17.0'
+          },
+          versionTipOption: {
+            extendTip: {
+              'zh-CN': '该特性于3.17版本新增',
+              'en-US': 'This feature was added in version 3.17'
+            }
+          },
+          desc: {
+            'zh-CN': '当分组的展开和收起时会触发该事件',
+            'en-US': 'This event is triggered when the group is expanded and collapsed.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'grid-row-grouping#row-grouping-row-group-render',
           mfDemo: ''
         },
         {
@@ -4016,8 +4062,16 @@ interface IDataHandler {
       type: 'type',
       code: `
 interface IRowGroup {
+  // 自定义渲染内容
+  render: () => Vnode
   // 列标识符，行分组会将具有相同值的列进行分组展示
   field: string
+  // 3.17版本新增，配置分组行的列合并数量
+  colspan: number
+  // 3.17版本新增，控制分组行是否可以手动折叠
+  closeable: boolean
+  // 3.17版本新增，控制分组生成时是否默认收起
+  activeMethod: (row: IRow) => boolean
 }
       `
     },

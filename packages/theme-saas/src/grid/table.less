@@ -195,7 +195,7 @@
     &.fixed-right-first__column + .col__gutter {
       position: sticky;
       right: 0;
-      @apply bg-color-bg-5;
+      background-color: #f4f6fb;
     }
   }
 
@@ -246,11 +246,11 @@
 
       &.row__selected {
         &:nth-child(2n) {
-          background-color: #e8eef7;
+          @apply bg-color-fill-6;
         }
 
         &:nth-child(2n + 1) {
-          background-color: #f4f6fb;
+          @apply bg-color-fill-6;
         }
       }
     }
@@ -528,20 +528,20 @@
     }
 
     &.row__selected {
-      background-color: #f4f6fb;
+      @apply bg-color-fill-6;
 
       // 目前saas的单元格背景色都是带透明度的颜色，会造成冻结列产生透视效果，此处将颜色改为不带透明度的颜色
       .fixed__column {
-        background-color: #f4f6fb;
+        @apply bg-color-fill-6;
       }
 
       &.row__hover {
-        background-color: #f4f6fb;
+        @apply bg-color-fill-6;
       }
     }
 
     &.row__current {
-      background-color: #f4f6fb;
+      @apply bg-color-fill-6;
     }
   }
 
@@ -989,6 +989,9 @@
           &__title:has(.tiny-grid-tree__indent:nth-last-child(2):first-child),
           &__ellipsis:has(.tiny-grid-tree__indent:nth-last-child(2):first-child) {
             @apply inline-block;
+            @apply align-middle;
+            transform: translateY(-1px);
+            @apply max-w-full;
           }
         }
       }
@@ -1181,13 +1184,16 @@
   // 表格与分页上下间距
   .@{pager-prefix-cls},
   & + .@{pager-prefix-cls} {
-    @apply pt-4;
+    @apply py-2;
   }
 
   & &__header {
     // 部分场景下浏览器缩放比例导致表头和表体错位问题
     th.col__gutter {
       @apply w-0;
+      position: sticky;
+      right: 0;
+      @apply bg-color-bg-5;
     }
 
     // 配置表头排序且文本超出省略号显示，排序图标遮挡文字问题
@@ -1266,6 +1272,13 @@
     @apply cursor-pointer;
   }
 
+  // 解决操作图标和其他单元格文字不对齐问题
+  & &__oper-col-wrapper {
+    @apply flex;
+    @apply max-w-full;
+    @apply overflow-hidden;
+  }
+
   & &__oper-col-button {
     @apply text-sm;
     @apply cursor-pointer;
@@ -1280,6 +1293,85 @@
       @apply cursor-not-allowed;
       @apply fill-color-icon-disabled;
       @apply text-color-text-disabled;
+    }
+  }
+
+  &.row__valid-inline {
+    .@{grid-prefix-cls}__body-wrapper .@{grid-prefix-cls}-body__row.row__actived {
+      @apply h-18;
+
+      .@{grid-prefix-cls}-cell__valid {
+        --td-padding-x: 8px;
+        @apply absolute;
+        @apply top-auto;
+        @apply right-auto;
+        @apply ~'bottom-[1px]';
+        @apply ~'left-[var(--td-padding-x)]';
+        @apply ~'w-[calc(100%-2*var(--td-padding-x))]';
+        @apply h-4;
+        @apply leading-none;
+        @apply translate-x-0;
+        @apply translate-y-0;
+        @apply bg-transparent;
+        @apply text-left;
+        @apply truncate;
+        @apply text-color-error;
+
+        .@{grid-prefix-cls}-cell__valid-msg {
+          @apply p-0;
+          @apply bg-transparent;
+          @apply inline;
+          @apply text-inherit;
+          @apply text-xs;
+        }
+      }
+    }
+  }
+
+  &.row__drop-handle--index {
+    .@{grid-prefix-cls}__body-wrapper td.col__index {
+      @apply relative;
+
+      .row__drop-handle {
+        @apply absolute;
+        @apply left-0;
+        @apply top-0;
+        @apply w-2;
+        @apply h-full;
+        @apply cursor-grab;
+
+        &::before {
+          --row-drop-handle-bgcolor: var(--tiny-color-none, #aeaeae);
+          @apply content-[''];
+          @apply block;
+          @apply absolute;
+          @apply left-0;
+          @apply top-1/2;
+          @apply -translate-y-1/2;
+          @apply w-2;
+          @apply ~'h-3.5';
+          background-image: linear-gradient(
+              180deg,
+              var(--row-drop-handle-bgcolor) 0 2px,
+              transparent 2px 6px,
+              var(--row-drop-handle-bgcolor) 6px 8px,
+              transparent 8px 12px,
+              var(--row-drop-handle-bgcolor) 12px 14px
+            ),
+            linear-gradient(180deg, transparent, transparent),
+            linear-gradient(
+              180deg,
+              var(--row-drop-handle-bgcolor) 0 2px,
+              transparent 2px 6px,
+              var(--row-drop-handle-bgcolor) 6px 8px,
+              transparent 8px 12px,
+              var(--row-drop-handle-bgcolor) 12px 14px
+            );
+          background-position: 0 0, 2px 0, 6px 0;
+          background-size: 2px 14px, 4px 14px, 2px 14px;
+          @apply bg-no-repeat;
+        }
+      }
     }
   }
 }

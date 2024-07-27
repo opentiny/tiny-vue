@@ -16,7 +16,7 @@ test('单选事件', async ({ page }) => {
   await expect(model.filter({ hasText: '触发 visible-change 事件' })).toHaveCount(1)
 
   await option.first().click()
-  await expect(input).toHaveValue('黄金糕')
+  await expect(input).toHaveValue('北京')
   await expect(model.filter({ hasText: '触发 change 事件' })).toHaveCount(1)
   await expect(model.filter({ hasText: '触发 visible-change 事件' })).toHaveCount(2)
 

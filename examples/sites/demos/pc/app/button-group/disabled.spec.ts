@@ -38,4 +38,8 @@ test('测试按钮是否禁用', async ({ page }) => {
   await expect(buttonGroup3.locator('button').nth(1)).toHaveCSS('background-color', 'rgb(245, 245, 246)')
   await expect(buttonGroup3.locator('button').nth(1)).toHaveCSS('border-bottom-color', 'rgb(173, 176, 184)')
   await expect(buttonGroup3.locator('button').nth(1)).toHaveCSS('color', 'rgb(173, 176, 184)')
+
+  // 按钮悬浮提示
+  await buttonGroup3.locator('button').nth(1).hover()
+  await expect(page.getByText('因为xxx原因被禁用')).toBeVisible()
 })

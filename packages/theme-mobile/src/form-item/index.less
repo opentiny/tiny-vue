@@ -22,8 +22,10 @@
 @numeric-prefix-cls: ~'@{css-prefix}mobile-numeric';
 
 .@{form-item-prefix-cls} {
-  margin-bottom: 12px;
+  .component-css-vars-form-item();
   .clearfix();
+
+  margin-bottom: 12px;
 
   & & {
     margin-bottom: 0;

@@ -144,6 +144,7 @@ export default defineComponent({
       encryptDialogConfirm,
       handleTriggerClick,
       handleClickFileList,
+      handleFileClick,
       displayOnly,
       listType,
       compact
@@ -268,7 +269,19 @@ export default defineComponent({
                                 placement: 'top'
                               },
                               scopedSlots: {
-                                reference: () => h('div', { class: 'thumb-item' }, [getThumbList(item)])
+                                reference: () =>
+                                  h(
+                                    'div',
+                                    {
+                                      class: 'thumb-item',
+                                      on: {
+                                        click: () => {
+                                          handleFileClick(item)
+                                        }
+                                      }
+                                    },
+                                    [getThumbList(item)]
+                                  )
                               }
                             })
                           )
@@ -478,7 +491,7 @@ export default defineComponent({
         {notice}
         {isPictureCard ? uploadList : ''}
         {slots.trigger ? [uploadComponent, defaultSlot] : uploadComponent}
-        {slots.tip && slots.tip()}
+        {!isSaasType && slots.tip && slots.tip()}
         {isPictureCard ? '' : uploadList}
         {previewComponent}
         {encryptDialogComponent}

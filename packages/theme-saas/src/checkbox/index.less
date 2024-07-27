@@ -36,8 +36,6 @@
     }
   }
 
-
-
   &.is-bordered {
     @apply py-2 px-4;
     @apply rounded-sm;
@@ -60,7 +58,7 @@
     }
 
     &.is-disabled {
-      .checkbox-border-disabled(theme('colors.color.text.disabled'), theme('colors.color.bg.2'));
+      .checkbox-border-disabled(theme('colors.color.text.secondary'), theme('colors.color.bg.2'));
     }
 
     &.@{checkbox-prefix-cls}--medium {
@@ -70,7 +68,7 @@
 
       .@{checkbox-prefix-cls}__label {
         @apply leading-normal;
-        @apply text-xs;
+        @apply text-sm;
       }
 
       .@{checkbox-prefix-cls}__inner {
@@ -86,7 +84,7 @@
 
       .@{checkbox-prefix-cls}__label {
         @apply leading-normal;
-        @apply text-xs;
+        @apply text-sm;
       }
 
       .@{checkbox-prefix-cls}__inner {
@@ -192,7 +190,7 @@
     }
 
     &.is-disabled {
-      .checkbox-input-disabled(theme('colors.color.text.disabled'), theme('colors.color.border.DEFAULT'), theme('colors.color.brand.disabled'), theme('colors.color.bg.3'));
+      .checkbox-input-disabled(theme('colors.color.text.secondary'), theme('colors.color.border.DEFAULT'), theme('colors.color.brand.disabled'), theme('colors.color.bg.3'));
     }
   }
 
@@ -225,7 +223,7 @@
 
   &__label {
     @apply pl-2;
-    @apply text-xs;
+    @apply text-sm;
   }
 
   &.is-display-only {

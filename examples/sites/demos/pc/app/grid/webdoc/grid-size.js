@@ -82,6 +82,17 @@ export default {
       'codeFiles': ['size/resize-column-width.vue']
     },
     {
+      'demoId': 'size-resize-operation-column-width',
+      'name': { 'zh-CN': '操作列开启列宽拖拽', 'en-US': 'Enable column width dragging' },
+      'desc': {
+        'zh-CN':
+          '<p>列属性 <code>type</code> 为 <code>index</code>, <code>radio</code>, <code>selection</code> 的列默认不可拖动列宽。可以通过表格属性 <code>operation-column-resizable</code> 开启列宽拖拽，默认值是 <code>false</code>。</p>\n',
+        'en-US':
+          '<p>Column width is enabled by default. To disable this function, set <code>resizable</code> to <code>false</code></p>\n'
+      },
+      'codeFiles': ['size/resize-operation-column-width.vue']
+    },
+    {
       'demoId': 'size-adaptive-column-width',
       'name': { 'zh-CN': '列宽自适应撑开', 'en-US': 'Adaptive expansion of column width' },
       'desc': {

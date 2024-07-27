@@ -15,6 +15,8 @@ import { initFilter } from './common'
 
 let columnUniqueId = 0
 
+export const setColumnFormat = (column, props) => (column.format = props.formatConfig)
+
 function setBasicProperty(column, context) {
   column.id = `col_${++columnUniqueId}`
   column.type = context.type
@@ -41,7 +43,9 @@ function setBasicProperty(column, context) {
   column.indexMethod = context.indexMethod
   column.formatText = context.formatText
   column.formatValue = context.formatValue
-  column.format = context.formatConfig
+
+  setColumnFormat(column, context)
+
   column.sortable = context.sortable
   column.sortBy = context.sortBy
   column.sortMethod = context.sortMethod

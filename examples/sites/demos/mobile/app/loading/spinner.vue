@@ -10,7 +10,7 @@ export default {
   mounted() {
     Loading.service({
       spinner: iconLoading(),
-      text: '自定义loading图标',
+      text: '自定义 loading 图标',
       target: document.getElementById('demo-loading'),
       background: '#fff',
       tiny_mode: 'mobile'
