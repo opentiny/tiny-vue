@@ -3,6 +3,7 @@ import Suggestion from '@tiptap/suggestion'
 import { SlashMenuItem } from '@/types'
 import type { Instance } from 'tippy.js'
 import tippy from 'tippy.js'
+import SlashMenuView from './slash-menu.tsx'
 
 export const generateSlashMenuExtension = (Renderer, view) => {
   return Extension.create({
@@ -29,7 +30,7 @@ export const generateSlashMenuExtension = (Renderer, view) => {
 
             return {
               onStart: (props: Record<string, any>) => {
-                viewComponent = new Renderer(view, {
+                viewComponent = new Renderer(view ?? SlashMenuView, {
                   props,
                   editor: props.editor
                 })

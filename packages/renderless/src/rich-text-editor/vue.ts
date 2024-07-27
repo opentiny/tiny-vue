@@ -1,6 +1,5 @@
 import {
   handleChange,
-  setLink,
   tableMouseMove,
   tableChoose,
   toggleTablePanel,
@@ -14,7 +13,6 @@ import { shallowRef } from 'vue'
 
 export const api = [
   'state',
-  'setLink',
   'handleChange',
   'tableMouseMove',
   'tableChoose',
@@ -129,18 +127,17 @@ export const renderless = (
   }
 
   onMounted(() => {
-    for (const [key, val] of viewMap.entries()) {
-      viewMap.set(key, VueNodeViewRenderer(val))
-    }
-
     const menuMap = {
       renderer: VueRenderer,
-      slashView
+      slashView: props.slashView
     }
+
+    const viewMap = props.viewMap ?? new Map()
 
     const viewOptions = {
       viewMap,
-      menuMap
+      menuMap,
+      nodeViewRender: VueNodeViewRenderer
     }
 
     const otherOptions = {

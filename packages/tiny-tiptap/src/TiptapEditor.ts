@@ -1,5 +1,6 @@
-import type { Content, Editor, Extension, Node, NodeViewRenderer } from '@tiptap/core'
+import type { Content, Editor } from '@tiptap/core'
 import { extensions } from './extension'
+import { defaultViewMap } from './views'
 
 import { generateSlashMenuExtension } from './components/slash'
 
@@ -10,16 +11,16 @@ export default class TiptapEditor {
   /**
    * @param editorClass Editor 的构造类
    * @param options Editor 的配置项
-   * @param viewOptions
-   * @param viewOptions.viewMap 需要进行视图映射的扩展组件 由 key 和 view 组成
-   * @param viewOptions.menuMap 包括映射方法以及菜单等组件
+   * @param viewOptions 其中 viewMap 和 menuMap 都可能存在使用组件传入的视图映射
+   * @param viewOptions.viewMap 需要进行视图映射的扩展组件 由 key 和 view 组成 view 需要为 NodeView
+   * @param viewOptions.menuMap 包括映射方法以及菜单等组件 view 需要为视图组件
    * @param otherOptions
    */
   constructor(editorClass, options = {}, viewOptions, otherOptions) {
     this.extensions = extensions
-    const { viewMap, menuMap } = viewOptions
+    const { viewMap, menuMap, nodeViewRender } = viewOptions
 
-    this.initExtensionViews(viewMap)
+    this.initExtensionViews(viewMap, nodeViewRender)
 
     this.initMenuViews(menuMap)
 
@@ -52,9 +53,15 @@ export default class TiptapEditor {
     this.editor.destroy()
   }
 
-  private initExtensionViews(viewMap: Map<string, any>) {
+  private initExtensionViews(viewMap?: Map<string, any>, render) {
+    // 如果存在通过用户传入的视图 设为更优先
+    if (viewMap?.size) {
+      viewMap.forEach((view, key) => {
+        defaultViewMap.set(key, view)
+      })
+    }
     // 根据传入的视图构建 重新继承扩展并重新 configure
-    viewMap.forEach((view, key) => {
+    defaultViewMap.forEach((view, key) => {
       const extensionIndex = this.extensions.findIndex((extension) => extension.name === key)
       const extension = this.extensions.at(extensionIndex)
       if (extension) {
@@ -62,7 +69,7 @@ export default class TiptapEditor {
         const newExtension = extension
           .extend({
             addNodeView() {
-              return view
+              return render(view)
               // return () => ({ dom: view })
             }
           })

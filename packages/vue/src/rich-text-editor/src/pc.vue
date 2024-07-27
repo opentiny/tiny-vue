@@ -306,10 +306,6 @@ import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } f
 
 import TinyTiptap from '@opentiny/tiny-tiptap'
 
-import SlashMenu from './components/slash-menu.tsx'
-
-import { ExtensionViewMap } from './extensions'
-
 import { $props, setup, defineComponent, $prefix, directive } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
@@ -411,9 +407,7 @@ export default defineComponent({
         TinyTiptap,
         Editor,
         VueRenderer,
-        VueNodeViewRenderer,
-        viewMap: ExtensionViewMap,
-        slashView: SlashMenu
+        VueNodeViewRenderer
       }
     })
   }
