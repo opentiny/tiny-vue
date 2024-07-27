@@ -710,7 +710,7 @@ export default defineComponent({
 .docs-header {
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: var(--docs-header-zindex);
   padding: var(--ti-common-space-4x) var(--ti-common-space-10x);
   background-color: #fff;
   box-shadow: var(--ti-common-space-3x) 0 var(--ti-common-space-5x) var(--ti-common-space-6) rgba(0, 0, 0, 0.06);
@@ -723,7 +723,7 @@ export default defineComponent({
   }
 
   .markdown-top-body {
-    z-index: 99;
+    z-index: var(--docs-markdown-top-body-zindex);
     font-size: var(--ti-common-font-size-1);
     transition: all ease-in-out 0.3s;
 
@@ -771,7 +771,7 @@ export default defineComponent({
     :deep(> .tiny-tabs__header) {
       position: sticky;
       top: 90px;
-      z-index: 100;
+      z-index: var(--docs-tabs-header-zindex);
       background-color: #fff;
 
       &::after {

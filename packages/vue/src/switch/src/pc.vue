@@ -24,6 +24,10 @@
         <slot v-if="state.currentValue === falseValue" name="close">OFF</slot>
       </div>
     </span>
+    <span class="tiny-switch__button">
+      <slot v-if="state.currentValue === trueValue" name="active-icon"></slot>
+      <slot v-if="state.currentValue === falseValue" name="inactive-icon"></slot>
+    </span>
   </span>
   <span v-else>
     <slot v-if="state.currentValue === trueValue" name="open">{{ t('yes') }}</slot>

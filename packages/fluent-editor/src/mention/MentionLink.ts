@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { DEFAULT_MENTION_CHAR, MENTION_CHAR, ON_MENTION_LINK_REMOVE } from './constants';
 
 const Embed = Quill.imports['blots/embed'];

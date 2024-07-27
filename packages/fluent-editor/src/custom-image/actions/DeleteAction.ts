@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import Action from './Action';
 
 export default class DeleteAction extends Action {

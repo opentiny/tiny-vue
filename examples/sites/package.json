@@ -21,6 +21,7 @@
     "pub": "pnpm publish --no-git-checks --access=public"
   },
   "dependencies": {
+    "@opentiny/fluent-editor": "workspace:^",
     "@opentiny/vue": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",

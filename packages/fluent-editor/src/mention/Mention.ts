@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { isNullOrUndefined } from '../config/editor.utils';
 import { DEFAULT_MENTION_CHAR, ON_MENTION_LINK_REMOVE } from './constants';
 import MentionLink from './MentionLink';

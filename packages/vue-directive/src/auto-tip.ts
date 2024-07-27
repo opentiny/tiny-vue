@@ -67,6 +67,7 @@ const mouseenterHandler = (e) => {
 
     tooltipContent.value = currentTarget.boundingValue?.content || currentTarget.textContent
     tooltip.state.referenceElm = currentTarget
+    tooltip.state.currentPlacement = getPlacement(currentTarget)
 
     if (popperElm) {
       popperElm.classList.replace(
