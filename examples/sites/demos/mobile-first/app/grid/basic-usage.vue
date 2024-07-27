@@ -43,6 +43,7 @@
             :image="row.logo"
             :flex-grow="[0, 0]"
             :flex-basis="['50%', '50%']"
+            operate-flex-basis="80px"
             :options="listOptions"
             class="mb-3"
           >
@@ -176,7 +177,12 @@ export default {
       },
       operationConfig: {
         buttons: [
-          { name: '操作1', icon: IconAreaChart(), click: this.clickHandler, disabled: true },
+          {
+            name: '操作',
+            icon: IconAreaChart(),
+            click: this.clickHandler,
+            disabled: true
+          },
           { name: '操作2', icon: IconBarChart(), click: this.clickHandler, disabled: (row) => row.id === '1' },
           { name: '操作3', icon: IconDotChart(), click: this.clickHandler, hidden: true },
           { name: '操作4', icon: IconLineChart(), click: this.clickHandler, hidden: (row) => row.id === '2' },

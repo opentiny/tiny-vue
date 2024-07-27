@@ -310,6 +310,8 @@ export default class Node {
     insertNode({ arr: this.childNodes, index, item: child })
 
     this.updateLeafState()
+
+    return child
   }
 
   insertBefore(child, beforeNode) {

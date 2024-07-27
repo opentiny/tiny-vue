@@ -40,14 +40,29 @@ export default class TreeStore {
     }
   }
 
+  getMappingData(data) {
+    const props = this.props || {}
+    const mapping = {}
+
+    for (let key in props) {
+      if (hasOwn.call(props, key)) {
+        mapping[key] = data[props[key]]
+      }
+    }
+
+    return { ...data, ...mapping }
+  }
+
   filter(value) {
-    const { lazy, filterNodeMethod } = this
+    const { lazy, filterNodeMethod, getMappingData } = this
 
     const walkTree = (node) => {
       const childNodes = node.root ? node.root.childNodes : node.childNodes
 
       childNodes.forEach((child) => {
-        child.visible = filterNodeMethod.call(child, value, child.data, child)
+        // 筛选时需要添加mapping字段，但是不能修改用户的数据
+        const mappingData = getMappingData.call(this, child.data)
+        child.visible = filterNodeMethod.call(child, value, mappingData, child)
 
         walkTree(child)
       })
@@ -123,7 +138,10 @@ export default class TreeStore {
   append(data, parentData, index) {
     const parentNode = parentData ? this.getNode(parentData) : this.root
 
-    parentNode && parentNode.insertChild({ data }, index)
+    if (parentNode) {
+      const child = parentNode.insertChild({ data }, index)
+      data._isNewNode && this.registerNode(child)
+    }
   }
 
   setDefaultCheckedKey(newValue) {

@@ -13,11 +13,11 @@
       v-if="displayOnly"
       ref="tooltip"
       v-model="state.tooltipVisible"
-      popper-class="absolute"
+      :popper-class="tooltipConfig.popperClass || 'absolute'"
       :manual="true"
-      effect="light"
+      :effect="tooltipConfig.effect || 'light'"
       :content="state.displayedValue"
-      placement="top"
+      :placement="tooltipConfig.placement || 'top'"
     >
     </tiny-tooltip>
   </form>
@@ -62,7 +62,8 @@ export default defineComponent({
     'appendToBody',
     'popperOptions',
     'displayOnly',
-    'showEmptyValue'
+    'showEmptyValue',
+    'tooltipConfig'
   ],
   setup(props, context): any {
     return setup({ props, context, renderless, api }) as unknown as IFormApi

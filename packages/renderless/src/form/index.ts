@@ -162,6 +162,7 @@ export const validate =
     }
 
     let invalidFields = {}
+    let invalidFieldArr = []
 
     state.fields.forEach((field) => {
       field.validate('', (message, field) => {
@@ -171,8 +172,12 @@ export const validate =
 
         invalidFields = merge({}, invalidFields, field)
 
+        if (field) {
+          Object.keys(field).forEach((item) => invalidFieldArr.push(item))
+        }
+
         if (typeof callback === 'function' && ++count === state.fields.length) {
-          callback(valid, invalidFields)
+          callback(valid, invalidFields, invalidFieldArr)
         }
       })
     })

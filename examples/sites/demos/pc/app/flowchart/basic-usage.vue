@@ -137,7 +137,7 @@ const HandlerList = {
       const imgStyle = `width:${headSize}px;height:${headSize}px`
       const res = []
 
-      items.map(({ key }, i) => {
+      items.forEach(({ key }, i) => {
         let left
 
         if (items.length > 1) {
@@ -236,13 +236,13 @@ export default {
       // 2.刷新流程图
       this.$refs.chart.refresh()
     },
-    onClickNode(afterNode, e) {
+    onClickNode(_afterNode, _e) {
       Modal.message('click-node')
     },
-    onClickLink(afterLink, e) {
+    onClickLink(_afterLink, _e) {
       Modal.message('click-link')
     },
-    onClickBlank(param, e) {
+    onClickBlank(_param, _e) {
       Modal.message('click-blank')
     }
   }

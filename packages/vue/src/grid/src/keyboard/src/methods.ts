@@ -35,6 +35,7 @@ import {
   handleCellMousedownEvent
 } from './utils/triggerCellMousedownEvent'
 import { handleHeaderCellMousedownEvent } from './utils/triggerHeaderCellMousedownEvent'
+import { warn, Formatter } from '../../tools'
 
 const removeCellClass = (bodyRef, clazz) =>
   arrayEach(bodyRef.$el.querySelectorAll('.' + clazz), (elem) => removeClass(elem, clazz))
@@ -55,6 +56,74 @@ const getModify = ({ offsetTop, offsetLeft, cWidth, cHeight }) => {
     modifyDomStyle(right, { top: `${offsetTop}px`, left: `${offsetLeft + cWidth}px`, height: `${cHeight}px` })
     modifyDomStyle(bottom, { top: `${offsetTop + cHeight}px`, left: `${offsetLeft}px`, width: `${cWidth}px` })
     modifyDomStyle(left, { top: `${offsetTop}px`, left: `${offsetLeft}px`, height: `${cHeight}px` })
+  }
+}
+
+const writeClipboardText = ({ $table, columns, rows }) => {
+  const { keyboardConfig = {}, isAsyncColumn } = $table
+  const { clipboard = {} } = keyboardConfig
+  const { writeMethod, cellSplit = ',', rowSplit = ';' } = clipboard
+
+  const getCellValue = (column, row) => {
+    let cellValue = ''
+
+    if (isAsyncColumn) {
+      const format = column.format || {}
+
+      if (format.async === true && format.type === 'enum') {
+        cellValue = Formatter.enum.call(column, row[column.property])
+      } else if (format.async && typeof format.async.fetch === 'function') {
+        cellValue = row[$table.getAsyncColumnName(column.property)]
+      } else {
+        cellValue = row[column.property]
+      }
+    } else {
+      cellValue = row[column.property]
+    }
+
+    return cellValue || ''
+  }
+
+  if (!clipboard) return
+
+  let value
+
+  if (typeof writeMethod === 'function') {
+    value = writeMethod({ $table, columns, rows })
+  } else {
+    const rowValues = []
+
+    rows.forEach((row) => {
+      const cellValues = []
+
+      columns.forEach((column) => {
+        const cellValue = getCellValue(column, row)
+        cellValues.push(cellValue)
+      })
+
+      rowValues.push(cellValues.join(cellSplit))
+    })
+
+    value = rowValues.join(rowSplit)
+  }
+
+  const writeFallback = () => {
+    const input = document.createElement('input')
+
+    input.value = value
+    document.body.appendChild(input)
+    input.select()
+    document.execCommand('Copy')
+    document.body.removeChild(input)
+  }
+
+  if (isSecureContext && navigator.clipboard) {
+    navigator.clipboard.writeText(value).catch((reason) => {
+      warn('ui.grid.error.clipboardWriteError', reason)
+      writeFallback()
+    })
+  } else {
+    writeFallback()
   }
 }
 
@@ -252,7 +321,7 @@ export default {
       let bodyList = elemStore['main-body-list'].children
       let cellFirstElementChild = cell.parentNode.firstElementChild
       let cellLastElementChild = cell.parentNode.lastElementChild
-      let colIndex = [...cell.parentNode.children].indexOf(cell)
+      let colIndex = Array.from(cell.parentNode.children).indexOf(cell)
       let headStart = headerList[0].children[colIndex]
       args = { $el, _vm: this, bodyList, cell, cellFirstElementChild }
 
@@ -527,6 +596,8 @@ export default {
 
       columns = tableColumn.slice(columnIndex, columnIndex + firstRowsLength)
       rows = tableData.slice(rowIndex, rowIndex + rowNodes.length)
+
+      writeClipboardText({ $table: this, columns, rows })
     }
 
     arrayEach(rowNodes, (rowNode, rowIndex) => {
@@ -607,19 +678,24 @@ export default {
     this.handleChecked(rowNodes)
   },
   handleClearMouseChecked(event) {
-    const { $grid, $refs, autoClearMouseChecked } = this
+    const { $grid, $refs, autoClearMouseChecked, autoClearKeyboardCopy } = this
     const { tableWrapper, tooltip, validTip } = $refs
     const equalOrContain = (elm, target) => elm && (elm === target || elm.contains(target))
 
     if (
-      autoClearMouseChecked &&
       !equalOrContain($grid.$el, event.target) &&
       !equalOrContain(tableWrapper, event.target) &&
       !equalOrContain(tooltip && tooltip.state.popperElm, event.target) &&
       !equalOrContain(validTip && validTip.state.popperElm, event.target)
     ) {
-      this.clearChecked()
-      this.clearSelected()
+      if (autoClearMouseChecked) {
+        this.clearChecked()
+        this.clearSelected()
+      }
+
+      if (autoClearKeyboardCopy) {
+        this.clearCopyed()
+      }
     }
   }
 }

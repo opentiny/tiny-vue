@@ -33,6 +33,7 @@ import {
   iconSortTriangleDescending,
   iconSortTriangle
 } from '@opentiny/vue-icon'
+import { $prefix } from '@opentiny/vue-common'
 
 const GlobalConfig = {
   validConfig: {
@@ -161,7 +162,9 @@ const GlobalConfig = {
   themes: {
     TINY: 'tiny',
     SAAS: 'saas'
-  }
+  },
+  columnLevelKey: 'ColumnLevelProvideKey',
+  defaultColumnName: $prefix + 'GridColumn'
 }
 
 // list视图类型、gantt视图类型和card视图类型的配置一致

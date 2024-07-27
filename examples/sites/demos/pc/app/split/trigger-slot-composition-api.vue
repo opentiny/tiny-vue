@@ -29,7 +29,11 @@ const split2 = ref(0.4)
 }
 
 .demo-split-pane {
-  padding: 10px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
 }
 
 .trigger-line {

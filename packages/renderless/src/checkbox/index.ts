@@ -218,26 +218,3 @@ export const computedShowText =
       return props.label
     }
   }
-
-export const handleLabelMouseenter =
-  ({ state, vm }: Pick<ICheckboxRenderlessParams, 'state' | 'vm'>) =>
-  (e) => {
-    const label = e.target
-
-    if (label && label.scrollWidth > label.offsetWidth) {
-      const tooltip = vm.$refs.tooltip
-
-      tooltip.state.referenceElm = label
-      tooltip.state.popperElm && (tooltip.state.popperElm.style.display = 'none')
-      tooltip.doDestroy()
-
-      state.tooltipVisible = true
-      state.displayedValue = label.textContent
-
-      setTimeout(tooltip.updatePopper, 20)
-    }
-  }
-
-export const handleMouseleave = (state) => () => {
-  state.tooltipVisible = false
-}

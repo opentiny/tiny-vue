@@ -49,5 +49,7 @@ code {
 .timeline-box {
   width: 800px;
   height: 100px;
+  margin-top: 16px;
+  margin-bottom: 10px;
 }
 </style>

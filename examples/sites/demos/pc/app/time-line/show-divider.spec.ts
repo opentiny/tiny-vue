@@ -5,5 +5,5 @@ test('底部分割线', async ({ page }) => {
   await page.goto('time-line#show-divider')
 
   const steps = page.locator('.pc-demo .tiny-steps')
-  await expect(steps.locator('.tiny-steps__bottom-divider')).toBeVisible()
+  await expect(steps.locator('.show-divider')).toBeVisible()
 })

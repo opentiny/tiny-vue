@@ -19,11 +19,18 @@ let startClick
 let seed = 0
 
 if (!isServer) {
-  on(document, 'mousedown', (event) => (startClick = event))
+  on(document, 'mousedown', (event) => {
+    startClick = event
+    nodeList
+      .filter((node) => node[nameSpace].mousedownTrigger)
+      .forEach((node) => node[nameSpace].documentHandler(event, startClick))
+  })
 
   on(document, 'mouseup', (event) => {
-    nodeList.forEach((node) => node[nameSpace].documentHandler(event, startClick))
-    startClick = void 0
+    nodeList
+      .filter((node) => !node[nameSpace].mousedownTrigger)
+      .forEach((node) => node[nameSpace].documentHandler(event, startClick))
+    startClick = null
   })
 }
 
@@ -32,10 +39,8 @@ const createDocumentHandler = (el, binding, vnode) =>
     let popperElm = vnode.context.popperElm || (vnode.context.state && vnode.context.state.popperElm)
 
     if (
-      !mouseup ||
-      !mouseup.target ||
-      !mousedown ||
-      !mousedown.target ||
+      !mouseup?.target ||
+      !mousedown?.target ||
       el.contains(mouseup.target) ||
       el.contains(mousedown.target) ||
       el === mouseup.target ||
@@ -63,19 +68,23 @@ export default {
   bind: (el, binding, vnode) => {
     nodeList.push(el)
     const id = seed++
+    const { modifiers, expression, value } = binding
 
     el[nameSpace] = {
       id,
       documentHandler: createDocumentHandler(el, binding, vnode),
-      methodName: binding.expression,
-      bindingFn: binding.value
+      methodName: expression,
+      bindingFn: value,
+      mousedownTrigger: modifiers.mousedown
     }
   },
 
   update: (el, binding, vnode) => {
+    const { modifiers, expression, value } = binding
     el[nameSpace].documentHandler = createDocumentHandler(el, binding, vnode)
-    el[nameSpace].methodName = binding.expression
-    el[nameSpace].bindingFn = binding.value
+    el[nameSpace].methodName = expression
+    el[nameSpace].bindingFn = value
+    el[nameSpace].mousedownTrigger = modifiers.mousedown
   },
 
   unbind: (el) => {

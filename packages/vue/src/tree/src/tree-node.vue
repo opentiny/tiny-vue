@@ -155,7 +155,7 @@
             </span>
             <span :title="t('ui.tree.newNodeTitle')">
               <icon-plus-square
-                v-if="!node.data._isNewNode && !action.addDisabled.includes(node.data[nodeKey])"
+                v-if="!action.addDisabled.includes(node.data[nodeKey]) && node.data[state.props.label || 'label']"
                 @click.stop="addNode(node)"
               ></icon-plus-square>
             </span>

@@ -6,8 +6,9 @@
     @row-drop-end="rowDropEnd"
     @row-drop-start="rowDropStart"
     @row-drop-move="rowDropMove"
+    column-min-width="300px"
   >
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
+    <tiny-grid-column type="index" width="60" fixed="left"></tiny-grid-column>
     <tiny-grid-column field="name" title="公司名称"></tiny-grid-column>
     <tiny-grid-column field="employees" title="员工数"></tiny-grid-column>
     <tiny-grid-column field="createdDate" title="创建日期"></tiny-grid-column>
@@ -23,6 +24,7 @@ import Sortable from 'sortablejs'
 const dropConfig = ref({
   plugin: Sortable,
   row: true,
+  rowHandle: 'index',
   column: false // 取消列拖拽
 })
 const tableData = ref([

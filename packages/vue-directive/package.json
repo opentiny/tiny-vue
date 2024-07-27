@@ -1,0 +1,20 @@
+{
+  "name": "@opentiny/vue-directive",
+  "version": "3.17.0",
+  "description": "",
+  "module": "index.ts",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@opentiny/vue-tooltip": "workspace:~",
+    "@opentiny/vue-common": "workspace:~"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

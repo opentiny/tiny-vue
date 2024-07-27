@@ -3,7 +3,6 @@
 @steps-prefix-cls: ~'@{css-prefix}steps';
 @steps-senior-prefix-cls: ~'@{css-prefix}steps-senior';
 @steps-line-prefix-cls: ~'@{css-prefix}steps-line';
-@timeline-prefix-cls: ~'@{css-prefix}timeline';
 @default-color: theme('colors.color.text.primary');
 @active-color: theme('colors.color.brand.DEFAULT');
 @disabled-color: theme('colors.color.text.disabled');
@@ -100,6 +99,7 @@
       @apply w-3;
       @apply h-3;
       @apply fill-current;
+      background: transparent;
     }
   }
 
@@ -204,15 +204,16 @@
     }
 
     .arrow {
-      @apply h-0;
-      @apply w-0;
+      @apply h-8;
+      @apply ~'w-1.5';
       @apply absolute;
       @apply border-color-text-inverse;
       @apply border-r-0;
       @apply border-solid;
-      border-top-width: var(--ti-spacing-4, 1rem);
-      border-bottom-width: var(--ti-spacing-4, 1rem);
-      border-left-width: var(--ti-spacing-1_5, 0.375rem);
+      @apply box-border;
+      border-top-width: var(--aui-spacing-4, 1rem);
+      border-bottom-width: var(--aui-spacing-4, 1rem);
+      border-left-width: var(--aui-spacing-1_5, 0.375rem);
     }
 
     .left-arrow {
@@ -284,6 +285,7 @@
         @apply ~'w-2.5';
         @apply ~'h-2.5';
         @apply fill-current;
+        background: transparent;
       }
     }
 
@@ -324,9 +326,12 @@
       @apply h-12;
 
       .arrow {
-        border-top-width: var(--ti-spacing-6, 1.5rem);
-        border-bottom-width: var(--ti-spacing-6, 1.5rem);
-        border-left-width: var(--ti-spacing-2, 0.5625rem);
+        @apply h-12;
+        width: 9px;
+        @apply box-border;
+        border-top-width: var(--aui-spacing-6, 1.5rem);
+        border-bottom-width: var(--aui-spacing-6, 1.5rem);
+        border-left-width: var(--aui-spacing-2, 0.5625rem);
       }
 
       .@{steps-prefix-cls}-content {
@@ -378,7 +383,7 @@
       @apply opacity-0;
 
       &.not-vertical {
-        @apply ~'min-w-[theme(spacing.6)]';
+        @apply ~"min-w-[theme(spacing.6)]";
         @apply hidden;
         @apply mr-4;
       }
@@ -389,15 +394,15 @@
       @apply flex-auto;
 
       &.not-vertical {
-        @apply ~'min-w-[theme(spacing.6)]';
+        @apply ~"min-w-[theme(spacing.6)]";
         @apply mr-4;
       }
     }
   }
 
   .item-number {
-    @apply w-6;
-    @apply h-6;
+    @apply w-full;
+    @apply h-full;
     @apply flex;
     @apply items-center;
     @apply justify-center;
@@ -407,7 +412,6 @@
     @apply bg-color-bg-1;
     @apply relative;
     @apply z-10;
-    @apply box-border;
   }
 
   .item-circle {
@@ -419,7 +423,6 @@
     @apply bg-color-bg-1;
     @apply font-normal;
     @apply absolute;
-    @apply box-border;
   }
 
   .@{steps-prefix-cls}-icon {
@@ -429,7 +432,6 @@
     @apply flex;
     @apply relative;
     @apply z-10;
-    @apply leading-none;
   }
 
   .@{steps-prefix-cls}-main {
@@ -450,7 +452,7 @@
     @apply text-center;
 
     &.not-vertical {
-      @apply ~'min-w-[theme(spacing.32)]';
+      @apply ~"min-w-[theme(spacing.32)]";
       @apply max-w-xs;
       @apply mr-4;
       @apply text-left;
@@ -464,7 +466,7 @@
       @apply items-center;
       @apply justify-center;
       @apply rounded-full;
-      @apply border border-current border-solid;
+      @apply border border-current;
       @apply bg-color-bg-3;
       @apply text-color-text-placeholder;
       @apply text-sm;
@@ -492,6 +494,7 @@
 
       .icon-finish {
         @apply fill-color-brand;
+        background-color: transparent;
 
         &.active {
           @apply fill-color-bg-1;
@@ -500,6 +503,7 @@
 
       .icon-warn {
         @apply fill-color-error;
+        background-color: transparent;
       }
     }
 
@@ -591,7 +595,7 @@
     }
 
     .line {
-      @apply border-t border-t-color-border border-solid;
+      @apply border-t border-t-color-border;
       @apply flex-auto;
     }
 
@@ -600,7 +604,7 @@
     }
 
     .left-line.not-vertical {
-      @apply ~'min-w-[theme(spacing.6)]';
+      @apply ~"min-w-[theme(spacing.6)]";
       @apply hidden;
       @apply ml-4;
     }
@@ -615,7 +619,7 @@
       }
 
       &.not-vertical {
-        @apply ~'min-w-[theme(spacing.6)]';
+        @apply ~"min-w-[theme(spacing.6)]";
         @apply ml-4;
       }
     }
@@ -782,7 +786,7 @@
     @apply text-center;
 
     &.not-vertical {
-      @apply ~'min-w-[theme(spacing.32)]';
+      @apply ~"min-w-[theme(spacing.32)]";
       @apply max-w-xs;
       @apply text-left;
     }
@@ -803,7 +807,7 @@
     }
 
     .line.not-vertical {
-      @apply ~'min-w-[theme(spacing.6)]';
+      @apply ~"min-w-[theme(spacing.6)]";
       @apply hidden;
       @apply ml-4;
     }
@@ -816,6 +820,8 @@
     }
 
     .item-number {
+      @apply w-full;
+      @apply h-full;
       @apply flex;
       @apply items-center;
       @apply justify-center;
@@ -911,63 +917,65 @@
 
   & &-advanced {
     & li {
-      @apply ~'leading-[theme(spacing.8)]';
+      @apply ~"leading-[theme(spacing.8)]";
       @apply inline-block;
+      @apply bg-color-bg-1;
       @apply relative;
       @apply cursor-pointer;
 
-      .label {
-        @apply border-r-0;
-        @apply flex;
-        @apply relative;
-        @apply no-underline;
-        @apply pl-8;
-        @apply pr-11;
-        color: @default-color;
-        @apply text-sm;
-        @apply ~'mr-[theme(spacing[1.5])]';
-        @apply bg-color-bg-5;
-
-        // background-color: blue;
-
-
-        > span {
-          @apply w-full;
-          @apply h-full;
-          @apply text-ellipsis;
-          @apply whitespace-nowrap;
-          @apply overflow-hidden;
-        }
-
-      }
-
-      &:not(:last-child) .label::after {
+      &:not(:last-child)::after {
         @apply content-[''];
         border-top: 16px solid transparent;
         border-bottom: 16px solid transparent;
         border-left: 6px solid theme('colors.color.bg.5');
+        @apply absolute;
+        @apply right-px;
+        @apply top-0;
+        @apply ~'z-[1]';
+      }
+      &:hover:not(:last-child)::after {
+        border-left-color: @active-color;
+      }
 
+      &:not(:last-child)::before {
+        @apply content-[''];
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+        border-left: 6px solid @default-color;
         @apply absolute;
         @apply right-0;
         @apply top-0;
+      }
+
+      &.current:not(:last-child)::before,
+      &:hover:not(:last-child)::before {
+        border-left-color: @active-color;
+      }
+
+      &:not(:first-child) .label::after {
+        @apply content-[''];
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+        border-left: 6px solid theme('colors.color.bg.1');
+        @apply absolute;
+        @apply -left-px;
+        @apply top-0;
         @apply ~'z-[1]';
-        @apply transform translate-x-full;
       }
 
       &:not(:first-child) .label::before {
         @apply content-[''];
         border-top: 16px solid transparent;
         border-bottom: 16px solid transparent;
-        border-left: 6px solid theme('colors.color.bg.1');
+        border-left: 6px solid @default-color;
         @apply absolute;
-        @apply ~'-left-[1px]';
+        @apply left-0;
         @apply top-0;
       }
 
-      &.current:not(:last-child) .label::after,
-      &:hover .label::after
-       {
-        border-left: 6px solid theme('colors.color.brand.DEFAULT');
+      &.current:not(:first-child) .label::before,
+      &:hover:not(:first-child) .label::before {
+        border-left-color: @active-color;
       }
 
       &:first-child .label {
@@ -975,7 +983,7 @@
       }
 
       &.current {
-        .label.label {
+        .label {
           background: @active-color;
           @apply border;
           @apply border-solid;
@@ -984,6 +992,9 @@
           @apply font-bold;
         }
 
+        &::after {
+          border-left-color: @active-color;
+        }
       }
 
       &:last-child .label {
@@ -997,6 +1008,28 @@
         @apply no-underline;
       }
 
+      .label {
+        @apply border;
+        @apply border-solid;
+        border-color: @default-color;
+        @apply border-r-0;
+        @apply flex;
+        @apply relative;
+        @apply no-underline;
+        @apply pl-8;
+        @apply pr-11;
+        color: @default-color;
+        @apply text-sm;
+        @apply mr-0;
+        > span {
+          @apply w-full;
+          @apply h-full;
+          @apply text-ellipsis;
+          @apply whitespace-nowrap;
+          @apply overflow-hidden;
+        }
+      }
+
       &:first-child {
         .label {
           @apply rounded-tl-sm;
@@ -1006,6 +1039,8 @@
 
       &:last-child {
         .label {
+          @apply border-r;
+          border-right-color: @default-color;
           @apply rounded-tr-sm;
           @apply rounded-br-sm;
           @apply mr-0;
@@ -1020,8 +1055,8 @@
         @apply leading-5;
         @apply cursor-pointer;
         @apply right-8;
-        @apply ~'top-1/2';
-        @apply ~'-translate-y-2/4';
+        @apply ~"top-1/2";
+        @apply ~"-translate-y-2/4";
         @apply flex;
         @apply absolute;
         svg {
@@ -1046,13 +1081,13 @@
       @apply inline-block;
       @apply text-xs;
       @apply font-normal;
-      @apply ~'h-4.5';
+      @apply ~"h-4.5";
       @apply leading-normal;
       @apply py-0 ~'px-1.5';
       @apply text-center;
       @apply whitespace-nowrap;
       @apply absolute;
-      @apply ~'-top-2.5';
+      @apply ~"-top-2.5";
       @apply right-8;
       @apply ~'z-[1]';
     }
@@ -1072,8 +1107,6 @@
 
   .line {
     @apply bg-color-border-separator;
-    @apply  ~'w-[calc(100%-40px)]';
-    @apply ~'translate-x-[20px]';
   }
 
   .icon {
@@ -1084,7 +1117,7 @@
     @apply relative;
     @apply text-sm;
     @apply text-center;
-    left: ~'calc(50% - 12px)';
+    // left: ~'calc(50% - 12px)';
     @apply top-0;
     @apply rounded-full;
     @apply bg-color-bg-1;
@@ -1095,14 +1128,14 @@
 
   .process-done {
     .icon {
-      @apply bg-color-bg-5;
+      @apply bg-color-bg-1;
       @apply w-6;
       @apply h-6;
       @apply leading-6;
       @apply text-2xl;
       color: @active-color;
 
-      .@{css-prefix}svg {
+      .fixicon {
         fill: @active-color;
         @apply align-baseline;
         @apply border;
@@ -1110,11 +1143,28 @@
         border-color: @active-color;
         @apply rounded-full;
         @apply p-1;
+
+        &.icon-error {
+          @apply p-0;
+          @apply fill-color-error;
+          @apply border-0;
+        }
+
+        &.icon-warning {
+          @apply p-0;
+          @apply fill-color-warning;
+          @apply border-0;
+        }
+
+        &.fixicons {
+          @apply p-0;
+          @apply border-0;
+        }
       }
     }
 
     .line {
-      @apply bg-color-brand;
+      @apply bg-color-text-primary;
     }
   }
 
@@ -1127,6 +1177,7 @@
     .name {
       @apply text-sm;
       @apply float-left;
+      @apply font-bold;
       @apply w-full;
       @apply leading-5;
     }
@@ -1173,12 +1224,18 @@
     .line {
       @apply h-px;
       @apply ~'left-1/2';
-      @apply ~'-top-3';
+      @apply ~"-top-3";
       @apply relative;
     }
 
     .line-end {
       @apply w-0;
+    }
+
+    .process-done {
+      .line {
+        @apply bg-color-text-primary;
+      }
     }
 
     .icon {
@@ -1193,36 +1250,22 @@
 
     .timeline {
       @apply overflow-hidden;
-      @apply flex;
-      @apply h-24;
-
-      .@{timeline-prefix-cls}-item__pillar {
-        @apply flex flex-col ;
-      }
 
       .line {
         @apply w-px;
-        @apply flex-1;
+        @apply float-left;
 
         .@{css-prefix}svg {
           @apply align-baseline;
         }
       }
 
-      &:last-child {
-        @apply h-auto;
-
-        .line {
-          @apply hidden;
-        }
-      }
-
       .date-time {
         @apply w-24;
-        @apply pr-3;
-        @apply pb-5;
-        @apply text-xs;
+        @apply float-left;
+        @apply pr-6;
         @apply text-right;
+        @apply text-xs;
 
         .time {
           @apply block;
@@ -1241,36 +1284,11 @@
         @apply ml-6;
         @apply text-sm;
         @apply font-bold;
-        @apply ~'leading-6.5';
+        @apply ~"leading-6.5";
       }
 
       .icon {
         @apply top-0;
-      }
-    }
-  }
-
-  .@{timeline-prefix-cls}-item {
-    .line {
-      @apply ~'w-[calc(100%-24px)]';
-      @apply transform ~'translate-x-[12px]';
-
-      &.line-done {
-        @apply bg-color-bg-7;
-      }
-
-      &.line-end {
-        @apply w-0;
-      }
-    }
-    .date-time {
-      @apply text-center;
-      @apply mb-1;
-    }
-
-    .node-description {
-      .name {
-        @apply font-bold;
       }
     }
   }
@@ -1299,7 +1317,7 @@
             height: 45px;
             @apply text-4xl;
             @apply relative;
-            @apply ~'-left-5';
+            @apply ~"-left-5";
           }
         }
 
@@ -1316,4 +1334,3 @@
     }
   }
 }
-

@@ -410,7 +410,8 @@ export default {
           <div class="tip custom-block">
             在使用编辑功能时，不要使用 <code> props </code> 去定义数据列的映射关系，要使用默认的数据格式。
           </div>
-          `,
+          通过<code> edit-config </code> 属性，设置编辑模式下参数配置。<br>
+        `,
         'en-US': `Edit is accessed by calling the <code> openEdit </code> method of the instance, the <code> closeEdit </code> method cancellations the edit, and the <code> saveEdit </code> method saves the edit. <br>
           Add a child node to the node node by calling the instance's <code> addNode(node) </code> method and immediately enter edit mode. <br>
           Edit the node node immediately by calling the instance's <code> editNode(node) </code> method. <br>
@@ -418,7 +419,8 @@ export default {
           <div class="tip custom-block">
             When using the editing functions, do not use <code> props </code> to define the mapping of data columns. Instead, use the default data format.
           </div>
-          `
+          Set parameters in editing mode through the <code>edit-config </code> attribute.<br>
+        `
       },
       codeFiles: ['edit.vue']
     },

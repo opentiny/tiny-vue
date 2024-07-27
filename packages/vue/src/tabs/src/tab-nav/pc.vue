@@ -247,7 +247,11 @@ export default defineComponent({
             }
           }
         },
-        [overflowTitle ? getTabTitle(tabLabelContent) : tabLabelContent, btnClose, state.separator && itemsSeparator]
+        [
+          overflowTitle ? getTabTitle(tabLabelContent) : tabLabelContent,
+          btnClose,
+          (state.separator || tabStyle === 'button-card') && itemsSeparator
+        ]
       )
     })
 

@@ -26,7 +26,7 @@ export const breadcrumbProps = {
   },
   separator: {
     type: String,
-    default: '>'
+    default: ''
   },
   separatorIcon: {
     type: Object

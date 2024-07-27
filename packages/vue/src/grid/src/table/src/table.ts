@@ -22,12 +22,12 @@
  * SOFTWARE.
  *
  */
-import { h, hooks, $prefix, resolveTheme, defineComponent } from '@opentiny/vue-common'
+import { h, hooks, $prefix, resolveTheme, defineComponent, useInstanceSlots, useRelation } from '@opentiny/vue-common'
 import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/vue-renderless/common/object'
 import { isEmptyObject, isObject, isNull } from '@opentiny/vue-renderless/common/type'
 import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
-import { getRowkey, GlobalEvent, hasChildrenList, getListeners } from '@opentiny/vue-renderless/grid/utils'
+import { getRowkey, GlobalEvent, hasChildrenList, getListeners, isScale } from '@opentiny/vue-renderless/grid/utils'
 import TINYGrid from '../../adapter'
 import GridHeader from '../../header'
 import GridFooter from '../../footer'
@@ -40,11 +40,14 @@ import GlobalConfig from '../../config'
 import { error } from '../../tools'
 import { clearOnTableUnmount } from './strategy'
 import MfTable from '../../mobile-first/index.vue'
+import { useDrag, useRowGroup } from '../../composable'
 
-const { themes, viewConfig } = GlobalConfig
+const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
 const { TINY: T_TINY, SAAS: T_SAAS } = themes
 const { DEFAULT: V_DEFAULT, MF: V_MF, CARD: V_CARD, LIST: V_LIST } = viewConfig
 const { MF_SHOW_LIST: V_MF_LIST } = viewConfig
+
+const hiddenContainerClass = 'tiny-grid-hidden-column'
 
 // 校验插件是否被注册
 function verifyConfig(_vm) {
@@ -98,19 +101,6 @@ function mergeTreeConfig(_vm) {
 
     if (isNull(ordered)) {
       _vm.treeConfig.ordered = true
-    }
-  }
-}
-
-function initDrop(_vm) {
-  const dropConfig = _vm.dropConfig
-
-  if (dropConfig) {
-    const { plugin, column = true, row = true } = dropConfig
-
-    if (plugin) {
-      column && _vm.columnDrop()
-      row && _vm.rowDrop()
     }
   }
 }
@@ -327,11 +317,11 @@ const renderFooterBorder = (_vm) => {
 }
 
 // 设置表格最外层元素类名
-function getTableAttrs(args) {
-  const { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = args
-  const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig } = args
-  const { loading, highlightHoverRow, highlightHoverColumn, validOpts } = args
-  const { stripeSaas, borderSaas, borderVertical, isThemeSaas } = args
+function getTableAttrs(tableVm) {
+  const { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
+  const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig = {} } = tableVm
+  const { maxHeight, loading, highlightHoverRow, highlightHoverColumn, validOpts } = tableVm
+  const { stripeSaas, borderSaas, borderVertical, isThemeSaas, rowSpan, dropConfig = {} } = tableVm
 
   const map = {
     showHeader: 'show__head',
@@ -341,6 +331,12 @@ function getTableAttrs(args) {
     loading: 'is__loading',
     highlightHoverRow: 'row__highlight',
     highlightHoverColumn: 'column__highlight'
+  }
+
+  const style = {}
+
+  if (maxHeight) {
+    style.maxHeight = isScale(maxHeight) ? maxHeight : toNumber(maxHeight) + 'px'
   }
 
   return {
@@ -368,16 +364,17 @@ function getTableAttrs(args) {
       'edit__no-border': editConfig && editConfig.showBorder === false,
       [map.loading]: loading,
       [map.highlightHoverRow]: highlightHoverRow,
-      [map.highlightHoverColumn]: highlightHoverColumn
-    }
+      [map.highlightHoverColumn]: highlightHoverColumn,
+      'is__row-span': rowSpan && rowSpan.length > 0,
+      'row__drop-handle--index': dropConfig.rowHandle === 'index'
+    },
+    style
   }
 }
 
 const gridData = {
   // 存储异步加载过的行\列数据
   asyncRenderMap: {},
-  // 列分组配置
-  collectColumn: [],
   // 存放列相关的信息
   columnStore: {
     // 自适应的列表集合
@@ -438,8 +435,6 @@ const gridData = {
   },
   // 表尾合计数据
   footerData: [],
-  groupData: {},
-  groupFolds: [],
   // 所有列已禁用
   headerCheckDisabled: false,
   // 是否全选
@@ -469,12 +464,8 @@ const gridData = {
   },
   // 多选属性，已选中的列
   selection: [],
-  // 渲染的列
-  tableColumn: [],
   // 渲染中的数据
   tableData: [],
-  // 完整所有列
-  tableFullColumn: [],
   // tooltip提示内容
   tooltipContent: '',
   // tooltip提示内容是否处理换行字符
@@ -496,8 +487,6 @@ const gridData = {
   validTipContent: '',
   // 在编辑模式下 单元格在失去焦点验证的状态
   validatedMap: {},
-  // 需要显示的列 （横向开启虚拟滚动的时候表示需要渲染的列，并不是真正被内部v-for循环的列）
-  visibleColumn: [],
   // 表尾边框线是否显示和位置
   showFooterBorder: false,
   footerBorderBottom: 0,
@@ -509,6 +498,8 @@ const getTableData = () => {
   const tableData = {
     // 条件处理后数据
     afterFullData: [],
+    // 分组表场景全量数据（包含虚拟行）
+    groupFullData: [],
     elemStore: {},
     // 表尾高度
     footerHeight: 0,
@@ -553,7 +544,13 @@ const getTableData = () => {
     // 列初始就绪
     isColumnInitReady: false,
     // 列就绪
-    isColumnReady: false
+    isColumnReady: false,
+    // 分组表场景是否具有虚拟行
+    hasVirtualRow: false,
+    // 是否是标签式用法场景
+    isTagUsageSence: false,
+    // 收集列信息（列数量和列顺序）
+    columnCollectKey: ''
   }
   return tableData
 }
@@ -768,7 +765,11 @@ export default defineComponent({
     // 操作列（type为index或radio或selection的列）是否可拖动列宽
     operationColumnResizable: { type: Boolean, default: () => GlobalConfig.operationColumnResizable },
     // 自动清空鼠标选中
-    autoClearMouseChecked: { type: Boolean, default: true }
+    autoClearMouseChecked: { type: Boolean, default: true },
+    // 自动清空键盘复制
+    autoClearKeyboardCopy: { type: Boolean, default: false },
+    // 自定义列组件名称（列表）
+    customColumnNames: { type: [String, Array], default: GlobalConfig.defaultColumnName }
   },
   provide() {
     return {
@@ -783,7 +784,7 @@ export default defineComponent({
     }
   },
   data() {
-    return extend(true, { id: uniqueId() }, gridData)
+    return extend(true, {}, gridData)
   },
   computed: {
     bodyCtxMenu() {
@@ -879,6 +880,24 @@ export default defineComponent({
     isShapeTable() {
       // 表格处于默认视图或mf视图大屏时显示为普通表格；其它视图都显示为多端形式
       return this.isViewDefault || (this.viewType === V_MF && this.$grid.currentBreakpoint !== 'default')
+    },
+    columnNames() {
+      const { customColumnNames } = this
+      const columnNames = [defaultColumnName]
+
+      const pushIfNot = (columnName) => {
+        if (typeof columnName === 'string' && !columnNames.includes(columnName)) {
+          columnNames.push(columnName)
+        }
+      }
+
+      if (Array.isArray(customColumnNames) && customColumnNames.length > 0) {
+        customColumnNames.forEach(pushIfNot)
+      } else if (typeof customColumnNames === 'string') {
+        pushIfNot(customColumnNames)
+      }
+
+      return columnNames
     }
   },
   watch: {
@@ -929,9 +948,6 @@ export default defineComponent({
     // 合并树表配置项
     mergeTreeConfig(this)
 
-    // 处理拖拽的逻辑
-    initDrop(this)
-
     bindEvent(this)
 
     // vue3下额外监控数组长度改变，解决push无响应等问题
@@ -975,13 +991,42 @@ export default defineComponent({
   },
   setup(props, context) {
     const { slots, attrs, listeners } = context
-    const table = hooks.getCurrentInstance().proxy
+    const id = hooks.ref(uniqueId())
+    // 列分组配置
+    const collectColumn = hooks.ref([])
+    // 完整所有列
+    const tableFullColumn = hooks.ref([])
+    // 显示的列
+    const visibleColumn = hooks.ref([])
+    // 渲染的列
+    const tableColumn = hooks.ref([])
 
     // TINY主题变量
     const tinyTheme = hooks.ref(resolveTheme(props, context))
+    const $table = hooks.getCurrentInstance().proxy
+
+    useInstanceSlots()
+
+    useRelation({
+      relationKey: `${columnLevelKey}-${id.value}`,
+      childrenKey: 'childColumns',
+      relationContainer: () => $table.$el.querySelector(`.${hiddenContainerClass}`),
+      onChange: () => {
+        const collectKey = $table.computeCollectKey()
+
+        if (collectKey !== $table.columnCollectKey) {
+          $table.columnCollectKey = collectKey
+          $table.assembleColumns()
+        }
+      }
+    })
+
+    useDrag({ dropConfig: hooks.toRef(props, 'dropConfig'), collectColumn, tableColumn })
+
+    useRowGroup({ rowGroup: hooks.toRef(props, 'rowGroup'), visibleColumn, tableFullColumn, tableColumn })
 
     hooks.onBeforeUnmount(() => {
-      const { elemStore, $refs } = table
+      const { elemStore, $refs } = $table
       const containerList = ['main', 'left', 'right']
       const tableWrapper = $refs.tableWrapper
 
@@ -990,15 +1035,11 @@ export default defineComponent({
       }
 
       if (TINYGrid._resize) {
-        table.unbindResize()
+        $table.unbindResize()
       }
 
-      table.closeFilter()
-      table.closeMenu()
-
-      // 清除 拖动相关的引用
-      table.columnSortable && table.columnSortable.destroy()
-      table.rowSortable && table.rowSortable.destroy()
+      $table.closeFilter()
+      $table.closeMenu()
 
       containerList.forEach((layout) => {
         const ySpaceElem = elemStore[`${layout}-body-ySpace`]
@@ -1008,22 +1049,32 @@ export default defineComponent({
         }
       })
 
-      unbindEvent(table)
-      clearOnTableUnmount(table)
+      unbindEvent($table)
+      clearOnTableUnmount($table)
     })
 
     hooks.onDeactivated(() => {
-      unbindEvent(table)
+      unbindEvent($table)
     })
 
     const tableListeners = getListeners(attrs, listeners)
 
-    return { slots, tableListeners, tinyTheme }
+    return { slots, tableListeners, tinyTheme, id, collectColumn, tableFullColumn, visibleColumn, tableColumn }
   },
   render() {
-    let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn } = this as any
+    let { border, collectColumn, columnStore, editConfig, highlightCell, highlightHoverColumn, instanceSlots } =
+      this as any
     let { highlightHoverRow, isGroup, loading, loadingComponent, mouseConfig = {}, optimizeOpts } = this as any
-    let { overflowX, overflowY, showFooter, showHeader, showHeaderOverflow, showOverflow, isThemeSaas } = this as any
+    let {
+      overflowX,
+      overflowY,
+      showFooter,
+      showHeader,
+      showHeaderOverflow,
+      showOverflow,
+      dropConfig = {},
+      isThemeSaas
+    } = this as any
     let {
       stripe,
       tableColumn,
@@ -1032,11 +1083,11 @@ export default defineComponent({
       vSize,
       visibleColumn,
       slots,
-      $slots,
       stripeSaas,
       borderSaas,
       isShapeTable,
-      resizableConfig
+      resizableConfig,
+      rowSpan
     } = this as any
     let { borderVertical, cardConfig, listConfig, ganttConfig } = this
     let { leftList, rightList } = columnStore
@@ -1051,17 +1102,12 @@ export default defineComponent({
     const { renderHeader, renderEmptyPart, renderFooter } = renders
     const { renderResizeBar, renderPluginWrapper, renderSelectToolbar } = renders
 
-    args = { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow }
-    Object.assign(args, { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig })
-    Object.assign(args, { loading, highlightHoverRow, highlightHoverColumn, validOpts })
-    Object.assign(args, { stripeSaas, borderSaas, borderVertical, isThemeSaas })
-
-    return h('div', getTableAttrs(args), [
+    return h('div', getTableAttrs(this), [
       // 隐藏列
       h(
         'div',
         { class: 'tiny-grid-hidden-column', ref: 'hideColumn' },
-        typeof $slots.default === 'function' ? $slots.default() : $slots.default
+        instanceSlots.default && instanceSlots.default()
       ),
       // 主头部
       renderHeader(),

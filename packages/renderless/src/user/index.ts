@@ -664,12 +664,17 @@ export const filter =
     if (props.multiple && props.hideSelected) {
       const selectedUsers = state.user.map((value) => (typeof value === 'string' ? value.toLocaleLowerCase() : value))
 
-      return state.options.filter((user) => {
-        return !~selectedUsers.indexOf(
+      return state.options.map((user) => {
+        const _show = !~selectedUsers.indexOf(
           typeof user[state.valueField] === 'string'
             ? user[state.valueField].toLocaleLowerCase()
-            : user[state.textField]
+            : user[state.valueField]
         )
+
+        return {
+          ...user,
+          _show
+        }
       })
     }
 

@@ -1,0 +1,131 @@
+@mixin linkTooltip {
+    #editor {
+        .ql-tooltip {
+          position: absolute;
+          transform: translateY(10px);
+          background-color: #fff;
+          background-color: var(--devui-connected-overlay-bg,#fff);
+          border: 1px solid #adb0b8;
+          border: 1px solid var(--devui-line,#adb0b8);
+          box-shadow: 0 2px 8px 0 rgb(37 43 58 / 20%);
+          box-shadow: var(--devui-shadow-connected-overlay,0 2px 8px 0) var(--devui-light-shadow,rgba(37,43,58,.2));
+          color: #252b3a;
+          color: var(--devui-text,#252b3a);
+          padding: 5px 3px;
+          white-space: nowrap;
+      
+          &[data-mode='link']::before {
+            content: none;
+          }
+      
+          &.ql-flip {
+            transform: translateY(-10px);
+          }
+      
+          &.ql-editing {
+            input[type='text'] {
+              display: inline-block;
+            }
+      
+            a.ql-remove,
+            a.ql-preview {
+              display: inline-block;
+      
+              &::before {
+                content: none;
+              }
+            }
+          }
+      
+          input[type='text'] {
+            display: none;
+            border: 0;
+            outline: none;
+            font-size: 13px;
+            height: 28px;
+            margin: 0;
+            padding: 0 6px;
+            width: 200px;
+            background-color: #fff;
+            background-color: var(--devui-base-bg,#fff);
+          }
+      
+          .ql-split {
+            width: 1px;
+            height: 16px;
+            line-height: 16px;
+            margin: 6px 4px;
+            border-left: 1px solid #adb0b8;
+            border-left: 1px solid var(--devui-line,#adb0b8);
+            display: inline-block;
+            vertical-align: bottom;
+          }
+          .ql-preview {
+            .icon-share {
+              display: block;
+              font-size: 16px;
+              color: #252b3a;
+              color: var(--devui-text,#252b3a);
+              line-height: 28px;
+              font-family: "iconfont" !important;
+              font-size: 16px;
+              font-style: normal;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+              &::before{
+                content: "\e683";
+              }
+            }
+          }
+          .ql-remove {
+            .icon-delete {
+              display: block;
+              font-size: 16px;
+              color: #252b3a;
+              color: var(--devui-text,#252b3a);
+              line-height: 28px;
+              font-family: "iconfont" !important;
+              font-size: 16px;
+              font-style: normal;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+              &::before{
+                content: "\ec45";
+              }
+            }
+          }
+        }
+      
+        .ql-tooltip a {
+          line-height: 28px;
+          margin: 0 3px;
+          padding: 0 3px;
+          min-width: 28px;
+          display: inline-block;
+          text-align: center;
+          color: #babbc0;
+          color: var(--devui-placeholder,#babbc0);
+          border-radius: 2px 2px;
+          text-decoration: none;
+          -webkit-transition: background-color 0.3s ease-in-out;
+          transition: background-color 0.3s ease-in-out;
+          cursor: pointer;
+          vertical-align: bottom;
+      
+          i {
+            display: block;
+            font-size: 16px;
+            color: #babbc0;
+            color: var(--devui-aide-text,#babbc0);
+            line-height: 28px;
+          }
+          
+      
+          &:hover {
+            background-color: #949597;
+          }
+        }
+    }
+  }
+  // 编辑器正文
+@include linkTooltip;

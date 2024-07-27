@@ -67,7 +67,6 @@
                 :step="step"
                 :time-arrow-control="state.arrowControl"
                 :show="state.timePickerVisible"
-                v-if="state.timePickerVisible"
                 :value="state.date"
                 @pick="handleTimePick"
               >

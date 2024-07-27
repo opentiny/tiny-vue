@@ -21,6 +21,7 @@
         <tiny-timeline-item
           v-for="(node, index) in state.nodes"
           :key="index"
+          :node-index="index"
           :node="node"
           :space="space"
           :line-width="lineWidth"
@@ -46,7 +47,6 @@
         </tiny-timeline-item>
       </slot>
     </div>
-    <div class="tiny-steps__bottom-divider" v-if="textPosition === 'right' && showDivider"></div>
   </div>
 </template>
 

@@ -66,7 +66,7 @@ export const watchMobileVisible =
 export const watchPickerVisible =
   ({ api, vm, dispatch, emit, props, state, nextTick }) =>
   (value) => {
-    if (props.readonly || state.pickerDisabled || state.isMobileScreen) return
+    if (props.readonly || state.pickerDisabled || state.isMobileMode) return
 
     if (value) {
       api.showPicker()
@@ -579,15 +579,41 @@ const getSelectionStart = ({ value, format, regx, event }) => {
   return { selectionStart, I }
 }
 
+// 获取有效的日期格式 2020 --> 2020-01-01
+const getEffectiveDateString = (formatStr) => {
+  // 需要一个有序的格式化顺序，月份、日期最小值应该是从1开始，如果是0则会显示上个月或者上一天的日期，会造成输入和预期不符的bug
+  const serializationList = [{ 'MM': '01' }, { 'M': '1' }, { 'dd': '01' }, { 'd': '1' }]
+  let result = formatStr
+  serializationList.forEach((item) => {
+    const itemKey = Object.keys(item)[0]
+    if (result.includes(itemKey)) {
+      result = result.replace(itemKey, item[itemKey])
+    }
+  })
+  return result
+}
+
 const getNum = (value, format, regx) => {
   let len = value.length
+  let formatStr = ''
   if (format && regx) {
     const formatMatchArr = format.match(regx)
-    len = Math.max(len, formatMatchArr.join('').length)
+    formatStr = formatMatchArr.join('')
+    len = Math.max(len, formatStr.length)
   }
-  let num = { str: '', arr: [] }
+
+  const num = { str: '', arr: [] }
   for (let i = 0; i < len; i++) {
-    let char = value.charAt(i) ? value.charAt(i) : '00'
+    // 填补字符串
+    let fillStr = '0'
+    if (formatStr && len > value.length) {
+      const validStr = getEffectiveDateString(formatStr)
+      if (/[0-9]/.test(validStr[i])) {
+        fillStr = validStr[i]
+      }
+    }
+
+    const char = value.charAt(i) ? value.charAt(i) : fillStr
 
     if (/[0-9]/.test(char)) {
       num.str += char
@@ -595,6 +621,7 @@ const getNum = (value, format, regx) => {
       num.arr[i] = 1
     }
   }
+
   return num
 }
 
@@ -912,9 +939,9 @@ export const handleFocus =
     const type = state.type
 
     if (DATEPICKER.TriggerTypes.includes(type)) {
-      if (state.isMobileScreen && state.isDateMobileComponent) {
+      if (state.isMobileMode && state.isDateMobileComponent) {
         api.dateMobileToggle(true)
-      } else if (state.isMobileScreen && state.isTimeMobileComponent) {
+      } else if (state.isMobileMode && state.isTimeMobileComponent) {
         api.timeMobileToggle(true)
       } else {
         state.pickerVisible = true

@@ -79,6 +79,7 @@ const initState = ({ reactive, treeRoot, props, emitter, $parentEmitter, vm, api
     emitter: emitter(),
     parentEmitter: $parentEmitter,
     isSaaSTheme: (props.theme || vm.theme) === 'saas',
+    props: treeRoot.props,
     computedExpandIcon: computed(() => api.computedExpandIcon(treeRoot, state)),
     computedIndent: computed(() => api.computedIndent(props, state))
   })
@@ -110,7 +111,7 @@ const initApi = ({ api, state, dispatch, broadcast, vm, props, treeRoot, nextTic
     watchIndeterminate: watchIndeterminate({ api, props }),
     watchChecked: watchChecked({ api, props }),
     openEdit: openEdit({ state, vm }),
-    addNode: addNode({ state, props, api }),
+    addNode: debounce(500, true, addNode({ state, props, api })),
     saveEdit: saveEdit({ state }),
     deleteNode: deleteNode({ state }),
     handleChildNodeExpand: handleChildNodeExpand(state),

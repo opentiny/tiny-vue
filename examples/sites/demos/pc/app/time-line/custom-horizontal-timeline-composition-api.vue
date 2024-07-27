@@ -34,6 +34,7 @@ function click(index, node) {
 <style scoped>
 .custom-top {
   text-align: center;
+  margin-bottom: 8px;
 }
 
 .custom-bottom {

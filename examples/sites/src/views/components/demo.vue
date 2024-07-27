@@ -1,11 +1,17 @@
 <template>
-  <div :id="demo.demoId" class="ti-b-a ti-br-sm ti-wp100" :class="currDemoId === demo.demoId ? 'b-a-success' : ''">
-    <div class="ti-px24 ti-py20">
-      <!-- DEMO 的标题 + 说明desc+  示例wcTag -->
-      <div class="ti-f-r ti-f-pos-between ti-f-box-end ti-pb20">
-        <div class="ti-f18 ti-cur-hand">{{ demo.name[langKey] }}</div>
-        <div>
-          <tiny-tooltip placement="top" :append-to-body="false" :content="copyTip">
+  <div :id="demo.demoId" class="ti-br-sm ti-wp100" :class="currDemoId === demo.demoId ? 'b-a-success is-current' : ''">
+    <div class="demo-content">
+      <!-- DEMO 的标题 + 说明desc + 示例wcTag -->
+      <div class="ti-f-r ti-f-pos-between ti-f-box-end">
+        <div class="demo-title">{{ demo.name[langKey] }}</div>
+        <div class="demo-options">
+          <tiny-tooltip
+            placement="top"
+            effect="light"
+            popper-class="docs-tooltip"
+            :append-to-body="false"
+            :content="copyTip"
+          >
             <i
               :class="copyIcon"
               class="h:c-success ti-w16 ti-h16 ti-cur-hand"
@@ -15,6 +21,8 @@
           </tiny-tooltip>
           <tiny-tooltip
             placement="top"
+            effect="light"
+            popper-class="docs-tooltip"
             :append-to-body="false"
             :content="demo.isOpen ? i18nByKey('hideCode') : i18nByKey('showCode')"
           >
@@ -24,12 +32,18 @@
               @click="toggleDemoCode(demo)"
             />
           </tiny-tooltip>
-          <tiny-tooltip placement="top" :append-to-body="false" :content="i18nByKey('playground')">
+          <tiny-tooltip
+            placement="top"
+            effect="light"
+            popper-class="docs-tooltip"
+            :append-to-body="false"
+            :content="i18nByKey('playground')"
+          >
             <i class="i-ti-playground ml8 h:c-success ti-w16 ti-h16 ti-cur-hand" @click="openPlayground(demo)" />
           </tiny-tooltip>
         </div>
       </div>
-      <component :is="getDescMd(demo)" class="ti-mb16 ti-f14" />
+      <component :is="getDescMd(demo)" class="demo-desc" />
 
       <div v-if="isMobileFirst" class="pc-demo-container">
         <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
@@ -46,13 +60,16 @@
       </div>
     </div>
     <!-- demo 打开后的示例代码  细滚动时，width:fit-content; -->
-    <div v-if="demo.isOpen" class="ti-px24 ti-py20 ti-b-t-lightless">
-      <div>
+    <div v-if="demo.isOpen" class="ti-px24 ti-py20 ti-b-t-lightless demo-code">
+      <template v-if="files?.length">
         <tiny-tabs v-model="tabValue" class="code-tabs">
           <tiny-tab-item v-for="(file, idx) in files" :key="file.fileName" :name="'tab' + idx" :title="file.fileName">
             <async-highlight :code="file.code"></async-highlight>
           </tiny-tab-item>
         </tiny-tabs>
+      </template>
+      <div v-else-if="files[0]">
+        <async-highlight :code="files[0].code"></async-highlight>
       </div>
     </div>
   </div>
@@ -63,7 +80,7 @@ import { defineComponent, reactive, computed, toRefs, shallowRef, onMounted, wat
 import { i18nByKey, getWord } from '@/i18n'
 import { $split, appData, fetchDemosFile } from '@/tools'
 import { Tooltip as TinyTooltip, Tabs as TinyTabs, TabItem as TinyTabItem, Button as TinyButton } from '@opentiny/vue'
-import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from './cmpConfig'
+import { languageMap, vueComponents, getWebdocPath, staticDemoPath } from './cmp-config'
 import { router } from '@/router.js'
 import demoConfig from '@demos/config.js'
 import { useApiMode, useTemplateMode } from '@/tools'
@@ -74,7 +91,7 @@ const { apiModeState, apiModeFn } = useApiMode()
 
 export default defineComponent({
   name: 'Demo',
-  props: ['demo'],
+  props: ['demo', 'currDemoId'],
   components: {
     TinyTooltip,
     TinyTabs,
@@ -119,15 +136,6 @@ export default defineComponent({
       tabValue: 'tab0',
       cmpId: router.currentRoute.value.params.cmpId,
       langKey: getWord('zh-CN', 'en-US'),
-      currDemoId: computed(() => {
-        let hash = router.currentRoute.value.hash?.slice(1)
-
-        // 兼容/#hashName这种模式
-        if (hash.includes('/')) {
-          hash = hash.slice(1)
-        }
-        return hash
-      }),
       copyTip: i18nByKey('copyCode'),
       copyIcon: 'i-ti-copy'
     })
@@ -184,9 +192,9 @@ export default defineComponent({
         const tinyTheme = templateModeState.isSaas ? 'saas' : currentThemeKey.value.split('-')[1]
         const openModeQuery = open ? '' : '&openMode=preview'
         // TODO: 目前mf只有Options写法，后续再放开compositon
-        const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${
-          demo.codeFiles[0]
-        }&apiMode=Options&mode=${templateModeState.mode}&theme=${tinyTheme}${openModeQuery}`
+        const url = `${import.meta.env.VITE_PLAYGROUND_URL}?cmpId=${cmpId}&fileName=${demo.codeFiles[0]}&apiMode=${
+          isMobileFirst.value ? 'Options' : apiModeState.apiMode
+        }&mode=${templateModeState.mode}&theme=${tinyTheme}${openModeQuery}`
 
         if (open) {
           window.open(url)
@@ -238,10 +246,14 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
+.is-current {
+  padding: var(--ti-common-space-5x) var(--ti-common-space-6x);
+}
+
 .demo-desc {
   font-size: 16px;
   line-height: 1.7em;
-  margin: 12px 0;
+  margin: var(--ti-common-space-2x) 0 var(--ti-common-space-6x);
 
   :deep(code) {
     color: #476582;
@@ -297,10 +309,40 @@ export default defineComponent({
 .pc-demo-container {
   display: flex;
   flex-direction: column;
+  background: #fafafa;
+  padding: var(--ti-common-space-8x) var(--ti-common-space-6x) calc(var(--ti-common-space-base) * 12);
 
   .pc-demo {
     flex: 1;
   }
+}
+
+.demo-content {
+  position: relative;
+
+  .demo-title {
+    font-size: 20px;
+    color: #191919;
+    font-weight: bold;
+  }
+
+  .demo-desc {
+    margin-bottom: var(--ti-common-size-4x);
+    font-size: var(--ti-common-font-size-1);
+    color: #595959;
+    line-height: 30px;
+  }
+
+  .demo-options {
+    height: var(--ti-common-size-4x);
+    position: absolute;
+    right: var(--ti-common-space-8x);
+    bottom: var(--ti-common-space-4x);
+  }
+}
+
+.demo-code {
+  border: 1px solid #efeff4;
 }
 
 .phone-container {
@@ -334,6 +376,5 @@ export default defineComponent({
 .code-preview-box {
   overflow: auto;
   padding: 20px 5px;
-  background-color: #f5f6f8;
 }
 </style>

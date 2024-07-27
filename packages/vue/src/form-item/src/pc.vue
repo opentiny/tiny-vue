@@ -109,20 +109,50 @@ export default defineComponent({
     const errorSlot = scopedSlots.error && scopedSlots.error(state.validateMessage)
     const formItemClass = `${classPrefix}form-item--${state.sizeClass ? state.sizeClass : 'default'}`
     const isShowError = state.validateState === 'error' && showMessage && state.form.showMessage
-    const validateTag = state.formInstance && state.formInstance.validateTag
+    const validateTag = state.formInstance?.validateTag
+    const wrapFragment = state.formInstance?.wrapFragment
     let validateMessage
+
+    const formAppendToBody = state.formInstance?.appendToBody
+    const appendToBody =
+      typeof this.appendToBody === 'boolean'
+        ? this.appendToBody
+        : typeof formAppendToBody === 'boolean'
+          ? formAppendToBody
+          : true
+    const validatePosition = this.validatePosition || state.formInstance?.validatePosition || 'top-end'
+
+    const popperOptions = {
+      ...state.formInstance.popperOptions,
+      ...this.popperOptions,
+      forceAbsolute: !appendToBody,
+      onUpdate: (options) => {
+        const popper = options.instance._popper
+        const translate3d = popper.style.transform
+        const matchTranslate = translate3d.match(/translate3d\((\w+)px, (\w+)px, (\w+)px\)/)
+
+        if (!Array.isArray(matchTranslate)) {
+          return
+        }
+
+        const [x, y, z] = matchTranslate.slice(1)
+
+        popper.style.transform = `translate3d(${x}px, ${parseInt(y, 10)}px, ${z}px)`
+      }
+    }
+    const validateIconNode = validateIcon ? h(validateIcon, { class: 'tooltip-validate-icon' }) : null
 
     const ItemContent = defaultSlots
       ? defaultSlots.map((vnode) => {
           if (isVue2 && !vnode.componentOptions && !validateTag) return vnode
 
-          const item = parseVnode(vnode)
+          let item = parseVnode(vnode)
           item.props = item.props || {}
           const { type } = item
 
           Object.assign(item.props, {
             size: state.formItemSize,
-            mini: state.formItemSize === 'mini'
+            mini: state.formItemSize === 'mini' || Boolean(item.props.mini)
           })
 
           if (type && type.name && type.name.toLowerCase().endsWith('button')) {
@@ -151,9 +181,22 @@ export default defineComponent({
               [item]
             )
           }
+
+          if (!isVue2) {
+            if (item.type === hooks.Fragment) {
+              // 在Vue3默认使用div包裹片段元素，也可以配置为其它标签
+              if (wrapFragment) {
+                item = h(wrapFragment, [item])
+              }
+            } else if (item.type === hooks.Text) {
+              item = h('span', [item])
+            }
+          }
           return item
         })
       : null
+
+    state.isMultiple = ItemContent.length > 1
 
     const getFormItemContnet = () => {
       if (isMobile) {
@@ -168,88 +211,7 @@ export default defineComponent({
         return ItemContent
       }
 
-      const tooltipTriggerContent =
-        ItemContent.length > 1
-          ? h('div', { class: 'tiny-form-item__content-muti-children' }, ItemContent)
-          : ItemContent[0]
-
-      if (!this.showMessage) {
-        return tooltipTriggerContent
-      }
-
-      const formAppendToBody = state.formInstance && state.formInstance.appendToBody
-      const appendToBody =
-        typeof this.appendToBody === 'boolean'
-          ? this.appendToBody
-          : typeof formAppendToBody === 'boolean'
-          ? formAppendToBody
-          : true
-      const validatePosition =
-        this.validatePosition || (state.formInstance && state.formInstance.validatePosition) || 'top-end'
-
-      const popperOptions = {
-        ...state.formInstance.popperOptions,
-        ...this.popperOptions,
-        forceAbsolute: !appendToBody,
-        onUpdate: (options) => {
-          const popper = options.instance._popper
-          const translate3d = popper.style.transform
-          const matchTranslate = translate3d.match(/translate3d\((\w+)px, (\w+)px, (\w+)px\)/)
-
-          if (!Array.isArray(matchTranslate)) {
-            return
-          }
-
-          const [x, y, z] = matchTranslate.slice(1)
-
-          popper.style.transform = `translate3d(${x}px, ${parseInt(y, 10)}px, ${z}px)`
-        }
-      }
-      const validateIconNode = validateIcon ? h(validateIcon, { class: 'tooltip-validate-icon' }) : null
-      return h(
-        'tooltip',
-        {
-          props: {
-            popperClass: `${classPrefix}form__valid`,
-            arrowOffset: 0,
-            adjustArrow: true,
-            type: tooltipType,
-            disabled: state.getValidateType !== 'tip',
-            placement: validatePosition,
-            manual: true,
-            appendToBody,
-            popperOptions,
-            modelValue: isShowError ? state.canShowTip : false,
-            zIndex: 'relative',
-            renderContent() {
-              let tooltipContent
-              if (errorSlot) {
-                tooltipContent = [errorSlot]
-              } else {
-                tooltipContent = [
-                  validateIconNode,
-                  <span class={`${classPrefix}form-item__validate-message`}>{state.validateMessage}</span>
-                ]
-              }
-
-              return tooltipContent
-            }
-          },
-          on: {
-            'update:modelValue': (value) => {
-              state.canShowTip = value
-            }
-          },
-          ref: 'tooltip'
-        },
-        [
-          !isVue2 && tooltipTriggerContent.type === hooks.Text ? (
-            <span>{tooltipTriggerContent}</span>
-          ) : (
-            tooltipTriggerContent
-          )
-        ]
-      )
+      return ItemContent
     }
 
     const FormItemContnet = ItemContent ? getFormItemContnet() : null
@@ -336,6 +298,42 @@ export default defineComponent({
       },
       [
         !isMobile ? LabelContent : null,
+        this.showMessage &&
+          !isMobile &&
+          h('tooltip', {
+            props: {
+              popperClass: `${classPrefix}form__valid`,
+              arrowOffset: 0,
+              adjustArrow: true,
+              type: tooltipType,
+              disabled: state.getValidateType !== 'tip',
+              placement: validatePosition,
+              manual: true,
+              appendToBody,
+              popperOptions,
+              modelValue: isShowError ? state.canShowTip : false,
+              zIndex: 'relative',
+              renderContent() {
+                let tooltipContent
+                if (errorSlot) {
+                  tooltipContent = [errorSlot]
+                } else {
+                  tooltipContent = [
+                    validateIconNode,
+                    <span class={`${classPrefix}form-item__validate-message`}>{state.validateMessage}</span>
+                  ]
+                }
+
+                return tooltipContent
+              }
+            },
+            on: {
+              'update:modelValue': (value) => {
+                state.canShowTip = value
+              }
+            },
+            ref: 'tooltip'
+          }),
         h(
           'div',
           {
@@ -343,7 +341,8 @@ export default defineComponent({
               [`${classPrefix}form-item__content`]: true,
               'is-vertical': isMobile && vertical
             },
-            style: !isMobile && state.contentStyle
+            style: !isMobile && state.contentStyle,
+            ref: 'content'
           },
           [
             isMobile ? LabelContent : null,

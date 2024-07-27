@@ -289,7 +289,7 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     isDisplayOnly: computed(() => props.displayOnly || (parent.form || {}).displayOnly),
     gridCheckedData: computed(() => api.getcheckedData()),
     isExpandAll: computed(() => api.computedIsExpandAll()),
-    searchSingleCopy: computed(() => props.allowCopy && !props.multiple && props.filterable),
+    searchSingleCopy: computed(() => props.allowCopy && !props.multiple && (props.filterable || props.searchable)),
     childrenName: computed(() => (props.treeOp.props && props.treeOp.props.children) || 'children'),
     tooltipContent: {},
     isHidden: false,
@@ -379,7 +379,7 @@ const initApi = ({
     computedShowNewOption: computedShowNewOption({ props, state }),
     computedShowCopy: computedShowCopy({ props, state }),
     computedOptionsAllDisabled: computedOptionsAllDisabled(state),
-    computedDisabledTooltipContent: computedDisabledTooltipContent(state),
+    computedDisabledTooltipContent: computedDisabledTooltipContent({ props, state }),
 
     computedSelectDisabled: computedSelectDisabled({ props, parent }),
     computedIsExpand: computedIsExpand({ props, state }),

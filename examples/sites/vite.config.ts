@@ -17,14 +17,17 @@ import tailwindCss from 'tailwindcss'
 export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
   const isSaas = env.VITE_TINY_THEME === 'saas'
-  const menuPath = isSaas ? path.resolve('./demos/saas') : path.resolve(`./demos/${env.VITE_APP_MODE}`)
+  const isPlus = env.VITE_APP_MODE === 'plus'
+  const demosPath = isPlus ? '../plusdocs/pc' : `./demos/${env.VITE_APP_MODE}`
+  const apisPath = isPlus ? '../plusdocs/apis' : './demos/apis'
+  const menuPath = isSaas ? path.resolve('./demos/saas') : path.resolve(demosPath)
   const copyTarget = [
     {
-      src: `./demos/${env.VITE_APP_MODE}/**`,
+      src: `${demosPath}/**`,
       dest: '@demos'
     },
     {
-      src: `./demos/apis/**`,
+      src: `${apisPath}/**`,
       dest: '@demos/apis'
     }
   ]
@@ -88,7 +91,7 @@ export default defineConfig((config) => {
       extensions: ['.js', '.ts', '.tsx', '.vue'],
       alias: {
         '@': path.resolve('src'),
-        '@demos': path.resolve(`./demos/${env.VITE_APP_MODE}`),
+        '@demos': path.resolve(`${demosPath}`),
         '@menu': menuPath,
         '@opentiny/vue-renderless/types': pathFromWorkspaceRoot('packages/renderless/types'),
         '@tiptap/vue': '@tiptap/vue-3',

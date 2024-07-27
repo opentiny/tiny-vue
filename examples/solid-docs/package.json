@@ -10,11 +10,20 @@
   },
   "dependencies": {
     "solid-js": "^1.7.8",
-    "@opentiny/solid": "workspace:~"
+    "@opentiny/solid": "workspace:~",
+    "@opentiny/solid-common": "workspace:~",
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-alert": "workspace:~",
+    "@opentiny/vue-badge": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-switch": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "devDependencies": {
+    "fs-extra": "^11.2.0",
     "vite": "^4.4.5",
     "vite-plugin-solid": "^2.7.0",
-    "vite-plugin-svgr": "^3.2.0"
+    "vite-plugin-inspect": "^0.7.10",
+    "@opentiny/vue-vite-template2jsx": "workspace:~"
   }
 }

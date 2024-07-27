@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-button">
     <tiny-button-group :data="groupData" v-model="checkedVal">
       <template #button4="{ sup }">
         <tiny-icon-plus-circle></tiny-icon-plus-circle>
@@ -20,7 +20,7 @@ const TinyIconPlusCircle = iconPlusCircle()
 const checkedVal = ref('Button1')
 const groupData = ref([
   {
-    text: 'Button1',
+    text: '1年',
     value: 'Button1',
     sup: {
       class: ['success-bg'],
@@ -28,7 +28,7 @@ const groupData = ref([
     }
   },
   {
-    text: 'Button2',
+    text: '2年',
     value: 'Button2',
     sup: {
       class: 'sup-icon',
@@ -36,20 +36,20 @@ const groupData = ref([
     }
   },
   {
-    text: 'Button3',
+    text: '3年',
     value: 'Button3',
     sup: {
       class: 'sup-text',
-      text: '8.8折'
+      text: '8折'
     }
   },
   {
-    text: 'Button4',
+    text: '4年',
     value: 'Button4',
     sup: {
       slot: 'button4',
       class: 'sup-slot',
-      text: '8.8折'
+      text: '8折'
     }
   }
 ])
@@ -73,5 +73,11 @@ const groupData = ref([
 }
 .tiny-button-group :deep(.sup-slot) span {
   vertical-align: middle;
+}
+</style>
+
+<style>
+.demo-button button {
+  width: 124px;
 }
 </style>

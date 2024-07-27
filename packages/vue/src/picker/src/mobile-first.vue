@@ -2,7 +2,7 @@
   <div ref="reference" data-tag="tiny-date-container" :class="state.isDisplayOnly ? 'inline' : ''">
     <tiny-filter-box
       v-if="shape === 'filter'"
-      v-clickoutside="handleClose"
+      v-clickoutside.mousedown="handleClose"
       @click="handleFocus"
       :show-close="clearable"
       :placeholder="placeholder"
@@ -17,12 +17,12 @@
       :tabindex="tabindex"
       v-else-if="!state.ranged"
       data-tag="tiny-date-editor"
-      :readonly="state.isMobileScreen || !editable || readonly || state.type === 'dates' || state.type === 'week'"
+      :readonly="state.isMobileMode || !editable || readonly || state.type === 'dates' || state.type === 'week'"
       :disabled="state.pickerDisabled"
       :size="state.pickerSize"
       :name="name"
       v-bind="state.firstInputId"
-      v-clickoutside="handleClose"
+      v-clickoutside.mousedown="handleClose"
       :placeholder="placeholder"
       @focus="handleFocus"
       @keydown="handleKeydown"
@@ -49,7 +49,7 @@
       </template>
       <template #suffix>
         <i data-tag="icon" class="flex items-center cursor-pointer">
-          <transition v-if="!state.isMobileScreen" name="tiny-transition-icon-scale-in">
+          <transition v-if="!state.isMobileMode" name="tiny-transition-icon-scale-in">
             <component
               :is="state.showClose ? clearIcon : null"
               @click="handleClickIcon"
@@ -87,7 +87,7 @@
       @mouseenter="handleMouseEnter"
       @mouseleave="state.showClose = false"
       @keydown="handleKeydown"
-      v-clickoutside="handleClose"
+      v-clickoutside.mousedown="handleClose"
       v-else
     >
       <tiny-tooltip
@@ -106,7 +106,7 @@
           :title="state.displayValue && state.displayValue[0]"
           :disabled="state.pickerDisabled"
           v-bind="state.firstInputId"
-          :readonly="state.isMobileScreen || !editable || readonly"
+          :readonly="state.isMobileMode || !editable || readonly"
           :name="name && name[0]"
           @input="handleStartInput"
           @change="handleStartChange"
@@ -136,7 +136,7 @@
           :title="state.displayValue && state.displayValue[1]"
           :disabled="state.pickerDisabled"
           v-bind="state.secondInputId"
-          :readonly="state.isMobileScreen || !editable || readonly"
+          :readonly="state.isMobileMode || !editable || readonly"
           :name="name && name[1]"
           @input="handleEndInput"
           @change="handleEndChange"
@@ -146,7 +146,7 @@
         />
         <i
           @click="handleClickIcon"
-          v-if="!state.isMobileScreen && state.haveTrigger"
+          v-if="!state.isMobileMode && state.haveTrigger"
           data-tag="tiny-input__icon tiny-range__close-icon"
           :class="gcls('close-icon')"
         >
@@ -183,21 +183,20 @@
     </div>
     <!-- 大屏面板 -->
     <component
-      v-if="!state.isMobileScreen"
+      v-if="!state.isMobileMode"
       :is="state.panel"
       :step="step"
       :show-week-number="showWeekNumber"
       :format-weeks="formatWeeks"
       ref="picker"
       :visible="state.pickerVisible"
-      class="tiny-tw"
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
     ></component>
     <!-- 小屏 - 日期面板 -->
     <tiny-date-picker-mobile
-      v-if="state.isMobileScreen && state.isDateMobileComponent"
+      v-if="state.isMobileMode && state.isDateMobileComponent"
       ref="datePickerMobile"
       v-model="state.dateMobileOption.value"
       :title="title"
@@ -217,9 +216,10 @@
     </tiny-date-picker-mobile>
     <!-- 小屏 - 时间面板 -->
     <tiny-time-picker-mobile
-      v-if="state.isMobileScreen && state.isTimeMobileComponent"
+      v-if="state.isMobileMode && state.isTimeMobileComponent"
       ref="datePickerMobile"
       v-model="state.timeMobileOption.value"
+      :default-value="state.timeMobileOption.defaultValue"
       :title="title"
       :clearable="clearable"
       :step="step"

@@ -146,6 +146,44 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'card-mode',
           mfDemo: ''
+        },
+        {
+          name: 'swipeable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否支持触屏轮播',
+            'en-US': 'Support Touchscreen Carousel'
+          },
+          mode: ['mobile-first'],
+          pcDemo: '',
+          mfDemo: ''
+        },
+        {
+          name: 'lite',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否打开精简模式，不显示切换按钮和指示器',
+            'en-US':
+              'Indicates whether to enable the simplified mode. The switch button and indicator are not displayed.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'swipeable',
+          mfDemo: ''
+        },
+        {
+          name: 'beforeSwipe',
+          type: '(newIndex,oldIndex) => boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '触摸轮播前，通过返回值控制某个图是否可轮播显示',
+            'en-US':
+              'Controls whether a graph can be displayed in rotation based on the return value before the rotation is touched.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'swipeable',
+          mfDemo: ''
         }
       ],
       events: [

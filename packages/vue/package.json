@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue",
   "private": true,
-  "version": "3.16.0",
+  "version": "3.17.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "homepage": "https://opentiny.design/tiny-vue",
   "keywords": [
@@ -227,6 +227,7 @@
     "@opentiny/vue-text-popup": "workspace:~",
     "@opentiny/vue-time": "workspace:~",
     "@opentiny/vue-time-line": "workspace:~",
+    "@opentiny/vue-time-line-new": "workspace:~",
     "@opentiny/vue-time-panel": "workspace:~",
     "@opentiny/vue-time-picker": "workspace:~",
     "@opentiny/vue-time-picker-mobile": "workspace:~",
@@ -242,6 +243,7 @@
     "@opentiny/vue-transfer-panel": "workspace:~",
     "@opentiny/vue-tree": "workspace:~",
     "@opentiny/vue-tree-menu": "workspace:~",
+    "@opentiny/vue-tree-select": "workspace:~",
     "@opentiny/vue-upload": "workspace:~",
     "@opentiny/vue-upload-dragger": "workspace:~",
     "@opentiny/vue-upload-list": "workspace:~",

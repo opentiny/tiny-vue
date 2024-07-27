@@ -26,7 +26,7 @@ import { get, isFunction } from '@opentiny/vue-renderless/grid/static/'
 import { random } from '@opentiny/vue-renderless/common/string'
 import { getColumnConfig, getFuncText, formatText } from '@opentiny/vue-renderless/grid/utils'
 import { Renderer } from '../../adapter'
-import { getCellLabel } from '../../tools'
+import { getCellLabel, warn } from '../../tools'
 import GLOBAL_CONFIG from '../../config'
 import { hooks, isVnode } from '@opentiny/vue-common'
 import {
@@ -264,7 +264,12 @@ export const Cell = {
     let { slots, own, title } = column
 
     if (slots && slots.header) {
-      return [h('div', { class: 'tiny-grid-cell-text' }, [slots.header(params, h)])]
+      // Tiny新增，修复多端表格表头插槽显示异常问题
+      if (type === 'card') {
+        return [slots.header(params, h)]
+      } else {
+        return [h('div', { class: 'tiny-grid-cell-text' }, [slots.header(params, h)])]
+      }
     }
 
     if (typeof title === 'function') {
@@ -380,13 +385,17 @@ export const Cell = {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderIndexCell(h, params))
   },
   renderIndexCell(h, params) {
-    const { $table, column, row, seq } = params
+    const { $table, column, row, seq, $seq, level } = params
     // startIndex：序号列的起始值
-    const { startIndex, treeConfig } = $table
+    const { startIndex, treeConfig, scrollYLoad } = $table
     const { indexMethod, slots } = column
     const { ordered, temporaryIndex = '_$index_' } = treeConfig || {}
     const isTreeOrderedFalse = treeConfig && !ordered
-    const indexValue = isTreeOrderedFalse ? row[temporaryIndex] : startIndex + seq
+    let indexValue = startIndex + seq
+    // tree-config为false的情况下，序号为1.1这种形式
+    if (isTreeOrderedFalse && level) {
+      indexValue = scrollYLoad ? row[temporaryIndex] : `${$seq}.${seq}`
+    }
 
     if (slots && slots.default) {
       return slots.default(params, h)
@@ -836,7 +845,8 @@ export const Cell = {
     let { formatText, own, slots } = column
     let editor = own.editor
     let compConf = Renderer.get(editor.component)
-    let showEdit = editor.type === 'visible' || isEdit
+    // 表格没有配置editConfig时，type === 'visible'不展示编辑态
+    let showEdit = ($table.editConfig && editor.type === 'visible') || isEdit
 
     if (showEdit && slots && slots.edit) {
       return slots.edit(params, h)
@@ -947,11 +957,13 @@ export const Cell = {
 
     if (visibleButtons.length > max) {
       const end = max - 1
+      const dropdownProps = { trigger: 'hover', showIcon: false }
 
       groupBig = visibleButtons.slice(0, end).map((buttonConfig) => renderBig(buttonConfig, viewClass))
-      groupBig.push(
-        h(Dropdown, { on: { 'item-click': handleItemClick }, props: { trigger: 'hover', showIcon: false } }, [
-          h(iconEllipsis(), { class: 'tiny-grid__oper-col-elps' }),
+
+      const scopedSlots = {
+        default: () => h(iconEllipsis(), { class: 'tiny-grid__oper-col-elps' }),
+        dropdown: () =>
           h(
             DropdownMenu,
             { slot: 'dropdown' },
@@ -966,13 +978,16 @@ export const Cell = {
               )
             )
           )
-        ])
-      )
+      }
+
+      groupBig.push(h(Dropdown, { on: { 'item-click': handleItemClick }, props: dropdownProps, scopedSlots }))
     } else {
       groupBig = visibleButtons.map((buttonConfig) => renderBig(buttonConfig, viewClass))
     }
 
-    return [h('span', { class: 'inline-flex' }, groupBig)]
+    return [
+      h('span', { class: 'tiny-grid__oper-col-wrapper', attrs: { 'data-tag': 'operation-cell-buttons' } }, groupBig)
+    ]
   }
 }
 

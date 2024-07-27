@@ -1,9 +1,9 @@
 import { xss } from '../common/xss'
 
 export const createShepherd =
-  ({ state, props, Shepherd, offset }) =>
+  ({ state, props, Shepherd, offset, designConfig }) =>
   () => {
-    const tour = newTour(state, Shepherd, offset)
+    const tour = newTour(state, Shepherd, offset, designConfig)
 
     state.tour = tour
 
@@ -15,7 +15,7 @@ export const createShepherd =
         let steps = itemStep(item, state, deepCopy, i, Shepherd)
 
         const step = tour.addStep(steps)
-        if (steps.hightBox && steps.hightBox.length != 0) {
+        if (steps.hightBox && steps.hightBox.length !== 0) {
           step.on('show', () => {
             steps.hightBox.forEach((item) => {
               document.querySelector(item).classList.add('tiny-guide__z-top')
@@ -79,9 +79,9 @@ const getItemCopy = (props, tour, result) => {
   return result
 }
 
-const newTour = (state, Shepherd, offset) => {
+const newTour = (state, Shepherd, offset, designConfig) => {
   const tour = new Shepherd.Tour({
-    useModalOverlay: true,
+    useModalOverlay: !designConfig?.state?.isUseModalOverlay,
     defaultStepOptions: {
       modalOverlayOpeningPadding: state.modalOverlayOpeningPadding,
       modalOverlayOpeningRadius: state.modalOverlayOpeningRadius,

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-grid-toolbar",
-  "version": "3.16.0",
+  "version": "3.17.2",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -40,8 +40,11 @@
     "@opentiny/vue-dropdown-item": "workspace:~",
     "@opentiny/vue-tooltip": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-tabs": "workspace:~",
+    "@opentiny/vue-tab-item": "workspace:~",
     "@opentiny/vue-input": "workspace:~",
-    "@opentiny/vue-popover": "workspace:~"
+    "@opentiny/vue-popover": "workspace:~",
+    "@opentiny/vue-tree": "workspace:~"
   },
   "license": "MIT"
 }

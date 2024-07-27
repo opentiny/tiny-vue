@@ -1,6 +1,6 @@
 <template>
   <div class="grid-grouping">
-    <tiny-grid height="800px" setting :row-group="renderOp" :data="data">
+    <tiny-grid height="320px" setting :row-group="renderOp" :data="data">
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column type="selection" width="60"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" sortable></tiny-grid-column>
@@ -144,5 +144,6 @@ export default {
   text-align: center;
   background-color: #f5222d;
   border-radius: 50%;
+  margin-left: 4px;
 }
 </style>

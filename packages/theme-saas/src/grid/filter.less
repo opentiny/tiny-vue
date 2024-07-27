@@ -260,7 +260,8 @@
           @apply my-4;
           @apply mx-0;
 
-          .@{grid-prefix-cls}-button.type__button {
+          // Tiny 新增，使用tiny-button组件，删除表格内置button组件
+          .@{css-prefix}button[type="button"] {
             @apply m-0;
             @apply ml-2;
             @apply rounded;

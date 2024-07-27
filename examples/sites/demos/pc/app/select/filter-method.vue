@@ -1,6 +1,7 @@
 <template>
   <div>
     <p>场景1：组件默认过滤</p>
+    <br />
     <tiny-select v-model="value1" ref="selectRef" filterable no-match-text="No Match">
       <tiny-option
         v-for="item in options"
@@ -11,7 +12,9 @@
       >
       </tiny-option>
     </tiny-select>
+    <br /><br />
     <p>场景2：自定义过滤</p>
+    <br />
     <tiny-select
       v-model="value2"
       ref="customFilterRef"

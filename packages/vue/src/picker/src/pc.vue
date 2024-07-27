@@ -2,7 +2,7 @@
   <div ref="reference" class="tiny-date-container">
     <tiny-filter-box
       v-if="shape === 'filter'"
-      v-clickoutside="handleClose"
+      v-clickoutside.mousedown="handleClose"
       @click="handleFocus"
       :show-close="clearable"
       :placeholder="placeholder"
@@ -23,7 +23,7 @@
       :size="state.pickerSize"
       :name="name"
       v-bind="state.firstInputId"
-      v-clickoutside="handleClose"
+      v-clickoutside.mousedown="handleClose"
       :placeholder="placeholder"
       @focus="handleFocus"
       @keydown="handleKeydown"
@@ -76,7 +76,7 @@
       @mouseenter="handleMouseEnter"
       @mouseleave="state.showClose = false"
       @keydown="handleKeydown"
-      v-clickoutside="handleClose"
+      v-clickoutside.mousedown="handleClose"
       v-else
     >
       <tiny-tooltip

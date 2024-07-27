@@ -34,7 +34,7 @@
           class="tiny-dialog-box"
           :key="state.key"
         >
-          <div v-if="showHeader" class="tiny-dialog-box__header" @mousedown="handleDrag">
+          <div v-if="showHeader" ref="header" class="tiny-dialog-box__header" @mousedown="handleDrag">
             <slot name="title">
               <span class="tiny-dialog-box__title">{{ title }}</span>
             </slot>
@@ -67,10 +67,10 @@
               <icon-close class="tiny-svg-size tiny-dialog-box__close" />
             </button>
           </div>
-          <div class="tiny-dialog-box__body" :style="state.bodyStyle">
+          <div class="tiny-dialog-box__body">
             <slot></slot>
           </div>
-          <div v-if="slots.footer" class="tiny-dialog-box__footer">
+          <div v-if="slots.footer" ref="footer" class="tiny-dialog-box__footer">
             <slot name="footer" :before-close="beforeClose"></slot>
           </div>
         </div>

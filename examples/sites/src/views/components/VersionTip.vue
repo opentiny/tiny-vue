@@ -31,7 +31,8 @@ enum STAGE {
   experimental = 'experimental',
   stable = 'stable',
   deprecated = 'deprecated',
-  removed = 'removed'
+  removed = 'removed',
+  new = 'new'
 }
 
 interface IStageVersionMetaData {
@@ -61,21 +62,24 @@ const tagTypeMap = {
   [STAGE.removed]: 'danger',
   [STAGE.deprecated]: 'danger',
   [STAGE.experimental]: 'warning',
-  [STAGE.stable]: 'info'
+  [STAGE.stable]: 'info',
+  [STAGE.new]: 'primary'
 }
 
 const cnDesMap = {
   [STAGE.experimental]: '处于测试阶段',
   [STAGE.stable]: '自 v{version} 起稳定提供',
   [STAGE.deprecated]: '从 v{version} 开始被废弃',
-  [STAGE.removed]: '于 v{version} 移除'
+  [STAGE.removed]: '于 v{version} 移除',
+  [STAGE.new]: '于 v{version} 新增'
 }
 
 const enDesMap = {
   [STAGE.experimental]: 'in beta',
   [STAGE.stable]: 'stable since v{version}',
   [STAGE.deprecated]: 'deprecated since v{version}',
-  [STAGE.removed]: 'removed in v{version}'
+  [STAGE.removed]: 'removed in v{version}',
+  [STAGE.new]: 'add in v{version}'
 }
 
 // 默认的，只需要显示deprecated，experimental状态时的提示，除非声明了briefStage
@@ -100,7 +104,7 @@ export default defineComponent({
     },
     stages: {
       type: Array as PropType<STAGE[]>,
-      default: () => [STAGE.experimental, STAGE.deprecated, STAGE.removed]
+      default: () => [STAGE.experimental, STAGE.deprecated, STAGE.removed, STAGE.new]
     },
     alertType: {
       type: String
@@ -136,7 +140,7 @@ export default defineComponent({
         return props.briefStage
       }
 
-      return [STAGE.removed, STAGE.deprecated, STAGE.stable, STAGE.experimental].find(isInStage)
+      return [STAGE.removed, STAGE.deprecated, STAGE.stable, STAGE.experimental, STAGE.new].find(isInStage)
     })
 
     const generateDes = (desMap: typeof cnDesMap) => {

@@ -491,7 +491,7 @@ export default defineComponent({
         {notice}
         {isPictureCard ? uploadList : ''}
         {slots.trigger ? [uploadComponent, defaultSlot] : uploadComponent}
-        {slots.tip && slots.tip()}
+        {!isSaasType && slots.tip && slots.tip()}
         {isPictureCard ? '' : uploadList}
         {previewComponent}
         {encryptDialogComponent}

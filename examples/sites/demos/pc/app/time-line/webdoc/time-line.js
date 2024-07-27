@@ -135,14 +135,13 @@ export default {
     {
       demoId: 'show-divider',
       name: {
-        'zh-CN': '底部分割线',
-        'en-US': 'Bottom dividing line'
+        'zh-CN': '底部指示三角',
+        'en-US': 'Bottom indicator triangle'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>show-divider</code> 属性设置是否显示时间线底部分隔线，仅当节点文本内容位于序号右边时生效。</p>',
+        'zh-CN': '通过 <code>show-divider</code> 属性设置是否显示底部的指示三角，仅当节点文本内容位于序号右边时生效。',
         'en-US':
-          '<p><code>show-divider</code> attribute is used to set whether to display the bottom dividing line of the timeline. It only takes effect when the node text content is located to the right of the number. </p>'
+          'The <code>show-divider</code> attribute is used to set whether to display the indicator triangle at the bottom. This parameter is valid only when the node text is on the right of the sequence number.'
       },
       codeFiles: ['show-divider.vue']
     },

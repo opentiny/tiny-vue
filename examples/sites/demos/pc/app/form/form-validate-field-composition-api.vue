@@ -72,6 +72,6 @@ async function validateField() {
 
 <style scoped>
 .demo-form {
-  width: 380px;
+  width: 450px;
 }
 </style>

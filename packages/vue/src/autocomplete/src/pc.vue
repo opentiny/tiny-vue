@@ -25,6 +25,7 @@
       v-bind="f($props, $attrs)"
       front-clear-icon
       @update:modelValue="handleChange"
+      :validate-event="false"
       @focus="handleFocus"
       @blur="handleBlur"
       @clear="handleClear"
@@ -137,7 +138,8 @@ export default defineComponent({
     'hideLoading',
     'popperAppendToBody',
     'highlightFirstItem',
-    'displayOnly'
+    'displayOnly',
+    'validateEvent'
   ],
   emits: ['update:modelValue', 'focus', 'blur', 'clear', 'select', 'created'],
   setup(props, context) {

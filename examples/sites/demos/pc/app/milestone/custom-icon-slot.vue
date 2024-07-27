@@ -1,9 +1,11 @@
 <template>
-  <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
-    <template #icon="data">
-      <component :is="data.slotScope.icon" class="custom"> </component>
-    </template>
-  </tiny-milestone>
+  <div class="demo-milestone">
+    <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
+      <template #icon="data">
+        <component :is="data.slotScope.icon" class="custom"> </component>
+      </template>
+    </tiny-milestone>
+  </div>
 </template>
 
 <script lang="jsx">
@@ -88,5 +90,11 @@ export default {
   color: #000;
   cursor: pointer;
   z-index: 15;
+}
+</style>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
 }
 </style>

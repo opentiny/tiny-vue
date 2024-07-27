@@ -18,9 +18,9 @@ test('校验提示跟随单元格移动', async ({ page }) => {
     .getByRole('textbox')
     .fill('x')
   const { y: top } = await page.getByRole('tooltip', { name: '区域格式不正确' }).boundingBox()
-
   const scrollDom = page.getByRole('cell', { name: 'YHN科技有限公司' })
   await scrollDom.scrollIntoViewIfNeeded()
+  await page.waitForTimeout(200)
   const { y: topLater } = await page.getByRole('tooltip', { name: '区域格式不正确' }).boundingBox()
   await expect(top).toBeGreaterThan(topLater)
 })

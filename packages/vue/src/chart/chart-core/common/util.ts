@@ -14,7 +14,7 @@ export function toUpperCase(str) {
 }
 
 export const getFormatted = (value, type, digit, defaultVal = '-') => {
-  if (typeof value === 'object') {
+  if (typeof value === 'object' && !isNull(value)) {
     value = value.value
   }
   if (isNaN(value)) {

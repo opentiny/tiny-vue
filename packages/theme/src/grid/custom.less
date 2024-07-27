@@ -21,40 +21,9 @@
   width: 100%;
 
   & &__tabs {
-    .@{grid-custom-prefix-cls}__tabs-head {
-      white-space: nowrap;
+    .@{css-prefix}tabs__content {
       margin: 0;
-      overflow: hidden;
-      height: var(--ti-grid-custom-head-height);
-      width: 100%;
-      position: relative;
-
-      ul {
-        height: var(--ti-grid-custom-head-height);
-        border-bottom: 1px solid var(--ti-grid-border-color);
-        list-style: none;
-        box-sizing: border-box;
-
-        li {
-          float: left;
-          margin-right: -1px;
-          cursor: pointer;
-          line-height: 28px;
-          padding: 0 20px;
-          color: var(--ti-grid-text-color);
-          min-width: 90px;
-          height: var(--ti-grid-custom-head-height);
-          line-height: var(--ti-grid-custom-head-height);
-
-          &.@{grid-custom-prefix-cls}__tabs-selected {
-            color: var(--ti-grid-primary-color);
-            border-bottom: 3px solid var(--ti-grid-primary-color);
-            font-weight: 700;
-          }
-        }
-      }
     }
-
     .@{grid-custom-prefix-cls}__tabs-body {
       overflow-y: auto;
       border: 0;
@@ -62,29 +31,7 @@
 
       .tabs-body-item {
         .@{grid-custom-prefix-cls}__alert {
-          position: relative;
-          border: 1px solid;
-          border-radius: var(--ti-grid-border-radius);
-          height: var(--ti-grid-custom-body-list-height);
-          line-height: var(--ti-grid-custom-body-list-height);
-          padding-left: 8px;
-          overflow: hidden;
-          background: var(--ti-grid-row-hover-background-color);
-          border-color: #91d5ff;
-          color: var(--ti-grid-text-color);
-          display: flex;
-          align-items: center;
-
-          .@{svg-prefix-cls} {
-            font-size: var(--ti-common-font-size-3);
-            fill: var(--ti-grid-primary-color);
-          }
-
-          p {
-            display: inline-block;
-            line-height: 16px;
-            padding-left: 8px;
-          }
+          margin: 0;
         }
 
         .@{grid-custom-prefix-cls}__setting {

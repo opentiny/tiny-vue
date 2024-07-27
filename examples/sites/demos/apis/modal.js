@@ -18,7 +18,7 @@ export default {
         },
         {
           name: 'cancel-btn-props',
-          typeAnchorName: 'button#API',
+          linkTo: 'button#API',
           type: 'Button.props',
           defaultValue: '{}',
           desc: {
@@ -43,7 +43,7 @@ export default {
         },
         {
           name: 'confirm-btn-props',
-          typeAnchorName: 'button#API',
+          linkTo: 'button#API',
           type: 'Button.props',
           defaultValue: '{}',
           desc: {

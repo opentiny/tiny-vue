@@ -12,8 +12,7 @@ const TinyIconCopy = iconCopy()
 
 <style scoped>
 .icon-demo .tiny-svg {
-  fill: #8994aa;
-  margin: 20px 50px;
+  margin: 20px 83px;
   font-size: 24px;
 }
 </style>
