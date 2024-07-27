@@ -1,8 +1,9 @@
 import Quill from 'quill'
-import { FONT_FAMILY_CONFIG, FONT_SIZE_CONFIG, ICONS_CONFIG, TABLE_RIGHT_MENU_CONFIG } from './config'
+import { FONT_FAMILY_CONFIG, FONT_SIZE_CONFIG, ICONS_CONFIG, TABLE_RIGHT_MENU_CONFIG, inputFile } from './config'
 import Counter from './counter' // 字符统计
 import CustomClipboard from './custom-clipboard' // 粘贴板
 import CustomImage from './custom-image/BlotFormatter' // 图片
+import { CustomImageSpec } from './custom-image/specs/CustomImageSpec' // 图片拉伸模块
 import CustomUploader from './custom-uploader' // 上传
 // import Emoji from './emoji' // 表情
 import FileModule from './file' // 文件
@@ -39,14 +40,19 @@ const registerModules = function () {
       toolbar: {
         handlers: {
           ...SnowTheme.DEFAULTS.modules.toolbar.handlers,
-          undo() {
+          undo: function() {
             this.quill.history.undo()
           },
-          redo() {
+          redo: function() {
             this.quill.history.redo()
           },
           'better-table': function() {
             this.quill.getModule('better-table').insertTable(3, 3)
+          },
+          image: function () {
+            const option = this.quill.options.uploadOption;
+            const accept = option && option.imageAccept;
+            inputFile.call(this, 'image', accept);
           },
         }
       },
@@ -55,7 +61,22 @@ const registerModules = function () {
           items: TABLE_RIGHT_MENU_CONFIG,
           color: true
         }
-      }
+      },
+      image: {
+        specs: [CustomImageSpec],
+        overlay: {
+          style: {
+            border: '1px dashed rgb(68, 68, 68)',
+          },
+        },
+        align: {
+          icons: {
+            left: '<i class="icon-text-align-left"></i>',
+            center: '<i class="icon-text-align-center"></i>',
+            right: '<i class="icon-text-align-right"></i>',
+          },
+        },
+      },
     }
   }
 
