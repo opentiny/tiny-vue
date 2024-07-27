@@ -49,7 +49,6 @@ export const onCancel = (
       })
       emit('cancel', color)
     }
-    // console.log(pre.value)
     emit('update:modelValue', hex.value)
   }
 }
