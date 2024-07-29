@@ -10,6 +10,22 @@
  *
  */
 // 具体操作方法和工具函数
+// 虚拟滚动逻辑
+export const handleScroll =
+  ({ props, state, virtualScroll }) =>
+  (event) => {
+    if (virtualScroll.value) {
+      const scrollTop = virtualScroll.value.scrollTop // 获取可视页面的当前滚动距离
+      const viewNum = Math.ceil(props.viewHeight / props.itemHeight) // 向上取整得到可视页面显示的条数
+      const viewStart = ~~(scrollTop / props.itemHeight) // 向下取整得到滚动区域的显示的第一条的索引
+      // 计算要显示的范围，使用Diff算法来更新数据范围
+      const start = viewStart - viewNum > 0 ? viewStart - viewNum : 0 // 上一屏第一条下标
+      const end = viewStart + 2 * viewNum < state.data.length ? viewStart + 2 * viewNum : state.data.length // 下一屏最后一个数据的索引（以免超出范围）
+      state.visibleData = state.data.slice(start, end) // 间接利用Diff算法来算出上下屏的显示范围，将全列表数据按照范围给到显示数据中
+      state.translate = -start * props.itemHeight // 实现平滑过渡，先渲染上一屏的内容，然后再渲染显示区域的内容
+    }
+  }
+
 export const initUser =
   ({ api, props, state }) =>
   (value) => {

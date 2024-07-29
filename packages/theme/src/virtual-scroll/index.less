@@ -1,1 +1,42 @@
-/* stylelint-disable-next-line no-empty-source */
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+@import '../custom.less';
+@import './vars.less';
+
+@virtualscroll-prefix-cls: ~'@{css-prefix}virtualscroll';
+// 为整个虚拟滚动组件设计样式（类似于）
+.@{virtualscroll-prefix-cls} {
+  .component-css-vars-virtual-scroll();
+
+  // 外层容器：virtual-scroll
+  position: relative;
+  overflow: auto;
+  // 确保虚拟滚动内容
+  & > .virtual-scroll-context {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  // 实际渲染区域
+  & > .virtual-scroll-wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  // 每项内容
+  & > .virtual-scroll-item {
+    display: flex;
+    align-items: center;
+  }
+}

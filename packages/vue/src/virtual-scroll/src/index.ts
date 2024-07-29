@@ -18,7 +18,31 @@ export default defineComponent({
       type: Object,
       default: () => $constants
     },
-    modelValue: String
+    // 渲染数据
+    data: {
+      type: Array,
+      default: () => {
+        return []
+      },
+      require: true
+    },
+    viewHeight: {
+      // 可视区域高度
+      type: Number,
+      default: 600
+    },
+    itemHeight: {
+      // 每条数据高度
+      type: Number,
+      default: 30
+    },
+    itemIndex: {
+      // 数组的唯一标识字段，可以很大程度提升性能
+      type: String,
+      default: 'id',
+      require: true
+    }
+    // modelValue: String
   },
   // 初始化组件，传入props和context以及模板内容，props传给pc.vue
   setup(props, context) {
