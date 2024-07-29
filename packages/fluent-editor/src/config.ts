@@ -118,3 +118,45 @@ export const ICONS_CONFIG: { [key: string]: any } = {
   help: HELP_ICON,
   screenshot: SCREENSHOT_ICON,
 }
+
+export const TABLE_RIGHT_MENU_CONFIG = {
+  copyCells: {
+    text: LANG_CONF['copy-cells']
+  },
+  copyTable: {
+    text: LANG_CONF['copy-table']
+  },
+  cutCells: {
+    text: LANG_CONF['cut-cells']
+  },
+  emptyCells: {
+    text: LANG_CONF['empty-cells']
+  },
+  insertRowUp: {
+    text: LANG_CONF['insert-row-up']
+  },
+  insertRowDown: {
+    text: LANG_CONF['insert-row-down']
+  },
+  insertColumnLeft: {
+    text: LANG_CONF['insert-column-left']
+  },
+  insertColumnRight: {
+    text: LANG_CONF['insert-column-right']
+  },
+  mergeCells: {
+    text: LANG_CONF['merge-cells']
+  },
+  unMergeCells: {
+    text: LANG_CONF['unmerge-cells']
+  },
+  deleteRow: {
+    text: LANG_CONF['delete-row']
+  },
+  deleteColumn: {
+    text: LANG_CONF['delete-column']
+  },
+  deleteTable: {
+    text: LANG_CONF['delete-table']
+  }
+};
