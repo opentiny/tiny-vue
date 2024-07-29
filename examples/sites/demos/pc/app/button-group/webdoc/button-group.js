@@ -113,11 +113,8 @@ export default {
     {
       demoId: 'slot-empty',
       name: {
-        'zh-CN': '空数据',
-        'en-US': 'No data'
-      },
-      metaData: {
-        new: '3.17.1'
+        'zh-CN': '空数据插槽',
+        'en-US': 'Empty slot'
       },
       desc: {
         'zh-CN': '<p>当数据为空时，默认会显示"暂无数据"，通过 <code>empty</code> 插槽自定义内容。</p>',

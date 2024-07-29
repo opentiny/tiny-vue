@@ -2,9 +2,7 @@
   <div>
     <tiny-button-group :data="groupData" v-model="checkedVal"></tiny-button-group>
     <tiny-button-group :data="groupData" v-model="checkedVal">
-      <template #empty>
-        <span class="custom-empty">自定义空数据</span>
-      </template>
+      <span class="custom-empty">自定义空数据</span>
     </tiny-button-group>
   </div>
 </template>
