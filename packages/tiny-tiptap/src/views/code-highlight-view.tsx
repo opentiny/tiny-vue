@@ -3,25 +3,10 @@ import { hooks, $prefix, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
   name: $prefix + 'CodeHighlight',
+  props: nodeViewProps,
   components: {
     NodeViewWrapper,
     NodeViewContent
-  },
-  props: nodeViewProps,
-  data() {
-    return {
-      languages: this.extension.options.lowlight.listLanguages()
-    }
-  },
-  computed: {
-    selectedLanguage: {
-      get() {
-        return this.node.attrs.language ?? 'null'
-      },
-      set(language) {
-        this.updateAttributes({ language })
-      }
-    }
   },
   render() {
     const { languages, selectedLanguage, handleChangeLanguage } = this
@@ -44,9 +29,25 @@ export default defineComponent({
       </NodeViewWrapper>
     )
   },
-  methods: {
-    handleChangeLanguage(e: Event) {
-      this.selectedLanguage = (e.target as HTMLSelectElement).value
+  setup(props) {
+    const languages = hooks.computed(() => {
+      const { extension } = props
+      return extension?.options?.lowlight?.listLanguages() ?? []
+    })
+
+    const selectedLanguage = hooks.computed({
+      get: () => props.node?.attrs?.language ?? 'null',
+      set: (language) => props.updateAttributes?.({ language })
+    })
+
+    const handleChangeLanguage = (e: Event) => {
+      selectedLanguage.value = (e.target as HTMLSelectElement).value
+    }
+
+    return {
+      languages,
+      selectedLanguage,
+      handleChangeLanguage
     }
   }
 })
