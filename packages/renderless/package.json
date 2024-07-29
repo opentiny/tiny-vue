@@ -1,18 +1,9 @@
 {
   "name": "@opentiny/vue-renderless",
-  "version": "3.17.2",
   "private": true,
+  "version": "3.17.0",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
-  "author": "OpenTiny Team",
-  "license": "MIT",
   "homepage": "https://opentiny.design/tiny-vue",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:opentiny/tiny-vue.git"
-  },
-  "bugs": {
-    "url": "https://github.com/opentiny/tiny-vue/issues"
-  },
   "keywords": [
     "vue",
     "vue3",
@@ -24,11 +15,16 @@
     "renderless-components",
     "headless-components"
   ],
-  "sideEffects": false,
-  "exports": {
-    "./package.json": "./package.json",
-    "./*": "./src/*"
+  "author": "OpenTiny Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opentiny/tiny-vue.git"
   },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-vue/issues"
+  },
+  "sideEffects": false,
   "scripts": {
     "build": "tsup",
     "build:fast": "npm run build && npm run release",
@@ -36,8 +32,12 @@
     "release": "esno ./scripts/postbuild.ts && shx cp README.md dist"
   },
   "dependencies": {
-    "color": "4.2.3",
-    "xss": "1.0.11"
+    "xss": "1.0.11",
+    "color": "4.2.3"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./*": "./src/*"
   },
   "devDependencies": {
     "esno": "^4.7.0",

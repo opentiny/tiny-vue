@@ -138,20 +138,17 @@
     margin-bottom: 2px;
   }
 
-  .tiny-svg-size {
-    fill: var(--ti-option-multi-svg-border-color);
+  .@{svg-prefix-cls} {
+    fill: var(--ti-option-checkbox-border-color-hover);
     font-size: 16px;
     margin-right: 8px;
-
-    &:hover {
-      fill: var(--ti-option-multi-svg-hover-border-color);
-    }
   }
 
-  &.selected .tiny-svg-size,
-  .checked-sur.tiny-svg-size,
-  .halfselect.tiny-svg-size {
-    fill: var(--ti-option-multi-svg-icon-color);
+  &.selected .@{svg-prefix-cls},
+  &.hover .@{svg-prefix-cls},
+  .checked-sur.@{svg-prefix-cls},
+  .halfselect.@{svg-prefix-cls} {
+    fill: var(--ti-option-selected-bg-color);
   }
 
   &.memorize-highlight {

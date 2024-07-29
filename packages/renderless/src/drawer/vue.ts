@@ -47,7 +47,7 @@ export const renderless = (
     close: close({ api }),
     handleClose: handleClose({ emit, props, state }),
     mousedown: mousedown({ state, vm }),
-    mousemove: mousemove({ state, props, emit }),
+    mousemove: mousemove({ state, props }),
     mouseup: mouseup({ state }),
     addDragEvent: addDragEvent({ api: api as IDrawerApi, vm }),
     removeDragEvent: removeDragEvent({ api: api as IDrawerApi, vm }),
