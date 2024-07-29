@@ -117,8 +117,8 @@ export default {
         'en-US': 'Empty slot'
       },
       desc: {
-        'zh-CN': '<p>当数据为空时，默认会显示"暂无数据"，通过 <code>empty</code> 插槽自定义内容。</p>',
-        'en-US': '<p>Show "No data" when the data is empty, customize the content via the <code>empty</code> slot.</p>'
+        'zh-CN': '<p>当数据为空时，默认会显示暂无数据，通过默认插槽自定义内容。</p>',
+        'en-US': '<p>When the data is empty, customize the content via the <code>empty</code> slot.</p>'
       },
       codeFiles: ['slot-empty.vue']
     },
