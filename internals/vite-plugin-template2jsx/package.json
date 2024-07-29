@@ -19,6 +19,7 @@
   "dependencies": {
     "lodash-es": "^4.17.21",
     "fs-extra": "^11.2.0",
+    "vue": "2.6.14",
     "vue-template-compiler": "2.6.14",
     "html-dom-parser": "~5.0.8"
   },
