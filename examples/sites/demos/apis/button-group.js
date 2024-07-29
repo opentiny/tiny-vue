@@ -172,17 +172,6 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'slot-default',
           mfDemo: ''
-        },
-        {
-          name: 'empty',
-          type: '',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '自定义数据为空时展示内容',
-            'en-US': 'customize content when data is empty'
-          },
-          mode: ['pc'],
-          pcDemo: 'slot-empty'
         }
       ]
     }
