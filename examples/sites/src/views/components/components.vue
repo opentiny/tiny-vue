@@ -150,7 +150,6 @@
                           class="api-table"
                           :data="tableData[oneGroup.name][key]"
                           :expand-config="apiExpandConf"
-                          :row-class-name="setCurrRowClass"
                           row-id="name"
                         >
                           <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">

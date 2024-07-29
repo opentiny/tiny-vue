@@ -43,7 +43,7 @@
           </tiny-tooltip>
         </div>
       </div>
-      <component :is="getDescMd(demo)" class="demo-desc" />
+      <component :is="getDescMd(demo)" class="demo-desc markdown-body" />
 
       <div v-if="isMobileFirst" class="pc-demo-container">
         <tiny-button @click="openPlayground(demo, false)">多端预览</tiny-button>
