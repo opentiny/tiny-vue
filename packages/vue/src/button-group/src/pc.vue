@@ -106,9 +106,7 @@
           </li>
         </ul>
       </template>
-      <span v-else class="tiny-button-group--empty">
-        <slot name="empty">{{ t('ui.buttonGroup.noData') }}</slot>
-      </span>
+      <span v-else class="tiny-button-group--empty"> {{ t('ui.buttonGroup.noData') }} </span>
     </slot>
   </div>
 </template>
