@@ -148,7 +148,7 @@ export const TABLE_RIGHT_MENU_CONFIG = {
   mergeCells: {
     text: LANG_CONF['merge-cells']
   },
-  unMergeCells: {
+  unmergeCells: {
     text: LANG_CONF['unmerge-cells']
   },
   deleteRow: {
