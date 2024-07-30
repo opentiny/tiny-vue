@@ -11,8 +11,8 @@ $defaultFontSize: 14px;
 
 @mixin arrowIcon {
   height: 0;
-  width: 0;
-  margin-top: -2.5px;
+  width: 0 !important;
+  margin-top: -2.5px !important;
   border: 2.5px solid transparent;
   border-top: 3px solid #252b3a;
 }
@@ -21,7 +21,7 @@ $defaultFontSize: 14px;
   width: $width;
 
   .ql-picker-label::before {
-    @include ellipsis(40px);
+    @include ellipsis($width);
   }
 
   &.ql-expanded .ql-picker-label {
@@ -64,7 +64,7 @@ $defaultFontSize: 14px;
 @mixin fontSizeList {
   /* Set Dropdown font-size */
   .ql-size {
-    @include toolbarPicker('', 45px);
+    @include toolbarPicker('', 98px);
   }
 
   .ql-size span.ql-picker-options {
@@ -93,7 +93,7 @@ $defaultFontSize: 14px;
 @mixin fontFamilyList {
   /* Set dropdown font-families */
   .ql-font {
-    @include toolbarPicker('', 45px);
+    @include toolbarPicker('', 98px);
 
     span[data-value='arial']::before {
       font-family: arial, helvetica, sans-serif;
