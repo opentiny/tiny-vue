@@ -101,7 +101,7 @@ const setIcons = ({ api, vm, iconOption, FluentEditor, keys = [] }) => {
       if (typeof option === 'object') {
         setIcons({ api, vm, iconOption: option, FluentEditor, keys: [...keys, key] })
       } else {
-        const outerHtml = isSvg(option) ? option : api.getOuterHTML(vm.$refs[option] && vm.$refs[option][0])
+        const outerHtml = isSvg(option) ? option : api.getOuterHTML(vm.$refs[option]?.[0])
 
         if (option && outerHtml) {
           const k = keys.length ? [...keys, key].join('.') : key

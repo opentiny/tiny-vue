@@ -45,8 +45,7 @@ import {
   IconLink,
   IconPicture,
   IconCloudUpload,
-  IconFullscreen,
-  IconClockWork
+  IconFullscreen
 } from '@opentiny/vue-icon'
 
 export default defineComponent({
@@ -82,8 +81,7 @@ export default defineComponent({
     IconLink: IconLink(),
     IconPicture: IconPicture(),
     IconCloudUpload: IconCloudUpload(),
-    IconFullscreen: IconFullscreen(),
-    IconClockWork: IconClockWork()
+    IconFullscreen: IconFullscreen()
   },
   props: [
     ...props,
