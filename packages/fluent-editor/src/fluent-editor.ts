@@ -50,9 +50,8 @@ const registerModules = function () {
             this.quill.getModule('better-table').insertTable(3, 3)
           },
           image: function () {
-            const option = this.quill.options.uploadOption;
-            const accept = option && option.imageAccept;
-            inputFile.call(this, 'image', accept);
+            const accept = this.quill.options?.uploadOption?.imageAccept
+            inputFile.call(this, 'image', accept)
           },
         }
       },
