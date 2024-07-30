@@ -21,12 +21,12 @@ export default {
 
 <style scoped>
 .gray-bg {
-  background: #ccc;
+  background: #fafafa;
   padding: 20px 10px 10px;
 }
 .tiny-button {
   margin-bottom: 10px;
   margin-left: 0;
-  margin-right: 8px;
+  margin-right: 24px;
 }
 </style>

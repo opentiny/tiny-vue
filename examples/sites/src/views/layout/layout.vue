@@ -1,70 +1,7 @@
 <template>
   <div class="main-layout ti-hp100 ti-f-c ti-f-box-stretch">
-    <!-- 切换语言 -->
-    <div class="lang-box">
-      <tiny-tooltip :content="i18nByKey('changeLanguage')" placement="left">
-        <span class="lang-btn" @click="changeLanguage">{{ i18nByKey('language') }}</span>
-      </tiny-tooltip>
-    </div>
-    <!-- 切換主题样式 -->
-    <tiny-dropdown v-if="!templateModeState.isSaas" class="theme-change-button" trigger="click" :show-icon="false">
-      <tiny-tooltip :content="i18nByKey('changeTheme')" placement="left">
-        <img :src="themeSvg" :alt="i18nByKey('changeTheme')" />
-      </tiny-tooltip>
-      <template #dropdown>
-        <tiny-dropdown-menu :options="themeData">
-          <tiny-dropdown-item
-            v-for="(item, index) in themeData"
-            :key="index"
-            @click="themeItemClick(item)"
-            :class="{ 'is-actived': item.value === currentThemeKey }"
-          >
-            {{ item.label }}
-          </tiny-dropdown-item>
-        </tiny-dropdown-menu>
-      </template>
-    </tiny-dropdown>
     <div class="content-layout ti-fi-1" :has-sider="!isFrame">
       <div id="layoutSider" class="layout-sider" :class="{ 'saas-border': templateModeState.isSaas }" v-if="!isFrame">
-        <div v-show="!isCollapsed" class="api-type-box" :class="{ 'is-collapsed': isCollapsed }">
-          <div class="api-type">
-            <div :class="{ 'api-mode': true, active: apiModeState.apiMode === 'Options' }">
-              {{ getWord('选项式', 'Options') }}
-            </div>
-            <tiny-switch
-              class="api-switch"
-              true-value="Composition"
-              false-value="Options"
-              @change="apiModeFn.changeApiMode"
-              v-model="apiModeState.apiMode"
-            ></tiny-switch>
-            <div :class="{ 'api-mode': true, active: apiModeState.apiMode === 'Composition' }">
-              {{ getWord('组合式', 'Composition') }}
-            </div>
-            <tiny-tooltip :content="i18nByKey('apiType')" placement="right">
-              <icon-help-circle></icon-help-circle>
-            </tiny-tooltip>
-          </div>
-
-          <div class="api-type">
-            <div :class="{ 'api-mode': true, active: apiModeState.demoMode === 'single' }">
-              {{ getWord('单示例', 'Single') }}
-            </div>
-            <tiny-switch
-              class="api-switch"
-              true-value="default"
-              false-value="single"
-              @change="apiModeFn.changeDemoMode"
-              v-model="apiModeState.demoMode"
-            ></tiny-switch>
-            <div :class="{ 'api-mode': true, active: apiModeState.demoMode === 'default' }">
-              {{ getWord('多示例', 'Multiple') }}
-            </div>
-            <tiny-tooltip :content="getWord('切换demo的预览模式', 'Change demo preview mode')" placement="right">
-              <icon-help-circle></icon-help-circle>
-            </tiny-tooltip>
-          </div>
-        </div>
         <tiny-tree-menu
           ref="treeMenuRef"
           class="main-menu"
@@ -80,8 +17,14 @@
           <template #default="{ data }">
             <div class="node-name-container">
               <tiny-tag v-if="data?.mode?.includes('mobile-first')" effect="plain" class="absolute-tag">多端</tiny-tag>
+              <!-- 分类图标 -->
+              <component
+                v-if="data.type === 'overview' || data.children"
+                :is="menuIcons[data.key]"
+                class="menu-type-icon"
+              ></component>
               <span class="node-name-label">{{ data.label }}</span>
-              <tiny-tag v-if="data.mark?.text" class="node-float-tip" effect="dark" :type="data.mark?.type">
+              <tiny-tag v-if="data.mark?.text" class="node-float-tip" effect="light" :type="data.mark?.type">
                 {{ data.mark.text }}
               </tiny-tag>
             </div>
@@ -98,39 +41,42 @@
         <router-view />
       </div>
     </div>
+
+    <float-settings></float-settings>
   </div>
 </template>
 
 <script>
 import { useRoute } from 'vue-router'
 import { defineComponent, reactive, computed, toRefs, onMounted, onUnmounted } from 'vue'
-import { Switch, TreeMenu, Dropdown, DropdownMenu, DropdownItem, Tooltip, Tag } from '@opentiny/vue'
-import { iconHelpCircle } from '@opentiny/vue-icon'
-import { genMenus } from '@/menus.jsx'
+import { TreeMenu, Dropdown, DropdownMenu, Tooltip, Tag, Radio, RadioGroup, Button } from '@opentiny/vue'
+import { genMenus, getMenuIcons } from '@/menus.jsx'
 import { router } from '@/router.js'
 import { getWord, i18nByKey, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
-import themeSvg from '@/assets/images/theme.svg?url'
 import useTheme from '@/tools/useTheme'
+import FloatSettings from '@/views/components/float-settings'
 
 export default defineComponent({
   name: 'LayoutVue',
   components: {
-    TinySwitch: Switch,
     TinyTreeMenu: TreeMenu,
     TinyDropdown: Dropdown,
     TinyDropdownMenu: DropdownMenu,
-    TinyDropdownItem: DropdownItem,
     TinyTooltip: Tooltip,
     TinyTag: Tag,
-    IconHelpCircle: iconHelpCircle()
+    TinyRadio: Radio,
+    TinyRadioGroup: RadioGroup,
+    TinyButton: Button,
+    FloatSettings
   },
   props: [],
   setup() {
-    const { getThemeData, changeTheme, currentThemeKey, defaultTheme } = useTheme()
+    const { defaultTheme } = useTheme()
     const { apiModeState, apiModeFn } = useApiMode()
     const { templateModeState } = useTemplateMode()
-    let state = reactive({
+    const state = reactive({
       menuOptions: genMenus(),
+      menuIcons: {},
       hasHeader: true, // Header，当嵌入think时，无头。 所以预留变量
       isFrame: computed(() => router.currentRoute.value.meta?.iframe),
       contentRef: null,
@@ -164,21 +110,15 @@ export default defineComponent({
         router.push(getTo('components/', menu.key))
       }
     }
+
     const collapseChange = (isCollapsed) => {
       state.isCollapsed = isCollapsed
     }
-    let routerCbDestory = null
+    let routerCbDestroy = null
 
-    // 主题切换功能
-    const themeItemClick = (node) => {
-      const val = node?.value || 'tiny-infinity-theme'
-
-      changeTheme(val)
-    }
-
-    onMounted(() => {
+    onMounted(async () => {
       // 每次切换路由，有锚点则跳转到锚点，否则导航到顶部
-      routerCbDestory = router.afterEach((to) => {
+      routerCbDestroy = router.afterEach((to) => {
         if (to.hash) {
           const el = document.querySelector(to.hash)
           if (el) {
@@ -194,10 +134,12 @@ export default defineComponent({
         state.expandKeys = [cmpId]
         state.treeMenuRef.setCurrentKey(cmpId)
       }
+
+      state.menuIcons = await getMenuIcons()
     })
 
     onUnmounted(() => {
-      routerCbDestory()
+      routerCbDestroy()
     })
 
     return {
@@ -207,10 +149,6 @@ export default defineComponent({
       searchMenu,
       clickMenu,
       collapseChange,
-      themeData: getThemeData(),
-      themeItemClick,
-      currentThemeKey,
-      themeSvg,
       changeLanguage,
       apiModeState,
       apiModeFn,
@@ -225,53 +163,26 @@ export default defineComponent({
 <style lang="less">
 .content-layout {
   display: flex;
-  --layout-tree-menu-input-height: 40px;
-  --layout-api-mode-height: 106px;
+  --layout-tree-menu-input-height: var(--ti-common-space-8x);
+  --layout-content-main-min-width: 600px;
+  --layout-content-main-max-width: 1000px;
+}
+
+.tiny-tooltip.tiny-tooltip__popper.is-light.docs-tooltip {
+  border: none;
+
+  .popper__arrow {
+    border: none;
+  }
 }
 
 .theme-change-button {
-  position: fixed;
-  top: 135px;
-  right: 30px;
-  z-index: 1999;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  background-color: transparent;
-  img {
-    margin-right: calc(-1 * var(--ti-dropdown-trigger-title-margin-right));
-    display: block;
-    width: 26px;
-    height: 26px;
+  &.tiny-dropdown .tiny-dropdown__trigger .tiny-dropdown__title {
+    margin-right: 0;
+    line-height: 1;
   }
-  .tiny-svg {
-    display: none;
-  }
-  &:hover {
-    background-color: #fff;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12);
-    cursor: pointer;
-  }
-}
 
-.lang-box {
-  position: fixed;
-  top: 80px;
-  right: 30px;
-  z-index: 1999;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  background-color: transparent;
   &:hover {
-    background-color: #fff;
-    box-shadow: 0 2px 8px 0 rgb(0 0 0 / 12%);
     cursor: pointer;
   }
   .lang-btn {
@@ -291,6 +202,65 @@ export default defineComponent({
 }
 
 .main-menu.tiny-tree-menu {
+  --ti-tree-menu-node-current-text-color: var(--ti-common-color-primary-normal);
+
+  height: 100%;
+  padding-top: 30px;
+  padding-left: var(--ti-common-space-10);
+
+  &::before {
+    display: none;
+  }
+
+  .tiny-tree {
+    padding-bottom: 30px;
+
+    .tiny-tree-node__wrapper {
+      padding-right: var(--ti-common-space-10);
+    }
+
+    .tiny-tree-node {
+      &.is-current > .tiny-tree-node__content,
+      .tiny-tree-node__content:hover {
+        border-radius: var(--ti-common-space-5x);
+      }
+
+      &.is-current {
+        > .tiny-tree-node__content .node-name-label {
+          font-weight: 600;
+        }
+
+        .menu-type-icon {
+          fill: var(--ti-common-color-primary-normal);
+        }
+      }
+    }
+
+    .node-float-tip {
+      border-radius: 0;
+    }
+  }
+
+  .tiny-tree-menu__toggle-button {
+    transform: translateX(100%) translateY(-50%);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    .tiny-svg {
+      margin-left: 0;
+    }
+  }
+
+  .tiny-input {
+    margin: 0 var(--ti-common-space-10) var(--ti-common-space-3x);
+    width: auto;
+
+    .tiny-input__inner {
+      width: 100%;
+      border: 1px solid var(--ti-tree-menu-border-color);
+    }
+  }
+
   .tiny-tree-node__content-box {
     min-width: 0;
   }
@@ -303,7 +273,6 @@ export default defineComponent({
     right: 4px;
     top: 12px;
   }
-  height: calc(100% - var(--layout-api-mode-height));
   .tiny-tree {
     height: calc(100% - var(--layout-tree-menu-input-height));
     overflow-y: auto;
@@ -313,7 +282,7 @@ export default defineComponent({
 
     .node-name-container {
       display: flex;
-      flex-direction: row;
+      align-items: center;
       flex-wrap: nowrap;
       gap: 6px;
 
@@ -323,6 +292,12 @@ export default defineComponent({
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+
+      .menu-type-icon {
+        width: var(--ti-common-size-3x);
+        height: var(--ti-common-size-3x);
+        display: inline-block;
       }
     }
   }
@@ -336,12 +311,14 @@ export default defineComponent({
 }
 
 #doc-layout {
-  overflow-y: auto;
+  width: 100%;
   height: calc(100vh - 60px);
+  overflow: hidden auto;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
+
 .api-type-box {
   overflow: hidden;
   border-bottom: 1px solid var(--ti-common-color-line-dividing);
@@ -377,11 +354,24 @@ export default defineComponent({
     }
   }
 }
+
 #layoutSider {
   background: #fff;
   height: calc(100vh - 60px);
+  border-right: 1px solid var(--ti-common-color-line-dividing);
+
   &.saas-border {
     border-right: 1px solid #ddd;
+  }
+
+  .tiny-tree-menu .tiny-tree .tiny-tree-node.is-current > .tiny-tree-node__content .tiny-tree-node__content-left {
+    --ti-tree-node-content-current-bg-color: transparent;
+
+    border-radius: calc(var(--ti-tree-menu-node-height) * 0.5);
+
+    &::before {
+      display: none;
+    }
   }
 }
 
@@ -396,7 +386,7 @@ export default defineComponent({
   }
   #layoutSider.showMenu {
     display: block !important;
-    z-index: 9;
+    z-index: var(--docs-layout-sider-zindex);
   }
 }
 </style>

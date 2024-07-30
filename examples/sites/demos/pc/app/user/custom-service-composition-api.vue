@@ -14,7 +14,7 @@ import { User as TinyUser, Modal } from '@opentiny/vue'
 const user = ref('441047913162396')
 const service = ref({
   fetchSuggestUser: getSuggestUser,
-  fetchW3Accounts: fetchW3Accounts
+  fetchW3Accounts
 })
 
 function getSuggestUser(userCN) {
@@ -150,3 +150,11 @@ function fetchW3Accounts(userId) {
   })
 }
 </script>
+
+<style scoped>
+.user-value {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
+}
+</style>

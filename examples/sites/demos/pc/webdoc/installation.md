@@ -57,9 +57,9 @@ export default defineConfig({
   <p><code> @opentiny/vue </code> 支持多种模式。如果您的工程非移动端工程，可以在上面配置代码中的<code>process.env</code>中，声明<code>TINY_MODE</code>的值，以使工程在构建时，能将移动端模式的代码摇掉，优化打包产物的体积。比如 <code>'process.env': { ...process.env,TINY_MODE:'pc' }</code>。</p>
 </div>
 
-### 通过 CDN 方式引入
+### 通过 CDN 方式引入 (v3.16.0及之前的版本可用)
 
-为了更快地体验 TinyVue 的组件，你也可以通过 CDN 方式直接在 HTML 页面中引入 TinyVue, 建议版本号写 2 个有效版本数字即可，具体配置如下:
+为了更快地体验 `TinyVue` 的组件，你也可以通过 `CDN` 方式直接在 HTML 页面中引入 `TinyVue`, 建议版本号写 `2` 个有效版本数字即可，具体配置如下:
 
 ```html
 <head>
@@ -77,6 +77,37 @@ export default defineConfig({
   </script>
   <!-- 引入 @opentiny/vue 样式 -->
   <link rel="stylesheet" href="https://unpkg.com/@opentiny/vue-theme/index.css" />
+</head>
+```
+
+### 通过 CDN 方式引入 (v3.17.0开始提供使用)
+
+为了应对不同的业务需要，`TinyVue` 提供多种形态的 `runtime`:
+
+| Runtime 名称              | 使用说明                   |
+| ------------------------- | -------------------------- |
+| tiny-vue-pc.mjs           | 包含所有pc模板的组件集合   |
+| tiny-vue-mobile.mjs       | 包含所有移动模板的组件集合 |
+| tiny-vue-mobile-first.mjs | 包含所有多端模板的组件集合 |
+| tiny-vue-simple.mjs       | 包含常用组件的集合         |
+
+```html
+<head>
+  <!-- 引入 vue 和 @opentiny/vue -->
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://registry.npmmirror.com/vue/3.4.27/files/dist/vue.runtime.esm-browser.js",
+        "echarts": "https://registry.npmmirror.com/echarts/5.4.1/files/dist/echarts.esm.js",
+        "@opentiny/vue": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.17/files/dist3/tiny-vue-pc.mjs",
+        "@opentiny/vue-icon": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.17/files/dist3/tiny-vue-icon.mjs",
+        "@opentiny/vue-locale": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.17/files/dist3/tiny-vue-locale.mjs",
+        "@opentiny/vue-common": "https://registry.npmmirror.com/@opentiny/vue-runtime/3.17/files/dist3/tiny-vue-common.mjs"
+      }
+    }
+  </script>
+  <!-- 引入 @opentiny/vue 样式 -->
+  <link rel="stylesheet" href="https://registry.npmmirror.com/@opentiny/vue-theme/3.17/files/index.css" />
 </head>
 ```
 

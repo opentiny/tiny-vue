@@ -1,4 +1,4 @@
-import * as Quill from 'quill'
+import Quill from 'quill'
 // devui-internal api: utils\public-api.ts
 
 import { unshiftString } from '../../utils/method';

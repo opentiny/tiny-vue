@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { TableCell } from '../formats/table';
 import { ERROR_LIMIT, LINE_POSITIONS, PRIMARY_COLOR } from '../table-config';
 import { css, getRelativeRect } from '../utils';

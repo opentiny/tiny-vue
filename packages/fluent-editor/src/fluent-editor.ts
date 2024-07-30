@@ -1,5 +1,5 @@
 import Quill from 'quill'
-import { FONT_FAMILY_CONFIG, FONT_SIZE_CONFIG, ICONS_CONFIG } from './config'
+import { FONT_FAMILY_CONFIG, FONT_SIZE_CONFIG, ICONS_CONFIG, TABLE_RIGHT_MENU_CONFIG } from './config'
 import Counter from './counter' // 字符统计
 import CustomClipboard from './custom-clipboard' // 粘贴板
 import CustomImage from './custom-image/BlotFormatter' // 图片
@@ -32,6 +32,32 @@ const registerModules = function () {
   iconKeys.forEach(iconKey => {
     Icons[iconKey] = ICONS_CONFIG[iconKey]
   })
+
+  const SnowTheme = Quill.imports['themes/snow']
+  SnowTheme.DEFAULTS = {
+    modules: {
+      toolbar: {
+        handlers: {
+          ...SnowTheme.DEFAULTS.modules.toolbar.handlers,
+          undo() {
+            this.quill.history.undo()
+          },
+          redo() {
+            this.quill.history.redo()
+          },
+          'better-table': function() {
+            this.quill.getModule('better-table').insertTable(3, 3)
+          },
+        }
+      },
+      'better-table': {
+        operationMenu: {
+          items: TABLE_RIGHT_MENU_CONFIG,
+          color: true
+        }
+      }
+    }
+  }
 
   Quill.register(
     {

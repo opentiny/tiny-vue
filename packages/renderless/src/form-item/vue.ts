@@ -120,7 +120,9 @@ const initState = ({
     isErrorInline: computed(() => api.computedIsErrorInline()),
     isErrorBlock: computed(() => api.computedIsErrorBlock()),
     disabled: computed(() => state.formInstance.disabled),
-    tooltipType: computed(() => state.formInstance.state.tooltipType)
+    tooltipType: computed(() => state.formInstance.state.tooltipType),
+    // 标记表单项下是否有多个子节点
+    isMultiple: false
   })
 
   return state

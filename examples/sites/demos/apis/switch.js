@@ -175,6 +175,30 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'custom-open-close',
           mfDemo: ''
+        },
+        {
+          name: 'active-icon',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '开启时开关的图标',
+            'en-US': 'Icon of the switch when turned on'
+          },
+          mode: ['pc'],
+          pcDemo: 'custom-open-close-icon',
+          mfDemo: ''
+        },
+        {
+          name: 'inactive-icon',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '关闭时开关的图标',
+            'en-US': 'Icon of the switch when turned off'
+          },
+          mode: ['pc'],
+          pcDemo: 'custom-open-close-icon',
+          mfDemo: ''
         }
       ]
     }

@@ -114,7 +114,7 @@ export default {
       events: [
         {
           name: 'left-top-click',
-          type: '()=> void',
+          type: '() => void',
           defaultValue: '',
           desc: {
             'zh-CN': '左箭头收起时触发',
@@ -125,7 +125,7 @@ export default {
         },
         {
           name: 'moveend',
-          type: '()=> void',
+          type: '() => void',
           defaultValue: '',
           desc: {
             'zh-CN': '拖拽结束的事件',
@@ -136,7 +136,7 @@ export default {
         },
         {
           name: 'movestart',
-          type: '()=> void',
+          type: '() => void',
           defaultValue: '',
           desc: {
             'zh-CN': '拖拽开始的事件',

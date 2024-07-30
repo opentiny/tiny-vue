@@ -18,7 +18,8 @@ export default Config({
         origin,
         localStorage: [
           { name: 'tiny-vue-api-mode', value: 'Composition' },
-          { name: 'tiny-vue-demo-mode', value: 'single' }
+          { name: 'tiny-vue-demo-mode', value: 'single' },
+          { name: 'tiny-e2e-test', value: 'true' }
         ]
       }
     ]

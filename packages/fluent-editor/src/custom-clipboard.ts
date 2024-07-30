@@ -1,4 +1,4 @@
-import * as Quill from 'quill'
+import Quill from 'quill'
 import {
   ERROR_IMAGE_PLACEHOLDER_CN,
   ERROR_IMAGE_PLACEHOLDER_EN,
@@ -116,7 +116,7 @@ class CustomClipboard extends Clipboard {
     const files = Array.from(e.clipboardData.files || [])
     const msExcelCheck = /<meta.*?Microsoft Excel\s[\d].*?>/
 
-    if (html.search(msExcelCheck) === -1 && this.quill.options.uploadOption.imageUploadToServer && files.length > 0) {
+    if (html.search(msExcelCheck) === -1 && this.quill.options.uploadOption?.imageUploadToServer && files.length > 0) {
       this.quill.uploader.upload(range, files)
     } else {
       const msWordCheck1 =

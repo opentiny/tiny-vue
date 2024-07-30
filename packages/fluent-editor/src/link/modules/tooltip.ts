@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { debounce } from '../../../src/utils/debounce';
 import { LANG_CONF } from '../../config/editor.config';
 import { isNullOrUndefined } from '../../config/editor.utils';

@@ -177,7 +177,7 @@ export default {
           type: 'Object',
           defaultValue: '',
           desc: {
-            'zh-CN': '配置 EDM 下载功能所需的参数,例如：edm:{download:{token:()=>{}}},token为鉴权token',
+            'zh-CN': '配置 EDM 下载功能所需的参数,例如：edm:{download:{token:() =>{}}},token为鉴权token',
             'en-US': ''
           },
           mode: ['mobile-first'],
@@ -369,7 +369,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN':
-              '配置为 true,启用 EDM 上传文件夹的功能，最多只能上传 5 层;{edm:upload:{isFolder:true,token:()=>{}}}',
+              '配置为 true,启用 EDM 上传文件夹的功能，最多只能上传 5 层;{edm:upload:{isFolder:true,token:() =>{}}}',
             'en-US': ''
           },
           mode: ['mobile-first'],
@@ -524,7 +524,7 @@ export default {
           type: 'Function',
           defaultValue: '',
           desc: {
-            'zh-CN': '配置 EDM 批量打包下载的 token；配置结构为 edm:{download:packageToken:()=>{}},返回一个 Promise',
+            'zh-CN': '配置 EDM 批量打包下载的 token；配置结构为 edm:{download:packageToken:() =>{}},返回一个 Promise',
             'en-US': ''
           },
           mode: ['mobile-first'],
@@ -559,7 +559,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN':
-              "配置 EDM 预览功能所需的参数,例如：edm:{preview:{plugin：util.default,previewUrl:./_index.html?appid=应用Id,packageName: 'jslib',token:()=>{}}}",
+              "配置 EDM 预览功能所需的参数,例如：edm:{preview:{plugin：util.default,previewUrl:./_index.html?appid=应用Id,packageName: 'jslib',token:() =>{}}}",
             'en-US': ''
           },
           mode: ['mobile-first'],
@@ -718,7 +718,7 @@ export default {
           type: 'Object',
           defaultValue: '',
           desc: {
-            'zh-CN': '配置 EDM 上传功能所需的参数,例如：edm:{upload:{token:()=>{}}}',
+            'zh-CN': '配置 EDM 上传功能所需的参数,例如：edm:{upload:{token:() =>{}}}',
             'en-US': ''
           },
           mode: ['mobile-first'],

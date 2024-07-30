@@ -5,7 +5,7 @@
       <tiny-tab-item name="first">
         <template #title>
           <div class="slot-content">
-            <tiny-icon-calendar style="vertical-align: top" class="tiny-svg-size"></tiny-icon-calendar>
+            <tiny-icon-calendar class="demp-tabs-icon"></tiny-icon-calendar>
             <span class="slot-message">表单组件</span>
           </div>
         </template>
@@ -14,7 +14,7 @@
       <tiny-tab-item name="second">
         <template #title>
           <div class="slot-content">
-            <tiny-icon-replies style="fill: red; vertical-align: top" class="tiny-svg-size"></tiny-icon-replies>
+            <tiny-icon-replies class="demp-tabs-icon icon-color"></tiny-icon-replies>
             <span class="slot-message">数据组件</span>
           </div>
         </template>
@@ -49,5 +49,12 @@ const handleClick = () => {
 }
 .slot-message {
   display: inline-block;
+}
+.demp-tabs-icon {
+  vertical-align: top;
+  margin-right: 4px;
+}
+.icon-color {
+  fill: red;
 }
 </style>

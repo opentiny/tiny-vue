@@ -70,6 +70,7 @@ export default {
     },
     {
       name: 'ITagGroupItemClick',
+      depTypes: ['ITagGroupDataItem'],
       type: 'type',
       code: `type ITagGroupItemClick = (item: ITagGroupDataItem, index: number, event: Event) => void`
     }

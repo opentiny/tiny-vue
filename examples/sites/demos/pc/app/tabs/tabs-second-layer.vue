@@ -99,7 +99,6 @@ export default {
 
 <style scoped>
 .item {
-  width: 14px;
   padding: 0 8px;
   text-align: center;
   font-weight: normal;

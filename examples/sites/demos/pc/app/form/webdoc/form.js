@@ -127,9 +127,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>validate-position</code> 可自定义错误提示出现的位置，在 <code>form</code> 组件上设置后，子组件 <code>form-item</code> 会继承父组件设置。单独在 <code>form-item</code> 组件上进行设置优先级高于在 <code>from</code> 上的设置。</p>',
+          '<p>通过 <code>validate-position</code> 可自定义错误提示出现的位置，在 <code>form</code> 组件上设置后，子组件 <code>form-item</code> 会继承父组件设置。单独在 <code>form-item</code> 组件上进行设置优先级高于在 <code>form</code> 上的设置。</p>',
         'en-US':
-          '<p>You can use <code>validate-position</code> to customize the position where the error message appears. After this parameter is set on the <code>form</code> component, the subcomponent <code>form-item</code> inherits the setting of the parent component. The setting on the <code>form-item</code> component takes precedence over the setting on the <code>From</code> component. </p>'
+          '<p>You can use <code>validate-position</code> to customize the position where the error message appears. After this parameter is set on the <code>form</code> component, the subcomponent <code>form-item</code> inherits the setting of the parent component. The setting on the <code>form-item</code> component takes precedence over the setting on the <code>Form</code> component. </p>'
       },
       codeFiles: ['validation-position.vue']
     },

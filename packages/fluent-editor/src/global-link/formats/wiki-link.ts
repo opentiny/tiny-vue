@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { ON_WIKI_LINK_REMOVE } from '../constants';
 
 const Embed = Quill.imports['blots/embed'];

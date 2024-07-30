@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import * as hljs from 'highlight.js';
 
 const Syntax = Quill.imports['modules/syntax'];

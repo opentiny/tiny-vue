@@ -29,7 +29,7 @@
         }"
         @focus="handleFocus"
         @blur="state.focusing = false"
-        @click="handleHeaderClick"
+        @click="handleHeaderContainerClick"
       >
         <div class="tiny-collapse-item__arrow" :class="{ 'is-active': state.isActive }" @click.stop="handleHeaderClick">
           <slot name="icon">

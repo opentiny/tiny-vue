@@ -43,7 +43,7 @@ export default {
         },
         {
           name: 'placement',
-          typeAnchorName: 'popover#IPopperPlacement',
+          linkTo: 'popover#IPopperPlacement',
           type: 'IPopperPlacement',
           defaultValue: "'top'",
           desc: {

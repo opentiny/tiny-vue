@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import emojiMap from '../emoji-map';
 
 const Embed = Quill.imports['blots/embed'];

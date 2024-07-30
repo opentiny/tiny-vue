@@ -132,7 +132,7 @@ export default {
             'en-US': 'Panel Title'
           },
           mode: ['mobile-first'],
-          mfDemo: 'actoin'
+          mfDemo: 'action'
         },
         {
           name: 'type',

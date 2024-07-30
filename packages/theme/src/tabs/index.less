@@ -34,6 +34,9 @@
   &__nav-wrap {
     overflow: hidden;
   }
+  &__nav-scroll {
+    margin-right: 16px;
+  }
 
   &__header {
     padding: 0;
@@ -221,9 +224,10 @@
     }
   }
 
-  &__item-separator-space {
-    padding-left: 14px;
-    padding-right: 14px;
+  & &__item-separator-space {
+    height: var(--ti-tabs-header-separator-item-height);
+    padding-left: calc(var(--ti-tabs-header-separator-padding-horizontal) + 1px);
+    padding-right: var(--ti-tabs-header-separator-padding-horizontal);
   }
 
   &__item-title {
@@ -247,6 +251,10 @@
     align-items: center;
     position: relative;
 
+    &-separator-space {
+      color: var(--ti-tabs-header-separator-normal-text-color);
+    }
+
     &:focus,
     &:active {
       outline: 0;
@@ -265,6 +273,10 @@
     // aurora新增
     &.is-active {
       font-weight: var(--ti-tabs-header-font-weight-active);
+
+      &.is-disabled:hover {
+        font-weight: var(--ti-tabs-header-font-weight-active);
+      }
     }
 
     // smb新增
@@ -273,8 +285,12 @@
     }
 
     &.is-disabled {
+      cursor: not-allowed;
       color: var(--ti-tabs-item-disabled-text-color);
-      cursor: default;
+
+      &:hover {
+        font-weight: normal;
+      }
 
       .@{tabs-prefix-cls}__icon-close {
         &,
@@ -602,6 +618,15 @@
       line-height: var(--ti-tabs-button-card-item-height);
       border: 1px solid transparent;
 
+      &.is-disabled {
+        color: var(--ti-tabs-item-disabled-text-color);
+
+        &:hover {
+          font-weight: normal;
+          color: var(--ti-tabs-item-disabled-text-color);
+        }
+      }
+
       &:hover {
         color: var(--ti-tabs-button-card-item-hover-text-color);
         font-weight: var(--ti-tabs-button-card-font-weight);
@@ -665,11 +690,33 @@
     .@{tabs-prefix-cls}__item {
       height: var(--ti-tabs-small-height);
       line-height: var(--ti-tabs-small-height);
+      font-size: var(--ti-tabs-small-item-font-size);
+
+      &.@{tabs-prefix-cls}__item-separator-space {
+        height: var(--ti-tabs-small-separator-height);
+        line-height: var(--ti-tabs-small-separator-height);
+      }
     }
+
     .@{tabs-prefix-cls}__nav-prev,
     .@{tabs-prefix-cls}__nav-next {
       line-height: var(--ti-tabs-small-height);
       font-size: var(--ti-tabs-prev-next-btn-icon-size);
+    }
+
+    .@{tabs-prefix-cls}__nav.is-show-active-bar
+      .@{tabs-prefix-cls}__item:not(.@{tabs-prefix-cls}__item-separator-space) {
+      margin-right: var(--ti-tabs-small-item-margin-right);
+    }
+
+    &.@{tabs-prefix-cls}--top .@{tabs-prefix-cls}__item-separator {
+      left: calc(var(--ti-tabs-small-separator-padding-horizontal) + 1px);
+    }
+
+    &.@{tabs-prefix-cls}--button-card .@{tabs-prefix-cls}__item {
+      height: var(--ti-tabs-small-button-card-height);
+      line-height: var(--ti-tabs-small-button-card-height);
+      font-size: var(--ti-tabs-small-button-card-font-size);
     }
   }
 
@@ -1230,9 +1277,22 @@
     height: 12px;
     display: inline-block;
     position: relative;
-    left: 14px;
+    left: calc(var(--ti-tabs-header-separator-padding-horizontal) + 1px);
     top: 2px;
-    background-color: #dfdfdf;
+    background-color: var(--ti-tabs-header-separator-bg-color);
+  }
+
+  &&--top &--button-card &__item &__item-separator {
+    height: 16px;
+  }
+
+  &&--top &--button-card &__item:last-child &__item-separator,
+  &&--top &--button-card &__item.is-active &__item-separator {
+    display: none;
+  }
+
+  &&--top &--button-card &__item:not(.is-active) &__item-separator {
+    left: 1px;
   }
 
   &&--top,
@@ -1245,12 +1305,21 @@
     }
 
     // 这里会涉及到tiny-tabs__item-base的样式，尽量不要同步
-    &:not(.@{tabs-prefix-cls}--card):not(.@{tabs-prefix-cls}--border-card) .@{tabs-prefix-cls}__item {
-      padding-left: 0;
-
+    &.@{tabs-prefix-cls}--small:not(.@{tabs-prefix-cls}--card):not(.@{tabs-prefix-cls}--border-card)
+      .@{tabs-prefix-cls}__item {
       &-separator-space {
-        padding-left: 14px;
-        padding-right: 14px;
+        padding-left: var(--ti-tabs-small-separator-padding-horizontal);
+        padding-right: var(--ti-tabs-small-separator-padding-horizontal);
+        margin-right: 1px;
+      }
+    }
+
+    // 这里会涉及到tiny-tabs__item-base的样式，尽量不要同步
+    &:not(.@{tabs-prefix-cls}--card):not(.@{tabs-prefix-cls}--border-card) .@{tabs-prefix-cls}__item {
+      &-separator-space {
+        padding-left: var(--ti-tabs-header-separator-padding-horizontal);
+        padding-right: var(--ti-tabs-header-separator-padding-horizontal);
+        margin-right: 1px;
 
         &:nth-child(2) {
           margin-left: 0px;
@@ -1263,10 +1332,6 @@
 
       &.is-left {
         padding: 0 24px;
-      }
-
-      &:nth-child(2) {
-        padding-left: 0;
       }
     }
   }

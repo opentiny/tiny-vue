@@ -227,6 +227,7 @@
     "@opentiny/vue-text-popup": "workspace:~",
     "@opentiny/vue-time": "workspace:~",
     "@opentiny/vue-time-line": "workspace:~",
+    "@opentiny/vue-time-line-new": "workspace:~",
     "@opentiny/vue-time-panel": "workspace:~",
     "@opentiny/vue-time-picker": "workspace:~",
     "@opentiny/vue-time-picker-mobile": "workspace:~",

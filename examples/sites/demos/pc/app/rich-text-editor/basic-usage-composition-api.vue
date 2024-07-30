@@ -19,7 +19,7 @@ const value = ref('你好 Opentiny!')
 .result {
   margin-top: 16px;
   font-size: 14px;
-  line-height: 1.3;
+  line-height: 1.5;
   word-break: break-all;
 }
 </style>

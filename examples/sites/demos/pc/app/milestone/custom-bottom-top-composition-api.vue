@@ -1,12 +1,14 @@
 <template>
-  <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
-    <template #top="data">
-      <span class="f18 ml50">{{ data.slotScope.status }}</span>
-    </template>
-    <template #bottom="data">
-      <span class="f12">{{ data.slotScope.name }} {{ data.slotScope.time }}</span>
-    </template>
-  </tiny-milestone>
+  <div class="demo-milestone">
+    <tiny-milestone :data="milestoneData" :milestones-status="statusMap">
+      <template #top="data">
+        <span class="f18 ml50">{{ data.slotScope.status }}</span>
+      </template>
+      <template #bottom="data">
+        <span class="f12">{{ data.slotScope.name }} {{ data.slotScope.time }}</span>
+      </template>
+    </tiny-milestone>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -48,3 +50,9 @@ const milestoneData = ref([
   }
 ])
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>
