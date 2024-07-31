@@ -1,8 +1,8 @@
 <template>
   <div>
-    <tiny-fluent-editor v-model="content"></tiny-fluent-editor>
+    <tiny-fluent-editor v-model="value" :data-type="false" :data-upgrade="false"></tiny-fluent-editor>
     内容：<br />
-    {{ content }}
+    {{ value }}
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      content: '{"ops":[{"insert":"Hello "},{"attributes":{"bold":true},"insert":"FluentEditor"},{"insert":"!"}]}'
+      value: '<p>Hello <strong>FluentEditor</strong>!</p>'
     }
   }
 }

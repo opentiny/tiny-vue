@@ -43,7 +43,7 @@ const toolbar = (FluentEditor) => {
       [{ direction: 'rtl' }],
       [{ color: [] }, { background: [] }],
       [{ align: [] }],
-      ['link', 'image', 'video', 'file'],
+      ['link', 'image'],
       ['better-table'],
       ['fullscreen']
     ]

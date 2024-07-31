@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-fluent-editor v-model="content"></tiny-fluent-editor>
+    <tiny-fluent-editor v-model="content" disabled></tiny-fluent-editor>
     内容：<br />
     {{ content }}
   </div>

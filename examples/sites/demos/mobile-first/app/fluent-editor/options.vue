@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-fluent-editor v-model="content"></tiny-fluent-editor>
+    <tiny-fluent-editor v-model="content" :options="options"></tiny-fluent-editor>
     内容：<br />
     {{ content }}
   </div>
@@ -15,7 +15,10 @@ export default {
   },
   data() {
     return {
-      content: '{"ops":[{"insert":"Hello "},{"attributes":{"bold":true},"insert":"FluentEditor"},{"insert":"!"}]}'
+      content: '',
+      options: {
+        placeholder: '请输入内容'
+      }
     }
   }
 }
