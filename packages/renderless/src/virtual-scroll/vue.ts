@@ -15,9 +15,9 @@ import { initService } from '../user'
 
 // import { initUser, showCard, showDetail, computedTextField, computedValueField } from './index'
 // 提供函数索引
-export const api = ['state', 'handleScroll', 'showCard', 'showDetail']
+export const api = ['state', 'handleScroll', 'virtualScroll']
 // 管理virtual-scroll相关的逻辑和状态，不涉及实际渲染部分
-export const renderless = (props, { reactive, watch, computed, onMounted }, { service }) => {
+export const renderless = (props, { reactive, nextTick, watch, computed, onMounted, ref }, { service }) => {
   service = initService({ props, service })
 
   const api = {}
@@ -28,14 +28,16 @@ export const renderless = (props, { reactive, watch, computed, onMounted }, { se
     translate: 0,
     totalHeight: computed(() => props.itemHeight * state.data.length)
   })
-  const virtualScroll = { value: null } // 初始为 null，实际 DOM 元素在挂载时会赋值
+
+  const virtualScroll = ref(null) // 初始为 null，实际 DOM 元素在挂载时会赋值
   // 将处理virtual-scroll的方法绑定到api中（用initApi函数调用index.ts中的方法，添加到api对象）
   Object.assign(api, {
     state,
-    handleScroll: handleScroll({ state, props, virtualScroll })
+    virtualScroll,
+    handleScroll: handleScroll({ state, props, virtualScroll, nextTick })
   })
+
   // 监听属性和状态的变化+处理相应的逻辑（调用事件处理函数）+会调用index.ts的样式计算函数来调整样式
-  // watch(() => props.modelValue, api.initUser, { immediate: true })
   watch(
     () => state.visibleData,
     (newVisibleData) => {},
@@ -54,27 +56,22 @@ export const renderless = (props, { reactive, watch, computed, onMounted }, { se
     (newData) => {
       state.data = [...newData]
       // state.totalHeight = props.itemHeight * state.data.length
-      api.handleScroll() // 处理数据变化后的滚动计算
+      // api.handleScroll() // 处理数据变化后的滚动计算
     },
     { immediate: true }
   )
   watch(
     () => props.viewHeight,
     (newViewHeight) => {
-      api.handleScroll() // 视图高度变化时重新计算可视数据和滚动位置
+      // api.handleScroll() // 视图高度变化时重新计算可视数据和滚动位置
     },
     { immediate: true }
   )
-  // 组件挂载后加载滚动事件
+  // // 组件挂载后加载滚动事件
   onMounted(() => {
     // 在 onMounted 钩子中绑定滚动事件处理函数
-    if (virtualScroll.value) {
-      virtualScroll.value.addEventListener('scroll', () => {
-        api.handleScroll() // 在滚动事件触发时调用 api.handleScroll()
-      })
-      // 初始化时调用滚动处理函数
-      // api.handleScroll()
-    }
+    if (!virtualScroll.value) return
+    api.handleScroll()
   })
 
   // 返回所有方法的api对象

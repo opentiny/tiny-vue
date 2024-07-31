@@ -1,14 +1,17 @@
 <template>
   <!-- 可视区域 -->
   <!-- viewHeight是在使用中设置可视区域高度图 -->
-  <div class="virtual-scroll" ref="virtualScroll" @scroll="handleScroll" :style="{ 'minHeight': `${viewHeight}px` }">
+  <!-- {{ JSON.stringify(state) }} -->
+  <div class="tiny-virtual-scroll" ref="virtualScroll" @scroll="handleScroll"
+    :style="{ 'maxHeight': `${viewHeight}px` }">
     <!-- 内容容器撑起滚动条(使用所有内容高度) -->
-    <div class="virtual-scroll-context" :style="{ 'minHeight': `${totalHeight}px` }">
+    <div class="tiny-virtual-scroll-context" :style="{ 'height': `${state.totalHeight}px` }">
       <!-- 实际渲染区域 (translateY实现上下平移的滚动效果-handlescroll来计算) -->
-      <div class="virtual-scroll-wrapper" :style="{ transform: `translateY($translate)px` }">
+      <div class="tiny-virtual-scroll-wrapper" :style="{ 'transform': `translateY(${state.translate}px)` }">
+        <!-- {{ JSON.stringify(state) || 'sasas' }} -->
         <!-- 每项内容 -->
-        <div class="virtual-scroll-item" :style="{ 'height': `${itemHeight}px` }" v-for="(item, index) in visibleData"
-          :key="item[itemIndex] || index">
+        <div class="tiny-virtual-scroll-item" :style="{ 'height': `${itemHeight}px` }"
+          v-for="(item, index) in state.visibleData" :key="item[itemIndex] || index">
           <slot :item="item" />
         </div>
       </div>
@@ -18,8 +21,6 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/virtual-scroll/vue'
-
-// 通用方式来引入
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
