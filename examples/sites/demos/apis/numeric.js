@@ -72,7 +72,7 @@ export default {
           type: 'string',
           defaultValue: '',
           desc: {
-            'zh-CN': '加减按钮位置，可选值为 <code>right</code>，表示加减按钮均位于最右侧',
+            'zh-CN': '加减按钮位置，可选值为 right，表示加减按钮均位于最右侧',
             'en-US': 'Control button position; The optional value of this attribute is right'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
@@ -145,8 +145,8 @@ export default {
           type: 'string',
           defaultValue: '',
           desc: {
-            'zh-CN': '组件<code>arial-label</code>属性取值',
-            'en-US': 'The value of <code>arial-label</code> attribute'
+            'zh-CN': '组件 arial-label 属性取值',
+            'en-US': 'The value of arial-label attribute'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: '',
@@ -305,11 +305,11 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '是否只能输入 <code>step</code> 的倍数',
+            'zh-CN': '是否只能输入 step 的倍数',
             'en-US': 'Whether to enter only multiples of step'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: '',
+          pcDemo: 'step',
           mobileDemo: 'step',
           mfDemo: ''
         },
