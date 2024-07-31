@@ -267,6 +267,7 @@ export const cmpMenus = [
     'labelEn': 'Chart',
     'key': 'cmp-chart-components',
     'children': [
+      { 'nameCn': '图表文档', 'name': 'Chart Docs', 'key': 'chart-docs' },
       { 'nameCn': '基本用法', 'name': 'Basic Usage', 'key': 'chart' },
       { 'nameCn': '事件监听', 'name': 'Event Listening', 'key': 'chart-events' },
       { 'nameCn': '属性配置示例', 'name': 'Attribute Configuration Example', 'key': 'chart-attributes-demo' },
