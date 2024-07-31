@@ -25,7 +25,7 @@ and `ChartBar` components as examples):
   </div>
 </template>
 <script>
-  import { ChartLine as TinyChartLine, ChartBar as TinyChartBar } from '@opentiny/vue'
+  import { ChartLine, ChartBar } from '@opentiny/vue'
   export default {
     components: {
       TinyChartLine: ChartLine,
@@ -41,20 +41,20 @@ Each component of `TinyChart` can be installed and used independently, that is, 
 
 ```html
 <template>
-    <div>
-        <tiny-chart-line></tiny-cahrt-line>
-        <tiny-chart-bar></tiny-cahrt-bar>
-    </div>
+  <div>
+    <tiny-chart-line></tiny-chart-line>
+    <tiny-chart-bar></tiny-chart-bar>
+  </div>
 </template>
 <script>
-    import ChartLine from '@opentiny/vue/ChartLine'
-    import ChartBar from '@opentiny/vue/chartBar'
-    export default {
-        components: {
-            TinyChartLine: ChartLine,
-            TinyChartBar: ChartBar
-        }
+  import ChartLine from '@opentiny/vue/ChartLine'
+  import ChartBar from '@opentiny/vue/chartBar'
+  export default {
+    components: {
+      TinyChartLine: ChartLine,
+      TinyChartBar: ChartBar
     }
+  }
 </script>
 ```
 
@@ -91,7 +91,7 @@ Here is a simple example
   </div>
 </template>
 <script>
-  import { ChartLine as TinyChartLine, ChartBar as TinyChartBar } from '@opentiny/vue'
+  import { ChartLine, ChartBar } from '@opentiny/vue'
   export default {
     components: {
       TinyChartLine: ChartLine,
