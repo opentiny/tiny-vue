@@ -83,6 +83,7 @@ export default defineComponent({
     IconCloudUpload: IconCloudUpload(),
     IconFullscreen: IconFullscreen()
   },
+  emits: ['ready', 'blur', 'focus', 'update:modelValue', 'change'],
   props: [
     ...props,
     '_constants',
