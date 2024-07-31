@@ -1,6 +1,7 @@
 <template>
   <div>
     <tiny-color-picker v-model="color" :predefine="predefine" />
+    <br />
     <tiny-button @click="addPredefineColor">Append predefine color</tiny-button>
     <tiny-button @click="popPredefineColor">Pop predefine color</tiny-button>
   </div>

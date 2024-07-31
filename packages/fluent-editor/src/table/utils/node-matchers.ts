@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { omit, splitWithBreak } from '../../config/editor.utils';
 import { cellId as tableCellId, rowId as tableRowId, TableViewWrapper } from '../formats/table';
 import { CELL_MIN_WIDTH } from '../table-config';

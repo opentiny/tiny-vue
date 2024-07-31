@@ -29,7 +29,11 @@
             :title="state.tipsTitleText"
           >
             <div class="tiny-popupload__dialog-tips">
-              <p v-for="(item, index) in state.tipsTitle.filter((value) => value !== undefined)" :key="index">
+              <p
+                v-for="(item, index) in state.tipsTitle.filter((value) => value !== undefined)"
+                :key="index"
+                class="tiny-popupload__dialog-tips-item"
+              >
                 {{ item.count !== undefined ? state.limitCountTips + ':' + item.count : '' }}
                 {{ item.type !== undefined ? state.limitTypeTips + ':' + item.type : '' }}
                 {{ item.size !== undefined ? state.limitSizeTips + ':' + item.size : '' }}
@@ -38,7 +42,7 @@
           </tiny-alert>
           <tiny-alert type="error" size="large" v-if="state.errorTips.length > 0" @close="closeErrorTips">
             <div class="tiny-popupload__dialog-tips">
-              <p v-for="(item, index) in state.errorTips" :key="index">
+              <p v-for="(item, index) in state.errorTips" :key="index" class="tiny-popupload__dialog-tips-item">
                 {{ item.size !== undefined ? item.size + ':' + state.errorSizeTips : '' }}
                 {{ item.type !== undefined ? item.type + ':' + state.errorTypeTips : '' }}
                 {{ item.num !== undefined ? state.errorNumTips : '' }}
@@ -48,7 +52,9 @@
           </tiny-alert>
           <tiny-alert type="success" size="large" v-if="state.successTips.length > 0" @close="closeSuccessTips">
             <div class="tiny-popupload__dialog-tips">
-              <p v-for="(item, index) in state.successTips" :key="index">{{ item }},{{ state.uploadSuccessTips }}</p>
+              <p v-for="(item, index) in state.successTips" :key="index" class="tiny-popupload__dialog-tips-item">
+                {{ item }},{{ state.uploadSuccessTips }}
+              </p>
             </div>
           </tiny-alert>
         </div>

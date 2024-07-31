@@ -44,6 +44,15 @@ export const handleHeaderClick =
     state.isClick = true
   }
 
+export const handleHeaderContainerClick =
+  ({ api }) =>
+  (e) => {
+    // Tiny新增 只有在点击头部容器的时候才触发handleHeaderClick逻辑，修复点击头部编辑按钮的时导致折叠面板自动关闭问题
+    if (e.target === e.currentTarget) {
+      api.handleHeaderClick()
+    }
+  }
+
 export const handleEnterClick =
   ({
     componentName,

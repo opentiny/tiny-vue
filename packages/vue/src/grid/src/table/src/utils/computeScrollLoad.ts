@@ -66,13 +66,13 @@ export function computeScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, ta
     const clientWidth = tableBodyElem.clientWidth
     let width = 0
     let visibleXSize = 0
-
-    for (let i = 0; i < visibleColumn.length; i++) {
+    const len = visibleColumn.length
+    for (let i = 0; i < len; i++) {
       const column = visibleColumn[i]
 
       width += column.renderWidth
-
-      if (width > clientWidth) {
+      // 当虚拟滚动可见列宽度大于表格宽度或者循环结束，保存可见列大小
+      if (width > clientWidth || i === len - 1) {
         visibleXSize = i + 1
         break
       }

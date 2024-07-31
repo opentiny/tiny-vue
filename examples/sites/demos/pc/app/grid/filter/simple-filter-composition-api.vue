@@ -115,7 +115,7 @@ const nameFilter = ref({
     searchConfig: {
       component: Input,
       // 搜索框默认值
-      serachValue: 'WWW'
+      searchValue: 'WWW'
     }
   }
 })

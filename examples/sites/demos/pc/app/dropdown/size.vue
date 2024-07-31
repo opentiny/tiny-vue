@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p>默认：</p>
+  <div class="demo-drop">
+    <p class="demo-dropdown">默认：</p>
     <tiny-dropdown split-button type="primary">
       默认尺寸
       <template #dropdown>
@@ -13,7 +13,7 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <p>其他尺寸：</p>
+    <p class="demo-dropdown">其他尺寸：</p>
     <tiny-dropdown size="medium" split-button type="primary">
       中等尺寸
       <template #dropdown>
@@ -75,5 +75,15 @@ p {
 
 .tiny-dropdown {
   margin: 0 10px 10px 0;
+}
+.demo-dropdown {
+  margin-bottom: 8px;
+}
+</style>
+
+<style>
+.demo-drop .tiny-dropdown .tiny-dropdown__trigger.tiny-dropdown__caret-button {
+  padding-left: 14px;
+  padding-right: 14px;
 }
 </style>

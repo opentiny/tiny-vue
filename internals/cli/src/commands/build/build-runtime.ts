@@ -191,6 +191,10 @@ function getEntryTasks() {
     {
       path: 'vue-icon/index.ts',
       libPath: 'tiny-vue-icon'
+    },
+    {
+      path: 'vue-directive/index.ts',
+      libPath: 'tiny-vue-directive'
     }
   ]
   return entry

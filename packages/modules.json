@@ -2788,6 +2788,31 @@
     "type": "template",
     "exclude": false
   },
+  "TimeLineNew": {
+    "path": "vue/src/time-line-new/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "TimeLineNewMobile": {
+    "path": "vue/src/time-line-new/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TimeLineNewMobileFirst": {
+    "path": "vue/src/time-line-new/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TimeLineNewPc": {
+    "path": "vue/src/time-line-new/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "TimeLinePc": {
     "path": "vue/src/time-line/src/pc.vue",
     "type": "template",

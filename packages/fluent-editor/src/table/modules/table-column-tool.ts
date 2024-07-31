@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { CELL_MIN_HEIGHT, CELL_MIN_WIDTH, COL_TOOL_HEIGHT, PRIMARY_COLOR, ROW_TOOL_WIDTH } from '../table-config';
 import { css } from '../utils';
 

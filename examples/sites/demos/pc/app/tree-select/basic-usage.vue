@@ -11,6 +11,7 @@ export default {
   },
   data() {
     return {
+      value: '',
       treeOp: {
         data: [
           {

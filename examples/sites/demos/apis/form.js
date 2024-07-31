@@ -170,7 +170,7 @@ export default {
         },
         {
           name: 'popper-options',
-          typeAnchorName: 'popover#IPopperOption',
+          linkTo: 'popover#IPopperOption',
           type: 'Popover.IPopperOption',
           defaultValue: '',
           desc: {
@@ -639,7 +639,7 @@ interface IFormRules {
   trigger?: IFormTrigger | IFormTrigger[] 
   // 同步检验函数，调用回调传递错误信息。
   validator?: (
-    rule: IFormInnerRule, // from内部处理后的rule
+    rule: IFormInnerRule, // form内部处理后的rule
     value: any, // 表单model对应的值，根据表单项prop获取
     callback: (e: Error) => void
     data: object, // prop和value构造的对象
@@ -679,6 +679,7 @@ interface IFormErrorField {
     {
       name: 'IFormValidateMethod',
       type: 'function',
+      depTypes: ['IFormError'],
       code: `
 function IFormValidateMethod(callback: (isValid: boolean, fields: IFormError) => void ): Promise<boolean>
 `
@@ -686,6 +687,7 @@ function IFormValidateMethod(callback: (isValid: boolean, fields: IFormError) =>
     {
       name: 'IFormValidateFieldMethod',
       type: 'function',
+      depTypes: ['IFormError'],
       code: `
 function IFormValidateFieldMethod(
   prop: string | string[],

@@ -1,5 +1,5 @@
 
-import * as Quill from 'quill';
+import Quill from 'quill';
 import Html2Canvas from 'html2canvas';
 import { isPureIE } from '../config/editor.utils';
 

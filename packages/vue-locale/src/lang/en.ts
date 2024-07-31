@@ -439,6 +439,7 @@ export default {
         switchapply: 'Apply',
         switchedit: 'Edit',
         switchdel: 'Delete',
+        switchdelconfirm: 'Deletion Confirmation',
         switchconfirm: 'Confirm',
         switchonlytemp: 'Save as template only',
         switchtempapply: 'Save as template and use',

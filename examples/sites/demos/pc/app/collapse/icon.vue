@@ -45,10 +45,8 @@ export default {
 </script>
 
 <style scoped lang="less">
-.demo-collapse-wrap {
-  .tiny-collapse-item__content > * {
-    line-height: 1.8;
-  }
+.demo-collapse-wrap ::v-deep .tiny-collapse-item__content > * {
+  line-height: 1.6;
 }
 
 .icon-delta-right {

@@ -107,6 +107,10 @@ export const formProps = {
     type: Boolean,
     default: false
   },
+  wrapFragment: {
+    type: String,
+    default: 'div'
+  },
   tooltipConfig: {
     type: Object,
     default: () => ({})

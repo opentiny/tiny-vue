@@ -28,6 +28,7 @@ import {
   UNDERLINE_ICON,
   UNDO_ICON,
 } from './config/icons.config'
+import { isNullOrUndefined } from './config/editor.utils';
 
 import { EN_US } from './config/i18n/en-us'
 import { ZH_CN } from './config/i18n/zh-cn'
@@ -117,4 +118,73 @@ export const ICONS_CONFIG: { [key: string]: any } = {
   emoji: EMOJI_ICON,
   help: HELP_ICON,
   screenshot: SCREENSHOT_ICON,
+}
+
+export const TABLE_RIGHT_MENU_CONFIG = {
+  copyCells: {
+    text: LANG_CONF['copy-cells']
+  },
+  copyTable: {
+    text: LANG_CONF['copy-table']
+  },
+  cutCells: {
+    text: LANG_CONF['cut-cells']
+  },
+  emptyCells: {
+    text: LANG_CONF['empty-cells']
+  },
+  insertRowUp: {
+    text: LANG_CONF['insert-row-up']
+  },
+  insertRowDown: {
+    text: LANG_CONF['insert-row-down']
+  },
+  insertColumnLeft: {
+    text: LANG_CONF['insert-column-left']
+  },
+  insertColumnRight: {
+    text: LANG_CONF['insert-column-right']
+  },
+  mergeCells: {
+    text: LANG_CONF['merge-cells']
+  },
+  unmergeCells: {
+    text: LANG_CONF['unmerge-cells']
+  },
+  deleteRow: {
+    text: LANG_CONF['delete-row']
+  },
+  deleteColumn: {
+    text: LANG_CONF['delete-column']
+  },
+  deleteTable: {
+    text: LANG_CONF['delete-table']
+  }
+}
+
+// 触发上传
+export function inputFile(type, accept) {
+  const defaultMIMETypes = this.quill.uploader.options[type].join(', ')
+  const mimeTypes = accept || defaultMIMETypes
+  let fileInput = this.container.querySelector(`input.ql-${type}[type=file]`)
+  if (isNullOrUndefined(fileInput)) {
+    fileInput = document.createElement('input')
+    fileInput.classList.add(`ql-${type}`)
+    fileInput.setAttribute('type', 'file')
+    fileInput.setAttribute('accept', mimeTypes)
+    if (
+      this.quill.uploader.options.enableMultiUpload === true ||
+      (this.quill.uploader.options.enableMultiUpload.file && type === 'file') ||
+      (this.quill.uploader.options.enableMultiUpload.image && type === 'image')
+    ) {
+      fileInput.setAttribute('multiple', '')
+    }
+    fileInput.addEventListener('change', () => {
+      const range = this.quill.getSelection(true)
+      this.quill.uploader.upload(range, fileInput.files, type === 'file')
+      fileInput.value = ''
+    })
+    this.container.appendChild(fileInput)
+  }
+  fileInput.click()
 }

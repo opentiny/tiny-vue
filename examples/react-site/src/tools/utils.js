@@ -17,13 +17,13 @@ const $split = (target, splitor = '/', pos = 0) => target.split(splitor).slice(p
 
 /**
  * 延时函数
- * @example $delay(300).then(()=>{   })
+ * @example $delay(300).then(() =>{   })
  */
 const $delay = time => new Promise(resolve => setTimeout(resolve, time));
 
 /**
  * 空闲函数
- * @example $idle().then(()=>{   })
+ * @example $idle().then(() =>{   })
  */
 const $idle = () => new Promise(resolve => (window.requestIdleCallback || window.requestAnimationFrame)(resolve));
 

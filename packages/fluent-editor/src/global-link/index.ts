@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { getEventComposedPath } from '../config/editor.utils';
 import CustomerWidgetLink from './formats/customer-widget-link';
 import DocumentLink from './formats/doc-link';

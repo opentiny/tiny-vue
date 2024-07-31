@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 
 interface QuickMenuOptions {
   container: string;

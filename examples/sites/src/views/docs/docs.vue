@@ -1,20 +1,18 @@
 <template>
-  <div>
-    <div class="ti-f-r ti-pt48 ti-pl48 ti-pr48">
-      <component id="doc_wrap" :is="docCmp" class="ti-w0 ti-fi-1" />
-      <!-- 目录列表 TODO: 需要锚点组件配置整改，处理id中的特殊字符 -->
-      <!-- <div v-if="anchorLinks.length > 0" class="docs-page-anchor catalog w128 sticky top32 ml24">
+  <div class="ti-f-r ti-pt48 ti-pl48 ti-pr48 docs-container">
+    <component id="doc_wrap" :is="docCmp" class="ti-w0 ti-fi-1" />
+    <!-- 目录列表 TODO: 需要锚点组件配置整改，处理id中的特殊字符 -->
+    <!-- <div v-if="anchorLinks.length > 0" class="docs-page-anchor catalog w128 sticky top32 ml24">
         <tiny-anchor :is-affix="true" :links="anchorLinks"> </tiny-anchor>
       </div> -->
-    </div>
-    <div id="footer"></div>
   </div>
+  <div id="footer"></div>
 </template>
 
 <script setup>
-import { ref, nextTick, watch, onMounted, computed, shallowRef } from 'vue'
+import { ref, nextTick, watch, onMounted, shallowRef } from 'vue'
 import { getWord } from '@/tools'
-import docMDs, { transformIdSelector } from './docConfig.js'
+import docMDs from './docConfig.js'
 import { router } from '@/router.js'
 
 const isOpen = import.meta.env.VITE_BUILD_TARGET === 'open'
@@ -53,17 +51,22 @@ onMounted(() => {
   const common = new window.TDCommon(['#footer'], {})
   common.renderFooter()
 })
-
-const anchorLinks = computed(() => {
-  return catalog.value.map((cat) => ({
-    key: cat.id,
-    title: cat.text,
-    link: `#${transformIdSelector(cat.id)}`
-  }))
-})
 </script>
 
 <style lang="less">
+.docs-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 120px;
+
+  #doc_wrap {
+    flex: 1;
+    min-width: var(--layout-content-main-min-width);
+    max-width: var(--layout-content-main-max-width);
+  }
+}
+
 .docs-page-anchor {
   .tiny-anchor__affix {
     overflow-y: auto;
@@ -80,6 +83,7 @@ const anchorLinks = computed(() => {
     }
   }
 }
+
 .catalog {
   height: calc(100vh - 150px);
   overflow: hidden;

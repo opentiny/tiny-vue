@@ -39,7 +39,10 @@ function rightBottomClick() {
 }
 
 .demo-split-pane {
-  padding: 10px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
 }
 </style>
-s

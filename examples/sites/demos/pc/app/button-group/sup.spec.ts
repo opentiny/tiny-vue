@@ -21,12 +21,12 @@ test('测试选块角标', async ({ page }) => {
 
   // 测试文字角标
   const sup3 = getSup(item.nth(2))
-  await expect(sup3).toHaveText('8.8折')
+  await expect(sup3).toHaveText('8折')
   await expect(sup3).toHaveClass(/tiny-group-item__sup-text/)
 
   // 测试自定义角标
   const sup4 = getSup(item.nth(3))
   await expect(sup4.locator('svg')).toBeVisible()
-  await expect(sup4).toHaveText('8.8折')
+  await expect(sup4).toHaveText('8折')
   await expect(sup4).toHaveClass(/sup-slot/)
 })

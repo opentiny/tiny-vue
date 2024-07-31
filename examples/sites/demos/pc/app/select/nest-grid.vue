@@ -1,6 +1,7 @@
 <template>
   <div class="demo-select">
     <p>场景1：嵌套表格（单选）</p>
+    <br />
     <tiny-select
       v-model="value1"
       value-field="id"
@@ -8,7 +9,9 @@
       render-type="grid"
       :grid-op="gridOpSingle"
     ></tiny-select>
+    <br /><br />
     <p>场景2：嵌套表格（多选）</p>
+    <br />
     <tiny-select
       v-model="value2"
       multiple
@@ -17,7 +20,9 @@
       render-type="grid"
       :grid-op="gridOpMulti"
     ></tiny-select>
+    <br /><br />
     <p>场景3：嵌套表格 + 可搜索 + 可清除</p>
+    <br />
     <tiny-select
       ref="select"
       v-model="value3"

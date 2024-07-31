@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { isNullOrUndefined } from '../../config/editor.utils';
 import { CELL_ATTRIBUTES, CELL_IDENTITY_KEYS } from '../table-config';
 

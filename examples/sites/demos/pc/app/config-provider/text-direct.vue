@@ -1,15 +1,15 @@
 <template>
   <div>
     <tiny-config-provider :direction="direction">
-      <h1>Text</h1>
+      <h1 class="demo-provider">Text</h1>
       <h1>المعرفة نور والجهل ظلام</h1>
-      <div>
+      <div class="demo-provider">
         <span>ما هو مكتوب في الكتب هو مجرد كلمات ، وما يتم تذكره هو المعرفة</span>
       </div>
       <hr />
-      <h1>Input</h1>
-      <tiny-input v-model="input" placeholder="الرجاء إدخال المحتوى"></tiny-input>
-      <h1>Container</h1>
+      <h1 class="demo-provider">Input</h1>
+      <tiny-input v-model="input" placeholder="الرجاء إدخال المحتوى" class="demo-provider"></tiny-input>
+      <h1 class="demo-provider">Container</h1>
       <div class="content">
         <tiny-layout>
           <tiny-row>
@@ -99,5 +99,8 @@ export default {
 
 .content .tiny-col:nth-child(even) .col {
   background: #73d0fc;
+}
+.demo-provider {
+  margin-bottom: 8px;
 }
 </style>
