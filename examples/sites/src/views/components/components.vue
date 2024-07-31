@@ -241,6 +241,7 @@
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref, onUnmounted, nextTick } from 'vue'
 import { marked } from 'marked'
+import hljs from 'highlight.js'
 import { Anchor, ButtonGroup, Grid, GridColumn, Tabs, TabItem, Tooltip } from '@opentiny/vue'
 import { iconOuterLink } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
@@ -496,7 +497,13 @@ export default defineComponent({
       Promise.all(promiseArr)
         .then(([mdData, jsData, apiData, faqData]) => {
           // 1、加载顶部md
-          state.cmpTopMd = marked(mdData)
+          state.cmpTopMd = marked(mdData, {
+            gfm: true,
+            highlight(code, language) {
+              const validLanguage = hljs.getLanguage(language) ? language : 'plaintext'
+              return hljs.highlight(code, { language: validLanguage }).value
+            }
+          })
 
           // 2、加载faq.md
           if (faqData) {
@@ -818,6 +825,7 @@ export default defineComponent({
       fill: #5e7ce0;
     }
   }
+
   &-name:has(+ .version-tip) {
     margin-right: 4px;
   }
