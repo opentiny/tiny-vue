@@ -66,7 +66,7 @@ export default {
           type: 'object',
           defaultValue: "",
           desc: {
-            'zh-CN': '编辑器配置项，参考 <a href="https://quilljs.com/docs/configuration#options" target="_blank">Quill</a> 文档',
+            'zh-CN': '编辑器配置项，参考 Quill 文档：https://quilljs.com/docs/configuration#options',
             'en-US': ''
           },
           mode: ['pc', 'mobile-first'],
@@ -81,7 +81,7 @@ export default {
             'en-US': ''
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'basic-usage'
+          pcDemo: ''
         }
       ],
       events: [],
