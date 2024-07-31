@@ -1,14 +1,6 @@
 <template>
   <div>
-    <p>虚拟滚动组件demo</p>
-    <TinyVirtualScroll ref="virtualScrollRef" :data="showData" :itemHeight="30" :viewHeight="180" itemIndex="key">
-      <template #default="props">
-        <div class="scroll-item">
-          {{ props.item.value }}
-        </div>
-      </template>
-    </TinyVirtualScroll>
-    <!-- <div class="option-row">
+    <div class="option-row">
       <span> 连接线：</span>
       <tiny-radio-group v-model="showLine">
         <tiny-radio label="show">显示</tiny-radio>
@@ -38,77 +30,55 @@
       :show-line="showLine === 'show'"
       default-expand-all
       @node-click="nodeClick"
-    ></tiny-tree> -->
+    ></tiny-tree>
   </div>
 </template>
 
 <script lang="jsx">
-import { VirtualScroll } from '@opentiny/vue'
+import { Tree, RadioGroup, Radio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyVirtualScroll: VirtualScroll
+    TinyTree: Tree,
+    TinyRadio: Radio,
+    TinyRadioGroup: RadioGroup
   },
   data() {
     return {
-      showData: []
+      showLine: 'hide',
+      size: 'medium',
+      indent: 18,
+      data: [
+        {
+          id: '1',
+          label: '数据 1',
+          children: [
+            { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
+            { id: '1-2', label: '数据 1-2' }
+          ]
+        },
+        {
+          id: '2',
+          label: '数据 2',
+          children: [
+            { id: '2-1', label: '数据 2-1' },
+            { id: '2-2', label: '数据 2-2' }
+          ]
+        },
+        {
+          id: '3',
+          label: '数据 3',
+          children: [{ id: '3-1', label: '数据 3-1' }]
+        }
+      ]
     }
   },
-  created() {
-    // 生成模拟数据
-    this.showData = Array.from(Array(1000), (v, k) => {
-      return {
-        value: k,
-        key: k
-      }
-    })
+  methods: {
+    nodeClick(data, node, vm) {
+      console.log('点击节点事件：', { data, node, vm })
+    }
   }
 }
-
-// import { Tree, RadioGroup, Radio } from '@opentiny/vue'
-
-// export default {
-//   components: {
-//     TinyTree: Tree,
-//     TinyRadio: Radio,
-//     TinyRadioGroup: RadioGroup
-//   },
-//   data() {
-//     return {
-//       showLine: 'hide',
-//       size: 'medium',
-//       indent: 18,
-//       data: [
-//         {
-//           id: '1',
-//           label: '数据 1',
-//           children: [
-//             { id: '1-1', label: '数据 1-1', children: [{ id: '1-1-1', label: '数据 1-1-1' }] },
-//             { id: '1-2', label: '数据 1-2' }
-//           ]
-//         },
-//         {
-//           id: '2',
-//           label: '数据 2',
-//           children: [
-//             { id: '2-1', label: '数据 2-1' },
-//             { id: '2-2', label: '数据 2-2' }
-//           ]
-//         },
-//         {
-//           id: '3',
-//           label: '数据 3',
-//           children: [{ id: '3-1', label: '数据 3-1' }]
-//         }
-//       ]
-//     }
-//   },
-//   methods: {
-//     nodeClick(data, node, vm) {
-//       console.log('点击节点事件：', { data, node, vm })
-//     }
-//   }
-// }
 </script>
 
 <style scoped>
