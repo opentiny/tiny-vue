@@ -147,6 +147,15 @@
     .@{css-prefix}link,
     .@{css-prefix}numeric {
       vertical-align: bottom;
+
+      &.is-display-only {
+        vertical-align: middle;
+      }
+    }
+
+    // numeric只读态使用absolute实现，需要一个margin-top修复水平对齐问题
+    .@{css-prefix}numeric.is-display-only {
+      margin-top: var(--ti-form-item-numeric-display-margin-top);
     }
 
     .@{input-prefix-cls} {
@@ -183,6 +192,12 @@
     }
     .@{css-prefix}checkbox-group {
       min-height: var(--ti-form-item-label-line-height);
+
+      &:has(> label.is-group-display-only) {
+        min-height: unset;
+        vertical-align: baseline;
+        display: inline-block;
+      }
     }
 
     .@{numeric-prefix-cls},
