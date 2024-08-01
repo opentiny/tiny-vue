@@ -1074,6 +1074,19 @@ export default {
       ],
       events: [
         {
+          name: 'after-refresh-column',
+          type: '()=> void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '在新增或者删除列后，列配置是异步更新的，列配置刷新后触发的回调',
+            'en-US':
+              'After adding or deleting a column, the column configuration is updated asynchronously, and the callback is triggered after the column configuration is refreshed.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'grid-dynamically-columns#column-switching-scroll',
+          mfDemo: ''
+        },
+        {
           name: 'before-page-change',
           typeAnchorName: 'IBeforePageChangeArgs',
           type: '(args: IBeforePageChangeArgs)=> void',
@@ -3390,6 +3403,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'grid-editor#editor-custom-editor-select'
+        },
+        {
+          name: 'filed',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '设置表格列的单元格显示字段',
+            'en-US': 'Set the cell display field for table columns'
+          },
+          mode: ['pc'],
+          pcDemo: 'grid#base-basic-usage'
         },
         {
           name: 'filter',

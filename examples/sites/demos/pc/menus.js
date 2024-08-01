@@ -128,6 +128,12 @@ export const cmpMenus = [
       { 'nameCn': '日期选择器', 'name': 'DatePicker', 'key': 'date-picker' },
       { 'nameCn': '下拉时间', 'name': 'DropTimes', 'key': 'drop-times' },
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
+      {
+        'nameCn': '富文本',
+        'name': 'FluentEditor',
+        'key': 'fluent-editor',
+        'mark': { 'type': 'warning', 'text': 'Beta' }
+      },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
@@ -261,6 +267,7 @@ export const cmpMenus = [
     'labelEn': 'Chart',
     'key': 'cmp-chart-components',
     'children': [
+      { 'nameCn': '图表文档', 'name': 'Chart Docs', 'key': 'chart-docs' },
       { 'nameCn': '基本用法', 'name': 'Basic Usage', 'key': 'chart' },
       { 'nameCn': '事件监听', 'name': 'Event Listening', 'key': 'chart-events' },
       { 'nameCn': '属性配置示例', 'name': 'Attribute Configuration Example', 'key': 'chart-attributes-demo' },
@@ -313,7 +320,10 @@ export const cmpMenus = [
     'label': '自定义指令',
     'labelEn': 'Custom Instruction',
     'key': 'directives-custom-instruction',
-    'children': [{ 'nameCn': '超出隐藏', 'name': 'AutoTip', 'key': 'directives-auto-tip' }]
+    'children': [
+      { 'nameCn': '超出隐藏', 'name': 'AutoTip', 'key': 'directives-auto-tip' },
+      { 'nameCn': '高亮搜索字', 'name': 'HighlightQuery', 'key': 'directives-highlight-query' }
+    ]
   }
 ]
 

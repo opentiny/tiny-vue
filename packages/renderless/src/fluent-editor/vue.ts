@@ -37,7 +37,7 @@ import {
   removeHandleComposition,
   checkTableISEndElement
 } from './index'
-import { defaultOption, iconOption } from './options'
+import { defaultOption, iconOption, iconOptionMobileFirst, simpleToolbar } from './options'
 
 export const api = ['state', 'init', 'initContent', 'selectionChange', 'textChange', 'doPreview', 'handleDblclick']
 
@@ -95,7 +95,7 @@ const initState = ({ api, reactive, computed, props }) => {
   return state
 }
 
-const initApi = ({ api, state, service, emit, props, nextTick, FluentEditor, UploaderDfls, Delta, vm, t }) => {
+const initApi = ({ api, state, service, emit, props, nextTick, FluentEditor, UploaderDfls, Delta, vm, t, mode }) => {
   Object.assign(api, {
     state,
     getFileUploadUrl: getFileUploadUrl({ service }),
@@ -110,18 +110,18 @@ const initApi = ({ api, state, service, emit, props, nextTick, FluentEditor, Upl
     uploadImageToSev: uploadImageToSev({ state }),
     doPreview: doPreview({ props, state, nextTick }),
     stringToJson: stringToJson({ props }),
-    setToolbarTips: setToolbarTips({ api, vm, FluentEditor, iconOption }),
+    setToolbarTips: setToolbarTips({ api, vm, FluentEditor, iconOption: mode === 'mobile-first' ? iconOptionMobileFirst : iconOption }),
     getOuterHTML: getOuterHTML(),
     setToolbarTitle: setToolbarTitle({ state, t })
   })
 }
 
 const mergeApi = (args) => {
-  let { api, state, service, emit, props, vm, i18n, watch, nextTick } = args
+  let { api, state, service, emit, props, vm, i18n, watch, nextTick, useBreakpoint } = args
   let { constants, FluentEditor, UploaderDfls, Delta, defaultOptions } = args
 
   Object.assign(api, {
-    init: init({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm }),
+    init: init({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm, useBreakpoint, simpleToolbar }),
     initContent: initContent({ state, props, api, nextTick }),
     fileHandler: fileHandler({ api, state }),
     imageHandler: imageHandler({ api, state }),
@@ -179,7 +179,7 @@ const initWatch = ({ watch, state, api, props, vm }) => {
 export const renderless = (
   props,
   { reactive, watch, onMounted, onBeforeUnmount, computed },
-  { service, emit, i18n, constants, nextTick, vm, t },
+  { service, emit, i18n, constants, nextTick, vm, t, useBreakpoint, mode },
   { FluentEditor }
 ) => {
   const api = {}
@@ -188,9 +188,9 @@ export const renderless = (
   const state = initState({ reactive, computed, api, props })
   const defaultOptions = defaultOption({ FluentEditor, state, mentionObj: props.mentionObj })
 
-  initApi({ api, state, service, emit, props, nextTick, FluentEditor, UploaderDfls, Delta, vm, t })
+  initApi({ api, state, service, emit, props, nextTick, FluentEditor, UploaderDfls, Delta, vm, t, mode })
 
-  const args = { api, state, service, emit, props, vm, i18n, watch, nextTick }
+  const args = { api, state, service, emit, props, vm, i18n, watch, nextTick, useBreakpoint }
 
   Object.assign(args, { constants, FluentEditor, UploaderDfls, Delta, defaultOptions })
 

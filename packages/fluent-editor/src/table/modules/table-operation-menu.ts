@@ -1,4 +1,4 @@
-import * as Quill from 'quill';
+import Quill from 'quill';
 import { LANG_CONF } from '../../config/editor.config'
 import { elementRemove, arrayFrom, css, getRelativeRect } from '../utils';
 import {
@@ -42,13 +42,12 @@ const MENU_ITEMS_DEFAULT = {
       dom.remove();
     }
   },
-  // tofix
-  // cutCells: {
-  //   text: 'Cut Cells',
-  //   handler() {
-  //     this.onCopy('cut');
-  //   }
-  // },
+  cutCells: {
+    text: 'Cut Cells',
+    handler() {
+      this.onCopy('cut');
+    }
+  },
   emptyCells: {
     text: 'Empty Cells',
     handler() {

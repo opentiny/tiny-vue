@@ -40,7 +40,7 @@ export class CustomImageSpec extends ImageSpec {
     const target = event.target;
     const isBlotFormatter = target?.classList?.contains('blot-formatter__overlay');
     if (target.nodeName === 'IMG' || isBlotFormatter) {
-      this.addImagePreviewOverlay(event);
+      // this.addImagePreviewOverlay(event);
     }
   }
 

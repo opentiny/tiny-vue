@@ -15,9 +15,16 @@
 @month-table-prefix-cls: ~'@{css-prefix}month-table';
 
 .@{month-table-prefix-cls} {
+  @apply w-full;
   @apply text-xs;
   @apply -m-px;
   @apply border-collapse;
+
+  td:not(.in-range) {
+    .cell {
+      @apply m-auto;
+    }
+  }
 
   td:not(.in-range),
   td.in-range {

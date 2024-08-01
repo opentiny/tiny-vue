@@ -50,7 +50,7 @@
       </template>
       <tiny-option
         class="tiny-user__select-dropdown"
-        :title="option.userCN + (option.dept ? ' ' + option.dept : '')"
+        :title="option[state.textField] + (option.dept ? ' ' + option.dept : '')"
         v-for="option in filter()"
         :visible="option._show"
         :key="option[state.valueField]"
@@ -58,7 +58,7 @@
         :value="option[state.valueField]"
       >
         <slot name="options" :slot-scope="option">
-          <span class="tiny-user_select left">{{ option.userCN }}</span>
+          <span class="tiny-user_select left">{{ option[state.textField] }}</span>
           <span class="tiny-user_select right">{{ option.dept }}</span>
         </slot>
       </tiny-option>

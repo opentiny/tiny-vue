@@ -25,6 +25,7 @@ import Popover from '@opentiny/vue-popover'
 import Button from '@opentiny/vue-button'
 import Input from '@opentiny/vue-input'
 import Switch from '@opentiny/vue-switch'
+import Tooltip from '@opentiny/vue-tooltip'
 import {
   iconAttachment,
   iconDownload,
@@ -38,6 +39,13 @@ import 'crypto-js/sha256.js'
 import 'crypto-js/lib-typedarrays.js'
 import Streamsaver from 'streamsaver'
 import type { IFileUploadApi } from '@opentiny/vue-renderless/types/file-upload.type'
+
+const TinyIconAttachment = iconAttachment()
+const TinyIconSuccessful = iconSuccessful()
+const TinyIconCloseCircle = iconClose()
+const TinyIconDownload = iconDownload()
+const TinyIconFileCloudupload = iconFileCloudupload()
+const TinyIconPlus = iconPlus()
 
 export default defineComponent({
   inheritAttrs: false,
@@ -101,12 +109,7 @@ export default defineComponent({
     TinyButton: Button,
     TinyInput: Input,
     TinySwitch: Switch,
-    IconPlus: iconPlus(),
-    IconAttachment: iconAttachment(),
-    IconSuccessful: iconSuccessful(),
-    IconCloseCircle: iconClose(),
-    IconDownload: iconDownload(),
-    IconFileCloudupload: iconFileCloudupload()
+    TinyTooltip: Tooltip
   },
   render() {
     let uploadList
@@ -164,14 +167,21 @@ export default defineComponent({
         </div>
       )
     }
+    const popperConfig = { bubbling: true }
 
     const getTriggerContent = (t: any, disabled: boolean) => {
       return (
         <div class="trigger-btn">
-          <tiny-button disabled={disabled} onClick={handleTriggerClick}>
-            <icon-plus />
-            <span>{t('ui.fileUpload.uploadFile')}</span>
-          </tiny-button>
+          <tiny-tooltip
+            effect="light"
+            content={(slots.tip && slots.tip()) || tipMsg}
+            placement="top"
+            popper-options={popperConfig}>
+            <tiny-button disabled={disabled} onClick={handleTriggerClick}>
+              <TinyIconPlus />
+              <span>{t('ui.fileUpload.uploadFile')}</span>
+            </tiny-button>
+          </tiny-tooltip>
         </div>
       )
     }
@@ -182,7 +192,7 @@ export default defineComponent({
         <div class="operate-content">
           <tiny-button onClick={() => downloadAll(uploadFiles)}>
             <div class="button-wrap">
-              <icon-download />
+              <TinyIconDownload />
               <span>{t('ui.fileUpload.downloadAll')}</span>
             </div>
           </tiny-button>
@@ -204,17 +214,17 @@ export default defineComponent({
     const getThumIcon = (file) => [
       showDownload && (
         <span class="thumb-icon" title={t('ui.fileUpload.downloadFile')} onClick={() => execDownload(file)}>
-          <icon-download class="download-icon" />
+          <TinyIconDownload class="download-icon" />
         </span>
       ),
       isEdm && !isFolder && showUpdate && (
         <span class="thumb-icon" title={t('ui.fileUpload.updateFile')} onClick={() => updateFile(file)}>
-          <icon-file-cloudupload class="refres-icon" />
+          <TinyIconFileCloudupload class="refres-icon" />
         </span>
       ),
       showDel && (
         <span class="thumb-icon" title={t('ui.fileUpload.deleteFile')} onClick={() => handleRemove(file)}>
-          <icon-close-circle class="close-icon" />
+          <TinyIconCloseCircle class="close-icon" />
         </span>
       )
     ]
@@ -226,7 +236,7 @@ export default defineComponent({
         return result
       } else {
         return [
-          <icon-successful class="thumb-success-icon" />,
+          <TinyIconSuccessful class="thumb-success-icon" />,
           <span
             class={['thumb-item-name', !showDel ? 'hide-close-icon' : '', !showDownload ? 'hide-download-icon' : '']}>
             {file.name}
@@ -253,7 +263,7 @@ export default defineComponent({
                   scopedSlots: {
                     reference: () =>
                       h('div', { class: 'tiny-upload--thumb__head' }, [
-                        h(icon || 'icon-attachment', {
+                        h(icon || TinyIconAttachment, {
                           class: 'thumb-icon'
                         }),
                         getFileSize()

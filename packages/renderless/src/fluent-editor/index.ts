@@ -6,7 +6,7 @@ import { on, off } from '../common/deps/dom'
 import PopupManager from '../common/deps/popup-manager'
 
 export const init =
-  ({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm }) =>
+  ({ api, emit, props, service, state, FluentEditor, UploaderDfls, defaultOptions, vm, useBreakpoint, simpleToolbar }) =>
   () => {
     UploaderDfls.enableMultiUpload = { file: true, image: true }
     UploaderDfls.handler = api.uploaderDflsHandler
@@ -31,6 +31,11 @@ export const init =
     }
 
     api.setToolbarTips()
+
+    const { current } = useBreakpoint()
+    if (current.value === 'default') {
+      state.innerOptions.modules.toolbar = simpleToolbar
+    }
 
     const quill = new FluentEditor(vm.$refs.editor, state.innerOptions)
     quill.emitter.on('file-change', api.fileOperationToSev)
@@ -84,6 +89,10 @@ export const checkTableISEndElement = (element) => {
   }
 }
 
+const isSvg = (str) => {
+  return str.trim().startsWith('<svg')
+}
+
 const setIcons = ({ api, vm, iconOption, FluentEditor, keys = [] }) => {
   for (const key in iconOption) {
     if (Object.hasOwnProperty.call(iconOption, key)) {
@@ -92,8 +101,7 @@ const setIcons = ({ api, vm, iconOption, FluentEditor, keys = [] }) => {
       if (typeof option === 'object') {
         setIcons({ api, vm, iconOption: option, FluentEditor, keys: [...keys, key] })
       } else {
-        const iconElm = vm.$refs[option] && vm.$refs[option][0]
-        const outerHtml = api.getOuterHTML(iconElm)
+        const outerHtml = isSvg(option) ? option : api.getOuterHTML(vm.$refs[option]?.[0])
 
         if (option && outerHtml) {
           const k = keys.length ? [...keys, key].join('.') : key

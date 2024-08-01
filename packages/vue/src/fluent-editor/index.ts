@@ -1,4 +1,4 @@
-import FluentEditor from './src/pc.vue'
+import FluentEditor from './src/index'
 import { version } from './package.json'
 
 FluentEditor.model = {

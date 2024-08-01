@@ -8,6 +8,7 @@
 
 @import './assets/common';
 @import './assets/mention';
+@import './assets/toolbar';
 @import './assets/editor';
 @import './assets/counter';
 @import './assets/size';
@@ -26,7 +27,7 @@
 @include mention;
 
 // 模块：工具栏 toolbar
-// @include toolbar;  会导致样式完全混乱
+@include toolbar;
 
 // @include lineHeightList;
 

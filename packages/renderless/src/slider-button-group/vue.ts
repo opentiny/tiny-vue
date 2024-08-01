@@ -1,21 +1,18 @@
-import { getChangePosition } from './index'
+import { getChangePosition, watchVisible, watchSliderButtonChange } from './index'
 
 export const api = ['state']
 
-export const renderless = (props, { reactive, provide, onMounted, watch }, { parent }) => {
+export const renderless = (props, { reactive, provide, onMounted, onBeforeUnmount, watch }, { parent, vm }) => {
   const state = reactive({
     tag: 'div',
     isActive: false,
-    eachBlock: [],
     sliderWidth: 0,
     sliderHeight: 0,
     sliderSpace: props.size === 'large' ? 4 : 2,
-    sliderWidthData: [],
-    sliderHeightData: [],
-    eachBlockIndex: [],
-    eachBlockData: {},
+    sliderInfo: [],
     currentIndex: 0,
-    sliderCount: 0
+    mutationObserver: null,
+    intersectionObserver: null
   })
 
   parent.$on('handleChange', (value) => {
@@ -24,24 +21,36 @@ export const renderless = (props, { reactive, provide, onMounted, watch }, { par
     parent.$emit('change', value)
   })
 
-  parent.$on('labelValue', (value) => {
-    state.eachBlockIndex.push({ index: value })
+  parent.$on('eachBlock', (left, width, height, value, buttonVm) => {
+    const sliderItem = state.sliderInfo.find((item) => item.buttonVm === buttonVm)
     if (props.modelValue === value) {
       state.isActive = true
     }
+    // 如果已经有了，就更新
+    if (sliderItem) {
+      state.sliderInfo[state.sliderInfo.indexOf(sliderItem)] = { ...sliderItem, left, width, value, height }
+    } else {
+      state.sliderInfo.push({ buttonVm, left, width, value, height })
+    }
   })
 
-  parent.$on('eachBlock', (left, width, height) => {
-    state.eachBlock.push(left)
-    state.sliderWidthData.push(width)
-    state.sliderHeightData.push(height)
-    state.sliderWidth = state.sliderWidthData[0]
-    state.sliderHeight = state.sliderHeightData[0]
+  // 子组件卸载时，删除数据，防止内存泄露
+  parent.$on('delBlock', (value) => {
+    let sliderItem = state.sliderInfo.find((item) => item.value === value)
+
+    if (sliderItem) {
+      state.sliderInfo.splice(state.sliderInfo.indexOf(sliderItem), 1)
+    }
   })
 
   const api = {}
 
-  Object.assign(api, { state, getChangePosition: getChangePosition(state) })
+  Object.assign(api, {
+    state,
+    getChangePosition: getChangePosition({ state }),
+    watchVisible: watchVisible({ vm, api, props, state }),
+    watchSliderButtonChange: watchSliderButtonChange({ vm, state, api, props })
+  })
 
   provide('sliderType', props.type)
 
@@ -51,6 +60,13 @@ export const renderless = (props, { reactive, provide, onMounted, watch }, { par
 
   onMounted(() => {
     api.getChangePosition(props.modelValue)
+    api.watchVisible()
+    api.watchSliderButtonChange()
+  })
+
+  onBeforeUnmount(() => {
+    mutationObserver?.disconnect()
+    intersectionObserver?.disconnect()
   })
 
   watch(

@@ -12,7 +12,6 @@ export const treeMenuProps = {
   nodeKey: String,
   defaultExpandAll: Boolean,
   suffixIcon: Object,
-  prefixIcon: Object,
   searchIcon: {
     type: Object,
     default: () => iconSearch()

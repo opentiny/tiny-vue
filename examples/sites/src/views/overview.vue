@@ -142,10 +142,14 @@ export default defineComponent({
       getTotalComponentsNum: () => {
         let total = 0
         cmpMenus.forEach((cmpCategory) => {
-          if (cmpCategory.key === 'cmp_frame_style') {
-            total += 2
-          } else if (cmpCategory.key === 'cmp_table_components') {
+          if (cmpCategory.key === 'cmp-frame-style') {
+            // 需要减去色彩、字体、图标
+            total += cmpCategory.children.length - 3
+          } else if (cmpCategory.key === 'cmp-table-components') {
             total += 1
+          } else if (cmpCategory.key === 'cmp-chart-components') {
+            // 需要减去图表说明的4个文档
+            total += cmpCategory.children.length - 4
           } else {
             total += cmpCategory.children.length
           }
