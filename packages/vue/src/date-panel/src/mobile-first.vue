@@ -69,7 +69,6 @@
             <button
               type="button"
               @click="cusPrevYear"
-              v-show="state.currentView === 'year'"
               :aria-label="t(`ui.datepicker.prevYear`)"
               data-tag="tiny-picker-panel__icon-btn tiny-date-picker__prev-btn tiny-icon-arrow-left"
               :class="[gcls('icon-btn'), 'float-left']"
@@ -86,14 +85,17 @@
             >
               <icon-chevron-left></icon-chevron-left>
             </button>
-            <!-- @click="showYearPicker" -->
-            <span role="button" data-tag="tiny-date-picker__header-label" :class="[gcls('header-label')]">{{
-              state.yearLabel
-            }}</span>
-            <!-- @click="showMonthPicker" -->
+            <span
+              role="button"
+              @click="showYearPicker"
+              data-tag="tiny-date-picker__header-label"
+              :class="[gcls('header-label')]"
+              >{{ state.yearLabel }}</span
+            >
             <span
               v-show="state.currentView === 'date'"
               role="button"
+              @click="showMonthPicker"
               data-tag="tiny-date-picker__header-label"
               :class="[gcls('header-label'), { 'text-color-brand': state.currentView === 'month' }]"
               >{{ t(`ui.datepicker.month${state.month + 1}`) }}</span
@@ -101,7 +103,6 @@
             <button
               type="button"
               @click="cusNextYear"
-              v-show="state.currentView === 'year'"
               :aria-label="t(`ui.datepicker.nextYear`)"
               data-tag="tiny-picker-panel__icon-btn tiny-date-picker__next-btn tiny-icon-arrow-right"
               :class="[gcls('icon-btn'), 'float-right']"

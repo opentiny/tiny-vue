@@ -343,6 +343,13 @@
   & .@{input-prefix-cls} {
     display: block;
 
+    /** smb规范要求超长了显示 ... 比较合理，所以全部规范都增加省略号 */
+    .@{input-prefix-cls}__inner {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     .@{input-prefix-cls}__inner[readonly] {
       cursor: pointer;
     }
@@ -367,7 +374,8 @@
       }
     }
 
-    .@{select-prefix-cls}__limit-txt, .@{select-prefix-cls}__proportion-txt {
+    .@{select-prefix-cls}__limit-txt,
+    .@{select-prefix-cls}__proportion-txt {
       font-size: var(--ti-select-suffix-font-size);
       line-height: 1;
       margin: 0 var(--ti-select-suffix-icon-margin-right);

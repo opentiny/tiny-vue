@@ -42,6 +42,19 @@ export default {
       codeFiles: ['show-password.vue']
     },
     {
+      demoId: 'show-tooltip',
+      name: {
+        'zh-CN': '只读态悬浮提示',
+        'en-US': 'Show Tooltip'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>show-tooltip</code> 配置当文本超长时，是否显示悬浮提示。</p>\n',
+        'en-US':
+          '<p>Use <code>show-tooltip</code> to configure whether to display a floating tip when the text is too long. </p>\n'
+      },
+      codeFiles: ['show-tooltip.vue']
+    },
+    {
       demoId: 'size',
       name: {
         'zh-CN': '尺寸',

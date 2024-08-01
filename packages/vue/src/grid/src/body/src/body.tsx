@@ -667,12 +667,12 @@ function renderRowTree(args, renderRows) {
 function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, seqCount }) {
   let { rowKey, rowClassName, treeConfig, treeExpandeds } = $table
   let { groupData, scrollYLoad, scrollYStore, editConfig, editStore, expandConfig = {} } = $table
-  let { expandeds, selection, rowGroup, hasVirtualRow, afterFullData, visibleColumn } = $table
+  let { expandeds, selection, rowGroup, hasVirtualRow, afterFullData, treeOrdered } = $table
   let rows = []
   let expandMethod = expandConfig.activeMethod
   let startIndex = scrollYStore.startIndex
   // 子级索引是否按数字递增显示：true(子级索引按数字递增显示，父级1，子级2)；false(子级索引在父级索引基础上增加，父级1，子级1.1)
-  let isOrdered = treeConfig ? Boolean(treeConfig.ordered) : false
+  let isOrdered = treeConfig ? Boolean(treeOrdered) : false
   seqCount = seqCount || { value: 0 }
   let treeShowKey = getTreeShowKey({ scrollYLoad, treeConfig })
   let { hideMethod } = treeConfig || {}

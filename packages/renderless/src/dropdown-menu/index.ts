@@ -168,6 +168,10 @@ export const useVuePopper = ({
   parent.$on('visible', (value) => {
     state.showPopper = value
     popper.showPopper.value = value
+
+    if (state.showPopper) {
+      state.initShowPopper = true
+    }
   })
 
   watch(

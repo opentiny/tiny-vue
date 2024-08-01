@@ -18,7 +18,7 @@
     @click.stop="handleClick"
   >
     <tbody>
-      <tr>
+      <tr class="tiny-date-table__week">
         <th v-if="showWeekNumber">
           {{ t('ui.datepicker.week') }}
         </th>

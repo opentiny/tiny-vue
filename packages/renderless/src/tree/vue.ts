@@ -176,7 +176,9 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
     },
     newNodeId: Math.floor(random() * 10000),
     plainNodeStore: {},
-    allNodeKeys: []
+    allNodeKeys: [],
+    // tiny 新增
+    filterText: '' // 记录当前过滤的内容
   })
 
   return state

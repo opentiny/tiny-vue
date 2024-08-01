@@ -13,11 +13,9 @@
 </template>
 
 <script lang="ts">
-import { $prefix, defineComponent } from '@opentiny/vue-common'
-import emulate from '@opentiny/vue-renderless/common/deps/touch-emulator'
+import { renderless, api } from '@opentiny/vue-renderless/tabs-mf/vue-swipe'
+import { $prefix, $props, defineComponent, setup } from '@opentiny/vue-common'
 import CarouselItem from '@opentiny/vue-carousel-item'
-
-emulate()
 
 export default defineComponent({
   name: $prefix + 'TabSwipe',
@@ -25,44 +23,11 @@ export default defineComponent({
     TinyCarouselItem: CarouselItem
   },
   props: {
+    ...$props,
     stopThreshold: { type: Number, default: 10 }
   },
-  data() {
-    return { last: -1 }
-  },
-  methods: {
-    onTouchstart(e: TouchEvent) {
-      const clientX = e.touches[0].clientX
-      this.last = clientX
-    },
-    onTouchmove(e: TouchEvent) {
-      const { $refs, stopThreshold, last } = this
-      const { touchContainer } = $refs
-      const clientX = e.touches[0].clientX
-      const change = clientX - last
-
-      this.last = clientX
-
-      if (touchContainer) {
-        if (touchContainer.scrollWidth > touchContainer.clientWidth) {
-          touchContainer.scrollLeft -= change
-        }
-
-        const shouldNext =
-          change < 0 &&
-          touchContainer.clientWidth + touchContainer.scrollLeft >= touchContainer.scrollWidth - stopThreshold
-        const shouldPrevious = change > 0 && touchContainer.scrollLeft <= stopThreshold
-
-        if (!shouldNext && !shouldPrevious) {
-          e.stopPropagation()
-        }
-      }
-    },
-    clearScroll() {
-      if (this.$refs.touchContainer) {
-        this.$refs.touchContainer.scrollLeft = 0
-      }
-    }
+  setup(props: any, context: any) {
+    return setup({ props, context, renderless, api, mono: true })
   }
 })
 </script>

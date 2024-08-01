@@ -12,3 +12,9 @@ function format(value) {
   return '当前值为：' + value
 }
 </script>
+
+<style scoped>
+.tiny-slider-container {
+  margin-top: 50px;
+}
+</style>

@@ -87,7 +87,11 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    suffixIcon: Object
+    suffixIcon: Object,
+    lazyShowPopper: {
+      type: Boolean,
+      default: false
+    }
   },
   emits: [
     'visible-change',

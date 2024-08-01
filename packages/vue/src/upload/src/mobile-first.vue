@@ -5,11 +5,15 @@ import { props, $prefix, setup, h, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/upload/vue'
 import UploadDragger from '@opentiny/vue-upload-dragger'
 import Modal from '@opentiny/vue-modal'
+import Tooltip from '@opentiny/vue-tooltip'
 import type { IUploadApi } from '@opentiny/vue-renderless/types/upload.type'
 
 export default defineComponent({
   inheritAttrs: false,
   name: $prefix + 'Upload',
+  components: {
+    TinyTooltip: Tooltip
+  },
   props: [
     ...props,
     'accept',
@@ -44,7 +48,8 @@ export default defineComponent({
     'handleTriggerClick',
     'mode',
     'showTitle',
-    'isHwh5'
+    'isHwh5',
+    'tipMessage'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h, extendOptions: { Modal } }) as unknown as IUploadApi
@@ -66,7 +71,8 @@ export default defineComponent({
       sourceType,
       mode,
       showTitle,
-      state
+      state,
+      tipMessage
     } = this as any
 
     const defaultSlot = (this as any).slots.default && (this as any).slots.default()
@@ -75,6 +81,8 @@ export default defineComponent({
 
     const isBubbleMode = mode === 'bubble'
     const isShowTitle = showTitle
+
+    const popperConfig = { bubbling: true }
 
     return (
       <div
@@ -89,24 +97,41 @@ export default defineComponent({
         {state.currentBreakpoint === 'default' && tipSlot && (
           <div class="flex items-center sm:hidden inline-block text-sm">{tipSlot}</div>
         )}
-        <div
-          data-tag="tiny-upload-drag-single"
-          class="h-full"
-          onClick={($event) => handleClick($event, sourceType)}
-          onKeydown={handleKeydown}
-          tabindex="0">
-          {listType === 'drag-single' ? (
-            <UploadDragger customClass={customClass} disabled={disabled} onFile={uploadFiles}>
-              {defaultSlot}
-            </UploadDragger>
-          ) : (
-            defaultSlot
-          )}
-        </div>
-        {operateSlot}
-        {state.currentBreakpoint !== 'default' && tipSlot && (
-          <div class="hidden sm:inline-flex flex-1 w-0 items-center">{tipSlot}</div>
+        {state.currentBreakpoint === 'default' && (
+          <div
+            data-tag="tiny-upload-drag-single"
+            class="h-full"
+            onClick={($event) => handleClick($event, sourceType)}
+            onKeydown={handleKeydown}
+            tabindex="0">
+            {listType === 'drag-single' ? (
+              <UploadDragger customClass={customClass} disabled={disabled} onFile={uploadFiles}>
+                {defaultSlot}
+              </UploadDragger>
+            ) : (
+              defaultSlot
+            )}
+          </div>
         )}
+        {state.currentBreakpoint !== 'default' && (
+          <tiny-tooltip effect="light" content={tipMessage} placement="top" popper-options={popperConfig}>
+            <div
+              data-tag="tiny-upload-drag-single"
+              class="h-full"
+              onClick={($event) => handleClick($event, sourceType)}
+              onKeydown={handleKeydown}
+              tabindex="0">
+              {listType === 'drag-single' ? (
+                <UploadDragger customClass={customClass} disabled={disabled} onFile={uploadFiles}>
+                  {defaultSlot}
+                </UploadDragger>
+              ) : (
+                defaultSlot
+              )}
+            </div>
+          </tiny-tooltip>
+        )}
+        {operateSlot}
         <input
           class="hidden"
           type="file"

@@ -11,8 +11,15 @@ export default {
 
     if (fetchData.api || dataset.source || dataset.value || dataset.api) {
       const { loading, fields, api, reloadConfig } = fetchData || dataset.source || dataset.api || {}
-      const isReloadFilter = reloadConfig && reloadConfig.filter
-      return { api, dataset, fields, loading, isReloadFilter }
+      let isReloadFilter = false
+      let isReloadScroll = false
+
+      if (reloadConfig) {
+        isReloadFilter = Boolean(reloadConfig.filter)
+        isReloadScroll = Boolean(reloadConfig.scroll)
+      }
+
+      return { api, dataset, fields, loading, isReloadFilter, isReloadScroll }
     }
   },
   handleFetch(code, sortArg) {
