@@ -284,7 +284,7 @@
                   :title="t('ui.fileUpload.deleteFile')"
                   @click="$emit('remove', file)"
                 >
-                  <icon-del class="tiny-svg-size" />
+                  <icon-del class="tiny-svg-size icon-delete" />
                 </span>
               </span>
             </tiny-tooltip>
