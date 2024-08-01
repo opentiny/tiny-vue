@@ -1,5 +1,7 @@
 {
-  "language": "EN",
+  "zh-cn": "Chinese",
+  "en-us": "English",
+  "localeType": "Language Selection",
   "dark": "Dark",
   "light": "Light",
   "searchPlaceholder": "Search",

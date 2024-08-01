@@ -320,7 +320,10 @@ export const cmpMenus = [
     'label': '自定义指令',
     'labelEn': 'Custom Instruction',
     'key': 'directives-custom-instruction',
-    'children': [{ 'nameCn': '超出隐藏', 'name': 'AutoTip', 'key': 'directives-auto-tip' }]
+    'children': [
+      { 'nameCn': '超出隐藏', 'name': 'AutoTip', 'key': 'directives-auto-tip' },
+      { 'nameCn': '高亮搜索字', 'name': 'HighlightQuery', 'key': 'directives-highlight-query' }
+    ]
   }
 ]
 

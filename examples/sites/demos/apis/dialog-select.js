@@ -435,6 +435,20 @@ export default {
           pcDemo: ''
         },
         {
+          name: 'footer-buttons',
+          type: 'Slot',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义弹窗底部按钮',
+            'en-US': 'Custom Pop Up Bottom buttons'
+          },
+          metaData: {
+            new: '3.18.0'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
           name: 'option',
           type: 'Slot',
           defaultValue: '',

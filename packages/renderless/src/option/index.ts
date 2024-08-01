@@ -11,7 +11,6 @@
  */
 
 import { getObj } from '../common/object'
-import { omitText } from '../common/string'
 
 export const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
 
@@ -48,25 +47,6 @@ export const handleGroupDisabled =
   (val) => {
     state.groupDisabled = val
     vm.groupDisabled = val
-  }
-
-export const hoverItem =
-  ({ select, props, state }) =>
-  (e) => {
-    // 选项超出省略时新增title提示
-    const dom = e.target
-    const text = dom.textContent
-    const style = window.getComputedStyle(dom)
-    const font = style.font
-    const rect = dom.getBoundingClientRect()
-
-    const textWidth = rect.width - parseInt(style.paddingLeft || 0) - parseInt(style.paddingRight || 0)
-    const res = omitText(text, font, textWidth)
-    state.showTitle = res.o
-
-    if (!props.disabled && !state.groupDisabled && !select.state.disabledOptionHover) {
-      select.state.hoverIndex = select.state.optionIndexArr.indexOf(state.index)
-    }
   }
 
 export const selectOptionClick =

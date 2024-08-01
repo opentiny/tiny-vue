@@ -52,7 +52,9 @@ import {
   handleEnterTextarea,
   handleLeaveTextarea,
   getDisplayOnlyText,
-  setShowMoreBtn
+  setShowMoreBtn,
+  handleTextareaMouseDown,
+  handleTextareaMouseUp
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
 import { on, off } from '../common/deps/dom'
@@ -90,7 +92,9 @@ export const api = [
   'hiddenPassword',
   'inputStyle',
   'handleEnterTextarea',
-  'handleLeaveTextarea'
+  'handleLeaveTextarea',
+  'handleTextareaMouseDown',
+  'handleTextareaMouseUp'
 ]
 
 const initState = ({
@@ -175,7 +179,8 @@ const initState = ({
     timer: null,
     hiddenPassword: computed(() => api.hiddenPassword()),
     displayedMaskValue: computed(() => api.getDisplayedMaskValue()),
-    displayOnlyText: computed(() => api.getDisplayOnlyText())
+    displayOnlyText: computed(() => api.getDisplayOnlyText()),
+    isDragging: false
   })
 
   return state as IInputState
@@ -217,7 +222,9 @@ const initApi = ({
     getDisplayOnlyText: getDisplayOnlyText({ parent, props, state }),
     handleEnterTextarea: handleEnterTextarea({ api, state, props, nextTick }),
     handleLeaveTextarea: handleLeaveTextarea({ api, state, props, nextTick, vm }),
-    inputStyle: inputStyle({ props })
+    inputStyle: inputStyle({ props }),
+    handleTextareaMouseDown: handleTextareaMouseDown({ state }),
+    handleTextareaMouseUp: handleTextareaMouseUp({ state, api })
   })
 }
 

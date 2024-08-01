@@ -63,6 +63,46 @@ export const addNav = (state) => (nav) => {
   state.navs = [...state.navs, nav]
 }
 
+export const sortItem = (state) => (names) => {
+  const items = [...state.items]
+  const navs = [...state.navs]
+
+  items.sort((a, b) => names.indexOf(a.name) - names.indexOf(b.name))
+  navs.sort((a, b) => names.indexOf(a.name) - names.indexOf(b.name))
+
+  state.items = items
+  state.navs = navs
+}
+
+export const onRelationChange =
+  ({ api, instance, nextTick, state }) =>
+  () => {
+    const itemOrder = instance.childTabs.map((tab) => tab.name)
+    const itemOrderKey = itemOrder.join(',')
+    const { tabbar } = instance.$refs
+
+    if (itemOrderKey !== state.itemOrderKey) {
+      state.itemOrderKey = itemOrderKey
+
+      // 排序
+      api.sortItem(itemOrder)
+
+      const selectedItem = state.items.find((item) => item.selected)
+
+      // 刷新选中项
+      if (selectedItem) {
+        selectedItem.selected = false
+
+        nextTick(() => {
+          selectedItem.selected = true
+        })
+      }
+
+      // tiny新增
+      tabbar.wheelListener()
+    }
+  }
+
 export const scrollTo =
   ({ vm, state }) =>
   (name) => {
@@ -75,13 +115,11 @@ export const scrollTo =
       const { clientWidth, scrollWidth } = scroll
 
       if (name && scrollWidth > clientWidth) {
-        const total = navs.length
         const index = navs.findIndex((nav) => nav.name === name)
-        const max = scrollWidth - clientWidth
 
         if (~index) {
           fastdom.mutate(() => {
-            scroll.scrollLeft = (max / (total - 1)) * index
+            scroll.scrollLeft = vm.$el.querySelector('[data-tag="tiny-tab-nav"]').childNodes[index].offsetLeft - 5
             tabbar.wheelListener()
           })
         }
@@ -209,6 +247,7 @@ export const unobserveTabSwipeSize =
       state._resizeObserver = null
     }
   }
+
 // --- tab-bar ---
 export const wheelListener = ({ vm, api, tabs, state }) =>
   debounce(10, (e) => {
@@ -291,3 +330,42 @@ export const handleNavItemClose =
     e.stopPropagation()
     tabs.removeItem(props.navItem.name)
   }
+
+// --- tab-swipe ---
+export const onTouchstart = (state) => (e: TouchEvent) => {
+  const clientX = e.touches[0].clientX
+  state.last = clientX
+}
+
+export const onTouchmove =
+  ({ props, state, vm }) =>
+  (e: TouchEvent) => {
+    const { last } = state
+    const { stopThreshold } = props
+    const { touchContainer } = vm.$refs
+    const clientX = e.touches[0].clientX
+    const change = clientX - last
+
+    state.last = clientX
+
+    if (touchContainer) {
+      if (touchContainer.scrollWidth > touchContainer.clientWidth) {
+        touchContainer.scrollLeft -= change
+      }
+
+      const shouldNext =
+        change < 0 &&
+        touchContainer.clientWidth + touchContainer.scrollLeft >= touchContainer.scrollWidth - stopThreshold
+      const shouldPrevious = change > 0 && touchContainer.scrollLeft <= stopThreshold
+
+      if (!shouldNext && !shouldPrevious) {
+        e.stopPropagation()
+      }
+    }
+  }
+
+export const clearScroll = (vm) => () => {
+  if (vm.$refs.touchContainer) {
+    vm.$refs.touchContainer.scrollLeft = 0
+  }
+}

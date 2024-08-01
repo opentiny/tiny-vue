@@ -158,7 +158,17 @@ export default defineComponent({
       default: () => ({})
     },
     // tiny 新增
-    showLine: Boolean
+    showLine: Boolean,
+    // tiny 新增，是否显示树节点聚焦时的背景颜色
+    isShowFocusBg: {
+      type: Boolean,
+      default: true
+    },
+    // 是否在匹配的节点中，高亮搜索文字
+    highlightQuery: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     return $setup({ props, context, template })

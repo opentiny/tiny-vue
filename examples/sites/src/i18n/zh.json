@@ -1,5 +1,7 @@
 {
-  "language": "中",
+  "zh-cn": "中文",
+  "en-us": "英文",
+  "localeType": "语言选择",
   "dark": "深色",
   "light": "浅色",
   "searchPlaceholder": "搜索",

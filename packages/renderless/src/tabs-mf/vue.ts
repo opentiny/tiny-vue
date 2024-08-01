@@ -1,4 +1,5 @@
 import { random } from '../common/string'
+import { useRelation } from '../common/deps/useRelation'
 import {
   setActive,
   addItem,
@@ -12,7 +13,9 @@ import {
   clearOtherTabSwipeScroll,
   computedSwipeable,
   observeTabSwipeSize,
-  unobserveTabSwipeSize
+  unobserveTabSwipeSize,
+  sortItem,
+  onRelationChange
 } from './index'
 
 export const api = [
@@ -28,11 +31,11 @@ export const api = [
   'clearOtherTabSwipeScroll'
 ]
 
-export const renderless = (
-  props,
-  { onMounted, onBeforeUnmount, provide, reactive, watch, computed, nextTick },
-  { vm, emit }
-) => {
+let uniqueId = 0
+
+export const renderless = (props, hooks, { vm, emit, nextTick }) => {
+  const { onMounted, onBeforeUnmount, provide, reactive, watch, computed, getCurrentInstance } = hooks
+  const instance = getCurrentInstance().proxy
   const state = reactive({
     items: [],
     navs: [],
@@ -40,7 +43,9 @@ export const renderless = (
     key: computed(() => (state.currentItem ? state.currentItem.name : random())),
     separator: props.separator,
     swipeable: computed(() => api.computedSwipeable()),
-    maxTabSwipeHeight: 0
+    maxTabSwipeHeight: 0,
+    itemOrderKey: '',
+    tabsId: ++uniqueId
   })
 
   const api = {}
@@ -59,10 +64,21 @@ export const renderless = (
     clearOtherTabSwipeScroll: clearOtherTabSwipeScroll({ state, vm }),
     computedSwipeable: computedSwipeable({ props, state }),
     observeTabSwipeSize: observeTabSwipeSize({ state, vm }),
-    unobserveTabSwipeSize: unobserveTabSwipeSize({ state, vm })
+    unobserveTabSwipeSize: unobserveTabSwipeSize({ state, vm }),
+    sortItem: sortItem(state),
+    useRelation: useRelation(hooks),
+    onRelationChange: onRelationChange({ api, instance, nextTick, state })
   })
 
   provide('tabs', vm)
+  provide('tabsId', state.tabsId)
+
+  api.useRelation({
+    relationKey: `tabs-${state.tabsId}`,
+    childrenKey: 'childTabs',
+    relationContainer: () => vm.$el.querySelector('[data-tag=tiny-tabs-hidden]'),
+    onChange: () => api.onRelationChange()
+  })
 
   watch(
     () => props.activeName,

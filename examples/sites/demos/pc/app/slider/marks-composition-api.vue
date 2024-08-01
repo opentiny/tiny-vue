@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <div>
-      <tiny-slider v-model="value" :marks="marks"></tiny-slider>
-    </div>
-  </div>
+  <tiny-slider v-model="value" :marks="marks"></tiny-slider>
 </template>
 
 <script setup>
@@ -18,3 +14,9 @@ const marks = ref({
 
 const value = ref(20)
 </script>
+
+<style scoped>
+.tiny-slider-container {
+  margin-top: 50px;
+}
+</style>

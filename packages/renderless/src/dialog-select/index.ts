@@ -73,8 +73,16 @@ export const multiGridSelectAll =
         }
       })
     } else {
-      state.selectedValues = []
-      state.selectedDatas = []
+      // 同步勿删，跨页取消全选时，仅删除当前页数据
+      const { data = [] } = props.gridOp || {}
+      data.forEach((item) => {
+        const selectedItem = state.selectedValues.find((i) => i === item[props.valueField])
+        if (selectedItem) {
+          const index = state.selectedValues.indexOf(selectedItem)
+          state.selectedValues.splice(index, 1)
+          state.selectedDatas.splice(index, 1)
+        }
+      })
       state.selectedChanged = true
     }
 
@@ -82,20 +90,41 @@ export const multiGridSelectAll =
   }
 
 export const multiGridSelectChange =
-  ({ api, props, state }) =>
+  ({ api, props, state, vm }) =>
   ({ row, checked }) => {
-    const index = findIndexOf(state.selectedValues, (val) => val === row[props.valueField])
+    const property = props.valueField
+    const grid = vm.$refs?.multiGrid
+    const selectedRows = grid.getSelectRecords()
 
     if (checked) {
-      if (!~index) {
-        state.selectedValues = [...state.selectedValues, row[props.valueField]]
-        state.selectedDatas = [...state.selectedDatas, row]
+      // 获取新勾选的行
+      const addSelectedRows = selectedRows.filter((row) => !state.selectedValues.includes(row[property]))
+      if (addSelectedRows.length > 0) {
+        state.selectedValues = [...state.selectedValues, ...addSelectedRows.map((row) => row[property])]
+        state.selectedDatas = [...state.selectedDatas, ...addSelectedRows]
         state.selectedChanged = true
       }
     } else {
-      if (~index) {
-        state.selectedValues = [...state.selectedValues.slice(0, index), ...state.selectedValues.slice(index + 1)]
-        state.selectedDatas = [...state.selectedDatas.slice(0, index), ...state.selectedDatas.slice(index + 1)]
+      const childrenKey = props.gridOp?.treeConfig?.children
+      const checkStrictly = props.gridOp?.selectConfig?.checkStrictly
+
+      const getCancelRows = (row, arr) => {
+        arr.push(row)
+        if (row[childrenKey]?.length > 0) {
+          row[childrenKey].forEach((childRow) => getCancelRows(childRow, arr))
+        }
+        return arr
+      }
+
+      // 获取取消勾选的列
+      let cancelRows = checkStrictly ? [row] : getCancelRows(row, [])
+      cancelRows = cancelRows.filter((row) => state.selectedValues.includes(row[property]))
+      if (cancelRows.length > 0) {
+        cancelRows.forEach((row) => {
+          const index = state.selectedValues.indexOf(row[property])
+          state.selectedValues.splice(index, 1)
+          state.selectedDatas.splice(index, 1)
+        })
         state.selectedChanged = true
       }
     }
@@ -385,16 +414,18 @@ export const setChecked =
 
 export const computedConfig =
   ({ props, state }) =>
-  () => {
+  (type) => {
     const { multi, popseletor, gridOp } = props
     const { selectConfig = {}, radioConfig = {} } = gridOp || {}
     const { selectedValues } = state
     let config = {}
 
     if (popseletor === 'grid') {
-      if (multi) {
+      // 单选和多选同时使用computedConfig来获取配置，因此需要加type区分，否则单选和多选返回的是一模一样的配置
+      if (multi && type === 'select') {
         config = Object.assign(config, selectConfig, { checkRowKeys: selectedValues })
-      } else {
+      }
+      if (!multi && type === 'radio') {
         config = Object.assign(config, radioConfig, { checkRowKey: selectedValues[0] })
       }
     }
