@@ -174,7 +174,7 @@
                 @click="handleClick($event, file)"
                 :title="state.tooltipDisabled ? (isFolderTitle ? (file.path || '') + file.name : file.name) : ''"
               >
-                <icon-attachment
+                <tiny-icon-document
                   v-if="!isFolder"
                   :fill="isEdm && file.status === 'fail' ? '#f5222d' : ''"
                   class="tiny-svg-size"
@@ -319,7 +319,7 @@ import Progress from '@opentiny/vue-progress'
 import Tooltip from '@opentiny/vue-tooltip'
 import Button from '@opentiny/vue-button'
 import {
-  iconAttachment,
+  iconDocument,
   iconSuccessful,
   iconClose,
   iconView,
@@ -358,7 +358,7 @@ export default defineComponent({
     TinyProgress: Progress,
     TinyTooltip: Tooltip,
     TinyButton: Button,
-    IconAttachment: iconAttachment(),
+    TinyIconDocument: iconDocument(),
     IconSuccessful: iconSuccessful(),
     IconClose: iconClose(),
     IconView: iconView(),
