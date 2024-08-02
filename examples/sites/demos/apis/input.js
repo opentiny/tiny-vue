@@ -397,6 +397,21 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'show-tooltip',
+          type: 'boolean',
+          defaultValue: 'true',
+          metaData: {
+            new: '3.18.0'
+          },
+          desc: {
+            'zh-CN': '只读状态下，文本超出是否悬浮提示',
+            'en-US': 'In the read-only state, whether the text exceeds the floating prompt'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'size',
+          mfDemo: ''
+        },
+        {
           name: 'size',
           type: "'medium' | 'small' | 'mini'",
           defaultValue: '',

@@ -19,7 +19,7 @@ import {
   isVnode
 } from './adapter'
 import { t } from '@opentiny/vue-locale'
-import { stringifyCssClass } from './csscls'
+import { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass } from './csscls'
 import { twMerge } from 'tailwind-merge'
 import '@opentiny/vue-theme/base/index.less'
 import { defineComponent, isVue2, isVue3 } from './adapter'
@@ -32,6 +32,7 @@ import { useRelation as createUseRelation } from '@opentiny/vue-renderless/commo
 export const useInstanceSlots = createUseInstanceSlots({ ...hooks, isVue2 })
 export const useRelation = createUseRelation({ ...hooks, isVue2 })
 
+export { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass }
 export { useBreakpoint, useDefer }
 
 export { version } from '../package.json'

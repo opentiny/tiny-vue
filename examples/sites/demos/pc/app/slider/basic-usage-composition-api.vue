@@ -15,3 +15,9 @@ function setValue() {
   value.value = 50
 }
 </script>
+
+<style scoped>
+.tiny-slider-container {
+  margin-top: 32px;
+}
+</style>

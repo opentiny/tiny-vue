@@ -98,10 +98,7 @@ function loadStatic(data, _vm) {
 function mergeTreeConfig(_vm) {
   if (_vm.treeConfig) {
     const { ordered } = _vm.treeConfig
-
-    if (isNull(ordered)) {
-      _vm.treeConfig.ordered = true
-    }
+    _vm.treeOrdered = isNull(ordered) ? true : Boolean(ordered)
   }
 }
 
@@ -318,7 +315,7 @@ const renderFooterBorder = (_vm) => {
 
 // 设置表格最外层元素类名
 function getTableAttrs(tableVm) {
-  const { vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
+  const { isShapeTable, vSize, editConfig, showHeader, showFooter, overflowY, overflowX, showOverflow } = tableVm
   const { showHeaderOverflow, highlightCell, optimizeOpts, stripe, border, isGroup, mouseConfig = {} } = tableVm
   const { maxHeight, loading, highlightHoverRow, highlightHoverColumn, validOpts } = tableVm
   const { stripeSaas, borderSaas, borderVertical, isThemeSaas, rowSpan, dropConfig = {} } = tableVm
@@ -335,7 +332,8 @@ function getTableAttrs(tableVm) {
 
   const style = {}
 
-  if (maxHeight) {
+  // 多端表格的最大高度在多端模板中处理，此处仅处理pc端表格逻辑
+  if (isShapeTable && maxHeight) {
     style.maxHeight = isScale(maxHeight) ? maxHeight : toNumber(maxHeight) + 'px'
   }
 
@@ -550,7 +548,9 @@ const getTableData = () => {
     // 是否是标签式用法场景
     isTagUsageSence: false,
     // 收集列信息（列数量和列顺序）
-    columnCollectKey: ''
+    columnCollectKey: '',
+    // treeConfig.ordered的取值处理
+    treeOrdered: true
   }
   return tableData
 }
@@ -754,6 +754,8 @@ export default defineComponent({
     listConfig: Object,
     // 多端甘特配置
     ganttConfig: Object,
+    // 多端custom配置
+    customConfig: Object,
     // 数据预取配置
     prefetch: [Boolean, Array],
     // 相交配置
@@ -940,11 +942,11 @@ export default defineComponent({
     mergeScrollDirStore(scrollX, scrollXStore)
     mergeScrollDirStore(scrollY, scrollYStore)
 
-    // 初始化表格渲染数据
-    loadStatic(data, this)
-
     // 合并树表配置项
     mergeTreeConfig(this)
+
+    // 初始化表格渲染数据
+    loadStatic(data, this)
 
     bindEvent(this)
 
@@ -1086,11 +1088,11 @@ export default defineComponent({
       isShapeTable,
       rowSpan
     } = this as any
-    let { borderVertical, cardConfig, listConfig, ganttConfig } = this
+    let { borderVertical, cardConfig, listConfig, ganttConfig, customConfig } = this
     let { leftList, rightList } = columnStore
     const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup }
 
-    Object.assign(props, { cardConfig, listConfig, ganttConfig })
+    Object.assign(props, { cardConfig, listConfig, ganttConfig, customConfig })
     let args = { $slots: slots, _vm: this, leftList, optimizeOpts, overflowX, props, rightList }
 
     Object.assign(args, { showFooter, showHeader, tableColumn, tableData, vSize, visibleColumn })

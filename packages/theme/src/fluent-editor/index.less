@@ -72,6 +72,8 @@
       }
 
       span.ql-lineheight {
+        margin-right: 24px !important;
+
         > span {
           width: 60px;
         }
@@ -96,18 +98,19 @@
         }
 
         .ql-picker-options {
-          padding: 4px 0;
+          padding: 3px 5px;
           border: none;
 
           > .ql-picker-item {
-            height: 24px;
-            line-height: 24px;
-            padding: 0 8px;
             color: #191919;
 
             &:hover {
               background-color: rgba(25, 25, 25, 0.1);
               color: #191919;
+            }
+
+            &::after {
+              display: none;
             }
           }
         }
@@ -116,7 +119,7 @@
           .ql-picker-options {
             > .ql-picker-item {
               width: 100%;
-              padding: 0 6px;
+              padding: 4px 6px 0 6px;
             }
           }
         }
@@ -144,7 +147,7 @@
 
       .ql-align.ql-picker {
         .ql-picker-label {
-          padding: 0 6px;
+          padding: 4px 6px 0 6px;
         }
       }
 
@@ -186,6 +189,7 @@
         }
         &.ql-fullscreen {
           svg {
+            width: 12px;
             font-size: 12px;
           }
         }

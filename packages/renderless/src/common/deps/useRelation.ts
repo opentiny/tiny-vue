@@ -7,27 +7,41 @@ import { onMountedOrActivated as createHook } from './useEventListener'
  * relationContainer 子组件顺序由关系容器确定，由根组件提供，可以不使用，子组件顺序就是组件创建顺序
  * onChange 子组件顺序改变后的回调处理，由根组件提供，可以不使用
  * childrenKey 在组件关系树上的所有实例中定义的子组件引用名称，默认是 instanceChildren
+ * delivery 根组件向下分发的内容
  */
 export const useRelation =
-  ({ getCurrentInstance, inject, markRaw, nextTick, onMounted, onActivated, onUnmounted, provide, reactive, toRef }) =>
-  ({ relationKey, relationContainer, onChange, childrenKey } = {}) => {
+  ({
+    computed,
+    getCurrentInstance,
+    inject,
+    markRaw,
+    nextTick,
+    onMounted,
+    onActivated,
+    onUnmounted,
+    provide,
+    reactive,
+    toRef
+  }) =>
+  ({ relationKey, relationContainer, onChange, childrenKey, delivery } = {}) => {
     if (!relationKey) {
       throw new Error('[TINY Error]<relationKey> must exist.')
     }
 
     const instance = getCurrentInstance()
-    const state = reactive({ children: [] })
+    const state = reactive({ children: [], indexInParent: -1 })
     const injectValue = inject(relationKey, null)
     // 收集所有的子组件刷新回调
     let callbacks = []
 
     if (injectValue) {
-      const { link, unlink, callbacks: injectCbs, childrenKey: injectKey } = injectValue
+      const { link, unlink, callbacks: injectCbs, childrenKey: injectKey, delivery: injectDelivery } = injectValue
 
       callbacks = injectCbs
       childrenKey = childrenKey || injectKey || 'instanceChildren'
+      delivery = injectDelivery
 
-      link(instance)
+      state.indexInParent = link(instance)
 
       onUnmounted(() => unlink(instance))
     } else {
@@ -69,7 +83,13 @@ export const useRelation =
       })
     }
 
-    const link = (child) => state.children.push(markRaw(child.proxy))
+    const link = (child) => {
+      const childPublic = child.proxy
+
+      state.children.push(markRaw(childPublic))
+
+      return computed(() => state.children.indexOf(childPublic))
+    }
 
     const unlink = (child) => {
       const index = state.children.indexOf(child.proxy)
@@ -82,15 +102,15 @@ export const useRelation =
     // 刷新子组件顺序
     callbacks.push((flattenNodes) => sortPublicInstances(state.children, flattenNodes))
 
-    provide(relationKey, { link, unlink, callbacks, childrenKey })
+    provide(relationKey, { link, unlink, callbacks, childrenKey, delivery })
 
     // 在 Public Instance 上定义子组件数组，并且在组件卸载时移除
     Object.defineProperty(instance.proxy, childrenKey, { configurable: true, get: () => state.children })
 
     onUnmounted(() => delete instance.proxy[childrenKey])
 
-    // 返回子组件数组 ref
-    return { children: toRef(state, 'children') }
+    // 返回子组件数组 ref、在父级中的位置索引 ref 和接收到的分发内容
+    return { children: toRef(state, 'children'), index: toRef(state, 'indexInParent'), delivery }
   }
 
 const flattenChildNodes = (childNodes, result) => {

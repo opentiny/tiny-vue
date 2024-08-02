@@ -442,6 +442,8 @@ export const filter =
     }
 
     state.store.filter(value)
+    // tiny 新增： 记录一下过滤的值
+    state.filterText = value
     // tiny 新增： 移除了watch,所以要手动调用一下该方法
     if (props.willChangeView) {
       api.initPlainNodeStore()

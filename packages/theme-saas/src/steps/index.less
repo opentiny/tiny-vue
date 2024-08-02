@@ -432,6 +432,10 @@
     @apply flex;
     @apply relative;
     @apply z-10;
+    // Tiny新增，修复line模式样式错误问题
+    .icon {
+      @apply left-0;
+    }
   }
 
   .@{steps-prefix-cls}-main {
@@ -917,7 +921,7 @@
 
   & &-advanced {
     & li {
-      @apply ~"leading-[theme(spacing.8)]";
+      @apply ~"leading-[theme(spacing.12)]";
       @apply inline-block;
       @apply bg-color-bg-1;
       @apply relative;
@@ -925,9 +929,9 @@
 
       &:not(:last-child)::after {
         @apply content-[''];
-        border-top: 16px solid transparent;
-        border-bottom: 16px solid transparent;
-        border-left: 6px solid theme('colors.color.bg.5');
+        border-top: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 20px solid theme('colors.color.bg.1');
         @apply absolute;
         @apply right-px;
         @apply top-0;
@@ -939,9 +943,9 @@
 
       &:not(:last-child)::before {
         @apply content-[''];
-        border-top: 16px solid transparent;
-        border-bottom: 16px solid transparent;
-        border-left: 6px solid @default-color;
+        border-top: 25px solid transparent;
+        border-bottom: 25px solid transparent;
+        border-left: 20px solid @default-color;
         @apply absolute;
         @apply right-0;
         @apply top-0;
@@ -954,9 +958,9 @@
 
       &:not(:first-child) .label::after {
         @apply content-[''];
-        border-top: 16px solid transparent;
-        border-bottom: 16px solid transparent;
-        border-left: 6px solid theme('colors.color.bg.1');
+        border-top: 24px solid transparent;
+        border-bottom: 24px solid transparent;
+        border-left: 20px solid theme('colors.color.bg.1');
         @apply absolute;
         @apply -left-px;
         @apply top-0;
@@ -965,9 +969,9 @@
 
       &:not(:first-child) .label::before {
         @apply content-[''];
-        border-top: 16px solid transparent;
-        border-bottom: 16px solid transparent;
-        border-left: 6px solid @default-color;
+        border-top: 24px solid transparent;
+        border-bottom: 24px solid transparent;
+        border-left: 20px solid @default-color;
         @apply absolute;
         @apply left-0;
         @apply top-0;
@@ -1020,7 +1024,7 @@
         @apply pr-11;
         color: @default-color;
         @apply text-sm;
-        @apply mr-0;
+        @apply mr-5;
         > span {
           @apply w-full;
           @apply h-full;
@@ -1117,7 +1121,7 @@
     @apply relative;
     @apply text-sm;
     @apply text-center;
-    // left: ~'calc(50% - 12px)';
+    left: ~'calc(50% - 12px)';
     @apply top-0;
     @apply rounded-full;
     @apply bg-color-bg-1;

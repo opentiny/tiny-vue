@@ -22,7 +22,9 @@ import {
   defineComponent,
   $props,
   isEmptyVnode,
-  hooks
+  hooks,
+  stringifyCssClass,
+  deduplicateCssClass
 } from '@opentiny/vue-common'
 import type { ITinyVm } from '@opentiny/vue-renderless/types/shared.type'
 import '@opentiny/vue-theme/tooltip/index.less'
@@ -201,34 +203,6 @@ export default defineComponent({
         }
       })
     }
-    const stringifyClassObj = (classObj: Record<string, string>) =>
-      Object.keys(classObj)
-        .filter((key) => classObj[key])
-        .join(' ')
-
-    const stringifyClassArr = (classArr: string[]) =>
-      classArr
-        .filter((item) => item)
-        .map((item) =>
-          typeof item === 'string' ? item.trim() : typeof item === 'object' ? stringifyClassObj(item) : ''
-        )
-        .join(' ')
-
-    const addTooltipClass = (bindClass: string | Record<string, string> | string[]) => {
-      let className = ''
-
-      if (bindClass) {
-        if (typeof bindClass === 'string') {
-          className = bindClass.trim()
-        } else if (Array.isArray(bindClass)) {
-          className = stringifyClassArr(bindClass)
-        } else if (typeof bindClass === 'object') {
-          className = stringifyClassObj(bindClass)
-        }
-      }
-
-      return 'tiny-tooltip ' + className.replace(/\btiny-tooltip\b/g, '').trim()
-    }
 
     // 查找默认的slots, 并把它渲染到组件所在位置上。
     const getFirstElement = () => {
@@ -256,7 +230,7 @@ export default defineComponent({
 
     const data = firstElement.data || firstElement.props || (firstElement.props = {})
 
-    data.class = addTooltipClass(data.class)
+    data.class = deduplicateCssClass('tiny-tooltip ' + stringifyCssClass(data.class))
 
     return firstElement
   }

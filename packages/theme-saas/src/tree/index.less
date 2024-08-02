@@ -210,14 +210,13 @@
     }
   }
 
-  &:focus > &__content {
+  &.is-show-focus-bg:focus > &__content {
     @apply bg-color-bg-4;
   }
 
   &.is-current > &__content {
     @apply bg-color-fill-6;
     @apply text-color-link-focus;
-    
   }
 
   &:not(.is-focusable) {

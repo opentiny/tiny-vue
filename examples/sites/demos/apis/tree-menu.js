@@ -284,17 +284,6 @@ export default {
           pcDemo: 'only-check-children'
         },
         {
-          name: 'prefix-icon',
-          type: 'Component',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '自定义前置图标',
-            'en-US': 'Customize the front icon'
-          },
-          mode: ['pc'],
-          pcDemo: 'custom-icon'
-        },
-        {
           name: 'props',
           typeAnchorName: 'IProps',
           type: 'IProps',
@@ -381,8 +370,8 @@ export default {
           type: 'Component',
           defaultValue: '',
           desc: {
-            'zh-CN': '自定义后置图标',
-            'en-US': 'Customize the post icon'
+            'zh-CN': '全局设置带图标树形菜单',
+            'en-US': 'Global settings with icon tree menu'
           },
           mode: ['pc'],
           pcDemo: 'custom-icon'
