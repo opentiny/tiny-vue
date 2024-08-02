@@ -42,7 +42,7 @@ export const createShepherd =
             })
           })
         }
-        callBack(step, item)
+        callBack(step, item, tour)
       })
     }
 
@@ -144,7 +144,7 @@ const itemStep = (item, state, deepCopy, index, Shepherd) => {
   return steps
 }
 
-const callBack = (step, item) => {
+const callBack = (step, item, tour) => {
   step.on('before-show', () => {
     if (typeof item.beforeShow === 'function') {
       item.beforeShow()
@@ -165,12 +165,12 @@ const callBack = (step, item) => {
       item.hide()
     }
   })
-  step.on('complete', () => {
+  tour.on('complete', () => {
     if (typeof item.complete === 'function') {
       item.complete()
     }
   })
-  step.on('cancel', () => {
+  tour.on('cancel', () => {
     if (typeof item.cancel === 'function') {
       item.cancel()
     }

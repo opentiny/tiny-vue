@@ -35,7 +35,10 @@ export function computeScrollYLoad({ _vm, scrollLoad, scrollY, scrollYLoad, scro
 
   if (scrollYLoad) {
     // scrollY.vSize用户配置的可视区域渲染行数
-    let visibleYSize = toNumber(scrollY.vSize || Math.ceil(tableBodyElem.clientHeight / scrollYStore.rowHeight))
+    const bodyHeight = toNumber(
+      tableBodyElem.style?.height || tableBodyElem.style?.maxHeight || tableBodyElem.clientHeight
+    )
+    let visibleYSize = toNumber(scrollY.vSize || Math.ceil(bodyHeight / scrollYStore.rowHeight))
 
     scrollYStore.visibleSize = visibleYSize
 
@@ -67,10 +70,9 @@ export function computeScrollXLoad({ _vm, scrollX, scrollXLoad, scrollXStore, ta
     let width = 0
     let visibleXSize = 0
     const len = visibleColumn.length
+    const colsWidth = visibleColumn?.map((i) => i.renderWidth).sort((a, b) => a - b) || []
     for (let i = 0; i < len; i++) {
-      const column = visibleColumn[i]
-
-      width += column.renderWidth
+      width += colsWidth[i]
       // 当虚拟滚动可见列宽度大于表格宽度或者循环结束，保存可见列大小
       if (width > clientWidth || i === len - 1) {
         visibleXSize = i + 1

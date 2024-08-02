@@ -66,7 +66,7 @@ export const watchMobileVisible =
 export const watchPickerVisible =
   ({ api, vm, dispatch, emit, props, state, nextTick }) =>
   (value) => {
-    if (props.readonly || state.pickerDisabled || state.isMobileScreen) return
+    if (props.readonly || state.pickerDisabled || state.isMobileMode) return
 
     if (value) {
       api.showPicker()
@@ -227,7 +227,7 @@ export const getTimezone =
     const setting = utils.getDateFormat && utils.getDateFormat()
     const { DbTimezone, Timezone, TimezoneOffset } = setting || {}
     const cur = getLocalTimezone()
-    const isTzNumber = (z) => typeof z === 'number' && z >= -12 && z <= 12
+    const isTzNumber = (z) => typeof z === 'number' && z >= -12 && z <= 14
 
     if (!~type.indexOf('datetime')) {
       return { from: cur, to: cur }
@@ -939,9 +939,9 @@ export const handleFocus =
     const type = state.type
 
     if (DATEPICKER.TriggerTypes.includes(type)) {
-      if (state.isMobileScreen && state.isDateMobileComponent) {
+      if (state.isMobileMode && state.isDateMobileComponent) {
         api.dateMobileToggle(true)
-      } else if (state.isMobileScreen && state.isTimeMobileComponent) {
+      } else if (state.isMobileMode && state.isTimeMobileComponent) {
         api.timeMobileToggle(true)
       } else {
         state.pickerVisible = true

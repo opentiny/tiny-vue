@@ -14,7 +14,7 @@ export default {
             'en-US': 'Whether to disable container detection during resize'
           },
           mode: ['pc'],
-          pcDemo: 'chart/question#question-base'
+          pcDemo: ''
         },
         {
           name: 'change-delay',
@@ -25,7 +25,7 @@ export default {
             'en-US': 'Delay for triggering chart redrawing callback after attribute modification'
           },
           mode: ['pc'],
-          pcDemo: 'chart/question#question-base'
+          pcDemo: ''
         },
         {
           name: 'data',
@@ -37,7 +37,7 @@ export default {
               'Data consists of indicators and dimensions. Dimension refers to data attributes, and indicator refers to quantitative measurement standards.'
           },
           mode: ['pc'],
-          pcDemo: 'chart'
+          pcDemo: ''
         },
         {
           name: 'events',
@@ -48,19 +48,19 @@ export default {
             'en-US': 'Event binding'
           },
           mode: ['pc'],
-          pcDemo: 'chart-events'
+          pcDemo: ''
         },
         {
           name: 'extend',
           typeAnchorName: 'chart#IChartProps',
-          type: 'IChartProps',
+          type: 'objcet',
           defaultValue: '',
           desc: {
             'zh-CN': 'echarts 的配置项',
             'en-US': 'Configuration items of echarts'
           },
           mode: ['pc'],
-          pcDemo: 'chart'
+          pcDemo: ''
         },
         {
           name: 'height',
@@ -71,7 +71,7 @@ export default {
             'en-US': 'Set the height of the chart container.'
           },
           mode: ['pc'],
-          pcDemo: 'chart/attributes-demo#props-demo10'
+          pcDemo: ''
         },
         {
           name: 'init-options',
@@ -82,7 +82,7 @@ export default {
             'en-US': 'Init Additional Parameters'
           },
           mode: ['pc'],
-          pcDemo: 'chart/attributes-demo#props-demo10'
+          pcDemo: ''
         },
         {
           name: 'judge-width',
@@ -93,7 +93,7 @@ export default {
             'en-US': 'Do you want to process the width issue when generating charts?'
           },
           mode: ['pc'],
-          pcDemo: 'chart-events'
+          pcDemo: ''
         },
         {
           name: 'legend-visible',
@@ -104,7 +104,7 @@ export default {
             'en-US': 'Display legend'
           },
           mode: ['pc'],
-          pcDemo: 'chart/attributes-demo#props-demo10'
+          pcDemo: ''
         },
         {
           name: 'not-set-unchange',
@@ -126,7 +126,7 @@ export default {
             'en-US': 'Delay of the window resize event callback'
           },
           mode: ['pc'],
-          pcDemo: 'chart/attributes-demo#props-demo10'
+          pcDemo: ''
         },
         {
           name: 'resizeable',
@@ -137,7 +137,7 @@ export default {
             'en-US': 'Whether to process the window resize event'
           },
           mode: ['pc'],
-          pcDemo: 'chart/question#question-base'
+          pcDemo: ''
         },
         {
           name: 'set-option-opts',
@@ -162,7 +162,7 @@ export default {
             'en-US': 'User-defined theme name. ;User-defined theme object.'
           },
           mode: ['pc'],
-          pcDemo: 'chart#base'
+          pcDemo: ''
         },
         {
           name: 'theme-name',
@@ -173,7 +173,7 @@ export default {
             'en-US': 'User-defined theme name. If theme-name is set, the theme is invalid.'
           },
           mode: ['pc'],
-          pcDemo: 'chart#base'
+          pcDemo: ''
         },
         {
           name: 'tooltip-visible',
@@ -184,7 +184,7 @@ export default {
             'en-US': 'Display dialog box'
           },
           mode: ['pc'],
-          pcDemo: 'chart/attributes-demo#props-demo10'
+          pcDemo: ''
         },
         {
           name: 'width',
@@ -195,7 +195,7 @@ export default {
             'en-US': 'Set the width of the chart container.'
           },
           mode: ['pc'],
-          pcDemo: 'chart/attributes-demo#props-demo10'
+          pcDemo: ''
         },
         {
           name: 'width-change-delay',
@@ -206,80 +206,198 @@ export default {
             'en-US': 'Container width change delay'
           },
           mode: ['pc'],
-          pcDemo: 'chart/question#question-base'
+          pcDemo: ''
+        },
+        {
+          name: 'options',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '图表配置项(无法与settings混用)',
+            'en-US': 'Chart Configuration item (cannot be used together with settings)'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'settings',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '配置项',
+            'en-US': 'Chart Configuration items'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'color-mode',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义颜色模式',
+            'en-US': 'Custom color mode'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'mark-line',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '图表标线',
+            'en-US': 'Chart markings'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'mark-area',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '图表标志区域',
+            'en-US': 'Chart symbol area'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'mark-point',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '图表标点',
+            'en-US': 'Chart punctuation'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'loading',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '图表加载状态',
+            'en-US': 'Chart loading status'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'data-empty',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '暂无数据状态',
+            'en-US': 'No data status available at the moment'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'before-config',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '对数据提前进行额外的处理,在数据转化为配置项开始前触发',
+            'en-US':
+              'Perform additional processing on the data in advance, triggering before the data is converted into configuration items'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'after-config',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '对生成好的echarts配置进行额外的处理,在数据转化为配置项结束后触发',
+            'en-US':
+              'Perform additional processing on the generated echarts configuration and trigger it after the data is converted into configuration items'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'after-set-option',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '生成图之后获取 echarts 实例',
+            'en-US': 'After generating the graph, obtain the echarts instance'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'after-set-option-once',
+          type: 'object',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '生成图之后获取 echarts 实例(只执行一次)',
+            'en-US': 'After generating the graph, obtain the echarts instance (executed only once)'
+          },
+          mode: ['pc'],
+          pcDemo: ''
         }
       ],
-      events: [],
+
+      events: [
+        {
+          name: 'ready',
+          type: '()=>void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '图表渲染完成后触发，每次渲染都会触发一次',
+            'en-US': 'Triggered after the completion of chart rendering, it will be triggered once every rendering'
+          },
+          mode: ['pc', 'mobile', 'mobile-first'],
+          pcDemo: '',
+          mobileDemo: '',
+          mfDemo: ''
+        },
+        {
+          name: 'ready-once',
+          type: '()=>void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '图表渲染完成后触发，只会在首次渲染完成后触发',
+            'en-US':
+              'Triggered after the completion of chart rendering, it will only be triggered after the first rendering is completed'
+          },
+          mode: ['pc', 'mobile', 'mobile-first'],
+          pcDemo: '',
+          mobileDemo: '',
+          mfDemo: ''
+        }
+      ],
       methods: [],
-      slots: []
+      slots: [
+        {
+          name: 'default',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '组件默认插槽',
+            'en-US': 'Component Default Slot'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: '',
+          mfDemo: ''
+        }
+      ]
     }
   ],
   types: [
     {
-      name: 'IChartProps',
+      name: 'Options',
       type: 'interface',
       code: `
-interface IChartProps {
-  afterConfig: () => void 
-  afterSetOption: () => void 
-  afterSetOptionOnce: () => void 
-  animation: object
-  axisPointer: object | array
-  backgroundColor: object | string
-  beforeConfig: () => void 
-  brush: object | array
-  cancelResizeCheck: boolean
-  changeDelay: number // 默认值 0 
-  colorMode: string
-  colors: array 
-  data: object | array
-  dataEmpty: boolean
-  dataZoom: object | array
-  events: object 
-  extend: object
-  geo: object | array
-  graphic: object | array
-  grid: object | array
-  height: string // 默认值 '400px' 
-  initOptions: object
-  judgeWidth: boolean // 默认值 false 
-  legend: object | array
-  legendPosition: string 
-  legendVisible: boolean // 默认值 true 
-  loading: boolean
-  markArea: object 
-  markLine: object 
-  markPoint: object 
-  notSetUnchange: array
-  radar: object
-  resizeDelay: number // 默认值 200 
-  resizeable: boolean // 默认值 true 
-  series: object | array
-  setOptionOpts: boolean | object // 默认值 true 
-  settings: object
-  textStyle: object | array
-  theme: object
-  themeName: object | string
-  timeline: object | array
-  title: object | array
-  toolbox: object | array
-  tooltip: object
-  tooltipFormatter: () => void 
-  tooltipVisible: boolean // 默认值 true 
-  visualMap: object | array 
-  width: string // 默认值 'auto' 
-  widthChangeDelay: number // 默认值 300 
-  xAxis: object | array
-  yAxis: object | array
-}`
-    },
-    {
-      name: 'IChartSettings',
-      type: 'interface',
-      code: `
-interface IChartSettings {
-  type: string // 图表类型，可选值' bar '，' histogram '，' line ',' pie '，' ring '，' funnel '，' radar '，' waterfall '
-}`
+          interface Options {
+              // 见具体图表组件
+          }`
     }
   ]
 }

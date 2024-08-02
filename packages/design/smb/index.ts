@@ -10,6 +10,8 @@ import Guide from './src/guide'
 import Pager from './src/pager'
 import Select from './src/select'
 import TreeNode from './src/tree-node'
+import TimeSpinner from './src/time-spinner'
+import Time from './src/time-spinner'
 import UploadList from './src/upload-list'
 import BreadcrumbItem from './src/breadcrumb-item'
 import { version } from './package.json'
@@ -30,6 +32,8 @@ export default {
     Pager,
     Select,
     TreeNode,
+    TimeSpinner,
+    Time,
     BreadcrumbItem,
     UploadList
   }

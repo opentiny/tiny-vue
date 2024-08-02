@@ -150,7 +150,6 @@
                           class="api-table"
                           :data="tableData[oneGroup.name][key]"
                           :expand-config="apiExpandConf"
-                          :row-class-name="setCurrRowClass"
                           row-id="name"
                         >
                           <tiny-grid-column class-name="api-table-expand-col" type="expand" width="32">
@@ -242,6 +241,7 @@
 <script lang="jsx">
 import { defineComponent, reactive, computed, toRefs, watch, onMounted, ref, onUnmounted, nextTick } from 'vue'
 import { marked } from 'marked'
+import hljs from 'highlight.js'
 import { Anchor, ButtonGroup, Grid, GridColumn, Tabs, TabItem, Tooltip } from '@opentiny/vue'
 import { iconOuterLink } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
@@ -497,7 +497,13 @@ export default defineComponent({
       Promise.all(promiseArr)
         .then(([mdData, jsData, apiData, faqData]) => {
           // 1、加载顶部md
-          state.cmpTopMd = marked(mdData)
+          state.cmpTopMd = marked(mdData, {
+            gfm: true,
+            highlight(code, language) {
+              const validLanguage = hljs.getLanguage(language) ? language : 'plaintext'
+              return hljs.highlight(code, { language: validLanguage }).value
+            }
+          })
 
           // 2、加载faq.md
           if (faqData) {
@@ -710,7 +716,7 @@ export default defineComponent({
 .docs-header {
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: var(--docs-header-zindex);
   padding: var(--ti-common-space-4x) var(--ti-common-space-10x);
   background-color: #fff;
   box-shadow: var(--ti-common-space-3x) 0 var(--ti-common-space-5x) var(--ti-common-space-6) rgba(0, 0, 0, 0.06);
@@ -723,7 +729,7 @@ export default defineComponent({
   }
 
   .markdown-top-body {
-    z-index: 99;
+    z-index: var(--docs-markdown-top-body-zindex);
     font-size: var(--ti-common-font-size-1);
     transition: all ease-in-out 0.3s;
 
@@ -771,7 +777,7 @@ export default defineComponent({
     :deep(> .tiny-tabs__header) {
       position: sticky;
       top: 90px;
-      z-index: 100;
+      z-index: var(--docs-tabs-header-zindex);
       background-color: #fff;
 
       &::after {
@@ -819,6 +825,7 @@ export default defineComponent({
       fill: #5e7ce0;
     }
   }
+
   &-name:has(+ .version-tip) {
     margin-right: 4px;
   }

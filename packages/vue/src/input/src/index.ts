@@ -153,6 +153,10 @@ export const inputProps = {
   },
   width: {
     type: [String, Number] as PropType<string | number | null>
+  },
+  showTooltip: {
+    type: Boolean,
+    default: true
   }
 }
 

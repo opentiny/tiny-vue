@@ -14,6 +14,7 @@
     <ul class="tiny-pager__pages" @click="onPagerClick">
       <li :class="{ 'is-active': currentPage === 1 }" v-if="pageCount > 0" v-text="'1'"></li>
       <li
+        ref="prev"
         class="dot quickprev"
         v-if="state.showPrevMore"
         @mouseenter="onMouseenter('left')"
@@ -29,6 +30,7 @@
         v-text="`${pager}`"
       ></li>
       <li
+        ref="next"
         class="dot quicknext"
         v-if="state.showNextMore"
         @mouseenter="onMouseenter('right')"

@@ -3,10 +3,18 @@ html {
   font-size: 16px;
 }
 
+:root {
+  --docs-markdown-top-body-zindex: 99;
+  --docs-tabs-header-zindex: 100;
+  --docs-float-settings-zindex: 999;
+  --docs-header-zindex: 200;
+  --docs-layout-sider-zindex: 201;
+}
+
 .tinyui-design-header {
   z-index: 1000 !important;
 }
 
-.tiny-grid td,.tiny-grid th { 
+.tiny-grid td,.tiny-grid th {
   vertical-align: middle;
 }

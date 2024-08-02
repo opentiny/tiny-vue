@@ -227,7 +227,7 @@ export default {
         {
           name: 'visible',
           type: 'boolean',
-          defaultValue: 'true',
+          defaultValue: 'false',
           desc: {
             'zh-CN': '控制弹出框显示与关闭',
             'en-US': 'Control pop-up display and closing'

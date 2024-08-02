@@ -111,7 +111,8 @@ export default defineConfig((config) => {
       __VUE_I18N_LEGACY_API__: true,
       __INTLIFY_PROD_DEVTOOLS__: false,
       __INTLIFY_JIT_COMPILATION__: false,
-      __INTLIFY_DROP_MESSAGE_COMPILER__: false
+      __INTLIFY_DROP_MESSAGE_COMPILER__: false,
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
     }
   }
 

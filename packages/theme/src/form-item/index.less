@@ -139,6 +139,25 @@
     line-height: var(--ti-form-item-label-line-height);
     .clearfix();
 
+    .@{input-prefix-cls},
+    .@{rate-prefix-cls},
+    .@{select-prefix-cls},
+    .@{css-prefix}checkbox,
+    .@{css-prefix}radio,
+    .@{css-prefix}link,
+    .@{css-prefix}numeric {
+      vertical-align: bottom;
+
+      &.is-display-only {
+        vertical-align: middle;
+      }
+    }
+
+    // numeric只读态使用absolute实现，需要一个margin-top修复水平对齐问题
+    .@{css-prefix}numeric.is-display-only {
+      margin-top: var(--ti-form-item-numeric-display-margin-top);
+    }
+
     .@{input-prefix-cls} {
       display: inline-block;
       &.@{range-editor-prefix-cls}.@{input-prefix-cls}__inner {
@@ -151,7 +170,6 @@
     }
 
     .@{rate-prefix-cls} {
-      vertical-align: middle;
       &__text {
         line-height: 1.5;
       }
@@ -167,11 +185,19 @@
 
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
-      vertical-align: middle;
-      line-height: 30px;
+      line-height: var(--ti-form-item-label-line-height);
+    }
+    .@{css-prefix}slider-container {
+      height: var(--ti-form-item-label-line-height);
     }
     .@{css-prefix}checkbox-group {
       min-height: var(--ti-form-item-label-line-height);
+
+      &:has(> label.is-group-display-only) {
+        min-height: unset;
+        vertical-align: baseline;
+        display: inline-block;
+      }
     }
 
     .@{numeric-prefix-cls},
@@ -194,7 +220,7 @@
 
     .validate-icon {
       fill: var(--ti-form-item-error-text-color);
-      margin-right: 8px;
+      margin-right: var(--ti-form-item-error-icon-margin-right);
     }
     .@{form-item-prefix-cls}__validate-message {
       vertical-align: middle;

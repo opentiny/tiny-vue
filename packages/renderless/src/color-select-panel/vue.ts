@@ -60,7 +60,6 @@ export const renderless = (props, context, { emit }) => {
   )
 
   context.watch(modelValue, (newValue) => {
-    pre.value = res.value
     hex.value = newValue
     res.value = newValue
     color.value.reset(newValue)
@@ -70,7 +69,7 @@ export const renderless = (props, context, { emit }) => {
     isShow.value = visible
   })
   const { onHueUpdate, onSVUpdate } = onHSVUpdate(color, res, hex, emit)
-  const { update } = onAlphaUpdate(color, res)
+  const { update } = onAlphaUpdate(color, res, emit)
   const api = {
     state,
     changeVisible,

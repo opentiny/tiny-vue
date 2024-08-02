@@ -69,7 +69,11 @@ export const dropdownProps = {
     type: Boolean,
     default: false
   },
-  suffixIcon: Object
+  suffixIcon: Object,
+  lazyShowPopper: {
+    type: Boolean,
+    default: false
+  }
 }
 export default defineComponent({
   name: $prefix + 'Dropdown',

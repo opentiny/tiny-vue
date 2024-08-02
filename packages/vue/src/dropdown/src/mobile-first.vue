@@ -65,6 +65,10 @@ export default defineComponent({
     showSelfIcon: {
       type: Boolean,
       default: false
+    },
+    lazyShowPopper: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [

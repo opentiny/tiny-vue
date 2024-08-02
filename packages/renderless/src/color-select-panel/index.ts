@@ -26,6 +26,7 @@ export const onConfirm = (
     }
     color.value.setPrevH(color.value.get('h'))
     emit('confirm', res.value)
+    emit('update:modelValue', res.value)
   }
 }
 
@@ -48,10 +49,12 @@ export const onCancel = (
       })
       emit('cancel', color)
     }
+    emit('update:modelValue', hex.value)
   }
 }
-export const onColorUpdate = (color: IColorSelectPanelRef<Color>, res: IColorSelectPanelRef<string>) => {
+export const onColorUpdate = (color: IColorSelectPanelRef<Color>, res: IColorSelectPanelRef<string>, emit) => {
   res.value = color.value.getHex()
+  emit('update:modelValue', res.value)
 }
 
 export const onHSVUpdate = (
@@ -63,23 +66,23 @@ export const onHSVUpdate = (
   return {
     onHueUpdate: (hue: number) => {
       color.value.set({ h: hue })
-      onColorUpdate(color, res)
+      onColorUpdate(color, res, emit)
       hex.value = color.value.getHex()
       emit('hue-update', hue)
     },
     onSVUpdate: ({ s, v }: { s: number; v: number }) => {
       hex.value = color.value.getHex()
-      onColorUpdate(color, res)
+      onColorUpdate(color, res, emit)
       emit('sv-update', { s, v })
     }
   }
 }
 
-export const onAlphaUpdate = (color: IColorSelectPanelRef<Color>, res: IColorSelectPanelRef<string>) => {
+export const onAlphaUpdate = (color: IColorSelectPanelRef<Color>, res: IColorSelectPanelRef<string>, emit) => {
   return {
     update: (alpha: number) => {
       color.value.set({ a: alpha })
-      onColorUpdate(color, res)
+      onColorUpdate(color, res, emit)
     }
   }
 }
