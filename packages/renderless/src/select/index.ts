@@ -905,10 +905,6 @@ export const toggleMenu =
     const nodeName = event.target && event.target.nodeName
     const toggleVisible = props.ignoreEnter ? event.keyCode !== enterCode && nodeName === 'INPUT' : true
 
-    if (!props.displayOnly) {
-      event.stopPropagation()
-    }
-
     if (!state.selectDisabled) {
       toggleVisible && !state.softFocus && (state.visible = !state.visible)
       state.softFocus = false
