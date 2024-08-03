@@ -26,12 +26,12 @@ export default defineComponent({
       },
       require: true
     },
-    viewHeight: {
+    viewSize: {
       // 可视区域高度
       type: Number,
       default: 600
     },
-    itemHeight: {
+    itemSize: {
       // 每条数据高度
       type: Number,
       default: 30
@@ -41,8 +41,13 @@ export default defineComponent({
       type: String,
       default: 'id',
       require: true
+    },
+    direction: {
+      // 滚动方向
+      type: String,
+      default: 'vertical', // 可选值：'vertical' | 'horizontal'
+      validator: (value) => ['vertical', 'horizontal'].includes(value)
     }
-    // modelValue: String
   },
   // 初始化组件，传入props和context以及模板内容，props传给pc.vue
   setup(props, context) {

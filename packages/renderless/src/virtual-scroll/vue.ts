@@ -26,7 +26,7 @@ export const renderless = (props, { reactive, nextTick, watch, computed, onMount
     data: [...props.data],
     visibleData: [],
     translate: 0,
-    totalHeight: computed(() => props.itemHeight * state.data.length)
+    totalSize: computed(() => props.itemSize * state.data.length)
   })
 
   const virtualScroll = ref(null) // 初始为 null，实际 DOM 元素在挂载时会赋值
@@ -61,8 +61,8 @@ export const renderless = (props, { reactive, nextTick, watch, computed, onMount
     { immediate: true }
   )
   watch(
-    () => props.viewHeight,
-    (newViewHeight) => {
+    () => props.viewSize,
+    (newViewSize) => {
       // api.handleScroll() // 视图高度变化时重新计算可视数据和滚动位置
     },
     { immediate: true }

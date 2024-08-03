@@ -20,18 +20,22 @@
   // 外层容器：virtual-scroll
   position: relative;
   overflow: auto;
+  background-color: aqua;
   // 确保虚拟滚动内容
   & > .virtual-scroll-context {
     position: absolute;
     top: 0;
-    width: 100%;
+    left: 0;
+    display: flex;
+    // width: 100%;
   }
 
   // 实际渲染区域
   & > .virtual-scroll-wrapper {
     position: absolute;
     top: 0;
-    width: 100%;
+    left: 0;
+    display: flex;
   }
 
   // 每项内容
