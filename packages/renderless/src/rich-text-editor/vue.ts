@@ -27,7 +27,7 @@ export const renderless = (
   props,
   { computed, onMounted, onBeforeUnmount, reactive },
   { vm, emit },
-  { TinyTiptap, Editor, VueRenderer, VueNodeViewRenderer, viewMap, slashView }
+  { TinyTiptap, Editor, VueRenderer, VueNodeViewRenderer, viewMap, slashMenuView, floatMenuView }
 ) => {
   let defaultToolBar = [
     'bold',
@@ -126,25 +126,34 @@ export const renderless = (
     Active
   }
 
+  /**
+   * 未传入属性或传入 null、false
+   */
+  const isUnuse = (value) => value === undefined || value === null || value === false
+
   onMounted(() => {
+    /**
+     * 如果用户没有传入或传入 false 则不开启该功能
+     * 如果传入 true 则使用默认的视图 如传入其他真值 则自行处理
+     */
+    const finalSlashMenuView = props.slashMenuView === true ? slashMenuView : props.slashMenuView
+    const finalFloatMenuView = props.floatMenuView === true ? floatMenuView : props.floatMenuView
+    const finalViewMap = props.viewMap === true ? viewMap : props.viewMap
+
     const menuMap = {
       renderer: VueRenderer,
-      slashView: props.slashView
+      slashMenuView: isUnuse(props.slashMenuView) ? null : finalSlashMenuView,
+      floatMenuView: isUnuse(props.floatMenuView) ? null : finalFloatMenuView
     }
 
-    const viewMap = props.viewMap ?? new Map()
-
-    const viewOptions = {
-      viewMap,
+    const config = {
+      viewMap: isUnuse(props.viewMap) ? new Map() : finalViewMap,
       menuMap,
-      nodeViewRender: VueNodeViewRenderer
-    }
-
-    const otherOptions = {
+      nodeViewRender: VueNodeViewRenderer,
       placeholder: props.placeholder
     }
 
-    const editorInstance = new TinyTiptap(Editor, options, viewOptions, otherOptions)
+    const editorInstance = new TinyTiptap(Editor, options, config)
     // editor 只需要浅层
     state.editor = shallowRef(editorInstance.editor)
   })

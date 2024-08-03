@@ -21,6 +21,17 @@ const TaskList = TiptapTaskList.extend<ExtensionOptions & TaskListOptions>({
             }
           }
         ]
+      },
+      getFloatMenus() {
+        return [
+          {
+            priority: 30,
+            icon: iconRichTextTaskList(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => editor.chain().focus().toggleTaskList().run()
+            }
+          }
+        ]
       }
     }
   },
@@ -30,3 +41,4 @@ const TaskList = TiptapTaskList.extend<ExtensionOptions & TaskListOptions>({
 })
 
 export default TaskList
+export { TaskItem, TaskListOptions }

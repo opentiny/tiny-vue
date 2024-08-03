@@ -18,6 +18,18 @@ export default {
       codeFiles: ['basic-usage.vue']
     },
     {
+      demoId: 'slash-menu-usage',
+      name: {
+        'zh-CN': '斜杠菜单用法',
+        'en-US': 'Slash Menu Usage'
+      },
+      desc: {
+        'zh-CN': '详细用法参考如下示例',
+        'en-US': 'For details, see the following example.'
+      },
+      codeFiles: ['slash-menu-usage.vue']
+    },
+    {
       demoId: 'custom-bar-usage',
       name: {
         'zh-CN': '自定义工具栏用法',

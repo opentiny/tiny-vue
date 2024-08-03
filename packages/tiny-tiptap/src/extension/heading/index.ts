@@ -16,65 +16,55 @@ const Heading = TiptapHeading.extend<ExtensionOptions & HeadingOptions>({
     return {
       ...this.parent?.(),
       getSlashMenus() {
-        return [
+        const priority = 10
+        const getCommand =
+          (level) =>
+          ({ editor, range }: { editor: Editor; range: Range }) => {
+            editor.chain().focus().deleteRange(range).setNode('heading', { level }).run()
+          }
+        const menus = [
           {
-            priority: 10,
             icon: iconRichTextH1(),
             title: '一级标题',
-            keywords: ['heading', 'biaoti', 'h1', '1', 'header1', 'yiji'],
-            command: ({ editor, range }: { editor: Editor; range: Range }) => {
-              editor.chain().focus().deleteRange(range).setNode('heading', { level: 1 }).run()
-            }
+            keywords: ['heading', 'biaoti', 'h1', '1', 'header1', 'yiji']
           },
           {
-            priority: 10,
             icon: iconRichTextH2(),
             title: '二级标题',
-            keywords: ['heading', 'biaoti', 'h2', '2', 'header2', 'erji'],
-            command: ({ editor, range }: { editor: Editor; range: Range }) => {
-              editor.chain().focus().deleteRange(range).setNode('heading', { level: 2 }).run()
-            }
+            keywords: ['heading', 'biaoti', 'h2', '2', 'header2', 'erji']
           },
           {
-            priority: 10,
             icon: iconRichTextH3(),
             title: '三级标题',
-            keywords: ['heading', 'biaoti', 'h3', '3', 'header3', 'sanji'],
-            command: ({ editor, range }: { editor: Editor; range: Range }) => {
-              editor.chain().focus().deleteRange(range).setNode('heading', { level: 3 }).run()
-            }
+            keywords: ['heading', 'biaoti', 'h3', '3', 'header3', 'sanji']
           },
           {
-            priority: 10,
             icon: iconRichTextH4(),
             title: '四级标题',
-            keywords: ['heading', 'biaoti', 'h4', '4', 'header4', 'siji'],
-            command: ({ editor, range }: { editor: Editor; range: Range }) => {
-              editor.chain().focus().deleteRange(range).setNode('heading', { level: 4 }).run()
-            }
+            keywords: ['heading', 'biaoti', 'h4', '4', 'header4', 'siji']
           },
           {
-            priority: 10,
             icon: iconRichTextH5(),
             title: '五级标题',
-            keywords: ['heading', 'biaoti', 'h5', '5', 'header5', 'wuji'],
-            command: ({ editor, range }: { editor: Editor; range: Range }) => {
-              editor.chain().focus().deleteRange(range).setNode('heading', { level: 5 }).run()
-            }
+            keywords: ['heading', 'biaoti', 'h5', '5', 'header5', 'wuji']
           },
           {
-            priority: 10,
             icon: iconRichTextH6(),
             title: '六级标题',
-            keywords: ['heading', 'biaoti', 'h6', '6', 'header6', 'liuji'],
-            command: ({ editor, range }: { editor: Editor; range: Range }) => {
-              editor.chain().focus().deleteRange(range).setNode('heading', { level: 6 }).run()
-            }
+            keywords: ['heading', 'biaoti', 'h6', '6', 'header6', 'liuji']
           }
         ]
+        return menus.map((menu, index) => ({
+          priority,
+          icon: menu.icon,
+          title: menu.title,
+          keywords: menu.keywords,
+          command: getCommand(index + 1)
+        }))
       }
     }
   }
 })
 
 export default Heading
+export { Heading, HeadingOptions }

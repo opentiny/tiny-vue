@@ -23,6 +23,7 @@ export default defineComponent({
   },
   render() {
     const { selectedIndex, items, handleSelectItem } = this as any
+
     return (
       <div class="tiny-slash-menu__view" ref={(el) => (this.slashMenuRef = el)}>
         {items?.length ? (
@@ -33,6 +34,7 @@ export default defineComponent({
               id={`slash-menu-${index}`}
               onClick={() => handleSelectItem(index)}>
               <span>{item.title}</span>
+              {item.icon && <item.icon class="tiny-slash-menu__icon"></item.icon>}
             </div>
           ))
         ) : (

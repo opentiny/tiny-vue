@@ -11,3 +11,4 @@ const Supscript = TiptapSupscript.extend<ExtensionOptions & SuperscriptExtension
 })
 
 export default Supscript
+export { Supscript, SuperscriptExtensionOptions }

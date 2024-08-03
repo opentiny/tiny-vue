@@ -66,3 +66,4 @@ const Paragraph = TiptapParagraph.extend<ExtensionOptions & ParagraphOptions & C
 })
 
 export default Paragraph
+export { Paragraph, ParagraphOptions }

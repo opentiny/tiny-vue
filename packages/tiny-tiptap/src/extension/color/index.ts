@@ -15,3 +15,4 @@ const Color = TiptapColor.extend<ExtensionOptions & ColorOptions>({
 })
 
 export default Color
+export { Color, ColorOptions }

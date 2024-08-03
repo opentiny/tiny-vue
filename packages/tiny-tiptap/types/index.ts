@@ -1,10 +1,9 @@
 import type { Editor, Range } from '@tiptap/core'
-import type { Component } from 'vue'
 
 export interface CommonMenuItem {
   priority: number
   title: string
-  icon?: Component | string
+  icon?: HTMLOrSVGElement | string
 }
 
 export interface BubbleMenuItem extends CommonMenuItem {
@@ -13,10 +12,12 @@ export interface BubbleMenuItem extends CommonMenuItem {
   action?: ({ editor }: { editor: Editor }) => void
 }
 
-export interface FloatMenuItem extends CommonMenuItem {}
+export interface FloatMenuItem extends Omit<CommonMenuItem, 'title'> {
+  action: ({ editor }: { editor: Editor }) => Function
+}
 
 export interface SlashMenuItem extends CommonMenuItem {
-  icon: Component | string
+  icon: HTMLElement | string
   keywords: string[]
   command: ({ editor, range }: { editor: Editor; range: Range }) => void
 }

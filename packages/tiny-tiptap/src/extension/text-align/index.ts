@@ -11,3 +11,4 @@ const TextAlign = TiptapTextAlign.extend<ExtensionOptions & TextAlignOptions>({
 })
 
 export default TextAlign
+export { TextAlign, TextAlignOptions }

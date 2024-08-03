@@ -11,3 +11,4 @@ const Strike = TiptapStrike.extend<ExtensionOptions & StrikeOptions>({
 })
 
 export default Strike
+export { Strike, StrikeOptions }

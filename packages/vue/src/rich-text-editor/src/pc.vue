@@ -302,9 +302,12 @@ import {
   iconRichTextUnderline,
   iconRichTextUndo
 } from '@opentiny/vue-icon'
-import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } from '@tiptap/vue'
-
+import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } from '@opentiny/tiny-tiptap/src/vue-3'
 import TinyTiptap from '@opentiny/tiny-tiptap'
+
+import { extensionViewMap } from './extensions'
+import slashMenuView from './components/slash/slash-menu'
+import floatMenuView from './components/float/float-menu'
 
 import { $props, setup, defineComponent, $prefix, directive } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
@@ -327,6 +330,18 @@ export const richTextEditorProps = {
   options: {
     type: Object,
     default: () => ({})
+  },
+  viewMap: {
+    type: [Map, Boolean],
+    default: true
+  },
+  slashMenuView: {
+    type: [Object, Boolean],
+    default: false
+  },
+  floatMenuView: {
+    type: [Object, Boolean],
+    default: false
   }
 }
 
@@ -407,7 +422,10 @@ export default defineComponent({
         TinyTiptap,
         Editor,
         VueRenderer,
-        VueNodeViewRenderer
+        VueNodeViewRenderer,
+        viewMap: extensionViewMap,
+        slashMenuView,
+        floatMenuView
       }
     })
   }

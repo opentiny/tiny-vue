@@ -11,3 +11,4 @@ const Underline = TiptapUnderline.extend<ExtensionOptions & UnderlineOptions>({
 })
 
 export default Underline
+export { Underline, UnderlineOptions }

@@ -21,6 +21,17 @@ const BulletList = TiptapBulletList.extend<ExtensionOptions & BulletListOptions>
             }
           }
         ]
+      },
+      getFloatMenus() {
+        return [
+          {
+            priority: 10,
+            icon: iconRichTextListUnordered(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => editor.chain().focus().toggleBulletList().run()
+            }
+          }
+        ]
       }
     }
   },
@@ -30,3 +41,4 @@ const BulletList = TiptapBulletList.extend<ExtensionOptions & BulletListOptions>
 })
 
 export default BulletList
+export { BulletList, BulletListOptions }

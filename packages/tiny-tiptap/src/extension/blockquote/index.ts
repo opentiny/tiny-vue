@@ -26,3 +26,4 @@ const Blockquote = TiptapBlockquote.extend<ExtensionOptions & BlockquoteOptions>
 })
 
 export default Blockquote
+export { Blockquote, BlockquoteOptions }
