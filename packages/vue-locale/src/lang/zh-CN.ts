@@ -669,6 +669,11 @@ export default {
       placeholder: '在此处插入文本...',
       maxLength: '文本长度超过限制，支持的最大长度是 '
     },
+    fluentEditor: {
+      undo: '撤销',
+      redo: '重做',
+      lineheight: '行高'
+    },
     steps: {
       done: '已完成',
       doing: '进行中',

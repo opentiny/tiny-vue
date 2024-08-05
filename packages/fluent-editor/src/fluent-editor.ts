@@ -53,6 +53,7 @@ const registerModules = function () {
             const accept = this.quill.options?.uploadOption?.imageAccept
             inputFile.call(this, 'image', accept)
           },
+          fullscreen: function() {}
         }
       },
       'better-table': {
