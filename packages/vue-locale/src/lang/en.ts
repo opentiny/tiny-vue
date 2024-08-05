@@ -670,6 +670,11 @@ export default {
       placeholder: 'Insert text here...',
       maxLength: 'Text Length exceeds the Limit, max Length config is '
     },
+    fluentEditor: {
+      undo: 'Undo',
+      redo: 'Redo',
+      lineheight: 'Line Height'
+    },
     steps: {
       done: 'Completed',
       doing: 'Ongoing',
