@@ -1,5 +1,5 @@
-import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue'
 import { hooks, $prefix, defineComponent } from '@opentiny/vue-common'
+import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@opentiny/tiny-tiptap/vue'
 
 export default defineComponent({
   name: $prefix + 'CodeHighlight',

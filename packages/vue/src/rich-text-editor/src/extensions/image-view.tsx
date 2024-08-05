@@ -1,5 +1,5 @@
 import { hooks, $prefix, defineComponent } from '@opentiny/vue-common'
-import { NodeViewWrapper, nodeViewProps } from '@tiptap/vue'
+import { NodeViewWrapper, nodeViewProps } from '@opentiny/tiny-tiptap/vue'
 
 export default defineComponent({
   name: $prefix + 'ExtensionImageView',

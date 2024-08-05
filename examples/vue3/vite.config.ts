@@ -78,6 +78,7 @@ export default defineConfig((config) => {
         '@': pathFromWorkspaceRoot('examples/docs/newsrc'),
         '@opentiny/vue-renderless/types': pathFromWorkspaceRoot('packages/renderless/types'),
         '@tiptap/vue': '@tiptap/vue-3',
+        '@opentiny/tiny-tiptap/vue': '@opentiny/tiny-tiptap/src/vue-3',
         ...getAlias(3, env.VITE_TINY_THEME)
       }
     },
