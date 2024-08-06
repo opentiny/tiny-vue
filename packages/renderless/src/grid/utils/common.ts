@@ -168,7 +168,7 @@ export const getListeners = ($attrs, $listeners) => {
   const regEventPrefix = /^on[A-Z]/
   const listeners = {}
 
-  if ($listeners) {
+  if ($listeners && !(Object.keys($listeners).length === 0 && $listeners.constructor === Object)) {
     return $listeners
   }
 
