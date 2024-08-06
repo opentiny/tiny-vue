@@ -18,35 +18,15 @@ function isElementInViewport(el: HTMLElement, viewport: HTMLElement) {
 export default defineComponent({
   name: $prefix + 'SlashMenu',
   props: {
-    items: Array,
+    items: {
+      type: Array,
+      default: () => []
+    },
     command: Function
   },
-  render() {
-    const { selectedIndex, items, handleSelectItem } = this as any
-
-    return (
-      <div class="tiny-slash-menu__view" ref={(el) => (this.slashMenuRef = el)}>
-        {items?.length ? (
-          items.map((item, index) => (
-            <div
-              class={['tiny-slash-menu__item', { 'is-active': selectedIndex === index }]}
-              key={index}
-              id={`slash-menu-${index}`}
-              onClick={() => handleSelectItem(index)}>
-              <span>{item.title}</span>
-              {item.icon && <item.icon class="tiny-slash-menu__icon"></item.icon>}
-            </div>
-          ))
-        ) : (
-          <div>
-            <span>暂无选项</span>
-          </div>
-        )}
-      </div>
-    )
-  },
   methods: {},
-  setup(props) {
+  setup(props, { expose }) {
+    const { items } = props
     const selectedIndex = hooks.ref(0)
     const menuLength = hooks.ref(0)
     const slashMenuRef = hooks.ref()
@@ -122,15 +102,33 @@ export default defineComponent({
       const item = props.items[index]
 
       if (item) {
-        props?.command(item)
+        props.command?.(item)
       }
     }
 
-    return {
-      selectedIndex,
-      slashMenuRef,
-      handleSelectItem,
+    expose({
       onKeyDown
-    }
+    })
+
+    return () => (
+      <div class="tiny-slash-menu__view" ref={slashMenuRef}>
+        {items?.length ? (
+          items.map((item, index) => (
+            <div
+              class={['tiny-slash-menu__item', { 'is-active': selectedIndex.value === index }]}
+              key={index}
+              id={`slash-menu-${index}`}
+              onClick={() => handleSelectItem(index)}>
+              <span>{item.title}</span>
+              {item.icon && <item.icon class="tiny-slash-menu__icon"></item.icon>}
+            </div>
+          ))
+        ) : (
+          <div>
+            <span>暂无选项</span>
+          </div>
+        )}
+      </div>
+    )
   }
 })

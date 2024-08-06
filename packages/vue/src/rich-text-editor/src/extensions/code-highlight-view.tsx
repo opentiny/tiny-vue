@@ -2,32 +2,11 @@ import { hooks, $prefix, defineComponent } from '@opentiny/vue-common'
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@opentiny/tiny-tiptap/vue'
 
 export default defineComponent({
-  name: $prefix + 'CodeHighlight',
+  name: $prefix + 'CodeHighlightView',
   props: nodeViewProps,
   components: {
     NodeViewWrapper,
     NodeViewContent
-  },
-  render() {
-    const { languages, selectedLanguage, handleChangeLanguage } = this
-    return (
-      <NodeViewWrapper class="code-block">
-        <select contenteditable="false" value={selectedLanguage} onChange={(e) => handleChangeLanguage(e)}>
-          <option value="null">auto</option>
-          <option disabled>-</option>
-          {languages.map((item, index) => (
-            <option key={index} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
-        <pre>
-          <code>
-            <NodeViewContent />
-          </code>
-        </pre>
-      </NodeViewWrapper>
-    )
   },
   setup(props) {
     const languages = hooks.computed(() => {
@@ -44,10 +23,23 @@ export default defineComponent({
       selectedLanguage.value = (e.target as HTMLSelectElement).value
     }
 
-    return {
-      languages,
-      selectedLanguage,
-      handleChangeLanguage
-    }
+    return () => (
+      <NodeViewWrapper class="code-block">
+        <select contenteditable="false" value={selectedLanguage.value} onChange={(e) => handleChangeLanguage(e)}>
+          <option value="null">auto</option>
+          <option disabled>-</option>
+          {languages.value.map((item, index) => (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+        <pre>
+          <code>
+            <NodeViewContent />
+          </code>
+        </pre>
+      </NodeViewWrapper>
+    )
   }
 })

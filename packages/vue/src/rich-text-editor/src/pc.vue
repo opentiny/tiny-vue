@@ -306,8 +306,8 @@ import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } f
 import TinyTiptap from '@opentiny/tiny-tiptap'
 
 import { extensionViewMap } from './extensions'
-import slashMenuView from './components/slash/slash-menu'
-import floatMenuView from './components/float/float-menu'
+import slashMenuView from './components/slash-menu'
+import floatMenuView from './components/float-menu'
 
 import { $props, setup, defineComponent, $prefix, directive } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/rich-text-editor/index.less'

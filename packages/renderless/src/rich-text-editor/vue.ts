@@ -129,25 +129,33 @@ export const renderless = (
   /**
    * 未传入属性或传入 null、false
    */
-  const isUnuse = (value) => value === undefined || value === null || value === false
+  const isFalsy = (value) => value === undefined || value === null || value === false
 
   onMounted(() => {
     /**
      * 如果用户没有传入或传入 false 则不开启该功能
      * 如果传入 true 则使用默认的视图 如传入其他真值 则自行处理
      */
-    const finalSlashMenuView = props.slashMenuView === true ? slashMenuView : props.slashMenuView
-    const finalFloatMenuView = props.floatMenuView === true ? floatMenuView : props.floatMenuView
-    const finalViewMap = props.viewMap === true ? viewMap : props.viewMap
+    const finalSlashMenuView = isFalsy(props.slashMenuView)
+      ? null
+      : props.slashMenuView === true
+        ? slashMenuView
+        : props.slashMenuView
+    const finalFloatMenuView = isFalsy(props.floatMenuView)
+      ? null
+      : props.floatMenuView === true
+        ? floatMenuView
+        : props.floatMenuView
+    const finalViewMap = isFalsy(props.viewMap) ? new Map() : props.viewMap === true ? viewMap : props.viewMap
 
     const menuMap = {
       renderer: VueRenderer,
-      slashMenuView: isUnuse(props.slashMenuView) ? null : finalSlashMenuView,
-      floatMenuView: isUnuse(props.floatMenuView) ? null : finalFloatMenuView
+      slashMenuView: finalSlashMenuView,
+      floatMenuView: finalFloatMenuView
     }
 
     const config = {
-      viewMap: isUnuse(props.viewMap) ? new Map() : finalViewMap,
+      viewMap: finalViewMap,
       menuMap,
       nodeViewRender: VueNodeViewRenderer,
       placeholder: props.placeholder

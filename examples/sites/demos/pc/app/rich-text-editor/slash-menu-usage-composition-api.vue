@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-rich-text-editor v-model="value" viewMap slashMenuView></tiny-rich-text-editor>
+    <tiny-rich-text-editor v-model="value" slashMenuView></tiny-rich-text-editor>
     <div class="result">
       <hr />
       <pre>{{ value }}</pre>

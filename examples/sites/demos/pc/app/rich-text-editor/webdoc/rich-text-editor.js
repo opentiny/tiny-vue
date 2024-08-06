@@ -20,12 +20,12 @@ export default {
     {
       demoId: 'slash-menu-usage',
       name: {
-        'zh-CN': '斜杠菜单用法',
+        'zh-CN': '斜杠菜单',
         'en-US': 'Slash Menu Usage'
       },
       desc: {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US': 'For details, see the following example.'
+        'zh-CN': '<p>可通过 <code>slashMenuView</code> 属性设置斜杠菜单，可选值：<code>true</code> / <code>false</code> / <code>Component</code>。</p>\n',
+        'en-US': '<p>The slash menu can be set via the <code>slashMenuView</code> property, with available options: <code>true</code> / <code>false</code> / <code>Component</code>.</p>.\n'
       },
       codeFiles: ['slash-menu-usage.vue']
     },

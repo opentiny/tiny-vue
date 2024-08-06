@@ -1,14 +1,21 @@
 import { hooks, $prefix, defineComponent } from '@opentiny/vue-common'
 
 export default defineComponent({
-  name: $prefix + 'SlashMenu',
+  name: $prefix + 'FloatMenu',
   props: {
-    items: Array
+    items: {
+      type: Array,
+      default: () => []
+    }
   },
-  render() {
-    const { items, handleClick } = this as any
+  setup(props) {
+    const { items } = props
+    const handleClick = (item) => {
+      const { action } = item
+      action?.()
+    }
 
-    return (
+    return () => (
       <div class="tiny-float-menu__view">
         {items.map((item, index) => (
           <div class="tiny-float-menu__item" key={index}>
@@ -17,15 +24,5 @@ export default defineComponent({
         ))}
       </div>
     )
-  },
-  setup(props) {
-    const handleClick = (item) => {
-      const { action } = item
-      action?.()
-    }
-
-    return {
-      handleClick
-    }
   }
 })
