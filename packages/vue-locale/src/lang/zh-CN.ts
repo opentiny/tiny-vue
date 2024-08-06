@@ -521,6 +521,11 @@ export default {
       errorTypeTips: '上传文件类型不匹配',
       errorNumTips: '上传文件数量超出限制,已取消该操作',
       errorSizeTips: '上传文件大小超出限制',
+      confirmDeleteTips: '确定要删除该文件吗？',
+      delete: '删除',
+      waitUpload: '等待上传',
+      operation: '操作',
+      success: '上传成功',
       limitUploadFileNumber: '上传文件数限制为',
       limitUploadFileType: '上传文件类型限制为',
       limitUploadFileSize: '上传文件大小不超过'
