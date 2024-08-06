@@ -11,7 +11,7 @@
  -->
 <template>
   <div class="tiny-crop__wrapper">
-    <div class="tiny-croppreview" :style="{ opacity: state.cropvisible ? 1 : 0 }" v-if="preview">
+    <!-- <div class="tiny-croppreview" v-show="preview && state.cropvisible">
       <div class="croppreviewb">
         <div class="croppreview"></div>
       </div>
@@ -21,7 +21,7 @@
       <div class="croppreviews">
         <div class="croppreview"></div>
       </div>
-    </div>
+    </div> -->
     <div class="tiny-crop" v-show="state.cropvisible">
       <div class="tiny-crop__dialog">
         <input ref="cropInput" type="file" name="image" accept="image/*" @change="setImage" />
@@ -30,19 +30,22 @@
         </div>
         <div class="tiny-crop__dialog-content__handle">
           <div class="tiny-crop__dialog-content__handle__button">
-            <div v-for="(item, index) in state.renderIcon" class="iconButton" @click.prevent="item.method" :key="index">
-              <component :is="item.icon" class="iconButtonset"></component>
+            <div v-for="(item, index) in state.renderIcon" class="iconButton" :key="index">
+              <div v-if="!item.split" :title="item.title">
+                <component :is="item.icon" @click.prevent="item.method" class="iconButtonset"></component>
+              </div>
+              <div v-else class="iconButton__split"></div>
             </div>
           </div>
         </div>
-        <div class="tiny-crop__dialog-content">
+        <!-- <div class="tiny-crop__dialog-content">
           <div class="tiny-crop__dialog-content__crop">
             <img v-if="state.cropImg" :src="state.cropImg" alt="post-crop" />
             <h1 v-else>
               {{ t('ui.crop.croppedImage') }}
             </h1>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -65,9 +68,9 @@ import {
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 
-const $constants = {
-  CROP_IMAGE: 'ui.crop.cropImage'
-}
+// const $constants = {
+//   CROP_IMAGE: 'ui.crop.cropImage'
+// }
 
 export default defineComponent({
   name: $prefix + 'Crop',
@@ -83,10 +86,10 @@ export default defineComponent({
     IconCrop: iconCrop()
   },
   props: {
-    _constants: {
-      type: Object,
-      default: () => $constants
-    },
+    // _constants: {
+    //   type: Object,
+    //   default: () => $constants
+    // },
     alt: {
       type: String,
       default: 'image'
@@ -131,10 +134,13 @@ export default defineComponent({
       type: String,
       default: '1M'
     },
+
+    // 这里声明了属性， 但不支持用户修改。 因为vue-theme里把高宽写死了
     minContainerHeight: {
       type: Number,
       default: 300
     },
+    // 同上
     minContainerWidth: {
       type: Number,
       default: 652
@@ -159,14 +165,15 @@ export default defineComponent({
       type: [Object, Function],
       default: () => Cropper
     },
-    preview: {
-      type: Boolean,
-      default: false
-    },
-    previewShow: {
-      type: Boolean,
-      default: false
-    },
+    // preview: {
+    //   type: Boolean,
+    //   default: false
+    // },
+    // 这个属性多余，全局未使用
+    // previewShow: {
+    //   type: Boolean,
+    //   default: false
+    // },
     quality: {
       type: Number,
       default: 0.92,

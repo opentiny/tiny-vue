@@ -13,10 +13,11 @@
 import { on, off } from '../common/deps/dom'
 import { toFileSize } from '../common/string'
 
-export const computedCropImages =
-  ({ constants, t }) =>
-  () =>
-    t(constants.CROP_IMAGE)
+// 未使用到
+// export const computedCropImages =
+//   ({ constants, t }) =>
+//   () =>
+//     t(constants.CROP_IMAGE)
 
 export const watchImageSrc = (state) => (value) => (state.src = value)
 
@@ -35,34 +36,40 @@ export const watchVisible =
   }
 
 export const shortcutKeys = (api) => (e) => {
-  if (e.keyCode == 187 && e.ctrlKey) {
+  if (e.keyCode === 187 && e.ctrlKey) {
     e.preventDefault()
     api.zoom(0.1)
   }
 
-  if (e.keyCode == 189 && e.ctrlKey) {
+  if (e.keyCode === 189 && e.ctrlKey) {
     e.preventDefault()
     api.zoom(-0.1)
   }
 
-  if (e.keyCode == 38 && e.ctrlKey) {
+  if (e.keyCode === 38 && e.ctrlKey) {
     e.preventDefault()
     api.move(0, 1)
   }
 
-  if (e.keyCode == 40 && e.ctrlKey) {
+  if (e.keyCode === 40 && e.ctrlKey) {
     e.preventDefault()
     api.move(0, -1)
   }
 
-  if (e.keyCode == 37 && e.ctrlKey) {
+  if (e.keyCode === 37 && e.ctrlKey) {
     e.preventDefault()
     api.move(1, 0)
   }
 
-  if (e.keyCode == 39 && e.ctrlKey) {
+  if (e.keyCode === 39 && e.ctrlKey) {
     e.preventDefault()
     api.move(-1, 0)
+  }
+
+  // tiny 新增:esc 退出
+  if (e.keyCode === 27) {
+    e.preventDefault()
+    api.closeCrop()
   }
 }
 
@@ -72,7 +79,7 @@ export const closeCrop =
     emit('update:cropvisible', false)
     emit('update:visible', false)
 
-    state.cropImg = ''
+    // state.cropImg = ''
   }
 
 export const createCrop =
@@ -128,21 +135,16 @@ export const clear = (state) => () => state.cropper.clear()
 export const cropImage =
   ({ api, emit, props, state }) =>
   () => {
-    state.cropImg = api.getCroppedCanvas().toDataURL('image/jpeg', props.quality)
+    // state.cropImg = api.getCroppedCanvas().toDataURL('image/jpeg', props.quality)
 
+    const canvas = api.getCroppedCanvas()
     if (props.cropType.toLowerCase() === 'base64') {
-      emit('cropdata', api.getCroppedCanvas().toDataURL('image/jpeg', props.quality))
+      emit('cropdata', canvas.toDataURL('image/jpeg', props.quality))
     } else if (props.cropType.toLowerCase() === 'blob') {
-      let canvas = api.getCroppedCanvas()
-
-      canvas.toBlob(
-        (blobObj) => {
-          emit('cropdata', blobObj)
-        },
-        'image/jpeg',
-        props.quality
-      )
+      canvas.toBlob((blobObj) => emit('cropdata', blobObj), 'image/jpeg', props.quality)
     }
+    // tiny新增：点击确认时，自动退出crop
+    api.closeCrop()
   }
 
 export const getCroppedCanvas = (state) => () => state.cropper.getCroppedCanvas()
