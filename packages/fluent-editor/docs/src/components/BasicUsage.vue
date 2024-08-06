@@ -1,11 +1,8 @@
-<template>
-  <div id="editor">
-    <p>Hello <strong>FluentEditor</strong>!</p> 
-  </div>
-</template>
-
-<script>
+<script setup lang="ts">
+import { onMounted } from 'vue'
 import FluentEditor from '@opentiny/fluent-editor'
+
+let editor
 
 const TOOLBAR_CONFIG = [
   ['undo', 'redo', 'clean'],
@@ -19,22 +16,24 @@ const TOOLBAR_CONFIG = [
   ['fullscreen', 'emoji', 'help', 'screenshot'],
 ]
 
-export default {
-  data() {
-    return {
-      content: '{"ops":[{"insert":"Hello "},{"attributes":{"bold":true},"insert":"FluentEditor"},{"insert":"!"}]}',
-      editor: null,
-    }
-  },
-  mounted() {
-    this.editor = new FluentEditor('#editor', {
-      theme: 'snow',
-      modules: {
-        toolbar: {
-          container: TOOLBAR_CONFIG
-        }
+onMounted(() => {
+  editor = new FluentEditor('#editor', {
+    theme: 'snow',
+    modules: {
+      toolbar: {
+        container: TOOLBAR_CONFIG
       }
-    })
-  }
-}
+    }
+  })
+})
 </script>
+
+<template>
+  <div id="editor">
+    <p>Hello <strong>FluentEditor</strong>!</p> 
+  </div>
+</template>
+
+<style scoped>
+
+</style>

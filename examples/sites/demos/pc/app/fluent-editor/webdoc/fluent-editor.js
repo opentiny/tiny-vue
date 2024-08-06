@@ -64,19 +64,6 @@ export default {
         'en-US': ''
       },
       codeFiles: ['data-switch.vue']
-    },
-    // {
-    //   demoId: 'fluent-editor',
-    //   name: {
-    //     'zh-CN': '框架无关版本',
-    //     'en-US': ''
-    //   },
-    //   desc: {
-    //     'zh-CN': '<p>通过 <code>new FluentEditor(\'#editor\', options)</code> 初始化一个富文本编辑器，用法和 Quill 一样，第一个参数是需要挂载富文本编辑器的 DOM 节点，第二个参数是配置项。</p>',
-    //     'en-US':
-    //       '<p></p>'
-    //   },
-    //   codeFiles: ['fluent-editor.vue']
-    // }
+    }
   ]
 }
