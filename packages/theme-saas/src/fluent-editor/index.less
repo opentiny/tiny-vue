@@ -62,6 +62,8 @@
       }
 
       span.ql-lineheight {
+        @apply w-16;
+
         > span {
           @apply w-16;
         }
@@ -129,6 +131,13 @@
             @apply text-base;
             @apply -top-px;
           }
+        }
+      }
+
+      span.ql-picker.ql-color-picker.ql-expanded {
+        .ql-picker-options {
+          @apply w-45;
+          @apply py-1 px-1;
         }
       }
 
