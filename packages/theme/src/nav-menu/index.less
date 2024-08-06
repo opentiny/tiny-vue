@@ -22,14 +22,18 @@
   background: var(--ti-nav-menu-bg-color);
   height: var(--ti-nav-menu-height);
   position: relative;
-  padding: 0 24px;
+  padding: 0 var(--ti-nav-menu-padding);
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.10);
 
   > .slot-logo {
     float: left;
     overflow: hidden;
-    margin: 0 100px 0 0;
+    margin: 0 var(--ti-nav-menu-slot-logo-margin-right) 0 var(--ti-nav-menu-slot-logo-margin-left);
     line-height: var(--ti-nav-menu-height);
+  }
+
+  .preview .slot-logo .icon-logo {
+    fill: red;
   }
 
   > .slot-toolbar {
@@ -88,7 +92,7 @@
 
       > span,
       > a {
-        margin: 0 12px;
+        margin: 0 var(--ti-nav-menu-item-li-margin);
         font-size: var(--ti-nav-menu-item-font-size);
         text-align: center;
         color: var(--ti-nav-menu-item-text-color);
@@ -191,14 +195,17 @@
           justify-content: space-between;
           align-items: center;
           color: var(--ti-nav-menu-popmenu-more-item-text-color);
+          cursor: pointer;
 
           .more-icon {
             fill: var(--ti-nav-menu-popmenu-more-item-icon-color);
           }
+
           &.active,
           &:hover {
             color: var(--ti-nav-menu-popmenu-more-item-hover-text-color);
             background: var(--ti-nav-menu-popmenu-more-item-hover-bg-color);
+            font-weight: 700;
 
             > a {
               color: var(--ti-nav-menu-popmenu-more-item-hover-text-color);
@@ -414,11 +421,11 @@
   > .more-button {
     float: left;
     text-align: center;
-    padding: 0 12px;
+    margin: 0 var(--ti-nav-menu-item-li-margin);
     height: var(--ti-nav-menu-height);
     line-height: var(--ti-nav-menu-height);
     overflow: hidden;
-    fill: #fff;
+    fill: var(--ti-nav-menu-item-more-button-fill);
     font-size: var(--ti-nav-menu-item-font-size);
 
     &:hover {
