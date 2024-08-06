@@ -25,7 +25,7 @@
       hoverExpand ? 'is-hover-expand' : '',
       clickExpand ? 'is-click-expand' : '',
       state.showCollapseTag ? 'collapse-tag-clicked' : '',
-      state.selectDisabled ? 'is-disabled' : '',
+      state.isDisabled ? 'is-disabled' : '',
       inputBoxType === 'underline' ? 'tiny-select__underline' : ''
     ]"
     @mouseleave.self="
@@ -69,18 +69,24 @@
         </tiny-filter-box>
         <div
           ref="tags"
-          :class="['tiny-select__tags', { 'is-showicon': slots.prefix, 'not-selected': !state.selected.length }]"
+          :class="[
+            'tiny-select__tags',
+            { 'is-showicon': slots.prefix, 'not-selected': !state.selected.length },
+            { 'is-show-tag': !state.isShowTagText }
+          ]"
           v-if="multiple && !state.isDisplayOnly && !shape"
           :style="state.tagsStyle"
         >
-          <span v-if="!state.selectDisabled">
+          <span v-if="!state.isShowTagText">
             <span v-if="collapseTags && state.selected.length">
               <!-- 显示第1个标签 + 数字 -->
               <tiny-tag
-                :closable="!state.selectDisabled"
+                :class="{ 'is-required': state.selected[0].required }"
+                :closable="isTagClosable(state.selected[0])"
                 :size="state.collapseTagSize"
                 :hit="state.selected[0].state ? state.selected[0].state.hitState : state.selected[0].hitState"
                 :key="state.key"
+                :disabled="state.selected[0].disabled"
                 :type="state.getTagType"
                 @close="deleteTag($event, state.selected[0])"
                 disable-transitions
@@ -128,6 +134,7 @@
                 :type="state.getTagType"
                 key="tags-all-text-tag"
                 data-tag="tags-all-text-tag"
+                :disabled="state.isDisabled"
                 :closable="true"
                 :size="state.collapseTagSize"
                 @close="toggleCheckAll(false)"
@@ -152,8 +159,12 @@
                 <tiny-tag
                   v-for="(item, index) in state.selected"
                   :key="getValueKey(item)"
-                  :class="{ 'not-visible': state.toHideIndex <= index && !state.isExpand }"
-                  :closable="!item.disabled && !item.required"
+                  :class="{
+                    'not-visible': state.toHideIndex <= index && !state.isExpand,
+                    'is-required': item.required
+                  }"
+                  :closable="isTagClosable(item)"
+                  :disabled="state.isDisabled || item.disabled"
                   :size="state.collapseTagSize"
                   :hit="item.state ? item.state.hitState : item.hitState"
                   :type="state.getTagType"
@@ -200,7 +211,7 @@
             </span>
           </span>
 
-          <span v-else class="tiny-select__tags-text is-disabled">
+          <span v-else :class="['tiny-select__tags-text', 'is-display-only', { 'is-disabled': state.isDisabled }]">
             <tiny-tooltip
               :effect="tooltipConfig.effect || 'light'"
               :placement="tooltipConfig.placement || 'top'"
