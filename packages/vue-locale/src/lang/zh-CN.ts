@@ -125,8 +125,6 @@ export default {
       empty: '暂无'
     },
     crop: {
-      // cropImage: '图片裁剪'
-      // croppedImage: '裁剪后图像'
       choose: '选择图片',
       zoomOut: '缩小10%',
       zoomIn: '放大10%',

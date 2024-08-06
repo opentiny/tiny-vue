@@ -13,12 +13,6 @@
 import { on, off } from '../common/deps/dom'
 import { toFileSize } from '../common/string'
 
-// 未使用到
-// export const computedCropImages =
-//   ({ constants, t }) =>
-//   () =>
-//     t(constants.CROP_IMAGE)
-
 export const watchImageSrc = (state) => (value) => (state.src = value)
 
 export const watchAlt = (state) => (value) => (state.alt = value || 'image')
@@ -78,8 +72,6 @@ export const closeCrop =
   () => {
     emit('update:cropvisible', false)
     emit('update:visible', false)
-
-    // state.cropImg = ''
   }
 
 export const createCrop =
@@ -109,7 +101,6 @@ export const createCrop =
       minCropBoxHeight: props.minCropBoxHeight,
       minContainerWidth: props.minContainerWidth,
       minContainerHeight: props.minContainerHeight,
-      preview: document.querySelectorAll('.croppreview'),
       ready() {
         emit('ready')
       },
@@ -135,8 +126,6 @@ export const clear = (state) => () => state.cropper.clear()
 export const cropImage =
   ({ api, emit, props, state }) =>
   () => {
-    // state.cropImg = api.getCroppedCanvas().toDataURL('image/jpeg', props.quality)
-
     const canvas = api.getCroppedCanvas()
     if (props.cropType.toLowerCase() === 'base64') {
       emit('cropdata', canvas.toDataURL('image/jpeg', props.quality))

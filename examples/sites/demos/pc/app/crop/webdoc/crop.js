@@ -105,10 +105,25 @@ export default {
         'en-US': 'Drag Mode'
       },
       desc: {
-        'zh-CN':
-          '<p>通过 <code>drag-mode</code> 属性可以设置裁剪框的拖拽模式，有 <code>crop</code>、<code>move</code>、<code>none</code> 三种选项，默认为 <code>crop</code> 。</p>\n<div class="tip custom-block"><p class="custom-block-title">drag-mode 选项说明</p>\n<p><code>crop</code>：当裁剪框取消后，按住鼠标左键在图片区域拖拽，将产生一个新的裁剪框。\n<code>move</code>：当裁剪框取消后，按住鼠标左键将移动图片。\n<code>none</code>：当裁剪框取消后，不能裁剪、也不能移动图片。\n<code>movable</code> 控制图片是否可以移动，默认为 true。</p>\n</div>\n',
-        'en-US':
-          '<p>You can set the drag mode of the crop box through the <code>drag-mode</code> attribute. There are three options: <code>crop</code>, <code>move</code>, and <code>none</code>. The default value is <code>crop</code>. </p>\n<div class="tip custom-block"><p class="custom-block-title">drag-mode Option Description </p>\n<p><code>crop</code>: After the cropping box is canceled, hold down the left mouse button and drag it in the image area to generate a new cropping box. \n<code>move</code>: After the cropping box is canceled, hold down the left mouse button to move the image. \n<code>none</code>: After the crop box is canceled, the image cannot be cropped or moved. \n<code>movable</code> specifies whether an image can be moved. The default value is true. </p>\n</div>\n'
+        'zh-CN': `
+          通过 <code>drag-mode</code> 属性可以设置裁剪框的拖拽模式，有 <code>crop</code>、<code>move</code>、<code>none</code> 三种选项，默认为 <code>crop</code> 。
+          <div class="tip custom-block">
+            <p class="custom-block-title">drag-mode 选项说明</p>
+            <code>crop</code>：当裁剪框取消后，按住鼠标左键在图片区域拖拽，将产生一个新的裁剪框。<br>
+            <code>move</code>：当裁剪框取消后，按住鼠标左键将移动图片。<br>
+            <code>none</code>：当裁剪框取消后，不能裁剪、也不能移动图片。<br>
+          </div>
+          通过 <code>movable</code> 控制图片是否可以移动，默认为 true。</p>\n`,
+        'en-US': `
+          You can set the drag mode of the crop box through the <code>drag-mode</code> attribute. There are three options: <code>crop</code>, <code>move</code>, and <code>none</code>. The default value is <code>crop</code>.
+          <div class="tip custom-block">
+              <p class="custom-block-title">drag-mode Option Description </p>
+              <code>crop</code>: After the cropping box is canceled, hold down the left mouse button and drag it in the image area to generate a new cropping box.<br>
+              <code>move</code>: After the cropping box is canceled, hold down the left mouse button to move the image.<br>
+              <code>none</code>: After the crop box is canceled, the image cannot be cropped or moved. <br>
+          </div>
+          By <code>movable</code> specifies whether an image can be moved. The default value is true. </p>
+          `
       },
       codeFiles: ['drag-mode.vue']
     },

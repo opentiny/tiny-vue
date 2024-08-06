@@ -122,8 +122,6 @@ export default {
       empty: 'Empty'
     },
     crop: {
-      // cropImage: 'crop image'
-      // croppedImage: 'Post-Crop Image'
       choose: 'choose image',
       zoomOut: 'zoom out 10%',
       zoomIn: 'zoom in 10%',

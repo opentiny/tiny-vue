@@ -142,13 +142,7 @@ const initState = ({ reactive, props, api, t }) => {
     alt: props.alt,
     data: null,
     cropvisible: props.cropvisible,
-
     renderIcon: initRenderIcon(api, t)
-
-    // 未使用到
-    // previewShow: props.previewShow,
-    // 未使用到
-    // cropImages: computed(() => api.computedCropImages())
   })
 
   return state

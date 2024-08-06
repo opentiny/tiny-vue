@@ -11,17 +11,6 @@
  -->
 <template>
   <div class="tiny-crop__wrapper">
-    <!-- <div class="tiny-croppreview" v-show="preview && state.cropvisible">
-      <div class="croppreviewb">
-        <div class="croppreview"></div>
-      </div>
-      <div class="croppreviewm">
-        <div class="croppreview"></div>
-      </div>
-      <div class="croppreviews">
-        <div class="croppreview"></div>
-      </div>
-    </div> -->
     <div class="tiny-crop" v-show="state.cropvisible">
       <div class="tiny-crop__dialog">
         <input ref="cropInput" type="file" name="image" accept="image/*" @change="setImage" />
@@ -38,14 +27,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="tiny-crop__dialog-content">
-          <div class="tiny-crop__dialog-content__crop">
-            <img v-if="state.cropImg" :src="state.cropImg" alt="post-crop" />
-            <h1 v-else>
-              {{ t('ui.crop.croppedImage') }}
-            </h1>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
@@ -135,7 +116,6 @@ export default defineComponent({
       default: '1M'
     },
 
-    // 这里声明了属性， 但不支持用户修改。 因为vue-theme里把高宽写死了
     minContainerHeight: {
       type: Number,
       default: 300
@@ -165,15 +145,6 @@ export default defineComponent({
       type: [Object, Function],
       default: () => Cropper
     },
-    // preview: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // 这个属性多余，全局未使用
-    // previewShow: {
-    //   type: Boolean,
-    //   default: false
-    // },
     quality: {
       type: Number,
       default: 0.92,
