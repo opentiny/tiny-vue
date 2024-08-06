@@ -20,7 +20,8 @@ export const tinyNavMenuSmbTheme = {
   'ti-nav-menu-submenu-padding-horizontal': 'calc(var(--ti-common-space-base) * 20.5)',
   'ti-nav-menu-popmenu-node-title-margin-bottom': 'calc(var(--ti-common-space-4x) + 2px)',
   'ti-nav-menu-popmenu-text-font-size': 'var(--ti-common-font-size-0)',
-  'ti-nav-menu-popmenu-more-item-hover-bg-color': 'var(--ti-common-color-bg-navigation)',
+  // SMB未定义颜色
+  'ti-nav-menu-popmenu-more-item-hover-bg-color': '#F5F5F5',
   'ti-nav-menu-popmenu-more-item-active-bg-color': 'var(--ti-common-color-bg-navigation)',
   'ti-nav-menu-popmenu-more-item-selected-bg-color': 'var(--ti-common-color-bg-navigation)',
   'ti-nav-menu-popmenu-border-color': 'var(--ti-common-color-bg-navigation)',
