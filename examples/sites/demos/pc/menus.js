@@ -279,7 +279,7 @@ export const cmpMenus = [
       { 'nameCn': '环图', 'name': 'Ring Chart', 'key': 'chart-ring' },
       { 'nameCn': '瀑布图', 'name': 'Waterfall Chart', 'key': 'chart-waterfall' },
       { 'nameCn': '漏斗图', 'name': 'Funnel Chart', 'key': 'chart-funnel' },
-      { 'nameCn': '雷达图', 'name': 'Radar chart', 'key': 'chart-radar' },
+      { 'nameCn': '雷达图', 'name': 'Radar Chart', 'key': 'chart-radar' },
       { 'nameCn': '地图', 'name': 'Map Chart', 'key': 'chart-map' },
       { 'nameCn': '桑基图', 'name': 'Sankey Chart', 'key': 'chart-sankey' },
       { 'nameCn': '热力图', 'name': 'Heatmap Chart', 'key': 'chart-heatmap' },
