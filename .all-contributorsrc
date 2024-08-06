@@ -600,6 +600,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "Simon-He95",
+      "name": "Simon He",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57086651?v=4",
+      "profile": "http://simonhe.me",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 8,
