@@ -72,6 +72,7 @@ export default defineConfig((config) => {
           'node_modules/@vue/babel-helper-vue-jsx-merge-props/dist/helper.js'
         ),
         '@tiptap/vue': '@tiptap/vue-2',
+        '@opentiny/tiny-tiptap/vue': '@opentiny/tiny-tiptap/src/vue-2',
         ...getAlias(2, env.VITE_TINY_THEME)
       }
     },

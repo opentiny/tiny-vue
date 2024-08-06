@@ -11,3 +11,4 @@ const Code = TiptapCode.extend<ExtensionOptions & CodeOptions>({
 })
 
 export default Code
+export { Code, CodeOptions }

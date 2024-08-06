@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
-export const handleChange = (editor) => {
+export const handleChange = (state) => {
   return (event) => {
+    const { editor } = state
     if (!event) {
       const url = window.prompt('URL')
       let type = 'image'
@@ -30,11 +31,7 @@ export const handleChange = (editor) => {
     }
     const reader = new FileReader()
     reader.onload = function (e) {
-      editor
-        .chain()
-        .focus()
-        .setImage({ src: e.target?.result, type })
-        .run()
+      editor.chain().focus().setImage({ src: e.target?.result, type }).run()
     }
     reader.readAsDataURL(file)
   }

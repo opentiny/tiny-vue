@@ -11,3 +11,4 @@ const Link = TiptapLink.extend<ExtensionOptions & LinkOptions>({
 })
 
 export default Link
+export { Link, LinkOptions }

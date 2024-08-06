@@ -32,3 +32,4 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
 })
 
 export default Table
+export { Table, TableOptions }

@@ -1,45 +1,8 @@
-<template>
-  <NodeViewWrapper class="tiny-image__node__view" :node="node">
-    <div class="tiny-image__view">
-      <img
-        class="image-view-content"
-        :src="src"
-        :alt="alt"
-        :title="title"
-        :width="width"
-        :height="height"
-        @click="handleSelectImg"
-        ref="imgRef"
-      />
-      <div
-        class="tiny-image__resize"
-        v-show="selectedVal"
-        v-if="editor.isEditable"
-        :style="{
-          width: resizerState.w + 'px',
-          height: resizerState.h + 'px',
-          left: resizerState.x + 'px',
-          top: resizerState.y + 'px'
-        }"
-      >
-        <span
-          v-for="direction in resizeDirection"
-          :key="direction"
-          :class="'tiny-image__resize__' + direction"
-          class="tiny-image__handle"
-          @mousedown="handleMouseDown($event, direction)"
-        ></span>
-      </div>
-    </div>
-  </NodeViewWrapper>
-</template>
-
-<script lang="ts">
-import { NodeViewWrapper, nodeViewProps } from '@tiptap/vue'
-import { defineComponent, hooks } from '@opentiny/vue-common'
+import { hooks, $prefix, defineComponent } from '@opentiny/vue-common'
+import { NodeViewWrapper, nodeViewProps } from '@opentiny/tiny-tiptap/vue'
 
 export default defineComponent({
-  name: 'ImageView',
+  name: $prefix + 'ImageView',
   props: nodeViewProps,
   components: {
     NodeViewWrapper
@@ -178,24 +141,40 @@ export default defineComponent({
     hooks.onBeforeUnmount(() => {
       resizeObserver.disconnect()
     })
-    return {
-      imgRef,
-      isResizing,
-      resizerState,
-      handleMouseDown,
-      handleMouseMove,
-      handleMouseUp,
-      node,
-      editor,
-      resizeDirection,
-      handleSelectImg,
-      selectedVal,
-      width,
-      height,
-      src,
-      title,
-      alt
-    }
+
+    return () => (
+      <NodeViewWrapper class="tiny-image__node__view" node={node}>
+        <div class="tiny-image__view">
+          <img
+            ref={imgRef}
+            class="image-view-content"
+            src={src.value}
+            alt={alt.value}
+            title={title.value}
+            width={width.value}
+            height={height.value}
+            onClick={() => handleSelectImg()}
+          />
+
+          {editor.isEditable && selectedVal && (
+            <div
+              class={['tiny-image__resize']}
+              style={{
+                width: resizerState.w + 'px',
+                height: resizerState.h + 'px',
+                left: resizerState.x + 'px',
+                top: resizerState.y + 'px'
+              }}>
+              {resizeDirection.map((direction) => (
+                <span
+                  key={direction}
+                  class={['tiny-image__handle', `tiny-image__resize__${direction}`]}
+                  onMousedown={(e) => handleMouseDown(e, direction)}></span>
+              ))}
+            </div>
+          )}
+        </div>
+      </NodeViewWrapper>
+    )
   }
 })
-</script>

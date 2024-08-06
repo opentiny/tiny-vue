@@ -32,3 +32,4 @@ const Highlight = TiptapHighlight.extend<ExtensionOptions & HighlightOptions>({
 })
 
 export default Highlight
+export { Highlight, HighlightOptions }

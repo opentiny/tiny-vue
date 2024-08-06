@@ -1,7 +1,8 @@
-import type { Content, Editor, Extension, Node, NodeViewRenderer } from '@tiptap/core'
+import type { Content, Editor } from '@tiptap/core'
 import { extensions } from './extension'
 
 import { generateSlashMenuExtension } from './components/slash'
+import { registerFloatMenuExtension } from './components/float'
 
 export default class TiptapEditor {
   options: any
@@ -10,20 +11,24 @@ export default class TiptapEditor {
   /**
    * @param editorClass Editor 的构造类
    * @param options Editor 的配置项
-   * @param viewOptions
-   * @param viewOptions.viewMap 需要进行视图映射的扩展组件 由 key 和 view 组成
-   * @param viewOptions.menuMap 包括映射方法以及菜单等组件
-   * @param otherOptions
+   * @param config 其中 viewMap 和 menuMap 都可能存在使用组件传入的视图映射
+   * @param config.viewMap 需要进行视图映射的扩展组件 由 key 和 view 组成 view 需要为 NodeView
+   * @param config.menuMap 包括映射方法以及菜单等组件 view 需要为视图组件
+   * @param config.placeholder 对 placeholder 的一些处理
    */
-  constructor(editorClass, options = {}, viewOptions, otherOptions) {
+  constructor(editorClass, options = {}, config) {
     this.extensions = extensions
-    const { viewMap, menuMap } = viewOptions
+    const { viewMap, menuMap, nodeViewRender } = config
 
-    this.initExtensionViews(viewMap)
+    const { renderer, slashMenuView, floatMenuView } = menuMap
 
-    this.initMenuViews(menuMap)
+    this.initExtensionViews(viewMap, nodeViewRender)
 
-    this.initOtherOptions(otherOptions)
+    if (slashMenuView) {
+      this.initSlashMenu(renderer, slashMenuView)
+    }
+
+    this.initMiscOptions(config)
 
     // TODO 合并用户传入的 options
     this.options = {
@@ -34,6 +39,10 @@ export default class TiptapEditor {
     }
 
     this.editor = this.createEditor(editorClass, this.options)
+
+    if (floatMenuView) {
+      this.initFloatingMenu(renderer, floatMenuView)
+    }
   }
 
   createEditor(editorClass, options) {
@@ -52,7 +61,7 @@ export default class TiptapEditor {
     this.editor.destroy()
   }
 
-  private initExtensionViews(viewMap: Map<string, any>) {
+  private initExtensionViews(viewMap: Map<string, any>, render: any) {
     // 根据传入的视图构建 重新继承扩展并重新 configure
     viewMap.forEach((view, key) => {
       const extensionIndex = this.extensions.findIndex((extension) => extension.name === key)
@@ -62,8 +71,7 @@ export default class TiptapEditor {
         const newExtension = extension
           .extend({
             addNodeView() {
-              return view
-              // return () => ({ dom: view })
+              return render(view)
             }
           })
           .configure({ ...originOption })
@@ -72,15 +80,17 @@ export default class TiptapEditor {
     })
   }
 
-  private initMenuViews(menuMap) {
-    const { renderer: Renderer, slashView } = menuMap
-
-    const slashMenu = generateSlashMenuExtension(Renderer, slashView)
+  private initSlashMenu(renderer, view) {
+    const slashMenu = generateSlashMenuExtension(renderer, view)
     this.extensions.push(slashMenu)
   }
 
-  private initOtherOptions(otherOptions) {
-    const { placeholder } = otherOptions
+  private initFloatingMenu(renderer, view) {
+    registerFloatMenuExtension(this.editor, renderer, view)
+  }
+
+  private initMiscOptions(config) {
+    const { placeholder } = config
     const placeholderIndex = this.extensions.findIndex((extension) => extension.name === 'placeholder')
     const placeholderExtension = this.extensions[placeholderIndex]
     if (placeholderExtension) {

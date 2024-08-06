@@ -11,3 +11,4 @@ const Italic = TiptapItalic.extend<ExtensionOptions & ItalicOptions>({
 })
 
 export default Italic
+export { Italic, ItalicOptions }

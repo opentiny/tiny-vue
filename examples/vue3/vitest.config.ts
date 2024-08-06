@@ -58,6 +58,7 @@ export default defineConfig((config) => {
         'vue': path.resolve('node_modules/vue/dist/vue.esm-bundler.js'),
         '@vue/test-utils': path.resolve('node_modules/@vue/test-utils'),
         '@tiptap/vue': '@tiptap/vue-3',
+        '@opentiny/tiny-tiptap/vue': '@opentiny/tiny-tiptap/src/vue-3',
         ...getAlias(3)
       }
     }

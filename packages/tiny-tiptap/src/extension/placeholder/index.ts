@@ -11,3 +11,4 @@ const Placeholder = TiptapPlaceholder.extend<ExtensionOptions & PlaceholderOptio
 })
 
 export default Placeholder
+export { Placeholder, PlaceholderOptions }

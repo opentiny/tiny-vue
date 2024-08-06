@@ -11,3 +11,4 @@ const History = TiptapHistory.extend<ExtensionOptions & HistoryOptions>({
 })
 
 export default History
+export { History, HistoryOptions }

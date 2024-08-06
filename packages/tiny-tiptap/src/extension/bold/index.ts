@@ -11,3 +11,4 @@ const Bold = TiptapBold.extend<ExtensionOptions & BoldOptions>({
 })
 
 export default Bold
+export { Bold, BoldOptions }

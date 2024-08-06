@@ -21,6 +21,17 @@ const OrderedList = TiptapOrderedList.extend<ExtensionOptions & OrderedListOptio
             }
           }
         ]
+      },
+      getFloatMenus() {
+        return [
+          {
+            priority: 20,
+            icon: iconRichTextListOrdered(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => editor.chain().focus().toggleOrderedList().run()
+            }
+          }
+        ]
       }
     }
   },
@@ -31,3 +42,5 @@ const OrderedList = TiptapOrderedList.extend<ExtensionOptions & OrderedListOptio
 })
 
 export default OrderedList
+
+export { OrderedList, OrderedListOptions }

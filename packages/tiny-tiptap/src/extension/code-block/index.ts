@@ -26,3 +26,4 @@ const CodeBlock = TiptapCodeBlock.extend<ExtensionOptions & CodeBlockLowlightOpt
 })
 
 export default CodeBlock
+export { CodeBlock, CodeBlockLowlightOptions }

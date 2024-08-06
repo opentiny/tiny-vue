@@ -91,6 +91,7 @@ export default defineConfig((config) => {
         '@demos': path.resolve(`./demos/${env.VITE_APP_MODE}`),
         '@menu': menuPath,
         '@opentiny/vue-renderless/types': pathFromWorkspaceRoot('packages/renderless/types'),
+        '@opentiny/tiny-tiptap/vue': '@opentiny/tiny-tiptap/src/vue-3',
         '@tiptap/vue': '@tiptap/vue-3',
         ...getAlias(3, env.VITE_TINY_THEME)
       }

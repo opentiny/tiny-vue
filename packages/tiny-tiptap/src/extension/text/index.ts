@@ -10,3 +10,4 @@ const Text = TiptapText.extend<ExtensionOptions>({
 })
 
 export default Text
+export { Text }
