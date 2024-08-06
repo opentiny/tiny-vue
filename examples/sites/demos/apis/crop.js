@@ -188,17 +188,6 @@ export default {
           pcDemo: 'drag-mode'
         },
         {
-          name: 'preview',
-          type: 'boolean',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '设置裁剪区域图片是否可预览，默认为 false',
-            'en-US': 'Specifies whether images in the cropping area can be previewed. The default value is false'
-          },
-          mode: ['pc'],
-          pcDemo: ''
-        },
-        {
           name: 'quality',
           type: 'number',
           defaultValue: '',
