@@ -16,8 +16,6 @@ import {
   watchVisible,
   clear,
   replace,
-  // computedCropImages,
-  watchAlt,
   getCroppedCanvas,
   setCanvasData,
   setDragMode,
@@ -139,7 +137,6 @@ const initState = ({ reactive, props, api, t }) => {
   const state = reactive({
     src: props.src,
     cropper: '',
-    alt: props.alt,
     data: null,
     cropvisible: props.cropvisible,
     renderIcon: initRenderIcon(api, t)
@@ -165,7 +162,6 @@ const initApi = ({ api, state, emit, refs, props }) => {
     getData: getData(state),
     disable: disable(state),
     destroy: destroy(state),
-    watchAlt: watchAlt(state),
     setDragMode: setDragMode(state),
     getImageData: getImageData(state),
     watchImageSrc: watchImageSrc(state),
@@ -192,8 +188,6 @@ const initWatch = ({ watch, props, api }) => {
   watch(() => props.cropvisible, api.watchVisible)
 
   watch(() => props.src, api.watchImageSrc, { immediate: true })
-
-  watch(() => props.alt, api.watchAlt, { immediate: true })
 }
 
 export const renderless = (props, { onMounted, reactive, watch }, { emit, refs, t }) => {

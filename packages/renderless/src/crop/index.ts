@@ -15,8 +15,6 @@ import { toFileSize } from '../common/string'
 
 export const watchImageSrc = (state) => (value) => (state.src = value)
 
-export const watchAlt = (state) => (value) => (state.alt = value || 'image')
-
 export const watchVisible =
   ({ api, state }) =>
   (value) => {
