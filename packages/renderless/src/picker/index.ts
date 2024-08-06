@@ -227,7 +227,7 @@ export const getTimezone =
     const setting = utils.getDateFormat && utils.getDateFormat()
     const { DbTimezone, Timezone, TimezoneOffset } = setting || {}
     const cur = getLocalTimezone()
-    const isTzNumber = (z) => typeof z === 'number' && z >= -12 && z <= 12
+    const isTzNumber = (z) => typeof z === 'number' && z >= -12 && z <= 14
 
     if (!~type.indexOf('datetime')) {
       return { from: cur, to: cur }

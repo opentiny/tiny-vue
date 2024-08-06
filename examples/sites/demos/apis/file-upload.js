@@ -262,7 +262,8 @@ export default {
             'zh-CN': '限制文件大小，单位为 KB；当为 Number 类型时，小于该值停止上传；为数组时[min,max] 设置上传范围',
             'en-US': ''
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'file-size',
           mfDemo: ''
         },
         {

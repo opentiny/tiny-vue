@@ -42,9 +42,9 @@
       >
         <tiny-tooltip
           v-if="state.isDisplayOnly"
+          :disabled="!showTooltip"
           effect="light"
           :content="state.displayOnlyTooltip"
-          :display="type === 'password'"
           placement="top"
           :popper-class="state.tooltipConfig.popperClass || ''"
           :popper-options="{ bubbling: true }"
@@ -172,6 +172,17 @@
         v-if="!state.isDisplayOnly && getSuffixVisible()"
       >
         <span class="pointer-events-auto text-xs flex justify-start items-center">
+          <icon-close
+            v-if="state.showClear"
+            :class="
+              m(
+                'hidden sm:block text-center transition-all duration-300 ease-in-out text-xs cursor-pointer',
+                state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
+              )
+            "
+            @mousedown.prevent
+            @click="clear"
+          ></icon-close>
           <template v-if="!state.showClear || !state.showPwdVisible || !state.isWordLimitVisible">
             <slot name="suffix"></slot>
             <component
@@ -200,17 +211,6 @@
             @mousedown.prevent
             @click="clear"
           ></icon-error>
-          <icon-close
-            v-if="state.showClear"
-            :class="
-              m(
-                'hidden sm:block text-center transition-all duration-300 ease-in-out text-xs cursor-pointer',
-                state.inputSizeMf === 'medium' ? 'leading-8' : state.inputSizeMf === 'mini' ? 'leading-6' : 'leading-7'
-              )
-            "
-            @mousedown.prevent
-            @click="clear"
-          ></icon-close>
           <component
             v-if="showPassword"
             :is="state.passwordVisible ? 'icon-eyeopen' : 'icon-eyeclose'"
@@ -275,6 +275,7 @@
     >
       <tiny-tooltip
         v-if="state.isDisplayOnly"
+        :disabled="!showTooltip"
         effect="light"
         :content="state.displayOnlyTooltip"
         placement="top"
@@ -423,8 +424,10 @@ export default defineComponent({
     'displayOnlyContent',
     'showEmptyValue',
     'popupMore',
+    'showTooltip',
     'frontClearIcon',
-    'hoverExpand'
+    'hoverExpand',
+    'showTooltip'
   ],
   setup(props, context): any {
     return setup({ props, context, renderless, api })

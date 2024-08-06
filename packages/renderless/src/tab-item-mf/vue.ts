@@ -1,5 +1,10 @@
-export const renderless = (props, { inject, onBeforeUnmount, reactive, toRef, markRaw }, { slots, vm }) => {
+import { useRelation as createUseRelation } from '../common/deps/useRelation'
+
+export const renderless = (props, hooks, { slots, vm }) => {
+  const { inject, onBeforeUnmount, reactive, toRef, markRaw } = hooks
   const tabs = inject('tabs', null)
+  const tabsId = inject('tabsId', null)
+  const useRelation = createUseRelation(hooks)
   const { lazy } = props
   const item = reactive({
     title: toRef(props, 'title'),
@@ -17,6 +22,8 @@ export const renderless = (props, { inject, onBeforeUnmount, reactive, toRef, ma
   tabs.addItem(item)
 
   onBeforeUnmount(() => tabs.removeItem(item.name, true))
+
+  useRelation({ relationKey: `tabs-${tabsId}` })
 
   return {}
 }

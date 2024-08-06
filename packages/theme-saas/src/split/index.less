@@ -131,12 +131,13 @@
 
       .@{split-prefix-cls}-trigger-left-button {
         @apply translate-x-0 ~'-translate-y-1/2';
-        @apply -left-1;
+        // Tiny新增 修复分割面板分割线的padding会遮挡左侧容器滚动条的问题
+        @apply ~'-left-2.5';
         @apply rounded-l rounded-r-none;
         @apply border-r-0;
 
         &.@{split-prefix-cls}-trigger-button-active {
-          @apply -left-2;
+          @apply -left-3;
         }
       }
 
@@ -303,7 +304,8 @@
   }
 
   &-trigger-con-vertical.@{split-prefix-cls}-trigger-con-simple {
-    @apply py-0 px-2;
+    // Tiny新增 修复分割面板分割线的padding会遮挡左侧容器滚动条的问题
+    @apply py-0 ~'px-0.5';
     @apply cursor-e-resize;
   }
 

@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <div>
-      <tiny-slider v-model="value" :marks="marks"></tiny-slider>
-    </div>
-  </div>
+  <tiny-slider v-model="value" :marks="marks"></tiny-slider>
 </template>
 
 <script>
@@ -25,3 +21,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tiny-slider-container {
+  margin-top: 50px;
+}
+</style>

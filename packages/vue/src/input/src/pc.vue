@@ -50,9 +50,9 @@
       <span class="tiny-input-display-only">
         <tiny-tooltip
           v-if="state.isDisplayOnly"
+          :disabled="!showTooltip"
           effect="light"
           :content="state.displayOnlyTooltip"
-          :display="type === 'password'"
           placement="top"
           :popper-class="state.tooltipConfig.popperClass || ''"
           @mouseenter.native="handleEnterDisplayOnlyContent"
@@ -174,6 +174,7 @@
     >
       <tiny-tooltip
         v-if="state.isDisplayOnly"
+        :disabled="!showTooltip"
         effect="light"
         :content="state.displayOnlyTooltip"
         placement="top"
@@ -221,6 +222,9 @@
         @change="handleChange"
         @mouseenter="handleEnterTextarea($event)"
         @mouseleave="handleLeaveTextarea($event)"
+        @mousedown="handleTextareaMouseDown()"
+        @mouseup="handleTextareaMouseUp()"
+        v-clickoutside.mouseup="() => handleTextareaMouseUp(true)"
         :aria-label="label"
         @keyup="$emit('keyup', $event)"
         @keydown="$emit('keydown', $event)"
@@ -244,7 +248,8 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/input/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
+import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import TinyTallStorage from './tall-storage.vue'
 import { IconClose, IconEyeopen, IconEyeclose } from '@opentiny/vue-icon'
 import Tooltip from '@opentiny/vue-tooltip'
@@ -268,6 +273,7 @@ export default defineComponent({
     'click',
     'input'
   ],
+  directives: directive({ Clickoutside }),
   components: {
     IconClose: IconClose(),
     IconEyeopen: IconEyeopen(),
@@ -307,7 +313,8 @@ export default defineComponent({
     'frontClearIcon',
     'showEmptyValue',
     'hoverExpand',
-    'popupMore'
+    'popupMore',
+    'showTooltip'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

@@ -35,13 +35,19 @@ export const getGroup =
 export const mounted =
   ({ vm, props, dispatch, constants }) =>
   () => {
-    dispatch(constants.SLIDER_BUTTON_GROUP, 'labelValue', [props.label || props.text])
-
     dispatch(constants.SLIDER_BUTTON_GROUP, 'eachBlock', [
       vm.$refs.sliderButton.offsetLeft,
       vm.$refs.sliderButton.offsetWidth,
-      vm.$refs.sliderButton.offsetHeight
+      vm.$refs.sliderButton.offsetHeight,
+      props.label || props.text,
+      vm.$refs.sliderButton
     ])
+  }
+
+export const unMounted =
+  ({ props, dispatch, constants }) =>
+  () => {
+    dispatch(constants.SLIDER_BUTTON_GROUP, 'delBlock', [props.label || props.text])
   }
 
 export const customEvents = ({ props, vm, type }) => {

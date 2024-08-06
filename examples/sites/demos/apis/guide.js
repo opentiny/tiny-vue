@@ -175,7 +175,7 @@ interface IDomData {
   //销毁的回调函数
   destroy: () => void
   // 完成的回调函数
-  completey: () => void
+  complete: () => void
 
   // 需要设置的按钮组
   button: {

@@ -19,7 +19,7 @@
   .component-css-vars-time-spinner();
 
   &__wrapper {
-    max-height: 190px;
+    max-height: var(--ti-time-spinner-wrapper-max-height);
     overflow: hidden;
     display: inline-block;
     width: 50%;
@@ -49,6 +49,8 @@
 
     .@{time-spinner-prefix-cls}__list {
       transform: translateY(-6px);
+      margin-bottom: var(--ti-time-spinner-list-margin-bottom);
+      margin-top: var(--ti-time-spinner-list-margin-top);
     }
 
     &:last-child {
@@ -112,21 +114,25 @@
     }
   }
 
-  &__item {
+  & &__item {
+    text-align: center;
+    margin: var(--ti-time-spinner-item-margin-top) var(--ti-time-spinner-item-margin-right) 0;
     font-size: var(--ti-time-spinner-font-size);
     color: var(--ti-time-spinner-text-color);
-    height: 32px;
-    line-height: 32px;
+    height: var(--ti-time-spinner-item-height);
+    line-height: var(--ti-time-spinner-item-line-height);
 
     &:hover:not(.disabled):not(.active) {
       background: var(--ti-time-spinner-selected-bg-color);
       cursor: pointer;
+      border-radius: var(--ti-time-spinner-selected-border-radius);
     }
 
     &.active:not(.disabled) {
       color: var(--ti-time-spinner-item-active-text-color);
       font-weight: var(--ti-time-spinner-item-font-weight);
       background-color: var(--ti-time-spinner-item-bg-color);
+      border-radius: var(--ti-time-spinner-selected-border-radius);
     }
 
     &.disabled {

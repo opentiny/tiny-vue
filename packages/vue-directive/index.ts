@@ -11,5 +11,6 @@
  */
 
 import AutoTip from './src/auto-tip'
+import HighlightQuery from './src/highlight-query'
 
-export { AutoTip }
+export { AutoTip, HighlightQuery }

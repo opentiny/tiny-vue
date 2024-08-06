@@ -190,6 +190,30 @@ export default {
       codeFiles: ['upload-file-list.vue']
     },
     {
+      demoId: 'file-size',
+      name: {
+        'zh-CN': '文件大小限制',
+        'en-US': 'Uploaded file size limit'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>file-size</code> 配置上传文件的大小。<p>',
+        'en-US': '<p>Use <code>file-size</code> to configure the size of the uploaded file.</p>'
+      },
+      codeFiles: ['file-size.vue']
+    },
+    {
+      demoId: 'file-size-array',
+      name: {
+        'zh-CN': '文件大小范围',
+        'en-US': 'Uploaded file size range'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>file-size</code> 配置为数组类型限制上传文件的大小范围。<p>',
+        'en-US': '<p>Set <code>file-size</code> to an array to limit the size of the file to be uploaded.</p>'
+      },
+      codeFiles: ['file-size-array.vue']
+    },
+    {
       demoId: 'upload-file-list-slot',
       name: {
         'zh-CN': '定义文件列表',

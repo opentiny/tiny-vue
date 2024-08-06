@@ -103,7 +103,7 @@
       ref="label"
       :class="
         m(
-          'py-0 pl-0 sm:pl-2 mr-5 flex-auto leading-7 sm:leading-none',
+          'py-0 pl-0 sm:pl-2 mr-5 flex-1 leading-7 sm:leading-none',
           state.isDisabled ? 'cursor-not-allowed text-color-text-secondary' : 'text-color-text-primary',
           state.isDisplayOnly || state.isGroupDisplayOnly ? 'p-0 sm:p-0 m-0 text-color-text-primary cursor-default' : ''
         )

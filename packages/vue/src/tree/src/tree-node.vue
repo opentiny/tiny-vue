@@ -26,6 +26,7 @@
         'is-disabled': node.disabled,
         'is-leaf': node.isLeaf,
         'is-root': node.level === 1,
+        'is-show-focus-bg': isShowFocusBg,
         'show-line': showLine,
         'show-checkbox': showCheckbox
       }"
@@ -148,10 +149,10 @@
               ></icon-edit>
             </span>
             <span :title="t('ui.tree.delete')">
-              <icon-minus-square
+              <icon-del
                 v-if="!action.deleteDisabled.includes(node.data[nodeKey])"
                 @click.stop="deleteNode($event, node)"
-              ></icon-minus-square>
+              ></icon-del>
             </span>
             <span :title="t('ui.tree.newNodeTitle')">
               <icon-plus-square
@@ -185,6 +186,7 @@
               :action="action"
               :show-radio="showRadio"
               :theme="theme"
+              :is-show-focus-bg="isShowFocusBg"
               :current-radio="currentRadio"
               :render-content="renderContent"
               :expand-icon="state.expandIcon"
@@ -241,7 +243,7 @@ import {
   iconLoading,
   iconArrowBottom,
   iconEdit,
-  iconMinusSquare,
+  iconDel,
   iconPlusSquare,
   iconFinish
 } from '@opentiny/vue-icon'
@@ -310,7 +312,12 @@ export default defineComponent({
     nodeKey: String,
     theme: String,
     showCheckedMark: Boolean,
-    showLine: Boolean
+    showLine: Boolean,
+    // tiny 新增，是否显示树节点聚焦时的背景颜色
+    isShowFocusBg: {
+      type: Boolean,
+      default: true
+    }
   },
   components: {
     CollapseTransition,
@@ -321,7 +328,7 @@ export default defineComponent({
     IconLoading: iconLoading(),
     IconArrowBottom: iconArrowBottom(),
     IconEdit: iconEdit(),
-    IconMinusSquare: iconMinusSquare(),
+    IconDel: iconDel(),
     IconPlusSquare: iconPlusSquare(),
     IconFinish: iconFinish(),
     MenuContext: {

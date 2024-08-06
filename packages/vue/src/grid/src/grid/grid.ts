@@ -44,7 +44,7 @@ import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 
 const { themes, viewConfig } = GlobalConfig
 const { SAAS: T_SAAS } = themes
-const { GANTT: V_GANTT, MF: V_MF, CARD: V_CARD } = viewConfig
+const { GANTT: V_GANTT, MF: V_MF, CARD: V_CARD, DEFAULT: V_DEFAULT, CUSTOM: V_CUSTOM } = viewConfig
 
 const propKeys = Object.keys(TinyGridTable.props)
 
@@ -192,6 +192,9 @@ export default defineComponent({
     },
     isViewGantt() {
       return this.viewType === V_GANTT
+    },
+    isViewCustom() {
+      return this.viewType === V_CUSTOM
     }
   },
   watch: {

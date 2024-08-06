@@ -21,10 +21,6 @@
 .@{link-prefix-cls} {
   .component-css-vars-link();
 
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   vertical-align: middle;
   position: relative;
   text-decoration: none;
@@ -52,7 +48,6 @@
   }
 
   &&--additional {
-
     &:hover {
       color: var(--ti-link-default-hover-text-color);
       fill: var(--ti-link-default-hover-text-color);
@@ -64,8 +59,6 @@
         fill: var(--ti-link-default-disabled-text-color);
       }
     }
-
-  
 
     &:has(.@{svg-cls}):hover {
       font-weight: var(--ti-link-icon-hover-text-weight);
@@ -80,7 +73,6 @@
         fill: var(--ti-link-default-disabled-text-color);
       }
     }
-
   }
 
   &.is-underline:hover {
@@ -99,7 +91,7 @@
       width: var(--ti-link-has-icon-underline-width);
     }
 
-    &:has(>:first-child:not(.@{link-prefix-cls}__inner)):after {
+    &:has(> :first-child:not(.@{link-prefix-cls}__inner)):after {
       left: calc(100% - var(--ti-link-has-icon-underline-width));
     }
   }
@@ -114,10 +106,8 @@
       var(--ti-link-default-border-color),
       var(--ti-link-default-hover-text-color),
       var(--ti-link-default-disabled-text-color)
-      )
-
+      );
   }
-
 
   &&--primary {
     .link-type(
@@ -125,7 +115,7 @@
       var(--ti-link-primary-border-color),
       var(--ti-link-primary-hover-text-color),
       var(--ti-link-primary-disabled-text-color)
-      )
+      );
   }
 
   &&--danger {
@@ -134,7 +124,7 @@
       var(--ti-link-danger-border-color),
       var(--ti-link-danger-hover-text-color),
       var(--ti-link-danger-disabled-text-color)
-      )
+      );
   }
 
   &&--success {
@@ -143,7 +133,7 @@
       var(--ti-link-success-border-color),
       var(--ti-link-success-hover-text-color),
       var(--ti-link-success-disabled-text-color)
-      )
+      );
   }
 
   &&--warning {
@@ -152,7 +142,7 @@
       var(--ti-link-warning-border-color),
       var(--ti-link-warning-hover-text-color),
       var(--ti-link-warning-disabled-text-color)
-      )
+      );
   }
 
   &&--info {
@@ -161,6 +151,6 @@
       var(--ti-link-info-border-color),
       var(--ti-link-info-hover-text-color),
       var(--ti-link-info-disabled-text-color)
-      )
+      );
   }
 }

@@ -54,9 +54,9 @@
     "vue-i18n": "^9.1.7",
     "js-sha256": "^0.9.0",
     "onigasm": "^2.2.5",
-    "unocss": "^0.48.0",
+    "unocss": "^0.61.9",
     "@unocss/core": "^0.48.0",
-    "@unocss/preset-icons": "^0.48.0",
+    "@unocss/preset-icons": "^0.61.9",
     "@unocss/transformer-directives": "^0.48.0"
   }
 }

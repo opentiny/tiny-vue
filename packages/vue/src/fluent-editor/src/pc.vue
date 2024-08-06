@@ -13,9 +13,9 @@
 <script lang="ts">
 import { $prefix, props, setup, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/fluent-editor/vue'
-import '@opentiny/fluent-editor/dist/style.css'
 import '@opentiny/vue-theme/fluent-editor/index.less'
 import FluentEditor from '@opentiny/fluent-editor'
+import '@opentiny/fluent-editor/dist/style.css'
 import {
   IconEditorAlignCenter,
   IconEditorAlignLeft,

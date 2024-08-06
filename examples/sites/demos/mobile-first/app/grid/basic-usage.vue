@@ -5,6 +5,7 @@
       <tiny-radio v-model="viewType" label="card">卡片视图</tiny-radio>
       <tiny-radio v-model="viewType" label="list">列表视图</tiny-radio>
       <tiny-radio v-model="viewType" label="gantt">甘特视图</tiny-radio>
+      <tiny-radio v-model="viewType" label="custom">custom视图</tiny-radio>
     </div>
     <tiny-grid
       highlight-current-row
@@ -68,7 +69,10 @@
         </div>
       </template>
       <template #gantt="{ rows }">
-        <div class="gantt-container">{{ rows.length }}</div>
+        <div class="gantt-container">gantt视图，表格行数{{ rows.length }}</div>
+      </template>
+      <template #custom="{ rows }">
+        <div class="custom-container">custom视图，表格行数{{ rows.length }}</div>
       </template>
     </tiny-grid>
   </div>

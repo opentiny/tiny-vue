@@ -10,7 +10,7 @@
  *
  */
 
-import { limitTimeRange, clearMilliseconds, timeWithinRange } from '../common/deps/date-util'
+import { limitTimeRange, formatDate, clearMilliseconds, timeWithinRange } from '../common/deps/date-util'
 
 export const watchValue =
   ({ api, nextTick, state }) =>
@@ -124,4 +124,12 @@ export const changeSelectionRange =
     const next = (index + step + list.length) % list.length
 
     vm.$refs.spinner.emitSelectRange(mapping[next])
+  }
+
+export const displayValue =
+  ({ state, t }) =>
+  () => {
+    const formattedValue = formatDate(state.value, state.format, t)
+
+    return formattedValue
   }

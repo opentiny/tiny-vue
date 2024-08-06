@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	viewBox="0 0 24 24" xml:space="preserve">
-<g id="Icon">
-	<g transform="translate(-831.000000, -767.000000)">
-		<g transform="translate(100.000000, 761.000000)">
-			<g id="yes" transform="translate(728.000000, 0.000000)">
-				<path class="st0" d="M12.9,21.6l9.4-9.4c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4L13.7,23.7
-					c-0.4,0.4-1,0.4-1.4,0c0,0,0,0,0,0c-0.1,0-0.1-0.1-0.2-0.1l-5.8-5.8c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0L12.9,21.6z"/>
-			</g>
-		</g>
-	</g>
-</g>
+<!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+</style>
+<polygon id="Fill-1备份" class="st0" points="16,0 16,16 0,16 0,0 "/>
+<path id="Stroke-3" class="st1" d="M12.37,4.38c0.23-0.24,0.61-0.26,0.85-0.03c0.22,0.2,0.25,0.52,0.1,0.76L13.25,5.2l-5.99,6.43
+	c-0.2,0.22-0.54,0.25-0.78,0.09L6.4,11.64L2.77,8.05C2.53,7.82,2.53,7.44,2.76,7.21C2.97,7,3.29,6.97,3.52,7.13L3.61,7.2l3.2,3.15
+	L12.37,4.38z"/>
 </svg>
