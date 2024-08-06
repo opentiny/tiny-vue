@@ -15,22 +15,9 @@ export default {
       codeFiles: ['basic-usage.vue']
     },
     {
-      demoId: 'data-switch',
-      name: {
-        'zh-CN': '数据格式转换',
-        'en-US': 'Vertical divider line'
-      },
-      desc: {
-        'zh-CN':
-          '<p>通过 <code>data-type</code> 指定富文本数据保存的格式。数据默认保存格式为 Delta 形式，若需要将数据保存格式设置为 HTML 形式，并关闭 HTML 格式自动转 Delta 格式，设置 <code>:data-type="false"</code>，<code>:data-upgrade="false"</code>。</p>',
-        'en-US': '<p>The direction of the separator line can be set through the<code>direction</code>attribute.</p>'
-      },
-      codeFiles: ['data-switch.vue']
-    },
-    {
       demoId: 'disabled',
       name: {
-        'zh-CN': '禁用态',
+        'zh-CN': '禁用状态',
         'en-US': 'The position of the separator copy'
       },
       desc: {
@@ -63,6 +50,19 @@ export default {
         'en-US': ''
       },
       codeFiles: ['options.vue']
+    },
+    {
+      demoId: 'data-switch',
+      name: {
+        'zh-CN': '数据格式转换',
+        'en-US': 'Vertical divider line'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>data-type</code> 指定富文本数据保存的格式。数据默认保存格式为 Delta 形式，若需要将数据保存格式设置为 HTML 形式，并关闭 HTML 格式自动转 Delta 格式，设置 <code>:data-type="false"</code>，<code>:data-upgrade="false"</code>。</p>',
+        'en-US': '<p>The direction of the separator line can be set through the<code>direction</code>attribute.</p>'
+      },
+      codeFiles: ['data-switch.vue']
     },
   ]
 }
