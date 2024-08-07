@@ -82,7 +82,5 @@ export default {
   'year-table': 'year-table',
   'skeleton': 'skeleton',
   'skeleton-item': 'skeleton-item',
-  'radio-button': 'radio-button',
-  'color-select-panel': 'color-select-panel',
-  'color-picker': 'color-picker'
+  'radio-button': 'radio-button'
 }
