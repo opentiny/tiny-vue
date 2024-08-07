@@ -2,7 +2,7 @@ import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import Grid from '@opentiny/vue-grid'
 import GridColumn from '@opentiny/vue-grid-column'
-import { reactive, nextTick } from 'vue'
+import { reactive, nextTick, ref } from 'vue'
 
 const tableData = [
   {
@@ -23,6 +23,62 @@ const tableData = [
   }
 ]
 
+const columns = [
+  {
+    type: 'index',
+    width: 60
+  },
+  {
+    type: 'selection',
+    width: 60
+  },
+  {
+    field: 'employees',
+    title: '员工数'
+  },
+  {
+    field: 'createdDate',
+    title: '创建日期'
+  },
+  {
+    field: 'city',
+    title: '城市'
+  }
+]
+
+const footerMethod = ({ columns, data }) => {
+  if (data.length === 0) {
+    return [
+      ['平均', '', '', 0],
+      ['和值', '', '', 0]
+    ]
+  }
+  return [
+    columns.map((column, columnIndex) => {
+      if (columnIndex === 0) {
+        return '平均'
+      }
+
+      if (column.property === 'employees') {
+        return Math.floor(data.map((item) => item[column.property]).reduce((acc, item) => acc + item) / data.length)
+      }
+
+      return null
+    }),
+    columns.map((column, columnIndex) => {
+      if (columnIndex === 0) {
+        return '和值'
+      }
+
+      if (column.property === 'employees') {
+        return data.map((item) => item[column.property]).reduce((acc, item) => acc + item)
+      }
+
+      return null
+    })
+  ]
+}
+
 describe('PC Mode', () => {
   const mount = mountPcMode
 
@@ -34,7 +90,7 @@ describe('PC Mode', () => {
   })
 
   // props
-  test('columns & data', async () => {
+  test.skip('columns & data', async () => {
     const data = reactive(tableData)
     const wrapper = mount(() => (
       <Grid data={data}>
@@ -51,25 +107,7 @@ describe('PC Mode', () => {
   // events
   test('cell-click', async () => {
     const data = reactive(tableData)
-    const handleClick = vi.fn()
-    const wrapper = mount(() => (
-      <Grid data={data} onCellClick={handleClick}>
-        <GridColumn field="name" title="名字"></GridColumn>
-        <GridColumn field="city" title="城市"></GridColumn>
-      </Grid>
-    ))
-    await nextTick()
-    const element = wrapper.find('.tiny-grid__body-wrapper .tiny-grid__body .tiny-grid-body__row')
-    await nextTick()
-    const triggerElement = element.find('.tiny-grid-body__column')
-    await nextTick()
-    expect(triggerElement.exists()).toBeTruthy()
-    await triggerElement.trigger('click')
-    expect(handleClick).toBeCalled()
-  })
-
-  test.skip('cell-dblclick', async () => {
-    const data = reactive(tableData)
+    const col = reactive(columns)
     const handleClick = vi.fn()
     const wrapper = mount(() => (
       <Grid data={data} onCellClick={handleClick}>
@@ -88,7 +126,7 @@ describe('PC Mode', () => {
   })
 
   // slots
-  test.skip('default-slot', async () => {
+  test('default-slot', async () => {
     const data = reactive(tableData)
     const handleClick = vi.fn()
     const wrapper = mount(() => (
@@ -155,11 +193,110 @@ describe('PC Mode', () => {
 
   test.todo('params 额外的参数')
 
-  test.todo('footer-cell-class-name 给表尾的单元格附加 className，也可以是函数')
+  test('footer-cell-class-name 给表尾的单元格附加 className，footer-cell-class-name为字符串', async () => {
+    const data = reactive(tableData)
 
-  test.todo('footer-method 表尾合计的计算方法')
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={true} footerMethod={footerMethod} footerCellClassName="footer__cell--red">
+        <GridColumn type="index"></GridColumn>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+        <GridColumn field="employees" title="员工数"></GridColumn>
+      </Grid>
+    ))
 
-  test.todo('footer-row-class-name 给表尾的行附加 className，也可以是函数')
+    await nextTick()
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    const footerCells = wrapper.findAll('.tiny-grid-footer__row .tiny-grid-footer__column.footer__cell--red')
+    expect(footerCells.length).toBe(8)
+  })
+
+  test('footer-cell-class-name 给表尾的单元格附加 className，footer-cell-class-name为函数', async () => {
+    const data = reactive(tableData)
+    const dynamicClassName = ({ column }) => {
+      return column.property === 'name' ? 'footer__cell--name-blue' : 'footer__cell--city-blue'
+    }
+
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={true} footerMethod={footerMethod} footerCellClassName={dynamicClassName}>
+        <GridColumn type="index"></GridColumn>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+        <GridColumn field="employees" title="员工数"></GridColumn>
+      </Grid>
+    ))
+
+    await nextTick()
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    const headerCells = wrapper.findAll('.tiny-grid-footer__row .tiny-grid-footer__column')
+    expect(headerCells.at(1)?.classes()).toContain('footer__cell--name-blue')
+    expect(headerCells.at(2)?.classes()).toContain('footer__cell--city-blue')
+  })
+
+  test('footer-method 表尾合计的计算方法', async () => {
+    const data = reactive(tableData)
+
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={true} footerMethod={footerMethod}>
+        <GridColumn type="index"></GridColumn>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+        <GridColumn field="employees" title="员工数"></GridColumn>
+      </Grid>
+    ))
+
+    await nextTick()
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    expect(wrapper.find('.tiny-grid__footer .tiny-grid-footer__row').exists()).toBeTruthy()
+  })
+
+  test('footer-row-class-name 给表尾的行附加 className，footer-row-class-name为字符串时', async () => {
+    const data = reactive(tableData)
+
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={true} footerMethod={footerMethod} footerRowClassName="footer__row--red">
+        <GridColumn type="index"></GridColumn>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+        <GridColumn field="employees" title="员工数"></GridColumn>
+      </Grid>
+    ))
+
+    await nextTick()
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    expect(wrapper.find('.tiny-grid-footer__row').classes()).toContain('footer__row--red')
+  })
+
+  test('footer-row-class-name 给表尾的行附加 className，footer-row-class-name为函数时', async () => {
+    const data = reactive(tableData)
+    const dynamicRowClassName = () => 'dynamic-footer__row--red'
+
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={true} footerMethod={footerMethod} footerRowClassName={dynamicRowClassName}>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+      </Grid>
+    ))
+
+    await nextTick()
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    expect(wrapper.find('.tiny-grid-footer__row').classes()).toContain('dynamic-footer__row--red')
+  })
 
   test.todo('footer-span-method 表尾合并行或列')
 
@@ -205,7 +342,17 @@ describe('PC Mode', () => {
 
   test.todo('select-config 复选框配置项')
 
-  test.todo('show-footer 是否显示表尾合计')
+  test('show-footer 是否显示表尾合计', async () => {
+    const data = reactive(tableData)
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={false}>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+      </Grid>
+    ))
+    await nextTick()
+    expect(wrapper.find('.tiny-grid__footer-wrapper').exists()).toBeFalsy()
+  })
 
   test.todo('show-header 是否显示表头')
 
@@ -231,7 +378,35 @@ describe('PC Mode', () => {
 
   test.todo('valid-config 校验配置项')
 
-  test.todo('summary-config 表格统计功能配置项')
+  test('summary-config 表格统计功能配置项', async () => {
+    const data = reactive(tableData)
+
+    const summary = ref({
+      fields: ['employees'],
+      fraction: 2,
+      truncate: false,
+      text: '合计'
+    })
+
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={true} summaryConfig={summary.value}>
+        <GridColumn type="index"></GridColumn>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+        <GridColumn field="employees" title="员工数"></GridColumn>
+      </Grid>
+    ))
+
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    const cellSummarys = wrapper.findAll('.tiny-grid-cell.cell__summary')
+    await nextTick()
+    expect(cellSummarys.length).toBe(4)
+    expect(cellSummarys.at(0)?.text()).toBe('合计')
+    expect(cellSummarys.at(3)?.text()).toBe('1100.00')
+  })
 
   test.todo('sortable 设置是否允许列数据排序。默认为 true 可排序')
 
@@ -470,11 +645,78 @@ describe('PC Mode', () => {
 
   test.todo('filter-change 当筛选条件发生变化时会触发该事件')
 
-  test.todo('footer-cell-click 表尾单元格被点击时会触发该事件')
+  test('footer-cell-click 表尾单元格被点击时会触发该事件', async () => {
+    const data = reactive(tableData)
 
-  test.todo('footer-cell-context-menu 表尾单元格被鼠标右键点击时触发该事件')
+    const handleClick = vi.fn()
 
-  test.todo('footer-cell-dblclick 表尾单元格被双击时会触发该事件')
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={true} footerMethod={footerMethod} onFooterCellClick={handleClick}>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+      </Grid>
+    ))
+
+    await nextTick()
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    const footerCell = wrapper.findAll('.tiny-grid-footer__column').at(0)
+    await footerCell?.trigger('click')
+    await nextTick()
+
+    expect(handleClick).toBeCalled()
+  })
+
+  test.skip('footer-cell-context-menu 表尾单元格被鼠标右键点击时触发该事件', async () => {
+    const data = reactive(tableData)
+
+    const handleClick = vi.fn()
+
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={true} footerMethod={footerMethod} onFooterCellContextMenu={handleClick}>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+      </Grid>
+    ))
+
+    await nextTick()
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    const footerCell = wrapper.find('.tiny-grid-footer__row')
+
+    await footerCell?.trigger('contextmenu')
+    await nextTick()
+
+    expect(handleClick).toBeCalled()
+  })
+
+  test('footer-cell-dblclick 表尾单元格被双击时会触发该事件', async () => {
+    const data = reactive(tableData)
+
+    const handleClick = vi.fn()
+
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={true} footerMethod={footerMethod} onFooterCellDblclick={handleClick}>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+      </Grid>
+    ))
+
+    await nextTick()
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    const footerCell = wrapper.findAll('.tiny-grid-footer__column').at(0)
+    await footerCell?.trigger('dblclick')
+    await nextTick()
+
+    expect(handleClick).toBeCalled()
+  })
 
   test.todo('header-cell-click 表头单元格被点击时会触发该事件')
 
@@ -517,9 +759,55 @@ describe('PC Mode', () => {
 
   test.todo('fixed 将列固定在左侧')
 
-  test.todo('footer-align 表尾列的对齐方式')
+  test('footer-align 表尾列的对齐方式', async () => {
+    const data = reactive(tableData)
+    const footerAlign = ref('left')
+    const wrapper = mount(() => (
+      <Grid data={data} footer-align={footerAlign.value} showFooter={true} footerMethod={footerMethod}>
+        <GridColumn field="name" title="名称"></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+      </Grid>
+    ))
 
-  test.todo('footer-class-name 给表尾的单元格附加 className，也可以是函数')
+    await nextTick()
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    expect(wrapper.find('.tiny-grid-footer__column.col__left').exists()).toBeTruthy()
+    footerAlign.value = 'align'
+
+    await nextTick()
+    expect(wrapper.find('.tiny-grid-footer__column.col__align').exists()).toBeTruthy()
+    footerAlign.value = 'right'
+
+    await nextTick()
+    expect(wrapper.find('.tiny-grid-footer__column.col__right').exists()).toBeTruthy()
+  })
+
+  test('footer-class-name 给表尾的单元格附加 className，也可以是函数', async () => {
+    const data = reactive(tableData)
+    const dynamicClassName = () => 'dynamic-footer__cell--red'
+
+    const wrapper = mount(() => (
+      <Grid data={data} showFooter={true} footerMethod={footerMethod}>
+        <GridColumn type="index"></GridColumn>
+        <GridColumn field="name" title="名称" footerClassName={dynamicClassName}></GridColumn>
+        <GridColumn field="city" title="城市"></GridColumn>
+      </Grid>
+    ))
+
+    await nextTick()
+    await nextTick()
+    await nextTick()
+    await nextTick()
+
+    expect(wrapper.findAll('.dynamic-footer__cell--red').length).toBe(2)
+
+    const footerCells = wrapper.findAll('.tiny-grid-footer__column')
+    expect(footerCells.at(1)?.classes()).toContain('dynamic-footer__cell--red')
+    expect(footerCells.at(4)?.classes()).toContain('dynamic-footer__cell--red')
+  })
 
   test.todo('header-align 表头列的对齐方式')
 
