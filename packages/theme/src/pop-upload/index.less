@@ -90,15 +90,19 @@
     }
 
     .col1 {
-      width: 60%;
+      width: 46%;
     }
 
     .col2 {
-      width: 20%;
+      width: 17%;
     }
 
     .col3 {
-      width: 20%;
+      width: 21%;
+    }
+
+    .col4 {
+      width: 16%;
     }
   }
 
@@ -135,19 +139,38 @@
       background: var(--ti-popupload-table-item-even-bg-color);
     }
 
-    .delIcon {
-      width: var(--ti-popupload-dialog-table-icon-size);
-      fill: var(--ti-popupload-dialog-table-icon-color);
+    .del-col {
+      color: var(--ti-popupload-dialog-delete-text-color);
+      width: 100%;
       cursor: pointer;
-
-      &:hover {
-        width: var(--ti-popupload-dialog-table-icon-size-hover);
-        fill: var(--ti-popupload-dialog-table-icon-color-hover);
-      }
     }
   }
 
   &__modal .@{popupload__modal-prefix-cls}__body {
     overflow-y: auto;
+  }
+
+  // 新规范适配
+  &__pop-confirm {
+    .tiny-popconfirm-popover__title {
+      white-space: nowrap;
+    }
+  }
+
+  &__status-icon {
+    display: inline-block;
+    margin-right: 7px;
+    height: 8px;
+    width: 8px;
+    border: 2px solid var(--ti-popupload-status-icon-color);
+    border-radius: 50%;
+
+    &&-success {
+      border-color: var(--ti-popupload-status-success-icon-color);
+    }
+
+    &&-fail {
+      border-color: var(--ti-popupload-status-fail-icon-color);
+    }
   }
 }

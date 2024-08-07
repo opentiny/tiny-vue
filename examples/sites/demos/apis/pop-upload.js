@@ -289,7 +289,18 @@ export default {
         }
       ],
       methods: [],
-      slots: []
+      slots: [
+        {
+          name: 'uploadTip',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义上传提示内容',
+            'en-US': 'Customize upload prompt content'
+          },
+          mode: ['pc'],
+          pcDemo: 'upload-tip'
+        }
+      ]
     }
   ],
   types: [
