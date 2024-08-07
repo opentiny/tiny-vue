@@ -80,7 +80,7 @@ export const buttonProps = {
   ghost: Boolean,
   /** 点击事件 */
   onClick: {
-    type: Function as propType<(ev: MouseEvent) => void>
+    type: Function as PropType<(ev: MouseEvent) => void>
   }
 }
 
