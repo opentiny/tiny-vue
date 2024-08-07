@@ -87,7 +87,7 @@ export default class TinyThemeTool {
     const threeKey = `${compNameList[1]}-${compNameList[2]}-${compNameList[3]}`
     const twoKey = `${compNameList[1]}-${compNameList[2]}`
     let key = compNameList[1]
-    let value = compNameList[1]
+    let value = definedComponents[key] || key
     if (definedComponents[threeKey]) {
       key = threeKey
       value = definedComponents[threeKey]
