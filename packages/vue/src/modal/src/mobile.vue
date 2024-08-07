@@ -48,9 +48,6 @@ export default defineComponent({
     'width',
     'zIndex'
   ],
-  components: {
-    Button
-  },
   provide() {
     return { dialog: this }
   },
