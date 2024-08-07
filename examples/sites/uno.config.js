@@ -1,8 +1,13 @@
 import UnocssIcons from '@unocss/preset-icons'
 import presetTinyUno from './tiny-uno/index'
+import { defineConfig } from '@unocss/vite'
 
-export default {
-  include: [/\.js$/, /\.ts$/, /\.vue$/, /\.html$/, /\.jsx$/, /\.tsx$/], // 增加js ,ts扫描
+export default defineConfig({
+  content: {
+    pipeline: {
+      include: [/\.js$/, /\.ts$/, /\.vue$/, /\.html$/, /\.jsx$/, /\.tsx$/] // 增加js ,ts扫描
+    }
+  },
   presets: [
     presetTinyUno({
       isRem: false,
@@ -34,4 +39,4 @@ export default {
       }
     })
   ]
-}
+})

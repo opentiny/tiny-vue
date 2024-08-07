@@ -54,6 +54,7 @@
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^17.0.45",
     "@unocss/preset-icons": "^0.61.9",
+    "@unocss/vite": "^0.61.9",
     "@vitejs/plugin-vue": "^4.1.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "@vue/compiler-sfc": "^3.2.37",
