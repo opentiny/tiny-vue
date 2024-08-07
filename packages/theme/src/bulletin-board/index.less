@@ -21,16 +21,17 @@
   .component-css-vars-bulletin-board();
 
   &__item {
-    margin-bottom: 12px;
+    margin-bottom: var(--ti-bulletin-board-item-margin-bottom);
 
     .@{bulletin-board-prefix-cls}__textTitle {
       display: block;
       color: var(--ti-bulletin-board-item-title-text-color);
-      margin-bottom: 2px;
+      margin-bottom: var(--ti-bulletin-board-item-title-text-margin-bottom);
       font-size: var(--ti-common-font-size-base);
       white-space: normal;
       font-family: Helvetica, Arial, 'microsoft yahei';
       line-height: initial;
+      font-weight: var(--ti-bulletin-board-item-title-font-weight);
 
       &,
       &:hover {
@@ -82,13 +83,16 @@
     background-color: var(--ti-bulletin-board-new-bg-color);
     color: var(--ti-bulletin-board-new-text-color);
     border-radius: var(--ti-bulletin-board-new-border-radius);
+    padding: 0 var(--ti-bulletin-board-new-padding-left);
+    margin-left: var(--ti-bulletin-board-new-margin-left);
     min-width: 30px;
     min-height: 16px;
     line-height: 16px;
-    font-size: var(--ti-common-font-size-base);
+    font-size: var(--ti-bulletin-board-new-font-size);
     display: inline-block;
-    font-family: '宋体', cursive, Helvetica, Arial, 'microsoft yahei';
+    font-family: var(--ti-bulletin-board-new-font-family);
     box-sizing: border-box;
+    font-weight: 500;
     text-align: center;
   }
 
@@ -139,7 +143,7 @@
     .@{tabs-prefix-cls}__item {
       line-height: 36px;
       height: 36px;
-      padding: 0 24px;
+      padding: 0 var(--ti-bulletin-board-tabs-item-text-padding-right);
       box-sizing: border-box;
       display: inline-block;
       list-style: none;
@@ -156,10 +160,12 @@
       &:hover {
         color: var(--ti-bulletin-board-tabs-item-hover-text-color);
         cursor: pointer;
+        font-weight: var(--ti-bulletin-board-tabs-item-hover-text-font-weight);
       }
 
       &.is-active {
         color: var(--ti-bulletin-board-tabs-item-hover-text-color);
+        font-weight: var(--ti-bulletin-board-tabs-item-hover-text-font-weight);
       }
 
       &.is-disabled {
@@ -203,7 +209,7 @@
     }
 
     .@{tabs-prefix-cls}__content {
-      padding: 12px 24px 24px;
+      padding: 12px var(--ti-bulletin-board-contentr-padding-right) var(--ti-bulletin-board-contentr-padding-button);
     }
 
     &.@{tabs-prefix-cls}--card {
