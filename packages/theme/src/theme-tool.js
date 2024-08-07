@@ -84,7 +84,9 @@ export default class TinyThemeTool {
    * 示例2：输入：month-table，输出：.tiny-month-table[class*=tiny],.tiny-year-table[class*=tiny]
    */
   getSelectorByKey(key) {
-    if (!definedComponents[key]) return
+    if (!definedComponents[key]) {
+      return '.tiny-' + key + '[class*=tiny]'
+    }
 
     let selector = ''
     const keyItems = definedComponents[key].split(',')
@@ -105,9 +107,7 @@ export default class TinyThemeTool {
     const twoKey = `${compNameList[1]}-${compNameList[2]}`
 
     // 优先三段式命名的组件名，优先级从高到低为三段-二段-一段
-    return (
-      this.getSelectorByKey(threeKey) || this.getSelectorByKey(twoKey) || '.tiny-' + compNameList[1] + '[class*=tiny]'
-    )
+    return this.getSelectorByKey(threeKey) || this.getSelectorByKey(twoKey) || this.getSelectorByKey(compNameList[1])
   }
 
   formatCSSVariables(themeData) {
