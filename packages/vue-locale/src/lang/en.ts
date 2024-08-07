@@ -526,6 +526,8 @@ export default {
       waitUpload: 'Waiting for upload',
       operation: 'Operation',
       success: 'Upload successful',
+      listTip: 'There are a total of {0} pieces of data: ',
+      errorListTip: 'There are {0} errors in them. Please modify them and try again',
       limitUploadFileType: 'Upload file type is limited to',
       limitUploadFileNumber: 'Limit the number of uploaded files to',
       limitUploadFileSize: 'The size of the uploaded file does not exceed',
