@@ -526,6 +526,8 @@ export default {
       waitUpload: '等待上传',
       operation: '操作',
       success: '上传成功',
+      listTip: '共{0}条数据：',
+      errorListTip: '其中{0}条出错，请修改后重试',
       limitUploadFileNumber: '上传文件数限制为',
       limitUploadFileType: '上传文件类型限制为',
       limitUploadFileSize: '上传文件大小不超过'
