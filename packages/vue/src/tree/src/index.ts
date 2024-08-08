@@ -179,7 +179,6 @@ export default defineComponent({
       type: String,
       default: 'medium'
     },
-
     /** 删除时，禁止删除的节点 key 值列表 */
     deleteDisabledKeys: Array,
     /** 编辑时，禁止编辑的节点 key 值列表 */
@@ -365,7 +364,6 @@ export default defineComponent({
     /** 在严格模式显示自动勾选子节点的功能时，自定义开关右侧的内容  */
     'switch-text': {}
   }>,
-  expose: [api],
   setup(props, context) {
     return $setup({ props, context, template })
   }
