@@ -13,6 +13,7 @@
 import { isPlainObject, isNumber, isNumeric, isNull } from './type'
 import { getObj, toJsonStr } from './object'
 import { toFixed, Decimal } from './decimal'
+import { nanoid } from 'nanoid'
 
 /**
  * 文本替换格式类型
@@ -241,8 +242,9 @@ export const fillChar = (string, length, append, chr = '0') => {
 }
 
 export const random = () => {
-  let MAX_UINT32_PLUS_ONE = 4294967296
-  return window.crypto.getRandomValues(new window.Uint32Array(1))[0] / MAX_UINT32_PLUS_ONE
+  const randomString = nanoid(8)
+  const randomValue = parseInt(randomString, 16)
+  return randomValue / 16 ** randomString.length
 }
 
 /**
