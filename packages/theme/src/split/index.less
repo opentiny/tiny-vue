@@ -139,7 +139,7 @@
       .@{split-prefix-cls}-trigger-left-button {
         transform: translate(0, -50%);
         left: -6px;
-        border-radius: 4px 0 0 4px;
+        border-radius: var(--ti-split-trigger-button-border-radius) 0 0 var(--ti-split-trigger-button-border-radius);
         border-right: 0;
       }
 
@@ -149,7 +149,7 @@
 
       .@{split-prefix-cls}-trigger-right-button {
         transform: translate(0, -50%);
-        border-radius: 0 4px 4px 0;
+        border-radius: 0 var(--ti-split-trigger-button-border-radius) var(--ti-split-trigger-button-border-radius) 0;
         left: 9px;
         border-left: 0;
       }
@@ -204,7 +204,7 @@
 
       .@{split-prefix-cls}-trigger-top-button {
         transform: translate(-50%, 0);
-        border-radius: 4px 4px 0 0;
+        border-radius: var(--ti-split-trigger-button-border-radius) var(--ti-split-trigger-button-border-radius) 0 0;
         top: -6px;
         border-bottom: 0;
 
@@ -219,7 +219,7 @@
 
       .@{split-prefix-cls}-trigger-bottom-button {
         transform: translate(-50%, 0);
-        border-radius: 0 0 4px 4px;
+        border-radius: 0 0 var(--ti-split-trigger-button-border-radius) var(--ti-split-trigger-button-border-radius);
         border-top: 0;
         top: 9px;
 
@@ -267,8 +267,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgba(25, 25, 25, 0.1);
-    background: #fff;
+    border: var(--ti-split-trigger-button-border-width) solid var(--ti-split-trigger-button-border-color);
+    background: var(--ti-split-trigger-button-bg-color);
     transition: all 0.1s;
     visibility: hidden;
 

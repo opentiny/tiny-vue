@@ -7,7 +7,7 @@ export default {
       props: [
         {
           name: 'data',
-          type: 'Array',
+          type: 'array',
           defaultValue: '',
           desc: {
             'zh-CN': '设置收藏夹菜单的数据',
@@ -19,7 +19,7 @@ export default {
         {
           name: 'default-expand-all',
           type: 'boolean',
-          defaultValue: '',
+          defaultValue: 'true',
           desc: {
             'zh-CN': '设置打开菜单弹窗时默认是否展开所有节点，默认为 true',
             'en-US':
@@ -31,7 +31,7 @@ export default {
         {
           name: 'ellipsis',
           type: 'boolean',
-          defaultValue: '',
+          defaultValue: 'true',
           desc: {
             'zh-CN': '菜单内容超长时省略显示，默认为 true',
             'en-US': 'Omitted if the menu content is too long. The default value is true'
@@ -41,7 +41,7 @@ export default {
         },
         {
           name: 'get-menu-data-sync',
-          type: 'Function',
+          type: 'function',
           defaultValue: '',
           desc: {
             'zh-CN': '自定义菜单数据服务，直接返回数据',
@@ -109,10 +109,10 @@ export default {
         {
           name: 'wrap',
           type: 'boolean',
-          defaultValue: '',
+          defaultValue: 'true',
           desc: {
-            'zh-CN': '菜单内容超长时换行显示，默认为 false',
-            'en-US': 'The menu content is displayed in a new line when it is too long. The default value is false'
+            'zh-CN': '菜单内容超长时换行显示，默认为 true',
+            'en-US': 'The menu content is displayed in a new line when it is too long. The default value is true'
           },
           mode: ['pc'],
           pcDemo: 'data-resource'

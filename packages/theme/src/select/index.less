@@ -122,6 +122,13 @@
 
       > span {
         font-size: 0;
+
+        .tiny-tag.is-required {
+          cursor: not-allowed;
+          > svg {
+            cursor: not-allowed;
+          }
+        }
       }
     }
 
@@ -192,7 +199,7 @@
         display: inline-flex;
 
         > span {
-          color: red;
+          color: var(--ti-select-tags-text-color-disabled);
           font-size: var(--ti-tag-font-size);
           margin: var(--ti-select-tags-margin-top) var(--ti-select-tags-margin-right)
             var(--ti-select-tags-margin-bottom) var(--ti-select-tags-margin-left);
@@ -318,7 +325,8 @@
     }
   }
 
-  &.is-disabled {
+  &.is-disabled,
+  &.is-display-only {
     cursor: not-allowed;
 
     .@{input-prefix-cls} {
@@ -333,6 +341,10 @@
 
     .@{select-prefix-cls}__tags {
       padding-right: 16px;
+    }
+
+    .@{select-prefix-cls}__tags.is-show-tag {
+      padding-right: var(--ti-select-tags-padding-right-disabled);
     }
   }
 

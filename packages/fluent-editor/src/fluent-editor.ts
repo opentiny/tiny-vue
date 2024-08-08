@@ -1,5 +1,5 @@
 import Quill from 'quill'
-import { FONT_FAMILY_CONFIG, FONT_SIZE_CONFIG, ICONS_CONFIG, TABLE_RIGHT_MENU_CONFIG, inputFile } from './config'
+import { FONT_FAMILY_CONFIG, FONT_SIZE_CONFIG, ICONS_CONFIG, TABLE_RIGHT_MENU_CONFIG, inputFile, getListValue } from './config'
 import Counter from './counter' // 字符统计
 import CustomClipboard from './custom-clipboard' // 粘贴板
 import CustomImage from './custom-image/BlotFormatter' // 图片
@@ -53,7 +53,41 @@ const registerModules = function () {
             const accept = this.quill.options?.uploadOption?.imageAccept
             inputFile.call(this, 'image', accept)
           },
-          fullscreen: function() {}
+          fullscreen: function() {},
+          list: function (value) {
+            const range = this.quill.getSelection();
+            const formats = this.quill.getFormat(range);
+            const preListValue = Array.isArray(formats.list) ? formats.list[0]?.value : formats.list?.value;
+            const curListValue = getListValue(value, preListValue);
+            // 如果设置list的选区中有表格，判断第一个table-col位置，将表格前的内容设置为list格式
+            const lines = this.quill.getLines(range.index, range.length);
+            const tableCols = lines.filter((line) => line.statics.blotName === 'table-col' && !line.prev);
+            if (tableCols.length) {
+              let start = range.index;
+              // 遍历table-col群组，以之获取表格，将表格前选区设置为对应list格式
+              tableCols.forEach((item, index) => {
+                const table = item.domNode.closest('table.quill-better-table');
+                const tableBlot = Quill.find(table);
+                const tableLength = tableBlot.length();
+                const tableStart = this.quill.getIndex(item);
+                const tableEnd = tableStart + tableLength;
+                const beforeTableRangeLength = tableStart - start;
+                // 在表格前设置列表
+                this.quill.setSelection(start, beforeTableRangeLength, Quill.sources.SILENT);
+                this.quill.format('list', curListValue, Quill.sources.USER);
+                table.parentNode.classList.remove('quill-better-table-selected');
+                // 当前表格末尾为下一个选取的开始
+                start = tableEnd;
+                if (index === tableCols.length - 1) {
+                  // 将最后一个表格之后所有选区内容设置list格式
+                  this.quill.setSelection(tableEnd, range.index + range.length - tableEnd);
+                  this.quill.format('list', curListValue, Quill.sources.USER);
+                }
+              });
+            } else {
+              this.quill.format('list', curListValue, Quill.sources.USER);
+            }
+          },
         }
       },
       'better-table': {

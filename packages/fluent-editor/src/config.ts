@@ -188,3 +188,17 @@ export function inputFile(type, accept) {
   }
   fileInput.click()
 }
+
+export function getListValue(value, preListValue) {
+  let curListValue = value;
+  if (preListValue && preListValue === value) {
+    curListValue = false;
+  } else if (value === 'check') {
+    if (preListValue === 'checked' || preListValue === 'unchecked') {
+      curListValue = false;
+    } else {
+      curListValue = 'unchecked';
+    }
+  }
+  return curListValue;
+}
