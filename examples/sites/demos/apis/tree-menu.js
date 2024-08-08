@@ -397,6 +397,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'clearable'
+        },
+        {
+          name: 'highlight-query',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '通过 <code> highlightQuery </code> 属性，是否在匹配的节点中，高亮搜索文字。<br>',
+            'en-US': 'Indicates whether to highlight the search text in the matched node.'
+          },
+          mode: ['pc'],
+          pcDemo: 'show-filter'
         }
       ],
       events: [
