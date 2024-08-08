@@ -1360,8 +1360,19 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "pc"
     ]
+  },
+  "FluentEditorMobileFirst": {
+    "path": "vue/src/fluent-editor/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "FluentEditorPc": {
+    "path": "vue/src/fluent-editor/src/pc.vue",
+    "type": "template",
+    "exclude": false
   },
   "Form": {
     "path": "vue/src/form/index.ts",

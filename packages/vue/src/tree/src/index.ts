@@ -10,14 +10,15 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
+import { api } from '@opentiny/vue-renderless/tree/vue'
 import template from 'virtual-template?pc'
 
 const $constants = {
   EMPTY_TEXT_LOCAL: 'ui.tree.emptyText'
 }
 
-type DropType = 'prev' | 'inner' | 'next'
-type DropEndType = 'before' | 'after' | 'inner' | 'none'
+export type DropType = 'prev' | 'inner' | 'next'
+export type DropEndType = 'before' | 'after' | 'inner' | 'none'
 
 export default defineComponent({
   name: $prefix + 'Tree',
@@ -335,6 +336,23 @@ export default defineComponent({
       type: Function as PropType<(changeData: any, finalData: any) => void>
     }
   },
+  slots: Object as SlotsType<{
+    /** 自定义树节点的右键菜单内容 */
+    contextmenu: { node: any }
+    /** 自定义树节点的内容 */
+    default: { node: any; data: any }
+    /** 自定义空数据的元素 */
+    empty: { node: any }
+    /** 节点内容靠右对齐的元素 */
+    operation: { node: any }
+    /** 节点内容前置元素 */
+    prefix: { node: any }
+    /** 节点内容后置元素 */
+    suffix: { node: any }
+    /** 在严格模式显示自动勾选子节点的功能时，自定义开关右侧的内容  */
+    'switch-text': {}
+  }>,
+  expose: [api],
   setup(props, context) {
     return $setup({ props, context, template })
   }
