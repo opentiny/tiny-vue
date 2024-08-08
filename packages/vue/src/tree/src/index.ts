@@ -16,8 +16,8 @@ const $constants = {
   EMPTY_TEXT_LOCAL: 'ui.tree.emptyText'
 }
 
-export type DropType = 'prev' | 'inner' | 'next'
-export type DropEndType = 'before' | 'after' | 'inner' | 'none'
+export type TreeDropType = 'prev' | 'inner' | 'next'
+export type TreeDropEndType = 'before' | 'after' | 'inner' | 'none'
 
 /** Tree 组件用于展示树形数据，支持多选、懒加载、拖拽和编辑节点等功能 */
 export default defineComponent({
@@ -36,7 +36,7 @@ export default defineComponent({
     },
     /** 判断节点能否被拖拽 */
     allowDrop: {
-      type: Function as PropType<(srcNode: any, targetNode, type: DropType) => boolean>
+      type: Function as PropType<(srcNode: any, targetNode, type: TreeDropType) => boolean>
     },
     /** 展开子节点时，是否自动展开父节点，默认为 true */
     autoExpandParent: {
@@ -314,7 +314,7 @@ export default defineComponent({
     },
     /** 拖拽结束时（可能未成功）触发的事件 */
     onNodeDragEnd: {
-      type: Function as PropType<(srcNode: any, targetNode: any, dropType: DropEndType, event: DragEvent) => void>
+      type: Function as PropType<(srcNode: any, targetNode: any, dropType: TreeDropEndType, event: DragEvent) => void>
     },
     /** 拖拽进入其他节点时触发的事件  */
     onNodeDragEnter: {
@@ -334,7 +334,7 @@ export default defineComponent({
     },
     /** 拖拽成功完成时触发的事件  */
     onNodeDrop: {
-      type: Function as PropType<(srcNode: any, targetNode: any, dropType: DropEndType, event: DragEvent) => void>
+      type: Function as PropType<(srcNode: any, targetNode: any, dropType: TreeDropEndType, event: DragEvent) => void>
     },
     /** 展开节点后的事件 */
     onNodeExpand: {
