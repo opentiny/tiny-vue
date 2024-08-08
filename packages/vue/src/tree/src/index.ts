@@ -10,7 +10,6 @@
  *
  */
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import { api } from '@opentiny/vue-renderless/tree/vue'
 import template from 'virtual-template?pc'
 
 const $constants = {
@@ -20,6 +19,7 @@ const $constants = {
 export type DropType = 'prev' | 'inner' | 'next'
 export type DropEndType = 'before' | 'after' | 'inner' | 'none'
 
+/** Tree 组件用于展示树形数据，支持多选、懒加载、拖拽和编辑节点等功能 */
 export default defineComponent({
   name: $prefix + 'Tree',
   props: {
@@ -108,7 +108,9 @@ export default defineComponent({
     },
     /** 加载子树数据的方法。点击节点后，组件开始调用load方法
      * 只有在load函数内调用resolve(data)，才表示返回下级的数据成功。  */
-    load: { type: Function as PropType<(node: any, resolve: (data: any[]) => void) => void> },
+    load: {
+      type: Function as PropType<(node: any, resolve: (data: any[]) => void) => void>
+    },
     /** 节点唯一标识属性名称 */
     nodeKey: String,
     /** 未知属性 */
@@ -177,6 +179,7 @@ export default defineComponent({
       type: String,
       default: 'medium'
     },
+
     /** 删除时，禁止删除的节点 key 值列表 */
     deleteDisabledKeys: Array,
     /** 编辑时，禁止编辑的节点 key 值列表 */
@@ -189,24 +192,28 @@ export default defineComponent({
     viewType: {
       type: String,
       default: 'tree',
-      validator: (value) => ~['tree', 'plain'].indexOf(value)
+      validator(value) {
+        return ['tree', 'plain'].includes(value)
+      }
     },
     /** 平铺视图时，是否显示下面的辅助信息 */
     showAuxi: {
       type: Boolean,
       default: true
     },
-    /** 设置节点路径的分隔符，默认为 / */
+    /** 设置节点路径的分隔符，默认为 斜线 */
     pathSplit: {
       type: String,
       default: '/'
     },
     /** 未知属性,  */
     filterPlainMethod: {
-      type: Function
+      type: Function as PropType<(nodeData: any[]) => boolean>
     },
     /** 下级树节点数据加载完毕后的回调函数  */
-    afterLoad: { type: Function as PropType<(nodes: any[]) => void> },
+    afterLoad: {
+      type: Function as PropType<(nodes: any[]) => void>
+    },
     /** 未知属性  */
     lazyCurrent: Boolean,
     /** 未知属性  */
@@ -215,7 +222,9 @@ export default defineComponent({
       default: 0
     },
     /** 删除节点的装置钩子函数，若返回 false 或者返回 Promise 且被 reject，则停止删除。  */
-    deleteNodeMethod: { type: Function as PropType<({ node: any, event: MouseEvent }) => boolean | Promise<boolean>> },
+    deleteNodeMethod: {
+      type: Function as PropType<({ node: any, event: MouseEvent }) => boolean | Promise<boolean>>
+    },
     /** 未知属性  */
     showCheckedMark: Boolean,
     /** 未知属性  */
@@ -235,9 +244,6 @@ export default defineComponent({
       }>,
       default: () => ({})
     },
-
-    // tiny 新增
-
     /** 是否显示连接线,默认为false  */
     showLine: Boolean,
     /** 是否显示树节点聚焦时的背景颜色 */
@@ -250,9 +256,6 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-
-    // 以下为事件
-
     /** 添加节点的事件 */
     onAddNode: {
       type: Function as PropType<(node: any) => void>
