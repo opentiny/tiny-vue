@@ -52,7 +52,7 @@ export default {
         },
         {
           name: 'allow-drop',
-          type: '(srcNode, targetNode, type)=>void',
+          type: '(srcNode, targetNode, type)=> boolean',
           defaultValue: '',
           desc: {
             'zh-CN':
@@ -155,8 +155,8 @@ export default {
         },
         {
           name: 'delete-node-method',
-          type: 'boolean',
-          defaultValue: 'false',
+          type: '{ node: any, event: MouseEvent }) => boolean | Promise<boolean>',
+          defaultValue: '',
           desc: {
             'zh-CN': '删除节点的装置钩子函数，若返回 false 或者返回 Promise 且被 reject，则停止删除。 ',
             'en-US':
@@ -247,7 +247,7 @@ export default {
         {
           name: 'highlight-current',
           type: 'boolean',
-          defaultValue: 'true',
+          defaultValue: 'false',
           desc: {
             'zh-CN': '是否高亮当前选中节点',
             'en-US': 'Whether to highlight the selected node'
@@ -771,6 +771,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'edit-control'
+        },
+        {
+          name: 'closeMenu',
+          type: '()=>void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '关闭右键菜单的事件',
+            'en-US': 'Close ContextMenu Events'
+          },
+          mode: ['pc'],
+          pcDemo: ''
         }
       ],
       methods: [
