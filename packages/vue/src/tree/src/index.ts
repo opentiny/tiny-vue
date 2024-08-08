@@ -31,9 +31,13 @@ export default defineComponent({
     /** 是否为手风琴模式，每次只打开一个同级树节点展开 */
     accordion: Boolean,
     /** 判断节点能否被拖拽  */
-    allowDrag: Function as PropType<(nodeObj: any) => boolean>,
+    allowDrag: {
+      type: Function as PropType<(nodeObj: any) => boolean>
+    },
     /** 判断节点能否被拖拽 */
-    allowDrop: Function as PropType<(srcNode: any, targetNode, type: DropType) => boolean>,
+    allowDrop: {
+      type: Function as PropType<(srcNode: any, targetNode, type: DropType) => boolean>
+    },
     /** 展开子节点时，是否自动展开父节点，默认为 true */
     autoExpandParent: {
       type: Boolean,
@@ -80,7 +84,9 @@ export default defineComponent({
       default: true
     },
     /** 对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏 */
-    filterNodeMethod: Function as PropType<(value: any, nodeData: any, nodeObj: any) => boolean>,
+    filterNodeMethod: {
+      type: Function as PropType<(value: any, nodeData: any, nodeObj: any) => boolean>
+    },
     /** 是否高亮当前选中节点 默认为false */
     highlightCurrent: Boolean,
     /** 自定义节点图标 */
@@ -102,7 +108,7 @@ export default defineComponent({
     },
     /** 加载子树数据的方法。点击节点后，组件开始调用load方法
      * 只有在load函数内调用resolve(data)，才表示返回下级的数据成功。  */
-    load: Function as PropType<(node: any, resolve: (data: any[]) => void) => void>,
+    load: { type: Function as PropType<(node: any, resolve: (data: any[]) => void) => void> },
     /** 节点唯一标识属性名称 */
     nodeKey: String,
     /** 未知属性 */
@@ -125,7 +131,9 @@ export default defineComponent({
       default: true
     },
     /** 树节点的内容区的渲染函数 */
-    renderContent: Function as PropType<(h: any, { node: any, data: any, store: any }) => VNode>,
+    renderContent: {
+      type: Function as PropType<(h: any, { node: any, data: any, store: any }) => VNode>
+    },
     /** 是否为多选模式, 默认为 false  */
     showCheckbox: {
       type: Boolean,
@@ -194,9 +202,11 @@ export default defineComponent({
       default: '/'
     },
     /** 未知属性,  */
-    filterPlainMethod: Function,
+    filterPlainMethod: {
+      type: Function
+    },
     /** 下级树节点数据加载完毕后的回调函数  */
-    afterLoad: Function as PropType<(nodes: any[]) => void>,
+    afterLoad: { type: Function as PropType<(nodes: any[]) => void> },
     /** 未知属性  */
     lazyCurrent: Boolean,
     /** 未知属性  */
@@ -205,7 +215,7 @@ export default defineComponent({
       default: 0
     },
     /** 删除节点的装置钩子函数，若返回 false 或者返回 Promise 且被 reject，则停止删除。  */
-    deleteNodeMethod: Function as PropType<({ node: any, event: MouseEvent }) => boolean | Promise<boolean>>,
+    deleteNodeMethod: { type: Function as PropType<({ node: any, event: MouseEvent }) => boolean | Promise<boolean>> },
     /** 未知属性  */
     showCheckedMark: Boolean,
     /** 未知属性  */
