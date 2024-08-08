@@ -29,7 +29,9 @@ export default defineComponent({
       default: () => $constants
     },
     /** 是否为手风琴模式，每次只打开一个同级树节点展开 */
-    accordion: Boolean,
+    accordion: {
+      type: Boolean
+    },
     /** 判断节点能否被拖拽  */
     allowDrag: {
       type: Function as PropType<(nodeObj: any) => boolean>
@@ -49,35 +51,55 @@ export default defineComponent({
       default: false
     },
     /** 是否点击节点时，自动勾选节点，默认为 false */
-    checkOnClickNode: Boolean,
+    checkOnClickNode: {
+      type: Boolean
+    },
     /** 是否为父子严格模式，默认为 false */
-    checkStrictly: Boolean,
+    checkStrictly: {
+      type: Boolean
+    },
     /** 设置当前选中节点 */
-    currentNodeKey: [String, Number],
+    currentNodeKey: {
+      type: [String, Number]
+    },
     /** 设置数据源, 默认通过数据项的 label , children 属性展示数据.
      *  当需要高亮，编辑时，必须指定 node-key 属性 */
     data: {
       type: Array
     },
     /** 未知属性 */
-    dataset: Object,
+    dataset: {
+      type: Object
+    },
     /** 默认勾选的节点的keys */
-    defaultCheckedKeys: Array,
+    defaultCheckedKeys: {
+      type: Array
+    },
     /** 是否默认展开所有节点，默认为 false  */
-    defaultExpandAll: Boolean,
+    defaultExpandAll: {
+      type: Boolean
+    },
     /** 默认展开节点的keys */
-    defaultExpandedKeys: Array,
+    defaultExpandedKeys: {
+      type: Array
+    },
     /** 未知属性 */
-    defaultExpandedKeysHighlight: [Number, String],
+    defaultExpandedKeysHighlight: {
+      type: [Number, String]
+    },
     /** 是否开启节点拖拽，默认为 false */
     draggable: {
       type: Boolean,
       default: false
     },
     /** 无数据的时候展示的文本 */
-    emptyText: String,
+    emptyText: {
+      type: String
+    },
     /** 指示展开的图标 */
-    expandIcon: Object,
+    expandIcon: {
+      type: Object
+    },
     /** 节点在点击内容时,是否展开 / 收起  */
     expandOnClickNode: {
       type: Boolean,
@@ -88,9 +110,13 @@ export default defineComponent({
       type: Function as PropType<(value: any, nodeData: any, nodeObj: any) => boolean>
     },
     /** 是否高亮当前选中节点 默认为false */
-    highlightCurrent: Boolean,
+    highlightCurrent: {
+      type: Array
+    },
     /** 自定义节点图标 */
-    icon: Object,
+    icon: {
+      type: Object
+    },
     /** 点击图标展开节点时是否触发 node-click 事件, 默认为true */
     iconTriggerClickNode: {
       type: Boolean,
@@ -112,9 +138,13 @@ export default defineComponent({
       type: Function as PropType<(node: any, resolve: (data: any[]) => void) => void>
     },
     /** 节点唯一标识属性名称 */
-    nodeKey: String,
+    nodeKey: {
+      type: String
+    },
     /** 未知属性 */
-    parentKey: String,
+    parentKey: {
+      type: String
+    },
     /** 用户传入非标准格式的数据时，指定映射属性的关系  */
     props: {
       type: Object as PropType<{ children?: string; label?: string; disabled?: string; isLeaf?: string }>,
@@ -167,26 +197,42 @@ export default defineComponent({
       default: false
     },
     /** 指定 tree-node的高度及文字行高， 一直未入文档，可移除  */
-    nodeHeight: Number,
+    nodeHeight: {
+      type: Number
+    },
     /** 指示收缩的图标 */
-    shrinkIcon: Object,
+    shrinkIcon: {
+      type: Object
+    },
     /** 指示展开的图标色 */
-    expandIconColor: String,
+    expandIconColor: {
+      type: String
+    },
     /** 指示收缩的图标色  */
-    shrinkIconColor: String,
+    shrinkIconColor: {
+      type: String
+    },
     /** 组件的大小， 默认值为 medium, 可选值为 'medium'|'small' */
     size: {
       type: String,
       default: 'medium'
     },
     /** 删除时，禁止删除的节点 key 值列表 */
-    deleteDisabledKeys: Array,
+    deleteDisabledKeys: {
+      type: Array
+    },
     /** 编辑时，禁止编辑的节点 key 值列表 */
-    editDisabledKeys: Array,
+    editDisabledKeys: {
+      type: Array
+    },
     /** 添加时，禁止添加的节点 key 值列表 */
-    addDisabledKeys: Array,
+    addDisabledKeys: {
+      type: Array
+    },
     /** 未知属性, 该功能待移除。 只是通过它 生成一个 isSaasTheme的类名  */
-    theme: String,
+    theme: {
+      type: String
+    },
     /** 视图模式,其中tree是普通视图，plain是平铺视图  */
     viewType: {
       type: String,
@@ -214,7 +260,9 @@ export default defineComponent({
       type: Function as PropType<(nodes: any[]) => void>
     },
     /** 未知属性  */
-    lazyCurrent: Boolean,
+    lazyCurrent: {
+      type: Boolean
+    },
     /** 未知属性  */
     baseIndent: {
       type: Number,
@@ -225,14 +273,18 @@ export default defineComponent({
       type: Function as PropType<({ node: any, event: MouseEvent }) => boolean | Promise<boolean>>
     },
     /** 未知属性  */
-    showCheckedMark: Boolean,
+    showCheckedMark: {
+      type: Boolean
+    },
     /** 未知属性  */
     willChangeView: {
       type: Boolean,
       default: true
     },
     /** 是否只能选中叶子节点 */
-    onlyCheckChildren: Boolean,
+    onlyCheckChildren: {
+      type: Boolean
+    },
     /** 用于编辑模式下参数配置,指示新增节点的 id ,是否显示 id 重复的警告等 */
     editConfig: {
       type: Object as PropType<{
@@ -244,7 +296,9 @@ export default defineComponent({
       default: () => ({})
     },
     /** 是否显示连接线,默认为false  */
-    showLine: Boolean,
+    showLine: {
+      type: Boolean
+    },
     /** 是否显示树节点聚焦时的背景颜色 */
     isShowFocusBg: {
       type: Boolean,
