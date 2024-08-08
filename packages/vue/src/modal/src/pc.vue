@@ -183,13 +183,15 @@ export default defineComponent({
                           ]
                         )
                       : null,
-                    h(
-                      'span',
-                      {
-                        class: 'tiny-modal__title'
-                      },
-                      title || t('ui.alert.title')
-                    ),
+                    title
+                      ? h(
+                          'span',
+                          {
+                            class: 'tiny-modal__title'
+                          },
+                          title || t('ui.alert.title')
+                        )
+                      : null,
                     resize
                       ? h(zoomLocat ? iconMinscreenLeft() : iconFullscreenLeft(), {
                           class: ['tiny-modal__zoom-btn', 'trigger__btn'],
