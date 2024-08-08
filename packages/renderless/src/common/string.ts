@@ -241,8 +241,7 @@ export const fillChar = (string, length, append, chr = '0') => {
 }
 
 export const random = () => {
-  let MAX_UINT32_PLUS_ONE = 4294967296
-  return window.crypto.getRandomValues(new window.Uint32Array(1))[0] / MAX_UINT32_PLUS_ONE
+  return Math.random()
 }
 
 /**
