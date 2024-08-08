@@ -544,7 +544,7 @@ interface IItemData {
       name: 'IButtonType',
       type: 'type',
       code: `        
-type IButtonType =  'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
+type IButtonType = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
 `
     },
     {

@@ -14,7 +14,7 @@
     <div class="tiny-fall-menu__wrap">
       <div class="tiny-fall-menu__nav">
         <div class="tiny-fall-menu__subnav">
-          <div v-show="state.pager != 1" class="icon-slot-left" @click="arrowClick(-1)">
+          <div v-show="state.pager !== 1" class="icon-slot-left" @click="arrowClick(-1)">
             <slot name="left">
               <icon-chevron-left class="tiny-svg-size" />
             </slot>
@@ -71,7 +71,7 @@
                     </h3>
                     <p class="mcate-item-bd">
                       <slot name="level3" :slot-scope="level2.children">
-                        <a v-for="(level3, index) in level2.children" :href="level3.url" :key="index">{{
+                        <a v-for="(level3, index3) in level2.children" :href="level3.url" :key="index3">{{
                           level3.title
                         }}</a>
                       </slot>
@@ -95,7 +95,6 @@ import Col from '@opentiny/vue-col'
 import { iconChevronLeft, iconChevronRight } from '@opentiny/vue-icon'
 
 export default defineComponent({
-  emits: ['hook-updated'],
   props: [...props, 'data'],
   components: {
     TinyRow: Row,
