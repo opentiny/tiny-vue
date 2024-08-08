@@ -27,6 +27,8 @@ export default {
   'checkbox-group': 'checkbox-group',
   'context-menu': 'context-menu',
   'collapse-item': 'collapse-item',
+  'color-select-panel': 'color-select-panel',
+  'color-picker': 'color-picker',
   'detail-page': 'detail-page',
   'dialog-box': 'dialog-box__wrapper',
   'dropdown-item': 'dropdown-item',

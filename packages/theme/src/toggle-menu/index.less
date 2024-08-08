@@ -48,7 +48,7 @@
 
   & &__filter {
     position: relative;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     width: calc(100% - 16px);
   }
 
@@ -121,9 +121,30 @@
   }
 
   .@{tree-prefix-cls} {
+    .is-current:not(.show-checkbox) {
+      > .@{tree-node-prefix-cls}__content > .@{tree-node-prefix-cls}__content-left {
+        font-weight: var(--ti-toggle-menu-toggle-font-weight);
+      }
+    }
+
+    .@{tree-node-prefix-cls}__content {
+      height: 32px;
+    }
+
+    :not(.show-checkbox) > .@{tree-node-prefix-cls}__content .@{tree-node-prefix-cls}__content-box,.@{tree-node-prefix-cls}__content-right {
+      &:hover {
+        background-color: var(--ti-toggle-menu-toggle-bg-hover-color);
+        font-weight: var(--ti-toggle-menu-toggle-font-weight);
+      }
+    }
+
+    .@{tree-node-prefix-cls}__expand-icon {
+      font-size: 16px;
+    }
+
     &.is-wrap {
       .@{tree-node-prefix-cls}__content {
-        height: auto;
+        height: 32px;
       }
 
       .@{toggle-menu-prefix-cls}__name {
