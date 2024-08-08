@@ -157,6 +157,7 @@
     "echarts-liquidfill": "3.1.0",
     "echarts-wordcloud": "2.0.0",
     "fastdom": "1.0.11",
+    "nanoid": "^5.0.7",
     "shepherd.js": "11.0.1",
     "streamsaver": "2.0.6"
   },
