@@ -4,7 +4,8 @@ test('阻止切换', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#before-leave')
 
-  const tabs = page.locator('.tiny-tabs')
+  const container = page.locator('#before-leave')
+  const tabs = container.locator('.tiny-tabs')
   const tabItem = tabs.getByRole('tab', { name: '表单组件' })
   const activeItem = page.getByRole('tab', { name: '数据组件' })
   const notify = page.locator('.tiny-notify')

@@ -8,11 +8,8 @@ test('PopEditor change 事件', async ({ page }) => {
   const textBox = preview.getByRole('textbox')
   const dialogBox = page.locator('.tiny-dialog-box')
   const confirmBtn = dialogBox.getByRole('button', { name: '确 认' })
-  const cancelBtn = dialogBox.getByRole('button', { name: '取 消' })
   const dataItem = dialogBox.getByRole('row', { name: '1 GFD科技YX公司 福建 福州' }).locator('span')
-  const infoModal = page.getByText(
-    '值变为1,{"id":"1","name":"GFD科技YX公司","city":"福州","province":"福建","_$index_":"1"}'
-  )
+  const infoModal = page.getByText('值变为1,{"id":"1","name":"GFD科技YX公司","city":"福州","province":"福建"}')
 
   await textBox.click()
   await dataItem.click()

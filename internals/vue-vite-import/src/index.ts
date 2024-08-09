@@ -30,19 +30,43 @@ export interface PluginOption {
   libraryChangeCase?: ChangeCaseType | ((name: string) => string)
 }
 
+export interface allOptions {
+  options: PluginOptions
+  mode?: ModeType
+  exclude?: Array<RegExp | string>
+}
+
 export type PluginOptions = Array<PluginOption>
 
 type ModeType = 'pc' | 'mobile' | undefined
 
-export default function vitePluginBabelImport(plgOptions: PluginOptions, mode?: ModeType): Plugin {
+const matchExclude = (exclude, id) => exclude.some((item) => item === id || item?.test?.(id))
+
+export default function vitePluginBabelImport(plgOptions: PluginOptions | allOptions, modeType?: ModeType): Plugin {
+  let pluginOption
+  let mode
+  let exclude
+  if (Array.isArray(plgOptions)) {
+    pluginOption = plgOptions
+    mode = modeType
+  } else if (plgOptions && typeof plgOptions === 'object') {
+    pluginOption = plgOptions.options
+    mode = plgOptions.mode
+    exclude = plgOptions.exclude
+  }
   return {
     name: '@opentiny/vue-vite-import',
     transform(code, id) {
+      if (Array.isArray(exclude) && matchExclude(exclude, id)) {
+        return code
+      }
+
       const isCheckMode = mode && /@opentiny\/vue-.+?\/lib\/index.js$/.test(id) && code.includes(`./${mode}`)
+
       // 不处理node_modules内的依赖
       if (/\.(?:[jt]sx?|vue)$/.test(id) && !/(node_modules)/.test(id)) {
         return {
-          code: transformCode(code, transformOptions(plgOptions)),
+          code: transformCode(code, transformOptions(pluginOption)),
           map: null
         }
       } else if (isCheckMode) {
@@ -116,7 +140,9 @@ const transformImport = (matchRes: string, opt: PluginInnerOption) => {
         itemName = allName[0]
         asName = allName[1]
       }
-      const importName = opt.customName?.(itemName) || opt.libraryResolve(itemName)
+      // 1.2.0版本新增，组件版本新增Tiny前缀导出，因此需要特殊处理一下
+      const importItemName = itemName?.startsWith('Tiny') ? itemName.substr(4) : itemName
+      const importName = opt.customName?.(importItemName) || opt.libraryResolve(importItemName)
       const compImportName = isImportWithAs ? asName : itemName
       return `import ${compImportName} from '${importName}'`
     })
@@ -133,7 +159,6 @@ const getCompRegExp = (libraryName: any) =>
 
 function transformCode(code: string, plgOptions: PluginInnerOptions): string {
   let resultCode = code
-
   plgOptions.forEach((opt) => {
     const compRegexp = getCompRegExp(opt.libraryName)
     if (compRegexp.test(resultCode)) {

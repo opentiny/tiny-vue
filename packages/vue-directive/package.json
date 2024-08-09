@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-directive",
-  "version": "3.17.0",
+  "version": "3.18.0",
   "description": "",
   "module": "index.ts",
   "main": "index.ts",
