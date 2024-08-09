@@ -27,7 +27,6 @@
     "@opentiny/vue-design-saas": "workspace:~",
     "@opentiny/vue-design-smb": "workspace:~",
     "@opentiny/vue-directive": "workspace:~",
-    "@opentiny/vue-fluent-editor": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-icon-saas": "workspace:~",
     "@opentiny/vue-repl": "^1.1.2",
