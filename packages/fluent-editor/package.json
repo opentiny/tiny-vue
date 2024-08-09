@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/fluent-editor",
-  "version": "3.18.0",
+  "version": "3.17.1",
   "main": "dist/index.js",
   "files": [
     "dist/*"
