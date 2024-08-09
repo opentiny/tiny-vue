@@ -32,7 +32,7 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "pnpm build:internals",
+    "postinstall": "pnpm build:internals && pnpm -F @opentiny/fluent-editor build",
     "prepare": "husky install",
     "bootstrap": "pnpm --filter=\"!./packages/dist/**\" install",
     "dev": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/vue3 dev",

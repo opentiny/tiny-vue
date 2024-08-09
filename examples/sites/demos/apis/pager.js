@@ -247,6 +247,9 @@ export default {
           name: 'total-fixed-left',
           type: 'boolean',
           defaultValue: 'false',
+          metaData: {
+            new: '3.18.0'
+          },
           desc: {
             'zh-CN': '总条目数是否固定在左侧，Aurora、SMB主题默认值为 true',
             'en-US':

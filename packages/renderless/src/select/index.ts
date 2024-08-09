@@ -905,10 +905,6 @@ export const toggleMenu =
     const nodeName = event.target && event.target.nodeName
     const toggleVisible = props.ignoreEnter ? event.keyCode !== enterCode && nodeName === 'INPUT' : true
 
-    if (!props.displayOnly) {
-      event.stopPropagation()
-    }
-
     if (!state.selectDisabled) {
       toggleVisible && !state.softFocus && (state.visible = !state.visible)
       state.softFocus = false
@@ -2266,9 +2262,9 @@ export const computedDisabledTooltipContent =
   }
 
 export const computedSelectDisabled =
-  ({ props, parent }) =>
+  ({ state }) =>
   () =>
-    props.disabled || (parent.form || {}).disabled || props.displayOnly || (parent.form || {}).displayOnly
+    state.isDisabled || state.isDisplayOnly
 
 export const computedIsExpand =
   ({ props, state }) =>
@@ -2344,6 +2340,23 @@ export const watchShowClose =
   }
 
 // 以下为tiny 新增功能
+/**
+ * 兼容不同主题多选禁用的展示类型
+ * default 和 smb 主题，displayOnly 时显示为 tagText,否则为 tag
+ * aurora 主题 displayOnly||disabled 时显示为tagText,否则为 tag
+ */
+export const computedShowTagText =
+  ({ state }) =>
+  () =>
+    state.isDisplayOnly
+
+/**
+ * 兼容不同主题多选，tag 在disabled 和 required 时是否显示关闭按钮的区别
+ * default 主题 ，禁用显示关闭按钮，required目前和aurora保持一致不显示，待设计图补充时更新
+ * aurora 主题，禁用时无禁用效果，required 时不显示关闭按钮
+ */
+export const isTagClosable = () => (item) => !item.required
+
 export const computedGetIcon =
   ({ designConfig, props }) =>
   () => {
@@ -2363,6 +2376,7 @@ export const computedGetTagType =
     }
     return props.tagType
   }
+
 export const clearSearchText =
   ({ state, api }) =>
   () => {
@@ -2370,6 +2384,7 @@ export const clearSearchText =
     state.previousQuery = undefined
     api.handleQueryChange(state.query)
   }
+
 export const clearNoMatchValue =
   ({ props, emit }) =>
   (newModelValue) => {

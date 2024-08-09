@@ -3,48 +3,48 @@
     <hue-select :color="state.color" @hue-update="onHueUpdate" @sv-update="onSVUpdate" />
     <alpha-select v-if="alpha" :color="state.color" @alpha-update="onAlphaUpdate" />
     <div class="tiny-color-select-panel__tools">
-      <tiny-input v-model="state.res" />
+      <tiny-input v-model="state.res" size="small" />
       <tiny-button-group>
-        <tiny-button type="text" @click="onCancel">
+        <tiny-button size="small" @click="onCancel">
           {{ t('ui.colorSelectPanel.cancel') }}
         </tiny-button>
-        <tiny-button @click="onConfirm">
+        <tiny-button size="small" @click="onConfirm">
           {{ t('ui.colorSelectPanel.confirm') }}
         </tiny-button>
       </tiny-button-group>
     </div>
     <tiny-collapse>
       <tiny-collapse-item :title="t('ui.colorSelectPanel.history')" name="history" v-if="state.enableHistory">
-        <div class="tiny-color-select-panel__history">
+        <div class="tiny-color-select-panel__history" v-if="state.stack.length">
           <div
             class="tiny-color-select-panel__history__color-block"
-            v-if="state.stack.length"
-            v-for="color in state.stack"
+            v-for="(color, key) in state.stack"
+            :key="key"
             :style="{
               background: color
             }"
             @click="() => onHistoryClick(color)"
           ></div>
-          <span v-else>{{ t('ui.colorSelectPanel.empty') }}</span>
         </div>
+        <div v-if="!state.stack.length">{{ t('ui.colorSelectPanel.empty') }}</div>
       </tiny-collapse-item>
       <tiny-collapse-item
         :title="t('ui.colorSelectPanel.predefine')"
         name="predefine"
         v-if="state.enablePredefineColor"
       >
-        <div class="tiny-color-select-panel__predefine">
+        <div class="tiny-color-select-panel__predefine" v-if="state.predefineStack.length">
           <div
             class="tiny-color-select-panel__predefine__color-block"
-            v-if="state.predefineStack.length"
-            v-for="color in state.predefineStack"
+            v-for="(color, key) in state.predefineStack"
+            :key="key"
             :style="{
               background: color
             }"
             @click="() => onPredefineColorClick(color)"
           ></div>
-          <span v-else>{{ t('ui.colorSelectPanel.empty') }}</span>
         </div>
+        <div v-if="!state.predefineStack.length">{{ t('ui.colorSelectPanel.empty') }}</div>
       </tiny-collapse-item>
     </tiny-collapse>
   </div>

@@ -207,6 +207,13 @@
       padding-right: 0;
     }
 
+    &.is-fail
+      > .@{upload-list-prefix-cls}__item-actions
+      > &-delete
+      > .@{svg-prefix-cls}.@{svg-prefix-cls}-size.icon-delete {
+      fill: var(--ti-upload-list-svg-close-icon-color);
+    }
+
     .@{svg-prefix-cls} {
       &.icon-successful {
         font-size: var(--ti-upload-list-successful-icon-font-size);
@@ -383,10 +390,10 @@
 
       &.is-fail {
         border-color: var(--ti-upload-list-item-fail-text-color);
-        background-color: rgba(242, 48, 48, 0.1);
+        background-color: #fce3e1;
 
         .@{upload-list-prefix-cls}__item-actions:hover {
-          background-color: rgba(242, 48, 48, 0.1);
+          background-color: #fce3e1;
 
           & span .tiny-svg {
             fill: #191919;

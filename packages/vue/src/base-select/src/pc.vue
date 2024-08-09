@@ -441,16 +441,8 @@
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
             >
-              <!-- <component :is="`icon-${state.selectCls}`" :class="['tiny-svg-size', state.selectCls]" />
-              <span>{{ t('ui.base.all') }}</span> -->
-              <!-- tiny 新增： 使用checkbox 代替 svg , 列表模式 -->
-              <tiny-checkbox
-                :model-value="state.selectCls === 'checked-sur'"
-                :indeterminate="state.selectCls === 'halfselect'"
-                :class="state.selectCls"
-              >
-                {{ allText || t('ui.base.all') }}
-              </tiny-checkbox>
+              <component :is="`icon-${state.selectCls}`" :class="['tiny-svg-size', state.selectCls]" />
+              <span>{{ allText || t('ui.base.all') }}</span>
             </li>
             <li
               v-if="
@@ -474,16 +466,8 @@
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
             >
-              <!-- <component :is="`icon-${state.filteredSelectCls}`" :class="['tiny-svg-size', state.filteredSelectCls]" />
-              <span>{{ t('ui.base.all') }}</span> -->
-              <!-- tiny 新增： 使用checkbox 代替 svg，过滤模式 -->
-              <tiny-checkbox
-                :model-value="state.filteredSelectCls === 'checked-sur'"
-                :indeterminate="state.filteredSelectCls === 'halfselect'"
-                :class="state.selectCls"
-              >
-                {{ allText || t('ui.base.all') }}
-              </tiny-checkbox>
+              <component :is="`icon-${state.filteredSelectCls}`" :class="['tiny-svg-size', state.filteredSelectCls]" />
+              <span>{{ allText || t('ui.base.all') }}</span>
             </li>
             <tiny-option :value="state.query" created v-if="state.showNewOption"> </tiny-option>
             <slot>

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-vite-import",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "A TinyVue vite import plugin",
   "main": "dist/index.cjs",
   "module": "dist/index.js",

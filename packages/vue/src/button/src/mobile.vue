@@ -49,7 +49,7 @@ import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme-mobile/button/index.less'
 
 export default defineComponent({
-  emits: ['hook-updated', 'click'],
+  emits: ['click'],
   props: [...props, 'type', 'text', 'size', 'icon', 'resetTime', 'nativeType', 'loading', 'disabled', 'customClass'],
   components: {},
   setup(props, context) {
