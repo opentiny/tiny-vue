@@ -4,7 +4,8 @@ test('card类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#tab-style-card')
 
-  const tabs = page.locator('.tiny-tabs')
+  const container = page.locator('#tab-style-card')
+  const tabs = container.locator('.tiny-tabs')
   const tabItems = tabs.getByRole('tab')
   const firstItem = tabItems.first()
   const item5 = tabItems.nth(4)
