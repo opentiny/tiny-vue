@@ -4,7 +4,6 @@
   "description": "",
   "module": "index.ts",
   "sideEffects": false,
-  "type": "module",
   "main": "lib/index.js",
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",

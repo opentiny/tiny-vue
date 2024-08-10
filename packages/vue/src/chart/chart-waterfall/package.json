@@ -5,7 +5,6 @@
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
-  "type": "module",
   "devDependencies": {},
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",

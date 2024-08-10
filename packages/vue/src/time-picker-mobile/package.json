@@ -5,7 +5,6 @@
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
-  "type": "module",
   "dependencies": {
     "@opentiny/vue-cascader-select": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
