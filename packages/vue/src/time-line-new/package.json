@@ -1,6 +1,7 @@
 {
   "name": "@opentiny/vue-time-line-new",
-  "version": "3.17.0",
+  "type": "module",
+  "version": "3.18.0",
   "description": "",
   "license": "MIT",
   "sideEffects": false,
