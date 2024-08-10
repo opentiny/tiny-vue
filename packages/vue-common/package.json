@@ -26,7 +26,6 @@
   },
   "main": "src/index.ts",
   "sideEffects": false,
-  "type": "module",
   "dependencies": {
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",

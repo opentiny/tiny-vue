@@ -26,7 +26,6 @@
     "url": "https://github.com/opentiny/tiny-vue/issues"
   },
   "sideEffects": false,
-  "type": "module",
   "exports": {
     ".": "./index.ts",
     "./*": "./src/*"

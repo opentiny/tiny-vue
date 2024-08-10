@@ -24,7 +24,6 @@
   "bugs": {
     "url": "https://github.com/opentiny/tiny-vue/issues"
   },
-  "type": "module",
   "main": "index.ts",
   "sideEffects": false,
   "dependencies": {

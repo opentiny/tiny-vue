@@ -30,7 +30,6 @@
     "./*": "./src/*"
   },
   "sideEffects": false,
-  "type": "module",
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
