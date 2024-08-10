@@ -48,9 +48,6 @@ export default defineComponent({
     'width',
     'zIndex'
   ],
-  components: {
-    Button
-  },
   provide() {
     return { dialog: this }
   },
@@ -108,13 +105,15 @@ export default defineComponent({
                     }
                   },
                   [
-                    h(
-                      'span',
-                      {
-                        class: 'tiny-mobile-modal__title'
-                      },
-                      title || t('ui.alert.title')
-                    ),
+                    title !== ''
+                      ? h(
+                          'span',
+                          {
+                            class: 'tiny-mobile-modal__title'
+                          },
+                          title || t('ui.alert.title')
+                        )
+                      : null,
                     resize
                       ? h(zoomLocat ? iconMinscreenLeft() : iconFullscreenLeft(), {
                           class: ['tiny-mobile-modal__zoom-btn', 'trigger__btn'],
