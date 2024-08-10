@@ -146,7 +146,8 @@
     "// ---------- 预览发布后的solid组件 ----------": "",
     "preview:solid": "pnpm -C examples/solid-demo run dev",
     "build:solid": "pnpm -C internals/cli build:solid",
-    "pub:solid": "pnpm --filter=\"./packages/dist-solid/**\" publish --no-git-checks --access=public --registry=https://registry.npmjs.org"
+    "pub:solid": "pnpm --filter=\"./packages/dist-solid/**\" publish --no-git-checks --access=public --registry=https://registry.npmjs.org",
+    "dev:nuxt":"pnpm -F @opentiny/nuxt dev"
   },
   "dependencies": {
     "@vue/composition-api": "1.7.2",

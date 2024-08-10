@@ -3,11 +3,19 @@
   "name": "my-module-playground",
   "type": "module",
   "scripts": {
-    "dev": "nuxi dev",
+    "dev": "npx nuxi dev",
     "build": "nuxi build",
     "generate": "nuxi generate"
   },
   "dependencies": {
-    "nuxt": "^3.12.3"
+    "nuxt": "^3.12.3",
+    "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-alert": "workspace:~",
+    "@opentiny-internal/unplugin-virtual-template": "workspace:*"
+  },
+  "devDependencies": {
+    "vite-svg-loader": "5.1.0",
+    "@nuxt/devtools": "^1.2.0",
+    "@vitejs/plugin-vue-jsx": "4.0.0"
   }
 }
