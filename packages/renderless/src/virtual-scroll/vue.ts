@@ -9,15 +9,23 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
+
 // 定义组件的整体架构和生命周期管理
-import { handleScroll } from './index'
+import { initPositions, updatePositions, calculateTotalSize, handleScroll } from './index'
 import { initService } from '../user'
 
-// import { initUser, showCard, showDetail, computedTextField, computedValueField } from './index'
 // 提供函数索引
-export const api = ['state', 'handleScroll', 'virtualScroll']
+export const api = [
+  'state',
+  'handleScroll',
+  'virtualScroll',
+  'items',
+  'initPositions',
+  'updatePositions',
+  'calculateTotalSize'
+]
 // 管理virtual-scroll相关的逻辑和状态，不涉及实际渲染部分
-export const renderless = (props, { reactive, nextTick, watch, computed, onMounted, ref }, { service }) => {
+export const renderless = (props, { reactive, nextTick, watch, computed, onMounted, ref, onUpdated }, { service }) => {
   service = initService({ props, service })
 
   const api = {}
@@ -26,16 +34,42 @@ export const renderless = (props, { reactive, nextTick, watch, computed, onMount
     data: [...props.data],
     visibleData: [],
     translate: 0,
-    totalSize: computed(() => props.itemSize * state.data.length)
+    totalSize: computed(() => api.calculateTotalSize()),
+    positions: [] // 不定高度的列表缓存
   })
-
   const virtualScroll = ref(null) // 初始为 null，实际 DOM 元素在挂载时会赋值
+  const items = ref([]) // 列表数组*
   // 将处理virtual-scroll的方法绑定到api中（用initApi函数调用index.ts中的方法，添加到api对象）
   Object.assign(api, {
     state,
     virtualScroll,
-    handleScroll: handleScroll({ state, props, virtualScroll, nextTick })
+    items,
+    handleScroll: handleScroll({ state, props, virtualScroll, nextTick, items }),
+    updatePositions: updatePositions({ state, items }),
+    initPositions: initPositions({ props, state }),
+    calculateTotalSize: calculateTotalSize({ props, state })
   })
+  api.initPositions()
+  // 组件挂载后加载滚动事件
+  onMounted(() => {
+    if (!virtualScroll.value) return
+    // 初始化positions
+    // api.initPositions()
+    api.handleScroll()
+  })
+  // 列表完成获取列表的每一项并完成(重新渲染并更新DOM之后被调用)
+  onUpdated(() => nextTick(api.updatePositions))
+  // console.log('here')
+  // watch(
+  //   items,
+  //   async () => {
+  //     await nextTick()
+  //     // if (!items || !items.length) return
+  //     console.log('called')
+  //     api.updatePositions()
+  //   },
+  //   { flush: 'post', deep: true }
+  // )
 
   // 监听属性和状态的变化+处理相应的逻辑（调用事件处理函数）+会调用index.ts的样式计算函数来调整样式
   watch(
@@ -55,8 +89,7 @@ export const renderless = (props, { reactive, nextTick, watch, computed, onMount
     () => props.data,
     (newData) => {
       state.data = [...newData]
-      // state.totalHeight = props.itemHeight * state.data.length
-      // api.handleScroll() // 处理数据变化后的滚动计算
+      // api.initPositions()
     },
     { immediate: true }
   )
@@ -67,12 +100,6 @@ export const renderless = (props, { reactive, nextTick, watch, computed, onMount
     },
     { immediate: true }
   )
-  // // 组件挂载后加载滚动事件
-  onMounted(() => {
-    // 在 onMounted 钩子中绑定滚动事件处理函数
-    if (!virtualScroll.value) return
-    api.handleScroll()
-  })
 
   // 返回所有方法的api对象
   return api

@@ -20,7 +20,7 @@
   // 外层容器：virtual-scroll
   position: relative;
   overflow: auto;
-  background-color: aqua;
+  background-color: rgba(108, 241, 196, 0.822);
   // 确保虚拟滚动内容
   & > .virtual-scroll-context {
     position: absolute;
@@ -36,11 +36,13 @@
     top: 0;
     left: 0;
     display: flex;
+    overflow: hidden;
   }
 
   // 每项内容
   & > .virtual-scroll-item {
     display: flex;
     align-items: center;
+    box-sizing: border-box;
   }
 }
