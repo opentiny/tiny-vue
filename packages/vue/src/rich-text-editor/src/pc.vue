@@ -308,6 +308,7 @@ import TinyTiptap from '@opentiny/tiny-tiptap'
 import { extensionViewMap } from './extensions'
 import slashMenuView from './components/slash-menu'
 import floatMenuView from './components/float-menu'
+import bubbleMenuView from './components/bubble-menu'
 
 import { $props, setup, defineComponent, $prefix, directive } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
@@ -342,6 +343,10 @@ export const richTextEditorProps = {
   floatMenuView: {
     type: [Object, Boolean],
     default: false
+  },
+  bubbleMenuView: {
+    type: [Object, Boolean],
+    default: true
   }
 }
 
@@ -425,7 +430,8 @@ export default defineComponent({
         VueNodeViewRenderer,
         viewMap: extensionViewMap,
         slashMenuView,
-        floatMenuView
+        floatMenuView,
+        bubbleMenuView
       }
     })
   }

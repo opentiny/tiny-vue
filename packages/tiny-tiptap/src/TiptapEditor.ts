@@ -3,6 +3,7 @@ import { extensions } from './extension'
 
 import { generateSlashMenuExtension } from './components/slash'
 import { registerFloatMenuExtension } from './components/float'
+import { registerBubbleMenuExtension } from './components/bubble'
 
 export default class TiptapEditor {
   options: any
@@ -20,7 +21,7 @@ export default class TiptapEditor {
     this.extensions = extensions
     const { viewMap, menuMap, nodeViewRender } = config
 
-    const { renderer, slashMenuView, floatMenuView } = menuMap
+    const { renderer, slashMenuView, floatMenuView, bubbleMenuView } = menuMap
 
     this.initExtensionViews(viewMap, nodeViewRender)
 
@@ -42,6 +43,10 @@ export default class TiptapEditor {
 
     if (floatMenuView) {
       this.initFloatingMenu(renderer, floatMenuView)
+    }
+
+    if (bubbleMenuView) {
+      this.initBubbleMenu(renderer, bubbleMenuView)
     }
   }
 
@@ -82,11 +87,18 @@ export default class TiptapEditor {
 
   private initSlashMenu(renderer, view) {
     const slashMenu = generateSlashMenuExtension(renderer, view)
-    this.extensions.push(slashMenu)
+    // 热更新会重复添加 slashMenu 此处用于 fix
+    if (this.extensions.findIndex((extension) => extension.name === 'slashMenu') === -1) {
+      this.extensions.push(slashMenu)
+    }
   }
 
   private initFloatingMenu(renderer, view) {
     registerFloatMenuExtension(this.editor, renderer, view)
+  }
+
+  private initBubbleMenu(renderer, view) {
+    registerBubbleMenuExtension(this.editor, renderer, view)
   }
 
   private initMiscOptions(config) {

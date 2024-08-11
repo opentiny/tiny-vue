@@ -1,0 +1,25 @@
+.tiny-bubble-menu {
+  &__view {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background-color: #ffffff;
+    padding: 12x 20px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+  }
+
+  &__item {
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 2px;
+
+    &.is-active {
+      background-color: #d5e3fc;
+    }
+
+    &:hover {
+      background-color: #e5e6e7;
+    }
+  }
+}
