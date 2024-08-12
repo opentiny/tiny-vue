@@ -11,8 +11,7 @@ const basePath = '/base/'
 
 const emptyThemeContent = `@import '../../{{}}/index.less';`
 
-const baseContent = `@import '../../base/index.less';
-html:root`
+const baseContent = fs.readFileSync('../src/base/basic-var.less', 'utf8')
 
 const scopedTitle = `@import '../../custom.less';
 @import '../../{{}}/index.less';
@@ -229,14 +228,15 @@ const createTheme = (callbackFn) => {
     let newDataStr = dataStr.slice(startIndex, endIndex)
     const lastIndex = newDataStr.lastIndexOf("'")
     newDataStr =
-      baseContent +
       newDataStr
         .slice(0, lastIndex)
         .replace(/\'ti-/g, '--ti-')
         .replace(/\'/g, '')
         .replace(/\,\n/g, ';\n')
-        .replace(/\, \/\//g, '; //') +
-      ';\n}'
+        .replace(/\, \/\//g, '; //')
+        .replace('{', '') + ';\n}'
+
+    newDataStr = baseContent.replace('}', newDataStr)
 
     writeFile(buildThemePathMap[fileDir] + '/index.less', newDataStr)
   }
