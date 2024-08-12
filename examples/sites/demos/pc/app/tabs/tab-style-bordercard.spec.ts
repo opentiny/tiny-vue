@@ -4,7 +4,8 @@ test('bordercard类型', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#tab-style-bordercard')
 
-  const tabs = page.locator('.tiny-tabs')
+  const container = page.locator('#tab-style-bordercard')
+  const tabs = container.locator('.tiny-tabs')
   const tabHeader = tabs.locator('.tiny-tabs__header')
   const tabItems = tabs.getByRole('tab')
   const firstItem = tabItems.first()

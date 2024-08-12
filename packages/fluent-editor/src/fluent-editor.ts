@@ -49,6 +49,10 @@ const registerModules = function () {
           'better-table': function() {
             this.quill.getModule('better-table').insertTable(3, 3)
           },
+          file: function () {
+            const accept = this.quill.options?.uploadOption?.fileAccept
+            inputFile.call(this, 'file', accept)
+          },
           image: function () {
             const accept = this.quill.options?.uploadOption?.imageAccept
             inputFile.call(this, 'image', accept)
@@ -111,7 +115,7 @@ const registerModules = function () {
             right: '<i class="icon-text-align-right"></i>',
           },
         },
-      },
+      }
     }
   }
 

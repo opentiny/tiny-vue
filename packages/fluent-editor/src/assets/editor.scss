@@ -257,8 +257,12 @@
 
       span {
         display: inline-block;
-        padding-left: 20px;
         text-decoration: none;
+      }
+
+      svg {
+        fill: #5e7ce0;
+        vertical-align: text-bottom;
       }
     }
 

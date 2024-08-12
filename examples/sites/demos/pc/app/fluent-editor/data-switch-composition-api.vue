@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import TinyFluentEditor from '@opentiny/vue-fluent-editor'
+import { TinyFluentEditor } from '@opentiny/vue'
 
 const value = ref('<p>Hello <strong>FluentEditor</strong>!</p>')
 </script>

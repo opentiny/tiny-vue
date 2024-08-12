@@ -4,7 +4,8 @@ test('"定义更多按钮"', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#custom-more-icon')
 
-  const tabs = page.locator('.tiny-tabs')
+  const container = page.locator('#custom-more-icon')
+  const tabs = container.locator('.tiny-tabs')
   const moreIcon = tabs.locator('.tiny-tabs__more-icon > svg')
   const tabItems = tabs.getByRole('tab')
   const lastItem = tabItems.nth(7)

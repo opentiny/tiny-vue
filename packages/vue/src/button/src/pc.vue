@@ -49,7 +49,7 @@ import type { IButtonApi } from '@opentiny/vue-renderless/types/button.type'
 import '@opentiny/vue-theme/button/index.less'
 
 export default defineComponent({
-  emits: ['click', 'hook-updated'],
+  emits: ['click'],
   props: [
     ...props,
     'type',

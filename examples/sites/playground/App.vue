@@ -28,7 +28,7 @@ const isMobileFirst = tinyMode === 'mobile-first'
 const isSaas = tinyTheme === 'saas'
 const isPreview = searchObj.get('openMode') === 'preview' // 是否多端弹窗预览
 
-const versions = ['3.17', '3.16', '3.15', '3.14', '3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
+const versions = ['3.18', '3.17', '3.16', '3.15', '3.14', '3.13', '3.12', '3.11', '3.10', '3.9', '3.8']
 const latestVersion = isPreview ? versions[0] : localStorage.getItem(VERSION) || versions[0]
 const cdnHost = localStorage.getItem('setting-cdn')
 
@@ -72,9 +72,8 @@ const createImportMap = (version) => {
     'sortablejs': `${cdnHost}/sortablejs${versionDelimiter}1.15.0/${fileDelimiter}modular/sortable.esm.js`
   }
   if (['aurora', 'smb', 'saas'].includes(tinyTheme)) {
-    imports[
-      `@opentiny/vue-design-${tinyTheme}`
-    ] = `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
+    imports[`@opentiny/vue-design-${tinyTheme}`] =
+      `${cdnHost}/@opentiny/vue-design-${tinyTheme}${versionDelimiter}${version}/${fileDelimiter}index.js`
   }
   if (isSaas) {
     imports['@opentiny/vue-icon'] = `${getRuntime(version)}tiny-vue-icon-saas.mjs`
