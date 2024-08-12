@@ -2,8 +2,7 @@
   <div class="virtual-scroll-demo">
     <!-- Vue2的选项式API -->
     <p>虚拟滚动组件demo</p>
-    <TinyVirtualScroll :data="showData" :itemSize="50" :viewSize="300" itemIndex="key" class="ho" direction="vertical"
-      :buffer="200">
+    <TinyVirtualScroll :data="showData" :itemSize="50" :viewSize="300" itemIndex="key" class="ho" direction="vertical">
       <template #default="props">
         <div class="scroll-item">
           {{ props.item.value }}
@@ -45,7 +44,9 @@ export default {
 }
 
 .scroll-item {
+  width: 600px;
   padding: 10px;
   border-bottom: 2px solid #ddd;
+  align-content: center;
 }
 </style>

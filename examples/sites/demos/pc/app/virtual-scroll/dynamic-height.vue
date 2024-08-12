@@ -2,15 +2,8 @@
   <div class="virtual-scroll-demo">
     <!-- Vue2的选项式API -->
     <p>虚拟滚动组件demo</p>
-    <TinyVirtualScroll
-      :data="showData"
-      :estimatedItemSize="50"
-      :viewSize="600"
-      itemIndex="id"
-      class="ho"
-      direction="vertical"
-      :buffer="200"
-    >
+    <TinyVirtualScroll :data="showData" :estimatedItemSize="50" :viewSize="600" itemIndex="id" class="ho"
+      direction="vertical">
       <template #default="props">
         <div class="scroll-item">
           {{ props.item.value }}
@@ -34,12 +27,10 @@ export default {
   },
   created() {
     // 生成动态高度的数据
-    for (let i = 1; i <= 10000; i++) {
-      this.showData.push({
-        id: i,
-        value: `${i}字符内容`.repeat(Math.ceil(Math.random() * 30)) // 动态文本内容
-      })
-    }
+    this.showData = Array.from({ length: 10000 }, (_, i) => ({
+      id: i,
+      value: `${i}字符内容`.repeat(Math.ceil(Math.random() * 30)) // 动态文本内容
+    }))
   }
 }
 </script>
@@ -49,6 +40,10 @@ export default {
   height: 100%;
   overflow: hidden;
   /* width: 600px; */
+}
+
+.ho {
+  height: 100px;
 }
 
 .scroll-item {

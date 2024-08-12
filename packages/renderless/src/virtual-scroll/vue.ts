@@ -34,7 +34,8 @@ export const renderless = (props, { reactive, nextTick, watch, computed, onMount
     data: [...props.data],
     visibleData: [],
     translate: 0,
-    totalSize: computed(() => api.calculateTotalSize()),
+    totalSize: 0,
+    // totalSize: computed(() => ()),
     positions: [] // 不定高度的列表缓存
   })
   const virtualScroll = ref(null) // 初始为 null，实际 DOM 元素在挂载时会赋值
@@ -45,36 +46,30 @@ export const renderless = (props, { reactive, nextTick, watch, computed, onMount
     virtualScroll,
     items,
     handleScroll: handleScroll({ state, props, virtualScroll, nextTick, items }),
-    updatePositions: updatePositions({ state, items }),
+    updatePositions: updatePositions({ state, items, props }),
     initPositions: initPositions({ props, state }),
     calculateTotalSize: calculateTotalSize({ props, state })
   })
-  api.initPositions()
+
   // 组件挂载后加载滚动事件
   onMounted(() => {
     if (!virtualScroll.value) return
-    // 初始化positions
-    // api.initPositions()
+    api.initPositions()
     api.handleScroll()
+    state.totalSize = api.calculateTotalSize()
   })
-  // 列表完成获取列表的每一项并完成(重新渲染并更新DOM之后被调用)
-  onUpdated(() => nextTick(api.updatePositions))
-  // console.log('here')
-  // watch(
-  //   items,
-  //   async () => {
-  //     await nextTick()
-  //     // if (!items || !items.length) return
-  //     console.log('called')
-  //     api.updatePositions()
-  //   },
-  //   { flush: 'post', deep: true }
-  // )
 
+  // 列表完成获取列表的每一项并完成(重新渲染并更新DOM之后被调用)
+  // watch(items, () => nextTick(api.updatePositions), {
+  //   deep: true,
+  //   flush: 'post'
+  // })
   // 监听属性和状态的变化+处理相应的逻辑（调用事件处理函数）+会调用index.ts的样式计算函数来调整样式
   watch(
     () => state.visibleData,
-    (newVisibleData) => {},
+    (newVisibleData) => {
+      state.totalSize = api.calculateTotalSize()
+    },
     { immediate: true }
   )
   watch(

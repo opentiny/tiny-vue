@@ -28,8 +28,8 @@ export default defineComponent({
     },
     viewSize: {
       // 可视区域高度
-      type: Number,
-      default: 600
+      type: Number
+      // default: 600
     },
     itemSize: {
       // 每条数据高度

@@ -24,9 +24,10 @@
   // 确保虚拟滚动内容
   & > .virtual-scroll-context {
     position: absolute;
-    top: 0;
     left: 0;
-    display: flex;
+    top: 0;
+    right: 0;
+    z-index: -1;
     // width: 100%;
   }
 
@@ -36,7 +37,7 @@
     top: 0;
     left: 0;
     display: flex;
-    overflow: hidden;
+    // overflow: hidden;
   }
 
   // 每项内容
