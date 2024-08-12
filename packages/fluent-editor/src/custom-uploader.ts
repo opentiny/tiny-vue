@@ -74,24 +74,29 @@ class CustomUploader extends Uploader {
 
   // 处理上传文件
   handleUploadFile(range, files, hasRejectedFile) {
-    const fileEnableMultiUpload = this.enableMultiUpload === true || this.enableMultiUpload['file']
-    const target = this.editorElem.parentElement.querySelector('.ql-file')
-
-    this.fileChange.emit({
-      operation: 'upload',
-      data: fileEnableMultiUpload ? { files } : { file: files[0] },
-      hasRejectedFile: hasRejectedFile,
-      callback: (res) => {
-        if (!res) {
-          return
-        }
-        if (fileEnableMultiUpload && Array.isArray(res)) {
-          res.forEach((value, index) => this.insertFileToEditor(range, files[index], value))
-        } else {
-          this.insertFileToEditor(range, files[0], res)
-        }
-      },
+    this.insertFileToEditor(range, files[0], {
+      code: 0,
+      data: {
+        title: files[0].name,
+        size: files[0].size,
+        src: files[0].src
+      }
     })
+  }
+
+  // 将文件插入编辑器
+  insertFileToEditor(range, file, { code, message, data }) {
+    if (code === 0) {
+      const oldContent = new Delta().retain(range.index).delete(range.length);
+      const videoFlag = this.uploadOption && this.uploadOption.isVideoPlay && /^video\/[-\w.]+$/.test(file.type);
+      const insertObj = videoFlag ? { video: data } : { file: data };
+      const currentContent = new Delta([{ insert: insertObj }]);
+      const newContent = oldContent.concat(currentContent);
+      this.quill.updateContents(newContent, Quill.sources.USER);
+      this.quill.setSelection(range.index + 1);
+    } else {
+      console.error('error message:', message);
+    }
   }
 
   // 处理上传图片
@@ -149,7 +154,7 @@ CustomUploader.DEFAULTS = {
     const fileArr = []
     const imgArr = []
     files.forEach((file, index) => (fileFlags[index] ? fileArr.push(file) : imgArr.push(file)))
-    if (this.quill.file && (fileArr.length || rejectFlags.file)) {
+    if (this.quill.options.modules.file && (fileArr.length || rejectFlags.file)) {
       this.handleUploadFile(range, fileArr, rejectFlags.file)
     }
     if (imgArr.length || rejectFlags.image) {

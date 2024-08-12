@@ -44,7 +44,7 @@ import { iconLoading } from '@opentiny/vue-icon'
 import { classes } from './token'
 
 export default defineComponent({
-  emits: ['click', 'hook-updated'],
+  emits: ['click'],
   props: [
     ...props,
     'type',

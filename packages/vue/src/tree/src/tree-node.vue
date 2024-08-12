@@ -262,7 +262,7 @@ export default defineComponent({
       parentTree: this
     }
   },
-  emits: ['update:modelValue', 'hook-updated', 'node-expand', 'radio-change', 'tree-node-expand', 'closeMenu'],
+  emits: ['update:modelValue', 'node-expand', 'radio-change', 'tree-node-expand', 'closeMenu'],
   props: {
     node: {
       default() {

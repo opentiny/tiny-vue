@@ -46,7 +46,8 @@ onMounted(() => {
             return item[searchKey] && String(item[searchKey]).includes(term)
           })
         }
-      }
+      },
+      file: true
     }
   })
 })

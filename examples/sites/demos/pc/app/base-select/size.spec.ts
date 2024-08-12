@@ -9,7 +9,7 @@ test('默认尺寸', async ({ page }) => {
   const input = select.locator('.tiny-input')
   const tag = select.locator('.tiny-tag')
 
-  await expect(input.locator('.tiny-input__inner')).toHaveCSS('height', '30px')
+  await expect(input.locator('.tiny-input__inner')).toHaveCSS('height', '28px')
   await expect(tag.nth(0)).toHaveClass(/tiny-tag--light/)
 })
 
