@@ -16,7 +16,7 @@ import Mention from './mention/Mention' // @提醒
 import SoftBreak from './soft-break' // 软回车
 import Strike from './strike' // 删除线
 import BetterTable from './table/better-table' // 表格
-// import CustomSyntax from './syntax' // 代码块高亮
+import CustomSyntax from './syntax' // 代码块高亮
 import Toolbar from './toolbar' // 工具栏
 import Video from './video' // 视频
 
@@ -142,7 +142,7 @@ const registerModules = function () {
       'modules/link': Link,     // 报错
       // 'modules/screenshot': Screenshot,//暂未开发
       // 'modules/quickmenu': QuickMenu,//暂未开发
-      // 'modules/syntax': CustomSyntax,   // 原本就是注释的，但是对应的代码高亮功能可以使用
+      'modules/syntax': CustomSyntax,
     },
     true, //覆盖内部模块
   )
