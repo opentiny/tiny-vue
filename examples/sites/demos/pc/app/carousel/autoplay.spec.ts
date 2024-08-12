@@ -7,7 +7,7 @@ test('自动切换', async ({ page }) => {
   await page.waitForTimeout(100)
   const preview = page.locator('#autoplay')
   const carousel = preview.locator('.tiny-carousel')
-  const carouselItems = preview.locator('div.tiny-carousel__item')
+  const carouselItems = preview.locator('.tiny-carousel__item')
   // 默认显示第一张幻灯片
   await expect(carouselItems.first()).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)')
 

@@ -1,25 +1,25 @@
 {
   "name": "@opentiny/vue-fluent-editor",
-  "version": "3.16.0",
+  "version": "3.18.0",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
+  "scripts": {
+    "build": "pnpm -w build:ui $npm_package_name",
+    "//postversion": "pnpm build"
+  },
   "dependencies": {
+    "@opentiny/fluent-editor": "~3.17.0",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-image-viewer": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/fluent-editor": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~"
   },
-  "license": "MIT",
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "^0.25.7"
-  },
-  "scripts": {
-    "build": "pnpm -w build:ui $npm_package_name",
-    "//postversion": "pnpm build"
   }
 }

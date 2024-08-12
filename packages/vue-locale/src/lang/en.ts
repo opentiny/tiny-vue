@@ -181,6 +181,9 @@ export default {
       },
       timezone: 'selecting a timezone',
       year: '',
+      hour: 'hour',
+      minute: 'minute',
+      second: 'second',
       to: 'to',
       yearMonth: '{year} / {month}',
       yearMonthDay: '{year} / {month} / {day}'
@@ -289,6 +292,7 @@ export default {
       onlySupport: 'Only support {type} file',
       fileNotLessThan: 'The size of single file cannot be less than ',
       fileNotMoreThan: 'The size of single file cannot be more than ',
+      fileSizeRange: 'The size of a single file must range from {moreThan} to {lessThan}.',
       notSupport: 'The format (.{format}) is not allowed.',
       notSupportNoSuffix: 'Files without suffixes are not supported currently',
       notSupportSpecialCharacters: 'The file name contains special characters, please rename the file and upload again',
@@ -517,6 +521,13 @@ export default {
       uploadsButtonText: 'select files',
       errorTypeTips: 'Upload file type mismatch',
       errorSizeTips: 'Upload file size exceeds limit',
+      confirmDeleteTips: 'Are you sure you want to delete this file?',
+      delete: 'Delete',
+      waitUpload: 'Waiting for upload',
+      operation: 'Operation',
+      success: 'Upload successful',
+      listTip: 'There are a total of {0} pieces of data: ',
+      errorListTip: 'There are {0} errors in them. Please modify them and try again',
       limitUploadFileType: 'Upload file type is limited to',
       limitUploadFileNumber: 'Limit the number of uploaded files to',
       limitUploadFileSize: 'The size of the uploaded file does not exceed',
@@ -665,6 +676,11 @@ export default {
       colorPicker: 'Background Color',
       placeholder: 'Insert text here...',
       maxLength: 'Text Length exceeds the Limit, max Length config is '
+    },
+    fluentEditor: {
+      undo: 'Undo',
+      redo: 'Redo',
+      lineheight: 'Line Height'
     },
     steps: {
       done: 'Completed',

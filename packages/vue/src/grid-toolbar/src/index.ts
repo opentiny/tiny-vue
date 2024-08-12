@@ -661,8 +661,8 @@ export default defineComponent({
       // eslint-disable-next-line vue/valid-next-tick
       return this.$nextTick(() => this.$refs.custom && this.$refs.custom.saveSettings())
     },
-    applySettings({ columns, pageSize }) {
-      const sort = this.setting && !!this.setting.sortable
+    applySettings({ columns, pageSize, updatedSorting }) {
+      const sort = (this.setting && !!this.setting.sortable) || updatedSorting
 
       if (this.$grid) {
         if (columns && columns.length) {
@@ -681,7 +681,7 @@ export default defineComponent({
         }
       }
     },
-    handleSaveSettings(settingConfigs) {
+    handleSaveSettings(settingConfigs, visible, updatedSorting) {
       let { settingStore, setting, settingOpts } = this
       let customRef = this.$refs.custom
 
@@ -689,7 +689,7 @@ export default defineComponent({
 
       const { columns, pageSize, sortType } = settingConfigs
 
-      this.applySettings({ columns, pageSize })
+      this.applySettings({ columns, pageSize, updatedSorting })
 
       // 如果开启本地缓存则保存数据到 localstorage
       if (setting && settingOpts.storage === 'local') {

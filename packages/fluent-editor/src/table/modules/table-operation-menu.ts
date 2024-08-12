@@ -206,7 +206,7 @@ const MENU_ITEMS_DEFAULT = {
     }
   },
 
-  unMergeCells: {
+  unmergeCells: {
     text: 'Split Cells',
     handler() {
       const tableContainer = Quill.find(this.table);

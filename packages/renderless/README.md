@@ -1,7 +1,16 @@
 # @opentiny/vue-renderless
 
-This is for TINY's own internal use only, currently as a dependency for @opentiny/vue.
+Provides a rendering-free logic layer for the `TinyVue` component.
 
-It can also be used as a renderless functions for implementing a custom UI component.
+## You can customize the global configuration of some components
 
-For all instructions, please check out the home page: [https://open.codehub.huawei.com/innersource/originjs/tiny/opentiny-vue/home](https://open.codehub.huawei.com/innersource/originjs/tiny/opentiny-vue/home)
+### Modify the popup window starting level (z-index)
+
+Add the following code to the entry file `main.js`:
+
+```js
+import PopupManager from '@opentiny/vue-renderless/common/deps/popup-manager'
+
+// Set the starting level to 3000
+PopupManager.zIndex = 3000
+```

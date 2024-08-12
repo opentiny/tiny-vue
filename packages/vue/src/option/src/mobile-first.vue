@@ -1,7 +1,6 @@
 <template>
   <div
     ref="option"
-    @mouseenter="hoverItem"
     @click.stop="selectOptionClick"
     @mousedown.stop=""
     :data-index="state.index"
@@ -36,6 +35,7 @@
     </span>
     <slot>
       <span
+        v-auto-tip="{ placement: 'right' }"
         class="inline-block flex-1 leading-5 overflow-hidden text-ellipsis whitespace-normal sm:whitespace-nowrap"
         >{{ state.currentLabel }}</span
       >
@@ -52,9 +52,11 @@
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/option/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { AutoTip } from '@opentiny/vue-directive'
 import { iconCheck, iconCheckedSur, iconFinish } from '@opentiny/vue-icon'
 
 export default defineComponent({
+  directives: { AutoTip },
   components: {
     IconCheck: iconCheck(),
     IconCheckedSur: iconCheckedSur(),

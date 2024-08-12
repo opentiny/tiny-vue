@@ -122,6 +122,13 @@
 
       > span {
         font-size: 0;
+
+        .tiny-tag.is-required {
+          cursor: not-allowed;
+          > svg {
+            cursor: not-allowed;
+          }
+        }
       }
     }
 
@@ -192,7 +199,7 @@
         display: inline-flex;
 
         > span {
-          color: red;
+          color: var(--ti-select-tags-text-color-disabled);
           font-size: var(--ti-tag-font-size);
           margin: var(--ti-select-tags-margin-top) var(--ti-select-tags-margin-right)
             var(--ti-select-tags-margin-bottom) var(--ti-select-tags-margin-left);
@@ -318,7 +325,8 @@
     }
   }
 
-  &.is-disabled {
+  &.is-disabled,
+  &.is-display-only {
     cursor: not-allowed;
 
     .@{input-prefix-cls} {
@@ -334,6 +342,10 @@
     .@{select-prefix-cls}__tags {
       padding-right: 16px;
     }
+
+    .@{select-prefix-cls}__tags.is-show-tag {
+      padding-right: var(--ti-select-tags-padding-right-disabled);
+    }
   }
 
   &-tip &-tipcontent {
@@ -342,6 +354,13 @@
 
   & .@{input-prefix-cls} {
     display: block;
+
+    /** smb规范要求超长了显示 ... 比较合理，所以全部规范都增加省略号 */
+    .@{input-prefix-cls}__inner {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
     .@{input-prefix-cls}__inner[readonly] {
       cursor: pointer;
@@ -367,7 +386,8 @@
       }
     }
 
-    .@{select-prefix-cls}__limit-txt, .@{select-prefix-cls}__proportion-txt {
+    .@{select-prefix-cls}__limit-txt,
+    .@{select-prefix-cls}__proportion-txt {
       font-size: var(--ti-select-suffix-font-size);
       line-height: 1;
       margin: 0 var(--ti-select-suffix-icon-margin-right);

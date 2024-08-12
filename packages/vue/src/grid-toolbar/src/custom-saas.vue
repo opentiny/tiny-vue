@@ -194,7 +194,7 @@
                             </div>
                             <div class="sort-number" v-if="!isGroup">
                               <div
-                                v-if="column.numberSortVisible && !isGroup"
+                                v-if="column.numberSortVisible"
                                 class="sort-number-editor"
                                 v-clickoutside="clickEditorOutside"
                               >
@@ -493,7 +493,7 @@ export default defineComponent({
     numberSorting: Boolean,
     multipleHistory: [Object, Boolean],
     resetMethod: Function,
-    setting: Object
+    setting: [Object, Boolean]
   },
   data() {
     return {
@@ -916,8 +916,7 @@ export default defineComponent({
     selectFocus(event, index) {
       this.lastSelectIndex = index
     },
-    // 莫同步AUI， search组件的input事件的第一个参数就是value.
-    searchChange(val) {
+    searchChange(key, val) {
       const getRenderedTitle = (col) => {
         let result = ''
 
@@ -992,8 +991,8 @@ export default defineComponent({
           })
           return
         }
-
         this.columns.splice(index, 1)
+        this.updatedSorting = true
         const leftIdx = this.columns.reduce(
           (result, col, index) => (col.fixed === 'left' && col.visible ? index : result),
           -1
@@ -1087,7 +1086,7 @@ export default defineComponent({
     saveSettings(val) {
       const visible = typeof val === 'boolean' ? val : false
       this.buildSettings()
-      this.$emit('saveSettings', this.settings, visible)
+      this.$emit('saveSettings', this.settings, visible, this.updatedSorting)
 
       if (this.multipleHistory && this.selectedTemplate) {
         const selected = this.templateOptions.find((opt) => opt.id === this.selectedTemplate)

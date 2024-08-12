@@ -95,14 +95,12 @@ export const onPagerClick =
     const pageCount = props.pageCount
     const currentPage = props.currentPage
     const pagerCountOffset = props.pagerCount - 2
-    const classListVal = getClassListVal(parentEl)
 
-    if (classListVal.includes('dot')) {
-      if (classListVal.includes('quickprev')) {
-        newPage = currentPage - pagerCountOffset
-      } else if (classListVal.includes('quicknext')) {
-        newPage = currentPage + pagerCountOffset
-      }
+    // 同步勿删，使用ref判断点击目标，而不是class
+    if (parentEl === vm.$refs.prev) {
+      newPage = currentPage - pagerCountOffset
+    } else if (parentEl === vm.$refs.next) {
+      newPage = currentPage + pagerCountOffset
     }
 
     /* istanbul ignore if */

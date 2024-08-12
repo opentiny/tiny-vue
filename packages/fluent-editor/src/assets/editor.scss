@@ -1,5 +1,5 @@
 @import './common';
-// @import './tasklist';
+@import './tasklist';
 @import './better-table';
 @import './emoji/emoji';
 
@@ -206,8 +206,8 @@
       content: counter(list-9, decimal) '. ';
     }
 
-    // 编辑器外的任务列表
-    // @include tasklistOutside;
+    // 任务列表
+    @include tasklist;
 
     // 图片
     .ql-image-container {
@@ -356,3 +356,5 @@
 @include editor;
 // Emoji表情
 @include emoji;
+// 编辑器外的任务列表
+@include tasklistOutside;

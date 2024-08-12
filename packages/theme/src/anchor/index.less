@@ -19,7 +19,7 @@
   &__wrapper {
     .component-css-vars-anchor();
   }
-  
+
   background-color: var(--ti-anchor-bg-color);
   width: var(--ti-anchor-width);
   position: relative;
@@ -32,7 +32,6 @@
   }
 
   &__line {
-    
     .@{anchor-prefix-cls}-link + .@{anchor-prefix-cls}-link {
       margin-top: 0.5em;
     }
@@ -46,7 +45,7 @@
       width: 100%;
       background-color: var(--ti-anchor-link-mask-bg-color);
     }
-  
+
     .@{anchor-prefix-cls}-orbit {
       position: absolute;
       left: 0;
@@ -112,27 +111,26 @@
       -webkit-line-clamp: 2;
 
       &:before {
-        content: "";
+        content: '';
         display: block;
-        width: 10px;
-        height: 10px;
-        border: 2px solid var(--ti-anchor-text-color);
-        opacity: 0.08;
+        width: 8px;
+        height: 8px;
+        border: 1px solid var(--ti-anchor-dot-border-color);
         position: absolute;
         border-radius: 50%;
         left: 0px;
         top: 6px;
       }
-  
+
       &:after {
-        content: "";
+        content: '';
         display: block;
         width: 1px;
-        background-color: var(--ti-anchor-text-color);
-        opacity: 0.08;
+        background-color: var(--ti-anchor-line-bg-color);
         position: absolute;
+        opacity: var(--ti-anchor-line-opacity);
         border-radius: 50%;
-        left: 5px;
+        left: 3.5px;
         top: 20px;
         bottom: -18px;
       }
@@ -142,7 +140,7 @@
         color: var(--ti-anchor-link-active-text-color);
 
         &:before {
-          border: 2px solid var(--ti-anchor-link-active-text-color);
+          border-color: var(--ti-anchor-link-active-text-color);
           opacity: 1;
         }
       }
@@ -151,6 +149,5 @@
     .@{anchor-prefix-cls}-link:last-child > .@{anchor-prefix-cls}-link-title:after {
       display: none;
     }
-
   }
 }

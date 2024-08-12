@@ -23,6 +23,8 @@ import IconAlignJustify from './src/align-justify'
 import IconAlignLeft from './src/align-left'
 import IconAlignRight from './src/align-right'
 import IconAlignStretch from './src/align-stretch'
+import IconAngleLeft from './src/angle-left'
+import IconAngleRight from './src/angle-right'
 import IconAngularjs from './src/angularjs'
 import IconApp from './src/app'
 import IconApplication from './src/application'
@@ -62,10 +64,12 @@ import IconCode from './src/code'
 import IconCoin from './src/coin'
 import IconColReverse from './src/col-reverse'
 import IconCommission from './src/commission'
+import IconConfig from './src/config'
 import IconConmentRefresh from './src/conment-refresh'
 import IconCopySolid from './src/copy-solid'
 import IconCopy from './src/copy'
 import IconCourse from './src/course'
+import IconCreating from './src/creating'
 import IconCueL from './src/cue-l'
 import IconCueLO from './src/cue-l-o'
 import IconCustom from './src/custom'
@@ -76,6 +80,8 @@ import IconDayView from './src/day-view'
 import IconDefault from './src/default'
 import IconDefinedFiltration from './src/defined-filtration'
 import IconDel from './src/del'
+import IconDelete from './src/delete'
+import IconDeleteL from './src/delete-l'
 import IconDeletePage from './src/delete-page'
 import IconDeleted from './src/deleted'
 import IconDeltaDownO from './src/delta-down-o'
@@ -105,6 +111,7 @@ import IconDownloadLink from './src/download-link'
 import IconDownload from './src/download'
 import IconDraft from './src/draft'
 import IconEdit from './src/edit'
+import IconEditor from './src/editor'
 import IconEditorTab from './src/editor-tab'
 import IconEllipsis from './src/ellipsis'
 import IconEmailAdd from './src/email-add'
@@ -155,8 +162,10 @@ import IconFiles from './src/files'
 import IconFiletext from './src/filetext'
 import IconFilletExternalLink from './src/fillet-external-link'
 import IconFileupload from './src/fileupload'
+import IconFilter from './src/filter'
 import IconFiltered from './src/filtered'
 import IconFlag from './src/flag'
+import IconFolder from './src/folder'
 import IconFolderClosed from './src/folder-closed'
 import IconFolderOpened from './src/folder-opened'
 import IconFontColor from './src/font-color'
@@ -164,12 +173,14 @@ import IconFontFamily from './src/font-family'
 import IconFontSize from './src/font-size'
 import IconFontStyle from './src/font-style'
 import IconFontWeight from './src/font-weight'
+import IconFreeze from './src/freeze'
 import IconFreezeLeft from './src/freeze-left'
 import IconFreezeRight from './src/freeze-right'
 import IconFrownO from './src/frown-o'
 import IconFrown from './src/frown'
 import IconFullscreen from './src/fullscreen'
 import IconFullscreenLeft from './src/fullscreen-left'
+import IconGoBack from './src/go-back'
 import IconGrade from './src/grade'
 import IconGroupTransfer from './src/group-transfer'
 import IconGroup from './src/group'
@@ -232,6 +243,7 @@ import IconNone from './src/none'
 import IconOffLine from './src/off-line'
 import IconOnLine from './src/on-line'
 import IconOperationfaildL from './src/operationfaild-l'
+import IconOperation from './src/operation'
 import IconOperationfaild from './src/operationfaild'
 import IconOuterLink from './src/outer-link'
 import IconPagelink from './src/pagelink'
@@ -258,6 +270,7 @@ import IconRadioselected from './src/radioselected'
 import IconReactjs from './src/reactjs'
 import IconRedo from './src/redo'
 import IconRefres from './src/refres'
+import IconRefresh from './src/refresh'
 import IconRenew from './src/renew'
 import IconRepeat from './src/repeat'
 import IconReplace from './src/replace'
@@ -327,6 +340,7 @@ import IconShareArrow from './src/share-arrow'
 import IconShoppingCard from './src/shopping-card'
 import IconSmileO from './src/smile-o'
 import IconSmile from './src/smile'
+import IconSoldOut from './src/sold-out'
 import IconSortDefault from './src/sort-default'
 import IconSort from './src/sort'
 import IconStarActive from './src/star-active'
@@ -335,6 +349,7 @@ import IconStarO from './src/star-o'
 import IconStartCircle from './src/start-circle'
 import IconStart from './src/start'
 import IconStatistics from './src/statistics'
+import IconStepsError from './src/steps-error'
 import IconStop from './src/stop'
 import IconStreamSolid from './src/stream-solid'
 import IconSuccess from './src/success'
@@ -399,6 +414,8 @@ import IconPrompt from './src/prompt'
 import IconExpand from './src/expand'
 import IconPutAway from './src/put-away'
 import IconStretch from './src/stretch'
+import IconStretchCrosswise from './src/stretch-crosswise'
+import IconStretchUpright from './src/stretch-upright'
 import IconAddCircle from './src/add-circle'
 import IconUpWard from './src/up-ward'
 import IconDownWard from './src/down-ward'
@@ -470,9 +487,12 @@ import IconAverageShippingPeriod from './src/average-shipping-period'
 import IconCustomsClearanceForm from './src/customs-clearance-form'
 import IconCustomsDeclaration from './src/customs-declaration'
 import IconDisallowance from './src/disallowance'
+import IconDiscountSup from './src/discount-sup'
+import IconDocument from './src/document'
 import IconDrawFlowchart from './src/draw-flowchart'
 import IconEngineWorkflow from './src/engine-workflow'
 import IconFinishO from './src/finish-o'
+import IconLocation from './src/location'
 import IconLocationNumber from './src/location-number'
 import IconMainFreightSettled from './src/main-freight-settled'
 import IconMainFreightToBeSettled from './src/main-freight-to-be-settled'
@@ -530,12 +550,18 @@ export {
   IconCustomsDeclaration as iconCustomsDeclaration,
   IconDisallowance,
   IconDisallowance as iconDisallowance,
+  IconDiscountSup,
+  IconDiscountSup as iconDiscountSup,
+  IconDocument,
+  IconDocument as iconDocument,
   IconDrawFlowchart,
   IconDrawFlowchart as iconDrawFlowchart,
   IconEngineWorkflow,
   IconEngineWorkflow as iconEngineWorkflow,
   IconFinishO,
   IconFinishO as iconFinishO,
+  IconLocation,
+  IconLocation as iconLocation,
   IconLocationNumber,
   IconLocationNumber as iconLocationNumber,
   IconMainFreightSettled,
@@ -614,6 +640,10 @@ export {
   IconPutAway as iconPutAway,
   IconStretch,
   IconStretch as iconStretch,
+  IconStretchCrosswise,
+  IconStretchCrosswise as iconStretchCrosswise,
+  IconStretchUpright,
+  IconStretchUpright as iconStretchUpright,
   IconAddCircle,
   IconAddCircle as iconAddCircle,
   IconAudio,
@@ -678,6 +708,10 @@ export {
   IconAlignRight as iconAlignRight,
   IconAlignStretch,
   IconAlignStretch as iconAlignStretch,
+  IconAngleLeft,
+  IconAngleLeft as iconAngleLeft,
+  IconAngleRight,
+  IconAngleRight as iconAngleRight,
   IconAngularjs,
   IconAngularjs as iconAngularjs,
   IconApp,
@@ -756,6 +790,8 @@ export {
   IconColReverse as iconColReverse,
   IconCommission,
   IconCommission as iconCommission,
+  IconConfig,
+  IconConfig as iconConfig,
   IconConmentRefresh,
   IconConmentRefresh as iconConmentRefresh,
   IconCopySolid,
@@ -766,6 +802,8 @@ export {
   IconCrop as iconCrop,
   IconCourse,
   IconCourse as iconCourse,
+  IconCreating,
+  IconCreating as iconCreating,
   IconCueL,
   IconCueL as iconCueL,
   IconCueLO,
@@ -784,6 +822,10 @@ export {
   IconDefinedFiltration as iconDefinedFiltration,
   IconDel,
   IconDel as iconDel,
+  IconDelete,
+  IconDelete as iconDelete,
+  IconDeleteL,
+  IconDeleteL as iconDeleteL,
   IconDeletePage,
   IconDeletePage as iconDeletePage,
   IconDeleted,
@@ -844,6 +886,8 @@ export {
   IconDraft as iconDraft,
   IconEdit,
   IconEdit as iconEdit,
+  IconEditor,
+  IconEditor as iconEditor,
   IconEditorTab,
   IconEditorTab as iconEditorTab,
   IconEllipsis,
@@ -944,10 +988,14 @@ export {
   IconFiletext as iconFiletext,
   IconFileupload,
   IconFileupload as iconFileupload,
+  IconFilter,
+  IconFilter as iconFilter,
   IconFiltered,
   IconFiltered as iconFiltered,
   IconFlag,
   IconFlag as iconFlag,
+  IconFolder,
+  IconFolder as iconFolder,
   IconFolderClosed,
   IconFolderClosed as iconFolderClosed,
   IconFolderOpened,
@@ -962,6 +1010,8 @@ export {
   IconFontStyle as iconFontStyle,
   IconFontWeight,
   IconFontWeight as iconFontWeight,
+  IconFreeze,
+  IconFreeze as iconFreeze,
   IconFreezeLeft,
   IconFreezeLeft as iconFreezeLeft,
   IconFreezeRight,
@@ -976,6 +1026,8 @@ export {
   IconFullscreenLeft as iconFullscreenLeft,
   IconMinscreenLeft,
   IconMinscreenLeft as iconMinscreenLeft,
+  IconGoBack,
+  IconGoBack as iconGoBack,
   IconGrade,
   IconGrade as iconGrade,
   IconGroupTransfer,
@@ -1100,6 +1152,8 @@ export {
   IconOnLine as iconOnLine,
   IconOperationfaildL,
   IconOperationfaildL as iconOperationfaildL,
+  IconOperation,
+  IconOperation as iconOperation,
   IconOperationfaild,
   IconOperationfaild as iconOperationfaild,
   IconOuterLink,
@@ -1152,6 +1206,8 @@ export {
   IconRedo as iconRedo,
   IconRefres,
   IconRefres as iconRefres,
+  IconRefresh,
+  IconRefresh as iconRefresh,
   IconRenew,
   IconRenew as iconRenew,
   IconRepeat,
@@ -1290,6 +1346,8 @@ export {
   IconSmileO as iconSmileO,
   IconSmile,
   IconSmile as iconSmile,
+  IconSoldOut,
+  IconSoldOut as iconSoldOut,
   IconSortDefault,
   IconSortDefault as iconSortDefault,
   IconSort,
@@ -1306,6 +1364,8 @@ export {
   IconStart as iconStart,
   IconStatistics,
   IconStatistics as iconStatistics,
+  IconStepsError,
+  IconStepsError as iconStepsError,
   IconStop,
   IconStop as iconStop,
   IconStreamSolid,
@@ -1496,9 +1556,12 @@ export default {
   IconCustomsClearanceForm,
   IconCustomsDeclaration,
   IconDisallowance,
+  IconDiscountSup,
+  IconDocument,
   IconDrawFlowchart,
   IconEngineWorkflow,
   IconFinishO,
+  IconLocation,
   IconLocationNumber,
   IconMainFreightSettled,
   IconMainFreightToBeSettled,
@@ -1538,6 +1601,8 @@ export default {
   IconExpand,
   IconPutAway,
   IconStretch,
+  IconStretchCrosswise,
+  IconStretchUpright,
   IconAddCircle,
   IconAudio,
   IconMic,
@@ -1569,6 +1634,8 @@ export default {
   IconAlignLeft,
   IconAlignRight,
   IconAlignStretch,
+  IconAngleLeft,
+  IconAngleRight,
   IconAngularjs,
   IconApp,
   IconApplication,
@@ -1608,11 +1675,13 @@ export default {
   IconCoin,
   IconColReverse,
   IconCommission,
+  IconConfig,
   IconConmentRefresh,
   IconCopySolid,
   IconCopy,
   IconCrop,
   IconCourse,
+  IconCreating,
   IconCueL,
   IconCueLO,
   IconCustom,
@@ -1621,6 +1690,8 @@ export default {
   IconDefault,
   IconDefinedFiltration,
   IconDel,
+  IconDelete,
+  IconDeleteL,
   IconDeletePage,
   IconDeleted,
   IconDeltaDownO,
@@ -1651,6 +1722,7 @@ export default {
   IconDownload,
   IconDraft,
   IconEdit,
+  IconEditor,
   IconEditorTab,
   IconEllipsis,
   IconEmailAdd,
@@ -1701,8 +1773,10 @@ export default {
   IconFiles,
   IconFiletext,
   IconFileupload,
+  IconFilter,
   IconFiltered,
   IconFlag,
+  IconFolder,
   IconFolderClosed,
   IconFolderOpened,
   IconFontColor,
@@ -1710,6 +1784,7 @@ export default {
   IconFontSize,
   IconFontStyle,
   IconFontWeight,
+  IconFreeze,
   IconFreezeLeft,
   IconFreezeRight,
   IconFrownO,
@@ -1717,6 +1792,7 @@ export default {
   IconFullscreen,
   IconFullscreenLeft,
   IconMinscreenLeft,
+  IconGoBack,
   IconGrade,
   IconGroupTransfer,
   IconGroup,
@@ -1778,6 +1854,7 @@ export default {
   IconOffLine,
   IconOnLine,
   IconOperationfaildL,
+  IconOperation,
   IconOperationfaild,
   IconOuterLink,
   IconPagelink,
@@ -1804,6 +1881,7 @@ export default {
   IconReactjs,
   IconRedo,
   IconRefres,
+  IconRefresh,
   IconRenew,
   IconRepeat,
   IconReplace,
@@ -1873,6 +1951,7 @@ export default {
   IconShoppingCard,
   IconSmileO,
   IconSmile,
+  IconSoldOut,
   IconSortDefault,
   IconSort,
   IconStarActive,
@@ -1881,6 +1960,7 @@ export default {
   IconStartCircle,
   IconStart,
   IconStatistics,
+  IconStepsError,
   IconStop,
   IconStreamSolid,
   IconSuccess,

@@ -511,6 +511,10 @@ export const setInputDomValue =
 export const handleEnterTextarea =
   ({ api, state, props, nextTick }) =>
   () => {
+    // 如果正在拖拽中，则不触发展开
+    if (state.isDragging) {
+      return
+    }
     if (props.hoverExpand && !state.isDisplayOnly) {
       state.enteredTextarea = true
       nextTick(api.resizeTextarea)
@@ -520,6 +524,9 @@ export const handleEnterTextarea =
 export const handleLeaveTextarea =
   ({ api, state, props, nextTick, vm }) =>
   () => {
+    if (state.isDragging) {
+      return
+    }
     if (props.hoverExpand && !state.isDisplayOnly) {
       state.enteredTextarea = false
       nextTick(() => {
@@ -568,4 +575,20 @@ export const setShowMoreBtn =
         state.showMoreBtn = false
       }
     }, 100)
+  }
+
+// tiny新增，同步勿删
+export const handleTextareaMouseDown =
+  ({ state }) =>
+  () =>
+    (state.isDragging = true)
+
+// tiny新增，同步勿删
+export const handleTextareaMouseUp =
+  ({ state, api }) =>
+  (isOutside) => {
+    state.isDragging = false
+    if (isOutside) {
+      api.handleLeaveTextarea()
+    }
   }

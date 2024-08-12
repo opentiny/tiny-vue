@@ -5,69 +5,70 @@
     :style="settingsStyle"
   >
     <!-- 切换主题样式 -->
-    <tiny-dropdown trigger="click" :show-icon="false" @visible-change="(visible) => toggleMenuShow(visible, 'theme')">
-      <tiny-tooltip
-        :content="i18nByKey('changeTheme')"
-        :placement="isSettingsAside ? 'left' : 'right'"
-        popper-class="docs-tooltip"
-        effect="light"
-      >
-        <div class="settings-btn theme-change-button">
-          <theme-settings-icon
-            :class="['settings-icon theme-settings-icon', { 'is-active': showThemeMenu }]"
-          ></theme-settings-icon>
-        </div>
-      </tiny-tooltip>
-      <template #dropdown>
-        <tiny-dropdown-menu popper-class="opt-menu theme-settings-menu">
-          <div v-for="(item, index) in themeData" :key="index" class="theme-option-list">
-            <tiny-button
-              ghost
-              :class="['theme-option', { 'is-active': item.value === currentThemeKey }]"
-              @click="themeItemClick(item)"
-              >{{ item.text }}</tiny-button
-            >
+    <tiny-popover
+      width="404"
+      placement="left-end"
+      trigger="click"
+      :visible-arrow="false"
+      popper-class="theme-settings-popover"
+    >
+      <div class="theme-settings-menu">
+        <div class="theme-settings-title">{{ i18nByKey('changeTheme') }}</div>
+        <div
+          v-for="(item, index) in themeData"
+          :key="item.text + index"
+          :class="['theme-option-list', { 'is-active-popover': item.value === currentThemeKey }]"
+          :style="{ backgroundImage: 'url(' + item.bgImage + ')' }"
+          @click="themeItemClick(item)"
+        >
+          <div class="theme-option-list-icon" :style="{ backgroundImage: 'url(' + item.icon + ')' }"></div>
+          <div>
+            <div class="theme-option-list-text">
+              {{ item.text }}
+            </div>
+            <div class="theme-option-list-tips">
+              {{ item.tips }}
+            </div>
           </div>
-        </tiny-dropdown-menu>
+        </div>
+      </div>
+      <template #reference>
+        <div class="settings-btn theme-change-button">
+          <theme-settings-icon class="settings-icon theme-settings-icon"></theme-settings-icon>
+        </div>
       </template>
-    </tiny-dropdown>
+    </tiny-popover>
 
     <!-- demo风格设置 -->
-    <tiny-dropdown
+    <tiny-popover
       v-if="!templateModeState.isSaas"
-      trigger="click"
-      :show-icon="false"
-      @visible-change="(visible) => toggleMenuShow(visible, 'style')"
+      width="180"
+      placement="left-end"
+      trigger="manual"
+      :visible-arrow="false"
+      v-model="demoStyleVisible"
+      popper-class="opt-menu style-settings-menu theme-settings-popover"
     >
-      <tiny-tooltip
-        :content="i18nByKey('changeApiType')"
-        :placement="isSettingsAside ? 'left' : 'right'"
-        popper-class="docs-tooltip"
-        effect="light"
-      >
-        <div class="settings-btn style-settings-btn">
-          <style-settings-icon
-            :class="['settings-icon style-settings-icon', { 'is-active': showStyleMenu }]"
-          ></style-settings-icon>
+      <div v-for="(item, index) in styleSettings" :key="index" class="style-settings-item">
+        <p class="style-settings-title">{{ item.title }}</p>
+        <tiny-radio-group
+          v-model="apiModeState[item.name]"
+          class="style-settings-options-group"
+          @change="onSettingsChange(item.name)"
+        >
+          <tiny-radio v-for="option in item.options" :key="option" :label="option.value">{{ option.text }}</tiny-radio>
+        </tiny-radio-group>
+      </div>
+      <template #reference>
+        <div
+          class="settings-btn style-settings-btn"
+          @click="demoStyleVisible = !demoStyleVisible"
+          @blur="demoStyleVisible = false"
+        >
+          <style-settings-icon class="settings-icon style-settings-icon"></style-settings-icon>
         </div>
-      </tiny-tooltip>
-      <template #dropdown>
-        <tiny-dropdown-menu popper-class="opt-menu style-settings-menu">
-          <div v-for="(item, index) in styleSettings" :key="index" class="style-settings-item">
-            <p class="style-settings-title">{{ item.title }}</p>
-            <tiny-radio-group
-              v-model="apiModeState[item.name]"
-              class="style-settings-options-group"
-              @change="onSettingsChange(item.name)"
-            >
-              <tiny-radio v-for="option in item.options" :key="option" :label="option.value">{{
-                option.text
-              }}</tiny-radio>
-            </tiny-radio-group>
-          </div>
-        </tiny-dropdown-menu>
       </template>
-    </tiny-dropdown>
+    </tiny-popover>
 
     <!-- 返回顶部 -->
     <div v-show="showBackTop" @click="onBackTop">
@@ -87,7 +88,7 @@
 
 <script>
 import { defineComponent, reactive, toRefs, onMounted, onUnmounted, watch, nextTick, ref } from 'vue'
-import { Dropdown, DropdownMenu, Tooltip, Radio, RadioGroup, Button } from '@opentiny/vue'
+import { Tooltip, Radio, RadioGroup, Popover } from '@opentiny/vue'
 import { iconUpWard } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { i18nByKey, useApiMode, useTemplateMode } from '@/tools'
@@ -100,13 +101,11 @@ import StyleSettingsIcon from '@/assets/images/style-settings.svg'
 export default defineComponent({
   name: 'FloatSettings',
   components: {
-    TinyDropdown: Dropdown,
-    TinyDropdownMenu: DropdownMenu,
     TinyTooltip: Tooltip,
     TinyRadio: Radio,
     TinyRadioGroup: RadioGroup,
-    TinyButton: Button,
     IconUpWard: iconUpWard(),
+    TinyPopover: Popover,
     ThemeSettingsIcon,
     StyleSettingsIcon
   },
@@ -120,9 +119,8 @@ export default defineComponent({
     const isPlus = import.meta.env.VITE_APP_MODE === 'plus'
 
     const state = reactive({
+      demoStyleVisible: false,
       themeData: [],
-      showThemeMenu: false,
-      showStyleMenu: false,
       styleSettings: getStyleSettings(i18nByKey),
       settingsStyle: {
         bottom: DEFAULT_BOTTOM_VAL
@@ -133,7 +131,7 @@ export default defineComponent({
     })
 
     if (isPlus) {
-      state.styleSettings = state.styleSettings.filter((item) => item.defaultValue === 'default')
+      state.styleSettings = state.styleSettings.filter((item) => item.name !== 'apiMode')
       apiModeState.apiMode = 'Options'
     }
 
@@ -147,6 +145,10 @@ export default defineComponent({
       },
       onSettingsChange(modeType) {
         switch (modeType) {
+          case 'localeMode': {
+            apiModeFn.changeLocaleMode(apiModeState[modeType])
+            break
+          }
           case 'apiMode': {
             apiModeFn.changeApiMode(apiModeState[modeType])
             break
@@ -162,21 +164,16 @@ export default defineComponent({
       themeItemClick(node) {
         const val = node?.value || 'tiny-smb-theme'
         changeTheme(val)
-      },
-
-      toggleMenuShow(visible, type) {
-        if (type === 'theme') {
-          state.showThemeMenu = visible
-        } else if (type === 'style') {
-          state.showStyleMenu = visible
-        }
       }
     }
 
     const getThemeOptions = () => {
       const themeData = getThemeData().map((item) => ({
         value: item.value[0],
-        text: item.label
+        text: item.label,
+        tips: item.tips,
+        icon: item.icon,
+        bgImage: item.bgImage
       }))
       state.themeData = themeData
     }
@@ -306,10 +303,6 @@ export default defineComponent({
       width: var(--ti-common-size-4x);
       height: var(--ti-common-size-4x);
       color: #595959;
-
-      &.is-active {
-        color: var(--ti-common-color-primary-normal);
-      }
     }
   }
 }
@@ -319,13 +312,6 @@ export default defineComponent({
   padding: var(--ti-common-size-3x) 0;
   border-radius: var(--ti-common-space-3x);
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
-
-  &.theme-settings-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 
   &.style-settings-menu {
     padding: 14px;
@@ -338,6 +324,7 @@ export default defineComponent({
         font-size: var(--ti-common-font-size-base);
         line-height: var(--ti-common-line-height-6);
         font-weight: 600;
+        color: #000000;
       }
 
       .style-settings-options-group {
@@ -357,24 +344,63 @@ export default defineComponent({
       }
     }
   }
+}
+.tiny-popover.tiny-popper.theme-settings-popover {
+  border-radius: 12px;
+  background-color: #ffffff;
+}
 
-  .theme-option-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 154px;
-
-    .theme-option {
-      display: inline-block;
-      width: 126px;
-      border: none;
-      border-radius: var(--ti-common-space-2x);
-
-      &.is-active {
-        background-color: rgba(0, 0, 0, 0.05);
-      }
-    }
+.theme-settings-menu {
+  width: 404px;
+  display: flex;
+  padding: 15px 32px;
+  flex-direction: column;
+  margin: 0;
+  .theme-settings-title {
+    height: 20px;
+    line-height: 20px;
+    color: #000000;
+    font-weight: 700;
   }
+}
+.theme-option-list {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  background-color: aliceblue;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 308px;
+  height: 64px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  .theme-option-list-icon {
+    width: 32px;
+    height: 32px;
+    margin: 16px 24px;
+  }
+  .theme-option-list-text {
+    height: 22px;
+    line-height: 22px;
+    font-size: 14px;
+    color: #202e54;
+    font-weight: 700;
+  }
+  .theme-option-list-tips {
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #808080;
+    font-weight: 500;
+  }
+}
+.theme-option-list:hover {
+  border-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
+}
+.is-active-popover {
+  border-color: #1476ff;
 }
 
 @media (max-width: 1279px) {

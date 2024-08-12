@@ -10,7 +10,18 @@
  *
  -->
 <script lang="tsx">
-import { $props, $prefix, setup, parseVnode, h, defineComponent, isVue2, hooks } from '@opentiny/vue-common'
+import {
+  $props,
+  $prefix,
+  setup,
+  parseVnode,
+  h,
+  defineComponent,
+  isVue2,
+  hooks,
+  stringifyCssClass,
+  deduplicateCssClass
+} from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/form-item/vue'
 import LabelWrap from './label-wrap'
 import Tooltip from '@opentiny/vue-tooltip'
@@ -118,8 +129,8 @@ export default defineComponent({
       typeof this.appendToBody === 'boolean'
         ? this.appendToBody
         : typeof formAppendToBody === 'boolean'
-          ? formAppendToBody
-          : true
+        ? formAppendToBody
+        : true
     const validatePosition = this.validatePosition || state.formInstance?.validatePosition || 'top-end'
 
     const popperOptions = {
@@ -149,7 +160,11 @@ export default defineComponent({
           let item = parseVnode(vnode)
           item.props = item.props || {}
           const { type } = item
-
+          // 修复production模式下动态切换size失败问题
+          item.dynamicProps = item.dynamicProps || []
+          if (!item.dynamicProps.includes('size')) {
+            item.dynamicProps.push('size')
+          }
           Object.assign(item.props, {
             size: state.formItemSize,
             mini: state.formItemSize === 'mini' || Boolean(item.props.mini)
@@ -192,11 +207,26 @@ export default defineComponent({
               item = h('span', [item])
             }
           }
+
+          // 兼容重构前逻辑，给item子项添加类名
+          let data
+          if (isVue2) {
+            if (!item.data) {
+              item.data = {}
+            }
+            data = item.data
+          } else {
+            if (!item.props) {
+              item.props = {}
+            }
+            data = item.props
+          }
+          data.class = deduplicateCssClass('tiny-tooltip' + stringifyCssClass(data.class))
           return item
         })
       : null
 
-    state.isMultiple = ItemContent.length > 1
+    state.isMultiple = ItemContent?.length > 1
 
     const getFormItemContnet = () => {
       if (isMobile) {

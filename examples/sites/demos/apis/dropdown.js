@@ -228,6 +228,22 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'visible-arrow'
+        },
+        {
+          name: 'lazy-show-popper',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否懒加载下拉菜单及内部的项，以优化性能，默认初始全加载菜单及内部项。',
+            'en-US':
+              'Indicates whether to lazily load the drop-down menu and internal items to optimize performance. The default value is false. The menu and internal items are loaded initially.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'lazy-show-popper',
+          mfDemo: '',
+          metaData: {
+            experimental: '3.18.0'
+          }
         }
       ],
       events: [
@@ -528,7 +544,7 @@ interface IItemData {
       name: 'IButtonType',
       type: 'type',
       code: `        
-type IButtonType =  'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
+type IButtonType = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
 `
     },
     {

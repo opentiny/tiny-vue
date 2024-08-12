@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="125px" height="125px" viewBox="0 0 125 125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Radar chart 雷达图</title>
+    <title>Radar Chart 雷达图</title>
     <defs>
         <linearGradient x1="44.0988019%" y1="82.8591727%" x2="128.792906%" y2="-33.6893259%" id="linearGradient-1">
             <stop stop-color="#5073E5" offset="0%"></stop>

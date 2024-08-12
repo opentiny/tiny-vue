@@ -29,7 +29,6 @@
   font-size: var(--ti-popupload-font-size);
 
   &__dialog {
-    max-height: 512px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -74,12 +73,20 @@
     margin-top: var(--ti-popupload-dialog-margin-top);
 
     .header-col {
-      border-right: 1px solid var(--ti-popupload-dialog-table-border-color);
+      position: relative;
       padding: var(--ti-popupload-table-header-col-padding-vertical)
         var(--ti-popupload-table-header-col-padding-horizontal);
 
-      &:last-child {
-        border-right: none;
+      &:not(:last-child)::after {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        display: inline-block;
+        content: '';
+        width: 1px;
+        height: var(--ti-popupload-dialog-table-line-height);
+        background-color: var(--ti-popupload-dialog-table-line-bg-color);
       }
     }
 
@@ -90,15 +97,19 @@
     }
 
     .col1 {
-      width: 60%;
+      width: 46%;
     }
 
     .col2 {
-      width: 20%;
+      width: 17%;
     }
 
     .col3 {
-      width: 20%;
+      width: 21%;
+    }
+
+    .col4 {
+      width: 16%;
     }
   }
 
@@ -123,6 +134,14 @@
 
   &__dialog-table-list {
     list-style: none;
+
+    &-footer {
+      margin-top: 12px;
+
+      & > .footer-error-tip {
+        color: var(--ti-popupload-status-fail-icon-color);
+      }
+    }
   }
 
   &__dialog-table-item {
@@ -130,24 +149,50 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid var(--ti-popupload-table-item-border-color);
 
     &:nth-child(even) {
       background: var(--ti-popupload-table-item-even-bg-color);
     }
 
-    .delIcon {
-      width: var(--ti-popupload-dialog-table-icon-size);
-      fill: var(--ti-popupload-dialog-table-icon-color);
+    .del-col {
+      color: var(--ti-popupload-dialog-delete-text-color);
+      width: 100%;
       cursor: pointer;
-
-      &:hover {
-        width: var(--ti-popupload-dialog-table-icon-size-hover);
-        fill: var(--ti-popupload-dialog-table-icon-color-hover);
-      }
     }
   }
 
-  &__modal .@{popupload__modal-prefix-cls}__body {
-    overflow-y: auto;
+  &__modal {
+    & .@{popupload__modal-prefix-cls}__body {
+      overflow-y: auto;
+    }
+
+    .tiny-file-upload .tiny-upload-list__text-title {
+      display: none;
+    }
+  }
+
+  // 新规范适配
+  &__pop-confirm {
+    .tiny-popconfirm-popover__title {
+      white-space: nowrap;
+    }
+  }
+
+  &__status-icon {
+    display: inline-block;
+    margin-right: 7px;
+    height: 8px;
+    width: 8px;
+    border: 2px solid var(--ti-popupload-status-icon-color);
+    border-radius: 50%;
+
+    &&-success {
+      border-color: var(--ti-popupload-status-success-icon-color);
+    }
+
+    &&-fail {
+      border-color: var(--ti-popupload-status-fail-icon-color);
+    }
   }
 }

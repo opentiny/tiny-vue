@@ -1,13 +1,11 @@
 <template>
   <div>
-    <tiny-fluent-editor v-model="content"></tiny-fluent-editor>
-    内容：<br />
-    {{ content }}
+    <tiny-fluent-editor v-model="content" disabled></tiny-fluent-editor>
   </div>
 </template>
 
 <script>
-import TinyFluentEditor from '@opentiny/vue-fluent-editor'
+import { TinyFluentEditor } from '@opentiny/vue'
 
 export default {
   components: {
@@ -15,7 +13,7 @@ export default {
   },
   data() {
     return {
-      content: ''
+      content: '{"ops":[{"insert":"Hello "},{"attributes":{"bold":true},"insert":"FluentEditor"},{"insert":"!"}]}'
     }
   }
 }

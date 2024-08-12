@@ -79,7 +79,11 @@ const initState = ({ reactive, computed, props, api }) => {
   return state
 }
 
-export const renderless = (props, { computed, onMounted, reactive, watch, nextTick }, { emit, vm, constants }) => {
+export const renderless = (
+  props,
+  { computed, onMounted, reactive, watch, nextTick },
+  { emit, vm, designConfig, constants }
+) => {
   const api = {}
   const state = initState({ reactive, computed, props, api })
 
@@ -90,7 +94,7 @@ export const renderless = (props, { computed, onMounted, reactive, watch, nextTi
   Object.assign(api, {
     state,
     amPm: amPm(props),
-    typeItemHeight: typeItemHeight({ vm }),
+    typeItemHeight: typeItemHeight({ vm, designConfig }),
     scrollBarHeight: scrollBarHeight(vm),
     getArrowHourList: getArrowHourList(state),
     getArrowSecondList: getArrowSecondList(state),

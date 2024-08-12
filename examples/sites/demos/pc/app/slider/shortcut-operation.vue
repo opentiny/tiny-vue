@@ -16,3 +16,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tiny-slider-container {
+  margin-top: 50px;
+}
+</style>

@@ -62,7 +62,6 @@
               class="tiny-dialog-box__headerbtn"
               aria-label="Close"
               @click="handleClose('close', $event)"
-              @mousedown.stop
             >
               <icon-close class="tiny-svg-size tiny-dialog-box__close" />
             </button>

@@ -65,9 +65,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '通过 <code>dialog-title</code> 设置弹框的标题，<code>cancel-button-text</code> 设置取消按钮的文本, \n          <code>submit-button-text</code> 设置提交按钮的文本， <code>cancel-button-text</code> 设置上传按钮的文本。',
+          '通过 <code>dialog-title</code> 设置弹框的标题，<code>cancel-button-text</code> 设置取消按钮的文本, \n          <code>submit-button-text</code> 设置提交按钮的文本， <code>upload-button-text</code> 设置上传按钮的文本。',
         'en-US':
-          'Set the title of the pop-up box through<code>dialog-title</code>, and set the text of the cancel button through<code>cancel-button-text</code>,\n          <code>submit-button-text</code>Set the text for the submit button,<code>cancel-button-text</code>Set the text for the upload button.'
+          'Set the title of the pop-up box through<code>dialog-title</code>, and set the text of the cancel button through<code>cancel-button-text</code>,\n          <code>submit-button-text</code>Set the text for the submit button,<code>upload-button-text</code>Set the text for the upload button.'
       },
       codeFiles: ['fill-button-text.vue']
     },
@@ -97,6 +97,18 @@ export default {
           'Set the size of the uploaded file through<code>max-upload-file-size</code>,<code>accept</code>to set the file types that can be uploaded, and also specify the file types to be verified during upload through<code>upload-file-type</code>.'
       },
       codeFiles: ['file-type.vue']
+    },
+    {
+      demoId: 'upload-tip',
+      name: {
+        'zh-CN': '自定义上传提示',
+        'en-US': 'Customize upload prompts'
+      },
+      desc: {
+        'zh-CN': '通过 <code>uploadTip</code> 插槽自定义上传提示的内容块。',
+        'en-US': 'Customize the content block for upload prompts through the<code>uploadTip</code>slot.'
+      },
+      codeFiles: ['upload-tip.vue']
     },
     {
       demoId: 'prevent-delete-file',

@@ -117,7 +117,7 @@
     </div>
     <!-- footer -->
     <template #footer="params">
-      <slot name="footer" v-bind="params">
+      <slot name="footer" v-bind="params" :cancel="onFooterCancel" :confirm="onFooterConfirm">
         <div class="tiny-dialog-select__footer">
           <div class="tiny-dialog-select__footer-pager">
             <tiny-pager
@@ -133,8 +133,10 @@
             ></tiny-pager>
           </div>
           <div class="tiny-dialog-select__footer-buttons">
-            <tiny-button @click="onFooterCancel">{{ t('ui.button.cancel') }}</tiny-button>
-            <tiny-button @click="onFooterConfirm" type="primary">{{ t('ui.button.confirm') }}</tiny-button>
+            <slot name="footer-buttons" :cancel="onFooterCancel" :confirm="onFooterConfirm">
+              <tiny-button @click="onFooterCancel">{{ t('ui.button.cancel') }}</tiny-button>
+              <tiny-button @click="onFooterConfirm" type="primary">{{ t('ui.button.confirm') }}</tiny-button>
+            </slot>
           </div>
         </div>
       </slot>

@@ -13,6 +13,7 @@ export const tinySelectSmbTheme = {
   'ti-select-tags-margin-top': 'var(--ti-common-space-2)',
   'ti-select-tags-margin-bottom': 'var(--ti-common-space-2)',
   'ti-select-tags-max-height': 'none',
+  'ti-select-tags-padding-right-disabled': 'var(--ti-common-space-8x)',
   'ti-select-collapse-button-text-icon-color': 'var(--ti-common-color-text-link)',
   'ti-select-input-icon-top-mini': 'var(--ti-common-space-4x)'
 }
