@@ -38,6 +38,7 @@ onMounted(() => {
       toolbar: {
         container: TOOLBAR_CONFIG
       },
+      'emoji-toolbar': true
       mention: {
         itemKey: 'cn',
         searchKey,
