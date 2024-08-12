@@ -16,13 +16,40 @@ const TOOLBAR_CONFIG = [
   ['fullscreen', 'emoji', 'help', 'screenshot'],
 ]
 
+// @提醒
+const searchKey = 'name'
+const mentionList = [
+  {
+    name: 'Jack',
+    age: 26,
+    cn: 'Jack 杰克'
+  },
+  {
+    name: 'Lucy',
+    age: 22,
+    cn: 'Lucy 露西'
+  }
+]
+
 onMounted(() => {
   editor = new FluentEditor('#editor', {
     theme: 'snow',
     modules: {
       toolbar: {
         container: TOOLBAR_CONFIG
-      }
+      },
+      'emoji-toolbar': true,
+      mention: {
+        itemKey: 'cn',
+        searchKey,
+        search: function(term) {
+          return mentionList.filter(item => {
+            return item[searchKey] && String(item[searchKey]).includes(term)
+          })
+        }
+      },
+      file: true,
+      syntax: true
     }
   })
 })

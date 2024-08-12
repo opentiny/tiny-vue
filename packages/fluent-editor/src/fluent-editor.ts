@@ -5,7 +5,7 @@ import CustomClipboard from './custom-clipboard' // 粘贴板
 import CustomImage from './custom-image/BlotFormatter' // 图片
 import { CustomImageSpec } from './custom-image/specs/CustomImageSpec' // 图片拉伸模块
 import CustomUploader from './custom-uploader' // 上传
-// import Emoji from './emoji' // 表情
+import Emoji from './emoji' // 表情
 import FileModule from './file' // 文件
 // import GlobalLink from './global-link' // 全局链接
 import LineHeightStyle from './lineheight'
@@ -16,7 +16,7 @@ import Mention from './mention/Mention' // @提醒
 import SoftBreak from './soft-break' // 软回车
 import Strike from './strike' // 删除线
 import BetterTable from './table/better-table' // 表格
-// import CustomSyntax from './syntax' // 代码块高亮
+import CustomSyntax from './syntax' // 代码块高亮
 import Toolbar from './toolbar' // 工具栏
 import Video from './video' // 视频
 
@@ -49,10 +49,15 @@ const registerModules = function () {
           'better-table': function() {
             this.quill.getModule('better-table').insertTable(3, 3)
           },
+          file: function () {
+            const accept = this.quill.options?.uploadOption?.fileAccept
+            inputFile.call(this, 'file', accept)
+          },
           image: function () {
             const accept = this.quill.options?.uploadOption?.imageAccept
             inputFile.call(this, 'image', accept)
           },
+          emoji: function() {},
           fullscreen: function() {},
           list: function (value) {
             const range = this.quill.getSelection();
@@ -110,7 +115,7 @@ const registerModules = function () {
             right: '<i class="icon-text-align-right"></i>',
           },
         },
-      },
+      }
     }
   }
 
@@ -130,14 +135,14 @@ const registerModules = function () {
       'formats/softBreak': SoftBreak,
       'formats/lineheight': LineHeightStyle,
       'formats/video': Video,
-      // 'formats/emoji': Emoji.EmojiBlot, 表情包模块暂不开发
-      // 'modules/emoji-toolbar': Emoji.ToolbarEmoji,
-      // 'modules/emoji-shortname': Emoji.ShortNameEmoji,
+      'formats/emoji': Emoji.EmojiBlot,
+      'modules/emoji-toolbar': Emoji.ToolbarEmoji,
+      'modules/emoji-shortname': Emoji.ShortNameEmoji,
       // 'modules/global-link': GlobalLink,//暂未开发
       'modules/link': Link,     // 报错
       // 'modules/screenshot': Screenshot,//暂未开发
       // 'modules/quickmenu': QuickMenu,//暂未开发
-      // 'modules/syntax': CustomSyntax,   // 原本就是注释的，但是对应的代码高亮功能可以使用
+      'modules/syntax': CustomSyntax,
     },
     true, //覆盖内部模块
   )

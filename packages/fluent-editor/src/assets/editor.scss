@@ -72,7 +72,7 @@
     }
 
     .ql-ui {
-      position: initial;
+      position: absolute;
     }
 
     li > .ql-ui {
@@ -257,18 +257,16 @@
 
       span {
         display: inline-block;
-        padding-left: 20px;
         text-decoration: none;
+      }
+
+      svg {
+        fill: #5e7ce0;
+        vertical-align: text-bottom;
       }
     }
 
     // 代码块
-    .ql-code-block-container {
-      select.ql-ui {
-        display: none;
-      }
-    }
-
     code,
     .ql-code-block-container {
       background-color: #f8f8f8;

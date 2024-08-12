@@ -15,12 +15,12 @@ test('测试延迟显示隐藏', async ({ page }) => {
   await button1.hover()
   await page.waitForTimeout(100)
   await expect(tip1).toBeHidden()
-  await page.mouse.move(370, 320) // button1 上方
+  await button1.hover() // button1 上方
   await page.waitForTimeout(2010)
   await expect(tip1).toBeVisible()
 
   // 延迟关闭
-  await page.mouse.move(500, 320) // button2 上方
+  await button2.hover() // button2 上方
   await page.waitForTimeout(10)
   await expect(tip2).toBeVisible()
   await page.mouse.move(0, 0)
@@ -28,7 +28,7 @@ test('测试延迟显示隐藏', async ({ page }) => {
   await expect(tip2).toBeHidden()
 
   // 自动隐藏
-  await page.mouse.move(620, 320) // button3 上方
+  await button3.hover() // button3 上方
   await page.waitForTimeout(10)
   await expect(tip3).toBeVisible()
   await page.waitForTimeout(2010)

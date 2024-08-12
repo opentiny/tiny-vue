@@ -26,8 +26,8 @@ export default class FileBar {
     const timestamp = Number(this.file.dataset.lastModified)
     const lastModifiedDate = this.formatDate(timestamp)
     this.template = [
-      `<a class="ql-last-modified-date" href="${this.file.href}" target="_blank">${this.file.href}</a>`,
-      '<span class="ql-split"></span>',
+      // `<a class="ql-last-modified-date" href="${this.file.href}" target="_blank">${this.file.href}</a>`,
+      // '<span class="ql-split"></span>',
       // `<a class="ql-file-preview"><i class="icon-preview"></i></a>`,
       `<a class="ql-file-download"><i class="icon-download"></i></a>`,
       '<a class="ql-file-delete"><i class="icon-delete"></i></a>',
@@ -89,17 +89,16 @@ export default class FileBar {
         data: { fileId, fileDownloadUrl },
       })
     }
-    // 最好还是交给用户处理下载行为
-    // if(operate === 'download'){
-    //   const a = document.createElement('a');
-    //   a.href = fileDownloadUrl;
-    //   a.target = '_blank';
-    //   a.id='exppub';
-    //   document.body.appendChild(a);
-    //   const alink = document.getElementById('exppub');
-    //   alink.click();
-    //   alink.parentNode.removeChild(a);
-    // }
+    if(operate === 'download'){
+      const a = document.createElement('a');
+      a.href = fileDownloadUrl;
+      a.target = '_blank';
+      a.id='exppub';
+      document.body.appendChild(a);
+      const alink = document.getElementById('exppub');
+      alink.click();
+      alink.parentNode.removeChild(a);
+    }
     this.destroy()
   }
 
