@@ -1,10 +1,6 @@
 @import '../common.scss';
 
-:host ::ng-deep {
-  #quill-editor {
-    position: relative;
-  }
-
+.ql-container {
   .mention {
     color: #5e7ce0;
   }
@@ -119,7 +115,7 @@
 
   #emoji-palette {
     position: fixed;
-    max-width: 250px;
+    max-width: 231px;
     z-index: 999;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     border-radius: 1px;
@@ -128,7 +124,7 @@
 
   .bem {
     font-size: 24px;
-    width: 34px;
+    width: 20px;
     display: inline-block;
     text-align: center;
     cursor: pointer;
@@ -245,7 +241,7 @@
   }
 }
 
-::ng-deep #emoji-close-div {
+#emoji-close-div {
   width: 100vw;
   height: 100vh;
   position: fixed;

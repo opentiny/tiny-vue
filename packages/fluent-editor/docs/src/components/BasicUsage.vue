@@ -22,7 +22,8 @@ onMounted(() => {
     modules: {
       toolbar: {
         container: TOOLBAR_CONFIG
-      }
+      },
+      'emoji-toolbar': true
     }
   })
 })
