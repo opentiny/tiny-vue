@@ -12,7 +12,7 @@ import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 export const useBreakpoint = () => {
   const activeBreakpoint = hooks.ref('')
   const prefixes = ['2xl', 'xl', 'lg', 'md', 'sm']
-  function createMatchMedia(mediaQueryString) {
+  const createMatchMedia = (mediaQueryString) => {
     if (isServer) {
       return {
         matches: false,
