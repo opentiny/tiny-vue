@@ -38,7 +38,7 @@ onMounted(() => {
       toolbar: {
         container: TOOLBAR_CONFIG
       },
-      'emoji-toolbar': true
+      'emoji-toolbar': true,
       mention: {
         itemKey: 'cn',
         searchKey,
@@ -48,7 +48,8 @@ onMounted(() => {
           })
         }
       },
-      file: true
+      file: true,
+      syntax: true
     }
   })
 })

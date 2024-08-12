@@ -72,7 +72,7 @@
     }
 
     .ql-ui {
-      position: initial;
+      position: absolute;
     }
 
     li > .ql-ui {
@@ -267,12 +267,6 @@
     }
 
     // 代码块
-    .ql-code-block-container {
-      select.ql-ui {
-        display: none;
-      }
-    }
-
     code,
     .ql-code-block-container {
       background-color: #f8f8f8;

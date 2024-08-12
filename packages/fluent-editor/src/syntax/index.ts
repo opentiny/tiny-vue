@@ -1,14 +1,12 @@
 import Quill from 'quill';
 import * as hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-dark.css'
 
 const Syntax = Quill.imports['modules/syntax'];
 
 // @dynamic
 class CustomSyntax extends Syntax {
   static DEFAULTS: { hljs: any; interval: number; languages: { key: string; label: string }[] };
-  initListener() {
-    // fix: initListener方法写了代码块高亮下拉框的逻辑，重写该方法，屏蔽代码块高亮
-  }
 }
 
 CustomSyntax.DEFAULTS = {
