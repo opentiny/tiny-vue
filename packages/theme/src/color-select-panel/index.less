@@ -13,7 +13,7 @@
     gap: var(--ti-color-select-panel-spacing);
     padding: var(--ti-color-select-panel-padding-vertical) var(--ti-color-select-panel-padding-horizontal);
     box-shadow: var(--ti-color-select-panel-box-shadow);
-
+    
     &__tools {
       display: flex;
       line-height: var(--ti-color-select-panel-tools-line-height);
@@ -138,9 +138,14 @@
           width: 20px;
           height: 20px;
           border-radius: var(--ti-color-select-panel-border-radius-sm);
-          margin-right: 8px;
           margin: 0 4px 4px 0;
         }
+      }
+      .tiny-collapse-item__arrow {
+        display: none;
+      }
+      .tiny-collapse-item__wrap {
+        background: transparent;
       }
     }
     .tiny-collapse-item__wrap{

@@ -287,6 +287,8 @@ const initWatch = ({ api, state, props, watch, markRaw }) => {
     { immediate: true }
   )
 
+  watch(() => props.type, api.mountPicker)
+
   watch(() => props.isRange, api.watchIsRange)
 
   watch(() => props.modelValue, api.watchModelValue)

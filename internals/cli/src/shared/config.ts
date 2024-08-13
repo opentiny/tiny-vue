@@ -6,7 +6,6 @@ const EXTENERAL = [
   'echarts-wordcloud',
   '@vue/composition-api',
   '@opentiny/vue-renderless',
-  '@originjs/fluent-editor',
   'streamsaver',
   'shepherd.js',
   './label-wrap',

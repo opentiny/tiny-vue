@@ -8,7 +8,7 @@
 
 <script>
 import { Modal } from '@opentiny/vue'
-import TinyFluentEditor from '@opentiny/vue-fluent-editor'
+import { TinyFluentEditor } from '@opentiny/vue'
 
 export default {
   components: {
@@ -26,6 +26,7 @@ export default {
         success: (serverResponse, next) => {
           let file = {}
 
+          // eslint-disable-next-line no-unreachable-loop
           for (const key in serverResponse) {
             file = serverResponse[key]
             break
