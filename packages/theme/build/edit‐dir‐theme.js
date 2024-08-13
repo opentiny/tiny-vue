@@ -152,14 +152,18 @@ const createTheme = (callbackFn) => {
         const dataStr = fs.readFileSync(path, { encoding: 'utf8' })
         const startIndex = dataStr.indexOf('{') + 4
         const endIndex = dataStr.indexOf('}')
-        const newDataStr =
+        // 通过js文件内容生成对应的css文件
+        const newDataStr = (
           dataStr
             .slice(startIndex, endIndex)
-            .replace(/\'ti-/g, '--ti-')
-            .replace(/\'/g, '')
-            .replace(/\,\n/g, ';\n')
-            .replace(/\, \/\//g, '; //')
+            .replace(/\'ti-/g, '--ti-') // 变成对应css变量
+            .replace(/\'/g, '') // 去除所有的 ' 符号
+            .replace(/\n\s{2,}\/\/.*?\n/g, '\n') // 去掉单独一行的注释
+            .replace(/\/\/.*?\n/g, '\n') // 去掉和键值对同一行的注释
+            .replace(/\/\*[\s\S]*?\*\//g, '') // 去掉多行注释
+            .replace(/\,\s*\n/g, ';\n') // 将每一个js键值对，转换成css变量键值对
             .slice(0, -1) + ';'
+        ).replace(/\s+\;/g, ';') // 末尾添加 ;号将最后一个键值对转换成css变量键值对，并去掉全部;前面多余的空格
 
         let scropedData = scopedTitle.replace('{{}}', fileDir)
 
