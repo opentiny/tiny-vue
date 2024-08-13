@@ -10,18 +10,27 @@ import debounce from '@opentiny/vue-renderless/common/deps/debounce'
  * watch(breakpoint.current, (current) => { console.log(current) })
  */
 export const useBreakpoint = () => {
-  if (isServer) return
-
   const activeBreakpoint = hooks.ref('')
   const prefixes = ['2xl', 'xl', 'lg', 'md', 'sm']
-  const mediaQuerys = {
-    '2xl': window.matchMedia('(min-width:1536px)'),
-    'xl': window.matchMedia('(min-width:1280px)'),
-    'lg': window.matchMedia('(min-width:1024px)'),
-    'md': window.matchMedia('(min-width:768px)'),
-    'sm': window.matchMedia('(min-width:640px)')
+  const createMatchMedia = (mediaQueryString) => {
+    if (isServer) {
+      return {
+        matches: false,
+        media: mediaQueryString,
+        addEventListener: () => {},
+        removeEventListener: () => {}
+      }
+    } else {
+      return window.matchMedia(mediaQueryString)
+    }
   }
-
+  const mediaQuerys = {
+    '2xl': createMatchMedia('(min-width:1536px)'),
+    'xl': createMatchMedia('(min-width:1280px)'),
+    'lg': createMatchMedia('(min-width:1024px)'),
+    'md': createMatchMedia('(min-width:768px)'),
+    'sm': createMatchMedia('(min-width:640px)')
+  }
   type MediaQuerysKey = keyof typeof mediaQuerys
 
   const setActiveBreakpoint = () => {
@@ -33,7 +42,6 @@ export const useBreakpoint = () => {
         return
       }
     }
-
     activeBreakpoint.value = 'default'
   }
 
