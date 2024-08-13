@@ -81,5 +81,7 @@ export default {
   'user-link': 'user-link',
   'year-table': 'year-table',
   'skeleton': 'skeleton',
-  'skeleton-item': 'skeleton-item'
+  'skeleton-item': 'skeleton-item',
+  'calendar-view': 'calendar-view',
+  'calendar-view-tooltip': 'calendar-view-tooltip'
 }
