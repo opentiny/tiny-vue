@@ -88,6 +88,14 @@ export default {
         state.isSilentBlur = true
         api.updateModelValue(value)
         api.directEmitChange(value)
+      },
+      // aurora 禁用和只展示的时候都是tagText，默认主题是 isDisplayOnly 才显示tagText
+      computedShowTagText: () => {
+        return state.isDisabled || state.isDisplayOnly
+      },
+      // aurora 禁用已选项无效果，必选不显示关闭图标
+      isTagClosable: (item) => {
+        return !item.required
       }
     }
   }
