@@ -1,5 +1,5 @@
-const fs = require('node:fs')
-const fsExtra = require('fs-extra')
+import fs from 'node:fs'
+import fsExtra from 'fs-extra'
 
 const indexLessPath = 'index.less'
 const indexJsPath = 'index.js'
@@ -149,37 +149,32 @@ const createTheme = (callbackFn) => {
       const data = fs.statSync(path)
 
       if (!data.isDirectory()) {
-        const dataStr = fs.readFileSync(path, { encoding: 'utf8' })
-        const startIndex = dataStr.indexOf('{') + 4
-        const endIndex = dataStr.indexOf('}')
-        // 通过js文件内容生成对应的css文件
-        const newDataStr = (
-          dataStr
-            .slice(startIndex, endIndex)
-            .replace(/\'ti-/g, '--ti-') // 变成对应css变量
-            .replace(/\'/g, '') // 去除所有的 ' 符号
-            .replace(/\n\s{2,}\/\/.*?\n/g, '\n') // 去掉单独一行的注释
-            .replace(/\/\/.*?\n/g, '\n') // 去掉和键值对同一行的注释
-            .replace(/\/\*[\s\S]*?\*\//g, '') // 去掉多行注释
-            .replace(/\,\s*\n/g, ';\n') // 将每一个js键值对，转换成css变量键值对
-            .slice(0, -1) + ';'
-        ).replace(/\s+\;/g, ';') // 末尾添加 ;号将最后一个键值对转换成css变量键值对，并去掉全部;前面多余的空格
-
-        let scropedData = scopedTitle.replace('{{}}', fileDir)
-
-        if (cssScopedMap[fileDir]) {
-          if (Array.isArray(cssScopedMap[fileDir])) {
-            cssScopedMap[fileDir].forEach((item) => {
-              scropedData += scopedContent.replace(/\{compName\}/g, item).replace(/\{var\}/g, newDataStr)
+        import(path).then((obj) => {
+          let newDataStr = ''
+          Object.values(obj).forEach((value) => {
+            Object.keys(value).forEach((key, index) => {
+              const newValue = `--${key}: ${value[key]};`
+              newDataStr += index !== 0 ? `\n  ${newValue}` : newValue
             })
-          } else {
-            scropedData += scopedContent.replace(/\{compName\}/g, cssScopedMap[fileDir]).replace(/\{var\}/g, newDataStr)
-          }
-        } else {
-          scropedData += scopedContent.replace(/\{compName\}/g, fileDir).replace(/\{var\}/g, newDataStr)
-        }
+          })
+          let scropedData = scopedTitle.replace('{{}}', fileDir)
 
-        writeFile(parentPath + '/index.less', scropedData)
+          if (cssScopedMap[fileDir]) {
+            if (Array.isArray(cssScopedMap[fileDir])) {
+              cssScopedMap[fileDir].forEach((item) => {
+                scropedData += scopedContent.replace(/\{compName\}/g, item).replace(/\{var\}/g, newDataStr)
+              })
+            } else {
+              scropedData += scopedContent
+                .replace(/\{compName\}/g, cssScopedMap[fileDir])
+                .replace(/\{var\}/g, newDataStr)
+            }
+          } else {
+            scropedData += scopedContent.replace(/\{compName\}/g, fileDir).replace(/\{var\}/g, newDataStr)
+          }
+
+          writeFile(parentPath + '/index.less', scropedData)
+        })
       }
     }
 
@@ -259,4 +254,4 @@ const removeDir = (callbackFn) => {
   }
 }
 
-module.exports = { createTheme, removeDir }
+export { createTheme, removeDir }
