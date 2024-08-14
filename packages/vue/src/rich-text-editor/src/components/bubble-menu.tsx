@@ -11,7 +11,8 @@ export default defineComponent({
   setup(props) {
     const { items } = props
     const handleClick = (item) => {
-      const { action } = item
+      const { action, isDisabled } = item
+      if (isDisabled()) return
       action?.()
     }
 
@@ -19,8 +20,9 @@ export default defineComponent({
       <div class="tiny-bubble-menu__view">
         {items.map((item, index) => {
           const isActive = item.isActive?.()
+          const isDisabled = item.isDisabled?.()
           return (
-            <div class={['tiny-bubble-menu__item', { 'is-active': isActive }]} key={index}>
+            <div class={['tiny-bubble-menu__item', { 'is-active': isActive, 'is-disabled': isDisabled }]} key={index}>
               {item.icon && <item.icon onClick={() => handleClick(item)} class="tiny-bubble-menu__icon"></item.icon>}
             </div>
           )
