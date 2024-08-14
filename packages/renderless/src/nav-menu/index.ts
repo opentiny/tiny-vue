@@ -215,7 +215,7 @@ export const mounted =
 
     if (router) {
       state.afterEach = () => {
-        api.setActiveMenu(api.getSelectedIndex(router.currentRoute.path))
+        api.setActiveMenu(api.getSelectedIndex(router.currentRoute.value.path))
       }
 
       router.afterEach(state.afterEach)
