@@ -234,6 +234,7 @@ export const cmpMenus = [
       { 'nameCn': '时间线', 'name': 'Timeline', 'key': 'time-line' },
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
       { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
+      { 'nameCn': '虚拟滚动', 'name': 'VirtualScroll', 'key': 'virtual-scroll' },
       { 'nameCn': '流程图', 'name': 'Wizard', 'key': 'wizard' }
     ]
   },
