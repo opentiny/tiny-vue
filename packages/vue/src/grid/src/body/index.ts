@@ -22,7 +22,7 @@
  * SOFTWARE.
  *
  */
-import Body from './src/body'
+import Body from './src/pc.vue'
 
 Body.install = function (Vue) {
   Vue.component(Body.name, Body)
