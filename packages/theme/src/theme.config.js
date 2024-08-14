@@ -81,5 +81,6 @@ export default {
   'user-link': 'user-link',
   'year-table': 'year-table',
   'skeleton': 'skeleton',
-  'skeleton-item': 'skeleton-item'
+  'skeleton-item': 'skeleton-item',
+  'float-bar': 'float-bar'
 }
