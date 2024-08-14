@@ -1,12 +1,10 @@
 <script lang="tsx">
 import { props, setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/anchor/vue'
-import { AutoTip } from '@opentiny/vue-directive'
 import type { IAnchorApi } from '@opentiny/vue-renderless/types/anchor.type'
 
 export default defineComponent({
   name: $prefix + 'Anchor',
-  directives: { AutoTip },
   props: [...props, 'isAffix', 'links', 'containerId', 'markClass', 'type'],
   emits: ['linkClick', 'onChange', 'change'], // deprecated v3.12.0废弃，v3.17.0移除onChange 事件
   setup(props, context) {
@@ -29,9 +27,9 @@ export default defineComponent({
               <a
                 href={item.link}
                 class={[`${anchorClass}-link-title`, currentLink === item.link && `${anchorClass}-link-title--active`]}
+                title={item.title}
                 onClick={(e) => linkClick(e, item)}
-                ref={item.link}
-                v-auto-tip>
+                ref={item.link}>
                 {item.title}
               </a>
               {item.children ? renderLinks(item.children) : null}

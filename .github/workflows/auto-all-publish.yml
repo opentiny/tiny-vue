@@ -57,6 +57,9 @@ jobs:
       
       - name: Run Build Sass Common
         run: pnpm build:ui saas-common -t ${{ steps.parseTag.outputs.publishVersion }} -d saas
+      
+      - name: Run Build Runtime
+        run: pnpm build:runtime
 
       - name: Run Build Theme
         run: pnpm build:theme

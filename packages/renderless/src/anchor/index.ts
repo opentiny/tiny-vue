@@ -119,7 +119,7 @@ export const handleScroll = (state: IAnchorRenderlessParams['state']) => () => {
   state.scrollTimer = window.setTimeout(() => {
     state.isScroll = false
     clearTimeout(state.scrollTimer)
-  }, 200)
+  }, 2000)
 }
 
 // 设置滚动偏移量
@@ -183,11 +183,6 @@ export const onItersectionObserver =
           return
         }
 
-        if (state.isScroll) {
-          api.handleScroll()
-          return
-        }
-
         for (let key in state.observerLinks) {
           if (Object.prototype.hasOwnProperty.call(state.observerLinks, key)) {
             const item = state.observerLinks[key]
@@ -207,7 +202,7 @@ export const onItersectionObserver =
           }
         }
       },
-      { root: scrollContainer, threshold: [0, 0.25, 0.5, 1] }
+      { root: scrollContainer, threshold: [0] }
     )
 
     addObserver({ props, state })
