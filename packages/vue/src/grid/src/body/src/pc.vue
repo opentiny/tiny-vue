@@ -464,7 +464,7 @@ function renderRowGroupTds(args) {
               class: ['tiny-grid-body__column td-group', column.id],
               colspan: column._rowGroupColspan
             },
-            [h('div', { class: 'tiny-grid-cell-group' }, closeable ? currentIcon : null, groupTitleVNode)]
+            [h('div', { class: 'tiny-grid-cell-group' }, [closeable ? currentIcon : null].concat(groupTitleVNode))]
           )
         )
       } else {
@@ -475,7 +475,7 @@ function renderRowGroupTds(args) {
               class: ['tiny-grid-body__column td-placeholder', column.id],
               colspan: column._rowGroupColspan
             },
-            [renderGroupCell ? renderGroupCell(h, params) : null]
+            ['div', { class: 'tiny-grid-cell-group' }, renderGroupCell ? renderGroupCell(h, params) : null]
           )
         )
       }
