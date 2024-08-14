@@ -12,7 +12,7 @@ export default defineComponent({
     const { items } = props
     const handleClick = (item) => {
       const { action, isDisabled } = item
-      if (isDisabled()) return
+      if (isDisabled?.()) return
       action?.()
     }
 
