@@ -1,28 +1,5 @@
-/**
- * MIT License
- *
- * Copyright (c) 2019 Xu Liangzhan
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- */
-
+<script lang="ts">
+import { renderless, api } from '@opentiny/vue-renderless/grid/body/vue'
 import { isFunction, find } from '@opentiny/vue-renderless/grid/static/'
 import { isNull } from '@opentiny/vue-renderless/common/type'
 import {
@@ -36,9 +13,8 @@ import {
 import { getCellLabel } from '../../tools'
 import GlobalConfig from '../../config'
 import { iconChevronRight, iconChevronDown } from '@opentiny/vue-icon'
-import { h, hooks, $prefix, defineComponent } from '@opentiny/vue-common'
+import { h, $prefix, defineComponent, setup } from '@opentiny/vue-common'
 import { getTreeChildrenKey, getTreeShowKey, handleRowGroupFold, isVirtualRow } from '../../table/src/strategy'
-import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
 
 // 滚动、拖动过程中不需要触发鼠标移入移出事件
 const isOperateMouse = ($table) =>
@@ -440,6 +416,7 @@ function renderColumn(args1) {
 
   // 组装渲染单元格td所需要的props属性
   const colProps = buildColumnProps(args)
+
   args = { column, h, hasDefaultTip, params, row, $table }
   Object.assign(args, { showEllipsis, showTip, showTitle, showTooltip, validError, validStore, dropConfig })
 
@@ -470,24 +447,36 @@ function renderRowGroupTds(args) {
         let groupTitleVNode
 
         if (render) {
+          // 使用 h 函数和参数来调用 render 函数
           groupTitleVNode = render(h, params)
         } else {
+          // 直接使用 h 函数创建 VNode 数组
           groupTitleVNode = [
-            <span class="row-group-title">{header}</span>,
+            h('span', { class: 'row-group-title' }, header),
             `:${value}`,
-            <span class="tiny-badge">{row.children.length}</span>
+            h('span', { class: 'tiny-badge' }, row.children.length)
           ]
         }
         tds.push(
-          <td class={['tiny-grid-body__column td-group', column.id]} colspan={column._rowGroupColspan}>
-            <div class="tiny-grid-cell-group">{[closeable ? currentIcon : null].concat(groupTitleVNode)}</div>
-          </td>
+          h(
+            'td',
+            {
+              class: ['tiny-grid-body__column td-group', column.id],
+              colspan: column._rowGroupColspan
+            },
+            [h('div', { class: 'tiny-grid-cell-group' }, closeable ? currentIcon : null, groupTitleVNode)]
+          )
         )
       } else {
         tds.push(
-          <td class={['tiny-grid-body__column td-placeholder', column.id]} colspan={column._rowGroupColspan}>
-            <div class="tiny-grid-cell-group">{renderGroupCell ? renderGroupCell(h, params) : null}</div>
-          </td>
+          h(
+            'td',
+            {
+              class: ['tiny-grid-body__column td-placeholder', column.id],
+              colspan: column._rowGroupColspan
+            },
+            [renderGroupCell ? renderGroupCell(h, params) : null]
+          )
         )
       }
     }
@@ -501,7 +490,10 @@ function renderRowGroupData({ $table, virtualRow, row, rowGroup, rowid, rows, ta
 
   const { title, closeable = true, render, renderGroupCell, className } = rowGroup
   const { tds = [], ChevronRight = iconChevronRight(), ChevronDown = iconChevronDown() } = {}
-  const currentIcon = row.fold ? <ChevronRight class="tiny-svg-size" /> : <ChevronDown class="tiny-svg-size" />
+  // const currentIcon = row.fold ? <ChevronRight class="tiny-svg-size" /> : <ChevronDown class="tiny-svg-size" />
+  const currentIcon = row.fold
+    ? h(ChevronRight, { class: 'tiny-svg-size' })
+    : h(ChevronDown, { class: 'tiny-svg-size' })
   const args = { $table, closeable, currentIcon, render, renderGroupCell }
   Object.assign(args, { row, tableColumn, tds, title })
   // 将分组行的td添加到tds数组中
@@ -516,14 +508,21 @@ function renderRowGroupData({ $table, virtualRow, row, rowGroup, rowid, rows, ta
   }
 
   rows.push(
-    <tr
-      class={['tiny-grid-body__row', 'group', className, { hover: row.hover }]}
-      data-rowid={rowid}
-      onMouseout={() => (row.hover = false)}
-      onMouseover={() => (row.hover = true)}
-      onClick={onClick}>
-      {tds}
-    </tr>
+    h(
+      'tr',
+      {
+        class: ['tiny-grid-body__row', 'group', className, { hover: row.hover }],
+        'data-rowid': rowid,
+        onmouseleave: () => {
+          row.hover = false
+        },
+        onmouseover: () => {
+          row.hover = true
+        },
+        onclick: onClick
+      },
+      tds
+    )
   )
 }
 
@@ -745,41 +744,6 @@ function renderDefEmpty(h) {
   ]
 }
 
-const syncHeaderAndFooterScroll = ({ bodyElem, footerElem, headerElem, isX }) => {
-  if (isX && headerElem) {
-    headerElem.scrollLeft = bodyElem.scrollLeft
-  }
-  if (isX && footerElem) {
-    footerElem.scrollLeft = bodyElem.scrollLeft
-  }
-}
-
-function doScrollLoad({ $table, _vm, bodyElem, event, headerElem, isX, isY, scrollLeft, scrollXLoad, scrollYLoad }) {
-  let isScrollX = scrollXLoad && isX
-
-  // 如果是水平虚拟滚动，并且正在进行水平滚动，就触发水平虚滚事件
-  if (isScrollX) {
-    // 处理x轴方法虚拟滚动加载数据逻辑
-    $table.triggerScrollXEvent(event)
-  }
-
-  // 同上，并且主表头存在时，修复极端场景（拖动滚动条到最右侧）表头表体水平滚动位置不同步问题
-  if (isScrollX && headerElem && scrollLeft + bodyElem.clientWidth >= bodyElem.scrollWidth) {
-    // 修复拖动滚动条时可能存在不同步问题
-    _vm.$nextTick(() => {
-      if (bodyElem.scrollLeft !== headerElem.scrollLeft) {
-        headerElem.scrollLeft = bodyElem.scrollLeft
-      }
-    })
-  }
-
-  // 如果是垂直虚拟滚动，并且正在进行垂直滚动，就触发垂直虚滚事件
-  if (scrollYLoad && isY) {
-    // 处理y轴方法虚拟滚动加载数据逻辑
-    $table.triggerScrollYEvent(event)
-  }
-}
-
 function renderEmptyBlock({ $slots, $table, _vm, isCenterCls, renderEmpty, tableData }) {
   return h(
     'div',
@@ -845,51 +809,8 @@ export default defineComponent({
     tableData: Array,
     visibleColumn: Array
   },
-  mounted() {
-    const { $el, $parent: $table, $refs } = this as any
-    const { elemStore, dropConfig } = $table
-    const keyPrefix = 'main-body-'
-
-    // 表体第一层div，出现滚动条的dom元素
-    elemStore[`${keyPrefix}wrapper`] = $el
-    // 表体table元素
-    elemStore[`${keyPrefix}table`] = $refs.table
-    // colgroup元素，保持表头和表体宽度保持一致
-    elemStore[`${keyPrefix}colgroup`] = $refs.colgroup
-    // tbody元素
-    elemStore[`${keyPrefix}list`] = $refs.tbody
-    // x轴滚动条占位元素
-    elemStore[`${keyPrefix}xSpace`] = $refs.xSpace
-    // y轴滚动条占位元素
-    elemStore[`${keyPrefix}ySpace`] = $refs.ySpace
-    // 空数据元素
-    elemStore[`${keyPrefix}emptyBlock`] = $refs.emptyBlock
-
-    // 表体第一层div监听滚动事件
-    $el.onscroll = this.scrollEvent
-    $el._onscroll = this.scrollEvent
-
-    if (dropConfig) {
-      const { plugin, row = true } = dropConfig
-      plugin && row && (this.rowSortable = $table.rowDrop(this.$el))
-    }
-  },
-  beforeUnmount() {
-    this.rowSortable && this.rowSortable.destroy()
-  },
-  updated() {
-    const { $parent: $table, fixedType } = this
-    !fixedType && $table.updateTableBodyHeight()
-  },
-  setup(props, { slots }) {
-    hooks.onBeforeUnmount(() => {
-      const table = hooks.getCurrentInstance().proxy
-
-      table.$el._onscroll = null
-      table.$el.onscroll = null
-    })
-
-    return { slots }
+  setup(props, context) {
+    return setup({ props, context, renderless, api, mono: true })
   },
   render() {
     let { $parent: $table } = this as any
@@ -915,47 +836,6 @@ export default defineComponent({
         renderEmptyBlock({ $slots, $table, _vm: this, isCenterCls, renderEmpty, tableData })
       ]
     )
-  },
-  methods: {
-    // 滚动处理，如果存在列固定右侧，同步更新滚动状态
-    scrollEvent(event) {
-      let { $parent: $table } = this as any
-      let { $refs, lastScrollLeft, lastScrollTop, scrollXLoad, scrollYLoad, columnStore } = $table
-      let { leftList, rightList } = columnStore
-      let { tableBody, tableFooter, tableHeader } = $refs
-
-      // 获取主表头，主表体，主表尾，左表体，右表体
-      let headerElem = tableHeader ? tableHeader.$el : null
-      let bodyElem = tableBody.$el
-      let footerElem = tableFooter ? tableFooter.$el : null
-
-      // 获取主表体元素的滚动位置
-      let scrollLeft = bodyElem.scrollLeft
-      let scrollTop = bodyElem.scrollTop
-
-      // 对比当前滚动位置和最后一次滚动位置，来得到当前滚动的是哪个方向上的滚动条
-      let isY = scrollTop !== lastScrollTop
-      let isX = scrollLeft !== lastScrollLeft
-
-      // 记录新的滚动位置和时间
-      $table.lastScrollTime = Date.now()
-      $table.lastScrollLeft = scrollLeft
-      $table.lastScrollTop = scrollTop
-      $table.scrollDirection = isX ? 'X' : 'Y'
-
-      // 同步滚动条状态，只同步表头(表尾)滚动条状态，冻结列已优化为sticky方式
-      syncHeaderAndFooterScroll({ bodyElem, footerElem, headerElem, isX })
-
-      // 处理关于冻结列最外层div类名
-      if (leftList.length || rightList.length) {
-        generateFixedClassName({ $table, bodyElem, leftList, rightList })
-      }
-
-      // 处理x和y轴方法虚拟滚动数据加载逻辑
-      doScrollLoad({ $table, _vm: this, bodyElem, event, headerElem, isX, isY, scrollLeft, scrollXLoad, scrollYLoad })
-
-      // 触发用户监听的表格滚动事件
-      emitEvent($table, 'scroll', [{ type: 'body', scrollTop, scrollLeft, isX, isY, $table }, event])
-    }
   }
 })
+</script>
