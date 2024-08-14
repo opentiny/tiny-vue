@@ -1,12 +1,10 @@
 {
   "name": "@opentiny/vue-vite-template2jsx",
+  "type": "module",
   "version": "1.1.5",
   "description": "A TinyVue vite import plugin",
-  "main": "index.js",
-  "module": "index.js",
   "author": "Tiny Vue Team",
   "license": "MIT",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@github.com:opentiny/tiny-vue.git"
@@ -16,13 +14,16 @@
     "TinyVue",
     "vite"
   ],
-  "dependencies": {
-    "lodash-es": "^4.17.21",
-    "fs-extra": "^11.2.0",
-    "vue-template-compiler": "2.6.14",
-    "html-dom-parser": "~5.0.8"
-  },
+  "main": "index.js",
+  "module": "index.js",
   "peerDependencies": {
     "vite": ">=4"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "html-dom-parser": "~5.0.8",
+    "lodash-es": "^4.17.21",
+    "vue": "2.6.14",
+    "vue-template-compiler": "2.6.14"
   }
 }
