@@ -9,6 +9,6 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Grid from './grid/index'
+import Grid from './grid/grid'
 
 export default Grid
