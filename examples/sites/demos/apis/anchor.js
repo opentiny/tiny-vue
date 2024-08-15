@@ -103,9 +103,8 @@ export default {
             'en-US':
               'use change instead [deprecated v3.12.0 abandoned, v3.17.0 removed; reason for removal: naming convention]'
           },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'change',
-          mfDemo: 'set-container'
+          mode: ['pc'],
+          pcDemo: 'change'
         }
       ],
       methods: [],
