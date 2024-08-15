@@ -142,12 +142,15 @@
       :show-week-number="showWeekNumber"
       :time-editable="timeEditable"
       :format-weeks="formatWeeks"
+      :now-click="nowClick"
       ref="picker"
       :visible="state.pickerVisible"
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
-    ></component>
+    >
+      <slot name="now"></slot>
+    </component>
   </div>
 </template>
 

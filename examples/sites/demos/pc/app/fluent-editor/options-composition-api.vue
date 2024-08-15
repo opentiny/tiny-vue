@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import TinyFluentEditor from '@opentiny/vue-fluent-editor'
+import { TinyFluentEditor } from '@opentiny/vue'
 
 const content = ref('')
 const options = ref({
@@ -20,7 +20,7 @@ const options = ref({
       [{ list: 'bullet' }, { list: 'ordered' }],
       [{ align: '' }, { align: 'center' }, { align: 'right' }],
       ['better-table'],
-      ['fullscreen'],
+      ['fullscreen']
     ],
     // 字数统计
     counter: true,
@@ -30,10 +30,30 @@ const options = ref({
         color: {
           text: '主题色',
           colors: [
-            '#ffffff', '#f2f2f2', '#dddddd', '#a6a6a6', '#666666', '#000000',
-            '#c00000', '#ff0000', '#ffc8d3', '#ffc000', '#ffff00', '#fff4cb',
-            '#92d050', '#00b050', '#dff3d2', '#00b0f0', '#0070c0', '#d4f1f5',
-            '#002060', '#7030a0', '#7b69ee', '#1476ff', '#ec66ab', '#42b883',
+            '#ffffff',
+            '#f2f2f2',
+            '#dddddd',
+            '#a6a6a6',
+            '#666666',
+            '#000000',
+            '#c00000',
+            '#ff0000',
+            '#ffc8d3',
+            '#ffc000',
+            '#ffff00',
+            '#fff4cb',
+            '#92d050',
+            '#00b050',
+            '#dff3d2',
+            '#00b0f0',
+            '#0070c0',
+            '#d4f1f5',
+            '#002060',
+            '#7030a0',
+            '#7b69ee',
+            '#1476ff',
+            '#ec66ab',
+            '#42b883'
           ]
         }
       }

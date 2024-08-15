@@ -32,7 +32,8 @@ import {
   iconSuccessful,
   iconClose,
   iconFileCloudupload,
-  iconPlus
+  iconPlus,
+  iconHelpCircle
 } from '@opentiny/vue-icon'
 import CryptoJS from 'crypto-js/core.js'
 import 'crypto-js/sha256.js'
@@ -46,6 +47,7 @@ const TinyIconCloseCircle = iconClose()
 const TinyIconDownload = iconDownload()
 const TinyIconFileCloudupload = iconFileCloudupload()
 const TinyIconPlus = iconPlus()
+const TinyIconHelpCircle = iconHelpCircle()
 
 export default defineComponent({
   inheritAttrs: false,
@@ -88,7 +90,8 @@ export default defineComponent({
     'title',
     'showTitle',
     'displayOnly',
-    'compact'
+    'compact',
+    'promptTip'
   ],
   setup(props, context) {
     // 内置crypto-js和streamsaver进行上传下载
@@ -150,7 +153,8 @@ export default defineComponent({
       handleFileClick,
       displayOnly,
       listType,
-      compact
+      compact,
+      promptTip
     } = this
     const isPictureCard = listType === 'picture-card'
     const isSaasType = listType === 'saas'
@@ -172,16 +176,10 @@ export default defineComponent({
     const getTriggerContent = (t: any, disabled: boolean) => {
       return (
         <div class="trigger-btn">
-          <tiny-tooltip
-            effect="light"
-            content={(slots.tip && slots.tip()) || tipMsg}
-            placement="top"
-            popper-options={popperConfig}>
-            <tiny-button disabled={disabled} onClick={handleTriggerClick}>
-              <TinyIconPlus />
-              <span>{t('ui.fileUpload.uploadFile')}</span>
-            </tiny-button>
-          </tiny-tooltip>
+          <tiny-button disabled={disabled} onClick={handleTriggerClick}>
+            <TinyIconPlus />
+            <span>{t('ui.fileUpload.uploadFile')}</span>
+          </tiny-button>
         </div>
       )
     }
@@ -202,13 +200,30 @@ export default defineComponent({
 
     // 提示信息插槽
     const getDefaultTip = (tipMsg) => {
-      return (
-        <div class="tip-wrap">
-          <div title={tipMsg} class="tip-content">
-            {(slots.tip && slots.tip()) || tipMsg}
+      if (promptTip) {
+        return (
+          (slots.tip && slots.tip()) ||
+          (tipMsg && promptTip && (
+            <tiny-tooltip
+              effect="light"
+              content={(slots.tip && slots.tip()) || tipMsg}
+              placement="right"
+              popper-options={popperConfig}>
+              <div class="prompt-tip">
+                <TinyIconHelpCircle />
+              </div>
+            </tiny-tooltip>
+          ))
+        )
+      } else {
+        return (
+          <div class="tip-wrap">
+            <div title={tipMsg} class="tip-content">
+              {(slots.tip && slots.tip()) || tipMsg}
+            </div>
           </div>
-        </div>
-      )
+        )
+      }
     }
 
     const getThumIcon = (file) => [
