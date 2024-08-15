@@ -322,10 +322,24 @@ const dateToLocaleStringForIE = (timezone, value) => {
   return new Date(offsetTime)
 }
 
-export const changeToNow =
-  ({ api, state }) =>
+export const getNowTime =
+  ({ props }) =>
   () => {
-    const now = new Date()
+    return new Promise((resolve) => {
+      resolve(props.nowClick())
+    }).then((res) => {
+      return res
+    })
+  }
+
+export const changeToNow =
+  ({ api, state, props }) =>
+  async () => {
+    let now = new Date()
+
+    if (props.nowClick !== undefined) {
+      now = await api.getNowTime()
+    }
     const timezone = state.timezone
     const isServiceTimezone = timezone.isServiceTimezone
     let disabledDate = !state.disabledDate

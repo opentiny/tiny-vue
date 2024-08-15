@@ -1,7 +1,7 @@
 <template>
   <span v-if="currentStageComputed" class="version-tip">
     <div v-if="renderType === 'alert'">
-      <tiny-alert :type="alertTypeComputed" :closable="false">
+      <tiny-alert :type="alertTypeComputed" v-if="!isStableComputed" :closable="false">
         <template #description>
           <span>{{ tipComputed }}</span>
         </template>
@@ -15,7 +15,7 @@
         :content="tipComputed"
         :disabled="!tipComputed"
       >
-        <tiny-tag size="mini" effect="dark" :type="tagTypeComputed">{{ currentStageComputed }}</tiny-tag>
+        <tiny-tag size="small" effect="dark" :type="tagTypeComputed">{{ tagContentComputed }}</tiny-tag>
       </tiny-tooltip>
     </span>
   </span>
@@ -28,11 +28,14 @@ import { Tag as TinyTag, Alert as TinyAlert, Tooltip as TinyTooltip } from '@ope
 import { getWord } from '../../i18n/index'
 
 enum STAGE {
+  // 实验性阶段（api属性不具备此阶段）
   experimental = 'experimental',
+  // 稳定阶段
   stable = 'stable',
+  // 弃用阶段
   deprecated = 'deprecated',
-  removed = 'removed',
-  new = 'new'
+  // 将要被移除阶段
+  toBeRemoved = 'toBeRemoved'
 }
 
 interface IStageVersionMetaData {
@@ -43,7 +46,7 @@ interface IVersionMetaData {
   [STAGE.experimental]?: IStageVersionMetaData | string
   [STAGE.stable]?: IStageVersionMetaData | string
   [STAGE.deprecated]?: IStageVersionMetaData | string
-  [STAGE.removed]?: IStageVersionMetaData | string
+  [STAGE.toBeRemoved]?: IStageVersionMetaData | string
 }
 
 interface Ii18nString {
@@ -51,38 +54,38 @@ interface Ii18nString {
   'en-US': string
 }
 
+// 生命周期的顺序 实验 --> 稳定 --> 弃用 --> 移除
+const lifeCycleOrder = [STAGE.experimental, STAGE.stable, STAGE.deprecated, STAGE.toBeRemoved]
+
 const alertTypeMap = {
-  [STAGE.removed]: 'error',
+  [STAGE.toBeRemoved]: 'error',
   [STAGE.deprecated]: 'error',
   [STAGE.experimental]: 'warning',
-  [STAGE.stable]: 'info'
+  [STAGE.stable]: 'success'
 }
 
 const tagTypeMap = {
-  [STAGE.removed]: 'danger',
+  [STAGE.toBeRemoved]: 'danger',
   [STAGE.deprecated]: 'danger',
   [STAGE.experimental]: 'warning',
-  [STAGE.stable]: 'info',
-  [STAGE.new]: 'primary'
+  [STAGE.stable]: 'success'
 }
 
 const cnDesMap = {
   [STAGE.experimental]: '处于测试阶段',
   [STAGE.stable]: '自 v{version} 起稳定提供',
   [STAGE.deprecated]: '从 v{version} 开始被废弃',
-  [STAGE.removed]: '于 v{version} 移除',
-  [STAGE.new]: '于 v{version} 新增'
+  [STAGE.toBeRemoved]: '于 v{version} 移除'
 }
 
 const enDesMap = {
   [STAGE.experimental]: 'in beta',
   [STAGE.stable]: 'stable since v{version}',
   [STAGE.deprecated]: 'deprecated since v{version}',
-  [STAGE.removed]: 'removed in v{version}',
-  [STAGE.new]: 'add in v{version}'
+  [STAGE.toBeRemoved]: 'toBeRemoved in v{version}'
 }
 
-// 默认的，只需要显示deprecated，experimental状态时的提示，除非声明了briefStage
+// 默认的，只需要显示deprecated，experimental状态时的提示
 export default defineComponent({
   components: {
     TinyTag,
@@ -90,7 +93,7 @@ export default defineComponent({
     TinyTooltip
   },
   props: {
-    metaData: {
+    meta: {
       type: Object as PropType<IVersionMetaData>,
       default: () => ({})
     },
@@ -102,18 +105,11 @@ export default defineComponent({
       type: String as PropType<'component' | 'api'>,
       default: 'component'
     },
-    stages: {
-      type: Array as PropType<STAGE[]>,
-      default: () => [STAGE.experimental, STAGE.deprecated, STAGE.removed, STAGE.new]
-    },
     alertType: {
       type: String
     },
     tagType: {
       type: String
-    },
-    briefStage: {
-      type: Object as PropType<STAGE>
     },
     tip: {
       type: Object as PropType<Ii18nString>
@@ -123,55 +119,49 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const isInStage = (stage: STAGE) => Boolean(props.metaData[stage]) && props.stages.includes(stage)
-
     const getVersion = (stage: STAGE) => {
-      if (!props.metaData[stage]) return ''
+      if (!props.meta[stage]) return ''
 
-      if (typeof props.metaData[stage] === 'string') {
-        return props.metaData[stage] as string
+      if (typeof props.meta[stage] === 'string') {
+        return props.meta[stage] as string
       } else {
-        return (props.metaData[stage] as IStageVersionMetaData).version
+        return (props.meta[stage] as IStageVersionMetaData).version
       }
     }
 
-    const currentStageComputed = computed(() => {
-      if (props.briefStage) {
-        return props.briefStage
-      }
+    const currentStageComputed = computed(() =>
+      lifeCycleOrder
+        .slice(0, -1)
+        .toReversed()
+        .find((stage) => Boolean(props.meta[stage]))
+    )
 
-      return [STAGE.removed, STAGE.deprecated, STAGE.stable, STAGE.experimental, STAGE.new].find(isInStage)
-    })
+    // 是否为稳定阶段
+    const isStableComputed = computed(() => currentStageComputed.value === STAGE.stable)
 
     const generateDes = (desMap: typeof cnDesMap) => {
-      // 当前stable之后，不显示experimental的描述
-      const isFilterExperimental = [STAGE.removed, STAGE.deprecated, STAGE.stable].includes(
-        currentStageComputed.value as STAGE
-      )
-      // 当前deprecated之后，不显示stable的描述
-      const isFilterStable = [STAGE.removed, STAGE.deprecated].includes(currentStageComputed.value as STAGE)
+      const currentStage = currentStageComputed.value
+      const deprecatedList = lifeCycleOrder.slice(2)
 
       const goingStages = Object.entries(desMap).filter(([stage]) => {
-        let isPicked = isInStage(stage as STAGE)
-
-        if (stage === STAGE.experimental) {
-          isPicked = isPicked && !isFilterExperimental
+        if (deprecatedList.includes(currentStage)) {
+          return deprecatedList.includes(stage)
+        } else {
+          return stage === currentStage
         }
-
-        if (stage === STAGE.stable) {
-          isPicked = isPicked && !isFilterStable
-        }
-
-        return isPicked
       })
 
       return goingStages.map(([stage, des]) => des.replace('{version}', getVersion(stage as STAGE))).join('，')
     }
 
+    const tagContentComputed = computed(() =>
+      isStableComputed.value ? props.meta[currentStageComputed.value] : currentStageComputed.value
+    )
+
     const tipComputed = computed(() => {
       if (props.tip) return getWord(props.tip['zh-CN'], props.tip['en-US']) as string
 
-      if (!props.metaData) return ''
+      if (!props.meta) return ''
 
       const vertionDesZnCn = generateDes(cnDesMap)
       const znChTip = `该${props.tipSubject === 'component' ? '组件' : '特性'}${vertionDesZnCn}。${
@@ -202,7 +192,9 @@ export default defineComponent({
       tipComputed,
       currentStageComputed,
       alertTypeComputed,
-      tagTypeComputed
+      tagTypeComputed,
+      tagContentComputed,
+      isStableComputed
     }
   }
 })
