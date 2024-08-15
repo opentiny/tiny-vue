@@ -289,7 +289,7 @@ export default {
       calcHash: 'Document is calculating encryption',
       uploadFile: 'Upload file',
       downloadAll: 'Download all',
-      onlySupport: 'Only support {type} file',
+      onlySupport: 'Support {type} file',
       fileNotLessThan: 'The size of single file cannot be less than ',
       fileNotMoreThan: 'The size of single file cannot be more than ',
       fileSizeRange: 'The size of a single file must range from {moreThan} to {lessThan}.',

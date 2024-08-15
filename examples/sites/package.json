@@ -23,6 +23,7 @@
   "dependencies": {
     "@opentiny/vue": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-hooks": "workspace:~",
     "@opentiny/vue-design-aurora": "workspace:~",
     "@opentiny/vue-design-saas": "workspace:~",
     "@opentiny/vue-design-smb": "workspace:~",
