@@ -13,6 +13,7 @@ export const cmpMenus = [
     labelEn: 'Navigation',
     key: 'cmp-navigation-components',
     children: [
+      { name: 'Anchor', nameCn: '锚点', key: 'anchor' },
       { name: 'Tabbar', nameCn: '标签栏', key: 'tabbar' },
       { name: 'CalendarBar', nameCn: '日历栏', key: 'calendar-bar' },
       { name: 'Filter', nameCn: '过滤器', key: 'filter' },
