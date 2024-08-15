@@ -3418,6 +3418,7 @@ export default {
         {
           name: 'filter',
           type: 'boolean | IFilterConfig',
+          typeAnchorName: 'IFilterConfig',
           defaultValue: 'false',
           desc: {
             'zh-CN': '设置表格列的筛选配置信息。默认值为 false 不配置筛选信息',
