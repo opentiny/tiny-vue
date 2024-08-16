@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-milestone">
     <tiny-button @click="handleClick(!isBefore)" style="max-width: unset"
       >设置flag-before值为{{ !isBefore }}</tiny-button
     >
@@ -78,3 +78,9 @@ function handleClick(value) {
   isBefore.value = value
 }
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>

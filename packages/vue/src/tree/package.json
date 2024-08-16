@@ -1,31 +1,32 @@
 {
   "name": "@opentiny/vue-tree",
-  "version": "3.16.0",
+  "type": "module",
+  "version": "3.18.0",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
-  "type": "module",
-  "devDependencies": {
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "^0.31.0"
-  },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-collapse-transition": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-checkbox": "workspace:~",
-    "@opentiny/vue-radio": "workspace:~",
-    "@opentiny/vue-input": "workspace:~",
-    "@opentiny/vue-switch": "workspace:~",
-    "@opentiny/vue-popover": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
+    "@opentiny/vue-checkbox": "workspace:~",
+    "@opentiny/vue-collapse-transition": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-input": "workspace:~",
+    "@opentiny/vue-popover": "workspace:~",
+    "@opentiny/vue-radio": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-switch": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  }
 }

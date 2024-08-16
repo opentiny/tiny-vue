@@ -1,0 +1,150 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+@import '../custom.less';
+
+@anchor-prefix-cls: ~'@{css-prefix}anchor';
+
+.@{anchor-prefix-cls} {
+  @apply bg-transparent;
+  @apply w-50;
+  @apply relative;
+  @apply text-color-text-primary;
+  @apply text-sm;
+
+  &__affix {
+    @apply fixed;
+    z-index: 1;
+  }
+
+  &__line {
+    .@{anchor-prefix-cls}-link + .@{anchor-prefix-cls}-link {
+      margin-top: 0.5em;
+    }
+
+    .@{anchor-prefix-cls}-link-mask {
+      @apply absolute;
+      @apply max-w-0;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      left: 2px;
+      @apply w-full;
+    }
+
+    .@{anchor-prefix-cls}-orbit {
+      @apply absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      @apply w-1;
+      @apply rounded;
+      @apply bg-color-border;
+
+      &-skid {
+        @apply absolute;
+        left: 0;
+        @apply w-1;
+        @apply bg-color-brand;
+        @apply rounded;
+        &--active {
+          @apply bg-color-brand;
+        }
+      }
+    }
+  }
+
+  &-link-title:hover {
+    @apply text-color-brand;
+  }
+
+  &-link {
+    @apply ml-4;
+    @apply cursor-pointer;
+    @apply leading-9;
+
+    &-title {
+      @apply block;
+      @apply max-w-full;
+      padding: var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-right)
+        var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-left);
+      @apply overflow-hidden;
+      @apply text-ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      @apply text-color-text-primary;
+      @apply whitespace-nowrap;
+      &&--active {
+        @apply text-color-brand;
+      }
+    }
+  }
+
+  &__dot {
+    @apply w-50;
+
+    .@{anchor-prefix-cls} {
+      @apply px-4;
+    }
+
+    .@{anchor-prefix-cls}-link {
+      @apply relative;
+      padding-left: 10px;
+      margin-bottom: 16px;
+    }
+
+    .@{anchor-prefix-cls}-link-title {
+      padding-left: 16px;
+      padding-right: 0;
+      -webkit-line-clamp: 2;
+
+      &:before {
+        content: '';
+        display: block;
+        @apply w-2;
+        @apply h-2;
+        border: 1px solid var(--ti-anchor-dot-border-color);
+        @apply absolute;
+        border-radius: 50%;
+        left: 0px;
+        top: 6px;
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        width: 1px;
+        background-color: var(--color-border-base);
+        @apply bg-color-bg-2;
+        @apply absolute;
+        border-radius: 50%;
+        left: 3.5px;
+        top: 20px;
+        bottom: -18px;
+      }
+
+      &:hover,
+      &--active {
+        color: var(--ti-anchor-link-active-text-color);
+
+        &:before {
+          border-color: var(--ti-anchor-link-active-text-color);
+          @apply opacity-100;
+        }
+      }
+    }
+
+    .@{anchor-prefix-cls}-link:last-child > .@{anchor-prefix-cls}-link-title:after {
+      @apply hidden;
+    }
+  }
+}

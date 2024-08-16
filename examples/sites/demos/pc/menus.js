@@ -28,7 +28,6 @@ const docMenusChildren = [
       target: ['inner']
     }
   },
-  { 'title': '创建项目', 'titleEn': 'tinyStage', 'key': 'tiny-stage' },
   { 'title': '国际化', 'titleEn': 'i18n', 'key': 'i18n' },
   {
     'title': '主题配置',
@@ -61,7 +60,7 @@ export const docMenus = [
   {
     'label': '使用指南',
     'labelEn': 'Usage Guidelines',
-    'key': 'docs_usage_guidelines',
+    'key': 'docs-usage-guidelines',
     'children': docMenusChildren.filter((item) => {
       if (!item.showScene) {
         return true
@@ -77,7 +76,7 @@ export const cmpMenus = [
   {
     'label': '基础',
     'labelEn': 'Basic',
-    'key': 'cmp_frame_style',
+    'key': 'cmp-frame-style',
     'children': [
       { 'nameCn': '按钮', 'name': 'Button', 'key': 'button' },
       { 'nameCn': '按钮组', 'name': 'ButtonGroup', 'key': 'button-group' },
@@ -93,7 +92,7 @@ export const cmpMenus = [
   {
     'label': '导航',
     'labelEn': 'Navigation',
-    'key': 'cmp_navigation_components',
+    'key': 'cmp-navigation-components',
     'children': [
       { 'nameCn': '动作菜单', 'name': 'ActionMenu', 'key': 'action-menu' },
       { 'nameCn': '锚点', 'name': 'Anchor', 'key': 'anchor' },
@@ -112,9 +111,17 @@ export const cmpMenus = [
   {
     'label': '表单',
     'labelEn': 'Form',
-    'key': 'cmp_form_components',
+    'key': 'cmp-form-components',
     'children': [
       { 'nameCn': '自动完成', 'name': 'AutoComplete', 'key': 'autocomplete' },
+      {
+        'nameCn': '基础选择器',
+        'name': 'BaseSelect',
+        'key': 'base-select',
+        'meta': {
+          'experimental': '3.17.0'
+        }
+      },
       { 'nameCn': '级联选择器', 'name': 'Cascader', 'key': 'cascader' },
       { 'nameCn': '级联面板', 'name': 'CascaderPanel', 'key': 'cascader-panel' },
       { 'nameCn': '多选框', 'name': 'Checkbox', 'key': 'checkbox' },
@@ -123,6 +130,14 @@ export const cmpMenus = [
       { 'nameCn': '日期选择器', 'name': 'DatePicker', 'key': 'date-picker' },
       { 'nameCn': '下拉时间', 'name': 'DropTimes', 'key': 'drop-times' },
       { 'nameCn': '文件上传', 'name': 'FileUpload', 'key': 'file-upload' },
+      {
+        'nameCn': '富文本',
+        'name': 'FluentEditor',
+        'key': 'fluent-editor',
+        'meta': {
+          'experimental': '3.17.0'
+        }
+      },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
       { 'nameCn': ' IP地址输入框', 'name': 'IpAddress', 'key': 'ip-address' },
@@ -135,25 +150,31 @@ export const cmpMenus = [
         'nameCn': '富文本编辑器',
         'name': 'RichTextEditor',
         'key': 'rich-text-editor',
-        'mark': {
-          'type': 'warning',
-          'text': 'Beta'
+        'meta': {
+          'experimental': '3.10.0'
         }
       },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
-      { 'nameCn': '选择器', 'name': 'BaseSelect', 'key': 'base-select' },
       { 'nameCn': '选择器', 'name': 'Select', 'key': 'select' },
       { 'nameCn': '滑块', 'name': 'Slider', 'key': 'slider' },
       { 'nameCn': '开关', 'name': 'Switch', 'key': 'switch' },
       { 'nameCn': '时间选择器', 'name': 'TimePicker', 'key': 'time-picker' },
       { 'nameCn': '时间选择', 'name': 'TimeSelect', 'key': 'time-select' },
-      { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' }
+      { 'nameCn': '穿梭框', 'name': 'Transfer', 'key': 'transfer' },
+      {
+        'nameCn': '树形选择器',
+        'name': 'TreeSelect',
+        'key': 'tree-select',
+        'meta': {
+          'experimental': '3.17.0'
+        }
+      }
     ]
   },
   {
     'label': '表格',
     'labelEn': 'Table',
-    'key': 'cmp_table_components',
+    'key': 'cmp-table-components',
     'children': [
       { 'nameCn': '基本用法', 'name': '', 'key': 'grid' },
       { 'nameCn': '序号列', 'name': '', 'key': 'grid-serial-column' },
@@ -197,12 +218,12 @@ export const cmpMenus = [
   {
     'label': '数据展示',
     'labelEn': 'Data Display',
-    'key': 'cmp_data_components',
+    'key': 'cmp-data-components',
     'children': [
       { 'nameCn': '标记', 'name': 'Badge', 'key': 'badge' },
       { 'nameCn': '日历', 'name': 'Calendar', 'key': 'calendar' },
       { 'nameCn': '日历视图', 'name': 'CalendarView', 'key': 'calendar-view' },
-      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card', 'mark': { 'text': 'New' } },
+      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card' },
       { 'nameCn': '走马灯', 'name': 'Carousel', 'key': 'carousel' },
       { 'nameCn': '折叠面板', 'name': 'Collapse', 'key': 'collapse' },
       { 'nameCn': '流程图', 'name': 'FlowChart', 'key': 'flowchart' },
@@ -213,14 +234,15 @@ export const cmpMenus = [
       {
         'nameCn': '思维导图',
         'name': 'MindMap',
-        'key': 'mind-map',
-        'mark': { 'text': 'New' }
+        'key': 'mind-map'
       },
       { 'nameCn': '二维码', 'name': 'QrCode', 'key': 'qr-code' },
       { 'nameCn': '统计数值', 'name': 'Statistic', 'key': 'statistic' },
       { 'nameCn': '标签', 'name': 'Tag', 'key': 'tag' },
       { 'nameCn': '标签组', 'name': 'TagGroup', 'key': 'tag-group' },
       { 'nameCn': '时间线', 'name': 'Timeline', 'key': 'time-line' },
+      //  测试时打开该行---------------
+      // { 'nameCn': '时间线AUI', 'name': 'TimelineNew', 'key': 'time-line-new' },
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
       { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
       { 'nameCn': '流程图', 'name': 'Wizard', 'key': 'wizard' }
@@ -229,7 +251,7 @@ export const cmpMenus = [
   {
     'label': '反馈',
     'labelEn': 'Feedback',
-    'key': 'cmp_tips_components',
+    'key': 'cmp-tips-components',
     'children': [
       { 'nameCn': '警告', 'name': 'Alert', 'key': 'alert' },
       { 'nameCn': '对话框', 'name': 'DialogBox', 'key': 'dialog-box' },
@@ -240,15 +262,16 @@ export const cmpMenus = [
       { 'nameCn': '气泡确认框', 'name': 'PopConfirm', 'key': 'popconfirm' },
       { 'nameCn': '进度条', 'name': 'Progress', 'key': 'progress' },
       { 'nameCn': '气泡卡片', 'name': 'Popover', 'key': 'popover' },
-      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton', 'mark': { 'text': 'New' } },
+      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' },
       { 'nameCn': '文字提示', 'name': 'Tooltip', 'key': 'tooltip' }
     ]
   },
   {
     'label': '图表',
     'labelEn': 'Chart',
-    'key': 'cmp_chart_components',
+    'key': 'cmp-chart-components',
     'children': [
+      { 'nameCn': '图表文档', 'name': 'Chart Docs', 'key': 'chart-docs' },
       { 'nameCn': '基本用法', 'name': 'Basic Usage', 'key': 'chart' },
       { 'nameCn': '事件监听', 'name': 'Event Listening', 'key': 'chart-events' },
       { 'nameCn': '属性配置示例', 'name': 'Attribute Configuration Example', 'key': 'chart-attributes-demo' },
@@ -260,7 +283,7 @@ export const cmpMenus = [
       { 'nameCn': '环图', 'name': 'Ring Chart', 'key': 'chart-ring' },
       { 'nameCn': '瀑布图', 'name': 'Waterfall Chart', 'key': 'chart-waterfall' },
       { 'nameCn': '漏斗图', 'name': 'Funnel Chart', 'key': 'chart-funnel' },
-      { 'nameCn': '雷达图', 'name': 'Radar chart', 'key': 'chart-radar' },
+      { 'nameCn': '雷达图', 'name': 'Radar Chart', 'key': 'chart-radar' },
       { 'nameCn': '地图', 'name': 'Map Chart', 'key': 'chart-map' },
       { 'nameCn': '桑基图', 'name': 'Sankey Chart', 'key': 'chart-sankey' },
       { 'nameCn': '热力图', 'name': 'Heatmap Chart', 'key': 'chart-heatmap' },
@@ -281,7 +304,7 @@ export const cmpMenus = [
   {
     'label': '其他',
     'labelEn': 'Other',
-    'key': 'cmp_other_components',
+    'key': 'cmp-other-components',
     'children': [
       { 'nameCn': '公告牌', 'name': 'BulletinBoard', 'key': 'bulletin-board' },
       { 'nameCn': '全局配置', 'name': 'ConfigProvider', 'key': 'config-provider' },
@@ -296,6 +319,15 @@ export const cmpMenus = [
       { 'nameCn': '联系人', 'name': 'UserContact', 'key': 'user-contact' },
       { 'nameCn': '水印', 'name': 'Watermark', 'key': 'watermark' }
     ]
+  },
+  {
+    'label': '自定义指令',
+    'labelEn': 'Custom Instruction',
+    'key': 'directives-custom-instruction',
+    'children': [
+      { 'nameCn': '超出隐藏', 'name': 'AutoTip', 'key': 'directives-auto-tip' },
+      { 'nameCn': '高亮搜索字', 'name': 'HighlightQuery', 'key': 'directives-highlight-query' }
+    ]
   }
 ]
 
@@ -306,7 +338,7 @@ if (envTarget === 'inner' || showBusiness) {
   cmpMenus.splice(8, 0, {
     'label': '业务组件',
     'labelEn': 'Business Components',
-    'key': 'cmp_business_components',
+    'key': 'cmp-business-components',
     'children': [
       { 'nameCn': '金额', 'name': 'Amount', 'key': 'amount' },
       { 'nameCn': '片区', 'name': 'Area', 'key': 'area' },

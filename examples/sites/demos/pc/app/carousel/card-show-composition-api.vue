@@ -51,6 +51,12 @@ const state = reactive({
           cardType: 'logo',
           cardSrc: `${userHead.value}`,
           content: '1-3-content'
+        },
+        {
+          cardTitle: '1-4',
+          cardType: 'logo',
+          cardSrc: `${userHead.value}`,
+          content: '1-4-content'
         }
       ]
     },
@@ -83,14 +89,16 @@ const state = reactive({
 <style scoped>
 .card-dsp {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  padding: 0 4px 0 12px;
 }
 .mb {
   margin-bottom: 20px;
 }
 .card-demo {
-  width: 30%;
+  width: 25%;
   height: 300px;
+  margin-right: 8px;
 }
 .card-demo:hover {
   border-color: #1476ff;

@@ -37,9 +37,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>disabled</code> 设置按钮组是否禁用，数据项设置 <code>disabled</code> 属性可以禁用单个按钮。</p>',
+          '<p>通过 <code>disabled</code> 设置按钮组是否禁用，数据项设置 <code>disabled</code> 属性可以禁用单个按钮，数据项设置 <code>tip</code> 属性(v3.17.0版本增加此功能)增加按钮悬浮提示功能。</p>',
         'en-US':
-          '<p>By setting whether the button group is disabled through <code>disabled</code> , and setting the <code>disabled</code> property of the data item, individual buttons can be disabled.</p>'
+          '<p>You can set whether to disable the button group through <code>disabled</code>. You can set the <code>disabled</code> attribute to disable a single button. You can set the <code>tip</code> attribute to add the reason for disabling the button. </p></p>'
       },
       codeFiles: ['disabled.vue']
     },
@@ -113,12 +113,15 @@ export default {
     {
       demoId: 'slot-empty',
       name: {
-        'zh-CN': '空数据插槽',
-        'en-US': 'Empty slot'
+        'zh-CN': '空数据',
+        'en-US': 'No data'
+      },
+      meta: {
+        mark: '3.17.1'
       },
       desc: {
-        'zh-CN': '<p>当数据为空时，默认会显示暂无数据，通过默认插槽自定义内容。</p>',
-        'en-US': '<p>When the data is empty, customize the content via the <code>empty</code> slot.</p>'
+        'zh-CN': '<p>当数据为空时，默认会显示"暂无数据"，通过 <code>empty</code> 插槽自定义内容。</p>',
+        'en-US': '<p>Show "No data" when the data is empty, customize the content via the <code>empty</code> slot.</p>'
       },
       codeFiles: ['slot-empty.vue']
     },

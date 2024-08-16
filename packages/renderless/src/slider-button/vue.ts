@@ -1,10 +1,10 @@
-import { handleChange, getValue, setValue, getGroup, mounted, customEvents } from './index'
+import { handleChange, getValue, setValue, getGroup, mounted, unMounted, customEvents } from './index'
 
 export const api = ['state', 'handleChange']
 
 export const renderless = (
   props,
-  { computed, reactive, onMounted, inject, onBeforeUnmount },
+  { computed, reactive, onMounted, inject, onBeforeUnmount, watch },
   { emit, parent, dispatch, constants, nextTick, vm }
 ) => {
   const state = reactive({
@@ -14,6 +14,7 @@ export const renderless = (
       get: () => api.getValue(),
       set: (val) => api.setValue(val)
     }),
+    label: computed(() => props.label || props.text),
     sliderButtonGroup: computed(() => api.getGroup()),
     size: inject('sliderSize', null),
     tabIndex: computed(() => (state.sliderButtonGroup && state.value !== (props.label || props.text) ? -1 : 0))
@@ -24,6 +25,7 @@ export const renderless = (
   Object.assign(api, {
     state,
     mounted: mounted({ vm, props, dispatch, constants, state, nextTick }),
+    unMounted: unMounted({ props, dispatch, constants }),
     getValue: getValue(state),
     setValue: setValue({ emit, state }),
     getGroup: getGroup({ constants, parent }),
@@ -36,8 +38,11 @@ export const renderless = (
   })
 
   onBeforeUnmount(() => {
+    api.unMounted()
     customEvents({ props, vm, type: 'remove' })
   })
+
+  watch(() => state.label, api.mounted)
 
   return api
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="status">是否登录：{{ isLogin }}</p>
+    <p class="demo-logout">是否登录：{{ isLogin }}</p>
     <tiny-logout v-bind="service" :is-local="false" :is-mock="false" :before-logout="beforeLogout"></tiny-logout>
   </div>
 </template>
@@ -50,3 +50,10 @@ function showLogin() {
   })
 }
 </script>
+
+<style scoped>
+.demo-logout {
+  line-height: 1.5px;
+  padding-bottom: 16px;
+}
+</style>

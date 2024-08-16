@@ -78,7 +78,6 @@ export interface ITimelineItem {
 }
 
 export interface ITimelineInject {
-  timelineItems: ITimelineItem[]
-  nodes: ITimelineItem[]
+  state: ITimelineItem[]
   props: ITimelineProps
 }

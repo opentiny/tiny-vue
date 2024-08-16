@@ -14,18 +14,21 @@ test('时间格式化', async ({ page }) => {
   await page.waitForTimeout(100)
   await page.getByRole('listitem').filter({ hasText: '08 pm' }).locator('span').click()
   await page.getByRole('button', { name: '确定' }).click()
+  await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '20:40:00 pm' })).toBeVisible()
 
   await page.getByRole('textbox', { name: '8:40:0 PM' }).click()
   await page.waitForTimeout(100)
   await page.getByRole('listitem').filter({ hasText: '09 PM' }).locator('span').click()
   await page.getByRole('button', { name: '确定' }).click()
+  await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '9:40:0 PM' })).toBeVisible()
 
   await page.getByRole('textbox', { name: '21:40:0 PM' }).click()
   await page.waitForTimeout(100)
   await page.getByRole('listitem').filter({ hasText: '10 PM' }).locator('span').click()
   await page.getByRole('button', { name: '确定' }).click()
+  await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '22:40:0 PM' })).toBeVisible()
 
   // value-format: 选中值的格式
@@ -33,6 +36,7 @@ test('时间格式化', async ({ page }) => {
   await page.waitForTimeout(100)
   await page.getByRole('listitem').filter({ hasText: '19' }).first().click()
   await page.getByRole('button', { name: '确定' }).click()
+  await page.waitForTimeout(100)
   await expect(page.getByRole('textbox', { name: '19:30:00' })).toBeVisible()
 
   // picker-options.format: 下拉框中显示的格式

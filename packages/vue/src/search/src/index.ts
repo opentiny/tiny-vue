@@ -92,7 +92,12 @@ export const searchProps = {
     default: 'small'
   },
   typeValue: Object,
-  suffixIcon: [Object, String]
+  suffixIcon: [Object, String],
+  // tiny新增
+  disabled: {
+    type: Boolean,
+    default: false
+  }
 }
 
 export default defineComponent({

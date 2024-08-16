@@ -79,6 +79,17 @@ export default {
           pcDemo: 'show-expand'
         },
         {
+          name: 'placeholder',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '当数据为空时的占位符',
+            'en-US': 'Placeholder when data is empty'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
           name: 'data',
           typeAnchorName: 'ITreeNodeData',
           type: 'ITreeNodeData[]',
@@ -284,17 +295,6 @@ export default {
           pcDemo: 'only-check-children'
         },
         {
-          name: 'prefix-icon',
-          type: 'Component',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '自定义前置图标',
-            'en-US': 'Customize the front icon'
-          },
-          mode: ['pc'],
-          pcDemo: 'custom-icon'
-        },
-        {
           name: 'props',
           typeAnchorName: 'IProps',
           type: 'IProps',
@@ -381,8 +381,8 @@ export default {
           type: 'Component',
           defaultValue: '',
           desc: {
-            'zh-CN': '自定义后置图标',
-            'en-US': 'Customize the post icon'
+            'zh-CN': '全局设置带图标树形菜单',
+            'en-US': 'Global settings with icon tree menu'
           },
           mode: ['pc'],
           pcDemo: 'custom-icon'
@@ -397,6 +397,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'text-wrap'
+        },
+        {
+          name: 'clearable',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '搜索框是否可清空',
+            'en-US': 'Can the search box be cleared'
+          },
+          mode: ['pc'],
+          pcDemo: 'clearable'
         }
       ],
       events: [

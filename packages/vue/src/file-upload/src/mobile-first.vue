@@ -84,7 +84,8 @@ export default defineComponent({
     'lockScroll',
     'compact',
     'encryptConfig',
-    'imageBgColor'
+    'imageBgColor',
+    'promptTip'
   ],
   setup(props, context) {
     return setup({
@@ -182,7 +183,8 @@ export default defineComponent({
       compact,
       encryptConfig,
       encryptDialogConfirm,
-      imageBgColor
+      imageBgColor,
+      promptTip
     } = this
 
     const listType = this.listType === 'saas' ? 'text' : this.listType
@@ -273,18 +275,11 @@ export default defineComponent({
                 <icon-help-query class="-mt-0.5 fill-color-none-hover" />
               </tiny-tooltip>
             </div>
-            <div
-              title={tipMsg}
-              class="hidden sm:block text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap">
-              {(slots.tip && slots.tip()) || tipMsg}
-            </div>
           </div>
         )
       } else if (listType === 'drag-single') {
         defaultTip = (
-          <div
-            title={tipMsg}
-            class="leading-5 text-color-text-placeholder overflow-hidden text-ellipsis whitespace-nowrap">
+          <div title={tipMsg} class="leading-5 text-color-text-primary overflow-hidden text-ellipsis whitespace-nowrap">
             {(slots.tip && slots.tip()) || tipMsg}
           </div>
         )
@@ -447,6 +442,14 @@ export default defineComponent({
       return childNodes
     }
 
+    const tipMessage =
+      (slots.tip && slots.tip()) ||
+      this.getTipMessage({
+        accept: isEdm ? accept : this.accept,
+        fileSize,
+        limit: this.limit
+      })
+
     const uploadData = {
       props: {
         type,
@@ -479,7 +482,9 @@ export default defineComponent({
         handleTriggerClick,
         mode,
         showTitle,
-        isHwh5
+        isHwh5,
+        tipMessage,
+        promptTip
       },
       ref: 'upload-inner'
     }

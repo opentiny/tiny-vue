@@ -313,9 +313,4 @@ const TinyIconTotal = iconTotal()
 .preview {
   min-height: 450px;
 }
-
-.preview .icon-logo {
-  fill: white;
-  font-size: 24px;
-}
 </style>

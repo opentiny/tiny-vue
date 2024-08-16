@@ -22,13 +22,18 @@
   background: var(--ti-nav-menu-bg-color);
   height: var(--ti-nav-menu-height);
   position: relative;
-  padding: 0 24px;
+  padding: 0 var(--ti-nav-menu-padding);
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.10);
 
   > .slot-logo {
     float: left;
     overflow: hidden;
-    margin: 0 100px 0 0;
+    margin: 0 var(--ti-nav-menu-slot-logo-margin-right) 0 var(--ti-nav-menu-slot-logo-margin-left);
     line-height: var(--ti-nav-menu-height);
+  }
+
+  .preview .slot-logo .icon-logo {
+    fill: red;
   }
 
   > .slot-toolbar {
@@ -87,7 +92,7 @@
 
       > span,
       > a {
-        padding: 0 12px;
+        margin: 0 var(--ti-nav-menu-item-li-margin);
         font-size: var(--ti-nav-menu-item-font-size);
         text-align: center;
         color: var(--ti-nav-menu-item-text-color);
@@ -103,14 +108,16 @@
           color: var(--ti-nav-menu-item-text-color);
           background: var(--ti-nav-menu-item-hover-bg-color);
           text-decoration: none;
+          font-weight: var(--ti-nav-menu-item-text-font-weight);
         }
 
         &.selected {
           position: relative;
+          font-weight: var(--ti-nav-menu-item-text-font-weight);
 
           &:after {
             content: ' ';
-            width: var(--ti-nav-menu-item-selected-underline-width);
+            width: 100%;
             height: var(--ti-nav-menu-item-selected-underline-height);
             background: var(--ti-nav-menu-item-selected-underline-bg-color);
             border: 1px solid var(--ti-nav-menu-item-selected-underline-bg-color);
@@ -188,14 +195,17 @@
           justify-content: space-between;
           align-items: center;
           color: var(--ti-nav-menu-popmenu-more-item-text-color);
+          cursor: pointer;
 
           .more-icon {
             fill: var(--ti-nav-menu-popmenu-more-item-icon-color);
           }
+
           &.active,
           &:hover {
             color: var(--ti-nav-menu-popmenu-more-item-hover-text-color);
             background: var(--ti-nav-menu-popmenu-more-item-hover-bg-color);
+            font-weight: 700;
 
             > a {
               color: var(--ti-nav-menu-popmenu-more-item-hover-text-color);
@@ -268,7 +278,7 @@
           list-style: none;
 
           &:first-child {
-            margin-top: 18px;
+            margin-top: var(--ti-nav-menu-submenu-group-margin-top);
           }
 
           > .@{nav-menu-prefix-cls}__sub-menu-title {
@@ -303,7 +313,7 @@
 
           .sub-item {
             font-size: var(--ti-nav-menu-popmenu-node-item-font-size);
-            padding: 4px 0;
+            padding: var(--ti-nav-menu-popmenu-node-item-padding-top) 0 var(--ti-nav-menu-popmenu-node-item-padding-button);
 
             &.third-title {
               > a,
@@ -332,12 +342,27 @@
               white-space: normal;
               word-break: break-all;
               text-decoration: none;
+              font-size: var(--ti-nav-menu-popmenu-text-font-size);
+              cursor: pointer;
 
               &.selected {
                 color: var(--ti-nav-menu-popmenu-selected-text-color);
                 font-weight: var(--ti-nav-menu-popmenu-selected-font-weight);
+                position: relative;
+
+                &:after {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  bottom: 0;
+                  width: 100%;
+                  height: 1px;
+                  background: var(--ti-nav-menu-item-selected-underline-bg-color);
+                  z-index: 1;
+                }
               }
             }
+
             &.only-secondary-title {
               > span,
               > a {
@@ -396,11 +421,11 @@
   > .more-button {
     float: left;
     text-align: center;
-    padding: 0 12px;
+    margin: 0 var(--ti-nav-menu-item-li-margin);
     height: var(--ti-nav-menu-height);
     line-height: var(--ti-nav-menu-height);
     overflow: hidden;
-    fill: #fff;
+    fill: var(--ti-nav-menu-item-more-button-fill);
     font-size: var(--ti-nav-menu-item-font-size);
 
     &:hover {

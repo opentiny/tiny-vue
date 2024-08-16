@@ -97,6 +97,8 @@
         color: var(--ti-fall-menu-slot-text-color);
         background: var(--ti-fall-menu-bg-color-hover);
         text-decoration: none;
+        font-weight: 700;
+        border-bottom: 3px solid var(--ti-fall-menu-li-color-hover);
       }
 
       &.now:before {
@@ -125,11 +127,12 @@
 
     .contbox {
       overflow: hidden;
+      padding: 32px;
     }
 
     .cont {
       min-width: 120px;
-      padding: 18px 20px;
+      padding: 0 16px;
     }
 
     .sublist {
@@ -138,18 +141,18 @@
         width: 100%;
 
         h3.mcate-item-hd {
+          padding-top: 16px;
           font-size: var(--ti-fall-menu-box-font-size);
-          border-bottom: 0px solid #ccc;
+          border-bottom: 0 solid #ccc;
           color: var(--ti-fall-menu-box-title-text-color);
-          font-weight: normal;
+          font-weight: 700;
           margin: 0;
         }
 
         p.mcate-item-bd {
-          margin-top: 18px;
+          margin-top: 14px;
 
           a {
-            margin: 8px 0px 0 0;
             font-size: var(--ti-common-font-size-base);
             color: var(--ti-fall-menu-box-text-color);
             text-decoration: none;
@@ -157,8 +160,10 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            margin-bottom: 14px;
 
             &:hover {
+              text-decoration: underline;
               color: var(--ti-fall-menu-box-hover-text-color);
             }
           }

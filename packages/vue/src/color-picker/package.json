@@ -1,17 +1,16 @@
 {
   "name": "@opentiny/vue-color-picker",
-  "version": "3.16.0",
+  "version": "3.18.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
   "dependencies": {
-    "@opentiny/vue-common": "workspace:~",
-    "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-color-select-panel": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-color-picker": "workspace:~"
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~"
   },
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",

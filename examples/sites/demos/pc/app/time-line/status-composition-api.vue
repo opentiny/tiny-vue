@@ -5,13 +5,15 @@
       <code>autoColor</code>
       可选状态值：<code>success</code>：成功；<code>warning</code>：警告；<code>error</code>：失败。
     </p>
-    <tiny-time-line :data="data1"></tiny-time-line>
     <br />
+    <tiny-time-line :data="data1"></tiny-time-line>
+    <br /><br />
 
-    <p>
+    <p class="demo-line">
       (2) 当<code>shape</code> = 'dot' 时，可以通过 <code>type</code> 属性指定节点类型，可选值有
       <code>primary</code>|<code>success</code> |<code>warning</code>|<code>danger</code>|<code>info</code>
     </p>
+    <br />
     <tiny-time-line :data="data2" vertical shape="dot"></tiny-time-line>
   </div>
 </template>
@@ -19,12 +21,14 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { TimeLine as TinyTimeLine } from '@opentiny/vue'
+import { IconTime } from '@opentiny/vue-icon'
 
 const data1 = reactive([
   { name: '默认状态' },
   { name: '成功状态', autoColor: 'success' },
   { name: '警告状态', autoColor: 'warning' },
   { name: '异常状态', error: true }, // 也可以使用 autoColor: 'error'
+  { name: '定义图标', autoColor: IconTime() }, // 自定义图标
   { name: '禁用状态', disabled: true }
 ])
 const data2 = reactive([
@@ -43,5 +47,8 @@ code {
   margin: 0 4px;
   border-radius: 3px;
   background-color: rgba(27, 31, 35, 0.05);
+}
+.demo-line {
+  line-height: 24px;
 }
 </style>

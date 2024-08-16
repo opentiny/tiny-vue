@@ -66,9 +66,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>在 <code>collapse-item</code> 元素上可以通过 <code>icon</code> 插槽的方式自定义展开折叠 icon 图标。</p>',
+          '<p>在 <code>collapse-item</code> 元素上可以通过 <code>icon</code> 插槽的方式自定义展开折叠 icon 图标。 也可以通过 <code>expand-icon</code> 参数传入一个框架自带的 <code>icon</code> 图标，此种方式不需要自己写样式</p>',
         'en-US':
-          '<p>On the <code>collapse-item</code> element, you can customize the folding icon icon by using the <code>icon</code> slot. </p>'
+          '<p>On the <code>collapse-item</code> element, the <code>icon</code> slot can be used to customize the expand/collapse icon. The <code>expand-icon</code> parameter can also be used to pass in an <code>icon</code> that comes with the framework. In this way, you do not need to write your own style. </p>'
       },
       codeFiles: ['icon.vue']
     },

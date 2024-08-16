@@ -72,7 +72,7 @@
       >
         <div>
           <span @click="toggleSelectedBox(true)" class="mr-2">{{
-            t('ui.select.selectedNum').replace('{num}', state.selected.length)
+            t('ui.select.selectedNum', { num: state.selected.length })
           }}</span>
           <icon-chevron-up v-if="state.selected.length !== 0" custom-class="w-5 h-5 cursor-pointer"></icon-chevron-up>
         </div>

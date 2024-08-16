@@ -101,18 +101,12 @@
 
       &.dot {
         .icon {
-          font-size: 14px;
+          font-size: var(--ti-pager-dot-is-popup-svg-font-size);
         }
 
         &.is-popup {
           svg {
             display: var(--ti-pager-dot-is-popup-display);
-          }
-
-          &::before {
-            content: '\00b7\00b7\00b7';
-            display: var(--ti-pager-dot-before-display);
-            letter-spacing: 1px;
           }
         }
       }
@@ -183,7 +177,7 @@
     &-text {
       color: var(--ti-pager-normal-text-color);
       font-size: var(--ti-pager-font-size);
-      padding-left: 14px;
+      padding-left: var(--ti-pager-normal-text-padding-left);
       margin-right: 8px;
       line-height: var(--ti-pager-input-height);
       &-sufix {

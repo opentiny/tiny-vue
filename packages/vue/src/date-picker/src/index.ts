@@ -12,6 +12,7 @@
 import type { PropType } from '@opentiny/vue-common'
 import { $setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { iconClose } from '@opentiny/vue-icon'
+import { api } from '@opentiny/vue-renderless/picker/vue'
 import template from 'virtual-template?pc|mobile'
 
 const currentYear = new Date().getFullYear()
@@ -214,12 +215,33 @@ export const datePickerProps = {
   changeCompat: {
     type: Boolean,
     default: false
+  },
+  nowClick: {
+    type: Function
   }
 }
+
+const getWrapFunc = (name) =>
+  function (...args) {
+    const picker = this.$refs.modeTemplate
+    if (picker && picker[name]) {
+      return picker[name](...args)
+    }
+  }
 
 export default defineComponent({
   name: $prefix + 'DatePicker',
   props: datePickerProps,
+  created() {
+    // 解决三层组件导致第一层datePicker无法调用Picker方法（例如：handleFocus）的问题
+    api
+      .filter((item) => item !== 'state')
+      .forEach((method) => {
+        if (!this[method]) {
+          this[method] = getWrapFunc(method)
+        }
+      })
+  },
   setup(props, context) {
     return $setup({ props, context, template })
   }

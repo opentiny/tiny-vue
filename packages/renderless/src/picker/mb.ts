@@ -17,6 +17,7 @@ export const timeMobileToggle =
 
     if (visible) {
       state.timeMobileOption.value = api.dateToTimeArray(props.modelValue)
+      state.timeMobileOption.defaultValue = api.dateToTimeArray(props.defaultValue)
     }
 
     state.timeMobileOption.visible = visible
@@ -31,7 +32,11 @@ export const timeMobileConfirm =
 export const dateToTimeArray = (value) => {
   const date = new Date(value)
 
-  return [date.getHours(), date.getMinutes(), date.getSeconds()]
+  if (isNaN(date.getTime())) {
+    return []
+  } else {
+    return [date.getHours(), date.getMinutes(), date.getSeconds()]
+  }
 }
 
 export const timeArrayToDate =

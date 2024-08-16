@@ -231,6 +231,19 @@ export default {
           '<p><code>button-click</code>: When the button type is selected, listen for the left button click event.</p>\n<p><code>item-click</code>: Listens for menu item click events</p>\n<p><code>visible-change</code>: Listens for changes in the display and hiding of dropdown pop ups.</p>\n'
       },
       codeFiles: ['events.vue']
+    },
+    {
+      demoId: 'lazy-show-popper',
+      name: {
+        'zh-CN': '懒加载菜单和子项',
+        'en-US': 'Lazy Load Menus and Subitems'
+      },
+      desc: {
+        'zh-CN': '通过 <code>lazy-show-popper </code>属性，指定是否懒加载下拉菜单及内部的项',
+        'en-US':
+          'The <code>lazy-show-popper </code> property specifies whether to lazy load the drop-down menu and internal items.'
+      },
+      codeFiles: ['lazy-show-popper.vue']
     }
   ]
 }

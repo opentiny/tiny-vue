@@ -22,6 +22,7 @@ export const $constants = {
   COMMA: 'ui.base.comma',
   FILE_NOT_LESS_THAN: 'ui.fileUpload.fileNotLessThan',
   FILE_NOT_MORE_THAN: 'ui.fileUpload.fileNotMoreThan',
+  FILE_SIZE_RANGE: 'ui.fileUpload.fileSizeRange',
   NUMBER_LIMIT: 'ui.fileUpload.numberLimit',
   FILE_STATUS: {
     READY: 'ready',
@@ -286,6 +287,10 @@ export const fileUploadProps = {
       encrypt: false,
       watermark: ''
     })
+  },
+  promptTip: {
+    type: Boolean,
+    default: false
   },
   isHidden: {
     type: Boolean,

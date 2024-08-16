@@ -1,6 +1,7 @@
 <template>
   <div>
     <p>场景1：单选，下拉表格远程搜索基础用法</p>
+    <br />
     <tiny-select
       v-model="value1"
       placeholder="请输入关键词"
@@ -10,8 +11,10 @@
       :remote-method="remoteMethod"
       :grid-op="gridOpRadio"
     ></tiny-select>
+    <br /><br />
 
     <p>场景2：单选，下拉表格远程搜索 + 自动搜索 + 显示按钮</p>
+    <br />
     <tiny-select
       v-model="value2"
       placeholder="请输入关键词"
@@ -22,8 +25,10 @@
       :grid-op="gridOpRadio"
       :remote-config="{ autoSearch: true, clearData: true, showIcon: true }"
     ></tiny-select>
+    <br /><br />
 
     <p>场景3：多选，下拉表格远程搜索基础用法</p>
+    <br />
     <tiny-select
       v-model="value3"
       placeholder="请输入关键词"
@@ -35,8 +40,10 @@
       :remote-method="remoteMethod"
       :grid-op="gridOpMultiple"
     ></tiny-select>
+    <br /><br />
 
     <p>场景4：多选，下拉表格远程搜索 + 自动搜索 + 显示按钮</p>
+    <br />
     <tiny-select
       v-model="value4"
       placeholder="请输入关键词"

@@ -188,7 +188,8 @@ export default defineComponent({
     'prevText',
     'total',
     'size',
-    'align'
+    'align',
+    'totalFixedLeft'
   ],
   directives: {
     loading: Loading.directive

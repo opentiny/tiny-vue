@@ -26,10 +26,12 @@
     <template v-if="viewType === 'tree'">
       <tree-node
         v-for="child in state.root.childNodes"
+        v-highlight-query="highlightQuery ? state.filterText : ''"
         :action="state.action"
         :show-radio="showRadio"
         :theme="theme"
         :show-number="showNumber"
+        :is-show-focus-bg="isShowFocusBg"
         :collapsible="collapsible"
         :node-height="nodeHeight"
         :current-radio="state.currentRadio"
@@ -81,7 +83,9 @@
           ></tiny-radio>
           <slot name="prefix" :node="plainNode.node"></slot>
           <slot name="default" :node="plainNode.node">
-            <span class="tiny-tree__plain-node-title-txt">{{ plainNode.title }}</span>
+            <span class="tiny-tree__plain-node-title-txt" v-highlight-query="highlightQuery ? state.filterText : ''">{{
+              plainNode.title
+            }}</span>
           </slot>
           <slot name="suffix" :node="plainNode.node">
             <span class="tiny-tree__plain-node-title-loc">
@@ -160,9 +164,10 @@ import Checkbox from '@opentiny/vue-checkbox'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import TreeNode from './tree-node.vue'
 import Radio from '@opentiny/vue-radio'
+import { HighlightQuery } from '@opentiny/vue-directive'
 
 export default defineComponent({
-  directives: directive({ Clickoutside }),
+  directives: { ...directive({ Clickoutside }), HighlightQuery },
   props: [
     ...props,
     'data',
@@ -221,7 +226,10 @@ export default defineComponent({
     'onlyCheckChildren',
     'deleteNodeMethod',
     'showCheckedMark',
-    'willChangeView'
+    'willChangeView',
+    'editConfig',
+    'isShowFocusBg',
+    'highlightQuery'
   ],
   components: {
     TreeNode,

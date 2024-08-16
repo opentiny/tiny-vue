@@ -37,10 +37,12 @@
                   :columns-type="columnsType"
                   :field-names="columnFieldNames"
                   :value="defaultValues[columnIndex]"
+                  :default-value="defaultValue[columnIndex]"
                   :three-dimensional="threeDimensional"
                   :swipe-duration="swipeDuration"
                   :visible-option-num="visibleOptionNum"
                   :option-height="optionHeight"
+                  :visible="state.actionSheetVisible"
                   @change="
                     (option) => {
                       changeHandler(columnIndex, option)
@@ -107,7 +109,8 @@ export default defineComponent({
     'lockScroll',
     'customClass',
     'panelCustomClass',
-    'type'
+    'type',
+    'defaultValue'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, classes })

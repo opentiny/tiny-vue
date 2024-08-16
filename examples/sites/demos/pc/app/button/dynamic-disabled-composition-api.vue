@@ -45,6 +45,6 @@ const TinyIconSearch = iconSearch()
 .tiny-button {
   margin-bottom: 10px;
   margin-left: 0;
-  margin-right: 8px;
+  margin-right: 24px;
 }
 </style>

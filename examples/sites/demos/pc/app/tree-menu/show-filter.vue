@@ -2,6 +2,7 @@
   <div>
     <p>场景1：默认 可过滤 + 原生 title 属性提示</p>
     <tiny-tree-menu :data="treeData"></tiny-tree-menu>
+    <br /><br />
     <p>场景2：不可过滤 + 不设置原生 title 属性</p>
     <tiny-tree-menu :data="treeData" :show-filter="false" :show-title="false"></tiny-tree-menu>
   </div>

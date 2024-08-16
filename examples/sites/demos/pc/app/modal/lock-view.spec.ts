@@ -5,6 +5,11 @@ test('锁住页面', async ({ page }) => {
   await page.goto('modal#lock-view')
 
   const modal = page.locator('.tiny-modal.active')
+
+  // 新版示例页单示例无滚动条，先展开代码保证有滚动条
+  await page.locator('.i-ti-code').click()
+  await page.waitForTimeout(100)
+
   await page.getByRole('button', { name: '不锁界面 且 隐藏遮罩层' }).click()
   await expect(modal).not.toHaveClass(/lock__view/)
 

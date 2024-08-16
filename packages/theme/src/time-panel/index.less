@@ -25,11 +25,32 @@
   box-shadow: var(--ti-time-panel-box-shadow);
   border-radius: var(--ti-time-panel-border-radius);
   position: absolute;
-  width: 180px;
+  width: var(--ti-time-panel-width);
   left: 0;
   z-index: 1000;
   box-sizing: content-box;
+  padding: 0 var(--ti-time-panel-padding-right);
   .user-select(none);
+
+  &__header {
+    display: var(--ti-time-panel-header-display);
+  }
+  &__header-input {
+    width: 212px;
+    margin: 16px 4px 24px;
+    input {
+      height: 28px;
+    }
+  }
+  &__header-title {
+    display: flex;
+    justify-content: space-around;
+    color: #808080;
+    margin-bottom: 12px;
+    height: 22px;
+    align-items: center;
+    line-height: 22px;
+  }
 
   &__content {
     font-size: 0;
@@ -79,15 +100,14 @@
 
   &__footer {
     border-top: 1px solid var(--ti-time-panel-border-color);
-    padding: 4px;
-    height: 36px;
+    padding: var(--ti-time-panel-footer-padding) 4px;
     height: var(--ti-time-panel-footer-height, 36px);
-    line-height: 25px;
     text-align: right;
     box-sizing: border-box;
+    margin-top: 12px;
   }
 
-  &__btn {
+  &__btn.tiny-button {
     min-width: var(--ti-time-panel-btn-min-width);
     border: none;
     line-height: var(--ti-time-panel-btn-height);

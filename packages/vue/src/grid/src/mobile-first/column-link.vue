@@ -31,55 +31,59 @@ export default defineComponent({
       }
 
       buttons.forEach((buttonConfig: any) => !isHidden(buttonConfig) && visibleButtons.push(buttonConfig))
-      vnode =
-        visibleButtons.length === 1
-          ? h(
-              'div',
-              {
-                'class': `w-5 h-5 sm:w-4 sm:w-4 ${
-                  isDisabled(visibleButtons[0]) ? 'fill-color-icon-disabled' : 'fill-color-icon-secondary'
-                } `
-              },
-              [
-                h(visibleButtons[0].icon, {
-                  on: {
-                    click: (event: any) => {
-                      if (!isDisabled(visibleButtons[0])) {
-                        handleItemClick(visibleButtons[0].name)
-                      }
-                      event.stopPropagation()
-                    }
-                  },
-                  'attrs': {
-                    'custom-class': 'w-5 h-5 sm:w-4 sm:w-4'
+
+      if (visibleButtons.length === 0) {
+        vnode = null
+      } else if (visibleButtons.length === 1) {
+        vnode = h(
+          'div',
+          {
+            'class': `w-5 h-5 sm:w-4 sm:w-4 ${
+              isDisabled(visibleButtons[0]) ? 'fill-color-icon-disabled' : 'fill-color-icon-secondary'
+            } `
+          },
+          [
+            h(visibleButtons[0].icon, {
+              on: {
+                click: (event: any) => {
+                  if (!isDisabled(visibleButtons[0])) {
+                    handleItemClick(visibleButtons[0].name)
                   }
-                })
-              ]
-            )
-          : h(
-              Dropdown,
-              {
-                on: { 'item-click': handleItemClick },
-                props: { trigger: 'hover', showSelfIcon: true, tiny_mode: 'mobile-first', tiny_mode_root: true }
+                  event.stopPropagation()
+                }
               },
-              [
-                h(IconEllipsis(), { class: 'mf-table-more outline-none text-base cursor-pointer' }),
+              'attrs': {
+                'custom-class': 'w-5 h-5 sm:w-4 sm:w-4'
+              }
+            })
+          ]
+        )
+      } else {
+        const scopedSlots = {
+          default: () => h(IconEllipsis(), { class: 'mf-table-more outline-none text-base cursor-pointer' }),
+          dropdown: () =>
+            h(
+              DropdownMenu,
+              { slot: 'dropdown' },
+              visibleButtons.map((buttonConfig) =>
                 h(
-                  DropdownMenu,
-                  { slot: 'dropdown' },
-                  visibleButtons.map((buttonConfig) =>
-                    h(
-                      DropdownItem,
-                      {
-                        class: { [disabledClass || '']: isDisabled(buttonConfig) },
-                        props: { itemData: buttonConfig.name, disabled: isDisabled(buttonConfig) }
-                      },
-                      buttonConfig.name
-                    )
-                  )
+                  DropdownItem,
+                  {
+                    class: { [disabledClass || '']: isDisabled(buttonConfig) },
+                    props: { itemData: buttonConfig.name, disabled: isDisabled(buttonConfig) }
+                  },
+                  buttonConfig.name
                 )
-              ]
+              )
             )
+        }
+
+        vnode = h(Dropdown, {
+          on: { 'item-click': handleItemClick },
+          props: { trigger: 'hover', showSelfIcon: true, tiny_mode: 'mobile-first', tiny_mode_root: true },
+          scopedSlots
+        })
+      }
     } else {
       vnode = slotLink({ row, h })
     }

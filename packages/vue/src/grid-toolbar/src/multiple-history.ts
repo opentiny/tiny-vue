@@ -76,6 +76,9 @@ export function mergeArray(toArr, fromArr) {
     for (let j = 0; j < toArr.length; j++) {
       if (fromItem.property === toArr[j].property) {
         toItem = { ...toArr[j] }
+        if (fromArr[i].children && toArr[j].children) {
+          fromItem.children = mergeArray(toArr[j].children, fromArr[i].children)
+        }
         break
       }
     }

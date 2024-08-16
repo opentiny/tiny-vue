@@ -397,6 +397,21 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'show-tooltip',
+          type: 'boolean',
+          defaultValue: 'true',
+          meta: {
+            stable: '3.18.0'
+          },
+          desc: {
+            'zh-CN': '只读状态下，文本超出是否悬浮提示',
+            'en-US': 'In the read-only state, whether the text exceeds the floating prompt'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'size',
+          mfDemo: ''
+        },
+        {
           name: 'size',
           type: "'medium' | 'small' | 'mini'",
           defaultValue: '',
@@ -528,6 +543,20 @@ export default {
           },
           mode: ['mobile'],
           mobileDemo: ''
+        },
+        {
+          name: 'popup-more',
+          type: 'Boolean',
+          defaultValue: '',
+          desc: {
+            'zh-CN':
+              '在只读的基础上增加 <code>popup-more</code> 属性，可使文本域超出显示更多按钮，点击更多按钮可以查看详细信息。',
+            'en-US':
+              'The <code>popup-more</code> attribute is added to enable the text field to exceed the display of more buttons. You can click more buttons to view details.'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'display-only-popup-more',
+          mfDemo: 'display-only-popup-more'
         }
       ],
       events: [

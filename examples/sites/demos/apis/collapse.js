@@ -142,6 +142,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'title'
+        },
+        {
+          name: 'expand-icon',
+          type: 'Component',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '自定义icon 图标',
+            'en-US': 'Customized icon'
+          },
+          mode: ['pc'],
+          pcDemo: 'icon'
         }
       ],
       events: [],

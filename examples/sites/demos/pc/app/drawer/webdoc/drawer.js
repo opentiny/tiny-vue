@@ -15,6 +15,16 @@ export default {
       codeFiles: ['basic-usage.vue']
     },
     {
+      demoId: 'use-through-method',
+      name: { 'zh-CN': '通过方法调用', 'en-US': 'Use through method' },
+      desc: {
+        'zh-CN':
+          '<p>通过 <code>Drawer.service</code> 方法可配置并打开抽屉，方法返回组件实例，可调用其 <code>close</code> 方法关闭组件。</p>',
+        'en-US': ''
+      },
+      codeFiles: ['use-through-method.vue']
+    },
+    {
       demoId: 'placement',
       name: {
         'zh-CN': '抽屉方向',
@@ -81,8 +91,14 @@ export default {
         'en-US': 'Block Drawer Close'
       },
       desc: {
-        'zh-CN':
-          '\n          <p>通过 <code>before-close</code> 属性可以配置一个拦截弹窗关闭的方法。如果方法返回 <code>false</code> 值，则拦截弹窗关闭；否则不拦截。</p>\n          <p>可以通过该拦截方法传入的参数获取关闭的操作类型 <code>type</code> 弹窗有以下关闭类型：</p>\n          <ul>\n            <li>confirm：点击确认时关闭</li>\n            <li>cancel：点击取消时关闭</li>\n            <li>close：点击关闭按钮时关闭</li>\n            <li>mask：点击遮罩层时关闭</li>\n          </ul>\n        ',
+        'zh-CN': `<p>通过 <code>before-close</code> 属性可以配置一个拦截弹窗关闭的方法。如果方法返回 <code>false</code> 值，则拦截弹窗关闭；否则不拦截。</p>
+          <p>可以通过该拦截方法传入的参数获取关闭的操作类型 <code>type</code> 弹窗有以下关闭类型：</p>
+          <ul>
+            <li>confirm：点击确定按钮时关闭</li>
+            <li>cancel：点击取消时关闭</li>
+            <li>close：点击关闭按钮时关闭</li>
+            <li>mask：点击遮罩层时关闭</li>
+          </ul>`,
         'en-US':
           '<p>The <code>before-close</code> attribute can be used to configure a method that intercepts closing of the pop-up window. If the method returns a value of <code>false</code>, then the pop-up window is prevented from closing; otherwise it is not intercepted.</p>\n          <p>The parameter passed through this interception method can be used to obtain the type of closing operation <code>type</code> for the pop-up window. The following are the types of closing operations:</p>\n          <ul>\n            <li>confirm: click confirm button</li>\n            <li>cancel: click cancel button</li>\n            <li>close: click close button</li>\n            <li>mask: click mask</li>\n          </ul>\n          '
       },
@@ -187,41 +203,25 @@ export default {
       codeFiles: ['footer-slot.vue']
     },
     {
-      demoId: 'open-event',
+      demoId: 'events',
       name: {
-        'zh-CN': '打开事件',
+        'zh-CN': '事件',
         'en-US': ''
       },
       desc: {
-        'zh-CN': '<p>打开抽屉事件。</p>',
+        'zh-CN': `
+          <p><code>open</code>：当抽屉打开时触发；</p>
+          <p><code>confirm</code>：当抽屉底部确定按钮点击时触发，该按钮仅当设置 <code>show-footer</code> 属性为 true 时可见；</p>
+          <p><code>close</code>：当抽屉关闭时触发。关闭抽屉的途径有：</p>
+            <ul>
+              <li>点击右上角关闭按钮；</li>
+              <li>点击遮罩层，仅当 <code>mask-closable</code> 属性为 true 时有效；</li>
+              <li>点击底部取消按钮，该按钮仅当设置 <code>show-footer</code> 属性为 true 时可见；</li>
+              <li>通过组件实例的 <code>close</code> 方法触发。</li>
+            </ul>`,
         'en-US': ''
       },
-      codeFiles: ['open-event.vue']
-    },
-    {
-      demoId: 'close-event',
-      name: {
-        'zh-CN': '关闭事件',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN': '<p>关闭抽屉事件，抽屉关闭时触发。</p>',
-        'en-US': ''
-      },
-      codeFiles: ['close-event.vue']
-    },
-    {
-      demoId: 'confirm-event',
-      name: {
-        'zh-CN': '确认事件',
-        'en-US': ''
-      },
-      desc: {
-        'zh-CN':
-          '<p>确认事件，点击确认按钮时触发，设置 <code>:show-footer="true"</code> 且不使用底部插槽 <code>footer</code> 时有效。</p>',
-        'en-US': ''
-      },
-      codeFiles: ['confirm-event.vue']
+      codeFiles: ['events.vue']
     }
   ]
 }

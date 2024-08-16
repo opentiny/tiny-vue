@@ -2,6 +2,7 @@
   <div>
     <p>场景1：节点可勾选 + 默认选中</p>
     <tiny-tree-menu node-key="id" show-checkbox :data="treeData" :default-checked-keys="expandeArr"></tiny-tree-menu>
+    <br /><br />
     <p>场景2：节点可勾选 + 父子级不相关联</p>
     <tiny-tree-menu :data="treeData" show-checkbox check-strictly></tiny-tree-menu>
   </div>

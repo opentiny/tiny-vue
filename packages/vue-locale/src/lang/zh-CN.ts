@@ -18,6 +18,11 @@ export default {
   yes: '是',
   no: '否',
   ui: {
+    input: {
+      close: '关闭',
+      more: '更多',
+      detail: '详细信息'
+    },
     numeric: {
       equalTo: '等于',
       notEqualTo: '不等于',
@@ -86,6 +91,9 @@ export default {
     button: {
       cancel: '取消',
       confirm: '确定'
+    },
+    buttonGroup: {
+      noData: '暂无数据'
     },
     buttonMessage: {
       cancel: '取消',
@@ -176,6 +184,9 @@ export default {
       },
       timezone: '选择时区',
       year: '年',
+      hour: '时',
+      minute: '分',
+      second: '秒',
       to: '至',
       yearMonth: '{year}年{month}月',
       yearMonthDay: '{year}年{month}月{day}日'
@@ -280,9 +291,10 @@ export default {
       calcHash: '文档正在计算加密中',
       uploadFile: '文件上传',
       downloadAll: '全部下载',
-      onlySupport: '仅支持{type}格式文件',
+      onlySupport: '支持{type}格式文件',
       fileNotLessThan: '单个文件不能小于',
       fileNotMoreThan: '单个文件不能超过',
+      fileSizeRange: '单个文件大小需在{moreThan}~{lessThan}之间',
       notSupport: '格式（.{format}）暂不支持',
       notSupportNoSuffix: '暂不支持无后缀文件',
       notSupportSpecialCharacters: '文件名包含特殊字符，请重命名后上传',
@@ -353,7 +365,8 @@ export default {
         renderParamError: '期望配置一个生成 VNode 的渲染方法。',
         classComponentError: '类组件渲染出错。',
         groupColumnFixedError: '同一个分组内不能设置不同的固定类型。',
-        missingValueFormat: '渲染器无法格式化日期字符串，需要提供 valueFormat 源日期格式配置。'
+        missingValueFormat: '渲染器无法格式化日期字符串，需要提供 valueFormat 源日期格式配置。',
+        clipboardWriteError: '剪切板写入错误'
       },
       filter: {
         allFilter: '全部',
@@ -430,6 +443,7 @@ export default {
         switchedit: '编辑',
         switchdel: '删除',
         switchconfirm: '确定',
+        switchdelconfirm: '删除确认',
         switchonlytemp: '保存模板',
         switchtempapply: '保存并使用模板',
         switchtempoverwrite: '覆盖并使用模板',
@@ -507,6 +521,13 @@ export default {
       errorTypeTips: '上传文件类型不匹配',
       errorNumTips: '上传文件数量超出限制,已取消该操作',
       errorSizeTips: '上传文件大小超出限制',
+      confirmDeleteTips: '确定要删除该文件吗？',
+      delete: '删除',
+      waitUpload: '等待上传',
+      operation: '操作',
+      success: '上传成功',
+      listTip: '共{0}条数据：',
+      errorListTip: '其中{0}条出错，请修改后重试',
       limitUploadFileNumber: '上传文件数限制为',
       limitUploadFileType: '上传文件类型限制为',
       limitUploadFileSize: '上传文件大小不超过'
@@ -654,6 +675,11 @@ export default {
       colorPicker: '背景颜色',
       placeholder: '在此处插入文本...',
       maxLength: '文本长度超过限制，支持的最大长度是 '
+    },
+    fluentEditor: {
+      undo: '撤销',
+      redo: '重做',
+      lineheight: '行高'
     },
     steps: {
       done: '已完成',

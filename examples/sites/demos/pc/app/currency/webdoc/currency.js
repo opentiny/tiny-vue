@@ -66,6 +66,33 @@ export default {
           '<p>Use the filter attribute to switch to filter mode. In filter mode, you can pass the label to display the title, tip to display the prompt information, and clearable to display the clear button.</p>\n'
       },
       codeFiles: ['filter.vue']
+    },
+    {
+      demoId: 'set-default',
+      name: {
+        'zh-CN': '设置默认币种',
+        'en-US': 'Set Default Currency'
+      },
+      desc: {
+        'zh-CN': `通过 <code>set-default</code> 属性设置组件是否使用设置默认币种功能。<code>v-model</code>和默认币种值同时存在，以默认币种值优先`,
+        'en-US':
+          'Set the <code>set-default</code> attribute to determine whether the component uses the function of setting the default currency. <code>v-model</code> and the default currency value coexist. The default currency value is preferred.'
+      },
+      codeFiles: ['set-default.vue']
+    },
+    {
+      demoId: 'set-default-custom-service',
+      name: {
+        'zh-CN': '自定义默认币种服务',
+        'en-US': 'Custom Default Currency Service'
+      },
+      desc: {
+        'zh-CN':
+          '通过 <code>fetch-default-currency</code> 和 <code>set-default-currency</code> 自定义默认币种查询和保存服务',
+        'en-US':
+          'Use <code>fetch-default-currency</code> and <code>set-default-currency</code> to customize the default currency query and saving service.'
+      },
+      codeFiles: ['set-default-custom-service.vue']
     }
   ]
 }

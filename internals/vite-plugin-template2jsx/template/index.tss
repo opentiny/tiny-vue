@@ -1,0 +1,3 @@
+import <%=UPPERNAME%> from './src'
+
+export default <%=UPPERNAME%>

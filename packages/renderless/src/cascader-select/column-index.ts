@@ -153,7 +153,7 @@ export const setMove =
 
       api.setTransform(type, deg, endMove, time)
 
-      state.currIndex = Math.abs(Math.round(endMove / +optionHeight)) + 1
+      state.currIndex = state.defaultIndex = Math.abs(Math.round(endMove / +optionHeight)) + 1
     } else {
       let deg = 0
       let currentDeg = (-updateMove / +optionHeight + 1) * state.rotation
@@ -166,7 +166,7 @@ export const setMove =
 
       if (minDeg < deg && deg < maxDeg) {
         api.setTransform(null, deg + 'deg', updateMove, undefined)
-        state.currIndex = Math.abs(Math.round(updateMove / +optionHeight)) + 1
+        state.currIndex = state.defaultIndex = Math.abs(Math.round(updateMove / +optionHeight)) + 1
       }
     }
   }
@@ -181,17 +181,23 @@ export const modifyStatus =
   ({ state, props, api }) =>
   (type) => {
     const { column } = props
-    let index = column.findIndex((columnItem) => columnItem[props.fieldNames.value] === props.value)
+    const value = isEffectVal(props.value) ? props.value : props.defaultValue
+    const currentIndex = isEffectVal(props.value) ? 'currIndex' : 'defaultIndex'
+    let index = column.findIndex((columnItem) => columnItem[props.fieldNames.value] === value)
 
-    state.currIndex = index === -1 ? 1 : index + 1
+    state[currentIndex] = index === -1 ? 1 : index + 1
     let move = index === -1 ? 0 : index * +props.optionHeight
     type && api.setChooseValue()
     api.setMove(-move)
   }
 
 export const OptionStyle =
-  ({ state }) =>
+  ({ props, state }) =>
   (option, column, offset) => {
-    const currentIndex = state.currIndex - 1
+    const currentIndex = isEffectVal(props.value) ? state.currIndex - 1 : state.defaultIndex - 1
     return option === column[currentIndex + offset] || option === column[currentIndex - offset]
   }
+
+const isEffectVal = (val) => {
+  return val || val === 0
+}

@@ -66,13 +66,12 @@ test('实心显示', async ({ page }) => {
   await expect(nodeIcons).toHaveCount(nodeCount)
   await expect(nodeTitles).toHaveCount(nodeCount)
   await expect(nodeDates).toHaveCount(nodeCount)
-  const { width: totalWidth, height: totalHeight } = await milestone.boundingBox()
+  const { width: totalWidth } = await milestone.boundingBox()
   const nodeWidth = Math.floor(totalWidth / nodeCount)
-  const nodeHeight = totalHeight - 38
   for (let i = 0; i < nodeCount; i++) {
     const { width, height } = await nodes.nth(i).boundingBox()
     await expect(width).toBeGreaterThanOrEqual(nodeWidth)
-    await expect(height).toEqual(nodeHeight)
+    await expect(height).toBeGreaterThan(84)
     await expect(nodeLines.nth(i)).toHaveCSS('height', '4px')
     await expect(nodeIcons.nth(i)).toHaveClass(iconClasss[i])
     await expect(nodeTitles.nth(i)).toHaveText(titles[i])

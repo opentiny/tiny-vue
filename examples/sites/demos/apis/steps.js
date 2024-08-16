@@ -225,6 +225,7 @@ export default {
     {
       name: 'IStepsItem',
       type: 'interface',
+      depTypes: ['IStepsStatus'],
       code: `
 interface IStepsItem {
   // 节点数据

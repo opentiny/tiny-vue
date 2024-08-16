@@ -20,3 +20,11 @@ import { User as TinyUser } from '@opentiny/vue'
 const user1 = ref('test1,test2,test3')
 const user2 = ref('test1,test10')
 </script>
+
+<style scoped>
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
+}
+</style>

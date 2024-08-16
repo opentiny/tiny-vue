@@ -10,7 +10,7 @@
  *
  */
 
-import { on, off, isDisplayNone } from './dom'
+import { on, off, isDisplayNone, isServer } from './dom'
 import PopupManager from './popup-manager'
 import globalConfig from '../global'
 import { typeOf } from '../type'
@@ -267,9 +267,24 @@ const getOffsetRect = (el: HTMLElement) => {
   return elementRect
 }
 
+/** 阻止popper层上的 wheel事件 */
 const stopFn = (ev: Event) => {
   ev.stopPropagation()
 }
+
+let resizeOb
+
+if (!isServer) {
+  /** 全局的resize观察器， 监听popper的大小改变  */
+  resizeOb = new ResizeObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.target.popperVm && entry.contentRect.height > 50) {
+        entry.target.popperVm.update()
+      }
+    })
+  })
+}
+
 interface PopperOptions {
   arrowOffset: number
   arrowElement: string
@@ -366,7 +381,10 @@ class Popper {
     this.state.position = this._getPopperPositionByRefernce(this._reference)
 
     setStyle(this._popper, { position: this.state.position, top: 0 })
-
+    if (this._popper) {
+      this._popper.popperVm = this
+      resizeOb && resizeOb.observe(this._popper)
+    }
     this.update()
     this._setupEventListeners()
   }
@@ -499,6 +517,11 @@ class Popper {
 
   // 校正popper的位置在boundaries 的内部
   preventOverflow(data: UpdateData) {
+    // popover嵌套多层级时，防止第三个placement=top属性失效
+    if (this._options.ignoreBoundaries) {
+      return data
+    }
+
     let order = this._options.preventOverflowOrder
     let popper = getPopperClientRect(data.offsets.popper)
 
@@ -767,7 +790,7 @@ class Popper {
     on(window, 'resize', this.state.updateBoundFn)
 
     if (this._options.boundariesElement !== 'window') {
-      let target: HTMLElement = getScrollParent(this._reference)
+      let target: HTMLElement = this._options.scrollParent || getScrollParent(this._reference)
       const customTargets = []
 
       // 如果下拉框组件存在于多端表单中，需要同时监听上一层scroll元素的滚动

@@ -50,10 +50,11 @@
       <span class="tiny-input-display-only">
         <tiny-tooltip
           v-if="state.isDisplayOnly"
+          :disabled="!showTooltip"
           effect="light"
           :content="state.displayOnlyTooltip"
-          :display="type === 'password'"
           placement="top"
+          :popper-class="state.tooltipConfig.popperClass || ''"
           @mouseenter.native="handleEnterDisplayOnlyContent"
         >
           <span class="tiny-input-display-only__content" v-if="type === 'password'">{{ state.hiddenPassword }}</span>
@@ -173,13 +174,34 @@
     >
       <tiny-tooltip
         v-if="state.isDisplayOnly"
+        :disabled="!showTooltip"
         effect="light"
         :content="state.displayOnlyTooltip"
         placement="top"
+        :popper-class="state.tooltipConfig.popperClass || ''"
         @mouseenter.native="handleEnterDisplayOnlyContent($event, 'textarea')"
       >
-        <span class="tiny-textarea-display-only__content">{{ state.displayOnlyText }}</span>
+        <div class="tiny-textarea-display-only__wrap">
+          <span ref="textBox" class="tiny-textarea-display-only__content text-box">
+            <span v-if="state.showMoreBtn" @click="state.showDisplayOnlyBox = true" class="more-btn"
+              >{{ t('ui.input.more') }}></span
+            >
+            {{ state.displayOnlyText }}
+          </span>
+        </div>
       </tiny-tooltip>
+      <tiny-dialog-box
+        :title="t('ui.input.detail')"
+        v-if="state.isDisplayOnly && popupMore"
+        :visible="state.showDisplayOnlyBox"
+        :append-to-body="true"
+        @update:visible="state.showDisplayOnlyBox = $event"
+      >
+        <div>{{ state.displayOnlyText }}</div>
+        <template #footer>
+          <tiny-button @click="state.showDisplayOnlyBox = false">{{ t('ui.input.close') }}</tiny-button>
+        </template>
+      </tiny-dialog-box>
       <textarea
         ref="textarea"
         v-bind="a($attrs, ['type', 'class', 'style', 'id'])"
@@ -200,6 +222,9 @@
         @change="handleChange"
         @mouseenter="handleEnterTextarea($event)"
         @mouseleave="handleLeaveTextarea($event)"
+        @mousedown="handleTextareaMouseDown()"
+        @mouseup="handleTextareaMouseUp()"
+        v-clickoutside.mouseup="() => handleTextareaMouseUp(true)"
         :aria-label="label"
         @keyup="$emit('keyup', $event)"
         @keydown="$emit('keydown', $event)"
@@ -223,10 +248,13 @@
 
 <script>
 import { renderless, api } from '@opentiny/vue-renderless/input/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
+import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import TinyTallStorage from './tall-storage.vue'
 import { IconClose, IconEyeopen, IconEyeclose } from '@opentiny/vue-icon'
 import Tooltip from '@opentiny/vue-tooltip'
+import TinyButton from '@opentiny/vue-button'
+import TinyDialogBox from '@opentiny/vue-dialog-box'
 import '@opentiny/vue-theme/input/index.less'
 import '@opentiny/vue-theme/textarea/index.less'
 
@@ -245,12 +273,15 @@ export default defineComponent({
     'click',
     'input'
   ],
+  directives: directive({ Clickoutside }),
   components: {
     IconClose: IconClose(),
     IconEyeopen: IconEyeopen(),
     IconEyeclose: IconEyeclose(),
     TinyTallStorage,
-    TinyTooltip: Tooltip
+    TinyTooltip: Tooltip,
+    TinyButton,
+    TinyDialogBox
   },
 
   props: [
@@ -281,7 +312,9 @@ export default defineComponent({
     'displayOnlyContent',
     'frontClearIcon',
     'showEmptyValue',
-    'hoverExpand'
+    'hoverExpand',
+    'popupMore',
+    'showTooltip'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

@@ -14,6 +14,7 @@
 @import './vars.less';
 
 @card-prefix-cls: ~'@{css-prefix}card';
+@input-prefix-cls: ~'@{css-prefix}input';
 
 .@{card-prefix-cls} {
   .component-css-vars-amount();
@@ -85,6 +86,45 @@
   // 选中 禁用
   &.@{card-prefix-cls}--item-checked {
     border-color: var(--ti-card-checked-border-color);
+  }
+  &.@{card-prefix-cls}--item-checkbox-checked {
+    position: relative;
+    border-radius: 8px;
+  }
+  &.@{card-prefix-cls}--item-checkbox-checked::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: 0px;
+    top: 0;
+    border-bottom: 40px solid transparent;
+    border-right: 40px solid #1476ff;
+    border-top-right-radius: 6px;
+    display: var(--ti-checkbox-button-checked-display);
+  }
+
+  &.@{card-prefix-cls}--item-checkbox-checked::before {
+    display: var(--ti-checkbox-button-checked-display);
+    right: 5px;
+    top: 1px;
+    box-sizing: content-box;
+    content: '';
+    border: 0.5px solid #fff;
+    border-width: 0 var(--ti-checkbox-checkline-width) var(--ti-checkbox-checkline-width) 0;
+    border-left: 0;
+    border-top: 0;
+    height: 16px;
+    width: 10px;
+    position: absolute;
+    margin-left: var(--ti-checkbox-icon-margin-left);
+    margin-top: var(--ti-checkbox-icon-margin-top);
+    transition:
+      transform 0.15s ease-in 0.05s,
+      -webkit-transform 0.15s ease-in 0.05s;
+    transform-origin: center;
+    z-index: 3;
+    transform: rotate(45deg) scale(0.7);
   }
 
   &.@{card-prefix-cls}--disabled {
@@ -170,7 +210,7 @@
         font-size: var(--ti-card-title-font-size);
         font-weight: var(--ti-card-title-font-weight);
         margin-right: 8px;
-        margin-bottom: 12px;
+        margin-bottom: var(--ti-card-title-mg-bottom);
         line-height: 22px;
         color: var(--ti-card-title-text-color);
       }
@@ -247,6 +287,13 @@
           cursor: not-allowed;
         }
       }
+    }
+  }
+  .@{input-prefix-cls} {
+    &__inner {
+      border: none;
+      border-radius: 6px;
+      background-color: #FAFAFA;
     }
   }
 }

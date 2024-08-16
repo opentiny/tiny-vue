@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="demo-drop">
     <div>场景1：设置按钮类型</div>
     <br />
     <tiny-dropdown split-button>
@@ -44,3 +44,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.demo-drop .tiny-dropdown .tiny-dropdown__trigger.tiny-dropdown__caret-button {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+</style>

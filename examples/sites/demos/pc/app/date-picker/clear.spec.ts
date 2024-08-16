@@ -12,9 +12,9 @@ test('[DatePicker] 测试清除输入', async ({ page }) => {
   // 默认显示清除按钮
   await datePickerDefaultClearIcon.hover()
   await expect(clearIcon).toBeVisible()
-  await expect(clearIcon.locator('path')).toHaveAttribute(
+  await expect(clearIcon.locator('path').nth(1)).toHaveAttribute(
     'd',
-    'm13.4 12 6.3-6.3c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0L12 10.6 5.7 4.3c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l6.3 6.3-6.3 6.3c-.4.4-.4 1 0 1.4.2.2.4.3.7.3.3 0 .5-.1.7-.3l6.3-6.3 6.3 6.3c.2.2.4.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4L13.4 12z'
+    'M4.25 3.4 8 7.15l3.75-3.75a.61.61 0 0 1 .85 0c.23.23.23.62 0 .85L8.85 8l3.75 3.75c.23.24.23.62 0 .85a.61.61 0 0 1-.85 0L8 8.85 4.25 12.6a.61.61 0 0 1-.85 0 .592.592 0 0 1 0-.85L7.15 8 3.4 4.25a.61.61 0 0 1 0-.85.61.61 0 0 1 .85 0z'
   )
 
   // 隐藏清除按钮
@@ -24,9 +24,9 @@ test('[DatePicker] 测试清除输入', async ({ page }) => {
   // 自定义清除图标
   await datePickerCustomClearIcon.hover()
   await expect(clearIcon).toBeVisible()
-  await expect(clearIcon.locator('path')).toHaveAttribute(
+  await expect(clearIcon.locator('path').nth(1)).toHaveAttribute(
     'd',
-    'm13.4 12 6.3-6.3c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0L12 10.6 5.7 4.3c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l6.3 6.3-6.3 6.3c-.4.4-.4 1 0 1.4.2.2.4.3.7.3.3 0 .5-.1.7-.3l6.3-6.3 6.3 6.3c.2.2.4.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4L13.4 12z'
+    'M4.25 3.4 8 7.15l3.75-3.75a.61.61 0 0 1 .85 0c.23.23.23.62 0 .85L8.85 8l3.75 3.75c.23.24.23.62 0 .85a.61.61 0 0 1-.85 0L8 8.85 4.25 12.6a.61.61 0 0 1-.85 0 .592.592 0 0 1 0-.85L7.15 8 3.4 4.25a.61.61 0 0 1 0-.85.61.61 0 0 1 .85 0z'
   )
 
   // 测试清除功能

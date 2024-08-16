@@ -191,7 +191,7 @@ export default {
           name: 'type',
           typeAnchorName: 'IButtonType',
           type: 'IButtonType',
-          defaultValue: '',
+          defaultValue: 'default',
           desc: {
             'zh-CN': '展示按钮不同的状态，设置为text则展示为文本按钮',
             'en-US': 'Display different states of buttons, set to text to display as text buttons'
@@ -239,7 +239,7 @@ export default {
     {
       name: 'IButtonType',
       type: 'interface',
-      code: `type IButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'`
+      code: `type IButtonType = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'`
     }
   ]
 }

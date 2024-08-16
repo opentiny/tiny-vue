@@ -77,11 +77,7 @@
             <div
               data-tag="tiny-dialog-box__body"
               class="text-left pt-0 pr-6 pb-0 pl-6 mb-3 mt-3 text-color-text-primary leading-5.5 text-sm overflow-auto"
-              :class="[
-                state.isFull ? 'max-h-[calc(100vh-theme(spacing.28))]' : 'max-h-[65vh]',
-                rightSlide ? 'max-h-[none] flex-auto' : ''
-              ]"
-              :style="state.bodyStyle"
+              :class="[rightSlide || state.isFull ? 'max-h-[none] flex-auto' : 'max-h-[65vh]']"
             >
               <slot></slot>
             </div>
@@ -108,13 +104,14 @@
         :before-close="beforeClose"
         @update:visible="$emit('update:visible', $event)"
       >
-        <template v-for="(value, name) in slots" #[name]="scopeData" :key="name">
+        <template v-for="(value, name) in slots" #[name]="scopeData">
           <div
             :class="{
               'flex w-full justify-between px-4 [&_[data-tag=tiny-button]]:flex-grow [&_[data-tag=tiny-button]:nth-child(2)]:ml-2':
                 name === 'footer',
               'px-4 min-h-[250px]': name === 'default'
             }"
+            :key="name"
           >
             <slot :name="name" v-bind="scopeData"></slot>
           </div>

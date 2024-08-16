@@ -21,36 +21,45 @@
     >
       <div class="tiny-popupload__dialog">
         <div class="tiny-popupload__dialog-header">
-          <tiny-alert
-            size="large"
-            v-if="
-              state.tipsTitle[0] !== undefined || state.tipsTitle[1] !== undefined || state.tipsTitle[2] !== undefined
-            "
-            :title="state.tipsTitleText"
-          >
-            <div class="tiny-popupload__dialog-tips">
-              <p v-for="(item, index) in state.tipsTitle.filter((value) => value !== undefined)" :key="index">
-                {{ item.count !== undefined ? state.limitCountTips + ':' + item.count : '' }}
-                {{ item.type !== undefined ? state.limitTypeTips + ':' + item.type : '' }}
-                {{ item.size !== undefined ? state.limitSizeTips + ':' + item.size : '' }}
-              </p>
-            </div>
-          </tiny-alert>
-          <tiny-alert type="error" size="large" v-if="state.errorTips.length > 0" @close="closeErrorTips">
-            <div class="tiny-popupload__dialog-tips">
-              <p v-for="(item, index) in state.errorTips" :key="index">
-                {{ item.size !== undefined ? item.size + ':' + state.errorSizeTips : '' }}
-                {{ item.type !== undefined ? item.type + ':' + state.errorTypeTips : '' }}
-                {{ item.num !== undefined ? state.errorNumTips : '' }}
-                {{ item.error !== undefined ? state.uploadErrorTips : '' }}
-              </p>
-            </div>
-          </tiny-alert>
-          <tiny-alert type="success" size="large" v-if="state.successTips.length > 0" @close="closeSuccessTips">
-            <div class="tiny-popupload__dialog-tips">
-              <p v-for="(item, index) in state.successTips" :key="index">{{ item }},{{ state.uploadSuccessTips }}</p>
-            </div>
-          </tiny-alert>
+          <slot name="uploadTip"></slot>
+          <template v-if="!slots.uploadTip">
+            <tiny-alert
+              size="large"
+              v-if="
+                state.tipsTitle[0] !== undefined || state.tipsTitle[1] !== undefined || state.tipsTitle[2] !== undefined
+              "
+              :title="state.tipsTitleText"
+            >
+              <div class="tiny-popupload__dialog-tips">
+                <p
+                  v-for="(item, index) in state.tipsTitle.filter((value) => value !== undefined)"
+                  :key="index"
+                  class="tiny-popupload__dialog-tips-item"
+                >
+                  {{ item.count !== undefined ? state.limitCountTips + ':' + item.count : '' }}
+                  {{ item.type !== undefined ? state.limitTypeTips + ':' + item.type : '' }}
+                  {{ item.size !== undefined ? state.limitSizeTips + ':' + item.size : '' }}
+                </p>
+              </div>
+            </tiny-alert>
+            <tiny-alert type="error" size="large" v-if="state.errorTips.length > 0" @close="closeErrorTips">
+              <div class="tiny-popupload__dialog-tips">
+                <p v-for="(item, index) in state.errorTips" :key="index" class="tiny-popupload__dialog-tips-item">
+                  {{ item.size !== undefined ? item.size + ':' + state.errorSizeTips : '' }}
+                  {{ item.type !== undefined ? item.type + ':' + state.errorTypeTips : '' }}
+                  {{ item.num !== undefined ? state.errorNumTips : '' }}
+                  {{ item.error !== undefined ? state.uploadErrorTips : '' }}
+                </p>
+              </div>
+            </tiny-alert>
+            <tiny-alert type="success" size="large" v-if="state.successTips.length > 0" @close="closeSuccessTips">
+              <div class="tiny-popupload__dialog-tips">
+                <p v-for="(item, index) in state.successTips" :key="index" class="tiny-popupload__dialog-tips-item">
+                  {{ item }},{{ state.uploadSuccessTips }}
+                </p>
+              </div>
+            </tiny-alert>
+          </template>
         </div>
         <div class="tiny-popupload__dialog-body">
           <tiny-file-upload
@@ -72,11 +81,10 @@
             :headers="state.headers"
             :action="state.action"
             :auto-upload="false"
+            :re-uploadable="slots.uploadTip"
           >
             <template #trigger>
-              <tiny-button size="small" type="primary">{{
-                state.multiple ? state.uploadsButtonText : state.uploadButtonText
-              }}</tiny-button>
+              <tiny-button>{{ state.multiple ? state.uploadsButtonText : state.uploadButtonText }}</tiny-button>
             </template>
           </tiny-file-upload>
           <div class="tiny-popupload__dialog-table">
@@ -84,6 +92,7 @@
               <p class="header-col col1">{{ state.fileName }}</p>
               <p class="header-col col2">{{ state.fileSize }}</p>
               <p class="header-col col3">{{ state.fileStatus }}</p>
+              <p class="header-col col4">{{ state.fileWords.operation }}</p>
             </div>
             <div class="tiny-popupload__dialog-table-body">
               <ul class="tiny-popupload__dialog-table-list">
@@ -91,12 +100,42 @@
                   <p class="body-col col1">{{ item.name }}</p>
                   <p class="body-col col2">{{ formatFileSize(item.size) }}</p>
                   <p class="body-col col3">
-                    <span>
-                      <IconDel class="delIcon" @click="deleteFile(item)"></IconDel>
-                    </span>
+                    <span
+                      v-show="item.status !== 'uploading'"
+                      :class="['tiny-popupload__status-icon', `tiny-popupload__status-icon-${item.status}`]"
+                    ></span>
+                    <span v-if="item.status === 'ready'">{{ state.fileWords.waitUpload }}</span>
+                    <tiny-progress
+                      v-else-if="item.status === 'uploading'"
+                      :percentage="item.percentage"
+                      :stroke-width="4"
+                    ></tiny-progress>
+                    <span v-else-if="item.status === 'success'">{{ state.fileWords.success }}</span>
+                    <span v-else-if="item.status === 'fail'">{{ state.fileWords.uploadError }}</span>
+                  </p>
+                  <p class="body-col col4">
+                    <tiny-popconfirm
+                      :title="state.fileWords.confirmDeleteTips"
+                      type="warning"
+                      placement="top-start"
+                      trigger="click"
+                      width="196"
+                      custom-class="tiny-popupload__pop-confirm"
+                      @confirm="deleteFile(item)"
+                    >
+                      <template #reference>
+                        <div class="del-col">{{ state.fileWords.delete }}</div>
+                      </template>
+                    </tiny-popconfirm>
                   </p>
                 </li>
               </ul>
+              <div v-if="slots.uploadTip" class="tiny-popupload__dialog-table-list-footer">
+                {{ t('ui.popupload.listTip', [state.uploadList.length])
+                }}<span v-show="state.errorTips.length > 0" class="footer-error-tip">{{
+                  t('ui.popupload.errorListTip', [state.errorTips.length])
+                }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -121,8 +160,9 @@
 import Alert from '@opentiny/vue-alert'
 import Button from '@opentiny/vue-button'
 import Modal from '@opentiny/vue-modal'
-import { iconDel } from '@opentiny/vue-icon'
 import FileUpload from '@opentiny/vue-file-upload'
+import Progress from '@opentiny/vue-progress'
+import Popconfirm from '@opentiny/vue-popconfirm'
 import { renderless, api } from '@opentiny/vue-renderless/pop-upload/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 
@@ -132,7 +172,8 @@ export default defineComponent({
     TinyModal: Modal,
     TinyAlert: Alert,
     TinyFileUpload: FileUpload,
-    IconDel: iconDel()
+    TinyProgress: Progress,
+    TinyPopconfirm: Popconfirm
   },
   props: [
     ...props,

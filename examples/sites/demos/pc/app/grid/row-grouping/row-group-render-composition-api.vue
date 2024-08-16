@@ -1,5 +1,12 @@
 <template>
-  <tiny-grid class="row-group-render" height="200px" setting :row-group="renderOp" :data="data">
+  <tiny-grid
+    class="row-group-render"
+    height="320px"
+    setting
+    :row-group="renderOp"
+    :data="data"
+    @toggle-group-change="onToggleGroupChange"
+  >
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="60"></tiny-grid-column>
     <tiny-grid-column field="area" title="区域" sortable></tiny-grid-column>
@@ -10,26 +17,26 @@
   </tiny-grid>
 </template>
 
-<script setup lang="jsx">
+<script lang="jsx" setup>
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn } from '@opentiny/vue'
+import { Grid as TinyGrid, GridColumn as TinyGridColumn, Modal } from '@opentiny/vue'
 
 const data = ref([
   {
     id: '1',
-    name: 'GFD科技YX公司',
+    name: 'GFD科技有限公司',
     area: '华东区',
     province: '福建省',
     city: '福州',
-    telephone: '1234567890'
+    telephone: '15010000001'
   },
   {
     id: '2',
-    name: 'WWW科技YX公司',
+    name: 'WWW科技有限公司',
     area: '华南区',
     province: '广东省',
     city: '深圳',
-    telephone: '1234567890'
+    telephone: '15010000002'
   },
   {
     id: '3',
@@ -37,47 +44,47 @@ const data = ref([
     area: '华南区',
     province: '广东省',
     city: '中山',
-    telephone: '1234567890'
+    telephone: '15010000003'
   },
   {
     id: '4',
-    name: 'TGB科技YX公司',
+    name: 'TGB科技有限公司',
     area: '华东区',
     province: '福建省',
     city: '龙岩',
-    telephone: '1234567890'
+    telephone: '15010000004'
   },
   {
     id: '5',
-    name: 'YHN科技YX公司',
+    name: 'YHN科技有限公司',
     area: '华南区',
     province: '广东省',
     city: '韶关',
-    telephone: '1234567890'
+    telephone: '15010000005'
   },
   {
     id: '6',
-    name: 'WSX科技YX公司',
+    name: 'WSX科技有限公司',
     area: '华中区',
     province: '湖北省',
     city: '黄冈',
-    telephone: '1234567890'
+    telephone: '15010000006'
   },
   {
     id: '7',
-    name: 'KBG物业YX公司',
+    name: 'KBG物业有限公司',
     area: '华中区',
     province: '湖北省',
     city: '赤壁',
-    telephone: '1234567890'
+    telephone: '15010000007'
   },
   {
     id: '8',
-    name: '深圳市福德宝网络技术YX公司',
+    name: '深圳市福德宝网络技术有限公司',
     address: '厦门岛内',
     area: '华东区',
     city: '厦门',
-    telephone: '1234567890'
+    telephone: '15010000008'
   },
   {
     id: '9',
@@ -85,7 +92,7 @@ const data = ref([
     area: '华南区',
     province: '广西省',
     city: '南宁',
-    telephone: '1234567890'
+    telephone: '15010000009'
   },
   {
     id: '10',
@@ -93,30 +100,25 @@ const data = ref([
     area: '华南区',
     province: '广西省',
     city: '北海',
-    telephone: '1234567890'
+    telephone: '15510000001'
   },
   {
     id: '11',
-    name: 'TIG管理YX公司',
+    name: 'TIG管理有限公司',
     area: '华南区',
     province: '广西省',
     city: '桂林',
-    telephone: '1234567890'
+    telephone: '15510000002'
   },
   {
     id: '12',
-    name: 'GGT科技YX公司',
+    name: 'GGT科技有限公司',
     area: '西南区',
     province: '云南省',
     city: '昆明',
-    telephone: '1234567890'
+    telephone: '15510000003'
   }
 ])
-const renderOp = ref({
-  field: 'area',
-  render: renderGroup,
-  closeable: true
-})
 
 function renderGroup(h, { value, header, children }) {
   return (
@@ -126,6 +128,30 @@ function renderGroup(h, { value, header, children }) {
     </span>
   )
 }
+function activeMethod({ value }) {
+  return value === '华南区' // 华南区分组默认展开
+  // return false // 所有分组默认收起
+}
+function onToggleGroupChange({ row }) {
+  Modal.message({ message: `分组${row.fold ? '合起' : '展开'}`, status: 'info' })
+}
+function renderGroupCell(h, { row, column }) {
+  if (row.value !== '华南区') return
+
+  if (column.property === 'province') {
+    return h('b', '自定义渲染省份')
+  } else if (column.property === 'city') {
+    return h('i', '自定义渲染城市')
+  }
+}
+
+const renderOp = ref({
+  field: 'area',
+  render: renderGroup,
+  closeable: true,
+  activeMethod,
+  renderGroupCell
+})
 </script>
 
 <style>

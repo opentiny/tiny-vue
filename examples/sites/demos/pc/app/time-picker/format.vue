@@ -11,10 +11,7 @@
 
     <p>选中值的格式：</p>
     <div class="demo-date-picker-wrap">
-      <tiny-time-picker
-        v-model="selectedValue"
-        value-format="timestamp"
-      ></tiny-time-picker>
+      <tiny-time-picker v-model="selectedValue" value-format="timestamp"></tiny-time-picker>
     </div>
     <span class="select-time">当前选中时间：{{ selectedValue }}</span>
 
@@ -63,5 +60,10 @@ export default {
 .select-time {
   display: inline-block;
   margin-top: 12px;
+}
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  padding-top: 16px;
 }
 </style>

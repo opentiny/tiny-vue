@@ -12,7 +12,6 @@ export const treeMenuProps = {
   nodeKey: String,
   defaultExpandAll: Boolean,
   suffixIcon: Object,
-  prefixIcon: Object,
   searchIcon: {
     type: Object,
     default: () => iconSearch()
@@ -79,6 +78,10 @@ export const treeMenuProps = {
     default: false
   },
   menuCollapsible: {
+    type: Boolean,
+    default: false
+  },
+  clearable: {
     type: Boolean,
     default: false
   }
