@@ -298,7 +298,7 @@ export default {
       calcHash: '文档正在计算加密中',
       uploadFile: '文件上传',
       downloadAll: '全部下载',
-      onlySupport: '仅支持{type}格式文件',
+      onlySupport: '支持{type}格式文件',
       fileNotLessThan: '单个文件不能小于',
       fileNotMoreThan: '单个文件不能超过',
       fileSizeRange: '单个文件大小需在{moreThan}~{lessThan}之间',
@@ -528,6 +528,13 @@ export default {
       errorTypeTips: '上传文件类型不匹配',
       errorNumTips: '上传文件数量超出限制,已取消该操作',
       errorSizeTips: '上传文件大小超出限制',
+      confirmDeleteTips: '确定要删除该文件吗？',
+      delete: '删除',
+      waitUpload: '等待上传',
+      operation: '操作',
+      success: '上传成功',
+      listTip: '共{0}条数据：',
+      errorListTip: '其中{0}条出错，请修改后重试',
       limitUploadFileNumber: '上传文件数限制为',
       limitUploadFileType: '上传文件类型限制为',
       limitUploadFileSize: '上传文件大小不超过'
@@ -675,6 +682,11 @@ export default {
       colorPicker: '背景颜色',
       placeholder: '在此处插入文本...',
       maxLength: '文本长度超过限制，支持的最大长度是 '
+    },
+    fluentEditor: {
+      undo: '撤销',
+      redo: '重做',
+      lineheight: '行高'
     },
     steps: {
       done: '已完成',

@@ -147,8 +147,8 @@ export default {
           name: 'custom-column-names',
           type: 'string[]',
           defaultValue: "['TinyGridColumn']",
-          metaData: {
-            new: '3.17.0'
+          meta: {
+            stable: '3.17.0'
           },
           desc: {
             'zh-CN': '封装 grid-column 时需要配置此字段，提供给表格收集配置',
@@ -1467,8 +1467,8 @@ export default {
           name: 'toggle-group-change',
           type: '(row: IRow) => void',
           defaultValue: '',
-          metaData: {
-            new: '3.17.0'
+          meta: {
+            stable: '3.17.0'
           },
           desc: {
             'zh-CN': '当分组的展开和收起时会触发该事件',

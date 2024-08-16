@@ -7,7 +7,7 @@ test('动态加载 lazyload', async ({ page }) => {
   const svg = page.locator('.tiny-cascader-node__postfix > path')
   await expect(svg).toHaveAttribute(
     'd',
-    'M7 21c.2 0 .5-.1.6-.2l9.9-8c.2-.2.4-.5.4-.8 0-.3-.1-.6-.4-.8L7.6 3.3c-.4-.4-1.1-.3-1.4.2-.4.4-.3 1.1.2 1.4l8.9 7.2-8.9 7.2c-.4.4-.5 1-.2 1.4.2.2.5.3.8.3z'
+    'M5.44 1.23a.9.9 0 0 0-1.19 0c-.3.27-.33.69-.1.99l.1.11 6.02 5.56c.05.04.06.11.03.17l-.04.05-6.02 5.56c-.33.3-.33.8 0 1.1.29.27.75.3 1.07.09l.12-.09 6.02-5.56c.67-.62.72-1.61.14-2.28l-.14-.15-6.01-5.55z'
   )
   await page.getByRole('menuitem', { name: '选项1' }).click()
   const loadingSvg = page.getByRole('menuitem', { name: '选项1' }).locator('path')

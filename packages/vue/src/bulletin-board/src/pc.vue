@@ -26,16 +26,16 @@
               class="tiny-bulletin-board__textTitle"
               rel="noopener noreferrer"
             >
+              {{ subItem.text }}
               <span v-if="subIndex === 0" class="tiny-bulletin-board__new">
                 <component :is="icon" class="tiny-svg-size" />{{ icon ? '' : 'NEW' }}
               </span>
-              {{ subItem.text }}
             </a>
             <span v-else class="tiny-bulletin-board__textTitle">
+              {{ subItem.text }}
               <span v-if="subIndex === 0" class="tiny-bulletin-board__new">
                 <component :is="icon" class="tiny-svg-size" />{{ icon ? '' : 'NEW' }}
               </span>
-              {{ subItem.text }}
             </span>
             <p class="tiny-bulletin-board__textDate">{{ subItem.date }}</p>
           </div>

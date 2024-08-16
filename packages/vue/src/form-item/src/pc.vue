@@ -129,8 +129,8 @@ export default defineComponent({
       typeof this.appendToBody === 'boolean'
         ? this.appendToBody
         : typeof formAppendToBody === 'boolean'
-          ? formAppendToBody
-          : true
+        ? formAppendToBody
+        : true
     const validatePosition = this.validatePosition || state.formInstance?.validatePosition || 'top-end'
 
     const popperOptions = {
@@ -160,7 +160,11 @@ export default defineComponent({
           let item = parseVnode(vnode)
           item.props = item.props || {}
           const { type } = item
-
+          // 修复production模式下动态切换size失败问题
+          item.dynamicProps = item.dynamicProps || []
+          if (!item.dynamicProps.includes('size')) {
+            item.dynamicProps.push('size')
+          }
           Object.assign(item.props, {
             size: state.formItemSize,
             mini: state.formItemSize === 'mini' || Boolean(item.props.mini)

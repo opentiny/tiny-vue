@@ -6,13 +6,15 @@ import { renderless, api } from '@opentiny/vue-renderless/upload/vue'
 import UploadDragger from '@opentiny/vue-upload-dragger'
 import Modal from '@opentiny/vue-modal'
 import Tooltip from '@opentiny/vue-tooltip'
+import { iconHelpCircle } from '@opentiny/vue-icon'
 import type { IUploadApi } from '@opentiny/vue-renderless/types/upload.type'
 
 export default defineComponent({
   inheritAttrs: false,
   name: $prefix + 'Upload',
   components: {
-    TinyTooltip: Tooltip
+    TinyTooltip: Tooltip,
+    TinyIconHelpCircle: iconHelpCircle()
   },
   props: [
     ...props,
@@ -49,7 +51,8 @@ export default defineComponent({
     'mode',
     'showTitle',
     'isHwh5',
-    'tipMessage'
+    'tipMessage',
+    'promptTip'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h, extendOptions: { Modal } }) as unknown as IUploadApi
@@ -72,7 +75,8 @@ export default defineComponent({
       mode,
       showTitle,
       state,
-      tipMessage
+      tipMessage,
+      promptTip
     } = this as any
 
     const defaultSlot = (this as any).slots.default && (this as any).slots.default()
@@ -114,7 +118,7 @@ export default defineComponent({
           </div>
         )}
         {state.currentBreakpoint !== 'default' && (
-          <tiny-tooltip effect="light" content={tipMessage} placement="top" popper-options={popperConfig}>
+          <div class="hidden sm:inline-flex sm:items-center">
             <div
               data-tag="tiny-upload-drag-single"
               class="h-full"
@@ -129,7 +133,19 @@ export default defineComponent({
                 defaultSlot
               )}
             </div>
-          </tiny-tooltip>
+            {promptTip && tipMessage && (
+              <tiny-tooltip effect="light" content={tipMessage} placement="right" popper-options={popperConfig}>
+                <tiny-icon-help-circle custom-class="ml-2 cursor-pointer fill-color-icon-tertiary"></tiny-icon-help-circle>
+              </tiny-tooltip>
+            )}
+            {!promptTip && tipMessage && (
+              <div
+                title={tipMessage}
+                class="hidden sm:block text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap text-color-text-placeholder ml-2 cursor-pointer">
+                {tipMessage}
+              </div>
+            )}
+          </div>
         )}
         {operateSlot}
         <input

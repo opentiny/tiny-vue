@@ -48,10 +48,12 @@ import {
   IconCloudUpload,
   IconFullscreen
 } from '@opentiny/vue-icon'
+import ImageViewer from '@opentiny/vue-image-viewer'
 
 export default defineComponent({
   name: $prefix + 'FluentEditor',
   components: {
+    TinyImageViewer: ImageViewer,
     IconEditorAlignCenter: IconEditorAlignCenter(),
     IconEditorAlignLeft: IconEditorAlignLeft(),
     IconEditorAlignRight: IconEditorAlignRight(),

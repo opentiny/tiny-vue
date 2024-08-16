@@ -69,10 +69,11 @@
                         </tiny-option>
                       </tiny-select>
                     </div>
+                    <!-- 勿同步，tiny侧search组件change事件需要按回车触发 -->
                     <tiny-search
                       v-if="search"
                       v-model="searchValue"
-                      @change="searchChange"
+                      @input="searchChange"
                       :placeholder="t('ui.grid.individuation.toolbar.search')"
                     ></tiny-search>
                     <div v-if="isGroup">
@@ -916,7 +917,8 @@ export default defineComponent({
     selectFocus(event, index) {
       this.lastSelectIndex = index
     },
-    searchChange(key, val) {
+    // 勿同步，search组件input事件第一个参数就是val
+    searchChange(val) {
       const getRenderedTitle = (col) => {
         let result = ''
 

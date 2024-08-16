@@ -4,7 +4,16 @@
   "private": true,
   "packageManager": "pnpm@8.3.1",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
+  "author": "OpenTiny Team",
+  "license": "MIT",
   "homepage": "https://opentiny.design/tiny-vue",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opentiny/tiny-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-vue/issues"
+  },
   "keywords": [
     "vue",
     "vue3",
@@ -16,15 +25,6 @@
     "renderless-components",
     "headless-components"
   ],
-  "author": "OpenTiny Team",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:opentiny/tiny-vue.git"
-  },
-  "bugs": {
-    "url": "https://github.com/opentiny/tiny-vue/issues"
-  },
   "main": "packages/index.js",
   "engines": {
     "node": ">=16",
@@ -32,7 +32,7 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "pnpm build:internals && pnpm -F @opentiny/fluent-editor build",
+    "postinstall": "pnpm build:internals",
     "prepare": "husky install",
     "bootstrap": "pnpm --filter=\"!./packages/dist/**\" install",
     "dev": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/vue3 dev",
@@ -81,7 +81,7 @@
     "pub:themeSaas": "pnpm --filter=\"./packages/theme-saas/dist\" publish --no-git-checks --access=public",
     "pub:renderless": "pnpm --filter=\"./packages/renderless/dist\" publish --no-git-checks --access=public",
     "pub:runtime": "pnpm --filter=\"./packages/vue-runtime/\" publish --no-git-checks --access=public",
-    "pub:all": "pnpm pub2 && pnpm pub3 && pnpm pub:theme && pnpm pub:themeMobile && pnpm pub:themeSaas && pnpm pub:renderless && pnpm pub:runtime",
+    "pub:all": "pnpm pub2 && pnpm pub3 && pnpm pub:theme && pnpm pub:themeMobile && pnpm pub:themeSaas && pnpm pub:renderless",
     "pub:site": "pnpm -C examples/sites pub",
     "// ---------- 自动化发测试包 ----------": "",
     "auto-build-pub": "pnpm -C internals/automate auto-build-pub",
@@ -162,6 +162,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.38.6",
+    "@commitlint/config-conventional": "^18.4.3",
     "@types/color": "^3.0.3",
     "@types/eslint": "^8.4.10",
     "@types/node": "^18.11.18",
@@ -171,6 +172,7 @@
     "@volar-plugins/prettier": "^2.0.0",
     "@volar-plugins/prettyhtml": "^2.0.0",
     "@vue/tsconfig": "^0.4.0",
+    "commitlint": "^18.4.3",
     "depcheck": "1.4.3",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.8.0",
@@ -183,11 +185,9 @@
     "gulp-less": "^5.0.0",
     "gulp-svg-inline": "^1.0.1",
     "gulp-transform": "^3.0.5",
+    "husky": "^8.0.3",
     "lerna": "^6.4.0",
     "lint-staged": "^15.2.0",
-    "husky": "^8.0.3",
-    "commitlint": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
     "minimist": "^1.2.8",
     "node-xlsx": "^0.21.0",
     "prettier": "^3.0.0",

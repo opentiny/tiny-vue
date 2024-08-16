@@ -41,6 +41,7 @@ import {
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
 import DropdownItem from '@opentiny/vue-dropdown-item'
+import { handleActivedCanActive } from '../../edit/src/utils/handleActived'
 
 const insertedField = GLOBAL_CONFIG.constant.insertedField
 
@@ -829,7 +830,13 @@ export const Cell = {
   renderRowEdit(h, params) {
     let { actived } = params.$table.editStore
 
-    return Cell.runRenderer(h, params, this, actived && actived.row === params.row)
+    const { editConfig } = params.$table
+    return Cell.runRenderer(
+      h,
+      params,
+      this,
+      actived && actived.row === params.row && handleActivedCanActive({ editConfig, params })
+    )
   },
   renderTreeCellEdit(h, params) {
     return Cell.renderTreeIcon(h, params).concat(Cell.renderCellEdit(h, params))

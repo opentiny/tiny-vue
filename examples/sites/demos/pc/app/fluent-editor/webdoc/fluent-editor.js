@@ -1,7 +1,7 @@
 export default {
   column: '2',
   owner: '',
-  metaData: {
+  meta: {
     experimental: '3.17.0'
   },
   demos: [
@@ -48,7 +48,8 @@ export default {
         'en-US': ''
       },
       desc: {
-        'zh-CN': '通过 <code>options</code> 设置编辑器的配置项，支持的配置项和 Quill 的相同，可参考 <a href="https://quilljs.com/docs/configuration#options" target="_blank">Quill</a> 文档。',
+        'zh-CN':
+          '通过 <code>options</code> 设置编辑器的配置项，支持的配置项和 Quill 的相同，可参考 <a href="https://quilljs.com/docs/configuration#options" target="_blank">Quill</a> 文档。',
         'en-US': ''
       },
       codeFiles: ['options.vue']
@@ -60,23 +61,11 @@ export default {
         'en-US': ''
       },
       desc: {
-        'zh-CN': '<p>通过 <code>data-type</code> 指定富文本数据保存的格式。数据默认保存格式为 Delta 形式，若需要将数据保存格式设置为 HTML 形式，并关闭 HTML 格式自动转 Delta 格式，设置 <code>:data-type="false"</code>，<code>:data-upgrade="false"</code>。</p>',
+        'zh-CN':
+          '<p>通过 <code>data-type</code> 指定富文本数据保存的格式。数据默认保存格式为 Delta 形式，若需要将数据保存格式设置为 HTML 形式，并关闭 HTML 格式自动转 Delta 格式，设置 <code>:data-type="false"</code>，<code>:data-upgrade="false"</code>。</p>',
         'en-US': ''
       },
       codeFiles: ['data-switch.vue']
-    },
-    // {
-    //   demoId: 'fluent-editor',
-    //   name: {
-    //     'zh-CN': '框架无关版本',
-    //     'en-US': ''
-    //   },
-    //   desc: {
-    //     'zh-CN': '<p>通过 <code>new FluentEditor(\'#editor\', options)</code> 初始化一个富文本编辑器，用法和 Quill 一样，第一个参数是需要挂载富文本编辑器的 DOM 节点，第二个参数是配置项。</p>',
-    //     'en-US':
-    //       '<p></p>'
-    //   },
-    //   codeFiles: ['fluent-editor.vue']
-    // }
+    }
   ]
 }

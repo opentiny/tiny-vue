@@ -241,7 +241,7 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'lazy-show-popper',
           mfDemo: '',
-          metaData: {
+          meta: {
             experimental: '3.18.0'
           }
         }
@@ -544,7 +544,7 @@ interface IItemData {
       name: 'IButtonType',
       type: 'type',
       code: `        
-type IButtonType =  'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
+type IButtonType = 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
 `
     },
     {
