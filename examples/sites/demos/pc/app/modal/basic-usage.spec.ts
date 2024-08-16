@@ -19,7 +19,7 @@ test('基本用法', async ({ page }) => {
   // 成功提示框
   await page.getByRole('button', { name: /成功提示框/ }).click()
   await expect(modal).toHaveClass(/status__success/)
-  await expect(modal.locator('.tiny-modal__header svg').first()).toHaveClass(/tiny-icon-success/)
+  await expect(modal.locator('.tiny-modal__header svg').first()).toHaveClass(/tiny-modal-svg__success/)
   await page.getByRole('button', { name: /确定/, exact: true }).click()
   await expect(page.locator('.tiny-modal.type__alert.status__success')).not.toBeVisible()
 

@@ -291,7 +291,7 @@ export default {
       calcHash: '文档正在计算加密中',
       uploadFile: '文件上传',
       downloadAll: '全部下载',
-      onlySupport: '仅支持{type}格式文件',
+      onlySupport: '支持{type}格式文件',
       fileNotLessThan: '单个文件不能小于',
       fileNotMoreThan: '单个文件不能超过',
       fileSizeRange: '单个文件大小需在{moreThan}~{lessThan}之间',

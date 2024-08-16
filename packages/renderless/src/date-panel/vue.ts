@@ -55,7 +55,8 @@ import {
   computerTimeFormat,
   watchVisible,
   getDisabledNow,
-  getDisabledConfirm
+  getDisabledConfirm,
+  getNowTime
 } from './index'
 import { getWeekNumber, extractDateFormat } from '../common/deps/date-util'
 import { DATEPICKER, DATE } from '../common'
@@ -84,7 +85,8 @@ export const api = [
   'handleVisibleDateChange',
   'handleLeave',
   'handleShortcutClick',
-  'handleTimePickClose'
+  'handleTimePickClose',
+  'getNowTime'
 ]
 
 const initState = ({ reactive, computed, api, i18n }) => {
@@ -175,7 +177,7 @@ const initWatch = ({ watch, state, api, nextTick }) => {
   watch(() => state.visible, api.watchVisible)
 }
 
-const initApi = ({ api, state, t, emit, nextTick, vm, watch }) => {
+const initApi = ({ api, state, t, emit, nextTick, vm, watch, props }) => {
   Object.assign(api, {
     t,
     state,
@@ -206,7 +208,7 @@ const initApi = ({ api, state, t, emit, nextTick, vm, watch }) => {
     searchTz: searchTz({ api, state }),
     handleEnter: handleEnter(api),
     handleLeave: handleLeave({ api, emit }),
-    changeToNow: changeToNow({ api, state }),
+    changeToNow: changeToNow({ api, state, props }),
     isValidValue: isValidValue({ api, state }),
     handleClear: handleClear({ api, state, emit }),
     watchValue: watchValue({ api, state }),
@@ -223,7 +225,8 @@ const initApi = ({ api, state, t, emit, nextTick, vm, watch }) => {
     handleVisibleTimeChange: handleVisibleTimeChange({ api, vm, state, t }),
     computerTimeFormat: computerTimeFormat({ state }),
     getDisabledNow: getDisabledNow({ state }),
-    getDisabledConfirm: getDisabledConfirm({ state })
+    getDisabledConfirm: getDisabledConfirm({ state }),
+    getNowTime: getNowTime({ props })
   })
 }
 
@@ -232,7 +235,7 @@ export const renderless = (props, { computed, reactive, watch, nextTick }, { t, 
   const emit = props.emitter ? props.emitter.emit : $emit
   const state = initState({ reactive, computed, api, i18n })
 
-  initApi({ api, state, t, emit, nextTick, vm, watch })
+  initApi({ api, state, t, emit, nextTick, vm, watch, props })
   initWatch({ watch, state, api, nextTick })
 
   return api

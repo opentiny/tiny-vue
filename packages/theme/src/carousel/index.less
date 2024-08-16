@@ -64,11 +64,13 @@
       &.@{carousel-prefix-cls}__arrow-left {
         left: 16px;
         color: var(--ti-carousel-arrow-text-color);
+        background-color: var(--ti-carousel-arrow-left-bg-color);
       }
 
       &.@{carousel-prefix-cls}__arrow-right {
         right: 16px;
         color: var(--ti-carousel-arrow-text-color);
+        background-color: var(--ti-carousel-arrow-right-bg-color);
       }
 
       &.@{carousel-prefix-cls}__arrow-top {
@@ -98,10 +100,10 @@
   & &__indicators {
     position: absolute;
     list-style: none;
-    bottom: 8px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    margin: 0;
+    margin: 0 0 16px;
     padding: 0 4px;
     z-index: 2;
     background: var(--ti-carousel-indicators-bg-color);
@@ -197,24 +199,26 @@
 
     &.@{carousel-prefix-cls}__indicators-title {
       left: auto;
-      right: 12px;
-      bottom: 3px;
+      right: 16px;
+      bottom: 0;
+      margin: 0 0 8px;
       transform: none;
       background: transparent;
     }
 
     &.@{carousel-prefix-cls}__indicators-vertical {
-      left: 12px;
-      right: 0px;
+      left: 16px;
+      right: 0;
       bottom: 50%;
       width: 16px;
       height: auto;
       transform: translateY(50%);
       padding: 2px 4px;
+      margin: 0;
 
       .@{carousel-prefix-cls}__indicator {
         display: block;
-        margin: 4px 0;
+        margin: 0 0 12px;
         padding: 0;
 
         &:first-child {

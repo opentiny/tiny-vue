@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TinyFluentEditor from '@opentiny/vue-fluent-editor'
+import { TinyFluentEditor } from '@opentiny/vue'
 
 export default {
   components: {

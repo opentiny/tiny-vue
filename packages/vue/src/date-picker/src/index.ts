@@ -215,6 +215,9 @@ export const datePickerProps = {
   changeCompat: {
     type: Boolean,
     default: false
+  },
+  nowClick: {
+    type: Function
   }
 }
 

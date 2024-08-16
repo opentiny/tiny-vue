@@ -9,7 +9,7 @@
 <script setup>
 import { ref } from 'vue'
 import { Modal } from '@opentiny/vue'
-import TinyFluentEditor from '@opentiny/vue-fluent-editor'
+import { TinyFluentEditor } from '@opentiny/vue'
 
 const content = ref('{"ops":[{"insert":"Hello "},{"attributes":{"bold":true},"insert":"FluentEditor"},{"insert":"!"}]}')
 const imageUpload = {
@@ -21,6 +21,7 @@ const imageUpload = {
   success: (serverResponse, next) => {
     let file = {}
 
+    // eslint-disable-next-line no-unreachable-loop
     for (const key in serverResponse) {
       file = serverResponse[key]
       break

@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-upload",
-  "version": "3.17.0",
+  "version": "3.18.0",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
@@ -18,7 +18,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-upload-dragger": "workspace:~",
-    "@opentiny/vue-modal": "workspace:~"
+    "@opentiny/vue-modal": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~"
   },
   "license": "MIT"
 }

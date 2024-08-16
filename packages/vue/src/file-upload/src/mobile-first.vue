@@ -84,7 +84,8 @@ export default defineComponent({
     'lockScroll',
     'compact',
     'encryptConfig',
-    'imageBgColor'
+    'imageBgColor',
+    'promptTip'
   ],
   setup(props, context) {
     return setup({
@@ -182,7 +183,8 @@ export default defineComponent({
       compact,
       encryptConfig,
       encryptDialogConfirm,
-      imageBgColor
+      imageBgColor,
+      promptTip
     } = this
 
     const listType = this.listType === 'saas' ? 'text' : this.listType
@@ -481,7 +483,8 @@ export default defineComponent({
         mode,
         showTitle,
         isHwh5,
-        tipMessage
+        tipMessage,
+        promptTip
       },
       ref: 'upload-inner'
     }

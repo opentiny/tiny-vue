@@ -10,7 +10,7 @@ test('测试Tooltip的是否能出现', async ({ page }) => {
   let tooltip = page.getByRole('tooltip', { name: 'Top Left 提示文字' })
 
   await page.waitForTimeout(100)
-  await page.mouse.move(600, 300)
+  await button.hover()
   await expect(tooltip).toBeVisible()
 
   // 测试Tooltip的位置是否正确

@@ -1,5 +1,5 @@
-const fs = require('node:fs')
-const fsExtra = require('fs-extra')
+import fs from 'node:fs'
+import fsExtra from 'fs-extra'
 
 const indexLessPath = 'index.less'
 const indexJsPath = 'index.js'
@@ -11,8 +11,7 @@ const basePath = '/base/'
 
 const emptyThemeContent = `@import '../../{{}}/index.less';`
 
-const baseContent = `@import '../../base/index.less';
-html:root`
+const baseContent = fs.readFileSync('../src/base/basic-var.less', 'utf8')
 
 const scopedTitle = `@import '../../custom.less';
 @import '../../{{}}/index.less';
@@ -150,33 +149,32 @@ const createTheme = (callbackFn) => {
       const data = fs.statSync(path)
 
       if (!data.isDirectory()) {
-        const dataStr = fs.readFileSync(path, { encoding: 'utf8' })
-        const startIndex = dataStr.indexOf('{') + 4
-        const endIndex = dataStr.indexOf('}')
-        const newDataStr =
-          dataStr
-            .slice(startIndex, endIndex)
-            .replace(/\'ti-/g, '--ti-')
-            .replace(/\'/g, '')
-            .replace(/\,\n/g, ';\n')
-            .replace(/\, \/\//g, '; //')
-            .slice(0, -1) + ';'
-
-        let scropedData = scopedTitle.replace('{{}}', fileDir)
-
-        if (cssScopedMap[fileDir]) {
-          if (Array.isArray(cssScopedMap[fileDir])) {
-            cssScopedMap[fileDir].forEach((item) => {
-              scropedData += scopedContent.replace(/\{compName\}/g, item).replace(/\{var\}/g, newDataStr)
+        import(path).then((obj) => {
+          let newDataStr = ''
+          Object.values(obj).forEach((value) => {
+            Object.keys(value).forEach((key, index) => {
+              const newValue = `--${key}: ${value[key]};`
+              newDataStr += index !== 0 ? `\n  ${newValue}` : newValue
             })
-          } else {
-            scropedData += scopedContent.replace(/\{compName\}/g, cssScopedMap[fileDir]).replace(/\{var\}/g, newDataStr)
-          }
-        } else {
-          scropedData += scopedContent.replace(/\{compName\}/g, fileDir).replace(/\{var\}/g, newDataStr)
-        }
+          })
+          let scropedData = scopedTitle.replace('{{}}', fileDir)
 
-        writeFile(parentPath + '/index.less', scropedData)
+          if (cssScopedMap[fileDir]) {
+            if (Array.isArray(cssScopedMap[fileDir])) {
+              cssScopedMap[fileDir].forEach((item) => {
+                scropedData += scopedContent.replace(/\{compName\}/g, item).replace(/\{var\}/g, newDataStr)
+              })
+            } else {
+              scropedData += scopedContent
+                .replace(/\{compName\}/g, cssScopedMap[fileDir])
+                .replace(/\{var\}/g, newDataStr)
+            }
+          } else {
+            scropedData += scopedContent.replace(/\{compName\}/g, fileDir).replace(/\{var\}/g, newDataStr)
+          }
+
+          writeFile(parentPath + '/index.less', scropedData)
+        })
       }
     }
 
@@ -225,14 +223,15 @@ const createTheme = (callbackFn) => {
     let newDataStr = dataStr.slice(startIndex, endIndex)
     const lastIndex = newDataStr.lastIndexOf("'")
     newDataStr =
-      baseContent +
       newDataStr
         .slice(0, lastIndex)
         .replace(/\'ti-/g, '--ti-')
         .replace(/\'/g, '')
         .replace(/\,\n/g, ';\n')
-        .replace(/\, \/\//g, '; //') +
-      ';\n}'
+        .replace(/\, \/\//g, '; //')
+        .replace('{', '') + ';\n}'
+
+    newDataStr = baseContent.replace('}', newDataStr)
 
     writeFile(buildThemePathMap[fileDir] + '/index.less', newDataStr)
   }
@@ -255,4 +254,4 @@ const removeDir = (callbackFn) => {
   }
 }
 
-module.exports = { createTheme, removeDir }
+export { createTheme, removeDir }

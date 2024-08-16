@@ -4,7 +4,8 @@ test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('tabs#basic-usage')
 
-  const tabs = page.locator('.tiny-tabs')
+  const container = page.locator('#basic-usage')
+  const tabs = container.locator('.tiny-tabs')
   const tabItems = tabs.getByRole('tab')
   const item1 = tabItems.nth(0)
   const item2 = tabItems.nth(1)
