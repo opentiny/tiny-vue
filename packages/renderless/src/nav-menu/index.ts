@@ -214,8 +214,8 @@ export const mounted =
     on(window, 'resize', api.calcWidth)
 
     if (router) {
-      state.afterEach = () => {
-        api.setActiveMenu(api.getSelectedIndex(router.currentRoute.path))
+      state.afterEach = (to) => {
+        api.setActiveMenu(api.getSelectedIndex(to.path))
       }
 
       router.afterEach(state.afterEach)
@@ -240,6 +240,7 @@ export const unMounted =
 export const getSelectedIndex =
   (state: INavMenuState) =>
   (path: string): number => {
+    if (!path) return
     let length = state.data.length
     let index = -1
 
@@ -460,6 +461,7 @@ export const clickMenu =
 export const skip =
   ({ api, router, fields }: Pick<INavMenuRenderlessParams, 'api' | 'router' | 'fields'>) =>
   (item: menuItemType, flag = false): string | null => {
+    if (!router) return
     if (item.isFullUrl) {
       const { urlField = 'url' } = fields || {}
       const router = item[urlField] || item.route
@@ -472,7 +474,7 @@ export const skip =
         : `/${item.route || ''}`.replace(/^\/+/, '/').replace('#/', '')
 
     if (address) {
-      return router.push(address)
+      return router?.push(address)
     } else {
       return ''
     }
