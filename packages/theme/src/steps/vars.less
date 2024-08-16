@@ -59,8 +59,10 @@
   --ti-steps-description-text-color: var(--ti-common-color-text-secondary, #575d6c);
   // 描述信息最小宽度
   --ti-steps-description-min-width: calc(var(--ti-common-space-10, 10px) * 10);
-  // 垂直单链型描述上边距
-  --ti-steps-vertical-description-margin-top: var(--ti-common-space-2x);
+  // 垂直单链型节点标题上边距
+  --ti-steps-vertical-title-margin-top: var(--ti-common-space-3x, 12px);
+  // 垂直单链型节点描述上边距
+  --ti-steps-vertical-description-margin-top: var(--ti-common-space-2x, 8px);
   // 图标边框宽度
   --ti-steps-icon-border-width: var(--ti-common-space-1, 1px);
   // 自定义图标背景色
@@ -95,9 +97,13 @@
   --ti-steps-done-icon-size: var(--ti-common-font-size-1, 14px);
   // 已完成节点背景色
   --ti-steps-done-icon-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+  // 已完成节点图标大小
+  --ti-steps-done-icon-size: var(--ti-common-font-size-1, 14px);
 
   // 未完成的线条色
   --ti-steps-line-bg-color: var(--ti-common-color-bg-secondary, #adb0b8);
+  // doing状态线条色
+  --ti-steps-doing-line-border-color: var(--ti-common-color-bg-secondary, #adb0b8);
   // 未完成节点的背景色
   --ti-steps-icon-bg-color: var(--ti-common-color-bg-white-normal, #fff);
   // 未完成节点序号图标色
@@ -156,11 +162,16 @@
   --ti-steps-disabled-select-icon-color: var(--ti-common-color-text-disabled, #adb0b8);
 
   // mini尺寸序号圆圈大小
-  --ti-steps-mini-icon-size: var(--ti-common-font-size-5, 24px);
+  --ti-steps-mini-icon-size: var(--ti-common-font-size-2, 16px);
   // mini尺寸序号字号
   --ti-steps-mini-number-font-size: var(--ti-common-font-size-base, 12px);
   // mini尺寸节点内容字号
   --ti-steps-mini-font-size-base: var(--ti-common-font-size-base, 12px);
+
+  // small尺寸序号圆圈大小
+  --ti-steps-small-icon-size: var(--ti-common-font-size-5, 16px);
+  // small尺寸序号字号
+  --ti-steps-small-number-font-size: var(--ti-common-font-size-base, 12px);
 
   // 向导步骤条边框色
   --ti-steps-advanced-border-color: var(--ti-common-color-line-normal, #adb0b8);

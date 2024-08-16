@@ -89,7 +89,5 @@ export default {
   'color-select-panel': 'color-select-panel',
   'color-picker': 'color-picker',
   'split': 'split-wrapper',
-  'float-bar': 'float-bar',
-  'calendar-view': 'calendar-view',
-  'calendar-view-tooltip': 'calendar-view-tooltip'
+  'float-bar': 'float-bar'
 }
