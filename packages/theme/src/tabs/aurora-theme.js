@@ -12,5 +12,6 @@ export const tinyTabsAuroraTheme = {
   'ti-tabs-dark-text-color-active': 'var(--ti-common-color-primary-normal)',
   'ti-tabs-dark-border-weight': 'var(--ti-common-border-weight-normal)',
   'ti-tabs-item-padding-horizontal': 'var(--ti-common-space-6x)',
-  'ti-tabs-item-margin-right': 'var(--ti-common-space-6x)'
+  'ti-tabs-item-margin-right': 'var(--ti-common-space-6x)',
+  'ti-tabs-header-separator-height': 'var(--ti-common-space-3x)'
 }

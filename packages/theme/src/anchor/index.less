@@ -135,13 +135,16 @@
         bottom: -18px;
       }
 
+      &--active:before {
+        background-color: var(--ti-anchor-link-active-text-color);
+      }
+
       &:hover,
       &--active {
         color: var(--ti-anchor-link-active-text-color);
 
         &:before {
           border-color: var(--ti-anchor-link-active-text-color);
-          background-color: var(--ti-anchor-link-active-text-color);
           opacity: 1;
         }
       }
