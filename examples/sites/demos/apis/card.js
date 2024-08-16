@@ -7,7 +7,7 @@ export default {
       props: [
         {
           name: 'auto-width',
-          type: 'Boolean',
+          type: 'boolean',
           defaultValue: '',
           desc: {
             'zh-CN': '卡片的宽度是否自动撑开，设置后将不再给卡片设置固定宽度',
@@ -20,7 +20,7 @@ export default {
         },
         {
           name: 'check-type',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '设置卡片单选、多选，单选/radio；多选/checkbox，需同时设置 label。',
@@ -33,7 +33,7 @@ export default {
         },
         {
           name: 'custom-class',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '卡片的class',
@@ -45,8 +45,8 @@ export default {
         },
         {
           name: 'disabled',
-          type: 'Boolean',
-          defaultValue: '',
+          type: 'boolean',
+          defaultValue: 'false',
           desc: {
             'zh-CN': '卡片禁用',
             'en-US': 'Card disabled'
@@ -57,7 +57,7 @@ export default {
         },
         {
           name: 'height',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '卡片内容区域的高度',
@@ -69,7 +69,7 @@ export default {
         },
         {
           name: 'icon-more',
-          type: 'Object',
+          type: "'iconxxx' | Component",
           defaultValue: '',
           desc: {
             'zh-CN': '更多按钮图标，可传入一个svg图标对象进行替换',
@@ -81,7 +81,7 @@ export default {
         },
         {
           name: 'label',
-          type: 'String / Number',
+          type: 'string / number',
           defaultValue: '',
           desc: {
             'zh-CN': 'checkbox或radio的label',
@@ -93,7 +93,8 @@ export default {
         },
         {
           name: 'options',
-          type: 'Array',
+          typeAnchorName: 'IOptions',
+          type: 'IOptions',
           defaultValue: '',
           desc: {
             'zh-CN': '操作按钮配置',
@@ -105,8 +106,8 @@ export default {
         },
         {
           name: 'size',
-          type: 'String',
-          defaultValue: '',
+          type: 'string',
+          defaultValue: 'medium',
           desc: {
             'zh-CN': '尺寸，支持large、medium、small、mini 4个尺寸，默认值为medium',
             'en-US': 'Size. The options are large, medium, small, and mini. The default value is medium.'
@@ -117,7 +118,7 @@ export default {
         },
         {
           name: 'src',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '图片或者视频的地址',
@@ -129,8 +130,8 @@ export default {
         },
         {
           name: 'status',
-          type: 'String',
-          defaultValue: '',
+          type: 'string',
+          defaultValue: 'default',
           desc: {
             'zh-CN': '卡片状态，支持 success、warning、alerting、danger 4 种状态',
             'en-US': 'Card status. The value can be success, warning, alerting, or dangerous.'
@@ -141,7 +142,7 @@ export default {
         },
         {
           name: 'title',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '卡片的标题',
@@ -153,10 +154,10 @@ export default {
         },
         {
           name: 'type',
-          type: 'String',
-          defaultValue: '',
+          type: 'string',
+          defaultValue: 'text',
           desc: {
-            'zh-CN': '设置卡片类型，支持 text、image、video、logo 4 种类型。',
+            'zh-CN': '设置卡片类型，支持 text、image、video、logo 4 种类型',
             'en-US': 'Set the card type. The options are text, image, video, and logo.'
           },
           mode: ['pc', 'mobile-first'],
@@ -165,7 +166,7 @@ export default {
         },
         {
           name: 'v-model',
-          type: 'String',
+          type: 'string',
           defaultValue: '',
           desc: {
             'zh-CN': '绑定值，默认为空',
@@ -174,12 +175,24 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'check-type-checkbox',
           mfDemo: ''
+        },
+        {
+          name: 'check-mode',
+          type: 'string',
+          defaultValue: 'normal',
+          desc: {
+            'zh-CN': '卡片被选中后的呈现模式，可选值为：normal | simple | badge',
+            'en-US': 'Display mode of a selected card. The options are as follows: normal | simple | badge'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'check-mode',
+          mfDemo: ''
         }
       ],
       events: [
         {
           name: 'change',
-          type: 'Function()',
+          type: '() => {}',
           defaultValue: '',
           desc: {
             'zh-CN': '组件选中/取消选中事件',
@@ -191,7 +204,7 @@ export default {
         },
         {
           name: 'icon-click',
-          type: 'Function()',
+          type: '() => {}',
           defaultValue: '',
           desc: {
             'zh-CN': '操作栏按钮点击事件',
@@ -203,7 +216,7 @@ export default {
         },
         {
           name: 'click',
-          type: 'Function()',
+          type: '() => {}',
           defaultValue: '',
           desc: {
             'zh-CN': '点击卡片事件',
@@ -277,6 +290,34 @@ export default {
           mfDemo: 'slot'
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IOptions',
+      type: 'interface',
+      code: `
+interface IOptions [
+  {
+    text: '删除列表',
+    icon: IconDel()
+  },
+  {
+    text: '编辑',
+    icon: IconWriting(),
+    disabled: true
+  },
+  {
+    text: '排序',
+    icon: IconAscending()
+  },
+  {
+    text: '分享',
+    icon: IconShare(),
+    disabled: true
+  }
+]
+`
     }
   ]
 }

@@ -1,9 +1,18 @@
 {
   "name": "@opentiny/vue-theme",
-  "version": "3.16.4",
+  "version": "3.18.0",
+  "type": "module",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
-  "main": "index.css",
+  "author": "OpenTiny Team",
+  "license": "MIT",
   "homepage": "https://opentiny.design/tiny-vue",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opentiny/tiny-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opentiny/tiny-vue/issues"
+  },
   "keywords": [
     "vue",
     "vue3",
@@ -15,24 +24,16 @@
     "renderless-components",
     "headless-components"
   ],
-  "author": "OpenTiny Team",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:opentiny/tiny-vue.git"
-  },
-  "bugs": {
-    "url": "https://github.com/opentiny/tiny-vue/issues"
-  },
   "exports": {
     "./*": "./src/*"
   },
+  "main": "index.css",
   "scripts": {
     "clean": "rimraf dist src/aurora-theme src/smb-theme",
     "build:theme": "gulp build --gulpfile build/gulp-dist.js",
     "build": "npm run clean && npm run build:theme && node build/replace-img.js",
     "build:fast": "npm run build && npm run release",
-    "release": "node build/release.js && node build/postbuild.js && shx cp README.md dist",
+    "release": "node build/release.js && node build/postbuild.js",
     "build:copy-remote": "npm run build:theme && cp-cli dist ../tiny-vue/node_modules/@opentiny/vue-theme",
     "publishTgz": "node .cloudbuild/publish-tgzs.js",
     "postversion": "pnpm build",
@@ -42,18 +43,18 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "fast-glob": "^3.2.12",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "2.6.1",
     "gulp-less": "^5.0.0",
     "gulp-svg-inline": "^1.0.1",
     "gulp-transform": "3.0.5",
-    "gulp-concat": "2.6.1",
-    "svgo": "3.2.0",
     "rimraf": "^2.6.2",
-    "fast-glob": "^3.2.12",
     "stylelint": "^14.14.0",
-    "stylelint-config-standard": "^29.0.0"
+    "stylelint-config-standard": "^29.0.0",
+    "svgo": "3.2.0"
   },
   "stylelint": {
     "extends": [

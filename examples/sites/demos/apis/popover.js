@@ -169,7 +169,8 @@ export default {
         },
         {
           name: 'popper-options',
-          type: 'object',
+          type: 'IPopperOption',
+          typeAnchorName: 'IPopperOption',
           defaultValue: '{}',
           desc: {
             'zh-CN': '弹出层参数',
@@ -283,7 +284,7 @@ export default {
       events: [
         {
           name: 'after-enter',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '进入的动画播放完毕后触发',
@@ -296,7 +297,7 @@ export default {
         },
         {
           name: 'after-leave',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '离开的动画播放完毕后触发',
@@ -309,7 +310,7 @@ export default {
         },
         {
           name: 'hide',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '隐藏时触发',
@@ -322,7 +323,7 @@ export default {
         },
         {
           name: 'show',
-          type: '()=>void',
+          type: '() =>void',
           defaultValue: '',
           desc: {
             'zh-CN': '显示时触发',
@@ -376,6 +377,8 @@ interface IPopperOption {
   removeOnDestroy: boolean // 弹出层消失后，是否移除弹出层的DOM元素，布尔false
   updateHiddenPopperOnScroll: boolean  // 滚动过程中是否更新隐藏的弹出层位置
   boundariesElement: 'viewport' | 'body' | HTMLElement // 滚动过程中,弹出层的碰撞边界。 默认值为： 'viewport'
+  ignoreBoundaries: boolean  // 忽略边界判断，弹出的位置始终是设置的 placement 值
+  scrollParent:  HTMLElement  // 指定滚动的父节点，优化级最高。 默认为null
 }
       `
     },

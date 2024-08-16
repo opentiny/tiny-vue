@@ -1,7 +1,15 @@
 <template>
   <div>
     <h4 class="title">开启编辑状态：</h4>
-    <tiny-grid :data="tableData" seq-serial :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
+    <div class="btn-box">
+      <tiny-butotn @click="addRow">新增行</tiny-butotn>
+    </div>
+    <tiny-grid
+      :data="tableData"
+      ref="insertGrid"
+      seq-serial
+      :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true, insertChanged: true }"
+    >
       <tiny-grid-column type="index" width="60"></tiny-grid-column>
       <tiny-grid-column field="name" title="名称" :editor="{ component: 'input', autoselect: true }"></tiny-grid-column>
       <tiny-grid-column field="area" title="区域" :editor="{ component: 'select', options }"></tiny-grid-column>
@@ -38,12 +46,20 @@
 </template>
 
 <script>
-import { Grid, GridColumn } from '@opentiny/vue'
+import { Grid, GridColumn, Button } from '@opentiny/vue'
 
 export default {
   components: {
+    TinyButotn: Button,
     TinyGrid: Grid,
     TinyGridColumn: GridColumn
+  },
+  methods: {
+    addRow() {
+      this.$refs.insertGrid.insert({}).then((res) => {
+        this.$refs.insertGrid.setActiveRow(res.row)
+      })
+    }
   },
   data() {
     return {
@@ -81,6 +97,9 @@ export default {
 </script>
 
 <style scoped>
+.btn-box {
+  margin-bottom: 10px;
+}
 .title {
   font-size: 16px;
   padding: 15px;

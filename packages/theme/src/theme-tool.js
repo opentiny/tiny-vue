@@ -83,11 +83,21 @@ export default class TinyThemeTool {
    * 示例1：输入：checkbox-button，输出：.tiny-checkbox-button[class*=tiny]
    * 示例2：输入：month-table，输出：.tiny-month-table[class*=tiny],.tiny-year-table[class*=tiny]
    */
-  getSelectorByKey(key) {
-    if (!definedComponents[key]) return
+  getSelectorByKey(compNameList) {
+    const threeKey = `${compNameList[1]}-${compNameList[2]}-${compNameList[3]}`
+    const twoKey = `${compNameList[1]}-${compNameList[2]}`
+    let key = compNameList[1]
+    let value = definedComponents[key] || key
+    if (definedComponents[threeKey]) {
+      key = threeKey
+      value = definedComponents[threeKey]
+    } else if (definedComponents[twoKey]) {
+      key = twoKey
+      value = definedComponents[twoKey]
+    }
 
     let selector = ''
-    const keyItems = definedComponents[key].split(',')
+    const keyItems = value.split(',')
     keyItems.forEach((componentName, index) => {
       // 加上 [class*=tiny] 是为了提高权重，促使主题变换成功
       selector += '.tiny-' + componentName + '[class*=tiny]' + (index < keyItems.length - 1 ? ',' : '')
@@ -101,13 +111,9 @@ export default class TinyThemeTool {
     if (compNameList.length < 2) {
       return false
     }
-    const threeKey = `${compNameList[1]}-${compNameList[2]}-${compNameList[3]}`
-    const twoKey = `${compNameList[1]}-${compNameList[2]}`
 
     // 优先三段式命名的组件名，优先级从高到低为三段-二段-一段
-    return (
-      this.getSelectorByKey(threeKey) || this.getSelectorByKey(twoKey) || '.tiny-' + compNameList[1] + '[class*=tiny]'
-    )
+    return this.getSelectorByKey(compNameList)
   }
 
   formatCSSVariables(themeData) {

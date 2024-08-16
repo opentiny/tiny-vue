@@ -23,7 +23,7 @@ export default {
     beforeConfirm() {
       return new Promise((resolve, reject) => {
         Modal.confirm('确定关闭弹框？').then((res) => {
-          res === 'confirm' ? resolve() : reject(new Error())
+          res === 'confirm' ? resolve() : reject(new Error('已取消关闭'))
         })
       })
     }
@@ -34,5 +34,10 @@ export default {
 <style scoped>
 .demo-dept .tiny-dept {
   width: 270px;
+}
+.title {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
 }
 </style>

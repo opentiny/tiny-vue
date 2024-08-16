@@ -1027,6 +1027,11 @@
     "type": "template",
     "exclude": false
   },
+  "Directive": {
+    "path": "vue-directive/index.ts",
+    "type": "module",
+    "exclude": false
+  },
   "Divider": {
     "path": "vue/src/divider/index.ts",
     "type": "component",
@@ -1347,6 +1352,25 @@
   },
   "FlowchartPc": {
     "path": "vue/src/flowchart/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "FluentEditor": {
+    "path": "vue/src/fluent-editor/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "pc"
+    ]
+  },
+  "FluentEditorMobileFirst": {
+    "path": "vue/src/fluent-editor/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "FluentEditorPc": {
+    "path": "vue/src/fluent-editor/src/pc.vue",
     "type": "template",
     "exclude": false
   },
@@ -2775,6 +2799,31 @@
     "type": "template",
     "exclude": false
   },
+  "TimeLineNew": {
+    "path": "vue/src/time-line-new/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "mobile",
+      "pc"
+    ]
+  },
+  "TimeLineNewMobile": {
+    "path": "vue/src/time-line-new/src/mobile.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TimeLineNewMobileFirst": {
+    "path": "vue/src/time-line-new/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "TimeLineNewPc": {
+    "path": "vue/src/time-line-new/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "TimeLinePc": {
     "path": "vue/src/time-line/src/pc.vue",
     "type": "template",
@@ -2978,6 +3027,14 @@
     "type": "template",
     "exclude": false
   },
+  "TreeSelect": {
+    "path": "vue/src/tree-select/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
   "Upload": {
     "path": "vue/src/upload/index.ts",
     "type": "component",
@@ -3165,15 +3222,37 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "pc"
     ]
+  },
+  "YearRangeMobileFirst": {
+    "path": "vue/src/year-range/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "YearRangePc": {
+    "path": "vue/src/year-range/src/pc.vue",
+    "type": "template",
+    "exclude": false
   },
   "YearTable": {
     "path": "vue/src/year-table/index.ts",
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "pc"
     ]
+  },
+  "YearTableMobileFirst": {
+    "path": "vue/src/year-table/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "YearTablePc": {
+    "path": "vue/src/year-table/src/pc.vue",
+    "type": "template",
+    "exclude": false
   }
 }

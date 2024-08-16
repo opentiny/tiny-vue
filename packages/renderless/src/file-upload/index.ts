@@ -747,7 +747,7 @@ export const handleSuccess =
       const status = res?.data?.status
       const { STATUS_SPECIAL_CHARACTERS, NOT_SUPPORT_SPECIAL_CHARACTERS } = constants.EDM
 
-      delete file.cancelToken
+      file && delete file.cancelToken
 
       if (props.edm.upload && file && res.data && status !== 200) {
         if (status === STATUS_SPECIAL_CHARACTERS) {
@@ -2743,14 +2743,12 @@ export const getTipMessage =
       fileSizeTip = `${t(constants.FILE_NOT_LESS_THAN)}${api.formatFileSize(fileSize * kibibyte)}`
     } else if (Array.isArray(fileSize)) {
       fileSizeTip +=
-        !isNaN(fileSize[0]) && fileSize[0] !== 0
-          ? `${t(constants.FILE_NOT_LESS_THAN)}${api.formatFileSize(Number(fileSize[0]) * kibibyte)}${t(
-              constants.COMMA
-            )}`
+        !isNaN(fileSize[0]) && !isNaN(fileSize[1])
+          ? t(constants.FILE_SIZE_RANGE, {
+              moreThan: api.formatFileSize(Number(fileSize[0]) * kibibyte),
+              lessThan: api.formatFileSize(Number(fileSize[1]) * kibibyte)
+            })
           : ''
-      fileSizeTip += !isNaN(fileSize[1])
-        ? `${t(constants.FILE_NOT_MORE_THAN)}${api.formatFileSize(Number(fileSize[1]) * kibibyte)}`
-        : ''
     }
 
     let limitTip = limit ? t(constants.NUMBER_LIMIT, { number: limit }) : ''

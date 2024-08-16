@@ -5,6 +5,7 @@
       <tiny-radio v-model="viewType" label="card">卡片视图</tiny-radio>
       <tiny-radio v-model="viewType" label="list">列表视图</tiny-radio>
       <tiny-radio v-model="viewType" label="gantt">甘特视图</tiny-radio>
+      <tiny-radio v-model="viewType" label="custom">custom视图</tiny-radio>
     </div>
     <tiny-grid
       highlight-current-row
@@ -43,6 +44,7 @@
             :image="row.logo"
             :flex-grow="[0, 0]"
             :flex-basis="['50%', '50%']"
+            operate-flex-basis="80px"
             :options="listOptions"
             class="mb-3"
           >
@@ -67,7 +69,10 @@
         </div>
       </template>
       <template #gantt="{ rows }">
-        <div class="gantt-container">{{ rows.length }}</div>
+        <div class="gantt-container">gantt视图，表格行数{{ rows.length }}</div>
+      </template>
+      <template #custom="{ rows }">
+        <div class="custom-container">custom视图，表格行数{{ rows.length }}</div>
       </template>
     </tiny-grid>
   </div>
@@ -176,7 +181,12 @@ export default {
       },
       operationConfig: {
         buttons: [
-          { name: '操作1', icon: IconAreaChart(), click: this.clickHandler, disabled: true },
+          {
+            name: '操作',
+            icon: IconAreaChart(),
+            click: this.clickHandler,
+            disabled: true
+          },
           { name: '操作2', icon: IconBarChart(), click: this.clickHandler, disabled: (row) => row.id === '1' },
           { name: '操作3', icon: IconDotChart(), click: this.clickHandler, hidden: true },
           { name: '操作4', icon: IconLineChart(), click: this.clickHandler, hidden: (row) => row.id === '2' },

@@ -49,9 +49,9 @@
         <span
           :class="
             m(
-              'max-h-[theme(spacing.10)] line-clamp-2 inline-block relative top-px pl-2 sm:pl-0 leading-normal',
+              'max-h-[theme(spacing.10)] line-clamp-2 inline-block relative top-px leading-normal',
               (state.isRequired || required) && !state.hideRequiredAsterisk
-                ? `before:content-['*'] before:text-color-error before:absolute before:left-0 before:sm:relative`
+                ? `before:content-['*'] before:text-color-error before:relative before:mr-1`
                 : '',
               state.isDisplayOnly ? 'pl-0 before:hidden' : ''
             )
@@ -105,9 +105,8 @@
         :class="[
           '[&_[aria-label=checkbox-group]]:pl-0.5 sm:[&_[aria-label=checkbox-group]]:pl-0',
           '[&_>:first-child[data-tag=tiny-checkbox]]:pl-0.5 sm:[&_>:first-child[data-tag=tiny-checkbox]]:pl-0',
-          '[&_>:first-child[data-tag=tiny-cascader]]:w-full',
-          '[&_>:first-child[class=tiny-autocomplete]]:w-full',
-          '[&_>:first-child[class=tiny-cascader]]:w-full',
+          '[&_[class=tiny-autocomplete]]:w-full',
+          '[&_[class=tiny-cascader]]:w-full',
           state.isDisplayOnly
             ? '[&_>*:not([data-tag^=tiny-],[class^=tiny-])]:leading-8 [&_>*:not([data-tag^=tiny-],[class^=tiny-])]:sm:leading-normal'
             : ''
@@ -123,7 +122,7 @@
         <div
           :class="
             m(
-              'relative sm:absolute left-0 bottom-1 sm:-bottom-5 text-color-error text-xs leading-normal line-clamp-3 sm:line-clamp-1',
+              'relative sm:absolute left-0 bottom-1 sm:-bottom-5 text-color-error text-xs leading-normal line-clamp-3 sm:line-clamp-1 break-all',
               (typeof inlineMessage === 'boolean' && inlineMessage) || state.inlineMessage
                 ? 'relative top-auto left-auto inline-block'
                 : '',

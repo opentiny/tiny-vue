@@ -1,15 +1,15 @@
 <template>
   <div class="demo-drawer">
-    <tiny-button @click="toggleDrawer(true)" type="primary"> 点击展开 Drawer </tiny-button>
+    <tiny-button type="primary" @click="showDrawer"> 点击展开 Drawer </tiny-button>
     <tiny-drawer
+      ref="drawer"
       title="抽屉关闭将会被拦截"
-      :visible="visible"
-      @update:visible="visible = $event"
-      @confirm="confirm"
       show-footer
+      :visible="visible"
       :before-close="onBeforeClose"
+      @update:visible="visible = $event"
     >
-      <tiny-button @click="toggleDrawer(false)" type="primary"> 关闭 Drawer </tiny-button>
+      <tiny-button type="primary" @click="forceClose"> 强制关闭 Drawer </tiny-button>
     </tiny-drawer>
   </div>
 </template>
@@ -28,15 +28,15 @@ export default {
     }
   },
   methods: {
-    toggleDrawer(value) {
-      this.visible = value
+    showDrawer() {
+      this.visible = true
+    },
+    forceClose() {
+      this.$refs.drawer.close(true)
     },
     onBeforeClose(type) {
       Modal.message({ message: `beforeClose 回调参数 type =  ${type}`, status: 'info', duration: 5000 })
       return false
-    },
-    confirm() {
-      this.visible = false
     }
   }
 }

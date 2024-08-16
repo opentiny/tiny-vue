@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p>场景1：默认</p>
+  <div class="demo-drop">
+    <p class="demo-dropdown">场景1：默认</p>
     <tiny-dropdown split-button type="success">
       更多菜单
       <template #dropdown>
@@ -13,7 +13,8 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <p>场景2：设置 inherit-width</p>
+    <br /><br />
+    <p class="demo-dropdown">场景2：设置 inherit-width</p>
     <tiny-dropdown split-button type="success" :inherit-width="true">
       更多菜单
       <template #dropdown>
@@ -45,5 +46,15 @@ export default {
 p {
   font-size: 14px;
   line-height: 1.5;
+}
+.demo-dropdown {
+  margin-bottom: 8px;
+}
+</style>
+
+<style>
+.demo-drop .tiny-dropdown .tiny-dropdown__trigger.tiny-dropdown__caret-button {
+  padding-left: 14px;
+  padding-right: 14px;
 }
 </style>

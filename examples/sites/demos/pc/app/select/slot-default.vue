@@ -1,6 +1,7 @@
 <template>
   <div>
     <p>场景1：带标签和提示信息</p>
+    <br />
     <tiny-select v-model="value1" popper-class="slot-default">
       <template v-for="item in options1">
         <tiny-tooltip v-if="item.tip" :content="item.tip" placement="right" effect="light" :key="item.value">
@@ -15,8 +16,10 @@
         </tiny-option>
       </template>
     </tiny-select>
+    <br /><br />
 
     <p>场景2：选项双行</p>
+    <br />
     <tiny-select v-model="value2" popper-class="double-row">
       <tiny-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
         <div>

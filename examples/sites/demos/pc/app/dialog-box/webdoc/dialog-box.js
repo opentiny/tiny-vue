@@ -141,8 +141,10 @@ export default {
         'en-US': 'Disable the mask layer'
       },
       desc: {
-        'zh-CN': '<p>可通过<code>modal</code>属性设置<code>false</code>不启用遮罩层。</p>\n',
-        'en-US': '<p>Set the<code>modal</code>attribute to<code>false</code>to not enable mask layers.</p>\n'
+        'zh-CN':
+          '<p>可通过<code>modal</code>属性设置<code>false</code>不启用遮罩层。无遮罩层时，单击弹窗外部区域仍然可以关闭弹窗。</p>\n',
+        'en-US':
+          '<p>Set the<code>modal</code>attribute to<code>false</code>to not enable mask layers.When there is no masked layer, clicking on the outer area of the pop-up window can still close it.</p>\n'
       },
       codeFiles: ['no-modal.vue']
     },

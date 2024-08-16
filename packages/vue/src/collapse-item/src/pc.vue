@@ -29,11 +29,15 @@
         }"
         @focus="handleFocus"
         @blur="state.focusing = false"
-        @click="handleHeaderClick"
+        @click="handleHeaderContainerClick"
       >
-        <div class="tiny-collapse-item__arrow" @click.stop="handleHeaderClick">
+        <div class="tiny-collapse-item__arrow" :class="{ 'is-active': state.isActive }" @click.stop="handleHeaderClick">
           <slot name="icon">
-            <icon-chevron-right class="tiny-svg-size" :class="{ 'is-active': state.isActive }" />
+            <component
+              :is="state.arrowIcon"
+              class="tiny-collapse-item__arrow-icon tiny-svg-size"
+              :class="{ 'is-active': state.isActive }"
+            />
           </slot>
         </div>
         <div class="tiny-collapse-item__word-overflow" @click.stop="handleHeaderClick">
@@ -66,15 +70,16 @@ import { renderless, api } from '@opentiny/vue-renderless/collapse-item/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import CollapseTransition from '@opentiny/vue-collapse-transition'
 import { iconChevronRight } from '@opentiny/vue-icon'
+import type { ICollapseItemApi } from '@opentiny/vue-renderless/types/collapse-item.type'
 
 export default defineComponent({
-  props: [...props, 'title', 'titleRight', 'name', 'disabled'],
+  props: [...props, 'title', 'titleRight', 'name', 'disabled', 'expandIcon'],
   components: {
     CollapseTransition,
     IconChevronRight: iconChevronRight()
   },
   setup(props, context) {
-    return setup({ props, context, renderless, api })
+    return setup({ props, context, renderless, api }) as unknown as ICollapseItemApi
   }
 })
 </script>

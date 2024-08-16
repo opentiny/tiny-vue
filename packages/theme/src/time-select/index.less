@@ -14,6 +14,7 @@
 @import './vars.less';
 
 @time-select-prefix-cls: ~'@{css-prefix}time-select';
+@picker-panel-prefix-cls: ~'@{css-prefix}picker-panel';
 
 .@{time-select-prefix-cls} {
   .component-css-vars-time-select();
@@ -27,7 +28,7 @@
 
 
     &.selected:not(.disabled) {
-      color: var(--ti-time-select-item-selected-color);
+      color: var(--ti-time-select-item-selected-text-color);
       background-color: var(--ti-time-select-item-select-hover-bg-color);
     }
 
@@ -39,6 +40,12 @@
     &.disabled {
       color: var(--ti-time-select-item-disabled-text-color);
       cursor: not-allowed;
+    }
+  }
+  .@{picker-panel-prefix-cls} {
+    &__content {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }

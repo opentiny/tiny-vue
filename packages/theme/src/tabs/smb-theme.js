@@ -1,5 +1,5 @@
 export const tinyTabsSmbTheme = {
-  'ti-tabs-height': 'var(--ti-common-size-13x)',
+  'ti-tabs-height': 'var(--ti-common-size-12x)',
   'ti-tabs-dark-item-height': 'calc(var(--ti-common-size-base) * 11.75)',
   'ti-tabs-header-font-weight-active': 'var(--ti-common-font-weight-bold)',
   'ti-tabs-item-font-size': 'var(--ti-common-font-size-2)',
@@ -11,5 +11,7 @@ export const tinyTabsSmbTheme = {
   'ti-tabs-more-left-box-height': 'calc(var(--ti-common-size-base) * 13)',
   'ti-tabs-dropdown-more-margin-top': 'var(--ti-common-space-base)',
   'ti-tabs-content-margin-vertical': 'var(--ti-common-space-3x)',
-  'ti-tabs-content-margin-horizontal': 'var(--ti-common-space-0)'
+  'ti-tabs-content-margin-horizontal': 'var(--ti-common-space-0)',
+  'ti-tabs-dark-bg-color-hover': 'var(--ti-common-color-icon-graybg-hover)',
+  'ti-tabs-small-item-font-size': 'var(--ti-common-font-size-2)'
 }

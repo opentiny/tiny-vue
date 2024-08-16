@@ -18,6 +18,11 @@ export default {
   yes: 'Yes',
   no: 'No',
   ui: {
+    input: {
+      close: 'Close',
+      more: 'More',
+      detail: 'Detailed Info'
+    },
     numeric: {
       equalTo: 'Equal to',
       notEqualTo: 'Not equal to',
@@ -83,6 +88,9 @@ export default {
     button: {
       cancel: 'Cancel',
       confirm: 'Confirm'
+    },
+    buttonGroup: {
+      noData: 'No data'
     },
     buttonMessage: {
       cancel: 'Cancel',
@@ -173,6 +181,9 @@ export default {
       },
       timezone: 'selecting a timezone',
       year: '',
+      hour: 'hour',
+      minute: 'minute',
+      second: 'second',
       to: 'to',
       yearMonth: '{year} / {month}',
       yearMonthDay: '{year} / {month} / {day}'
@@ -278,9 +289,10 @@ export default {
       calcHash: 'Document is calculating encryption',
       uploadFile: 'Upload file',
       downloadAll: 'Download all',
-      onlySupport: 'Only support {type} file',
+      onlySupport: 'Support {type} file',
       fileNotLessThan: 'The size of single file cannot be less than ',
       fileNotMoreThan: 'The size of single file cannot be more than ',
+      fileSizeRange: 'The size of a single file must range from {moreThan} to {lessThan}.',
       notSupport: 'The format (.{format}) is not allowed.',
       notSupportNoSuffix: 'Files without suffixes are not supported currently',
       notSupportSpecialCharacters: 'The file name contains special characters, please rename the file and upload again',
@@ -353,7 +365,8 @@ export default {
         classComponentError: 'Class component rendering error.',
         groupColumnFixedError: 'Different fixed types cannot be set in the same group.',
         missingValueFormat:
-          'The renderer cannot format the date string. You should provide the "valueFormat" source date format configuration.'
+          'The renderer cannot format the date string. You should provide the "valueFormat" source date format configuration.',
+        clipboardWriteError: 'clipboard write error'
       },
       filter: {
         allFilter: 'All',
@@ -430,6 +443,7 @@ export default {
         switchapply: 'Apply',
         switchedit: 'Edit',
         switchdel: 'Delete',
+        switchdelconfirm: 'Deletion Confirmation',
         switchconfirm: 'Confirm',
         switchonlytemp: 'Save as template only',
         switchtempapply: 'Save as template and use',
@@ -507,6 +521,13 @@ export default {
       uploadsButtonText: 'select files',
       errorTypeTips: 'Upload file type mismatch',
       errorSizeTips: 'Upload file size exceeds limit',
+      confirmDeleteTips: 'Are you sure you want to delete this file?',
+      delete: 'Delete',
+      waitUpload: 'Waiting for upload',
+      operation: 'Operation',
+      success: 'Upload successful',
+      listTip: 'There are a total of {0} pieces of data: ',
+      errorListTip: 'There are {0} errors in them. Please modify them and try again',
       limitUploadFileType: 'Upload file type is limited to',
       limitUploadFileNumber: 'Limit the number of uploaded files to',
       limitUploadFileSize: 'The size of the uploaded file does not exceed',
@@ -655,6 +676,11 @@ export default {
       colorPicker: 'Background Color',
       placeholder: 'Insert text here...',
       maxLength: 'Text Length exceeds the Limit, max Length config is '
+    },
+    fluentEditor: {
+      undo: 'Undo',
+      redo: 'Redo',
+      lineheight: 'Line Height'
     },
     steps: {
       done: 'Completed',

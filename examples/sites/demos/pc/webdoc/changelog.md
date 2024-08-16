@@ -1,5 +1,44 @@
 # 更新日志
 
+## v2.17.0/v3.17.0
+
+`2024/07/17`
+
+## What's Changed
+
+### Exciting New Features 🎉
+
+- feat(auto-tip): add auto-tip directive by @zzcr
+- feat(fluent-editor): add fluent-editor component by @kagol
+- feat(base-select): [base-select,select] add base-select by @kagol in https://github.com/opentiny/tiny-vue/pull/1632
+- feat(runtime): add all、pc、mobile、mobile-first、simple runtime by @zzcr in https://github.com/opentiny/tiny-vue/pull/1662
+- feat(base-select): [select,base-select] add panel slot by @kagol in https://github.com/opentiny/tiny-vue/pull/1663
+- feat(components): [drawer] enable open event by @betavs in https://github.com/opentiny/tiny-vue/pull/1527
+- feat: update mobile first template by @zzcr in https://github.com/opentiny/tiny-vue/pull/1697
+- feat(breadcrumb): [breadcrumb] adapts to xdesign theme by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1693
+
+### Bug Fixes 🐛
+
+- fix(button-group): [button-group] Fixed I18n by @You-Hw-Y in https://github.com/opentiny/tiny-vue/pull/1689
+- fix(timeline): [timeline] add vertical description to node description slot by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1685
+- fix(dialog-box): update style problem by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1674
+- fix(nav-menu): [nav-menu] resolve the issue of current component not being highlighted by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/1695
+- fix(chart): [chart] Fixed baidu chart example and chart-core bug by @Davont in https://github.com/opentiny/tiny-vue/pull/1691
+- fix(theme): update scrollbar width to 8px by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1668
+- fix(pager): all theme use same svg to show dot by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/1673
+
+### Other Changes
+
+- docs: optimize component category by @kagol in https://github.com/opentiny/tiny-vue/pull/1626
+- docs: add carousel component of demo by @James-9696 in https://github.com/opentiny/tiny-vue/pull/1609
+- ci(runtime): add runtime git action by @zzcr in https://github.com/opentiny/tiny-vue/pull/1667
+- docs(date-picker): [date-picker] Optimization Cases by @You-Hw-Y in https://github.com/opentiny/tiny-vue/pull/1690
+- build(runtime): update runtime playgroud by @zzcr in https://github.com/opentiny/tiny-vue/pull/1669
+
+## New Contributors
+
+- @zhangpaopao0609 made their first contribution in https://github.com/opentiny/tiny-vue/pull/1654
+
 ## v2.16.0/v3.16.0
 
 `2024/05/11`

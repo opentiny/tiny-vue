@@ -1,7 +1,8 @@
 <template>
-  <div style="display: flex">
-    <tiny-numeric :change-compat="false" v-model="value" @change="onChange"></tiny-numeric>
+  <div>
     <tiny-button @click="clickChange">修改</tiny-button>
+    <br /><br />
+    <tiny-numeric :change-compat="false" v-model="value" @change="onChange"></tiny-numeric>
   </div>
 </template>
 

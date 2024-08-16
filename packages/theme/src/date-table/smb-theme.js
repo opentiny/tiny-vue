@@ -20,5 +20,8 @@ export const tinyDateTableSmbTheme = {
   'ti-date-table-td-span-top': '3px',
   'ti-date-table-start-date-border-radius': '14px',
   'ti-date-table-td-today-border-color': 'transparent',
-  'ti-date-table-cell-selected-border-radius': '14px'
+  'ti-date-table-cell-selected-border-radius': '14px',
+  'ti-date-table-tr-line-height': '16px',
+  'ti-date-table-td-disabled-border-radius': '50%',
+  'ti-date-table-td-row-disabled-border-radius': 'unset'
 }

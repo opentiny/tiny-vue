@@ -143,7 +143,7 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent, breakpoi
     labelTooltip: '',
     displayOnlyTooltip: '',
     isDisplayOnly: computed(() => props.displayOnly || (parent.tinyForm || {}).displayOnly),
-    isMobileScreen: computed(() => breakpoint.current.value === 'default'),
+    isMobileMode: computed(() => vm.$mode.includes('mobile')),
     dateMobileOption: {
       visible: false,
       type: props.type,
@@ -152,7 +152,8 @@ const initState = ({ api, reactive, vm, computed, props, utils, parent, breakpoi
     timeMobileOption: {
       visible: false,
       type: props.type,
-      value: [0, 0, 0]
+      value: [0, 0, 0],
+      defaultValue: [0, 0, 0]
     },
     isDateMobileComponent: computed(() =>
       [
@@ -285,6 +286,8 @@ const initWatch = ({ api, state, props, watch, markRaw }) => {
     (value) => state.picker && (state.picker.state.value = value),
     { immediate: true }
   )
+
+  watch(() => props.type, api.mountPicker)
 
   watch(() => props.isRange, api.watchIsRange)
 

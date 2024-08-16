@@ -177,7 +177,7 @@ export default {
           type: 'Object',
           defaultValue: '',
           desc: {
-            'zh-CN': '配置 EDM 下载功能所需的参数,例如：edm:{download:{token:()=>{}}},token为鉴权token',
+            'zh-CN': '配置 EDM 下载功能所需的参数,例如：edm:{download:{token:() =>{}}},token为鉴权token',
             'en-US': ''
           },
           mode: ['mobile-first'],
@@ -262,7 +262,8 @@ export default {
             'zh-CN': '限制文件大小，单位为 KB；当为 Number 类型时，小于该值停止上传；为数组时[min,max] 设置上传范围',
             'en-US': ''
           },
-          mode: ['mobile-first'],
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'file-size',
           mfDemo: ''
         },
         {
@@ -369,7 +370,7 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN':
-              '配置为 true,启用 EDM 上传文件夹的功能，最多只能上传 5 层;{edm:upload:{isFolder:true,token:()=>{}}}',
+              '配置为 true,启用 EDM 上传文件夹的功能，最多只能上传 5 层;{edm:upload:{isFolder:true,token:() =>{}}}',
             'en-US': ''
           },
           mode: ['mobile-first'],
@@ -524,7 +525,7 @@ export default {
           type: 'Function',
           defaultValue: '',
           desc: {
-            'zh-CN': '配置 EDM 批量打包下载的 token；配置结构为 edm:{download:packageToken:()=>{}},返回一个 Promise',
+            'zh-CN': '配置 EDM 批量打包下载的 token；配置结构为 edm:{download:packageToken:() =>{}},返回一个 Promise',
             'en-US': ''
           },
           mode: ['mobile-first'],
@@ -559,11 +560,26 @@ export default {
           defaultValue: '',
           desc: {
             'zh-CN':
-              "配置 EDM 预览功能所需的参数,例如：edm:{preview:{plugin：util.default,previewUrl:./_index.html?appid=应用Id,packageName: 'jslib',token:()=>{}}}",
+              "配置 EDM 预览功能所需的参数,例如：edm:{preview:{plugin：util.default,previewUrl:./_index.html?appid=应用Id,packageName: 'jslib',token:() =>{}}}",
             'en-US': ''
           },
           mode: ['mobile-first'],
           mfDemo: ''
+        },
+        {
+          name: 'prompt-tip',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '设置提示是否为 tip 类型，悬浮图标时显示 tip 提示',
+            'en-US': 'Set whether the prompt is of the tip type. The tip is displayed when the icon is suspended.'
+          },
+          metaData: {
+            new: '3.19.0'
+          },
+          mode: ['pc', 'mobile-first'],
+          mfDemo: 'prompt-tip',
+          pcDemo: 'prompt-tip'
         },
         {
           name: 're-upload-tip',
@@ -718,7 +734,7 @@ export default {
           type: 'Object',
           defaultValue: '',
           desc: {
-            'zh-CN': '配置 EDM 上传功能所需的参数,例如：edm:{upload:{token:()=>{}}}',
+            'zh-CN': '配置 EDM 上传功能所需的参数,例如：edm:{upload:{token:() =>{}}}',
             'en-US': ''
           },
           mode: ['mobile-first'],

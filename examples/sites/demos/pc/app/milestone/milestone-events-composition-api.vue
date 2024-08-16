@@ -1,10 +1,12 @@
 <template>
-  <tiny-milestone
-    :data="milestoneData"
-    :milestones-status="statusMap"
-    @click="nodeClick"
-    @flag-click="flagClick"
-  ></tiny-milestone>
+  <div class="demo-milestone">
+    <tiny-milestone
+      :data="milestoneData"
+      :milestones-status="statusMap"
+      @click="nodeClick"
+      @flag-click="flagClick"
+    ></tiny-milestone>
+  </div>
 </template>
 
 <script setup lang="jsx">
@@ -92,3 +94,9 @@ function flagClick() {
   })
 }
 </script>
+
+<style scoped>
+.demo-milestone ::v-deep .tiny-milestone__description-status {
+  margin-top: 4px;
+}
+</style>

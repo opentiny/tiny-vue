@@ -1,10 +1,13 @@
 <template>
   <div>
     <p>场景1：默认下拉弹框宽度由内容撑开：</p>
+    <br />
     <tiny-select v-model="value">
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>
+    <br /><br />
     <p>场景2：下拉弹框宽度与输入框一致：</p>
+    <br />
     <tiny-select v-model="value" is-drop-inherit-width>
       <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
     </tiny-select>

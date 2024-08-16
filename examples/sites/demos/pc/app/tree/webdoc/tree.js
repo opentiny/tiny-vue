@@ -312,6 +312,7 @@ export default {
         'zh-CN': `
           通过 <code> filter-node-method </code> 属性, 指定过滤节点时的函数，函数返回<code>true</code>时节点显示，否则节点隐藏。<br>
           通过 <code> filter </code> 组件方法，触发组件进行过滤。<br>
+          通过 <code> highlightQuery </code> 属性，是否在匹配的节点中，高亮搜索文字。<br>
           通过 <code> view-type </code> 属性，设置组件的视图模式，可选值为<code> tree </code> 和 <code> plain </code>,默认为<code> tree </code>。<br>
           通过 <code> show-auxi </code> 属性，设置在平铺视图时，是否显示节点的辅助信息，默认为<code>true</code>。<br>
           <div class="tip custom-block">
@@ -321,6 +322,7 @@ export default {
           `,
         'en-US': `The <code> filter-node-method </code> property is used to specify the function for filtering nodes. The function returns <code>true</code> to display the nodes. <br>
           Run the <code> filter </code> component method to trigger the component to filter. <br>
+          Use the <code>highlightQuery </code> attribute to determine whether to highlight the search text in the matched node.<br>
           Use the <code> view-type </code> property to set the component view mode. The optional values are <code> tree </code> and <code> plain </code>. The default value is <code> tree </code>. <br>
           The <code> show-auxi </code> property is used to set whether to display auxiliary node information in tiled view. The default is <code>true</code>. <br>
           <div class="tip custom-block">
@@ -410,7 +412,8 @@ export default {
           <div class="tip custom-block">
             在使用编辑功能时，不要使用 <code> props </code> 去定义数据列的映射关系，要使用默认的数据格式。
           </div>
-          `,
+          通过<code> edit-config </code> 属性，设置编辑模式下参数配置。<br>
+        `,
         'en-US': `Edit is accessed by calling the <code> openEdit </code> method of the instance, the <code> closeEdit </code> method cancellations the edit, and the <code> saveEdit </code> method saves the edit. <br>
           Add a child node to the node node by calling the instance's <code> addNode(node) </code> method and immediately enter edit mode. <br>
           Edit the node node immediately by calling the instance's <code> editNode(node) </code> method. <br>
@@ -418,7 +421,8 @@ export default {
           <div class="tip custom-block">
             When using the editing functions, do not use <code> props </code> to define the mapping of data columns. Instead, use the default data format.
           </div>
-          `
+          Set parameters in editing mode through the <code>edit-config </code> attribute.<br>
+        `
       },
       codeFiles: ['edit.vue']
     },

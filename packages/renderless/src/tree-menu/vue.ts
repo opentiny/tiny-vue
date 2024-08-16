@@ -91,7 +91,8 @@ export const renderless = (
     treeStyle: computed(() => api.computedTreeStyle()),
     defaultExpandedKeys: computed(() =>
       props.defaultExpandedKeys && props.defaultExpandedKeys.length ? props.defaultExpandedKeys : state.currentKey
-    )
+    ),
+    clearable: computed(() => props.clearable)
   })
 
   Object.assign(api, {

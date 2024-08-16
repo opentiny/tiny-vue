@@ -59,33 +59,6 @@ export const computedStyle =
     return style
   }
 
-export const computedBodyStyle =
-  ({ vm, props, state }: Pick<IDialogBoxRenderlessParams, 'vm' | 'props' | 'state'>) =>
-  (): { maxHeight?: string } => {
-    const style = {
-      maxHeight: ''
-    }
-    const headerHeight = (vm.$refs.header && vm.$refs.header.offsetHeight) || 0
-    const footerHeight = (vm.$refs.footer && vm.$refs.footer.offsetHeight) || 0
-    let { maxHeight } = props
-
-    if (state.isFull || props.rightSlide) {
-      if (vm.$slots.footer) {
-        style.maxHeight = `calc(100vh - ${headerHeight + footerHeight}px)`
-      } else {
-        style.maxHeight = `calc(100vh - ${headerHeight}px)`
-      }
-    } else {
-      style.maxHeight = '65vh'
-    }
-
-    if (maxHeight && !state.isFull) {
-      style.maxHeight = 'none'
-    }
-
-    return style
-  }
-
 export const watchVisible =
   ({
     api,
@@ -375,8 +348,8 @@ export const handleDrag =
     document.onmouseup = () => {
       document.onmousemove = demMousemove
       document.onmouseup = demMouseup
+      props.draggable && state.move && emit('drag-end', event)
       state.move = false
-      props.draggable && emit('drag-end', event)
     }
   }
 

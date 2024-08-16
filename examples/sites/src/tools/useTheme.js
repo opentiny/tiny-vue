@@ -16,6 +16,17 @@ import {
   INFINITY_THEME,
   getKeyByValue
 } from '../const'
+import glaciers from '@/assets/images/glaciers.png'
+import glaciersIcon from '@/assets/images/glaciers-icon.png'
+
+import infinitely from '@/assets/images/Infinitely.png'
+import infinitelyIcon from '@/assets/images/Infinitely-icon.png'
+
+import oceanic from '@/assets/images/oceanic.png'
+import oceanicIcon from '@/assets/images/oceanic-icon.png'
+
+import starrySky from '@/assets/images/starry-sky.png'
+import starrySkyIcon from '@/assets/images/starry-sky-icon.png'
 
 const themeMap = {
   [DEFAULT_THEME]: null,
@@ -27,10 +38,34 @@ const themeMap = {
 const isEn = appData.lang === 'enUS'
 
 const themeData = [
-  { value: [DEFAULT_THEME], label: isEn ? 'Default Theme' : '默认主题' },
-  { value: [INFINITY_THEME], label: isEn ? 'Infinity Theme' : '无限主题' },
-  { value: [AURORA_THEME], label: isEn ? 'Aurora Theme' : 'Aurora 主题' },
-  { value: [SMB_THEME], label: isEn ? 'SMB Theme' : 'SMB 主题' }
+  {
+    value: [DEFAULT_THEME],
+    label: isEn ? 'Default Theme' : '冰川主题',
+    tips: isEn ? 'Accurate, Efficient, Distinct' : '精准、高效、清晰',
+    icon: glaciersIcon,
+    bgImage: glaciers
+  },
+  {
+    value: [SMB_THEME],
+    label: isEn ? 'Star Theme' : '星空主题',
+    tips: isEn ? 'Leading, Innovative, Reliable' : '领先、创新、信赖',
+    icon: starrySkyIcon,
+    bgImage: starrySky
+  },
+  {
+    value: [AURORA_THEME],
+    label: isEn ? 'Ocean Theme' : '海洋主题',
+    tips: isEn ? 'Simple, Agile, Delightful' : '简约、敏捷、愉悦',
+    icon: oceanicIcon,
+    bgImage: oceanic
+  },
+  {
+    value: [INFINITY_THEME],
+    label: isEn ? 'Infinity Theme' : '无限主题',
+    tips: isEn ? 'Creative, Scientific, Efficient' : '创造、科学、高效',
+    icon: infinitelyIcon,
+    bgImage: infinitely
+  }
 ]
 
 const designConfigMap = {

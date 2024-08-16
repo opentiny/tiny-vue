@@ -7,12 +7,14 @@
   "scripts": {
     "start": "esno ./src/index.ts",
     "scan": "esno ./src/demos-scan.ts",
+    "// ---------- 给文档组件加上Tiny前缀 ----------": "",
+    "doc-prefix": "esno ./src/doc-prefix.ts",
     "diff": "esno ./src/aui-diff.ts",
     "add-dep": "esno ./src/add-dependencies.ts",
     "auto-build-pub": "esno ./src/publish/index.ts"
   },
   "dependencies": {
-    "esno": "^4.0.0",
+    "esno": "^4.7.0",
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.2.0"
   },
@@ -22,7 +24,12 @@
     "sheetjs-style": "^0.15.8",
     "commander": "^10.0.0",
     "semver": "^7.3.8",
-    "chalk": "2.4.2"
+    "chalk": "2.4.2",
+    "@babel/parser": "^7.18.13",
+    "@babel/traverse": "^7.18.13",
+    "@babel/generator": "^7.18.13",
+    "@babel/template": "^7.18.13",
+    "@vue/compiler-sfc": "^3.4.21"
   },
   "keywords": [],
   "author": "",

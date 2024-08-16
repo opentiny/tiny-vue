@@ -142,7 +142,7 @@ function layoutBodyWrapper({
     if (maxHeight) {
       maxHeight = isScale(maxHeight) ? Math.floor((parseInt(maxHeight) / 100) * parentHeight) : toNumber(maxHeight)
 
-      const contentHeight = maxHeight - headerHeight
+      const contentHeight = maxHeight - headerHeight - footerHeight
 
       wrapperElem.style.maxHeight = `${contentHeight}px`
     }

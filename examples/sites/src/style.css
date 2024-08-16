@@ -3,10 +3,23 @@ html {
   font-size: 16px;
 }
 
+/* reset.css 引入后造成site官网中 b 和 strong 标签没有粗体，此处还原粗体  */
+b, strong {
+  font-weight: 700;
+}
+
+:root {
+  --docs-markdown-top-body-zindex: 99;
+  --docs-tabs-header-zindex: 100;
+  --docs-float-settings-zindex: 999;
+  --docs-header-zindex: 200;
+  --docs-layout-sider-zindex: 201;
+}
+
 .tinyui-design-header {
   z-index: 1000 !important;
 }
 
-.tiny-grid td,.tiny-grid th { 
+.tiny-grid td,.tiny-grid th {
   vertical-align: middle;
 }

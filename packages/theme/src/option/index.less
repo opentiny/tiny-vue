@@ -138,11 +138,20 @@
     margin-bottom: 2px;
   }
 
-  .checked-sur,
-  .halfselect {
-    .@{checkbox-prefix-cls}__label {
-      font-weight: var(--ti-option-selected-font-weight);
+  .tiny-svg-size {
+    fill: var(--ti-option-multi-svg-border-color);
+    font-size: 16px;
+    margin-right: 8px;
+
+    &:hover {
+      fill: var(--ti-option-multi-svg-hover-border-color);
     }
+  }
+
+  &.selected .tiny-svg-size,
+  .checked-sur.tiny-svg-size,
+  .halfselect.tiny-svg-size {
+    fill: var(--ti-option-multi-svg-icon-color);
   }
 
   &.memorize-highlight {

@@ -1,6 +1,7 @@
 <template>
   <div>
     <tiny-user v-model="user" multiple disabled :show-tips="false"></tiny-user>
+    <br />
     {{ user }}
   </div>
 </template>

@@ -35,5 +35,6 @@ const value4 = ref(['选项1', '选项2'])
 p {
   font-size: 14px;
   line-height: 1.5;
+  padding: 16px 0;
 }
 </style>

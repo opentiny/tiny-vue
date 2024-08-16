@@ -337,7 +337,7 @@ export default defineComponent({
     TinySelectedBox: SelectedBox
   },
   directives: directive({ Clickoutside }),
-  emits: ['update:modelValue', 'change', 'page-change', 'popup', 'size-change'],
+  emits: ['update:modelValue', 'change', 'page-change', 'popup', 'size-change', 'created'],
   props: [
     ...props,
     'dataset',

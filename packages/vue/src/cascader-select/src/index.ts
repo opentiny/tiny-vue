@@ -19,6 +19,10 @@ export default {
       type: Array,
       default: () => []
     },
+    defaultValue: {
+      type: Array,
+      default: () => []
+    },
     options: {
       type: Array,
       default: () => {

@@ -20,9 +20,8 @@ const TinyIconClockWork = iconClockWork()
 
 <style scoped>
 .icon-demo .tiny-svg {
-  fill: #8994aa;
-  margin: 20px 50px;
+  margin: 20px 83px;
   vertical-align: middle;
-  font-size: 48px;
+  font-size: 24px;
 }
 </style>

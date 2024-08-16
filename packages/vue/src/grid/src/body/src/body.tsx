@@ -37,7 +37,7 @@ import { getCellLabel } from '../../tools'
 import GlobalConfig from '../../config'
 import { iconChevronRight, iconChevronDown } from '@opentiny/vue-icon'
 import { h, hooks, $prefix, defineComponent } from '@opentiny/vue-common'
-import { getTreeChildrenKey, getTreeShowKey } from '../../table/src/strategy'
+import { getTreeChildrenKey, getTreeShowKey, handleRowGroupFold, isVirtualRow } from '../../table/src/strategy'
 import { generateFixedClassName } from '../../table/src/utils/handleFixedColumn'
 
 // 滚动、拖动过程中不需要触发鼠标移入移出事件
@@ -133,7 +133,7 @@ function buildColumnProps(args) {
 
 function buildColumnChildren(args) {
   let { h, hasDefaultTip, params, row, validError, column, $table } = args
-  let { showEllipsis, showTip, showTitle, showTooltip, validStore } = args
+  let { showEllipsis, showTip, showTitle, showTooltip, validStore, dropConfig } = args
   const { validOpts } = $table
   let cellNode: any[] = []
   let validNode: any = null
@@ -154,6 +154,7 @@ function buildColumnChildren(args) {
     }
   }
   cellNode = [
+    dropConfig.rowHandle === 'index' && column.type === 'index' ? h('div', { class: 'row__drop-handle' }) : null,
     h(
       'div',
       {
@@ -168,7 +169,7 @@ function buildColumnChildren(args) {
         attrs: { title: showTitle ? getCellLabel(row, column, params) : null }
       },
       // 调用column组件的renderCell渲染单元格内部的内容
-      // 如果不是表格形态，就只保留表格结构（到aui-grid-cell），不渲染具体的内容
+      // 如果不是表格形态，就只保留表格结构（到tiny-grid-cell），不渲染具体的内容
       $table.isShapeTable ? column.renderCell(h, params) : null
     ),
     validNode
@@ -391,14 +392,15 @@ function renderColumn(args1) {
   let { h, row } = args1
   let { align: allAlign, cellClassName, columnKey, editConfig } = $table
   let { editRules, editStore, rowId, rowSpan, height } = $table
-  let { tableData, validOpts, validStore, validatedMap, spanMethod, columnStore } = $table
+  let { tableData, validOpts, validStore, validatedMap, spanMethod, columnStore, dropConfig = {} } = $table
   let { isDirty, attrs = { 'data-colid': column.id } } = {}
   let { isMessageDefault, isMessageInline } = validOpts
   let { actived } = editStore
   let validated = validatedMap[`${column.id}-${row[rowId]}`]
   let validError = validStore.row === row && validStore.column === column
   let hasDefaultTip = editRules && (isMessageDefault ? height || tableData.length > 1 : isMessageInline)
-  let { align, className, editor, showTip } = column
+  let { align, editor, showTip } = column
+  const className = column.own.className
   let cellAlign = align || allAlign
   let columnActived =
     editConfig && editor && actived.row === row && (actived.column === column || editConfig.mode === 'row')
@@ -440,7 +442,7 @@ function renderColumn(args1) {
   // 组装渲染单元格td所需要的props属性
   const colProps = buildColumnProps(args)
   args = { column, h, hasDefaultTip, params, row, $table }
-  Object.assign(args, { showEllipsis, showTip, showTitle, showTooltip, validError, validStore })
+  Object.assign(args, { showEllipsis, showTip, showTitle, showTooltip, validError, validStore, dropConfig })
 
   // 渲染td单元格中的div元素（自定义渲染和编辑器）
   const colChildren = buildColumnChildren(args)
@@ -449,74 +451,78 @@ function renderColumn(args1) {
 }
 
 function renderRowGroupTds(args) {
-  const { closeable, currentIcon, field, group, render } = args
-  const { row, tableColumn, targetColumn, tds, title } = args
+  const { $table, closeable, currentIcon, render, renderGroupCell } = args
+  const { row, tableColumn, tds, title } = args
+  const targetColumn = $table._rowGroupTargetColumn
+  const value = row.value || ''
 
   for (let index in tableColumn) {
     if (Object.prototype.hasOwnProperty.call(tableColumn, index)) {
       const column = tableColumn[index]
-      if (~['index', 'selection'].indexOf(column.type)) {
-        tds.push(<td></td>)
-      } else {
-        const value = row[field]
-        const header = title || (targetColumn && formatText(getFuncText(targetColumn.title))) || value
+      const columnIndex = $table.getColumnIndex(column)
+      const header = title || formatText(getFuncText(column.title), 1) || value
+      const params = { value, header, children: row.children, expand: !row.fold, row, column, columnIndex }
+
+      // 不渲染colspan小于等于0的列
+      if (column._rowGroupColspan <= 0) {
+        continue
+      }
+      if (column === targetColumn) {
         let groupTitleVNode
 
         if (render) {
-          groupTitleVNode = render(h, {
-            value,
-            header,
-            children: group.children,
-            expand: !group.fold
-          })
+          groupTitleVNode = render(h, params)
         } else {
           groupTitleVNode = [
             <span class="row-group-title">{header}</span>,
             `:${value}`,
-            <span class="tiny-badge">{group.children.length}</span>
+            <span class="tiny-badge">{row.children.length}</span>
           ]
         }
         tds.push(
-          <td colspan={tableColumn.length - index} class="tiny-grid-body__column">
+          <td class={['tiny-grid-body__column td-group', column.id]} colspan={column._rowGroupColspan}>
             <div class="tiny-grid-cell-group">{[closeable ? currentIcon : null].concat(groupTitleVNode)}</div>
           </td>
         )
-        break
+      } else {
+        tds.push(
+          <td class={['tiny-grid-body__column td-placeholder', column.id]} colspan={column._rowGroupColspan}>
+            <div class="tiny-grid-cell-group">{renderGroupCell ? renderGroupCell(h, params) : null}</div>
+          </td>
+        )
       }
     }
   }
 }
 
-function renderRowGroupData({ groupData, groupFolds, row, rowGroup, rowid, rows, tableColumn }) {
-  if (!groupData[rowid]) {
+function renderRowGroupData({ $table, virtualRow, row, rowGroup, rowid, rows, tableColumn }) {
+  if (!virtualRow) {
     return
   }
 
-  const { title, field, closeable = true, render, className } = rowGroup
-  const { group = groupData[rowid], tds = [], ChevronRight = iconChevronRight(), ChevronDown = iconChevronDown() } = {}
-  const targetColumn = find(tableColumn, (col) => col.property === field)
-  const currentIcon = group.fold ? <ChevronRight class="tiny-svg-size" /> : <ChevronDown class="tiny-svg-size" />
-
+  const { title, closeable = true, render, renderGroupCell, className } = rowGroup
+  const { tds = [], ChevronRight = iconChevronRight(), ChevronDown = iconChevronDown() } = {}
+  const currentIcon = row.fold ? <ChevronRight class="tiny-svg-size" /> : <ChevronDown class="tiny-svg-size" />
+  const args = { $table, closeable, currentIcon, render, renderGroupCell }
+  Object.assign(args, { row, tableColumn, tds, title })
   // 将分组行的td添加到tds数组中
-  renderRowGroupTds({ closeable, currentIcon, field, group, render, row, tableColumn, targetColumn, tds, title })
+  renderRowGroupTds(args)
+
+  const onClick = (event) => {
+    handleRowGroupFold(row, $table)
+
+    if ($table.tableListeners['toggle-group-change']) {
+      emitEvent($table, 'toggle-group-change', [{ $table, row }, event])
+    }
+  }
 
   rows.push(
     <tr
-      class={['tiny-grid-body__row', 'group', className]}
-      onClick={() => {
-        if (closeable) {
-          group.fold = !group.fold
-          group.children.forEach((row) => {
-            let index = groupFolds.indexOf(row)
-
-            if (index > -1) {
-              groupFolds.splice(index, 1)
-            } else {
-              groupFolds.push(row)
-            }
-          })
-        }
-      }}>
+      class={['tiny-grid-body__row', 'group', className, { hover: row.hover }]}
+      data-rowid={rowid}
+      onMouseout={() => (row.hover = false)}
+      onMouseover={() => (row.hover = true)}
+      onClick={onClick}>
       {tds}
     </tr>
   )
@@ -524,7 +530,7 @@ function renderRowGroupData({ groupData, groupFolds, row, rowGroup, rowid, rows,
 
 function renderRow(args) {
   let { $rowIndex, $seq, $table, _vm, editStore } = args
-  let { groupFolds, h, row, rowActived } = args
+  let { h, row, rowActived } = args
   let { rowClassName, rowIndex, rowKey, rowLevel, rowid, rows } = args
   let { selection, seq, tableColumn, trOn, treeConfig, isNotRenderRow } = args
 
@@ -542,7 +548,6 @@ function renderRow(args) {
             [`row__level-${rowLevel}`]: treeConfig,
             [classMap.rowNew]: editStore.insertList.includes(row),
             [classMap.rowSelected]: selection.includes(row),
-            'tiny-hide': groupFolds.includes(row),
             [classMap.rowActived]: rowActived
           },
           rowClassName
@@ -660,14 +665,14 @@ function renderRowTree(args, renderRows) {
 }
 
 function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, seqCount }) {
-  let { rowKey, rowClassName, treeConfig, treeExpandeds, groupFolds } = $table
-  let { groupData, scrollYLoad, scrollYStore, editConfig, editStore } = $table
-  let { expandConfig = {}, expandeds, selection, rowGroup } = $table
+  let { rowKey, rowClassName, treeConfig, treeExpandeds } = $table
+  let { groupData, scrollYLoad, scrollYStore, editConfig, editStore, expandConfig = {} } = $table
+  let { expandeds, selection, rowGroup, hasVirtualRow, afterFullData, treeOrdered } = $table
   let rows = []
   let expandMethod = expandConfig.activeMethod
   let startIndex = scrollYStore.startIndex
   // 子级索引是否按数字递增显示：true(子级索引按数字递增显示，父级1，子级2)；false(子级索引在父级索引基础上增加，父级1，子级1.1)
-  let isOrdered = treeConfig ? Boolean(treeConfig.ordered) : false
+  let isOrdered = treeConfig ? Boolean(treeOrdered) : false
   seqCount = seqCount || { value: 0 }
   let treeShowKey = getTreeShowKey({ scrollYLoad, treeConfig })
   let { hideMethod } = treeConfig || {}
@@ -678,7 +683,8 @@ function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, se
     let rowIndex = $rowIndex
     let { actived } = editStore
     let rowActived = editConfig && actived.row === row
-    const isNotRenderRow = (treeShowKey && !row[treeShowKey]) || (hideMethod && hideMethod(row, rowLevel))
+    let virtualRow = isVirtualRow(row)
+    const isNotRenderRow = (treeShowKey && !row[treeShowKey]) || (hideMethod && hideMethod(row, rowLevel)) || virtualRow
 
     // 树表虚拟滚动，如果当前行被剪切不需要渲染，则无需自增序号
     if (!isNotRenderRow) {
@@ -689,14 +695,18 @@ function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, se
     if (scrollYLoad) {
       seq += startIndex
     }
+    // 分组表场景正常数据行的序号由在afterFullData中的位置提供
+    if (hasVirtualRow && !virtualRow) {
+      seq = afterFullData.indexOf(row) + 1
+    }
     // 确保任何情况下 rowIndex 都精准指向真实 data 索引
     rowIndex = $table.getRowIndex(row)
 
     let rowid = getRowid($table, row)
 
     // 如果有表格分组信息，则执行分组逻辑
-    renderRowGroupData({ groupData, groupFolds, row, rowGroup, rowid, rows, tableColumn })
-    let args = { $rowIndex, $seq, $table, _vm, editStore, groupFolds, h, row, rowActived }
+    renderRowGroupData({ $table, virtualRow, row, rowGroup, rowid, rows, tableColumn })
+    let args = { $rowIndex, $seq, $table, _vm, editStore, h, row, rowActived }
     Object.assign(args, { rowClassName, rowIndex, rowKey, rowLevel, rowid, rows, selection, seq })
 
     Object.assign(args, { tableColumn, trOn, treeConfig, isNotRenderRow })
@@ -838,7 +848,7 @@ export default defineComponent({
   },
   mounted() {
     const { $el, $parent: $table, $refs } = this as any
-    const { elemStore } = $table
+    const { elemStore, dropConfig } = $table
     const keyPrefix = 'main-body-'
 
     // 表体第一层div，出现滚动条的dom元素
@@ -859,6 +869,14 @@ export default defineComponent({
     // 表体第一层div监听滚动事件
     $el.onscroll = this.scrollEvent
     $el._onscroll = this.scrollEvent
+
+    if (dropConfig) {
+      const { plugin, row = true } = dropConfig
+      plugin && row && (this.rowSortable = $table.rowDrop(this.$el))
+    }
+  },
+  beforeUnmount() {
+    this.rowSortable && this.rowSortable.destroy()
   },
   updated() {
     const { $parent: $table, fixedType } = this

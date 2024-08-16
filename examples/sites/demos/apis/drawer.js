@@ -183,27 +183,15 @@ export default {
       ],
       events: [
         {
-          name: 'open',
-          type: '() => void',
-          defaultValue: '',
-          desc: {
-            'zh-CN': '打开抽屉事件',
-            'en-US': ''
-          },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'open-event',
-          mfDemo: ''
-        },
-        {
           name: 'close',
-          type: '() => void',
+          type: '(force: boolean) => void',
           defaultValue: '',
           desc: {
-            'zh-CN': '关闭抽屉事件',
-            'en-US': 'Close drawer event'
+            'zh-CN': '关闭抽屉事件，参数 force 指定是否强制关闭',
+            'en-US': 'Close drawer event, and parameter force decides force close'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'close-event',
+          pcDemo: 'events',
           mfDemo: ''
         },
         {
@@ -215,7 +203,19 @@ export default {
             'en-US': 'Confirm event. This event is emit only when show-footer="true" is set'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'confirm-event',
+          pcDemo: 'events',
+          mfDemo: ''
+        },
+        {
+          name: 'show',
+          type: '(instance: Component) => void',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '抽屉显示事件',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: 'events',
           mfDemo: ''
         },
         {
@@ -252,6 +252,18 @@ export default {
           },
           mode: ['mobile-first'],
           mfDemo: ''
+        },
+        {
+          name: 'service',
+          type: '(configs: IDrawerConfigs) => Component',
+          typeAnchorName: 'IDrawerConfigs',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '配置并打开抽屉',
+            'en-US': ''
+          },
+          mode: ['pc'],
+          pcDemo: 'use-through-method'
         }
       ],
       slots: [
@@ -296,6 +308,29 @@ export default {
           mfDemo: ''
         }
       ]
+    }
+  ],
+  types: [
+    {
+      name: 'IDrawerConfigs',
+      type: 'interface',
+      code: `
+interface IDrawerConfigs extends IDrawerProps {
+  // 方法调用的配置参数
+  events: {
+    // 监听事件
+    close: () => void
+    confirm: () => void
+    show: (instance: Component) => void
+  },
+  customSlots: {
+    // 插槽
+    default: string | VNode | (h) => VNode,
+    header: string | VNode | (h) => VNode,
+    headerRight: string | VNode | (h) => VNode,
+    footer: string | VNode | (h) => VNode
+}
+`
     }
   ]
 }

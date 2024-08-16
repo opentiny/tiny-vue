@@ -9,5 +9,6 @@ export const tinyDrawerSmbTheme = {
   'ti-drawer-divider-footer-border-color': 'var(--ti-common-color-transparent)',
   'ti-drawer-close-icon-size': 'var(--ti-common-font-size-5)',
   'ti-drawer-help-icon-color': 'var(--ti-common-color-icon)',
-  'ti-drawer-close-icon-color': 'var(--ti-common-color-icon-normal)'
+  'ti-drawer-close-icon-color': 'var(--ti-common-color-icon-normal)',
+  'ti-drawer-head-title-text-color': 'var(--ti-common-color-text-gray)'
 }

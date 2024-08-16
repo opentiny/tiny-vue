@@ -51,9 +51,13 @@ import {
   inputStyle,
   handleEnterTextarea,
   handleLeaveTextarea,
-  getDisplayOnlyText
+  getDisplayOnlyText,
+  setShowMoreBtn,
+  handleTextareaMouseDown,
+  handleTextareaMouseUp
 } from './index'
 import useStorageBox from '../tall-storage/vue-storage-box'
+import { on, off } from '../common/deps/dom'
 
 export const api = [
   'blur',
@@ -88,7 +92,9 @@ export const api = [
   'hiddenPassword',
   'inputStyle',
   'handleEnterTextarea',
-  'handleLeaveTextarea'
+  'handleLeaveTextarea',
+  'handleTextareaMouseDown',
+  'handleTextareaMouseUp'
 ]
 
 const initState = ({
@@ -152,6 +158,7 @@ const initState = ({
     nativeInputValue: computed(() =>
       props.modelValue === null || props.modelValue === undefined ? '' : String(props.modelValue)
     ),
+    tooltipConfig: computed(() => (parent.tinyForm ? parent.tinyForm.tooltipConfig : {})),
 
     isWordLimitVisible: computed(
       () =>
@@ -167,9 +174,13 @@ const initState = ({
         ['text', 'textarea', 'password', 'number'].includes(props.type)
     ),
     displayOnlyTooltip: '',
+    showMoreBtn: false,
+    showDisplayOnlyBox: false,
+    timer: null,
     hiddenPassword: computed(() => api.hiddenPassword()),
     displayedMaskValue: computed(() => api.getDisplayedMaskValue()),
-    displayOnlyText: computed(() => api.getDisplayOnlyText())
+    displayOnlyText: computed(() => api.getDisplayOnlyText()),
+    isDragging: false
   })
 
   return state as IInputState
@@ -199,6 +210,7 @@ const initApi = ({
     showBox: showBox(state),
     clear: clear(emit),
     getInput: getInput(vm),
+    setShowMoreBtn: setShowMoreBtn({ state, vm }),
     handleChange: handleChange(emit),
     watchFormSelect: watchFormSelect({ emit, props, state }),
     calcIconOffset: calcIconOffset({ CLASS_PREFIX, parent }),
@@ -210,7 +222,9 @@ const initApi = ({
     getDisplayOnlyText: getDisplayOnlyText({ parent, props, state }),
     handleEnterTextarea: handleEnterTextarea({ api, state, props, nextTick }),
     handleLeaveTextarea: handleLeaveTextarea({ api, state, props, nextTick, vm }),
-    inputStyle: inputStyle({ props })
+    inputStyle: inputStyle({ props }),
+    handleTextareaMouseDown: handleTextareaMouseDown({ state }),
+    handleTextareaMouseUp: handleTextareaMouseUp({ state, api })
   })
 }
 
@@ -304,6 +318,10 @@ const initWatch = ({
         api.dispatch(componentName, eventName.change, [value])
       }
 
+      if (props.type === 'textarea' && props.popupMore && state.isDisplayOnly) {
+        api.setShowMoreBtn()
+      }
+
       api.setInputDomValue()
     }
   )
@@ -363,7 +381,7 @@ const initWatch = ({
 
 export const renderless = (
   props: IInputProps,
-  { computed, onMounted, onUpdated, reactive, toRefs, watch, inject }: ISharedRenderlessParamHooks,
+  { computed, onMounted, onBeforeUnmount, onUpdated, reactive, toRefs, watch, inject }: ISharedRenderlessParamHooks,
   { vm, refs, parent, emit, constants, nextTick, broadcast, dispatch, mode }: IInputRenderlessParamUtils
 ): IInputApi => {
   const api = {} as IInputApi
@@ -393,6 +411,17 @@ export const renderless = (
 
     dispatch('Select', 'input-mounted', vm.$el)
     dispatch('Tooltip', 'tooltip-update', vm.$el)
+
+    if (props.type === 'textarea' && props.popupMore && state.isDisplayOnly) {
+      api.setShowMoreBtn(true)
+      on(window, 'resize', api.setShowMoreBtn)
+    }
+  })
+
+  onBeforeUnmount(() => {
+    if (props.type === 'textarea' && props.popupMore && state.isDisplayOnly) {
+      off(window, 'resize', api.setShowMoreBtn)
+    }
   })
 
   onUpdated(() => {

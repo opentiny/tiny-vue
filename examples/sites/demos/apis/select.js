@@ -19,6 +19,19 @@ export default {
           mfDemo: 'all-text'
         },
         {
+          name: 'show-all-text-tag',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN':
+              '指定多选模式全选后，在输入框中，是否只显示 all-text 指定的Tag。 默认值为 <code>false</code>，所有选项循环显示在输入框。',
+            'en-US':
+              'Specifies whether only the tag specified by all-text is displayed in the text box after the multi-select mode is specified. The default value is <code>false</code>. All options are displayed in the text box cyclically.'
+          },
+          mode: ['pc'],
+          pcDemo: 'all-text'
+        },
+        {
           name: 'allow-copy',
           type: 'boolean',
           defaultValue: 'false',
@@ -625,12 +638,25 @@ export default {
           defaultValue: 'false',
           desc: {
             'zh-CN':
-              '是否展示多选框开启多选限制选择数量时，选中条数和限制总条数的占比的文字提示。 该属性的优先级大于<code>show-proportion</code> 属性，同时设置只',
+              '是否展示多选框开启多选限制选择数量时，选中条数和限制总条数的占比的文字提示。 该属性的优先级大于<code>show-proportion</code> 属性。',
             'en-US':
               'Display the proportion of the number of selected items and the total number of items in the multiple-choice box'
           },
           mode: ['pc'],
           pcDemo: 'multiple'
+        },
+        {
+          name: 'init-label',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN':
+              '通过 <code>init-label</code> 属性设置远程搜索或者嵌套树懒加载数据未获取到时显示的初始化 <code>label </code>值。',
+            'en-US':
+              'Use the <code>init-label</code> attribute to set the initial <code>label </code> value displayed when remote search or nested sloth loading data is not obtained.'
+          },
+          mode: ['pc'],
+          pcDemo: 'init-label'
         }
       ],
       events: [
@@ -910,8 +936,8 @@ interface ICacheOp {
   highlightClass?: string // 个性化高亮 class 名称，默认：memorize-highlight
   highlightNum?: number // 高亮个性化的条数,默认：Infinity
   cacheNum?: number // 存储个性化的条数,默认：Infinity
-  serialize?: ()=> string  // 本地存储序列化方法,默认：JSON.stringify
-  deserialize?: ()=> ICacheItem[] // 本地存储序反列化方法，默认：JSON.parse
+  serialize?: () => string  // 本地存储序列化方法,默认：JSON.stringify
+  deserialize?: () => ICacheItem[] // 本地存储序反列化方法，默认：JSON.parse
 }        
 `
     },

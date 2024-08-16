@@ -37,12 +37,12 @@ export default {
   renderPager({ $slots, _vm, loading, pager, pagerConfig, tableLoading, vSize }) {
     let res = null
 
-    const { isThemeSaas, isModeMobileFirst, isViewGantt, currentBreakpoint, fetchData } = _vm
+    const { isThemeSaas, isModeMobileFirst, isViewGantt, currentBreakpoint, fetchData, isViewCustom } = _vm
     const style = { display: 'none' }
 
-    // 使用saas主题和多端模式时，内置Pager使用多端模板。在非gantt视图或gantt视图大屏下显示多端Pager
+    // 使用saas主题和多端模式时，内置Pager使用多端模板。在非gantt/custom视图或gantt/custom视图大屏下显示多端Pager
     if (isThemeSaas && isModeMobileFirst) {
-      if (!isViewGantt || (isViewGantt && currentBreakpoint !== 'default')) {
+      if (!(isViewGantt || isViewCustom) || ((isViewGantt || isViewCustom) && currentBreakpoint !== 'default')) {
         style.display = 'flex'
         style.justifyContent = 'flex-end'
       }

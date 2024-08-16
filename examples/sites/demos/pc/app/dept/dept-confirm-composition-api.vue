@@ -22,4 +22,9 @@ function confirm() {
 .demo-dept .tiny-dept {
   width: 270px;
 }
+.title {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
+}
 </style>

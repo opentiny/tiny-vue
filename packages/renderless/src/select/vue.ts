@@ -106,7 +106,9 @@ import {
   clearNoMatchValue,
   handleDebouncedQueryChange,
   onClickCollapseTag,
-  computedIsExpand
+  computedIsExpand,
+  computedShowTagText,
+  isTagClosable
 } from './index'
 import debounce from '../common/deps/debounce'
 import { isNumber } from '../common/type'
@@ -170,7 +172,9 @@ export const api = [
   'loadTreeData',
   'updateModelValue',
   'clearSearchText',
-  'onClickCollapseTag'
+  'onClickCollapseTag',
+  'computedShowTagText',
+  'isTagClosable'
 ]
 
 const initState = ({ reactive, computed, props, api, emitter, parent, constants, useBreakpoint, vm, designConfig }) => {
@@ -287,9 +291,11 @@ const initStateAdd = ({ computed, props, api, parent }) => {
     formItemSize: computed(() => (parent.formItem || { state: {} }).state.formItemSize),
     selectDisabled: computed(() => api.computedSelectDisabled()),
     isDisplayOnly: computed(() => props.displayOnly || (parent.form || {}).displayOnly),
+    isDisabled: computed(() => props.disabled || (parent.form || {}).disabled),
+    isShowTagText: computed(() => api.computedShowTagText()),
     gridCheckedData: computed(() => api.getcheckedData()),
     isExpandAll: computed(() => api.computedIsExpandAll()),
-    searchSingleCopy: computed(() => props.allowCopy && !props.multiple && props.filterable),
+    searchSingleCopy: computed(() => props.allowCopy && !props.multiple && (props.filterable || props.searchable)),
     childrenName: computed(() => (props.treeOp.props && props.treeOp.props.children) || 'children'),
     tooltipContent: {},
     isHidden: false,
@@ -379,9 +385,9 @@ const initApi = ({
     computedShowNewOption: computedShowNewOption({ props, state }),
     computedShowCopy: computedShowCopy({ props, state }),
     computedOptionsAllDisabled: computedOptionsAllDisabled(state),
-    computedDisabledTooltipContent: computedDisabledTooltipContent(state),
+    computedDisabledTooltipContent: computedDisabledTooltipContent({ props, state }),
 
-    computedSelectDisabled: computedSelectDisabled({ props, parent }),
+    computedSelectDisabled: computedSelectDisabled({ state }),
     computedIsExpand: computedIsExpand({ props, state }),
     computedIsExpandAll: computedIsExpandAll(props),
     watchInitValue: watchInitValue({ props, emit }),
@@ -390,7 +396,9 @@ const initApi = ({
     computedGetIcon: computedGetIcon({ designConfig, props }),
     computedGetTagType: computedGetTagType({ designConfig, props }),
     clearSearchText: clearSearchText({ state, api }),
-    clearNoMatchValue: clearNoMatchValue({ props, emit })
+    clearNoMatchValue: clearNoMatchValue({ props, emit }),
+    computedShowTagText: computedShowTagText({ state }),
+    isTagClosable: isTagClosable()
   })
 
   addApi({ api, props, state, emit, constants, parent, nextTick, dispatch, vm, isMobileFirstMode, designConfig })

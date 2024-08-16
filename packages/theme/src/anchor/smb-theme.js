@@ -1,5 +1,7 @@
 export const tinyAnchorSmbTheme = {
-  'ti-anchor-width': '160px',
-  'ti-anchor-text-color': '#595959',
-  'ti-anchor-link-active-text-color': '#191919'
+  'ti-anchor-width': 'var(--ti-common-size-40x)',
+  'ti-anchor-text-color': 'var(--ti-common-color-text-secondary)',
+  'ti-anchor-line-bg-color': 'var(--ti-common-scrollbar-thumb-bg-color)',
+  'ti-anchor-link-active-text-color': 'var(--ti-common-color-text-primary)',
+  'ti-anchor-line-opacity': '1'
 }

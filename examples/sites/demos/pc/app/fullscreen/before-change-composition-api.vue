@@ -1,13 +1,15 @@
 <template>
   <div class="tiny-fullscreen-demo">
-    <label class="checkbox">
-      <input v-model="pageOnly" type="checkbox" name="button" />
-      pageOnly
-    </label>
-    <label class="checkbox">
-      <input v-model="teleport" type="checkbox" name="button" />
-      teleport
-    </label>
+    <div class="demo-fullscreen">
+      <label class="checkbox">
+        <input v-model="pageOnly" type="checkbox" name="button" />
+        pageOnly
+      </label>
+      <label class="checkbox">
+        <input v-model="teleport" type="checkbox" name="button" />
+        teleport
+      </label>
+    </div>
     <tiny-fullscreen
       :teleport="teleport"
       :page-only="pageOnly"
@@ -55,3 +57,9 @@ function toggle() {
   fullscreen.value = !fullscreen.value
 }
 </script>
+
+<style scoped>
+.demo-fullscreen {
+  margin-bottom: 8px;
+}
+</style>

@@ -15,7 +15,7 @@ export const renderless = (props, { inject, markRaw, reactive, computed }, { vm 
 
   const api = {
     state,
-    handleNavItemClick: handleNavItemClick({ tabs, props }),
+    handleNavItemClick: handleNavItemClick({ tabs, props, vm }),
     getBoundRect: getBoundRectNV({ vm, props }),
     handleNavItemClose: handleNavItemClose({ tabs, props })
   }

@@ -29,9 +29,9 @@ test.describe('节点状态', () => {
     await expect(timelineItems.nth(3).locator('.icon .icon-error')).toHaveCSS('fill', 'rgb(222, 80, 78)')
 
     // 禁用状态
-    await expect(timelineItems.nth(4)).toHaveClass(/process-disabled/)
-    await expect(timelineItems.nth(4).locator('.icon')).toHaveCSS('background-color', 'rgb(245, 245, 246)')
-    await expect(timelineItems.nth(4).locator('.icon .number')).toHaveCSS('color', 'rgb(173, 176, 184)')
+    await expect(timelineItems.nth(5)).toHaveClass(/process-disabled/)
+    await expect(timelineItems.nth(5).locator('.icon')).toHaveCSS('background-color', 'rgb(245, 245, 246)')
+    await expect(timelineItems.nth(5).locator('.icon .number')).toHaveCSS('color', 'rgb(173, 176, 184)')
   })
 
   test('type属性设置节点状态', async ({ page }) => {

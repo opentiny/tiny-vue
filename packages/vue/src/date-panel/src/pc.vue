@@ -67,7 +67,6 @@
                 :step="step"
                 :time-arrow-control="state.arrowControl"
                 :show="state.timePickerVisible"
-                v-if="state.timePickerVisible"
                 :value="state.date"
                 @pick="handleTimePick"
               >
@@ -211,15 +210,17 @@
 
       <!-- 此刻/确认 -->
       <div class="tiny-picker-panel__footer" v-show="state.isShowFooter">
-        <tiny-button
-          size="mini"
-          type="text"
-          class="tiny-picker-panel__link-btn"
-          @click="changeToNow"
-          v-show="!['dates', 'years'].includes(state.selectionMode)"
-        >
-          {{ t('ui.datepicker.now') }}
-        </tiny-button>
+        <slot>
+          <tiny-button
+            size="mini"
+            type="text"
+            class="tiny-picker-panel__link-btn"
+            @click="changeToNow"
+            v-show="!['dates', 'years'].includes(state.selectionMode)"
+          >
+            {{ t('ui.datepicker.now') }}
+          </tiny-button>
+        </slot>
         <tiny-button type="primary" size="mini" class="tiny-picker-panel__link-btn" @click="confirm">
           {{ t('ui.datepicker.confirm') }}
         </tiny-button>
@@ -285,6 +286,9 @@ export default defineComponent({
     timeEditable: {
       type: Boolean,
       default: true
+    },
+    nowClick: {
+      type: Function
     }
   },
   emits: ['pick', 'select-change', 'dodestroy'],

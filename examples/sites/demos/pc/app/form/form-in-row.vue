@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style scoped>
-#form .tiny-input {
-  width: 300px;
+.tiny-form-item {
+  width: 400px;
 }
 </style>

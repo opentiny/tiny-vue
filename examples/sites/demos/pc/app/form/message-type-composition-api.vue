@@ -66,7 +66,7 @@ function handleSubmit() {
 
 <style scoped>
 .demo-form {
-  width: 380px;
+  width: 400px;
 }
 
 .demo-form :deep(.tiny-date-container) {

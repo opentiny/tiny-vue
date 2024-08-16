@@ -22,14 +22,17 @@
  * SOFTWARE.
  *
  */
-
-import { h, hooks, $prefix, $props, defineComponent } from '@opentiny/vue-common'
-import { assemColumn, destroyColumn } from '@opentiny/vue-renderless/grid/utils'
+import { findTree } from '@opentiny/vue-renderless/grid/static'
+import { setColumnFormat } from '@opentiny/vue-renderless/grid/utils'
+import { h, hooks, $props, defineComponent, useRelation, useInstanceSlots } from '@opentiny/vue-common'
 import Cell from '../../cell'
 import { warn } from '../../tools'
+import GlobalConfig from '../../config'
+
+const { columnLevelKey, defaultColumnName } = GlobalConfig
 
 export default defineComponent({
-  name: $prefix + 'GridColumn',
+  name: defaultColumnName,
   componentName: 'GridColumn',
   props: {
     ...$props,
@@ -134,57 +137,75 @@ export default defineComponent({
   provide() {
     return { $column: this }
   },
+  inject: { $table: { default: null } },
   setup(props, { slots }) {
-    const { reactive, onBeforeUnmount, inject, getCurrentInstance, onUpdated, watch, nextTick, markRaw } = hooks
+    const { reactive, inject, getCurrentInstance, onUpdated, watch, nextTick } = hooks
     const currentInstance = getCurrentInstance()
     const instance = currentInstance.proxy
     const $grid = inject('$grid')
     const $table = inject('$table')
-    const $column = inject('$column', null)
     let slotsCache = {}
 
+    !$table.isTagUsageSence && ($table.isTagUsageSence = true)
+
+    useInstanceSlots()
+
+    useRelation({ relationKey: `${columnLevelKey}-${$table.id}` })
+
     const state = reactive({
-      // 穿件表格列实例化对象
+      // 创建表格列实例化对象
       columnConfig: Cell.createColumn($table, props),
       slots,
-      cacheKey: markRaw({ uid: currentInstance.uid }),
       // 如果是静态数据源，就拿第一行数据
       firstRow: !$grid.fetchOption && $grid.data && $grid.data.length ? $grid.data[0] : {}
     })
 
     watch(
       () => props.formatConfig,
-      () => {
-        state.columnConfig = Cell.createColumn($table, props)
-      }
+      () => setColumnFormat(state.columnConfig, props)
     )
 
     onUpdated(() => {
-      const slotsChange = Object.keys(instance.slots || {}).some((key) => !(slotsCache?.[key] === instance.slots[key]))
+      // vue2的slots会对$scopedSlots做一层代理，因此获取不到更新
+      const noProxySlots = instance.$scopedSlots || instance.slots
+      const slotsChange = Object.keys(noProxySlots || {}).some((key) => !(slotsCache?.[key] === noProxySlots[key]))
       if (slotsChange) {
-        slotsCache = { ...instance.slots }
+        slotsCache = { ...noProxySlots }
         state.columnConfig.slots = slotsCache
       }
     })
 
-    nextTick(() => assemColumn($table, $column, instance, reactive))
-
-    onBeforeUnmount(() => destroyColumn($table, instance))
+    nextTick(() => (state.columnConfig.slots = instance.instanceSlots))
 
     return state
   },
   render() {
-    const { slots, firstRow, columnConfig } = this
+    const { $table, firstRow, columnConfig, instanceSlots } = this
     let slotVnode
-
     try {
-      slotVnode = slots.default && slots.default({ row: firstRow, column: columnConfig, skip: true })
+      slotVnode = instanceSlots.default && instanceSlots.default({ row: firstRow, column: columnConfig, skip: true })
     } catch (e) {
       slotVnode = null
       warn('ui.grid.error.chainCallError')
     }
 
-    return h('div', slotVnode)
+    const hasSubColumn = findTree(
+      slotVnode,
+      ({ componentOptions, type }) => {
+        const componentName = (type && type.name) || (componentOptions && componentOptions.Ctor.extendOptions.name)
+
+        return $table.isValidCustomColumn(componentName)
+      },
+      null,
+      null
+    )
+
+    const columnProps = {
+      key: columnConfig.id,
+      attrs: { 'data-colid': columnConfig.id }
+    }
+
+    return h('div', columnProps, hasSubColumn && slotVnode)
   },
   methods: Cell
 })

@@ -5,7 +5,10 @@
         <div class="demo-split-pane">自定义左面板</div>
       </template>
       <template #trigger>
-        <div class="trigger-line"></div>
+        <div class="trigger-line">
+          <div class="trigger-line__inner"></div>
+          <tiny-icon-pause class="trigger-line__icon" />
+        </div>
       </template>
       <template #right>
         <div class="demo-split-pane">自定义右面板</div>
@@ -17,8 +20,10 @@
 <script setup lang="jsx">
 import { ref } from 'vue'
 import { Split as TinySplit } from '@opentiny/vue'
+import { IconPause } from '@opentiny/vue-icon'
 
 const split2 = ref(0.4)
+const TinyIconPause = IconPause()
 </script>
 
 <style scoped>
@@ -29,12 +34,34 @@ const split2 = ref(0.4)
 }
 
 .demo-split-pane {
-  padding: 10px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
 }
 
 .trigger-line {
+  position: relative;
   width: 5px;
-  height: 200px;
-  background-color: black;
+  height: 100%;
+  cursor: pointer;
+}
+.trigger-line__inner {
+  height: 100%;
+  width: 1px;
+  margin-left: 2px;
+  background: #c2c2c2;
+}
+
+.trigger-line__icon {
+  position: absolute;
+  top: 50%;
+  left: -7px;
+  font-size: 18px;
+  fill: #c2c2c2;
+}
+.trigger-line__icon:hover {
+  fill: #777;
 }
 </style>

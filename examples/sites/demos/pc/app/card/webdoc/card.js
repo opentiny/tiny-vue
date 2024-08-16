@@ -83,11 +83,39 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过属性<code>check-type="checkbox"</code>设置卡片多选,通过属性<code>check-type="radio"</code>设置卡片单选，需同时设置 label。注意：目前仅支持在 text 类型开启多选</p>',
+          '<p>通过属性<code>check-type="checkbox"</code>设置卡片多选，通过属性<code>check-type="radio"</code>设置卡片单选，需同时设置 label。注意：目前仅支持在 text 类型开启多选</p>',
         'en-US':
           '<p>Use the <code>check-type="checkbox"</code> attribute to set multiple card selections, and use the <code>check-type="radio"</code> attribute to set single card selections. You need to set labels at the same time. Note: Currently, multiple selections can be enabled only for the text type.</p>'
       },
       codeFiles: ['check-type-checkbox.vue']
+    },
+    {
+      demoId: 'check-mode',
+      name: {
+        'zh-CN': '单选&多选（选择模式）',
+        'en-US': 'Single-choice & multiple-choice(check-mode)'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过属性<code>check-mode</code>配置卡片的选中效果，搭配属性<code>check-type="checkbox"</code>设置卡片多选，通过属性<code>check-type="radio"</code>设置卡片单选，需同时设置 label。注意：目前仅支持在 text 类型开启多选</p>',
+        'en-US':
+          '<p>Use the <code>check-mode</code> configuring the Selection Effect of a Card, and use the <code>check-type="checkbox"</code> attribute to set multiple card selections, and use the <code>check-type="radio"</code> attribute to set single card selections. You need to set labels at the same time. Note: Currently, multiple selections can be enabled only for the text type.</p>'
+      },
+      codeFiles: ['check-mode.vue']
+    },
+    {
+      demoId: 'card-select',
+      name: {
+        'zh-CN': '卡片选择（业务功能）',
+        'en-US': 'Card Selection (Business Function)'
+      },
+      desc: {
+        'zh-CN':
+          '<p>通过属性<code>check-mode</code>配置卡片的选中效果，搭配属性<code>check-type="checkbox"</code>设置卡片多选，通过属性<code>check-type="radio"</code>设置卡片单选，需同时设置 label。注意：目前仅支持在 text 类型开启多选</p>',
+        'en-US':
+          '<p>Use the <code>check-mode</code> configuring the Selection Effect of a Card, and use the <code>check-type="checkbox"</code> attribute to set multiple card selections, and use the <code>check-type="radio"</code> attribute to set single card selections. You need to set labels at the same time. Note: Currently, multiple selections can be enabled only for the text type.</p>'
+      },
+      codeFiles: ['card-select.vue']
     },
     {
       demoId: 'custom-class',

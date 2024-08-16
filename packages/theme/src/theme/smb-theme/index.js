@@ -163,6 +163,7 @@ export const tinyBaseSmbTheme = {
   'ti-common-bg-primary': 'var(--ti-common-color-bg-primary)',
   'ti-common-bg-primary-hover': 'var(--ti-common-color-bg-primary-hover)',
   'ti-common-bg-primary-active': 'var(--ti-common-color-bg-primary-active)',
+  'ti-common-color-bg-6': 'var(--ti-base-color-bg-6)', // smb新增标签背景色
 
   // 图表色
   'ti-common-color-data-1': 'var(--ti-base-color-icon-info)',

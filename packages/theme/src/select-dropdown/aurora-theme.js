@@ -5,7 +5,7 @@ export const tinySelectDropdownAuroraTheme = {
   'ti-select-dropdown-box-shadow': '0 0 4px rgba(0,0,0,0.3)', // 没有common 变量
   'ti-select-dropdown-border-weight': 'var(--ti-common-border-weight-normal)',
   'ti-select-dropdown-border-color': 'var(--ti-common-color-line-normal)',
-  'ti-option-checkbox-border-color-hover': 'var(--ti-common-color-line-hover)',
+  'ti-option-checkbox-border-color-hover': '#bfbfbf',
   'ti-select-dropdown-top-create-text-color': 'var(--ti-common-color-text-highlight)',
   'ti-select-dropdown-top-create-text-color-hover': 'var(--ti-common-color-text-link-hover)',
   'ti-select-dropdown-top-create-icon-color': 'var(--ti-common-color-icon-normal)',

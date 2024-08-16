@@ -64,9 +64,9 @@ export const showTip =
 export const gridOnQueryChange =
   ({ props, vm, constants, state }) =>
   (value) => {
-    const { multiple, valueField, filterMethod, filterable, remote, remoteMethod } = props
+    const { multiple, valueField, filterMethod, remote, remoteMethod } = props
 
-    if (filterable && typeof filterMethod === 'function') {
+    if ((props.filterable || props.searchable) && typeof filterMethod === 'function') {
       const table = vm.$refs.selectGrid.$refs.tinyTable
       const fullData = table.afterFullData
 
@@ -137,7 +137,13 @@ export const queryChange =
 
 const setFilteredSelectCls = (nextTick, state, props) => {
   nextTick(() => {
-    if (props.multiple && props.showAlloption && props.filterable && state.query && !props.remote) {
+    if (
+      props.multiple &&
+      props.showAlloption &&
+      (props.filterable || props.searchable) &&
+      state.query &&
+      !props.remote
+    ) {
       const filterSelectedVal = state.options
         .filter((item) => item.state.visible && item.state.itemSelected)
         .map((opt) => opt.value)
@@ -179,7 +185,7 @@ export const handleQueryChange =
     if (props.renderType === constants.TYPE.Tree) {
       state.previousQuery = value
 
-      if (props.filterable && typeof props.filterMethod === 'function') {
+      if ((props.filterable || props.searchable) && typeof props.filterMethod === 'function') {
         vm.$refs.selectTree && vm.$refs.selectTree.filter(value)
       }
     }
@@ -196,8 +202,11 @@ export const handleQueryChange =
 
     state.hoverIndex = -1
 
-    if (props.multiple && props.filterable && !props.shape) {
+    if (props.multiple && (props.filterable || props.searchable) && !props.shape) {
       nextTick(() => {
+        if (!vm.$refs.input) {
+          return
+        }
         const length = vm.$refs.input.value.length * 15 + 20
         state.inputLength = state.collapseTags ? Math.min(50, length) : length
         api.managePlaceholder()
@@ -413,7 +422,7 @@ const getResultOfSetSelected = ({ state, isGrid, isTree, api, props }) => {
 }
 
 // 单选,树/表格，获取匹配的option
-const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
+const setGridOrTreeSelected = ({ props, state, vm, isTree, api, init }) => {
   if (!props.modelValue) {
     state.selectedLabel = ''
     state.selected = {}
@@ -424,7 +433,7 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
   }
 
   const isRemote =
-    props.filterable &&
+    (props.filterable || props.searchable) &&
     props.remote &&
     (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
   const nestdata = isRemote ? state.remoteData : isTree ? api.getTreeData(state.treeData) : state.gridData
@@ -439,6 +448,7 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
   const label = data[props.textField]
 
   obj.currentLabel = label
+  state.selectedLabel = init && !label && props.initLabel ? props.initLabel : label
   state.selectedLabel = label
   state.selected = obj
   state.currentKey = data[props.valueField]
@@ -446,18 +456,18 @@ const setGridOrTreeSelected = ({ props, state, vm, isTree, api }) => {
 
 export const setSelected =
   ({ api, constants, nextTick, props, vm, state }) =>
-  () => {
+  (init) => {
     const isTree = props.renderType === constants.TYPE.Tree
     const isGrid = props.renderType === constants.TYPE.Grid
 
     if (!props.multiple) {
       if (isGrid || isTree) {
-        setGridOrTreeSelected({ props, state, vm, isTree, api })
+        setGridOrTreeSelected({ props, state, vm, isTree, api, init })
       } else {
         const option = getOptionOfSetSelected({ api, props })
         state.selected = option
         state.selectedLabel = option.state.currentLabel || option.currentLabel
-        props.filterable && !props.shape && (state.query = state.selectedLabel)
+        ;(props.filterable || props.searchable) && !props.shape && (state.query = state.selectedLabel)
       }
     } else {
       const result = getResultOfSetSelected({ state, props, isGrid, isTree, api })
@@ -467,6 +477,7 @@ export const setSelected =
           : 'halfselect'
         : 'check'
       state.selected = result
+      state.selected.length && (state.selectedLabel = '')
       vm.$refs.selectTree && vm.$refs.selectTree.setCheckedNodes && vm.$refs.selectTree.setCheckedNodes(state.selected)
       state.tips = state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(',')
 
@@ -480,7 +491,7 @@ export const getPluginOption =
   ({ api, props, state }) =>
   (value, isTree) => {
     const isRemote =
-      props.filterable &&
+      (props.filterable || props.searchable) &&
       props.remote &&
       (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
     const { textField, valueField } = props
@@ -507,7 +518,8 @@ export const toggleCheckAll =
 
     if (filtered) {
       if (state.filteredSelectCls === 'check' || state.filteredSelectCls === 'halfselect') {
-        value = [...new Set([...state.modelValue, ...enabledValues])]
+        // 避免编译报错
+        value = Array.from(new Set([...state.modelValue, ...enabledValues]))
       } else {
         value = state.modelValue.filter((val) => !enabledValues.includes(val))
       }
@@ -543,7 +555,7 @@ export const handleFocus =
   ({ emit, props, state }) =>
   (event) => {
     if (!state.softFocus) {
-      if (props.automaticDropdown || props.filterable) {
+      if (props.automaticDropdown || props.filterable || props.searchable) {
         state.visible = true
         state.softFocus = true
       }
@@ -685,7 +697,7 @@ export const resetInputState =
 export const resetInputHeight =
   ({ constants, nextTick, props, vm, state, api, designConfig }) =>
   () => {
-    if (state.collapseTags && !props.filterable) {
+    if (state.collapseTags && !(props.filterable || props.searchable)) {
       return
     }
 
@@ -707,7 +719,7 @@ export const resetInputHeight =
       }
 
       const sizeInMap =
-        designConfig?.state.initialInputHeight || state.initialInputHeight || (state.isSaaSTheme ? 28 : 30)
+        designConfig?.state.initialInputHeight || Math.round(state.initialInputHeight) || (state.isSaaSTheme ? 28 : 30)
       const noSelected = state.selected.length === 0
       // tiny 新增的spacing (design中配置：aui为4，smb为0，tiny 默认为0)
       const spacingHeight = designConfig ? designConfig.state?.spacingHeight : constants.SPACING_HEIGHT
@@ -800,8 +812,8 @@ export const handleOptionSelect =
         state.inputLength = 20
       }
 
-      if (props.filterable) {
-        vm.$refs.input.focus()
+      if (props.filterable || props.searchable) {
+        vm.$refs.input?.focus()
       }
 
       if (props.autoClose) {
@@ -884,7 +896,7 @@ export const getValueIndex =
 export const toggleMenu =
   ({ vm, state, props, api }) =>
   (e) => {
-    if (props.keepFocus && state.visible && props.filterable) {
+    if (props.keepFocus && state.visible && (props.filterable || props.searchable)) {
       return
     }
 
@@ -893,16 +905,12 @@ export const toggleMenu =
     const nodeName = event.target && event.target.nodeName
     const toggleVisible = props.ignoreEnter ? event.keyCode !== enterCode && nodeName === 'INPUT' : true
 
-    if (!props.displayOnly) {
-      event.stopPropagation()
-    }
-
     if (!state.selectDisabled) {
       toggleVisible && !state.softFocus && (state.visible = !state.visible)
       state.softFocus = false
 
       if (state.visible) {
-        if (!(props.filterable && props.shape)) {
+        if (!((props.filterable || props.searchable) && props.shape)) {
           const dom = vm.$refs.input || vm.$refs.reference
           dom?.focus && dom.focus()
           api.setOptionHighlight()
@@ -1021,7 +1029,7 @@ export const onInputChange =
   ({ api, props, state, constants, nextTick }) =>
   () => {
     if (!props.delay) {
-      if (props.filterable && state.query !== state.selectedLabel) {
+      if ((props.filterable || props.searchable) && state.query !== state.selectedLabel) {
         const isChange = false
         const isInput = true
 
@@ -1250,7 +1258,7 @@ export const emptyText =
     }
 
     if (
-      props.filterable &&
+      (props.filterable || props.searchable) &&
       state.query &&
       ((props.remote && state.emptyFlag) || !state.options.some((option) => option.visible && option.state.visible))
     ) {
@@ -1284,7 +1292,7 @@ export const watchValue =
         state.currentPlaceholder = state.cachedPlaceHolder
       }
 
-      if (props.filterable && !props.reserveKeyword) {
+      if ((props.filterable || props.searchable) && !props.reserveKeyword) {
         // tiny 优化： 多选且props.reserveKeyword为false时， aui此处会多请求一次
         // searchable时，不清空query, 这样才能保持搜索结果
         props.renderType !== constants.TYPE.Grid && !props.searchable && (state.query = '')
@@ -1296,7 +1304,7 @@ export const watchValue =
     !state.isClickChoose && api.initQuery({ init: true }).then(() => api.setSelected())
     state.isClickChoose = false
 
-    if (props.filterable && !props.multiple) {
+    if ((props.filterable || props.searchable) && !props.multiple) {
       state.inputLength = 20
     }
 
@@ -1353,6 +1361,9 @@ export const calcOverFlow =
 
 const postOperOfToVisible = ({ props, state, constants }) => {
   if (props.multiple) {
+    if (props.modelValue && props.modelValue.length && props.initLabel && !state.selected.length) {
+      state.selectedLabel = props.initLabel
+    }
     return
   }
 
@@ -1360,19 +1371,23 @@ const postOperOfToVisible = ({ props, state, constants }) => {
     if (props.renderType === constants.TYPE.Grid || props.renderType === constants.TYPE.Tree) {
       state.selectedLabel = state.selected.currentLabel
     } else {
-      if (props.filterable && props.allowCreate && state.createdSelected && state.createdLabel) {
+      if ((props.filterable || props.searchable) && props.allowCreate && state.createdSelected && state.createdLabel) {
         state.selectedLabel = state.createdLabel
       } else {
         state.selectedLabel = state.selected.state.currentLabel || state.selected.currentLabel
       }
 
-      if (props.filterable) {
+      if (props.filterable || props.searchable) {
         state.query = state.selectedLabel
       }
     }
 
-    if (props.filterable) {
+    if (props.filterable || props.searchable) {
       state.currentPlaceholder = state.cachedPlaceHolder
+    }
+
+    if (props.modelValue && props.initLabel && !state.selectedLabel) {
+      state.selectedLabel = props.initLabel
     }
   }
 }
@@ -1415,18 +1430,18 @@ export const toVisible =
 export const toHide =
   ({ constants, state, props, vm, api }) =>
   () => {
-    const { filterable, remote, remoteConfig, shape, renderType, multiple, valueField } = props
+    const { remote, remoteConfig, shape, renderType, multiple, valueField } = props
 
     state.selectEmitter.emit(constants.COMPONENT_NAME.SelectDropdown, constants.EVENT_NAME.updatePopper)
 
-    if (filterable) {
+    if (props.filterable || props.searchable) {
       state.query = remote || shape ? '' : renderType !== constants.TYPE.Tree ? state.selectedLabel : ''
       const isChange = remote && remoteConfig.autoSearch && (state.firstAutoSearch || remoteConfig.clearData)
       state.firstAutoSearch = false
       api.handleQueryChange(state.query, isChange)
 
       if (multiple) {
-        vm.$refs.input.focus()
+        vm.$refs.input?.focus()
       } else {
         if (!remote) {
           state.selectEmitter.emit(constants.EVENT_NAME.queryChange, '')
@@ -1455,10 +1470,10 @@ export const toHide =
         vm.$refs.selectGrid.setRadioRow(find(fullData, (item) => props.modelValue === item[valueField]))
       }
 
-      if (filterable && typeof props.filterMethod === 'function') {
+      if ((props.filterable || props.searchable) && typeof props.filterMethod === 'function') {
         vm.$refs.selectGrid.handleTableData(true)
       } else if (
-        filterable &&
+        (props.filterable || props.searchable) &&
         remote &&
         (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
       ) {
@@ -1470,8 +1485,8 @@ export const toHide =
 export const watchVisible =
   ({ api, constants, emit, state, vm, props }) =>
   (value) => {
-    if ((props.filterable || props.remote) && !value) {
-      vm.$refs.reference.blur()
+    if ((props.filterable || props.searchable || props.remote) && !value) {
+      vm.$refs.reference?.blur()
     }
 
     if (api.onCopying()) {
@@ -1540,7 +1555,11 @@ export const getOptionIndexArr =
   () => {
     setTimeout(() => {
       state.optionIndexArr = api.queryVisibleOptions().map((item) => Number(item.getAttribute('data-index')))
-      if (props.defaultFirstOption && (props.filterable || props.remote) && state.filteredOptionsCount) {
+      if (
+        props.defaultFirstOption &&
+        (props.filterable || props.searchable || props.remote) &&
+        state.filteredOptionsCount
+      ) {
         if (props.optimization) {
           optmzApis.checkDefaultFirstOption({ state })
         } else {
@@ -1717,7 +1736,7 @@ export const nodeExpand =
 
 export const debouncRquest = ({ api, state, props }) =>
   debounce(props.delay, () => {
-    if (props.filterable && state.query !== state.selectedLabel) {
+    if ((props.filterable || props.searchable) && state.query !== state.selectedLabel) {
       const isChange = false
       const isInput = true
 
@@ -1957,7 +1976,7 @@ export const initQuery =
   ({ props, state, constants, vm }) =>
   ({ init } = {}) => {
     const isRemote =
-      props.filterable &&
+      (props.filterable || props.searchable) &&
       props.remote &&
       (typeof props.remoteMethod === 'function' || typeof props.initQuery === 'function')
     const isGrid = props.renderType === constants.TYPE.Grid
@@ -2021,7 +2040,13 @@ export const mounted =
 
     state.inputWidth = inputClientRect.width
 
-    api.initQuery({ init: true }).then(() => api.setSelected())
+    api.initQuery({ init: true }).then(() => {
+      api.setSelected(true)
+
+      if (props.modelValue && props.initLabel) {
+        state.selectedLabel = props.initLabel
+      }
+    })
 
     if (props.dataset) {
       api.watchPropsOption()
@@ -2189,7 +2214,7 @@ export const computedReadonly =
   () =>
     state.device === 'mb' ||
     props.readonly ||
-    !props.filterable ||
+    !(props.filterable || props.searchable) ||
     props.multiple ||
     (browserInfo.name !== BROWSER_NAME.IE && browserInfo.name !== BROWSER_NAME.Edge && !state.visible)
 
@@ -2211,7 +2236,7 @@ export const computedShowNewOption =
   () => {
     const query = state.device === 'mb' ? state.queryValue : state.query
     return (
-      props.filterable &&
+      (props.filterable || props.searchable) &&
       props.allowCreate &&
       query &&
       !state.options.filter((option) => !option.created).some((option) => option.state.currentLabel === state.query)
@@ -2226,13 +2251,20 @@ export const computedShowCopy =
 export const computedOptionsAllDisabled = (state) => () =>
   state.options.filter((option) => option.visible).every((option) => option.disabled)
 
-export const computedDisabledTooltipContent = (state) => () =>
-  state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('；')
+export const computedDisabledTooltipContent =
+  ({ props, state }) =>
+  () => {
+    if (props.multiple) {
+      return state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join(';')
+    } else {
+      return state.selected.state ? state.selected.state.currentLabel : state.selected.currentLabel
+    }
+  }
 
 export const computedSelectDisabled =
-  ({ props, parent }) =>
+  ({ state }) =>
   () =>
-    props.disabled || (parent.form || {}).disabled || props.displayOnly || (parent.form || {}).displayOnly
+    state.isDisabled || state.isDisplayOnly
 
 export const computedIsExpand =
   ({ props, state }) =>
@@ -2308,6 +2340,23 @@ export const watchShowClose =
   }
 
 // 以下为tiny 新增功能
+/**
+ * 兼容不同主题多选禁用的展示类型
+ * default 和 smb 主题，displayOnly 时显示为 tagText,否则为 tag
+ * aurora 主题 displayOnly||disabled 时显示为tagText,否则为 tag
+ */
+export const computedShowTagText =
+  ({ state }) =>
+  () =>
+    state.isDisplayOnly
+
+/**
+ * 兼容不同主题多选，tag 在disabled 和 required 时是否显示关闭按钮的区别
+ * default 主题 ，禁用显示关闭按钮，required目前和aurora保持一致不显示，待设计图补充时更新
+ * aurora 主题，禁用时无禁用效果，required 时不显示关闭按钮
+ */
+export const isTagClosable = () => (item) => !item.required
+
 export const computedGetIcon =
   ({ designConfig, props }) =>
   () => {
@@ -2327,6 +2376,7 @@ export const computedGetTagType =
     }
     return props.tagType
   }
+
 export const clearSearchText =
   ({ state, api }) =>
   () => {
@@ -2334,6 +2384,7 @@ export const clearSearchText =
     state.previousQuery = undefined
     api.handleQueryChange(state.query)
   }
+
 export const clearNoMatchValue =
   ({ props, emit }) =>
   (newModelValue) => {

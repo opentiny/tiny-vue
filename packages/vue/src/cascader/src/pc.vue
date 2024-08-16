@@ -147,6 +147,7 @@
           :render-label="slots.default"
           @expand-change="handleExpandChange"
           @close="toggleDropDownVisible(false)"
+          @load-data="computePresentContent"
         ></tiny-cascader-panel>
         <tiny-scrollbar
           ref="suggestionPanel"

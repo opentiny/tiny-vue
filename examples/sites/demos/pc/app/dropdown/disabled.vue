@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>场景1：下拉菜单禁用</p>
+    <p class="demo-dropdown">场景1：下拉菜单禁用</p>
     <tiny-dropdown disabled>
       <template #dropdown>
         <tiny-dropdown-menu>
@@ -12,7 +12,8 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <p>场景2：按钮类型禁用</p>
+    <br /><br />
+    <p class="demo-dropdown">场景2：按钮类型禁用</p>
     <tiny-dropdown split-button disabled>
       <template #dropdown>
         <tiny-dropdown-menu>
@@ -24,7 +25,8 @@
         </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
-    <p>场景3：菜单项禁用</p>
+    <br /><br />
+    <p class="demo-dropdown">场景3：菜单项禁用</p>
     <tiny-dropdown>
       <template #dropdown>
         <tiny-dropdown-menu>
@@ -55,5 +57,8 @@ export default {
 p {
   line-height: 1.5;
   font-size: 14px;
+}
+.demo-dropdown {
+  margin-bottom: 8px;
 }
 </style>

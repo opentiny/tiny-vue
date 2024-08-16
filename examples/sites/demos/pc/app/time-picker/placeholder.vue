@@ -37,4 +37,9 @@ export default {
 .demo-date-picker-wrap {
   width: 182px;
 }
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px 0;
+}
 </style>

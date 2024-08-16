@@ -14,7 +14,7 @@ export default {
       medium: 32
     },
     spacingHeight: 4,
-    initialInputHeight: 30,
+    initialInputHeight: 28,
     // 显示清除等图标时，不隐藏下拉箭头时
     autoHideDownIcon: false,
     delayBlur: true
@@ -30,7 +30,7 @@ export default {
         let size = 'small'
 
         if (~['small', 'mini'].indexOf(state.selectSize)) {
-          size = 'mini'
+          size = state.selectSize
         } else if (~['medium', 'default'].indexOf(state.selectSize)) {
           size = 'default'
         }
@@ -56,7 +56,7 @@ export default {
 
         if (filtered) {
           if (state.filteredSelectCls === 'check' || state.filteredSelectCls === 'halfselect') {
-            value = [...new Set([...state.modelValue, ...enabledValues])]
+            value = Array.from(new Set([...state.modelValue, ...enabledValues]))
           } else {
             value = state.modelValue.filter((val) => !enabledValues.includes(val))
           }
@@ -88,6 +88,14 @@ export default {
         state.isSilentBlur = true
         api.updateModelValue(value)
         api.directEmitChange(value)
+      },
+      // aurora 禁用和只展示的时候都是tagText，默认主题是 isDisplayOnly 才显示tagText
+      computedShowTagText: () => {
+        return state.isDisabled || state.isDisplayOnly
+      },
+      // aurora 禁用已选项无效果，必选不显示关闭图标
+      isTagClosable: (item) => {
+        return !item.required
       }
     }
   }

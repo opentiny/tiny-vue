@@ -13,7 +13,7 @@ export const api = ['state', 'handelItemClick']
 
 export const renderless = (
   props: ITagGroupProps,
-  { onMounted, onBeforeUnmount, reactive }: ISharedRenderlessParamHooks,
+  { onMounted, onBeforeUnmount, reactive, watch }: ISharedRenderlessParamHooks,
   { vm, emit }: ITagGroupRenderlessParamUtils
 ): ITagGroupApi => {
   const delay = 100
@@ -34,6 +34,14 @@ export const renderless = (
     api.debouncedGetHiddenTags = debounce(delay, api.getHiddenTags)
     addResizeListener(vm.$refs.tagGroup, debounce(delay, api.debouncedGetHiddenTags))
   })
+
+  // Tiny 新增，当标签组的数量发生变化也需要动态计算tip框中的tag标签数量
+  watch(
+    () => props.data.length,
+    () => {
+      api.getHiddenTags()
+    }
+  )
 
   onBeforeUnmount(() => {
     removeResizeListener(vm.$refs.tagGroup, api.debouncedGetHiddenTags)

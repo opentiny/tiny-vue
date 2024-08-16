@@ -181,7 +181,9 @@ export default defineComponent({
     'collapseLeftTop',
     'collapseRightBottom',
     'threeAreas',
-    'scrollable'
+    'scrollable',
+    'border',
+    'rightBottomValue'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })

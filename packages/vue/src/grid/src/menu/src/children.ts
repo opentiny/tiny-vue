@@ -55,7 +55,7 @@ export default defineComponent({
               },
               [
                 h(
-                  'a',
+                  'span',
                   {
                     class: `tiny-grid-menu__link ${toKebab(item.code)}`,
                     on: {

@@ -161,6 +161,7 @@ export default {
     {
       name: 'IMultiSelectMenu',
       type: 'interface',
+      depTypes: ['IMultiSelectOption'],
       code: `
 interface IMultiSelectMenu {
   title: string, // 菜单项标题

@@ -7,7 +7,7 @@
   .shepherd-arrow {
     height: calc(var(--ti-guide-arrow-height) * 1.4);
     position: absolute;
-    width: calc(var(--ti-guide-arrow-width) * 1.4) ;
+    width: calc(var(--ti-guide-arrow-width) * 1.4);
     z-index: -10;
     overflow: hidden;
     &:before {
@@ -42,7 +42,7 @@
       background-color: var(--ti-guide-header-bg-color);
 
       .shepherd-title {
-        font-size: 18px;
+        font-size: var(--ti-guide-title-text-font-size);
         color: var(--ti-guide-title-text-color);
         line-height: var(--ti-guide-title-line-height);
         font-weight: var(--ti-guide-title-font-weight);
@@ -73,6 +73,7 @@
           font-weight: var(--ti-guide-cancel-icon-font-weight);
           transform: rotate(-360deg);
           margin-top: var(--ti-guide-cancel-icon-margin-top);
+          margin-right: var(--ti-guide-cancel-icon-margin-right);
         }
 
         span:hover {
@@ -134,7 +135,7 @@
 
       .progress-style {
         position: absolute;
-        left: 24px;
+        left: var(--ti-guide-progress-style-left);
         font-size: 14px;
         color: var(--ti-guide-progresss-text-color);
         font-weight: 400;
@@ -146,13 +147,15 @@
         background-color: var(--ti-guide-button-bg-color);
         cursor: pointer;
         border-radius: var(--ti-guide-button-border-radius);
-        border: 0;
-        width: 96px;
-        height: 32px;
+        border: 1px solid var(--ti-guide-button-border);
+        width: var(--ti-guide-button-width);
+        height: var(--ti-guide-button-height);
         margin-left: 8px;
         transition: all 0.5s ease;
+        font-size: var(--ti-guide-button-font-size);
 
         &:hover {
+          border-color: var(--ti-guide-button-hover-border-color);
           background-color: var(--ti-guide-button-hover-bg-color);
         }
 
@@ -220,6 +223,7 @@
 
     .shepherd-text {
       padding-right: 52px;
+      margin-top: 12px;
     }
   }
 
@@ -256,7 +260,7 @@
     z-index: 9999;
     width: var(--tiny-guide-shepherd-element-size);
     outline: none;
-    border-radius: 4px;
+    border-radius: var(--ti-guide-shepherd-element-border-radius);;
     transition:
       opacity 0.3s,
       visibility 0.3s;

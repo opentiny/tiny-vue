@@ -29,7 +29,7 @@ export const renderComponent = ({
   context: { attrs, slots },
   extend = {}
 }) => {
-  return () => hooks.h((view && view.value) || component, { ...props, ...attrs, ...extend }, slots)
+  return () => hooks.h((view && view.value) || component, { ref: 'modeTemplate', ...props, ...attrs, ...extend }, slots)
 }
 
 export const rootConfig = (context) => {
