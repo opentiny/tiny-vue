@@ -173,10 +173,11 @@
       </template>
       <!-- 插槽传出editor实例 -->
       <slot name="toolBar" :option="state.editor"></slot>
+      <!-- TODO 目前 BubbleMenu 被另一个扩展替代，当 BubbleMenu 扩展上线此处代码会移除 -->
       <BubbleMenu
         :editor="state.editor"
         :tippy-options="{ duration: 100 }"
-        v-if="state.editor"
+        v-if="false"
         :should-show="shouldShow"
         class="bubble-menu"
       >
@@ -308,6 +309,7 @@ import TinyTiptap from '@opentiny/tiny-tiptap'
 import { extensionViewMap } from './extensions'
 import slashMenuView from './components/slash-menu'
 import floatMenuView from './components/float-menu'
+import bubbleMenuView from './components/bubble-menu'
 
 import { $props, setup, defineComponent, $prefix, directive } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/rich-text-editor/index.less'
@@ -342,6 +344,10 @@ export const richTextEditorProps = {
   floatMenuView: {
     type: [Object, Boolean],
     default: false
+  },
+  bubbleMenuView: {
+    type: [Object, Boolean],
+    default: true
   }
 }
 
@@ -425,7 +431,8 @@ export default defineComponent({
         VueNodeViewRenderer,
         viewMap: extensionViewMap,
         slashMenuView,
-        floatMenuView
+        floatMenuView,
+        bubbleMenuView
       }
     })
   }

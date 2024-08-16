@@ -27,7 +27,7 @@ export const renderless = (
   props,
   { computed, onMounted, onBeforeUnmount, reactive },
   { vm, emit },
-  { TinyTiptap, Editor, VueRenderer, VueNodeViewRenderer, viewMap, slashMenuView, floatMenuView }
+  { TinyTiptap, Editor, VueRenderer, VueNodeViewRenderer, viewMap, slashMenuView, floatMenuView, bubbleMenuView }
 ) => {
   let defaultToolBar = [
     'bold',
@@ -146,12 +146,18 @@ export const renderless = (
       : props.floatMenuView === true
         ? floatMenuView
         : props.floatMenuView
+    const finalBubbleMenuView = isFalsy(props.bubbleMenuView)
+      ? null
+      : props.bubbleMenuView === true
+        ? bubbleMenuView
+        : props.bubbleMenuView
     const finalViewMap = isFalsy(props.viewMap) ? new Map() : props.viewMap === true ? viewMap : props.viewMap
 
     const menuMap = {
       renderer: VueRenderer,
       slashMenuView: finalSlashMenuView,
-      floatMenuView: finalFloatMenuView
+      floatMenuView: finalFloatMenuView,
+      bubbleMenuView: finalBubbleMenuView
     }
 
     const config = {
