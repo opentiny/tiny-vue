@@ -1,3 +1,5 @@
+import { isBrowser } from '../common/browser.js'
+
 export const getAddWheelListener = (window, document) => {
   const { addApiName, removeApiName, prefix } = detectEventModel(window)
   const support = detectAvailableWheelEvent(document)
@@ -20,7 +22,7 @@ export const getAddWheelListener = (window, document) => {
 }
 
 const detectEventModel = (window) => {
-  const flag = window.addEventListener
+  const flag = isBrowser ? window.addEventListener : null
 
   const addApiName = flag ? 'addEventListener' : 'attachEvent'
   const removeApiName = flag ? 'removeEventListener' : 'detachEvent'
@@ -30,17 +32,18 @@ const detectEventModel = (window) => {
 }
 
 const detectAvailableWheelEvent = (document) => {
-  let support
-
-  if ('onwheel' in document.createElement('div')) {
-    support = 'wheel'
-  } else if (document.onmousewheel !== undefined) {
-    support = 'mousewheel'
-  } else {
-    support = 'DOMMouseScroll'
+  if (!isBrowser) return null
+  else {
+    let support
+    if ('onwheel' in document.createElement('div')) {
+      support = 'wheel'
+    } else if (document.onmousewheel !== undefined) {
+      support = 'mousewheel'
+    } else {
+      support = 'DOMMouseScroll'
+    }
+    return support
   }
-
-  return support
 }
 
 const elemCbMap = new WeakMap()
