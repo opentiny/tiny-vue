@@ -84,7 +84,6 @@ export default {
   'user-head': 'user-head',
   'user-link': 'user-link',
   'year-table': 'year-table',
-  'skeleton': 'skeleton',
   'skeleton-item': 'skeleton-item',
   'radio-button': 'radio-button',
   'color-select-panel': 'color-select-panel',
