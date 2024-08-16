@@ -30,6 +30,7 @@
                 :meta="data.meta"
                 v-bind="data.versionTipOption"
                 render-type="tag"
+                :is-from-menu="true"
               >
               </version-tip>
             </div>

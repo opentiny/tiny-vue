@@ -116,6 +116,10 @@ export default defineComponent({
     },
     extendTip: {
       type: Object as PropType<Ii18nString>
+    },
+    isFromMenu: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props) {
@@ -154,9 +158,15 @@ export default defineComponent({
       return goingStages.map(([stage, des]) => des.replace('{version}', getVersion(stage as STAGE))).join('，')
     }
 
-    const tagContentComputed = computed(() =>
-      isStableComputed.value ? props.meta[currentStageComputed.value] : currentStageComputed.value
-    )
+    const tagContentComputed = computed(() => {
+      const result = isStableComputed.value ? props.meta[currentStageComputed.value] : currentStageComputed.value
+      // 菜单上需要显示Beta标识，防止占用过多文字空间
+      if (props.isFromMenu && result === STAGE.experimental) {
+        return 'Beta'
+      } else {
+        return result
+      }
+    })
 
     const tipComputed = computed(() => {
       if (props.tip) return getWord(props.tip['zh-CN'], props.tip['en-US']) as string
