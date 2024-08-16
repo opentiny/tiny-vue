@@ -728,6 +728,9 @@ export default {
           typeAnchorName: 'IResizableConfig',
           type: 'IResizableConfig',
           defaultValue: '',
+          metaData: {
+            new: '3.19.0'
+          },
           desc: {
             'zh-CN': '设置列宽拖拽参数',
             'en-US': 'Set column width drag parameters'
