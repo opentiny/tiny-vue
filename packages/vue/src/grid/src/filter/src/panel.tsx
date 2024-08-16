@@ -1,5 +1,4 @@
 /* eslint-disable vue/no-mutating-props */
-/* eslint-disable vue/no-use-computed-property-like-method */
 /**
  * MIT License
  *
@@ -289,20 +288,25 @@ export default defineComponent({
         }
       }
 
-      this.popperJS && this.popperJS.destroy() && (this.popperJS = null)
-      this.$nextTick(() => {
-        const { targetElemParentTr, id } = this.filterStore
-        const reference = targetElemParentTr && targetElemParentTr.querySelector(`svg.tiny-grid-filter__btn.${id}`)
-        const popper = this.$el
+      if (this.popperJS) {
+        this.popperJS.destroy()
+        this.popperJS = null
+      }
+      if (this.visible) {
+        this.$nextTick(() => {
+          const { targetElemParentTr, id } = this.filterStore
+          const reference = targetElemParentTr && targetElemParentTr.querySelector(`svg.tiny-grid-filter__btn.${id}`)
+          const popper = this.$el
 
-        popper.style.zIndex = PopupManager.nextZIndex()
+          popper.style.zIndex = PopupManager.nextZIndex()
 
-        if (this.visible) {
           this.popperJS = new PopperJS(reference, popper, {
-            placement: 'bottom-end'
-          }).update()
-        }
-      })
+            placement: 'bottom-end',
+            gpuAcceleration: false
+          })
+          popper.style.display = 'block'
+        })
+      }
     }),
     // 基础清除选项
     renderBase() {
