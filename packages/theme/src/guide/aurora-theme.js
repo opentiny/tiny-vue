@@ -4,7 +4,6 @@ export const tinyGuideAuroraTheme = {
   'ti-guide-cancel-icon-font-size': '30px',
   'ti-guide-cancel-icon-font-weight': '300',
   'ti-guide-cancel-icon-color': '#333d48',
-  'ti-guide-cancel-icon-font-weight': '300',
   'ti-guide-cancel-hover-icon-color': 'rgba(0, 0, 0, 0.75)',
   'ti-guide-text-text-color': '#333d48',
   'ti-guide-text-line-height': '20px',
