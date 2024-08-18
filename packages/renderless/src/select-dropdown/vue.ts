@@ -24,6 +24,7 @@ import {
 import userPopper from '../common/deps/vue-popper'
 import PopupManager from '../common/deps/popup-manager'
 import debounce from '../common/deps/debounce'
+import { isBrowser } from '../common/browser'
 
 export const api = [
   'state',
@@ -95,7 +96,7 @@ const initApi = ({ api, popper, state, selectEmitter, constants, selectVm, paren
 
 const initWatch = ({ watch, selectVm, state, nextTick }) => {
   watch(
-    () => selectVm.state.inputWidth,
+    () => (isBrowser ? selectVm.state.inputWidth : undefined),
     (val) => {
       nextTick(() => {
         state.minWidth = ((selectVm && selectVm.$el && selectVm.$el.getBoundingClientRect().width) || val) + 'px'
