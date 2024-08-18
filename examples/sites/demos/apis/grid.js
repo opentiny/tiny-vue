@@ -724,6 +724,22 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'IResizableConfig',
+          typeAnchorName: 'IResizableConfig',
+          type: 'IResizableConfig',
+          defaultValue: '',
+          metaData: {
+            new: '3.19.0'
+          },
+          desc: {
+            'zh-CN': '设置列宽拖拽参数',
+            'en-US': 'Set column width drag parameters'
+          },
+          mode: ['pc'],
+          pcDemo: 'grid-size#size-resizable-config',
+          mfDemo: ''
+        },
+        {
           name: 'row-class-name',
           typeAnchorName: 'IClassNameArgs',
           type: 'string | (args: IClassNameArgs) => string',
@@ -4668,6 +4684,16 @@ interface IResizableChangeArgs {
   columnIndex: number
   // 是否固定列
   fixed: boolean
+}
+      `
+    },
+    {
+      name: 'IResizableConfig',
+      type: 'type',
+      code: `
+interface IResizableConfig {
+  // 拖拽宽度限制函数，field: 当前拖拽的列名，width: 当前拖拽的宽度
+  limit: ({ field: string, width: number }) => number
 }
       `
     },
