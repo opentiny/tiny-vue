@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     changeMode() {
-      num.value = (num.value + 1) % 4
+      this.num = (this.num + 1) % 4
       Modal.message({ message: '模式:' + this.num })
     }
   }

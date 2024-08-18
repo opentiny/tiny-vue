@@ -276,8 +276,8 @@ export default {
     {
       demoId: 'crop-meth',
       name: {
-        'zh-CN': '裁剪框方法 事件',
-        'en-US': 'Crop box method event'
+        'zh-CN': '裁剪框的禁用/启用',
+        'en-US': 'Crop box disable/enable '
       },
       desc: {
         'zh-CN':
