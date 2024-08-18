@@ -76,6 +76,18 @@ export default {
         'en-US': 'For details, see the following example.'
       },
       codeFiles: ['placeholder-usage.vue']
-    }
+    },
+    {
+      demoId: 'collaboration-usage',
+      name: {
+        'zh-CN': 'collaboration选项用法',
+        'en-US': 'Collaboration Usage'
+      },
+      desc: {
+        'zh-CN': '<p>可通过 <code>collaboration</code> 属性开启协同编辑，可选值：<code>true</code> / <code>false</code> / <code>Object</code>。</p>\n',
+        'en-US': '<p>The collaboration can be set via the <code>collaboration</code> property, with available options: <code>true</code> / <code>false</code> / <code>Object</code>.</p>.\n'
+      },
+      codeFiles: ['collaboration-usage.vue']
+    },
   ]
 }

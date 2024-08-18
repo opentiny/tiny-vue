@@ -342,6 +342,10 @@ export const richTextEditorProps = {
   floatMenuView: {
     type: [Object, Boolean],
     default: false
+  },
+  collaboration: {
+    type: [Object, Boolean],
+    default: false
   }
 }
 
