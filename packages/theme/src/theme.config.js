@@ -87,5 +87,6 @@ export default {
   'skeleton-item': 'skeleton-item',
   'radio-button': 'radio-button',
   'split': 'split-wrapper',
-  'popeditor': 'popeditor__dialog-box'
+  'popeditor': 'popeditor__dialog-box',
+  'float-bar': 'float-bar'
 }

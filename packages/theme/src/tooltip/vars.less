@@ -16,9 +16,18 @@
   // 弹框箭头的负尺寸,用于偏移(hide)
   --ti-tooltip-popper-neg-border-width: calc(var(--ti-tooltip-popper-border-width) * -1);
   // 弹框字体行高(hide)
-  --ti-tooltip-popper-font-line-height: var(--ti-common-line-height-3, 18px);
+  --ti-tooltip-popper-font-line-height: var(--ti-common-line-height-number, 1.5);
   // 弹框字体(hide)
-  --ti-tooltip-popper-font-family: var(--ti-common-font-family, 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei');
+  --ti-tooltip-popper-font-family: var(
+    --ti-common-font-family,
+    'Helvetica',
+    'Arial',
+    'PingFangSC-Regular',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    '微软雅黑',
+    'Microsoft JhengHei'
+  );
   // 悬浮弹出框圆角
   --ti-tooltip-popper-border-radius: var(--ti-common-border-radius-1, 4px);
   // 悬浮弹出框字号
@@ -80,4 +89,6 @@
   --ti-tooltip-padding-horizontal: var(--ti-common-space-4x, 16px);
   // 文字提示错误图标色
   --ti-tooltip-validate-icon-color: var(--ti-common-color-error, #f66f6a);
+  // 文本内容容器最大高度
+  --ti-tooltip-content-max-height: 50vh;
 }

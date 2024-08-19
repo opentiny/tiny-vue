@@ -4,7 +4,7 @@ test('PopUpload 基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('pop-upload#basic-usage')
 
-  const preview = page.locator('.all-demos-container')
+  const preview = page.locator('#basic-usage')
   const modalAppearBtn = preview.getByRole('button', { name: '选择文件' })
   const uploadModal = page.locator('.tiny-popupload__modal')
   const selectFilesBtn = page.getByRole('button', { name: '选择文件' }).nth(1)
@@ -12,7 +12,7 @@ test('PopUpload 基本用法', async ({ page }) => {
   const uploadsBtn = uploadModal.getByRole('button', { name: '开始上传' })
   const cancelBtn = uploadModal.getByRole('button', { name: '取消' })
   const lists = uploadModal.locator('.tiny-popupload__dialog-table-item')
-  const deleteIcon = lists.locator('.delIcon')
+  const deleteIcon = lists.locator('.del-col')
   // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
   const path = require('node:path')
   const path1 = path.resolve(__dirname, '测试.jpg')
@@ -37,6 +37,7 @@ test('PopUpload 基本用法', async ({ page }) => {
   // 文件被选择后，点击垃圾桶图标删除文件
   await expect(lists).toHaveCount(1)
   await deleteIcon.click()
+  await page.getByRole('button', { name: '确定' }).click()
   await expect(lists).toHaveCount(0)
   await expect(uploadsBtn).toBeDisabled()
   await fileChooser.setFiles(path1)

@@ -288,6 +288,10 @@ export const fileUploadProps = {
       watermark: ''
     })
   },
+  promptTip: {
+    type: Boolean,
+    default: false
+  },
   isHidden: {
     type: Boolean,
     default: false

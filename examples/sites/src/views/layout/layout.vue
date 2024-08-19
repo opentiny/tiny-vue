@@ -24,9 +24,15 @@
                 class="menu-type-icon"
               ></component>
               <span class="node-name-label">{{ data.label }}</span>
-              <tiny-tag v-if="data.mark?.text" class="node-float-tip" effect="light" :type="data.mark?.type">
-                {{ data.mark.text }}
-              </tiny-tag>
+              <version-tip
+                class="node-float-tip"
+                v-if="data.meta || data.versionTipOption"
+                :meta="data.meta"
+                v-bind="data.versionTipOption"
+                render-type="tag"
+                :is-from-menu="true"
+              >
+              </version-tip>
             </div>
           </template>
         </tiny-tree-menu>
@@ -55,6 +61,7 @@ import { router } from '@/router.js'
 import { getWord, i18nByKey, appData, appFn, useApiMode, useTemplateMode } from '@/tools'
 import useTheme from '@/tools/useTheme'
 import FloatSettings from '@/views/components/float-settings'
+import VersionTip from '../components/VersionTip.vue'
 
 export default defineComponent({
   name: 'LayoutVue',
@@ -67,7 +74,8 @@ export default defineComponent({
     TinyRadio: Radio,
     TinyRadioGroup: RadioGroup,
     TinyButton: Button,
-    FloatSettings
+    FloatSettings,
+    VersionTip
   },
   props: [],
   setup() {
