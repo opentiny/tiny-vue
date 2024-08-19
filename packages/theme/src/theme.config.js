@@ -88,5 +88,6 @@ export default {
   'radio-button': 'radio-button',
   'split': 'split-wrapper',
   'image': 'image',
-  'image-viewer': 'image-viewer'
+  'image-viewer': 'image-viewer',
+  'float-bar': 'float-bar'
 }

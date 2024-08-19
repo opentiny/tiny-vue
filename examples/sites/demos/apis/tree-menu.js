@@ -79,6 +79,17 @@ export default {
           pcDemo: 'show-expand'
         },
         {
+          name: 'placeholder',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '当数据为空时的占位符',
+            'en-US': 'Placeholder when data is empty'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
+        },
+        {
           name: 'data',
           typeAnchorName: 'ITreeNodeData',
           type: 'ITreeNodeData[]',

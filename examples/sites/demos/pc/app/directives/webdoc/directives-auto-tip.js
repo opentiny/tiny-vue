@@ -1,11 +1,8 @@
 export default {
   column: '2',
   owner: '',
-  metaData: {
+  meta: {
     stable: '3.17.0'
-  },
-  versionTipOption: {
-    stages: ['stable']
   },
   demos: [
     {

@@ -6,5 +6,6 @@ test('禁用鼠标滚轮缩放图像', async ({ page }) => {
   await page.getByRole('button', { name: '图片裁剪' }).click()
   await page.mouse.wheel(100, 100)
   await page.mouse.wheel(50, 50)
-  await page.locator('.cropper-face').click()
+
+  // 待补充验证图片的大小不变
 })

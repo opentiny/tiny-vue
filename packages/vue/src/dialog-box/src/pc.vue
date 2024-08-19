@@ -45,7 +45,7 @@
               aria-label="Resize"
               @click="toggleFullScreen(true)"
             >
-              <icon-fullscreen class="tiny-svg-size tiny-dialog-box__close" />
+              <icon-fullscreen class="tiny-svg-size tiny-dialog-box__resize" />
             </button>
             <button
               v-if="resize && state.isFull"
@@ -54,7 +54,7 @@
               aria-label="Resize"
               @click="toggleFullScreen(false)"
             >
-              <icon-minscreen class="tiny-svg-size tiny-dialog-box__close" />
+              <icon-minscreen class="tiny-svg-size tiny-dialog-box__resize" />
             </button>
             <button
               v-if="showClose"
