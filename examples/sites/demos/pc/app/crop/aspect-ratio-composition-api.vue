@@ -7,7 +7,6 @@
       :src="imgUrl"
       :aspect-ratio="7 / 5"
       :center="true"
-      :preview="true"
       :quality="0.5"
       max-size="300KB"
       @setAspectRatio="setAspectRatio"
