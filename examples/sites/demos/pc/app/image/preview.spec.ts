@@ -18,7 +18,7 @@ test('测试图片预览大图', async ({ page }) => {
   await expect(viewerImage).toHaveCount(1)
   await expect(canvas).toHaveCount(1)
   await expect(mask).toHaveCSS('position', 'absolute')
-  await expect(mask).toHaveCSS('background', 'rgb(235, 235, 235)')
+  await expect(mask).toHaveCSS('background', 'rgba(0, 0, 0, 0.5)')
   await expect(canvas).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)')
 
   // 点击缩小
