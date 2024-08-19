@@ -1466,7 +1466,7 @@
       .timeline {
         .@{timeline-item-prefix-cls}__pillar .line {
           width: var(--ti-steps-line-height);
-          margin-block: var(--ti-steps-timeline-line-margin-vertical);
+          margin-top: var(--ti-steps-timeline-line-margin-vertical);
           background-color: var(--ti-steps-timeline-vertical-line-bg-color);
         }
 
@@ -1500,7 +1500,7 @@
         }
 
         .@{timeline-item-prefix-cls}__content {
-          margin-top: -5px;
+          line-height: 1.5;
 
           .name {
             margin-bottom: var(--ti-steps-timeline-item-title-margin-bottom);
@@ -1537,6 +1537,7 @@
         flex-direction: column;
         align-items: center;
         align-self: stretch;
+        margin-top: 7px;
         width: var(--ti-steps-timeline-dot-width);
 
         .line {

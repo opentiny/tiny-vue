@@ -35,7 +35,7 @@ export const tinyStepsSmbTheme = {
   'ti-steps-timeline-item-secondary-text-font-size': 'var(--ti-common-font-size-0)',
   'ti-steps-timeline-vertical-line-margin-left': 'var(--ti-common-space-4x)',
   'ti-steps-timeline-item-padding-bottom': 'var(--ti-common-space-6x)',
-  'ti-steps-timeline-vertical-line-bg-color': 'rgba(0, 0, 0, 8%)',
   'ti-steps-custom-icon-width-height': 'var(--ti-common-space-5x)',
-  'ti-steps-advanced-count-bg-color': '#c7000b'
+  'ti-steps-advanced-count-bg-color': '#c7000b',
+  'ti-steps-timeline-shape-dot-content-margin-left': 'var(--ti-common-space-4x)'
 }
