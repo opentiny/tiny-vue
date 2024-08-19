@@ -147,8 +147,8 @@ export default {
           name: 'custom-column-names',
           type: 'string[]',
           defaultValue: "['TinyGridColumn']",
-          metaData: {
-            new: '3.17.0'
+          meta: {
+            stable: '3.17.0'
           },
           desc: {
             'zh-CN': '封装 grid-column 时需要配置此字段，提供给表格收集配置',
@@ -721,6 +721,22 @@ export default {
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'grid-size#size-resize-column-width',
+          mfDemo: ''
+        },
+        {
+          name: 'IResizableConfig',
+          typeAnchorName: 'IResizableConfig',
+          type: 'IResizableConfig',
+          defaultValue: '',
+          metaData: {
+            new: '3.19.0'
+          },
+          desc: {
+            'zh-CN': '设置列宽拖拽参数',
+            'en-US': 'Set column width drag parameters'
+          },
+          mode: ['pc'],
+          pcDemo: 'grid-size#size-resizable-config',
           mfDemo: ''
         },
         {
@@ -1467,8 +1483,8 @@ export default {
           name: 'toggle-group-change',
           type: '(row: IRow) => void',
           defaultValue: '',
-          metaData: {
-            new: '3.17.0'
+          meta: {
+            stable: '3.17.0'
           },
           desc: {
             'zh-CN': '当分组的展开和收起时会触发该事件',
@@ -3418,6 +3434,7 @@ export default {
         {
           name: 'filter',
           type: 'boolean | IFilterConfig',
+          typeAnchorName: 'IFilterConfig',
           defaultValue: 'false',
           desc: {
             'zh-CN': '设置表格列的筛选配置信息。默认值为 false 不配置筛选信息',
@@ -4667,6 +4684,16 @@ interface IResizableChangeArgs {
   columnIndex: number
   // 是否固定列
   fixed: boolean
+}
+      `
+    },
+    {
+      name: 'IResizableConfig',
+      type: 'type',
+      code: `
+interface IResizableConfig {
+  // 拖拽宽度限制函数，field: 当前拖拽的列名，width: 当前拖拽的宽度
+  limit: ({ field: string, width: number }) => number
 }
       `
     },

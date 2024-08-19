@@ -400,8 +400,8 @@ export default {
           name: 'show-tooltip',
           type: 'boolean',
           defaultValue: 'true',
-          metaData: {
-            new: '3.18.0'
+          meta: {
+            stable: '3.18.0'
           },
           desc: {
             'zh-CN': '只读状态下，文本超出是否悬浮提示',

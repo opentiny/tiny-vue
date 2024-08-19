@@ -99,10 +99,15 @@ function modifyHeadAlign({ column, headAlign }) {
 }
 
 function computeDragLeft(args) {
-  let { dragMinLeft } = args
-  let { left } = args
+  let { dragMinLeft, resizableConfig, scrollLeft, column, startColumnLeft, left } = args
 
   let dragLeft = Math.max(left, dragMinLeft)
+
+  if (resizableConfig?.limit instanceof Function) {
+    let currentMouseLeft = dragLeft - scrollLeft
+    let width = resizableConfig.limit({ field: column.own.field, width: currentMouseLeft - startColumnLeft })
+    dragLeft = startColumnLeft + width
+  }
 
   return { left, dragMinLeft, dragLeft }
 }
@@ -421,7 +426,8 @@ export default defineComponent({
     isGroup: Boolean,
     tableColumn: Array,
     tableData: Array,
-    visibleColumn: Array
+    visibleColumn: Array,
+    resizableConfig: Object
   },
   watch: {
     tableColumn() {
@@ -492,15 +498,17 @@ export default defineComponent({
       this.headerColumn = this.isGroup ? this.$parent._sliceColumnTree(this.tableColumn) : [this.tableColumn]
     },
     resizeMousedown(event, params) {
-      let { $el, $parent: $table } = this
+      let { $el, $parent: $table, resizableConfig } = this
       let { clientX: dragClientX, target: dragBtnElem } = event
       let { column } = params
       let { dragLeft = 0, minInterval = 36, fixedOffsetWidth = 0 } = {}
       let { resizeBar: resizeBarElem, tableBody } = $table.$refs
       let { cell = dragBtnElem.parentNode, dragBtnWidth = dragBtnElem.clientWidth } = {}
       let { pos = getOffsetPos(dragBtnElem, $el), tableBodyElem = tableBody.$el } = {}
+      let startColumnLeft = cell.offsetLeft
+      let dragBtnOffsetWidth = Math.floor(dragBtnWidth / 2)
       let dragMinLeft = pos.left - cell.clientWidth + dragBtnWidth + minInterval
-      let dragPosLeft = pos.left + Math.floor(dragBtnWidth / 2)
+      let dragPosLeft = pos.left + dragBtnOffsetWidth
       let { oldMousemove = document.onmousemove, oldMouseup = document.onmouseup } = {}
 
       // 处理拖动事件
@@ -510,14 +518,26 @@ export default defineComponent({
 
         let { offsetX = event.clientX - dragClientX, left = offsetX + dragPosLeft } = {}
         let scrollLeft = tableBodyElem.scrollLeft
-        let args = { cell, dragMinLeft, dragPosLeft, fixedOffsetWidth }
+        let args = {
+          cell,
+          dragMinLeft,
+          dragPosLeft,
+          fixedOffsetWidth,
+          resizableConfig,
+          scrollLeft,
+          column,
+          dragBtnOffsetWidth,
+          startColumnLeft
+        }
         Object.assign(args, { left, minInterval, tableBodyElem })
 
         let ret = computeDragLeft(args)
-        left = ret.left
         dragMinLeft = ret.dragMinLeft
-        dragLeft = ret.dragLeft
-        resizeBarElem.style.left = `${dragLeft - scrollLeft}px`
+        dragLeft = ret.dragLeft - dragBtnOffsetWidth
+
+        let currentLeft = ret.dragLeft - scrollLeft
+
+        resizeBarElem.style.left = `${currentLeft}px`
       }
 
       resizeBarElem.style.display = 'block'

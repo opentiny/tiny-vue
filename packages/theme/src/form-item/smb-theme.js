@@ -1,5 +1,4 @@
 export const tinyFormItemSmbTheme = {
-  'ti-form-item-label-text-color': 'var(--ti-common-color-text-secondary)',
   'ti-form-item-margin-bottom-default': 'var(--ti-common-space-6x)',
   'ti-form-item-margin-bottom-mini': 'var(--ti-common-space-3x)',
   'ti-form-item-margin-bottom-small': 'var(--ti-common-space-5x)',
