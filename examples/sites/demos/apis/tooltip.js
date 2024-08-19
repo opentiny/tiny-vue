@@ -41,6 +41,22 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'content-max-height',
+          type: 'string',
+          defaultValue: '50vh',
+          meta: {
+            stable: '3.19.0'
+          },
+          desc: {
+            'zh-CN': '内容最大高度，仅当使用content设置内容时生效，使用插槽等其他方式时无效',
+            'en-US':
+              'The maximum height of the content. It only takes effect when content is set using content. It is invalid when using other methods such as slots.'
+          },
+          mode: ['pc'],
+          pcDemo: 'content-max-height',
+          mfDemo: ''
+        },
+        {
           name: 'disabled',
           type: 'boolean',
           defaultValue: 'false',

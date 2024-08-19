@@ -88,5 +88,6 @@ export default {
   'radio-button': 'radio-button',
   'color-select-panel': 'color-select-panel',
   'color-picker': 'color-picker',
-  'split': 'split-wrapper'
+  'split': 'split-wrapper',
+  'float-bar': 'float-bar'
 }
