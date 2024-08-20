@@ -28,7 +28,7 @@
   // 分页页码选中字重
   --ti-pager-active-font-weight: var(--ti-common-font-weight-normal);
   // 分页禁用状态下字体颜色
-  --ti-pager-disabled-text-color: var(--ti-common-color-text-weaken, #8a8e99);
+  --ti-pager-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
   // 分页禁用状态下边框颜色
   --ti-pager-disabled-border-color: transparent;
 
@@ -49,7 +49,7 @@
   // 分页字号(不含总条数项)
   --ti-pager-font-size: var(--ti-common-font-size-base, 12px);
   // 分页文字左边内边距
-  --ti-pager-normal-text-padding-left: calc(var(--ti-common-space-base) * 3 + 2px, 14px);;
+  --ti-pager-normal-text-padding-left: calc(var(--ti-common-space-base) * 3 + 2px, 14px);
   // 分页前往按钮|页码项文本色
   --ti-pager-text-color: var(--ti-common-color-text-secondary, #575d6c);
   // 分页下拉框按钮图标色
@@ -61,9 +61,11 @@
   // 分页页码项最小宽度
   --ti-pager-min-width: auto;
   // 分页输入框宽度
-  --ti-pager-input-width: var(--ti-common-space-10x, 40px);
+  --ti-pager-input-width: 40px;
+  // 分页输入框水平内边距
+  --ti-pager-input-padding-horizontal: 0;
   // 分页页码项垂直内边距
-  --ti-pager-poplist-item-padding-vertical: var(--ti-common-space-0, 0px);
+  --ti-pager-poplist-item-padding-vertical: var(--ti-common-space-0, 0);
   // 分页页码项水平内边距
   --ti-pager-poplist-item-padding-horizontal: var(--ti-common-space-6, 6px);
   // 分页未选中页码项悬浮阴影
@@ -144,8 +146,8 @@
   --ti-pager-sizes-input-min-width: var(--ti-common-size-10x, 80px);
   // 分页选择框悬浮文本色
   --ti-pager-sizes-input-hover-text-color: var(--ti-common-color-info-normal, #252b3a);
-  // 分页选择框右侧下拉按钮
-  --ti-pager-input-btn-width: var(--ti-common-size-7x, 28px);
+  // 分页选择框右侧下拉按钮水平内边距
+  --ti-pager-input-btn-padding-horizontal: 6px;
 
   // 分页下拉弹出框纵向内边距
   --ti-pager-selector-padding-vertical: var(--ti-common-space-3x, 12px);
@@ -154,4 +156,6 @@
   --ti-pager-mini-min-width: 18px;
   // 分页大小数字右侧外边距
   --ti-pager-sizes-num-margin-right: var(--ti-common-space-base, 4px);
+  // 页码悬浮文本色
+  --ti-pager-list-item-hover-text-color: var(--ti-common-color-text-primary, #252b3a);
 }
