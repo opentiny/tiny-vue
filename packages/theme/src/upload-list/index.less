@@ -46,7 +46,7 @@
   // 提高优先级覆盖ul.li样式
   &--text {
     li:first-of-type > .@{upload-list-prefix-cls}__item {
-      margin-top: calc(var(--ti-upload-list-item-margin-top) + 3px);
+      margin-top: calc(var(--ti-upload-list-item-margin-top) + 4px);
     }
 
     li:not(:first-of-type) > .@{upload-list-prefix-cls}__item {
@@ -60,8 +60,7 @@
     li + li {
       .@{upload-list-prefix-cls}__item.is-uploading,
       .@{upload-list-prefix-cls}__item.is-downloading {
-        margin-top: 18px;
-        margin-bottom: 18px;
+        margin-bottom: 14px;
       }
     }
   }
