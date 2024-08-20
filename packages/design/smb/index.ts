@@ -14,6 +14,7 @@ import TimeSpinner from './src/time-spinner'
 import Time from './src/time-spinner'
 import UploadList from './src/upload-list'
 import BreadcrumbItem from './src/breadcrumb-item'
+import TransferPanel from './src/transfer-panel'
 import { version } from './package.json'
 
 export default {
@@ -35,6 +36,7 @@ export default {
     TimeSpinner,
     Time,
     BreadcrumbItem,
-    UploadList
+    UploadList,
+    TransferPanel
   }
 }
