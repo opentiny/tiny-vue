@@ -16,6 +16,7 @@ import { fastdom } from '../common/deps/fastdom'
 import { deepClone } from '../picker-column'
 import { escapeRegexpString } from '../option'
 import { correctTarget } from '../common/event'
+import { isBrowser } from '../common/browser'
 
 export const handleComposition =
   ({ api, nextTick, state }) =>
@@ -2382,6 +2383,7 @@ export const watchInitValue =
 export const watchShowClose =
   ({ nextTick, state, parent }) =>
   () => {
+    if (!isBrowser) return
     nextTick(() => {
       const parentEl = parent.$el
       const inputEl = parentEl.querySelector('input[data-tag="tiny-input-inner"]')
