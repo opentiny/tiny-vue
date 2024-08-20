@@ -8,5 +8,5 @@ test('下划线模式', async ({ page }) => {
   const input = demo.locator('.tiny-input')
 
   await expect(input).toHaveClass(/tiny-input-underline/)
-  await expect(input).toHaveCSS('border-top', 'none)')
+  await expect(input).toHaveCSS('border-top', /none/)
 })
