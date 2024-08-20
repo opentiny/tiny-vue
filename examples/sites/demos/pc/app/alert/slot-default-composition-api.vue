@@ -29,6 +29,6 @@ import { Alert as TinyAlert } from '@opentiny/vue'
 
 <style>
 .demo-alert .tiny-alert__opration {
-  margin-top: 6px;
+  margin-top: 4px;
 }
 </style>
