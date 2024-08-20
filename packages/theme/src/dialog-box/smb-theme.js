@@ -17,5 +17,5 @@ export const tinyDialogBoxSmbTheme = {
   'ti-dialog-box-resize-icon-color-hover': 'var(--ti-common-color-icon-normal)',
   'ti-dialog-box-resize-icon-size': 'var(--ti-common-font-size-2)',
   'ti-dialog-box-btn-position-top': 'var(--ti-common-space-5x)',
-  '--ti-dialog-box-btn-position-right': 'var(--ti-common-space-5x)'
+  'ti-dialog-box-btn-position-right': 'var(--ti-common-space-5x)'
 }
