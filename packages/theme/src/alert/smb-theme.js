@@ -13,7 +13,7 @@ export const tinyAlertSmbTheme = {
   'ti-alert-normal-margin-vertical': 'var(--ti-common-space-4x)',
   'ti-alert-normal-padding-top': 'calc(var(--ti-common-space-2x) + 1.5px)',
   'ti-alert-normal-padding-bottom': 'calc(var(--ti-common-space-2x) + 1.5px)',
-  'ti-alert-normal-padding-right': 'var(--ti-common-space-3x)',
+  'ti-alert-normal-padding-right': 'var(--ti-common-space-4x)',
   'ti-alert-title-font-size': 'var(--ti-common-font-size-2)',
   'ti-alert-large-icon-margin-top': 'var(--ti-common-space-0)',
   'ti-alert-title-margin-top': 'var(--ti-common-size-base)',
@@ -22,7 +22,7 @@ export const tinyAlertSmbTheme = {
   'ti-alert-large-padding-right': 'var(--ti-common-space-4x)',
   'ti-alert-large-content-padding-left': 'var(--ti-common-space-2x)',
   'ti-alert-description-margin-bottom': 'var(--ti-common-space-0)',
-  'ti-alert-description-margin-top': 'var(--ti-common-space-2x)',
+  'ti-alert-description-margin-top': 'var(--ti-common-space-base)',
   'ti-alert-icon-margin-top': 'calc(var(--ti-common-space-6) / 2)',
   'ti-alert-close-position-top': 'var(--ti-common-space-3x)'
 }
