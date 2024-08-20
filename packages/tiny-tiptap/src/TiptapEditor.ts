@@ -4,6 +4,9 @@ import { extensions } from './extension'
 import { generateSlashMenuExtension } from './components/slash'
 import { registerFloatMenuExtension } from './components/float'
 import { registerBubbleMenuExtension } from './components/bubble'
+import { setupCollaboration } from './components/collaboration'
+
+const USERNAME_PREFIX = 'tiny-tiptap'
 
 export default class TiptapEditor {
   options: any
@@ -18,8 +21,8 @@ export default class TiptapEditor {
    * @param config.placeholder 对 placeholder 的一些处理
    */
   constructor(editorClass, options = {}, config) {
-    this.extensions = extensions
-    const { viewMap, menuMap, nodeViewRender } = config
+    this.extensions = Array.from(extensions)
+    const { viewMap, menuMap, nodeViewRender, collaboration } = config
 
     const { renderer, slashMenuView, floatMenuView, bubbleMenuView } = menuMap
 
@@ -27,6 +30,10 @@ export default class TiptapEditor {
 
     if (slashMenuView) {
       this.initSlashMenu(renderer, slashMenuView)
+    }
+
+    if (collaboration) {
+      setupCollaboration(this.extensions, collaboration)
     }
 
     this.initMiscOptions(config)
@@ -47,6 +54,10 @@ export default class TiptapEditor {
 
     if (bubbleMenuView) {
       this.initBubbleMenu(renderer, bubbleMenuView)
+    }
+
+    if (collaboration) {
+      this.initUsername()
     }
   }
 
@@ -111,4 +122,34 @@ export default class TiptapEditor {
       })
     }
   }
+
+  private initUsername() {
+    // 获取随机的用户id
+    const username = USERNAME_PREFIX + Math.random().toString().slice(2, 5)
+    this.editor
+      .chain()
+      .focus()
+      .updateUser({
+        name: username,
+        color: getRandomColor()
+      })
+      .run()
+  }
+}
+
+/**
+ * 生成随机的十六进制颜色值
+ */
+function getRandomColor() {
+  let color = '#'
+  let minValue = 64 // 避免颜色值过于接近 0（白色）
+
+  for (let i = 0; i < 6; i++) {
+    let digit = Math.floor(Math.random() * 16)
+    if (digit < 8) {
+      digit += minValue / 16
+    }
+    color += digit.toString(16).toUpperCase()
+  }
+  return color
 }

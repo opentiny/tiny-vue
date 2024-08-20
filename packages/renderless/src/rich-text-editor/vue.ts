@@ -164,7 +164,8 @@ export const renderless = (
       viewMap: finalViewMap,
       menuMap,
       nodeViewRender: VueNodeViewRenderer,
-      placeholder: props.placeholder
+      placeholder: props.placeholder,
+      collaboration: props.collaboration
     }
 
     const editorInstance = new TinyTiptap(Editor, options, config)

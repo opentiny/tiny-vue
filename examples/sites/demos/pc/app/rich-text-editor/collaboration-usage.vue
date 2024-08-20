@@ -1,5 +1,8 @@
 <template>
-  <tiny-rich-text-editor :collaboration="collaboration"></tiny-rich-text-editor>
+  <div class="editor-container">
+    <tiny-rich-text-editor :collaboration="collaboration"></tiny-rich-text-editor>
+    <tiny-rich-text-editor :collaboration="collaboration"></tiny-rich-text-editor>
+  </div>
 </template>
 
 <script lang="ts">
@@ -13,7 +16,12 @@ export default {
     return {
       collaboration: true
     }
-  },
+  }
 }
 </script>
 
+<style scoped>
+.editor-container {
+  display: flex;
+}
+</style>

@@ -345,6 +345,10 @@ export const richTextEditorProps = {
     type: [Object, Boolean],
     default: false
   },
+  collaboration: {
+    type: [Object, Boolean],
+    default: false
+  },
   bubbleMenuView: {
     type: [Object, Boolean],
     default: true
