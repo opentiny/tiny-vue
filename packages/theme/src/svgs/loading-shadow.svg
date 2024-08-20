@@ -1,14 +1,14 @@
-<svg  viewBox="0 0 15.8 15.8" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg  viewBox="0 0 15.8 15.8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<desc>
 			Created with Pixso.
 	</desc>
-	<defs>
+	<defs fill="none">
 		<linearGradient x1="20.263237" y1="7.900002" x2="4.236213" y2="-0.000003" id="paint_linear_68_48917_0" gradientUnits="userSpaceOnUse">
 			<stop offset="0.000956" stop-color="#FFFFFF" stop-opacity="0.000000"/>
 			<stop offset="0.975278" stop-color="#FFFFFF"/>
 		</linearGradient>
 	</defs>
-	<mask id="mask68_48917" mask-type="alpha" maskUnits="userSpaceOnUse" x="0.000000" y="0.000000">
+	<mask fill="none" id="mask68_48917" mask-type="alpha" maskUnits="userSpaceOnUse" x="0.000000" y="0.000000">
 		<path id="Stroke-2" d="M7.9 0C8.39 0 8.8 0.4 8.8 0.89C8.8 1.39 8.39 1.8 7.9 1.8C4.53 1.8 1.8 4.53 1.8 7.89C1.8 11.26 4.53 14 7.9 14C11.26 14 14 11.26 14 7.89C14 7.4 14.4 7 14.9 7C15.39 7 15.8 7.4 15.8 7.89C15.8 12.26 12.26 15.8 7.9 15.8C3.53 15.8 0 12.26 0 7.89C0 3.53 3.53 0 7.9 0Z" fill="url(#paint_linear_68_48917_0)" fill-opacity="1.000000" fill-rule="nonzero"/>
 	</mask>
 	<g mask="url(#mask68_48917)">
