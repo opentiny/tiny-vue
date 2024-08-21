@@ -11,5 +11,7 @@ export const tinyRadioButtonSmbTheme = {
   'ti-radio-button-border-left': 0,
   'ti-radio-button-child-left-border-radius': 'var(--ti-common-space-6)',
   'ti-radio-button-child-right-border-radius': 'var(--ti-common-space-6)',
-  'ti-radio-button-padding-verticals': '9px'
+  'ti-radio-button-padding-verticals': '9px',
+  'ti-radio-button-active-disabled-color': 'var(--ti-common-color-text-weaken)',
+  'ti-radio-button-active-disabled-bg-color': 'var(--ti-common-color-bg-dark-disabled)'
 }
