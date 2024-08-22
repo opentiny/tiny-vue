@@ -10,10 +10,8 @@
  *
  */
 
-export const tinyDatePickerSmbTheme = {
-  'ti-date-picker-width': '284px',
-  'ti-date-picker-header-line-height': '20px',
-  'ti-date-picker-header-label-hover-text-color': 'var(--ti-base-color-brand-2)',
-  'ti-date-picker-border-color': 'transparent',
-  'ti-date-picker-header-margin-horizontals': 'var(--ti-common-space-4x)'
+export const tinyDateRangeSmbTheme = {
+  'ti-date-range-picker-header-height': 'calc(var(--ti-common-size-height-normal) + 2px)',
+  'ti-date-range-picker-header-line-height': 'var(--ti-common-line-height-1)',
+  'ti-date-range-picker-header-margin-bottom': 'var(--ti-common-space-3x)'
 }
