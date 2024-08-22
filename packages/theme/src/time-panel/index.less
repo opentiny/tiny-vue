@@ -35,14 +35,18 @@
   &__header {
     display: var(--ti-time-panel-header-display);
   }
+
   &__header-input {
     width: 212px;
     margin: 16px 4px 24px;
+
     input {
       height: 28px;
     }
   }
+
   &__header-title {
+    font-size: 14px;
     display: flex;
     justify-content: space-around;
     color: #808080;
@@ -100,11 +104,11 @@
 
   &__footer {
     border-top: 1px solid var(--ti-time-panel-border-color);
-    padding: var(--ti-time-panel-footer-padding) 4px;
+    padding: var(--ti-time-panel-footer-padding-top) var(--ti-time-panel-footer-padding-right);
     height: var(--ti-time-panel-footer-height, 36px);
     text-align: right;
     box-sizing: border-box;
-    margin-top: 12px;
+    margin: 12px var(--ti-time-panel-footer-margin-right) 0;
   }
 
   &__btn.tiny-button {
