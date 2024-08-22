@@ -35,6 +35,8 @@
   --ti-upload-list-successful-icon-font-size: var(--ti-common-font-size-1, 14px);
   // 照片墙上传列表项边框色
   --ti-upload-list-picture-card-item-border-color: var(--ti-common-color-border, #adb0b8);
+  // 照片墙上传成功列表项边框厚度
+  --ti-upload-list-picture-success-border-weight: var(--ti-common-border-weight-normal, 1px);
   // 照片墙上传列表项背景色
   --ti-upload-list-picture-card-item-bg-color: var(--ti-common-color-light, #fff);
   // 照片墙上传列表项右上角图标填充色
@@ -52,7 +54,7 @@
   // 照片墙上传列表项右外边距(new)
   --ti-upload-list-picture-card-item-margin-right: 8px;
   // 非picturecard模式上传列表进度条上外边距(hide)
-  --ti-upload-list-item-progress-top: 22px;
+  --ti-upload-list-item-progress-top: calc(var(--ti-common-line-height-2) + 2px);
   // 非picturecard模式上传文件列表文本行高(new)
   --ti-upload-list-item-line-height: 1.8;
   // 非picturecard模式上传文件列表文本上外边距(new)
@@ -62,7 +64,7 @@
   // 上传文件列表项刷新图标右边距(hide)
   --ti-upload-list-svg-refresh-position-right: 28px;
   // 上传文件列表项删除图标右边距(hide)
-  --ti-upload-list-svg-close-position-right: 8px;
+  --ti-upload-list-svg-close-position-right: var(--ti-common-space-2x);
   // 照片墙上传列表项悬浮背景色(new)
   --ti-upload-list-picture-card-item-hover-bg-color: rgba(0, 0, 0, 0.5);
 }

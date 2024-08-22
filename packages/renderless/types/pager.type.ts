@@ -56,6 +56,7 @@ export interface IPagerState {
   align: 'left' | 'center' | 'right'
   totalI18n: 'total' | 'totals'
   totalFixedLeft: boolean
+  pageSizeText: string
 }
 
 export interface IPagerApi {

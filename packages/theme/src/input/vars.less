@@ -33,9 +33,6 @@
   --ti-input-icon-color: var(--ti-common-color-border-hover, #575d6c);
   // 输入框聚焦时icon颜色
   --ti-input-focus-icon-color: var(--ti-common-color-border-hover, #575d6c);
-  // suffix图标颜色
-  --ti-input-suffix-icon-color: var(--ti-common-color-border-hover, #575d6c);
-
   // suffix元素的顶部高度
   --ti-input-suffix-top: 50%;
   // 中尺寸 suffix元素的顶部高度
@@ -44,7 +41,8 @@
   --ti-input-suffix-top-small: 50%;
   // 迷你 suffix元素的顶部高度
   --ti-input-suffix-top-mini: 50%;
-
+    // suffix图标颜色
+  --ti-input-suffix-icon-color: var(--ti-common-color-icon-normal);
   // 输入框占位符文本颜色
   --ti-input-placeholder-text-color: var(--ti-common-color-placeholder, #adb0b8);
   // 输入框disabled时的文本颜色
@@ -66,7 +64,7 @@
   // 输入框的icon图标的字体大小
   --ti-input-icon-font-size: var(--ti-common-font-size-1, 14px);
   // 输入框的关闭icon图标的文本颜色
-  --ti-input-icon-close-text-color: var(--ti-common-color-icon-graybg-active, #5e7ce0);
+  --ti-input-icon-close-text-color: var(--ti-common-color-icon-normal, #5e7ce0);
   // 输入框的清除icon图标hover时的文本颜色
   --ti-input-clear-text-color-hover: var(--ti-common-color-icon-hover, #5e7ce0);
   // 文本框计数器的颜色
@@ -78,7 +76,7 @@
   // 输入框计数器的颜色
   --ti-input-count-color: var(--ti-common-color-text-weaken, #8a8e99);
   // 输入框垂直方向内边距
-  --ti-input-padding-vertical: var(--ti-common-space-0, 0px);
+  --ti-input-padding-vertical: var(--ti-common-space-0, 0);
   // 输入框水平方向内边距
   --ti-input-padding-horizontal: var(--ti-common-space-2x, 8px);
   // 输入框配置suffix时的右侧内边距
@@ -90,7 +88,7 @@
   // 输入框配置prefix时的左侧外边距
   --ti-input-prefix-padding-left: calc(var(--ti-common-space-8x, 32px) - 2px);
   // suffix图标的右侧边距
-  --ti-input-suffix-right: var(--ti-common-space-2x, 8px);
+  --ti-input-suffix-right: var(--ti-common-space-3x, 8px);
   // 计数器文本字数颜色
   --ti-input-count-textlength-color: var(--ti-common-color-text-weaken, #8a8e99);
   // 输入框suffix的宽度
