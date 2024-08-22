@@ -2306,12 +2306,27 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'getStateSelection',
+          typeAnchorName: 'IRow',
+          type: '() => IRow[]',
+          meta: {
+            stable: '3.18.0'
+          },
+          defaultValue: '',
+          desc: {
+            'zh-CN': '获取所有翻页中保存的已选中的数据',
+            'en-US': 'This command is used to select multiple lines to obtain the selected data.'
+          },
+          mode: ['pc'],
+          pcDemo: 'grid-operation-column#operation-column-grid-pager-reserve'
+        },
+        {
           name: 'getSelectRecords',
           typeAnchorName: 'IRow',
           type: '() => IRow[]',
           defaultValue: '',
           desc: {
-            'zh-CN': '用于多选行，获取已选中的数据',
+            'zh-CN': '用于多选行，获取当前页已选中的数据',
             'en-US': 'This command is used to select multiple lines to obtain the selected data.'
           },
           mode: ['pc'],

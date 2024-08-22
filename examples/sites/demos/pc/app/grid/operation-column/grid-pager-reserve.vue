@@ -1,6 +1,9 @@
 <template>
   <div>
+    <tiny-button @click="getAllSelection">获取所有选中项</tiny-button>
+    <br /><br />
     <tiny-grid
+      ref="grid"
       :fetch-data="fetchData"
       row-id="id"
       seq-serial
@@ -19,12 +22,13 @@
 </template>
 
 <script lang="jsx">
-import { Grid, GridColumn, Pager, Notify } from '@opentiny/vue'
+import { Grid, GridColumn, Pager, Notify, Button, Modal } from '@opentiny/vue'
 
 export default {
   components: {
     TinyGrid: Grid,
-    TinyGridColumn: GridColumn
+    TinyGridColumn: GridColumn,
+    TinyButton: Button
   },
   data() {
     return {
@@ -52,6 +56,10 @@ export default {
     }
   },
   methods: {
+    getAllSelection() {
+      const selection = this.$refs.grid.getStateSelection()
+      Modal.message({ status: 'info', message: `一共选中了${selection.length}项数据` })
+    },
     getTableData() {
       return [
         {
