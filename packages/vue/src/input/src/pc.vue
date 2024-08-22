@@ -24,7 +24,8 @@
         'tiny-input-prefix': slots.prefix || prefixIcon,
         'tiny-input-suffix': slots.suffix || suffixIcon || clearable || showPassword || (mask && state.inputDisabled),
         'tiny-input-word-limit': state.isWordLimitVisible,
-        'is-display-only': state.isDisplayOnly
+        'is-display-only': state.isDisplayOnly,
+        'tiny-input-underline': inputBoxType === 'underline'
       }
     ]"
     :style="$attrs.style"
@@ -314,7 +315,8 @@ export default defineComponent({
     'showEmptyValue',
     'hoverExpand',
     'popupMore',
-    'showTooltip'
+    'showTooltip',
+    'inputBoxType'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api })
