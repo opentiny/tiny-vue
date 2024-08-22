@@ -24,6 +24,7 @@ import { mapTree } from '../grid/static'
 import { transformTreeData } from '../common/array'
 import { on, off } from '../common/deps/dom'
 import { xss } from '../common/xss.js'
+import { isBrowser } from '../common/browser.js'
 
 const { nextZIndex } = PopupManager
 
@@ -481,21 +482,24 @@ export const skip =
 export const getPoint =
   ({ api, parent }: Pick<INavMenuRenderlessParams, 'api' | 'parent'>) =>
   (): number => {
-    const items = parent.$el.querySelectorAll('.menu>li') as NodeListOf<HTMLElement>
-    let index = 0
+    if (!isBrowser) return 0
+    else {
+      const items = parent.$el.querySelectorAll('.menu>li') as NodeListOf<HTMLElement>
+      let index = 0
 
-    if (items) {
-      index = items.length
+      if (items) {
+        index = items.length
 
-      for (let i = 0; i < items.length; i++) {
-        if (api.isHide(items[i])) {
-          index = index - (items.length - i)
-          break
+        for (let i = 0; i < items.length; i++) {
+          if (api.isHide(items[i])) {
+            index = index - (items.length - i)
+            break
+          }
         }
       }
-    }
 
-    return index
+      return index
+    }
   }
 
 export const classify =
