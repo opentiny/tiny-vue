@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     getAllSelection() {
-      const selection = this.$refs.grid.getStateSelection()
+      const selection = this.$refs.grid.getAllSelection()
       Modal.message({ status: 'info', message: `一共选中了${selection.length}项数据` })
     },
     getTableData() {

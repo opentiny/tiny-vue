@@ -56,9 +56,9 @@ export default {
       'name': { 'zh-CN': '翻页后保留选中状态', 'en-US': 'Manually select a line' },
       'desc': {
         'zh-CN':
-          '<p>通过设置 <code>select-config</code> 中的 <code>reserve</code> 为 <code>true</code> 并设置 <code>row-id</code>，开启翻页后保留选中状态功能。通过 <code>getStateSelection</code> 获取所有翻页选中数据。</p>\n',
+          '<p>通过设置 <code>select-config</code> 中的 <code>reserve</code> 为 <code>true</code> 并设置 <code>row-id</code>，开启翻页后保留选中状态功能。通过 <code>getAllSelection</code> 获取所有翻页选中数据。</p>\n',
         'en-US':
-          '<p>By setting the <code>reserve</code> in <code>select-config</code> to <code>true</code> and setting <code>row-id</code>, you can enable the function of keeping the selected state after page turning. Get all flip selection data via <code>getStateSelection</code>.</p>\n'
+          '<p>By setting the <code>reserve</code> in <code>select-config</code> to <code>true</code> and setting <code>row-id</code>, you can enable the function of keeping the selected state after page turning. Get all flip selection data via <code>getAllSelection</code>.</p>\n'
       },
       'codeFiles': ['operation-column/grid-pager-reserve.vue']
     },

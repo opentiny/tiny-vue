@@ -57,7 +57,7 @@ const fetchData = ref({
 const gridRef = ref()
 
 function getAllSelection() {
-  const selection = gridRef.value.getStateSelection()
+  const selection = gridRef.value.getAllSelection()
   Modal.message({ status: 'info', message: `一共选中了${selection.length}项数据` })
 }
 

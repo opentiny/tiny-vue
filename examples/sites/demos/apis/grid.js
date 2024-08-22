@@ -2306,11 +2306,11 @@ export default {
           mfDemo: ''
         },
         {
-          name: 'getStateSelection',
+          name: 'getAllSelection',
           typeAnchorName: 'IRow',
           type: '() => IRow[]',
           meta: {
-            stable: '3.18.0'
+            stable: '3.19.0'
           },
           defaultValue: '',
           desc: {
