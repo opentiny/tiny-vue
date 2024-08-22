@@ -6,7 +6,7 @@
       :options="options"
       :suffix-icon="tinyIconEllipsis"
       more-text=""
-      spacing="12px"
+      spacing="8px"
       :max-show-num="3"
     >
     </tiny-action-menu>
@@ -17,7 +17,7 @@
 
 <script>
 import { ActionMenu } from '@opentiny/vue'
-import { iconWebPlus, iconSuccessful, iconCloseSquare, iconEllipsis } from '@opentiny/vue-icon'
+import { IconPreChecked, iconSuccessful, iconCloseSquare, iconEllipsis } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -28,7 +28,7 @@ export default {
       options: [
         {
           label: '远程登陆',
-          icon: iconWebPlus()
+          icon: IconPreChecked()
         },
         {
           label: '开机',
@@ -75,5 +75,31 @@ p {
   line-height: 1.5;
   font-size: 14px;
   margin-top: 30px;
+}
+
+.custom-icon.tiny-action-menu {
+  :deep(.tiny-action-menu__wrap) {
+    .tiny-action-menu__item {
+      .tiny-dropdown-item__wrap {
+        color: #191919;
+        .tiny-svg {
+          fill: #191919;
+        }
+      }
+
+      &:hover {
+        .tiny-dropdown-item__wrap > .tiny-dropdown-item__content .tiny-svg {
+          fill: #191919;
+        }
+      }
+
+      .tiny-dropdown {
+        color: #191919;
+        .tiny-svg {
+          fill: #191919;
+        }
+      }
+    }
+  }
 }
 </style>
