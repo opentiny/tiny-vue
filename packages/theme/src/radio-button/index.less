@@ -117,11 +117,11 @@
 
     &:disabled:checked {
       & + .@{radio-button-prefix-cls}__inner {
-        background-color: var(--ti-radio-input-checked-disabled-bg-color);
-
+        background-color: var(--ti-radio-button-checked-disabled-bg-color);
+        color: var(--ti-radio-button-disabled-checked-text-color);
         &,
         &:hover {
-          border-color: var(--ti-radio-input-checked-disabled-border-color);
+          border-color: var(--ti-radio-button-checked-disabled-border-color);
         }
       }
     }
