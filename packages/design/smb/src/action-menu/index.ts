@@ -1,3 +1,5 @@
 export default {
-  icons: {}
+  props: {
+    spacing: '8px'
+  }
 }
