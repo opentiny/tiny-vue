@@ -356,6 +356,7 @@ export const iconGroups = {
     'IconHeartempty',
     'IconHelpful',
     'IconLoading',
+    'IconLoadingShadow',
     'IconLock',
     'IconMale',
     'IconMeh',
