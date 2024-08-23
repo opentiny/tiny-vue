@@ -46,7 +46,7 @@
   // 提高优先级覆盖ul.li样式
   &--text {
     li:first-of-type > .@{upload-list-prefix-cls}__item {
-      margin-top: calc(var(--ti-upload-list-item-margin-top) + 3px);
+      margin-top: calc(var(--ti-upload-list-item-margin-top) + 4px);
     }
 
     li:not(:first-of-type) > .@{upload-list-prefix-cls}__item {
@@ -60,8 +60,7 @@
     li + li {
       .@{upload-list-prefix-cls}__item.is-uploading,
       .@{upload-list-prefix-cls}__item.is-downloading {
-        margin-top: 18px;
-        margin-bottom: 18px;
+        margin-bottom: 14px;
       }
     }
   }
@@ -212,6 +211,10 @@
       > &-delete
       > .@{svg-prefix-cls}.@{svg-prefix-cls}-size.icon-delete {
       fill: var(--ti-upload-list-svg-close-icon-color);
+
+      &:hover {
+        fill: var(--ti-upload-list-svg-close-hover-icon-color);
+      }
     }
 
     .@{svg-prefix-cls} {
@@ -221,26 +224,18 @@
       }
 
       &.icon-close {
-        display: none;
-        position: absolute;
-        top: 50%;
         right: var(--ti-upload-list-svg-close-position-right);
-        transform: translateY(-50%);
-        fill: var(--ti-upload-list-svg-close-icon-color);
-        font-size: var(--ti-upload-list-svg-icon-font-size);
-        opacity: 0.75;
-        cursor: pointer;
-
-        &:hover {
-          opacity: 1;
-        }
       }
 
+      &.icon-refres {
+        right: var(--ti-upload-list-svg-refresh-position-right);
+      }
+
+      &.icon-close,
       &.icon-refres {
         display: none;
         position: absolute;
         top: 50%;
-        right: var(--ti-upload-list-svg-refresh-position-right);
         transform: translateY(-50%);
         fill: var(--ti-upload-list-svg-close-icon-color);
         font-size: var(--ti-upload-list-svg-icon-font-size);
@@ -248,6 +243,7 @@
         cursor: pointer;
 
         &:hover {
+          fill: var(--ti-upload-list-svg-close-hover-icon-color);
           opacity: 1;
         }
       }
@@ -295,8 +291,8 @@
 
   &__icon-operationfaild {
     fill: #f23030;
-    margin-right: 9px;
-    padding-left: 4px;
+    margin-right: 8px;
+    margin-left: 4px;
     font-size: 16px;
   }
 
@@ -388,6 +384,10 @@
       margin: 0 var(--ti-upload-list-picture-card-item-margin-right) 8px 0;
       display: inline-block;
 
+      &.is-success {
+        border-width: var(--ti-upload-list-picture-success-border-weight);
+      }
+
       &.is-fail {
         border-color: var(--ti-upload-list-item-fail-text-color);
         background-color: #fce3e1;
@@ -396,7 +396,7 @@
           background-color: #fce3e1;
 
           & span .tiny-svg {
-            fill: #191919;
+            fill: var(--ti-upload-list-svg-close-hover-icon-color);
           }
         }
       }
@@ -477,7 +477,7 @@
         cursor: pointer;
 
         & + span {
-          margin-left: 15px;
+          margin-left: 16px;
         }
       }
 

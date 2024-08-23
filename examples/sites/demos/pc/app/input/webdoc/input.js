@@ -261,6 +261,18 @@ export default {
       codeFiles: ['display-only-popup-more.vue']
     },
     {
+      demoId: 'input-box-type',
+      name: {
+        'zh-CN': '边框模式',
+        'en-US': 'Box type'
+      },
+      desc: {
+        'zh-CN': '通过 <code>input-box-type</code>属性，设置边框模式,可取值为 <code>"normal" | "underline"</code> 。',
+        'en-US': 'Set the border mode through the input-box-type attribute. The value can be "normal"|"underline".'
+      },
+      codeFiles: ['input-box-type.vue']
+    },
+    {
       demoId: 'event',
       name: {
         'zh-CN': '事件',
