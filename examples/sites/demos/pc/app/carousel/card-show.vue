@@ -59,7 +59,7 @@ export default {
             {
               cardTitle: '1-4',
               cardType: 'logo',
-              cardSrc: `${userHead.value}`,
+              cardSrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/user-head.png`,
               content: '1-4-content'
             }
           ]
