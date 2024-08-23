@@ -10,7 +10,7 @@ export const tinyDialogBoxSmbTheme = {
   'ti-dialog-box-body-text-color': 'var(--ti-common-color-text-primary)',
   'ti-dialog-box-footer-btn-min-width': 'calc(var(--ti-common-space-base) * 24)',
   'ti-dialog-box-drawer-divider-border-color': 'transparent',
-  'ti-dialog-box-footer-margin-bottom': 'var(--ti-common-space-6x)',
+  'ti-dialog-box-footer-margin-bottom': 'var(--ti-common-space-8x)',
   'ti-dialog-box-footer-align': 'right',
   'ti-dialog-box-footer-padding-top': 'var(--ti-common-space-6x)',
   'ti-dialog-box-resize-icon-color': 'var(--ti-common-color-icon-normal)',
