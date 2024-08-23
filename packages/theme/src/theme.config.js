@@ -89,5 +89,7 @@ export default {
   'radio': 'radio',
   'radio-group': 'radio-group',
   'split': 'split-wrapper',
-  'float-bar': 'float-bar'
+  'float-bar': 'float-bar',
+  'grid-radio': 'grid-radio',
+  'grid-filter': 'grid__filter-wrapper'
 }
