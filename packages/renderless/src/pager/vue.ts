@@ -90,7 +90,8 @@ export const renderless = (
     showJumperSufix: designConfig?.state?.showJumperSufix ?? true,
     align: props.align || designConfig?.state?.align || 'left',
     totalI18n: designConfig?.state?.totalI18n || 'totals',
-    totalFixedLeft: props.totalFixedLeft ?? designConfig?.state?.totalFixedLeft ?? false
+    totalFixedLeft: props.totalFixedLeft ?? designConfig?.state?.totalFixedLeft ?? false,
+    pageSizeText: props.pageSizeText ?? designConfig?.state?.pageSizeText
   })
 
   Object.assign(api, {

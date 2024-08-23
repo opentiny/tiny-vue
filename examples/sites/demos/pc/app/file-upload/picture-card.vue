@@ -7,7 +7,7 @@
       :file-list="fileList"
       @preview="previewPicture"
     >
-      <icon-plus class="tiny-svg-size" />
+      <tiny-icon-add-picture class="tiny-svg-size" />
     </tiny-file-upload>
     <tiny-dialog-box v-model:visible="dialogVisible1" width="50%">
       <img style="width: 100%" :src="dialogImageUrl1" alt="Preview Image" />
@@ -17,15 +17,16 @@
 
 <script>
 import { FileUpload, DialogBox } from '@opentiny/vue'
-import { IconPlus } from '@opentiny/vue-icon'
+import { iconAddPicture } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyFileUpload: FileUpload,
     TinyDialogBox: DialogBox,
-    IconPlus: IconPlus()
+    TinyIconAddPicture: iconAddPicture()
   },
   data() {
+    console.log('--ti-upload-list-picture-card-success-border-weight'.length)
     return {
       action: 'http://localhost:3000/api/upload',
       dialogVisible1: false,
@@ -33,7 +34,24 @@ export default {
       fileList: [
         {
           name: 'fruit',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`
+          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`,
+          status: 'ready'
+        },
+        {
+          name: 'fruit',
+          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`,
+          status: 'uploading',
+          percentage: 50
+        },
+        {
+          name: 'fruit',
+          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`,
+          status: 'success'
+        },
+        {
+          name: 'fruit',
+          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`,
+          status: 'fail'
         }
       ]
     }
