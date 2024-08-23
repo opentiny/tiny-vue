@@ -1,3 +1,5 @@
+import { isBrowser } from '../browser.js'
+
 let emulated = false
 let initiated = false
 let eventTarget = null
@@ -111,11 +113,12 @@ const touchEmulator = () => {
 }
 
 const emulate = () => {
-  const supportTouch = 'ontouchstart' in window
-
-  if (!emulated && !supportTouch) {
-    emulated = true
-    touchEmulator()
+  if (isBrowser) {
+    const supportTouch = 'ontouchstart' in window
+    if (!emulated && !supportTouch) {
+      emulated = true
+      touchEmulator()
+    }
   }
 }
 
