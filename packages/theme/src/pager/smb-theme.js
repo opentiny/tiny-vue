@@ -33,12 +33,14 @@ export const tinyPagerSmbTheme = {
   'ti-pager-prev-next-hover-bg-color': 'transparent',
   'ti-pager-group-sizes-margin-right': 'var(--ti-common-space-0)',
   'ti-pager-sizes-input-hover-text-color': '#595959',
-  'ti-pager-input-btn-width': 'var(--ti-common-size-width-mini)',
+  'ti-pager-input-btn-padding-horizontal': 'var(--ti-common-size-2x)',
   'ti-pager-selector-padding-vertical': 'var(--ti-common-space-2x)',
   'ti-pager-pop-body-margin-top': 'var(--ti-common-space-base)',
   'ti-pager-poplist-item-selected-bg-color': '#F5F5F5',
   'ti-pager-poplist-item-min-height': 'var(--ti-common-line-height-6)',
   'ti-pager-mini-min-width': 'var(--ti-common-size-width-mini)',
   'ti-pager-sizes-num-margin-right': 'var(--ti-common-dropdown-gap)',
-  'ti-pager-normal-text-padding-left': 'var(--ti-common-space-4x)'
+  'ti-pager-normal-text-padding-left': 'var(--ti-common-space-4x)',
+  'ti-pager-input-width': '48px',
+  'ti-pager-input-padding-horizontal': 'var(--it-common-space-2x)'
 }

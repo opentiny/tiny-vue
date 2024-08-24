@@ -86,6 +86,7 @@ export default {
   'year-table': 'year-table',
   'skeleton-item': 'skeleton-item',
   'radio-button': 'radio-button',
+  'radio-group': 'radio-group',
   'split': 'split-wrapper',
   'float-bar': 'float-bar',
   'popeditor': 'popeditor__dialog-box'
