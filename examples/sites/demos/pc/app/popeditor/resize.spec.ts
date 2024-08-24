@@ -10,9 +10,11 @@ test('PopEditor 全屏展示', async ({ page }) => {
   const resizeSvg = dialogBox.locator('.tiny-dialog-box__resize')
 
   await popeditor.click()
-  await page.waitForTimeout(500)
+  await page.waitForTimeout(1000)
   await expect(dialogBox).toBeVisible()
   await expect(dialogBox).not.toHaveClass(/is-fullscreen/)
+  await expect(resizeSvg).toBeVisible()
   await resizeSvg.click()
+  await page.waitForTimeout(500)
   await expect(dialogBox).toHaveClass(/is-fullscreen/)
 })
