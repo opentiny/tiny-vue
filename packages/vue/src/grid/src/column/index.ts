@@ -9,7 +9,9 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Column from './src/column'
+import Column from './src/pc.vue'
+
+// import Column from './src/column'
 
 Column.install = function (Vue) {
   Vue.component(Column.name, Column)
