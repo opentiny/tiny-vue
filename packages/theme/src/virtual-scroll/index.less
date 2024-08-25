@@ -13,22 +13,19 @@
 @import './vars.less';
 
 @virtualscroll-prefix-cls: ~'@{css-prefix}virtual-scroll';
-// 为整个虚拟滚动组件设计样式（类似于）
 .@{virtualscroll-prefix-cls} {
   .component-css-vars-virtual-scroll();
 
-  // 外层容器：virtual-scroll
   position: relative;
   overflow: auto;
-  background-color: rgba(108, 241, 196, 0.822);
-  // 确保虚拟滚动内容
+  background-color: rgba(151, 205, 255, 0.822);
+
   & > .virtual-scroll-context {
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     z-index: -1;
-    // width: 100%;
   }
 
   // 实际渲染区域
@@ -37,7 +34,6 @@
     top: 0;
     left: 0;
     display: flex;
-    // overflow: hidden;
   }
 
   // 每项内容

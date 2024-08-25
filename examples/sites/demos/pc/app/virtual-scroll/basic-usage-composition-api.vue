@@ -1,10 +1,9 @@
 <template>
   <div>
     <!-- vue3 -->
-    <p>虚拟滚动组件demo</p>
-    <TinyVirtualScroll :data="showData" :itemHeight="30" :viewHeight="180" itemIndex="key">
+    <TinyVirtualScroll :data="showData" :itemSize="50" itemIndex="key" class="tiny-virtual-scroll" direction="vertical">
       <template #default="props">
-        <div class="scroll-item">
+        <div class="tiny-virtual-scroll-item">
           {{ props.item.value }}
         </div>
       </template>
@@ -21,8 +20,26 @@ const showData = ref([])
 // 生成模拟数据
 showData.value = Array.from(Array(1000), (v, k) => {
   return {
-    value: k,
-    key: k
+    value: `第${k + 1}项`,
+    key: k + 1
   }
 })
 </script>
+
+<style>
+.virtual-scroll-demo {
+  height: 100%;
+  overflow: hidden;
+  /* display: flex; */
+}
+
+.tiny-virtual-scroll {
+  height: 300px;
+}
+
+.tiny-virtual-scroll-item {
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+  align-content: center;
+}
+</style>

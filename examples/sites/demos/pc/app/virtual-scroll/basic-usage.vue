@@ -1,10 +1,9 @@
 <template>
   <div class="virtual-scroll-demo">
     <!-- Vue2的选项式API -->
-    <p>虚拟滚动组件demo</p>
-    <TinyVirtualScroll :data="showData" :itemSize="50" :viewSize="300" itemIndex="key" class="ho" direction="vertical">
+    <TinyVirtualScroll :data="showData" :itemSize="50" itemIndex="key" class="tiny-virtual-scroll">
       <template #default="props">
-        <div class="scroll-item">
+        <div class="tiny-virtual-scroll-item">
           {{ props.item.value }}
         </div>
       </template>
@@ -26,10 +25,10 @@ export default {
   },
   created() {
     // 生成模拟数据
-    this.showData = Array.from(Array(10000), (v, k) => {
+    this.showData = Array.from(Array(1000), (v, k) => {
       return {
-        value: k,
-        key: k
+        value: `第${k + 1}项`,
+        key: k + 1
       }
     })
   }
@@ -43,8 +42,11 @@ export default {
   /* display: flex; */
 }
 
-.scroll-item {
-  width: 600px;
+.tiny-virtual-scroll {
+  height: 300px;
+}
+
+.tiny-virtual-scroll-item {
   padding: 10px;
   border-bottom: 2px solid #ddd;
   align-content: center;
