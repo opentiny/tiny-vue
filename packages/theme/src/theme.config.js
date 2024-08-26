@@ -29,6 +29,7 @@ export default {
   'collapse-item': 'collapse-item',
   'color-select-panel': 'color-select-panel',
   'color-picker': 'color-picker',
+  'calendar-view': 'calendar-view',
   'detail-page': 'detail-page',
   'dialog-box': 'dialog-box__wrapper',
   'dropdown-item': 'dropdown-item',
@@ -86,8 +87,6 @@ export default {
   'year-table': 'year-table',
   'skeleton-item': 'skeleton-item',
   'radio-button': 'radio-button',
-  'color-select-panel': 'color-select-panel',
-  'color-picker': 'color-picker',
   'split': 'split-wrapper',
   'float-bar': 'float-bar'
 }
