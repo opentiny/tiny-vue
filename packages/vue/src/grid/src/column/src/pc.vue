@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  -->
-<script lang="tsx">
+<script lang="ts">
 import { $props, setup, defineComponent, h } from '@opentiny/vue-common'
 import { findTree } from '@opentiny/vue-renderless/grid/static'
 import { renderless, api } from '@opentiny/vue-renderless/grid/column/vue'
@@ -17,7 +17,7 @@ import { warn } from '../../tools'
 
 import GlobalConfig from '../../config'
 
-const { columnLevelKey, defaultColumnName } = GlobalConfig
+const { defaultColumnName } = GlobalConfig
 
 export default defineComponent({
   name: defaultColumnName,
@@ -129,6 +129,7 @@ export default defineComponent({
     const { state } = this
     const { firstRow, $table, columnConfig } = state
 
+    // TODO: 临时方案，待优化
     const instanceSlots = this.$slots
 
     let slotVnode

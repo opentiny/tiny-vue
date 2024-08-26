@@ -1,31 +1,13 @@
-import { useRelation } from '../../common/deps/useRelation'
 import GlobalConfig from '../../../../vue/src/grid/src/config'
 
-import type { ISharedRenderlessFunctionParams, ISharedRenderlessParamUtils } from '../../../types/shared.type'
+import type { ISharedRenderlessParamUtils, ISharedRenderlessParamHooks } from '@/types'
 import { setColumnFormat } from '../../grid/utils'
 
 import { Cell } from '../../../../vue/src/grid/src/cell'
 
-// import { useInstanceSlots } from '../../../../vue-common'
+import { useRelation } from '../../../../vue-common'
 
-const { columnLevelKey, defaultColumnName } = GlobalConfig
-
-interface IGridColumnProps {
-  formatConfig
-}
-
-interface IGridColumnRenderlessParams extends ISharedRenderlessFunctionParams {
-  reactive
-  inject
-  getCurrentInstance
-  onUpdated
-  watch
-  nextTick
-}
-
-interface IGridColumnRenderlessParamUtils extends ISharedRenderlessParamUtils<any> {
-  slots
-}
+const { columnLevelKey } = GlobalConfig
 
 interface IGridColumnApi {}
 
@@ -47,17 +29,14 @@ const initState = ({ props, reactive, inject, slots }) => {
 }
 
 export const renderless = (
-  props: IGridColumnProps,
-  { reactive, inject, getCurrentInstance, onUpdated, watch, nextTick, onUnmounted }: IGridColumnRenderlessParams,
-  { slots }: IGridColumnRenderlessParamUtils,
-  { isVue2 }
+  props,
+  { reactive, inject, getCurrentInstance, onUpdated, watch, nextTick }: ISharedRenderlessParamHooks,
+  { slots }: ISharedRenderlessParamUtils
 ): IGridColumnApi => {
   const state = initState({ props, reactive, inject, slots })
 
   !state.$table.isTagUsageSence && (state.$table.isTagUsageSence = true)
   let slotsCache = {}
-
-  //   useInstanceSlots()
 
   useRelation({ relationKey: `${columnLevelKey}-${state.$table.id}` })
 
@@ -66,7 +45,7 @@ export const renderless = (
     () => setColumnFormat(state.columnConfig, props)
   )
 
-  const currentInstance = getCurrentInstance()
+  const currentInstance = getCurrentInstance()!
   const instance = currentInstance.proxy
 
   onUpdated(() => {
@@ -82,7 +61,8 @@ export const renderless = (
   nextTick(() => (state.columnConfig.slots = instance.instanceSlots))
 
   Object.assign(api, {
-    state
+    state,
+    ...Cell
   })
 
   return api

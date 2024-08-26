@@ -11,8 +11,6 @@
  */
 import Column from './src/pc.vue'
 
-// import Column from './src/column'
-
 Column.install = function (Vue) {
   Vue.component(Column.name, Column)
 }
