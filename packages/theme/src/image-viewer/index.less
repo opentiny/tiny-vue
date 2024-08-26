@@ -89,7 +89,8 @@
 
     svg {
       fill: var(--ti-image-viewer-actions-inner-text-color);
-      margin-right: 20px;
+      margin-right: var(--ti-image-viewer-actions-icon-margin-right);
+      font-size: var(--ti-image-viewer-actions-icon-size);
 
       &:hover {
         cursor: pointer;
@@ -97,14 +98,17 @@
     }
   }
 
+  &__actions-divider {
+    display: var(--ti-image-viewer-actions-divider-display);
+  }
+
   &__actions-count {
-    font-size: 20px;
+    font-size: var(--ti-image-viewer-actions-count-font-size);
     color: #fff;
     position: relative;
-    top: -2px;
-    margin-left: 10px;
+    margin-left: var(--ti-image-viewer-actions-count-margin-left);
   }
- 
+
   &__next,
   &__prev {
     top: 50%;
@@ -121,12 +125,12 @@
 
   &__prev {
     transform: translateY(-50%);
-    left: 40px;
+    left: var(--ti-image-viewer-prev-left);
   }
 
   &__next {
     transform: translateY(-50%);
-    right: 40px;
+    right: var(--ti-image-viewer-next-right);
     text-indent: 2px;
   }
 
@@ -136,7 +140,6 @@
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0.5;
     background: var(--ti-image-viewer-mask-bg-color);
   }
 }

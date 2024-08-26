@@ -18,6 +18,10 @@ export const tinyInputSmbTheme = {
   'ti-input-font-size': 'var(--ti-common-font-size-1)',
   'ti-input-placeholder-color': 'var(--ti-base-color-common-2)',
   'ti-input-exceed-text-color': '#c7000b',
+  'ti-input-suffix-top': 'var(--ti-common-space-4x)',
+  'ti-input-suffix-top-medium': 'var(--ti-common-space-5x)',
+  'ti-input-suffix-top-small': 'var(--ti-common-space-4x)',
+  'ti-input-suffix-top-mini': 'var(--ti-common-space-3x)',
   'ti-input-prefix-padding-left': 'var(--ti-common-space-10x)',
   'ti-input-prefix-padding-right': 'var(--ti-common-space-10x)',
   'ti-input-suffix-padding-right': 'var(--ti-common-space-10x)'

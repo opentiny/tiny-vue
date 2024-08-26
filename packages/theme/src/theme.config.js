@@ -23,6 +23,7 @@ export default {
   'cascader-menu': 'cascader-menu',
   'cascader-panel': 'cascader-panel',
   'cascader-node': 'cascader-node',
+  'cascader-border': 'cascader-dropdown', // ti-cascader-border 变量是加在下拉面板 .tiny-cascader-dropdown 上的
   'checkbox-button': 'checkbox-button',
   'checkbox-group': 'checkbox-group',
   'context-menu': 'context-menu',
@@ -89,5 +90,6 @@ export default {
   'radio-group': 'radio-group',
   'split': 'split-wrapper',
   'float-bar': 'float-bar',
-  'popeditor': 'popeditor__dialog-box'
+  'popeditor': 'popeditor__dialog-box',
+  'image-viewer': 'image-viewer'
 }

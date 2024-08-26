@@ -75,11 +75,15 @@
         &.@{action-menu-prefix-cls}__item-visable {
           .@{dropdown-item-prefix-cls} {
             background-color: var(--ti-action-menu-item-hover-bg-color);
-          }
-        }
 
-        .tiny-svg {
-          fill: var(--ti-action-menu-item-hover-text-color); // TINY-TODO :没有使用--ti-base-color-brand-8的图标色
+            > .tiny-dropdown-item__wrap {
+              > .tiny-dropdown-item__content {
+                .tiny-svg {
+                  fill: var(--ti-action-menu-item-hover-icon-color);
+                }
+              }
+            }
+          }
         }
       }
 
