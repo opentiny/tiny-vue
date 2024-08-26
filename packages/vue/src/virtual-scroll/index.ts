@@ -7,7 +7,6 @@ VirtualScroll.model = {
   prop: 'modelValue',
   event: 'update:modelValue'
 }
-// 虚拟滚动组件的入口文件---引入vitual-scroll组件的入口文件和全局注册
 /* istanbul ignore next */
 VirtualScroll.install = function (Vue) {
   Vue.component(VirtualScroll.name, VirtualScroll)
