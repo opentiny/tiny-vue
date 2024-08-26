@@ -8,5 +8,6 @@ export const tinyTimeSpinnerSmbTheme = {
   'ti-time-spinner-list-margin-top': '10px',
   'ti-time-spinner-selected-bg-color': '#deedff',
   'ti-time-spinner-item-bg-color': '#deedff',
-  'ti-time-spinner-selected-border-radius': '16px'
+  'ti-time-spinner-selected-border-radius': '16px',
+  'ti-time-spinner-item-font-weight': 'var(--ti-common-font-weight-normal)'
 }

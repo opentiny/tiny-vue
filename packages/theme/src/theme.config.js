@@ -30,6 +30,7 @@ export default {
   'collapse-item': 'collapse-item',
   'color-select-panel': 'color-select-panel',
   'color-picker': 'color-picker',
+  'calendar-view': 'calendar-view',
   'detail-page': 'detail-page',
   'dialog-box': 'dialog-box__wrapper',
   'dropdown-item': 'dropdown-item',
@@ -38,7 +39,7 @@ export default {
   'drop-times': 'drop-times',
   'date-panel': 'date-panel',
   'date-picker': 'date-picker',
-  'data-range': 'data-range',
+  'date-range': 'date-range-picker',
   'date-table': 'date-table',
   'date-editor': 'date-editor',
   'fall-menu': 'fall-menu',
@@ -89,6 +90,9 @@ export default {
   'radio-button': 'radio-button',
   'radio-group': 'radio-group',
   'split': 'split-wrapper',
-  'image-viewer': 'image-viewer',
-  'float-bar': 'float-bar'
+  'float-bar': 'float-bar',
+  'grid-radio': 'grid-radio',
+  'grid-filter': 'grid__filter-wrapper',
+  'popeditor': 'popeditor__dialog-box',
+  'image-viewer': 'image-viewer'
 }

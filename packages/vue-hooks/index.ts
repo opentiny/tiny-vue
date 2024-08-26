@@ -11,5 +11,6 @@
  */
 
 import { useFloating } from './src/use-floating'
+import { useLazyShow } from './src/use-lazy-show'
 
-export { useFloating }
+export { useFloating, useLazyShow }

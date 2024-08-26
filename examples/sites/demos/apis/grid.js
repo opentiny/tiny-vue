@@ -4082,7 +4082,7 @@ interface IPagerConfig {
     pageSize: number
     pageSizes: number[]
     total: number
-    // 分页组件布局默认值：'total, prev, pager, next, jumper, sizes'
+    // 分页组件布局默认值：'total, prev, pager, next, jumper'
     layout: string
   }
 }
@@ -4435,7 +4435,7 @@ interface IPageChangeArgs {
   $grid: Component
   // 当前页码
   currentPage: number
-  //当前分页组件布局信息 'total, prev, pager, next, jumper, sizes'
+  //当前分页组件布局信息 'total, prev, pager, next, jumper'
   layout: string
   // 当前每页显示条数
   pageSize: number
