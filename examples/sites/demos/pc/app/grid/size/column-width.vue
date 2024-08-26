@@ -1,5 +1,5 @@
 <template>
-  <tiny-grid :column-width="200" :data="tableData">
+  <tiny-grid :column-width="250" :data="tableData">
     <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称"></tiny-grid-column>
     <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>

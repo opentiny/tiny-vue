@@ -8,7 +8,7 @@ test('自定义操作列', async ({ page }) => {
   await expect(
     page
       .getByRole('row', {
-        name: '1 GFD科技YX公司 华东区 福州 公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
+        name: 'GFD科技YX公司 华东区 福州 公司技术和研发实力雄厚，是国家863项目的参与者，并被政府认定为“高新技术企业”。'
       })
       .getByRole('img')
       .nth(1)

@@ -27,6 +27,8 @@
   background: var(--ti-tree-bg-color);
   color: var(--ti-tree-text-color);
   line-height: var(--ti-tree-text-line-height);
+  padding-top: var(--ti-tree-padding-top);
+  padding-bottom: var(--ti-tree-padding-bottom);
 
   .is-drop-inner {
     position: relative;
@@ -86,6 +88,13 @@
   &--highlight-current {
     .@{tree-node-prefix-cls}.is-current > .@{tree-node-prefix-cls}__content {
       background-color: var(--ti-tree-node-highlight-bg-color);
+    }
+
+    .@{tree-node-prefix-cls}.is-current:not(.show-checkbox) > .@{tree-node-prefix-cls}__content {
+      .@{tree-node-prefix-cls}__content-box,
+      .@{tree-node-prefix-cls}__content-right {
+        background-color: var(--ti-tree-node-content-current-bg-color);
+      }
     }
   }
 
@@ -205,6 +214,7 @@
   }
 }
 
+// 将 tree-node的样式放在 tree 节点下
 .@{tree-node-prefix-cls} {
   white-space: nowrap;
   outline: 0;
@@ -283,11 +293,6 @@
   }
 
   &.is-current:not(.show-checkbox) > &__content {
-    .@{tree-node-prefix-cls}__content-box,
-    .@{tree-node-prefix-cls}__content-right {
-      background-color: var(--ti-tree-node-content-current-bg-color);
-    }
-
     & > .@{tree-node-prefix-cls}__content-left {
       color: var(--ti-tree-selected-text-color);
       font-weight: var(--ti-tree-selected-font-weight);

@@ -5,6 +5,7 @@ export const tinySelectDropdownSmbTheme = {
   'ti-select-dropdown-empty-padding-vertical': '46px',
   'ti-select-dropdown-empty-font-size': 'var(--ti-common-font-size-0)',
   'ti-select-dropdown-margin-top': 'var(--ti-common-space-base)',
+  'ti-select-dropdown-margin-bottom': '0',
   'ti-select-dropdown-box-shadow': 'var(--ti-common-shadow-2-down)',
   'ti-select-dropdown-padding-top': 'var(--ti-common-space-2x)',
   'ti-select-dropdown-padding-bottom': 'var(--ti-common-space-2x)',

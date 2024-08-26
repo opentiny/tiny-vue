@@ -3,7 +3,7 @@
     <tiny-grid-column header-align="center">
       <template #header>操作</template>
       <tiny-grid-column type="index" width="40"></tiny-grid-column>
-      <tiny-grid-column type="selection" width="40"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="48"></tiny-grid-column>
       <tiny-grid-column width="100" align="center">
         <tiny-icon-helpful style="text-align: center; font-size: 16px; fill"></tiny-icon-helpful>
         &nbsp;&nbsp;

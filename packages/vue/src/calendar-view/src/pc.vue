@@ -2,6 +2,9 @@
   <div class="tiny-calendar-view">
     <div class="tiny-calendar-view__header">
       <tiny-button @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
+      <div class="tiny-calendar-view__tool-first">
+        <slot name="tool"></slot>
+      </div>
       <tiny-date-picker
         v-model="state.currentDate"
         class="tiny-calendar-view__picker"
@@ -57,8 +60,8 @@
                   day.isLast || day.isNext
                     ? 'is-next-or-last'
                     : isToday(day) || isSelectedDate(day)
-                      ? 'is-selected'
-                      : '',
+                    ? 'is-selected'
+                    : '',
                   day.disabled ? 'is-disabled' : ''
                 ]"
               >

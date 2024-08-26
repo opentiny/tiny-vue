@@ -38,33 +38,35 @@
             <slot name="title">
               <span class="tiny-dialog-box__title">{{ title }}</span>
             </slot>
-            <button
-              v-if="resize && !state.isFull"
-              type="button"
-              class="tiny-dialog-box__headerbtn"
-              aria-label="Resize"
-              @click="toggleFullScreen(true)"
-            >
-              <icon-fullscreen class="tiny-svg-size tiny-dialog-box__close" />
-            </button>
-            <button
-              v-if="resize && state.isFull"
-              type="button"
-              class="tiny-dialog-box__headerbtn"
-              aria-label="Resize"
-              @click="toggleFullScreen(false)"
-            >
-              <icon-minscreen class="tiny-svg-size tiny-dialog-box__close" />
-            </button>
-            <button
-              v-if="showClose"
-              type="button"
-              class="tiny-dialog-box__headerbtn"
-              aria-label="Close"
-              @click="handleClose('close', $event)"
-            >
-              <icon-close class="tiny-svg-size tiny-dialog-box__close" />
-            </button>
+            <div class="tiny-dialog-box__btn-tools">
+              <button
+                v-if="resize && !state.isFull"
+                type="button"
+                class="tiny-dialog-box__headerbtn"
+                aria-label="Resize"
+                @click="toggleFullScreen(true)"
+              >
+                <icon-fullscreen class="tiny-svg-size tiny-dialog-box__resize" />
+              </button>
+              <button
+                v-if="resize && state.isFull"
+                type="button"
+                class="tiny-dialog-box__headerbtn"
+                aria-label="Resize"
+                @click="toggleFullScreen(false)"
+              >
+                <icon-minscreen class="tiny-svg-size tiny-dialog-box__resize" />
+              </button>
+              <button
+                v-if="showClose"
+                type="button"
+                class="tiny-dialog-box__headerbtn"
+                aria-label="Close"
+                @click="handleClose('close', $event)"
+              >
+                <icon-close class="tiny-svg-size tiny-dialog-box__close" />
+              </button>
+            </div>
           </div>
           <div class="tiny-dialog-box__body">
             <slot></slot>

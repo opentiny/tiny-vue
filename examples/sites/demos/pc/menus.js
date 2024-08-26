@@ -173,7 +173,7 @@ export const cmpMenus = [
     'children': [
       { 'nameCn': '基本用法', 'name': '', 'key': 'grid' },
       { 'nameCn': '序号列', 'name': '', 'key': 'grid-serial-column' },
-      { 'nameCn': '操作列', 'name': '', 'key': 'grid-operation-column' },
+      { 'nameCn': '选中行', 'name': '', 'key': 'grid-operation-column' },
       { 'nameCn': '空数据', 'name': '', 'key': 'grid-empty' },
       { 'nameCn': '数据源', 'name': '', 'key': 'grid-data-source' },
       { 'nameCn': '大数据', 'name': '', 'key': 'grid-large-data' },

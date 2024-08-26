@@ -724,6 +724,22 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'IResizableConfig',
+          typeAnchorName: 'IResizableConfig',
+          type: 'IResizableConfig',
+          defaultValue: '',
+          metaData: {
+            new: '3.19.0'
+          },
+          desc: {
+            'zh-CN': '设置列宽拖拽参数',
+            'en-US': 'Set column width drag parameters'
+          },
+          mode: ['pc'],
+          pcDemo: 'grid-size#size-resizable-config',
+          mfDemo: ''
+        },
+        {
           name: 'row-class-name',
           typeAnchorName: 'IClassNameArgs',
           type: 'string | (args: IClassNameArgs) => string',
@@ -2290,12 +2306,27 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'getAllSelection',
+          typeAnchorName: 'IRow',
+          type: '() => IRow[]',
+          meta: {
+            stable: '3.19.0'
+          },
+          defaultValue: '',
+          desc: {
+            'zh-CN': '获取所有翻页中保存的已选中的数据',
+            'en-US': 'This command is used to select multiple lines to obtain the selected data.'
+          },
+          mode: ['pc'],
+          pcDemo: 'grid-operation-column#operation-column-grid-pager-reserve'
+        },
+        {
           name: 'getSelectRecords',
           typeAnchorName: 'IRow',
           type: '() => IRow[]',
           defaultValue: '',
           desc: {
-            'zh-CN': '用于多选行，获取已选中的数据',
+            'zh-CN': '用于多选行，获取当前页已选中的数据',
             'en-US': 'This command is used to select multiple lines to obtain the selected data.'
           },
           mode: ['pc'],
@@ -4050,7 +4081,7 @@ interface IPagerConfig {
     pageSize: number
     pageSizes: number[]
     total: number
-    // 分页组件布局默认值：'total, prev, pager, next, jumper, sizes'
+    // 分页组件布局默认值：'total, prev, pager, next, jumper'
     layout: string
   }
 }
@@ -4403,7 +4434,7 @@ interface IPageChangeArgs {
   $grid: Component
   // 当前页码
   currentPage: number
-  //当前分页组件布局信息 'total, prev, pager, next, jumper, sizes'
+  //当前分页组件布局信息 'total, prev, pager, next, jumper'
   layout: string
   // 当前每页显示条数
   pageSize: number
@@ -4667,6 +4698,16 @@ interface IResizableChangeArgs {
   columnIndex: number
   // 是否固定列
   fixed: boolean
+}
+      `
+    },
+    {
+      name: 'IResizableConfig',
+      type: 'type',
+      code: `
+interface IResizableConfig {
+  // 拖拽宽度限制函数，field: 当前拖拽的列名，width: 当前拖拽的宽度
+  limit: ({ field: string, width: number }) => number
 }
       `
     },

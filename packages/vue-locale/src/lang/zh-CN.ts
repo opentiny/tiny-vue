@@ -125,8 +125,15 @@ export default {
       empty: '暂无'
     },
     crop: {
-      cropImage: '图片裁剪',
-      croppedImage: '裁剪后图像'
+      choose: '选择图片',
+      zoomOut: '缩小10%',
+      zoomIn: '放大10%',
+      rotate_45: '逆时针旋转45°',
+      rotate45: '顺时针旋转45°',
+      closeCropArea: '隐藏选区',
+      reset: '重置视图',
+      closeCrop: '退出裁剪',
+      cropImage: '选择区域'
     },
     datepicker: {
       clear: '清空',

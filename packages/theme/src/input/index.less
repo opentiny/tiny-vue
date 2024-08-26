@@ -57,6 +57,7 @@
 
   &.is-exceed &__suffix &__count {
     color: var(--ti-input-exceed-text-color);
+
     &-text-length {
       color: var(--ti-input-exceed-text-color);
     }
@@ -100,14 +101,20 @@
     border-color: var(--ti-input-exceed-text-color);
   }
 
+  &:hover {
+    .@{input-prefix-cls}__inner:not(:disabled) {
+      border-color: var(--ti-input-hover-border-color);
+    }
+  }
+
   & &__clear {
     font-size: var(--ti-input-icon-font-size);
     cursor: pointer;
     transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    fill: var(--ti-input-icon-close-text-color);
 
-    &,
     &:hover {
-      fill: var(--ti-input-icon-close-text-color);
+      fill: var(--ti-input-clear-text-color-hover);
     }
   }
 
@@ -126,6 +133,7 @@
       line-height: initial;
       display: inline-block;
     }
+
     &-text-length {
       color: var(--ti-input-count-textlength-color);
     }
@@ -169,13 +177,14 @@
   &__prefix,
   &__suffix {
     position: absolute;
-    top: 50%;
+    top: var(--ti-input-suffix-top);
     transform: translateY(-50%);
     transition: all 0.3s;
     text-align: center;
     color: var(--ti-input-border-color);
     display: flex;
     align-items: center;
+
     svg {
       fill: var(--ti-input-suffix-icon-color);
     }
@@ -191,6 +200,7 @@
     right: var(--ti-input-suffix-right);
     transition: all 0.3s;
     pointer-events: none;
+
     &:hover {
       cursor: pointer;
     }
@@ -209,16 +219,16 @@
   }
 
   &__prefix {
-    left: 8px;
+    left: 12px;
     transition: all 0.3s;
     font-size: var(--ti-input-icon-font-size);
+
     & > div {
       display: flex;
     }
   }
 
   &__icon {
-    height: 100%;
     line-height: var(--ti-input-height);
     text-align: center;
     transition: all 0.3s;
@@ -273,14 +283,23 @@
 
   &-medium {
     .input-size(var(--ti-input-medium-height));
+    .@{input-prefix-cls}__suffix {
+      top: var(--ti-input-suffix-top-medium);
+    }
   }
 
   &-small {
     .input-size(var(--ti-input-small-height));
+    .@{input-prefix-cls}__suffix {
+      top: var(--ti-input-suffix-top-small);
+    }
   }
 
   &-mini {
     .input-size(var(--ti-input-mini-height));
+    .@{input-prefix-cls}__suffix {
+      top: var(--ti-input-suffix-top-mini);
+    }
   }
 
   &.is-display-only {
@@ -327,6 +346,15 @@
         flex: 1;
         margin-right: 16px;
       }
+    }
+  }
+
+  &.tiny-input-underline {
+    .tiny-input__inner {
+      border-radius: 0;
+      border-top: none;
+      border-left: none;
+      border-right: none;
     }
   }
 }

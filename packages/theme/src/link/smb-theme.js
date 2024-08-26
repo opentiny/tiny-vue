@@ -1,6 +1,6 @@
 export const tinyLinkSmbTheme = {
   'ti-link-svg-width': '16px',
-  'ti-link-svg-height': '16px',
+  'ti-link-svg-height': 'var(--ti-common-size-5x)',
   'ti-link-svg-margin-right': '4px',
   'ti-link-font-weight': 'var(--ti-common-font-weight-4)',
   'ti-link-default-hover-border-color': '#595959',
@@ -18,5 +18,6 @@ export const tinyLinkSmbTheme = {
   'ti-link-warning-disabled-text-color': 'var(--ti-common-color-warning-disabled-text)',
   'ti-link-info-disabled-text-color': 'var(--ti-common-color-info-disabled-text)',
   'ti-link-danger-text-color': '#c7000b',
-  'ti-link-danger-border-color': '#c7000b'
+  'ti-link-danger-border-color': '#c7000b',
+  'ti-link-svg-padding-bottom': 'var(--ti-common-space-2)'
 }

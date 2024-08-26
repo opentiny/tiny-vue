@@ -7,7 +7,7 @@ export default {
       'name': { 'zh-CN': '表格列头与单元格错位', 'en-US': 'Table column headers and cells are misplaced' },
       'desc': {
         'zh-CN':
-          '<p>当出现 <code>grid</code> 表头与表体单元格错位时，可以选择性地做以下尝试。1.给每列设置列宽。2.将<code>show-overflow</code>、<code>show-header-overflow</code> 都设置为 <code>true</code>。3.将 <code>table-layout</code> 设置为 <code>auto</code>。</p>',
+          '<p>当出现 <code>grid</code> 表头与表体单元格错位时，可以选择性地做以下尝试。1.给每列设置列宽。2.将<code>show-overflow</code>、<code>show-header-overflow</code> 都设置为 <code>true</code>。</p>',
         'en-US':
           '<p>When the grid table header is misplaced with the table body cell, You can perform the following operations as required.\n1. Set the column width for each column.\n2. Set <code>show-overflow</code> and <code>show-header-overflow</code> to <code>true</code>\n3. Set <code>table-layout</ Set this parameter to <code>auto</code></p>\n'
       },

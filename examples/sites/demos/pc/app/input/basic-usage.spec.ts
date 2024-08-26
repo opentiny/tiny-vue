@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('[Input]basic-usage: placeholder, focus-style, v-model', async ({ page }) => {
+test('基本示例', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('input#basic-usage')
   const input = page.locator('.demo-input > .tiny-input > .tiny-input-display-only > input')

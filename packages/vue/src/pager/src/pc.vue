@@ -99,7 +99,7 @@
             <div class="tiny-pager__popover" @click="clickSizes">
               <div ref="pageSize" class="tiny-pager__page-size" :class="{ disabled }">
                 <span class="sizes">{{ state.internalPageSize }}</span>
-                <span>{{ t('ui.page.page') }}</span>
+                <span>{{ state.pageSizeText ?? t('ui.page.page') }}</span>
                 <div class="tiny-pager__page-size-btn">
                   <triangle-down :class="['tiny-svg-size', state.showSizes ? 'tiny-svg-size__reverse-180' : '']" />
                 </div>
@@ -188,7 +188,9 @@ export default defineComponent({
     'prevText',
     'total',
     'size',
-    'align'
+    'align',
+    'totalFixedLeft',
+    'pageSizeText'
   ],
   directives: {
     loading: Loading.directive
