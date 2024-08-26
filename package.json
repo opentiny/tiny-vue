@@ -36,6 +36,7 @@
     "prepare": "husky install",
     "bootstrap": "pnpm --filter=\"!./packages/dist/**\" install",
     "dev": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/vue3 dev",
+    "dev:nuxt": "pnpm -C examples/nuxt dev",
     "dev:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue3 dev:saas",
     "dev2": "pnpm build:entry && gulp themeConcat -w & pnpm -C examples/vue2 dev",
     "dev2:saas": "pnpm create:icon-saas && pnpm build:entry && pnpm -C examples/vue2 dev:saas",
