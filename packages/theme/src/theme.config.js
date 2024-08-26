@@ -89,6 +89,7 @@ export default {
   'radio-button': 'radio-button',
   'radio-group': 'radio-group',
   'split': 'split-wrapper',
-  'image-viewer': 'image-viewer',
-  'float-bar': 'float-bar'
+  'float-bar': 'float-bar',
+  'popeditor': 'popeditor__dialog-box',
+  'image-viewer': 'image-viewer'
 }
