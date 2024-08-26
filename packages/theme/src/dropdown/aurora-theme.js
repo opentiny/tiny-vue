@@ -9,5 +9,6 @@ export const tinyDropdownAuroraTheme = {
   'ti-dropdown-caret-button-padding-left': 'var(--ti-common-space-2x)',
   'ti-dropdown-caret-button-padding-right': 'var(--ti-common-space-2x)',
   'ti-dropdown-caret-svg-margin-horizontal': 'var(--ti-common-space-0)',
-  'ti-dropdown-caret-svg-padding-left': 'var(--ti-common-space-0)'
+  'ti-dropdown-caret-svg-padding-left': 'var(--ti-common-space-0)',
+  'ti-dropdown-suffix-icon-margin-vertical': 'var(--ti-common-space-2x)'
 }
