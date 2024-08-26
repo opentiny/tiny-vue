@@ -1,7 +1,7 @@
 <template>
   <div>
     <tiny-button @click="show = true"> 弹出Dialog </tiny-button>
-    <tiny-dialog-box v-model:visible="show" title="消息" width="30%">
+    <tiny-dialog-box class="demo-image__preview-dialog-box" v-model:visible="show" title="消息" width="30%">
       <div class="demo-image__preview__in">
         <tiny-image :src="url" :preview-src-list="srcList"></tiny-image>
       </div>
@@ -35,9 +35,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .demo-image__preview__in {
   width: 200px;
   height: 200px;
+  margin: auto;
+  padding-top: 50px;
+}
+
+.demo-image__preview-dialog-box {
+  :deep(.tiny-dialog-box) {
+    > .tiny-dialog-box__footer {
+      text-align: right;
+    }
+  }
 }
 </style>

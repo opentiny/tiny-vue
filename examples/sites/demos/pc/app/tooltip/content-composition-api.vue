@@ -47,5 +47,6 @@ function renderContent(h, content) {
 .red {
   color: #f23030;
   fill: #f23030;
+  font-size: 16px;
 }
 </style>

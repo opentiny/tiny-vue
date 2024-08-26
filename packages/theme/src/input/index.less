@@ -177,7 +177,7 @@
   &__prefix,
   &__suffix {
     position: absolute;
-    top: 50%;
+    top: var(--ti-input-suffix-top);
     transform: translateY(-50%);
     transition: all 0.3s;
     text-align: center;
@@ -283,14 +283,23 @@
 
   &-medium {
     .input-size(var(--ti-input-medium-height));
+    .@{input-prefix-cls}__suffix {
+      top: var(--ti-input-suffix-top-medium);
+    }
   }
 
   &-small {
     .input-size(var(--ti-input-small-height));
+    .@{input-prefix-cls}__suffix {
+      top: var(--ti-input-suffix-top-small);
+    }
   }
 
   &-mini {
     .input-size(var(--ti-input-mini-height));
+    .@{input-prefix-cls}__suffix {
+      top: var(--ti-input-suffix-top-mini);
+    }
   }
 
   &.is-display-only {

@@ -60,7 +60,6 @@
           tag="ul"
           wrap-class="tiny-autocomplete-suggestion__wrap"
           view-class="tiny-autocomplete-suggestion__list"
-          :margin-bottom-adjust="6"
         >
           <slot
             name="panel"

@@ -31,12 +31,18 @@
   --ti-popeditor-tabs-selected-text-color: var(--ti-common-color-line-active, #5e7ce0);
   // 弹出框头部标题高度
   --ti-popeditor-tabs-li-height: var(--ti-common-size-10x, 40px);
+  // 出框头部标题行高
+  --ti-popeditor-tabs-li-line-height: var(--ti-common-size-10x, 40px);
+  // 出框头部标题字体大小
+  --ti-popeditor-tabs-font-size: var(--ti-common-font-size-1);
   // 弹出框头部标题选中文本字重
   --ti-popeditor-tabs-selected-font-weight: var(--ti-common-font-weight-bold, 700);
   // 弹出框查询条件item底部外边距
   --ti-popeditor-search-item-margin-bottom: var(--ti-common-space-3x, 12px);
-  // 弹出框查询条件页脚垂直外边距
-  --ti-popeditor-search-footer-margin-vertical: var(--ti-common-space-3x, 12px);
+  // 弹出框查询条件页脚顶部外边距
+  --ti-popeditor-search-footer-margin-top: var(--ti-common-space-3x, 12px);
+  // 弹出框查询条件页脚底部外边距
+  --ti-popeditor-search-footer-margin-bottom: var(--ti-common-space-3x, 12px);
   // 弹出框查询条件页脚水平外边距
   --ti-popeditor-search-footer-margin-horizontal: auto;
   // 弹出编辑头部标签页文本色(hide)
@@ -45,14 +51,54 @@
   --ti-popeditor-tabs-li-padding-vertical: var(--ti-common-space-0, 0px);
   // 弹出表格头部标签页item水平内边距
   --ti-popeditor-tabs-li-padding-horizontal: var(--ti-common-space-5x, 20px);
-  // 弹出框表格垂直内边距
-  --ti-popeditor-tabs-body-padding-vertical: var(--ti-common-space-0, 0px);
-  // 弹出框表格水平内边距
-  --ti-popeditor-tabs-body-padding-horizontal: var(--ti-common-space-base, 4px);
+  // 弹出表格头部标签页item右侧外边距
+  --ti-popeditor-tabs-li-margin-right: var(--ti-common-space-0, 0px);
+  // 弹出表格(左侧）标签页内容区顶部内边距
+  --ti-popeditor-tabs-body-left-padding-top: var(--ti-common-space-0, 0px);
+  // 弹出表格(左侧）标签页内容区右侧内边距
+  --ti-popeditor-tabs-body-left-padding-right: var(--ti-common-space-base, 4px);
+  // 弹出表格(左侧）标签页内容区底部内边距
+  --ti-popeditor-tabs-body-left-padding-bottom: var(--ti-common-space-0, 0px);
+  // 弹出表格(左侧）标签页内容区左侧内边距
+  --ti-popeditor-tabs-body-left-padding-left: var(--ti-common-space-base, 4px);
+  // 弹出表格(右侧）标签页内容区顶部内边距
+  --ti-popeditor-tabs-body-right-padding-top: var(--ti-common-space-0, 0px);
+  // 弹出表格(右侧）标签页内容区右侧内边距
+  --ti-popeditor-tabs-body-right-padding-right: var(--ti-common-space-base, 4px);
+  // 弹出表格(右侧）标签页内容区底部内边距
+  --ti-popeditor-tabs-body-right-padding-bottom: var(--ti-common-space-0, 0px);
+  // 弹出表格(右侧）标签页内容区左侧内边距
+  --ti-popeditor-tabs-body-right-padding-left: var(--ti-common-space-base, 4px);
   // 弹出表格内容顶部内边距
   --ti-popeditor-tabs-body-item-padding-top: var(--ti-common-space-3x, 12px);
   // 弹出表格内容水平内边距
   --ti-popeditor-tabs-body-item-padding-horizontal: var(--ti-common-space-3x, 12px);
   // 弹出表格内容底部内边距
   --ti-popeditor-tabs-body-item-padding-bottom: var(--ti-common-space-0, 0px);
+  // 弹出表格标签页水平方向内边距
+  --ti-popeditor-tabs-header-padding-horizontal: var(--ti-common-space-10, 10px);
+  // 弹出表格分页顶部内边距
+  --ti-popeditor-pager-padding-top: var(--ti-common-space-6x, 24px);
+  // 弹框底部对齐方式
+  --ti-popeditor-footer-text-align: center;
+  // 弹框底部顶部内边距
+  --ti-popeditor-footer-padding-top: var(--ti-common-space-7x, 28px);
+  // 弹出表格搜索项左侧标签文本默认宽度
+  --ti-popeditor-search-item-width: 160px;
+  // 弹出表格搜索项左侧标签文本对齐方式
+  --ti-popeditor-search-item-text-align: right;
+  // 弹出表格搜索项左侧标签文本右侧内边距
+  --ti-popeditor-search-item-padding-right: var(--ti-common-space-0, 0px);
+  // 弹出表格搜索项左侧标签文本左侧内边距
+  --ti-popeditor-search-item-padding-left: var(--ti-common-space-0, 0px);
+  // 弹出表格搜索底部按钮对齐方式
+  --ti-popeditor-search-footer-text-align: center;
+  // 弹出树搜索框左侧内边距
+  --ti-popeditor-tree-input-padding-left: var(--ti-common-space-2x, 8px);
+  // 弹出树搜索框右侧内边距
+  --ti-popeditor-tree-input-padding-right: calc(var(--ti-common-space-8x, 32px) - 4px);
+  // 弹出树搜索框是否显示前置图标
+  --ti-popeditor-tree-input-prefix-visibility: hidden;
+  // 弹出树搜索框是否显示后置图标
+  --ti-popeditor-tree-input-sufffix-visibility: visible;
 }

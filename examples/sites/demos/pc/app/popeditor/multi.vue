@@ -6,6 +6,7 @@
       show-history
       text-field="name"
       value-field="id"
+      :conditions="conditions"
       :multi="true"
       value-split="@"
       text-split="@"
@@ -110,7 +111,11 @@ export default {
           }
         ],
         data: dataset
-      }
+      },
+      conditions: [
+        { label: '公司名', field: 'name' },
+        { label: '城市', field: 'city' }
+      ]
     }
   }
 }

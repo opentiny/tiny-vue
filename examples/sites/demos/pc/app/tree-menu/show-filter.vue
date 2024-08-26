@@ -1,7 +1,14 @@
 <template>
   <div>
     <p>场景1：默认 可过滤 + 原生 title 属性提示</p>
-    <tiny-tree-menu :data="treeData"></tiny-tree-menu>
+    <div class="option-row">
+      <span> 搜索后是否高亮关键字：</span>
+      <tiny-radio-group v-model="highlightQuery">
+        <tiny-radio label="show"> 高亮 </tiny-radio>
+        <tiny-radio label="hide"> 默认不变 </tiny-radio>
+      </tiny-radio-group>
+    </div>
+    <tiny-tree-menu :highlight-query="highlightQuery === 'show'" :data="treeData"></tiny-tree-menu>
     <br /><br />
     <p>场景2：不可过滤 + 不设置原生 title 属性</p>
     <tiny-tree-menu :data="treeData" :show-filter="false" :show-title="false"></tiny-tree-menu>
@@ -9,14 +16,17 @@
 </template>
 
 <script>
-import { TreeMenu } from '@opentiny/vue'
+import { TreeMenu, RadioGroup, Radio } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeMenu: TreeMenu
+    TinyTreeMenu: TreeMenu,
+    TinyRadio: Radio,
+    TinyRadioGroup: RadioGroup
   },
   data() {
     return {
+      highlightQuery: 'hide',
       treeData: [
         {
           id: 100,
@@ -184,5 +194,14 @@ export default {
 p {
   font-size: 14px;
   line-height: 1.5;
+}
+.option-row {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.option-row > span {
+  font-size: 14px;
 }
 </style>
