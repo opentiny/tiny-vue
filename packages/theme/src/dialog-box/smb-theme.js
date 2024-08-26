@@ -10,12 +10,12 @@ export const tinyDialogBoxSmbTheme = {
   'ti-dialog-box-body-text-color': 'var(--ti-common-color-text-primary)',
   'ti-dialog-box-footer-btn-min-width': 'calc(var(--ti-common-space-base) * 24)',
   'ti-dialog-box-drawer-divider-border-color': 'transparent',
-  'ti-dialog-box-head-padding-top': 'var(--ti-common-size-5x)',
-  'ti-dialog-box-head-padding-horizontal': 'var(--ti-common-size-5x)',
   'ti-dialog-box-footer-margin-bottom': 'var(--ti-common-space-6x)',
   'ti-dialog-box-footer-align': 'right',
   'ti-dialog-box-footer-padding-top': 'var(--ti-common-space-6x)',
   'ti-dialog-box-resize-icon-color': 'var(--ti-common-color-icon-normal)',
   'ti-dialog-box-resize-icon-color-hover': 'var(--ti-common-color-icon-normal)',
-  'ti-dialog-box-resize-icon-size': 'var(--ti-common-font-size-2)'
+  'ti-dialog-box-resize-icon-size': 'var(--ti-common-font-size-2)',
+  'ti-dialog-box-btn-position-top': 'var(--ti-common-space-5x)',
+  'ti-dialog-box-btn-position-right': 'var(--ti-common-space-5x)'
 }

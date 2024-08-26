@@ -44,6 +44,7 @@ export default {
         ],
         data: [],
         pagerOp: {
+          size: 'mini',
           pageSize: 4,
           pageSizes: [4, 5, 10],
           total: 10,

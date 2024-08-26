@@ -9,7 +9,12 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-
-export default {
-  // radio-group
+export const tinyRadioGroupSmbTheme = {
+  'ti-radio-group-margin-bottom': '16px',
+  'ti-radio-button-border-color': 'none',
+  'ti-radio-button-border-radius': '6px',
+  'ti-radio-button-margin-bottom': '2px',
+  'ti-radio-button-top-border-radius': '6px',
+  'ti-radio-button-bottom-border-radius': '6px',
+  'ti-radio-button-border-top': 0
 }

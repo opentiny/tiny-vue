@@ -46,12 +46,11 @@ export const api = [
   'handlePageChange'
 ]
 
-const initState = ({ reactive, props, parent, computed, api, slots }) => {
+const initState = ({ reactive, props, parent, computed, api, slots, designConfig }) => {
   const state = reactive({
     query: '',
     checked: [],
     allChecked: false,
-    inputHover: false,
     internalPage: props.pagerOp.pageVO.currentPage || 1,
     pagerTotal: 0,
     pageChangeData: parent.state.isToLeft,
@@ -64,14 +63,15 @@ const initState = ({ reactive, props, parent, computed, api, slots }) => {
     checkedSummary: computed(() => api.getCheckedSummary()),
     isIndeterminate: computed(() => api.getDeteminate()),
     hasNoMatch: computed(() => state.query.length > 0 && state.filteredData.length === 0),
-    inputIcon: computed(() => (state.query.length > 0 && state.inputHover ? 'circle-close' : 'search')),
     labelProp: computed(() => props.props.label || 'label'),
     keyProp: computed(() => props.props.key || 'key'),
     disabledProp: computed(() => props.props.disabled || 'disabled'),
     childrenProp: computed(() => (props.treeOp && props.treeOp.props && props.treeOp.props.childern) || 'children'),
     hasFooter: computed(() => (!!parent.slots['left-footer'] || !!parent.slots['right-footer']) && !!slots.default),
     renderType: computed(() => props.render && props.render.plugin.name),
-    expanded: []
+    expanded: [],
+    inputBoxType: designConfig?.inputBoxType || 'normal',
+    showInputSearch: designConfig?.showInputSearch
   })
 
   return state
@@ -133,11 +133,15 @@ const initWatcher = ({ watch, state, api, props, Table }) => {
   )
 }
 
-export const renderless = (props, { computed, reactive, watch, toRaw }, { $prefix, emit, parent, vm, slots }) => {
+export const renderless = (
+  props,
+  { computed, reactive, watch, toRaw },
+  { $prefix, emit, parent, vm, slots, designConfig }
+) => {
   const api = {}
   const Table = $prefix + 'Table'
   const Tree = $prefix + 'Tree'
-  const state = initState({ reactive, props, parent, computed, api, slots })
+  const state = initState({ reactive, props, parent, computed, api, slots, designConfig })
 
   Object.assign(api, {
     state,
