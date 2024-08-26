@@ -45,7 +45,7 @@ export default {
           pageSize: 5,
           pageSizes: [5, 10],
           total: 0,
-          layout: 'total, prev, pager, next, jumper, sizes'
+          layout: 'total, sizes, prev, pager, next, jumper'
         }
       },
       value: [new Date(2020, 1), new Date()],

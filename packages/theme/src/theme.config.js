@@ -90,6 +90,8 @@ export default {
   'radio-group': 'radio-group',
   'split': 'split-wrapper',
   'float-bar': 'float-bar',
+  'grid-radio': 'grid-radio',
+  'grid-filter': 'grid__filter-wrapper',
   'popeditor': 'popeditor__dialog-box',
   'image-viewer': 'image-viewer'
 }

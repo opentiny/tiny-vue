@@ -2,7 +2,7 @@
   <tiny-grid :data="tableData" resizable :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
     <tiny-grid-column title="操作" header-align="center">
       <tiny-grid-column type="index" width="40"></tiny-grid-column>
-      <tiny-grid-column type="selection" width="40"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="48"></tiny-grid-column>
       <tiny-grid-column :renderer="rendererCellOperate" width="100"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column :title="renderHeaderDescription" header-align="center">
@@ -100,7 +100,7 @@ const options = ref([
   { label: '华南区', value: '华南区' }
 ])
 
-function renderHeaderDescription(h) {
+function renderHeaderDescription() {
   return (
     <span>
       {' '}
@@ -110,7 +110,7 @@ function renderHeaderDescription(h) {
   )
 }
 
-function renderHeaderRelation(h) {
+function renderHeaderRelation() {
   return (
     <span>
       <IconVersiontree />
@@ -118,8 +118,7 @@ function renderHeaderRelation(h) {
   )
 }
 
-// eslint-disable-next-line
-function renderHeaderArea(h) {
+function renderHeaderArea() {
   return (
     <span>
       <IconMarkOn />
@@ -128,7 +127,7 @@ function renderHeaderArea(h) {
   )
 }
 
-function renderHeaderAddress(h) {
+function renderHeaderAddress() {
   return (
     <span>
       <IconUser />
@@ -137,7 +136,7 @@ function renderHeaderAddress(h) {
   )
 }
 
-function rendererCellOperate(h) {
+function rendererCellOperate() {
   return (
     <div style="text-align: center; font-size: 16px;">
       <IconHelpful />

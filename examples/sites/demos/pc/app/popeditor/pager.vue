@@ -48,7 +48,7 @@ export default {
           pageSize: 4,
           pageSizes: [4, 5, 10],
           total: 10,
-          layout: 'total, prev, pager, next, jumper, sizes'
+          layout: 'total, sizes, prev, pager, next, jumper'
         }
       }
     }

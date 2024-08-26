@@ -25,7 +25,6 @@
   .component-css-vars-form();
 
   width: 100%;
-  overflow: hidden;
 
   div {
     outline: none;
@@ -61,12 +60,14 @@
     .@{form-item-prefix-cls}__label {
       text-align: left;
     }
+
     &.label-align {
       .@{form-item-prefix-cls} {
         &.is-required {
           .@{form-item-prefix-cls}__label {
             padding-left: 12px;
             position: relative;
+
             &::before {
               font-size: 20px;
               line-height: 1;
@@ -149,7 +150,10 @@
       line-height: 1.5;
       height: auto;
       vertical-align: inherit;
+      color: var(--ti-form-display-label-color);
+      padding-bottom: var(--ti-form-display-label-padding-bottom);
     }
+
     .tiny-form-item__content {
       line-height: 1.5;
       font-size: 14px;
@@ -168,6 +172,7 @@
       .tiny-checkbox {
         line-height: 1.5;
       }
+
       .tiny-radio {
         line-height: 1;
         padding: 0;
