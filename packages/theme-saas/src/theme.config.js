@@ -34,7 +34,7 @@ export default [
   'drop-times',
   'date-panel',
   'date-picker',
-  'data-range',
+  'date-range',
   'date-table',
   'fall-menu',
   'form-item',

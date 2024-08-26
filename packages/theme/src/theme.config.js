@@ -39,7 +39,7 @@ export default {
   'drop-times': 'drop-times',
   'date-panel': 'date-panel',
   'date-picker': 'date-picker',
-  'data-range': 'data-range',
+  'date-range': 'date-range-picker',
   'date-table': 'date-table',
   'date-editor': 'date-editor',
   'fall-menu': 'fall-menu',
