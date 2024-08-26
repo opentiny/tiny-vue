@@ -550,6 +550,10 @@
           color: var(--ti-steps-line-active-icon-color);
         }
       }
+
+      .right-line {
+        border-color: var(--ti-steps-doing-line-border-color);
+      }
     }
 
     &.done {
@@ -581,6 +585,7 @@
     .title {
       font-size: var(--ti-steps-font-size-base);
       margin-left: var(--ti-steps-text-margin-left);
+      line-height: calc(var(--ti-steps-font-size-base) + 2px);
       font-weight: 500;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -623,7 +628,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      margin: 12px 20px 0;
+      margin: var(--ti-steps-vertical-title-margin-top) 20px 0;
 
       &.not-vertical {
         display: none;
@@ -674,9 +679,9 @@
 
     &.mini {
       .@{steps-prefix-cls}-icon {
-        width: 8px;
-        height: 8px;
-        font-size: 12px;
+        width: var(--ti-steps-mini-icon-size);
+        height: var(--ti-steps-mini-icon-size);
+        font-size: var(--ti-steps-mini-number-font-size);
       }
 
       .title,
@@ -687,9 +692,9 @@
 
     &.small {
       .@{steps-prefix-cls}-icon {
-        width: 16px;
-        height: 16px;
-        font-size: 12px;
+        width: var(--ti-steps-small-icon-size);
+        height: var(--ti-steps-small-icon-size);
+        font-size: var(--ti-steps-small-number-font-size);
 
         .icon {
           width: 10px;
@@ -1466,7 +1471,7 @@
       .timeline {
         .@{timeline-item-prefix-cls}__pillar .line {
           width: var(--ti-steps-line-height);
-          margin-block: var(--ti-steps-timeline-line-margin-vertical);
+          margin-top: var(--ti-steps-timeline-line-margin-vertical);
           background-color: var(--ti-steps-timeline-vertical-line-bg-color);
         }
 
@@ -1500,7 +1505,7 @@
         }
 
         .@{timeline-item-prefix-cls}__content {
-          margin-top: -5px;
+          line-height: 1.5;
 
           .name {
             margin-bottom: var(--ti-steps-timeline-item-title-margin-bottom);
@@ -1537,6 +1542,7 @@
         flex-direction: column;
         align-items: center;
         align-self: stretch;
+        margin-top: 7px;
         width: var(--ti-steps-timeline-dot-width);
 
         .line {

@@ -1,6 +1,6 @@
 export default {
   state: {
-    showJumperSufix: false,
+    pageSizeText: '',
     align: 'right',
     totalFixedLeft: true
   }

@@ -99,8 +99,10 @@
         }
       }
 
-      &.dot {
-        .icon {
+      &.dot,
+      &.quicknext,
+      &.quickprev {
+        svg {
           font-size: var(--ti-pager-dot-is-popup-svg-font-size);
         }
 
@@ -409,7 +411,7 @@
     }
 
     &-btn {
-      width: var(--ti-pager-input-btn-width);
+      padding: 0 var(--ti-pager-input-btn-padding-horizontal);
       height: var(--ti-pager-height);
       line-height: calc(var(--ti-pager-height) - 2px);
       position: relative;
@@ -488,6 +490,10 @@
         font-weight: normal;
         background-color: transparent;
         border-color: var(--ti-pager-disabled-border-color);
+      }
+
+      svg {
+        fill: var(--ti-pager-disabled-text-color);
       }
     }
 

@@ -77,18 +77,13 @@
     }
 
     .@{dialog-box-prefix-cls}__headerbtn {
+      position: absolute;
       border: none;
       background: none;
       padding: 0;
       line-height: 1;
-      top: calc(
-        var(--ti-dialog-box-btn-position-top) - (var(--ti-dialog-box-btn-height) - var(--ti-dialog-box-close-icon-size)) /
-          2
-      );
-      right: calc(
-        var(--ti-dialog-box-btn-position-right) -
-          (var(--ti-dialog-box-btn-width) - var(--ti-dialog-box-close-icon-size)) / 2
-      );
+      top: var(--ti-dialog-box-btn-position-top);
+      right: var(--ti-dialog-box-btn-position-right);
       cursor: pointer;
 
       &:hover {
@@ -110,6 +105,15 @@
 
         &:hover {
           fill: var(--ti-dialog-box-close-icon-color-hover);
+        }
+      }
+
+      .@{dialog-box-prefix-cls}__resize {
+        fill: var(--ti-dialog-box-resize-icon-color);
+        font-size: var(--ti-dialog-box-resize-icon-size);
+
+        &:hover {
+          fill: var(--ti-dialog-box-resize-icon-color-hover);
         }
       }
     }
@@ -139,7 +143,7 @@
   & &__footer {
     padding: var(--ti-dialog-box-footer-padding-top) var(--ti-dialog-box-footer-padding-horizontal)
       var(--ti-dialog-box-footer-margin-bottom);
-    text-align: center;
+    text-align: var(--ti-dialog-box-footer-align);
     box-sizing: border-box;
 
     .@{css-prefix}button {

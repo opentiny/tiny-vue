@@ -6,7 +6,7 @@ test('测试是否显示箭头', async ({ page }) => {
 
   const preview = page.locator('.pc-demo-container')
   const button = preview.getByRole('button', { name: '鼠标悬浮在这里' })
-  const tip = page.getByText('我是提示内容')
+  const tip = page.locator('.tiny-tooltip').filter({ hasText: '我是提示内容' })
   const arrowSwitch = preview.locator('.tiny-switch').nth(0)
   const enterableSwitch = preview.locator('.tiny-switch').nth(1)
 

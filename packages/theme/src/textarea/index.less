@@ -38,6 +38,7 @@
 
   &.is-disabled {
     background-color: var(--ti-textarea-disabled-bg-color);
+
     &:hover {
       border-color: var(--ti-textarea-border-color);
     }
@@ -50,6 +51,7 @@
 
     .@{input-prefix-cls}__count {
       color: var(--ti-textarea-exceed-text-color);
+
       &-text-length {
         color: var(--ti-textarea-exceed-text-color);
       }
@@ -84,7 +86,6 @@
     border-radius: var(--ti-textarea-border-radius);
     background: var(--ti-textarea-bg-color);
     padding: var(--ti-textarea-padding-vertical) var(--ti-textarea-padding-horizontal);
-    padding-right: var(--ti-textarea-padding-right);
     padding-bottom: var(--ti-textarea-padding-bottom);
     line-height: 1.5;
     font-size: var(--ti-textarea-font-size);
@@ -97,6 +98,7 @@
     &:hover {
       border-color: var(--ti-textarea-inner-hover-border-color);
     }
+
     &:focus {
       border-color: var(--ti-textarea-inner-active-border-color);
     }
@@ -121,16 +123,13 @@
 
   .@{textarea-prefix-cls}__inner {
     &::-webkit-scrollbar {
-      width: 12px;
+      width: 16px;
     }
 
     &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
+      border-radius: 8px;
       background-clip: content-box;
-      border-right: 4px solid transparent;
-      border-left: 4px solid transparent;
-      border-top: 2px solid transparent;
-      border-bottom: 2px solid transparent;
+      border: 4px solid transparent;
     }
   }
 
@@ -151,9 +150,9 @@
 
   &.is-display-only {
     .@{textarea-prefix-cls}-display-only.@{textarea-prefix-cls}__inner-con
-      .@{textarea-prefix-cls}-display-only__content,
+    .@{textarea-prefix-cls}-display-only__content,
     .@{textarea-prefix-cls}-autosize-display-only.@{textarea-prefix-cls}__inner-con
-      .@{textarea-prefix-cls}-display-only__content {
+    .@{textarea-prefix-cls}-display-only__content {
       position: relative;
       left: 0;
       max-width: 100%;
@@ -193,7 +192,7 @@
         word-wrap: break-word;
         white-space: pre-wrap;
 
-        &::before {
+        &:before {
           content: '';
           float: right;
           height: 100%;

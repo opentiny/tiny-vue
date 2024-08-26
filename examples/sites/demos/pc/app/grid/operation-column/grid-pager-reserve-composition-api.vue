@@ -1,6 +1,9 @@
 <template>
   <div>
+    <tiny-button @click="getAllSelection">获取所有选中项</tiny-button>
+    <br /><br />
     <tiny-grid
+      ref="gridRef"
       :fetch-data="fetchData"
       row-id="id"
       seq-serial
@@ -20,7 +23,14 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { Grid as TinyGrid, GridColumn as TinyGridColumn, Pager, Notify } from '@opentiny/vue'
+import {
+  Grid as TinyGrid,
+  GridColumn as TinyGridColumn,
+  Pager,
+  Notify,
+  Modal,
+  Button as TinyButton
+} from '@opentiny/vue'
 
 const tableSelectConfigData = ref({
   // 翻页时记住选择项，必须同时配置row-id
@@ -43,6 +53,13 @@ const pagerConfig = ref({
 const fetchData = ref({
   api: getData
 })
+
+const gridRef = ref()
+
+function getAllSelection() {
+  const selection = gridRef.value.getAllSelection()
+  Modal.message({ status: 'info', message: `一共选中了${selection.length}项数据` })
+}
 
 function getTableData() {
   return [
