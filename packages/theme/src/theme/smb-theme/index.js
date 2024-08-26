@@ -35,18 +35,22 @@ export const tinyBaseSmbTheme = {
   'ti-base-color-success-border': '#E6F2D5', // 成功-边框色
   'ti-base-color-success': '#5CB300', // 成功-图标色
   'ti-base-color-success-text': '#5CB300', // 成功-文本色
+
   'ti-base-color-error-bg': '#FCE3E1', // 错误-背景色/错误校验背景色
   'ti-base-color-error-border': '#FCE3E1', // 错误-边框色
   'ti-base-color-error': '#F23030', // 错误-图标色、校验边框色/、悬浮菜单背景色
   'ti-base-color-error-text': '#F23030', // 错误-文本色/交易金额色
+
   'ti-base-color-warn-bg': '#FFEBD1', // 告警-背景色
   'ti-base-color-warn-border': '#FFEBD1', // 告警-边框色
   'ti-base-color-warn': '#FF8800', // 告警-图标色、深色背景-运营活动文本色
   'ti-base-color-warn-text': '#FF8800', // 告警-文本色
+
   'ti-base-color-prompt-bg': '#DEECFF', // 提示-背景色
   'ti-base-color-prompt-border': '#DEECFF', // 提示-边框色
   'ti-base-color-prompt': '#1476FF', // 提示-图标色
   'ti-base-color-prompt-text': '#1476FF', // 提示-文本色
+
   'ti-base-color-error-icon-from': '#FF41A1',
   'ti-base-color-error-icon-to': '#FF8A5B',
   'ti-base-color-warn-icon-from': '#FF5541',
@@ -297,7 +301,7 @@ export const tinyBaseSmbTheme = {
   'ti-common-color-placeholder': 'var(--ti-base-color-common-2)',
 
   /* 间距 */
-  'ti-common-dropdown-gap': '4px',
+  'ti-common-dropdown-gap': '8px',
 
   /* 字重 */
   'ti-common-font-weight-light': '100',
