@@ -948,5 +948,7 @@ export const computedTreeMaxHeight =
     const searchInputBottom = 20
     const searchInputHeight = dialogBoxEl.querySelector('.tiny-popeditor__filter-input')?.clientHeight || 0
 
-    state.treeWrapperMaxHeight = `${dialogBoxEl.querySelector('.tiny-dialog-box__body').clientHeight - searchInputHeight - searchInputBottom}px`
+    state.treeWrapperMaxHeight = `${
+      dialogBoxEl.querySelector('.tiny-dialog-box__body').clientHeight - searchInputHeight - searchInputBottom
+    }px`
   }
