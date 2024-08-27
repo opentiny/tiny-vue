@@ -2,7 +2,7 @@
   <tiny-grid :data="tableData" resizable :edit-config="{ trigger: 'click', mode: 'cell', showStatus: true }">
     <tiny-grid-column title="操作" header-align="center">
       <tiny-grid-column type="index" width="40"></tiny-grid-column>
-      <tiny-grid-column type="selection" width="40"></tiny-grid-column>
+      <tiny-grid-column type="selection" width="48"></tiny-grid-column>
       <tiny-grid-column :renderer="rendererCellOperate" width="100"></tiny-grid-column>
     </tiny-grid-column>
     <tiny-grid-column :title="renderHeaderDescription" header-align="center">
@@ -108,8 +108,7 @@ export default {
     }
   },
   methods: {
-    // eslint-disable-next-line
-    renderHeaderDescription(h) {
+    renderHeaderDescription() {
       const IconAdministrator = this.IconAdministrator
 
       return (
@@ -120,7 +119,7 @@ export default {
         </span>
       )
     },
-    renderHeaderRelation(h) {
+    renderHeaderRelation() {
       const IconVersiontree = this.IconVersiontree
 
       return (
@@ -129,7 +128,6 @@ export default {
         </span>
       )
     },
-    // eslint-disable-next-line
     renderHeaderArea(h) {
       const IconMarkOn = this.IconMarkOn
 
@@ -140,8 +138,8 @@ export default {
         </span>
       )
     },
-    // eslint-disable-next-line
-    renderHeaderAddress(h) {
+
+    renderHeaderAddress() {
       const IconUser = this.IconUser
 
       return (
@@ -151,8 +149,8 @@ export default {
         </span>
       )
     },
-    // eslint-disable-next-line
-    rendererCellOperate(h) {
+
+    rendererCellOperate() {
       const IconAssociation = this.IconAssociation
       const IconHelpful = this.IconHelpful
 

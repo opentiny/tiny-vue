@@ -446,7 +446,19 @@
 
   &&--mini {
     & .@{pager-prefix-cls}__total {
-      font-size: 12px;
+      font-size: var(--ti-pager-mini-font-size);
+    }
+
+    .@{pager-prefix-cls}__goto-text {
+      font-size: var(--ti-pager-mini-font-size);
+      line-height: var(--ti-pager-mini-input-height);
+    }
+
+    .@{pager-prefix-cls}__goto {
+      input {
+        height: var(--ti-pager-mini-input-height);
+        line-height: var(--ti-pager-mini-input-height);
+      }
     }
 
     li {
@@ -454,7 +466,7 @@
       height: 24px;
       padding: 0 4px;
       line-height: 22px;
-      font-size: 12px;
+      font-size: var(--ti-pager-mini-font-size);
     }
 
     .@{pager-prefix-cls}__btn-prev svg,

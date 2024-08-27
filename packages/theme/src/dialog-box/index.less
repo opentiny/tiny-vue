@@ -75,15 +75,18 @@
     .@{dialog-box-prefix-cls}__title {
       flex: 1;
     }
-
+    .@{dialog-box-prefix-cls}__btn-tools {
+      display: flex;
+      justify-content: space-between;
+    }
     .@{dialog-box-prefix-cls}__headerbtn {
-      position: absolute;
+      position: relative;
       border: none;
       background: none;
       padding: 0;
       line-height: 1;
-      top: var(--ti-dialog-box-btn-position-top);
-      right: var(--ti-dialog-box-btn-position-right);
+      top: calc(0px - var(--ti-dialog-box-btn-tools-position-top));
+      right: calc(0px - var(--ti-dialog-box-btn-tools-position-right));
       cursor: pointer;
 
       &:hover {
@@ -125,6 +128,8 @@
     margin-bottom: var(--ti-dialog-box-body-margin-bottom);
     color: var(--ti-dialog-box-body-text-color);
     font-size: var(--ti-dialog-box-body-font-size);
+    overflow: auto;
+    max-height: 65vh;
 
     .@{css-prefix}upload {
       overflow: hidden;

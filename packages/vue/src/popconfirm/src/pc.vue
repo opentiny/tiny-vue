@@ -7,7 +7,6 @@
         :placement="placement"
         trigger="manual"
         :width="width"
-        :title="title"
         :popper-class="'tiny-popconfirm-popover ' + (customClass || '')"
         :popper-options="popperOptions"
         :append-to-body="popperAppendToBody"

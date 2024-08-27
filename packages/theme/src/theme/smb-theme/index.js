@@ -301,7 +301,7 @@ export const tinyBaseSmbTheme = {
   'ti-common-color-placeholder': 'var(--ti-base-color-common-2)',
 
   /* 间距 */
-  'ti-common-dropdown-gap': '8px',
+  'ti-common-dropdown-gap': '4px',
 
   /* 字重 */
   'ti-common-font-weight-light': '100',

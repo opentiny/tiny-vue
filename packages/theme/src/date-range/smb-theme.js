@@ -10,6 +10,8 @@
  *
  */
 
-export default {
-  // radio-group
+export const tinyDateRangeSmbTheme = {
+  'ti-date-range-picker-header-height': 'calc(var(--ti-common-size-height-normal) + 2px)',
+  'ti-date-range-picker-header-line-height': 'var(--ti-common-line-height-1)',
+  'ti-date-range-picker-header-margin-bottom': 'var(--ti-common-space-3x)'
 }

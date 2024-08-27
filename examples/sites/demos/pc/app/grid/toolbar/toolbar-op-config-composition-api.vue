@@ -48,7 +48,7 @@ const op = ref({
       pageSize: 5,
       pageSizes: [5, 10],
       total: 0,
-      layout: 'total, prev, pager, next, jumper, sizes'
+      layout: 'total, sizes, prev, pager, next, jumper'
     }
   },
   columns: [

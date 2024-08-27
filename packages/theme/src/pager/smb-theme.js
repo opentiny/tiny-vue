@@ -42,5 +42,6 @@ export const tinyPagerSmbTheme = {
   'ti-pager-sizes-num-margin-right': 'var(--ti-common-dropdown-gap)',
   'ti-pager-normal-text-padding-left': 'var(--ti-common-space-4x)',
   'ti-pager-input-width': '48px',
-  'ti-pager-input-padding-horizontal': 'var(--it-common-space-2x)'
+  'ti-pager-input-padding-horizontal': 'var(--it-common-space-2x)',
+  'ti-pager-mini-font-size': 'var(--ti-common-font-size-0)'
 }
