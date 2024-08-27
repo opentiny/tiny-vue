@@ -144,7 +144,7 @@ export const assemColumn = ($table) => {
   const assem = (columnVms, columns) => {
     if (Array.isArray(columnVms)) {
       columnVms.forEach((columnVm) => {
-        const column = columnVm.columnConfig
+        const column = columnVm.state.columnConfig
         const children = []
 
         if (column) {

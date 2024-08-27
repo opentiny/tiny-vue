@@ -1,35 +1,23 @@
-/**
- * MIT License
+<!--
+ * Copyright (c) 2022 - present TinyVue Authors.
+ * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
  *
- * Copyright (c) 2019 Xu Liangzhan
+ * Use of this source code is governed by an MIT-style license.
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+ * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+ * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- */
+ -->
+<script lang="ts">
+import { $props, setup, defineComponent, h } from '@opentiny/vue-common'
 import { findTree } from '@opentiny/vue-renderless/grid/static'
-import { setColumnFormat } from '@opentiny/vue-renderless/grid/utils'
-import { h, hooks, $props, defineComponent, useRelation, useInstanceSlots } from '@opentiny/vue-common'
-import Cell from '../../cell'
+import { renderless, api } from '@opentiny/vue-renderless/grid/column/vue'
 import { warn } from '../../tools'
+
 import GlobalConfig from '../../config'
 
-const { columnLevelKey, defaultColumnName } = GlobalConfig
+const { defaultColumnName } = GlobalConfig
 
 export default defineComponent({
   name: defaultColumnName,
@@ -134,53 +122,16 @@ export default defineComponent({
     // 值比较方法
     equals: Function
   },
-  provide() {
-    return { $column: this }
-  },
-  inject: { $table: { default: null } },
-  setup(props, { slots }) {
-    const { reactive, inject, getCurrentInstance, onUpdated, watch, nextTick } = hooks
-    const currentInstance = getCurrentInstance()
-    const instance = currentInstance.proxy
-    const $grid = inject('$grid')
-    const $table = inject('$table')
-    let slotsCache = {}
-
-    !$table.isTagUsageSence && ($table.isTagUsageSence = true)
-
-    useInstanceSlots()
-
-    useRelation({ relationKey: `${columnLevelKey}-${$table.id}` })
-
-    const state = reactive({
-      // 创建表格列实例化对象
-      columnConfig: Cell.createColumn($table, props),
-      slots,
-      // 如果是静态数据源，就拿第一行数据
-      firstRow: !$grid.fetchOption && $grid.data && $grid.data.length ? $grid.data[0] : {}
-    })
-
-    watch(
-      () => props.formatConfig,
-      () => setColumnFormat(state.columnConfig, props)
-    )
-
-    onUpdated(() => {
-      // vue2的slots会对$scopedSlots做一层代理，因此获取不到更新
-      const noProxySlots = instance.$scopedSlots || instance.slots
-      const slotsChange = Object.keys(noProxySlots || {}).some((key) => !(slotsCache?.[key] === noProxySlots[key]))
-      if (slotsChange) {
-        slotsCache = { ...noProxySlots }
-        state.columnConfig.slots = slotsCache
-      }
-    })
-
-    nextTick(() => (state.columnConfig.slots = instance.instanceSlots))
-
-    return state
+  setup(props, context) {
+    return setup({ props, context, renderless, api, mono: true }) as unknown as any
   },
   render() {
-    const { $table, firstRow, columnConfig, instanceSlots } = this
+    const { state } = this
+    const { firstRow, $table, columnConfig } = state
+
+    // TODO: 临时方案，待优化
+    const instanceSlots = this.$slots
+
     let slotVnode
     try {
       slotVnode = instanceSlots.default && instanceSlots.default({ row: firstRow, column: columnConfig, skip: true })
@@ -206,6 +157,6 @@ export default defineComponent({
     }
 
     return h('div', columnProps, hasSubColumn && slotVnode)
-  },
-  methods: Cell
+  }
 })
+</script>

@@ -2009,7 +2009,7 @@ const Methods = {
     const traverse = (columns) => {
       if (Array.isArray(columns) && columns.length > 0) {
         columns.forEach((column) => {
-          columnIds.push(column.columnConfig.id)
+          columnIds.push(column.state.columnConfig.id)
 
           traverse(column.childColumns)
         })
