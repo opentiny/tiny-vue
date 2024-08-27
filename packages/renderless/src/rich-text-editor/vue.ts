@@ -9,7 +9,7 @@ import {
   eventClick,
   Active
 } from './index'
-import { shallowRef } from 'vue'
+import { ref, shallowRef } from 'vue'
 
 export const api = [
   'state',
@@ -104,6 +104,7 @@ export const renderless = (
 
   const state = reactive({
     editor: null,
+    toolbarMenu: null,
     toolbar: computed(() => (props.customToolBar.length ? props.customToolBar : defaultToolBar)),
     // table 变量
     isShowTable: false,
@@ -171,6 +172,27 @@ export const renderless = (
     const editorInstance = new TinyTiptap(Editor, options, config)
     // editor 只需要浅层
     state.editor = shallowRef(editorInstance.editor)
+
+    // toolbar 排序与显隐控制
+    const originalToolbarMenu = editorInstance.editor.storage.toolbar ?? []
+    const finalToolbarMenu = originalToolbarMenu
+      .map((item, index) => {
+        const { key } = item
+
+        const customToolbar = props.customToolBar.length ? props.customToolBar : defaultToolBar
+        // 此处用 priority 为 -1 表示 toolbar 中不存在
+        const position = customToolbar?.indexOf(key) ?? -1
+        const priority = position === -1 ? -1 : position
+
+        return {
+          ...item,
+          priority
+        }
+      })
+      .filter((item) => item.priority !== -1)
+      .sort((a, b) => a.priority - b.priority)
+
+    state.toolbarMenu = ref(finalToolbarMenu)
   })
 
   onBeforeUnmount(() => {

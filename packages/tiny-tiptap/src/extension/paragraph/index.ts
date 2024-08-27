@@ -3,19 +3,44 @@ import { mergeAttributes } from '@tiptap/core'
 import type { Editor, Range } from '@tiptap/core'
 import type { ParagraphOptions } from '@tiptap/extension-paragraph'
 import TiptapParagraph from '@tiptap/extension-paragraph'
-import { iconRichTextParagraph } from '@opentiny/vue-icon'
+import { iconRichTextParagraph, iconRichTextFontSize, iconRichTextLineHeight } from '@opentiny/vue-icon'
 
 type CustomParagraphOptions = {
   levels: number[]
   sizes: number[]
 }
 
+const levels = [1, 1.5, 2, 2.5, 3]
+const sizes = [12, 14, 16, 18, 20, 24, 30]
+
 const Paragraph = TiptapParagraph.extend<ExtensionOptions & ParagraphOptions & CustomParagraphOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
-      levels: [1, 1.5, 2, 2.5, 3],
-      sizes: [12, 14, 16, 18, 20, 24, 30],
+      levels,
+      sizes,
+      getToolbarMenus() {
+        return [
+          {
+            key: 'font-size',
+            icon: iconRichTextFontSize(),
+            submenu: ({ editor }: { editor: Editor }) =>
+              sizes.map((size) => ({
+                text: `${size}px`,
+                action: () => editor.chain().focus().setSize({ size }).run()
+              }))
+          },
+          {
+            key: 'line-height',
+            icon: iconRichTextLineHeight(),
+            submenu: ({ editor }: { editor: Editor }) =>
+              levels.map((level) => ({
+                text: `${level.toFixed(1)}`,
+                action: () => editor.chain().focus().setP({ level }).run()
+              }))
+          }
+        ]
+      },
       getSlashMenus() {
         return [
           {

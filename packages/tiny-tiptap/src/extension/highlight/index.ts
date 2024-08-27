@@ -1,8 +1,45 @@
 import type { ExtensionOptions } from '@/types'
 import type { HighlightOptions } from '@tiptap/extension-highlight'
+import type { Editor } from '@tiptap/core'
 import TiptapHighlight from '@tiptap/extension-highlight'
+import { IconRichTextHighLight, IconEditorBackground } from '@opentiny/vue-icon'
 
 const Highlight = TiptapHighlight.extend<ExtensionOptions & HighlightOptions>({
+  addOptions() {
+    return {
+      ...this.parent?.(),
+      getToolbarMenus() {
+        return [
+          {
+            key: 'highight',
+            icon: IconRichTextHighLight(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => {
+                editor.chain().focus().toggleHighlight().run()
+              }
+            },
+            isActive: ({ editor }: { editor: Editor }) => {
+              return () => {
+                return editor.isActive(Highlight.name)
+              }
+            }
+          },
+          {
+            key: 'backgroundColor',
+            icon: IconEditorBackground(),
+            config: {
+              withColor: true
+            },
+            action: ({ editor }: { editor: Editor }) => {
+              return (color) => {
+                editor.chain().focus().setBackColor({ bgColor: color }).run()
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
   addAttributes() {
     return {
       bgColor: {

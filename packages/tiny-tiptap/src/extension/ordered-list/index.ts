@@ -1,5 +1,5 @@
 import type { ExtensionOptions } from '@/types'
-import { Editor, Range } from '@tiptap/core'
+import type { Editor, Range } from '@tiptap/core'
 import type { OrderedListOptions } from '@tiptap/extension-ordered-list'
 import TiptapOrderedList from '@tiptap/extension-ordered-list'
 import ListItem from '@tiptap/extension-list-item'
@@ -9,6 +9,24 @@ const OrderedList = TiptapOrderedList.extend<ExtensionOptions & OrderedListOptio
   addOptions() {
     return {
       ...this.parent?.(),
+      getToolbarMenus() {
+        return [
+          {
+            key: 'orderedlist',
+            icon: iconRichTextListOrdered(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => {
+                editor.chain().focus().toggleOrderedList().run()
+              }
+            },
+            isActive: ({ editor }: { editor: Editor }) => {
+              return () => {
+                return editor.isActive(OrderedList.name)
+              }
+            }
+          }
+        ]
+      },
       getSlashMenus() {
         return [
           {

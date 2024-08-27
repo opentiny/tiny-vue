@@ -1,0 +1,71 @@
+.tiny-toolbar-menu {
+  &__view {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ffffff;
+    padding: 5px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+
+  &__item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    position: relative;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    background-color: #ffffff;
+    padding: 2px 3px;
+
+    &:hover {
+      background-color: #e5e6e7;
+
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 0;
+      }
+    }
+
+    &.is-active {
+      background-color: #d5e3fc;
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+    }
+
+    input {
+      cursor: pointer;
+    }
+
+    input[type='color'] {
+      border-radius: 50%;
+      height: 18px;
+      width: 18px;
+      border: 0;
+      top: 4px;
+    }
+  }
+
+  &__options {
+    position: absolute;
+    z-index: 999;
+    display: none;
+    background-color: #ffffff;
+    padding: 0.15rem;
+  }
+
+  &__option {
+    padding: 0.1rem;
+
+    &:hover {
+      color: lightblue;
+    }
+  }
+}

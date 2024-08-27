@@ -1,5 +1,6 @@
 <template>
   <div class="tiny-rich-text-editor">
+    <toolbar-menu v-if="state.toolbarMenu" :items="state.toolbarMenu" />
     <div v-if="state.editor" class="tiny-rich-text-editor__toolbar">
       <!-- starter-kit功能区 -->
       <template v-for="item in state.toolbar">
@@ -307,6 +308,7 @@ import { Editor, EditorContent, BubbleMenu, VueNodeViewRenderer, VueRenderer } f
 import TinyTiptap from '@opentiny/tiny-tiptap'
 
 import { extensionViewMap } from './extensions'
+import toolbarMenuView from './components/toolbar-menu'
 import slashMenuView from './components/slash-menu'
 import floatMenuView from './components/float-menu'
 import bubbleMenuView from './components/bubble-menu'
@@ -373,6 +375,7 @@ export default defineComponent({
   components: {
     EditorContent,
     BubbleMenu,
+    ToolbarMenu: toolbarMenuView,
     TinyIconRichTextAddColumnAfter: iconRichTextAddColumnAfter(),
     TinyIconRichTextAddColumnBefore: iconRichTextAddColumnBefore(),
     TinyIconRichTextAddRowAfter: iconRichTextAddRowAfter(),
