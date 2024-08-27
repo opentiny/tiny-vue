@@ -32,9 +32,7 @@
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.12.3",
-    "@opentiny/vue": "~3.17.0",
-    "@opentiny/vue-alert": "~3.17.0"
+    "@nuxt/kit": "^3.12.3"
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.2.0",

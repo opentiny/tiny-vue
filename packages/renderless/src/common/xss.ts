@@ -1,18 +1,7 @@
 /**
- * Copyright (c) 2022 - present TinyVue Authors.
- * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
- *
- * Use of this source code is governed by an MIT-style license.
- *
- * THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
- * BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
- * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
- *
+ * 此文件暂时处理成这样，后续有思路再进行整改
  */
-
-import * as xss$1 from 'xss'
-
-let getWindow = function () {
+const getWindow = function () {
   return typeof window === 'undefined' ? global : window
 }
 
@@ -180,25 +169,6 @@ let index = {
   setFilterUrl
 }
 
-let xss = Object.freeze({
-  __proto__: null,
-  getXssOption,
-  setXssOption,
-  get filterHtml() {
-    return filterHtml
-  },
-  setFilterHtml,
-  get filterAttrs() {
-    return filterAttrs
-  },
-  setFilterAttrs,
-  get filterUrl() {
-    return filterUrl
-  },
-  setFilterUrl,
-  'default': index
-})
-let log = { logger: getWindow().console }
-let def = { xss, log }
+const def = { xss, log }
 
 export { def as default, log, xss }

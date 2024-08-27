@@ -1,0 +1,37 @@
+{
+  "name": "nuxt-app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "nuxt": "^3.13.0",
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "@opentiny-internal/unplugin-virtual-template": "workspace:*",
+    "@opentiny/vue": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-theme-mobile": "workspace:~",
+    "@opentiny/vue-vite-import": "workspace:~",
+    "@tiptap/vue-3": "^2.1.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "js-sha256": "^0.9.0",
+    "onigasm": "^2.2.5",
+    "postcss": "^8.4.16",
+    "typescript": "^5.0.0",
+    "vite-plugin-checker": "^0.5.2",
+    "vite-plugin-dynamic-import": "^1.2.4",
+    "vite-svg-loader": "^3.6.0",
+    "vue": "^3.3.9"
+  }
+}
