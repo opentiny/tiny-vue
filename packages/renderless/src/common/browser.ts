@@ -38,6 +38,9 @@ const isEdge = (browser) => {
 export const isBrowser =
   typeof window !== 'undefined' && typeof document !== 'undefined' && window.document === document
 
+export const globalEnvironment =
+  typeof window !== 'undefined' && typeof document !== 'undefined' && window.document === document ? window : global
+
 export default (() => {
   const browser = {
     name: undefined,

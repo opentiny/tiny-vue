@@ -19,9 +19,10 @@ import type {
   IMilestoneIconStyle,
   IMilestoneFlagOperateParams
 } from '@/types'
+import { isBrowser } from '../common/browser.js'
 
 const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
-  if (hex.includes('var')) {
+  if (hex.includes('var') && isBrowser) {
     hex = hex.replace(/var\(|\)/g, '')
     hex = getComputedStyle(document.documentElement).getPropertyValue(hex)
   }
