@@ -165,10 +165,11 @@
               :class="['tiny-cascader__suggestion-item', item.checked && 'is-checked']"
               :tabindex="-1"
               @click="handleSuggestionClick(index)"
+              v-highlight-query="state.multiple ? state.presentText : state.inputValue"
             >
               <!-- <span v-html="item.text"></span> -->
               <slot name="filter" :item="item.text">
-                {{ item.text }}
+                <span>{{ item.text }}</span>
               </slot>
               <icon-yes v-if="item.checked" class="icon-check"></icon-yes>
             </li>
@@ -189,6 +190,7 @@ import { renderless, api } from '@opentiny/vue-renderless/cascader/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { HighlightQuery } from '@opentiny/vue-directive'
 
 // 没有进行vue3，vue2适配
 import Input from '@opentiny/vue-input'
@@ -244,7 +246,7 @@ export default defineComponent({
     'remove-tag',
     'created'
   ],
-  directives: directive({ Clickoutside }),
+  directives: { ...directive({ Clickoutside }), HighlightQuery },
   provide() {
     return {
       cascaderRoot: this

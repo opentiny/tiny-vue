@@ -23,12 +23,14 @@ export default {
   'cascader-menu': 'cascader-menu',
   'cascader-panel': 'cascader-panel',
   'cascader-node': 'cascader-node',
+  'cascader-border': 'cascader-dropdown', // ti-cascader-border 变量是加在下拉面板 .tiny-cascader-dropdown 上的
   'checkbox-button': 'checkbox-button',
   'checkbox-group': 'checkbox-group',
   'context-menu': 'context-menu',
   'collapse-item': 'collapse-item',
   'color-select-panel': 'color-select-panel',
   'color-picker': 'color-picker',
+  'calendar-view': 'calendar-view',
   'detail-page': 'detail-page',
   'dialog-box': 'dialog-box__wrapper',
   'dropdown-item': 'dropdown-item',
@@ -37,7 +39,7 @@ export default {
   'drop-times': 'drop-times',
   'date-panel': 'date-panel',
   'date-picker': 'date-picker',
-  'data-range': 'data-range',
+  'date-range': 'date-range-picker',
   'date-table': 'date-table',
   'date-editor': 'date-editor',
   'fall-menu': 'fall-menu',
@@ -86,7 +88,11 @@ export default {
   'year-table': 'year-table',
   'skeleton-item': 'skeleton-item',
   'radio-button': 'radio-button',
-  'color-select-panel': 'color-select-panel',
-  'color-picker': 'color-picker',
-  'split': 'split-wrapper'
+  'radio-group': 'radio-group',
+  'split': 'split-wrapper',
+  'float-bar': 'float-bar',
+  'grid-radio': 'grid-radio',
+  'grid-filter': 'grid__filter-wrapper',
+  'popeditor': 'popeditor__dialog-box',
+  'image-viewer': 'image-viewer'
 }

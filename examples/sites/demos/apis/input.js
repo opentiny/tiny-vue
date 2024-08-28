@@ -400,8 +400,8 @@ export default {
           name: 'show-tooltip',
           type: 'boolean',
           defaultValue: 'true',
-          metaData: {
-            new: '3.18.0'
+          meta: {
+            stable: '3.18.0'
           },
           desc: {
             'zh-CN': '只读状态下，文本超出是否悬浮提示',
@@ -557,6 +557,18 @@ export default {
           mode: ['pc', 'mobile-first'],
           pcDemo: 'display-only-popup-more',
           mfDemo: 'display-only-popup-more'
+        },
+        {
+          name: 'input-box-type',
+          type: 'string',
+          defaultValue: 'normal',
+          desc: {
+            'zh-CN': '设置边框模式',
+            'en-US': 'Setting input box border type'
+          },
+          mode: ['pc'],
+          pcDemo: 'input-box-type',
+          mfDemo: ''
         }
       ],
       events: [

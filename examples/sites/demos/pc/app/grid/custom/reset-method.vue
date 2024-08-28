@@ -65,7 +65,7 @@ export default {
           pageSize: 10,
           total: 0,
           pageSizes: [3, 5, 10, 20],
-          layout: 'total, prev, pager, next, jumper, sizes'
+          layout: 'total, sizes, prev, pager, next, jumper'
         }
       },
       fetchData: {

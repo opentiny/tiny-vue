@@ -84,6 +84,10 @@ export const treeMenuProps = {
   clearable: {
     type: Boolean,
     default: false
+  },
+  highlightQuery: {
+    type: Boolean,
+    default: false
   }
 }
 

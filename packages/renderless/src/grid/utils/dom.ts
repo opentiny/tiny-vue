@@ -123,8 +123,9 @@ function computeScrollLeft($table, td) {
 function setBodyLeft(body, td, $table, column, move) {
   const { isLeftArrow, isRightArrow, from } = move || {}
 
-  body.scrollLeft = computeScrollLeft($table, td)
-
+  const bodyScollLeft = computeScrollLeft($table, td)
+  body.scrollLeft = bodyScollLeft
+  $table.lastScrollLeft = bodyScollLeft
   if (from) {
     const direction = isLeftArrow ? 'left' : isRightArrow ? 'right' : null
     const fixedDom = $table.elemStore[`${direction}-body-list`]

@@ -60,7 +60,9 @@
   }
 
   &.@{css-prefix}popper[x-placement^='top'] {
-    margin-bottom: var(--ti-dropdown-menu-arrow-margin-bottom);
+    &:has(.popper__arrow) {
+      margin-bottom: var(--ti-dropdown-menu-arrow-margin-bottom);
+    }
   }
 
   &.@{css-prefix}popper[x-placement^='top'] .popper__arrow {
@@ -79,7 +81,9 @@
   }
 
   &.@{css-prefix}popper[x-placement^='bottom'] {
-    margin-top: var(--ti-dropdown-menu-arrow-margin-top);
+    &:has(.popper__arrow) {
+      margin-top: var(--ti-dropdown-menu-arrow-margin-top);
+    }
   }
 
   &.@{css-prefix}popper[x-placement^='bottom'] .popper__arrow {

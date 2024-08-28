@@ -55,6 +55,12 @@ export default {
               cardType: 'logo',
               cardSrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/user-head.png`,
               content: '1-3-content'
+            },
+            {
+              cardTitle: '1-4',
+              cardType: 'logo',
+              cardSrc: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/user-head.png`,
+              content: '1-4-content'
             }
           ]
         },
@@ -89,7 +95,8 @@ export default {
 <style scoped>
 .card-dsp {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  padding: 0 4px 0 12px;
 }
 .mb {
   margin-bottom: 20px;
@@ -97,6 +104,7 @@ export default {
 .card-demo {
   width: 30%;
   height: 300px;
+  margin-right: 8px;
 }
 .card-demo:hover {
   border-color: #1476ff;

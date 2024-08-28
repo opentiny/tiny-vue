@@ -3,8 +3,7 @@
     <template #toolbar>
       <tiny-grid-toolbar :buttons="toolbarButtons"></tiny-grid-toolbar>
     </template>
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
-    <tiny-grid-column type="radio" width="60"></tiny-grid-column>
+    <tiny-grid-column type="radio" width="40"></tiny-grid-column>
     <tiny-grid-column field="name" title="名称"></tiny-grid-column>
     <tiny-grid-column field="area" title="所属区域"></tiny-grid-column>
     <tiny-grid-column field="address" title="地址"></tiny-grid-column>
@@ -95,3 +94,18 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+:deep(.tiny-grid) {
+  &-header__column,
+  &-body__column {
+    &.col__radio {
+      padding: 0 8px 0 16px;
+      & + th,
+      + td {
+        padding-left: 0;
+      }
+    }
+  }
+}
+</style>

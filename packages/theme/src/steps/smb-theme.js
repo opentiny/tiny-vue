@@ -15,6 +15,7 @@ export const tinyStepsSmbTheme = {
   'ti-steps-active-font-weight': 'var(--ti-common-font-weight-6)',
   'ti-steps-line-active-bg-color': 'var(--ti-common-color-dash-line-normal)',
   'ti-steps-line-bg-color': 'var(--ti-common-color-bg-disabled)',
+  'ti-steps-doing-line-border-color': 'var(--ti-common-color-line-disabled)',
   'ti-steps-advanced-link-font-size': 'var(--ti-common-font-size-0)',
   'ti-steps-advanced-count-font-size': 'var(--ti-common-font-size-0)',
   'ti-steps-error-icon-size': 'var(--ti-common-font-size-2)',
@@ -35,7 +36,8 @@ export const tinyStepsSmbTheme = {
   'ti-steps-timeline-item-secondary-text-font-size': 'var(--ti-common-font-size-0)',
   'ti-steps-timeline-vertical-line-margin-left': 'var(--ti-common-space-4x)',
   'ti-steps-timeline-item-padding-bottom': 'var(--ti-common-space-6x)',
-  'ti-steps-timeline-vertical-line-bg-color': 'rgba(0, 0, 0, 8%)',
   'ti-steps-custom-icon-width-height': 'var(--ti-common-space-5x)',
-  'ti-steps-advanced-count-bg-color': '#c7000b'
+  'ti-steps-advanced-count-bg-color': '#c7000b',
+  'ti-steps-vertical-title-margin-top': 'var(--ti-common-space-2x)',
+  'ti-steps-timeline-shape-dot-content-margin-left': 'var(--ti-common-space-4x)'
 }

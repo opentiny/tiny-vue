@@ -14,7 +14,7 @@
       </template>
     </tiny-dropdown>
     <p>场景2：自定义图且只显示图标</p>
-    <tiny-dropdown title="" :suffix-icon="tinyIconEllipsis">
+    <tiny-dropdown title="" :suffix-icon="tinyIconEllipsis" class="only-icon">
       <template #dropdown>
         <tiny-dropdown-menu>
           <tiny-dropdown-item label="老友粉"></tiny-dropdown-item>
@@ -45,5 +45,16 @@ p {
   line-height: 1.5;
   font-size: 14px;
   margin-top: 30px;
+}
+
+.tiny-dropdown.only-icon {
+  :deep(.tiny-dropdown__trigger) {
+    .tiny-svg {
+      fill: #191919;
+      &:hover {
+        fill: #191919;
+      }
+    }
+  }
 }
 </style>

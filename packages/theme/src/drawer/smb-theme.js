@@ -9,5 +9,13 @@ export const tinyDrawerSmbTheme = {
   'ti-drawer-divider-footer-border-color': 'var(--ti-common-color-transparent)',
   'ti-drawer-close-icon-size': 'var(--ti-common-font-size-5)',
   'ti-drawer-help-icon-color': 'var(--ti-common-color-icon)',
-  'ti-drawer-close-icon-color': 'var(--ti-common-color-icon-normal)'
+  'ti-drawer-close-icon-color': 'var(--ti-common-color-icon-normal)',
+  'ti-drawer-head-title-text-color': 'var(--ti-common-color-text-gray)',
+  'ti-drawer-header-padding-bottom': 'var(--ti-common-space-6x)',
+  'ti-drawer-padding-top': '0px',
+  'ti-drawer-padding-bottom': '0px',
+  'ti-drawer-btn-position-top': 'var(--ti-common-space-5x)',
+  'ti-drawer-btn-position-right': 'var(--ti-common-space-5x)',
+  'ti-drawer-btn-width': 'var(--ti-common-size-width-mini)',
+  'ti-drawer-btn-height': 'var(--ti-common-size-width-mini)'
 }

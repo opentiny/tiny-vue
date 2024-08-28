@@ -63,6 +63,19 @@ export default {
       codeFiles: ['file-size-array.vue']
     },
     {
+      demoId: 'prompt-tip',
+      name: {
+        'zh-CN': 'tip提示',
+        'en-US': 'tip Hints'
+      },
+      desc: {
+        'zh-CN': '<p>通过 <code>propmtTip</code> 为 `true` 设置提示为tip类型，悬浮图标时显示tip提示。<p>',
+        'en-US':
+          '<p>Set the prompt to the tip type by setting <code>propmtTip</code> to `true`. The tip prompt is displayed when the icon is suspended.</p>'
+      },
+      codeFiles: ['prompt-tip.vue']
+    },
+    {
       demoId: 'show-title',
       name: {
         'zh-CN': '隐藏标题',
