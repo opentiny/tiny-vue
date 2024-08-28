@@ -26,7 +26,7 @@
   & &__nomarl {
     .@{wizard-prefix-cls}__steps {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .@{wizard-prefix-cls}__chart span {
@@ -34,9 +34,10 @@
     }
 
     .@{wizard-prefix-cls}__name {
-      margin-top: 6px;
+      margin-top: var(--ti-wizard-node-title-margin-top);
       overflow: hidden;
       text-align: center;
+      width: calc((var(--ti-wizard-node-size) + var(--ti-wizard-lines-width) * 2));
 
       .name {
         font-size: var(--ti-wizard-font-size);
@@ -45,8 +46,8 @@
     }
 
     .@{wizard-prefix-cls}__button {
-      margin-top: 10px;
-      text-align: right;
+      margin-top: var(--ti-wizard-button-group-margin-top);
+      text-align: var(--ti-wizard-button-group-text-align);
     }
   }
 
@@ -59,7 +60,8 @@
         .@{wizard-prefix-cls}__chart-icon {
           .wizard-icon-color(
             var(--ti-wizard-icon-color),
-            var(--ti-wizard-icon-bg-color)
+            var(--ti-wizard-icon-bg-color),
+            var(--ti-wizard-icon-border-color)
           );
 
           .@{wizard-prefix-cls}__chart-line {
@@ -92,7 +94,7 @@
       transform: translateY(-50%);
       position: relative;
       top: -5px;
-      
+
       .children-name {
         margin-top: 8px;
       }
@@ -164,20 +166,33 @@
   }
 
   & &__steps-item {
+    &:first-child {
+      .@{wizard-prefix-cls}__chart-line:first-child {
+        .wizard-line-color(var(--ti-wizard-first-lines-bg-color));
+      }
+    }
+
+    &:last-child {
+      .@{wizard-prefix-cls}__chart-line:last-child {
+        .wizard-line-color(var(--ti-wizard-last-lines-bg-color));
+      }
+    }
+
     &.is-ready {
       .name {
-        color: var(--ti-wizard-icon-bg-color);
+        color: var(--ti-wizard-node-text-color);
       }
 
       .@{wizard-prefix-cls}__chart-icon {
         .wizard-icon-color(
           var(--ti-wizard-icon-color),
-          var(--ti-wizard-icon-bg-color)
+          var(--ti-wizard-icon-bg-color),
+          var(--ti-wizard-icon-border-color)
         );
       }
 
       .@{wizard-prefix-cls}__chart-line {
-        .wizard-line-color(var(--ti-wizard-icon-bg-color));
+        .wizard-line-color(var(--ti-wizard-lines-bg-color));
       }
     }
 
@@ -192,9 +207,11 @@
     align-items: center;
 
     & > .@{svg-wrapper-prefix-cls} {
+      height: var(--ti-wizard-node-size);
+
       & > .@{svg-prefix-cls} {
-        font-size: var(--ti-common-font-size-4);
-        fill: var(--ti-wizard-icon-bg-color);
+        font-size: var(--ti-wizard-node-size);
+        fill: var(--ti-wizard-node-text-color);
       }
     }
   }
@@ -206,13 +223,22 @@
       .@{wizard-prefix-cls}__chart-icon {
         .wizard-icon-color(
           var(--ti-wizard-icon-color),
-          var(--ti-wizard-icon-bg-color)
+          var(--ti-wizard-icon-bg-color),
+          var(--ti-wizard-icon-border-color)
         );
       }
     }
 
+    &.is-doing .@{wizard-prefix-cls}__name .name {
+      font-weight: var(--ti-wizard-node-doing-font-weight);
+    }
+
     &.is-doing .@{wizard-prefix-cls}__chart-line {
-      .wizard-line-color(var(--ti-wizard-icon-bg-color));
+      .wizard-line-color(var(--ti-wizard-lines-bg-color));
+
+      &:last-child {
+        background-color: var(--ti-wizard-right-lines-doing-bg-color);
+      }
     }
   }
 
@@ -265,17 +291,17 @@
   }
 
   & &__chart-icon {
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
+    width: var(--ti-wizard-node-size);
+    height: var(--ti-wizard-node-size);
+    line-height: var(--ti-wizard-node-size);
     border-radius: 50%;
     font-size: var(--ti-common-font-size-base);
     text-align: center;
     background: var(--ti-wizard-chart-icon-bg-color);
-    color: var(--ti-wizard-icon-color);
-    box-sizing: content-box;
+    color: var(--ti-wizard-normal-icon-color);
     // 垂直简易流程图加
     display: inline-block;
+    border: var(--ti-wizard-lines-normal-border-weight) solid var(--ti-wizard-lines-normal-border-color);
 
     &.time-line-icon {
       width: 10px;
@@ -292,9 +318,17 @@
   }
 
   & &__chart-line {
-    height: 4px;
-    background: #c2c4c7;
-    width: 50px;
+    height: var(--ti-wizard-lines-height);
+    background: var(--ti-wizard-lines-normal-bg-color);
+    width: var(--ti-wizard-lines-width);
+
+    &:first-child {
+      margin-right: var(--ti-wizard-lines-margin-horizontal);
+    }
+
+    &:last-child {
+      margin-left: var(--ti-wizard-lines-margin-horizontal);
+    }
   }
 
   & &__chart-line &__chart-icon-time {
