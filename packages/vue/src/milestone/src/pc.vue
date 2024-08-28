@@ -43,9 +43,7 @@
         <div v-if="index < data.length - 1">
           <div
             v-for="(flag, idx) in getMileContent({ data, index })"
-            :style="{
-              left: `calc(${(100 / (data[flagBefore ? index : index + 1][flagField].length + 1)) * (idx + 1)}% - 29px)`
-            }"
+            :style="getFlagStyle({ index, idx })"
             :key="idx"
             :class="['tiny-milestone__flag', `flag-status-${flag[flagStatusField]}`]"
           >
@@ -63,8 +61,8 @@
               @click="handleFlagClick({ idx, flag })"
             >
               <slot name="flag" :slot-scope="flag">
-                <p v-if="flag[flagNameField]">{{ flag[flagNameField] }}</p>
-                <p v-if="flag[flagContentField]" class="content">
+                <p v-if="flag[flagNameField]" class="tiny-milestone__flag-name">{{ flag[flagNameField] }}</p>
+                <p v-if="flag[flagContentField]" class="tiny-milestone__flag-desc content">
                   {{ flag[flagContentField] }}
                 </p>
               </slot>
