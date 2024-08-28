@@ -25,6 +25,20 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
+      getToolbarMenus() {
+        return [
+          {
+            key: 'table',
+            icon: iconRichTextTable(),
+            action: ({ editor }: { editor: Editor }) => {
+              return ({ row, col }) => {
+                editor.chain().focus().insertTable({ rows: row, cols: col }).run()
+              }
+            },
+            config: { withTable: true }
+          }
+        ]
+      },
       getSlashMenus() {
         return [
           {

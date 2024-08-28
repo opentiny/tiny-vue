@@ -24,7 +24,7 @@
     &:hover {
       background-color: #e5e6e7;
 
-      .options {
+      .tooltip {
         display: flex;
         flex-direction: column;
         gap: 4px;
@@ -53,16 +53,41 @@
     }
   }
 
-  &__options {
+  &__tooltip {
     position: absolute;
     z-index: 999;
     display: none;
     background-color: #ffffff;
     padding: 0.15rem;
+    top: 100%;
+
+    .box-panel {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border-top: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+
+      .box-row {
+        display: flex;
+      }
+
+      .item {
+        box-sizing: border-box;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+
+        &.is-active {
+          background-color: rgb(32 122 183 / 50%);
+          border-color: rgb(32 122 183 / 50%);
+        }
+      }
+    }
   }
 
   &__option {
     padding: 0.1rem;
+    white-space: nowrap;
 
     &:hover {
       color: lightblue;
