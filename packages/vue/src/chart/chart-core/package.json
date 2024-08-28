@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/vue-chart-core",
+  "name": "@opentiny/vue-huicharts-core",
   "version": "3.18.0",
   "description": "",
   "main": "lib/index.js",

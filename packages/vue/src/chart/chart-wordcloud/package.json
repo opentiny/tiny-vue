@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/vue-chart-wordcloud",
+  "name": "@opentiny/vue-huicharts-wordcloud",
   "version": "3.18.0",
   "description": "",
   "main": "lib/index.js",
@@ -12,7 +12,7 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-chart-core": "workspace:~",
+    "@opentiny/vue-huicharts-core": "workspace:~",
     "echarts-wordcloud": "2.0.0",
     "@opentiny/vue-common": "workspace:~"
   },
