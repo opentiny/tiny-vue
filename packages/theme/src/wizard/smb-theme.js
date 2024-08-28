@@ -15,5 +15,18 @@ export const tinyWizardSmbTheme = {
   'ti-wizard-node-doing-font-weight': 'var(--ti-common-font-weight-bold)',
   'ti-wizard-node-title-margin-top': 'var(--ti-common-dropdown-gap)',
   'ti-wizard-button-group-margin-top': 'calc(var(--ti-common-space-base) * 9)',
-  'ti-wizard-button-group-text-align': 'left'
+  'ti-wizard-button-group-text-align': 'left',
+  'ti-wizard-button-margin-left': 'var(--ti-common-space-3x)',
+  'ti-wizard-vertical-line-width': 'var(--ti-common-border-weight-normal)',
+  'ti-wizard-vertical-line-height': 'var(--ti-common-line-height-8)',
+  'ti-wizard-vertical-icon-position': 'absolute',
+  'ti-wizard-vertical-line-position-top': '54px',
+  'ti-wizard-vertical-icon-position-top': '-40px',
+  'ti-wizard-vertical-node-box-height':
+    'calc(var(--ti-wizard-vertical-line-height) + var(--ti-wizard-node-size) + 16px)',
+  'ti-wizard-vertical-text-margin-left': '21.5px',
+  'ti-wizard-vertical-desc-margin-top': '0',
+  'ti-wizard-vertical-title-line-height': 'var(--ti-common-line-height-number)',
+  'ti-wizard-vertical-desc-font-size': 'var(--ti-common-font-size-0)',
+  'ti-wizard-vertical-desc-text-color': 'var(--ti-common-color-text-weaken)'
 }
