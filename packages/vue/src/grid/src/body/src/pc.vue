@@ -475,7 +475,7 @@ function renderRowGroupTds(args) {
               class: ['tiny-grid-body__column td-placeholder', column.id],
               colspan: column._rowGroupColspan
             },
-            ['div', { class: 'tiny-grid-cell-group' }, renderGroupCell ? renderGroupCell(h, params) : null]
+            [h('div', { class: 'tiny-grid-cell-group' }, renderGroupCell ? renderGroupCell(h, params) : null)]
           )
         )
       }

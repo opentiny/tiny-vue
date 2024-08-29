@@ -10,7 +10,7 @@
  *
  */
 import { $install } from '@opentiny/vue-common'
-import Radio from './src/radio'
+import Radio from './src/pc.vue'
 
 Radio.model = {
   prop: 'modelValue',
