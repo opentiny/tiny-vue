@@ -1,7 +1,7 @@
 import { merge, get } from './util'
 import { isObject } from './type'
 import { setObj as set } from './object'
-import cloneDeep from '../base/util/cloneDeep'
+import cloneDeep from '@opentiny/huicharts/util/cloneDeep'
 
 const isArr = Array.isArray
 

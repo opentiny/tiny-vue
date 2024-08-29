@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "echarts": "5.4.1",
+    "@opentiny/huicharts": "1.0.1",
     "@opentiny/vue-theme": "workspace:~"
   },
   "license": "MIT"
