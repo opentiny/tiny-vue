@@ -12,7 +12,6 @@
               :src="child.cardSrc"
               custom-class="card-demo"
               @click="curIndex = childIndex"
-              :status="curIndex === childIndex ? 'success' : ''"
             >
               <div>{{ child.content }}</div>
             </tiny-card>
@@ -102,11 +101,8 @@ export default {
   margin-bottom: 20px;
 }
 .card-demo {
-  width: 30%;
+  width: 25%;
   height: 300px;
   margin-right: 8px;
-}
-.card-demo:hover {
-  border-color: #1476ff;
 }
 </style>
