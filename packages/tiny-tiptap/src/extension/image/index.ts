@@ -1,7 +1,7 @@
 import type { ExtensionOptions } from '@/types'
-import { isActive, mergeAttributes } from '@tiptap/core'
-import type { ImageOptions } from '@tiptap/extension-image'
 import type { Editor } from '@tiptap/core'
+import type { ImageOptions } from '@tiptap/extension-image'
+import { isActive, mergeAttributes } from '@tiptap/core'
 import TiptapImage from '@tiptap/extension-image'
 
 import {
