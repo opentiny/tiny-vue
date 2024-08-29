@@ -1,4 +1,4 @@
-import { getFormatted, itemLabel, isNull, isObject } from '@opentiny/vue-chart-core'
+import { getFormatted, itemLabel, isNull, isObject } from '@opentiny/vue-huicharts-core'
 
 const getTooltip = (args) => {
   const { tooltipFormatter, dataType, digit } = args

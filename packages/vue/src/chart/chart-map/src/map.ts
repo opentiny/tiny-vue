@@ -1,4 +1,4 @@
-import { getFormatted, getMapJSON, itemPoint, itemLabel, itemContent, isNull } from '@opentiny/vue-chart-core'
+import { getFormatted, getMapJSON, itemPoint, itemLabel, itemContent, isNull } from '@opentiny/vue-huicharts-core'
 
 const getLegendMap = (args, legendItemStyle) => {
   const { metrics, legendName, labelMap } = args
