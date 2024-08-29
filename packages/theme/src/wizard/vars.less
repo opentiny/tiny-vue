@@ -43,6 +43,10 @@
   --ti-wizard-lines-bg-color: var(--ti-common-color-bg-emphasize, #5e7ce0);
   // 未完成节点线背景色
   --ti-wizard-lines-normal-bg-color: #c2c4c7;
+  // 时间线节点线颜色
+  --ti-wizard-time-lines-bg-color: var(--ti-common-color-bg-emphasize, #5e7ce0);
+  // 时间线最后一条节点线颜色
+  --ti-wizard-time-last-lines-bg-color: none;
   // 最后一条节点线颜色
   --ti-wizard-last-lines-bg-color: var(--ti-wizard-lines-normal-bg-color, #dfe1e6);
   // 未完成的节点背景色
@@ -87,6 +91,48 @@
   --ti-wizard-vertical-title-font-size: var(--ti-common-font-size-1, 14px);
   // 垂直模式节点描述字号
   --ti-wizard-vertical-desc-font-size: var(--ti-common-font-size-1, 14px);
-  // 垂直模式节点描述字号
-  --ti-wizard-vertical-desc-text-color: var(--ti-wizard-node-text-color, #5e7ce0);
+  // 垂直模式节点描述文本色
+  --ti-wizard-vertical-desc-text-color: inherit;
+  // 垂直模式未完成节点描述文本色
+  --ti-wizard-vertical-wait-desc-text-color: inherit;
+  // 时间线节点尺寸
+  --ti-wizard-time-node-size: var(--ti-common-font-size-5, 24px);
+  // 时间线节点边框厚度
+  --ti-wizard-time-node-border-weight: var(--ti-common-border-weight-1, 2px);
+  // 时间线节点内图标宽度
+  --ti-wizard-time-node-icon-width: var(--ti-common-size-4x, 16px);
+  // 时间线节点内图标高度
+  --ti-wizard-time-node-icon-height: var(--ti-common-line-height-4, 20px);
+  // 时间线节点内图标色
+  --ti-wizard-time-node-icon-color: var(--ti-common-color-bg-emphasize, #5e7ce0);
+  // 时间线节点内图标背景色
+  --ti-wizard-time-node-bg-color: var(--ti-common-color-light, #fff);
+  // 时间线节点左侧日期最小宽度
+  --ti-wizard-time-left-min-width: var(--ti-common-size-25x, 100px);
+  // 时间线节点左侧日期右外边距
+  --ti-wizard-time-left-margin-right: var(--ti-common-space-0, 0px);
+  // 时间线节点左侧日期top定位(hide)
+  --ti-wizard-time-left-position-top: -24px;
+  // 时间线节点左侧时间top定位(hide)
+  --ti-wizard-time-left-point-position-top: -14px;
+  // 时间线节点左侧展开图标右外边距
+  --ti-wizard-time-left-icon-margin-right: var(--ti-common-space-0, 0px);
+  // 时间线节点左侧展开图标色
+  --ti-wizard-time-left-icon-color: auto;
+  // 时间线节点左侧日期图标左外边距
+  --ti-wizard-time-left-icon-margin-left: var(--ti-common-space-base, 4px);
+  // 时间线节点左侧日期图标尺寸
+  --ti-wizard-time-left-icon-size: var(--ti-common-font-size-base, 14px);
+  // 时间线节点左侧文字行高
+  --ti-wizard-time-left-line-height: 1.2em;
+  // 时间线节点小圆点尺寸
+  --ti-wizard-time-dot-size: calc(var(--ti-common-size-base, 4) * 2.5);
+  // 时间线节点右侧文字对齐方式(hide)
+  --ti-wizard-time-right-text-align: center;
+  // 时间线节点右侧文字左外边距
+  --ti-wizard-time-right-margin-left: var(--ti-common-space-3x, 12px);
+  // 时间线节点右侧文字垂直内边距
+  --ti-wizard-time-right-padding-vertical: var(--ti-common-size-base, 4px);
+  // 时间线节点右侧标题底部外边距
+  --ti-wizard-time-right-title-margin-bottom: var(----ti-common-space-2x, 8px);
 }
