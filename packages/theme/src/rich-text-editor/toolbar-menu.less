@@ -61,18 +61,20 @@
     padding: 0.15rem;
     top: 100%;
 
-    .box-panel {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      border-top: 1px solid #ccc;
-      border-left: 1px solid #ccc;
+    .tiny-box-selector {
+      &__view {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border-top: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+      }
 
-      .box-row {
+      &__row {
         display: flex;
       }
 
-      .item {
+      &__item {
         box-sizing: border-box;
         border-right: 1px solid #ccc;
         border-bottom: 1px solid #ccc;

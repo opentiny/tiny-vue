@@ -6,13 +6,17 @@ const BOX_SIZE = 30
 export default defineComponent({
   name: $prefix + 'BoxSelector',
   props: {
-    items: {
-      type: Array,
-      default: () => []
+    side: {
+      type: Number,
+      default: SIDE
+    },
+    size: {
+      type: Number,
+      default: BOX_SIZE
     }
   },
   setup(props, { emit }) {
-    const { items } = props
+    const { side, size } = props
 
     const boxPanelRef = hooks.ref()
     const flagX = hooks.ref(-1)
@@ -20,8 +24,8 @@ export default defineComponent({
     const handleMouseMove = (e) => {
       if (boxPanelRef.value) {
         const { x, y } = boxPanelRef.value.getBoundingClientRect()
-        flagX.value = Math.ceil((e.x - x) / BOX_SIZE)
-        flagY.value = Math.ceil((e.y - y) / BOX_SIZE)
+        flagX.value = Math.ceil((e.x - x) / size)
+        flagY.value = Math.ceil((e.y - y) / size)
       }
     }
 
@@ -31,14 +35,14 @@ export default defineComponent({
     }
 
     return () => (
-      <div class="box-panel" ref={boxPanelRef} onmousemove={handleMouseMove}>
-        {new Array(SIDE).fill(0).map((row, rowIndex) => (
-          <div class="box-row">
-            {new Array(SIDE).fill(0).map((col, colIndex) => (
+      <div class="tiny-box-selector__view" ref={boxPanelRef} onmousemove={handleMouseMove}>
+        {new Array(side).fill(0).map((row, rowIndex) => (
+          <div class="tiny-box-selector__row">
+            {new Array(side).fill(0).map((col, colIndex) => (
               <div
                 onClick={() => handleClickBox(rowIndex, colIndex)}
-                class={['item', { 'is-active': rowIndex < flagY.value && colIndex < flagX.value }]}
-                style={{ width: `${BOX_SIZE}px`, height: `${BOX_SIZE}px` }}></div>
+                class={['tiny-box-selector__item', { 'is-active': rowIndex < flagY.value && colIndex < flagX.value }]}
+                style={{ width: `${size}px`, height: `${size}px` }}></div>
             ))}
           </div>
         ))}
