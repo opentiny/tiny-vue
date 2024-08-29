@@ -1,4 +1,4 @@
-import type { Editor } from '@tiptap/core'
+import { isActive, type Editor } from '@tiptap/core'
 import type { ExtensionOptions } from '@/types'
 import type { EditorState } from '@tiptap/pm/state'
 import {
@@ -12,6 +12,8 @@ import {
   IconRichTextFormatClear
 } from '@opentiny/vue-icon'
 import TiptapText from '@tiptap/extension-text'
+
+const IGNORE_BUBBLE_TYPES = ['table']
 
 const Text = TiptapText.extend<ExtensionOptions>({
   addOptions() {
@@ -82,6 +84,11 @@ const Text = TiptapText.extend<ExtensionOptions>({
 
             // 选择内容为空时不显示
             if (isSelectionEmpty || isTextEmpty) {
+              return false
+            }
+
+            // 避免其他类型激活时出现气泡菜单
+            if (IGNORE_BUBBLE_TYPES.some((type) => isActive(state, type))) {
               return false
             }
 

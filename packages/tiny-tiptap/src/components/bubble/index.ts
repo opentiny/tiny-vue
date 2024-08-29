@@ -24,6 +24,7 @@ export const registerBubbleMenuExtension = (editor: Editor, Renderer, view) => {
 
   // 注册多个 BubbleMenu
   const bubbleMenuList = getBubbleMenuInstances(editor)
+
   bubbleMenuList.forEach((instance) => {
     installBubbleMenuPlugin(instance, view)
   })

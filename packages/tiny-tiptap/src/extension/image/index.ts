@@ -1,9 +1,17 @@
 import type { ExtensionOptions } from '@/types'
+import { isActive, mergeAttributes } from '@tiptap/core'
 import type { ImageOptions } from '@tiptap/extension-image'
 import type { Editor } from '@tiptap/core'
-import { mergeAttributes } from '@tiptap/core'
 import TiptapImage from '@tiptap/extension-image'
-import { IconRichTextImage } from '@opentiny/vue-icon'
+
+import {
+  iconRichTextAlignLeft,
+  iconRichTextAlignCenter,
+  iconRichTextAlignRight,
+  IconRichTextImage
+} from '@opentiny/vue-icon'
+
+const IGNORE_BUBBLE_TYPES = ['table']
 
 const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
   inline() {
@@ -79,6 +87,50 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
             ]
           }
         ]
+      },
+      getBubbleMenu() {
+        return {
+          pluginKey: 'imageBubbleMenu',
+          shouldShow: ({ state, from, to }) => {
+            // 避免其他类型激活时出现气泡菜单
+            if (IGNORE_BUBBLE_TYPES.some((type) => isActive(state, type))) {
+              return false
+            }
+            return isActive(state, Image.name)
+          },
+          items: [
+            {
+              icon: iconRichTextAlignLeft(),
+              priority: 10,
+              isActive: ({ editor }: { editor: Editor }) => {
+                return () => editor.isActive({ textAlign: 'left' })
+              },
+              action: ({ editor }: { editor: Editor }) => {
+                return () => editor.chain().focus().setTextAlign('left').run()
+              }
+            },
+            {
+              icon: iconRichTextAlignCenter(),
+              priority: 20,
+              isActive: ({ editor }: { editor: Editor }) => {
+                return () => editor.isActive({ textAlign: 'center' })
+              },
+              action: ({ editor }: { editor: Editor }) => {
+                return () => editor.chain().focus().setTextAlign('center').run()
+              }
+            },
+            {
+              icon: iconRichTextAlignRight(),
+              priority: 30,
+              isActive: ({ editor }: { editor: Editor }) => {
+                return () => editor.isActive({ textAlign: 'right' })
+              },
+              action: ({ editor }: { editor: Editor }) => {
+                return () => editor.chain().focus().setTextAlign('right').run()
+              }
+            }
+          ]
+        }
       }
     }
   },
