@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Core from '@opentiny/vue-chart-core'
+import Core from '@opentiny/vue-huicharts-core'
 import { prepareBoxplotData } from 'echarts/extension/dataTool'
 import { boxplot } from './boxplot'
 import { $prefix } from '@opentiny/vue-common'

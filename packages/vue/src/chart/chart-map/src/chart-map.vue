@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Core from '@opentiny/vue-chart-core'
+import Core from '@opentiny/vue-huicharts-core'
 
 import { map } from './map'
 import * as echarts from 'echarts'

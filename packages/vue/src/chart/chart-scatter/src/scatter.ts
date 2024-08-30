@@ -23,7 +23,7 @@
  * itemStyle 图形样式。series-scatter. itemStyle
  */
 
-import { getFormatted, itemLabel, itemPoint, itemContent, isDefined } from '@opentiny/vue-chart-core'
+import { getFormatted, itemLabel, itemPoint, itemContent, isDefined } from '@opentiny/vue-huicharts-core'
 
 const getLegend = (args) => {
   const { legendVisible, legendName } = args

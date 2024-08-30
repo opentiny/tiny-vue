@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/vue-baidu-map",
+  "name": "@opentiny/vue-huicharts-bmap",
   "version": "3.18.0",
   "description": "",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-chart-core": "workspace:~",
+    "@opentiny/vue-huicharts-core": "workspace:~",
     "@opentiny/vue-common": "workspace:~"
   },
   "license": "MIT"

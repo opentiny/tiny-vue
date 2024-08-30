@@ -1,5 +1,5 @@
 {
-  "name": "@opentiny/vue-chart-candle",
+  "name": "@opentiny/vue-huicharts-candle",
   "version": "3.18.0",
   "description": "",
   "main": "lib/index.js",
@@ -12,7 +12,7 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-chart-core": "workspace:~",
+    "@opentiny/vue-huicharts-core": "workspace:~",
     "@opentiny/vue-locale": "workspace:~",
     "@opentiny/vue-common": "workspace:~"
   },
