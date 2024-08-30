@@ -39,5 +39,8 @@ export const tinyStepsSmbTheme = {
   'ti-steps-custom-icon-width-height': 'var(--ti-common-space-5x)',
   'ti-steps-advanced-count-bg-color': '#c7000b',
   'ti-steps-vertical-title-margin-top': 'var(--ti-common-space-2x)',
-  'ti-steps-timeline-shape-dot-content-margin-left': 'var(--ti-common-space-4x)'
+  'ti-steps-timeline-shape-dot-content-margin-left': 'var(--ti-common-space-4x)',
+  'ti-steps-description-text-color': 'var(--ti-common-color-text-weaken)',
+  'ti-steps-advanced-desc-active-text-color': 'var(--ti-common-color-text-weaken)',
+  'ti-steps-disabled-text-color': 'var(--ti-common-color-text-weaken)'
 }
