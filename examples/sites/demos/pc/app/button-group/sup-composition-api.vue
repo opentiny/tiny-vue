@@ -137,4 +137,7 @@ const groupDataTag = ref([
 .demo-button .tiny-tag {
   border-radius: 0px 5px 0 8px;
 }
+.demo-button .tiny-svg-size {
+  margin-right: 4px;
+}
 </style>
