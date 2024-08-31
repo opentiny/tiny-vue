@@ -60,7 +60,9 @@ export default {
       },
       getFlagStyle: ({ index, idx }) => {
         return {
-          left: `calc(${(100 / props.data[props.flagBefore ? index : index + 1][props.flagField].length) * idx}%  + ${idx * 8}px)`
+          left: `calc(${(100 / props.data[props.flagBefore ? index : index + 1][props.flagField].length) * idx}%  + ${
+            idx * 8
+          }px)`
         }
       }
     }
