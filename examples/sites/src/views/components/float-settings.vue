@@ -88,7 +88,7 @@
 
 <script>
 import { defineComponent, reactive, toRefs, onMounted, onUnmounted, watch, nextTick, ref } from 'vue'
-import { Tooltip, Radio, RadioGroup, Popover } from '@opentiny/vue'
+import { Tooltip, Radio, RadioGroup, Popover, Notify } from '@opentiny/vue'
 import { iconUpWard } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { i18nByKey, useApiMode, useTemplateMode } from '@/tools'
@@ -129,6 +129,17 @@ export default defineComponent({
       initBottomVal: null, // 初始底部偏移
       isSettingsAside: false // 是否贴边
     })
+    let isShowTip = false
+    const showTip = () => {
+      Notify({
+        type: 'info',
+        title: '请注意',
+        message: '主题切换成功，如有部分主题样式不生效，请尝试手动刷新页面即可',
+        position: 'top-right',
+        duration: 3000
+      })
+      isShowTip = true
+    }
 
     if (isPlus) {
       state.styleSettings = state.styleSettings.filter((item) => item.name !== 'apiMode')
@@ -164,6 +175,10 @@ export default defineComponent({
       themeItemClick(node) {
         const val = node?.value || 'tiny-smb-theme'
         changeTheme(val)
+
+        if (!isShowTip) {
+          showTip()
+        }
       }
     }
 
