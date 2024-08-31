@@ -1,4 +1,4 @@
-import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-huicharts-core'
+import { itemPoint, itemLabel, itemContent } from '@opentiny/vue-chart-core'
 
 const getTooltip = () => ({
   trigger: 'item',

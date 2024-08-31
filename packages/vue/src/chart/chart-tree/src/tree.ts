@@ -1,4 +1,4 @@
-import { isObject, itemLabel, itemContent } from '@opentiny/vue-huicharts-core'
+import { isObject, itemLabel, itemContent } from '@opentiny/vue-chart-core'
 
 const getTreeLegend = (args) => {
   const { dimension, rows } = args

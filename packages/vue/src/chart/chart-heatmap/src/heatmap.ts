@@ -1,11 +1,4 @@
-import {
-  getFormatted,
-  getMapJSON,
-  itemPoint,
-  itemLabel,
-  itemContent,
-  HEAT_MAP_COLOR
-} from '@opentiny/vue-huicharts-core'
+import { getFormatted, getMapJSON, itemPoint, itemLabel, itemContent, HEAT_MAP_COLOR } from '@opentiny/vue-chart-core'
 import * as echartsLib from 'echarts'
 
 const getAxisList = (rows, label) => {

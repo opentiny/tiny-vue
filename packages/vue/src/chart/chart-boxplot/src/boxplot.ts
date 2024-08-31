@@ -1,4 +1,4 @@
-import { getFormatted, itemPoint, itemLabel, itemContent, htmlHandler } from '@opentiny/vue-huicharts-core'
+import { getFormatted, itemPoint, itemLabel, itemContent, htmlHandler } from '@opentiny/vue-chart-core'
 
 const getXAxis = (args) => {
   const { columns, xAxisName, axisVisible, xAxisType } = args

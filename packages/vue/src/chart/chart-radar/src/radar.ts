@@ -1,4 +1,4 @@
-import { getFormatted, itemPoint, itemLabel, itemContent, isNull } from '@opentiny/vue-huicharts-core'
+import { getFormatted, itemPoint, itemLabel, itemContent, isNull } from '@opentiny/vue-chart-core'
 
 const getRadarLegend = (rows, dimension, legendName, legendVisible) => {
   let legendData = rows.map((row) => row[dimension]).filter((i) => i)
