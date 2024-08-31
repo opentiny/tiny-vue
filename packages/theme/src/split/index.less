@@ -71,18 +71,28 @@
 
     &-bar-con {
       position: absolute;
-      background: #fff;
+      background: transparent;
 
       &.vertical {
         top: 50%;
         height: 28px;
         transform: translate(0, -50%);
+
+        svg {
+          transform: translateX(5px);
+          fill: #d5d5d5;
+        }
       }
 
       &.horizontal {
         left: 50%;
         width: 28px;
         transform: translate(-50%, 0);
+
+        svg {
+          transform: translateY(5px);
+          fill: #d5d5d5;
+        }
       }
     }
 
