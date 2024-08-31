@@ -1,7 +1,22 @@
 <template>
-  <tiny-alert center description="文字居中"></tiny-alert>
+  <div class="index">
+    <div class="image">
+      <img style="width: 40px; margin-right: 10px" src="../public/favicon.png" />
+    </div>
+    <div class="title">Nuxt</div>
+  </div>
 </template>
 
-<script setup>
-import TinyAlert from '@opentiny/vue-alert'
-</script>
+<script setup></script>
+
+<style>
+.index {
+  display: flex;
+}
+.title {
+  line-height: 32px;
+  font-size: 50px;
+  font-weight: 700;
+  color: rgb(0 220 130);
+}
+</style>

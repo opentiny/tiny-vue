@@ -14,6 +14,7 @@ import { on, off, isDisplayNone } from './dom'
 import PopupManager from './popup-manager'
 import globalConfig from '../global'
 import { typeOf } from '../type'
+import { isBrowser } from '../browser'
 
 const positions = ['left', 'right', 'top', 'bottom']
 const modifiers = ['shift', 'offset', 'preventOverflow', 'keepTogether', 'arrow', 'flip', 'applyStyle']
@@ -273,13 +274,15 @@ const stopFn = (ev: Event) => {
 }
 
 /** 全局的resize观察器， 监听popper的大小改变  */
-const resizeOb = new ResizeObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.target.popperVm && entry.contentRect.height > 50) {
-      entry.target.popperVm.update()
-    }
+if (isBrowser) {
+  const resizeOb = new ResizeObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.target.popperVm && entry.contentRect.height > 50) {
+        entry.target.popperVm.update()
+      }
+    })
   })
-})
+}
 
 interface PopperOptions {
   arrowOffset: number
