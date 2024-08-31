@@ -13,8 +13,8 @@
       <tiny-input
         :placeholder="i18nByKey('searchComponents')"
         :modelValue="value"
-        class="ti-mb10 search-input"
-        :style="{ width: '100%', padding: '6px' }"
+        size="medium"
+        :style="{ width: '100%' }"
         @update:modelValue="searchHandler"
       >
         <template #suffix>
@@ -216,17 +216,6 @@ export default defineComponent({
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.search-input {
-  .tiny-input__inner {
-    height: 46px;
-    font-size: 14px;
-    padding-left: 18px;
-  }
-  .tiny-input__suffix {
-    right: 20px;
-  }
 }
 
 .no-data-text {
