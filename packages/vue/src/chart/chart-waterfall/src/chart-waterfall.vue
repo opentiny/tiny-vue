@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Core from '@opentiny/vue-huicharts-core'
+import Core from '@opentiny/vue-chart-core'
 import { waterfall } from './waterfall'
 import { t } from '@opentiny/vue-locale'
 import { $prefix } from '@opentiny/vue-common'

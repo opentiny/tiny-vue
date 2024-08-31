@@ -7,7 +7,7 @@
 
 <script>
 import { tree } from './tree'
-import Core from '@opentiny/vue-huicharts-core'
+import Core from '@opentiny/vue-chart-core'
 import { $prefix } from '@opentiny/vue-common'
 
 export default {

@@ -16,7 +16,7 @@
  * dataType	数据展示格式	string	可选值: KMB, normal, percent
  */
 
-import { getFormatted, itemPoint, itemLabel, itemContent } from '@opentiny/vue-huicharts-core'
+import { getFormatted, itemPoint, itemLabel, itemContent } from '@opentiny/vue-chart-core'
 
 const isNull = (x) => x === null || x === undefined
 let defaultKName = ''

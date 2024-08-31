@@ -1,13 +1,4 @@
-import {
-  getFormatted,
-  cloneDeep,
-  getStackMap,
-  get,
-  set,
-  isNull,
-  getRows,
-  getTooltip
-} from '@opentiny/vue-huicharts-core'
+import { getFormatted, cloneDeep, getStackMap, get, set, isNull, getRows, getTooltip } from '@opentiny/vue-chart-core'
 
 const VALUE_AXIS_OPACITY = 0.5
 

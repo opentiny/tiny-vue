@@ -1,4 +1,4 @@
-import { getRows, getYAxis, getTooltip, isNull } from '@opentiny/vue-huicharts-core'
+import { getRows, getYAxis, getTooltip, isNull } from '@opentiny/vue-chart-core'
 
 const getStackMap = (stack) => {
   const result = {}
