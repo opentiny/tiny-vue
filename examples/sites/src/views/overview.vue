@@ -107,7 +107,7 @@ export default defineComponent({
         .map((item) => {
           const label = item.label
           // 对表格特殊处理
-          if (isGrid && item.key === 'cmp_table_components') {
+          if (isGrid && item.key === 'cmp-table-components') {
             return { label, children: item.children }
           }
           const children = item.children.filter((child) => {
