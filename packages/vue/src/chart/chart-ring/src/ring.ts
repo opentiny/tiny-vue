@@ -24,7 +24,7 @@
  * tooltipVisible boolean 是否显示提示框,true
  */
 
-import { deepCopy, getFormatted, itemPoint, itemLabel, itemContent, isDefined } from '@opentiny/vue-chart-core'
+import { deepCopy, getFormatted, itemPoint, itemLabel, itemContent, isDefined } from '@opentiny/vue-huicharts-core'
 
 const PIE_RADIUS = 100
 const RING_RADIUS = [90, 100]

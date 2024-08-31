@@ -1,4 +1,4 @@
-import { getFormatted, isObject, itemLabel, itemContent } from '@opentiny/vue-chart-core'
+import { getFormatted, isObject, itemLabel, itemContent } from '@opentiny/vue-huicharts-core'
 
 const isArr = Array.isArray
 

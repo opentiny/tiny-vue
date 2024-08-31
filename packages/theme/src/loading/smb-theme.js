@@ -1,7 +1,7 @@
 export const tinyLoadingSmbTheme = {
-  'ti-loading-text-color': 'var(--ti-common-color-text-primary)',
+  'ti-loading-text-color': 'var(--ti-common-color-text-secondary)',
   'ti-loading-text-font-size': 'var(--ti-common-font-size-2)',
-  'ti-loading-text-margin-vertical': 'var(--ti-common-space-3x)',
+  'ti-loading-text-margin-vertical': 'var(--ti-common-space-4x)',
   'ti-loading-spinner-width': '16px',
   'ti-loading-spinner-height': '16px',
   'ti-loading-fullscreen-height': '16px',

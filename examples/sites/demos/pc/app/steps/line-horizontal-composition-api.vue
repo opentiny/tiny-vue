@@ -16,7 +16,7 @@ const data = reactive([
   { name: 'BOQ Info', status: 'doing', description: 'doing 处理中' },
   { name: '进行中 BOQ Info', status: 'disabled', description: 'disabled 禁用' },
   { name: 'BBQ Info', status: 'error', description: 'error 错误' },
-  { name: 'BBQ Info', description: '默认无状态' }
+  { name: 'BBQ Info' }
 ])
 
 const handleClick = (index, node) => {

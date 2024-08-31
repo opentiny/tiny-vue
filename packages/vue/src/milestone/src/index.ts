@@ -16,7 +16,14 @@ export const $constants = {
   DEFAULT_COLOR: '#1890FF',
   DEFAULT_BACK_COLOR: '#FFFFFF',
   BOX_SHADOW_PX: '0px 0px 0px 4px',
-  FLAG_CONTENT_CLS: '.content'
+  FLAG_CONTENT_CLS: '.content',
+  STATUS_MAP: {
+    COMPLETED: 'completed',
+    DOING: 'doing',
+    BACK: 'back',
+    END: 'end',
+    CANEL: 'canel'
+  }
 }
 
 export const milestoneProps = {

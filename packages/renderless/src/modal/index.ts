@@ -370,17 +370,15 @@ export const close =
 
     if (state.visible) {
       state.contentVisible = false
-
       setTimeout(() => {
         state.visible = false
 
-        let params = { type, $modal: parent }
-
-        if (events.hide) {
-          events.hide.call(parent, params)
+        let params = { type: 'close', $modal: parent }
+        if (events.close) {
+          events.close.call(parent, params)
         } else {
           emit('update:modelValue', false)
-          emit('hide', params)
+          emit('close', params)
         }
       }, 200)
     }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <tiny-action-menu :options="options" spacing="10px"> </tiny-action-menu>
+    <tiny-action-menu :options="options" spacing="8px"> </tiny-action-menu>
     <br />
     <tiny-action-menu :options="options" :spacing="20"> </tiny-action-menu>
   </div>

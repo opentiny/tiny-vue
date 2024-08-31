@@ -1,4 +1,4 @@
-import { getFormatted, itemPoint, itemLabel, itemContent } from '@opentiny/vue-chart-core'
+import { getFormatted, itemPoint, itemLabel, itemContent } from '@opentiny/vue-huicharts-core'
 
 const getMetrics = (args) => {
   const { dimension, columns, settings } = args

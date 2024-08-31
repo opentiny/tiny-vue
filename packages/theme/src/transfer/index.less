@@ -93,6 +93,10 @@
       margin-right: 0;
     }
 
+    &.@{button-prefix-cls}:not(.is-disabled) {
+      background-color: var(--ti-transfer-button-bg-color);
+    }
+
     &:first-child {
       margin-bottom: var(--ti-transfer-first-button-margin-bottom);
     }
@@ -142,6 +146,7 @@
     height: var(--ti-transfer-panel-body-height);
     text-align: left;
     padding-right: var(--ti-transfer-panel-body-padding-right);
+    padding-left: var(--ti-transfer-panel-body-padding-left);
 
     &.is-with-footer {
       padding-bottom: var(--ti-transfer-panel-body-footer-padding-bottom);
@@ -250,10 +255,12 @@
 
   &__filter {
     text-align: center;
-    padding-left: var(--ti-transfer-panel-filter-padding-left);
-    padding-right: var(--ti-transfer-panel-filter-padding-right);
-    padding-top: var(--ti-transfer-panel-filter-padding-top);
-    padding-bottom: var(--ti-transfer-panel-filter-padding-bottom);
+    // 从padding-left改为 margin-left.  原因是 当前dom是tiny-input的根元素， input的prefix,suffix插槽是绝对定位的
+    // 如果使用padding, 会影响插槽与边框的距离，贴在一起。 所以要改为margin 保证不影响插槽。
+    margin-left: var(--ti-transfer-panel-filter-padding-left);
+    margin-right: var(--ti-transfer-panel-filter-padding-right);
+    margin-top: var(--ti-transfer-panel-filter-padding-top);
+    margin-bottom: var(--ti-transfer-panel-filter-padding-bottom);
     box-sizing: border-box;
     display: block;
     width: auto;
@@ -266,16 +273,6 @@
       display: inline-block;
       box-sizing: border-box;
       border-radius: var(--ti-transfer-panel-filter-border-radius);
-      padding-right: var(--ti-transfer-panel-filter-input-padding-right);
-      padding-left: var(--ti-transfer-panel-filter-input-padding-left);
-    }
-
-    .@{input-prefix-cls}__icon {
-      margin-left: 5px;
-    }
-
-    .@{css-prefix}icon-circle-close {
-      cursor: pointer;
     }
   }
 

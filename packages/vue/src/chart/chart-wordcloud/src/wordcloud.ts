@@ -7,7 +7,7 @@
  * color	词云图字体颜色	Array[String], String, Function	默认为 "rgb(Math.round(Math.random * 160), Math.round(Math.random * 160), Math.round(Math.random * 160))"
  */
 
-import { itemLabel, itemContent } from '@opentiny/vue-chart-core'
+import { itemLabel, itemContent } from '@opentiny/vue-huicharts-core'
 
 const getTooltip = (args) => {
   const { tooltipFormatter } = args

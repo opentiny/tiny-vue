@@ -4,14 +4,14 @@ test('基本用法', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).not.toBeNull())
   await page.goto('milestone#basic-usage')
 
-  const milestone = page.locator('.tiny-milestone')
-  const nodes = page.locator('.tiny-milestone__node')
-  const nodeIcons = page.locator('.tiny-milestone__icon')
-  const nodeLines = page.locator('.tiny-milestone__line')
-  const nodeTitles = page.locator('.tiny-milestone__description-name')
-  const nodeDates = page.locator('.tiny-milestone__description-status')
-  const flags = page.locator('.tiny-milestone__flag-content')
-  const flagLines = page.locator('.tiny-milestone__flag-line')
+  const milestone = page.locator('.tiny-milestone').nth(1)
+  const nodes = milestone.locator('.tiny-milestone__node')
+  const nodeIcons = milestone.locator('.tiny-milestone__icon')
+  const nodeLines = milestone.locator('.tiny-milestone__line')
+  const nodeTitles = milestone.locator('.tiny-milestone__description-name')
+  const nodeDates = milestone.locator('.tiny-milestone__description-status')
+  const flags = milestone.locator('.tiny-milestone__flag-content')
+  const flagLines = milestone.locator('.tiny-milestone__flag-line')
   const flagLineDots = flagLines.locator('.tiny-milestone__dot')
   const nodeCount = 6
   const iconClasss = [
@@ -34,9 +34,9 @@ test('基本用法', async ({ page }) => {
       'box-shadow': 'rgba(94, 124, 224, 0.4) 0px 0px 0px 4px'
     },
     {
-      'background-color': 'rgb(126, 211, 33)',
+      'background-color': 'rgb(158, 197, 145)',
       'color': 'rgb(255, 255, 255)',
-      'box-shadow': 'rgba(126, 211, 33, 0.4) 0px 0px 0px 4px'
+      'box-shadow': 'rgba(158, 197, 145, 0.4) 0px 0px 0px 4px'
     },
     {
       'background-color': 'rgb(217, 217, 217)',
@@ -44,9 +44,9 @@ test('基本用法', async ({ page }) => {
       'box-shadow': 'rgba(217, 217, 217, 0.4) 0px 0px 0px 4px'
     },
     {
-      'background-color': 'rgb(245, 34, 45)',
+      'background-color': 'rgb(151, 167, 219)',
       'color': 'rgb(255, 255, 255)',
-      'box-shadow': 'rgba(245, 34, 45, 0.4) 0px 0px 0px 4px'
+      'box-shadow': 'rgba(151, 167, 219, 0.4) 0px 0px 0px 4px'
     },
     {
       'background-color': 'rgb(250, 173, 20)',
@@ -56,7 +56,7 @@ test('基本用法', async ({ page }) => {
   ]
   const titles = ['completed 状态', 'completed 状态', 'doing 状态', 'cancel 状态', 'back 状态', 'end 状态']
   const flagContents = [/引导用户按照流程完成任务/, /test7欢迎使用vui/, /test8/, /test6/]
-  const flagLineColors = ['rgb(245, 34, 45)', 'rgb(245, 34, 45)', 'rgb(126, 211, 33)', 'rgb(94, 124, 224)']
+  const flagLineColors = ['rgb(151, 167, 219)', 'rgb(151, 167, 219)', 'rgb(158, 197, 145)', 'rgb(217, 217, 217)']
 
   await expect(nodes).toHaveCount(nodeCount)
   await expect(nodeLines).toHaveCount(nodeCount)
@@ -89,7 +89,7 @@ test('基本用法', async ({ page }) => {
     }
     if (i < 4) {
       await expect(flags.nth(i)).toHaveCSS('width', '58px')
-      await expect(flags.nth(i)).toHaveCSS('padding', '0px')
+      await expect(flags.nth(i)).toHaveCSS('padding', '0px 4px')
       await expect(flags.nth(i)).toHaveText(flagContents[i])
       await expect(flagLines.nth(i)).toHaveCSS('width', '1px')
       await expect(flagLines.nth(i)).toHaveCSS('height', '30px')

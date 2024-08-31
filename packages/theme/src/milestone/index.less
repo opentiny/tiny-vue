@@ -50,6 +50,13 @@
     .iconfix {
       font-size: var(--ti-common-font-size-4);
     }
+
+    /* completed 节点 */
+    &.node-status-completed {
+      .@{milestone-prefix-cls}__line {
+        background-color: var(--ti-milestone-line-bg-color-completed);
+      }
+    }
   }
 
   & &__icon {
@@ -60,29 +67,36 @@
     position: relative;
     font-size: var(--ti-milestone-font-size, 12px);
     text-align: center;
-    left: ~'calc(50% - 10px)';
-    top: 4px;
+    left: var(--ti-milestone-icon-left);
+    top: var(--ti-milestone-icon-top);
     border-radius: 50%;
     color: var(--ti-milestone-text-color);
     cursor: pointer;
     z-index: 15;
+    border: var(--ti-milestone-icon-border-width) solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .@{svg-prefix-cls} {
+      font-size: var(--ti-milestone-icon-size);
+      fill: var(--ti-milestone-icon-color);
+      vertical-align: baseline;
+    }
 
     &.is-completed {
-      border: 2px solid;
-
-      .@{svg-prefix-cls} {
-        fill: #1890ff;
-        vertical-align: baseline;
-      }
+      border: var(--ti-milestone-icon-border-width-completed) solid;
     }
   }
 
   & &__line {
-    height: 4px;
-    left: 50%;
-    top: -8px;
+    height: var(--ti-milestone-line-height);
+    width: var(--ti-milestone-line-width);
+    left: var(--ti-milestone-line-left);
+    top: var(--ti-milestone-line-top);
+
     position: relative; // 里程碑线条不区分状态
-    background: var(--ti-milestone-line-bg-color);
+    background-color: var(--ti-milestone-line-bg-color);
   }
 
   & &__line-end {
@@ -106,9 +120,10 @@
 
   & &__description-status {
     color: var(--ti-milestone-status-text-color);
-    font-size: var(--ti-milestone-font-size);
+    font-size: var(--ti-milestone-status-font-size);
     float: left;
     width: 100%;
+    margin-top: 4px;
   }
 
   & &__flag-tip {
@@ -149,40 +164,49 @@
   }
 
   & &__flag-content {
-    width: 58px;
-    height: 34px;
-    padding: 0px;
-    line-height: 15px;
+    width: var(--ti-milestone-flag-width);
+    height: var(--ti-milestone-flag-height);
+    padding: var(--ti-milestone-flag-padding);
+    line-height: var(--ti-milestone-flag-line-height);
     font-size: var(--ti-milestone-flag-content-font-size);
     border-radius: var(--ti-milestone-flag-content-border-radius);
     color: var(--ti-milestone-text-color);
-    background: #333;
+    background-color: var(--ti-milestone-flag-content-bg-color);
     cursor: pointer;
     vertical-align: middle;
     display: table-cell;
 
     p {
       color: var(--ti-milestone-text-color);
-      width: 58px;
+      width: var(--ti-milestone-flag-width);
       font-size: var(--ti-milestone-flag-font-size);
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      padding: 0 4px;
       margin: 0;
       box-sizing: border-box;
+    }
+
+    .@{milestone-prefix-cls}__flag-name {
+      font-weight: var(--ti-milestone-flag-name-font-weight);
+    }
+
+    .@{milestone-prefix-cls}__flag-desc {
+      color: var(--ti-milestone-flag-desc-text-color);
+      font-size: var(--ti-milestone-flag-desc-font-size);
+      line-height: var(--ti-milestone-flag-desc-line-height);
     }
   }
 
   & &__flag-line {
     height: 30px;
     width: 1px;
-    margin-left: 50%;
-    background: #333;
+    margin-left: var(--ti-milestone-flag-line-margin-left);
+    background: var(--ti-milestone-flag-line-bg-color);
   }
 
   & &__dot {
-    display: block;
+    display: var(--ti-milestone-dot-display);
     background: var(--ti-milestone-flag-line-color);
     border: solid 1px;
     border-radius: 50%;
