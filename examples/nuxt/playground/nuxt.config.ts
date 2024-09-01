@@ -2,7 +2,6 @@ import path from 'node:path'
 import { checker as checkerPlugin } from 'vite-plugin-checker'
 import dynamicImportPlugin from 'vite-plugin-dynamic-import'
 import importPlugin from '@opentiny/vue-vite-import'
-import vue3JsxPlugin from '@vitejs/plugin-vue-jsx'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../../internals/cli/src/config/vite'
 import vue3SvgPlugin from 'vite-svg-loader'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
@@ -13,7 +12,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env: 'develop' }),
-      vue3JsxPlugin(),
+      // vue3JsxPlugin(),
       vue3SvgPlugin(),
       importPlugin([
         {
