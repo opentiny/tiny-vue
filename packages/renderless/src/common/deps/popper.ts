@@ -14,6 +14,7 @@ import { on, off, isDisplayNone, isServer } from './dom'
 import PopupManager from './popup-manager'
 import globalConfig from '../global'
 import { typeOf } from '../type'
+import { isBrowser } from '../browser'
 
 const positions = ['left', 'right', 'top', 'bottom']
 const modifiers = ['shift', 'offset', 'preventOverflow', 'keepTogether', 'arrow', 'flip', 'applyStyle']
@@ -274,7 +275,7 @@ const stopFn = (ev: Event) => {
 
 let resizeOb
 
-if (!isServer) {
+if (isBrowser) {
   /** 全局的resize观察器， 监听popper的大小改变  */
   resizeOb = new ResizeObserver((entries) => {
     entries.forEach((entry) => {
