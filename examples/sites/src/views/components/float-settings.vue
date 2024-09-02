@@ -135,7 +135,7 @@ export default defineComponent({
         type: 'info',
         title: '请注意',
         message: '主题切换成功，如有部分主题样式不生效，请尝试手动刷新页面即可',
-        position: 'top-right',
+        position: 'bottom-right',
         duration: 3000
       })
       isShowTip = true
