@@ -10,5 +10,5 @@ export const tinyFilterBoxSmbTheme = {
   'ti-filter-box-btn-title-line-height': 'var(--ti-common-line-height-number)',
   'ti-filter-box-help-btn-position-top': 'var(--ti-common-space-base)',
   'ti-filter-box-expand-btn-icon-size': 'var(--ti-common-font-size-2)',
-  'ti-filter-box-help-btn-margin-right': 'var(--ti-common-space-2x)'
+  'ti-filter-box-help-btn-margin-right': 'var(--ti-common-space-base)'
 }
