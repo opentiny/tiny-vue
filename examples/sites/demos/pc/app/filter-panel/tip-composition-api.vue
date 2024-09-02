@@ -9,7 +9,7 @@
         <tiny-radio label="等于">等于</tiny-radio>
         <tiny-radio label="小于">小于</tiny-radio>
       </tiny-radio-group>
-      <tiny-input type="text" v-model="inputVal" style="margin-top: 20px"></tiny-input>
+      <tiny-input type="text" v-model="inputVal" style="margin-top: 16px"></tiny-input>
     </tiny-filter-panel>
   </div>
 </template>

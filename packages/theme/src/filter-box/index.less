@@ -16,19 +16,21 @@
 @filter-box-prefix-cls: ~'@{css-prefix}filter-box';
 
 .@{filter-box-prefix-cls} {
+  .component-css-vars-filter-box();
+
   width: fit-content;
-  height: 28px;
-  line-height: 28px;
+  height: var(--ti-filter-box-btn-height);
+  line-height: var(--ti-filter-box-btn-height);
   border-radius: 4px;
-  background: #f5f6f8;
+  background: var(--ti-filter-box-btn-bg-color);
   color: #161e26;
-  padding: 4px 6px;
+  padding: 4px var(--ti-filter-box-btn-padding-horizontal);
   display: flex;
   align-items: center;
   font-size: 12px;
 
   &:hover {
-    background: rgba(92, 172, 255, 0.1);
+    background: var(--ti-filter-box-btn-hover-bg-color);
   }
 
   &.disabled {
@@ -50,8 +52,8 @@
 
   .title {
     height: inherit;
-    line-height: inherit;
-    font-size: 12px;
+    line-height: var(--ti-filter-box-btn-title-line-height);
+    font-size: var(--ti-filter-box-btn-font-size);
 
     label {
       display: inline-block;
@@ -59,25 +61,25 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      color: #78828d;
+      color: var(--ti-filter-box-btn-text-color);
       margin-right: 4px;
     }
 
     &.active label {
-      color: #1890ff;
+      color: var(--ti-filter-box-btn-hover-text-color);
     }
 
     svg {
       width: 16px;
       height: 16px;
-      margin-right: 4px;
-      fill: #8d959e;
+      margin-right: var(--ti-filter-box-help-btn-margin-right);
+      fill: var(--ti-filter-box-help-btn-icon-color);
       position: relative;
-      top: -1px;
+      top: var(--ti-filter-box-help-btn-position-top);
       vertical-align: super;
 
       &:hover {
-        fill: #1890ff;
+        fill: var(--ti-filter-box-btn-hover-text-color);
       }
     }
   }
@@ -99,10 +101,10 @@
   }
 
   .filter-box-icon {
-    width: 12px;
-    height: 12px;
+    width: var(--ti-filter-box-expand-btn-icon-size);
+    height: var(--ti-filter-box-expand-btn-icon-size);
     cursor: pointer;
-    fill: #78828d;
+    fill: var(--ti-filter-box-expand-btn-icon-color);
     transition: transform 0.3s;
 
     &.is-reverse {
