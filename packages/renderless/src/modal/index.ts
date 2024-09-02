@@ -294,13 +294,13 @@ export const open =
             } else {
               modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
             }
-
             if (
               modalBoxElem.offsetHeight + modalBoxElem.offsetTop + (props.marginSize as number) >
               clientVisibleHeight
             ) {
               modalBoxElem.style.top = `${props.marginSize}px`
             }
+            on(window, 'resize', api.resetModalViewPosition)
           }
 
           if (props.fullscreen) {
@@ -918,4 +918,12 @@ export const showScrollbar = (lockScrollClass) => () => {
 
 export const hideScrollbar = (lockScrollClass) => () => {
   removeClass(document.body, lockScrollClass)
+}
+
+export const resetModalViewPosition = (api: IModalApi) => () => {
+  const modalBoxElement = api.getBox()
+  const viewportWindow = getViewportWindow()
+  let clientVisibleWidth =
+    viewportWindow.document.documentElement.clientWidth || viewportWindow.document.body.clientWidth
+  modalBoxElement.style.left = `${clientVisibleWidth / 2 - modalBoxElement.offsetWidth / 2}px`
 }
