@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test('事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('calendar-view#calendar-event')
-  const timeInput = page.locator('.pc-demo-container').locator('.tiny-input__inner')
+  const timeInput = page.locator('.tiny-calendar-view').locator('.tiny-input__inner')
   const timeBtn = page.getByRole('textbox', { name: '年 05 月' })
   const leftYear = page.getByRole('button', { name: '前一年' })
   const month6 = page.getByText('六月')
