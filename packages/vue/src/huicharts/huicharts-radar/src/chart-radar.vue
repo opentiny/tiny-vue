@@ -6,17 +6,29 @@
 </template>
 
 <script>
-import Core from '../../chart-core'
-import { waterfall } from './waterfall'
-import { t } from '@opentiny/vue-locale'
+import Core from '@opentiny/vue-huicharts-core'
+import { radar } from './radar'
 import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: $prefix + 'ChartWaterfall',
+  name: $prefix + 'ChartRadar',
   mixins: [Core],
+  props: {
+    settings: {
+      type: Object
+    },
+    width: {
+      type: String,
+      default: 'auto'
+    },
+    height: {
+      type: String,
+      default: '400px'
+    }
+  },
   data() {
     return {
-      iChartName: 'BarChart'
+      iChartName: 'RadarChart'
     }
   },
   methods: {
@@ -25,10 +37,9 @@ export default {
       const extra = {
         tooltipVisible: this.tooltipVisible,
         legendVisible: this.legendVisible,
-        t
+        extend: this.extend
       }
-      const option = waterfall(columns, rows, this.settings, extra)
-
+      const option = radar(columns, rows, this.settings, extra)
       this.option = {
         ...option
       }

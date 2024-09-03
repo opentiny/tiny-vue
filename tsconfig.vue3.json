@@ -6,13 +6,13 @@
     "baseUrl": ".",
     "paths": {
       "@opentiny/vue-huicharts-amap": [
-        "packages/vue/src/chart/autonavi-map"
+        "packages/vue/src/huicharts/huicharts-amap"
       ],
       "@opentiny/vue-huicharts-bmap": [
-        "packages/vue/src/chart/baidu-map"
+        "packages/vue/src/huicharts/huicharts-bmap"
       ],
       "@opentiny/vue-huicharts-*": [
-        "packages/vue/src/chart/chart-*"
+        "packages/vue/src/huicharts/chart-*"
       ],
       "@opentiny/vue-*": [
         "packages/vue-*",

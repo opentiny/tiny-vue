@@ -6,28 +6,28 @@
 </template>
 
 <script>
-import Core from '../../chart-core'
+import { sunburst } from './sunburst'
+import Core from '@opentiny/vue-huicharts-core'
 import { $prefix } from '@opentiny/vue-common'
-import { wordcloud } from './wordcloud'
-import 'echarts-wordcloud'
 
 export default {
-  name: $prefix + 'ChartWordcloud',
+  name: $prefix + 'ChartSunburst',
   mixins: [Core],
-
   data() {
     return {
-      iChartName: 'WordCloudChart'
+      iChartName: 'SunburstChart',
+      option: {}
     }
   },
   methods: {
-    updateChart() {
-      const { columns = [], rows = [] } = this.data
-
+    updateChart(data) {
+      const { columns = [], rows = [] } = data
       const extra = {
-        tooltipVisible: this.tooltipVisible
+        tooltipVisible: this.tooltipVisible,
+        extend: this.extend
       }
-      const option = wordcloud(columns, rows, this.settings, extra)
+      const option = sunburst(columns, rows, this.settings, extra)
+
       this.option = {
         ...option
       }

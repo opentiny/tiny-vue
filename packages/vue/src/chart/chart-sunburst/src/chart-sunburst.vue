@@ -7,7 +7,7 @@
 
 <script>
 import { sunburst } from './sunburst'
-import Core from '@opentiny/vue-huicharts-core'
+import Core from '../../chart-core'
 import { $prefix } from '@opentiny/vue-common'
 
 export default {

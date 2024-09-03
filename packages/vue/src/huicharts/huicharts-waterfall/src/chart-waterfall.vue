@@ -6,28 +6,29 @@
 </template>
 
 <script>
-import Core from '../../chart-core'
-import { sankey } from './sankey'
+import Core from '@opentiny/vue-huicharts-core'
+import { waterfall } from './waterfall'
+import { t } from '@opentiny/vue-locale'
 import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: $prefix + 'ChartSankey',
+  name: $prefix + 'ChartWaterfall',
   mixins: [Core],
-
   data() {
     return {
-      iChartName: 'SankeyChart'
+      iChartName: 'BarChart'
     }
   },
   methods: {
-    updateChart() {
-      let { columns = [], rows = [] } = this.data
-
+    updateChart(data) {
+      let { columns = [], rows = [] } = data
       const extra = {
+        tooltipVisible: this.tooltipVisible,
         legendVisible: this.legendVisible,
-        tooltipVisible: this.tooltipVisible
+        t
       }
-      const option = sankey(columns, rows, this.settings, extra)
+      const option = waterfall(columns, rows, this.settings, extra)
+
       this.option = {
         ...option
       }

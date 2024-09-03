@@ -6,31 +6,29 @@
 </template>
 
 <script>
-import Core from '../../chart-core'
+import Core from '@opentiny/vue-huicharts-core'
+import { scatter } from './scatter'
 import { $prefix } from '@opentiny/vue-common'
-import { wordcloud } from './wordcloud'
-import 'echarts-wordcloud'
 
 export default {
-  name: $prefix + 'ChartWordcloud',
+  name: $prefix + 'ChartScatter',
   mixins: [Core],
 
   data() {
     return {
-      iChartName: 'WordCloudChart'
+      iChartName: 'BubbleChart'
     }
   },
   methods: {
     updateChart() {
-      const { columns = [], rows = [] } = this.data
+      let { columns = [], rows = [] } = this.data
 
       const extra = {
+        legendVisible: this.legendVisible,
         tooltipVisible: this.tooltipVisible
       }
-      const option = wordcloud(columns, rows, this.settings, extra)
-      this.option = {
-        ...option
-      }
+      const option = scatter(columns, rows, this.settings, extra)
+      this.option = { ...option }
     }
   }
 }

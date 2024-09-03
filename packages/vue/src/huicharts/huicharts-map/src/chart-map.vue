@@ -6,17 +6,19 @@
 </template>
 
 <script>
-import Core from '../../chart-core'
-import { sankey } from './sankey'
+import Core from '@opentiny/vue-huicharts-core'
+
+import { map } from './map'
+import * as echarts from 'echarts'
 import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: $prefix + 'ChartSankey',
+  name: $prefix + 'ChartMap',
   mixins: [Core],
 
   data() {
     return {
-      iChartName: 'SankeyChart'
+      iChartName: 'RegionChart'
     }
   },
   methods: {
@@ -24,10 +26,18 @@ export default {
       let { columns = [], rows = [] } = this.data
 
       const extra = {
+        tooltipVisible: this.tooltipVisible,
         legendVisible: this.legendVisible,
-        tooltipVisible: this.tooltipVisible
+        extend: this.extend,
+        echarts,
+        color: ['#2070F3', '#55CCD9', '#715AF8', '#8AC8F3'],
+        _once: {
+          onresize: true
+        }
       }
-      const option = sankey(columns, rows, this.settings, extra)
+
+      const option = map(columns, rows, this.settings, extra)
+
       this.option = {
         ...option
       }

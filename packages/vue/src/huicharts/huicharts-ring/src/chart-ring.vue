@@ -6,17 +6,17 @@
 </template>
 
 <script>
-import Core from '../../chart-core'
-import { sankey } from './sankey'
+import Core from '@opentiny/vue-huicharts-core'
+import { t } from '@opentiny/vue-locale'
+import { pie } from './ring'
 import { $prefix } from '@opentiny/vue-common'
 
 export default {
-  name: $prefix + 'ChartSankey',
+  name: $prefix + 'ChartRing',
   mixins: [Core],
-
   data() {
     return {
-      iChartName: 'SankeyChart'
+      iChartName: 'PieChart'
     }
   },
   methods: {
@@ -25,12 +25,10 @@ export default {
 
       const extra = {
         legendVisible: this.legendVisible,
-        tooltipVisible: this.tooltipVisible
+        tooltipVisible: this.tooltipVisible,
+        t
       }
-      const option = sankey(columns, rows, this.settings, extra)
-      this.option = {
-        ...option
-      }
+      this.option = pie(columns, rows, this.settings, extra, true)
     }
   }
 }

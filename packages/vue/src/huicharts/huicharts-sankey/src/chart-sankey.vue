@@ -6,28 +6,28 @@
 </template>
 
 <script>
-import Core from '../../chart-core'
+import Core from '@opentiny/vue-huicharts-core'
+import { sankey } from './sankey'
 import { $prefix } from '@opentiny/vue-common'
-import { wordcloud } from './wordcloud'
-import 'echarts-wordcloud'
 
 export default {
-  name: $prefix + 'ChartWordcloud',
+  name: $prefix + 'ChartSankey',
   mixins: [Core],
 
   data() {
     return {
-      iChartName: 'WordCloudChart'
+      iChartName: 'SankeyChart'
     }
   },
   methods: {
     updateChart() {
-      const { columns = [], rows = [] } = this.data
+      let { columns = [], rows = [] } = this.data
 
       const extra = {
+        legendVisible: this.legendVisible,
         tooltipVisible: this.tooltipVisible
       }
-      const option = wordcloud(columns, rows, this.settings, extra)
+      const option = sankey(columns, rows, this.settings, extra)
       this.option = {
         ...option
       }
