@@ -3,9 +3,9 @@
 - 将 `smb-theme.js` 中的变量值为默认值，smb-theme中有大量的px, 颜色值，都原样复制即可！
 - 将`vars.less`中要被替换的变量收集起来，另存到`old-theme.js`中去.
 
-- 不处理 `base/theme` 2个文件夹。
-- 不处理 `images/mixins/svgs` 2个文件夹。
-- 不处理 `transition` 2个文件夹。
+- 不处理 `base/theme` 文件夹。
+- 不处理 `images/mixins/svgs` 文件夹。
+- 不处理 `transition` 文件夹。
 
 ## 例外处理
 
