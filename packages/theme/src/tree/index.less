@@ -365,6 +365,10 @@
       align-items: center;
       padding-left: calc(var(--ti-tree-node-label-margin-left) / 2);
       padding-right: var(--ti-tree-node-content-padding-right);
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 
@@ -386,6 +390,7 @@
     display: flex;
     align-items: center;
     height: 100%;
+    cursor: pointer;
 
     svg {
       fill: var(--ti-tree-node-operate-icon-color);
