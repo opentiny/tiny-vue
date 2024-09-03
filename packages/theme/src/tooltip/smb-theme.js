@@ -2,7 +2,7 @@ export const tinyTooltipSmbTheme = {
   'ti-tooltip-box-shadow': '0px 2px 12px 0px rgba(0,0,0,0.08)',
   'ti-tooltip-popper-light-border-color': '#fff',
   'ti-tooltip-popper-light-text-color': 'var(--ti-common-color-text-primary)',
-  'ti-tooltip-padding-vertical': '9px',
+  'ti-tooltip-padding-vertical': '12px',
   'ti-tooltip-padding-horizontal': '16px',
   'ti-tooltip-popper-border-radius': '8px',
   'ti-tooltip-popper-info-bg-color': '#1476FF',

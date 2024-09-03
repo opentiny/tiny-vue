@@ -78,5 +78,6 @@ export const tinyButtonSmbTheme = {
   'ti-button-only-icon-disabled-border-color': '#dbdbdb',
   'ti-button-ghost-disabled-text-color': '#c2c2c2',
   'ti-button-ghost-disabled-border-color': '#dbdbdb',
-  'ti-button-ghost-hover-border-color': '#c2c2c2'
+  'ti-button-ghost-hover-border-color': '#c2c2c2',
+  'ti-button-size-normal-padding': 'var(--ti-common-space-6)'
 }

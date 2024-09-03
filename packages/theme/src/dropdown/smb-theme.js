@@ -14,5 +14,7 @@ export const tinyDropdownSmbTheme = {
   'ti-dropdown-trigger-only-svg-width': 'var(--ti-common-size-5x)',
   'ti-dropdown-trigger-only-svg-height': 'var(--ti-common-size-5x)',
   'ti-dropdown-trigger-only-svg-hover-bg-color': 'rgba(0,0,0,0.05)',
-  'ti-dropdown-trigger-only-svg-hover-radius': 'var(--ti-common-border-radius-2)'
+  'ti-dropdown-trigger-only-svg-hover-radius': 'var(--ti-common-border-radius-2)',
+  'ti-dropdown-line-height': 'var(--ti-common-line-height-1)',
+  'ti-dropdown-suffix-icon-margin-vertical': 'var(--ti-common-space-2x)'
 }

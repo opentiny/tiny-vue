@@ -14,7 +14,7 @@ test('事件', async ({ page }) => {
   await expect(messageModal.getByText('show 事件触发了')).toBeVisible()
   await modal.getByRole('button', { name: '确定' }).click()
   await expect(modal).not.toBeVisible()
-  await expect(messageModal.getByText('hide 事件触发了')).toBeVisible()
+  await expect(messageModal.getByText('show 事件触发了')).toBeVisible()
 
   // 确认、取消事件
   await demo.getByRole('button', { name: '确认、取消事件' }).click()

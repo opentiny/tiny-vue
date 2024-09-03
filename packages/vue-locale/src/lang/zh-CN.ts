@@ -227,7 +227,9 @@ export default {
       img: '图片',
       color: '颜色',
       table: '表格',
-      backgroundColor: '文字背景色'
+      backgroundColor: '文字背景色',
+      localResources: '本地资源',
+      resourceLink: '资源链接'
     },
     calendar: {
       showType: {
