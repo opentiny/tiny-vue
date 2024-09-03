@@ -72,7 +72,7 @@ export default {
 }
 .tiny-filter-panel-textarea :deep(.tiny-textarea__inner) {
   width: 276px;
-  height: 112px;
+  height: 80px;
   box-sizing: border-box;
   padding: 6px 10px;
 }
