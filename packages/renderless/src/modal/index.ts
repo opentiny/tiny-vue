@@ -140,6 +140,7 @@ export const beforeUnmouted =
     isMobileFirstMode && off(window, 'resize', api.resetDragStyle)
     off(document, 'keydown', api.handleGlobalKeydownEvent)
     off(window, 'hashchange', api.handleHashChange)
+    off(window, 'resize', api.resetModalViewPosition)
     api.removeMsgQueue()
     api.hideScrollbar()
 
