@@ -224,7 +224,9 @@ export default {
       img: 'img',
       color: 'color',
       table: 'table',
-      backgroundColor: 'backgroundColor'
+      backgroundColor: 'backgroundColor',
+      localResources: 'Local resources',
+      resourceLink: 'Resource Link'
     },
     calendar: {
       showType: {

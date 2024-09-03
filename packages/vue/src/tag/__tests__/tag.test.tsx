@@ -52,7 +52,7 @@ describe('PC Mode', () => {
     const rgbColor = 'rgb(64, 158, 255)'
     const wrapper = mount(() => <Tag color={rgbColor}>标签</Tag>)
     await nextTick()
-    expect(wrapper.find('.tiny-tag').attributes().style).contains(`background-color: ${rgbColor}`)
+    expect(wrapper.find('.tiny-tag').attributes().style).contains(`background: ${rgbColor}`)
   })
 
   // type 显示类型; 该属性的可选值为 success / info / warning / danger

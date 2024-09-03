@@ -176,6 +176,13 @@
     cursor: pointer;
   }
 
+  .tiny-dropdown__suffix-inner {
+    .tiny-svg {
+      margin: var(--ti-dropdown-suffix-icon-margin-vertical) 0;
+      vertical-align: top;
+    }
+  }
+
   &--visible {
     // rotate(180deg) 会受svg的margin影响，位置会变动！
     transform: scaleY(-1);

@@ -37,8 +37,9 @@
               :class="[
                 'tiny-group-item__sup',
                 {
-                  'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
-                  'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon
+                  'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text && !node.sup.tag,
+                  'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon && !node.sup.tag,
+                  'tiny-group-item__sup-tag': node.sup.tag
                 },
                 typeof node.sup.class === 'string' ? node.sup.class : '',
                 ...(Array.isArray(node.sup.class) ? node.sup.class : [])
@@ -65,8 +66,9 @@
               :class="[
                 'tiny-group-item__sup',
                 {
-                  'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
-                  'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon
+                  'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text && node.sup.tag,
+                  'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon && node.sup.tag,
+                  'tiny-group-item__sup-tag': node.sup.tag
                 },
                 typeof node.sup.class === 'string' ? node.sup.class : '',
                 ...(Array.isArray(node.sup.class) ? node.sup.class : [])

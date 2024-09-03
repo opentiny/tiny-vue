@@ -15,6 +15,7 @@ import Input from './src/input'
 import DateRange from './src/date-range'
 import Pager from './src/pager'
 import DialogBox from './src/dialog-box'
+import Popeditor from './src/popeditor'
 import { version } from './package.json'
 
 export default {
@@ -37,6 +38,7 @@ export default {
     Input,
     DateRange,
     Pager,
-    DialogBox
+    DialogBox,
+    Popeditor
   }
 }

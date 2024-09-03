@@ -58,6 +58,7 @@
         </span>
       </template>
     </tiny-input>
+    <!-- 联想查询下拉表格 -->
     <transition name="tiny-zoom-in-top" @after-leave="doDestroy">
       <div ref="popper" v-show="state.showSuggestPanel">
         <tiny-grid
@@ -79,7 +80,10 @@
         ></tiny-grid>
       </div>
     </transition>
+
     <tiny-dialog-box
+      ref="popeditorDialogBox"
+      class="tiny-popeditor__dialog-box"
       :visible="state.open"
       @update:visible="state.open = $event"
       :resize="resize"
@@ -103,12 +107,9 @@
                 :key="item.field"
                 :style="{ width: 100 * ((item.span || 6) / 12) + '%' }"
               >
-                <label
-                  class="tiny-popeditor__search-label"
-                  :title="item.label"
-                  :style="{ width: item.labelWidth || '160px' }"
-                  >{{ item.label }}</label
-                >
+                <label class="tiny-popeditor__search-label" :title="item.label" :style="{ width: item.labelWidth }">
+                  {{ item.label }}
+                </label>
                 <component
                   :is="item.component || 'tiny-input'"
                   v-model="state.search[item.field]"
@@ -137,6 +138,7 @@
             </div>
           </slot>
         </div>
+
         <div v-if="popseletor === 'grid'" class="tiny-popeditor-body">
           <div :class="['tiny-popeditor-body__left', { 'tiny-popeditor-body__radio': !multi }]">
             <div class="tiny-popeditor__tabs">
@@ -162,6 +164,7 @@
                 </ul>
               </div>
               <div class="tiny-popeditor__tabs-body">
+                <!-- state.historyGridDataset没有赋值，没有找到实际的使用意义 -->
                 <div v-if="state.activeName === 'history'" class="tabs-body-item">
                   <tiny-grid
                     ref="historyGrid"
@@ -276,16 +279,22 @@
             </div>
           </div>
         </div>
-        <div v-if="popseletor === 'tree'">
+
+        <div v-if="popseletor === 'tree'" class="tiny-popeditor__tree">
           <tiny-input
-            class="tiny-popeditor_filter-input"
+            class="tiny-popeditor__filter-input"
             :placeholder="t('ui.popeditor.filterNode')"
             v-model="state.filterText"
+            :prefix-icon="iconSearch"
             :suffix-icon="iconSearch"
           ></tiny-input>
-          <tiny-tree ref="tree" v-bind="state.treeOp" @check-change="treeCheckChange"></tiny-tree>
+
+          <div class="tiny-popeditor__tree-wrapper" :style="{ maxHeight: state.treeWrapperMaxHeight }">
+            <tiny-tree ref="tree" v-bind="state.treeOp" @check-change="treeCheckChange"></tiny-tree>
+          </div>
         </div>
       </template>
+
       <template #footer>
         <span class="tiny-toolbar" v-if="state.theme === 'saas'">
           <slot name="footer" :confirm="handleConfirm" :cancel="handleCancel">

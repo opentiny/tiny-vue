@@ -1,6 +1,18 @@
 <template>
   <div class="demo-milestone">
+    <div>场景1： 默认</div>
+    <br />
+    <tiny-milestone :data="milestoneData"></tiny-milestone>
+    <br />
+    <br />
+    <div>场景2： 自定义状态色</div>
+    <br />
     <tiny-milestone :data="milestoneData" :milestones-status="statusMap"></tiny-milestone>
+    <br />
+    <br />
+    <div>场景3： 自定义状态色 + 实心显示</div>
+    <br />
+    <tiny-milestone :data="milestoneData" :milestones-status="statusMap" solid></tiny-milestone>
   </div>
 </template>
 
@@ -13,14 +25,15 @@ const statusMap = ref({
   // 对应 status = completed
   completed: 'var(--ti-common-color-line-active)',
   // 对应 status = doing
-  doing: '#7ED321',
+  doing: '#9ec591',
   // 对应 status = back
-  back: '#f5222d',
+  back: '#97a7db',
   // 对应 status = end
   end: '#faad14',
   // 对应 status = cancel
   cancel: '#d9d9d9'
 })
+
 // 数据源
 const milestoneData = ref([
   {
@@ -70,16 +83,10 @@ const milestoneData = ref([
     status: 'end',
     flags: [
       {
-        status: 'completed',
+        status: 'cancel',
         content: 'test6'
       }
     ]
   }
 ])
 </script>
-
-<style scoped>
-.demo-milestone ::v-deep .tiny-milestone__description-status {
-  margin-top: 4px;
-}
-</style>
