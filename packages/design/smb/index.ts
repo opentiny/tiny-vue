@@ -15,7 +15,7 @@ import Time from './src/time-spinner'
 import UploadList from './src/upload-list'
 import BreadcrumbItem from './src/breadcrumb-item'
 import Milestone from './src/milestone'
-import Split from './src/Split'
+import Split from './src/split'
 import TransferPanel from './src/transfer-panel'
 import { version } from './package.json'
 
