@@ -8,13 +8,13 @@ export const tinyCheckboxButtonSmbTheme = {
   'ti-checkbox-button-left-border-radius': '6px',
   'ti-checkbox-button-border-radius': '6px',
   'ti-checkbox-button-mini-padding-horizontal': '16px',
-  'ti-checkbox-button-padding-vertical': '4px',
+  'ti-checkbox-button-padding-vertical': '1px',
   'ti-checkbox-button-height': '24px',
   'ti-checkbox-button-margin-horizontal': '4px',
   'ti-checkbox-button-mini-margin-horizontal': '2px',
   'ti-checkbox-button-size-mini-font-size': 'var(--ti-common-font-size-0)',
   'ti-checkbox-button-size-mini-border-radius': '4px',
-  'ti-checkbox-button-size-small-padding-horizontal': '16px',
+  'ti-checkbox-button-size-small-padding-horizontal': 'var(--ti-common-space-6x)',
   'ti-checkbox-button-size-small-height': '28px',
   'ti-checkbox-button-size-medium-height': '40px',
   'ti-checkbox-button-checked-display': 'block',
@@ -28,5 +28,6 @@ export const tinyCheckboxButtonSmbTheme = {
   'ti-checkbox-button-mini-last-left-border-radius': '4px',
   'ti-checkbox-button-mini-last-right-border-radius': '4px',
   'ti-checkbox-button-checked-border-color': '#1476FF',
-  'ti-checkbox-shadow-color': 'transparent'
+  'ti-checkbox-shadow-color': 'transparent',
+  'ti-checkbox-button-small-font-size': 'var(--ti-common-font-size-0)'
 }

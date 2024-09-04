@@ -155,10 +155,11 @@
   }
 
   &--medium &__inner {
-    line-height: var(--ti-checkbox-button-size-medium-height);
+    display: flex;
+    align-items: center;
     height: var(--ti-checkbox-button-size-medium-height);
-    padding: 0 32px;
-    font-size: var(--ti-common-font-size-1);
+    padding: 9px 32px;
+    font-size: var(--ti-checkbox-button-medium-font-size);
     border-radius: var(--ti-checkbox-button-border-radius);
 
     &.is-round {
@@ -166,11 +167,25 @@
     }
   }
 
+  &--default &__inner {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 5px var(--ti-checkbox-button-size-small-padding-horizontal);
+    font-size: var(--ti-checkbox-button-default-font-size);
+    border-radius: var(--ti-checkbox-button-border-radius);
+
+    &.is-round {
+      padding: 12px 15px;
+    }
+  }
+
   &--small &__inner {
+    display: flex;
+    align-items: center;
     height: var(--ti-checkbox-button-size-small-height);
-    line-height: calc(var(--ti-checkbox-button-size-small-height) - 2px);
-    padding: 0 var(--ti-checkbox-button-size-small-padding-horizontal);
-    font-size: var(--ti-common-font-size-base);
+    padding: 3px var(--ti-checkbox-button-size-small-padding-horizontal);
+    font-size: var(--ti-checkbox-button-small-font-size);
     border-radius: var(--ti-checkbox-button-border-radius);
 
     &.is-round {
@@ -179,9 +194,10 @@
   }
 
   &--mini &__inner {
+    display: flex;
+    align-items: center;
     padding: var(--ti-checkbox-button-padding-vertical) var(--ti-checkbox-button-mini-padding-horizontal);
     height: var(--ti-checkbox-button-size-mini-height);
-    margin: 0 var(--ti-checkbox-button-mini-margin-horizontal);
     font-size: var(--ti-checkbox-button-size-mini-font-size);
     border-radius: var(--ti-checkbox-button-size-mini-border-radius);
 

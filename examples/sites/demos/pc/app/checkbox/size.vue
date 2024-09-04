@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       cities: ['上海', '北京', '广州', '深圳'],
-      sizeList: ['medium', '', 'small', 'mini'],
+      sizeList: ['medium', 'default', 'small', 'mini'],
       checkboxGroup: ['上海']
     }
   }

@@ -160,9 +160,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>当复选框为按钮形式时， <code>size</code> 属性可以设置尺寸，可选项有 <code>medium</code> 、<code>small</code> 、<code>mini</code>，不设置则为默认样式。</p>',
+          '<p>当复选框为按钮形式时， <code>size</code> 属性可以设置尺寸，可选项有 <code>medium</code> 、<code>default</code>、<code>small</code> 、<code>mini</code>，不设置则为默认样式。</p>',
         'en-US':
-          '<p>When the check box is a button, you can set the size of the button through the <code>size</code> attribute. The options are medium, small, and mini. \n\n Setting the <code>disabled</code> property on <code>checkbox-button</code> will disable a check button. If the <code>disabled</code> attribute is configured on the <code>checkbox-group</code> tab, all check buttons are disabled. </p>'
+          '<p>When the check box is a button, you can set the size of the button through the <code>size</code> attribute. The options are medium, default, small, and mini. \n\n Setting the <code>disabled</code> property on <code>checkbox-button</code> will disable a check button. If the <code>disabled</code> attribute is configured on the <code>checkbox-group</code> tab, all check buttons are disabled. </p>'
       },
       codeFiles: ['size.vue']
     },
