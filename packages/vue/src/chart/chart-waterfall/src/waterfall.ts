@@ -11,7 +11,7 @@
  * labelMap  坐标轴名称映射, 设置别名
  */
 
-import { itemLabel, itemContent, getFormatted } from '@opentiny/vue-huicharts-core'
+import { itemLabel, itemContent, getFormatted } from '@opentiny/vue-chart-core'
 
 const getWaterfallTooltip = (dataType, digit) => {
   const formatter = (items) => {

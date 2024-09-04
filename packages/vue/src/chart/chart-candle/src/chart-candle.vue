@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Core from '@opentiny/vue-huicharts-core'
+import Core from '@opentiny/vue-chart-core'
 import { t } from '@opentiny/vue-locale'
 import { candle } from './candle'
 import { $prefix } from '@opentiny/vue-common'

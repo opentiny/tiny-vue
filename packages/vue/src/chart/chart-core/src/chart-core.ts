@@ -2,10 +2,10 @@ import { $prefix } from '../common/util'
 import { isObject } from '../common/type'
 import setExtend from '../common/extend'
 import { DEFAULT_COLORS, SAAS_DEFAULT_COLORS, SAAS_DEFAULT_SAME_COLORS, DEFAULT_THEME } from '../common/constants'
-import IntegrateChart from '@opentiny/huicharts'
-import BaiduMapChart from '@opentiny/huicharts/components/BaiduMapChart'
-import AutonaviMapChart from '@opentiny/huicharts/components/AutonaviMapChart'
-import cloneDeep from '@opentiny/huicharts/util/cloneDeep'
+import IntegrateChart from '../base'
+import BaiduMapChart from '../base/components/BaiduMapChart'
+import AutonaviMapChart from '../base/components/AutonaviMapChart'
+import cloneDeep from '../base/util/cloneDeep'
 import '@opentiny/vue-theme/chart-core/index.less'
 
 export default {
@@ -248,12 +248,6 @@ export default {
           this.integrateChart && this.integrateChart.echartsIns && this.integrateChart.echartsIns.resize()
         })
       }
-    },
-    colors: {
-      handler(val) {
-        this.refreshChart()
-      },
-      deep: true
     }
   },
   methods: {
@@ -342,15 +336,7 @@ export default {
         })
       }
     },
-
-    // 更新图表
     refreshChart() {
-      if (!this.option.theme) {
-        this.option.theme = 'cloud-light'
-      }
-      if (Array.isArray(this.colors) && this.colors.length > 0) {
-        option.color = cloneDeep(this.colors)
-      }
       const { data } = this
       if (Object.keys(this.options).length === 0) {
         this.updateChart(data)
@@ -384,21 +370,8 @@ export default {
       }, this.changeDelay)
       this.eChartOption = this.integrateChart.eChartOption
     },
-
-    // 初始渲染图表
     renderChart(option) {
-      // 设置默认theme为'cloud-light'
-      if (!option.theme) {
-        option.theme = 'cloud-light'
-      }
-
-      // 将外部colors放入配置项中
-      if (Array.isArray(this.colors) && this.colors.length > 0) {
-        option.color = cloneDeep(this.colors)
-      }
       const plugins = this.plugins || {}
-
-      // 判断是否为huicharts自定义图表
       if (this.isSelfChart) {
         this.integrateChart.init(this.$refs.chartRef)
         if (this.colorMode !== 'default') {
@@ -409,12 +382,8 @@ export default {
       } else {
         this.selfSetting(option)
         this.setAnimation(option)
-
-        // theme为ecahrts主题参数
-        const theme = this.themeName || this.theme || DEFAULT_THEME
-        this.integrateChart.init(this.$refs.chartRef, this.initOpts, theme)
-
-        // 通过colorMode参数控制颜色
+        const themeName = this.themeName || this.theme || DEFAULT_THEME
+        this.integrateChart.init(this.$refs.chartRef, themeName, this.initOpts)
         if (this.colorMode !== 'default') {
           option.color = this.computedChartColor()
         }
@@ -422,24 +391,16 @@ export default {
         this.$emit('handle-color', option.color)
         this.applyMarks(this.integrateChart.eChartOption)
       }
-
-      // 判断extend，将extend放入配置项中
       if (this.extend && Object.keys(this.extend).length !== 0) {
         option.extend = this.applyExtend(this.integrateChart.eChartOption)
         this.integrateChart.setSimpleOption(this.iChartName, option, plugins)
       }
       this.integrateChart.render(this.renderOption)
-
-      // 返回图表实例
       this.$emit('ready', this.integrateChart.echartsIns, option)
-
-      // 返回图表实例(仅一次)
       if (!this.once['ready-once']) {
         this.once['ready-once'] = true
         this.$emit('ready-once', this.integrateChart.echartsIns, option)
       }
-
-      // 赋值echartOption，方便用户获取
       this.eChartOption = this.integrateChart.eChartOption
     },
     addEvents(val) {
