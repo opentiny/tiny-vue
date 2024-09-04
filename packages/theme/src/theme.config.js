@@ -31,6 +31,7 @@ export default {
   'color-select-panel': 'color-select-panel',
   'color-picker': 'color-picker',
   'calendar-view': 'calendar-view',
+  'calendar-view-tooltip': 'calendar-view-tooltip',
   'detail-page': 'detail-page',
   'dialog-box': 'dialog-box__wrapper',
   'dropdown-item': 'dropdown-item',
