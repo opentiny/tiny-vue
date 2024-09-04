@@ -43,6 +43,8 @@ export default {
   'date-table': 'date-table',
   'date-editor': 'date-editor',
   'fall-menu': 'fall-menu',
+  'filter-box': 'filter-box',
+  'filter-panel': 'filter-panel__popover',
   'form-valid': 'form__valid',
   'form-item': 'form-item',
   'img-preview': 'img-preview',
