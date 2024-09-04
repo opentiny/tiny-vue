@@ -9,7 +9,7 @@ export default {
         'en-US': 'Horizontal Chain Steps'
       },
       desc: {
-        'zh-CN': '<p>通过添加 <code>line</code> 属性用作横向单链型步骤条。</p>',
+        'zh-CN': '<p>通过添加 <code>line</code> 用作横向单链型步骤条。</p>',
         'en-US': '<p>Use the <code>line</code> property to create a horizontal chain steps.</p>'
       },
       codeFiles: ['line-horizontal.vue']
@@ -21,10 +21,22 @@ export default {
         'en-US': 'Vertical Line Steps'
       },
       desc: {
-        'zh-CN': '<p>使用 <code>line</code> 与 <code>vertical</code> 属性设置为条形步骤条。</p>\n',
+        'zh-CN': '<p>使用 <code>line</code> 与 <code>vertical</code> 设置为条形步骤条。</p>\n',
         'en-US': 'Use <code>line</code> and <code>vertical<</code> attribute to set vertical steps.'
       },
       codeFiles: ['line-vertical.vue']
+    },
+    {
+      demoId: 'line-dot',
+      name: {
+        'zh-CN': '垂直点状型',
+        'en-US': 'Vertical dot Steps'
+      },
+      desc: {
+        'zh-CN': '<p>使用 <code>dot</code> 与 <code>vertical</code> 设置为垂直点状形。</p>\n',
+        'en-US': 'Use<code>dot</code>and<code>vertical</code>to set it as a vertical dot shape.'
+      },
+      codeFiles: ['line-dot.vue']
     },
     {
       demoId: 'advanced-steps',
@@ -46,7 +58,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>步骤条两种模式支持 <code>size</code> 属性设置尺寸：</p>\n        <p>1. <code>line</code> 单链型模式支持 <code>mini</code>、<code>small</code>、<code>medium</code>、<code>large</code> 4 种尺寸，默认值为 <code>medium</code>。</p>\n        <p>2. <code>advanced</code> 高级向导模式支持 <code>medium</code>、<code>large</code> 2 种尺寸，默认值为 <code>medium</code>。</p>',
+          '<p>步骤条两种模式支持 <code>size</code> 设置尺寸：</p>\n        <p>1. <code>line</code> 单链型模式支持 <code>mini</code>、<code>small</code>、<code>medium</code>、<code>large</code> 4 种尺寸，默认值为 <code>medium</code>。</p>\n        <p>2. <code>advanced</code> 高级向导模式支持 <code>medium</code>、<code>large</code> 2 种尺寸，默认值为 <code>medium</code>。</p>',
         'en-US':
           '<p>Two modes of the steps support the <code>size</code>  setting:</p>\n        <p>1. The <code>line</code> mode supports 4 sizes: <code>mini</code>, <code>small</code>, <code>medium</code>, and <code>large</code>, with a default value of <code>medium</code>.</p>\n        <p>2. The <code>advanced</code> mode support 2 sizes: <code>medium</code>, and <code>large</code>, with a default value of <code>medium</code>.</p>'
       },
@@ -60,7 +72,7 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>使用 <code>space</code> 属性配置步骤条节点的宽度。</p><p>通过 <code>flex</code> 属性开启总宽度自适应，节点等宽，撑满父容器，节点名称超出省略。</p>',
+          '<p>使用 <code>space</code> 配置步骤条节点的宽度。</p><p>通过 <code>flex</code> 开启总宽度自适应，节点等宽，撑满父容器，节点名称超出省略。</p>',
         'en-US':
           '<p>Using <code>space</code> attribute to set node width. </p><p>Enable responsive total width using the <code>flex</code> property, with equal width for nodes that fill the parent container, and node names that exceed the container width are truncated.</p>'
       },
