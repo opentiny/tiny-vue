@@ -19,6 +19,7 @@
 @steps-senior-prefix-cls: ~'@{css-prefix}steps-senior';
 @steps-line-prefix-cls: ~'@{css-prefix}steps-line';
 @steps-standard-prefix-cls: ~'@{css-prefix}steps-standard';
+@steps-dot-prefix-cls: ~'@{css-prefix}steps-dot';
 
 .@{steps-prefix-cls},
 .@{timeline-prefix-cls} {
@@ -1074,6 +1075,102 @@
       position: absolute;
       top: -10px;
       right: 10px;
+    }
+  }
+}
+
+.@{steps-dot-prefix-cls} {
+  display: flex;
+  flex-direction: column;
+
+  .@{steps-prefix-cls} {
+    &-block.fault {
+      & > .block-left .left-dot {
+        border-color: #f23030;
+      }
+
+      & > .block-right .title-vertical {
+        color: #f23030;
+      }
+    }
+
+    &-block.disabled {
+      cursor: not-allowed;
+
+      & > .block-right .title-vertical {
+        color: #c2c2c2;
+      }
+    }
+
+    &-block {
+      display: flex;
+
+      &.done,
+      &.doing,
+      &.active:not(.fault, .disabled) {
+        & > .block-left .left-dot {
+          border-color: #191919;
+        }
+      }
+
+      &.done,
+      &.doing {
+        & > .block-left > .left-line {
+          background-color: #191919;
+        }
+
+        & > .block-right .title-vertical {
+          color: #191919;
+        }
+      }
+
+      &.active:not(.fault, .disabled) {
+        & > .block-left > .left-dot {
+          background-color: #191919;
+        }
+      }
+
+      & > .block-left {
+        margin-top: 6.5px;
+        margin-right: 12px;
+
+        & .left-dot {
+          width: 10px;
+          height: 10px;
+          border: 2px solid #c2c2c2;
+          border-radius: 50%;
+          box-sizing: border-box;
+        }
+
+        & .left-line {
+          margin: 4px auto 0px;
+          height: calc(100% - 11.5px);
+          width: 1px;
+          background-color: #dbdbdb;
+        }
+      }
+
+      & > .block-right {
+        font-size: 14px;
+        line-height: 1.5;
+        padding-bottom: 12px;
+
+        .title-vertical {
+          color: #595959;
+        }
+
+        .description {
+          margin-top: 8px;
+          margin-bottom: 12px;
+          color: #808080;
+        }
+      }
+
+      &:last-child {
+        & > .block-left .left-line {
+          display: none;
+        }
+      }
     }
   }
 }

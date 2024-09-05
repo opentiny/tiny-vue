@@ -3,6 +3,7 @@ import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import PcStandardTemplate from './pc/pc-standard.vue'
 import PcAdvancedTemplate from './pc/pc-advanced.vue'
 import PcLineTemplate from './pc/pc-line.vue'
+import PcDotTemplate from './pc/pc-dot.vue'
 import '@opentiny/vue-theme/steps/index.less'
 
 const template = (mode, props) => {
@@ -10,6 +11,8 @@ const template = (mode, props) => {
     return PcAdvancedTemplate
   } else if (props.line) {
     return PcLineTemplate
+  } else if (props.dot) {
+    return PcDotTemplate
   } else {
     return PcStandardTemplate
   }
@@ -48,6 +51,7 @@ export default defineComponent({
     vertical: Boolean,
     advanced: Boolean,
     line: Boolean,
+    dot: Boolean,
     duration: {
       type: Number,
       default: 300
