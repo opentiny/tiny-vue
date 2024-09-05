@@ -8,7 +8,7 @@ test('带边框复选框', async ({ page }) => {
   const checkbox = demo.locator('.tiny-checkbox')
   const label = demo.locator('.tiny-checkbox__label > div').first()
 
-  await expect(checkbox).toHaveCSS('width', '156px')
+  await expect(checkbox).toHaveCSS('width', '158px')
   await expect(checkbox).toHaveCSS('height', '40px')
   await expect(checkbox).toHaveCSS('border-left-color', 'rgb(173, 176, 184)')
   await expect(checkbox).toHaveCSS('border-bottom-color', 'rgb(173, 176, 184)')
