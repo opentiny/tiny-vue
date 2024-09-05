@@ -105,7 +105,7 @@ export default defineComponent({
     const searchMenu = (value, data) => {
       if (!value) return true
       const trimValue = value.trim().toLowerCase()
-      const isGird = (trimValue === 'grid' || trimValue === '表格') && data.key?.startsWith('grid-')
+      const isGird = (trimValue === 'grid' || trimValue === '表格') && data.key?.startsWith('grid')
       return data.label.toLowerCase().includes(value.toLowerCase()) || isGird
     }
 

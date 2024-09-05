@@ -19,10 +19,44 @@
   --ti-milestone-icon-width: var(--ti-common-size-5x, 20px);
   // 节点高度
   --ti-milestone-icon-height: var(--ti-common-size-5x, 20px);
+  // 节点默认边框色
+  --ti-milestone-icon-border-color: var(--ti-common-color-line-active);
+  // 节点默认边框粗细
+  --ti-milestone-icon-border-width: var(--ti-common-size-0);
+  // 完成节点边框粗细
+  --ti-milestone-icon-border-width-completed: var(--ti-common-border-weight-1);
+  // 节点图标大小
+  --ti-milestone-icon-size: var(--ti-common-font-size-base);
+  // 完成节点图标颜色
+  --ti-milestone-icon-color: #1890ff; // 保留原来样式，暂未适配默认主题 var(--ti-common-color-icon);
+  // 节点绝对定位左侧间距
+  --ti-milestone-icon-left: ~'calc(50% - 10px)';
+  // 节点绝对定位顶部间距
+  --ti-milestone-icon-top: var(--ti-common-size-base, 4px);
+
   // 未完成线路背景色
   --ti-milestone-line-bg-color: #dbdbdb;
+  // 完成节点线路背景色
+  --ti-milestone-line-bg-color-completed: #dbdbdb;
+  // 线高度
+  --ti-milestone-line-height: var(--ti-common-size-base, 4px);
+  // 线宽度
+  --ti-milestone-line-width: 100%;
+  // 线绝对定位左侧偏移
+  --ti-milestone-line-left: 50%;
+  // 线绝对定位顶部偏移
+  --ti-milestone-line-top: -8px;
   // 节点下方日期文本色
   --ti-milestone-status-text-color: var(--ti-common-color-placeholder, #adb0b8);
+  // 节点下方日期文本字号
+  --ti-milestone-status-font-size: var(--ti-common-font-size-1);
+
+  // 旗子宽度
+  --ti-milestone-flag-width: 50px;
+  // 旗子高度
+  --ti-milestone-flag-height: 34px;
+  // 旗子内间距
+  --ti-milestone-flag-padding: var(--ti-common-size-0, 0px) var(--ti-common-size-base, 4px);
   // 提示行高(hide)
   --ti-milestone-flag-tip-line-height: var(--ti-common-line-height-4, 20px);
   // 提示背景色(hide)
@@ -33,8 +67,27 @@
   --ti-milestone-flag-content-border-radius: var(--ti-common-border-radius-1, 4px);
   // 旗子默认字号(hide)
   --ti-milestone-flag-content-font-size: var(--ti-common-font-size-1, 14px);
+  // 旗子背景色
+  --ti-milestone-flag-content-bg-color: #333;
+  // 旗子标题字重
+  --ti-milestone-flag-name-font-weight: var(--ti-common-font-weight-4);
+  // 旗子描述文本色
+  --ti-milestone-flag-desc-text-color: var(--ti-common-color-light, #fff);
   // 旗子文本色
   --ti-milestone-text-color: var(--ti-common-color-light, #fff);
   // 旗子字号
   --ti-milestone-flag-font-size: var(--ti-common-font-size-base, 12px);
+  // 旗子描述字号大小
+  --ti-milestone-flag-desc-font-size: var(--ti-common-font-size-base, 12px);
+  // 旗子行高
+  --ti-milestone-flag-line-height: 14px;
+  // 旗子描述行高
+  --ti-milestone-flag-desc-line-height: 14px;
+
+  // 旗子线绝对定位左侧间距
+  --ti-milestone-flag-line-margin-left: 50%;
+  // 旗子线背景色
+  --ti-milestone-flag-line-bg-color: #333;
+  // 旗子圆圈是否显示
+  --ti-milestone-dot-display: block;
 }

@@ -20,7 +20,7 @@ import type {
   IMilestoneFlagOperateParams
 } from '@/types'
 
-const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
+export const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
   if (hex.includes('var')) {
     hex = hex.replace(/var\(|\)/g, '')
     hex = getComputedStyle(document.documentElement).getPropertyValue(hex)
@@ -114,4 +114,14 @@ export const handleFlagClick =
   ({ idx, flag }: IMilestoneHandleFlagClickParams) => {
     emit('flagclick', idx, flag) // deprecated 原事件flagclick v3.5.0废弃，v3.17.0移除；移除原因：命名规范
     emit('flag-click', idx, flag)
+  }
+
+export const getFlagStyle =
+  (props) =>
+  ({ index, idx }) => {
+    return {
+      left: `calc(${
+        (100 / (props.data[props.flagBefore ? index : index + 1][props.flagField].length + 1)) * (idx + 1)
+      }% - 29px)`
+    }
   }
