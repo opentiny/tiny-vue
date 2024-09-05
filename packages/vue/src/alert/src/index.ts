@@ -12,6 +12,8 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile|mobile-first'
 
+// 测试git-actions
+
 export const $constants = {
   ICON_MAP: {
     success: 'icon-success',
