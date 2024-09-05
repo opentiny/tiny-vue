@@ -274,15 +274,15 @@ const stopFn = (ev: Event) => {
 }
 
 /** 全局的resize观察器， 监听popper的大小改变  */
-if (isBrowser) {
-  const resizeOb = new ResizeObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.target.popperVm && entry.contentRect.height > 50) {
-        entry.target.popperVm.update()
-      }
+const resizeOb = isBrowser
+  ? new ResizeObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.target.popperVm && entry.contentRect.height > 50) {
+          entry.target.popperVm.update()
+        }
+      })
     })
-  })
-}
+  : null
 
 interface PopperOptions {
   arrowOffset: number
@@ -375,17 +375,18 @@ class Popper {
     this._options.modifierFns = modifiers.map((modifier) => {
       return this[modifier]
     })
-    this._popper.setAttribute('x-placement', this._options.placement)
 
-    this.state.position = this._getPopperPositionByRefernce(this._reference)
-
-    setStyle(this._popper, { position: this.state.position, top: 0 })
-    if (this._popper) {
-      this._popper.popperVm = this
-      resizeOb.observe(this._popper)
+    if (isBrowser) {
+      this._popper.setAttribute('x-placement', this._options.placement)
+      this.state.position = this._getPopperPositionByRefernce(this._reference)
+      setStyle(this._popper, { position: this.state.position, top: 0 })
+      if (this._popper) {
+        this._popper.popperVm = this
+        resizeOb.observe(this._popper)
+      }
+      this.update()
+      this._setupEventListeners()
     }
-    this.update()
-    this._setupEventListeners()
   }
 
   destroy() {

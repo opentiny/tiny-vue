@@ -11,6 +11,7 @@
  */
 
 import { on, off } from '../dom'
+import { isBrowser } from '../../browser'
 
 const fullscreenApi = [
   'fullscreenElement',
@@ -56,6 +57,7 @@ let fullscreenEvents = null
 
 const getFullScreenEvents = () => {
   for (let i = 0, len = fullscreenApiMap.length; i < len; i++) {
+    if (!isBrowser) return
     let eventName = fullscreenApiMap[i]
 
     if (eventName && eventName[1] in document) {

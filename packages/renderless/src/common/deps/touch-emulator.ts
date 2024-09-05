@@ -5,14 +5,15 @@ let initiated = false
 let eventTarget = null
 let mouseTarget = null
 
-const matches = Element.prototype.matches
+const matches = isBrowser ? Element.prototype.matches : null
 
 const closest = (el, s) => {
-  do {
-    if (matches.call(el, s)) return el
-    el = el.parentElement || el.parentNode
-  } while (el !== null && el.nodeType === 1)
-
+  if (isBrowser) {
+    do {
+      if (matches.call(el, s)) return el
+      el = el.parentElement || el.parentNode
+    } while (el !== null && el.nodeType === 1)
+  }
   return null
 }
 
