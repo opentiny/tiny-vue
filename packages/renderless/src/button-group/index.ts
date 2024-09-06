@@ -48,5 +48,12 @@ export const getItemClass =
       return { disabled: true }
     }
 
-    return props.plain ? { plain: props.plain } : {}
+    return props.plain
+      ? {
+          plain: props.plain,
+          medium: props.size === 'medium',
+          small: props.size === 'small',
+          mini: props.size === 'mini'
+        }
+      : {}
   }
