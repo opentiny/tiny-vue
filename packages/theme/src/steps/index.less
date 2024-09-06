@@ -1097,8 +1097,11 @@
     &-block.disabled {
       cursor: not-allowed;
 
-      & > .block-right .title-vertical {
-        color: #c2c2c2;
+      & > .block-right {
+        .title-vertical,
+        .description {
+          color: #c2c2c2;
+        }
       }
     }
 
