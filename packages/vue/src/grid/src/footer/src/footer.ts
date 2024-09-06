@@ -34,7 +34,9 @@ const classMap = {
   filterActive: 'filter__active',
   cellSummary: 'cell__summary',
   fixedLeftLast: 'fixed-left-last__column',
-  fixedRightFirst: 'fixed-right-first__column'
+  fixedRightFirst: 'fixed-right-first__column',
+  colRadio: 'col__radio',
+  colSelection: 'col__selection'
 }
 
 function doFooterSpan({ attrs, footerData, footerSpanMethod, params }) {
@@ -154,7 +156,9 @@ const renderfoots = (opt) => {
                   [classMap.colEllipsis]: hasEllipsis,
                   [classMap.filterActive]: column.filter && column.filter.hasFilter,
                   [classMap.fixedLeftLast]: column.fixed === 'left' && leftList[leftList.length - 1] === column,
-                  [classMap.fixedRightFirst]: column.fixed === 'right' && rightList[0] === column
+                  [classMap.fixedRightFirst]: column.fixed === 'right' && rightList[0] === column,
+                  [classMap.colRadio]: column.type === 'radio',
+                  [classMap.colSelection]: column.type === 'selection'
                 },
                 getClass(footerClassName, params),
                 getClass(footerCellClassName, params)

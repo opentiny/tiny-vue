@@ -84,7 +84,8 @@ export default defineComponent({
     'lockScroll',
     'compact',
     'encryptConfig',
-    'imageBgColor'
+    'imageBgColor',
+    'promptTip'
   ],
   setup(props, context) {
     return setup({
@@ -182,7 +183,8 @@ export default defineComponent({
       compact,
       encryptConfig,
       encryptDialogConfirm,
-      imageBgColor
+      imageBgColor,
+      promptTip
     } = this
 
     const listType = this.listType === 'saas' ? 'text' : this.listType
@@ -300,7 +302,8 @@ export default defineComponent({
             limit: this.limit
           })}
           placement="top"
-          popper-options={popperConfig}>
+          popper-options={popperConfig}
+        >
           <icon-help-query class="-mt-0.5  fill-color-none-hover" />
         </tiny-tooltip>
       )
@@ -481,7 +484,8 @@ export default defineComponent({
         mode,
         showTitle,
         isHwh5,
-        tipMessage
+        tipMessage,
+        promptTip
       },
       ref: 'upload-inner'
     }
@@ -610,7 +614,8 @@ export default defineComponent({
                 marginwidth="0"
                 marginheight="0"
                 scrolling="no"
-                src={iframeUrl}></iframe>
+                src={iframeUrl}
+              ></iframe>
             )
           }
         }

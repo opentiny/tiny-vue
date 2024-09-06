@@ -92,8 +92,8 @@
   }
 
   &.is-bordered {
-    padding: 9px 20px 9px 10px;
-    border-radius: 2px;
+    padding: 9px 16px;
+    border-radius: var(--ti-checkbox-outline-border-radius);
     border: 1px solid var(--ti-checkbox-border-color);
     box-sizing: border-box;
     line-height: var(--ti-checkbox-font-normal-line-height);
@@ -266,6 +266,7 @@
   &__label {
     padding-left: 8px;
     font-size: var(--ti-checkbox-font-size);
+    font-weight: var(--ti-checkbox-font-weight);
   }
 
   &.is-display-only {

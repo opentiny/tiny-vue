@@ -2048,8 +2048,8 @@ const Methods = {
 
     return columnIds.join(',')
   },
-  // 获取多选数据状态，避免用户侧很长的调用 this.$refs.grid.$refs.auiTable.selection
-  getStateSelection() {
+  // 获取所有多选数据状态
+  getAllSelection() {
     return this.selection
   },
   // 尝试恢复滚动位置，规范了最大滚动位置的取值

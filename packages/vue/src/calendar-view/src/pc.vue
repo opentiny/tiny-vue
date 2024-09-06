@@ -2,10 +2,12 @@
   <div class="tiny-calendar-view">
     <div class="tiny-calendar-view__header">
       <tiny-button @click="toToday">{{ t('ui.calendarView.backToday') }}</tiny-button>
+      <div class="tiny-calendar-view__tool-first">
+        <slot name="tool"></slot>
+      </div>
       <tiny-date-picker
         v-model="state.currentDate"
         class="tiny-calendar-view__picker"
-        shape="filter"
         type="month"
         :clearable="false"
         @change="currentDateChange"

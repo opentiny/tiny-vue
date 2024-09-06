@@ -1,7 +1,8 @@
 export const tinyCheckboxSmbTheme = {
-  'ti-checkbox-border-radius': '4px',
-  'ti-checkbox-label-text-color-disabled': '#c2c2c2',
-  'ti-checkbox-bg-color-disable': 'rgba(0,0,0,0.05)',
+  'ti-checkbox-border-radius': 'var(--ti-common-border-radius-2)',
+  'ti-checkbox-outline-border-radius': 'var(--ti-common-border-radius-3)',
+  'ti-checkbox-label-text-color-disabled': 'var(--ti-common-color-text-disabled)',
+  'ti-checkbox-bg-color-disable': 'var(--ti-common-color-bg-disabled)',
   'ti-checkbox-icon-color-disabled': '#fff',
   'ti-checkbox-bg-color-checked-disabled': '#dbdbdb',
   'ti-checkbox-border-color-checked-disabled': '#dbdbdb',
@@ -17,5 +18,6 @@ export const tinyCheckboxSmbTheme = {
   'ti-checkbox-bg-color-checked': '#1476ff',
   'ti-checkbox-border-color-checked': '#1476FF',
   'ti-checkbox-bg-color-hover-checked': '#1476FF',
-  'ti-checkbox-border-color-hover-checked': '#1476FF'
+  'ti-checkbox-border-color-hover-checked': 'var(--ti-common-color-prompt)',
+  'ti-checkbox-border-color': 'var(--ti-common-color-line-normal)'
 }

@@ -89,7 +89,8 @@ export const renderless = (
     prevEvent: null,
     options: [],
     theme: props.tiny_theme,
-    boxStyle: computed(() => api.computedBoxStyle())
+    boxStyle: computed(() => api.computedBoxStyle()),
+    timer: 0
   })
 
   Object.assign(api, {
@@ -103,8 +104,8 @@ export const renderless = (
     mounted: mounted({ api, parent, props, isMobileFirstMode, state }),
     beforeUnmouted: beforeUnmouted({ api, parent, isMobileFirstMode }),
     selfClickEvent: selfClickEvent({ api, parent, props }),
-    mouseEnterEvent: mouseEnterEvent(),
-    mouseLeaveEvent: mouseLeaveEvent({ api, props }),
+    mouseEnterEvent: mouseEnterEvent(state),
+    mouseLeaveEvent: mouseLeaveEvent({ api, props, state }),
     updateZindex: updateZindex({ state, props }),
     handleEvent: handleEvent({ api, emit, parent, props, isMobileFirstMode }),
     closeEvent: closeEvent(api),

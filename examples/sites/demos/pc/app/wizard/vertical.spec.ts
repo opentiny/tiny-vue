@@ -9,7 +9,7 @@ test('垂直流程图', async ({ page }) => {
   const nodeIcons = wizard.locator('.tiny-wizard__chart-icon')
   const nodeNames = wizard.locator('.tiny-wizard__chart-name')
   const nodeCount = 5
-  const names = ['提交提交', '直接主管审批通过', '二级主管审批同意', '一级审批', '完成完成']
+  const names = ['提交提交', '直接主管审批通过', '二级主管审批同意', '一级审批通过', '完成完成']
 
   await expect(nodeLines).toHaveCount(nodeCount)
   await expect(nodeIcons).toHaveCount(nodeCount)
@@ -21,7 +21,7 @@ test('垂直流程图', async ({ page }) => {
     await expect(nodeIcons.nth(i)).toHaveCSS('height', '20px')
     await expect(nodeIcons.nth(i)).toHaveCSS('height', '20px')
 
-    if (i === 3) {
+    if (i === 4) {
       await expect(nodeLines.nth(i)).toHaveCSS('background-color', 'rgb(194, 196, 199)')
       await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(223, 225, 230)')
     } else {

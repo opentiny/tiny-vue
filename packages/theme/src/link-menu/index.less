@@ -66,19 +66,30 @@
     }
   }
 
-  &__nav &__btn {
+  &__nav {
     color: var(--ti-link-menu-btn-text-color);
     background: var(--ti-link-menu-btn-bg-color);
     padding: 0 8px;
     line-height: 1;
     outline: 0;
-    text-align: center;
     border: none;
     cursor: pointer;
 
     .@{svg-prefix-cls} {
       fill: var(--ti-link-menu-nav-item-text-color);
       font-size: var(--ti-common-font-size-3);
+    }
+  }
+
+  &__btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--ti-link-menu-btn-border-radius);
+    border: 1px solid var(--ti-link-menu-btn-border-color);
+    background: var(--ti-link-menu-btn-bg-color);
+    .@{svg-prefix-cls} {
+      fill: var(--ti-link-menu-nav-item-text-color);
+      font-size: var(--ti-link-menu-btn-size);
     }
   }
 

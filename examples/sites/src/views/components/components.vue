@@ -8,8 +8,8 @@
     <div class="docs-title-wrap">
       <div class="markdown-body markdown-top-body" size="medium" v-html="cmpTopMd"></div>
       <version-tip
-        v-if="currJson.metaData || currJson.versionTipOption"
-        :meta-data="currJson.metaData"
+        v-if="currJson.meta || currJson.versionTipOption"
+        :meta="currJson.meta"
         v-bind="currJson.versionTipOption"
       >
       </version-tip>
@@ -54,8 +54,8 @@
                             <span v-else>{{ row.name }}</span>
                           </span>
                           <version-tip
-                            v-if="row.metaData || row.versionTipOption"
-                            :meta-data="row.metaData"
+                            v-if="row.meta || row.versionTipOption"
+                            :meta="row.meta"
                             v-bind="row.versionTipOption"
                             render-type="tag"
                             tip-subject="api"
@@ -172,8 +172,8 @@
                                 <span v-else>{{ row.name }}</span>
                               </span>
                               <version-tip
-                                v-if="row.metaData || row.versionTipOption"
-                                :meta-data="row.metaData"
+                                v-if="row.meta || row.versionTipOption"
+                                :meta="row.meta"
                                 v-bind="row.versionTipOption"
                                 render-type="tag"
                                 tip-subject="api"
@@ -368,14 +368,14 @@ export default defineComponent({
         for (const apiType of Object.keys(apiGroup)) {
           if (Array.isArray(apiGroup[apiType]) && apiGroup[apiType].length) {
             const apiArr = apiGroup[apiType].map((i) => {
-              const { name, type, defaultValue, desc, demoId, typeAnchorName, linkTo, metaData, versionTipOption } = i
+              const { name, type, defaultValue, desc, demoId, typeAnchorName, linkTo, meta, versionTipOption } = i
               const item = {
                 name,
                 type,
                 defaultValue: defaultValue || '--',
                 desc: desc[state.langKey],
                 demoId,
-                metaData,
+                meta,
                 versionTipOption,
                 typeAnchorName: '',
                 linkTo

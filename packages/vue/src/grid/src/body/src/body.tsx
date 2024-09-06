@@ -522,7 +522,8 @@ function renderRowGroupData({ $table, virtualRow, row, rowGroup, rowid, rows, ta
       data-rowid={rowid}
       onMouseout={() => (row.hover = false)}
       onMouseover={() => (row.hover = true)}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       {tds}
     </tr>
   )
@@ -532,7 +533,8 @@ function renderRow(args) {
   let { $rowIndex, $seq, $table, _vm, editStore } = args
   let { h, row, rowActived } = args
   let { rowClassName, rowIndex, rowKey, rowLevel, rowid, rows } = args
-  let { selection, seq, tableColumn, trOn, treeConfig, isNotRenderRow } = args
+  let { seq, trOn, isNotRenderRow } = args
+  const { selection, tableColumn, treeConfig, selectRow } = $table
 
   if (isNotRenderRow) {
     return
@@ -547,7 +549,7 @@ function renderRow(args) {
           {
             [`row__level-${rowLevel}`]: treeConfig,
             [classMap.rowNew]: editStore.insertList.includes(row),
-            [classMap.rowSelected]: selection.includes(row),
+            [classMap.rowSelected]: selection.includes(row) || selectRow === row,
             [classMap.rowActived]: rowActived
           },
           rowClassName

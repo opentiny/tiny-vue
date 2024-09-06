@@ -5,6 +5,7 @@ import Drawer from './src/drawer'
 import Dropdown from './src/dropdown'
 import DropdownItem from './src/dropdown-item'
 import Form from './src/form'
+import FilterBox from './src/filter-box'
 import Grid from './src/grid'
 import Guide from './src/guide'
 import Pager from './src/pager'
@@ -14,6 +15,9 @@ import TimeSpinner from './src/time-spinner'
 import Time from './src/time-spinner'
 import UploadList from './src/upload-list'
 import BreadcrumbItem from './src/breadcrumb-item'
+import Milestone from './src/milestone'
+import Split from './src/split'
+import TransferPanel from './src/transfer-panel'
 import { version } from './package.json'
 
 export default {
@@ -27,6 +31,7 @@ export default {
     Dropdown,
     DropdownItem,
     Form,
+    FilterBox,
     Grid,
     Guide,
     Pager,
@@ -35,6 +40,9 @@ export default {
     TimeSpinner,
     Time,
     BreadcrumbItem,
-    UploadList
+    UploadList,
+    Milestone,
+    Split,
+    TransferPanel
   }
 }

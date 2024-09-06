@@ -19,6 +19,7 @@
 @steps-senior-prefix-cls: ~'@{css-prefix}steps-senior';
 @steps-line-prefix-cls: ~'@{css-prefix}steps-line';
 @steps-standard-prefix-cls: ~'@{css-prefix}steps-standard';
+@steps-dot-prefix-cls: ~'@{css-prefix}steps-dot';
 
 .@{steps-prefix-cls},
 .@{timeline-prefix-cls} {
@@ -497,7 +498,7 @@
       }
 
       .description:not(.disabled, .fault) {
-        color: var(--ti-steps-advanced-active-text-color);
+        color: var(--ti-steps-advanced-desc-active-text-color);
       }
 
       .description.fault {
@@ -550,6 +551,10 @@
           color: var(--ti-steps-line-active-icon-color);
         }
       }
+
+      .right-line {
+        border-color: var(--ti-steps-doing-line-border-color);
+      }
     }
 
     &.done {
@@ -581,6 +586,7 @@
     .title {
       font-size: var(--ti-steps-font-size-base);
       margin-left: var(--ti-steps-text-margin-left);
+      line-height: calc(var(--ti-steps-font-size-base) + 2px);
       font-weight: 500;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -623,7 +629,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      margin: 12px 20px 0;
+      margin: var(--ti-steps-vertical-title-margin-top) 20px 0;
 
       &.not-vertical {
         display: none;
@@ -674,9 +680,9 @@
 
     &.mini {
       .@{steps-prefix-cls}-icon {
-        width: 8px;
-        height: 8px;
-        font-size: 12px;
+        width: var(--ti-steps-mini-icon-size);
+        height: var(--ti-steps-mini-icon-size);
+        font-size: var(--ti-steps-mini-number-font-size);
       }
 
       .title,
@@ -687,9 +693,9 @@
 
     &.small {
       .@{steps-prefix-cls}-icon {
-        width: 16px;
-        height: 16px;
-        font-size: 12px;
+        width: var(--ti-steps-small-icon-size);
+        height: var(--ti-steps-small-icon-size);
+        font-size: var(--ti-steps-small-number-font-size);
 
         .icon {
           width: 10px;
@@ -1069,6 +1075,102 @@
       position: absolute;
       top: -10px;
       right: 10px;
+    }
+  }
+}
+
+.@{steps-dot-prefix-cls} {
+  display: flex;
+  flex-direction: column;
+
+  .@{steps-prefix-cls} {
+    &-block.fault {
+      & > .block-left .left-dot {
+        border-color: #f23030;
+      }
+
+      & > .block-right .title-vertical {
+        color: #f23030;
+      }
+    }
+
+    &-block.disabled {
+      cursor: not-allowed;
+
+      & > .block-right .title-vertical {
+        color: #c2c2c2;
+      }
+    }
+
+    &-block {
+      display: flex;
+
+      &.done,
+      &.doing,
+      &.active:not(.fault, .disabled) {
+        & > .block-left .left-dot {
+          border-color: #191919;
+        }
+      }
+
+      &.done,
+      &.doing {
+        & > .block-left > .left-line {
+          background-color: #191919;
+        }
+
+        & > .block-right .title-vertical {
+          color: #191919;
+        }
+      }
+
+      &.active:not(.fault, .disabled) {
+        & > .block-left > .left-dot {
+          background-color: #191919;
+        }
+      }
+
+      & > .block-left {
+        margin-top: 6.5px;
+        margin-right: 12px;
+
+        & .left-dot {
+          width: 10px;
+          height: 10px;
+          border: 2px solid #c2c2c2;
+          border-radius: 50%;
+          box-sizing: border-box;
+        }
+
+        & .left-line {
+          margin: 4px auto 0px;
+          height: calc(100% - 11.5px);
+          width: 1px;
+          background-color: #dbdbdb;
+        }
+      }
+
+      & > .block-right {
+        font-size: 14px;
+        line-height: 1.5;
+        padding-bottom: 12px;
+
+        .title-vertical {
+          color: #595959;
+        }
+
+        .description {
+          margin-top: 8px;
+          margin-bottom: 12px;
+          color: #808080;
+        }
+      }
+
+      &:last-child {
+        & > .block-left .left-line {
+          display: none;
+        }
+      }
     }
   }
 }
@@ -1466,7 +1568,7 @@
       .timeline {
         .@{timeline-item-prefix-cls}__pillar .line {
           width: var(--ti-steps-line-height);
-          margin-block: var(--ti-steps-timeline-line-margin-vertical);
+          margin-top: var(--ti-steps-timeline-line-margin-vertical);
           background-color: var(--ti-steps-timeline-vertical-line-bg-color);
         }
 
@@ -1500,7 +1602,7 @@
         }
 
         .@{timeline-item-prefix-cls}__content {
-          margin-top: -5px;
+          line-height: 1.5;
 
           .name {
             margin-bottom: var(--ti-steps-timeline-item-title-margin-bottom);
@@ -1537,6 +1639,7 @@
         flex-direction: column;
         align-items: center;
         align-self: stretch;
+        margin-top: 7px;
         width: var(--ti-steps-timeline-dot-width);
 
         .line {
