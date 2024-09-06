@@ -21,11 +21,11 @@
 
 <script setup>
 import { Link as TinyLink } from '@opentiny/vue'
-import { iconEdit, iconView, iconDel, iconFilletExternalLink } from '@opentiny/vue-icon'
+import { IconEditor, iconView, IconDeleteL, iconFilletExternalLink } from '@opentiny/vue-icon'
 
-const IconEdit = iconEdit()
+const IconEdit = IconEditor()
 const TinyIconView = iconView()
-const TinyIconDel = iconDel()
+const TinyIconDel = IconDeleteL()
 const TinyIconFilletExternalLink = iconFilletExternalLink()
 </script>
 
