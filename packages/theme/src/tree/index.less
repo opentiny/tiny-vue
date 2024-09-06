@@ -224,12 +224,13 @@
     .@{tree-node-prefix-cls}__children {
       overflow: visible !important;
       transition: 0.3s opacity ease-in-out;
-      position: relative;
 
       &
         .@{tree-node-prefix-cls}__wrapper:not(:last-child)
         > .@{tree-node-prefix-cls}
         > .@{tree-node-prefix-cls}__children {
+        position: relative;
+
         .@{tree-node-prefix-cls}__children-indent {
           height: 100%;
           position: absolute;

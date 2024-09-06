@@ -193,8 +193,7 @@ export default defineComponent({
                         role="tooltip"
                         aria-hidden={this.disabled || !this.state.showPopper ? 'true' : 'false'}
                         onMouseenter={() => mouseenter()}
-                        onMouseleave={() => mouseleave()}
-                      >
+                        onMouseleave={() => mouseleave()}>
                         {addWrapper ? (
                           <div class="tiny-tooltip__content-wrapper" style={`max-height:${this.contentMaxHeight}`}>
                             {content}

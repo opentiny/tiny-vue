@@ -451,7 +451,7 @@ export default defineComponent({
             })
           }
         }
-      }, 0)
+      }, 600)
     }
 
     // 在singleDemo情况时，才需要滚动示例区域到顶
@@ -557,12 +557,7 @@ export default defineComponent({
           }
 
           // F5刷新加载时，跳到当前示例
-          // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
-          setTimeout(() => {
-            nextTick(() => {
-              scrollByHash(hash)
-            })
-          }, 0)
+          scrollByHash(hash)
         })
         .finally(() => {
           // 获取组件贡献者
@@ -650,12 +645,11 @@ export default defineComponent({
           router.push(data.link)
         } else if (apiModeState.demoMode === 'default' && data.link.startsWith('#')) {
           // 多示例模式，自动会切到相应的位置。只需要记录singleDemo就好了
-          e.preventDefault()
           const hash = data.link.slice(1)
           state.currDemoId = hash
           state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
-          router.push(data.link)
-          scrollByHash(hash)
+
+          e.preventDefault()
         }
       }
     }
