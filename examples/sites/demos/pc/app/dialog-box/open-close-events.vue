@@ -3,14 +3,18 @@
     <tiny-button @click="boxVisibility = true" title="弹出与关闭事件">弹出与关闭事件</tiny-button>
     <tiny-dialog-box
       v-model:visible="boxVisibility"
-      title="消息"
+      title="添加备注"
       width="30%"
       @open="open"
       @close="close"
       @opened="opened"
       @closed="closed"
     >
-      <span>dialog-box 内容</span>
+      <tiny-form label-position="top">
+        <tiny-form-item label="备注描述">
+          <tiny-input type="textarea" v-model="createData.quantity" :maxlength="1000" show-word-limit></tiny-input>
+        </tiny-form-item>
+      </tiny-form>
       <template #footer>
         <tiny-button type="primary" @click="boxVisibility = false">确 定</tiny-button>
       </template>
@@ -19,16 +23,22 @@
 </template>
 
 <script lang="jsx">
-import { Button, DialogBox, Notify } from '@opentiny/vue'
+import { Button, DialogBox, Notify, Input, Form, FormItem } from '@opentiny/vue'
 
 export default {
   components: {
     TinyButton: Button,
-    TinyDialogBox: DialogBox
+    TinyDialogBox: DialogBox,
+    TinyInput: Input,
+    TinyForm: Form,
+    TinyFormItem: FormItem
   },
   data() {
     return {
-      boxVisibility: false
+      boxVisibility: false,
+      createData: {
+        quantity: '这是描述'
+      }
     }
   },
   methods: {
