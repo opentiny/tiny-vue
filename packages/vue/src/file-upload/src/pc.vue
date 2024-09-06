@@ -208,7 +208,8 @@ export default defineComponent({
               effect="light"
               content={(slots.tip && slots.tip()) || tipMsg}
               placement="right"
-              popper-options={popperConfig}>
+              popper-options={popperConfig}
+            >
               <div class="prompt-tip">
                 <TinyIconHelpCircle />
               </div>
@@ -253,7 +254,8 @@ export default defineComponent({
         return [
           <TinyIconSuccessful class="thumb-success-icon" />,
           <span
-            class={['thumb-item-name', !showDel ? 'hide-close-icon' : '', !showDownload ? 'hide-download-icon' : '']}>
+            class={['thumb-item-name', !showDel ? 'hide-close-icon' : '', !showDownload ? 'hide-download-icon' : '']}
+          >
             {file.name}
           </span>,
           getThumIcon(file)
@@ -457,7 +459,8 @@ export default defineComponent({
               marginwidth="0"
               marginheight="0"
               scrolling="no"
-              src={iframeUrl}></iframe>
+              src={iframeUrl}
+            ></iframe>
           )
         }
       })

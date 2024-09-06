@@ -302,7 +302,8 @@ export default defineComponent({
             limit: this.limit
           })}
           placement="top"
-          popper-options={popperConfig}>
+          popper-options={popperConfig}
+        >
           <icon-help-query class="-mt-0.5  fill-color-none-hover" />
         </tiny-tooltip>
       )
@@ -613,7 +614,8 @@ export default defineComponent({
                 marginwidth="0"
                 marginheight="0"
                 scrolling="no"
-                src={iframeUrl}></iframe>
+                src={iframeUrl}
+              ></iframe>
             )
           }
         }
