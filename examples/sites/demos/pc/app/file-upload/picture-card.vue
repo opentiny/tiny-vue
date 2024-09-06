@@ -26,17 +26,11 @@ export default {
     TinyIconAddPicture: iconAddPicture()
   },
   data() {
-    console.log('--ti-upload-list-picture-card-success-border-weight'.length)
     return {
       action: 'http://localhost:3000/api/upload',
       dialogVisible1: false,
       dialogImageUrl1: '',
       fileList: [
-        {
-          name: 'fruit',
-          url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`,
-          status: 'ready'
-        },
         {
           name: 'fruit',
           url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`,
