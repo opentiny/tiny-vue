@@ -37,7 +37,6 @@ import {
   cancelEvent,
   open,
   resetDragStyle,
-  resetModalViewPosition,
   computedBoxStyle,
   handleHashChange,
   showScrollbar,
@@ -65,8 +64,7 @@ export const api = [
   'cancelEvent',
   'open',
   'beforeUnmouted',
-  'resetDragStyle',
-  'resetModalViewPosition'
+  'resetDragStyle'
 ]
 
 export const renderless = (
@@ -123,7 +121,6 @@ export const renderless = (
     mousedownEvent: mousedownEvent({ api, nextTick, props, state, emit, isMobileFirstMode }),
     dragEvent: dragEvent({ api, emit, parent, props, state }),
     resetDragStyle: resetDragStyle(api),
-    resetModalViewPosition: resetModalViewPosition(api),
     computedBoxStyle: computedBoxStyle({ props, isMobileFirstMode }),
     watchVisible: watchVisible({ api, props }),
     hideScrollbar: hideScrollbar(lockScrollClass),

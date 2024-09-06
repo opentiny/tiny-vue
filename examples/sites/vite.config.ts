@@ -13,30 +13,6 @@ import vue3SvgPlugin from 'vite-svg-loader'
 import { getAlias, pathFromWorkspaceRoot, getOptimizeDeps } from '../../internals/cli/src/config/vite'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
 import tailwindCss from 'tailwindcss'
-import fg from 'fast-glob'
-import fs from 'fs-extra'
-
-const delStatic = () => {
-  let config
-  return {
-    name: 'inline-plugin-del-static',
-    apply: 'build',
-    configResolved(_config) {
-      config = _config
-    },
-    async closeBundle() {
-      const targetPath = path.join(config.build.outDir, '@demos')
-      const files = await fg(['**/*.spec.js', '**/*.spec.ts'], {
-        dot: true,
-        cwd: targetPath
-      })
-      files.forEach((filename) => {
-        const filePath = path.join(targetPath, filename)
-        fs.unlink(filePath)
-      })
-    }
-  }
-}
 
 export default defineConfig((config) => {
   const env = loadEnv(config.mode, process.cwd() + '/env', '')
@@ -47,17 +23,17 @@ export default defineConfig((config) => {
   const menuPath = isSaas ? path.resolve('./demos/saas') : path.resolve(demosPath)
   const copyTarget = [
     {
-      src: `${demosPath}/*`,
+      src: `${demosPath}/**`,
       dest: '@demos'
     },
     {
-      src: `${apisPath}/*`,
+      src: `${apisPath}/**`,
       dest: '@demos/apis'
     }
   ]
   if (isSaas) {
     copyTarget.push({
-      src: `./demos/mobile-first/*`,
+      src: `./demos/mobile-first/**`,
       dest: '@demos/mobile-first'
     })
   }
@@ -99,8 +75,7 @@ export default defineConfig((config) => {
       Unocss(UnoCssConfig),
       viteStaticCopy({
         targets: copyTarget
-      }),
-      delStatic()
+      })
     ],
     optimizeDeps: getOptimizeDeps(3),
     build: {
