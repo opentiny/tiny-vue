@@ -70,7 +70,11 @@
     margin-right: var(--ti-transfer-button-margin-right);
     margin-top: var(--ti-transfer-button-margin-top);
     margin-bottom: var(--ti-transfer-button-margin-bottom);
-    border-color: var(--ti-transfer-button-bg-color);
+
+    &:not(.is-disabled) {
+      border-color: var(--ti-transfer-button-bg-color) !important;
+    }
+
     background-color: var(--ti-transfer-button-bg-color);
     width: var(--ti-transfer-button-width);
     height: var(--ti-transfer-button-height);
