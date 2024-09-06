@@ -1,6 +1,10 @@
 <template>
   <tiny-collapse class="demo-collapse-wrap" v-model="activeNames">
     <tiny-collapse-item name="1" title="一致性 Consistency">
+      <template #title-right>
+        <span class="tiny-collapse-setting">设置</span>
+        <span class="tiny-collapse-setting">查看</span>
+      </template>
       <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
       <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
     </tiny-collapse-item>
@@ -66,5 +70,9 @@ export default {
 .tiny-icon-star-o,
 .tiny-icon-setting {
   font-size: 18px;
+}
+
+.tiny-collapse-setting {
+  margin-left: 16px;
 }
 </style>
