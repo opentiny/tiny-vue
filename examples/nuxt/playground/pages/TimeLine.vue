@@ -1,19 +1,23 @@
 <template>
-  <div class="tiny-tag-demo">
-    <tiny-tag size="medium"> 中等标签 </tiny-tag>
-    <tiny-tag> 默认标签 </tiny-tag>
-    <tiny-tag size="small"> 小型标签 </tiny-tag>
-    <tiny-tag size="mini"> 超小标签 </tiny-tag>
-  </div>
+  <tiny-time-line :data="data" :active="active" @click="click"></tiny-time-line>
 </template>
 
-<script setup lang="jsx">
-import { Tag as TinyTag } from '@opentiny/vue'
-</script>
+<script setup>
+import { ref } from 'vue'
+import { TimeLine as TinyTimeLine, Modal } from '@opentiny/vue'
 
-<style>
-.tiny-tag-demo .tiny-tag {
-  margin-right: 10px;
-  margin-bottom: 10px;
+const active = ref(1)
+const data = ref([
+  { name: '已下单', time: '2019-11-11 00:01:30' },
+  { name: '运输中', time: '2019-11-12 14:20:15' },
+  { name: '已签收', time: '2019-11-14 20:45:50' }
+])
+
+function click(index, node) {
+  active.value = index
+  Modal.message({
+    message: 'click 事件，当前 index：' + index + ' 节点信息：' + node.name + ',' + node.time,
+    status: 'info'
+  })
 }
-</style>
+</script>

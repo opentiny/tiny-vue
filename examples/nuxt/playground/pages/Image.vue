@@ -12,7 +12,7 @@ import { ref } from 'vue'
 import { Image as TinyImage } from '@opentiny/vue'
 
 const fits = ref(['fill', 'contain', 'cover', 'none', 'scale-down'])
-const url = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
+const url = ref(`https://res.hc-cdn.com/tiny-vue-web-doc/3.18.9.20240902190525/static/images/mountain.png`)
 </script>
 
 <style scoped>
