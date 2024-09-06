@@ -1,5 +1,5 @@
 <template>
-  <tiny-steps line vertical :data="data" :active="active" @click="advancedClick"></tiny-steps>
+  <tiny-steps dot vertical :data="data" :active="active" @click="advancedClick"></tiny-steps>
 </template>
 
 <script>

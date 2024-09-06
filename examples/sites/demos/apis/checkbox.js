@@ -145,7 +145,7 @@ export default {
           type: "'medium' | 'small' | 'mini'",
           defaultValue: '',
           desc: {
-            'zh-CN': 'checkbox 的尺寸，仅在 border 为真时有效',
+            'zh-CN': 'checkbox 的尺寸，仅在 border 为true时有效',
             'en-US': 'Checkbox size. This parameter is valid only when border is set to true'
           },
           mode: ['pc', 'mobile-first'],

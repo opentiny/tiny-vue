@@ -30,5 +30,7 @@ export default {
   white-space: nowrap;
   display: inline-block;
   vertical-align: middle;
+  line-height: 22px;
+  height: 22px;
 }
 </style>
