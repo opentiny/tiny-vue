@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "nuxt": "^3.13.0",
+    "qrcode": "1.5.1",
     "vue": "latest"
   },
   "devDependencies": {

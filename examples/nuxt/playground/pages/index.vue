@@ -3,7 +3,7 @@
     <div class="image">
       <img style="width: 40px; margin-right: 10px" src="../public/favicon.png" />
     </div>
-    <div class="title">Nuxt</div>
+    <div class="title_nuxt">Nuxt</div>
   </div>
 </template>
 
@@ -13,7 +13,7 @@
 .index {
   display: flex;
 }
-.title {
+.title_nuxt {
   line-height: 32px;
   font-size: 50px;
   font-weight: 700;
