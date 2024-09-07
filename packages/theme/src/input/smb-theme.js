@@ -24,5 +24,6 @@ export const tinyInputSmbTheme = {
   'ti-input-suffix-top-mini': 'var(--ti-common-space-3x)',
   'ti-input-prefix-padding-left': 'var(--ti-common-space-10x)',
   'ti-input-prefix-padding-right': 'var(--ti-common-space-10x)',
-  'ti-input-suffix-padding-right': 'var(--ti-common-space-10x)'
+  'ti-input-suffix-padding-right': 'var(--ti-common-space-10x)',
+  'ti-input-small-height': '28px'
 }

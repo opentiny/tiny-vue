@@ -41,6 +41,5 @@ export const tinyStepsSmbTheme = {
   'ti-steps-vertical-title-margin-top': 'var(--ti-common-space-2x)',
   'ti-steps-timeline-shape-dot-content-margin-left': 'var(--ti-common-space-4x)',
   'ti-steps-description-text-color': 'var(--ti-common-color-text-weaken)',
-  'ti-steps-advanced-desc-active-text-color': 'var(--ti-common-color-text-weaken)',
-  'ti-steps-disabled-text-color': 'var(--ti-common-color-text-weaken)'
+  'ti-steps-advanced-desc-active-text-color': 'var(--ti-common-color-text-weaken)'
 }
