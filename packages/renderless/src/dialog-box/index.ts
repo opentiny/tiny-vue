@@ -108,10 +108,6 @@ export const watchVisible =
         emit('close')
       }
 
-      // if (props.destroyOnClose) {
-      //   nextTick(() => state.key++)
-      // }
-
       if (props.rightSlide) {
         const dialogBoxDom = el.querySelector(constants.DIALOG_BOX_CLASS) || el
         dialogBoxDom.style.left = ''
