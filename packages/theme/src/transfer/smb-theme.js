@@ -17,9 +17,9 @@ export const tinyTransferSmbTheme = {
   'ti-transfer-svg-font-size': '10px',
   'ti-transfer-header-padding-left': 'var(--ti-common-space-4x)',
   'ti-transfer-header-padding-right': 'var(--ti-common-space-4x)',
-  'ti-transfer-panel-body-padding-left': 'var(--ti-common-space-2x)',
   'ti-transfer-panel-body-list-padding-top': '4px',
   'ti-transfer-panel-body-list-padding-bottom': '4px',
   'ti-transfer-header-bg-color': '#fff',
-  'ti-transfer-header-border-color': 'rgba(0,0,0,0.08)'
+  'ti-transfer-header-border-color': 'rgba(0,0,0,0.08)',
+  'ti-transfer-panel-item-padding-left': 'var(--ti-common-space-4x)'
 }
