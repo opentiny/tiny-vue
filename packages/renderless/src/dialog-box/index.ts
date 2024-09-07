@@ -88,6 +88,7 @@ export const watchVisible =
     if (val) {
       state.closed = false
       emit('open')
+      state.render = true
       /* istanbul ignore next */
       on(el, 'scroll', api.updatePopper)
 
@@ -107,9 +108,9 @@ export const watchVisible =
         emit('close')
       }
 
-      if (props.destroyOnClose) {
-        nextTick(() => state.key++)
-      }
+      // if (props.destroyOnClose) {
+      //   nextTick(() => state.key++)
+      // }
 
       if (props.rightSlide) {
         const dialogBoxDom = el.querySelector(constants.DIALOG_BOX_CLASS) || el
@@ -245,9 +246,18 @@ export const afterEnter = (emit: IDialogBoxRenderlessParams['emit']) => (): void
   emit('opened')
 }
 
-export const afterLeave = (emit: IDialogBoxRenderlessParams['emit']) => (): void => {
-  emit('closed')
-}
+export const afterLeave =
+  (
+    emit: IDialogBoxRenderlessParams['emit'],
+    state: IDialogBoxRenderlessParams['state'],
+    props: IDialogBoxRenderlessParams['props']
+  ) =>
+  (): void => {
+    emit('closed')
+    if (props.destroyOnClose) {
+      state.render = false
+    }
+  }
 
 const findPopoverComponent = ({
   vm,

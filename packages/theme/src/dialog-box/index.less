@@ -45,9 +45,17 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+
+    .@{dialog-box-prefix-cls}__content {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &.is-center {
+
     .@{dialog-box-prefix-cls}__header,
     .@{dialog-box-prefix-cls}__footer {
       text-align: center;
@@ -60,8 +68,7 @@
   }
 
   & &__header {
-    padding: var(--ti-dialog-box-head-padding-top) var(--ti-dialog-box-head-padding-horizontal)
-      var(--ti-dialog-box-head-padding-bottom);
+    padding: var(--ti-dialog-box-head-padding-top) var(--ti-dialog-box-head-padding-horizontal) var(--ti-dialog-box-head-padding-bottom);
     background: var(--ti-dialog-box-bg-color);
     font-weight: var(--ti-dialog-box-head-title-font-weight);
     display: flex;
@@ -75,10 +82,12 @@
     .@{dialog-box-prefix-cls}__title {
       flex: 1;
     }
+
     .@{dialog-box-prefix-cls}__btn-tools {
       display: flex;
       justify-content: space-between;
     }
+
     .@{dialog-box-prefix-cls}__headerbtn {
       position: relative;
       border: none;
@@ -94,7 +103,7 @@
         border-radius: var(--ti-dialog-box-btn-border-radius);
       }
 
-      & + .@{dialog-box-prefix-cls}__headerbtn {
+      &+.@{dialog-box-prefix-cls}__headerbtn {
         margin-left: 8px;
       }
 
@@ -135,7 +144,7 @@
       overflow: hidden;
     }
 
-    > span {
+    >span {
       max-height: 120px;
       overflow-y: auto;
     }
@@ -146,8 +155,7 @@
   }
 
   & &__footer {
-    padding: var(--ti-dialog-box-footer-padding-top) var(--ti-dialog-box-footer-padding-horizontal)
-      var(--ti-dialog-box-footer-margin-bottom);
+    padding: var(--ti-dialog-box-footer-padding-top) var(--ti-dialog-box-footer-padding-horizontal) var(--ti-dialog-box-footer-margin-bottom);
     text-align: var(--ti-dialog-box-footer-align);
     box-sizing: border-box;
 
@@ -180,28 +188,22 @@
     }
 
     .@{dialog-box-prefix-cls}__header {
-      padding: var(--ti-dialog-box-drawer-header-padding-top) var(--ti-dialog-box-drawer-header-padding-right)
-        var(--ti-dialog-box-drawer-header-padding-bottom) var(--ti-dialog-box-drawer-header-padding-left);
+      padding: var(--ti-dialog-box-drawer-header-padding-top) var(--ti-dialog-box-drawer-header-padding-right) var(--ti-dialog-box-drawer-header-padding-bottom) var(--ti-dialog-box-drawer-header-padding-left);
       border-bottom: 1px solid var(--ti-dialog-box-drawer-divider-border-color);
 
       &btn {
-        right: calc(
-          var(--ti-dialog-box-btn-position-right) - var(--ti-dialog-box-drawer-padding-right) -
-            (var(--ti-dialog-box-btn-width) - var(--ti-dialog-box-close-icon-size)) / 2
-        );
+        right: calc(var(--ti-dialog-box-btn-position-right) - var(--ti-dialog-box-drawer-padding-right) - (var(--ti-dialog-box-btn-width) - var(--ti-dialog-box-close-icon-size)) / 2);
       }
     }
 
     .@{dialog-box-prefix-cls}__body {
       flex: 1;
       overflow: auto;
-      padding: var(--ti-dialog-box-drawer-body-padding-top) var(--ti-dialog-box-drawer-body-padding-right)
-        var(--ti-dialog-box-drawer-body-padding-bottom) var(--ti-dialog-box-drawer-body-padding-left);
+      padding: var(--ti-dialog-box-drawer-body-padding-top) var(--ti-dialog-box-drawer-body-padding-right) var(--ti-dialog-box-drawer-body-padding-bottom) var(--ti-dialog-box-drawer-body-padding-left);
     }
 
     .@{dialog-box-prefix-cls}__footer {
-      padding: var(--ti-dialog-box-drawer-footer-padding-top) var(--ti-dialog-box-drawer-footer-padding-right)
-        var(--ti-dialog-box-drawer-footer-padding-bottom) var(--ti-dialog-box-drawer-footer-padding-left);
+      padding: var(--ti-dialog-box-drawer-footer-padding-top) var(--ti-dialog-box-drawer-footer-padding-right) var(--ti-dialog-box-drawer-footer-padding-bottom) var(--ti-dialog-box-drawer-footer-padding-left);
       border-top: 1px solid var(--ti-dialog-box-drawer-divider-border-color);
       text-align: var(--ti-dialog-box-drawer-footer-text-align);
     }
@@ -290,6 +292,11 @@
 
 .dialog-fade-leave-active {
   animation: dialog-fade-out 0.3s;
+
+  .tiny-dialog-box,
+  .tiny-dialog-box__content {
+    animation: dialog-fade-out 0.3s;
+  }
 }
 
 @keyframes dialog-fade-in {

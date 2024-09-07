@@ -82,7 +82,8 @@ const initState = ({
     style: computed(() => api.computedStyle()),
     animationName: computed(() => api.computedAnimationName()),
     current,
-    dragStyle: null
+    dragStyle: null,
+    render: props.destroyOnClose
   })
 
   return state
@@ -144,7 +145,7 @@ const initApi = ({
     unMounted: unMounted({ api, parent, props }),
     computedAnimationName: computedAnimationName({ constants, props }),
     afterEnter: afterEnter(emit),
-    afterLeave: afterLeave(emit),
+    afterLeave: afterLeave(emit, state, props),
     hideScrollbar: hideScrollbar(lockScrollClass),
     showScrollbar: showScrollbar(lockScrollClass),
     handleDrag: handleDrag({ parent, props, state, emit, vm }),

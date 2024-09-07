@@ -17,12 +17,12 @@
       @click.self="handleWrapperClick"
       @mouseup="useMouseEventUp"
       @mousedown="useMouseEventDown"
+      key="1"
     >
-      <transition :name="dialogTransition">
+      <transition :name="dialogTransition || state.animationname">
         <div
           ref="dialog"
           v-show="visible"
-          v-if="destroyOnClose ? visible : true"
           :class="[
             {
               'is-fullscreen': state.isFull,
@@ -34,45 +34,47 @@
           class="tiny-dialog-box"
           :key="state.key"
         >
-          <div v-if="showHeader" ref="header" class="tiny-dialog-box__header" @mousedown="handleDrag">
-            <slot name="title">
-              <span class="tiny-dialog-box__title">{{ title }}</span>
-            </slot>
-            <div class="tiny-dialog-box__btn-tools">
-              <button
-                v-if="resize && !state.isFull"
-                type="button"
-                class="tiny-dialog-box__headerbtn"
-                aria-label="Resize"
-                @click="toggleFullScreen(true)"
-              >
-                <icon-fullscreen class="tiny-svg-size tiny-dialog-box__resize" />
-              </button>
-              <button
-                v-if="resize && state.isFull"
-                type="button"
-                class="tiny-dialog-box__headerbtn"
-                aria-label="Resize"
-                @click="toggleFullScreen(false)"
-              >
-                <icon-minscreen class="tiny-svg-size tiny-dialog-box__resize" />
-              </button>
-              <button
-                v-if="showClose"
-                type="button"
-                class="tiny-dialog-box__headerbtn"
-                aria-label="Close"
-                @click="handleClose('close', $event)"
-              >
-                <icon-close class="tiny-svg-size tiny-dialog-box__close" />
-              </button>
+          <div v-if="state.render" class="tiny-dialog-box__content" key="content">
+            <div v-if="showHeader" ref="header" class="tiny-dialog-box__header" @mousedown="handleDrag">
+              <slot name="title">
+                <span class="tiny-dialog-box__title">{{ title }}</span>
+              </slot>
+              <div class="tiny-dialog-box__btn-tools">
+                <button
+                  v-if="resize && !state.isFull"
+                  type="button"
+                  class="tiny-dialog-box__headerbtn"
+                  aria-label="Resize"
+                  @click="toggleFullScreen(true)"
+                >
+                  <icon-fullscreen class="tiny-svg-size tiny-dialog-box__resize" />
+                </button>
+                <button
+                  v-if="resize && state.isFull"
+                  type="button"
+                  class="tiny-dialog-box__headerbtn"
+                  aria-label="Resize"
+                  @click="toggleFullScreen(false)"
+                >
+                  <icon-minscreen class="tiny-svg-size tiny-dialog-box__resize" />
+                </button>
+                <button
+                  v-if="showClose"
+                  type="button"
+                  class="tiny-dialog-box__headerbtn"
+                  aria-label="Close"
+                  @click="handleClose('close', $event)"
+                >
+                  <icon-close class="tiny-svg-size tiny-dialog-box__close" />
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="tiny-dialog-box__body">
-            <slot></slot>
-          </div>
-          <div v-if="slots.footer" ref="footer" class="tiny-dialog-box__footer">
-            <slot name="footer" :before-close="beforeClose"></slot>
+            <div class="tiny-dialog-box__body">
+              <slot></slot>
+            </div>
+            <div v-if="slots.footer" ref="footer" class="tiny-dialog-box__footer">
+              <slot name="footer" :before-close="beforeClose"></slot>
+            </div>
           </div>
         </div>
       </transition>
