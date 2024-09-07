@@ -7,8 +7,8 @@ export const tinyPopperSmbTheme = {
   'ti-popover-arrow-border-color': 'transparent',
   'ti-popover-arrow-height': 'var(--ti-common-space-2x)',
   'ti-popover-line-height': '20px',
-  'ti-popover-title-weight': 'bold',
+  'ti-popover-title-weight': '600',
   'ti-popover-title-padding-bottom': '8px',
-  'ti-popover-font-weight': '600',
-  'ti-popover-font-size': '16px'
+  'ti-popover-font-weight': '400',
+  'ti-popover-font-size': '14px'
 }

@@ -20,11 +20,11 @@
 <script setup lang="jsx">
 import { ref } from 'vue'
 import { Tree as TinyTree } from '@opentiny/vue'
-import { iconPlusSquare, iconMinusSquare, iconRightO, iconEditorTable, iconFile } from '@opentiny/vue-icon'
+import { iconPutAway, iconExpand, iconRightO, iconEditorTable, iconFile } from '@opentiny/vue-icon'
 
 const icon = iconRightO()
-const shrinkIcon = iconMinusSquare()
-const expandIcon = iconPlusSquare()
+const shrinkIcon = iconPutAway()
+const expandIcon = iconExpand()
 const tinyIconEditorTable = iconEditorTable()
 const tinyIconFile = iconFile()
 
