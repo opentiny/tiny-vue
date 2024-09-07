@@ -16,10 +16,5 @@ export const tinyButtonGroupTheme = {
   'ti-button-group-item-sup-position-top': 'var(--ti-common-space-0)',
   'ti-button-group-item-sup-height': 'var(--ti-common-line-height-base)',
   'ti-button-group-mini-side-border-radius': 'var(--ti-button-group-mini-border-radius)',
-  'ti-button-group-sup-text-top-left-border-radius': '0',
-  'ti-button-group-sup-text-bottom-right-border-radius': '0',
-  'ti-button-group-sup-text-bottom-left-border-radius': '8px',
-  'ti-button-group-sup-icon-border-radius': 'unset',
-  'ti-button-group-sup-icon-line-height': '22px',
-  'ti-button-group-sup-icon-bottom-left-border-radius': '8px'
+  'ti-button-group-sup-icon-line-height': '22px'
 }

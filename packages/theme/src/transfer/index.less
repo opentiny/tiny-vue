@@ -70,7 +70,11 @@
     margin-right: var(--ti-transfer-button-margin-right);
     margin-top: var(--ti-transfer-button-margin-top);
     margin-bottom: var(--ti-transfer-button-margin-bottom);
-    border-color: var(--ti-transfer-button-bg-color);
+
+    &:not(.is-disabled) {
+      border-color: var(--ti-transfer-button-bg-color) !important;
+    }
+
     background-color: var(--ti-transfer-button-bg-color);
     width: var(--ti-transfer-button-width);
     height: var(--ti-transfer-button-height);
@@ -259,8 +263,8 @@
     // 如果使用padding, 会影响插槽与边框的距离，贴在一起。 所以要改为margin 保证不影响插槽。
     margin-left: var(--ti-transfer-panel-filter-padding-left);
     margin-right: var(--ti-transfer-panel-filter-padding-right);
-    padding-top: var(--ti-transfer-panel-filter-padding-top);
-    padding-bottom: var(--ti-transfer-panel-filter-padding-bottom);
+    margin-top: var(--ti-transfer-panel-filter-padding-top);
+    margin-bottom: var(--ti-transfer-panel-filter-padding-bottom);
     box-sizing: border-box;
     display: block;
     width: auto;

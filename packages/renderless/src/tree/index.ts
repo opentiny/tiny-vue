@@ -142,7 +142,7 @@ const setDropIndicatorTop = (dropNode, parent, dropType) => {
   dropType === 'inner' ? addClass(dropNode.$el, 'is-drop-inner') : removeClass(dropNode.$el, 'is-drop-inner')
 }
 
-const getDragDir = ({ draggingNode, dropNode, allowDrop, emit, dragState }) => {
+const getDragDir = ({ draggingNode, dropNode, allowDrop, emit, dragState, event }) => {
   let dropPrev = true
   let dropInner = true
   let dropNext = true
@@ -154,7 +154,6 @@ const getDragDir = ({ draggingNode, dropNode, allowDrop, emit, dragState }) => {
     userAllowDropInner = dropInner = allowDrop(draggingNode.node, dropNode.node, 'inner')
     dropNext = allowDrop(draggingNode.node, dropNode.node, 'next')
   }
-  // 这里访问window.event
   event.dataTransfer.dropEffect = dropInner ? 'copy' : 'none'
 
   if ((dropPrev || dropInner || dropNext) && oldDropNode !== dropNode) {
@@ -209,7 +208,8 @@ export const dragOver =
       dropNode,
       allowDrop: props.allowDrop,
       emit,
-      dragState
+      dragState,
+      event
     })
 
     const dropType = getDropType(dropPrev, dropInner, dropNext, dropNode)

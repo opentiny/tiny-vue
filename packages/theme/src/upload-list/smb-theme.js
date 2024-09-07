@@ -13,5 +13,8 @@ export const tinyUploadListSmbTheme = {
   'ti-upload-list-svg-refresh-position-right': 'var(--ti-common-space-8x)',
   'ti-upload-list-picture-card-item-hover-bg-color': 'var(--ti-common-bg-color-hover-40)',
   'ti-upload-list-picture-success-border-weight': '0',
-  'ti-upload-list-item-text-color': 'var(--ti-common-color-text-secondary)'
+  'ti-upload-list-item-text-color': 'var(--ti-common-color-text-secondary)',
+  'ti-upload-list-item-name-icon-color': 'var(--ti-common-color-primary-normal)',
+  'ti-upload-list-picture-card-item-border-color': 'var(--ti-common-color-line-normal)',
+  'ti-upload-list-picture-card-loading-border-color': 'dashed'
 }
