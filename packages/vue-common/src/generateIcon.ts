@@ -33,13 +33,17 @@ const generateUrl = (vnode, idMaps) => {
       if (vnode.data?.attrs?.[item]?.includes('url(#')) {
         const oldId = vnode.data.attrs[item].replace('url(#', '').replace(')', '')
         const newId = idMaps[oldId]
-        vnode.data.attrs[item] = `url(#${newId})`
+        if (newId) {
+          vnode.data.attrs[item] = `url(#${newId})`
+        }
       }
     } else {
       if (vnode.props?.[item]?.includes('url(#')) {
         const oldId = vnode.props[item].replace('url(#', '').replace(')', '')
         const newId = idMaps[oldId]
-        vnode.props[item] = `url(#${newId})`
+        if (newId) {
+          vnode.props[item] = `url(#${newId})`
+        }
       }
     }
   })
