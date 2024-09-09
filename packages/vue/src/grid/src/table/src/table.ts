@@ -103,7 +103,9 @@ function mergeTreeConfig(_vm) {
 }
 
 const renderEmptyPartFn = (opt) => {
-  const { _vm, tableData, $slots, renderEmpty } = opt
+  const { _vm, tableData } = opt
+  const { $grid = {}, renderEmpty } = _vm
+  const { $slots } = $grid
   return () => {
     let emptyPartVnode = null
     let { computerTableBodyHeight } = _vm
@@ -272,21 +274,13 @@ function getRenderer(opt) {
     visibleColumn
   } = opt
   const { $grid, ctxMenuStore, editRules, filterStore, footerData, footerMethod, hasFilter, hasTip, height, id } = _vm
-  const {
-    isCtxMenu,
-    isResizable,
-    renderEmpty,
-    scrollbarHeight,
-    selectToolbarStore,
-    tooltipContentOpts,
-    vaildTipOpts,
-    validOpts
-  } = _vm
+  const { isCtxMenu, isResizable, scrollbarHeight, selectToolbarStore, tooltipContentOpts, vaildTipOpts, validOpts } =
+    _vm
   const { selectToolbar, renderedToolbar } = $grid
 
   const renderHeader = () =>
     showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null]
-  const renderEmptyPart = renderEmptyPartFn({ _vm, tableData, $slots, renderEmpty })
+  const renderEmptyPart = renderEmptyPartFn({ _vm, tableData })
   const renderFooter = renderFooterFn({ _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
   const renderResizeBar = renderResizeBarFn({ _vm, isResizable, overflowX, scrollbarHeight })
   const arg1 = { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts }

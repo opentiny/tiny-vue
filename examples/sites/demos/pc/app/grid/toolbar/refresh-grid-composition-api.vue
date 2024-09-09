@@ -17,7 +17,13 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Pager, Grid as TinyGrid, GridColumn as TinyGridColumn, GridToolbar as TinyGridToolbar } from '@opentiny/vue'
+import {
+  Pager,
+  Grid as TinyGrid,
+  GridColumn as TinyGridColumn,
+  GridToolbar as TinyGridToolbar,
+  Button as TinyButton
+} from '@opentiny/vue'
 
 const loading = ref(true)
 
