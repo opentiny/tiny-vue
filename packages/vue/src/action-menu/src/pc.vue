@@ -1,61 +1,63 @@
 <template>
   <div class="tiny-action-menu">
-    <ul :class="{ 'tiny-action-menu__wrap': true, 'tiny-action-menu__card-mode': state.isCardMode }">
-      <li
-        v-for="(visableItem, index) in state.visibleOptions"
-        :key="index"
-        :class="[
-          'tiny-action-menu__item',
-          'tiny-action-menu__item-visable',
-          { 'is-disabled': visableItem.disabled, 'tiny-action-menu__card-item': state.isCardMode }
-        ]"
-      >
-        <tiny-dropdown-item
-          :item-data="visableItem"
-          :label="visableItem[textField]"
-          :text-field="textField"
-          :disabled="visableItem.disabled"
-          :icon="visableItem.icon"
-          @item-click="handleItemClick"
+    <ClientOnly>
+      <ul :class="{ 'tiny-action-menu__wrap': true, 'tiny-action-menu__card-mode': state.isCardMode }">
+        <li
+          v-for="(visableItem, index) in state.visibleOptions"
+          :key="index"
+          :class="[
+            'tiny-action-menu__item',
+            'tiny-action-menu__item-visable',
+            { 'is-disabled': visableItem.disabled, 'tiny-action-menu__card-item': state.isCardMode }
+          ]"
         >
-          <template #default="{ itemData }">
-            <slot name="item" :data="itemData"></slot>
-          </template>
-        </tiny-dropdown-item>
-        <span class="tiny-action-menu__item-line" :style="{ margin: '0 ' + state.spacing }"></span>
-      </li>
+          <tiny-dropdown-item
+            :item-data="visableItem"
+            :label="visableItem[textField]"
+            :text-field="textField"
+            :disabled="visableItem.disabled"
+            :icon="visableItem.icon"
+            @item-click="handleItemClick"
+          >
+            <template #default="{ itemData }">
+              <slot name="item" :data="itemData"></slot>
+            </template>
+          </tiny-dropdown-item>
+          <span class="tiny-action-menu__item-line" :style="{ margin: '0 ' + state.spacing }"></span>
+        </li>
 
-      <li v-if="state.moreOptions.length" class="tiny-action-menu__item">
-        <tiny-dropdown
-          :title="state.moreText"
-          :trigger="trigger"
-          :show-icon="showIcon"
-          @item-click="handleItemClick"
-          @handle-click="handleMoreClick"
-          @visible-change="visibleChange"
-        >
-          <template v-if="state.suffixIcon" #suffix-icon>
-            <component :is="state.suffixIcon"></component>
-          </template>
-          <template #dropdown>
-            <tiny-dropdown-menu :text-field="textField" :popper-class="popperClass">
-              <tiny-dropdown-item
-                v-for="(item, index) in state.moreOptions"
-                :key="index"
-                :divided="item.divided"
-                :item-data="item"
-                :label="item[textField]"
-                :disabled="item.disabled"
-              >
-                <template #default="{ itemData }">
-                  <slot name="item" :data="itemData"></slot>
-                </template>
-              </tiny-dropdown-item>
-            </tiny-dropdown-menu>
-          </template>
-        </tiny-dropdown>
-      </li>
-    </ul>
+        <li v-if="state.moreOptions.length" class="tiny-action-menu__item">
+          <tiny-dropdown
+            :title="state.moreText"
+            :trigger="trigger"
+            :show-icon="showIcon"
+            @item-click="handleItemClick"
+            @handle-click="handleMoreClick"
+            @visible-change="visibleChange"
+          >
+            <template v-if="state.suffixIcon" #suffix-icon>
+              <component :is="state.suffixIcon"></component>
+            </template>
+            <template #dropdown>
+              <tiny-dropdown-menu :text-field="textField" :popper-class="popperClass">
+                <tiny-dropdown-item
+                  v-for="(item, index) in state.moreOptions"
+                  :key="index"
+                  :divided="item.divided"
+                  :item-data="item"
+                  :label="item[textField]"
+                  :disabled="item.disabled"
+                >
+                  <template #default="{ itemData }">
+                    <slot name="item" :data="itemData"></slot>
+                  </template>
+                </tiny-dropdown-item>
+              </tiny-dropdown-menu>
+            </template>
+          </tiny-dropdown>
+        </li>
+      </ul>
+    </ClientOnly>
   </div>
 </template>
 
