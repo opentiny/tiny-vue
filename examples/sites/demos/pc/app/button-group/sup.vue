@@ -1,24 +1,28 @@
 <template>
   <div class="demo-button">
     <p>原生及插槽</p>
-    <tiny-button-group :data="groupData" v-model="checkedVal">
-      <template #button4="{ sup }">
-        <icon-plus-circle></icon-plus-circle>
-        <span>
-          {{ sup.text }}
-        </span>
-      </template>
-    </tiny-button-group>
+    <div class="sup">
+      <tiny-button-group :data="groupData" v-model="checkedVal">
+        <template #button4="{ sup }">
+          <icon-plus-circle></icon-plus-circle>
+          <span>
+            {{ sup.text }}
+          </span>
+        </template>
+      </tiny-button-group>
+    </div>
     <br /><br />
     <p>插槽引用tag角标</p>
-    <tiny-button-group :data="groupData2" v-model="checkedVal">
-      <template #btn="{ sup }">
-        <tiny-tag type="warning" size="small" hit>
-          <component :is="sup.icon" class="tiny-svg-size"></component>
-          {{ sup.text }}
-        </tiny-tag>
-      </template>
-    </tiny-button-group>
+    <div class="tag">
+      <tiny-button-group :data="groupData2" v-model="checkedVal">
+        <template #btn="{ sup }">
+          <tiny-tag type="warning" size="small" hit>
+            <component :is="sup.icon" class="tiny-svg-size"></component>
+            {{ sup.text }}
+          </tiny-tag>
+        </template>
+      </tiny-button-group>
+    </div>
   </div>
 </template>
 
@@ -39,7 +43,7 @@ export default {
       checkedVal: 'Button1',
       groupData: [
         {
-          text: '1年',
+          text: '文字',
           value: 'Button1',
           sup: {
             class: ['success-bg'],
@@ -47,7 +51,7 @@ export default {
           }
         },
         {
-          text: '2年',
+          text: '图标',
           value: 'Button2',
           sup: {
             class: 'sup-icon',
@@ -55,7 +59,7 @@ export default {
           }
         },
         {
-          text: '3年',
+          text: '文字',
           value: 'Button3',
           sup: {
             class: 'sup-text',
@@ -63,7 +67,7 @@ export default {
           }
         },
         {
-          text: '4年',
+          text: '组合',
           value: 'Button4',
           sup: {
             slot: 'button4',
@@ -74,7 +78,7 @@ export default {
       ],
       groupData2: [
         {
-          text: '1年',
+          text: '文本',
           value: 'Button1',
           sup: {
             slot: 'btn',
@@ -83,7 +87,7 @@ export default {
           }
         },
         {
-          text: '2年',
+          text: '图标',
           value: 'Button2',
           sup: {
             slot: 'btn',
@@ -92,7 +96,7 @@ export default {
           }
         },
         {
-          text: '3年',
+          text: '图标',
           value: 'Button3',
           sup: {
             slot: 'btn',
@@ -101,7 +105,7 @@ export default {
           }
         },
         {
-          text: '4年',
+          text: '组合',
           value: 'Button4',
           sup: {
             slot: 'btn',
@@ -141,8 +145,17 @@ export default {
 .demo-button p {
   margin-bottom: 8px;
 }
-.demo-button button {
+.demo-button .sup button {
+  width: 84px;
+}
+.demo-button .sup li:nth-of-type(4) button {
   width: 124px;
+}
+.demo-button .tag button {
+  width: 84px;
+}
+.demo-button .tag li:last-child button {
+  width: 120px;
 }
 .demo-button .tiny-tag {
   border-radius: 0px 5px 0 8px;

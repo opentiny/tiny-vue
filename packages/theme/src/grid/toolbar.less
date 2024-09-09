@@ -22,8 +22,11 @@
 
 // toolbar
 .@{grid-toolbar-prefix-cls} {
-  padding: 12px 0;
+  padding: var(--ti-grid-toolbar-padding-vertical) 0;
 
+  + .@{grid-toolbar-prefix-cls} {
+    padding-top: 0;
+  }
   // Tiny 新增，工具栏容器为空则不需要占位
   &:empty {
     display: none;

@@ -84,7 +84,8 @@ export default defineComponent({
           indeterminate={!node.checked && node.indeterminate}
           disabled={state.isDisabled}
           onChange={this.handleMultiCheckChange}
-          onClick={stopPropagation}></tiny-checkbox>
+          onClick={stopPropagation}
+        ></tiny-checkbox>
       )
     }
 
@@ -101,7 +102,8 @@ export default defineComponent({
           disabled={isDisabled}
           label={value}
           onClick={stopPropagation}
-          onChange={this.handleCheckChange}>
+          onChange={this.handleCheckChange}
+        >
           <span></span>
         </tiny-radio>
       )

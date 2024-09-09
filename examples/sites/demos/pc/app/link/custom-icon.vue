@@ -19,18 +19,18 @@
 
 <script>
 import { Link } from '@opentiny/vue'
-import { IconEdit, IconView, IconDel, IconFilletExternalLink } from '@opentiny/vue-icon'
+import { IconEditor, IconView, IconDeleteL, IconFilletExternalLink } from '@opentiny/vue-icon'
 
 export default {
   components: {
     TinyLink: Link,
     IconView: IconView(),
-    IconDel: IconDel(),
+    IconDel: IconDeleteL(),
     IconFilletExternalLink: IconFilletExternalLink()
   },
   data() {
     return {
-      IconEdit: IconEdit()
+      IconEdit: IconEditor()
     }
   }
 }
