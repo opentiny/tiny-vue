@@ -8,6 +8,13 @@
         <tiny-dropdown-menu :options="options"> </tiny-dropdown-menu>
       </template>
     </tiny-dropdown>
+    <br />
+    <br />
+    <tiny-dropdown @item-click="itemClick">
+      <template #dropdown>
+        <tiny-dropdown-menu :options="options1"> </tiny-dropdown-menu>
+      </template>
+    </tiny-dropdown>
   </div>
 </template>
 
@@ -44,6 +51,25 @@ export default {
           icon: iconStarDisable()
         }
       ],
+      options1: reactive([
+        {
+          label: '老友粉'
+        },
+        {
+          label: '狮子头',
+          children: [
+            {
+              label: '狮子头2.1'
+            },
+            { label: '狮子头2.2' },
+            { label: '狮子头2.3', disabled: true }
+          ]
+        },
+        {
+          label: '黄金糕',
+          disabled: true
+        }
+      ]),
       menuOptions: {
         options: [
           {
