@@ -9,7 +9,7 @@ import { HuichartsTree } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyTreeChart: ChartTree
+    TinyTreeChart: HuichartsTree
   },
   data() {
     return {

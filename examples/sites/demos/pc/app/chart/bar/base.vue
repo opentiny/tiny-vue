@@ -9,7 +9,7 @@ import { HuichartsBar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBar: ChartBar
+    TinyBar: HuichartsBar
   },
   data() {
     return {

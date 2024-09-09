@@ -9,7 +9,7 @@ import { HuichartsWordcloud } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyWordcloud: ChartWordcloud
+    TinyWordcloud: HuichartsWordcloud
   },
   data() {
     return {

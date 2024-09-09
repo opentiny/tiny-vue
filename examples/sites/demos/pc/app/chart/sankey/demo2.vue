@@ -9,7 +9,7 @@ import { HuichartsSankey } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySankey: ChartSankey
+    TinySankey: HuichartsSankey
   },
   data() {
     return {

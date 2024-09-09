@@ -9,7 +9,7 @@ import { HuichartsProcess } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyProcess: ChartProcess
+    TinyProcess: HuichartsProcess
   },
   data() {
     return {

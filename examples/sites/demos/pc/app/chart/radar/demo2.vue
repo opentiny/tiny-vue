@@ -9,7 +9,7 @@ import { HuichartsRadar } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyRadar: ChartRadar
+    TinyRadar: HuichartsRadar
   },
   data() {
     return {

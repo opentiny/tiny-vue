@@ -7,7 +7,7 @@ import { HuichartsLine } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLine: ChartLine
+    TinyLine: HuichartsLine
   },
   data() {
     this.chartSettings = {

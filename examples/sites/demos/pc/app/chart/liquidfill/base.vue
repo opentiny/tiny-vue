@@ -9,7 +9,7 @@ import { HuichartsLiquidfill } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLiquidfill: ChartLiquidfill
+    TinyLiquidfill: HuichartsLiquidfill
   },
   data() {
     return {

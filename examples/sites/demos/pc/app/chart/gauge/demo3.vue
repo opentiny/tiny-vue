@@ -9,7 +9,7 @@ import { HuichartsGauge } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGauge: ChartGauge
+    TinyGauge: HuichartsGauge
   },
   data() {
     return {

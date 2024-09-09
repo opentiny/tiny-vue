@@ -9,7 +9,7 @@ import { HuichartsCandle } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyCandle: ChartCandle
+    TinyCandle: HuichartsCandle
   },
   data() {
     return {

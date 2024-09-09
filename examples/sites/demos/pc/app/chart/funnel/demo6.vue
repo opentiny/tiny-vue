@@ -9,7 +9,7 @@ import { HuichartsFunnel } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyFunnel: ChartFunnel
+    TinyFunnel: HuichartsFunnel
   },
   data() {
     return {

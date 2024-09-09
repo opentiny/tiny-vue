@@ -9,7 +9,7 @@ import { HuichartsSunburst } from '@opentiny/vue'
 
 export default {
   components: {
-    TinySunburst: ChartSunburst
+    TinySunburst: HuichartsSunburst
   },
   data() {
     return {

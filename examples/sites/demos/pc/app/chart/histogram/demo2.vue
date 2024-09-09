@@ -9,7 +9,7 @@ import { HuichartsHistogram } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyHistogram: ChartHistogram
+    TinyHistogram: HuichartsHistogram
   },
   data() {
     return {

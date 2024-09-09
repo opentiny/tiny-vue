@@ -9,7 +9,7 @@ import { HuichartsPie } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyPie: ChartPie
+    TinyPie: HuichartsPie
   },
   data() {
     return {

@@ -7,7 +7,7 @@ import { HuichartsBoxplot } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyBoxplot: ChartBoxplot
+    TinyBoxplot: HuichartsBoxplot
   },
   data() {
     const sourceData0 = this.makeData()

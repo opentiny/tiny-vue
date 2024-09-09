@@ -9,7 +9,7 @@ import { HuichartsGraph } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyGraph: ChartGraph
+    TinyGraph: HuichartsGraph
   },
   data() {
     return {

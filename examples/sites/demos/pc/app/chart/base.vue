@@ -31,7 +31,7 @@ import { Huicharts, Button } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyChart: Chart,
+    TinyChart: Huicharts,
     TinyButton: Button
   },
   methods: {

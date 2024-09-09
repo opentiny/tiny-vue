@@ -52,7 +52,7 @@ let option = {
 
 export default {
   components: {
-    TinyGraph: ChartGraph
+    TinyGraph: HuichartsGraph
   },
   data() {
     return {

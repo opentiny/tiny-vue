@@ -19,7 +19,7 @@ import { HuichartsLine, Button } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyLine: ChartLine,
+    TinyLine: HuichartsLine,
     TinyButton: Button
   },
   data() {

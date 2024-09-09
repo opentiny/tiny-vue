@@ -9,7 +9,7 @@ import { HuichartsScatter } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyScatter: ChartScatter
+    TinyScatter: HuichartsScatter
   },
   data() {
     return {

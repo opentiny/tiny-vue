@@ -9,7 +9,7 @@ import { HuichartsHeatmap } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyHeatmap: ChartHeatmap
+    TinyHeatmap: HuichartsHeatmap
   },
   data() {
     return {

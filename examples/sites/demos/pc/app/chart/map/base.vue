@@ -15,7 +15,7 @@ import chinaData from './china.js'
 
 export default {
   components: {
-    TinyMap: ChartMap
+    TinyMap: HuichartsMap
   },
   data() {
     return {
