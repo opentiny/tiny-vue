@@ -14,5 +14,9 @@
 
 ## 处理后待做
 
-`base`中的变量，手工复制替换。
+`base`中的变量与 `theme/smb-theme`的变量手工复制替换。
 手工校对是否common变量有差异！
+
+## 命令
+
+npm run theme-swap
