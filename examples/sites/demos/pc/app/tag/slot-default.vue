@@ -53,6 +53,6 @@ export default {
   font-size: 20px;
 }
 .tiny-only-iocn {
-  border-radius: 0px 6px 0px 6px;
+  border-radius: 0px 6px;
 }
 </style>
