@@ -13,6 +13,7 @@ export const tinyTagSMBTheme = {
   'ti-tag-border-radius': 'var(--ti-common-border-radius-2)',
   'ti-tag-close-font-size': 'var(--ti-common-font-size-2)',
   'ti-tag-close-margin-left': 'var(--ti-common-space-base)',
+  'ti-tag-disabled-background-color': 'var(--ti-common-color-bg-disabled)',
   'ti-tag-close-margin-right': 'calc(var(--ti-common-space-base) * -1)',
   'ti-tag-close-medium-margin-left': 'var(--ti-common-space-2x)',
   'ti-tag-close-medium-margin-right': 'calc(var(--ti-common-space-base) * -1)',
