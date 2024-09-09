@@ -27,7 +27,8 @@ export default defineComponent({
             <div
               data-tag="tiny-anchor-link"
               class={[type === 'line' && 'ml-4 cursor-pointer leading-9', type === 'dot' && 'relative pl-2.5']}
-              key={item.key}>
+              key={item.key}
+            >
               <a
                 data-tag="tiny-anchor-link-title"
                 href={item.link}
@@ -41,7 +42,8 @@ export default defineComponent({
                 ]}
                 onClick={(e) => linkClick(e, item)}
                 ref={item.link}
-                v-auto-tip>
+                v-auto-tip
+              >
                 {item.title}
               </a>
               {item.children ? renderLinks(item.children) : null}
@@ -63,11 +65,13 @@ export default defineComponent({
       <div
         data-tag="tiny-anchor__wrapper"
         class={[isAffix ? 'fixed z-10' : '', type === 'line' && '', type === 'dot' && 'w-50']}
-        ref="anchorWrapRef">
+        ref="anchorWrapRef"
+      >
         <div
           data-tag="tiny-anchor"
           class={[type === 'line' && 'w-50 relative text-color-text-primary text-sm', type === 'dot' && 'px-4']}
-          ref="anchorRef">
+          ref="anchorRef"
+        >
           {type === 'line' && renderMask}
           {type === 'line' && renderOrbit}
           {links && renderLinks(links)}
