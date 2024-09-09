@@ -1,8 +1,8 @@
-import ChartPie from './src/chart-pie.vue'
+import HuiChartsPie from './src/chart-pie.vue'
 
-ChartPie.install = function (Vue: any) {
-  Vue.component(ChartPie.name, ChartPie)
+HuiChartsPie.install = function (Vue: any) {
+  Vue.component(HuiChartsPie.name, HuiChartsPie)
 }
 
-export { ChartPie }
-export default ChartPie
+export { HuiChartsPie }
+export default HuiChartsPie

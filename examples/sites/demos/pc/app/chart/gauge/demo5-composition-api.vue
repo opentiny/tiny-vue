@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartGauge as TinyChartGauge } from '@opentiny/vue'
+import { HuichartsGauge as TinyChartGauge } from '@opentiny/vue'
 
 const options = ref({
   // gradientColor表示从仪表盘左到右的渐变色

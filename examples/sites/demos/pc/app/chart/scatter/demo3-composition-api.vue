@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartScatter as TinyChartScatter } from '@opentiny/vue'
+import { HuichartsScatter as TinyChartScatter } from '@opentiny/vue'
 
 const options = ref({
   padding: [50, 30, 50, 20],

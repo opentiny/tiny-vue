@@ -1,9 +1,9 @@
-import ChartGraph from './src/chart-graph.vue'
+import HuiChartsGraph from './src/chart-graph.vue'
 
-ChartGraph.install = function (Vue: any) {
-  Vue.component(ChartGraph.name, ChartGraph)
+HuiChartsGraph.install = function (Vue: any) {
+  Vue.component(HuiChartsGraph.name, HuiChartsGraph)
 }
 
-export { ChartGraph }
+export { HuiChartsGraph }
 
-export default ChartGraph
+export default HuiChartsGraph

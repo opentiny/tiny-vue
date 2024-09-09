@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartRing as TinyChartRing } from '@opentiny/vue'
+import { HuichartsRing as TinyChartRing } from '@opentiny/vue'
 
 const options = ref({
   color: ['#10c7c1', '#ff88800'],

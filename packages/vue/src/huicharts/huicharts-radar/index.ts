@@ -1,8 +1,8 @@
-import ChartRadar from './src/chart-radar.vue'
+import HuiChartsRadar from './src/chart-radar.vue'
 
-ChartRadar.install = function (Vue: any) {
-  Vue.component(ChartRadar.name, ChartRadar)
+HuiChartsRadar.install = function (Vue: any) {
+  Vue.component(HuiChartsRadar.name, HuiChartsRadar)
 }
 
-export { ChartRadar }
-export default ChartRadar
+export { HuiChartsRadar }
+export default HuiChartsRadar

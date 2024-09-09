@@ -15,7 +15,7 @@
 <script>
 // 使用前需先引入对应模块
 import 'echarts/lib/component/dataZoom'
-import { ChartLine, Button } from '@opentiny/vue'
+import { HuichartsLine, Button } from '@opentiny/vue'
 
 export default {
   components: {

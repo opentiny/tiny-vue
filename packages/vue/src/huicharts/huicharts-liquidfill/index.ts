@@ -1,8 +1,8 @@
-import ChartLiquidfill from './src/chart-liquidfill.vue'
+import HuiChartsLiquidfill from './src/chart-liquidfill.vue'
 
-ChartLiquidfill.install = function (Vue: any) {
-  Vue.component(ChartLiquidfill.name, ChartLiquidfill)
+HuiChartsLiquidfill.install = function (Vue: any) {
+  Vue.component(HuiChartsLiquidfill.name, HuiChartsLiquidfill)
 }
 
-export { ChartLiquidfill }
-export default ChartLiquidfill
+export { HuiChartsLiquidfill }
+export default HuiChartsLiquidfill

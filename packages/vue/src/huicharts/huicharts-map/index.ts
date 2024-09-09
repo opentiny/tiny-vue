@@ -1,8 +1,8 @@
-import ChartMap from './src/chart-map.vue'
+import HuiChartsMap from './src/chart-map.vue'
 
-ChartMap.install = function (Vue: any) {
-  Vue.component(ChartMap.name, ChartMap)
+HuiChartsMap.install = function (Vue: any) {
+  Vue.component(HuiChartsMap.name, HuiChartsMap)
 }
 
-export { ChartMap }
-export default ChartMap
+export { HuiChartsMap }
+export default HuiChartsMap

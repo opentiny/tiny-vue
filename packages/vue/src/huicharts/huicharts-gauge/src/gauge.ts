@@ -48,9 +48,9 @@ function getSeries(args) {
         formatter: !dataType
           ? '{value}'
           : (value) => {
-              const res = getFormatted(value, dataType[label], digit)
-              return dataType[label] === 'percent' ? res.split('%')[0] + '{percent|%}' : res
-            },
+            const res = getFormatted(value, dataType[label], digit)
+            return dataType[label] === 'percent' ? res.split('%')[0] + '{percent|%}' : res
+          },
         rich: { percent: { fontSize: 12, color: '#4e4e4e', padding: [0, 0, -20, 0] } }
       },
       axisLabel: { formatter: formatter2 },

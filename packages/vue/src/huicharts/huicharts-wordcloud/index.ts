@@ -1,8 +1,8 @@
-import ChartWordcloud from './src/chart-wordcloud.vue'
+import HuiChartsWordcloud from './src/chart-wordcloud.vue'
 
-ChartWordcloud.install = function (Vue: any) {
-  Vue.component(ChartWordcloud.name, ChartWordcloud)
+HuiChartsWordcloud.install = function (Vue: any) {
+  Vue.component(HuiChartsWordcloud.name, HuiChartsWordcloud)
 }
 
-export { ChartWordcloud }
-export default ChartWordcloud
+export { HuiChartsWordcloud }
+export default HuiChartsWordcloud

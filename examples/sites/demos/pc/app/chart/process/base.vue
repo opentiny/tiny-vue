@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { ChartProcess } from '@opentiny/vue'
+import { HuichartsProcess } from '@opentiny/vue'
 
 export default {
   components: {

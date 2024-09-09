@@ -73,5 +73,5 @@ export const tree = (columns, rows, settings, extra) => {
     name: item.name,
     data: item.value
   }))
-  return { data, series, legend, tooltip, tipHtml: tooltip.formatter, type: 'LineTreeChart', initialTreeDepth: 3 }
+  return { data, series, legend, tooltip, tipHtml: tooltip.formatter, type: 'LineTreeHuiCharts', initialTreeDepth: 3 }
 }

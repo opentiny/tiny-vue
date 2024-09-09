@@ -1,8 +1,8 @@
-import ChartGauge from './src/chart-gauge.vue'
+import HuiChartsGauge from './src/chart-gauge.vue'
 
-ChartGauge.install = function (Vue: any) {
-  Vue.component(ChartGauge.name, ChartGauge)
+HuiChartsGauge.install = function (Vue: any) {
+  Vue.component(HuiChartsGauge.name, HuiChartsGauge)
 }
 
-export { ChartGauge }
-export default ChartGauge
+export { HuiChartsGauge }
+export default HuiChartsGauge

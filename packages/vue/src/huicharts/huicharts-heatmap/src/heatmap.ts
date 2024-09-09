@@ -214,7 +214,7 @@ export const heatmap = (columns, rows, settings, extra) => {
   res = getResult(args)
   res.data = chartData
   if (type === 'cartesian') {
-    res.type = 'CalendarHeatMapChart'
+    res.type = 'CalendarHeatMapHuiCharts'
   }
 
   return res

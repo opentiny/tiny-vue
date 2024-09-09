@@ -1,8 +1,8 @@
-import ChartRing from './src/chart-ring.vue'
+import HuiChartsRing from './src/chart-ring.vue'
 
-ChartRing.install = function (Vue: any) {
-  Vue.component(ChartRing.name, ChartRing)
+HuiChartsRing.install = function (Vue: any) {
+  Vue.component(HuiChartsRing.name, HuiChartsRing)
 }
 
-export { ChartRing }
-export default ChartRing
+export { HuiChartsRing }
+export default HuiChartsRing

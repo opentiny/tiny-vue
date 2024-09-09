@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartWordcloud as TinyChartWordcloud } from '@opentiny/vue'
+import { HuichartsWordcloud as TinyChartWordcloud } from '@opentiny/vue'
 
 const options = ref({
   data: [

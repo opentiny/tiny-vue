@@ -1,8 +1,8 @@
-import ChartLine from './src/chart-line.vue'
+import HuiChartsLine from './src/chart-line.vue'
 
-ChartLine.install = function (Vue: any) {
-  Vue.component(ChartLine.name, ChartLine)
+HuiChartsLine.install = function (Vue: any) {
+  Vue.component(HuiChartsLine.name, HuiChartsLine)
 }
 
-export { ChartLine }
-export default ChartLine
+export { HuiChartsLine }
+export default HuiChartsLine

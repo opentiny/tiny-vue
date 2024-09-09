@@ -1,9 +1,9 @@
-import ChartHeatmap from './src/chart-heatmap.vue'
+import HuiChartsHeatmap from './src/chart-heatmap.vue'
 
-ChartHeatmap.install = function (Vue: any) {
-  Vue.component(ChartHeatmap.name, ChartHeatmap)
+HuiChartsHeatmap.install = function (Vue: any) {
+  Vue.component(HuiChartsHeatmap.name, HuiChartsHeatmap)
 }
 
-export { ChartHeatmap }
+export { HuiChartsHeatmap }
 
-export default ChartHeatmap
+export default HuiChartsHeatmap

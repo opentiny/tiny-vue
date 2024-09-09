@@ -1,9 +1,9 @@
-import ChartSunburst from './src/chart-sunburst.vue'
+import HuiChartsSunburst from './src/chart-sunburst.vue'
 
-ChartSunburst.install = function (Vue: any) {
-  Vue.component(ChartSunburst.name, ChartSunburst)
+HuiChartsSunburst.install = function (Vue: any) {
+  Vue.component(HuiChartsSunburst.name, HuiChartsSunburst)
 }
 
-export { ChartSunburst }
+export { HuiChartsSunburst }
 
-export default ChartSunburst
+export default HuiChartsSunburst

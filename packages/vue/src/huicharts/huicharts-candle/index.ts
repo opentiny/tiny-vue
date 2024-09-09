@@ -1,9 +1,9 @@
-import ChartCandle from './src/chart-candle.vue'
+import HuiChartsCandle from './src/chart-candle.vue'
 
-ChartCandle.install = function (Vue: any) {
-  Vue.component(ChartCandle.name, ChartCandle)
+HuiChartsCandle.install = function (Vue: any) {
+  Vue.component(HuiChartsCandle.name, HuiChartsCandle)
 }
 
-export { ChartCandle }
+export { HuiChartsCandle }
 
-export default ChartCandle
+export default HuiChartsCandle

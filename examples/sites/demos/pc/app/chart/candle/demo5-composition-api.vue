@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartCandle as TinyChartCandle } from '@opentiny/vue'
+import { HuichartsCandle as TinyChartCandle } from '@opentiny/vue'
 
 const baseData = [
   ['2004-01-05', 10411.85, 10544.07, 10411.85, 10575.92, 221290000],

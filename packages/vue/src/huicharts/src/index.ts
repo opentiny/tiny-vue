@@ -1,34 +1,34 @@
-import { ChartRing } from '../huicharts-ring'
-import { ChartPie } from '../huicharts-pie'
-import { ChartBar } from '../huicharts-bar'
-import { ChartHistogram } from '../huicharts-histogram'
-import { ChartRadar } from '../huicharts-radar'
-import { ChartLine } from '../huicharts-line'
+import { HuiChartsRing } from '../huicharts-ring'
+import { HuiChartsPie } from '../huicharts-pie'
+import { HuiChartsBar } from '../huicharts-bar'
+import { HuiChartsHistogram } from '../huicharts-histogram'
+import { HuiChartsRadar } from '../huicharts-radar'
+import { HuiChartsLine } from '../huicharts-line'
 
 import { AutonaviMap } from '../huicharts-amap'
 import { BaiduMap } from '../huicharts-bmap'
-import { ChartBoxplot } from '../huicharts-boxplot'
-import { ChartCandle } from '../huicharts-candle'
-import { ChartFunnel } from '../huicharts-funnel'
-import { ChartGauge } from '../huicharts-gauge'
-import { ChartGraph } from '../huicharts-graph'
-import { ChartHeatmap } from '../huicharts-heatmap'
-import { ChartLiquidfill } from '../huicharts-liquidfill'
-import { ChartMap } from '../huicharts-map'
+import { HuiChartsBoxplot } from '../huicharts-boxplot'
+import { HuiChartsCandle } from '../huicharts-candle'
+import { HuiChartsFunnel } from '../huicharts-funnel'
+import { HuiChartsGauge } from '../huicharts-gauge'
+import { HuiChartsGraph } from '../huicharts-graph'
+import { HuiChartsHeatmap } from '../huicharts-heatmap'
+import { HuiChartsLiquidfill } from '../huicharts-liquidfill'
+import { HuiChartsMap } from '../huicharts-map'
 
-import { ChartSankey } from '../huicharts-sankey'
-import { ChartScatter } from '../huicharts-scatter'
-import { ChartSunburst } from '../huicharts-sunburst'
-import { ChartTree } from '../huicharts-tree'
-import { ChartWaterfall } from '../huicharts-waterfall'
-import { ChartWordcloud } from '../huicharts-wordcloud'
+import { HuiChartsSankey } from '../huicharts-sankey'
+import { HuiChartsScatter } from '../huicharts-scatter'
+import { HuiChartsSunburst } from '../huicharts-sunburst'
+import { HuiChartsTree } from '../huicharts-tree'
+import { HuiChartsWaterfall } from '../huicharts-waterfall'
+import { HuiChartsWordcloud } from '../huicharts-wordcloud'
 
 import Core from '@opentiny/vue-huicharts-core'
 
 import { $prefix, defineComponent, h } from '@opentiny/vue-common'
 
 export default defineComponent({
-  name: $prefix + 'Chart',
+  name: $prefix + 'HuiCharts',
   props: {
     ...Core.props,
     type: {
@@ -37,28 +37,28 @@ export default defineComponent({
   },
   data() {
     this.chartLib = {
-      bar: ChartBar,
-      histogram: ChartHistogram,
-      line: ChartLine,
-      pie: ChartPie,
-      ring: ChartRing,
-      radar: ChartRadar,
+      bar: HuiChartsBar,
+      histogram: HuiChartsHistogram,
+      line: HuiChartsLine,
+      pie: HuiChartsPie,
+      ring: HuiChartsRing,
+      radar: HuiChartsRadar,
       autonaviMap: AutonaviMap,
       baiduMap: BaiduMap,
-      boxplot: ChartBoxplot,
-      candle: ChartCandle,
-      funnel: ChartFunnel,
-      gauge: ChartGauge,
-      graph: ChartGraph,
-      heatmap: ChartHeatmap,
-      liquidfill: ChartLiquidfill,
-      map: ChartMap,
-      sankey: ChartSankey,
-      scatter: ChartScatter,
-      sunburst: ChartSunburst,
-      tree: ChartTree,
-      waterfall: ChartWaterfall,
-      wordcloud: ChartWordcloud
+      boxplot: HuiChartsBoxplot,
+      candle: HuiChartsCandle,
+      funnel: HuiChartsFunnel,
+      gauge: HuiChartsGauge,
+      graph: HuiChartsGraph,
+      heatmap: HuiChartsHeatmap,
+      liquidfill: HuiChartsLiquidfill,
+      map: HuiChartsMap,
+      sankey: HuiChartsSankey,
+      scatter: HuiChartsScatter,
+      sunburst: HuiChartsSunburst,
+      tree: HuiChartsTree,
+      waterfall: HuiChartsWaterfall,
+      wordcloud: HuiChartsWordcloud
     }
     return {}
   },

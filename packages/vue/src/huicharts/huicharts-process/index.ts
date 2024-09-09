@@ -1,9 +1,9 @@
-import ChartProcess from './src/chart-process.vue'
+import HuiChartsProcess from './src/chart-process.vue'
 import type { VueConstructor } from 'vue'
 
-ChartProcess.install = function (Vue: VueConstructor<Vue>) {
-  Vue.component(ChartProcess.name as string, ChartProcess)
+HuiChartsProcess.install = function (Vue: VueConstructor<Vue>) {
+  Vue.component(HuiChartsProcess.name as string, HuiChartsProcess)
 }
 
-export { ChartProcess }
-export default ChartProcess
+export { HuiChartsProcess }
+export default HuiChartsProcess

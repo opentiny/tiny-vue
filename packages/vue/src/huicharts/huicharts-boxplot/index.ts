@@ -1,9 +1,9 @@
-import ChartBoxplot from './src/chart-boxplot.vue'
+import HuiChartsBoxplot from './src/chart-boxplot.vue'
 
-ChartBoxplot.install = function (Vue: any) {
-  Vue.component(ChartBoxplot.name, ChartBoxplot)
+HuiChartsBoxplot.install = function (Vue: any) {
+  Vue.component(HuiChartsBoxplot.name, HuiChartsBoxplot)
 }
 
-export { ChartBoxplot }
+export { HuiChartsBoxplot }
 
-export default ChartBoxplot
+export default HuiChartsBoxplot

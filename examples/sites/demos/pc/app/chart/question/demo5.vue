@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { ChartLine, Button } from '@opentiny/vue'
+import { HuichartsLine, Button } from '@opentiny/vue'
 
 export default {
   components: {

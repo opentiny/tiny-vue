@@ -1,9 +1,9 @@
-import ChartTree from './src/chart-tree.vue'
+import HuiChartsTree from './src/chart-tree.vue'
 
-ChartTree.install = function (Vue: any) {
-  Vue.component(ChartTree.name, ChartTree)
+HuiChartsTree.install = function (Vue: any) {
+  Vue.component(HuiChartsTree.name, HuiChartsTree)
 }
 
-export { ChartTree }
+export { HuiChartsTree }
 
-export default ChartTree
+export default HuiChartsTree

@@ -16,7 +16,7 @@
 // 使用前需先引入对应模块
 import { ref } from 'vue'
 import 'echarts/lib/component/dataZoom'
-import { ChartLine as TinyLine, Button as TinyButton } from '@opentiny/vue'
+import { HuichartsLine as TinyLine, Button as TinyButton } from '@opentiny/vue'
 
 const extend = ref({
   legend: {

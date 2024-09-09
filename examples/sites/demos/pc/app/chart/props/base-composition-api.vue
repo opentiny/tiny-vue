@@ -8,7 +8,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartHistogram as TinyChartHistogram } from '@opentiny/vue'
+import { HuichartsHistogram as TinyChartHistogram } from '@opentiny/vue'
 
 const options = ref({
   padding: [50, 30, 50, 20],

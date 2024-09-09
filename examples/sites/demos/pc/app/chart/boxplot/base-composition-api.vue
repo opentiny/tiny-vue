@@ -4,7 +4,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartBoxplot as TinyChartBoxplot } from '@opentiny/vue'
+import { HuichartsBoxplot as TinyChartBoxplot } from '@opentiny/vue'
 
 const options = ref({
   data: [

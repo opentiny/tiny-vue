@@ -1,8 +1,8 @@
-import ChartScatter from './src/chart-scatter.vue'
+import HuiChartsScatter from './src/chart-scatter.vue'
 
-ChartScatter.install = function (Vue: any) {
-  Vue.component(ChartScatter.name, ChartScatter)
+HuiChartsScatter.install = function (Vue: any) {
+  Vue.component(HuiChartsScatter.name, HuiChartsScatter)
 }
 
-export { ChartScatter }
-export default ChartScatter
+export { HuiChartsScatter }
+export default HuiChartsScatter

@@ -1,8 +1,8 @@
-import ChartHistogram from './src/chart-histogram.vue'
+import HuiChartsHistogram from './src/chart-histogram.vue'
 
-ChartHistogram.install = function (Vue: any) {
-  Vue.component(ChartHistogram.name, ChartHistogram)
+HuiChartsHistogram.install = function (Vue: any) {
+  Vue.component(HuiChartsHistogram.name, HuiChartsHistogram)
 }
 
-export { ChartHistogram }
-export default ChartHistogram
+export { HuiChartsHistogram }
+export default HuiChartsHistogram

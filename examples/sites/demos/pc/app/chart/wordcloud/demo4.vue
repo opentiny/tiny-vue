@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { ChartWordcloud } from '@opentiny/vue'
+import { HuichartsWordcloud } from '@opentiny/vue'
 
 export default {
   components: {

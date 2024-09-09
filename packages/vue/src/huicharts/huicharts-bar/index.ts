@@ -1,9 +1,9 @@
-import ChartBar from './src/chart-bar.vue'
+import HuiChartsBar from './src/chart-bar.vue'
 
-ChartBar.install = function (Vue: any) {
-  Vue.component(ChartBar.name, ChartBar)
+HuiChartsBar.install = function (Vue: any) {
+  Vue.component(HuiChartsBar.name, HuiChartsBar)
 }
 
-export { ChartBar }
+export { HuiChartsBar }
 
-export default ChartBar
+export default HuiChartsBar

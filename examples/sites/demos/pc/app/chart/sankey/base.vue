@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { ChartSankey } from '@opentiny/vue'
+import { HuichartsSankey } from '@opentiny/vue'
 
 export default {
   components: {

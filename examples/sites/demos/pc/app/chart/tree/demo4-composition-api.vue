@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartTree as TinyChartTree } from '@opentiny/vue'
+import { HuichartsTree as TinyChartTree } from '@opentiny/vue'
 
 const options = ref({
   // 图表类型（线型树图）

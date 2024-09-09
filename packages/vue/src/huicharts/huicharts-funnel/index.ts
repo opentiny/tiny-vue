@@ -1,8 +1,8 @@
-import ChartFunnel from './src/chart-funnel.vue'
+import HuiChartsFunnel from './src/chart-funnel.vue'
 
-ChartFunnel.install = function (Vue: any) {
-  Vue.component(ChartFunnel.name, ChartFunnel)
+HuiChartsFunnel.install = function (Vue: any) {
+  Vue.component(HuiChartsFunnel.name, HuiChartsFunnel)
 }
 
-export { ChartFunnel }
-export default ChartFunnel
+export { HuiChartsFunnel }
+export default HuiChartsFunnel

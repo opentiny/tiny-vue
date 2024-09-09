@@ -1,8 +1,8 @@
-import ChartWaterfall from './src/chart-waterfall.vue'
+import HuiChartsWaterfall from './src/chart-waterfall.vue'
 
-ChartWaterfall.install = function (Vue: any) {
-  Vue.component(ChartWaterfall.name, ChartWaterfall)
+HuiChartsWaterfall.install = function (Vue: any) {
+  Vue.component(HuiChartsWaterfall.name, HuiChartsWaterfall)
 }
 
-export { ChartWaterfall }
-export default ChartWaterfall
+export { HuiChartsWaterfall }
+export default HuiChartsWaterfall

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="jsx">
-import { ChartBar } from '@opentiny/vue'
+import { HuichartsBar } from '@opentiny/vue'
 
 export default {
   components: {

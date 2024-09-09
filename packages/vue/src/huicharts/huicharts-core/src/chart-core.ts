@@ -10,7 +10,7 @@ import '@opentiny/vue-theme/chart-core/index.less'
 
 export default {
   name: $prefix + 'ChartCore',
-  emits: ['ready', 'readyOnce', 'handle-color'],
+  emits: ['ready', 'ready-once', 'handle-color'],
   props: {
     data: {
       type: Object,
@@ -26,7 +26,7 @@ export default {
     },
     width: { type: String, default: 'auto' },
     height: { type: String, default: '400px' },
-    events: { type: Object, default() {} },
+    events: { type: Object, default() { } },
     initOptions: {
       type: Object,
       default() {
@@ -72,7 +72,7 @@ export default {
     },
     extend: {
       type: Object,
-      default() {}
+      default() { }
     },
     tooltipFormatter: { type: Function },
 
@@ -120,7 +120,7 @@ export default {
     },
     setOptionOpts: {
       type: Object,
-      default() {}
+      default() { }
     },
     colorMode: {
       type: String,

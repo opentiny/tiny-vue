@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ChartRadar as TinyRadar } from '@opentiny/vue'
+import { HuichartsRadar as TinyRadar } from '@opentiny/vue'
 
 const options = ref({
   legend: {

@@ -1,8 +1,8 @@
-import ChartSankey from './src/chart-sankey.vue'
+import HuiChartsSankey from './src/chart-sankey.vue'
 
-ChartSankey.install = function (Vue: any) {
-  Vue.component(ChartSankey.name, ChartSankey)
+HuiChartsSankey.install = function (Vue: any) {
+  Vue.component(HuiChartsSankey.name, HuiChartsSankey)
 }
 
-export { ChartSankey }
-export default ChartSankey
+export { HuiChartsSankey }
+export default HuiChartsSankey
