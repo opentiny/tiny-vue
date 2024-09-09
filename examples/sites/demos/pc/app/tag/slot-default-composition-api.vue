@@ -8,6 +8,9 @@
     <tiny-tag size="medium" :disabled="disabled" closable>
       <tiny-icon-time class="tiny-svg-size medium" />标签
     </tiny-tag>
+    <tiny-tag type="success" class="tiny-only-iocn">
+      <icon-fileupload />
+    </tiny-tag>
   </div>
 </template>
 
@@ -40,5 +43,8 @@ const TinyIconChevronRight = iconChevronRight()
 }
 .medium {
   font-size: 20px;
+}
+.tiny-only-iocn {
+  border-radius: 0px 8px 0px 8px;
 }
 </style>

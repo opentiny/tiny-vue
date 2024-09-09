@@ -7,7 +7,7 @@ export const tinyTagSMBTheme = {
   'ti-tag-medium-padding-horizontal': 'var(--ti-common-space-3x)',
   'ti-tag-small-padding-horizontal': 'var(--ti-common-space-base)',
   'ti-tag-small-border-radius': 'var(--ti-common-border-radius-1)',
-  'ti-tag-primary-background-color': 'var(--ti-common-color-bg-light-normal)',
+  'ti-tag-primary-background-color': 'var(--ti-common-color-bg-6)',
   'ti-tag-info-background-color': 'var(--ti-common-color-bg-light-normal)',
   'ti-tag-border-weight': '0',
   'ti-tag-border-radius': 'var(--ti-common-border-radius-2)',
