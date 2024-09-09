@@ -44,7 +44,7 @@ const hoverText = ref('')
 
 <style scoped>
 .demo-input .tiny-textarea {
-  width: 400px;
+  width: fit-content;
   margin: 5px;
 }
 
