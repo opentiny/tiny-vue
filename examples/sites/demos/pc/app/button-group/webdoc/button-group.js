@@ -139,18 +139,6 @@ export default {
       codeFiles: ['button-group-multiple.vue']
     },
     {
-      demoId: 'border',
-      name: {
-        'zh-CN': '边框',
-        'en-US': 'Border'
-      },
-      desc: {
-        'zh-CN': '<p>通过 <code>border</code> 设置有无边框。</p>',
-        'en-US': '<p>Set whether there is a border through <code>border</code> .</p>'
-      },
-      codeFiles: ['border.vue']
-    },
-    {
       demoId: 'sup',
       name: {
         'zh-CN': '选块角标',
