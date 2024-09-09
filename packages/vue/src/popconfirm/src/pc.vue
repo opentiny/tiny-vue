@@ -96,7 +96,7 @@ export default defineComponent({
     },
     width: {
       type: [String, Number],
-      default: '260'
+      default: ''
     },
     type: [String, Object],
     reference: {},
