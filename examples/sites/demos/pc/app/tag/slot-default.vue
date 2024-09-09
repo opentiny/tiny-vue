@@ -6,6 +6,9 @@
     <tiny-tag size="small" :disabled="disabled" closable> <icon-time class="tiny-svg-size" />标签 </tiny-tag>
     <tiny-tag :disabled="disabled" closable> <icon-time class="tiny-svg-size" />标签 </tiny-tag>
     <tiny-tag size="medium" :disabled="disabled" closable> <icon-time class="tiny-svg-size medium" />标签 </tiny-tag>
+    <tiny-tag size="small" type="success" class="tiny-only-iocn">
+      <icon-fileupload />
+    </tiny-tag>
   </div>
 </template>
 
@@ -48,5 +51,8 @@ export default {
 }
 .medium {
   font-size: 20px;
+}
+.tiny-only-iocn {
+  border-radius: 0px 6px 0px 6px;
 }
 </style>
