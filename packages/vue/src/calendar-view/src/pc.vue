@@ -8,7 +8,6 @@
       <tiny-date-picker
         v-model="state.currentDate"
         class="tiny-calendar-view__picker"
-        shape="filter"
         type="month"
         :clearable="false"
         @change="currentDateChange"

@@ -522,7 +522,8 @@ function renderRowGroupData({ $table, virtualRow, row, rowGroup, rowid, rows, ta
       data-rowid={rowid}
       onMouseout={() => (row.hover = false)}
       onMouseover={() => (row.hover = true)}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       {tds}
     </tr>
   )

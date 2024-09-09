@@ -2,8 +2,8 @@
   <tiny-layout>
     <tiny-row> 是否禁用：<tiny-switch v-model="disabled"></tiny-switch> </tiny-row>
     <tiny-row>
-      <tiny-button :disabled="disabled">默认按钮</tiny-button>
       <tiny-button type="primary" :disabled="disabled">主要按钮</tiny-button>
+      <tiny-button :disabled="disabled">次要按钮</tiny-button>
       <tiny-button type="success" :disabled="disabled">成功按钮</tiny-button>
       <tiny-button type="info" :disabled="disabled">信息按钮</tiny-button>
       <tiny-button type="warning" :disabled="disabled">警告按钮</tiny-button>
@@ -11,8 +11,8 @@
     </tiny-row>
 
     <tiny-row>
-      <tiny-button :disabled="disabled" plain>默认按钮</tiny-button>
       <tiny-button type="primary" :disabled="disabled" plain>主要按钮</tiny-button>
+      <tiny-button :disabled="disabled" plain>次要按钮</tiny-button>
       <tiny-button type="success" :disabled="disabled" plain>成功按钮</tiny-button>
       <tiny-button type="info" :disabled="disabled" plain>信息按钮</tiny-button>
       <tiny-button type="warning" :disabled="disabled" plain>警告按钮</tiny-button>

@@ -3,22 +3,31 @@
     <tiny-tree :data="data" :icon="icon"></tiny-tree>
     <tiny-tree
       :data="data"
+      show-checkbox
       :expand-icon="expandIcon"
-      expand-icon-color="red"
+      expand-icon-color="#c2c2c2"
       :shrink-icon="shrinkIcon"
-      shrink-icon-color="blue"
-    ></tiny-tree>
+      shrink-icon-color="#191919"
+    >
+      <template #prefix="{ node }">
+        <component v-if="node.data.icon === 'file'" :is="tinyIconFile"></component>
+        <component v-else :is="tinyIconEditorTable"></component>
+      </template>
+    </tiny-tree>
   </div>
 </template>
 
 <script setup lang="jsx">
 import { ref } from 'vue'
 import { Tree as TinyTree } from '@opentiny/vue'
-import { iconPlusSquare, iconMinusSquare, iconRightO } from '@opentiny/vue-icon'
+import { iconPutAway, iconExpand, iconRightO, iconEditorTable, iconFile } from '@opentiny/vue-icon'
 
 const icon = iconRightO()
-const shrinkIcon = iconMinusSquare()
-const expandIcon = iconPlusSquare()
+const shrinkIcon = iconPutAway()
+const expandIcon = iconExpand()
+const tinyIconEditorTable = iconEditorTable()
+const tinyIconFile = iconFile()
+
 const data = ref([
   {
     id: '1',

@@ -97,7 +97,8 @@ export default defineComponent({
                 isBubbleMode ? 'sm:my-0' : !isShowTitle ? 'sm:mt-0 sm:mb-3' : 'sm:my-3'
               }`
             : 'h-full'
-        }>
+        }
+      >
         {state.currentBreakpoint === 'default' && tipSlot && (
           <div class="flex items-center sm:hidden inline-block text-sm">{tipSlot}</div>
         )}
@@ -107,7 +108,8 @@ export default defineComponent({
             class="h-full"
             onClick={($event) => handleClick($event, sourceType)}
             onKeydown={handleKeydown}
-            tabindex="0">
+            tabindex="0"
+          >
             {listType === 'drag-single' ? (
               <UploadDragger customClass={customClass} disabled={disabled} onFile={uploadFiles}>
                 {defaultSlot}
@@ -124,7 +126,8 @@ export default defineComponent({
               class="h-full"
               onClick={($event) => handleClick($event, sourceType)}
               onKeydown={handleKeydown}
-              tabindex="0">
+              tabindex="0"
+            >
               {listType === 'drag-single' ? (
                 <UploadDragger customClass={customClass} disabled={disabled} onFile={uploadFiles}>
                   {defaultSlot}
@@ -141,7 +144,8 @@ export default defineComponent({
             {!promptTip && tipMessage && (
               <div
                 title={tipMessage}
-                class="hidden sm:block text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap text-color-text-placeholder ml-2 cursor-pointer">
+                class="hidden sm:block text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap text-color-text-placeholder ml-2 cursor-pointer"
+              >
                 {tipMessage}
               </div>
             )}
