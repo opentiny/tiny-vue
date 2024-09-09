@@ -11,13 +11,12 @@
         </template>
       </tiny-button-group>
     </div>
-    <br /><br />
     <p>插槽引用tag角标</p>
     <div class="tag">
       <tiny-button-group :data="groupDataTag" v-model="checkedVal">
         <template #btn="{ sup }">
-          <tiny-tag type="warning" size="small" hit>
-            <component :is="sup.icon" class="tiny-svg-size"></component>
+          <tiny-tag type="danger" class="tiny-only-icon" size="small">
+            <component :is="sup.icon"></component>
             {{ sup.text }}
           </tiny-tag>
         </template>
@@ -96,16 +95,6 @@ const groupDataTag = ref([
       class: 'sup-tag',
       icon: iconPlusCircle()
     }
-  },
-  {
-    text: '组合',
-    value: 'Button4',
-    sup: {
-      slot: 'btn',
-      class: 'sup-tag',
-      icon: iconPlusCircle(),
-      text: '8折'
-    }
   }
 ])
 </script>
@@ -132,8 +121,11 @@ const groupDataTag = ref([
 </style>
 
 <style>
+.demo-button p {
+  margin: 16px 0 8px 0;
+}
 .demo-button .sup button {
-  width: 84px;
+  width: 96px;
 }
 .demo-button .sup li:nth-of-type(4) button {
   width: 124px;
@@ -141,16 +133,10 @@ const groupDataTag = ref([
 .demo-button .tag button {
   width: 84px;
 }
-.demo-button .tag li:last-child button {
-  width: 120px;
+.demo-button .tag li:first-child button {
+  width: 100px;
 }
-.demo-button p {
-  margin-bottom: 8px;
-}
-.demo-button .tiny-tag {
-  border-radius: 0px 5px 0 8px;
-}
-.demo-button .tiny-svg-size {
-  margin-right: 4px;
+.tiny-only-icon {
+  border-radius: 0px 6px;
 }
 </style>
