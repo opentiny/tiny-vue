@@ -1,8 +1,4 @@
-import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?mobile'
-
 export const actionSheetProps = {
-  ...$props,
   menus: {
     type: Array,
     default: () => []
@@ -77,11 +73,3 @@ export const actionSheetProps = {
     default: () => ({})
   }
 }
-
-export default defineComponent({
-  name: $prefix + 'ActionSheet',
-  props: actionSheetProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})

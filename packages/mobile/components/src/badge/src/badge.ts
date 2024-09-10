@@ -9,11 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?mobile'
 
 export const badgeProps = {
-  ...$props,
   showLeft: {
     type: Boolean,
     default: false
@@ -51,11 +48,3 @@ export const badgeProps = {
   },
   data: [String, Number]
 }
-
-export default defineComponent({
-  name: $prefix + 'Badge',
-  props: badgeProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})

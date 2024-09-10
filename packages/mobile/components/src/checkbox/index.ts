@@ -9,8 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Checkbox from './src/index'
-import { version } from './package.json'
+import Checkbox from './src/mobile.vue'
 
 Checkbox.model = {
   prop: 'modelValue',
@@ -20,15 +19,6 @@ Checkbox.model = {
 /* istanbul ignore next */
 Checkbox.install = function (Vue) {
   Vue.component(Checkbox.name, Checkbox)
-}
-
-Checkbox.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Checkbox.install(window.Vue)
-  }
 }
 
 export default Checkbox

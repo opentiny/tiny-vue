@@ -37,12 +37,13 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/badge/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { setup, defineComponent } from '../../common'
+import { badgeProps } from './badge'
 import '@opentiny/vue-theme-mobile/badge/index.less'
 
 export default defineComponent({
-  props: [...props, 'isDot', 'isFixed', 'isMini', 'hidden', 'max', 'type', 'value', 'modelValue', 'href', 'target'],
+  props: badgeProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

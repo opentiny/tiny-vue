@@ -9,11 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import template from 'virtual-template?mobile'
 
 export const buttonProps = {
-  ...$props,
   type: {
     type: String,
     default: 'default'
@@ -62,16 +59,3 @@ export const buttonProps = {
   },
   ghost: Boolean
 }
-
-export default defineComponent({
-  name: $prefix + 'Button',
-  inject: {
-    buttonGroup: {
-      default: ''
-    }
-  },
-  props: buttonProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})

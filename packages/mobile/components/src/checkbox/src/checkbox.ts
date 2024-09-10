@@ -9,9 +9,8 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import type { PropType } from '@opentiny/vue-common'
-import template from 'virtual-template?mobile'
+import { $prefix } from '../../common'
+import type { PropType } from '../../common'
 
 export type IconPosition = 'center' | 'top'
 
@@ -23,7 +22,6 @@ export const $constants = {
 }
 
 export const checkboxProps = {
-  ...$props,
   _constants: {
     type: Object,
     default: () => $constants
@@ -73,11 +71,3 @@ export const checkboxProps = {
     default: ''
   }
 }
-
-export default defineComponent({
-  name: $prefix + 'Checkbox',
-  props: checkboxProps,
-  setup(props, context) {
-    return $setup({ props, context, template })
-  }
-})

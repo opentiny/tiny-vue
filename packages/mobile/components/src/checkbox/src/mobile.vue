@@ -63,26 +63,13 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/checkbox/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { setup, defineComponent } from '../../common'
+import { checkboxProps } from './checkbox'
 import '@opentiny/vue-theme-mobile/checkbox/index.less'
 
 export default defineComponent({
-  props: [
-    ...props,
-    'modelValue',
-    'text',
-    'events',
-    'label',
-    'indeterminate',
-    'disabled',
-    'checked',
-    'name',
-    'trueLabel',
-    'falseLabel',
-    'id',
-    'iconPosition'
-  ],
+  props: checkboxProps,
   emits: ['update:modelValue', 'change', 'complete', 'click'],
   setup(props, context) {
     return setup({ props, context, renderless, api })

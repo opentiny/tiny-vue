@@ -27,28 +27,15 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/alert/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { setup, defineComponent } from '../../common'
 import { iconClose, iconSuccess, iconError, iconHelp, iconWarningTriangle } from '@opentiny/vue-icon'
 import type { IAlertApi } from '@opentiny/vue-renderless/types/alert.type'
+import { alertProps } from './alert'
 import '@opentiny/vue-theme-mobile/alert/index.less'
 
 export default defineComponent({
-  props: [
-    ...props,
-    'icon',
-    'type',
-    'size',
-    'description',
-    'closable',
-    'showIcon',
-    'closeText',
-    'duration',
-    'offset',
-    'autoHide',
-    'target',
-    'center'
-  ],
+  props: alertProps,
   components: {
     IconClose: iconClose(),
     IconSuccess: iconSuccess(),

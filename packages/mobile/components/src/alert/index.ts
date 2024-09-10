@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Alert from './src/index'
+import Alert from './src/mobile.vue'
 import { version } from './package.json'
 
 /* istanbul ignore next */

@@ -9,7 +9,7 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import ActionSheet from './src/index'
+import ActionSheet from './src/mobile.vue'
 import { version } from './package.json'
 
 ActionSheet.model = {
@@ -23,12 +23,5 @@ ActionSheet.install = function (Vue) {
 }
 
 ActionSheet.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    ActionSheet.install(window.Vue)
-  }
-}
 
 export default ActionSheet

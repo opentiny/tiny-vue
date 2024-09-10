@@ -44,14 +44,14 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/button/vue'
-import { props, setup, defineComponent } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { setup, defineComponent } from '../../common'
+import { buttonProps } from './button'
 import '@opentiny/vue-theme-mobile/button/index.less'
 
 export default defineComponent({
   emits: ['hook-updated', 'click'],
-  props: [...props, 'type', 'text', 'size', 'icon', 'resetTime', 'nativeType', 'loading', 'disabled', 'customClass'],
-  components: {},
+  props: buttonProps,
   setup(props, context) {
     return setup({ props, context, renderless, api })
   }

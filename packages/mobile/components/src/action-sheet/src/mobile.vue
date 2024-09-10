@@ -51,26 +51,15 @@
 </template>
 
 <script lang="ts">
-import { renderless, api } from '@opentiny/vue-renderless/action-sheet/vue'
-import { $prefix, setup, defineComponent, props } from '@opentiny/vue-common'
+import { renderless, api } from './renderless/vue'
+import { $prefix, setup, defineComponent } from '../../common'
 import '@opentiny/vue-theme-mobile/action-sheet/index.less'
 import BScroll from '@better-scroll/core'
+import { actionSheetProps } from './action-sheet'
 
 export default defineComponent({
   name: $prefix + 'ActionSheet',
-  props: [
-    ...props,
-    'menus',
-    'modelValue',
-    'visible',
-    'ellipsis',
-    'contentPosition',
-    'contentStyle',
-    'height',
-    'valueField',
-    'textField',
-    'contentClass'
-  ],
+  props: actionSheetProps,
   setup(props, context) {
     return setup({ props, context, renderless, api, extendOptions: { BScroll } })
   }

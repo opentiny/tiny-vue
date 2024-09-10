@@ -9,21 +9,11 @@
  * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
  *
  */
-import Button from './src/index'
-import { version } from './package.json'
+import Button from './src/mobile.vue'
 
 /* istanbul ignore next */
 Button.install = function (Vue) {
   Vue.component(Button.name, Button)
-}
-
-Button.version = version
-
-/* istanbul ignore next */
-if (process.env.BUILD_TARGET === 'runtime') {
-  if (typeof window !== 'undefined' && window.Vue) {
-    Button.install(window.Vue)
-  }
 }
 
 export default Button
