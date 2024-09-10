@@ -1,4 +1,4 @@
-import hooks from './adapter'
+import hooks from './src/adapter'
 import {
   appContext,
   appProperties,
@@ -6,8 +6,8 @@ import {
   createComponentFn,
   getElementCssClass,
   getElementStatusClass
-} from './adapter'
-import { defineAsyncComponent, directive, emitter, h, markRaw, Teleport, KeepAlive } from './adapter'
+} from './src/adapter'
+import { defineAsyncComponent, directive, emitter, h, markRaw, Teleport, KeepAlive } from './src/adapter'
 import {
   parseVnode,
   isEmptyVnode,
@@ -17,14 +17,14 @@ import {
   useRouter,
   getComponentName,
   isVnode
-} from './adapter'
+} from './src/adapter'
 import { t } from '@opentiny/vue-locale'
-import { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass } from './csscls'
+import { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass } from './src/csscls'
 import { twMerge } from 'tailwind-merge'
 import '@opentiny/vue-theme/base/index.less'
-import { defineComponent, isVue2, isVue3 } from './adapter'
-import { useBreakpoint } from './breakpoint'
-import { useDefer } from './usedefer'
+import { defineComponent, isVue2, isVue3 } from './src/adapter'
+import { useBreakpoint } from './src/breakpoint'
+import { useDefer } from './src/usedefer'
 
 import { useInstanceSlots as createUseInstanceSlots } from '@opentiny/vue-renderless/common/deps/useInstanceSlots'
 import { useRelation as createUseRelation } from '@opentiny/vue-renderless/common/deps/useRelation'
@@ -34,8 +34,6 @@ export const useRelation = createUseRelation({ ...hooks, isVue2 })
 
 export { stringifyCssClass, stringifyCssClassObject, stringifyCssClassArray, deduplicateCssClass }
 export { useBreakpoint, useDefer }
-
-export { version } from '../package.json'
 
 export { defineComponent, isVue2, isVue3, appProperties }
 
