@@ -6,5 +6,6 @@ export const tinyBadgeSmbTheme = {
   'ti-badge-text-color': 'var(--ti-base-color-bg-7)',
   'ti-badge-border-radius': 'var(--ti-common-border-radius-4)',
   'ti-badge-border': 'var(--ti-common-border-weight-normal)',
-  'ti-badge-font-weight': 'var(--ti-common-font-weight-normal)'
+  'ti-badge-font-weight': 'var(--ti-common-font-weight-normal)',
+  'ti-badge-margin-left': '0'
 }

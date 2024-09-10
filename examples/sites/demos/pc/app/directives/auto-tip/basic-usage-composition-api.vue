@@ -3,7 +3,9 @@
 </template>
 
 <script setup>
-import { AutoTip as VAutoTip } from '@opentiny/vue-directive'
+import { AutoTip } from '@opentiny/vue-directive'
+
+const VAutoTip = AutoTip
 </script>
 
 <style scoped>

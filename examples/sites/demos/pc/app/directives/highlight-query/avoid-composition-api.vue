@@ -32,7 +32,9 @@
 <script setup>
 import { ref } from 'vue'
 import { Input as TinyInput, Button as TinyButton } from '@opentiny/vue'
-import { HighlightQuery as vHighlightQuery } from '@opentiny/vue-directive'
+import { HighlightQuery } from '@opentiny/vue-directive'
+
+const vHighlightQuery = HighlightQuery
 
 const query = ref('一片')
 const list = ref(['一片一片又一片', '两片三片四五片', '六片七片八九片', '飞入芦花都不见'])
