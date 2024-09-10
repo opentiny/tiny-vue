@@ -18,10 +18,8 @@
 @alert-prefix-cls: ~'@{css-prefix}mobile-alert';
 
 .@{alert-prefix-cls} {
-  .component-css-vars-alert();
-
   display: flex;
-  align-items: flex-start;
+  align-items: top;
   clear: both;
   position: relative;
   width: 100%;
@@ -107,20 +105,12 @@
     font-size: var(--ti-mobile-alert-icon-size);
 
     &.@{alert-prefix-cls}__close {
-      position: absolute;
-      top: var(--ti-mobile-alert-padding-top);
-      right: var(--ti-mobile-alert-padding-right);
-      margin-top: 0;
       fill: var(--ti-mobile-alert-close-icon-color);
     }
   }
 
   &.is-center {
-    justify-content: center;
-
-    .@{alert-prefix-cls}__content {
-      flex: 0 0 auto;
-    }
+    text-align: center;
   }
 
   .is-custom {

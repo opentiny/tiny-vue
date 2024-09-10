@@ -21,43 +21,30 @@
 @input-group-prefix-cls: ~'@{css-prefix}mobile-input-group';
 
 .@{textarea-prefix-cls} {
-  .component-css-vars-input();
-
   position: relative;
   display: inline-block;
+  width: 100%;
+  line-height: var(--ti-mobile-input-line-height);
 
   &__inner {
-    height: var(--ti-mobile-textarea-height);
     padding: var(--ti-mobile-textarea-padding-vertical) var(--ti-mobile-textarea-padding-horizontal);
     font-size: var(--ti-mobile-textarea-inner-font-size, 16px);
     font-family: var(--ti-mobile-input-font-family);
     color: var(--ti-mobile-textarea-inner-text-color);
+    border: var(--ti-mobile-input-border-width) solid var(--ti-mobile-input-border-color);
+    border-radius: var(--ti-mobile-input-radius);
     display: block;
-    resize: none;
+    resize: vertical;
     box-sizing: border-box;
-    border: none;
-    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-    line-height: var(--ti-mobile-input-line-height);
-
-    &.is-autosize {
-      overflow: hidden;
-    }
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    .placeholder(
+      @color: var(--ti-mobile-textarea-inner-placeholder-color)
+    );
 
     &:hover,
     &:focus {
       outline: 0;
     }
-
-    .placeholder(
-      @color: var(--ti-mobile-textarea-inner-placeholder-color)
-    );
-  }
-
-  &__wrapper {
-    display: inline-block;
-    overflow: hidden;
-    border: var(--ti-mobile-input-border-width) solid var(--ti-mobile-input-border-color);
-    border-radius: var(--ti-mobile-input-radius);
   }
 
   &__count {
@@ -88,6 +75,7 @@
   }
 
   &.is-exceed {
+    border-color: var();
     &__count {
       color: var(--ti-mobile-input-exceed-text-color);
     }
@@ -95,8 +83,6 @@
 }
 
 .@{input-prefix-cls} {
-  .component-css-vars-input();
-
   position: relative;
   width: 100%;
   line-height: var(--ti-mobile-input-line-height);
