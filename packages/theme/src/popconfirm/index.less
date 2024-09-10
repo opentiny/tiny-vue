@@ -42,12 +42,17 @@
     display: flex;
     align-items: center;
     line-height: var(--ti-popconfirm-popover-line-height);
+    margin-bottom: var(--ti-popconfirm-popover-margin-bottom);
+  }
+  .no-message {
+    font-weight: 400;
   }
 
   &__icon {
     height: var(--ti-popconfirm-popover-icon-width);
     width: var(--ti-popconfirm-popover-icon-width);
     margin-right: var(--ti-popconfirm-popover-icon-margin-right);
+    margin-bottom: var(--ti-popconfirm-popover-icon-margin-bottom);
   }
 
   &__title {
@@ -57,7 +62,7 @@
   }
 
   &__content {
-    color: #5c6976;
+    color: var(--ti-popconfirm-popover-text-color);
     line-height: var(--ti-popconfirm-popover-line-height);
   }
 
@@ -76,18 +81,18 @@
   }
 
   &--info {
-    fill: #5cacff;
+    fill: #1476FF;
   }
 
   &--error {
-    fill: #eb171f;
+    fill: #F23030;
   }
 
   &--warning {
-    fill: #fdc000;
+    fill: #FF8800;
   }
 
   &--success {
-    fill: #00a874;
+    fill: #5CB300;
   }
 }

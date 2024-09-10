@@ -16,7 +16,9 @@
 </template>
 
 <script setup>
-import { AutoTip as VAutoTip } from '@opentiny/vue-directive'
+import { AutoTip } from '@opentiny/vue-directive'
+
+const VAutoTip = AutoTip
 
 const options = [
   { text: '去游泳馆游泳', disabled: false },

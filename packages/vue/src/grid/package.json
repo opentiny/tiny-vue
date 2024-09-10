@@ -1,34 +1,34 @@
 {
   "name": "@opentiny/vue-grid",
-  "version": "3.18.0",
+  "type": "module",
+  "version": "3.18.2",
   "description": "",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
-  "sideEffects": false,
-  "type": "module",
-  "devDependencies": {
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "^0.31.0"
-  },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~",
-    "@opentiny/vue-locale": "workspace:~",
-    "@opentiny/vue-modal": "workspace:~",
+    "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-dropdown": "workspace:~",
     "@opentiny/vue-dropdown-item": "workspace:~",
     "@opentiny/vue-dropdown-menu": "workspace:~",
     "@opentiny/vue-exception": "workspace:~",
-    "@opentiny/vue-pager": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/vue-tooltip": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-tag": "workspace:~",
     "@opentiny/vue-loading": "workspace:~",
-    "@opentiny/vue-common": "workspace:~"
+    "@opentiny/vue-locale": "workspace:~",
+    "@opentiny/vue-modal": "workspace:~",
+    "@opentiny/vue-pager": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
+    "@opentiny/vue-tag": "workspace:~",
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  }
 }

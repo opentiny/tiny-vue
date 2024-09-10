@@ -25,6 +25,7 @@ import '@opentiny/vue-theme/base/index.less'
 import { defineComponent, isVue2, isVue3 } from './adapter'
 import { useBreakpoint } from './breakpoint'
 import { useDefer } from './usedefer'
+import { GRADIENT_ICONS_LIST, generateIcon } from './generateIcon'
 
 import { useInstanceSlots as createUseInstanceSlots } from '@opentiny/vue-renderless/common/deps/useInstanceSlots'
 import { useRelation as createUseRelation } from '@opentiny/vue-renderless/common/deps/useRelation'
@@ -280,6 +281,18 @@ export function svg({ name = 'Icon', component }) {
           // 解决本地运行会报大量警告的问题
           if (process.env.BUILD_TARGET) {
             extend.nativeOn = context.listeners
+          }
+
+          // 解决多个相同的渐变图标svg中有相同id时，在display：none，情况下导致的样式异常问题
+          if (GRADIENT_ICONS_LIST.includes(name)) {
+            const render = component.render
+            component.render = function (...args) {
+              // 指向正确的this对象，保证vue2运行正常
+              const newRender = render.bind(this)
+              const vnode = newRender(args)
+              generateIcon(vnode)
+              return vnode
+            }
           }
 
           return renderComponent({
