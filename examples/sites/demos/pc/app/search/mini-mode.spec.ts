@@ -4,7 +4,8 @@ test('迷你模式', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('search#mini-mode')
 
-  const search = page.locator('.tiny-search.mini')
+  const container = page.locator('#mini-mode')
+  const search = container.locator('.tiny-search.mini').first()
   const blank = page.getByRole('code').first()
   const line = search.locator('.tiny-search__line')
   const input = search.locator('.tiny-search__input')
