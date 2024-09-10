@@ -88,7 +88,6 @@ export const watchVisible =
     if (val) {
       state.closed = false
       emit('open')
-      state.render = true
       /* istanbul ignore next */
       on(el, 'scroll', api.updatePopper)
 
@@ -250,9 +249,6 @@ export const afterLeave =
   ) =>
   (): void => {
     emit('closed')
-    if (props.destroyOnClose) {
-      state.render = false
-    }
   }
 
 const findPopoverComponent = ({

@@ -82,8 +82,7 @@ const initState = ({
     style: computed(() => api.computedStyle()),
     animationName: computed(() => api.computedAnimationName()),
     current,
-    dragStyle: null,
-    render: props.destroyOnClose
+    dragStyle: null
   })
 
   return state

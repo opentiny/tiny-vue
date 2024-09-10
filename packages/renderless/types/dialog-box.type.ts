@@ -61,7 +61,6 @@ export interface IDialogBoxState {
   rendered?: boolean
   mouseUpWrapperFlag: boolean
   mouseDownWrapperFlag: boolean
-  render: boolean
 }
 
 export interface IDialogBoxApi {
