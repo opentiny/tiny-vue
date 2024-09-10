@@ -49,7 +49,7 @@
   &--timerange {
     &.@{input-prefix-cls},
     &.@{input-prefix-cls}__inner {
-      width: 350px;
+      width: 360px;
     }
   }
 
@@ -120,6 +120,7 @@
   }
 
   .@{range-prefix-cls}-input {
+    text-align: left;
     appearance: none;
     border: none;
     outline: 0;
@@ -157,7 +158,7 @@
 .@{range-editor-prefix-cls} {
   &:not(.is-display-only).@{input-prefix-cls}__inner {
     display: inline-flex;
-    align-items: center;
+    align-items: left;
     padding: 3px 10px;
   }
 
@@ -172,16 +173,16 @@
 
   &--medium:not(.is-display-only) {
     &.@{input-prefix-cls}__inner {
-      height: 42px;
+      height: var(--ti-date-editor-input-medium-height);
     }
 
     .@{range-prefix-cls}-separator {
       line-height: 34px;
-      font-size: var(--ti-common-font-size-2);
+      font-size: var(--ti-common-font-size-1);
     }
 
     .@{range-prefix-cls}-input {
-      font-size: var(--ti-common-font-size-2);
+      font-size: var(--ti-common-font-size-1);
     }
 
     .@{range-prefix-cls}__close-icon,
@@ -192,7 +193,7 @@
 
   &--small:not(.is-display-only) {
     &.@{input-prefix-cls}__inner {
-      height: 36px;
+      height: var(--ti-date-editor-input-small-height);
     }
 
     .@{range-prefix-cls}-separator {

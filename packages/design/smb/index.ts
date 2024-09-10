@@ -12,6 +12,7 @@ import Pager from './src/pager'
 import Select from './src/select'
 import TreeNode from './src/tree-node'
 import TimeSpinner from './src/time-spinner'
+import TimeRange from './src/time-range'
 import Time from './src/time-spinner'
 import UploadList from './src/upload-list'
 import BreadcrumbItem from './src/breadcrumb-item'
@@ -38,6 +39,7 @@ export default {
     Select,
     TreeNode,
     TimeSpinner,
+    TimeRange,
     Time,
     BreadcrumbItem,
     UploadList,
