@@ -1,5 +1,5 @@
 import type { ExtensionOptions } from '@/types'
-import { Editor, Range } from '@tiptap/core'
+import type { Editor, Range } from '@tiptap/core'
 import type { BlockquoteOptions } from '@tiptap/extension-blockquote'
 import TiptapBlockquote from '@tiptap/extension-blockquote'
 import { iconRichTextQuoteText } from '@opentiny/vue-icon'
@@ -8,6 +8,24 @@ const Blockquote = TiptapBlockquote.extend<ExtensionOptions & BlockquoteOptions>
   addOptions() {
     return {
       ...this.parent?.(),
+      getToolbarMenus() {
+        return [
+          {
+            key: 'quote',
+            icon: iconRichTextQuoteText(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => {
+                editor.chain().focus().toggleBlockquote().run()
+              }
+            },
+            isActive: ({ editor }: { editor: Editor }) => {
+              return () => {
+                return editor.isActive(Blockquote.name)
+              }
+            }
+          }
+        ]
+      },
       getSlashMenus() {
         return [
           {

@@ -2,13 +2,30 @@ import type { ExtensionOptions } from '@/types'
 import type { Editor, Range } from '@tiptap/core'
 import type { BulletListOptions } from '@tiptap/extension-bullet-list'
 import TiptapBulletList from '@tiptap/extension-bullet-list'
-import ListItem from '@tiptap/extension-list-item'
 import { iconRichTextListUnordered } from '@opentiny/vue-icon'
 
 const BulletList = TiptapBulletList.extend<ExtensionOptions & BulletListOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
+      getToolbarMenus() {
+        return [
+          {
+            key: 'unorderedlist',
+            icon: iconRichTextListUnordered(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => {
+                editor.chain().focus().toggleBulletList().run()
+              }
+            },
+            isActive: ({ editor }: { editor: Editor }) => {
+              return () => {
+                return editor.isActive(BulletList.name)
+              }
+            }
+          }
+        ]
+      },
       getSlashMenus() {
         return [
           {
@@ -34,9 +51,6 @@ const BulletList = TiptapBulletList.extend<ExtensionOptions & BulletListOptions>
         ]
       }
     }
-  },
-  addExtensions() {
-    return [ListItem]
   }
 })
 

@@ -5,7 +5,11 @@ import {
   iconRichTextBold,
   iconRichTextItalic,
   iconRichTextStrikeThrough,
-  iconRichTextUnderline
+  iconRichTextUnderline,
+  IconRichTextAlignLeft,
+  IconRichTextAlignCenter,
+  IconRichTextAlignRight,
+  IconRichTextFormatClear
 } from '@opentiny/vue-icon'
 import TiptapText from '@tiptap/extension-text'
 
@@ -15,6 +19,61 @@ const Text = TiptapText.extend<ExtensionOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
+      getToolbarMenus() {
+        return [
+          {
+            key: 'left',
+            icon: IconRichTextAlignLeft(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => {
+                editor.chain().focus().setTextAlign('left').run()
+              }
+            },
+            isActive: ({ editor }: { editor: Editor }) => {
+              return () => {
+                return editor.isActive({ textAlign: 'left' })
+              }
+            }
+          },
+          {
+            key: 'center',
+            icon: IconRichTextAlignCenter(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => {
+                editor.chain().focus().setTextAlign('center').run()
+              }
+            },
+            isActive: ({ editor }: { editor: Editor }) => {
+              return () => {
+                return editor.isActive({ textAlign: 'center' })
+              }
+            }
+          },
+          {
+            key: 'right',
+            icon: IconRichTextAlignRight(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => {
+                editor.chain().focus().setTextAlign('right').run()
+              }
+            },
+            isActive: ({ editor }: { editor: Editor }) => {
+              return () => {
+                return editor.isActive({ textAlign: 'right' })
+              }
+            }
+          },
+          {
+            key: 'formatClear',
+            icon: IconRichTextFormatClear(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => {
+                editor.chain().focus().unsetAllMarks().run()
+              }
+            }
+          }
+        ]
+      },
       getBubbleMenu() {
         return {
           pluginKey: 'textBubbleMenu',

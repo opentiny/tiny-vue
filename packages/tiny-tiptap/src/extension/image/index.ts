@@ -1,9 +1,15 @@
 import type { ExtensionOptions } from '@/types'
-import { Editor, isActive, mergeAttributes } from '@tiptap/core'
+import type { Editor } from '@tiptap/core'
 import type { ImageOptions } from '@tiptap/extension-image'
+import { isActive, mergeAttributes } from '@tiptap/core'
 import TiptapImage from '@tiptap/extension-image'
 
-import { iconRichTextAlignLeft, iconRichTextAlignCenter, iconRichTextAlignRight } from '@opentiny/vue-icon'
+import {
+  iconRichTextAlignLeft,
+  iconRichTextAlignCenter,
+  iconRichTextAlignRight,
+  IconRichTextImage
+} from '@opentiny/vue-icon'
 
 const IGNORE_BUBBLE_TYPES = ['table']
 
@@ -51,6 +57,37 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
+      getToolbarMenus() {
+        return [
+          {
+            key: 'img',
+            icon: IconRichTextImage(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => {
+                editor.chain().focus().toggleBold().run()
+              }
+            },
+            submenu: ({ editor }) => [
+              {
+                text: '本地资源',
+                action: () => {
+                  const input = document.createElement('input')
+                  input.setAttribute('type', 'file')
+                  input.setAttribute('accept', 'image/*, video/*')
+                  input.onchange = handleFileChange(editor, () => input.remove())
+                  input.click()
+                }
+              },
+              {
+                text: '资源链接',
+                action: () => {
+                  handleFileChange(editor)(null)
+                }
+              }
+            ]
+          }
+        ]
+      },
       getBubbleMenu() {
         return {
           pluginKey: 'imageBubbleMenu',
@@ -112,6 +149,47 @@ const Image = TiptapImage.extend<ExtensionOptions & ImageOptions>({
     ]
   }
 })
+
+function handleFileChange(editor: Editor, effectFn?: () => void) {
+  return (event) => {
+    if (!event) {
+      // TODO 优化输入形式
+      const url = window.prompt('URL')
+      let type = 'image'
+      const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg']
+      const videoExtensions = ['mp4', 'avi', 'mov', 'wmv', 'mpeg', '3gp', 'mkv']
+
+      const imageRegex = new RegExp(`\\.(${imageExtensions.join('|')})$`, 'i')
+      const videoRegex = new RegExp(`\\.(${videoExtensions.join('|')})$`, 'i')
+
+      if (imageRegex.test(url)) {
+        type = 'image'
+      } else if (videoRegex.test(url)) {
+        type = 'video'
+      }
+      if (url) {
+        editor.chain().focus().setImage({ src: url, type }).run()
+      }
+      return
+    }
+
+    const file = event.target.files[0]
+    if (!file) return
+    let type = 'image'
+    if (file?.type.match('image.*')) {
+      type = 'image'
+    } else if (file?.type.match('video.*')) {
+      type = 'video'
+    }
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      editor.chain().focus().setImage({ src: e.target?.result, type }).run()
+    }
+    reader.readAsDataURL(file)
+
+    effectFn?.()
+  }
+}
 
 export default Image
 export { Image, ImageOptions }

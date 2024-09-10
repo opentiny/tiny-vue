@@ -4,6 +4,7 @@ import { extensions } from './extension'
 import { generateSlashMenuExtension } from './components/slash'
 import { registerFloatMenuExtension } from './components/float'
 import { registerBubbleMenuExtension } from './components/bubble'
+import { registerToolbarMenuExtension } from './components/toolbar'
 import { setupCollaboration } from './components/collaboration'
 
 const USERNAME_PREFIX = 'tiny-tiptap'
@@ -47,6 +48,8 @@ export default class TiptapEditor {
     }
 
     this.editor = this.createEditor(editorClass, this.options)
+
+    this.initToolbarMenu()
 
     if (floatMenuView) {
       this.initFloatingMenu(renderer, floatMenuView)
@@ -102,6 +105,10 @@ export default class TiptapEditor {
     if (this.extensions.findIndex((extension) => extension.name === 'slashMenu') === -1) {
       this.extensions.push(slashMenu)
     }
+  }
+
+  private initToolbarMenu() {
+    registerToolbarMenuExtension(this.editor)
   }
 
   private initFloatingMenu(renderer, view) {

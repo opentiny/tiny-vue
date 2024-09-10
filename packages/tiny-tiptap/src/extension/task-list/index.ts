@@ -1,5 +1,5 @@
 import type { ExtensionOptions } from '@/types'
-import { Editor, Range } from '@tiptap/core'
+import type { Editor, Range } from '@tiptap/core'
 import type { TaskListOptions } from '@tiptap/extension-task-list'
 import TiptapTaskList from '@tiptap/extension-task-list'
 import TaskItem from '@tiptap/extension-task-item'
@@ -9,6 +9,24 @@ const TaskList = TiptapTaskList.extend<ExtensionOptions & TaskListOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
+      getToolbarMenus() {
+        return [
+          {
+            key: 'taskList',
+            icon: iconRichTextTaskList(),
+            action: ({ editor }: { editor: Editor }) => {
+              return () => {
+                editor.chain().focus().toggleTaskList().run()
+              }
+            },
+            isActive: ({ editor }: { editor: Editor }) => {
+              return () => {
+                return editor.isActive(TaskList.name)
+              }
+            }
+          }
+        ]
+      },
       getSlashMenus() {
         return [
           {
