@@ -80,8 +80,14 @@
     "type": "component",
     "exclude": false,
     "mode": [
+      "mobile-first",
       "pc"
     ]
+  },
+  "AnchorMobileFirst": {
+    "path": "vue/src/anchor/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
   },
   "AnchorPc": {
     "path": "vue/src/anchor/src/pc.vue",
@@ -1462,6 +1468,11 @@
   "GuidePc": {
     "path": "vue/src/guide/src/pc.vue",
     "type": "template",
+    "exclude": false
+  },
+  "Hooks": {
+    "path": "vue-hooks/index.ts",
+    "type": "module",
     "exclude": false
   },
   "Hrapprover": {

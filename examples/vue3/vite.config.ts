@@ -36,7 +36,22 @@ export default defineConfig((config) => {
         include: [/\.vue$/, /\.md$/]
       }),
       vue3JsxPlugin(),
-      vue3SvgPlugin(),
+      vue3SvgPlugin({
+        defaultImport: 'component',
+        svgoConfig: {
+          plugins: [
+            {
+              name: 'preset-default',
+              params: {
+                overrides: {
+                  removeViewBox: false
+                }
+              }
+            },
+            'prefixIds'
+          ]
+        }
+      }),
       importPlugin([
         {
           libraryName: '@opentiny/vue'

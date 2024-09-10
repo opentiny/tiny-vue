@@ -249,6 +249,15 @@
       var(--ti-button-size-mini-padding)
     );
   }
+  &&--default.is-plain {
+    border-color: var(--ti-button-plain-border-color);
+  }
+  &&--default.is-disabled.is-plain {
+    border-color: var(--ti-button-plain-disabled-border-color);
+  }
+  &&--default.is-plain:hover {
+    border-color: var(--ti-button-plain-hover-border-color);
+  }
 
   &&--primary {
     .button-type(
