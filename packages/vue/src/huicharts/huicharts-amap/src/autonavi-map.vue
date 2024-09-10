@@ -7,7 +7,6 @@
 
 <script>
 import Core from '@opentiny/vue-huicharts-core'
-
 import registerAmap from './amap'
 import { $prefix } from '@opentiny/vue-common'
 
