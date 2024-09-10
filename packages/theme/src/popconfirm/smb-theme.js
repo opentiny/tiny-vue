@@ -9,5 +9,6 @@ export const tinyPopconfirmSmbTheme = {
   'ti-popconfirm-popover-icon-margin-right': 'var(--ti-common-space-base)',
   'ti-popconfirm-popover-margin-bottom': '8px',
   'ti-popconfirm-popover-text-color': '#191919',
-  'ti-popconfirm-popover-line-height': '1.5'
+  'ti-popconfirm-popover-line-height': '1.5',
+  'ti-popconfirm-popover-icon-margin-bottom': '2px'
 }
