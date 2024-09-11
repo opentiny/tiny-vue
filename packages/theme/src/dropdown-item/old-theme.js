@@ -1,0 +1,26 @@
+export const tinyDropdownItemOldTheme = {
+  'ti-dropdown-item-expand-icon-size': '8px',
+  'ti-dropdown-item-before-height': '6px',
+  'ti-dropdown-item-before-bg-color': 'var(--ti-common-color-bg-white-normal, #fff)',
+  'ti-dropdown-item-divided-border-color': 'var(--ti-common-color-line-dividing, #dfe1e6)',
+  'ti-dropdown-item-content-bg-hover': 'var(--ti-common-color-bg-white-emphasize)',
+  'ti-dropdown-item-content-text-hover': 'var(--ti-common-color-text-highlight)',
+  'ti-dropdown-item-content-font-weight-hover': 'var(--ti-common-font-weight-4, normal)',
+  'ti-dropdown-item-content-margin-left': 'var(--ti-common-space-0, 0px)',
+  'ti-dropdown-item-expand-svg-margin-right': 'var(--ti-common-space-0, 0px)',
+  'ti-dropdown-item-expand-svg-margin-left':
+    'calc(\n    -1 * (var(--ti-common-space-base, 4px) + var(--ti-dropdown-item-expand-icon-size))\n  )',
+  'ti-dropdown-item-icon-color-hover': 'var(--ti-common-color-icon-hover, #5e7ce0)',
+  'ti-dropdown-item-icon-color': 'var(--ti-common-color-icon-normal, #575d6c)',
+  'ti-dropdown-item-max-width': 'var(--ti-common-size-33x, 132px)',
+  'ti-dropdown-item-padding-horizontal': 'var(--ti-common-space-5x, 20px)',
+  'ti-dropdown-item-padding-vertical': 'var(--ti-common-space-6, 6px)',
+  'ti-dropdown-item-active-text-color': 'var(--ti-common-color-text-white, #fff)',
+  'ti-dropdown-item-active-bg-color': 'var(--ti-common-color-bg-emphasize, #5e7ce0)',
+  'ti-dropdown-item-hover-text-color': 'var(--ti-common-color-text-highlight, #526ecc)',
+  'ti-dropdown-item-text-color-selected': 'var(--ti-common-color-text-white, #fff)',
+  'ti-dropdown-item-font-weight-selected': 'var(--ti-common-font-weight-4, normal)',
+  'ti-dropdown-item-bg-color-selected': 'var(--ti-common-color-selected-background, #5e7ce0)',
+  'ti-dropdown-item-hover-bg-color': 'var(--ti-common-color-bg-white-emphasize, #f2f5fc)',
+  'ti-dropdown-item-height': '30px'
+}

@@ -455,5 +455,3 @@ export const tinyBaseSmbTheme = {
 
   'ti-common-input-font-family': 'var(--ti-base-font-family)' // 输入框字体
 }
-
-export * from './component.js'
