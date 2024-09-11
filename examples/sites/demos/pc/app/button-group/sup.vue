@@ -15,7 +15,7 @@
     <div class="tag">
       <tiny-button-group :data="groupData2" v-model="checkedVal">
         <template #btn="{ sup }">
-          <tiny-tag type="danger" class="tiny-only-icon" size="small">
+          <tiny-tag type="warning" class="tiny-only-icon" size="small">
             <component :is="sup.icon"></component>
             {{ sup.text }}
           </tiny-tag>
