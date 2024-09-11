@@ -1,6 +1,6 @@
 export const tinyBadgeSmbTheme = {
   'ti-badge-size': 'var(--ti-common-font-size-2)',
-  'ti-badge-line-height': 'calc(var(--ti-common-font-size-2) - 2px)',
+  'ti-badge-line-height': 'calc(var(--ti-common-line-height-base) - 4px)',
   'ti-badge-bg-color': 'var(--ti-base-color-error)',
   'ti-badge-font-size': 'var(--ti-common-font-size-0)',
   'ti-badge-text-color': 'var(--ti-base-color-bg-7)',
