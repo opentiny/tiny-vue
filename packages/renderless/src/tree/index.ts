@@ -600,7 +600,7 @@ export const initTabIndex =
   }
 
 export const handleKeydown =
-  ({ vm, state }) =>
+  ({ vm, state, TreeAdapter }) =>
   (event) => {
     const currentItem = event.target
 
@@ -624,7 +624,19 @@ export const handleKeydown =
         nextIndex = currentIndex < state.treeItemArray.length - 1 ? currentIndex + 1 : 0
       }
 
-      state.treeItemArray[nextIndex].focus()
+      const treeNode = state.treeItemArray[nextIndex]
+
+      if (TreeAdapter) {
+        const nodeContent = treeNode.querySelector('div.tiny-tree-node__content')
+
+        treeNode.focus({ preventScroll: true })
+
+        if (nodeContent && nodeContent.scrollIntoView) {
+          nodeContent.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' })
+        }
+      } else {
+        treeNode.focus()
+      }
     } else if ([KEY_CODE.ArrowLeft, KEY_CODE.ArrowRight].includes(keyCode)) {
       event.preventDefault()
       currentItem.click()

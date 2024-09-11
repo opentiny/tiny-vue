@@ -78,6 +78,8 @@ export default {
   setAllSelection(value) {
     let { afterFullData, selectConfig = {}, treeConfig, selection } = this
     let { checkField: property, reserve, checkStrictly, checkMethod } = selectConfig
+    // add in 3.19.0 全选不应受到checkStrictly的限制，设置为false, 运行稳定后，将checkStrictly在全选逻辑中剔除
+    checkStrictly = false
     hasCheckFieldNoStrictly({ afterFullData, checkMethod, checkStrictly, property, selection, treeConfig, value })
     let selectRows = hasNoCheckFieldNoStrictly({
       afterFullData,
@@ -92,13 +94,11 @@ export default {
     this.treeIndeterminates = []
     this.checkSelectionStatus()
   },
+  // 根据表格选中状态，给头部复现框赋值状态（全选，半选，未选）
   checkSelectionStatus() {
     let { afterFullData, selection, treeIndeterminates } = this
-    let { checkField, checkStrictly, checkMethod } = this.selectConfig || {}
+    let { checkField, checkMethod } = this.selectConfig || {}
     let { everyHandler, someHandler } = {}
-    if (checkStrictly) {
-      return
-    }
     // 包含新增的数据
     if (checkField) {
       everyHandler = checkMethod
