@@ -4,7 +4,9 @@
       <tiny-tree-menu :data="treeData" default-expand-all></tiny-tree-menu>
     </div>
     <div class="index">
-      <NuxtPage></NuxtPage>
+      <ClientOnly>
+        <NuxtPage class="page"></NuxtPage>
+      </ClientOnly>
     </div>
   </div>
 </template>
@@ -203,5 +205,8 @@ const treeData = ref([
   align-items: center;
   justify-content: center;
   overflow-x: auto;
+}
+.page {
+  width: 80%;
 }
 </style>

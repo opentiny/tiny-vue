@@ -1,6 +1,8 @@
 <template>
-  <tiny-ip-address v-model="value1" style="margin-bottom: 8px"></tiny-ip-address><br />
-  <tiny-ip-address type="IPv6" v-model="value2"></tiny-ip-address>
+  <div>
+    <tiny-ip-address v-model="value1" style="margin-bottom: 8px"></tiny-ip-address><br />
+    <tiny-ip-address type="IPv6" v-model="value2"></tiny-ip-address>
+  </div>
 </template>
 
 <script setup>
