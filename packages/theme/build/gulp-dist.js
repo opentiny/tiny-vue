@@ -2,15 +2,15 @@
  * 打包 theme 目录到 dist 目录
  */
 
-const gulp = require('gulp')
-const less = require('gulp-less')
-const cssmin = require('gulp-clean-css')
-const svgInline = require('gulp-svg-inline')
-const prefixer = require('gulp-autoprefixer')
-const fg = require('fast-glob')
-const fs = require('node:fs')
-const { createTheme, removeDir } = require('./edit‐dir‐theme.js')
-const { buildSvg } = require('./build-svg-to-css.js')
+import gulp from 'gulp'
+import less from 'gulp-less'
+import cssmin from 'gulp-clean-css'
+import svgInline from 'gulp-svg-inline'
+import prefixer from 'gulp-autoprefixer'
+import fg from 'fast-glob'
+import fs from 'node:fs'
+import { createTheme, removeDir } from './edit‐dir‐theme.js'
+import { buildSvg } from './build-svg-to-css.js'
 
 const source = '../src'
 const dist = '../dist'

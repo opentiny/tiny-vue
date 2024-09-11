@@ -112,7 +112,11 @@
 
   &__inner {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 5px var(--ti-checkbox-button-size-small-padding-horizontal);
+    border-radius: var(--ti-checkbox-button-border-radius);
     white-space: nowrap;
     vertical-align: middle;
     outline: 0;
@@ -130,9 +134,7 @@
     transition:
       border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    padding: 12px 20px;
-    font-size: var(--ti-checkbox-button-font-size);
-    border-radius: var(--ti-checkbox-button-border-radius);
+    font-size: var(--ti-checkbox-button-default-font-size);
     .user-select(none);
 
     &.is-round {
@@ -155,8 +157,11 @@
   }
 
   &--medium &__inner {
-    padding: 14px 20px;
-    font-size: var(--ti-common-font-size-1);
+    display: flex;
+    align-items: center;
+    height: var(--ti-checkbox-button-size-medium-height);
+    padding: 9px 32px;
+    font-size: var(--ti-checkbox-button-medium-font-size);
     border-radius: var(--ti-checkbox-button-border-radius);
 
     &.is-round {
@@ -165,10 +170,11 @@
   }
 
   &--small &__inner {
+    display: flex;
+    align-items: center;
     height: var(--ti-checkbox-button-size-small-height);
-    line-height: calc(var(--ti-checkbox-button-size-small-height) - 2px);
-    padding: 0 var(--ti-checkbox-button-size-small-padding-horizontal);
-    font-size: var(--ti-common-font-size-base);
+    padding: 3px var(--ti-checkbox-button-size-small-padding-horizontal);
+    font-size: var(--ti-checkbox-button-small-font-size);
     border-radius: var(--ti-checkbox-button-border-radius);
 
     &.is-round {
@@ -177,9 +183,10 @@
   }
 
   &--mini &__inner {
+    display: flex;
+    align-items: center;
     padding: var(--ti-checkbox-button-padding-vertical) var(--ti-checkbox-button-mini-padding-horizontal);
-    height: var(--ti-checkbox-button-height);
-    margin: 0 var(--ti-checkbox-button-mini-margin-horizontal);
+    height: var(--ti-checkbox-button-size-mini-height);
     font-size: var(--ti-checkbox-button-size-mini-font-size);
     border-radius: var(--ti-checkbox-button-size-mini-border-radius);
 
@@ -205,14 +212,14 @@
         border-bottom: 16px solid transparent;
         border-right: 16px solid var(--ti-checkbox-button-checked-border-color);
         border-top-right-radius: 4px;
-        right: 3px;
+        right: 5px;
       }
 
       &::before {
         height: 8px;
         width: 4px;
-        right: 3px;
-        top: 1px;
+        right: 6px;
+        top: 0;
       }
     }
   }

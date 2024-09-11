@@ -484,7 +484,8 @@ export default defineComponent({
         showTitle,
         isHwh5,
         tipMessage,
-        promptTip
+        promptTip,
+        showFileList
       },
       ref: 'upload-inner'
     }

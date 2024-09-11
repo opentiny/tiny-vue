@@ -26,7 +26,7 @@ export const computedMaxShowNum =
   }
 
 export const computedSpacing =
-  ({ props, state }: Pick<IActionMenuRenderlessParams, 'props' | 'state'>) =>
+  ({ props, state, designConfig }: Pick<IActionMenuRenderlessParams, 'props' | 'state', 'designConfig'>) =>
   (): string => {
     if (props.spacing !== undefined) {
       return String(props.spacing).includes('px') ? props.spacing : props.spacing + 'px'
@@ -34,7 +34,7 @@ export const computedSpacing =
     if (state.isCardMode) {
       return '10px'
     } else {
-      return '5px'
+      return designConfig?.props.spacing || '5px'
     }
   }
 

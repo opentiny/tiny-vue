@@ -38,6 +38,8 @@ const findAllpage = (packagesPath) => {
       .replace(/-openaui/g, '-opentiny')
       // 解决在linkjs环境z-index无法统一导致下拉框被遮挡问题
       .replace(/"(.*?\/popup-manager)"/g, '"@aurora/renderless/common/deps/popup-manager"')
+      // @opentiny/fluent-editor 包是与框架无关的包
+      .replace(/@aurora\/fluent-editor/g, '@opentiny/fluent-editor')
 
     // 解决当AUI只有一个mobile-first模板而TinyVue有多个模板，导致Linkjs加载不到多端模板的问题
     if (

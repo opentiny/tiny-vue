@@ -136,12 +136,8 @@
           padding: 0;
           line-height: 1;
           position: absolute;
-          top: calc(
-            var(--ti-drawer-btn-position-top) - (var(--ti-drawer-btn-height) - var(--ti-drawer-close-icon-size)) / 2
-          );
-          right: calc(
-            var(--ti-drawer-btn-position-right) - (var(--ti-drawer-btn-width) - var(--ti-drawer-close-icon-size)) / 2
-          );
+          top: var(--ti-drawer-btn-position-top);
+          right: var(--ti-drawer-btn-position-right);
           cursor: pointer;
           height: var(--ti-drawer-btn-height);
           width: var(--ti-drawer-btn-width);
@@ -206,8 +202,7 @@
       .@{drawer-prefix-cls}__body {
         flex: auto;
         overflow: auto;
-        padding-left: var(--ti-drawer-padding-left);
-        padding-right: var(--ti-drawer-padding-right);
+        padding: var(--ti-drawer-padding-top) var(--ti-drawer-padding-right) var(--ti-drawer-padding-bottom) var(--ti-drawer-padding-left);
         border-bottom: 1px solid var(--ti-drawer-divider-body-border-color);
       }
 

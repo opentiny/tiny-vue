@@ -1,10 +1,6 @@
 <template>
   <div class="demo-date-picker-wrap">
-    <tiny-time-picker
-      v-model="value1"
-      popper-class="picker-class"
-      :popper-append-to-body="false"
-    ></tiny-time-picker>
+    <tiny-time-picker v-model="value1" popper-class="picker-class" :popper-append-to-body="false"></tiny-time-picker>
   </div>
 </template>
 
@@ -17,7 +13,7 @@ const value1 = ref(new Date(2016, 9, 10, 18, 40))
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 182px;
+  width: 200px;
 }
 
 .picker-class {

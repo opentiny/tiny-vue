@@ -26,7 +26,7 @@ test('照片墙', async ({ page }) => {
 
   await expect(width).toEqual(148)
   await expect(height).toEqual(148)
-  await expect(li).toHaveCount(1)
+  await expect(li).toHaveCount(4)
   await fileChooser.setFiles(currentPath)
   await first.hover()
   await prevPic.click()

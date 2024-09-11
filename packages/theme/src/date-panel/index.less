@@ -14,6 +14,7 @@
 @import './vars.less';
 
 @picker-panel-prefix-cls: ~'@{css-prefix}picker-panel';
+@button-primary-prefix-cls: ~'@{css-prefix}button--primary';
 
 .@{picker-panel-prefix-cls} {
   .component-css-vars-picker-panel();
@@ -48,7 +49,7 @@
 
   &__footer {
     border-top: 1px solid var(--ti-picker-panel-border-color);
-    padding: 6px 16px;
+    padding: var(--ti-picker-panel-footer-padding-verticals) 16px;
     background-color: var(--ti-picker-panel-bg-color);
     display: flex;
     justify-content: space-between;
@@ -120,6 +121,14 @@
     cursor: pointer;
     outline: 0;
 
+    svg {
+      fill: var(--ti-picker-panel-svg-fill);
+    }
+
+    svg:hover {
+      fill: var(--ti--picker-panel-svg-hover-fill)
+    }
+
     &:hover {
       fill: var(--ti-picker-panel-icon-color-btn-hover);
     }
@@ -133,8 +142,16 @@
     }
   }
 
-  &__link-btn {
+  .@{button-primary-prefix-cls}&__link-btn {
     vertical-align: middle;
+    background-color: var(--ti-picker-panel-link-btn-bg-color);
+    color: var(--ti-picker-panel-link-btn-text-color);
+    border-color: var(--ti-picker-panel-link-btn-border-color);
+  }
+  .@{button-primary-prefix-cls}&__link-btn:hover{
+    color: var(--ti-picker-panel-link-btn-text-color);
+    background-color: var(--ti-picker-panel-link-btn-hover-bg-color);
+    border-color: var(--ti-picker-panel-link-btn-hover-border-color);
   }
 
   [slot='sidebar'],

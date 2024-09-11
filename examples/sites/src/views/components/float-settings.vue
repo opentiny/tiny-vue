@@ -88,7 +88,7 @@
 
 <script>
 import { defineComponent, reactive, toRefs, onMounted, onUnmounted, watch, nextTick, ref } from 'vue'
-import { Tooltip, Radio, RadioGroup, Popover } from '@opentiny/vue'
+import { Tooltip, Radio, RadioGroup, Popover, Notify } from '@opentiny/vue'
 import { iconUpWard } from '@opentiny/vue-icon'
 import debounce from '@opentiny/vue-renderless/common/deps/debounce'
 import { i18nByKey, useApiMode, useTemplateMode } from '@/tools'
@@ -129,6 +129,17 @@ export default defineComponent({
       initBottomVal: null, // 初始底部偏移
       isSettingsAside: false // 是否贴边
     })
+    let isShowTip = false
+    const showTip = () => {
+      Notify({
+        type: 'info',
+        title: '请注意',
+        message: '主题切换成功，如有部分主题样式不生效，请尝试手动刷新页面即可',
+        position: 'bottom-right',
+        duration: 3000
+      })
+      isShowTip = true
+    }
 
     if (isPlus) {
       state.styleSettings = state.styleSettings.filter((item) => item.name !== 'apiMode')
@@ -164,6 +175,10 @@ export default defineComponent({
       themeItemClick(node) {
         const val = node?.value || 'tiny-smb-theme'
         changeTheme(val)
+
+        if (!isShowTip) {
+          showTip()
+        }
       }
     }
 
@@ -257,12 +272,12 @@ export default defineComponent({
   height: 140px;
   display: flex;
   flex-direction: column;
-  column-gap: var(--ti-common-space-3x);
+  column-gap: 12px;
   z-index: var(--docs-float-settings-zindex);
   transition: all 0.3s linear;
 
   &.float-settings--aside {
-    right: var(--ti-common-size-6x);
+    right: 24px;
   }
 
   .tiny-dropdown__trigger .tiny-dropdown__title {
@@ -274,25 +289,25 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--ti-common-size-9x);
-    height: var(--ti-common-size-9x);
-    margin-bottom: var(--ti-common-space-2x);
-    border: 1px solid var(--ti-common-color-line-dividing);
-    border-radius: var(--ti-common-space-3x);
-    background-color: var(--ti-common-color-bg-white-normal);
+    width: 36px;
+    height: 36px;
+    margin-bottom: 8px;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    background-color: #fff;
     cursor: pointer;
 
     &:hover {
       box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
 
       .settings-icon {
-        color: var(--ti-common-color-primary-normal);
-        fill: var(--ti-common-color-primary-normal);
+        color: #191919;
+        fill: #191919;
       }
     }
 
     &.style-settings-btn {
-      margin-bottom: var(--ti-common-space-6x);
+      margin-bottom: 24px;
     }
 
     &.back-top-btn {
@@ -300,8 +315,8 @@ export default defineComponent({
     }
 
     .settings-icon {
-      width: var(--ti-common-size-4x);
-      height: var(--ti-common-size-4x);
+      width: 16px;
+      height: 16px;
       color: #595959;
     }
   }
@@ -309,33 +324,33 @@ export default defineComponent({
 
 .opt-menu {
   width: 154px;
-  padding: var(--ti-common-size-3x) 0;
-  border-radius: var(--ti-common-space-3x);
+  padding: 12px 0;
+  border-radius: 12px;
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.15);
 
   &.style-settings-menu {
     padding: 14px;
 
     .style-settings-item {
-      padding-left: var(--ti-common-space-3x);
+      padding-left: 12px;
 
       .style-settings-title {
         margin-bottom: 2px;
-        font-size: var(--ti-common-font-size-base);
-        line-height: var(--ti-common-line-height-6);
+        font-size: 4px;
+        line-height: 32px;
         font-weight: 600;
         color: #000000;
       }
 
       .style-settings-options-group {
-        padding-left: var(--ti-common-space-base);
-        margin-bottom: var(--ti-common-space-6);
+        padding-left: 4px;
+        margin-bottom: 6px;
         display: flex;
         flex-direction: column;
 
         .tiny-radio .tiny-radio__label {
-          font-size: var(--ti-common-font-size-base);
-          line-height: var(--ti-common-line-height-6);
+          font-size: 4px;
+          line-height: 32px;
         }
       }
 
@@ -405,7 +420,7 @@ export default defineComponent({
 
 @media (max-width: 1279px) {
   .float-settings {
-    right: var(--ti-common-space-3x);
+    right: 12px;
   }
 }
 </style>

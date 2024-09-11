@@ -55,7 +55,8 @@
   }
 
   &.mini {
-    width: calc(var(--ti-switch-width) - 4px);
+    width: var(--ti-switch-mini-width);
+    height: var(--ti-switch-mini-height);
   }
 
   &&-checked.disabled,
@@ -97,6 +98,11 @@
       width 0.2s ease-in-out;
   }
 
+  &.mini &__button {
+      height: var(--ti-switch-mini-button-height);
+      width: var(--ti-switch-mini-button-width);
+    }
+
   &&-checked {
     border-color: var(--ti-switch-on-bg-color);
     background-color: var(--ti-switch-on-bg-color);
@@ -111,5 +117,8 @@
 
   &&-checked .@{switch-prefix-cls}__button {
     left: calc(100% - var(--ti-switch-dot-offset));
+  }
+  &&-checked&.mini &__button {
+    left: var(--ti-switch-mini-button-left);
   }
 }

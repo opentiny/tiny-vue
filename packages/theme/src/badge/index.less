@@ -23,7 +23,7 @@
   display: inline-block;
   min-width: var(--ti-badge-size);
   height: var(--ti-badge-size);
-  line-height: var(--ti-badge-size);
+  line-height: var(--ti-badge-line-height);
   border-radius: var(--ti-badge-border-radius);
   padding: 0 4px;
   font-size: var(--ti-badge-font-size);
@@ -33,7 +33,8 @@
   vertical-align: baseline;
   white-space: nowrap;
   text-align: center;
-  margin-left: 4px;
+  margin-left: var(--ti-badge-margin-left);
+  border: var(--ti-badge-border) solid #FFFFFF;
 
   &:empty {
     display: none;
@@ -83,6 +84,7 @@
     vertical-align: top;
     padding: 0;
     border-radius: 50%;
+    border: unset;
   }
 
   &--primary {

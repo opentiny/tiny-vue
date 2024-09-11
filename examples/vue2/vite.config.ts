@@ -29,7 +29,21 @@ export default defineConfig((config) => {
         include: [/\.vue$/, /\.md$/]
       }),
       scriptSetupPlugin(),
-      vue2SvgPlugin(),
+      vue2SvgPlugin({
+        svgoConfig: {
+          plugins: [
+            {
+              name: 'preset-default',
+              params: {
+                overrides: {
+                  removeViewBox: false
+                }
+              }
+            },
+            'prefixIds'
+          ]
+        }
+      }),
       importPlugin({
         options: [
           {

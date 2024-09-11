@@ -37,6 +37,6 @@ function removeAll() {
 <style scoped>
 .custom {
   position: static;
-  width: 200px;
+  width: 104px;
 }
 </style>

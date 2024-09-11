@@ -25,7 +25,7 @@
     <!-- 树视图 -->
     <template v-if="viewType === 'tree'">
       <tree-node
-        v-for="child in state.root.childNodes"
+        v-for="child in state.renderedChildNodes"
         v-highlight-query="highlightQuery ? state.filterText : ''"
         :action="state.action"
         :show-radio="showRadio"

@@ -14,11 +14,7 @@
 </template>
 
 <script>
-import {
-  TimePicker,
-  RadioGroup,
-  RadioButton
-} from '@opentiny/vue'
+import { TimePicker, RadioGroup, RadioButton } from '@opentiny/vue'
 
 export default {
   components: {
@@ -45,7 +41,7 @@ export default {
 }
 
 .demo-date-picker-wrap {
-  width: 182px;
+  width: 200px;
 
   & > * {
     margin-top: 12px;

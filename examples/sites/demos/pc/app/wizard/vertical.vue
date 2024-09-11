@@ -33,12 +33,13 @@ export default {
         },
         {
           name: '一级审批',
-          status: 'wait',
-          showNode: true
+          status: 'doing',
+          showNode: true,
+          content: '通过'
         },
         {
           name: '完成',
-          status: 'doing',
+          status: 'wait',
           showNode: true,
           content: '完成'
         }

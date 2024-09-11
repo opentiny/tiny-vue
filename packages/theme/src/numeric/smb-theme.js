@@ -8,7 +8,8 @@ export const tinyNumericSmbTheme = {
   'ti-numeric-input-divider-height-medium': 'var(--ti-common-space-6x)',
   'ti-numeric-input-divider-height-small': 'calc(var(--ti-common-space-5x) - 2px)',
   'ti-numeric-input-divider-height-mini': 'calc(var(--ti-common-space-4x) - 1px)',
-  'ti-numeric-input-disabled-bg-color': 'var(--ti-common-bg-color-disabled-transparent-5)',
-  'ti-numeric-input-btn-disabled-bg-color': 'var(--ti-common-bg-color-disabled-transparent-5)',
-  'ti-numeric-input-dividing-border-color': 'var(--ti-common-border-color-transparent-8)'
+  'ti-numeric-input-disabled-bg-color': 'var(--ti-common-color-bg-disabled)',
+  'ti-numeric-input-btn-disabled-bg-color': 'var(--ti-common-color-bg-disabled)',
+  'ti-numeric-input-dividing-border-color': 'var(--ti-common-border-color-transparent-8)',
+  'ti-numeric-input-disabled-text-color': 'var(--ti-common-color-primary-disabled-text)'
 }

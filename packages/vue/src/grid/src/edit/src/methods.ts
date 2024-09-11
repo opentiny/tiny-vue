@@ -159,7 +159,7 @@ export default {
     this.updateCache(true)
     this.handleTableData(true)
     this.checkSelectionStatus()
-
+    this.updateFooter()
     if (scrollYLoad) {
       this.updateScrollYSpace()
     }
@@ -238,7 +238,7 @@ export default {
     this.handleTableData(true)
 
     this.checkSelectionStatus()
-
+    this.updateFooter()
     if (scrollYLoad) {
       this.updateScrollYSpace()
     }

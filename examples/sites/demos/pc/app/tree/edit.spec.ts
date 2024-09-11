@@ -23,5 +23,4 @@ test('测试编辑节点', async ({ page }) => {
 
   await btn3.click()
   await expect(input).toHaveCount(1)
-  input.fill('123')
 })

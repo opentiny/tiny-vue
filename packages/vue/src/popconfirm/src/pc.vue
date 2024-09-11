@@ -7,7 +7,6 @@
         :placement="placement"
         trigger="manual"
         :width="width"
-        :title="title"
         :popper-class="'tiny-popconfirm-popover ' + (customClass || '')"
         :popper-options="popperOptions"
         :append-to-body="popperAppendToBody"
@@ -23,7 +22,7 @@
               :class="['tiny-popconfirm-popover__icon', type ? `tiny-popconfirm-popover--${type}` : '']"
             >
             </component>
-            <div class="tiny-popconfirm-popover__title">
+            <div class="tiny-popconfirm-popover__title" :class="[message ? '' : 'no-message']">
               {{ title }}
             </div>
           </div>
@@ -56,7 +55,7 @@ import { setup, $prefix, defineComponent } from '@opentiny/vue-common'
 import { renderless, api } from '@opentiny/vue-renderless/popconfirm/vue'
 import Popover from '@opentiny/vue-popover'
 import Button from '@opentiny/vue-button'
-import { iconError, iconInfoSolid, iconWarning, iconSuccess } from '@opentiny/vue-icon'
+import { iconError, iconHelp, iconWarning, iconSuccess } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/popconfirm/index.less'
 
 export default defineComponent({
@@ -65,7 +64,7 @@ export default defineComponent({
     TinyPopover: Popover,
     TinyButton: Button,
     IconSuccess: iconSuccess(),
-    IconInfoSolid: iconInfoSolid(),
+    IconHelp: iconHelp(),
     IconWarning: iconWarning(),
     IconError: iconError()
   },
@@ -97,7 +96,7 @@ export default defineComponent({
     },
     width: {
       type: [String, Number],
-      default: '350'
+      default: ''
     },
     type: [String, Object],
     reference: {},

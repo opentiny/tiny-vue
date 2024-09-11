@@ -12,5 +12,6 @@ export const tinyTabsSmbTheme = {
   'ti-tabs-dropdown-more-margin-top': 'var(--ti-common-space-base)',
   'ti-tabs-content-margin-vertical': 'var(--ti-common-space-3x)',
   'ti-tabs-content-margin-horizontal': 'var(--ti-common-space-0)',
-  'ti-tabs-dark-bg-color-hover': '#191919'
+  'ti-tabs-dark-bg-color-hover': 'var(--ti-common-color-icon-graybg-hover)',
+  'ti-tabs-small-item-font-size': 'var(--ti-common-font-size-2)'
 }
