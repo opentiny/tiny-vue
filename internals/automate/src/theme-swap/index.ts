@@ -42,11 +42,11 @@ fg.sync(['**/vars.less'], { cwd: srcFold, ignore: ignoreFolds })
   })
 
 // 2、 替换 base/basic-var.less 与 theme/smb-theme/index.js 中的变量
-const varsFile = fs.readFileSync(path.join(srcFold, 'base/basic-var.less'), 'utf8')
-const smbThemeJsObj = await import('file://' + path.join(srcFold, 'theme/smb-theme/index.js'))
-const smbJs = Object.values(smbThemeJsObj)[0]
+// const varsFile = fs.readFileSync(path.join(srcFold, 'base/basic-var.less'), 'utf8')
+// const smbThemeJsObj = await import('file://' + path.join(srcFold, 'theme/smb-theme/index.js'))
+// const smbJs = Object.values(smbThemeJsObj)[0]
 
-processComponent('base', varsFile, smbJs, true)
+// processComponent('base', varsFile, smbJs, true)
 
 console.log('/////执行完毕/////')
 console.table(exceptions)
