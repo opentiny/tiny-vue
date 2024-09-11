@@ -4,7 +4,9 @@
       <tiny-tree-menu :data="treeData" default-expand-all></tiny-tree-menu>
     </div>
     <div class="index">
-      <NuxtPage class="page"></NuxtPage>
+      <ClientOnly>
+        <NuxtPage class="page"></NuxtPage>
+      </ClientOnly>
     </div>
   </div>
 </template>

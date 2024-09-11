@@ -1,60 +1,90 @@
 <template>
-  <div class="demo-top mb10">
-    <tiny-switch v-model="type" true-value="line" false-value="dot"> </tiny-switch>
-    <span class="demo-anchor">当前类型：{{ type }}</span>
-  </div>
-  <tiny-anchor :links="links" :type="type"></tiny-anchor>
+  <tiny-row>
+    <tiny-col :span="10">
+      <div id="container" class="scroll-container">
+        <div id="sec-1" class="sec-1">Sec 1</div>
+        <div id="sec-2" class="sec-2">Sec 2</div>
+        <div id="sec-3" class="sec-3">Sec 3</div>
+        <div id="sec-3-1" class="sec-3-1">Sec 3-1</div>
+        <div id="sec-3-2" class="sec-3-2">Sec 3-2</div>
+      </div>
+    </tiny-col>
+    <tiny-col :span="2">
+      <tiny-anchor
+        :links="links"
+        container-id="#container"
+        @link-click="handleClick"
+        mark-class="is-active-anchor"
+      ></tiny-anchor>
+    </tiny-col>
+  </tiny-row>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { Anchor as TinyAnchor, Switch as TinySwitch } from '@opentiny/vue'
+import { Anchor as TinyAnchor, Row as TinyRow, Col as TinyCol } from '@opentiny/vue'
 
 const links = ref([
   {
-    key: 'demonstrate',
-    link: '#demonstrate',
-    title: '演示',
-    children: [
-      {
-        key: 'basic-usage',
-        link: '#basic-usage',
-        title: '基本用法'
-      },
-      {
-        key: 'is-affix',
-        link: '#is-affix',
-        title: '固定模式'
-      },
-      {
-        key: 'set-container',
-        link: '#set-container',
-        title: '滚动容器'
-      },
-      {
-        key: 'on-change',
-        link: '#change',
-        title: 'change 事件'
-      }
-    ]
+    key: 'sec-1',
+    link: '#sec-1',
+    title: 'Sec 1'
   },
   {
-    key: 'api',
-    link: '#API',
-    title: 'API'
+    key: 'sec-2',
+    link: '#sec-2',
+    title: 'Sec 2'
+  },
+  {
+    key: 'sec-3',
+    link: '#sec-3',
+    title: 'Sec 3',
+    children: [
+      {
+        key: 'sec-3-1',
+        link: '#sec-3-1',
+        title: 'Sec 3-1'
+      },
+      {
+        key: 'sec-3-2',
+        link: '#sec-3-2',
+        title: 'Sec 3-2'
+      }
+    ]
   }
 ])
 
-const type = ref('dot')
+function handleClick(e, link) {
+  e.preventDefault()
+}
 </script>
 
 <style scoped>
-.demo-top {
-  display: flex;
-  align-items: center;
+.is-active-anchor {
+  border: 1px solid #333;
 }
-.demo-anchor {
-  margin-left: 8px;
-  font-size: 14px;
+.scroll-container {
+  height: 40vh;
+  overflow: auto;
+}
+.sec-1 {
+  height: 50vh;
+  background: rgba(135, 206, 235, 0.1);
+}
+.sec-2 {
+  height: 50vh;
+  background: rgba(135, 206, 235, 0.3);
+}
+.sec-3 {
+  background: rgba(135, 206, 235, 0.6);
+  padding-top: 20vh;
+}
+.sec-3-1 {
+  height: 50vh;
+  background: rgba(135, 206, 235, 0.8);
+}
+.sec-3-2 {
+  height: 50vh;
+  background: rgba(135, 206, 235, 1);
 }
 </style>
