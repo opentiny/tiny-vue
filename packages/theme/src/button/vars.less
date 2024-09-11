@@ -23,6 +23,7 @@
   --ti-button-border-style: var(--ti-common-border-style-solid, solid);
   // 按钮加载时背景色
   --ti-button-loading-bg-color: rgba(255, 255, 255, 0.35);
+  --ti-button-loading-font-size: var(--ti-common-font-size-1);
 
   // 默认按钮最小宽度
   --ti-button-size-normal-min-width: var(--ti-common-size-width-normal, 80px);
@@ -99,6 +100,10 @@
   --ti-button-normal-disabled-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
   // 禁用类默认按钮背景色
   --ti-button-normal-disabled-bg-color: var(--ti-common-color-bg-disabled, #f5f5f6);
+  // 默认 朴素 边框色
+  --ti-button-plain-border-color: var(--ti-common-color-border, #adb0b8);
+  // 默认 朴素 禁用边框色
+  --ti-button-plain-disabled-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
 
   // 文字按钮文本色
   --ti-button-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
@@ -439,7 +444,11 @@
   --ti-button-text-size-mini-svg-height: 1em;
 
   // 纯图标按钮最小宽度
+  --ti-button-icon-font-size: var(--ti-common-font-size-0, 12px);
+  // 纯图标/文字按钮宽度
+  --ti-button-only-icon-width: var(ti-common-size-width-minor, 30px);
   --ti-button-only-icon-min-width: unset;
+  --ti-button-only-icon-text-width: unset;
   // 纯图标按钮水平内边距
   --ti-button-only-icon-padding-horizontal: 7px;
   // 纯图标按钮边框圆角

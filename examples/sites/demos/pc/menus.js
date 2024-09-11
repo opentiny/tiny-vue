@@ -86,7 +86,15 @@ export const cmpMenus = [
       { 'nameCn': '图标', 'name': 'Icon', 'key': 'icon' },
       { 'nameCn': '栅格布局', 'name': 'Layout', 'key': 'layout' },
       { 'nameCn': '链接', 'name': 'Link', 'key': 'link' },
-      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' }
+      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },
+      {
+        'nameCn': '虚拟化容器',
+        'name': 'VirtualScrollBox',
+        'key': 'virtual-scroll-box',
+        'meta': {
+          'stable': '3.19.0'
+        }
+      }
     ]
   },
   {
@@ -118,7 +126,9 @@ export const cmpMenus = [
         'nameCn': '基础选择器',
         'name': 'BaseSelect',
         'key': 'base-select',
-        'mark': { 'type': 'warning', 'text': 'Beta' }
+        'meta': {
+          'experimental': '3.17.0'
+        }
       },
       { 'nameCn': '级联选择器', 'name': 'Cascader', 'key': 'cascader' },
       { 'nameCn': '级联面板', 'name': 'CascaderPanel', 'key': 'cascader-panel' },
@@ -132,7 +142,9 @@ export const cmpMenus = [
         'nameCn': '富文本',
         'name': 'FluentEditor',
         'key': 'fluent-editor',
-        'mark': { 'type': 'warning', 'text': 'Beta' }
+        'meta': {
+          'experimental': '3.17.0'
+        }
       },
       { 'nameCn': '表单', 'name': 'Form', 'key': 'form' },
       { 'nameCn': '输入框', 'name': 'Input', 'key': 'input' },
@@ -146,9 +158,8 @@ export const cmpMenus = [
         'nameCn': '富文本编辑器',
         'name': 'RichTextEditor',
         'key': 'rich-text-editor',
-        'mark': {
-          'type': 'warning',
-          'text': 'Beta'
+        'meta': {
+          'experimental': '3.10.0'
         }
       },
       { 'nameCn': '搜索', 'name': 'Search', 'key': 'search' },
@@ -162,7 +173,9 @@ export const cmpMenus = [
         'nameCn': '树形选择器',
         'name': 'TreeSelect',
         'key': 'tree-select',
-        'mark': { 'type': 'warning', 'text': 'Beta' }
+        'meta': {
+          'experimental': '3.17.0'
+        }
       }
     ]
   },
@@ -173,7 +186,7 @@ export const cmpMenus = [
     'children': [
       { 'nameCn': '基本用法', 'name': '', 'key': 'grid' },
       { 'nameCn': '序号列', 'name': '', 'key': 'grid-serial-column' },
-      { 'nameCn': '操作列', 'name': '', 'key': 'grid-operation-column' },
+      { 'nameCn': '选中行', 'name': '', 'key': 'grid-operation-column' },
       { 'nameCn': '空数据', 'name': '', 'key': 'grid-empty' },
       { 'nameCn': '数据源', 'name': '', 'key': 'grid-data-source' },
       { 'nameCn': '大数据', 'name': '', 'key': 'grid-large-data' },
@@ -218,7 +231,7 @@ export const cmpMenus = [
       { 'nameCn': '标记', 'name': 'Badge', 'key': 'badge' },
       { 'nameCn': '日历', 'name': 'Calendar', 'key': 'calendar' },
       { 'nameCn': '日历视图', 'name': 'CalendarView', 'key': 'calendar-view' },
-      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card', 'mark': { 'type': 'danger', 'text': 'New' } },
+      { 'nameCn': '卡片', 'name': 'Card', 'key': 'card' },
       { 'nameCn': '走马灯', 'name': 'Carousel', 'key': 'carousel' },
       { 'nameCn': '折叠面板', 'name': 'Collapse', 'key': 'collapse' },
       { 'nameCn': '流程图', 'name': 'FlowChart', 'key': 'flowchart' },
@@ -229,8 +242,7 @@ export const cmpMenus = [
       {
         'nameCn': '思维导图',
         'name': 'MindMap',
-        'key': 'mind-map',
-        'mark': { 'type': 'danger', 'text': 'New' }
+        'key': 'mind-map'
       },
       { 'nameCn': '二维码', 'name': 'QrCode', 'key': 'qr-code' },
       { 'nameCn': '统计数值', 'name': 'Statistic', 'key': 'statistic' },
@@ -240,6 +252,14 @@ export const cmpMenus = [
       //  测试时打开该行---------------
       // { 'nameCn': '时间线AUI', 'name': 'TimelineNew', 'key': 'time-line-new' },
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
+      {
+        'nameCn': '虚拟化树形控件',
+        'name': 'VirtualTree',
+        'key': 'virtual-tree',
+        'meta': {
+          'stable': '3.19.0'
+        }
+      },
       { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
       { 'nameCn': '流程图', 'name': 'Wizard', 'key': 'wizard' }
     ]
@@ -258,7 +278,7 @@ export const cmpMenus = [
       { 'nameCn': '气泡确认框', 'name': 'PopConfirm', 'key': 'popconfirm' },
       { 'nameCn': '进度条', 'name': 'Progress', 'key': 'progress' },
       { 'nameCn': '气泡卡片', 'name': 'Popover', 'key': 'popover' },
-      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton', 'mark': { 'type': 'danger', 'text': 'New' } },
+      { 'nameCn': '骨架屏', 'name': 'Skeleton', 'key': 'skeleton' },
       { 'nameCn': '文字提示', 'name': 'Tooltip', 'key': 'tooltip' }
     ]
   },
@@ -313,7 +333,15 @@ export const cmpMenus = [
       { 'nameCn': '面板分割', 'name': 'Split', 'key': 'split' },
       { 'nameCn': '输入框', 'name': 'TextPopup', 'key': 'text-popup' },
       { 'nameCn': '联系人', 'name': 'UserContact', 'key': 'user-contact' },
-      { 'nameCn': '水印', 'name': 'Watermark', 'key': 'watermark' }
+      { 'nameCn': '水印', 'name': 'Watermark', 'key': 'watermark' },
+      {
+        'nameCn': '粘性布局',
+        'name': 'Sticky',
+        'key': 'sticky',
+        'meta': {
+          'stable': '3.19.0'
+        }
+      }
     ]
   },
   {

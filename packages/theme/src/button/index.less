@@ -51,6 +51,7 @@
 
   .@{svg-prefix-cls} {
     vertical-align: text-top;
+    font-size: var(--ti-button-icon-font-size);
   }
 
   & > img {
@@ -59,6 +60,7 @@
   }
 
   &.is-only-icon {
+    width: var(--ti-button-only-icon-width);
     min-width: var(--ti-button-only-icon-min-width);
     padding: 0 var(--ti-button-only-icon-padding-horizontal);
     border-radius: var(--ti-button-only-icon-border-radius);
@@ -204,7 +206,6 @@
     &.is-loading {
       .@{svg-prefix-cls} {
         margin-right: 4px;
-        margin-top: 1px;
       }
     }
   }
@@ -247,6 +248,15 @@
       var(--ti-button-size-mini-height),
       var(--ti-button-size-mini-padding)
     );
+  }
+  &&--default.is-plain {
+    border-color: var(--ti-button-plain-border-color);
+  }
+  &&--default.is-disabled.is-plain {
+    border-color: var(--ti-button-plain-disabled-border-color);
+  }
+  &&--default.is-plain:hover {
+    border-color: var(--ti-button-plain-hover-border-color);
   }
 
   &&--primary {
@@ -435,6 +445,7 @@
     }
 
     &.is-only-icon {
+      width: var(--ti-button-only-icon-text-width);
       &:hover {
         background: var(--ti-button-text-only-icon-hover-bg-color);
       }
@@ -537,6 +548,11 @@
       var(--ti-button-size-mini-padding-horizontal),
       var(--ti-button-size-mini-min-width),
     );
+  }
+  .@{css-prefix-iconfont}-loading {
+    font-size: var(--ti-button-loading-font-size);
+    line-height: 1;
+    animation: rotating 2s linear infinite;
   }
 }
 

@@ -25,7 +25,7 @@ test('只显示文本', async ({ page }) => {
   await page.goto('action-menu#icon')
 
   const wrap = page.locator('#icon')
-  const actionMenu = wrap.locator('.tiny-action-menu').nth(1)
+  const actionMenu = wrap.locator('.tiny-action-menu').nth(2)
   const actionMenuItem = actionMenu.locator('.tiny-action-menu__item')
 
   await expect(actionMenuItem.nth(0).locator('.tiny-svg')).toBeHidden()

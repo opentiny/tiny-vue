@@ -1,21 +1,24 @@
 {
   "name": "@opentiny/vue-anchor",
+  "type": "module",
   "version": "3.18.0",
   "description": "",
-  "main": "lib/index.js",
+  "license": "MIT",
   "sideEffects": false,
-  "devDependencies": {
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "^0.31.0"
-  },
+  "main": "lib/index.js",
+  "module": "index.ts",
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-directive": "workspace:~",
+    "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  }
 }

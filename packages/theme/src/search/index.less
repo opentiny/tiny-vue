@@ -97,6 +97,24 @@
     }
   }
 
+  // tiny新增
+  & &__input-btn.@{css-prefix}icon-close {
+    margin-right: var(--ti-search-input-btn-close-margin-right);
+
+    & a::after {
+      content: '';
+      display: var(--ti-search-input-btn-close-display);
+      position: absolute;
+      top: 50%;
+      right: 7px;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 16px;
+      background-color: #000000;
+      opacity: 8%;
+    }
+  }
+
   & &__input-btn {
     text-align: center;
 

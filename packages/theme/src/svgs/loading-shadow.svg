@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 14.8 14.8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <linearGradient x1="128.248383%" y1="50%" x2="26.8114638%" y2="0%" id="linearGradient-1">
-            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0.0956075175%"></stop>
-            <stop stop-color="#FFFFFF" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="128.248383%" y1="50%" x2="26.8114638%" y2="0%" id="linearGradient-2">
-            <stop stop-color="#191919" stop-opacity="0" offset="0.0956075175%"></stop>
-            <stop stop-color="#191919" offset="100%"></stop>
-        </linearGradient>
-    </defs>
-    <g id="状态（2）" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="编组备份-20" transform="translate(-0.600000, -0.600000)">
-            <polygon id="Fill-1" points="0 16 16 16 16 0 0 0"></polygon>
-            <path d="M8,0.6 C8.49705627,0.6 8.9,1.00294373 8.9,1.5 C8.9,1.99705627 8.49705627,2.4 8,2.4 C4.90705627,2.4 2.4,4.90705627 2.4,8 C2.4,11.0929437 4.90705627,13.6 8,13.6 C11.0929437,13.6 13.6,11.0929437 13.6,8 C13.6,7.50294373 14.0029437,7.1 14.5,7.1 C14.9970563,7.1 15.4,7.50294373 15.4,8 C15.4,12.0870563 12.0870563,15.4 8,15.4 C3.91294373,15.4 0.6,12.0870563 0.6,8 C0.6,3.91294373 3.91294373,0.6 8,0.6 Z" id="Stroke-2" fill="url(#linearGradient-2)" fill-rule="nonzero"></path>
-        </g>
-    </g>
+<svg  viewBox="0 0 15.8 15.8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs fill="none">
+		<linearGradient x1="20.263237" y1="7.900002" x2="4.236213" y2="-0.000003" id="paint_linear_68_48917_0" gradientUnits="userSpaceOnUse">
+			<stop offset="0.000956" stop-color="#FFFFFF" stop-opacity="0.000000"/>
+			<stop offset="0.975278" stop-color="#FFFFFF"/>
+		</linearGradient>
+	</defs>
+	<mask fill="none" id="mask68_48917" mask-type="alpha" maskUnits="userSpaceOnUse" x="0.000000" y="0.000000">
+		<path id="Stroke-2" d="M7.9 0C8.39 0 8.8 0.4 8.8 0.89C8.8 1.39 8.39 1.8 7.9 1.8C4.53 1.8 1.8 4.53 1.8 7.89C1.8 11.26 4.53 14 7.9 14C11.26 14 14 11.26 14 7.89C14 7.4 14.4 7 14.9 7C15.39 7 15.8 7.4 15.8 7.89C15.8 12.26 12.26 15.8 7.9 15.8C3.53 15.8 0 12.26 0 7.89C0 3.53 3.53 0 7.9 0Z" fill="url(#paint_linear_68_48917_0)" fill-opacity="1.000000" fill-rule="nonzero">
+			<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 7.9 7.9" to="360 7.9 7.9" dur="1s" repeatCount="indefinite"></animateTransform>
+		</path>
+	</mask>
+	<g mask="url(#mask68_48917)">
+		<path id="Fill-1" d="M-0.1 15.89L15.9 15.89L15.9 -0.11L-0.1 -0.11L-0.1 15.89Z" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
 </svg>

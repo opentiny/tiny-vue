@@ -683,6 +683,8 @@ export default defineComponent({
     renderRowAfter: Function,
     // 所有列是否允许拖动列宽调整大小
     resizable: { type: Boolean, default: () => GlobalConfig.resizable },
+    // 可调整列宽的配置
+    resizableConfig: Object,
     // 给行附加 className
     rowClassName: [String, Function],
     // 行分组配置映射表
@@ -1086,16 +1088,18 @@ export default defineComponent({
       stripeSaas,
       borderSaas,
       isShapeTable,
+      resizableConfig,
       rowSpan
     } = this as any
     let { borderVertical, cardConfig, listConfig, ganttConfig, customConfig } = this
     let { leftList, rightList } = columnStore
-    const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup }
+    const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup, resizableConfig }
 
     Object.assign(props, { cardConfig, listConfig, ganttConfig, customConfig })
     let args = { $slots: slots, _vm: this, leftList, optimizeOpts, overflowX, props, rightList }
 
     Object.assign(args, { showFooter, showHeader, tableColumn, tableData, vSize, visibleColumn })
+
     const renders = getRenderer(args)
     const { renderHeader, renderEmptyPart, renderFooter } = renders
     const { renderResizeBar, renderPluginWrapper, renderSelectToolbar } = renders

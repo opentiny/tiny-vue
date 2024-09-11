@@ -2,7 +2,7 @@ export const tinyTransferSmbTheme = {
   // transfer-SMB主题
   'ti-transfer-panel-item-text-color': 'var(--ti-common-color-info-normal)',
   'ti-transfer-font-size': 'var(--ti-common-font-size-1)',
-  'ti-transfer-panel-border-color': 'var(--ti-common-color-line-disabled)',
+  'ti-transfer-panel-border-color': 'var(--ti-common-color-line-normal)',
   'ti-transfer-panel-item-hover-bg-color': 'var(ti-common-color-bg-normal, #f5f5f5)',
   'ti-transfer-header-height': '38px',
   'ti-transfer-panel-item-height': 'var(--ti-common-size-8x)',
@@ -14,5 +14,12 @@ export const tinyTransferSmbTheme = {
   'ti-transfer-button-padding-top': '2px',
   'ti-transfer-button-padding-bottom': '2px',
   'ti-transfer-button-border-radius': 'var(--ti-common-size-base)',
-  'ti-transfer-svg-font-size': '10px'
+  'ti-transfer-svg-font-size': '10px',
+  'ti-transfer-header-padding-left': 'var(--ti-common-space-4x)',
+  'ti-transfer-header-padding-right': 'var(--ti-common-space-4x)',
+  'ti-transfer-panel-body-list-padding-top': '4px',
+  'ti-transfer-panel-body-list-padding-bottom': '4px',
+  'ti-transfer-header-bg-color': '#fff',
+  'ti-transfer-header-border-color': 'rgba(0,0,0,0.08)',
+  'ti-transfer-panel-item-padding-left': 'var(--ti-common-space-4x)'
 }

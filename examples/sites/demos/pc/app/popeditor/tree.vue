@@ -46,7 +46,20 @@ export default {
           {
             id: 5,
             label: 'node1.5',
-            children: [{ id: 51, pId: 5, label: 'node1.5.1' }]
+            children: [
+              { id: 51, pId: 5, label: 'node1.5.1' },
+              { id: 52, pId: 5, label: 'node1.5.2' },
+              { id: 53, pId: 5, label: 'node1.5.3' }
+            ]
+          },
+          {
+            id: 6,
+            label: 'node1.6',
+            children: [
+              { id: 61, pId: 6, label: 'node1.6.1' },
+              { id: 62, pId: 6, label: 'node1.6.2' },
+              { id: 63, pId: 6, label: 'node1.6.3' }
+            ]
           }
         ]
       }
@@ -55,7 +68,9 @@ export default {
       value: '',
       treeOp: {
         data: dataset,
-        checkOnClickNode: true
+        checkOnClickNode: true,
+        showLine: true,
+        highlightQuery: true
       }
     }
   }

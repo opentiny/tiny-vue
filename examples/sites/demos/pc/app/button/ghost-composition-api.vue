@@ -1,7 +1,7 @@
 <template>
   <div class="gray-bg">
-    <tiny-button ghost reset-time="0">幽灵按钮</tiny-button>
     <tiny-button ghost type="primary" reset-time="0">主要按钮</tiny-button>
+    <tiny-button ghost reset-time="0">次要按钮</tiny-button>
     <tiny-button ghost type="success" reset-time="0">成功按钮</tiny-button>
     <tiny-button ghost type="info" reset-time="0">信息按钮</tiny-button>
     <tiny-button ghost type="warning" reset-time="0">告警按钮</tiny-button>

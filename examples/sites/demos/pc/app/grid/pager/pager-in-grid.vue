@@ -30,7 +30,7 @@
       :page-sizes="[5, 10, 20, 50]"
       @current-change="currentChange"
       @size-change="sizeChange"
-      layout="total, prev, pager, next, jumper, sizes"
+      layout="total, sizes, prev, pager, next, jumper"
     ></tiny-pager>
   </div>
 </template>

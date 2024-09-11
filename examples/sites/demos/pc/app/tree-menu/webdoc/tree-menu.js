@@ -221,9 +221,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>show-filter</code> 属性设置是否显示搜索框，<code>show-title</code> 属性设置节点是否有原生 title 属性提示。</p>\n',
+          '<p>通过 <code>show-filter</code> 属性设置是否显示搜索框， <code> highlight-query </code> 属性设置是否在匹配的节点中高亮搜索文字 ,<code>show-title</code> 属性设置节点是否有原生 title 属性提示。</p>\n',
         'en-US':
-          '<p>Set whether to display the search box through the <code>show-filter</code> attribute, and whether the node has a native title attribute through the <code>show-title</code> attribute.</p>\n'
+          '<p>Set whether to display the search box through the <code>show-filter</code> attribute,and Whether the attribute setting highlights the search text in the matching node  the <code>show-filter</code> attribute , and whether the node has a native title attribute through the <code>show-title</code> attribute.</p>\n'
       },
       codeFiles: ['show-filter.vue']
     },

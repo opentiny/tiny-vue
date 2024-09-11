@@ -19,9 +19,10 @@
     "@opentiny/vue-alert": "workspace:~",
     "@opentiny/vue-button": "workspace:~",
     "@opentiny/vue-modal": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-file-upload": "workspace:~",
-    "@opentiny/vue-theme": "workspace:~"
+    "@opentiny/vue-theme": "workspace:~",
+    "@opentiny/vue-progress": "workspace:~",
+    "@opentiny/vue-popconfirm": "workspace:~"
   },
   "license": "MIT"
 }

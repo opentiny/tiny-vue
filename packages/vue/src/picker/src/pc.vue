@@ -67,7 +67,7 @@
       class="tiny-date-editor tiny-range-editor tiny-input tiny-input__inner"
       :class="[
         'tiny-date-editor--' + state.type,
-        state.pickerSize ? `tiny-range-editor--${state.pickerSize}` : '',
+        state.pickerSize ? `tiny-range-editor--${state.pickerSize} tiny-input-${state.pickerSize}` : '',
         state.pickerDisabled ? 'is-disabled' : '',
         state.pickerVisible ? 'is-active' : '',
         state.isDisplayOnly ? 'is-display-only' : ''
@@ -142,12 +142,15 @@
       :show-week-number="showWeekNumber"
       :time-editable="timeEditable"
       :format-weeks="formatWeeks"
+      :now-click="nowClick"
       ref="picker"
       :visible="state.pickerVisible"
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
-    ></component>
+    >
+      <slot name="now"></slot>
+    </component>
   </div>
 </template>
 

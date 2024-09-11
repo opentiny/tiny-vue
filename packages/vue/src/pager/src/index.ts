@@ -30,6 +30,9 @@ export const pagerProps = {
     type: Number,
     default: () => 10
   },
+  pageSizeText: {
+    type: String
+  },
   pageSizes: {
     type: Array as PropType<number[]>,
     default: () => [10, 20, 30, 40, 50, 100]

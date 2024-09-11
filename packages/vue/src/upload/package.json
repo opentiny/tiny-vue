@@ -17,7 +17,8 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-upload-dragger": "workspace:~",
-    "@opentiny/vue-modal": "workspace:~"
+    "@opentiny/vue-modal": "workspace:~",
+    "@opentiny/vue-tooltip": "workspace:~"
   },
   "license": "MIT"
 }

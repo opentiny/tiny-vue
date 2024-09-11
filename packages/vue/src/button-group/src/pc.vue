@@ -20,10 +20,6 @@
           <li v-for="(node, index) in data" :key="index" :class="{ active: state.value === node[valueField] }">
             <button
               :class="getItemClass(node)"
-              :style="{
-                height: size === 'medium' ? '42px' : size === 'small' ? '32px' : size === 'mini' ? '24px' : '',
-                'line-height': size === 'medium' ? '40px' : size === 'small' ? '30px' : size === 'mini' ? '22px' : ''
-              }"
               type="button"
               v-auto-tip="Boolean(node.tip) ? { always: true, content: node.tip } : false"
               :tabindex="getItemClass(node).disabled ? '-1' : '0'"
@@ -37,8 +33,9 @@
               :class="[
                 'tiny-group-item__sup',
                 {
-                  'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
-                  'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon
+                  'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text && !node.sup.tag,
+                  'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon && !node.sup.tag,
+                  'tiny-group-item__sup-tag': node.sup.tag
                 },
                 typeof node.sup.class === 'string' ? node.sup.class : '',
                 ...(Array.isArray(node.sup.class) ? node.sup.class : [])
@@ -65,8 +62,9 @@
               :class="[
                 'tiny-group-item__sup',
                 {
-                  'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text,
-                  'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon
+                  'tiny-group-item__sup-text': !node.sup.slot && !node.sup.icon && node.sup.text && node.sup.tag,
+                  'tiny-group-item__sup-icon': !node.sup.slot && node.sup.icon && node.sup.tag,
+                  'tiny-group-item__sup-tag': node.sup.tag
                 },
                 typeof node.sup.class === 'string' ? node.sup.class : '',
                 ...(Array.isArray(node.sup.class) ? node.sup.class : [])

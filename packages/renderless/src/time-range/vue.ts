@@ -54,6 +54,7 @@ const initState = ({ reactive, computed, vm, api }) => {
     arrowControl: false,
     maxDate: new Date(),
     minDate: new Date(),
+    showTimePickerRangeButton: false,
     showSeconds: computed(() => (state.format || '').includes('ss')),
     offset: computed(() => (state.showSeconds ? 11 : 8)),
     spinner: computed(() => (state.selectionRange[0] < state.offset ? vm.$refs.minSpinner : vm.$refs.maxSpinner)),
@@ -64,12 +65,13 @@ const initState = ({ reactive, computed, vm, api }) => {
   return state
 }
 
-export const renderless = (props, { computed, reactive, watch, nextTick }, { t, vm, emit: $emit }) => {
+export const renderless = (props, { computed, reactive, watch, nextTick }, { t, vm, emit: $emit, designConfig }) => {
   const api = {}
   const emit = props.emitter ? props.emitter.emit : $emit
   const MIN_TIME = parseDate('00:00:00', 'HH:mm:ss', t)
   const MAX_TIME = parseDate('23:59:59', 'HH:mm:ss', t)
   const state = initState({ reactive, computed, vm, api })
+  state.showTimePickerRangeButton = designConfig?.showTimePickerRangeButton
 
   Object.assign(api, {
     t,

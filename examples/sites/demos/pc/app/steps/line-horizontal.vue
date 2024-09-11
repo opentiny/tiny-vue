@@ -1,5 +1,10 @@
 <template>
-  <tiny-steps line :data="data" :active="advancedActive" @click="advancedClick"></tiny-steps>
+  <div>
+    <p>带描述：</p>
+    <tiny-steps line :data="data1" :active="active" @click="advancedClick"></tiny-steps>
+    <p class="mt24">不带描述：</p>
+    <tiny-steps line :data="data2" :active="active" @click="advancedClick"></tiny-steps>
+  </div>
 </template>
 
 <script>
@@ -11,8 +16,8 @@ export default {
   },
   data() {
     return {
-      advancedActive: 1,
-      data: [
+      active: 1,
+      data1: [
         {
           name: 'Basic Info',
           status: 'done',
@@ -22,13 +27,22 @@ export default {
         { name: '进行中 BOQ Info', status: 'disabled', description: 'disabled 禁用' },
         { name: 'BBQ Info', status: 'error', description: 'error 错误' },
         { name: 'BBQ Info', description: '默认无状态' }
+      ],
+      data2: [
+        {
+          name: 'Basic Info',
+          status: 'done'
+        },
+        { name: 'BOQ Info', status: 'doing' },
+        { name: '进行中 BOQ Info', status: 'disabled' },
+        { name: 'BBQ Info', status: 'error' },
+        { name: 'BBQ Info' }
       ]
     }
   },
   methods: {
     advancedClick(index, node) {
-      this.advancedActive = index
-
+      this.active = index
       Modal.message({ message: `节点index: ${index}; 节点信息: ${JSON.stringify(node)}.`, status: 'info' })
     }
   }

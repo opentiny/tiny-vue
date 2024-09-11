@@ -75,20 +75,18 @@
     .@{dialog-box-prefix-cls}__title {
       flex: 1;
     }
-
+    .@{dialog-box-prefix-cls}__btn-tools {
+      display: flex;
+      justify-content: space-between;
+    }
     .@{dialog-box-prefix-cls}__headerbtn {
+      position: relative;
       border: none;
       background: none;
       padding: 0;
       line-height: 1;
-      top: calc(
-        var(--ti-dialog-box-btn-position-top) - (var(--ti-dialog-box-btn-height) - var(--ti-dialog-box-close-icon-size)) /
-          2
-      );
-      right: calc(
-        var(--ti-dialog-box-btn-position-right) -
-          (var(--ti-dialog-box-btn-width) - var(--ti-dialog-box-close-icon-size)) / 2
-      );
+      top: calc(0px - var(--ti-dialog-box-btn-tools-position-top));
+      right: calc(0px - var(--ti-dialog-box-btn-tools-position-right));
       cursor: pointer;
 
       &:hover {
@@ -112,6 +110,15 @@
           fill: var(--ti-dialog-box-close-icon-color-hover);
         }
       }
+
+      .@{dialog-box-prefix-cls}__resize {
+        fill: var(--ti-dialog-box-resize-icon-color);
+        font-size: var(--ti-dialog-box-resize-icon-size);
+
+        &:hover {
+          fill: var(--ti-dialog-box-resize-icon-color-hover);
+        }
+      }
     }
   }
 
@@ -121,6 +128,8 @@
     margin-bottom: var(--ti-dialog-box-body-margin-bottom);
     color: var(--ti-dialog-box-body-text-color);
     font-size: var(--ti-dialog-box-body-font-size);
+    overflow: auto;
+    max-height: 65vh;
 
     .@{css-prefix}upload {
       overflow: hidden;
@@ -139,7 +148,7 @@
   & &__footer {
     padding: var(--ti-dialog-box-footer-padding-top) var(--ti-dialog-box-footer-padding-horizontal)
       var(--ti-dialog-box-footer-margin-bottom);
-    text-align: center;
+    text-align: var(--ti-dialog-box-footer-align);
     box-sizing: border-box;
 
     .@{css-prefix}button {

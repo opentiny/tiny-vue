@@ -96,22 +96,8 @@
       }
     }
 
-    .circular {
-      animation: loading-rotate 2s linear infinite;
-      display: inline-block;
-    }
-
-    .path {
-      animation: loading-dash 1.5s ease-in-out infinite;
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: 0;
-      stroke-width: 2;
-      stroke: var(--ti-loading-text-color);
-      stroke-linecap: round;
-    }
-
     svg {
-      fill: var(--ti-loading-text-color);
+      fill: var(--ti-loading-icon-color);
     }
   }
 
@@ -129,42 +115,8 @@
   }
 }
 
-@keyframes loading-rotate {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes loading-dash {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-  }
-
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -40px;
-  }
-
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -120px;
-  }
-}
-
 .@{css-prefix-iconfont}-loading {
   font-size: var(--ti-common-font-size-1);
   line-height: 1;
   vertical-align: text-top;
-  animation: rotating 2s linear infinite;
-}
-
-@keyframes rotating {
-  0% {
-    transform: rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateZ(360deg);
-  }
 }

@@ -1,0 +1,32 @@
+version: v1
+
+labels:
+  - label: "enhancement"
+    sync: true
+    matcher:
+      title: "^feat.*: ?.*"
+      commit: "^feat.*: ?.*"
+  - label: "bug"
+    sync: true
+    matcher:
+      title: "^fix.*: ?.*"
+      commit: "^fix.*: ?.*"
+  - label: "documentation"
+    sync: true
+    matcher:
+      title: "^docs?: ?.*"
+      commit: "^docs?: ?.*"
+  - label: "refactoring"
+    sync: true
+    matcher:
+      title: "^refactor.*: ?.*"
+      commit: "^refactor.*: ?.*"
+  - label: "chore"
+    sync: true
+    matcher:
+      title: "^chore.*: ?.*"
+      commit: "^chore.*: ?.*"
+  - label: "ospp-2024"
+    sync: true
+    matcher:
+      baseBranch: "^ospp-2024/.*"
