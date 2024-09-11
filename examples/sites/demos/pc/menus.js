@@ -86,7 +86,15 @@ export const cmpMenus = [
       { 'nameCn': '图标', 'name': 'Icon', 'key': 'icon' },
       { 'nameCn': '栅格布局', 'name': 'Layout', 'key': 'layout' },
       { 'nameCn': '链接', 'name': 'Link', 'key': 'link' },
-      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' }
+      { 'nameCn': '分割线', 'name': 'Divider', 'key': 'divider' },
+      {
+        'nameCn': '虚拟化容器',
+        'name': 'VirtualScrollBox',
+        'key': 'virtual-scroll-box',
+        'meta': {
+          'stable': '3.19.0'
+        }
+      }
     ]
   },
   {
@@ -244,6 +252,14 @@ export const cmpMenus = [
       //  测试时打开该行---------------
       // { 'nameCn': '时间线AUI', 'name': 'TimelineNew', 'key': 'time-line-new' },
       { 'nameCn': '树形控件', 'name': 'Tree', 'key': 'tree' },
+      {
+        'nameCn': '虚拟化树形控件',
+        'name': 'VirtualTree',
+        'key': 'virtual-tree',
+        'meta': {
+          'stable': '3.19.0'
+        }
+      },
       { 'nameCn': '用户头像', 'name': 'UserHead', 'key': 'user-head' },
       { 'nameCn': '流程图', 'name': 'Wizard', 'key': 'wizard' }
     ]
@@ -317,7 +333,15 @@ export const cmpMenus = [
       { 'nameCn': '面板分割', 'name': 'Split', 'key': 'split' },
       { 'nameCn': '输入框', 'name': 'TextPopup', 'key': 'text-popup' },
       { 'nameCn': '联系人', 'name': 'UserContact', 'key': 'user-contact' },
-      { 'nameCn': '水印', 'name': 'Watermark', 'key': 'watermark' }
+      { 'nameCn': '水印', 'name': 'Watermark', 'key': 'watermark' },
+      {
+        'nameCn': '粘性布局',
+        'name': 'Sticky',
+        'key': 'sticky',
+        'meta': {
+          'stable': '3.19.0'
+        }
+      }
     ]
   },
   {

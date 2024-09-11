@@ -63,7 +63,6 @@ export interface IModalApi {
   mousedownEvent: (event: MouseEvent) => void
   dragEvent: (event: MouseEvent) => void
   resetDragStyle: () => void
-  resetModalViewPosition: () => void
 }
 
 export type IModalRenderlessParamUtils = ISharedRenderlessParamUtils<IModalConstants>

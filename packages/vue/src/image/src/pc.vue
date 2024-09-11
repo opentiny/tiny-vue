@@ -15,7 +15,10 @@
       <div class="tiny-image__placeholder"></div>
     </slot>
     <slot v-else-if="state.error" name="error">
-      <div class="tiny-image__error"></div>
+      <div class="tiny-image__error">
+        <tiny-icon-image-error></tiny-icon-image-error>
+        <div class="tiny-image__error-text">{{ t('ui.image.loadFail') }}</div>
+      </div>
     </slot>
     <img
       v-else
@@ -52,12 +55,14 @@
 import { renderless, api } from '@opentiny/vue-renderless/image/vue'
 import { props, setup, defineComponent, Teleport } from '@opentiny/vue-common'
 import ImageViewer from '@opentiny/vue-image-viewer'
+import { iconImageError } from '@opentiny/vue-icon'
 import type { IImageApi } from '@opentiny/vue-renderless/types/image.type'
 
 export default defineComponent({
   components: {
     ImageViewer,
-    Teleport
+    Teleport,
+    TinyIconImageError: iconImageError()
   },
   emits: ['load', 'error', 'delete', 'change-index'],
   props: [...props, 'src', 'fit', 'lazy', 'scrollContainer', 'previewSrcList', 'zIndex', 'keepStyle', 'showIndex'],

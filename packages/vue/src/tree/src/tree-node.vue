@@ -182,7 +182,7 @@
               :style="{ width: state.computedIndent, left: `-${state.computedIndent}` }"
             ></span>
             <tree-node
-              v-for="child in node.childNodes"
+              v-for="child in state.renderedChildNodes"
               :action="action"
               :show-radio="showRadio"
               :theme="theme"

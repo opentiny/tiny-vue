@@ -138,7 +138,6 @@ export const beforeUnmouted =
     isMobileFirstMode && off(window, 'resize', api.resetDragStyle)
     off(document, 'keydown', api.handleGlobalKeydownEvent)
     off(window, 'hashchange', api.handleHashChange)
-    off(window, 'resize', api.resetModalViewPosition)
     api.removeMsgQueue()
     api.hideScrollbar()
 
@@ -293,13 +292,13 @@ export const open =
             } else {
               modalBoxElem.style.left = `${clientVisibleWidth / 2 - modalBoxElem.offsetWidth / 2}px`
             }
+
             if (
               modalBoxElem.offsetHeight + modalBoxElem.offsetTop + (props.marginSize as number) >
               clientVisibleHeight
             ) {
               modalBoxElem.style.top = `${props.marginSize}px`
             }
-            on(window, 'resize', api.resetModalViewPosition)
           }
 
           if (props.fullscreen) {
@@ -372,7 +371,7 @@ export const close =
       setTimeout(() => {
         state.visible = false
 
-        let params = { type: 'close', $modal: parent }
+        let params = { type, $modal: parent }
         if (events.close) {
           events.close.call(parent, params)
         } else {
@@ -915,12 +914,4 @@ export const showScrollbar = (lockScrollClass) => () => {
 
 export const hideScrollbar = (lockScrollClass) => () => {
   removeClass(document.body, lockScrollClass)
-}
-
-export const resetModalViewPosition = (api: IModalApi) => () => {
-  const modalBoxElement = api.getBox()
-  const viewportWindow = getViewportWindow()
-  const clientVisibleWidth =
-    viewportWindow.document.documentElement.clientWidth || viewportWindow.document.body.clientWidth
-  modalBoxElement.style.left = `${clientVisibleWidth / 2 - modalBoxElement.offsetWidth / 2}px`
 }

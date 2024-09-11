@@ -1,8 +1,4 @@
 <template>
-  <div v-if="templateModeState.isSaas" class="ti-pt20 ti-pl48 ti-mb-36">
-    <span class="cmp-mode-title">文档类型： </span>
-    <tiny-button-group :data="optionsList" v-model="templateModeState.mode"></tiny-button-group>
-  </div>
   <!-- 一个组件的文档:  描述md + demos + apis -->
   <header class="flex-horizontal docs-header">
     <div class="docs-title-wrap">
@@ -13,6 +9,10 @@
         v-bind="currJson.versionTipOption"
       >
       </version-tip>
+    </div>
+    <div v-if="templateModeState.isSaas" class="ti-pt20 ti-pl48 ti-mb-36">
+      <span class="cmp-mode-title">文档类型： </span>
+      <tiny-button-group :data="optionsList" v-model="templateModeState.mode"></tiny-button-group>
     </div>
     <span class="docs-header-spacer"></span>
   </header>
@@ -451,7 +451,7 @@ export default defineComponent({
             })
           }
         }
-      }, 0)
+      }, 600)
     }
 
     // 在singleDemo情况时，才需要滚动示例区域到顶
@@ -557,12 +557,7 @@ export default defineComponent({
           }
 
           // F5刷新加载时，跳到当前示例
-          // 应当在所有demo渲染完毕后在滚动，否则滚动完位置后，demo渲染会使滚动位置错位
-          setTimeout(() => {
-            nextTick(() => {
-              scrollByHash(hash)
-            })
-          }, 0)
+          scrollByHash(hash)
         })
         .finally(() => {
           // 获取组件贡献者
@@ -650,12 +645,11 @@ export default defineComponent({
           router.push(data.link)
         } else if (apiModeState.demoMode === 'default' && data.link.startsWith('#')) {
           // 多示例模式，自动会切到相应的位置。只需要记录singleDemo就好了
-          e.preventDefault()
           const hash = data.link.slice(1)
           state.currDemoId = hash
           state.singleDemo = state.currJson.demos.find((d) => d.demoId === hash)
-          router.push(data.link)
-          scrollByHash(hash)
+
+          e.preventDefault()
         }
       }
     }
@@ -723,9 +717,9 @@ export default defineComponent({
   position: sticky;
   top: 0;
   z-index: var(--docs-header-zindex);
-  padding: var(--ti-common-space-4x) var(--ti-common-space-10x);
+  padding: 16px 40px;
   background-color: #fff;
-  box-shadow: var(--ti-common-space-3x) 0 var(--ti-common-space-5x) var(--ti-common-space-6) rgba(0, 0, 0, 0.06);
+  box-shadow: 12px 0 20px 6px rgba(0, 0, 0, 0.06);
 
   .docs-title-wrap {
     flex: 1;
@@ -736,13 +730,13 @@ export default defineComponent({
 
   .markdown-top-body {
     z-index: var(--docs-markdown-top-body-zindex);
-    font-size: var(--ti-common-font-size-1);
+    font-size: 14px;
     transition: all ease-in-out 0.3s;
 
     :deep(h1) {
       margin: 0;
       padding: 0;
-      font-size: var(--ti-common-font-size-5);
+      font-size: 24px;
       line-height: 40px;
     }
   }
@@ -758,7 +752,7 @@ export default defineComponent({
 }
 
 .docs-content {
-  margin: var(--ti-common-space-4x) 0 120px;
+  margin: 16px 0 120px;
   transition: all ease-in-out 0.3s;
 
   .docs-tabs-wrap {
@@ -766,12 +760,12 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     min-width: 680px;
-    padding: 0 var(--ti-common-space-10x);
+    padding: 0 40px;
   }
 
   .docs-content-tabs {
     --ti-tabs-heigh: 48px;
-    --ti-tabs-item-font-size: var(--ti-common-font-size-3);
+    --ti-tabs-item-font-size: 18px;
     --ti-tabs-header-font-active-text-color: #2f5bea;
     --ti-tabs-item-active-border-color: #2f5bea;
 
@@ -793,7 +787,7 @@ export default defineComponent({
         left: 0;
         display: block;
         width: 100%;
-        height: var(--ti-common-size-4x);
+        height: 16px;
         background: linear-gradient(to bottom, #fff, transparent);
         transform: translateY(100%);
       }
@@ -812,8 +806,8 @@ export default defineComponent({
 }
 
 .api-table {
-  --ti-grid-font-size: var(--ti-common-font-size-1);
-  --ti-grid-default-header-column-height: var(--ti-common-size-10x);
+  --ti-grid-font-size: 14px;
+  --ti-grid-default-header-column-height: 40px;
 
   width: 100%;
   table-layout: fixed;
@@ -837,11 +831,11 @@ export default defineComponent({
   }
 
   :deep(.api-table-expand-col) {
-    padding-left: var(--ti-common-space-4x);
+    padding-left: 16px;
   }
 
   :deep(.tiny-grid-body__expanded-cell) {
-    background-color: var(--ti-common-color-bg-gray);
+    background-color: #fafafa;
   }
 }
 
@@ -855,7 +849,7 @@ export default defineComponent({
   flex: none;
   width: 200px;
   height: calc(100vh - 280px);
-  padding-top: var(--ti-common-space-4x);
+  padding-top: 16px;
 
   .tiny-anchor__dot {
     max-height: calc(100vh - 300px);
@@ -898,19 +892,19 @@ export default defineComponent({
 .all-demos-container,
 .all-api-container {
   flex: 1;
-  padding-top: var(--ti-common-space-8x);
+  padding-top: 32px;
   scroll-behavior: smooth;
 }
 
 .all-api-container {
-  padding-top: var(--ti-common-space-3x);
+  padding-top: 12px;
 }
 
 .flex-horizontal {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  column-gap: var(--ti-common-space-4x);
+  column-gap: 16px;
 }
 
 .cmp-container {
@@ -945,8 +939,8 @@ export default defineComponent({
   margin-top: 48px;
 
   .cmp-contributor-title {
-    margin-bottom: var(--ti-common-size-8x);
-    font-size: var(--ti-common-font-size-4);
+    margin-bottom: 32px;
+    font-size: 20px;
     font-weight: Semibold;
     color: #191919;
   }
@@ -954,8 +948,8 @@ export default defineComponent({
   .cmp-contributor-item {
     width: 42px;
     height: 42px;
-    margin-right: var(--ti-common-space-3x);
-    margin-bottom: var(--ti-common-space-5x);
+    margin-right: 12px;
+    margin-bottom: 20px;
     display: inline-block;
     border-radius: 50%;
     overflow: hidden;
@@ -972,7 +966,7 @@ export default defineComponent({
   }
 
   .cmp-contributor-tip {
-    font-size: var(--ti-common-font-size-1);
+    font-size: 14px;
     color: #191919;
   }
 }

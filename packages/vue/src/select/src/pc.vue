@@ -47,6 +47,13 @@
       ref="tagsGroup"
       :style="state.selectFiexd"
       :class="['tiny-select__tags-group', { 'is-expand': state.isExpand }]"
+      :title="
+        multiple && !state.selectDisabled && state.selected.length
+          ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
+          : !multiple && state.selectDisabled
+            ? state.selectedLabel
+            : ''
+      "
     >
       <slot name="reference">
         <tiny-filter-box
