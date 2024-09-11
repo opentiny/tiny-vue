@@ -18,26 +18,26 @@
   // 选择下拉框边框的样式
   --ti-select-dropdown-border-style: var(--ti-common-border-style-solid, solid);
   // 选择下拉框边框圆角
-  --ti-select-dropdown-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --ti-select-dropdown-border-radius: var(--ti-common-border-radius-3);
   // 选择下拉框背景色
   --ti-select-dropdown-bg-color: var(--ti-common-color-light, #fff);
   // 选择下拉框的阴影
-  --ti-select-dropdown-box-shadow: var(--ti-common-shadow-2-down, 0 2px 8px 0 rgba(0, 0, 0, 0.2));
+  --ti-select-dropdown-box-shadow: var(--ti-common-shadow-2-down);
   // 下拉选项水平内边距
-  --ti-select-dropdown-item-padding-horizontal: var(--ti-common-space-2x, 8px);
+  --ti-select-dropdown-item-padding-horizontal: var(--ti-common-space-4x);
   // 选择下拉框的顶部外边距
-  --ti-select-dropdown-margin-top: var(--ti-common-dropdown-gap, 2px);
-  --ti-select-dropdown-margin-bottom: var(--ti-common-dropdown-gap, 2px);
+  --ti-select-dropdown-margin-top: var(--ti-common-space-base);
+  --ti-select-dropdown-margin-bottom: 0;
   // 下拉面板的最大高度
-  --ti-select-dropdown-max-height: calc(30px * 8 + 8px);
+  --ti-select-dropdown-max-height: calc(32px * 7 + 8px);
   // 远程搜索数据为空时下拉框文本色（hide）
-  --ti-select-dropdown-empty-text-color: var(--ti-common-color-placeholder, #adb0b8);
+  --ti-select-dropdown-empty-text-color: var(--ti-common-color-text-secondary);
   // 下拉面板空数据提示文本字号
-  --ti-select-dropdown-empty-font-size: var(--ti-common-font-size-1, 14px);
+  --ti-select-dropdown-empty-font-size: var(--ti-common-font-size-0);
   // 下拉面板空数据提示垂直内边距
-  --ti-select-dropdown-empty-padding-horizontal: var(--ti-common-space-10, 10px);
+  --ti-select-dropdown-empty-padding-horizontal: var(--ti-common-size-0);
   // 下拉面板空数据提示水平内边距
-  --ti-select-dropdown-empty-padding-vertical: var(--ti-common-space-6, 6px);
+  --ti-select-dropdown-empty-padding-vertical: 46px;
   // 下拉面板空数据图片宽度
   --ti-select-dropdown-empty-image-width: var(--ti-common-size-16x, 64px);
   // 下拉面板空数据图片高度
@@ -47,13 +47,13 @@
   // 下拉面板空数据提示文本行高
   --ti-select-dropdown-empty-line-height: var(--ti-common-line-height-number, 1.5);
   // 选择下拉框的顶部内边距
-  --ti-select-dropdown-padding-top: var(--ti-common-size-base, 4px);
+  --ti-select-dropdown-padding-top: var(--ti-common-space-2x);
   // 选择下拉框的水平内边距
   --ti-select-dropdown-padding-horizontal: var(--ti-common-size-0, 0px);
   // 选择下拉框的底部内边距
-  --ti-select-dropdown-padding-bottom: var(--ti-common-space-base, 4px);
+  --ti-select-dropdown-padding-bottom: var(--ti-common-space-2x);
   // 下拉面板搜索框背景色（hide）
-  --ti-select-dropdown-search-bg-color: var(--ti-common-color-bg-white-emphasize, #f2f5fc);
+  --ti-select-dropdown-search-bg-color: var(--ti-common-color-bg-white-normal);
   // 选择下拉框line背景色
   --ti-select-dropdown-line-bg-color: var(--ti-common-color-line-dividing, #dfe1e6);
   // 选择下拉框line垂直外边距
@@ -67,17 +67,17 @@
   // 选择下拉框悬浮图标色
   --ti-select-dropdown-svg-hover-bg-color: var(--ti-common-color-primary-normal, #5e7ce0);
   // 下拉面板搜索框顶部外边距
-  --ti-select-dropdown-search-margin-top: calc(-1 * var(--ti-common-size-base));
+  --ti-select-dropdown-search-margin-top: 0;
   // 下拉面板搜索框底部外边距
-  --ti-select-dropdown-search-margin-bottom: var(--ti-common-space-base, 4px);
+  --ti-select-dropdown-search-margin-bottom: var(--ti-common-space-2x);
   // 下拉面板搜索框左侧外边距
-  --ti-select-dropdown-search-margin-left: var(--ti-common-size-0, 0px);
+  --ti-select-dropdown-search-margin-left: var(--ti-common-space-4x);
   // 下拉面板搜索框右侧外边距
-  --ti-select-dropdown-search-margin-right: var(--ti-common-size-0, 0px);
+  --ti-select-dropdown-search-margin-right: var(--ti-common-space-4x);
   // 下拉面板搜索框的宽度
-  --ti-select-dropdown-search-width: 100%;
+  --ti-select-dropdown-search-width: calc(100% - var(--ti-common-space-4x)*2);
   // 下拉面板搜索框的边框宽度
-  --ti-select-dropdown-search-border-width: var(--ti-common-size-0, 0px);
+  --ti-select-dropdown-search-border-width: var(--ti-common-border-weight-normal);
   // 下拉面板搜索框的边框圆角
   --ti-select-dropdown-search-border-radius: var(--ti-common-border-radius-0, 0px);
   // 下拉面板搜索框的左边框色
@@ -89,25 +89,25 @@
   // 下拉面板搜索框的底部框色
   --ti-select-dropdown-search-border-color-bottom: var(--ti-common-color-line-dividing, #dfe1e6);
   // 下拉面板搜索框尾部图标显示状态
-  --ti-select-dropdown-search-suffix-display: 'block';
+  --ti-select-dropdown-search-suffix-display: none;
   // 下拉面板搜索框头部图标显示状态
-  --ti-select-dropdown-search-prefix-display: none;
+  --ti-select-dropdown-search-prefix-display: block;
   // 下拉面板搜索框高度
   --ti-select-dropdown-search-height: 28px;
   // 下拉面板搜索框右侧内边距
-  --ti-select-dropdown-search-input-padding-right: 54px;
+  --ti-select-dropdown-search-input-padding-right: var(--ti-common-space-3x);
   // 下拉面板搜索框左侧外边距
-  --ti-select-dropdown-search-input-padding-left: var(--ti-common-space-2x, 8px);
+  --ti-select-dropdown-search-input-padding-left: var(--ti-common-space-5x);
   // 面板可搜索的时候空数据容器顶部内边距
-  --ti-select-dropdown-search-empty-padding-top: var(--ti-common-space-6, 6px);
+  --ti-select-dropdown-search-empty-padding-top: var(--ti-common-space-3x);
   // 面板可搜索的时候空数据容器底部内边距
-  --ti-select-dropdown-search-empty-padding-bottom: var(--ti-common-space-6, 6px);
+  --ti-select-dropdown-search-empty-padding-bottom: var(--ti-common-space-2x);
   // 滚动容器的底部外边距
-  --ti-select-dropdown-wrap-padding-bottom: var(--ti-common-space-0, 0px);
+  --ti-select-dropdown-wrap-padding-bottom: var(--ti-common-space-0);
   // 下拉面板图标尺寸
-  --ti-select-dropdown-icon-size: var(--ti-common-font-size-1, 14px);
+  --ti-select-dropdown-icon-size: var(--ti-common-font-size-2);
   // 下拉面板图标颜色
-  --ti-select-dropdown-icon-color: var(--ti-common-color-icon-normal, #575d6c);
+  --ti-select-dropdown-icon-color: var(--ti-common-color-icon-normal);
   // 下拉面板新增按钮的文本色
   --ti-select-dropdown-top-create-text-color: var(--ti-common-color-text-link);
   // 下拉面板新增按钮的文本悬浮色

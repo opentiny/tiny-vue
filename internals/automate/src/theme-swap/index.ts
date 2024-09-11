@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import fg from 'fast-glob'
 import path from 'node:path'
 import fs from 'node:fs'
 
