@@ -1,28 +1,6 @@
-import {
-  handleChange,
-  tableMouseMove,
-  tableChoose,
-  toggleTablePanel,
-  closeTablePanel,
-  shouldShow,
-  eventImg,
-  eventClick,
-  Active
-} from './index'
 import { ref, shallowRef } from 'vue'
 
-export const api = [
-  'state',
-  'handleChange',
-  'tableMouseMove',
-  'tableChoose',
-  'toggleTablePanel',
-  'closeTablePanel',
-  'shouldShow',
-  'eventImg',
-  'eventClick',
-  'Active'
-]
+export const api = ['state']
 export const renderless = (
   props,
   { computed, onMounted, onBeforeUnmount, reactive },
@@ -113,18 +91,7 @@ export const renderless = (
   })
 
   const api = {
-    state,
-    handleChange: handleChange(state),
-    // table处理函数
-    tableMouseMove: tableMouseMove(state, vm),
-    toggleTablePanel: toggleTablePanel(state),
-    closeTablePanel: closeTablePanel(state),
-    tableChoose: tableChoose(state, vm),
-    // bubble 菜单
-    shouldShow,
-    eventImg,
-    eventClick,
-    Active
+    state
   }
 
   /**
