@@ -127,11 +127,22 @@
   .@{input-prefix-cls} {
     .@{input-prefix-cls}__inner {
       border: none;
-      border-bottom: 1px solid var(--ti-tree-menu-border-color);
     }
   }
 
   .@{tree-prefix-cls} {
+    padding-top: var(--ti-tree-menu-padding-top);
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      top: 0;
+      bottom: 0;
+      border-top: 1px solid  var(--ti-tree-menu-border-top-color);
+    }
     .@{tree-node-prefix-cls} {
       &.is-disabled {
         & > .@{tree-node-prefix-cls}__content a {
