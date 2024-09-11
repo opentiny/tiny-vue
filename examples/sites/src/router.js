@@ -17,13 +17,6 @@ let routes = [
     name: 'overview',
     children: [{ name: 'Overview', path: '', component: Overview, meta: { title: '组件总览 | TinyVue' } }]
   },
-  // 文档
-  {
-    path: `${context}:all?/:lang/:theme/docs/:docId`,
-    component: Layout,
-    name: 'docs',
-    children: [{ name: 'Docs', path: '', component: Docs }]
-  },
   // 组件
   {
     path: `${context}:all?/:lang/:theme/components/:cmpId`,
