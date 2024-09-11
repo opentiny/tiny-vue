@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import fg from 'fast-glob'
 import path from 'node:path'
 import fs from 'node:fs'
 
@@ -20,7 +19,7 @@ const kebab = (name: string) =>
     .map((n) => n[0].toUpperCase() + n.slice(1))
     .join('')
 
-// vars.less的所有文件夹， 类似  [ 'action-menu/vars.less',  'alert/vars.less',.........]
+// 1、vars.less的所有文件夹， 类似  [ 'action-menu/vars.less',  'alert/vars.less',.........]
 fg.sync(['**/vars.less'], { cwd: srcFold, ignore: ignoreFolds })
   .map((file) => file.split('/')[0]) // 取出组件名
   .filter((name) => fs.existsSync($smb(name))) // 过滤掉不存在在 smb-theme.js的
@@ -41,6 +40,14 @@ fg.sync(['**/vars.less'], { cwd: srcFold, ignore: ignoreFolds })
       exceptions.push({ name, reason: '替换组件变量，写入2个文件时出错！' + error.toString() })
     }
   })
+
+// 2、 替换 base/basic-var.less 与 theme/smb-theme/index.js 中的变量
+const varsFile = fs.readFileSync(path.join(srcFold, 'base/basic-var.less'), 'utf8')
+const smbThemeJsObj = await import('file://' + path.join(srcFold, 'theme/smb-theme/index.js'))
+const smbJs = Object.values(smbThemeJsObj)[0]
+
+processComponent('base', varsFile, smbJs, true)
+
 console.log('/////执行完毕/////')
 console.table(exceptions)
 
@@ -53,7 +60,7 @@ interface QueryInfo {
   varsLost: boolean
 }
 // 处理一个组件的交换
-function processComponent(name: string, varsFile: string, smbJs: any) {
+function processComponent(name: string, varsFile: string, smbJs: any, isBase = false) {
   const smbKeys = Object.keys(smbJs)
   // 记录所有替换信息
   const result: QueryInfo[] = []
@@ -65,7 +72,7 @@ function processComponent(name: string, varsFile: string, smbJs: any) {
 
     if (start === -1) {
       info.varsLost = true
-      exceptions.push({ name, reason: 'smb-theme中定义的变量错误， vars.less中找不到' })
+      exceptions.push({ name, reason: 'smb-theme中定义的变量错误， vars.less中找不到:' + key })
       return
     }
 
@@ -83,7 +90,8 @@ function processComponent(name: string, varsFile: string, smbJs: any) {
     const end = varsFile.substring(info.varsEnd)
     varsFile = `${start} ${info.smbValue}${end}`
   })
-  fs.writeFileSync($vars(name), varsFile)
+
+  fs.writeFileSync(isBase ? path.join(srcFold, 'base/basic-var.less') : $vars(name), varsFile)
 
   // 3、 根据result, 生成old-theme.js
   const oldObj = result.reduce((pre, curr) => {
@@ -91,8 +99,18 @@ function processComponent(name: string, varsFile: string, smbJs: any) {
     return pre
   }, {})
 
-  fs.writeFileSync($old(name), `export const tiny${kebab(name)}OldTheme = ${JSON.stringify(oldObj, null, 2)}`)
+  if (!isBase) {
+    fs.writeFileSync($old(name), `export const tiny${kebab(name)}OldTheme = ${JSON.stringify(oldObj, null, 2)}`)
+  } else {
+    // old-theme.js 似乎不太能用
+    fs.writeFileSync(
+      path.join(srcFold, 'base/old-theme.js'),
+      `export const tiny${kebab(name)}OldTheme = ${JSON.stringify(oldObj, null, 2)}`
+    )
+  }
 
   // 4、 删除smb-theme.js
-  fs.rmSync($smb(name))
+  if (!isBase) {
+    fs.rmSync($smb(name))
+  }
 }
