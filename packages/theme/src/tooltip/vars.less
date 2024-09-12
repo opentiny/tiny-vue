@@ -12,11 +12,11 @@
 
 .component-css-vars-tooltip() {
   // 弹框箭头的尺寸,(hide)
-  --ti-tooltip-popper-border-width: 6px;
+  --ti-tooltip-popper-border-width: 8px;
   // 弹框箭头的负尺寸,用于偏移(hide)
   --ti-tooltip-popper-neg-border-width: calc(var(--ti-tooltip-popper-border-width) * -1);
   // 弹框字体行高(hide)
-  --ti-tooltip-popper-font-line-height: var(--ti-common-line-height-number, 1.5);
+  --ti-tooltip-popper-font-line-height: var(--ti-common-line-height-number);
   // 弹框字体(hide)
   --ti-tooltip-popper-font-family: var(
     --ti-common-font-family,
@@ -29,24 +29,24 @@
     'Microsoft JhengHei'
   );
   // 悬浮弹出框圆角
-  --ti-tooltip-popper-border-radius: var(--ti-common-border-radius-1, 4px);
+  --ti-tooltip-popper-border-radius: 8px;
   // 悬浮弹出框字号
   --ti-tooltip-popper-font-size: var(--ti-common-font-size-base, 12px);
   // 弹框三角默认边框色
-  --ti-tooltip-popper-border-color: var(--ti-common-color-bg-dark-deep, #464c59);
+  --ti-tooltip-popper-border-color: #191919;
   // 正常背景色 (hide)
   --ti-tooltip-popper-normal-bg-color: var(--ti-common-color-bg-dark-deep, #464c59);
   // 文字提示正常文本色(hide)
-  --ti-tooltip-popper-normal-text-color: var(--ti-tooltip-popper-dark-text-color);
+  --ti-tooltip-popper-normal-text-color: #191919;
   // 弹框正常边框色 (hide)
   --ti-tooltip-popper-normal-border-color: var(--ti-common-color-bg-dark-deep, #464c59);
 
   // info类型弹框背景色
-  --ti-tooltip-popper-info-bg-color: var(--ti-common-color-prompt-border, #beccfa);
+  --ti-tooltip-popper-info-bg-color: #1476FF;
   // info类型弹框文本色
   --ti-tooltip-popper-info-text-color: var(--ti-common-color-light, #fff);
   // info类型弹框三角边框色
-  --ti-tooltip-popper-info-border-color: var(--ti-common-color-prompt-border, #beccfa);
+  --ti-tooltip-popper-info-border-color: #1476FF;
 
   // error类型弹框背景色
   --ti-tooltip-popper-error-bg-color: var(--ti-common-color-danger-normal, #c7000b);
@@ -70,23 +70,23 @@
   --ti-tooltip-popper-success-border-color: var(--ti-common-color-success-normal, #50d4ab);
 
   // dark主题弹框背景色
-  --ti-tooltip-popper-dark-bg-color: var(--ti-common-color-bg-dark-deep, #464c59);
+  --ti-tooltip-popper-dark-bg-color: #191919;
   // dark主题弹框文本色
-  --ti-tooltip-popper-dark-text-color: var(--ti-common-color-light, #fff);
+  --ti-tooltip-popper-dark-text-color: #fff;
   // light主题弹框背景色
   --ti-tooltip-popper-light-bg-color: var(--ti-common-color-light, #fff);
 
   // light主题|禁用弹框文本色
-  --ti-tooltip-popper-light-text-color: var(--ti-common-color-bg-dark-deep, #464c59);
+  --ti-tooltip-popper-light-text-color: var(--ti-common-color-text-primary);
   // light主题|禁用时弹框边框色
-  --ti-tooltip-popper-light-border-color: var(--ti-common-color-bg-dark-deep, #464c59);
+  --ti-tooltip-popper-light-border-color: #fff;
 
   // 弹框阴影
-  --ti-tooltip-box-shadow: var(--ti-common-shadow-3-down, 0 4px 16px 0 rgba(0, 0, 0, 0.2));
+  --ti-tooltip-box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.08);
   // 弹框垂直内边距
-  --ti-tooltip-padding-vertical: var(--ti-common-space-3x, 12px);
+  --ti-tooltip-padding-vertical: 12px;
   // 弹框水平内边距
-  --ti-tooltip-padding-horizontal: var(--ti-common-space-4x, 16px);
+  --ti-tooltip-padding-horizontal: 16px;
   // 文字提示错误图标色
   --ti-tooltip-validate-icon-color: var(--ti-common-color-error, #f66f6a);
   // 文本内容容器最大高度

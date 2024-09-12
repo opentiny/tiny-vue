@@ -15,7 +15,7 @@
     <div class="tag">
       <tiny-button-group :data="groupDataTag" v-model="checkedVal">
         <template #btn="{ sup }">
-          <tiny-tag type="danger" class="tiny-only-icon" size="small">
+          <tiny-tag type="warning" class="tiny-only-icon" size="small">
             <component :is="sup.icon"></component>
             {{ sup.text }}
           </tiny-tag>
@@ -121,7 +121,6 @@ const groupDataTag = ref([
 </style>
 
 <style>
-
 .demo-button p {
   margin: 16px 0 8px 0;
 }

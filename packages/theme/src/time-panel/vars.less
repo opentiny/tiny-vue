@@ -12,23 +12,23 @@
 
 .component-css-vars-time-panel() {
   --ti-time-panel-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  --ti-time-panel-content-split-line-display: block;
-  --ti-time-panel-header-display: none;
-  --ti-time-panel-btn-cancel-display: inline-block;
+  --ti-time-panel-content-split-line-display: none;
+  --ti-time-panel-header-display: block;
+  --ti-time-panel-btn-cancel-display: none;
   --ti-time-panel-btn-bg-color: transparent;
   --ti-time-panel-btn-padding-vertical: 0;
   --ti-time-panel-btn-padding-horizontal: 5px;
   --ti-time-panel-btn-border-radius: var(--ti-common-border-radius-normal, 2px);
   --ti-time-panel-btn-height: 28px;
-  --ti-time-panel-padding-right: 0;
+  --ti-time-panel-padding-right: calc(var(--ti-common-size-4x) - 2px);
   --ti-time-panel-btn-min-width: inherit;
   --ti-time-panel-btn-font-weight: 800;
   --ti-time-panel-btn-confirm-hover-bg-color: transparent;
-  --ti-time-panel-footer-height: 36px;
-  --ti-time-panel-footer-padding-top: 4px;
-  --ti-time-panel-footer-padding-right: 0;
-  --ti-time-panel-footer-margin-right: 0;
-  --ti-time-panel-width: 180px;
+  --ti-time-panel-footer-height: var(--ti-common-size-14x);
+  --ti-time-panel-footer-padding-top: var(--ti-common-size-4x);
+  --ti-time-panel-footer-padding-right: var(--ti-common-size-4x);
+  --ti-time-panel-footer-margin-right: calc(2px - var(--ti-common-size-4x));
+  --ti-time-panel-width: 220px;
   --ti-time-spinner-list-margin-bottom: 0px;
   --ti-time-spinner-list-margin-top: 0px;
   --ti-time-panel-btn-text-color: #303133;
