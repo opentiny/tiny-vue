@@ -8,13 +8,13 @@ test('搜索框可清除', async ({ page }) => {
 
   await page.goto('tree-menu#clearable')
 
-  await page.locator('#clearable').getByRole('textbox', { name: '请输入内容进行筛选' }).click()
-  await page.locator('#clearable').getByRole('textbox', { name: '请输入内容进行筛选' }).click()
-  await page.locator('#clearable').getByRole('textbox', { name: '请输入内容进行筛选' }).fill('123')
+  await page.locator('#clearable').getByRole('textbox', { name: '输入关键字搜索' }).click()
+  await page.locator('#clearable').getByRole('textbox', { name: '输入关键字搜索' }).click()
+  await page.locator('#clearable').getByRole('textbox', { name: '输入关键字搜索' }).fill('123')
   await expect(page.getByText('暂无数据')).toBeVisible()
   const icon = getIcon(page)
   await icon.click()
-  const val = await page.locator('#clearable').getByRole('textbox', { name: '请输入内容进行筛选' }).inputValue()
+  const val = await page.locator('#clearable').getByRole('textbox', { name: '输入关键字搜索' }).inputValue()
   expect(val).toBe('')
   await expect(page.getByText('暂无数据')).not.toBeVisible()
 })

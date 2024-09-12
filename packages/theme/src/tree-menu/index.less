@@ -25,6 +25,7 @@
   position: relative;
   font-size: var(--ti-tree-menu-font-size);
   transition: width 0.5s;
+  background: #fff;
 
   &__toggle-button {
     position: absolute;
@@ -45,6 +46,7 @@
     .tiny-svg {
       margin-left: 2px;
       fill: var(--ti-tree-menu-collapse-icon-fill-color);
+      font-size: 16px;
     }
   }
 
@@ -125,13 +127,23 @@
   }
 
   .@{input-prefix-cls} {
-    .@{input-prefix-cls}__inner {
-      border: none;
-      border-bottom: 1px solid var(--ti-tree-menu-border-color);
+    margin: var(--ti-tree-menu-padding-top) var(--ti-tree-menu-padding-left);
+    position: relative;
+    max-width: 180px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50px;
+      bottom: 0;
+      border-top: 1px solid  var(--ti-tree-menu-border-top-color);
     }
   }
 
   .@{tree-prefix-cls} {
+    padding-top: 8px;
     .@{tree-node-prefix-cls} {
       &.is-disabled {
         & > .@{tree-node-prefix-cls}__content a {
@@ -144,11 +156,16 @@
         }
       }
 
+      .@{tree-node-prefix-cls}__expand-icon {
+        font-size: 16px;
+      }
+
       .@{tree-node-prefix-cls}__content {
         height: var(--ti-tree-menu-node-height);
         line-height: var(--ti-tree-menu-node-height);
         overflow: hidden;
         padding-left: 0;
+        margin-bottom: var(--ti-tree-menu-node-margin-bottom);
 
         .tree-node-icon {
           order: 10;
@@ -210,17 +227,16 @@
           .tree-node-body {
             color: var(--ti-tree-menu-node-current-text-color);
           }
-
-          .@{tree-node-prefix-cls}__content-left::before {
-            content: '';
-            position: absolute;
-            left: 4px;
-            top: 50%;
-            display: inline-block;
-            height: 18px;
-            transform: translateY(-50%);
-            border-left: 2px solid var(--ti-tree-menu-square-left-border-color);
-          }
+        }
+        & > .@{tree-node-prefix-cls}__content::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          display: inline-block;
+          height: 32px;
+          transform: translateY(-50%);
+          border-left: 2px solid var(--ti-tree-menu-square-left-border-color);
         }
       }
 

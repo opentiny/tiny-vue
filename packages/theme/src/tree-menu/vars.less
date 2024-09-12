@@ -12,9 +12,11 @@
 
 .component-css-vars-tree-menu() {
   // 宽度
-  --ti-tree-menu-width: calc(var(--ti-common-space-10, 10px) * 27);
+  --ti-tree-menu-width: calc(var(--ti-common-space-10, 10px) * 22);
   // 节点高度
-  --ti-tree-menu-node-height: var(--ti-common-size-10x, 40px);
+  --ti-tree-menu-node-height: var(--ti-common-size-8x, 32px);
+  // 节点高度直接距离
+  --ti-tree-menu-node-margin-bottom: var(--ti-common-size-base, 4px);
   // 空数据显示文本字号(hide)
   --ti-tree-menu-font-size: var(--ti-common-font-size-base, 12px);
   // 边框色
@@ -38,13 +40,15 @@
   // 折叠图标右边距
   --ti-tree-menu-collapse-icon-margin-right: var(--ti-common-size-5x);
   // 输入框下面的线
-  --ti-tree-menu-border-top-color: var(--ti-common-color-light, #fff);
+  --ti-tree-menu-border-top-color: #f0f0f0;
+  // 输入框距离左边的距离
+  --ti-tree-menu-padding-left: 20px;
   // 节点序号字号
   --ti-tree-menu-node-number-font-size: var(--ti-common-font-size-0);
   // 活跃节点竖线与文本的间距
   --ti-tree-menu-node-vertical-line-margin-right: var(--ti-common-size-4x, 16px);
   // 输入框与文本的间距
-  --ti-tree-menu-padding-top: var(--ti-common-size-2x);
+  --ti-tree-menu-padding-top: var(--ti-common-size-5x);
   // 前缀图标右边距
   --ti-tree-menu-prefix-icon-margin-right: var(--ti-common-size-2x, 8px);
   // 禁用文本色
