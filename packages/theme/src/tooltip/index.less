@@ -46,22 +46,18 @@
     .popper__arrow {
       position: absolute;
       display: block;
-      width: 0;
-      height: 0;
-      border-color: transparent;
-      border-style: solid;
-    }
-    .popper__arrow {
-      border-width: var(--ti-tooltip-popper-border-width);
+      // 原来是用border来模拟三角形的，现在是通过div模拟，所以将border-width赋值给div的width.
+      width: var(--ti-tooltip-popper-border-width);
+      height: var(--ti-tooltip-popper-border-height);
+      background-color: var(--ti-tooltip-popper-border-color);
+      transform: rotateZ(45deg);
     }
 
     &[x-placement^='top'] {
       margin-bottom: 12px;
 
       .popper__arrow {
-        bottom: var(--ti-tooltip-popper-neg-border-width);
-        border-top-color: var(--ti-tooltip-popper-border-color);
-        border-bottom-width: 0;
+        bottom: -7px;
       }
     }
 
@@ -69,9 +65,7 @@
       margin-top: 12px;
 
       .popper__arrow {
-        top: var(--ti-tooltip-popper-neg-border-width);
-        border-top-width: 0;
-        border-bottom-color: var(--ti-tooltip-popper-border-color);
+        top: -7px;
       }
     }
 
@@ -79,9 +73,7 @@
       margin-left: 12px;
 
       .popper__arrow {
-        left: var(--ti-tooltip-popper-neg-border-width);
-        border-right-color: var(--ti-tooltip-popper-border-color);
-        border-left-width: 0;
+        left: -3px;
       }
     }
 
@@ -89,9 +81,7 @@
       margin-right: 12px;
 
       .popper__arrow {
-        right: var(--ti-tooltip-popper-neg-border-width);
-        border-right-width: 0;
-        border-left-color: var(--ti-tooltip-popper-border-color);
+        right: -3px;
       }
     }
     &.is-normal {
@@ -145,7 +135,7 @@
     }
 
     &.is-light {
-      .tooltip-light(
+      .tooltip-type(
         var(--ti-tooltip-popper-light-text-color),
         var(--ti-tooltip-popper-light-bg-color),
         var(--ti-tooltip-popper-light-border-color)

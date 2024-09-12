@@ -336,7 +336,7 @@ export default defineComponent({
 
       .style-settings-title {
         margin-bottom: 2px;
-        font-size: 4px;
+        font-size: 14px;
         line-height: 32px;
         font-weight: 600;
         color: #000000;
@@ -349,7 +349,7 @@ export default defineComponent({
         flex-direction: column;
 
         .tiny-radio .tiny-radio__label {
-          font-size: 4px;
+          font-size: 14px;
           line-height: 32px;
         }
       }
