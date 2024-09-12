@@ -1,0 +1,20 @@
+export const tinyDropdownOldTheme = {
+  'ti-dropdown-suffix-icon-margin-vertical': 'calc(var(--ti-common-space-2x, 8px) - 1px)',
+  'ti-dropdown-title-button-padding-left': 'var(--ti-common-space-5x, 20px)',
+  'ti-dropdown-title-button-padding-right': 'var(--ti-common-space-5x, 20px)',
+  'ti-dropdown-caret-svg-margin-horizontal': 'var(--ti-common-space-base, 4px)',
+  'ti-dropdown-caret-line-width': 'var(--ti-common-border-weight-normal, 1px)',
+  'ti-dropdown-caret-button-padding-right': 'var(--ti-common-space-base, 4px)',
+  'ti-dropdown-trigger-svg-margin-bottom': '1px',
+  'ti-dropdown-trigger-svg-margin-top': '1px',
+  'ti-dropdown-button-icon-size': 'var(--ti-common-font-size-1, 14px)',
+  'ti-dropdown-trigger-only-svg-hover-radius': 'var(--ti-common-border-radius-normal)',
+  'ti-dropdown-trigger-only-svg-hover-bg-color': 'var(--ti-common-color-bg-white-emphasize, #f2f5fc)',
+  'ti-dropdown-trigger-only-svg-height': 'var(--ti-common-size-4x)',
+  'ti-dropdown-trigger-only-svg-width': 'var(--ti-common-size-4x)',
+  'ti-dropdown-icon-color-hover': 'var(--ti-common-color-text-link-hover, #344899)',
+  'ti-dropdown-icon-color': 'var(--ti-common-color-text-link, #526ecc)',
+  'ti-dropdown-icon-size': '10px',
+  'ti-dropdown-line-height': 'var(--ti-common-line-height-number, 1.5)',
+  'ti-dropdown-text-color-hover': 'var(--ti-common-color-text-link-hover, #344899)'
+}
