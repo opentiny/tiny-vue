@@ -1,5 +1,5 @@
 import * as Y from 'yjs'
-import { TiptapCollabProvider } from '@hocuspocus/provider'
+import { TiptapCollabProvider, TiptapCollabProviderConfiguration } from '@hocuspocus/provider'
 import { ExtensionCollaboration, ExtensionCollaborationCursor } from '../../extension'
 import type { AnyExtension } from '@tiptap/core'
 
@@ -12,22 +12,21 @@ import type { AnyExtension } from '@tiptap/core'
 const defaultAppId = '7j9y6m10'
 const defaultRoom = `room.${new Date().getFullYear().toString().slice(-2)}${new Date().getMonth() + 1}${new Date().getDate()}`
 
-export const setupCollaboration = (extensions: AnyExtension[], config: { room: string; appId: string } | boolean) => {
+export const setupCollaboration = (extensions: AnyExtension[], config: TiptapCollabProviderConfiguration | boolean) => {
   const ydoc = new Y.Doc()
-  let appId = ''
-  let room = ''
-  if (typeof config === 'boolean') {
-    appId = defaultAppId
-    room = defaultRoom
-  } else {
-    appId = config.appId
-    room = config.room
+  let params: TiptapCollabProviderConfiguration = {
+    document: ydoc,
+    name: ''
   }
-  const provider = new TiptapCollabProvider({
-    appId,
-    name: room,
-    document: ydoc
-  })
+  if (typeof config === 'boolean') {
+    if (!config) return
+    params.appId = defaultAppId
+    params.name = defaultRoom
+  } else {
+    params = config
+  }
+
+  const provider = new TiptapCollabProvider(params)
   const collaboration = [
     ExtensionCollaboration.configure({
       document: ydoc
