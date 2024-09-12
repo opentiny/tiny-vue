@@ -30,7 +30,9 @@
     "./*": "./src/*"
   },
   "scripts": {
-    "build": "unbuild",
+    "build": "pnpm build:code && pnpm build:dts",
+    "build:code": "unbuild",
+    "build:dts": "tsup",
     "build:fast": "npm run build && npm run release",
     "postversion": "pnpm build",
     "release": "esno ./scripts/postbuild.ts && shx cp README.md dist"
@@ -41,6 +43,7 @@
   },
   "devDependencies": {
     "esno": "^4.7.0",
+    "tsup": "7.2.0",
     "unbuild": "^2.0.0"
   }
 }
