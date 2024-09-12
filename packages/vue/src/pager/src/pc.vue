@@ -43,7 +43,7 @@
             @input="handleJumperInput"
             @change="handleJumperChange"
           />
-          <span v-if="state.showJumperSufix" class="tiny-pager__goto-text tiny-pager__goto-text-sufix">{{
+          <span v-if="state.showJumperSuffix" class="tiny-pager__goto-text tiny-pager__goto-text-sufix">{{
             t('ui.page.pageClassifier')
           }}</span>
         </div>
@@ -146,7 +146,9 @@
           </template>
           <template v-else>
             <span>{{ t('ui.page.totals') }}</span>
-            <span> {{ customTotal ? state.totalText : state.internalTotal }} </span>
+            <span :class="{ 'tiny-pager__total-num': !customTotal }">
+              {{ customTotal ? state.totalText : state.internalTotal }}
+            </span>
           </template>
         </div>
       </div>
