@@ -183,6 +183,23 @@
     }
   }
 
+  .@{css-prefix}button {
+    &.tiny-button--default {
+      .tiny-dropdown__suffix-inner {
+        .tiny-svg {
+          fill: var(--ti-dropdown-suffix-icon-color);
+        }
+      }
+      &:hover {
+        .tiny-dropdown__suffix-inner {
+          .tiny-svg {
+            fill: var(--ti-dropdown-suffix-icon-color-hover);
+          }
+        }
+      }
+    }
+  }
+
   &--visible {
     // rotate(180deg) 会受svg的margin影响，位置会变动！
     transform: scaleY(-1);
