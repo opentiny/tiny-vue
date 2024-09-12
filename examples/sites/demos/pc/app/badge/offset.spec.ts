@@ -7,6 +7,6 @@ test('标记的位置', async ({ page }) => {
   const demo = page.locator('#offset')
   const badge = demo.locator('.tiny-badge')
 
-  await expect(badge.first()).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, -4)')
-  await expect(badge.nth(1)).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, -6)')
+  await expect(badge.first()).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, -10)')
+  await expect(badge.nth(1)).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, -10)')
 })
