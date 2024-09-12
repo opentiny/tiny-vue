@@ -310,10 +310,11 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   background: #fafafa;
-  padding: 32px 24px 48px;
+  padding: 26px 18px 42px;
 
   .pc-demo {
     flex: 1;
+    padding: 6px;
   }
 }
 
