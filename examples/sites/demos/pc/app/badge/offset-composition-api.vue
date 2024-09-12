@@ -6,7 +6,7 @@
     <br /><br />
     <p>使用数字：</p>
     <br />
-    <tiny-badge :value="2" :offset="[0, -10]">我的待办</tiny-badge>
+    <tiny-badge :value="2" :offset="[0, -8]">我的待办</tiny-badge>
     <br /><br />
     <p>区域使用：</p>
     <br />
