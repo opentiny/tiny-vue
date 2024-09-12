@@ -1,8 +1,8 @@
 <template>
   <div class="demo-steps-slot-item-footer">
-    <tiny-button class="mb10" @click="handleChange">{{
-      stepsData.length > 3 ? '减少一个节点' : '增加一个节点'
-    }}</tiny-button>
+    <tiny-button class="mb10" @click="handleChange"
+      >点击{{ stepsData.length > 3 ? '减少' : '增加' }}一个节点</tiny-button
+    >
     <tiny-steps :data="stepsData" line>
       <template #itemFooter="{ slotScope: { links } }">
         <div v-if="links">
