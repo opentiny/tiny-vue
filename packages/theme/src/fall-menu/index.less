@@ -18,6 +18,7 @@
 
 .@{fall-menu-prefix-cls} {
   .component-css-vars-fall-menu();
+  box-shadow: 0 1px 4px 0 #14000000;
 
   & &__wrap {
     background: var(--ti-fall-menu-bg-color-normal);
@@ -44,7 +45,7 @@
       line-height: 1;
 
       svg {
-        fill: #fff;
+        fill: #808080;
       }
     }
 
@@ -65,6 +66,11 @@
 
     .fall-hide {
       .opacity(0);
+    }
+
+    .active-show {
+      font-size: 16px;
+      font-weight: 700;
     }
 
     ul {
@@ -95,10 +101,7 @@
       &:hover,
       &.now {
         color: var(--ti-fall-menu-slot-text-color);
-        background: var(--ti-fall-menu-bg-color-hover);
         text-decoration: none;
-        font-weight: 700;
-        border-bottom: 3px solid var(--ti-fall-menu-li-color-hover);
       }
 
       &.now:before {
@@ -123,6 +126,7 @@
     background: var(--ti-fall-menu-slot-bg-color);
     overflow: hidden;
     transition: opacity 0.4s;
+    border-radius: 6px;
     .opacity(0);
 
     .contbox {
@@ -176,7 +180,7 @@
       border-left: 1px solid #d9d9d9;
       border-right: 1px solid #d9d9d9;
       border-bottom: 1px solid #d9d9d9;
-      box-shadow: 1px 1px 5px 1px #d9d9d9;
+      box-shadow: 0 4px 16px 0 #14000000;
       .opacity(1);
     }
   }

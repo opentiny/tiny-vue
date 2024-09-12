@@ -13,6 +13,7 @@
 import {
   mouseover,
   mouseout,
+  clickActive,
   computePx,
   reRender,
   arrowClick,
@@ -30,7 +31,17 @@ import type {
   IFallMenuProps
 } from '@/types'
 
-export const api = ['state', 'fall', 'arrowClick', 'mouseover', 'mouseout', 'overContent', 'reRender', 'left']
+export const api = [
+  'state',
+  'fall',
+  'arrowClick',
+  'mouseover',
+  'mouseout',
+  'clickActive',
+  'overContent',
+  'reRender',
+  'left'
+]
 
 const initState = ({
   reactive,
@@ -50,7 +61,8 @@ const initState = ({
     isActive: props.value,
     pagerData: { data: [], offset: [], index: [] },
     left: computed(() => api.computeLeft()),
-    data: computed(() => api.computeData())
+    data: computed(() => api.computeData()),
+    active: 0
   })
 
   return state
@@ -81,6 +93,7 @@ const initApi = ({
     overContent: overContent(state),
     mouseout: mouseout(state),
     mouseover: mouseover({ props, fall, state }),
+    clickActive: clickActive(state),
     reRender: reRender({ api, state })
   })
 }
