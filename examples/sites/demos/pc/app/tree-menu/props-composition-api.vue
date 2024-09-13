@@ -1,5 +1,5 @@
 <template>
-  <tiny-tree-menu :data="treeData" :props="mapField"></tiny-tree-menu>
+  <tiny-tree-menu class="demo-tree-menu" :data="treeData" :props="mapField"></tiny-tree-menu>
 </template>
 
 <script setup>
@@ -122,8 +122,8 @@ const treeData = reactive([
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 </style>

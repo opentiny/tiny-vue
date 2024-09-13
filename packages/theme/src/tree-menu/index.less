@@ -129,7 +129,7 @@
   .@{input-prefix-cls} {
     margin: var(--ti-tree-menu-padding-top) var(--ti-tree-menu-padding-left);
     position: relative;
-    max-width: 180px;
+    max-width: 188px;
 
     &:before {
       content: '';
@@ -144,6 +144,12 @@
 
   .@{tree-prefix-cls} {
     padding-top: 8px;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      margin-right: 4px;
+    }
+
     .@{tree-node-prefix-cls} {
       &.is-disabled {
         & > .@{tree-node-prefix-cls}__content a {

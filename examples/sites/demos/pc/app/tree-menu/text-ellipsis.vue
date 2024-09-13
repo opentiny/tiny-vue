@@ -1,10 +1,10 @@
 <template>
   <div>
     <p>场景1：文字超长点点点</p>
-    <tiny-tree-menu :data="treeData" ellipsis></tiny-tree-menu>
+    <tiny-tree-menu class="demo-tree-menu" :data="treeData" ellipsis></tiny-tree-menu>
     <br /><br />
     <p>场景2：文字超长换行</p>
-    <tiny-tree-menu :data="treeData" wrap></tiny-tree-menu>
+    <tiny-tree-menu class="demo-tree-menu" :data="treeData" wrap></tiny-tree-menu>
   </div>
 </template>
 
@@ -181,8 +181,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 p {

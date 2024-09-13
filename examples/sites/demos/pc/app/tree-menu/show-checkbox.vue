@@ -1,10 +1,16 @@
 <template>
   <div>
     <p>场景1：节点可勾选 + 默认选中</p>
-    <tiny-tree-menu node-key="id" show-checkbox :data="treeData" :default-checked-keys="expandeArr"></tiny-tree-menu>
+    <tiny-tree-menu
+      class="demo-tree-menu"
+      node-key="id"
+      show-checkbox
+      :data="treeData"
+      :default-checked-keys="expandeArr"
+    ></tiny-tree-menu>
     <br /><br />
     <p>场景2：节点可勾选 + 父子级不相关联</p>
-    <tiny-tree-menu :data="treeData" show-checkbox check-strictly></tiny-tree-menu>
+    <tiny-tree-menu class="demo-tree-menu" :data="treeData" show-checkbox check-strictly></tiny-tree-menu>
   </div>
 </template>
 
@@ -179,8 +185,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.tiny-tree-menu {
-  height: 300px;
+.demo-tree-menu ::v-deep .tiny-tree {
+  height: 320px;
   overflow: auto;
 }
 p {
