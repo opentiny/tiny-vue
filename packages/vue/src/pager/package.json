@@ -12,7 +12,7 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "'@opentiny/vue-base-select'": "workspace:~",
+    "@opentiny/vue-base-select": "workspace:~",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-loading": "workspace:~",
