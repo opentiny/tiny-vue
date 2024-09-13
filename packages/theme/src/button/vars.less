@@ -57,7 +57,7 @@
   --ti-button-size-medium-margin-left: 16px;
 
   // 小型按钮高度
-  --ti-button-size-small-height: var(--ti-common-size-height-small, 32px);
+  --ti-button-size-small-height: 28px;
   // 小型按钮字号
   --ti-button-size-small-font-size: 12px;
   // 小尺寸按钮水平内边距
@@ -104,6 +104,8 @@
   --ti-button-plain-border-color: #C2C2C2;
   // 默认 朴素 禁用边框色
   --ti-button-plain-disabled-border-color: #F0F0F0;
+  // 默认 朴素 悬浮边框色
+  --ti-button-plain-hover-border-color: #F5F5F5;
 
   // 文字按钮文本色
   --ti-button-text-color: var(--ti-common-color-text-highlight);
@@ -308,17 +310,17 @@
   --ti-button-info-plain-disabled-bg-color: #F0F0F0;
 
   // 默认类型幽灵按钮文本色
-  --ti-button-ghost-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-button-ghost-text-color: #595959;
   // 默认类型幽灵按钮边框色
   --ti-button-ghost-border-color: var(--ti-common-color-border, #adb0b8);
   // 默认类型幽灵按钮悬浮文本色
-  --ti-button-ghost-hover-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-ghost-hover-text-color: #595959;
   // 默认类型幽灵按钮悬浮边框色
-  --ti-button-ghost-hover-border-color: #c2c2c2;
+  --ti-button-ghost-hover-border-color: #DBDBDB;
   // 默认类型幽灵按钮禁用文本色
   --ti-button-ghost-disabled-text-color: #c2c2c2;
   // 默认类型幽灵按钮禁用边框色
-  --ti-button-ghost-disabled-border-color: #dbdbdb;
+  --ti-button-ghost-disabled-border-color: #DBDBDB;
   // 主要类型幽灵按钮文本色
   --ti-button-primary-ghost-text-color: #191919;
   // 主要类型幽灵按钮边框色
@@ -350,7 +352,7 @@
   // 信息类型幽灵按钮悬浮文本色
   --ti-button-info-ghost-hover-text-color: #1476FF;
   // 信息类型幽灵按钮悬浮边框色
-  --ti-button-info-ghost-hover-border-color: #FAFAFA;
+  --ti-button-info-ghost-hover-border-color: #DEECFF;
   // 信息类型幽灵按钮禁用文本色
   --ti-button-info-ghost-disabled-text-color: #C2C2C2;
   // 信息类型幽灵按钮禁用边框色
@@ -440,7 +442,7 @@
   // 纯图标按钮水平内边距
   --ti-button-only-icon-padding-horizontal: 7px;
   // 纯图标按钮边框圆角
-  --ti-button-only-icon-border-radius: var(--ti-common-border-radius-1);
+  --ti-button-only-icon-border-radius: var(--ti-common-border-radius-3);
   // 纯图标按钮边框颜色
   --ti-button-only-icon-border-color: #c2c2c2;
   // 纯图标按钮悬浮时边框颜色

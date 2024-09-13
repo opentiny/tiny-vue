@@ -18,7 +18,7 @@ const generateId = (vnode, idMaps) => {
     }
   }
 
-  if (vnode?.children) {
+  if (Array.isArray(vnode?.children)) {
     vnode.children.forEach((item) => {
       generateId(item, idMaps)
     })
@@ -48,7 +48,7 @@ const generateUrl = (vnode, idMaps) => {
     }
   })
 
-  if (vnode.children) {
+  if (Array.isArray(vnode?.children)) {
     vnode.children.forEach((item) => {
       generateUrl(item, idMaps)
     })

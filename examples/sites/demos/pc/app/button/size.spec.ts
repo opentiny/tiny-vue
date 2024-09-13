@@ -14,7 +14,7 @@ test('测试按钮尺寸', async ({ page }) => {
   // 判断高度是否正确
   await expect(demo.getByRole('button', { name: '超大按钮' }).first()).toHaveCSS('height', '48px')
   await expect(demo.getByRole('button', { name: '中等按钮' }).first()).toHaveCSS('height', '40px')
-  await expect(demo.getByRole('button', { name: '小型按钮' }).first()).toHaveCSS('height', '32px')
-  await expect(demo.getByRole('button', { name: '默认按钮' }).first()).toHaveCSS('height', '28px')
+  await expect(demo.getByRole('button', { name: '小型按钮' }).first()).toHaveCSS('height', '28px')
+  await expect(demo.getByRole('button', { name: '默认按钮' }).first()).toHaveCSS('height', '32px')
   await expect(demo.getByRole('button', { name: '超小按钮' }).first()).toHaveCSS('height', '24px')
 })
