@@ -19,6 +19,6 @@ function change() {
 
 <style scoped>
 .demo-switch {
-  margin-right: 40px;
+  margin: 0 40px;
 }
 </style>
