@@ -46,6 +46,10 @@ export default defineComponent({
       type: Boolean,
       default: true
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     indicatorPosition: String,
     arrow: {
       type: String,

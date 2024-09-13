@@ -112,6 +112,21 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'disabled',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '控制轮播箭头禁用状态，设置为 true 则禁用',
+            'en-US': 'Control the disabled state of the carousel arrow, set to true to disable'
+          },
+          meta: {
+            stable: '3.19.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'close-loop',
+          mfDemo: ''
+        },
+        {
           name: 'show-title',
           type: 'boolean',
           defaultValue: 'false',
