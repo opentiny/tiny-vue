@@ -91,7 +91,7 @@ export const renderless = (
     internalLayout: computed(() => api.computedInternalLayout()),
     totalText: computed(() => api.computedTotalText()),
     internalPageCount: computed(() => api.computedInternalPageCount()),
-    showJumperSufix: designConfig?.state?.showJumperSufix ?? true,
+    showJumperSuffix: designConfig?.state?.showJumperSuffix ?? true,
     align: props.align || designConfig?.state?.align || 'left',
     totalI18n: designConfig?.state?.totalI18n || 'totals',
     totalFixedLeft: computed(
