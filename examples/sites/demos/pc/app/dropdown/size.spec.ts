@@ -12,8 +12,9 @@ test('不同尺寸', async ({ page }) => {
   const smallDropDown = dropDown.nth(2)
   const miniDropDown = dropDown.nth(3)
 
-  await expect(defaultDropDown.locator('.tiny-button-group')).toHaveCSS('height', '28px')
-  await expect(mediumDropDown.locator('.tiny-button-group')).toHaveCSS('height', '40px')
-  await expect(smallDropDown.locator('.tiny-button-group')).toHaveCSS('height', '32px')
+  /* 此处待 button 组件适配完后会通过 */
+  await expect(defaultDropDown.locator('.tiny-button-group')).toHaveCSS('height', '32px')
+  await expect(mediumDropDown.locator('.tiny-button-group')).toHaveCSS('height', '32px')
+  await expect(smallDropDown.locator('.tiny-button-group')).toHaveCSS('height', '28px')
   await expect(miniDropDown.locator('.tiny-button-group')).toHaveCSS('height', '24px')
 })
