@@ -57,23 +57,22 @@
     &:hover {
       border-color: var(--ti-checkbox-border-color-hover);
     }
+    svg {
+      width: 14px;
+      height: 14px;
+    }
 
-    &::after {
-      box-sizing: content-box;
-      content: '';
-      border: 1px solid #fff;
-      border-width: 0 var(--ti-checkbox-checkline-width) var(--ti-checkbox-checkline-width) 0; // 对勾的线宽
-      border-left: 0;
-      border-top: 0;
-      height: var(--ti-checkbox-icon-height);
-      width: var(--ti-checkbox-icon-width);
-      position: absolute;
-      margin-left: var(--ti-checkbox-icon-margin-left);
-      margin-top: var(--ti-checkbox-icon-margin-top);
-      transform: rotate(45deg) scaleY(0);
-      transition: transform 0.15s ease-in 0.05s;
-      transform-origin: center;
-      left: 0;
+    .icon-checked-sur {
+      fill: #fff;
+    }
+    .icon-no-checked {
+      fill: transparent;
+    }
+    .icon-halfselect {
+      fill: #1476FF;
+    }
+    .icon-halfselect:hover {
+      fill: transparent;
     }
   }
 
@@ -189,17 +188,6 @@
       display: inline-block;
     }
 
-    .@{checkbox-prefix-cls}__inner {
-      svg {
-        fill: var(--ti-checkbox-border-color);
-      }
-
-      &:hover {
-        svg {
-          fill: var(--ti-checkbox-button-hover-text-color);
-        }
-      }
-    }
 
     &.is-disabled {
       .checkbox-input-disabled(var(--ti-checkbox-bg-color-disable), var(--ti-checkbox-border-color-unchecked-disabled),
@@ -207,30 +195,15 @@
       var(--ti-checkbox-label-text-color-disabled), var(--ti-checkbox-icon-color-disabled));
     }
 
-    &.is-checked {
-      .@{checkbox-prefix-cls}__inner::after {
-        transform: rotate(45deg) scaleY(1);
-      }
-    }
-
-    &.is-indeterminate {
-      .@{checkbox-prefix-cls}__inner::before {
-        content: '';
-        position: absolute;
-        display: block;
-        border-radius: 1px;
-        background-color: #fff;
-        height: 6px;
-        width: 6px;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-      }
-
-      .@{checkbox-prefix-cls}__inner::after {
-        display: none;
+    &.is-disabled,
+    .@{checkbox-prefix-cls}__input.is-disabled {
+      .@{checkbox-prefix-cls}__inner {  
+        .icon-halfselect {
+          fill: #DBDBDB;
+        }
+        .icon-no-checked {
+          fill: transparent;
+        }
       }
     }
 
