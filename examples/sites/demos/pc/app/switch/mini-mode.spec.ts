@@ -7,5 +7,5 @@ test('迷你尺寸', async ({ page }) => {
   const demo = page.locator('#mini-mode')
   const switchBtn = demo.locator('.tiny-switch')
 
-  await expect(switchBtn).toHaveCSS('width', '34px')
+  await expect(switchBtn).toHaveCSS('width', '32px')
 })
