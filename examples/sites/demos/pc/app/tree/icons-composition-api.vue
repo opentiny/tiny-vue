@@ -23,8 +23,8 @@ import { Tree as TinyTree } from '@opentiny/vue'
 import { iconPutAway, iconExpand, iconRightO, iconEditorTable, iconFile } from '@opentiny/vue-icon'
 
 const icon = iconRightO()
-const shrinkIcon = iconPutAway()
-const expandIcon = iconExpand()
+const shrinkIcon = iconExpand()
+const expandIcon = iconPutAway()
 const tinyIconEditorTable = iconEditorTable()
 const tinyIconFile = iconFile()
 

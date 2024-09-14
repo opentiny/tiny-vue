@@ -22,7 +22,6 @@ export const tinyPagerOldTheme = {
   'ti-pager-prev-padding-left': '6px',
   'ti-pager-goto-btn-text-hover-color': 'var(--ti-common-color-text-highlight, #526ecc)',
   'ti-pager-poplist-item-min-height': '30px',
-  'ti-pager-pop-body-margin-top': '4px',
   'ti-pager-poplist-item-selected-bg-color': 'var(--ti-common-color-selected-background, #5e7ce0)',
   'ti-pager-poplist-item-hover-text-color': 'var(--ti-common-color-text-highlight, #526ecc)',
   'ti-pager-poplist-item-hover-bg-color': 'var(--ti-common-color-hover-background, #f2f5fc)',
