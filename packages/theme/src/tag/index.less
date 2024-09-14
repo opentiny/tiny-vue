@@ -124,6 +124,7 @@
       var(--ti-tag-plain-border-color),
       var(--ti-tag-plain-background-color)
     );
+    border: 1px solid var(--ti-tag-plain-text-color);
   }
 
   &--plain&--info {
@@ -132,6 +133,7 @@
       var(--ti-tag-plain-info-border-color),
       var(--ti-tag-plain-background-color)
     );
+    border: 1px solid var(--ti-tag-plain-info-text-color);
   }
 
   &--plain&--success {
@@ -140,6 +142,7 @@
       var(--ti-tag-plain-success-border-color),
       var(--ti-tag-plain-background-color)
     );
+    border: 1px solid var(--ti-tag-plain-success-text-color);
   }
 
   &--plain&--warning {
@@ -148,6 +151,7 @@
       var(--ti-tag-plain-warning-border-color),
       var(--ti-tag-plain-background-color)
     );
+    border: 1px solid var(--ti-tag-plain-warning-text-color);
   }
 
   &--plain&--danger {
@@ -156,6 +160,7 @@
       var(--ti-tag-plain-danger-border-color),
       var(--ti-tag-plain-background-color)
     );
+    border: 1px solid var(--ti-tag-plain-danger-text-color);
   }
 
   &--red {
@@ -230,7 +235,7 @@
     height: var(--ti-tag-small-height);
     line-height: var(--ti-tag-small-height); // smb修正
     padding: 0 var(--ti-tag-small-padding-horizontal); // smb新增
-    font-size: 12px; // smb新增
+    font-size: 14px; // smb新增
     border-radius: var(--ti-tag-small-border-radius); // smb新增
     // smb新增
     .@{tag-prefix-cls}__close {
@@ -242,9 +247,9 @@
   &--mini {
     height: var(--ti-tag-mini-height);
     line-height: var(--ti-tag-mini-height); // smb修正
-    padding: 0 var(--ti-tag-small-padding-horizontal); // smb新增
+    padding: 0 var(--ti-tag-mini-padding-horizontal); // smb新增
     font-size: 12px; // smb新增
-    border-radius: var(--ti-tag-small-border-radius); // smb新增
+    border-radius: var(--ti-tag-mini-border-radius); // smb新增
     // smb新增
     .@{tag-prefix-cls}__close {
       margin-left: var(--ti-tag-close-small-margin-left);

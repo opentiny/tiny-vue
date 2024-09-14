@@ -16,7 +16,7 @@ export const tagGroupProps = {
   ...$props,
   size: {
     type: String,
-    default: 'medium',
+    default: 'small',
     validator: (value: string) => ['medium', 'small', 'mini'].includes(value)
   },
   data: {

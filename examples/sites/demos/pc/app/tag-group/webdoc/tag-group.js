@@ -24,9 +24,9 @@ export default {
       },
       desc: {
         'zh-CN':
-          '<p>可通过 <code>size</code> 设置标签组标签大小，可选值 <code>medium / small / mini</code>，默认值为 <code>medium</code>。</p>',
+          '<p>可通过 <code>size</code> 设置标签组标签大小，可选值 <code>medium / small / mini</code>，默认值为 <code>small</code>。</p>',
         'en-US':
-          'You can use <code>size</code> to set the label size of a label group. The options are <code>medium / small / mini</code>. The default value is <code>medium</code>. '
+          'You can use <code>size</code> to set the label size of a label group. The options are <code>medium / small / mini</code>. The default value is <code>small</code>. '
       },
       codeFiles: ['tag-group-size.vue']
     },

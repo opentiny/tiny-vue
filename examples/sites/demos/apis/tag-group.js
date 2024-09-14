@@ -33,7 +33,7 @@ export default {
         {
           name: 'size',
           type: "'medium' | 'small' | 'mini'",
-          defaultValue: "'medium'",
+          defaultValue: "'small'",
           desc: {
             'zh-CN': '尺寸',
             'en-US': 'Size '

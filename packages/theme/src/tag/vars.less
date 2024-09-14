@@ -20,17 +20,21 @@
   // 中型标签圆角
   --ti-tag-medium-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 小型标签高度
-  --ti-tag-small-height: var(--ti-common-line-height-base);
+  --ti-tag-small-height: 24px;
   // 小型标签水平内边距
-  --ti-tag-small-padding-horizontal: var(--ti-common-space-base);
+  --ti-tag-small-padding-horizontal: var(--ti-common-space-2x);
+  // 小型标签水平内边距
+  --ti-tag-mini-padding-horizontal: var(--ti-common-space-base);
   // 超小标签高度
-  --ti-tag-mini-height: var(--ti-common-size-3x);
+  --ti-tag-mini-height: 18px;
   // 标签边框厚度
   --ti-tag-border-weight: 0;
   // 标签圆角
   --ti-tag-border-radius: var(--ti-common-border-radius-2);
-  // 小型|超小标签圆角
-  --ti-tag-small-border-radius: var(--ti-common-border-radius-1);
+  // 小型标签圆角
+  --ti-tag-small-border-radius: 4px;
+  // 超小标签圆角
+  --ti-tag-mini-border-radius: 2px;
   // 标签默认字号
   --ti-tag-font-size: var(--ti-common-font-size-1);
   // 标签关闭按钮字号
@@ -61,37 +65,37 @@
   --ti-tag-primary-background-color: var(--ti-common-color-bg-6);
 
   // light主题警告类标签(文本|边框)色
-  --ti-tag-warning-text-color: var(--ti-common-color-warn-text, #e37d29);
+  --ti-tag-warning-text-color: #d96900;
   // light主题警告类标签边框色
   --ti-tag-warning-border-color: var(--ti-common-color-warn-border, #ffd0a6);
   // light主题警告类标签背景色
-  --ti-tag-warning-background-color: var(--ti-common-color-warn-bg, #fff3e8);
+  --ti-tag-warning-background-color: #fff0e0;
 
   // light主题危险类标签(文本|边框)色
   --ti-tag-danger-text-color: var(--ti-common-color-error-text, #de504e);
   // light主题危险类标签边框色
   --ti-tag-danger-border-color: var(--ti-common-color-error-border-secondary, #ffbcba);
   // (dark|light)主题危险类标签背景色
-  --ti-tag-danger-background-color: var(--ti-common-color-error-bg, #ffeeed);
+  --ti-tag-danger-background-color: #ffeae8;
 
   // light主题成功类标签(文本|边框)色
-  --ti-tag-success-text-color: var(--ti-common-color-text-success, #3ac295);
+  --ti-tag-success-text-color: #029931;
   // light主题成功类标签边框色
   --ti-tag-success-border-color: var(--ti-common-color-success-border, #acf2dc);
   // light主题成功类标签背景色
-  --ti-tag-success-background-color: var(--ti-common-color-success-bg, #edfff9);
+  --ti-tag-success-background-color: #e4f7e9;
 
   // light主题信息类标签(文本|边框)色
-  --ti-tag-info-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-tag-info-text-color: #1476ff;
   // light主题信息类标签边框色
   --ti-tag-info-border-color: var(--ti-common-color-info-border, #d3d4d6);
   // light主题信息类标签背景色
-  --ti-tag-info-background-color: var(--ti-common-color-bg-light-normal);
+  --ti-tag-info-background-color: #e6f2ff;
 
   // dark主题标签默认文本色
   --ti-tag-dark-text-color: var(--ti-common-color-light, #fff);
   // dark主题标签默认(背景|边框)色
-  --ti-tag-dark-bg-color: var(--ti-common-color-prompt, #5e7ce0);
+  --ti-tag-dark-bg-color: #191919;
   // dark主题成功类标签(背景|边框)色
   --ti-tag-dark-success-bg-color: var(--ti-common-color-success, #50d4ab);
   // dark主题警告类标签(背景|边框)色
@@ -99,27 +103,27 @@
   // dark主题危险类标签背景色
   --ti-tag-dark-danger-bg-color: var(--ti-common-color-error, #f66f6a);
   // dark主题信息类标签(背景|边框)色
-  --ti-tag-dark-info-bg-color: var(--ti-common-color-info, #252b3a);
+  --ti-tag-dark-info-bg-color: #1476ff;
 
   // plain主题标签默认文本色
-  --ti-tag-plain-text-color: var(--ti-common-color-prompt, #5e7ce0);
+  --ti-tag-plain-text-color: #191919;
   // plain主题标签默认边框色
   --ti-tag-plain-border-color: var(--ti-common-color-prompt-border, #beccfa);
   // plain主题标签默认背景色
   --ti-tag-plain-background-color: var(--ti-common-color-light, #fff);
 
   // plain主题信息类标签文本色
-  --ti-tag-plain-info-text-color: var(--ti-common-color-info, #252b3a);
+  --ti-tag-plain-info-text-color: #1476ff;
   // plain主题信息类标签边框色
   --ti-tag-plain-info-border-color: var(--ti-common-color-info-border, #d3d4d6);
 
   // plain主题成功类标签文本色
-  --ti-tag-plain-success-text-color: var(--ti-common-color-success, #50d4ab);
+  --ti-tag-plain-success-text-color: #029931;
   // plain主题成功类标签边框色
   --ti-tag-plain-success-border-color: var(--ti-common-color-success-border, #acf2dc);
 
   // plain主题警告类标签文本色
-  --ti-tag-plain-warning-text-color: var(--ti-common-color-warn, #fa9841);
+  --ti-tag-plain-warning-text-color: #d96900;
   // plain主题警告类标签边框色
   --ti-tag-plain-warning-border-color: var(--ti-common-color-warn-border, #ffd0a6);
 
