@@ -296,7 +296,8 @@
 
     &.@{popover-prefix-cls}.@{popper-prefix-cls} {
       min-width: var(--ti-pager-sizes-input-min-width);
-      padding: 0;
+      border: 0;
+      padding: 8px 0;
       border-radius: var(--ti-pager-pop-body-border-radius);
 
       &[x-placement^='bottom'] {
@@ -317,13 +318,12 @@
     &-poplist {
       .list-item {
         min-height: var(--ti-pager-poplist-item-min-height);
-        padding: 0 8px;
+        padding: 0 16px;
         line-height: var(--ti-pager-poplist-item-min-height);
         max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        text-align: center;
 
         &:hover {
           cursor: pointer;
@@ -346,7 +346,12 @@
 
           &.is-selected {
             color: var(--ti-pager-poplist-item-selected-text-color);
-            background: var(--ti-pager-poplist-item-selected-bg-color);
+            background: transparent;
+            font-weight: bold;
+
+            &:hover {
+              background: var(--ti-pager-poplist-item-selected-bg-color);
+            }
           }
         }
       }
@@ -536,13 +541,7 @@
     .component-css-vars-pager();
 
     .tiny-option-label {
-      text-align: center;
       font-family: var(--ti-pager-number-font-family);
-    }
-
-    .tiny-option.selected {
-      color: var(--ti-pager-poplist-item-selected-text-color);
-      background: var(--ti-pager-poplist-item-selected-bg-color);
     }
   }
 }
