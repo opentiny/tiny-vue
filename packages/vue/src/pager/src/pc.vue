@@ -69,6 +69,20 @@
         @before-page-change="beforePagerChangeHandler"
       ></pager>
 
+      <!-- simplest-pager-item -->
+      <tiny-base-select
+        v-else-if="item === 'simplest-pager'"
+        :style="{ width: state.simplestPagerWidth + 'px' }"
+        :size="size"
+        :key="'simplest-pager' + index"
+        v-model="state.internalCurrentPage"
+        :disabled="disabled"
+        :options="state.simplestPagerOption"
+        popper-class="tiny-pager__simplest-pager-popover"
+        :optimization="state.simplestPagerOption.length > 30"
+        @change="handleCurrentChange"
+      ></tiny-base-select>
+
       <!-- next -->
       <button
         v-else-if="item === 'next'"
@@ -158,6 +172,7 @@
 
 <script lang="tsx">
 import Pager from '@opentiny/vue-pager-item'
+import TinyBaseSelect from '@opentiny/vue-base-select'
 import Popover from '@opentiny/vue-popover'
 import Loading from '@opentiny/vue-loading'
 import { $prefix, setup, defineComponent, props } from '@opentiny/vue-common'
@@ -202,6 +217,7 @@ export default defineComponent({
   },
   components: {
     TinyPopover: Popover,
+    TinyBaseSelect,
     ChevronLeft: iconChevronLeft(),
     ChevronRight: iconChevronRight(),
     TriangleDown: iconTriangleDown(),

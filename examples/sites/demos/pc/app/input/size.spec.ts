@@ -7,6 +7,6 @@ test('[Input]size', async ({ page }) => {
   const small = page.locator('.demo-input > .tiny-input-small .tiny-input__inner')
   const mini = page.locator('.demo-input > .tiny-input-mini .tiny-input__inner')
   await expect(medium).toHaveCSS('height', '40px')
-  await expect(small).toHaveCSS('height', '32px')
+  await expect(small).toHaveCSS('height', '28px')
   await expect(mini).toHaveCSS('height', '24px')
 })

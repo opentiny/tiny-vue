@@ -4,9 +4,10 @@
     :class="['float-settings', { 'float-settings--aside': isSettingsAside }]"
     :style="settingsStyle"
   >
-    <!-- 切换主题样式 -->
+    <!-- 切换主题样式 暂时隐藏 -->
     <tiny-popover
       width="404"
+      v-if="false"
       placement="left-end"
       trigger="click"
       :visible-arrow="false"
@@ -336,7 +337,7 @@ export default defineComponent({
 
       .style-settings-title {
         margin-bottom: 2px;
-        font-size: 4px;
+        font-size: 14px;
         line-height: 32px;
         font-weight: 600;
         color: #000000;
@@ -349,7 +350,7 @@ export default defineComponent({
         flex-direction: column;
 
         .tiny-radio .tiny-radio__label {
-          font-size: 4px;
+          font-size: 14px;
           line-height: 32px;
         }
       }

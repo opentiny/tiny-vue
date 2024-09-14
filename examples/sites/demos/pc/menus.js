@@ -80,9 +80,7 @@ export const cmpMenus = [
     'children': [
       { 'nameCn': '按钮', 'name': 'Button', 'key': 'button' },
       { 'nameCn': '按钮组', 'name': 'ButtonGroup', 'key': 'button-group' },
-      { 'nameCn': '色彩', 'name': 'Color', 'key': 'color' },
       { 'nameCn': '容器布局', 'name': 'Container', 'key': 'container' },
-      { 'nameCn': '字体', 'name': 'Font', 'key': 'font' },
       { 'nameCn': '图标', 'name': 'Icon', 'key': 'icon' },
       { 'nameCn': '栅格布局', 'name': 'Layout', 'key': 'layout' },
       { 'nameCn': '链接', 'name': 'Link', 'key': 'link' },

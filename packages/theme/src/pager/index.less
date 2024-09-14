@@ -137,9 +137,6 @@
     .@{pager-prefix-cls}__total-loading {
       width: 30px;
     }
-    .tiny-loading__spinner {
-      margin-top: 3px;
-    }
   }
 
   &__goto {
@@ -174,9 +171,11 @@
         border: 1px solid var(--ti-pager-primary-border-color);
         box-shadow: 0 0 0 rgba(0, 0, 0, 0);
       }
+
       &[disabled] {
         color: var(--ti-pager-disabled-text-color);
-        border-color: var(--ti-pager-disabled-border-color);
+        border-color: var(--ti-pager-select-disabled-border-color);
+        background: var(--ti-pager-select-disabled-bg-color);
         cursor: not-allowed;
       }
     }
@@ -187,6 +186,7 @@
       padding-left: var(--ti-pager-normal-text-padding-left);
       margin-right: 8px;
       line-height: var(--ti-pager-input-height);
+
       &-sufix {
         padding-left: 4px;
       }
@@ -215,10 +215,12 @@
         background 0.3s;
       outline: 0;
       .user-select(none);
+
       &:hover {
         border: 1px solid var(--ti-pager-goto-btn-border-hover-color);
         color: var(--ti-pager-goto-btn-text-hover-color);
       }
+
       &.is-disabled {
         color: var(--ti-pager-disabled-text-color);
         border-color: var(--ti-pager-disabled-border-color);
@@ -321,11 +323,12 @@
       .list-item {
         min-height: var(--ti-pager-poplist-item-min-height);
         padding: 0 8px;
-        line-height: 30px;
+        line-height: var(--ti-pager-poplist-item-min-height);
         max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        text-align: center;
 
         &:hover {
           cursor: pointer;
@@ -518,8 +521,8 @@
     .@{pager-prefix-cls}__page-size {
       color: var(--ti-pager-disabled-text-color);
       cursor: not-allowed;
-      border-color: var(--ti-pager-disabled-border-color);
-      background-color: var(--ti-base-color-bg-1);
+      border-color: var(--ti-pager-select-disabled-border-color);
+      background: var(--ti-pager-select-disabled-bg-color);
     }
 
     .@{pager-prefix-cls}__page-size-btn {
@@ -532,6 +535,20 @@
 
     .@{pager-prefix-cls}__goto-text {
       color: var(--ti-pager-disabled-text-color);
+    }
+  }
+
+  &__simplest-pager-popover {
+    .component-css-vars-pager();
+
+    .tiny-option-label {
+      text-align: center;
+      font-family: var(--ti-pager-number-font-family);
+    }
+
+    .tiny-option.selected {
+      color: var(--ti-pager-poplist-item-selected-text-color);
+      background: var(--ti-pager-poplist-item-selected-bg-color);
     }
   }
 }

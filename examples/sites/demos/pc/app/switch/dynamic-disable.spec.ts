@@ -7,8 +7,6 @@ test('禁用状态', async ({ page }) => {
   const demo = page.locator('#dynamic-disable')
   const switchBtn = demo.locator('.tiny-switch')
 
-  await expect(switchBtn.first()).toHaveCSS('background-color', 'rgb(190, 204, 250)')
-  await expect(switchBtn.first()).toHaveCSS('background-color', 'rgb(190, 204, 250)')
-  await expect(switchBtn.nth(1)).toHaveCSS('background-color', 'rgb(223, 225, 230)')
-  await expect(switchBtn.nth(1)).toHaveCSS('background-color', 'rgb(223, 225, 230)')
+  await expect(switchBtn.first()).toHaveCSS('background-color', 'rgb(179, 214, 255)')
+  await expect(switchBtn.nth(1)).toHaveCSS('background-color', 'rgb(219, 219, 219)')
 })
