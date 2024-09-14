@@ -30,7 +30,7 @@ export const radioProps = {
   border: Boolean,
   size: {
     type: String as PropType<'mini' | 'small' | 'medium'>,
-    default: ''
+    default: 'small'
   },
   text: String,
   events: {

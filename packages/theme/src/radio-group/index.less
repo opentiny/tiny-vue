@@ -42,7 +42,6 @@
 
       &:first-child .@{radio-button-prefix-cls}__inner {
         border-radius: var(--ti-radio-button-top-border-radius) var(--ti-radio-button-top-border-radius) var(--ti-radio-button-bottom-border-radius) var(--ti-radio-button-bottom-border-radius);
-        border-top: var(--ti-radio-button-border-top) solid var(--ti-radio-button-border-color);
       }
 
       &:last-child .@{radio-button-prefix-cls}__inner {
@@ -57,11 +56,6 @@
       &.is-active.is-disabled .@{radio-button-prefix-cls}__inner {
         border-color: var(--ti-radio-input-checked-disabled-border-color);
       }
-    }
-
-    .@{radio-button-prefix-cls}__inner {
-      border-top: 0;
-      border-left: 1px solid var(--ti-radio-button-border-color);
     }
   }
 }

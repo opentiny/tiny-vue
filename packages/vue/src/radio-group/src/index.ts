@@ -18,7 +18,7 @@ export const radioGroupProps = {
   modelValue: {},
   size: {
     type: String as PropType<'mini' | 'small' | 'medium'>,
-    default: ''
+    default: 'small'
   },
   fill: String,
   textColor: String,
