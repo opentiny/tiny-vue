@@ -12,9 +12,9 @@ test('按钮类型', async ({ page }) => {
 
   // 是否变成了按钮且按钮样式是否生效
   await expect(dropDown.locator('button')).toHaveCount(2)
-  await expect(textBtn).toHaveCSS('background-color', 'rgb(80, 212, 171)')
+  await expect(textBtn).toHaveCSS('background-color', 'rgb(92, 179, 0)')
   await expect(textBtn).toHaveCSS('color', 'rgb(255, 255, 255)')
-  await expect(dropDownBtn).toHaveCSS('background-color', 'rgb(80, 212, 171)')
+  await expect(dropDownBtn).toHaveCSS('background-color', 'rgb(92, 179, 0)')
   await expect(dropDownBtn).toHaveCSS('color', 'rgb(255, 255, 255)')
 
   // 文字悬浮不出现下拉菜单

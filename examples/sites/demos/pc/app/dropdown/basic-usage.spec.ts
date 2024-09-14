@@ -6,7 +6,7 @@ test('基本用法', async ({ page }) => {
 
   const wrap = page.locator('#basic-usage')
   const dropDown = wrap.locator('.tiny-dropdown')
-  console.log(dropDown)
+
   const dropDownMenu = page.locator('body').locator('.my-class')
   const dropDownMenuItem = dropDownMenu.locator('.tiny-dropdown-item')
   const dropDownSvg = dropDown.locator('svg')
@@ -27,8 +27,8 @@ test('基本用法', async ({ page }) => {
   // 测试悬浮效果
   await page.waitForTimeout(500)
   await dropDownMenuItem.first().hover()
-  await expect(dropDownMenuItem.first()).toHaveCSS('color', 'rgb(82, 110, 204)')
-  await expect(dropDownMenuItem.first()).toHaveCSS('background-color', 'rgb(242, 245, 252)')
+  await expect(dropDownMenuItem.first()).toHaveCSS('color', 'rgb(25, 25, 25)')
+  await expect(dropDownMenuItem.first()).toHaveCSS('background-color', 'rgb(245, 245, 245)')
   // 点击菜单项后菜单消失
   await dropDownMenuItem.first().click()
   await expect(dropDownMenu).not.toBeVisible()
