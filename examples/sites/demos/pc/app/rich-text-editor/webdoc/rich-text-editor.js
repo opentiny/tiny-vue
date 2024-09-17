@@ -87,7 +87,7 @@ export default {
       },
       desc: {
         'zh-CN': `<p>可通过 <code>collaboration</code> 属性开启协同编辑，可选值：<code>true</code> / <code>false</code> / <code>ProviderConfigure</code>。
-          <p>实际功能使用需要结合云服务或者后端服务，本示例使用的是 tiptap 提供的云服务</p>
+          <p>实际功能使用需要结合云服务或者后端服务，本示例使用的是 tiptap 提供的云服务以及本地测试服务</p>
           <p>参数具体配置可参考 <a href="https://tiptap.dev/docs/collaboration/provider/integration" target="_blank">provider</a></p>
         </p>\n`,
         'en-US': `<p>The collaboration can be set via the <code>collaboration</code> property, with available options: <code>true</code> / <code>false</code> / <code>Object</code>.

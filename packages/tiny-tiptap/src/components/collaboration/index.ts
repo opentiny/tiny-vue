@@ -21,9 +21,13 @@ export const setupCollaboration = (extensions: AnyExtension[], config: TiptapCol
   if (typeof config === 'boolean') {
     if (!config) return
     params.appId = defaultAppId
+    // params.baseUrl = 'ws://127.0.0.1:1234'
     params.name = defaultRoom
   } else {
-    params = config
+    params = {
+      document: params.document,
+      ...config
+    }
   }
 
   const provider = new TiptapCollabProvider(params)
