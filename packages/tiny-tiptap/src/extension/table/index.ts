@@ -2,9 +2,9 @@ import type { ExtensionOptions } from '@/types'
 import { type Editor, type Range } from '@tiptap/core'
 import type { TableOptions } from '@tiptap/extension-table'
 import TiptapTable from '@tiptap/extension-table'
-import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
-import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '../table-header'
+import TableRow from '../table-row'
+import TableCell from '../table-cell'
 import {
   iconRichTextAddColumnAfter,
   iconRichTextAddColumnBefore,
@@ -15,7 +15,8 @@ import {
   iconRichTextDeleteTable,
   iconRichTextHeading,
   iconRichTextMergeCells,
-  iconRichTextTable
+  iconRichTextTable,
+  IconRichTextHighLight
 } from '@opentiny/vue-icon'
 
 const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
@@ -147,6 +148,30 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
               },
               action: ({ editor }: { editor: Editor }) => {
                 return () => editor.chain().focus().mergeOrSplit().run()
+              }
+            },
+            {
+              icon: IconRichTextHighLight(),
+              priority: 100,
+              isDisabled: ({ editor }: { editor: Editor }) => {
+                return () => !editor.can().toggleHeaderCell()
+              },
+              action: ({ editor }: { editor: Editor }) => {
+                return (info) => {
+                  const color = info.backgroundColor
+                  editor.chain().focus().setCellAttribute('backgroundColor', color).run()
+                }
+              },
+              input: {
+                type: 'color',
+                cb: ({ editor }: { editor: Editor }) => {
+                  return (e: InputEvent) => {
+                    const color = e.target?.value
+                    if (color) {
+                      editor.chain().focus().setCellAttribute('backgroundColor', color).run()
+                    }
+                  }
+                }
               }
             }
           ]

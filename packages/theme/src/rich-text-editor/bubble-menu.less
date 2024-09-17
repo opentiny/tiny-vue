@@ -13,6 +13,9 @@
     cursor: pointer;
     padding: 2px 3px;
     border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
       background-color: #e5e6e7;
@@ -25,5 +28,13 @@
     &.is-disabled {
       cursor: not-allowed;
     }
+  }
+
+  &__input-color {
+    cursor: pointer;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    border: 0;
   }
 }

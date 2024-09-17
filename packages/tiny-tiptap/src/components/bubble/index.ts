@@ -41,7 +41,13 @@ const getBubbleMenuInstances = (editor: Editor) => {
         ...item,
         isActive: item.isActive?.({ editor }),
         isDisabled: item.isDisabled?.({ editor }),
-        action: item.action({ editor })
+        action: item.action({ editor }),
+        input: item.input
+          ? {
+              ...item.input,
+              cb: item.input.cb?.({ editor })
+            }
+          : {}
       }))
       instances.push(menuInstance)
     }
