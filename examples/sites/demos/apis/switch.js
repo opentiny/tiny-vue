@@ -30,6 +30,20 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'loading',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否加载中状态',
+            'en-US': 'Loading status'
+          },
+          meta: {
+            stable: '3.19.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'loading'
+        },
+        {
           name: 'false-value',
           type: 'boolean | string | number',
           defaultValue: 'false',

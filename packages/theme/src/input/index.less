@@ -27,34 +27,6 @@
   display: inline-table;
   width: 100%;
 
-  &::-webkit-scrollbar {
-    z-index: 11;
-    width: 6px;
-
-    &:horizontal {
-      height: 6px;
-    }
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    width: 6px;
-    background: #b4bccc;
-  }
-
-  &::-webkit-scrollbar-corner {
-    background: #fff;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: #fff;
-  }
-
-  &::-webkit-scrollbar-track-piece {
-    background: #fff;
-    width: 6px;
-  }
-
   &.is-exceed &__suffix &__count {
     color: var(--ti-input-exceed-text-color);
 
@@ -68,7 +40,7 @@
     border: 1px solid var(--ti-input-disabled-border-color);
     color: var(--ti-input-disabled-text-color);
     background: var(--ti-input-disabled-bg-color);
-    .placeholder(@color: var(--ti-input-placeholder-color));
+    .placeholder(@color: var(--ti-input-placeholder-text-color));
 
     &.@{input-prefix-cls}__mask {
       font-family: serif;
@@ -111,10 +83,10 @@
     font-size: var(--ti-input-icon-font-size);
     cursor: pointer;
     transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-    fill: var(--ti-input-icon-close-text-color);
+    fill: var(--ti-input-icon-color);
 
     &:hover {
-      fill: var(--ti-input-clear-text-color-hover);
+      fill: var(--ti-input-icon-color-hover);
     }
   }
 
@@ -124,7 +96,7 @@
     right: -1px;
     display: inline-flex;
     align-items: center;
-    color: var(--ti-input-count-color);
+    color: var(--ti-input-count-font-color);
     font-size: var(--ti-input-count-font-size);
 
     .@{input-prefix-cls}__count-inner {
@@ -135,7 +107,7 @@
     }
 
     &-text-length {
-      color: var(--ti-input-count-textlength-color);
+      color: var(--ti-input-text-color);
     }
   }
 
@@ -248,13 +220,6 @@
       display: inline-block;
       vertical-align: middle;
     }
-
-    .svg-operationfaild {
-      &,
-      &:hover {
-        fill: var(--ti-input-icon-close-text-color);
-      }
-    }
   }
 
   &__validateIcon {
@@ -360,6 +325,7 @@
   }
 }
 
+// 配置前置或者后置插槽
 .@{input-group-prefix-cls} {
   .component-css-vars-input();
 
@@ -443,22 +409,5 @@
 
   &__append {
     border-left: 0;
-  }
-}
-
-.@{css-prefix-iconfont}-loading {
-  font-size: var(--ti-common-font-size-1);
-  line-height: 1;
-  vertical-align: text-top;
-  animation: rotating 2s linear infinite;
-}
-
-@keyframes rotating {
-  0% {
-    transform: rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateZ(360deg);
   }
 }

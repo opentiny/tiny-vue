@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <tiny-button @click="visible = !visible" :reset-time="0">默认插槽</tiny-button>
-    <tiny-modal v-model="visible" :lock-scroll="false" show-footer width="1000">
+    <tiny-modal v-model="visible" :lock-scroll="false" show-footer width="1000" type="confirm">
       <template #default>
         <p class="test">test</p>
         <tiny-grid :tooltip-config="{ 'append-to-body': true }" :data="tableData" :auto-resize="true">
@@ -50,5 +50,6 @@ const tableData = ref([
 <style scoped>
 .test {
   margin-bottom: 16px;
+  color: #595959;
 }
 </style>
