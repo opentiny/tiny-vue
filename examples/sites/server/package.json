@@ -1,0 +1,18 @@
+{
+  "name": "tiny-sites-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "collaboration": "node rich-text-editor/collaboration/index.js"
+  },
+  "dependencies": {
+    "@hocuspocus/extension-logger": "^2.13.5",
+    "@hocuspocus/extension-sqlite": "^2.13.5",
+    "@hocuspocus/server": "^2.13.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.7.0"
+  }
+}
