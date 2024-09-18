@@ -1,12 +1,12 @@
 .tiny-toolbar-menu {
   &__view {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 8px;
-    background-color: #ffffff;
+    background-color: var(--ti-rich-text-editor-button-bg-color);
     padding: 5px;
-    border: 1px solid #000000;
-    border-radius: 5px;
+    border: 1px solid var(--ti-rich-text-editor-box-border-color);
   }
 
   &__item {
@@ -17,27 +17,46 @@
     position: relative;
     outline: none;
     border: none;
-    border-radius: 3px;
-    background-color: #ffffff;
+    border-radius: 0.4rem;
+    background-color: var(--ti-rich-text-editor-button-bg-color);
     padding: 2px 3px;
 
     &:hover {
-      background-color: #e5e6e7;
+      background-color: var(--ti-rich-text-editor-button-hover-bg);
 
       .tooltip {
         display: flex;
         flex-direction: column;
         gap: 4px;
         padding: 0;
+        color: var(--ti-rich-text-editor-button-text-color);
       }
     }
 
     &.is-active {
-      background-color: #d5e3fc;
+      background-color: var(--ti-rich-text-editor-button-active-bg);
     }
 
     &.is-disabled {
+      color: var(--ti-rich-text-editor-button-disabled-text-color);
       cursor: not-allowed;
+    }
+
+    &:hover,
+    &.is-active {
+      .tiny-toolbar-menu__icon {
+        svg,
+        path {
+          fill: var(--ti-rich-text-editor-button-hover);
+        }
+      }
+    }
+
+    & .tooltip {
+      svg,
+      path {
+        fill: var(--ti-rich-text-editor-button-text-color);
+      }
     }
 
     input {
@@ -57,7 +76,7 @@
     position: absolute;
     z-index: 999;
     display: none;
-    background-color: #ffffff;
+    background-color: var(--ti-rich-text-editor-button-bg-color);
     padding: 0.15rem;
     top: 100%;
 
@@ -66,8 +85,8 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        border-top: 1px solid #ccc;
-        border-left: 1px solid #ccc;
+        border-top: 1px solid var(--ti-rich-text-editor-box-border-color);
+        border-left: 1px solid var(--ti-rich-text-editor-box-border-color);
       }
 
       &__row {
@@ -76,8 +95,8 @@
 
       &__item {
         box-sizing: border-box;
-        border-right: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
+        border-right: 1px solid var(--ti-rich-text-editor-box-border-color);
+        border-bottom: 1px solid var(--ti-rich-text-editor-box-border-color);
 
         &.is-active {
           background-color: rgb(32 122 183 / 50%);
@@ -92,7 +111,12 @@
     white-space: nowrap;
 
     &:hover {
-      color: lightblue;
+      color: var(--ti-rich-text-editor-options-item-hover-color);
+
+      svg,
+      path {
+        fill: var(--ti-rich-text-editor-options-item-hover-color);
+      }
     }
   }
 }
