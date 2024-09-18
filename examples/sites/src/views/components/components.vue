@@ -84,7 +84,11 @@
                         :title="i18nByKey('defValue')"
                         :width="columnWidth[key][2]"
                       ></tiny-grid-column>
-                      <tiny-grid-column field="desc" :title="i18nByKey('desc')"></tiny-grid-column>
+                      <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                        <template #default="data">
+                          <span v-html="data.row.desc"></span>
+                        </template>
+                      </tiny-grid-column>
                     </tiny-grid>
                   </template>
                 </div>
@@ -202,7 +206,11 @@
                             :title="i18nByKey('defValue')"
                             :width="columnWidth[key][2]"
                           ></tiny-grid-column>
-                          <tiny-grid-column field="desc" :title="i18nByKey('desc')"></tiny-grid-column>
+                          <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                            <template #default="data">
+                              <span v-html="data.row.desc"></span>
+                            </template>
+                          </tiny-grid-column>
                         </tiny-grid>
                       </template>
                     </div>
@@ -836,6 +844,15 @@ export default defineComponent({
 
   :deep(.tiny-grid-body__expanded-cell) {
     background-color: #fafafa;
+  }
+
+  :deep(code) {
+    color: #476582;
+    padding: 4px 8px;
+    margin: 0 4px;
+    font-size: 0.85em;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
   }
 }
 
