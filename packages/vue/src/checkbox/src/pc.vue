@@ -68,9 +68,9 @@
         @click.stop
       />
       <span class="tiny-checkbox__inner">
-        <icon-halfselect v-if="indeterminate && state.shape !== 'filter'" class="tiny-svg-size icon-halfselect" />
-        <icon-checked-sur v-else-if="state.isChecked" class="tiny-svg-size icon-checked-sur" />
-        <icon-check v-else class="tiny-svg-size icon-check" />
+        <icon-halfselect v-if="indeterminate && state.shape !== 'filter'" class="icon-halfselect" />
+        <icon-checked-sur v-else-if="state.isChecked" class="icon-checked-sur" />
+        <icon-checked-sur v-else class="icon-no-checked" />
       </span>
     </span>
     <span
@@ -87,7 +87,7 @@
 import { renderless, api } from '@opentiny/vue-renderless/checkbox/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/checkbox/index.less'
-import { iconHalfselect, iconCheckedSur, iconCheck } from '@opentiny/vue-icon'
+import { iconHalfselect, iconYes } from '@opentiny/vue-icon'
 import type { ICheckboxApi } from '@opentiny/vue-renderless/types/checkbox.type'
 import { AutoTip } from '@opentiny/vue-directive'
 export default defineComponent({
@@ -117,8 +117,7 @@ export default defineComponent({
   ],
   components: {
     IconHalfselect: iconHalfselect(),
-    IconCheckedSur: iconCheckedSur(),
-    IconCheck: iconCheck()
+    IconCheckedSur: iconYes()
   },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ICheckboxApi
