@@ -49,6 +49,8 @@
   --ti-modal-body-font-size: var(--ti-common-font-size-base, 12px);
   // 内容文本色
   --ti-modal-body-text-color: var(--ti-common-color-text-secondary);
+  // 消息弹窗内容文本色
+  --ti-modal-body-message-font-color: var(--ti-common-color-info-normal);
   // 内容行高
   --ti-modal-body-line-height: var(--ti-common-line-height-number, 1.5);
 
@@ -75,9 +77,9 @@
   // message左内边距
   --ti-modal-message-padding-left: var(--ti-common-space-4x);
   // message右内边距
-  --ti-modal-message-padding-right: var(--ti-common-space-3x);
+  --ti-modal-message-padding-right: var(--ti-common-space-4x);
   // message垂直内边距
-  --ti-modal-message-padding-vertical: calc(var(--ti-common-space-10) - 0.5px);
+  --ti-modal-message-padding-vertical: var(--ti-common-space-3x);
   // message内容水平内边距(hide)
   --ti-modal-message-body-padding-horizontal: var(--ti-common-space-0);
   // message状态图标尺寸
@@ -123,5 +125,5 @@
   // 头部底线边框设置(hide)
   --ti-modal-header-border-bottom: none;
   // 关闭按钮颜色
-  --ti-modal-btn-close-color: var(--ti-modal-close-btn-icon-color);
+  --ti-modal-btn-close-color: var(--ti-common-color-icon-normal);
 }

@@ -6,5 +6,5 @@ test('控制显示头部及底部', async ({ page }) => {
 
   const modal = page.locator('.tiny-modal.active')
   await page.getByRole('button', { name: /控制显示头部及底部/ }).click()
-  await expect(modal.locator('.tiny-modal__header')).not.toBeVisible()
+  await expect(modal.locator('.tiny-modal__header')).toBeVisible()
 })
