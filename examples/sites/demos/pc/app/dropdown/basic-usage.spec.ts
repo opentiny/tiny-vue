@@ -13,7 +13,10 @@ test('基本用法', async ({ page }) => {
 
   // 箭头是否存在
   await expect(dropDownSvg).toBeVisible()
-  await expect(dropDownSvg.locator('path')).toHaveAttribute('d', 'M2 6h20L12 19z')
+  await expect(dropDownSvg.locator('path')).toHaveAttribute(
+    'd',
+    'M8 11.43c-.15 0-.31-.06-.42-.18L1.92 5.6c-.23-.23-.23-.61 0-.85s.61-.23.85 0L8 9.98l5.23-5.23a.61.61 0 0 1 .85 0c.23.23.23.61 0 .85l-5.66 5.66c-.11.11-.27.17-.42.17z'
+  )
 
   await page.waitForTimeout(500)
   await dropDown.hover()
