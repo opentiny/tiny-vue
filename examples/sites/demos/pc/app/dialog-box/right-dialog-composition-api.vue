@@ -10,8 +10,8 @@
       </template>
       <span>半屏弹窗内容</span>
       <template #footer>
-        <tiny-button type="primary" @click="boxVisibility = false"> 确 定 </tiny-button>
         <tiny-button plain @click="boxVisibility = false"> 取消 </tiny-button>
+        <tiny-button type="primary" @click="boxVisibility = false"> 确定 </tiny-button>
       </template>
     </tiny-dialog-box>
   </div>
