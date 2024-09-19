@@ -124,7 +124,7 @@ export const handleScroll = (state: IAnchorRenderlessParams['state']) => () => {
 
 // 设置滚动偏移量
 const setChildOffsetTop = ({ state, props }: Pick<IAnchorRenderlessParams, 'state' | 'props'>) => {
-  if (props.links?.length) {
+  if (!props.links?.length) {
     return
   }
   state.offsetTop = document.querySelector(props.links[0].link)?.offsetTop || 0
