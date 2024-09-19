@@ -20,5 +20,5 @@ test('基本用法', async ({ page }) => {
     return {}
   })
 
-  expect(afterElement.backgroundColor).toBe('rgb(94, 124, 224)')
+  expect(afterElement.backgroundColor).toBe('rgb(20, 118, 255)')
 })
