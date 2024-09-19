@@ -10,8 +10,8 @@ test('带边框复选框', async ({ page }) => {
 
   await expect(checkbox).toHaveCSS('width', '158px')
   await expect(checkbox).toHaveCSS('height', '40px')
-  await expect(checkbox).toHaveCSS('border-left-color', 'rgb(173, 176, 184)')
-  await expect(checkbox).toHaveCSS('border-bottom-color', 'rgb(173, 176, 184)')
+  await expect(checkbox).toHaveCSS('border-left-color', 'rgb(194, 194, 194)')
+  await expect(checkbox).toHaveCSS('border-bottom-color', 'rgb(194, 194, 194)')
   await expect(label).toHaveClass(/content-overflow/)
   await label.hover()
   await expect(demo.locator('.tiny-tooltip').filter({ hasText: '备选项1 提示文字 提示文字' })).toBeVisible()

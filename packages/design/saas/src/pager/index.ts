@@ -1,6 +1,6 @@
 export default {
   state: {
-    showJumperSufix: false,
+    showJumperSuffix: false,
     align: 'right',
     totalI18n: 'total',
     totalFixedLeft: true

@@ -1,7 +1,6 @@
 export default {
   state: {
     pageSizeText: '',
-    align: 'right',
-    totalFixedLeft: true
+    align: 'right'
   }
 }

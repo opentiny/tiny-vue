@@ -4,9 +4,10 @@
     :class="['float-settings', { 'float-settings--aside': isSettingsAside }]"
     :style="settingsStyle"
   >
-    <!-- 切换主题样式 -->
+    <!-- 切换主题样式 暂时隐藏 -->
     <tiny-popover
       width="404"
+      v-if="false"
       placement="left-end"
       trigger="click"
       :visible-arrow="false"

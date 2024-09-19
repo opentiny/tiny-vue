@@ -4,12 +4,14 @@
 @guide-prefix-cls: ~'@{css-prefix}guide';
 .@{guide-prefix-cls} {
   .component-css-vars-guide();
+
   .shepherd-arrow {
     height: calc(var(--ti-guide-arrow-height) * 1.4);
     position: absolute;
     width: calc(var(--ti-guide-arrow-width) * 1.4);
     z-index: -10;
     overflow: hidden;
+
     &:before {
       width: var(--ti-guide-arrow-width);
       position: absolute;
@@ -67,7 +69,7 @@
           width: var(--ti-guide-cancel-icon-width);
           height: var(--ti-guide-cancel-icon-height);
           line-height: var(--ti-guide-cancel-icon-line-height);
-          color: var(--ti-guide-cancel-icon-color);
+          fill: var(--ti-guide-cancel-icon-color);
           display: inline-flex;
           justify-content: center;
           font-weight: var(--ti-guide-cancel-icon-font-weight);
@@ -77,7 +79,7 @@
         }
 
         span:hover {
-          color: var(--ti-guide-cancel-hover-icon-color);
+          fill: var(--ti-guide-cancel-hover-icon-color);
         }
       }
     }

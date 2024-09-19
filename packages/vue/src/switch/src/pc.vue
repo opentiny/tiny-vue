@@ -19,14 +19,21 @@
     @keydown.enter="toggle"
   >
     <span :class="state.innerClasses">
-      <div v-if="!mini && state.showText">
+      <div v-if="!mini && state.showText && !loading">
         <slot v-if="state.currentValue === trueValue" name="open">ON</slot>
         <slot v-if="state.currentValue === falseValue" name="close">OFF</slot>
       </div>
     </span>
     <span class="tiny-switch__button">
-      <slot v-if="state.currentValue === trueValue" name="active-icon"></slot>
-      <slot v-if="state.currentValue === falseValue" name="inactive-icon"></slot>
+      <icon-loading
+        v-if="loading"
+        :class="[
+          state.currentValue === trueValue ? 'tiny-switch__on-loading' : 'tiny-switch__off-loading',
+          mini ? 'tiny-switch__loading-size' : ''
+        ]"
+      />
+      <slot v-if="state.currentValue === trueValue && !loading" name="active-icon"></slot>
+      <slot v-if="state.currentValue === falseValue && !loading" name="inactive-icon"></slot>
     </span>
   </span>
   <span v-else>
@@ -40,6 +47,7 @@ import { renderless, api } from '@opentiny/vue-renderless/switch/vue'
 import { props, setup, defineComponent } from '@opentiny/vue-common'
 import '@opentiny/vue-theme/switch/index.less'
 import type { ISwitchApi } from '@opentiny/vue-renderless/types/switch.type'
+import { IconLoadingShadow } from '@opentiny/vue-icon'
 
 export default defineComponent({
   emits: ['change', 'update:modelValue'],
@@ -53,8 +61,10 @@ export default defineComponent({
     'tabindex',
     'showText',
     'beforeChange',
-    'displayOnly'
+    'displayOnly',
+    'loading'
   ],
+  components: { IconLoading: IconLoadingShadow() },
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as ISwitchApi
   }

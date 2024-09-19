@@ -24,8 +24,12 @@
           v-if="state.hasButtons"
           v-show="(arrow === 'always' || state.hover) && (loop || state.activeIndex > 0)"
           type="button"
-          class="tiny-carousel__arrow"
-          :class="type === 'vertical' ? 'tiny-carousel__arrow-top' : 'tiny-carousel__arrow-left'"
+          :class="[
+            'tiny-carousel__arrow',
+            type === 'vertical' ? 'tiny-carousel__arrow-top' : 'tiny-carousel__arrow-left',
+            disabled && state.activeIndex === 0 ? 'tiny-carousel__arrow-disabled' : ''
+          ]"
+          :disabled="loop && disabled && state.activeIndex === 0"
           @mouseenter="handleButtonEnter('left')"
           @mouseleave="handleButtonLeave"
           @click.stop="throttledArrowClick(state.activeIndex - 1)"
@@ -40,8 +44,12 @@
           v-if="state.hasButtons"
           v-show="(arrow === 'always' || state.hover) && (loop || state.activeIndex < state.items.length - 1)"
           type="button"
-          class="tiny-carousel__arrow"
-          :class="type === 'vertical' ? 'tiny-carousel__arrow-bottom' : 'tiny-carousel__arrow-right'"
+          :class="[
+            'tiny-carousel__arrow',
+            type === 'vertical' ? 'tiny-carousel__arrow-bottom' : 'tiny-carousel__arrow-right',
+            disabled && state.activeIndex === state.items.length - 1 ? 'tiny-carousel__arrow-disabled' : ''
+          ]"
+          :disabled="loop && disabled && state.activeIndex === state.items.length - 1"
           @mouseenter="handleButtonEnter('right')"
           @mouseleave="handleButtonLeave"
           @click.stop="throttledArrowClick(state.activeIndex + 1)"
@@ -97,6 +105,7 @@ export default defineComponent({
     'type',
     'showTitle',
     'loop',
+    'disabled',
     'swipeable',
     'lite',
     'beforeSwipe'
