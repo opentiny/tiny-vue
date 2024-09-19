@@ -10,7 +10,7 @@ test('多选时取远端数据与当前已选数据的并集', async ({ page }) 
   const tag = select.locator('.tiny-tag')
 
   await expect(tag).toHaveCount(2)
-  await select.locator('.tiny-input__suffix').click()
+  await select.locator('.tiny-input__suffix').nth(0).click()
   await option.filter({ hasText: '全部' }).click()
   await expect(tag).toHaveCount(7)
   await option.filter({ hasText: '全部' }).click()
@@ -35,15 +35,16 @@ test('multiple-limit', async ({ page }) => {
   await select.click()
   await option.nth(0).click()
   await option.nth(1).click()
+  await option.nth(2).click()
   await expect(tag).toHaveCount(2)
   await expect(option.filter({ hasText: '全部' })).toHaveCount(0)
 
   const list = await option.all()
-  list.forEach(async (item, index) => {
-    if (index <= 1) {
-      await expect(item).toHaveClass(/selected/)
-    } else {
-      await expect(item).toHaveClass(/is-disabled/)
-    }
-  })
+  await expect(list[0]).toHaveClass(/selected hover is-required/)
+  await expect(list[1]).toHaveClass(/is-disabled/)
+  await expect(list[2]).toHaveClass(/selected/)
+  await expect(list[3]).toHaveClass(/is-disabled/)
+  await expect(list[4]).toHaveClass(/is-disabled/)
+  await expect(list[5]).toHaveClass(/is-disabled/)
+  await expect(list[6]).toHaveClass(/is-disabled/)
 })
