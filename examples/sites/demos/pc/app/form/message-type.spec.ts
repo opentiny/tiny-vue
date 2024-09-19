@@ -12,7 +12,7 @@ test('文本类型错误提示位置', async ({ page }) => {
 
   await demo.getByRole('button', { name: '提交' }).click()
   await getBtnByText('默认').click()
-  await expect(firstItemError).toHaveCSS('position', 'absolute')
+  await expect(firstItemError).toHaveCSS('display', 'flex')
   await getBtnByText('行内').click()
   await expect(firstItemError).toHaveCSS('display', 'inline-block')
   await getBtnByText('块级').click()
