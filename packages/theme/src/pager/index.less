@@ -25,7 +25,7 @@
   .component-css-vars-pager();
 
   text-align: left;
-  padding: var(--tv-Pager-selector-padding-y) 0;
+  padding: var(--tv-Pager-padding-y) 0;
   color: var(--tv-Pager-text-color);
 
   & &__group {
@@ -45,9 +45,8 @@
   }
 
   & &__total {
-    height: var(--tv-Pager-total-height);
-    line-height: var(--tv-Pager-total-line-height);
-    font-size: var(--tv-Pager-total-font-size);
+    height: var(--tv-Pager-height);
+    line-height: var(--tv-Pager-height);
 
     &-num {
       font-family: var(--tv-Pager-number-font-family);
@@ -236,7 +235,6 @@
     align-items: center;
     font-size: var(--tv-Pager-font-size);
     font-weight: bolder;
-    color: var(--ti-pagination-prev-next-color);
     outline: none;
     border: 1px solid var(--tv-Pager-page-item-border-color);
     background: transparent;
@@ -296,10 +294,10 @@
     &.@{popover-prefix-cls}.@{popper-prefix-cls} {
       border: 0;
       padding: 8px 0;
-      border-radius: var(--tv-Pager-pop-body-border-radius);
+      border-radius: var(--tv-Pager-input-border-radius);
 
       &[x-placement^='bottom'] {
-        margin-top: var(--tv-Pager-pop-body-margin-top);
+        margin-top: 4px;
       }
 
       &[x-placement^='top'] {
@@ -316,9 +314,9 @@
     &-poplist {
       .list-item {
         color: var(--tv-Pager-text-color);
-        min-height: var(--tv-Pager-poplist-item-min-height);
+        min-height: var(--tv-Pager-sizes-popup-item-height);
         padding: 0 16px;
-        line-height: var(--tv-Pager-poplist-item-min-height);
+        line-height: var(--tv-Pager-sizes-popup-item-height);
         max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -339,7 +337,7 @@
           background: var(--tv-Pager-sizes-popup-bg-color-hover);
 
           &.is-selected {
-            color: var(--tv-Pager-poplist-item-selected-text-color);
+            color: var(--tv-Pager-sizes-popup-text-color-active);
             background: transparent;
             font-weight: bold;
 
@@ -401,7 +399,7 @@
     }
 
     &-btn {
-      padding: 0 var(--tv-Pager-input-btn-padding-x);
+      padding: 0 var(--tv-Pager-sizes-arrow-padding-x);
       height: var(--tv-Pager-height);
       line-height: calc(var(--tv-Pager-height) - 2px);
       position: relative;
@@ -446,18 +444,18 @@
 
     .@{pager-prefix-cls}__goto-text {
       font-size: var(--tv-Pager-font-size-xs);
-      line-height: var(----tv-Pager-input-height-xs);
+      line-height: var(--tv-Pager-input-height-xs);
     }
 
     .@{pager-prefix-cls}__goto {
       input {
-        height: var(----tv-Pager-input-height-xs);
-        line-height: var(----tv-Pager-input-height-xs);
+        height: var(--tv-Pager-input-height-xs);
+        line-height: var(--tv-Pager-input-height-xs);
       }
     }
 
     li {
-      min-width: var(--tv-Pager-mini-min-width);
+      min-width: var(--tv-Pager-min-width-xs);
       height: 24px;
       padding: 0 4px;
       line-height: 22px;
