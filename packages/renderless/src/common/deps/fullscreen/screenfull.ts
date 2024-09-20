@@ -56,8 +56,9 @@ const document = typeof window !== 'undefined' && typeof window.document !== 'un
 let fullscreenEvents = null
 
 const getFullScreenEvents = () => {
+  if (!isBrowser) return
+
   for (let i = 0, len = fullscreenApiMap.length; i < len; i++) {
-    if (!isBrowser) return
     let eventName = fullscreenApiMap[i]
 
     if (eventName && eventName[1] in document) {
