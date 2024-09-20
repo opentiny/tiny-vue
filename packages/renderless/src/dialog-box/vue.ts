@@ -144,7 +144,7 @@ const initApi = ({
     unMounted: unMounted({ api, parent, props }),
     computedAnimationName: computedAnimationName({ constants, props }),
     afterEnter: afterEnter(emit),
-    afterLeave: afterLeave(emit, state, props),
+    afterLeave: afterLeave(emit),
     hideScrollbar: hideScrollbar(lockScrollClass),
     showScrollbar: showScrollbar(lockScrollClass),
     handleDrag: handleDrag({ parent, props, state, emit, vm }),

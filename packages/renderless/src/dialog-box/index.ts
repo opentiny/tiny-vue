@@ -241,15 +241,9 @@ export const afterEnter = (emit: IDialogBoxRenderlessParams['emit']) => (): void
   emit('opened')
 }
 
-export const afterLeave =
-  (
-    emit: IDialogBoxRenderlessParams['emit'],
-    state: IDialogBoxRenderlessParams['state'],
-    props: IDialogBoxRenderlessParams['props']
-  ) =>
-  (): void => {
-    emit('closed')
-  }
+export const afterLeave = (emit: IDialogBoxRenderlessParams['emit']) => (): void => {
+  emit('closed')
+}
 
 const findPopoverComponent = ({
   vm,
