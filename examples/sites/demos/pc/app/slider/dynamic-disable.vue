@@ -1,5 +1,5 @@
 <template>
-  <tiny-slider v-model="value" disabled></tiny-slider>
+  <tiny-slider v-model="value" disabled :show-input="true" unit="%"></tiny-slider>
 </template>
 
 <script>

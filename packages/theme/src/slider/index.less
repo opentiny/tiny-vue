@@ -232,7 +232,7 @@
   }
 
   &__input {
-    display: inline-block;
+    display: flex;
     line-height: var(--ti-slider-input-height);
     vertical-align: top;
     margin-left: var(--ti-slider-input-margin-left);
@@ -261,6 +261,12 @@
     &__unit {
       margin-left: var(--ti-slider-input-unit-margin-left);
       color: var(--ti-slider-input-unit-text-color);
+    }
+
+    &.is-disabled {
+      .@{slider-prefix-cls}__input__unit {
+        color: var(--ti-slider-input-unit-text-color-disabled);
+      }
     }
   }
 }

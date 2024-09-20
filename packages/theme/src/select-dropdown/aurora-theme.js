@@ -2,7 +2,7 @@ export const tinySelectDropdownAuroraTheme = {
   'ti-select-dropdown-padding-bottom': 'var(--ti-common-space-0)',
   'ti-select-dropdown-padding-top': 'var(--ti-common-space-0)',
   'ti-select-dropdown-max-height': '188px',
-  'ti-select-dropdown-box-shadow': '0 0 4px rgba(0,0,0,0.3)', // 没有common 变量
+  'ti-select-dropdown-box-shadow': 'var(--ti-common-shadow-2-down)', // 没有common 变量
   'ti-select-dropdown-border-weight': 'var(--ti-common-border-weight-normal)',
   'ti-select-dropdown-border-color': 'var(--ti-common-color-line-normal)',
   'ti-option-checkbox-border-color-hover': '#bfbfbf',

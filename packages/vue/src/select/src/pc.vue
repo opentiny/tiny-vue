@@ -152,7 +152,7 @@
               <template v-else>
                 <tiny-tag
                   v-if="hoverExpand || clickExpand"
-                  :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden }]"
+                  :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden || state.isDisabled }]"
                   :type="state.getTagType"
                   key="tags-collapse"
                   data-tag="tags-collapse"
@@ -227,8 +227,7 @@
             >
               <span>
                 <span v-for="item in state.selected" :key="item.value">
-                  <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
-                  >;
+                  <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot>
                 </span>
               </span>
 

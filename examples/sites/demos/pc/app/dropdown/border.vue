@@ -18,7 +18,7 @@
     <br />
     <div>场景2：显示边框并圆角</div>
     <br />
-    <tiny-dropdown border round>
+    <tiny-dropdown border round type="primary">
       <span>下拉菜单</span>
       <template #dropdown>
         <tiny-dropdown-menu>
