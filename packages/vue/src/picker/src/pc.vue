@@ -67,7 +67,7 @@
       class="tiny-date-editor tiny-range-editor tiny-input tiny-input__inner"
       :class="[
         'tiny-date-editor--' + state.type,
-        state.pickerSize ? `tiny-range-editor--${state.pickerSize}` : '',
+        state.pickerSize ? `tiny-range-editor--${state.pickerSize} tiny-input-${state.pickerSize}` : '',
         state.pickerDisabled ? 'is-disabled' : '',
         state.pickerVisible ? 'is-active' : '',
         state.isDisplayOnly ? 'is-display-only' : ''

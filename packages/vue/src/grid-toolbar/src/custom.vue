@@ -136,9 +136,6 @@
           class="tiny-grid-custom__footer"
           :dir="TinyTheme === 'saas' ? 'rtl' : 'ltr'"
         >
-          <tiny-button type="primary" @click="saveSettings" :disabled="saveDisabled">
-            {{ t('ui.grid.individuation.saveBtn') }}
-          </tiny-button>
           <tiny-button @click="handleReset">
             {{ t('ui.grid.individuation.resetBtn') }}
           </tiny-button>
@@ -147,6 +144,9 @@
           }}</tiny-button>
           <tiny-button @click="cancelSettings">
             {{ t('ui.grid.individuation.cancelBtn') }}
+          </tiny-button>
+          <tiny-button type="primary" @click="saveSettings" :disabled="saveDisabled">
+            {{ t('ui.grid.individuation.saveBtn') }}
           </tiny-button>
         </div>
       </div>

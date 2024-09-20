@@ -21,6 +21,7 @@ export default {
         modules: {
           // 工具栏
           toolbar: [
+            ['undo', 'redo', 'clean', 'format-painter'],
             ['bold', 'italic', 'underline', 'strike'],
             [{ list: 'bullet' }, { list: 'ordered' }],
             [{ align: '' }, { align: 'center' }, { align: 'right' }],

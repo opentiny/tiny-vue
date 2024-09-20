@@ -28,6 +28,13 @@
         { 'absolute w-full': state.isExpand && hoverExpand },
         { 'z-[2]': state.isExpand && hoverExpand && (state.inputHovering || state.visible) }
       ]"
+      :title="
+        multiple && !state.selectDisabled
+          ? state.selected.map((item) => (item.state ? item.state.currentLabel : item.currentLabel)).join('; ')
+          : !multiple && state.selectDisabled
+            ? state.selectedLabel
+            : ''
+      "
     >
       <tiny-filter-box
         v-if="shape === 'filter'"

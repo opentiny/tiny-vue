@@ -157,7 +157,7 @@ export default defineComponent({
                     const content = getContent(this)
 
                     // 当内容为纯文本时，添加一层wrapper，其他情况（插槽、renderContent）原样输出
-                    const addWrapper = typeof parseVnode(content) === 'string'
+                    const addWrapper = typeof content === 'string'
                     const propsData = {
                       attrs: { name: this.transition },
                       on: { 'after-leave': this.doDestroy }

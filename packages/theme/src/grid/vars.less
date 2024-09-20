@@ -23,13 +23,13 @@
     'Microsoft JhengHei'
   );
   // 默认表头文本色
-  --ti-grid-header-text-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-grid-header-text-color: var(--ti-common-color-text-secondary);
   // 默认表头字体权重
-  --ti-grid-header-font-weight: var(--ti-common-font-weight-4, normal);
+  --ti-grid-header-font-weight: bold;
   // 默认表体文本色
   --ti-grid-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 默认按钮图标悬浮色
-  --ti-grid-icon-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-grid-icon-color: var(--ti-common-color-icon);
   // 表格亮色
   --ti-grid-light-color: var(--ti-common-color-light, #fff);
   // 表格错误色
@@ -54,26 +54,26 @@
   --ti-grid-body-td-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
 
   // 表头x轴虚拟滚动元素边框颜色
-  --ti-grid-header-repair-border-color: var(--ti-common-color-transparent, transparent);
+  --ti-grid-header-repair-border-color: var(--ti-common-color-transparent);
 
   // 表格内部单选按钮边框色
   --ti-grid-radio-border-color: var(--ti-common-color-line-normal, #adb0b8);
   // 表格单选框选中背景色
-  --ti-grid-radio-bg-color-checked: var(--ti-grid-primary-color);
+  --ti-grid-radio-bg-color-checked: #1476ff;
 
   // 表格内部多选按钮边框色
-  --ti-grid-checkbox-border-color: var(--ti-common-color-line-normal, #adb0b8);
+  --ti-grid-checkbox-border-color: var(--ti-common-color-line-normal);
   // 表格内部多选按钮大小
-  --ti-grid-select-icon-font-size: var(--ti-common-font-size-2, 16px);
+  --ti-grid-select-icon-font-size: var(--ti-common-font-size-3);
   // 表格多选框选中背景色
-  --ti-grid-checkbox-bg-color-checked: var(--ti-grid-primary-color);
+  --ti-grid-checkbox-bg-color-checked: #1476ff;
   // 表格复选框字号
-  --ti-grid-checkbox-icon-size: var(--ti-common-font-size-1, 14px);
+  --ti-grid-checkbox-icon-size: var(--ti-common-font-size-2);
   // 表格内部多选按钮边框圆角
-  --ti-grid-checkbox-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --ti-grid-checkbox-border-radius: var(--ti-common-border-radius-2);
 
   // 表格头部默认背景色
-  --ti-grid-header-background-color: var(--ti-common-color-bg-white-emphasize, #f2f5fc);
+  --ti-grid-header-background-color: #f5f5f5;
   // 新增行背景颜色
   --ti-grid-new-row-background-color: var(--ti-common-color-bg-white-emphasize, #f2f5fc);
   // 表格主色调色
@@ -90,9 +90,9 @@
   // 自定义内容列表高度（没有效果）
   --ti-grid-custom-body-list-height: var(--ti-common-size-height-small, 32px);
   // 表格列拖拽分割线背景颜色
-  --ti-grid-header-resizable-bg-color: var(--ti-common-color-text-white, #fff);
+  --ti-grid-header-resizable-bg-color: rgba(0, 0, 0, 0.15);
   // 表格列拖拽分割线高度
-  --ti-grid-header-resizable-line-height: 100%;
+  --ti-grid-header-resizable-line-height: 16px;
 
   // (单选|复选)框禁用背景色
   --ti-grid-input-disabled-bg-color: var(--ti-common-color-bg-disabled, #f5f5f6);
@@ -114,11 +114,11 @@
   // 行默认背景色
   --ti-grid-row-background-color: var(--ti-common-color-bg-white-normal, #fff);
   // 行被勾选时背景色
-  --ti-grid-row-selected-background-color: var(--ti-common-color-bg-white-normal, #fff);
+  --ti-grid-row-selected-background-color: #f0f7ff;
   // 斑马纹行背景色
   --ti-grid-row-striped-background-color: #fafafa;
   // 行悬浮默认背景色
-  --ti-grid-row-hover-background-color: var(--ti-common-color-hover-background, #f2f5fc);
+  --ti-grid-row-hover-background-color: #f5f5f5;
 
   // 高亮悬停列悬浮表头背景色
   --ti-grid-column-hover-background-color: #d7effb;
@@ -131,7 +131,7 @@
   // 鼠标配置项选中项边框厚度
   --ti-grid-column-checked-border-width: var(--ti-common-border-weight-1, 2px);
   // 表格加载中背景色
-  --ti-grid-loading-background-color: rgba(0, 0, 0, 0.2);
+  --ti-grid-loading-background-color: rgba(255, 255, 255, 0.67);
   // 表格加载中图标长度尺寸
   --ti-grid-loading-width-size: var(--ti-common-size-6x, 24px);
   // 表格加载中图标宽度尺寸
@@ -140,62 +140,62 @@
   --ti-grid-line-height-number: var(--ti-common-line-height-number, 1.5);
 
   // 中等尺寸表头高度
-  --ti-grid-medium-header-column-height: var(--ti-common-size-height-normal, 28px);
+  --ti-grid-medium-header-column-height: 46px;
   // 默认尺寸表头高度
-  --ti-grid-default-header-column-height: var(--ti-common-size-height-normal, 28px);
+  --ti-grid-default-header-column-height: var(--ti-common-size-height-medium);
   // 小尺寸表头高度
-  --ti-grid-small-header-column-height: var(--ti-common-size-height-normal, 28px);
+  --ti-grid-small-header-column-height: var(--ti-common-size-height-normal);
   // 超小尺寸表头高度
-  --ti-grid-mini-header-column-height: var(--ti-common-size-height-normal, 28px);
+  --ti-grid-mini-header-column-height: 32px;
 
   // 中等尺寸表格单元格高度
-  --ti-grid-medium-column-height: var(--ti-common-size-13x, 52px);
+  --ti-grid-medium-column-height: 52px;
   // 默认尺寸表格单元格高度
-  --ti-grid-default-column-height: calc(var(--ti-common-space-10x, 40px) + 2px);
+  --ti-grid-default-column-height: var(--ti-common-size-height-large);
   // 小尺寸表格单元格高度
-  --ti-grid-small-column-height: var(--ti-common-size-9x, 36px);
+  --ti-grid-small-column-height: var(--ti-common-size-height-medium);
   // 超小尺寸表格单元格高度
-  --ti-grid-mini-column-height: var(--ti-common-size-7x, 28px);
+  --ti-grid-mini-column-height: var(--ti-common-size-height-minor);
   // 表头单元格垂直内边距
   --ti-grid-mini-th-padding-vertical: var(--ti-common-space-base, 4px);
   // 表头单元格垂直内边距
   --ti-grid-th-padding-vertical: var(--ti-common-space-2x, 8px);
   // 默认单元格垂直内边距
-  --ti-grid-td-padding-vertical: var(--ti-common-space-2x, 8px);
+  --ti-grid-td-padding-vertical: var(--ti-common-space-3x);
   // 单元格水平内边距
-  --ti-grid-td-padding-horizontal: var(--ti-common-space-2x, 8px);
+  --ti-grid-td-padding-horizontal: var(--ti-common-space-4x);
   // mini单元格垂直内边距
-  --ti-grid-mini-td-padding-vertical: var(--ti-common-space-2x, 8px);
+  --ti-grid-mini-td-padding-vertical: var(--ti-common-space-2x);
   // mini单元格水平内边距
-  --ti-grid-mini-td-padding-horizontal: var(--ti-common-space-2x, 8px);
+  --ti-grid-mini-td-padding-horizontal: var(--ti-common-space-4x);
   // 表头排序图标尺寸
   --ti-grid-header-icon-font-size: var(--ti-common-font-size-2, 16px);
   // 表头排序图标尺寸缩放比例
   --ti-grid-column-icon-scale-size: 1;
   // 表格无数据背景图片
-  --ti-grid-nodata-td-bg-img-url: url('data:image/png;base64,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');
+  --ti-grid-nodata-td-bg-img-url: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGNsaXBQYXRoIGlkPSJhIj48cGF0aCBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAiIGQ9Ik0wIDBoODB2ODBIMHoiLz48L2NsaXBQYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjYSkiPjxwYXRoIGQ9Ik03My42MSAzOS4zOXYzMC42N2MwIDIuMTctMS43NiAzLjkzLTMuOTQgMy45M0g1Mi41OXYtLjg3aDE3LjA4YzEuNyAwIDMuMDctMS4zNyAzLjA3LTMuMDZWMzkuMzloLjg3eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik03My42MSAzOS4zOXYzMC42N2MwIDIuMTctMS43NiAzLjkzLTMuOTQgMy45M0g1Mi41OXYtLjg3aDE3LjA4YzEuNyAwIDMuMDctMS4zNyAzLjA3LTMuMDZWMzkuMzloLjg3eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik01Ni45MiAyNXY0NS4wNmMwIDIuMTctMS43NyAzLjkzLTMuOTUgMy45M0gxMC45NEEzLjk0IDMuOTQgMCAwIDEgNyA3MC4wNlYzOS4zOWguODh2MzAuNjdhMy4wNiAzLjA2IDAgMCAwIDMuMDYgMy4wNmg0Mi4wM2MxLjcgMCAzLjA3LTEuMzcgMy4wNy0zLjA2VjI1Ljg3SDEwLjY3VjI1aDQ2LjI1eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik05LjQzIDI1Yy0uNiAwLTEuMTUuMzEtMS40Ni44MkwuMTMgMzguNjRjLS4yNi40Mi0uMTMuOTYuMjcgMS4yMi4xNC4wOS4yOS4xNC40Ni4xNGg0NC44MmMxLjE3IDAgMi4yNi0uNjEgMi45LTEuNjJMNTcuMDQgMjVIOS40M3ptLjIyIDFoNDUuNTJsLTcuNTIgMTEuODFjLS40Ny43NC0xLjI4IDEuMTktMi4xNCAxLjE5SDEuMTdsNy43NS0xMi42Yy4xNi0uMjUuNDMtLjQuNzMtLjR6IiBmaWxsPSJncmF5Ii8+PHBhdGggZD0iTTcwLjc1IDI1Yy41NiAwIDEuMDguMyAxLjM5LjhsNy43MiAxMi43MmMuMjUuNDEuMTQuOTUtLjI1IDEuMjEtLjEzLjA5LS4yOC4xNC0uNDQuMTRINjYuMTRjLTEuMTcgMC0yLjI1LS42Ni0yLjg1LTEuNzNMNTUuOTggMjVoMTQuNzd6bS0uMDMgMUg1Ny44bDYuMzggMTEuNzFjLjQzLjggMS4yMiAxLjI5IDIuMDggMS4yOWgxMi42M0w3MS40IDI2LjM5YS44MDIuODAyIDAgMCAwLS42OC0uMzl6IiBmaWxsPSJncmF5Ii8+PHJlY3QgeD0iMTMuNSIgeT0iNTYiIHJ4PSIxLjg4NiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjQiIGZpbGw9IiMxNDc2RkYiLz48cGF0aCBkPSJNMjMuNTYgNjNjLjI0IDAgLjQ0LjIyLjQ0LjUgMCAuMjctLjIuNS0uNDQuNWgtOS42M2MtLjI0IDAtLjQzLS4yMy0uNDMtLjUgMC0uMjguMTktLjUuNDMtLjVoOS42M3oiIGZpbGw9ImdyYXkiLz48cmVjdCB4PSIxMy41IiB5PSI2NiIgcng9Ii41IiB3aWR0aD0iNSIgaGVpZ2h0PSIxIiBmaWxsPSJncmF5Ii8+PHBhdGggZD0iTTQwIDZjLjI3IDAgLjUuMTkuNS40NHY2LjE2YzAgLjI1LS4yMy40NC0uNS40NC0uMjggMC0uNTEtLjE5LS41MS0uNDRWNi40NGMwLS4yNS4yMy0uNDQuNTEtLjQ0ek01Ni41NSA4LjY0Yy4yNC4xNC4zMy40Mi4yMS42M2wtMy4wOCA1LjM0Yy0uMTIuMjEtLjQyLjI3LS42Ni4xMy0uMjQtLjE0LS4zMy0uNDItLjIxLS42M2wzLjA4LTUuMzRjLjEyLS4yMS40Mi0uMjcuNjYtLjEzek0yMy40NCA4LjY0Yy4yNC0uMTQuNTQtLjA4LjY2LjEzbDMuMDggNS4zNGMuMTIuMjEuMDMuNDktLjIxLjYzcy0uNTQuMDgtLjY2LS4xM2wtMy4wOC01LjM0Yy0uMTItLjIxLS4wMy0uNDkuMjEtLjYzeiIgZmlsbD0iZ3JheSIvPjwvZz48L3N2Zz4=');
 
   // 工具栏按钮水平内边距
-  --ti-grid-toolbar-btn-padding-horizontal: var(--ti-common-space-3x, 12px);
+  --ti-grid-toolbar-btn-padding-horizontal: var(--ti-common-space-6x);
   // 工具栏按钮行高
-  --ti-grid-toolbar-btn-line-height: var(--ti-common-space-7x, 28px);
+  --ti-grid-toolbar-btn-line-height: 30px;
   // 工具栏按钮边框颜色
-  --ti-grid-toolbar-btn-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
+  --ti-grid-toolbar-btn-border-color: #595959;
   // 工具栏按钮边框圆角
-  --ti-grid-toolbar-btn-border-radius: calc(var(--ti-common-size-base, 4px) - 2px);
+  --ti-grid-toolbar-btn-border-radius: var(--ti-common-size-4x);
   // 工具栏按钮最小宽度
-  --ti-grid-toolbar-btn-min-width: none;
+  --ti-grid-toolbar-btn-min-width: calc(var(--ti-common-size-base) * 24);
   // 工具栏按钮悬浮边框颜色
-  --ti-grid-toolbar-btn-hover-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-grid-toolbar-btn-hover-border-color: var(--ti-common-color-line-normal);
 
   // 工具栏图标按钮高度
-  --ti-grid-toolbar-icon-btn-height: calc(var(--ti-common-size-7x, 28px) + 2px);
+  --ti-grid-toolbar-icon-btn-height: var(--ti-common-size-8x);
   // 工具栏图标按钮宽度
-  --ti-grid-toolbar-icon-btn-width: calc(var(--ti-common-size-7x, 28px) + 2px);
+  --ti-grid-toolbar-icon-btn-width: var(--ti-common-size-8x);
   // 工具栏图标按钮边框色
-  --ti-grid-toolbar-icon-btn-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
+  --ti-grid-toolbar-icon-btn-border-color: var(--ti-common-color-line-normal);
   // 工具栏图标按钮边框圆角
-  --ti-grid-toolbar-icon-btn-border-radius: calc(var(--ti-common-size-base, 4px) - 1px);
+  --ti-grid-toolbar-icon-btn-border-radius: calc(var(--ti-common-size-base) + 2px);
   // 工具栏垂直边距
   --ti-grid-toolbar-padding-vertical: var(--ti-common-size-4x, 16px);
   // 排序按钮定位方式
@@ -203,17 +203,22 @@
   // 排序按钮右侧定位
   --ti-grid-sort-icon-right: unset;
   // 表格展开行背景颜色
-  --ti-grid-expand-background-color: '';
+  --ti-grid-expand-background-color: #fafafa;
   // 表格树表展开行图标大小
-  --ti-grid-tree-expand-icon-font-size: var(--ti-common-font-size-1, 14px);
+  --ti-grid-tree-expand-icon-font-size: var(--ti-common-font-size-2);
   // 表格树表展开行图标右侧边距
-  --ti-grid-tree-expand-icon-padding-right: 0;
+  --ti-grid-tree-expand-icon-padding-right: var(--ti-common-space-2x);
   // 表格树表展开行图标向左偏移量(hide)
-  --ti-grid-tree-expand-icon-translate-x: -4px;
+  --ti-grid-tree-expand-icon-translate-x: 0;
   // 表头单元格宽度
-  --ti-grid-header-cell-text-width: 100%;
+  --ti-grid-header-cell-text-width: auto;
   // 表格过滤面板checkbox大小
-  --ti-grid-filter-checkbox-font-size: var(--ti-common-font-size-2);
+  --ti-grid-filter-checkbox-font-size: 18px;
   // 表格过滤面板checkbox颜色
-  --ti-grid-filter-checkbox-color: var(--ti-grid-primary-color);
+  --ti-grid-filter-checkbox-color: #1476ff;
+
+  // selection的dropdown插槽左偏移量(hide)
+  --ti-grid-selection-dropdown-left-offset: var(--ti-common-size-3x, 12px);
+  // selection的dropdown插槽图标颜色
+  --ti-grid-selection-dropdown-icon-color: var(--ti-common-color-icon-normal, #808080);
 }

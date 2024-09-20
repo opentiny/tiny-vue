@@ -12,15 +12,15 @@
 
 .component-css-vars-tree() {
   // 顶部内边距
-  --ti-tree-padding-top: var(-ti-common-space-0, 0);
+  --ti-tree-padding-top: var(--ti-common-space-4x);
   // 底部内边距
-  --ti-tree-padding-bottom: var(-ti-common-space-0, 0);
+  --ti-tree-padding-bottom: var(--ti-common-space-4x);
   // 默认文本色
   --ti-tree-text-color: var(--ti-common-color-text-primary, #252b3a);
   // 选中文本色
-  --ti-tree-selected-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-tree-selected-text-color: var(--ti-common-color-text-highlight);
   // 选中文本字重
-  --ti-tree-selected-font-weight: var(--ti-common-font-weight-4, normal);
+  --ti-tree-selected-font-weight: var(--ti-common-font-weight-6);
   // 禁用文本色
   --ti-tree-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
   // 文本行高
@@ -32,11 +32,11 @@
   // 数据为空时整体最小高度
   --ti-tree-empty-min-height: var(--ti-common-size-15x, 60px);
   // 选中节点背景色
-  --ti-tree-node-content-current-bg-color: var(--ti-common-color-bg-light-normal, #e9edfa);
+  --ti-tree-node-content-current-bg-color: var(--ti-common-color-light);
   // 节点悬浮背景色
   --ti-tree-node-content-hover-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
   // 节点悬浮外层背景色(hide)
-  --ti-tree-node-hover-outter-bg-color: var(--ti-common-color-transparent, transparent);
+  --ti-tree-node-hover-outter-bg-color: var(--ti-common-color-hover-background);
   // 节点悬浮内层背景色(hide)
   --ti-tree-node-hover-inner-bg-color: var(--ti-tree-node-content-hover-bg-color);
   // 节点字号
@@ -67,11 +67,11 @@
   --ti-tree-node-checked-icon-color: var(--ti-common-color-icon-hover, #5e7ce0);
 
   // 节点左内边距
-  --ti-tree-node-padding-left: var(--ti-common-space-2x, 8px);
+  --ti-tree-node-padding-left: var(--ti-common-space-4x);
   // 节点高亮背景色
-  --ti-tree-node-highlight-bg-color: var(--ti-common-color-bg-light-normal, #e9edfa);
+  --ti-tree-node-highlight-bg-color: var(--ti-base-text-color-2);
   // 节点内容高度
-  --ti-tree-node-content-height: calc(var(--ti-common-space-10, 10px) * 3);
+  --ti-tree-node-content-height: var(--ti-common-space-8x);
   // 节点内容边框弧度
   --ti-tree-node-content-border-radius: 0;
   // 节点右键菜单内容字号
@@ -103,7 +103,7 @@
   // small尺寸节点高度
   --ti-tree-small-node-content-height: calc(var(--ti-common-space-base, 4px) * 7);
   // small尺寸节点高度
-  --ti-tree-small-node-font-size: var(--ti-common-line-height-base, 12px);
+  --ti-tree-small-node-font-size: 12px;
 
   // 平铺模式节点高度
   --ti-tree-plain-node-height: calc(var(--ti-common-space-base, 4px) * 7);

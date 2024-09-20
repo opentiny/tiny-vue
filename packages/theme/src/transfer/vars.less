@@ -12,7 +12,7 @@
 
 .component-css-vars-transfer() {
   // 字体基础大小
-  --ti-transfer-font-size: var(--ti-common-font-size-1, 14px);
+  --ti-transfer-font-size: var(--ti-common-font-size-1);
   // 按钮组左侧内边距
   --ti-transfer-buttons-padding-left: var(--ti-common-space-4x, 16px);
   // 按钮组右侧内边距
@@ -46,17 +46,17 @@
   // 按钮底部外边距
   --ti-transfer-button-margin-bottom: var(--ti-common-space-0, 0px);
   // 按钮背景色
-  --ti-transfer-button-bg-color: var(--ti-common-color-bg-emphasize, #5e7ce0);
+  --ti-transfer-button-bg-color: #1476ff;
   // 按钮左侧内边距
-  --ti-transfer-button-padding-left: var(--ti-common-space-2x, 8px);
+  --ti-transfer-button-padding-left: 2px;
   // 按钮右侧内边距
-  --ti-transfer-button-padding-right: var(--ti-common-space-2x, 8px);
+  --ti-transfer-button-padding-right: 2px;
   // 按钮顶部内边距
-  --ti-transfer-button-padding-top: var(--ti-common-space-2x, 8px);
+  --ti-transfer-button-padding-top: 2px;
   // 按钮底部内边距
-  --ti-transfer-button-padding-bottom: var(--ti-common-space-2x, 8px);
+  --ti-transfer-button-padding-bottom: 2px;
   // 按钮圆角
-  --ti-transfer-button-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --ti-transfer-button-border-radius: var(--ti-common-size-base);
   // 按钮禁用时文本色
   --ti-transfer-button-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
   // 按钮禁用时边框色
@@ -72,17 +72,17 @@
   // 面板内容区域高度
   --ti-transfer-panel-body-height: 260px;
   // 面板内容区域边框色
-  --ti-transfer-panel-border-color: var(--ti-common-color-line-normal, #adb0b8);
+  --ti-transfer-panel-border-color: var(--ti-common-color-line-normal);
   // 面板内容区域边框圆角
   --ti-transfer-panel-border-radius: var(--ti-common-border-radius-normal, 2px);
   // 面板高度
-  --ti-transfer-panel-item-height: 30px;
+  --ti-transfer-panel-item-height: var(--ti-common-size-8x);
   // 面板文本色
-  --ti-transfer-panel-item-text-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-transfer-panel-item-text-color: var(--ti-common-color-info-normal);
   // 面板悬浮时文本色
   --ti-transfer-panel-item-hover-text-color: var(--ti-common-color-icon-hover, #5e7ce0);
   // 面板悬浮时背景色
-  --ti-transfer-panel-item-hover-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
+  --ti-transfer-panel-item-hover-bg-color: var(ti-common-color-bg-normal, #f5f5f5);
   // 面板搜索框高度
   --ti-transfer-panel-filter-height: var(--ti-common-size-height-normal, 28px);
   // 面板搜索框字体大小
@@ -102,11 +102,11 @@
   // 面板宽度
   --ti-transfer-panel-width: var(--ti-common-size-50x, 200px);
   // 面板头部高度
-  --ti-transfer-header-height: var(--ti-common-size-10x, 40px);
+  --ti-transfer-header-height: 38px;
   // 面板头部背景色
-  --ti-transfer-header-bg-color: var(--ti-common-color-bg-white-emphasize, #f2f5fc);
+  --ti-transfer-header-bg-color: #fff;
   // 面板头部边框色
-  --ti-transfer-header-border-color: var(--ti-common-color-line-normal, #adb0b8);
+  --ti-transfer-header-border-color: rgba(0, 0, 0, 0.08);
   // 面板头部文本色
   --ti-transfer-header-text-color: var(--ti-common-color-info-normal, #252b3a);
   // 面板头部span文本色
@@ -152,19 +152,19 @@
   // 面板内容区域列表的右侧内边距
   --ti-transfer-panel-body-list-padding-right: var(--ti-common-space-0, 0px);
   // 面板内容区域列表的顶部内边距
-  --ti-transfer-panel-body-list-padding-top: var(--ti-common-space-6, 6px);
+  --ti-transfer-panel-body-list-padding-top: 4px;
   // 面板内容区域列表的底部内边距
-  --ti-transfer-panel-body-list-padding-bottom: var(--ti-common-space-6, 6px);
+  --ti-transfer-panel-body-list-padding-bottom: 4px;
   // 面板内容区域过滤后顶部内边距
   --ti-transfer-panel-body-filter-padding-top: var(--ti-common-space-0, 0px);
   // 面板左侧内边距
-  --ti-transfer-panel-item-padding-left: var(--ti-common-space-2x, 8px);
+  --ti-transfer-panel-item-padding-left: var(--ti-common-space-4x);
   // 面板多选框左侧内边距
   --ti-transfer-panel-item-checkbox-padding-left: calc(var(--ti-common-space-5x, 20px) + 2px);
   // 面板搜索框左侧内边距
-  --ti-transfer-panel-filter-padding-left: var(--ti-common-space-2x, 8px);
+  --ti-transfer-panel-filter-padding-left: var(--ti-common-space-4x, 8px);
   // 面板搜索框右侧内边距
-  --ti-transfer-panel-filter-padding-right: var(--ti-common-space-2x, 8px);
+  --ti-transfer-panel-filter-padding-right: var(--ti-common-space-4x, 8px);
   // 面板搜索框顶部内边距
   --ti-transfer-panel-filter-padding-top: var(--ti-common-space-2x, 8px);
   // 面板搜索框底部内边距
@@ -178,9 +178,9 @@
   // 头部底部外边距
   --ti-transfer-header-margin-bottom: var(--ti-common-space-0, 0px);
   // 头部左侧内边距
-  --ti-transfer-header-padding-left: var(--ti-common-space-2x, 8px);
+  --ti-transfer-header-padding-left: var(--ti-common-space-4x);
   // 头部右侧内边距
-  --ti-transfer-header-padding-right: var(--ti-common-space-2x, 8px);
+  --ti-transfer-header-padding-right: var(--ti-common-space-4x);
   // 头部顶部内边距
   --ti-transfer-header-padding-top: var(--ti-common-space-0, 0px);
   // 头部底部内边距
@@ -236,9 +236,9 @@
   // 多选框左侧内边距
   --ti-transfer-checkbox-label-padding-left: var(--ti-common-space-2x, 8px);
   // 穿梭按钮宽度
-  --ti-transfer-button-width: 30px;
+  --ti-transfer-button-width: var(--ti-common-size-4x);
   // 穿梭按钮高度
-  --ti-transfer-button-height: 30px;
+  --ti-transfer-button-height: var(--ti-common-size-4x);
   // 穿梭箭头大小
-  --ti-transfer-svg-font-size: 14px;
+  --ti-transfer-svg-font-size: 10px;
 }

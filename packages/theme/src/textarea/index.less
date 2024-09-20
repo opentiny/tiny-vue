@@ -28,6 +28,30 @@
   vertical-align: bottom;
   font-size: var(--ti-textarea-font-size);
 
+  &:before {
+    content: '';
+    width: calc(100% - 20px);
+    height: 8px;
+    position: absolute;
+    left: 2px;
+    top: 1px;
+    z-index: 1;
+    background: #fff;
+    border-radius: var(--ti-textarea-border-radius);
+  }
+
+  &:after {
+    content: '';
+    width: calc(100% - 20px);
+    height: 16px;
+    position: absolute;
+    left: 2px;
+    bottom: 1px;
+    z-index: 1;
+    background: #fff;
+    border-radius: var(--ti-textarea-border-radius);
+  }
+
   &.is-disabled &__inner {
     background-color: var(--ti-textarea-disabled-bg-color);
     border-color: var(--ti-textarea-border-color);
@@ -38,6 +62,14 @@
 
   &.is-disabled {
     background-color: var(--ti-textarea-disabled-bg-color);
+
+    &:before {
+      background-color: var(--ti-textarea-disabled-bg-color);
+    }
+
+    &:after {
+      background-color: var(--ti-textarea-disabled-bg-color);
+    }
 
     &:hover {
       border-color: var(--ti-textarea-border-color);
@@ -64,12 +96,13 @@
     font-size: var(--ti-textarea-count-font-size);
     text-align: right;
     position: absolute;
+    z-index: 2;
+    line-height: 1.5;
     bottom: var(--ti-textarea-count-bottom);
     right: var(--ti-textarea-count-right);
     width: var(--ti-textarea-count-width);
     border-bottom-left-radius: var(--ti-textarea-count-border-radius);
     padding-right: var(--ti-textarea-count-padding-right);
-    line-height: var(--ti-textarea-count-line-height);
 
     &-text-length {
       color: var(--ti-textarea-count-text-length-color);
@@ -150,9 +183,9 @@
 
   &.is-display-only {
     .@{textarea-prefix-cls}-display-only.@{textarea-prefix-cls}__inner-con
-    .@{textarea-prefix-cls}-display-only__content,
+      .@{textarea-prefix-cls}-display-only__content,
     .@{textarea-prefix-cls}-autosize-display-only.@{textarea-prefix-cls}__inner-con
-    .@{textarea-prefix-cls}-display-only__content {
+      .@{textarea-prefix-cls}-display-only__content {
       position: relative;
       left: 0;
       max-width: 100%;
@@ -165,6 +198,14 @@
       word-wrap: break-word;
       white-space: pre-wrap;
       line-height: 1.5;
+    }
+
+    &:before {
+      display: none;
+    }
+
+    &:after {
+      display: none;
     }
 
     .@{textarea-prefix-cls}__inner-con {

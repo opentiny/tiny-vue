@@ -12,8 +12,8 @@ test('禁用和尺寸', async ({ page }) => {
   const next = pager.locator('.tiny-pager__btn-next')
 
   await demo.locator('.tiny-switch').click()
-  await expect(sizeChange).toHaveCSS('color', 'rgb(138, 142, 153)')
-  await expect(sizeChange).toHaveCSS('border-top-color', 'rgba(0, 0, 0, 0)')
+  await expect(sizeChange).toHaveCSS('color', 'rgb(194, 194, 194)')
+  await expect(sizeChange).toHaveCSS('border-top-color', 'rgb(219, 219, 219)')
   await expect(prev).toBeDisabled()
   await expect(next).toBeDisabled()
   await expect(pageItem.first()).toHaveCSS('cursor', 'not-allowed')

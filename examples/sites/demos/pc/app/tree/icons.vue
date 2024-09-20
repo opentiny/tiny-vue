@@ -19,7 +19,7 @@
 
 <script lang="jsx">
 import { Tree } from '@opentiny/vue'
-import { iconPlusSquare, iconMinusSquare, iconRightO, iconEditorTable, iconFile } from '@opentiny/vue-icon'
+import { iconPutAway, iconExpand, iconRightO, iconEditorTable, iconFile } from '@opentiny/vue-icon'
 
 export default {
   components: {
@@ -28,8 +28,8 @@ export default {
   data() {
     return {
       icon: iconRightO(),
-      shrinkIcon: iconMinusSquare(),
-      expandIcon: iconPlusSquare(),
+      shrinkIcon: iconExpand(),
+      expandIcon: iconPutAway(),
       tinyIconEditorTable: iconEditorTable(),
       tinyIconFile: iconFile(),
       data: [

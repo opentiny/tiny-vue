@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-theme",
-  "version": "3.18.0",
   "type": "module",
+  "version": "3.18.1",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "author": "OpenTiny Team",
   "license": "MIT",
@@ -71,8 +71,13 @@
     "rules": {
       "selector-pseudo-element-colon-notation": "single",
       "import-notation": null,
-      "string-quotes": "single",
+      "custom-property-pattern": null,
+      "custom-property-empty-line-before": null,
       "selector-class-pattern": null,
+      "alpha-value-notation": null,
+      "color-hex-length": null,
+      "string-quotes": "single",
+      "color-function-notation": null,
       "declaration-empty-line-before": null,
       "at-rule-empty-line-before": null,
       "at-rule-no-unknown": [

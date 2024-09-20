@@ -1,24 +1,27 @@
 <template>
   <div class="demo-button">
     <p>原生及插槽</p>
-    <tiny-button-group :data="groupData" v-model="checkedVal">
-      <template #button4="{ sup }">
-        <tiny-icon-plus-circle></tiny-icon-plus-circle>
-        <span>
-          {{ sup.text }}
-        </span>
-      </template>
-    </tiny-button-group>
-    <br /><br />
+    <div class="sup">
+      <tiny-button-group :data="groupData" v-model="checkedVal">
+        <template #button4="{ sup }">
+          <tiny-icon-plus-circle></tiny-icon-plus-circle>
+          <span>
+            {{ sup.text }}
+          </span>
+        </template>
+      </tiny-button-group>
+    </div>
     <p>插槽引用tag角标</p>
-    <tiny-button-group :data="groupDataTag" v-model="checkedVal">
-      <template #btn="{ sup }">
-        <tiny-tag type="warning" size="small" hit>
-          <component :is="sup.icon" class="tiny-svg-size"></component>
-          {{ sup.text }}
-        </tiny-tag>
-      </template>
-    </tiny-button-group>
+    <div class="tag">
+      <tiny-button-group :data="groupDataTag" v-model="checkedVal">
+        <template #btn="{ sup }">
+          <tiny-tag type="warning" class="tiny-only-icon" size="small">
+            <component :is="sup.icon"></component>
+            {{ sup.text }}
+          </tiny-tag>
+        </template>
+      </tiny-button-group>
+    </div>
   </div>
 </template>
 
@@ -32,7 +35,7 @@ const TinyIconPlusCircle = iconPlusCircle()
 const checkedVal = ref('Button1')
 const groupData = ref([
   {
-    text: '1年',
+    text: '文字',
     value: 'Button1',
     sup: {
       class: ['success-bg'],
@@ -40,7 +43,7 @@ const groupData = ref([
     }
   },
   {
-    text: '2年',
+    text: '图标',
     value: 'Button2',
     sup: {
       class: 'sup-icon',
@@ -48,7 +51,7 @@ const groupData = ref([
     }
   },
   {
-    text: '3年',
+    text: '文字',
     value: 'Button3',
     sup: {
       class: 'sup-text',
@@ -56,7 +59,7 @@ const groupData = ref([
     }
   },
   {
-    text: '4年',
+    text: '组合',
     value: 'Button4',
     sup: {
       slot: 'button4',
@@ -67,7 +70,7 @@ const groupData = ref([
 ])
 const groupDataTag = ref([
   {
-    text: '1年',
+    text: '文本',
     value: 'Button1',
     sup: {
       slot: 'btn',
@@ -76,7 +79,7 @@ const groupDataTag = ref([
     }
   },
   {
-    text: '2年',
+    text: '图标',
     value: 'Button2',
     sup: {
       slot: 'btn',
@@ -85,22 +88,12 @@ const groupDataTag = ref([
     }
   },
   {
-    text: '3年',
+    text: '图标',
     value: 'Button3',
     sup: {
       slot: 'btn',
       class: 'sup-tag',
       icon: iconPlusCircle()
-    }
-  },
-  {
-    text: '4年',
-    value: 'Button4',
-    sup: {
-      slot: 'btn',
-      class: 'sup-tag',
-      icon: iconPlusCircle(),
-      text: '8折'
     }
   }
 ])
@@ -128,16 +121,22 @@ const groupDataTag = ref([
 </style>
 
 <style>
-.demo-button button {
+.demo-button p {
+  margin: 16px 0 8px 0;
+}
+.demo-button .sup button {
+  width: 96px;
+}
+.demo-button .sup li:nth-of-type(4) button {
   width: 124px;
 }
-.demo-button p {
-  margin-bottom: 8px;
+.demo-button .tag button {
+  width: 84px;
 }
-.demo-button .tiny-tag {
-  border-radius: 0px 5px 0 8px;
+.demo-button .tag li:first-child button {
+  width: 100px;
 }
-.demo-button .tiny-svg-size {
-  margin-right: 4px;
+.tiny-only-icon {
+  border-radius: 0px 6px;
 }
 </style>

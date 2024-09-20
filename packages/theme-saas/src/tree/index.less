@@ -193,8 +193,8 @@
 
     .@{tree-node-prefix-cls}__content-right.is-disabled {
       svg {
-        @apply fill-color-icon-disabled;
-        @apply cursor-not-allowed;
+        // 禁用时， 只禁用checkbox，不禁用右侧的编辑区的按钮，
+        @apply cursor-pointer;
       }
     }
   }

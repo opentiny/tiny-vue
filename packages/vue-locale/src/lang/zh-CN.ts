@@ -776,6 +776,11 @@ export default {
     },
     dialogSelect: {
       treeSearch: '请输入关键字并回车'
+    },
+    loadList: {
+      errorText: '出错了',
+      loadingText: '加载中...',
+      finishedText: '没有更多了'
     }
   },
   validation: {

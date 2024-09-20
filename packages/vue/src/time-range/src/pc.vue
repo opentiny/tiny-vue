@@ -16,31 +16,43 @@
       <div class="tiny-time-range-picker__content">
         <div class="tiny-time-range-picker__cell">
           <div class="tiny-time-range-picker__header">
-            {{ t('ui.datepicker.startTime') }}
+            <span>{{ t('ui.datepicker.startTime') }}</span>
           </div>
-          <div
-            :class="{
-              'has-seconds': state.showSeconds,
-              'is-arrow': state.arrowControl
-            }"
-            class="tiny-time-range-picker__body tiny-time-panel__content"
-          >
-            <time-spinner
-              ref="minSpinner"
-              :show-seconds="state.showSeconds"
-              :am-pm-mode="state.amPmMode"
-              @change="handleMinChange"
-              :end-date="state.maxDate"
-              :arrow-control="state.arrowControl"
-              @select-range="setMinSelectionRange"
-              :date="state.minDate"
+          <div class="tiny-time-range-picker__content-date">
+            <div class="tiny-time-range-picker__header-title">
+              <span>{{ t('ui.datepicker.hour') }}</span>
+              <span>{{ t('ui.datepicker.minute') }}</span>
+              <span v-if="state.showSeconds">{{ t('ui.datepicker.second') }}</span>
+            </div>
+            <div
+              :class="{
+                'has-seconds': state.showSeconds,
+                'is-arrow': state.arrowControl
+              }"
+              class="tiny-time-range-picker__body tiny-time-panel__content"
             >
-            </time-spinner>
+              <time-spinner
+                ref="minSpinner"
+                :show-seconds="state.showSeconds"
+                :am-pm-mode="state.amPmMode"
+                @change="handleMinChange"
+                :end-date="state.maxDate"
+                :arrow-control="state.arrowControl"
+                @select-range="setMinSelectionRange"
+                :date="state.minDate"
+              >
+              </time-spinner>
+            </div>
           </div>
         </div>
         <div class="tiny-time-range-picker__cell">
           <div class="tiny-time-range-picker__header">
-            {{ t('ui.datepicker.endTime') }}
+            <span>{{ t('ui.datepicker.endTime') }}</span>
+          </div>
+          <div class="tiny-time-range-picker__header-title">
+            <span>{{ t('ui.datepicker.hour') }}</span>
+            <span>{{ t('ui.datepicker.minute') }}</span>
+            <span v-if="state.showSeconds">{{ t('ui.datepicker.second') }}</span>
           </div>
           <div
             :class="{
@@ -63,18 +75,25 @@
           </div>
         </div>
       </div>
-      <div class="tiny-time-panel__footer">
-        <button type="button" class="tiny-time-panel__btn cancel" @click="handleCancel()">
+      <div class="tiny-time-range-picker__footer">
+        <tiny-button
+          v-if="!state.showTimePickerRangeButton"
+          class="tiny-time-range-picker__btn"
+          @click="handleCancel()"
+        >
           {{ t('ui.datepicker.cancel') }}
-        </button>
-        <button
-          type="button"
-          class="tiny-time-panel__btn confirm"
+        </tiny-button>
+        <tiny-button
           @click="handleConfirm()"
           :disabled="state.btnDisabled"
+          size="small"
+          :class="{
+            'tiny-time-range-picker__btn': !state.showTimePickerRangeButton,
+            confirm: !state.disabled && !state.showTimePickerRangeButton
+          }"
         >
           {{ t('ui.datepicker.confirm') }}
-        </button>
+        </tiny-button>
       </div>
     </div>
   </transition>
@@ -84,11 +103,12 @@
 import { renderless, api } from '@opentiny/vue-renderless/time-range/vue'
 import { $prefix, setup, defineComponent } from '@opentiny/vue-common'
 import TimeSpinner from '@opentiny/vue-time-spinner'
+import Button from '@opentiny/vue-button'
 
 export default defineComponent({
   name: $prefix + 'TimeRange',
   emits: ['dodestroy', 'pick', 'select-range'],
-  components: { TimeSpinner },
+  components: { TimeSpinner, TinyButton: Button },
   props: {
     emitter: Object
   },

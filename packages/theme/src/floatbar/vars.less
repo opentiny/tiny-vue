@@ -12,31 +12,31 @@
 
 .component-css-vars-floatbar() {
   // 浮动块边框色
-  --ti-float-bar-border-color: var(--ti-common-color-border, #adb0b8);
+  --ti-float-bar-border-color: unset;
   // 浮动块圆角
-  --ti-float-bar-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --ti-float-bar-border-radius: var(--ti-common-border-radius-4);
   // 浮动块字号
-  --ti-float-bar-font-size: var(--ti-common-font-size-1, 14px);
+  --ti-float-bar-font-size: var(--ti-common-font-size-base);
   // 浮动块背景色
-  --ti-float-bar-list-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+  --ti-float-bar-list-bg-color: var(--ti-common-color-bg-navigation);
   // 浮动块阴影:
-  --ti-float-bar-box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.15);
+  --ti-float-bar-box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
   // ul,li边距
-  --ti-float-bar-ul-padding-vertical: unset;
-  --ti-float-bar-ul-padding-horizontal: unset;
-  --ti-float-bar-li-margin-vertical: unset;
-  --ti-float-bar-li-margin-horizontal: unset;
+  --ti-float-bar-ul-padding-vertical: var(--ti-common-space-2x);
+  --ti-float-bar-ul-padding-horizontal: var(--ti-common-space-0);
+  --ti-float-bar-li-margin-vertical: var(--ti-common-space-2x);
+  --ti-float-bar-li-margin-horizontal: var(--ti-common-space-0);
   
   // 列表项最小高度
-  --ti-float-bar-list-item-min-height: var(--ti-common-size-10x, 40px);
+  --ti-float-bar-list-item-min-height: var(--ti-common-size-height-normal);
   // 列表项最小宽度
-  --ti-float-bar-list-item-min-width: var(--ti-common-size-20x, 80px);
+  --ti-float-bar-list-item-min-width: var(--ti-common-size-width-normal);
   // 列表项行高
-  --ti-float-bar-list-line-height: var(--ti-common-size-10x, 40px);
+  --ti-float-bar-list-line-height: var(--ti-common-size-height-normal);
   // 列表项文本色
-  --ti-float-bar-list-text-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-float-bar-list-text-color: var(--ti-common-color-text-primary);
   // 列表项悬浮文本色
   --ti-float-bar-list-hover-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
   // 列表项悬浮背景色
-  --ti-float-bar-list-hover-bg-color: rgba(24, 144, 255, 0.06);
+  --ti-float-bar-list-hover-bg-color: rgba(0, 0, 0, 0.05);
 }

@@ -12,69 +12,75 @@
 
 .component-css-vars-carousel() {
   // 箭头按钮背景高度
-  --ti-carousel-arrow-height: var(--ti-common-size-height-normal, 28px);
+  --ti-carousel-arrow-height: var(--ti-common-size-8x);
   // 箭头按钮背景宽度
-  --ti-carousel-arrow-width: var(--ti-common-size-7x, 28px);
+  --ti-carousel-arrow-width: var(--ti-common-size-8x);
   // 左右箭头的字号
-  --ti-carousel-arrow-font-size: var(--ti-common-font-size-base, 12px);
+  --ti-carousel-arrow-font-size: var(--ti-common-font-size-2);
   // 左右箭头按钮悬浮背景色
-  --ti-carousel-arrow-hover-bg-color: rgba(0, 0, 0, 0.6);
+  --ti-carousel-arrow-hover-bg-color: #E6E6E6;
   // 左右箭头按钮背景色
-  --ti-carousel-arrow-bg-color: rgba(0, 0, 0, 0.3);
+  --ti-carousel-arrow-bg-color: #F0F0F0;
   // 左右箭头阴影(hide)
   --ti-carousel-arrow-box-shadow: var(--ti-common-shadow-none, none);
   // 箭头正常颜色
-  --ti-carousel-arrow-text-color: var(--ti-common-color-light, #fff);
+  --ti-carousel-arrow-text-color: var(--ti-common-color-text-weaken);
   // 箭头点击瞬间文本色(hide)
   --ti-carousel-arrow-active-text-color: var(--ti-common-color-light, #fff);
   // 指示器盒子的背景色
-  --ti-carousel-indicators-bg-color: rgba(3, 2, 2, 0.3);
+  --ti-carousel-indicators-bg-color: none;
   // 指示器盒子的圆角大小
   --ti-carousel-indicators-border-radius: 13px;
   // 指示器盒子的高度
-  --ti-carousel-indicators-height: var(--ti-common-size-4x, 16px);
+  --ti-carousel-indicators-height: 8px;
   // 指示器圆角的背景色(hide)
   --ti-carousel-indicators-radius-bg-color: rgba(0, 0, 0, 0.3);
   // 幻灯片内的当前指示器图标色
-  --ti-carousel-indicator-active-text-color: var(--ti-common-color-light, #fff);
+  --ti-carousel-indicator-active-text-color: var(--ti-common-color-icon-normal);
+  // 幻灯片内的悬浮指示器图标色
+  --ti-carousel-indicator-hover-text-color: var(--ti-common-color-primary-normal);
   // 指示器按钮宽度
   --ti-carousel-indicator-button-width: var(--ti-common-size-2x, 8px);
   // 指示器按钮高度
   --ti-carousel-indicator-button-height: var(--ti-common-size-2x, 8px);
   // 非当前指示器背景色
-  --ti-carousel-indicator-button-bg-color: var(--ti-common-color-info-disabled, #bfbfbf);
+  --ti-carousel-indicator-button-bg-color: #e6e6e6;
   // 指示器项右外边距
-  --ti-carousel-indicator-margin-right: var(--ti-common-space-0, 0px);
+  --ti-carousel-indicator-margin-right: var(--ti-common-space-3x);
   // 当前指示器右边距
-  --ti-carousel-indicator-active-width: var(--ti-common-size-3x, 12px);
+  --ti-carousel-indicator-active-width: var(--ti-common-size-3x);
   // 指示器项垂直内边距(hide)
   --ti-carousel-indicator-padding-vertical: var(--ti-common-space-0, 0px);
   // 指示器项水平内边距
-  --ti-carousel-indicator-padding-horizontal: calc(var(--ti-common-space-1, 1px) * 2);
+  --ti-carousel-indicator-padding-horizontal: var(--ti-common-space-0);
   // 当前指示器动画属性(hide)
   --ti-carousel-indicator-active-transition-property: none;
   // 当前指示器背景色
-  --ti-carousel-indicator-active-background-color: var(--ti-base-color-transparent, transparent);
+  --ti-carousel-indicator-active-background-color: var(--ti-common-color-primary-active);
   // 当前指示器的宽度
-  --ti-carousel-indicator-active-button-width: var(--ti-carousel-indicator-button-width);
+  --ti-carousel-indicator-active-button-width: var(--ti-common-size-3x);
   // 当前指示器圆角
-  --ti-carousel-indicator-active-border-radius: var(--ti-carousel-indicators-border-radius);
+  --ti-carousel-indicator-active-border-radius: var(--ti-common-space-base);
   //  幻灯片外的指示器动画(hide)
   --ti-carousel-indicator-active-transition: none;
   // 幻灯片外的指示器默认背景色
   --ti-carousel-outside-button-bg-color: var(--ti-common-color-dark, #000);
   // 幻灯片外的当前指示器背景色
-  --ti-carousel-outside-button-active-bg-color: var(--ti-common-color-bg-dark-deep, #464c59);
+  --ti-carousel-outside-button-active-bg-color: var(--ti-common-color-text-secondary);
   // 标签按钮的字号(hide)
   --ti-carousel-labels-button-font-size: var(--ti-common-font-size-base, 12px);
   // 正常透明度颜色
-  --ti-carousel-opacity: 1;
+  --ti-carousel-opacity: 0.5;
   // 幻灯片悬浮时的透明度(hide)
-  --ti-carousel-hover-opacity: 0.6;
+  --ti-carousel-hover-opacity: 0.8;
   // 箭头悬浮文本颜色(hide)
-  --ti-carousel-arrow-hover-text-color: #808080;
+  --ti-carousel-arrow-hover-text-color: var(--ti-common-color-text-primary);
   // 左侧箭头背景色
-  --ti-carousel-arrow-left-bg-color: #f5f5f5;
+  --ti-carousel-arrow-left-bg-color: var(--ti-common-color-bg-normal);
   // 右侧箭头背景色
-  --ti-carousel-arrow-right-bg-color: #f5f5f5;
+  --ti-carousel-arrow-right-bg-color: var(--ti-common-color-bg-normal);
+  // 按钮禁用色
+  --ti-carousel-arrow-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  // 按钮禁用色
+  --ti-carousel-arrow-disabled-color: var(--ti-common-color-primary-disabled-text);
 }

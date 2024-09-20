@@ -10,6 +10,6 @@ test('测试基本用法', async ({ page }) => {
 
   await expect(textWrapper).toContainText('我的待办')
   await expect(badge).toContainText('2')
-  await expect(badge).toHaveCSS('background-color', 'rgb(246, 111, 106)')
+  await expect(badge).toHaveCSS('background-color', 'rgb(242, 48, 48)')
   await expect(badge).toHaveCSS('color', 'rgb(255, 255, 255)')
 })

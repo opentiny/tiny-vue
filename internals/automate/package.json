@@ -1,9 +1,12 @@
 {
   "name": "@opentiny/automate",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "main": "./src/index.ts",
-  "type": "module",
   "scripts": {
     "start": "esno ./src/index.ts",
     "scan": "esno ./src/demos-scan.ts",
@@ -11,7 +14,8 @@
     "doc-prefix": "esno ./src/doc-prefix.ts",
     "diff": "esno ./src/aui-diff.ts",
     "add-dep": "esno ./src/add-dependencies.ts",
-    "auto-build-pub": "esno ./src/publish/index.ts"
+    "auto-build-pub": "esno ./src/publish/index.ts",
+    "theme-swap": "esno ./src/theme-swap/index.ts"
   },
   "dependencies": {
     "esno": "^4.7.0",
@@ -19,19 +23,16 @@
     "fs-extra": "^11.2.0"
   },
   "devDependencies": {
+    "@babel/generator": "^7.18.13",
+    "@babel/parser": "^7.18.13",
+    "@babel/template": "^7.18.13",
+    "@babel/traverse": "^7.18.13",
     "@types/node": "^20.10.5",
+    "@vue/compiler-sfc": "^3.4.21",
+    "chalk": "2.4.2",
+    "commander": "^10.0.0",
     "lodash-es": "^4.17.21",
     "sheetjs-style": "^0.15.8",
-    "commander": "^10.0.0",
-    "semver": "^7.3.8",
-    "chalk": "2.4.2",
-    "@babel/parser": "^7.18.13",
-    "@babel/traverse": "^7.18.13",
-    "@babel/generator": "^7.18.13",
-    "@babel/template": "^7.18.13",
-    "@vue/compiler-sfc": "^3.4.21"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "semver": "^7.3.8"
+  }
 }

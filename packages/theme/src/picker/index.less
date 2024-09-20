@@ -49,7 +49,7 @@
   &--timerange {
     &.@{input-prefix-cls},
     &.@{input-prefix-cls}__inner {
-      width: 350px;
+      width: 360px;
     }
   }
 
@@ -87,10 +87,13 @@
     width: initial;
     cursor: pointer;
     color: var(--ti-date-editor-input-icon-color-fill);
+    position: absolute;
+    right: 0;
 
     .baseClearicon {
-      margin-right: 8px;
-      fill: #252b3a;
+      position: absolute;
+      fill: #808080;
+      background-color: #FFFFFF;
 
       &:hover {
         fill: var(--ti-input-clear-text-color-hover);
@@ -120,6 +123,7 @@
   }
 
   .@{range-prefix-cls}-input {
+    text-align: left;
     appearance: none;
     border: none;
     outline: 0;
@@ -141,7 +145,8 @@
     font-size: var(--ti-date-picker-icon-font-size);
     width: 25px;
     float: right;
-    line-height: 32px;
+    line-height: 26px;
+    height: 26px;
     margin-right: 14px;
     display: flex;
     justify-content: center;
@@ -157,7 +162,7 @@
 .@{range-editor-prefix-cls} {
   &:not(.is-display-only).@{input-prefix-cls}__inner {
     display: inline-flex;
-    align-items: center;
+    align-items: left;
     padding: 3px 10px;
   }
 
@@ -167,32 +172,33 @@
 
   &:not(.is-display-only).is-active,
   &:not(.is-display-only).is-active:hover {
-    border-color: var(--ti-date-picker-current-border-color);
+    border-color: var(--ti-date-editor-input-border-color);
   }
 
   &--medium:not(.is-display-only) {
     &.@{input-prefix-cls}__inner {
-      height: 42px;
+      height: var(--ti-date-editor-input-medium-height);
     }
 
     .@{range-prefix-cls}-separator {
       line-height: 34px;
-      font-size: var(--ti-common-font-size-2);
+      font-size: var(--ti-common-font-size-1);
     }
 
     .@{range-prefix-cls}-input {
-      font-size: var(--ti-common-font-size-2);
+      font-size: var(--ti-common-font-size-1);
     }
 
     .@{range-prefix-cls}__close-icon,
     .@{range-prefix-cls}__icon {
       line-height: 34px;
+      height: 34px;
     }
   }
 
   &--small:not(.is-display-only) {
     &.@{input-prefix-cls}__inner {
-      height: 36px;
+      height: var(--ti-date-editor-input-small-height);
     }
 
     .@{range-prefix-cls}-separator {
@@ -206,7 +212,8 @@
 
     .@{range-prefix-cls}__close-icon,
     .@{range-prefix-cls}__icon {
-      line-height: 28px;
+      line-height: 22px;
+      height: 22px;
     }
   }
 
@@ -227,6 +234,7 @@
     .@{range-prefix-cls}__close-icon,
     .@{range-prefix-cls}__icon {
       line-height: 16px;
+      height: 16px;
     }
   }
 

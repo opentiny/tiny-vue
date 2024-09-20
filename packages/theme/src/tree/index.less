@@ -93,7 +93,7 @@
     .@{tree-node-prefix-cls}.is-current:not(.show-checkbox) > .@{tree-node-prefix-cls}__content {
       .@{tree-node-prefix-cls}__content-box,
       .@{tree-node-prefix-cls}__content-right {
-        background-color: var(--ti-tree-node-content-current-bg-color);
+        background-color: var(--ti-tree-node-highlight-bg-color);
       }
     }
   }
@@ -224,13 +224,12 @@
     .@{tree-node-prefix-cls}__children {
       overflow: visible !important;
       transition: 0.3s opacity ease-in-out;
+      position: relative;
 
       &
         .@{tree-node-prefix-cls}__wrapper:not(:last-child)
         > .@{tree-node-prefix-cls}
         > .@{tree-node-prefix-cls}__children {
-        position: relative;
-
         .@{tree-node-prefix-cls}__children-indent {
           height: 100%;
           position: absolute;
