@@ -2,12 +2,17 @@
   <div>
     <tiny-button @click="openDrawer" type="primary"> 底部插槽示例 </tiny-button>
     <tiny-drawer title="标题" :visible="visible" @update:visible="visible = $event" :show-footer="true">
-      <div style="padding: 32px">内容区域</div>
+      <div>内容区域</div>
 
       <template #footer>
-        <div class="my-footer">
-          <span>自定义底部文本</span>
-          <tiny-button type="primary" native-type="submit" @click="visible = false">确认提交</tiny-button>
+        <div class="foot-text">
+          <div>
+            <tiny-button type="text">文本按钮</tiny-button>
+          </div>
+          <div class="my-footer">
+            <tiny-button native-type="submit" @click="visible = false">取消</tiny-button>
+            <tiny-button type="primary" native-type="submit" @click="visible = false">确认</tiny-button>
+          </div>
         </div>
       </template>
     </tiny-drawer>
@@ -40,5 +45,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.foot-text {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 </style>
