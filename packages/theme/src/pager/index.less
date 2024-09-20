@@ -25,14 +25,18 @@
   .component-css-vars-pager();
 
   text-align: left;
-  padding: var(--ti-pager-selector-padding-vertical) 0;
-  color: var(--ti-pager-text-color);
+  padding: var(--tv-Pager-selector-padding-y) 0;
+  color: var(--tv-Pager-text-color);
 
   & &__group {
     display: inline-flex;
     align-items: center;
     vertical-align: middle;
-    font-size: var(--ti-pager-font-size);
+    font-size: var(--tv-Pager-font-size);
+
+    & + .@{pager-prefix-cls}__sizes {
+      margin-left: 16px;
+    }
 
     > span {
       display: inline-block;
@@ -41,13 +45,12 @@
   }
 
   & &__total {
-    height: var(--ti-pager-total-height);
-    line-height: var(--ti-pager-total-line-height);
-    font-size: var(--ti-pager-total-font-size);
-    color: var(--ti-pager-normal-text-color);
+    height: var(--tv-Pager-total-height);
+    line-height: var(--tv-Pager-total-line-height);
+    font-size: var(--tv-Pager-total-font-size);
 
     &-num {
-      font-family: var(--ti-pager-number-font-family);
+      font-family: var(--tv-Pager-number-font-family);
     }
   }
 
@@ -57,50 +60,48 @@
 
   & &__pull-left {
     float: left;
-    height: var(--ti-pager-height);
+    height: var(--tv-Pager-height);
   }
 
   & &__pages {
     display: inline-flex;
-    font-size: var(--ti-pager-font-size);
-    font-family: var(--ti-pager-number-font-family);
+    font-size: var(--tv-Pager-font-size);
+    font-family: var(--tv-Pager-number-font-family);
 
     li {
       background: transparent;
       display: inline-block;
-      font-size: var(--ti-pager-font-size);
+      font-size: var(--tv-Pager-font-size);
       cursor: pointer;
       margin-right: 4px;
       text-align: center;
-      line-height: calc(var(--ti-pager-height) - 2px);
-      border-radius: var(--ti-pager-li-border-radius);
-      height: var(--ti-pager-height);
-      width: var(--ti-pager-width);
-      min-width: var(--ti-pager-min-width);
-      color: var(--ti-pager-text-color);
-      padding: var(--ti-pager-poplist-item-padding-vertical) var(--ti-pager-poplist-item-padding-horizontal);
+      line-height: calc(var(--tv-Pager-height) - 2px);
+      border-radius: var(--tv-Pager-page-item-border-radius);
+      height: var(--tv-Pager-height);
+      min-width: var(--tv-Pager-page-item-min-width);
+      color: var(--tv-Pager-text-color-secondary);
+      padding: 0 var(--tv-Pager-page-item-padding-x);
       box-sizing: border-box;
-      border: 1px solid var(--ti-pager-li-border-color);
+      border: 1px solid var(--tv-Pager-page-item-border-color);
       transition: all 0.5s ease;
 
       a {
-        color: var(--ti-pager-text-color);
+        color: var(--tv-Pager-text-color-secondary);
       }
 
       svg {
-        fill: var(--ti-pager-text-color);
+        fill: var(--tv-Pager-icon-color);
         vertical-align: middle;
       }
 
       &:not(.dot):not(.is-active):hover {
-        color: var(--ti-pager-list-item-hover-text-color);
-        background-color: var(--ti-pager-poplist-item-hover-bg-color);
-        box-shadow: var(--ti-pager-poplist-item-unchecked-box-shadow);
-        border: 1px solid var(--ti-pager-poplist-item-hover-border-color);
-        font-weight: var(--ti-pager-li-item-hover-font-weight);
+        color: var(--tv-Pager-list-item-hover-text-color);
+        background-color: var(--tv-Pager-bg-color-hover);
+        border: 1px solid var(--tv-Pager-page-item-border-color-hover);
+        font-weight: var(--tv-Pager-page-item-font-weight-hover);
 
         svg {
-          fill: var(--ti-pager-list-item-hover-text-color);
+          fill: var(--tv-Pager-icon-color-hover);
         }
       }
 
@@ -108,21 +109,21 @@
       &.quicknext,
       &.quickprev {
         svg {
-          font-size: var(--ti-pager-dot-is-popup-svg-font-size);
+          font-size: var(--tv-Pager-icon-size);
         }
 
         &.is-popup {
           svg {
-            display: var(--ti-pager-dot-is-popup-display);
+            display: inline;
           }
         }
       }
 
       &.is-active {
-        font-weight: var(--ti-pager-active-font-weight);
-        color: var(--ti-pager-active-font-color);
-        background-color: var(--ti-pager-active-bg-color);
-        border: 1px solid var(--ti-pager-poplist-item-hover-border-color);
+        font-weight: bold;
+        color: var(--tv-Pager-text-color);
+        background-color: var(--tv-Pager-page-item-bg-color-active);
+        border: 1px solid var(--tv-Pager-page-item-border-color-hover);
       }
     }
     li:last-child {
@@ -143,49 +144,47 @@
     font-size: 0;
 
     input[type='text'] {
-      width: var(--ti-pager-input-width);
+      width: 48px;
       text-align: center;
       vertical-align: top;
-      border-radius: var(--ti-pager-input-border-radius);
+      border-radius: var(--tv-Pager-input-border-radius);
       display: inline-block;
       position: inherit;
-      height: var(--ti-pager-input-height);
-      line-height: var(--ti-pager-input-height);
-      border: 1px solid var(--ti-pager-input-border-color);
-      color: var(--ti-pager-normal-text-color);
-      font-size: var(--ti-pager-font-size);
+      height: var(--tv-Pager-input-height);
+      line-height: var(--tv-Pager-input-height);
+      border: 1px solid var(--tv-Pager-border-color);
+      color: var(--tv-Pager-text-color);
+      font-size: var(--tv-Pager-font-size);
       transition: border 0.3s;
       outline: 0;
       box-sizing: border-box;
       margin-right: 4px;
 
       &:hover {
-        border: 1px solid var(--ti-pager-input-hover-border-color);
-        color: var(--ti-pager-normal-text-color);
+        border: 1px solid var(--tv-Pager-border-color-hover);
       }
 
       &:focus,
       &:active,
       &.active,
       &[active] {
-        border: 1px solid var(--ti-pager-primary-border-color);
+        border: 1px solid var(--tv-Pager-border-color-active);
         box-shadow: 0 0 0 rgba(0, 0, 0, 0);
       }
 
       &[disabled] {
-        color: var(--ti-pager-disabled-text-color);
-        border-color: var(--ti-pager-select-disabled-border-color);
-        background: var(--ti-pager-select-disabled-bg-color);
+        color: var(--tv-Pager-text-color-disabled);
+        border-color: var(--tv-Pager-border-color-disabled);
+        background: var(--tv-Pager-bg-color-disabled);
         cursor: not-allowed;
       }
     }
 
     &-text {
-      color: var(--ti-pager-normal-text-color);
-      font-size: var(--ti-pager-font-size);
-      padding-left: var(--ti-pager-normal-text-padding-left);
+      font-size: var(--tv-Pager-font-size);
+      padding-left: var(--tv-Pager-goto-left-padding-left);
       margin-right: 8px;
-      line-height: var(--ti-pager-input-height);
+      line-height: var(--tv-Pager-input-height);
 
       &-sufix {
         padding-left: 4px;
@@ -193,14 +192,13 @@
     }
 
     button {
-      height: var(--ti-pager-input-height);
-      line-height: var(--ti-pager-input-height);
+      height: var(--tv-Pager-input-height);
+      line-height: var(--tv-Pager-input-height);
       border: 1px solid #d9d9d9;
-      color: var(--ti-pager-goto-text-color);
       vertical-align: middle;
-      border-radius: var(--ti-pager-input-border-radius);
+      border-radius: var(--tv-Pager-input-border-radius);
       background: #fff;
-      font-size: var(--ti-pager-font-size);
+      font-size: var(--tv-Pager-font-size);
       padding: 0 8px;
       text-align: center;
       display: inline-block;
@@ -217,13 +215,13 @@
       .user-select(none);
 
       &:hover {
-        border: 1px solid var(--ti-pager-goto-btn-border-hover-color);
-        color: var(--ti-pager-goto-btn-text-hover-color);
+        border: 1px solid var(--tv-Pager-border-color-hover);
+        color: var(--tv-Pager-text-color);
       }
 
       &.is-disabled {
-        color: var(--ti-pager-disabled-text-color);
-        border-color: var(--ti-pager-disabled-border-color);
+        color: var(--tv-Pager-text-color-disabled);
+        border-color: var(--tv-Pager-page-item-border-color-disabled);
         cursor: not-allowed;
       }
     }
@@ -231,45 +229,42 @@
 
   &__btn-prev,
   &__btn-next {
-    width: var(--ti-pager-width);
-    height: var(--ti-pager-height);
-    line-height: calc(var(--ti-pager-height) - 2px);
+    height: var(--tv-Pager-height);
+    line-height: calc(var(--tv-Pager-height) - 2px);
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: var(--ti-pager-font-size);
+    font-size: var(--tv-Pager-font-size);
     font-weight: bolder;
     color: var(--ti-pagination-prev-next-color);
     outline: none;
-    border: 1px solid var(--ti-pager-li-border-color);
+    border: 1px solid var(--tv-Pager-page-item-border-color);
     background: transparent;
     margin-top: 0;
-    margin-right: var(--ti-pager-prev-margin-right);
-    margin-bottom: 0px;
-    margin-left: var(--ti-pager-prev-margin-left);
-    padding-top: 0px;
-    padding-right: var(--ti-pager-prev-padding-right);
-    padding-bottom: 0px;
-    padding-left: var(--ti-pager-prev-padding-left);
+    margin-right: var(--tv-Pager-prev-margin-right);
+    margin-bottom: 0;
+    margin-left: var(--tv-Pager-prev-margin-left);
+    padding: 0;
+
     vertical-align: middle;
     cursor: pointer;
 
     span {
-      color: var(--ti-pager-primary-text-color);
+      color: var(--tv-Pager-custom-prev-next-text-color);
     }
 
     svg {
-      fill: var(--ti-pager-btn-svg-fill-color);
-      font-size: var(--ti-pager-svg-font-size);
+      fill: var(--tv-Pager-icon-color);
+      font-size: var(--tv-Pager-icon-size);
       vertical-align: middle;
     }
 
     &:hover {
-      background-color: var(--ti-pager-prev-next-hover-bg-color);
-      border: 1px solid var(--ti-pager-poplist-item-hover-border-color);
+      background-color: var(--tv-Pager-prev-next-bg-color-hover);
+      border: 1px solid var(--tv-Pager-page-item-border-color-hover);
 
       svg {
-        fill: var(--ti-pager-poplist-item-hover-text-color);
+        fill: var(--tv-Pager-icon-color-hover);
       }
     }
 
@@ -281,32 +276,30 @@
       }
 
       span {
-        color: var(--ti-pager-prev-next-text-color-disabled);
+        color: var(--tv-Pager-text-color-disabled);
       }
 
       svg {
-        fill: var(--ti-pager-prev-next-text-color-disabled);
+        fill: var(--tv-Pager-icon-color-disabled);
       }
     }
   }
 
   &__btn-next {
-    margin-right: var(--ti-pager-next-margin-right);
-    margin-left: var(--ti-pager-next-margin-left);
-    padding-right: var(--ti-pager-next-padding-right);
+    margin-right: var(--tv-Pager-next-margin-right);
+    margin-left: var(--tv-Pager-next-margin-left);
   }
 
   &__selector {
     .component-css-vars-pager();
 
     &.@{popover-prefix-cls}.@{popper-prefix-cls} {
-      min-width: var(--ti-pager-sizes-input-min-width);
       border: 0;
       padding: 8px 0;
-      border-radius: var(--ti-pager-pop-body-border-radius);
+      border-radius: var(--tv-Pager-pop-body-border-radius);
 
       &[x-placement^='bottom'] {
-        margin-top: var(--ti-pager-pop-body-margin-top);
+        margin-top: var(--tv-Pager-pop-body-margin-top);
       }
 
       &[x-placement^='top'] {
@@ -322,9 +315,10 @@
 
     &-poplist {
       .list-item {
-        min-height: var(--ti-pager-poplist-item-min-height);
+        color: var(--tv-Pager-text-color);
+        min-height: var(--tv-Pager-poplist-item-min-height);
         padding: 0 16px;
-        line-height: var(--ti-pager-poplist-item-min-height);
+        line-height: var(--tv-Pager-poplist-item-min-height);
         max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -332,30 +326,25 @@
 
         &:hover {
           cursor: pointer;
-          background: var(--ti-pager-poplist-item-hover-bg-color);
-          color: var(--ti-pager-poplist-item-hover-text-color);
+          background: var(--tv-Pager-sizes-popup-bg-color-hover);
         }
 
         &.is-selected {
-          background: var(--ti-pager-poplist-item-selected-bg-color);
-          color: var(--ti-pager-normal-text-color);
-
           &:hover {
-            background: var(--ti-pager-poplist-item-selected-bg-color);
+            background: var(--tv-Pager-page-item-bg-color-hover);
           }
         }
 
         &.select-pre {
-          background: var(--ti-pager-poplist-item-hover-bg-color);
-          color: var(--ti-pager-poplist-item-hover-text-color);
+          background: var(--tv-Pager-sizes-popup-bg-color-hover);
 
           &.is-selected {
-            color: var(--ti-pager-poplist-item-selected-text-color);
+            color: var(--tv-Pager-poplist-item-selected-text-color);
             background: transparent;
             font-weight: bold;
 
             &:hover {
-              background: var(--ti-pager-poplist-item-selected-bg-color);
+              background: var(--tv-Pager-page-item-bg-color-hover);
             }
           }
         }
@@ -380,27 +369,16 @@
     }
   }
 
-  & &__group {
-    & + .@{pager-prefix-cls}__sizes {
-      margin-top: 0;
-      margin-right: var(--ti-pager-group-sizes-margin-right);
-      margin-bottom: 0;
-      margin-left: 16px;
-    }
-  }
-
   &__page-size {
-    min-width: var(--ti-pager-sizes-input-min-width);
     max-width: 200px;
     position: relative;
     text-align: left;
-    height: var(--ti-pager-input-height);
-    line-height: calc(var(--ti-pager-input-height) - 2px);
-    border: 1px solid var(--ti-pager-input-border-color);
-    color: var(--ti-pager-normal-text-color);
-    border-radius: var(--ti-pager-input-border-radius);
+    height: var(--tv-Pager-input-height);
+    line-height: calc(var(--tv-Pager-input-height) - 2px);
+    border: 1px solid var(--tv-Pager-border-color);
+    border-radius: var(--tv-Pager-input-border-radius);
     background: #fff;
-    font-size: var(--ti-pager-font-size);
+    font-size: var(--tv-Pager-font-size);
     padding: 0;
     padding-left: 12px;
     padding-right: 4px;
@@ -413,20 +391,19 @@
 
     &:hover {
       outline: 0;
-      color: var(--ti-pager-sizes-input-hover-text-color);
-      border-color: var(--ti-pager-input-hover-border-color);
+      border-color: var(--tv-Pager-border-color-hover);
     }
 
     &:active,
     &:focus {
       outline: 0;
-      border-color: var(--ti-pager-input-hover-border-color);
+      border-color: var(--tv-Pager-border-color-hover);
     }
 
     &-btn {
-      padding: 0 var(--ti-pager-input-btn-padding-horizontal);
-      height: var(--ti-pager-height);
-      line-height: calc(var(--ti-pager-height) - 2px);
+      padding: 0 var(--tv-Pager-input-btn-padding-x);
+      height: var(--tv-Pager-height);
+      line-height: calc(var(--tv-Pager-height) - 2px);
       position: relative;
       float: right;
       top: -1px;
@@ -437,15 +414,19 @@
       cursor: pointer;
 
       svg {
-        font-size: var(--ti-pager-svg-font-size);
-        fill: var(--ti-pager-total-svg-fill-color);
+        font-size: var(--tv-Pager-icon-size);
+        fill: var(--tv-Pager-icon-color);
         vertical-align: middle;
+
+        &:hover {
+          fill: var(--tv-Pager-icon-color-hover);
+        }
       }
     }
 
     .sizes {
-      margin-right: var(--ti-pager-sizes-num-margin-right);
-      font-family: var(--ti-pager-number-font-family);
+      margin-right: var(--tv-Pager-sizes-num-margin-right);
+      font-family: var(--tv-Pager-number-font-family);
     }
   }
 
@@ -460,27 +441,27 @@
 
   &&--mini {
     & .@{pager-prefix-cls}__total {
-      font-size: var(--ti-pager-mini-font-size);
+      font-size: var(--tv-Pager-font-size-xs);
     }
 
     .@{pager-prefix-cls}__goto-text {
-      font-size: var(--ti-pager-mini-font-size);
-      line-height: var(--ti-pager-mini-input-height);
+      font-size: var(--tv-Pager-font-size-xs);
+      line-height: var(----tv-Pager-input-height-xs);
     }
 
     .@{pager-prefix-cls}__goto {
       input {
-        height: var(--ti-pager-mini-input-height);
-        line-height: var(--ti-pager-mini-input-height);
+        height: var(----tv-Pager-input-height-xs);
+        line-height: var(----tv-Pager-input-height-xs);
       }
     }
 
     li {
-      min-width: var(--ti-pager-mini-min-width);
+      min-width: var(--tv-Pager-mini-min-width);
       height: 24px;
       padding: 0 4px;
       line-height: 22px;
-      font-size: var(--ti-pager-mini-font-size);
+      font-size: var(--tv-Pager-font-size-xs);
     }
 
     .@{pager-prefix-cls}__btn-prev svg,
@@ -501,45 +482,44 @@
 
   &.is-disabled {
     .@{pager-prefix-cls}__total {
-      color: var(--ti-pager-disabled-text-color);
+      color: var(--tv-Pager-text-color-disabled);
     }
 
     ul li {
       cursor: not-allowed;
-      color: var(--ti-pager-disabled-text-color);
+      color: var(--tv-Pager-text-color-disabled);
       background-color: transparent;
-      border-color: var(--ti-pager-disabled-border-color);
+      border-color: var(--tv-Pager-page-item-border-color-disabled);
 
       &.is-active,
       &:not(.dot):not(.is-active):hover {
-        color: var(--ti-pager-disabled-text-color);
+        color: var(--tv-Pager-text-color-disabled);
         font-weight: normal;
         background-color: transparent;
-        border-color: var(--ti-pager-disabled-border-color);
+        border-color: var(--tv-Pager-page-item-border-color-disabled);
       }
 
       svg {
-        fill: var(--ti-pager-disabled-text-color);
+        fill: var(--tv-Pager-icon-color-disabled);
       }
     }
 
     .@{pager-prefix-cls}__page-size {
-      color: var(--ti-pager-disabled-text-color);
+      color: var(--tv-Pager-text-color-disabled);
       cursor: not-allowed;
-      border-color: var(--ti-pager-select-disabled-border-color);
-      background: var(--ti-pager-select-disabled-bg-color);
+      border-color: var(--tv-Pager-border-color-disabled);
+      background: var(--tv-Pager-bg-color-disabled);
     }
 
     .@{pager-prefix-cls}__page-size-btn {
       svg {
-        fill: var(--ti-pager-disabled-text-color);
-        color: var(--ti-pager-disabled-text-color);
+        fill: var(--tv-Pager-icon-color-disabled);
         cursor: not-allowed;
       }
     }
 
     .@{pager-prefix-cls}__goto-text {
-      color: var(--ti-pager-disabled-text-color);
+      color: var(--tv-Pager-text-color-disabled);
     }
   }
 
@@ -547,7 +527,7 @@
     .component-css-vars-pager();
 
     .tiny-option-label {
-      font-family: var(--ti-pager-number-font-family);
+      font-family: var(--tv-Pager-number-font-family);
     }
   }
 }
