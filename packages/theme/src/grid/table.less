@@ -464,6 +464,14 @@
       .CellEllipsis();
     }
 
+    &.col__selection {
+      .tiny-grid-cell {
+        &:has(> .@{grid-prefix-cls}-checkbox) {
+          line-height: 1;
+        }
+      }
+    }
+
     border-bottom: 1px solid var(--ti-grid-body-td-border-color);
   }
 
@@ -1113,13 +1121,12 @@
       height: 72px;
 
       .@{grid-prefix-cls}-cell__valid {
-        --td-padding-x: 8px;
         position: absolute;
         top: auto;
         right: auto;
         bottom: 1px;
-        left: var(--td-padding-x);
-        width: calc(100% - 2 * var(--td-padding-x));
+        left: var(--ti-grid-td-padding-horizontal);
+        width: calc(100% - 2 * var(--ti-grid-td-padding-horizontal));
         height: 16px;
         line-height: 1;
         transform: translate(0, 0);
@@ -1128,10 +1135,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: #f5222d;
+        color: var(--ti-grid-error-color);
 
         .@{grid-prefix-cls}-cell__valid-icon {
           margin-right: 8px;
+          fill: var(--ti-grid-error-color);
+          font-size: 16px;
         }
 
         .@{grid-prefix-cls}-cell__valid-msg {

@@ -132,7 +132,7 @@ export default {
       const IconMarkOn = this.IconMarkOn
 
       return (
-        <span>
+        <span style="order: -1">
           <IconMarkOn />
           Description
         </span>
@@ -143,7 +143,7 @@ export default {
       const IconUser = this.IconUser
 
       return (
-        <span>
+        <span style="order: -1">
           <IconUser />
           Description
         </span>
