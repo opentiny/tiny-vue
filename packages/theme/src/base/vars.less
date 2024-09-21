@@ -78,7 +78,8 @@
   --tv-base-color-warn-11: #9e6d3f;
   --tv-base-color-warn-12: #d6a981;
   --tv-base-color-warn-13: #f2d8c2;
-  --tv-base-color-warn-secondary-1: #ffb700;  /* 次要告警色 黄色系 */
+  --tv-base-color-warn-secondary-1: #ffb700;
+  /* 次要告警色 黄色系 */
 
   --tv-base-color-info-1: #f0f7ff;
   --tv-base-color-info-2: #deecff; // 提示-背景色 / 边框色
@@ -295,6 +296,9 @@
   --tv-color-icon-link: var(--tv-base-color-brand-6); // #1476ff 链接图标色
   --tv-color-icon-warn-secondary: var(--tv-base-color-warn-secondary-1); // #ffb700 次要警告图标色 / 评分组件rate-图标色/状态图标-异常
 
+  /** 2.5.1 图标大小 **/
+  --tv-icon-size: 16px;
+
   /** 2.6 背景色 **/
 
   /* 2.6.1 常态 */
@@ -322,8 +326,8 @@
 
   /* 2.6.4 active/选中 */
   --tv-color-bg-active: var(--tv-base-color-common-3); // #f5f5f5  分页选中背景色/左侧导航选中背景色
-  --tv-color-bg-active-control: var(--tv-base-color-brand-6);// 主色蓝，单选/复选选中背景色、开关开的背景色、选块点击背景色、滑块选中背景色、价格曲线、区域选择选中的背景色
-  --tv-color-bg-active-primary: var(--tv-base-color-brand);// 品牌色，锚点-当前位置的圆点背景色/leftmenuthin左侧导航收起图标选中的背景色、NPS评分选中背景色
+  --tv-color-bg-active-control: var(--tv-base-color-brand-6); // 主色蓝，单选/复选选中背景色、开关开的背景色、选块点击背景色、滑块选中背景色、价格曲线、区域选择选中的背景色
+  --tv-color-bg-active-primary: var(--tv-base-color-brand); // 品牌色，锚点-当前位置的圆点背景色/leftmenuthin左侧导航收起图标选中的背景色、NPS评分选中背景色
   --tv-color-bg-active-secondary: var(--tv-base-color-common-1); // #fff 次要背景色active色/下拉选中的背景色/一级tab页签背景-选中色/树控件选中背景颜色
   --tv-color-bg-active-emphasize: var(--tv-base-color-brand-2); // #deecff 时间选择选中背景色
   --tv-color-bg-active-emphasize-light: var(--tv-base-color-brand-1); // #f0f7ff 表格选中背景色
@@ -375,7 +379,28 @@
   --tv-border-radius-lg: 8px;
   --tv-border-radius-round: 50%;
 
-  /** 5. 阴影变量 **/
+  /** 5. 边框  **/
+  --tv-border-width: 1px;
+
+  /** 6. 间距变量 space  ----margin、padding、top、 left 、 right、bottom **/
+  --tv-space-base: 4px;
+  --tv-space-xs: 2px;
+  --tv-space-sm: var(--tv-space-base);
+  --tv-space-md: calc(var(--tv-space-base) * 2);
+  --tv-space-lg: calc(var(--tv-space-base) * 3);
+  --tv-space-xl: calc(var(--tv-space-base) * 4);
+
+  /** 7. 尺寸变量 size  ---- width、 height **/
+  --tv-size-base: 4px;
+
+  /** 以下变量仅用于表单类组件的 height */
+  --tv-size-height-xs: 24px; // mini 尺寸
+  --tv-size-height-sm: 28px; // small 尺寸
+  --tv-size-height-md: 32px; // medium 尺寸 - 默认
+  --tv-size-height-lg: 40px; // large 尺寸
+  --tv-size-height-xl: 48px; //  xLarge 尺寸
+
+  /** 8. 阴影变量 **/
   --tv-shadow-0: 0 4px 16px 0 rgba(0, 0, 0, 0.08); //  页面布局容器组件（layout-section）阴影
   --tv-shadow-1: 0 0 0 0 rgba(0, 0, 0, 0); //  页面布局容器组件（layout-section）阴影
 
@@ -398,27 +423,6 @@
   --tv-shadow-4-down: 0 8px 24px 0 rgba(0, 0, 0, 0.16); // 弹窗、气泡确认框
   --tv-shadow-4-left: -8px 0 24px 0 rgba(0, 0, 0, 0.16); // 右侧抽屉
   --tv-shadow-4-right: 8px 0 24px 0 rgba(0, 0, 0, 0.16);
-
-  /** 6. 边框  **/
-  --tv-border-weight: 1px;
-
-  /** 7. 间距变量  ----margin、padding、top、 left 、 right、bottom **/
-  --tv-space-base: 4px;
-  --tv-space-xs: 2px;
-  --tv-space-sm: var(--tv-space-base);
-  --tv-space-md: calc(var(--tv-space-base) * 2);
-  --tv-space-lg: calc(var(--tv-space-base) * 3);
-  --tv-space-xl: calc(var(--tv-space-base) * 4);
-
-  /** 8. 尺寸变量  ---- width、 height **/
-  --tv-size-base: 4px;
-
-  /** 以下变量仅用于表单类组件的 height */
-  --tv-size-height-xs: 24px; // mini 尺寸
-  --tv-size-height-sm: 28px; // small 尺寸
-  --tv-size-height-md: 32px; // medium 尺寸 - 默认
-  --tv-size-height-lg: 40px; // large 尺寸
-  --tv-size-height-xl: 48px; //  xLarge 尺寸
 
   /** 9. 滚动条变量 **/
   --tv-size-scrollbar-width: 8px; // 滚动条宽度
