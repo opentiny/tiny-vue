@@ -13,6 +13,7 @@
 import { getNodeKey as innerGetNodekey } from '../common/deps/tree-model/util'
 import { KEY_CODE } from '../common'
 import TreeStore from '../common/deps/tree-model/tree-store'
+import type TreeNode from '../common/deps/tree-model/node'
 import { addClass, removeClass } from '../common/deps/dom'
 import { on, off } from '../common/deps/dom'
 import { getDataset } from '../common/dataset'
@@ -23,14 +24,14 @@ import { log } from '../common'
 export const setChildren = (props) => (data) => (props.data = data)
 
 export const getChildren = () => (props) => props.data
-
+// 计算树节点的数组！(需要改写成返回可见节点的数组)
 export const computedTreeItemArray = () => (props, state) => Array.prototype.slice.call(state.treeItems)
 
 export const computedShowEmptyText =
   ({ constants, t }) =>
   (props) =>
     props.emptyText || t(constants.EMPTY_TEXT_LOCAL)
-
+// 判断树节点和！
 export const computedIsEmpty = () => (props, state) => {
   const { childNodes } = state.root
 
@@ -45,7 +46,7 @@ export const computedIsEmpty = () => (props, state) => {
 export const watchDefaultCheckedKeys = (state) => (value) => {
   state.store.setDefaultCheckedKey(value)
 }
-
+// 展开逻辑！
 export const watchDefaultExpandedKeys =
   ({ state, api, nextTick }) =>
   (value) => {
@@ -64,7 +65,7 @@ export const watchData =
   (data) => {
     state.store.setData(data)
   }
-
+// 选择节点！
 export const watchCheckboxItems = () => (value) => {
   Array.prototype.forEach.call(value, (checkbox) => {
     checkbox.setAttribute('tabindex', -1)
@@ -74,7 +75,7 @@ export const watchCheckboxItems = () => (value) => {
 export const watchCheckStrictly = (state) => (value) => {
   state.store.checkStrictly = value
 }
-
+// 拖拽节点！
 export const dragStart =
   ({ props, state, emit }) =>
   (event, treeNode) => {
@@ -290,7 +291,7 @@ const afterLoadHandler =
       afterLoad(params)
     }
   }
-
+// 初始化树组件的状态和数据存储（这一步可能要实时更新滚动位置---需要理解）
 export const initTreeStore =
   ({ api, props, state, emit }) =>
   () => {
@@ -338,7 +339,7 @@ export const created =
     state.emitter.on('tree-node-delete', api.deleteConfirm)
     state.emitter.on('tree-node-add', api.addNode)
   }
-
+// 清除当前选中的节点状态
 const doClearCurrentStore = (state) => {
   if (state.currentStore.node) {
     state.currentStore.node.isCurrent = false
@@ -347,7 +348,7 @@ const doClearCurrentStore = (state) => {
   state.currentStore.node = null
   state.currentStore.flag = false
 }
-
+// 遍历树节点，设置特定节点为当前节点
 const setIsCurrent = (root, defaultExpandedKeys, defaultExpandedKeysHighlight, currentStore, nodeKey = 'id') => {
   if (currentStore.flag || !Array.isArray(root.childNodes)) {
     return
@@ -367,7 +368,7 @@ const setIsCurrent = (root, defaultExpandedKeys, defaultExpandedKeysHighlight, c
     setIsCurrent(child, defaultExpandedKeys, defaultExpandedKeysHighlight, currentStore, nodeKey)
   }
 }
-
+// 初始化当前节点的状态
 export const initIsCurrent =
   ({ props, state }) =>
   () => {
@@ -426,14 +427,14 @@ export const wrapMounted =
 
     api.mounted()
   }
-
+// 只获取可见区域的节点---这一步可能在tree-node中进行解决
 export const updated =
   ({ vm, state }) =>
   () => {
     state.treeItems = vm.$el.querySelectorAll('[role=treeitem]')
     state.checkboxItems = vm.$el.querySelectorAll('input[type=checkbox]')
   }
-
+// 筛选功能会影响可见节点的范围，可能需要重新计算可见区域节点
 export const filter =
   ({ props, state, api }) =>
   (value) => {
@@ -447,9 +448,12 @@ export const filter =
       api.initPlainNodeStore()
     }
   }
+// 用于从树节点数据中获取唯一标识
+export const getNodeKey = (props) => (node) => {
+  return innerGetNodekey(props.nodekey, node.data)
+}
 
-export const getNodeKey = (props) => (node) => innerGetNodekey(props.nodekey, node.data)
-
+// 获取一个节点的路径，从根节点到指定节点的路径（需要）
 export const getNodePath =
   ({ props, state }) =>
   (data) => {
@@ -473,18 +477,18 @@ export const getNodePath =
 
     return path.reverse()
   }
-
+// 获取所有被选中的节点（需要）
 export const getCheckedNodes = (state) => (leafOnly, includeHalfChecked) =>
   state.store.getCheckedNodes(leafOnly, includeHalfChecked)
-
+// 获取所有被选中的节点的键（需要）
 export const getCheckedKeys = (state) => (leafOnly) => state.store.getCheckedKeys(leafOnly)
-
+// 获取当前选中的节点（需要）
 export const getCurrentNode = (state) => () => {
   const currentNode = state.store.getCurrentNode()
 
   return currentNode ? currentNode.data : null
 }
-
+// 获取当前选中节点的键（需要）
 export const getCurrentKey =
   ({ api, props }) =>
   () => {
@@ -496,7 +500,7 @@ export const getCurrentKey =
 
     return currentNode ? currentNode[props.nodeKey] : null
   }
-
+// 设置选中的节点
 export const setCheckedNodes =
   ({ props, state }) =>
   (nodes, leafOnly) => {
@@ -506,7 +510,7 @@ export const setCheckedNodes =
 
     state.store.setCheckedNodes(nodes, leafOnly)
   }
-
+// 设置选中的节点的键（需要）
 export const setCheckedKeys =
   ({ props, state, api }) =>
   (keys, leafOnly) => {
@@ -520,7 +524,7 @@ export const setCheckedKeys =
       state.store.setCheckedKeys(keys, leafOnly)
     }
   }
-
+// 需要
 export const setChecked = (state) => (data, checked, deep) => {
   state.store.setChecked(data, checked, deep)
 }
@@ -528,7 +532,7 @@ export const setChecked = (state) => (data, checked, deep) => {
 export const getHalfCheckedNodes = (state) => () => state.store.getHalfCheckedNodes()
 
 export const getHalfCheckedKeys = (state) => () => state.store.getHalfCheckedKeys()
-
+// 需要
 export const setCurrentNode =
   ({ props, state }) =>
   (node) => {
@@ -538,7 +542,7 @@ export const setCurrentNode =
 
     state.store.setUserCurrentNode(node)
   }
-
+// 需要
 export const setCurrentKey =
   ({ props, state }) =>
   (key) => {
@@ -554,15 +558,15 @@ export const getNode = (state) => (data) => state.store.getNode(data)
 export const remove = (state) => (data, isSaveChildNode, isNode) => {
   state.store.remove(data, isSaveChildNode, isNode)
 }
-
+// 需要
 export const append = (state) => (data, parentNode) => {
   state.store.append(data, parentNode, 0)
 }
-
+// 需要
 export const insertBefore = (state) => (data, refNode) => {
   state.store.insertBefore(data, refNode)
 }
-
+// 需要
 export const insertAfter = (state) => (data, refNode) => {
   state.store.insertAfter(data, refNode)
 }
@@ -709,7 +713,7 @@ export const clearCurrentStore = (state) => (node) => {
     doClearCurrentStore(state)
   }
 }
-
+// 递归地展开或折叠所有节点（需要）！
 const innerExpandAllNodes = (nodes, expandFlag) => {
   nodes.forEach((node) => {
     if (expandFlag) {
@@ -723,7 +727,7 @@ const innerExpandAllNodes = (nodes, expandFlag) => {
     innerExpandAllNodes(node.childNodes, expandFlag)
   })
 }
-
+// 执行展开或折叠操作！（需要）
 export const expandAllNodes =
   ({ state }) =>
   (expandFlag) => {
@@ -739,13 +743,13 @@ export const expandAllNodes =
       })
     }
   }
-
+// 切换检查状态的简易模式！
 export const switchToggle =
   ({ state }) =>
   (val) => {
     state.checkEasily = val
   }
-
+// 在列表中查找与指定数据具有相同键值的项的索引！
 export const getSameDataIndex = (list, data, key = '$treeNodeId') => {
   let index = -1
 
@@ -757,7 +761,7 @@ export const getSameDataIndex = (list, data, key = '$treeNodeId') => {
 
   return index
 }
-
+// 设置编辑状态！
 export const editNode =
   ({ state }) =>
   (node) => {
@@ -766,7 +770,7 @@ export const editNode =
     state.action.node = node
     state.action.popoverVisible = false
   }
-
+// 保存编辑后的节点！
 export const saveNode =
   ({ state, emit, api }) =>
   () => {
@@ -794,7 +798,7 @@ export const saveNode =
 
     state.action.node = null
   }
-
+// 向树中添加新节点！
 export const addNode =
   ({ api, props, state }) =>
   (node) => {
@@ -835,14 +839,14 @@ export const addNode =
       api.editNode(child)
     }, 100)
   }
-
+// 取消删除操作！
 export const cancelDelete =
   ({ state }) =>
   () => {
     state.action.referenceElm = null
     state.action.popoverVisible = false
   }
-
+// 递归地获取树中所有节点的数据！
 export const loopGetTreeData = (result = [], nodes = [], childKey = 'childNodes') => {
   nodes.forEach((node) => {
     const index = getSameDataIndex(result, node.data)
@@ -855,7 +859,7 @@ export const loopGetTreeData = (result = [], nodes = [], childKey = 'childNodes'
 
   return result
 }
-
+// 删除节点！
 export const deleteAction =
   ({ state, api, emit }) =>
   () => {
@@ -874,7 +878,7 @@ export const deleteAction =
     emit('delete-node', node)
     api.remove(state.action.node, isSaveChildNode, true)
   }
-
+// 确认删除节点的操作
 export const deleteConfirm =
   ({ state, props, api }) =>
   (event, node) => {
@@ -901,7 +905,7 @@ export const deleteConfirm =
       state.action.popoverVisible = true
     }, 300)
   }
-
+// 打开编辑模式
 export const openEdit =
   ({ props, state, api, emit }) =>
   () => {
@@ -915,7 +919,7 @@ export const openEdit =
     api.watchData(state.action.data)
     emit('open-edit')
   }
-
+// 递归遍历树形结构的实用工具，能够从树中的每个节点中提取并收集指定的键值
 const getAllNodeKeys = (node, nodeKeys, nodeKey, children) => {
   if (Array.isArray(node)) {
     node.forEach((item) => {
@@ -928,7 +932,7 @@ const getAllNodeKeys = (node, nodeKeys, nodeKey, children) => {
     })
   }
 }
-
+// 关闭编辑模式
 export const closeEdit =
   ({ props, state, api, emit }) =>
   () => {
@@ -1044,3 +1048,25 @@ export const setCheckedByNodeKey =
       plainNode.node.setChecked(checked, !checkStrictly)
     }
   }
+
+// 扁平化数据(虚拟滚动)
+export const computedFlattenedTreeData = () => (props, state) => {
+  const data = state.root.childNodes
+  // const data = props.data
+  const stack: TreeNode[] = []
+  const newData: TreeNode[] = []
+  for (let i = data.length - 1; i >= 0; i--) {
+    stack.push(data[i])
+  }
+  while (stack.length) {
+    const node = stack.pop()!
+    if (!node.expand) continue
+    newData.push(node)
+    if (node.childNodes.length) {
+      for (let i = node.childNodes.length - 1; i >= 0; i--) {
+        if (node.childNodes[i].expand) stack.push(node.childNodes[i])
+      }
+    }
+  }
+  return newData
+}

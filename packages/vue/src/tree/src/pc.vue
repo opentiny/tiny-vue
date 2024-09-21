@@ -24,36 +24,78 @@
   >
     <!-- 树视图 -->
     <template v-if="viewType === 'tree'">
-      <tree-node
-        v-for="child in state.root.childNodes"
-        :action="state.action"
-        :show-radio="showRadio"
-        :theme="theme"
-        :show-number="showNumber"
-        :collapsible="collapsible"
-        :node-height="nodeHeight"
-        :current-radio="state.currentRadio"
-        @radio-change="state.currentRadio.value = $event"
-        :expand-icon="expandIcon"
-        :shrink-icon="shrinkIcon"
-        :expand-icon-color="expandIconColor"
-        :shrink-icon-color="shrinkIconColor"
-        :node="child"
-        :props="props"
-        :render-after-expand="renderAfterExpand"
-        :show-checkbox="showCheckbox"
-        :key="getNodeKey(child)"
-        :node-key="nodeKey"
-        :render-content="renderContent"
-        @node-expand="handleNodeExpand"
-        :check-easily="state.checkEasily"
-        :show-line="showLine"
-        :show-checked-mark="showCheckedMark"
+      <!-- 使用虚拟滚动组件 -->
+      <TinyVirtualScroll
+        v-if="nodeHeight"
+        :data="state.flattenedTreeData"
+        :itemSize="nodeHeight"
+        :visibleSize="treeHeight"
+        itemIndex="$treeNodeId"
+        direction="vertical"
+        ref="scrollRef"
       >
-        <template #prefix="slotScoped"><slot name="prefix" :node="slotScoped.node"></slot></template>
-        <template #suffix="slotScoped"><slot name="suffix" :node="slotScoped.node"></slot></template>
-        <template #operation="slotScoped"><slot name="operation" :node="slotScoped.node"></slot></template>
-      </tree-node>
+        <template #default="virtualProps">
+          <tree-node
+            :action="state.action"
+            :show-radio="showRadio"
+            :theme="theme"
+            :show-number="showNumber"
+            :collapsible="collapsible"
+            :node-height="nodeHeight"
+            :current-radio="state.currentRadio"
+            @radio-change="state.currentRadio.value = $event"
+            :expand-icon="expandIcon"
+            :shrink-icon="shrinkIcon"
+            :expand-icon-color="expandIconColor"
+            :shrink-icon-color="shrinkIconColor"
+            :node="virtualProps.item"
+            :props="props"
+            :render-after-expand="renderAfterExpand"
+            :show-checkbox="showCheckbox"
+            :key="virtualProps.item.$treeNodeId"
+            node-key="nodeKey"
+            :check-easily="state.checkEasily"
+            :show-line="showLine"
+            :show-checked-mark="showCheckedMark"
+          >
+            <template #prefix="slotScoped"><slot name="prefix" :node="slotScoped.node"></slot></template>
+            <template #suffix="slotScoped"><slot name="suffix" :node="slotScoped.node"></slot></template>
+            <template #operation="slotScoped"><slot name="operation" :node="slotScoped.node"></slot></template>
+          </tree-node>
+        </template>
+      </TinyVirtualScroll>
+      <div v-else>
+        <tree-node
+          v-for="child in state.root.childNodes"
+          :action="state.action"
+          :show-radio="showRadio"
+          :theme="theme"
+          :show-number="showNumber"
+          :collapsible="collapsible"
+          :node-height="nodeHeight"
+          :current-radio="state.currentRadio"
+          @radio-change="state.currentRadio.value = $event"
+          :expand-icon="expandIcon"
+          :shrink-icon="shrinkIcon"
+          :expand-icon-color="expandIconColor"
+          :shrink-icon-color="shrinkIconColor"
+          :node="child"
+          :props="props"
+          :render-after-expand="renderAfterExpand"
+          :show-checkbox="showCheckbox"
+          :key="getNodeKey(child)"
+          :node-key="nodeKey"
+          :render-content="renderContent"
+          @node-expand="handleNodeExpand"
+          :check-easily="state.checkEasily"
+          :show-line="showLine"
+          :show-checked-mark="showCheckedMark"
+        >
+          <template #prefix="slotScoped"><slot name="prefix" :node="slotScoped.node"></slot></template>
+          <template #suffix="slotScoped"><slot name="suffix" :node="slotScoped.node"></slot></template>
+          <template #operation="slotScoped"><slot name="operation" :node="slotScoped.node"></slot></template>
+        </tree-node>
+      </div>
     </template>
 
     <!-- 平铺视图 -->
@@ -160,6 +202,7 @@ import Checkbox from '@opentiny/vue-checkbox'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
 import TreeNode from './tree-node.vue'
 import Radio from '@opentiny/vue-radio'
+import VirtualScroll from '@opentiny/vue-virtual-scroll'
 
 export default defineComponent({
   directives: directive({ Clickoutside }),
@@ -222,7 +265,8 @@ export default defineComponent({
     'deleteNodeMethod',
     'showCheckedMark',
     'willChangeView',
-    'editConfig'
+    'editConfig',
+    'treeHeight'
   ],
   components: {
     TreeNode,
@@ -232,7 +276,8 @@ export default defineComponent({
     TinyCheckbox: Checkbox,
     TinyButton: Button,
     TinySwitch: Switch,
-    TinyRadio: Radio
+    TinyRadio: Radio,
+    TinyVirtualScroll: VirtualScroll
   },
   emits: [
     'node-expand',

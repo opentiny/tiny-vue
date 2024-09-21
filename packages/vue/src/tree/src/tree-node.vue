@@ -13,211 +13,363 @@
 
 <template>
   <div class="tiny-tree-node__wrapper">
-    <div
-      class="tiny-tree-node"
-      :class="{
-        'is-indeterminate': !node.disabled && node.indeterminate,
-        'is-current': node.isCurrent,
-        'is-hidden': !node.visible,
-        'is-checked': !node.disabled && node.checked,
-        'is-focusable': !node.disabled,
-        'is-expanded': state.expanded,
-        'is-loading': node.loading,
-        'is-disabled': node.disabled,
-        'is-leaf': node.isLeaf,
-        'is-root': node.level === 1,
-        'show-line': showLine,
-        'show-checkbox': showCheckbox
-      }"
-      role="treeitem"
-      tabindex="-1"
-      v-show="node.visible"
-      :aria-expanded="state.expanded"
-      :aria-disabled="node.disabled"
-      :aria-checked="node.checked"
-      :draggable="state.tree.draggable"
-      @click.stop="handleClick"
-      @contextmenu.stop="($event) => handleContextMenu($event)"
-      @dragstart.stop="handleDragStart"
-      @dragover.stop="handleDragOver"
-      @dragend.stop="handleDragEnd"
-      @drop.stop="handleDrop"
-      ref="node"
-    >
+    <div v-if="nodeHeight">
       <div
+        class="tiny-tree-node"
         :class="{
-          'tiny-tree-node__content': true,
-          'tiny-tree-node__content-number': showNumber
+          'is-indeterminate': !node.disabled && node.indeterminate,
+          'is-current': node.isCurrent,
+          'is-hidden': !node.visible,
+          'is-checked': !node.disabled && node.checked,
+          'is-focusable': !node.disabled,
+          'is-expanded': state.expanded,
+          'is-loading': node.loading,
+          'is-disabled': node.disabled,
+          'is-leaf': node.isLeaf,
+          'is-root': node.level === 1,
+          'show-line': showLine,
+          'show-checkbox': showCheckbox
         }"
-        :style="{
-          'height': nodeHeight ? nodeHeight + 'px' : undefined,
-          'line-height': nodeHeight ? nodeHeight + 'px' : undefined
-        }"
-        @click="handleContentClick(node, currentRadio)"
+        role="treeitem"
+        tabindex="-1"
+        v-show="node.visible"
+        :aria-expanded="state.expanded"
+        :aria-disabled="node.disabled"
+        :aria-checked="node.checked"
+        :draggable="state.tree.draggable"
+        @click.stop="handleClick"
+        @contextmenu.stop="($event) => handleContextMenu($event)"
+        @dragstart.stop="handleDragStart"
+        @dragover.stop="handleDragOver"
+        @dragend.stop="handleDragEnd"
+        @drop.stop="handleDrop"
+        ref="node"
       >
-        <span
-          class="tiny-tree-node__content-indent"
-          v-for="i in showLine ? 1 : node.level - 1"
-          :key="i"
-          :style="{ width: state.computedIndent, flexShrink: 0 }"
-        ></span>
-        <div class="tiny-tree-node__content-left">
-          <template v-if="showNumber">
-            <span class="tree-node-number">{{ node.data.number }}</span>
-          </template>
-          <template v-else>
-            <span
-              :class="['tree-node-icon', { 'is-disabled': node.disabled }]"
-              @click="handleExpandIconClick($event, node)"
-            >
-              <template v-if="state.expandIcon !== undefined && state.shrinkIcon !== undefined">
-                <component
-                  :is="state.expanded ? state.shrinkIcon : state.expandIcon"
-                  :fill="state.expanded ? state.shrinkIconColor : state.expandIconColor"
-                  :class="['tiny-tree-node__expand-icon', { 'is-leaf': node.isLeaf }]"
-                />
-              </template>
-              <template v-else>
-                <component
-                  :is="state.computedExpandIcon"
-                  :class="[
-                    'tiny-tree-node__expand-icon',
-                    {
-                      'is-leaf': node.isLeaf,
-                      expanded: !node.isLeaf && state.expanded,
-                      'is-saas-theme': state.isSaaSTheme
-                    }
-                  ]"
-                />
-              </template>
-            </span>
-          </template>
+        <div
+          :class="{
+            'tiny-tree-node__content': true,
+            'tiny-tree-node__content-number': showNumber
+          }"
+          :style="{
+            'height': nodeHeight ? nodeHeight + 'px' : undefined,
+            'line-height': nodeHeight ? nodeHeight + 'px' : undefined
+          }"
+          @click="handleContentClick(node, currentRadio)"
+        >
+          <!-- 起着padding-left的功能 -->
+          <span class="tiny-tree-node__content-indent" :style="{ width: state.computedIndent, flexShrink: 0 }"></span>
+          <div class="tiny-tree-node__content-left">
+            <template v-if="showNumber">
+              <span class="tree-node-number">{{ node.data.number }}</span>
+            </template>
+            <template v-else>
+              <!-- el-icon -->
+              <span
+                :class="['tree-node-icon', { 'is-disabled': node.disabled }]"
+                @click="handleExpandIconClick($event, node)"
+              >
+                <template v-if="state.expandIcon !== undefined && state.shrinkIcon !== undefined">
+                  <component
+                    :is="state.expanded ? state.shrinkIcon : state.expandIcon"
+                    :fill="state.expanded ? state.shrinkIconColor : state.expandIconColor"
+                    :class="['tiny-tree-node__expand-icon', { 'is-leaf': node.isLeaf }]"
+                  />
+                </template>
+                <template v-else>
+                  <component
+                    :is="state.computedExpandIcon"
+                    :class="[
+                      'tiny-tree-node__expand-icon',
+                      {
+                        'is-leaf': node.isLeaf,
+                        expanded: !node.isLeaf && state.expanded,
+                        'is-saas-theme': state.isSaaSTheme
+                      }
+                    ]"
+                  />
+                </template>
+              </span>
+            </template>
 
-          <!-- tiny: 去掉 @click.stop的绑定 -->
-          <tiny-checkbox
-            v-if="showCheckbox"
-            :model-value="node.checked"
-            ref="checkbox"
-            :indeterminate="node.indeterminate"
-            :disabled="!!node.disabled"
-            :validate-event="false"
-            @change="handleCheckChange"
-          >
-          </tiny-checkbox>
-          <tiny-radio
-            v-if="showRadio"
-            :model-value="currentRadio.value"
-            @update:modelValue="$emit('radio-change', $event)"
-            :validate-event="false"
-            :label="node.id"
-            :disabled="!!node.disabled"
-          ></tiny-radio>
-          <svg v-if="node.loading" class="tiny-tree-node__loading tiny-svg circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="24" fill="none"></circle>
-          </svg>
-          <slot name="prefix" :node="node"></slot>
-          <template v-if="action.type === 'edit' && action.node && action.node === node">
-            <tiny-input
-              v-model="action.label"
-              ref="editInput"
-              autofocus
-              clearable
-              @keyup.enter="saveEdit($event)"
-              @blur="saveEdit($event)"
-              @click.stop="($event) => $event.stopPropagation()"
-            />
-          </template>
-          <div v-else class="tiny-tree-node__content-box">
-            <node-content :node="node" :render-content="renderContent"></node-content>
+            <!-- tiny: 去掉 @click.stop的绑定 -->
+            <tiny-checkbox
+              v-if="showCheckbox"
+              :model-value="node.checked"
+              ref="checkbox"
+              :indeterminate="node.indeterminate"
+              :disabled="!!node.disabled"
+              :validate-event="false"
+              @change="handleCheckChange"
+            >
+            </tiny-checkbox>
+            <tiny-radio
+              v-if="showRadio"
+              :model-value="currentRadio.value"
+              @update:modelValue="$emit('radio-change', $event)"
+              :validate-event="false"
+              :label="node.id"
+              :disabled="!!node.disabled"
+            ></tiny-radio>
+            <svg v-if="node.loading" class="tiny-tree-node__loading tiny-svg circular" viewBox="25 25 50 50">
+              <circle class="path" cx="50" cy="50" r="24" fill="none"></circle>
+            </svg>
+            <slot name="prefix" :node="node"></slot>
+            <template v-if="action.type === 'edit' && action.node && action.node === node">
+              <tiny-input
+                v-model="action.label"
+                ref="editInput"
+                autofocus
+                clearable
+                @keyup.enter="saveEdit($event)"
+                @blur="saveEdit($event)"
+                @click.stop="($event) => $event.stopPropagation()"
+              />
+            </template>
+            <div v-else class="tiny-tree-node__content-box">
+              <node-content :node="node" :render-content="renderContent"></node-content>
+            </div>
+            <slot name="suffix" :node="node" :render-content="renderContent"></slot>
           </div>
-          <slot name="suffix" :node="node"></slot>
-        </div>
-        <div :class="['tiny-tree-node__content-right', { 'is-disabled': node.disabled }]">
-          <span
-            class="tiny-tree-node__checked-mark"
-            v-if="showCheckedMark && !showCheckbox && !node.disabled && node.isCurrent"
-          >
-            <icon-finish> </icon-finish>
-          </span>
-          <slot name="operation" :node="node"></slot>
-          <template v-if="action.show">
-            <span :title="t('ui.tree.edit')">
-              <icon-edit
-                v-if="!action.editDisabled.includes(node.data[nodeKey])"
-                @click.stop="openEdit(node)"
-              ></icon-edit>
+          <div :class="['tiny-tree-node__content-right', { 'is-disabled': node.disabled }]">
+            <span
+              class="tiny-tree-node__checked-mark"
+              v-if="showCheckedMark && !showCheckbox && !node.disabled && node.isCurrent"
+            >
+              <icon-finish> </icon-finish>
             </span>
-            <span :title="t('ui.tree.delete')">
-              <icon-minus-square
-                v-if="!action.deleteDisabled.includes(node.data[nodeKey])"
-                @click.stop="deleteNode($event, node)"
-              ></icon-minus-square>
-            </span>
-            <span :title="t('ui.tree.newNodeTitle')">
-              <icon-plus-square
-                v-if="!action.addDisabled.includes(node.data[nodeKey]) && node.data[state.props.label || 'label']"
-                @click.stop="addNode(node)"
-              ></icon-plus-square>
-            </span>
-          </template>
+            <slot name="operation" :node="node"></slot>
+            <template v-if="action.show">
+              <span :title="t('ui.tree.edit')">
+                <icon-edit
+                  v-if="!action.editDisabled.includes(node.data[nodeKey])"
+                  @click.stop="openEdit(node)"
+                ></icon-edit>
+              </span>
+              <span :title="t('ui.tree.delete')">
+                <icon-minus-square
+                  v-if="!action.deleteDisabled.includes(node.data[nodeKey])"
+                  @click.stop="deleteNode($event, node)"
+                ></icon-minus-square>
+              </span>
+              <span :title="t('ui.tree.newNodeTitle')">
+                <icon-plus-square
+                  v-if="!action.addDisabled.includes(node.data[nodeKey]) && node.data[state.props.label || 'label']"
+                  @click.stop="addNode(node)"
+                ></icon-plus-square>
+              </span>
+            </template>
+          </div>
         </div>
       </div>
-
-      <template v-if="node.childNodes.length">
-        <collapse-transition>
-          <div
-            class="tiny-tree-node__children"
-            v-if="!renderAfterExpand || state.childNodeRendered"
-            v-show="state.expanded"
-            role="group"
-            :aria-expanded="state.expanded"
-            :style="{
-              'margin-left': showLine ? state.computedIndent : 0
-            }"
-          >
-            <span
-              v-if="showLine"
-              class="tiny-tree-node__children-indent"
-              :style="{ width: state.computedIndent, left: `-${state.computedIndent}` }"
-            ></span>
-            <tree-node
-              v-for="child in node.childNodes"
-              :action="action"
-              :show-radio="showRadio"
-              :theme="theme"
-              :current-radio="currentRadio"
-              :render-content="renderContent"
-              :expand-icon="state.expandIcon"
-              :shrink-icon="state.shrinkIcon"
-              :expand-icon-color="state.expandIconColor"
-              :shrink-icon-color="state.shrinkIconColor"
-              :render-after-expand="renderAfterExpand"
-              :show-checkbox="showCheckbox"
-              :show-number="showNumber"
-              :node-height="nodeHeight"
-              :show-checked-mark="showCheckedMark"
-              :key="getNodeKey(child)"
-              :node-key="nodeKey"
-              :check-easily="checkEasily"
-              :node="child"
-              :show-line="showLine"
-              @node-expand="handleChildNodeExpand"
-              @radio-change="$emit('radio-change', $event)"
-            >
-              <template #prefix="slotScoped">
-                <slot name="prefix" :node="slotScoped.node"></slot>
-              </template>
-              <template #suffix="slotScoped">
-                <slot name="suffix" :node="slotScoped.node"></slot>
-              </template>
-              <template #operation="slotScoped">
-                <slot name="operation" :node="slotScoped.node"></slot>
-              </template>
-            </tree-node>
-          </div>
-        </collapse-transition>
-      </template>
     </div>
+    <div v-else>
+      <div
+        class="tiny-tree-node"
+        :class="{
+          'is-indeterminate': !node.disabled && node.indeterminate,
+          'is-current': node.isCurrent,
+          'is-hidden': !node.visible,
+          'is-checked': !node.disabled && node.checked,
+          'is-focusable': !node.disabled,
+          'is-expanded': state.expanded,
+          'is-loading': node.loading,
+          'is-disabled': node.disabled,
+          'is-leaf': node.isLeaf,
+          'is-root': node.level === 1,
+          'show-line': showLine,
+          'show-checkbox': showCheckbox
+        }"
+        role="treeitem"
+        tabindex="-1"
+        v-show="node.visible"
+        :aria-expanded="state.expanded"
+        :aria-disabled="node.disabled"
+        :aria-checked="node.checked"
+        :draggable="state.tree.draggable"
+        @click.stop="handleClick"
+        @contextmenu.stop="($event) => handleContextMenu($event)"
+        @dragstart.stop="handleDragStart"
+        @dragover.stop="handleDragOver"
+        @dragend.stop="handleDragEnd"
+        @drop.stop="handleDrop"
+        ref="node"
+      >
+        <div
+          :class="{
+            'tiny-tree-node__content': true,
+            'tiny-tree-node__content-number': showNumber
+          }"
+          :style="{
+            'height': nodeHeight ? nodeHeight + 'px' : undefined,
+            'line-height': nodeHeight ? nodeHeight + 'px' : undefined
+          }"
+          @click="handleContentClick(node, currentRadio)"
+        >
+          <span
+            class="tiny-tree-node__content-indent"
+            v-for="i in showLine ? 1 : node.level - 1"
+            :key="i"
+            :style="{ width: state.computedIndent, flexShrink: 0 }"
+          ></span>
+          <div class="tiny-tree-node__content-left">
+            <template v-if="showNumber">
+              <span class="tree-node-number">{{ node.data.number }}</span>
+            </template>
+            <template v-else>
+              <span
+                :class="['tree-node-icon', { 'is-disabled': node.disabled }]"
+                @click="handleExpandIconClick($event, node)"
+              >
+                <template v-if="state.expandIcon !== undefined && state.shrinkIcon !== undefined">
+                  <component
+                    :is="state.expanded ? state.shrinkIcon : state.expandIcon"
+                    :fill="state.expanded ? state.shrinkIconColor : state.expandIconColor"
+                    :class="['tiny-tree-node__expand-icon', { 'is-leaf': node.isLeaf }]"
+                  />
+                </template>
+                <template v-else>
+                  <component
+                    :is="state.computedExpandIcon"
+                    :class="[
+                      'tiny-tree-node__expand-icon',
+                      {
+                        'is-leaf': node.isLeaf,
+                        expanded: !node.isLeaf && state.expanded,
+                        'is-saas-theme': state.isSaaSTheme
+                      }
+                    ]"
+                  />
+                </template>
+              </span>
+            </template>
+
+            <!-- tiny: 去掉 @click.stop的绑定 -->
+            <tiny-checkbox
+              v-if="showCheckbox"
+              :model-value="node.checked"
+              ref="checkbox"
+              :indeterminate="node.indeterminate"
+              :disabled="!!node.disabled"
+              :validate-event="false"
+              @change="handleCheckChange"
+            >
+            </tiny-checkbox>
+            <tiny-radio
+              v-if="showRadio"
+              :model-value="currentRadio.value"
+              @update:modelValue="$emit('radio-change', $event)"
+              :validate-event="false"
+              :label="node.id"
+              :disabled="!!node.disabled"
+            ></tiny-radio>
+            <svg v-if="node.loading" class="tiny-tree-node__loading tiny-svg circular" viewBox="25 25 50 50">
+              <circle class="path" cx="50" cy="50" r="24" fill="none"></circle>
+            </svg>
+            <slot name="prefix" :node="node"></slot>
+            <template v-if="action.type === 'edit' && action.node && action.node === node">
+              <tiny-input
+                v-model="action.label"
+                ref="editInput"
+                autofocus
+                clearable
+                @keyup.enter="saveEdit($event)"
+                @blur="saveEdit($event)"
+                @click.stop="($event) => $event.stopPropagation()"
+              />
+            </template>
+            <div v-else class="tiny-tree-node__content-box">
+              <node-content :node="node" :render-content="renderContent"></node-content>
+            </div>
+            <slot name="suffix" :node="node"></slot>
+          </div>
+          <div :class="['tiny-tree-node__content-right', { 'is-disabled': node.disabled }]">
+            <span
+              class="tiny-tree-node__checked-mark"
+              v-if="showCheckedMark && !showCheckbox && !node.disabled && node.isCurrent"
+            >
+              <icon-finish> </icon-finish>
+            </span>
+            <slot name="operation" :node="node"></slot>
+            <template v-if="action.show">
+              <span :title="t('ui.tree.edit')">
+                <icon-edit
+                  v-if="!action.editDisabled.includes(node.data[nodeKey])"
+                  @click.stop="openEdit(node)"
+                ></icon-edit>
+              </span>
+              <span :title="t('ui.tree.delete')">
+                <icon-minus-square
+                  v-if="!action.deleteDisabled.includes(node.data[nodeKey])"
+                  @click.stop="deleteNode($event, node)"
+                ></icon-minus-square>
+              </span>
+              <span :title="t('ui.tree.newNodeTitle')">
+                <icon-plus-square
+                  v-if="!action.addDisabled.includes(node.data[nodeKey]) && node.data[state.props.label || 'label']"
+                  @click.stop="addNode(node)"
+                ></icon-plus-square>
+              </span>
+            </template>
+          </div>
+        </div>
+
+        <template v-if="node.childNodes.length">
+          <collapse-transition>
+            <div
+              class="tiny-tree-node__children"
+              v-if="!renderAfterExpand || state.childNodeRendered"
+              v-show="state.expanded"
+              role="group"
+              :aria-expanded="state.expanded"
+              :style="{
+                'margin-left': showLine ? state.computedIndent : 0
+              }"
+            >
+              <span
+                v-if="showLine"
+                class="tiny-tree-node__children-indent"
+                :style="{ width: state.computedIndent, left: `-${state.computedIndent}` }"
+              ></span>
+              <tree-node
+                v-for="child in node.childNodes"
+                :action="action"
+                :show-radio="showRadio"
+                :theme="theme"
+                :current-radio="currentRadio"
+                :render-content="renderContent"
+                :expand-icon="state.expandIcon"
+                :shrink-icon="state.shrinkIcon"
+                :expand-icon-color="state.expandIconColor"
+                :shrink-icon-color="state.shrinkIconColor"
+                :render-after-expand="renderAfterExpand"
+                :show-checkbox="showCheckbox"
+                :show-number="showNumber"
+                :node-height="nodeHeight"
+                :show-checked-mark="showCheckedMark"
+                :key="getNodeKey(child)"
+                :node-key="nodeKey"
+                :check-easily="checkEasily"
+                :node="child"
+                :show-line="showLine"
+                @node-expand="handleChildNodeExpand"
+                @radio-change="$emit('radio-change', $event)"
+              >
+                <template #prefix="slotScoped">
+                  <slot name="prefix" :node="slotScoped.node"></slot>
+                </template>
+                <template #suffix="slotScoped">
+                  <slot name="suffix" :node="slotScoped.node"></slot>
+                </template>
+                <template #operation="slotScoped">
+                  <slot name="operation" :node="slotScoped.node"></slot>
+                </template>
+              </tree-node>
+            </div>
+          </collapse-transition>
+        </template>
+      </div>
+    </div>
+
     <div
       ref="menuContext"
       class="tiny-tree-node__menu"

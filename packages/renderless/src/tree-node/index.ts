@@ -21,7 +21,7 @@ export const watchChecked =
   ({ api, props }) =>
   (value) =>
     api.handleSelectChange(value, props.node.indeterminate)
-
+// 需要
 export const watchExpanded =
   ({ state }) =>
   (value) => {
@@ -33,7 +33,7 @@ export const watchExpanded =
   }
 
 export const getNodeKey = (state) => (node) => getTreeNodeKey(state.tree.nodeKey, node.data)
-
+// 需要
 const getVisibleNodes = (treeNode, tree) => {
   if (treeNode.visible) {
     const childNodes = treeNode.childNodes
@@ -65,7 +65,7 @@ const getVisibleNodes = (treeNode, tree) => {
     }
   }
 }
-
+// 需要
 export const handleSelectChange =
   ({ props, state }) =>
   (checked, indeterminate) => {
@@ -170,7 +170,7 @@ export const handleContextMenu =
       }
     })
   }
-
+// 需要
 export const handleExpandIconClick =
   ({ api, state }) =>
   (event, node) => {
@@ -179,7 +179,7 @@ export const handleExpandIconClick =
       event.stopPropagation()
     }
   }
-
+// 需要
 export const handleExpandClick =
   ({ emit, vm, props, state }) =>
   (nodeClickFlag) => {
@@ -200,7 +200,7 @@ export const handleExpandClick =
     }
   }
 
-// 点击节点 或 点击checkbox的，都会进入该函数
+// 点击节点 或 点击checkbox的，都会进入该函数(需要)
 export const handleCheckChange =
   ({ nextTick, props, state }) =>
   (value, event = {}) => {
@@ -367,7 +367,7 @@ export const computedExpandIcon =
 
     return 'icon-chevron-right'
   }
-// tiny 新增
+// tiny 新增(需要)
 export const computedIndent =
   () =>
   ({ node, showLine }, { tree }) => {

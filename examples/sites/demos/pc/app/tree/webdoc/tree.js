@@ -492,6 +492,15 @@ export default {
           `
       },
       codeFiles: ['other.vue']
+    },
+    {
+      demoId: 'virtual-tree',
+      name: {
+        'zh-CN': '虚拟树',
+        'en-US': 'virtual tree'
+      },
+      desc: {},
+      codeFiles: ['virtual-basic.vue']
     }
   ]
 }
