@@ -133,6 +133,9 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
             {
               icon: iconRichTextHeading(),
               priority: 80,
+              isActive: ({ editor }: { editor: Editor }) => {
+                return () => editor.isActive(TableHeader.name)
+              },
               isDisabled: ({ editor }: { editor: Editor }) => {
                 return () => !editor.can().toggleHeaderCell()
               },
@@ -169,6 +172,7 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
                     const color = e.target?.value
                     if (color) {
                       editor.chain().focus().setCellAttribute('backgroundColor', color).run()
+                      // editor.chain().focus().setCellAttribute('colspan', 2).run()
                     }
                   }
                 }
