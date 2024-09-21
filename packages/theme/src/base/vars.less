@@ -78,8 +78,7 @@
   --tv-base-color-warn-11: #9e6d3f;
   --tv-base-color-warn-12: #d6a981;
   --tv-base-color-warn-13: #f2d8c2;
-  --tv-base-color-warn-secondary-1: #ffb700;
-  /* 次要告警色 黄色系 */
+  --tv-base-color-warn-secondary-1: #ffb700; // 次要告警色 黄色系
 
   --tv-base-color-info-1: #f0f7ff;
   --tv-base-color-info-2: #deecff; // 提示-背景色 / 边框色
@@ -296,9 +295,6 @@
   --tv-color-icon-link: var(--tv-base-color-brand-6); // #1476ff 链接图标色
   --tv-color-icon-warn-secondary: var(--tv-base-color-warn-secondary-1); // #ffb700 次要警告图标色 / 评分组件rate-图标色/状态图标-异常
 
-  /** 2.5.1 图标大小 **/
-  --tv-icon-size: 16px;
-
   /** 2.6 背景色 **/
 
   /* 2.6.1 常态 */
@@ -371,13 +367,13 @@
   /* 3.4 字重 */
   --tv-font-weight-thin: 200;
   --tv-font-weight-regular: 400;
-  --tv-font-weight-medium: 600;
+  --tv-font-weight-bold: 600;
 
   /** 4. 圆角变量 **/
   --tv-border-radius-sm: 4px;
   --tv-border-radius-md: 6px;
   --tv-border-radius-lg: 8px;
-  --tv-border-radius-round: 50%;
+  --tv-border-radius-round: 999px; // 50% 会造成椭圆，避免使用。 999px是 tiny3的做法。 
 
   /** 5. 边框  **/
   --tv-border-width: 1px;
@@ -390,17 +386,22 @@
   --tv-space-lg: calc(var(--tv-space-base) * 3);
   --tv-space-xl: calc(var(--tv-space-base) * 4);
 
-  /** 7. 尺寸变量 size  ---- width、 height **/
+  /** 7. 尺寸变量 size **/
+
+  /** 尺寸系数 calc */
   --tv-size-base: 4px;
 
-  /** 以下变量仅用于表单类组件的 height */
+  /** 7.1 表单类组件的 height */
   --tv-size-height-xs: 24px; // mini 尺寸
   --tv-size-height-sm: 28px; // small 尺寸
   --tv-size-height-md: 32px; // medium 尺寸 - 默认
   --tv-size-height-lg: 40px; // large 尺寸
   --tv-size-height-xl: 48px; //  xLarge 尺寸
 
-  /** 8. 阴影变量 **/
+  /** 7.2 图标大小 width, height **/
+  --tv-icon-size: 16px;
+
+  /** 8. 阴影变量 box-shadow **/
   --tv-shadow-0: 0 4px 16px 0 rgba(0, 0, 0, 0.08); //  页面布局容器组件（layout-section）阴影
   --tv-shadow-1: 0 0 0 0 rgba(0, 0, 0, 0); //  页面布局容器组件（layout-section）阴影
 
