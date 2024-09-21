@@ -83,6 +83,17 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
+        },
+        {
+          name: 'visibleSize',
+          type: 'Number',
+          defaultValue: '400',
+          desc: {
+            'zh-CN': '显示区域的高度/宽度',
+            'en-US': 'Height/width of display area.'
+          },
+          mode: ['pc'],
+          pcDemo: 'basic-usage'
         }
       ],
       events: [],

@@ -65,8 +65,10 @@ export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...
     if (!virtualScroll.value) return
     await nextTick()
     let start, end, totalSize, bufferSize
-    const size = props.direction === 'vertical' ? virtualScroll.value.clientHeight : virtualScroll.value.clientWidth
+    const size = props.visibleSize
+
     const viewNum = Math.ceil(size / (props.itemSize ?? props.estimatedItemSize))
+
     const scrollPosition =
       props.direction === 'vertical' ? virtualScroll.value.scrollTop : virtualScroll.value.scrollLeft
     if (state.temporary.prerender) {
@@ -85,7 +87,9 @@ export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...
           viewStart + viewNum + bufferItems < state.data.length ? viewStart + viewNum + bufferItems : state.data.length
 
         state.visibleData = state.data.slice(start, end)
+
         state.translate = start * props.itemSize
+
         return
       }
 
