@@ -12,6 +12,7 @@ import {
   computedInternalPageCount,
   computedSimplestPagerOption,
   computedSimplestPagerWidth,
+  computedPageSizeText,
   handleJumperFocus,
   handleSizeChange,
   handleJumperInput,
@@ -92,12 +93,12 @@ export const renderless = (
     totalText: computed(() => api.computedTotalText()),
     internalPageCount: computed(() => api.computedInternalPageCount()),
     showJumperSuffix: designConfig?.state?.showJumperSuffix ?? true,
-    align: props.align || designConfig?.state?.align || 'left',
+    align: props.align || designConfig?.state?.align || 'right',
     totalI18n: designConfig?.state?.totalI18n || 'totals',
     totalFixedLeft: computed(
       () => props.totalFixedLeft ?? designConfig?.state?.totalFixedLeft ?? props.mode !== 'simplest' ?? true
     ),
-    pageSizeText: props.pageSizeText ?? designConfig?.state?.pageSizeText
+    pageSizeText: computed(() => api.computedPageSizeText())
   })
 
   Object.assign(api, {
@@ -108,6 +109,7 @@ export const renderless = (
     computedInternalPageCount: computedInternalPageCount({ props, state }),
     computedSimplestPagerOption: computedSimplestPagerOption({ props, state }),
     computedSimplestPagerWidth: computedSimplestPagerWidth({ state }),
+    computedPageSizeText: computedPageSizeText({ props, designConfig }),
     getValidCurrentPage: getValidCurrentPage({ state }),
     handleJumperFocus: handleJumperFocus({ state }),
     handleSizeChange: handleSizeChange({ props, state, api, emit, vm }),
