@@ -455,11 +455,17 @@
       }
     }
 
+    .@{pager-prefix-cls}__page-size,
+    .@{pager-prefix-cls}__page-size-btn {
+      height: var(--tv-Pager-input-height-xs);
+      line-height: calc(var(--tv-Pager-input-height-xs) - 2px);
+    }
+
     li {
       min-width: var(--tv-Pager-min-width-xs);
-      height: 24px;
+      height: var(--tv-Pager-input-height-xs);
       padding: 0 4px;
-      line-height: 22px;
+      line-height: calc(var(--tv-Pager-input-height-xs) - 2px);
       font-size: var(--tv-Pager-font-size-xs);
     }
 
@@ -469,13 +475,13 @@
     }
 
     .@{pager-prefix-cls}__input input {
-      height: 24px;
-      line-height: 22px;
+      height: var(--tv-Pager-input-height-xs);
+      line-height: calc(var(--tv-Pager-input-height-xs) - 2px);
     }
 
     .@{pager-prefix-cls}__input-btn {
-      height: 24px;
-      line-height: 22px;
+      height: var(--tv-Pager-input-height-xs);
+      line-height: calc(var(--tv-Pager-input-height-xs) - 2px);
     }
   }
 
