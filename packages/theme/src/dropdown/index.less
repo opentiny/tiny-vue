@@ -44,6 +44,7 @@
         width: var(--ti-dropdown-trigger-only-svg-width);
         height: var(--ti-dropdown-trigger-only-svg-height);
       }
+
       &:hover {
         background-color: var(--ti-dropdown-trigger-only-svg-hover-bg-color);
         border-radius: var(--ti-dropdown-trigger-only-svg-hover-radius);
@@ -179,6 +180,23 @@
     .tiny-svg {
       margin: var(--ti-dropdown-suffix-icon-margin-vertical) 0;
       vertical-align: top;
+    }
+  }
+
+  .@{css-prefix}button {
+    &.tiny-button--default {
+      .tiny-dropdown__suffix-inner {
+        .tiny-svg {
+          fill: var(--ti-dropdown-suffix-icon-color);
+        }
+      }
+      &:hover {
+        .tiny-dropdown__suffix-inner {
+          .tiny-svg {
+            fill: var(--ti-dropdown-suffix-icon-color-hover);
+          }
+        }
+      }
     }
   }
 

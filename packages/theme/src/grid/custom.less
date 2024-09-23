@@ -20,6 +20,10 @@
 .@{grid-custom-prefix-cls} {
   width: 100%;
 
+  .tiny-modal__header {
+    margin-bottom: 16px;
+  }
+
   & &__tabs {
     .@{css-prefix}tabs__content {
       margin: 0;
@@ -35,7 +39,7 @@
         }
 
         .@{grid-custom-prefix-cls}__setting {
-          border-bottom: 1px solid var(--ti-grid-border-color);
+          border-bottom: 1px solid transparent;
           padding: 12px 0 24px;
 
           .setting-item {
@@ -44,7 +48,7 @@
             overflow: hidden;
             position: relative;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
 
             .setting-icon {
@@ -122,9 +126,9 @@
   }
 
   & &__footer {
-    margin: 12px;
+    margin-bottom: 32px;
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
   }
 }
