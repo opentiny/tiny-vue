@@ -32,7 +32,6 @@
         :data="state.flattenedTreeData"
         :itemSize="nodeHeight"
         :visibleSize="treeHeight"
-        itemIndex="$treeNodeId"
         direction="vertical"
         ref="scrollRef"
       >
