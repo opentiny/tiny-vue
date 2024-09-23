@@ -37,8 +37,6 @@
   --ti-ip-address-font-size: var(--ti-common-font-size-1);
   // IP地址输入框字族
   --ti-ip-address-normal-font-family: "Manrop","Manrope-Medium";
-  // IP地址输入框行高
-  --ti-ip-address-line-height: var(--ti-common-line-height-1);
   // IP地址输入框聚焦边框色
   --ti-ip-address-border-color-focus: var(--ti-common-color-line-active, #5e7ce0);
   // IP地址输入框悬浮边框色
@@ -49,4 +47,13 @@
   --ti-ip-address-disabled-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
   // Ip地址输入框item宽度
   --ti-ip-address-input-width: var(--ti-common-size-8x);
+  // 尺寸 高度及行高
+  --ti--ip--address-medium-height: calc(var(--ti-common-size-height-medium));
+  --ti--ip--address-medium-line-height: calc(var(--ti-common-line-height-5) + 2px);
+  --ti--ip--address-default-height: calc(var(--ti-common-size-height-normal) - 2px);
+  --ti--ip--address-default-line-height: var(--ti-common-line-height-4);
+  --ti--ip--address-small-height: calc(var(--ti-common-size-height-minor) - 4px);
+  --ti--ip--address-small-line-height: calc(var(--ti-common-line-height-3) - 2px);
+  --ti--ip--address-mini-height: calc(var(--ti-common-size-height-mini) - 2px);
+  --ti--ip--address-mini-line-height: calc(var(--ti-common-line-height-2) - 2px);
 }
