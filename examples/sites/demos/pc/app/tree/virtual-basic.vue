@@ -7,6 +7,7 @@
       :show-line="showLine === 'show'"
       default-expand-all
       class="tiny-tree"
+      @node-click="nodeClick"
     ></tiny-tree>
   </div>
 </template>
@@ -44,6 +45,9 @@ export default {
         })
       }
       return data
+    },
+    nodeClick(data, node, vm) {
+      console.log('点击节点事件：', { data, node, vm })
     }
   }
 }

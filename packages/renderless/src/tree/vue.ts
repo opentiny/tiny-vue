@@ -130,12 +130,13 @@ export const api = [
   'handleCheckPlainNode',
   'handleClickPlainNode',
   'setCheckedByNodeKey',
-  'computedFlattenedTreeData'
+  'computedFlattenedTreeData',
+  'updateFlattenedTreeData'
 ]
 
 const initState = ({ reactive, emitter, props, computed, api }) => {
   const state = reactive({
-    flattenedTreeData: computed(() => api.computedFlattenedTreeData(props, state)),
+    flattenedTreeData: [],
     loaded: !props.lazy,
     checkEasily: false,
     root: null,
@@ -261,6 +262,19 @@ const initWatcher = ({ watch, props, api, state, isVue2 }) => {
     (value) => (state.action.addDisabled = value || []),
     { immediate: true }
   )
+
+  // 执行时机
+  // 1. 第一次的时候初始化
+  // 2. 之后，如果任一 Node 的 expanded 状态发生变化
+  // console.log(, 'dasda');
+  watch(
+    () => state.flattenedTreeData.filter((n) => n.expanded).length,
+    (v, oldV) => {
+      console.log('v', v, oldV)
+      if (oldV?.length && v?.filter((n) => n.expanded) === oldV?.filter((n) => n.expanded)) return
+    },
+    { deep: true }
+  )
 }
 
 export const renderless = (
@@ -302,14 +316,20 @@ export const renderless = (
     switchToggle: switchToggle({ state }),
     initPlainNodeStore: initPlainNodeStore({ props, state }),
     handleCheckPlainNode: handleCheckPlainNode({ props, emit }),
-    handleClickPlainNode: handleClickPlainNode(emit)
+    handleClickPlainNode: handleClickPlainNode(emit),
+    updateFlattenedTreeData: (data, node, vm) => {
+      console.log('dadsdad', data, 'node', node, vm, state)
+      state.flattenedTreeData = api.computedFlattenedTreeData(props, state)
+      console.log('更新后的数据', state.flattenedTreeData)
+    }
   })
-
   api.created()
-
+  state.flattenedTreeData = api.computedFlattenedTreeData(props, state)
   initWatcher({ watch, props, api, state, isVue2 })
 
-  onMounted(api.wrapMounted)
+  onMounted(() => {
+    api.wrapMounted()
+  })
 
   onUpdated(api.updated)
 

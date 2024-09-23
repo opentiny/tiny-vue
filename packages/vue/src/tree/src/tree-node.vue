@@ -57,7 +57,12 @@
           @click="handleContentClick(node, currentRadio)"
         >
           <!-- 起着padding-left的功能 -->
-          <span class="tiny-tree-node__content-indent" :style="{ width: state.computedIndent, flexShrink: 0 }"></span>
+          <span
+            class="tiny-tree-node__content-indent"
+            v-for="i in showLine ? 1 : node.level - 1"
+            :key="i"
+            :style="{ width: state.computedIndent, flexShrink: 0 }"
+          ></span>
           <div class="tiny-tree-node__content-left">
             <template v-if="showNumber">
               <span class="tree-node-number">{{ node.data.number }}</span>
@@ -412,7 +417,7 @@ export default defineComponent({
       parentTree: this
     }
   },
-  emits: ['update:modelValue', 'hook-updated', 'node-expand', 'radio-change', 'tree-node-expand', 'closeMenu'],
+  emits: ['update:modelValue', 'hook-updated', 'node-expand', 'node-collapse', 'radio-change', 'closeMenu'],
   props: {
     node: {
       default() {
