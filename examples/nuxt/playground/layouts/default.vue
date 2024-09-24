@@ -60,21 +60,22 @@ const treeData = ref([
       { id: 306, label: 'ColorSelectPanel 颜色选择面板', url: 'ColorSelectPanel' },
       { id: 307, label: 'DatePicker 日期选择器', url: 'DatePicker' },
       { id: 308, label: 'DropTimes 下拉时间', url: 'DropTimes' },
-      { id: 309, label: 'Form 表单', url: 'Form' },
-      { id: 310, label: 'Input 输入框', url: 'Input' },
-      { id: 311, label: 'IpAddress 树形菜单', url: 'IpAddress' },
-      { id: 312, label: 'Numeric 数字输入框', url: 'Numeric' },
-      { id: 313, label: 'PopEditor 弹出编辑', url: 'PopEditor' },
-      { id: 314, label: 'PopUpload 弹出上传', url: 'PopUpload' },
-      { id: 315, label: 'Radio 单选框', url: 'Radio' },
-      { id: 316, label: 'Rate 评分', url: 'Rate' },
-      { id: 317, label: 'Search 搜索', url: 'Search' },
-      { id: 318, label: 'Select 选择器', url: 'Select' },
-      { id: 319, label: 'Slider 滑块', url: 'Slider' },
-      { id: 320, label: 'Switch 开关', url: 'Switch' },
-      { id: 321, label: 'TimePicker 时间选择器', url: 'TimePicker' },
-      { id: 322, label: 'TimeSelect 时间选择', url: 'TimeSelect' },
-      { id: 323, label: 'Transfer 穿梭框', url: 'Transfer' }
+      { id: 309, label: 'FileUpload 文件上传', url: 'FileUpload' },
+      { id: 310, label: 'Form 表单', url: 'Form' },
+      { id: 311, label: 'Input 输入框', url: 'Input' },
+      { id: 312, label: 'IpAddress 树形菜单', url: 'IpAddress' },
+      { id: 313, label: 'Numeric 数字输入框', url: 'Numeric' },
+      { id: 314, label: 'PopEditor 弹出编辑', url: 'PopEditor' },
+      { id: 315, label: 'PopUpload 弹出上传', url: 'PopUpload' },
+      { id: 316, label: 'Radio 单选框', url: 'Radio' },
+      { id: 317, label: 'Rate 评分', url: 'Rate' },
+      { id: 318, label: 'Search 搜索', url: 'Search' },
+      { id: 319, label: 'Select 选择器', url: 'Select' },
+      { id: 320, label: 'Slider 滑块', url: 'Slider' },
+      { id: 321, label: 'Switch 开关', url: 'Switch' },
+      { id: 322, label: 'TimePicker 时间选择器', url: 'TimePicker' },
+      { id: 323, label: 'TimeSelect 时间选择', url: 'TimeSelect' },
+      { id: 324, label: 'Transfer 穿梭框', url: 'Transfer' }
     ]
   },
   {
@@ -208,5 +209,6 @@ const treeData = ref([
 }
 .page {
   width: 80%;
+  margin-left: 200px;
 }
 </style>

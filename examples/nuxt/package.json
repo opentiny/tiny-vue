@@ -32,7 +32,8 @@
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.12.3"
+    "@nuxt/kit": "^3.12.3",
+    "unplugin-vue-components": "^0.26.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.2.0",
