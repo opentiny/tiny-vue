@@ -41,11 +41,7 @@
   &__header {
     display: flex;
     align-items: center;
-    line-height: var(--ti-popconfirm-popover-line-height);
     margin-bottom: var(--ti-popconfirm-popover-margin-bottom);
-  }
-  .no-message {
-    font-weight: 400;
   }
 
   &__icon {
@@ -56,14 +52,14 @@
   }
 
   &__title {
-    flex: 1 1 auto;
     font-size: var(--ti-popconfirm-popover-title-font-size);
     font-weight: var(--ti-popconfirm-popover-title-font-weight);
+    line-height: var(--ti-popconfirm-popover-title-line-height);
   }
 
   &__content {
     color: var(--ti-popconfirm-popover-text-color);
-    line-height: var(--ti-popconfirm-popover-line-height);
+    line-height: var(--ti-popconfirm-popover-content-line-height);
   }
 
   &__footer {
@@ -73,6 +69,7 @@
   }
 
   &__confirm-button {
+    margin-left: 8px;
     width: 72px;
   }
 
