@@ -41,6 +41,7 @@ import { error } from '../../tools'
 import { clearOnTableUnmount } from './strategy'
 import MfTable from '../../mobile-first/index.vue'
 import { useDrag, useRowGroup } from '../../composable'
+import { isBrowser } from '@opentiny/vue-renderless/common/browser'
 
 const { themes, viewConfig, columnLevelKey, defaultColumnName } = GlobalConfig
 const { TINY: T_TINY, SAAS: T_SAAS } = themes
@@ -1008,7 +1009,7 @@ export default defineComponent({
     useRelation({
       relationKey: `${columnLevelKey}-${id.value}`,
       childrenKey: 'childColumns',
-      relationContainer: () => $table.$el.querySelector(`.${hiddenContainerClass}`),
+      relationContainer: () => (isBrowser ? $table.$el.querySelector(`.${hiddenContainerClass}`) : null),
       onChange: () => {
         const collectKey = $table.computeCollectKey()
 

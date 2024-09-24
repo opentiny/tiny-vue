@@ -9,6 +9,7 @@ import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },
+  modules: ['../src/module'],
   vite: {
     plugins: [
       virtualTemplatePlugin({ include: ['**/packages/vue/**/src/index.ts'], env: 'develop' }),

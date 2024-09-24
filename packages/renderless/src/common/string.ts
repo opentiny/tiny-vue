@@ -13,7 +13,7 @@
 import { isPlainObject, isNumber, isNumeric, isNull } from './type'
 import { getObj, toJsonStr } from './object'
 import { toFixed, Decimal } from './decimal'
-import { globalEnvironment } from './browser'
+import { globalEnvironment, isBrowser } from './browser'
 
 /**
  * 文本替换格式类型
@@ -810,13 +810,14 @@ export const isKorean = (text) => /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi.test(
  * @returns obj obj.t为处理后字符串，obj.o为是否已省略标志
  */
 export const omitText = (text: string, font: string, w: number) => {
+  let t: string
+  if (!isBrowser) return { t: text, o: false }
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
 
   ctx.font = font
 
   let metric = ctx.measureText(text)
-  let t: string
 
   if (metric.width < w) {
     return { t: text, o: false }

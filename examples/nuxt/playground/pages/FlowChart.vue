@@ -205,7 +205,7 @@ const chartData = {
 
 const chartConfig = createConfig()
 
-chartConfig.headUrl = `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`
+chartConfig.headUrl = `https://res.hc-cdn.com/tiny-vue-web-doc/3.18.9.20240902190525/static/images/mountain.png`
 
 chartConfig.checkItemStatus = (item) => ~['已转审', '已同意'].indexOf(item.status)
 chartConfig.adjustPos = (afterNode) => afterNode.raw.name === '2' && (afterNode.y += 1)
