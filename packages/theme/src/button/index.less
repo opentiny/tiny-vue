@@ -18,7 +18,7 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{button-prefix-cls} {
-  .component-css-vars-button();
+  .inject-Button-vars();
 
   display: inline-block;
   appearance: none;
@@ -156,7 +156,6 @@
       var(--ti-button-normal-disabled-bg-color)
     );
   }
-
 
   &.is-loading {
     position: relative;
