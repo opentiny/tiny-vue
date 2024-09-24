@@ -59,7 +59,7 @@
   .component-css-vars-form-item();
 
   font-family: var(--ti-common-font-family);
-  margin-bottom: var(--ti-form-item-margin-bottom-default);
+  margin-bottom: var(--ti-FormItem-margin-bottom-default);
   .clearfix();
 
   .@{form-item-prefix-cls}__content-muti-children {
@@ -67,10 +67,10 @@
   }
 
   .@{form-item-prefix-cls}__extra-tip {
-    line-height: var(--ti-form-item-extra-tip-line-height);
-    margin-top: var(--ti-form-item-extra-tip-margin-top);
-    color: var(--ti-form-item-extra-tip-font-color);
-    font-size: var(--ti-form-item-extra-tip-font-size);
+    line-height: var(--ti-FormItem-extra-tip-line-height);
+    margin-top: var(--ti-FormItem-extra-tip-margin-top);
+    color: var(--ti-FormItem-extra-tip-font-color);
+    font-size: var(--ti-FormItem-extra-tip-font-size);
   }
 
   & & {
@@ -87,25 +87,25 @@
 
   &--medium {
     .size-height(
-      var(--ti-form-item-medium-line-height),
-      var(--ti-form-item-medium-line-height),
-      var(--ti-form-item-margin-bottom-medium)
+      var(--ti-FormItem-medium-line-height),
+      var(--ti-FormItem-medium-line-height),
+      var(--ti-FormItem-margin-bottom-medium)
     );
   }
 
   &--small {
     .size-height(
-      var(--ti-form-item-small-line-height),
-      var(--ti-form-item-small-line-height),
-      var(--ti-form-item-margin-bottom-small)
+      var(--ti-FormItem-small-line-height),
+      var(--ti-FormItem-small-line-height),
+      var(--ti-FormItem-margin-bottom-small)
     );
   }
 
   &--mini {
     .size-height(
-      var(--ti-form-item-mini-line-height),
-      var(--ti-form-item-mini-line-height),
-      var(--ti-form-item-margin-bottom-mini)
+      var(--ti-FormItem-mini-line-height),
+      var(--ti-FormItem-mini-line-height),
+      var(--ti-FormItem-margin-bottom-mini)
     );
   }
 
@@ -122,11 +122,11 @@
     text-align: right;
     vertical-align: middle;
     float: left;
-    font-size: var(--ti-form-item-label-font-size);
-    color: var(--ti-form-item-label-text-color);
-    height: var(--ti-form-item-label-line-height);
-    line-height: var(--ti-form-item-label-line-height);
-    padding-right: var(--ti-form-item-label-padding-right);
+    font-size: var(--ti-FormItem-label-font-size);
+    color: var(--ti-FormItem-label-text-color);
+    height: var(--ti-FormItem-label-line-height);
+    line-height: var(--ti-FormItem-label-line-height);
+    padding-right: var(--ti-FormItem-label-padding-right);
     box-sizing: border-box;
     overflow: hidden;
     white-space: nowrap;
@@ -135,8 +135,8 @@
 
   &__content {
     position: relative;
-    font-size: var(--ti-form-item-label-font-size);
-    line-height: var(--ti-form-item-label-line-height);
+    font-size: var(--ti-FormItem-label-font-size);
+    line-height: var(--ti-FormItem-label-line-height);
     .clearfix();
 
     .@{input-prefix-cls},
@@ -155,7 +155,7 @@
 
     // numeric只读态使用absolute实现，需要一个margin-top修复水平对齐问题
     .@{css-prefix}numeric.is-display-only {
-      margin-top: var(--ti-form-item-numeric-display-margin-top);
+      margin-top: var(--ti-FormItem-numeric-display-margin-top);
     }
 
     .@{input-prefix-cls} {
@@ -185,13 +185,13 @@
 
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
-      line-height: var(--ti-form-item-label-line-height);
+      line-height: var(--ti-FormItem-label-line-height);
     }
     .@{css-prefix}slider-container {
-      height: var(--ti-form-item-label-line-height);
+      height: var(--ti-FormItem-label-line-height);
     }
     .@{css-prefix}checkbox-group {
-      min-height: var(--ti-form-item-label-line-height);
+      min-height: var(--ti-FormItem-label-line-height);
 
       &:has(> label.is-group-display-only) {
         min-height: unset;
@@ -210,8 +210,8 @@
   }
 
   &__error {
-    color: var(--ti-form-item-error-text-color);
-    font-size: var(--ti-form-item-error-font-size);
+    color: var(--ti-FormItem-error-text-color);
+    font-size: var(--ti-FormItem-error-font-size);
     line-height: 1;
     padding-top: 4px;
     position: absolute;
@@ -219,8 +219,8 @@
     left: 0;
 
     .validate-icon {
-      fill: var(--ti-form-item-error-text-color);
-      margin-right: var(--ti-form-item-error-icon-margin-right);
+      fill: var(--ti-FormItem-error-text-color);
+      margin-right: var(--ti-FormItem-error-icon-margin-right);
     }
     .@{form-item-prefix-cls}__validate-message {
       vertical-align: middle;
@@ -232,7 +232,7 @@
     top: auto;
     left: auto;
     display: inline-block;
-    margin-left: var(--ti-form-item-error-inline-margin-left);
+    margin-left: var(--ti-FormItem-error-inline-margin-left);
   }
 
   &__error--block {
@@ -241,15 +241,15 @@
     left: auto;
     display: flex;
     margin-left: 0;
-    padding-top: var(--ti-form-item-error-block-padding-top);
+    padding-top: var(--ti-FormItem-error-block-padding-top);
   }
 
   &.is-required:not(.is-no-asterisk) {
     .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
     & > .@{form-item-prefix-cls}__label:before {
-      display: var(--ti-form-item-error-star-display);
+      display: var(--ti-FormItem-error-star-display);
       content: '*';
-      color: var(--ti-form-item-error-star-text-color);
+      color: var(--ti-FormItem-error-star-text-color);
       margin-right: 4px;
     }
   }
@@ -261,9 +261,9 @@
     .@{textarea-prefix-cls}:focus,
     .@{textarea-prefix-cls}__inner,
     .@{textarea-prefix-cls}__inner:focus {
-      border-color: var(--ti-form-item-error-border-color);
-      background-color: var(--ti-form-item-error-bg-color);
-      --ti-textarea-bg-color: var(--ti-form-item-error-bg-color);
+      border-color: var(--ti-FormItem-error-border-color);
+      background-color: var(--ti-FormItem-error-bg-color);
+      --ti-textarea-bg-color: var(--ti-FormItem-error-bg-color);
     }
 
     .@{input-group-prefix-cls}__append,
@@ -274,13 +274,13 @@
     }
 
     .@{input-prefix-cls}__validateIcon {
-      color: var(--ti-form-item-error-text-color);
+      color: var(--ti-FormItem-error-text-color);
     }
 
     .@{numeric-prefix-cls}__input-inner,
     .@{numeric-prefix-cls}__input-inner:focus {
-      border-color: var(--ti-form-item-error-border-color);
-      background-color: var(--ti-form-item-error-bg-color);
+      border-color: var(--ti-FormItem-error-border-color);
+      background-color: var(--ti-FormItem-error-bg-color);
     }
   }
 
