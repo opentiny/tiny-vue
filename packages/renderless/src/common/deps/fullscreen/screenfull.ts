@@ -90,14 +90,16 @@ const screenfull = {
 
       this.on('change', onFullscreenEntered)
 
-      element = element || document.documentElement
+      element = element || (typeof document !== 'undefined' ? document.documentElement : null)
 
-      if (element[fullscreenEvents && fullscreenEvents.requestFullscreen]) {
-        const promiseReturn = element[fullscreenEvents && fullscreenEvents.requestFullscreen](options)
+      if (element && fullscreenEvents && element[fullscreenEvents.requestFullscreen]) {
+        const promiseReturn = element[fullscreenEvents.requestFullscreen](options)
 
         if (promiseReturn instanceof Promise) {
           promiseReturn.then(onFullscreenEntered).catch(reject)
         }
+      } else {
+        reject(new Error('Fullscreen API not supported or element is null.'))
       }
     })
   },
@@ -115,12 +117,14 @@ const screenfull = {
 
       this.on('change', onFullscreenExit)
 
-      if (document[fullscreenEvents && fullscreenEvents.exitFullscreen]) {
-        const promiseReturn = document[fullscreenEvents && fullscreenEvents.exitFullscreen]()
+      if (typeof document !== 'undefined' && fullscreenEvents && document[fullscreenEvents.exitFullscreen]) {
+        const promiseReturn = document[fullscreenEvents.exitFullscreen]()
 
         if (promiseReturn instanceof Promise) {
           promiseReturn.then(onFullscreenExit).catch(reject)
         }
+      } else {
+        reject(new Error('Fullscreen API not supported.'))
       }
     })
   },
@@ -136,38 +140,61 @@ const screenfull = {
   on(event, callback) {
     const eventName = eventNameMap[event]
 
-    if (eventName) {
+    if (eventName && typeof document !== 'undefined') {
       on(document, eventName, callback)
     }
   },
   off(event, callback) {
     const eventName = eventNameMap[event]
 
-    if (eventName) {
+    if (eventName && typeof document !== 'undefined') {
       off(document, eventName, callback)
     }
   },
-  raw: fullscreenEvents
+  raw: fullscreenEvents || {}
 }
 
-Object.defineProperties(screenfull, {
-  isFullscreen: {
-    get() {
-      return !!document[fullscreenEvents && fullscreenEvents.fullscreenElement]
+// 处理屏幕全屏状态的方法
+if (typeof document !== 'undefined') {
+  Object.defineProperties(screenfull, {
+    isFullscreen: {
+      get() {
+        return !!document[fullscreenEvents && fullscreenEvents.fullscreenElement]
+      }
+    },
+    element: {
+      enumerable: true,
+      get() {
+        return document[fullscreenEvents && fullscreenEvents.fullscreenElement]
+      }
+    },
+    isEnabled: {
+      enumerable: true,
+      get() {
+        return !!document[fullscreenEvents && fullscreenEvents.fullscreenEnabled]
+      }
     }
-  },
-  element: {
-    enumerable: true,
-    get() {
-      return document[fullscreenEvents && fullscreenEvents.fullscreenElement]
+  })
+} else {
+  Object.defineProperties(screenfull, {
+    isFullscreen: {
+      get() {
+        return false
+      }
+    },
+    element: {
+      enumerable: true,
+      get() {
+        return null
+      }
+    },
+    isEnabled: {
+      enumerable: true,
+      get() {
+        return false
+      }
     }
-  },
-  isEnabled: {
-    enumerable: true,
-    get() {
-      return !!document[fullscreenEvents && fullscreenEvents.fullscreenEnabled]
-    }
-  }
-})
+  })
+}
 
 export default screenfull
