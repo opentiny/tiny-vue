@@ -10,81 +10,43 @@
 *
 */
 
-.component-css-vars-checkbox-button() {
+.inject-CheckboxButton-vars() {
   // 按钮形式复选框背景色
-  --ti-checkbox-button-bg-color: #fff;
-  // 按钮形式复选框选中项左边框阴影色(水平方向首个除外)
-  --ti-checkbox-shadow-color: transparent;
+  --tv-CheckboxButton-bg-color: var(--tv-color-bg-secondary);
   // 按钮形式复选框字号
-  --ti-checkbox-button-font-size: var(--ti-common-font-size-base, 12px);
+  --tv-CheckboxButton-font-size: var(--tv-font-size-md);
   // 按钮形式复选框未选中项悬浮文本色
-  --ti-checkbox-button-hover-text-color: #1476FF;
+  --tv-CheckboxButton-hover-text-color: var(--tv-color-text-active);
   // 按钮形式选中项边框色
-  --ti-checkbox-button-checked-border-color: #1476FF;
+  --tv-CheckboxButton-checked-border-color: var(--tv-color-border-active-control);
   // 按钮形式复选框禁用文本色
-  --ti-checkbox-button-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
-  // 按钮形式复选框垂直布局，选中项禁用时的背景色
-  --ti-checkbox-disabled-bg-color: var(--ti-common-color-bg-disabled, #f5f5f6);
+  --tv-CheckboxButton-disabled-text-color: var(--tv-color-text-disabled);
   // 按钮形式复选框禁用背景色
-  --ti-checkbox-button-disabled-bg-color: rgba(0,0,0,0.05);
+  --tv-CheckboxButton-disabled-bg-color: var(--tv-color-bg-disabled);
   // 按钮形式复选框未选中项文本色
-  --ti-checkbox-button-text-color: var(--ti-common-color-info-normal, #252b3a);
+  --tv-CheckboxButton-text-color: var(--tv-color-text);
   // 按钮形式复选框选中项文本色
-  --ti-checkbox-button-checked-text-color: #1476FF;
-  // 按钮形式复选框选中项背景色
-  --ti-checkbox-button-checked-bg-color: #FFFFFF;
-  // 按钮形式复选框悬浮背景色
-  --ti-checkbox-button-bg-color-hover: #fff;
+  --tv-CheckboxButton-checked-text-color: var(--tv-color-text-active);
   // 按钮形式复选框边框色
-  --ti-checkbox-button-border-color: #C2C2C2;
+  --tv-CheckboxButton-border-color: var(--tv-color-border);
   // 按钮形式复选框悬浮默认边框色
-  --ti-checkbox-button-border-color-hover: #1476FF;
+  --tv-CheckboxButton-border-color-hover: var(--tv-color-border-active-control);
   // 按钮组按钮圆角
-  --ti-checkbox-button-border-radius: 6px;
+  --tv-CheckboxButton-border-radius: var(--tv-border-radius-md);
   // 按钮组禁用边框色
-  --ti-checkbox-disabled-border-color: #dbdbdb;
-  // 按钮组小尺寸垂直间距、
-  --ti-checkbox-button-padding-vertical: 1px;
-  // 按钮组按钮高度
-  --ti-checkbox-button-height: 24px;
-  // 按钮组按钮外边距
-  --ti-checkbox-button-margin-horizontal: 4px;
-  // 按钮组小按钮外边距
-  --ti-checkbox-button-mini-margin-horizontal: 2px;
+  --ti-CheckboxButton-disabled-border-color: var(--tv-color-border-disabled);
   // 按钮组小按钮字号
-  --ti-checkbox-button-size-mini-font-size: var(--ti-common-font-size-0);
+  --tv-CheckboxButton-size-mini-font-size: var(--tv-font-size-sm);
   // 按钮组小按钮圆角
-  --ti-checkbox-button-size-mini-border-radius: 4px;
-  // 按钮组small按钮内间距
-  --ti-checkbox-button-size-small-padding-horizontal: var(--ti-common-space-6x);
+  --tv-CheckboxButton-size-mini-border-radius: var(--tv-border-radius-sm);
   // 按钮组small按钮高度
-  --ti-checkbox-button-size-small-height: 28px;
-  //按钮组mini按钮高度
-  --ti-checkbox-button-size-mini-height: 24px;
-  //按钮组medium按钮高度
-  --ti-checkbox-button-size-medium-height: 40px;
-  // 按钮组medium按钮字体
-  --ti-checkbox-button-medium-font-size: var(--ti-common-font-size-1);
-  // 按钮组default按钮字体
-  --ti-checkbox-button-default-font-size: var(--ti-common-font-size-1);
+  --tv-CheckboxButton-size-small-height: var(--tv-size-height-sm);
+  // 按钮组mini按钮高度
+  --tv-CheckboxButton-size-mini-height: var(--tv-size-height-xs);
+  // 按钮组medium按钮高度
+  --tv-CheckboxButton-size-medium-height: var(--tv-size-height-lg);
   // 按钮组small按钮字体
-  --ti-checkbox-button-small-font-size: var(--ti-common-font-size-0);
-  // 按钮组按钮默认情况下选中隐藏
-  --ti-checkbox-button-checked-display: block;
+  --tv-CheckboxButton-small-font-size: var(--tv-font-size-sm);
   // 按钮组按钮上边距
-  --ti-checkbox-button-margin-top: 8px;
-  // 小尺寸按钮组按钮内间距
-  --ti-checkbox-button-mini-padding-horizontal: 16px;
-  // 小尺寸按钮左侧圆角
-  --ti-checkbox-button-mini-left-border-radius: 4px;
-  // 小尺寸按钮右侧圆角
-  --ti-checkbox-button-mini-right-border-radius: 4px;
-  // 小尺寸按钮组最后一个按钮顶部左侧圆角
-  --ti-checkbox-button-mini-last-left-border-radius: 4px;
-  // 小尺寸按钮组最后一个按钮右侧圆角
-  --ti-checkbox-button-mini-last-right-border-radius: 4px;
-  // 默认按钮组右侧按钮圆角
-  --ti-checkbox-button-right-border-radius: 6px;
-  // 默认按钮组第一个按钮左侧按钮圆角
-  --ti-checkbox-button-left-border-radius: 6px;
+  --tv-CheckboxButton-margin-top: var(--tv-space-md);
 }
