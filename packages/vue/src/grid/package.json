@@ -1,7 +1,7 @@
 {
   "name": "@opentiny/vue-grid",
   "type": "module",
-  "version": "3.18.2",
+  "version": "3.18.3",
   "description": "",
   "license": "MIT",
   "sideEffects": false,
