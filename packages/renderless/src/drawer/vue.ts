@@ -11,6 +11,7 @@ import {
   hideScrollbar,
   handleClose,
   computedWidth,
+  computedHeight,
   open
 } from './index'
 import type {
@@ -37,6 +38,7 @@ export const renderless = (
     height: 0,
     dragEvent: { x: 0, y: 0, isDrag: false, offsetWidth: 0, offsetHeight: 0 },
     computedWidth: computed(() => api.computedWidth()),
+    computedHeight: computed(() => api.computedHeight()),
     btnOrderReversed: vm.theme === 'saas' || designConfig?.state?.btnOrderReversed
   })
 
@@ -54,7 +56,8 @@ export const renderless = (
     watchVisible: watchVisible({ state, api }),
     showScrollbar: showScrollbar(lockScrollClass),
     hideScrollbar: hideScrollbar(lockScrollClass),
-    computedWidth: computedWidth({ state, designConfig, props, constants })
+    computedWidth: computedWidth({ state, designConfig, props, constants }),
+    computedHeight: computedHeight({ state, designConfig, props, constants })
   })
 
   onMounted(() => {
