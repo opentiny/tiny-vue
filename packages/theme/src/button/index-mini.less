@@ -1,0 +1,180 @@
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable function-no-unknown */
+// @import '../mixins/button.less';
+@import '../custom.less';
+@import './vars.less';
+
+@button-prefix-cls: ~'@{css-prefix}button';
+@svg-prefix-cls: ~'@{css-prefix}svg';
+
+.@{button-prefix-cls} {
+  .inject-Button-vars();
+
+  display: inline-block;
+  appearance: none;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  user-select: none;
+  border-image: initial;
+  overflow: hidden;
+  transition: all 0.3s;
+  outline: 0;
+  vertical-align: middle;
+  font-weight: var(--tv-Button-font-weight);
+  border: var(--tv-Button-border-width) solid;
+
+  /** 圆角场景 */
+  border-radius: var(--tv-Button-border-radius);
+
+  &.is-round {
+    border-radius: var(--tv-Button-border-radius-round);
+  }
+
+  &.is-circle {
+    border-radius: var(--tv-Button-border-radius-circle);
+  }
+
+  /** 尺寸场景 */
+  .size-mixin(@size) {
+    @fs: %('var(--tv-Button-font-size%a)', @size);
+    @h: %('var(--tv-Button-height%a)', @size);
+    @p: %('var(--tv-Button-padding-x%a)', @size);
+    @mw: %('var(--tv-Button-min-width%a)', @size);
+
+    font-size: e(@fs);
+    height: e(@h);
+    padding-left: e(@p);
+    padding-right: e(@p);
+    min-width: e(@mw);
+  }
+
+  .size-mixin(e('')); // 默认尺寸
+
+  &.@{button-prefix-cls}--large {
+    .size-mixin(-large);
+  }
+  &.@{button-prefix-cls}--medium {
+    .size-mixin(-medium);
+  }
+  &.@{button-prefix-cls}--small {
+    .size-mixin(-small);
+  }
+  &.@{button-prefix-cls}--mini {
+    .size-mixin(-mini);
+  }
+
+  /** 颜色场景 */
+  // 1、混入基本主题色: text-color bg-color border-color icon-color
+  .color-theme-mixin(@theme) {
+    @c: %('var(--tv-Button-text-color-%a)', @theme);
+    @bg: %('var(--tv-Button-bg-color-%a)', @theme);
+    @border: %('var(--tv-Button-border-color-%a)', @theme);
+    @icon: %('var(--tv-Button-icon-color-%a)', @theme);
+
+    color: e(@c);
+    background-color: e(@bg);
+    border-color: e(@border);
+    fill: e(@icon);
+  }
+  // 2. plain 按钮  2 个状态叠加, 优先级为：两级类名
+  .color-plain-mixin(@theme) {
+    @c: %('var(--tv-Button-text-color-plain-%a)', @theme);
+    @bg: %('var(--tv-Button-bg-color-plain-%a)', @theme);
+    @border: %('var(--tv-Button-border-color-plain-%a)', @theme);
+
+    color: e(@c);
+    background-color: e(@bg);
+    border-color: e(@border);
+  }
+  // 4. 激活态： 只影响背景色，边框色。  优先级为：三级类名
+  .color-active-mixin(@theme, @plain) {
+    @bg: %('var(--tv-Button-bg-color%a-active-%a)', @plain, @theme);
+    @border: %('var(--tv-Button-border%a-color-active-%a)', @plain, @theme);
+
+    &:active,
+    &:focus,
+    &:hover,
+    &.is-active {
+      background-color: e(@bg);
+      border-color: e(@border);
+    }
+  }
+
+  &.@{button-prefix-cls}--default {
+    .color-theme-mixin(default);
+    .color-active-mixin(default, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(default);
+      .color-active-mixin(default, -plain);
+    }
+  }
+  &.@{button-prefix-cls}--primary {
+    .color-theme-mixin(primary);
+    .color-active-mixin(primary, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(primary);
+      .color-active-mixin(primary, -plain);
+    }
+  }
+  &.@{button-prefix-cls}--success {
+    .color-theme-mixin(success);
+    .color-active-mixin(success, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(success);
+      .color-active-mixin(success, -plain);
+    }
+  }
+  &.@{button-prefix-cls}--warning {
+    .color-theme-mixin(warning);
+    .color-active-mixin(warning, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(warning);
+      .color-active-mixin(warning, -plain);
+    }
+  }
+  &.@{button-prefix-cls}--danger {
+    .color-theme-mixin(danger);
+    .color-active-mixin(danger, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(danger);
+      .color-active-mixin(danger, -plain);
+    }
+  }
+  &.@{button-prefix-cls}--info {
+    .color-theme-mixin(info);
+    .color-active-mixin(info, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(info);
+      .color-active-mixin(info, -plain);
+    }
+  }
+
+  // 3. ghost： 默认继承plain的状态， 但是bg 强制为透明,比激活态还高  优先级为：四级类名
+  &.is-ghost.is-ghost.is-ghost.is-ghost {
+    background-color: var(--tv-Button-bg-color-ghost);
+  }
+
+  // 5、禁用态+loading  优先级最高， 大于ghost透明， 五优先级
+  &.is-disabled.is-disabled.is-disabled.is-disabled.is-disabled,
+  &.is-loading.is-loading.is-loading.is-loading.is-loading,
+  &[disabled][disabled][disabled][disabled][disabled] {
+    color: var(--tv-Button-text-color-disabled);
+    background-color: var(--tv-Button-bg-color-disabled);
+    border-color: var(--tv-Button-border-color-disabled);
+    fill: var(--tv-Button-icon-color-disabled);
+  }
+}
