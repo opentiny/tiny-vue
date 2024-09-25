@@ -126,17 +126,7 @@
   // info 主题时按钮图标色
   --tv-Button-icon-color-info: var(--tv-color-icon-white);
 
-  // 禁用时按钮文本色
-  --tv-Button-text-color-disabled: var(--tv-color-text-disabled); //  目前主题， disabled优先级高，所以变量少
-  // 禁用时按钮背景色
-  --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled); // 如果某个design规范需要区分，那么disabled也需要膨胀
-  // 禁用时按钮边框色
-  --tv-Button-border-color-disabled: var(--tv-color-border-disabled);
-  // 禁用时按钮图标色
-  --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled); // level 1结束 ---------------------------------------
-
-  // 幽灵时按钮背景色
-  --tv-Button-bg-color-ghost: transparent; // 只影响 bg
+  // ------------------------------------------------------------- level 1结束 ---------------------------------------
 
   // 默认时按钮朴素文本色
   --tv-Button-text-color-plain-default: var(--tv-color-text);
@@ -174,7 +164,12 @@
   // info 主题时按钮朴素背景色
   --tv-Button-bg-color-plain-info: var(--tv-color-act-info-bg-light);
   // info 主题时按钮朴素边框色
-  --tv-Button-border-color-plain-info: var(--tv-color-act-info-border-active-1); // level 2结束 -----------------------
+  --tv-Button-border-color-plain-info: var(--tv-color-act-info-border-active-1);
+
+  // 幽灵时按钮背景色
+  --tv-Button-bg-color-ghost: transparent; // 只影响 bg 和 text-color, 且bg全部为透明.
+
+  //------------------------------------------------------------------------------ // level 2结束 -----------------------
 
   // 默认时按钮激活的背景色
   --tv-Button-bg-color-active-default: var(--tv-color-bg-hover-secondary); // 现规范，激活态时，只影响边框和背景
@@ -230,11 +225,20 @@
   // info 主题时按钮激活的朴素边框色
   --tv-Button-border-color-plain-active-info: var(--tv-color-act-info-bg-light-activ); // level3 结束------
 
+  // 禁用时按钮文本色
+  --tv-Button-text-color-disabled: var(--tv-color-text-disabled); //  目前主题， disabled优先级高，所以变量少
+  // 禁用时按钮背景色
+  --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled); // 如果某个design规范需要区分，那么disabled也需要膨胀
+  // 禁用时按钮边框色
+  --tv-Button-border-color-disabled: var(--tv-color-border-disabled);
+  // 禁用时按钮图标色
+  --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled); // level4 结束
+
   //------------------------------------------------------ 场景4、图标
 
   //------------------------------------------------------ 场景5、 text
 
-  //------------------------------------------------------ 场景6、 loading
+  //------------------------------------------------------ 场景6、 loading 也属于禁用， 元素上会有disabled属性出现。
 
   //------------------------------------------------------ 场景7、 其它场景： 比如相邻按钮有默认的margin
 }
