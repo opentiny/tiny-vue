@@ -10,58 +10,59 @@
 *
 */
 
-.component-css-vars-switch() {
+.inject-Switch-vars() {
   // 开关开启状态背景色
-  --ti-switch-on-bg-color: var(--ti-common-color-data-1);
+  --tv-Switch-on-bg-color: var(--tv-color-bg-active-control);
   // 开关关闭状态背景色
-  --ti-switch-off-bg-color: #C2C2C2;
+  --tv-Switch-off-bg-color: var(--tv-color-bg-control);
   // 开关关闭禁用状态背景色
-  --ti-switch-disabled-bg-color: var(--ti-common-color-bg-dark-disabled);
+  --tv-Switch-disabled-bg-color: var(--tv-color-bg-disabled-control-unactive);
   // 开关开启禁用状态背景色
-  --ti-switch-checked-disabled-bg-color: var(--ti-common-color-bg-light-emphasize, #beccfa);
-  // 开关开启禁用状态边框色
-  --ti-switch-checked-disabled-border-color: var(--ti-common-color-bg-light-emphasize, #beccfa);
+  --tv-Switch-checked-disabled-bg-color: var(--tv-color-bg-disabled-control-active);
   // 开关禁用状态文本色
-  --ti-switch-disabled-text-color: var(--ti-common-color-info-disabled, #bfbfbf);
+  --tv-Switch-disabled-text-color: var(--tv-color-text-disabled);
   // 开关禁用状态圆点色
-  --ti-switch-disabled-dot-bg-color: #ffffff;
+  --tv-Switch-disabled-dot-bg-color: var(--tv-color-bg-secondary);
   // 开关默认圆点色
-  --ti-switch-dot-bg-color: var(--ti-common-color-light, #fff);
+  --tv-Switch-dot-bg-color: var(--tv-color-bg-secondary);
   // 开关圆点尺寸
-  --ti-switch-dot-size: var(--ti-common-size-4x, 16px);
+  --tv-Switch-dot-size: 16px;
   // 开关圆点左边距(hide)
-  --ti-switch-dot-position-left: 2px;
+  --tv-Switch-dot-position-left: 2px;
   // 开关圆点上边距(hide)
-  --ti-switch-dot-position-top: 2px;
+  --tv-Switch-dot-position-top: 2px;
   // 开关圆点偏移量(hide)
-  --ti-switch-dot-offset: calc(var(--ti-switch-dot-size) + 2px);
+  --tv-Switch-dot-offset: calc(var(--tv-Switch-dot-size) + 2px);
   // 开关文本色
-  --ti-switch-text-color: var(--ti-common-color-light, #fff);
+  --tv-Switch-text-color: var(--tv-color-text-white);
   // 默认开关宽度
-  --ti-switch-width: var(--ti-common-size-10x);
+  --tv-Switch-width: 40px;
   // 开关高度
-  --ti-switch-height: var(--ti-common-size-5x, 20px);
+  --tv-Switch-height: 20px;
   // 开关圆角
-  --ti-switch-border-radius: calc(var(--ti-common-border-radius-3) * 2.5);
-  // 开关边框厚度
-  --ti-switch-border-weight: 0px;
+  --tv-Switch-border-radius: 15px;
   // 开关字号
-  --ti-switch-inner-font-size: 12px;
-  // 开关左侧距离(hide)
-  --ti-switch-inner-position-left: var(--ti-common-space-4x, 16px);
+  --tv-Switch-inner-font-size: var(--tv-font-size-sm);
   // 自定义文本开关宽度
-  --ti-switch-text-width: calc(var(--ti-common-size-11x, 44px) + 1px);
-  // mini尺寸
-  --ti-switch-mini-height: calc(var(--ti-common-size-height-normal)/2);
-  --ti-switch-mini-width: calc(var(--ti-common-size-width-minor) + 2px);
-  // mini尺寸button
-  --ti-switch-mini-button-height: calc(var(--ti-common-size-height-small)/2);
-  --ti-switch-mini-button-width: calc(var(--ti-common-size-width-mini)/2);
-  --ti-switch-mini-button-left: calc(var(--ti-common-space-4x) + 2px);
-  // 加载ICON样式
-  --ti-switch-on-loading-font-size: var(--ti-common-font-size-0);
-  --ti-switch-on-loading-fill: var(--ti-common-color-bg-light-emphasize);
-  --ti-switch-off-loading-font-size: var(--ti-common-font-size-0);
-  --ti-switch-off-loading-fill: #DBDBDB;
-  --ti-switch-loading-mini-font-size: 8px;
+  --tv-Switch-text-width: 46px;
+  // mini尺寸高度
+  --tv-Switch-mini-height: 16px;
+  // mini尺寸宽度
+  --tv-Switch-mini-width: 32px;
+  // mini尺寸内部button高度
+  --tv-Switch-mini-button-height: 12px;
+  // mini尺寸内部button宽度度
+  --tv-Switch-mini-button-width: 12px;
+  // mini尺寸内部button宽度度
+  --tv-Switch-mini-button-left: 18px;
+  // 开启loading字体大小
+  --tv-Switch-on-loading-font-size: var(--tv-font-size-sm);
+  // 开启loading图标填充色
+  --tv-Switch-on-loading-fill: var(--tv-color-bg-disabled-control-active);
+  // 关闭loading字体大小
+  --tv-Switch-off-loading-font-size: var(--tv-font-size-sm);
+  // 关闭loading图标填充色
+  --tv-Switch-off-loading-fill: var(--tv-color-bg-disabled-control-unactive);
+  // mini尺寸loading大小
+  --tv-Switch-loading-mini-font-size: 8px;
 }
