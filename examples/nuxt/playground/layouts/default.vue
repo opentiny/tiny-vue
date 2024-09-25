@@ -4,9 +4,7 @@
       <tiny-tree-menu :data="treeData" default-expand-all></tiny-tree-menu>
     </div>
     <div class="index">
-      <ClientOnly>
-        <NuxtPage class="page"></NuxtPage>
-      </ClientOnly>
+      <NuxtPage class="page"></NuxtPage>
     </div>
   </div>
 </template>
@@ -184,6 +182,11 @@ const treeData = ref([
       { id: 807, label: 'TextPopup 输入框', url: 'TextPopup' },
       { id: 808, label: 'Watermark 水印', url: 'Watermark' }
     ]
+  },
+  {
+    id: 900,
+    label: '自定义指令',
+    children: [{ id: 901, label: 'AutoTip 超出隐藏', url: 'AutoTip' }]
   }
 ])
 </script>
