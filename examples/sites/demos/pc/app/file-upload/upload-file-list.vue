@@ -1,6 +1,6 @@
 <template>
   <tiny-file-upload name="fileName" :action="action" show-file-list :file-list="fileList" :open-download-file="true">
-    <tiny-button type="primary">点击上传</tiny-button>
+    <tiny-button>点击上传</tiny-button>
   </tiny-file-upload>
 </template>
 
