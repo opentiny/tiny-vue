@@ -1,3 +1,4 @@
+/* stylelint-disable function-no-unknown */
 /**
 * Copyright (c) 2022 - present TinyVue Authors.
 * Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
@@ -10,7 +11,7 @@
 *
 */
 
-@import '../mixins/button.less';
+// @import '../mixins/button.less';
 @import '../custom.less';
 @import './vars.less';
 
@@ -23,548 +24,89 @@
   display: inline-block;
   appearance: none;
   text-align: center;
-  box-sizing: border-box;
-  height: var(--ti-button-size-normal-height);
-  line-height: calc(var(--ti-button-size-normal-height) - 2px);
-  color: var(--ti-button-normal-text-color);
-  fill: var(--ti-button-normal-text-color);
-  font-size: var(--ti-button-font-size);
   white-space: nowrap;
   text-overflow: ellipsis;
   cursor: pointer;
   user-select: none;
-  border-width: var(--ti-button-border-width);
-  border-style: var(--ti-button-border-style);
-  border-color: var(--ti-button-normal-border-color);
   border-image: initial;
-  border-radius: var(--ti-button-border-radius);
-  background: var(--ti-button-normal-background-color);
-  padding: var(--ti-button-padding-vertical) var(--ti-button-size-normal-padding-horizontal);
   overflow: hidden;
-  transition:
-    border 0.3s ease 0s,
-    color 0.3s ease 0s,
-    background 0.3s ease 0s;
+  transition: all 0.3s;
   outline: 0;
   vertical-align: middle;
+  font-weight: var(--tv-Button-font-weight);
+  border-width: var(--tv-Button-border-width);
 
-  .@{svg-prefix-cls} {
-    vertical-align: text-top;
-    font-size: var(--ti-button-icon-font-size);
-  }
-
-  & > img {
-    margin-right: 4px;
-    vertical-align: middle;
-  }
-
-  &.is-only-icon {
-    width: var(--ti-button-only-icon-width);
-    padding: 0;
-    border-radius: var(--ti-button-only-icon-border-radius);
-
-    &:hover {
-      border-color: var(--ti-button-only-icon-hover-border-color);
-    }
-
-    &.is-disabled {
-      border-color: var(--ti-button-only-icon-disabled-border-color);
-
-      &:hover {
-        border-color: var(--ti-button-only-icon-disabled-border-color);
-      }
-    }
-  }
-  &.is-only-icon.is-circle {
-    width: unset;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &:focus,
-  &:hover {
-    .button-color(
-      var(--ti-button-normal-hover-text-color),
-      var(--ti-button-normal-hover-border-color),
-      var(--ti-button-normal-hover-bg-color)
-    );
-  }
-
-  &:active,
-  &.is-active,
-  &.is-plain:active {
-    .button-color(
-      var(--ti-button-normal-active-text-color),
-      var(--ti-button-normal-active-border-color),
-      var(--ti-button-normal-active-bg-color)
-    );
-  }
-
-  &.is-ghost {
-    background-color: transparent;
-    color: var(--ti-button-ghost-text-color);
-
-    &:active,
-    &:focus,
-    &:hover {
-      .button-color(
-        var(--ti-button-ghost-hover-text-color),
-        var(--ti-button-ghost-hover-border-color),
-        transparent
-      );
-    }
-
-    &.is-disabled,
-    &.is-disabled:focus,
-    &.is-disabled:hover {
-      .button-color(
-        var(--ti-button-ghost-disabled-text-color),
-        var(--ti-button-ghost-disabled-border-color),
-        transparent
-      );
-    }
-  }
-
-  &.is-disabled,
-  &.is-disabled:focus,
-  &.is-disabled:hover {
-    cursor: not-allowed;
-    .button-color(
-      var(--ti-button-normal-disabled-text-color),
-      var(--ti-button-normal-disabled-border-color),
-      var(--ti-button-normal-disabled-bg-color)
-    );
-  }
-
-  &.is-plain:focus,
-  &.is-plain:hover {
-    .button-color(
-      var(--ti-button-normal-hover-text-color),
-      var(--ti-button-normal-hover-border-color),
-      var(--ti-button-normal-hover-bg-color)
-    );
-  }
-
-  &.is-disabled.is-plain,
-  &.is-disabled.is-plain:focus,
-  &.is-disabled.is-plain:hover {
-    .button-color(
-      var(--ti-button-normal-disabled-text-color),
-      var(--ti-button-normal-disabled-border-color),
-      var(--ti-button-normal-disabled-bg-color)
-    );
-  }
-
-  &.is-loading {
-    position: relative;
-    pointer-events: none;
-    overflow: initial;
-
-    &:before {
-      pointer-events: none;
-      content: '';
-      position: absolute;
-      left: -1px;
-      top: -1px;
-      right: -1px;
-      bottom: -1px;
-      border-radius: inherit;
-      background-color: var(--ti-button-loading-bg-color);
-    }
-
-    .@{svg-prefix-cls} {
-      fill: var(--ti-button-info-text-color);
-    }
-
-    &.@{button-prefix-cls}--default {
-      .@{svg-prefix-cls} {
-        fill: var(--ti-button-normal-text-color);
-      }
-    }
-  }
+  /** 圆角场景 */
+  border-radius: var(--tv-Button-border-radius);
 
   &.is-round {
-    border-radius: calc(var(--ti-button-size-normal-height, 30px) / 2);
-  }
-
-  &.is-icon {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &:not(.is-circle) {
-    .@{svg-prefix-cls}.is-text {
-      margin-right: var(--ti-button-text-has-svg-icon-margin-right);
-    }
-
-    &.is-loading {
-      .@{svg-prefix-cls} {
-        margin-right: 4px;
-      }
-    }
+    border-radius: var(--tv-Button-border-radius-round);
   }
 
   &.is-circle {
-    border-radius: 50%;
-    min-width: var(--ti-button-size-normal-height);
-    min-height: var(--ti-button-size-normal-height);
-    line-height: 1;
-    padding: var(--ti-button-size-normal-padding);
-
-    &.is-hide-boder {
-      border: none;
-    }
+    border-radius: var(--tv-Button-border-radius-circle);
   }
 
-  &.is-circle&--large {
-    .button-circle-size(
-      var(--ti-button-size-large-height),
-      var(--ti-button-size-large-padding)
-    );
+  /** 尺寸场景 */
+  .size-mixin(@size) {
+    @fs: %('var(--tv-Button-font-size%a)', @size);
+    @h: %('var(--tv-Button-height%a)', @size);
+    @p: %('var(--tv-Button-padding-x%a)', @size);
+    @mw: %('var(--tv-Button-min-width%a)', @size);
+
+    font-size: e(@fs);
+    height: e(@h);
+    padding-left: e(@p);
+    padding-right: e(@p);
+    min-width: e(@mw);
   }
 
-  &.is-circle&--medium {
-    .button-circle-size(
-      var(--ti-button-size-medium-height),
-      var(--ti-button-size-medium-padding)
-    );
+  .size-mixin(e('')); // 默认尺寸
+
+  &.@{button-prefix-cls}--large {
+    .size-mixin(-large);
+  }
+  &.@{button-prefix-cls}--medium {
+    .size-mixin(-medium);
+  }
+  &.@{button-prefix-cls}--small {
+    .size-mixin(-small);
+  }
+  &.@{button-prefix-cls}--mini {
+    .size-mixin(-mini);
   }
 
-  &.is-circle&--small {
-    .button-circle-size(
-      var(--ti-button-size-small-height),
-      var(--ti-button-size-small-padding)
-    );
+  /** 颜色场景 */
+
+  // 1、混入基本主题色: text-color bg-color border-color icon-color
+  .color-theme-mixin(@theme) {
+    @c: %('var(--tv-Button-text-color-%a)', @theme);
+    @bg: %('var(--tv-Button-bg-color-%a)', @theme);
+    @border: %('var(--tv-Button-border-color-%a)', @theme);
+    @icon: %('var(--tv-Button-icon-color-%a)', @theme);
+
+    color: e(@c);
+    background-color: e(@bg);
+    border-color: e(@border);
+    fill: e(@icon);
   }
 
-  &.is-circle&--mini {
-    .button-circle-size(
-      var(--ti-button-size-mini-height),
-      var(--ti-button-size-mini-padding)
-    );
+  &.@{button-prefix-cls}--default {
+    .color-theme-mixin(default);
   }
-  &&--default.is-plain {
-    border-color: var(--ti-button-plain-border-color);
+  &.@{button-prefix-cls}--primary {
+    .color-theme-mixin(primary);
   }
-  &&--default.is-disabled.is-plain {
-    border-color: var(--ti-button-plain-disabled-border-color);
+  &.@{button-prefix-cls}--success {
+    .color-theme-mixin(success);
   }
-  &&--default.is-plain:hover {
-    border-color: var(--ti-button-plain-hover-border-color);
+  &.@{button-prefix-cls}--warning {
+    .color-theme-mixin(warning);
   }
-
-  &&--primary {
-    .button-type(
-      var(--ti-button-primary-text-color),
-      var(--ti-button-primary-normal-bg-color),
-      var(--ti-button-primary-normal-border-color),
-      var(--ti-button-primary-hover-bg-color),
-      var(--ti-button-primary-hover-border-color),
-      var(--ti-button-primary-active-bg-color),
-      var(--ti-button-primary-disabled-text-color),
-      var(--ti-button-primary-disabled-bg-color),
-      var(--ti-button-primary-plain-text-color),
-      var(--ti-button-primary-plain-hover-text-color),
-      var(--ti-button-primary-plain-bg-color),
-      var(--ti-button-primary-plain-hover-bg-color),
-      var(--ti-button-primary-plain-border-color),
-      var(--ti-button-primary-plain-hover-border-color),
-      var(--ti-button-primary-plain-disabled-bg-color),
-      var(--ti-button-primary-disabled-border-color),
-      var(--ti-button-primary-ghost-text-color),
-      var(--ti-button-primary-ghost-hover-text-color),
-      var(--ti-button-primary-ghost-disabled-text-color),
-      var(--ti-button-primary-ghost-border-color),
-      var(--ti-button-primary-ghost-hover-border-color),
-      var(--ti-button-primary-ghost-disabled-border-color),
-    );
+  &.@{button-prefix-cls}--danger {
+    .color-theme-mixin(danger);
   }
-
-  &&--success {
-    .button-type(
-      var(--ti-button-success-text-color),
-      var(--ti-button-success-normal-bg-color),
-      var(--ti-button-success-normal-border-color),
-      var(--ti-button-success-hover-bg-color),
-      var(--ti-button-success-hover-border-color),
-      var(--ti-button-success-active-bg-color),
-      var(--ti-button-success-disabled-text-color),
-      var(--ti-button-success-disabled-bg-color),
-      var(--ti-button-success-plain-text-color),
-      var(--ti-button-success-plain-hover-text-color),
-      var(--ti-button-success-plain-bg-color),
-      var(--ti-button-success-plain-hover-bg-color),
-      var(--ti-button-success-plain-border-color),
-      var(--ti-button-success-plain-hover-border-color),
-      var(--ti-button-success-plain-disabled-bg-color),
-      var(--ti-button-success-disabled-border-color),
-      var(--ti-button-success-ghost-text-color),
-      var(--ti-button-success-ghost-hover-text-color),
-      var(--ti-button-success-ghost-disabled-text-color),
-      var(--ti-button-success-ghost-border-color),
-      var(--ti-button-success-ghost-hover-border-color),
-      var(--ti-button-success-ghost-disabled-border-color),
-    );
-  }
-
-  &&--warning {
-    .button-type(
-      var(--ti-button-warning-text-color),
-      var(--ti-button-warning-normal-bg-color),
-      var(--ti-button-warning-normal-border-color),
-      var(--ti-button-warning-hover-bg-color),
-      var(--ti-button-warning-hover-border-color),
-      var(--ti-button-warning-active-bg-color),
-      var(--ti-button-warning-disabled-text-color),
-      var(--ti-button-warning-disabled-bg-color),
-      var(--ti-button-warning-plain-text-color),
-      var(--ti-button-warning-plain-hover-text-color),
-      var(--ti-button-warning-plain-bg-color),
-      var(--ti-button-warning-plain-hover-bg-color),
-      var(--ti-button-warning-plain-border-color),
-      var(--ti-button-warning-plain-hover-border-color),
-      var(--ti-button-warning-plain-disabled-bg-color),
-      var(--ti-button-warning-disabled-border-color),
-      var(--ti-button-warning-ghost-text-color),
-      var(--ti-button-warning-ghost-hover-text-color),
-      var(--ti-button-warning-ghost-disabled-text-color),
-      var(--ti-button-warning-ghost-border-color),
-      var(--ti-button-warning-ghost-hover-border-color),
-      var(--ti-button-warning-ghost-disabled-border-color),
-    );
-  }
-
-  &&--danger {
-    .button-type(
-      var(--ti-button-danger-text-color),
-      var(--ti-button-danger-normal-bg-color),
-      var(--ti-button-danger-normal-border-color),
-      var(--ti-button-danger-hover-bg-color),
-      var(--ti-button-danger-hover-border-color),
-      var(--ti-button-danger-active-bg-color),
-      var(--ti-button-danger-disabled-text-color),
-      var(--ti-button-danger-disabled-bg-color),
-      var(--ti-button-danger-plain-text-color),
-      var(--ti-button-danger-plain-hover-text-color),
-      var(--ti-button-danger-plain-bg-color),
-      var(--ti-button-danger-plain-hover-bg-color),
-      var(--ti-button-danger-plain-border-color),
-      var(--ti-button-danger-plain-hover-border-color),
-      var(--ti-button-danger-plain-disabled-bg-color),
-      var(--ti-button-danger-disabled-border-color),
-      var(--ti-button-danger-ghost-text-color),
-      var(--ti-button-danger-ghost-hover-text-color),
-      var(--ti-button-danger-ghost-disabled-text-color),
-      var(--ti-button-danger-ghost-border-color),
-      var(--ti-button-danger-ghost-hover-border-color),
-      var(--ti-button-danger-ghost-disabled-border-color),
-    );
-  }
-
-  &&--info {
-    .button-type(
-      var(--ti-button-info-text-color),
-      var(--ti-button-info-normal-bg-color),
-      var(--ti-button-info-normal-border-color),
-      var(--ti-button-info-hover-bg-color),
-      var(--ti-button-info-hover-border-color),
-      var(--ti-button-info-active-bg-color),
-      var(--ti-button-info-disabled-text-color),
-      var(--ti-button-info-disabled-bg-color),
-      var(--ti-button-info-plain-text-color),
-      var(--ti-button-info-plain-hover-text-color),
-      var(--ti-button-info-plain-bg-color),
-      var(--ti-button-info-plain-hover-bg-color),
-      var(--ti-button-info-plain-border-color),
-      var(--ti-button-info-plain-hover-border-color),
-      var(--ti-button-info-plain-disabled-bg-color),
-      var(--ti-button-info-disabled-border-color),
-      var(--ti-button-info-ghost-text-color),
-      var(--ti-button-info-ghost-hover-text-color),
-      var(--ti-button-info-ghost-disabled-text-color),
-      var(--ti-button-info-ghost-border-color),
-      var(--ti-button-info-ghost-hover-border-color),
-      var(--ti-button-info-ghost-disabled-border-color),
-    );
-  }
-
-  &&--text {
-    .button-text(
-      var(--ti-button-text-color),
-      var(--ti-button-text-color-hover),
-      var(--ti-button-text-color-active),
-      var(--ti-button-text-color-disabled),
-      var(--ti-button-text-hover-weight),
-    );
-
-    &:hover {
-      text-decoration: var(--ti-button-text-hover-text-decoration);
-    }
-
-    &.is-disabled:hover {
-      text-decoration: none;
-    }
-
-    border-radius: var(--ti-button-text-hover-border-radius);
-
-    padding: 0 var(--ti-button-text-padding-horizontal);
-
-    &:has(.@{svg-prefix-cls}) {
-      padding: 0 var(--ti-button-text-svg-padding-horizontal);
-      color: var(--ti-button-text-has-svg-text-color);
-    }
-
-    &:has(.@{svg-prefix-cls}):hover {
-      background: var(--ti-button-text-hover-bg-color);
-      border-radius: var(--ti-button-text-hover-border-radius);
-      color: var(--ti-button-text-has-svg-hover-text-color);
-      & .@{svg-prefix-cls} {
-        fill: var(--ti-button-text-svg-hover-fill-color);
-      }
-    }
-
-    &:has(.@{svg-prefix-cls}).is-disabled {
-      background: transparent;
-      fill: var(--ti-button-text-svg-disabled-fill-color);
-      color: var(--ti-button-text-color-disabled);
-
-      & .@{svg-prefix-cls} {
-        fill: var(--ti-button-text-svg-disabled-fill-color);
-      }
-
-      &:hover {
-        fill: var(--ti-button-text-svg-disabled-fill-color);
-        background: transparent;
-      }
-    }
-
-    &.is-only-icon {
-      width: var(--ti-button-only-icon-text-width);
-      &:hover {
-        background: var(--ti-button-text-only-icon-hover-bg-color);
-      }
-    }
-
-    & .@{svg-prefix-cls} {
-      vertical-align: middle;
-      fill: var(--ti-button-text-svg-fill-color);
-    }
-
-    &.@{button-prefix-cls}.@{button-prefix-cls}--large {
-      .button-text-size(
-        var(--ti-button-text-size-large-min-width),
-        var(--ti-button-text-size-large-height),
-        var(--ti-button-text-size-large-svg-width),
-        var(--ti-button-text-size-large-svg-height)
-      );
-    }
-
-    &.@{button-prefix-cls}.@{button-prefix-cls}--medium {
-      .button-text-size(
-        var(--ti-button-text-size-medium-min-width),
-        var(--ti-button-text-size-medium-height),
-        var(--ti-button-text-size-medium-svg-width),
-        var(--ti-button-text-size-medium-svg-height)
-      );
-    }
-
-    &.@{button-prefix-cls} {
-      .button-text-size(
-        var(--ti-button-text-size-default-min-width),
-        var(--ti-button-text-size-default-height),
-        var(--ti-button-text-size-default-svg-width),
-        var(--ti-button-text-size-default-svg-height)
-      );
-    }
-
-    &.@{button-prefix-cls}.@{button-prefix-cls}--small {
-      .button-text-size(
-        var(--ti-button-text-size-small-min-width),
-        var(--ti-button-text-size-small-height),
-        var(--ti-button-text-size-small-svg-width),
-        var(--ti-button-text-size-small-svg-height)
-      );
-    }
-
-    &.@{button-prefix-cls}.@{button-prefix-cls}--mini {
-      .button-text-size(
-        var(--ti-button-text-size-mini-min-width),
-        var(--ti-button-text-size-mini-height),
-        var(--ti-button-text-size-mini-svg-width),
-        var(--ti-button-text-size-mini-svg-height)
-      );
-    }
-  }
-
-  &&--large {
-    .button-size(
-      var(--ti-button-size-large-font-size),
-      var(--ti-button-size-large-height),
-      var(--ti-button-size-large-padding-horizontal),
-      var(--ti-button-size-large-min-width),
-    );
-
-    & + & {
-      margin-left: var(--ti-button-size-large-margin-left);
-    }
-  }
-
-  &&--medium {
-    .button-size(
-      var(--ti-button-size-medium-font-size),
-      var(--ti-button-size-medium-height),
-      var(--ti-button-size-medium-padding-horizontal),
-      var(--ti-button-size-medium-min-width),
-    );
-
-    & + & {
-      margin-left: var(--ti-button-size-medium-margin-left);
-    }
-  }
-
-  &&--small {
-    .button-size(
-      var(--ti-button-size-small-font-size),
-      var(--ti-button-size-small-height),
-      var(--ti-button-size-small-padding-horizontal),
-      var(--ti-button-size-small-min-width),
-    );
-
-    & + & {
-      margin-left: var(--ti-button-size-small-margin-left);
-    }
-  }
-
-  &&--mini {
-    .button-size(
-      var(--ti-button-size-mini-font-size),
-      var(--ti-button-size-mini-height),
-      var(--ti-button-size-mini-padding-horizontal),
-      var(--ti-button-size-mini-min-width),
-    );
-  }
-  .@{css-prefix-iconfont}-loading {
-    font-size: var(--ti-button-loading-font-size);
-    line-height: 1;
-    animation: rotating 2s linear infinite;
-  }
-}
-
-.@{css-prefix-iconfont}-loading {
-  font-size: var(--ti-common-font-size-1);
-  line-height: 1;
-  animation: rotating 2s linear infinite;
-}
-
-@keyframes rotating {
-  0% {
-    transform: rotateZ(0deg);
-  }
-
-  100% {
-    transform: rotateZ(360deg);
+  &.@{button-prefix-cls}--info {
+    .color-theme-mixin(info);
   }
 }
