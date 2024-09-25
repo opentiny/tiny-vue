@@ -6,18 +6,6 @@ export default {
       type: 'component',
       props: [
         {
-          name: 'border',
-          type: 'boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否显示边框',
-            'en-US': 'Display border'
-          },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'border',
-          mfDemo: ''
-        },
-        {
           name: 'checked',
           type: 'boolean',
           defaultValue: 'false',
@@ -139,18 +127,6 @@ export default {
           },
           mode: ['pc'],
           pcDemo: 'shape'
-        },
-        {
-          name: 'size',
-          type: "'medium' | 'small' | 'mini'",
-          defaultValue: '',
-          desc: {
-            'zh-CN': 'checkbox 的尺寸，仅在 border 为true时有效',
-            'en-US': 'Checkbox size. This parameter is valid only when border is set to true'
-          },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'size',
-          mfDemo: ''
         },
         {
           name: 'text',

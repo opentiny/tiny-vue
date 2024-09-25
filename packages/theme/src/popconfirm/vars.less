@@ -11,8 +11,10 @@
 */
 
 .component-css-vars-popconfirm() {
-  // 提示弹窗字体行高
-  --ti-popconfirm-popover-line-height: 1.5;
+  // 提示弹窗title字体行高
+  --ti-popconfirm-popover-title-line-height:var(--ti-common-line-height-2);
+  // 提示弹窗content字体行高
+  --ti-popconfirm-popover-content-line-height: var(--ti-common-line-height-1);
   // 底部按钮flex排列方式
   --ti-popconfirm-popover-footer-justify-content: right;
   // 提示弹窗字体大小
@@ -20,9 +22,9 @@
   // 提示弹窗字体颜色
   --ti-popconfirm-popover-footer-font-color: #191919;
   // 提示弹窗容器垂直内边距
-  --ti-popconfirm-popover-container-padding-vertical: unset;
+  --ti-popconfirm-popover-container-padding-vertical: var(--ti-common-space-base);
   // 提示弹窗图标大小
-  --ti-popconfirm-popover-icon-width: var(--ti-common-size-4x);
+  --ti-popconfirm-popover-icon-width: var(--ti-common-size-5x);
   --ti-popconfirm-popover-icon-margin-bottom: 2px;
   // 提示弹窗图标上侧外边距
   --ti-popconfirm-popover-icon-margin-right: var(--ti-common-space-base);
@@ -32,4 +34,6 @@
   --ti-popconfirm-popover-title-font-size: var(--ti-common-font-size-2);
   --ti-popconfirm-popover-title-font-weight: var(--ti-common-font-weight-bold);
   --ti-popconfirm-popover-text-color: #191919;
+  // 标题距离内容下边距
+  --ti-popconfirm-popover-margin-bottom: var(--ti-common-space-2x);
 }

@@ -22,7 +22,7 @@
               :class="['tiny-popconfirm-popover__icon', type ? `tiny-popconfirm-popover--${type}` : '']"
             >
             </component>
-            <div class="tiny-popconfirm-popover__title" :class="[message ? '' : 'no-message']">
+            <div class="tiny-popconfirm-popover__title">
               {{ title }}
             </div>
           </div>
