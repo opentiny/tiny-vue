@@ -65,7 +65,6 @@
   }
 
   /** 颜色场景 */
-
   // 1、混入基本主题色: text-color bg-color border-color icon-color
   .color-theme-mixin(@theme) {
     @c: %('var(--tv-Button-text-color-%a)', @theme);
@@ -78,26 +77,6 @@
     border-color: e(@border);
     fill: e(@icon);
   }
-
-  &.@{button-prefix-cls}--default {
-    .color-theme-mixin(default);
-  }
-  &.@{button-prefix-cls}--primary {
-    .color-theme-mixin(primary);
-  }
-  &.@{button-prefix-cls}--success {
-    .color-theme-mixin(success);
-  }
-  &.@{button-prefix-cls}--warning {
-    .color-theme-mixin(warning);
-  }
-  &.@{button-prefix-cls}--danger {
-    .color-theme-mixin(danger);
-  }
-  &.@{button-prefix-cls}--info {
-    .color-theme-mixin(info);
-  }
-
   // 2. plain 按钮  2 个状态叠加, 优先级为：两级类名
   .color-plain-mixin(@theme) {
     @c: %('var(--tv-Button-text-color-plain-%a)', @theme);
@@ -108,37 +87,6 @@
     background-color: e(@bg);
     border-color: e(@border);
   }
-
-  &.@{button-prefix-cls}--default.is-plain,
-  &.@{button-prefix-cls}--default.is-ghost {
-    .color-plain-mixin(default);
-  }
-  &.@{button-prefix-cls}--primary.is-plain,
-  &.@{button-prefix-cls}--primary.is-ghost {
-    .color-plain-mixin(primary);
-  }
-  &.@{button-prefix-cls}--success.is-plain,
-  &.@{button-prefix-cls}--success.is-ghost {
-    .color-plain-mixin(success);
-  }
-  &.@{button-prefix-cls}--warning.is-plain,
-  &.@{button-prefix-cls}--warning.is-ghost {
-    .color-plain-mixin(warning);
-  }
-  &.@{button-prefix-cls}--danger.is-plain,
-  &.@{button-prefix-cls}--danger.is-ghost {
-    .color-plain-mixin(danger);
-  }
-  &.@{button-prefix-cls}--info.is-plain,
-  &.@{button-prefix-cls}--info.is-ghost {
-    .color-plain-mixin(info);
-  }
-
-  // 3. ghost： 默认继承plain的状态， 但是bg 强制为透明,比激活态还高  优先级为：四级类名
-  &.is-ghost.is-ghost.is-ghost.is-ghost {
-    background-color: var(--tv-Button-bg-color-ghost);
-  }
-
   // 4. 激活态： 只影响背景色，边框色。  优先级为：三级类名
   .color-active-mixin(@theme, @plain) {
     @bg: %('var(--tv-Button-bg-color%a-active-%a)', @plain, @theme);
@@ -153,49 +101,70 @@
     }
   }
 
-  // 以下规则本来可以写在上面。现在为了简化，先按复杂的写法
   &.@{button-prefix-cls}--default {
+    .color-theme-mixin(default);
     .color-active-mixin(default, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(default);
+      .color-active-mixin(default, -plain);
+    }
   }
   &.@{button-prefix-cls}--primary {
+    .color-theme-mixin(primary);
     .color-active-mixin(primary, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(primary);
+      .color-active-mixin(primary, -plain);
+    }
   }
   &.@{button-prefix-cls}--success {
+    .color-theme-mixin(success);
     .color-active-mixin(success, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(success);
+      .color-active-mixin(success, -plain);
+    }
   }
   &.@{button-prefix-cls}--warning {
+    .color-theme-mixin(warning);
     .color-active-mixin(warning, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(warning);
+      .color-active-mixin(warning, -plain);
+    }
   }
   &.@{button-prefix-cls}--danger {
+    .color-theme-mixin(danger);
     .color-active-mixin(danger, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(danger);
+      .color-active-mixin(danger, -plain);
+    }
   }
   &.@{button-prefix-cls}--info {
+    .color-theme-mixin(info);
     .color-active-mixin(info, e(''));
+
+    &.is-plain,
+    &.is-ghost {
+      .color-plain-mixin(info);
+      .color-active-mixin(info, -plain);
+    }
   }
 
-  &.@{button-prefix-cls}--default.is-plain,
-  &.@{button-prefix-cls}--default.is-ghost {
-    .color-active-mixin(default, -plain);
-  }
-  &.@{button-prefix-cls}--primary.is-plain,
-  &.@{button-prefix-cls}--primary.is-ghost {
-    .color-active-mixin(primary, -plain);
-  }
-  &.@{button-prefix-cls}--success.is-plain,
-  &.@{button-prefix-cls}--success.is-ghost {
-    .color-active-mixin(success, -plain);
-  }
-  &.@{button-prefix-cls}--warning.is-plain,
-  &.@{button-prefix-cls}--warning.is-ghost {
-    .color-active-mixin(warning, -plain);
-  }
-  &.@{button-prefix-cls}--danger.is-plain,
-  &.@{button-prefix-cls}--danger.is-ghost {
-    .color-active-mixin(danger, -plain);
-  }
-  &.@{button-prefix-cls}--info.is-plain,
-  &.@{button-prefix-cls}--info.is-ghost {
-    .color-active-mixin(info, -plain);
+  // 3. ghost： 默认继承plain的状态， 但是bg 强制为透明,比激活态还高  优先级为：四级类名
+  &.is-ghost.is-ghost.is-ghost.is-ghost {
+    background-color: var(--tv-Button-bg-color-ghost);
   }
 
   // 5、禁用态+loading  优先级最高， 大于ghost透明， 五优先级
