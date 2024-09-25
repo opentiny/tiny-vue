@@ -34,6 +34,30 @@ export default defineComponent({
       emit('clickBox', { row: rowIndex + 1, col: colIndex + 1 })
     }
 
+    // TODO 处理 box selector 显隐后未复原的问题
+    let visibleObserver
+
+    hooks.onMounted(() => {
+      const target = boxPanelRef.value?.parentElement
+
+      if (!target) return
+      visibleObserver = new MutationObserver((list) => {
+        for (const mutation of list) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+            const newStyle = window.getComputedStyle(target)
+
+            const isVisible = newStyle.display !== 'none'
+          }
+        }
+      })
+
+      visibleObserver.observe(target, { attributes: true })
+    })
+
+    hooks.onBeforeUnmount(() => {
+      visibleObserver?.disconnect()
+    })
+
     return () => (
       <div class="tiny-box-selector__view" ref={boxPanelRef} onmousemove={handleMouseMove}>
         {new Array(side).fill(0).map((row, rowIndex) => (
