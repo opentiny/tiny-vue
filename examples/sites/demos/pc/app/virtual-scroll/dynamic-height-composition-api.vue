@@ -1,7 +1,14 @@
 <template>
   <div class="virtual-scroll-demo">
-    <TinyVirtualScroll :data="showData" :estimatedItemSize="50" itemIndex="id" class="tiny-virtual-scroll"
-      direction="vertical" :buffer="0.5">
+    <TinyVirtualScroll
+      :data="showData"
+      :estimatedItemSize="50"
+      itemIndex="id"
+      :visibleSize="300"
+      class="tiny-virtual-scroll"
+      direction="vertical"
+      :buffer="0.5"
+    >
       <template #default="props">
         <div class="tiny-virtual-scroll-item">
           {{ props.item.value }}
@@ -34,7 +41,6 @@ for (let i = 1; i <= 10000; i++) {
 }
 
 .tiny-virtual-scroll {
-  height: 300px;
   width: 100%;
 }
 

@@ -5,8 +5,15 @@
       <tiny-input type="number" v-model.number="scrollto" :min="1" :max="showData.length"></tiny-input>
     </div>
     <div class="main">
-      <TinyVirtualScroll ref="scroller" :data="showData" :itemSize="50" itemIndex="key" class="tiny-virtual-scroll"
-        direction="vertical">
+      <TinyVirtualScroll
+        ref="scroller"
+        :data="showData"
+        :itemSize="50"
+        itemIndex="key"
+        :visibleSize="300"
+        class="tiny-virtual-scroll"
+        direction="vertical"
+      >
         <template #default="props">
           <div class="tiny-virtual-scroll-item">
             {{ props.item.value }}
@@ -63,10 +70,6 @@ export default {
 
 .scrollTo-demo .footer .tiny-input {
   width: 250px;
-}
-
-.scrollTo-demo .main .tiny-virtual-scroll {
-  height: 300px;
 }
 
 .scrollTo-demo .main .tiny-virtual-scroll .tiny-virtual-scroll-item {

@@ -1,7 +1,14 @@
 <template>
   <div>
     <!-- vue3 -->
-    <TinyVirtualScroll :data="showData" :itemSize="50" itemIndex="key" class="tiny-virtual-scroll" direction="vertical">
+    <TinyVirtualScroll
+      :data="showData"
+      :itemSize="50"
+      itemIndex="key"
+      class="tiny-virtual-scroll"
+      :visibleSize="300"
+      direction="vertical"
+    >
       <template #default="props">
         <div class="tiny-virtual-scroll-item">
           {{ props.item.value }}
@@ -31,10 +38,6 @@ showData.value = Array.from(Array(1000), (v, k) => {
   height: 100%;
   overflow: hidden;
   /* display: flex; */
-}
-
-.tiny-virtual-scroll {
-  height: 300px;
 }
 
 .tiny-virtual-scroll-item {
