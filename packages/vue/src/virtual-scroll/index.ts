@@ -1,5 +1,4 @@
-import VirtualScroll from './src/index'
-
+import VirtualScroll from './src/index.js'
 import '@opentiny/vue-theme/virtual-scroll/index.less'
 import { version } from './package.json'
 
@@ -20,5 +19,4 @@ if (process.env.BUILD_TARGET === 'runtime') {
     VirtualScroll.install(window.Vue)
   }
 }
-
 export default VirtualScroll

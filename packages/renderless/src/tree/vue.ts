@@ -186,51 +186,58 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
   return state
 }
 
-const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, api }) => ({
-  state,
-  dispatch,
-  broadcast,
-  setChildren: setChildren(props),
-  getChildren: getChildren(),
-  computedTreeItemArray: computedTreeItemArray(),
-  computedIsEmpty: computedIsEmpty(),
-  watchDefaultCheckedKeys: watchDefaultCheckedKeys(state),
-  watchData: watchData({ state }),
-  watchCheckboxItems: watchCheckboxItems(),
-  watchCheckStrictly: watchCheckStrictly(state),
-  updated: updated({ vm, state }),
-  filter: filter({ props, state, api }),
-  getNodeKey: getNodeKey(props),
-  getNodePath: getNodePath({ props, state }),
-  getCheckedNodes: getCheckedNodes(state),
-  getCheckedKeys: getCheckedKeys(state),
-  getCurrentNode: getCurrentNode(state),
-  setCheckedNodes: setCheckedNodes({ props, state }),
-  setCheckedKeys: setCheckedKeys({ props, state, api }),
-  setChecked: setChecked(state),
-  getHalfCheckedNodes: getHalfCheckedNodes(state),
-  getHalfCheckedKeys: getHalfCheckedKeys(state),
-  setCurrentNode: setCurrentNode({ props, state }),
-  setCurrentKey: setCurrentKey({ props, state }),
-  getNode: getNode(state),
-  remove: remove(state),
-  append: append(state),
-  insertBefore: insertBefore(state),
-  insertAfter: insertAfter(state),
-  updateKeyChildren: updateKeyChildren({ props, state }),
-  initTabIndex: initTabIndex({ vm, state }),
-  handleKeydown: handleKeydown({ vm, state }),
-  computedShowEmptyText: computedShowEmptyText({ constants, t }),
-  setCurrentRadio: setCurrentRadio({ props, state }),
-  expandAllNodes: expandAllNodes({ state }),
-  dragStart: dragStart({ props, state, emit }),
-  dragOver: dragOver({ props, state, emit, vm }),
-  dragEnd: dragEnd({ state, emit }),
-  clearCurrentStore: clearCurrentStore(state),
-  initIsCurrent: debounce(20, initIsCurrent({ props, state })),
-  setCheckedByNodeKey: setCheckedByNodeKey({ props, state }),
-  computedFlattenedTreeData: computedFlattenedTreeData(props)
-})
+const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, api }) => {
+  const callFlattened = (func: (...params: any[]) => any) => {
+    func()
+    state.flattenedTreeData = computedFlattenedTreeData(props)(props, state)
+    callback()
+  }
+  return {
+    state,
+    dispatch,
+    broadcast,
+    setChildren: setChildren(props),
+    getChildren: getChildren(),
+    computedTreeItemArray: computedTreeItemArray(),
+    computedIsEmpty: computedIsEmpty(),
+    watchDefaultCheckedKeys: watchDefaultCheckedKeys(state),
+    watchData: watchData({ state }),
+    watchCheckboxItems: watchCheckboxItems(),
+    watchCheckStrictly: watchCheckStrictly(state),
+    updated: updated({ vm, state }),
+    filter: filter({ props, state, api }),
+    getNodeKey: getNodeKey(props),
+    getNodePath: getNodePath({ props, state }),
+    getCheckedNodes: getCheckedNodes(state),
+    getCheckedKeys: getCheckedKeys(state),
+    getCurrentNode: getCurrentNode(state),
+    setCheckedNodes: setCheckedNodes({ props, state }),
+    setCheckedKeys: setCheckedKeys({ props, state, api }),
+    setChecked: setChecked(state),
+    getHalfCheckedNodes: getHalfCheckedNodes(state),
+    getHalfCheckedKeys: getHalfCheckedKeys(state),
+    setCurrentNode: setCurrentNode({ props, state }),
+    setCurrentKey: setCurrentKey({ props, state }),
+    getNode: getNode(state),
+    remove: remove(state),
+    append: append(state),
+    insertBefore: insertBefore(state),
+    insertAfter: insertAfter(state),
+    updateKeyChildren: updateKeyChildren({ props, state }),
+    initTabIndex: initTabIndex({ vm, state }),
+    handleKeydown: handleKeydown({ vm, state }),
+    computedShowEmptyText: computedShowEmptyText({ constants, t }),
+    setCurrentRadio: setCurrentRadio({ props, state }),
+    expandAllNodes: expandAllNodes({ state }),
+    dragStart: dragStart({ props, state, emit }),
+    dragOver: dragOver({ props, state, emit, vm }),
+    dragEnd: dragEnd({ state, emit }),
+    clearCurrentStore: clearCurrentStore(state),
+    initIsCurrent: debounce(20, initIsCurrent({ props, state })),
+    setCheckedByNodeKey: setCheckedByNodeKey({ props, state }),
+    computedFlattenedTreeData: computedFlattenedTreeData(props)
+  }
+}
 
 const initWatcher = ({ watch, props, api, state, isVue2 }) => {
   watch(() => props.defaultCheckedKeys, api.watchDefaultCheckedKeys)
@@ -261,14 +268,6 @@ const initWatcher = ({ watch, props, api, state, isVue2 }) => {
     () => props.addDisabledKeys,
     (value) => (state.action.addDisabled = value || []),
     { immediate: true }
-  )
-
-  watch(
-    () => state.flattenedTreeData.filter((n) => n.expanded).length,
-    (v, oldV) => {
-      if (oldV?.length && v?.filter((n) => n.expanded) === oldV?.filter((n) => n.expanded)) return
-    },
-    { deep: true }
   )
 }
 
@@ -320,9 +319,7 @@ export const renderless = (
   state.flattenedTreeData = api.computedFlattenedTreeData(props, state)
   initWatcher({ watch, props, api, state, isVue2 })
 
-  onMounted(() => {
-    api.wrapMounted()
-  })
+  onMounted(api.wrapMounted)
 
   onUpdated(api.updated)
 

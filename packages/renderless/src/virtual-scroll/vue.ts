@@ -61,29 +61,22 @@ export const renderless = (props, { reactive, nextTick, watch, onMounted, ref, c
     state.temporary.prerender = true
     api.handleScroll()
   }
-  const handle = (isFirst) => {
+  const handle = () => {
     if (!virtualScroll.value) return
     nextTick(() => {
       api.initPositions()
       state.temporary.prerender = false
+      state.totalSize = api.calculateTotalSize()
       api.handleScroll()
-      state.totalSize = api.calculateTotalSize
     })
   }
   // 组件挂载后加载滚动事件
   onMounted(handle)
   watch(
-    () => state.visibleData,
-    (newVisibleData) => {
-      state.totalSize = api.calculateTotalSize
-    },
-    { immediate: true }
-  )
-  watch(
     () => props.data,
     (newData) => {
       state.data = newData
-      console.log('newData', newData.length)
+      state.totalSize = api.calculateTotalSize()
       nextTick(api.handleScroll)
     },
     { deep: true }

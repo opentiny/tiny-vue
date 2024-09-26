@@ -7,7 +7,7 @@ export default {
       props: [
         {
           name: 'buffer',
-          type: 'Number',
+          type: 'number',
           defaultValue: '1',
           desc: {
             'zh-CN': '显示区域条数的比例值为缓冲区设置',
@@ -18,7 +18,7 @@ export default {
         },
         {
           name: 'data',
-          type: 'Array',
+          type: 'array',
           defaultValue: '[]',
           desc: {
             'zh-CN': '需要展示的数据',
@@ -29,7 +29,7 @@ export default {
         },
         {
           name: 'direction',
-          type: 'String',
+          type: "'vertical' | 'horizontal'",
           defaultValue: 'vertical',
           desc: {
             'zh-CN': '滚动方向',
@@ -39,8 +39,8 @@ export default {
           pcDemo: 'basic-usage'
         },
         {
-          name: 'estimatedItemSize',
-          type: 'Number',
+          name: 'estimated-item-size',
+          type: 'number',
           defaultValue: '--',
           desc: {
             'zh-CN': '是否启动动态尺寸，你不需关注每个项目的大小，它会自动计算',
@@ -51,8 +51,8 @@ export default {
           pcDemo: 'dynamic-height'
         },
         {
-          name: 'itemSize',
-          type: 'Number',
+          name: 'item-size',
+          type: 'number',
           defaultValue: '--',
           desc: {
             'zh-CN': '以像素为单位定义每个项目的高度，用于计算滚动条的大小和位置。',
@@ -63,11 +63,11 @@ export default {
           pcDemo: 'basic-usage'
         },
         {
-          name: 'itemIndex',
-          type: 'String',
+          name: 'item-index',
+          type: 'string',
           defaultValue: 'id',
           desc: {
-            'zh-CN': '默认滚动的index',
+            'zh-CN': '默认滚动的 index',
             'en-US': 'Default scrolling index'
           },
           mode: ['pc'],
@@ -75,18 +75,18 @@ export default {
         },
         {
           name: 'prerender',
-          type: 'Number',
+          type: 'number',
           defaultValue: '0',
           desc: {
-            'zh-CN': 'SSR渲染区域的项目条数',
+            'zh-CN': 'SSR 渲染区域的项目条数',
             'en-US': 'Number of item strips in the SSR rendering area.'
           },
           mode: ['pc'],
           pcDemo: 'basic-usage'
         },
         {
-          name: 'visibleSize',
-          type: 'Number',
+          name: 'visible-size',
+          type: 'number',
           defaultValue: '400',
           desc: {
             'zh-CN': '显示区域的高度/宽度',
@@ -100,7 +100,7 @@ export default {
       methods: [
         {
           name: 'scrollToItem',
-          type: '(index:number)=> Promise',
+          type: '(index : number)=> Promise',
           defaultValue: '',
           desc: {
             'zh-CN': '滚动到对应索引的项目',

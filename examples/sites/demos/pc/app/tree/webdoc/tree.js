@@ -496,11 +496,38 @@ export default {
     {
       demoId: 'virtual-tree',
       name: {
-        'zh-CN': '虚拟树',
-        'en-US': 'virtual tree'
+        'zh-CN': '虚拟树-嵌套节点',
+        'en-US': 'virtual tree-nested node'
       },
       desc: {},
       codeFiles: ['virtual-basic.vue']
+    },
+    {
+      demoId: 'virtual-filter',
+      name: {
+        'zh-CN': '虚拟树-过滤节点',
+        'en-US': 'virtual tree-filter node'
+      },
+      desc: {},
+      codeFiles: ['virtual-filter.vue']
+    },
+    {
+      demoId: 'virtual-node-op',
+      name: {
+        'zh-CN': '虚拟树-增删改节点',
+        'en-US': 'virtual tree-Add, delete and change nodes'
+      },
+      desc: {},
+      codeFiles: ['virtual-node-op.vue']
+    },
+    {
+      demoId: 'virtual-drag-node',
+      name: {
+        'zh-CN': '虚拟树-拖拽节点',
+        'en-US': 'virtual tree-drag node'
+      },
+      desc: {},
+      codeFiles: ['virtual-drag-node.vue']
     }
   ]
 }

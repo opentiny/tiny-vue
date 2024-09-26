@@ -229,7 +229,8 @@ export const dragEnd =
   (event) => {
     const dragState = state.dragState
     const { draggingNode, dropType, dropNode } = dragState
-
+    console.log('draggiing',draggingNode.node.data,dropType,dropNode.node.parent);
+    
     event.preventDefault()
 
     if (!event.dataTransfer) {
@@ -441,8 +442,11 @@ export const filter =
     if (!props.filterNodeMethod) {
       throw new Error('[Tree] filterNodeMethod is required when filter')
     }
-
+    console.log('值', api);
+    
     state.store.filter(value)
+    api.updateFlattenedTreeData()
+    
     // tiny 新增： 移除了watch,所以要手动调用一下该方法
     if (props.willChangeView) {
       api.initPlainNodeStore()
@@ -1056,9 +1060,10 @@ export const computedFlattenedTreeData = () => (props, state) => {
   const newData: TreeNode[] = []
   while (stack.length) {
     const node = stack.pop()!
+    if (!node.visible) continue
     newData.push(node)
     if (!node.expanded) continue
-    stack.push(...(node.childNodes || []).reverse().filter((v) => v.expanded))
+    stack.push(...(node.childNodes.slice() || []).reverse().filter((v) => v.expanded || v.visible))
   }
   return newData
 }
