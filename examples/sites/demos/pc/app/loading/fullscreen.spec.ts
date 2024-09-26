@@ -8,6 +8,6 @@ test('全局加载', async ({ page }) => {
   await expect(vLoading).toBeVisible()
 
   await page.getByRole('button', { name: '静态方法加载全屏 Loading' }).click()
-  const sLoading = page.getByText('Loading', { exact: true })
+  const sLoading = page.getByText('正在提交...', { exact: true })
   await expect(sLoading).toBeVisible()
 })
