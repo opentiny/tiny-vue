@@ -239,15 +239,15 @@
   --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled); // level4 结束----------------------------------------
 
   //------------------------------------------------------ 场景4、图标  vertical-align: text-top
-  // 有边框：  border-color icon-color hover-border-color 有变化
-  // 无边框：   icon-color bg-clolor hover-bg-color 有变化
+  // 有边框：[is-icon-only]              border-color  hover-border-color 有变化  【只有default变化 border-color, hover-border-color是相反的， 其它和theme 状态一样】
+  //
+  // 无边框：[is-icon-only && --text]    border: none,   【混入plain 的颜色】
+  // 混排：  [is-icon]                   margin-left-icon
+  // <img>+ 文字
 
   //------------------------------------------------------ 场景5、 text
 
-  //------------------------------------------------------ 场景6、 loading 也属于禁用， 元素上会有disabled属性出现。
-
-  //------------------------------------------------------ 场景7、 其它场景： 比如相邻按钮有默认的margin
-
-  --tv-Button-margin-left-btn-to-btn-md: var(--tv-space-md);
+  //------------------------------------------------------ 场景6、 其它场景
+  --tv-Button-margin-left-btn-to-btn-md: var(--tv-space-md); // 相邻按钮有默认的margin-left
   --tv-Button-margin-left-btn-to-btn-lg: var(--tv-space-xl);
 }
