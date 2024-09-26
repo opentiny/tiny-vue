@@ -114,6 +114,7 @@ export default defineComponent({
       default: false
     },
     nodeHeight: Number,
+    treeHeight: Number,
     shrinkIcon: Object,
     expandIconColor: String,
     shrinkIconColor: String,

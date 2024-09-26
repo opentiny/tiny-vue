@@ -7,9 +7,9 @@
       <TinyVirtualScroll
         ref="scroller"
         :data="showData"
-        :itemSize="50"
-        itemIndex="key"
-        :visibleSize="400"
+        :item-size="50"
+        item-index="key"
+        :visible-size="400"
         class="tiny-virtual-scroll"
         direction="vertical"
       >
@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script setup lang="jsx">
+<script setup>
 import { ref } from 'vue'
 import { Button as TinyButton, VirtualScroll as TinyVirtualScroll } from '@opentiny/vue'
 

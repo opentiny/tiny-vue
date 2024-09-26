@@ -170,7 +170,6 @@ export const handleContextMenu =
       }
     })
   }
-
 export const handleExpandIconClick =
   ({ api, state }) =>
   (event, node) => {
@@ -179,28 +178,26 @@ export const handleExpandIconClick =
       event.stopPropagation()
     }
   }
-
 export const handleExpandClick =
   ({ emit, vm, props, state }) =>
   (nodeClickFlag) => {
     if (nodeClickFlag) {
       state.tree.$parent.$emit('node-click', props.node.data, props.node, vm)
     }
-
     if (props.node.isLeaf) {
       return
     }
-
     if (state.expanded) {
       state.tree.$parent.$emit('node-collapse', props.node.data, props.node, vm)
       props.node.collapse()
+
+      emit('node-collapse', props.node.data, props.node, vm)
     } else {
       props.node.expand()
       emit('node-expand', props.node.data, props.node, vm)
     }
   }
 
-// 点击节点 或 点击checkbox的，都会进入该函数
 export const handleCheckChange =
   ({ nextTick, props, state }) =>
   (value, event = {}) => {
@@ -367,7 +364,7 @@ export const computedExpandIcon =
 
     return 'icon-chevron-right'
   }
-// tiny 新增
+// tiny 新增(需要)
 export const computedIndent =
   () =>
   ({ node, showLine }, { tree }) => {

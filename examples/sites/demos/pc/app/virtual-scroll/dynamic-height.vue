@@ -1,11 +1,10 @@
 <template>
   <div class="virtual-scroll-demo">
-    <!-- Vue2的选项式API -->
     <TinyVirtualScroll
       :data="showData"
-      :estimatedItemSize="50"
-      itemIndex="id"
-      :visibleSize="300"
+      :estimated-item-size="50"
+      item-index="id"
+      :visible-size="300"
       class="tiny-virtual-scroll"
       direction="vertical"
       :buffer="0.5"
@@ -35,7 +34,7 @@ export default {
     // 生成动态高度的数据
     this.showData = Array.from({ length: 10000 }, (_, i) => ({
       id: i + 1,
-      value: `${i + 1}字符内容`.repeat(Math.ceil(Math.random() * 30)) // 动态文本内容
+      value: `${i + 1}字符内容`.repeat(Math.ceil(Math.random() * 30))
     }))
   }
 }
@@ -45,14 +44,13 @@ export default {
 .virtual-scroll-demo {
   height: 100%;
   overflow: hidden;
-  /* width: 600px; */
 }
 
-/* .tiny-virtual-scroll {
-  height: 400px;
-} */
+.virtual-scroll-demo .tiny-virtual-scroll {
+  width: 100%;
+}
 
-.tiny-virtual-scroll-item {
+.virtual-scroll-demo .tiny-virtual-scroll-item {
   padding: 10px;
   border-bottom: 2px solid #ddd;
 }
