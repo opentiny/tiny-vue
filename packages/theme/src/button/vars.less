@@ -10,14 +10,14 @@
 *
 */
 .inject-Button-vars() {
-  //------------------------------------------------------- 似乎是全局都不会变的量
+  //-------------------------------------------------------全局场景：------------------------------------------
 
   // 默认时按钮字重
   --tv-Button-font-weight: var(--tv-font-weight-regular);
   // 默认时按钮边框宽度
   --tv-Button-border-width: var(--tv-border-width);
 
-  // --------------------------------------------------- 场景1、圆角
+  // --------------------------------------------------- 场景1、圆角--------------------------------------------
   // 默认时按钮圆角
   --tv-Button-border-radius: var(--tv-border-radius-round); // 默认规范不需要 6px的圆角的效果，默认就是半圆
   // 大圆角时按钮圆角
@@ -25,7 +25,7 @@
   // 圆形时按钮圆角
   --tv-Button-border-radius-circle: var(--tv-border-radius-round); // 50%  会造成椭圆，此次common变量用 999px代替
 
-  //------------------------------------------------------ 场景2、尺寸  height, font-size,padding-x,min-width
+  //------------------------------------------------------ 场景2、尺寸  height, font-size,padding-x,min-width----
   // 默认时按钮字号
   --tv-Button-font-size: var(--tv-font-size-md);
   // 默认时按钮高度
@@ -65,9 +65,9 @@
   // 超小按钮水平间距
   --tv-Button-padding-x-mini: 16px;
   // 超小按钮最小宽度
-  --tv-Button-min-width-mini: 60px; // 旧版是24px， 都不够padding*2 的多
+  --tv-Button-min-width-mini: 60px;
 
-  //------------------------------------------------------ 场景3、颜色  text-color bg-color border-color icon-color
+  //------------------------------------------------------ 场景3、颜色  text-color bg-color border-color icon-color----
   //------ 状态： 默认+primary+4主题  ghost  plain (hover active)  disabled
   // 1、ghost中只影响 bg       2、active 只影响（主题+plain)   3、 disabled 优先级高过 （主题+plain+激活)
 
@@ -125,7 +125,7 @@
   // info 主题时按钮图标色
   --tv-Button-icon-color-info: var(--tv-color-icon-white);
 
-  // ------------------------------------------------------------- level 1结束 ---------------------------------------
+  // ------------------------------------------------------------- level 1结束 -----------------------------------
 
   // 默认时按钮朴素文本色
   --tv-Button-text-color-plain-default: var(--tv-color-text);
@@ -172,7 +172,7 @@
   // 幽灵时按钮背景色
   --tv-Button-bg-color-ghost: transparent; // 只影响 bg 和 text-color, 且bg全部为透明.
 
-  //------------------------------------------------------------------------------ // level 2结束 -----------------------
+  //------------------------------------------------------------------------------ // level 2结束 ----------------
 
   // 默认时按钮激活的背景色
   --tv-Button-bg-color-active-default: var(--tv-color-bg-hover-secondary); // 现规范，激活态时，只影响边框和背景
@@ -231,13 +231,13 @@
   // 禁用时按钮文本色
   --tv-Button-text-color-disabled: var(--tv-color-text-disabled); //  目前主题， disabled优先级高，所以变量少
   // 禁用时按钮背景色
-  --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled); // 如果某个design规范需要区分，那么disabled也需要膨胀
+  --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled);
   // 禁用时按钮边框色
   --tv-Button-border-color-disabled: var(--tv-color-border-disabled);
   // 禁用时按钮图标色
-  --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled); // level4 结束----------------------------------------
+  --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled); // level4 结束---------------------------
 
-  //------------------------------------------------------ 场景4、图标+ text
+  //------------------------------------------------------ 场景4、图标 + text----------------------------------------------
   // 仅图标：
   //      有边框 方：[is-only-icon]
   //      有边框 圆：[is-only-icon is-circle]
@@ -279,7 +279,7 @@
   //混排无边框时，字体大小
   --tv-Button-font-size-isicon-ontext: var(--tv-font-size-md);
 
-  //------------------------------------------------------ 场景5、 其它场景
+  //------------------------------------------------------ 场景5、 其它场景-----------------------------------------
   // 相邻按钮的默认的左外边距
   --tv-Button-margin-left-btn-to-btn-md: var(--tv-space-md);
   // 相邻大按钮的默认的左外边距
