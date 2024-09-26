@@ -49,9 +49,9 @@ export const buttonProps = {
   /** 定义按钮尺寸 */
   size: {
     type: String,
-    default: 'default', // 增加默认值会增加一个class, 不会影响aui和mf模板
+    default: '',
     validator(val: string) {
-      return ['large', 'medium', 'small', 'mini', 'default'].includes(val)
+      return ['large', 'medium', 'small', 'mini', ''].includes(val)
     }
   },
   /** 是否圆角按钮 */
