@@ -12,21 +12,21 @@
 
 .component-css-vars-switch() {
   // 开关开启状态背景色
-  --ti-switch-on-bg-color: var(--ti-common-color-data-1);
+  --ti-switch-on-bg-color: var(--ti-common-color-data-1, #1476ff);
   // 开关关闭状态背景色
   --ti-switch-off-bg-color: #C2C2C2;
   // 开关关闭禁用状态背景色
-  --ti-switch-disabled-bg-color: var(--ti-common-color-bg-dark-disabled);
+  --ti-switch-disabled-bg-color: var(--ti-common-color-bg-dark-disabled, #dbdbdb);
   // 开关开启禁用状态背景色
-  --ti-switch-checked-disabled-bg-color: var(--ti-common-color-bg-light-emphasize, #beccfa);
+  --ti-switch-checked-disabled-bg-color: var(--ti-common-color-bg-light-emphasize, #b3d6ff);
   // 开关开启禁用状态边框色
-  --ti-switch-checked-disabled-border-color: var(--ti-common-color-bg-light-emphasize, #beccfa);
+  --ti-switch-checked-disabled-border-color: var(--ti-common-color-bg-light-emphasize, #b3d6ff);
   // 开关禁用状态文本色
-  --ti-switch-disabled-text-color: var(--ti-common-color-info-disabled, #bfbfbf);
+  --ti-switch-disabled-text-color: var(--ti-common-color-info-disabled, #f0f0f0);
   // 开关禁用状态圆点色
   --ti-switch-disabled-dot-bg-color: #ffffff;
   // 开关默认圆点色
-  --ti-switch-dot-bg-color: var(--ti-common-color-light, #fff);
+  --ti-switch-dot-bg-color: var(--ti-common-color-light, #ffffff);
   // 开关圆点尺寸
   --ti-switch-dot-size: var(--ti-common-size-4x, 16px);
   // 开关圆点左边距(hide)
@@ -36,13 +36,13 @@
   // 开关圆点偏移量(hide)
   --ti-switch-dot-offset: calc(var(--ti-switch-dot-size) + 2px);
   // 开关文本色
-  --ti-switch-text-color: var(--ti-common-color-light, #fff);
+  --ti-switch-text-color: var(--ti-common-color-light, #ffffff);
   // 默认开关宽度
-  --ti-switch-width: var(--ti-common-size-10x);
+  --ti-switch-width: var(--ti-common-size-10x, 40px);
   // 开关高度
   --ti-switch-height: var(--ti-common-size-5x, 20px);
   // 开关圆角
-  --ti-switch-border-radius: calc(var(--ti-common-border-radius-3) * 2.5);
+  --ti-switch-border-radius: calc(var(--ti-common-border-radius-3, 6px) * 2.5);
   // 开关边框厚度
   --ti-switch-border-weight: 0px;
   // 开关字号
@@ -53,15 +53,15 @@
   --ti-switch-text-width: calc(var(--ti-common-size-11x, 44px) + 1px);
   // mini尺寸
   --ti-switch-mini-height: calc(var(--ti-common-size-height-normal)/2);
-  --ti-switch-mini-width: calc(var(--ti-common-size-width-minor) + 2px);
+  --ti-switch-mini-width: calc(var(--ti-common-size-width-minor, 30px) + 2px);
   // mini尺寸button
   --ti-switch-mini-button-height: calc(var(--ti-common-size-height-small)/2);
   --ti-switch-mini-button-width: calc(var(--ti-common-size-width-mini)/2);
-  --ti-switch-mini-button-left: calc(var(--ti-common-space-4x) + 2px);
+  --ti-switch-mini-button-left: calc(var(--ti-common-space-4x, 16px) + 2px);
   // 加载ICON样式
-  --ti-switch-on-loading-font-size: var(--ti-common-font-size-0);
-  --ti-switch-on-loading-fill: var(--ti-common-color-bg-light-emphasize);
-  --ti-switch-off-loading-font-size: var(--ti-common-font-size-0);
+  --ti-switch-on-loading-font-size: var(--ti-common-font-size-0, 12px);
+  --ti-switch-on-loading-fill: var(--ti-common-color-bg-light-emphasize, #b3d6ff);
+  --ti-switch-off-loading-font-size: var(--ti-common-font-size-0, 12px);
   --ti-switch-off-loading-fill: #DBDBDB;
   --ti-switch-loading-mini-font-size: 8px;
 }
