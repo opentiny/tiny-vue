@@ -7,5 +7,5 @@ export default {
     tooltipType: 'error'
   },
   hideRequiredAsterisk: false,
-  messageType: ''
+  messageType: 'absolute'
 }
