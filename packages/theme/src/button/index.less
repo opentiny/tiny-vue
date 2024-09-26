@@ -175,11 +175,168 @@
     background-color: var(--tv-Button-bg-color-disabled);
     border-color: var(--tv-Button-border-color-disabled);
     fill: var(--tv-Button-icon-color-disabled);
+    cursor: not-allowed;
   }
 
-  /** 4、图标场景 */
+  /** 4、图标 + 文字场景 */
 
-  /** 7、其他场景 */
+  // 仅图标有边框时，高宽都按尺寸的高度
+  .size-only-icon-mixin(@size) {
+    @wh: %('var(--tv-Button-height%a)', @size);
+
+    width: e(@wh);
+    height: e(@wh);
+    min-width: e(@wh);
+    min-height: e(@wh);
+  }
+
+  // 仅图标无边框时，icon的高宽都按尺寸的高度。 根据设计稿，这里有4像素的padding
+  .size-only-icon-ontext-iconsize-mixin(@size) {
+    @wh: %('calc( var(--tv-Button-height%a) - 8px)', @size);
+
+    font-size: e(@wh);
+  }
+
+  // 默认图标场景: icon-size 随着尺寸的font-size而变化。
+  .tiny-svg {
+    vertical-align: text-top; //居中
+  }
+
+  // 仅图标场景
+  &.is-only-icon.is-only-icon {
+    // 只有default主题的边框色和 hover 边框色 是和主题色相反的。其它都随主题的色。
+    // 仅图标的plain场景，无对应示例，不处理。
+    &.@{button-prefix-cls}--default {
+      border-color: var(--tv-Button-border-color-only-icon-default);
+
+      &:active,
+      &:focus,
+      &:hover,
+      &.is-active {
+        border-color: var(--tv-Button-border-color-only-icon-default-hover);
+      }
+    }
+
+    padding: 0; //不需要padding
+
+    .size-only-icon-mixin(e('')); // 不同尺寸时，大小不同
+
+    &.@{button-prefix-cls}--large {
+      .size-only-icon-mixin(-large);
+    }
+    &.@{button-prefix-cls}--medium {
+      .size-only-icon-mixin(-medium);
+    }
+    &.@{button-prefix-cls}--small {
+      .size-only-icon-mixin(-small);
+    }
+    &.@{button-prefix-cls}--mini {
+      .size-only-icon-mixin(-mini);
+    }
+
+    &:not(.is-circle) {
+      border-radius: var(--tv-Button-border-radius-only-icon);
+    }
+
+    // 无边框时： 图标大小为button的大小的高度
+    &.@{button-prefix-cls}--text {
+      border: none;
+      border-radius: var(--tv-Button-border-radius-only-icon-ontext); // 影响hover时的阴影
+
+      background-color: var(--tv-Button-bg-color-only-icon-ontext);
+
+      &:active,
+      &:focus,
+      &:hover,
+      &.is-active {
+        background-color: var(--tv-Button-bg-color-only-icon-ontext-hover);
+      }
+      // 不同的尺寸，icon大小 为高度。 原型稿不包含
+      .size-only-icon-ontext-iconsize-mixin(e(''));
+
+      &.@{button-prefix-cls}--large {
+        .size-only-icon-ontext-iconsize-mixin(-large);
+      }
+      &.@{button-prefix-cls}--medium {
+        .size-only-icon-ontext-iconsize-mixin(-medium);
+      }
+      &.@{button-prefix-cls}--small {
+        .size-only-icon-ontext-iconsize-mixin(-small);
+      }
+      &.@{button-prefix-cls}--mini {
+        .size-only-icon-ontext-iconsize-mixin(-mini);
+      }
+    }
+  }
+
+  // 纯文字： 没有主题色，只有文本蓝色和禁用2种情况。
+  &.@{button-prefix-cls}--text:not(.is-only-icon):not(.is-icon) {
+    border: none;
+    border-radius: 0;
+
+    // 没有尺寸，没有padding
+    padding: 0;
+    min-width: unset;
+    height: auto;
+    font-size: var(--tv-Button-font-size-ontext);
+    color: var(--tv-Button-text-color-ontext);
+    background-color: transparent;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.is-disabled.is-disabled.is-disabled.is-disabled,
+    &.is-loading.is-loading.is-loading.is-loading,
+    &[disabled][disabled][disabled][disabled][disabled][disabled] {
+      color: var(--tv-Button-text-color-ontext-disabled);
+      background-color: transparent;
+      text-decoration: none;
+    }
+  }
+
+  // 混排有边框： 图标大小随文字即可，只添加中间的margin
+  &.is-icon {
+    .tiny-svg {
+      margin-right: var(--tv-Button-margin-right-isicon-svg);
+    }
+  }
+
+  // 混排无边框： 设计稿的margin2.5不合适， 统一4px吧。
+  &.@{button-prefix-cls}--text.is-icon {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    min-width: unset;
+    height: auto;
+    font-size: var(--tv-Button-font-size-isicon-ontext);
+    color: var(--tv-Button-text-color-isicon-ontext);
+    background-color: transparent;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    .tiny-svg {
+      margin-right: var(--tv-Button-margin-right-isicon-svg);
+    }
+
+    &.is-disabled.is-disabled.is-disabled.is-disabled,
+    &.is-loading.is-loading.is-loading.is-loading,
+    &[disabled][disabled][disabled][disabled][disabled][disabled] {
+      color: var(--tv-Button-text-color-ontext-disabled);
+      background-color: transparent;
+      text-decoration: none;
+    }
+  }
+
+  // <img>+ 文字
+  & > img {
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  /** 5、其他场景 */
   & + & {
     margin-left: var(--tv-Button-margin-left-btn-to-btn-md);
   }

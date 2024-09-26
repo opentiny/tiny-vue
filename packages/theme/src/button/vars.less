@@ -9,7 +9,6 @@
 * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
 *
 */
-
 .inject-Button-vars() {
   //------------------------------------------------------- 似乎是全局都不会变的量
 
@@ -238,16 +237,36 @@
   // 禁用时按钮图标色
   --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled); // level4 结束----------------------------------------
 
-  //------------------------------------------------------ 场景4、图标  vertical-align: text-top
-  // 有边框：[is-icon-only]              border-color  hover-border-color 有变化  【只有default变化 border-color, hover-border-color是相反的， 其它和theme 状态一样】
-  //
-  // 无边框：[is-icon-only && --text]    border: none,   【混入plain 的颜色】
-  // 混排：  [is-icon]                   margin-left-icon
+  //------------------------------------------------------ 场景4、图标+ text
+  // 仅图标：
+  //      有边框 方：[is-only-icon]
+  //      有边框 圆：[is-only-icon is-circle]
+  //      无边框：   [is-only-icon && --text]
+  // 纯文字：        [--text]
+  // 混排：
+  //      有边框混排：[is-icon]
+  //      无边框混排：[is-icon &&  --text]
   // <img>+ 文字
 
-  //------------------------------------------------------ 场景5、 text
+  --tv-Button-border-color-only-icon-default: var(--tv-color-border);
+  --tv-Button-border-color-only-icon-default-hover: var(--tv-color-border-secondary);
+  --tv-Button-border-radius-only-icon: var(--tv-border-radius-md); // 有边框 方的圆角 6px
 
-  //------------------------------------------------------ 场景6、 其它场景
+  --tv-Button-border-radius-only-icon-ontext: var(--tv-border-radius-sm); // 无边框阴影圆角 4px
+  --tv-Button-bg-color-only-icon-ontext: transparent; // 仅图标-无边框的背景色
+  --tv-Button-bg-color-only-icon-ontext-hover: var(--tv-color-bg);
+
+  --tv-Button-text-color-ontext: var(--tv-color-text-link); // 纯文字时为蓝色图标
+  --tv-Button-text-color-ontext-disabled: var(--tv-color-text-disabled);
+  --tv-Button-font-size-ontext: var(--tv-font-size-md); // 纯文字 14px
+
+  --tv-Button-margin-right-isicon-svg: var(--tv-space-sm); // 混排有边框和无边框时，图标右边距
+
+  --tv-Button-text-color-isicon-ontext: var(--tv-color-text); // 混排无边框时,  黑色文字
+  --tv-Button-text-color-isicon-ontext-disabled: var(--tv-color-text-disabled);
+  --tv-Button-font-size-isicon-ontext: var(--tv-font-size-md); //混排无边框时
+
+  //------------------------------------------------------ 场景5、 其它场景
   --tv-Button-margin-left-btn-to-btn-md: var(--tv-space-md); // 相邻按钮有默认的margin-left
   --tv-Button-margin-left-btn-to-btn-lg: var(--tv-space-xl);
 }
