@@ -145,7 +145,7 @@
   // success 主题时按钮朴素文本色
   --tv-Button-text-color-plain-success: var(--tv-color-act-success-text);
   // success 主题时按钮朴素背景色
-  --tv-Button-bg-color-plain-success: var(--tv-color-act-success-bg-ligh);
+  --tv-Button-bg-color-plain-success: var(--tv-color-act-success-bg-light);
   // success 主题时按钮朴素边框色
   --tv-Button-border-color-plain-success: var(--tv-color-act-success-border-active-1);
 
@@ -159,7 +159,7 @@
   // danger 主题时按钮朴素文本色
   --tv-Button-text-color-plain-danger: var(--tv-color-act-danger-text);
   // danger 主题时按钮朴素背景色
-  --tv-Button-bg-color-plain-danger: var(---tv-color-act-danger-bg-ligh);
+  --tv-Button-bg-color-plain-danger: var(--tv-color-act-danger-bg-light);
   // danger 主题时按钮朴素边框色
   --tv-Button-border-color-plain-danger: var(--tv-color-act-danger-border-active-1);
 
@@ -238,7 +238,9 @@
   // 禁用时按钮图标色
   --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled); // level4 结束----------------------------------------
 
-  //------------------------------------------------------ 场景4、图标
+  //------------------------------------------------------ 场景4、图标  vertical-align: text-top
+  // 有边框：  border-color icon-color hover-border-color 有变化
+  // 无边框：   icon-color bg-clolor hover-bg-color 有变化
 
   //------------------------------------------------------ 场景5、 text
 
@@ -246,15 +248,6 @@
 
   //------------------------------------------------------ 场景7、 其它场景： 比如相邻按钮有默认的margin
 
-  // 默认8 ,特殊为16
-  //  .tiny-button + .tiny-button{
-  //     8
-  //  }
-
-  //  .large+large{
-  //   16
-  //  }
-  // .x-large  + .x-large{
-  //     16
-  //   }
+  --tv-Button-margin-left-btn-to-btn-md: var(--tv-space-md);
+  --tv-Button-margin-left-btn-to-btn-lg: var(--tv-space-xl);
 }
