@@ -12,7 +12,7 @@
   "dependencies": {
     "nuxt": "^3.13.0",
     "qrcode": "1.5.1",
-    "vue": "latest"
+    "vue": "~3.4.0"
   },
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:*",
@@ -32,7 +32,6 @@
     "typescript": "^5.0.0",
     "vite-plugin-checker": "^0.5.2",
     "vite-plugin-dynamic-import": "^1.2.4",
-    "vite-svg-loader": "^3.6.0",
-    "vue": "^3.3.9"
+    "vite-svg-loader": "^3.6.0"
   }
 }
