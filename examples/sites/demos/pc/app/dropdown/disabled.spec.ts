@@ -11,8 +11,8 @@ test('禁用下拉菜单', async ({ page }) => {
 
   await expect(dropDownTrigger).toHaveClass(/is-disabled/)
   await expect(dropDownTrigger).toHaveCSS('cursor', 'not-allowed')
-  await expect(dropDownTrigger).toHaveCSS('color', 'rgb(173, 176, 184)')
-  await expect(disabledDropDown.locator('svg')).toHaveCSS('fill', 'rgb(173, 176, 184)')
+  await expect(dropDownTrigger).toHaveCSS('color', 'rgb(194, 194, 194)')
+  await expect(disabledDropDown.locator('svg')).toHaveCSS('fill', 'rgb(194, 194, 194)')
   await page.waitForTimeout(1200)
   await disabledDropDown.hover()
   await expect(dropDownMenu).not.toBeVisible()
@@ -35,10 +35,10 @@ test('按钮类型禁用', async ({ page }) => {
   await expect(textButton).toHaveCSS('cursor', 'not-allowed')
   await expect(triggerButton).toHaveCSS('cursor', 'not-allowed')
   // 禁用文本色
-  await expect(textButton).toHaveCSS('color', 'rgb(173, 176, 184)')
-  await expect(triggerButton).toHaveCSS('color', 'rgb(173, 176, 184)')
+  await expect(textButton).toHaveCSS('color', 'rgb(194, 194, 194)')
+  await expect(triggerButton).toHaveCSS('color', 'rgb(194, 194, 194)')
   // 图标禁用色
-  await expect(triggerButton.locator('svg')).toHaveCSS('fill', 'rgb(173, 176, 184)')
+  await expect(triggerButton.locator('svg')).toHaveCSS('fill', 'rgb(194, 194, 194)')
   await page.waitForTimeout(1200)
   await triggerButton.hover()
   await expect(dropDownMenu).not.toBeVisible()
@@ -57,5 +57,5 @@ test('菜单项禁用', async ({ page }) => {
   await dropDown.hover()
   await expect(dropDownMenu).toBeVisible()
   await expect(dropDownMenuItem.filter({ hasText: '不能选择' })).toHaveClass(/is-disabled/)
-  await expect(dropDownMenuItem.filter({ hasText: '不能选择' })).toHaveCSS('color', 'rgb(173, 176, 184)')
+  await expect(dropDownMenuItem.filter({ hasText: '不能选择' })).toHaveCSS('color', 'rgb(194, 194, 194)')
 })

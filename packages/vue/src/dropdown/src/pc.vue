@@ -167,6 +167,7 @@ export default defineComponent({
           ref="trigger"
           round={round}
           disabled={disabled}
+          type={type}
           class={`tiny-dropdown__border ${state.visible ? 'is-expand' : ''}${showIcon ? ' is-show-icon ' : ''}`}
           reset-time={0}>
           {defaultTriggerElm}

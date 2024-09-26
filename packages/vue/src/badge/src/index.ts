@@ -47,7 +47,7 @@ export const badgeProps = {
   badgeClass: String,
   offset: {
     type: Array,
-    default: () => ['0', '-50%']
+    default: () => [0, 0]
   },
   data: [String, Number]
 }

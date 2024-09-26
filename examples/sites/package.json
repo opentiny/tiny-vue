@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-docs",
-  "version": "3.18.5",
+  "version": "3.18.4",
   "license": "MIT",
   "scripts": {
     "start": "vite",
@@ -46,7 +46,8 @@
     "tailwindcss": "^3.2.4",
     "vue": "^3.4.31",
     "vue-i18n": "^9.1.10",
-    "vue-router": "4.1.5"
+    "vue-router": "4.1.5",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@opentiny-internal/unplugin-virtual-template": "workspace:~",
@@ -54,9 +55,8 @@
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^17.0.45",
     "@unocss/preset-icons": "^0.38.2",
-    "@vitejs/plugin-vue": "^4.1.0",
-    "@vitejs/plugin-vue-jsx": "^3.0.1",
-    "@vue/compiler-sfc": "^3.2.37",
+    "@vitejs/plugin-vue": "^5.1.0",
+    "@vitejs/plugin-vue-jsx": "^4.0.0",
     "chalk": "4.1.2",
     "cross-spawn": "^7.0.3",
     "fast-glob": "^3.2.12",

@@ -11,155 +11,98 @@
 */
 
 .component-css-vars-pager() {
-  // 分页默认文本色(不含前往按钮|页码项)
-  --ti-pager-normal-text-color: var(--ti-common-color-info-normal, #252b3a);
-  // 分页页码选中项背景色
-  --ti-pager-primary-bg-color: var(--ti-common-color-primary-normal, #5e7ce0);
-  // 分页页码选中项文字色
-  --ti-pager-active-font-color: var(--ti-common-color-text-white, #fff);
-  // 分页页码选中项背景色
-  --ti-pager-active-bg-color: var(--ti-common-color-primary-normal, #5e7ce0);
-  // 自定义上下页按钮文本色
-  --ti-pager-primary-text-color: var(--ti-common-color-text-link, #526ecc);
-  // 分页跳转输入框激活颜色
-  --ti-pager-primary-border-color: var(--ti-common-color-line-active, #5e7ce0);
-  // 分页主色调悬浮色
-  --ti-pager-primary-hover-text-color: var(--ti-common-color-primary-hover, #7693f5);
-  // 分页页码选中字重
-  --ti-pager-active-font-weight: var(--ti-common-font-weight-normal);
-  // 分页禁用状态下字体颜色
-  --ti-pager-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
-  // 分页禁用状态下边框颜色
-  --ti-pager-disabled-border-color: transparent;
-
-  // 分页输入框和选项框边框色
-  --ti-pager-input-border-color: var(--ti-common-color-border, #adb0b8);
-  // 分页输入框和选择框悬浮边框色
-  --ti-pager-input-hover-border-color: var(--ti-common-color-line-hover, #575d6c);
-  // 分页输入框渐变结束点色值
-  --ti-pager-input-stop-color: var(--ti-common-color-line-normal, #adb0b8);
-  // 分页输入框 光源的色
-  --ti-pager-input-lighting-color: var(--ti-common-color-line-active, #5e7ce0);
-  // 分页输入框圆角
-  --ti-pager-input-border-radius: var(--ti-common-border-radius-normal, 2px);
-  // 分页选择框|输入框|前往按钮高度
-  --ti-pager-input-height: var(--ti-common-size-height-mini, 24px);
-  // mini分页选择框|输入框|前往按钮高度
-  --ti-pager-mini-input-height: var(--ti-common-size-height-mini, 24px);
-  // 分页输入框纵向内边距
-  --ti-pager-input-padding-vertical: 10px;
+  // 分页数字字体
+  --tv-Pager-number-font-family: arial, helvetica, sans-serif;
   // 分页字号
-  --ti-pager-font-size: var(--ti-common-font-size-base, 12px);
-  // mini分页字号
-  --ti-pager-mini-font-size: var(--ti-common-font-size-base, 12px);
-  // 分页文字左边内边距
-  --ti-pager-normal-text-padding-left: calc(var(--ti-common-space-base) * 3 + 2px, 14px);
-  // 分页前往按钮|页码项文本色
-  --ti-pager-text-color: var(--ti-common-color-text-secondary, #575d6c);
-  // 分页下拉框按钮图标色
-  --ti-pager-normal-icon-color: var(--ti-common-color-icon-normal, #575d6c);
-  // 分页页码项高度
-  --ti-pager-height: var(--ti-common-size-height-mini, 24px);
-  // 分页页码项宽度
-  --ti-pager-width: auto;
-  // 分页页码项最小宽度
-  --ti-pager-min-width: auto;
-  // 分页输入框宽度
-  --ti-pager-input-width: 40px;
-  // 分页输入框水平内边距
-  --ti-pager-input-padding-horizontal: 0;
-  // 分页页码项垂直内边距
-  --ti-pager-poplist-item-padding-vertical: var(--ti-common-space-0, 0);
-  // 分页页码项水平内边距
-  --ti-pager-poplist-item-padding-horizontal: var(--ti-common-space-6, 6px);
-  // 分页未选中页码项悬浮阴影
-  --ti-pager-poplist-item-unchecked-box-shadow: none;
-
-  // 分页项圆角
-  --ti-pager-li-border-radius: var(--ti-common-border-radius-normal, 2px);
-  // 分页项边框颜色
-  --ti-pager-li-border-color: var(--ti-common-color-transparent, transparent);
-  // 分页项悬浮颜色
-  --ti-pager-li-item-hover-text-color: var(--ti-common-color-text-highlight, #526ecc);
-  // 分页项悬浮字重
-  --ti-pager-li-item-hover-font-weight: var(--ti-common-font-weight-normal);
-
-  // 分页项默认悬浮背景色
-  --ti-pager-poplist-item-hover-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
-  // 分页下拉框项|列表项悬浮文本色
-  --ti-pager-poplist-item-hover-text-color: var(--ti-common-color-text-highlight, #526ecc);
-  // 分页下拉框选中项默认背景色
-  --ti-pager-poplist-item-selected-bg-color: var(--ti-common-color-selected-background, #5e7ce0);
-  // 分页下拉框项选中字体颜色
-  --ti-pager-poplist-item-selected-text-color: var(--ti-common-color-selected-text-color, #fff);
-  // 分页页码项默认悬浮边框色
-  --ti-pager-poplist-item-hover-border-color: var(--ti-common-color-transparent, transparent);
-  // 分页下拉框圆角
-  --ti-pager-pop-body-border-radius: var(--ti-common-border-radius-normal, 2px);
-  // 分页下拉框顶部外边距
-  --ti-pager-pop-body-margin-top: 4px;
-  // 分页下拉项最小高度
-  --ti-pager-poplist-item-min-height: 30px;
-
-  // 分页下一页文字禁用色
-  --ti-pager-prev-next-text-color-disabled: var(--ti-common-color-text-disabled, #adb0b8);
-  // 分页跳转输入框文字颜色
-  --ti-pager-goto-text-color: var(--ti-common-color-text-secondary, #575d6c);
-  // 分页跳转输入框边框悬浮颜色
-  --ti-pager-goto-btn-border-hover-color: var(--ti-common-color-border-hover, #575d6c);
-  // 分页跳转输入框文字颜色
-  --ti-pager-goto-btn-text-hover-color: var(--ti-common-color-text-highlight, #526ecc);
-  // 分页上一页左侧内边距
-  --ti-pager-prev-padding-left: 6px;
-  // 分页上一页右侧内边距
-  --ti-pager-prev-padding-right: 6px;
-  // 分页上一页左侧外边距
-  --ti-pager-prev-margin-left: 4px;
-  // 分页上一页右侧外边距
-  --ti-pager-prev-margin-right: 4px;
-  // 分页下一页右侧内边距
-  --ti-pager-next-padding-right: 4px;
-  // 分页下一页右侧外边距
-  --ti-pager-next-margin-right: 6px;
-  // 分页下一页左侧外边距
-  --ti-pager-next-margin-left: 6px;
-  // 分页上一页和下一页图标填充
-  --ti-pager-btn-svg-fill-color: var(--ti-common-color-info-normal, #252b3a);
-
-  // 分页总条数字体大小
-  --ti-pager-total-font-size: 12px;
-  // 分页总条数高度
-  --ti-pager-total-height: 24px;
-  // 分页总条数行高
-  --ti-pager-total-line-height: 24px;
-  // 分页总条数图标填充色
-  --ti-pager-total-svg-fill-color: var(--ti-common-color-info-normal, #252b3a);
-  // 分页图标大小
-  --ti-pager-svg-font-size: var(--ti-pager-font-size);
-
-  // 分页页码折叠时svg显示
-  --ti-pager-dot-is-popup-display: inline;
-  // 分页页码折叠时svg大小
-  --ti-pager-dot-is-popup-svg-font-size: 14px;
-
-  // 分页前进和后退按钮悬浮背景色
-  --ti-pager-prev-next-hover-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
-  // 分页页码项右侧外边距
-  --ti-pager-group-sizes-margin-right: 16px;
-  // 分页页码选项框宽度
-  --ti-pager-sizes-input-min-width: var(--ti-common-size-10x, 80px);
-  // 分页选择框悬浮文本色
-  --ti-pager-sizes-input-hover-text-color: var(--ti-common-color-info-normal, #252b3a);
-  // 分页选择框右侧下拉按钮水平内边距
-  --ti-pager-input-btn-padding-horizontal: 6px;
-
-  // 分页下拉弹出框纵向内边距
-  --ti-pager-selector-padding-vertical: var(--ti-common-space-3x, 12px);
-
-  // 小尺寸分页最小宽度
-  --ti-pager-mini-min-width: 18px;
-  // 分页大小数字右侧外边距
-  --ti-pager-sizes-num-margin-right: var(--ti-common-space-base, 4px);
+  --tv-Pager-font-size: var(--tv-font-size-md);
+  // 分页文本色
+  --tv-Pager-text-color: var(--tv-color-text);
+  // 分页禁用文本色
+  --tv-Pager-text-color-disabled: var(--tv-color-text-disabled);
+  // 分页二级文本颜色，页码项文本色
+  --tv-Pager-text-color-secondary: var(--tv-color-text-secondary);
   // 页码悬浮文本色
-  --ti-pager-list-item-hover-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --tv-Pager-list-item-hover-text-color: var(--tv-color-text);
+  // 分页图标大小
+  --tv-Pager-icon-size: 16px;
+  // 分页图标颜色
+  --tv-Pager-icon-color: var(--tv-color-icon);
+  // 分页图标悬浮颜色
+  --tv-Pager-icon-color-hover: var(--tv-color-icon-hover);
+  // 分页图标禁用颜色
+  --tv-Pager-icon-color-disabled: var(--tv-color-icon-disabled);
+  // 分页边框颜色
+  --tv-Pager-border-color: var(--tv-color-border);
+  // 分页边框悬浮颜色
+  --tv-Pager-border-color-hover: var(--tv-color-border-hover);
+  // 分页边框激活颜色
+  --tv-Pager-border-color-active: var(--tv-color-border-active);
+  // 分页边框禁用颜色
+  --tv-Pager-border-color-disabled: var(--tv-color-border-disabled);
+  // 分页悬浮背景颜色
+  --tv-Pager-bg-color-hover: var(--tv-color-bg-hover);
+  // 分页禁用背景颜色
+  --tv-Pager-bg-color-disabled: var(--tv-color-bg-disabled);
+  // 分页高度
+  --tv-Pager-height: var(--tv-size-height-md);
+  // 分页纵向内边距
+  --tv-Pager-padding-y: var(--tv-space-md);
+  // -------mini分页相关样式-------
+  // mini分页字号
+  --tv-Pager-font-size-xs: var(--tv-font-size-sm);
+  // mini分页选择框|输入框|前往按钮高度
+  --tv-Pager-input-height-xs: var(--tv-size-height-xs);
+  // 小尺寸分页页码项最小宽度
+  --tv-Pager-min-width-xs: 24px;
+  // -------分页页码相关样式-------
+  // 分页页码选中时背景色
+  --tv-Pager-page-item-bg-color-active: var(--tv-color-bg);
+  // 分页页码悬浮时背景色
+  --tv-Pager-page-item-bg-color-hover: var(--tv-color-bg);
+  // 分页页码边框颜色
+  --tv-Pager-page-item-border-color: transparent;
+  // 分页页码禁用状态下边框颜色
+  --tv-Pager-page-item-border-color-disabled: transparent;
+  // 分页页码项默认悬浮边框色
+  --tv-Pager-page-item-border-color-hover: transparent;
+  // 分页页码项项圆角
+  --tv-Pager-page-item-border-radius: var(--tv-border-radius-round);
+  // 分页页码悬浮字重
+  --tv-Pager-page-item-font-weight-hover: var(--tv-font-weight-medium);
+  // 分页页码项最小宽度
+  --tv-Pager-page-item-min-width: 32px;
+  // 分页页码项水平内边距
+  --tv-Pager-page-item-padding-x: var(--tv-space-md);
+  // -------上一页、下一页相关样式-------
+  // 分页前进和后退按钮悬浮背景色
+  --tv-Pager-prev-next-bg-color-hover: transparent;
+  // 自定义上下页按钮文本色
+  --tv-Pager-custom-prev-next-text-color: var(--tv-color-text-link);
+  // 分页上一页左侧外边距
+  --tv-Pager-prev-margin-left: var(--tv-space-xl);
+  // 分页上一页右侧外边距
+  --tv-Pager-prev-margin-right: var(--tv-space-md);
+  // 分页下一页右侧外边距
+  --tv-Pager-next-margin-right: 0;
+  // 分页下一页左侧外边距
+  --tv-Pager-next-margin-left: var(--tv-space-md);
+  // -------分页输入框相关样式-------
+  // 分页输入框圆角
+  --tv-Pager-input-border-radius: var(--tv-border-radius-md);
+  // 分页选择框|输入框|前往按钮高度
+  --tv-Pager-input-height: var(--tv-size-height-md);
+  // -------跳至相关样式------
+  // 跳至左侧文字左侧内边距
+  --tv-Pager-goto-left-padding-left: var(--tv-space-xl);
+  // -------分页大小下拉面板相关样式
+  // 分页大小下拉图标水平内边距
+  --tv-Pager-sizes-arrow-padding-x: var(--tv-space-md);
+  // 分页大小数字右侧外边距
+  --tv-Pager-sizes-num-margin-right: var(--tv-space-sm);
+  // 分页大小选项悬浮背景色
+  --tv-Pager-sizes-popup-bg-color-hover: var(--tv-color-bg-hover);
+  // 分页大小下拉框选项选中字体颜色
+  --tv-Pager-sizes-popup-text-color-active: var(--tv-color-text-active);
+  // 分页下拉项最小高度
+  --tv-Pager-sizes-popup-item-height: 32px;
 }

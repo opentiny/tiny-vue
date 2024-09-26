@@ -222,6 +222,21 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'itemFooter',
+          type: '',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '步骤条数据项底部插槽，用于条形步骤条',
+            'en-US': 'Step bar data item bottom slot, used for bar steps'
+          },
+          meta: {
+            stable: '3.19.0'
+          },
+          mode: ['pc'],
+          pcDemo: 'slot-item-footer',
+          mfDemo: ''
+        },
+        {
           name: 'prefix',
           type: '',
           defaultValue: '',

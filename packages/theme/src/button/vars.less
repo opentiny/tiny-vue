@@ -12,7 +12,7 @@
 
 .component-css-vars-button() {
   // 按钮圆角
-  --ti-button-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --ti-button-border-radius: 25px;
   // 按钮字号
   --ti-button-font-size: var(--ti-common-font-size-base, 12px);
   // 朴素类按钮禁用文本色(非默认)
@@ -22,70 +22,68 @@
   // 按钮边框样式
   --ti-button-border-style: var(--ti-common-border-style-solid, solid);
   // 按钮加载时背景色
-  --ti-button-loading-bg-color: rgba(255, 255, 255, 0.35);
+  --ti-button-loading-bg-color: rgba(255, 255, 255, 0.5);
   --ti-button-loading-font-size: var(--ti-common-font-size-1);
 
-  // 默认按钮最小宽度
-  --ti-button-size-normal-min-width: var(--ti-common-size-width-normal, 80px);
   // 默认按钮最大宽度
   --ti-button-size-normal-max-width: var(--ti-common-size-width-medium, 120px);
   // 默认按钮的高度
   --ti-button-size-normal-height: var(--ti-common-size-height-normal, 28px);
   // 默认按钮水平内边距
-  --ti-button-size-normal-padding-horizontal: var(--ti-common-size-5x, 20px);
+  --ti-button-size-normal-padding-horizontal: var(--ti-common-size-6x);
 
   // 超大按钮高度
   --ti-button-size-large-height: var(--ti-common-size-height-large, 48px);
   // 超大按钮字号
-  --ti-button-size-large-font-size: var(--ti-common-font-size-2, 16px);
+  --ti-button-size-large-font-size: var(--ti-common-font-size-base);
   // 超大按钮水平内边距
-  --ti-button-size-large-padding-horizontal: var(--ti-common-size-8x, 32px);
+  --ti-button-size-large-padding-horizontal: var(--ti-common-size-12x);
   // 超大按钮最小宽度
-  --ti-button-size-large-min-width: var(--ti-common-size-24x, 96px);
+  --ti-button-size-large-min-width: var(--ti-common-size-31x);
   // 超大按钮左侧外边距
-  --ti-button-size-large-margin-left: 8px;
+  --ti-button-size-large-margin-left: 16px;
 
   // 中等按钮高度
   --ti-button-size-medium-height: var(--ti-common-size-height-medium, 40px);
   // 中等按钮字号
   --ti-button-size-medium-font-size: var(--ti-common-font-size-1, 14px);
   // 中等按钮水平内边距
-  --ti-button-size-medium-padding-horizontal: var(--ti-common-size-7x, 28px);
+  --ti-button-size-medium-padding-horizontal: var(--ti-common-size-8x);
   // 中等按钮最小宽度
-  --ti-button-size-medium-min-width: var(--ti-common-size-22x, 88px);
+  --ti-button-size-medium-min-width: var(--ti-common-size-28x);
   // 中等按钮左侧外边距
-  --ti-button-size-medium-margin-left: 8px;
+  --ti-button-size-medium-margin-left: 16px;
 
   // 小型按钮高度
-  --ti-button-size-small-height: var(--ti-common-size-height-small, 32px);
+  --ti-button-size-small-height: 28px;
   // 小型按钮字号
-  --ti-button-size-small-font-size: var(--ti-common-font-size-1, 14px);
+  --ti-button-size-small-font-size: 12px;
   // 小尺寸按钮水平内边距
-  --ti-button-size-small-padding-horizontal: var(--ti-common-size-3x, 12px);
+  --ti-button-size-small-padding-horizontal: var(--ti-common-size-4x);
   // 小尺寸按钮最小宽度
-  --ti-button-size-small-min-width: var(--ti-common-size-18x, 72px);
+  --ti-button-size-small-min-width: var(--ti-common-size-18x);
   // 小尺寸按钮左侧外边距
   --ti-button-size-small-margin-left: 8px;
 
   // 迷你尺寸按钮高度
   --ti-button-size-mini-height: var(--ti-common-size-height-mini, 24px);
   // 迷你尺寸按钮字号
-  --ti-button-size-mini-font-size: var(--ti-common-font-size-base, 12px);
+  --ti-button-size-mini-font-size: 12px;
   // 迷你尺寸按钮水平内边距
   --ti-button-size-mini-padding-horizontal: var(--ti-common-size-2x, 8px);
   // 迷你尺寸按钮最小宽度
-  --ti-button-size-mini-min-width: var(--ti-common-size-16x, 64px);
+  --ti-button-size-mini-min-width: 24px;
 
   // 默认按钮文本色
-  --ti-button-normal-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-button-normal-text-color: #191919;
   // 默认按钮边框色
-  --ti-button-normal-border-color: var(--ti-common-color-border, #adb0b8);
+  --ti-button-normal-border-color: #595959;
   // 默认按钮背景色
   --ti-button-normal-background-color: var(--ti-common-color-light, #fff);
   // 默认按钮悬浮文本色
   --ti-button-normal-hover-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
   // 默认按钮悬浮边框色
-  --ti-button-normal-hover-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-normal-hover-border-color: #C2C2C2;
   // 默认按钮悬浮背景色
   --ti-button-normal-hover-bg-color: var(--ti-common-color-light, #fff);
   // 默认按钮点击瞬间文本色
@@ -97,366 +95,352 @@
   // 默认按钮禁用文本色
   --ti-button-normal-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
   // 默认按钮禁用边框色
-  --ti-button-normal-disabled-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
+  --ti-button-normal-disabled-border-color: transparent;
   // 禁用类默认按钮背景色
   --ti-button-normal-disabled-bg-color: var(--ti-common-color-bg-disabled, #f5f5f6);
   // 默认 朴素 边框色
-  --ti-button-plain-border-color: var(--ti-common-color-border, #adb0b8);
+  --ti-button-plain-border-color: #C2C2C2;
   // 默认 朴素 禁用边框色
-  --ti-button-plain-disabled-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
+  --ti-button-plain-disabled-border-color: #F0F0F0;
+  // 默认 朴素 悬浮边框色
+  --ti-button-plain-hover-border-color: #F5F5F5;
 
   // 文字按钮文本色
-  --ti-button-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-text-color: var(--ti-common-color-text-highlight);
   // 文字按钮悬浮文本修饰(hide)
-  --ti-button-text-hover-text-decoration: none;
+  --ti-button-text-hover-text-decoration: underline;
   // 文字按钮悬浮文本色
-  --ti-button-text-color-hover: var(--ti-common-color-text-link-hover, #344899);
+  --ti-button-text-color-hover: var(--ti-common-color-text-highlight);
   // 文字按钮悬浮文本字重
-  --ti-button-text-hover-weight: var(--ti-common-font-weight-4, normal);
+  --ti-button-text-hover-weight: var(--ti-common-font-weight-4);
   // 文字按钮点击瞬间文本色
   --ti-button-text-color-active: var(--ti-common-color-primary-active, #7693f5);
   // 文字按钮禁用文本色
   --ti-button-text-color-disabled: var(--ti-common-color-text-disabled, #adb0b8);
   // 文字按钮图标宽度
-  --ti-button-text-svg-width: 1em;
+  --ti-button-text-svg-width: 16px;
   // 文字按钮图标高度
-  --ti-button-text-svg-height: 1em;
+  --ti-button-text-svg-height: 16px;
   // 文字按钮悬浮背景色
   --ti-button-text-hover-bg-color: transparent;
   // 文字按钮只有图标悬浮背景色
-  --ti-button-text-only-icon-hover-bg-color: transparent;
+  --ti-button-text-only-icon-hover-bg-color: #0000000D;
   // 文字按钮悬浮圆角
-  --ti-button-text-hover-border-radius: 0px;
+  --ti-button-text-hover-border-radius: 4px;
   // 文字按钮图标填充色
-  --ti-button-text-svg-fill-color: var(--ti-common-color-text-secondary, #575d6c);
+  --ti-button-text-svg-fill-color: #191919;
   // 文字按钮图标悬浮填充色
-  --ti-button-text-svg-hover-fill-color: var(--ti-button-text-color-hover);
+  --ti-button-text-svg-hover-fill-color: #191919;
   // 文字按钮禁用时图标填充色
-  --ti-button-text-svg-disabled-fill-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-text-svg-disabled-fill-color: #C2C2C2;
   // 图标加文字按钮图标右侧外边距
-  --ti-button-text-has-svg-icon-margin-right: var(--ti-common-size-2x, 8px);
+  --ti-button-text-has-svg-icon-margin-right: 4px;
   // 图标加文字按钮字体颜色
-  --ti-button-text-has-svg-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-button-text-has-svg-text-color: #191919;
   // 图标加文字按钮悬浮时字体颜色
-  --ti-button-text-has-svg-hover-text-color: var(--ti-common-color-text-link, #526ecc);
+  --ti-button-text-has-svg-hover-text-color: #191919;
   // 文字按钮只有svg时水平内边距
-  --ti-button-text-svg-padding-horizontal: var(--ti-common-size-2x, 8px);
+  --ti-button-text-svg-padding-horizontal: 0px;
 
   // 主要按钮的主题类背景色+朴素类文本边框色
-  --ti-button-primary-normal-bg-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-primary-normal-bg-color: #191919;
   // 主要按钮的主题类边框色
-  --ti-button-primary-normal-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-primary-normal-border-color: #191919;
   // 主题类主要按钮悬浮背景色
-  --ti-button-primary-hover-bg-color: var(--ti-common-color-primary-hover, #7693f5);
+  --ti-button-primary-hover-bg-color: #595959;
   // 主题类主要按钮悬浮边框色
-  --ti-button-primary-hover-border-color: var(--ti-common-color-primary-hover, #7693f5);
+  --ti-button-primary-hover-border-color: #595959;
   // 主要按钮点击瞬间背景色
-  --ti-button-primary-active-bg-color: var(--ti-common-color-primary-active, #7693f5);
+  --ti-button-primary-active-bg-color: #191919;
   // 主要按钮的禁用主题类背景色+禁用朴素类边框色
   --ti-button-primary-disabled-bg-color: var(--ti-common-color-primary-disabled-bgcolor, #f5f5f6);
   // 主题类主要按钮文本色
-  --ti-button-primary-text-color: var(--ti-common-color-light, #fff);
+  --ti-button-primary-text-color: var(--ti-common-color-text-white);
   // 禁用主题类主要按钮文本色
-  --ti-button-primary-disabled-text-color: var(--ti-common-color-primary-disabled-text, #adb0b8);
+  --ti-button-primary-disabled-text-color: #C2C2C2;
   // 禁用主题类主要按钮边框色
-  --ti-button-primary-disabled-border-color: var(--ti-common-color-primary-disabled-border, #dfe1e6);
+  --ti-button-primary-disabled-border-color: #F0F0F0;
   // 朴素类主要按钮文本色
-  --ti-button-primary-plain-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-primary-plain-text-color: #191919;
   // 朴素类主要按钮悬浮文本色
-  --ti-button-primary-plain-hover-text-color: var(--ti-common-color-light, #fff);
+  --ti-button-primary-plain-hover-text-color: #191919;
   // 朴素类主要按钮背景色
-  --ti-button-primary-plain-bg-color: var(--ti-common-color-prompt-bg, #ebf6ff);
+  --ti-button-primary-plain-bg-color: var(--ti-common-color-bg-minor);
   // 朴素类主要按钮悬浮背景色
-  --ti-button-primary-plain-hover-bg-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-primary-plain-hover-bg-color: var(--ti-common-color-bg-minor);
   // 朴素类主要按钮边框色
-  --ti-button-primary-plain-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-primary-plain-border-color: #595959;
   // 朴素类主要按钮悬浮边框色
-  --ti-button-primary-plain-hover-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-primary-plain-hover-border-color: #FFFFFF;
   // 禁用朴素类主要按钮背景色
-  --ti-button-primary-plain-disabled-bg-color: var(
-    --ti-common-color-primary-plain-disabled-bg-color,
-    rgba(191, 191, 191, 0.1)
-  );
+  --ti-button-primary-plain-disabled-bg-color: #F0F0F0;
 
   // 成功按钮的主题类背景色+朴素类文本边框色
-  --ti-button-success-normal-bg-color: var(--ti-common-color-success-normal, #50d4ab);
+  --ti-button-success-normal-bg-color: #5CB300;
   // 成功按钮的主题类边框色
-  --ti-button-success-normal-border-color: var(--ti-common-color-success-normal, #50d4ab);
+  --ti-button-success-normal-border-color: #5CB300;
   // 成功按钮悬浮背景色
-  --ti-button-success-hover-bg-color: var(--ti-common-color-success-hover, #acf2dc);
+  --ti-button-success-hover-bg-color: #7DCC29;
   // 成功按钮悬浮边框色
-  --ti-button-success-hover-border-color: var(--ti-common-color-success-hover, #acf2dc);
+  --ti-button-success-hover-border-color: #7DCC29;
   // 成功按钮点击瞬间背景色
-  --ti-button-success-active-bg-color: var(--ti-common-color-success-active, #acf2dc);
+  --ti-button-success-active-bg-color: #5CB300;
   // 成功按钮的禁用主题类背景色+禁用朴素类边框色
-  --ti-button-success-disabled-bg-color: var(--ti-common-color-success-disabled-bgcolor, #f5f5f6);
+  --ti-button-success-disabled-bg-color: #F0F0F0;
   // 成功按钮文本色
-  --ti-button-success-text-color: var(--ti-common-color-light, #fff);
+  --ti-button-success-text-color: var(--ti-common-color-text-white);
   // 禁用主题类成功按钮文本色
-  --ti-button-success-disabled-text-color: var(--ti-common-color-success-disabled-text, #adb0b8);
+  --ti-button-success-disabled-text-color: #C2C2C2;
   // 禁用主题类成功按钮边框色
-  --ti-button-success-disabled-border-color: var(--ti-common-color-success-disabled-border, #dfe1e6);
+  --ti-button-success-disabled-border-color: #F0F0F0;
   // 朴素类成功按钮文本色
-  --ti-button-success-plain-text-color: var(--ti-common-color-success-normal, #50d4ab);
+  --ti-button-success-plain-text-color: #5CB300;
   // 朴素类成功按钮悬浮文本色
-  --ti-button-success-plain-hover-text-color: var(--ti-common-color-light, #fff);
+  --ti-button-success-plain-hover-text-color: #5CB300;
   // 朴素类成功按钮背景色
-  --ti-button-success-plain-bg-color: var(--ti-common-color-success-bg, #edfff9);
+  --ti-button-success-plain-bg-color: #EDF7DF;
   // 朴素类成功按钮悬浮背景色
-  --ti-button-success-plain-hover-bg-color: var(--ti-common-color-success-normal, #50d4ab);
+  --ti-button-success-plain-hover-bg-color: #EDF7DF;
   // 朴素类成功按钮边框色
-  --ti-button-success-plain-border-color: var(--ti-common-color-success-normal, #50d4ab);
+  --ti-button-success-plain-border-color: #DAF2BB;
   // 朴素类成功按钮悬浮边框色
-  --ti-button-success-plain-hover-border-color: var(--ti-common-color-success-normal, #50d4ab);
+  --ti-button-success-plain-hover-border-color: #EDF7DF;
   // 禁用朴素类成功按钮背景色
-  --ti-button-success-plain-disabled-bg-color: var(
-    --ti-common-color-success-plain-disabled-bg-color,
-    rgba(166, 195, 185, 0.1)
-  );
+  --ti-button-success-plain-disabled-bg-color: #F0F0F0;
 
   // 警告按钮背景色|朴素类警告按钮悬浮背景色
-  --ti-button-warning-normal-bg-color: var(--ti-common-color-warning-normal, #fa9841);
+  --ti-button-warning-normal-bg-color: #FF8800;
   // 警告按钮的主题类边框色
-  --ti-button-warning-normal-border-color: var(--ti-common-color-warning-normal, #fa9841);
+  --ti-button-warning-normal-border-color: #FF8800;
   // 警告按钮悬浮背景色
-  --ti-button-warning-hover-bg-color: var(--ti-common-color-warning-hover, #fac20a);
+  --ti-button-warning-hover-bg-color: #FF9A2E;
   // 警告按钮点击瞬间背景色
-  --ti-button-warning-active-bg-color: var(--ti-common-color-warning-active, #fac20a);
+  --ti-button-warning-active-bg-color: #FF8800;
   // 警告按钮的禁用主题类背景色+禁用朴素类边框色
-  --ti-button-warning-disabled-bg-color: var(--ti-common-color-warning-disabled-bgcolor, #f5f5f6);
+  --ti-button-warning-disabled-bg-color: #F0F0F0;
   // 警告按钮文本色
-  --ti-button-warning-text-color: var(--ti-common-color-light, #fff);
+  --ti-button-warning-text-color: var(--ti-common-color-text-white);
   // 禁用警告按钮文本色
-  --ti-button-warning-disabled-text-color: var(--ti-common-color-warning-disabled-text, #adb0b8);
+  --ti-button-warning-disabled-text-color: #C2C2C2;
   // 禁用主题类警告按钮边框色
-  --ti-button-warning-disabled-border-color: var(--ti-common-color-warning-disabled-border, #dfe1e6);
+  --ti-button-warning-disabled-border-color: #F0F0F0;
   // 朴素类主要按钮文本色
-  --ti-button-warning-plain-text-color: var(--ti-common-color-warning-normal, #fa9841);
+  --ti-button-warning-plain-text-color: #FF8800;
   // 朴素类主要按钮悬浮文本色
-  --ti-button-warning-plain-hover-text-color: var(--ti-common-color-light, #fff);
+  --ti-button-warning-plain-hover-text-color: #FF8800;
   // 朴素类警告按钮背景色
-  --ti-button-warning-plain-bg-color: var(--ti-common-color-warn-bg, #fff3e8);
+  --ti-button-warning-plain-bg-color: #FFF4E8;
   // 朴素类警告按钮悬浮背景色
-  --ti-button-warning-plain-hover-bg-color: var(--ti-common-color-warning-normal, #fa9841);
+  --ti-button-warning-plain-hover-bg-color: #FFF4E8;
   // 朴素类警告按钮边框色
-  --ti-button-warning-plain-border-color: var(--ti-common-color-warning-normal, #fa9841);
+  --ti-button-warning-plain-border-color: #FFEBD1;
   // 朴素类警告按钮悬浮边框色
-  --ti-button-warning-plain-hover-border-color: var(--ti-common-color-warning-normal, #fa9841);
+  --ti-button-warning-plain-hover-border-color: #FFF4E8;
   // 禁用朴素类警告按钮背景色
-  --ti-button-warning-plain-disabled-bg-color: var(
-    --ti-common-color-warning-plain-disabled-bg-color,
-    rgba(211, 198, 162, 0.1)
-  );
+  --ti-button-warning-plain-disabled-bg-color: #F0F0F0;
 
   // 危险按钮默认背景色|朴素类危险按钮边框色
-  --ti-button-danger-normal-bg-color: var(--ti-common-color-danger-normal, #c7000b);
+  --ti-button-danger-normal-bg-color: #F23030;
   // 危险按钮的主题类边框色
-  --ti-button-danger-normal-border-color: var(--ti-common-color-danger-normal, #c7000b);
+  --ti-button-danger-normal-border-color: #F23030;
   // 危险按钮悬浮背景色
-  --ti-button-danger-hover-bg-color: var(--ti-common-color-danger-hover, #d64a52);
+  --ti-button-danger-hover-bg-color: #F76360;
   // 危险按钮悬浮边框色
-  --ti-button-danger-hover-border-color: var(--ti-common-color-danger-hover, #d64a52);
+  --ti-button-danger-hover-border-color: #F76360;
   // 危险按钮点击瞬间背景色
-  --ti-button-danger-active-bg-color: var(--ti-common-color-danger-active, #b12220);
+  --ti-button-danger-active-bg-color: #F23030;
   // 危险按钮的禁用主题类背景色+禁用朴素类边框色
-  --ti-button-danger-disabled-bg-color: var(--ti-common-color-danger-disabled-bgcolor, #f5f5f6);
+  --ti-button-danger-disabled-bg-color: #F0F0F0;
   // 危险按钮文本色
-  --ti-button-danger-text-color: var(--ti-common-color-light, #fff);
+  --ti-button-danger-text-color: var(--ti-common-color-text-white);
   // 禁用主题类危险按钮文本色
-  --ti-button-danger-disabled-text-color: var(--ti-common-color-danger-disabled-text, #adb0b8);
+  --ti-button-danger-disabled-text-color: #C2C2C2;
   // 禁用主题类危险按钮边框色
-  --ti-button-danger-disabled-border-color: var(--ti-common-color-danger-disabled-border, #dfe1e6);
+  --ti-button-danger-disabled-border-color: #F0F0F0;
   // 朴素类危险按钮文本色
-  --ti-button-danger-plain-text-color: var(--ti-common-color-danger-normal, #c7000b);
+  --ti-button-danger-plain-text-color: #F23030;
   // 朴素类危险按钮悬浮文本色
-  --ti-button-danger-plain-hover-text-color: var(--ti-common-color-light, #fff);
+  --ti-button-danger-plain-hover-text-color: #F23030;
   // 朴素类危险按钮背景色
-  --ti-button-danger-plain-bg-color: var(--ti-common-color-error-bg, #ffeeed);
+  --ti-button-danger-plain-bg-color: transparent;
   // 朴素类危险按钮悬浮背景色
-  --ti-button-danger-plain-hover-bg-color: var(--ti-common-color-danger-normal, #c7000b);
+  --ti-button-danger-plain-hover-bg-color: #FFF1F0;
   // 朴素类危险按钮边框色
-  --ti-button-danger-plain-border-color: var(--ti-common-color-danger-normal, #c7000b);
+  --ti-button-danger-plain-border-color: #FCE2E0;
   // 朴素类危险按钮悬浮边框色
-  --ti-button-danger-plain-hover-border-color: var(--ti-common-color-danger-normal, #c7000b);
+  --ti-button-danger-plain-hover-border-color: #FFF1F0;
   // 禁用朴素类危险按钮背景色
-  --ti-button-danger-plain-disabled-bg-color: var(--ti-common-color-danger-disabled-bgcolor, #f5f5f6);
+  --ti-button-danger-plain-disabled-bg-color: #F0F0F0;
   // 禁用朴素类危险按钮边框色
-  --ti-button-danger-plain-disabled-border-color: var(--ti-common-color-danger-disabled-bgcolor, #f5f5f6);
+  --ti-button-danger-plain-disabled-border-color: transparent;
 
   // 信息按钮背景色|朴素类信息按钮边框色
-  --ti-button-info-normal-bg-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-button-info-normal-bg-color: #1476FF;
   // 信息按钮的主题类边框色
-  --ti-button-info-normal-border-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-button-info-normal-border-color: #1476FF;
   // 信息按钮悬浮背景色
-  --ti-button-info-hover-bg-color: var(--ti-common-color-info-hover, #5c6173);
+  --ti-button-info-hover-bg-color: #4191FA;
   // 信息按钮悬浮边框色
-  --ti-button-info-hover-border-color: var(--ti-common-color-info-hover, #5c6173);
+  --ti-button-info-hover-border-color: #4191FA;
   // 信息按钮点击瞬间背景色
-  --ti-button-info-active-bg-color: var(--ti-common-color-info-active, #5c6173);
+  --ti-button-info-active-bg-color: #1476FF;
   // 信息按钮的禁用主题类背景色+禁用朴素类边框色
-  --ti-button-info-disabled-bg-color: var(--ti-common-color-info-disabled-bgcolor, #f5f5f6);
+  --ti-button-info-disabled-bg-color: #F0F0F0;
   // 信息按钮文本色
-  --ti-button-info-text-color: var(--ti-common-color-light, #fff);
+  --ti-button-info-text-color: var(--ti-common-color-text-white);
   // 禁用信息按钮文本色
-  --ti-button-info-disabled-text-color: var(--ti-common-color-info-disabled-text, #adb0b8);
+  --ti-button-info-disabled-text-color: #C2C2C2;
   // 禁用信息按钮边框色
-  --ti-button-info-disabled-border-color: var(--ti-common-color-info-disabled-border, #dfe1e6);
+  --ti-button-info-disabled-border-color: #F0F0F0;
   // 朴素类信息按钮文本色
-  --ti-button-info-plain-text-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-button-info-plain-text-color: #1476FF;
   // 朴素类信息按钮悬浮文本色
-  --ti-button-info-plain-hover-text-color: var(--ti-common-color-light, #fff);
+  --ti-button-info-plain-hover-text-color: #1476FF;
   // 朴素类信息按钮背景色
-  --ti-button-info-plain-bg-color: var(--ti-common-color-info-bg, rgba(51, 51, 51, 0.06));
+  --ti-button-info-plain-bg-color: #F0F7FF;
   // 朴素类信息按钮悬浮背景色
-  --ti-button-info-plain-hover-bg-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-button-info-plain-hover-bg-color: #F0F7FF;
   // 朴素类信息按钮边框色
-  --ti-button-info-plain-border-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-button-info-plain-border-color: #DEECFF;
   // 朴素类信息按钮悬浮边框色
-  --ti-button-info-plain-hover-border-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-button-info-plain-hover-border-color: #F0F7FF;
   // 禁用朴素类信息按钮背景色
-  --ti-button-info-plain-disabled-bg-color: var(
-    --ti-common-color-info-plain-disabled-bg-color,
-    rgba(191, 191, 191, 0.1)
-  );
+  --ti-button-info-plain-disabled-bg-color: #F0F0F0;
 
   // 默认类型幽灵按钮文本色
-  --ti-button-ghost-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-button-ghost-text-color: #595959;
   // 默认类型幽灵按钮边框色
   --ti-button-ghost-border-color: var(--ti-common-color-border, #adb0b8);
   // 默认类型幽灵按钮悬浮文本色
-  --ti-button-ghost-hover-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-ghost-hover-text-color: #595959;
   // 默认类型幽灵按钮悬浮边框色
-  --ti-button-ghost-hover-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-ghost-hover-border-color: #DBDBDB;
   // 默认类型幽灵按钮禁用文本色
-  --ti-button-ghost-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-ghost-disabled-text-color: #c2c2c2;
   // 默认类型幽灵按钮禁用边框色
-  --ti-button-ghost-disabled-border-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-ghost-disabled-border-color: #DBDBDB;
   // 主要类型幽灵按钮文本色
-  --ti-button-primary-ghost-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-primary-ghost-text-color: #191919;
   // 主要类型幽灵按钮边框色
-  --ti-button-primary-ghost-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-primary-ghost-border-color: #595959;
   // 主要类型幽灵按钮悬浮文本色
-  --ti-button-primary-ghost-hover-text-color: var(--ti-common-color-primary-hover, #7693f5);
+  --ti-button-primary-ghost-hover-text-color: #191919;
   // 主要类型幽灵按钮悬浮边框色
-  --ti-button-primary-ghost-hover-border-color: var(--ti-common-color-primary-hover, #7693f5);
+  --ti-button-primary-ghost-hover-border-color: #C2C2C2;
   // 主要类型幽灵按钮禁用文本色
-  --ti-button-primary-ghost-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-primary-ghost-disabled-text-color: #C2C2C2;
   // 主要类型幽灵按钮禁用边框色
-  --ti-button-primary-ghost-disabled-border-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-primary-ghost-disabled-border-color: #F0F0F0;
   // 成功类型幽灵按钮文本色
-  --ti-button-success-ghost-text-color: var(--ti-common-color-success-normal, #50d4ab);
+  --ti-button-success-ghost-text-color: #5CB300;
   // 成功类型幽灵按钮边框色
-  --ti-button-success-ghost-border-color: var(--ti-common-color-success-normal, #50d4ab);
+  --ti-button-success-ghost-border-color: #5CB300;
   // 成功类型幽灵按钮悬浮文本色
-  --ti-button-success-ghost-hover-text-color: var(--ti-common-color-success-active, #acf2dc);
+  --ti-button-success-ghost-hover-text-color: #5CB300;
   // 成功类型幽灵按钮悬浮边框色
-  --ti-button-success-ghost-hover-border-color: var(--ti-common-color-success-active, #acf2dc);
+  --ti-button-success-ghost-hover-border-color: #DAF2BB;
   // 成功类型幽灵按钮禁用文本色
-  --ti-button-success-ghost-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-success-ghost-disabled-text-color: #C2C2C2;
   // 成功类型幽灵按钮禁用边框色
-  --ti-button-success-ghost-disabled-border-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-success-ghost-disabled-border-color: #F0F0F0;
   // 信息类型幽灵按钮文本色
-  --ti-button-info-ghost-text-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-button-info-ghost-text-color: #1476FF;
   // 信息类型幽灵按钮边框色
-  --ti-button-info-ghost-border-color: var(--ti-common-color-info-normal, #252b3a);
+  --ti-button-info-ghost-border-color: #1476FF;
   // 信息类型幽灵按钮悬浮文本色
-  --ti-button-info-ghost-hover-text-color: var(--ti-common-color-info-hover, #5c6173);
+  --ti-button-info-ghost-hover-text-color: #1476FF;
   // 信息类型幽灵按钮悬浮边框色
-  --ti-button-info-ghost-hover-border-color: var(--ti-common-color-info-hover, #5c6173);
+  --ti-button-info-ghost-hover-border-color: #DEECFF;
   // 信息类型幽灵按钮禁用文本色
-  --ti-button-info-ghost-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-info-ghost-disabled-text-color: #C2C2C2;
   // 信息类型幽灵按钮禁用边框色
-  --ti-button-info-ghost-disabled-border-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-info-ghost-disabled-border-color: #F0F0F0;
   // 告警类型幽灵按钮文本色
-  --ti-button-warning-ghost-text-color: var(--ti-common-color-warning-normal, #fa9841);
+  --ti-button-warning-ghost-text-color: #FF8800;
   // 告警类型幽灵按钮边框色
-  --ti-button-warning-ghost-border-color: var(--ti-common-color-warning-normal, #fa9841);
+  --ti-button-warning-ghost-border-color: #FF8800;
   // 告警类型幽灵按钮悬浮文本色
-  --ti-button-warning-ghost-hover-text-color: var(--ti-common-color-warning-active, #fac20a);
+  --ti-button-warning-ghost-hover-text-color: #FF8800;
   // 告警类型幽灵按钮悬浮边框色
-  --ti-button-warning-ghost-hover-border-color: var(--ti-common-color-warning-active, #fac20a);
+  --ti-button-warning-ghost-hover-border-color: #FFEBD1;
   // 告警类型幽灵按钮禁用文本色
-  --ti-button-warning-ghost-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-warning-ghost-disabled-text-color: #C2C2C2;
   // 告警类型幽灵按钮禁用边框色
-  --ti-button-warning-ghost-disabled-border-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-warning-ghost-disabled-border-color: #F0F0F0;
   // 危险类型幽灵按钮文本色
-  --ti-button-danger-ghost-text-color: var(--ti-common-color-danger-normal, #c7000b);
+  --ti-button-danger-ghost-text-color: #F23030;
   // 危险类型幽灵按钮边框色
-  --ti-button-danger-ghost-border-color: var(--ti-common-color-danger-normal, #c7000b);
+  --ti-button-danger-ghost-border-color: #F23030;
   // 危险类型幽灵按钮悬浮文本色
-  --ti-button-danger-ghost-hover-text-color: var(--ti-common-color-danger-hover, #d64a52);
+  --ti-button-danger-ghost-hover-text-color: #F23030;
   // 危险类型幽灵按钮悬浮边框色
-  --ti-button-danger-ghost-hover-border-color: var(--ti-common-color-danger-hover, #d64a52);
+  --ti-button-danger-ghost-hover-border-color: #FCE2E0;
   // 危险类型幽灵按钮禁用文本色
-  --ti-button-danger-ghost-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-danger-ghost-disabled-text-color: #C2C2C2;
   // 危险类型幽灵按钮禁用边框色
-  --ti-button-danger-ghost-disabled-border-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-button-danger-ghost-disabled-border-color: #F0F0F0;
 
   // 按钮垂直内边距
   --ti-button-padding-vertical: var(--ti-common-space-0, 0px);
   // 默认圆形按钮内边距
-  --ti-button-size-normal-padding: var(--ti-common-space-2x, 8px);
+  --ti-button-size-normal-padding: var(--ti-common-space-6);
 
   // 纯文本按钮超大尺寸最小宽度
-  --ti-button-text-size-large-min-width: var(--ti-common-size-24x, 96px);
+  --ti-button-text-size-large-min-width: 56px;
   // 纯文本按钮超大尺寸高度
-  --ti-button-text-size-large-height: var(--ti-common-size-height-large, 48px);
+  --ti-button-text-size-large-height: 56px;
   // 纯文本按钮超大尺寸图标宽度
-  --ti-button-text-size-large-svg-width: 1em;
+  --ti-button-text-size-large-svg-width: 48px;
   // 纯文本按钮超大尺寸图标高度
-  --ti-button-text-size-large-svg-height: 1em;
+  --ti-button-text-size-large-svg-height: 48px;
   // 纯文本按钮水平内边距
   --ti-button-text-padding-horizontal: var(--ti-common-space-0, 0px);
   // 纯文本按钮中等尺寸最小宽度
-  --ti-button-text-size-medium-min-width: var(--ti-common-size-22x, 88px);
+  --ti-button-text-size-medium-min-width: 40px;
   // 纯文本按钮中等尺寸高度
-  --ti-button-text-size-medium-height: var(--ti-common-size-height-medium, 40px);
+  --ti-button-text-size-medium-height: 40px;
   // 纯文本按钮中等尺寸图标宽度
-  --ti-button-text-size-medium-svg-width: 1em;
+  --ti-button-text-size-medium-svg-width: 32px;
   // 纯文本按钮中等尺寸图标高度
-  --ti-button-text-size-medium-svg-height: 1em;
+  --ti-button-text-size-medium-svg-height: 32px;
 
   // 纯文本按钮默认尺寸最小宽度
-  --ti-button-text-size-default-min-width: var(--ti-common-size-20x, 80px);
+  --ti-button-text-size-default-min-width: 24px;
   // 纯文本按钮默认尺寸高度
-  --ti-button-text-size-default-height: var(--ti-common-size-height-normal, 28px);
+  --ti-button-text-size-default-height: 24px;
   // 纯文本按钮默认尺寸图标宽度
-  --ti-button-text-size-default-svg-width: 1em;
+  --ti-button-text-size-default-svg-width: 16px;
   // 纯文本按钮默认尺寸图标高度
-  --ti-button-text-size-default-svg-height: 1em;
+  --ti-button-text-size-default-svg-height: 16px;
 
   // 纯文本按钮小尺寸最小宽度
-  --ti-button-text-size-small-min-width: var(--ti-common-size-18x, 72px);
+  --ti-button-text-size-small-min-width: 24px;
   // 纯文本按钮小尺寸高度
-  --ti-button-text-size-small-height: var(--ti-common-size-height-small, 32px);
+  --ti-button-text-size-small-height: 24px;
   // 纯文本按钮小尺寸图标宽度
-  --ti-button-text-size-small-svg-width: 1em;
+  --ti-button-text-size-small-svg-width: 16px;
   // 纯文本按钮小尺寸图标高度
-  --ti-button-text-size-small-svg-height: 1em;
+  --ti-button-text-size-small-svg-height: 16px;
 
   // 纯文本按钮迷你尺寸最小宽度
-  --ti-button-text-size-mini-min-width: var(--ti-common-size-16x, 64px);
+  --ti-button-text-size-mini-min-width: 24px;
   // 纯文本按钮迷你尺寸高度
-  --ti-button-text-size-mini-height: var(--ti-common-size-height-mini, 24px);
+  --ti-button-text-size-mini-height: 24px;
   // 纯文本按钮迷你尺寸图标宽度
-  --ti-button-text-size-mini-svg-width: 1em;
+  --ti-button-text-size-mini-svg-width: 16px;
   // 纯文本按钮迷你尺寸图标高度
-  --ti-button-text-size-mini-svg-height: 1em;
+  --ti-button-text-size-mini-svg-height: 16px;
 
   // 纯图标按钮最小宽度
-  --ti-button-icon-font-size: var(--ti-common-font-size-0, 12px);
+  --ti-button-icon-font-size: var(--ti-common-font-size-2);
   // 纯图标/文字按钮宽度
-  --ti-button-only-icon-width: var(ti-common-size-width-minor, 30px);
-  --ti-button-only-icon-min-width: unset;
-  --ti-button-only-icon-text-width: unset;
-  // 纯图标按钮水平内边距
-  --ti-button-only-icon-padding-horizontal: 7px;
+  --ti-button-only-icon-width: 32px;
+  --ti-button-only-icon-text-width: var(--ti-common-size-6x);
+  
   // 纯图标按钮边框圆角
-  --ti-button-only-icon-border-radius: 2px;
-  // 纯图标按钮边框颜色
-  --ti-button-only-icon-border-color: var(--ti-common-color-border, #adb0b8);
+  --ti-button-only-icon-border-radius: var(--ti-common-border-radius-3);
   // 纯图标按钮悬浮时边框颜色
-  --ti-button-only-icon-hover-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-button-only-icon-hover-border-color: #191919;
   // 纯图标按钮禁用时边框颜色
-  --ti-button-only-icon-disabled-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
+  --ti-button-only-icon-disabled-border-color: #dbdbdb;
 }

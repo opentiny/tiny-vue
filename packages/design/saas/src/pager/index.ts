@@ -1,8 +1,7 @@
 export default {
   state: {
-    showJumperSufix: false,
-    align: 'right',
+    showJumperSuffix: false,
     totalI18n: 'total',
-    totalFixedLeft: true
+    pageSizeText: null
   }
 }

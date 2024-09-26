@@ -28,7 +28,7 @@ export default {
 }
 
 .carousel-item-demo:nth-child(2n) {
-  background-color: #fafafa;
+  background-color: #f0f0f0;
 }
 
 .carousel-item-demo:nth-child(2n + 1) {

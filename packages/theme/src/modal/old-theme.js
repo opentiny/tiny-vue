@@ -1,0 +1,22 @@
+export const tinyModalOldTheme = {
+  'ti-modal-zoom-btn-right': 'var(--ti-common-space-10x, 40px)',
+  'ti-modal-close-btn-hover-icon-color': 'var(--ti-common-color-icon-hover, #5e7ce0)',
+  'ti-modal-close-btn-icon-color': 'var(--ti-common-color-text-secondary, #575d6c)',
+  'ti-modal-close-btn-font-size': 'var(--ti-common-font-size-1, 14px)',
+  'ti-modal-message-icon-box-height': 'var(--ti-common-size-4x, 16px)',
+  'ti-modal-message-body-padding-horizontal': 'var(--ti-common-space-8x, 32px)',
+  'ti-modal-message-padding-vertical': 'var(--ti-common-space-6x, 24px)',
+  'ti-modal-message-padding-right': 'var(--ti-common-space-6x, 24px)',
+  'ti-modal-message-padding-left': 'var(--ti-common-space-6x, 24px)',
+  'ti-modal-message-font-size': 'var(--ti-common-font-size-3, 18px)',
+  'ti-modal-notification-header-padding-bottom': 'var(--ti-common-space-3x, 12px)',
+  'ti-modal-footer-btn-min-width': 'var(--ti-common-size-16x, 64px)',
+  'ti-modal-footer-btn-border-radius': 'var(--ti-common-border-radius-normal, 2px)',
+  'ti-modal-footer-align': 'center',
+  'ti-modal-footer-padding-top': 'calc(var(--ti-common-space-base, 4px) * 7)',
+  'ti-modal-body-text-color': 'var(--ti-common-color-text-primary, #252b3a)',
+  'ti-modal-header-padding-bottom': 'calc(var(--ti-common-space-base, 4px) * 7)',
+  'ti-modal-header-font-size': 'var(--ti-common-font-size-3, 18px)',
+  'ti-modal-box-border-radius': 'var(--ti-common-border-radius-normal, 2px)',
+  'ti-modal-box-shadow': '0 10px 40px 0 rgba(0, 0, 0, 0.1)'
+}

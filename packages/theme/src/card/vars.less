@@ -12,76 +12,76 @@
 
 .component-css-vars-amount() {
   // 卡片背景色
-  --ti-card-bg-color: var(--ti-base-color-bg-1);
+  --ti-card-bg-color: var(--ti-common-color-bg-navigation, #ffffff);
   // 卡片阴影
-  --ti-card-box-shadow: var(--ti-common-shadow-3-down);
+  --ti-card-box-shadow: none;
 
   // 卡片最小宽度
-  --ti-card-min-width: var(--ti-common-size-auto);
+  --ti-card-min-width: var(--ti-common-size-auto, auto);
   // 大尺寸卡片的宽度
-  --ti-card-large-width: calc(var(--ti-common-size-base) * 144);
+  --ti-card-large-width: calc(var(--ti-common-size-base, 4px) * 144);
   // 中尺寸卡片的宽度
-  --ti-card-medium-width: calc(var(--ti-common-size-base) * 96);
+  --ti-card-medium-width: calc(var(--ti-common-size-base, 4px) * 96);
   // 小尺寸卡片的宽度
-  --ti-card-small-width: calc(var(--ti-common-size-base) * 72);
+  --ti-card-small-width: calc(var(--ti-common-size-base, 4px) * 72);
   // 迷你尺寸卡片的宽度
-  --ti-card-mini-width: calc(var(--ti-common-size-base) * 54);
+  --ti-card-mini-width: calc(var(--ti-common-size-base, 4px) * 54);
 
   // 大尺寸卡片的圆角
-  --ti-card-large-border-radius: var(--ti-common-border-radius-2);
+  --ti-card-large-border-radius: var(--ti-common-border-radius-4, 8px);
   // 中尺寸卡片的圆角
-  --ti-card-medium-border-radius: var(--ti-common-border-radius-2);
+  --ti-card-medium-border-radius: var(--ti-common-border-radius-2, 4px);
   // 小尺寸卡片的圆角
-  --ti-card-small-border-radius: var(--ti-common-border-radius-2);
+  --ti-card-small-border-radius: var(--ti-common-border-radius-2, 4px);
   // 迷你尺寸卡片的圆角
-  --ti-card-mini-border-radius: var(--ti-common-border-radius-1);
+  --ti-card-mini-border-radius: var(--ti-common-border-radius-1, 2px);
 
   // 成功状态的卡片的边框颜色
-  --ti-card-success-border-color: var(--ti-base-color-success-4);
+  --ti-card-success-border-color: var(--ti-base-color-success-4, #3ac295);
   // 警告状态的卡片的边框颜色
-  --ti-card-warning-border-color: var(--ti-base-color-warn-5);
+  --ti-card-warning-border-color: var(--ti-base-color-warn-5, #e37d29);
   // 报警状态的卡片的边框颜色
-  --ti-card-alerting-border-color: var(--ti-base-color-warn-3);
+  --ti-card-alerting-border-color: var(--ti-base-color-warn-3, #fac20a);
   // 危险状态的卡片的边框颜色
-  --ti-card-danger-border-color: var(--ti-base-color-error-4);
+  --ti-card-danger-border-color: var(--ti-base-color-error-4, #de504e);
   // 默认状态的卡片的边框颜色
-  --ti-card-default-border-color: var(--ti-base-color-common-1);
+  --ti-card-default-border-color: var(--ti-common-color-light, #ffffff);
 
   // 选中状态的卡片的边框颜色
-  --ti-card-checked-border-color: var(--ti-common-color-line-active);
+  --ti-card-checked-border-color: var(--ti-common-color-text-highlight, #1476ff);
   // 禁用状态的卡片的背景颜色
-  --ti-card-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --ti-card-disabled-bg-color: var(--ti-common-color-bg-disabled, #f0f0f0);
 
   // 大尺寸卡片的logo状态下，body区域的padding值
-  --ti-card-large-body-padding: var(--ti-common-space-4x);
+  --ti-card-large-body-padding: var(--ti-common-space-6x, 24px);
   // 中尺寸卡片的logo状态下，body区域的padding值
-  --ti-card-medium-body-padding: var(--ti-common-space-3x);
+  --ti-card-medium-body-padding: var(--ti-common-space-6x, 24px);
   // 小尺寸卡片的logo状态下，body区域的padding值
-  --ti-card-small-body-padding: var(--ti-common-space-3x);
+  --ti-card-small-body-padding: var(--ti-common-space-4x, 16px);
   // 迷你尺寸卡片的logo状态下，body区域的padding值
-  --ti-card-mini-body-padding: var(--ti-common-space-2x);
+  --ti-card-mini-body-padding: var(--ti-common-space-3x, 12px);
 
   // 卡片的标题的字体大小
-  --ti-card-title-font-size: var(--ti-common-font-size-1);
+  --ti-card-title-font-size: var(--ti-common-font-size-2, 16px);
   // 卡片的标题的字体颜色
-  --ti-card-title-text-color: var(--ti-base-color-common-9);
+  --ti-card-title-text-color: var(--ti-common-color-selected-text-color, #191919);
   // 卡片的标题的字重
-  --ti-card-title-font-weight: var(--ti-common-font-weight-4);
+  --ti-card-title-font-weight: bold;
   // 卡片的正文的字体大小
-  --ti-card-main-font-size: var(--ti-common-font-size-base);
+  --ti-card-main-font-size: var(--ti-common-font-size-1, 14px);
   // 卡片的正文的字体颜色
-  --ti-card-main-text-color: var(--ti-base-color-common-6);
+  --ti-card-main-text-color: var(--ti-common-color-text-weaken, #808080);
 
   // 卡片的选项的文本色
-  --ti-card-option-text-color: var(--ti-base-color-common-9);
+  --ti-card-option-text-color: var(--ti-common-color-selected-text-color, #191919);
   // 卡片的选项的文本大小
-  --ti-card-option-font-size: var(--ti-common-font-size-1);
+  --ti-card-option-font-size: var(--ti-common-font-size-2, 16px);
   // 卡片的选项的文本大小
-  --ti-card-option-top-border-color: var(--ti-base-color-common-1);
+  --ti-card-option-top-border-color: var(--ti-common-color-primary-disabled, #f0f0f0);
   // 卡片的选项禁用时的文本色
-  --ti-card-option-disabled-text-color: var(--ti-common-color-text-disabled);
+  --ti-card-option-disabled-text-color: var(--ti-common-color-text-disabled, #c2c2c2);
   // 卡片的'更多'的字体颜色
-  --ti-card-footer-more-text-color: var(--ti-base-color-common-9);
+  --ti-card-footer-more-text-color: var(--ti-base-color-common-9, #181818);
   // 卡片标题下边距
-  --ti-card-title-mg-bottom: var(--ti-common-space-3x);
+  --ti-card-title-mg-bottom: var(--ti-common-space-4x, 16px);
 }

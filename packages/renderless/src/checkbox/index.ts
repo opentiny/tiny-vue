@@ -193,12 +193,14 @@ export const computedIsGroupDisplayOnly =
   (): boolean =>
     state.isGroup && (state.checkboxGroup.displayOnly || state.formDisplayOnly)
 
+// 多端模板下，计算displayLabel的值。  pc模板没有用到
 export const computedDisplayLabel =
   ({ state, props, t }: Pick<ICheckboxRenderlessParams, 'state' | 'props' | 't'>) =>
   (): string => {
     state.showLabel = true
     if (props.trueLabel !== undefined && props.falseLabel !== undefined) {
-      return props.modelValue ? String(props.trueLabel) : String(props.falseLabel)
+      // 当需要显示 trueLabel 或 falseLabel 时， 根据示例推测， modelValue应该是其中一个值，而不能是一个boolean值
+      return props.modelValue
     } else {
       return props.modelValue ? t('yes') : t('no')
     }

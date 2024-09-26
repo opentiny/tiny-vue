@@ -11,7 +11,7 @@
     "//postversion": "pnpm build"
   },
   "dependencies": {
-    "@opentiny/fluent-editor": "~3.17.0",
+    "@opentiny/fluent-editor": "~3.19.0",
     "@opentiny/vue-common": "workspace:~",
     "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-image-viewer": "workspace:~",

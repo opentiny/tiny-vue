@@ -16,16 +16,15 @@
 @switch-prefix-cls: ~'@{css-prefix}switch';
 
 .@{switch-prefix-cls} {
-  .component-css-vars-switch();
+  .inject-Switch-vars();
 
   display: inline-block;
-  width: var(--ti-switch-width);
-  height: var(--ti-switch-height);
-  line-height: calc(var(--ti-switch-height) - var(--ti-switch-border-weight) * 2);
-  border-radius: var(--ti-switch-border-radius);
+  width: var(--tv-Switch-width);
+  height: var(--tv-Switch-height);
+  line-height: var(--tv-Switch-height);
+  border-radius: var(--tv-Switch-border-radius);
   vertical-align: middle;
-  border: var(--ti-switch-border-weight) solid var(--ti-switch-off-bg-color);
-  background-color: var(--ti-switch-off-bg-color);
+  background-color: var(--tv-Switch-off-bg-color);
   position: relative;
   cursor: pointer;
   outline: none;
@@ -34,50 +33,58 @@
     background-color 0.2s ease-in-out;
 
   &:focus-visible {
-    outline: 2px solid var(--ti-switch-on-bg-color);
+    outline: 2px solid var(--tv-Switch-on-bg-color);
     outline-offset: 1px;
   }
 
   & &-inner {
-    color: var(--ti-switch-text-color);
-    font-size: var(--ti-switch-inner-font-size);
+    color: var(--tv-Switch-text-color);
+    font-size: var(--tv-Switch-inner-font-size);
     position: absolute;
   }
 
   &__text {
-    width: var(--ti-switch-text-width);
+    width: var(--tv-Switch-text-width);
     .@{switch-prefix-cls}-inner {
-      left: calc(var(--ti-switch-dot-size));
-      width: calc(100% - var(--ti-switch-dot-size));
+      left: calc(var(--tv-Switch-dot-size));
+      width: calc(100% - var(--tv-Switch-dot-size));
       text-align: center;
       overflow: hidden;
     }
   }
 
+  &__on-loading {
+    font-size: var(--tv-Switch-on-loading-font-size);
+    fill: var(--tv-Switch-on-loading-fill);
+  }
+
+  &__off-loading {
+    font-size: var(--tv-Switch-off-loading-font-size);
+    fill: var(--tv-Switch-off-loading-fill);
+  }
+
+  &__loading-mini {
+    font-size: var(--tv-Switch-loading-mini-font-size);
+  }
+
   &.mini {
-    width: var(--ti-switch-mini-width);
-    height: var(--ti-switch-mini-height);
+    width: var(--tv-Switch-mini-width);
+    height: var(--tv-Switch-mini-height);
   }
 
   &&-checked.disabled,
   &.disabled {
     cursor: not-allowed;
-    background: var(--ti-switch-disabled-bg-color);
-    border-color: var(--ti-switch-disabled-bg-color);
+    background: var(--tv-Switch-disabled-bg-color);
+    border-color: var(--tv-Switch-disabled-bg-color);
 
-    &::after {
-      background: var(--ti-switch-disabled-dot-bg-color);
+    &:after {
       cursor: not-allowed;
-    }
-
-    .@{switch-prefix-cls}-inner {
-      color: var(--ti-switch-disabled-text-color);
     }
   }
 
   &&-checked.disabled {
-    background: var(--ti-switch-checked-disabled-bg-color);
-    border-color: var(--ti-switch-checked-disabled-border-color);
+    background: var(--tv-Switch-checked-disabled-bg-color);
   }
 
   &__button {
@@ -85,13 +92,13 @@
     justify-content: center;
     align-items: center;
     content: '';
-    width: var(--ti-switch-dot-size);
-    height: var(--ti-switch-dot-size);
+    width: var(--tv-Switch-dot-size);
+    height: var(--tv-Switch-dot-size);
     border-radius: 50%;
-    background-color: var(--ti-switch-dot-bg-color);
+    background-color: var(--tv-Switch-dot-bg-color);
     position: absolute;
-    left: var(--ti-switch-dot-position-left); // smb新增
-    top: var(--ti-switch-dot-position-top); // smb新增
+    left: var(--tv-Switch-dot-position-left);
+    top: var(--tv-Switch-dot-position-top);
     cursor: pointer;
     transition:
       left 0.2s ease-in-out,
@@ -99,26 +106,26 @@
   }
 
   &.mini &__button {
-      height: var(--ti-switch-mini-button-height);
-      width: var(--ti-switch-mini-button-width);
-    }
+    height: var(--tv-Switch-mini-button-height);
+    width: var(--tv-Switch-mini-button-width);
+  }
 
   &&-checked {
-    border-color: var(--ti-switch-on-bg-color);
-    background-color: var(--ti-switch-on-bg-color);
+    background-color: var(--tv-Switch-on-bg-color);
 
     .@{switch-prefix-cls}-inner {
       left: 2px;
-      width: calc(100% - var(--ti-switch-dot-size));
+      width: calc(100% - var(--tv-Switch-dot-size));
       text-align: center;
       overflow: hidden;
     }
   }
 
   &&-checked .@{switch-prefix-cls}__button {
-    left: calc(100% - var(--ti-switch-dot-offset));
+    left: calc(100% - var(--tv-Switch-dot-offset));
   }
+
   &&-checked&.mini &__button {
-    left: var(--ti-switch-mini-button-left);
+    left: var(--tv-Switch-mini-button-left);
   }
 }

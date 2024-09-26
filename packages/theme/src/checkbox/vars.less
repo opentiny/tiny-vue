@@ -10,73 +10,54 @@
 *
 */
 
-.component-css-vars-checkbox() {
+.inject-Checkbox-vars() {
   // 复选框宽度
-  --ti-checkbox-width: var(--ti-common-size-4x, 16px);
+  --tv-Checkbox-width: 16px;
   // 复选框高度
-  --ti-checkbox-height: var(--ti-common-size-4x, 16px);
+  --tv-Checkbox-height: 16px;
+  // 复选框内部svg宽度
+  --tv-Checkbox-svg-width: calc(var(--tv-Checkbox-width) - 2px);
+  // 复选框内部svg高度
+  --tv-Checkbox-svg-height: calc(var(--tv-Checkbox-height) - 2px);
+  // 复选框svg颜色
+  --tv-Checkbox-icon-color: var(--tv-color-icon-white);
+  // 复选框半选svg颜色
+  --tv-Checkbox-icon-halfselect: var(--tv-color-icon-control-active);
+  // 复选框半选svg颜色
+  --tv-Checkbox-icon-halfselect-disabled: var(--tv-color-icon-control-disabled);
   // 默认复选框文本色
-  --ti-checkbox-text-font-family: var(--ti-common-font-family, 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei');
-  // 默认复选框文本色
-  --ti-checkbox-text-color: var(--ti-common-color-info-normal, #252b3a);
+  --tv-Checkbox-text-color: var(--tv-color-text);
   // 默认复选框字号
-  --ti-checkbox-font-size: var(--ti-common-font-size-base, 12px);
+  --tv-Checkbox-font-size: var(--tv-font-size-md);
   // 默认复选框字重
-  --ti-checkbox-font-weight: var(--ti-common-font-weight-4);
-  // 默认复选框未选中项背景色
-  --ti-checkbox-bg-color: var(--ti-common-color-transparent, transparent);
+  --tv-Checkbox-font-weight: var(--tv-font-weight-regular);
   // 默认复选框选中项背景色
-  --ti-checkbox-bg-color-checked: var(--ti-common-color-bg-emphasize, #5e7ce0);
+  --tv-Checkbox-bg-color-checked: var(--tv-color-bg-active-control);
   // 默认复选框选中项边框色
-  --ti-checkbox-border-color-checked: var(--ti-common-color-line-active, #5e7ce0);
+  --tv-Checkbox-border-color-checked: var(--tv-color-border-active-control);
   // 默认复选框未选中项边框色
-  --ti-checkbox-border-color: var(--ti-common-color-line-normal, #adb0b8);
-
-  // 默认复选框选中项悬浮背景色 +
-  --ti-checkbox-bg-color-hover-checked: var(--ti-common-color-bg-hover, #344899);
-  // 默认复选框选中项悬浮边框色 +
-  --ti-checkbox-border-color-hover-checked: var(--ti-common-color-bg-hover, #344899);
-
+  --tv-Checkbox-border-color: var(--tv-color-border);
   // 默认复选框未选中项悬浮边框色
-  --ti-checkbox-border-color-hover: var(--ti-common-color-line-active, #5e7ce0);
+  --tv-Checkbox-border-color-hover: var(--tv-color-border-hover);
 
-  // 默认复选框字号(hide)
-  --ti-checkbox-font-normal-line-height: var(--ti-common-line-height-base, 12px);
-  // 默认复选框字号(hide)
-  --ti-checkbox-font-medium-line-height: var(--ti-common-line-height-3, 18px);
-  // 默认复选框字号(hide)
-  --ti-checkbox-font-small-line-height: var(--ti-common-line-height-2, 16px);
-  // 默认复选框字号(hide)
-  --ti-checkbox-font-mini-line-height: var(--ti-common-line-height-base, 12px);
-
-  // 默认复选框选中项图标高度
-  --ti-checkbox-icon-height: var(--ti-common-size-2x, 8px);
-  // 默认复选框选中项图标宽度
-  --ti-checkbox-icon-width: var(--ti-common-size-base, 4px);
-  // 默认复选框对勾的左边距
-  --ti-checkbox-icon-margin-left: var(--ti-common-space-base, 4px);
-  // 默认复选框对勾的顶边距
-  --ti-checkbox-icon-margin-top: var(--ti-common-space-0, 0px);
   // 默认复选框禁用时，未选中时背景色
-  --ti-checkbox-bg-color-disable: var(--ti-common-color-bg-disabled, #f5f5f6);
-  // 默认复选框禁用时，选中项对勾颜色以及半选时中间方框颜色
-  --ti-checkbox-icon-color-disabled: var(--ti-common-color-text-disabled, #adb0b8);
-  // 默认复选框未选中项禁用边框色
-  --ti-checkbox-border-color-unchecked-disabled: var(--ti-common-color-line-disabled, #dfe1e6);
-  // 默认复选框禁用时，label文本色
-  --ti-checkbox-label-text-color-disabled: var(--ti-common-color-text-disabled, #adb0b8);
+  --tv-Checkbox-bg-color-disabled: var(--tv-color-bg-disabled);
   // 默认复选框禁用时，选中项背景颜色
-  --ti-checkbox-bg-color-checked-disabled: var(--ti-common-color-bg-disabled, #f5f5f6);
-  // 默认复选框禁用时，选中项边框颜色
-  --ti-checkbox-border-color-checked-disabled: var(--ti-common-color-line-disabled, #dfe1e6);
+  --tv-Checkbox-bg-color-checked-disabled: var(--tv-color-bg-disabled-control-checked);
+  // 默认复选框禁用时，选中项对勾颜色以及半选时图标的颜色
+  --tv-Checkbox-icon-color-disabled: var(--tv-color-icon-white);
+  // 默认复选框禁用边框色
+  --tv-Checkbox-border-color-disabled: var(--tv-color-border-disabled);
+  // 默认复选框禁用时，label文本色
+  --tv-Checkbox-label-text-color-disabled: var(--tv-color-text-disabled);
 
   // 默认复选框边框圆角
-  --ti-checkbox-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --tv-Checkbox-border-radius: var(--tv-border-radius-sm);
   // 默认复选框外边框圆角
-  --ti-checkbox-outline-border-radius: var(--ti-common-border-radius-2);
-  // 默认复选框边框圆角
-  --ti-checkbox-checkline-width: var(--ti-common-border-weight-1, 2px);
-
+  --tv-Checkbox-outline-border-radius: var(--tv-border-radius-md);
   // 默认复选框的右侧外边距
-  --ti-checkbox-label-margin-right: var(--ti-common-space-5x, 20px);
+  --tv-Checkbox-label-margin-right: 24px;
+
+  // 复选框过滤器模式底色
+  --tv-Checkbox-bg-color-filter: var(--tv-color-bg-gray-2);
 }

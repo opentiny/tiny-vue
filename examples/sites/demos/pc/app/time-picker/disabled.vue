@@ -32,7 +32,7 @@ export default {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 182px;
+  width: 200px;
 }
 p {
   font-size: 14px;

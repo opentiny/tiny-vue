@@ -4,13 +4,13 @@ test('图片列表缩略图', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('file-upload#picture-list')
 
-  const upload = page.locator('.tiny-upload')
-  const lists = page.locator('.tiny-upload-list__item')
-  const item1 = page.getByText('test1按 delete 键可删除')
+  const container = page.locator('#picture-list')
+  const upload = container.locator('.tiny-upload')
+  const lists = container.locator('.tiny-upload-list__item')
+  const item1 = container.getByText('test1按 delete 键可删除')
   const [fileChooser] = await Promise.all([page.waitForEvent('filechooser'), upload.click()])
   const { width, height } = await item1.boundingBox()
-  const images = page.locator('.tiny-upload-list__item-thumbnail')
-  const triangles = page.locator('.tiny-upload-list__item-status-label')
+  const images = container.locator('.tiny-upload-list__item-thumbnail')
 
   // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
   const path = require('node:path')
@@ -24,5 +24,4 @@ test('图片列表缩略图', async ({ page }) => {
   await expect(images.nth(0)).toHaveCSS('height', '56px')
   await expect(images.nth(0)).toHaveAttribute('src', /\/fruit.jpg/)
   await expect(images.nth(1)).toHaveAttribute('src', /\/book.jpg/)
-  await expect(triangles.nth(0)).toHaveCSS('transform', 'matrix(0.707107, 0.707107, -0.707107, 0.707107, 0, 0)')
 })

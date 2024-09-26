@@ -4,11 +4,11 @@
   // 引导框箭头宽度
   --ti-guide-arrow-width: var(--ti-common-size-4x, 16px);
   // 引导框头部左上边框圆角
-  --ti-guide-header-border-top-left-radius: var(--ti-common-border-radius-1, 4px);
+  --ti-guide-header-border-top-left-radius: var(--ti-common-border-radius-4, 8px);
   // 引导框头部右上边框圆角
-  --ti-guide-header-border-top-right-radius: var(--ti-common-border-radius-1, 4px);
+  --ti-guide-header-border-top-right-radius: var(--ti-common-border-radius-4, 8px);
   // 引导框头部行高
-  --ti-guide-header-line-height: var(--ti-common-line-height-6, 32px);
+  --ti-guide-header-line-height: var(--ti-common-line-height-6, 48px);
   // 引导框头部左内边距
   --ti-guide-header-padding-left: var(--ti-common-space-6x, 24px);
   // 引导框头部右内边距
@@ -16,47 +16,47 @@
   // 引导框头部顶部内边距
   --ti-guide-header-padding-top: var(--ti-common-space-6x, 24px);
   // 引导框头部背景色
-  --ti-guide-header-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+  --ti-guide-header-bg-color: var(--ti-common-color-bg-white-normal, #ffffff);
   // 引导框标题文本色
-  --ti-guide-title-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-guide-title-text-color: var(--ti-common-color-text-primary, #191919);
   // 引导框标题行高
-  --ti-guide-title-line-height: var(--ti-common-line-height-6, 32px);
+  --ti-guide-title-line-height: var(--ti-common-line-height-2, 24px);
   // 引导框标题字重
   --ti-guide-title-font-weight: var(--ti-common-font-weight-7, bold);
   // 引导框标题字号
-  --ti-guide-title-text-font-size: var(--ti-common-font-size-3, 18px);
+  --ti-guide-title-text-font-size: var(--ti-common-font-size-2, 16px);
   // 引导框关闭按钮图标字号
-  --ti-guide-cancel-icon-font-size: var(--ti-common-font-size-5, 24px);
+  --ti-guide-cancel-icon-font-size: var(--ti-common-font-size-4, 20px);
   // 引导框关闭按钮图标宽度
-  --ti-guide-cancel-icon-width: var(--ti-common-size-5x, 20px);
+  --ti-guide-cancel-icon-width: var(--ti-common-size-4x, 16px);
   // 引导框关闭按钮图标高度
-  --ti-guide-cancel-icon-height: var(--ti-common-size-5x, 20px);
+  --ti-guide-cancel-icon-height: var(--ti-common-size-4x, 16px);
   // 引导框关闭按钮图标行高
-  --ti-guide-cancel-icon-line-height: var(--ti-common-line-height-4, 20px);
+  --ti-guide-cancel-icon-line-height: var(--ti-common-line-height-4, 30px);
   // 引导框关闭按钮图标颜色
-  --ti-guide-cancel-icon-color: var(--ti-common-color-icon-normal, #575d6c);
+  --ti-guide-cancel-icon-color: var(--ti-common-color-icon-normal, #808080);
   // 引导框关闭按钮图标字重
   --ti-guide-cancel-icon-font-weight: var(--ti-common-font-weight-1, 100);
   // 引导框关闭按钮图标顶部外边距
-  --ti-guide-cancel-icon-margin-top: -6px;
+  --ti-guide-cancel-icon-margin-top: calc(var(--ti-common-space-base, 4px) * (-3));
   // 引导框关闭按钮图标顶部外边距
-  --ti-guide-cancel-icon-margin-right: var(--ti-common-space-0, 0px);
+  --ti-guide-cancel-icon-margin-right: calc(var(--ti-common-space-base, 4px) * (-1));
   // 引导框关闭按钮图标顶部外边距
   --ti-guide-progress-style-left: var(--ti-common-space-6x, 24px);
   // 引导框关闭按钮图标悬浮色
-  --ti-guide-cancel-hover-icon-color: var(--ti-common-color-icon-hover, #5e7ce0);
+  --ti-guide-cancel-hover-icon-color: #191919;
   // 引导框内容文本色
-  --ti-guide-text-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-guide-text-text-color: #595959;
   // 引导框内容行高
-  --ti-guide-text-line-height: var(--ti-common-line-height-4, 20px);
+  --ti-guide-text-line-height: var(--ti-common-line-height-2, 24px);
   // 引导框内容字号
   --ti-guide-text-font-size: var(--ti-common-font-size-1, 14px);
   // 引导框内容上内边距
-  --ti-guide-text-padding-top: var(--ti-common-space-6x, 24px);
+  --ti-guide-text-padding-top: var(--ti-common-space-2x, 8px);
   // 引导框内容水平内边距
   --ti-guide-text-padding-horizontal: var(--ti-common-space-6x, 24px);
   // 引导框内容底部内边距
-  --ti-guide-text-padding-bottom: calc(var(--ti-common-space-base, 4px) * 5.5);
+  --ti-guide-text-padding-bottom: var(--ti-common-space-6x, 24px);
   // 引导框内容滚动wrap左内边距
   --ti-guide-text-scrollbox-padding-right: var(--ti-common-space-2x, 8px);
   // 引导框内容滚动条宽度
@@ -64,13 +64,13 @@
   // 引导框内容滚动条高度
   --ti-guide-text-scrollbar-height: var(--ti-common-scrollbar-height, 8px);
   // 引导框内容滚动条圆角
-  --ti-guide-text-scrollbar-border-radius: var(--ti-common-scrollbar-thumb-border-radius, 6px);
+  --ti-guide-text-scrollbar-border-radius: var(--ti-common-scrollbar-thumb-border-radius, 4px);
   // 引导框内容滚动条边框色
-  --ti-guide-text-scrollbar-border-color: var(--ti-common-scrollbar-thumb-active-bg-color, #999999);
+  --ti-guide-text-scrollbar-border-color: var(--ti-common-scrollbar-thumb-active-bg-color, #dbdbdb);
   // 引导框底部右下圆角
-  --ti-guide-footer-border-bottom-right-radius: var(--ti-common-border-radius-1, 4px);
+  --ti-guide-footer-border-bottom-right-radius: var(--ti-common-border-radius-4, 8px);
   // 引导框底部左下圆角
-  --ti-guide-footer-border-bottom-left-radius: var(--ti-common-border-radius-1, 4px);
+  --ti-guide-footer-border-bottom-left-radius: var(--ti-common-border-radius-4, 8px);
   // 引导框底部左内边距
   --ti-guide-footer-padding-left: var(--ti-common-space-6x, 24px);
   // 引导框底部右内边距
@@ -78,51 +78,51 @@
   // 引导框底部底部内边距
   --ti-guide-footer-padding-bottom: var(--ti-common-space-6x, 24px);
   // 引导框进度条文本颜色
-  --ti-guide-progress-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-guide-progress-text-color: var(--ti-common-color-primary-normal, #191919);
   // 引导框按钮默认样式文本色
-  --ti-guide-button-text-color: var(--ti-common-color-text-white, #fff);
+  --ti-guide-button-text-color: #191919;
   // 引导框按钮默认样式文本色
-  --ti-guide-button-border: var(--ti-common-color-text-white, #fff);
+  --ti-guide-button-border: #595959;
   // 引导框按钮默认样式圆角
-  --ti-guide-button-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --ti-guide-button-border-radius: var(--ti-common-size-25x, 100px);
   // 引导框按钮默认样式背景色
-  --ti-guide-button-bg-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-guide-button-bg-color: var(--ti-common-color-light, #ffffff);
   // 引导框按钮默认样式悬浮背景色
-  --ti-guide-button-hover-bg-color: var(--ti-common-color-primary-hover, #7693f5);
+  --ti-guide-button-hover-bg-color: var(--ti-common-color-light, #ffffff);
   // 引导框按钮默认样式悬浮背景色
-  --ti-guide-button-hover-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-guide-button-hover-border-color: #C2C2C2;
   // 引导框按钮默认样式聚焦背景色
-  --ti-guide-button-focus-bg-color: var(--ti-common-color-primary-active, #7693f5);
+  --ti-guide-button-focus-bg-color: var(--ti-common-color-light, #ffffff);
   // 引导框按钮默认样式激活背景色
-  --ti-guide-button-active-bg-color: var(--ti-common-color-primary-active, #7693f5);
+  --ti-guide-button-active-bg-color: var(--ti-common-color-light, #ffffff);
   // 引导框按钮默认样式禁用背景色
-  --ti-guide-button-disable-bg-color: var(--ti-common-color-primary-disabled-bgcolor, #f5f5f6);
+  --ti-guide-button-disable-bg-color: var(--ti-common-color-primary-disabled-bgcolor, #f0f0f0);
   // 引导框按钮默认样式禁用文本色
-  --ti-guide-button-disable-text-color: var(--ti-common-color-primary-disabled-text, #adb0b8);
+  --ti-guide-button-disable-text-color: var(--ti-common-color-primary-disabled-text, #c2c2c2);
   // 引导框按钮透明样式文本色
-  --ti-guide-button-secondary-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-guide-button-secondary-text-color: var(--ti-common-color-text-primary, #191919);
   // 引导框按钮透明样式背景色
-  --ti-guide-button-secondary-bg-color: var(--ti-common-color-light, #fff);
+  --ti-guide-button-secondary-bg-color: var(--ti-common-color-light, #ffffff);
   // 引导框按钮透明样式边框色
-  --ti-guide-button-secondary-border-color: var(--ti-common-color-border, #adb0b8);
+  --ti-guide-button-secondary-border-color: var(--ti-common-color-border, #999999);
   // 引导框按钮透明样式悬浮边框色
-  --ti-guide-button-secondary-hover-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-guide-button-secondary-hover-border-color: var(--ti-common-color-primary-normal, #191919);
   // 引导框按钮透明样式聚焦边框色
-  --ti-guide-button-secondary-focus-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-guide-button-secondary-focus-border-color: var(--ti-common-color-primary-normal, #191919);
   // 引导框按钮透明样式激活边框色
-  --ti-guide-button-secondary-active-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-guide-button-secondary-active-border-color: var(--ti-common-color-primary-normal, #191919);
   // 引导框按钮透明样式禁用背景色
-  --ti-guide-button-secondary-disabled-bg-color: var(--ti-common-color-light, #fff);
+  --ti-guide-button-secondary-disabled-bg-color: var(--ti-common-color-light, #ffffff);
   // 引导框按钮透明样式禁用文本色
-  --ti-guide-button-secondary-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --ti-guide-button-secondary-disabled-text-color: var(--ti-common-color-text-disabled, #c2c2c2);
   // 引导框按钮透明样式禁用边框色
-  --ti-guide-button-secondary-disabled-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
+  --ti-guide-button-secondary-disabled-border-color: var(--ti-common-color-line-disabled, #dbdbdb);
   // 引导框按钮宽度
-  --ti-guide-button-width: calc(var(--ti-common-line-height-6, 48px) * 2);
+  --ti-guide-button-width: calc(var(--ti-common-line-height-8, 60px) + 8px);
   // 引导框按钮高度
-  --ti-guide-button-height: var(--ti-common-size-height-normal, 32px);
+  --ti-guide-button-height: var(--ti-common-line-height-2, 24px);
   // 引导框边框圆角
-  --ti-guide-shepherd-element-border-radius: var(--ti-common-border-radius-1, 4px);
+  --ti-guide-shepherd-element-border-radius: 8px;
   // 分页提示文字颜色
-  --ti-guide-progresss-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-guide-progresss-text-color: #808080;
 }

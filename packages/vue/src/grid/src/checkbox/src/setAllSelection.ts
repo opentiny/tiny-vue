@@ -59,6 +59,7 @@ function pushSelectRow({
   }
 }
 
+// 为所有表格数据设置多选选中值
 export function hasCheckFieldNoStrictly({
   afterFullData,
   checkMethod,
@@ -107,6 +108,7 @@ function filterSelectRow({ afterFullData, checkMethod, checkStrictly, selectRows
   return selectRows
 }
 
+// 获取表格中所有选中数据项
 export function hasNoCheckFieldNoStrictly({
   afterFullData,
   checkMethod,
@@ -146,6 +148,7 @@ export function hasNoCheckFieldNoStrictly({
   return selectRows
 }
 
+// 将选中项赋值给selection
 export function setSelectionNoStrictly({ _vm, checkStrictly, reserve, selectRows, selection, value, afterFullData }) {
   if (!checkStrictly) {
     if (reserve) {

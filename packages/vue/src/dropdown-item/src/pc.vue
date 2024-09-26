@@ -13,7 +13,7 @@
 <template>
   <!-- TINY-TODO:  tiny-dropdown-menu__item命名不规范，后续统一有个迭代去掉 -->
   <li
-    v-auto-tip="{ always: true, content: getTip, effect, placement: tipPosition }"
+    v-auto-tip="getTip ? { always: true, content: getTip, effect, placement: tipPosition } : false"
     class="tiny-dropdown-item tiny-dropdown-menu__item"
     :class="{
       'is-disabled': disabled,

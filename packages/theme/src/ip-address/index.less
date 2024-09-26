@@ -30,8 +30,6 @@
   &__input {
     position: relative;
     width: 100%;
-    height: var(--ti-ip-address-normal-height);
-    line-height: var(--ti-ip-address-line-height);
     border: 1px solid var(--ti-ip-address-normal-border-color);
     color: var(--ti-ip-address-normal-text-color);
     border-radius: var(--ti-ip-address-border-radius);
@@ -98,8 +96,6 @@
         font-family: var(--ti-ip-address-normal-font-family);
         width: var(--ti-ip-address-input-width);
         float: left;
-        height: calc(var(--ti-ip-address-normal-height) - 2px);
-        line-height: var(--ti-ip-address-line-height);
         padding: 0;
 
         &:focus,
@@ -144,5 +140,24 @@
       text-align: center;
       margin: 0 var(--ti-ip-address-ipv6-delimiter-margin-right);
     }
+    &.medium li input {
+      height: var(--ti--ip--address-medium-height);
+      line-height: var(--ti--ip--address-medium-line-height);
+    }
+
+    &.default li input {
+      height: var(--ti--ip--address-default-height);
+      line-height: var(--ti--ip--address-default-line-height);
+    }
+
+    &.small li input {
+      height: var(--ti--ip--address-small-height);
+      line-height: var(--ti--ip--address-small-line-height);
+    }
+
+    &.mini li input {
+      height: var(--ti--ip--address-mini-height);
+      line-height: var(--ti--ip--address-mini-line-height);
+    } 
   }
 }

@@ -14,30 +14,30 @@
   // 默认宽度
   --ti-modal-box-width: calc(var(--ti-common-space-10, 10px) * 40);
   // 模态框阴影
-  --ti-modal-box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.1);
+  --ti-modal-box-shadow: var(--ti-common-shadow-4-down, 0 8px 24px 0 rgba(0, 0, 0, 0.16));
   // 字体族(hide)
   --ti-modal-font-family: var(--ti-common-font-family, 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei');
   // 背景色
-  --ti-modal-box-background-color: var(--ti-common-color-bg-white-normal, #fff);
+  --ti-modal-box-background-color: var(--ti-common-color-bg-white-normal, #ffffff);
   // 边框圆角
-  --ti-modal-box-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --ti-modal-box-border-radius: var(--ti-common-border-radius-4, 8px);
   // 边框色
   --ti-modal-border-color: transparent;
   // 图标尺寸
   --ti-modal-alert-icon-size: var(--ti-common-font-size-5, 24px);
 
   // 标题字号
-  --ti-modal-header-font-size: var(--ti-common-font-size-3, 18px);
+  --ti-modal-header-font-size: var(--ti-common-font-size-4, 20px);
   // 标题文本色
-  --ti-modal-header-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-modal-header-text-color: var(--ti-common-color-text-primary, #191919);
   // 标题字重
-  --ti-modal-header-font-weight: var(--ti-common-font-weight-bold, 700);
+  --ti-modal-header-font-weight: var(--ti-common-font-weight-bold, 600);
   // 标题上内边距
   --ti-modal-header-padding-top: var(--ti-common-space-8x, 32px);
   // 标题水平内边距
   --ti-modal-header-padding-horizontal: var(--ti-common-space-8x, 32px);
   // 标题下内边距
-  --ti-modal-header-padding-bottom: calc(var(--ti-common-space-base, 4px) * 7);
+  --ti-modal-header-padding-bottom: var(--ti-common-space-4x, 16px);
 
   // 内容上内边距
   --ti-modal-body-padding-top: var(--ti-common-space-0, 0px);
@@ -46,40 +46,42 @@
   // 内容下内边距
   --ti-modal-body-padding-bottom: var(--ti-common-space-0, 0px);
   // 内容字号
-  --ti-modal-body-font-size: var(--ti-common-font-size-base, 12px);
+  --ti-modal-body-font-size: var(--ti-common-font-size-base, 14px);
   // 内容文本色
-  --ti-modal-body-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-modal-body-text-color: var(--ti-common-color-text-secondary, #595959);
+  // 消息弹窗内容文本色
+  --ti-modal-body-message-font-color: var(--ti-common-color-info-normal, #191919);
   // 内容行高
   --ti-modal-body-line-height: var(--ti-common-line-height-number, 1.5);
 
   // 底部上内边距
-  --ti-modal-footer-padding-top: calc(var(--ti-common-space-base, 4px) * 7);
+  --ti-modal-footer-padding-top: var(--ti-common-space-6x, 24px);
   // 底部水平内边距
   --ti-modal-footer-padding-horizontal: var(--ti-common-space-8x, 32px);
   // 底部下内边距
   --ti-modal-footer-padding-bottom: var(--ti-common-space-8x, 32px);
   // 底部按钮位置
-  --ti-modal-footer-align: center;
+  --ti-modal-footer-align: right;
   // 底部按钮圆角
-  --ti-modal-footer-btn-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --ti-modal-footer-btn-border-radius: calc(var(--ti-common-space-10, 10px) * 5);
   // 底部按钮最小宽度
-  --ti-modal-footer-btn-min-width: var(--ti-common-size-16x, 64px);
+  --ti-modal-footer-btn-min-width: calc(var(--ti-common-space-base, 4px) * 24);
 
   // 信息提示弹窗标题下边距
-  --ti-modal-notification-header-padding-bottom: var(--ti-common-space-3x, 12px);
+  --ti-modal-notification-header-padding-bottom: var(--ti-common-space-6x, 24px);
 
   // message字号
-  --ti-modal-message-font-size: var(--ti-common-font-size-3, 18px);
+  --ti-modal-message-font-size: var(--ti-common-font-size-base, 14px);
   // message阴影
   --ti-modal-message-box-shadow: var(--ti-modal-box-shadow);
   // message左内边距
-  --ti-modal-message-padding-left: var(--ti-common-space-6x, 24px);
+  --ti-modal-message-padding-left: var(--ti-common-space-4x, 16px);
   // message右内边距
-  --ti-modal-message-padding-right: var(--ti-common-space-6x, 24px);
+  --ti-modal-message-padding-right: var(--ti-common-space-4x, 16px);
   // message垂直内边距
-  --ti-modal-message-padding-vertical: var(--ti-common-space-6x, 24px);
+  --ti-modal-message-padding-vertical: var(--ti-common-space-3x, 12px);
   // message内容水平内边距(hide)
-  --ti-modal-message-body-padding-horizontal: var(--ti-common-space-8x, 32px);
+  --ti-modal-message-body-padding-horizontal: var(--ti-common-space-0, 0px);
   // message状态图标尺寸
   --ti-modal-message-status-icon-size: var(--ti-common-font-size-2, 16px);
   // message状态图标右边距
@@ -87,41 +89,41 @@
   // message关闭图标尺寸
   --ti-modal-message-close-icon-size: var(--ti-common-space-4x, 16px);
   // message图标父组件高度（hide)
-  --ti-modal-message-icon-box-height: var(--ti-common-size-4x, 16px);
+  --ti-modal-message-icon-box-height: calc(var(--ti-common-space-5x, 20px) - 1px);
   // message关闭图标左边距
   --ti-modal-message-close-icon-margin-left: var(--ti-common-space-3x, 12px);
 
   // 基本提示图标色
-  --ti-modal-primary-icon-color: var(--ti-common-color-prompt, #5e7ce0);
+  --ti-modal-primary-icon-color: var(--ti-common-color-prompt, #1476ff);
   // 成功提示图标色
-  --ti-modal-success-icon-color: var(--ti-common-color-success, #50d4ab);
+  --ti-modal-success-icon-color: var(--ti-common-color-success, #5cb300);
   // 错误提示图标色
-  --ti-modal-error-icon-color: var(--ti-common-color-error, #f66f6a);
+  --ti-modal-error-icon-color: var(--ti-common-color-error, #f23030);
   // 警告提示图标色
-  --ti-modal-warning-icon-color: var(--ti-common-color-warn, #fa9841);
+  --ti-modal-warning-icon-color: var(--ti-common-color-warn, #ff8800);
   // 加载提示图标色
-  --ti-modal-loading-icon-color: var(--ti-common-color-prompt, #5e7ce0);
+  --ti-modal-loading-icon-color: var(--ti-common-color-prompt, #1476ff);
   // 状态图标右边距
   --ti-modal-status-icon-padding-right: var(--ti-common-space-2x, 8px);
 
   // 关闭按钮字号
-  --ti-modal-close-btn-font-size: var(--ti-common-font-size-1, 14px);
+  --ti-modal-close-btn-font-size: var(--ti-common-font-size-5, 24px);
   // 关闭按钮与上边框的距离(hide)
   --ti-modal-close-btn-top: var(--ti-common-space-5x, 20px);
   // 关闭按钮内边距
   --ti-modal-close-btn-padding-horizontal-vertical: var(--ti-common-space-0, 0px);
   // 关闭按钮图标色
-  --ti-modal-close-btn-icon-color: var(--ti-common-color-text-secondary, #575d6c);
+  --ti-modal-close-btn-icon-color: var(--ti-common-color-icon-normal, #808080);
   // 关闭按钮悬浮图标色
-  --ti-modal-close-btn-hover-icon-color: var(--ti-common-color-icon-hover, #5e7ce0);
+  --ti-modal-close-btn-hover-icon-color: var(--ti-common-color-icon-hover, #191919);
   // 关闭按钮悬浮背景色
-  --ti-modal-close-btn-background-color-hover: var(--ti-common-color-bg-white-normal, #fff);
+  --ti-modal-close-btn-background-color-hover: var(--ti-common-color-bg-white-normal, #ffffff);
   // 关闭按钮与右边框的距离(hide)
   --ti-modal-close-btn-right: var(--ti-common-space-5x, 20px);
   // 缩放按钮与右边框的距离(hide)
-  --ti-modal-zoom-btn-right: var(--ti-common-space-10x, 40px);
+  --ti-modal-zoom-btn-right: calc(var(--ti-common-space-base, 4px) * 12);
   // 头部底线边框设置(hide)
   --ti-modal-header-border-bottom: none;
   // 关闭按钮颜色
-  --ti-modal-btn-close-color: var(--ti-modal-close-btn-icon-color);
+  --ti-modal-btn-close-color: var(--ti-common-color-icon-normal, #808080);
 }
