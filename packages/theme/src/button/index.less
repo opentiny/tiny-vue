@@ -160,12 +160,12 @@
     }
   }
 
-  //  ghost： 默认继承plain的状态， 但是bg 强制为透明,比激活态还高  优先级为：四级类名
-  &.is-ghost.is-ghost.is-ghost.is-ghost {
+  //  ghost： 默认继承plain的状态， 但是bg 强制为透明，比禁用还高  优先级为：六级类名
+  &.is-ghost.is-ghost.is-ghost.is-ghost.is-ghost.is-ghost {
     background-color: var(--tv-Button-bg-color-ghost);
   }
 
-  // 禁用态+loading  优先级最高， 大于ghost透明， 五优先级
+  // 禁用态+loading  优先级最高， 五优先级
   &.is-disabled.is-disabled.is-disabled.is-disabled.is-disabled,
   &.is-loading.is-loading.is-loading.is-loading.is-loading,
   &[disabled][disabled][disabled][disabled][disabled] {
@@ -174,6 +174,10 @@
     border-color: var(--tv-Button-border-color-disabled);
     fill: var(--tv-Button-icon-color-disabled);
     cursor: not-allowed;
+
+    &.is-ghost {
+      border-color: var(--tv-Button-border-color-ghost-disabled);
+    }
   }
 
   /** 4、图标 + 文字场景 */

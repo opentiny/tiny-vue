@@ -233,7 +233,9 @@
   // 禁用时按钮背景色
   --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled);
   // 禁用时按钮边框色
-  --tv-Button-border-color-disabled: var(--tv-color-border-disabled);
+  --tv-Button-border-color-disabled: var(--tv-color-bg-disabled); // 设计边框是f0f0f0，没这个值，用背景色代替。
+  // 禁用时, 幽灵按钮的边框色
+  --tv-Button-border-color-ghost-disabled: var(--tv-color-border-disabled);
   // 禁用时按钮图标色
   --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled); // level4 结束---------------------------
 
