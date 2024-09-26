@@ -14,6 +14,7 @@
 @import '../mixins/common.less';
 @import './vars.less';
 
+@form-prefix-cls: ~'@{css-prefix}form';
 @form-item-prefix-cls: ~'@{css-prefix}form-item';
 @input-prefix-cls: ~'@{css-prefix}input';
 @input-group-prefix-cls: ~'@{css-prefix}input-group';
@@ -58,6 +59,16 @@
   }
 }
 
+.star-selector(@content) {
+  &.is-required:not(.is-no-asterisk) {
+    // 子选择器是避免影响嵌套表单场景
+    .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
+    & > .@{form-item-prefix-cls}__label:before {
+      @content();
+    }
+  }
+}
+
 .@{form-item-prefix-cls} {
   .component-css-vars-form-item();
 
@@ -88,7 +99,7 @@
   &--small {
     .size-height(
       var(--tv-FormItem-height-sm),
-      var(--tv-FormItem-margin-bottom-lg)
+      var(--tv-FormItem-margin-bottom-sm)
     );
   }
 
@@ -140,11 +151,6 @@
         vertical-align: middle;
         line-height: 1.5;
       }
-    }
-
-    // numeric只读态使用absolute实现，需要一个margin-top修复水平对齐问题
-    .@{css-prefix}numeric.is-display-only {
-      // margin-top: -2px;
     }
 
     .@{input-prefix-cls} {
@@ -217,16 +223,11 @@
     }
   }
 
-  &.is-required:not(.is-no-asterisk) {
-    // 子选择器是避免影响嵌套表单场景
-    .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
-    & > .@{form-item-prefix-cls}__label:before {
-      display: inline-block;
-      content: '*';
-      color: var(--tv-FormItem-text-color-error);
-      margin-right: 4px;
-    }
-  }
+  .star-selector({
+    content: '*';
+    color: var(--tv-FormItem-text-color-error);
+    margin-right: 4px;
+  });
 
   &.is-error {
     .@{input-prefix-cls}__inner,
@@ -260,5 +261,114 @@
     margin-top: 8px;
     color: var(--tv-FormItem-text-color-weaken);
     font-size: var(--tv-FormItem-font-size);
+  }
+}
+
+.@{form-prefix-cls} {
+  .component-css-vars-form-item();
+
+  &--inline {
+    .@{form-item-prefix-cls} {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 24px;
+    }
+
+    .@{form-item-prefix-cls}__label {
+      float: none;
+      display: inline-block;
+    }
+
+    .@{form-item-prefix-cls}__content {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    // 嵌套表单场景
+    .@{form-prefix-cls}--label-top .@{form-item-prefix-cls}__content {
+      display: block;
+    }
+  }
+
+  &--label-left {
+    &.has-required {
+      .@{form-item-prefix-cls}__label {
+        padding-left: 12px;
+      }
+    }
+    .@{form-item-prefix-cls}__label {
+      text-align: left;
+    }
+
+    &.label-align {
+      .@{form-item-prefix-cls} {
+        &.is-required {
+          .@{form-item-prefix-cls}__label {
+            padding-left: 12px;
+            position: relative;
+
+            &::before {
+              position: absolute;
+              left: 0;
+            }
+          }
+          & ~ .@{form-item-prefix-cls} {
+            .@{form-item-prefix-cls}__label {
+              padding-left: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--label-top {
+    .@{form-item-prefix-cls} {
+      margin-bottom: 16px;
+    }
+    .@{form-item-prefix-cls}__label {
+      float: none;
+      display: block;
+      text-align: left;
+      padding: 0 0 8px;
+      height: auto;
+      line-height: var(--tv-FormItem-line-height);
+    }
+  }
+
+  &.is-display-only {
+    .@{form-item-prefix-cls}__label {
+      line-height: var(--tv-FormItem-line-height);
+      height: auto;
+      vertical-align: inherit;
+      color: var(--tv-FormItem-text-color-weaken);
+    }
+
+    .@{form-item-prefix-cls}__content {
+      line-height: var(--tv-FormItem-line-height);
+      font-size: var(--tv-FormItem-font-size);
+      height: auto;
+      vertical-align: inherit;
+
+      // 一些组件的只读态实现方式怪异，需要一些修正样式来修复水平对齐问题
+      .@{switch-prefix-cls} {
+        margin-top: 0;
+      }
+
+      .@{css-prefix}numeric.is-display-only {
+        margin-top: 2px;
+      }
+      .@{input-prefix-cls} {
+        &.@{range-editor-prefix-cls}.@{input-prefix-cls}__inner {
+          height: 18px;
+        }
+      }
+    }
+
+    .@{form-item-prefix-cls} {
+      .star-selector({
+        content: '';
+      });
+    }
   }
 }
