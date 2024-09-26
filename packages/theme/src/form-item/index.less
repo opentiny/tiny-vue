@@ -27,11 +27,11 @@
 @select-prefix-cls: ~'@{css-prefix}select';
 @rate-prefix-cls: ~'@{css-prefix}rate';
 
-.size-height(@height, @line-height, @margin-bottom) {
+.size-height(@height, @margin-bottom) {
   margin-bottom: @margin-bottom;
 
   .@{form-item-prefix-cls}__content {
-    line-height: @line-height;
+    line-height: @height;
 
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
@@ -47,68 +47,59 @@
         height: @height;
       }
     }
+    .@{css-prefix}slider-container {
+      height: @height;
+    }
   }
 
   .@{form-item-prefix-cls}__label {
-    height: @line-height;
-    line-height: @line-height;
+    height: @height;
+    line-height: @height;
   }
 }
 
 .@{form-item-prefix-cls} {
   .component-css-vars-form-item();
 
-  font-family: var(--ti-common-font-family);
-  margin-bottom: var(--ti-FormItem-margin-bottom-default);
+  // TODO: 待全局添加字体样式后删除
+  font-family: var(--tv-font-family);
   .clearfix();
-
-  .@{form-item-prefix-cls}__content-muti-children {
-    width: 100%;
-  }
-
-  .@{form-item-prefix-cls}__extra-tip {
-    line-height: var(--ti-FormItem-extra-tip-line-height);
-    margin-top: var(--ti-FormItem-extra-tip-margin-top);
-    color: var(--ti-FormItem-extra-tip-font-color);
-    font-size: var(--ti-FormItem-extra-tip-font-size);
-  }
 
   & & {
     margin-bottom: 0;
   }
 
-  &--small &__error {
+  &--mini &__error {
     padding-top: 2px;
   }
 
-  &--mini &__error {
-    padding-top: 1px;
-  }
+  .size-height(
+    var(--tv-FormItem-height),
+    var(--tv-FormItem-margin-bottom)
+  );
 
   &--medium {
     .size-height(
-      var(--ti-FormItem-medium-line-height),
-      var(--ti-FormItem-medium-line-height),
-      var(--ti-FormItem-margin-bottom-medium)
+      var(--tv-FormItem-height-lg),
+      var(--tv-FormItem-margin-bottom-lg)
     );
   }
 
   &--small {
     .size-height(
-      var(--ti-FormItem-small-line-height),
-      var(--ti-FormItem-small-line-height),
-      var(--ti-FormItem-margin-bottom-small)
+      var(--tv-FormItem-height-sm),
+      var(--tv-FormItem-margin-bottom-lg)
     );
   }
 
   &--mini {
     .size-height(
-      var(--ti-FormItem-mini-line-height),
-      var(--ti-FormItem-mini-line-height),
-      var(--ti-FormItem-margin-bottom-mini)
+      var(--tv-FormItem-height-xs),
+      var(--tv-FormItem-margin-bottom-xs)
     );
   }
 
+  // label-width设置为auto时样式
   &__label-wrap {
     float: left;
 
@@ -122,11 +113,9 @@
     text-align: right;
     vertical-align: middle;
     float: left;
-    font-size: var(--ti-FormItem-label-font-size);
-    color: var(--ti-FormItem-label-text-color);
-    height: var(--ti-FormItem-label-line-height);
-    line-height: var(--ti-FormItem-label-line-height);
-    padding-right: var(--ti-FormItem-label-padding-right);
+    font-size: var(--tv-FormItem-font-size);
+    color: var(--tv-FormItem-text-color);
+    padding-right: var(--tv-FormItem-label-padding-right);
     box-sizing: border-box;
     overflow: hidden;
     white-space: nowrap;
@@ -135,8 +124,7 @@
 
   &__content {
     position: relative;
-    font-size: var(--ti-FormItem-label-font-size);
-    line-height: var(--ti-FormItem-label-line-height);
+    font-size: var(--tv-FormItem-font-size);
     .clearfix();
 
     .@{input-prefix-cls},
@@ -150,12 +138,13 @@
 
       &.is-display-only {
         vertical-align: middle;
+        line-height: 1.5;
       }
     }
 
     // numeric只读态使用absolute实现，需要一个margin-top修复水平对齐问题
     .@{css-prefix}numeric.is-display-only {
-      margin-top: var(--ti-FormItem-numeric-display-margin-top);
+      // margin-top: -2px;
     }
 
     .@{input-prefix-cls} {
@@ -171,7 +160,7 @@
 
     .@{rate-prefix-cls} {
       &__text {
-        line-height: 1.5;
+        line-height: var(--tv-FormItem-line-height);
       }
     }
 
@@ -182,17 +171,7 @@
     .@{button-prefix-cls} + .@{button-prefix-cls} {
       margin-left: 8px;
     }
-
-    .@{css-prefix}checkbox,
-    .@{css-prefix}radio {
-      line-height: var(--ti-FormItem-label-line-height);
-    }
-    .@{css-prefix}slider-container {
-      height: var(--ti-FormItem-label-line-height);
-    }
     .@{css-prefix}checkbox-group {
-      min-height: var(--ti-FormItem-label-line-height);
-
       &:has(> label.is-group-display-only) {
         min-height: unset;
         vertical-align: baseline;
@@ -210,46 +189,41 @@
   }
 
   &__error {
-    color: var(--ti-FormItem-error-text-color);
-    font-size: var(--ti-FormItem-error-font-size);
+    color: var(--tv-FormItem-text-color-error);
+    font-size: var(--tv-FormItem-font-size);
     line-height: 1;
     padding-top: 4px;
     position: absolute;
-    top: 100%;
-    left: 0;
 
     .validate-icon {
-      fill: var(--ti-FormItem-error-text-color);
-      margin-right: var(--ti-FormItem-error-icon-margin-right);
+      fill: var(--tv-FormItem-icon-color-error);
+      margin-right: 4px;
     }
     .@{form-item-prefix-cls}__validate-message {
       vertical-align: middle;
     }
-  }
 
-  &__error--inline {
-    position: relative;
-    top: auto;
-    left: auto;
-    display: inline-block;
-    margin-left: var(--ti-FormItem-error-inline-margin-left);
-  }
+    &--inline {
+      position: relative;
+      display: inline-block;
+      margin-left: 8px;
+    }
 
-  &__error--block {
-    position: relative;
-    top: auto;
-    left: auto;
-    display: flex;
-    margin-left: 0;
-    padding-top: var(--ti-FormItem-error-block-padding-top);
+    &--block {
+      position: relative;
+      display: flex;
+      margin-left: 0;
+      padding-top: var(--tv-FormItem-error-block-padding-top);
+    }
   }
 
   &.is-required:not(.is-no-asterisk) {
+    // 子选择器是避免影响嵌套表单场景
     .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
     & > .@{form-item-prefix-cls}__label:before {
-      display: var(--ti-FormItem-error-star-display);
+      display: inline-block;
       content: '*';
-      color: var(--ti-FormItem-error-star-text-color);
+      color: var(--tv-FormItem-text-color-error);
       margin-right: 4px;
     }
   }
@@ -258,12 +232,13 @@
     .@{input-prefix-cls}__inner,
     .@{input-prefix-cls}__inner:focus,
     .@{textarea-prefix-cls},
+    .@{textarea-prefix-cls}::before,
+    .@{textarea-prefix-cls}::after,
     .@{textarea-prefix-cls}:focus,
     .@{textarea-prefix-cls}__inner,
     .@{textarea-prefix-cls}__inner:focus {
-      border-color: var(--ti-FormItem-error-border-color);
-      background-color: var(--ti-FormItem-error-bg-color);
-      --ti-textarea-bg-color: var(--ti-FormItem-error-bg-color);
+      border-color: var(--tv-FormItem-border-color-error);
+      background-color: var(--tv-FormItem-bg-color-error);
     }
 
     .@{input-group-prefix-cls}__append,
@@ -273,22 +248,17 @@
       }
     }
 
-    .@{input-prefix-cls}__validateIcon {
-      color: var(--ti-FormItem-error-text-color);
-    }
-
     .@{numeric-prefix-cls}__input-inner,
     .@{numeric-prefix-cls}__input-inner:focus {
-      border-color: var(--ti-FormItem-error-border-color);
-      background-color: var(--ti-FormItem-error-bg-color);
+      border-color: var(--tv-FormItem-border-color-error);
+      background-color: var(--tv-FormItem-bg-color-error);
     }
   }
 
-  &--feedback .@{input-prefix-cls}__validateIcon {
-    display: inline-block;
-  }
-
-  .@{input-prefix-cls}__validateIcon {
-    display: none;
+  &__extra-tip {
+    line-height: var(--tv-FormItem-line-height);
+    margin-top: 8px;
+    color: var(--tv-FormItem-text-color-weaken);
+    font-size: var(--tv-FormItem-font-size);
   }
 }

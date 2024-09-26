@@ -121,24 +121,10 @@
   &__valid {
     .component-css-vars-form();
     &.@{tooltip-prefix-cls}.@{tooltip-prefix-cls}__popper {
-      padding: var(--ti-Form-valid-padding-vertical) var(--ti-Form-valid-padding-horizontal);
-
       .tooltip-validate-icon {
         fill: var(--ti-tooltip-validate-icon-color);
         margin-right: 8px;
         font-size: 16px;
-      }
-
-      &[x-placement^='top'] .popper__arrow {
-        bottom: -4px;
-      }
-
-      &[x-placement^='top'] {
-        margin-bottom: 6px;
-      }
-
-      &[x-placement^='bottom'] {
-        margin-top: 6px;
       }
     }
     .@{form-item-prefix-cls}__validate-message {
@@ -152,7 +138,6 @@
       height: auto;
       vertical-align: inherit;
       color: var(--ti-Form-display-label-color);
-      padding-bottom: var(--ti-Form-display-label-padding-bottom);
     }
 
     .tiny-form-item__content {
@@ -170,14 +155,6 @@
     }
 
     .@{form-item-prefix-cls}__content {
-      .tiny-checkbox {
-        line-height: 1.5;
-      }
-
-      .tiny-radio {
-        line-height: 1;
-        padding: 0;
-      }
       .@{switch-prefix-cls} {
         margin-top: 0;
       }
@@ -185,32 +162,6 @@
         &.@{range-editor-prefix-cls}.@{input-prefix-cls}__inner {
           height: 18px;
         }
-      }
-      .@{textarea-prefix-cls}__inner {
-        height: 0;
-        padding: 0;
-        border-style: none;
-      }
-    }
-    .@{form-item-prefix-cls}--medium .@{form-item-prefix-cls}__content,
-    .@{form-item-prefix-cls}--small .@{form-item-prefix-cls}__content,
-    .@{form-item-prefix-cls}--mini .@{form-item-prefix-cls}__content {
-      .@{input-prefix-cls} .@{input-prefix-cls}__inner {
-        height: 36px;
-        line-height: 36px;
-      }
-    }
-    .@{form-item-prefix-cls}--medium {
-      .@{form-item-prefix-cls}__label,
-      .@{form-item-prefix-cls}__content {
-        font-size: 14px;
-      }
-      .@{form-item-prefix-cls}__content .@{css-prefix}tooltip {
-        font-size: 14px;
-      }
-
-      .@{form-item-prefix-cls}__label {
-        padding-bottom: 12px;
       }
     }
   }
