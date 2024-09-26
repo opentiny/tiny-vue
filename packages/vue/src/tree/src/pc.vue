@@ -22,11 +22,7 @@
     }"
     role="tree"
   >
-    <!-- 树视图 -->
     <template v-if="viewType === 'tree'">
-      <!-- 使用虚拟滚动组件 -->
-       {{ console.log('state.root', state.root)}}
-       {{console.log('length1',state.flattenedTreeData.length)}}
       <TinyVirtualScroll
         v-if="nodeHeight"
         :data="state.flattenedTreeData"
@@ -35,7 +31,6 @@
         direction="vertical"
         ref="scrollRef"
       >
-      
         <template #default="virtualProps">
           <tree-node
             :action="state.action"

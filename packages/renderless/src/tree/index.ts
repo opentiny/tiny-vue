@@ -1052,7 +1052,6 @@ export const setCheckedByNodeKey =
 // 扁平化数据(虚拟滚动)
 export const computedFlattenedTreeData = () => (props, state) => {
   const data = state.root.childNodes
-  // console.log('the node', state.root.childNodes, state)
   const stack: TreeNode[] = data.slice().reverse()
   const newData: TreeNode[] = []
   while (stack.length) {
@@ -1061,6 +1060,5 @@ export const computedFlattenedTreeData = () => (props, state) => {
     if (!node.expanded) continue
     stack.push(...(node.childNodes || []).reverse().filter((v) => v.expanded))
   }
-  console.log('new data', newData)
   return newData
 }

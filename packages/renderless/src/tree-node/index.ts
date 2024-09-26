@@ -178,43 +178,26 @@ export const handleExpandIconClick =
       event.stopPropagation()
     }
   }
-// 需要
 export const handleExpandClick =
   ({ emit, vm, props, state }) =>
   (nodeClickFlag) => {
-    console.log('flag', nodeClickFlag, state, props, vm, props.node.childNodes)
     if (nodeClickFlag) {
       state.tree.$parent.$emit('node-click', props.node.data, props.node, vm)
     }
-    console.log('leaf', props.node.isLeaf)
     if (props.node.isLeaf) {
       return
     }
-    console.log('expand', state.expanded)
     if (state.expanded) {
       state.tree.$parent.$emit('node-collapse', props.node.data, props.node, vm)
       props.node.collapse()
-      // props.node.childNodes?.forEach((n) => {
-      //   // console.log('n', n);
-      //   // n?.collapse()
-      //   n.visible = false;
-      // })
-      console.log(props, 'props');
 
       emit('node-collapse', props.node.data, props.node, vm)
     } else {
       props.node.expand()
-      // props.node.childNodes?.forEach((n) => {
-      //   // console.log('n', n);
-      //   // n?.expand()
-      //   n.visible = true;
-      // })
-      // console.log(state.getNode(props.node.data))
       emit('node-expand', props.node.data, props.node, vm)
     }
   }
 
-// 点击节点 或 点击checkbox的，都会进入该函数(需要)
 export const handleCheckChange =
   ({ nextTick, props, state }) =>
   (value, event = {}) => {
