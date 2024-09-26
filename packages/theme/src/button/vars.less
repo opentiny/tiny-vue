@@ -248,25 +248,43 @@
   //      无边框混排：[is-icon &&  --text]
   // <img>+ 文字
 
+  // 仅图标且default主题时， 外边框的颜色
   --tv-Button-border-color-only-icon-default: var(--tv-color-border);
+  // 仅图标且default主题时， 外边框的悬浮色
   --tv-Button-border-color-only-icon-default-hover: var(--tv-color-border-secondary);
-  --tv-Button-border-radius-only-icon: var(--tv-border-radius-md); // 有边框 方的圆角 6px
+  // 仅图标且有边框时，边框的圆角大
+  --tv-Button-border-radius-only-icon: var(--tv-border-radius-md);
 
-  --tv-Button-border-radius-only-icon-ontext: var(--tv-border-radius-sm); // 无边框阴影圆角 4px
-  --tv-Button-bg-color-only-icon-ontext: transparent; // 仅图标-无边框的背景色
+  // 仅图标且无边框时，背景阴影的圆角
+  --tv-Button-border-radius-only-icon-ontext: var(--tv-border-radius-sm);
+  // 仅图标-无边框的背景色
+  --tv-Button-bg-color-only-icon-ontext: transparent;
+  // 仅图标-无边框的悬浮时的背景色
   --tv-Button-bg-color-only-icon-ontext-hover: var(--tv-color-bg);
 
-  --tv-Button-text-color-ontext: var(--tv-color-text-link); // 纯文字时为蓝色图标
+  // 纯文字时，文字颜色
+  --tv-Button-text-color-ontext: var(--tv-color-text-link); // 蓝色文字
+  // 纯文字时，文字的禁用色
   --tv-Button-text-color-ontext-disabled: var(--tv-color-text-disabled);
-  --tv-Button-font-size-ontext: var(--tv-font-size-md); // 纯文字 14px
+  //  纯文字时，字体大小
+  --tv-Button-font-size-ontext: var(--tv-font-size-md);
 
-  --tv-Button-margin-right-isicon-svg: var(--tv-space-sm); // 混排有边框和无边框时，图标右边距
+  // 混排有边框和无边框时，图标右边距
+  --tv-Button-margin-right-isicon-svg: var(--tv-space-sm);
 
-  --tv-Button-text-color-isicon-ontext: var(--tv-color-text); // 混排无边框时,  黑色文字
+  // 混排无边框时,文字的颜色
+  --tv-Button-text-color-isicon-ontext: var(--tv-color-text); // 黑色文字
+  // 混排无边框时,文字的禁用色
   --tv-Button-text-color-isicon-ontext-disabled: var(--tv-color-text-disabled);
-  --tv-Button-font-size-isicon-ontext: var(--tv-font-size-md); //混排无边框时
+  //混排无边框时，字体大小
+  --tv-Button-font-size-isicon-ontext: var(--tv-font-size-md);
 
   //------------------------------------------------------ 场景5、 其它场景
-  --tv-Button-margin-left-btn-to-btn-md: var(--tv-space-md); // 相邻按钮有默认的margin-left
+  // 相邻按钮的默认的左外边距
+  --tv-Button-margin-left-btn-to-btn-md: var(--tv-space-md);
+  // 相邻大按钮的默认的左外边距
   --tv-Button-margin-left-btn-to-btn-lg: var(--tv-space-xl);
+
+  // loading时，svg的右外边距
+  --tv-Button-margin-right-isloading-svg: var(--tv-space-sm); // loading时，svg的右外边距
 }
