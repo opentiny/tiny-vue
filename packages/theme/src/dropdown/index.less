@@ -22,7 +22,7 @@
 
   display: inline-block;
   position: relative;
-  color: var(--tv-Dropdown-text-color);
+  color: var(--tv-Dropdown-text-color-link);
   font-size: var(--tv-Dropdown-font-size);
   line-height: var(--tv-Dropdown-line-height);
 
@@ -30,10 +30,31 @@
     display: inline-block;
   }
 
-  & &__trigger:not(.tiny-button) {
-    display: flex;
-    align-items: center;
+  &__trigger {
+    .tiny-dropdown__suffix-inner {
+      margin-left: var(--tv-Dropdown-icon-margin-left);
 
+      .@{svg-prefix-cls} {
+        fill: var(--tv-Dropdown-icon-color-link);
+        font-size: var(--tv-Dropdown-icon-size);
+      }
+    }
+
+    &.@{css-prefix}button {
+      .@{svg-prefix-cls} {
+        fill: var(--tv-Dropdown-icon-color-white);
+      }
+    }
+
+    &.@{css-prefix}button--default {
+      .@{svg-prefix-cls} {
+        fill: var(--tv-Dropdown-icon-color);
+      }
+    }
+  }
+
+  /* 纯图标按钮 */
+  &__trigger:not(.tiny-button) {
     &:not(:has(.@{dropdown-prefix-cls}__title)) > .@{dropdown-prefix-cls}__suffix-inner {
       .tiny-svg {
         font-size: var(--tv-Dropdown-icon-size-only-svg);
@@ -46,50 +67,23 @@
     }
   }
 
-  & &__trigger {
-    .tiny-dropdown__suffix-inner {
-      margin-left: var(--tv-Dropdown-icon-margin-left);
-      .@{svg-prefix-cls} {
-        fill: var(--tv-Dropdown-icon-color-link);
-        font-size: var(--tv-Dropdown-icon-size);
-      }
-    }
-
-    &.@{css-prefix}button .@{svg-prefix-cls} {
-      fill: var(--tv-Dropdown-icon-color-white);
-      margin-left: var(--tv-Dropdown-icon-margin-left);
-    }
-
-    &.@{css-prefix}button--default .@{svg-prefix-cls} {
-      fill: var(--tv-Dropdown-icon-color);
-    }
-
-    &:not(.@{dropdown-prefix-cls}__caret-button):not(.is-disabled):hover {
-      color: var(--tv-Dropdown-text-color-hover);
-    }
-
-    &.is-disabled {
-      cursor: not-allowed;
-      color: var(--tv-Dropdown-text-color-disabled);
-
-      .@{svg-prefix-cls} {
-        fill: var(--tv-Dropdown-icon-color-disabled);
-      }
-    }
-  }
-
-  & &__border {
-    .@{dropdown-prefix-cls}__suffix-inner {
-      margin-left: var(--tv-Dropdown-icon-margin-left);
-    }
-  }
-
+  /* 按钮组 */
   .@{css-prefix}button-group {
     display: block;
 
-    .@{css-prefix}button {
-      float: none;
+    .@{dropdown-prefix-cls}__title-button {
+      padding: var(--tv-Dropdown-title-button-padding);
+      border-right: none;
+    }
 
+    .@{dropdown-prefix-cls}__caret-button {
+      padding-left: var(--tv-Dropdown-caret-button-padding-left);
+      position: relative;
+      border-left: none;
+      min-width: 24px;
+    }
+
+    .@{css-prefix}button {
       &--medium {
         & + .@{css-prefix}button.@{css-prefix}button--medium {
           margin-left: 0;
@@ -104,56 +98,39 @@
     }
   }
 
-  & .@{dropdown-prefix-cls}__title-button {
-    padding: var(--tv-Dropdown-title-button-padding);
-
-    &.is-disabled.tiny-button--default:hover {
-      z-index: 0;
-    }
-  }
-
-  & &__trigger.@{dropdown-prefix-cls}__caret-button {
-    padding-left: var(--tv-Dropdown-caret-button-padding-left);
-    position: relative;
-    border-left: none;
-    min-width: 24px;
-
-    &:hover {
-      .tiny-svg {
-        fill: var(--tv-Dropdown-icon-color-hover);
-      }
-    }
-  }
-
   .@{dropdown-prefix-cls}-selfdefine:focus:active,
   .@{dropdown-prefix-cls}-selfdefine:focus:not(.focusing) {
     outline-width: 0;
   }
 
+  /* 悬浮态 */
   &:hover {
     cursor: pointer;
   }
 
-  .@{css-prefix}button {
-    &.tiny-button--default {
-      .tiny-dropdown__suffix-inner {
+  &__trigger:hover {
+    &.@{css-prefix}button {
+      &.tiny-button--default {
         .tiny-svg {
-          fill: var(--tv-Dropdown-icon-color);
-        }
-      }
-      &:hover {
-        .tiny-dropdown__suffix-inner {
-          .tiny-svg {
-            fill: var(--tv-Dropdown-icon-color-hover);
-          }
+          fill: var(--tv-Dropdown-icon-color-hover);
         }
       }
     }
   }
 
+  /* 禁用态 */
+  & .is-disabled {
+    cursor: not-allowed;
+    color: var(--tv-Dropdown-text-color-disabled);
+
+    .@{svg-prefix-cls} {
+      fill: var(--tv-Dropdown-icon-color-disabled);
+    }
+  }
+
+  /* 下拉图标旋转 */
   &--visible {
-    // rotate(180deg) 会受svg的margin影响，位置会变动！
-    transform: scaleY(-1);
+    transform: scaleY(-1); // rotate(180deg) 会受svg的margin影响，位置会变动！
     transform-origin: center;
   }
 }

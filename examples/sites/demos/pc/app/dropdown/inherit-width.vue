@@ -2,7 +2,7 @@
   <div class="demo-drop">
     <p class="demo-dropdown">场景1：默认</p>
     <tiny-dropdown split-button type="success">
-      更多菜单
+      更多菜单（标题很长示例）
       <template #dropdown>
         <tiny-dropdown-menu>
           <tiny-dropdown-item>黄金糕</tiny-dropdown-item>
@@ -16,7 +16,7 @@
     <br /><br />
     <p class="demo-dropdown">场景2：设置 inherit-width</p>
     <tiny-dropdown split-button type="success" :inherit-width="true">
-      更多菜单
+      更多菜单（标题很长示例）
       <template #dropdown>
         <tiny-dropdown-menu>
           <tiny-dropdown-item>黄金糕</tiny-dropdown-item>

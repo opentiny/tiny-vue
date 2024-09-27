@@ -1,37 +1,37 @@
 .component-css-vars-dropdown() {
   // 下拉菜单触发元素的字号
-  --tv-Dropdown-font-size: var(--tv-font-size-md);
+  --tv-Dropdown-font-size: var(--tv-font-size-md, 14px);
   // 下拉菜单触发元素的行高
-  --tv-Dropdown-line-height: var(--tv-line-height-number);
-  // 触发源的文字颜色
-  --tv-Dropdown-text-color: var(--tv-color-text-link);
-  // 触发源的文本悬浮色
-  --tv-Dropdown-text-color-hover: var(--tv-color-text-link-hover);
+  --tv-Dropdown-line-height: var(--tv-line-height-number, 1.5);
+  // 触发源的文字颜色(主色黑）
+  --tv-Dropdown-text-color: var(--tv-color-text, #191919);
+  // 触发源的文字颜色(主色蓝）
+  --tv-Dropdown-text-color-link: var(--tv-color-text-link, #1476ff);
   // 触发源的文本禁用色
-  --tv-Dropdown-text-color-disabled: var(--tv-color-text-disabled);
+  --tv-Dropdown-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
 
   // 触发源的图标尺寸（文字+图标按钮）
-  --tv-Dropdown-icon-size: var(--tv-icon-size);
+  --tv-Dropdown-icon-size: var(--tv-icon-size, 16px);
   // 触发源的图标尺寸(纯图标按钮）
   --tv-Dropdown-icon-size-only-svg: 24px;
   // 触发源图标的左侧外边距
   --tv-Dropdown-icon-margin-left: var(--tv-space-base, 4px);
 
   // 默认按钮图标颜色
-  --tv-Dropdown-icon-color: var(--tv-color-icon);
+  --tv-Dropdown-icon-color: var(--tv-color-icon, #808080);
   // 下拉菜单触发元素按钮类型时图标颜色
-  --tv-Dropdown-icon-color-white: var(--tv-color-icon-white, #fff);
+  --tv-Dropdown-icon-color-white: var(--tv-color-icon-white, #ffffff);
   // 默认按钮图标 hover 颜色
-  --tv-Dropdown-icon-color-hover: var(--tv-icon-hover);
+  --tv-Dropdown-icon-color-hover: var(--tv-icon-hover, #191919);
   // 触发源的图标颜色
-  --tv-Dropdown-icon-color-link: var(--tv-color-icon-link);
+  --tv-Dropdown-icon-color-link: var(--tv-color-icon-link, #1476ff);
   // 触发源的图标禁用色
-  --tv-Dropdown-icon-color-disabled: var(--tv-color-icon-disabled);
+  --tv-Dropdown-icon-color-disabled: var(--tv-color-icon-disabled, #c2c2c2);
 
   // 触发源只有图标时的图标悬浮背景色
-  --tv-Dropdown-bg-color-only-svg-hover: var(--tv-color-bg-hover);
+  --tv-Dropdown-bg-color-only-svg-hover: var(--tv-color-bg-hover, #f5f5f5);
   // 触发源只有图标时的图标圆角
-  --tv-Dropdown-border-radius-only-svg-hover: var(--tv-border-radius-sm);
+  --tv-Dropdown-border-radius-only-svg-hover: var(--tv-border-radius-sm, 4px);
 
   // 按钮组时，下拉按钮的左侧内边距
   --tv-Dropdown-caret-button-padding-left: var(--tv-space-base, 4px);
