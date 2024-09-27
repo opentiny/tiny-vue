@@ -8,5 +8,5 @@ test('左侧插槽是否正常显示', async ({ page }) => {
   const prefix = search.locator('.tiny-search__prefix > svg')
 
   await expect(prefix).toBeVisible()
-  await expect(prefix).toHaveCSS('font-size', '14px')
+  await expect(prefix).toHaveCSS('font-size', '16px')
 })

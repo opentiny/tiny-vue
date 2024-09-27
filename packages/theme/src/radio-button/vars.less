@@ -10,26 +10,31 @@
 *
 */
 
-.component-css-vars-radio-button() {
-  --ti-radio-button-text-color: var(--ti-common-color-text-secondary);
-  --ti-radio-button-hover-text-color: var(--ti-common-color-bg-emphasize);
-  --ti-radio-button-border-radius: var(--ti-common-space-6);
-  --ti-radio-button-font-size: var(--ti-common-font-size-base, 12px);
-  --ti-radio-button-bg-color: var(--ti-common-color-bg-normal);
-  --ti-radio-button-checked-normal-bg-color: #1476FF;
-  --ti-radio-button-checked-normal-box-shadow: #1476FF;
-  --ti-radio-button-checked-hover-bg-color: var(--ti-common-color-prompt-bg);
-  --ti-radio-button-checked-hover-box-shadow: #1293ff;
-  --ti-radio-button-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
-  --ti-radio-button-disabled-checked-text-color: var(--ti-common-color-text-weaken);
-  --ti-radio-button-disabled-bg-color: var(--ti-common-color-bg-disabled);
-  --ti-radio-button-medium-font-size: var(--ti-common-font-size-1, 14px);
-  --ti-radio-button-margin-right: var(--ti-common-space-2);
-  --ti-radio-button-border-left: 0;
-  --ti-radio-button-child-left-border-radius: var(--ti-common-space-6);
-  --ti-radio-button-child-right-border-radius: var(--ti-common-space-6);
-  --ti-radio-button-padding-verticals: 5px;
-  --ti-radio-button-active-disabled-color: var(--ti-common-color-text-weaken);
-  --ti-radio-button-active-disabled-bg-color: var(--ti-common-color-bg-dark-disabled);
-  --ti-radio-button-checked-disabled-bg-color: var(--ti-common-color-bg-dark-disabled);
+.inject-RadioButton-vars() {
+  // 单选框按钮文本色
+  --tv-RadioButton-text-color: var(--tv-color-text);
+  // 单选框按钮圆角
+  --tv-RadioButton-border-radius: var(--tv-border-radius-md);
+  // 单选框按钮字体大小
+  --tv-RadioButton-font-size: var(--tv-font-size-md);
+  // 单选框按钮背景色
+  --tv-RadioButton-bg-color: var(--tv-color-bg);
+  // 单选框按钮选中背景色
+  --tv-RadioButton-checked-bg-color: var(--tv-color-bg-active-control);
+  // 单选框按钮悬浮背景色
+  --tv-RadioButton-checked-hover-bg-color: var(--tv-color-bg-hover-1);
+  // 单选框按钮禁用文本色
+  --tv-RadioButton-disabled-text-color: var(--tv-color-text-disabled);
+  // 单选框按钮选中状态禁用文本色
+  --tv-RadioButton-disabled-checked-text-color: var(--tv-color-text-weaken);
+  // 单选框按钮禁用背景色
+  --tv-RadioButton-disabled-bg-color: var(--tv-color-bg-disabled);
+  // 单选框按钮选中状态禁用背景色
+  --tv-RadioButton-checked-disabled-bg-color: var(--tv-color-bg-disabled-control-checked);
+  // 单选框按钮中等尺寸
+  --tv-RadioButton-size-height-md: var(--tv-size-height-md);
+  // 单选框按钮小型尺寸
+  --tv-RadioButton-size-height-sm: var(--tv-size-height-sm);
+  // 单选框按钮超小尺寸
+  --tv-RadioButton-size-height-xs: var(--tv-size-height-xs);
 }

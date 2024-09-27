@@ -20,7 +20,7 @@
 @input-group-prefix-cls: ~'@{css-prefix}input-group';
 
 .@{input-prefix-cls} {
-  .component-css-vars-input();
+  .inject-Input-vars();
 
   position: relative;
   font-size: var(--tv-Input-font-size);
@@ -327,7 +327,7 @@
 
 // 配置前置或者后置插槽
 .@{input-group-prefix-cls} {
-  .component-css-vars-input();
+  .inject-Input-vars();
 
   line-height: normal;
   display: inline-table;

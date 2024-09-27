@@ -12,8 +12,8 @@ test('是否可以拖拽上传', async ({ page }) => {
   const path = require('node:path')
   const currentPath = path.resolve(__dirname, '测试.jpg')
 
-  await expect(drag).toHaveCSS('width', '360px')
-  await expect(drag).toHaveCSS('height', '180px')
+  await expect(drag).toHaveCSS('width', '100px')
+  await expect(drag).toHaveCSS('height', '100px')
   await fileChooser.setFiles(currentPath)
   await lists.getByText('测试.jpg').isVisible()
   await expect(input).toHaveAttribute('accept', '.png,.jpeg,.jpg')

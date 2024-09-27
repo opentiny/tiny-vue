@@ -12,7 +12,7 @@
 
 .component-css-vars-breadcrumb() {
   // 字号
-  --ti-breadcrumb-font-size: var(--ti-common-font-size-base);
+  --ti-breadcrumb-font-size: var(--ti-common-font-size-base, 14px);
   // 文本行高
   --ti-breadcrumb-text-line-height: 22px;
   // 文本色
@@ -20,21 +20,21 @@
   // 字族
   --ti-breadcrumb-font-family: var(--ti-common-font-family, 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei');
   // 分隔符填充色
-  --ti-breadcrumb-separator-text-color: var(--ti-common-color-placeholder, #adb0b8);
+  --ti-breadcrumb-separator-text-color: var(--ti-common-color-placeholder, #808080);
   // 分割箭头宽度
-  --ti-breadcrumb-separator-width: var(--ti-common-size-4x);
+  --ti-breadcrumb-separator-width: var(--ti-common-size-4x, 16px);
   // 分隔图标的垂直外边距
   --ti-breadcrumb-separator-margin-vertical: var(--ti-common-space-0, 0px);
   // 分隔图标的水平外边距
   --ti-breadcrumb-separator-margin-horizontal: var(--ti-common-space-base, 4px);
   // 悬浮文本色
-  --ti-breadcrumb-hover-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --ti-breadcrumb-hover-text-color: var(--ti-common-color-primary-normal, #191919);
   // 悬浮文本下划线
   --ti-breadcrumb-hover-text-decoration: underline;
   // 当前节点字重
   --ti-breadcrumb-text-font-weight: var(--ti-common-font-weight-7, bold);
   // 当前节点文本色
-  --ti-breadcrumb-selected-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --ti-breadcrumb-selected-text-color: var(--ti-common-color-text-primary, #191919);
   // 当前节点悬浮文本色
   --ti-breadcrumb-selected-hover-text-color: var(--ti-breadcrumb-selected-text-color);
 }
