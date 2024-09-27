@@ -1,22 +1,23 @@
 /** 文档显示风格设置 */
 const getStyleSettings = (i18nByKey) => {
   const styleSettings = [
-    {
-      // 语言选择
-      name: 'localeMode',
-      defaultValue: 'zhCN',
-      title: i18nByKey('localeType'),
-      options: [
-        {
-          value: 'zhCN',
-          text: i18nByKey('zh-cn')
-        },
-        {
-          value: 'enUS',
-          text: i18nByKey('en-us')
-        }
-      ]
-    },
+    /** 官网英文适配后放开 */
+    // {
+    //   // 语言选择
+    //   name: 'localeMode',
+    //   defaultValue: 'zhCN',
+    //   title: i18nByKey('localeType'),
+    //   options: [
+    //     {
+    //       value: 'zhCN',
+    //       text: i18nByKey('zh-cn')
+    //     },
+    //     {
+    //       value: 'enUS',
+    //       text: i18nByKey('en-us')
+    //     }
+    //   ]
+    // },
     {
       // 示例代码风格
       name: 'apiMode',

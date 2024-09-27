@@ -48,7 +48,8 @@ const isZhCn = location.href.includes(`/${zhPath}`)
 const isEnUs = location.href.includes(`/${enPath}`)
 const notMatchLang = (isZhCn && appData.lang !== ZH_CN_LANG) || (isEnUs && appData.lang !== EN_US_LANG)
 if (notMatchLang) {
-  appData.lang = isEnUs ? EN_US_LANG : ZH_CN_LANG
+  // appData.lang = isEnUs ? EN_US_LANG : ZH_CN_LANG 官网先屏蔽英文内容
+  appData.lang = isEnUs ? ZH_CN_LANG : ZH_CN_LANG
   i18n.global.locale = appData.lang
 }
 
