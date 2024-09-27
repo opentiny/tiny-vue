@@ -12,14 +12,14 @@ const context = import.meta.env.VITE_CONTEXT
 let routes = [
   // 组件总览
   {
-    path: `${context}:all?/:lang/:theme/overview`,
+    path: `${context}:all?/zh-CN/:theme/overview`,
     component: Layout,
     name: 'overview',
     children: [{ name: 'Overview', path: '', component: Overview, meta: { title: '组件总览 | TinyVue' } }]
   },
   // 组件
   {
-    path: `${context}:all?/:lang/:theme/components/:cmpId`,
+    path: `${context}:all?/zh-CN/:theme/components/:cmpId`,
     component: Layout,
     name: 'components',
     children: [{ name: 'Components', path: '', component: Components }]
