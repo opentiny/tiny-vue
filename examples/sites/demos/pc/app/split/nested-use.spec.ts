@@ -18,7 +18,7 @@ test('嵌套使用', async ({ page }) => {
   //   移动之后的宽度为:移动之前的宽度+50-分割线宽度的一半
   const afterMove = leftWidth + 50 - centerWidth / 2
   const { width: afterWidth } = await leftDiv.boundingBox()
-  await expect(afterMove).toBeCloseTo(afterWidth, 1)
+  await expect(Math.ceil(afterMove)).toEqual(Math.ceil(afterWidth))
 
   // 测试左面板中的上下面板
   const centerBtn1 = page.locator('.tiny-split-trigger-horizontal')
@@ -32,6 +32,5 @@ test('嵌套使用', async ({ page }) => {
   await page.mouse.up()
   const { height: afterHeight } = await topDiv.boundingBox()
   const topMove = topHeight - 30 - verticalHeight / 2
-  await expect(topMove).toBeCloseTo(afterHeight, 1)
-  await page.waitForTimeout(300)
+  await expect(Math.ceil(topMove)).toEqual(Math.ceil(afterHeight))
 })

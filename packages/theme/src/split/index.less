@@ -18,18 +18,24 @@
 
 .@{split-prefix-cls} {
   &-wrapper {
-    .component-css-vars-split();
+    .inject-Split-vars();
 
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    box-shadow: 0 0 0 1px #d9d9d9;
+    border-radius: var(--tv-Split-wrapper-radius-size);
+    border: 1px solid var(--tv-Split-wrapper-border-color);
+
+    // split嵌套使用内部不需要圆角和边框
+    & & {
+      border-radius: 0;
+      border: none;
+    }
   }
 
   &-pane {
     position: absolute;
-    font-size: var(--ti-split-pane-font-size);
 
     &.left-pane,
     &.right-pane {
@@ -67,6 +73,7 @@
       position: absolute;
       transform: translate(-50%, -50%);
       z-index: 10;
+      transition: all 0.1s;
     }
 
     &-bar-con {
@@ -75,53 +82,52 @@
 
       &.vertical {
         top: 50%;
-        height: 28px;
-        transform: translate(0, -50%);
+        width: 16px;
+        transform: translate(-4px, -50%);
 
         svg {
           transform: translateX(5px);
-          fill: #d5d5d5;
+          fill: var(--tv-Split-trigger-icon-line-color);
         }
       }
 
       &.horizontal {
         left: 50%;
-        width: 28px;
+        width: 16px;
         transform: translate(-50%, 0);
 
         svg {
-          transform: translateY(5px);
-          fill: #d5d5d5;
+          transform: translateY(2px);
+          fill: var(--tv-Split-trigger-icon-line-color);
         }
       }
     }
 
     &-vertical {
-      width: 4px;
+      width: 1px;
       height: 100%;
-      background: #eaecf1;
+      background: var(--tv-Split-wrapper-border-color);
       cursor: e-resize;
 
       .@{split-prefix-cls}-trigger-bar {
         width: 4px;
         height: 4px;
-        background: #4e4e4e;
+        background: var(--tv-Split-wrapper-border-color);
         float: left;
         margin-top: 4px;
-        border-radius: 50%;
       }
     }
 
     &-horizontal {
-      height: 4px;
+      height: 1px;
       width: 100%;
-      background: #eaecf1;
+      background: var(--tv-Split-wrapper-border-color);
       cursor: n-resize;
 
       .@{split-prefix-cls}-trigger-bar {
         height: 4px;
         width: 4px;
-        background: #4e4e4e;
+        background: var(--tv-Split-wrapper-border-color);
         float: left;
         margin-left: 4px;
         border-radius: 50%;
@@ -149,7 +155,6 @@
       .@{split-prefix-cls}-trigger-left-button {
         transform: translate(0, -50%);
         left: -6px;
-        border-radius: var(--ti-split-trigger-button-border-radius) 0 0 var(--ti-split-trigger-button-border-radius);
         border-right: 0;
       }
 
@@ -159,7 +164,6 @@
 
       .@{split-prefix-cls}-trigger-right-button {
         transform: translate(0, -50%);
-        border-radius: 0 var(--ti-split-trigger-button-border-radius) var(--ti-split-trigger-button-border-radius) 0;
         left: 9px;
         border-left: 0;
       }
@@ -168,11 +172,7 @@
     .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-disabled {
       .@{split-prefix-cls}-trigger-vertical,
       .@{split-prefix-cls}-trigger-horizontal {
-        cursor: auto;
-
-        &:hover {
-          background: #eaecf1;
-        }
+        cursor: not-allowed;
       }
     }
 
@@ -214,7 +214,6 @@
 
       .@{split-prefix-cls}-trigger-top-button {
         transform: translate(-50%, 0);
-        border-radius: var(--ti-split-trigger-button-border-radius) var(--ti-split-trigger-button-border-radius) 0 0;
         top: -6px;
         border-bottom: 0;
 
@@ -229,7 +228,6 @@
 
       .@{split-prefix-cls}-trigger-bottom-button {
         transform: translate(-50%, 0);
-        border-radius: 0 0 var(--ti-split-trigger-button-border-radius) var(--ti-split-trigger-button-border-radius);
         border-top: 0;
         top: 9px;
 
@@ -242,11 +240,7 @@
     .@{split-prefix-cls}-trigger-con.@{split-prefix-cls}-trigger-con-disabled {
       .@{split-prefix-cls}-trigger-vertical,
       .@{split-prefix-cls}-trigger-horizontal {
-        cursor: auto;
-
-        &:hover {
-          background: #eaecf1;
-        }
+        cursor: not-allowed;
       }
     }
 
@@ -277,30 +271,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: var(--ti-split-trigger-button-border-width) solid var(--ti-split-trigger-button-border-color);
-    background: var(--ti-split-trigger-button-bg-color);
     transition: all 0.1s;
     visibility: hidden;
 
     .@{css-prefix}svg {
-      fill: #939393;
+      fill: var(--tv-Split-trigger-icon-line-color);
     }
 
     &:hover {
       cursor: pointer;
 
       .@{css-prefix}svg {
-        fill: #282c43;
+        fill: var(--tv-Split-trigger-icon-line-color-hover);
       }
     }
   }
 
   &-trigger-button-show {
     visibility: visible;
-  }
-
-  &-trigger-con {
-    transition: all 0.1s;
   }
 
   &-trigger-con-drag {
@@ -328,7 +316,7 @@
 
     &:hover {
       .@{split-prefix-cls}-trigger {
-        background: #0072e8;
+        background: var(--tv-Split-trigger-line-bg-hover);
       }
     }
   }

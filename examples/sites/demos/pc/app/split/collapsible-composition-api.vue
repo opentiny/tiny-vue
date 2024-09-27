@@ -42,7 +42,6 @@ function collapsedChangeVertical(collapsed) {
 <style scoped>
 .split-v-model {
   height: 200px;
-  border: 1px solid var(--ti-common-color-line-dividing);
 }
 
 .demo-split-pane {
@@ -51,7 +50,6 @@ function collapsedChangeVertical(collapsed) {
 
 .demo-split {
   height: 200px;
-  border: 1px solid #d9d9d9;
   margin-bottom: 20px;
 }
 </style>
