@@ -23,7 +23,7 @@ test('测试表单尺寸', async ({ page }) => {
   await expect(firstLabel).toHaveCSS('line-height', miniHeight)
 
   // small表单
-  const smallHeight = '32px'
+  const smallHeight = '28px'
   await getBtnByText('small').click()
   await expect(form.locator('.tiny-form-item--small')).toHaveCount(7)
   await expect(submitBtn).toHaveClass(/tiny-button--small/)

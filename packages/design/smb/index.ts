@@ -4,7 +4,6 @@ import Popconfirm from './src/popconfirm'
 import Drawer from './src/drawer'
 import Dropdown from './src/dropdown'
 import DropdownItem from './src/dropdown-item'
-import Form from './src/form'
 import FilterBox from './src/filter-box'
 import Grid from './src/grid'
 import Guide from './src/guide'
@@ -30,7 +29,6 @@ export default {
     Drawer,
     Dropdown,
     DropdownItem,
-    Form,
     FilterBox,
     Grid,
     Guide,
