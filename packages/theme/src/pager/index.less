@@ -47,10 +47,6 @@
   & &__total {
     height: var(--tv-Pager-height);
     line-height: var(--tv-Pager-height);
-
-    &-num {
-      font-family: var(--tv-Pager-number-font-family);
-    }
   }
 
   & &__total-allpage {
@@ -65,7 +61,6 @@
   & &__pages {
     display: inline-flex;
     font-size: var(--tv-Pager-font-size);
-    font-family: var(--tv-Pager-number-font-family);
 
     li {
       background: transparent;
@@ -126,6 +121,7 @@
         border: 1px solid var(--tv-Pager-page-item-border-color-hover);
       }
     }
+
     li:last-child {
       margin-right: 0;
     }
@@ -188,41 +184,6 @@
 
       &-sufix {
         padding-left: 4px;
-      }
-    }
-
-    button {
-      height: var(--tv-Pager-input-height);
-      line-height: var(--tv-Pager-input-height);
-      border: 1px solid #d9d9d9;
-      vertical-align: middle;
-      border-radius: var(--tv-Pager-input-border-radius);
-      background: #fff;
-      font-size: var(--tv-Pager-font-size);
-      padding: 0 8px;
-      text-align: center;
-      display: inline-block;
-      box-sizing: border-box;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      cursor: pointer;
-      transition:
-        border 0.3s,
-        color 0.3s,
-        background 0.3s;
-      outline: 0;
-      .user-select(none);
-
-      &:hover {
-        border: 1px solid var(--tv-Pager-border-color-hover);
-        color: var(--tv-Pager-text-color);
-      }
-
-      &.is-disabled {
-        color: var(--tv-Pager-text-color-disabled);
-        border-color: var(--tv-Pager-page-item-border-color-disabled);
-        cursor: not-allowed;
       }
     }
   }
@@ -425,7 +386,6 @@
 
     .sizes {
       margin-right: var(--tv-Pager-sizes-num-margin-right);
-      font-family: var(--tv-Pager-number-font-family);
     }
   }
 
@@ -525,24 +485,6 @@
 
     .@{pager-prefix-cls}__goto-text {
       color: var(--tv-Pager-text-color-disabled);
-    }
-  }
-
-  &__simplest-pager-popover {
-    .component-css-vars-pager();
-
-    .tiny-option-label {
-      font-family: var(--tv-Pager-number-font-family);
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .@{pager-prefix-cls} {
-    text-align: left;
-
-    & &__pull-left {
-      float: none !important;
     }
   }
 }
