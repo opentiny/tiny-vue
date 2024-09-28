@@ -255,6 +255,9 @@
 
   &-small {
     .input-size(var(--tv-Input-small-height));
+    .@{input-prefix-cls}__inner {
+      font-size: var(--tv-Input-small-font-size);
+    }
     .@{input-prefix-cls}__suffix {
       top: var(--tv-Input-suffix-top-small);
     }
@@ -262,6 +265,9 @@
 
   &-mini {
     .input-size(var(--tv-Input-mini-height));
+    .@{input-prefix-cls}__inner {
+      font-size: var(--tv-Input-small-font-size);
+    }
     .@{input-prefix-cls}__suffix {
       top: var(--tv-Input-suffix-top-mini);
     }
