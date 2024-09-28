@@ -53,10 +53,14 @@ export const updatePositions =
 // 计算数据总高度
 export const calculateTotalSize = ({ props, state }) => {
   if (props.itemSize) {
-    return props.itemSize * state.data.length
+    return () => {
+      return props.itemSize * state.data.length
+    }
   }
-  const lastPosition = state.positions?.[state.positions.length - 1]
-  return lastPosition ? lastPosition.bottom : 0
+  return () => {
+    const lastPosition = state.positions?.[state.positions.length - 1]
+    return lastPosition ? lastPosition.bottom : 0
+  }
 }
 // 虚拟滚动逻辑
 export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...rest }) => {
@@ -87,7 +91,6 @@ export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...
           viewStart + viewNum + bufferItems < state.data.length ? viewStart + viewNum + bufferItems : state.data.length
 
         state.visibleData = state.data.slice(start, end)
-
         state.translate = start * props.itemSize
 
         return

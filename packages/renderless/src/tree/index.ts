@@ -13,6 +13,7 @@
 import { getNodeKey as innerGetNodekey } from '../common/deps/tree-model/util'
 import { KEY_CODE } from '../common'
 import TreeStore from '../common/deps/tree-model/tree-store'
+import type TreeNode from '../common/deps/tree-model/node'
 import { addClass, removeClass } from '../common/deps/dom'
 import { on, off } from '../common/deps/dom'
 import { getDataset } from '../common/dataset'
@@ -100,7 +101,6 @@ export const dragStart =
     emit('node-drag-start', treeNode.node, event)
   }
 
-// 移动时，判断释放在目标元素的前，后，或inner。 刚移动未离开拖动元素时，为none。
 const getDropType = (dropPrev, dropInner, dropNext, dropNode) => {
   let dropType
   const targetPosition = dropNode.$el.getBoundingClientRect()
@@ -228,7 +228,7 @@ export const dragEnd =
   (event) => {
     const dragState = state.dragState
     const { draggingNode, dropType, dropNode } = dragState
-
+    
     event.preventDefault()
 
     if (!event.dataTransfer) {
@@ -440,15 +440,18 @@ export const filter =
     if (!props.filterNodeMethod) {
       throw new Error('[Tree] filterNodeMethod is required when filter')
     }
-
     state.store.filter(value)
+    api.updateFlattenedTreeData()
     // tiny 新增： 移除了watch,所以要手动调用一下该方法
     if (props.willChangeView) {
       api.initPlainNodeStore()
     }
   }
 
-export const getNodeKey = (props) => (node) => innerGetNodekey(props.nodekey, node.data)
+export const getNodeKey = (props) => (node) => {
+  return innerGetNodekey(props.nodekey, node.data)
+}
+
 
 export const getNodePath =
   ({ props, state }) =>
@@ -481,7 +484,8 @@ export const getCheckedKeys = (state) => (leafOnly) => state.store.getCheckedKey
 
 export const getCurrentNode = (state) => () => {
   const currentNode = state.store.getCurrentNode()
-
+  console.log('当前',currentNode);
+  
   return currentNode ? currentNode.data : null
 }
 
@@ -552,7 +556,8 @@ export const setCurrentKey =
 export const getNode = (state) => (data) => state.store.getNode(data)
 
 export const remove = (state) => (data, isSaveChildNode, isNode) => {
-  state.store.remove(data, isSaveChildNode, isNode)
+  state.store.remove(data, isSaveChildNode, isNode);
+  console.log('the state', state.store);
 }
 
 export const append = (state) => (data, parentNode) => {
@@ -1044,3 +1049,20 @@ export const setCheckedByNodeKey =
       plainNode.node.setChecked(checked, !checkStrictly)
     }
   }
+
+// 扁平化数据(虚拟滚动)
+export const computedFlattenedTreeData = () => (props, state) => {
+  const data = state.root.childNodes
+  const stack: TreeNode[] = data.slice().reverse()
+  const newData: TreeNode[] = []
+  while (stack.length) {
+    const node = stack.pop()!
+    if (!node.visible) continue
+    newData.push(node)
+    console.log('aaaa',node);
+
+    if (!node.expanded) continue
+    stack.push(...(node.childNodes.slice() || []).reverse().filter((v) => v.expanded || v.visible))
+  }
+  return newData
+}

@@ -88,13 +88,16 @@ export default class TreeStore {
     }
 
     const nodeKey = typeof data !== 'object' ? data : getNodeKey(this.key, data)
-
+    console.log('node key', nodeKey, this.nodesMap);
+    
     return this.nodesMap[nodeKey] || null
   }
 
   insertBefore(data, insertData) {
     const refNode = this.getNode(insertData)
     refNode.parent.insertBefore({ data }, refNode)
+    console.log('fujiedian',refNode.parent);
+    
   }
 
   insertAfter(data, insertData) {
@@ -104,6 +107,8 @@ export default class TreeStore {
 
   remove(data, isSaveChildNode, isNode) {
     const treeNode = isNode ? data : this.getNode(data)
+    console.log('store remove',treeNode, data);
+    
 
     if (treeNode && treeNode.parent) {
       if (treeNode === this.currentNode) {
@@ -356,6 +361,8 @@ export default class TreeStore {
     if (currentNode) {
       this.currentNode.isCurrent = true
     }
+    console.log('tree store', this);
+    
   }
 
   getCurrentNode() {

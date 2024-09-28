@@ -30,7 +30,7 @@ export const api = [
   'calculateTotalSize',
   'scrollToItem'
 ]
-export const renderless = (props, { reactive, nextTick, watch, onMounted, ref }, { service }) => {
+export const renderless = (props, { reactive, nextTick, watch, onMounted, ref, computed }, { service }) => {
   service = initService({ props, service })
 
   const api = {}
@@ -61,23 +61,25 @@ export const renderless = (props, { reactive, nextTick, watch, onMounted, ref },
     state.temporary.prerender = true
     api.handleScroll()
   }
-
-  // 组件挂载后加载滚动事件
-  onMounted(() => {
+  const handle = () => {
     if (!virtualScroll.value) return
     nextTick(() => {
       api.initPositions()
       state.temporary.prerender = false
+      state.totalSize = api.calculateTotalSize()
       api.handleScroll()
-      state.totalSize = api.calculateTotalSize
     })
-  })
+  }
+  // 组件挂载后加载滚动事件
+  onMounted(handle)
   watch(
-    () => state.visibleData,
-    (newVisibleData) => {
-      state.totalSize = api.calculateTotalSize
+    () => props.data,
+    (newData) => {
+      state.data = newData
+      state.totalSize = api.calculateTotalSize()
+      nextTick(api.handleScroll)
     },
-    { immediate: true }
+    { deep: true }
   )
 
   return api
