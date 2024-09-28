@@ -26,8 +26,8 @@
       <TinyVirtualScroll
         v-if="nodeHeight"
         :data="state.flattenedTreeData"
-        :itemSize="nodeHeight"
-        :visibleSize="treeHeight"
+        :item-size="nodeHeight"
+        :visible-size="treeHeight"
         direction="vertical"
         ref="scrollRef"
       >
@@ -56,6 +56,7 @@
             :show-checked-mark="showCheckedMark"
             @node-expand="updateFlattenedTreeData"
             @node-collapse="updateFlattenedTreeData"
+            @tree-node-drag-end="updateDragTreeData(node)"
           >
             <template #prefix="slotScoped"><slot name="prefix" :node="slotScoped.node"></slot></template>
             <template #suffix="slotScoped"><slot name="suffix" :node="slotScoped.node"></slot></template>

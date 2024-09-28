@@ -30,8 +30,7 @@ export default {
   data() {
     return {
       id: 1000, // 新节点的id 从1000递增
-      data: this.generateTreeData(100),
-      currentNodeKey: '1-1'
+      data: this.generateTreeData(100)
     }
   },
   methods: {
@@ -39,17 +38,17 @@ export default {
       const data = []
       for (let i = 0; i < num; i++) {
         const children = []
-        for (let j = 0; j < Math.floor(Math.random() * 3) + 1; j++) {
+        for (let j = 0; j < Math.floor(Math.random() * 3) + 2; j++) {
           children.push({
             label: `数据 ${i}-${j}`,
             children: [], // 子节点可以继续递归生成,
-            id: i.toString()
+            id: `${i}-${j}`
           })
         }
         data.push({
           label: `数据 ${i}`,
           children,
-          id: i.toString()
+          id: `${i}`
         })
       }
       return data

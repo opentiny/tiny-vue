@@ -187,11 +187,16 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
 }
 
 const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, api }) => {
-  const callFlattened = (func: (...params: any[]) => any) => {
-    func()
-    state.flattenedTreeData = computedFlattenedTreeData(props)(props, state)
-    callback()
-  }
+  const callFlattened =
+    (func: (...psa: any[]) => (...psb: any[]) => any, ...psa) =>
+    (...params: any[]) => {
+      try {
+        console.log('called', params)
+        return func(...psa)(...params)
+      } finally {
+        state.flattenedTreeData = computedFlattenedTreeData()(props, state)
+      }
+    }
   return {
     state,
     dispatch,
@@ -219,23 +224,23 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, ap
     setCurrentNode: setCurrentNode({ props, state }),
     setCurrentKey: setCurrentKey({ props, state }),
     getNode: getNode(state),
-    remove: remove(state),
-    append: append(state),
-    insertBefore: insertBefore(state),
-    insertAfter: insertAfter(state),
-    updateKeyChildren: updateKeyChildren({ props, state }),
+    remove: callFlattened(remove, state),
+    append: callFlattened(append, state),
+    insertBefore: callFlattened(insertBefore, state),
+    insertAfter: callFlattened(insertAfter, state),
+    updateKeyChildren: callFlattened(updateKeyChildren, { props, state }),
     initTabIndex: initTabIndex({ vm, state }),
     handleKeydown: handleKeydown({ vm, state }),
     computedShowEmptyText: computedShowEmptyText({ constants, t }),
     setCurrentRadio: setCurrentRadio({ props, state }),
     expandAllNodes: expandAllNodes({ state }),
-    dragStart: dragStart({ props, state, emit }),
-    dragOver: dragOver({ props, state, emit, vm }),
-    dragEnd: dragEnd({ state, emit }),
+    dragStart: callFlattened(dragStart, { props, state, emit }),
+    dragOver: callFlattened(dragOver, { props, state, emit, vm }),
+    dragEnd: callFlattened(dragEnd, { state, emit }),
     clearCurrentStore: clearCurrentStore(state),
     initIsCurrent: debounce(20, initIsCurrent({ props, state })),
     setCheckedByNodeKey: setCheckedByNodeKey({ props, state }),
-    computedFlattenedTreeData: computedFlattenedTreeData(props)
+    computedFlattenedTreeData: computedFlattenedTreeData()
   }
 }
 
