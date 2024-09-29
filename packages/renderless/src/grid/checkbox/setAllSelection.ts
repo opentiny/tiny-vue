@@ -151,11 +151,11 @@ export function setSelectionNoStrictly({ _vm, checkStrictly, reserve, selectRows
     if (reserve) {
       // 配置了reserve为true时，只需把当前页没选中部分清除
       const unCheckedRows = afterFullData.filter((row) => !selectRows.includes(row))
-      _vm.selection = value
+      _vm.state.selection = value
         ? selection.concat(selectRows.filter((row) => !selection.includes(row)))
         : selection.filter((row) => !unCheckedRows.includes(row))
     } else {
-      _vm.selection = selectRows
+      _vm.state.selection = selectRows
     }
   }
 }
