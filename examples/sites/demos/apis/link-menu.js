@@ -62,6 +62,50 @@ export default {
           pcDemo: 'custom-icon'
         },
         {
+          name: 'expand-icon',
+          type: 'Component',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '指示展开的图标',
+            'en-US': 'Indicates the expanded icon'
+          },
+          mode: ['pc'],
+          pcDemo: 'data-resource'
+        },
+        {
+          name: 'expand-icon-color',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '指示展开的图标色',
+            'en-US': 'Indicates the expanded icon color'
+          },
+          mode: ['pc'],
+          pcDemo: 'data-resource'
+        },
+        {
+          name: 'shrink-icon',
+          type: 'Component',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '指示收缩的图标',
+            'en-US': 'Icon indicating shrink'
+          },
+          mode: ['pc'],
+          pcDemo: 'data-resource'
+        },
+        {
+          name: 'shrink-icon-color',
+          type: 'string',
+          defaultValue: '',
+          desc: {
+            'zh-CN': '指示收缩的图标色',
+            'en-US': 'Icon indicating shrink  color'
+          },
+          mode: ['pc'],
+          pcDemo: 'data-resource'
+        },
+        {
           name: 'keep-selected-nodes',
           type: 'boolean',
           defaultValue: '',

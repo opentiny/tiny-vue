@@ -93,10 +93,6 @@
     }
   }
 
-  &__dialog-btn {
-    text-align: center;
-  }
-
   .@{input-prefix-cls} {
     width: 270px;
     margin-bottom: 5px;
@@ -116,14 +112,6 @@
       transition: border 0.3s;
       outline: 0;
       box-sizing: border-box;
-    }
-  }
-
-  .@{button-prefix-cls} {
-    &:last-child {
-      color: var(--ti-link-menu-nav-item-text-color);
-      background-color: var(--ti-link-menu-btn-bg-color);
-      border-color: var(--ti-link-menu-input-border-color);
     }
   }
 
@@ -176,6 +164,13 @@
     &.@{link-menu-prefix-cls}__wrap {
       .tree-node {
         width: calc(100% - 36px);
+      }
+
+      .tree-node-icon {
+        svg.tiny-svg {
+          width: 16px;
+          height: 16px;
+        }
       }
 
       .tree-node-name {
