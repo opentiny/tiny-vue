@@ -3,20 +3,20 @@
 
 @guide-prefix-cls: ~'@{css-prefix}guide';
 .@{guide-prefix-cls} {
-  .component-css-vars-guide();
+  .inject-Guide-vars();
 
   .shepherd-arrow {
-    height: calc(var(--ti-guide-arrow-height) * 1.4);
+    height: calc(var(--tv-Guide-arrow-height) * 1.4);
     position: absolute;
-    width: calc(var(--ti-guide-arrow-width) * 1.4);
+    width: calc(var(--tv-Guide-arrow-width) * 1.4);
     z-index: -10;
     overflow: hidden;
 
     &:before {
-      width: var(--ti-guide-arrow-width);
+      width: var(--tv-Guide-arrow-width);
       position: absolute;
-      height: var(--ti-guide-arrow-height);
-      background-color: var(--ti-guide-header-bg-color);
+      height: var(--tv-Guide-arrow-height);
+      background-color: var(--tv-Guide-header-bg-color);
       transform: translate(-50%, -50%) rotate(45deg);
       left: 50%;
       top: 50%;
@@ -27,32 +27,28 @@
 
   .shepherd-content {
     width: 100%;
-    border-radius: 4px;
     padding: 0;
     outline: none;
 
     .shepherd-header {
       align-items: center;
-      border-top-left-radius: var(--ti-guide-header-border-top-left-radius);
-      border-top-right-radius: var(--ti-guide-header-border-top-right-radius);
+      border-top-left-radius: var(--tv-Guide-header-border-radius);
+      border-top-right-radius: var(--tv-Guide-header-border-radius);
       display: flex;
       justify-content: flex-end;
-      line-height: var(--ti-guide-header-line-height);
-      padding-left: var(--ti-guide-header-padding-left);
-      padding-right: var(--ti-guide-header-padding-right);
-      padding-top: var(--ti-guide-header-padding-top);
-      background-color: var(--ti-guide-header-bg-color);
+      line-height: var(--tv-Guide-header-line-height);
+      padding: 24px 24px 0;
+      background-color: var(--tv-Guide-header-bg-color);
 
       .shepherd-title {
-        font-size: var(--ti-guide-title-text-font-size);
-        color: var(--ti-guide-title-text-color);
-        line-height: var(--ti-guide-title-line-height);
-        font-weight: var(--ti-guide-title-font-weight);
+        font-size: var(--tv-Guide-title-text-font-size);
+        color: var(--tv-Guide-title-text-color);
+        line-height: var(--tv-Guide-title-line-height);
+        font-weight: var(--tv-Guide-title-font-weight);
         display: flex;
         margin: 0;
         padding: 0;
         flex: 1 0 auto;
-        font-family: PingFangSC;
       }
 
       .shepherd-cancel-icon {
@@ -65,37 +61,37 @@
         transition: color 0.5s ease;
 
         span {
-          font-size: var(--ti-guide-cancel-icon-font-size);
-          width: var(--ti-guide-cancel-icon-width);
-          height: var(--ti-guide-cancel-icon-height);
-          line-height: var(--ti-guide-cancel-icon-line-height);
-          fill: var(--ti-guide-cancel-icon-color);
           display: inline-flex;
           justify-content: center;
-          font-weight: var(--ti-guide-cancel-icon-font-weight);
-          transform: rotate(-360deg);
-          margin-top: var(--ti-guide-cancel-icon-margin-top);
-          margin-right: var(--ti-guide-cancel-icon-margin-right);
+          margin-top: -12px;
+          margin-right: -4px;
+
+          svg {
+            width: var(--tv-Guide-cancel-icon-width);
+            height: var(--tv-Guide-cancel-icon-height);
+            fill: var(--tv-Guide-cancel-icon-color);
+          }
         }
 
         span:hover {
-          fill: var(--ti-guide-cancel-hover-icon-color);
+          svg {
+            fill: var(--tv-Guide-cancel-hover-icon-color);
+          }
         }
       }
     }
 
     .shepherd-text {
-      line-height: var(--ti-guide-text-line-height);
-      color: var(--ti-guide-text-text-color);
-      font-size: var(--ti-guide-text-font-size);
-      padding: var(--ti-guide-text-padding-top) var(--ti-guide-text-padding-horizontal)
-        var(--ti-guide-text-padding-bottom);
+      line-height: var(--tv-Guide-text-line-height);
+      color: var(--tv-Guide-text-text-color);
+      font-size: var(--tv-Guide-text-font-size);
+      padding: 8px 24px 24px;
 
       .scrollBox {
         width: 100%;
         overflow: auto;
         text-align: justify;
-        padding-right: var(--ti-guide-text-scrollbox-padding-right);
+        padding-right: 8px;
 
         &::-webkit-scrollbar {
           width: 4px;
@@ -103,16 +99,17 @@
         }
 
         &::-webkit-scrollbar-thumb {
-          width: var(--ti-guide-text-scrollbar-width);
-          height: var(--ti-guide-text-scrollbar-height);
+          width: 8px;
+          height: 8px;
           border-radius: 2px;
           background-clip: padding-box;
-          border: 4px solid var(--ti-guide-text-scrollbar-border-color);
+          border: 4px solid var(--tv-Guide-text-scrollbar-border-color);
         }
       }
 
       p {
         margin-top: 0;
+
         &:last-child {
           margin-bottom: 0;
         }
@@ -120,14 +117,11 @@
     }
 
     .shepherd-footer {
-      border-bottom-right-radius: var(--ti-guide-footer-border-bottom-right-radius);
-      border-bottom-left-radius: var(--ti-guide-footer-border-bottom-left-radius);
+      border-bottom-right-radius: var(--tv-Guide-footer-border-bottom-right-radius);
+      border-bottom-left-radius: var(--tv-Guide-footer-border-bottom-left-radius);
       display: flex;
       justify-content: flex-end;
-      padding-top: 0;
-      padding-left: var(--ti-guide-footer-padding-left);
-      padding-right: var(--ti-guide-footer-padding-right);
-      padding-bottom: var(--ti-guide-footer-padding-bottom);
+      padding: 0 24px 24px;
       align-items: center;
       position: relative;
 
@@ -137,85 +131,41 @@
 
       .progress-style {
         position: absolute;
-        left: var(--ti-guide-progress-style-left);
+        left: 24px;
         font-size: 14px;
-        color: var(--ti-guide-progresss-text-color);
+        color: var(--tv-Guide-progresss-text-color);
         font-weight: 400;
-        font-family: PingFangSC;
       }
 
       .shepherd-button {
-        color: var(--ti-guide-button-text-color);
-        background-color: var(--ti-guide-button-bg-color);
+        color: var(--tv-Guide-button-text-color);
+        background-color: var(--tv-Guide-button-bg-color);
         cursor: pointer;
-        border-radius: var(--ti-guide-button-border-radius);
-        border: 1px solid var(--ti-guide-button-border);
-        width: var(--ti-guide-button-width);
-        height: var(--ti-guide-button-height);
+        border-radius: var(--tv-Guide-button-border-radius);
+        border: 1px solid var(--tv-Guide-button-border);
+        width: var(--tv-Guide-button-width);
+        height: var(--tv-Guide-button-height);
         margin-left: 8px;
+        text-align: center;
         transition: all 0.5s ease;
-        font-size: var(--ti-guide-button-font-size);
+        font-size: var(--tv-Guide-button-font-size);
 
         &:hover {
-          border-color: var(--ti-guide-button-hover-border-color);
-          background-color: var(--ti-guide-button-hover-bg-color);
-        }
-
-        &:focus {
-          background-color: var(--ti-guide-button-focus-bg-color);
-        }
-
-        &:active {
-          background-color: var(--ti-guide-button-active-bg-color);
+          border-color: var(--tv-Guide-button-hover-border-color);
         }
 
         &:disabled {
-          background-color: var(--ti-guide-button-disable-bg-color);
-          color: var(--ti-guide-button-disable-text-color);
+          background-color: var(--tv-Guide-button-disable-bg-color);
+          color: var(--tv-Guide-button-disable-text-color);
           cursor: not-allowed;
-        }
-
-        &.shepherd-button-secondary {
-          color: var(--ti-guide-button-secondary-text-color);
-          border-radius: var(--ti-guide-button-border-radius);
-          font-size: 12px;
-          text-align: center;
-          line-height: 12px;
-          font-weight: 400px;
-          margin-left: 8px;
-          border-color: var(--ti-guide-button-secondary-border-color);
-          background-color: var(--ti-guide-button-secondary-bg-color);
-          border-left-width: 1px;
-          border-right-width: 1px;
-          border-top-width: 1px;
-          border-bottom-width: 1px;
-          border-style: solid;
-
-          &:hover {
-            border-color: var(--ti-guide-button-secondary-hover-border-color);
-          }
-
-          &:active {
-            border-color: var(--ti-guide-button-secondary-active-border-color);
-          }
-
-          &:focus {
-            border-color: var(--ti-guide-button-secondary-focus-border-color);
-          }
-
-          &:disabled {
-            background-color: var(--ti-guide-button-secondary-disabled-bg-color);
-            cursor: not-allowed;
-            border-color: var(--ti-guide-button-secondary-disabled-border-color);
-            color: var(--ti-guide-button-secondary-disabled-text-color);
-          }
         }
       }
     }
   }
+
   &.only-content {
     .shepherd-header {
-      padding-top: 0px;
+      padding-top: 0;
 
       .shepherd-cancel-icon {
         position: absolute;
@@ -232,37 +182,25 @@
   .@{guide-prefix-cls}__z-top {
     z-index: 9999;
     position: relative;
-    background-color: var(--ti-guide-header-bg-color);
-  }
-
-  &.shepherd-has-title {
-    &.shepherd-content {
-      &.shepherd-cancel-icon {
-        color: hsla(0, 0%, 50%, 0.75);
-
-        &:hover {
-          color: rgba(0, 0, 0, 0.75);
-        }
-      }
-    }
+    background-color: var(--tv-Guide-header-bg-color);
   }
 
   &.shepherd-element.shepherd-has-title[data-popper-placement^='bottom'] {
     & > .shepherd-arrow:before {
-      background-color: var(--ti-guide-header-bg-color);
+      background-color: var(--tv-Guide-header-bg-color);
     }
   }
 
   &.shepherd-element {
     height: auto;
     box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.16);
-    background-color: var(--ti-guide-header-bg-color);
+    background-color: var(--tv-Guide-header-bg-color);
     opacity: 0;
     visibility: hidden;
     z-index: 9999;
     width: var(--tiny-guide-shepherd-element-size);
     outline: none;
-    border-radius: var(--ti-guide-shepherd-element-border-radius);;
+    border-radius: var(--tv-Guide-shepherd-element-border-radius);
     transition:
       opacity 0.3s,
       visibility 0.3s;
@@ -287,27 +225,23 @@
   }
 
   &.shepherd-element[data-popper-placement^='top'] > .shepherd-arrow {
-    bottom: calc(-0.7 * var(--ti-guide-arrow-width));
+    bottom: calc(-0.7 * var(--tv-Guide-arrow-width));
   }
 
   &.shepherd-element[data-popper-placement^='bottom'] > .shepherd-arrow {
-    top: calc(-0.7 * var(--ti-guide-arrow-width));
+    top: calc(-0.7 * var(--tv-Guide-arrow-width));
   }
 
   &.shepherd-element[data-popper-placement^='left'] > .shepherd-arrow {
-    right: calc(-0.7 * var(--ti-guide-arrow-width));
+    right: calc(-0.7 * var(--tv-Guide-arrow-width));
   }
 
   &.shepherd-element[data-popper-placement^='right'] > .shepherd-arrow {
-    left: calc(-0.7 * var(--ti-guide-arrow-width));
+    left: calc(-0.7 * var(--tv-Guide-arrow-width));
   }
 
   &.shepherd-element.shepherd-centered > .shepherd-arrow {
     opacity: 0;
-  }
-
-  &.shepherd-element.shepherd-has-title[data-popper-placement^='bottom'] > .shepherd-arrow:before {
-    background-color: var(--ti-guide-header-bg-color);
   }
 
   &.shepherd-target-click-disabled.shepherd-enabled.shepherd-target,
@@ -350,5 +284,5 @@
 .@{guide-prefix-cls}__z-top {
   z-index: 9999;
   position: relative;
-  background-color: var(--ti-guide-header-bg-color);
+  background-color: var(--tv-Guide-header-bg-color);
 }
