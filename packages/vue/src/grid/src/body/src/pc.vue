@@ -18,7 +18,8 @@ import { getTreeChildrenKey, getTreeShowKey, handleRowGroupFold, isVirtualRow } 
 
 // 滚动、拖动过程中不需要触发鼠标移入移出事件
 const isOperateMouse = ($table) =>
-  $table._isResize || ($table.lastScrollTime && Date.now() < $table.lastScrollTime + $table.optimizeOpts.delayHover)
+  $table._isResize ||
+  ($table.lastScrollTime && Date.now() < $table.lastScrollTime + $table.state.optimizeOpts.delayHover)
 
 // 解决静态扫描驼峰变量问题
 const classMap = {
@@ -146,7 +147,7 @@ function buildColumnChildren(args) {
       },
       // 调用column组件的renderCell渲染单元格内部的内容
       // 如果不是表格形态，就只保留表格结构（到tiny-grid-cell），不渲染具体的内容
-      $table.isShapeTable ? column.renderCell(h, params) : null
+      $table.state.isShapeTable ? column.renderCell(h, params) : null
     ),
     validNode
   ]
@@ -198,7 +199,7 @@ function addListenerMouseleave({ $table, evntParams, showTip, showTooltip, table
       }
 
       if (showTip || showTooltip) {
-        $table.clostTooltip()
+        $table.closeTooltip()
       }
 
       evntParams.cell = event.currentTarget
@@ -367,8 +368,8 @@ function renderColumn(args1) {
   let { $seq, $table, column, columnIndex } = args1
   let { h, row } = args1
   let { align: allAlign, cellClassName, columnKey, editConfig } = $table
-  let { editRules, editStore, rowId, rowSpan, height } = $table
-  let { tableData, validOpts, validStore, validatedMap, spanMethod, columnStore, dropConfig = {} } = $table
+  let { editRules, rowId, rowSpan, height, spanMethod, dropConfig = {} } = $table
+  let { tableData, validOpts, validStore, validatedMap, columnStore, editStore } = $table.state
   let { isDirty, attrs = { 'data-colid': column.id } } = {}
   let { isMessageDefault, isMessageInline } = validOpts
   let { actived } = editStore
@@ -530,7 +531,8 @@ function renderRow(args) {
   let { $rowIndex, $seq, $table, _vm, editStore } = args
   let { h, row, rowActived } = args
   let { rowClassName, rowIndex, rowKey, rowLevel, rowid, rows } = args
-  let { selection, seq, tableColumn, trOn, treeConfig, isNotRenderRow } = args
+  let { seq, tableColumn, trOn, treeConfig, isNotRenderRow } = args
+  const { selection } = $table.state
 
   if (isNotRenderRow) {
     return
@@ -663,9 +665,11 @@ function renderRowTree(args, renderRows) {
 }
 
 function renderRows({ h, _vm, $table, $seq, rowLevel, tableData, tableColumn, seqCount }) {
-  let { rowKey, rowClassName, treeConfig, treeExpandeds } = $table
-  let { groupData, scrollYLoad, scrollYStore, editConfig, editStore, expandConfig = {} } = $table
-  let { expandeds, selection, rowGroup, hasVirtualRow, afterFullData, visibleColumn } = $table
+  const { state } = $table
+  const hasVirtualRow = $table.hasVirtualRow
+  const { treeExpandeds, scrollYLoad, scrollYStore, editStore, expandeds, selection, afterFullData } = state
+  let { rowKey, rowClassName, treeConfig, rowGroup } = $table
+  let { editConfig, expandConfig = {} } = $table
   let rows = []
   let expandMethod = expandConfig.activeMethod
   let startIndex = scrollYStore.startIndex
@@ -814,8 +818,8 @@ export default defineComponent({
   },
   render() {
     let { $parent: $table } = this as any
-    let { $grid, isCenterEmpty, keyboardConfig = {}, mouseConfig = {}, renderEmpty } = $table
-    let { scrollLoad, tableColumn, tableData, tableLayout } = $table
+    let { $grid, isCenterEmpty, keyboardConfig = {}, mouseConfig = {}, renderEmpty, scrollLoad } = $table
+    let { tableColumn, tableData, tableLayout } = $table.state
     let $slots = $grid.slots
     let isCenterCls = isCenterEmpty ? 'is__center' : ''
 

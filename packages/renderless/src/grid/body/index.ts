@@ -34,7 +34,9 @@ export const scrollEvent =
     // 滚动处理： 如果存在列固定左侧，同步更新滚动状态；如果存在列固定右侧，同步更新滚动状态。
     const $table = parent
 
-    let { $refs, lastScrollLeft, lastScrollTop, scrollXLoad, scrollYLoad, columnStore } = $table
+    let { $refs } = $table
+    const { lastScrollLeft, lastScrollTop, scrollXLoad, columnStorescrollXLoad, scrollYLoad, columnStore } =
+      $table.state
     let { leftList, rightList } = columnStore
     let { tableBody, tableFooter, tableHeader } = $refs
 
@@ -53,9 +55,9 @@ export const scrollEvent =
 
     // 记录新的滚动位置和时间
     $table.lastScrollTime = Date.now()
-    $table.lastScrollLeft = scrollLeft
-    $table.lastScrollTop = scrollTop
-    $table.scrollDirection = isX ? 'X' : 'Y'
+    $table.state.lastScrollLeft = scrollLeft
+    $table.state.lastScrollTop = scrollTop
+    $table.state.scrollDirection = isX ? 'X' : 'Y'
 
     // 同步滚动条状态，只同步表头(表尾)滚动条状态，冻结列已优化为sticky方式
     syncHeaderAndFooterScroll({ bodyElem, footerElem, headerElem, isX })
