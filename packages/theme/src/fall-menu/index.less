@@ -145,26 +145,27 @@
         width: 100%;
 
         h3.mcate-item-hd {
-          padding-top: 16px;
           font-size: var(--ti-fall-menu-box-font-size);
           border-bottom: 0 solid #ccc;
           color: var(--ti-fall-menu-box-title-text-color);
           font-weight: 700;
           margin: 0;
+          line-height: 32px;
         }
 
         p.mcate-item-bd {
-          margin-top: 14px;
+          margin-top: 4px;
+          line-height: 32px;
 
           a {
-            font-size: var(--ti-common-font-size-base);
+            font-size: var(--ti-fall-menu-box-a-font-size);
             color: var(--ti-fall-menu-box-text-color);
             text-decoration: none;
             display: block;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            margin-bottom: 14px;
+            margin-bottom: 4px;
 
             &:hover {
               text-decoration: underline;
@@ -177,10 +178,8 @@
 
     &.active,
     &:hover {
-      border-left: 1px solid #d9d9d9;
-      border-right: 1px solid #d9d9d9;
-      border-bottom: 1px solid #d9d9d9;
       box-shadow: 0 4px 16px 0 #14000000;
+      border-radius: 0 0 6px 6px;
       .opacity(1);
     }
   }
