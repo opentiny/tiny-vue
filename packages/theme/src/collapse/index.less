@@ -15,7 +15,6 @@
 @collapse-prefix-cls: ~'@{css-prefix}collapse';
 
 .@{collapse-prefix-cls} {
-  border-top: 1px solid #d9d9d9;
-  border-bottom: 1px solid #d9d9d9;
-  .component-css-vars-collapse();
+  .inject-Collapse-vars();
+  border-bottom: 1px solid var(--tv-Collapse-divider-line-color);
 }
