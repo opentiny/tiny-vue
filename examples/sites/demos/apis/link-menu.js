@@ -65,6 +65,9 @@ export default {
           name: 'expand-icon',
           type: 'Component',
           defaultValue: '',
+          meta: {
+            stable: '3.19.0'
+          },
           desc: {
             'zh-CN': '指示展开的图标',
             'en-US': 'Indicates the expanded icon'
@@ -76,6 +79,9 @@ export default {
           name: 'expand-icon-color',
           type: 'string',
           defaultValue: '',
+          meta: {
+            stable: '3.19.0'
+          },
           desc: {
             'zh-CN': '指示展开的图标色',
             'en-US': 'Indicates the expanded icon color'
@@ -87,6 +93,9 @@ export default {
           name: 'shrink-icon',
           type: 'Component',
           defaultValue: '',
+          meta: {
+            stable: '3.19.0'
+          },
           desc: {
             'zh-CN': '指示收缩的图标',
             'en-US': 'Icon indicating shrink'
@@ -98,6 +107,9 @@ export default {
           name: 'shrink-icon-color',
           type: 'string',
           defaultValue: '',
+          meta: {
+            stable: '3.19.0'
+          },
           desc: {
             'zh-CN': '指示收缩的图标色',
             'en-US': 'Icon indicating shrink  color'
