@@ -18,7 +18,10 @@ const dateRangeValue = ref([])
   width: 280px;
 
   :deep(.tiny-date-editor--daterange.tiny-input__inner) {
-    width: 280px;
+    width: 360px;
+  }
+  :deep(.tiny-range__close-icon) {
+    right: -4px;
   }
 
   & > * {

@@ -209,10 +209,14 @@
       </div>
 
       <!-- 此刻/确认 -->
-      <div class="tiny-picker-panel__footer" v-show="state.isShowFooter">
+      <div
+        class="tiny-picker-panel__footer"
+        v-show="state.isShowFooter"
+        :style="{ justifyContent: !['dates', 'years'].includes(state.selectionMode) ? 'space-between' : 'right' }"
+      >
         <slot>
           <tiny-button
-            size="mini"
+            :size="state.buttonSize"
             type="text"
             class="tiny-picker-panel__link-btn"
             @click="changeToNow"
@@ -221,7 +225,12 @@
             {{ t('ui.datepicker.now') }}
           </tiny-button>
         </slot>
-        <tiny-button type="primary" size="mini" class="tiny-picker-panel__link-btn" @click="confirm">
+        <tiny-button
+          :type="state.buttonType"
+          :size="state.buttonSize"
+          class="tiny-picker-panel__link-btn"
+          @click="confirm"
+        >
           {{ t('ui.datepicker.confirm') }}
         </tiny-button>
       </div>
