@@ -15,7 +15,8 @@ export const renderless = (props, context: ISharedRenderlessParamHooks, { vm }):
   onMounted(() => {
     const { $el, $refs } = vm as any
 
-    const { elemStore, dropConfig } = $table
+    const { dropConfig } = $table
+    const { elemStore } = $table.state
     const keyPrefix = 'main-body-'
 
     // 表体第一层div，出现滚动条的dom元素
