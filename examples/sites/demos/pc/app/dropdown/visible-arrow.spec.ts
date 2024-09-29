@@ -17,5 +17,5 @@ test('显示箭头', async ({ page }) => {
   await dropdownTrigger.hover()
   await expect(dropDownMenu).toBeVisible()
   await expect(arrow).toBeVisible()
-  await expect(arrow).toHaveCSS('top', '-6px')
+  await expect(arrow).toHaveCSS('top', '-8px')
 })
