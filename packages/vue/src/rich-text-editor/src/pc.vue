@@ -107,7 +107,7 @@ export const richTextEditorProps = {
   },
   bubbleMenuView: {
     type: [Object, Boolean],
-    default: true
+    default: false
   }
 }
 
