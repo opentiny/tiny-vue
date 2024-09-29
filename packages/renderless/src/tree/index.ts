@@ -13,6 +13,7 @@
 import { getNodeKey as innerGetNodekey } from '../common/deps/tree-model/util'
 import { KEY_CODE } from '../common'
 import TreeStore from '../common/deps/tree-model/tree-store'
+import type TreeNode from '../common/deps/tree-model/node'
 import { addClass, removeClass } from '../common/deps/dom'
 import { on, off } from '../common/deps/dom'
 import { getDataset } from '../common/dataset'
@@ -100,7 +101,7 @@ export const dragStart =
     emit('node-drag-start', treeNode.node, event)
   }
 
-// 移动时，判断释放在目标元素的前，后，或inner。 刚移动未离开拖动元素时，为none。
+
 const getDropType = (dropPrev, dropInner, dropNext, dropNode) => {
   let dropType
   const targetPosition = dropNode.$el.getBoundingClientRect()
@@ -448,7 +449,10 @@ export const filter =
     }
   }
 
-export const getNodeKey = (props) => (node) => innerGetNodekey(props.nodekey, node.data)
+export const getNodeKey = (props) => (node) => {
+  return innerGetNodekey(props.nodekey, node.data)
+}
+
 
 export const getNodePath =
   ({ props, state }) =>
@@ -1044,3 +1048,17 @@ export const setCheckedByNodeKey =
       plainNode.node.setChecked(checked, !checkStrictly)
     }
   }
+
+// 扁平化数据(虚拟滚动)
+export const computedFlattenedTreeData = () => (props, state) => {
+  const data = state.root.childNodes
+  const stack: TreeNode[] = data.slice().reverse()
+  const newData: TreeNode[] = []
+  while (stack.length) {
+    const node = stack.pop()!
+    newData.push(node)
+    if (!node.expanded) continue
+    stack.push(...(node.childNodes || []).reverse().filter((v) => v.expanded))
+  }
+  return newData
+}

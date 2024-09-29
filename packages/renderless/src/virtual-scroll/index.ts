@@ -87,7 +87,6 @@ export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...
           viewStart + viewNum + bufferItems < state.data.length ? viewStart + viewNum + bufferItems : state.data.length
 
         state.visibleData = state.data.slice(start, end)
-
         state.translate = start * props.itemSize
 
         return
