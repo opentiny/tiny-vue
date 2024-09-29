@@ -13,14 +13,14 @@ test('Breadcrumb 尺寸设置', async ({ page }) => {
   // 面包屑导航、导航项出现,当前页导航加粗
   await expect(breadcrumb).toBeVisible()
   await expect(breadcrumbItem).toHaveCount(3)
-  await expect(currentItem.last().locator('.is-link')).toHaveCSS('font-weight', '700')
+  await expect(currentItem.last().locator('.is-link')).toHaveCSS('font-weight', '600')
 
   // 尺寸
   await expect(breadcrumbItemMedium).toBeVisible()
 
   // 分隔符
   await expect(separator).toHaveCount(3)
-  await expect(separator.first()).toHaveText(/>/)
+  await expect(separator.first()).toHaveText(/\//)
   await expect(separator.last()).toBeHidden()
 
   // 点击导航项
