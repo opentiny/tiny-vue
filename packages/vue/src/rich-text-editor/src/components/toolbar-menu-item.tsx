@@ -17,7 +17,7 @@ export default defineComponent({
   },
   setup(props) {
     const { item } = props
-    const { icon, action, submenu, config = {} } = item
+    const { icon, action, submenu, title, config = {} } = item
 
     const { withColor, withTable } = config
 
@@ -35,13 +35,14 @@ export default defineComponent({
       action?.()
     }
     return () => (
-      <button class={['tiny-toolbar-menu__item', { 'is-active': isActive.value }]}>
+      <button class={['tiny-toolbar-menu__item', { 'is-active': isActive.value }]} title={title}>
         {/* 图标 */}
         {item.icon && (
           <div class="tiny-toolbar-menu__icon">
             <item.icon onClick={() => handleClick(item)}></item.icon>
           </div>
         )}
+
         {/* 颜色输入框 */}
         {withColor && <input ref={inputRef} type="color" onInput={(e) => item.action?.(e?.target?.value)} />}
 

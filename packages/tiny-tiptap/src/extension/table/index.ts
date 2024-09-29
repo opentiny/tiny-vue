@@ -172,7 +172,6 @@ const Table = TiptapTable.extend<ExtensionOptions & TableOptions>({
                     const color = e.target?.value
                     if (color) {
                       editor.chain().focus().setCellAttribute('backgroundColor', color).run()
-                      // editor.chain().focus().setCellAttribute('colspan', 2).run()
                     }
                   }
                 }

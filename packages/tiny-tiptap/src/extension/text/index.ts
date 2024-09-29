@@ -12,8 +12,10 @@ import {
   IconRichTextFormatClear
 } from '@opentiny/vue-icon'
 import TiptapText from '@tiptap/extension-text'
+import CodeBlock from '../code-block'
+import Table from '../table'
 
-const IGNORE_BUBBLE_TYPES = ['table']
+const IGNORE_BUBBLE_TYPES = [Table.name, CodeBlock.name]
 
 const Text = TiptapText.extend<ExtensionOptions>({
   addOptions() {
