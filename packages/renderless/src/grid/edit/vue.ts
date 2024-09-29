@@ -1,0 +1,51 @@
+import {
+  clearActived,
+  getActiveRow,
+  getColumnModel,
+  getInsertRecords,
+  getRecordset,
+  getRemoveRecords,
+  getUpdateRecords,
+  handleActived,
+  handleFocus,
+  insert,
+  insertAt,
+  remove,
+  removeSelecteds,
+  revert,
+  revertData,
+  setActiveCell,
+  setActiveRow,
+  setColumnModel,
+  setSelectCell,
+  updateSelectedCls,
+  hasActiveRow,
+  handleSelected
+} from './index'
+
+export const installEdit = ({ api, props, vm, state }) => {
+  return {
+    getInsertRecords: getInsertRecords({ state }),
+    insert: insert({ api }),
+    insertAt: insertAt({ api, props, state, vm }),
+    getUpdateRecords: getUpdateRecords({ state, api, props }),
+    setActiveRow: setActiveRow({ api, state }),
+    setActiveCell: setActiveCell({ api, state, vm }),
+    handleActived: handleActived({ props, vm, state }),
+    clearActived: clearActived({ api, props, state, vm }),
+    setColumnModel: setColumnModel(),
+    getColumnModel: getColumnModel(),
+    handleFocus: handleFocus(),
+    removeSelecteds: removeSelecteds({ api }),
+    remove: remove({ api, state, vm, props }),
+    getRemoveRecords: getRemoveRecords({ state }),
+    getRecordset: getRecordset({ api }),
+    revert: revert({ api }),
+    revertData: revertData({ api, state, vm }),
+    getActiveRow: getActiveRow({ state, vm }),
+    setSelectCell: setSelectCell({ state, props, vm, api }),
+    updateSelectedCls: updateSelectedCls({ api, state, props }),
+    hasActiveRow: hasActiveRow({ state }),
+    handleSelected: handleSelected({ api, state, props, vm })
+  }
+}
