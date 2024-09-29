@@ -50,7 +50,6 @@ export default {
 <style scoped>
 .split-v-model {
   height: 200px;
-  border: 1px solid var(--ti-common-color-line-dividing);
 }
 
 .demo-split-pane {
@@ -59,7 +58,6 @@ export default {
 
 .demo-split {
   height: 200px;
-  border: 1px solid #d9d9d9;
   margin-bottom: 20px;
 }
 </style>

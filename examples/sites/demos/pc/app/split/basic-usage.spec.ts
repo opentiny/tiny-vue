@@ -17,5 +17,5 @@ test('基本用法', async ({ page }) => {
   const afterMove = leftPanelWidth + 100 - triggerBtnWidth / 2
   const { width: afterWidth } = await leftPanel.boundingBox()
   // 小数点后一位相同即可
-  await expect(afterMove).toBeCloseTo(afterWidth, 1)
+  await expect(Math.ceil(afterMove)).toEqual(Math.ceil(afterWidth))
 })

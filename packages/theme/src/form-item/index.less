@@ -14,6 +14,7 @@
 @import '../mixins/common.less';
 @import './vars.less';
 
+@form-prefix-cls: ~'@{css-prefix}form';
 @form-item-prefix-cls: ~'@{css-prefix}form-item';
 @input-prefix-cls: ~'@{css-prefix}input';
 @input-group-prefix-cls: ~'@{css-prefix}input-group';
@@ -27,11 +28,11 @@
 @select-prefix-cls: ~'@{css-prefix}select';
 @rate-prefix-cls: ~'@{css-prefix}rate';
 
-.size-height(@height, @line-height, @margin-bottom) {
+.size-height(@height, @margin-bottom) {
   margin-bottom: @margin-bottom;
 
   .@{form-item-prefix-cls}__content {
-    line-height: @line-height;
+    line-height: @height;
 
     .@{css-prefix}checkbox,
     .@{css-prefix}radio {
@@ -47,68 +48,67 @@
         height: @height;
       }
     }
+    .@{css-prefix}slider-container {
+      height: @height;
+    }
   }
 
   .@{form-item-prefix-cls}__label {
-    height: @line-height;
-    line-height: @line-height;
+    height: @height;
+    line-height: @height;
+  }
+}
+
+.star-selector(@content) {
+  &.is-required:not(.is-no-asterisk) {
+    // 子选择器是避免影响嵌套表单场景
+    .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
+    & > .@{form-item-prefix-cls}__label:before {
+      @content();
+    }
   }
 }
 
 .@{form-item-prefix-cls} {
   .component-css-vars-form-item();
 
-  font-family: var(--ti-common-font-family);
-  margin-bottom: var(--ti-form-item-margin-bottom-default);
   .clearfix();
-
-  .@{form-item-prefix-cls}__content-muti-children {
-    width: 100%;
-  }
-
-  .@{form-item-prefix-cls}__extra-tip {
-    line-height: var(--ti-form-item-extra-tip-line-height);
-    margin-top: var(--ti-form-item-extra-tip-margin-top);
-    color: var(--ti-form-item-extra-tip-font-color);
-    font-size: var(--ti-form-item-extra-tip-font-size);
-  }
 
   & & {
     margin-bottom: 0;
   }
 
-  &--small &__error {
+  &--mini &__error {
     padding-top: 2px;
   }
 
-  &--mini &__error {
-    padding-top: 1px;
-  }
+  .size-height(
+    var(--tv-FormItem-height),
+    var(--tv-FormItem-margin-bottom)
+  );
 
   &--medium {
     .size-height(
-      var(--ti-form-item-medium-line-height),
-      var(--ti-form-item-medium-line-height),
-      var(--ti-form-item-margin-bottom-medium)
+      var(--tv-FormItem-height-lg),
+      var(--tv-FormItem-margin-bottom-lg)
     );
   }
 
   &--small {
     .size-height(
-      var(--ti-form-item-small-line-height),
-      var(--ti-form-item-small-line-height),
-      var(--ti-form-item-margin-bottom-small)
+      var(--tv-FormItem-height-sm),
+      var(--tv-FormItem-margin-bottom-sm)
     );
   }
 
   &--mini {
     .size-height(
-      var(--ti-form-item-mini-line-height),
-      var(--ti-form-item-mini-line-height),
-      var(--ti-form-item-margin-bottom-mini)
+      var(--tv-FormItem-height-xs),
+      var(--tv-FormItem-margin-bottom-xs)
     );
   }
 
+  // label-width设置为auto时样式
   &__label-wrap {
     float: left;
 
@@ -122,11 +122,9 @@
     text-align: right;
     vertical-align: middle;
     float: left;
-    font-size: var(--ti-form-item-label-font-size);
-    color: var(--ti-form-item-label-text-color);
-    height: var(--ti-form-item-label-line-height);
-    line-height: var(--ti-form-item-label-line-height);
-    padding-right: var(--ti-form-item-label-padding-right);
+    font-size: var(--tv-FormItem-font-size);
+    color: var(--tv-FormItem-text-color);
+    padding-right: var(--tv-FormItem-label-padding-right);
     box-sizing: border-box;
     overflow: hidden;
     white-space: nowrap;
@@ -135,8 +133,7 @@
 
   &__content {
     position: relative;
-    font-size: var(--ti-form-item-label-font-size);
-    line-height: var(--ti-form-item-label-line-height);
+    font-size: var(--tv-FormItem-font-size);
     .clearfix();
 
     .@{input-prefix-cls},
@@ -150,12 +147,8 @@
 
       &.is-display-only {
         vertical-align: middle;
+        line-height: 1.5;
       }
-    }
-
-    // numeric只读态使用absolute实现，需要一个margin-top修复水平对齐问题
-    .@{css-prefix}numeric.is-display-only {
-      margin-top: var(--ti-form-item-numeric-display-margin-top);
     }
 
     .@{input-prefix-cls} {
@@ -171,7 +164,7 @@
 
     .@{rate-prefix-cls} {
       &__text {
-        line-height: 1.5;
+        line-height: var(--tv-FormItem-line-height);
       }
     }
 
@@ -182,17 +175,7 @@
     .@{button-prefix-cls} + .@{button-prefix-cls} {
       margin-left: 8px;
     }
-
-    .@{css-prefix}checkbox,
-    .@{css-prefix}radio {
-      line-height: var(--ti-form-item-label-line-height);
-    }
-    .@{css-prefix}slider-container {
-      height: var(--ti-form-item-label-line-height);
-    }
     .@{css-prefix}checkbox-group {
-      min-height: var(--ti-form-item-label-line-height);
-
       &:has(> label.is-group-display-only) {
         min-height: unset;
         vertical-align: baseline;
@@ -210,60 +193,51 @@
   }
 
   &__error {
-    color: var(--ti-form-item-error-text-color);
-    font-size: var(--ti-form-item-error-font-size);
+    color: var(--tv-FormItem-text-color-error);
+    font-size: var(--tv-FormItem-font-size);
     line-height: 1;
     padding-top: 4px;
     position: absolute;
-    top: 100%;
-    left: 0;
 
     .validate-icon {
-      fill: var(--ti-form-item-error-text-color);
-      margin-right: var(--ti-form-item-error-icon-margin-right);
+      fill: var(--tv-FormItem-icon-color-error);
+      margin-right: 4px;
     }
     .@{form-item-prefix-cls}__validate-message {
       vertical-align: middle;
     }
-  }
 
-  &__error--inline {
-    position: relative;
-    top: auto;
-    left: auto;
-    display: inline-block;
-    margin-left: var(--ti-form-item-error-inline-margin-left);
-  }
+    &--inline {
+      position: relative;
+      display: inline-block;
+      margin-left: 8px;
+    }
 
-  &__error--block {
-    position: relative;
-    top: auto;
-    left: auto;
-    display: flex;
-    margin-left: 0;
-    padding-top: var(--ti-form-item-error-block-padding-top);
-  }
-
-  &.is-required:not(.is-no-asterisk) {
-    .@{form-item-prefix-cls}__label-wrap > .@{form-item-prefix-cls}__label:before,
-    & > .@{form-item-prefix-cls}__label:before {
-      display: var(--ti-form-item-error-star-display);
-      content: '*';
-      color: var(--ti-form-item-error-star-text-color);
-      margin-right: 4px;
+    &--block {
+      position: relative;
+      display: flex;
+      margin-left: 0;
+      padding-top: var(--tv-FormItem-error-block-padding-top);
     }
   }
+
+  .star-selector({
+    content: '*';
+    color: var(--tv-FormItem-text-color-error);
+    margin-right: 4px;
+  });
 
   &.is-error {
     .@{input-prefix-cls}__inner,
     .@{input-prefix-cls}__inner:focus,
     .@{textarea-prefix-cls},
+    .@{textarea-prefix-cls}::before,
+    .@{textarea-prefix-cls}::after,
     .@{textarea-prefix-cls}:focus,
     .@{textarea-prefix-cls}__inner,
     .@{textarea-prefix-cls}__inner:focus {
-      border-color: var(--ti-form-item-error-border-color);
-      background-color: var(--ti-form-item-error-bg-color);
-      --ti-textarea-bg-color: var(--ti-form-item-error-bg-color);
+      border-color: var(--tv-FormItem-border-color-error);
+      background-color: var(--tv-FormItem-bg-color-error);
     }
 
     .@{input-group-prefix-cls}__append,
@@ -273,22 +247,126 @@
       }
     }
 
-    .@{input-prefix-cls}__validateIcon {
-      color: var(--ti-form-item-error-text-color);
-    }
-
     .@{numeric-prefix-cls}__input-inner,
     .@{numeric-prefix-cls}__input-inner:focus {
-      border-color: var(--ti-form-item-error-border-color);
-      background-color: var(--ti-form-item-error-bg-color);
+      border-color: var(--tv-FormItem-border-color-error);
+      background-color: var(--tv-FormItem-bg-color-error);
     }
   }
 
-  &--feedback .@{input-prefix-cls}__validateIcon {
-    display: inline-block;
+  &__extra-tip {
+    line-height: var(--tv-FormItem-line-height);
+    margin-top: 8px;
+    color: var(--tv-FormItem-text-color-weaken);
+    font-size: var(--tv-FormItem-font-size);
+  }
+}
+
+.@{form-prefix-cls} {
+  .component-css-vars-form-item();
+
+  &--inline {
+    .@{form-item-prefix-cls} {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 24px;
+    }
+
+    .@{form-item-prefix-cls}__label {
+      float: none;
+      display: inline-block;
+    }
+
+    .@{form-item-prefix-cls}__content {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    // 嵌套表单场景
+    .@{form-prefix-cls}--label-top .@{form-item-prefix-cls}__content {
+      display: block;
+    }
   }
 
-  .@{input-prefix-cls}__validateIcon {
-    display: none;
+  &--label-left {
+    &.has-required {
+      .@{form-item-prefix-cls}__label {
+        padding-left: 12px;
+      }
+    }
+    .@{form-item-prefix-cls}__label {
+      text-align: left;
+    }
+
+    &.label-align {
+      .@{form-item-prefix-cls} {
+        &.is-required {
+          .@{form-item-prefix-cls}__label {
+            padding-left: 12px;
+            position: relative;
+
+            &::before {
+              position: absolute;
+              left: 0;
+            }
+          }
+          & ~ .@{form-item-prefix-cls} {
+            .@{form-item-prefix-cls}__label {
+              padding-left: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--label-top {
+    .@{form-item-prefix-cls} {
+      margin-bottom: 16px;
+    }
+    .@{form-item-prefix-cls}__label {
+      float: none;
+      display: block;
+      text-align: left;
+      padding: 0 0 8px;
+      height: auto;
+      line-height: var(--tv-FormItem-line-height);
+    }
+  }
+
+  &.is-display-only {
+    .@{form-item-prefix-cls}__label {
+      line-height: var(--tv-FormItem-line-height);
+      height: auto;
+      vertical-align: inherit;
+      color: var(--tv-FormItem-text-color-weaken);
+    }
+
+    .@{form-item-prefix-cls}__content {
+      line-height: var(--tv-FormItem-line-height);
+      font-size: var(--tv-FormItem-font-size);
+      height: auto;
+      vertical-align: inherit;
+
+      // 一些组件的只读态实现方式怪异，需要一些修正样式来修复水平对齐问题
+      .@{switch-prefix-cls} {
+        margin-top: 0;
+      }
+
+      .@{css-prefix}numeric.is-display-only {
+        margin-top: 2px;
+      }
+      .@{input-prefix-cls} {
+        &.@{range-editor-prefix-cls}.@{input-prefix-cls}__inner {
+          height: 18px;
+        }
+      }
+    }
+
+    .@{form-item-prefix-cls} {
+      .star-selector({
+        content: '';
+      });
+    }
   }
 }
