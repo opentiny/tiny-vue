@@ -12,6 +12,7 @@ const Bold = TiptapBold.extend<ExtensionOptions & BoldOptions>({
         return [
           {
             key: 'bold',
+            title: '加粗',
             icon: iconRichTextBold(),
             action: ({ editor }: { editor: Editor }) => {
               return () => {
