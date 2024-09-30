@@ -226,7 +226,7 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, ap
   initIsCurrent: debounce(20, initIsCurrent({ props, state })),
   setCheckedByNodeKey: setCheckedByNodeKey({ props, state })
 })
-
+// 注释
 const initWatcher = ({ watch, props, api, state, isVue2 }) => {
   watch(() => props.defaultCheckedKeys, api.watchDefaultCheckedKeys)
 
