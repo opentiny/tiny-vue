@@ -16,7 +16,7 @@
 @text-popup-prefix-cls: ~'@{css-prefix}text-popup';
 
 .@{text-popup-prefix-cls} {
-  .component-css-vars-text-popup();
+  .inject-TextPopup-vars();
 
   display: inline-block;
 
@@ -27,7 +27,7 @@
   .area {
     font-size: var(--ti-text-popup-font-size);
     font-family: var(--ti-text-popup-font-family);
-    padding: var(--ti-text-popup-padding-vertical) var(--ti-text-popup-padding-horizontal);
+    padding: 5px 12px;
     width: 100%;
     border-radius: var(--ti-text-popup-border-radius, 2px);
     outline: none;
