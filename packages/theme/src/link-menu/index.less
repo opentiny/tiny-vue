@@ -26,9 +26,9 @@
   .component-css-vars-link-menu();
 
   &__nav &__nav-item {
-    color: var(--ti-link-menu-nav-item-text-color);
-    font-size: var(--ti-common-font-size-1);
-    border-right: 1px solid var(--ti-link-menu-nav-item-border-color);
+    color: var(--tv-Link-menu-nav-item-text-color);
+    font-size: var(--tv-Link-menu-item-font-size);
+    border-right: 1px solid var(--tv-Link-menu-nav-item-border-color);
     padding: 0 8px;
     line-height: 1;
     display: inline-block;
@@ -40,7 +40,7 @@
     cursor: pointer;
 
     .@{svg-prefix-cls} {
-      fill: var(--ti-link-menu-nav-item-text-color);
+      fill: var(--tv-Link-menu-nav-item-text-color);
       margin-right: 4px;
     }
 
@@ -67,8 +67,8 @@
   }
 
   &__nav {
-    color: var(--ti-link-menu-btn-text-color);
-    background: var(--ti-link-menu-btn-bg-color);
+    color: var(--tv-Link-menu-btn-text-color);
+    background: var(--tv-Link-menu-btn-bg-color);
     padding: 0 8px;
     line-height: 1;
     outline: 0;
@@ -76,7 +76,7 @@
     cursor: pointer;
 
     .@{svg-prefix-cls} {
-      fill: var(--ti-link-menu-nav-item-text-color);
+      fill: var(--tv-Link-menu-nav-item-text-color);
       font-size: var(--ti-common-font-size-3);
     }
   }
@@ -84,17 +84,13 @@
   &__btn {
     width: 32px;
     height: 32px;
-    border-radius: var(--ti-link-menu-btn-border-radius);
-    border: 1px solid var(--ti-link-menu-btn-border-color);
-    background: var(--ti-link-menu-btn-bg-color);
+    border-radius: var(--tv-Link-menu-btn-border-radius);
+    border: 1px solid var(--tv-Link-menu-btn-border-color);
+    background: var(--tv-Link-menu-btn-bg-color);
     .@{svg-prefix-cls} {
-      fill: var(--ti-link-menu-nav-item-text-color);
-      font-size: var(--ti-link-menu-btn-size);
+      fill: var(--tv-Link-menu-nav-item-text-color);
+      font-size: var(--tv-Link-menu-btn-size);
     }
-  }
-
-  &__dialog-btn {
-    text-align: center;
   }
 
   .@{input-prefix-cls} {
@@ -102,13 +98,13 @@
     margin-bottom: 5px;
 
     .@{input-prefix-cls}__inner {
-      height: var(--ti-link-menu-input-height);
-      line-height: var(--ti-link-menu-input-height);
-      font-size: var(--ti-link-menu-input-font-size);
-      color: var(--ti-link-menu-input-text-color);
-      background: var(--ti-link-menu-btn-bg-color);
-      border: 1px solid var(--ti-link-menu-input-border-color);
-      border-radius: var(--ti-link-menu-input-border-radius);
+      height: var(--tv-Link-menu-input-height);
+      line-height: var(--tv-Link-menu-input-height);
+      font-size: var(--tv-Link-menu-input-font-size);
+      color: var(--tv-Link-menu-input-text-color);
+      background: var(--tv-Link-menu-btn-bg-color);
+      border: 1px solid var(--tv-Link-menu-input-border-color);
+      border-radius: var(--tv-Link-menu-input-border-radius);
       padding: 0 8px;
       display: block;
       white-space: nowrap;
@@ -116,14 +112,6 @@
       transition: border 0.3s;
       outline: 0;
       box-sizing: border-box;
-    }
-  }
-
-  .@{button-prefix-cls} {
-    &:last-child {
-      color: var(--ti-link-menu-nav-item-text-color);
-      background-color: var(--ti-link-menu-btn-bg-color);
-      border-color: var(--ti-link-menu-input-border-color);
     }
   }
 
@@ -143,16 +131,16 @@
       }
 
       .tree-node-name {
-        color: var(--ti-link-menu-tree-node-text-color);
-        font-size: var(--ti-link-menu-input-font-size);
-        border-radius: var(--ti-link-menu-input-border-radius);
+        color: var(--tv-Link-menu-tree-node-text-color);
+        font-size: var(--tv-Link-menu-input-font-size);
+        border-radius: var(--tv-Link-menu-input-border-radius);
         padding-left: 4px;
         vertical-align: middle;
       }
 
       &.is-focusable {
         .tree-node-name {
-          color: var(--ti-link-menu-input-text-color);
+          color: var(--tv-Link-menu-input-text-color);
         }
       }
     }
@@ -176,6 +164,13 @@
     &.@{link-menu-prefix-cls}__wrap {
       .tree-node {
         width: calc(100% - 36px);
+      }
+
+      .tree-node-icon {
+        svg.tiny-svg {
+          width: var(--tv-Link-menu-icon-size);
+          height: var(--tv-Link-menu-icon-size);
+        }
       }
 
       .tree-node-name {

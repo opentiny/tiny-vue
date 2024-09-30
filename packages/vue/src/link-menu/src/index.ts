@@ -60,6 +60,16 @@ export default defineComponent({
     keepSelectedNodes: {
       type: Boolean,
       default: true
+    },
+    expandIcon: Object,
+    shrinkIcon: Object,
+    shrinkIconColor: {
+      type: String,
+      default: ''
+    },
+    expandIconColor: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {
