@@ -16,9 +16,9 @@
 @card-prefix-cls: ~'@{css-prefix}card';
 
 .@{card-prefix-cls} {
-  .component-css-vars-user-card();
+  .inject-UserCard-vars();
 
-  border: 1px solid var(--ti-usercard-border-color);
+  border: 1px solid var(--tv-UserCard-border-color);
   box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.15);
 
   .dialog-foot {
@@ -41,7 +41,7 @@
     img {
       width: 80px;
       height: 80px;
-      border-radius: var(--ti-usercard-image-border-radius, 3px);
+      border-radius: var(--tv-UserCard-image-border-radius, 3px);
     }
 
     .card-top-text {
@@ -64,25 +64,25 @@
   }
 
   .espace-online {
-    color: var(--ti-usercard-state-online-text-color);
+    color: var(--tv-UserCard-state-online-text-color);
   }
 
   .espace-busy {
-    color: var(--ti-usercard-state-busy-text-color);
+    color: var(--tv-UserCard-state-busy-text-color);
     font-size: 23px;
     vertical-align: middle;
     margin-top: -5px;
   }
 
   .espace-goaway {
-    color: var(--ti-usercard-state-goaway-text-color);
+    color: var(--tv-UserCard-state-goaway-text-color);
     background: #fff;
     border-radius: 50%;
     font-size: 13px;
   }
 
   .espace-offline {
-    color: var(--ti-usercard-state-offline-text-color);
+    color: var(--tv-UserCard-state-offline-text-color);
     font-size: 23px;
     vertical-align: middle;
     margin-top: -5px;

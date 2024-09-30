@@ -20,7 +20,7 @@
 @logout-prefix-cls: ~'@{css-prefix}logout';
 
 .@{user-contact-prefix-cls} {
-  .component-css-vars-user-contact();
+  .inject-UserContact-vars();
 
   position: relative;
   display: inline-block;
@@ -29,7 +29,7 @@
   & &__main {
     width: 300px;
     overflow: visible;
-    font-size: var(--ti-user-contact-roleInfo-font-size);
+    font-size: var(--tv-UserContact-role-info-font-size);
 
     .@{user-head-prefix-cls} {
       height: 100%;
@@ -59,23 +59,23 @@
     .@{user-contact-prefix-cls}__role-name {
       display: block;
       width: 100%;
-      color: var(--ti-user-contact-card-header-role-text-color);
+      color: var(--tv-UserContact-card-header-role-text-color);
       margin-bottom: 6px;
       height: 24px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: var(--ti-user-contact-card-header-role-font-size);
+      font-size: var(--tv-UserContact-card-header-role-font-size);
       text-align: left;
     }
 
     .@{user-contact-prefix-cls}__role-number {
       display: block;
-      color: var(--ti-user-contact-card-header-roleNum-text-color);
+      color: var(--tv-UserContact-card-header-role-num-text-color);
     }
 
     .@{css-prefix}espace svg {
-      fill: var(--ti-user-contact-card-message-left-color);
+      fill: var(--tv-UserContact-card-message-left-color);
     }
 
     .card-tools {
@@ -84,35 +84,35 @@
   }
 
   & &__header {
-    line-height: 1.42857143;
-    border: 1px solid var(--ti-user-contact-card-border-color);
+    line-height: 1.5;
+    border: 1px solid var(--tv-UserContact-card-border-color);
     height: 86px;
-    background: var(--ti-user-contact-card-header-bg-color);
+    background: var(--tv-UserContact-card-header-bg-color);
     opacity: 0.9;
   }
 
   & &__title {
     display: block;
     height: 100%;
-    font-size: var(--ti-user-contact-roleInfo-font-size);
+    font-size: var(--tv-UserContact-role-info-font-size);
     font-weight: normal;
     line-height: 46px;
   }
 
   & &__role {
     display: inline-block;
-    color: var(--ti-user-contact-roleInfo-text-color);
-    margin-left: var(--ti-user-contact-role-desc-margin-left);
+    color: var(--tv-UserContact-role-info-text-color);
+    margin-left: 0;
     vertical-align: middle;
-    font-size: var(--ti-user-contact-roleInfo-font-size);
+    font-size: var(--tv-UserContact-role-info-font-size);
     line-height: 1.5;
   }
 
   & &__arrow {
     margin-left: 4px;
-    font-size: var(--ti-user-contact-roleInfo-font-size);
+    font-size: var(--tv-UserContact-role-info-font-size);
     vertical-align: middle;
-    fill: var(--ti-user-contact-roleInfo-text-color);
+    fill: var(--tv-UserContact-role-info-text-color);
   }
 
   & &__message {
@@ -133,10 +133,9 @@
   }
 
   & &__state-left {
-    color: var(--ti-user-contact-card-message-text-color);
+    color: var(--tv-UserContact-card-message-text-color);
     opacity: 1;
     font-size: var(--ti-common-font-size-base);
-    font-family: MicrosoftYaHei;
     line-height: 16px;
     text-align: left;
     width: auto;
@@ -144,10 +143,9 @@
   }
 
   & &__state-right {
-    color: var(--ti-user-contact-card-message-text-color);
+    color: var(--tv-UserContact-card-message-text-color);
     opacity: 1;
     font-size: var(--ti-common-font-size-base);
-    font-family: MicrosoftYaHei;
     line-height: 16px;
   }
 
@@ -165,7 +163,7 @@
 
   .@{card-template-prefix-cls}__body {
     padding: 0;
-    border: 1px solid var(--ti-user-contact-card-border-color);
+    border: 1px solid var(--tv-UserContact-card-border-color);
   }
 
   .@{user-head-prefix-cls} {
@@ -175,12 +173,12 @@
   }
 
   .@{espace-prefix-cls} {
-    padding: 0px 20px 10px;
+    padding: 0 20px 10px;
 
     .item-talk,
     .item-call,
     .item-email {
-      color: var(--ti-user-contact-card-espace-text-color);
+      color: var(--tv-UserContact-card-espace-text-color);
     }
   }
 

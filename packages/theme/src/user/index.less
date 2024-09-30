@@ -20,7 +20,7 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{user-prefix-cls} {
-  .component-css-vars-user();
+  .inject-User-vars();
 
   &.mini {
     height: 30px;
@@ -31,11 +31,11 @@
 
     .@{input-prefix-cls} {
       .@{svg-prefix-cls} {
-        fill: var(--ti-user-svg-text-color);
+        fill: var(--tv-User-svg-color);
       }
 
       &.is-disabled .@{svg-prefix-cls} {
-        fill: var(--ti-input-normal-disabled-color);
+        fill: var(--tv-User-svg-color-disabled);
       }
     }
 
@@ -46,14 +46,14 @@
 
   & &__ghost {
     &.@{tag-prefix-cls} {
-      background: var(--ti-user-tag-bg-color);
+      background: var(--tv-User-tag-bg-color);
     }
   }
 
   &_select {
     max-width: calc(50% - 4px);
     width: auto;
-    font-size: var(--ti-user-font-size);
+    font-size: var(--tv-User-font-size);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
