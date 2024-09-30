@@ -111,6 +111,7 @@ export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...
       totalSize = calculateTotalSize({ state, props })
     }
     state.totalSize = totalSize
+    console.log('高度',state.totalSize);
   }
   return (event) => {
     if (animationFrameId !== null) {
@@ -121,7 +122,7 @@ export const handleScroll = ({ props, state, virtualScroll, nextTick, items, ...
     })
   }
 }
-
+// 更改
 // 初始化动态高度列表
 export const initPositions =
   ({ props, state }) =>
