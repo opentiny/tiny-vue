@@ -18,9 +18,9 @@
 @ip-address-prefix-cls: ~'@{css-prefix}ip-address';
 
 .@{ip-address-prefix-cls} {
-  .component-css-vars-ip-address();
+  .inject-IpAddress-vars();
 
-  width: var(--ti-ip-address-normal-width);
+  width: var(--tv-IpAddress-normal-width);
   max-width: 100%;
   outline: 0;
   display: inline-table;
@@ -30,11 +30,11 @@
   &__input {
     position: relative;
     width: 100%;
-    border: 1px solid var(--ti-ip-address-normal-border-color);
-    color: var(--ti-ip-address-normal-text-color);
-    border-radius: var(--ti-ip-address-border-radius);
-    background: var(--ti-ip-address-normal-bg-color);
-    font-size: var(--ti-ip-address-font-size);
+    border: 1px solid var(--tv-IpAddress-normal-border-color);
+    color: var(--tv-IpAddress-normal-text-color);
+    border-radius: var(--tv-IpAddress-border-radius);
+    background: var(--tv-IpAddress-normal-bg-color);
+    font-size: var(--tv-IpAddress-font-size);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,22 +44,22 @@
     transition: border 0.3s;
     outline: 0;
     box-sizing: border-box;
-    .input-readonly(@color: var(--ti-ip-address-border-color-hover));
-    .placeholder(@color: var(--ti-ip-address-normal-disabled-text-color)); //placeholder属性兼容处理
+    .input-readonly(@color: var(--tv-IpAddress-border-color-hover));
+    .placeholder(@color: var(--tv-IpAddress-normal-disabled-text-color)); //placeholder属性兼容处理
 
     &:hover {
       cursor: pointer;
-      border: 1px solid var(--ti-ip-address-border-color-hover);
-      color: var(--ti-ip-address-normal-text-color);
-      .placeholder(@color: var(--ti-ip-address-normal-disabled-text-color));
+      border: 1px solid var(--tv-IpAddress-border-color-hover);
+      color: var(--tv-IpAddress-normal-text-color);
+      .placeholder(@color: var(--tv-IpAddress-normal-disabled-text-color));
     }
 
     &:focus,
     &:active,
     &.active,
     &[active] {
-      border: 1px solid var(--ti-ip-address-border-color-focus);
-      color: var(--ti-ip-address-normal-text-color);
+      border: 1px solid var(--tv-IpAddress-border-color-focus);
+      color: var(--tv-IpAddress-normal-text-color);
     }
 
     &:focus {
@@ -70,13 +70,13 @@
     &[disabled] {
       cursor: not-allowed;
       pointer-events: none;
-      border: 1px solid var(--ti-ip-address-disabled-border-color);
-      color: var(--ti-ip-address-normal-disabled-text-color);
-      background: var(--ti-ip-address-disabled-bg-color);
+      border: 1px solid var(--tv-IpAddress-disabled-border-color);
+      color: var(--tv-IpAddress-normal-disabled-text-color);
+      background: var(--tv-IpAddress-disabled-bg-color);
       box-shadow: none;
 
       .@{css-prefix}svg {
-        fill: var(--ti-ip-address-normal-disabled-text-color);
+        fill: var(--tv-IpAddress-normal-disabled-text-color);
       }
     }
 
@@ -87,14 +87,14 @@
       align-items: center;
 
       > input {
-        font-size: var(--ti-ip-address-font-size);
+        font-size: var(--tv-IpAddress-font-size);
         border: none;
         text-align: center;
         outline: none;
         background: none;
-        color: var(--ti-ip-address-normal-text-color);
-        font-family: var(--ti-ip-address-normal-font-family);
-        width: var(--ti-ip-address-input-width);
+        color: var(--tv-IpAddress-normal-text-color);
+        font-family: var(--tv-IpAddress-normal-font-family);
+        width: var(--tv-IpAddress-input-width);
         float: left;
         padding: 0;
 
@@ -102,62 +102,60 @@
         &:active,
         &.active,
         &[active] {
-          color: var(--ti-ip-address-normal-text-color);
+          color: var(--tv-IpAddress-normal-text-color);
         }
 
         &:hover {
           cursor: pointer;
-          color: var(--ti-ip-address-normal-text-color);
+          color: var(--tv-IpAddress-normal-text-color);
         }
 
         &.disabled,
         &[disabled] {
-          color: var(--ti-ip-address-normal-disabled-text-color);
+          color: var(--tv-IpAddress-normal-disabled-text-color);
         }
       }
 
       svg {
         vertical-align: middle;
-        fill: var(--ti-ip-address-icon-color);
-        width: var(--ti-ip-address-icon-size);
-        height: var(--ti-ip-address-icon-size);
+        fill: var(--tv-IpAddress-icon-color);
+        width: var(--tv-IpAddress-icon-size);
+        height: var(--tv-IpAddress-icon-size);
       }
 
       &:last-child {
-        margin-right: var(--ti-ip-address-padding-horizontal);
+        margin-right: var(--tv-IpAddress-padding-x);
+
         > svg {
           display: none;
         }
       }
 
       &:first-child {
-        margin-left: var(--ti-ip-address-padding-horizontal);
+        margin-left: var(--tv-IpAddress-padding-x);
       }
     }
 
     &__ipv6-delimiter {
-      width: var(--ti-ip-address-icon-width);
+      width: var(--tv-IpAddress-icon-width);
       text-align: center;
-      margin: 0 var(--ti-ip-address-ipv6-delimiter-margin-right);
+      margin: 0 var(--tv-IpAddress-ipv6-delimiter-margin-right);
     }
+
     &.medium li input {
-      height: var(--ti--ip--address-medium-height);
-      line-height: var(--ti--ip--address-medium-line-height);
+      height: var(--tv-IpAddress-medium-height);
     }
 
     &.default li input {
-      height: var(--ti--ip--address-default-height);
-      line-height: var(--ti--ip--address-default-line-height);
+      height: var(--tv-IpAddress-default-height);
     }
 
     &.small li input {
-      height: var(--ti--ip--address-small-height);
-      line-height: var(--ti--ip--address-small-line-height);
+      height: var(--tv-IpAddress-small-height);
     }
 
     &.mini li input {
-      height: var(--ti--ip--address-mini-height);
-      line-height: var(--ti--ip--address-mini-line-height);
-    } 
+      height: var(--tv-IpAddress-mini-height);
+    }
   }
 }
