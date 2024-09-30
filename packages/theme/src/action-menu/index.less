@@ -20,115 +20,72 @@
 .@{action-menu-prefix-cls} {
   .component-css-vars-action-menu();
 
-  .@{dropdown-prefix-cls} {
-    .@{dropdown-prefix-cls}-trigger {
-      .tiny-svg {
-        margin-right: var(--ti-action-menu-more-icon-margin-right);
-      }
-    }
-  }
+  font-size: var(--tv-ActionMenu-font-size);
 
-  font-size: var(--ti-action-menu-font-size);
-  font-weight: var(--ti-action-menu-font-weight);
-  color: var(--ti-action-menu-text-color);
+  .tiny-svg {
+    font-size: var(--tv-ActionMenu-icon-size);
+  }
 
   &__wrap {
     display: flex;
-
-    &.@{action-menu-prefix-cls}__card-mode {
-      .@{action-menu-prefix-cls}__item {
-        .tiny-svg {
-          fill: var(--ti-action-menu-item-card-text-color);
-        }
-
-        .@{dropdown-prefix-cls} {
-          .@{dropdown-prefix-cls}-trigger {
-            &:hover {
-              .tiny-svg {
-                fill: var(--ti-action-menu-item-card-text-color);
-              }
-            }
-          }
-        }
-      }
-    }
 
     .@{action-menu-prefix-cls}__item {
       display: flex;
       justify-content: space-between;
       align-items: center;
 
-      .tiny-svg {
-        fill: var(--ti-action-menu-text-color); // TINY-TODO :没有使用--ti-base-color-brand-7的图标色
-        margin: var(--ti-action-menu-item-svg-margin-top) var(--ti-action-menu-item-svg-margin-right)
-          var(--ti-action-menu-item-svg-margin-bottom) var(--ti-action-menu-item-svg-margin-left);
-      }
+      // 默认
+      &.@{action-menu-prefix-cls}__item-visable {
+        .@{dropdown-item-prefix-cls} {
+          .@{dropdown-item-prefix-cls}__wrap {
+            color: var(--tv-ActionMenu-text-color);
+            margin: 0px;
+            height: auto;
 
-      &:not(:has(.tiny-dropdown)) {
-        .tiny-svg {
-          width: var(--ti-action-menu-more-icon-width);
-          height: var(--ti-action-menu-more-icon-height);
+            .tiny-svg {
+              fill: var(--tv-ActionMenu-icon-color);
+            }
+          }
         }
-      }
 
-      &:not(.is-disabled):hover {
-        &.@{action-menu-prefix-cls}__item-visable {
-          .@{dropdown-item-prefix-cls} {
-            background-color: var(--ti-action-menu-item-hover-bg-color);
+        // 悬浮
+        &:not(.is-disabled):hover {
+          .@{dropdown-item-prefix-cls}__wrap {
+            text-decoration: underline;
+          }
+        }
 
-            > .tiny-dropdown-item__wrap {
-              > .tiny-dropdown-item__content {
-                .tiny-svg {
-                  fill: var(--ti-action-menu-item-hover-icon-color);
-                }
+        //  禁用
+        &.is-disabled {
+          .@{dropdown-item-prefix-cls}__wrap {
+            .tiny-dropdown-item__content {
+              color: var(--tv-ActionMenu-text-color-disabled);
+
+              .tiny-svg {
+                fill: var(--tv-ActionMenu-icon-color-disabled);
               }
             }
           }
         }
       }
+    }
 
-      &.@{action-menu-prefix-cls}__item-visable {
-        .@{dropdown-item-prefix-cls} {
-          .@{dropdown-item-prefix-cls}__wrap {
-            color: var(--ti-action-menu-text-color);
-            margin: 0px;
-            height: auto;
-
-            &:hover {
-              background-color: var(--ti-action-menu-item-hover-bg-color);
-              text-decoration: var(--ti-action-menu-hover-text-decoration);
-              color: var(--ti-action-menu-item-hover-text-color);
-            }
-          }
-        }
-
-        &.@{action-menu-prefix-cls}__card-item {
-          .@{dropdown-item-prefix-cls}__wrap {
-            color: var(--ti-action-menu-item-card-text-color);
-
-            .tiny-svg {
-              fill: var(--ti-action-menu-item-card-text-color);
-            }
-
-            &:hover {
-              color: var(--ti-action-menu-item-card-hover-text-color);
-            }
-          }
-        }
-
-        &.is-disabled {
-          .@{dropdown-item-prefix-cls}__wrap {
-            color: var(--ti-action-menu-item-disabled-text-color);
-          }
-        }
+    /* card 类型 */
+    &.@{action-menu-prefix-cls}__card-mode {
+      .tiny-svg {
+        fill: var(--tv-ActionMenu-icon-color-card);
       }
 
-      .@{action-menu-prefix-cls}__item-line {
-        position: relative;
-        width: var(--ti-action-menu-item-line-width);
-        height: 12px;
-        background: var(--ti-action-menu-item-line-bg-color);
-        display: inline-block;
+      .@{action-menu-prefix-cls}__item {
+        &.@{action-menu-prefix-cls}__item-visable {
+          .@{dropdown-item-prefix-cls}__wrap {
+            color: var(--tv-ActionMenu-text-color-card);
+
+            .tiny-svg {
+              fill: var(--tv-ActionMenu-icon-color-card);
+            }
+          }
+        }
       }
     }
   }
