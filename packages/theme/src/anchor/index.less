@@ -17,18 +17,43 @@
 
 .@{anchor-prefix-cls} {
   &__wrapper {
-    .component-css-vars-anchor();
+    .inject-anchor-vars();
   }
 
-  background-color: var(--ti-anchor-bg-color);
-  width: var(--ti-anchor-width);
   position: relative;
-  color: var(--ti-anchor-text-color);
-  font-size: var(--ti-anchor-font-size);
+  width: var(--tv-Anchor-width);
+  background-color: var(--tv-Anchor-bg-color);
+  color: var(--tv-Anchor-text-color);
+  font-size: var(--tv-Anchor-font-size);
 
   &__affix {
     position: fixed;
     z-index: 1;
+  }
+
+  &-link {
+    margin: 0 0 0 var(--tv-Anchor-link-margin-left);
+    line-height: 22px;
+    cursor: pointer;
+
+    &-title:hover {
+      color: var(--tv-Anchor-link-text-color-hover);
+    }
+
+    &-title {
+      display: block;
+      max-width: 100%;
+      padding: 1px var(--tv-Anchor-link-title-padding-right) 1px 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      color: var(--tv-Anchor-text-color);
+      &&--active {
+        color: var(--tv-Anchor-link-text-color-active);
+      }
+    }
   }
 
   &__line {
@@ -39,11 +64,11 @@
     .@{anchor-prefix-cls}-link-mask {
       position: absolute;
       max-width: 0;
+      left: var(--tv-Anchor-orbit-width / 2);
+      width: 100%;
       border-top-right-radius: 10px;
       border-bottom-right-radius: 10px;
-      left: var(--ti-anchor-orbit-width / 2);
-      width: 100%;
-      background-color: var(--ti-anchor-link-mask-bg-color);
+      background-color: var(--tv-Anchor-link-mask-bg-color);
     }
 
     .@{anchor-prefix-cls}-orbit {
@@ -51,43 +76,17 @@
       left: 0;
       top: 0;
       bottom: 0;
-      width: var(--ti-anchor-orbit-width);
-      border-radius: calc(var(--ti-anchor-orbit-width / 2));
-      background-color: var(--ti-anchor-orbit-bg-color);
+      width: var(--tv-Anchor-orbit-width);
+      border-radius: calc(var(--tv-Anchor-orbit-width / 2));
+      background-color: var(--tv-Anchor-orbit-bg-color);
       &-skid {
         position: absolute;
         left: 0;
-        width: var(--ti-anchor-orbit-skid-width);
-        background-color: var(--ti-anchor-orbit-bg-color);
+        width: var(--tv-Anchor-orbit-skid-width);
+        background-color: var(--tv-Anchor-orbit-bg-color);
         &--active {
-          background-color: var(--ti-anchor-link-active-bg-color);
+          background-color: var(--tv-Anchor-link-bg-color-active);
         }
-      }
-    }
-  }
-
-  &-link-title:hover {
-    color: var(--ti-anchor-link-hover-text-color);
-  }
-
-  &-link {
-    margin: 0 0 0 var(--ti-anchor-link-margin-left);
-    cursor: pointer;
-    line-height: 22px;
-
-    &-title {
-      display: block;
-      max-width: 100%;
-      padding: var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-right)
-        var(--ti-anchor-link-title-padding-vertical) var(--ti-anchor-link-title-padding-left);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-      color: var(--ti-anchor-text-color);
-      &&--active {
-        color: var(--ti-anchor-link-active-text-color);
       }
     }
   }
@@ -112,40 +111,40 @@
 
       &:before {
         content: '';
+        position: absolute;
+        left: 0px;
+        top: 6px;
         display: block;
         width: 8px;
         height: 8px;
-        border: 1px solid var(--ti-anchor-dot-border-color);
-        position: absolute;
+        border: 1px solid var(--tv-Anchor-dot-border-color);
         border-radius: 50%;
-        left: 0px;
-        top: 6px;
       }
 
       &:after {
         content: '';
-        display: block;
-        width: 1px;
-        background-color: var(--ti-anchor-line-bg-color);
         position: absolute;
-        opacity: var(--ti-anchor-line-opacity);
-        border-radius: 50%;
         left: 3.5px;
         top: 20px;
         bottom: -18px;
+        display: block;
+        width: 1px;
+        background-color: var(--tv-Anchor-line-bg-color);
+        opacity: var(--tv-Anchor-line-opacity);
+        border-radius: 50%;
       }
 
       &--active:before {
-        background-color: var(--ti-anchor-link-active-text-color);
-        border-color: var(--ti-anchor-link-active-text-color);
+        background-color: var(--tv-Anchor-dot-bg-color-active);
+        border-color: var(--tv-Anchor-dot-border-color-active);
       }
 
       &:hover,
       &--active {
-        color: var(--ti-anchor-link-active-text-color);
+        color: var(--tv-Anchor-link-text-color-active);
 
         &:before {
-          border-color: var(--ti-anchor-link-active-text-color);
+          border-color: var(--tv-Anchor-dot-border-color-active);
           opacity: 1;
         }
       }
