@@ -10,11 +10,15 @@
 *
 */
 
-.component-css-vars-roles() {
-  --ti-roles-poplist-item-height: var(--ti-common-size-height-normal, 32px);
-  --ti-roles-poplist-item-text-color: var(--ti-common-color-info-normal, #191919);
-  --ti-roles-poplist-item-font-size: var(--ti-common-font-size-base, 14px);
-  --ti-roles-poplist-item-hover-bg-color: var(--ti-common-color-hover-background, #f5f5f5);
-  --ti-roles-poplist-item-selected-bg-color: var(--ti-common-color-selected-background, #f5f5f5);
-  --ti-roles-poplist-item-selected-text-color: var(--ti-common-color-selected-text-color, #191919);
+.inject-Roles-vars() {
+  // 下拉面板选项高度
+  --tv-Roles-poplist-item-height: var(--tv-size-height-md);
+  // 下拉面板选项字体颜色
+  --tv-Roles-poplist-item-text-color: var(--tv-color-text);
+  // 下拉面板选项字体尺寸
+  --tv-Roles-poplist-item-font-size: var(--tv-font-size-md);
+  // 下拉面板选项悬浮背景色
+  --tv-Roles-poplist-item-hover-bg-color: var(--tv-color-bg-hover);
+  // 下拉面板选项选中色
+  --tv-Roles-poplist-item-selected-bg-color: var(--tv-color-bg-active);
 }

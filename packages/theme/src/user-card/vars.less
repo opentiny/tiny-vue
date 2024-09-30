@@ -10,11 +10,17 @@
 *
 */
 
-.component-css-vars-user-card() {
-  --ti-usercard-border-color: var(--ti-common-color-border, #999999);
-  --ti-usercard-image-border-radius: var(--ti-common-border-radius-normal, 6px);
-  --ti-usercard-state-online-text-color: #33cc00;
-  --ti-usercard-state-busy-text-color: #ff3300;
-  --ti-usercard-state-goaway-text-color: #ffae00;
-  --ti-usercard-state-offline-text-color: #aeaeae;
+.inject-UserCard-vars() {
+  // 卡片边框色
+  --tv-UserCard-border-color: var(--tv-color-border);
+  // 卡片圆角
+  --tv-UserCard-image-border-radius: var(--tv-border-radius-md);
+  // 在线文本色
+  --tv-UserCard-state-online-text-color: var(--tv-color-success-text);
+  // 忙碌文本色
+  --tv-UserCard-state-busy-text-color: var(--tv-color-error-text);
+  // 离开文本色
+  --tv-UserCard-state-goaway-text-color: var(--tv-color-warn-text);
+  // 离线文本色
+  --tv-UserCard-state-offline-text-color: var(--tv-color-text-disabled);
 }

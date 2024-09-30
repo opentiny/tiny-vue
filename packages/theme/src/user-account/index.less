@@ -17,19 +17,19 @@
 @logout-prefix-cls: ~'@{css-prefix}logout';
 
 .@{user-contact-prefix-cls} {
-  .component-css-vars-user-account();
+  .inject-UserAccount-vars();
 
   &__main {
     .user-account-pop {
-      padding: var(--ti-user-account-padding-vertical) var(--ti-user-account-padding-horizontal);
+      padding: 0 8px;
     }
 
     .user-account-custom {
-      line-height: var(--ti-user-account-line-height);
+      line-height: var(--tv-UserAccount-line-height);
     }
 
     .@{logout-prefix-cls} {
-      line-height: var(--ti-user-account-line-height);
+      line-height: var(--tv-UserAccount-line-height);
     }
   }
 }
