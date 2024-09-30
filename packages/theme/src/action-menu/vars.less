@@ -11,42 +11,21 @@
 */
 
 .component-css-vars-action-menu() {
-  // 按钮文本字重
-  --ti-action-menu-font-weight: var(--ti-common-font-weight-normal, 400);
-  // 按钮文本装饰
-  --ti-action-menu-hover-text-decoration: underline;
-  // 更多...图标的宽度
-  --ti-action-menu-more-icon-width: var(--ti-common-size-4x, 16px);
-  // 更多...图标的高度
-  --ti-action-menu-more-icon-height: var(--ti-common-size-4x, 16px);
-  // 更多...图标的右边外边距
-  --ti-action-menu-more-icon-margin-right: var(--ti-common-space-0, 0px);
-  // 下拉触发源文本颜色
-  --ti-action-menu-text-color: var(--ti-common-color-text-link, #1476ff);
-  // 下拉触发源文本禁用色
-  --ti-action-menu-item-disabled-text-color: var(--ti-common-color-text-disabled, #c2c2c2);
-  // 下拉触发源文本字号
-  --ti-action-menu-font-size: var(--ti-common-font-size-base, 14px);
-  // 分割线颜色
-  --ti-action-menu-item-line-bg-color: transparent;
-  // 分割线宽度
-  --ti-action-menu-item-line-width: var(--ti-common-space-0, 0px);
-  // 下拉菜单项悬浮背景色
-  --ti-action-menu-item-hover-bg-color: transparent;
-  // 下拉菜单项文本悬浮色
-  --ti-action-menu-item-hover-text-color: var(--ti-common-color-text-link, #1476ff);
-  // 下拉菜单项图标悬浮色
-  --ti-action-menu-item-hover-icon-color: var(--ti-common-color-text-link-hover, #1476ff); // 没有这个颜色的图标色
-  // 下拉菜单项图标顶部内边距
-  --ti-action-menu-item-svg-margin-top: 0px;
-  // 下拉菜单项图标右侧内边距
-  --ti-action-menu-item-svg-margin-right: var(--ti-common-space-base, 4px);
-  // 下拉菜单项图标底部部内边距
-  --ti-action-menu-item-svg-margin-bottom: var(--ti-common-space-0, 0px);
-  // 下拉菜单项图标左侧内边距
-  --ti-action-menu-item-svg-margin-left: var(--ti-common-space-0, 0px);
-  // 下拉菜单卡片模式字体颜色
-  --ti-action-menu-item-card-text-color: var(--ti-common-color-text-primary, #191919);
-  // 下拉菜单卡片模式字体颜色
-  --ti-action-menu-item-card-hover-text-color: var(--ti-common-color-text-primary, #191919);
+  // 文本字号
+  --tv-ActionMenu-font-size: var(--tv-font-size-md, 14px);
+  // 文本色（默认）
+  --tv-ActionMenu-text-color: var(--tv-color-text-link, #1476ff);
+  //  文本色（card 类型）
+  --tv-ActionMenu-text-color-card: var(--tv-color-text, #191919);
+  // 文本禁用色
+  --tv-ActionMenu-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
+
+  // 图标尺寸
+  --tv-ActionMenu-icon-size: var(--tv-icon-size, 16px);
+  // 图标色（默认）
+  --tv-ActionMenu-icon-color: var(--tv-color-icon-link, #1476ff);
+  // 图标色（ card 类型）
+  --tv-ActionMenu-icon-color-card: var(--tv-color-icon-control);
+  // 图标禁用色
+  --tv-ActionMenu-icon-color-disabled: var(--tv-color-icon-disabled, #c2c2c2);
 }
