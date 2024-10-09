@@ -43,6 +43,5 @@ export const tinyGridOldTheme = {
   'ti-grid-radio-bg-color-checked': 'var(--ti-grid-primary-color)',
   'ti-grid-header-repair-border-color': 'var(--ti-common-color-transparent, transparent)',
   'ti-grid-icon-color': 'var(--ti-common-color-info-normal, #252b3a)',
-  'ti-grid-header-font-weight': 'var(--ti-common-font-weight-4, normal)',
-  'ti-grid-header-text-color': 'var(--ti-common-color-info-normal, #252b3a)'
+  'ti-grid-header-font-weight': 'var(--ti-common-font-weight-4, normal)'
 }
