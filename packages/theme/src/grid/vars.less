@@ -11,17 +11,43 @@
 */
 
 .component-css-vars-grid() {
-  // 表格默认字体
-  --ti-grid-font-family: var(
-    --ti-common-font-family,
-    'Helvetica',
-    'Arial',
-    'PingFangSC-Regular',
-    'Hiragino Sans GB',
-    'Microsoft YaHei',
-    '微软雅黑',
-    'Microsoft JhengHei'
-  );
+  // 表格字号
+  --tv-Grid-font-size: var(--tv-font-size-md);
+  // 表格文本色
+  --tv-Grid-text-color: var(--tv-color-text);
+  // 表格禁用文本色
+  --tv-Grid-text-color-disabled: var(--tv-color-text-disabled);
+  // 表格二级文本颜色，页码项文本色
+  --tv-Grid-text-color-secondary: var(--tv-color-text-secondary);
+  // 页码悬浮文本色
+  --tv-Grid-list-item-hover-text-color: var(--tv-color-text);
+  // 表格图标大小
+  --tv-Grid-icon-size: var(--tv-icon-size);
+  // 表格图标颜色
+  --tv-Grid-icon-color: var(--tv-color-icon);
+  // 表格图标悬浮颜色
+  --tv-Grid-icon-color-hover: var(--tv-color-icon-hover);
+  // 表格图标禁用颜色
+  --tv-Grid-icon-color-disabled: var(--tv-color-icon-disabled);
+
+  // -------多选框相关样式
+  // 多选框图标大小
+  --tv-Grid-checkbox-icon-size: calc(var(--tv-icon-size) + 2px);
+  // 多选框图标颜色
+  --tv-Grid-checkbox-icon-color: var(--tv-color-border);
+  // 多选框图标悬浮颜色
+  --tv-Grid-checkbox-icon-color-hover: var(--tv-color-border-hover);
+  // 多选框图标悬浮颜色
+  --tv-Grid-checkbox-icon-color-selected: var(--tv-color-bg-active-control);
+  // 多选框图标禁用颜色
+  --tv-Grid-checkbox-icon-color-disabled: var(--tv-color-bg-active-control);
+  // 多选框禁用背景颜色
+  --tv-Grid-checkbox-bg-color-disabled: var(--tv-color-bg-disabled);
+  // 多选框禁用边框颜色
+  --tv-Grid-checkbox-border-color-disabled: var(--tv-color-border-disabled);
+  // 多选框边框圆角
+  --tv-Grid-checkbox-border-radius: var(--tv-border-radius-sm);
+  // ------分割线-------
   // 默认表头文本色
   --ti-grid-header-text-color: var(--ti-common-color-text-secondary, #595959);
   // 默认表头字体权重
@@ -67,10 +93,6 @@
   --ti-grid-select-icon-font-size: var(--ti-common-font-size-3, 18px);
   // 表格多选框选中背景色
   --ti-grid-checkbox-bg-color-checked: #1476ff;
-  // 表格复选框字号
-  --ti-grid-checkbox-icon-size: var(--ti-common-font-size-2, 16px);
-  // 表格内部多选按钮边框圆角
-  --ti-grid-checkbox-border-radius: var(--ti-common-border-radius-2, 4px);
 
   // 表格头部默认背景色
   --ti-grid-header-background-color: #f5f5f5;

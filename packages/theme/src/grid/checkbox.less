@@ -20,17 +20,6 @@
   user-select: none;
   cursor: pointer;
 
-  &.size__small,
-  &.size__mini {
-    font-size: var(--ti-grid-font-size);
-
-    > input {
-      & + .@{grid-checkbox-prefix-cls}__icon {
-        font-size: var(--ti-grid-checkbox-icon-size);
-      }
-    }
-  }
-
   & + & {
     margin-left: 10px;
   }
@@ -43,12 +32,8 @@
       display: block;
       width: 1em;
       height: 1em;
-      border-radius: var(--ti-grid-checkbox-border-radius);
-      font-size: var(--ti-common-font-size-2);
-
-      &:hover {
-        border-color: var(--ti-grid-primary-hover-color);
-      }
+      border-radius: var(--tv-Grid-checkbox-border-radius);
+      font-size: var(--tv-Grid-font-size);
 
       & + .@{grid-checkbox-prefix-cls}__label {
         display: none;
@@ -59,11 +44,11 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        fill: var(--ti-grid-checkbox-border-color);
-        font-size: var(--ti-grid-select-icon-font-size);
+        fill: var(--tv-Grid-checkbox-icon-color);
+        font-size: var(--tv-Grid-checkbox-icon-size);
 
         &:hover {
-          fill: var(--ti-grid-primary-color);
+          fill: var(--tv-Grid-checkbox-icon-color-hover);
         }
 
         &.icon-checked-sur {
@@ -74,7 +59,7 @@
 
     &:checked + .@{grid-checkbox-prefix-cls}__icon {
       & + .@{grid-checkbox-prefix-cls}__label {
-        color: var(--ti-grid-primary-color);
+        color: var(--tv-Grid-text-color);
       }
 
       > svg {
@@ -84,7 +69,7 @@
 
         &.icon-checked-sur {
           display: block;
-          fill: var(--ti-grid-checkbox-bg-color-checked);
+          fill: var(--tv-Grid-checkbox-icon-color-selected);
         }
       }
     }
@@ -97,8 +82,8 @@
           border: none;
 
           > svg {
-            fill: var(--ti-grid-checkbox-bg-color-checked);
-            border-radius: var(--ti-grid-checkbox-border-radius);
+            fill: var(--tv-Grid-checkbox-icon-color-selected);
+            border-radius: var(--tv-Grid-checkbox-border-radius);
           }
         }
       }
@@ -111,24 +96,24 @@
     > input {
       & + .@{grid-checkbox-prefix-cls}__icon {
         > svg {
-          fill: var(--ti-grid-border-color);
+          fill: var(--tv-Grid-checkbox-border-color-disabled);
 
           path:first-of-type {
-            fill: var(--ti-grid-input-disabled-bg-color);
+            fill: var(--tv-Grid-checkbox-bg-color-disabled);
           }
         }
 
         & + .@{grid-checkbox-prefix-cls}__label {
-          color: var(--ti-grid-disabled-color);
+          color: var(--tv-Grid-checkbox-border-color-disabled);
         }
       }
 
       &:checked + .@{grid-checkbox-prefix-cls}__icon {
         > svg {
-          fill: var(--ti-grid-disabled-color);
+          fill: var(--tv-Grid-checkbox-border-color-disabled);
 
           path:first-child {
-            fill: var(--ti-grid-disabled-color);
+            fill: var(--tv-Grid-checkbox-border-color-disabled);
           }
         }
       }
@@ -141,7 +126,7 @@
     > input {
       & + .@{grid-checkbox-prefix-cls}__icon {
         > svg {
-          fill: var(--ti-grid-disabled-color);
+          fill: var(--tv-Grid-checkbox-border-color-disabled);
         }
       }
     }
