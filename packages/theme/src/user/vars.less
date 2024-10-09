@@ -10,8 +10,13 @@
 *
 */
 
-.component-css-vars-user() {
-  --ti-user-font-size: var(--ti-common-font-size-base, 14px);
-  --ti-user-tag-bg-color: var(--ti-common-color-hover-background, #f5f5f5);
-  --ti-user-svg-text-color: var(--ti-base-color-brand-6, #191919);
+.inject-User-vars() {
+  // 字体尺寸
+  --tv-User-font-size: var(--tv-font-size-md);
+  // 选中项标签背景颜色
+  --tv-User-tag-bg-color: var(--tv-color-bg);
+  // 人员图标颜色
+  --tv-User-svg-color: var(--tv-color-icon);
+  // 人员图标禁用颜色
+  --tv-User-svg-color-disabled: var(--tv-color-icon-disabled);
 }

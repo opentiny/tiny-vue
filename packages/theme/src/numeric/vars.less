@@ -10,96 +10,92 @@
 *
 */
 
-.component-css-vars-numeric() {
+.inject-Numeric-vars() {
   // 默认宽度
-  --ti-numeric-input-width: calc(var(--ti-common-size-width-medium, 120px) + 6px);
+  --tv-Numeric-input-width: 126px;
   // 默认高度
-  --ti-numeric-input-normal-height: var(--ti-common-size-height-normal, 32px);
+  --tv-Numeric-input-normal-height: var(--tv-size-height-md);
   // 边框圆角
-  --ti-numeric-input-border-radius: var(--ti-common-border-radius-normal, 6px);
+  --tv-Numeric-input-border-radius: var(--tv-border-radius-md);
   // 边框默认色
-  --ti-numeric-input-normal-border-color: var(--ti-common-color-line-normal, #c2c2c2);
+  --tv-Numeric-input-normal-border-color: var(--tv-color-border);
   // 分隔线颜色
-  --ti-numeric-input-dividing-border-color: var(--ti-common-border-color-transparent-8, var(--ti-base-bg-color-transparent-8));
+  --tv-Numeric-input-dividing-border-color: var(--tv-color-border-divider);
   // 分割线高度
-  --ti-numeric-input-dividing-border-height: var(--ti-common-space-5x, 20px);
-  // 禁用时分割线display(hide)
-  --ti-numeric-input-dividing-border-display: none;
+  --tv-Numeric-input-dividing-border-height: 20px;
   // 输入框字号
-  --ti-numeric-input-normal-font-size: var(--ti-common-font-size-base, 14px);
+  --tv-Numeric-input-normal-font-size: var(--tv-font-size-md);
   // 输入框字体色
-  --ti-numeric-input-normal-text-color: var(--ti-common-color-text-primary, #191919);
+  --tv-Numeric-input-normal-text-color: var(--tv-color-text);
   // 默认背景色
-  --ti-numeric-input-normal-bg-color: var(--ti-common-color-bg-white-normal, #ffffff);
+  --tv-Numeric-input-normal-bg-color: var(--tv-color-bg-secondary);
   // 按钮默认宽度
-  --ti-numeric-input-icon-width: calc(var(--ti-numeric-input-normal-height) - 1px);
+  --tv-Numeric-input-icon-width: calc(var(--tv-Numeric-input-normal-height) - 1px);
   // 悬浮边框色
-  --ti-numeric-input-normal-active-border-color: var(--ti-common-color-border-hover, #191919);
+  --tv-Numeric-input-normal-active-border-color: var(--tv-color-border-hover);
   // 按钮图标色
-  --ti-numeric-input-icon-color: var(--ti-common-color-icon-normal, #808080);
+  --tv-Numeric-input-icon-color: var(--tv-color-icon);
   // 提示占位符文本色
-  --ti-numeric-input-placeholder-text-color: var(--ti-common-color-placeholder, #808080);
+  --tv-Numeric-input-placeholder-text-color: var(--tv-color-text-placeholder);
   // 按钮悬浮图标色
-  --ti-numeric-input-icon-color-hover: var(--ti-common-color-line-hover, #191919);
+  --tv-Numeric-input-icon-color-hover: var(--tv-color-icon-hover);
   // 按钮禁用图标色
-  --ti-numeric-input-icon-color-disabled: var(--ti-common-color-icon-disabled, #c2c2c2);
+  --tv-Numeric-input-icon-color-disabled: var(--tv-color-icon-disabled);
   // 聚焦时边框色
-  --ti-numeric-input-border-color-active: var(--ti-common-color-line-active, #191919);
+  --tv-Numeric-input-border-color-active: var(--tv-color-border-active);
   // 图标大小
-  --ti-numeric-input-icon-size: calc(var(--ti-common-font-size-base, 14px) + 2px);
+  --tv-Numeric-input-icon-size: var(--tv-icon-size);
 
   // 禁用文本色
-  --ti-numeric-input-disabled-text-color: var(--ti-common-color-primary-disabled-text, #c2c2c2);
+  --tv-Numeric-input-disabled-text-color: var(--tv-color-text-disabled);
   // 禁用背景色
-  --ti-numeric-input-disabled-bg-color: var(--ti-common-color-bg-disabled, #f0f0f0);
+  --tv-Numeric-input-disabled-bg-color: var(--tv-color-bg-disabled);
   // 禁用时边框色
-  --ti-numeric-input-border-color-disabled: var(--ti-common-color-line-disabled, #dbdbdb);
+  --tv-Numeric-input-border-color-disabled: var(--tv-color-border-disabled);
   // 按钮禁用时背景色
-  --ti-numeric-input-btn-disabled-bg-color: var(--ti-common-color-bg-disabled, #f0f0f0);
-  // 按钮禁用时分隔线颜色
-  --ti-numeric-input-btn-border-color-disabled: var(--ti-common-color-transparent, transparent);
+  --tv-Numeric-input-btn-disabled-bg-color: var(--tv-color-bg-disabled);
 
   // medium尺寸宽度
-  --ti-numeric-input-width-medium: calc(var(--ti-common-size-width-large, 152px) + 6px);
+  --tv-Numeric-input-width-medium: 158px;
   // medium尺寸高度
-  --ti-numeric-input-height-medium: var(--ti-common-size-height-medium, 40px);
+  --tv-Numeric-input-height-medium: var(--tv-size-height-lg);
   // medium尺寸按钮宽度
-  --ti-numeric-input-icon-width-medium: var(--ti-numeric-input-height-medium);
+  --tv-Numeric-input-icon-width-medium: var(--tv-Numeric-input-height-medium);
   // medium尺寸图标大小
-  --ti-numeric-input-icon-size-medium: var(--ti-common-font-size-2, 16px);
+  --tv-Numeric-input-icon-size-medium: var(--tv-icon-size);
   // medium尺寸分割线高度
-  --ti-numeric-input-divider-height-medium: var(--ti-common-space-6x, 24px);
+  --tv-Numeric-input-divider-height-medium: 24px;
 
   // small尺寸宽度
-  --ti-numeric-input-width-small: calc(var(--ti-common-size-34x, 136px) + 6px);
+  --tv-Numeric-input-width-small: 112px;
   // small尺寸高度
-  --ti-numeric-input-height-small: var(--ti-common-size-9x, 36px);
+  --tv-Numeric-input-height-small: var(--tv-size-height-sm);
   // small尺寸按钮宽度
-  --ti-numeric-input-icon-width-small: var(--ti-numeric-input-height-small);
+  --tv-Numeric-input-icon-width-small: var(--tv-Numeric-input-height-small);
   // small尺寸图标大小
-  --ti-numeric-input-icon-size-small: var(--ti-common-font-size-1, 14px);
+  --tv-Numeric-input-icon-size-small: 14px;
   // small尺寸分割线高度
-  --ti-numeric-input-divider-height-small: calc(var(--ti-common-space-5x, 20px) - 2px);
+  --tv-Numeric-input-divider-height-small: 18px;
 
   // mini尺寸宽度
-  --ti-numeric-input-width-mini: calc(var(--ti-common-space-10, 10px) * 13);
+  --tv-Numeric-input-width-mini: 102px;
   // mini尺寸高度
-  --ti-numeric-input-height-mini: var(--ti-common-size-height-mini, 24px);
+  --tv-Numeric-input-height-mini: var(--tv-size-height-xs);
   // mini尺寸按钮宽度
-  --ti-numeric-input-icon-width-mini: var(--ti-numeric-input-height-mini);
+  --tv-Numeric-input-icon-width-mini: var(--tv-Numeric-input-height-mini);
   // mini尺寸图标大小
-  --ti-numeric-input-icon-size-mini: var(--ti-common-font-size-base, 14px);
+  --tv-Numeric-input-icon-size-mini: 14px;
   // mini尺寸分割线高度
-  --ti-numeric-input-divider-height-mini: calc(var(--ti-common-space-4x, 16px) - 1px);
+  --tv-Numeric-input-divider-height-mini: 15px;
 
   // 单位内容宽度
-  --ti-numeric-input-unit-width: calc(var(--ti-common-space-10, 10px) * 5);
+  --tv-Numeric-input-unit-width: 50px;
   // 单位字体色
-  --ti-numeric-input-unit-text-color: var(--ti-common-color-text-secondary, #595959);
+  --tv-Numeric-input-unit-text-color: var(--tv-color-text-secondary);
   // 单位字号
-  --ti-numeric-input-unit-font-size: var(--ti-common-font-size-base, 14px);
+  --tv-Numeric-input-unit-font-size: var(--tv-font-size-md);
   // 单位左边框颜色
-  --ti-numeric-input-unit-border-left-color: var(--ti-common-color-line-dividing, #f0f0f0);
+  --tv-Numeric-input-unit-border-left-color: var(--tv-color-border);
   // 单位背景色
-  --ti-numeric-input-unit-bg-color: var(--ti-common-color-bg-gray, #fafafa);
+  --tv-Numeric-input-unit-bg-color: var(--tv-color-bg-gray-1);
 }

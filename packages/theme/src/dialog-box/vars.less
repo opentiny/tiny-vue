@@ -10,136 +10,46 @@
 *
 */
 
-.component-css-vars-dialog-box() {
+.inject-DialogBox-vars() {
   // 对话框背景色
-  --ti-dialog-box-bg-color: var(--ti-common-color-bg-white-normal, #ffffff);
+  --tv-DialogBox-bg-color: var(--tv-color-bg-secondary);
   // 对话框圆角
-  --ti-dialog-box-border-radius: var(--ti-common-border-radius-4, 8px);
+  --tv-DialogBox-border-radius: var(--tv-border-radius-lg);
   // 对话框阴影
-  --ti-dialog-box-shadow: var(--ti-common-shadow-4-down, 0 8px 24px 0 rgba(0, 0, 0, 0.16));
-
-  // 头部边框色(hide)
-  --ti-dialog-box-head-border-color: var(--ti-common-color-line-normal, #c2c2c2);
-  // 头部文本色(hide)
-  --ti-dialog-box-head-text-color: var(--ti-common-color-text-primary, #191919);
-  // 头部上内边距
-  --ti-dialog-box-head-padding-top: var(--ti-common-space-8x, 32px);
-  // 头部水平内边距
-  --ti-dialog-box-head-padding-horizontal: var(--ti-common-space-8x, 32px);
-  // 头部下内边距
-  --ti-dialog-box-head-padding-bottom: var(--ti-common-space-6x, 24px);
+  --tv-DialogBox-shadow: var(--tv-shadow-4-down);
   // 头部字号
-  --ti-dialog-box-head-title-font-size: var(--ti-common-font-size-4, 20px);
+  --tv-DialogBox-head-title-font-size: var(--tv-font-size-heading-md);
   // 头部字重
-  --ti-dialog-box-head-title-font-weight: var(--ti-common-font-weight-7, bold);
+  --tv-DialogBox-head-title-font-weight: var(--tv-font-weight-bold);
   // 头部文本色
-  --ti-dialog-box-head-title-text-color: var(--ti-common-color-text-primary, #191919);
-  // 头部底边框颜色
-  --ti-dialog-box-head-border-bottom-color: var(--ti-common-color-transparent, transparent);
-  // 头部字体图标色(hide)
-  --ti-dialog-box-head-font-icon-color: var(--ti-common-color-icon-normal, #808080);
-  // 头部字体图标悬浮颜色(hide)
-  --ti-dialog-box-head-font-icon-color-hover: var(--ti-common-color-icon-hover, #191919);
-  // 头部主体色(hide)
-  --ti-dialog-box-head-body-text-color: var(--ti-common-color-text-primary, #191919);
-  // 头部主体字号(hide)
-  --ti-dialog-box-head-body-font-size: var(--ti-common-font-size-1, 14px);
+  --tv-DialogBox-head-title-text-color: var(--tv-color-text);
 
-  // 关闭按钮宽度
-  --ti-dialog-box-btn-width: var(--ti-common-size-8x, 32px);
   // 关闭按钮高度
-  --ti-dialog-box-btn-height: var(--ti-dialog-box-btn-width);
-  // 关闭按钮圆角
-  --ti-dialog-box-btn-border-radius: var(--ti-common-border-radius-1, 2px);
+  --tv-DialogBox-btn-height: 32px;
   // 关闭按钮图标尺寸
-  --ti-dialog-box-close-icon-size: var(--ti-common-font-size-5, 24px);
+  --tv-DialogBox-close-icon-size: 24px;
   // 关闭按钮图标色
-  --ti-dialog-box-close-icon-color: var(--ti-common-color-icon-normal, #808080);
+  --tv-DialogBox-close-icon-color: var(--tv-color-icon);
   // 关闭按钮悬浮图标色
-  --ti-dialog-box-close-icon-color-hover: var(--ti-common-color-icon-hover, #191919);
-  // 关闭按钮悬浮背景色
-  --ti-dialog-box-btn-background-color-hover: none;
-  // 关闭按钮与上边框的距离(hide)
-  --ti-dialog-box-btn-position-top: var(--ti-common-space-5x, 20px);
-  // 关闭按钮与右边框的距离(hide)
-  --ti-dialog-box-btn-position-right: var(--ti-common-space-5x, 20px);
+  --tv-DialogBox-close-icon-color-hover: var(--tv-color-icon-hover);
 
   // 内容字号
-  --ti-dialog-box-body-font-size: var(--ti-common-font-size-base, 14px);
+  --tv-DialogBox-body-font-size: var(--tv-font-size-md);
   // 内容字体色
-  --ti-dialog-box-body-text-color: var(--ti-common-color-text-secondary, #595959);
+  --tv-DialogBox-body-text-color: var(--tv-color-text-secondary);
   // 右侧弹窗内容字体色
-  --ti-dialog-box-drawer-body-color: var(--ti-common-color-text-primary, #191919);
-  // 内容垂直内边距
-  --ti-dialog-box-body-padding-vertical: var(--ti-common-space-0, 0px);
-  // 内容水平内边距
-  --ti-dialog-box-body-padding-horizontal: var(--ti-common-space-8x, 32px);
-
-  // 底部上内边距
-  --ti-dialog-box-footer-padding-top: var(--ti-common-space-6x, 24px);
-  // 底部水平内边距
-  --ti-dialog-box-footer-padding-horizontal: var(--ti-common-space-8x, 32px);
-  // 底部下内边距
-  --ti-dialog-box-footer-margin-bottom: var(--ti-common-space-8x, 32px);
+  --tv-DialogBox-drawer-body-color: var(--tv-color-text);
 
   // 抽屉最小宽度
-  --ti-dialog-box-drawer-min-width: calc(var(--ti-common-space-10, 10px) * 50);
+  --tv-DialogBox-drawer-min-width: 500px;
   // 抽屉最大宽度
-  --ti-dialog-box-drawer-max-width: calc(var(--ti-common-space-10, 10px) * 100);
-  // 抽屉左内边距
-  --ti-dialog-box-drawer-padding-left: var(--ti-common-space-8x, 32px);
-  // 抽屉右内边距
-  --ti-dialog-box-drawer-padding-right: var(--ti-common-space-8x, 32px);
-  // 抽屉头部上内边距
-  --ti-dialog-box-drawer-header-padding-top: var(--ti-common-space-8x, 32px);
-  // 抽屉头部下内边距
-  --ti-dialog-box-drawer-header-padding-bottom: var(--ti-common-space-5x, 20px);
-  // 抽屉头部左内边距
-  --ti-dialog-box-drawer-header-padding-left: var(--ti-common-space-0, 0px);
-  // 抽屉头部右内边距
-  --ti-dialog-box-drawer-body-padding-right: var(--ti-common-space-8x, 32px);
-  // 抽屉内容上内边距
-  --ti-dialog-box-drawer-body-padding-top: var(--ti-common-space-0, 0px);
-  // 抽屉内容下内边距
-  --ti-dialog-box-drawer-body-padding-bottom: var(--ti-common-space-0, 0px);
-  // 抽屉内容左内边距
-  --ti-dialog-box-drawer-body-padding-left: var(--ti-common-space-8x, 32px);
-  // 抽屉内容右内边距
-  --ti-dialog-box-drawer-header-padding-right: var(--ti-common-space-0, 0px);
-  // 抽屉底部文本对齐方式
-  --ti-dialog-box-drawer-footer-text-align: right;
-  // 抽屉底部上内边距
-  --ti-dialog-box-drawer-footer-padding-top: var(--ti-common-space-6x, 24px);
-  // 抽屉底部下内边距
-  --ti-dialog-box-drawer-footer-padding-bottom: var(--ti-common-space-8x, 32px);
-  // 抽屉底部左内边距
-  --ti-dialog-box-drawer-footer-padding-left: var(--ti-common-space-0, 0px);
-  // 抽屉底部右内边距
-  --ti-dialog-box-drawer-footer-padding-right: var(--ti-common-space-0, 0px);
-  // 抽屉底部左外边距
-  --ti-dialog-box-drawer-footer-margin-left: var(--ti-common-space-8x, 32px);
-  // 抽屉底部右外边距
-  --ti-dialog-box-drawer-footer-margin-right: var(--ti-common-space-10x, 40px);
+  --tv-DialogBox-drawer-max-width: 1000px;
   // 抽屉内容与底部边框颜色
-  --ti-dialog-box-drawer-divider-border-color: var(--ti-common-color-line-dividing, #f0f0f0);
-  // 抽屉头部与底部边框颜色
-  --ti-dialog-box-header-divider-border-color: var(--ti-common-color-transparent, transparent);
-  // 抽屉边框圆角
-  --ti-dialog-box-drawer-radius: var(--ti-common-space-0, 0px);
-  // 弹窗布局模式(hide)
-  --ti-dialog-box-wrapper-display: block;
-  // 弹窗垂直布局(hide)
-  --ti-dialog-box-wrapper-align-items: normal;
-  // 底部布局显示
-  --ti-dialog-box-footer-align: right;
+  --tv-DialogBox-drawer-divider-border-color: var(--tv-color-border-divider);
   // 缩放按钮
-  --ti-dialog-box-resize-icon-color: var(--ti-common-color-icon-normal, #808080);
+  --tv-DialogBox-resize-icon-color: var(--tv-color-icon);
   // 缩放按钮悬浮状态
-  --ti-dialog-box-resize-icon-color-hover: var(--ti-common-color-icon-normal, #808080);
+  --tv-DialogBox-resize-icon-color-hover: var(--tv-color-icon-hover);
   // 缩放按钮大小
-  --ti-dialog-box-resize-icon-size: var(--ti-common-font-size-2, 16px);
-  // 按钮距离顶部距离
-  --ti-dialog-box-btn-tools-position-top: var(--ti-common-size-3x, 12px);
-  // 按钮距离右侧距离
-  --ti-dialog-box-btn-tools-position-right: var(--ti-common-size-3x, 12px);
+  --tv-DialogBox-resize-icon-size: var(--tv-icon-size);
 }

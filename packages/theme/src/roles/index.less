@@ -16,7 +16,7 @@
 @roles-prefix-cls: ~'@{css-prefix}roles';
 
 .@{roles-prefix-cls} {
-  .component-css-vars-roles();
+  .inject-Roles-vars();
 
   svg {
     margin-left: 2px;
@@ -43,25 +43,24 @@
   }
 
   &__poplist-item {
-    min-height: var(--ti-roles-poplist-item-height);
-    line-height: var(--ti-roles-poplist-item-height);
+    min-height: var(--tv-Roles-poplist-item-height);
+    line-height: var(--tv-Roles-poplist-item-height);
     max-width: 100%;
-    color: var(--ti-roles-poplist-item-text-color);
-    font-size: var(--ti-roles-poplist-item-font-size);
+    color: var(--tv-Roles-poplist-item-text-color);
+    font-size: var(--tv-Roles-poplist-item-font-size);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     cursor: pointer;
 
     &:hover {
-      background: var(--ti-roles-poplist-item-hover-bg-color);
+      background: var(--tv-Roles-poplist-item-hover-bg-color);
     }
 
     &.is-selected {
       &,
       &:hover {
-        background: var(--ti-roles-poplist-item-selected-bg-color);
-        color: var(--ti-roles-poplist-item-selected-text-color);
+        background: var(--tv-Roles-poplist-item-selected-bg-color);
       }
     }
   }

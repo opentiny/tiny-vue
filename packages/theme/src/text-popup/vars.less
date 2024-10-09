@@ -10,25 +10,19 @@
 *
 */
 
-.component-css-vars-text-popup() {
+.inject-TextPopup-vars() {
   // 输入框圆角
-  --ti-text-popup-border-radius: var(--ti-common-border-radius-normal, 6px);
+  --tv-TextPopup-border-radius: var(--tv-border-radius-md);
   // 输入框高度
-  --ti-text-popup-height: 32px;
+  --tv-TextPopup-height: var(--tv-size-height-md);
   // 输入框字号
-  --ti-text-popup-font-size: var(--ti-common-font-size-1, 14px);
-  // 输入框字族
-  --ti-text-popup-font-family: var(--ti-common-font-family, 'Helvetica', 'Arial', 'PingFangSC-Regular', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', 'Microsoft JhengHei');
+  --tv-TextPopup-font-size: var(--tv-font-size-md);
   // 输入框边框色
-  --ti-text-popup-border-color: var(--ti-common-color-line-normal, #c2c2c2);
+  --tv-TextPopup-border-color: var(--tv-color-border);
   // 输入框聚焦展开时阴影
-  --ti-text-popup-box-shadow: 0 0 1px 1px rgba(175, 175, 175, 0.3);
+  --tv-TextPopup-box-shadow: var(--tv-shadow-1);
   // 输入框悬浮边框色
-  --ti-text-popup-hover-border-color: var(--ti-common-color-line-hover, #191919);
+  --tv-TextPopup-hover-border-color: var(--tv-color-border-hover);
   //输入框聚焦边框色
-  --ti-text-popup-focus-border-color: var(--ti-common-color-line-active, #191919);
-  // 输入框垂直内边距
-  --ti-text-popup-padding-vertical: 5px;
-  // 输入框水平内边距
-  --ti-text-popup-padding-horizontal: var(--ti-common-space-3x, 12px);
+  --tv-TextPopup-focus-border-color: var(--tv-color-border-active);
 }

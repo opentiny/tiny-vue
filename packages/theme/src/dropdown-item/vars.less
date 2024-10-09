@@ -11,122 +11,52 @@
 */
 
 .component-css-vars-dropdown-item() {
-  // 下拉菜单项高度
-  --ti-dropdown-item-height: var(--ti-common-size-height-normal, 32px);
-  // 下拉菜单项悬浮背景色
-  --ti-dropdown-item-hover-bg-color: var(--ti-common-color-bg-normal, #f5f5f5);
-  // 下拉菜单项选中背景色
-  --ti-dropdown-item-bg-color-selected: var(--ti-common-color-bg-white-normal, #ffffff);
-  // 下拉菜单项选中文本字重
-  --ti-dropdown-item-font-weight-selected: var(--ti-common-font-weight-6, 600);
-  // 下拉菜单项选中文本色
-  --ti-dropdown-item-text-color-selected: #1476ff;
-  // 下拉菜单非禁用项悬浮文本色
-  --ti-dropdown-item-hover-text-color: var(--ti-common-color-text-primary, #191919);
-  // 下拉菜单项点击瞬间背景色
-  --ti-dropdown-item-active-bg-color: var(--ti-common-color-bg-white-normal, #ffffff);
-  // 下拉菜单项点击瞬间文本色
-  --ti-dropdown-item-active-text-color: #1476ff;
-  // 下拉菜单项禁用文本色
-  --ti-dropdown-item-disabled-text-color: var(--ti-common-color-text-disabled, #c2c2c2);
-  // 下拉菜单项文本色
-  --ti-dropdown-item-text-color: var(--ti-common-color-text-primary, #191919);
-  // 下拉菜单项字号
-  --ti-dropdown-item-font-size: var(--ti-common-font-size-base, 14px);
-  // 默认尺寸下拉菜单项的行高
-  --ti-dropdown-item-line-height: var(--ti-common-line-height-number, 1.5);
-  // 下拉菜单项垂直外边距
-  --ti-dropdown-item-margin-vertical: var(--ti-common-space-0, 0px);
-  // 下拉菜单项水平外边距
-  --ti-dropdown-item-margin-horizontal: var(--ti-common-space-4x, 16px);
-  // 拉菜单项底部外边距
-  --ti-dropdown-item-margin-bottom: var(--ti-common-space-0, 0px);
-  // 拉菜单项左边外边距
-  --ti-dropdown-item-margin-left: var(--ti-common-space-0, 0px);
-  // 拉菜单项右边外边距
-  --ti-dropdown-item-margin-right: var(--ti-common-space-0, 0px);
-  // 拉菜单项顶部外边距
-  --ti-dropdown-item-margin-top: var(--ti-common-space-0, 0px);
-  // 下拉菜单项边框圆角
-  --ti-dropdown-item-border-radius: var(--ti-common-border-radius-0, 0);
-  // 下拉菜单项最大宽度
-  --ti-dropdown-item-max-width: var(--ti-common-size-auto, auto);
-  // 下拉项图标默认填充色
-  --ti-dropdown-item-icon-color: var(--ti-common-color-icon-normal, #808080);
-  //下拉项图标悬浮填充色
-  --ti-dropdown-item-icon-color-hover: var(--ti-common-color-icon-hover, #191919);
-  // 下拉项图标激活时填充色
-  --ti-dropdown-item-icon-color-active: var(--ti-common-color-icon-white, #fff);
-  // 下拉项图标禁用填充色
-  --ti-dropdown-item-icon-color-disabled: var(--ti-common-color-icon-disabled, #c2c2c2);
-  // 下拉项展开图标的左侧外边距
-  --ti-dropdown-item-expand-svg-margin-left: var(--ti-common-space-0, 0px);
-  // 下拉项展开图标的右侧外边距
-  --ti-dropdown-item-expand-svg-margin-right: var(--ti-common-space-2x, 8px);
-  // 下拉项内容的左侧外边距
-  --ti-dropdown-item-content-margin-left: calc(var(--ti-dropdown-item-expand-icon-size) + var(--ti-common-space-2x));
-  // 下拉项内容悬浮时的字重
-  --ti-dropdown-item-content-font-weight-hover: var(--ti-common-font-weight-4, normal);
-  // 有二级菜单下拉项内容悬浮时的文本色
-  --ti-dropdown-item-content-text-hover: #1476ff;
-  // 有二级菜单下拉项内容悬浮时的背景色
-  --ti-dropdown-item-content-bg-hover: transparent;
-  // 下拉项分割线尺寸
-  --ti-dropdown-item-divided-border-weight: var(--ti-common-border-weight-normal, 1px);
-  // 下拉项分割线样式
-  --ti-dropdown-item-divided-border-style: var(--ti-common-border-style-solid, solid);
-  // 下拉项分割线颜色
-  --ti-dropdown-item-divided-border-color: var(--ti-common-color-line-dividing, #f0f0f0);
-  // 下拉项前置伪元素的填充色
-  --ti-dropdown-item-before-bg-color: transparent;
-  // 下拉项前置伪元素的垂直外边距
-  --ti-dropdown-item-before-margin-vertical: var(--ti-common-space-0, 0px);
-  // 下拉项前置伪元素的水平外边距
-  --ti-dropdown-item-before-margin-horizontal: var(--ti-common-space-0, 0px);
-  //  中尺寸下拉项前置伪元素的水平外边距
-  --ti-dropdown-item-medium-before-margin-horizontal: var(--ti-common-space-0, 0px);
-  //  小尺寸下拉项前置伪元素的水平外边距
-  --ti-dropdown-item-small-before-margin-horizontal: var(--ti-common-space-0, 0px);
-  //  迷你尺寸下拉项前置伪元素的水平外边距
-  --ti-dropdown-item-mini-before-margin-horizontal: var(--ti-common-space-0, 0px);
-  // 下拉项前置伪元素的高度
-  --ti-dropdown-item-before-height: 0; // TINY-TODO 等设计图出来再优化为变量
-  // 中尺寸下拉项前置伪元素的高度
-  --ti-dropdown-item-medium-before-height: 6px;
-  // 小尺寸下拉项前置伪元素的高度
-  --ti-dropdown-item-small-before-height: var(--ti-common-size-base, 4px);
-  // 迷你尺寸下拉项前置伪元素的高度
-  --ti-dropdown-item-mini-before-height: 3px;
-  // 中尺寸下拉菜单菜单项的行高
-  --ti-dropdown-item-medium-line-height: var(--ti-common-size-height-normal, 32px);
-  // 中尺寸下拉菜单菜单项的字号
-  --ti-dropdown-item-medium-font-size: var(--ti-common-font-size-1, 14px);
-  // 中尺寸下拉菜单菜单项的垂直内边距
-  --ti-dropdown-item-medium-padding-vertical: var(--ti-common-space-0, 0px);
-  // 中尺寸下拉菜单菜单项的水平内边距
-  --ti-dropdown-item-medium-padding-horizontal: var(--ti-common-space-4x, 16px);
-  // 中尺寸下拉菜单菜单项分割线的顶部外边距
-  --ti-dropdown-item-medium-divided-margin-top: var(--ti-common-space-6, 6px);
-  // 小尺寸下拉菜单菜单项的行高
-  --ti-dropdown-item-small-line-height: var(--ti-common-line-height-5, 36px);
-  // 小尺寸下拉菜单菜单项的垂直内边距
-  --ti-dropdown-item-small-padding-vertical: var(--ti-common-space-0, 0px);
-  // 小尺寸下拉菜单菜单项的水平内边距
-  --ti-dropdown-item-small-padding-horizontal: var(--ti-common-space-4x, 16px);
-  // 小尺寸下拉菜单菜单项的字号
-  --ti-dropdown-item-small-font-size: var(--ti-common-font-size-base, 14px);
-  // 小尺寸下拉菜单菜单项分割线的顶部外边距
-  --ti-dropdown-item-small-divided-margin-top: var(--ti-common-space-base, 4px);
-  // 迷你尺寸下拉菜单菜单项的行高
-  --ti-dropdown-item-mini-line-height: var(--ti-common-line-height-5, 36px);
-  // 迷你尺寸下拉菜单菜单项的垂直内边距
-  --ti-dropdown-item-mini-padding-vertical: var(--ti-common-space-0, 0px);
-  // 迷你尺寸下拉菜单菜单项的水平内边距
-  --ti-dropdown-item-mini-padding-horizontal: var(--ti-common-space-10, 10px);
-  // 迷你尺寸下拉菜单菜单项的字号
-  --ti-dropdown-item-mini-font-size: var(--ti-common-font-size-base, 14px);
-  // 迷你尺寸下拉菜单菜单项分割线的顶部外边距
-  --ti-dropdown-item-mini-divided-margin-top: calc(var(--ti-common-space-1, 1px) * 3);
-  // 展开图标尺寸
-  --ti-dropdown-item-expand-icon-size: var(--ti-common-font-size-2, 16px);
+  // 默认字号
+  --tv-DropdownItem-font-size: var(--tv-font-size-md, 14px);
+  // 默认行高
+  --tv-DropdownItem-line-height: var(--tv-line-height-number, 1.5);
+  // 默认文本色
+  --tv-DropdownItem-text-color: var(--tv-color-text, #191919);
+  // 选中 / （展开项）激活文本色
+  --tv-DropdownItem-text-color-active: var(--tv-color-text-active, #1476ff);
+  // 禁用文本色
+  --tv-DropdownItem-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
+  // 选中文本字重
+  --tv-DropdownItem-font-weight-checked: var(--tv-font-weight-bold, 600);
+
+  // 默认图标尺寸
+  --tv-DropdownItem-icon-size: var(--tv-icon-size, 16px);
+  // 默认图标色
+  --tv-DropdownItem-icon-color: var(--tv-color-icon, #808080);
+  //图标悬浮色
+  --tv-DropdownItem-icon-color-hover: var(--tv-color-icon-hover, #191919);
+  // 图标禁用色
+  --tv-DropdownItem-icon-color-disabled: var(--tv-color-icon-disabled, #c2c2c2);
+
+  // 菜单项内边距
+  --tv-DropdownItem-padding: 0px var(--tv-space-xl, 16px);
+  // 展开图标的右侧外边距
+  --tv-DropdownItem-expand-margin-right: var(--tv-space-md, 8px);
+  // 前置图标的右侧外边距
+  --tv-DropdownItem-pre-icon-margin-right: var(--tv-space-sm, 4px);
+  // 菜单项内容区的左侧外边距
+  --tv-DropdownItem-content-margin-left: calc(
+    var(--tv-DropdownItem-icon-size) + var(--tv-DropdownItem-expand-margin-right)
+  );
+  // 菜单项文本的左侧外边距
+  --tv-DropdownItem-label-margin-left: calc(
+    var(--tv-DropdownItem-icon-size) + var(--tv-DropdownItem-pre-icon-margin-right)
+  );
+
+  // 菜单项高度(默认）
+  --tv-DropdownItem-height: var(--tv-size-height-md, 32px);
+  // 菜单项高度(small）
+  --tv-DropdownItem-height-sm: var(--tv-size-height-sm, 28px);
+  // 菜单项高度(mini）
+  --tv-DropdownItem-height-xs: var(--tv-size-height-mi, 24px);
+
+  // 菜单项悬浮背景色
+  --tv-DropdownItem-bg-color-hover: var(--tv-color-bg-hover, #f5f5f5);
+  // 菜单项分割线
+  --tv-DropdownItem-border-divider: var(--tv-border-width, 1px) solid var(--tv-color-border-divider, #f0f0f0);
 }
