@@ -1,3 +1,3 @@
 export const tinyProgressAuroraTheme = {
-  'ti-progress-warning-bg-color': '#fa8c16'
+  'tv-Progress-bg-color-warning': '#fa8c16'
 }
