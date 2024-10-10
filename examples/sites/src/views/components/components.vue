@@ -814,9 +814,6 @@ export default defineComponent({
 }
 
 .api-table {
-  --ti-grid-font-size: 14px;
-  --ti-grid-default-header-column-height: 40px;
-
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
