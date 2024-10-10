@@ -104,7 +104,7 @@
     position: absolute;
     line-height: normal;
     white-space: normal;
-    padding: var(--ti-Select-tags-padding);
+    padding: var(--tv-Select-tags-padding);
     z-index: 1;
     top: 50%;
     margin-left: 1px;
@@ -140,24 +140,24 @@
       outline: 0;
       padding: 0;
       margin-left: 8px;
-      color: var(--ti-Select-text-color);
-      font-size: var(--ti-Select-font-size);
-      height: var(--ti-Select-height);
+      color: var(--tv-Select-text-color);
+      font-size: var(--tv-Select-font-size);
+      height: var(--tv-Select-height);
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
       background-color: transparent;
 
       &.is-mini {
-        height: var(--ti-Select-height-mini);
+        height: var(--tv-Select-height-mini);
       }
 
       &.is-small {
-        height: var(--ti-Select-height-small);
+        height: var(--tv-Select-height-small);
       }
 
       &.is-medium {
-        height: var(--ti-Select-height-medium);
+        height: var(--tv-Select-height-medium);
       }
     }
 
@@ -169,7 +169,7 @@
       white-space: nowrap;
       box-sizing: border-box;
       border-color: transparent;
-      margin: var(--ti-Select-tag-margin);
+      margin: var(--tv-Select-tag-margin);
       text-overflow: ellipsis;
       overflow: hidden;
       display: inline-flex;
@@ -196,9 +196,9 @@
         display: inline-flex;
 
         > span {
-          color: var(--ti-Select-text-color-disabled);
-          margin: var(--ti-Select-tags-margin-top) var(--ti-Select-tags-margin-right)
-            var(--ti-Select-tags-margin-bottom) var(--ti-Select-tags-margin-left);
+          color: var(--tv-Select-text-color-disabled);
+          margin: var(--tv-Select-tags-margin-top) var(--tv-Select-tags-margin-right)
+            var(--tv-Select-tags-margin-bottom) var(--tv-Select-tags-margin-left);
           display: inline-block;
           width: 100%;
           white-space: nowrap;
@@ -212,14 +212,14 @@
     .@{select-prefix-cls}__collapse-text {
       display: inline-flex;
       align-items: center;
-      margin: var(--ti-Select-collapse-margin);
-      font-size: var(--ti-Select-font-size);
-      color: var(--ti-Select-collapse-text-color);
+      margin: var(--tv-Select-collapse-margin);
+      font-size: var(--tv-Select-font-size);
+      color: var(--tv-Select-collapse-text-color);
 
       .tiny-svg {
-        margin: var(--ti-Select-collapse-margin);
-        fill: var(--ti-Select-icon-color);
-        font-size: var(--ti-Select-icon-size);
+        margin: var(--tv-Select-collapse-margin);
+        fill: var(--tv-Select-icon-color);
+        font-size: var(--tv-Select-icon-size);
       }
     }
   }
@@ -242,7 +242,7 @@
     }
 
     .@{select-prefix-cls}__tags {
-      height: var(--ti-Select-tags-height);
+      height: var(--tv-Select-tags-height);
       overflow: hidden;
 
       &-collapse {
@@ -369,14 +369,14 @@
     }
 
     .@{select-prefix-cls}__caret {
-      fill: var(--ti-Select-icon-color);
-      font-size: var(--ti-Select-icon-size);
+      fill: var(--tv-Select-icon-color);
+      font-size: var(--tv-Select-icon-size);
       transition: transform 0.3s;
       transform: rotateZ(180deg);
       cursor: pointer;
 
       &:hover {
-        fill: var(--ti-Select-icon-color-hover);
+        fill: var(--tv-Select-icon-color-hover);
       }
 
       &.is-reverse {
@@ -386,14 +386,14 @@
 
     .@{select-prefix-cls}__limit-txt,
     .@{select-prefix-cls}__proportion-txt {
-      font-size: var(--ti-Select-font-size);
-      margin: var(--ti-Select-suffix-text-margin);
-      color: var(--ti-Select-suffix-text-color);
+      font-size: var(--tv-Select-font-size);
+      margin: var(--tv-Select-suffix-text-margin);
+      color: var(--tv-Select-suffix-text-color);
     }
 
     .@{select-prefix-cls}__copy {
       cursor: pointer;
-      margin-right: var(--ti-Select-suffix-icon-margin-right);
+      margin-right: var(--tv-Select-suffix-icon-margin-right);
     }
 
     .@{input-prefix-cls}__suffix {
@@ -408,7 +408,7 @@
 
     &.is-disabled {
       .@{select-prefix-cls}__caret {
-        fill: var(--ti-Select-icon-color-disabled);
+        fill: var(--tv-Select-icon-color-disabled);
         cursor: not-allowed;
       }
 
