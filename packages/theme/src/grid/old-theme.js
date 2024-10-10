@@ -1,6 +1,4 @@
 export const tinyGridOldTheme = {
-  'ti-grid-filter-checkbox-color': 'var(--ti-grid-primary-color)',
-  'ti-grid-filter-checkbox-font-size': 'var(--ti-common-font-size-2)',
   'ti-grid-header-cell-text-width': '100%',
   'ti-grid-tree-expand-icon-translate-x': '-4px',
   'ti-grid-tree-expand-icon-padding-right': '0',
@@ -10,7 +8,6 @@ export const tinyGridOldTheme = {
   'ti-grid-toolbar-icon-btn-border-color': 'var(--ti-common-color-line-dividing, #dfe1e6)',
   'ti-grid-toolbar-icon-btn-width': 'calc(var(--ti-common-size-7x, 28px) + 2px)',
   'ti-grid-toolbar-icon-btn-height': 'calc(var(--ti-common-size-7x, 28px) + 2px)',
-  'ti-grid-nodata-td-bg-img-url': "url('data:image/png",
   'ti-grid-mini-td-padding-horizontal': 'var(--ti-common-space-2x, 8px)',
   'ti-grid-mini-td-padding-vertical': 'var(--ti-common-space-2x, 8px)',
   'ti-grid-td-padding-horizontal': 'var(--ti-common-space-2x, 8px)',

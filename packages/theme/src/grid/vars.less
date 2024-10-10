@@ -19,6 +19,8 @@
   --tv-Grid-text-color-disabled: var(--tv-color-text-disabled);
   // 表格二级文本颜色，页码项文本色
   --tv-Grid-text-color-secondary: var(--tv-color-text-secondary);
+  // 表格辅助文本色
+  --tv-Grid-text-color-weaken: var(--tv-color-text-weaken);
   // 页码悬浮文本色
   --tv-Grid-list-item-hover-text-color: var(--tv-color-text);
   // 表格图标大小
@@ -27,8 +29,16 @@
   --tv-Grid-icon-color: var(--tv-color-icon);
   // 表格图标悬浮颜色
   --tv-Grid-icon-color-hover: var(--tv-color-icon-hover);
+  // 表格图标激活颜色
+  --tv-Grid-icon-color-active: var(--tv-color-icon-active);
   // 表格图标禁用颜色
   --tv-Grid-icon-color-disabled: var(--tv-color-icon-disabled);
+  // 表格分割线颜色
+  --tv-Grid-divider-color: var(--tv-color-border-divider);
+  // 表格边框颜色
+  --tv-Grid-border-color: var(--tv-color-border);
+  // 表格悬浮背景色
+  --tv-Grid-bg-color-hover: var(--tv-color-bg);
   // -------表头相关样式-------
   // 表头背景颜色
   --tv-Grid-header-bg-color: var(--tv-color-bg);
@@ -71,6 +81,15 @@
   --tv-Grid-radio-icon-color-selected: var(--tv-color-bg-active-control);
   // 单选框禁用颜色
   --tv-Grid-radio-icon-color-disabled: var(--tv-color-bg-disabled);
+  // -------筛选相关样式-------
+  // 筛选一般背景色
+  --tv-Grid-filter-bg-color: var(--tv-color-bg);
+  // 筛选悬浮背景色
+  --tv-Grid-filter-bg-color-hover: var(--tv-color-bg-hover);
+  // 筛选输入框悬浮边框颜色
+  --tv-Grid-filter-input-border-color-hover: var(--tv-color-border-hover);
+  // 筛选输入框边框圆角
+  --tv-Grid-filter-input-border-radius: var(--tv-border-radius-md);
   // -------工具栏相关样式-------
   // 工具栏垂直边距
   --tv-Grid-toolbar-padding-y: var(--tv-space-xl);
@@ -116,8 +135,6 @@
   --ti-grid-new-row-background-color: var(--ti-common-color-bg-white-emphasize, #f0f0f0);
   // 表格主色调色
   --ti-grid-primary-color: var(--ti-common-color-primary-normal, #191919);
-  // 表格主色调悬浮色
-  --ti-grid-primary-hover-color: var(--ti-common-color-primary-hover, #595959);
   // 表格主色调激活色
   --ti-grid-primary-active-color: var(--ti-common-color-primary-active, #595959);
   // 表格主色调禁用色(没有效果)
@@ -135,12 +152,6 @@
 
   // 筛选弹框边框色
   --ti-grid-popup-border-color: var(--ti-common-color-line-dividing, #f0f0f0);
-  // 简易筛选面板按钮组边距
-  --ti-grid-filter-button-group-size: var(--ti-common-space-10, 10px);
-  // 简易时间筛选面板标题颜色
-  --ti-grid-filter-date-title-color: var(--ti-common-color-text-weaken, #808080);
-  // 筛选面板字体颜色
-  --ti-grid-filter-date-color: var(--ti-common-color-text-primary, #191919);
 
   // 树表展开图标颜色
   --ti-grid-tree-icon-color: var(--ti-common-color-icon-normal, #808080);
@@ -223,10 +234,6 @@
   --ti-grid-tree-expand-icon-translate-x: 0;
   // 表头单元格宽度
   --ti-grid-header-cell-text-width: auto;
-  // 表格过滤面板checkbox大小
-  --ti-grid-filter-checkbox-font-size: 18px;
-  // 表格过滤面板checkbox颜色
-  --ti-grid-filter-checkbox-color: #1476ff;
 
   // selection的dropdown插槽图标颜色
   --ti-grid-selection-dropdown-icon-color: var(--ti-common-color-icon-normal, #808080);
