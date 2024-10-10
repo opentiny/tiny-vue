@@ -13,10 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "@opentiny/vue-common": "workspace:~",
+    "@opentiny/vue-icon": "workspace:~",
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~",
-    "@opentiny/vue-icon": "workspace:~",
-    "@opentiny/tiny-tiptap": "workspace:~"
+    "@probius/tiny-tiptap": "0.0.1"
   },
   "devDependencies": {
     "@tiptap/core": "~2.1.16",

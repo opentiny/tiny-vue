@@ -1,11 +1,13 @@
 {
-  "name": "@opentiny/tiny-tiptap",
-  "private": true,
-  "version": "1.0.0",
+  "name": "@probius/tiny-tiptap",
+  "version": "0.0.1",
   "main": "src/index.ts",
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
+  "script": {
+    "build": "vite build"
+  },
   "dependencies": {
     "@tiptap/core": "~2.1.16",
     "@tiptap/extension-blockquote": "~2.1.16",
