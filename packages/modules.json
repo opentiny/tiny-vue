@@ -133,11 +133,6 @@
     "type": "template",
     "exclude": false
   },
-  "AutonaviMap": {
-    "path": "vue/src/chart/autonavi-map/index.ts",
-    "type": "component",
-    "exclude": false
-  },
   "Avatar": {
     "path": "vue/src/avatar/index.ts",
     "type": "component",
@@ -169,11 +164,6 @@
   "BadgePc": {
     "path": "vue/src/badge/src/pc.vue",
     "type": "template",
-    "exclude": false
-  },
-  "BaiduMap": {
-    "path": "vue/src/chart/baidu-map/index.ts",
-    "type": "component",
     "exclude": false
   },
   "BaseSelect": {
@@ -518,121 +508,6 @@
     "mode": [
       "mobile-first"
     ]
-  },
-  "Chart": {
-    "path": "vue/src/chart/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartBar": {
-    "path": "vue/src/chart/chart-bar/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartBoxplot": {
-    "path": "vue/src/chart/chart-boxplot/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartCandle": {
-    "path": "vue/src/chart/chart-candle/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartCore": {
-    "path": "vue/src/chart/chart-core/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartFunnel": {
-    "path": "vue/src/chart/chart-funnel/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartGauge": {
-    "path": "vue/src/chart/chart-gauge/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartGraph": {
-    "path": "vue/src/chart/chart-graph/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartHeatmap": {
-    "path": "vue/src/chart/chart-heatmap/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartHistogram": {
-    "path": "vue/src/chart/chart-histogram/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartLine": {
-    "path": "vue/src/chart/chart-line/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartLiquidfill": {
-    "path": "vue/src/chart/chart-liquidfill/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartMap": {
-    "path": "vue/src/chart/chart-map/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartPie": {
-    "path": "vue/src/chart/chart-pie/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartProcess": {
-    "path": "vue/src/chart/chart-process/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartRadar": {
-    "path": "vue/src/chart/chart-radar/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartRing": {
-    "path": "vue/src/chart/chart-ring/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartSankey": {
-    "path": "vue/src/chart/chart-sankey/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartScatter": {
-    "path": "vue/src/chart/chart-scatter/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartSunburst": {
-    "path": "vue/src/chart/chart-sunburst/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartTree": {
-    "path": "vue/src/chart/chart-tree/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartWaterfall": {
-    "path": "vue/src/chart/chart-waterfall/index.ts",
-    "type": "component",
-    "exclude": false
-  },
-  "ChartWordcloud": {
-    "path": "vue/src/chart/chart-wordcloud/index.ts",
-    "type": "component",
-    "exclude": false
   },
   "Checkbox": {
     "path": "vue/src/checkbox/index.ts",
@@ -1486,6 +1361,131 @@
   "HrapproverPc": {
     "path": "vue/src/hrapprover/src/pc.vue",
     "type": "template",
+    "exclude": false
+  },
+  "Huicharts": {
+    "path": "vue/src/huicharts/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsAmap": {
+    "path": "vue/src/huicharts/huicharts-amap/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsBar": {
+    "path": "vue/src/huicharts/huicharts-bar/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsBmap": {
+    "path": "vue/src/huicharts/huicharts-bmap/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsBoxplot": {
+    "path": "vue/src/huicharts/huicharts-boxplot/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsCandle": {
+    "path": "vue/src/huicharts/huicharts-candle/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsCore": {
+    "path": "vue/src/huicharts/huicharts-core/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsFunnel": {
+    "path": "vue/src/huicharts/huicharts-funnel/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsGauge": {
+    "path": "vue/src/huicharts/huicharts-gauge/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsGraph": {
+    "path": "vue/src/huicharts/huicharts-graph/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsHeatmap": {
+    "path": "vue/src/huicharts/huicharts-heatmap/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsHistogram": {
+    "path": "vue/src/huicharts/huicharts-histogram/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsLine": {
+    "path": "vue/src/huicharts/huicharts-line/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsLiquidfill": {
+    "path": "vue/src/huicharts/huicharts-liquidfill/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsMap": {
+    "path": "vue/src/huicharts/huicharts-map/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsPie": {
+    "path": "vue/src/huicharts/huicharts-pie/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsProcess": {
+    "path": "vue/src/huicharts/huicharts-process/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsRadar": {
+    "path": "vue/src/huicharts/huicharts-radar/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsRing": {
+    "path": "vue/src/huicharts/huicharts-ring/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsSankey": {
+    "path": "vue/src/huicharts/huicharts-sankey/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsScatter": {
+    "path": "vue/src/huicharts/huicharts-scatter/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsSunburst": {
+    "path": "vue/src/huicharts/huicharts-sunburst/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsTree": {
+    "path": "vue/src/huicharts/huicharts-tree/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsWaterfall": {
+    "path": "vue/src/huicharts/huicharts-waterfall/index.ts",
+    "type": "component",
+    "exclude": false
+  },
+  "HuichartsWordcloud": {
+    "path": "vue/src/huicharts/huicharts-wordcloud/index.ts",
+    "type": "component",
     "exclude": false
   },
   "Icon": {
