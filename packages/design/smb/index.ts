@@ -5,7 +5,6 @@ import Drawer from './src/drawer'
 import Dropdown from './src/dropdown'
 import DropdownItem from './src/dropdown-item'
 import FilterBox from './src/filter-box'
-import Grid from './src/grid'
 import Guide from './src/guide'
 import Select from './src/select'
 import TreeNode from './src/tree-node'
@@ -30,7 +29,6 @@ export default {
     Dropdown,
     DropdownItem,
     FilterBox,
-    Grid,
     Guide,
     Select,
     TreeNode,
