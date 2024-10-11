@@ -23,33 +23,33 @@ test('实心显示', async ({ page }) => {
   const iconStyles = [
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(94, 124, 224)',
-      'box-shadow': 'rgba(94, 124, 224, 0.4) 0px 0px 0px 4px'
+      'color': 'rgb(25, 25, 25)',
+      'box-shadow': 'none'
     },
     {
       'background-color': 'rgb(255, 255, 255)',
-      'color': 'rgb(94, 124, 224)',
-      'box-shadow': 'rgba(94, 124, 224, 0.4) 0px 0px 0px 4px'
+      'color': 'rgb(25, 25, 25)',
+      'box-shadow': 'none'
     },
     {
       'background-color': 'rgb(126, 211, 33)',
       'color': 'rgb(255, 255, 255)',
-      'box-shadow': 'rgba(126, 211, 33, 0.4) 0px 0px 0px 4px'
+      'box-shadow': 'none'
     },
     {
-      'background-color': 'rgb(217, 217, 217)',
-      'color': 'rgb(255, 255, 255)',
-      'box-shadow': 'rgba(217, 217, 217, 0.4) 0px 0px 0px 4px'
+      'background-color': 'rgb(255, 255, 255)',
+      'color': 'rgb(217, 217, 217)',
+      'box-shadow': 'none'
     },
     {
-      'background-color': 'rgb(245, 34, 45)',
-      'color': 'rgb(255, 255, 255)',
-      'box-shadow': 'rgba(245, 34, 45, 0.4) 0px 0px 0px 4px'
+      'background-color': 'rgb(255, 255, 255)',
+      'color': 'rgb(245, 34, 45)',
+      'box-shadow': 'none'
     },
     {
-      'background-color': 'rgb(250, 173, 20)',
-      'color': 'rgb(255, 255, 255)',
-      'box-shadow': 'rgba(250, 173, 20, 0.4) 0px 0px 0px 4px'
+      'background-color': 'rgb(255, 255, 255)',
+      'color': 'rgb(250, 173, 20)',
+      'box-shadow': 'none'
     }
   ]
   const titles = [
@@ -67,12 +67,12 @@ test('实心显示', async ({ page }) => {
   await expect(nodeTitles).toHaveCount(nodeCount)
   await expect(nodeDates).toHaveCount(nodeCount)
   const { width: totalWidth } = await milestone.boundingBox()
-  const nodeWidth = Math.floor(totalWidth / nodeCount)
+  const nodeWidth = Math.floor(totalWidth / nodeCount / 2)
   for (let i = 0; i < nodeCount; i++) {
     const { width, height } = await nodes.nth(i).boundingBox()
     await expect(width).toBeGreaterThanOrEqual(nodeWidth)
     await expect(height).toBeGreaterThan(84)
-    await expect(nodeLines.nth(i)).toHaveCSS('height', '4px')
+    await expect(nodeLines.nth(i)).toHaveCSS('height', '1px')
     await expect(nodeIcons.nth(i)).toHaveClass(iconClasss[i])
     await expect(nodeTitles.nth(i)).toHaveText(titles[i])
     await expect(nodeDates.nth(i)).toHaveText(/2018-9/)
@@ -85,7 +85,7 @@ test('实心显示', async ({ page }) => {
       await expect(lineWidth).toBeGreaterThanOrEqual(0)
     }
     if (i < 2) {
-      await expect(nodeIcons.nth(i).locator('svg')).toHaveCSS('font-size', '12px')
+      await expect(nodeIcons.nth(i).locator('svg')).toHaveCSS('font-size', '24px')
     } else {
       await expect(nodeIcons.nth(i)).toHaveText(String(i - 1))
     }
@@ -98,6 +98,6 @@ test('实心显示', async ({ page }) => {
   await button.click()
 
   for (let i = 0; i < 2; i++) {
-    await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(94, 124, 224)')
+    await expect(nodeIcons.nth(i)).toHaveCSS('background-color', 'rgb(25, 25, 25)')
   }
 })
