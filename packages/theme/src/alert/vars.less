@@ -1,0 +1,111 @@
+/**
+* Copyright (c) 2022 - present TinyVue Authors.
+* Copyright (c) 2022 - present Huawei Cloud Computing Technologies Co., Ltd.
+*
+* Use of this source code is governed by an MIT-style license.
+*
+* THE OPEN SOURCE SOFTWARE IN THIS PRODUCT IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
+* BUT WITHOUT ANY WARRANTY, WITHOUT EVEN THE IMPLIED WARRANTY OF MERCHANTABILITY OR FITNESS FOR
+* A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
+*
+*/
+
+// 按区域划分场景:
+// Large  影响内容区要显示的区域，还影响 margin, padding   和 alert-icon的大小
+// Normal尺寸时：    alert-icon  + content(description) + close-icon
+// Large 尺寸时：    alert-icon  + content(title/ description /opration) + close-icon
+// 所以思路： 先按Large编写各区域场景，之后用Normal去覆盖某些值。
+
+// 按type(theme)划分:  success/error/warn/info/simple 【叠加状态】
+
+.inject-Alert-vars() {
+  //-------------------------------------------------------全局场景：------------------------------------------
+
+  // 警告的圆角
+  --tv-Alert-border-radius: var(--tv-border-radius-lg);
+  // 警告的水平内边距
+  --tv-Alert-padding-x: var(--tv-space-xl);
+  // 警告的水平内边距
+  --tv-Alert-padding-y: var(--tv-space-xl);
+  // 警告的水平外边距
+  --tv-Alert-margin-x: 0;
+  // 警告的水平外边距
+  --tv-Alert-margin-y: 0;
+
+  //-------------------------------------------------------alert-icon 场景：-----------------------------------
+
+  // 警告的图标大小
+  --tv-Alert-icon-size: 20px;
+  // 警告的图标右外边距
+  --tv-Alert-icon-margin-right: var(--tv-space-md);
+
+  //-------------------------------------------------------content 场景：title/description/opration------------
+
+  // 警告的标题字号
+  --tv-Alert-title-font-size: var(--tv-font-size-lg);
+  // 警告的标题字重
+  --tv-Alert-title-font-weight: var(--tv-font-weight-bold);
+  // 警告的标题颜色
+  --tv-Alert-title-text-color: var(--tv-color-text);
+  // 警告的标题下边距
+  --tv-Alert-title-margin-bottom: var(--tv-space-sm);
+
+  // 警告的描述字号
+  --tv-Alert-desc-font-size: var(--tv-font-size-md);
+  // 警告的描述字重
+  --tv-Alert-desc-font-weight: var(--tv-font-weight-regular);
+  // 警告的描述颜色
+  --tv-Alert-desc-text-color: var(--tv-color-text-secondary);
+
+  //-------------------------------------------------------close-icon 场景：----------------------------------
+
+  // 警告的关闭按钮的大小
+  --tv-Alert-close-icon-font-size: var(--tv-icon-size);
+  // 警告的关闭按钮的颜色
+  --tv-Alert-close-icon-color: var(--tv-color-icon);
+  // 警告的关闭按钮的悬浮颜色
+  --tv-Alert-close-icon-color-hover: var(--tv-color-icon-hover);
+  // 警告的关闭按钮距上边的距离
+  --tv-Alert-close-icon-top: var(--tv-space-lg);
+  // 警告的关闭按钮距右边的距离
+  --tv-Alert-close-icon-right: var(--tv-space-lg);
+
+  // 警告的关闭文本的大小
+  --tv-Alert-close-text-font-size: var(--tv-font-size-md);
+
+  //-------------------------------------------------------Normal 场景：---------------------------------------
+
+  // 警告的Normal时，图标大小
+  --tv-Alert-icon-size-normal: var(--tv-icon-size);
+  // 警告的Normal时，水平内边距
+  --tv-Alert-padding-x-normal: var(--tv-space-xl);
+  // 警告的Normal时，水平内边距
+  --tv-Alert-padding-y-normal: 9px;
+  // 警告的Normal时,水平外边距
+  --tv-Alert-margin-x-normal: var(--tv-space-xl);
+  // 警告的Normal时,水平外边距
+  --tv-Alert-margin-y-normal: var(--tv-space-xl);
+
+  //-------------------------------------------------------type 场景：------------------------------------------
+
+  // success 主题时警告背景色
+  --tv-Alert-bg-color-success: var(--tv-color-success-bg-light);
+  // success 主题时警告图标色
+  --tv-Alert-icon-color-success: var(--tv-color-success-icon);
+  // error 主题时警告背景色
+  --tv-Alert-bg-color-error: var(--tv-color-error-bg-light);
+  // error 主题时警告图标色
+  --tv-Alert-icon-color-error: var(--tv-color-error-icon);
+  // warning 主题时警告背景色
+  --tv-Alert-bg-color-warning: var(--tv-color-warn-bg-light);
+  // warning 主题时警告图标色
+  --tv-Alert-icon-color-warning: var(--tv-color-warn-icon);
+  // info 主题时警告背景色
+  --tv-Alert-bg-color-info: var(--tv-color-info-bg-light);
+  // info 主题时警告图标色
+  --tv-Alert-icon-color-info: var(--tv-color-info-icon);
+  // simple 主题时警告背景色
+  --tv-Alert-bg-color-simple: var(--tv-color-bg);
+  // simple 主题时警告图标色
+  --tv-Alert-icon-color-simple: var(--tv-color-icon);
+}
