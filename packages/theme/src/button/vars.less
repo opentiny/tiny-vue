@@ -169,8 +169,40 @@
   // info 主题时按钮朴素边框色
   --tv-Button-border-color-plain-info: var(--tv-color-act-info-border-active-1);
 
+  // 幽灵态和plain是平级的关系. 如果同时存在，优先级不能保证稳定。
+
   // 幽灵时按钮背景色
   --tv-Button-bg-color-ghost: transparent; // 只影响 bg 和 text-color, 且bg全部为透明.
+
+  // 默认时按钮幽灵文本色
+  --tv-Button-text-color-ghost-default: var(--tv-color-text-secondary);
+  // 默认时按钮幽灵边框色
+  --tv-Button-border-color-ghost-default: var(--tv-color-border-ghost);
+
+  // primary 主题时按钮幽灵文本色
+  --tv-Button-text-colorghostn-primary: var(--tv-color-act-primary-text);
+  // primary 主题时按钮幽灵边框色
+  --tv-Button-border-color-ghost-primary: var(--tv-color-act-primary-border-light);
+
+  // success 主题时按钮幽灵文本色
+  --tv-Button-text-color-ghost-success: var(--tv-color-act-success-text);
+  // success 主题时按钮幽灵边框色
+  --tv-Button-border-color-ghost-success: var(--tv-color-act-success-border);
+
+  // warning 主题时按钮幽灵文本色
+  --tv-Button-text-color-ghost-warning: var(--tv-color-act-warning-text);
+  // warning 主题时按钮幽灵边框色
+  --tv-Button-border-color-ghost-warning: var(--tv-color-act-warning-border);
+
+  // danger 主题时按钮幽灵文本色
+  --tv-Button-text-color-ghost-danger: var(--tv-color-act-danger-text);
+  // danger 主题时按钮幽灵边框色
+  --tv-Button-border-color-ghost-danger: var(--tv-color-act-danger-border);
+
+  // info 主题时按钮幽灵文本色
+  --tv-Button-text-color-ghost-info: var(--tv-color-act-info-text);
+  // info 主题时按钮幽灵边框色
+  --tv-Button-border-color-ghost-info: var(--tv-color-act-info-border);
 
   //------------------------------------------------------------------------------ // level 2结束 ----------------
 
@@ -181,7 +213,9 @@
   // 默认时按钮激活的朴素背景色
   --tv-Button-bg-color-plain-active-default: var(--tv-color-bg);
   // 默认时按钮激活的朴素边框色
-  --tv-Button-border-color-plain-active-default: var(--tv-color-bg); // 朴素激活都无边框
+  --tv-Button-border-color-plain-active-default: var(--tv-color-bg); // 朴素激活都无边框，所以等于背景色。
+  // 默认时按钮激活的幽灵边框色
+  --tv-Button-border-color-ghost-active-default: var(--tv-color-border-ghost-active);
 
   // primary 主题时按钮激活的背景色
   --tv-Button-bg-color-active-primary: var(--tv-color-act-primary-bg-active);
@@ -191,6 +225,8 @@
   --tv-Button-bg-color-plain-active-primary: var(--tv-color-act-primary-bg-white-active);
   // primary 主题时按钮激活的朴素边框色
   --tv-Button-border-color-plain-active-primary: var(--tv-color-act-primary-bg-white-active); // 无边框
+  // primary 主题时按钮激活的幽灵边框色
+  --tv-Button-border-color-ghost-active-primary: var(--tv-color-act-primary-border-light-active-1);
 
   // success 主题时按钮激活的背景色
   --tv-Button-bg-color-active-success: var(--tv-color-act-success-bg-active);
@@ -200,6 +236,8 @@
   --tv-Button-bg-color-plain-active-success: var(--tv-color-act-success-bg-light-active);
   // success 主题时按钮激活的朴素边框色
   --tv-Button-border-color-plain-active-success: var(--tv-color-act-success-bg-light-active); // 无边框
+  // success 主题时按钮激活的幽灵边框色
+  --tv-Button-border-color-ghost-active-success: var(--tv-color-act-success-border-active-1);
 
   // warning 主题时按钮激活的背景色
   --tv-Button-bg-color-active-warning: var(--tv-color-act-warning-bg-active);
@@ -209,6 +247,8 @@
   --tv-Button-bg-color-plain-active-warning: var(--tv-color-act-warning-bg-light-active);
   // warning 主题时按钮激活的朴素边框色
   --tv-Button-border-color-plain-active-warning: var(--tv-color-act-warning-bg-light-active); // 无边框
+  // warning 主题时按钮激活的幽灵边框色
+  --tv-Button-border-color-ghost-active-warning: var(--tv-color-act-warning-border-active-1);
 
   // danger 主题时按钮激活的背景色
   --tv-Button-bg-color-active-danger: var(--tv-color-act-danger-bg-active);
@@ -218,6 +258,8 @@
   --tv-Button-bg-color-plain-active-danger: var(--tv-color-act-danger-bg-light-active);
   // danger 主题时按钮激活的朴素边框色
   --tv-Button-border-color-plain-active-danger: var(--tv-color-act-danger-bg-light-active);
+  // danger 主题时按钮激活的幽灵边框色
+  --tv-Button-border-color-ghost-active-danger: var(--tv-color-act-danger-border-active-1);
 
   // info 主题时按钮激活的背景色
   --tv-Button-bg-color-active-info: var(--tv-color-act-info-bg-active);
@@ -226,10 +268,12 @@
   // info 主题时按钮激活的朴素背景色
   --tv-Button-bg-color-plain-active-info: var(--tv-color-act-info-bg-light-active);
   // info 主题时按钮激活的朴素边框色
-  --tv-Button-border-color-plain-active-info: var(--tv-color-act-info-bg-light-active); // level3 结束------
+  --tv-Button-border-color-plain-active-info: var(--tv-color-act-info-bg-light-active);
+  // info 主题时按钮激活的幽灵边框色
+  --tv-Button-border-color-ghost-active-info: var(--tv-color-act-info-border-active-1); // level3 结束------
 
   // 禁用时按钮文本色
-  --tv-Button-text-color-disabled: var(--tv-color-text-disabled); //  目前主题， disabled优先级高，所以变量少
+  --tv-Button-text-color-disabled: var(--tv-color-text-disabled); //  目前规则下，disabled优先级最高，所以变量少
   // 禁用时按钮背景色
   --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled);
   // 禁用时按钮边框色

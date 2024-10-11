@@ -85,10 +85,18 @@
     background-color: e(@bg);
     border-color: e(@border);
   }
+  // 幽灵 按钮  优先级为：两级类名
+  .color-ghost-mixin(@theme) {
+    @c: %('var(--tv-Button-text-color-ghost-%a)', @theme);
+    @border: %('var(--tv-Button-border-color-ghost-%a)', @theme);
+
+    color: e(@c);
+    border-color: e(@border);
+  }
   // 激活态： 叠加到主题和plain 状态上。
   .color-active-mixin(@theme, @plain) {
     @bg: %('var(--tv-Button-bg-color%a-active-%a)', @plain, @theme);
-    @border: %('var(--tv-Button-border%a-color-active-%a)', @plain, @theme);
+    @border: %('var(--tv-Button-border-color%a-active-%a)', @plain, @theme);
 
     &:active,
     &:focus,
@@ -98,69 +106,104 @@
       border-color: e(@border);
     }
   }
+  // 激活态： 叠加到 ghost 状态上。
+  .color-ghost-active-mixin(@theme) {
+    @border: %('var(--tv-Button-border-color-ghost-active-%a)', @theme);
+
+    &:active,
+    &:focus,
+    &:hover,
+    &.is-active {
+      border-color: e(@border);
+    }
+  }
 
   &.@{button-prefix-cls}--default {
     .color-theme-mixin(default);
     .color-active-mixin(default, e(''));
 
-    &.is-plain,
-    &.is-ghost {
+    &.is-plain {
       .color-plain-mixin(default);
       .color-active-mixin(default, -plain);
+    }
+
+    &.is-ghost {
+      .color-ghost-mixin(default);
+      .color-ghost-active-mixin(default);
     }
   }
   &.@{button-prefix-cls}--primary {
     .color-theme-mixin(primary);
     .color-active-mixin(primary, e(''));
 
-    &.is-plain,
-    &.is-ghost {
+    &.is-plain {
       .color-plain-mixin(primary);
       .color-active-mixin(primary, -plain);
+    }
+
+    &.is-ghost {
+      .color-ghost-mixin(primary);
+      .color-ghost-active-mixin(primary);
     }
   }
   &.@{button-prefix-cls}--success {
     .color-theme-mixin(success);
     .color-active-mixin(success, e(''));
 
-    &.is-plain,
-    &.is-ghost {
+    &.is-plain {
       .color-plain-mixin(success);
       .color-active-mixin(success, -plain);
+    }
+
+    &.is-ghost {
+      .color-ghost-mixin(success);
+      .color-ghost-active-mixin(success);
     }
   }
   &.@{button-prefix-cls}--warning {
     .color-theme-mixin(warning);
     .color-active-mixin(warning, e(''));
 
-    &.is-plain,
-    &.is-ghost {
+    &.is-plain {
       .color-plain-mixin(warning);
       .color-active-mixin(warning, -plain);
+    }
+
+    &.is-ghost {
+      .color-ghost-mixin(warning);
+      .color-ghost-active-mixin(warning);
     }
   }
   &.@{button-prefix-cls}--danger {
     .color-theme-mixin(danger);
     .color-active-mixin(danger, e(''));
 
-    &.is-plain,
-    &.is-ghost {
+    &.is-plain {
       .color-plain-mixin(danger);
       .color-active-mixin(danger, -plain);
+    }
+
+    &.is-ghost {
+      .color-ghost-mixin(danger);
+      .color-ghost-active-mixin(danger);
     }
   }
   &.@{button-prefix-cls}--info {
     .color-theme-mixin(info);
     .color-active-mixin(info, e(''));
 
-    &.is-plain,
-    &.is-ghost {
+    &.is-plain {
       .color-plain-mixin(info);
       .color-active-mixin(info, -plain);
     }
+
+    &.is-ghost {
+      .color-ghost-mixin(info);
+      .color-ghost-active-mixin(info);
+    }
   }
 
-  //  ghost： 默认继承plain的状态， 但是bg 强制为透明，比禁用还高  优先级为：六级类名
+  //  ghost：bg 强制为透明，比禁用还高  优先级为：六级类名
   &.is-ghost.is-ghost.is-ghost.is-ghost.is-ghost.is-ghost {
     background-color: var(--tv-Button-bg-color-ghost);
   }
