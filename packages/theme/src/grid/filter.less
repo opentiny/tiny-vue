@@ -28,7 +28,8 @@
   }
 
   .@{grid-filter-prefix-cls}__btn {
-    font-size: 14px;
+    // 图标过大，需要减去2px
+    font-size: calc(var(--tv-Grid-icon-size) - 2px);
     fill: #999;
     cursor: pointer;
     vertical-align: middle;
