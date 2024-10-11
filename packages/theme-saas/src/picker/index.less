@@ -22,6 +22,10 @@
       @apply fill-color-icon-primary;
     }
   }
+  .@{input-prefix-cls}__icon-container {
+    align-items: center;
+    display: flex;
+  }
 
   &.@{input-prefix-cls},
   &.@{input-prefix-cls}__inner {
@@ -53,11 +57,6 @@
 
   .@{input-prefix-cls}__icon {
     @apply cursor-pointer;
-
-    .baseClearicon {
-      @apply mr-2;
-      @apply !transform-none;
-    }
 
     &:not(.@{range-prefix-cls}__icon) {
       @apply flex;
@@ -107,13 +106,15 @@
     @apply absolute;
     @apply ~'right-1.5';
     @apply text-base;
-    width: 25px;
+    @apply w-4;
     float: right;
     @apply leading-8;
     @apply mr-5;
     @apply flex;
     @apply justify-center;
     @apply items-center;
+    @apply h-5;
+    @apply mr-6;
   }
 }
 

@@ -6,11 +6,11 @@ test('主題样式', async ({ page }) => {
 
   const demo = page.locator('#type')
   const badge = demo.locator('.tiny-badge')
-  const dangerBadge = badge.nth(1)
-  const primaryBadge = badge.nth(2)
-  const successBadge = badge.nth(3)
-  const warningBadge = badge.nth(4)
-  const infoBadge = badge.nth(5)
+  const successBadge = badge.nth(1)
+  const warningBadge = badge.nth(2)
+  const infoBadge = badge.nth(3)
+  const dangerBadge = badge.nth(4)
+  const primaryBadge = badge.nth(5)
 
   await expect(dangerBadge).toHaveClass(/tiny-badge--danger/)
   await expect(dangerBadge).toHaveCSS('background-color', 'rgb(246, 111, 106)')

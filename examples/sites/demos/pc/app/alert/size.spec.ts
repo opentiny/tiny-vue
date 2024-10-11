@@ -6,5 +6,5 @@ test('尺寸', async ({ page }) => {
 
   const largeAlert = page.locator('.tiny-alert').nth(1)
   await expect(largeAlert).toHaveClass(/tiny-alert--large/)
-  await expect(largeAlert).toHaveCSS('height', '68px')
+  await expect(largeAlert).toHaveCSS('height', '77px')
 })

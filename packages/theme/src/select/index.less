@@ -312,6 +312,12 @@
   &.is-hover-expand.is-disabled {
     .@{select-prefix-cls}__tags {
       height: auto;
+
+      > span {
+        > span {
+          display: inline-block;
+        }
+      }
     }
   }
 

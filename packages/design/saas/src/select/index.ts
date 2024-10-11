@@ -1,10 +1,13 @@
-import { iconChevronDown } from '@opentiny/vue-icon'
+import { iconChevronDown, iconPlus } from '@opentiny/vue-icon'
+import loadingIcon from './icon-loading.svg'
 
 export default {
   // 虚拟滚动的默认options不一致
   baseOpts: { optionHeight: 34, limit: 20 },
   icons: {
-    dropdownIcon: iconChevronDown()
+    dropdownIcon: iconChevronDown(),
+    addIcon: iconPlus(),
+    loadingIcon
   },
   state: {
     sizeMap: {

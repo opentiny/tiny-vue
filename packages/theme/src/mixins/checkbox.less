@@ -14,6 +14,7 @@
 
 @checkbox-prefix-cls: ~'@{css-prefix}checkbox';
 
+// 带边框的checkbox场景，很少用的场景
 .checkbox-border-disabled(@color, @border-color) {
   border-color: @border-color;
   color: @color;
@@ -32,14 +33,15 @@
     .@{checkbox-prefix-cls}__inner:hover {
       background-color: @color;
       border-color: @color;
-      &::after {
+
+      &:after {
         border-color: @border-color;
       }
     }
   }
 }
 
-.checkbox-input-disabled(@bg-color, @border-color, @bg-color-checked, @border-color-checked, @label-color, @icon-color) {
+.checkbox-input-disabled(@bg-color, @border-color, @bg-color-checked, @label-color, @icon-color) {
   .@{checkbox-prefix-cls}__inner {
     background-color: @bg-color;
     border-color: @border-color;
@@ -53,29 +55,32 @@
       cursor: not-allowed;
     }
   }
+
   &.is-checked {
     .@{checkbox-prefix-cls}__inner,
     .@{checkbox-prefix-cls}__inner:hover {
       background-color: @bg-color-checked;
-      border-color: @border-color-checked;
+      border-color: @border-color;
 
-      &::after {
+      &:after {
         border-color: @icon-color;
       }
     }
   }
+
   &.is-indeterminate {
     .@{checkbox-prefix-cls}__inner,
     .@{checkbox-prefix-cls}__inner:hover {
       background-color: @bg-color-checked;
-      border-color: @border-color-checked;
+      border-color: @border-color;
 
-      &::before {
+      &:before {
         background-color: @icon-color;
         border-color: @icon-color;
       }
     }
   }
+
   & + span.@{checkbox-prefix-cls}__label {
     color: @label-color;
     cursor: not-allowed;

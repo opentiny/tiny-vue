@@ -9,438 +9,284 @@
 * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
 *
 */
+.inject-Button-vars() {
+  //-------------------------------------------------------全局场景：------------------------------------------
 
-.component-css-vars-button() {
-  // 按钮圆角
-  --ti-button-border-radius: 25px;
-  // 按钮字号
-  --ti-button-font-size: var(--ti-common-font-size-base, 12px);
-  // 朴素类按钮禁用文本色(非默认)
-  --ti-button-plain-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
-  // 按钮边框尺寸
-  --ti-button-border-width: var(--ti-common-border-weight-normal, 1px);
-  // 按钮边框样式
-  --ti-button-border-style: var(--ti-common-border-style-solid, solid);
-  // 按钮加载时背景色
-  --ti-button-loading-bg-color: rgba(255, 255, 255, 0.5);
-  --ti-button-loading-font-size: var(--ti-common-font-size-1);
+  // 默认时按钮字重
+  --tv-Button-font-weight: var(--tv-font-weight-regular);
+  // 默认时按钮边框宽度
+  --tv-Button-border-width: var(--tv-border-width);
 
-  // 默认按钮最大宽度
-  --ti-button-size-normal-max-width: var(--ti-common-size-width-medium, 120px);
-  // 默认按钮的高度
-  --ti-button-size-normal-height: var(--ti-common-size-height-normal, 28px);
-  // 默认按钮水平内边距
-  --ti-button-size-normal-padding-horizontal: var(--ti-common-size-6x);
+  // --------------------------------------------------- 场景1、圆角--------------------------------------------
+  // 默认时按钮圆角
+  --tv-Button-border-radius: var(--tv-border-radius-round); // 默认规范不需要 6px的圆角的效果，默认就是半圆
+  // 大圆角时按钮圆角
+  --tv-Button-border-radius-round: var(--tv-border-radius-round);
+  // 圆形时按钮圆角
+  --tv-Button-border-radius-circle: var(--tv-border-radius-round); // 50%  会造成椭圆，此次common变量用 999px代替
 
-  // 超大按钮高度
-  --ti-button-size-large-height: var(--ti-common-size-height-large, 48px);
+  //------------------------------------------------------ 场景2、尺寸  height, font-size,padding-x,min-width----
+  // 默认时按钮字号
+  --tv-Button-font-size: var(--tv-font-size-md);
+  // 默认时按钮高度
+  --tv-Button-height: var(--tv-size-height-md);
+  // 默认时按钮水平间距
+  --tv-Button-padding-x: 24px; // space变量不存在，是否替换成 space-base * 6 这种？
+  // 默认时按钮最小宽度
+  --tv-Button-min-width: 96px; // 是否替换成 size-base * 24 这种？
   // 超大按钮字号
-  --ti-button-size-large-font-size: var(--ti-common-font-size-base);
-  // 超大按钮水平内边距
-  --ti-button-size-large-padding-horizontal: var(--ti-common-size-12x);
+  --tv-Button-font-size-large: var(--tv-font-size-md);
+  // 超大按钮高度
+  --tv-Button-height-large: var(--tv-size-height-xl);
+  // 超大按钮水平间距
+  --tv-Button-padding-x-large: 48px;
   // 超大按钮最小宽度
-  --ti-button-size-large-min-width: var(--ti-common-size-31x);
-  // 超大按钮左侧外边距
-  --ti-button-size-large-margin-left: 16px;
-
-  // 中等按钮高度
-  --ti-button-size-medium-height: var(--ti-common-size-height-medium, 40px);
+  --tv-Button-min-width-large: 124px;
   // 中等按钮字号
-  --ti-button-size-medium-font-size: var(--ti-common-font-size-1, 14px);
-  // 中等按钮水平内边距
-  --ti-button-size-medium-padding-horizontal: var(--ti-common-size-8x);
+  --tv-Button-font-size-medium: var(--tv-font-size-md);
+  // 中等按钮高度
+  --tv-Button-height-medium: var(--tv-size-height-lg);
+  // 中等按钮水平间距
+  --tv-Button-padding-x-medium: 32px;
   // 中等按钮最小宽度
-  --ti-button-size-medium-min-width: var(--ti-common-size-28x);
-  // 中等按钮左侧外边距
-  --ti-button-size-medium-margin-left: 16px;
-
-  // 小型按钮高度
-  --ti-button-size-small-height: 28px;
+  --tv-Button-min-width-medium: 112px;
   // 小型按钮字号
-  --ti-button-size-small-font-size: 12px;
-  // 小尺寸按钮水平内边距
-  --ti-button-size-small-padding-horizontal: var(--ti-common-size-4x);
-  // 小尺寸按钮最小宽度
-  --ti-button-size-small-min-width: var(--ti-common-size-18x);
-  // 小尺寸按钮左侧外边距
-  --ti-button-size-small-margin-left: 8px;
+  --tv-Button-font-size-small: var(--tv-font-size-sm);
+  // 小型按钮高度
+  --tv-Button-height-small: var(--tv-size-height-sm);
+  // 小型按钮水平间距
+  --tv-Button-padding-x-small: 16px;
+  // 小型按钮最小宽度
+  --tv-Button-min-width-small: 72px;
+  // 超小按钮字号
+  --tv-Button-font-size-mini: var(--tv-font-size-sm);
+  // 超小按钮高度
+  --tv-Button-height-mini: var(--tv-size-height-xs);
+  // 超小按钮水平间距
+  --tv-Button-padding-x-mini: 16px;
+  // 超小按钮最小宽度
+  --tv-Button-min-width-mini: 60px;
 
-  // 迷你尺寸按钮高度
-  --ti-button-size-mini-height: var(--ti-common-size-height-mini, 24px);
-  // 迷你尺寸按钮字号
-  --ti-button-size-mini-font-size: 12px;
-  // 迷你尺寸按钮水平内边距
-  --ti-button-size-mini-padding-horizontal: var(--ti-common-size-2x, 8px);
-  // 迷你尺寸按钮最小宽度
-  --ti-button-size-mini-min-width: 24px;
+  //------------------------------------------------------ 场景3、颜色  text-color bg-color border-color icon-color----
+  //------ 状态： 默认+primary+4主题  ghost  plain (hover active)  disabled
+  // 1、ghost中只影响 bg       2、active 只影响（主题+plain)   3、 disabled 优先级高过 （主题+plain+激活)
 
-  // 默认按钮文本色
-  --ti-button-normal-text-color: #191919;
-  // 默认按钮边框色
-  --ti-button-normal-border-color: #595959;
-  // 默认按钮背景色
-  --ti-button-normal-background-color: var(--ti-common-color-light, #fff);
-  // 默认按钮悬浮文本色
-  --ti-button-normal-hover-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
-  // 默认按钮悬浮边框色
-  --ti-button-normal-hover-border-color: #C2C2C2;
-  // 默认按钮悬浮背景色
-  --ti-button-normal-hover-bg-color: var(--ti-common-color-light, #fff);
-  // 默认按钮点击瞬间文本色
-  --ti-button-normal-active-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
-  // 默认按钮点击瞬间边框色
-  --ti-button-normal-active-border-color: var(--ti-common-color-primary-normal, #5e7ce0);
-  // 默认按钮点击瞬间背景色
-  --ti-button-normal-active-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
-  // 默认按钮禁用文本色
-  --ti-button-normal-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
-  // 默认按钮禁用边框色
-  --ti-button-normal-disabled-border-color: transparent;
-  // 禁用类默认按钮背景色
-  --ti-button-normal-disabled-bg-color: var(--ti-common-color-bg-disabled, #f5f5f6);
-  // 默认 朴素 边框色
-  --ti-button-plain-border-color: #C2C2C2;
-  // 默认 朴素 禁用边框色
-  --ti-button-plain-disabled-border-color: #F0F0F0;
-  // 默认 朴素 悬浮边框色
-  --ti-button-plain-hover-border-color: #F5F5F5;
+  // 默认时按钮文本色
+  --tv-Button-text-color-default: var(--tv-color-text);
+  // 默认时按钮背景色
+  --tv-Button-bg-color-default: var(--tv-color-bg-secondary);
+  // 默认时按钮边框色
+  --tv-Button-border-color-default: var(--tv-color-border-secondary);
+  // 默认时按钮图标色
+  --tv-Button-icon-color-default: var(--tv-color-icon-stable);
 
-  // 文字按钮文本色
-  --ti-button-text-color: var(--ti-common-color-text-highlight);
-  // 文字按钮悬浮文本修饰(hide)
-  --ti-button-text-hover-text-decoration: underline;
-  // 文字按钮悬浮文本色
-  --ti-button-text-color-hover: var(--ti-common-color-text-highlight);
-  // 文字按钮悬浮文本字重
-  --ti-button-text-hover-weight: var(--ti-common-font-weight-4);
-  // 文字按钮点击瞬间文本色
-  --ti-button-text-color-active: var(--ti-common-color-primary-active, #7693f5);
-  // 文字按钮禁用文本色
-  --ti-button-text-color-disabled: var(--ti-common-color-text-disabled, #adb0b8);
-  // 文字按钮图标宽度
-  --ti-button-text-svg-width: 16px;
-  // 文字按钮图标高度
-  --ti-button-text-svg-height: 16px;
-  // 文字按钮悬浮背景色
-  --ti-button-text-hover-bg-color: transparent;
-  // 文字按钮只有图标悬浮背景色
-  --ti-button-text-only-icon-hover-bg-color: #0000000D;
-  // 文字按钮悬浮圆角
-  --ti-button-text-hover-border-radius: 4px;
-  // 文字按钮图标填充色
-  --ti-button-text-svg-fill-color: #191919;
-  // 文字按钮图标悬浮填充色
-  --ti-button-text-svg-hover-fill-color: #191919;
-  // 文字按钮禁用时图标填充色
-  --ti-button-text-svg-disabled-fill-color: #C2C2C2;
-  // 图标加文字按钮图标右侧外边距
-  --ti-button-text-has-svg-icon-margin-right: 4px;
-  // 图标加文字按钮字体颜色
-  --ti-button-text-has-svg-text-color: #191919;
-  // 图标加文字按钮悬浮时字体颜色
-  --ti-button-text-has-svg-hover-text-color: #191919;
-  // 文字按钮只有svg时水平内边距
-  --ti-button-text-svg-padding-horizontal: 0px;
+  // primary 主题时按钮文本色
+  --tv-Button-text-color-primary: var(--tv-color-act-primary-text-white);
+  // primary 主题时按钮背景色
+  --tv-Button-bg-color-primary: var(--tv-color-act-primary-bg);
+  // primary 主题时按钮边框色
+  --tv-Button-border-color-primary: var(--tv-color-act-primary-border);
+  // primary 主题时按钮图标色
+  --tv-Button-icon-color-primary: var(--tv-color-icon-white);
 
-  // 主要按钮的主题类背景色+朴素类文本边框色
-  --ti-button-primary-normal-bg-color: #191919;
-  // 主要按钮的主题类边框色
-  --ti-button-primary-normal-border-color: #191919;
-  // 主题类主要按钮悬浮背景色
-  --ti-button-primary-hover-bg-color: #595959;
-  // 主题类主要按钮悬浮边框色
-  --ti-button-primary-hover-border-color: #595959;
-  // 主要按钮点击瞬间背景色
-  --ti-button-primary-active-bg-color: #191919;
-  // 主要按钮的禁用主题类背景色+禁用朴素类边框色
-  --ti-button-primary-disabled-bg-color: var(--ti-common-color-primary-disabled-bgcolor, #f5f5f6);
-  // 主题类主要按钮文本色
-  --ti-button-primary-text-color: var(--ti-common-color-text-white);
-  // 禁用主题类主要按钮文本色
-  --ti-button-primary-disabled-text-color: #C2C2C2;
-  // 禁用主题类主要按钮边框色
-  --ti-button-primary-disabled-border-color: #F0F0F0;
-  // 朴素类主要按钮文本色
-  --ti-button-primary-plain-text-color: #191919;
-  // 朴素类主要按钮悬浮文本色
-  --ti-button-primary-plain-hover-text-color: #191919;
-  // 朴素类主要按钮背景色
-  --ti-button-primary-plain-bg-color: var(--ti-common-color-bg-minor);
-  // 朴素类主要按钮悬浮背景色
-  --ti-button-primary-plain-hover-bg-color: var(--ti-common-color-bg-minor);
-  // 朴素类主要按钮边框色
-  --ti-button-primary-plain-border-color: #595959;
-  // 朴素类主要按钮悬浮边框色
-  --ti-button-primary-plain-hover-border-color: #FFFFFF;
-  // 禁用朴素类主要按钮背景色
-  --ti-button-primary-plain-disabled-bg-color: #F0F0F0;
+  // success 主题时按钮文本色
+  --tv-Button-text-color-success: var(--tv-color-act-success-text-white);
+  // success 主题时按钮背景色
+  --tv-Button-bg-color-success: var(--tv-color-act-success-bg);
+  // success 主题时按钮边框色
+  --tv-Button-border-color-success: var(--tv-color-act-success-border);
+  // success 主题时按钮图标色
+  --tv-Button-icon-color-success: var(--tv-color-icon-white);
 
-  // 成功按钮的主题类背景色+朴素类文本边框色
-  --ti-button-success-normal-bg-color: #5CB300;
-  // 成功按钮的主题类边框色
-  --ti-button-success-normal-border-color: #5CB300;
-  // 成功按钮悬浮背景色
-  --ti-button-success-hover-bg-color: #7DCC29;
-  // 成功按钮悬浮边框色
-  --ti-button-success-hover-border-color: #7DCC29;
-  // 成功按钮点击瞬间背景色
-  --ti-button-success-active-bg-color: #5CB300;
-  // 成功按钮的禁用主题类背景色+禁用朴素类边框色
-  --ti-button-success-disabled-bg-color: #F0F0F0;
-  // 成功按钮文本色
-  --ti-button-success-text-color: var(--ti-common-color-text-white);
-  // 禁用主题类成功按钮文本色
-  --ti-button-success-disabled-text-color: #C2C2C2;
-  // 禁用主题类成功按钮边框色
-  --ti-button-success-disabled-border-color: #F0F0F0;
-  // 朴素类成功按钮文本色
-  --ti-button-success-plain-text-color: #5CB300;
-  // 朴素类成功按钮悬浮文本色
-  --ti-button-success-plain-hover-text-color: #5CB300;
-  // 朴素类成功按钮背景色
-  --ti-button-success-plain-bg-color: #EDF7DF;
-  // 朴素类成功按钮悬浮背景色
-  --ti-button-success-plain-hover-bg-color: #EDF7DF;
-  // 朴素类成功按钮边框色
-  --ti-button-success-plain-border-color: #DAF2BB;
-  // 朴素类成功按钮悬浮边框色
-  --ti-button-success-plain-hover-border-color: #EDF7DF;
-  // 禁用朴素类成功按钮背景色
-  --ti-button-success-plain-disabled-bg-color: #F0F0F0;
+  // warning 主题时按钮文本色
+  --tv-Button-text-color-warning: var(--tv-color-act-warning-text-white);
+  // warning 主题时按钮背景色
+  --tv-Button-bg-color-warning: var(--tv-color-act-warning-bg);
+  // warning 主题时按钮边框色
+  --tv-Button-border-color-warning: var(--tv-color-act-warning-border);
+  // warning 主题时按钮图标色
+  --tv-Button-icon-color-warning: var(--tv-color-icon-white);
 
-  // 警告按钮背景色|朴素类警告按钮悬浮背景色
-  --ti-button-warning-normal-bg-color: #FF8800;
-  // 警告按钮的主题类边框色
-  --ti-button-warning-normal-border-color: #FF8800;
-  // 警告按钮悬浮背景色
-  --ti-button-warning-hover-bg-color: #FF9A2E;
-  // 警告按钮点击瞬间背景色
-  --ti-button-warning-active-bg-color: #FF8800;
-  // 警告按钮的禁用主题类背景色+禁用朴素类边框色
-  --ti-button-warning-disabled-bg-color: #F0F0F0;
-  // 警告按钮文本色
-  --ti-button-warning-text-color: var(--ti-common-color-text-white);
-  // 禁用警告按钮文本色
-  --ti-button-warning-disabled-text-color: #C2C2C2;
-  // 禁用主题类警告按钮边框色
-  --ti-button-warning-disabled-border-color: #F0F0F0;
-  // 朴素类主要按钮文本色
-  --ti-button-warning-plain-text-color: #FF8800;
-  // 朴素类主要按钮悬浮文本色
-  --ti-button-warning-plain-hover-text-color: #FF8800;
-  // 朴素类警告按钮背景色
-  --ti-button-warning-plain-bg-color: #FFF4E8;
-  // 朴素类警告按钮悬浮背景色
-  --ti-button-warning-plain-hover-bg-color: #FFF4E8;
-  // 朴素类警告按钮边框色
-  --ti-button-warning-plain-border-color: #FFEBD1;
-  // 朴素类警告按钮悬浮边框色
-  --ti-button-warning-plain-hover-border-color: #FFF4E8;
-  // 禁用朴素类警告按钮背景色
-  --ti-button-warning-plain-disabled-bg-color: #F0F0F0;
+  // danger 主题时按钮文本色
+  --tv-Button-text-color-danger: var(--tv-color-act-danger-text-white);
+  // danger 主题时按钮背景色
+  --tv-Button-bg-color-danger: var(--tv-color-act-danger-bg);
+  // danger 主题时按钮边框色
+  --tv-Button-border-color-danger: var(--tv-color-act-danger-border);
+  // danger 主题时按钮图标色
+  --tv-Button-icon-color-danger: var(--tv-color-icon-white);
 
-  // 危险按钮默认背景色|朴素类危险按钮边框色
-  --ti-button-danger-normal-bg-color: #F23030;
-  // 危险按钮的主题类边框色
-  --ti-button-danger-normal-border-color: #F23030;
-  // 危险按钮悬浮背景色
-  --ti-button-danger-hover-bg-color: #F76360;
-  // 危险按钮悬浮边框色
-  --ti-button-danger-hover-border-color: #F76360;
-  // 危险按钮点击瞬间背景色
-  --ti-button-danger-active-bg-color: #F23030;
-  // 危险按钮的禁用主题类背景色+禁用朴素类边框色
-  --ti-button-danger-disabled-bg-color: #F0F0F0;
-  // 危险按钮文本色
-  --ti-button-danger-text-color: var(--ti-common-color-text-white);
-  // 禁用主题类危险按钮文本色
-  --ti-button-danger-disabled-text-color: #C2C2C2;
-  // 禁用主题类危险按钮边框色
-  --ti-button-danger-disabled-border-color: #F0F0F0;
-  // 朴素类危险按钮文本色
-  --ti-button-danger-plain-text-color: #F23030;
-  // 朴素类危险按钮悬浮文本色
-  --ti-button-danger-plain-hover-text-color: #F23030;
-  // 朴素类危险按钮背景色
-  --ti-button-danger-plain-bg-color: transparent;
-  // 朴素类危险按钮悬浮背景色
-  --ti-button-danger-plain-hover-bg-color: #FFF1F0;
-  // 朴素类危险按钮边框色
-  --ti-button-danger-plain-border-color: #FCE2E0;
-  // 朴素类危险按钮悬浮边框色
-  --ti-button-danger-plain-hover-border-color: #FFF1F0;
-  // 禁用朴素类危险按钮背景色
-  --ti-button-danger-plain-disabled-bg-color: #F0F0F0;
-  // 禁用朴素类危险按钮边框色
-  --ti-button-danger-plain-disabled-border-color: transparent;
+  // info 主题时按钮文本色
+  --tv-Button-text-color-info: var(--tv-color-act-info-text-white);
+  // info 主题时按钮背景色
+  --tv-Button-bg-color-info: var(--tv-color-act-info-bg);
+  // info 主题时按钮边框色
+  --tv-Button-border-color-info: var(--tv-color-act-info-border);
+  // info 主题时按钮图标色
+  --tv-Button-icon-color-info: var(--tv-color-icon-white);
 
-  // 信息按钮背景色|朴素类信息按钮边框色
-  --ti-button-info-normal-bg-color: #1476FF;
-  // 信息按钮的主题类边框色
-  --ti-button-info-normal-border-color: #1476FF;
-  // 信息按钮悬浮背景色
-  --ti-button-info-hover-bg-color: #4191FA;
-  // 信息按钮悬浮边框色
-  --ti-button-info-hover-border-color: #4191FA;
-  // 信息按钮点击瞬间背景色
-  --ti-button-info-active-bg-color: #1476FF;
-  // 信息按钮的禁用主题类背景色+禁用朴素类边框色
-  --ti-button-info-disabled-bg-color: #F0F0F0;
-  // 信息按钮文本色
-  --ti-button-info-text-color: var(--ti-common-color-text-white);
-  // 禁用信息按钮文本色
-  --ti-button-info-disabled-text-color: #C2C2C2;
-  // 禁用信息按钮边框色
-  --ti-button-info-disabled-border-color: #F0F0F0;
-  // 朴素类信息按钮文本色
-  --ti-button-info-plain-text-color: #1476FF;
-  // 朴素类信息按钮悬浮文本色
-  --ti-button-info-plain-hover-text-color: #1476FF;
-  // 朴素类信息按钮背景色
-  --ti-button-info-plain-bg-color: #F0F7FF;
-  // 朴素类信息按钮悬浮背景色
-  --ti-button-info-plain-hover-bg-color: #F0F7FF;
-  // 朴素类信息按钮边框色
-  --ti-button-info-plain-border-color: #DEECFF;
-  // 朴素类信息按钮悬浮边框色
-  --ti-button-info-plain-hover-border-color: #F0F7FF;
-  // 禁用朴素类信息按钮背景色
-  --ti-button-info-plain-disabled-bg-color: #F0F0F0;
+  // ------------------------------------------------------------- level 1结束 -----------------------------------
 
-  // 默认类型幽灵按钮文本色
-  --ti-button-ghost-text-color: #595959;
-  // 默认类型幽灵按钮边框色
-  --ti-button-ghost-border-color: var(--ti-common-color-border, #adb0b8);
-  // 默认类型幽灵按钮悬浮文本色
-  --ti-button-ghost-hover-text-color: #595959;
-  // 默认类型幽灵按钮悬浮边框色
-  --ti-button-ghost-hover-border-color: #DBDBDB;
-  // 默认类型幽灵按钮禁用文本色
-  --ti-button-ghost-disabled-text-color: #c2c2c2;
-  // 默认类型幽灵按钮禁用边框色
-  --ti-button-ghost-disabled-border-color: #DBDBDB;
-  // 主要类型幽灵按钮文本色
-  --ti-button-primary-ghost-text-color: #191919;
-  // 主要类型幽灵按钮边框色
-  --ti-button-primary-ghost-border-color: #595959;
-  // 主要类型幽灵按钮悬浮文本色
-  --ti-button-primary-ghost-hover-text-color: #191919;
-  // 主要类型幽灵按钮悬浮边框色
-  --ti-button-primary-ghost-hover-border-color: #C2C2C2;
-  // 主要类型幽灵按钮禁用文本色
-  --ti-button-primary-ghost-disabled-text-color: #C2C2C2;
-  // 主要类型幽灵按钮禁用边框色
-  --ti-button-primary-ghost-disabled-border-color: #F0F0F0;
-  // 成功类型幽灵按钮文本色
-  --ti-button-success-ghost-text-color: #5CB300;
-  // 成功类型幽灵按钮边框色
-  --ti-button-success-ghost-border-color: #5CB300;
-  // 成功类型幽灵按钮悬浮文本色
-  --ti-button-success-ghost-hover-text-color: #5CB300;
-  // 成功类型幽灵按钮悬浮边框色
-  --ti-button-success-ghost-hover-border-color: #DAF2BB;
-  // 成功类型幽灵按钮禁用文本色
-  --ti-button-success-ghost-disabled-text-color: #C2C2C2;
-  // 成功类型幽灵按钮禁用边框色
-  --ti-button-success-ghost-disabled-border-color: #F0F0F0;
-  // 信息类型幽灵按钮文本色
-  --ti-button-info-ghost-text-color: #1476FF;
-  // 信息类型幽灵按钮边框色
-  --ti-button-info-ghost-border-color: #1476FF;
-  // 信息类型幽灵按钮悬浮文本色
-  --ti-button-info-ghost-hover-text-color: #1476FF;
-  // 信息类型幽灵按钮悬浮边框色
-  --ti-button-info-ghost-hover-border-color: #DEECFF;
-  // 信息类型幽灵按钮禁用文本色
-  --ti-button-info-ghost-disabled-text-color: #C2C2C2;
-  // 信息类型幽灵按钮禁用边框色
-  --ti-button-info-ghost-disabled-border-color: #F0F0F0;
-  // 告警类型幽灵按钮文本色
-  --ti-button-warning-ghost-text-color: #FF8800;
-  // 告警类型幽灵按钮边框色
-  --ti-button-warning-ghost-border-color: #FF8800;
-  // 告警类型幽灵按钮悬浮文本色
-  --ti-button-warning-ghost-hover-text-color: #FF8800;
-  // 告警类型幽灵按钮悬浮边框色
-  --ti-button-warning-ghost-hover-border-color: #FFEBD1;
-  // 告警类型幽灵按钮禁用文本色
-  --ti-button-warning-ghost-disabled-text-color: #C2C2C2;
-  // 告警类型幽灵按钮禁用边框色
-  --ti-button-warning-ghost-disabled-border-color: #F0F0F0;
-  // 危险类型幽灵按钮文本色
-  --ti-button-danger-ghost-text-color: #F23030;
-  // 危险类型幽灵按钮边框色
-  --ti-button-danger-ghost-border-color: #F23030;
-  // 危险类型幽灵按钮悬浮文本色
-  --ti-button-danger-ghost-hover-text-color: #F23030;
-  // 危险类型幽灵按钮悬浮边框色
-  --ti-button-danger-ghost-hover-border-color: #FCE2E0;
-  // 危险类型幽灵按钮禁用文本色
-  --ti-button-danger-ghost-disabled-text-color: #C2C2C2;
-  // 危险类型幽灵按钮禁用边框色
-  --ti-button-danger-ghost-disabled-border-color: #F0F0F0;
+  // 默认时按钮朴素文本色
+  --tv-Button-text-color-plain-default: var(--tv-color-text);
+  // 默认时按钮朴素背景色
+  --tv-Button-bg-color-plain-default: var(--tv-color-bg);
+  // 默认时按钮朴素边框色
+  --tv-Button-border-color-plain-default: var(--tv-color-border);
 
-  // 按钮垂直内边距
-  --ti-button-padding-vertical: var(--ti-common-space-0, 0px);
-  // 默认圆形按钮内边距
-  --ti-button-size-normal-padding: var(--ti-common-space-6);
+  // primary 主题时按钮朴素文本色
+  --tv-Button-text-color-plain-primary: var(--tv-color-act-primary-text);
+  // primary 主题时按钮朴素背景色
+  --tv-Button-bg-color-plain-primary: var(--tv-color-act-primary-bg-white);
+  // primary 主题时按钮朴素边框色
+  --tv-Button-border-color-plain-primary: var(--tv-color-act-primary-border-active);
 
-  // 纯文本按钮超大尺寸最小宽度
-  --ti-button-text-size-large-min-width: 56px;
-  // 纯文本按钮超大尺寸高度
-  --ti-button-text-size-large-height: 56px;
-  // 纯文本按钮超大尺寸图标宽度
-  --ti-button-text-size-large-svg-width: 48px;
-  // 纯文本按钮超大尺寸图标高度
-  --ti-button-text-size-large-svg-height: 48px;
-  // 纯文本按钮水平内边距
-  --ti-button-text-padding-horizontal: var(--ti-common-space-0, 0px);
-  // 纯文本按钮中等尺寸最小宽度
-  --ti-button-text-size-medium-min-width: 40px;
-  // 纯文本按钮中等尺寸高度
-  --ti-button-text-size-medium-height: 40px;
-  // 纯文本按钮中等尺寸图标宽度
-  --ti-button-text-size-medium-svg-width: 32px;
-  // 纯文本按钮中等尺寸图标高度
-  --ti-button-text-size-medium-svg-height: 32px;
+  // success 主题时按钮朴素文本色
+  --tv-Button-text-color-plain-success: var(--tv-color-act-success-text);
+  // success 主题时按钮朴素背景色
+  --tv-Button-bg-color-plain-success: var(--tv-color-act-success-bg-light);
+  // success 主题时按钮朴素边框色
+  --tv-Button-border-color-plain-success: var(--tv-color-act-success-border-active-1);
 
-  // 纯文本按钮默认尺寸最小宽度
-  --ti-button-text-size-default-min-width: 24px;
-  // 纯文本按钮默认尺寸高度
-  --ti-button-text-size-default-height: 24px;
-  // 纯文本按钮默认尺寸图标宽度
-  --ti-button-text-size-default-svg-width: 16px;
-  // 纯文本按钮默认尺寸图标高度
-  --ti-button-text-size-default-svg-height: 16px;
+  // warning 主题时按钮朴素文本色
+  --tv-Button-text-color-plain-warning: var(--tv-color-act-warning-text);
+  // warning 主题时按钮朴素背景色
+  --tv-Button-bg-color-plain-warning: var(--tv-color-act-warning-bg-light);
+  // warning 主题时按钮朴素边框色
+  --tv-Button-border-color-plain-warning: var(--tv-color-act-warning-border-active-1);
 
-  // 纯文本按钮小尺寸最小宽度
-  --ti-button-text-size-small-min-width: 24px;
-  // 纯文本按钮小尺寸高度
-  --ti-button-text-size-small-height: 24px;
-  // 纯文本按钮小尺寸图标宽度
-  --ti-button-text-size-small-svg-width: 16px;
-  // 纯文本按钮小尺寸图标高度
-  --ti-button-text-size-small-svg-height: 16px;
+  // danger 主题时按钮朴素文本色
+  --tv-Button-text-color-plain-danger: var(--tv-color-act-danger-text);
+  // danger 主题时按钮朴素背景色
+  --tv-Button-bg-color-plain-danger: var(--tv-color-act-danger-bg-light);
+  // danger 主题时按钮朴素边框色
+  --tv-Button-border-color-plain-danger: var(--tv-color-act-danger-border-active-1);
 
-  // 纯文本按钮迷你尺寸最小宽度
-  --ti-button-text-size-mini-min-width: 24px;
-  // 纯文本按钮迷你尺寸高度
-  --ti-button-text-size-mini-height: 24px;
-  // 纯文本按钮迷你尺寸图标宽度
-  --ti-button-text-size-mini-svg-width: 16px;
-  // 纯文本按钮迷你尺寸图标高度
-  --ti-button-text-size-mini-svg-height: 16px;
+  // info 主题时按钮朴素文本色
+  --tv-Button-text-color-plain-info: var(--tv-color-act-info-text);
+  // info 主题时按钮朴素背景色
+  --tv-Button-bg-color-plain-info: var(--tv-color-act-info-bg-light);
+  // info 主题时按钮朴素边框色
+  --tv-Button-border-color-plain-info: var(--tv-color-act-info-border-active-1);
 
-  // 纯图标按钮最小宽度
-  --ti-button-icon-font-size: var(--ti-common-font-size-2);
-  // 纯图标/文字按钮宽度
-  --ti-button-only-icon-width: 32px;
-  --ti-button-only-icon-text-width: var(--ti-common-size-6x);
-  
-  // 纯图标按钮边框圆角
-  --ti-button-only-icon-border-radius: var(--ti-common-border-radius-3);
-  // 纯图标按钮悬浮时边框颜色
-  --ti-button-only-icon-hover-border-color: #191919;
-  // 纯图标按钮禁用时边框颜色
-  --ti-button-only-icon-disabled-border-color: #dbdbdb;
+  // 幽灵时按钮背景色
+  --tv-Button-bg-color-ghost: transparent; // 只影响 bg 和 text-color, 且bg全部为透明.
+
+  //------------------------------------------------------------------------------ // level 2结束 ----------------
+
+  // 默认时按钮激活的背景色
+  --tv-Button-bg-color-active-default: var(--tv-color-bg-hover-secondary); // 现规范，激活态时，只影响边框和背景
+  // 默认时按钮激活的边框色
+  --tv-Button-border-color-active-default: var(--tv-color-border);
+  // 默认时按钮激活的朴素背景色
+  --tv-Button-bg-color-plain-active-default: var(--tv-color-bg);
+  // 默认时按钮激活的朴素边框色
+  --tv-Button-border-color-plain-active-default: var(--tv-color-bg); // 朴素激活都无边框
+
+  // primary 主题时按钮激活的背景色
+  --tv-Button-bg-color-active-primary: var(--tv-color-act-primary-bg-active);
+  // primary 主题时按钮激活的边框色
+  --tv-Button-border-color-active-primary: var(--tv-color-act-primary-border-active);
+  // primary 主题时按钮激活的朴素背景色
+  --tv-Button-bg-color-plain-active-primary: var(--tv-color-act-primary-bg-white-active);
+  // primary 主题时按钮激活的朴素边框色
+  --tv-Button-border-color-plain-active-primary: var(--tv-color-act-primary-bg-white-active); // 无边框
+
+  // success 主题时按钮激活的背景色
+  --tv-Button-bg-color-active-success: var(--tv-color-act-success-bg-active);
+  // success 主题时按钮激活的边框色
+  --tv-Button-border-color-active-success: var(--tv-color-act-success-border-active);
+  // success 主题时按钮激活的朴素背景色
+  --tv-Button-bg-color-plain-active-success: var(--tv-color-act-success-bg-light-active);
+  // success 主题时按钮激活的朴素边框色
+  --tv-Button-border-color-plain-active-success: var(--tv-color-act-success-bg-light-active); // 无边框
+
+  // warning 主题时按钮激活的背景色
+  --tv-Button-bg-color-active-warning: var(--tv-color-act-warning-bg-active);
+  // warning 主题时按钮激活的边框色
+  --tv-Button-border-color-active-warning: var(--tv-color-act-warning-border-active);
+  // warning 主题时按钮激活的朴素背景色
+  --tv-Button-bg-color-plain-active-warning: var(--tv-color-act-warning-bg-light-active);
+  // warning 主题时按钮激活的朴素边框色
+  --tv-Button-border-color-plain-active-warning: var(--tv-color-act-warning-bg-light-active); // 无边框
+
+  // danger 主题时按钮激活的背景色
+  --tv-Button-bg-color-active-danger: var(--tv-color-act-danger-bg-active);
+  // danger 主题时按钮激活的边框色
+  --tv-Button-border-color-active-danger: var(--tv-color-act-danger-border-active);
+  // danger 主题时按钮激活的朴素背景色
+  --tv-Button-bg-color-plain-active-danger: var(--tv-color-act-danger-bg-light-active);
+  // danger 主题时按钮激活的朴素边框色
+  --tv-Button-border-color-plain-active-danger: var(--tv-color-act-danger-bg-light-active);
+
+  // info 主题时按钮激活的背景色
+  --tv-Button-bg-color-active-info: var(--tv-color-act-info-bg-active);
+  // info 主题时按钮激活的边框色
+  --tv-Button-border-color-active-info: var(--tv-color-act-info-border-active);
+  // info 主题时按钮激活的朴素背景色
+  --tv-Button-bg-color-plain-active-info: var(--tv-color-act-info-bg-light-active);
+  // info 主题时按钮激活的朴素边框色
+  --tv-Button-border-color-plain-active-info: var(--tv-color-act-info-bg-light-active); // level3 结束------
+
+  // 禁用时按钮文本色
+  --tv-Button-text-color-disabled: var(--tv-color-text-disabled); //  目前主题， disabled优先级高，所以变量少
+  // 禁用时按钮背景色
+  --tv-Button-bg-color-disabled: var(--tv-color-bg-disabled);
+  // 禁用时按钮边框色
+  --tv-Button-border-color-disabled: var(--tv-color-bg-disabled); // 设计边框是f0f0f0，没这个值，用背景色代替。
+  // 禁用时, 幽灵按钮的边框色
+  --tv-Button-border-color-ghost-disabled: var(--tv-color-border-disabled);
+  // 禁用时按钮图标色
+  --tv-Button-icon-color-disabled: var(--tv-color-icon-disabled); // level4 结束---------------------------
+
+  //------------------------------------------------------ 场景4、图标 + text----------------------------------------------
+  // 仅图标：
+  //      有边框 方：[is-only-icon]
+  //      有边框 圆：[is-only-icon is-circle]
+  //      无边框：   [is-only-icon && --text]
+  // 纯文字：        [--text]
+  // 混排：
+  //      有边框混排：[is-icon]
+  //      无边框混排：[is-icon &&  --text]
+  // <img>+ 文字
+
+  // 仅图标且default主题时， 外边框的颜色
+  --tv-Button-border-color-only-icon-default: var(--tv-color-border);
+  // 仅图标且default主题时， 外边框的悬浮色
+  --tv-Button-border-color-only-icon-default-hover: var(--tv-color-border-secondary);
+  // 仅图标且有边框时，边框的圆角大
+  --tv-Button-border-radius-only-icon: var(--tv-border-radius-md);
+
+  // 仅图标且无边框时，背景阴影的圆角
+  --tv-Button-border-radius-only-icon-ontext: var(--tv-border-radius-sm);
+  // 仅图标-无边框的背景色
+  --tv-Button-bg-color-only-icon-ontext: transparent;
+  // 仅图标-无边框的悬浮时的背景色
+  --tv-Button-bg-color-only-icon-ontext-hover: var(--tv-color-bg);
+
+  // 纯文字时，文字颜色
+  --tv-Button-text-color-ontext: var(--tv-color-text-link); // 蓝色文字
+  // 纯文字时，文字的禁用色
+  --tv-Button-text-color-ontext-disabled: var(--tv-color-text-disabled);
+  //  纯文字时，字体大小
+  --tv-Button-font-size-ontext: var(--tv-font-size-md);
+
+  // 混排有边框和无边框时，图标右边距
+  --tv-Button-margin-right-isicon-svg: var(--tv-space-sm);
+
+  // 混排无边框时,文字的颜色
+  --tv-Button-text-color-isicon-ontext: var(--tv-color-text); // 黑色文字
+  // 混排无边框时,文字的禁用色
+  --tv-Button-text-color-isicon-ontext-disabled: var(--tv-color-text-disabled);
+  //混排无边框时，字体大小
+  --tv-Button-font-size-isicon-ontext: var(--tv-font-size-md);
+
+  //------------------------------------------------------ 场景5、 其它场景-----------------------------------------
+  // 相邻按钮的默认的左外边距
+  --tv-Button-margin-left-btn-to-btn-md: var(--tv-space-md);
+  // 相邻大按钮的默认的左外边距
+  --tv-Button-margin-left-btn-to-btn-lg: var(--tv-space-xl);
+
+  // loading时，svg的右外边距
+  --tv-Button-margin-right-isloading-svg: var(--tv-space-sm); // loading时，svg的右外边距
 }

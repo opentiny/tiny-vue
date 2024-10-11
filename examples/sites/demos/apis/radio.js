@@ -6,18 +6,6 @@ export default {
       type: 'component',
       props: [
         {
-          name: 'border',
-          type: 'boolean',
-          defaultValue: 'false',
-          desc: {
-            'zh-CN': '是否显示边框',
-            'en-US': 'Display Border'
-          },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'with-border',
-          mfDemo: ''
-        },
-        {
           name: 'disabled',
           type: 'boolean',
           defaultValue: 'false',
@@ -77,18 +65,6 @@ export default {
           mode: ['pc', 'mobile', 'mobile-first'],
           pcDemo: '',
           mobileDemo: 'base',
-          mfDemo: ''
-        },
-        {
-          name: 'size',
-          type: "'medium' | small' | 'mini'",
-          defaultValue: '',
-          desc: {
-            'zh-CN': 'radio 的尺寸，仅在 border 为真时有效',
-            'en-US': 'radio size. This parameter is valid only when border is set to true'
-          },
-          mode: ['pc', 'mobile-first'],
-          pcDemo: 'radio-size',
           mfDemo: ''
         },
         {

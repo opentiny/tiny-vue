@@ -20,7 +20,7 @@
 @input-group-prefix-cls: ~'@{css-prefix}input-group';
 
 .@{input-prefix-cls} {
-  .component-css-vars-input();
+  .inject-Input-vars();
 
   position: relative;
   font-size: var(--tv-Input-font-size);
@@ -255,6 +255,9 @@
 
   &-small {
     .input-size(var(--tv-Input-small-height));
+    .@{input-prefix-cls}__inner {
+      font-size: var(--tv-Input-small-font-size);
+    }
     .@{input-prefix-cls}__suffix {
       top: var(--tv-Input-suffix-top-small);
     }
@@ -262,6 +265,9 @@
 
   &-mini {
     .input-size(var(--tv-Input-mini-height));
+    .@{input-prefix-cls}__inner {
+      font-size: var(--tv-Input-small-font-size);
+    }
     .@{input-prefix-cls}__suffix {
       top: var(--tv-Input-suffix-top-mini);
     }
@@ -327,7 +333,7 @@
 
 // 配置前置或者后置插槽
 .@{input-group-prefix-cls} {
-  .component-css-vars-input();
+  .inject-Input-vars();
 
   line-height: normal;
   display: inline-table;

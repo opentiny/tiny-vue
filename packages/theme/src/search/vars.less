@@ -10,86 +10,61 @@
 *
 */
 
-.component-css-vars-search() {
+.inject-Search-vars() {
   // 搜索框字号
-  --ti-search-font-size: var(--ti-common-font-size-base, 12px);
+  --tv-Search-font-size: var(--tv-font-size-md);
   // 搜索框高度
-  --ti-search-input-height: var(--ti-common-size-height-normal, 28px);
+  --tv-Search-input-height: var(--tv-size-height-md);
   // 搜索框左内边距
-  --ti-search-input-padding-left: var(--ti-common-space-3x);
+  --tv-Search-input-padding-left: var(--tv-space-lg);
   // 搜索框边框色
-  --ti-search-input-border-color: var(--ti-common-color-line-normal, #adb0b8);
+  --tv-Search-input-border-color: var(--tv-color-border);
   // 搜索框聚焦时边框色
-  --ti-search-input-focus-border-color: var(--ti-common-color-line-active, #5e7ce0);
+  --tv-Search-input-focus-border-color: var(--tv-color-border-active);
   // 搜索框圆角
-  --ti-search-input-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --tv-Search-input-border-radius: var(--tv-border-radius-md);
   // 搜索框文本色
-  --ti-search-input-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --tv-Search-input-text-color: var(--tv-color-text);
+  // 文本禁用色
+  --tv-Search-input-text-color-disabled: var(--tv-color-text-disabled);
   // 搜索框默认背景色
-  --ti-search-input-bg-color: var(--ti-common-color-bg-white-normal, #fff);
-  // 搜索框分割线高度
-  --ti-search-size-height-normal: var(--ti-common-size-height-normal, 28px);
+  --tv-Search-input-bg-color: var(--tv-color-bg-secondary);
   // 输入框提示占位文本色
-  --ti-search-input-placeholder-color: var(--ti-common-color-placeholder, #adb0b8);
-
+  --tv-Search-input-placeholder-color: var(--tv-color-text-placeholder);
   // 搜索按钮图标色
-  --ti-search-input-btn-icon-color: var(--ti-common-color-icon-normal, #575d6c);
-  // 搜索按钮悬浮图标色
-  --ti-search-input-btn-hover-icon-color: var(--ti-common-color-icon-hover);
-  // 搜索按钮图标尺寸
-  --ti-search-input-btn-icon-size: var(--ti-common-font-size-2);
-  // 搜索按钮宽度(hide)
-  --ti-search-input-btn-width: var(--ti-common-size-7x);
-  // 搜索关闭按钮右边距(hide)
-  --ti-search-input-btn-close-margin-right: -3px;
-  // 搜索关闭按钮显示方式(hide)
-  --ti-search-input-btn-close-display: inline-block;
-  // 搜索框按钮行高(hide)
-  --ti-search-input-btn-line-height: var(--ti-search-input-height);
-  // 搜索图标边框色(hide)
-  --ti-search-icon-border-color: var(--ti-common-color-line-normal, #adb0b8);
-  // 搜索按钮图标与右边框距离(hide)
-  --ti-search-input-btn-icon-position-right: var(--ti-common-space-3x);
-  // 左侧搜索按钮图标右外边距
-  --ti-search-input-left-svg-margin-right: calc(0px - var(--ti-common-space-2x));
-  // 左侧搜索按钮图标左外边距
-  --ti-search-input-left-svg-margin-left: var(--ti-common-space-3x, 12px);
-
-  // 迷你模式搜索图标色|下拉箭头图标色
-  --ti-search-icon-color: var(--ti-common-color-icon-normal, #575d6c);
-  // 迷你搜索框宽度
-  --ti-search-mini-width: var(--ti-search-input-height);
-  // 迷你模式搜索按钮悬浮边框色
-  --ti-search-line-hover-border-color: var(--ti-common-color-line-hover, #575d6c);
-  // 小型搜索框高度(hide)
-  --ti-search-size-height-small: var(--ti-common-size-height-small, 32px);
-
-  // 分类搜索宽度
-  --ti-search-selector-width: var(--ti-common-size-20x, 80px);
-  // 下拉按钮和下拉框文本色
-  --ti-search-selector-text-color: var(--ti-common-color-text-primary, #252b3a);
-  // 搜索下拉框圆角
-  --ti-search-selector-border-radius: var(--ti-common-border-radius-normal, 2px);
-  // 搜索下拉框背景色
-  --ti-search-selector-bg-color: var(--ti-common-color-bg-white-normal, #fff);
-  // 搜索下拉框阴影
-  --ti-search-selector-box-shadow: var(--ti-common-shadow-3-up);
-  // 搜索下拉框最小宽度
-  --ti-search-selector-box-min-width: var(--ti-common-size-20x, 80px);
-  // 搜索下拉框上外边距
-  --ti-search-selector-margin-top: var(--ti-common-space-base, 4px);
-  // 搜索下拉框最大高度
-  --ti-search-selector-max-height: calc(var(--ti-common-space-10, 10px) * 30);
-  // 搜索下拉框选项高度
-  --ti-search-selector-list-height: var(--ti-common-size-height-normal, 28px);
-  // 下拉框选项悬浮背景色
-  --ti-search-list-hover-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
-  // 搜索下拉框选项水平内边距
-  --ti-search-selector-list-padding-horizontal: var(--ti-common-space-10, 10px);
-  // 边框禁用色
-  --ti-search-disabled-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
-  // 图标和占位文本禁用色
-  --ti-search-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --tv-Search-input-btn-icon-color: var(--tv-color-icon);
+  // 图标禁用色
+  --tv-Search-icon-color-disabled: var(--tv-color-icon-disabled);
   // 背景禁用色
-  --ti-search-disabled-bg-color: var(--ti-common-bg-color-active, #0000000d);
+  --tv-Search-disabled-bg-color: var(--tv-color-bg-disabled);
+  // 搜索按钮悬浮图标色
+  --tv-Search-input-btn-hover-icon-color: var(--tv-color-icon-hover);
+  // 搜索按钮图标尺寸
+  --tv-Search-input-btn-icon-size: var(--tv-icon-size);
+  // 迷你模式搜索图标色|下拉箭头图标色
+  --tv-Search-icon-color: var(--tv-color-icon);
+  // 迷你搜索框宽度
+  --tv-Search-mini-width: var(--tv-Search-input-height);
+  // 迷你模式搜索按钮悬浮边框色
+  --tv-Search-line-hover-border-color: var(--tv-color-border-hover);
+  // 分类搜索宽度
+  --tv-Search-selector-width: 80px;
+  // 下拉按钮和下拉框文本色
+  --tv-Search-selector-text-color: var(--tv-color-text);
+  // 搜索下拉框圆角
+  --tv-Search-selector-border-radius: var(--tv-border-radius-md);
+  // 搜索下拉框背景色
+  --tv-Search-selector-bg-color: var(--tv-color-bg-secondary);
+  // 搜索下拉框阴影
+  --tv-Search-selector-box-shadow: var(--tv-shadow-3-up);
+  // 搜索下拉框最小宽度
+  --tv-Search-selector-box-min-width: 80px;
+  // 搜索下拉框上外边距
+  --tv-Search-selector-margin-top: 4px;
+  // 搜索下拉框选项高度
+  --tv-Search-selector-list-height: var(--tv-size-height-md);
+  // 下拉框选项悬浮背景色
+  --tv-Search-list-hover-bg-color: var(--tv-color-bg-hover);
+  // 搜索下拉框选项水平内边距
+  --tv-Search-selector-list-padding-x: 10px;
 }

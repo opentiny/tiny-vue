@@ -16,38 +16,38 @@
 @user-head-prefix-cls: ~'@{css-prefix}user-head';
 
 .@{user-head-prefix-cls} {
-  .component-css-vars-user-head();
+  .inject-UserHead-vars();
 
   display: inline-block;
   position: relative;
 
   &__portrait {
     overflow: hidden;
-    width: var(--ti-userhead-head-normal-size);
-    height: var(--ti-userhead-head-normal-size);
-    line-height: var(--ti-userhead-head-normal-size);
+    width: var(--tv-UserHead-head-normal-size);
+    height: var(--tv-UserHead-head-normal-size);
+    line-height: var(--tv-UserHead-head-normal-size);
     text-align: center;
-    border-radius: var(--ti-userhead-head-border-radius);
+    border-radius: var(--tv-UserHead-head-border-radius);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: var(--ti-userhead-head-bg-color, #bbbbbb);
+    background-color: var(--tv-UserHead-head-bg-color, #bbbbbb);
 
     &.round {
       border-radius: 50%;
     }
 
     &.min {
-      width: var(--ti-userhead-head-small-size);
-      height: var(--ti-userhead-head-small-size);
-      line-height: var(--ti-userhead-head-small-size);
+      width: var(--tv-UserHead-head-small-size);
+      height: var(--tv-UserHead-head-small-size);
+      line-height: var(--tv-UserHead-head-small-size);
     }
 
     &.icon {
-      font-size: var(--ti-userhead-head-icon-size-normal);
+      font-size: var(--tv-UserHead-head-icon-size-normal);
 
       &.min {
-        font-size: var(--ti-userhead-head-icon-small-size);
+        font-size: var(--tv-UserHead-head-icon-small-size);
       }
 
       svg {

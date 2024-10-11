@@ -1,10 +1,10 @@
 <template>
   <div class="content">
     <tiny-file-upload ref="uploadRef" :action="action">
-      <tiny-button size="small" type="primary"> 点击上传 </tiny-button>
+      <tiny-button size="small"> 点击上传 </tiny-button>
     </tiny-file-upload>
     <br />
-    <tiny-button @click="cancelUpload"> 取消上传 </tiny-button>
+    <tiny-button @click="cancelUpload" type="primary"> 取消上传 </tiny-button>
   </div>
 </template>
 
