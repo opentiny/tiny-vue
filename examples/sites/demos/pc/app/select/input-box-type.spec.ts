@@ -9,11 +9,11 @@ test('下划线默认', async ({ page }) => {
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
 
-  await expect(select).toHaveClass(/tiny-select__underline/)
+  await expect(select.locator('.tiny-input')).toHaveClass(/tiny-input-underline/)
   await expect(input).toHaveCSS('border-top-width', '0px')
   await expect(input).toHaveCSS('border-left-width', '0px')
   await expect(input).toHaveCSS('border-right-width', '0px')
-  await expect(input).toHaveCSS('border-color', 'rgb(194, 194, 194)')
+  await expect(input).toHaveCSS('border-bottom-color', 'rgb(194, 194, 194)')
   await expect(select.locator('svg')).toHaveCSS('fill', 'rgb(128, 128, 128)')
 
   await select.click()
@@ -30,11 +30,11 @@ test('下划线禁用', async ({ page }) => {
   const input = select.locator('.tiny-input__inner')
   const dropdown = page.locator('body > .tiny-select-dropdown')
 
-  await expect(select).toHaveClass(/tiny-select__underline/)
+  await expect(select.locator('.tiny-input')).toHaveClass(/tiny-input-underline/)
   await expect(input).toHaveCSS('border-top-width', '0px')
   await expect(input).toHaveCSS('border-left-width', '0px')
   await expect(input).toHaveCSS('border-right-width', '0px')
-  await expect(input).toHaveCSS('border-color', 'rgb(219, 219, 219)')
+  await expect(input).toHaveCSS('border-bottom-color', 'rgb(219, 219, 219)')
   await expect(input).toHaveCSS('cursor', 'not-allowed')
   await expect(select.locator('svg')).toHaveCSS('fill', 'rgb(194, 194, 194)')
   const hasDisabled = await input.evaluate((input) => input.hasAttribute('disabled'))
@@ -55,11 +55,11 @@ test('下划线多选', async ({ page }) => {
   const dropdown = page.locator('body > .tiny-select-dropdown')
   const option = dropdown.locator('.tiny-option')
 
-  await expect(select).toHaveClass(/tiny-select__underline/)
+  await expect(select.locator('.tiny-input')).toHaveClass(/tiny-input-underline/)
   await expect(input).toHaveCSS('border-top-width', '0px')
   await expect(input).toHaveCSS('border-left-width', '0px')
   await expect(input).toHaveCSS('border-right-width', '0px')
-  await expect(input).toHaveCSS('border-color', 'rgb(194, 194, 194)')
+  await expect(input).toHaveCSS('border-bottom-color', 'rgb(194, 194, 194)')
   await expect(select.locator('.tiny-select__caret')).toHaveCSS('fill', 'rgb(128, 128, 128)')
 
   await select.click()
@@ -67,6 +67,6 @@ test('下划线多选', async ({ page }) => {
   await option.first().click()
   await expect(tag).toHaveCount(5)
 
-  await expect(select).toHaveClass(/tiny-select__underline/)
+  await expect(select.locator('.tiny-input')).toHaveClass(/tiny-input-underline/)
   await expect(select).toHaveClass(/tiny-select__multiple/)
 })
