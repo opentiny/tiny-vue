@@ -13,7 +13,7 @@ test('主題样式', async ({ page }) => {
   const primaryBadge = badge.nth(5)
 
   await expect(dangerBadge).toHaveClass(/tiny-badge--danger/)
-  await expect(dangerBadge).toHaveCSS('background-color', 'rgb(246, 111, 106)')
+  await expect(dangerBadge).toHaveCSS('background-color', 'rgb(242, 48, 48)')
   await expect(primaryBadge).toHaveClass(/tiny-badge--primary/)
   await expect(primaryBadge).toHaveCSS('background-color', 'rgb(25, 25, 25)')
   await expect(successBadge).toHaveClass(/tiny-badge--success/)
@@ -21,5 +21,5 @@ test('主題样式', async ({ page }) => {
   await expect(warningBadge).toHaveClass(/tiny-badge--warning/)
   await expect(warningBadge).toHaveCSS('background-color', 'rgb(255, 136, 0)')
   await expect(infoBadge).toHaveClass(/tiny-badge--info/)
-  await expect(infoBadge).toHaveCSS('background-color', 'rgb(25, 25, 25)')
+  await expect(infoBadge).toHaveCSS('background-color', 'rgb(20, 118, 255)')
 })

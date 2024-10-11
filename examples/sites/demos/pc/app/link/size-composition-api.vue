@@ -28,4 +28,7 @@ const TinyIconEdit = iconEdit()
 .tiny-custom-del {
   margin-left: 2px;
 }
+.tiny-link {
+  margin-right: 48px;
+}
 </style>
