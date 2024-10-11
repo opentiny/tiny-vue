@@ -17,7 +17,7 @@
 @image-viewer-prefix-cls: ~'@{css-prefix}image-viewer';
 
 .@{image-viewer-prefix-cls} {
-  .component-css-vars-image-viewer();
+  .inject-ImageViewer-vars();
 
   &__wrapper {
     background: none;
@@ -42,7 +42,7 @@
     svg {
       width: 20px;
       height: 20px;
-      fill: var(--tv-Image-viewer-text-color);
+      fill: var(--tv-ImageViewer-text-color);
     }
   }
 
@@ -51,8 +51,8 @@
     right: 32px;
     width: 40px;
     height: 40px;
-    font-size: var(--tv-Image-viewer-close-font-size);
-    background-color: var(--tv-Image-viewer-close-bg-color);
+    font-size: var(--tv-ImageViewer-close-font-size);
+    background-color: var(--tv-ImageViewer-close-bg-color);
 
     &:hover {
       cursor: pointer;
@@ -73,10 +73,10 @@
     bottom: 32px;
     transform: translateX(-50%);
     width: 248px;
-    height: var(--tv-Image-viewer-actions-height);
+    height: var(--tv-ImageViewer-actions-height);
     padding: 10px 24px; 
-    background-color: var(--tv-Image-viewer-close-bg-color);
-    border-radius: var(--tv-Image-viewer-actions-border-radius);
+    background-color: var(--tv-ImageViewer-close-bg-color);
+    border-radius: var(--tv-ImageViewer-actions-border-radius);
   }
 
   &__actions-inner {
@@ -88,8 +88,8 @@
     justify-content: space-around;
 
     svg {
-      fill: var(--tv-Image-viewer-actions-inner-text-color);
-      margin-right: var(--tv-Image-viewer-actions-icon-margin-right);
+      fill: var(--tv-ImageViewer-actions-inner-text-color);
+      margin-right: var(--tv-ImageViewer-actions-icon-margin-right);
 
       &:hover {
         cursor: pointer;
@@ -106,7 +106,7 @@
     width: 20px;
     height: 20px;
     line-height: 20px;
-    font-size: var(--tv-Image-viewer-actions-count-font-size);
+    font-size: var(--tv-ImageViewer-actions-count-font-size);
     color: #fff;
     position: relative;
   }
@@ -114,10 +114,10 @@
   &__next,
   &__prev {
     top: 50%;
-    width: var(--tv-Image-viewer-next-width);
-    height: var(--tv-Image-viewer-next-height);
-    font-size: var(--tv-Image-viewer-next-font-size);
-    background-color: var(--tv-Image-viewer-close-bg-color);
+    width: var(--tv-ImageViewer-next-width);
+    height: var(--tv-ImageViewer-next-height);
+    font-size: var(--tv-ImageViewer-next-font-size);
+    background-color: var(--tv-ImageViewer-close-bg-color);
 
     &:hover {
       cursor: pointer;
@@ -127,12 +127,12 @@
 
   &__prev {
     transform: translateY(-50%);
-    left: var(--tv-Image-viewer-prev-left);
+    left: var(--tv-ImageViewer-prev-left);
   }
 
   &__next {
     transform: translateY(-50%);
-    right: var(--tv-Image-viewer-next-right);
+    right: var(--tv-ImageViewer-next-right);
     text-indent: 2px;
   }
 
