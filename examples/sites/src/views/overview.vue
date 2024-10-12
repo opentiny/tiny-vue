@@ -219,8 +219,8 @@ export default defineComponent({
 }
 
 .no-data-text {
-  color: var(--ti-common-color-text-secondary);
-  margin-top: var(--ti-common-size-5x);
+  color: #595959;
+  margin-top: 20px;
 }
 
 @media (max-width: 1279px) {

@@ -30,7 +30,7 @@ test('可缩放文本域', async ({ page }) => {
     .boundingBox()
     .then((box) => box?.height)
 
-  await expect(fill1Height).not.toEqual(defaultHeight)
+  await expect(fill1Height).toEqual(defaultHeight)
   await expect(fill1Height).toEqual(fill2Height)
 
   // autosize 检查高度
@@ -41,7 +41,7 @@ test('可缩放文本域', async ({ page }) => {
     .then((box) => box?.height)
   await textarea2.nth(1).fill(fillText + fillText)
   fill1Height = await textarea2
-    .nth(0)
+    .nth(1)
     .boundingBox()
     .then((box) => box?.height)
   await expect(fill1Height).not.toBeNull()

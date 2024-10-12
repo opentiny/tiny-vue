@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartLine as TinyChartLine } from '@opentiny/vue'
+import { HuichartsLine as TinyChartLine } from '@opentiny/vue'
 
 const options = ref({
   markLine: {

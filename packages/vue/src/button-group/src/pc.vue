@@ -20,10 +20,6 @@
           <li v-for="(node, index) in data" :key="index" :class="{ active: state.value === node[valueField] }">
             <button
               :class="getItemClass(node)"
-              :style="{
-                height: size === 'medium' ? '42px' : size === 'small' ? '32px' : size === 'mini' ? '24px' : '',
-                'line-height': size === 'medium' ? '40px' : size === 'small' ? '30px' : size === 'mini' ? '22px' : ''
-              }"
               type="button"
               v-auto-tip="Boolean(node.tip) ? { always: true, content: node.tip } : false"
               :tabindex="getItemClass(node).disabled ? '-1' : '0'"

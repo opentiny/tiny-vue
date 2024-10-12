@@ -1,0 +1,20 @@
+export const tinyOptionOldTheme = {
+  'ti-option-multi-svg-hover-border-color': 'var(--ti-common-color-line-normal, #adb0b8)',
+  'ti-option-multi-svg-border-color': 'var(--ti-common-color-line-normal, #adb0b8)',
+  'ti-option-multi-svg-icon-color': 'var(--ti-common-color-icon-hover, #526ecc)',
+  'ti-option-highlight-selected-text-color': 'var(--ti-common-color-text-white, #fff)',
+  'ti-option-padding-horizontal-group': 'calc((var(--ti-common-space-10, 10px) + var(--ti-common-space-1, 1px)) * 2)',
+  'ti-option-padding-horizontal': 'var(--ti-common-space-10, 10px)',
+  'ti-option-icon-color-selected': 'var(--ti-common-color-selected-background, #5e7ce0)',
+  'ti-option-checkbox-all-select-border-color-hover': 'var(--ti-common-color-line-normal, #adb0b8)',
+  'ti-option-checkbox-border-color-hover': 'var(--ti-common-color-line-normal, #adb0b8)',
+  'ti-option-selected-text-color': 'var(--ti-common-color-selected-text-color, #fff)',
+  'ti-option-selected-font-weight': 'var(--ti-common-font-weight-4, normal)',
+  'ti-option-selected-bg-color': 'var(--ti-common-color-selected-background, #5e7ce0)',
+  'ti-option-selected-bg-color-hover': 'var(--ti-common-color-selected-background, #5e7ce0)',
+  'ti-option-hover-bg-color': 'var(--ti-common-color-hover-background, #f2f5fc)',
+  'ti-option-border-radius': 'var(--ti-common-border-radius-normal, 2px)',
+  'ti-option-disabled-text-color': 'var(--ti-common-color-text-disabled, #adb0b8)',
+  'ti-option-height': '30px',
+  'ti-option-font-size': 'var(--ti-common-font-size-base, 12px)'
+}

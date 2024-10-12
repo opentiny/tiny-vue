@@ -28,6 +28,19 @@ export default {
       codeFiles: ['clearable.vue']
     },
     {
+      demoId: 'disabled',
+      name: {
+        'zh-CN': '禁用',
+        'en-US': 'Disabled'
+      },
+      desc: {
+        'zh-CN': '<p>可通过 <code>disabled</code> 属性设置输入框的禁用状态。</p>',
+        'en-US':
+          '<p>You can set the <code>clearable</code> attribute to display the clear icon button in the text box </p>'
+      },
+      codeFiles: ['disabled.vue']
+    },
+    {
       demoId: 'show-password',
       name: {
         'zh-CN': '密码框',

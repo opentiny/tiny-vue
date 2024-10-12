@@ -369,7 +369,8 @@
   color: var(--ti-steps-text-color);
 
   &.vertical {
-    .@{steps-prefix-cls}-block .description {
+    .@{steps-prefix-cls}-block .description,
+    .@{steps-prefix-cls}-block .line-footer {
       margin-left: 0;
     }
   }
@@ -583,14 +584,30 @@
       border-color: var(--ti-steps-disabled-border-color);
     }
 
+    &.block-mini {
+      .title,
+      .description,
+      .line-footer {
+        max-width: 150px;
+      }
+    }
+
+    .title,
+    .description,
+    .line-footer {
+      max-width: 250px;
+    }
+
     .title {
       font-size: var(--ti-steps-font-size-base);
       margin-left: var(--ti-steps-text-margin-left);
-      line-height: calc(var(--ti-steps-font-size-base) + 2px);
+      line-height: 1.5;
       font-weight: 500;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      word-break: break-all;
     }
 
     .line {
@@ -637,10 +654,15 @@
       }
     }
 
+    .description,
+    .line-footer {
+      line-height: 1.5;
+      margin-left: calc(var(--ti-steps-circle-width-height) + var(--ti-steps-text-margin-left));
+    }
+
     .description {
       font-size: 12px;
       color: var(--ti-steps-description-text-color);
-      margin-left: calc(var(--ti-steps-circle-width-height) + var(--ti-steps-text-margin-left));
       margin-top: var(--ti-steps-vertical-description-margin-top);
       overflow: hidden;
       display: -webkit-box;
@@ -657,8 +679,12 @@
       }
 
       &.not-vertical {
-        margin-top: 0;
+        margin-top: 10px;
       }
+    }
+
+    .line-footer {
+      margin-top: 8px;
     }
 
     &.done .left-line {
@@ -676,6 +702,7 @@
     .@{steps-prefix-cls}-main {
       display: flex;
       align-items: center;
+      height: var(--ti-steps-line-title-height);
     }
 
     &.mini {
@@ -1097,8 +1124,11 @@
     &-block.disabled {
       cursor: not-allowed;
 
-      & > .block-right .title-vertical {
-        color: #c2c2c2;
+      & > .block-right {
+        .title-vertical,
+        .description {
+          color: #c2c2c2;
+        }
       }
     }
 

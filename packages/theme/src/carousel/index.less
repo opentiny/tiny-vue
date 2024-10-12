@@ -59,6 +59,9 @@
 
       .@{svg-prefix-cls} {
         fill: var(--ti-carousel-indicator-active-text-color);
+        &:hover {
+          fill: var(--ti-carousel-indicator-hover-text-color);
+        }
       }
 
       &.@{carousel-prefix-cls}__arrow-left {
@@ -86,7 +89,15 @@
         @apply ~'-translate-x-2/4';
       }
 
-      &:hover {
+      &.@{carousel-prefix-cls}__arrow-disabled {
+        background-color: var(--ti-carousel-arrow-disabled-bg-color);
+        cursor: not-allowed;
+        .@{svg-prefix-cls} {
+          fill: var(--ti-carousel-arrow-disabled-color);
+        }
+      }
+
+      &:not(.@{carousel-prefix-cls}__arrow-disabled):hover {
         background-color: var(--ti-carousel-arrow-hover-bg-color);
         color: var(--ti-carousel-arrow-hover-text-color);
       }
@@ -116,6 +127,10 @@
       padding: var(--ti-carousel-indicator-padding-vertical) var(--ti-carousel-indicator-padding-horizontal);
       margin-right: var(--ti-carousel-indicator-margin-right);
       cursor: pointer;
+
+      &:last-child {
+        margin-right: 0;
+      }
 
       &:hover button {
         opacity: var(--ti-carousel-hover-opacity);
@@ -201,7 +216,7 @@
       left: auto;
       right: 16px;
       bottom: 0;
-      margin: 0 0 8px;
+      margin: 0 0 16px;
       transform: none;
       background: transparent;
     }

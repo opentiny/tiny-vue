@@ -63,7 +63,7 @@ export default {
 <style lang="less" scoped>
 .demo-input {
   .tiny-textarea {
-    width: 400px;
+    width: fit-content;
     margin: 5px;
   }
   .expand {

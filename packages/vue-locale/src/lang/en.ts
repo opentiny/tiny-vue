@@ -777,6 +777,11 @@ export default {
     },
     dialogSelect: {
       treeSearch: 'Enter a keyword and press Enter'
+    },
+    loadList: {
+      errorText: 'Something went wrong.',
+      loadingText: 'Loading...',
+      finishedText: "There's no more."
     }
   },
   validation: {

@@ -22,7 +22,7 @@
         type ? 'tiny-badge--' + type : '',
         badgeClass || ''
       ]"
-      :style="state.transform"
+      :style="!isDot ? state.transform : ''"
     >
       <slot name="content">
         <a v-if="state.href" :href="state.href" :target="target" rel="noopener noreferrer">{{ state.content }}</a>

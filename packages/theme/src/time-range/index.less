@@ -24,27 +24,89 @@
   &__content {
     position: relative;
     text-align: center;
-    padding: 10px;
+    padding: var(--ti-time-range-picker-content-padding);
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
   }
 
+  &__content-date {
+    border-right: 1px solid var(--ti-time-range-picker-header-border-bottom);
+  }
+
+  &__header-title {
+    font-size: 14px;
+    display: var(--ti-time-range-picker-header-title-display);
+    justify-content: space-around;
+    color: #808080;
+    padding: 8px;
+    height: 30px;
+    align-items: center;
+    line-height: 30px;
+  }
+
   &__cell {
     box-sizing: border-box;
     margin: 0;
-    padding: 4px 7px 7px;
+    padding: var(--ti-time-range-picker-cell-padding-top) var(--ti-time-range-picker-cell-padding-right) var(--ti-time-range-picker-cell-padding-bottom);
     width: 50%;
   }
 
   &__header {
-    margin-bottom: 5px;
-    text-align: center;
+    height: var(--ti-time-range-picker-header-height);
+    color: var(--ti-time-range-picker-header-color);
+    line-height: var(--ti-time-range-picker-header-line-height);
+    margin-bottom: var(--ti-time-range-picker-header-margin-bottom);
+    text-align: var(--ti-time-range-picker-header-text-align);
     font-size: var(--ti-time-range-picker-header-font-size);
+    border-bottom: 1px solid var(--ti-time-range-picker-header-border-bottom);
+
+    span {
+      margin-left: var(--ti-time-range-picker-header-margin-left);
+    }
   }
 
   &__body {
     border-radius: var(--ti-date-picker-border-radius);
     border: 1px solid var(--ti-date-picker-border-color);
+  }
+
+  &__footer {
+    border-top: 1px solid var(--ti-time-range-picker-border-color);
+    padding: var(--ti-time-range-picker-footer-padding-top) var(--ti-time-range-picker-footer-padding-right);
+    height: var(--ti-time-range-picker-footer-height, 36px);
+    box-sizing: border-box;
+    margin-top: 12px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  &__btn.tiny-button {
+    min-width: var(--ti-time-range-picker-btn-min-width);
+    border: none;
+    line-height: var(--ti-time-range-picker-btn-height);
+    padding: var(--ti-time-range-picker-btn-padding-vertical) var(--ti-time-range-picker-btn-padding-horizontal);
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: var(--ti-time-range-picker-btn-bg-color);
+    outline: 0;
+    font-size: 12px;
+    color: var(--ti-time-range-picker-btn-text-color);
+    border-radius: var(--ti-time-range-picker-btn-border-radius);
+    transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    &.cancel {
+      display: var(--ti-time-range-picker-btn-cancel-display);
+    }
+
+    &.confirm {
+      font-weight: var(--ti-time-range-picker-btn-font-weight);
+      color: var(--ti-time-range-picker-btn-confirm-text-color);
+
+      &:hover {
+        background-color: var(--ti-time-range-picker-btn-confirm-hover-bg-color);
+      }
+    }
   }
 }

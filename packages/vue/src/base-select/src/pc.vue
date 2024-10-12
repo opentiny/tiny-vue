@@ -540,8 +540,6 @@ import {
   IconEllipsis,
   IconChevronUp
 } from '@opentiny/vue-icon'
-import Grid from '@opentiny/vue-grid'
-import Tree from '@opentiny/vue-tree'
 import TinyTooltip from '@opentiny/vue-tooltip'
 import FilterBox from '@opentiny/vue-filter-box'
 import RecycleScroller from '@opentiny/vue-recycle-scroller'
@@ -593,8 +591,6 @@ export default defineComponent({
     TinyTag,
     TinyInput,
     TinyOption,
-    TinyGrid: Grid,
-    TinyTree: Tree,
     TinyButton,
     IconClose: IconClose(),
     TinyScrollbar,

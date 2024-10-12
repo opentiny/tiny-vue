@@ -10,6 +10,6 @@ test('自定义节点图标', async ({ page }) => {
   await expect(nodeIcons).toHaveCount(nodeCount)
   for (let i = 0; i < nodeCount; i++) {
     await expect(nodeIcons.nth(i).locator('svg')).toHaveClass(/custom/)
-    await expect(nodeIcons.nth(i).locator('svg')).toHaveCSS('font-size', '12px')
+    await expect(nodeIcons.nth(i).locator('svg')).toHaveCSS('font-size', '24px')
   }
 })

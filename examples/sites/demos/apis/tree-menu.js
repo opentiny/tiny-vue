@@ -69,7 +69,7 @@ export default {
         },
         {
           name: 'customIcon',
-          type: 'VueComponent',
+          type: 'Component',
           defaultValue: '',
           desc: {
             'zh-CN': '设置带图标树形菜单',

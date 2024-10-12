@@ -15,6 +15,6 @@ import { Link as TinyLink } from '@opentiny/vue'
 
 <style scoped>
 .tiny-link {
-  margin-right: 8px;
+  margin-right: 48px;
 }
 </style>

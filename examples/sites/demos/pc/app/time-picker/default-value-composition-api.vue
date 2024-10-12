@@ -25,7 +25,7 @@ const rangeValue = ref('')
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 182px;
+  width: 200px;
 }
 p {
   font-size: 14px;

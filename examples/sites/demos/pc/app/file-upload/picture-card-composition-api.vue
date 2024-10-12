@@ -27,7 +27,7 @@ const fileList = ref([
   {
     name: 'fruit',
     url: `${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/fruit.jpg`,
-    status: 'ready'
+    status: 'success'
   },
   {
     name: 'fruit',

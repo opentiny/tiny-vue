@@ -10,7 +10,9 @@
         <tiny-date-picker v-model="createData.datepicker"></tiny-date-picker>
       </tiny-form-item>
       <tiny-form-item prop="url">
-        <template #label> URL </template>
+        <template #label>
+          <div class="custom-label">超过两行文字，省略显示</div>
+        </template>
         <tiny-input v-model="createData.url"></tiny-input>
       </tiny-form-item>
       <tiny-form-item prop="radio">
@@ -78,5 +80,14 @@ function handleSubmit() {
 <style scoped>
 .demo-form {
   width: 380px;
+}
+.custom-label {
+  display: -webkit-box;
+  width: 100%;
+  -webkit-line-clamp: 2;
+  line-height: 1.2;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  white-space: wrap;
 }
 </style>

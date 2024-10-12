@@ -46,12 +46,12 @@ const createData = ref({
   datepicker: ''
 })
 
-const messageType = ref('')
+const messageType = ref('block')
 
 const messageTypeList = ref([
-  { text: '默认', value: '' },
+  { text: '块级', value: 'block' },
   { text: '行内', value: 'inline' },
-  { text: '块级', value: 'block' }
+  { text: '绝对定位', value: 'absolute' }
 ])
 const rules = ref({
   users: { required: true, message: '必填', trigger: 'blur' },

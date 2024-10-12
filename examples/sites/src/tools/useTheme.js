@@ -1,9 +1,7 @@
 import { watch, computed } from 'vue'
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
-import { tinyAuroraTheme, tinySmbTheme, tinyInfinityTheme } from '@opentiny/vue-theme/theme'
 import { hooks } from '@opentiny/vue-common'
 import designSmbConfig from '@opentiny/vue-design-smb'
-import designAuroraConfig from '@opentiny/vue-design-aurora'
 import designSaasConfig from '@opentiny/vue-design-saas'
 import { router } from '@/router'
 import { appData } from './appData'
@@ -30,9 +28,9 @@ import starrySkyIcon from '@/assets/images/starry-sky-icon.png'
 
 const themeMap = {
   [DEFAULT_THEME]: null,
-  [AURORA_THEME]: tinyAuroraTheme,
-  [SMB_THEME]: tinySmbTheme,
-  [INFINITY_THEME]: tinyInfinityTheme
+  [AURORA_THEME]: null,
+  [SMB_THEME]: null,
+  [INFINITY_THEME]: null
 }
 
 const isEn = appData.lang === 'enUS'
@@ -69,9 +67,9 @@ const themeData = [
 ]
 
 const designConfigMap = {
-  [DEFAULT_THEME]: {},
-  [INFINITY_THEME]: {},
-  [AURORA_THEME]: designAuroraConfig,
+  [DEFAULT_THEME]: designSmbConfig,
+  [INFINITY_THEME]: designSmbConfig,
+  [AURORA_THEME]: designSmbConfig,
   [SMB_THEME]: designSmbConfig
 }
 

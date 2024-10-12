@@ -67,6 +67,7 @@ export default {
   'time-spinner': 'time-spinner',
   'time-panel': 'time-panel',
   'time-range': 'time-range',
+  'time-range-picker': 'time-range-picker',
   'time-select': 'time-select',
   'scroll-text': 'scroll-text',
   'slider-input': 'slider__input',

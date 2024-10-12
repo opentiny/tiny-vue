@@ -131,7 +131,7 @@ export const api = [
   'setCheckedByNodeKey'
 ]
 
-const initState = ({ reactive, emitter, props, computed, api }) => {
+const initState = ({ reactive, emitter, props, computed, api, TreeAdapter }) => {
   const state = reactive({
     loaded: !props.lazy,
     checkEasily: false,
@@ -177,6 +177,9 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
     newNodeId: Math.floor(random() * 10000),
     plainNodeStore: {},
     allNodeKeys: [],
+    renderedChildNodes: computed(() => {
+      return state.root.childNodes.filter((childNode) => (TreeAdapter ? TreeAdapter.shouldRender(childNode) : true))
+    }),
     // tiny 新增
     filterText: '' // 记录当前过滤的内容
   })
@@ -184,7 +187,7 @@ const initState = ({ reactive, emitter, props, computed, api }) => {
   return state
 }
 
-const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, api }) => ({
+const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, api, TreeAdapter }) => ({
   state,
   dispatch,
   broadcast,
@@ -217,7 +220,7 @@ const initApi = ({ state, dispatch, broadcast, props, vm, constants, t, emit, ap
   insertAfter: insertAfter(state),
   updateKeyChildren: updateKeyChildren({ props, state }),
   initTabIndex: initTabIndex({ vm, state }),
-  handleKeydown: handleKeydown({ vm, state }),
+  handleKeydown: handleKeydown({ vm, state, TreeAdapter }),
   computedShowEmptyText: computedShowEmptyText({ constants, t }),
   setCurrentRadio: setCurrentRadio({ props, state }),
   expandAllNodes: expandAllNodes({ state }),
@@ -263,16 +266,17 @@ const initWatcher = ({ watch, props, api, state, isVue2 }) => {
 
 export const renderless = (
   props,
-  { computed, onMounted, onUpdated, reactive, watch, provide, onBeforeUnmount },
+  { computed, onMounted, onUpdated, reactive, watch, provide, onBeforeUnmount, inject },
   { vm, t, emit, constants, broadcast, dispatch, service, emitter, nextTick },
   { isVue2 }
 ) => {
   const api = {}
-  const state = initState({ reactive, emitter, props, computed, api })
+  const TreeAdapter = inject('TreeAdapter', null)
+  const state = initState({ reactive, emitter, props, computed, api, TreeAdapter })
 
   provide('parentEmitter', state.emitter)
 
-  Object.assign(api, initApi({ state, dispatch, broadcast, props, vm, constants, t, emit, api }), {
+  Object.assign(api, initApi({ state, dispatch, broadcast, props, vm, constants, t, emit, api, TreeAdapter }), {
     closeMenu: closeMenu(state),
     mounted: mounted({ api, vm }),
     created: created({ api, props, state }),

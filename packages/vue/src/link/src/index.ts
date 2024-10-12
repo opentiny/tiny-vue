@@ -37,6 +37,17 @@ export const linkProps = {
 export default defineComponent({
   name: $prefix + 'Link',
   props: linkProps,
+  emits: {
+    click(_ev: MouseEvent) {
+      return true
+    }
+  },
+  slots: Object as SlotsType<{
+    /** 默认插槽 */
+    default: {}
+    /** 图标插槽 */
+    icon: {}
+  }>,
   setup(props, context) {
     return $setup({ props, context, template })
   }

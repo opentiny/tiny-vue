@@ -24,6 +24,10 @@ export const overContent = (state: IFallMenuState) => (on) => {
   state.isActive = on
 }
 
+export const clickActive = (state: IFallMenuState) => (index) => {
+  state.active = index
+}
+
 export const mouseover =
   ({ fall, props, state }: { fall: any; props: IFallMenuProps; state: IFallMenuState }) =>
   (index) => {

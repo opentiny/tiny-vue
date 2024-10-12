@@ -17,14 +17,14 @@
 @user-card-prefix-cls: ~'@{css-prefix}user-card';
 
 .@{userlink-prefix-cls} {
-  .component-css-vars-user-link();
+  .inject-UserLink-vars();
 
   li {
     float: left;
     list-style: none;
 
     .@{css-prefix}popover__reference {
-      font-size: var(--ti-common-font-size-base);
+      font-size: var(--tv-UserLink-font-size);
       color: #1890ff;
 
       &:hover {
@@ -42,9 +42,9 @@
 
 .@{user-card-prefix-cls} {
   .card-box {
-    font-size: var(--ti-user-link-font-size);
-    color: var(--ti-user-link-text-color);
-    font-weight: var(--ti-user-link-font-weight);
+    font-size: var(--tv-UserLink-font-size);
+    color: var(--tv-UserLink-text-color);
+    font-weight: var(--tv-UserLink-font-weight);
 
     .card-box__body {
       .card-top-img,
@@ -55,7 +55,7 @@
 
       .card-top-img {
         width: 80px;
-        border-radius: var(--ti-user-link-border-radius);
+        border-radius: var(--tv-UserLink-border-radius);
 
         img {
           width: 100%;
