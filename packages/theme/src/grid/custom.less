@@ -43,7 +43,7 @@
           padding: 12px 0 24px;
 
           .setting-item {
-            font-size: var(--ti-grid-font-size);
+            font-size: var(--tv-Grid-font-size);
             padding: 10px 8px;
             overflow: hidden;
             position: relative;
@@ -55,27 +55,28 @@
               font-size: 0; // 解决inline-block间隙问题
               .icon {
                 display: inline-block;
+
                 &:not(:last-child) {
                   margin-right: 12px;
                 }
               }
 
               .@{svg-prefix-cls} {
-                font-size: var(--ti-common-font-size-1);
-                fill: var(--ti-grid-normal-text-color);
+                font-size: var(--tv-Grid-icon-size);
+                fill: var(--tv-Grid-icon-color);
                 cursor: pointer;
 
                 &:hover {
-                  fill: var(--ti-grid-primary-disabled-text-color);
+                  fill: var(--tv-Grid-icon-color-hover);
                 }
 
                 &.open,
                 &.lock,
                 &.sort {
-                  fill: var(--ti-grid-primary-color);
+                  fill: var(--tv-Grid-icon-color);
 
                   &:hover {
-                    fill: var(--ti-grid-primary-hover-color);
+                    fill: var(--tv-Grid-icon-color-hover);
                   }
                 }
 
