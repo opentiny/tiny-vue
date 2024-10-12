@@ -497,11 +497,24 @@ export default {
           type: 'boolean',
           defaultValue: 'false',
           desc: {
-            'zh-CN': '通过 <code> highlightQuery </code> 属性，是否在匹配的节点中，高亮搜索文字。<br>',
+            'zh-CN': '通过 <code> highlightQuery </code> 属性，是否在匹配的节点中，高亮搜索文字。',
             'en-US': 'Indicates whether to highlight the search text in the matched node.'
           },
           mode: ['pc'],
           pcDemo: 'filter-view'
+        },
+        {
+          name: 'show-checked-mark',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN':
+              '通过设置 <code> showCheckedMark </code> 属性为true,且非多选模式时，可以在选中行的最右边显示 <code> √ </code> 号。',
+            'en-US':
+              'By setting the <code> showCheckedMark </code> property to true, you can display the <code> √ </code> number on the far right when a line is selected.'
+          },
+          mode: ['pc'],
+          pcDemo: ''
         }
       ],
       events: [
