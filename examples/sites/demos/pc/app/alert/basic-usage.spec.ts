@@ -7,15 +7,11 @@ test('基本用法', async ({ page }) => {
   const demo = page.locator('#basic-usage')
   const alertBox = demo.locator('.tiny-alert')
 
-  // 颜色边框正确
+  // 颜色背景正确  暂时无边框
   await expect(alertBox.first()).toHaveCSS('background-color', 'rgb(222, 236, 255)')
-  await expect(alertBox.first()).toHaveCSS('border-bottom-color', 'rgb(222, 236, 255)')
   await expect(alertBox.nth(1)).toHaveCSS('background-color', 'rgb(252, 227, 225)')
-  await expect(alertBox.nth(1)).toHaveCSS('border-bottom-color', 'rgb(252, 227, 225)')
   await expect(alertBox.nth(2)).toHaveCSS('background-color', 'rgb(230, 242, 213)')
-  await expect(alertBox.nth(2)).toHaveCSS('border-bottom-color', 'rgb(230, 242, 213)')
   await expect(alertBox.nth(3)).toHaveCSS('background-color', 'rgb(255, 235, 209)')
-  await expect(alertBox.nth(3)).toHaveCSS('border-bottom-color', 'rgb(255, 235, 209)')
 
   // 警告可见
   const alertSuccess = demo.locator('.tiny-alert--success')
