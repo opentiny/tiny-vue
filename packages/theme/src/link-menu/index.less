@@ -23,12 +23,12 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{link-menu-prefix-cls} {
-  .component-css-vars-link-menu();
+  .inject-LinkMenu-vars();
 
   &__nav &__nav-item {
-    color: var(--tv-Link-menu-nav-item-text-color);
-    font-size: var(--tv-Link-menu-item-font-size);
-    border-right: 1px solid var(--tv-Link-menu-nav-item-border-color);
+    color: var(--tv-LinkMenu-nav-item-text-color);
+    font-size: var(--tv-LinkMenu-item-font-size);
+    border-right: 1px solid var(--tv-LinkMenu-nav-item-border-color);
     padding: 0 8px;
     line-height: 1;
     display: inline-block;
@@ -40,7 +40,7 @@
     cursor: pointer;
 
     .@{svg-prefix-cls} {
-      fill: var(--tv-Link-menu-nav-item-text-color);
+      fill: var(--tv-LinkMenu-nav-item-text-color);
       margin-right: 4px;
     }
 
@@ -52,14 +52,16 @@
 
   .tiny-dialog-box__wrapper {
     .tiny-dialog-box__header {
-      padding:  32px 32px 16px;
+      padding: 32px 32px 16px;
     }
+
     .tiny-dialog-box__body {
       .tiny-link-menu__filert {
         .tiny-input {
           width: 100%;
         }
       }
+
       .tiny-tree {
         padding: 16px 8px;
       }
@@ -67,8 +69,8 @@
   }
 
   &__nav {
-    color: var(--tv-Link-menu-btn-text-color);
-    background: var(--tv-Link-menu-btn-bg-color);
+    color: var(--tv-LinkMenu-btn-text-color);
+    background: var(--tv-LinkMenu-btn-bg-color);
     padding: 0 8px;
     line-height: 1;
     outline: 0;
@@ -76,7 +78,7 @@
     cursor: pointer;
 
     .@{svg-prefix-cls} {
-      fill: var(--tv-Link-menu-nav-item-text-color);
+      fill: var(--tv-LinkMenu-nav-item-text-color);
       font-size: var(--ti-common-font-size-3);
     }
   }
@@ -84,12 +86,12 @@
   &__btn {
     width: 32px;
     height: 32px;
-    border-radius: var(--tv-Link-menu-btn-border-radius);
-    border: 1px solid var(--tv-Link-menu-btn-border-color);
-    background: var(--tv-Link-menu-btn-bg-color);
+    border-radius: var(--tv-LinkMenu-btn-border-radius);
+    border: 1px solid var(--tv-LinkMenu-btn-border-color);
+    background: var(--tv-LinkMenu-btn-bg-color);
     .@{svg-prefix-cls} {
-      fill: var(--tv-Link-menu-nav-item-text-color);
-      font-size: var(--tv-Link-menu-btn-size);
+      fill: var(--tv-LinkMenu-nav-item-text-color);
+      font-size: var(--tv-LinkMenu-btn-size);
     }
   }
 
@@ -98,13 +100,13 @@
     margin-bottom: 5px;
 
     .@{input-prefix-cls}__inner {
-      height: var(--tv-Link-menu-input-height);
-      line-height: var(--tv-Link-menu-input-height);
-      font-size: var(--tv-Link-menu-input-font-size);
-      color: var(--tv-Link-menu-input-text-color);
-      background: var(--tv-Link-menu-btn-bg-color);
-      border: 1px solid var(--tv-Link-menu-input-border-color);
-      border-radius: var(--tv-Link-menu-input-border-radius);
+      height: var(--tv-LinkMenu-input-height);
+      line-height: var(--tv-LinkMenu-input-height);
+      font-size: var(--tv-LinkMenu-input-font-size);
+      color: var(--tv-LinkMenu-input-text-color);
+      background: var(--tv-LinkMenu-btn-bg-color);
+      border: 1px solid var(--tv-LinkMenu-input-border-color);
+      border-radius: var(--tv-LinkMenu-input-border-radius);
       padding: 0 8px;
       display: block;
       white-space: nowrap;
@@ -131,16 +133,16 @@
       }
 
       .tree-node-name {
-        color: var(--tv-Link-menu-tree-node-text-color);
-        font-size: var(--tv-Link-menu-input-font-size);
-        border-radius: var(--tv-Link-menu-input-border-radius);
+        color: var(--tv-LinkMenu-tree-node-text-color);
+        font-size: var(--tv-LinkMenu-input-font-size);
+        border-radius: var(--tv-LinkMenu-input-border-radius);
         padding-left: 4px;
         vertical-align: middle;
       }
 
       &.is-focusable {
         .tree-node-name {
-          color: var(--tv-Link-menu-input-text-color);
+          color: var(--tv-LinkMenu-input-text-color);
         }
       }
     }
@@ -168,8 +170,8 @@
 
       .tree-node-icon {
         svg.tiny-svg {
-          width: var(--tv-Link-menu-icon-size);
-          height: var(--tv-Link-menu-icon-size);
+          width: var(--tv-LinkMenu-icon-size);
+          height: var(--tv-LinkMenu-icon-size);
         }
       }
 
