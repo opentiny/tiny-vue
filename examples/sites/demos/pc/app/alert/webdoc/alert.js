@@ -61,8 +61,8 @@ export default {
     {
       demoId: 'center',
       name: {
-        'zh-CN': '文字居中',
-        'en-US': 'Center text'
+        'zh-CN': '内容居中',
+        'en-US': 'Center content'
       },
       desc: {
         'zh-CN': '<p>通过 <code>center</code> 设置内容显示居中。</p>',
@@ -74,13 +74,13 @@ export default {
       demoId: 'icon',
       name: {
         'zh-CN': '自定义警告图标',
-        'en-US': 'Customized warning icon'
+        'en-US': 'Customized alert icon'
       },
       desc: {
         'zh-CN':
-          '<p>通过 <code>icon </code> 属性设置自定义图标，如果未自定义图标，默认会根据不同的 <code>type</code> 的值自动使用对应图标。</p>',
+          '通过 <code>icon </code> 属性设置自定义图标，如果未自定义图标，默认会根据不同的 <code>type</code> 的值自动使用对应图标。',
         'en-US':
-          '<p>By setting custom icons through <code>icon</code> , the corresponding icons will be automatically used by default based on different <code>type</code> values.</p>'
+          'You can use the <code>icon </code> property to set a custom icon. If no custom icon is specified, the icon is automatically used according to the <code>type</code> value.'
       },
       codeFiles: ['icon.vue']
     },
@@ -105,15 +105,15 @@ export default {
         'en-US': 'Display icon'
       },
       desc: {
-        'zh-CN': '<p>通过 <code>show-icon</code> 属性，设置左侧图标是否显示。</p>',
-        'en-US': '<p>Set whether the left icon is displayed by <code>show icon</code> .</p>'
+        'zh-CN': '通过 <code>show-icon</code> 属性，设置左侧图标是否显示。',
+        'en-US': 'Use the <code>show-icon</code> property to set whether the icon on the left is displayed.'
       },
       codeFiles: ['show-icon.vue']
     },
     {
       demoId: 'custom-close',
       name: {
-        'zh-CN': '关闭按钮',
+        'zh-CN': '自定义关闭按钮',
         'en-US': 'custom close button'
       },
       desc: {
@@ -129,6 +129,11 @@ export default {
           Enable the built-in close icon with the <code>closable</code> property, which defaults to <code>true</code>. <br />
           Set the close button text by <code>close-text</code> instead of the close icon, effective only if <code>closable</code> is <code>true</code>. <br />
           Unblock the built-in closing function when <code>closable</code> is set to <code>false</code>. At this point, you can completely customize the presentation of the close button area via the <code>close</code> slot.
+          <div class="tip custom-block">
+            <p class="custom-block-title"> 
+              When the component is closed or hidden, there will be a fade animation, see the example! 
+            </p>
+          </div>
         `
       },
       codeFiles: ['custom-close.vue']
