@@ -581,7 +581,7 @@
 
               <component
                 class="circular"
-                :is="state.designConfig.icons.loadingIcon || 'icon-loading-shadow'"
+                :is="state.designConfig?.icons?.loadingIcon || 'icon-loading-shadow'"
               ></component>
             </div>
           </template>
