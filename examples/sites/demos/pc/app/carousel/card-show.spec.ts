@@ -10,5 +10,5 @@ test('轮播卡片', async ({ page }) => {
     .locator('div')
     .filter({ hasText: /^2-11-1-content$/ })
     .first()
-  expect(btnRight).toHaveCSS('fill', 'rgb(194, 194, 194)')
+  expect(btnRight).toHaveCSS('fill', 'rgb(165, 165, 165)')
 })
