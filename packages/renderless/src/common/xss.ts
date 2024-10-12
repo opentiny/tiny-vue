@@ -22,7 +22,7 @@ let xssOptions = {
   enableUrl: true,
   html: {
     whiteList: {
-      a: ['class', 'style', 'contenteditable', 'data-id', 'data-title', 'data-size', 'data-last-modified'],
+      a: ['class', 'style', 'contenteditable', 'data-id', 'data-title', 'data-size', 'data-last-modified', 'href'],
       address: ['class', 'style'],
       area: ['class', 'style'],
       article: ['class', 'style'],
@@ -74,7 +74,7 @@ let xssOptions = {
       header: ['class', 'style'],
       hr: ['class', 'style'],
       i: ['class', 'style', 'data-image-id', 'data-image'],
-      img: ['class', 'style', 'devui-editorx-image', 'style', 'data-image-id'],
+      img: ['class', 'style', 'devui-editorx-image', 'style', 'data-image-id', 'src'],
       input: ['class', 'style', 'data-formula', 'data-link', 'data-video'],
       ins: ['class', 'style'],
       li: ['class', 'style'],

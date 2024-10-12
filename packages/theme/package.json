@@ -1,6 +1,6 @@
 {
   "name": "@opentiny/vue-theme",
-  "version": "3.18.1",
+  "version": "3.18.2",
   "description": "An enterprise-class UI component library, support both Vue.js 2 and Vue.js 3, as well as PC and mobile.",
   "author": "OpenTiny Team",
   "license": "MIT",

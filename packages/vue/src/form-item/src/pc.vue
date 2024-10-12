@@ -181,7 +181,7 @@ export default defineComponent({
               // 兼容 2.0 组件 validation 是否有 required
               state.validationRequired = propsData.validation && !!propsData.validation.required
             }
-            // 如果为 2.0 的验证 不会使用 toolltip 组件
+            // 如果为 2.0 的验证 不会使用 tooltip 组件
             if (propsData.validation) {
               return item
             }
@@ -221,7 +221,8 @@ export default defineComponent({
             }
             data = item.props
           }
-          data.class = deduplicateCssClass('tiny-tooltip' + stringifyCssClass(data.class))
+          const mergeClass = `tiny-tooltip ${stringifyCssClass(data.class)}`
+          data.class = deduplicateCssClass(mergeClass)
           return item
         })
       : null
