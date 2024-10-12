@@ -1,5 +1,5 @@
-const { resolve } = require('node:path')
-const { promises: fsPromises } = require('node:fs')
+import { resolve } from 'node:path'
+import { promises as fsPromises } from 'node:fs'
 
 const root = resolve('./')
 

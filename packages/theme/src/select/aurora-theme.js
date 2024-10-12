@@ -9,6 +9,5 @@ export const tinySelectAuroraTheme = {
   'ti-select-tags-padding-right-disabled': 'var(--ti-common-space-4x)',
   'ti-select-input-icon-close-margin-right': 'var(--ti-common-space-2x)',
   'ti-select-tags-height': '28px',
-  'ti-select-input-icon-top': '50%',
   'ti-select-suffix-display': 'none'
 }

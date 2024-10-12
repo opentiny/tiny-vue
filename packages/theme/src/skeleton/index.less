@@ -4,7 +4,7 @@
 @skeleton-item-prefix-cls: ~'@{css-prefix}skeleton';
 
 .@{skeleton-item-prefix-cls} {
-  .component-css-vars-skeleton();
+  .inject-Skeleton-vars();
 
   width: 100%;
 
@@ -17,9 +17,9 @@
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
-    width: var(--ti-skeleton-avatar-size);
-    height: var(--ti-skeleton-avatar-size);
-    margin-right: var(--ti-skeleton-avatar-margin-right);
+    width: var(--tv-Skeleton-avatar-size);
+    height: var(--tv-Skeleton-avatar-size);
+    margin-right: 16px;
   }
 
   &__section {
@@ -27,20 +27,20 @@
   }
 
   &-item__title {
-    width: var(--ti-skeleton-title-width);
-    height: var(--ti-skeleton-title-height);
+    width: 240px;
+    height: 48px;
   }
 
   &-item__rows {
-    margin-top: var(--ti-skeleton-rows-margin-top);
-    margin-bottom: var(--ti-skeleton-rows-margin-bottom);
+    margin-top: 24px;
+    margin-bottom: 24px;
   }
 
   &-item--square {
-    margin-bottom: var(--ti-skeleton-row-margin-bottom);
+    margin-bottom: 12px;
 
     &:last-child {
-      width: var(--ti-skeleton-last-row-width);
+      width: 60%;
       margin-bottom: 0;
     }
   }

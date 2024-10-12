@@ -23,18 +23,19 @@
 
   &.is__active {
     .@{grid-filter-prefix-cls}__btn {
-      fill: var(--ti-grid-primary-hover-color);
+      fill: var(--tv-Grid-icon-color-active);
     }
   }
 
   .@{grid-filter-prefix-cls}__btn {
-    font-size: var(--ti-common-font-size-base);
+    // 图标过大，需要减去2px
+    font-size: calc(var(--tv-Grid-icon-size) - 2px);
     fill: #999;
     cursor: pointer;
     vertical-align: middle;
 
     &:hover {
-      fill: var(--ti-grid-primary-hover-color);
+      fill: var(--tv-Grid-icon-color-hover);
     }
   }
 }
@@ -42,7 +43,7 @@
 .filter__active {
   .@{grid-filter-wrapper-prefix-cls} {
     .@{grid-filter-prefix-cls}__btn {
-      fill: var(--ti-grid-primary-color);
+      fill: var(--tv-Grid-icon-color-active);
     }
   }
 }
@@ -52,9 +53,8 @@
   display: none;
   position: absolute;
   min-width: 270px;
-  border-radius: var(--ti-grid-border-radius);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
-  font-size: var(--ti-common-font-size-base);
+  font-size: var(--tv-Grid-font-size);
   z-index: 4000;
 
   &.filter__active {
@@ -64,7 +64,7 @@
   .@{grid-prefix-cls}__filter-body {
     padding: 0;
     list-style-type: none;
-    background-color: var(--ti-grid-light-color);
+    background-color: #fff;
     overflow-x: hidden;
     overflow-y: auto;
 
@@ -72,13 +72,14 @@
       margin: 0;
       width: 100%;
       padding: 12px 8px 8px;
-      border-bottom: solid 1px var(--ti-grid-border-color);
+      border-bottom: solid 1px var(--tv-Grid-divider-color);
 
       .@{grid-prefix-cls}__filter-search {
         margin-bottom: 4px;
+
         .tiny-input__inner {
           border-width: 0;
-          background-color: var(--ti-grid-header-background-color);
+          background-color: var(--tv-Grid-filter-bg-color);
           padding-right: 54px;
           padding-left: 8px;
         }
@@ -98,10 +99,10 @@
           padding-left: 16px;
 
           &:hover {
-            background-color: var(--ti-grid-primary-hover-color);
+            background-color: var(--tv-Grid-filter-bg-color-hover);
 
             a {
-              color: var(--ti-grid-light-color);
+              color: #fff;
             }
           }
         }
@@ -131,22 +132,22 @@
             cursor: pointer;
 
             &.selected {
-              background-color: var(--ti-grid-header-background-color);
+              background-color: var(--tv-Grid-filter-bg-color);
             }
 
             svg {
-              font-size: var(--ti-common-font-size-2);
-              fill: var(--ti-grid-normal-text-color);
+              font-size: var(--tv-Grid-checkbox-icon-size);
+              fill: var(--tv-Grid-checkbox-icon-color);
               margin-right: 8px;
               outline: none;
               vertical-align: middle;
 
               &:hover {
-                fill: var(--ti-grid-primary-hover-color);
+                fill: var(--tv-Grid-checkbox-icon-color-hover);
               }
 
               &.is-checked {
-                fill: var(--ti-grid-primary-color);
+                fill: var(--tv-Grid-checkbox-icon-color-selected);
               }
             }
           }
@@ -159,7 +160,7 @@
         line-height: 24px;
 
         a {
-          color: var(--ti-grid-text-color);
+          color: var(--tv-Grid-text-color);
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -176,7 +177,7 @@
             display: inline-block;
 
             .@{grid-radio-prefix-cls}__label {
-              color: var(--ti-grid-text-color);
+              color: var(--tv-Grid-text-color);
               text-overflow: ellipsis;
               overflow: hidden;
               white-space: nowrap;
@@ -209,9 +210,9 @@
 
         .@{grid-prefix-cls}__filter-option {
           &.filter-option__btns {
-            padding: var(--ti-grid-filter-button-group-size) 0;
-            margin: 0 var(--ti-grid-filter-button-group-size);
-            border-top: 1px solid var(--ti-grid-popup-border-color);
+            padding: 10px 0;
+            margin: 0 10px;
+            border-top: 1px solid var(--tv-Grid-divider-color);
             text-align: left;
             height: auto;
           }
@@ -221,8 +222,8 @@
 
     .filter-option__input > input {
       width: 100%;
-      border: solid 1px #bdbdbd;
-      border-radius: var(--ti-grid-border-radius);
+      border: solid 1px var(--tv-Grid-border-color);
+      border-radius: var(--tv-Grid-filter-input-border-radius);
       outline: none;
       padding: 0 8px;
       box-sizing: border-box;
@@ -230,34 +231,7 @@
       height: 30px;
 
       &:focus {
-        border: 1px solid var(--ti-grid-primary-color);
-      }
-    }
-  }
-
-  .@{grid-prefix-cls}__filter-footer {
-    border-top: 1px solid var(--ti-grid-popup-border-color);
-    padding: 8px;
-
-    button {
-      background-color: transparent;
-      padding: 0 3px;
-      border: 0;
-      font-size: 13px;
-      color: var(--ti-grid-text-color);
-      cursor: pointer;
-
-      &:focus {
-        outline: none;
-      }
-
-      &:hover {
-        color: var(--ti-grid-primary-color);
-      }
-
-      &.is__disabled {
-        color: var(--ti-grid-column-icon-text-color);
-        cursor: not-allowed;
+        border: 1px solid var(--tv-Grid-filter-input-border-color-hover);
       }
     }
   }
@@ -273,19 +247,19 @@
       border-bottom: none;
 
       .@{grid-prefix-cls}__filter-date-title {
-        padding: var(--ti-grid-filter-button-group-size);
-        color: var(--ti-grid-filter-date-title-color);
+        padding: 10px;
+        color: var(--tv-Grid-text-color-weaken);
       }
 
       .@{grid-prefix-cls}__filter-date {
-        padding: 0 var(--ti-grid-filter-button-group-size);
+        padding: 0 10px;
         min-width: 270px;
         .@{grid-prefix-cls}__filter-date-item {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: var(--ti-grid-filter-button-group-size);
-          color: var(--ti-grid-filter-date-color);
+          margin-bottom: 10px;
+          color: var(--tv-Grid-text-color);
 
           .@{grid-prefix-cls}__filter-date-pick {
             width: 160px;

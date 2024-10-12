@@ -60,7 +60,6 @@
           tag="ul"
           wrap-class="tiny-autocomplete-suggestion__wrap"
           view-class="tiny-autocomplete-suggestion__list"
-          :margin-bottom-adjust="6"
         >
           <slot
             name="panel"
@@ -70,8 +69,11 @@
             :id="state.id"
             :select="select"
           >
-            <li v-if="!hideLoading && state.loading" class="tiny-autocomplete-suggestion__list-loading">
-              <icon-loading width="1em" height="1em" />
+            <li
+              v-if="!hideLoading && state.loading"
+              class="tiny-autocomplete-suggestion__list-item tiny-autocomplete-suggestion__list-loading"
+            >
+              <icon-loading-shadow width="1em" height="1em" />
             </li>
             <template v-else>
               <li
@@ -102,13 +104,13 @@ import { props, setup, directive, defineComponent } from '@opentiny/vue-common'
 import TinyScrollbar from '@opentiny/vue-scrollbar'
 import TinyInput from '@opentiny/vue-input'
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
-import { IconLoading } from '@opentiny/vue-icon'
+import { IconLoadingShadow } from '@opentiny/vue-icon'
 
 export default defineComponent({
   components: {
     TinyInput,
     TinyScrollbar,
-    IconLoading: IconLoading()
+    IconLoadingShadow: IconLoadingShadow()
   },
   directives: directive({ Clickoutside }),
   props: [

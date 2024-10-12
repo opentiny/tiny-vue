@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { ChartRadar as TinyRadar } from '@opentiny/vue'
+import { HuichartsRadar as TinyRadar } from '@opentiny/vue'
 
 const options = ref({
   color: ['#fa2a2d', '#ff7500', '#ffbf00', '#41ba41', '#00aaee'], // 自定义颜色组，会循环使用该颜色组

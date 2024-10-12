@@ -163,6 +163,18 @@ export default {
           Text enclosed in the <code> pre </code> tag element retains spaces and newline characters, and the text is rendered in a uniform font.`
       },
       codeFiles: ['pre.vue']
+    },
+    {
+      demoId: 'content-max-height',
+      name: {
+        'zh-CN': '内容最大高度',
+        'en-US': 'Content max height'
+      },
+      desc: {
+        'zh-CN': `配置 <code>content-max-height</code>  设置内容展示的最大高度。`,
+        'en-US': `Configure <code> content-max-height </code> to set the maximum height for content display.`
+      },
+      codeFiles: ['content-max-height.vue']
     }
   ]
 }

@@ -442,8 +442,8 @@ export default {
             'zh-CN': '自定义弹窗底部按钮',
             'en-US': 'Custom Pop Up Bottom buttons'
           },
-          metaData: {
-            new: '3.18.0'
+          meta: {
+            stable: '3.18.0'
           },
           mode: ['pc'],
           pcDemo: ''

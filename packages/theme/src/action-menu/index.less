@@ -20,32 +20,49 @@
 .@{action-menu-prefix-cls} {
   .component-css-vars-action-menu();
 
-  .@{dropdown-prefix-cls} {
-    .@{dropdown-prefix-cls}-trigger {
-      .tiny-svg {
-        margin-right: var(--ti-action-menu-more-icon-margin-right);
-      }
-    }
-  }
+  font-size: var(--tv-ActionMenu-font-size);
 
-  font-size: var(--ti-action-menu-font-size);
-  font-weight: var(--ti-action-menu-font-weight);
-  color: var(--ti-action-menu-text-color);
+  .tiny-svg {
+    font-size: var(--tv-ActionMenu-icon-size);
+  }
 
   &__wrap {
     display: flex;
 
-    &.@{action-menu-prefix-cls}__card-mode {
-      .@{action-menu-prefix-cls}__item {
-        .tiny-svg {
-          fill: var(--ti-action-menu-item-card-text-color);
+    .@{action-menu-prefix-cls}__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      // 默认
+      &.@{action-menu-prefix-cls}__item-visable {
+        .@{dropdown-item-prefix-cls} {
+          .@{dropdown-item-prefix-cls}__wrap {
+            color: var(--tv-ActionMenu-text-color);
+            margin: 0px;
+            height: auto;
+
+            .tiny-svg {
+              fill: var(--tv-ActionMenu-icon-color);
+            }
+          }
         }
 
-        .@{dropdown-prefix-cls} {
-          .@{dropdown-prefix-cls}-trigger {
-            &:hover {
+        // 悬浮
+        &:not(.is-disabled):hover {
+          .@{dropdown-item-prefix-cls}__wrap {
+            text-decoration: underline;
+          }
+        }
+
+        //  禁用
+        &.is-disabled {
+          .@{dropdown-item-prefix-cls}__wrap {
+            .tiny-dropdown-item__content {
+              color: var(--tv-ActionMenu-text-color-disabled);
+
               .tiny-svg {
-                fill: var(--ti-action-menu-item-card-text-color);
+                fill: var(--tv-ActionMenu-icon-color-disabled);
               }
             }
           }
@@ -53,76 +70,22 @@
       }
     }
 
-    .@{action-menu-prefix-cls}__item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
+    /* card 类型 */
+    &.@{action-menu-prefix-cls}__card-mode {
       .tiny-svg {
-        fill: var(--ti-action-menu-text-color); // TINY-TODO :没有使用--ti-base-color-brand-7的图标色
-        margin: var(--ti-action-menu-item-svg-margin-top) var(--ti-action-menu-item-svg-margin-right)
-          var(--ti-action-menu-item-svg-margin-bottom) var(--ti-action-menu-item-svg-margin-left);
+        fill: var(--tv-ActionMenu-icon-color-card);
       }
 
-      &:not(:has(.tiny-dropdown)) {
-        .tiny-svg {
-          width: var(--ti-action-menu-more-icon-width);
-          height: var(--ti-action-menu-more-icon-height);
-        }
-      }
-
-      &:not(.is-disabled):hover {
+      .@{action-menu-prefix-cls}__item {
         &.@{action-menu-prefix-cls}__item-visable {
-          .@{dropdown-item-prefix-cls} {
-            background-color: var(--ti-action-menu-item-hover-bg-color);
-          }
-        }
-
-        .tiny-svg {
-          fill: var(--ti-action-menu-item-hover-text-color); // TINY-TODO :没有使用--ti-base-color-brand-8的图标色
-        }
-      }
-
-      &.@{action-menu-prefix-cls}__item-visable {
-        .@{dropdown-item-prefix-cls}__wrap {
-          color: var(--ti-action-menu-text-color);
-          padding: var(--ti-action-menu-item-padding-top) var(--ti-action-menu-item-padding-right)
-            var(--ti-action-menu-item-padding-bottom) var(--ti-action-menu-item-padding-left);
-
-          &:hover {
-            background-color: var(--ti-action-menu-item-hover-bg-color);
-            text-decoration: var(--ti-action-menu-hover-text-decoratio);
-            color: var(--ti-action-menu-item-hover-text-color);
-          }
-        }
-
-        &.@{action-menu-prefix-cls}__card-item {
           .@{dropdown-item-prefix-cls}__wrap {
-            color: var(--ti-action-menu-item-card-text-color);
+            color: var(--tv-ActionMenu-text-color-card);
 
             .tiny-svg {
-              fill: var(--ti-action-menu-item-card-text-color);
-            }
-
-            &:hover {
-              color: var(--ti-action-menu-item-card-hover-text-color);
+              fill: var(--tv-ActionMenu-icon-color-card);
             }
           }
         }
-
-        &.is-disabled {
-          .@{dropdown-item-prefix-cls}__wrap {
-            color: var(--ti-action-menu-item-disabled-text-color);
-          }
-        }
-      }
-
-      .@{action-menu-prefix-cls}__item-line {
-        position: relative;
-        width: var(--ti-action-menu-item-line-width);
-        height: 12px;
-        background: var(--ti-action-menu-item-line-bg-color);
-        display: inline-block;
       }
     }
   }

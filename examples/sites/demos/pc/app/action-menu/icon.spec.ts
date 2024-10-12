@@ -11,9 +11,8 @@ test('只显示图标', async ({ page }) => {
   await page.waitForTimeout(1500)
   await expect(actionMenuItem.nth(0).locator('.tiny-svg')).toBeVisible()
   await expect(actionMenuItem.nth(3).locator('.tiny-dropdown__trigger  .tiny-svg')).toBeVisible()
-  await expect(actionMenuItem.nth(3).locator('.tiny-dropdown__trigger .tiny-svg')).toHaveCSS('width', '20px')
-  await expect(actionMenuItem.nth(3).locator('.tiny-dropdown__trigger .tiny-svg')).toHaveCSS('height', '20px')
-  await expect(actionMenuItem.nth(3).locator('.tiny-dropdown__trigger .tiny-svg')).toHaveCSS('margin', '2px')
+  await expect(actionMenuItem.nth(3).locator('.tiny-dropdown__trigger .tiny-svg')).toHaveCSS('width', '24px')
+  await expect(actionMenuItem.nth(3).locator('.tiny-dropdown__trigger .tiny-svg')).toHaveCSS('height', '24px')
   await expect(actionMenuItem.nth(3).locator('.tiny-dropdown__trigger .tiny-dropdown__title')).toBeHidden()
 
   await actionMenuItem.nth(3).locator('.tiny-dropdown__trigger .tiny-svg').hover()
@@ -25,7 +24,7 @@ test('只显示文本', async ({ page }) => {
   await page.goto('action-menu#icon')
 
   const wrap = page.locator('#icon')
-  const actionMenu = wrap.locator('.tiny-action-menu').nth(1)
+  const actionMenu = wrap.locator('.tiny-action-menu').nth(2)
   const actionMenuItem = actionMenu.locator('.tiny-action-menu__item')
 
   await expect(actionMenuItem.nth(0).locator('.tiny-svg')).toBeHidden()

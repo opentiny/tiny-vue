@@ -10,8 +10,8 @@ export default {
           type: "'left' | 'center' | 'right'",
           defaultValue: "'left'",
           desc: {
-            'zh-CN': '分页对齐方式，Aurora、SMB主题默认值为 right',
-            'en-US': 'Pagination alignment, the default value for Aurora and SMB themes is right'
+            'zh-CN': '分页对齐方式，Aurora、XDesign主题默认值为 right',
+            'en-US': 'Pagination alignment, the default value for Aurora and XDesign themes is right'
           },
           mode: ['pc'],
           pcDemo: 'align'
@@ -92,10 +92,10 @@ export default {
         },
         {
           name: 'mode',
-          type: "'number' | 'simple' | 'complete' | 'fixed'",
+          type: "'number' | 'simple' | 'complete' | 'fixed' | 'simplest'",
           defaultValue: '',
           desc: {
-            'zh-CN': '设置分页组件显示模式，此属性优先级大于 layout',
+            'zh-CN': '设置分页组件显示模式，此属性优先级大于 layout, 3.19.0新增simplest',
             'en-US': 'Set the display mode of pagination components, which takes priority over layout'
           },
           mode: ['pc'],
@@ -247,13 +247,28 @@ export default {
           name: 'total-fixed-left',
           type: 'boolean',
           defaultValue: 'false',
-          metaData: {
-            new: '3.18.0'
+          meta: {
+            stable: '3.18.0'
           },
           desc: {
-            'zh-CN': '总条目数是否固定在左侧，Aurora、SMB主题默认值为 true',
+            'zh-CN': '总条目数是否固定在左侧，Aurora、XDesign主题默认值为 true',
             'en-US':
-              'Whether the total number of entries is fixed on the left, the default value for Aurora and SMB themes is true'
+              'Whether the total number of entries is fixed on the left, the default value for Aurora and XDesign themes is true'
+          },
+          mode: ['pc'],
+          pcDemo: ''
+        },
+        {
+          name: 'page-size-text',
+          type: 'string',
+          defaultValue: '"条/页"',
+          meta: {
+            stable: '3.19.0'
+          },
+          desc: {
+            'zh-CN': '自定以页码大小后置显示文本，XDesign主题默认为空',
+            'en-US':
+              'Customize the text to be displayed after the page number size. The XDesign theme is empty by default.'
           },
           mode: ['pc'],
           pcDemo: ''

@@ -13,6 +13,6 @@ const value1 = ref(new Date(2016, 9, 10, 18, 40))
 
 <style scoped>
 .demo-date-picker-wrap {
-  width: 182px;
+  width: 200px;
 }
 </style>

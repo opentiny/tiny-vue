@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartPie as TinyChartPie } from '@opentiny/vue'
+import { HuichartsPie as TinyChartPie } from '@opentiny/vue'
 
 const options = ref({
   type: 'pie',

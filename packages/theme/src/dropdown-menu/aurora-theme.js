@@ -5,5 +5,7 @@ export const tinyDropdownMenuAuroraTheme = {
   'ti-dropdown-menu-padding-vertical': 'var(--ti-common-space-base)',
   'ti-dropdown-menu-margin-vertical': 'var(--ti-common-space-3x)',
   'ti-dropdown-item-hover-bg-color': 'var(--ti-common-color-hover-background)',
-  'ti-dropdown-menu-min-width': 'auto'
+  'ti-dropdown-menu-min-width': 'auto',
+  'ti-dropdown-menu-arrow-margin-top': 'var(--ti-common-space-3x)',
+  'ti-dropdown-menu-arrow-margin-bottom': 'var(--ti-common-space-3x)'
 }

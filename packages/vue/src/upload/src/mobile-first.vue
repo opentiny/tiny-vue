@@ -6,13 +6,15 @@ import { renderless, api } from '@opentiny/vue-renderless/upload/vue'
 import UploadDragger from '@opentiny/vue-upload-dragger'
 import Modal from '@opentiny/vue-modal'
 import Tooltip from '@opentiny/vue-tooltip'
+import { iconHelpCircle } from '@opentiny/vue-icon'
 import type { IUploadApi } from '@opentiny/vue-renderless/types/upload.type'
 
 export default defineComponent({
   inheritAttrs: false,
   name: $prefix + 'Upload',
   components: {
-    TinyTooltip: Tooltip
+    TinyTooltip: Tooltip,
+    TinyIconHelpCircle: iconHelpCircle()
   },
   props: [
     ...props,
@@ -49,7 +51,9 @@ export default defineComponent({
     'mode',
     'showTitle',
     'isHwh5',
-    'tipMessage'
+    'tipMessage',
+    'promptTip',
+    'showFileList'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h, extendOptions: { Modal } }) as unknown as IUploadApi
@@ -72,7 +76,9 @@ export default defineComponent({
       mode,
       showTitle,
       state,
-      tipMessage
+      tipMessage,
+      promptTip,
+      showFileList
     } = this as any
 
     const defaultSlot = (this as any).slots.default && (this as any).slots.default()
@@ -84,16 +90,32 @@ export default defineComponent({
 
     const popperConfig = { bubbling: true }
 
+    const uploadTrigger = () => (
+      <div
+        data-tag="tiny-upload-drag-single"
+        class="h-full"
+        onClick={($event) => handleClick($event, sourceType)}
+        onKeydown={handleKeydown}
+        tabindex="0">
+        {listType === 'drag-single' ? (
+          <UploadDragger customClass={customClass} disabled={disabled} onFile={uploadFiles}>
+            {defaultSlot}
+          </UploadDragger>
+        ) : (
+          defaultSlot
+        )}
+      </div>
+    )
+
     return (
       <div
         data-tag="tiny-upload"
-        class={
+        class={[
           !displayOnly && listType === 'text'
-            ? `flex justify-between mt-4 mb-2 ${
-                isBubbleMode ? 'sm:my-0' : !isShowTitle ? 'sm:mt-0 sm:mb-3' : 'sm:my-3'
-              }`
-            : 'h-full'
-        }>
+            ? `flex justify-between mt-4 mb-2 ${isBubbleMode ? 'sm:my-0' : !isShowTitle ? 'sm:mt-0' : 'sm:my-3'}`
+            : 'h-full',
+          showFileList ? 'sm:mb-3' : 'sm:mb-0'
+        ]}>
         {state.currentBreakpoint === 'default' && tipSlot && (
           <div class="flex items-center sm:hidden inline-block text-sm">{tipSlot}</div>
         )}
@@ -113,24 +135,28 @@ export default defineComponent({
             )}
           </div>
         )}
-        {state.currentBreakpoint !== 'default' && (
-          <tiny-tooltip effect="light" content={tipMessage} placement="top" popper-options={popperConfig}>
-            <div
-              data-tag="tiny-upload-drag-single"
-              class="h-full"
-              onClick={($event) => handleClick($event, sourceType)}
-              onKeydown={handleKeydown}
-              tabindex="0">
-              {listType === 'drag-single' ? (
-                <UploadDragger customClass={customClass} disabled={disabled} onFile={uploadFiles}>
-                  {defaultSlot}
-                </UploadDragger>
-              ) : (
-                defaultSlot
-              )}
+        {state.currentBreakpoint !== 'default' &&
+          (promptTip && tipMessage ? (
+            <div class="hidden sm:inline-flex sm:items-center">
+              {uploadTrigger()}
+              <tiny-tooltip effect="light" content={tipMessage} placement="right" popper-options={popperConfig}>
+                <tiny-icon-help-circle custom-class="ml-2 cursor-pointer fill-color-icon-tertiary"></tiny-icon-help-circle>
+              </tiny-tooltip>
             </div>
-          </tiny-tooltip>
-        )}
+          ) : listType === 'text' ? (
+            <div class="hidden sm:inline-flex sm:items-center">
+              {uploadTrigger()}
+              <div
+                title={tipMessage}
+                class="hidden sm:block text-xs leading-4 overflow-hidden text-ellipsis whitespace-nowrap text-color-text-placeholder ml-2 cursor-pointer">
+                {tipMessage}
+              </div>
+            </div>
+          ) : (
+            <tiny-tooltip effect="light" content={tipMessage} placement="top" popper-options={popperConfig}>
+              {uploadTrigger()}
+            </tiny-tooltip>
+          ))}
         {operateSlot}
         <input
           class="hidden"

@@ -39,21 +39,13 @@
       box-sizing: border-box;
     }
 
-    // 兼容ie10-ie11
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      &__wrap {
-        margin-bottom: -17px !important;
-        padding-bottom: 6px;
-      }
-    }
-
-    &__list {
+    &__list.tiny-scrollbar__view {
       margin: 0;
-      padding: 0;
+      padding: 8px 0;
     }
 
     & &__list-item {
-      padding: 0 8px;
+      padding: var(--ti-autocomplete-li-padding-vertical) var(--ti-autocomplete-li-padding-horizontal);
       margin: 0;
       line-height: var(--ti-autocomplete-li-height);
       color: var(--ti-autocomplete-li-text-color);
@@ -88,21 +80,11 @@
     }
 
     &.is-loading &__list-loading {
-      text-align: center;
-      height: 100px;
-      line-height: 100px;
-      font-size: var(--ti-common-font-size-4);
-      color: var(--ti-autocomplete-loading-text-color);
+      background-color: var(--ti-autocomplete-suggestion-bg-color);
 
-      &::after {
-        display: inline-block;
-        content: '';
-        height: 100%;
-        vertical-align: middle;
-      }
-
-      &:hover {
-        background-color: #fff;
+      svg {
+        width: 16px;
+        height: 16px;
       }
     }
 
@@ -113,7 +95,7 @@
     }
 
     &.@{popper-prefix-cls}[x-placement^='bottom'] {
-      margin-top: var(--ti-common-dropdown-gap);
+      margin-top: var(--ti-autocomplete-dropdown-gap);
     }
   }
 }

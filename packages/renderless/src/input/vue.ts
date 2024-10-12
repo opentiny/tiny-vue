@@ -105,7 +105,8 @@ const initState = ({
   parent,
   constants,
   api,
-  vm
+  vm,
+  designConfig
 }: Pick<
   IInputRenderlessParams,
   'reactive' | 'computed' | 'mode' | 'props' | 'parent' | 'constants' | 'api' | 'vm'
@@ -131,7 +132,7 @@ const initState = ({
         !state.inputDisabled &&
         !props.readonly &&
         state.nativeInputValue &&
-        (state.focused || state.hovering)
+        (!designConfig?.options?.isCloseIconHide || state.focused || state.hovering)
     ),
     textareaHeight: vm.theme === 'saas' ? '28px' : '30px',
     upperLimit: computed(() => parent.$attrs.maxlength),
@@ -382,7 +383,7 @@ const initWatch = ({
 export const renderless = (
   props: IInputProps,
   { computed, onMounted, onBeforeUnmount, onUpdated, reactive, toRefs, watch, inject }: ISharedRenderlessParamHooks,
-  { vm, refs, parent, emit, constants, nextTick, broadcast, dispatch, mode }: IInputRenderlessParamUtils
+  { vm, refs, parent, emit, constants, nextTick, broadcast, dispatch, mode, designConfig }: IInputRenderlessParamUtils
 ): IInputApi => {
   const api = {} as IInputApi
   const componentName = constants.COMPONENT_NAME.FormItem
@@ -391,7 +392,7 @@ export const renderless = (
     Input: constants.inputMode(mode),
     InputGroup: constants.inputGroupMode(mode)
   }
-  const state = initState({ reactive, computed, mode, props, parent, constants, api, vm })
+  const state = initState({ reactive, computed, mode, props, parent, constants, api, vm, designConfig })
 
   initApi({ api, state, dispatch, broadcast, emit, refs, props, CLASS_PREFIX, parent, vm, nextTick })
 

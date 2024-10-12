@@ -12,6 +12,6 @@ test('懒加载', async ({ page }) => {
   await treeNodeContent.filter({ hasText: /^表单组件$/ }).click()
   await expect(treeNodeContent.filter({ hasText: /^表单组件1$/ })).not.toBeVisible()
   // 等到异步加载完成
-  await page.waitForTimeout(600)
+  await page.waitForTimeout(1000)
   await expect(treeNodeContent.filter({ hasText: /^表单组件1$/ })).toBeVisible()
 })

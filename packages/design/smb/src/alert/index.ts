@@ -1,9 +1,8 @@
-import { iconWarningTriangle, iconPromptExclamation } from '@opentiny/vue-icon'
+import { iconWarningTriangle } from '@opentiny/vue-icon'
 
 export default {
   icons: {
-    warning: iconWarningTriangle(),
-    info: iconPromptExclamation()
+    warning: iconWarningTriangle()
   },
   renderless: (props, hooks, { emit }, api) => {
     const state = api.state

@@ -8,7 +8,7 @@
     :before-upload="beforeUpload"
   >
     <template #trigger>
-      <tiny-button type="primary">选取文件</tiny-button>
+      <tiny-button>选取文件</tiny-button>
     </template>
   </tiny-file-upload>
 </template>

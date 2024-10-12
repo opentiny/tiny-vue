@@ -10,6 +10,7 @@
 *
 */
 
+@import '../mixins/common.less';
 @import '../custom.less';
 @import './vars.less';
 
@@ -40,7 +41,9 @@
   &__header {
     position: relative;
     text-align: center;
-    height: 28px;
+    height: var(--ti-date-range-picker-header-height);
+    margin-bottom: var(--ti-date-range-picker-header-margin-bottom);
+    line-height: var(--ti-date-range-picker-header-line-height);
 
     [class*='arrow-left'] {
       float: left;

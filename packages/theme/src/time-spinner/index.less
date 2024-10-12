@@ -121,6 +121,7 @@
     color: var(--ti-time-spinner-text-color);
     height: var(--ti-time-spinner-item-height);
     line-height: var(--ti-time-spinner-item-line-height);
+    font-weight: var(--ti-time-spinner-item-font-weight);
 
     &:hover:not(.disabled):not(.active) {
       background: var(--ti-time-spinner-selected-bg-color);
@@ -130,7 +131,7 @@
 
     &.active:not(.disabled) {
       color: var(--ti-time-spinner-item-active-text-color);
-      font-weight: var(--ti-time-spinner-item-font-weight);
+      font-weight: var(--ti-time-spinner-item-active-font-weight);
       background-color: var(--ti-time-spinner-item-bg-color);
       border-radius: var(--ti-time-spinner-selected-border-radius);
     }
@@ -138,6 +139,8 @@
     &.disabled {
       color: var(--ti-time-spinner-disabled-text-color);
       cursor: not-allowed;
+      background: var(--ti-time-spinner-disabled-text-background);
+      border-radius: var(--ti-time-spinner-disabled-text-border-radius);
     }
   }
 

@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>滚动下面的容器，通过开发者工具中的观察网络请求：</div>
+    <br />
     <div class="demo-image__lazy">
       <tiny-image v-for="url in srcList" :key="url" :src="url" lazy></tiny-image>
     </div>
@@ -22,10 +23,11 @@ const srcList = ref([
 .demo-image__lazy {
   height: 300px;
   overflow-y: auto;
-  margin-top: 20px;
+  background-color: #f5f5f5;
 }
 .demo-image__lazy .tiny-image {
   display: block;
-  min-height: 500px;
+  min-height: 400px;
+  margin: 24px;
 }
 </style>

@@ -3,6 +3,20 @@ export default {
   owner: '',
   demos: [
     {
+      'demoId': 'tree-table-set-tree-expansion',
+      'name': { 'zh-CN': '树节点展开操作', 'en-US': 'Manually expand a specified tree node' },
+      'desc': {
+        'zh-CN': `
+        <p> <code>setTreeExpansion(rows, checked)</code> 可设置展开指定的树形节点，第二个参数设置这一行展开与否。</p>
+        <p> <code>setAllTreeExpansion(checked)</code> 可设置所有树节点的展开与否。</p>
+        <p> <code>toggleTreeExpansion(row)</code> 可设置切换展开树形节点。</p>
+        `,
+        'en-US':
+          'You can set <p> <code>setTreeExpansion(rows, checked)</code> to expand the specified tree node. The second parameter specifies whether to expand the row. </p>\n'
+      },
+      'codeFiles': ['tree-table/set-tree-expansion.vue']
+    },
+    {
       'demoId': 'tree-table-tree-grid-base',
       'name': {
         'zh-CN': '自定树节点图标',
@@ -59,20 +73,7 @@ export default {
       },
       'codeFiles': ['tree-table/tree-grid-index-checkfield.vue']
     },
-    {
-      'demoId': 'tree-table-set-tree-expansion',
-      'name': { 'zh-CN': '树节点展开操作', 'en-US': 'Manually expand a specified tree node' },
-      'desc': {
-        'zh-CN': `
-        <p> <code>setTreeExpansion(rows, checked)</code> 可设置展开指定的树形节点，第二个参数设置这一行展开与否。</p>
-        <p> <code>setAllTreeExpansion(checked)</code> 可设置所有树节点的展开与否。</p>
-        <p> <code>toggleTreeExpansion(row)</code> 可设置切换展开树形节点。</p>
-        `,
-        'en-US':
-          'You can set <p> <code>setTreeExpansion(rows, checked)</code> to expand the specified tree node. The second parameter specifies whether to expand the row. </p>\n'
-      },
-      'codeFiles': ['tree-table/set-tree-expansion.vue']
-    },
+
     {
       'demoId': 'tree-table-tree-grid-fixed-column',
       'name': { 'zh-CN': '冻结列', 'en-US': 'Frozen Column' },

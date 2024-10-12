@@ -11,7 +11,6 @@
   @apply items-center;
 
   &__dialog {
-    @apply ~"max-h-[theme('spacing.112')]";
     @apply w-full;
     @apply flex;
     @apply flex-col;
@@ -64,15 +63,19 @@
     }
 
     .col1 {
-      @apply ~'w-3/5';
+      @apply ~'w-3/6';
     }
 
     .col2 {
-      @apply ~'w-1/5';
+      @apply ~'w-1/6';
     }
 
     .col3 {
-      @apply ~'w-1/5';
+      @apply ~'w-1/6';
+    }
+
+    .col4 {
+      @apply ~'w-1/6';
     }
   }
 
@@ -125,7 +128,39 @@
     }
   }
 
-  &__modal .@{grid-modal-prefix-cls}__body {
-    @apply overflow-y-auto;
+  &__modal {
+    .@{grid-modal-prefix-cls}__body {
+      @apply overflow-y-auto;
+    }
+
+    .tiny-file-upload .tiny-upload-list__text-title {
+      @apply hidden;
+    }
+  }
+
+  // 新规范适配
+  &__pop-confirm {
+    .tiny-popconfirm-popover__title {
+      @apply whitespace-nowrap;
+    }
+  }
+
+  &__status-icon {
+    @apply inline-block;
+    margin-right: 7px;
+    @apply h-2;
+    @apply w-2;
+    @apply border-2;
+    @apply border-solid;
+    @apply border-color-text-secondary;
+    @apply rounded;
+
+    &&-success {
+      @apply border-color-success;
+    }
+
+    &&-fail {
+      @apply border-color-error;
+    }
   }
 }

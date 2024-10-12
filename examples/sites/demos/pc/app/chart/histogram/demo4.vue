@@ -5,11 +5,11 @@
 </template>
 
 <script lang="jsx">
-import { ChartHistogram } from '@opentiny/vue'
+import { HuichartsHistogram } from '@opentiny/vue'
 
 export default {
   components: {
-    TinyHistogram: ChartHistogram
+    TinyHistogram: HuichartsHistogram
   },
   data() {
     return {

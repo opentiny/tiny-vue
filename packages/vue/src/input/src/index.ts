@@ -157,6 +157,12 @@ export const inputProps = {
   showTooltip: {
     type: Boolean,
     default: true
+  },
+  /** 输入框的边框模式，当值为underline时，只显示一条底部直线 */
+  inputBoxType: {
+    type: String,
+    default: 'normal',
+    validator: (value: string) => ['normal', 'underline'].includes(value)
   }
 }
 

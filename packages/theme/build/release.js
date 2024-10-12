@@ -2,9 +2,9 @@
  * 将 dist 目录生成 TGZ 的压缩包   fs.cp 需要node 18.0+
  */
 
-const fs = require('node:fs')
-const path = require('node:path')
-const fg = require('fast-glob')
+import fs from 'node:fs'
+import path from 'node:path'
+import fg from 'fast-glob'
 
 // 替换文件内容。 如果不指定target，则原地覆盖
 function replaceFile(src, cb, target = null) {

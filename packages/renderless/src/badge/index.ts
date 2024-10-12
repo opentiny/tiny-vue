@@ -15,20 +15,20 @@ import type { StyleValue } from 'vue'
 export const computedContent =
   ({ props, state }: Pick<IBadgeRenderlessParams, 'props' | 'state'>) =>
   (): IBadgeContent =>
-    typeof state.valueRef === 'number' && typeof props.max === 'number'
-      ? props.max < state.valueRef
+    (typeof props.value === 'number' || typeof props.value === 'string') && typeof props.max === 'number'
+      ? props.max < Number(state.valueRef)
         ? `${props.max}+`
         : state.valueRef
       : state.valueRef
 
 export const computedValueRef =
   ({ props }: Pick<IBadgeRenderlessParams, 'props'>) =>
-  (): number | undefined => {
-    if (typeof props.value === 'number') {
+  (): number | string | undefined => {
+    if (typeof props.value === 'number' || typeof props.value === 'string') {
       return props.value
+    } else {
+      return undefined
     }
-
-    return typeof props.modelValue === 'number' ? props.modelValue : undefined
   }
 
 export const computedTransform =

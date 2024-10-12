@@ -16,8 +16,6 @@ import {
   watchVisible,
   clear,
   replace,
-  computedCropImages,
-  watchAlt,
   getCroppedCanvas,
   setCanvasData,
   setDragMode,
@@ -79,68 +77,75 @@ export const api = [
   'zoom'
 ]
 
-const initRenderIcon = (api) => {
+const initRenderIcon = (api, t) => {
   const renderIcon = [
     {
       method: () => api.showFileChooser(),
-      icon: 'IconNew'
+      icon: 'IconNew',
+      title: t('ui.crop.choose')
+    },
+    { split: true },
+
+    {
+      method: () => api.zoom(-0.1),
+      icon: 'IconZoomOut',
+      title: t('ui.crop.zoomOut')
     },
     {
       method: () => api.zoom(0.1),
-      icon: 'IconZoomIn'
-    },
-    {
-      method: () => api.zoom(-0.1),
-      icon: 'IconZoomOut'
+      icon: 'IconZoomIn',
+      title: t('ui.crop.zoomIn')
     },
     {
       method: () => api.rotate(-45),
-      icon: 'IconRepeat'
+      icon: 'IconRepeat',
+      title: t('ui.crop.rotate_45')
     },
     {
       method: () => api.rotate(45),
-      icon: 'IconRefres'
+      icon: 'IconRefres',
+      title: t('ui.crop.rotate45')
     },
+    { split: true },
     {
       method: () => api.closeCropArea(),
-      icon: 'IconCrop'
+      icon: 'IconCrop',
+      title: t('ui.crop.closeCropArea')
     },
     {
       method: () => api.reset(),
-      icon: 'IconConmentRefresh'
+      icon: 'IconConmentRefresh',
+      title: t('ui.crop.reset')
+    },
+    { split: true },
+    {
+      method: () => api.closeCrop(),
+      icon: 'IconClose',
+      title: t('ui.crop.closeCrop')
     },
     {
       method: () => api.cropImage(),
-      icon: 'IconYes'
-    },
-    {
-      method: () => api.closeCrop(),
-      icon: 'IconClose'
+      icon: 'IconYes',
+      title: t('ui.crop.cropImage')
     }
   ]
 
   return renderIcon
 }
 
-const initState = ({ reactive, props, computed, api }) => {
+const initState = ({ reactive, props, api, t }) => {
   const state = reactive({
     src: props.src,
-    cropImg: '',
     cropper: '',
-    alt: props.alt,
     data: null,
     cropvisible: props.cropvisible,
-
-    renderIcon: initRenderIcon(api),
-
-    previewShow: props.previewShow,
-    cropImages: computed(() => api.computedCropImages())
+    renderIcon: initRenderIcon(api, t)
   })
 
   return state
 }
 
-const initApi = ({ api, state, emit, refs, props, constants, t }) => {
+const initApi = ({ api, state, emit, refs, props }) => {
   Object.assign(api, {
     state,
     zoom: zoom(state),
@@ -157,7 +162,6 @@ const initApi = ({ api, state, emit, refs, props, constants, t }) => {
     getData: getData(state),
     disable: disable(state),
     destroy: destroy(state),
-    watchAlt: watchAlt(state),
     setDragMode: setDragMode(state),
     getImageData: getImageData(state),
     watchImageSrc: watchImageSrc(state),
@@ -171,7 +175,7 @@ const initApi = ({ api, state, emit, refs, props, constants, t }) => {
     getCroppedCanvas: getCroppedCanvas(state),
     getContainerData: getContainerData(state),
     createCrop: createCrop({ emit, props, refs, state }),
-    computedCropImages: computedCropImages({ constants, t }),
+    // computedCropImages: computedCropImages({ constants, t }),
     shortcutKeys: shortcutKeys(api),
     closeCropArea: closeCropArea(api),
     setImage: setImage({ api, state, props }),
@@ -184,15 +188,13 @@ const initWatch = ({ watch, props, api }) => {
   watch(() => props.cropvisible, api.watchVisible)
 
   watch(() => props.src, api.watchImageSrc, { immediate: true })
-
-  watch(() => props.alt, api.watchAlt, { immediate: true })
 }
 
-export const renderless = (props, { computed, onMounted, reactive, watch }, { t, emit, refs, constants }) => {
+export const renderless = (props, { onMounted, reactive, watch }, { emit, refs, t }) => {
   const api = {}
-  const state = initState({ reactive, props, computed, api })
+  const state = initState({ reactive, props, api, t })
 
-  initApi({ api, state, emit, refs, props, constants, t })
+  initApi({ api, state, emit, refs, props })
 
   onMounted(api.createCrop)
 

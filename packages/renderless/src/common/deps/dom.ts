@@ -273,6 +273,18 @@ export const getScrollParent = (el, root = defaultRoot) => {
   return root
 }
 
+export const useScrollParent =
+  ({ onMounted, ref, watch }) =>
+  (elRef, root = defaultRoot) => {
+    const scrollParent = ref()
+    const setScrollParent = () => (scrollParent.value = getScrollParent(elRef.value, root))
+
+    watch(elRef, setScrollParent)
+    onMounted(() => elRef.value && setScrollParent())
+
+    return scrollParent
+  }
+
 // 判断body的后代元素是否是隐藏的
 export const isDisplayNone = (elm) => {
   if (isServer) return false

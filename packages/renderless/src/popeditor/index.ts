@@ -377,7 +377,7 @@ export const initDisplay =
   }
 
 export const openDialog =
-  ({ api, props, state, emit }) =>
+  ({ api, props, state, emit, nextTick }) =>
   () => {
     if (state.disabled) {
       return
@@ -390,6 +390,10 @@ export const openDialog =
     state.showContent = true
     emit('popup')
     props.autoLookup && props.alwaysLoad && api.query()
+
+    nextTick(() => {
+      api.computedTreeMaxHeight()
+    })
   }
 
 const localFilter = ({ props, state }) => {
@@ -935,4 +939,16 @@ export const selectedBoxDrag =
       state.selectedDatas = datas
       state.selectedValues = values
     }
+  }
+
+export const computedTreeMaxHeight =
+  ({ vm, state }) =>
+  () => {
+    const dialogBoxEl = vm.$refs.popeditorDialogBox.$el
+    const searchInputBottom = 20
+    const searchInputHeight = dialogBoxEl.querySelector('.tiny-popeditor__filter-input')?.clientHeight || 0
+
+    state.treeWrapperMaxHeight = `${
+      dialogBoxEl.querySelector('.tiny-dialog-box__body').clientHeight - searchInputHeight - searchInputBottom
+    }px`
   }

@@ -20,9 +20,10 @@
 @radio-prefix-cls: ~'@{css-prefix}radio';
 
 .@{amount-prefix-cls} {
-  .component-css-vars-amount();
+  .inject-Amount-vars();
 
   width: 270px;
+
   &-filter-box {
     .popover-left {
       font-size: 12px;
@@ -31,8 +32,9 @@
 
   & &-input-icon {
     .@{svg-prefix-cls} {
-      fill: var(--ti-amount-icon-color);
-      font-size: var(--ti-amount-icon-font-size);
+      fill: var(--tv-Amount-icon-color);
+      width: var(--tv-Amount-icon-size);
+      height: var(--tv-Amount-icon-size);
     }
   }
 
@@ -47,14 +49,11 @@
       .@{radio-prefix-cls}-group {
         display: inline-block;
       }
+
       .popover-filter-botton {
         background-color: #f5f6f8;
-        padding-top: 1px;
-        padding-bottom: 1px;
         box-sizing: border-box;
-        margin-bottom: 8px;
-        margin-left: 0px;
-        margin-right: 8px;
+        margin: 0 8px 8px 0;
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -63,16 +62,13 @@
         min-width: 48px;
         text-align: center;
         max-width: none;
-        padding-left: 8px;
-        padding-right: 8px;
-        border-width: 1px;
-        border-color: #f5f6f8;
-        border-style: solid;
+        padding: 1px 8px;
+        border: 1px solid #f5f6f8;
         font-style: normal;
 
         &.is-checked {
-          color: var(--ti-base-bg-color-2);
-          border-color:var(--ti-base-bg-color-2);
+          color: #fafafa;
+          border-color: #fafafa;
         }
 
         .@{radio-prefix-cls}__input {
@@ -80,8 +76,8 @@
         }
 
         .@{radio-prefix-cls}__label {
-          padding-left: 0px;
-          padding-right: 0px;
+          padding-left: 0;
+          padding-right: 0;
           line-height: 20px;
           height: 20px;
           display: inline-block;
@@ -90,7 +86,7 @@
 
       .popover-filter-botton:nth-child(4),
       .popover-filter-botton:nth-child(8) {
-        margin-right: 0px;
+        margin-right: 0;
       }
     }
 
@@ -108,6 +104,7 @@
           flex: 0 0 auto;
           margin-right: 8px;
           text-align: right;
+
           & + .tiny-date-container {
             width: 100%;
           }

@@ -55,7 +55,8 @@ import {
   selectedBoxClear,
   selectedBoxDelete,
   selectedBoxDrag,
-  radioChangeFn
+  radioChangeFn,
+  computedTreeMaxHeight
 } from './index'
 
 export const api = [
@@ -86,7 +87,8 @@ export const api = [
   'selectedBoxClear',
   'selectedBoxDelete',
   'selectedBoxDrag',
-  'radioChangeFn'
+  'radioChangeFn',
+  'computedTreeMaxHeight'
 ]
 
 const initState = ({ reactive, computed, props, api, constants, t, parent, vm }) => {
@@ -130,7 +132,8 @@ const initState = ({ reactive, computed, props, api, constants, t, parent, vm })
     showSuggestPanel: false,
     inputHover: false,
     search: null,
-    closeSuggestPanelInvoker: null
+    closeSuggestPanelInvoker: null,
+    treeWrapperMaxHeight: 'auto'
   })
 
   return state
@@ -155,7 +158,7 @@ const initApi = ({ api, props, state, parent, vm, emit, popper, constants, nextT
     selectedGridSelectAll: selectedGridSelectAll({ constants, props, vm, state }),
     selectedGridSelectChange: selectedGridSelectChange({ constants, props, vm, state }),
     handleReset: handleReset({ api, state, props }),
-    openDialog: openDialog({ api, emit, props, state }),
+    openDialog: openDialog({ api, emit, props, state, nextTick }),
     initDisplay: initDisplay({ api, constants, props, state, nextTick }),
     handleSearch: handleSearch({ api, props, state, vm, constants }),
     computedTreeOp: computedTreeOp({ api, constants }),
@@ -182,7 +185,8 @@ const initApi = ({ api, props, state, parent, vm, emit, popper, constants, nextT
     selectedBoxClear: selectedBoxClear(api),
     selectedBoxDelete: selectedBoxDelete(api),
     selectedBoxDrag: selectedBoxDrag({ props, state }),
-    radioChangeFn: radioChangeFn({ props, api })
+    radioChangeFn: radioChangeFn({ props, api }),
+    computedTreeMaxHeight: computedTreeMaxHeight({ vm, state })
   })
 
   state.search = api.createSearchForm(false)

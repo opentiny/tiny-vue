@@ -30,7 +30,6 @@ export function Modal(options) {
     } else {
       let events = options.events || {}
       let $modal
-
       options.events = Object.assign({}, events, {
         hide(params) {
           events.hide && events.hide.call(this, params)

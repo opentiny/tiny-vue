@@ -60,7 +60,7 @@
         :tabindex="tabindex"
       />
       <transition name="tiny-transition-icon-scale-in">
-        <div class="tiny-search__input-btn" v-if="state.showClear && !state.collapse">
+        <div class="tiny-search__input-btn tiny-icon-close" v-if="state.showClear && !state.collapse">
           <a @click="clear($event)">
             <icon-close @mousedown.prevent class="tiny-svg-size" />
           </a>

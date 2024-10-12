@@ -1,0 +1,21 @@
+export const tinyDrawerOldTheme = {
+  'ti-drawer-padding-bottom': 'var(--ti-common-space-6x)',
+  'ti-drawer-padding-top': 'var(--ti-common-space-6x)',
+  'ti-drawer-divider-footer-border-color': 'var(--ti-drawer-divider-border-color, #dfe1e6)',
+  'ti-drawer-footer-padding-top': 'var(--ti-common-space-5x, 20px)',
+  'ti-drawer-divider-body-border-color': 'var(--ti-common-color-transparent)',
+  'ti-drawer-help-icon-color': 'var(--ti-common-color-info, #252b3a)',
+  'ti-drawer-btn-position-right': 'var(--ti-common-space-5x, 20px)',
+  'ti-drawer-btn-position-top': 'var(--ti-common-space-5x, 20px)',
+  'ti-drawer-close-icon-color': 'var(--ti-common-color-icon-normal, #575d6c)',
+  'ti-drawer-close-icon-size': 'var(--ti-common-font-size-1, 14px)',
+  'ti-drawer-btn-height': 'var(--ti-drawer-btn-width)',
+  'ti-drawer-btn-width': 'var(--ti-common-size-8x, 32px)',
+  'ti-drawer-head-title-text-color': 'var(--ti-common-text-primary, #252b3a)',
+  'ti-drawer-head-title-font-size': 'var(--ti-common-font-size-2, 16px)',
+  'ti-drawer-header-padding-bottom': 'var(--ti-common-space-5x, 20px)',
+  'ti-drawer-divider-border-color': 'var(--ti-common-color-line-dividing, #dfe1e6)',
+  'ti-drawer-shadow': 'var(--ti-common-shadow-4-down, 0 8px 40px 0 rgba(0, 0, 0, 0.2))',
+  'ti-drawer-mask-bg-color': 'rgba(0, 0, 0, 0.3)',
+  'ti-drawer-padding-right': 'var(--ti-common-space-10x, 40px)'
+}

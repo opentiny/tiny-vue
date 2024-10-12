@@ -30,7 +30,7 @@ export default {
           pageSize: 5,
           total: 0,
           pageSizes: [5, 10, 15, 20],
-          layout: 'total, prev, pager, next, jumper, sizes'
+          layout: 'total, sizes, prev, pager, next, jumper'
         }
       },
       cityFilter: {

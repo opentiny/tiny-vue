@@ -1,11 +1,10 @@
 <template>
   <tiny-grid ref="gridRef" :data="tableData">
-    <tiny-grid-column type="index" width="60"></tiny-grid-column>
     <tiny-grid-column type="selection" width="80">
       <template #dropdown>
-        <tiny-dropdown class="ml-6" title="" @item-click="itemClick">
+        <tiny-dropdown title="" @item-click="itemClick">
           <template #dropdown>
-            <tiny-dropdown-menu placement="top">
+            <tiny-dropdown-menu placement="bottom">
               <tiny-dropdown-item :item-data="{ name: 'selectCurPage' }"> 选择本页数据 </tiny-dropdown-item>
               <tiny-dropdown-item :item-data="{ name: 'selectAllPage' }"> 选择全部数据 </tiny-dropdown-item>
               <tiny-dropdown-item :item-data="{ name: 'clearCurPage' }"> 取消选择 </tiny-dropdown-item>
@@ -87,9 +86,3 @@ function itemClick({ itemData }) {
   }
 }
 </script>
-
-<style scoped>
-.ml-6 {
-  left: 6px;
-}
-</style>

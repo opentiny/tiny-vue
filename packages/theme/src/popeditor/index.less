@@ -19,10 +19,6 @@
 @dialog-box-prefix-cls: ~'@{css-prefix}dialog-box';
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
-.@{dialog-box-prefix-cls} {
-  .component-css-vars-popeditor();
-}
-
 .@{popeditor-prefix-cls} {
   .component-css-vars-popeditor();
 
@@ -107,12 +103,6 @@
     }
   }
 
-  .@{dialog-box-prefix-cls} {
-    .@{dialog-box-prefix-cls}__body {
-      padding: 8px 8px 0;
-    }
-  }
-
   &-top {
     .@{popeditor-prefix-cls}__search-lists {
       width: 100%;
@@ -135,9 +125,18 @@
         margin-bottom: var(--ti-popeditor-search-item-margin-bottom);
 
         .@{popeditor-prefix-cls}__search-label {
-          text-align: right;
+          text-align: var(--ti-popeditor-search-item-text-align);
           padding-right: 8px;
           font-size: var(--ti-common-font-size-base);
+          width: var(--ti-popeditor-search-item-width);
+        }
+
+        &:nth-child(2n + 1) {
+          padding-right: var(--ti-popeditor-search-item-padding-right);
+        }
+
+        &:nth-child(2n) {
+          padding-left: var(--ti-popeditor-search-item-padding-left);
         }
       }
 
@@ -148,8 +147,9 @@
 
     .@{popeditor-prefix-cls}__search-footer {
       width: 100%;
-      text-align: center;
-      margin: var(--ti-popeditor-search-footer-margin-vertical) var(--ti-popeditor-search-footer-margin-horizontal);
+      text-align: var(--ti-popeditor-search-footer-text-align);
+      margin: var(--ti-popeditor-search-footer-margin-top) var(--ti-popeditor-search-footer-margin-horizontal)
+        var(--ti-popeditor-search-footer-margin-bottom);
     }
   }
 
@@ -159,10 +159,19 @@
     justify-content: space-between;
     align-items: flex-start;
 
+    &__left {
+      padding: var(--ti-popeditor-tabs-body-left-padding-top) var(--ti-popeditor-tabs-body-left-padding-right)
+        var(--ti-popeditor-tabs-body-left-padding-bottom) var(--ti-popeditor-tabs-body-left-padding-left);
+    }
+    
+    &__right {
+      padding: var(--ti-popeditor-tabs-body-right-padding-top) var(--ti-popeditor-tabs-body-right-padding-right)
+        var(--ti-popeditor-tabs-body-right-padding-bottom) var(--ti-popeditor-tabs-body-right-padding-left);
+    }
+
     &__left,
     &__right {
       width: 50%;
-      padding: var(--ti-popeditor-tabs-body-padding-vertical) var(--ti-popeditor-tabs-body-padding-horizontal);
       vertical-align: top;
 
       &.@{popeditor-prefix-cls}-body__radio {
@@ -174,7 +183,7 @@
       .@{popeditor-prefix-cls}__tabs-head {
         white-space: nowrap;
         margin: 0;
-        padding: 0 10px;
+        padding: 0 var(--ti-popeditor-tabs-header-padding-horizontal);
         overflow: hidden;
         height: var(--ti-popeditor-tabs-li-height);
         width: 100%;
@@ -193,7 +202,9 @@
             color: var(--ti-popeditor-tabs-text-color);
             min-width: 90px;
             height: var(--ti-popeditor-tabs-li-height);
-            line-height: var(--ti-popeditor-tabs-li-height);
+            line-height: var(--ti-popeditor-tabs-li-line-height);
+            font-size: var(--ti-popeditor-tabs-font-size);
+            margin-right: var(--ti-popeditor-tabs-li-margin-right);
 
             &.@{popeditor-prefix-cls}__tabs-selected {
               color: var(--ti-popeditor-tabs-selected-text-color);
@@ -210,6 +221,7 @@
             var(--ti-popeditor-tabs-body-item-padding-bottom);
 
           .@{pager-prefix-cls} {
+            padding-top: var(--ti-popeditor-pager-padding-top);
             padding-bottom: 0;
           }
         }
@@ -217,7 +229,34 @@
     }
   }
 
-  &_filter-input {
-    margin-bottom: 20px;
+  &__tree {
+    .@{popeditor-prefix-cls}__filter-input {
+      margin-bottom: 20px;
+
+       .tiny-input__inner {
+        padding-left: var(--ti-popeditor-tree-input-padding-left);
+        padding-right: var(--ti-popeditor-tree-input-padding-right);
+      }
+
+      .tiny-input__prefix {
+        visibility: var(--ti-popeditor-tree-input-prefix-visibility);
+      }
+      .tiny-input__suffix {
+        visibility: var(--ti-popeditor-tree-input-sufffix-visibility);
+      }
+    }
+
+    &-wrapper {
+      overflow: auto;
+    }
+  }
+}
+
+.@{popeditor-prefix-cls}__dialog-box {
+  .component-css-vars-popeditor();
+
+  .@{dialog-box-prefix-cls}__footer {
+    text-align: var(--ti-popeditor-footer-text-align);
+    padding-top: var(--ti-popeditor-footer-padding-top);
   }
 }

@@ -13,6 +13,6 @@ test('测试按钮文字', async ({ page }) => {
   await expect(demo.locator('.tiny-button').nth(5)).toHaveClass(/tiny-button--text/)
 
   // 纯文本和图标加文本的字体颜色不一样
-  await expect(demo.locator('.tiny-button').nth(2)).toHaveCSS('color', 'rgb(94, 124, 224)')
-  await expect(demo.locator('.tiny-button').nth(4)).toHaveCSS('color', 'rgb(37, 43, 58)')
+  await expect(demo.locator('.tiny-button').nth(2)).toHaveCSS('color', 'rgb(20, 118, 255)')
+  await expect(demo.locator('.tiny-button').nth(4)).toHaveCSS('color', 'rgb(25, 25, 25)')
 })

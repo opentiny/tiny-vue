@@ -17,124 +17,118 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{milestone-prefix-cls} {
-  .component-css-vars-milestone();
+  .inject-Milestone-vars();
 
   overflow: hidden;
   padding-top: 38px;
 
+  /* 节点本身 */
   & &__node {
-    display: block;
     float: left;
+    display: block;
 
     &::before {
-      content: '';
-      width: 28px;
-      height: 28px;
-      display: block;
       position: relative;
+      display: block;
       left: ~'calc(50% - 14px)';
       top: 28px;
       z-index: 15;
+      content: '';
+      width: 28px;
+      height: 28px;
     }
 
     &.is-solid {
       &::before {
-        background: var(--ti-milestone-bg-color);
+        background: var(--tv-Milestone-bg-color);
       }
 
       .@{svg-prefix-cls} {
-        fill: var(--ti-milestone-bg-color);
+        fill: #fff;
       }
     }
 
     .iconfix {
-      font-size: var(--ti-common-font-size-4);
+      font-size: 20px;
     }
   }
 
+  /* 图标节点 */
   & &__icon {
-    background: var(--ti-milestone-bg-color);
-    width: var(--ti-milestone-icon-width, 20px);
-    height: var(--ti-milestone-icon-height, 20px);
-    line-height: var(--ti-milestone-icon-height, 20px);
     position: relative;
-    font-size: var(--ti-milestone-font-size, 12px);
+    left: var(--tv-Milestone-icon-left);
+    top: var(--tv-Milestone-icon-top);
+    width: var(--tv-Milestone-icon-width);
+    height: var(--tv-Milestone-icon-height);
+    line-height: var(--tv-Milestone-icon-height);
+    font-size: var(--tv-Milestone-font-size);
     text-align: center;
-    left: ~'calc(50% - 10px)';
-    top: 4px;
     border-radius: 50%;
-    color: var(--ti-milestone-text-color);
+    color: #191919;
+    background: #fff;
     cursor: pointer;
     z-index: 15;
+    border: var(--tv-Milestone-icon-border-width) solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .@{svg-prefix-cls} {
+      font-size: var(--tv-Milestone-icon-size);
+      fill: var(--tv-Milestone-icon-color);
+      vertical-align: baseline;
+    }
 
     &.is-completed {
-      border: 2px solid;
+      border: var(--tv-Milestone-icon-border-width-completed) solid;
+    }
+  }
 
-      .@{svg-prefix-cls} {
-        fill: #1890ff;
-        vertical-align: baseline;
-      }
+  /* 节点线 */
+  & &__node.node-status-completed {
+    .@{milestone-prefix-cls}__line {
+      background-color: var(--tv-Milestone-line-bg-color-completed);
     }
   }
 
   & &__line {
-    height: 4px;
-    left: 50%;
-    top: -8px;
     position: relative; // 里程碑线条不区分状态
-    background: var(--ti-milestone-line-bg-color);
-  }
+    left: var(--tv-Milestone-line-left);
+    top: var(--tv-Milestone-line-top);
+    height: var(--tv-Milestone-line-height);
+    width: var(--tv-Milestone-line-width);
+    background-color: var(--tv-Milestone-line-bg-color);
 
-  & &__line-end {
-    width: 0;
-  }
-
-  & &__description {
-    line-height: 14px;
-    margin-top: 8px;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-  }
-
-  & &__description-name {
-    width: 100%;
-    color: #333;
-    font-size: var(--ti-milestone-font-size);
-    float: left;
-  }
-
-  & &__description-status {
-    color: var(--ti-milestone-status-text-color);
-    font-size: var(--ti-milestone-font-size);
-    float: left;
-    width: 100%;
-  }
-
-  & &__flag-tip {
-    position: fixed;
-    padding: 2px 4px;
-    line-height: var(--ti-milestone-flag-tip-line-height);
-    background: var(--ti-milestone-flag-tip-bg-color);
-    border-radius: var(--ti-milestone-flag-tip-border-radius);
-    border: solid 1px var(--ti-milestone-flag-tip-bg-color);
-    text-align: center;
-    word-wrap: break-word;
-
-    &::before {
-      position: absolute;
+    &-end {
       width: 0;
-      height: 0;
-      border-style: solid;
-      border: 1px solid;
-      border-width: 8px 8px 0px 8px;
-      border-color: #d9d9d9 transparent;
-      content: '';
-      left: ~'calc(50% - 4px)';
-      bottom: -6px;
     }
   }
 
+  /* 横向节点下方部分 */
+  & &__description {
+    position: relative;
+    line-height: 14px;
+    margin-top: 8px;
+    overflow: hidden;
+    text-align: center;
+    // 标题
+    &-name {
+      float: left;
+      width: 100%;
+      color: #333;
+      font-size: var(--tv-Milestone-font-size);
+    }
+    // 日期
+    &-status {
+      float: left;
+      margin-top: 4px;
+      width: 100%;
+      color: var(--tv-Milestone-status-text-color);
+      font-size: var(--tv-Milestone-status-font-size);
+    }
+  }
+
+  /* 旗子部分 */
   & &__flag {
     position: absolute;
     left: ~'calc(50% - 29px)';
@@ -146,50 +140,57 @@
     &:hover {
       z-index: 2;
     }
-  }
 
-  & &__flag-content {
-    width: 58px;
-    height: 34px;
-    padding: 0px;
-    line-height: 15px;
-    font-size: var(--ti-milestone-flag-content-font-size);
-    border-radius: var(--ti-milestone-flag-content-border-radius);
-    color: var(--ti-milestone-text-color);
-    background: #333;
-    cursor: pointer;
-    vertical-align: middle;
-    display: table-cell;
+    &-content {
+      display: table-cell;
+      vertical-align: middle;
+      width: var(--tv-Milestone-flag-width);
+      height: var(--tv-Milestone-flag-height);
+      padding: var(--tv-Milestone-flag-padding);
+      line-height: var(--tv-Milestone-flag-line-height);
+      font-size: var(--tv-Milestone-flag-font-size);
+      border-radius: var(--tv-Milestone-flag-border-radius);
+      color: var(--tv-Milestone-text-color);
+      background-color: var(--tv-Milestone-flag-bg-color);
+      cursor: pointer;
 
-    p {
-      color: var(--ti-milestone-text-color);
-      width: 58px;
-      font-size: var(--ti-milestone-flag-font-size);
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      padding: 0 4px;
-      margin: 0;
-      box-sizing: border-box;
+      p {
+        color: var(--tv-Milestone-text-color);
+        width: var(--tv-Milestone-flag-width);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .@{milestone-prefix-cls}__flag-name {
+        font-weight: var(--tv-Milestone-flag-name-font-weight);
+      }
+
+      .@{milestone-prefix-cls}__flag-desc {
+        color: var(--tv-Milestone-flag-desc-text-color);
+        font-size: var(--tv-Milestone-flag-desc-font-size);
+      }
     }
   }
 
+  /* 旗子线部分 */
   & &__flag-line {
     height: 30px;
     width: 1px;
-    margin-left: 50%;
-    background: #333;
+    margin-left: var(--tv-Milestone-flag-line-margin-left);
+    background: var(--tv-Milestone-flag-line-bg-color);
   }
 
   & &__dot {
-    display: block;
-    background: var(--ti-milestone-flag-line-color);
-    border: solid 1px;
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
     position: relative;
     bottom: -29px;
     right: 2px;
+    display: var(--tv-Milestone-dot-display);
+    width: 5px;
+    height: 5px;
+    border: solid 1px;
+    border-radius: 50%;
   }
 }

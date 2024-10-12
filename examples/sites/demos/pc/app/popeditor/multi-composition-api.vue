@@ -6,6 +6,7 @@
       show-history
       text-field="name"
       value-field="id"
+      :conditions="conditions"
       :multi="true"
       value-split="@"
       text-split="@"
@@ -80,6 +81,11 @@ const dataset = [
     city: '深圳'
   }
 ]
+
+const conditions = ref([
+  { label: '公司名', field: 'name' },
+  { label: '城市', field: 'city' }
+])
 
 const value = ref('')
 const gridOp = ref({

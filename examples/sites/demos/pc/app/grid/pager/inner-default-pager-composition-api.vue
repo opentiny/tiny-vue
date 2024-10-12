@@ -21,7 +21,7 @@ const pagerConfig = ref({
     pageSizes: [5, 10],
     total: 0,
     align: 'right', // 可选值：['left', 'center', 'right']
-    layout: 'total, prev, pager, next, jumper, sizes'
+    layout: 'total, sizes, prev, pager, next, jumper'
   }
 })
 const fetchData = ref({

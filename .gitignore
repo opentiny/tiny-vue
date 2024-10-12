@@ -64,6 +64,8 @@ packages/theme/scripts/theme-result.txt
 packages/theme/scripts/themeExcel.xlsx
 
 packages/theme/src/theme/*-theme/component.js
+packages/theme/src/aurora-theme
+packages/theme/src/smb-theme
 
 pnpm-lock.yaml
 gulp/bundle.json

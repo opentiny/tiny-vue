@@ -11,14 +11,17 @@ export default {
       text: '自定义 loading 类名',
       customClass: 'new-loading',
       target: document.getElementById('tiny-demo-loading-custom-class'),
-      background: 'rgba(0, 0, 0, 0.7)'
+      background: '#595959'
     })
   }
 }
 </script>
 
-<style>
-.new-loading .tiny-loading__spinner .tiny-loading__text {
+<style scoped>
+:deep(.tiny-loading__spinner > .tiny-svg.circular) {
+  fill: #fff;
+}
+:deep(.new-loading .tiny-loading__spinner > .tiny-loading__text) {
   color: #fff;
 }
 #tiny-demo-loading-custom-class {

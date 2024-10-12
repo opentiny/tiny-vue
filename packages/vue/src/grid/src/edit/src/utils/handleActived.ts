@@ -29,7 +29,7 @@ export function handleActivedCheckCell({ actived, column, editConfig, row }) {
 }
 
 export function handleActivedCanActive({ editConfig, params }) {
-  return !editConfig.activeMethod || editConfig.activeMethod(params)
+  return !editConfig?.activeMethod || editConfig.activeMethod(params)
 }
 
 export function handleActivedDoActive({

@@ -23,7 +23,7 @@ function getImageData() {
 }
 function getCanvasData() {
   Modal.message({
-    message: `画布位置和大小数据: ${JSON.stringify(this.$refs.crop.getCanvasData())}`,
+    message: `画布位置和大小数据: ${JSON.stringify(cropRef.value.getCanvasData())}`,
     status: 'info'
   })
 }

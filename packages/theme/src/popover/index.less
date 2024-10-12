@@ -30,6 +30,7 @@
   text-align: justify;
   font-size: var(--ti-popover-font-size);
   font-family: var(--ti-popover-font-family);
+  font-weight: var(--ti-popover-font-weight);
   box-shadow: var(--ti-popover-box-shadow);
   word-break: break-all;
 
@@ -139,8 +140,9 @@
   .@{popover-prefix-cls}__title {
     color: var(--ti-popover-title-text-color);
     font-size: var(--ti-popover-title-font-size);
+    font-weight: var(--ti-popover-title-weight);
     line-height: 1;
-    margin-bottom: 12px;
+    margin-bottom: var(--ti-popover-title-padding-bottom);
   }
 
   &:focus,

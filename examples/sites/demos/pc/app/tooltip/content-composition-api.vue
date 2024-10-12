@@ -16,7 +16,10 @@
       使用 content 插槽：
       <tiny-tooltip placement="top" effect="light">
         <template #content>
-          <div><Icon-operationfaild class="red" /> 该网段不可用！可用网段：163</div>
+          <div>
+            <Icon-operationfaild class="red" /> 该网段不可用！可用网段：163。
+            <tiny-link>了解详情</tiny-link>
+          </div>
         </template>
         <button class="tiny-button tiny-button--primary">校验错误</button>
       </tiny-tooltip>
@@ -25,7 +28,7 @@
 </template>
 
 <script setup lang="jsx">
-import { Tooltip as TinyTooltip } from '@opentiny/vue'
+import { Tooltip as TinyTooltip, Link as TinyLink } from '@opentiny/vue'
 import { iconOperationfaild } from '@opentiny/vue-icon'
 
 const IconOperationfaild = iconOperationfaild()
@@ -47,5 +50,6 @@ function renderContent(h, content) {
 .red {
   color: #f23030;
   fill: #f23030;
+  font-size: 16px;
 }
 </style>

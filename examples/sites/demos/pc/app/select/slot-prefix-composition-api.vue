@@ -1,7 +1,7 @@
 <template>
   <tiny-select v-model="value" multiple collapse-tags>
     <template #prefix>
-      <tiny-icon-share></tiny-icon-share>
+      <tiny-icon-location></tiny-icon-location>
     </template>
     <tiny-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </tiny-option>
   </tiny-select>
@@ -10,7 +10,7 @@
 <script setup>
 import { ref } from 'vue'
 import { Select as TinySelect, Option as TinyOption } from '@opentiny/vue'
-import { iconShare } from '@opentiny/vue-icon'
+import { iconLocation } from '@opentiny/vue-icon'
 
 const options = ref([
   { value: '选项1', label: '北京' },
@@ -21,7 +21,7 @@ const options = ref([
 ])
 const value = ref('')
 
-const TinyIconShare = iconShare()
+const TinyIconLocation = iconLocation()
 </script>
 
 <style lang="less" scoped>

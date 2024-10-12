@@ -1,12 +1,15 @@
 {
   "name": "@opentiny/vue-link",
-  "type": "module",
-  "version": "3.18.1",
+  "version": "3.18.0",
   "description": "",
-  "license": "MIT",
-  "sideEffects": false,
   "main": "lib/index.js",
   "module": "index.ts",
+  "sideEffects": false,
+  "type": "module",
+  "devDependencies": {
+    "@opentiny-internal/vue-test-utils": "workspace:*",
+    "vitest": "^0.31.0"
+  },
   "scripts": {
     "build": "pnpm -w build:ui $npm_package_name",
     "//postversion": "pnpm build"
@@ -16,8 +19,5 @@
     "@opentiny/vue-renderless": "workspace:~",
     "@opentiny/vue-theme": "workspace:~"
   },
-  "devDependencies": {
-    "@opentiny-internal/vue-test-utils": "workspace:*",
-    "vitest": "^0.31.0"
-  }
+  "license": "MIT"
 }

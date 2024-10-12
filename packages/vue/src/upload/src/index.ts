@@ -87,6 +87,10 @@ export const uploadProps = {
   tipMessage: {
     type: String,
     default: ''
+  },
+  promptTip: {
+    type: Boolean,
+    default: false
   }
 }
 

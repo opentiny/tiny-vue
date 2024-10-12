@@ -103,9 +103,7 @@ function mergeTreeConfig(_vm) {
 }
 
 const renderEmptyPartFn = (opt) => {
-  const { _vm, tableData } = opt
-  const { $grid = {}, renderEmpty } = _vm
-  const { $slots } = $grid
+  const { _vm, tableData, $slots, renderEmpty } = opt
   return () => {
     let emptyPartVnode = null
     let { computerTableBodyHeight } = _vm
@@ -274,13 +272,21 @@ function getRenderer(opt) {
     visibleColumn
   } = opt
   const { $grid, ctxMenuStore, editRules, filterStore, footerData, footerMethod, hasFilter, hasTip, height, id } = _vm
-  const { isCtxMenu, isResizable, scrollbarHeight, selectToolbarStore, tooltipContentOpts, vaildTipOpts, validOpts } =
-    _vm
+  const {
+    isCtxMenu,
+    isResizable,
+    renderEmpty,
+    scrollbarHeight,
+    selectToolbarStore,
+    tooltipContentOpts,
+    vaildTipOpts,
+    validOpts
+  } = _vm
   const { selectToolbar, renderedToolbar } = $grid
 
   const renderHeader = () =>
     showHeader ? h(GridHeader, { ref: 'tableHeader', props, class: _vm.viewCls('tableHeader') }) : [null]
-  const renderEmptyPart = renderEmptyPartFn({ _vm, tableData })
+  const renderEmptyPart = renderEmptyPartFn({ _vm, tableData, $slots, renderEmpty })
   const renderFooter = renderFooterFn({ _vm, showFooter, footerData, footerMethod, tableColumn, visibleColumn, vSize })
   const renderResizeBar = renderResizeBarFn({ _vm, isResizable, overflowX, scrollbarHeight })
   const arg1 = { hasFilter, optimizeOpts, filterStore, isCtxMenu, ctxMenuStore, hasTip, tooltipContentOpts }
@@ -677,6 +683,8 @@ export default defineComponent({
     renderRowAfter: Function,
     // 所有列是否允许拖动列宽调整大小
     resizable: { type: Boolean, default: () => GlobalConfig.resizable },
+    // 可调整列宽的配置
+    resizableConfig: Object,
     // 给行附加 className
     rowClassName: [String, Function],
     // 行分组配置映射表
@@ -1080,16 +1088,18 @@ export default defineComponent({
       stripeSaas,
       borderSaas,
       isShapeTable,
+      resizableConfig,
       rowSpan
     } = this as any
     let { borderVertical, cardConfig, listConfig, ganttConfig, customConfig } = this
     let { leftList, rightList } = columnStore
-    const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup }
+    const props = { tableData, tableColumn, visibleColumn, collectColumn, size: vSize, isGroup, resizableConfig }
 
     Object.assign(props, { cardConfig, listConfig, ganttConfig, customConfig })
     let args = { $slots: slots, _vm: this, leftList, optimizeOpts, overflowX, props, rightList }
 
     Object.assign(args, { showFooter, showHeader, tableColumn, tableData, vSize, visibleColumn })
+
     const renders = getRenderer(args)
     const { renderHeader, renderEmptyPart, renderFooter } = renders
     const { renderResizeBar, renderPluginWrapper, renderSelectToolbar } = renders

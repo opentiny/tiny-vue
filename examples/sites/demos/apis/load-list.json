@@ -1,0 +1,381 @@
+{
+  "mode": "mf",
+  "attrs": [
+    {
+      "id": "cfg-direction",
+      "name": "direction",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "String"
+      },
+      "desc": [
+        {
+          "content": "滚动触发加载的方向，可选值为 `up`，默认值 `down`",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    },
+    {
+      "id": "cfg-offset",
+      "name": "offset",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "Number / String"
+      },
+      "desc": [
+        {
+          "content": "滚动条与底部距离小于 offset 时触发 load 事件，默认值 `300`",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    },
+    {
+      "id": "cfg-disabled",
+      "name": "disabled",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "Boolean"
+      },
+      "desc": [
+        {
+          "content": "是否禁用滚动加载，默认值 false",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/disabled"
+    },
+    {
+      "id": "cfg-scroller",
+      "name": "scroller",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "Object"
+      },
+      "desc": [
+        {
+          "content": "指定需要监听滚动事件的节点，默认为最近的父级滚动节点",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    },
+    {
+      "id": "cfg-immediate-check",
+      "name": "immediate-check",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "Boolean"
+      },
+      "desc": [
+        {
+          "content": "是否在初始化时立即执行滚动位置检查，默认值 `true`",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    },
+    {
+      "id": "cfg-error",
+      "name": "error",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "Boolean"
+      },
+      "desc": [
+        {
+          "content": "是否加载失败，加载失败后点击错误提示可以重新触发 `load` 事件，默认值 `false`",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/error-text"
+    },
+    {
+      "id": "cfg-error-text",
+      "name": "error-text",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "String"
+      },
+      "desc": [
+        {
+          "content": "加载失败的提示文案",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/error-text"
+    },
+    {
+      "id": "cfg-loading",
+      "name": "loading",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "Boolean"
+      },
+      "desc": [
+        {
+          "content": "是否处于加载状态，加载过程中不触发 `load` 事件，默认值 `false`",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    },
+    {
+      "id": "cfg-loading-text",
+      "name": "loading-text",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "String"
+      },
+      "desc": [
+        {
+          "content": "加载过程中的提示文案",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    },
+    {
+      "id": "cfg-finished",
+      "name": "finished",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "Boolean"
+      },
+      "desc": [
+        {
+          "content": "是否已加载完成，加载完成后不再触发 `load` 事件，默认值 `false`",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    },
+    {
+      "id": "cfg-finished-text",
+      "name": "finished-text",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "String"
+      },
+      "desc": [
+        {
+          "content": "加载完成后的提示文案",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    },
+    {
+      "id": "cfg-delay",
+      "name": "delay",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "cfg",
+      "type": {
+        "aui3": "Number / String"
+      },
+      "desc": [
+        {
+          "content": "触发 `load` 事件时的节流延时，默认值 `100`",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/delay"
+    }
+  ],
+  "slots": [
+    {
+      "id": "slot-default",
+      "name": "default",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "slot",
+      "type": {},
+      "desc": [
+        {
+          "content": "默认插槽，用于定制渲染列表区域",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/slots"
+    },
+    {
+      "id": "slot-loading",
+      "name": "loading",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "slot",
+      "type": {},
+      "desc": [
+        {
+          "content": "加载中插槽，用于定制加载中提示区域",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/slots"
+    },
+    {
+      "id": "slot-finished",
+      "name": "finished",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "slot",
+      "type": {},
+      "desc": [
+        {
+          "content": "已加载完成插槽，用于定制加载完成提示区域",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/slots"
+    },
+    {
+      "id": "slot-error",
+      "name": "error",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "slot",
+      "type": {},
+      "desc": [
+        {
+          "content": "加载失败插槽，用于定制加载失败提示区域",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/slots"
+    }
+  ],
+  "methods": [
+    {
+      "id": "method-check",
+      "name": "check()",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "method",
+      "type": {},
+      "desc": [
+        {
+          "content": "手动触发列表滚动位置检查",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/disabled"
+    }
+  ],
+  "events": [
+    {
+      "id": "event-load",
+      "name": "load",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "event",
+      "type": {
+        "aui3": "Function()"
+      },
+      "desc": [
+        {
+          "content": "当列表底部和滚动容器边界之间的距离小于值 `offset` 时，列表组件会触发 `load` 事件",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    },
+    {
+      "id": "event-update:error",
+      "name": "update:error",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "event",
+      "type": {
+        "aui3": "Function()"
+      },
+      "desc": [
+        {
+          "content": "加载失败后点击错误提示可以重新触发 `load` 事件，组件会抛出此事件",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    },
+    {
+      "id": "event-update:loading",
+      "name": "update:loading",
+      "version": "5.2",
+      "owner": [
+        "aui3"
+      ],
+      "tagname": "event",
+      "type": {
+        "aui3": "Function()"
+      },
+      "desc": [
+        {
+          "content": "当列表底部和滚动容器边界之间的距离小于值 `offset` 时，列表组件会触发 `load` 事件并抛出此事件",
+          "type": "string"
+        }
+      ],
+      "sample": "#/webnova/zh-CN/component/load-list/basic-usage"
+    }
+  ]
+}

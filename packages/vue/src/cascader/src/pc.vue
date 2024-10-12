@@ -165,10 +165,11 @@
               :class="['tiny-cascader__suggestion-item', item.checked && 'is-checked']"
               :tabindex="-1"
               @click="handleSuggestionClick(index)"
+              v-highlight-query="state.multiple ? state.presentText : state.inputValue"
             >
               <!-- <span v-html="item.text"></span> -->
               <slot name="filter" :item="item.text">
-                {{ item.text }}
+                <span>{{ item.text }}</span>
               </slot>
               <icon-yes v-if="item.checked" class="icon-check"></icon-yes>
             </li>
@@ -189,6 +190,7 @@ import { renderless, api } from '@opentiny/vue-renderless/cascader/vue'
 import { props, setup, defineComponent, directive } from '@opentiny/vue-common'
 
 import Clickoutside from '@opentiny/vue-renderless/common/deps/clickoutside'
+import { HighlightQuery } from '@opentiny/vue-directive'
 
 // 没有进行vue3，vue2适配
 import Input from '@opentiny/vue-input'
@@ -197,7 +199,7 @@ import Scrollbar from '@opentiny/vue-scrollbar'
 import CascaderPanel from '@opentiny/vue-cascader-panel'
 import FilterBox from '@opentiny/vue-filter-box'
 import Tooltip from '@opentiny/vue-tooltip'
-import { iconClose, iconChevronDown, iconChevronUp, iconYes } from '@opentiny/vue-icon'
+import { iconClose, IconTriangleDown, IconUpWard, iconYes } from '@opentiny/vue-icon'
 import '@opentiny/vue-theme/cascader/index.less'
 
 export default defineComponent({
@@ -244,7 +246,7 @@ export default defineComponent({
     'remove-tag',
     'created'
   ],
-  directives: directive({ Clickoutside }),
+  directives: { ...directive({ Clickoutside }), HighlightQuery },
   provide() {
     return {
       cascaderRoot: this
@@ -257,8 +259,8 @@ export default defineComponent({
     TinyFilterBox: FilterBox,
     TinyCascaderPanel: CascaderPanel,
     IconClose: iconClose(),
-    IconChevronDown: iconChevronDown(),
-    IconChevronUp: iconChevronUp(),
+    IconChevronDown: IconTriangleDown(),
+    IconChevronUp: IconUpWard(),
     IconYes: iconYes(),
     TinyTooltip: Tooltip
   },

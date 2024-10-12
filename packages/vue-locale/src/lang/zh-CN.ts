@@ -125,8 +125,15 @@ export default {
       empty: '暂无'
     },
     crop: {
-      cropImage: '图片裁剪',
-      croppedImage: '裁剪后图像'
+      choose: '选择图片',
+      zoomOut: '缩小10%',
+      zoomIn: '放大10%',
+      rotate_45: '逆时针旋转45°',
+      rotate45: '顺时针旋转45°',
+      closeCropArea: '隐藏选区',
+      reset: '重置视图',
+      closeCrop: '退出裁剪',
+      cropImage: '选择区域'
     },
     datepicker: {
       clear: '清空',
@@ -220,7 +227,9 @@ export default {
       img: '图片',
       color: '颜色',
       table: '表格',
-      backgroundColor: '文字背景色'
+      backgroundColor: '文字背景色',
+      localResources: '本地资源',
+      resourceLink: '资源链接'
     },
     calendar: {
       showType: {
@@ -291,7 +300,7 @@ export default {
       calcHash: '文档正在计算加密中',
       uploadFile: '文件上传',
       downloadAll: '全部下载',
-      onlySupport: '仅支持{type}格式文件',
+      onlySupport: '支持{type}格式文件',
       fileNotLessThan: '单个文件不能小于',
       fileNotMoreThan: '单个文件不能超过',
       fileSizeRange: '单个文件大小需在{moreThan}~{lessThan}之间',
@@ -767,6 +776,11 @@ export default {
     },
     dialogSelect: {
       treeSearch: '请输入关键字并回车'
+    },
+    loadList: {
+      errorText: '出错了',
+      loadingText: '加载中...',
+      finishedText: '没有更多了'
     }
   },
   validation: {

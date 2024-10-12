@@ -1,7 +1,7 @@
 export default {
   column: '1',
   owner: '',
-  metaData: {
+  meta: {
     experimental: '3.11.0'
   },
   demos: [

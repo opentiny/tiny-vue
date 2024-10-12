@@ -67,7 +67,7 @@
       class="tiny-date-editor tiny-range-editor tiny-input tiny-input__inner"
       :class="[
         'tiny-date-editor--' + state.type,
-        state.pickerSize ? `tiny-range-editor--${state.pickerSize}` : '',
+        state.pickerSize ? `tiny-range-editor--${state.pickerSize} tiny-input-${state.pickerSize}` : '',
         state.pickerDisabled ? 'is-disabled' : '',
         state.pickerVisible ? 'is-active' : '',
         state.isDisplayOnly ? 'is-display-only' : ''
@@ -117,13 +117,21 @@
         @focus="handleFocus"
         class="tiny-range-input"
       />
-      <i @click="handleClickIcon" v-if="state.haveTrigger" class="tiny-input__icon tiny-range__close-icon">
+      <i class="tiny-input__icon tiny-input__icon">
         <transition name="tiny-transition-icon-scale-in">
-          <component :is="state.showClose ? clearIcon : null" />
+          <div v-if="state.haveTrigger" class="tiny-range__close-box">
+            <component
+              :is="state.showClose ? clearIcon : null"
+              @click="handleClickIcon"
+              class="baseClearicon tiny-range__close-icon"
+            />
+          </div>
         </transition>
-      </i>
-      <i class="tiny-input__icon tiny-range__icon tiny-input__suffix" v-if="!state.isDisplayOnly">
-        <component :is="state.triggerClass" />
+        <component
+          v-if="!state.isDisplayOnly"
+          :is="state.triggerClass"
+          class="tiny-input__icon tiny-range__icon tiny-input__suffix"
+        />
       </i>
       <tiny-tooltip
         class="tiny-range-editor-display-only"
@@ -142,12 +150,15 @@
       :show-week-number="showWeekNumber"
       :time-editable="timeEditable"
       :format-weeks="formatWeeks"
+      :now-click="nowClick"
       ref="picker"
       :visible="state.pickerVisible"
       @pick="handlePick"
       @select-range="handleSelectRange"
       @select-change="handleSelectChange"
-    ></component>
+    >
+      <slot name="now"></slot>
+    </component>
   </div>
 </template>
 

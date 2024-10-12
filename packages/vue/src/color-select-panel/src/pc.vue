@@ -4,14 +4,14 @@
     <alpha-select v-if="alpha" :color="state.color" @alpha-update="onAlphaUpdate" />
     <div class="tiny-color-select-panel__tools">
       <tiny-input v-model="state.res" size="small" />
-      <tiny-button-group>
+      <div class="tiny-color-select-panel__tools-btns">
         <tiny-button size="small" @click="onCancel">
           {{ t('ui.colorSelectPanel.cancel') }}
         </tiny-button>
-        <tiny-button size="small" @click="onConfirm">
+        <tiny-button type="primary" size="small" @click="onConfirm">
           {{ t('ui.colorSelectPanel.confirm') }}
         </tiny-button>
-      </tiny-button-group>
+      </div>
     </div>
     <tiny-collapse>
       <tiny-collapse-item :title="t('ui.colorSelectPanel.history')" name="history" v-if="state.enableHistory">
@@ -52,7 +52,6 @@
 
 <script>
 import Button from '@opentiny/vue-button'
-import ButtonGroup from '@opentiny/vue-button-group'
 import Collapse from '@opentiny/vue-collapse'
 import CollapseItem from '@opentiny/vue-collapse-item'
 import Input from '@opentiny/vue-input'
@@ -70,7 +69,6 @@ export default defineComponent({
     HueSelect,
     AlphaSelect,
     TinyButton: Button,
-    TinyButtonGroup: ButtonGroup,
     TinyInput: Input,
     TinyCollapse: Collapse,
     TinyCollapseItem: CollapseItem

@@ -196,6 +196,7 @@ import IconHideLeft from './src/hide-left'
 import IconHideRight from './src/hide-right'
 import IconHideTopleft from './src/hide-topleft'
 import IconImport from './src/import'
+import IconImageError from './src/image-error'
 import IconInfoCircle from './src/info-circle'
 import IconInfoSolid from './src/info-solid'
 import IconInfo from './src/info'
@@ -1058,6 +1059,8 @@ export {
   IconHideTopleft as iconHideTopleft,
   IconImport,
   IconImport as iconImport,
+  IconImageError,
+  IconImageError as iconImageError,
   IconInfoCircle,
   IconInfoCircle as iconInfoCircle,
   IconInfoSolid,
@@ -1808,6 +1811,7 @@ export default {
   IconHideRight,
   IconHideTopleft,
   IconImport,
+  IconImageError,
   IconInfoCircle,
   IconInfoSolid,
   IconInfo,

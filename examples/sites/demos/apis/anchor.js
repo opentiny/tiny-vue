@@ -1,5 +1,5 @@
 export default {
-  mode: ['pc'],
+  mode: ['pc', 'mobile-first'],
   apis: [
     {
       name: 'anchor',
@@ -15,8 +15,9 @@ export default {
             'en-US':
               'When used in single page hash routing mode, specify the id value of the scrolling container. If the id is empty, the scrolling container defaults to the body element of the root node of the HTML document'
           },
-          mode: ['pc'],
-          pcDemo: 'set-container'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'set-container',
+          mfDemo: 'set-container'
         },
         {
           name: 'is-affix',
@@ -26,8 +27,9 @@ export default {
             'zh-CN': '固定模式',
             'en-US': 'Fixed mode'
           },
-          mode: ['pc'],
-          pcDemo: 'is-affix'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'is-affix',
+          mfDemo: 'set-container'
         },
         {
           name: 'links',
@@ -38,8 +40,9 @@ export default {
             'zh-CN': '导航数据配置项，可通过 children 嵌套',
             'en-US': 'Navigation data configuration items can be nested through children'
           },
-          mode: ['pc'],
-          pcDemo: 'basic-usage'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'basic-usage',
+          mfDemo: 'set-container'
         },
         {
           name: 'mark-class',
@@ -49,8 +52,9 @@ export default {
             'zh-CN': '自定义滚动的目标元素类名',
             'en-US': 'Class name of the customized scrolling target element'
           },
-          mode: ['pc'],
-          pcDemo: 'set-container'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'set-container',
+          mfDemo: 'set-container'
         },
         {
           name: 'type',
@@ -60,8 +64,9 @@ export default {
             'zh-CN': '锚点类型',
             'en-US': 'Anchor type'
           },
-          mode: ['pc'],
-          pcDemo: 'basic-usage'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'basic-usage',
+          mfDemo: 'set-container'
         }
       ],
       events: [
@@ -73,8 +78,9 @@ export default {
             'zh-CN': '锚点链接改变事件',
             'en-US': 'Anchor link change event'
           },
-          mode: ['pc'],
-          pcDemo: 'change'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'change',
+          mfDemo: 'set-container'
         },
         {
           name: 'link-click',
@@ -84,8 +90,9 @@ export default {
             'zh-CN': '锚点点击事件',
             'en-US': 'Anchor click event'
           },
-          mode: ['pc'],
-          pcDemo: 'set-container'
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'set-container',
+          mfDemo: 'set-container'
         },
         {
           name: 'on-change',

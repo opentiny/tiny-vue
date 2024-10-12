@@ -15,9 +15,18 @@
 
 @time-select-prefix-cls: ~'@{css-prefix}time-select';
 @picker-panel-prefix-cls: ~'@{css-prefix}picker-panel';
+@time-select-scrollbar-cls: ~'@{css-prefix}scrollbar';
 
 .@{time-select-prefix-cls} {
   .component-css-vars-time-select();
+  
+  height: var(--ti-time-select-height);
+  .@{time-select-scrollbar-cls} {
+    height: var(--ti-time-select-scrollbar-height);
+    .@{css-prefix}scrollbar__wrap {
+      max-height: var(--ti-time-select-scrollbar-wrap-max-height);
+    }
+  }
 
   & &__item {
     color: var(--ti-time-select-item-text-color);
@@ -46,6 +55,7 @@
     &__content {
       padding-left: 0;
       padding-right: 0;
+      padding-top: var(--ti-time-select-content-padding-top);
     }
   }
 }

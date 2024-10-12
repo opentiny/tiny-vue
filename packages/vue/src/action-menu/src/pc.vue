@@ -22,7 +22,11 @@
             <slot name="item" :data="itemData"></slot>
           </template>
         </tiny-dropdown-item>
-        <span class="tiny-action-menu__item-line" :style="{ margin: '0 ' + state.spacing }"></span>
+        <span
+          v-if="index !== state.visibleOptions.length - 1 || state.moreOptions.length"
+          class="tiny-action-menu__item-line"
+          :style="{ margin: '0 ' + state.spacing }"
+        ></span>
       </li>
 
       <li v-if="state.moreOptions.length" class="tiny-action-menu__item">

@@ -181,8 +181,8 @@ export default {
             'zh-CN': '自定义数据为空时展示内容',
             'en-US': 'customize content when data is empty'
           },
-          metaData: {
-            new: '3.17.0'
+          meta: {
+            stable: '3.17.0'
           },
           mode: ['pc'],
           pcDemo: 'slot-empty'

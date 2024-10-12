@@ -85,6 +85,7 @@ export default defineComponent({
 
     const defaultSlot = (this.slots.default && this.slots.default()) || []
     const operateSlot = this.slots.operate && this.slots.operate()
+    const tipSlot = this.slots.tip && this.slots.tip()
 
     const hidden = isHidden && fileList.length >= limit
 
@@ -106,6 +107,7 @@ export default defineComponent({
             )}
           </div>
           {operateSlot}
+          {tipSlot}
           <input
             class="tiny-upload__input"
             type="file"

@@ -31,7 +31,8 @@ const tooltipContent = hooks.ref('')
 
 // 判断是否超出隐藏
 const isEllipsis = (currentTarget) =>
-  currentTarget?.textContent && currentTarget.scrollWidth > currentTarget.offsetWidth
+  currentTarget?.textContent &&
+  (currentTarget.scrollWidth > currentTarget.clientWidth || currentTarget.scrollHeight > currentTarget.clientHeight)
 
 const isAlwaysShowTip = (currentTarget) => Boolean(currentTarget?.boundingValue?.always)
 
