@@ -492,6 +492,57 @@ export default {
           `
       },
       codeFiles: ['other.vue']
+<<<<<<< Updated upstream
+=======
+    },
+    {
+      demoId: 'virtual-tree',
+      name: {
+        'zh-CN': '虚拟树-嵌套节点',
+        'en-US': 'virtual tree-nested node'
+      },
+      desc: {
+        'zh-CN': '数据量大时可以保持流畅使用',
+        'en-US': 'Maintains smooth use with large amounts of data'
+      },
+      codeFiles: ['virtual-tree.vue']
+    },
+    {
+      demoId: 'virtual-filter',
+      name: {
+        'zh-CN': '虚拟树-过滤节点',
+        'en-US': 'virtual tree-filter node'
+      },
+      desc: {
+        'zh-CN': '流畅过滤大量树形数据',
+        'en-US': 'Smoothly filter large amounts of tree data'
+      },
+      codeFiles: ['virtual-filter.vue']
+    },
+    {
+      demoId: 'virtual-node-op',
+      name: {
+        'zh-CN': '虚拟树-增删改节点',
+        'en-US': 'virtual tree-Add, delete and change nodes'
+      },
+      desc: {
+        'zh-CN': '实现大量数据下的树形数据的增删改',
+        'en-US': 'Realize the addition, deletion, and modification of tree data under a large amount of data.'
+      },
+      codeFiles: ['virtual-node-op.vue']
+    },
+    {
+      demoId: 'virtual-drag-node',
+      name: {
+        'zh-CN': '虚拟树-拖拽节点',
+        'en-US': 'virtual tree-drag node'
+      },
+      desc: {
+        'zh-CN': '实现大量数据下的树形数据的拖拽节点',
+        'en-US': 'Drag-and-drop nodes for tree data with large amount of data.'
+      },
+      codeFiles: ['virtual-drag-node.vue']
+>>>>>>> Stashed changes
     }
   ]
 }

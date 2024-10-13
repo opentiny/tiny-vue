@@ -1044,3 +1044,22 @@ export const setCheckedByNodeKey =
       plainNode.node.setChecked(checked, !checkStrictly)
     }
   }
+<<<<<<< Updated upstream
+=======
+
+// 扁平化数据(虚拟滚动)
+export const computedFlattenedTreeData = () => (props, state) => {
+  const data = state.root.childNodes
+  const stack: TreeNode[] = data.slice().reverse()
+  const newData: TreeNode[] = []
+  while (stack.length) {
+    const node = stack.pop()!
+    if (!node.visible) continue
+    newData.push(node)
+
+    if (!node.expanded) continue
+    stack.push(...(node.childNodes.slice() || []).reverse().filter((v) => v.expanded || v.visible))
+  }
+  return newData
+}
+>>>>>>> Stashed changes
