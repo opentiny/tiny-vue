@@ -7,5 +7,10 @@ test('轮播卡片', async ({ page }) => {
   const btnRight = preview.getByRole('button').nth(1)
   await btnRight.click()
 
-  await expect(preview.locator('div').filter({ hasText: /^2-11-1-content$/ })).toBeVisible()
+  await expect(
+    preview
+      .locator('div')
+      .filter({ hasText: /^2-11-1-content$/ })
+      .first()
+  ).toBeVisible()
 })
