@@ -17,74 +17,29 @@
 @nav-menu-prefix-cls: ~'@{css-prefix}nav-menu';
 
 .@{nav-menu-prefix-cls} {
-  .component-css-vars-nav-menu();
+  .inject-NavMenu-vars();
 
-  background: var(--ti-nav-menu-bg-color);
-  height: var(--ti-nav-menu-height);
+  background: var(--tv-NavMenu-bg-color);
+  height: var(--tv-NavMenu-height);
   position: relative;
-  padding: 0 var(--ti-nav-menu-padding);
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.10);
+  padding: 0 var(--tv-NavMenu-padding);
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.1);
 
   > .slot-logo {
     float: left;
     overflow: hidden;
-    margin: 0 var(--ti-nav-menu-slot-logo-margin-right) 0 var(--ti-nav-menu-slot-logo-margin-left);
-    line-height: var(--ti-nav-menu-height);
-  }
-
-  .preview .slot-logo .icon-logo {
-    fill: red;
+    margin: 0 48px 0 16px;
+    line-height: var(--tv-NavMenu-height);
   }
 
   > .slot-toolbar {
     float: right;
-
-    > .setting {
-      position: relative;
-      float: right;
-      margin: 0 0 0 24px;
-
-      > .@{css-prefix}icon {
-        font-size: var(--ti-nav-menu-setting-font-size);
-        line-height: var(--ti-nav-menu-height);
-        cursor: pointer;
-        color: #fff;
-      }
-
-      > .more-setting {
-        position: absolute;
-        right: 0;
-        min-width: 120px;
-        background-color: var(--ti-nav-menu-item-text-color);
-        border: 1px solid #d9d9d9;
-        box-shadow: 0px 0 4px rgba(0, 0, 0, 0.15);
-
-        > .setting-item {
-          padding: 6px 10px;
-          color: #333;
-
-          &:hover {
-            background: var(--ti-nav-menu-popmenu-more-item-hover-bg-color);
-          }
-
-          &:active {
-            background: var(--ti-nav-menu-popmenu-more-item-active-bg-color);
-          }
-        }
-      }
-    }
-
-    > .template-toolbar {
-      .@{css-prefix}selector {
-        margin-top: 0;
-      }
-    }
   }
 
   .menu {
     float: left;
-    height: var(--ti-nav-menu-height);
-    line-height: var(--ti-nav-menu-height);
+    height: var(--tv-NavMenu-height);
+    line-height: var(--tv-NavMenu-height);
     overflow: hidden;
 
     > li {
@@ -92,38 +47,37 @@
 
       > span,
       > a {
-        margin: 0 var(--ti-nav-menu-item-li-margin);
-        font-size: var(--ti-nav-menu-item-font-size);
+        margin: 0 var(--tv-NavMenu-item-li-margin);
+        font-size: var(--tv-NavMenu-item-font-size);
         text-align: center;
-        color: var(--ti-nav-menu-item-text-color);
+        color: var(--tv-NavMenu-item-text-color);
         cursor: pointer;
         display: block;
-        height: var(--ti-nav-menu-height);
-        line-height: var(--ti-nav-menu-height);
+        height: var(--tv-NavMenu-height);
+        line-height: var(--tv-NavMenu-height);
         box-sizing: border-box;
 
         &.active,
         &:hover {
           // 规范选中后，背景色修改
-          color: var(--ti-nav-menu-item-text-color);
-          background: var(--ti-nav-menu-item-hover-bg-color);
+          color: var(--tv-NavMenu-item-text-color);
           text-decoration: none;
-          font-weight: var(--ti-nav-menu-item-text-font-weight);
+          font-weight: var(--tv-NavMenu-item-text-font-weight);
         }
 
         &.selected {
           position: relative;
-          font-weight: var(--ti-nav-menu-item-text-font-weight);
+          font-weight: var(--tv-NavMenu-item-text-font-weight);
 
           &:after {
             content: ' ';
             width: 100%;
-            height: var(--ti-nav-menu-item-selected-underline-height);
-            background: var(--ti-nav-menu-item-selected-underline-bg-color);
-            border: 1px solid var(--ti-nav-menu-item-selected-underline-bg-color);
-            border-radius: var(--ti-nav-menu-item-selected-border-radius);
+            height: 2px;
+            background: var(--tv-NavMenu-item-selected-underline-bg-color);
+            border: 1px solid var(--tv-NavMenu-item-selected-underline-bg-color);
+            border-radius: 0;
             position: absolute;
-            bottom: var(--ti-nav-menu-item-selected-position-bottom);
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
           }
@@ -134,31 +88,31 @@
 
   > .more {
     padding: 0 12px;
-    font-size: var(--ti-nav-menu-item-font-size);
+    font-size: var(--tv-NavMenu-item-font-size);
     text-align: center;
-    color: var(--ti-nav-menu-item-text-color);
+    color: var(--tv-NavMenu-item-text-color);
     cursor: pointer;
     display: inline-block;
-    height: var(--ti-nav-menu-height);
-    line-height: var(--ti-nav-menu-height);
+    height: var(--tv-NavMenu-height);
+    line-height: var(--tv-NavMenu-height);
 
     &.active,
     &:hover,
     &.selected {
-      color: var(--ti-nav-menu-item-text-color);
-      background: var(--ti-nav-menu-item-hover-bg-color);
+      color: var(--tv-NavMenu-item-text-color);
+      background: var(--tv-NavMenu-item-hover-bg-color);
     }
 
     &.selected {
       position: relative;
-      color: var(--ti-nav-menu-item-text-color);
-      background: var(--ti-nav-menu-item-hover-bg-color);
+      color: var(--tv-NavMenu-item-text-color);
+      background: var(--tv-NavMenu-item-hover-bg-color);
 
       &:after {
         content: ' ';
-        width: var(--ti-nav-menu-item-selected-underline-width);
-        height: var(--ti-nav-menu-item-selected-underline-height);
-        background: var(--ti-nav-menu-item-selected-underline-bg-color);
+        width: var(--tv-NavMenu-item-selected-underline-width);
+        height: 2px;
+        background: var(--tv-NavMenu-item-selected-underline-bg-color);
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -171,9 +125,8 @@
     position: absolute;
     background: #fff;
     width: 100%;
-    border: 1px solid var(--ti-nav-menu-popmenu-border-color);
-    box-shadow: var(--ti-nav-menu-popmenu-box-shadow);
-    max-height: calc(100vh - var(--ti-nav-menu-height));
+    box-shadow: var(--tv-NavMenu-popmenu-box-shadow);
+    max-height: calc(100vh - var(--tv-NavMenu-height));
     overflow-y: auto;
     left: 0;
 
@@ -181,48 +134,46 @@
       float: left;
       width: 160px;
       height: 100%;
-      border-right: 1px solid var(--ti-nav-menu-popmenu-more-menu-border-color-right);
+      border-right: 1px solid var(--tv-NavMenu-popmenu-more-menu-border-color-right);
       box-sizing: border-box;
 
       > ul {
         list-style: none;
 
         > li {
-          height: var(--ti-nav-menu-popmenu-more-item-height);
-          line-height: var(--ti-nav-menu-popmenu-more-item-height);
+          height: var(--tv-NavMenu-popmenu-more-item-height);
+          line-height: var(--tv-NavMenu-popmenu-more-item-height);
           padding: 0 12px 0 24px;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          color: var(--ti-nav-menu-popmenu-more-item-text-color);
+          color: var(--tv-NavMenu-popmenu-more-item-text-color);
           cursor: pointer;
 
           .more-icon {
-            fill: var(--ti-nav-menu-popmenu-more-item-icon-color);
+            fill: var(--tv-NavMenu-popmenu-more-item-icon-color);
           }
 
           &.active,
           &:hover {
-            color: var(--ti-nav-menu-popmenu-more-item-hover-text-color);
-            background: var(--ti-nav-menu-popmenu-more-item-hover-bg-color);
+            color: var(--tv-NavMenu-popmenu-more-item-hover-text-color);
             font-weight: 700;
 
             > a {
-              color: var(--ti-nav-menu-popmenu-more-item-hover-text-color);
-              background: var(--ti-nav-menu-popmenu-more-item-selected-bg-color);
+              color: var(--tv-NavMenu-popmenu-more-item-hover-text-color);
             }
 
             .more-icon {
-              fill: var(--ti-nav-menu-popmenu-more-item-hover-icon-color);
+              fill: var(--tv-NavMenu-popmenu-more-item-hover-icon-color);
             }
           }
 
           &.selected {
             position: relative;
 
-            &::before {
+            &:before {
               content: '';
-              width: var(--ti-nav-menu-popmenu-more-item-before-width);
+              width: var(--tv-NavMenu-popmenu-more-item-before-width);
               height: 12px;
               background: #5167f1;
               position: absolute;
@@ -233,14 +184,14 @@
           }
 
           > a {
-            color: var(--ti-nav-menu-popmenu-more-item-text-color);
+            color: var(--tv-NavMenu-popmenu-more-item-text-color);
           }
 
           > span,
           > a {
             display: block;
-            height: var(--ti-nav-menu-popmenu-more-item-height);
-            line-height: var(--ti-nav-menu-popmenu-more-item-height);
+            height: var(--tv-NavMenu-popmenu-more-item-height);
+            line-height: var(--tv-NavMenu-popmenu-more-item-height);
             font-size: var(--ti-common-font-size-base);
             width: 100%;
             white-space: nowrap;
@@ -248,7 +199,7 @@
             text-overflow: ellipsis;
 
             &.showicon {
-              width: calc(~'100% - 12px');
+              width: calc(100% - 12px);
             }
           }
 
@@ -261,13 +212,13 @@
 
     > .sub-menu {
       float: left;
-      width: ~'calc(100% - 160px)';
+      width: calc(100% - 160px);
       padding-left: 14px;
       box-sizing: border-box;
 
       &.full-width {
         width: 100%;
-        padding: var(--ti-nav-menu-submenu-padding-vertical) var(--ti-nav-menu-submenu-padding-horizontal);
+        padding: 0 82px;
       }
 
       > ul {
@@ -278,18 +229,15 @@
           list-style: none;
 
           &:first-child {
-            margin-top: var(--ti-nav-menu-submenu-group-margin-top);
+            margin-top: 36px;
           }
 
           > .@{nav-menu-prefix-cls}__sub-menu-title {
-            padding-bottom: var(--ti-nav-menu-popmenu-node-title-padding-bottom);
-            color: var(--ti-nav-menu-popmenu-text-color);
-            font-size: var(--ti-nav-menu-popmenu-node-title-font-size);
+            padding-bottom: 0;
+            color: var(--tv-NavMenu-popmenu-text-color);
+            font-size: var(--tv-NavMenu-popmenu-node-title-font-size);
             font-weight: bold;
-            margin: var(--ti-nav-menu-popmenu-node-title-margin-top) var(--ti-nav-menu-popmenu-node-title-margin-right)
-              var(--ti-nav-menu-popmenu-node-title-margin-bottom) var(--ti-nav-menu-popmenu-node-title-margin-left);
-            border-bottom: var(--ti-nav-menu-popmenu-title-border-weight-bottom) solid
-              var(--ti-nav-menu-popmenu-title-border-color-bottom);
+            margin: 0 32px 18px 0;
             word-break: break-all;
             display: flex;
 
@@ -303,7 +251,7 @@
 
             > span.selected,
             > a.selected {
-              color: var(--ti-nav-menu-popmenu-selected-text-color);
+              color: var(--tv-NavMenu-popmenu-selected-text-color);
             }
 
             &:only-child {
@@ -312,13 +260,13 @@
           }
 
           .sub-item {
-            font-size: var(--ti-nav-menu-popmenu-node-item-font-size);
-            padding: var(--ti-nav-menu-popmenu-node-item-padding-top) 0 var(--ti-nav-menu-popmenu-node-item-padding-button);
+            font-size: var(--tv-NavMenu-popmenu-node-item-font-size);
+            padding: 0 0 14px;
 
             &.third-title {
               > a,
               > span {
-                color: var(--ti-nav-menu-popmenu-text-color);
+                color: var(--tv-NavMenu-popmenu-text-color);
                 font-weight: 700;
               }
 
@@ -328,26 +276,26 @@
             }
 
             &:hover {
-              background: var(--ti-nav-menu-popmenu-more-item-hover-bg-color);
+              text-decoration: underline;
             }
 
             &.active,
             &:active {
-              background: var(--ti-nav-menu-popmenu-more-item-active-bg-color);
+              background: var(--tv-NavMenu-popmenu-more-item-active-bg-color);
             }
 
             > span,
             > a {
-              color: var(--ti-nav-menu-popmenu-text-color);
+              color: var(--tv-NavMenu-popmenu-text-color);
               white-space: normal;
               word-break: break-all;
               text-decoration: none;
-              font-size: var(--ti-nav-menu-popmenu-text-font-size);
+              font-size: var(--tv-NavMenu-popmenu-text-font-size);
               cursor: pointer;
 
               &.selected {
-                color: var(--ti-nav-menu-popmenu-selected-text-color);
-                font-weight: var(--ti-nav-menu-popmenu-selected-font-weight);
+                color: var(--tv-NavMenu-popmenu-selected-text-color);
+                font-weight: var(--tv-NavMenu-popmenu-selected-font-weight);
                 position: relative;
 
                 &:after {
@@ -357,7 +305,7 @@
                   bottom: 0;
                   width: 100%;
                   height: 1px;
-                  background: var(--ti-nav-menu-item-selected-underline-bg-color);
+                  background: var(--tv-NavMenu-item-selected-underline-bg-color);
                   z-index: 1;
                 }
               }
@@ -366,8 +314,8 @@
             &.only-secondary-title {
               > span,
               > a {
-                color: var(--ti-nav-menu-popmenu-text-color);
-                font-size: var(--ti-nav-menu-popmenu-node-title-font-size);
+                color: var(--tv-NavMenu-popmenu-text-color);
+                font-size: var(--tv-NavMenu-popmenu-node-title-font-size);
                 font-weight: bold;
               }
             }
@@ -421,15 +369,15 @@
   > .more-button {
     float: left;
     text-align: center;
-    margin: 0 var(--ti-nav-menu-item-li-margin);
-    height: var(--ti-nav-menu-height);
-    line-height: var(--ti-nav-menu-height);
+    margin: 0 var(--tv-NavMenu-item-li-margin);
+    height: var(--tv-NavMenu-height);
+    line-height: var(--tv-NavMenu-height);
     overflow: hidden;
-    fill: var(--ti-nav-menu-item-more-button-fill);
-    font-size: var(--ti-nav-menu-item-font-size);
+    fill: var(--tv-NavMenu-item-more-button-fill);
+    font-size: var(--tv-NavMenu-item-font-size);
 
     &:hover {
-      background: var(--ti-nav-menu-item-hover-bg-color);
+      background: var(--tv-NavMenu-item-hover-bg-color);
     }
 
     &.float-right {
