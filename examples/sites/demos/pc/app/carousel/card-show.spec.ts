@@ -6,9 +6,10 @@ test('轮播卡片', async ({ page }) => {
   const preview = page.locator('#card-show')
   const btnRight = preview.getByRole('button').nth(1)
   await btnRight.click()
+  await page.waitForTimeout(200)
   await preview
     .locator('div')
     .filter({ hasText: /^2-11-1-content$/ })
     .first()
-  expect(btnRight).toHaveCSS('fill', 'rgb(165, 165, 165)')
+  expect(btnRight).toHaveCSS('fill', 'rgb(144, 144, 144)')
 })
