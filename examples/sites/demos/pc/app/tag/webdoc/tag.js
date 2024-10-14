@@ -27,6 +27,20 @@ export default {
       codeFiles: ['content.vue']
     },
     {
+      demoId: 'effect',
+      name: {
+        'zh-CN': '主题',
+        'en-US': 'Subject'
+      },
+      desc: {
+        'zh-CN':
+          '通过 <code>effect</code> 设置主题，可选值： <code>(dark / light / plain)</code> ； <code>type</code> 设置类型，可选值： <code>(success / info / warning / danger)</code> 。',
+        'en-US':
+          'Set the theme through <code>effect</code> , with optional values: <code>(dark/light/plain)</code> ; <code>type</code> Set the type, optional values: <code>(success/info/warning/danger)</code> .'
+      },
+      codeFiles: ['effect.vue']
+    },
+    {
       demoId: 'color-border',
       name: {
         'zh-CN': '颜色与边框',
@@ -49,20 +63,6 @@ export default {
         `
       },
       codeFiles: ['color-border.vue']
-    },
-    {
-      demoId: 'effect',
-      name: {
-        'zh-CN': '主题',
-        'en-US': 'Subject'
-      },
-      desc: {
-        'zh-CN':
-          '通过 <code>effect</code> 设置主题，可选值： <code>(dark / light / plain)</code> ； <code>type</code> 设置类型，可选值： <code>(success / info / warning / danger)</code> 。',
-        'en-US':
-          'Set the theme through <code>effect</code> , with optional values: <code>(dark/light/plain)</code> ; <code>type</code> Set the type, optional values: <code>(success/info/warning/danger)</code> .'
-      },
-      codeFiles: ['effect.vue']
     },
     {
       demoId: 'disabled',
@@ -89,20 +89,6 @@ export default {
           'Set the display close button through<code>close</code>, and<code>before-delete</code>to set the operation before deletion, which can be prompted or confirmed in this hook< Code>close</code>Listen to the close button click event and perform the deletion operation.'
       },
       codeFiles: ['delete.vue']
-    },
-    {
-      demoId: 'create',
-      name: {
-        'zh-CN': '动态编辑',
-        'en-US': 'Dynamic Edit'
-      },
-      desc: {
-        'zh-CN':
-          '添加新标签：监听 <code>+ New Tag</code> 元素点击事件，打开 <code>input</code> 输入框，监听输入框事件做添加操作；<br />\n          修改旧标签：监听旧标签的双击事件，打开 <code>input</code> 输入框，监听输入框事件做修改操作。',
-        'en-US':
-          'Add a new tag: listen for <code>+New Tag</code> element click events, open the <code>input</code> input box, and listen for input box events to add<br/>\n        Modify old tags: listen for double click events on old tags, open the <code>input</code> input box, and listen for input box events to make modifications.'
-      },
-      codeFiles: ['create.vue']
     },
     {
       demoId: 'slot-default',

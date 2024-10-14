@@ -10,8 +10,6 @@
 *
 */
 
-@import '../mixins/tag.less';
-@import '../mixins/common.less';
 @import '../custom.less';
 @import './vars.less';
 
@@ -20,18 +18,18 @@
 .@{tag-prefix-cls} {
   .inject-Tag-vars();
 
-  line-height: 1.5;
-  border-width: 1px solid;
+  line-height: var(--tv-Tag-line-height);
+  border: 1px solid;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
 
-  /** size 场景  */
+  /** size 场景 */
   .size-mixin(@size) {
     @fs: %('var(--tv-Tag-font-size%a)', @size);
     @px: %('var(--tv-Tag-padding-x%a)', @size);
     @py: %('var(--tv-Tag-padding-y%a)', @size);
-    @br: %('var(--tv-Tag--border-radius%a)', @size);
+    @br: %('var(--tv-Tag-border-radius%a)', @size);
 
     font-size: e(@fs);
     padding: e(@py) e(@px);
@@ -51,11 +49,55 @@
   }
 
   /** 颜色场景 */
+  .color-type-effect-mixin(@type) {
+    @light-c: %('var(--tv-Tag-text-color-light%a)', @type);
+    @light-bg: %('var(--tv-Tag-bg-color-light%a)', @type);
+    @light-bc: %('var(--tv-Tag-border-color-light%a)', @type);
+    @dark-c: %('var(--tv-Tag-text-color-dark%a)', @type);
+    @dark-bg: %('var(--tv-Tag-bg-color-dark%a)', @type);
+    @dark-bc: %('var(--tv-Tag-border-color-dark%a)', @type);
+    @plain-c: %('var(--tv-Tag-text-color-plain%a)', @type);
+    @plain-bg: %('var(--tv-Tag-bg-color-plain%a)', @type);
+    @plain-bc: %('var(--tv-Tag-border-color-plain%a)', @type);
 
-  /** 关闭图标 场景： */
+    &.@{tag-prefix-cls}--light {
+      color: e(@light-c);
+      background-color: e(@light-bg);
+      border-color: e(@light-bc);
+    }
+
+    &.@{tag-prefix-cls}--dark {
+      color: e(@dark-c);
+      background-color: e(@dark-bg);
+      border-color: e(@dark-bc);
+    }
+
+    &.@{tag-prefix-cls}--plain {
+      color: e(@plain-c);
+      background-color: e(@plain-bg);
+      border-color: e(@plain-bc);
+    }
+  }
+  .color-type-effect-mixin(e(''));
+
+  &.@{tag-prefix-cls}--success {
+    .color-type-effect-mixin(-success);
+  }
+  &.@{tag-prefix-cls}--danger {
+    .color-type-effect-mixin(-danger);
+  }
+  &.@{tag-prefix-cls}--warning {
+    .color-type-effect-mixin(-warning);
+  }
+  &.@{tag-prefix-cls}--info {
+    .color-type-effect-mixin(-info);
+  }
+
+  /** 关闭图标 场景 */
   .@{tag-prefix-cls}__close {
     font-size: var(--tv-Tag-close-icon-size);
     fill: var(--tv-Tag-close-icon-color);
+    margin-left: var(--tv-Tag-close-icon-margin-left);
 
     &:hover {
       fill: var(--tv-Tag-close-icon-color-hover);
