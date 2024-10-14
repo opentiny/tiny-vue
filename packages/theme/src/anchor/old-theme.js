@@ -1,7 +1,7 @@
 export const tinyAnchorOldTheme = {
-  'ti-anchor-link-active-text-color': 'var(--ti-common-color-primary-active, #7693f5)',
-  'ti-anchor-line-opacity': '0.08',
-  'ti-anchor-line-bg-color': 'var(--ti-common-color-text-primary, #252b3a)',
-  'ti-anchor-text-color': 'var(--ti-common-color-text-primary, #252b3a)',
-  'ti-anchor-width': "'auto'"
+  'tv-Anchor-link-text-color-active': 'var(--ti-common-color-primary-active, #7693f5)',
+  'tv-Anchor-line-opacity': '0.08',
+  'tv-Anchor-line-bg-color': 'var(--ti-common-color-text-primary, #252b3a)',
+  'tv-Anchor-text-color': 'var(--ti-common-color-text-primary, #252b3a)',
+  'tv-Anchor-width': "'auto'"
 }

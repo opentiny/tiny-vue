@@ -44,11 +44,10 @@ export default {
         {
           name: 'hide-required-asterisk',
           type: 'boolean',
-          defaultValue: 'false',
+          defaultValue: 'true',
           desc: {
-            'zh-CN': '是否隐藏必填字段的标签旁边的红色星号，SMB 主题下默认值为true',
-            'en-US':
-              'Whether to hide the red asterisk next to the label of mandatory fields, The default value for SMB theme is true'
+            'zh-CN': '是否隐藏必填字段的标签旁边的红色星号',
+            'en-US': 'Whether to hide the red asterisk next to the label of mandatory fields'
           },
           mode: ['pc', 'mobile-first'],
           pcDemo: 'smb-required',
@@ -120,7 +119,7 @@ export default {
         {
           name: 'label-width',
           type: 'string',
-          defaultValue: "'80px'",
+          defaultValue: "'84px'",
           desc: {
             'zh-CN': '表单中标签占位宽度',
             'en-US': 'Label placeholder width in the form'
@@ -132,11 +131,11 @@ export default {
         },
         {
           name: 'message-type',
-          type: "'inline' | 'block'",
-          defaultValue: '',
+          type: "'inline' | 'block' | 'absolute'",
+          defaultValue: "'block'",
           desc: {
             'zh-CN':
-              '当 validate-type 设置为 text 时，配置文本类型错误类型，可配置行内或者块级，不设置则为 absolute 定位',
+              '当 validate-type 设置为 text 时，配置文本类型错误类型，可配置行内或者块级，其他值都为 absolute 定位',
             'en-US':
               'Configure the text type error type, which can be configured at the inline or block level when validate-type is set to text. The default is absolute positioning'
           },

@@ -16,7 +16,7 @@
 @rate-prefix-cls: ~'@{css-prefix}rate';
 
 .@{rate-prefix-cls} {
-  .component-css-vars-rate();
+  .inject-Rate-vars();
 
   display: inline-flex;
   outline: none;
@@ -29,7 +29,7 @@
   & &__star {
     position: relative;
     display: inline-block;
-    font-size: 0px;
+    font-size: 0;
     vertical-align: middle;
     text-align: center;
     line-height: 1;
@@ -48,23 +48,23 @@
     overflow: hidden;
     font-size: 16px;
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
   }
 
   & &__text {
     vertical-align: middle;
-    margin-left: var(--ti-rate-text-margin-left);
-    font-size: var(--ti-rate-text-font-size);
+    margin-left: var(--tv-Rate-text-margin-left);
+    font-size: var(--tv-Rate-text-font-size);
   }
 
   & &__bottom-text {
     position: relative;
-    font-size: var(--ti-rate-bottom-font-size);
+    font-size: var(--tv-Rate-bottom-font-size);
     text-align: center;
     text-overflow: clip;
     overflow: hidden;
-    margin-top: var(--ti-rate-bottom-margin-top);
+    margin-top: var(--tv-Rate-bottom-margin-top);
   }
 }

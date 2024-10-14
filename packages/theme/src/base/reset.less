@@ -13,8 +13,7 @@
 @import '../custom.less';
 @import './basic-var.less';
 
-// 为了防止这些图标失去默认值，需要全局设置默认值
-
+// 为了防止这些图标失去默认值，需要全局设置默认值 todo:以下是否有必要保留？
 .tiny-icon-success {
   fill: #5cb300;
 }
@@ -34,6 +33,23 @@
 .tiny-icon-text-type {
   fill: #9185f0;
 }
+
+// .tiny-icon-loading 类名的动画效果。 它出现在多个组件中，故抽取到一起。
+.@{css-prefix-iconfont}-loading {
+  line-height: 1;
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
 // 高亮节点
 .tiny-hl-query-node {
   color: var(--ti-common-color-text-highlight) !important;
@@ -42,6 +58,7 @@
 [class*=~'@{css-prefix}'] {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  font-family: var(--tv-font-family);
 
   *:after,
   *:before {

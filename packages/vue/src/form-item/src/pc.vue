@@ -25,6 +25,7 @@ import {
 import { renderless, api } from '@opentiny/vue-renderless/form-item/vue'
 import LabelWrap from './label-wrap'
 import Tooltip from '@opentiny/vue-tooltip'
+import { iconError } from '@opentiny/vue-icon'
 import type { IFormItemApi, IFormItemInstance } from '@opentiny/vue-renderless/types/form-item.type'
 
 const $constants = {
@@ -37,7 +38,8 @@ export default defineComponent({
   componentName: 'FormItem',
   components: {
     LabelWrap,
-    Tooltip
+    Tooltip,
+    IconError: iconError()
   },
   props: {
     ...$props,
@@ -181,7 +183,7 @@ export default defineComponent({
               // 兼容 2.0 组件 validation 是否有 required
               state.validationRequired = propsData.validation && !!propsData.validation.required
             }
-            // 如果为 2.0 的验证 不会使用 toolltip 组件
+            // 如果为 2.0 的验证 不会使用 tooltip 组件
             if (propsData.validation) {
               return item
             }
@@ -221,7 +223,8 @@ export default defineComponent({
             }
             data = item.props
           }
-          data.class = deduplicateCssClass('tiny-tooltip' + stringifyCssClass(data.class))
+          const mergeClass = `tiny-tooltip ${stringifyCssClass(data.class)}`
+          data.class = deduplicateCssClass(mergeClass)
           return item
         })
       : null

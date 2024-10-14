@@ -36,7 +36,9 @@ import {
   iconEllipsis,
   iconArrowBottom,
   iconRadio,
-  iconRadioselected
+  iconRadioselected,
+  iconExpand,
+  iconPutAway
 } from '@opentiny/vue-icon'
 import Dropdown from '@opentiny/vue-dropdown'
 import DropdownMenu from '@opentiny/vue-dropdown-menu'
@@ -331,7 +333,12 @@ export const Cell = {
       }
     }
     let icon = GLOBAL_CONFIG.icon
-    const customExpandIcon = renderIcon || $table.$grid?.designConfig?.treeConfig?.renderIcon
+    const defaultIcon = (h, { active }) => {
+      const IconExpand = iconExpand()
+      const IconPutAway = iconPutAway()
+      return active ? h(IconExpand) : h(IconPutAway)
+    }
+    const customExpandIcon = (renderIcon || $table.$grid?.designConfig?.treeConfig?.renderIcon) ?? defaultIcon
 
     if (trigger && trigger !== 'default') {
       listeners = {}

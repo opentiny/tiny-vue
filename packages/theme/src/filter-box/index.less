@@ -54,6 +54,8 @@
     height: inherit;
     line-height: var(--ti-filter-box-btn-title-line-height);
     font-size: var(--ti-filter-box-btn-font-size);
+    /* TODO: title 这个类名不符合组件类名规范，被公共样式污染，故在此处重置间距为 0.计划优化这个类名 */
+    margin-right: 0px;
 
     label {
       display: inline-block;
@@ -62,7 +64,8 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       color: var(--ti-filter-box-btn-text-color);
-      margin-right: 4px;
+      margin-right: 8px;
+      margin-top: 3px;
     }
 
     &.active label {
@@ -109,6 +112,12 @@
 
     &.is-reverse {
       transform: rotate(180deg);
+    }
+  }
+
+  &:hover {
+    .filter-box-icon {
+      fill: var(--ti-filter-box-expand-btn-icon-color-hover);
     }
   }
 

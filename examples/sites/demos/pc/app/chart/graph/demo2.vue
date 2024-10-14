@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { ChartGraph } from '@opentiny/vue'
+import { HuichartsGraph } from '@opentiny/vue'
 
 let axisData = ['周一', '周二', '周三', '很长很长的周四', '周五', '周六', '周日']
 const data = [800, 600, 900, 1500, 3200, 4800, 900]
@@ -52,7 +52,7 @@ let option = {
 
 export default {
   components: {
-    TinyGraph: ChartGraph
+    TinyGraph: HuichartsGraph
   },
   data() {
     return {

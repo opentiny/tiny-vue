@@ -16,41 +16,25 @@
 @radio-button-prefix-cls: ~'@{css-prefix}radio-button';
 
 .@{radio-button-prefix-cls} {
-  .component-css-vars-radio-button();
-
-  border-radius: var(--ti-radio-button-border-radius);
-  &:first-child &__inner {
-    border-radius: var(--ti-radio-button-child-left-border-radius) var(--ti-radio-button-child-right-border-radius) var(--ti-radio-button-child-right-border-radius) var(--ti-radio-button-child-left-border-radius);
-  }
-
-  &:first-child &__orig-radio:checked + &__inner {
-    box-shadow: none;
-  }
-
-  &:last-child &__inner {
-    border-radius: var(--ti-radio-button-child-right-border-radius) var(--ti-radio-button-child-left-border-radius) var(--ti-radio-button-child-left-border-radius) var(--ti-radio-button-child-right-border-radius);
-  }
-
-  &:first-child:last-child &__inner {
-    border-radius: var(--ti-radio-button-border-radius);
-  }
+  .inject-RadioButton-vars();
+  border-radius: var(--tv-RadioButton-border-radius);
 
   &,
   &__inner {
     display: inline-block;
     position: relative;
     outline: 0;
-    margin-right: var(--ti-radio-button-margin-right);
+    margin-right: 2px;
   }
 
   &__inner {
-    color: var(--ti-radio-button-text-color);
-    font-size: var(--ti-radio-button-font-size);
-    background: var(--ti-radio-button-bg-color);
-    border: 1px solid var(--ti-radio-button-border-color);
-    padding: var(--ti-radio-button-padding-verticals) 24px;
+    color: var(--tv-RadioButton-text-color);
+    font-size: var(--tv-RadioButton-font-size);
+    background: var(--tv-RadioButton-bg-color);
+    border: 1px solid var(--tv-RadioButton-border-color);
+    padding: 5px 24px;
     font-weight: 500;
-    border-radius: var(--ti-radio-button-border-radius);
+    border-radius: var(--tv-RadioButton-border-radius);
     line-height: 1;
     white-space: nowrap;
     vertical-align: middle;
@@ -66,8 +50,7 @@
     }
 
     &:hover {
-      color: var(--ti-radio-button-hover-text-color);
-      background-color: var(--ti-radio-button-checked-hover-bg-color);
+      background-color: var(--tv-RadioButton-checked-hover-bg-color);
       outline: 0;
     }
 
@@ -89,21 +72,15 @@
     &:checked {
       & + .@{radio-button-prefix-cls}__inner {
         color: #fff;
-        background-color: var(--ti-radio-button-checked-normal-bg-color);
-        box-shadow: var(--ti-radio-button-checked-normal-box-shadow);
-
-        &:hover {
-          background-color: var(--ti-radio-button-checked-hover-bg-color);
-          box-shadow: var(--ti-radio-button-checked-hover-box-shadow);
-        }
+        background-color: var(--tv-RadioButton-checked-bg-color);
       }
     }
 
     &:disabled {
       & + .@{radio-button-prefix-cls}__inner {
-        color: var(--ti-radio-button-disabled-text-color);
-        border-color: var(--ti-radio-button-border-color);
-        background-color: var(--ti-radio-button-disabled-bg-color);
+        color: var(--tv-RadioButton-disabled-text-color);
+        border-color: var(--tv-RadioButton-border-color);
+        background-color: var(--tv-RadioButton-disabled-bg-color);
         background-image: none;
         box-shadow: none;
         cursor: not-allowed;
@@ -112,19 +89,17 @@
 
     &:disabled:checked {
       & + .@{radio-button-prefix-cls}__inner {
-        background-color: var(--ti-radio-button-checked-disabled-bg-color);
-        color: var(--ti-radio-button-disabled-checked-text-color);
+        background-color: var(--tv-RadioButton-checked-disabled-bg-color);
+        color: var(--tv-RadioButton-disabled-checked-text-color);
       }
     }
   }
 
   &--default &__inner {
-    font-size: var(--ti-radio-button-medium-font-size);
     display: flex;
     align-items: center;
-    height: 32px;
+    height: var(--tv-RadioButton-size-height-md);
     padding: 5px 24px;
-    border-radius: var(--ti-radio-button-margin-right);
 
     &.is-round {
       padding: 10px 20px;
@@ -132,12 +107,10 @@
   }
 
   &--medium &__inner {
-    font-size: var(--ti-radio-button-medium-font-size);
     display: flex;
     align-items: center;
-    height: 32px;
+    height: var(--tv-RadioButton-size-height-md);
     padding: 5px 24px;
-    border-radius: var(--ti-radio-button-margin-right);
 
     &.is-round {
       padding: 10px 20px;
@@ -145,12 +118,11 @@
   }
 
   &--small &__inner {
-    font-size: var(--ti-radio-button-font-size);
+    font-size: 12px;
     display: flex;
     align-items: center;
-    height: 28px;
+    height: var(--tv-RadioButton-size-height-sm);
     padding: 5px 24px;
-    border-radius: var(--ti-radio-button-margin-right);
 
     &.is-round {
       padding: 9px 15px;
@@ -158,24 +130,20 @@
   }
 
   &--mini &__inner {
-    font-size: var(--ti-radio-button-font-size);
+    font-size: 12px;
     display: flex;
     align-items: center;
-    height: 24px;
+    height: var(--tv-RadioButton-size-height-xs);
     padding: 3px 16px;
-    border-radius: var(--ti-radio-button-margin-right);
+    border-radius: 4px;
 
     &.is-round {
       padding: 7px 15px;
     }
   }
 
-  &:focus:not(.is-focus):not(:active):not(.is-disabled) {
-    box-shadow: 0 0 2px 2px var(--ti-radio-bordered-hover-border-color);
-  }
   &.is-active.is-disabled {
-    color: var(--ti-radio-button-active-disabled-color);
-    background-color: var(--ti-radio-button-active-disabled-bg-color);;
-
+    color: var(--tv-RadioButton-disabled-checked-text-color);
+    background-color: var(--tv-RadioButton-checked-disabled-bg-color);
   }
 }

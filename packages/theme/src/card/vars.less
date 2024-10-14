@@ -12,76 +12,71 @@
 
 .component-css-vars-amount() {
   // 卡片背景色
-  --ti-card-bg-color: var(--ti-common-color-bg-navigation);
-  // 卡片阴影
-  --ti-card-box-shadow: none;
+  --tv-Card-bg-color: var(--tv-color-bg-secondary);
 
-  // 卡片最小宽度
-  --ti-card-min-width: var(--ti-common-size-auto);
   // 大尺寸卡片的宽度
-  --ti-card-large-width: calc(var(--ti-common-size-base) * 144);
+  --tv-Card-large-width: calc(var(--tv-size-base, 4px) * 144);
   // 中尺寸卡片的宽度
-  --ti-card-medium-width: calc(var(--ti-common-size-base) * 96);
+  --tv-Card-medium-width: calc(var(--tv-size-base, 4px) * 96);
   // 小尺寸卡片的宽度
-  --ti-card-small-width: calc(var(--ti-common-size-base) * 72);
+  --tv-Card-small-width: calc(var(--tv-size-base, 4px) * 72);
   // 迷你尺寸卡片的宽度
-  --ti-card-mini-width: calc(var(--ti-common-size-base) * 54);
+  --tv-Card-mini-width: calc(var(--tv-size-base, 4px) * 54);
 
   // 大尺寸卡片的圆角
-  --ti-card-large-border-radius: var(--ti-common-border-radius-4);
+  --tv-Card-large-border-radius: var(--tv-border-radius-lg);
   // 中尺寸卡片的圆角
-  --ti-card-medium-border-radius: var(--ti-common-border-radius-2);
+  --tv-Card-medium-border-radius: var(--tv-border-radius-sm);
   // 小尺寸卡片的圆角
-  --ti-card-small-border-radius: var(--ti-common-border-radius-2);
+  --tv-Card-small-border-radius: var(--tv-border-radius-sm);
   // 迷你尺寸卡片的圆角
-  --ti-card-mini-border-radius: var(--ti-common-border-radius-1);
+  --tv-Card-mini-border-radius: var(--tv-border-radius-xs);
 
   // 成功状态的卡片的边框颜色
-  --ti-card-success-border-color: var(--ti-base-color-success-4);
+  --tv-Card-success-border-color: var(--tv-color-act-success-border);
   // 警告状态的卡片的边框颜色
-  --ti-card-warning-border-color: var(--ti-base-color-warn-5);
+  --tv-Card-warning-border-color: var(--tv-color-act-warning-border);
   // 报警状态的卡片的边框颜色
-  --ti-card-alerting-border-color: var(--ti-base-color-warn-3);
+  --tv-Card-alerting-border-color: #fac20a;
   // 危险状态的卡片的边框颜色
-  --ti-card-danger-border-color: var(--ti-base-color-error-4);
+  --tv-Card-danger-border-color: var(--tv-color-act-danger-border);
   // 默认状态的卡片的边框颜色
-  --ti-card-default-border-color: var(--ti-common-color-light);
-
+  --tv-Card-default-border-color:#ffffff;
   // 选中状态的卡片的边框颜色
-  --ti-card-checked-border-color: var(--ti-common-color-text-highlight);
+  --tv-Card-checked-border-color: var(--tv-color-border-active-control);
   // 禁用状态的卡片的背景颜色
-  --ti-card-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --tv-Card-disabled-bg-color: var(--tv-color-bg-disabled);
 
   // 大尺寸卡片的logo状态下，body区域的padding值
-  --ti-card-large-body-padding: var(--ti-common-space-6x);
+  --tv-Card-large-body-padding: 32px;
   // 中尺寸卡片的logo状态下，body区域的padding值
-  --ti-card-medium-body-padding: var(--ti-common-space-6x);
+  --tv-Card-medium-body-padding: 24px;
   // 小尺寸卡片的logo状态下，body区域的padding值
-  --ti-card-small-body-padding: var(--ti-common-space-4x);
+  --tv-Card-small-body-padding: var(--tv-space-xl, 16px);
   // 迷你尺寸卡片的logo状态下，body区域的padding值
-  --ti-card-mini-body-padding: var(--ti-common-space-3x);
+  --tv-Card-mini-body-padding: var(--tv-space-lg, 12px);
 
   // 卡片的标题的字体大小
-  --ti-card-title-font-size: var(--ti-common-font-size-2);
+  --tv-Card-title-font-size: var(--tv-font-size-lg);
   // 卡片的标题的字体颜色
-  --ti-card-title-text-color: var(--ti-common-color-selected-text-color);
+  --tv-Card-title-text-color: var(--tv-color-act-primary-text);
   // 卡片的标题的字重
-  --ti-card-title-font-weight: bold;
+  --tv-Card-title-font-weight: var(--tv-font-weight-bold);
   // 卡片的正文的字体大小
-  --ti-card-main-font-size: var(--ti-common-font-size-1);
+  --tv-Card-main-font-size: var(--tv-font-size-md);
   // 卡片的正文的字体颜色
-  --ti-card-main-text-color: var(--ti-common-color-text-weaken);
+  --tv-Card-main-text-color: var(--tv-color-text-weaken);
 
   // 卡片的选项的文本色
-  --ti-card-option-text-color: var(--ti-common-color-selected-text-color);
+  --tv-Card-option-text-color: var(--tv-color-bg-primary);
   // 卡片的选项的文本大小
-  --ti-card-option-font-size: var(--ti-common-font-size-2);
+  --tv-Card-option-font-size: var(--tv-font-size-lg);
   // 卡片的选项的文本大小
-  --ti-card-option-top-border-color: var(--ti-common-color-primary-disabled);
+  --tv-Card-option-top-border-color: var(--tv-color-bg-header);
   // 卡片的选项禁用时的文本色
-  --ti-card-option-disabled-text-color: var(--ti-common-color-text-disabled);
+  --tv-Card-option-disabled-text-color: var(--tv-color-text-disabled);
   // 卡片的'更多'的字体颜色
-  --ti-card-footer-more-text-color: var(--ti-base-color-common-9);
+  --tv-Card-footer-more-text-color: var(--tv-color-act-primary-text);
   // 卡片标题下边距
-  --ti-card-title-mg-bottom: var(--ti-common-space-4x);
+  --tv-Card-title-mg-bottom: var(--tv-space-xl);
 }

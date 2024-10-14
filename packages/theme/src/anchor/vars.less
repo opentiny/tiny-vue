@@ -10,41 +10,45 @@
 *
 */
 
-.component-css-vars-anchor() {
-  // 组件默认背景色
-  --ti-anchor-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+.inject-anchor-vars() {
   // 组件宽度
-  --ti-anchor-width: var(--ti-common-size-40x);
+  --tv-Anchor-width: calc(var(--tv-size-base, 4px) * 40);
+  // 组件默认背景色
+  --tv-Anchor-bg-color: var(--tv-color-bg-secondary, #fff);
   // 锚点默认文本色
-  --ti-anchor-text-color: var(--ti-common-color-text-secondary);
-  // dot类型线条背景色(new)
-  --ti-anchor-line-bg-color: var(--ti-common-scrollbar-thumb-bg-color);
-  // dot类型线条透明度(hide)
-  --ti-anchor-line-opacity: 1;
-  // dot类型圆点边框色(new)
-  --ti-anchor-dot-border-color: var(--ti-common-color-line-normal, #adb0b8);
+  --tv-Anchor-text-color: var(--tv-color-text-secondary, #595959);
   // 锚点默认字号
-  --ti-anchor-font-size: var(--ti-common-font-size-1, 14px);
-  // 选中锚点竖向轨道滑块背景色
-  --ti-anchor-link-active-bg-color: var(--ti-common-color-selected-background, #5e7ce0);
-  // 选中锚点竖向轨道滑块宽度
-  --ti-anchor-orbit-skid-width: var(--ti-common-size-base, 4px);
+  --tv-Anchor-font-size: var(--tv-font-size-md, 14px);
+  // 选中锚点项默认文本色
+  --tv-Anchor-link-text-color-active: var(--tv-color-text, #191919);
+  // 锚点项左默认外边距
+  --tv-Anchor-link-margin-left: var(--tv-space-md, 8px);
+  // 悬浮锚点项默认文本色
+  --tv-Anchor-link-text-color-hover: var(--tv-color-text-secondary, #595959);
+
+  // line类型
   // 竖向轨道宽度
-  --ti-anchor-orbit-width: var(--ti-common-size-base, 4px);
-  // 选中锚点文本色
-  --ti-anchor-link-active-text-color: var(--ti-common-color-text-primary);
+  --tv-Anchor-orbit-width: var(--tv-size-base, 4px);
   // 选中锚点蒙层背景色
-  --ti-anchor-link-mask-bg-color: rgba(80, 115, 229, 0.15);
-  // 悬浮锚点文本色
-  --ti-anchor-link-hover-text-color: var(--ti-common-color-primary-active, #7693f5);
+  --tv-Anchor-link-mask-bg-color: rgba(80, 115, 229, 0.15);
   // 锚点竖向轨道背景色
-  --ti-anchor-orbit-bg-color: var(--ti-common-color-line-disabled, #dfe1e6);
-  // 锚点左外边距
-  --ti-anchor-link-margin-left: var(--ti-common-space-2x, 8px);
-  // 锚点标题垂直内边距
-  --ti-anchor-link-title-padding-vertical: var(--ti-common-space-1, 1px);
+  --tv-Anchor-orbit-bg-color: var(--tv-color-border-divider-short, #dbdbdb);
+  // 选中锚点竖向轨道滑块宽度
+  --tv-Anchor-orbit-skid-width: var(--tv-size-base, 4px);
+  // 选中锚点竖向轨道滑块背景色
+  --tv-Anchor-link-bg-color-active: var(--tv-color-bg, #f5f5f5);
   // 锚点标题右外边距
-  --ti-anchor-link-title-padding-right: var(--ti-common-space-2x, 8px);
-  // 锚点标题左外边距
-  --ti-anchor-link-title-padding-left: var(--ti-common-space-10, 10px);
+  --tv-Anchor-link-title-padding-right: var(--tv-space-md, 8px);
+
+  // dot类型
+  // dot类型圆点边框色
+  --tv-Anchor-dot-border-color: var(--tv-color-border, #c2c2c2);
+  // dot类型线条背景色
+  --tv-Anchor-line-bg-color: var(--tv-color-border-disabled, #dbdbdb);
+  // dot类型选中项圆点背景色
+  --tv-Anchor-dot-bg-color-active: var(--tv-color-bg-primary, #191919);
+  // dot类型选中项圆点边框色
+  --tv-Anchor-dot-border-color-active: var(--tv-color-border-hover, #191919);
+  // dot类型线条透明度(hide)
+  --tv-Anchor-line-opacity: 1;
 }

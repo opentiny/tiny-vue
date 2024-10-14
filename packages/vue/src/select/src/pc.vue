@@ -25,8 +25,7 @@
       hoverExpand ? 'is-hover-expand' : '',
       clickExpand ? 'is-click-expand' : '',
       state.showCollapseTag ? 'collapse-tag-clicked' : '',
-      state.isDisabled ? 'is-disabled' : '',
-      inputBoxType === 'underline' ? 'tiny-select__underline' : ''
+      state.isDisabled ? 'is-disabled' : ''
     ]"
     @mouseleave.self="
       () => {
@@ -93,7 +92,7 @@
                 :size="state.collapseTagSize"
                 :hit="state.selected[0].state ? state.selected[0].state.hitState : state.selected[0].hitState"
                 :key="state.key"
-                :disabled="state.selected[0].disabled"
+                :disabled="state.selected[0].disabled || state.isDisabled"
                 :type="state.getTagType"
                 @close="deleteTag($event, state.selected[0])"
                 disable-transitions
@@ -127,6 +126,7 @@
                 :closable="false"
                 :size="state.collapseTagSize"
                 :type="state.getTagType"
+                :disabled="state.isDisabled"
                 disable-transitions
                 class="tiny-select__tags-number"
               >
@@ -152,7 +152,7 @@
               <template v-else>
                 <tiny-tag
                   v-if="hoverExpand || clickExpand"
-                  :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden }]"
+                  :class="['tiny-select__tags-collapse', { 'is-hidden': state.isHidden || state.isDisabled }]"
                   :type="state.getTagType"
                   key="tags-collapse"
                   data-tag="tags-collapse"
@@ -227,8 +227,7 @@
             >
               <span>
                 <span v-for="item in state.selected" :key="item.value">
-                  <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot
-                  >;
+                  <slot name="label" :item="item">{{ item.state ? item.state.currentLabel : item.currentLabel }}</slot>
                 </span>
               </span>
 
@@ -293,6 +292,7 @@
           :display-only-content="state.displayOnlyContent"
           :unselectable="state.readonly ? 'on' : 'off'"
           :validate-event="false"
+          :inputBoxType="inputBoxType"
           :class="{
             'is-focus': state.visible,
             overflow: state.overflow,
@@ -318,7 +318,7 @@
           <template #suffix>
             <slot name="suffix"></slot>
             <!-- tiny 新增：xdesign 规范 ：多选限制数量时，在后缀显示 "选中/最大限制项" 计数的提示文字  -->
-            <span v-if="showLimitText && multiple && multipleLimit" class="tiny-select__limit-txt">
+            <span v-if="showLimitText && multiple && multipleLimit && !state.showCopy" class="tiny-select__limit-txt">
               {{ state.selected.length }}/{{ multipleLimit }}
             </span>
             <!-- tiny 新增：xdesign 规范 ： 显示比例时，在后缀显示 "选中/全部项" 计数的提示文字  -->
@@ -334,7 +334,7 @@
 
             <icon-close
               v-if="state.showClose"
-              class="tiny-svg-size tiny-select__caret icon-close"
+              class="tiny-svg-size tiny-select__caret tiny-select__close"
               @click="handleClearClick"
               @mouseenter="state.inputHovering = true"
             ></icon-close>
@@ -356,7 +356,8 @@
                 { 'not-reverse': !state.getIcon.isDefault }
               ]"
               @click="handleDropdownClick"
-            ></component>
+            >
+            </component>
           </template>
         </tiny-input>
       </slot>
@@ -387,7 +388,7 @@
           </div>
           <div v-if="topCreate" class="tiny-select__top-create">
             <div @click="$emit('top-create-click', $event)">
-              <icon-plus></icon-plus>
+              <component :is="state.designConfig?.icons?.addIcon || 'icon-add-circle'"></component>
               <span>{{ topCreateText }}</span>
             </div>
           </div>
@@ -572,14 +573,19 @@
                 {{ state.emptyText }}
               </p>
             </div>
-            <div v-else class="tiny-select-dropdown__loading">
+            <div v-else class="tiny-select-dropdown__loading" :class="{ 'show-loading-icon': loading }">
               <template v-if="!loading">
                 <span v-if="showEmptyImage" class="tiny-select-dropdown__empty-images"></span>
                 <span v-else class="tiny-select-dropdown__empty"> {{ state.emptyText }}</span>
               </template>
-              <svg v-else class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="24" fill="none" />
-              </svg>
+
+              <component
+                class="circular"
+                :is="
+                  (state.designConfig && state.designConfig.icons && state.designConfig.icons.loadingIcon) ||
+                  'icon-loading-shadow'
+                "
+              ></component>
             </div>
           </template>
           <!-- tiny 新增 footer插槽 -->
@@ -609,11 +615,12 @@ import {
   IconCheck,
   IconCheckedSur,
   IconCopy,
-  IconPlus,
   IconDeltaDown,
   IconSearch,
   IconEllipsis,
-  IconChevronUp
+  IconChevronUp,
+  IconAddCircle,
+  IconLoadingShadow
 } from '@opentiny/vue-icon'
 import Grid from '@opentiny/vue-grid'
 import Tree from '@opentiny/vue-tree'
@@ -669,7 +676,8 @@ export default defineComponent({
     IconClose: IconClose(),
     TinyScrollbar,
     IconCopy: IconCopy(),
-    IconPlus: IconPlus(),
+    IconAddCircle: IconAddCircle(),
+    IconLoadingShadow: IconLoadingShadow(),
     TinySelectDropdown,
     IconHalfselect: IconHalfselect(),
     IconCheck: IconCheck(),

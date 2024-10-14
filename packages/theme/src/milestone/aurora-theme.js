@@ -1,3 +1,3 @@
 export const tinyMilestoneAuroraTheme = {
-  'ti-milestone-icon-color': '#1890ff'
+  'tv-Milestone-icon-color': '#1890ff'
 }

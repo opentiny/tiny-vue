@@ -10,23 +10,28 @@
 *
 */
 
-.component-css-vars-progress() {
-  // 进度条默认文本色
-  --ti-progress-text-color: var(--ti-common-color-text-primary, #252b3a);
-  // 进度条内层文本字号
-  --ti-progress-text-font-size: var(--ti-common-font-size-base, 12px);
-  // 横向条未完成部分背景色
-  --ti-progress-bar-outer-bg-color: #E6E6E6;
-  // 横向条已完成部分背景色
-  --ti-progress-bar-inner-bg-color: var(--ti-common-color-data-4);
+.inject-Progress-vars() {
+  /** 横向条自身默认场景 */
+  // 横向条未完成背景色
+  --tv-Progress-outer-bg-color: var(--tv-color-bg-gray-2, #e6e6e6);
+  // 横向条已完成背景色
+  --tv-Progress-inner-bg-color: var(--tv-color-success-bg, #5cb300);
+  // 横向条内层文本字号
+  --tv-Progress-inner-font-size: var(--tv-font-size-md, 14px);
   // 横向条内层文本色
-  --ti-progress-bar-inner-text-color: var(--ti-common-color-light, #fff);
+  --tv-Progress-inner-text-color: var(--tv-color-text-white, #ffffff);
+
+  /** 横向条状态场景 */
+  // success状态横向条已完成背景色
+  --tv-Progress-bg-color-success: var(--tv-color-success-bg, #5cb300);
+  // warning状态横向条已完成背景色
+  --tv-Progress-bg-color-warning: var(--tv-color-warn-bg, #ff8800);
+  // exception状态横向条已完成背景色
+  --tv-Progress-bg-color-exception: #c7000b;
+
+  /** 横向条右侧文字场景 */
   // 横向条右侧文字左外边距
-  --ti-progress-bar-text-margin-left: var(--ti-common-space-3x);
-  // success状态横向条已完成部分背景色
-  --ti-progress-success-bg-color: var(--ti-common-color-success-normal, #50d4ab);
-  // warning状态横向条已完成部分背景色
-  --ti-progress-warning-bg-color: var(--ti-common-color-warning-normal, #fa9841);
-  // exception状态横向条已完成部分背景色
-  --ti-progress-exception-bg-color: #c7000b;
+  --tv-Progress-right-text-margin-left: var(--tv-space-lg, 12px);
+  // 进度条右侧文本色
+  --tv-Progress-right-text-color: var(--tv-color-text, #191919);
 }

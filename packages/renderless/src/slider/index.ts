@@ -641,7 +641,7 @@ export const updateSlotValue =
 
 export const handleSlotInput =
   ({ state, api }: Pick<ISliderRenderlessParams, 'api' | 'state'>) =>
-  (event: Event, isLeftInput: boolean = true): void => {
+  (event: Event, isLeftInput = true): void => {
     const inputValue = (event.target as HTMLInputElement).value
 
     api.changeActiveValue(state.isDouble ? isLeftInput : true)
@@ -651,9 +651,9 @@ export const handleSlotInput =
 
 export const inputOnChange =
   ({ api, emit, props, state }: Pick<ISliderRenderlessParams, 'api' | 'state' | 'props' | 'emit'>) =>
-  (event: Event) => {
+  (currentValue: string) => {
     if (!props.changeCompat) {
-      if (!/^\d+$/.test(event.target.value)) {
+      if (!/^\d+$/.test(currentValue)) {
         state.activeValue = state.leftBtnValue
         return
       }

@@ -19,73 +19,73 @@
 .@{card-prefix-cls} {
   .component-css-vars-amount();
 
-  background-color: var(--ti-card-bg-color);
+  background-color: var(--tv-Card-bg-color);
   border: 1px solid;
   line-height: 1.5;
   overflow: hidden;
-  min-width: var(--ti-card-min-width);
+  min-width: auto;
 
   &:hover {
-    box-shadow: var(--ti-card-box-shadow);
+    box-shadow: none;
   }
 
   // size尺寸管理
   &.@{card-prefix-cls}--large {
-    border-radius: var(--ti-card-large-border-radius);
+    border-radius: var(--tv-Card-large-border-radius);
   }
 
   &.@{card-prefix-cls}--medium {
-    border-radius: var(--ti-card-medium-border-radius);
+    border-radius: var(--tv-Card-medium-border-radius);
   }
 
   &.@{card-prefix-cls}--small {
-    border-radius: var(--ti-card-small-border-radius);
+    border-radius: var(--tv-Card-small-border-radius);
   }
 
   &.@{card-prefix-cls}--mini {
-    border-radius: var(--ti-card-mini-border-radius);
+    border-radius: var(--tv-Card-mini-border-radius);
   }
 
   &.@{card-prefix-cls}--large-width {
-    width: var(--ti-card-large-width);
+    width: var(--tv-Card-large-width);
   }
 
   &.@{card-prefix-cls}--medium-width {
-    width: var(--ti-card-medium-width);
+    width: var(--tv-Card-medium-width);
   }
 
   &.@{card-prefix-cls}--small-width {
-    width: var(--ti-card-small-width);
+    width: var(--tv-Card-small-width);
   }
 
   &.@{card-prefix-cls}--mini-width {
-    width: var(--ti-card-mini-width);
+    width: var(--tv-Card-mini-width);
   }
 
   // status状态管理
   &.@{card-prefix-cls}--success {
-    border-color: var(--ti-card-success-border-color);
+    border-color: var(--tv-Card-success-border-color);
   }
 
   &.@{card-prefix-cls}--warning {
-    border-color: var(--ti-card-warning-border-color);
+    border-color: var(--tv-Card-warning-border-color);
   }
 
   &.@{card-prefix-cls}--alerting {
-    border-color: var(--ti-card-alerting-border-color);
+    border-color: var(--tv-Card-alerting-border-color);
   }
 
   &.@{card-prefix-cls}--danger {
-    border-color: var(--ti-card-danger-border-color);
+    border-color: var(--tv-Card-danger-border-color);
   }
 
   &.@{card-prefix-cls}--default {
-    border-color: var(--ti-card-default-border-color);
+    border-color: var(--tv-Card-default-border-color);
   }
 
   // 选中 禁用
   &.@{card-prefix-cls}--item-checked {
-    border-color: var(--ti-card-checked-border-color);
+    border-color: var(--tv-Card-checked-border-color);
   }
   &.@{card-prefix-cls}--item-checkbox-checked {
     position: relative;
@@ -101,24 +101,24 @@
     border-bottom: 40px solid transparent;
     border-right: 40px solid #1476ff;
     border-top-right-radius: 6px;
-    display: var(--ti-checkbox-button-checked-display);
+    display: flex;
   }
 
   &.@{card-prefix-cls}--item-checkbox-checked::before {
-    display: var(--ti-checkbox-button-checked-display);
+    display: flex;
     right: 5px;
     top: 1px;
     box-sizing: content-box;
     content: '';
     border: 0.5px solid #fff;
-    border-width: 0 var(--ti-checkbox-checkline-width) var(--ti-checkbox-checkline-width) 0;
+    border-width: 0 3px 3px 0;
     border-left: 0;
     border-top: 0;
     height: 16px;
     width: 10px;
     position: absolute;
-    margin-left: var(--ti-checkbox-icon-margin-left);
-    margin-top: var(--ti-checkbox-icon-margin-top);
+    margin-left: 4.5px;
+    margin-top: 1px;
     transition:
       transform 0.15s ease-in 0.05s,
       -webkit-transform 0.15s ease-in 0.05s;
@@ -128,7 +128,7 @@
   }
 
   &.@{card-prefix-cls}--disabled {
-    background-color: var(--ti-card-disabled-bg-color);
+    background-color: var(--tv-Card-disabled-bg-color);
   }
 
   // body 样式
@@ -150,6 +150,8 @@
         width: 100%;
         aspect-ratio: 16/9;
         background-size: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
       }
     }
 
@@ -164,19 +166,19 @@
       flex: 1 1 0%;
 
       &.@{card-prefix-cls}--large-padding {
-        padding: var(--ti-card-large-body-padding);
+        padding: var(--tv-Card-large-body-padding);
       }
 
       &.@{card-prefix-cls}--medium-padding {
-        padding: var(--ti-card-medium-body-padding);
+        padding: var(--tv-Card-medium-body-padding);
       }
 
       &.@{card-prefix-cls}--small-padding {
-        padding: var(--ti-card-small-body-padding);
+        padding: var(--tv-Card-small-body-padding);
       }
 
       &.@{card-prefix-cls}--mini-padding {
-        padding: var(--ti-card-mini-body-padding);
+        padding: var(--tv-Card-mini-body-padding);
       }
 
       & .@{card-prefix-cls}--logo__head {
@@ -207,17 +209,17 @@
       }
 
       & .@{card-prefix-cls}--logo__title--p {
-        font-size: var(--ti-card-title-font-size);
-        font-weight: var(--ti-card-title-font-weight);
+        font-size: var(--tv-Card-title-font-size);
+        font-weight: var(--tv-Card-title-font-weight);
         margin-right: 8px;
-        margin-bottom: var(--ti-card-title-mg-bottom);
+        margin-bottom: var(--tv-Card-title-mg-bottom);
         line-height: 22px;
-        color: var(--ti-card-title-text-color);
+        color: var(--tv-Card-title-text-color);
       }
 
       & .@{card-prefix-cls}--logo__main {
-        font-size: var(--ti-card-main-font-size);
-        color: var(--ti-card-main-text-color);
+        font-size: var(--tv-Card-main-font-size);
+        color: var(--tv-Card-main-text-color);
       }
 
       & .@{card-prefix-cls}--logo__main-type-logo {
@@ -244,12 +246,12 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      border-top: 1px solid var(--ti-card-option-top-border-color);
-      color: var(--ti-card-option-text-color);
-      font-size: var(--ti-card-option-font-size);
+      border-top: 1px solid var(--tv-Card-option-top-border-color);
+      color: var(--tv-Card-option-text-color);
+      font-size: var(--tv-Card-option-font-size);
 
       .@{card-prefix-cls}__footer-options-disabled {
-        color: var(--ti-card-option-disabled-text-color);
+        color: var(--tv-Card-option-disabled-text-color);
         cursor: not-allowed;
       }
 
@@ -263,7 +265,7 @@
       }
 
       .@{card-prefix-cls}__footer-options-icon-disabled {
-        fill: var(--ti-card-option-disabled-text-color);
+        fill: var(--tv-Card-option-disabled-text-color);
       }
 
       .@{card-prefix-cls}__footer-options-span {
@@ -274,7 +276,7 @@
       .@{card-prefix-cls}__footer-options-dropdown {
         .@{card-prefix-cls}__footer-more {
           margin-left: 4px;
-          color: var(--ti-card-title-text-color);
+          color: var(--tv-Card-footer-more-text-color);
         }
 
         .@{card-prefix-cls}__footer-dropdown-item {
@@ -283,7 +285,7 @@
         }
 
         .@{card-prefix-cls}__footer-dropdown-item-disabled {
-          color: var(--ti-card-option-disabled-text-color);
+          color: var(--tv-Card-option-disabled-text-color);
           cursor: not-allowed;
         }
       }
@@ -293,7 +295,7 @@
     &__inner {
       border: none;
       border-radius: 6px;
-      background-color: #FAFAFA;
+      background-color: #fafafa;
     }
   }
 }

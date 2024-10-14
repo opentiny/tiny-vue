@@ -170,6 +170,21 @@ export default {
           mfDemo: ''
         },
         {
+          name: 'height',
+          type: 'string',
+          defaultValue: "'500px'",
+          desc: {
+            'zh-CN': '设置抽屉的高度',
+            'en-US': 'Set the height of the drawer'
+          },
+          mode: ['pc'],
+          pcDemo: 'placement',
+          mfDemo: '',
+          meta: {
+            stable: '3.19.0'
+          }
+        },
+        {
           name: 'z-index',
           type: 'number',
           defaultValue: '2000',
