@@ -11,52 +11,39 @@
 */
 
 .inject-Checkbox-vars() {
-  // 复选框宽度
-  --tv-Checkbox-width: 16px;
-  // 复选框高度
-  --tv-Checkbox-height: 16px;
   // 复选框内部svg宽度
-  --tv-Checkbox-svg-width: calc(var(--tv-Checkbox-width) - 2px);
+  --tv-Checkbox-svg-width: var(--tv-icon-size);
   // 复选框内部svg高度
-  --tv-Checkbox-svg-height: calc(var(--tv-Checkbox-height) - 2px);
+  --tv-Checkbox-svg-height: var(--tv-icon-size);
   // 复选框svg颜色
-  --tv-Checkbox-icon-color: var(--tv-color-icon-white);
+  --tv-Checkbox-icon-color: var(--tv-color-bg-control);
+  // 复选框svg悬浮颜色
+  --tv-Checkbox-icon-color-hover: var(--tv-color-icon-hover);
   // 复选框半选svg颜色
-  --tv-Checkbox-icon-halfselect: var(--tv-color-icon-control-active);
+  --tv-Checkbox-icon-selected: var(--tv-color-icon-control-active);
   // 复选框半选svg颜色
-  --tv-Checkbox-icon-halfselect-disabled: var(--tv-color-icon-control-disabled);
+  --tv-Checkbox-icon-selected-disabled: var(--tv-color-icon-control-disabled);
   // 默认复选框文本色
   --tv-Checkbox-text-color: var(--tv-color-text);
   // 默认复选框字号
   --tv-Checkbox-font-size: var(--tv-font-size-md);
   // 默认复选框字重
   --tv-Checkbox-font-weight: var(--tv-font-weight-regular);
-  // 默认复选框选中项背景色
-  --tv-Checkbox-bg-color-checked: var(--tv-color-bg-active-control);
-  // 默认复选框选中项边框色
-  --tv-Checkbox-border-color-checked: var(--tv-color-border-active-control);
   // 默认复选框未选中项边框色
   --tv-Checkbox-border-color: var(--tv-color-border);
-  // 默认复选框未选中项悬浮边框色
-  --tv-Checkbox-border-color-hover: var(--tv-color-border-hover);
-
-  // 默认复选框禁用时，未选中时背景色
-  --tv-Checkbox-bg-color-disabled: var(--tv-color-bg-disabled);
-  // 默认复选框禁用时，选中项背景颜色
-  --tv-Checkbox-bg-color-checked-disabled: var(--tv-color-bg-disabled-control-checked);
-  // 默认复选框禁用时，选中项对勾颜色以及半选时图标的颜色
-  --tv-Checkbox-icon-color-disabled: var(--tv-color-icon-white);
-  // 默认复选框禁用边框色
-  --tv-Checkbox-border-color-disabled: var(--tv-color-border-disabled);
   // 默认复选框禁用时，label文本色
   --tv-Checkbox-label-text-color-disabled: var(--tv-color-text-disabled);
-
   // 默认复选框边框圆角
   --tv-Checkbox-border-radius: var(--tv-border-radius-sm);
   // 默认复选框外边框圆角
   --tv-Checkbox-outline-border-radius: var(--tv-border-radius-md);
   // 默认复选框的右侧外边距
   --tv-Checkbox-label-margin-right: 24px;
+
+  // 边框模式复选框禁用时，未选中时背景色
+  --tv-Checkbox-bg-color-disabled: var(--tv-color-bg-disabled);
+  // 边框模式复选框禁用边框色
+  --tv-Checkbox-border-color-disabled: var(--tv-color-border-disabled);
 
   // 复选框过滤器模式底色
   --tv-Checkbox-bg-color-filter: var(--tv-color-bg-gray-2);
