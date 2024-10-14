@@ -6,7 +6,6 @@ test('轮播卡片', async ({ page }) => {
   const preview = page.locator('#card-show')
   const btnRight = preview.getByRole('button').nth(1)
   await btnRight.click()
-  await page.waitForTimeout(200)
   await preview
     .locator('div')
     .filter({ hasText: /^2-11-1-content$/ })
