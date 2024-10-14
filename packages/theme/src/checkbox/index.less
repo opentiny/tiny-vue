@@ -38,40 +38,21 @@
   .@{checkbox-prefix-cls}__inner {
     display: inline-block;
     position: relative;
-    border: 1px solid var(--tv-Checkbox-border-color);
-    border-radius: var(--tv-Checkbox-border-radius);
     box-sizing: border-box;
-    width: var(--tv-Checkbox-width);
-    height: var(--tv-Checkbox-height);
     outline: none;
     z-index: 1;
     transition:
       border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
       background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
 
-    &:hover {
-      border-color: var(--tv-Checkbox-border-color-hover);
-    }
-
     svg {
       width: var(--tv-Checkbox-svg-width);
       height: var(--tv-Checkbox-svg-height);
-    }
-
-    .icon-checked-sur {
       fill: var(--tv-Checkbox-icon-color);
     }
 
-    .icon-no-checked {
-      fill: transparent;
-    }
-
-    .icon-halfselect {
-      fill: var(--tv-Checkbox-icon-halfselect);
-    }
-
-    .icon-halfselect:hover {
-      fill: transparent;
+    svg.icon-check:hover {
+      fill: var(--tv-Checkbox-icon-color-hover);
     }
   }
 
@@ -117,41 +98,40 @@
     line-height: 1;
     cursor: pointer;
 
-    &.is-disabled {
-      .checkbox-input-disabled(
-        var(--tv-Checkbox-bg-color-disabled), 
-        var(--tv-Checkbox-border-color-disabled),
-        var(--tv-Checkbox-bg-color-checked-disabled),
-        var(--tv-Checkbox-label-text-color-disabled), 
-        var(--tv-Checkbox-icon-color-disabled)
-      );
-    }
-
-    &.is-disabled,
-    .@{checkbox-prefix-cls}__input.is-disabled {
-      .@{checkbox-prefix-cls}__inner {
-        .icon-halfselect {
-          fill: var(--tv-Checkbox-icon-halfselect-disabled);
-        }
-
-        .icon-no-checked {
-          fill: transparent;
-        }
-      }
-    }
-
     &.is-checked,
     &.is-indeterminate {
       .@{checkbox-prefix-cls}__inner {
-        background-color: var(--tv-Checkbox-bg-color-checked);
-        border-color: var(--tv-Checkbox-border-color-checked);
+        svg {
+          fill: var(--tv-Checkbox-icon-selected);
+        }
       }
     }
-  }
 
-  input:focus-visible + .@{checkbox-prefix-cls}__inner {
-    outline: 2px solid var(--tv-Checkbox-bg-color-checked);
-    outline-offset: 1px;
+    &.is-disabled {
+      & + span.@{checkbox-prefix-cls}__label {
+        color: var(--tv-Checkbox-label-text-color-disabled);
+        cursor: not-allowed;
+      }
+
+      .@{checkbox-prefix-cls}__inner {
+        svg {
+          fill: var(--tv-Checkbox-icon-selected-disabled);
+          cursor: not-allowed;
+        }
+
+        svg:hover {
+          fill: var(--tv-Checkbox-icon-selected-disabled);
+        }
+      }
+
+      &:not(.is-checked):not(.is-indeterminate) {
+        svg {
+          > path:first-child {
+            fill: var(--tv-Checkbox-bg-color-disabled);
+          }
+        }
+      }
+    }
   }
 
   // 原始表单input组件，需要隐藏
