@@ -361,6 +361,7 @@
           </template>
         </tiny-input>
       </slot>
+
       <transition name="tiny-zoom-in-top" @before-enter="handleMenuEnter" @after-leave="doDestroy">
         <tiny-select-dropdown
           ref="popper"
@@ -378,7 +379,6 @@
           >
             <tiny-input
               ref="input"
-              type="text"
               v-model="state.query"
               :placeholder="placeholder"
               @input="debouncedQueryChange"
@@ -429,9 +429,10 @@
             @node-click="treeNodeClick"
             v-bind="treeOp"
           ></tiny-tree>
-          <!-- tiny 新增 可搜索的输入框 -->
+          <!-- tiny 新增 面板搜索 -->
           <tiny-input
             v-if="searchable"
+            input-box-type="underline"
             v-model="state.query"
             :placeholder="t('ui.search.placeholder')"
             class="tiny-select-dropdown__search"
@@ -484,6 +485,7 @@
               </tiny-recycle-scroller>
             </div>
           </template>
+
           <tiny-scrollbar
             v-if="!optimization && !~['grid', 'tree'].indexOf(renderType)"
             ref="scrollbar"
@@ -501,7 +503,7 @@
             <li
               v-if="multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote"
               class="tiny-option tiny-select-dropdown__item"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.selectCls !== 'checked-sur'
@@ -526,7 +528,7 @@
                 !remote
               "
               class="tiny-option tiny-select-dropdown__item"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.filteredSelectCls !== 'checked-sur'
@@ -566,7 +568,7 @@
             "
           >
             <!-- tiny 新增 showEmptyImage功能 -->
-            <div v-if="loadingText || slots.empty">
+            <div v-if="loadingText || slots.empty" class="tiny-select-dropdown__empty-wrap">
               <slot name="empty" v-if="slots.empty"></slot>
               <span v-else-if="showEmptyImage" class="tiny-select-dropdown__empty-images"></span>
               <p class="tiny-select-dropdown__empty" v-else>
@@ -574,18 +576,18 @@
               </p>
             </div>
             <div v-else class="tiny-select-dropdown__loading" :class="{ 'show-loading-icon': loading }">
-              <template v-if="!loading">
-                <span v-if="showEmptyImage" class="tiny-select-dropdown__empty-images"></span>
-                <span v-else class="tiny-select-dropdown__empty"> {{ state.emptyText }}</span>
-              </template>
-
               <component
+                v-if="loading"
                 class="circular"
                 :is="
                   (state.designConfig && state.designConfig.icons && state.designConfig.icons.loadingIcon) ||
                   'icon-loading-shadow'
                 "
               ></component>
+              <template v-else>
+                <span v-if="showEmptyImage" class="tiny-select-dropdown__empty-images"></span>
+                <span v-else class="tiny-select-dropdown__empty"> {{ state.emptyText }}</span>
+              </template>
             </div>
           </template>
           <!-- tiny 新增 footer插槽 -->
