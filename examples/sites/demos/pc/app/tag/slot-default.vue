@@ -1,14 +1,9 @@
 <template>
   <div class="tiny-tag-demo">
-    <tiny-tag size="small" :disabled="disabled" class="first">
+    <tiny-tag size="small">
       <icon-fileupload class="tiny-svg-size left" />标签 <icon-chevron-right class="tiny-svg-size right" />
     </tiny-tag>
-    <tiny-tag size="small" :disabled="disabled" closable> <icon-time class="tiny-svg-size" />标签 </tiny-tag>
-    <tiny-tag :disabled="disabled" closable> <icon-time class="tiny-svg-size" />标签 </tiny-tag>
-    <tiny-tag size="medium" :disabled="disabled" closable> <icon-time class="tiny-svg-size medium" />标签 </tiny-tag>
-    <tiny-tag size="small" type="success" class="tiny-only-iocn">
-      <icon-fileupload />
-    </tiny-tag>
+    <tiny-tag closable> <icon-time class="tiny-svg-size" />标签 </tiny-tag>
   </div>
 </template>
 
@@ -22,11 +17,6 @@ export default {
     IconTime: IconTime(),
     IconFileupload: IconFileupload(),
     IconChevronRight: IconChevronRight()
-  },
-  data() {
-    return {
-      disabled: false
-    }
   }
 }
 </script>
@@ -34,25 +24,5 @@ export default {
 <style scoped>
 .tiny-tag {
   margin-right: 10px;
-}
-.first {
-  color: #a25203;
-}
-.first svg {
-  fill: #a25203;
-}
-.first .right {
-  margin-right: -2px;
-}
-.tiny-svg-size {
-  fill: #595959;
-  margin-right: 4px;
-  font-size: 16px;
-}
-.medium {
-  font-size: 20px;
-}
-.tiny-only-iocn {
-  border-radius: 0px 6px;
 }
 </style>

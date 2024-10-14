@@ -33,8 +33,20 @@ export default {
         'en-US': 'Color and border'
       },
       desc: {
-        'zh-CN': `通过 <code>hit</code> 设置边框；<code>color</code> 设置颜色，可使用预设值，也可自定义颜色值；当自定义颜色值为字符串则只能设置背景色；若为数组则第一个值为背景色，第二个为文本色。`,
-        'en-US': `Use <code>hit</code> to set the border. <code>color</code> Set the color. You can use the preset value or customize the color value. If the value of Custom Color is a character string, only the background color can be set. If it is an array, the first value is the background color and the second is the text color.`
+        'zh-CN': `
+        通过 <code>hit</code> 设置边框；<br>
+        通过 <code>color</code> 设置颜色，可使用预设值，也可自定义颜色值；当自定义颜色值为字符串则只能设置背景色；若为数组则第一个值为背景色，第二个为文本色。<br>
+        <div class="tip custom-block">
+          避免同时使用  <code>color</code> 和  <code>type</code> 属性！
+        </div>
+        `,
+        'en-US': `
+          Set the border by <code>hit</code>; <br>
+          Use <code>color</code> to set the color. You can use the preset value or customize the color value. When the custom color value is a string, only the background color can be set; If it is an array, the first value is the background color, and the second value is the text color. <br>
+          <div class="tip custom-block">
+            Avoid using both <code>color</code> and <code>type</code> properties!
+          </div>
+        `
       },
       codeFiles: ['color-border.vue']
     },
@@ -95,8 +107,8 @@ export default {
     {
       demoId: 'slot-default',
       name: {
-        'zh-CN': '图标型',
-        'en-US': 'Icon type'
+        'zh-CN': '默认插槽',
+        'en-US': 'Default slot'
       },
       desc: {
         'zh-CN': '通过 <code>default</code> 默认插槽自定义标签内容，生成图标标签。',
