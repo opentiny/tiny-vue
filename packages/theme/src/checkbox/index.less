@@ -123,6 +123,14 @@
           fill: var(--tv-Checkbox-icon-selected-disabled);
         }
       }
+
+      &:not(.is-checked):not(.is-indeterminate) {
+        svg {
+          > path:first-child {
+            fill: var(--tv-Checkbox-bg-color-disabled);
+          }
+        }
+      }
     }
   }
 
