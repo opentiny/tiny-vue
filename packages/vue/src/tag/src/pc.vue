@@ -20,7 +20,19 @@ export default defineComponent({
     IconClose: iconClose()
   },
   emits: ['click', 'close'],
-  props: [...props, 'text', 'closable', 'type', 'hit', 'disabled', 'color', 'size', 'effect', 'value', 'beforeDelete'],
+  props: [
+    ...props,
+    'text',
+    'closable',
+    'type',
+    'hit', //  hit 只保留类名供aui使用， tinyvue 这边的border是随着规范走，取决于css var中的border色值
+    'disabled',
+    'color',
+    'size',
+    'effect',
+    'value',
+    'beforeDelete'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h }) as unknown as ITagApi
   },

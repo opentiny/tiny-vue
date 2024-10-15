@@ -145,7 +145,7 @@ export default {
             'en-US': 'Size'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'basic-usage',
+          pcDemo: 'size',
           mfDemo: ''
         },
         {

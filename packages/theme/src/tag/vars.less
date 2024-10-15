@@ -147,9 +147,44 @@
   // info 主题时标签plain的边框色
   --tv-Tag-border-color-plain-info: var(--tv-color-info-border);
 
-  // color 场景：   'red', 'orange', 'green', 'blue', 'purple', 'brown', 'grey', 'gold'
-
+  // color 场景：'red orange green blue purple brown grey gold'  规范变化时，也不需要变更的变量
+  // 红色时标签文本色
+  --tv-Tag-text-color-red: #f23030;
+  // 红色时标签背景色
+  --tv-Tag-bg-color-red: #fce3e0;
+  // 橙色时标签文本色
+  --tv-Tag-text-color-orange: #d96900;
+  // 橙色时标签背景色
+  --tv-Tag-bg-color-orange: #ffebd1;
+  // 绿色时标签文本色
+  --tv-Tag-text-color-green: #029931;
+  // 绿色时标签背景色
+  --tv-Tag-bg-color-green: #d5f2dc;
+  // 蓝色时标签文本色
+  --tv-Tag-text-color-blue: #1476ff;
+  // 蓝色时标签背景色
+  --tv-Tag-bg-color-blue: #deecff;
+  // 紫色时标签文本色
+  --tv-Tag-text-color-purple: #832fd6;
+  // 紫色时标签背景色
+  --tv-Tag-bg-color-purple: #f4e0fc;
+  // 棕色时标签文本色
+  --tv-Tag-text-color-brown: #a64d00;
+  // 棕色时标签背景色
+  --tv-Tag-bg-color-brown: #ffebd1;
+  // 灰色时标签文本色
+  --tv-Tag-text-color-grey: #191919;
+  // 灰色时标签背景色
+  --tv-Tag-bg-color-grey: #e6e6e6;
+  // 金色时标签文本色
+  --tv-Tag-text-color-gold: #8f3c00;
+  // 金色时标签背景色
+  --tv-Tag-bg-color-gold: linear-gradient(to right, #e8cda4, #f8eddb);
   // disabled 场景：
+  // 标签禁用时的文本色
+  --tv-Tag-text-color-disabled: var(--tv-color-text-disabled);
+  // 标签禁用时的背景色
+  --tv-Tag-bg-color-disabled: var(--tv-color-bg-disabled);
 
   //------------------------------------------------------- 关闭图标 场景：-----------------------------------
   // 标签的关闭按钮大小
@@ -162,4 +197,8 @@
   --tv-Tag-close-icon-color-disabled: var(--tv-color-icon-disabled);
   // 标签的关闭按钮的左外边距
   --tv-Tag-close-icon-margin-left: var(--tv-space-sm);
+
+  //------------------------------------------------------- 其它 场景：-----------------------------------
+  // 标签插槽有前置图标时，图标的右间距
+  --tv-Tag-slot-icon-margin-right: var(--tv-space-sm);
 }
