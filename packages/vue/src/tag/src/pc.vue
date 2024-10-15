@@ -31,13 +31,28 @@ export default defineComponent({
     'size',
     'effect',
     'value',
-    'beforeDelete'
+    'beforeDelete',
+    'onlyIcon'
   ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h }) as unknown as ITagApi
   },
   render() {
-    const { type, size, hit, effect, slots, closable, color, handleClose, handleClick, disabled, state, value } = this
+    const {
+      type,
+      size,
+      hit,
+      effect,
+      slots,
+      closable,
+      color,
+      handleClose,
+      handleClick,
+      disabled,
+      state,
+      value,
+      onlyIcon
+    } = this
 
     let styles = {}
 
@@ -47,7 +62,8 @@ export default defineComponent({
       size ? `tiny-tag--${size}` : '',
       effect ? `tiny-tag--${effect}` : '',
       hit && 'is-hit',
-      disabled ? 'is-disabled' : ''
+      disabled ? 'is-disabled' : '',
+      onlyIcon ? 'tiny-tag--only-icon' : ''
     ]
 
     if (color) {

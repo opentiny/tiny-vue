@@ -145,4 +145,13 @@
     margin-right: var(--tv-Tag-slot-icon-margin-right);
     fill: currentColor;
   }
+
+  &.@{tag-prefix-cls}--only-icon.@{tag-prefix-cls}--only-icon.@{tag-prefix-cls}--only-icon {
+    padding: var(--tv-Tag-only-icon-padding);
+
+    svg {
+      font-size: var(--tv-Tag-only-icon-font-size);
+      margin-right: 0; // 此时不需要右边距了
+    }
+  }
 }
