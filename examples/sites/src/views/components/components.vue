@@ -772,10 +772,10 @@ export default defineComponent({
   }
 
   .docs-content-tabs {
-    --ti-tabs-heigh: 48px;
-    --ti-tabs-item-font-size: 18px;
-    --ti-tabs-header-font-active-text-color: #2f5bea;
-    --ti-tabs-item-active-border-color: #2f5bea;
+    --tv-Tabs-heigh: 48px;
+    --tv-Tabs-item-font-size: 18px;
+    --tv-Tabs-header-font-active-text-color: #2f5bea;
+    --tv-Tabs-item-active-border-color: #2f5bea;
 
     flex: 1;
     transition: all ease-in-out 0.3s;
