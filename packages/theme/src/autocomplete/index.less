@@ -14,12 +14,8 @@
 @import './vars.less';
 
 @autocomplete-prefix-cls: ~'@{css-prefix}autocomplete';
-@icon-loading-prefix-cls: ~'@{css-prefix}icon-loading';
-@popper-prefix-cls: ~'@{css-prefix}popper';
 
 .@{autocomplete-prefix-cls} {
-  .component-css-vars-autocomplete();
-
   position: relative;
   display: inline-block;
 
@@ -27,29 +23,34 @@
     width: 100%;
   }
 
+  // 弹框
   &-suggestion {
-    border: 1px solid var(--ti-autocomplete-suggestion-border-color);
-    border-radius: var(--ti-autocomplete-suggestion-border-radius);
-    background-color: var(--ti-autocomplete-suggestion-bg-color);
-    box-sizing: border-box;
-    box-shadow: var(--ti-common-shadow-2-down);
+    .inject-Autocomplete-vars();
+
+    border-radius: var(--tv-Autocomplete-panel-border-radius);
+    background-color: var(--tv-Autocomplete-panel-bg-color);
+    box-shadow: var(--tv-Autocomplete-panel-box-shadow);
+    margin: var(--tv-Autocomplete-panel-margin-y) 0;
+    line-height: var(--tv-Autocomplete-line-height);
+    color: var(--tv-Autocomplete-text-color);
+    font-size: var(--tv-Autocomplete-font-size);
 
     &__wrap {
       max-height: 280px;
-      box-sizing: border-box;
+
+      .tiny-scrollbar__view {
+        margin: 0;
+        padding: 8px 0;
+      }
     }
 
-    &__list.tiny-scrollbar__view {
-      margin: 0;
-      padding: 8px 0;
+    &__list-item[role='option'],
+    &__list-item[role='loading'] {
+      padding: var(--tv-Autocomplete-li-padding);
     }
 
-    & &__list-item {
-      padding: var(--ti-autocomplete-li-padding-vertical) var(--ti-autocomplete-li-padding-horizontal);
-      margin: 0;
-      line-height: var(--ti-autocomplete-li-height);
-      color: var(--ti-autocomplete-li-text-color);
-      font-size: var(--ti-autocomplete-li-font-size);
+    // 列表项
+    &__list-item {
       list-style: none;
       white-space: nowrap;
       overflow: hidden;
@@ -58,44 +59,19 @@
 
       &.highlighted,
       &:hover {
-        background-color: var(--ti-autocomplete-li-hover-bg-color);
+        background-color: var(--tv-Autocomplete-li-bg-color-hover);
       }
 
-      &.divider {
-        margin-top: 6px;
-        border-top: 1px solid var(--ti-autocomplete-li-divider-border-color);
-
-        &:last-child {
-          margin-bottom: -6px;
-        }
-      }
-
-      &:only-of-type {
-        &,
-        &:hover {
-          background-color: var(--ti-autocomplete-li-select-bg-color);
-          color: var(--ti-autocomplete-li-selected-text-color);
-        }
+      &.selected {
+        color: var(--tv-Autocomplete-text-color-selected);
       }
     }
 
+    // 加载
     &.is-loading &__list-loading {
-      background-color: var(--ti-autocomplete-suggestion-bg-color);
-
-      svg {
-        width: 16px;
-        height: 16px;
+      .tiny-svg {
+        font-size: var(--tv-Autocomplete-icon-size);
       }
-    }
-
-    &.is-loading {
-      .@{icon-loading-prefix-cls} {
-        vertical-align: middle;
-      }
-    }
-
-    &.@{popper-prefix-cls}[x-placement^='bottom'] {
-      margin-top: var(--ti-autocomplete-dropdown-gap);
     }
   }
 }
