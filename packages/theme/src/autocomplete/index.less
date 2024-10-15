@@ -44,9 +44,13 @@
       }
     }
 
+    &__list-item[role='option'],
+    &__list-item[role='loading'] {
+      padding: var(--tv-Autocomplete-li-padding);
+    }
+
     // 列表项
     &__list-item {
-      padding: var(--tv-Autocomplete-li-padding);
       list-style: none;
       white-space: nowrap;
       overflow: hidden;

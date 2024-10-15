@@ -72,6 +72,7 @@
             <li
               v-if="!hideLoading && state.loading"
               class="tiny-autocomplete-suggestion__list-item tiny-autocomplete-suggestion__list-loading"
+              role="loading"
             >
               <icon-loading-shadow></icon-loading-shadow>
             </li>
