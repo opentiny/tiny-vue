@@ -17,16 +17,16 @@
 @fall-menu-prefix-cls: ~'@{css-prefix}fall-menu';
 
 .@{fall-menu-prefix-cls} {
-  .component-css-vars-fall-menu();
+  .inject-FallMenu-vars();
   box-shadow: 0 1px 4px 0 #14000000;
 
   & &__wrap {
-    background: var(--tv-Fall-menu-bg-color-normal);
+    background: var(--tv-FallMenu-bg-color-normal);
     padding: 0 24px;
   }
 
   & &__nav {
-    height: var(--tv-Fall-menu-menu-height);
+    height: var(--tv-FallMenu-menu-height);
     margin: 0 auto;
     position: relative;
   }
@@ -36,16 +36,16 @@
 
     .icon-slot-left,
     .icon-slot-right {
-      color: var(--tv-Fall-menu-slot-text-color);
+      color: var(--tv-FallMenu-slot-text-color);
       cursor: pointer;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: var(--tv-Fall-menu-icon-font-size);
+      font-size: var(--tv-FallMenu-icon-font-size);
       line-height: 1;
 
       svg {
-        fill: var(--tv-Fall-menu-box-svg-fill);
+        fill: var(--tv-FallMenu-box-svg-fill);
       }
     }
 
@@ -69,8 +69,8 @@
     }
 
     .active-show {
-      font-size: var(--tv-Fall-menu-box-font-size-hover);
-      font-weight: var(--tv-Fall-menu-box-font-weight-hover);
+      font-size: var(--tv-FallMenu-box-font-size-hover);
+      font-weight: var(--tv-FallMenu-box-font-weight-hover);
     }
 
     ul {
@@ -90,20 +90,20 @@
       display: block;
       width: auto;
       padding: 0 12px;
-      height: var(--tv-Fall-menu-menu-height);
+      height: var(--tv-FallMenu-menu-height);
       text-align: center;
       text-decoration: none;
       font-weight: 400;
-      line-height: var(--tv-Fall-menu-menu-height);
-      font-size: var(--tv-Fall-menu-title-font-size);
-      color: var(--tv-Fall-menu-slot-text-color);
+      line-height: var(--tv-FallMenu-menu-height);
+      font-size: var(--tv-FallMenu-title-font-size);
+      color: var(--tv-FallMenu-slot-text-color);
 
       &:hover,
       &.now {
-        color: var(--tv-Fall-menu-slot-text-color);
+        color: var(--tv-FallMenu-slot-text-color);
         text-decoration: none;
-        font-size: var(--tv-Fall-menu-box-font-size-hover);
-        font-weight: var(--tv-Fall-menu-box-font-weight-hover);
+        font-size: var(--tv-FallMenu-box-font-size-hover);
+        font-weight: var(--tv-FallMenu-box-font-weight-hover);
       }
 
       &.now:before {
@@ -123,12 +123,12 @@
   & &__box {
     position: absolute;
     left: 0px;
-    top: var(--tv-Fall-menu-menu-height);
+    top: var(--tv-FallMenu-menu-height);
     width: 100%;
-    background: var(--tv-Fall-menu-slot-bg-color);
+    background: var(--tv-FallMenu-slot-bg-color);
     overflow: hidden;
     transition: opacity 0.4s;
-    border-radius: var(--tv-Fall-menu-box-border-radius);
+    border-radius: var(--tv-FallMenu-box-border-radius);
     .opacity(0);
 
     .contbox {
@@ -147,9 +147,9 @@
         width: 100%;
 
         h3.mcate-item-hd {
-          font-size: var(--tv-Fall-menu-box-font-size);
+          font-size: var(--tv-FallMenu-box-font-size);
           border-bottom: 0 solid #ccc;
-          color: var(--tv-Fall-menu-box-title-text-color);
+          color: var(--tv-FallMenu-box-title-text-color);
           font-weight: 700;
           margin: 0;
           line-height: 32px;
@@ -160,8 +160,8 @@
           line-height: 32px;
 
           a {
-            font-size: var(--tv-Fall-menu-box-a-font-size);
-            color: var(--tv-Fall-menu-box-text-color);
+            font-size: var(--tv-FallMenu-box-a-font-size);
+            color: var(--tv-FallMenu-box-text-color);
             text-decoration: none;
             display: block;
             overflow: hidden;
@@ -171,7 +171,7 @@
 
             &:hover {
               text-decoration: underline;
-              color: var(--tv-Fall-menu-box-hover-text-color);
+              color: var(--tv-FallMenu-box-hover-text-color);
             }
           }
         }
