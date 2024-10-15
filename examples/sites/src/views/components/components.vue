@@ -937,7 +937,6 @@ export default defineComponent({
   }
 
   :deep(.tiny-anchor-link) {
-    margin-bottom: 10px;
     font-size: 12px;
 
     a {
