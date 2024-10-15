@@ -4,8 +4,7 @@ test('拖拽事件', async ({ page }) => {
   page.on('pageerror', (exception) => expect(exception).toBeNull())
   await page.goto('toggle-menu#drag-events')
   await page.getByRole('treeitem', { name: '开发指南' }).getByRole('img').click()
-  await page.getByRole('treeitem', { name: '引入组件' }).locator('div').nth(3).click()
-  const dragNode = page.getByRole('treeitem', { name: '引入组件' }).locator('div').nth(3).boundingBox()
+  const dragNode = page.getByRole('treeitem', { name: '引入组件' }).boundingBox()
   // 开始拖拽
   const { x, y } = await dragNode
   await page.mouse.move(x, y)
