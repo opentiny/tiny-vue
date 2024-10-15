@@ -27,6 +27,7 @@ export const tagProps = {
   operable: Boolean,
   disabled: Boolean,
   selectable: Boolean,
+  onlyIcon: Boolean, // 仅图标模式
   customClass: {
     type: String,
     default: ''

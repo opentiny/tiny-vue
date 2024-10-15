@@ -40,7 +40,7 @@ export default {
               'Control the text color and background color of the label. You can use the preset value in the IColor type or customize the value. If the customized value is a character string, you can only set the background color of the label. If it is an array, the first value sets the background color and the second sets the text color. [Note: The array type is supported in 3.15.0]'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
-          pcDemo: 'color3',
+          pcDemo: 'color-border',
           mobileDemo: 'different-color',
           mfDemo: 'color3'
         },
@@ -145,7 +145,7 @@ export default {
             'en-US': 'Size'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'basic-usage',
+          pcDemo: 'size',
           mfDemo: ''
         },
         {
@@ -192,7 +192,19 @@ export default {
             'en-US': 'Configurable labels, custom label content [Added in 3.9.1]'
           },
           mode: ['pc', 'mobile-first'],
-          pcDemo: 'content',
+          pcDemo: 'basic-usage',
+          mfDemo: ''
+        },
+        {
+          name: 'only-icon',
+          type: 'boolean',
+          defaultValue: 'false',
+          desc: {
+            'zh-CN': '是否为纯图标的模式【3.19新增】',
+            'en-US': 'Whether it is a pure icon mode [Added in 3.19]'
+          },
+          mode: ['pc', 'mobile-first'],
+          pcDemo: 'basic-usage',
           mfDemo: ''
         }
       ],

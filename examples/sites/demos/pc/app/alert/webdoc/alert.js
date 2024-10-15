@@ -30,6 +30,7 @@ export default {
             <ul>
               <li> normal模式下，不会显示标题和交互操作的区域，相当于简单模式。</li> 
               <li> large模式下，显示全部元素，相当于完整模式。</li> 
+            </ul>
           </div>
         `,
         'en-US': `
@@ -39,6 +40,7 @@ export default {
           <ul>
             <li> normal mode, the header and interactive areas are not displayed, which is equivalent to simple mode. </li>
             <li> large mode, all elements are displayed, equivalent to the full mode. </li>
+          </ul>
           </div>
         `
       },
