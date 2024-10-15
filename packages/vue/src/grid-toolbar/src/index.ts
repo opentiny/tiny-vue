@@ -423,6 +423,9 @@ export default defineComponent({
       custom && custom.updateSelectedTemplate(val)
     },
     settingBtnClick() {
+      if (this.setting?.simple) {
+        return
+      }
       return this.setting && this.setting.customSetting
         ? this.setting.settingBtnClickFn()
         : this.handleClickCustomEvent()
