@@ -18,7 +18,7 @@
     ]"
   >
     <span v-if="state.selectMultiple" class="tiny-option__checkbox-wrap tiny-select-dropdown__item-checkbox">
-      <component :is="`icon-${state.selectCls}`" class="tiny-svg-size" />
+      <component :is="`icon-${state.selectCls}`" :class="`tiny-svg-size ${state.selectCls}`" />
     </span>
     <component v-if="icon" :is="icon" class="tiny-option__icon"></component>
     <div class="tiny-option-wrapper" :class="state.selectMultiple ? 'calc-width' : 'full-width'">

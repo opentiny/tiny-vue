@@ -24,7 +24,7 @@
   padding: 0;
 
   &:not(:last-of-type) {
-    padding-bottom: var(--ti-option-group-padding-bottom);
+    padding-bottom: 0px;
   }
 
   &:not(:last-of-type)::after {
@@ -34,28 +34,21 @@
     left: 8px;
     right: 8px;
     bottom: 12px;
-    height: var(--ti-option-group-line-dividing-height);
-    background: var(--ti-option-group-line-dividing-bg-color);
+    height: var(--tv-OptionGroup-height-divider);
+    background: var(--tv-OptionGroup-border-color-divider);
   }
 
   .@{option-group-prefix-cls}__title {
-    padding: 0 var(--ti-option-group-title-padding-horizontal);
-    font-size: var(--ti-option-group-title-font-size);
-    font-weight: var(--ti-option-group-title-font-weight);
-    color: var(--ti-option-group-title-text-color);
-    line-height: var(--ti-option-group-title-line-height);
-    height: var(--ti-option-group-title-height);
-    margin-top: var(--ti-option-group-title-margin-top);
-    margin-bottom: var(--ti-option-group-title-margin-bottom);
+    padding: 0 var(--tv-OptionGroup-title-padding-x);
+    font-size: var(--tv-OptionGroup-font-size);
+
+    color: var(--tv-OptionGroup-text-color);
+    line-height: var(--tv-OptionGroup-line-height);
+    height: auto;
+    margin: var(--tv-OptionGroup-title-margin);
   }
 
   &:first-child .@{option-group-prefix-cls}__title {
-    margin-top: var(--ti-option-group-title-margin-top-first);
-  }
-
-  .@{option-group-prefix-cls}__list {
-    .tiny-option {
-      padding: var(--ti-option-padding-vertical) var(--ti-option-padding-horizontal-group);
-    }
+    margin-top: var(--tv-OptionGroup-title-margin-top-first);
   }
 }

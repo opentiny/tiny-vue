@@ -1,11 +1,11 @@
 {
   "name": "@opentiny/vue-grid",
-  "version": "3.18.0",
+  "type": "module",
+  "version": "3.18.3",
   "description": "",
   "main": "lib/index.js",
   "module": "index.ts",
   "sideEffects": false,
-  "type": "module",
   "devDependencies": {
     "@opentiny-internal/vue-test-utils": "workspace:*",
     "vitest": "^0.31.0"
