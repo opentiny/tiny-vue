@@ -11,10 +11,10 @@ test('bordercard类型', async ({ page }) => {
   const firstItem = tabItems.first()
   const item5 = tabItems.nth(3)
   const content = tabs.getByRole('tabpanel')
-  const activeBgColor = 'rgb(238, 240, 245)'
+  const activeBgColor = 'rgb(245, 245, 245)'
 
   await expect(tabs).toHaveClass(/tiny-tabs--border-card/)
-  await expect(tabHeader).toHaveCSS('background-color', 'rgb(70, 76, 89)')
+  await expect(tabHeader).toHaveCSS('background-color', 'rgb(255, 255, 255)')
   await expect(tabItems).toHaveCount(5)
   await expect(tabItems).toHaveClass([/is-top is-active/, /is-top/, /is-top/, /is-top/, /is-top/])
   await expect(firstItem).toHaveCSS('background-color', activeBgColor)
