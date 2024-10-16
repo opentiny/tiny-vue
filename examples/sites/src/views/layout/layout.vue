@@ -56,7 +56,7 @@
 
 <script>
 import { useRoute } from 'vue-router'
-import { defineComponent, reactive, computed, toRefs, onMounted, onUnmounted } from 'vue'
+import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted } from 'vue'
 import { TreeMenu, Dropdown, DropdownMenu, Tooltip, Tag, Radio, RadioGroup, Button } from '@opentiny/vue'
 import { genMenus, getMenuIcons } from '@/menus.jsx'
 import { router } from '@/router.js'
@@ -96,6 +96,7 @@ export default defineComponent({
     })
 
     const lang = getWord('zh-CN', 'en-US')
+    const route = useRoute()
     const { all: allPathParam, theme = defaultTheme } = useRoute().params
     const allPath = allPathParam ? allPathParam + '/' : ''
     const getTo = (route, key) => `${import.meta.env.VITE_CONTEXT}${allPath}${lang}/${theme}/${route}${key}`
@@ -127,6 +128,19 @@ export default defineComponent({
       state.isCollapsed = isCollapsed
     }
     let routerCbDestroy = null
+
+    watch(
+      () => route.path,
+      (currentVal) => {
+        // 监听路由变化，反作用与左侧列表菜单展开对应的列表
+        const list = currentVal.split('/')
+        if (list && list[list.length - 1]) {
+          const key = list[list.length - 1]
+          state.expandKeys = [key]
+          state.treeMenuRef.setCurrentKey(key)
+        }
+      }
+    )
 
     onMounted(async () => {
       // 每次切换路由，有锚点则跳转到锚点，否则导航到顶部
