@@ -544,7 +544,6 @@ export default defineComponent({
         })
       }
     },
-    // NEXT 未用到
     updateColumn(fullColumn) {
       this.tableFullColumn = fullColumn
     },
