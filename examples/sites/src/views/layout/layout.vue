@@ -134,9 +134,11 @@ export default defineComponent({
       (currentVal) => {
         // 监听路由变化，反作用与左侧列表菜单展开对应的列表
         const list = currentVal.split('/')
-        const key = list[list.length - 1]
-        state.expandKeys = [key]
-        state.treeMenuRef.setCurrentKey(key)
+        if (list && list[list.length - 1]) {
+          const key = list[list.length - 1]
+          state.expandKeys = [key]
+          state.treeMenuRef.setCurrentKey(key)
+        }
       }
     )
 
