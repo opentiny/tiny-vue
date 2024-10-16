@@ -9,8 +9,6 @@
 * A PARTICULAR PURPOSE. SEE THE APPLICABLE LICENSES FOR MORE DETAILS.
 *
 */
-
-@import '../mixins/wizard.less';
 @import '../custom.less';
 @import './vars.less';
 
@@ -21,10 +19,24 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 @svg-wrapper-prefix-cls: ~'@{css-prefix}wizard__chart-svg';
 
-.@{wizard-prefix-cls} {
-  .component-css-vars-wizard();
+/** 节点圆圈场景 */
+.wizard-icon-color(@color, @bgColor, @borderColor) {
+  color: @color;
+  background: @bgColor;
+  border: 1px solid @borderColor;
+}
 
-  & &__nomarl {
+/** 线条场景 */
+.wizard-line-color(@color) {
+  background: @color;
+  border-color: @color;
+}
+
+.@{wizard-prefix-cls} {
+  .inject-Wizard-vars();
+
+  // 水平模式场景
+  & &__normal {
     .@{wizard-prefix-cls}__steps {
       display: flex;
       align-items: flex-start;
@@ -32,13 +44,13 @@
       &-item {
         &:first-child {
           .@{wizard-prefix-cls}__chart-line:first-child {
-            .wizard-line-color(var(--ti-wizard-first-lines-bg-color));
+            .wizard-line-color(var(--tv-Wizard-first-lines-bg-color));
           }
         }
 
         &:last-child {
           .@{wizard-prefix-cls}__chart-line:last-child {
-            .wizard-line-color(var(--ti-wizard-last-lines-bg-color));
+            .wizard-line-color(var(--tv-Wizard-last-lines-bg-color));
           }
         }
       }
@@ -49,211 +61,207 @@
     }
 
     .@{wizard-prefix-cls}__name {
-      margin-top: var(--ti-wizard-node-title-margin-top);
+      margin-top: var(--tv-Wizard-node-title-margin-top);
+      width: calc((var(--tv-Wizard-node-size) + var(--tv-Wizard-lines-width) * 2));
       overflow: hidden;
       text-align: center;
-      width: calc((var(--ti-wizard-node-size) + var(--ti-wizard-lines-width) * 2));
 
       .name {
-        font-size: var(--ti-wizard-font-size);
         width: 100%;
+        font-size: var(--tv-Wizard-font-size);
       }
     }
 
     .@{wizard-prefix-cls}__button {
-      margin-top: var(--ti-wizard-button-group-margin-top);
-      text-align: var(--ti-wizard-button-group-text-align);
+      margin-top: var(--tv-Wizard-button-group-margin-top);
+      text-align: left;
 
       .@{button-prefix-cls} + .@{button-prefix-cls} {
-        margin-left: var(--ti-wizard-button-margin-left);
+        margin-left: var(--tv-Wizard-button-margin-left);
       }
     }
   }
 
+  // 垂直模式场景
   & &__vertical {
     padding-top: 20px;
     padding-left: 20px;
 
-    .@{wizard-prefix-cls}__steps-item {
-      &.is-doing {
-        .@{wizard-prefix-cls}__chart-line {
-          .wizard-line-color(var(--ti-wizard-right-lines-doing-bg-color));
-        }
+    .@{wizard-prefix-cls} {
+      &__steps-item {
+        &.is-doing {
+          .@{wizard-prefix-cls}__chart-icon {
+            .wizard-icon-color(
+              var(--tv-Wizard-icon-color),
+              var(--tv-Wizard-icon-bg-color),
+              var(--tv-Wizard-icon-border-color)
+            );
 
-        .@{wizard-prefix-cls}__chart-name > .name {
-          font-weight: var(--ti-wizard-node-doing-font-weight);
-        }
-
-        .@{wizard-prefix-cls}__chart-icon {
-          .wizard-icon-color(
-            var(--ti-wizard-icon-color),
-            var(--ti-wizard-icon-bg-color),
-            var(--ti-wizard-icon-border-color)
-          );
+            .@{wizard-prefix-cls}__chart-line {
+              &,
+              &.is-time-line {
+                .wizard-line-color(var(--tv-Wizard-icon-bg-color));
+              }
+            }
+          }
 
           .@{wizard-prefix-cls}__chart-line {
-            &,
-            &.is-time-line {
-              .wizard-line-color(var(--ti-wizard-icon-bg-color));
-            }
+            .wizard-line-color(var(--tv-Wizard-right-lines-doing-bg-color));
+          }
+
+          .@{wizard-prefix-cls}__chart-name > .name {
+            font-weight: var(--tv-Wizard-node-doing-font-weight);
+          }
+        }
+
+        &:last-child > ul .@{wizard-prefix-cls}__chart-line {
+          background: none;
+        }
+
+        &:last-child > .@{wizard-prefix-cls}__node-wrapper > .@{wizard-prefix-cls}__chart-line {
+          .wizard-line-color(var(--tv-Wizard-last-lines-bg-color));
+        }
+
+        .@{wizard-prefix-cls}__node-wrapper {
+          height: var(--tv-Wizard-vertical-node-box-height);
+        }
+
+        &:not(.is-ready, .is-doing) {
+          .@{wizard-prefix-cls}__chart-name .name {
+            color: var(--tv-Wizard-vertical-wait-desc-text-color);
           }
         }
       }
 
-      &:last-child > ul .@{wizard-prefix-cls}__chart-line {
-        background: none;
+      &__chart-line {
+        height: var(--tv-Wizard-vertical-line-height);
+        width: var(--tv-Wizard-vertical-line-width);
+        top: var(--tv-Wizard-vertical-line-position-top);
+        position: relative;
+        display: inline-block;
       }
 
-      &:last-child > .@{wizard-prefix-cls}__node-wrapper > .@{wizard-prefix-cls}__chart-line {
-        .wizard-line-color(var(--ti-wizard-last-lines-bg-color));
+      &__chart-name {
+        position: relative;
+        top: -5px;
+        transform: translateY(-50%);
+        margin-left: var(--tv-Wizard-vertical-text-margin-left);
+        display: inline-flex;
+        font-size: var(--tv-Wizard-vertical-title-font-size);
+        flex-direction: column;
+
+        .name {
+          color: var(--tv-Wizard-node-text-color);
+          line-height: var(--tv-Wizard-vertical-title-line-height);
+        }
+
+        .children-name {
+          color: var(--tv-Wizard-vertical-desc-text-color);
+          font-size: var(--tv-Wizard-vertical-desc-font-size);
+          margin-top: var(--tv-Wizard-vertical-desc-margin-top);
+          line-height: var(--tv-Wizard-vertical-title-line-height);
+        }
       }
 
-      .@{wizard-prefix-cls}__node-wrapper {
-        height: var(--ti-wizard-vertical-node-box-height);
-      }
-    }
-
-    .@{wizard-prefix-cls}__chart-line {
-      height: var(--ti-wizard-vertical-line-height);
-      width: var(--ti-wizard-vertical-line-width);
-      top: var(--ti-wizard-vertical-line-position-top);
-      position: relative;
-      display: inline-block;
-    }
-
-    .@{wizard-prefix-cls}__steps-item:not(.is-ready, .is-doing) {
-      .@{wizard-prefix-cls}__chart-name .name {
-        color: var(--ti-wizard-vertical-wait-desc-text-color);
-      }
-    }
-
-    .@{wizard-prefix-cls}__chart-name {
-      font-size: var(--ti-wizard-vertical-title-font-size);
-      margin-left: var(--ti-wizard-vertical-text-margin-left);
-      display: inline-flex;
-      flex-direction: column;
-      transform: translateY(-50%);
-      position: relative;
-      top: var(--ti-wizard-vertical-position-top);
-
-      .name {
-        color: var(--ti-wizard-node-text-color);
-        line-height: var(--ti-wizard-vertical-title-line-height);
+      &__chart-icon {
+        position: var(--tv-Wizard-vertical-icon-position);
+        left: 50%;
+        top: var(--tv-Wizard-vertical-icon-position-top);
+        transform: translateX(-50%);
       }
 
-      .children-name {
-        color: var(--ti-wizard-vertical-desc-text-color);
-        font-size: var(--ti-wizard-vertical-desc-font-size);
-        margin-top: var(--ti-wizard-vertical-desc-margin-top);
-        line-height: var(--ti-wizard-vertical-title-line-height);
+      &__time-wrapper {
+        position: relative;
+        left: 50%;
+        top: -14px;
+        transform: translateX(-50%);
+        fill: var(--tv-Wizard-time-node-icon-color);
+        font-size: var(--ti-common-font-size-5);
+        box-sizing: border-box;
+        width: var(--tv-Wizard-time-node-size);
+        height: var(--tv-Wizard-time-node-size);
+        display: flex;
+        border-radius: 50%;
+        text-align: center;
+        background: var(--tv-Wizard-time-node-bg-color);
+        border: var(--tv-Wizard-time-node-border-weight) solid var(--tv-Wizard-icon-bg-color);
+        justify-content: center;
+
+        .@{svg-prefix-cls} {
+          width: var(--tv-Wizard-time-node-icon-width);
+          height: var(--tv-Wizard-time-node-icon-height);
+        }
       }
-    }
 
-    .@{wizard-prefix-cls}__chart-icon {
-      position: var(--ti-wizard-vertical-icon-position);
-      left: 50%;
-      top: var(--ti-wizard-vertical-icon-position-top);
-      transform: translateX(-50%);
-    }
+      &__chart-children {
+        position: relative;
 
-    .@{wizard-prefix-cls}__time-wrapper {
-      position: relative;
-      left: 50%;
-      top: -14px;
-      transform: translateX(-50%);
-      fill: var(--ti-wizard-time-node-icon-color);
-      font-size: var(--ti-common-font-size-5);
-      box-sizing: border-box;
-      width: var(--ti-wizard-time-node-size);
-      height: var(--ti-wizard-time-node-size);
-      display: flex;
-      border-radius: 50%;
-      text-align: center;
-      background: var(--ti-wizard-time-node-bg-color);
-      border: var(--ti-wizard-time-node-border-weight) solid var(--ti-wizard-icon-bg-color);
-      justify-content: center;
-
-      .@{svg-prefix-cls} {
-        width: var(--ti-wizard-time-node-icon-width);
-        height: var(--ti-wizard-time-node-icon-height);
-      }
-    }
-
-    .@{wizard-prefix-cls}__chart-children {
-      position: relative;
-
-      .children-name {
-        position: absolute;
-        margin-left: 15px;
+        .children-name {
+          position: absolute;
+          margin-left: 15px;
+        }
       }
     }
   }
 
+  // 垂直模式时间线场景
   & &__vertical.is-time-line-flow {
-    .@{wizard-prefix-cls}__node-wrapper {
-      height: auto;
-    }
-
-    .@{wizard-prefix-cls}__steps-item {
-      &.is-doing {
-        .@{wizard-prefix-cls}__chart-icon {
-          .wizard-icon-color(
-            var(--ti-wizard-icon-color),
-            var(--ti-wizard-icon-bg-color),
-            var(--ti-wizard-icon-border-color)
-          );
-        }
+    .@{wizard-prefix-cls} {
+      &__node-wrapper {
+        height: auto;
       }
 
-      .@{wizard-prefix-cls}__chart-children {
+      &__steps-item {
+        & > ul .@{wizard-prefix-cls}__chart-line {
+          .wizard-line-color(var(--tv-Wizard-time-lines-bg-color));
+        }
+
+        &:last-child > ul .@{wizard-prefix-cls}__chart-line {
+          background: var(--tv-Wizard-time-last-lines-bg-color);
+        }
+
         .@{wizard-prefix-cls}__chart-line {
-          .wizard-line-color(var(--ti-wizard-time-lines-bg-color));
+          top: 0px;
+          margin-left: 0;
+          height: 88px;
+
+          &.is-time-line {
+            .wizard-line-color(var(--tv-Wizard-time-lines-bg-color));
+          }
         }
       }
 
-      &:last-child > ul .@{wizard-prefix-cls}__chart-line {
-        background: var(--ti-wizard-time-last-lines-bg-color);
+      &__chart-icon {
+        position: relative;
+        top: -14px;
       }
-    }
 
-    .@{wizard-prefix-cls}__steps-item .@{wizard-prefix-cls}__chart-line {
-      height: 88px;
-      top: 0px;
-      margin-left: 0;
-
-      &.is-time-line {
-        .wizard-line-color(var(--ti-wizard-time-lines-bg-color));
+      // 时间线节点开始时的线条样式
+      & &__chart-children.is-ready .@{wizard-prefix-cls}__chart-line {
+        .wizard-line-color(var(--tv-Wizard-icon-bg-color));
       }
-    }
-
-    .@{wizard-prefix-cls}__chart-name {
-      top: -5px;
-    }
-
-    .@{wizard-prefix-cls}__chart-icon {
-      position: relative;
-      top: -14px;
     }
   }
 
+  // 垂直模式时间线日期场景
   & &__date {
-    min-width: var(--ti-wizard-time-left-min-width);
+    position: relative;
+    top: var(--tv-Wizard-time-left-position-top);
+    right: 15px;
+    margin-right: var(--tv-Wizard-time-left-margin-right);
+    min-width: var(--tv-Wizard-time-left-min-width);
     width: auto;
-    color: var(--ti-wizard-text-color);
-    font-size: var(--ti-wizard-font-size);
-    line-height: var(--ti-wizard-time-left-line-height);
+    color: var(--tv-Wizard-text-color);
+    font-size: var(--tv-Wizard-font-size);
+    line-height: var(--tv-Wizard-time-left-line-height);
     display: inline-block;
     text-align: right;
-    position: relative;
-    top: var(--ti-wizard-time-left-position-top);
-    right: 15px;
-    margin-right: var(--ti-wizard-time-left-margin-right);
 
     .date-icon {
-      margin-left: var(--ti-wizard-time-left-icon-margin-left);
-      margin-right: var(--ti-wizard-time-left-icon-margin-right);
-      font-size: var(--ti-wizard-time-left-icon-size);
-      fill: var(--ti-wizard-time-left-icon-color);
+      margin-left: var(--tv-Wizard-time-left-icon-margin-left);
+      margin-right: var(--tv-Wizard-time-left-icon-margin-right);
+      font-size: var(--tv-Wizard-time-left-icon-size);
+      fill: var(--tv-Wizard-time-left-icon-color);
     }
 
     span {
@@ -261,27 +269,28 @@
     }
 
     &.time-line-text {
-      font-weight: var(--ti-wizard-node-doing-font-weight);
-      top: var(--ti-wizard-time-left-point-position-top);
+      top: var(--tv-Wizard-time-left-point-position-top);
+      font-weight: var(--tv-Wizard-node-doing-font-weight);
     }
   }
 
+  // 全局节点样式
   & &__steps-item {
     &.is-ready {
       .name {
-        color: var(--ti-wizard-node-text-color);
+        color: var(--tv-Wizard-node-text-color);
       }
 
       .@{wizard-prefix-cls}__chart-icon {
         .wizard-icon-color(
-          var(--ti-wizard-icon-color),
-          var(--ti-wizard-icon-bg-color),
-          var(--ti-wizard-icon-border-color)
+          var(--tv-Wizard-icon-color),
+          var(--tv-Wizard-icon-bg-color),
+          var(--tv-Wizard-icon-border-color)
         );
       }
 
       .@{wizard-prefix-cls}__chart-line {
-        .wizard-line-color(var(--ti-wizard-lines-bg-color));
+        .wizard-line-color(var(--tv-Wizard-lines-bg-color));
       }
     }
 
@@ -290,66 +299,65 @@
     }
   }
 
+  // 全局节点（不包含文字场景）
   & &__chart {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 
     & > .@{svg-wrapper-prefix-cls} {
-      height: var(--ti-wizard-node-size);
+      height: var(--tv-Wizard-node-size);
 
       & > .@{svg-prefix-cls} {
-        font-size: var(--ti-wizard-node-size);
-        fill: var(--ti-wizard-node-text-color);
+        font-size: var(--tv-Wizard-node-size);
+        fill: var(--tv-Wizard-node-text-color);
       }
     }
   }
 
+  // 全局节点和时间线节点的共同样式
   & &__steps-item,
   & &__chart-children {
     &.is-ready,
     &.is-doing {
       .@{wizard-prefix-cls}__chart-icon {
         .wizard-icon-color(
-          var(--ti-wizard-icon-color),
-          var(--ti-wizard-icon-bg-color),
-          var(--ti-wizard-icon-border-color)
+          var(--tv-Wizard-icon-color),
+          var(--tv-Wizard-icon-bg-color),
+          var(--tv-Wizard-icon-border-color)
         );
       }
     }
 
     &.is-doing .@{wizard-prefix-cls}__name .name {
-      font-weight: var(--ti-wizard-node-doing-font-weight);
+      font-weight: var(--tv-Wizard-node-doing-font-weight);
     }
 
     &.is-doing .@{wizard-prefix-cls}__chart-line {
-      .wizard-line-color(var(--ti-wizard-lines-bg-color));
+      .wizard-line-color(var(--tv-Wizard-lines-bg-color));
 
       &:last-child {
-        background-color: var(--ti-wizard-right-lines-doing-bg-color);
+        background-color: var(--tv-Wizard-right-lines-doing-bg-color);
       }
     }
   }
 
-  & &__chart-children.is-ready .@{wizard-prefix-cls}__chart-line {
-    .wizard-line-color(var(--ti-wizard-icon-bg-color));
-  }
-
+  // 时间线节点标题样式
   & &__chart-detail {
-    padding: var(--ti-wizard-time-right-padding-vertical) 8px;
+    padding: var(--tv-Wizard-time-right-padding-vertical) 8px;
     border-radius: 2px;
-    border-radius: var(--ti-wizard-detail-border-radius, 2px);
+    border-radius: var(--tv-Wizard-detail-border-radius, 2px);
     min-height: 26px;
     height: auto;
     line-height: 1;
-    margin-left: var(--ti-wizard-time-right-margin-left);
-    text-align: var(--ti-wizard-time-right-text-align);
+    margin-left: var(--tv-Wizard-time-right-margin-left);
+    text-align: var(--tv-Wizard-time-right-text-align);
     display: inline-block;
     position: absolute;
     top: -14px;
 
     &:hover {
-      background: var(--ti-wizard-detail-bg-color);
+      background: var(--tv-Wizard-detail-bg-color);
 
       &::before {
         content: '';
@@ -358,7 +366,7 @@
         margin-top: -4px;
         border-style: solid;
         border-width: 4px 4px 4px 0;
-        border-color: transparent var(--ti-wizard-detail-bg-color);
+        border-color: transparent var(--tv-Wizard-detail-bg-color);
         position: absolute;
         left: -4px;
         top: 10px;
@@ -366,41 +374,43 @@
 
       .detail-title,
       .@{user-contact-prefix-cls}__role {
-        color: var(--ti-wizard-icon-color);
+        color: var(--tv-Wizard-icon-color);
       }
     }
 
     .detail-title {
-      color: var(--ti-wizard-text-color);
+      color: var(--tv-Wizard-text-color);
       font-size: var(--ti-common-font-size-1);
       font-weight: 700;
-      margin-bottom: var(--ti-wizard-time-right-title-margin-bottom);
-      line-height: var(--ti-wizard-vertical-title-line-height);
+      margin-bottom: var(--tv-Wizard-time-right-title-margin-bottom);
+      line-height: var(--tv-Wizard-vertical-title-line-height);
     }
   }
 
+  // 默认节点圆圈样式
   & &__chart-icon {
-    width: var(--ti-wizard-node-size);
-    height: var(--ti-wizard-node-size);
-    line-height: var(--ti-wizard-node-size);
+    width: var(--tv-Wizard-node-size);
+    height: var(--tv-Wizard-node-size);
+    line-height: var(--tv-Wizard-node-size);
     border-radius: 50%;
     font-size: var(--ti-common-font-size-base);
     text-align: center;
-    background: var(--ti-wizard-chart-icon-bg-color);
-    color: var(--ti-wizard-normal-icon-color);
+    background: var(--tv-Wizard-chart-icon-bg-color);
+    color: var(--tv-Wizard-normal-icon-color);
     // 垂直简易流程图加
     display: inline-block;
-    border: var(--ti-wizard-lines-normal-border-weight) solid var(--ti-wizard-lines-normal-border-color);
+    border: var(--tv-Wizard-lines-normal-border-weight) solid var(--tv-Wizard-lines-normal-border-color);
 
     &.time-line-icon {
-      width: var(--ti-wizard-time-dot-size);
-      height: var(--ti-wizard-time-dot-size);
-      line-height: var(--ti-wizard-time-dot-size);
+      width: var(--tv-Wizard-time-dot-size);
+      height: var(--tv-Wizard-time-dot-size);
+      line-height: var(--tv-Wizard-time-dot-size);
     }
   }
 
+  // 时间线小圆形节点背景色
   & &__chart-children &__chart-line &__chart-icon.time-line-icon {
-    background-color: var(--ti-wizard-time-lines-bg-color);
+    background-color: var(--tv-Wizard-time-lines-bg-color);
   }
 
   & &__chart-icon,
@@ -410,26 +420,22 @@
     cursor: pointer;
   }
 
+  // 节点线样式
   & &__chart-line {
-    height: var(--ti-wizard-lines-height);
-    background: var(--ti-wizard-lines-normal-bg-color);
-    width: var(--ti-wizard-lines-width);
+    height: 1px;
+    background: var(--tv-Wizard-lines-normal-bg-color);
+    width: var(--tv-Wizard-lines-width);
 
     &:first-child {
-      margin-right: var(--ti-wizard-lines-margin-horizontal);
+      margin-right: var(--tv-Wizard-lines-margin-horizontal);
     }
 
     &:last-child {
-      margin-left: var(--ti-wizard-lines-margin-horizontal);
+      margin-left: var(--tv-Wizard-lines-margin-horizontal);
     }
   }
 
-  & &__chart-line &__chart-icon-time {
-    font-size: var(--ti-common-font-size-4);
-    fill: var(--ti-wizard-icon-bg-color);
-    background: var(--ti-wizard-icon-color);
-  }
-
+  // 时间线联系人信息
   .@{user-contact-prefix-cls} {
     .dropdown-part .@{user-head-prefix-cls},
     .@{svg-prefix-cls} {
