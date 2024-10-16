@@ -83,20 +83,6 @@ export default {
       codeFiles: ['show-more.vue']
     },
     {
-      demoId: 'show-edit',
-      name: {
-        'zh-CN': '编辑按钮',
-        'en-US': 'Display Edit Button'
-      },
-      desc: {
-        'zh-CN':
-          '<p>设置了显示更多按钮后，可以通过 <code>show-edit</code> 设置是否显示编辑按钮。点击编辑按钮后触发 <code>edit</code> 事件。</p>',
-        'en-US':
-          '<p>After setting up to display more buttons, You can set whether to display the edit button through <code>show edit</code> . After clicking the edit button, the <code>edit</code> event is triggered.</p>'
-      },
-      codeFiles: ['show-edit.vue']
-    },
-    {
       demoId: 'slot-default',
       name: {
         'zh-CN': '默认插槽',
