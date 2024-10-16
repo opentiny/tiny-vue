@@ -9,5 +9,5 @@ test('基础用法', async ({ page }) => {
   await expect(link.first()).toHaveText('默认链接')
   await expect(link.nth(1)).toHaveText('默认链接2')
   await link.first().hover()
-  await expect(link.first()).toHaveCSS('color', 'rgb(82, 110, 204)')
+  await expect(link.first()).toHaveCSS('color', 'rgb(20, 118, 255)')
 })
