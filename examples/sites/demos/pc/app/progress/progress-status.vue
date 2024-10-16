@@ -9,7 +9,7 @@
     <tiny-progress
       class="progress"
       :text-inside="textInside"
-      :stroke-width="24"
+      :stroke-width="12"
       :percentage="100"
       status="success"
     ></tiny-progress>
@@ -17,7 +17,7 @@
     <tiny-progress
       class="progress"
       :text-inside="textInside"
-      :stroke-width="22"
+      :stroke-width="12"
       :percentage="80"
       status="warning"
     ></tiny-progress>
@@ -25,7 +25,7 @@
     <tiny-progress
       class="progress"
       :text-inside="textInside"
-      :stroke-width="20"
+      :stroke-width="12"
       :percentage="50"
       status="exception"
     ></tiny-progress>

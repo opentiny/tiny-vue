@@ -12,7 +12,7 @@
             type="line"
             :percentage="percentage"
             status="exception"
-            :stroke-width="24"
+            :stroke-width="12"
           ></tiny-progress>
           <div class="tiny-progress-demo-status">
             <tiny-icon-operationfaild-l class="tiny-progress-demo-status-icon"></tiny-icon-operationfaild-l>
@@ -32,7 +32,7 @@
                 <div class="tiny-progress-content-des-on" @click="cancel">取消</div>
               </div>
             </div>
-            <tiny-progress class="progress" type="line" :percentage="percentage1" :stroke-width="24"></tiny-progress>
+            <tiny-progress class="progress" type="line" :percentage="percentage1" :stroke-width="12"></tiny-progress>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
               type="line"
               :percentage="percentage2"
               status="exception"
-              :stroke-width="24"
+              :stroke-width="12"
             ></tiny-progress>
             <div class="tiny-progress-demo-status">
               <tiny-icon-operationfaild-l class="tiny-progress-demo-status-icon"></tiny-icon-operationfaild-l>
@@ -73,7 +73,7 @@
               type="line"
               :percentage="percentage3"
               status="success"
-              :stroke-width="24"
+              :stroke-width="12"
             ></tiny-progress>
             <div class="tiny-progress-demo-status">
               <tiny-icon-successfull class="tiny-progress-demo-status-icon"></tiny-icon-successfull>
@@ -143,6 +143,9 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped>
+.tiny-progress :deep(.tiny-progress__text) {
+  font-size: 14px !important;
+}
 .error {
   .tiny-progress-demo {
     display: flex;
