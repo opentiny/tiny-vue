@@ -10,30 +10,32 @@
 *
 */
 
-.component-css-vars-popconfirm() {
+.inject-Popconfirm-vars() {
   // 提示弹窗title字体行高
-  --ti-popconfirm-popover-title-line-height:var(--ti-common-line-height-2, 24px);
+  --tv-Popconfirm-popover-title-line-height: var(--tv-line-height-number);
   // 提示弹窗content字体行高
-  --ti-popconfirm-popover-content-line-height: var(--ti-common-line-height-1, 22px);
-  // 底部按钮flex排列方式
-  --ti-popconfirm-popover-footer-justify-content: right;
+  --tv-Popconfirm-popover-content-line-height: var(--tv-line-height-number);
   // 提示弹窗字体大小
-  --ti-popconfirm-popover-footer-font-size: var(--ti-common-font-size-base, 14px);
+  --tv-Popconfirm-popover-footer-font-size: var(--tv-font-size-md);
   // 提示弹窗字体颜色
-  --ti-popconfirm-popover-footer-font-color: #191919;
+  --tv-Popconfirm-popover-footer-font-color: var(--tv-color-text);
   // 提示弹窗容器垂直内边距
-  --ti-popconfirm-popover-container-padding-vertical: var(--ti-common-space-base, 4px);
-  // 提示弹窗图标大小
-  --ti-popconfirm-popover-icon-width: var(--ti-common-size-5x, 20px);
-  --ti-popconfirm-popover-icon-margin-bottom: 2px;
-  // 提示弹窗图标上侧外边距
-  --ti-popconfirm-popover-icon-margin-right: var(--ti-common-space-base, 4px);
+  --tv-Popconfirm-popover-container-padding-vertical: var(--tv-space-base);
+  // 提示弹窗图标外边距
+  --tv-Popconfirm-popover-icon-margin-bottom: var(--tv-space-xs);
+  --tv-Popconfirm-popover-icon-margin-right: var(--tv-space-base);
   // 提示弹窗底部按钮容器上侧外边距
-  --ti-popconfirm-popover-footer-margin-top: var(--ti-common-space-4x, 16px);
-  // 标题字重、大小
-  --ti-popconfirm-popover-title-font-size: var(--ti-common-font-size-2, 16px);
-  --ti-popconfirm-popover-title-font-weight: var(--ti-common-font-weight-bold, 600);
-  --ti-popconfirm-popover-text-color: #191919;
+  --tv-Popconfirm-popover-footer-margin-top: var(--tv-space-xl);
+  // 标题字重、大小、颜色
+  --tv-Popconfirm-popover-title-font-size: var(--tv-icon-size);
+  --tv-Popconfirm-popover-title-font-weight: var(--tv-font-weight-bold);
+  --tv-Popconfirm-popover-text-color: var(--tv-color-text);
   // 标题距离内容下边距
-  --ti-popconfirm-popover-margin-bottom: var(--ti-common-space-2x, 8px);
+  --tv-Popconfirm-popover-margin-bottom: var(--tv-space-md);
+  --tv-Popconfirm-popover-confirm-button-margin-left: var(--tv-space-md);
+  // 图标色
+  --tv-Popconfirm-icon-info-fill: var(--tv-color-info-text);
+  --tv-Popconfirm-icon-error-fill: var(--tv-color-error-text);
+  --tv-Popconfirm-icon-warning-fill: var(--tv-color-warning-text);
+  --tv-Popconfirm-icon-success-fill: var(--tv-color-success-text);
 }
