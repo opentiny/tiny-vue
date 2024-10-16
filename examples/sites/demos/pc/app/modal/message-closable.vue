@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { Button, Modal } from '@opentiny/vue'
+import { Button, Modal, Notify } from '@opentiny/vue'
 
 export default {
   components: {
@@ -18,6 +18,13 @@ export default {
         status: 'info',
         messageClosable: true,
         events: {
+          hide: () => {
+            Notify({
+              type: 'info',
+              title: '触发hide回调事件',
+              position: 'top-right'
+            })
+          },
           close: () => {
             Notify({
               type: 'info',

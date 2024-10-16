@@ -4,7 +4,6 @@ import { cmpMenus as mfCmpMenus } from '../mobile-first/menus'
 
 const noSaasComponents = [
   'ActionMenu',
-  'Anchor',
   'ColorPicker',
   'ColorSelectPanel',
   'ConfigProvider',

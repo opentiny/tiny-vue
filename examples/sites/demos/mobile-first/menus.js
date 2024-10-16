@@ -43,7 +43,9 @@ export const cmpMenus = [
       { name: 'CascaderSelect', nameCn: '级联选择', key: 'cascader-select' },
       { name: 'CascaderMobile', nameCn: '级联选择移动', key: 'cascader-mobile' },
       { name: 'CascaderView', nameCn: '级联选择视图', key: 'cascader-view' },
-      { name: 'DialogBox', nameCn: '对话框', key: 'dialog-box' }
+      { name: 'DialogBox', nameCn: '对话框', key: 'dialog-box' },
+      { name: 'Sticky', nameCn: '粘性布局', key: 'sticky' },
+      { name: 'LoadList', nameCn: '加载列表', key: 'load-list' }
     ]
   },
   {

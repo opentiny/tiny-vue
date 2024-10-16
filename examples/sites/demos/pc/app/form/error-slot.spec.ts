@@ -10,6 +10,8 @@ test('错误提示插槽', async ({ page }) => {
 
   await validBtn.click()
   await expect(getTooltipByText('必填')).toBeVisible()
-  await expect(getTooltipByText('错误提示内容插槽')).toBeVisible()
+  await expect(
+    getTooltipByText('错误提示内容插槽，提示文本很长很长，提示文本很长很长，提示文本很长很长，提示文本很长很长。')
+  ).toBeVisible()
   await expect(page.locator('.error-slot')).toBeVisible()
 })

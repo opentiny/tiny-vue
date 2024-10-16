@@ -20,12 +20,39 @@ export default defineComponent({
     IconClose: iconClose()
   },
   emits: ['click', 'close'],
-  props: [...props, 'text', 'closable', 'type', 'hit', 'disabled', 'color', 'size', 'effect', 'value', 'beforeDelete'],
+  props: [
+    ...props,
+    'text',
+    'closable',
+    'type',
+    'hit', //  hit 只保留类名供aui使用， tinyvue 这边的border是随着规范走，取决于css var中的border色值
+    'disabled',
+    'color',
+    'size',
+    'effect',
+    'value',
+    'beforeDelete',
+    'onlyIcon'
+  ],
   setup(props, context) {
     return setup({ props, context, renderless, api, h }) as unknown as ITagApi
   },
   render() {
-    const { type, size, hit, effect, slots, closable, color, handleClose, handleClick, disabled, state, value } = this
+    const {
+      type,
+      size,
+      hit,
+      effect,
+      slots,
+      closable,
+      color,
+      handleClose,
+      handleClick,
+      disabled,
+      state,
+      value,
+      onlyIcon
+    } = this
 
     let styles = {}
 
@@ -35,7 +62,8 @@ export default defineComponent({
       size ? `tiny-tag--${size}` : '',
       effect ? `tiny-tag--${effect}` : '',
       hit && 'is-hit',
-      disabled ? 'is-disabled' : ''
+      disabled ? 'is-disabled' : '',
+      onlyIcon ? 'tiny-tag--only-icon' : ''
     ]
 
     if (color) {

@@ -13,7 +13,7 @@
   <label
     class="tiny-radio-button"
     :class="[
-      state.size ? 'tiny-radio-button--' + state.size : '',
+      state.size ? 'tiny-radio-button--' + state.size : 'tiny-radio-button--default',
       { 'is-active': state.value === label },
       { 'is-disabled': state.isDisabled },
       { 'is-focus': state.focus }

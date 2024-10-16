@@ -1092,6 +1092,9 @@ export default {
         {
           name: 'after-refresh-column',
           type: '()=> void',
+          meta: {
+            stable: '3.18.0'
+          },
           defaultValue: '',
           desc: {
             'zh-CN': '在新增或者删除列后，列配置是异步更新的，列配置刷新后触发的回调',
@@ -3436,7 +3439,7 @@ export default {
           pcDemo: 'grid-editor#editor-custom-editor-select'
         },
         {
-          name: 'filed',
+          name: 'field',
           type: 'string',
           defaultValue: '',
           desc: {
@@ -4036,7 +4039,7 @@ export default {
       code: `
 interface IRow {
   // 表格行数据
-  [filed: string]: any
+  [field: string]: any
 }
       `
     },
@@ -4170,7 +4173,7 @@ interface IContextMenuConfig {
       type: 'type',
       code: `
 interface IValidRules {
- [filed:string]: { 
+ [field:string]: { 
   type?: string
   required?: boolean
   validator?: () => boolean

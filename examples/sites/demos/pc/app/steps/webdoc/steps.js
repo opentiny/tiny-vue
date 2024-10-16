@@ -109,7 +109,7 @@ export default {
     {
       demoId: 'slot-item',
       name: {
-        'zh-CN': 'item插槽',
+        'zh-CN': 'item 插槽',
         'en-US': 'item slot'
       },
       desc: {
@@ -117,6 +117,18 @@ export default {
         'en-US': 'Customize step bar node content through scope slot <code>item</code>.'
       },
       codeFiles: ['slot-item.vue']
+    },
+    {
+      demoId: 'slot-item-footer',
+      name: {
+        'zh-CN': 'itemFooter 插槽',
+        'en-US': 'itemFooter slot'
+      },
+      desc: {
+        'zh-CN': '<p>通过插槽 <code>itemFooter</code> 自定义节点底部内容为链接按钮。</p>',
+        'en-US': '<p>Customize the bottom content of the node as a link button through slot<code>itemFooter</code>.</p>'
+      },
+      codeFiles: ['slot-item-footer.vue']
     },
     {
       demoId: 'click',

@@ -43,7 +43,7 @@
             @input="handleJumperInput"
             @change="handleJumperChange"
           />
-          <span v-if="state.showJumperSufix" class="tiny-pager__goto-text tiny-pager__goto-text-sufix">{{
+          <span v-if="state.showJumperSuffix" class="tiny-pager__goto-text tiny-pager__goto-text-sufix">{{
             t('ui.page.pageClassifier')
           }}</span>
         </div>
@@ -68,6 +68,20 @@
         @change="handleCurrentChange"
         @before-page-change="beforePagerChangeHandler"
       ></pager>
+
+      <!-- simplest-pager-item -->
+      <tiny-base-select
+        v-else-if="item === 'simplest-pager'"
+        :style="{ width: state.simplestPagerWidth + 'px' }"
+        :size="size"
+        :key="'simplest-pager' + index"
+        v-model="state.internalCurrentPage"
+        :disabled="disabled"
+        :options="state.simplestPagerOption"
+        popper-class="tiny-pager__simplest-pager-popover"
+        :optimization="state.simplestPagerOption.length > 30"
+        @change="handleCurrentChange"
+      ></tiny-base-select>
 
       <!-- next -->
       <button
@@ -146,7 +160,9 @@
           </template>
           <template v-else>
             <span>{{ t('ui.page.totals') }}</span>
-            <span> {{ customTotal ? state.totalText : state.internalTotal }} </span>
+            <span :class="{ 'tiny-pager__total-num': !customTotal }">
+              {{ customTotal ? state.totalText : state.internalTotal }}
+            </span>
           </template>
         </div>
       </div>
@@ -156,6 +172,7 @@
 
 <script lang="tsx">
 import Pager from '@opentiny/vue-pager-item'
+import TinyBaseSelect from '@opentiny/vue-base-select'
 import Popover from '@opentiny/vue-popover'
 import Loading from '@opentiny/vue-loading'
 import { $prefix, setup, defineComponent, props } from '@opentiny/vue-common'
@@ -200,6 +217,7 @@ export default defineComponent({
   },
   components: {
     TinyPopover: Popover,
+    TinyBaseSelect,
     ChevronLeft: iconChevronLeft(),
     ChevronRight: iconChevronRight(),
     TriangleDown: iconTriangleDown(),

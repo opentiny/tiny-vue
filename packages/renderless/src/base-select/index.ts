@@ -1766,7 +1766,7 @@ const optmzApis = {
         '.tiny-recycle-scroller__slot, .tiny-recycle-scroller__item-view:not([style*="transform: translateY(-9999px) translateX(0px)"])'
       )
     )
-      .map((item) => item.querySelector(`[data-tag="tiny-select-dropdown-item"]:not(${querySelectKey})`))
+      .map((item) => item.querySelector(`[data-tag="tiny-option"]:not(${querySelectKey})`))
       .filter((v) => v)
   },
   setScrollTop: ({ refs, state }) => {

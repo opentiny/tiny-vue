@@ -1663,6 +1663,19 @@
       "mobile"
     ]
   },
+  "LoadList": {
+    "path": "vue/src/load-list/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first"
+    ]
+  },
+  "LoadListMobileFirst": {
+    "path": "vue/src/load-list/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
   "Loading": {
     "path": "vue/src/loading/index.ts",
     "type": "component",
@@ -2590,6 +2603,25 @@
     "type": "template",
     "exclude": false
   },
+  "Sticky": {
+    "path": "vue/src/sticky/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "mobile-first",
+      "pc"
+    ]
+  },
+  "StickyMobileFirst": {
+    "path": "vue/src/sticky/src/mobile-first.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "StickyPc": {
+    "path": "vue/src/sticky/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
   "SvgIcon": {
     "path": "vue/src/svg-icon/index.ts",
     "type": "component",
@@ -3196,6 +3228,32 @@
   },
   "UserPc": {
     "path": "vue/src/user/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "VirtualScrollBox": {
+    "path": "vue/src/virtual-scroll-box/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "VirtualScrollBoxPc": {
+    "path": "vue/src/virtual-scroll-box/src/pc.vue",
+    "type": "template",
+    "exclude": false
+  },
+  "VirtualTree": {
+    "path": "vue/src/virtual-tree/index.ts",
+    "type": "component",
+    "exclude": false,
+    "mode": [
+      "pc"
+    ]
+  },
+  "VirtualTreePc": {
+    "path": "vue/src/virtual-tree/src/pc.vue",
     "type": "template",
     "exclude": false
   },

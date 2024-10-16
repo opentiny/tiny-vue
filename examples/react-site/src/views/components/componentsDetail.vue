@@ -70,8 +70,9 @@
     </div>
   </div>
 </template>
+
 <script lang="jsx">
-import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted, nextTick, h } from 'vue';
+import { defineComponent, reactive, computed, toRefs, watch, onMounted, onUnmounted, nextTick } from 'vue';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import demo from '@demo';
@@ -183,7 +184,7 @@ function loadPage() {
       const json = JSON.parse(jsonStr);
       state.currJson = {
         ...json,
-        demos: $clone(json['demos'] || []), // 克隆一下,避免保存上次的isOpen
+        demos: $clone(json.demos || []), // 克隆一下,避免保存上次的isOpen
         column: json.column || '1', // columns可能为空
         title: json.title || state.cmpId,
       };
@@ -195,7 +196,7 @@ function loadPage() {
 
         if (!hash) return;
 
-        if (hash.indexOf('/') > -1) {
+        if (hash.includes('/')) {
           hash = hash.slice(1);
         }
 
@@ -241,7 +242,7 @@ const fn = {
 
 export default defineComponent({
   name: 'CmpDetail',
-  components: { demo },
+  components: { Demo: demo },
   setup() {
     watch(
       () => router.currentRoute.value.params.cmpId,
@@ -271,6 +272,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="less">
 .types-table a,
 .api-table a {
@@ -289,7 +291,6 @@ export default defineComponent({
     max-height: 80vh;
   }
   .tiny-anchor-link {
-    margin-bottom: 10px;
     max-width: 150px;
     font-size: 12px;
     a {

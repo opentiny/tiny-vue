@@ -159,7 +159,7 @@ const pickerOptionsStartFrom = {
 
 <style scoped lang="less">
 .demo-date-picker-wrap {
-  width: 350px;
+  width: 360px;
 
   & > * {
     margin-top: 12px;

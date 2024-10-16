@@ -52,7 +52,7 @@ export interface IPagerState {
   internalLayout: string[]
   totalText: string
   internalPageCount: number | null
-  showJumperSufix: boolean
+  showJumperSuffix: boolean
   align: 'left' | 'center' | 'right'
   totalI18n: 'total' | 'totals'
   totalFixedLeft: boolean

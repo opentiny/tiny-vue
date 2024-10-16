@@ -37,4 +37,7 @@ export default {
 .tiny-custom-del {
   margin-left: 2px;
 }
+.tiny-link {
+  margin-right: 48px;
+}
 </style>

@@ -9,7 +9,7 @@ test('基本示例', async ({ page }) => {
   await expect(input).toHaveAttribute('placeholder', 'Please input')
 
   await input.focus()
-  await expect(input).toHaveCSS('border', '1px solid rgb(94, 124, 224)')
+  await expect(input).toHaveCSS('border', '1px solid rgb(25, 25, 25)')
 
   await input.fill('hello')
   await expect(input).toHaveValue('hello')

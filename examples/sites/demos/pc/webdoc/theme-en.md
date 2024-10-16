@@ -155,9 +155,9 @@ If the original format is `--ti-pager-primary-color:red;`, manually replace it w
 
 `Special circumstances`:
 
-Example 3: Query the special variable table. It is similar to a variable that contains the `border` field. If the new variable to be split contains `border-weight (border thickness), border-style (border style), and border-color (border color)`, For example, `--ti-tabs-item-active-border`is split into`--ti-tabs-item-active-border-weight，--ti-tabs-item-active-border-style, --ti-tabs-item-active-border-color`;
+Example 3: Query the special variable table. It is similar to a variable that contains the `border` field. If the new variable to be split contains `border-weight (border thickness), border-style (border style), and border-color (border color)`, For example, `--tv-Tabs-item-active-border`is split into`--tv-Tabs-item-active-border-weight，--tv-Tabs-item-active-border-style, --tv-Tabs-item-active-border-color`;
 
-If the original style is `--ti-tabs-item-active-border: 1px solid red;`, manually replace it with `--ti-tabs-item-active-border-weight: 1px; --ti-tabs-item-active-border-style: solid; --ti-tabs-item-active-border-color: red;`.
+If the original style is `--tv-Tabs-item-active-border: 1px solid red;`, manually replace it with `--tv-Tabs-item-active-border-weight: 1px; --tv-Tabs-item-active-border-style: solid; --tv-Tabs-item-active-border-color: red;`.
 
 Example 4: If the variable split from `--ti-radio-button-checked-hover-color` contains the `box-shadow` field, you need to write the `box-shadow` style separately.
 
@@ -307,20 +307,20 @@ The mapping table of special variables is attached. There are 48 special variabl
     "--ti-switch-checked-disabled-border-color"
   ],
   "--ti-switch-dot-size": ["--ti-switch-dot-size-height-width", "--ti-switch-dot-position-left"],
-  "--ti-tabs-item-active-border": [
-    "--ti-tabs-item-active-border-weight",
-    "--ti-tabs-item-active-border-style",
-    "--ti-tabs-item-active-border-color"
+  "--tv-Tabs-item-active-border": [
+    "--tv-Tabs-item-active-border-weight",
+    "--tv-Tabs-item-active-border-style",
+    "--tv-Tabs-item-active-border-color"
   ],
-  "--ti-tabs-item-border-bottom": [
-    "--ti-tabs-item-bottom-border-weight",
-    "--ti-tabs-item-bottom-border-style",
-    "--ti-tabs-item-bottom-border-color"
+  "--tv-Tabs-item-border-bottom": [
+    "--tv-Tabs-item-bottom-border-weight",
+    "--tv-Tabs-item-bottom-border-style",
+    "--tv-Tabs-item-bottom-border-color"
   ],
-  "--ti-tabs-icon-close-margin": [
-    "--ti-tabs-icon-close-margin-vertical",
-    "--ti-tabs-icon-close-margin-right",
-    "--ti-tabs-icon-close-margin-left"
+  "--tv-Tabs-icon-close-margin": [
+    "--tv-Tabs-icon-close-margin-vertical",
+    "--tv-Tabs-icon-close-margin-right",
+    "--tv-Tabs-icon-close-margin-left"
   ],
   "--ti-tooltip-padding": ["--ti-tooltip-padding-vertical", "--ti-tooltip-padding-horizontal"],
   "--ti-upload-list-picture-card-item-bgcolor": [

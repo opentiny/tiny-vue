@@ -248,7 +248,7 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '组件默认插槽，当 size 设置为 large 后有效',
+            'zh-CN': '组件默认插槽，当 size 设置为 large 时有效，显示在 <code>description</code>下方 ',
             'en-US': 'The default slot for the component is valid when size is set to large'
           },
           mode: ['pc', 'mobile', 'mobile-first'],
@@ -261,7 +261,7 @@ export default {
           type: '',
           defaultValue: '',
           desc: {
-            'zh-CN': '提示内容',
+            'zh-CN': '提示内容插槽',
             'en-US': 'Prompt Content'
           },
           mode: ['pc', 'mobile-first'],

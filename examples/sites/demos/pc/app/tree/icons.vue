@@ -28,8 +28,8 @@ export default {
   data() {
     return {
       icon: iconRightO(),
-      shrinkIcon: iconPutAway(),
-      expandIcon: iconExpand(),
+      shrinkIcon: iconExpand(),
+      expandIcon: iconPutAway(),
       tinyIconEditorTable: iconEditorTable(),
       tinyIconFile: iconFile(),
       data: [

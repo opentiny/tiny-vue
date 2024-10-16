@@ -39,6 +39,10 @@
       <tiny-tree
         :data="state.datas"
         :icon="icon"
+        :expand-icon="expandIcon"
+        :expand-icon-color="expandIconColor"
+        :shrink-icon="shrinkIcon"
+        :shrink-icon-color="shrinkIconColor"
         :class="{
           'tiny-link-menu__wrap': wrap,
           'tiny-link-menu__overflow': !wrap ? ellipsis : false
@@ -70,11 +74,11 @@
       <template #footer>
         <div class="tiny-link-menu__dialog-btn">
           <slot name="foot">
-            <tiny-button type="primary" :disabled="state.disabled" :reset-time="0" @click="sureNodevalue">{{
-              t('ui.linkMenu.sure')
-            }}</tiny-button>
             <tiny-button :disabled="state.disabled" :reset-time="0" @click="hideDialog">{{
               t('ui.linkMenu.cancel')
+            }}</tiny-button>
+            <tiny-button type="primary" :disabled="state.disabled" :reset-time="0" @click="sureNodevalue">{{
+              t('ui.linkMenu.sure')
             }}</tiny-button>
           </slot>
         </div>
@@ -102,6 +106,10 @@ export default defineComponent({
     'title',
     'defaultExpandAll',
     'searchIcon',
+    'expandIcon',
+    'expandIconColor',
+    'shrinkIcon',
+    'shrinkIconColor',
     'ellipsis',
     'wrap',
     'getMenuDataSync',

@@ -112,6 +112,8 @@
     i,
     span {
       font-size: var(--ti-transfer-font-size);
+      transform: translateY(-3px); // 适配 xdesign, 让span居中
+      display: inline-block;
     }
 
     [class*='tiny-icon'] + span {
@@ -277,6 +279,16 @@
       display: inline-block;
       box-sizing: border-box;
       border-radius: var(--ti-transfer-panel-filter-border-radius);
+      border-bottom-color: #f0f0f0 !important;
+      padding-left: 24px;
+      padding-right: 0;
+    }
+    .@{input-prefix-cls}__prefix {
+      left: 0;
+    }
+
+    .@{input-prefix-cls}__suffix {
+      right: 4px;
     }
   }
 

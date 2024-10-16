@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <tiny-file-upload ref="upload" :action="action" :file-list="fileList">
-      <tiny-button type="primary">点击上传</tiny-button>
+      <tiny-button>点击上传</tiny-button>
     </tiny-file-upload>
     <br />
     <tiny-button @click="cancelUpload" type="primary">点击清空上传列表</tiny-button>

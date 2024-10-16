@@ -7,6 +7,6 @@ test('medium 尺寸', async ({ page }) => {
   const smallBox = page.getByRole('textbox', { name: '尺寸: small' })
   const miniBox = page.getByRole('textbox', { name: '尺寸: mini' })
   await expect(mediumBox).toHaveCSS('height', '40px')
-  await expect(smallBox).toHaveCSS('height', '32px')
+  await expect(smallBox).toHaveCSS('height', '28px')
   await expect(miniBox).toHaveCSS('height', '24px')
 })

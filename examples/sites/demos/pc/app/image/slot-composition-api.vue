@@ -16,9 +16,9 @@
       <p>自定义加载失败</p>
       <tiny-image :src="errorUrl">
         <template #error>
-          <div class="err-pic">
-            图片已丢失<br />
-            <span>404 IMAGE</span>
+          <div class="custom-error">
+            <tiny-icon-image-error></tiny-icon-image-error>
+            <div class="err-text">图片已丢失</div>
           </div>
         </template>
       </tiny-image>
@@ -29,33 +29,54 @@
 <script setup>
 import { ref } from 'vue'
 import { Image as TinyImage } from '@opentiny/vue'
+import { iconImageError } from '@opentiny/vue-icon'
 
 const url = ref(`${import.meta.env.VITE_APP_BUILD_BASE_URL}static/images/mountain.png`)
+
+const errorUrl = 'not-exist.jpg'
+
+const TinyIconImageError = iconImageError()
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .demo-image__slot {
   display: flex;
   flex-wrap: wrap;
-}
-.demo-image__slot > div {
-  padding: 0 20px;
-}
-.tiny-image {
-  width: 150px;
-  height: 100px;
-}
-.err-pic {
-  font-size: 18px;
-  text-align: center;
-  line-height: 1.5;
-}
-.err-pic span {
-  color: red;
-}
-p {
-  font-size: 14px;
-  line-height: 1.5;
-  padding: 16px 0;
+  > div {
+    padding: 0 20px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 16px 0;
+  }
+
+  .tiny-image {
+    width: 150px;
+    height: 100px;
+    background: #f5f5f5;
+
+    .custom-error {
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #f5f5f5;
+      color: #808080;
+
+      .err-text {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-top: 4px;
+      }
+
+      > .tiny-svg {
+        font-size: 16px;
+      }
+    }
+  }
 }
 </style>

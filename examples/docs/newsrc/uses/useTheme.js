@@ -1,5 +1,4 @@
 import TinyThemeTool from '@opentiny/vue-theme/theme-tool'
-import { tinyAuroraTheme, tinySmbTheme, tinyInfinityTheme } from '@opentiny/vue-theme/theme'
 import { hooks } from '@opentiny/vue-common'
 import { Notify } from '@opentiny/vue'
 
@@ -21,9 +20,9 @@ export function useTheme({ readCacheImmediate = true } = {}) {
   const lastThemeKey = localStorage.getItem('tinyThemeToolkey')
 
   const THEME_MAP = {
-    'tiny-aurora-theme': tinyAuroraTheme,
-    'tiny-smb-theme': tinySmbTheme,
-    'tiny-infinity-theme': tinyInfinityTheme
+    'tiny-aurora-theme': null,
+    'tiny-smb-theme': null,
+    'tiny-infinity-theme': null
   }
 
   const changeTheme = ({ vm }) => {

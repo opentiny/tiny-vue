@@ -17,68 +17,49 @@
 @tooltip-prefix-cls: ~'@{css-prefix}tooltip';
 
 .@{tooltip-prefix-cls} {
-  .component-css-vars-tooltip();
+  .inject-Tooltip-vars();
 
-  font-family: var(--ti-tooltip-popper-font-family);
   white-space: pre-wrap;
+
   &:focus:hover,
   &:focus:not(.focusing) {
     outline-width: 0;
   }
 
   &__content-wrapper {
-    max-height: var(--ti-tooltip-content-max-height);
+    max-height: var(--tv-Tooltip-content-max-height);
     overflow: auto;
   }
+
   &&__popper {
     position: absolute;
     left: -9999px;
-    border-radius: var(--ti-tooltip-popper-border-radius);
-    padding: var(--ti-tooltip-padding-vertical) var(--ti-tooltip-padding-horizontal);
-    font-size: var(--ti-tooltip-popper-font-size);
-    line-height: var(--ti-tooltip-popper-font-line-height);
+    border-radius: var(--tv-Tooltip-popper-border-radius);
+    padding: var(--tv-Tooltip-padding-y) var(--tv-Tooltip-padding-x);
+    font-size: var(--tv-Tooltip-popper-font-size);
+    line-height: var(--tv-Tooltip-popper-font-line-height);
     min-width: 10px;
     max-width: 450px;
     z-index: 2000;
     word-wrap: break-word;
-    box-shadow: var(--ti-tooltip-box-shadow);
+    box-shadow: var(--tv-Tooltip-box-shadow);
 
-    .popper__arrow,
-    .popper__arrow::after {
+    .popper__arrow {
       position: absolute;
       display: block;
-      width: 0;
-      height: 0;
-      border-color: transparent;
-      border-style: solid;
-    }
-    /* 控制箭头尺寸
-    6px:  var(--ti-tooltip-popper-border-width);
-    -6px:  var(--ti-tooltip-popper-neg-border-width);
-    */
-    .popper__arrow {
-      border-width: var(--ti-tooltip-popper-border-width);
-    }
-
-    .popper__arrow::after {
-      content: ' ';
-      border-width: var(--ti-tooltip-popper-border-width);
+      // 原来是用border来模拟三角形的，现在是通过div模拟，所以将border-width赋值给div的width.
+      width: 12px;
+      height: 20px;
+      background-color: var(--tv-Tooltip-popper-border-color);
+      transform: rotateZ(45deg);
+      border-radius: 2px;
     }
 
     &[x-placement^='top'] {
       margin-bottom: 12px;
 
       .popper__arrow {
-        bottom: var(--ti-tooltip-popper-neg-border-width);
-        border-top-color: var(--ti-tooltip-popper-border-color);
-        border-bottom-width: 0;
-
-        &::after {
-          bottom: 1px;
-          margin-left: var(--ti-tooltip-popper-neg-border-width);
-          border-top-color: var(--ti-tooltip-popper-border-color);
-          border-bottom-width: 0;
-        }
+        bottom: -7px;
       }
     }
 
@@ -86,16 +67,7 @@
       margin-top: 12px;
 
       .popper__arrow {
-        top: var(--ti-tooltip-popper-neg-border-width);
-        border-top-width: 0;
-        border-bottom-color: var(--ti-tooltip-popper-border-color);
-
-        &::after {
-          top: 1px;
-          margin-left: var(--ti-tooltip-popper-neg-border-width);
-          border-top-width: 0;
-          border-bottom-color: var(--ti-tooltip-popper-border-color);
-        }
+        top: -7px;
       }
     }
 
@@ -103,16 +75,7 @@
       margin-left: 12px;
 
       .popper__arrow {
-        left: var(--ti-tooltip-popper-neg-border-width);
-        border-right-color: var(--ti-tooltip-popper-border-color);
-        border-left-width: 0;
-
-        &::after {
-          bottom: var(--ti-tooltip-popper-neg-border-width);
-          left: 1px;
-          border-right-color: var(--ti-tooltip-popper-border-color);
-          border-left-width: 0;
-        }
+        left: -3px;
       }
     }
 
@@ -120,74 +83,65 @@
       margin-right: 12px;
 
       .popper__arrow {
-        right: var(--ti-tooltip-popper-neg-border-width);
-        border-right-width: 0;
-        border-left-color: var(--ti-tooltip-popper-border-color);
-
-        &::after {
-          right: 1px;
-          bottom: var(--ti-tooltip-popper-neg-border-width);
-          margin-left: var(--ti-tooltip-popper-neg-border-width);
-          border-right-width: 0;
-          border-left-color: var(--ti-tooltip-popper-border-color);
-        }
+        right: -3px;
       }
     }
+
     &.is-normal {
       .tooltip-type(
-        var(--ti-tooltip-popper-normal-text-color),
-        var(--ti-tooltip-popper-normal-bg-color),
-        var(--ti-tooltip-popper-normal-border-color)
+        var(--tv-Tooltip-popper-normal-text-color),
+        var(--tv-Tooltip-popper-normal-bg-color),
+        var(--tv-Tooltip-popper-normal-border-color)
       );
     }
 
     &.is-info {
       .tooltip-type(
-        var(--ti-tooltip-popper-info-text-color),
-        var(--ti-tooltip-popper-info-bg-color),
-        var(--ti-tooltip-popper-info-border-color)
+        var(--tv-Tooltip-popper-info-text-color),
+        var(--tv-Tooltip-popper-info-bg-color),
+        var(--tv-Tooltip-popper-info-border-color)
       );
     }
 
     &.is-error {
       .tooltip-type(
-        var(--ti-tooltip-popper-error-text-color),
-        var(--ti-tooltip-popper-error-bg-color),
-        var(--ti-tooltip-popper-error-border-color)
+        var(--tv-Tooltip-popper-error-text-color),
+        var(--tv-Tooltip-popper-error-bg-color),
+        var(--tv-Tooltip-popper-error-border-color)
       );
 
       .tooltip-validate-icon {
-        fill: var(--ti-tooltip-validate-icon-color);
+        fill: var(--tv-Tooltip-validate-icon-color);
         margin-right: 8px;
       }
     }
 
     &.is-warning {
       .tooltip-type(
-        var(--ti-tooltip-popper-warning-text-color),
-        var(--ti-tooltip-popper-warning-bg-color),
-        var(--ti-tooltip-popper-warning-border-color)
+        var(--tv-Tooltip-popper-warning-text-color),
+        var(--tv-Tooltip-popper-warning-bg-color),
+        var(--tv-Tooltip-popper-warning-border-color)
       );
     }
 
     &.is-success {
       .tooltip-type(
-        var(--ti-tooltip-popper-success-text-color),
-        var(--ti-tooltip-popper-success-bg-color),
-        var(--ti-tooltip-popper-success-border-color)
+        var(--tv-Tooltip-popper-success-text-color),
+        var(--tv-Tooltip-popper-success-bg-color),
+        var(--tv-Tooltip-popper-success-border-color)
       );
     }
 
     &.is-dark {
-      background: var(--ti-tooltip-popper-dark-bg-color);
-      color: var(--ti-tooltip-popper-dark-text-color);
+      background: var(--tv-Tooltip-popper-dark-bg-color);
+      color: var(--tv-Tooltip-popper-dark-text-color);
     }
 
     &.is-light {
-      .tooltip-light(
-        var(--ti-tooltip-popper-light-text-color),
-        var(--ti-tooltip-popper-light-bg-color),
-        var(--ti-tooltip-popper-light-border-color)
+      .tooltip-type(
+        var(--tv-Tooltip-popper-light-text-color),
+        var(--tv-Tooltip-popper-light-bg-color),
+        var(--tv-Tooltip-popper-light-border-color)
       );
     }
 

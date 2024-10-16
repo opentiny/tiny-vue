@@ -31,18 +31,18 @@ export function Modal(options) {
       let events = options.events || {}
       let $modal
       options.events = Object.assign({}, events, {
+        hide(params) {
+          events.hide && events.hide.call(this, params)
+          if ($modal.beforeUnmouted) {
+            $modal.beforeUnmouted()
+          }
+          resolve(params.type)
+        },
         confirm(params) {
           events.confirm && events.confirm.call(this, params)
         },
         show(params) {
           events.show && events.show.call(this, params)
-        },
-        close(params) {
-          events.close && events.close.call(this, params)
-          if ($modal.beforeUnmouted) {
-            $modal.beforeUnmouted()
-          }
-          resolve(params.type)
         }
       })
 
