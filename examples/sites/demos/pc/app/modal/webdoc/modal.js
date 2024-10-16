@@ -56,7 +56,7 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过 <code>show-header</code>属性，设置是否显示头部。<br>
+          通过 <code>show-header</code>属性，设置是否显示头部。默认值为：<code>true</code><br>
           通过<code>title</code>属性，设置窗口的标题。<br>
         `,
         'en-US': '<p>You can use the <code>fullscreen</code> attribute to set whether to maximize the display. </p>'
@@ -71,20 +71,20 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过<code>show-footer</code>属性设置是否显示底部。<br>
+          通过<code>show-footer</code>属性设置是否显示底部。默认值为：<code>false</code> <br>
           通过<code>confirm-content</code>属性，修改确认按钮文字；<code>cancel-content</code>属性，修改取消按钮文字。<br>
           通过<code>confirm-btn-props</code>属性，修改确认按钮的属性；<code>cancel-btn-props</code>属性，修改取消按钮的属性。<br>
           通过<code>#footer</code>插槽，完全自定义底部内容。<br>
         `,
         'en-US': '<p>You can use the <code>fullscreen</code> attribute to set whether to maximize the display. </p>'
       },
-      codeFiles: ['modal-header.vue']
+      codeFiles: ['modal-footer.vue']
     },
 
     {
-      demoId: 'modal-max-size',
+      demoId: 'modal-size',
       name: {
-        'zh-CN': '弹窗大小的控制',
+        'zh-CN': '弹窗的大小控制',
         'en-US': 'Maximized Display'
       },
       desc: {
@@ -96,7 +96,7 @@ export default {
         `,
         'en-US': '<p>You can use the <code>fullscreen</code> attribute to set whether to maximize the display. </p>'
       },
-      codeFiles: ['modal-header.vue']
+      codeFiles: ['modal-size.vue']
     },
 
     {
@@ -107,8 +107,8 @@ export default {
       },
       desc: {
         'zh-CN': `
-          可通过<code>mask</code>属性设置是否显示遮罩层。<br>
-          可通过<code>mask-closable</code>属性设置是否允许点击遮罩层关闭窗口。<br>
+          可通过<code>mask</code>属性,设置是否显示遮罩层。默认值为<code>true</code>  <br>
+          可通过<code>mask-closable</code>属性,设置是否允许点击遮罩层关闭窗口。默认值为<code>false</code><br>
         `,
         'en-US': '<p>You can use the <code>fullscreen</code> attribute to set whether to maximize the display. </p>'
       },
@@ -122,12 +122,15 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过<code>lock-scroll</code>属性设置是否锁住滚动条，不允许页面滚动。<br>
-          可通过<code>lock-scroll</code>属性设置是否锁住滚动条，不允许页面滚动。<br>
+          通过<code>lock-scroll</code>属性,设置是否锁住滚动条，不允许页面滚动。默认值为<code>false</code><br>
+          通过<code>lock-view</code>属性,设置是否锁住页面，不允许窗口之外的任何操作。默认值为<code>true</code><br>
+          <div class="tip custom-block">
+            <code>锁住滚动条</code> 是指锁定<code>body</code>元素上的滚动条，仅当<code>body</code>有滚动条时，才有效果。
+          </div>
         `,
         'en-US': '<p>You can use the <code>fullscreen</code> attribute to set whether to maximize the display. </p>'
       },
-      codeFiles: ['modal-mask.vue']
+      codeFiles: ['modal-lock.vue']
     },
 
     {
@@ -138,7 +141,7 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过<code>esc-closable</code>属性设置是否允许按 Esc 键关闭窗口。<br>
+          通过<code>esc-closable</code>属性设置是否允许按 Esc 键关闭窗口。默认值为<code>false</code><br>
           可通过<code>z-index</code>属性设置自定义堆叠顺序。<br>
           通过<code>is-form-reset</code>属性，设置关闭弹窗后，是否重置数据。 默认值为<code>true</code>,即关闭弹窗后重置数据。<br>
         `,

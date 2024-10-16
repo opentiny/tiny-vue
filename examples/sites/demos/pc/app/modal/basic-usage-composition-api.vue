@@ -1,23 +1,25 @@
 <template>
-  <h2>函数式调用</h2>
-  <div class="content">
-    <span>模态窗模式：</span>
-    <tiny-button @click="baseClick"> 基本提示框 </tiny-button>
-    <tiny-button @click="successClick"> 成功提示框 </tiny-button>
-    <tiny-button @click="confirmClick"> 确认提示框 </tiny-button>
-    <tiny-button @click="jsxClick"> 支持传入 jsx 提示框 </tiny-button>
-  </div>
-  <div class="content">
-    <span>消息模式：</span>
-    <tiny-button @click="messageClick"> 消息提示 </tiny-button>
-  </div>
+  <div>
+    <h2>函数式调用</h2>
+    <div class="content">
+      <span>模态窗模式：</span>
+      <tiny-button @click="baseClick"> 基本提示框 </tiny-button>
+      <tiny-button @click="successClick"> 成功提示框 </tiny-button>
+      <tiny-button @click="confirmClick"> 确认提示框 </tiny-button>
+      <tiny-button @click="jsxClick"> 支持传入 jsx 提示框 </tiny-button>
+    </div>
+    <div class="content">
+      <span>消息模式：</span>
+      <tiny-button @click="messageClick"> 消息提示 </tiny-button>
+    </div>
 
-  <h2>标签式调用</h2>
-  <div class="content">
-    <tiny-modal v-model="show1" title="基本提示框" message="窗口内容1" show-footer> </tiny-modal>
-    <tiny-modal v-model="show2" title="基本提示框" message="窗口内容2" status="success" show-footer> </tiny-modal>
-    <tiny-button @click="show1 = true"> 打开弹窗1 </tiny-button>
-    <tiny-button @click="show2 = true"> 打开弹窗2 </tiny-button>
+    <h2>标签式调用</h2>
+    <div class="content">
+      <tiny-modal v-model="show1" title="基本提示框" message="窗口内容1" show-footer> </tiny-modal>
+      <tiny-modal v-model="show2" title="基本提示框" message="窗口内容2" status="success" show-footer> </tiny-modal>
+      <tiny-button @click="show1 = true"> 打开弹窗1 </tiny-button>
+      <tiny-button @click="show2 = true"> 打开弹窗2 </tiny-button>
+    </div>
   </div>
 </template>
 

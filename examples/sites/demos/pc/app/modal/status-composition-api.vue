@@ -32,8 +32,8 @@
 import { Button as TinyButton, Modal } from '@opentiny/vue'
 import { ref } from 'vue'
 
-const show = ref(false)
 const TinyModal = Modal
+const show = ref(false)
 
 function infoClick(mode) {
   mode === 1 && Modal.alert({ message: '基本提示图标', status: 'info' })
