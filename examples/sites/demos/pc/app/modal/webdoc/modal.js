@@ -5,21 +5,52 @@ export default {
     {
       demoId: 'basic-usage',
       name: {
-        'zh-CN': '基本用法',
+        'zh-CN': 'alert+confirm:基本用法',
         'en-US': 'Basic Usage'
       },
       desc: {
-        'zh-CN':
-          '<p>可通过<code>Modal.alert</code>方法设置弹出框，<code>Modal.confirm</code>方法设置确认弹出框。函数返回一个<code>Promise</code>对象，其中属性<code>vm</code>可用来关闭当前模态框。</p>',
+        'zh-CN': `
+          <code>Modal</code> 组件有2种调用方法：<code>函数式调用</code>和<code>标签式调用</code>。 <br>
+          <div class="tip custom-block">
+            <p class="custom-block-title"> 函数式调用 </p>
+            可通过调用<code>Modal</code>对象下的 <code>alert</code>、<code>confirm</code>、<code>message</code>方法。 <br>
+            函数入参：支持<code>(message:string, title:string, options: Object)</code> 或  <code>(options: Object) </code>两种形式。
+                     其中 <code>options</code> 对象支持<code>Modal</code> 组件的部分属性值,比如 <code>message, title, status</code> 等。 <br>
+            函数返回：返回值为一个<code>Promise</code>对象，其中属性<code>vm</code>可用来关闭当前模态框<br>
+          </div>
+          <div class="tip custom-block">
+            <p class="custom-block-title"> 标签式调用 </p>
+            <code>Modal</code> 对象自身也是一个标准的Vue 组件，通过<code>modelValue</code> 属性控制弹窗的显示和隐藏。
+          </div>
+          <div class="warning custom-block">
+            <p class="custom-block-title"> 特别提示： </p>
+            1、<code>message</code> 的消息模式，只支持函数式调用。<br>
+            2、消息模式和模态窗模式很多属性不共用，比如消息模式就不支持<code>title</code> 等属性。
+          </div>
+          `,
         'en-US':
           '<p>You can use the <code>Modal.alert</code> method to set a pop-up box, and use the <code>Modal.confirm</code> method to set a confirmation pop-up box. The function returns a <code>Promise</code> object, where the property <code>vm</code> can be used to close the current Modal.</p>'
       },
       codeFiles: ['basic-usage.vue']
     },
     {
+      demoId: 'status',
+      name: {
+        'zh-CN': 'msg:消息状态',
+        'en-US': 'Position From The Top'
+      },
+      desc: {
+        'zh-CN':
+          '<p>可通过<code>status</code>属性设置消息状态，可选值有<code>info</code>、<code>success</code>、<code>warning</code>、<code>error</code>、<code>loading</code>。</p>',
+        'en-US':
+          '<p>Set the message status through<code>status</code>, with optional values including<code>info</code><code>success</code><code>warning</code><code>error</code><code>loading</code>.</p>'
+      },
+      codeFiles: ['status.vue']
+    },
+    {
       demoId: 'fullscreen',
       name: {
-        'zh-CN': '最大化显示',
+        'zh-CN': 'alert:最大化显示',
         'en-US': 'Maximized Display'
       },
       desc: {
@@ -31,7 +62,7 @@ export default {
     {
       demoId: 'esc-closable',
       name: {
-        'zh-CN': '按 Esc 键关闭弹出框',
+        'zh-CN': 'alert: 按 Esc 键关闭弹出框',
         'en-US': 'Press Esc To Close The Dialog Box.'
       },
       desc: {
@@ -44,7 +75,7 @@ export default {
     {
       demoId: 'duration',
       name: {
-        'zh-CN': '自动关闭延时',
+        'zh-CN': 'msg:自动关闭延时',
         'en-US': 'Automatic Shutdown Delay'
       },
       desc: {
@@ -57,7 +88,7 @@ export default {
     {
       demoId: 'id',
       name: {
-        'zh-CN': '防止重复提示',
+        'zh-CN': 'msg:防止重复提示',
         'en-US': 'Prevent Repeated Prompts'
       },
       desc: {
@@ -70,7 +101,7 @@ export default {
     {
       demoId: 'lock-scroll',
       name: {
-        'zh-CN': '锁住滚动条',
+        'zh-CN': 'alert:锁住滚动条',
         'en-US': 'Lock The Scroll Bar'
       },
       desc: {
@@ -82,7 +113,7 @@ export default {
     {
       demoId: 'lock-view',
       name: {
-        'zh-CN': '锁住页面',
+        'zh-CN': 'alert:锁住页面',
         'en-US': 'Lock The Page'
       },
       desc: {
@@ -96,7 +127,7 @@ export default {
     {
       demoId: 'mask-closable',
       name: {
-        'zh-CN': '点击遮罩层关闭窗口',
+        'zh-CN': 'alert: 点击遮罩层关闭窗口',
         'en-US': 'Click The Mask Layer To Close The Window.'
       },
       desc: {
@@ -107,21 +138,9 @@ export default {
       codeFiles: ['mask-closable.vue']
     },
     {
-      demoId: 'message',
-      name: {
-        'zh-CN': '自定义内容',
-        'en-US': 'Custom Content'
-      },
-      desc: {
-        'zh-CN': '<p>可通过<code>message</code>属性设置窗口的内容。</p>',
-        'en-US': '<p>You can set the content of the window through the <code>:message</code> attribute. </p>'
-      },
-      codeFiles: ['message.vue']
-    },
-    {
       demoId: 'footer-btn-content',
       name: {
-        'zh-CN': '自定义底部按钮内容',
+        'zh-CN': 'confirm+标签：自定义底部按钮内容',
         'en-US': 'Custom Bottom Button Content'
       },
       desc: {
@@ -135,7 +154,7 @@ export default {
     {
       demoId: 'footer-btn-props',
       name: {
-        'zh-CN': '自定义底部按钮',
+        'zh-CN': 'confirm+标签：自定义底部按钮',
         'en-US': 'Customize Bottom Button'
       },
       desc: {
@@ -149,7 +168,7 @@ export default {
     {
       demoId: 'resize',
       name: {
-        'zh-CN': '调整窗口大小',
+        'zh-CN': 'alert:调整窗口大小',
         'en-US': 'Resize The Window'
       },
       desc: {
@@ -163,7 +182,7 @@ export default {
     {
       demoId: 'min-width-height',
       name: {
-        'zh-CN': '调整窗口后的最小宽高度',
+        'zh-CN': 'alert: 调整窗口后的最小宽高度',
         'en-US': 'Minimum width and height after adjusting the window'
       },
       desc: {
@@ -177,7 +196,7 @@ export default {
     {
       demoId: 'show-header-footer',
       name: {
-        'zh-CN': '控制显示头部及底部',
+        'zh-CN': 'alert:控制显示头部及底部',
         'en-US': 'Do Not Display Header and Bottom'
       },
       desc: {
@@ -188,24 +207,11 @@ export default {
       },
       codeFiles: ['show-header-footer.vue']
     },
-    {
-      demoId: 'status',
-      name: {
-        'zh-CN': '消息状态',
-        'en-US': 'Position From The Top'
-      },
-      desc: {
-        'zh-CN':
-          '<p>可通过<code>status</code>属性设置消息状态，可选值有<code>info</code>、<code>success</code>、<code>warning</code>、<code>error</code>、<code>loading</code>。</p>',
-        'en-US':
-          '<p>Set the message status through<code>status</code>, with optional values including<code>info</code><code>success</code><code>warning</code><code>error</code><code>loading</code>.</p>'
-      },
-      codeFiles: ['status.vue']
-    },
+
     {
       demoId: 'message-closable',
       name: {
-        'zh-CN': '关闭消息弹窗',
+        'zh-CN': 'msg:关闭消息弹窗',
         'en-US': 'Close Message Pop-Up Window'
       },
       desc: {
@@ -217,7 +223,7 @@ export default {
     {
       demoId: 'title',
       name: {
-        'zh-CN': '标题',
+        'zh-CN': 'alert:标题',
         'en-US': 'Title'
       },
       desc: {
@@ -229,7 +235,7 @@ export default {
     {
       demoId: 'top',
       name: {
-        'zh-CN': '距离顶部的位置',
+        'zh-CN': 'msg:距离顶部的位置',
         'en-US': 'Position from top'
       },
       desc: {
@@ -240,21 +246,9 @@ export default {
       codeFiles: ['top.vue']
     },
     {
-      demoId: 'type',
-      name: {
-        'zh-CN': '窗口类型',
-        'en-US': 'Custom Window Type'
-      },
-      desc: {
-        'zh-CN': '<p>可通过<code>type</code>属性设置窗口类型。</p>',
-        'en-US': '<p>Set the window type via <code>:type</code>.</p>'
-      },
-      codeFiles: ['type.vue']
-    },
-    {
       demoId: 'value',
       name: {
-        'zh-CN': '绑定值',
+        'zh-CN': '标签式：绑定值',
         'en-US': 'Bind Value'
       },
       desc: {
@@ -267,7 +261,7 @@ export default {
     {
       demoId: 'z-index',
       name: {
-        'zh-CN': '自定义堆叠顺序',
+        'zh-CN': 'alert:自定义堆叠顺序',
         'en-US': 'Custom Stacking Order'
       },
       desc: {
@@ -279,7 +273,7 @@ export default {
     {
       demoId: 'is-form-reset',
       name: {
-        'zh-CN': '关闭弹窗，是否重置表单数据',
+        'zh-CN': '标签式：重置表单数据',
         'en-US': 'Do Not Reset Data After Closing Pop Ups'
       },
       desc: {
@@ -292,7 +286,7 @@ export default {
     {
       demoId: 'footer-slot',
       name: {
-        'zh-CN': '底部插槽',
+        'zh-CN': '标签式：底部插槽',
         'en-US': 'Bottom Slot'
       },
       desc: {
@@ -304,7 +298,7 @@ export default {
     {
       demoId: 'default-grid',
       name: {
-        'zh-CN': '嵌套表格',
+        'zh-CN': '标签式：嵌套表格',
         'en-US': 'Nested Tables'
       },
       desc: {
@@ -316,7 +310,7 @@ export default {
     {
       demoId: 'event',
       name: {
-        'zh-CN': '事件',
+        'zh-CN': '标签式：事件',
         'en-US': 'event'
       },
       desc: {
@@ -329,7 +323,7 @@ export default {
     {
       demoId: 'prop-slots',
       name: {
-        'zh-CN': '函数插槽',
+        'zh-CN': 'alert:函数插槽',
         'en-US': 'When used functionally, the slot can be set through the `slots` property'
       },
       desc: {
