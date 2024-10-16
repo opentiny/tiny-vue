@@ -12,11 +12,11 @@ import { Breadcrumb as TinyBreadcrumb, Notify } from '@opentiny/vue'
 const options = ref([
   {
     label: '首页',
-    to: { path: '/' }
+    to: { path: '#' }
   },
   {
     label: '产品',
-    to: { path: '/breadcrumb' }
+    to: { path: '#' }
   },
   {
     label: '软件',
@@ -26,11 +26,11 @@ const options = ref([
 const options1 = ref([
   {
     name: '首页',
-    to: { path: '/' }
+    to: { path: '' }
   },
   {
     name: '产品',
-    to: { path: '/breadcrumb' }
+    to: { path: '#' }
   },
   {
     name: '软件',

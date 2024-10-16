@@ -17,11 +17,11 @@ export default {
       options: [
         {
           label: '首页',
-          to: { path: '/' }
+          to: { path: '#' }
         },
         {
           label: '产品',
-          to: { path: '/breadcrumb' }
+          to: { path: '#' }
         },
         {
           label: '软件',
@@ -31,11 +31,11 @@ export default {
       options1: [
         {
           name: '首页',
-          to: { path: '/' }
+          to: { path: '' }
         },
         {
           name: '产品',
-          to: { path: '/breadcrumb' }
+          to: { path: '#' }
         },
         {
           name: '软件',
