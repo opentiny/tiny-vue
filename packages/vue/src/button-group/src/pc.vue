@@ -76,7 +76,7 @@
             </span>
           </li>
           <li v-if="data.length > showMore" class="tiny-group-item__more">
-            <tiny-popover :visible-arrow="false" width="200" popper-class="tiny-group-item__more-popover">
+            <tiny-popover :visible-arrow="false" popper-class="tiny-group-item__more-popover">
               <template #reference>
                 <tiny-button class="more-button">
                   <icon-popup></icon-popup>
