@@ -11,61 +11,36 @@
 */
 
 .component-css-vars-option() {
-  // 选择器下拉选项文本色
-  --ti-option-text-color: var(--ti-common-color-info-normal, #252b3a);
-  // 选择器下拉选项字号
-  --ti-option-font-size: var(--ti-common-font-size-1);
-  // 选择器下拉选项高度
-  --ti-option-height: var(--ti-common-size-height-normal);
-  // 选择器下拉选项行高
-  --ti-option-line-height: var(--ti-common-line-height-number, 1.5);
-  // 选择器下拉选项禁用色
-  --ti-option-disabled-text-color: var(--ti-common-color-text-disabled);
-  // 选择器下拉选项圆角
-  --ti-option-border-radius: var(--ti-common-border-radius-0);
-  // 选择器下拉选项禁用背景色
-  --ti-option-disabled-bg-color: var(--ti-common-color-light, #fff);
-  // 选择器下拉选项背景色
-  --ti-option-bg-color-selected: var(--ti-common-color-light, #fff);
-  // 选择器下拉选项悬浮背景色
-  --ti-option-hover-bg-color: var(--ti-common-color-bg-normal);
-  // 选择器下拉选项选中项背景色
-  --ti-option-hover-bg-color-selected: var(--ti-common-color-hover-background, #f2f5fc);
-  // 选择器下拉已选项悬浮背景色
-  --ti-option-selected-bg-color-hover: var(--ti-common-color-bg-white-emphasize);
-  // 选择器下拉选项选中背景色
-  --ti-option-selected-bg-color: var(--ti-common-color-bg-white-normal);
-  // 选择器下拉选项选中字重
-  --ti-option-selected-font-weight: var(--ti-common-font-weight-6);
-  // 选择下拉框选项已选色
-  --ti-option-selected-text-color: #1476FF;
-  // 选择器下拉选项复选框悬浮色
-  --ti-option-checkbox-border-color-hover: #191919;
-  // 选择器下拉选项复选框悬浮色
-  --ti-option-checkbox-all-select-border-color-hover: #1476FF;
-  // 选择器选中下拉选项图标和文本色
-  --ti-option-icon-color-selected: var(--ti-common-color-icon-graybg-active);
-  // 选择下拉框选项垂直内边距
-  --ti-option-padding-vertical: var(--ti-common-space-0, 0px);
-  // 选择下拉框选项水平内边距
-  --ti-option-padding-horizontal: var(--ti-common-space-4x);
-  // 分组场景选择下拉框选项水平内边距
-  --ti-option-padding-horizontal-group: var(--ti-common-space-4x);
-  // 选择下拉框选项顶部外边距
-  --ti-option-margin-top: var(--ti-common-size-0, 0px);
-  // 选择器下拉选项高亮文本色
-  --ti-option-highlight-text-color: var(--ti-common-color-text-highlight, #526ecc);
-  // 选择器下拉选项已选项高亮文本色
-  --ti-option-highlight-selected-text-color: var(--ti-common-color-text-highlight);
-  // 选择器下拉选项图标右侧外边距
-  --ti-option-icon-margin-right: var(--ti-common-space-2x, 8px);
-  // 选择器下拉选项图标尺寸
-  --ti-option-icon-size: var(--ti-common-font-size-2, 16px);
+  // 字号
+  --tv-Option-font-size: var(--tv-font-size-md, 14px);
+  // 行高
+  --tv-Option-line-height: var(--tv-line-height-number, 1.5);
+  // 文本色
+  --tv-Option-text-color: var(--tv-color-text, #191919);
+  // 文本色（禁用）
+  --tv-Option-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
+  // 文本色（选中）
+  --tv-Option-text-color-selected: var(--tv-color-text-active, #1476ff);
+  // 文本色（高亮）
+  --tv-Option-text-color-highlight: var(--tv-color-text-active, #1476ff);
 
-  // 选择器下拉多选svg的颜色
-  --ti-option-multi-svg-icon-color: #1476FF;
-  // 选择器下拉多选svg的border 颜色
-  --ti-option-multi-svg-border-color: #c2c2c2;
-  // 选择器下拉多选svg的border hover 颜色
-  --ti-option-multi-svg-hover-border-color: #191919;
+  // 图标尺寸
+  --tv-Option-icon-size: var(--tv-icon-size, 16px);
+  // 复选框默认色
+  --tv-Option-icon-color-unchecked: var(--tv-color-border, #c2c2c2);
+  // 复选框选中色
+  --tv-Option-icon-color-checked: var(--tv-color-icon-control-active, #1476ff);
+  // 复选框禁用色
+  --tv-Option-icon-color-checked-disabled: var(--tv-color-icon-checked-disabled, #dbdbdb);
+  // 复选框未选中项禁用背景色
+  --tv-Option-icon-bg-color-disabled: var(--tv-color-bg-disabled, #f0f0f0);
+
+  // 选项高度
+  --tv-Option-height: var(--tv-size-height-md, 32px);
+  // 选项内边距
+  --tv-Option-padding: 0px var(--tv-space-xl, 16px);
+  // 复选框右侧外边距
+  --tv-Option-icon-margin-right: var(--tv-space-md, 8px);
+  // 选项悬浮背景色
+  --tv-Option-bg-color-hover: var(--tv-color-bg-hover, #f5f5f5);
 }

@@ -11,214 +11,155 @@
 */
 
 .component-css-vars-grid() {
-  // 表格默认字体
-  --ti-grid-font-family: var(
-    --ti-common-font-family,
-    'Helvetica',
-    'Arial',
-    'PingFangSC-Regular',
-    'Hiragino Sans GB',
-    'Microsoft YaHei',
-    '微软雅黑',
-    'Microsoft JhengHei'
-  );
-  // 默认表头文本色
-  --ti-grid-header-text-color: var(--ti-common-color-text-secondary);
-  // 默认表头字体权重
-  --ti-grid-header-font-weight: bold;
-  // 默认表体文本色
-  --ti-grid-text-color: var(--ti-common-color-info-normal, #252b3a);
-  // 默认按钮图标悬浮色
-  --ti-grid-icon-color: var(--ti-common-color-icon);
-  // 表格亮色
-  --ti-grid-light-color: var(--ti-common-color-light, #fff);
-  // 表格错误色
-  --ti-grid-error-color: var(--ti-common-color-error-text, #de504e);
-  // 表格错误背景色
-  --ti-grid-error-bg-color: var(--ti-common-color-error-bg, #ffeeed);
-  // 表格成功色
-  --ti-grid-success-color: var(--ti-common-color-success, #50d4ab);
-  // 表格警告色
-  --ti-grid-warning-color: var(--ti-common-color-warn, #fa9841);
-  // 表格禁用色
-  --ti-grid-disabled-color: var(--ti-common-color-bg-disabled, #f5f5f6);
-  // 筛选弹框复选框边框色
-  --ti-grid-normal-text-color: var(--ti-common-color-placeholder, #adb0b8);
-  // 默认字号
-  --ti-grid-font-size: var(--ti-common-font-size-base, 12px);
-  // 默认边框色
-  --ti-grid-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
-  // 行复选按钮圆角|筛选弹窗输入框圆角
-  --ti-grid-border-radius: var(--ti-common-border-radius-normal, 2px);
-  // 表格主体内容td边框颜色
-  --ti-grid-body-td-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
-
-  // 表头x轴虚拟滚动元素边框颜色
-  --ti-grid-header-repair-border-color: var(--ti-common-color-transparent);
-
-  // 表格内部单选按钮边框色
-  --ti-grid-radio-border-color: var(--ti-common-color-line-normal, #adb0b8);
-  // 表格单选框选中背景色
-  --ti-grid-radio-bg-color-checked: #1476ff;
-
-  // 表格内部多选按钮边框色
-  --ti-grid-checkbox-border-color: var(--ti-common-color-line-normal);
-  // 表格内部多选按钮大小
-  --ti-grid-select-icon-font-size: var(--ti-common-font-size-3);
-  // 表格多选框选中背景色
-  --ti-grid-checkbox-bg-color-checked: #1476ff;
-  // 表格复选框字号
-  --ti-grid-checkbox-icon-size: var(--ti-common-font-size-2);
-  // 表格内部多选按钮边框圆角
-  --ti-grid-checkbox-border-radius: var(--ti-common-border-radius-2);
-
-  // 表格头部默认背景色
-  --ti-grid-header-background-color: #f5f5f5;
-  // 新增行背景颜色
-  --ti-grid-new-row-background-color: var(--ti-common-color-bg-white-emphasize, #f2f5fc);
-  // 表格主色调色
-  --ti-grid-primary-color: var(--ti-common-color-primary-normal, #5e7ce0);
-  // 表格主色调悬浮色
-  --ti-grid-primary-hover-color: var(--ti-common-color-primary-hover, #7693f5);
-  // 表格主色调激活色
-  --ti-grid-primary-active-color: var(--ti-common-color-primary-active, #7693f5);
-  // 表格主色调禁用色(没有效果)
-  --ti-grid-primary-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
-
-  // 自定义表头列高度（没有效果）
-  --ti-grid-custom-head-height: var(--ti-common-space-10x, 40px);
-  // 自定义内容列表高度（没有效果）
-  --ti-grid-custom-body-list-height: var(--ti-common-size-height-small, 32px);
-  // 表格列拖拽分割线背景颜色
-  --ti-grid-header-resizable-bg-color: rgba(0, 0, 0, 0.15);
-  // 表格列拖拽分割线高度
-  --ti-grid-header-resizable-line-height: 16px;
-
-  // (单选|复选)框禁用背景色
-  --ti-grid-input-disabled-bg-color: var(--ti-common-color-bg-disabled, #f5f5f6);
-
-  // 筛选弹框边框色
-  --ti-grid-popup-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
-  // 简易筛选面板按钮组边距
-  --ti-grid-filter-button-group-size: var(--ti-common-space-10, 10px);
-  // 简易时间筛选面板标题颜色
-  --ti-grid-filter-date-title-color: var(--ti-common-color-text-weaken, #8a8e99);
-  // 筛选面板字体颜色
-  --ti-grid-filter-date-color: var(--ti-common-color-text-primary, #252b3a);
-
-  // 树表展开图标颜色
-  --ti-grid-tree-icon-color: var(--ti-common-color-icon-normal, #575d6c);
-  // 树表展开图标悬浮颜色
-  --ti-grid-tree-icon-hover-color: var(--ti-common-color-icon-hover, #5e7ce0);
-
-  // 行默认背景色
-  --ti-grid-row-background-color: var(--ti-common-color-bg-white-normal, #fff);
-  // 行被勾选时背景色
-  --ti-grid-row-selected-background-color: #f0f7ff;
-  // 斑马纹行背景色
-  --ti-grid-row-striped-background-color: #fafafa;
-  // 行悬浮默认背景色
-  --ti-grid-row-hover-background-color: #f5f5f5;
-
-  // 高亮悬停列悬浮表头背景色
-  --ti-grid-column-hover-background-color: #d7effb;
-  // 鼠标配置项双击表头选中当前列背景色
-  --ti-grid-column-current-background-color: var(--ti-common-color-hover-background, #f2f5fc);
-  // 表头编辑图标色
-  --ti-grid-column-icon-text-color: var(--ti-common-color-icon-normal, #575d6c);
-  // 可编辑表格输入框高度
-  --ti-grid-input-height: var(--ti-common-size-height-normal, 28px);
-  // 鼠标配置项选中项边框厚度
-  --ti-grid-column-checked-border-width: var(--ti-common-border-weight-1, 2px);
-  // 表格加载中背景色
-  --ti-grid-loading-background-color: rgba(255, 255, 255, 0.67);
-  // 表格加载中图标长度尺寸
-  --ti-grid-loading-width-size: var(--ti-common-size-6x, 24px);
-  // 表格加载中图标宽度尺寸
-  --ti-grid-loading-height-size: var(--ti-common-size-6x, 24px);
-  // 单元格字体高度
-  --ti-grid-line-height-number: var(--ti-common-line-height-number, 1.5);
-
-  // 中等尺寸表头高度
-  --ti-grid-medium-header-column-height: 46px;
-  // 默认尺寸表头高度
-  --ti-grid-default-header-column-height: var(--ti-common-size-height-medium);
-  // 小尺寸表头高度
-  --ti-grid-small-header-column-height: var(--ti-common-size-height-normal);
-  // 超小尺寸表头高度
-  --ti-grid-mini-header-column-height: 32px;
-
-  // 中等尺寸表格单元格高度
-  --ti-grid-medium-column-height: 52px;
-  // 默认尺寸表格单元格高度
-  --ti-grid-default-column-height: var(--ti-common-size-height-large);
-  // 小尺寸表格单元格高度
-  --ti-grid-small-column-height: var(--ti-common-size-height-medium);
-  // 超小尺寸表格单元格高度
-  --ti-grid-mini-column-height: var(--ti-common-size-height-minor);
-  // 表头单元格垂直内边距
-  --ti-grid-mini-th-padding-vertical: var(--ti-common-space-base, 4px);
-  // 表头单元格垂直内边距
-  --ti-grid-th-padding-vertical: var(--ti-common-space-2x, 8px);
-  // 默认单元格垂直内边距
-  --ti-grid-td-padding-vertical: var(--ti-common-space-3x);
+  // 表格字号
+  --tv-Grid-font-size: var(--tv-font-size-md);
+  // 表格行高
+  --tv-Grid-line-height: var(--tv-line-height-number);
+  // 表格文本色
+  --tv-Grid-text-color: var(--tv-color-text);
+  // 表格禁用文本色
+  --tv-Grid-text-color-disabled: var(--tv-color-text-disabled);
+  // 表格二级文本颜色，页码项文本色
+  --tv-Grid-text-color-secondary: var(--tv-color-text-secondary);
+  // 表格辅助文本色
+  --tv-Grid-text-color-weaken: var(--tv-color-text-weaken);
+  // 页码悬浮文本色
+  --tv-Grid-list-item-hover-text-color: var(--tv-color-text);
+  // 表格图标大小
+  --tv-Grid-icon-size: var(--tv-icon-size);
+  // 表格图标颜色
+  --tv-Grid-icon-color: var(--tv-color-icon);
+  // 表格图标悬浮颜色
+  --tv-Grid-icon-color-hover: var(--tv-color-icon-hover);
+  // 表格图标激活颜色
+  --tv-Grid-icon-color-active: var(--tv-color-icon-active);
+  // 表格图标禁用颜色
+  --tv-Grid-icon-color-disabled: var(--tv-color-icon-disabled);
+  // 表格分割线颜色
+  --tv-Grid-divider-color: var(--tv-color-border-divider);
+  // 表格边框颜色
+  --tv-Grid-border-color: var(--tv-color-border);
+  // 表格边框激活态颜色
+  --tv-Grid-border-color-active: var(--tv-color-border-active);
+  // 表格背景颜色
+  --tv-Grid-bg-color: #fff;
+  // 表格激活态背景色
+  --tv-Grid-bg-color-active: var(--tv-color-bg-active);
+  // 表格悬浮背景色
+  --tv-Grid-bg-color-hover: var(--tv-color-bg);
+  // 表格禁用背景色
+  --tv-Grid-bg-color-disabled: var(--tv-color-bg-disabled);
+  // 表格选中背景色
+  --tv-Grid-bg-color-selected: var(--tv-color-bg-active-emphasize-light);
+  // 表格浅灰色背景颜色（展开行、斑马纹等）
+  --tv-Grid-gray-bg-color: var(--tv-color-bg-gray-1);
+  // -------表头相关样式-------
+  // 表头高度
+  --tv-Grid-header-height: 40px;
+  // 表头背景颜色
+  --tv-Grid-header-bg-color: var(--tv-color-bg);
+  // 表头悬浮高亮背景色
+  --tv-Grid-header-bg-color-hover: var(--tv-color-bg-hover-1);
+  // 表头字体颜色
+  --tv-Grid-header-text-color: var(--tv-color-text-secondary);
+  // 表头分割线颜色
+  --tv-Grid-header-divider-color: var(--tv-color-border-divider-short);
+  // 表头字重
+  --tv-Grid-header-font-weight: var(--tv-font-weight-bold);
+  // 表头必填星号颜色
+  --tv-Grid-header-required-icon-color: var(--tv-color-error-text);
+  // -------校验相关样式-------
+  // 错误检验文本颜色
+  --tv-Grid-error-text-color: var(--tv-color-error-text);
+  // 错误检验边框颜色
+  --tv-Grid-error-border-color: var(--tv-color-error-border);
+  // 错误检验浅色背景颜色
+  --tv-Grid-error-bg-color-light: var(--tv-color-error-bg-light);
+  // 错误检验背景颜色
+  --tv-Grid-error-bg-color: var(--tv-color-error-bg);
+  // 错误检验图标颜色
+  --tv-Grid-error-icon-color: var(--tv-color-error-icon);
+  // 成功校验边框颜色
+  --tv-Grid-success-border-color: var(--tv-color-success-border);
+  // 成功校验图标颜色
+  --tv-Grid-success-icon-color: var(--tv-color-success-icon);
+  // 成功校验背景颜色
+  --tv-Grid-success-bg-color: var(--tv-color-success-bg);
+  // 告警背景颜色
+  --tv-Grid-warn-bg-color: var(--tv-color-warn-bg);
+  // 主要背景颜色
+  --tv-Grid-primary-bg-color: var(--tv-color-info-text-primary);
+  // -------单元格样式-------
+  // 单元格垂直内边距
+  --tv-Grid-cell-padding-y: 12px;
   // 单元格水平内边距
-  --ti-grid-td-padding-horizontal: var(--ti-common-space-4x);
-  // mini单元格垂直内边距
-  --ti-grid-mini-td-padding-vertical: var(--ti-common-space-2x);
-  // mini单元格水平内边距
-  --ti-grid-mini-td-padding-horizontal: var(--ti-common-space-4x);
-  // 表头排序图标尺寸
-  --ti-grid-header-icon-font-size: var(--ti-common-font-size-2, 16px);
-  // 表头排序图标尺寸缩放比例
-  --ti-grid-column-icon-scale-size: 1;
-  // 表格无数据背景图片
-  --ti-grid-nodata-td-bg-img-url: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGNsaXBQYXRoIGlkPSJhIj48cGF0aCBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAiIGQ9Ik0wIDBoODB2ODBIMHoiLz48L2NsaXBQYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjYSkiPjxwYXRoIGQ9Ik03My42MSAzOS4zOXYzMC42N2MwIDIuMTctMS43NiAzLjkzLTMuOTQgMy45M0g1Mi41OXYtLjg3aDE3LjA4YzEuNyAwIDMuMDctMS4zNyAzLjA3LTMuMDZWMzkuMzloLjg3eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik03My42MSAzOS4zOXYzMC42N2MwIDIuMTctMS43NiAzLjkzLTMuOTQgMy45M0g1Mi41OXYtLjg3aDE3LjA4YzEuNyAwIDMuMDctMS4zNyAzLjA3LTMuMDZWMzkuMzloLjg3eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik01Ni45MiAyNXY0NS4wNmMwIDIuMTctMS43NyAzLjkzLTMuOTUgMy45M0gxMC45NEEzLjk0IDMuOTQgMCAwIDEgNyA3MC4wNlYzOS4zOWguODh2MzAuNjdhMy4wNiAzLjA2IDAgMCAwIDMuMDYgMy4wNmg0Mi4wM2MxLjcgMCAzLjA3LTEuMzcgMy4wNy0zLjA2VjI1Ljg3SDEwLjY3VjI1aDQ2LjI1eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik05LjQzIDI1Yy0uNiAwLTEuMTUuMzEtMS40Ni44MkwuMTMgMzguNjRjLS4yNi40Mi0uMTMuOTYuMjcgMS4yMi4xNC4wOS4yOS4xNC40Ni4xNGg0NC44MmMxLjE3IDAgMi4yNi0uNjEgMi45LTEuNjJMNTcuMDQgMjVIOS40M3ptLjIyIDFoNDUuNTJsLTcuNTIgMTEuODFjLS40Ny43NC0xLjI4IDEuMTktMi4xNCAxLjE5SDEuMTdsNy43NS0xMi42Yy4xNi0uMjUuNDMtLjQuNzMtLjR6IiBmaWxsPSJncmF5Ii8+PHBhdGggZD0iTTcwLjc1IDI1Yy41NiAwIDEuMDguMyAxLjM5LjhsNy43MiAxMi43MmMuMjUuNDEuMTQuOTUtLjI1IDEuMjEtLjEzLjA5LS4yOC4xNC0uNDQuMTRINjYuMTRjLTEuMTcgMC0yLjI1LS42Ni0yLjg1LTEuNzNMNTUuOTggMjVoMTQuNzd6bS0uMDMgMUg1Ny44bDYuMzggMTEuNzFjLjQzLjggMS4yMiAxLjI5IDIuMDggMS4yOWgxMi42M0w3MS40IDI2LjM5YS44MDIuODAyIDAgMCAwLS42OC0uMzl6IiBmaWxsPSJncmF5Ii8+PHJlY3QgeD0iMTMuNSIgeT0iNTYiIHJ4PSIxLjg4NiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjQiIGZpbGw9IiMxNDc2RkYiLz48cGF0aCBkPSJNMjMuNTYgNjNjLjI0IDAgLjQ0LjIyLjQ0LjUgMCAuMjctLjIuNS0uNDQuNWgtOS42M2MtLjI0IDAtLjQzLS4yMy0uNDMtLjUgMC0uMjguMTktLjUuNDMtLjVoOS42M3oiIGZpbGw9ImdyYXkiLz48cmVjdCB4PSIxMy41IiB5PSI2NiIgcng9Ii41IiB3aWR0aD0iNSIgaGVpZ2h0PSIxIiBmaWxsPSJncmF5Ii8+PHBhdGggZD0iTTQwIDZjLjI3IDAgLjUuMTkuNS40NHY2LjE2YzAgLjI1LS4yMy40NC0uNS40NC0uMjggMC0uNTEtLjE5LS41MS0uNDRWNi40NGMwLS4yNS4yMy0uNDQuNTEtLjQ0ek01Ni41NSA4LjY0Yy4yNC4xNC4zMy40Mi4yMS42M2wtMy4wOCA1LjM0Yy0uMTIuMjEtLjQyLjI3LS42Ni4xMy0uMjQtLjE0LS4zMy0uNDItLjIxLS42M2wzLjA4LTUuMzRjLjEyLS4yMS40Mi0uMjcuNjYtLjEzek0yMy40NCA4LjY0Yy4yNC0uMTQuNTQtLjA4LjY2LjEzbDMuMDggNS4zNGMuMTIuMjEuMDMuNDktLjIxLjYzcy0uNTQuMDgtLjY2LS4xM2wtMy4wOC01LjM0Yy0uMTItLjIxLS4wMy0uNDkuMjEtLjYzeiIgZmlsbD0iZ3JheSIvPjwvZz48L3N2Zz4=');
-
-  // 工具栏按钮水平内边距
-  --ti-grid-toolbar-btn-padding-horizontal: var(--ti-common-space-6x);
-  // 工具栏按钮行高
-  --ti-grid-toolbar-btn-line-height: 30px;
-  // 工具栏按钮边框颜色
-  --ti-grid-toolbar-btn-border-color: #595959;
-  // 工具栏按钮边框圆角
-  --ti-grid-toolbar-btn-border-radius: var(--ti-common-size-4x);
-  // 工具栏按钮最小宽度
-  --ti-grid-toolbar-btn-min-width: calc(var(--ti-common-size-base) * 24);
-  // 工具栏按钮悬浮边框颜色
-  --ti-grid-toolbar-btn-hover-border-color: var(--ti-common-color-line-normal);
-
-  // 工具栏图标按钮高度
-  --ti-grid-toolbar-icon-btn-height: var(--ti-common-size-8x);
-  // 工具栏图标按钮宽度
-  --ti-grid-toolbar-icon-btn-width: var(--ti-common-size-8x);
-  // 工具栏图标按钮边框色
-  --ti-grid-toolbar-icon-btn-border-color: var(--ti-common-color-line-normal);
-  // 工具栏图标按钮边框圆角
-  --ti-grid-toolbar-icon-btn-border-radius: calc(var(--ti-common-size-base) + 2px);
+  --tv-Grid-cell-padding-x: 16px;
+  // 单元格选中时边框颜色
+  --tv-Grid-cell-border-color-selected: var(--tv-color-border-active);
+  // -------多选框相关样式-------
+  // 多选框图标大小
+  --tv-Grid-checkbox-icon-size: calc(var(--tv-icon-size) + 2px);
+  // 多选框图标颜色
+  --tv-Grid-checkbox-icon-color: var(--tv-color-border);
+  // 多选框图标悬浮颜色
+  --tv-Grid-checkbox-icon-color-hover: var(--tv-color-border-hover);
+  // 多选框图标选中颜色
+  --tv-Grid-checkbox-icon-color-selected: var(--tv-color-bg-active-control);
+  // 多选框图标禁用颜色
+  --tv-Grid-checkbox-icon-color-disabled: var(--tv-color-bg-active-control);
+  // 多选框禁用背景颜色
+  --tv-Grid-checkbox-bg-color-disabled: var(--tv-color-bg-disabled);
+  // 多选框禁用边框颜色
+  --tv-Grid-checkbox-border-color-disabled: var(--tv-color-border-disabled);
+  // 多选框边框圆角
+  --tv-Grid-checkbox-border-radius: var(--tv-border-radius-sm);
+  // ------单选框相关样式-------
+  // 单选框图标大小
+  --tv-Grid-radio-icon-size: calc(var(--tv-icon-size) + 2px);
+  // 单选框图标颜色
+  --tv-Grid-radio-icon-color: var(--tv-color-border);
+  // 单选框图标悬浮颜色
+  --tv-Grid-radio-icon-color-hover: var(--tv-color-border-hover);
+  // 单选框图标选中颜色
+  --tv-Grid-radio-icon-color-selected: var(--tv-color-bg-active-control);
+  // 单选框禁用颜色
+  --tv-Grid-radio-icon-color-disabled: var(--tv-color-bg-disabled);
+  // -------筛选相关样式-------
+  // 筛选一般背景色
+  --tv-Grid-filter-bg-color: var(--tv-color-bg);
+  // 筛选悬浮背景色
+  --tv-Grid-filter-bg-color-hover: var(--tv-color-bg-hover);
+  // 筛选输入框悬浮边框颜色
+  --tv-Grid-filter-input-border-color-hover: var(--tv-color-border-hover);
+  // 筛选输入框边框圆角
+  --tv-Grid-filter-input-border-radius: var(--tv-border-radius-md);
+  // -------工具栏相关样式-------
   // 工具栏垂直边距
-  --ti-grid-toolbar-padding-vertical: var(--ti-common-size-4x, 16px);
-  // 排序按钮定位方式
-  --ti-grid-sort-icon-position: static;
-  // 排序按钮右侧定位
-  --ti-grid-sort-icon-right: unset;
-  // 表格展开行背景颜色
-  --ti-grid-expand-background-color: #fafafa;
-  // 表格树表展开行图标大小
-  --ti-grid-tree-expand-icon-font-size: var(--ti-common-font-size-2);
-  // 表格树表展开行图标右侧边距
-  --ti-grid-tree-expand-icon-padding-right: var(--ti-common-space-2x);
-  // 表格树表展开行图标向左偏移量(hide)
-  --ti-grid-tree-expand-icon-translate-x: 0;
-  // 表头单元格宽度
-  --ti-grid-header-cell-text-width: auto;
-  // 表格过滤面板checkbox大小
-  --ti-grid-filter-checkbox-font-size: 18px;
-  // 表格过滤面板checkbox颜色
-  --ti-grid-filter-checkbox-color: #1476ff;
-
-  // selection的dropdown插槽左偏移量(hide)
-  --ti-grid-selection-dropdown-left-offset: var(--ti-common-size-3x, 12px);
-  // selection的dropdown插槽图标颜色
-  --ti-grid-selection-dropdown-icon-color: var(--ti-common-color-icon-normal, #808080);
+  --tv-Grid-toolbar-padding-y: var(--tv-space-xl);
+  // 工具栏图标按钮大小
+  --tv-Grid-toolbar-btn-icon-size: 14px;
+  // 工具栏图标按钮颜色
+  --tv-Grid-toolbar-btn-icon-color: var(--tv-color-icon-control);
+  // 工具栏图标按钮边框色
+  --tv-Grid-toolbar-btn-icon-border-color: var(--tv-color-border);
+  // 工具栏图标按钮悬浮边框色
+  --tv-Grid-toolbar-btn-icon-border-color-hover: var(--tv-color-border-hover);
+  // 工具栏图标按钮边框圆角
+  --tv-Grid-toolbar-btn-icon-border-radius: var(--tv-border-radius-md);
+  // -------mini表格-------
+  // mini表格单元格水平内边距
+  --tv-Grid-cell-padding-x-mini: 16px;
+  // mini表格单元格垂直内边距
+  --tv-Grid-cell-padding-y-mini: 8px;
+  // -------其他-------
+  // 树节点图标右侧内边距
+  --tv-Grid-tree-expand-icon-padding-right: var(--tv-space-md);
+  // 内置输入框高度
+  --tv-Grid-input-height: var(--tv-size-height-md);
+  // 内置输入框边框圆角
+  --tv-Grid-input-border-radius: var(--tv-border-radius-md);
+  // 内置输入框悬浮边框颜色
+  --tv-Grid-input-border-color-hover: var(--tv-color-border-hover);
+  // 表格无数据背景图片
+  --tv-Grid-empty-img: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGNsaXBQYXRoIGlkPSJhIj48cGF0aCBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAiIGQ9Ik0wIDBoODB2ODBIMHoiLz48L2NsaXBQYXRoPjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjYSkiPjxwYXRoIGQ9Ik03My42MSAzOS4zOXYzMC42N2MwIDIuMTctMS43NiAzLjkzLTMuOTQgMy45M0g1Mi41OXYtLjg3aDE3LjA4YzEuNyAwIDMuMDctMS4zNyAzLjA3LTMuMDZWMzkuMzloLjg3eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik03My42MSAzOS4zOXYzMC42N2MwIDIuMTctMS43NiAzLjkzLTMuOTQgMy45M0g1Mi41OXYtLjg3aDE3LjA4YzEuNyAwIDMuMDctMS4zNyAzLjA3LTMuMDZWMzkuMzloLjg3eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik01Ni45MiAyNXY0NS4wNmMwIDIuMTctMS43NyAzLjkzLTMuOTUgMy45M0gxMC45NEEzLjk0IDMuOTQgMCAwIDEgNyA3MC4wNlYzOS4zOWguODh2MzAuNjdhMy4wNiAzLjA2IDAgMCAwIDMuMDYgMy4wNmg0Mi4wM2MxLjcgMCAzLjA3LTEuMzcgMy4wNy0zLjA2VjI1Ljg3SDEwLjY3VjI1aDQ2LjI1eiIgZmlsbD0iZ3JheSIvPjxwYXRoIGQ9Ik05LjQzIDI1Yy0uNiAwLTEuMTUuMzEtMS40Ni44MkwuMTMgMzguNjRjLS4yNi40Mi0uMTMuOTYuMjcgMS4yMi4xNC4wOS4yOS4xNC40Ni4xNGg0NC44MmMxLjE3IDAgMi4yNi0uNjEgMi45LTEuNjJMNTcuMDQgMjVIOS40M3ptLjIyIDFoNDUuNTJsLTcuNTIgMTEuODFjLS40Ny43NC0xLjI4IDEuMTktMi4xNCAxLjE5SDEuMTdsNy43NS0xMi42Yy4xNi0uMjUuNDMtLjQuNzMtLjR6IiBmaWxsPSJncmF5Ii8+PHBhdGggZD0iTTcwLjc1IDI1Yy41NiAwIDEuMDguMyAxLjM5LjhsNy43MiAxMi43MmMuMjUuNDEuMTQuOTUtLjI1IDEuMjEtLjEzLjA5LS4yOC4xNC0uNDQuMTRINjYuMTRjLTEuMTcgMC0yLjI1LS42Ni0yLjg1LTEuNzNMNTUuOTggMjVoMTQuNzd6bS0uMDMgMUg1Ny44bDYuMzggMTEuNzFjLjQzLjggMS4yMiAxLjI5IDIuMDggMS4yOWgxMi42M0w3MS40IDI2LjM5YS44MDIuODAyIDAgMCAwLS42OC0uMzl6IiBmaWxsPSJncmF5Ii8+PHJlY3QgeD0iMTMuNSIgeT0iNTYiIHJ4PSIxLjg4NiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjQiIGZpbGw9IiMxNDc2RkYiLz48cGF0aCBkPSJNMjMuNTYgNjNjLjI0IDAgLjQ0LjIyLjQ0LjUgMCAuMjctLjIuNS0uNDQuNWgtOS42M2MtLjI0IDAtLjQzLS4yMy0uNDMtLjUgMC0uMjguMTktLjUuNDMtLjVoOS42M3oiIGZpbGw9ImdyYXkiLz48cmVjdCB4PSIxMy41IiB5PSI2NiIgcng9Ii41IiB3aWR0aD0iNSIgaGVpZ2h0PSIxIiBmaWxsPSJncmF5Ii8+PHBhdGggZD0iTTQwIDZjLjI3IDAgLjUuMTkuNS40NHY2LjE2YzAgLjI1LS4yMy40NC0uNS40NC0uMjggMC0uNTEtLjE5LS41MS0uNDRWNi40NGMwLS4yNS4yMy0uNDQuNTEtLjQ0ek01Ni41NSA4LjY0Yy4yNC4xNC4zMy40Mi4yMS42M2wtMy4wOCA1LjM0Yy0uMTIuMjEtLjQyLjI3LS42Ni4xMy0uMjQtLjE0LS4zMy0uNDItLjIxLS42M2wzLjA4LTUuMzRjLjEyLS4yMS40Mi0uMjcuNjYtLjEzek0yMy40NCA4LjY0Yy4yNC0uMTQuNTQtLjA4LjY2LjEzbDMuMDggNS4zNGMuMTIuMjEuMDMuNDktLjIxLjYzcy0uNTQuMDgtLjY2LS4xM2wtMy4wOC01LjM0Yy0uMTItLjIxLS4wMy0uNDkuMjEtLjYzeiIgZmlsbD0iZ3JheSIvPjwvZz48L3N2Zz4=');
 }

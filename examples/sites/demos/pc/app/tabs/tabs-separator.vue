@@ -24,7 +24,7 @@
       <tiny-tab-item title="业务组件" name="fourth"> 业务组件,与业务紧密相关实现某种业务功能的组件集。 </tiny-tab-item>
     </tiny-tabs>
     <br /><br /><br /><br />
-    <tiny-tabs separator :editable="false" :with-add="true" @add="handleadd" style="width: 500px" show-more-tabs>
+    <tiny-tabs separator :editable="false" :with-add="true" @add="handleadd" style="width: 500px">
       <tiny-tab-item :key="item.name" v-for="item in Tabs" :title="item.title" :name="item.name">
         {{ item.content }}
       </tiny-tab-item>

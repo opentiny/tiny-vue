@@ -10,17 +10,17 @@
 *
 */
 
-.component-css-vars-drop-times() {
+.inject-DropTimes-vars() {
   // 时间选择选项字号
-  --ti-drop-times-item-font-size: 14px;
+  --tv-DropTimes-item-font-size: var(--tv-font-size-md);
   // 时间选择选项左右内边距
-  --ti-drop-times-item-padding: 0 16px;
+  --tv-DropTimes-item-padding: 0 var(--tv-space-xl);
   // 时间选择选项字体字重
-  --ti-drop-times-item-selected-font-weight: 500;
+  --tv-DropTimes-item-selected-font-weight: var(--tv-font-weight-regular);
   // 时间选择选项字体色(选中项)
-  --ti-drop-times-item-selected-color: var(--ti-common-color-text-link);
+  --tv-DropTimes-item-selected-color: var(--tv-color-text-active);
   // 时间选择选项悬浮背景色(选中项)
-  --ti-drop-times-item-select-hover-bg-color: var(--ti-common-color-selected-background);
+  --tv-DropTimes-item-select-hover-bg-color: var(--tv-color-bg);
   // 时间选择选项悬浮背景色
-  --ti-drop-times-item-hover-bg-color: var(--ti-common-color-bg-disabled);
+  --tv-DropTimes-item-hover-bg-color: var(--tv-color-bg-hover);
 }

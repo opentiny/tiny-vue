@@ -322,9 +322,10 @@ const TinyIconAdministrator = iconAdministrator()
   vertical-align: middle;
 }
 
-.preview-nav .icon-setting, .preview-nav .icon-administrator{
-  margin-right:20px;
-  fill: white;
+.preview-nav .icon-setting,
+.preview-nav .icon-administrator {
+  margin-right: 20px;
+  fill: #808080;
   font-size: 24px;
 }
 </style>

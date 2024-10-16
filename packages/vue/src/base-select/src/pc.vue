@@ -430,7 +430,7 @@
             <li
               v-if="multiple && showCheck && showAlloption && !state.multipleLimit && !state.query && !remote"
               class="tiny-option tiny-select-dropdown__item"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.selectCls !== 'checked-sur'
@@ -455,7 +455,7 @@
                 !remote
               "
               class="tiny-option tiny-select-dropdown__item"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               :class="[
                 {
                   hover: state.hoverIndex === -9 && state.filteredSelectCls !== 'checked-sur'

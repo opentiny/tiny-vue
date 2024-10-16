@@ -232,3 +232,14 @@ vue3的动画状态类：  v-enter-from  v-enter-to  v-leave-from v-leave-to 以
     0.3s padding-left ease-in-out,
     0.3s padding-right ease-in-out;
 }
+
+// alert的切换显示动画
+.tiny-transition-alert-fade-enter,
+.tiny-transition-alert-fade-enter-from,
+.tiny-transition-alert-fade-leave-active {
+  opacity: 0;
+}
+
+.tiny-transition-alert-fade-leave-active {
+  transition: opacity 0.3s ease-in;
+}

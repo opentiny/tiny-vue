@@ -22,6 +22,7 @@ export interface IPagerData {
 
 export interface IFallMenuState {
   pager: number
+  active: number
   level2data: IFallMenuProps['data']
   activeNode: null
   isActive: boolean

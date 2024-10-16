@@ -10,43 +10,49 @@
 *
 */
 
-.component-css-vars-ip-address() {
+.inject-IpAddress-vars() {
   // IP地址输入框高度
-  --ti-ip-address-normal-height: var(--ti-common-size-8x);
+  --tv-IpAddress-normal-height: var(--tv-size-height-md);
   // IP地址输入框宽度
-  --ti-ip-address-normal-width: calc(var(--ti-common-size-base) * 45.5);
+  --tv-IpAddress-normal-width: 182px;
   // IP地址输入框默认水平内边距
-  --ti-ip-address-padding-horizontal: var(--ti-common-space-3x);
+  --tv-IpAddress-padding-x: var(--tv-space-lg);
   // Ip6单个内容左margin
-  --ti-ip-address-ipv6-delimiter-margin-right: var(--ti-common-space-base);
+  --tv-IpAddress-ipv6-delimiter-margin-right: var(--tv-space-sm);
   // IP地址输入框默认文本色
-  --ti-ip-address-normal-text-color: var(--ti-common-color-info-normal, #252b3a);
+  --tv-IpAddress-normal-text-color: var(--tv-color-text);
   // IP地址输入框图标文本色
-  --ti-ip-address-icon-color: var(--ti-common-color-info-normal, #252b3a);
+  --tv-IpAddress-icon-color: var(--tv-color-icon);
   // IP地址输入框图标尺寸
-  --ti-ip-address-icon-size: calc(var(--ti-common-size-base, 4px) * 2.5);
+  --tv-IpAddress-icon-size: 10px;
   // IP地址输入框禁用文本色
-  --ti-ip-address-normal-disabled-text-color: var(--ti-common-color-text-disabled, #adb0b8);
+  --tv-IpAddress-normal-disabled-text-color: var(--tv-color-text-disabled);
   // IP地址输入框默认边框色
-  --ti-ip-address-normal-border-color: var(--ti-common-color-line-normal);
+  --tv-IpAddress-normal-border-color: var(--tv-color-border);
   // IP地址输入框默认背景色
-  --ti-ip-address-normal-bg-color: var(--ti-common-color-light, #fff);
+  --tv-IpAddress-normal-bg-color: var(--tv-color-bg-secondary);
   // IP地址输入框圆角
-  --ti-ip-address-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --tv-IpAddress-border-radius: var(--tv-border-radius-md);
   // IP地址输入框字号
-  --ti-ip-address-font-size: var(--ti-common-font-size-1);
+  --tv-IpAddress-font-size: var(--tv-font-size-md);
   // IP地址输入框字族
-  --ti-ip-address-normal-font-family: "Manrop","Manrope-Medium";
-  // IP地址输入框行高
-  --ti-ip-address-line-height: var(--ti-common-line-height-1);
+  --tv-IpAddress-normal-font-family: var(--tv-font-family-1);
   // IP地址输入框聚焦边框色
-  --ti-ip-address-border-color-focus: var(--ti-common-color-line-active, #5e7ce0);
+  --tv-IpAddress-border-color-focus: var(--tv-color-border-active);
   // IP地址输入框悬浮边框色
-  --ti-ip-address-border-color-hover: var(--ti-common-color-line-hover, #575d6c);
+  --tv-IpAddress-border-color-hover: var(--tv-color-border-hover);
   // IP地址输入框禁用背景色
-  --ti-ip-address-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --tv-IpAddress-disabled-bg-color: var(--tv-color-bg-disabled);
   // IP地址输入框禁用边框色
-  --ti-ip-address-disabled-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
+  --tv-IpAddress-disabled-border-color: var(--tv-color-border-disabled);
   // Ip地址输入框item宽度
-  --ti-ip-address-input-width: var(--ti-common-size-8x);
+  --tv-IpAddress-input-width: 32px;
+  // 大尺寸高度
+  --tv-IpAddress-medium-height: calc(var(--tv-size-height-lg) - 2px);
+  // 默认尺寸高度
+  --tv-IpAddress-default-height: calc(var(--tv-size-height-md) - 2px);
+  // 小尺寸高度
+  --tv-IpAddress-small-height: calc(var(--tv-size-height-sm) - 2px);
+  // 超小尺寸高度
+  --tv-IpAddress-mini-height: calc(var(--tv-size-height-xs) - 2px);
 }

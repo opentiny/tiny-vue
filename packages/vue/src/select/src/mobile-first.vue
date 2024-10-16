@@ -442,7 +442,7 @@
                 },
                 { 'text-color-brand sm:bg-color-fill-6 bg-color-bg-1': state.selectCls === 'checked-sur' }
               ]"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               @click.stop="toggleCheckAll(false)"
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"
@@ -475,7 +475,7 @@
                 },
                 { 'text-color-brand sm:bg-color-fill-6 bg-color-bg-1': state.filteredSelectCls === 'checked-sur' }
               ]"
-              data-tag="tiny-select-dropdown-item"
+              data-tag="tiny-option"
               @click.stop="toggleCheckAll(true)"
               @mousedown.stop
               @mouseenter="state.hoverIndex = -9"

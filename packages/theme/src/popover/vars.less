@@ -10,47 +10,33 @@
 *
 */
 
-.component-css-vars-popover() {
-  // 弹框字体
-  --ti-popover-font-family: var(--ti-common-font-family);
-  // 弹框字重
-  --ti-popover-font-weight: 400;
+.inject-Popover-vars() {
   // 弹框背景色
-  --ti-popover-bg-color: var(--ti-common-color-light, #fff);
+  --tv-Popover-bg-color: var(--tv-color-bg-secondary);
   // 弹框内容文本色
-  --ti-popover-text-color: var(--ti-common-color-text-secondary, #575d6c);
-  // 弹框边框色
-  --ti-popover-border-color: transparent;
+  --tv-Popover-text-color: var(--tv-color-text-secondary);
   // 弹框圆角
-  --ti-popover-border-radius: var(--ti-common-border-radius-4);
+  --tv-Popover-border-radius: var(--tv-border-radius-lg);
   // 弹框内容字号
-  --ti-popover-font-size: 14px;
+  --tv-Popover-font-size: var(--tv-font-size-md);
   // 弹框内容行高
-  --ti-popover-line-height: 20px;
+  --tv-Popover-line-height: var(--tv-line-height-number);
   // 弹框标题文本色
-  --ti-popover-title-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --tv-Popover-title-text-color: var(--tv-color-text);
   // 弹框标题字号
-  --ti-popover-title-font-size: var(--ti-common-font-size-2, 16px);
+  --tv-Popover-title-font-size: var(--tv-font-size-lg);
   // 弹框标题字重
-  --ti-popover-title-weight: 600;
-  // 弹框标题字重
-  --ti-popover-title-padding-bottom: 8px;
-  // 弹出框小箭头边框厚度
-  --ti-popover-arrow-border-width: calc(var(--ti-common-border-weight-2, 3px) * 2);
-  // 弹出框小箭头高度
-  --ti-popover-arrow-height: var(--ti-common-space-2x);
+  --tv-Popover-title-weight: var(--tv-font-weight-bold);
   // 弹出框垂直外边距
-  --ti-popover-placement-margin-vertical: var(--ti-common-space-3x, 12px);
-  // 弹出框小箭头水平外边距(hide)
-  --ti-popover-placement-margin-horizontal: var(--ti-common-space-3x, 12px);
+  --tv-Popover-placement-margin-y: var(--tv-space-lg);
+  // 弹出框小箭头水平外边距
+  --tv-Popover-placement-margin-x: var(--tv-space-lg);
   // 弹框小箭头填充色
-  --ti-popover-placement-arrow-after-border-color: var(--ti-common-color-light, #fff);
+  --tv-Popover-placement-arrow-after-border-color: var(--tv-color-bg-secondary);
   // 弹框阴影
-  --ti-popover-box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.08);
-  // 弹框小箭头边框色
-  --ti-popover-arrow-border-color: transparent;
+  --tv-Popover-box-shadow: var(--tv-shadow-2-down);
   // 弹框垂直内边距
-  --ti-popover-padding-vertical: var(--ti-common-space-3x);
+  --tv-Popover-padding-y: var(--tv-space-lg);
   // 弹框水平内边距
-  --ti-popover-padding-horizontal: var(--ti-common-space-4x);
+  --tv-Popover-padding-x: var(--tv-space-xl);
 }

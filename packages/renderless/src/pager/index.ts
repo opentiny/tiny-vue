@@ -87,6 +87,19 @@ export const computedSimplestPagerWidth =
     return baseWidth + num * 8
   }
 
+export const computedPageSizeText =
+  ({ props, designConfig }: Pick<IPagerRenderlessParams, 'props' | 'designConfig'>) =>
+  (): string => {
+    if (props.pageSizeText) {
+      return props.pageSizeText
+    }
+    // 默认返回空字符串，不展示"条/页", 可以通过设置pageSizeText为null来显示。亦或者自定义
+    if (designConfig?.state && Object.hasOwnProperty.call(designConfig.state, 'pageSizeText')) {
+      return designConfig.state.pageSizeText
+    }
+    return ''
+  }
+
 export const handleJumperFocus =
   ({ state }: Pick<IPagerRenderlessParams, 'state'>) =>
   (e: Event): void => {

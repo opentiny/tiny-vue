@@ -6,7 +6,7 @@
 
 <script setup lang="jsx">
 import { ref } from 'vue'
-import { ChartProcess as TinyChartProcess } from '@opentiny/vue'
+import { HuichartsProcess as TinyChartProcess } from '@opentiny/vue'
 
 const options = ref({
   name: 'ProcessBarChart',

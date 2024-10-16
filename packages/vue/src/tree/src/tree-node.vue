@@ -45,6 +45,7 @@
       @drop.stop="handleDrop"
       ref="node"
     >
+      <!-- 当前节点的行： 缩进块+left(箭头图标+单多选钮+loading+prefix+label+suffix)+right(finish图标+operation+编辑按钮) -->
       <div
         :class="{
           'tiny-tree-node__content': true,
@@ -128,9 +129,9 @@
               @click.stop="($event) => $event.stopPropagation()"
             />
           </template>
-          <div v-else class="tiny-tree-node__content-box">
+          <template v-else>
             <node-content :node="node" :render-content="renderContent"></node-content>
-          </div>
+          </template>
           <slot name="suffix" :node="node"></slot>
         </div>
         <div :class="['tiny-tree-node__content-right', { 'is-disabled': node.disabled }]">
@@ -164,6 +165,7 @@
         </div>
       </div>
 
+      <!-- 子级树节点 -->
       <template v-if="node.childNodes.length">
         <collapse-transition>
           <div

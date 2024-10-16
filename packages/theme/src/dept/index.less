@@ -19,7 +19,7 @@
 @col-prefix-cls: ~'@{css-prefix}col';
 
 .@{dept-prefix-cls} {
-  .component-css-vars-dept();
+  .inject-Dept-vars();
 
   &__search {
     margin-bottom: 12px;
@@ -27,9 +27,9 @@
 
   &__text,
   &__label {
-    font-size: var(--ti-dept-label-font-size);
-    color: var(--ti-dept-label-text-color);
-    font-weight: var(--ti-dept-label-font-weight);
+    font-size: var(--tv-Dept-label-font-size);
+    color: var(--tv-Dept-label-text-color);
+    font-weight: var(--tv-Dept-label-font-weight);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -45,11 +45,11 @@
   }
 
   &__selected-info {
-    color: var(--ti-dept-selected-info-text-color);
-    font-size: var(--ti-dept-label-font-size);
-    background: var(--ti-dept-selected-info-bg-color);
+    color: var(--tv-Dept-selected-info-text-color);
+    font-size: var(--tv-Dept-label-font-size);
+    background: var(--tv-Dept-selected-info-bg-color);
     padding: 5px;
-    border-radius: var(--ti-dept-selected-info-border-radius);
+    border-radius: var(--tv-Dept-selected-info-border-radius);
   }
 
   &__item {
@@ -75,6 +75,6 @@
 
   .@{input-prefix-cls}__icon {
     vertical-align: middle;
-    fill: var(--ti-dept-selected-info-text-color);
+    fill: var(--tv-Dept-selected-info-text-color);
   }
 }

@@ -4,11 +4,8 @@ import Popconfirm from './src/popconfirm'
 import Drawer from './src/drawer'
 import Dropdown from './src/dropdown'
 import DropdownItem from './src/dropdown-item'
-import Form from './src/form'
 import FilterBox from './src/filter-box'
-import Grid from './src/grid'
 import Guide from './src/guide'
-import Pager from './src/pager'
 import Select from './src/select'
 import TreeNode from './src/tree-node'
 import TimeSpinner from './src/time-spinner'
@@ -31,11 +28,8 @@ export default {
     Drawer,
     Dropdown,
     DropdownItem,
-    Form,
     FilterBox,
-    Grid,
     Guide,
-    Pager,
     Select,
     TreeNode,
     TimeSpinner,

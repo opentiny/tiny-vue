@@ -10,184 +10,171 @@
 *
 */
 
-.component-css-vars-tabs() {
+.inject-Tabs-vars() {
   // 标签栏选中项边框色(除bordercard类)
-  --ti-tabs-header-font-active-border-color: var(--ti-common-color-line-active, #5e7ce0);
+  --tv-Tabs-header-font-active-border-color: var(--tv-color-border-active, #191919);
   // 标签栏选中项字重
-  --ti-tabs-header-font-weight-active: var(--ti-common-font-weight-bold);
+  --tv-Tabs-header-font-weight-active: var(--tv-font-weight-bold, 600);
   // 标签栏(选中|悬浮)项文本色(除bordercard类)
-  --ti-tabs-header-font-active-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --tv-Tabs-header-font-active-text-color: var(--tv-color-act-primary-text-active, #191919);
   // 标签栏(更多选项|加号按钮)悬浮文本色
-  --ti-tabs-header-text-color: var(--ti-common-color-primary-normal, #5e7ce0);
+  --tv-Tabs-header-text-color: var(--tv-color-act-primary-text-active, #191919);
   // 标签栏边框色
-  --ti-tabs-border-color: var(--ti-common-color-line-dividing, #dfe1e6);
+  --tv-Tabs-border-color: var(--tv-color-border-divider, #f0f0f0);
   // 标签栏新增按钮高度
-  --ti-tabs-new-height: calc(var(--ti-common-space-base, 4px) * 4.5);
+  --tv-Tabs-new-height: calc(var(--tv-space-base, 4px) * 4.5);
   // 标签栏新增按钮宽度
-  --ti-tabs-new-width: calc(var(--ti-common-space-base, 4px) * 4.5);
+  --tv-Tabs-new-width: calc(var(--tv-space-base, 4px) * 4.5);
   // 标签栏新增按钮填充色
-  --ti-tabs-new-svg-text-color: var(--ti-common-color-placeholder, #adb0b8);
+  --tv-Tabs-new-svg-text-color: var(--tv-color-text-weaken, #808080);
   // 标签栏更多文字悬浮文本色
-  --ti-tabs-more-hover-text-color: var(--ti-common-color-primary-hover, #7693f5);
+  --tv-Tabs-more-hover-text-color: var(--tv-color-text-secondary, #595959);
   // 标签页选项禁用色
-  --ti-tabs-item-disabled-text-color: var(--ti-common-color-text-link-darkbg-hover, #beccfa);
+  --tv-Tabs-item-disabled-text-color: var(--tv-color-text-disabled, #c2c2c2);
   // 标签页新增按钮圆角
-  --ti-tabs-new-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --tv-Tabs-new-border-radius: var(--tv-border-radius-md, 6px);
   // 标签页下拉框背景色(hide)
-  --ti-tabs-dropdown-bg-color: var(--ti-common-color-bg-white-normal, #fff);
-  // 标签页下拉框圆角(hide)
-  --ti-tabs-dropdown-border-radius: var(--ti-common-border-radius-normal, 2px);
-  // 标签页下拉选项文本色(hide)
-  --ti-tabs-dropdown-li-text-color: var(--ti-common-color-info-normal, #252b3a);
-  // 标签页内容字号
-  --ti-tabs-content-font-size: var(--ti-common-font-size-2, 16px);
+  --tv-Tabs-dropdown-bg-color: var(--tv-color-act-primary-bg-white, #ffffff);
   // card类型(无size属性)标签项高度
-  --ti-tabs-height: var(--ti-common-size-12x);
+  --tv-Tabs-height: var(--tv-size-height-xl, 48px);
   // card类型未选中项文本色
-  --ti-tabs-header-font-normal-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --tv-Tabs-header-font-normal-text-color: var(--tv-color-info-text-primary, #191919);
   // 分隔符类型未选中项文本色
-  --ti-tabs-header-separator-normal-text-color: var(--ti-common-color-text-secondary, #575d6c);
+  --tv-Tabs-header-separator-normal-text-color: var(--tv-color-text-secondary, #595959);
   // 分隔符高度(new)
-  --ti-tabs-header-separator-height: var(--ti-common-space-4x, 16px);
+  --tv-Tabs-header-separator-height: var(--tv-font-size-lg, 16px);
   // 分隔符类型标签项水平内边距
-  --ti-tabs-header-separator-padding-horizontal: var(--ti-common-space-4x, 16px);
+  --tv-Tabs-header-separator-padding-horizontal: var(--tv-space-xl, 16px);
   // 分隔符类型标签项高度
-  --ti-tabs-header-separator-item-height: var(--ti-common-space-8x, 32px);
+  --tv-Tabs-header-separator-item-height: var(--tv-size-height-md, 32px);
   // 分隔符背景色
-  --ti-tabs-header-separator-bg-color: var(--ti-common-scrollbar-thumb-bg-color, #bfbfbf);
-  // card类型选中项下边框色(hide)
-  --ti-tabs-dropdown-li-border-color: #e6e6e6;
+  --tv-Tabs-header-separator-bg-color: var(--tv-color-bg-disabled-control-checked, #dbdbdb);
   // card类型选中项顶部块背景色
-  --ti-tabs-header-top-bar-active-bg-color: var(--ti-common-color-line-active, #5e7ce0);
+  --tv-Tabs-header-top-bar-active-bg-color: var(--tv-color-bg-active-primary, #191919);
   // card类型small尺寸标签栏高度
-  --ti-tabs-small-height: var(--ti-common-size-10x, 40px);
+  --tv-Tabs-small-height: var(--tv-size-height-lg, 40px);
   // 分隔符类型small尺寸标签栏高度
-  --ti-tabs-small-separator-height: var(--ti-common-size-height-mini, 24px);
+  --tv-Tabs-small-separator-height: var(--tv-size-height-xs, 24px);
   // button-card类型small尺寸标签栏高度
-  --ti-tabs-small-button-card-height: var(--ti-common-size-height-mini, 24px);
+  --tv-Tabs-small-button-card-height: var(--tv-size-height-xs, 24px);
   // button-card类型small尺寸标签栏字号
-  --ti-tabs-small-button-card-font-size: var(--ti-common-font-size-0, 12px);
+  --tv-Tabs-small-button-card-font-size: var(--tv-font-size-sm, 12px);
   // card类型small尺寸标签项右外边距(new)
-  --ti-tabs-small-item-margin-right: var(--ti-common-size-6x, 24px);
+  --tv-Tabs-small-item-margin-right: calc(var(--tv-space-base, 4px) * 6);
   // card类型small尺寸标签项水平内边距(new)
-  --ti-tabs-small-separator-padding-horizontal: var(--ti-common-size-3x, 12px);
+  --tv-Tabs-small-separator-padding-horizontal: var(--tv-space-lg, 12px);
   // card类型small尺寸标签项字号(new)
-  --ti-tabs-small-item-font-size: var(--ti-common-font-size-2);
+  --tv-Tabs-small-item-font-size: var(--tv-font-size-heading-xs, 16px);
   // card类型标签项水平内边距
-  --ti-tabs-item-padding-horizontal: var(--ti-common-space-3x, 12px);
+  --tv-Tabs-item-padding-horizontal: var(--tv-space-lg, 12px);
   // card类型选中项底部小滑块厚度(hide)
-  --ti-tabs-item-bottom-border-weight: var(--ti-common-border-weight-normal, 1px);
+  --tv-Tabs-item-bottom-border-weight: var(--tv-border-width, 1px);
   // card类型选中项底部边框色
-  --ti-tabs-item-bottom-border-color: var(--ti-common-color-light, #fff);
+  --tv-Tabs-item-bottom-border-color: var(--tv-color-act-primary-border-light-hover, #ffffff);
   // card类型选中项(不含下|左)边框厚度
-  --ti-tabs-item-top-right-border-weight: var(--ti-common-border-weight-normal, 1px);
+  --tv-Tabs-item-top-right-border-weight: var(--tv-border-width, 1px);
   // card类型选中项背景色
-  --ti-tabs-item-card-active-bg-color: var(--ti-common-color-bg-white-normal, #fff);
-  // card类型选中项圆角
-  --ti-tabs-item-card-border-radius: var(--ti-common-border-radius-0, 0px);
+  --tv-Tabs-item-card-active-bg-color: var(--tv-color-act-primary-bg-white, #ffffff);
   // card类型标签项默认上|右边框色
-  --ti-tabs-item-card-border-color: var(--ti-common-color-transparent, transparent);
+  --tv-Tabs-item-card-border-color: transparent;
   // card类型标签项悬浮字重
-  --ti-tabs-item-card-hover-font-weight: var(--ti-common-font-weight-bold);
+  --tv-Tabs-item-card-hover-font-weight: var(--tv-font-weight-bold, 600);
   // bordercard类型选中项圆角
-  --ti-tabs-dark-border-radius: var(--ti-common-border-radius-normal, 2px) var(--ti-common-border-radius-normal, 2px) 0
-    0;
+  --tv-Tabs-dark-border-radius: var(--tv-border-radius-md, 6px) var(--tv-border-radius-md, 6px) 0 0;
   // bordercard类型选中项文本色
-  --ti-tabs-dark-text-color-active: var(--ti-common-color-text-primary, #252b3a);
+  --tv-Tabs-dark-text-color-active: var(--tv-color-info-text-primary, #191919);
   // bordercard类型选中项背景色
-  --ti-tabs-dark-bg-color-active: var(--ti-common-color-bg-normal, #eef0f5);
+  --tv-Tabs-dark-bg-color-active: var(--tv-color-bg-active, #f5f5f5);
   // bordercard类型非选中项悬浮文本色
-  --ti-tabs-dark-text-color-hover: var(--ti-common-color-text-white, #fff);
+  --tv-Tabs-dark-text-color-hover: var(--tv-color-act-info-text-white-hover, #ffffff);
   // bordercard类型非选中项悬浮背景色
-  --ti-tabs-dark-bg-color-hover: var(--ti-common-color-icon-graybg-hover);
+  --tv-Tabs-dark-bg-color-hover: var(--tv-color-bg-active-primary, #191919);
   // bordercard类型非选中项文本色
-  --ti-tabs-dark-text-color: var(--ti-common-color-text-darkbg, #adb0b8);
+  --tv-Tabs-dark-text-color: var(--tv-color-text-disabled, #c2c2c2);
   // bordercard类型标签项上外边距
-  --ti-tabs-dark-margin-top: calc(var(--ti-common-space-base, 4px) + 1px);
+  --tv-Tabs-dark-margin-top: calc(var(--tv-space-base, 4px) + 1px);
   // bordercard类型首个标签项左外边距
-  --ti-tabs-dark-first-margin-left: var(--ti-common-space-5x, 20px);
+  --tv-Tabs-dark-first-margin-left: 20px;
   // bordercard类型标签栏边框厚度
-  --ti-tabs-dark-border-weight: var(--ti-common-size-0, 0px);
+  --tv-Tabs-dark-border-weight: 0px;
   // bordercard类型默认背景色
-  --ti-tabs-header-dark-bg-color: var(--ti-common-color-bg-dark-normal, #464c59);
+  --tv-Tabs-header-dark-bg-color: var(--tv-color-bg-secondary, #ffffff);
   // bordercard类型标签项高度
-  --ti-tabs-dark-item-height: calc(var(--ti-common-size-base) * 11.75);
-  // 标签项超出时上下按钮尺寸[3.9.1新增]
-  --ti-tabs-prev-next-btn-icon-size: var(--ti-common-font-size-base, 12px);
+  --tv-Tabs-dark-item-height: calc(var(--tv-size-base, 4px) * 11.75);
+  // 标签项超出时上下按钮尺寸
+  --tv-Tabs-prev-next-btn-icon-size: var(--tv-font-size-md, 14px);
   // 标签项默认右外边距
-  --ti-tabs-item-margin-right: var(--ti-common-space-8x);
+  --tv-Tabs-item-margin-right: 32px;
   // 标签项active边框样式(hide)
-  --ti-tabs-item-active-border-style: var(--ti-common-border-style-solid, solid);
+  --tv-Tabs-item-active-border-style: solid;
   // 标签项底部边框样式(hide)
-  --ti-tabs-item-bottom-border-style: var(--ti-common-border-style-solid, solid);
+  --tv-Tabs-item-bottom-border-style: solid;
   // 横向标签栏字号
-  --ti-tabs-item-font-size: var(--ti-common-font-size-2);
+  --tv-Tabs-item-font-size: var(--tv-font-size-heading-xs, 16px);
   // 纵向标签栏非选中项背景色
-  --ti-tabs-header-bg-color: var(--ti-common-color-bg-disabled, #f5f5f6);
+  --tv-Tabs-header-bg-color: var(--tv-color-bg-header, #f0f0f0);
   // 纵向标签栏字号
-  --ti-tabs-font-size-base: var(--ti-common-font-size-base, 12px);
+  --tv-Tabs-font-size-base: var(--tv-font-size-md, 14px);
   // 竖向标签项水平内边距
-  --ti-tabs-item-vertical-padding-horizontal: var(--ti-common-space-5x, 20px);
+  --tv-Tabs-item-vertical-padding-horizontal: var(--tv-font-size-xxl, 20px);
   // 选中标签项小滑块厚度(不含card类型)
-  --ti-tabs-item-active-border-weight: var(--ti-common-border-weight-1);
+  --tv-Tabs-item-active-border-weight: 2px;
   // 选中标签项小滑块边框色
-  --ti-tabs-item-active-border-color: var(--ti-tabs-header-font-active-border-color);
+  --tv-Tabs-item-active-border-color: var(--tv-Tabs-header-font-active-border-color);
   // 可关闭项关闭按钮悬浮背景色
-  --ti-tabs-icon-close-hover-bg-color: var(--ti-common-bg-minor-hover, #ffffff);
+  --tv-Tabs-icon-close-hover-bg-color: var(--tv-color-bg-header, #f0f0f0);
   // 可关闭项关闭图标默认背景色
-  --ti-tabs-icon-close-default-bg-color: var(--ti-common-color-transparent, transparent);
+  --tv-Tabs-icon-close-default-bg-color: transparent;
   // 可关闭项未选中项的关闭图标色
-  --ti-tabs-icon-close-default-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --tv-Tabs-icon-close-default-text-color: var(--tv-color-info-text-primary, #191919);
   // 可关闭项(选中项|未选中项悬浮)图标色
-  --ti-tabs-icon-close-hover-text-color: var(--ti-common-color-icon-active, #5e7ce0);
+  --tv-Tabs-icon-close-hover-text-color: var(--tv-color-icon-hover, #191919);
   // 可关闭项关闭图标尺寸
-  --ti-tabs-icon-size-close: var(--ti-common-font-size-1, 14px);
+  --tv-Tabs-icon-size-close: var(--tv-font-size-md, 14px);
   // 可关闭项关闭图标垂直外边距(hide)
-  --ti-tabs-icon-close-margin-vertical: var(--ti-common-space-0, 0px);
+  --tv-Tabs-icon-close-margin-vertical: 0px;
   // 可关闭项右外边距
-  --ti-tabs-icon-close-margin-right: var(--ti-common-space-0, 0px);
+  --tv-Tabs-icon-close-margin-right: 0px;
   // 可关闭项左外边距
-  --ti-tabs-icon-close-margin-left: 5px;
+  --tv-Tabs-icon-close-margin-left: 5px;
   // 更多下拉框上外边距
-  --ti-tabs-dropdown-more-margin-top: var(--ti-common-space-base);
+  --tv-Tabs-dropdown-more-margin-top: var(--tv-space-base, 4px);
   // 更多下拉框项悬浮背景色
-  --ti-tabs-dropdown-more-item-hover-bg-color: var(--ti-common-color-hover-background, #f2f5fc);
+  --tv-Tabs-dropdown-more-item-hover-bg-color: var(--tv-color-bg-hover, #f5f5f5);
   // 更多下拉框项悬浮字重
-  --ti-tabs-dropdown-more-item-hover-font-weight: var(--ti-common-font-weight-5, 500);
+  --tv-Tabs-dropdown-more-item-hover-font-weight: 500;
   // 头部更多按钮水平内边距
-  --ti-tabs-more-icon-padding-horizontal: 13.5px;
+  --tv-Tabs-more-icon-padding-horizontal: 13.5px;
   // 头部更多图标盒子高度
-  --ti-tabs-more-icon-height: calc(var(--ti-common-space-base) * 13);
-  // 头部更多图标尺寸[3.9.1新增]
-  --ti-tabs-more-icon-size: var(--ti-common-font-size-2, 16px);
+  --tv-Tabs-more-icon-height: calc(var(--tv-size-base, 4px) * 13);
+  // 头部更多图标尺寸
+  --tv-Tabs-more-icon-size: var(--tv-font-size-heading-xs, 16px);
   // 头部更多按钮左侧盒子阴影高度
-  --ti-tabs-more-left-box-height: calc(var(--ti-common-size-base) * 13);
-  // 头部更多按钮左侧盒子阴影
-  --ti-tabs-more-left-box-shadow: -3px 0px 4px 0px rgba(0, 0, 0, 0.08);
+  --tv-Tabs-more-left-box-height: calc(var(--tv-size-base, 4px) * 13);
   // 内容垂直外边距
-  --ti-tabs-content-margin-vertical: var(--ti-common-space-3x);
+  --tv-Tabs-content-margin-vertical: var(--tv-space-lg, 12px);
   // 内容水平外边距
-  --ti-tabs-content-margin-horizontal: var(--ti-common-space-0);
+  --tv-Tabs-content-margin-horizontal: 0px;
   // buttoncard类型标签栏背景色
-  --ti-tabs-button-card-nav-bg-color: var(--ti-common-color-bg-6, rgba(0, 0, 0, 0.05));
+  --tv-Tabs-button-card-nav-bg-color: var(--tv-color-bg-active, #f5f5f5);
   // buttoncard类型选项文本色
-  --ti-tabs-button-card-item-text-color: #595959;
+  --tv-Tabs-button-card-item-text-color: #595959;
   // buttoncard类型选项悬浮文本色
-  --ti-tabs-button-card-item-hover-text-color: #191919;
+  --tv-Tabs-button-card-item-hover-text-color: #191919;
   // buttoncard类型选项字号
-  --ti-tabs-button-card-item-font-size: var(--ti-common-font-size-1, 14px);
+  --tv-Tabs-button-card-item-font-size: var(--tv-font-size-md, 14px);
   // buttoncard类型选项高度
-  --ti-tabs-button-card-item-height: var(--ti-common-size-8x, 32px);
+  --tv-Tabs-button-card-item-height: var(--tv-size-height-md, 32px);
   // buttoncard类型选中项背景色
-  --ti-tabs-button-card-item-active-bg-color: var(--ti-common-color-bg-white-normal, #fff);
+  --tv-Tabs-button-card-item-active-bg-color: var(--tv-color-act-primary-bg-white-active, #ffffff);
   // buttoncard类型选中项文本色
-  --ti-tabs-button-card-item-active-text-color: #191919;
+  --tv-Tabs-button-card-item-active-text-color: #191919;
   // buttoncard类型选中项边框色
-  --ti-tabs-button-card-item-active-border-color: #191919;
+  --tv-Tabs-button-card-item-active-border-color: #191919;
   // buttoncard类型圆角
-  --ti-tabs-button-card-border-radius: var(--ti-common-border-radius-normal, 2px);
+  --tv-Tabs-button-card-border-radius: var(--tv-border-radius-md, 6px);
   // buttoncard类型选项水平内边距
-  --ti-tabs-button-card-title-padding-horizontal: var(--ti-common-space-6x, 24px);
+  --tv-Tabs-button-card-title-padding-horizontal: 24px;
   // buttoncard类型字重
-  --ti-tabs-button-card-font-weight: var(--ti-common-font-weight-7, bold);
+  --tv-Tabs-button-card-font-weight: var(--tv-font-weight-bold, bold);
 }

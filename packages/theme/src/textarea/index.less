@@ -30,7 +30,7 @@
 
   &:before {
     content: '';
-    width: calc(100% - 16px);
+    width: calc(100% - 20px);
     height: 8px;
     position: absolute;
     left: 2px;
@@ -42,7 +42,7 @@
 
   &:after {
     content: '';
-    width: calc(100% - 19px);
+    width: calc(100% - 20px);
     height: 16px;
     position: absolute;
     left: 2px;
@@ -62,6 +62,14 @@
 
   &.is-disabled {
     background-color: var(--ti-textarea-disabled-bg-color);
+
+    &:before {
+      background-color: var(--ti-textarea-disabled-bg-color);
+    }
+
+    &:after {
+      background-color: var(--ti-textarea-disabled-bg-color);
+    }
 
     &:hover {
       border-color: var(--ti-textarea-border-color);
@@ -175,9 +183,9 @@
 
   &.is-display-only {
     .@{textarea-prefix-cls}-display-only.@{textarea-prefix-cls}__inner-con
-    .@{textarea-prefix-cls}-display-only__content,
+      .@{textarea-prefix-cls}-display-only__content,
     .@{textarea-prefix-cls}-autosize-display-only.@{textarea-prefix-cls}__inner-con
-    .@{textarea-prefix-cls}-display-only__content {
+      .@{textarea-prefix-cls}-display-only__content {
       position: relative;
       left: 0;
       max-width: 100%;

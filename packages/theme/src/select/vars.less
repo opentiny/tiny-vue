@@ -11,69 +11,46 @@
 */
 
 .component-css-vars-select() {
-  // 输入框悬浮时的边框色(hide)
-  --ti-select-inner-border-color-active: var(--ti-common-color-line-active, #5e7ce0);
-  // 可搜索输入框文本色
-  --ti-select-input-text-color: var(--ti-common-color-text-primary, #252b3a);
-  // 选择器输入框字号(hide)
-  --ti-select-input-font-size: var(--ti-common-font-size-base, 12px);
-
-  // 选择器输入框尾部图标的颜色
-  --ti-select-input-caret-icon-color: var(--ti-common-color-icon-normal);
-  // 选择器输入框尾部图标悬浮时的颜色
-  --ti-select-input-caret-hover-icon-color: var(--ti-common-color-icon-graybg-hover);
-  // 选择器输入框尾部图标的尺寸
-  --ti-select-input-caret-font-size: var(--ti-common-font-size-2);
-  // 选择器输入框尾部关闭图标右侧外边距
-  --ti-select-input-icon-close-margin-right: var(--ti-common-space-0, 0px);
-  // 选择器输入框尾部图标禁用时的颜色（hide）
-  --ti-select-input-disabled-caret-text-color: var(--ti-common-color-text-disabled, #adb0b8);
-  // 输入框禁用且悬浮时的边框色
-  --ti-select-input-disabled-hover-border-color: var(--ti-common-color-line-disabled, #dfe1e6);
-  // 选择器输入框高度（hide）
-  --ti-select-input-height: var(--ti-common-size-6x, 24px);
-  // 迷你型选择器输入框高度（hide）
-  --ti-select-input-mini-height: var(--ti-common-size-6x, 24px);
-  // 小型选择器输入框高度（hide）
-  --ti-select-input-small-height: var(--ti-common-size-7x, 28px);
-  // 中型选择器输入框高度（hide）
-  --ti-select-input-medium-height: var(--ti-common-size-42);
-  // 选择器多选标签容器的左侧内边距
-  --ti-select-tags-wrap-padding-left: var(--ti-common-space-2);
-  // 选择器多选标签容器的顶部内边距
-  --ti-select-tags-wrap-padding-top: var(--ti-common-space-2);
-  // 选择器多选标签容器的底部内边距
-  --ti-select-tags-wrap-padding-bottom: var(--ti-common-space-2);
-  // 选择器多选标签容器的右侧内边距
-  --ti-select-tags-wrap-padding-right: var(--ti-common-space-0, 0px);
-  // 选择器多选标签顶部外边距
-  --ti-select-tags-margin-top: var(--ti-common-space-2);
-  // 选择器多选标签右侧外边距
-  --ti-select-tags-margin-right: var(--ti-common-space-2);
-  // 选择器多选标签底部外边距
-  --ti-select-tags-margin-bottom: var(--ti-common-space-2);
-  // 选择器多选标签左侧外边距
-  --ti-select-tags-margin-left: var(--ti-common-space-2);
-  // 选择器多选标签单行的高度
-  --ti-select-tags-height: var(--ti-common-space-8x);
-  // 选择器多选标签最大高度
-  --ti-select-tags-max-height: none;
-  // 多选禁用时右侧内边距
-  --ti-select-tags-padding-right-disabled: var(--ti-common-space-8x);
+  // 文本色
+  --tv-Select-text-color: var(--tv-color-text, #191919);
   // 多选禁用文本色
-  --ti-select-tags-text-color-disabled: var(--ti-common-color-text-disabled, #adb0b8);
-  // 选择器后缀图标显示状态
-  --ti-select-suffix-display: 'inline-block';
-  // 选择器右侧图标间距
-  --ti-select-suffix-icon-margin-right: var(--ti-common-space-base, 4px);
-  // 选择器suffix字号
-  --ti-select-suffix-font-size: var(--ti-common-font-size-base, 12px);
-  // 选择器suffix文本色
-  --ti-select-suffix-text-color: var(--ti-common-color-text-weaken, #8a8e99);
-  // 收起按钮文本与图标色(hide)
-  --ti-select-collapse-button-text-icon-color: var(--ti-common-color-text-link);
-  // 收起按钮图标左边距(hide)
-  --ti-select-collapse-button-icon-margin-left: var(--ti-common-space-2, 2px);
-  // 收起按钮字号(hide)
-  --ti-select-collapse-button-font-size: var(--ti-common-font-size-base, 12px);
+  --tv-Select-text-color-disabled: var(--tv-color-text-disabled, #c2c2c2);
+  // 默认字号
+  --tv-Select-font-size: var(--tv-font-size-md, 14px);
+
+  // 图标色
+  --tv-Select-icon-color: var(--tv-color-icon, #808080);
+  // 图标禁用色
+  --tv-Select-icon-color-disabled: var(--tv-color-icon-disabled, #c2c2c2);
+  // 图标悬浮色
+  --tv-Select-icon-color-hover: var(--tv-color-icon-hover, #191919);
+  // 图标尺寸
+  --tv-Select-icon-size: var(--tv-icon-size, 16px);
+
+  // 选择器高度
+  --tv-Select-height: var(--tv-size-height-md, 32px);
+  // 选择器高度(mini)
+  --tv-Select-height-mini: var(--tv-size-height-xs, 24px);
+  // 选择器高度(small)
+  --tv-Select-height-small: var(--tv-size-height-sm, 28px);
+  // 选择器高度(medium)
+  --tv-Select-height-medium: var(--tv-size-height-lg, 40px);
+
+  // 标签区域高度
+  --tv-Select-tags-height: var(--tv-size-height-md, 32px);
+  // 标签区域内边距
+  --tv-Select-tags-padding: var(--tv-space-xs, 2px) 0px var(--tv-space-xs, 2px) var(--tv-space-xs, 2px);
+  // 标签外边距
+  --tv-Select-tag-margin: var(--tv-space-xs, 2px);
+
+  // suffix 图标右测外间距
+  --tv-Select-suffix-icon-margin-right: var(--tv-space-sm, 4px);
+  // suffix 文本外间距
+  --tv-Select-suffix-text-margin: 0 var(--tv-space-sm, 4px);
+  // suffix 文本色
+  --tv-Select-suffix-text-color: var(--tv-color-text-weaken, #808080);
+  // 收起按钮文本色
+  --tv-Select-collapse-text-color: var(--tv-color-text-active, #1476ff);
+  // 收起按钮外间距
+  --tv-Select-collapse-margin: 0 var(--tv-space-xs, 2px);
 }

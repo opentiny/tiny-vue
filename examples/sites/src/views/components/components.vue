@@ -84,7 +84,11 @@
                         :title="i18nByKey('defValue')"
                         :width="columnWidth[key][2]"
                       ></tiny-grid-column>
-                      <tiny-grid-column field="desc" :title="i18nByKey('desc')"></tiny-grid-column>
+                      <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                        <template #default="data">
+                          <span v-html="data.row.desc"></span>
+                        </template>
+                      </tiny-grid-column>
                     </tiny-grid>
                   </template>
                 </div>
@@ -202,7 +206,11 @@
                             :title="i18nByKey('defValue')"
                             :width="columnWidth[key][2]"
                           ></tiny-grid-column>
-                          <tiny-grid-column field="desc" :title="i18nByKey('desc')"></tiny-grid-column>
+                          <tiny-grid-column field="desc" :title="i18nByKey('desc')">
+                            <template #default="data">
+                              <span v-html="data.row.desc"></span>
+                            </template>
+                          </tiny-grid-column>
                         </tiny-grid>
                       </template>
                     </div>
@@ -764,10 +772,10 @@ export default defineComponent({
   }
 
   .docs-content-tabs {
-    --ti-tabs-heigh: 48px;
-    --ti-tabs-item-font-size: 18px;
-    --ti-tabs-header-font-active-text-color: #2f5bea;
-    --ti-tabs-item-active-border-color: #2f5bea;
+    --tv-Tabs-heigh: 48px;
+    --tv-Tabs-item-font-size: 18px;
+    --tv-Tabs-header-font-active-text-color: #2f5bea;
+    --tv-Tabs-item-active-border-color: #2f5bea;
 
     flex: 1;
     transition: all ease-in-out 0.3s;
@@ -806,9 +814,6 @@ export default defineComponent({
 }
 
 .api-table {
-  --ti-grid-font-size: 14px;
-  --ti-grid-default-header-column-height: 40px;
-
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
@@ -836,6 +841,15 @@ export default defineComponent({
 
   :deep(.tiny-grid-body__expanded-cell) {
     background-color: #fafafa;
+  }
+
+  :deep(code) {
+    color: #476582;
+    padding: 4px 8px;
+    margin: 0 4px;
+    font-size: 0.85em;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
   }
 }
 
@@ -923,7 +937,6 @@ export default defineComponent({
   }
 
   :deep(.tiny-anchor-link) {
-    margin-bottom: 10px;
     font-size: 12px;
 
     a {

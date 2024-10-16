@@ -215,7 +215,7 @@
       .@{tree-node-prefix-cls}__content:hover {
         background-color: var(--ti-tree-menu-node-hover-bg-color);
 
-        .@{tree-node-prefix-cls}__content-box {
+        .@{tree-node-prefix-cls}__label {
           background-color: transparent;
         }
       }
@@ -304,13 +304,6 @@
         min-height: var(--ti-tree-menu-node-height);
         display: flex;
         align-items: center;
-      }
-
-      .@{tree-node-prefix-cls}__label {
-        // 兼容ie10-ie11
-        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-          display: flex;
-        }
       }
 
       .tree-node-name {

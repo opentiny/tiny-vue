@@ -51,7 +51,7 @@
       <div
         ref="popper"
         v-show="hideLoading ? suggestionState.showPopper && !state.loading : suggestionState.showPopper"
-        class="tiny-autocomplete tiny-autocomplete-suggestion tiny-popper"
+        class="tiny-autocomplete-suggestion tiny-popper"
         :class="[popperClass ? popperClass : '', { 'is-loading': !hideLoading && state.loading }]"
         :style="{ width: suggestionState.dropdownWidth }"
         role="region"
@@ -72,15 +72,19 @@
             <li
               v-if="!hideLoading && state.loading"
               class="tiny-autocomplete-suggestion__list-item tiny-autocomplete-suggestion__list-loading"
+              role="loading"
             >
-              <icon-loading-shadow width="1em" height="1em" />
+              <icon-loading-shadow></icon-loading-shadow>
             </li>
             <template v-else>
               <li
                 v-for="(item, index) in state.suggestions"
                 :key="index"
                 class="tiny-autocomplete-suggestion__list-item"
-                :class="{ highlighted: state.highlightedIndex === index }"
+                :class="{
+                  highlighted: state.highlightedIndex === index,
+                  selected: modelValue === item[valueKey]
+                }"
                 @click="select(item)"
                 :id="`${state.id}-item-${index}`"
                 role="option"

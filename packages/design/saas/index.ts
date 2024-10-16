@@ -17,6 +17,7 @@ import Pager from './src/pager'
 import DialogBox from './src/dialog-box'
 import Popeditor from './src/popeditor'
 import { version } from './package.json'
+import DatePanel from './src/date-panel'
 
 export default {
   name: 'saas',
@@ -39,6 +40,7 @@ export default {
     DateRange,
     Pager,
     DialogBox,
-    Popeditor
+    Popeditor,
+    DatePanel
   }
 }

@@ -18,7 +18,7 @@
 @svg-prefix-cls: ~'@{css-prefix}svg';
 
 .@{carousel-prefix-cls} {
-  .component-css-vars-carousel();
+  .inject-Carousel-vars();
 
   overflow: hidden;
   position: relative;
@@ -38,68 +38,74 @@
       outline: 0;
       padding: 0;
       margin: 0;
-      height: var(--ti-carousel-arrow-height);
-      width: var(--ti-carousel-arrow-width);
+      height: var(--tv-Carousel-arrow-height);
+      width: var(--tv-Carousel-arrow-width);
       cursor: pointer;
       transition: 0.3s;
       border-radius: 50%;
-      box-shadow: var(--ti-carousel-arrow-box-shadow);
-      background-color: var(--ti-carousel-arrow-bg-color);
-      color: var(--ti-carousel-indicator-active-text-color);
+      background-color: var(--tv-Carousel-arrow-bg-color);
+      color: var(--tv-Carousel-indicator-active-text-color);
       position: absolute;
       top: 50%;
       z-index: 3;
       transform: translateY(-50%);
       text-align: center;
-      font-size: var(--ti-carousel-arrow-font-size);
+      font-size: var(--tv-Carousel-arrow-font-size);
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: var(--ti-carousel-opacity);
+      opacity: 0.5;
 
       .@{svg-prefix-cls} {
-        fill: var(--ti-carousel-indicator-active-text-color);
+        fill: var(--tv-Carousel-indicator-active-text-color);
+
         &:hover {
-          fill: var(--ti-carousel-indicator-hover-text-color);
+          fill: var(--tv-Carousel-indicator-hover-text-color);
         }
       }
 
       &.@{carousel-prefix-cls}__arrow-left {
         left: 16px;
-        color: var(--ti-carousel-arrow-text-color);
-        background-color: var(--ti-carousel-arrow-left-bg-color);
+        background-color: var(--tv-Carousel-arrow-left-bg-color);
+
+        svg {
+          fill: var(--tv-Carousel-arrow-svg-color);
+        }
       }
 
       &.@{carousel-prefix-cls}__arrow-right {
         right: 16px;
-        color: var(--ti-carousel-arrow-text-color);
-        background-color: var(--ti-carousel-arrow-right-bg-color);
+        background-color: var(--tv-Carousel-arrow-right-bg-color);
+
+        svg {
+          fill: var(--tv-Carousel-arrow-svg-color);
+        }
       }
 
       &.@{carousel-prefix-cls}__arrow-top {
-        @apply top-0;
-        @apply ~'left-1/2';
-        @apply ~'-translate-x-2/4';
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
       }
 
       &.@{carousel-prefix-cls}__arrow-bottom {
-        @apply bottom-0;
-        @apply ~'left-1/2';
+        bottom: 0;
+        left: -50%;
         top: unset;
-        @apply ~'-translate-x-2/4';
+        transform: translateX(-50%);
       }
 
       &.@{carousel-prefix-cls}__arrow-disabled {
-        background-color: var(--ti-carousel-arrow-disabled-bg-color);
+        background-color: var(--tv-Carousel-arrow-disabled-bg-color);
         cursor: not-allowed;
         .@{svg-prefix-cls} {
-          fill: var(--ti-carousel-arrow-disabled-color);
+          fill: var(--tv-Carousel-arrow-disabled-color);
         }
       }
 
       &:not(.@{carousel-prefix-cls}__arrow-disabled):hover {
-        background-color: var(--ti-carousel-arrow-hover-bg-color);
-        color: var(--ti-carousel-arrow-hover-text-color);
+        background-color: var(--tv-Carousel-arrow-hover-bg-color);
+        color: var(--tv-Carousel-arrow-hover-text-color);
       }
 
       i {
@@ -117,41 +123,45 @@
     margin: 0 0 16px;
     padding: 0 4px;
     z-index: 2;
-    background: var(--ti-carousel-indicators-bg-color);
-    border-radius: var(--ti-carousel-indicators-border-radius);
-    height: var(--ti-carousel-indicators-height);
+    background: none;
+    border-radius: var(--tv-Carousel-indicators-border-radius);
+    height: var(--tv-Carousel-indicators-height);
 
     .@{carousel-prefix-cls}__indicator {
       display: inline-block;
       background-color: transparent;
-      padding: var(--ti-carousel-indicator-padding-vertical) var(--ti-carousel-indicator-padding-horizontal);
-      margin-right: var(--ti-carousel-indicator-margin-right);
+      padding: 0;
+      margin-right: 12px;
       cursor: pointer;
 
+      &:last-child {
+        margin-right: 0;
+      }
+
       &:hover button {
-        opacity: var(--ti-carousel-hover-opacity);
+        opacity: 0.8;
       }
 
       &.is-active {
-        width: var(--ti-carousel-indicator-active-width);
-        background-color: var(--ti-carousel-indicator-active-background-color);
-        border-radius: var(--ti-carousel-indicator-active-border-radius);
-        transition: var(--ti-carousel-indicator-active-transition);
+        width: var(--tv-Carousel-indicator-active-width);
+        background-color: var(--tv-Carousel-indicator-active-background-color);
+        border-radius: var(--tv-Carousel-indicator-active-border-radius);
+        transition: none;
       }
 
       &.is-active button {
-        transition-property: var(--ti-carousel-indicator-active-transition-property);
+        transition-property: none;
         transition-timing-function: cubic-bezier(0.16, 0.75, 0.5, 1);
-        border-radius: var(--ti-carousel-indicator-active-border-radius);
-        background-color: var(--ti-carousel-indicator-active-text-color);
-        width: var(--ti-carousel-indicator-active-button-width);
+        border-radius: var(--tv-Carousel-indicator-active-border-radius);
+        background-color: var(--tv-Carousel-indicator-active-text-color);
+        width: var(--tv-Carousel-indicator-active-button-width);
       }
 
       .@{carousel-prefix-cls}__button {
         display: block;
-        width: var(--ti-carousel-indicator-button-width);
-        height: var(--ti-carousel-indicator-button-height);
-        background-color: var(--ti-carousel-indicator-button-bg-color);
+        width: 8px;
+        height: 8px;
+        background-color: var(--tv-Carousel-indicator-button-bg-color);
         border: none;
         outline: 0;
         padding: 0;
@@ -160,13 +170,6 @@
         transition: 0.3s;
         border-radius: 50%;
       }
-    }
-
-    .@{carousel-prefix-cls}__button._radius {
-      height: 8px;
-      width: 8px;
-      border-radius: 50%;
-      background-color: var(--ti-carousel-indicators-radius-bg-color);
     }
 
     &.@{carousel-prefix-cls}__indicators-outside {
@@ -178,7 +181,7 @@
       background: transparent;
 
       button {
-        background-color: var(--ti-carousel-outside-button-bg-color);
+        background-color: var(--tv-Carousel-outside-button-bg-color);
       }
 
       .@{carousel-prefix-cls}__indicator {
@@ -187,7 +190,7 @@
         }
 
         &.is-active button {
-          background-color: var(--ti-carousel-outside-button-active-bg-color);
+          background-color: var(--tv-Carousel-outside-button-active-bg-color);
         }
       }
     }
@@ -200,7 +203,7 @@
 
       .@{carousel-prefix-cls}__button {
         padding: 2px 18px;
-        font-size: var(--ti-carousel-labels-button-font-size);
+        font-size: var(--tv-Carousel-labels-button-font-size);
       }
 
       .@{carousel-prefix-cls}__indicator {
@@ -212,7 +215,7 @@
       left: auto;
       right: 16px;
       bottom: 0;
-      margin: 0 0 8px;
+      margin: 0 0 16px;
       transform: none;
       background: transparent;
     }

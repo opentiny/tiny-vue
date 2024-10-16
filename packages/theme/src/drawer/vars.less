@@ -10,97 +10,33 @@
 *
 */
 
-.component-css-vars-drawer() {
+.inject-Drawer-vars() {
   // 最小宽度
-  --ti-drawer-min-width: calc(var(--ti-common-space-10, 10px) * 50);
+  --tv-Drawer-min-width: 500px;
   // 最大宽度
-  --ti-drawer-max-width: calc(var(--ti-common-space-10, 10px) * 100);
+  --tv-Drawer-max-width: 1000px;
   // 背景色
-  --ti-drawer-bg-color: var(--ti-common-color-bg-white-normal, #fff);
-  // 左内边距
-  --ti-drawer-padding-left: var(--ti-common-space-8x, 32px);
-  // 右内边距
-  --ti-drawer-padding-right: var(--ti-common-space-8x);
+  --tv-Drawer-bg-color: var(--tv-color-bg-secondary);
+  // 内容底部边框色
+  --tv-Drawer-divider-body-border-color: var(--tv-color-border-divider);
+  // 抽屉组件圆角
+  --tv-Drawer-border-radius-size: var(--tv-border-radius-sm);
   // 遮罩层背景色
-  --ti-drawer-mask-bg-color: rgba(0, 0, 0, 16%);
+  --tv-Drawer-mask-bg-color: var(--tv-color-bg-mask);
   // 阴影
-  --ti-drawer-shadow: 0 8px 24px rgba(0, 0, 0, 30%);
-  // 头部与底部边框颜色
-  --ti-drawer-divider-border-color: transparent;
-  // 边框圆角
-  --ti-drawer-radius: var(--ti-common-space-0, 0);
-  // 遮罩层背景色
-  --ti-drawer-mask-bg-color: var(--ti-mobile-color-bg-mask);
-
-  // 头部上内边距
-  --ti-drawer-header-padding-top: var(--ti-common-space-8x, 32px);
-  // 头部下内边距
-  --ti-drawer-header-padding-bottom: var(--ti-common-space-6x);
-  // 头部左内边距
-  --ti-drawer-header-padding-left: var(--ti-common-space-0, 0);
-  // 头部右内边距
-  --ti-drawer-body-padding-right: var(--ti-common-space-0, 0);
+  --tv-Drawer-shadow: var(--tv-shadow-4-left);
   // 头部字号
-  --ti-drawer-head-title-font-size: var(--ti-common-font-size-4);
-  // 头部文本色(hide)
-  --ti-drawer-head-text-color: var(--ti-common-color-text-primary, #252b3a);
+  --tv-Drawer-head-title-font-size: var(--tv-font-size-heading-md);
   // 头部标题字重
-  --ti-drawer-head-title-font-weight: var(--ti-common-font-weight-7, bold);
+  --tv-Drawer-head-title-font-weight: var(--tv-font-weight-bold);
   // 头部标题字体色
-  --ti-drawer-head-title-text-color: var(--ti-common-color-text-gray);
-  // 关闭按钮宽度
-  --ti-drawer-btn-width: var(--ti-common-size-width-mini);
-  // 关闭按钮高度
-  --ti-drawer-btn-height: var(--ti-common-size-width-mini);
-  // 关闭按钮图标尺寸
-  --ti-drawer-close-icon-size: var(--ti-common-font-size-5);
-  // 关闭按钮圆角
-  --ti-drawer-btn-border-radius: var(--ti-common-border-radius-1, 4px);
+  --tv-Drawer-head-title-text-color: var(--tv-color-text);
   // 关闭按钮图标色
-  --ti-drawer-close-icon-color: var(--ti-common-color-icon-normal);
+  --tv-Drawer-close-icon-color: var(--tv-color-icon);
   // 关闭按钮悬浮图标色
-  --ti-drawer-close-icon-color-hover: var(--ti-common-color-icon-hover, #5e7ce0);
-  // 关闭按钮与上边框的距离(hide)
-  --ti-drawer-btn-position-top: var(--ti-common-space-5x);
-  // 关闭按钮与右边框的距离(hide)
-  --ti-drawer-btn-position-right: var(--ti-common-space-5x);
-  // 标题与帮助图标间距
-  --ti-drawer-help-icon-margin-left: var(--ti-common-space-2x, 8px);
+  --tv-Drawer-close-icon-color-hover: var(--tv-color-icon-hover);
   // 帮助图标宽高
-  --ti-drawer-help-icon-width-height: var(--ti-common-space-4x, 16px);
+  --tv-Drawer-help-icon-width-height: var(--tv-icon-size);
   // 帮助图标色
-  --ti-drawer-help-icon-color: var(--ti-common-color-icon);
-
-  // 内容上内边距
-  --ti-drawer-body-padding-top: var(--ti-common-space-0, 0);
-  // 内容下内边距
-  --ti-drawer-body-padding-bottom: var(--ti-common-space-0, 0);
-  // 内容左内边距
-  --ti-drawer-body-padding-left: var(--ti-common-space-0, 0);
-  // 内容右内边距
-  --ti-drawer-header-padding-right: var(--ti-common-space-0, 0);
-  // 内容底部边框色(hide)
-  --ti-drawer-divider-body-border-color: var(--ti-common-color-line-dividing);
-  // 底部按钮对齐方式
-  --ti-drawer-footer-justify-content: flex-end;
-  // 底部上内边距
-  --ti-drawer-footer-padding-top: var(--ti-common-space-6x);
-  // 底部下内边距
-  --ti-drawer-footer-padding-bottom: var(--ti-common-space-8x, 32px);
-  // 底部左内边距
-  --ti-drawer-footer-padding-left: var(--ti-common-space-0, 0);
-  // 底部右内边距
-  --ti-drawer-footer-padding-right: var(--ti-common-space-0, 0);
-  // 底部左外边距
-  --ti-drawer-footer-margin-left: var(--ti-common-space-8x, 32px);
-  // 底部右外边距
-  --ti-drawer-footer-margin-right: var(--ti-common-space-10x, 40px);
-  // 底部按钮间距
-  --ti-drawer-divider-footer-button-margin-left: var(--ti-common-space-2x, 8px);
-  // 底部边框色(hide)
-  --ti-drawer-divider-footer-border-color: var(--ti-common-color-transparent);
-  // 内容区域上边距
-  --ti-drawer-padding-top: 0px;
-  // 内容区域下边距
-  --ti-drawer-padding-bottom: 0px;
+  --tv-Drawer-help-icon-color: var(--tv-color-icon-control);
 }

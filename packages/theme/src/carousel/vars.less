@@ -10,77 +10,51 @@
 *
 */
 
-.component-css-vars-carousel() {
+.inject-Carousel-vars() {
   // 箭头按钮背景高度
-  --ti-carousel-arrow-height: var(--ti-common-size-8x);
+  --tv-Carousel-arrow-height: 32px;
   // 箭头按钮背景宽度
-  --ti-carousel-arrow-width: var(--ti-common-size-8x);
+  --tv-Carousel-arrow-width: 32px;
   // 左右箭头的字号
-  --ti-carousel-arrow-font-size: var(--ti-common-font-size-2);
+  --tv-Carousel-arrow-font-size: var(--tv-font-size-lg);
   // 左右箭头按钮悬浮背景色
-  --ti-carousel-arrow-hover-bg-color: #E6E6E6;
+  --tv-Carousel-arrow-hover-bg-color: var(--tv-color-bg-hover-2);
   // 左右箭头按钮背景色
-  --ti-carousel-arrow-bg-color: #F0F0F0;
-  // 左右箭头阴影(hide)
-  --ti-carousel-arrow-box-shadow: var(--ti-common-shadow-none, none);
+  --tv-Carousel-arrow-bg-color: var(--tv-color-bg-header);
   // 箭头正常颜色
-  --ti-carousel-arrow-text-color: var(--ti-common-color-text-weaken);
-  // 箭头点击瞬间文本色(hide)
-  --ti-carousel-arrow-active-text-color: var(--ti-common-color-light, #fff);
-  // 指示器盒子的背景色
-  --ti-carousel-indicators-bg-color: none;
+  --tv-Carousel-arrow-svg-color: var(--tv-color-icon);
   // 指示器盒子的圆角大小
-  --ti-carousel-indicators-border-radius: 13px;
+  --tv-Carousel-indicators-border-radius: 13px;
   // 指示器盒子的高度
-  --ti-carousel-indicators-height: 8px;
-  // 指示器圆角的背景色(hide)
-  --ti-carousel-indicators-radius-bg-color: rgba(0, 0, 0, 0.3);
+  --tv-Carousel-indicators-height: 8px;
   // 幻灯片内的当前指示器图标色
-  --ti-carousel-indicator-active-text-color: var(--ti-common-color-icon-normal);
+  --tv-Carousel-indicator-active-text-color: var(--tv-color-icon);
   // 幻灯片内的悬浮指示器图标色
-  --ti-carousel-indicator-hover-text-color: var(--ti-common-color-primary-normal);
-  // 指示器按钮宽度
-  --ti-carousel-indicator-button-width: var(--ti-common-size-2x, 8px);
-  // 指示器按钮高度
-  --ti-carousel-indicator-button-height: var(--ti-common-size-2x, 8px);
+  --tv-Carousel-indicator-hover-text-color: var(--tv-color-icon-hover);
   // 非当前指示器背景色
-  --ti-carousel-indicator-button-bg-color: var(--ti-common-color-text-secondary);
-  // 指示器项右外边距
-  --ti-carousel-indicator-margin-right: var(--ti-common-space-3x);
+  --tv-Carousel-indicator-button-bg-color: var(--tv-color-bg-gray-2);
   // 当前指示器右边距
-  --ti-carousel-indicator-active-width: var(--ti-common-size-5x);
-  // 指示器项垂直内边距(hide)
-  --ti-carousel-indicator-padding-vertical: var(--ti-common-space-0, 0px);
-  // 指示器项水平内边距
-  --ti-carousel-indicator-padding-horizontal: var(--ti-common-space-0);
-  // 当前指示器动画属性(hide)
-  --ti-carousel-indicator-active-transition-property: none;
+  --tv-Carousel-indicator-active-width: 12px;
   // 当前指示器背景色
-  --ti-carousel-indicator-active-background-color: var(--ti-common-color-primary-active);
+  --tv-Carousel-indicator-active-background-color: var(--tv-color-bg-hover-primary);
   // 当前指示器的宽度
-  --ti-carousel-indicator-active-button-width: var(--ti-common-size-5x);
+  --tv-Carousel-indicator-active-button-width: 12px;
   // 当前指示器圆角
-  --ti-carousel-indicator-active-border-radius: var(--ti-common-space-base);
-  //  幻灯片外的指示器动画(hide)
-  --ti-carousel-indicator-active-transition: none;
+  --tv-Carousel-indicator-active-border-radius: var(--tv-border-radius-sm);
   // 幻灯片外的指示器默认背景色
-  --ti-carousel-outside-button-bg-color: var(--ti-common-color-dark, #000);
+  --tv-Carousel-outside-button-bg-color: #000;
   // 幻灯片外的当前指示器背景色
-  --ti-carousel-outside-button-active-bg-color: var(--ti-common-color-primary-active);
-  // 标签按钮的字号(hide)
-  --ti-carousel-labels-button-font-size: var(--ti-common-font-size-base, 12px);
-  // 正常透明度颜色
-  --ti-carousel-opacity: 0.5;
-  // 幻灯片悬浮时的透明度(hide)
-  --ti-carousel-hover-opacity: 0.8;
-  // 箭头悬浮文本颜色(hide)
-  --ti-carousel-arrow-hover-text-color: var(--ti-common-color-text-primary);
+  --tv-Carousel-outside-button-active-bg-color: var(--tv-color-bg-hover-primary);
+  // 标签按钮的字号
+  --tv-Carousel-labels-button-font-size: var(--tv-font-size-md);
+  // 箭头悬浮文本颜色
+  --tv-Carousel-arrow-hover-text-color: var(--tv-color-icon-hover);
   // 左侧箭头背景色
-  --ti-carousel-arrow-left-bg-color: var(--ti-common-color-bg-normal);
+  --tv-Carousel-arrow-left-bg-color: var(--tv-color-bg);
   // 右侧箭头背景色
-  --ti-carousel-arrow-right-bg-color: var(--ti-common-color-bg-normal);
+  --tv-Carousel-arrow-right-bg-color: var(--tv-color-bg);
   // 按钮禁用色
-  --ti-carousel-arrow-disabled-bg-color: var(--ti-common-color-bg-disabled);
+  --tv-Carousel-arrow-disabled-bg-color: var(--tv-color-bg-disabled);
   // 按钮禁用色
-  --ti-carousel-arrow-disabled-color: var(--ti-common-color-primary-disabled-text);
+  --tv-Carousel-arrow-disabled-color: var(--tv-color-icon-disabled);
 }

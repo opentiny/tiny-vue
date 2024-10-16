@@ -24,14 +24,13 @@
 .@{grid-prefix-cls} {
   position: relative;
   overflow: hidden;
-  font-size: var(--ti-grid-font-size);
-  color: var(--ti-grid-text-color);
-  font-family: var(--ti-grid-font-family);
-  background-color: var(--ti-grid-light-color);
+  font-size: var(--tv-Grid-font-size);
+  color: var(--tv-Grid-text-color);
+  background-color: #fff;
 
   // 展开行背景颜色
   .@{grid-prefix-cls}-body__expanded-row {
-    background-color: var(--ti-grid-expand-background-color);
+    background-color: var(--tv-Grid-gray-bg-color);
   }
 
   // 显示表尾
@@ -48,7 +47,7 @@
     .@{grid-prefix-cls}-header__column {
       &:not(.col__index) {
         &:hover {
-          background-color: var(--ti-grid-column-hover-background-color);
+          background-color: var(--tv-Grid-header-bg-color-hover);
         }
       }
     }
@@ -149,7 +148,7 @@
     // Mini尺寸表头单元格高度
     .@{grid-prefix-cls}-header__column {
       .MiniHeaderColumnHeight();
-      padding: var(--ti-grid-mini-th-padding-vertical) var(--ti-grid-td-padding-horizontal);
+      padding: 4px var(--tv-Grid-cell-padding-x);
     }
 
     .@{grid-prefix-cls}-loading {
@@ -206,12 +205,13 @@
     &.fixed-right-first__column + .col__gutter {
       position: sticky;
       right: 0;
-      background-color: var(--ti-grid-header-background-color);
+      background-color: var(--tv-Grid-header-bg-color);
     }
   }
 
   th.fixed__column {
-    background-color: var(--ti-grid-header-background-color);
+    background-color: var(--tv-Grid-header-bg-color);
+
     &.tiny-grid-header__column .tiny-grid-resizable.is__line::before {
       transform: translateX(-1px);
     }
@@ -241,11 +241,11 @@
       // 支持所有行 hover 背景颜色
       &:not(.row__hover) {
         &:nth-child(2n) {
-          background-color: var(--ti-grid-row-striped-background-color);
+          background-color: var(--tv-Grid-gray-bg-color);
         }
 
         &.row__current {
-          background-color: var(--ti-grid-row-hover-background-color);
+          background-color: var(--tv-Grid-bg-color-hover);
         }
       }
 
@@ -263,16 +263,16 @@
     }
 
     &.row__highlight .@{grid-prefix-cls}-body__row:hover {
-      background-color: var(--ti-grid-row-hover-background-color);
+      background-color: var(--tv-Grid-bg-color-hover);
 
       .fixed__column {
-        background-color: var(--ti-grid-row-hover-background-color);
+        background-color: var(--tv-Grid-bg-color-hover);
       }
     }
 
     &.mark-insert {
       .@{grid-prefix-cls}-body__row.row__new {
-        background-color: var(--ti-grid-new-row-background-color);
+        background-color: var(--tv-Grid-gray-bg-color);
       }
     }
   }
@@ -293,12 +293,12 @@
     &:before {
       top: 0;
       z-index: 2;
-      border-top: 1px solid var(--ti-grid-border-color);
+      border-top: 1px solid var(--tv-Grid-divider-color);
     }
 
     &:after {
       bottom: 0;
-      border-bottom: 1px solid var(--ti-grid-border-color);
+      border-bottom: 1px solid var(--tv-Grid-divider-color);
     }
 
     .@{grid-prefix-cls}__header {
@@ -310,8 +310,8 @@
     .@{grid-prefix-cls}-header__column,
     .@{grid-prefix-cls}-body__column,
     .@{grid-prefix-cls}-footer__column {
-      background-image: linear-gradient(-90deg, var(--ti-grid-border-color), var(--ti-grid-border-color)),
-        linear-gradient(-180deg, var(--ti-grid-border-color), var(--ti-grid-border-color));
+      background-image: linear-gradient(-90deg, var(--tv-Grid-divider-color), var(--tv-Grid-divider-color)),
+        linear-gradient(-180deg, var(--tv-Grid-divider-color), var(--tv-Grid-divider-color));
       background-repeat: no-repeat;
       background-size:
         1px 100%,
@@ -339,12 +339,12 @@
 
       &:before {
         left: 0;
-        border-left: 1px solid var(--ti-grid-border-color);
+        border-left: 1px solid var(--tv-Grid-divider-color);
       }
 
       &:after {
         right: 0;
-        border-right: 1px solid var(--ti-grid-border-color);
+        border-right: 1px solid var(--tv-Grid-divider-color);
       }
     }
   }
@@ -371,7 +371,7 @@
 
     .@{grid-prefix-cls}-body__column {
       &.col__index {
-        background-color: var(--ti-grid-header-background-color);
+        background-color: var(--tv-Grid-header-bg-color);
 
         &.col__index-checked {
           background-color: #dcdcdc;
@@ -388,7 +388,7 @@
   }
 
   & &__footer-wrapper {
-    border-top: 1px solid var(--ti-grid-border-color);
+    border-top: 1px solid var(--tv-Grid-divider-color);
     border-bottom: none;
     overflow: hidden !important;
 
@@ -415,23 +415,23 @@
 
   // 设置每行样式
   & &-body__row {
-    background-color: var(--ti-grid-row-background-color);
+    background-color: var(--tv-Grid-bg-color);
 
     // 勾选某一行时的背景颜色
     &.row__selected {
-      background-color: var(--ti-grid-row-selected-background-color);
+      background-color: var(--tv-Grid-bg-color-selected);
     }
     // 选中某一行时的背景颜色
     &.row__current {
-      background-color: var(--ti-grid-row-hover-background-color);
+      background-color: var(--tv-Grid-bg-color-hover);
     }
   }
 
   &.row__highlight &-body__row:hover {
-    background-color: var(--ti-grid-row-hover-background-color);
+    background-color: var(--tv-Grid-bg-color-hover);
 
     .fixed__column {
-      background-color: var(--ti-grid-row-hover-background-color);
+      background-color: var(--tv-Grid-bg-color-hover);
     }
   }
 
@@ -441,12 +441,13 @@
   & &-footer__column {
     // 默认文字居左对齐
     text-align: left;
+    border-bottom: 1px solid var(--tv-Grid-divider-color);
 
     .DefaultTdPadding();
 
     // 当前选中列
     &.col__current {
-      background-color: var(--ti-grid-column-current-background-color);
+      background-color: var(--tv-Grid-bg-color-active);
     }
 
     // 文字居中
@@ -464,13 +465,19 @@
       .CellEllipsis();
     }
 
-    border-bottom: 1px solid var(--ti-grid-body-td-border-color);
+    &.col__selection {
+      .tiny-grid-cell {
+        &:has(> .@{grid-prefix-cls}-checkbox) {
+          line-height: 1;
+        }
+      }
+    }
   }
 
   // 表头高度
   & &-header__column {
-    padding: var(--ti-grid-th-padding-vertical) var(--ti-grid-td-padding-horizontal);
-    height: var(--ti-grid-default-header-column-height);
+    padding: 8px var(--tv-Grid-cell-padding-x);
+    height: var(--tv-Grid-header-height);
     // 文字居中
     &.col__center {
       .@{grid-prefix-cls}-cell {
@@ -493,7 +500,7 @@
 
   // 单元格内部div
   & &-cell {
-    line-height: var(--ti-grid-line-height-number);
+    line-height: var(--tv-Grid-line-height);
     white-space: normal;
     word-break: break-word;
 
@@ -510,11 +517,11 @@
     // 内置渲染器boole
     .@{grid-prefix-cls}__data-boole {
       .icon-yes {
-        fill: var(--ti-grid-success-color);
+        fill: var(--tv-Grid-success-icon-color);
       }
 
       .icon-close {
-        fill: var(--ti-grid-error-color);
+        fill: var(--tv-Grid-error-icon-color);
       }
     }
 
@@ -522,24 +529,24 @@
     .@{grid-prefix-cls}__data-rate {
       .@{grid-prefix-cls}__rate-chart {
         opacity: 0.6;
-        background-color: var(--ti-grid-success-color);
+        background-color: var(--tv-Grid-success-bg-color);
         height: 30px;
         line-height: 30px;
 
         &.@{grid-prefix-cls}__chart-completed {
-          background-color: var(--ti-grid-success-color);
+          background-color: var(--tv-Grid-success-bg-color);
         }
 
         &.@{grid-prefix-cls}__chart-danger {
-          background-color: var(--ti-grid-error-color);
+          background-color: var(--tv-Grid-error-bg-color);
         }
 
         &.@{grid-prefix-cls}__chart-warning {
-          background-color: var(--ti-grid-warning-color);
+          background-color: var(--tv-Grid-warn-bg-color);
         }
 
         &.@{grid-prefix-cls}__chart-normal {
-          background-color: var(--ti-grid-primary-color);
+          background-color: var(--tv-Grid-primary-bg-color);
         }
       }
 
@@ -567,7 +574,7 @@
 
     &.col__right {
       .@{grid-cell-prefix-cls} {
-        justify-content: end;
+        justify-content: flex-end;
       }
     }
 
@@ -592,22 +599,19 @@
   // 排序
   & &-sort-wrapper {
     margin-left: 4px;
-    position: var(--ti-grid-sort-icon-position);
-    right: var(--ti-grid-sort-icon-right);
 
     .@{grid-prefix-cls}-sort__btn {
       display: block;
-      font-size: var(--ti-grid-header-icon-font-size);
-      fill: var(--ti-grid-column-icon-text-color);
-      transform: scale(var(--ti-grid-column-icon-scale-size));
+      font-size: var(--tv-Grid-icon-size);
+      fill: var(--tv-Grid-icon-color);
       cursor: pointer;
 
       &:hover {
-        fill: var(--ti-grid-icon-color);
+        fill: var(--tv-Grid-icon-color-hover);
       }
 
       &.sort__active {
-        fill: var(--ti-grid-primary-color);
+        fill: var(--tv-Grid-icon-color-active);
       }
     }
   }
@@ -649,12 +653,12 @@
     }
 
     .@{grid-prefix-cls}-tree__node-btn {
-      font-size: var(--ti-grid-font-size);
-      border-color: var(--ti-grid-tree-icon-color);
+      font-size: var(--tv-Grid-font-size);
+      border-color: var(--tv-Grid-icon-color);
       transform: rotate(-90deg);
 
       &:hover {
-        border-color: var(--ti-grid-tree-icon-hover-color);
+        border-color: var(--tv-Grid-icon-color-hover);
       }
     }
   }
@@ -685,7 +689,7 @@
 
   // 展开行td
   & &-body__expanded-column {
-    border-bottom: 1px solid var(--ti-grid-border-color);
+    border-bottom: 1px solid var(--tv-Grid-divider-color);
   }
 
   & &-body__expanded-cell {
@@ -740,7 +744,7 @@
     width: 100%;
     height: 100px;
     margin: 0;
-    background: var(--ti-grid-nodata-td-bg-img-url) 50% no-repeat;
+    background: var(--tv-Grid-empty-img) 50% no-repeat;
   }
 
   & &__empty-text {
@@ -753,7 +757,7 @@
   & &-body__column {
     &.col__selected {
       &:not(.col__checked) {
-        box-shadow: inset 0 0 0 2px var(--ti-grid-primary-color);
+        box-shadow: inset 0 0 0 2px var(--tv-Grid-cell-border-color-selected);
       }
     }
 
@@ -778,8 +782,8 @@
           display: inline-block;
           border-radius: 4px;
           padding: 8px 12px;
-          color: var(--ti-grid-light-color);
-          background-color: var(--ti-grid-error-color);
+          color: #fff;
+          background-color: var(--tv-Grid-error-bg-color-light);
           pointer-events: auto;
         }
       }
@@ -787,20 +791,20 @@
       .@{grid-prefix-cls}-default-input,
       .@{grid-prefix-cls}-default-textarea,
       .@{grid-prefix-cls}-default-select {
-        border-color: var(--ti-grid-error-color);
-        background-color: var(--ti-grid-error-bg-color);
+        border-color: var(--tv-Grid-error-border-color);
+        background-color: var(--tv-Grid-error-bg-color-light);
       }
 
       .@{grid-prefix-cls}-input__wrapper {
         > .@{grid-prefix-cls}-input {
-          border-color: var(--ti-grid-error-color);
-          background-color: var(--ti-grid-error-bg-color);
+          border-color: var(--tv-Grid-error-border-color);
+          background-color: var(--tv-Grid-error-bg-color-light);
         }
       }
 
       .@{input-prefix-cls}__inner {
-        border-color: var(--ti-grid-error-color);
-        background-color: var(--ti-grid-error-bg-color);
+        border-color: var(--tv-Grid-error-border-color);
+        background-color: var(--tv-Grid-error-bg-color-light);
       }
     }
 
@@ -814,17 +818,16 @@
         }
 
         .@{grid-prefix-cls}-tree-wrapper {
-          width: calc(20px + var(--ti-grid-tree-expand-icon-padding-right));
+          width: calc(20px + var(--tv-Grid-tree-expand-icon-padding-right));
           height: 20px;
           display: inline-flex;
           justify-content: center;
           align-items: center;
-          transform: translateX(var(--ti-grid-tree-expand-icon-translate-x));
           flex-shrink: 0;
-          padding-right: var(--ti-grid-tree-expand-icon-padding-right);
+          padding-right: var(--tv-Grid-tree-expand-icon-padding-right);
 
           svg {
-            font-size: var(--ti-grid-tree-expand-icon-font-size);
+            font-size: var(--tv-Grid-icon-size);
           }
         }
       }
@@ -875,10 +878,10 @@
     &.@{grid-prefix-cls}-cell__highlight {
       .@{grid-prefix-cls}-body__column {
         &.col__actived {
-          box-shadow: inset 0px 0px 0px 2px var(--ti-grid-primary-color);
+          box-shadow: inset 0 0 0 2px var(--tv-Grid-cell-border-color-selected);
 
           &.col__valid-error {
-            box-shadow: inset 0px 0px 0px 2px var(--ti-grid-error-color);
+            box-shadow: inset 0 0 0 2px var(--tv-Grid-error-border-color);
           }
 
           .@{grid-prefix-cls}-cell {
@@ -916,12 +919,12 @@
           position: absolute;
           border-width: 5px;
           border-style: solid;
-          border-color: transparent var(--ti-grid-error-color) transparent transparent;
+          border-color: transparent var(--tv-Grid-error-border-color) transparent transparent;
           transform: rotate(45deg);
         }
 
         &.col__valid-success:before {
-          border-color: transparent var(--ti-grid-success-color) transparent transparent;
+          border-color: transparent var(---tv-Grid-success-border-color) transparent transparent;
         }
       }
     }
@@ -942,23 +945,23 @@
     .@{grid-prefix-cls}-default-textarea,
     .@{grid-prefix-cls}-default-select {
       outline: 0;
-      height: var(--ti-grid-input-height);
-      padding: 0 var(--ti-grid-td-padding-horizontal);
+      height: var(--tv-Grid-input-height);
+      padding: 0 16px;
       width: 100%;
-      color: var(--ti-grid-text-color);
-      border-radius: var(--ti-grid-border-radius);
-      border: 1px solid var(--ti-grid-border-color);
+      color: var(--tv-Grid-text-color);
+      border-radius: var(--tv-Grid-input-border-radius);
+      border: 1px solid var(--tv-Grid-divider-color);
 
       &:focus {
-        border: 1px solid var(--ti-grid-primary-color);
+        border: 1px solid var(--tv-Grid-input-border-color-hover);
       }
     }
 
     .@{grid-prefix-cls}-editor {
       width: 100%;
-      height: var(--ti-grid-input-height);
+      height: var(--tv-Grid-input-height);
       line-height: normal;
-      color: var(--ti-grid-text-color);
+      color: var(--tv-Grid-text-color);
 
       .@{input-prefix-cls} {
         width: 100%;
@@ -1013,7 +1016,7 @@
       width: 0;
       position: sticky;
       right: 0;
-      background-color: var(--ti-grid-header-background-color);
+      background-color: var(--tv-Grid-header-bg-color);
     }
   }
 
@@ -1113,13 +1116,12 @@
       height: 72px;
 
       .@{grid-prefix-cls}-cell__valid {
-        --td-padding-x: 8px;
         position: absolute;
         top: auto;
         right: auto;
         bottom: 1px;
-        left: var(--td-padding-x);
-        width: calc(100% - 2 * var(--td-padding-x));
+        left: var(--tv-Grid-cell-padding-x);
+        width: calc(100% - 2 * var(--tv-Grid-cell-padding-x));
         height: 16px;
         line-height: 1;
         transform: translate(0, 0);
@@ -1128,10 +1130,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: #f5222d;
+        color: var(--tv-Grid-error-text-color);
 
         .@{grid-prefix-cls}-cell__valid-icon {
           margin-right: 8px;
+          fill: var(--tv-Grid-error-icon-color);
+          font-size: 16px;
         }
 
         .@{grid-prefix-cls}-cell__valid-msg {
@@ -1204,7 +1208,7 @@
   z-index: 1000;
   position: fixed;
   overflow: auto;
-  background: var(--ti-grid-light-color);
+  background: #fff;
   width: 100%;
   height: 100%;
   top: 0;

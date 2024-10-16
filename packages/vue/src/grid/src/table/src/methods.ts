@@ -1002,8 +1002,8 @@ const Methods = {
   },
   // 列宽计算
   autoCellWidth(headerEl, bodyEl, footerEl) {
-    // 列宽最少限制 40px, x-design为72px
-    let minCellWidth = this.$grid?.designConfig?.minWidth || 40
+    // 列宽最少限制 72px, saas为40px
+    let minCellWidth = this.$grid?.designConfig?.minWidth || 72
     let { fit, columnStore, columnChart, isGroup } = this
     let tableHeight = bodyEl.offsetHeight
     let overflowY = bodyEl.scrollHeight > bodyEl.clientHeight
