@@ -84,6 +84,10 @@ export const dropdownItemProps = {
   tipPosition: {
     type: String,
     default: 'right'
+  },
+  effect: {
+    type: String,
+    default: 'light'
   }
 }
 
