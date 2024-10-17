@@ -13,7 +13,7 @@ test('事件', async ({ page }) => {
   // handle-clear事件
   await button.click()
   await popPanel.isVisible()
-  await page.getByRole('radio', { name: '等于' }).click()
+  await page.locator('label').filter({ hasText: '等于' }).click()
   await expect(button).toHaveText('物品数量等于')
   await clear.click()
   await expect(button).toHaveText('物品数量')
