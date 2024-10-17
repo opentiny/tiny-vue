@@ -17,7 +17,7 @@ test('拖动菜单', async ({ page }) => {
 
   await page.mouse.move(x0, y0)
   await page.mouse.down()
-  await page.mouse.move(x0, y0 + 80)
+  await page.mouse.move(x0, y0 + 64)
   await page.mouse.up()
 
   await node.hover()
@@ -41,7 +41,7 @@ test('拖动菜单', async ({ page }) => {
 
   await page.mouse.move(x2, y2)
   await page.mouse.down()
-  await page.mouse.move(x2, y2 + 80)
+  await page.mouse.move(x2, y2 + 64)
   await page.mouse.up()
   await expect(treeMenu.getByRole('treeitem', { name: '指南' }).getByRole('treeitem', { name: '首页' })).toBeVisible()
 })
