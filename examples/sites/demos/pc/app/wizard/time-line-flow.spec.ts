@@ -33,18 +33,18 @@ test('时间线流程图', async ({ page }) => {
   await expect(details).toHaveCount(3)
   await expect(userNames).toHaveCount(3)
   for (let i = 0; i < 3; i++) {
-    await expect(childNodeLines.nth(i)).toHaveCSS('width', '4px')
+    await expect(childNodeLines.nth(i)).toHaveCSS('width', '1px')
     await expect(childNodeLines.nth(i)).toHaveCSS('height', '88px')
     await expect(details.nth(i)).toHaveText(texts[i])
     await expect(childNodeDates.nth(i)).toHaveText(/20*1*:50/)
 
     if (i === 2) {
-      await expect(childNodeLines.nth(i)).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')
+      await expect(childNodeLines.nth(i)).toHaveCSS('background-color', 'rgb(25, 25, 25)')
     }
     if (i < 2) {
-      await expect(nodeIcons.nth(i)).toHaveCSS('width', '16px')
-      await expect(nodeIcons.nth(i)).toHaveCSS('height', '20px')
-      await expect(nodeLines.nth(i)).toHaveCSS('width', '4px')
+      await expect(nodeIcons.nth(i)).toHaveCSS('width', '32px')
+      await expect(nodeIcons.nth(i)).toHaveCSS('height', '32px')
+      await expect(nodeLines.nth(i)).toHaveCSS('width', '1px')
       await expect(nodeLines.nth(i)).toHaveCSS('height', '88px')
     }
   }
