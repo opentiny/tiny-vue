@@ -36,12 +36,12 @@ export default {
     {
       demoId: 'status',
       name: {
-        'zh-CN': '消息和弹窗的状态',
+        'zh-CN': '状态和图标',
         'en-US': 'Position From The Top'
       },
       desc: {
         'zh-CN':
-          '可通过<code>status</code>属性设置组件状态，可选值有<code>info</code>、<code>success</code>、<code>warning</code>、<code>error</code>、<code>loading</code>。',
+          '可通过<code>status</code>属性设置组件状态，可选值有<code>info</code>、<code>success</code>、<code>warning</code>、<code>error</code>、<code>loading</code>，每种状态有相应的状态图标。',
         'en-US':
           'Set the message status through<code>status</code>, with optional values including<code>info</code><code>success</code><code>warning</code><code>error</code><code>loading</code>.'
       },

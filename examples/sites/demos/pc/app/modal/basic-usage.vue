@@ -2,7 +2,7 @@
   <div>
     <h2>函数式调用</h2>
     <div class="content">
-      <span>模态窗模式：</span>
+      <span>弹窗模式：</span>
       <tiny-button @click="baseClick"> 基本提示框 </tiny-button>
       <tiny-button @click="successClick"> 成功提示框 </tiny-button>
       <tiny-button @click="confirmClick"> 确认提示框 </tiny-button>
