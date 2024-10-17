@@ -23,25 +23,25 @@
   line-height: var(--tv-FilterBox-btn-height);
   border-radius: 4px;
   background: var(--tv-FilterBox-btn-bg-color);
-  color: #161e26;
+  color: var(--tv-FilterBox-btn-text-color);
   padding: 4px var(--tv-FilterBox-btn-padding-x);
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: var(--tv-FilterBox-btn-font-size);
 
   &.disabled {
     cursor: not-allowed;
 
     .title label {
-      color: #b5bbc1;
+      color: var(--tv-FilterBox-btn-disabled-text-color);
     }
 
     .value {
-      color: #5c6976;
+      color: var(--tv-FilterBox-btn-disabled-text-color);
     }
 
     svg.filter-box-icon {
-      fill: #b5bbce;
+      fill: var(--tv-FilterBox-icon-color-disabled);
       cursor: not-allowed;
     }
   }
@@ -50,7 +50,6 @@
     height: inherit;
     line-height: var(--tv-FilterBox-btn-title-line-height);
     font-size: var(--tv-FilterBox-btn-font-size);
-    /* TODO: title 这个类名不符合组件类名规范，被公共样式污染，故在此处重置间距为 0.计划优化这个类名 */
     margin-right: 0;
 
     label {
@@ -68,17 +67,18 @@
       color: var(--tv-FilterBox-btn-active-text-color);
     }
 
+    // 问号图标
     svg {
-      width: 16px;
-      height: 16px;
+      width: var(--tv-FilterBox-icon-size);
+      height: var(--tv-FilterBox-icon-size);
       margin-right: var(--tv-FilterBox-help-btn-margin-right);
-      fill: var(--tv-FilterBox-help-btn-icon-color);
+      fill: var(--tv-FilterBox-icon-color);
       position: relative;
       top: var(--tv-FilterBox-help-btn-position-top);
       vertical-align: super;
 
       &:hover {
-        fill: var(--tv-FilterBox-btn-hover-icon-color);
+        fill: var(--tv-FilterBox-icon-color-hover);
       }
     }
   }
@@ -91,19 +91,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 12px;
-    color: #161e26;
+    font-size: var(--tv-FilterBox-btn-font-size);
+    color: var(--tv-color-text);
 
     &.placeholder {
-      color: #aeaeae;
+      color: var(--tv-FilterBox-btn-text-color-placeholder);
     }
   }
 
   .filter-box-icon {
-    width: var(--tv-FilterBox-expand-btn-icon-size);
-    height: var(--tv-FilterBox-expand-btn-icon-size);
+    width: var(--tv-FilterBox-icon-size);
+    height: var(--tv-FilterBox-icon-size);
     cursor: pointer;
-    fill: var(--tv-FilterBox-expand-btn-icon-color);
+    fill: var(--tv-FilterBox-icon-color);
     transition: transform 0.3s;
 
     &.is-reverse {
@@ -111,22 +111,22 @@
     }
   }
 
+  .filter-icon-close {
+    width: var(--tv-FilterBox-icon-size);
+    height: var(--tv-FilterBox-icon-size);
+    cursor: pointer;
+    fill: var(--tv-FilterBox-icon-color);
+
+    &:hover {
+      fill: var(--tv-FilterBox-icon-color-hover);
+    }
+  }
+
   &:not(.disabled):hover {
     background: var(--tv-FilterBox-btn-hover-bg-color);
 
     .filter-box-icon {
-      fill: var(--tv-FilterBox-expand-btn-icon-color-hover);
-    }
-  }
-
-  .filter-icon-close {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    fill: #b5bbc1;
-
-    &:hover {
-      fill: #78828d;
+      fill: var(--tv-FilterBox-icon-color-hover);
     }
   }
 
