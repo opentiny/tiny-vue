@@ -16,22 +16,18 @@
 @filter-box-prefix-cls: ~'@{css-prefix}filter-box';
 
 .@{filter-box-prefix-cls} {
-  .component-css-vars-filter-box();
+  .inject-FilterBox-vars();
 
   width: fit-content;
-  height: var(--ti-filter-box-btn-height);
-  line-height: var(--ti-filter-box-btn-height);
+  height: var(--tv-FilterBox-btn-height);
+  line-height: var(--tv-FilterBox-btn-height);
   border-radius: 4px;
-  background: var(--ti-filter-box-btn-bg-color);
+  background: var(--tv-FilterBox-btn-bg-color);
   color: #161e26;
-  padding: 4px var(--ti-filter-box-btn-padding-horizontal);
+  padding: 4px var(--tv-FilterBox-btn-padding-x);
   display: flex;
   align-items: center;
   font-size: 12px;
-
-  &:hover {
-    background: var(--ti-filter-box-btn-hover-bg-color);
-  }
 
   &.disabled {
     cursor: not-allowed;
@@ -52,10 +48,10 @@
 
   .title {
     height: inherit;
-    line-height: var(--ti-filter-box-btn-title-line-height);
-    font-size: var(--ti-filter-box-btn-font-size);
+    line-height: var(--tv-FilterBox-btn-title-line-height);
+    font-size: var(--tv-FilterBox-btn-font-size);
     /* TODO: title 这个类名不符合组件类名规范，被公共样式污染，故在此处重置间距为 0.计划优化这个类名 */
-    margin-right: 0px;
+    margin-right: 0;
 
     label {
       display: inline-block;
@@ -63,26 +59,26 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      color: var(--ti-filter-box-btn-text-color);
+      color: var(--tv-FilterBox-btn-text-color);
       margin-right: 8px;
       margin-top: 3px;
     }
 
     &.active label {
-      color: var(--ti-filter-box-btn-hover-text-color);
+      color: var(--tv-FilterBox-btn-active-text-color);
     }
 
     svg {
       width: 16px;
       height: 16px;
-      margin-right: var(--ti-filter-box-help-btn-margin-right);
-      fill: var(--ti-filter-box-help-btn-icon-color);
+      margin-right: var(--tv-FilterBox-help-btn-margin-right);
+      fill: var(--tv-FilterBox-help-btn-icon-color);
       position: relative;
-      top: var(--ti-filter-box-help-btn-position-top);
+      top: var(--tv-FilterBox-help-btn-position-top);
       vertical-align: super;
 
       &:hover {
-        fill: var(--ti-filter-box-btn-hover-text-color);
+        fill: var(--tv-FilterBox-btn-hover-icon-color);
       }
     }
   }
@@ -90,8 +86,8 @@
   .value {
     max-width: 100px;
     height: inherit;
-    line-height: 1.5;
     margin-right: 4px;
+    vertical-align: middle;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -104,10 +100,10 @@
   }
 
   .filter-box-icon {
-    width: var(--ti-filter-box-expand-btn-icon-size);
-    height: var(--ti-filter-box-expand-btn-icon-size);
+    width: var(--tv-FilterBox-expand-btn-icon-size);
+    height: var(--tv-FilterBox-expand-btn-icon-size);
     cursor: pointer;
-    fill: var(--ti-filter-box-expand-btn-icon-color);
+    fill: var(--tv-FilterBox-expand-btn-icon-color);
     transition: transform 0.3s;
 
     &.is-reverse {
@@ -115,9 +111,11 @@
     }
   }
 
-  &:hover {
+  &:not(.disabled):hover {
+    background: var(--tv-FilterBox-btn-hover-bg-color);
+
     .filter-box-icon {
-      fill: var(--ti-filter-box-expand-btn-icon-color-hover);
+      fill: var(--tv-FilterBox-expand-btn-icon-color-hover);
     }
   }
 
