@@ -772,6 +772,12 @@ const Methods = {
       })
       this.collectColumn = collectColumn
     }
+
+    const toolbarVm = this.getVm('toolbar')
+    // 合并更新toolbar的Column配置
+    if (toolbarVm) {
+      toolbarVm.updateColumn(fullColumn)
+    }
     this.$emit('update:customs', fullColumn)
   },
   resetAll() {
