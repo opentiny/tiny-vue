@@ -48,6 +48,7 @@
   }
 
   &.is-center {
+
     .@{dialog-box-prefix-cls}__header,
     .@{dialog-box-prefix-cls}__footer {
       text-align: center;
@@ -73,10 +74,12 @@
     .@{dialog-box-prefix-cls}__title {
       flex: 1;
     }
+
     .@{dialog-box-prefix-cls}__btn-tools {
       display: flex;
       justify-content: space-between;
     }
+
     .@{dialog-box-prefix-cls}__headerbtn {
       position: relative;
       border: none;
@@ -86,7 +89,6 @@
       top: -12px;
       right: -12px;
       cursor: pointer;
-
       & + .@{dialog-box-prefix-cls}__headerbtn {
         margin-left: 8px;
       }
@@ -125,7 +127,7 @@
       overflow: hidden;
     }
 
-    > span {
+    >span {
       max-height: 120px;
       overflow-y: auto;
     }
@@ -273,6 +275,10 @@
 
 .dialog-fade-leave-active {
   animation: dialog-fade-out 0.3s;
+
+  .tiny-dialog-box {
+    animation: dialog-fade-out 0.3s;
+  }
 }
 
 @keyframes dialog-fade-in {
