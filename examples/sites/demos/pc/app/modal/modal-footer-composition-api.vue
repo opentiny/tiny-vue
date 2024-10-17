@@ -42,7 +42,8 @@ const options = ref({
   confirmContent: 'Okk~~',
   cancelContent: 'No thanks!',
   confirmBtnProps: { type: 'info' },
-  cancelBtnProps: { type: 'success' }
+  cancelBtnProps: { type: 'success' },
+  footerDragable: true
 })
 
 function btnClick() {

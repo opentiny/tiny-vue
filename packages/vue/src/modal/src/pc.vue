@@ -61,7 +61,6 @@ export default defineComponent({
     'vSize',
     'width',
     'zIndex',
-    'showClose',
     'messageClosable',
     'confirmContent',
     'cancelContent',
