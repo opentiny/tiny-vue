@@ -10,65 +10,47 @@
 *
 */
 
-.component-css-vars-upload-list() {
+.inject-UploadList-vars() {
   // 上传文件列表字号
-  --ti-upload-list-item-font-size: var(--ti-common-font-size-1, 14px);
+  --tv-UploadList-item-font-size: var(--tv-font-size-md);
   // 上传文件列表文本色
-  --ti-upload-list-item-text-color: var(--ti-common-color-text-secondary, #595959);
+  --tv-UploadList-item-text-color: var(--tv-color-text-secondary);
   // 上传文件列表项(图片框|悬浮背景)圆角
-  --ti-upload-list-item-border-radius: var(--ti-common-border-radius-4, 8px);
+  --tv-UploadList-item-border-radius: var(--tv-border-radius-lg);
   // 上传文件列表项悬浮背景色
-  --ti-upload-list-item-hover-background-color: var(--ti-common-color-bg-normal, #f5f5f5);
+  --tv-UploadList-item-hover-background-color: var(--tv-color-bg-hover);
   // 上传成功列表项悬浮文本色
-  --ti-upload-list-item-hover-text-color: var(--ti-common-color-primary-hover, #595959);
-  // 上传文件列表项悬浮下划线(hide)
-  --ti-upload-list-item-hover-text-decoration: none;
+  --tv-UploadList-item-hover-text-color: var(--tv-color-text-secondary);
   // 上传文件列表项前置图标色
-  --ti-upload-list-item-name-icon-color: var(--ti-common-color-primary-normal, #191919);
+  --tv-UploadList-item-name-icon-color: var(--tv-color-icon-control);
   // 上传文件列表项前置图标尺寸
-  --ti-upload-list-item-name-icon-font-size: var(--ti-common-font-size-2, 16px);
+  --tv-UploadList-item-name-icon-font-size: var(--tv-icon-size);
   // 上传文件列表项右侧图标色
-  --ti-upload-list-svg-close-icon-color: var(--ti-common-color-icon-normal, #808080);
+  --tv-UploadList-svg-close-icon-color: var(--tv-color-icon);
   // 上传文件列表项右侧悬浮图标色
-  --ti-upload-list-svg-close-hover-icon-color: var(--ti-common-color-icon-hover, #191919);
+  --tv-UploadList-svg-close-hover-icon-color: var(--tv-color-icon-hover);
   // 上传文件列表项图标尺寸
-  --ti-upload-list-svg-icon-font-size: var(--ti-common-font-size-2, 16px);
+  --tv-UploadList-svg-icon-font-size: var(--tv-icon-size);
   // 上传文件列表项成功图标尺寸
-  --ti-upload-list-successful-icon-font-size: var(--ti-common-font-size-1, 14px);
-  // 照片墙上传列表项上传中边框样式
-  --ti-upload-list-picture-card-loading-border-color: dashed;
+  --tv-UploadList-successful-icon-font-size: var(--tv-font-size-md);
   // 照片墙上传列表项边框色
-  --ti-upload-list-picture-card-item-border-color: var(--ti-common-color-line-normal, #c2c2c2);
-  // 照片墙上传成功列表项边框厚度
-  --ti-upload-list-picture-success-border-weight: 0;
+  --tv-UploadList-picture-card-item-border-color: var(--tv-color-border);
   // 照片墙上传列表项背景色
-  --ti-upload-list-picture-card-item-bg-color: var(--ti-common-color-light, #ffffff);
+  --tv-UploadList-picture-card-item-bg-color: var(--tv-color-bg-secondary);
   // 照片墙上传列表项右上角图标填充色
-  --ti-upload-list-picture-card-item-text-color: var(--ti-common-color-light, #ffffff);
+  --tv-UploadList-picture-card-item-icon-color: var(--tv-color-icon-white);
   // 上传列表项成功状态图标色或背景色
-  --ti-upload-list-successful-status-bg-color: var(--ti-common-color-success-normal, #5cb300);
+  --tv-UploadList-successful-status-bg-color: var(--tv-color-success-bg);
   // 照片墙上传列表项宽度(new)
-  --ti-upload-list-picture-card-width: var(--ti-common-size-25x, 100px);
+  --tv-UploadList-picture-card-width: 100px;
   // 照片墙上传列表项高度(new)
-  --ti-upload-list-picture-card-height: var(--ti-common-size-25x, 100px);
+  --tv-UploadList-picture-card-height: 100px;
   // 照片墙上传列表项进度条尺寸(new)
-  --ti-upload-list-picture-card-progress-size: var(--ti-common-size-17x, 68px);
-  // 照片墙上传列表项按钮颜色(new)
-  --ti-upload-list-picture-card-item-icon-color: var(--ti-common-color-light, #ffffff);
-  // 照片墙上传列表项右外边距(new)
-  --ti-upload-list-picture-card-item-margin-right: var(--ti-common-space-4x, 16px);
-  // 非picturecard模式上传列表进度条上外边距(hide)
-  --ti-upload-list-item-progress-top: calc(var(--ti-common-line-height-2, 24px) + 2px);
+  --tv-UploadList-picture-card-progress-size: 68px;
   // 非picturecard模式上传文件列表文本行高(new)
-  --ti-upload-list-item-line-height: var(--ti-common-line-height-1, 22px);
+  --tv-UploadList-item-line-height: var(--tv-line-height-number);
   // 非picturecard模式上传文件列表文本上外边距(new)
-  --ti-upload-list-item-margin-top: var(--ti-common-space-2x, 8px);
+  --tv-UploadList-item-margin-top: var(--tv-space-md);
   // 上传文件列表项失败文本和图标色
-  --ti-upload-list-item-fail-text-color: #f23030;
-  // 上传文件列表项刷新图标右边距(hide)
-  --ti-upload-list-svg-refresh-position-right: var(--ti-common-space-8x, 32px);
-  // 上传文件列表项删除图标右边距(hide)
-  --ti-upload-list-svg-close-position-right: var(--ti-common-space-2x, 8px);
-  // 照片墙上传列表项悬浮背景色(new)
-  --ti-upload-list-picture-card-item-hover-bg-color: var(--ti-common-bg-color-hover-40, var(--ti-base-bg-color-transparent-40));
+  --tv-UploadList-item-fail-text-color: var(--tv-color-error-text);
 }
