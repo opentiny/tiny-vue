@@ -49,6 +49,7 @@ export const modalProps = {
   animat: { type: Boolean, default: () => true },
   beforeClose: Function,
   duration: { type: [Number, String], default: () => 3000 },
+  messageClosable: Boolean,
   escClosable: Boolean,
   events: Object,
   fullscreen: Boolean,

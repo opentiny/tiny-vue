@@ -149,7 +149,47 @@ export default {
       },
       codeFiles: ['modal-other.vue']
     },
-
+    {
+      demoId: 'modal-event',
+      name: {
+        'zh-CN': '弹窗的事件',
+        'en-US': 'event'
+      },
+      desc: {
+        'zh-CN': `
+          当窗口显示时，会触发<code>show</code>事件<br />
+          当窗口关闭时，会触发<code>hide</code>事件<br />
+          当点击确定按钮时，会触发<code>confirm</code>事件<br />
+          当点击取消按钮时，会触发<code>cancel</code>事件<br />
+          当点击关闭按钮时，会触发<code>close</code>事件<br /> 
+          当窗口缩放时，会触发<code>zoom</code>事件<br />
+          <div class="tip custom-block">
+            1、<code>type = 'alert' </code>时，没有<code>cancel</code>事件<br />
+            2、函数式调用时，不触发<code>close</code>事件<br />
+          </div>
+          `,
+        'en-US': ''
+      },
+      codeFiles: ['modal-event.vue']
+    },
+    {
+      demoId: 'modal-fn-slots',
+      name: {
+        'zh-CN': '弹窗的插槽',
+        'en-US': 'When used functionally, the slot can be set through the `slots` property'
+      },
+      desc: {
+        'zh-CN': `
+          弹窗模式具有 <code> #default </code>,<code> #footer </code>插槽，标签式调用使用标准的Vue插槽语法即可。<br /> 
+          在函数式使用时，可通过<code>slots</code>属性，传入相应的插槽。<code> #footer </code>插槽的作用域上下文变量有： <code> {$modal, beforeClose,confirm,cancel} </code> 可使用。 <br /> 
+          <div class="tip custom-block">
+            函数式传入插槽时，由于<code>Modal</code>组件是直接挂载到<code>body</code>上，不是在<code>Demo</code>组件内部渲染的，所以<code>jsx</code>引用组件时，要使用引用组件的变量，而不能使用<code>Demo</code>中注册的组件名。详见示例代码
+          </div>
+        `,
+        'en-US': 'When used functionally, the slot can be set through the <code>slots</code> property.'
+      },
+      codeFiles: ['modal-fn-slots.vue']
+    },
     {
       demoId: 'message-close',
       name: {
@@ -158,12 +198,12 @@ export default {
       },
       desc: {
         'zh-CN': `
-          通过<code>message-closable</code>属性设置消息可手动关闭<br>
-          通过<code>duration</code>属性设置自动关闭的延迟时间。<br>
+          通过<code>message-closable</code>属性设置消息可手动关闭。默认值为<code>false</code><br>
+          通过<code>duration</code>属性设置自动关闭的延迟时间,单位为毫秒。默认值为<code>3000 ms</code><br>
         `,
         'en-US': '<p>You can use the <code>fullscreen</code> attribute to set whether to maximize the display. </p>'
       },
-      codeFiles: ['modal-other.vue']
+      codeFiles: ['message-close.vue']
     },
     {
       demoId: 'message-top',
@@ -172,7 +212,7 @@ export default {
         'en-US': 'Position from top'
       },
       desc: {
-        'zh-CN': '通过<code>top</code>属性设置消息距离顶部的位置',
+        'zh-CN': '通过<code>top</code>属性设置消息距离顶部的位置,单位为px,默认值为<code>80</code>',
         'en-US':
           "<p>Set the position of the message from the top via <code>top</code>, which is only valid when <code>type='message'</code>.</p>"
       },
@@ -192,38 +232,20 @@ export default {
       },
       codeFiles: ['message-id.vue']
     },
-
     {
-      demoId: 'event',
+      demoId: 'message-event',
       name: {
-        'zh-CN': '事件【验证message】',
+        'zh-CN': '消息的事件',
         'en-US': 'event'
       },
       desc: {
         'zh-CN': `
           当窗口显示时，会触发<code>show</code>事件<br />
-          当窗口关闭时，会触发<code>hide</code>事。<br />
-          当窗口缩放时，会触发<code>zoom</code>事件<br />
-          当点击确定按钮时，会触发<code>confirm</code>事，<br />
-          当点击取消按钮时，会触发<code>cancel</code>事件<br />
-          当点击关闭按钮时，会触发<code>close</code>事件<br /> 
-          message有哪些事件？
-          `,
+          当窗口关闭时，会触发<code>hide</code>事件<br />
+        `,
         'en-US': ''
       },
-      codeFiles: ['event.vue']
-    },
-    {
-      demoId: 'prop-slots',
-      name: {
-        'zh-CN': '插槽',
-        'en-US': 'When used functionally, the slot can be set through the `slots` property'
-      },
-      desc: {
-        'zh-CN': '<p>在函数式使用时，可通过<code>slots</code>属性设置插槽。</p>',
-        'en-US': 'When used functionally, the slot can be set through the <code>slots</code> property.'
-      },
-      codeFiles: ['prop-slots.vue']
+      codeFiles: ['message-event.vue']
     }
   ]
 }
