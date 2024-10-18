@@ -21,7 +21,7 @@ import {
   iconError,
   iconInfoSolid,
   iconLoadingShadow,
-  iconWarning,
+  iconWarningTriangle,
   iconClose,
   iconFullscreenLeft,
   iconMinscreenLeft
@@ -111,7 +111,7 @@ export default defineComponent({
       QUESTION: iconHelpSolid(),
       INFO: iconInfoSolid(),
       SUCCESS: iconSuccess(),
-      WARNING: iconWarning(),
+      WARNING: iconWarningTriangle(),
       ERROR: iconError(),
       LOADING: iconLoadingShadow()
     }
