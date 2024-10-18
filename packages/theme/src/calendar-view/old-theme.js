@@ -24,7 +24,5 @@ export const tinyCalendarViewOldTheme = {
   'ti-calendar-view-radio-active-inner-hover': '#0a0b0e',
   'ti-calendar-view-radio-active-inner': 'var(--ti-base-color-brand-6)',
   'ti-calendar-view-radio-active-fill': 'var(--ti-common-color-text-white)',
-  'ti-calendar-view-tool-display': 'flex',
-  'ti-calendar-view-tool-first-display': 'none',
   'ti-calendar-view-header-margin-bottom': 'var(--ti-common-space-3x, 12px)'
 }
